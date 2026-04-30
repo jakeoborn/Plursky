@@ -844,6 +844,76 @@ function HomeScreen({ state, setState }) {
             + B2B collabs) for the relevant day. Vets came for THESE, so they
             sit prominently between the night card and the artist gossip. */}
         {!isPostFestival && <DontMissStrip day={countdown ? 1 : NOW.day} state={state} setState={setState} />}
+
+        {/* Pre-festival lineup preview — visible only during countdown */}
+        {countdown && (() => {
+          const savedIds = state.saved || [];
+          const byDay = [1, 2, 3].map(day => ({
+            day,
+            meta: FESTIVAL_CONFIG.dayDates[day],
+            artists: ARTISTS.filter(a => a.day === day && savedIds.includes(a.id))
+              .sort((a, b) => toNightMin(a.start) - toNightMin(b.start)),
+          })).filter(d => d.artists.length);
+          if (!byDay.length) return (
+            <div style={{
+              background: "var(--paper-2)", border: "1px solid var(--line)",
+              borderRadius: 16, padding: "16px 16px", marginTop: 18, textAlign: "center",
+            }}>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)" }}>
+                NO SAVED SETS YET — BROWSE THE LINEUP ↓
+              </div>
+            </div>
+          );
+          return (
+            <div style={{ marginTop: 22 }}>
+              <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
+                <div className="serif" style={{ fontSize: 22 }}>
+                  Your <span style={{ fontStyle: "italic", color: "var(--ember)" }}>lineup</span>
+                </div>
+                <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)" }}>
+                  {savedIds.length} SETS SAVED
+                </span>
+              </div>
+              <div style={{
+                background: "var(--paper-2)", border: "1px solid var(--line)",
+                borderRadius: 18, padding: "14px 16px 6px",
+              }}>
+                {byDay.map(({ day, meta, artists }) => (
+                  <div key={day} style={{ marginBottom: 10 }}>
+                    <div className="mono" style={{
+                      fontSize: 8.5, letterSpacing: 1.8, color: "var(--ember)",
+                      fontWeight: 700, marginBottom: 8,
+                    }}>
+                      {meta.short} · {meta.name.toUpperCase()}
+                    </div>
+                    {artists.map(a => {
+                      const stage = STAGES.find(s => s.id === a.stage);
+                      return (
+                        <button key={a.id}
+                          onClick={() => setState({ ...state, artist: a.id })}
+                          style={{
+                            display: "flex", alignItems: "center", gap: 10, width: "100%",
+                            background: "transparent", border: "none", borderBottom: "1px solid var(--line-2)",
+                            padding: "8px 0", cursor: "pointer", textAlign: "left",
+                          }}>
+                          <ArtistSwatch artist={a} size={36} />
+                          <div style={{ flex: 1, minWidth: 0 }}>
+                            <div className="serif" style={{ fontSize: 16, lineHeight: 1.1, color: "var(--ink)" }}>
+                              {a.name}
+                            </div>
+                            <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", marginTop: 1 }}>
+                              {stage ? stage.short : ""} · {a.start}–{a.end}
+                            </div>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
       </ScrollBody>
 
       {/* Offline banner */}

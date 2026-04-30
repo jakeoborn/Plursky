@@ -85,14 +85,14 @@ async function fetchYouTubeSet(artistName) {
 const _MC_TTL = 24 * 3600000;
 
 async function fetchMixcloud(artistName) {
-  const cacheKey = `mc_${artistName.toLowerCase().replace(/\W+/g, "_")}_v1`;
+  const cacheKey = `mc_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
   try {
     const c = JSON.parse(localStorage.getItem(cacheKey) || "null");
     if (c && Date.now() - c.fetchedAt < _MC_TTL) return c.data;
   } catch {}
   try {
     const fetchItems = async (query) => {
-      const res = await fetch(`https://api.mixcloud.com/search/?q=${encodeURIComponent(query)}&type=cloudcast&limit=10`);
+      const res = await fetch(`https://api.mixcloud.com/search/?q=${encodeURIComponent(query)}&type=cloudcast&limit=15`);
       if (!res.ok) return [];
       const json = await res.json();
       return json.data || [];
@@ -101,16 +101,21 @@ async function fetchMixcloud(artistName) {
     if (!items.length) items = await fetchItems(artistName);
     if (!items.length) return [];
     const an = artistName.toLowerCase();
+    const now = Date.now();
     const scored = items.map(item => {
       const t = (item.name || "").toLowerCase();
       const u = (item.user?.name || "").toLowerCase();
+      const plays = item.play_count || 0;
+      const ageYears = (now - new Date(item.created_time || 0).getTime()) / (365.25 * 24 * 3600000);
       return {
         item,
         score: (t.includes("edc")        ? 4 : 0) +
                (t.includes("las vegas")  ? 3 : 0) +
                (t.includes("live")       ? 2 : 0) +
                (t.includes("set")        ? 1 : 0) +
-               (u.includes(an) || t.includes(an) ? 2 : 0),
+               (u.includes(an) || t.includes(an) ? 2 : 0) +
+               Math.min(Math.log10(plays + 1), 5) +
+               (ageYears < 1 ? 3 : ageYears < 2 ? 2 : ageYears < 3 ? 1 : 0),
       };
     });
     scored.sort((a, b) => b.score - a.score);
@@ -139,12 +144,36 @@ function _mcFmt(n) {
   return n ? String(n) : "";
 }
 
+// ── Genre validation ───────────────────────────────────────────
+// Catches API name collisions (e.g. "Westend" the house DJ vs "Westend"
+// the rock band). When the lineup genre is electronic, the external
+// metadata MUST also look electronic — otherwise reject the result.
+const _ELECTRONIC_KEYWORDS = [
+  "electronic", "dance", "edm", "house", "techno", "trance", "dubstep",
+  "drum and bass", "dnb", "drum & bass", "bass", "garage", "hardstyle",
+  "breakbeat", "acid", "trap", "electro", "club", "rave", "psytrance",
+  "tech", "ambient", "downtempo", "progressive", "synthwave", "jungle",
+  "future bass", "moombahton", "nu-disco", "disco", "phonk", "riddim",
+  "hardcore", "happy hardcore", "uk garage", "dance-pop", "synth",
+];
+
+function _isElectronic(text) {
+  if (!text) return false;
+  const lower = String(text).toLowerCase();
+  return _ELECTRONIC_KEYWORDS.some(k => lower.includes(k));
+}
+
+function _validateGenreMatch(lineupGenre, ...externalFields) {
+  if (!_isElectronic(lineupGenre)) return true; // non-electronic lineup, skip
+  return externalFields.some(_isElectronic);
+}
+
 // ── TheAudioDB ─────────────────────────────────────────────────
 // Free public API — no key required. Better bios + artist images for EDC artists.
 const _TADB_TTL = 7 * 24 * 3600000; // cache 7 days (biography rarely changes)
 
-async function fetchAudioDB(artistName) {
-  const cacheKey = `tadb_${artistName.toLowerCase().replace(/\W+/g, "_")}_v1`;
+async function fetchAudioDB(artistName, lineupGenre) {
+  const cacheKey = `tadb_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
   try {
     const c = JSON.parse(localStorage.getItem(cacheKey) || "null");
     if (c && Date.now() - c.fetchedAt < _TADB_TTL) return c.data;
@@ -157,6 +186,11 @@ async function fetchAudioDB(artistName) {
     const json = await res.json();
     const artist = (json.artists || [])[0];
     if (!artist) return null;
+    // Reject name collisions: if lineup says electronic, TADB result must look electronic too
+    if (!_validateGenreMatch(lineupGenre, artist.strGenre, artist.strStyle, artist.strMood)) {
+      try { localStorage.setItem(cacheKey, JSON.stringify({ data: null, fetchedAt: Date.now() })); } catch {}
+      return null;
+    }
     const data = {
       bio:     artist.strBiographyEN || "",
       image:   artist.strArtistThumb || artist.strArtistFanart || null,
@@ -177,9 +211,9 @@ async function fetchAudioDB(artistName) {
 const LASTFM_KEY = "aae1625166e1c4fa3197ef44774c4ead";
 const _LFM_TTL = 24 * 3600000;
 
-async function fetchLastfm(artistName) {
+async function fetchLastfm(artistName, lineupGenre) {
   if (!LASTFM_KEY) return null;
-  const cacheKey = `lfm_${artistName.toLowerCase().replace(/\W+/g, "_")}_v1`;
+  const cacheKey = `lfm_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
   try {
     const c = JSON.parse(localStorage.getItem(cacheKey) || "null");
     if (c && Date.now() - c.fetchedAt < _LFM_TTL) return c.data;
@@ -198,6 +232,13 @@ async function fetchLastfm(artistName) {
 
     const info    = infoJson?.artist;
     const similar = (simJson?.similarartists?.artist || []).slice(0, 5);
+
+    // Reject name collisions: if lineup is electronic, Last.fm tags/bio must look electronic too
+    const lfmTagText = (info?.tags?.tag || []).map(t => t.name).join(" ");
+    if (info && !_validateGenreMatch(lineupGenre, lfmTagText, info?.bio?.summary)) {
+      try { localStorage.setItem(cacheKey, JSON.stringify({ data: null, fetchedAt: Date.now() })); } catch {}
+      return null;
+    }
 
     // Listeners / play count
     const listeners  = parseInt(info?.stats?.listeners  || "0", 10);
@@ -490,12 +531,12 @@ function ArtistScreen({ state, setState }) {
     setYtPlaying(false); setMcPlaying(null);
     setLfm(undefined); setSetlists(undefined); setYtVideo(undefined); setTmEvents(undefined);
     setMcTracks(undefined); setTadb(undefined);
-    fetchLastfm(activeName).then(setLfm);
+    fetchLastfm(activeName, a.genre).then(setLfm);
     fetchSetlists(activeName).then(setSetlists);
     fetchYouTubeSet(activeName).then(setYtVideo);
     fetchTicketmaster(activeName).then(setTmEvents);
     fetchMixcloud(activeName).then(setMcTracks);
-    fetchAudioDB(activeName).then(setTadb);
+    fetchAudioDB(activeName, a.genre).then(setTadb);
   }, [a.id, activeB2B]);
 
   // Spotify stats: popularity, followers, genres — loaded from cache or fetched alongside photo
@@ -522,10 +563,10 @@ function ArtistScreen({ state, setState }) {
     } catch { setSpotifyStats(null); }
     // Skip network call if we already have both photo and stats cached
     if (artistImages[activeName.toLowerCase()] && hasCachedStats) return;
-    const token = localStorage.getItem("spotify_token");
-    const expires = localStorage.getItem("spotify_expires");
-    if (!token || !expires || Date.now() >= parseInt(expires)) return;
+    if (!localStorage.getItem("spotify_token") && !localStorage.getItem("spotify_refresh_token")) return;
     const ctrl = new AbortController();
+    getValidToken().then(token => {
+    if (!token) return;
     fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(activeName)}&type=artist&limit=3`, {
       headers: { Authorization: "Bearer " + token }, signal: ctrl.signal,
     }).then(r => r.ok ? r.json() : null).then(async d => {
@@ -571,6 +612,7 @@ function ArtistScreen({ state, setState }) {
         localStorage.setItem("spotify_artist_data_v1", JSON.stringify(cache));
       } catch {}
     }).catch(() => {});
+    }); // getValidToken
     return () => ctrl.abort();
   }, [a.id, activeB2B]);
 
@@ -633,6 +675,7 @@ function ArtistScreen({ state, setState }) {
 
   return (
     <Screen bg="var(--paper)">
+      <ScrollBody>
       {/* Hero */}
       <div style={{
         height: 260, position: "relative",
@@ -688,7 +731,7 @@ function ArtistScreen({ state, setState }) {
         </div>
       )}
 
-      <ScrollBody style={{ padding: "18px 20px 24px" }}>
+      <div style={{ padding: "18px 20px 24px" }}>
         {/* Stage & time */}
         <div style={{
           display: "flex", alignItems: "center", gap: 12,
@@ -1354,6 +1397,7 @@ function ArtistScreen({ state, setState }) {
             cursor: "pointer", fontSize: 20,
           }}>♡</button>
         </div>
+      </div>
       </ScrollBody>
     </Screen>
   );
