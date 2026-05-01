@@ -595,7 +595,7 @@ function HomeScreen({ state, setState }) {
                   : <><path d="M2 8 Q12 -2 22 8"/><path d="M5 12 Q12 5 19 12"/><path d="M8 16 Q12 12 16 16"/><circle cx="12" cy="19.5" r="0.8" fill="currentColor"/></>
                 }
               </svg>
-              {offline ? "OFF" : "LIVE"}
+              {offline ? "OFF" : (!countdown && !isPostFestival ? "LIVE" : "ON")}
             </button>
             <button onClick={() => setAlertsOpen(true)} style={{
               position: "relative", background: "transparent", border: "none",
@@ -613,7 +613,7 @@ function HomeScreen({ state, setState }) {
                 }}/>
               )}
             </button>
-            {!isPostFestival && (
+            {!countdown && !isPostFestival && (
               <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
                 DAY {NOW.day} · {NOW.time}
               </div>

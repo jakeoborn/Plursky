@@ -40,7 +40,7 @@
   <text x="362" y="460" font-family="'Inter','Helvetica',sans-serif" font-weight="400"
         font-size="26" fill="rgba(255,255,255,0.72)">Your EDC Las Vegas 2026 companion</text>
   <text x="362" y="498" font-family="'Inter','Helvetica',sans-serif" font-weight="300"
-        font-size="22" fill="rgba(255,255,255,0.45)">3D map · Lineup · GPS · AI guide · Offline-first</text>
+        font-size="22" fill="rgba(255,255,255,0.45)">3D map · Lineup · GPS · AI guide · Works offline</text>
   <g transform="translate(80 560)">
     <rect x="0" y="0" rx="16" ry="16" width="160" height="42" fill="none" stroke="#f0c040" stroke-width="1.5"/>
     <text x="80" y="28" font-family="'Orbitron','Helvetica',sans-serif" font-weight="700"

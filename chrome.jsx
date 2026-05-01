@@ -406,29 +406,44 @@ function _artistStartMs(artist) {
 }
 
 const _REMINDERS_KEY = "reminders_v1";
+const _REMINDER_LEAD_KEY = "plursky_reminder_lead_min";
+const _REMINDER_LEAD_OPTIONS = [5, 15, 30, 60];
 const _SCHEDULED = new Map(); // artistId → timeout handle
 
-// Schedule 15-min-before reminders for all upcoming saved sets using
-// real wall-clock time. Persists reminder list so a reload can re-register
-// any that haven't fired yet.
+function getReminderLeadMin() {
+  try {
+    const raw = parseInt(localStorage.getItem(_REMINDER_LEAD_KEY) || "", 10);
+    if (_REMINDER_LEAD_OPTIONS.includes(raw)) return raw;
+  } catch {}
+  return 15;
+}
+function setReminderLeadMin(mins) {
+  if (!_REMINDER_LEAD_OPTIONS.includes(mins)) return;
+  try { localStorage.setItem(_REMINDER_LEAD_KEY, String(mins)); } catch {}
+}
+
+// Schedule reminders for all upcoming saved sets using real wall-clock time.
+// Lead-time is configurable (5/15/30/60 min, default 15). Persists reminder
+// list so a reload can re-register any that haven't fired yet.
 function scheduleReminders(state, showLocal) {
   _SCHEDULED.forEach(h => clearTimeout(h));
   _SCHEDULED.clear();
 
   const now = Date.now();
   const pending = [];
+  const leadMin = getReminderLeadMin();
 
   state.saved.forEach(id => {
     const a = ARTISTS.find(x => x.id === id);
     if (!a) return;
     const startMs = _artistStartMs(a);
     if (!startMs) return;
-    const fireMs = startMs - 15 * 60000;
+    const fireMs = startMs - leadMin * 60000;
     const delayMs = fireMs - now;
     if (delayMs <= 0 || delayMs > 24 * 3600000) return; // upcoming within 24 h only
     const stage = STAGES.find(s => s.id === a.stage);
     const handle = setTimeout(() => {
-      showLocal(`${a.name} starts in 15 min`, {
+      showLocal(`${a.name} starts in ${leadMin} min`, {
         body: `${stage?.name || ""} · ${a.start}`,
         tag: `set-${a.id}`,
         data: { url: "/" },
@@ -436,7 +451,7 @@ function scheduleReminders(state, showLocal) {
       _SCHEDULED.delete(a.id);
     }, delayMs);
     _SCHEDULED.set(a.id, handle);
-    pending.push({ id: a.id, name: a.name, stageName: stage?.name || "", start: a.start, fireMs });
+    pending.push({ id: a.id, name: a.name, stageName: stage?.name || "", start: a.start, fireMs, leadMin });
   });
 
   try { localStorage.setItem(_REMINDERS_KEY, JSON.stringify(pending)); } catch {}
@@ -453,8 +468,9 @@ function loadAndReschedule(showLocal) {
     const live = saved.filter(r => r.fireMs > now && r.fireMs - now <= 24 * 3600000);
     live.forEach(r => {
       if (_SCHEDULED.has(r.id)) return;
+      const lead = r.leadMin || 15;
       const handle = setTimeout(() => {
-        showLocal(`${r.name} starts in 15 min`, {
+        showLocal(`${r.name} starts in ${lead} min`, {
           body: `${r.stageName} · ${r.start}`,
           tag: `set-${r.id}`,
           data: { url: "/" },
@@ -474,6 +490,12 @@ function NotificationsCard({ state }) {
   const { supported, perm, enable, showLocal } = useNotifications();
   const [scheduled, setScheduled] = React.useState(0);
   const [flash, setFlash] = React.useState(null); // 'enabled' | 'tested'
+  const [leadMin, setLeadMinState] = React.useState(getReminderLeadMin);
+  const onPickLead = (mins) => {
+    setReminderLeadMin(mins);
+    setLeadMinState(mins);
+    if (perm === "granted") setScheduled(scheduleReminders(state, showLocal));
+  };
 
   // On mount: restore reminders that survived a page reload
   React.useEffect(() => {
@@ -540,7 +562,7 @@ function NotificationsCard({ state }) {
         </span>
       </div>
       <div className="serif" style={{ fontSize: 19, lineHeight: 1.1, marginBottom: 4 }}>
-        15-min head-up before each set
+        {leadMin}-min head-up before each set
       </div>
       <div style={{ fontSize: 11.5, color: "var(--muted)", lineHeight: 1.5, marginBottom: perm === "denied" ? 8 : 12 }}>
         {perm === "granted"
@@ -549,7 +571,26 @@ function NotificationsCard({ state }) {
             : "No sets starting in the next 24 hours — reminders will activate automatically during the festival."
           : perm === "denied"
             ? "Notifications are blocked for this site."
-            : "Get a notification 15 minutes before each saved set so you don't miss a thing."}
+            : `Get a notification ${leadMin} minutes before each saved set so you don't miss a thing.`}
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12, flexWrap: "wrap" }}>
+        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", fontWeight: 700 }}>
+          LEAD TIME
+        </span>
+        <div style={{ display: "flex", gap: 5 }}>
+          {_REMINDER_LEAD_OPTIONS.map(m => {
+            const on = m === leadMin;
+            return (
+              <button key={m} onClick={() => onPickLead(m)} className="mono" style={{
+                padding: "4px 9px", borderRadius: 999, cursor: "pointer",
+                background: on ? "var(--ink)" : "transparent",
+                color: on ? "var(--paper)" : "var(--ink)",
+                border: on ? "none" : "1px solid var(--line-2)",
+                fontSize: 9.5, letterSpacing: 1.1, fontWeight: on ? 700 : 500,
+              }}>{m}M</button>
+            );
+          })}
+        </div>
       </div>
       {perm === "denied" && (
         <div style={{
@@ -724,7 +765,11 @@ function FestivalSwitcher({ onClose }) {
 // Battery-saver mode
 // ─────────────────────────────────────────────────────────────
 // Three modes: "off" | "on" | "auto" (default).
-//   auto = battery <25% on a non-charging device  OR  02:00–06:00 wall-clock.
+//   auto = (battery <25% on a non-charging device) AND
+//          (we're inside the festival window — i.e. user has a saved set within 24h
+//           OR right now is between FESTIVAL_START_MS and FESTIVAL_END_MS).
+// Pre-event there's no point dimming the UI; the late-night clock trigger fired
+// inappropriately when the user was just opening the app at 3 AM weeks before.
 // When active, body.bs-on disables all keyframe animations, transitions,
 // and backdrop-filter blurs, then dims via brightness/saturate. Geolocation
 // (map.jsx) and the demo-wander tick read window._BS.active to throttle.
@@ -739,17 +784,48 @@ const _BS = (window._BS = window._BS || {
   listeners: new Set(),  // (active) => void
 });
 
+function _bsHasFestivalContext() {
+  // Active during the festival window itself, OR when the user has a saved set
+  // starting within the next 24h. Outside that window the auto-trigger is off.
+  try {
+    const now = Date.now();
+    const cfg = (typeof window !== "undefined" && window.FESTIVAL_CONFIG) || null;
+    if (cfg && typeof cfg.startMs === "number" && typeof cfg.endMs === "number") {
+      if (now >= cfg.startMs && now <= cfg.endMs) return true;
+    }
+    const artists = (typeof window !== "undefined" && window.ARTISTS) || null;
+    const dayDates = cfg && cfg.dayDates;
+    if (!artists || !dayDates) return false;
+    let raw = "[]";
+    try {
+      const fid = cfg && cfg.id;
+      raw = (fid && localStorage.getItem(`${fid}_saved_v1`)) || "[]";
+    } catch {}
+    const saved = JSON.parse(raw);
+    if (Array.isArray(saved) && saved.length) {
+      const horizon = now + 24 * 3600 * 1000;
+      for (const id of saved) {
+        const a = artists.find(x => x.id === id);
+        if (!a || !a.start) continue;
+        const dm = dayDates[a.day];
+        if (!dm || typeof dm.midnightUtc !== "number") continue;
+        const [h, m] = String(a.start).split(":").map(Number);
+        const isOvernight = h < 12;
+        const startMs = dm.midnightUtc + (isOvernight ? 86400000 : 0) + (h || 0) * 3600000 + (m || 0) * 60000;
+        if (startMs >= now && startMs <= horizon) return true;
+      }
+    }
+  } catch {}
+  return false;
+}
+
 function _bsCompute() {
   if (_BS.mode === "on")  return true;
   if (_BS.mode === "off") return false;
-  // auto
-  let lateNight = false;
-  try {
-    const h = new Date().getHours();
-    lateNight = h >= 2 && h < 6;
-  } catch {}
+  // auto: real low-battery only, gated by festival context
   const lowBatt = _BS.battery && !_BS.battery.charging && _BS.battery.level < 0.25;
-  return lateNight || !!lowBatt;
+  if (!lowBatt) return false;
+  return _bsHasFestivalContext();
 }
 function _bsApply() {
   const next = _bsCompute();

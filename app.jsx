@@ -24,7 +24,10 @@ function OnboardingModal({ onDone, setState, state }) {
   const finish = () => {
     try {
       localStorage.setItem("onboarded", ONBOARD_VERSION);
-      if (name.trim()) localStorage.setItem("user_name", name.trim());
+      if (name.trim()) {
+        localStorage.setItem("user_name", name.trim());
+        localStorage.setItem("plursky_display_name", name.trim());
+      }
     } catch {}
     onDone();
   };
@@ -34,7 +37,7 @@ function OnboardingModal({ onDone, setState, state }) {
     {
       kicker: "WELCOME",
       title: <>Welcome to <span style={{ fontStyle: "italic", color: "var(--ember)" }}>Plursky</span></>,
-      body: "Your offline-first companion for EDC Las Vegas 2026. Lineup, stage map, friends, sunrise sets — all in one place.",
+      body: "Your online-first companion for EDC Las Vegas 2026 — and it still works when service drops at the festival. Lineup, stage map, friends, sunrise sets — all in one place.",
       input: (
         <input
           type="text"
@@ -323,17 +326,14 @@ function ToastHost() {
 }
 
 function App() {
-  // First-time visitors no longer get a blocking modal — onboarding becomes
-  // a passive setup card on Home (see SetupBanner). Mark onboarded right away
-  // so the modal won't auto-trigger on cold open.
-  const [showOnboarding, setShowOnboarding] = React.useState(false);
-  React.useEffect(() => {
-    try {
-      if (localStorage.getItem("onboarded") !== ONBOARD_VERSION) {
-        localStorage.setItem("onboarded", ONBOARD_VERSION);
-      }
-    } catch {}
-  }, []);
+  // First-time visitors get the welcome wizard auto-fired (hybrid C):
+  // the wizard collects name + offers Spotify/notifications, but every
+  // step is skippable and the empty-state nudges on Home pick up the rest
+  // for anyone who skips through.
+  const [showOnboarding, setShowOnboarding] = React.useState(() => {
+    try { return localStorage.getItem("onboarded") !== ONBOARD_VERSION; }
+    catch { return false; }
+  });
   const [searchOpen, setSearchOpen] = React.useState(false);
   const [chatOpen,   setChatOpen]   = React.useState(false);
   // AI chat needs a user-supplied Anthropic key (most visitors don't have one),
@@ -411,7 +411,7 @@ function App() {
       // Crew deep-link without an explicit tab routes to Me so CrewCard mounts
       // and auto-joins (otherwise the friend never subscribes to broadcasts).
       tab:             (validStage ? "lineup" : validTab) || (validCrew ? "me" : "home"),
-      saved:           saved ?? ["k9", "k11", "k4", "c5", "w1"],
+      saved:           saved ?? [],
       spotifyConnected: spotifyTokenValid(),
       artist:          validArtist,
       focusStage:      validStage || null,
@@ -430,6 +430,33 @@ function App() {
     if (notifPerm === "granted") scheduleReminders(state, showLocal);
   }, [state.saved.join(","), notifPerm]);
 
+  // Cloud-backup auto-push: when the user is signed in to Supabase, push their
+  // saved lineup + notes 1s after the most recent change. Silent — the cloud
+  // card already shows sync status. When NOT signed in, fire a one-time toast
+  // after the first save so users know cloud backup exists.
+  React.useEffect(() => {
+    if (!state.saved.length) return;
+    let cancelled = false;
+    const t = setTimeout(async () => {
+      if (cancelled) return;
+      try {
+        const user = window.sbGetUser ? await window.sbGetUser() : null;
+        if (user && window.sbPush) {
+          let notes = {};
+          try { notes = JSON.parse(localStorage.getItem("artist_notes_v1") || "{}"); } catch {}
+          await window.sbPush(state.saved, notes);
+        } else {
+          const seen = (() => { try { return localStorage.getItem("cloud_nudge_seen") === "1"; } catch { return false; } })();
+          if (!seen && typeof window.plurskyToast === "function") {
+            try { localStorage.setItem("cloud_nudge_seen", "1"); } catch {}
+            window.plurskyToast("Saved. Sign in on Me tab to back up.");
+          }
+        }
+      } catch {}
+    }, 1000);
+    return () => { cancelled = true; clearTimeout(t); };
+  }, [state.saved.join(",")]);
+
   let body;
   if (state.artist) body = <ArtistScreen state={state} setState={setState} />;
   else if (state.tab === "home")    body = <HomeScreen    state={state} setState={setState} />;
@@ -446,23 +473,26 @@ function App() {
       <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", paddingTop: "var(--top-pad, 54px)" }}>
         <div style={{ flex: 1, position: "relative" }}>
           {body}
-          {/* Search FAB — floats above TabBar, accessible from any screen */}
+          {/* Search FAB — floats above TabBar, accessible from any screen.
+              Labeled pill so first-time users actually notice it. */}
           {!state.artist && !searchOpen && !chatOpen && (
             <button
               onClick={() => setSearchOpen(true)}
-              aria-label="Search artists"
+              aria-label="Search artists, stages, genres"
               style={{
                 position: "absolute", bottom: 16, right: 16, zIndex: 30,
-                width: 42, height: 42, borderRadius: 42,
+                height: 42, borderRadius: 999, padding: "0 16px 0 12px",
                 background: "var(--ink)", color: "var(--paper)",
                 border: "none", cursor: "pointer",
-                display: "flex", alignItems: "center", justifyContent: "center",
+                display: "flex", alignItems: "center", gap: 7,
                 boxShadow: "0 4px 16px rgba(0,0,0,0.28)",
+                fontFamily: "Geist Mono, monospace", fontSize: 11, letterSpacing: 1.4, fontWeight: 700,
               }}
             >
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
                 <circle cx="11" cy="11" r="7"/><path d="M21 21 L16.65 16.65"/>
               </svg>
+              SEARCH
             </button>
           )}
           {/* Ask Plursky AI chat FAB — hidden unless user has stored an

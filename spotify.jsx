@@ -1826,19 +1826,29 @@ function PackListCard() {
 }
 
 function MeScreen({ state, setState }) {
-  // Build identity from Spotify profile when available, else fall back to demo
+  // Build identity from Spotify profile when available, else fall back to user-set name
   const [profile, setProfile] = React.useState(getSpotifyProfileSync);
+  const [localName, setLocalName] = React.useState(() => {
+    try { return localStorage.getItem("plursky_display_name") || ""; } catch { return ""; }
+  });
   React.useEffect(() => {
     if (state.spotifyConnected && !profile) {
       ensureSpotifyProfile().then(setProfile);
     }
   }, [state.spotifyConnected]);
 
-  const displayName = profile?.name || "Ava Torres";
-  const initial = (displayName.match(/[A-Za-z0-9]/) || ["A"])[0].toUpperCase();
+  const hasName = !!(profile?.name || localName);
+  const displayName = profile?.name || localName || "Set your name";
+  const initial = hasName ? (displayName.match(/[A-Za-z0-9]/) || ["?"])[0].toUpperCase() : "?";
   const subline = profile
-    ? `${profile.product === "premium" ? "PREMIUM" : "FREE"} · ${profile.country || "—"} · 3-DAY PASS`
-    : "3-DAY PASS · GA+ · WRISTBAND #EDC-9122";
+    ? `${profile.product === "premium" ? "PREMIUM" : "FREE"} · ${profile.country || "—"}`
+    : (hasName ? FESTIVAL_CONFIG.shortName.toUpperCase() : "TAP TO PERSONALIZE");
+  const promptName = () => {
+    const next = (window.prompt("Your name (shown to crew & on this screen):", localName || "") || "").trim();
+    if (!next) return;
+    try { localStorage.setItem("plursky_display_name", next); } catch {}
+    setLocalName(next);
+  };
 
   return (
     <Screen bg="var(--paper)">
@@ -1865,8 +1875,11 @@ function MeScreen({ state, setState }) {
               flexShrink: 0,
             }}>{initial}</div>
           )}
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div className="serif" style={{ fontSize: 22, lineHeight: 1, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+          <div
+            style={{ flex: 1, minWidth: 0, cursor: profile ? "default" : "pointer" }}
+            onClick={profile ? undefined : promptName}
+          >
+            <div className="serif" style={{ fontSize: 22, lineHeight: 1, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", color: hasName ? "var(--ink)" : "var(--muted)" }}>
               {displayName}
             </div>
             <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)", marginTop: 3 }}>
@@ -1920,19 +1933,6 @@ function MeScreen({ state, setState }) {
             <path d="M9 18 L15 12 L9 6"/>
           </svg>
         </button>
-
-        {/* Stats */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8, marginBottom: 20 }}>
-          {[{ n: state.saved.length, l: "SAVED" }, { n: "3.2", l: "KM TODAY" }, { n: "7", l: "STAMPS" }].map(s => (
-            <div key={s.l} style={{
-              padding: 14, borderRadius: 12, textAlign: "center",
-              background: "var(--paper)", border: "1px solid var(--line)",
-            }}>
-              <div className="serif" style={{ fontSize: 28, lineHeight: 1 }}>{s.n}</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", marginTop: 4 }}>{s.l}</div>
-            </div>
-          ))}
-        </div>
 
         {/* Friends — live via Supabase Realtime Presence */}
         <div style={{ marginBottom: 20 }}>

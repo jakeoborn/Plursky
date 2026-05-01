@@ -725,8 +725,16 @@ function useSavedSetReminders(savedIds, enabled) {
   React.useEffect(() => {
     if (!enabled) return;
     if (typeof Notification === "undefined" || Notification.permission !== "granted") return;
+    const readLead = () => {
+      try {
+        const raw = parseInt(localStorage.getItem("plursky_reminder_lead_min") || "", 10);
+        if ([5, 15, 30, 60].includes(raw)) return raw;
+      } catch {}
+      return 15;
+    };
     const tick = () => {
       const now = Date.now();
+      const leadMin = readLead();
       savedIds.forEach(id => {
         if (firedRef.current.has(id)) return;
         const a = ARTISTS.find(x => x.id === id);
@@ -734,8 +742,8 @@ function useSavedSetReminders(savedIds, enabled) {
         const startMs = _setStartRealMs(a);
         if (!startMs) return;
         const minsUntil = (startMs - now) / 60000;
-        // Fire once when 0–15 min out
-        if (minsUntil > 0 && minsUntil <= 15) {
+        // Fire once when 0..leadMin minutes out
+        if (minsUntil > 0 && minsUntil <= leadMin) {
           firedRef.current.add(id);
           try {
             const stage = STAGES.find(s => s.id === a.stage);

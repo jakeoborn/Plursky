@@ -225,12 +225,7 @@ const AMENITIES = [
 
 const AVATAR_START = { x: 50, y: 52 };
 
-const FRIENDS = [
-  { id: "f1", name: "Remi",  color: "#34d399", x: 20, y: 24, status: "Bionic Jungle",  avatarTone: "#7c3aed" },
-  { id: "f2", name: "Juno",  color: "#38bdf8", x: 74, y: 20, status: "Quantum Valley", avatarTone: "#f472b6" },
-  { id: "f3", name: "Kai",   color: "#f472b6", x: 30, y: 34, status: "Stereo Bloom",   avatarTone: "#38bdf8" },
-  { id: "f4", name: "Sage",  color: "#f59a36", x: 74, y: 80, status: "Circuit Grounds",avatarTone: "#f59a36" },
-];
+const FRIENDS = [];
 
 // Real artists from the announced Las Vegas 2026 lineup, grouped by stage.
 // Set times are illustrative schedule placements (7pm–5:30am window) — official set times released closer to the event.
@@ -503,14 +498,8 @@ function _computeNow() {
 }
 const NOW = new Proxy({}, { get(_, prop) { return _computeNow()[prop]; } });
 
-// Live notifications feed
-const ALERTS = [
-  { id: "n1", kind: "reminder", title: "Porter Robinson in 48 min",    body: "Kinetic Field · 23:30. 7 min walk from here.",       time: "10:42 PM", unread: true },
-  { id: "n2", kind: "friend",   title: "Remi just arrived at Bionic",  body: "They're near the east entrance.",                      time: "10:38 PM", unread: true },
-  { id: "n3", kind: "safety",   title: "Wind gust alert",              body: "18 mph gusts expected 11:00 PM. Secure lightweight items.", time: "10:15 PM", unread: false },
-  { id: "n4", kind: "conflict", title: "Schedule conflict",             body: "Zedd and Subtronics overlap 01:00–01:45.",             time: "09:55 PM", unread: false },
-  { id: "n5", kind: "drop",     title: "New set added",                 body: "Surprise b2b Fisher × Chris Lake at Circuit, 02:30.",   time: "09:12 PM", unread: false },
-];
+// Live notifications feed (populated at runtime from saved sets / crew / safety alerts)
+const ALERTS = [];
 
 // Essentials — safety/info drawer
 const ESSENTIALS = [
