@@ -573,15 +573,19 @@ async function createEdcPlaylist(state) {
     // how many tracks each candidate artist ID owns and picking the most-
     // represented one — Spotify's track relevance ranking surfaces the
     // popular artist's catalog first.
+    // Strip lineup-only suffixes like "(DJ Set)", "(VIP)", "(Live)" — Spotify's
+    // canonical artist name doesn't include them, so the exact-name match below
+    // would fail otherwise.
+    const clean = searchName.replace(/\s*\([^)]*\)\s*/g, "").trim() || searchName;
     try {
       const tr = await fetchWithRetry(
-        `https://api.spotify.com/v1/search?q=${encodeURIComponent(`artist:"${searchName}"`)}&type=track&limit=10`,
+        `https://api.spotify.com/v1/search?q=${encodeURIComponent(`artist:"${clean}"`)}&type=track&limit=10`,
         { headers: { Authorization: "Bearer " + token } }
       );
       if (!tr || !tr.ok) return [];
       const tj = await tr.json();
       const items = tj.tracks?.items || [];
-      const ln = searchName.toLowerCase();
+      const ln = clean.toLowerCase();
       const byArtist = new Map();
       for (const t of items) {
         const matched = (t.artists || []).find(a => a.name.toLowerCase() === ln);
@@ -719,15 +723,16 @@ async function createHypePlaylist() {
   let missed = 0;
   const searchHypeOne = async (searchName) => {
     // Same track-search path as createEdcPlaylist — see comment there.
+    const clean = searchName.replace(/\s*\([^)]*\)\s*/g, "").trim() || searchName;
     try {
       const tr = await fetch(
-        `https://api.spotify.com/v1/search?q=${encodeURIComponent(`artist:"${searchName}"`)}&type=track&limit=10`,
+        `https://api.spotify.com/v1/search?q=${encodeURIComponent(`artist:"${clean}"`)}&type=track&limit=10`,
         { headers: { Authorization: "Bearer " + token } }
       );
       if (!tr.ok) return false;
       const tj = await tr.json();
       const items = tj.tracks?.items || [];
-      const ln = searchName.toLowerCase();
+      const ln = clean.toLowerCase();
       const byArtist = new Map();
       for (const t of items) {
         const matched = (t.artists || []).find(a => a.name.toLowerCase() === ln);
@@ -866,6 +871,28 @@ async function fetchSpotifyTopArtists() {
     };
     // Pull recently-played (max 50) + first 6 pages of liked songs (300 tracks).
     // More pages → more EDM artists who appear only a few times in the library.
+    // Followed artists — cursor-paginated, different shape from track-based pulls.
+    // An artist you follow but never play (e.g. you like an EDM act's posts but
+    // listen to other genres at home) was invisible to the matcher before this.
+    const pullFollowing = async () => {
+      let after = null;
+      for (let page = 0; page < 4; page++) {
+        try {
+          const url = `https://api.spotify.com/v1/me/following?type=artist&limit=50${after ? "&after=" + after : ""}`;
+          const r = await fetch(url, { headers: { Authorization: "Bearer " + token } });
+          if (!r.ok) return;
+          const d = await r.json();
+          const items = d.artists?.items || [];
+          items.forEach(a => {
+            if (!a?.id || seen.has(a.id)) return;
+            seen.add(a.id);
+            extras.push({ id: a.id, name: a.name, genres: a.genres || [], _score: 50, _source: "following" });
+          });
+          after = d.artists?.cursors?.after;
+          if (!after || items.length < 50) break;
+        } catch { return; }
+      }
+    };
     await Promise.all([
       pull("https://api.spotify.com/v1/me/player/recently-played?limit=50", "recent", 60),
       pull("https://api.spotify.com/v1/me/tracks?limit=50&offset=0",   "saved", 40),
@@ -878,6 +905,7 @@ async function fetchSpotifyTopArtists() {
       pull("https://api.spotify.com/v1/me/tracks?limit=50&offset=350", "saved", 10),
       pull("https://api.spotify.com/v1/me/tracks?limit=50&offset=400", "saved", 8),
       pull("https://api.spotify.com/v1/me/tracks?limit=50&offset=450", "saved", 6),
+      pullFollowing(),
     ]);
 
     // Walk ALL playlists (owned + followed) — paginate both the playlist list
