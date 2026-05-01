@@ -847,14 +847,28 @@ function sbGroupJoin(code, { pid, name, artistIds }, onChange) {
   if (!_sb) return () => {};
   sbGroupLeave(code);
   const members = new Map();
+  const entry = { ch: null, members, myState: { pid, name, artistIds } };
   const ch = _sb.channel(`group-${code}`);
+  entry.ch = ch;
   ch.on("broadcast", { event: "lineup" }, ({ payload }) => {
+    // Ignore our own echoes and malformed payloads.
+    if (!payload || !payload.pid || payload.pid === entry.myState.pid) return;
+    const isNew = !members.has(payload.pid);
     members.set(payload.pid, { name: payload.name, artistIds: payload.artistIds || [], ts: Date.now() });
     onChange?.(new Map(members));
-  }).subscribe(() => {
-    ch.send({ type: "broadcast", event: "lineup", payload: { pid, name, artistIds } });
+    // Echo our state to a member we hadn't seen before. Supabase broadcast is
+    // fire-and-forget — historical messages aren't replayed to new joiners — so
+    // without this echo, a friend who joins after the host never learns that
+    // the host is in the channel. Echo terminates because we only echo on the
+    // first sighting of a pid; on the second message from same pid, we skip.
+    if (isNew) {
+      try { ch.send({ type: "broadcast", event: "lineup", payload: entry.myState }); } catch {}
+    }
+  }).subscribe(status => {
+    if (status !== "SUBSCRIBED") return;
+    try { ch.send({ type: "broadcast", event: "lineup", payload: entry.myState }); } catch {}
   });
-  _groupChannels.set(code, { ch, members });
+  _groupChannels.set(code, entry);
   return () => sbGroupLeave(code);
 }
 
@@ -868,7 +882,10 @@ function sbGroupLeave(code) {
 function sbGroupUpdate(code, payload) {
   const entry = _groupChannels.get(code);
   if (!entry) return;
-  entry.ch.send({ type: "broadcast", event: "lineup", payload }).catch?.(() => {});
+  // Keep myState fresh so echoes carry the latest saved sets, not the stale
+  // ones from when sbGroupJoin was first called.
+  entry.myState = payload;
+  try { entry.ch.send({ type: "broadcast", event: "lineup", payload }); } catch {}
 }
 
 function sbGetCrewCount(artistId) {
@@ -914,6 +931,17 @@ function CrewCard({ state }) {
   React.useEffect(() => {
     if (joined) sbGroupUpdate(code, { pid: myPid, name: myName, artistIds: state.saved });
   }, [state.saved.join(","), joined]);
+
+  // Auto-join when arriving via a `?crew=CODE` share link. App.jsx flags it,
+  // CrewCard consumes the flag once on mount.
+  React.useEffect(() => {
+    let pending = null;
+    try { pending = localStorage.getItem("plursky_crew_autojoin"); } catch {}
+    if (pending && configured) {
+      try { localStorage.removeItem("plursky_crew_autojoin"); } catch {}
+      joinCrew(code);
+    }
+  }, []);
 
   React.useEffect(() => () => { if (leaveRef.current) leaveRef.current(); }, []);
 

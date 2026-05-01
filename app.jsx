@@ -327,6 +327,10 @@ function App() {
     const validCrew = (dlCrew || "").trim().toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 12) || null;
     if (validCrew) {
       try { localStorage.setItem("plursky_group_code", validCrew); } catch {}
+      // Flag for CrewCard mount to auto-join the broadcast channel — otherwise
+      // a friend who opens the share link sets the code locally but never
+      // subscribes, so neither side sees the other in the crew.
+      try { localStorage.setItem("plursky_crew_autojoin", "1"); } catch {}
       // Migrate any active presence to the crew-scoped channel. Safe no-op if
       // the user hasn't joined presence yet — sbPresenceJoin will pick the
       // crew channel automatically the next time it's called.
@@ -339,7 +343,9 @@ function App() {
     }
 
     return {
-      tab:             (validStage ? "lineup" : validTab) || "home",
+      // Crew deep-link without an explicit tab routes to Me so CrewCard mounts
+      // and auto-joins (otherwise the friend never subscribes to broadcasts).
+      tab:             (validStage ? "lineup" : validTab) || (validCrew ? "me" : "home"),
       saved:           saved ?? ["k9", "k11", "k4", "c5", "w1"],
       spotifyConnected: spotifyTokenValid(),
       artist:          validArtist,

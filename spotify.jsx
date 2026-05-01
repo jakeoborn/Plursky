@@ -552,6 +552,20 @@ async function createEdcPlaylist(state) {
   const urisByDay = { 1: [], 2: [], 3: [] };
   let missed = 0;
 
+  // Shared 429 retry — Spotify throttles bursty token traffic. Without retry,
+  // a single rate-limited search drops the artist (counted as missed) and a
+  // rate-limited write batch silently loses tracks.
+  const fetchWithRetry = async (url, init) => {
+    for (let attempt = 0; attempt < 3; attempt++) {
+      const r = await fetch(url, init);
+      if (r.status !== 429) return r;
+      const retryAfter = parseInt(r.headers.get("Retry-After") || "2");
+      const wait = Math.min(retryAfter * 1000, 4000) + attempt * 500;
+      if (attempt < 2) await new Promise(res => setTimeout(res, wait));
+    }
+    return null;
+  };
+
   const searchOne = async (searchName, limit) => {
     // Track-search path: avoids /artists/{id}/top-tracks which is blocked for
     // Development-Mode apps post-Nov 2024. Disambiguates name collisions
@@ -560,11 +574,11 @@ async function createEdcPlaylist(state) {
     // represented one — Spotify's track relevance ranking surfaces the
     // popular artist's catalog first.
     try {
-      const tr = await fetch(
+      const tr = await fetchWithRetry(
         `https://api.spotify.com/v1/search?q=${encodeURIComponent(`artist:"${searchName}"`)}&type=track&limit=20`,
         { headers: { Authorization: "Bearer " + token } }
       );
-      if (!tr.ok) return [];
+      if (!tr || !tr.ok) return [];
       const tj = await tr.json();
       const items = tj.tracks?.items || [];
       const ln = searchName.toLowerCase();
@@ -601,8 +615,11 @@ async function createEdcPlaylist(state) {
     if (total === 0) missed++;
   };
 
-  for (let i = 0; i < sorted.length; i += 6) {
-    await Promise.all(sorted.slice(i, i + 6).map(search));
+  // 4-wide concurrency keeps us under Spotify's burst limit for token-auth
+  // search calls. Higher widths trigger 429s that the retry helper has to
+  // unwind — slower overall than a slightly narrower fan-out.
+  for (let i = 0; i < sorted.length; i += 4) {
+    await Promise.all(sorted.slice(i, i + 4).map(search));
   }
 
   // 3) Replace existing tracks: PUT clears+sets the first batch, POST appends rest.
@@ -621,13 +638,13 @@ async function createEdcPlaylist(state) {
   for (let i = 0; i < batches.length; i++) {
     try {
       const isFirst = i === 0;
-      const ar = await fetch(`https://api.spotify.com/v1/playlists/${playlist.id}/tracks`, {
+      const ar = await fetchWithRetry(`https://api.spotify.com/v1/playlists/${playlist.id}/tracks`, {
         method: isFirst ? "PUT" : "POST",
         headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
         body: JSON.stringify({ uris: batches[i] }),
       });
-      if (ar.ok) addedCount += batches[i].length;
-      else if (writeFailStatus === null) writeFailStatus = ar.status;
+      if (ar?.ok) addedCount += batches[i].length;
+      else if (writeFailStatus === null) writeFailStatus = ar?.status || 429;
     } catch {}
   }
   if (allUris.length > 0 && addedCount === 0 && writeFailStatus) {
