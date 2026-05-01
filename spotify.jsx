@@ -1142,12 +1142,12 @@ function getDiscoveries(spotifyArtists, matched, savedIds, max = 8) {
       let reason;
       if (a.stage === topStageId && stageWeight > 0) reason = `Your top stage · ${stageShort}`;
       else if (stageWeight > 0)                     reason = `Matches your ${stageShort} taste`;
-      else if (a.tier === 3)                        reason = "Headliner you haven't heard";
       else                                           reason = null;
       return { artist: { ...a, _reason: reason }, score: stageWeight * 100 + tierBonus };
     });
-  // Filter out anyone with zero genre fit AND no headliner status — avoid random fallbacks
-  const meaningful = scored.filter(s => s.score > 0.6);
+  // Only surface picks with a real genre-fit reason — random "headliner you
+  // haven't heard" suggestions assumed unfamiliarity that wasn't there.
+  const meaningful = scored.filter(s => s.artist._reason);
   return meaningful.sort((a, b) => b.score - a.score).slice(0, max).map(s => s.artist);
 }
 
