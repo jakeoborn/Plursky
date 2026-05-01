@@ -575,7 +575,7 @@ async function createEdcPlaylist(state) {
     // popular artist's catalog first.
     try {
       const tr = await fetchWithRetry(
-        `https://api.spotify.com/v1/search?q=${encodeURIComponent(`artist:"${searchName}"`)}&type=track&limit=20`,
+        `https://api.spotify.com/v1/search?q=${encodeURIComponent(`artist:"${searchName}"`)}&type=track&limit=10`,
         { headers: { Authorization: "Bearer " + token } }
       );
       if (!tr || !tr.ok) return [];
@@ -721,7 +721,7 @@ async function createHypePlaylist() {
     // Same track-search path as createEdcPlaylist — see comment there.
     try {
       const tr = await fetch(
-        `https://api.spotify.com/v1/search?q=${encodeURIComponent(`artist:"${searchName}"`)}&type=track&limit=20`,
+        `https://api.spotify.com/v1/search?q=${encodeURIComponent(`artist:"${searchName}"`)}&type=track&limit=10`,
         { headers: { Authorization: "Bearer " + token } }
       );
       if (!tr.ok) return false;
