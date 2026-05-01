@@ -975,8 +975,12 @@ async function fetchSpotifyTopArtists() {
               // EDM labels often credit remixers only in the title, not as a
               // track artist — this catches them.
               const title = item.track?.name || "";
-              const rxMatch = title.match(/\(\s*([^)]+?)\s+(?:Remix|Edit|Mix|Rework|Bootleg)\s*\)/i)
-                           || title.match(/\[\s*([^\]]+?)\s+(?:Remix|Edit|Mix|Rework|Bootleg)\s*\]/i);
+              // Spotify formats remix credits three ways: "(Name Remix)",
+              // "[Name Remix]", or " - Name Remix" (dash with no parens, e.g.
+              // "Drinkee - Sofi Tukker Remix"). All three covered below.
+              const rxMatch = title.match(/\(\s*([^)]+?)\s+(?:Remix|Edit|Mix|Rework|Bootleg|Flip|VIP)\s*\)/i)
+                           || title.match(/\[\s*([^\]]+?)\s+(?:Remix|Edit|Mix|Rework|Bootleg|Flip|VIP)\s*\]/i)
+                           || title.match(/\s[-–—]\s+([^-–—]+?)\s+(?:Remix|Edit|Mix|Rework|Bootleg|Flip|VIP)\s*$/i);
               if (rxMatch) {
                 const remixerRaw = rxMatch[1].trim();
                 // A track can have a compound remixer credit like "A & B" — split on & / x / vs
