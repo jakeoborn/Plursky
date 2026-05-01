@@ -335,31 +335,10 @@ function App() {
     catch { return false; }
   });
   const [searchOpen, setSearchOpen] = React.useState(false);
-  const [chatOpen,   setChatOpen]   = React.useState(false);
-  // AI chat needs a user-supplied Anthropic key (most visitors don't have one),
-  // so the corner FAB is hidden unless that key is already stored. Users who
-  // want to enable it can open the chat from a Me-tab link instead.
-  const [hasAiKey, setHasAiKey] = React.useState(() => {
-    try { return !!localStorage.getItem("plursky_anthropic_key"); } catch { return false; }
-  });
   React.useEffect(() => {
-    const onStorage = () => {
-      try { setHasAiKey(!!localStorage.getItem("plursky_anthropic_key")); } catch {}
-    };
-    window.addEventListener("storage", onStorage);
-    window.plurskyOpenChat = () => setChatOpen(true);
     window.plurskyOpenOnboarding = () => setShowOnboarding(true);
-    return () => {
-      window.removeEventListener("storage", onStorage);
-      delete window.plurskyOpenChat;
-      delete window.plurskyOpenOnboarding;
-    };
+    return () => { delete window.plurskyOpenOnboarding; };
   }, []);
-  React.useEffect(() => {
-    if (!chatOpen) {
-      try { setHasAiKey(!!localStorage.getItem("plursky_anthropic_key")); } catch {}
-    }
-  }, [chatOpen]);
   const { perm: notifPerm, showLocal } = useNotifications();
   const [state, setState] = React.useState(() => {
     let saved;
@@ -471,11 +450,12 @@ function App() {
   return (
     <IOSDevice dark={statusBarStyle === "light"}>
       <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", paddingTop: "var(--top-pad, 54px)" }}>
+        <StatusStrip />
         <div style={{ flex: 1, position: "relative" }}>
           {body}
           {/* Search FAB — floats above TabBar, accessible from any screen.
               Labeled pill so first-time users actually notice it. */}
-          {!state.artist && !searchOpen && !chatOpen && (
+          {!state.artist && !searchOpen && (
             <button
               onClick={() => setSearchOpen(true)}
               aria-label="Search artists, stages, genres"
@@ -495,24 +475,6 @@ function App() {
               SEARCH
             </button>
           )}
-          {/* Ask Plursky AI chat FAB — hidden unless user has stored an
-              Anthropic API key. Most visitors don't have one, so the FAB
-              would otherwise be a dead pixel. Activation lives on Me. */}
-          {hasAiKey && !state.artist && !chatOpen && !searchOpen && (
-            <button
-              onClick={() => setChatOpen(true)}
-              aria-label="Ask Plursky AI"
-              style={{
-                position: "absolute", bottom: 16, left: 16, zIndex: 30,
-                width: 42, height: 42, borderRadius: 42,
-                background: "linear-gradient(135deg, var(--ember), var(--horizon))",
-                border: "none", cursor: "pointer",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                boxShadow: "0 4px 16px rgba(123,61,154,0.4)",
-                fontSize: 18,
-              }}
-            >✦</button>
-          )}
           <ToastHost />
         </div>
         {!state.artist && (
@@ -527,9 +489,6 @@ function App() {
           onClose={() => setSearchOpen(false)}
           onSelectArtist={(id) => setState({ ...state, artist: id })}
         />
-      )}
-      {chatOpen && (
-        <AskPlurskyChat state={state} onClose={() => setChatOpen(false)} />
       )}
       {showOnboarding && (
         <OnboardingModal
@@ -550,6 +509,13 @@ styleTag.textContent = `
   @keyframes spin   { to { transform: rotate(360deg); } }
   @keyframes tdot   { 0%,60%,100% { transform: translateY(0); opacity: 0.4 } 30% { transform: translateY(-5px); opacity: 1 } }
   @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+  /* Lineup highlight-on-arrival — flashes the card/grid block the user
+     just navigated to from the ArtistScreen "SCHEDULE" handoff. */
+  @keyframes lineupFlash {
+    0%   { box-shadow: 0 0 0 0   rgba(232,93,46,0.55), inset 0 0 0 2px var(--ember); background-color: rgba(232,93,46,0.16); }
+    60%  { box-shadow: 0 0 0 10px rgba(232,93,46,0),    inset 0 0 0 2px var(--ember); background-color: rgba(232,93,46,0.10); }
+    100% { box-shadow: 0 0 0 0   rgba(232,93,46,0),    inset 0 0 0 0 rgba(232,93,46,0); background-color: transparent; }
+  }
   /* Iso-mode sprite bob — bounces along the post-rotation Y axis so the
      character feels alive when standing on the tilted ground plane. */
   @keyframes isoBob { 0%,100% { translate: 0 0; } 50% { translate: 0 -6px; } }

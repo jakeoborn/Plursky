@@ -1026,6 +1026,88 @@ function BatterySaverCard() {
   );
 }
 
+// ─────────────────────────────────────────────────────────────
+// Status strip — sticky thin bar above every screen.
+// Shows local DAY · TIME plus offline and battery-saver indicators
+// so reorientation / connectivity / power context is glanceable
+// from any tab without opening Home.
+// ─────────────────────────────────────────────────────────────
+function _useTickMs(intervalMs) {
+  const [, force] = React.useReducer(x => x + 1, 0);
+  React.useEffect(() => {
+    const id = setInterval(force, intervalMs);
+    return () => clearInterval(id);
+  }, [intervalMs]);
+}
+
+function useOnlineStatus() {
+  const [online, setOnline] = React.useState(
+    typeof navigator !== "undefined" ? navigator.onLine : true
+  );
+  React.useEffect(() => {
+    const on  = () => setOnline(true);
+    const off = () => setOnline(false);
+    window.addEventListener("online", on);
+    window.addEventListener("offline", off);
+    return () => {
+      window.removeEventListener("online", on);
+      window.removeEventListener("offline", off);
+    };
+  }, []);
+  return online;
+}
+
+const _STATUS_DAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
+function StatusStrip() {
+  _useTickMs(30000);
+  const online = useOnlineStatus();
+  const { active: bsActive } = useBatterySaver();
+
+  const now = new Date();
+  const day = _STATUS_DAYS[now.getDay()];
+  const hh = String(now.getHours()).padStart(2, "0");
+  const mm = String(now.getMinutes()).padStart(2, "0");
+
+  return (
+    <div className="mono" style={{
+      flexShrink: 0,
+      height: 22,
+      display: "flex", alignItems: "center", justifyContent: "space-between",
+      padding: "0 16px",
+      background: "var(--paper-2)",
+      borderBottom: "1px solid var(--line)",
+      fontSize: 9.5, letterSpacing: 1.4, fontWeight: 600,
+      color: "var(--muted)",
+    }}>
+      <span>{day} · {hh}:{mm}</span>
+      <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        {bsActive && (
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, color: "var(--flare)" }}>
+            <svg width="9" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="6" y="4" width="12" height="17" rx="1.5"/>
+              <path d="M10 1 L14 1"/>
+              <path d="M11 9 L13 9 L11 13 L14 13 L10 18"/>
+            </svg>
+            SAVER
+          </span>
+        )}
+        {!online && (
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, color: "#c14a37" }}>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 4 L20 20"/>
+              <path d="M2 9 Q6 5 10 5.4 M22 9 Q18 5 14 5.4"/>
+              <path d="M6 13 Q12 8 18 13" opacity="0.55"/>
+              <circle cx="12" cy="19" r="0.9" fill="currentColor"/>
+            </svg>
+            OFFLINE
+          </span>
+        )}
+      </span>
+    </div>
+  );
+}
+
 Object.assign(window, {
   Screen, ScrollBody, TopBar, TabBar, Pill, ArtistSwatch, Wordmark,
   useArtistPhoto,
@@ -1033,4 +1115,5 @@ Object.assign(window, {
   useNotifications, NotificationsCard, scheduleReminders,
   FestivalChip, FestivalSwitcher,
   useBatterySaver, BatterySaverCard, BatterySaverToast, setBatterySaverMode,
+  useOnlineStatus, StatusStrip,
 });

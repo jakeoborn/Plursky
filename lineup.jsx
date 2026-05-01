@@ -357,12 +357,38 @@ function NightWizard({ state, setState, onClose }) {
 }
 
 function LineupScreen({ state, setState }) {
-  const [day, setDay] = React.useState(state.lineupDay || NOW.day);
+  // Highlight-on-arrival: ArtistScreen "SCHEDULE" hands off `lineupHighlight`.
+  // Force the day to that artist's day so the flash actually has a target,
+  // even if state.lineupDay was set to something else by an earlier route.
+  const highlightId = state.lineupHighlight || null;
+  const [day, setDay] = React.useState(() => {
+    if (highlightId) {
+      const a = ARTISTS.find(x => x.id === highlightId);
+      if (a) return a.day;
+    }
+    return state.lineupDay || NOW.day;
+  });
   const [filter, setFilter] = React.useState("all"); // all | saved
   const [stageFilter, setStageFilter] = React.useState("all"); // all | stage id
   const [tierFilter, setTierFilter] = React.useState("all"); // all | head | prime | open | legend
   const [wizardOpen, setWizardOpen] = React.useState(false);
   const [genreFilter, setGenreFilter] = React.useState("all");
+
+  // After the screen renders, scroll the highlighted card/block into view and
+  // let the CSS flash play. Then clear the highlight so re-mounts don't fire
+  // the animation again. Querying the DOM (vs. holding a ref through both
+  // list + grid views) keeps this independent of which view is active.
+  React.useEffect(() => {
+    if (!highlightId) return;
+    const scroller = setTimeout(() => {
+      const el = document.querySelector('[data-lineup-highlight="true"]');
+      if (el) try { el.scrollIntoView({ behavior: "smooth", block: "center" }); } catch {}
+    }, 100);
+    const clearer = setTimeout(() => {
+      setState(s => ({ ...s, lineupHighlight: null }));
+    }, 2400);
+    return () => { clearTimeout(scroller); clearTimeout(clearer); };
+  }, [highlightId]);
   // Filter panel collapses by default — three chip rows (tier/stage/genre)
   // were dominating the top of the screen even when the user wasn't using
   // them. Active filters surface as dismissable chips so a user can clear
@@ -767,6 +793,7 @@ function LineupScreen({ state, setState }) {
             matchesActive={matchesActive}
             conflictById={conflictById}
             spotifyMatchedIds={spotifyMatchedIds}
+            highlightId={highlightId}
           />
         )}
         {viewMode === "list" && dayArtists.length === 0 && (
@@ -807,12 +834,18 @@ function LineupScreen({ state, setState }) {
           const stage = STAGES.find(s => s.id === a.stage);
           const saved = state.saved.includes(a.id);
           const clashWith = conflictById[a.id];
+          const isHighlighted = highlightId === a.id;
           return (
-            <div key={a.id} style={{
-              display: "flex", gap: 10, padding: "12px 0",
-              borderBottom: "1px solid var(--line)",
-              alignItems: "center",
-            }}>
+            <div key={a.id}
+              data-lineup-highlight={isHighlighted ? "true" : undefined}
+              style={{
+                display: "flex", gap: 10, padding: "12px 8px",
+                margin: "0 -8px",
+                borderBottom: "1px solid var(--line)",
+                alignItems: "center",
+                borderRadius: isHighlighted ? 10 : 0,
+                animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined,
+              }}>
               <div style={{ width: 46, flexShrink: 0 }}>
                 <div className="mono" style={{ fontSize: 13, letterSpacing: 0.5, fontWeight: 500 }}>{a.start}</div>
                 <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>{a.end}</div>
@@ -912,7 +945,7 @@ function overlaps(a, b) {
   return aS < bE && bS < aE;
 }
 
-function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conflictById, spotifyMatchedIds }) {
+function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conflictById, spotifyMatchedIds, highlightId }) {
   const COL_W = 76;
   const GUTTER_W = 38;
   const PX_PER_MIN = 1.8;
@@ -1004,23 +1037,31 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
                   const saved = state.saved.includes(a.id);
                   const clash = !!conflictById[a.id];
                   const matched = spotifyMatchedIds && spotifyMatchedIds.has && spotifyMatchedIds.has(a.id);
+                  const isHighlighted = highlightId === a.id;
                   // tier-3 (headliner) gets a stronger fill so anchors pop
                   const fillAlpha = a.tier === 3 ? "40" : "26";
                   return (
-                    <div key={a.id} onClick={() => setState({ ...state, artist: a.id })} style={{
-                      position: "absolute",
-                      top, left: 2, right: 2,
-                      height,
-                      background: `${stage.color}${active ? fillAlpha : "0c"}`,
-                      borderLeft: `3px solid ${active ? stage.color : stage.color + "55"}`,
-                      borderRadius: 4,
-                      padding: "3px 5px 3px 6px",
-                      cursor: "pointer",
-                      overflow: "hidden",
-                      opacity: active ? 1 : 0.28,
-                      boxShadow: clash && active ? "inset 0 0 0 1.5px var(--ember)" : "none",
-                      display: "flex", flexDirection: "column",
-                    }}>
+                    <div key={a.id}
+                      data-lineup-highlight={isHighlighted ? "true" : undefined}
+                      onClick={() => setState({ ...state, artist: a.id })}
+                      style={{
+                        position: "absolute",
+                        top, left: 2, right: 2,
+                        height,
+                        background: `${stage.color}${active || isHighlighted ? fillAlpha : "0c"}`,
+                        borderLeft: `3px solid ${active || isHighlighted ? stage.color : stage.color + "55"}`,
+                        borderRadius: 4,
+                        padding: "3px 5px 3px 6px",
+                        cursor: "pointer",
+                        overflow: "hidden",
+                        // When dimmed by filters, force the highlighted block back to full opacity
+                        // so the SCHEDULE handoff lands on something the user can actually see.
+                        opacity: active || isHighlighted ? 1 : 0.28,
+                        boxShadow: clash && active ? "inset 0 0 0 1.5px var(--ember)" : "none",
+                        zIndex: isHighlighted ? 6 : undefined,
+                        animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined,
+                        display: "flex", flexDirection: "column",
+                      }}>
                       <div className="serif" style={{
                         fontSize: 10.5, fontWeight: 700, lineHeight: 1.05,
                         color: "var(--ink)",

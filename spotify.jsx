@@ -1965,25 +1965,7 @@ function MeScreen({ state, setState }) {
         </div>
         <SafetyCards />
 
-        {/* Power-user: API-key gated AI chat + setup wizard re-run.
-            Hidden behind small mono-link aesthetic so it's available without
-            adding visual weight to the main flow. */}
-        <div style={{ marginTop: 22, display: "flex", flexDirection: "column", gap: 8 }}>
-          <button onClick={() => window.plurskyOpenChat?.()} style={{
-            background: "transparent", border: "1px dashed var(--line-2)",
-            borderRadius: 10, padding: "10px 12px", cursor: "pointer",
-            display: "flex", alignItems: "center", gap: 10, textAlign: "left",
-          }}>
-            <span style={{ fontSize: 14 }}>✦</span>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, fontWeight: 700, color: "var(--ink)" }}>
-                ASK PLURSKY AI
-              </div>
-              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
-                BRING YOUR OWN ANTHROPIC KEY · POWERED BY CLAUDE
-              </div>
-            </div>
-          </button>
+        <div style={{ marginTop: 22 }}>
           <button onClick={() => window.plurskyOpenOnboarding?.()} style={{
             background: "transparent", border: "none",
             padding: "6px 4px", cursor: "pointer", textAlign: "left",

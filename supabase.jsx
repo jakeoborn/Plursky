@@ -38,6 +38,27 @@ as $$
   left join user_data u on a.id = any(u.artist_ids)
   group by a.id;
 $$;
+
+-- v98: Crew chat. Group messages keyed by crew code. The 6-char code itself is
+-- the secret — anyone holding it can read/write that room. Same trust model as
+-- the existing broadcast channel `group-${code}`. Persistent (vs broadcast) so
+-- members who join late or reconnect after offline still see the thread.
+create table if not exists crew_messages (
+  id          bigserial primary key,
+  crew_code   text  not null,
+  sender_pid  text  not null,
+  sender_name text  not null,
+  body        text  not null check (length(body) between 1 and 500),
+  created_at  timestamptz not null default now()
+);
+create index if not exists crew_messages_code_ts_idx
+  on crew_messages (crew_code, created_at desc);
+alter table crew_messages enable row level security;
+create policy "anon read crew msgs"   on crew_messages for select using (true);
+create policy "anon insert crew msgs" on crew_messages for insert
+  with check (length(body) between 1 and 500 and length(crew_code) between 4 and 12);
+-- Enable Realtime INSERT stream so subscribers get new messages without polling.
+alter publication supabase_realtime add table crew_messages;
 ─────────────────────────────────────────────────────────────────── */
 
 const SUPABASE_URL  = "https://pzoijbqsbbwyuyjinjtj.supabase.co";
@@ -528,7 +549,10 @@ function sbOnPresenceChange(cb) {
   return () => _presCbs.delete(cb);
 }
 
-function sbGetMyPresId() { return _presMyId; }
+// Always returns a stable device id. Falls back to the persisted localStorage
+// pid (`plursky_pid`) before presence has been joined, so callers like
+// CrewCard / CrewChat that depend on this id never see null on a fresh tab.
+function sbGetMyPresId() { return _presMyId || _myPresId(); }
 function sbGetPresSnap()  { return { ..._presSnap }; }
 
 function sbFindByPingCode(code) {
@@ -920,6 +944,232 @@ function sbGetCrewCount(artistId) {
   return 0;
 }
 
+// ── Crew chat (v98) ──────────────────────────────────────────────
+// Postgres-backed group thread keyed by crew_code. Persistent so late joiners
+// and reconnects see history (broadcast channel is fire-and-forget). Same
+// trust model: anyone with the code can read/write — RLS is permissive
+// because the code itself is the secret. See SQL block at top of file.
+
+async function sbCrewFetchMessages(code, limit = 50) {
+  if (!_sb || !code) return [];
+  const { data, error } = await _sb
+    .from("crew_messages")
+    .select("id, sender_pid, sender_name, body, created_at")
+    .eq("crew_code", code)
+    .order("created_at", { ascending: false })
+    .limit(limit);
+  if (error) return [];
+  return (data || []).slice().reverse(); // ascending for render
+}
+
+async function sbCrewSendMessage(code, pid, name, body) {
+  if (!_sb || !code) return { error: "no_supabase" };
+  const trimmed = (body || "").trim().slice(0, 500);
+  if (!trimmed) return { error: "empty" };
+  const { error } = await _sb.from("crew_messages").insert({
+    crew_code: code,
+    sender_pid: pid,
+    sender_name: name || "Friend",
+    body: trimmed,
+  });
+  return { error: error?.message || null };
+}
+
+// Subscribe to INSERTs scoped to a crew_code. Calls onMessage(row) for each
+// new message (including those originated by self — caller can de-dupe by id).
+function sbCrewSubscribeMessages(code, onMessage) {
+  if (!_sb || !code) return () => {};
+  const ch = _sb.channel(`crew-msgs-${code}`)
+    .on("postgres_changes", {
+      event: "INSERT",
+      schema: "public",
+      table: "crew_messages",
+      filter: `crew_code=eq.${code}`,
+    }, (payload) => {
+      try { onMessage?.(payload.new); } catch {}
+    })
+    .subscribe();
+  return () => { try { _sb.removeChannel(ch); } catch {} };
+}
+
+function CrewChat({ code, myPid, myName }) {
+  const [msgs,   setMsgs]   = React.useState([]);
+  const [input,  setInput]  = React.useState("");
+  const [busy,   setBusy]   = React.useState(false);
+  const [loaded, setLoaded] = React.useState(false);
+  const threadRef = React.useRef(null);
+  const inputRef  = React.useRef(null);
+
+  // Reset thread state whenever the room changes (e.g. user joins a different
+  // crew) so old messages don't bleed across rooms while the new fetch runs.
+  React.useEffect(() => {
+    setMsgs([]);
+    setLoaded(false);
+    let cancelled = false;
+    sbCrewFetchMessages(code).then(rows => {
+      if (cancelled) return;
+      // Preserve any optimistic stubs the user typed before the fetch resolved.
+      // Drop a stub if the fetched set already contains its real version.
+      setMsgs(prev => {
+        const realKeys = new Set(rows.map(r => `${r.sender_pid}::${r.body}`));
+        const aliveStubs = prev.filter(m => m.id < 0 && !realKeys.has(`${m.sender_pid}::${m.body}`));
+        return [...rows, ...aliveStubs];
+      });
+      setLoaded(true);
+    });
+    const unsub = sbCrewSubscribeMessages(code, (row) => {
+      setMsgs(prev => {
+        if (prev.some(m => m.id === row.id)) return prev;
+        // If this is our own echo, replace the matching optimistic stub in place
+        // so the user never sees their message twice.
+        if (row.sender_pid === myPid) {
+          const idx = prev.findIndex(m => m.id < 0 && m.sender_pid === myPid && m.body === row.body);
+          if (idx >= 0) {
+            const next = prev.slice();
+            next.splice(idx, 1, row);
+            return next;
+          }
+        }
+        return [...prev, row];
+      });
+    });
+    return () => { cancelled = true; unsub(); };
+  }, [code, myPid]);
+
+  // Pin scroll to bottom on new message.
+  React.useEffect(() => {
+    const el = threadRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [msgs.length]);
+
+  const sendBody = async (body, replaceStubId) => {
+    setBusy(true);
+    const optimistic = {
+      id: -Date.now() - Math.floor(Math.random() * 1000),
+      sender_pid: myPid,
+      sender_name: myName,
+      body,
+      created_at: new Date().toISOString(),
+      _pending: true,
+    };
+    if (replaceStubId != null) {
+      setMsgs(prev => prev.map(m => m.id === replaceStubId ? optimistic : m));
+    } else {
+      setMsgs(prev => [...prev, optimistic]);
+    }
+    const { error } = await sbCrewSendMessage(code, myPid, myName, body);
+    if (error) {
+      setMsgs(prev => prev.map(m => m.id === optimistic.id ? { ...m, _failed: true, _pending: false } : m));
+    } else {
+      // Realtime echo normally replaces the stub within ~500ms. Safety net:
+      // if echo never arrives (e.g. realtime publication missing the table),
+      // clear the dim/pending look after 4s so the visual doesn't get stuck.
+      // The next mount's fetch will reconcile to the real row.
+      setTimeout(() => {
+        setMsgs(prev => prev.map(m => m.id === optimistic.id ? { ...m, _pending: false } : m));
+      }, 4000);
+    }
+    setBusy(false);
+  };
+
+  const send = async () => {
+    const body = input.trim();
+    if (!body || busy) return;
+    setInput("");
+    await sendBody(body, null);
+    setTimeout(() => inputRef.current?.focus(), 0);
+  };
+
+  const retry = (stub) => {
+    if (busy) return;
+    sendBody(stub.body, stub.id);
+  };
+
+  const fmtTime = (iso) => {
+    try {
+      const d = new Date(iso);
+      return d.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+    } catch { return ""; }
+  };
+
+  return (
+    <div style={{ marginTop: 10 }}>
+      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginBottom: 6, padding: "0 2px" }}>
+        CREW CHAT
+      </div>
+      <div ref={threadRef} style={{
+        maxHeight: 280, overflowY: "auto",
+        background: "var(--paper)", border: "1px solid var(--line)", borderRadius: 12,
+        padding: "10px 12px", marginBottom: 8,
+        display: "flex", flexDirection: "column", gap: 6,
+      }}>
+        {!loaded ? (
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", textAlign: "center", padding: "16px 0" }}>
+            LOADING…
+          </div>
+        ) : msgs.length === 0 ? (
+          <div style={{ textAlign: "center", padding: "18px 0" }}>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginBottom: 4 }}>QUIET</div>
+            <div style={{ fontSize: 12, color: "var(--muted)", lineHeight: 1.4 }}>Be the first to drop a message.</div>
+          </div>
+        ) : msgs.map(m => {
+          const mine = m.sender_pid === myPid;
+          return (
+            <div key={m.id} style={{
+              display: "flex", flexDirection: "column",
+              alignItems: mine ? "flex-end" : "flex-start",
+            }}>
+              {!mine && (
+                <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", marginBottom: 2, padding: "0 4px" }}>
+                  {(m.sender_name || "Friend").toUpperCase()}
+                </div>
+              )}
+              <div
+                onClick={m._failed ? () => retry(m) : undefined}
+                style={{
+                  maxWidth: "80%", padding: "7px 11px", borderRadius: 12,
+                  background: mine ? "var(--ink)" : "var(--paper-2)",
+                  color:      mine ? "var(--paper)" : "var(--ink)",
+                  fontSize: 13, lineHeight: 1.4,
+                  opacity: m._pending ? 0.55 : 1,
+                  border: m._failed ? "1px solid var(--ember)" : "none",
+                  cursor: m._failed ? "pointer" : "default",
+                  wordBreak: "break-word",
+                }}>{m.body}</div>
+              <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: m._failed ? "var(--ember)" : "var(--muted)", marginTop: 2, padding: "0 4px" }}>
+                {m._failed ? "FAILED · TAP TO RETRY" : fmtTime(m.created_at)}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <div style={{ display: "flex", gap: 6 }}>
+        <input
+          ref={inputRef}
+          type="text" value={input} maxLength={500}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={e => { if (e.key === "Enter") send(); }}
+          placeholder="Message your crew…"
+          style={{
+            flex: 1, padding: "9px 12px",
+            background: "var(--paper-2)", border: "1px solid var(--line-2)",
+            borderRadius: 10, fontFamily: "inherit", fontSize: 13,
+            color: "var(--ink)", outline: "none",
+          }}
+        />
+        <button onClick={send} disabled={!input.trim() || busy} style={{
+          padding: "9px 14px",
+          background: input.trim() && !busy ? "var(--ember)" : "var(--paper-2)",
+          color:      input.trim() && !busy ? "#fff"        : "var(--muted)",
+          border: "none", borderRadius: 10,
+          cursor: input.trim() && !busy ? "pointer" : "default",
+          fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.1, fontWeight: 700,
+        }}>SEND</button>
+      </div>
+    </div>
+  );
+}
+
 function CrewCard({ state }) {
   const configured = !!(SUPABASE_URL && SUPABASE_ANON);
   const [code,      setCode]      = React.useState(() => sbGetOrCreateGroupCode());
@@ -1103,6 +1353,7 @@ function CrewCard({ state }) {
               ))}
             </div>
           )}
+          <CrewChat code={code} myPid={myPid} myName={myName} />
         </div>
       )}
     </div>
@@ -1117,4 +1368,5 @@ Object.assign(window, {
   sbDMChannelKey, sbDMSubscribe, sbDMSend,
   FriendsCard, CrewCard,
   sbGetOrCreateGroupCode, sbGroupJoin, sbGroupLeave, sbGroupUpdate, sbGetCrewCount,
+  sbCrewFetchMessages, sbCrewSendMessage, sbCrewSubscribeMessages,
 });

@@ -804,7 +804,7 @@ function ArtistScreen({ state, setState }) {
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2,
               cursor: "pointer",
             }}>ON MAP</button>
-            <button onClick={() => setState({ ...state, tab: "lineup", lineupDay: a.day, artist: null })} style={{
+            <button onClick={() => setState({ ...state, tab: "lineup", lineupDay: a.day, lineupHighlight: a.id, artist: null })} style={{
               background: "transparent", border: "1px solid var(--line-2)",
               borderRadius: 999, padding: "6px 12px",
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2,
