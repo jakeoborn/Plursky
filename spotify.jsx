@@ -499,25 +499,35 @@ async function createEdcPlaylist(state) {
   let missed = 0;
 
   const searchOne = async (searchName, limit) => {
+    // Track-search path: avoids /artists/{id}/top-tracks which is blocked for
+    // Development-Mode apps post-Nov 2024. Disambiguates name collisions
+    // (e.g. Westend the rock band vs Westend the EDC house DJ) by counting
+    // how many tracks each candidate artist ID owns and picking the most-
+    // represented one — Spotify's track relevance ranking surfaces the
+    // popular artist's catalog first.
     try {
-      const ar = await fetch(
-        `https://api.spotify.com/v1/search?q=${encodeURIComponent(searchName)}&type=artist&limit=10`,
-        { headers: { Authorization: "Bearer " + token } }
-      );
-      if (!ar.ok) return [];
-      const aj = await ar.json();
-      const ln = searchName.toLowerCase();
-      const items = aj.artists?.items || [];
-      const found = _pickArtistMatch(items, ln);
-      if (!found) return [];
       const tr = await fetch(
-        `https://api.spotify.com/v1/artists/${found.id}/top-tracks?market=US`,
+        `https://api.spotify.com/v1/search?q=${encodeURIComponent(`artist:"${searchName}"`)}&type=track&limit=20`,
         { headers: { Authorization: "Bearer " + token } }
       );
       if (!tr.ok) return [];
       const tj = await tr.json();
+      const items = tj.tracks?.items || [];
+      const ln = searchName.toLowerCase();
+      const byArtist = new Map();
+      for (const t of items) {
+        const matched = (t.artists || []).find(a => a.name.toLowerCase() === ln);
+        if (!matched) continue;
+        if (!byArtist.has(matched.id)) byArtist.set(matched.id, []);
+        byArtist.get(matched.id).push(t);
+      }
+      if (byArtist.size === 0) return [];
+      let bestId = null, bestCount = 0;
+      for (const [id, ts] of byArtist) {
+        if (ts.length > bestCount) { bestId = id; bestCount = ts.length; }
+      }
       const collected = [];
-      for (const t of (tj.tracks || [])) {
+      for (const t of byArtist.get(bestId)) {
         if (!t?.uri || seenUris.has(t.uri) || collected.length >= limit) continue;
         seenUris.add(t.uri); collected.push(t.uri);
       }
@@ -620,25 +630,30 @@ async function createHypePlaylist() {
   const uris = [];
   let missed = 0;
   const searchHypeOne = async (searchName) => {
+    // Same track-search path as createEdcPlaylist — see comment there.
     try {
-      const ar = await fetch(
-        `https://api.spotify.com/v1/search?q=${encodeURIComponent(searchName)}&type=artist&limit=10`,
-        { headers: { Authorization: "Bearer " + token } }
-      );
-      if (!ar.ok) return false;
-      const aj = await ar.json();
-      const ln = searchName.toLowerCase();
-      const items = aj.artists?.items || [];
-      const found = _pickArtistMatch(items, ln);
-      if (!found) return false;
       const tr = await fetch(
-        `https://api.spotify.com/v1/artists/${found.id}/top-tracks?market=US`,
+        `https://api.spotify.com/v1/search?q=${encodeURIComponent(`artist:"${searchName}"`)}&type=track&limit=20`,
         { headers: { Authorization: "Bearer " + token } }
       );
       if (!tr.ok) return false;
       const tj = await tr.json();
-      const first = (tj.tracks || []).find(t => t?.uri);
-      if (first) { uris.push(first.uri); return true; }
+      const items = tj.tracks?.items || [];
+      const ln = searchName.toLowerCase();
+      const byArtist = new Map();
+      for (const t of items) {
+        const matched = (t.artists || []).find(a => a.name.toLowerCase() === ln);
+        if (!matched) continue;
+        if (!byArtist.has(matched.id)) byArtist.set(matched.id, []);
+        byArtist.get(matched.id).push(t);
+      }
+      if (byArtist.size === 0) return false;
+      let bestId = null, bestCount = 0;
+      for (const [id, ts] of byArtist) {
+        if (ts.length > bestCount) { bestId = id; bestCount = ts.length; }
+      }
+      const first = byArtist.get(bestId)[0];
+      if (first?.uri) { uris.push(first.uri); return true; }
       return false;
     } catch { return false; }
   };
