@@ -200,6 +200,9 @@ function AccountCard({ state, setState }) {
   const [errMsg, setErrMsg] = React.useState("");
   const [syncing, setSyncing] = React.useState(false);
   const [syncMsg, setSyncMsg] = React.useState("");
+  // Collapsed by default — most users sign in once and don't need the controls
+  // visible thereafter. Header summary tells them whether they're synced.
+  const [expanded, setExpanded] = React.useState(false);
 
   // Resolve current user on mount
   React.useEffect(() => {
@@ -252,13 +255,26 @@ function AccountCard({ state, setState }) {
     setTimeout(() => setSyncMsg(""), 2500);
   };
 
+  // Compact summary line shown when collapsed. Surfaces whether sync is
+  // active so users can spot a problem without expanding the card.
+  const summary = !configured
+    ? "NOT CONFIGURED"
+    : sbUser
+      ? <span style={{ color: "var(--success)" }}>● SYNCED · {(sbUser.email || sbUser.user_metadata?.full_name || "signed in").toString().slice(0, 22)}</span>
+      : "TAP TO SIGN IN";
+
   return (
     <div style={{
       marginTop: 20,
       background: "var(--paper)", border: "1px solid var(--line)",
       borderRadius: 16, padding: 16,
     }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
+      <button onClick={() => setExpanded(e => !e)} style={{
+        display: "flex", alignItems: "center", gap: 10, width: "100%",
+        marginBottom: expanded ? 14 : 0,
+        background: "transparent", border: "none", padding: 0, cursor: "pointer",
+        textAlign: "left", color: "var(--ink)",
+      }}>
         <div style={{
           width: 34, height: 34, borderRadius: 10,
           background: "var(--ink)",
@@ -270,13 +286,16 @@ function AccountCard({ state, setState }) {
             <path d="M4 20 c0-4 3.6-7 8-7 s8 3 8 7"/>
           </svg>
         </div>
-        <div>
+        <div style={{ flex: 1, minWidth: 0 }}>
           <div className="serif" style={{ fontSize: 18, lineHeight: 1 }}>Cloud account</div>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 2 }}>
-            SYNC LINEUP + NOTES ACROSS DEVICES
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+            {expanded ? "SYNC LINEUP + NOTES ACROSS DEVICES" : summary}
           </div>
         </div>
-      </div>
+        <span className="mono" style={{ fontSize: 11, color: "var(--muted)", transform: expanded ? "rotate(180deg)" : "none", transition: "transform .15s" }}>▾</span>
+      </button>
+
+      {!expanded ? null : <>
 
       {!configured && (
         <div style={{ fontSize: 12, color: "var(--muted)", lineHeight: 1.5 }}>
@@ -399,6 +418,7 @@ function AccountCard({ state, setState }) {
           )}
         </>
       )}
+      </>}
     </div>
   );
 }
@@ -908,6 +928,10 @@ function CrewCard({ state }) {
   const [codeInput, setCodeInput] = React.useState("");
   const [joining,   setJoining]   = React.useState(false);
   const [copied,    setCopied]    = React.useState(false);
+  // Collapsed by default until the user opts in — Crew Mode is one of three
+  // social sections on the Me tab and most users don't use it. Auto-expand
+  // when joined so members stay visible without an extra tap.
+  const [expanded, setExpanded] = React.useState(false);
   const leaveRef = React.useRef(null);
 
   const myPid  = sbGetMyPresId();
@@ -923,6 +947,7 @@ function CrewCard({ state }) {
     setJoined(true);
     setJoining(false);
     setCodeInput("");
+    setExpanded(true);
     // Migrate any active presence broadcast to the crew's channel so map
     // pins are scoped to crew members only.
     sbPresenceRefresh();
@@ -951,12 +976,25 @@ function CrewCard({ state }) {
 
   return (
     <div style={{ marginTop: 28 }}>
-      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
-        <div className="serif" style={{ fontSize: 22 }}>Crew Mode</div>
-        {joined && <span className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--success)" }}>● {others.length + 1} IN CREW</span>}
-      </div>
+      <button onClick={() => setExpanded(e => !e)} style={{
+        display: "flex", alignItems: "baseline", justifyContent: "space-between",
+        width: "100%", marginBottom: expanded ? 10 : 0,
+        background: "transparent", border: "none", padding: 0, cursor: "pointer",
+        textAlign: "left", color: "var(--ink)",
+      }}>
+        <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+          <div className="serif" style={{ fontSize: 22 }}>Crew Mode</div>
+          {!expanded && !joined && (
+            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)" }}>· TAP TO START OR JOIN</span>
+          )}
+        </div>
+        <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+          {joined && <span className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--success)" }}>● {others.length + 1} IN CREW</span>}
+          <span className="mono" style={{ fontSize: 11, color: "var(--muted)", transform: expanded ? "rotate(180deg)" : "none", transition: "transform .15s" }}>▾</span>
+        </div>
+      </button>
 
-      {!joined ? (
+      {!expanded ? null : !joined ? (
         <div style={{ padding: "15px 14px", borderRadius: 14, background: "var(--paper)", border: "1px solid var(--line)" }}>
           <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5, marginBottom: 14 }}>
             Share a crew code with friends. When they join, you'll see which sets overlap — and the lineup shows crew badges.

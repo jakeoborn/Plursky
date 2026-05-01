@@ -1291,7 +1291,10 @@ function SpotifyScreen({ state, setState }) {
         {connected && <FollowedNudge state={state} setState={setState} />}
 
         {/* ── Apple Music card ──────────────────────────── */}
-        <div style={{
+        {/* Hidden entirely until a dev token is wired — the previous
+            "add your token" copy was a developer reminder that nagged every
+            end user without offering them any action. */}
+        {APPLE_DEV_TOKEN && <div style={{
           borderRadius: 20, padding: 20,
           background: amConnected ? "#3a1a1a" : "var(--paper-2)",
           border: `1px solid ${amConnected ? "rgba(252,60,60,0.25)" : "var(--line)"}`,
@@ -1315,13 +1318,7 @@ function SpotifyScreen({ state, setState }) {
               : <>Don't use Spotify? <span style={{ fontStyle: "italic" }}>Link Apple Music</span></>}
           </div>
 
-          {!APPLE_DEV_TOKEN && (
-            <div style={{ fontSize: 11, opacity: 0.6, lineHeight: 1.5 }}>
-              Add your Apple MusicKit developer token to <span className="mono" style={{ fontSize: 10 }}>spotify.jsx</span> to enable.
-            </div>
-          )}
-
-          {APPLE_DEV_TOKEN && !amConnected && (
+          {!amConnected && (
             <>
               <div style={{ fontSize: 12, opacity: 0.65, lineHeight: 1.5, marginBottom: 14, maxWidth: "88%" }}>
                 Scan your Apple Music library to find which EDC artists you already know and love.
@@ -1339,7 +1336,7 @@ function SpotifyScreen({ state, setState }) {
             </>
           )}
 
-          {APPLE_DEV_TOKEN && amConnected && (
+          {amConnected && (
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               {amMatched.length > 0 && (
                 <button onClick={() => {
@@ -1365,7 +1362,7 @@ function SpotifyScreen({ state, setState }) {
           {amConnected && amArtists === null && (
             <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, opacity: 0.6 }}>LOADING LIBRARY…</div>
           )}
-        </div>
+        </div>}
 
         {/* ── Harmony score ──────────────────────────────── */}
         {connected && spotifyArtists !== null && (

@@ -652,7 +652,72 @@ function HomeScreen({ state, setState }) {
         )}
       </div>
 
-      <InstallBanner />
+      {/* Banner queue: at most one of {install, notif, weather} renders at a
+          time. Priority order = install > notif > weather. The install prompt
+          is the most actionable (and only shows when canInstall=true), so it
+          wins. Without this gate, three nudges could stack on first launch. */}
+      {(() => {
+        const ip = useInstallPrompt();
+        const showInstall = ip.canInstall;
+        const showNotif   = !showInstall && state.saved.length > 0 && notifPerm === "default" && !notifNudgeDismissed;
+        const showWeather = !showInstall && !showNotif && weatherAlert && !weatherAlertDismissed;
+        if (showInstall) return <InstallBanner />;
+        if (showNotif) return (
+          <div style={{ padding: "8px 16px 0" }}>
+            <div style={{
+              display: "flex", alignItems: "center", gap: 10,
+              background: "rgba(123,61,154,0.1)", border: "1px solid rgba(123,61,154,0.35)",
+              borderRadius: 14, padding: "11px 13px",
+            }}>
+              <span style={{ fontSize: 17, flexShrink: 0 }}>🔔</span>
+              <div style={{ flex: 1, minWidth: 0, fontSize: 12.5, color: "var(--ink)", lineHeight: 1.4 }}>
+                Get notified 15 min before each saved set
+              </div>
+              <button onClick={async () => {
+                await enableNotifs();
+                setNotifNudgeDismissed(true);
+                try { localStorage.setItem("notif_nudge_dismissed", "1"); } catch {}
+              }} style={{
+                background: "var(--horizon)", color: "#fff", border: "none",
+                borderRadius: 999, padding: "5px 11px", cursor: "pointer",
+                fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+                flexShrink: 0,
+              }}>ENABLE</button>
+              <button onClick={() => {
+                setNotifNudgeDismissed(true);
+                try { localStorage.setItem("notif_nudge_dismissed", "1"); } catch {}
+              }} style={{
+                background: "transparent", border: "none", color: "var(--muted)",
+                fontSize: 17, cursor: "pointer", flexShrink: 0, lineHeight: 1,
+              }}>×</button>
+            </div>
+          </div>
+        );
+        if (showWeather) return (
+          <div style={{ padding: "8px 16px 0" }}>
+            <div style={{
+              display: "flex", alignItems: "flex-start", gap: 10,
+              background: "rgba(251,191,36,0.12)", border: "1px solid rgba(251,191,36,0.4)",
+              borderRadius: 14, padding: "12px 14px",
+            }}>
+              <span style={{ fontSize: 18, flexShrink: 0 }}>⚠️</span>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "#fbbf24", fontWeight: 700, marginBottom: 3 }}>
+                  NWS WEATHER ALERT
+                </div>
+                <div style={{ fontSize: 12.5, color: "var(--ink)", lineHeight: 1.4 }}>
+                  {weatherAlert.shortForecast} — check the weather card below for details.
+                </div>
+              </div>
+              <button onClick={() => setWeatherAlertDismissed(true)} style={{
+                background: "transparent", border: "none", cursor: "pointer",
+                color: "var(--muted)", fontSize: 18, lineHeight: 1, padding: "0 2px", flexShrink: 0,
+              }}>×</button>
+            </div>
+          </div>
+        );
+        return null;
+      })()}
 
       {/* First-timer guide is still available, but tucked behind a small
           link rather than a hero CTA — the app's default voice is for vets,
@@ -672,59 +737,6 @@ function HomeScreen({ state, setState }) {
       )}
 
       <div style={{ padding: "16px 16px 24px" }}>
-        {/* Notification nudge — appears once when saves exist but permission not yet granted */}
-        {state.saved.length > 0 && notifPerm === "default" && !notifNudgeDismissed && (
-          <div style={{
-            display: "flex", alignItems: "center", gap: 10,
-            background: "rgba(123,61,154,0.1)", border: "1px solid rgba(123,61,154,0.35)",
-            borderRadius: 14, padding: "11px 13px", marginBottom: 14,
-          }}>
-            <span style={{ fontSize: 17, flexShrink: 0 }}>🔔</span>
-            <div style={{ flex: 1, minWidth: 0, fontSize: 12.5, color: "var(--ink)", lineHeight: 1.4 }}>
-              Get notified 15 min before each saved set
-            </div>
-            <button onClick={async () => {
-              await enableNotifs();
-              setNotifNudgeDismissed(true);
-              try { localStorage.setItem("notif_nudge_dismissed", "1"); } catch {}
-            }} style={{
-              background: "var(--horizon)", color: "#fff", border: "none",
-              borderRadius: 999, padding: "5px 11px", cursor: "pointer",
-              fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-              flexShrink: 0,
-            }}>ENABLE</button>
-            <button onClick={() => {
-              setNotifNudgeDismissed(true);
-              try { localStorage.setItem("notif_nudge_dismissed", "1"); } catch {}
-            }} style={{
-              background: "transparent", border: "none", color: "var(--muted)",
-              fontSize: 17, cursor: "pointer", flexShrink: 0, lineHeight: 1,
-            }}>×</button>
-          </div>
-        )}
-        {/* Weather alert banner */}
-        {weatherAlert && !weatherAlertDismissed && (
-          <div style={{
-            display: "flex", alignItems: "flex-start", gap: 10,
-            background: "rgba(251,191,36,0.12)", border: "1px solid rgba(251,191,36,0.4)",
-            borderRadius: 14, padding: "12px 14px", marginBottom: 14,
-          }}>
-            <span style={{ fontSize: 18, flexShrink: 0 }}>⚠️</span>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "#fbbf24", fontWeight: 700, marginBottom: 3 }}>
-                NWS WEATHER ALERT
-              </div>
-              <div style={{ fontSize: 12.5, color: "var(--ink)", lineHeight: 1.4 }}>
-                {weatherAlert.shortForecast} — check the weather card below for details.
-              </div>
-            </div>
-            <button onClick={() => setWeatherAlertDismissed(true)} style={{
-              background: "transparent", border: "none", cursor: "pointer",
-              color: "var(--muted)", fontSize: 18, lineHeight: 1, padding: "0 2px", flexShrink: 0,
-            }}>×</button>
-          </div>
-        )}
-
         {/* Post-festival recap */}
         {isPostFestival && <PostFestivalRecap state={state} setState={setState} />}
 
