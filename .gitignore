@@ -14,3 +14,7 @@ ios/App/build/
 ios/DerivedData/
 ios/App/App/capacitor.config.json
 ios/App/App/config.xml
+
+# Supabase CLI cache (created by `supabase link`)
+supabase/.temp/
+supabase/.branches/
