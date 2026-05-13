@@ -1,0 +1,8 @@
+# Supabase project config. Only the bits we actually use are populated.
+# Run `supabase link --project-ref pzoijbqsbbwyuyjinjtj` once to bind the CLI
+# to the live project, then `supabase functions deploy delete-account`.
+
+project_id = "pzoijbqsbbwyuyjinjtj"
+
+[functions.delete-account]
+verify_jwt = false

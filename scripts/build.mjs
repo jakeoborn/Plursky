@@ -11,6 +11,7 @@ const dist = path.join(root, 'dist');
 const COPY = [
   'index.html',
   'callback.html',
+  'privacy.html',
   'manifest.json',
   'sw.js',
   'apple-touch-icon.png',

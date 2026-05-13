@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy · Plursky</title>
+<link rel="icon" type="image/png" href="./apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:#f7ede0;color:#1a120d;font-family:'Geist',system-ui,sans-serif;
+    line-height:1.6;padding:40px 22px 80px;max-width:680px;margin:0 auto;
+  }
+  h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:42px;line-height:1.05;margin-bottom:6px}
+  h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:24px;margin:30px 0 8px}
+  .mono{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:1.3px;color:rgba(26,18,13,0.55);text-transform:uppercase}
+  p{margin-bottom:10px;font-size:15px}
+  ul{margin:6px 0 12px 22px}
+  li{margin-bottom:5px;font-size:15px}
+  a{color:#e85d2e;text-decoration:underline}
+  strong{font-weight:600}
+  .lede{font-size:17px;color:rgba(26,18,13,0.78);margin:14px 0 22px}
+  .note{background:#eee0cb;border-left:3px solid #e85d2e;padding:12px 14px;margin:18px 0;font-size:14px}
+  hr{border:none;border-top:1px solid rgba(26,18,13,0.12);margin:30px 0}
+  footer{margin-top:40px;font-size:12px;color:rgba(26,18,13,0.55)}
+</style>
+</head>
+<body>
+
+<div class="mono">PLURSKY · PRIVACY POLICY</div>
+<h1>Privacy.</h1>
+<p class="mono">LAST UPDATED 12 MAY 2026</p>
+
+<p class="lede">
+  Plursky is a festival companion app for EDC Las Vegas 2026. We try to
+  collect the minimum personal data needed for the app to work, and we
+  never sell it. This page explains exactly what gets stored, where, and why.
+</p>
+
+<h2>What we collect</h2>
+
+<p><strong>Account data.</strong> If you sign in with Apple or via an email magic link, our backend (Supabase) stores:</p>
+<ul>
+  <li>The unique user ID assigned by Apple, or your email address.</li>
+  <li>Your display name (only if you provide one).</li>
+</ul>
+
+<p><strong>Your festival data.</strong> Tied to your account if signed in, otherwise stored only on this device:</p>
+<ul>
+  <li>The list of artist IDs you've saved.</li>
+  <li>Free-text notes you write on an artist's page.</li>
+  <li>Your local display name, crew code, and friend-share preferences.</li>
+</ul>
+
+<p><strong>Spotify data (only if you connect Spotify).</strong> We use Spotify's standard OAuth (PKCE). Plursky reads:</p>
+<ul>
+  <li>Your top artists, followed artists, saved tracks, and recent listening — to match the EDC lineup against your taste.</li>
+  <li>Your Spotify profile (display name, country, premium status, avatar) — shown only to you in-app.</li>
+</ul>
+<p>Plursky writes to one of your Spotify playlists (named "Plursky" or "My EDC Lineup") only when you tap "BUILD MY PLAYLIST." Your Spotify access token lives in your browser's local storage — it never leaves your device except to talk directly to Spotify.</p>
+
+<p><strong>Location.</strong> If you open the Map tab and grant permission, your device's GPS coordinates are used <em>only</em> in-browser to draw your dot on the venue map. Coordinates are <strong>never sent to our servers</strong>, never logged, never shared with anyone — not even your crew.</p>
+
+<p><strong>Crew & friends.</strong> If you join a crew using a 6-character code, the following is broadcast in real time to other crew members on the same code:</p>
+<ul>
+  <li>Your display name, the stage you tap "GO LIVE" on, and a random per-device color.</li>
+  <li>Your saved artist IDs (so the lineup can show "3 in your crew" badges).</li>
+  <li>Any chat message you send in the crew thread — stored in Supabase, readable by anyone who holds the same crew code.</li>
+</ul>
+<p>The crew code is a shared secret; treat it like a password.</p>
+
+<p><strong>Notifications.</strong> If you enable set reminders, Plursky schedules them locally in your browser. We do not run a push-notification server — no one at Plursky can send you a notification.</p>
+
+<h2>What we don't collect</h2>
+<ul>
+  <li>No analytics SDKs, no Google Analytics, no Mixpanel, no anything similar.</li>
+  <li>No advertising identifiers (IDFA, etc.). Plursky displays no ads.</li>
+  <li>No payment data — Plursky is free.</li>
+  <li>No browsing history outside the app.</li>
+  <li>No microphone, no camera, no contacts, no health data.</li>
+</ul>
+
+<h2>Who we share data with</h2>
+<p>We share what's necessary with the following service providers, and nothing more:</p>
+<ul>
+  <li><strong>Supabase</strong> — hosts the backend database and the Sign in with Apple verification. <a href="https://supabase.com/privacy" target="_blank" rel="noopener">supabase.com/privacy</a></li>
+  <li><strong>Spotify</strong> — only if you connect; data flows directly browser ↔ Spotify. <a href="https://www.spotify.com/legal/privacy-policy/" target="_blank" rel="noopener">spotify.com/legal/privacy-policy</a></li>
+  <li><strong>Apple</strong> — for Sign in with Apple identity tokens. <a href="https://www.apple.com/legal/privacy/en-ww/" target="_blank" rel="noopener">apple.com/legal/privacy</a></li>
+  <li><strong>YouTube</strong> — fetched read-only for artist trailer thumbnails. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></li>
+</ul>
+<p>We do not sell your data to anyone, ever.</p>
+
+<h2>How long we keep it</h2>
+<p>Account data + saved sets stay in Supabase until you delete your account. Crew chat messages persist in Supabase indefinitely (because late joiners need to see the thread) — they aren't tied to your account, but they do carry your display name. Location data is never stored, anywhere.</p>
+
+<h2>Deleting your account</h2>
+<p>Inside the app: <strong>Me → Cloud account → DELETE ACCOUNT</strong>. This hard-deletes your auth record and your <code>user_data</code> row from our backend. Crew chat messages you've sent are not automatically removed because they belong to the crew thread; contact us if you want them purged.</p>
+
+<h2>Children</h2>
+<p>Plursky is not directed at children under 13. EDC Las Vegas is a 21+ festival.</p>
+
+<h2>Changes</h2>
+<p>If we change this policy, we'll update the date at the top. Significant changes will be announced in-app.</p>
+
+<h2>Contact</h2>
+<p>Questions or deletion requests: <a href="mailto:hello@plursky.com">hello@plursky.com</a>.</p>
+
+<hr>
+<footer>
+  <a href="./index.html">← Back to Plursky</a>
+</footer>
+
+</body>
+</html>

@@ -1,5 +1,5 @@
-﻿const CACHE   = 'plursky-v106';
-const APP_VER = 'v106';
+﻿const CACHE   = 'plursky-v107';
+const APP_VER = 'v107';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.

@@ -39,6 +39,12 @@ as $$
   group by a.id;
 $$;
 
+-- Index for the `a.id = any(u.artist_ids)` lookup above. Without this the RPC
+-- seq-scans user_data on every artist screen — fine at 100 users, painful at
+-- 10k. GIN over the text[] column makes the `= ANY` operator index-driven.
+create index if not exists user_data_artist_ids_gin
+  on user_data using gin (artist_ids);
+
 -- v98: Crew chat. Group messages keyed by crew code. The 6-char code itself is
 -- the secret — anyone holding it can read/write that room. Same trust model as
 -- the existing broadcast channel `group-${code}`. Persistent (vs broadcast) so
@@ -92,15 +98,117 @@ async function sbSignInWithSpotify() {
   return { error: error?.message || null };
 }
 
-// Sign in with Apple via Supabase OAuth — requires Apple enabled in
-// Supabase Dashboard → Auth → Providers with Apple Service ID + private key.
+// Sign in with Apple.
+//
+// On iOS (Capacitor native build) we use @capacitor-community/apple-sign-in to
+// surface Apple's native Face ID / Touch ID sheet, then exchange the resulting
+// identity token with Supabase via signInWithIdToken. This is the form Apple
+// App Review requires — Guideline 4.8 / 5.1.1(v) rejects apps that ship Sign
+// in with Apple as a web-OAuth redirect (it pops Safari and is jarring).
+//
+// On the web (plursky.com) we fall back to Supabase's OAuth redirect, which is
+// fine outside the App Store.
+//
+// Requires (one-time):
+//   • Apple Developer → Identifiers → App ID `com.plursky.app` with the
+//     "Sign in with Apple" capability enabled.
+//   • Supabase Dashboard → Auth → Providers → Apple → add `com.plursky.app`
+//     to "Authorized Client IDs" so Supabase accepts our identity tokens.
 async function sbSignInWithApple() {
   if (!_sb) return { error: "Supabase not configured" };
+
+  const cap = window.Capacitor;
+  const isNative = !!cap?.isNativePlatform?.();
+  const native = cap?.Plugins?.SignInWithApple;
+
+  if (isNative && native) {
+    try {
+      // Bind a fresh nonce per attempt. Apple hashes (sha256) the raw nonce
+      // we send and returns the hash in the identity token's `nonce` claim;
+      // Supabase reverses that by hashing the value we pass to
+      // signInWithIdToken — so both calls receive the same raw value.
+      const rawNonce = _randNonce();
+      const res = await native.authorize({
+        clientId:    "com.plursky.app",
+        redirectURI: "https://plursky.com/callback",
+        scopes:      "email name",
+        nonce:       rawNonce,
+      });
+      const identityToken = res?.response?.identityToken;
+      if (!identityToken) return { error: "Apple did not return an identity token." };
+
+      // Cache the display name Apple sends on first sign-in only. The cached
+      // value is consumed by AccountCard's display logic.
+      try {
+        const given  = res?.response?.givenName  || "";
+        const family = res?.response?.familyName || "";
+        const full   = `${given} ${family}`.trim();
+        if (full) localStorage.setItem("plursky_apple_name", full);
+      } catch {}
+
+      const { error } = await _sb.auth.signInWithIdToken({
+        provider: "apple",
+        token:    identityToken,
+        nonce:    rawNonce,
+      });
+      return { error: error?.message || null };
+    } catch (e) {
+      // User-cancellation should not surface as a scary error.
+      const msg = e?.message || String(e);
+      if (/canceled|cancelled|1001|1000/i.test(msg)) return { error: null, cancelled: true };
+      return { error: msg };
+    }
+  }
+
+  // Web fallback (plursky.com PWA / desktop). Opens Apple's web sheet.
   const { error } = await _sb.auth.signInWithOAuth({
     provider: "apple",
     options: { redirectTo: window.location.origin },
   });
   return { error: error?.message || null };
+}
+
+function _randNonce() {
+  const a = new Uint8Array(16);
+  (crypto?.getRandomValues || (() => {}))(a);
+  return Array.from(a, b => b.toString(16).padStart(2, "0")).join("");
+}
+
+// Hard-delete the signed-in user. Apple Guideline 5.1.1(v) requires every app
+// that supports account creation to expose in-app deletion that fully removes
+// the user — RLS-deleted rows + signed-out client aren't enough; the auth.users
+// row must go too. Calls the delete-account Edge Function, which verifies the
+// JWT and uses the service-role key server-side. See supabase/functions/.
+async function sbDeleteAccount() {
+  if (!_sb) return { error: "Supabase not configured" };
+  const { data: { session } } = await _sb.auth.getSession();
+  const accessToken = session?.access_token;
+  if (!accessToken) return { error: "Not signed in." };
+  try {
+    const res = await fetch(`${SUPABASE_URL}/functions/v1/delete-account`, {
+      method:  "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        apikey:        SUPABASE_ANON,
+        "content-type": "application/json",
+      },
+    });
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok) return { error: body?.error || `delete failed (${res.status})` };
+    // Sign out locally so the cached session can't hit RLS on the now-missing row.
+    try { await _sb.auth.signOut(); } catch {}
+    // Wipe local app state tied to the deleted identity.
+    try {
+      localStorage.removeItem("plursky_apple_name");
+      localStorage.removeItem("spotify_profile");
+      localStorage.removeItem("spotify_token");
+      localStorage.removeItem("spotify_refresh_token");
+      localStorage.removeItem("spotify_expires");
+    } catch {}
+    return { error: null };
+  } catch (e) {
+    return { error: e?.message || "network error" };
+  }
 }
 
 async function sbSignOut() {
@@ -221,6 +329,11 @@ function AccountCard({ state, setState }) {
   const [errMsg, setErrMsg] = React.useState("");
   const [syncing, setSyncing] = React.useState(false);
   const [syncMsg, setSyncMsg] = React.useState("");
+  // Delete-account flow has three visual states: idle, confirming, working.
+  // Surfacing 'confirming' inline (rather than window.confirm) keeps the
+  // destructive step inside Plursky's visual frame on iOS App Review captures.
+  const [deletePhase, setDeletePhase] = React.useState("idle");
+  const [deleteErr,   setDeleteErr]   = React.useState("");
   // Collapsed by default — most users sign in once and don't need the controls
   // visible thereafter. Header summary tells them whether they're synced.
   const [expanded, setExpanded] = React.useState(false);
@@ -263,6 +376,18 @@ function AccountCard({ state, setState }) {
   const handleSignOut = async () => {
     await sbSignOut();
     setSbUser(null);
+  };
+
+  const handleDelete = async () => {
+    setDeletePhase("working");
+    setDeleteErr("");
+    const { error } = await sbDeleteAccount();
+    if (error) { setDeletePhase("confirming"); setDeleteErr(error); return; }
+    setSbUser(null);
+    setDeletePhase("idle");
+    // Clear the in-memory app state's saved list too — the cloud row is gone
+    // and we just wiped the local mirror via sbDeleteAccount's cleanup.
+    setState(st => ({ ...st, saved: [] }));
   };
 
   const handleSync = async () => {
@@ -372,6 +497,57 @@ function AccountCard({ state, setState }) {
                 borderRadius: 10, padding: "10px 14px", cursor: "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "var(--muted)",
               }}>SIGN OUT</button>
+            </div>
+
+            {/* Delete account — required by Apple App Store Guideline 5.1.1(v)
+                for any app that supports account creation. Two-step inline
+                confirm so a stray tap can't nuke the user's data. */}
+            <div style={{ marginTop: 14, paddingTop: 12, borderTop: "1px solid var(--line)" }}>
+              {deletePhase === "idle" && (
+                <button onClick={() => { setDeletePhase("confirming"); setDeleteErr(""); }} style={{
+                  background: "transparent", border: "none", padding: "4px 0", cursor: "pointer",
+                  fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2,
+                  color: "var(--muted)", textDecoration: "underline",
+                }}>DELETE ACCOUNT</button>
+              )}
+              {deletePhase !== "idle" && (
+                <div style={{
+                  padding: "10px 12px", background: "rgba(232,93,46,0.08)",
+                  border: "1px solid rgba(232,93,46,0.35)", borderRadius: 10,
+                }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ember)", marginBottom: 4 }}>
+                    DELETE ACCOUNT?
+                  </div>
+                  <div style={{ fontSize: 12, color: "var(--ink)", lineHeight: 1.45, marginBottom: 10 }}>
+                    Permanently removes your saved sets, notes, and sign-in. This can't be undone.
+                  </div>
+                  <div style={{ display: "flex", gap: 8 }}>
+                    <button
+                      onClick={handleDelete}
+                      disabled={deletePhase === "working"}
+                      style={{
+                        flex: 1, background: "var(--ember)", color: "#fff",
+                        border: "none", borderRadius: 10, padding: "9px 12px",
+                        cursor: deletePhase === "working" ? "default" : "pointer",
+                        fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
+                      }}>
+                      {deletePhase === "working" ? "DELETING…" : "YES, DELETE EVERYTHING"}
+                    </button>
+                    <button
+                      onClick={() => { setDeletePhase("idle"); setDeleteErr(""); }}
+                      disabled={deletePhase === "working"}
+                      style={{
+                        background: "transparent", border: "1px solid var(--line-2)",
+                        borderRadius: 10, padding: "9px 14px",
+                        cursor: deletePhase === "working" ? "default" : "pointer",
+                        fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "var(--muted)",
+                      }}>CANCEL</button>
+                  </div>
+                  {deleteErr && (
+                    <div style={{ fontSize: 11, color: "#f87171", marginTop: 6 }}>{deleteErr}</div>
+                  )}
+                </div>
+              )}
             </div>
           </>
         );
@@ -1361,7 +1537,7 @@ function CrewCard({ state }) {
 }
 
 Object.assign(window, {
-  AccountCard, sbSignIn, sbSignInWithSpotify, sbSignInWithApple, sbSignOut, sbGetUser, sbPush, sbPull, sbOnAuthChange,
+  AccountCard, sbSignIn, sbSignInWithSpotify, sbSignInWithApple, sbDeleteAccount, sbSignOut, sbGetUser, sbPush, sbPull, sbOnAuthChange,
   sbGetArtistSaveCounts,
   sbPresenceJoin, sbPresenceUpdate, sbPresenceLeave, sbPresenceRefresh, sbOnPresenceChange,
   sbGetMyPresId, sbGetPresSnap, sbFindByPingCode,

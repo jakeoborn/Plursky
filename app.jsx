@@ -523,4 +523,62 @@ styleTag.textContent = `
 `;
 document.head.appendChild(styleTag);
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+// Top-level error boundary. Without one, a single component throw blanks the
+// whole app — at a festival with bad LTE that's a user we never get back.
+// We show a recovery card with a "Reload" button (clears caches first so a
+// hot-fixed deploy actually replaces the bad version on next boot).
+class RootErrorBoundary extends React.Component {
+  constructor(p) { super(p); this.state = { err: null }; }
+  static getDerivedStateFromError(err) { return { err }; }
+  componentDidCatch(err, info) {
+    // No analytics endpoint to phone home to; persist the last crash locally
+    // so we can read it out of the user's tab via DevTools if they report it.
+    try {
+      localStorage.setItem("plursky_last_crash", JSON.stringify({
+        message: err?.message || String(err),
+        stack:   err?.stack?.slice(0, 4000) || null,
+        compStack: info?.componentStack?.slice(0, 2000) || null,
+        ts: new Date().toISOString(),
+        version: "v107",
+      }));
+    } catch {}
+  }
+  reload = () => {
+    // Drop SW caches before reload so the user always gets the freshest deploy
+    // — if the crash was caused by a stale chunk the cache-bust unsticks them.
+    const go = () => { try { window.location.reload(); } catch {} };
+    if ("caches" in window) {
+      caches.keys().then(ks => Promise.all(ks.map(k => caches.delete(k)))).then(go, go);
+    } else go();
+  };
+  render() {
+    if (!this.state.err) return this.props.children;
+    return (
+      <div style={{
+        minHeight: "100vh", display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center", padding: "40px 24px",
+        background: "#f7ede0", color: "#1a120d", fontFamily: "Geist, system-ui, sans-serif",
+        textAlign: "center",
+      }}>
+        <div style={{ fontFamily: "Instrument Serif, serif", fontSize: 36, marginBottom: 6 }}>
+          Something glitched.
+        </div>
+        <div style={{ fontSize: 14, color: "rgba(26,18,13,0.65)", marginBottom: 22, maxWidth: 340, lineHeight: 1.5 }}>
+          Plursky hit an unexpected error. Your saved lineup is safe — reloading should fix it.
+        </div>
+        <button onClick={this.reload} style={{
+          background: "#1a120d", color: "#f7ede0", border: "none",
+          borderRadius: 12, padding: "12px 22px", cursor: "pointer",
+          fontFamily: "Geist Mono, monospace", fontSize: 11, letterSpacing: 1.4, fontWeight: 700,
+        }}>RELOAD</button>
+        <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
+          PLURSKY · v107
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <RootErrorBoundary><App /></RootErrorBoundary>
+);

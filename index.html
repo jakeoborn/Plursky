@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>Plursky Â· Las Vegas 2026</title>
+<title>Plursky · Las Vegas 2026</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Plursky">
@@ -46,7 +46,7 @@
     --success:#2d7a55;
   }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js" integrity="sha384-GFr3yTh5lJznCbZfpTtXnwboFsxqtTQoeTZCRHhE0579KrRmlCzen5AA8ohaB5ug" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
@@ -54,22 +54,22 @@
 <body>
   <div id="root" class="stage"></div>
 
-  <script type="text/babel" src="ios-frame.jsx?v=v106"></script>
-  <script type="text/babel" src="data.jsx?v=v106"></script>
-  <script type="text/babel" src="supabase.jsx?v=v106"></script>
-  <script type="text/babel" src="chrome.jsx?v=v106"></script>
-  <script type="text/babel" src="home.jsx?v=v106"></script>
-  <script type="text/babel" src="map.jsx?v=v106"></script>
-  <script type="text/babel" src="lineup.jsx?v=v106"></script>
-  <script type="text/babel" src="artist.jsx?v=v106"></script>
-  <script type="text/babel" src="spotify.jsx?v=v106"></script>
-  <script type="text/babel" src="app.jsx?v=v106"></script>
+  <script type="text/babel" src="ios-frame.jsx?v=v107"></script>
+  <script type="text/babel" src="data.jsx?v=v107"></script>
+  <script type="text/babel" src="supabase.jsx?v=v107"></script>
+  <script type="text/babel" src="chrome.jsx?v=v107"></script>
+  <script type="text/babel" src="home.jsx?v=v107"></script>
+  <script type="text/babel" src="map.jsx?v=v107"></script>
+  <script type="text/babel" src="lineup.jsx?v=v107"></script>
+  <script type="text/babel" src="artist.jsx?v=v107"></script>
+  <script type="text/babel" src="spotify.jsx?v=v107"></script>
+  <script type="text/babel" src="app.jsx?v=v107"></script>
 
   <script>
     // Build version stamp â€” bumped on every deploy that changes app behaviour.
     // If the running tab's stored version doesn't match, force a full reload
     // (bypassing browser HTTP cache that GH-Pages serves with max-age=600).
-    const APP_VERSION = 'v106';
+    const APP_VERSION = 'v107';
     try {
       const stored = localStorage.getItem('app_version');
       if (stored && stored !== APP_VERSION) {
@@ -85,9 +85,9 @@
 
     if ('serviceWorker' in navigator) {
       caches.keys().then(keys =>
-        Promise.all(keys.filter(k => k !== 'plursky-v106').map(k => caches.delete(k)))
+        Promise.all(keys.filter(k => k !== 'plursky-v107').map(k => caches.delete(k)))
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v106', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v107', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 

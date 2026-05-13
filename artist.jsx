@@ -44,6 +44,14 @@ function _slIsEdc(sl) {
 // ── YouTube ────────────────────────────────────────────────────
 // Free API key (quota: 10 000 units/day) at https://console.cloud.google.com
 // Enable "YouTube Data API v3", create an API key, paste below.
+//
+// SECURITY: this key ships in the bundle and is therefore public. To stop
+// strangers from burning your daily quota, restrict it in Google Cloud
+// Console → APIs & Services → Credentials → (this key) → Application
+// restrictions → HTTP referrers → allow:
+//     https://plursky.com/*
+//     capacitor://localhost/*
+// and under API restrictions, limit it to "YouTube Data API v3" only.
 const YOUTUBE_KEY = "AIzaSyDl2DjwIVG-cTN-KBaJkMNmtFRKVLvPLOo";
 const _YT_TTL = 24 * 3600000;
 
