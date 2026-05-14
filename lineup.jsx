@@ -541,6 +541,14 @@ function LineupScreen({ state, setState }) {
               }}>{l}</button>
             );
           })}
+          {/* Jobber-modeled cross-link → jump to Map tab. If a stage filter
+              is active, focus that stage on the map; otherwise just open it. */}
+          <button onClick={() => setState({ ...state, tab: "map", focusStage: stageFilter !== "all" ? stageFilter : undefined })} className="mono" style={{
+            padding: "3px 9px", borderRadius: 999, border: "none",
+            background: "transparent", color: "var(--ink)",
+            fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
+            whiteSpace: "nowrap",
+          }}>◎ MAP</button>
         </div>
         <button onClick={() => setFiltersOpen(o => !o)} className="mono" style={{
           flexShrink: 0, padding: "5px 11px", borderRadius: 999,
@@ -835,6 +843,14 @@ function LineupScreen({ state, setState }) {
           const saved = state.saved.includes(a.id);
           const clashWith = conflictById[a.id];
           const isHighlighted = highlightId === a.id;
+          // FotMob-style LIVE pill — green pulsing dot + LIVE caps when
+          // the set is currently playing. Uses existing toNightMin so a
+          // set that runs past midnight still reads correctly.
+          const isLive = (() => {
+            if (a.day !== NOW.day || !NOW.time) return false;
+            const nm = toNightMin(NOW.time), sm = toNightMin(a.start), em = toNightMin(a.end);
+            return sm <= nm && nm < em;
+          })();
           return (
             <div key={a.id}
               data-lineup-highlight={isHighlighted ? "true" : undefined}
@@ -849,6 +865,21 @@ function LineupScreen({ state, setState }) {
               <div style={{ width: 46, flexShrink: 0 }}>
                 <div className="mono" style={{ fontSize: 13, letterSpacing: 0.5, fontWeight: 500 }}>{fmt12(a.start)}</div>
                 <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>{fmt12(a.end)}</div>
+                {isLive && (
+                  <div className="mono" style={{
+                    marginTop: 4, fontSize: 8, letterSpacing: 1, fontWeight: 800,
+                    color: "var(--success)", background: "rgba(45,122,85,0.14)",
+                    border: "0.5px solid rgba(45,122,85,0.55)",
+                    padding: "1px 5px", borderRadius: 4,
+                    display: "inline-flex", alignItems: "center", gap: 4,
+                  }}>
+                    <span style={{
+                      width: 5, height: 5, borderRadius: 5,
+                      background: "var(--success)",
+                      animation: "pulse 1.4s infinite",
+                    }}/>LIVE
+                  </div>
+                )}
                 {clashWith && (
                   <div className="mono" title={`Overlaps with ${clashWith.join(", ")}`} style={{
                     marginTop: 4, fontSize: 8, letterSpacing: 0.8, fontWeight: 800,
