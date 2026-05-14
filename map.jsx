@@ -271,6 +271,20 @@ function distMiles(lat1, lng1, lat2, lng2) {
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
+// "Last seen" staleness for friend pins. Buckets that match festival reality:
+// fresh = the data is trustworthy ("they ARE there"); stale = trust but verify;
+// cold = treat as a hint, not a fact. Designed for 4AM-tired eyes.
+function formatLastSeen(ts) {
+  if (!ts) return { label: "", freshness: "cold", color: "rgba(255,255,255,0.45)" };
+  const mins = Math.max(0, Math.round((Date.now() - ts) / 60000));
+  if (mins < 1)  return { label: "NOW",            freshness: "fresh", color: "#2d7a55" };  // var(--success)
+  if (mins < 5)  return { label: `${mins}m`,       freshness: "fresh", color: "#2d7a55" };
+  if (mins < 15) return { label: `${mins}m`,       freshness: "stale", color: "#f59a36" };  // var(--flare)
+  if (mins < 60) return { label: `${mins}m`,       freshness: "cold",  color: "rgba(255,255,255,0.55)" };
+  const hrs = Math.floor(mins / 60);
+  return     { label: `${hrs}h+`,                  freshness: "cold",  color: "rgba(255,255,255,0.45)" };
+}
+
 // Watch the user's real position. Returns { pos, status, lastUpdate }.
 // In battery-saver mode, drops high-accuracy GPS and lets the browser cache
 // fixes for 30s — saves a meaningful chunk of battery on long late-night sessions.
@@ -2691,20 +2705,35 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           </div>
         ))}
 
-        {crewFriends.map(f => (
-          <div key={`crew-${f.id}`} style={{
-            position: "absolute", left: `${f.x}%`, top: `${f.y}%`,
-            transform: `translate(-50%, -28px)${counterRot}`,
-            display: "flex", alignItems: "center", gap: 4,
-            background: f.color, color: "#fff",
-            padding: "2px 7px 2px 5px", borderRadius: 999,
-            fontFamily: "Geist Mono, monospace", fontSize: 8.5, letterSpacing: 1.2, fontWeight: 700,
-            boxShadow: `0 3px 14px ${f.color}88`, pointerEvents: "none",
-          }}>
-            <span style={{ width: 6, height: 6, borderRadius: 6, background: "rgba(255,255,255,0.9)", animation: "pulse 1.6s infinite" }}/>
-            {f.name.toUpperCase()}
-          </div>
-        ))}
+        {crewFriends.map(f => {
+          const seen = formatLastSeen(f.ts);
+          return (
+            <div key={`crew-${f.id}`} style={{
+              position: "absolute", left: `${f.x}%`, top: `${f.y}%`,
+              transform: `translate(-50%, -28px)${counterRot}`,
+              display: "flex", alignItems: "center", gap: 4,
+              background: f.color, color: "#fff",
+              padding: "2px 7px 2px 5px", borderRadius: 999,
+              fontFamily: "Geist Mono, monospace", fontSize: 8.5, letterSpacing: 1.2, fontWeight: 700,
+              boxShadow: `0 3px 14px ${f.color}88`, pointerEvents: "none",
+              opacity: seen.freshness === "cold" ? 0.78 : 1,
+            }}>
+              <span style={{
+                width: 6, height: 6, borderRadius: 6,
+                background: seen.color,
+                animation: seen.freshness === "fresh" ? "pulse 1.6s infinite" : "none",
+              }}/>
+              {f.name.toUpperCase()}
+              {seen.label && seen.freshness !== "fresh" && (
+                <span style={{
+                  color: "rgba(255,255,255,0.7)",
+                  fontWeight: 500,
+                  marginLeft: 1,
+                }}>· {seen.label}</span>
+              )}
+            </div>
+          );
+        })}
 
         <div style={{
           position: "absolute", left: `${avatar.x}%`, top: `${avatar.y}%`,
