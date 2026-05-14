@@ -271,6 +271,51 @@ function distMiles(lat1, lng1, lat2, lng2) {
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
+// ─── Meetups (offline-first) ─────────────────────────────────
+// Crew-agreed meeting points that work without a live connection. List
+// is localStorage-backed and survives reloads. Each entry pins to a
+// stage (or just to a time) so the crew can show up at the same place
+// at the same moment without ever messaging at the venue. Sync to
+// Supabase is a future follow-up — this layer is purely local for now.
+const MEETUPS_KEY = "plursky_meetups_v1";
+
+function readMeetups() {
+  try { return JSON.parse(localStorage.getItem(MEETUPS_KEY) || "[]"); }
+  catch { return []; }
+}
+function writeMeetups(arr) {
+  try { localStorage.setItem(MEETUPS_KEY, JSON.stringify(arr)); } catch {}
+}
+function addMeetup({ name, stageId, atTs, notes }) {
+  const list = readMeetups();
+  list.push({
+    id: Date.now() + "_" + Math.random().toString(36).slice(2, 6),
+    name: (name || "").slice(0, 60),
+    stageId: stageId || null,
+    atTs: Number(atTs) || Date.now(),
+    notes: (notes || "").slice(0, 200),
+    createdAt: Date.now(),
+  });
+  // Keep sorted by atTs ascending
+  list.sort((a, b) => a.atTs - b.atTs);
+  writeMeetups(list);
+  return list;
+}
+function removeMeetup(id) {
+  const list = readMeetups().filter(m => m.id !== id);
+  writeMeetups(list);
+  return list;
+}
+// Surface only upcoming entries (not in the past). Anything older than
+// 30 min is also stale-removed automatically — keeps the list tidy.
+function upcomingMeetups() {
+  const cutoff = Date.now() - 30 * 60 * 1000;
+  const list = readMeetups().filter(m => m.atTs > cutoff);
+  // Rewrite if we pruned anything stale
+  if (list.length !== readMeetups().length) writeMeetups(list);
+  return list;
+}
+
 // "Last seen" staleness for friend pins. Buckets that match festival reality:
 // fresh = the data is trustworthy ("they ARE there"); stale = trust but verify;
 // cold = treat as a hint, not a fact. Designed for 4AM-tired eyes.
@@ -1018,6 +1063,193 @@ function ShareLocationSheet({
   );
 }
 
+// ── Meetups sheet ──────────────────────────────────────────────
+// List + create form for offline-first crew meetup primitives. Same
+// backdrop + paper pattern as ShareLocationSheet/IAmAtSheet.
+function MeetupsSheet({ onClose }) {
+  const [list, setList] = React.useState(() => upcomingMeetups());
+  const [creating, setCreating] = React.useState(false);
+  const [name, setName] = React.useState("");
+  const [stageId, setStageId] = React.useState(STAGES[0]?.id || "");
+  const [whenLocal, setWhenLocal] = React.useState(() => {
+    // Default to 1 hour from now, formatted for <input type="datetime-local">
+    const d = new Date(Date.now() + 60 * 60 * 1000);
+    const pad = (n) => String(n).padStart(2, "0");
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  });
+  const [notes, setNotes] = React.useState("");
+
+  const reset = () => {
+    setCreating(false);
+    setName("");
+    setStageId(STAGES[0]?.id || "");
+    setNotes("");
+  };
+
+  const handleSave = () => {
+    const atTs = new Date(whenLocal).getTime();
+    if (!atTs || Number.isNaN(atTs)) return;
+    const finalName = name.trim() || (STAGES.find(s => s.id === stageId)?.name || "Meetup");
+    const next = addMeetup({ name: finalName, stageId, atTs, notes: notes.trim() });
+    setList(next.filter(m => m.atTs > Date.now() - 30 * 60 * 1000));
+    reset();
+  };
+  const handleRemove = (id) => {
+    const next = removeMeetup(id);
+    setList(next.filter(m => m.atTs > Date.now() - 30 * 60 * 1000));
+  };
+
+  const fmtWhen = (ts) => {
+    try {
+      const d = new Date(ts);
+      const today = new Date();
+      const sameDay = d.toDateString() === today.toDateString();
+      const time = d.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+      const mins = Math.round((ts - Date.now()) / 60000);
+      const rel = mins < 60 ? `IN ${Math.max(1, mins)}M`
+                : mins < 24 * 60 ? `IN ${Math.round(mins / 60)}H`
+                : `${d.toLocaleDateString([], { weekday: "short" }).toUpperCase()}`;
+      return { primary: time, rel: sameDay ? rel : `${rel} · ${d.toLocaleDateString([], { weekday: "short" })}` };
+    } catch { return { primary: "—", rel: "" }; }
+  };
+
+  return (
+    <div onClick={onClose} style={{
+      position: "fixed", inset: 0, background: "rgba(13,10,8,0.55)",
+      zIndex: 60, display: "flex", alignItems: "flex-end", justifyContent: "center",
+    }}>
+      <div onClick={e => e.stopPropagation()} style={{
+        width: "100%", maxWidth: 460,
+        background: "var(--paper)", color: "var(--ink)",
+        borderRadius: "16px 16px 0 0",
+        padding: "16px 18px 28px",
+        boxShadow: "0 -8px 32px rgba(0,0,0,0.35)",
+        maxHeight: "90vh", overflowY: "auto",
+      }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
+          <span className="mono" style={{ fontSize: 10, letterSpacing: 1.5, fontWeight: 800 }}>MEETUPS</span>
+          <button onClick={onClose} style={{
+            background: "transparent", border: "none", color: "var(--muted)",
+            fontSize: 18, cursor: "pointer", lineHeight: 1,
+          }}>×</button>
+        </div>
+
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700, marginBottom: 12 }}>
+          AGREE ON A PLACE + TIME BEFORE SERVICE DIES
+        </div>
+
+        {/* List */}
+        {list.length === 0 && !creating && (
+          <div style={{
+            padding: "20px 12px", borderRadius: 12,
+            background: "var(--paper-2)", textAlign: "center", marginBottom: 12,
+          }}>
+            <div className="serif" style={{ fontSize: 17, marginBottom: 4 }}>No meetups yet</div>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)" }}>
+              CREATE ONE BELOW
+            </div>
+          </div>
+        )}
+
+        {list.length > 0 && (
+          <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 12 }}>
+            {list.map(m => {
+              const stage = m.stageId ? STAGES.find(s => s.id === m.stageId) : null;
+              const tFmt = fmtWhen(m.atTs);
+              return (
+                <div key={m.id} style={{
+                  display: "flex", alignItems: "center", gap: 10,
+                  padding: "10px 12px", borderRadius: 12,
+                  background: "var(--paper-2)",
+                  borderLeft: stage ? `3px solid ${stage.color}` : "3px solid var(--line-2)",
+                }}>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div className="serif" style={{ fontSize: 16, lineHeight: 1.2 }}>{m.name}</div>
+                    <div className="mono" style={{
+                      fontSize: 9, letterSpacing: 1.1, color: "var(--muted)",
+                      marginTop: 3, display: "flex", gap: 6, flexWrap: "wrap",
+                    }}>
+                      {stage && <span style={{ color: stage.color, fontWeight: 700 }}>{stage.name.toUpperCase()}</span>}
+                      <span>{tFmt.primary}</span>
+                      <span style={{ opacity: 0.6 }}>· {tFmt.rel}</span>
+                    </div>
+                  </div>
+                  <button onClick={() => handleRemove(m.id)} aria-label="Remove" style={{
+                    background: "transparent", border: "none", color: "var(--muted)",
+                    fontSize: 16, cursor: "pointer", lineHeight: 1, padding: 4,
+                  }}>×</button>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Create form */}
+        {!creating ? (
+          <button onClick={() => setCreating(true)} style={{
+            width: "100%", padding: "12px 16px", borderRadius: 999,
+            background: "var(--ember)", color: "#fff", border: "none",
+            cursor: "pointer", fontFamily: "Geist Mono, monospace",
+            fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
+          }}>+ NEW MEETUP</button>
+        ) : (
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            <input value={name} onChange={(e) => setName(e.target.value)}
+              placeholder="Sunrise at Kinetic" maxLength={60}
+              style={{
+                padding: "10px 12px", borderRadius: 10,
+                border: "1px solid var(--line-2)", background: "var(--paper)",
+                fontFamily: "Geist", fontSize: 14, color: "var(--ink)",
+              }}/>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6 }}>
+              {STAGES.map(s => {
+                const on = stageId === s.id;
+                return (
+                  <button key={s.id} onClick={() => setStageId(s.id)} style={{
+                    padding: "6px 4px", borderRadius: 8,
+                    background: on ? s.color : "var(--paper-2)",
+                    color: on ? "#fff" : "var(--ink)",
+                    border: on ? "none" : "1px solid var(--line-2)",
+                    fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 0.8,
+                    fontWeight: on ? 700 : 500, cursor: "pointer",
+                  }}>{s.short}</button>
+                );
+              })}
+            </div>
+            <input type="datetime-local"
+              value={whenLocal} onChange={(e) => setWhenLocal(e.target.value)}
+              style={{
+                padding: "10px 12px", borderRadius: 10,
+                border: "1px solid var(--line-2)", background: "var(--paper)",
+                fontFamily: "Geist", fontSize: 14, color: "var(--ink)",
+              }}/>
+            <textarea value={notes} onChange={(e) => setNotes(e.target.value)}
+              placeholder="Notes (optional)" maxLength={200} rows={2}
+              style={{
+                padding: "10px 12px", borderRadius: 10,
+                border: "1px solid var(--line-2)", background: "var(--paper)",
+                fontFamily: "Geist", fontSize: 13, color: "var(--ink)", resize: "none",
+              }}/>
+            <div style={{ display: "flex", gap: 8 }}>
+              <button onClick={reset} style={{
+                flex: 1, padding: "10px 12px", borderRadius: 999,
+                background: "var(--paper-2)", color: "var(--ink)",
+                border: "1px solid var(--line-2)", cursor: "pointer",
+                fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
+              }}>CANCEL</button>
+              <button onClick={handleSave} style={{
+                flex: 1, padding: "10px 12px", borderRadius: 999,
+                background: "var(--ember)", color: "#fff", border: "none", cursor: "pointer",
+                fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
+              }}>SAVE</button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ── Saved-set reminders ──────────────────────────────────────
 // 15-min-before reminder hook. Fires a Web Notification when a saved set
 // is about to start. Two layers:
@@ -1343,6 +1575,18 @@ function MapScreen({ state, setState }) {
   const [pingOpen, setPingOpen] = React.useState(false);
   const [iAmAtOpen, setIAmAtOpen] = React.useState(false);
   const [shareOpen, setShareOpen] = React.useState(false);
+  const [meetupsOpen, setMeetupsOpen] = React.useState(false);
+  // Local meetup list, refreshed on a 30s tick so the "IN 5M" countdowns
+  // stay sensible and stale entries (>30 min past) clear themselves.
+  const [meetups, setMeetups] = React.useState(() => upcomingMeetups());
+  React.useEffect(() => {
+    const id = setInterval(() => setMeetups(upcomingMeetups()), 30000);
+    return () => clearInterval(id);
+  }, []);
+  // Also refresh whenever the meetups sheet closes (likely added/removed one)
+  React.useEffect(() => {
+    if (!meetupsOpen) setMeetups(upcomingMeetups());
+  }, [meetupsOpen]);
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [moreOpen, setMoreOpen] = React.useState(false);
   const [myStatusStage, setMyStatusStage] = React.useState(() => getMyStatus()?.stage || null);
@@ -2065,6 +2309,17 @@ function MapScreen({ state, setState }) {
                   </button>
                 );
               })()}
+              <button onClick={() => { setMeetupsOpen(true); setMoreOpen(false); }} style={{
+                width: "100%", display: "flex", alignItems: "center", gap: 10,
+                padding: "9px 11px", background: "transparent", border: "none",
+                borderRadius: 8, cursor: "pointer", color: "var(--ink)", textAlign: "left",
+              }}>
+                <span style={{ fontSize: 14, width: 18 }}>🗓</span>
+                <span style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500, flex: 1 }}>Meetups</span>
+                <span className="mono" style={{
+                  fontSize: 8.5, letterSpacing: 1, color: meetups.length ? "var(--ember)" : "var(--muted)", fontWeight: 700,
+                }}>{meetups.length ? `${meetups.length} UPCOMING` : "NONE"}</span>
+              </button>
             </div>
           </>
         )}
@@ -2139,6 +2394,10 @@ function MapScreen({ state, setState }) {
           onSave={(s) => setShareState(s)}
           onStop={() => setShareState(null)}
         />
+      )}
+
+      {meetupsOpen && (
+        <MeetupsSheet onClose={() => setMeetupsOpen(false)} />
       )}
     </Screen>
   );
