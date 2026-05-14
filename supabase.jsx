@@ -225,7 +225,12 @@ async function sbSignInWithApple() {
 
 function _randNonce() {
   const a = new Uint8Array(16);
-  (crypto?.getRandomValues || (() => {}))(a);
+  // Must call as a method of the Crypto instance — extracting the function
+  // reference and calling it standalone throws TypeError in WebKit because
+  // getRandomValues requires `this === crypto`. Bug existed pre-1.0 but only
+  // surfaced when Sign in with Apple ran for real.
+  const c = window.crypto || window.msCrypto;
+  if (c?.getRandomValues) c.getRandomValues(a);
   return Array.from(a, b => b.toString(16).padStart(2, "0")).join("");
 }
 
