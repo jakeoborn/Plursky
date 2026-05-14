@@ -2727,6 +2727,74 @@ function RealMap({ avatar, stages, crewFriends = [], selected, meetTarget, onPic
       // for Wasteland, diamond speaker for Bass Pod, hangar rectangle
       // for Circuit. Heights are exaggerated for visual impact at the
       // festival's zoom range; mainstage Kinetic dwarfs side stages.
+      // Per-amenity-type silhouette + color, matching the existing SVG
+      // amenity dot palette. Shapes chosen to evoke each type: octagon
+      // tap for water, diamond for food, square cross for medic, hex for
+      // toilets, star for art, circle info booth, diamond bolt for
+      // charging, square locker. Heights are intentionally small so
+      // amenities never compete visually with stages.
+      const AMENITY_DESIGN = {
+        water:  { color: "#38bdf8", height: 14, radius: 5, sides:  8 },
+        food:   { color: "#fb923c", height: 16, radius: 6, sides:  4, rot: 45 },
+        med:    { color: "#ef4444", height: 18, radius: 6, sides:  4 },
+        toilet: { color: "#64748b", height: 12, radius: 5, sides:  6 },
+        art:    { color: "#f59a36", height: 22, radius: 7, sides: 12, altInner: 0.5 },
+        info:   { color: "#16a34a", height: 14, radius: 5, sides: 24 },
+        charge: { color: "#facc15", height: 16, radius: 5, sides:  4, rot: 22.5 },
+        locker: { color: "#a78bfa", height: 13, radius: 5, sides:  4 },
+      };
+      const amenitiesExtrusionData = () => ({
+        type: "FeatureCollection",
+        features: (window.AMENITIES || []).map((a) => {
+          const { lat, lng } = mapToGps(a.x, a.y);
+          const d = AMENITY_DESIGN[a.type] || AMENITY_DESIGN.info;
+          return {
+            type: "Feature",
+            properties: {
+              id: a.id,
+              type: a.type,
+              label: a.label,
+              color: d.color,
+              height: d.height,
+            },
+            geometry: {
+              type: "Polygon",
+              coordinates: _shapePolygon(lat, lng, {
+                sides: d.sides,
+                radius: d.radius,
+                rot: d.rot || 0,
+                altInner: d.altInner,
+              }),
+            },
+          };
+        }),
+      });
+
+      // Sub-landmark labels — named places drawn on the EDC poster
+      // (walkways + districts + standalone art). Mirror of the SVG
+      // TopDownMap's LABELS toggle list, projected into GPS. Rendered
+      // as DOM markers below.
+      const SUB_LANDMARKS = [
+        // Walkways
+        { label: "KINETIC TRAIL",   x: 41, y: 28, rot: -55, color: "rgba(251,191,36,0.92)" },
+        { label: "MEMORY LANE",     x: 33, y: 55, rot: -90, color: "rgba(247,237,224,0.85)" },
+        { label: "POWER PATH",      x: 67, y: 38, rot: -90, color: "rgba(167,139,250,0.92)" },
+        { label: "RAINBOW ROAD",    x: 65, y: 64, rot: -90, color: "rgba(244,114,182,0.92)" },
+        { label: "ELECTRIC AVENUE", x: 50, y: 62, rot:   0, color: "rgba(252,211,77,1)"     },
+        { label: "BASS LANE",       x: 56, y: 71, rot: -90, color: "rgba(96,165,250,0.92)"  },
+        { label: "NOMADS ALLEY",    x: 22, y: 70, rot: -22, color: "rgba(247,237,224,0.85)" },
+        // Districts
+        { label: "DAISY FIELDS",    x: 40, y: 24, rot:   0, color: "rgba(252,211,77,0.92)"  },
+        { label: "NOMADS LAND",     x: 38, y: 70, rot:   0, color: "rgba(252,211,77,1)"     },
+        // Inside-plaza
+        { label: "RAINBOW BAZAAR",  x: 50, y: 47, rot:   0, color: "rgba(255,255,255,0.95)" },
+        { label: "DOWNTOWN EDC",    x: 50, y: 55, rot:   0, color: "rgba(251,191,36,1)"     },
+        // Standalone landmarks
+        { label: "FLOWER TUNNEL",   x: 45, y: 33, rot:   0, color: "rgba(244,114,182,0.95)" },
+        { label: "PIXEL FOREST",    x: 78, y: 60, rot:   0, color: "rgba(244,114,182,0.92)" },
+        { label: "NOMADS PORTAL",   x: 38, y: 76, rot:   0, color: "rgba(244,114,182,0.92)" },
+      ];
+
       const STAGE_3D_DESIGN = {
         kinetic: { sides: 16, radius: 40, height: 220, rot:  0, altInner: 0.42 }, // 8-petal lotus
         quantum: { sides:  3, radius: 30, height: 135, rot: 30 },                  // trance pyramid
@@ -2828,6 +2896,26 @@ function RealMap({ avatar, stages, crewFriends = [], selected, meetTarget, onPic
             },
           });
         }
+        // Amenity 3D pillars — short colored markers in each amenity's
+        // brand color and shape. Always under stage pillars so they
+        // never compete visually with the main stages.
+        if (!map.getSource("amenities-3d")) {
+          map.addSource("amenities-3d", { type: "geojson", data: amenitiesExtrusionData() });
+        }
+        if (!map.getLayer("amenities-3d")) {
+          map.addLayer({
+            id: "amenities-3d",
+            source: "amenities-3d",
+            type: "fill-extrusion",
+            paint: {
+              "fill-extrusion-color":   ["get", "color"],
+              "fill-extrusion-height":  ["get", "height"],
+              "fill-extrusion-base":    0,
+              "fill-extrusion-opacity": 0.85,
+            },
+          });
+        }
+
         // 3D STAGE PILLARS — the headline visual. Each stage becomes a
         // colored cylinder rising out of the poster (Pokémon-Go gym vibe).
         // Tap = onPickStage. Selected stage updates via setData on the
@@ -2943,6 +3031,25 @@ function RealMap({ avatar, stages, crewFriends = [], selected, meetTarget, onPic
         // can't accidentally pan to Reno.
         const b = FESTIVAL_CONFIG.venue.festivalBounds;
         map.setMaxBounds([[b.west - 0.008, b.south - 0.008], [b.east + 0.008, b.north + 0.008]]);
+
+        // Sub-landmark text labels — named places/walkways drawn on the
+        // EDC poster. Same data the SVG TopDownMap LABELS toggle uses,
+        // projected into GPS via mapToGps + rendered as DOM markers.
+        SUB_LANDMARKS.forEach((lm) => {
+          const { lat, lng } = mapToGps(lm.x, lm.y);
+          const el = document.createElement("div");
+          el.style.cssText =
+            "font-family:'Geist Mono',monospace;font-weight:700;" +
+            "font-size:9px;letter-spacing:1.4px;white-space:nowrap;" +
+            `color:${lm.color};` +
+            "text-shadow:0 1px 6px rgba(0,0,0,0.85);" +
+            "pointer-events:none;" +
+            `transform:rotate(${lm.rot}deg);`;
+          el.textContent = lm.label;
+          new maplibregl.Marker({ element: el, anchor: "center" })
+            .setLngLat([lng, lat])
+            .addTo(map);
+        });
 
         // Stage labels — DOM markers anchored above each 3D pillar. The
         // pillar geometry itself (with click handler) lives in the
