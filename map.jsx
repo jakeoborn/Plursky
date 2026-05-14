@@ -2826,11 +2826,11 @@ function RealMap({
         style: initialStyle.style || initialStyle.url,
         center: [center.lng, center.lat],
         zoom: 15.4,
-        // Subtle 30° tilt — the flat EDC poster overlay reads cleanly at
-        // this pitch (like a paper map on a table), and the 3D stage
-        // pillars still rise visibly. flyTo lifts to 55° for the
-        // cinematic Pokémon-Go-style zoom-in when a stage is tapped.
-        pitch: 30,
+        // Default top-down (pitch 0) so the map reads as a paper map —
+        // stage zone glows + colored disc tops show their position cleanly
+        // without 3D walls in the foreground. The flyTo on stage tap lifts
+        // pitch back up for the cinematic zoom-in (see line ~3559).
+        pitch: 0,
         bearing: 0,
         attributionControl: false,
       });
