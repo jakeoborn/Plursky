@@ -2145,6 +2145,7 @@ function MapScreen({ state, setState }) {
           <RealMap
             avatar={avatar} stages={STAGES}
             crewFriends={crewFriends}
+            showHeat={showHeat}
             selected={selectedStage} meetTarget={meetTarget}
             onPickStage={(id) => { setSelectedStage(id); setPeek(false); }}
           />
@@ -2661,7 +2662,7 @@ function mapToGps(x, y) {
 // line are overlay layers projected from the existing 100-space x/y
 // via mapToGps(). Behind the "Real map (BETA)" toggle in the More menu;
 // when off, MapScreen falls back to the SVG TopDownMap.
-function RealMap({ avatar, stages, crewFriends = [], selected, meetTarget, onPickStage }) {
+function RealMap({ avatar, stages, crewFriends = [], showHeat = false, selected, meetTarget, onPickStage }) {
   const containerRef = React.useRef(null);
   const mapRef = React.useRef(null);
   const stageMarkersRef = React.useRef({});
@@ -2918,6 +2919,39 @@ function RealMap({ avatar, stages, crewFriends = [], selected, meetTarget, onPic
               "fill-extrusion-height":  ["get", "height"],
               "fill-extrusion-base":    0,
               "fill-extrusion-opacity": 0.85,
+            },
+          });
+        }
+
+        // Crowd heatmap — Mapbox native heatmap layer driven by
+        // _crowdDensity. Lives BELOW stage pillars so stages still pop
+        // when heat is on. Visibility toggles via setLayoutProperty in
+        // the dedicated useEffect below.
+        if (!map.getSource("crowd-heat")) {
+          map.addSource("crowd-heat", {
+            type: "geojson",
+            data: { type: "FeatureCollection", features: [] },
+          });
+        }
+        if (!map.getLayer("crowd-heat")) {
+          map.addLayer({
+            id: "crowd-heat",
+            source: "crowd-heat",
+            type: "heatmap",
+            layout: { visibility: "none" },
+            paint: {
+              "heatmap-weight":   ["interpolate", ["linear"], ["get", "density"], 0, 0, 1, 1],
+              "heatmap-intensity":["interpolate", ["linear"], ["zoom"], 14, 1.0, 17, 2.8],
+              "heatmap-color": [
+                "interpolate", ["linear"], ["heatmap-density"],
+                0,    "rgba(0,0,0,0)",
+                0.2,  "rgba(251,191,36,0.35)",
+                0.5,  "rgba(249,115,22,0.65)",
+                0.8,  "rgba(239,68,68,0.85)",
+                1.0,  "rgba(239,68,68,0.95)",
+              ],
+              "heatmap-radius":  ["interpolate", ["linear"], ["zoom"], 14, 26, 17, 78],
+              "heatmap-opacity": 0.72,
             },
           });
         }
@@ -3226,6 +3260,37 @@ function RealMap({ avatar, stages, crewFriends = [], selected, meetTarget, onPic
       essential: true,
     });
   }, [loaded, selected, stages]);
+
+  // Crowd heatmap visibility + data refresh. Toggles the layer on/off based
+  // on the showHeat prop; re-computes density on a 60s tick so the heat
+  // shifts as sets cross set boundaries through the night.
+  React.useEffect(() => {
+    if (!loaded || !mapRef.current) return;
+    const map = mapRef.current;
+    if (map.getLayer("crowd-heat")) {
+      try { map.setLayoutProperty("crowd-heat", "visibility", showHeat ? "visible" : "none"); } catch {}
+    }
+    if (!showHeat) return;
+    const rebuild = () => {
+      const nowMin = (typeof toNightMin === "function" && window.NOW?.time)
+        ? toNightMin(window.NOW.time)
+        : 0;
+      const features = stages.map(s => {
+        const { lat, lng } = mapToGps(s.x, s.y);
+        const density = typeof _crowdDensity === "function" ? _crowdDensity(s.id, nowMin) : 0.04;
+        return {
+          type: "Feature",
+          properties: { id: s.id, density },
+          geometry: { type: "Point", coordinates: [lng, lat] },
+        };
+      });
+      const src = map.getSource("crowd-heat");
+      if (src) src.setData({ type: "FeatureCollection", features });
+    };
+    rebuild();
+    const id = setInterval(rebuild, 60000);
+    return () => clearInterval(id);
+  }, [loaded, showHeat, stages]);
 
   // Swap the basemap style when the user toggles Stylized / Satellite.
   // styledata listener re-adds overlay layers; markers persist across swaps.
