@@ -2202,13 +2202,37 @@ function MapScreen({ state, setState }) {
                 </div>
               )}
 
-              {/* Expanded content (Find Nearby chips + heads-up strips), no search text */}
+              {/* Heads-up strips — ALWAYS visible (when not typing), regardless
+                  of sheet expanded state. NextSetStrip's countdown + walk
+                  time is the killer wayfinding piece; can't be hidden behind
+                  a tap. Same for sunrise + weather alerts. */}
+              {!search && (
+                <div style={{
+                  padding: "0 10px 8px",
+                  display: "flex", flexDirection: "column", gap: 8,
+                  flexShrink: 0,
+                }}>
+                  <NextSetStrip
+                    savedIds={state.saved}
+                    avatar={avatar}
+                    onSelect={(id) => { setSelectedStage(id); setPeek(false); setSearchSheetExpanded(false); }}
+                  />
+                  <SunriseStrip
+                    avatar={avatar}
+                    onSelect={(id) => { setSelectedStage(id); setPeek(false); setSearchSheetExpanded(false); }}
+                  />
+                  <WeatherStrip />
+                </div>
+              )}
+
+              {/* Find Nearby chips — only when the sheet is tapped open.
+                  Drawer-style affordance for "I need water/medic/etc"; not
+                  needed in the default collapsed view. */}
               {!search && searchSheetExpanded && (
                 <div style={{
                   overflowY: "auto", padding: "0 10px 12px",
                   display: "flex", flexDirection: "column", gap: 8, flex: 1,
                 }}>
-                  {/* Find Nearby — Apple-Maps-style labeled chips */}
                   <div style={{ display: "flex", gap: 6, overflowX: "auto", scrollbarWidth: "none", paddingBottom: 2 }}>
                     {[
                       { type: "water",  label: "Water",  emoji: "💧", color: "#38bdf8" },
@@ -2240,18 +2264,6 @@ function MapScreen({ state, setState }) {
                       </button>
                     ))}
                   </div>
-
-                  {/* Next set, Sunrise, Weather — heads-up strips */}
-                  <NextSetStrip
-                    savedIds={state.saved}
-                    avatar={avatar}
-                    onSelect={(id) => { setSelectedStage(id); setPeek(false); setSearchSheetExpanded(false); }}
-                  />
-                  <SunriseStrip
-                    avatar={avatar}
-                    onSelect={(id) => { setSelectedStage(id); setPeek(false); setSearchSheetExpanded(false); }}
-                  />
-                  <WeatherStrip />
                 </div>
               )}
             </div>
@@ -3198,11 +3210,11 @@ function RealMap({
           });
         }
 
-        // Plursky-native stage zone glows — large colored ground patches in
-        // each stage's color. These are the "painted floor" wayfinding that
-        // gives the festival its visual character (Snapchat Map's painted
-        // POI zones). Bumped from 60m/0.14 to 90m/0.22 so they read as
-        // intentional ground design rather than faint accents.
+        // Plursky-native stage zone glows — colored ground patches in each
+        // stage's color. Painted-ground wayfinding (Snapchat Map's POI
+        // zones). 70m radius keeps zones distinct on tight clusters; at
+        // 90m adjacent stages' zones overlapped + color-mixed into muddy
+        // intermediates.
         const stageZonesData = () => ({
           type: "FeatureCollection",
           features: stages.map((s) => {
@@ -3212,7 +3224,7 @@ function RealMap({
               properties: { id: s.id, color: s.color },
               geometry: {
                 type: "Polygon",
-                coordinates: _shapePolygon(lat, lng, { sides: 36, radius: 90 }),
+                coordinates: _shapePolygon(lat, lng, { sides: 36, radius: 70 }),
               },
             };
           }),
@@ -3233,51 +3245,15 @@ function RealMap({
           });
         }
 
-        // Festival walkways — dashed ember LineStrings from the stage
-        // centroid (Daisy Lane plaza) out to each stage. Recreates the
-        // radial-spoke pathway pattern of a real festival map. Drawn
-        // BEFORE stage zones so the dashes read through the zone color.
+        // Daisy Lane plaza — central plaza marker at the festival centroid.
+        // (Walkway spokes were tried but read as a busy starburst from a
+        // single point; the plaza alone gives the map its center of gravity.)
         const _centroidLatLng = (() => {
           const pts = stages.map(s => mapToGps(s.x, s.y));
           const lat = pts.reduce((sum, p) => sum + p.lat, 0) / pts.length;
           const lng = pts.reduce((sum, p) => sum + p.lng, 0) / pts.length;
           return { lat, lng };
         })();
-        const walkwaysData = () => ({
-          type: "FeatureCollection",
-          features: stages.map((s) => {
-            const { lat, lng } = mapToGps(s.x, s.y);
-            return {
-              type: "Feature",
-              properties: { id: s.id },
-              geometry: {
-                type: "LineString",
-                coordinates: [
-                  [_centroidLatLng.lng, _centroidLatLng.lat],
-                  [lng, lat],
-                ],
-              },
-            };
-          }),
-        });
-        if (!map.getSource("walkways")) {
-          map.addSource("walkways", { type: "geojson", data: walkwaysData() });
-        }
-        if (!map.getLayer("walkways")) {
-          map.addLayer({
-            id: "walkways",
-            source: "walkways",
-            type: "line",
-            paint: {
-              "line-color":   "#e85d2e",
-              "line-width":   2,
-              "line-opacity": 0.32,
-              "line-dasharray": [2, 2],
-            },
-          });
-        }
-
-        // Daisy Lane plaza — central plaza marker at the festival centroid.
         // Small filled circle in Plursky ember, anchors the radial walkway
         // pattern and gives the map a defined center of gravity.
         const plazaData = () => ({

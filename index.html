@@ -54,21 +54,11 @@
 <body>
   <div id="root" class="stage"></div>
 
-  <script type="text/babel" src="ios-frame.jsx?v=v111"></script>
-  <script type="text/babel" src="data.jsx?v=v111"></script>
-  <script type="text/babel" src="supabase.jsx?v=v111"></script>
-  <script type="text/babel" src="chrome.jsx?v=v111"></script>
-  <script type="text/babel" src="home.jsx?v=v111"></script>
-  <script type="text/babel" src="map.jsx?v=v111"></script>
-  <script type="text/babel" src="lineup.jsx?v=v111"></script>
-  <script type="text/babel" src="artist.jsx?v=v111"></script>
-  <script type="text/babel" src="spotify.jsx?v=v111"></script>
-  <script type="text/babel" src="app.jsx?v=v111"></script>
-
   <script>
     // Nuke escape hatch — visit /?nuke=1 to unregister all service workers,
-    // wipe every cache, and clear stored version. Use when an aggressive
-    // browser cache pins someone to an old build despite version bumps.
+    // wipe every cache, and clear stored version. Hoisted ABOVE the babel
+    // script tags so it still runs even if a wedged jsx file crashes the
+    // app boot — that's exactly when users need the escape hatch most.
     try {
       if (location.search.includes('nuke=1')) {
         Promise.all([
@@ -82,13 +72,30 @@
           try { localStorage.removeItem('app_version'); } catch {}
           location.replace(location.pathname);
         });
+        // Stop further script execution this load — the redirect handles
+        // the next page view with a clean URL + fresh fetches.
+        throw new Error('nuke');
       }
     } catch {}
+  </script>
+
+  <script type="text/babel" src="ios-frame.jsx?v=v112"></script>
+  <script type="text/babel" src="data.jsx?v=v112"></script>
+  <script type="text/babel" src="supabase.jsx?v=v112"></script>
+  <script type="text/babel" src="chrome.jsx?v=v112"></script>
+  <script type="text/babel" src="home.jsx?v=v112"></script>
+  <script type="text/babel" src="map.jsx?v=v112"></script>
+  <script type="text/babel" src="lineup.jsx?v=v112"></script>
+  <script type="text/babel" src="artist.jsx?v=v112"></script>
+  <script type="text/babel" src="spotify.jsx?v=v112"></script>
+  <script type="text/babel" src="app.jsx?v=v112"></script>
+
+  <script>
 
     // Build version stamp â€” bumped on every deploy that changes app behaviour.
     // If the running tab's stored version doesn't match, force a full reload
     // (bypassing browser HTTP cache that GH-Pages serves with max-age=600).
-    const APP_VERSION = 'v111';
+    const APP_VERSION = 'v112';
     try {
       const stored = localStorage.getItem('app_version');
       if (stored && stored !== APP_VERSION) {
@@ -109,11 +116,11 @@
     if ('serviceWorker' in navigator) {
       caches.keys().then(keys =>
         Promise.all(
-          keys.filter(k => k !== 'plursky-v111' && !k.startsWith('plursky-tiles-'))
+          keys.filter(k => k !== 'plursky-v112' && !k.startsWith('plursky-tiles-'))
               .map(k => caches.delete(k))
         )
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v111', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v112', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 
