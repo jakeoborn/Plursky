@@ -747,6 +747,50 @@ function _expiryKeyFromState(shareState) {
   return "festival";
 }
 
+// Inline "shareable link" row used inside the Share With Crew sheet. Builds
+// the public viewer URL from the token, supports navigator.share when
+// available, falls back to clipboard. Shows "COPIED" for 1.5s.
+function ShareLinkRow({ token }) {
+  const [copied, setCopied] = React.useState(false);
+  const url = React.useMemo(() => {
+    if (typeof window === "undefined") return `share.html?t=${token}`;
+    const base = `${window.location.origin}${window.location.pathname.replace(/\/[^/]*$/, "/")}`;
+    return `${base}share.html?t=${token}`;
+  }, [token]);
+  const onShare = async () => {
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: "Find me at EDC", text: "Live location on Plursky", url });
+      } else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(url);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1500);
+      }
+    } catch { /* user canceled or no clipboard */ }
+  };
+  return (
+    <div style={{
+      padding: "10px 12px", borderRadius: 10, background: "var(--paper-2)",
+      marginBottom: 14, display: "flex", alignItems: "center", gap: 10,
+    }}>
+      <span style={{ fontSize: 18 }}>🔗</span>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500 }}>Shareable link</div>
+        <div className="mono" style={{
+          fontSize: 8.5, letterSpacing: 0.6, color: "var(--muted)",
+          marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+        }}>{url}</div>
+      </div>
+      <button onClick={onShare} style={{
+        background: copied ? "var(--success)" : "var(--ink)",
+        color: "var(--paper)", border: "none", borderRadius: 999,
+        padding: "7px 12px", cursor: "pointer",
+        fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+      }}>{copied ? "COPIED" : "COPY"}</button>
+    </div>
+  );
+}
+
 function ShareLocationSheet({
   onClose, shareState, crewCount, crewCode,
   gpsPos, gpsStatus, myStatusStage,
@@ -930,6 +974,12 @@ function ShareLocationSheet({
             );
           })}
         </div>
+
+        {/* Shareable link — only meaningful while sharing AND we have a token.
+            Copies a URL friends can open without installing Plursky. */}
+        {active && shareState?.token && (
+          <ShareLinkRow token={shareState.token} />
+        )}
 
         {/* Battery callout */}
         <div className="mono" style={{
@@ -1480,18 +1530,47 @@ function MapScreen({ state, setState }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSharing]);
 
-  // GPS heartbeat — re-broadcast position as it changes while sharing.
+  // Unified broadcast heartbeat — fan out GPS/stage updates to both Supabase
+  // Realtime presence (crew view) and the live_shares row (public link). One
+  // effect avoids duplicate work; both write paths are idempotent.
   React.useEffect(() => {
-    if (!isSharing || !shareState?.includeGps || !gpsPos) return;
-    sbPresenceUpdate({ gps: { lat: gpsPos.lat, lng: gpsPos.lng, accuracy: gpsPos.accuracy } });
-  }, [isSharing, shareState?.includeGps, gpsPos?.lat, gpsPos?.lng, gpsPos?.accuracy]);
+    if (!isSharing) return;
+    const gps = (shareState?.includeGps && gpsPos)
+      ? { lat: gpsPos.lat, lng: gpsPos.lng, accuracy: gpsPos.accuracy }
+      : undefined;
+    const stageId = shareState?.includeStage ? (myStatusStage || STAGES[0].id) : null;
+    if (gps || stageId !== undefined) sbPresenceUpdate({ gps, stageId });
+    if (shareState?.token) sbLiveShareUpdate(shareState.token, { gps, stageId });
+  }, [
+    isSharing, shareState?.includeGps, shareState?.includeStage, shareState?.token,
+    gpsPos?.lat, gpsPos?.lng, gpsPos?.accuracy, myStatusStage,
+  ]);
 
-  // Stage updates flow through too — selecting a new stage in "I'm at"
-  // re-broadcasts without needing to re-open the share sheet.
+  // Live share lifecycle: mint a token on first activation, upsert the row,
+  // tear down on stop. Cleanup function fires when isSharing flips off or
+  // shareState is cleared by the expiry watchdog.
   React.useEffect(() => {
-    if (!isSharing || !shareState?.includeStage) return;
-    sbPresenceUpdate({ stageId: myStatusStage || STAGES[0].id });
-  }, [isSharing, shareState?.includeStage, myStatusStage]);
+    if (!isSharing) return;
+    // First time → generate token, then wait for next render to actually start.
+    if (!shareState.token) {
+      const token = sbGenerateShareToken();
+      setShareState(s => s ? { ...s, token } : s);
+      return;
+    }
+    sbLiveShareStart({
+      token: shareState.token,
+      pid: sbGetMyPresId?.() || "anon",
+      name: crewName || "Friend",
+      expiresAt: shareState.expiresAt,
+      gps: (shareState.includeGps && gpsPos)
+        ? { lat: gpsPos.lat, lng: gpsPos.lng, accuracy: gpsPos.accuracy }
+        : undefined,
+      stageId: shareState.includeStage ? (myStatusStage || STAGES[0].id) : null,
+    });
+    const tokenCapture = shareState.token;
+    return () => { sbLiveShareStop(tokenCapture); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSharing, shareState?.token]);
 
   // Auto-expiry watchdog. Schedules a one-shot timer for the remaining
   // window so we wake exactly when sharing should stop, without polling.

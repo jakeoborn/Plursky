@@ -12,6 +12,7 @@ const LOCAL = [
   './index.html',
   './manifest.json',
   './callback.html',
+  './share.html',
   './og.svg',
   './icon-192.png',
   './icon-512.png',

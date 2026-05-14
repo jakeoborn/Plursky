@@ -1262,6 +1262,91 @@ function sbCrewSubscribeMessages(code, onMessage) {
   return () => { try { _sb.removeChannel(ch); } catch {} };
 }
 
+// ─── Live Share links ───────────────────────────────────────────
+// Komoot-modeled: each Share With Crew session can mint a public URL
+// that opens a minimal viewer page (share.html?t=TOKEN) showing the
+// user's last-known GPS + last-seen timestamp, with a hard expiry.
+// Token *is* the secret — anyone with it can read; tokens are 16 hex
+// chars (~64 bits of entropy) which is plenty for an unguessable
+// 4-hour share. Survives sharer going offline since rows persist.
+//
+// SQL — run once in Supabase SQL Editor:
+//   create table if not exists live_shares (
+//     token       text primary key,
+//     pid         text not null,
+//     name        text not null,
+//     color       text,
+//     lat         double precision,
+//     lng         double precision,
+//     accuracy    real,
+//     stage_id    text,
+//     updated_at  timestamptz not null default now(),
+//     expires_at  timestamptz not null
+//   );
+//   create index if not exists live_shares_expires_idx on live_shares (expires_at);
+//   alter table live_shares enable row level security;
+//   create policy "anon read"   on live_shares for select using (true);
+//   create policy "anon insert" on live_shares for insert with check (true);
+//   create policy "anon update" on live_shares for update using (true);
+//   create policy "anon delete" on live_shares for delete using (true);
+//   -- Optional pg_cron sweep (run hourly):
+//   -- select cron.schedule('purge-expired-shares', '17 * * * *',
+//   --   $$ delete from live_shares where expires_at < now() - interval '1 hour'; $$);
+
+function sbGenerateShareToken() {
+  try {
+    return crypto.randomUUID().replace(/-/g, "").slice(0, 16);
+  } catch {
+    return Math.random().toString(36).slice(2, 12) +
+           Math.random().toString(36).slice(2, 8);
+  }
+}
+
+async function sbLiveShareStart({ token, pid, name, color, expiresAt, gps, stageId }) {
+  if (!_sb || !token) return { error: "no_supabase_or_token" };
+  const row = {
+    token,
+    pid,
+    name: (name || "Friend").slice(0, 40),
+    color: color || null,
+    lat: gps?.lat ?? null,
+    lng: gps?.lng ?? null,
+    accuracy: gps?.accuracy ?? null,
+    stage_id: stageId || null,
+    expires_at: new Date(expiresAt).toISOString(),
+    updated_at: new Date().toISOString(),
+  };
+  const { error } = await _sb.from("live_shares").upsert(row, { onConflict: "token" });
+  return { error: error?.message || null };
+}
+
+async function sbLiveShareUpdate(token, partial) {
+  if (!_sb || !token) return { error: "no_supabase_or_token" };
+  const update = { updated_at: new Date().toISOString() };
+  if (partial?.gps) {
+    update.lat = partial.gps.lat;
+    update.lng = partial.gps.lng;
+    update.accuracy = partial.gps.accuracy;
+  }
+  if (partial && "stageId" in partial) update.stage_id = partial.stageId || null;
+  if (Object.keys(update).length === 1) return { error: null }; // only updated_at
+  const { error } = await _sb.from("live_shares").update(update).eq("token", token);
+  return { error: error?.message || null };
+}
+
+async function sbLiveShareStop(token) {
+  if (!_sb || !token) return;
+  try { await _sb.from("live_shares").delete().eq("token", token); } catch {}
+}
+
+async function sbLiveShareFetch(token) {
+  if (!_sb || !token) return null;
+  const { data, error } = await _sb.from("live_shares")
+    .select("*").eq("token", token).maybeSingle();
+  if (error) return null;
+  return data;
+}
+
 function CrewChat({ code, myPid, myName }) {
   const [msgs,   setMsgs]   = React.useState([]);
   const [input,  setInput]  = React.useState("");
@@ -1640,4 +1725,5 @@ Object.assign(window, {
   sbGetOrCreateGroupCode, sbGroupJoin, sbGroupLeave, sbGroupUpdate, sbGetCrewCount,
   sbCrewFetchMessages, sbCrewSendMessage, sbCrewSubscribeMessages,
   sbOutboxList, sbOutboxDrain, sbOutboxInit,
+  sbGenerateShareToken, sbLiveShareStart, sbLiveShareUpdate, sbLiveShareStop, sbLiveShareFetch,
 });

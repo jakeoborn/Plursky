@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1a120d">
+<title>Live location · Plursky</title>
+<link rel="icon" type="image/png" href="./apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<style>
+  :root {
+    --ink:#1a120d; --paper:#f7ede0; --paper-2:#eee0cb;
+    --ember:#e85d2e; --flare:#f59a36; --horizon:#7b3d9a;
+    --muted:rgba(26,18,13,0.55); --line-2:rgba(26,18,13,0.22);
+    --success:#2d7a55;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%;background:var(--paper);font-family:'Geist',system-ui,sans-serif;color:var(--ink);overflow:hidden}
+  .serif{font-family:'Instrument Serif',serif;font-weight:400}
+  .mono{font-family:'Geist Mono',monospace;letter-spacing:1.2px;font-weight:700;text-transform:uppercase}
+  #wrap{display:flex;flex-direction:column;height:100%;max-width:480px;margin:0 auto;background:var(--paper)}
+  header{padding:14px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line-2)}
+  header .logo{font-family:'Instrument Serif',serif;font-style:italic;font-size:22px;flex:1}
+  header .status{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:1.3px;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:6px}
+  header .dot{width:8px;height:8px;border-radius:8px;background:var(--muted)}
+  header .dot.live{background:var(--success);animation:pulse 1.6s infinite}
+  header .dot.stale{background:var(--flare)}
+  header .dot.cold{background:var(--muted)}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+  #map{flex:1;position:relative;background:#060412}
+  #map-canvas{position:absolute;inset:0}
+  footer{padding:14px 16px 22px;border-top:1px solid var(--line-2);background:var(--paper)}
+  footer .title{font-family:'Instrument Serif',serif;font-size:20px;margin-bottom:4px}
+  footer .meta{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:1.2px;font-weight:700;color:var(--muted);margin-bottom:10px}
+  footer .meta .sep{margin:0 8px;opacity:0.5}
+  footer .cta{display:inline-block;background:var(--ember);color:#fff;text-decoration:none;padding:10px 16px;border-radius:999px;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:1.3px;font-weight:700;text-transform:uppercase}
+  .empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:32px;text-align:center;gap:10px;color:var(--muted)}
+  .empty h1{font-family:'Instrument Serif',serif;font-style:italic;font-size:28px;color:var(--ink);font-weight:400}
+  .empty p{font-size:14px;max-width:280px;line-height:1.45}
+  .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:var(--paper-2);font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:1.2px;font-weight:700;color:var(--muted)}
+  .pin-wrap{position:relative;width:24px;height:24px;pointer-events:none}
+  .pin-halo{position:absolute;inset:0;border-radius:999px;background:rgba(232,93,46,0.45);transform-origin:center;animation:pinpulse 2s ease-out infinite;margin:-8px}
+  .pin-dot{position:absolute;inset:0;border-radius:999px;background:var(--ember);border:2px solid rgba(255,255,255,0.95);box-shadow:0 0 16px rgba(232,93,46,0.7),0 2px 6px rgba(0,0,0,0.4)}
+  @keyframes pinpulse{0%{transform:scale(0.6);opacity:0.55}100%{transform:scale(2.2);opacity:0}}
+</style>
+</head>
+<body>
+<div id="wrap"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script>
+(function() {
+  // Same credentials the main app uses — anon key, safe to expose.
+  const SUPABASE_URL  = "https://pzoijbqsbbwyuyjinjtj.supabase.co";
+  const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB6b2lqYnFzYmJ3eXV5amluanRqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczNTY4OTYsImV4cCI6MjA5MjkzMjg5Nn0.193dyHNHbc_zsm6l6UfQnpz4jXqRoPFBC4TWylyFPfA";
+  const POLL_MS = 15000;
+
+  const wrap  = document.getElementById("wrap");
+  const params = new URLSearchParams(window.location.search);
+  const token  = params.get("t");
+
+  function renderEmpty(title, msg) {
+    wrap.innerHTML = `
+      <div class="empty">
+        <span class="badge">PLURSKY · LIVE SHARE</span>
+        <h1>${title}</h1>
+        <p>${msg}</p>
+        <a class="cta" href="./" style="margin-top:8px">OPEN PLURSKY</a>
+      </div>`;
+  }
+
+  if (!token) {
+    renderEmpty("No share link", "This page expects a <code>?t=TOKEN</code> query parameter. Ask the person sharing for the full URL.");
+    return;
+  }
+
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+  // Scaffold the live UI (will populate once data arrives)
+  wrap.innerHTML = `
+    <header>
+      <span class="logo">Plursky</span>
+      <span class="status"><span id="dot" class="dot"></span><span id="status-label">LOADING</span></span>
+    </header>
+    <div id="map"><div id="map-canvas"></div></div>
+    <footer>
+      <div id="title" class="title">…</div>
+      <div id="meta" class="meta">…</div>
+      <a class="cta" href="./">OPEN PLURSKY ↗</a>
+    </footer>`;
+
+  const dotEl    = document.getElementById("dot");
+  const statusEl = document.getElementById("status-label");
+  const titleEl  = document.getElementById("title");
+  const metaEl   = document.getElementById("meta");
+
+  let map, marker;
+
+  function fmtAgo(ts) {
+    const m = Math.max(0, Math.round((Date.now() - new Date(ts).getTime()) / 60000));
+    if (m < 1)  return "JUST NOW";
+    if (m < 60) return m + "M AGO";
+    const h = Math.floor(m / 60);
+    return h + "H " + (m % 60) + "M AGO";
+  }
+  function fmtUntil(ts) {
+    const m = Math.max(0, Math.round((new Date(ts).getTime() - Date.now()) / 60000));
+    if (m < 60) return m + "M LEFT";
+    return Math.floor(m / 60) + "H " + (m % 60) + "M LEFT";
+  }
+  function freshnessClass(ts) {
+    const m = (Date.now() - new Date(ts).getTime()) / 60000;
+    if (m < 5)  return "live";
+    if (m < 15) return "stale";
+    return "cold";
+  }
+
+  function ensureMap(lng, lat) {
+    if (map) return;
+    map = new maplibregl.Map({
+      container: "map-canvas",
+      style: "https://tiles.openfreemap.org/styles/liberty",
+      center: [lng, lat],
+      zoom: 16,
+      pitch: 50,
+      attributionControl: false,
+    });
+    map.addControl(new maplibregl.AttributionControl({ compact: true }), "bottom-right");
+    const el = document.createElement("div");
+    el.className = "pin-wrap";
+    el.innerHTML = '<div class="pin-halo"></div><div class="pin-dot"></div>';
+    marker = new maplibregl.Marker({ element: el }).setLngLat([lng, lat]).addTo(map);
+  }
+
+  async function tick() {
+    const { data, error } = await sb.from("live_shares").select("*").eq("token", token).maybeSingle();
+    if (error) {
+      statusEl.textContent = "ERROR";
+      dotEl.className = "dot cold";
+      return;
+    }
+    if (!data) {
+      renderEmpty("Share not found", "This link is invalid or has already ended.");
+      return;
+    }
+    const now = Date.now();
+    const exp = new Date(data.expires_at).getTime();
+    if (exp <= now) {
+      renderEmpty("Share has ended", `${data.name || "Your friend"} stopped sharing their location. Catch up with them another way.`);
+      return;
+    }
+    if (data.lat == null || data.lng == null) {
+      statusEl.textContent = "WAITING FOR GPS";
+      dotEl.className = "dot stale";
+      titleEl.textContent = (data.name || "Friend") + "'s live location";
+      metaEl.innerHTML = "<span>NO POSITION YET</span><span class='sep'>·</span><span>" + fmtUntil(data.expires_at) + "</span>";
+      return;
+    }
+    ensureMap(data.lng, data.lat);
+    if (marker) marker.setLngLat([data.lng, data.lat]);
+    map.easeTo({ center: [data.lng, data.lat], duration: 600 });
+
+    statusEl.textContent = fmtAgo(data.updated_at);
+    dotEl.className = "dot " + freshnessClass(data.updated_at);
+    titleEl.textContent = (data.name || "Friend") + "'s live location";
+    const stagePart = data.stage_id ? data.stage_id.toUpperCase() + " · " : "";
+    metaEl.innerHTML = `${stagePart}±${Math.round(data.accuracy || 0)}M<span class='sep'>·</span>${fmtUntil(data.expires_at)}`;
+  }
+
+  tick();
+  setInterval(tick, POLL_MS);
+})();
+</script>
+</body>
+</html>
