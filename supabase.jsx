@@ -121,7 +121,14 @@ async function sbSignInWithApple() {
   const isNative = !!cap?.isNativePlatform?.();
   const native = cap?.Plugins?.SignInWithApple;
 
-  if (isNative && native) {
+  // On a native build, the native plugin MUST be available. Falling
+  // through to the web-OAuth path here would silently fail inside the
+  // Capacitor WebView (origin is capacitor://localhost, Apple can't
+  // redirect back) — which was the App Review rejection in v1.0(3).
+  if (isNative) {
+    if (!native) {
+      return { error: "Sign in with Apple is unavailable on this build. Use Email magic link below." };
+    }
     try {
       // Bind a fresh nonce per attempt. Apple hashes (sha256) the raw nonce
       // we send and returns the hash in the identity token's `nonce` claim;
@@ -327,6 +334,11 @@ function AccountCard({ state, setState }) {
   const [email,  setEmail]  = React.useState("");
   const [phase,  setPhase]  = React.useState("idle"); // idle | sending | sent | error
   const [errMsg, setErrMsg] = React.useState("");
+  // Apple Sign-In needs its own busy/error state so the button gives
+  // visible feedback the moment it's tapped — silent failure here was
+  // the v1.0(3) App Review rejection (Guideline 2.1a).
+  const [appleBusy, setAppleBusy] = React.useState(false);
+  const [appleErr,  setAppleErr]  = React.useState("");
   const [syncing, setSyncing] = React.useState(false);
   const [syncMsg, setSyncMsg] = React.useState("");
   // Delete-account flow has three visual states: idle, confirming, working.
@@ -371,6 +383,21 @@ function AccountCard({ state, setState }) {
     const { error } = await sbSignIn(email.trim());
     if (error) { setPhase("error"); setErrMsg(error); }
     else setPhase("sent");
+  };
+
+  const handleApple = async () => {
+    if (appleBusy) return;
+    setAppleBusy(true);
+    setAppleErr("");
+    try {
+      const r = await sbSignInWithApple();
+      if (r?.cancelled) return;
+      if (r?.error) setAppleErr(r.error);
+    } catch (e) {
+      setAppleErr(e?.message || "Sign in failed");
+    } finally {
+      setAppleBusy(false);
+    }
   };
 
   const handleSignOut = async () => {
@@ -567,18 +594,38 @@ function AccountCard({ state, setState }) {
             </div>
           ) : (
             <>
-              <button onClick={() => sbSignInWithApple()} style={{
-                width: "100%", marginBottom: 10,
-                background: "#000", color: "#fff",
+              <button onClick={handleApple} disabled={appleBusy} style={{
+                width: "100%", marginBottom: appleErr ? 6 : 10,
+                background: appleBusy ? "#444" : "#000",
+                color: "#fff",
                 border: "none", borderRadius: 10, padding: "11px 14px",
-                cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                cursor: appleBusy ? "default" : "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
                 fontFamily: "Geist, sans-serif", fontSize: 14, fontWeight: 500,
               }}>
-                <svg width="16" height="16" viewBox="0 0 814 1000" fill="white">
-                  <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663.1 0 541.8c0-207.5 133.4-317.1 264.5-317.1 70.4 0 128.9 45.5 173 45.5 42.9 0 109.9-48.1 190.5-48.1C500.1 222.2 620.9 240.3 788.1 340.9zM530.4 220.5c-20.1-29.7-47.1-66.8-97.3-66.8-12.1 0-24.2 2.3-35.7 5.1-7.1 1.8-14.1 3.9-21.3 3.9-1.9 0-3.8-.1-5.7-.3 11.4-57.7 56.4-143.4 122.3-180.5 27.9-15.7 59-26.2 91.9-26.2 2.9 0 5.8.1 8.7.3-1 56.1-23.8 117.3-63 164.5z"/>
-                </svg>
-                Sign in with Apple
+                {appleBusy ? (
+                  <span style={{
+                    width: 14, height: 14, borderRadius: 14,
+                    border: "2px solid rgba(255,255,255,0.35)",
+                    borderTopColor: "#fff",
+                    animation: "spin 0.8s linear infinite",
+                    display: "inline-block",
+                  }}/>
+                ) : (
+                  <svg width="16" height="16" viewBox="0 0 814 1000" fill="white">
+                    <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663.1 0 541.8c0-207.5 133.4-317.1 264.5-317.1 70.4 0 128.9 45.5 173 45.5 42.9 0 109.9-48.1 190.5-48.1C500.1 222.2 620.9 240.3 788.1 340.9zM530.4 220.5c-20.1-29.7-47.1-66.8-97.3-66.8-12.1 0-24.2 2.3-35.7 5.1-7.1 1.8-14.1 3.9-21.3 3.9-1.9 0-3.8-.1-5.7-.3 11.4-57.7 56.4-143.4 122.3-180.5 27.9-15.7 59-26.2 91.9-26.2 2.9 0 5.8.1 8.7.3-1 56.1-23.8 117.3-63 164.5z"/>
+                  </svg>
+                )}
+                {appleBusy ? "Signing in…" : "Sign in with Apple"}
               </button>
+              {appleErr && (
+                <div style={{
+                  background: "rgba(248,113,113,0.10)",
+                  border: "1px solid rgba(248,113,113,0.45)",
+                  borderRadius: 10, padding: "8px 12px", marginBottom: 10,
+                  fontSize: 12, color: "#c14a4a", lineHeight: 1.45,
+                }}>{appleErr}</div>
+              )}
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
                 <div style={{ flex: 1, height: 1, background: "var(--line-2)" }}/>
                 <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)" }}>OR</span>
