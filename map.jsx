@@ -2825,7 +2825,10 @@ function RealMap({
         container: containerRef.current,
         style: initialStyle.style || initialStyle.url,
         center: [center.lng, center.lat],
-        zoom: 15.4,
+        // Tight default zoom — the festival fills the view by default
+        // (Snapchat-style "this map is for the fairgrounds, not Vegas").
+        // setMaxBounds below pins panning to ±400m of the festival.
+        zoom: 16.2,
         // Slight isometric pitch — Snapchat Map vibe. Short stage pillars
         // (12-32m per STAGE_3D_DESIGN above) read as stylized buildings
         // sitting on the colored ground zones without dominating the view.
@@ -3128,6 +3131,54 @@ function RealMap({
         // Repaint the basemap into Plursky palette before adding overlays.
         applyPlurskyPalette();
 
+        // Outside-festival mask — fills everything OUTSIDE festivalBounds
+        // with Plursky paper-2, hiding the Vegas Strip / airport / casino
+        // roads. Makes the map read as "a paper illustration of the
+        // fairgrounds" instead of "the world map with a festival on it."
+        // Inner ring is the festival hole — basemap shows through there
+        // until edc-clip covers it with the warm Plursky-night floor.
+        const outsideMaskFeature = () => {
+          const b = FESTIVAL_CONFIG.venue.festivalBounds;
+          const cx = (b.west + b.east) / 2;
+          const cy = (b.north + b.south) / 2;
+          const big = 0.5; // ~55km half-edge; large enough to cover any visible map area
+          return {
+            type: "Feature",
+            geometry: {
+              type: "Polygon",
+              coordinates: [
+                // Outer ring (CCW)
+                [
+                  [cx - big, cy - big], [cx + big, cy - big],
+                  [cx + big, cy + big], [cx - big, cy + big],
+                  [cx - big, cy - big],
+                ],
+                // Inner ring (CW) — the festival "window"
+                [
+                  [b.west, b.north], [b.east, b.north],
+                  [b.east, b.south], [b.west, b.south],
+                  [b.west, b.north],
+                ],
+              ],
+            },
+          };
+        };
+        if (!map.getSource("outside-mask")) {
+          map.addSource("outside-mask", { type: "geojson", data: outsideMaskFeature() });
+        }
+        if (!map.getLayer("outside-mask")) {
+          map.addLayer({
+            id: "outside-mask",
+            type: "fill",
+            source: "outside-mask",
+            paint: {
+              "fill-color":   "#eee0cb",  // Plursky --paper-2
+              "fill-opacity": 0.96,
+              "fill-antialias": true,
+            },
+          });
+        }
+
         if (!map.getSource("edc-clip")) {
           map.addSource("edc-clip", { type: "geojson", data: edcClipFeature() });
         }
@@ -3383,13 +3434,11 @@ function RealMap({
       map.on("load", () => {
         if (cancelled) return;
 
-        // Constrain panning to the festival footprint + small buffer so users
-        // can't accidentally pan to Reno.
+        // Lock panning to the festival footprint + tiny buffer. The map
+        // is for the fairgrounds exclusively (Snapchat-style focus); users
+        // shouldn't be able to pan out to the Strip or surrounding Vegas.
         const b = FESTIVAL_CONFIG.venue.festivalBounds;
-        // ~5 km buffer so users can zoom out for surrounding context (Strip,
-        // airport) without being able to pan all the way to Reno. Previous
-        // 0.008° (~900m) felt too tight per Jake's TestFlight feedback.
-        map.setMaxBounds([[b.west - 0.05, b.south - 0.05], [b.east + 0.05, b.north + 0.05]]);
+        map.setMaxBounds([[b.west - 0.004, b.south - 0.004], [b.east + 0.004, b.north + 0.004]]);
 
         // Sub-landmark text labels — named places/walkways drawn on the
         // EDC poster. Same data the SVG TopDownMap LABELS toggle uses,
