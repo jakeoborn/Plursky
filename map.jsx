@@ -1604,6 +1604,10 @@ function MapScreen({ state, setState }) {
   const [meetTarget, setMeetTarget] = React.useState(null);
   const [meetGroup, setMeetGroup] = React.useState([]);
   const [search, setSearch] = React.useState("");
+  // Bottom search sheet (Apple Maps pattern). Tap to expand from a thin
+  // pill to a full sheet showing Find Nearby + heads-up strips. Auto-expands
+  // when the user starts typing.
+  const [searchSheetExpanded, setSearchSheetExpanded] = React.useState(false);
   const [heading, setHeading] = React.useState(0);
   const [chatFriend, setChatFriend] = React.useState(null);
   const [rideshareOpen, setRideshareOpen] = React.useState(false);
@@ -1935,72 +1939,68 @@ function MapScreen({ state, setState }) {
     : "DEMO";
   const gpsActive = gpsLive && (gpsStatus === "live" || gpsStatus === "locating");
 
+  // Show the bottom search sheet only when the map is in its default state
+  // (no stage selected, not in meet mode, not in compass-driven full-bleed UI).
+  const showSearchSheet = !stage && !meetMode;
+
   return (
     <Screen bg="var(--paper)" ink="var(--ink)">
-      {/* SEARCH HEADER */}
-      <div style={{ padding: "6px 12px 8px", background: "var(--paper)", borderBottom: "1px solid var(--line)", position: "relative" }}>
+      {/* MAP + PEEK WINDOW — full bleed; chrome floats over the map
+          (Apple Maps / Snap Map pattern). */}
+      <div style={{ flex: 1, position: "relative", overflow: "hidden", background: "var(--paper-2)" }}>
+        <WellnessPill />
+
+        {/* ── Top-right icon column — GPS toggle + Layers menu. Glass
+            background so it reads over any map style. */}
         <div style={{
-          display: "flex", alignItems: "center", gap: 7,
-          background: "var(--paper-2)",
-          borderRadius: 999, padding: "6px 6px 6px 11px",
-          border: "1px solid var(--line)",
+          position: "absolute", top: 12, right: 10, zIndex: 4,
+          display: "flex", flexDirection: "column", gap: 6,
         }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" style={{ flexShrink: 0 }}>
-            <circle cx="11" cy="11" r="7"/><path d="M20 20 L16 16"/>
-          </svg>
-          <input
-            type="text"
-            placeholder="Search stages…"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            style={{
-              flex: 1, minWidth: 0, background: "transparent", border: "none", outline: "none",
-              color: "var(--ink)", fontFamily: "Geist, sans-serif", fontSize: 13,
-            }}
-          />
-          {liveAvatar?.offSite && (
-            <span title={`${liveAvatar.mi.toFixed(1)} mi from venue · showing demo`} className="mono" style={{
-              fontSize: 8.5, letterSpacing: 1.1, fontWeight: 700,
-              color: "#b8651b", background: "rgba(245,154,54,0.12)",
-              border: "1px solid rgba(245,154,54,0.4)",
-              padding: "2px 7px", borderRadius: 999, flexShrink: 0,
-            }}>{liveAvatar.mi.toFixed(0)}MI OFF</span>
-          )}
-          <button onClick={() => setGpsLive(g => !g)} style={{
-            display: "flex", alignItems: "center", gap: 5,
-            background: gpsActive ? "var(--ember)" : "var(--paper)",
-            color: gpsActive ? "#fff" : "var(--muted)",
+          <button onClick={() => setGpsLive(g => !g)} aria-label="Toggle GPS" style={{
+            minWidth: 46, padding: "6px 8px", borderRadius: 14,
+            background: gpsActive ? "var(--ember)" : "rgba(247,237,224,0.92)",
+            color: gpsActive ? "#fff" : (gpsStatus === "denied" ? "#c14a4a" : "var(--ink)"),
             border: gpsActive ? "none" : "1px solid var(--line-2)",
-            borderRadius: 999, padding: "3px 9px",
-            fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-            cursor: "pointer", flexShrink: 0,
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+            cursor: "pointer",
+            display: "flex", flexDirection: "column", alignItems: "center", gap: 2,
+            boxShadow: "0 4px 12px rgba(0,0,0,0.10)",
           }}>
-            {gpsActive && (
-              <span style={{
-                width: 5, height: 5, borderRadius: 5, background: "#fff",
-                animation: gpsStatus === "live" ? "pulse 1.4s infinite" : "none",
-              }}/>
-            )}
-            {gpsLabel}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <path d="M12 2 L12 5 M12 19 L12 22 M2 12 L5 12 M19 12 L22 12"/>
+              <circle cx="12" cy="12" r="6"/>
+              {gpsActive && <circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/>}
+            </svg>
+            <span className="mono" style={{
+              fontSize: 7.5, letterSpacing: 1, fontWeight: 800, lineHeight: 1,
+            }}>{gpsLabel}</span>
           </button>
-          <button onClick={() => setMenuOpen(o => !o)} aria-label="Map options" title="Options" style={{
-            background: menuOpen ? "var(--ink)" : "var(--paper)",
-            color: menuOpen ? "var(--paper)" : "var(--muted)",
+          <button onClick={() => setMenuOpen(o => !o)} aria-label="Map layers" style={{
+            width: 46, height: 38, borderRadius: 14,
+            background: menuOpen ? "var(--ink)" : "rgba(247,237,224,0.92)",
+            color: menuOpen ? "var(--paper)" : "var(--ink)",
             border: menuOpen ? "none" : "1px solid var(--line-2)",
-            borderRadius: 999, width: 26, height: 22, padding: 0,
-            fontSize: 16, fontWeight: 700, cursor: "pointer", lineHeight: 1,
-            display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-          }}>⋯</button>
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+            cursor: "pointer", padding: 0,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.10)",
+          }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 3 L21 8 L12 13 L3 8 Z"/>
+              <path d="M3 12 L12 17 L21 12"/>
+              <path d="M3 16 L12 21 L21 16"/>
+            </svg>
+          </button>
         </div>
 
-        {/* Overflow menu popover */}
+        {/* Layers popover (anchored to the icon column above) */}
         {menuOpen && (
           <>
-            <div onClick={() => setMenuOpen(false)} style={{
-              position: "fixed", inset: 0, zIndex: 5,
-            }}/>
+            <div onClick={() => setMenuOpen(false)} style={{ position: "fixed", inset: 0, zIndex: 5 }}/>
             <div style={{
-              position: "absolute", top: 44, right: 12, zIndex: 6,
+              position: "absolute", top: 96, right: 10, zIndex: 6,
               background: "var(--paper)", border: "1px solid var(--line-2)",
               borderRadius: 12, padding: 5, minWidth: 220,
               boxShadow: "0 10px 28px rgba(26,18,13,0.20)",
@@ -2054,112 +2054,44 @@ function MapScreen({ state, setState }) {
           </>
         )}
 
+        {/* GPS denied toast — small floating pill, top-center */}
         {gpsLive && gpsStatus === "denied" && (
           <div style={{
-            marginTop: 6, padding: "4px 10px", borderRadius: 999,
-            background: "rgba(193,74,74,0.10)", border: "1px solid rgba(193,74,74,0.35)",
+            position: "absolute", top: 12, left: "50%", transform: "translateX(-50%)",
+            zIndex: 4,
+            padding: "4px 10px", borderRadius: 999,
+            background: "rgba(193,74,74,0.95)", color: "#fff",
+            backdropFilter: "blur(8px)",
           }}>
-            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "#c14a4a", fontWeight: 700 }}>
+            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700 }}>
               GPS DENIED · ENABLE LOCATION IN BROWSER
             </span>
           </div>
         )}
 
-        {/* Find-nearest quick actions — slim icon-only round buttons */}
-        {!search && (
-          <div style={{ display: "flex", gap: 6, marginTop: 6 }}>
-            {[
-              { type: "water",  label: "Water",  emoji: "💧", color: "#38bdf8" },
-              { type: "med",    label: "Medic",  emoji: "✚",  color: "#f87171" },
-              { type: "toilet", label: "Toilet", emoji: "🚻", color: "#94a3b8" },
-              { type: "charge", label: "Charge", emoji: "⚡", color: "#facc15" },
-              { type: "locker", label: "Locker", emoji: "🔒", color: "#a78bfa" },
-            ].map(c => (
-              <button key={c.type} title={c.label} aria-label={c.label} onClick={() => {
-                const matches = (typeof AMENITIES !== "undefined" ? AMENITIES : []).filter(a => a.type === c.type);
-                if (!matches.length) return;
-                const nearest = matches
-                  .map(a => ({ ...a, _d: Math.hypot(a.x - avatar.x, a.y - avatar.y) }))
-                  .sort((a, b) => a._d - b._d)[0];
-                setMeetTarget({ x: nearest.x, y: nearest.y, label: nearest.label, isAmenity: true });
-                setMeetMode(true);
-              }} style={{
-                flex: 1, height: 30, borderRadius: 999,
-                background: "var(--paper-2)", border: `1px solid ${c.color}55`,
-                color: "var(--ink)", cursor: "pointer",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: 14, padding: 0,
-              }}>{c.emoji}</button>
-            ))}
+        {/* Off-site demo pill — top-center near GPS denied; clarifies we're showing demo data */}
+        {liveAvatar?.offSite && !(gpsLive && gpsStatus === "denied") && (
+          <div style={{
+            position: "absolute", top: 12, left: "50%", transform: "translateX(-50%)",
+            zIndex: 4,
+            padding: "4px 10px", borderRadius: 999,
+            background: "rgba(245,154,54,0.95)", color: "#fff",
+            backdropFilter: "blur(8px)",
+          }} title={`${liveAvatar.mi.toFixed(1)} mi from venue · showing demo`}>
+            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700 }}>
+              {liveAvatar.mi.toFixed(0)}MI OFF · DEMO MODE
+            </span>
           </div>
         )}
-        {search && (
-          <div style={{ marginTop: 6, maxHeight: 220, overflowY: "auto", background: "var(--paper-2)", borderRadius: 8 }}>
-            {stageMatches.map(s => (
-              <button key={`stage-${s.id}`} onClick={() => { setSelectedStage(s.id); setSearch(""); }} style={{
-                width: "100%", display: "flex", alignItems: "center", gap: 8, padding: "7px 10px",
-                background: "transparent", border: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer",
-                borderRadius: 8,
-              }}>
-                <span style={{ width: 8, height: 8, borderRadius: 8, background: s.color, boxShadow: `0 0 6px ${s.color}` }}/>
-                <span style={{ fontFamily: "Geist, sans-serif", fontSize: 13 }}>{s.name}</span>
-              </button>
-            ))}
-            {artistMatches.map(a => {
-              const st = STAGES.find(s => s.id === a.stage);
-              return (
-                <button key={`artist-${a.id}`} onClick={() => { setSelectedStage(a.stage); setSearch(""); }} style={{
-                  width: "100%", display: "flex", alignItems: "center", gap: 8, padding: "7px 10px",
-                  background: "transparent", border: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer",
-                  borderRadius: 8,
-                }}>
-                  <span style={{ width: 8, height: 8, borderRadius: 8, background: st?.color || "var(--muted)" }}/>
-                  <span style={{ fontFamily: "Geist, sans-serif", fontSize: 13, flex: 1, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</span>
-                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", flexShrink: 0 }}>
-                    → {st?.short || st?.name || ""}
-                  </span>
-                </button>
-              );
-            })}
-            {stageMatches.length === 0 && artistMatches.length === 0 && (
-              <div style={{ padding: "10px 12px", fontSize: 12, color: "var(--muted)", fontStyle: "italic" }}>
-                No matches for "{search}"
-              </div>
-            )}
-          </div>
-        )}
-        {/* NEXT-UP heads-up strip — your next saved set, with countdown +
-            walk time. Tap to focus that stage. Hidden when nothing saved
-            today or when the search box has focus. */}
-        {!search && (
-          <NextSetStrip
-            savedIds={state.saved}
-            avatar={avatar}
-            onSelect={(id) => { setSelectedStage(id); setPeek(false); }}
-          />
-        )}
-        {/* Sunrise countdown to Kinetic Field — auto-renders 90 min
-            before → 30 min after sunrise. The signature EDC moment. */}
-        {!search && (
-          <SunriseStrip
-            avatar={avatar}
-            onSelect={(id) => { setSelectedStage(id); setPeek(false); }}
-          />
-        )}
-        {/* Live weather at LVMS — temp + wind + a vibe note. Pulls
-            Open-Meteo (free, no auth), 1h cache. Goes ember on rain /
-            lightning / 25+ mph gusts. Hidden if API unreachable. */}
-        {!search && <WeatherStrip />}
-      </div>
-
-      {/* MAP + PEEK WINDOW */}
-      <div style={{ flex: 1, position: "relative", overflow: "hidden", background: "var(--paper-2)" }}>
-        <WellnessPill />
 
         {/* Rideshare FAB — Uber/Lyft deep links to the south pickup zone */}
         <button onClick={() => setRideshareOpen(true)} aria-label="Rideshare pickup" style={{
           position: "absolute", right: 12,
-          bottom: stage || meetMode ? 200 : 70,
+          // Floats above the active bottom UI: place card (when stage/meet),
+          // expanded search sheet (when typing or tapped), or just friends bar.
+          bottom: stage || meetMode
+            ? 200
+            : (searchSheetExpanded || search.trim() ? 380 : 130),
           width: 46, height: 46, borderRadius: 46,
           background: "var(--paper)", color: "var(--ink)",
           border: "1px solid var(--line-2)",
@@ -2168,6 +2100,164 @@ function MapScreen({ state, setState }) {
           cursor: "pointer", zIndex: 4, transition: "bottom 0.3s",
           fontSize: 22,
         }}>🚗</button>
+
+        {/* Bottom search sheet — Apple Maps pattern. Collapsed = just the
+            input pill above the Friends bar. Expanded = Find Nearby chips +
+            NextSet / Sunrise / Weather heads-up strips. Auto-expands while
+            typing to show stage + artist results. Hidden when a stage is
+            selected or meet mode is active so the place card takes over. */}
+        {showSearchSheet && (() => {
+          const isOpen = searchSheetExpanded || search.trim().length > 0;
+          return (
+            <div style={{
+              position: "absolute", left: 8, right: 8, bottom: 58,
+              zIndex: 5,
+              background: "var(--paper)",
+              border: "1px solid var(--line-2)",
+              borderRadius: 16,
+              boxShadow: "0 -6px 24px rgba(0,0,0,0.18)",
+              maxHeight: isOpen ? "62vh" : "auto",
+              overflow: "hidden",
+              display: "flex", flexDirection: "column",
+              transition: "max-height 0.25s ease",
+            }}>
+              {/* Drag handle — tap to toggle expanded state */}
+              <div onClick={() => setSearchSheetExpanded(e => !e)} style={{
+                display: "flex", justifyContent: "center", cursor: "pointer",
+                padding: "6px 0 4px", flexShrink: 0,
+              }}>
+                <div style={{ width: 36, height: 4, borderRadius: 4, background: "var(--line-2)" }}/>
+              </div>
+
+              {/* Search input pill */}
+              <div style={{ padding: "0 8px 8px", flexShrink: 0 }}>
+                <div style={{
+                  display: "flex", alignItems: "center", gap: 7,
+                  background: "var(--paper-2)",
+                  borderRadius: 999, padding: "7px 11px",
+                  border: "1px solid var(--line)",
+                }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" style={{ flexShrink: 0 }}>
+                    <circle cx="11" cy="11" r="7"/><path d="M20 20 L16 16"/>
+                  </svg>
+                  <input
+                    type="text"
+                    placeholder="Search stages or artists…"
+                    value={search}
+                    onFocus={() => setSearchSheetExpanded(true)}
+                    onChange={(e) => setSearch(e.target.value)}
+                    style={{
+                      flex: 1, minWidth: 0, background: "transparent", border: "none", outline: "none",
+                      color: "var(--ink)", fontFamily: "Geist, sans-serif", fontSize: 13,
+                    }}
+                  />
+                  {search && (
+                    <button onClick={() => { setSearch(""); }} aria-label="Clear search" style={{
+                      background: "transparent", border: "none",
+                      color: "var(--muted)", cursor: "pointer", padding: 0,
+                      width: 18, height: 18, borderRadius: 999,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      fontSize: 14, fontWeight: 700, lineHeight: 1, flexShrink: 0,
+                    }}>×</button>
+                  )}
+                </div>
+              </div>
+
+              {/* Search results (when typing) */}
+              {search && (
+                <div style={{ overflowY: "auto", padding: "0 8px 10px", flex: 1 }}>
+                  <div style={{ background: "var(--paper-2)", borderRadius: 10 }}>
+                    {stageMatches.map(s => (
+                      <button key={`stage-${s.id}`} onClick={() => { setSelectedStage(s.id); setSearch(""); setSearchSheetExpanded(false); }} style={{
+                        width: "100%", display: "flex", alignItems: "center", gap: 8, padding: "8px 12px",
+                        background: "transparent", border: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer",
+                        borderRadius: 10,
+                      }}>
+                        <span style={{ width: 8, height: 8, borderRadius: 8, background: s.color, boxShadow: `0 0 6px ${s.color}` }}/>
+                        <span style={{ fontFamily: "Geist, sans-serif", fontSize: 13 }}>{s.name}</span>
+                      </button>
+                    ))}
+                    {artistMatches.map(a => {
+                      const st = STAGES.find(s => s.id === a.stage);
+                      return (
+                        <button key={`artist-${a.id}`} onClick={() => { setSelectedStage(a.stage); setSearch(""); setSearchSheetExpanded(false); }} style={{
+                          width: "100%", display: "flex", alignItems: "center", gap: 8, padding: "8px 12px",
+                          background: "transparent", border: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer",
+                          borderRadius: 10,
+                        }}>
+                          <span style={{ width: 8, height: 8, borderRadius: 8, background: st?.color || "var(--muted)" }}/>
+                          <span style={{ fontFamily: "Geist, sans-serif", fontSize: 13, flex: 1, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</span>
+                          <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", flexShrink: 0 }}>
+                            → {st?.short || st?.name || ""}
+                          </span>
+                        </button>
+                      );
+                    })}
+                    {stageMatches.length === 0 && artistMatches.length === 0 && (
+                      <div style={{ padding: "12px 14px", fontSize: 12, color: "var(--muted)", fontStyle: "italic" }}>
+                        No matches for "{search}"
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Expanded content (Find Nearby chips + heads-up strips), no search text */}
+              {!search && searchSheetExpanded && (
+                <div style={{
+                  overflowY: "auto", padding: "0 10px 12px",
+                  display: "flex", flexDirection: "column", gap: 8, flex: 1,
+                }}>
+                  {/* Find Nearby — Apple-Maps-style labeled chips */}
+                  <div style={{ display: "flex", gap: 6, overflowX: "auto", scrollbarWidth: "none", paddingBottom: 2 }}>
+                    {[
+                      { type: "water",  label: "Water",  emoji: "💧", color: "#38bdf8" },
+                      { type: "med",    label: "Medic",  emoji: "✚",  color: "#f87171" },
+                      { type: "toilet", label: "Toilet", emoji: "🚻", color: "#94a3b8" },
+                      { type: "charge", label: "Charge", emoji: "⚡", color: "#facc15" },
+                      { type: "locker", label: "Locker", emoji: "🔒", color: "#a78bfa" },
+                    ].map(c => (
+                      <button key={c.type} onClick={() => {
+                        const matches = (typeof AMENITIES !== "undefined" ? AMENITIES : []).filter(a => a.type === c.type);
+                        if (!matches.length) return;
+                        const nearest = matches
+                          .map(a => ({ ...a, _d: Math.hypot(a.x - avatar.x, a.y - avatar.y) }))
+                          .sort((a, b) => a._d - b._d)[0];
+                        setMeetTarget({ x: nearest.x, y: nearest.y, label: nearest.label, isAmenity: true });
+                        setMeetMode(true);
+                        setSearchSheetExpanded(false);
+                      }} className="mono" style={{
+                        flexShrink: 0,
+                        display: "inline-flex", alignItems: "center", gap: 6,
+                        padding: "7px 12px", borderRadius: 999,
+                        background: "var(--paper-2)", border: `1px solid ${c.color}55`,
+                        color: "var(--ink)", cursor: "pointer",
+                        fontSize: 9.5, letterSpacing: 1.1, fontWeight: 700,
+                        whiteSpace: "nowrap",
+                      }}>
+                        <span style={{ fontSize: 13, lineHeight: 1 }}>{c.emoji}</span>
+                        <span>{c.label.toUpperCase()}</span>
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Next set, Sunrise, Weather — heads-up strips */}
+                  <NextSetStrip
+                    savedIds={state.saved}
+                    avatar={avatar}
+                    onSelect={(id) => { setSelectedStage(id); setPeek(false); setSearchSheetExpanded(false); }}
+                  />
+                  <SunriseStrip
+                    avatar={avatar}
+                    onSelect={(id) => { setSelectedStage(id); setPeek(false); setSearchSheetExpanded(false); }}
+                  />
+                  <WeatherStrip />
+                </div>
+              )}
+            </div>
+          );
+        })()}
+
         {realMap ? (
           <RealMap
             avatar={avatar} stages={STAGES}
@@ -3636,10 +3726,11 @@ function RealMap({
     }}>
       <div ref={containerRef} style={{ position: "absolute", inset: 0 }}/>
 
-      {/* Style switcher — Stylized / Satellite. Top-right, above the map. */}
+      {/* Style switcher — Stylized / Satellite. Positioned below the
+          MapScreen's top-right icon column (GPS + Layers) so they don't stack. */}
       {loaded && (
         <div style={{
-          position: "absolute", top: 10, right: 10, zIndex: 4,
+          position: "absolute", top: 108, right: 10, zIndex: 4,
           display: "flex", background: "rgba(6,4,18,0.78)",
           border: "1px solid rgba(255,255,255,0.18)",
           borderRadius: 999, padding: 3, gap: 2,
@@ -4428,44 +4519,83 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
   return (
     <div style={{
       background: "var(--paper)", color: "var(--ink)",
-      padding: "12px 14px 10px",
+      padding: "0 0 10px",
       borderTopLeftRadius: 22, borderTopRightRadius: 22,
       boxShadow: "0 -10px 30px rgba(0,0,0,0.4)",
       maxHeight: expanded ? "72vh" : "auto",
       display: "flex", flexDirection: "column",
+      overflow: "hidden",
     }}>
-      {/* Drag handle */}
-      <div onClick={() => setExpanded(e => !e)} style={{ display: "flex", justifyContent: "center", cursor: "pointer", padding: "2px 0 6px" }}>
-        <div style={{ width: 36, height: 4, borderRadius: 4, background: "var(--line-2)" }}/>
+      {/* Stage-color hero strip — Apple Maps place-card pattern. Drag handle
+          sits on top in white so it's visible against any stage color. */}
+      <div style={{
+        background: stage.color, color: "#fff",
+        padding: "6px 16px 12px", position: "relative",
+      }}>
+        <div onClick={() => setExpanded(e => !e)} style={{
+          display: "flex", justifyContent: "center", cursor: "pointer",
+          padding: "2px 0 8px",
+        }}>
+          <div style={{ width: 36, height: 4, borderRadius: 4, background: "rgba(255,255,255,0.55)" }}/>
+        </div>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, fontWeight: 700, opacity: 0.85, marginBottom: 3 }}>
+              {stage.short} · STAGE
+            </div>
+            <div className="serif" style={{ fontSize: 24, lineHeight: 1, letterSpacing: -0.3 }}>
+              {stage.name}
+            </div>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 600, opacity: 0.88, marginTop: 5 }}>
+              {walk.lo === walk.hi ? `${walk.lo}` : `${walk.lo}–${walk.hi}`} MIN WALK{walk.peak ? " · PEAK" : ""} · ~{Math.round(dist*22)}M · {totalAcrossDays} SETS · 3 NIGHTS
+              {walk.plan && <span style={{ fontWeight: 800 }}> · PLAN 20+</span>}
+            </div>
+          </div>
+          <button onClick={onClose} aria-label="Close" style={{
+            background: "rgba(255,255,255,0.22)", border: "1px solid rgba(255,255,255,0.35)",
+            color: "#fff", borderRadius: 999, width: 30, height: 30, padding: 0,
+            cursor: "pointer", fontSize: 16, fontWeight: 700, flexShrink: 0,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            backdropFilter: "blur(6px)",
+          }}>×</button>
+        </div>
       </div>
 
-      {/* Header */}
-      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
-        <div style={{
-          width: 34, height: 34, borderRadius: 10, background: stage.color,
-          display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-        }}>
-          <span className="mono" style={{ fontSize: 11, fontWeight: 700, color: "#fff", letterSpacing: 0.5 }}>{stage.short}</span>
-        </div>
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div className="serif" style={{ fontSize: 22, lineHeight: 1 }}>{stage.name}</div>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 3 }}>
-            {walk.lo === walk.hi ? `${walk.lo}` : `${walk.lo}–${walk.hi}`} MIN WALK{walk.peak ? " · PEAK" : ""} · ~{Math.round(dist*22)}M · {totalAcrossDays} SETS OVER 3 NIGHTS
-            {walk.plan && <span style={{ color: "var(--ember)", fontWeight: 700 }}> · PLAN 20+</span>}
-          </div>
-        </div>
-        <button onClick={() => setPeek(p => !p)} style={{
-          background: peek ? stage.color : "rgba(0,0,0,0.05)",
-          color: peek ? "#fff" : "var(--ink)",
-          border: "none", borderRadius: 999, padding: "7px 10px", cursor: "pointer",
-          fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-        }}>{peek ? "◉ PEEK" : "PEEK"}</button>
-        <button onClick={onClose} style={{
-          background: "transparent", border: "1px solid var(--line-2)", color: "var(--muted)",
-          borderRadius: 999, padding: "7px 10px", cursor: "pointer",
-          fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 600,
-        }}>×</button>
+      {/* Action chip row — Apple Maps place-card pattern. */}
+      <div style={{
+        display: "flex", gap: 6, padding: "10px 14px 4px",
+        overflowX: "auto", scrollbarWidth: "none",
+      }}>
+        <button onClick={() => setPeek(p => !p)} className="mono" style={{
+          flexShrink: 0,
+          background: peek ? stage.color : "var(--paper-2)",
+          color:      peek ? "#fff"        : "var(--ink)",
+          border:     peek ? "none"        : "1px solid var(--line-2)",
+          borderRadius: 999, padding: "7px 13px", cursor: "pointer",
+          fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+          display: "inline-flex", alignItems: "center", gap: 5,
+          whiteSpace: "nowrap",
+        }}>{peek ? "◉ PEEK" : "◯ PEEK"}</button>
+        <button onClick={() => setState({ ...state, tab: "lineup", lineupDay: day, stageFilter: stage.id })} className="mono" style={{
+          flexShrink: 0,
+          background: "var(--paper-2)", border: "1px solid var(--line-2)",
+          color: "var(--ink)",
+          borderRadius: 999, padding: "7px 13px", cursor: "pointer",
+          fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+          whiteSpace: "nowrap",
+        }}>☰ LINEUP</button>
+        <button onClick={() => { if (typeof sbShareLink === "function") { /* fallthrough */ } onClose(); /* close sheet, user can use Meet from rideshare or share */ }} className="mono" style={{
+          flexShrink: 0,
+          background: "var(--paper-2)", border: "1px solid var(--line-2)",
+          color: "var(--muted)",
+          borderRadius: 999, padding: "7px 13px", cursor: "pointer",
+          fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+          whiteSpace: "nowrap",
+          display: walk.lo > 25 ? "inline-flex" : "none",
+        }}>↗ FAR · {walk.lo}M</button>
       </div>
+
+      <div style={{ padding: "6px 14px 0" }}>
 
       {/* Stage vibe — vet-flavor descriptor that summarises the room's
           identity ("Sunrise Cathedral", "Loudest Drops") plus when it peaks.
@@ -4605,6 +4735,7 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
           cursor: "pointer", fontWeight: 600,
         }}>SEE ALL {sets.length} SETS ↓</button>
       )}
+      </div>
     </div>
   );
 }

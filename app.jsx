@@ -443,11 +443,12 @@ function App() {
 
   let body;
   if (state.artist) body = <ArtistScreen state={state} setState={setState} />;
-  else if (state.tab === "home")    body = <HomeScreen    state={state} setState={setState} />;
-  else if (state.tab === "map")     body = <MapScreen     state={state} setState={setState} />;
-  else if (state.tab === "lineup")  body = <LineupScreen  state={state} setState={setState} />;
-  else if (state.tab === "spotify") body = <SpotifyScreen state={state} setState={setState} />;
-  else if (state.tab === "me")      body = <MeScreen      state={state} setState={setState} />;
+  else if (state.tab === "home")     body = <HomeScreen     state={state} setState={setState} />;
+  else if (state.tab === "map")      body = <MapScreen      state={state} setState={setState} />;
+  else if (state.tab === "lineup")   body = <LineupScreen   state={state} setState={setState} />;
+  else if (state.tab === "spotify")  body = <SpotifyScreen  state={state} setState={setState} />;
+  else if (state.tab === "memories") body = <MemoriesScreen state={state} setState={setState} />;
+  else if (state.tab === "me")       body = <MeScreen       state={state} setState={setState} />;
 
   // status bar tint — dark pane on map, light elsewhere
   const statusBarStyle = state.tab === "map" && !state.artist ? "light" : "dark";
@@ -460,7 +461,7 @@ function App() {
           {body}
           {/* Search FAB — floats above TabBar, accessible from any screen.
               Labeled pill so first-time users actually notice it. */}
-          {!state.artist && !searchOpen && (
+          {!state.artist && !searchOpen && state.tab !== "map" && (
             <button
               onClick={() => setSearchOpen(true)}
               aria-label="Search artists, stages, genres"
@@ -484,7 +485,7 @@ function App() {
         </div>
         {!state.artist && (
           <TabBar
-            active={state.tab === "spotify" ? "me" : state.tab}
+            active={(state.tab === "spotify" || state.tab === "memories") ? "me" : state.tab}
             onChange={t => setState({ ...state, tab: t })}
           />
         )}

@@ -2137,6 +2137,450 @@ function HistoryRecordsSection({ state }) {
   );
 }
 
+// ── Memories: photos + moments per night ──────────────────────────
+// Metadata in localStorage (small JSON, sync access for MEMORIES count).
+// Photos in IndexedDB (Blob-native, big quota on iOS Safari ~hundreds of MB).
+// Zero backend cost — everything stays on-device.
+
+const MOMENTS_KEY = "plursky_moments_v1";
+
+function _readMoments() {
+  try { return JSON.parse(localStorage.getItem(MOMENTS_KEY) || "{}"); }
+  catch { return {}; }
+}
+function _writeMoments(all) {
+  localStorage.setItem(MOMENTS_KEY, JSON.stringify(all));
+}
+function _countMoments() {
+  const all = _readMoments();
+  return Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
+}
+
+let _memDbP = null;
+function _openMemDB() {
+  if (_memDbP) return _memDbP;
+  _memDbP = new Promise((resolve, reject) => {
+    const req = indexedDB.open("plursky_memories", 1);
+    req.onupgradeneeded = e => {
+      const db = e.target.result;
+      if (!db.objectStoreNames.contains("photos")) {
+        db.createObjectStore("photos", { keyPath: "id" });
+      }
+    };
+    req.onsuccess = e => resolve(e.target.result);
+    req.onerror   = e => reject(e.target.error);
+  });
+  return _memDbP;
+}
+async function _putPhoto(id, blob) {
+  const db = await _openMemDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction("photos", "readwrite");
+    tx.objectStore("photos").put({ id, blob, createdAt: Date.now() });
+    tx.oncomplete = () => resolve();
+    tx.onerror    = e => reject(e.target.error);
+  });
+}
+async function _getPhoto(id) {
+  const db = await _openMemDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction("photos", "readonly");
+    const r  = tx.objectStore("photos").get(id);
+    r.onsuccess = () => resolve(r.result?.blob || null);
+    r.onerror   = e => reject(e.target.error);
+  });
+}
+async function _deletePhoto(id) {
+  const db = await _openMemDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction("photos", "readwrite");
+    tx.objectStore("photos").delete(id);
+    tx.oncomplete = () => resolve();
+    tx.onerror    = e => reject(e.target.error);
+  });
+}
+
+// Compress on pick: 720px max edge, JPEG q0.78 → typical 80-150KB.
+function _compressMomentImage(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        const maxEdge = 720;
+        const scale = Math.min(1, maxEdge / Math.max(img.width, img.height));
+        const w = Math.round(img.width * scale);
+        const h = Math.round(img.height * scale);
+        const canvas = document.createElement("canvas");
+        canvas.width = w; canvas.height = h;
+        canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+        canvas.toBlob(blob => {
+          if (blob) resolve(blob); else reject(new Error("blob conversion failed"));
+        }, "image/jpeg", 0.78);
+      };
+      img.onerror = () => reject(new Error("image load failed"));
+      img.src = e.target.result;
+    };
+    reader.onerror = () => reject(new Error("file read failed"));
+    reader.readAsDataURL(file);
+  });
+}
+
+function _fmtMomentTime(ts) {
+  const d = new Date(ts);
+  let h = d.getHours();
+  const m = d.getMinutes();
+  const ampm = h >= 12 ? "PM" : "AM";
+  h = h % 12 || 12;
+  return `${h}:${m.toString().padStart(2, "0")} ${ampm}`;
+}
+
+function useMomentPhoto(photoId) {
+  const [url, setUrl] = React.useState(null);
+  React.useEffect(() => {
+    if (!photoId) { setUrl(null); return; }
+    let cancelled = false;
+    let objectUrl = null;
+    _getPhoto(photoId).then(blob => {
+      if (cancelled || !blob) return;
+      objectUrl = URL.createObjectURL(blob);
+      setUrl(objectUrl);
+    }).catch(() => {});
+    return () => {
+      cancelled = true;
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+    };
+  }, [photoId]);
+  return url;
+}
+
+function MomentCard({ moment, idx, total, onDelete, onArtistClick }) {
+  const photoUrl = useMomentPhoto(moment.photoId);
+  const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
+  const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
+  return (
+    <div style={{
+      background: "var(--paper-2)", border: "1px solid var(--line)",
+      borderRadius: 14, padding: 12, marginBottom: 10,
+    }}>
+      {moment.photoId && (
+        photoUrl ? (
+          <img src={photoUrl} alt="" style={{
+            width: "100%", borderRadius: 10, display: "block",
+            marginBottom: moment.text ? 10 : 8,
+          }}/>
+        ) : (
+          <div style={{
+            width: "100%", aspectRatio: "4/3", borderRadius: 10,
+            background: "var(--paper)", border: "1px solid var(--line)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            marginBottom: moment.text ? 10 : 8,
+          }}>
+            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700 }}>
+              LOADING…
+            </span>
+          </div>
+        )
+      )}
+      {moment.text && (
+        <div className="serif" style={{ fontSize: 17, lineHeight: 1.3, color: "var(--ink)" }}>
+          {moment.text}
+        </div>
+      )}
+      <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 8, flexWrap: "wrap" }}>
+        {artist && (
+          <button onClick={() => onArtistClick(artist.id)} className="mono" style={{
+            background: stage ? `${stage.color}18` : "var(--paper)",
+            color:      stage ? stage.color       : "var(--muted)",
+            border:     stage ? `1px solid ${stage.color}40` : "1px solid var(--line-2)",
+            borderRadius: 999, padding: "3px 9px",
+            fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
+          }}>♬ {artist.name.toUpperCase()}</button>
+        )}
+        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 600 }}>
+          {_fmtMomentTime(moment.createdAt)} · {idx + 1}/{total}
+        </span>
+        <button onClick={() => onDelete(moment)} aria-label="Delete moment" className="mono" style={{
+          marginLeft: "auto",
+          background: "transparent", border: "none",
+          color: "var(--muted)", cursor: "pointer",
+          fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
+          padding: "3px 5px",
+        }}>DELETE</button>
+      </div>
+    </div>
+  );
+}
+
+function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
+  const [blob,       setBlob]       = React.useState(null);
+  const [previewUrl, setPreviewUrl] = React.useState(null);
+  const [text,       setText]       = React.useState("");
+  const [artistId,   setArtistId]   = React.useState(null);
+  const [busy,       setBusy]       = React.useState(false);
+  const [err,        setErr]        = React.useState("");
+
+  // Revoke any preview URL on unmount/replace.
+  React.useEffect(() => () => { if (previewUrl) URL.revokeObjectURL(previewUrl); }, [previewUrl]);
+
+  const handlePhoto = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setBusy(true); setErr("");
+    try {
+      const b = await _compressMomentImage(file);
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      setBlob(b);
+      setPreviewUrl(URL.createObjectURL(b));
+    } catch {
+      setErr("Couldn't load that photo.");
+    }
+    setBusy(false);
+  };
+  const clearPhoto = () => {
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
+    setBlob(null);
+    setPreviewUrl(null);
+  };
+
+  const handleSave = async () => {
+    if (!blob && !text.trim()) {
+      setErr("Add a photo or some text first.");
+      return;
+    }
+    setBusy(true); setErr("");
+    try {
+      const id = `m_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+      let photoId = null;
+      if (blob) {
+        photoId = `p_${id}`;
+        await _putPhoto(photoId, blob);
+      }
+      const moment = {
+        id, night, text: text.trim(), artistId, photoId,
+        createdAt: Date.now(),
+      };
+      onAdd(moment);
+    } catch (e) {
+      if (e?.name === "QuotaExceededError" || e?.message?.includes("quota")) {
+        setErr("Storage full — delete an older moment to free space.");
+      } else {
+        setErr("Couldn't save. Try again.");
+      }
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <div style={{
+      background: "var(--paper-2)", border: "1px solid var(--line-2)",
+      borderRadius: 14, padding: 14, marginTop: 8, marginBottom: 14,
+    }}>
+      {previewUrl ? (
+        <div style={{ position: "relative", marginBottom: 10 }}>
+          <img src={previewUrl} alt="" style={{ width: "100%", borderRadius: 10, display: "block" }}/>
+          <button onClick={clearPhoto} aria-label="Remove photo" style={{
+            position: "absolute", top: 8, right: 8,
+            width: 28, height: 28, borderRadius: 999,
+            background: "rgba(0,0,0,0.55)", color: "#fff",
+            border: "none", cursor: "pointer", fontSize: 14, fontWeight: 700,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            backdropFilter: "blur(6px)",
+          }}>×</button>
+        </div>
+      ) : (
+        <label style={{
+          display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+          padding: "14px", background: "var(--paper)", border: "1px dashed var(--line-2)",
+          borderRadius: 10, cursor: "pointer", marginBottom: 10,
+          color: "var(--muted)",
+          fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
+        }}>
+          <span>📷 ADD A PHOTO (OPTIONAL)</span>
+          <input type="file" accept="image/*" capture="environment"
+            onChange={handlePhoto} style={{ display: "none" }}/>
+        </label>
+      )}
+
+      <textarea
+        value={text}
+        onChange={e => setText(e.target.value)}
+        placeholder="What happened?"
+        rows={2}
+        maxLength={240}
+        style={{
+          width: "100%", padding: "10px 12px", boxSizing: "border-box",
+          background: "var(--paper)", border: "1px solid var(--line-2)",
+          borderRadius: 10, resize: "none",
+          fontFamily: "Geist, sans-serif", fontSize: 14, lineHeight: 1.4,
+          color: "var(--ink)", outline: "none", marginBottom: 10,
+        }}
+      />
+
+      {savedNightArtists.length > 0 && (
+        <div style={{ marginBottom: 10 }}>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginBottom: 6, fontWeight: 700 }}>
+            TAG A SET (OPTIONAL)
+          </div>
+          <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+            {savedNightArtists.map(a => {
+              const on = artistId === a.id;
+              return (
+                <button key={a.id} onClick={() => setArtistId(on ? null : a.id)} className="mono" style={{
+                  padding: "5px 10px", borderRadius: 999,
+                  background: on ? "var(--ink)"  : "var(--paper)",
+                  color:      on ? "var(--paper)" : "var(--ink)",
+                  border:     on ? "none"         : "1px solid var(--line-2)",
+                  fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
+                  whiteSpace: "nowrap",
+                }}>{a.name.toUpperCase()}</button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {err && (
+        <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1, color: "#c14a4a", marginBottom: 10, fontWeight: 700 }}>
+          {err}
+        </div>
+      )}
+
+      <div style={{ display: "flex", gap: 8 }}>
+        <button onClick={onCancel} disabled={busy} className="mono" style={{
+          flex: 1, padding: "11px", borderRadius: 10,
+          background: "transparent", border: "1px solid var(--line-2)", color: "var(--ink)",
+          fontSize: 10, letterSpacing: 1.2, fontWeight: 700, cursor: busy ? "default" : "pointer",
+        }}>CANCEL</button>
+        <button onClick={handleSave} disabled={busy} className="mono" style={{
+          flex: 2, padding: "11px", borderRadius: 10,
+          background: busy ? "var(--muted)" : "var(--ember)",
+          color: "#fff", border: "none",
+          fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
+          cursor: busy ? "default" : "pointer",
+        }}>{busy ? "WORKING…" : "✓ SAVE MOMENT"}</button>
+      </div>
+    </div>
+  );
+}
+
+function MemoriesScreen({ state, setState }) {
+  const [all, setAll] = React.useState(_readMoments);
+  const [adding, setAdding] = React.useState(null); // night number being added to, or null
+
+  const handleAdd = (moment) => {
+    const next = { ..._readMoments() };
+    next[moment.night] = [...(next[moment.night] || []), moment];
+    _writeMoments(next);
+    setAll(next);
+    setAdding(null);
+  };
+
+  const handleDelete = async (moment) => {
+    if (!window.confirm("Delete this moment?")) return;
+    if (moment.photoId) { try { await _deletePhoto(moment.photoId); } catch {} }
+    const next = { ..._readMoments() };
+    for (const n of Object.keys(next)) {
+      next[n] = (next[n] || []).filter(m => m.id !== moment.id);
+    }
+    _writeMoments(next);
+    setAll(next);
+  };
+
+  const totalCount = Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
+
+  return (
+    <Screen bg="var(--paper)">
+      <div style={{ padding: "8px 20px", display: "flex", alignItems: "center", gap: 10 }}>
+        <button onClick={() => setState(s => ({ ...s, tab: "me" }))} aria-label="Back" style={{
+          background: "transparent", border: "none", padding: 0, cursor: "pointer",
+          fontSize: 22, color: "var(--ink)", lineHeight: 1,
+          width: 30, height: 30, display: "flex", alignItems: "center", justifyContent: "center",
+          flexShrink: 0,
+        }}>←</button>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <TopBar
+            title={<span>Memories</span>}
+            sub={`${totalCount} ${totalCount === 1 ? "MOMENT" : "MOMENTS"} · ${FESTIVAL_CONFIG.shortName.toUpperCase()}`}
+            tight
+          />
+        </div>
+      </div>
+      <ScrollBody style={{ padding: "0 20px 24px" }}>
+        {DAYS.map(d => {
+          const moments = (all[d.n] || []).slice().sort((a, b) => a.createdAt - b.createdAt);
+          const dateInfo = FESTIVAL_CONFIG.dayDates?.[d.n];
+          const savedNightArtists = state.saved
+            .map(id => ARTISTS.find(a => a.id === id))
+            .filter(a => a && a.day === d.n);
+          return (
+            <div key={d.n} style={{ marginBottom: 22 }}>
+              <div style={{
+                display: "flex", alignItems: "baseline", gap: 10,
+                paddingTop: 14, paddingBottom: 8, marginBottom: 4,
+                borderBottom: "1px solid var(--line)",
+              }}>
+                <div className="serif" style={{ fontSize: 24, color: "var(--ink)" }}>
+                  {d.label}
+                </div>
+                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", fontWeight: 700 }}>
+                  · {(dateInfo?.short || `DAY ${d.n}`).toString().toUpperCase()}
+                </div>
+                {moments.length > 0 && (
+                  <div className="mono" style={{ marginLeft: "auto", fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700 }}>
+                    {moments.length} MOMENT{moments.length === 1 ? "" : "S"}
+                  </div>
+                )}
+              </div>
+
+              {moments.length === 0 && adding !== d.n && (
+                <div style={{
+                  padding: "18px 14px", textAlign: "center",
+                  border: "1px dashed var(--line-2)", borderRadius: 14,
+                  background: "var(--paper-2)", marginTop: 10, marginBottom: 10,
+                }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>
+                    NO MOMENTS YET
+                  </div>
+                </div>
+              )}
+
+              {moments.map((m, i) => (
+                <MomentCard
+                  key={m.id}
+                  moment={m}
+                  idx={i}
+                  total={moments.length}
+                  onDelete={handleDelete}
+                  onArtistClick={(id) => setState(s => ({ ...s, artist: id }))}
+                />
+              ))}
+
+              {adding === d.n ? (
+                <AddMomentForm
+                  night={d.n}
+                  savedNightArtists={savedNightArtists}
+                  onAdd={handleAdd}
+                  onCancel={() => setAdding(null)}
+                />
+              ) : (
+                <button onClick={() => setAdding(d.n)} className="mono" style={{
+                  width: "100%", padding: "12px",
+                  background: "transparent", border: "1px dashed var(--line-2)",
+                  borderRadius: 12, color: "var(--ink)",
+                  fontSize: 10, letterSpacing: 1.4, fontWeight: 700, cursor: "pointer",
+                  marginTop: moments.length > 0 ? 4 : 0,
+                }}>+ ADD MOMENT</button>
+              )}
+            </div>
+          );
+        })}
+      </ScrollBody>
+    </Screen>
+  );
+}
+
 function MeScreen({ state, setState }) {
   // Build identity from Spotify profile when available, else fall back to user-set name
   const [profile, setProfile] = React.useState(getSpotifyProfileSync);
@@ -2333,8 +2777,8 @@ function MeScreen({ state, setState }) {
           {[
             { key: "saved",    label: "SAVED",    count: savedCount, icon: "★",
               onClick: () => setState(st => ({ ...st, tab: "lineup" })) },
-            { key: "memories", label: "MEMORIES", count: 0,           icon: "◐",
-              onClick: () => alert("Memories — coming soon") },
+            { key: "memories", label: "MEMORIES", count: _countMoments(), icon: "◐",
+              onClick: () => setState(s => ({ ...s, tab: "memories" })) },
             { key: "crew",     label: "CREW",     count: crewCount,   icon: "☷",
               onClick: () => alert("See Crew below") },
             { key: "badges",   label: "BADGES",   count: badgesEarnedCount, icon: "✦",
@@ -2689,7 +3133,7 @@ function BuildPlaylistButton({ state }) {
 
 
 Object.assign(window, {
-  SpotifyScreen, MeScreen, fetchPreviewUrl,
+  SpotifyScreen, MeScreen, MemoriesScreen, fetchPreviewUrl,
   ensureSpotifyProfile, getSpotifyProfileSync, createEdcPlaylist,
   startSpotifyAuth, PackListCard,
 });
