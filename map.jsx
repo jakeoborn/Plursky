@@ -3123,24 +3123,6 @@ function RealMap({
         // Repaint the basemap into Plursky palette before adding overlays.
         applyPlurskyPalette();
 
-        // LVMS grandstand — purple oval outline rising from the ground.
-        if (!map.getSource("grandstand")) {
-          map.addSource("grandstand", { type: "geojson", data: grandstandFeature() });
-        }
-        if (!map.getLayer("grandstand")) {
-          map.addLayer({
-            id: "grandstand",
-            source: "grandstand",
-            type: "fill-extrusion",
-            paint: {
-              "fill-extrusion-color":   ["get", "color"],
-              "fill-extrusion-height":  ["get", "height"],
-              "fill-extrusion-base":    0,
-              "fill-extrusion-opacity": 0.85,
-            },
-          });
-        }
-
         if (!map.getSource("edc-clip")) {
           map.addSource("edc-clip", { type: "geojson", data: edcClipFeature() });
         }
@@ -3193,26 +3175,6 @@ function RealMap({
             },
           });
         }
-        // Amenity 3D pillars — short colored markers in each amenity's
-        // brand color and shape. Always under stage pillars so they
-        // never compete visually with the main stages.
-        if (!map.getSource("amenities-3d")) {
-          map.addSource("amenities-3d", { type: "geojson", data: amenitiesExtrusionData() });
-        }
-        if (!map.getLayer("amenities-3d")) {
-          map.addLayer({
-            id: "amenities-3d",
-            source: "amenities-3d",
-            type: "fill-extrusion",
-            paint: {
-              "fill-extrusion-color":   ["get", "color"],
-              "fill-extrusion-height":  ["get", "height"],
-              "fill-extrusion-base":    0,
-              "fill-extrusion-opacity": 0.85,
-            },
-          });
-        }
-
         // Crowd heatmap — Mapbox native heatmap layer driven by
         // _crowdDensity. Lives BELOW stage pillars so stages still pop
         // when heat is on. Visibility toggles via setLayoutProperty in
@@ -3323,36 +3285,6 @@ function RealMap({
           });
         } catch {}
 
-        // 3D building extrusions — only on vector styles. Filtered to inside
-        // the festival footprint so surrounding casino + airport buildings
-        // don't extrude through our clip mask.
-        if (!map.getLayer("plursky-3d-buildings")) {
-          try {
-            const sources = map.getStyle().sources || {};
-            const omtSrc = Object.keys(sources).find(id => sources[id].type === "vector");
-            if (omtSrc) {
-              map.addLayer({
-                id: "plursky-3d-buildings",
-                source: omtSrc,
-                "source-layer": "building",
-                type: "fill-extrusion",
-                minzoom: 13,
-                filter: ["within", festivalFootprint()],
-                paint: {
-                  "fill-extrusion-color": [
-                    "interpolate", ["linear"], ["coalesce", ["get", "render_height"], 5],
-                    0,  "#3a2a55",
-                    20, "#5b3d7a",
-                    60, "#7b4d9a",
-                  ],
-                  "fill-extrusion-height": ["coalesce", ["get", "render_height"], 5],
-                  "fill-extrusion-base":   ["coalesce", ["get", "render_min_height"], 0],
-                  "fill-extrusion-opacity": 0.78,
-                },
-              });
-            }
-          } catch {}
-        }
       };
 
       // One-shot setup that runs after the first style finishes loading.
