@@ -2190,6 +2190,10 @@ function MeScreen({ state, setState }) {
     });
   }, []);
 
+  // Settings (Notifications / Battery / Pack list / Wizard) folded into a
+  // single disclosure so the festival-flavored top of the page reads first.
+  const [settingsOpen, setSettingsOpen] = React.useState(false);
+
   // Stats — kept locally per the spec; intentionally cheap, not precious.
   const setsCaught = state.saved.filter(id => {
     const a = ARTISTS.find(x => x.id === id);
@@ -2431,14 +2435,48 @@ function MeScreen({ state, setState }) {
         {/* Cloud account / sync */}
         <AccountCard state={state} setState={setState} />
 
-        {/* Reminders / push notifications */}
-        <NotificationsCard state={state} />
-
-        {/* Battery saver — dim screen + freeze animations + slow GPS */}
-        <BatterySaverCard />
-
-        {/* Pack list — essentials checklist for the festival */}
-        <PackListCard />
+        {/* Settings — folds Notifications, Battery saver, Pack list, and the
+            setup-wizard re-run into one disclosure to keep the festival top
+            of the page above the fold. */}
+        <div style={{ marginBottom: 14 }}>
+          <button
+            onClick={() => setSettingsOpen(o => !o)}
+            style={{
+              width: "100%", padding: "13px 14px",
+              background: "var(--paper-2)", border: "1px solid var(--line-2)",
+              borderRadius: 14, cursor: "pointer", textAlign: "left",
+              display: "flex", alignItems: "center", gap: 12,
+              fontFamily: "inherit", color: "var(--ink)",
+            }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div className="serif" style={{ fontSize: 18, lineHeight: 1.05 }}>Settings</div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 3 }}>
+                NOTIFICATIONS · BATTERY · PACK LIST · WIZARD
+              </div>
+            </div>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+              style={{ flexShrink: 0, transition: "transform 0.2s", transform: settingsOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
+              <path d="M9 18 L15 12 L9 6"/>
+            </svg>
+          </button>
+          {settingsOpen && (
+            <div style={{ marginTop: 10 }}>
+              <NotificationsCard state={state} />
+              <BatterySaverCard />
+              <PackListCard />
+              <div style={{ marginTop: 14 }}>
+                <button onClick={() => window.plurskyOpenOnboarding?.()} style={{
+                  background: "transparent", border: "1px solid var(--line-2)",
+                  borderRadius: 999, padding: "8px 14px", cursor: "pointer",
+                  color: "var(--muted)",
+                  fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 600,
+                }}>
+                  ↻ RE-RUN SETUP WIZARD
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
 
         {/* Safety & Wellness — harm-reduction one tap away */}
         <div className="serif" style={{ fontSize: 22, marginTop: 20, marginBottom: 3 }}>
@@ -2448,17 +2486,6 @@ function MeScreen({ state, setState }) {
           ON-SITE TEAMS · NO QUESTIONS ASKED
         </div>
         <SafetyCards />
-
-        <div style={{ marginTop: 22 }}>
-          <button onClick={() => window.plurskyOpenOnboarding?.()} style={{
-            background: "transparent", border: "none",
-            padding: "6px 4px", cursor: "pointer", textAlign: "left",
-            color: "var(--muted)",
-            fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2,
-          }}>
-            ↻ RE-RUN SETUP WIZARD
-          </button>
-        </div>
 
         {/* Your headliners — saved tier-3 sets, tappable to artist screen.
             Replaces the old static "Memories" grid which was unlinked

@@ -752,6 +752,27 @@ function ArtistScreen({ state, setState }) {
         }}>←</button>
 
         <div style={{ position: "absolute", top: 14, right: 14, display: "flex", gap: 6, alignItems: "center" }}>
+          {connected && preview !== "none" && (
+            <button onClick={handlePreview} style={{
+              display: "inline-flex", alignItems: "center", gap: 5,
+              background: playing ? "var(--ember)" : "rgba(255,255,255,0.18)",
+              backdropFilter: "blur(8px)",
+              border: "1px solid rgba(255,255,255,0.3)",
+              color: "#fff", cursor: "pointer",
+              borderRadius: 999, padding: "5px 10px",
+              fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+              whiteSpace: "nowrap",
+            }}>
+              {preview === "loading" ? (
+                <span style={{ width: 8, height: 8, borderRadius: "50%", border: "1.5px solid rgba(255,255,255,0.4)", borderTopColor: "#fff", animation: "spin 0.75s linear infinite", display: "inline-block" }} />
+              ) : playing ? (
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="#fff"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+              ) : (
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="#fff"><path d="M8 5 L19 12 L8 19 Z"/></svg>
+              )}
+              PREVIEW
+            </button>
+          )}
           <Pill tone="outline" style={{ background: "rgba(255,255,255,0.15)", color: "#fff", backdropFilter: "blur(8px)", borderColor: "rgba(255,255,255,0.3)" }}>
             DAY {a.day} · {fmt12(a.start)}
           </Pill>
@@ -785,6 +806,66 @@ function ArtistScreen({ state, setState }) {
       )}
 
       <div style={{ padding: "18px 20px 24px" }}>
+        {/* Glance stats — only render cells with values; hide row entirely if none */}
+        {(() => {
+          const cells = [];
+          if (saveCount != null && saveCount > 0) cells.push({ label: "GOING", value: _fmtCount(saveCount) });
+          if (spotifyStats?.followers > 0)        cells.push({ label: "FOLLOWERS", value: _fmtCount(spotifyStats.followers) });
+          if (spotifyStats?.popularity > 0)       cells.push({ label: "POPULARITY", value: spotifyStats.popularity });
+          if (cells.length === 0) return null;
+          return (
+            <div style={{
+              display: "grid", gridTemplateColumns: `repeat(${cells.length}, 1fr)`,
+              background: "var(--paper-2)", border: "1px solid var(--line)",
+              borderRadius: 14, padding: "12px 4px", marginBottom: 12,
+            }}>
+              {cells.map((c, i) => (
+                <div key={c.label} style={{
+                  display: "flex", flexDirection: "column", alignItems: "center",
+                  borderLeft: i === 0 ? "none" : "1px solid var(--line)",
+                  padding: "2px 6px",
+                }}>
+                  <div className="serif" style={{ fontSize: 22, lineHeight: 1, marginBottom: 5 }}>
+                    {c.value}
+                  </div>
+                  <div className="mono" style={{ fontSize: 8, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700 }}>
+                    {c.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          );
+        })()}
+
+        {/* Section-jump chips — IMDb pattern; anchor-scrolls to deep sections */}
+        <div style={{
+          display: "flex", gap: 6, overflowX: "auto", overflowY: "hidden",
+          marginBottom: 16, marginLeft: -20, marginRight: -20,
+          paddingLeft: 20, paddingRight: 20,
+          scrollbarWidth: "none",
+        }}>
+          {[
+            { id: "artist-section-bio",        label: "BIO" },
+            { id: "artist-section-livestream", label: "LIVE SET" },
+            { id: "artist-section-setlists",   label: "SETLISTS" },
+            { id: "artist-section-similar",    label: "SIMILAR" },
+          ].map(c => (
+            <button
+              key={c.id}
+              onClick={() => {
+                document.getElementById(c.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+              style={{
+                background: "var(--paper-2)", border: "1px solid var(--line-2)",
+                borderRadius: 999, padding: "6px 12px",
+                fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 600,
+                color: "var(--ink)", cursor: "pointer",
+                whiteSpace: "nowrap", flexShrink: 0,
+              }}
+            >{c.label}</button>
+          ))}
+        </div>
+
         {/* Stage & time */}
         <div style={{
           display: "flex", alignItems: "center", gap: 12,
@@ -822,7 +903,7 @@ function ArtistScreen({ state, setState }) {
         </div>
 
         {/* Bio — inline bio first, then AudioDB extended bio if available */}
-        <div className="serif" style={{ fontSize: 20, lineHeight: 1.35, marginBottom: tadb?.bio ? 8 : 14, textWrap: "pretty" }}>
+        <div id="artist-section-bio" className="serif" style={{ fontSize: 20, lineHeight: 1.35, marginBottom: tadb?.bio ? 8 : 14, textWrap: "pretty" }}>
           {a.bio}
         </div>
         {tadb?.bio && tadb.bio.length > 60 && (
@@ -975,6 +1056,7 @@ function ArtistScreen({ state, setState }) {
             )}
 
             {/* Fans also like — spider web */}
+            <div id="artist-section-similar" />
             {lfm.similar.length > 0 && (
               <SpiderWeb
                 currentArtist={a}
@@ -987,6 +1069,7 @@ function ArtistScreen({ state, setState }) {
         )}
 
         {/* ── YouTube live set ─────────────────────────────── */}
+        <div id="artist-section-livestream" />
         {(() => {
           const ytSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(activeName + " live set EDC")}`;
           return (
@@ -1277,6 +1360,7 @@ function ArtistScreen({ state, setState }) {
         )}
 
         {/* ── Setlist history ───────────────────────────────── */}
+        <div id="artist-section-setlists" />
         {SETLISTFM_KEY && (
           <div style={{ marginBottom: 18 }}>
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", marginBottom: 10, display: "flex", alignItems: "center", gap: 8 }}>
@@ -1440,27 +1524,31 @@ function ArtistScreen({ state, setState }) {
           </div>
         </div>
 
-        {/* Actions */}
-        <div style={{ display: "flex", gap: 8 }}>
-          <button onClick={() => toggleSave(state, setState, a.id)} style={{
-            flex: 1,
-            padding: "14px",
-            borderRadius: 14,
-            background: saved ? "var(--ink)" : "var(--ember)",
-            color: saved ? "var(--paper)" : "#fff",
-            border: "none", cursor: "pointer",
-            fontFamily: "Geist Mono, monospace", fontSize: 11, letterSpacing: 1.4, fontWeight: 500,
-          }}>{saved ? "✓ SAVED TO LINEUP" : "+ ADD TO LINEUP"}</button>
-          <button style={{
-            width: 54,
-            borderRadius: 14,
-            background: "transparent",
-            border: "1px solid var(--line-2)",
-            cursor: "pointer", fontSize: 20,
-          }}>♡</button>
-        </div>
       </div>
       </ScrollBody>
+
+      {/* Sticky save bar — primary CTA always reachable. Sibling of ScrollBody
+          so flex naturally pins it to the bottom of the Screen flex column. */}
+      <div style={{
+        flexShrink: 0,
+        padding: "12px 20px calc(10px + env(safe-area-inset-bottom)) 20px",
+        background: "var(--paper)",
+        borderTop: "1px solid var(--line)",
+        display: "flex", gap: 8,
+      }}>
+        <button onClick={() => toggleSave(state, setState, a.id)} style={{
+          flex: 1, padding: "14px", borderRadius: 14,
+          background: saved ? "var(--ink)" : "var(--ember)",
+          color: saved ? "var(--paper)" : "#fff",
+          border: "none", cursor: "pointer",
+          fontFamily: "Geist Mono, monospace", fontSize: 11, letterSpacing: 1.4, fontWeight: 500,
+        }}>{saved ? "✓ SAVED TO LINEUP" : "+ ADD TO LINEUP"}</button>
+        <button style={{
+          width: 54, borderRadius: 14,
+          background: "transparent", border: "1px solid var(--line-2)",
+          cursor: "pointer", fontSize: 20,
+        }}>♡</button>
+      </div>
     </Screen>
   );
 }

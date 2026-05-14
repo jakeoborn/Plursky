@@ -848,6 +848,47 @@ function LineupScreen({ state, setState }) {
       })()}
 
       <ScrollBody style={{ padding: viewMode === "grid" ? 0 : "0 16px 20px" }}>
+        {/* "Save the Day" empty-state CTA — when no sets are saved for the
+            selected day, a single ember card batch-saves every tier-3
+            headliner. Disappears once the day has any save. */}
+        {savedToday.length === 0 && (() => {
+          const dayHeads = ARTISTS.filter(a => a.day === day && a.tier === 3);
+          if (dayHeads.length === 0) return null;
+          const dayLabel = DAYS.find(d => d.n === day)?.label || `Day ${day}`;
+          const headIds = dayHeads.map(h => h.id);
+          return (
+            <button
+              onClick={() => setState(s => ({ ...s, saved: [...new Set([...s.saved, ...headIds])] }))}
+              style={{
+                width: viewMode === "grid" ? "calc(100% - 32px)" : "100%",
+                display: "flex", alignItems: "center", gap: 12,
+                background: "var(--ember)", color: "#fff", border: "none",
+                borderRadius: 14, padding: "13px 16px",
+                margin: viewMode === "grid" ? "12px 16px 14px" : "12px 0 14px",
+                cursor: "pointer", textAlign: "left",
+                boxShadow: "0 4px 16px rgba(232,93,46,0.30)",
+                fontFamily: "inherit",
+              }}>
+              <span style={{
+                flexShrink: 0, width: 38, height: 38, borderRadius: 999,
+                background: "rgba(255,255,255,0.18)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: 18, lineHeight: 1,
+              }}>✦</span>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div className="serif" style={{ fontSize: 18, lineHeight: 1.05, color: "#fff" }}>
+                  Save all headliners for {dayLabel}
+                </div>
+                <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1.2, marginTop: 3, opacity: 0.9, fontWeight: 700 }}>
+                  +{dayHeads.length} SETS · TAP TO ADD
+                </div>
+              </div>
+              <span className="mono" style={{ fontSize: 11, letterSpacing: 1.3, fontWeight: 800, flexShrink: 0 }}>
+                SAVE →
+              </span>
+            </button>
+          );
+        })()}
         {viewMode === "grid" && !(filter === "saved" && state.saved.length === 0) && (
           <TimelineGrid
             day={day}

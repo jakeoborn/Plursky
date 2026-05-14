@@ -1891,9 +1891,15 @@ function MapScreen({ state, setState }) {
   const walk = computeWalkRange(avatar.x, avatar.y, stage, dist, NOW.time);
   const meters = Math.round(dist * 22);
 
-  const filteredStages = search
-    ? STAGES.filter(s => s.name.toLowerCase().includes(search.toLowerCase()))
-    : STAGES;
+  // Search matches stages AND artists. Artist rows surface as
+  // "Artist → stage", and tapping focuses that performer's stage on the map.
+  const searchQuery = search.trim().toLowerCase();
+  const stageMatches = searchQuery
+    ? STAGES.filter(s => s.name.toLowerCase().includes(searchQuery))
+    : [];
+  const artistMatches = searchQuery
+    ? ARTISTS.filter(a => a.name.toLowerCase().includes(searchQuery)).slice(0, 16)
+    : [];
 
   // Click on map → drop meet pin
   const handleMapClick = (e) => {
@@ -2088,9 +2094,9 @@ function MapScreen({ state, setState }) {
           </div>
         )}
         {search && (
-          <div style={{ marginTop: 6, maxHeight: 140, overflowY: "auto", background: "var(--paper-2)", borderRadius: 8 }}>
-            {filteredStages.map(s => (
-              <button key={s.id} onClick={() => { setSelectedStage(s.id); setSearch(""); }} style={{
+          <div style={{ marginTop: 6, maxHeight: 220, overflowY: "auto", background: "var(--paper-2)", borderRadius: 8 }}>
+            {stageMatches.map(s => (
+              <button key={`stage-${s.id}`} onClick={() => { setSelectedStage(s.id); setSearch(""); }} style={{
                 width: "100%", display: "flex", alignItems: "center", gap: 8, padding: "7px 10px",
                 background: "transparent", border: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer",
                 borderRadius: 8,
@@ -2099,6 +2105,27 @@ function MapScreen({ state, setState }) {
                 <span style={{ fontFamily: "Geist, sans-serif", fontSize: 13 }}>{s.name}</span>
               </button>
             ))}
+            {artistMatches.map(a => {
+              const st = STAGES.find(s => s.id === a.stage);
+              return (
+                <button key={`artist-${a.id}`} onClick={() => { setSelectedStage(a.stage); setSearch(""); }} style={{
+                  width: "100%", display: "flex", alignItems: "center", gap: 8, padding: "7px 10px",
+                  background: "transparent", border: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer",
+                  borderRadius: 8,
+                }}>
+                  <span style={{ width: 8, height: 8, borderRadius: 8, background: st?.color || "var(--muted)" }}/>
+                  <span style={{ fontFamily: "Geist, sans-serif", fontSize: 13, flex: 1, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</span>
+                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", flexShrink: 0 }}>
+                    → {st?.short || st?.name || ""}
+                  </span>
+                </button>
+              );
+            })}
+            {stageMatches.length === 0 && artistMatches.length === 0 && (
+              <div style={{ padding: "10px 12px", fontSize: 12, color: "var(--muted)", fontStyle: "italic" }}>
+                No matches for "{search}"
+              </div>
+            )}
           </div>
         )}
         {/* NEXT-UP heads-up strip — your next saved set, with countdown +
