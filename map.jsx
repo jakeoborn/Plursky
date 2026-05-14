@@ -1613,11 +1613,6 @@ function MapScreen({ state, setState }) {
   const [rideshareOpen, setRideshareOpen] = React.useState(false);
   const [showLabels, setShowLabels] = React.useState(false);
   const [showHeat,   setShowHeat]   = React.useState(false);
-  // "Real map (BETA)" — MapLibre overlay experiment. Persisted so toggling
-  // survives reloads; default OFF so v1.0 users see the same SVG map.
-  const [realMap, setRealMap] = React.useState(() => {
-    try { return localStorage.getItem("plursky_real_map") === "1"; } catch { return false; }
-  });
   const [pingOpen, setPingOpen] = React.useState(false);
   const [iAmAtOpen, setIAmAtOpen] = React.useState(false);
   const [shareOpen, setShareOpen] = React.useState(false);
@@ -2026,11 +2021,6 @@ function MapScreen({ state, setState }) {
                 },
                 { id: "crowd",  label: "🔥  Crowd heatmap",   active: showHeat,   onToggle: () => setShowHeat(s => !s) },
                 { id: "labels", label: "🏷  Landmark labels", active: showLabels, onToggle: () => setShowLabels(s => !s) },
-                { id: "realmap", label: "🌎  Real map (BETA)", active: realMap, onToggle: () => {
-                  const next = !realMap;
-                  setRealMap(next);
-                  try { localStorage.setItem("plursky_real_map", next ? "1" : "0"); } catch {}
-                } },
               ].map(item => (
                 <div key={item.id} role="button" onClick={item.onToggle} style={{
                   display: "flex", alignItems: "center", justifyContent: "space-between",
@@ -2270,35 +2260,22 @@ function MapScreen({ state, setState }) {
           );
         })()}
 
-        {realMap ? (
-          <RealMap
-            avatar={avatar} stages={STAGES}
-            crewFriends={crewFriends}
-            saved={state.saved}
-            showHeat={showHeat}
-            compass={compass && compassStatus === "live"}
-            compassHeading={compassHeading}
-            selected={selectedStage}
-            meetMode={meetMode} meetTarget={meetTarget}
-            onPickStage={(id) => { setSelectedStage(id); setPeek(false); }}
-            onMapClick={(xy) => {
-              if (!meetMode) return;
-              const names = meetGroup.map(id => friends.find(f => f.id === id)?.name).filter(Boolean);
-              setMeetTarget({ x: xy.x, y: xy.y, label: names.length ? `Meet ${names.join(" + ")}` : "Meet here" });
-            }}
-          />
-        ) : (
-          <TopDownMap
-            avatar={avatar} heading={heading} friends={friends} stages={STAGES}
-            saved={state.saved} showLabels={showLabels} showHeat={showHeat}
-            compass={compass && compassStatus === "live"}
-            compassHeading={compassHeading}
-            selected={selectedStage} meetMode={meetMode} meetTarget={meetTarget} meetGroup={meetGroup}
-            crewFriends={crewFriends}
-            onPickStage={(id) => { setSelectedStage(id); setPeek(false); }}
-            onClick={handleMapClick}
-          />
-        )}
+        <RealMap
+          avatar={avatar} stages={STAGES}
+          crewFriends={crewFriends}
+          saved={state.saved}
+          showHeat={showHeat}
+          compass={compass && compassStatus === "live"}
+          compassHeading={compassHeading}
+          selected={selectedStage}
+          meetMode={meetMode} meetTarget={meetTarget}
+          onPickStage={(id) => { setSelectedStage(id); setPeek(false); }}
+          onMapClick={(xy) => {
+            if (!meetMode) return;
+            const names = meetGroup.map(id => friends.find(f => f.id === id)?.name).filter(Boolean);
+            setMeetTarget({ x: xy.x, y: xy.y, label: names.length ? `Meet ${names.join(" + ")}` : "Meet here" });
+          }}
+        />
 
         {/* Ground-level peek window (picture-in-picture) */}
         {stage && peek && (
