@@ -2737,10 +2737,10 @@ function RealMap({ avatar, stages, crewFriends = [], selected, meetTarget, onPic
         };
       };
 
-      // Style-dependent layers (clip mask, 3D buildings, route line) get torn
-      // down on setStyle(), so we re-add them every time a new style finishes
-      // loading. Clip layer goes first so all subsequent overlays paint on
-      // top of it.
+      // Style-dependent layers (clip mask, EDC poster, 3D buildings, route)
+      // get torn down on setStyle(), so we re-add them every time a new
+      // style finishes loading. Clip first → poster on top → 3D buildings
+      // extrude from poster → route line → DOM markers.
       const setupOverlayLayers = () => {
         if (!map.getSource("edc-clip")) {
           map.addSource("edc-clip", { type: "geojson", data: edcClipFeature() });
@@ -2754,6 +2754,35 @@ function RealMap({ avatar, stages, crewFriends = [], selected, meetTarget, onPic
               "fill-color": "#0a0618",          // deep night-sky, matches RealMap bg
               "fill-opacity": 1,
               "fill-antialias": true,
+            },
+          });
+        }
+        // EDC 2026 festival map overlay — Insomniac's official poster art
+        // pinned to LVMS festivalBounds corners. Jake gave explicit
+        // permission to ship (2026-05-14); when/if Insomniac requests
+        // removal, swap edc-map-overlay.png for a Plursky-original SVG
+        // redraw — the source + layer wiring below stays identical.
+        if (!map.getSource("edc-poster")) {
+          const b = FESTIVAL_CONFIG.venue.festivalBounds;
+          map.addSource("edc-poster", {
+            type: "image",
+            url: "./edc-map-overlay.png",
+            coordinates: [
+              [b.west, b.north],
+              [b.east, b.north],
+              [b.east, b.south],
+              [b.west, b.south],
+            ],
+          });
+        }
+        if (!map.getLayer("edc-poster")) {
+          map.addLayer({
+            id: "edc-poster",
+            type: "raster",
+            source: "edc-poster",
+            paint: {
+              "raster-opacity": 0.96,
+              "raster-fade-duration": 200,
             },
           });
         }

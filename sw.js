@@ -13,6 +13,7 @@ const LOCAL = [
   './manifest.json',
   './callback.html',
   './share.html',
+  './edc-map-overlay.png',
   './og.svg',
   './icon-192.png',
   './icon-512.png',
