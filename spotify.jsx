@@ -1857,6 +1857,189 @@ function PackListCard() {
   );
 }
 
+// Runbuds-modeled History/Records section. Lives on the Me page below
+// the 4-card grid. History rows = per-night recap (sets caught, total
+// minutes, top stage color stripe). Records = derived superlatives
+// (most saved on one night, top stage, longest single set, etc.).
+function HistoryRecordsSection({ state }) {
+  const [view, setView] = React.useState("history"); // "history" | "records"
+
+  const days = Object.keys(window.FESTIVAL_CONFIG?.dayDates || {})
+    .map(Number).sort((a, b) => a - b);
+
+  // Per-night stats — for HISTORY rows.
+  const nights = days.map((n) => {
+    const dayDate = window.FESTIVAL_CONFIG.dayDates[n] || {};
+    const savedThisDay = (state.saved || [])
+      .map((id) => window.ARTISTS.find((a) => a.id === id))
+      .filter((a) => a && a.day === n);
+    const totalMin = savedThisDay.reduce((acc, a) => {
+      const s = window.toNightMin?.(a.start) || 0;
+      const e = window.toNightMin?.(a.end) || 0;
+      return acc + Math.max(0, e - s);
+    }, 0);
+    // Top stage = stage with the most saved sets on this night
+    const stageCounts = {};
+    savedThisDay.forEach((a) => { stageCounts[a.stage] = (stageCounts[a.stage] || 0) + 1; });
+    const topStageId = Object.keys(stageCounts).sort((x, y) => stageCounts[y] - stageCounts[x])[0];
+    const topStage = topStageId ? window.STAGES.find((s) => s.id === topStageId) : null;
+    return {
+      n,
+      label: dayDate.short || `DAY ${n}`,
+      name:  dayDate.name  || "",
+      count: savedThisDay.length,
+      totalMin,
+      topStage,
+      isPast: typeof window.NOW !== "undefined" && window.NOW.day > n,
+      isLive: typeof window.NOW !== "undefined" && window.NOW.day === n,
+    };
+  });
+
+  // Records — superlatives derived from the saved set
+  const records = (() => {
+    const out = [];
+    const allSaved = (state.saved || [])
+      .map((id) => window.ARTISTS.find((a) => a.id === id))
+      .filter(Boolean);
+    if (allSaved.length === 0) return out;
+    // Most saved on one night
+    const peakNight = nights.slice().sort((a, b) => b.count - a.count)[0];
+    if (peakNight && peakNight.count > 0) {
+      out.push({
+        label: "BUSIEST NIGHT",
+        value: `${peakNight.label} · ${peakNight.count}`,
+        accent: peakNight.topStage?.color || "var(--ember)",
+      });
+    }
+    // Top stage across the run
+    const stageAll = {};
+    allSaved.forEach((a) => { stageAll[a.stage] = (stageAll[a.stage] || 0) + 1; });
+    const topId = Object.keys(stageAll).sort((x, y) => stageAll[y] - stageAll[x])[0];
+    const topStage = topId ? window.STAGES.find((s) => s.id === topId) : null;
+    if (topStage) {
+      out.push({
+        label: "TOP STAGE",
+        value: `${topStage.name.toUpperCase()} · ${stageAll[topId]}×`,
+        accent: topStage.color,
+      });
+    }
+    // Longest single set
+    const longest = allSaved.slice().sort((x, y) => {
+      const xLen = (window.toNightMin?.(y.end) || 0) - (window.toNightMin?.(y.start) || 0);
+      const yLen = (window.toNightMin?.(x.end) || 0) - (window.toNightMin?.(x.start) || 0);
+      return xLen - yLen;
+    })[0];
+    if (longest) {
+      const len = (window.toNightMin?.(longest.end) || 0) - (window.toNightMin?.(longest.start) || 0);
+      if (len > 0) {
+        out.push({
+          label: "LONGEST SET",
+          value: `${longest.name.toUpperCase()} · ${Math.floor(len / 60) ? `${Math.floor(len / 60)}H` : ""}${len % 60}M`,
+          accent: window.STAGES.find((s) => s.id === longest.stage)?.color || "var(--horizon)",
+        });
+      }
+    }
+    return out;
+  })();
+
+  return (
+    <div style={{ marginBottom: 14 }}>
+      {/* Toggle pills */}
+      <div style={{
+        display: "inline-flex", padding: 3, gap: 2,
+        background: "var(--paper-2)", borderRadius: 999,
+        marginBottom: 10,
+      }}>
+        {["history", "records"].map((k) => {
+          const on = view === k;
+          return (
+            <button key={k} onClick={() => setView(k)} className="mono" style={{
+              padding: "5px 12px", borderRadius: 999, border: "none",
+              background: on ? "var(--ink)" : "transparent",
+              color: on ? "var(--paper)" : "var(--ink)",
+              fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
+              cursor: "pointer",
+            }}>{k.toUpperCase()}</button>
+          );
+        })}
+      </div>
+
+      {view === "history" && (
+        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+          {nights.map((n) => (
+            <div key={n.n} style={{
+              display: "flex", alignItems: "center", gap: 10,
+              padding: "10px 12px", borderRadius: 12,
+              background: "var(--paper-2)",
+              borderLeft: `3px solid ${n.topStage?.color || "var(--line-2)"}`,
+              opacity: n.count === 0 && !n.isLive ? 0.62 : 1,
+            }}>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div className="serif" style={{ fontSize: 16, lineHeight: 1.15 }}>
+                  {n.name || `Night ${n.n}`}
+                  {n.isLive && (
+                    <span className="mono" style={{
+                      marginLeft: 8, fontSize: 8, letterSpacing: 1.2, fontWeight: 800,
+                      color: "var(--success)", background: "rgba(45,122,85,0.14)",
+                      padding: "1px 6px", borderRadius: 999,
+                      border: "0.5px solid rgba(45,122,85,0.55)",
+                    }}>● LIVE</span>
+                  )}
+                </div>
+                <div className="mono" style={{
+                  fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", marginTop: 3,
+                  display: "flex", gap: 8, flexWrap: "wrap",
+                }}>
+                  <span>{n.count} {n.count === 1 ? "SET" : "SETS"}</span>
+                  {n.totalMin > 0 && (
+                    <span>· {Math.floor(n.totalMin / 60) ? `${Math.floor(n.totalMin / 60)}H ` : ""}{n.totalMin % 60}M</span>
+                  )}
+                  {n.topStage && <span style={{ color: n.topStage.color, fontWeight: 700 }}>· {n.topStage.short || n.topStage.name.split(" ")[0].toUpperCase()}</span>}
+                </div>
+              </div>
+              <div className="mono" style={{
+                fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+                color: n.isPast ? "var(--muted)" : (n.isLive ? "var(--success)" : "var(--horizon)"),
+              }}>{n.isPast ? "DONE" : n.isLive ? "TONIGHT" : "UPCOMING"}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {view === "records" && (
+        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+          {records.length === 0 ? (
+            <div style={{
+              padding: "18px 14px", borderRadius: 12, background: "var(--paper-2)",
+              textAlign: "center",
+            }}>
+              <div className="serif" style={{ fontSize: 16, marginBottom: 4 }}>No records yet</div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)" }}>
+                SAVE SETS TO UNLOCK SUPERLATIVES
+              </div>
+            </div>
+          ) : records.map((r, i) => (
+            <div key={i} style={{
+              display: "flex", alignItems: "center", gap: 10,
+              padding: "10px 12px", borderRadius: 12,
+              background: "var(--paper-2)",
+              borderLeft: `3px solid ${r.accent}`,
+            }}>
+              <div className="mono" style={{
+                fontSize: 9, letterSpacing: 1.2, fontWeight: 700, color: "var(--muted)",
+                width: 110, flexShrink: 0,
+              }}>{r.label}</div>
+              <div style={{ fontFamily: "Geist, sans-serif", fontSize: 13, fontWeight: 500, flex: 1 }}>
+                {r.value}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function MeScreen({ state, setState }) {
   // Build identity from Spotify profile when available, else fall back to user-set name
   const [profile, setProfile] = React.useState(getSpotifyProfileSync);
@@ -2061,6 +2244,12 @@ function MeScreen({ state, setState }) {
             </button>
           ))}
         </div>
+
+        {/* ── History / Records toggle (Runbuds-modeled) ────────────
+            Night-by-night recap rows + festival superlatives below the
+            stat grid. History = per-day saved-set count + time + top
+            stage; Records = derived best-of stats from saved data. */}
+        <HistoryRecordsSection state={state} />
 
         {/* Music — primary entry to SpotifyScreen now that the Music tab is
             gone (v92 fold). Connect status is the headline; tapping opens
