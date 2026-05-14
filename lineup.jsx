@@ -356,6 +356,166 @@ function NightWizard({ state, setState, onClose }) {
   );
 }
 
+// Bottom-sheet filter modal — replaces the in-page expanding filter
+// drawer + active-filter chip strip with a single sectioned sheet.
+// Stages its own copy of the filter state so users can experiment;
+// commits via onApply or wipes via onReset. Live count on the
+// primary CTA so users see how many sets they'll land on before
+// they tap Apply.
+function LineupFilterSheet({
+  onClose, day, dayGenres, savedIds = [],
+  initial,           // { filter, tierFilter, stageFilter, genreFilter, sortBy }
+  onApply, onReset,
+}) {
+  const [f, setF] = React.useState(initial);
+  const set = (k, v) => setF(prev => ({ ...prev, [k]: v }));
+  const savedCount = savedIds.length;
+  const savedSet = React.useMemo(() => new Set(savedIds), [savedIds]);
+
+  // Live preview count — apply the staged filters against ARTISTS for the
+  // current day. Mirrors LineupScreen's dayArtists filter chain.
+  const matchCount = React.useMemo(() => {
+    return ARTISTS
+      .filter(a => a.day === day)
+      .filter(a => f.filter === "all" || savedSet.has(a.id))
+      .filter(a => f.stageFilter === "all" || a.stage === f.stageFilter)
+      .filter(a => f.genreFilter === "all" || a.genre === f.genreFilter)
+      .filter(a => {
+        if (f.tierFilter === "all") return true;
+        if (f.tierFilter === "head") return a.tier === 3;
+        if (f.tierFilter === "prime") return a.tier === 2;
+        if (f.tierFilter === "open") return a.tier === 1;
+        if (f.tierFilter === "legend") return isLegendary(a);
+        return true;
+      }).length;
+  }, [f, day, savedSet]);
+
+  const chip = (on, accent) => ({
+    flexShrink: 0, padding: "6px 12px", borderRadius: 999,
+    background: on ? (accent || "var(--ink)") : "var(--paper-2)",
+    color: on ? "#fff" : "var(--ink)",
+    border: on ? "none" : "1px solid var(--line-2)",
+    fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.1,
+    fontWeight: on ? 700 : 500, cursor: "pointer", whiteSpace: "nowrap",
+  });
+  const sectionLabel = {
+    fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700,
+    fontFamily: "Geist Mono, monospace", marginBottom: 6, marginTop: 4,
+  };
+
+  return (
+    <div onClick={onClose} style={{
+      position: "fixed", inset: 0, background: "rgba(13,10,8,0.55)",
+      zIndex: 60, display: "flex", alignItems: "flex-end", justifyContent: "center",
+    }}>
+      <div onClick={e => e.stopPropagation()} style={{
+        width: "100%", maxWidth: 460,
+        background: "var(--paper)", color: "var(--ink)",
+        borderRadius: "16px 16px 0 0",
+        padding: "16px 18px 18px",
+        boxShadow: "0 -8px 32px rgba(0,0,0,0.35)",
+        maxHeight: "90vh", display: "flex", flexDirection: "column",
+      }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
+          <span className="mono" style={{ fontSize: 10, letterSpacing: 1.5, fontWeight: 800 }}>FILTERS</span>
+          <button onClick={onClose} style={{
+            background: "transparent", border: "none", color: "var(--muted)",
+            fontSize: 18, cursor: "pointer", lineHeight: 1,
+          }}>×</button>
+        </div>
+
+        <div style={{ overflowY: "auto", flex: 1, paddingRight: 2 }}>
+          {/* SHOW — all vs only mine */}
+          <div style={sectionLabel}>SHOW</div>
+          <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
+            {[
+              { id: "all",   label: "ALL" },
+              { id: "saved", label: `MINE${savedCount ? ` · ${savedCount}` : ""}`, accent: "var(--ember)" },
+            ].map(o => (
+              <button key={o.id} onClick={() => set("filter", o.id)}
+                style={chip(f.filter === o.id, o.accent)}>{o.label}</button>
+            ))}
+          </div>
+
+          {/* TIER */}
+          <div style={sectionLabel}>TIER</div>
+          <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
+            {[
+              { id: "all",    label: "ALL TIERS" },
+              { id: "legend", label: "★ LEGENDARY",   accent: "#fbbf24" },
+              { id: "head",   label: "HEADLINERS",    accent: "var(--ember)" },
+              { id: "prime",  label: "PRIME TIME",    accent: "var(--horizon)" },
+              { id: "open",   label: "OPENERS",       accent: "var(--success)" },
+            ].map(t => (
+              <button key={t.id} onClick={() => set("tierFilter", t.id)}
+                style={chip(f.tierFilter === t.id, t.accent)}>{t.label}</button>
+            ))}
+          </div>
+
+          {/* STAGE */}
+          <div style={sectionLabel}>STAGE</div>
+          <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
+            <button onClick={() => set("stageFilter", "all")}
+              style={chip(f.stageFilter === "all")}>ALL STAGES</button>
+            {STAGES.map(s => (
+              <button key={s.id} onClick={() => set("stageFilter", s.id)}
+                style={chip(f.stageFilter === s.id, s.color)}>{s.short || s.name}</button>
+            ))}
+          </div>
+
+          {/* GENRE — only if there's enough variety on the day */}
+          {dayGenres.length > 0 && (
+            <>
+              <div style={sectionLabel}>GENRE</div>
+              <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
+                <button onClick={() => set("genreFilter", "all")}
+                  style={chip(f.genreFilter === "all")}>ALL GENRES</button>
+                {dayGenres.map(g => (
+                  <button key={g} onClick={() => set("genreFilter", g)}
+                    style={chip(f.genreFilter === g, "var(--horizon)")}>{g.toUpperCase()}</button>
+                ))}
+              </div>
+            </>
+          )}
+
+          {/* SORT */}
+          <div style={sectionLabel}>SORT BY</div>
+          <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
+            {[
+              { id: "time",  label: "TIME" },
+              { id: "tier",  label: "TIER" },
+              { id: "stage", label: "STAGE" },
+            ].map(o => (
+              <button key={o.id} onClick={() => set("sortBy", o.id)}
+                style={chip(f.sortBy === o.id)}>{o.label}</button>
+            ))}
+          </div>
+        </div>
+
+        {/* CTAs */}
+        <div style={{
+          display: "flex", gap: 8, paddingTop: 12,
+          borderTop: "1px solid var(--line)",
+          marginTop: 6,
+        }}>
+          <button onClick={() => onReset()} className="mono" style={{
+            padding: "11px 16px", borderRadius: 999,
+            background: "transparent", color: "var(--muted)",
+            border: "1px solid var(--line-2)", cursor: "pointer",
+            fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+          }}>RESET</button>
+          <button onClick={() => onApply(f)} className="mono" style={{
+            flex: 1, padding: "11px 14px", borderRadius: 999,
+            background: "var(--ember)", color: "#fff",
+            border: "none", cursor: "pointer",
+            fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
+          }}>APPLY · {matchCount} {matchCount === 1 ? "SET" : "SETS"}</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function LineupScreen({ state, setState }) {
   // Highlight-on-arrival: ArtistScreen "SCHEDULE" hands off `lineupHighlight`.
   // Force the day to that artist's day so the flash actually has a target,
@@ -393,14 +553,21 @@ function LineupScreen({ state, setState }) {
   // were dominating the top of the screen even when the user wasn't using
   // them. Active filters surface as dismissable chips so a user can clear
   // them without re-opening the panel.
-  const [filtersOpen, setFiltersOpen] = React.useState(false);
+  const [filterSheetOpen, setFilterSheetOpen] = React.useState(false);
   const [viewMode, setViewMode] = React.useState(() => {
     try { return localStorage.getItem('plursky_lineup_view') || 'list'; } catch { return 'list'; }
   });
   React.useEffect(() => { try { localStorage.setItem('plursky_lineup_view', viewMode); } catch {} }, [viewMode]);
+  // Sort: time (chronological), tier (headliners first), stage (grouped by stage order)
+  const [sortBy, setSortBy] = React.useState("time");
+  // Active-filter count powers the badge on the FILTERS trigger button — replaces
+  // the old in-page dismissable-chip strip. "filter !== all" (Mine vs All) and
+  // sortBy counted because they're meaningful state diverging from defaults.
   const activeFilterCount = (tierFilter !== "all" ? 1 : 0)
                           + (stageFilter !== "all" ? 1 : 0)
-                          + (genreFilter !== "all" ? 1 : 0);
+                          + (genreFilter !== "all" ? 1 : 0)
+                          + (filter !== "all" ? 1 : 0)
+                          + (sortBy !== "time" ? 1 : 0);
   React.useEffect(() => setGenreFilter("all"), [day]);
 
   const matchesActive = (a) => {
@@ -446,6 +613,14 @@ function LineupScreen({ state, setState }) {
     .sort((a, b) => {
       // EDC runs 19:00→05:00 — treat early AM as "next day" (hour + 24)
       const toSlot = t => { const h = parseInt(t.split(":")[0]); return h < 8 ? h + 24 : h; };
+      // Apply sort: time (default) | tier (headliners first, then time) | stage (group by stage)
+      if (sortBy === "tier") {
+        if (a.tier !== b.tier) return b.tier - a.tier;
+      } else if (sortBy === "stage") {
+        const ai = STAGES.findIndex(s => s.id === a.stage);
+        const bi = STAGES.findIndex(s => s.id === b.stage);
+        if (ai !== bi) return ai - bi;
+      }
       return toSlot(a.start) - toSlot(b.start);
     });
 
@@ -517,13 +692,14 @@ function LineupScreen({ state, setState }) {
         })}
       </div>
 
-      {/* Filter toggle row — collapses tier/stage/genre rows behind a single
-          control. Active filters render as dismissable chips so users can
-          clear them without re-opening the panel. */}
+      {/* Compact toolbar: view mode segment + single FILTERS trigger.
+          All filter/sort dimensions live inside the bottom sheet now —
+          no more in-page expanding drawer + active-chip strip. The
+          badge count on the trigger replaces the strip's signaling. */}
       <div className="no-scrollbar" style={{
         display: "flex", alignItems: "center", gap: 6, padding: "10px 16px 8px",
         overflowX: "auto", scrollbarWidth: "none",
-        borderBottom: filtersOpen ? "none" : "1px solid var(--line)",
+        borderBottom: "1px solid var(--line)",
       }}>
         <div style={{
           flexShrink: 0, display: "inline-flex",
@@ -541,8 +717,6 @@ function LineupScreen({ state, setState }) {
               }}>{l}</button>
             );
           })}
-          {/* Jobber-modeled cross-link → jump to Map tab. If a stage filter
-              is active, focus that stage on the map; otherwise just open it. */}
           <button onClick={() => setState({ ...state, tab: "map", focusStage: stageFilter !== "all" ? stageFilter : undefined })} className="mono" style={{
             padding: "3px 9px", borderRadius: 999, border: "none",
             background: "transparent", color: "var(--ink)",
@@ -550,160 +724,42 @@ function LineupScreen({ state, setState }) {
             whiteSpace: "nowrap",
           }}>◎ MAP</button>
         </div>
-        <button onClick={() => setFiltersOpen(o => !o)} className="mono" style={{
+        <button onClick={() => setFilterSheetOpen(true)} className="mono" style={{
           flexShrink: 0, padding: "5px 11px", borderRadius: 999,
-          background: filtersOpen || activeFilterCount > 0 ? "var(--ink)" : "transparent",
-          color: filtersOpen || activeFilterCount > 0 ? "var(--paper)" : "var(--ink)",
-          border: filtersOpen || activeFilterCount > 0 ? "none" : "1px solid var(--line-2)",
+          background: activeFilterCount > 0 ? "var(--ember)" : "transparent",
+          color: activeFilterCount > 0 ? "#fff" : "var(--ink)",
+          border: activeFilterCount > 0 ? "none" : "1px solid var(--line-2)",
           fontSize: 9.5, letterSpacing: 1.1, cursor: "pointer",
           fontWeight: 700, whiteSpace: "nowrap",
+          display: "inline-flex", alignItems: "center", gap: 6,
         }}>
-          {filtersOpen ? "▲ FILTERS" : `▼ FILTERS${activeFilterCount > 0 ? ` · ${activeFilterCount}` : ""}`}
+          <span>FILTERS</span>
+          {activeFilterCount > 0 && (
+            <span style={{
+              background: "rgba(255,255,255,0.28)",
+              borderRadius: 999, padding: "1px 7px",
+              fontSize: 8.5, fontWeight: 800,
+            }}>{activeFilterCount}</span>
+          )}
         </button>
-        {!filtersOpen && tierFilter !== "all" && (() => {
-          const t = [
-            { id: "legend", label: "★ LEGENDARY", accent: "#fbbf24" },
-            { id: "head",   label: "HEADLINERS",  accent: "var(--ember)" },
-            { id: "prime",  label: "PRIME TIME",  accent: "var(--horizon)" },
-            { id: "open",   label: "OPENERS",     accent: "var(--success)" },
-          ].find(x => x.id === tierFilter);
-          return t && (
-            <button onClick={() => setTierFilter("all")} className="mono" style={{
-              flexShrink: 0, padding: "5px 9px 5px 11px", borderRadius: 999,
-              background: t.accent, color: "#fff", border: "none",
-              fontSize: 9.5, letterSpacing: 1.1, cursor: "pointer", fontWeight: 700,
-              whiteSpace: "nowrap", display: "flex", alignItems: "center", gap: 6,
-            }}>{t.label} <span style={{ fontSize: 13, lineHeight: 1, opacity: 0.85 }}>×</span></button>
-          );
-        })()}
-        {!filtersOpen && stageFilter !== "all" && (() => {
-          const s = STAGES.find(x => x.id === stageFilter);
-          return s && (
-            <button onClick={() => setStageFilter("all")} className="mono" style={{
-              flexShrink: 0, padding: "5px 9px 5px 11px", borderRadius: 999,
-              background: s.color || "var(--ink)", color: "#fff", border: "none",
-              fontSize: 9.5, letterSpacing: 1.1, cursor: "pointer", fontWeight: 700,
-              textTransform: "uppercase", whiteSpace: "nowrap",
-              display: "flex", alignItems: "center", gap: 6,
-            }}>{s.short || s.name} <span style={{ fontSize: 13, lineHeight: 1, opacity: 0.85 }}>×</span></button>
-          );
-        })()}
-        {!filtersOpen && genreFilter !== "all" && (
-          <button onClick={() => setGenreFilter("all")} className="mono" style={{
-            flexShrink: 0, padding: "5px 9px 5px 11px", borderRadius: 999,
-            background: "var(--horizon)", color: "#fff", border: "none",
-            fontSize: 9.5, letterSpacing: 1.1, cursor: "pointer", fontWeight: 700,
-            whiteSpace: "nowrap", display: "flex", alignItems: "center", gap: 6,
-          }}>{genreFilter.toUpperCase()} <span style={{ fontSize: 13, lineHeight: 1, opacity: 0.85 }}>×</span></button>
+        {sortBy !== "time" && (
+          <span className="mono" style={{
+            flexShrink: 0, padding: "5px 9px", borderRadius: 999,
+            background: "var(--paper-2)", color: "var(--muted)",
+            border: "1px solid var(--line-2)",
+            fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
+            whiteSpace: "nowrap",
+          }}>SORT: {sortBy.toUpperCase()}</span>
         )}
       </div>
 
-      {filtersOpen && (
-        <>
-          {/* Tier / vibe filter — the vet's killer filter. ALL is the default,
-              LEGEND surfaces sunrise sets and B2Bs (auto-detected, no manual
-              curation), HEAD/PRIME/OPEN map to the existing tier field. */}
-          <div className="no-scrollbar" style={{
-            display: "flex", gap: 6, padding: "4px 16px 4px",
-            overflowX: "auto", scrollbarWidth: "none",
-          }}>
-            {[
-              { id: "all",    label: "ALL TIERS" },
-              { id: "legend", label: "★ LEGENDARY",   accent: "#fbbf24" },
-              { id: "head",   label: "HEADLINERS",    accent: "var(--ember)" },
-              { id: "prime",  label: "PRIME TIME",    accent: "var(--horizon)" },
-              { id: "open",   label: "OPENERS",       accent: "var(--success)" },
-            ].map(t => {
-              const on = tierFilter === t.id;
-              return (
-                <button key={t.id} onClick={() => setTierFilter(t.id)} className="mono" style={{
-                  flexShrink: 0,
-                  padding: "5px 11px",
-                  borderRadius: 999,
-                  background: on ? (t.accent || "var(--ink)") : "transparent",
-                  color: on ? "#fff" : "var(--ink)",
-                  border: on ? "none" : "1px solid var(--line-2)",
-                  fontSize: 9.5, letterSpacing: 1.1,
-                  cursor: "pointer", fontWeight: on ? 700 : 500,
-                  whiteSpace: "nowrap",
-                }}>{t.label}</button>
-              );
-            })}
-          </div>
-
-          {/* Stage filter chips */}
-          <div className="no-scrollbar" style={{
-            display: "flex", gap: 6, padding: "4px 16px 4px",
-            overflowX: "auto", scrollbarWidth: "none",
-          }}>
-            {[{ id: "all", name: "All Stages", color: "var(--ink)" }, ...STAGES].map(s => {
-              const on = stageFilter === s.id;
-              return (
-                <button key={s.id} onClick={() => setStageFilter(s.id)} className="mono" style={{
-                  flexShrink: 0,
-                  padding: "5px 11px",
-                  borderRadius: 999,
-                  background: on ? (s.color || "var(--ink)") : "transparent",
-                  color: on ? "#fff" : "var(--ink)",
-                  border: on ? "none" : "1px solid var(--line-2)",
-                  fontSize: 9.5, letterSpacing: 1.1, textTransform: "uppercase",
-                  cursor: "pointer", fontWeight: on ? 700 : 400,
-                }}>{s.short || s.name}</button>
-              );
-            })}
-          </div>
-
-          {/* Genre filter chips */}
-          {dayGenres.length > 0 && (
-            <div className="no-scrollbar" style={{
-              display: "flex", gap: 6, padding: "4px 16px 8px",
-              overflowX: "auto", scrollbarWidth: "none",
-              borderBottom: "1px solid var(--line)",
-            }}>
-              <button onClick={() => setGenreFilter("all")} className="mono" style={{
-                flexShrink: 0, padding: "5px 11px", borderRadius: 999,
-                background: genreFilter === "all" ? "var(--ink)" : "transparent",
-                color: genreFilter === "all" ? "#fff" : "var(--ink)",
-                border: genreFilter === "all" ? "none" : "1px solid var(--line-2)",
-                fontSize: 9.5, letterSpacing: 1.1, cursor: "pointer",
-                fontWeight: genreFilter === "all" ? 700 : 400, whiteSpace: "nowrap",
-              }}>ALL GENRES</button>
-              {dayGenres.map(g => {
-                const on = genreFilter === g;
-                return (
-                  <button key={g} onClick={() => setGenreFilter(g)} className="mono" style={{
-                    flexShrink: 0, padding: "5px 11px", borderRadius: 999,
-                    background: on ? "var(--horizon)" : "transparent",
-                    color: on ? "#fff" : "var(--ink)",
-                    border: on ? "none" : "1px solid var(--line-2)",
-                    fontSize: 9.5, letterSpacing: 1.1, cursor: "pointer",
-                    fontWeight: on ? 700 : 400, whiteSpace: "nowrap",
-                  }}>{g.toUpperCase()}</button>
-                );
-              })}
-            </div>
-          )}
-        </>
-      )}
-
-      {/* Filter row */}
+      {/* Actions row — MY NIGHT / SHARE / SURPRISE / SETS COUNT.
+          The All/Mine toggle that used to live here moved into the
+          bottom-sheet "Show" section so all filtering is in one place. */}
       <div style={{
-        display: "flex", alignItems: "center", justifyContent: "space-between",
+        display: "flex", alignItems: "center", justifyContent: "flex-end",
         padding: "10px 20px", gap: 8,
       }}>
-        <div style={{ display: "flex", gap: 6 }}>
-          {[["all","All"],["saved","Mine"]].map(([k,l]) => (
-            <button key={k} onClick={() => setFilter(k)} className="mono" style={{
-              padding: "5px 11px",
-              borderRadius: 999,
-              background: filter === k ? "var(--ember)" : "transparent",
-              color: filter === k ? "#fff" : "var(--muted)",
-              border: filter === k ? "none" : "1px solid var(--line-2)",
-              fontSize: 10, letterSpacing: 1.2, textTransform: "uppercase",
-              cursor: "pointer",
-            }}>{l}{k === "saved" && state.saved.length ? ` · ${state.saved.filter(id => ARTISTS.find(a => a.id === id)?.day === day).length}` : ""}</button>
-          ))}
-        </div>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           {totalSaved >= 2 && (
             <button onClick={() => setWizardOpen(true)} style={{
@@ -961,6 +1017,32 @@ function LineupScreen({ state, setState }) {
           );
         })}
       </ScrollBody>
+
+      {filterSheetOpen && (
+        <LineupFilterSheet
+          day={day}
+          dayGenres={dayGenres}
+          savedIds={state.saved || []}
+          initial={{ filter, tierFilter, stageFilter, genreFilter, sortBy }}
+          onClose={() => setFilterSheetOpen(false)}
+          onApply={(f) => {
+            setFilter(f.filter);
+            setTierFilter(f.tierFilter);
+            setStageFilter(f.stageFilter);
+            setGenreFilter(f.genreFilter);
+            setSortBy(f.sortBy);
+            setFilterSheetOpen(false);
+          }}
+          onReset={() => {
+            setFilter("all");
+            setTierFilter("all");
+            setStageFilter("all");
+            setGenreFilter("all");
+            setSortBy("time");
+            setFilterSheetOpen(false);
+          }}
+        />
+      )}
     </Screen>
   );
 }
