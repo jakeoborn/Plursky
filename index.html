@@ -75,8 +75,12 @@
       if (stored && stored !== APP_VERSION) {
         localStorage.setItem('app_version', APP_VERSION);
         if ('caches' in window) {
-          caches.keys().then(ks => Promise.all(ks.map(k => caches.delete(k))))
-            .then(() => location.reload());
+          // Wipe app caches on version bump, but keep the LVMS map tile
+          // cache so users don't re-download the festival basemap when
+          // we ship a new app version mid-event.
+          caches.keys().then(ks => Promise.all(
+            ks.filter(k => !k.startsWith('plursky-tiles-')).map(k => caches.delete(k))
+          )).then(() => location.reload());
         } else { location.reload(); }
       } else if (!stored) {
         localStorage.setItem('app_version', APP_VERSION);
@@ -85,7 +89,10 @@
 
     if ('serviceWorker' in navigator) {
       caches.keys().then(keys =>
-        Promise.all(keys.filter(k => k !== 'plursky-v107').map(k => caches.delete(k)))
+        Promise.all(
+          keys.filter(k => k !== 'plursky-v107' && !k.startsWith('plursky-tiles-'))
+              .map(k => caches.delete(k))
+        )
       ).then(() =>
         navigator.serviceWorker.register('./sw.js?v=v107', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })

@@ -1,5 +1,9 @@
-﻿const CACHE   = 'plursky-v107';
-const APP_VER = 'v107';
+﻿const CACHE      = 'plursky-v107';
+// Tile cache is intentionally separate from the app cache so map tiles
+// survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
+// cache-first forever is correct.
+const TILE_CACHE = 'plursky-tiles-v1';
+const APP_VER    = 'v107';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -37,6 +41,12 @@ const CDN = [
 
 const CDN_HOSTS = ['cdn.jsdelivr.net', 'unpkg.com', 'fonts.googleapis.com', 'fonts.gstatic.com'];
 
+// Map basemap providers used by the Real Map (BETA). Vector tiles + style
+// JSON + glyphs + sprites from OpenFreeMap; raster satellite imagery from
+// Esri. Cached opportunistically: pan around the LVMS area while online
+// and the tiles you visit get stored, then work offline at the festival.
+const TILE_HOSTS = ['tiles.openfreemap.org', 'server.arcgisonline.com'];
+
 // Never intercept live API calls â€” let them fail naturally when offline.
 function isPassThrough(url) {
   return url.includes('accounts.spotify.com') ||
@@ -49,6 +59,10 @@ function isPassThrough(url) {
 
 function isCDN(url) {
   return CDN_HOSTS.some(h => url.includes(h));
+}
+
+function isTile(url) {
+  return TILE_HOSTS.some(h => url.includes(h));
 }
 
 self.addEventListener('install', e => {
@@ -68,9 +82,15 @@ self.addEventListener('install', e => {
 });
 
 self.addEventListener('activate', e => {
+  // Keep both the current app cache and the tile cache. Drop only old
+  // plursky-* caches from previous versions. Tile cache survives bumps so
+  // users don't re-download the LVMS area on every deploy.
   e.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))
+      .then(keys => Promise.all(
+        keys.filter(k => k !== CACHE && k !== TILE_CACHE && k.startsWith('plursky-'))
+            .map(k => caches.delete(k))
+      ))
       .then(() => self.clients.claim())
   );
 });
@@ -79,6 +99,24 @@ self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET') return;
   if (isPassThrough(req.url)) return;
+
+  // Map tiles + style + glyphs + sprites: cache-first into the dedicated
+  // tile cache. Tiles for a given (z, x, y) are immutable so we never need
+  // to revalidate; first visit while online stores it forever (or until
+  // browser evicts the cache under storage pressure).
+  if (isTile(req.url)) {
+    e.respondWith(
+      caches.match(req).then(cached => {
+        if (cached) return cached;
+        return fetch(req, { mode: 'cors', credentials: 'omit' }).then(resp => {
+          if (resp && resp.status === 200)
+            caches.open(TILE_CACHE).then(c => c.put(req, resp.clone()));
+          return resp;
+        }).catch(() => cached);
+      })
+    );
+    return;
+  }
 
   // CDN + fonts: cache-first (immutable pinned versions; woff2 cached on first use)
   if (isCDN(req.url)) {
