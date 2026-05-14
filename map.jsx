@@ -1502,9 +1502,24 @@ function MapScreen({ state, setState }) {
     return Object.entries(crewSnap)
       .filter(([id]) => id !== myPresId)
       .map(([id, e]) => {
-        const st = STAGES.find(s => s.id === e.stageId);
-        if (!st) return null;
-        return { id, name: e.name || "?", color: e.color || "#888", x: st.x, y: st.y, stageId: e.stageId, ts: e.ts };
+        // Prefer real GPS (set via Share With Crew → "📍 My GPS location");
+        // fall back to stage centroid when only stage is broadcast.
+        let x, y;
+        if (e.gps && Number.isFinite(e.gps.lat) && Number.isFinite(e.gps.lng)) {
+          const m = gpsToMap(e.gps.lat, e.gps.lng);
+          x = Math.max(2, Math.min(98, m.x));
+          y = Math.max(2, Math.min(98, m.y));
+        } else {
+          const st = e.stageId ? STAGES.find(s => s.id === e.stageId) : null;
+          if (!st) return null;
+          x = st.x; y = st.y;
+        }
+        return {
+          id, name: e.name || "?",
+          color: e.color || "#888",
+          x, y, gps: e.gps || null,
+          stageId: e.stageId, ts: e.ts,
+        };
       }).filter(Boolean);
   }, [crewSnap, myPresId]);
 
@@ -1843,6 +1858,7 @@ function MapScreen({ state, setState }) {
         {realMap ? (
           <RealMap
             avatar={avatar} stages={STAGES}
+            crewFriends={crewFriends}
             selected={selectedStage} meetTarget={meetTarget}
             onPickStage={(id) => { setSelectedStage(id); setPeek(false); }}
           />
@@ -2343,11 +2359,12 @@ function mapToGps(x, y) {
 // line are overlay layers projected from the existing 100-space x/y
 // via mapToGps(). Behind the "Real map (BETA)" toggle in the More menu;
 // when off, MapScreen falls back to the SVG TopDownMap.
-function RealMap({ avatar, stages, selected, meetTarget, onPickStage }) {
+function RealMap({ avatar, stages, crewFriends = [], selected, meetTarget, onPickStage }) {
   const containerRef = React.useRef(null);
   const mapRef = React.useRef(null);
   const stageMarkersRef = React.useRef({});
   const avatarMarkerRef = React.useRef(null);
+  const friendMarkersRef = React.useRef({}); // id -> { marker, lastSig }
   const onPickStageRef = React.useRef(onPickStage);
   const [loaded, setLoaded] = React.useState(false);
   const [err, setErr] = React.useState(null);
@@ -2519,6 +2536,7 @@ function RealMap({ avatar, stages, selected, meetTarget, onPickStage }) {
       }
       stageMarkersRef.current = {};
       avatarMarkerRef.current = null;
+      friendMarkersRef.current = {};
     };
   }, []);
 
@@ -2528,6 +2546,65 @@ function RealMap({ avatar, stages, selected, meetTarget, onPickStage }) {
     const { lat, lng } = mapToGps(avatar.x, avatar.y);
     avatarMarkerRef.current.setLngLat([lng, lat]);
   }, [loaded, avatar.x, avatar.y]);
+
+  // Crew friend markers — Instagram-style avatar circles. Reconcile diffs on
+  // every crewFriends change: add new, move existing, remove dropped. Stable
+  // marker DOM nodes so positions animate smoothly.
+  React.useEffect(() => {
+    if (!loaded || !mapRef.current || !window.maplibregl) return;
+    const map = mapRef.current;
+    const live = friendMarkersRef.current;
+    const seenIds = new Set();
+
+    crewFriends.forEach(f => {
+      seenIds.add(f.id);
+      const lat = f.gps?.lat ?? mapToGps(f.x, f.y).lat;
+      const lng = f.gps?.lng ?? mapToGps(f.x, f.y).lng;
+      if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+      const seen = formatLastSeen(f.ts);
+      const initial = (f.name?.[0] || "?").toUpperCase();
+      // Signature changes when display-affecting fields change — avoid
+      // re-rendering DOM when only position changes (positions update via
+      // setLngLat on the same element).
+      const sig = `${initial}|${f.color}|${seen.color}|${seen.freshness}|${seen.label}|${f.name}`;
+
+      let entry = live[f.id];
+      if (!entry) {
+        const wrap = document.createElement("div");
+        wrap.style.cssText = "display:flex;flex-direction:column;align-items:center;gap:3px;pointer-events:none;";
+        entry = { marker: new window.maplibregl.Marker({ element: wrap, anchor: "bottom" }).setLngLat([lng, lat]).addTo(map), wrap, sig: "" };
+        live[f.id] = entry;
+      }
+      if (entry.sig !== sig) {
+        entry.wrap.innerHTML =
+          `<div style="width:30px;height:30px;border-radius:999px;background:${f.color};` +
+          `border:2px solid rgba(255,255,255,0.95);box-shadow:0 3px 12px ${f.color}aa,0 0 0 1px rgba(0,0,0,0.4);` +
+          `display:flex;align-items:center;justify-content:center;color:#fff;` +
+          `font-family:'Instrument Serif',serif;font-size:17px;line-height:1;` +
+          `opacity:${seen.freshness === "cold" ? 0.78 : 1};">${initial}</div>` +
+          `<div style="display:flex;align-items:center;gap:4px;` +
+          `background:rgba(6,4,18,0.86);color:#fff;` +
+          `border:1px solid rgba(255,255,255,0.18);` +
+          `padding:2px 7px;border-radius:999px;` +
+          `font-family:'Geist Mono',monospace;font-size:8px;letter-spacing:1.1px;` +
+          `font-weight:700;white-space:nowrap;">` +
+          `<span style="width:5px;height:5px;border-radius:5px;background:${seen.color};` +
+          `${seen.freshness === "fresh" ? "animation:pulse 1.6s infinite;" : ""}"></span>` +
+          `${f.name.toUpperCase()}${seen.label && seen.freshness !== "fresh" ? ` · ${seen.label}` : ""}` +
+          `</div>`;
+        entry.sig = sig;
+      }
+      entry.marker.setLngLat([lng, lat]);
+    });
+
+    // Remove markers for friends no longer in the snap
+    Object.keys(live).forEach(id => {
+      if (!seenIds.has(id)) {
+        try { live[id].marker.remove(); } catch {}
+        delete live[id];
+      }
+    });
+  }, [loaded, crewFriends]);
 
   // Selected stage pulses via CSS animation. flyTo cinematically swings the
   // camera in toward the marker — the single biggest "amazing" gain for one
@@ -3104,31 +3181,48 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         ))}
 
         {crewFriends.map(f => {
-          const seen = formatLastSeen(f.ts);
+          const seen    = formatLastSeen(f.ts);
+          const initial = (f.name?.[0] || "?").toUpperCase();
           return (
             <div key={`crew-${f.id}`} style={{
               position: "absolute", left: `${f.x}%`, top: `${f.y}%`,
-              transform: `translate(-50%, -28px)${counterRot}`,
-              display: "flex", alignItems: "center", gap: 4,
-              background: f.color, color: "#fff",
-              padding: "2px 7px 2px 5px", borderRadius: 999,
-              fontFamily: "Geist Mono, monospace", fontSize: 8.5, letterSpacing: 1.2, fontWeight: 700,
-              boxShadow: `0 3px 14px ${f.color}88`, pointerEvents: "none",
+              transform: `translate(-50%, calc(-100% - 4px))${counterRot}`,
+              display: "flex", flexDirection: "column", alignItems: "center", gap: 4,
+              pointerEvents: "none",
               opacity: seen.freshness === "cold" ? 0.78 : 1,
             }}>
-              <span style={{
-                width: 6, height: 6, borderRadius: 6,
-                background: seen.color,
-                animation: seen.freshness === "fresh" ? "pulse 1.6s infinite" : "none",
-              }}/>
-              {f.name.toUpperCase()}
-              {seen.label && seen.freshness !== "fresh" && (
+              {/* Avatar circle — Instagram-style, color background, serif initial */}
+              <div style={{
+                width: 32, height: 32, borderRadius: 999,
+                background: f.color,
+                border: "2px solid rgba(255,255,255,0.95)",
+                boxShadow: `0 4px 14px ${f.color}aa, 0 0 0 1px rgba(0,0,0,0.45)`,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                color: "#fff",
+                fontFamily: "Instrument Serif, serif", fontSize: 18, fontWeight: 400,
+                lineHeight: 1,
+              }}>{initial}</div>
+              {/* Name + last-seen pill */}
+              <div style={{
+                display: "flex", alignItems: "center", gap: 4,
+                background: "rgba(6,4,18,0.85)", color: "#fff",
+                border: "1px solid rgba(255,255,255,0.18)",
+                padding: "2px 7px", borderRadius: 999,
+                fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.1, fontWeight: 700,
+                whiteSpace: "nowrap",
+              }}>
                 <span style={{
-                  color: "rgba(255,255,255,0.7)",
-                  fontWeight: 500,
-                  marginLeft: 1,
-                }}>· {seen.label}</span>
-              )}
+                  width: 5, height: 5, borderRadius: 5,
+                  background: seen.color,
+                  animation: seen.freshness === "fresh" ? "pulse 1.6s infinite" : "none",
+                }}/>
+                {f.name.toUpperCase()}
+                {seen.label && seen.freshness !== "fresh" && (
+                  <span style={{ color: "rgba(255,255,255,0.7)", fontWeight: 500 }}>
+                    · {seen.label}
+                  </span>
+                )}
+              </div>
             </div>
           );
         })}
