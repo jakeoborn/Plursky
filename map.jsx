@@ -12,6 +12,48 @@ const QUICK_REPLIES = [
   { tag: "FOUND U",      text: "👀 i see you" },
   { tag: "NEED YOU",     text: "🆘 come find me" },
 ];
+
+// Beside-style context-aware reply templates. Drafted from what we know
+// (my stage, friend's stage, the next saved set, the live artist) so the
+// chip row offers a relevant suggestion instead of a generic OMW. v1 is
+// rule-based; a future iteration can call the Anthropic API to draft a
+// real personalized message when online.
+function buildSmartReplies({ myStage, friendStage, nextSavedSet }) {
+  const out = [];
+  if (myStage) {
+    out.push({
+      tag: `AT ${myStage.short}`,
+      text: `📍 at ${myStage.name} now — come find me`,
+      smart: true,
+    });
+  }
+  if (friendStage) {
+    out.push({
+      tag: `OMW TO ${friendStage.short}`,
+      text: `🚀 omw to ${friendStage.name}`,
+      smart: true,
+    });
+  }
+  if (nextSavedSet) {
+    const a = nextSavedSet.artist;
+    const stage = STAGES.find(s => s.id === a.stage);
+    const stageName = stage ? stage.name : "the stage";
+    if (nextSavedSet.isLive) {
+      out.push({
+        tag: `${a.name.toUpperCase().slice(0, 8)} LIVE`,
+        text: `🎧 ${a.name} is LIVE at ${stageName} — get over here`,
+        smart: true,
+      });
+    } else if (nextSavedSet.minsUntil > 0 && nextSavedSet.minsUntil <= 90) {
+      out.push({
+        tag: `${a.name.toUpperCase().slice(0, 8)} ${nextSavedSet.minsUntil}M`,
+        text: `${a.name} in ${nextSavedSet.minsUntil}m at ${stageName} — meet there?`,
+        smart: true,
+      });
+    }
+  }
+  return out;
+}
 const _SEED_MSGS = {
   f1: [
     { from: "them", text: "yooo where you at??", ts: Date.now() - 1000*60*22 },
@@ -2331,6 +2373,7 @@ function MapScreen({ state, setState }) {
           friend={chatFriend}
           myPresId={myPresId}
           avatarStage={selectedStage}
+          saved={state.saved}
           onClose={() => setChatFriend(null)}
           onSwitchToMeet={() => {
             setMeetMode(true);
@@ -3904,7 +3947,7 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
 // ── MESSAGE DRAWER ── per-friend chat with offline queue + canned replies
 // Pass myPresId + friend.presId to enable real Supabase Realtime DMs.
 // Falls back to the demo bot when either presId is absent or Supabase is unconfigured.
-function MessageDrawer({ friend, myPresId, avatarStage, onClose, onSwitchToMeet }) {
+function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onSwitchToMeet }) {
   const isRealDM = !!(myPresId && friend.presId && typeof sbDMSubscribe === "function");
   const dmKey = isRealDM ? sbDMChannelKey(myPresId, friend.presId) : null;
 
@@ -4120,15 +4163,27 @@ function MessageDrawer({ friend, myPresId, avatarStage, onClose, onSwitchToMeet 
           display: "flex", gap: 6, overflowX: "auto", scrollbarWidth: "none",
           padding: "8px 14px 6px", borderTop: "1px solid var(--line)",
         }}>
-          {QUICK_REPLIES.map(qr => (
-            <button key={qr.tag} onClick={() => send(qr.text)} className="mono" style={{
-              flexShrink: 0, padding: "6px 11px", borderRadius: 999,
-              background: "var(--paper-2)", color: "var(--ink)",
-              border: "1px solid var(--line-2)",
-              fontSize: 9.5, letterSpacing: 1.1, fontWeight: 600,
-              cursor: "pointer", textTransform: "uppercase",
-            }}>{qr.tag}</button>
-          ))}
+          {(() => {
+            const myStage = avatarStage ? STAGES.find(s => s.id === avatarStage) : null;
+            const friendStage = friend?.stage ? STAGES.find(s => s.id === friend.stage) : null;
+            const nextSavedSet = saved && saved.length ? findNextSavedSet(saved) : null;
+            const smart = buildSmartReplies({ myStage, friendStage, nextSavedSet });
+            const all = [...smart, ...QUICK_REPLIES];
+            return all.map((qr, i) => (
+              <button key={`${qr.tag}-${i}`} onClick={() => send(qr.text)} className="mono" style={{
+                flexShrink: 0, padding: "6px 11px", borderRadius: 999,
+                background: qr.smart ? "var(--ember)" : "var(--paper-2)",
+                color: qr.smart ? "#fff" : "var(--ink)",
+                border: qr.smart ? "none" : "1px solid var(--line-2)",
+                fontSize: 9.5, letterSpacing: 1.1, fontWeight: 600,
+                cursor: "pointer", textTransform: "uppercase",
+                display: "inline-flex", alignItems: "center", gap: 4,
+              }}>
+                {qr.smart && <span style={{ fontSize: 9 }}>✨</span>}
+                {qr.tag}
+              </button>
+            ));
+          })()}
         </div>
 
         {/* Compose */}
