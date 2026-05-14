@@ -2826,11 +2826,12 @@ function RealMap({
         style: initialStyle.style || initialStyle.url,
         center: [center.lng, center.lat],
         zoom: 15.4,
-        // Default top-down (pitch 0) so the map reads as a paper map —
-        // stage zone glows + colored disc tops show their position cleanly
-        // without 3D walls in the foreground. The flyTo on stage tap lifts
-        // pitch back up for the cinematic zoom-in (see line ~3559).
-        pitch: 0,
+        // Slight isometric pitch — Snapchat Map vibe. Short stage pillars
+        // (12-32m per STAGE_3D_DESIGN above) read as stylized buildings
+        // sitting on the colored ground zones without dominating the view.
+        // The flyTo on stage tap still lifts pitch higher for the
+        // cinematic Pokémon-Go zoom-in (see line ~3559).
+        pitch: 22,
         bearing: 0,
         attributionControl: false,
       });
@@ -2936,18 +2937,22 @@ function RealMap({
         { label: "NOMADS PORTAL",   x: 38, y: 76, rot:   0, color: "rgba(244,114,182,0.92)" },
       ];
 
+      // Stage heights tuned for Snapchat-style isometric overlay — building
+      // scale (12-32m), NOT the prior 80-220m skyscrapers. At pitch ~22°
+      // these read as distinctive stylized buildings without dominating
+      // the festival ground or blocking the stages behind them.
       const STAGE_3D_DESIGN = {
-        kinetic: { sides: 16, radius: 40, height: 220, rot:  0, altInner: 0.42 }, // 8-petal lotus
-        quantum: { sides:  3, radius: 30, height: 135, rot: 30 },                  // trance pyramid
-        bionic:  { sides: 24, radius: 24, height:  85, rot:  0 },                  // jungle dome
-        stereo:  { sides: 12, radius: 22, height:  78, rot: 15, altInner: 0.55 }, // 6-petal bloom
-        cosmic:  { sides: 12, radius: 28, height: 105, rot:  0, altInner: 0.62 }, // sun + rays
-        neon:    { sides:  6, radius: 26, height:  92, rot:  0 },                  // hexagon
-        waste:   { sides: 16, radius: 24, height: 105, rot:  0, altInner: 0.62 }, // 8-point gear
-        basspod: { sides:  4, radius: 22, height:  88, rot: 45 },                  // diamond speaker
-        circuit: { sides:  4, radius: 30, height: 140, rot:  0, aspect: [1.4, 0.9] }, // hangar
+        kinetic: { sides: 16, radius: 40, height: 32, rot:  0, altInner: 0.42 }, // 8-petal lotus, mainstage
+        quantum: { sides:  3, radius: 30, height: 22, rot: 30 },                  // trance pyramid
+        bionic:  { sides: 24, radius: 24, height: 16, rot:  0 },                  // jungle dome
+        stereo:  { sides: 12, radius: 22, height: 14, rot: 15, altInner: 0.55 }, // 6-petal bloom
+        cosmic:  { sides: 12, radius: 28, height: 18, rot:  0, altInner: 0.62 }, // sun + rays
+        neon:    { sides:  6, radius: 26, height: 16, rot:  0 },                  // hexagon
+        waste:   { sides: 16, radius: 24, height: 18, rot:  0, altInner: 0.62 }, // 8-point gear
+        basspod: { sides:  4, radius: 22, height: 16, rot: 45 },                  // diamond speaker
+        circuit: { sides:  4, radius: 30, height: 22, rot:  0, aspect: [1.4, 0.9] }, // hangar
       };
-      const _designFor = (id) => STAGE_3D_DESIGN[id] || { sides: 24, radius: 22, height: 80, rot: 0 };
+      const _designFor = (id) => STAGE_3D_DESIGN[id] || { sides: 24, radius: 22, height: 16, rot: 0 };
 
       // Per-stage 3D pillar geometry. Selected stage gets +60% height,
       // +20% footprint, and higher opacity for the Pokémon-Go-gym "you
@@ -3142,10 +3147,11 @@ function RealMap({
           });
         }
 
-        // Plursky-native stage zone glows — soft circular fills around each
-        // stage in its color. Replaces the EDC poster's wayfinding job
-        // ("this whole area belongs to Kinetic") in a way that's computed
-        // from stage GPS rather than a copyrighted raster.
+        // Plursky-native stage zone glows — large colored ground patches in
+        // each stage's color. These are the "painted floor" wayfinding that
+        // gives the festival its visual character (Snapchat Map's painted
+        // POI zones). Bumped from 60m/0.14 to 90m/0.22 so they read as
+        // intentional ground design rather than faint accents.
         const stageZonesData = () => ({
           type: "FeatureCollection",
           features: stages.map((s) => {
@@ -3155,7 +3161,7 @@ function RealMap({
               properties: { id: s.id, color: s.color },
               geometry: {
                 type: "Polygon",
-                coordinates: _shapePolygon(lat, lng, { sides: 36, radius: 60 }),
+                coordinates: _shapePolygon(lat, lng, { sides: 36, radius: 90 }),
               },
             };
           }),
@@ -3170,8 +3176,93 @@ function RealMap({
             type: "fill",
             paint: {
               "fill-color":   ["get", "color"],
-              "fill-opacity": 0.14,
+              "fill-opacity": 0.22,
               "fill-antialias": true,
+            },
+          });
+        }
+
+        // Festival walkways — dashed ember LineStrings from the stage
+        // centroid (Daisy Lane plaza) out to each stage. Recreates the
+        // radial-spoke pathway pattern of a real festival map. Drawn
+        // BEFORE stage zones so the dashes read through the zone color.
+        const _centroidLatLng = (() => {
+          const pts = stages.map(s => mapToGps(s.x, s.y));
+          const lat = pts.reduce((sum, p) => sum + p.lat, 0) / pts.length;
+          const lng = pts.reduce((sum, p) => sum + p.lng, 0) / pts.length;
+          return { lat, lng };
+        })();
+        const walkwaysData = () => ({
+          type: "FeatureCollection",
+          features: stages.map((s) => {
+            const { lat, lng } = mapToGps(s.x, s.y);
+            return {
+              type: "Feature",
+              properties: { id: s.id },
+              geometry: {
+                type: "LineString",
+                coordinates: [
+                  [_centroidLatLng.lng, _centroidLatLng.lat],
+                  [lng, lat],
+                ],
+              },
+            };
+          }),
+        });
+        if (!map.getSource("walkways")) {
+          map.addSource("walkways", { type: "geojson", data: walkwaysData() });
+        }
+        if (!map.getLayer("walkways")) {
+          map.addLayer({
+            id: "walkways",
+            source: "walkways",
+            type: "line",
+            paint: {
+              "line-color":   "#e85d2e",
+              "line-width":   2,
+              "line-opacity": 0.32,
+              "line-dasharray": [2, 2],
+            },
+          });
+        }
+
+        // Daisy Lane plaza — central plaza marker at the festival centroid.
+        // Small filled circle in Plursky ember, anchors the radial walkway
+        // pattern and gives the map a defined center of gravity.
+        const plazaData = () => ({
+          type: "Feature",
+          properties: { name: "Daisy Lane" },
+          geometry: {
+            type: "Polygon",
+            coordinates: _shapePolygon(_centroidLatLng.lat, _centroidLatLng.lng, {
+              sides: 8, radius: 22,
+            }),
+          },
+        });
+        if (!map.getSource("plaza")) {
+          map.addSource("plaza", { type: "geojson", data: plazaData() });
+        }
+        if (!map.getLayer("plaza")) {
+          map.addLayer({
+            id: "plaza",
+            source: "plaza",
+            type: "fill",
+            paint: {
+              "fill-color":   "#e85d2e",
+              "fill-opacity": 0.18,
+              "fill-antialias": true,
+            },
+          });
+        }
+        if (!map.getLayer("plaza-stroke")) {
+          map.addLayer({
+            id: "plaza-stroke",
+            source: "plaza",
+            type: "line",
+            paint: {
+              "line-color":   "#e85d2e",
+              "line-width":   1.5,
+              "line-opacity": 0.55,
             },
           });
         }
