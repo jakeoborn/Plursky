@@ -3099,7 +3099,10 @@ function RealMap({
         // Constrain panning to the festival footprint + small buffer so users
         // can't accidentally pan to Reno.
         const b = FESTIVAL_CONFIG.venue.festivalBounds;
-        map.setMaxBounds([[b.west - 0.008, b.south - 0.008], [b.east + 0.008, b.north + 0.008]]);
+        // ~5 km buffer so users can zoom out for surrounding context (Strip,
+        // airport) without being able to pan all the way to Reno. Previous
+        // 0.008° (~900m) felt too tight per Jake's TestFlight feedback.
+        map.setMaxBounds([[b.west - 0.05, b.south - 0.05], [b.east + 0.05, b.north + 0.05]]);
 
         // Sub-landmark text labels — named places/walkways drawn on the
         // EDC poster. Same data the SVG TopDownMap LABELS toggle uses,
