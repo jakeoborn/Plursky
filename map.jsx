@@ -2835,35 +2835,127 @@ function RealMap({
       // Per-stage 3D pillar geometry. Selected stage gets +60% height,
       // +20% footprint, and higher opacity for the Pokémon-Go-gym "you
       // tapped this one" pop.
-      const stagesExtrusionData = (selectedId) => ({
-        type: "FeatureCollection",
-        features: stages.map((s) => {
+      // Multi-tier stage geometry — each stage stacks TWO extrusions:
+      // a wider, shorter BASE (the platform) + the main shape on top
+      // (the stage proper). Gives the pillars architectural depth
+      // instead of looking like a single solid cylinder.
+      //
+      // tier="base" → 1.45× radius, 30% height, fill-extrusion-base 0
+      // tier="main" → 1.0× radius, full height, fill-extrusion-base = base height
+      const stagesExtrusionData = (selectedId) => {
+        const feats = [];
+        stages.forEach((s) => {
           const { lat, lng } = mapToGps(s.x, s.y);
           const d   = _designFor(s.id);
           const sel = s.id === selectedId;
           const r   = d.radius * (sel ? 1.2 : 1.0);
           const h   = d.height * (sel ? 1.6 : 1.0);
-          return {
+          const baseH = Math.max(8, h * 0.18);
+          // BASE platform — wider, octagonal regardless of stage shape, dim
+          feats.push({
             type: "Feature",
             properties: {
-              id: s.id,
-              color: s.color,
-              height: h,
-              opacity: sel ? 0.95 : 0.82,
+              id: s.id, tier: "base", color: s.color,
+              height: baseH, base: 0,
+              opacity: sel ? 0.5 : 0.42,
             },
             geometry: {
               type: "Polygon",
               coordinates: _shapePolygon(lat, lng, {
-                sides: d.sides,
-                radius: r,
-                rot: d.rot,
-                altInner: d.altInner,
-                aspect: d.aspect,
+                sides: 8, radius: r * 1.45, rot: 22.5,
               }),
             },
-          };
-        }),
-      });
+          });
+          // MAIN stage shape — sits on top of the base
+          feats.push({
+            type: "Feature",
+            properties: {
+              id: s.id, tier: "main", color: s.color,
+              height: h, base: baseH,
+              opacity: sel ? 0.95 : 0.85,
+            },
+            geometry: {
+              type: "Polygon",
+              coordinates: _shapePolygon(lat, lng, {
+                sides: d.sides, radius: r, rot: d.rot,
+                altInner: d.altInner, aspect: d.aspect,
+              }),
+            },
+          });
+        });
+        return { type: "FeatureCollection", features: feats };
+      };
+
+      // LVMS grandstand — the actual oval structure around the speedway,
+      // extruded as a faux 3D backdrop. Built once on map load, never
+      // changes. Sits BELOW the festival clip mask hole (LVMS infield),
+      // surrounded by horizon-purple, so when zoomed out users see a
+      // recognizable racetrack silhouette around the festival footprint.
+      const grandstandFeature = () => {
+        const b = FESTIVAL_CONFIG.venue.ovalBounds;
+        // Outer ring (the grandstand outline) + inner ring (the infield)
+        // = a "donut" extrusion that traces the speedway grandstand.
+        // Slightly oversized vs the paved track for visual weight.
+        const inset = 0.0008;
+        return {
+          type: "Feature",
+          properties: { color: "#3a2a55", height: 22 },
+          geometry: {
+            type: "Polygon",
+            coordinates: [
+              [[b.west - inset, b.north + inset], [b.east + inset, b.north + inset],
+               [b.east + inset, b.south - inset], [b.west - inset, b.south - inset],
+               [b.west - inset, b.north + inset]],
+              [[b.west, b.north], [b.east, b.north],
+               [b.east, b.south], [b.west, b.south],
+               [b.west, b.north]],
+            ],
+          },
+        };
+      };
+
+      // Repaint relevant basemap layers (water, roads, buildings, landuse,
+      // labels) in Plursky's palette. Iterates once per styledata event so
+      // it survives setStyle. Uses heuristics on layer IDs since
+      // OpenFreeMap Liberty's exact IDs aren't documented. Skipped on
+      // raster styles (no vector layers to repaint).
+      const applyPlurskyPalette = () => {
+        try {
+          const layers = map.getStyle().layers || [];
+          layers.forEach((lyr) => {
+            const id = lyr.id || "";
+            // Water — deep horizon purple
+            if (/water|river|ocean|lake/i.test(id) && lyr.type === "fill") {
+              map.setPaintProperty(id, "fill-color", "#2a1a3d");
+            }
+            // Park / landuse — dim ink with very low opacity
+            if (/(park|landuse|natural|grass|wood|forest)/i.test(id) && lyr.type === "fill") {
+              map.setPaintProperty(id, "fill-color", "#1a120d");
+              map.setPaintProperty(id, "fill-opacity", 0.22);
+            }
+            // Building fills (Liberty has 2D buildings too) — paper-ink
+            if (/(building|housenum)/i.test(id) && lyr.type === "fill") {
+              map.setPaintProperty(id, "fill-color", "#3a2a55");
+              map.setPaintProperty(id, "fill-opacity", 0.35);
+            }
+            // Roads — ember on motorways, flare on secondary, muted on side
+            if (lyr.type === "line" && /road|highway|street|motorway|primary|secondary|tertiary|service|bridge|tunnel|path/i.test(id)) {
+              if (/motorway|primary|trunk/.test(id))   map.setPaintProperty(id, "line-color", "#e85d2e");
+              else if (/secondary|tertiary/.test(id))   map.setPaintProperty(id, "line-color", "#f59a36");
+              else                                       map.setPaintProperty(id, "line-color", "rgba(247,237,224,0.35)");
+            }
+            // Text labels — keep mono-cap feel; recolor to paper
+            if (lyr.type === "symbol") {
+              try { map.setPaintProperty(id, "text-color", "rgba(247,237,224,0.85)"); } catch {}
+              try { map.setPaintProperty(id, "text-halo-color", "rgba(10,6,24,0.85)"); } catch {}
+            }
+            // Background = deep night sky
+            if (lyr.type === "background") {
+              map.setPaintProperty(id, "background-color", "#0a0618");
+            }
+          });
+        } catch {}
+      };
 
       // GeoJSON Polygon with a huge outer ring + a hole at the LVMS festival
       // footprint. Painted opaque on top of the basemap, this "removes
@@ -2911,6 +3003,27 @@ function RealMap({
       // style finishes loading. Clip first → poster on top → 3D buildings
       // extrude from poster → route line → DOM markers.
       const setupOverlayLayers = () => {
+        // Repaint the basemap into Plursky palette before adding overlays.
+        applyPlurskyPalette();
+
+        // LVMS grandstand — purple oval outline rising from the ground.
+        if (!map.getSource("grandstand")) {
+          map.addSource("grandstand", { type: "geojson", data: grandstandFeature() });
+        }
+        if (!map.getLayer("grandstand")) {
+          map.addLayer({
+            id: "grandstand",
+            source: "grandstand",
+            type: "fill-extrusion",
+            paint: {
+              "fill-extrusion-color":   ["get", "color"],
+              "fill-extrusion-height":  ["get", "height"],
+              "fill-extrusion-base":    0,
+              "fill-extrusion-opacity": 0.85,
+            },
+          });
+        }
+
         if (!map.getSource("edc-clip")) {
           map.addSource("edc-clip", { type: "geojson", data: edcClipFeature() });
         }
@@ -2994,7 +3107,10 @@ function RealMap({
             paint: {
               "fill-extrusion-color":   ["get", "color"],
               "fill-extrusion-height":  ["get", "height"],
-              "fill-extrusion-base":    0,
+              // tier="base" sits at base=0, tier="main" sits on top of the
+              // base. Driven from feature properties so a single layer
+              // renders both tiers (cheaper than two layers + 2× draw).
+              "fill-extrusion-base":    ["get", "base"],
               "fill-extrusion-opacity": ["get", "opacity"],
             },
           });
@@ -3030,7 +3146,11 @@ function RealMap({
             type: "raster",
             source: "edc-poster",
             paint: {
-              "raster-opacity": 0.96,
+              // 0.55 opacity so the poster reads as a *texture cue* on the
+              // ground rather than dominating the 3D scene. The multi-tier
+              // stage pillars + grandstand + Plursky-painted basemap do the
+              // visual heavy lifting; the poster adds character on top.
+              "raster-opacity": 0.55,
               "raster-fade-duration": 200,
             },
           });
