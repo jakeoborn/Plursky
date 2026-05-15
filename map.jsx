@@ -3332,6 +3332,25 @@ function RealMap({
         }
         });
 
+        // Force my overlay layers to the TOP of the render stack. styledata
+        // events sometimes add basemap layers AFTER the first setupOverlayLayers
+        // call, which can leave my layers buried below. moveLayer with no
+        // second arg moves to top.
+        ["festival-floor", "stage-zones", "plaza", "plaza-stroke", "stages-3d-base", "stages-3d", "route"].forEach((id) => {
+          try { if (map.getLayer(id)) map.moveLayer(id); } catch (e) {
+            console.error(`[plursky-map] moveLayer "${id}" failed:`, e);
+          }
+        });
+
+        try {
+          const existing = (map.getStyle().layers || [])
+            .filter((l) => /festival|stage|plaza|route/.test(l.id))
+            .map((l) => `${l.id}(${l.type})`);
+          console.log("[plursky-map] my layers after setup:", existing.join(", ") || "(none)");
+        } catch (e) {
+          console.error("[plursky-map] getStyle failed:", e);
+        }
+
         console.log("[plursky-map] setupOverlayLayers END");
 
         if (!map.getSource("route")) {
