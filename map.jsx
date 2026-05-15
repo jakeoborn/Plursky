@@ -289,7 +289,13 @@ function _solveMapAffine() {
   const C = { lat: a2.lat, lng: a2.lng, mx: find(a2.stageId).x, my: find(a2.stageId).y };
   const det = A.lat*(B.lng - C.lng) - A.lng*(B.lat - C.lat) + (B.lat*C.lng - C.lat*B.lng);
   const solve = (v1, v2, v3) => {
-    const a = (v1*(B.lng - C.lng)        - A.lng*(v2 - v3)            + (B.lng*v3 - C.lng*v2)) / det;
+    // Cramer's rule for [v1; v2; v3] = M * [a; b; c] where M is the
+    // 3-anchor [lat,lng,1] system. Last term of `a` had its sign
+    // flipped — should be (C.lng*v2 - B.lng*v3), not (B.lng*v3 - C.lng*v2).
+    // That bug made MAP_AFFINE.x[0] / .y[0] (the latitude coefficient)
+    // wrong, which inverted to mapToGps(50,22) → lat~0 lng~-84 instead
+    // of the actual Kinetic GPS at LVMS.
+    const a = (v1*(B.lng - C.lng)        - A.lng*(v2 - v3)            + (C.lng*v2 - B.lng*v3)) / det;
     const b = (A.lat*(v2 - v3)           - v1*(B.lat - C.lat)         + (B.lat*v3 - C.lat*v2)) / det;
     const c = (A.lat*(B.lng*v3 - C.lng*v2) - A.lng*(B.lat*v3 - C.lat*v2) + v1*(B.lat*C.lng - C.lat*B.lng)) / det;
     return [a, b, c];
