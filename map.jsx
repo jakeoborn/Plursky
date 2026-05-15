@@ -3162,7 +3162,12 @@ function RealMap({
             source: "outside-mask",
             paint: {
               "fill-color":   "#eee0cb",  // Plursky --paper-2
-              "fill-opacity": 0.96,
+              // Soft tint (was 0.96 fully opaque) — surrounding speedway,
+              // parking, and access roads bleed through enough to give the
+              // festival spatial context, while the festival interior still
+              // reads as the focus. At 0.96 the festival looked orphaned
+              // on a featureless paper sea.
+              "fill-opacity": 0.55,
               "fill-antialias": true,
             },
           });
