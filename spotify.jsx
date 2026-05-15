@@ -86,8 +86,22 @@ async function fetchAppleMusicArtists() {
   } catch { return []; }
 }
 
-const SPOTIFY_CLIENT_ID = "2219c68606c54629a8799f467a996a81";
-const SPOTIFY_REDIRECT  = "https://plursky.com/callback";
+const SPOTIFY_CLIENT_ID     = "2219c68606c54629a8799f467a996a81";
+const SPOTIFY_REDIRECT_WEB  = "https://plursky.com/callback";
+// v132: native iOS uses a custom URL scheme so Spotify's redirect comes back
+// INTO the app via Capacitor's appUrlOpen listener (vs. dumping the user
+// into a web tab at the wrong origin). Requires:
+//   • Info.plist registers the `plursky` URL scheme (see CFBundleURLTypes)
+//   • Spotify dashboard adds `plursky://callback` to Redirect URIs
+function _isNativeApp() {
+  return !!window.Capacitor?.isNativePlatform?.();
+}
+const SPOTIFY_REDIRECT_NATIVE = "plursky://callback";
+function _spotifyRedirectUri() {
+  return _isNativeApp() ? SPOTIFY_REDIRECT_NATIVE : SPOTIFY_REDIRECT_WEB;
+}
+// Back-compat alias — pre-v132 code referenced SPOTIFY_REDIRECT directly.
+const SPOTIFY_REDIRECT = SPOTIFY_REDIRECT_WEB;
 const SPOTIFY_SCOPES    = "user-top-read user-read-recently-played user-library-read user-read-private user-read-email user-follow-read playlist-read-private playlist-modify-public playlist-modify-private";
 
 // Genre keywords → EDC stage affinity
@@ -230,7 +244,7 @@ async function _buildSpotifyAuthUrl() {
   const params = new URLSearchParams({
     client_id:             SPOTIFY_CLIENT_ID,
     response_type:         "code",
-    redirect_uri:          SPOTIFY_REDIRECT,
+    redirect_uri:          _spotifyRedirectUri(),
     code_challenge_method: "S256",
     code_challenge:        challenge,
     scope:                 SPOTIFY_SCOPES,
@@ -241,6 +255,97 @@ async function _buildSpotifyAuthUrl() {
   });
   return "https://accounts.spotify.com/authorize?" + params;
 }
+
+// v132 native OAuth: exchange the auth code for a token in-process. On the
+// web this is done by callback.html; on native we never hit a web page so
+// we replicate the logic here. Records the granted scope + caches profile.
+async function _spotifyExchangeCode(code, redirectUri) {
+  const verifier =
+    localStorage.getItem("spotify_pkce_verifier") ||
+    sessionStorage.getItem("spotify_pkce_verifier");
+  if (!verifier) return { error: "session_lost" };
+  try {
+    const res = await fetch("https://accounts.spotify.com/api/token", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        client_id:     SPOTIFY_CLIENT_ID,
+        grant_type:    "authorization_code",
+        code,
+        redirect_uri:  redirectUri,
+        code_verifier: verifier,
+      }),
+    });
+    const data = await res.json();
+    if (!data.access_token) return { error: data.error_description || data.error || "no_token" };
+    try {
+      localStorage.setItem("spotify_token",         data.access_token);
+      localStorage.setItem("spotify_refresh_token", data.refresh_token || "");
+      localStorage.setItem("spotify_expires",       Date.now() + data.expires_in * 1000);
+      if (data.scope) localStorage.setItem("spotify_auth_scopes", data.scope);
+      localStorage.removeItem("spotify_pkce_verifier");
+      sessionStorage.removeItem("spotify_pkce_verifier");
+    } catch {}
+    // Pre-fetch profile so home/me screens render personalised on first paint.
+    try {
+      const profRes = await fetch("https://api.spotify.com/v1/me", {
+        headers: { Authorization: "Bearer " + data.access_token },
+      });
+      if (profRes.ok) {
+        const p = await profRes.json();
+        localStorage.setItem("spotify_profile", JSON.stringify({
+          id: p.id,
+          name: p.display_name || p.id,
+          email: p.email || null,
+          image: p.images?.[0]?.url || null,
+          country: p.country || null,
+          product: p.product || null,
+        }));
+      }
+    } catch {}
+    return { ok: true };
+  } catch (e) {
+    return { error: e?.message || "network" };
+  }
+}
+
+// Capacitor's appUrlOpen fires when iOS hands a `plursky://...` URL to the
+// app. We listen for `plursky://callback?code=...` here, run the token
+// exchange, close the in-app browser, and notify React via a custom event
+// the SpotifyScreen (and Me-tab account card) listen for.
+let _spotifyNativeHandlerRegistered = false;
+function _registerNativeSpotifyHandler() {
+  if (_spotifyNativeHandlerRegistered) return;
+  const App = window.Capacitor?.Plugins?.App;
+  const Browser = window.Capacitor?.Plugins?.Browser;
+  if (!App?.addListener) return;
+  _spotifyNativeHandlerRegistered = true;
+  App.addListener("appUrlOpen", async (event) => {
+    const url = event?.url || "";
+    if (!/^plursky:\/\/callback/i.test(url)) return;
+    let parsed;
+    try { parsed = new URL(url); } catch { return; }
+    const code  = parsed.searchParams.get("code");
+    const error = parsed.searchParams.get("error");
+    // Close the in-app SafariViewController; user lands back in Plursky.
+    try { await Browser?.close?.(); } catch {}
+    if (error || !code) {
+      _spotifyDebugToast("Spotify connect cancelled.", "#9b1c1c");
+      try { window.dispatchEvent(new CustomEvent("plursky-spotify-connect", { detail: { error: error || "no_code" } })); } catch {}
+      return;
+    }
+    const { error: exErr } = await _spotifyExchangeCode(code, SPOTIFY_REDIRECT_NATIVE);
+    if (exErr) {
+      _spotifyDebugToast("Spotify connect failed: " + exErr, "#9b1c1c");
+      try { window.dispatchEvent(new CustomEvent("plursky-spotify-connect", { detail: { error: exErr } })); } catch {}
+      return;
+    }
+    // Success — React state lives one layer up; broadcast and let listeners
+    // setState({ spotifyConnected: true, spotifyProfile: ... }).
+    try { window.dispatchEvent(new CustomEvent("plursky-spotify-connect", { detail: { ok: true } })); } catch {}
+  });
+}
+if (typeof window !== "undefined") _registerNativeSpotifyHandler();
 
 // Cached URL ready by the time the user actually taps CONNECT.
 let _SPOTIFY_AUTH_URL = null;
@@ -289,7 +394,35 @@ function _spotifyDebugToast(text, color) {
 }
 
 function startSpotifyAuth() {
-  // Mobile-PWA OAuth gotcha: warn once, and let user opt out of the redirect.
+  // Native iOS (Capacitor): open the auth URL in an in-app SafariViewController
+  // via @capacitor/browser. Spotify redirects back to `plursky://callback?code=…`,
+  // which iOS hands to the app via App.appUrlOpen — handled by the listener
+  // registered at module load. The in-browser SafariViewController also keeps
+  // the user's existing Spotify session cookie from Safari, so most users get
+  // a one-tap "Allow" sheet instead of a full email/password form.
+  if (_isNativeApp()) {
+    const Browser = window.Capacitor?.Plugins?.Browser;
+    if (!Browser?.open) {
+      _spotifyDebugToast("Spotify connect needs an app update.", "#9b1c1c");
+      return;
+    }
+    const go = (url) => {
+      Browser.open({ url, presentationStyle: "popover" }).catch(err => {
+        _spotifyDebugToast("Spotify connect failed: " + (err?.message || err), "#9b1c1c");
+      });
+    };
+    if (_SPOTIFY_AUTH_URL) { go(_SPOTIFY_AUTH_URL); return; }
+    _spotifyDebugToast("Preparing Spotify…", "#1a120d");
+    _buildSpotifyAuthUrl().then(go).catch(err => {
+      _spotifyDebugToast("Spotify connect failed: " + (err?.message || err), "#9b1c1c");
+    });
+    return;
+  }
+
+  // Web (plursky.com): Mobile-PWA OAuth gotcha — installed-PWA standalone mode
+  // has its own localStorage silo that the system browser can't see, so the
+  // PKCE verifier we just wrote is unreachable after redirect. Warn and let
+  // the user opt out.
   if (isStandalonePWA() && isMobile()) {
     const ack = confirm(
       "Heads up: Spotify login is more reliable in your phone's browser " +
@@ -1247,6 +1380,27 @@ function SpotifyScreen({ state, setState }) {
       </div>
 
       <ScrollBody style={{ padding: "10px 20px 24px" }}>
+
+        {/* Native-iOS Spotify fallback hint (v132). On the App Store binary
+            before the @capacitor/browser OAuth path landed, Spotify connect
+            failed silently because the redirect went to a different origin.
+            Even with the fix in place, surfacing a "Safari also works" hint
+            gives users a path forward if the in-app SafariViewController
+            misbehaves. */}
+        {!connected && _isNativeApp() && (
+          <div style={{
+            display: "flex", alignItems: "flex-start", gap: 10,
+            padding: "10px 12px", marginBottom: 14,
+            background: "rgba(232,93,46,0.10)",
+            border: "1px solid rgba(232,93,46,0.35)",
+            borderRadius: 12,
+          }}>
+            <span aria-hidden style={{ fontSize: 15, flexShrink: 0 }}>ℹ️</span>
+            <div style={{ fontSize: 12, color: "var(--ink)", lineHeight: 1.45 }}>
+              If Spotify sign-in stalls, open <strong>plursky.com</strong> in mobile Safari — it works there reliably and your saved sets sync if you signed in with Apple on Me.
+            </div>
+          </div>
+        )}
 
         {/* ── Connect card ───────────────────────────────── */}
         <div style={{

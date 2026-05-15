@@ -54,5 +54,21 @@
 	     indicators / form controls based on the user's system setting. -->
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
+	<!-- Custom URL scheme so OAuth providers (Spotify) can redirect back into
+	     the native app. The Spotify dashboard's redirect-URI list must include
+	     `plursky://callback` for this to work; on the JS side we open the
+	     authorize URL in a SafariViewController via @capacitor/browser and
+	     listen for the inbound `appUrlOpen` to pull the auth code. -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.plursky.app</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>plursky</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
