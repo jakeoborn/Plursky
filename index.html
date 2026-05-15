@@ -82,23 +82,23 @@
     } catch {}
   </script>
 
-  <script type="text/babel" src="ios-frame.jsx?v=v115"></script>
-  <script type="text/babel" src="data.jsx?v=v115"></script>
-  <script type="text/babel" src="supabase.jsx?v=v115"></script>
-  <script type="text/babel" src="chrome.jsx?v=v115"></script>
-  <script type="text/babel" src="home.jsx?v=v115"></script>
-  <script type="text/babel" src="map.jsx?v=v115"></script>
-  <script type="text/babel" src="lineup.jsx?v=v115"></script>
-  <script type="text/babel" src="artist.jsx?v=v115"></script>
-  <script type="text/babel" src="spotify.jsx?v=v115"></script>
-  <script type="text/babel" src="app.jsx?v=v115"></script>
+  <script type="text/babel" src="ios-frame.jsx?v=v116"></script>
+  <script type="text/babel" src="data.jsx?v=v116"></script>
+  <script type="text/babel" src="supabase.jsx?v=v116"></script>
+  <script type="text/babel" src="chrome.jsx?v=v116"></script>
+  <script type="text/babel" src="home.jsx?v=v116"></script>
+  <script type="text/babel" src="map.jsx?v=v116"></script>
+  <script type="text/babel" src="lineup.jsx?v=v116"></script>
+  <script type="text/babel" src="artist.jsx?v=v116"></script>
+  <script type="text/babel" src="spotify.jsx?v=v116"></script>
+  <script type="text/babel" src="app.jsx?v=v116"></script>
 
   <script>
 
     // Build version stamp â€” bumped on every deploy that changes app behaviour.
     // If the running tab's stored version doesn't match, force a full reload
     // (bypassing browser HTTP cache that GH-Pages serves with max-age=600).
-    const APP_VERSION = 'v115';
+    const APP_VERSION = 'v116';
     try {
       const stored = localStorage.getItem('app_version');
       if (stored && stored !== APP_VERSION) {
@@ -119,11 +119,11 @@
     if ('serviceWorker' in navigator) {
       caches.keys().then(keys =>
         Promise.all(
-          keys.filter(k => k !== 'plursky-v115' && !k.startsWith('plursky-tiles-'))
+          keys.filter(k => k !== 'plursky-v116' && !k.startsWith('plursky-tiles-'))
               .map(k => caches.delete(k))
         )
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v115', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v116', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 

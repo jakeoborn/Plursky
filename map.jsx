@@ -2818,12 +2818,10 @@ function RealMap({
         // (Snapchat-style "this map is for the fairgrounds, not Vegas").
         // setMaxBounds below pins panning to ±400m of the festival.
         zoom: 16.2,
-        // Slight isometric pitch — Snapchat Map vibe. Short stage pillars
-        // (12-32m per STAGE_3D_DESIGN above) read as stylized buildings
-        // sitting on the colored ground zones without dominating the view.
-        // The flyTo on stage tap still lifts pitch higher for the
-        // cinematic Pokémon-Go zoom-in (see line ~3559).
-        pitch: 22,
+        // Flat top-down (pitch 0) on initial load so the map opens centered
+        // and oriented like a paper map, not an isometric scene. flyTo on
+        // stage tap still lifts pitch for the cinematic zoom-in.
+        pitch: 0,
         bearing: 0,
         attributionControl: false,
       });
@@ -3047,10 +3045,11 @@ function RealMap({
               map.setPaintProperty(id, "fill-color", "#1a120d");
               map.setPaintProperty(id, "fill-opacity", 0.22);
             }
-            // Building fills (Liberty has 2D buildings too) — paper-ink
-            if (/(building|housenum)/i.test(id) && lyr.type === "fill") {
-              map.setPaintProperty(id, "fill-color", "#3a2a55");
-              map.setPaintProperty(id, "fill-opacity", 0.35);
+            // Buildings + parking — HIDE entirely. Jake wants just the
+            // speedway oval + stages on top, not OSM building polygons
+            // (grandstand structures + parking lots) cluttering the view.
+            if (/(building|parking|housenum)/i.test(id) && (lyr.type === "fill" || lyr.type === "fill-extrusion")) {
+              try { map.setLayoutProperty(id, "visibility", "none"); } catch {}
             }
             // Roads — ember on motorways, flare on secondary, muted on side
             if (lyr.type === "line" && /road|highway|street|motorway|primary|secondary|tertiary|service|bridge|tunnel|path/i.test(id)) {
@@ -3162,31 +3161,33 @@ function RealMap({
             source: "outside-mask",
             paint: {
               "fill-color":   "#eee0cb",  // Plursky --paper-2
-              // Soft tint (was 0.96 fully opaque) — surrounding speedway,
-              // parking, and access roads bleed through enough to give the
-              // festival spatial context, while the festival interior still
-              // reads as the focus. At 0.96 the festival looked orphaned
-              // on a featureless paper sea.
-              "fill-opacity": 0.55,
+              // Fully opaque — Jake's call: hide the stuff around the
+              // speedway entirely. Only the festival window shows the
+              // basemap + Plursky overlay; everything else is paper.
+              "fill-opacity": 0.98,
               "fill-antialias": true,
             },
           });
         }
 
-        if (!map.getSource("edc-clip")) {
-          map.addSource("edc-clip", { type: "geojson", data: edcClipFeature() });
+        // Festival floor — warm Plursky tint over the festival rectangle.
+        // (Replaces the prior global edc-clip polygon, whose [-180,-85]
+        // outer ring was likely hitting Web Mercator precision issues
+        // and silently failing to render.)
+        if (!map.getSource("festival-floor")) {
+          map.addSource("festival-floor", {
+            type: "geojson",
+            data: festivalFootprint(),
+          });
         }
-        if (!map.getLayer("edc-clip")) {
+        if (!map.getLayer("festival-floor")) {
           map.addLayer({
-            id: "edc-clip",
+            id: "festival-floor",
             type: "fill",
-            source: "edc-clip",
+            source: "festival-floor",
             paint: {
-              // Plursky `--night` — warmer than the prior cold #0a0618 so
-              // stage-color ground zones (added below) read against a
-              // Plursky-palette ground instead of a generic dark void.
-              "fill-color": "#1a1030",
-              "fill-opacity": 1,
+              "fill-color":   "#1a1030",   // Plursky --night, warm dark
+              "fill-opacity": 0.55,
               "fill-antialias": true,
             },
           });
