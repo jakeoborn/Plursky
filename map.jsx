@@ -2266,21 +2266,15 @@ function MapScreen({ state, setState }) {
           );
         })()}
 
-        <RealMap
-          avatar={avatar} stages={STAGES}
-          crewFriends={crewFriends}
-          saved={state.saved}
-          showHeat={showHeat}
+        <TopDownMap
+          avatar={avatar} heading={heading} friends={friends} stages={STAGES}
+          saved={state.saved} showLabels={showLabels} showHeat={showHeat}
           compass={compass && compassStatus === "live"}
           compassHeading={compassHeading}
-          selected={selectedStage}
-          meetMode={meetMode} meetTarget={meetTarget}
+          selected={selectedStage} meetMode={meetMode} meetTarget={meetTarget} meetGroup={meetGroup}
+          crewFriends={crewFriends}
           onPickStage={(id) => { setSelectedStage(id); setPeek(false); }}
-          onMapClick={(xy) => {
-            if (!meetMode) return;
-            const names = meetGroup.map(id => friends.find(f => f.id === id)?.name).filter(Boolean);
-            setMeetTarget({ x: xy.x, y: xy.y, label: names.length ? `Meet ${names.join(" + ")}` : "Meet here" });
-          }}
+          onClick={handleMapClick}
         />
 
         {/* Ground-level peek window (picture-in-picture) */}
