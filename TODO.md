@@ -1,39 +1,38 @@
 # Plursky — To-Do List
 
-## 🍿 SUBMITTED — WAITING ON APPLE REVIEW
+## 🔧 MANUAL STEPS YOU MUST RUN
 
-**Status (2026-05-13):** Plursky Live `1.0 (3)` is **in Apple App Review**. Expected decision in ~24-48 hours.
+These are one-time setup steps that Claude cannot do for you. Run them before the relevant feature reaches users.
 
-### What to watch for
-- Email from `appstoreconnect@apple.com` titled "**Your app status is now In Review**" → "**Ready for Sale / Distribution**" or "**Rejected**"
-- App Store Connect → My Apps → Plursky Live → App Store tab shows the status badge live
+- [ ] **Run `crew_message_reports` DDL in Supabase SQL editor** (added 2026-05-15 with v131 UGC moderation). Until this runs, the Report Message button in CrewChat will fail with "relation does not exist." DDL block is at the top of `supabase.jsx` in the `/* ── SQL ── */` doc, under the `-- v131:` comment. Includes the table, an index, RLS enable, and an insert-only anon policy. Verify after running: Supabase Dashboard → Table Editor → `crew_message_reports` exists.
+- [ ] **`npx cap sync ios` then archive + submit a v1.1.x update** to ship the native local-notification reminders to iOS App Store users (web users get nothing new from this — web Notification path is unchanged). Required after v131's `@capacitor/local-notifications` install lands.
 
-### If approved
-- Decide between manual release ("Pending Developer Release") vs immediate release. For a festival app with a known launch window, **immediate release** is fine.
-- Share `https://apps.apple.com/app/plursky-live/id<APP_ID>` once live.
-- Move on to the **🚀 POST-LAUNCH QUEUE** below.
+---
 
-### If rejected
-- Most likely reasons (in order of probability), with response strategy:
-  1. **UGC chat moderation** — Apple wants in-app "Report message" + "Block user" on Crew Chat. Fix: add a `...` menu on each chat bubble in `supabase.jsx`'s `CrewChat`. ~1 day. Resubmit as v1.0.1.
-  2. **Support-email test bounce** — verify `hello@plursky.com` actually receives mail. DNS is propagated (Mailgun MX) but Yahoo spam filter may catch it. Mark Apple's test email as Not Spam after it arrives.
-  3. **Festival countdown looks empty** — reviewer flagged the pre-event home tab as "non-functional". Mitigation already in reviewer notes; if they still push back, respond via App Store Connect message with a screen recording of the festival-window NOW state.
+## 🎉 LIVE ON THE APP STORE
+
+**Status (2026-05-15):** Plursky Live `1.1 (11)` is **APPROVED FOR DISTRIBUTION**. App Store listing is live (or pending developer release). EDC opens today — launch + festival collide.
+
+### What this unlocks
+- iOS binary is **unfrozen** — patch updates (v1.1.1, v1.2, …) can be archived + submitted whenever.
+- Website (plursky.com) continues to ship on every push to `main` as before.
+- All deferred work below is now in-bounds.
 
 ### Operational status (verified live as of 2026-05-13)
 - Edge Function: `https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/delete-account` → HTTP 200
 - Privacy policy: `https://plursky.com/privacy` → HTTP 200
-- Email forward: `hello@plursky.com → jakeoborn@yahoo.com` via Squarespace/Mailgun (verify with phone test send)
+- Email forward: `hello@plursky.com → jakeoborn@yahoo.com` via Squarespace/Mailgun
 
 ---
 
-## 🚀 POST-LAUNCH QUEUE — ship as v1.0.1 / v1.1
+## 🚀 POST-LAUNCH QUEUE — ship as v1.1.1 / v1.2
 
 Ordered by user-impact-per-engineering-hour. Pick from top.
 
-- [x] **Map redesign** — DONE 2026-05-14 across commits `8f712cd`..`f109803`. Killed the BETA toggle; the Snapchat-style MapLibre RealMap is now THE map. Apple-Maps-style chrome rewrite (top-right glass icon column, bottom search sheet, refreshed place card). EDC poster removed, replaced with Plursky-original stage zones + plaza overlay. Fairgrounds-only zoom + bounds + outside-festival paper mask. Short stylized stage buildings (12-32m) at 22° isometric pitch. Search now matches artists by name. Heads-up strips (NextSet/Sunrise/Weather) live in the bottom sheet, always visible when no search. Orphaned `TopDownMap` function still in `map.jsx` (~line 3862) — purge in follow-up commit.
-- [ ] **Purge TopDownMap dead code** — `map.jsx` ~line 3862 `function TopDownMap(…)` is unused after `f109803` made RealMap unconditional. Delete it + any helpers only it referenced (verify by grep; `STAGE_3D_DESIGN` is still used by RealMap so KEEP that one).
-- [ ] **UGC report + block** — add a `...` menu on each `CrewChat` bubble in `supabase.jsx`. Options: "Report message" (POSTs to a new `crew_message_reports` table + emails hello@plursky.com), "Block sender" (per-device pid blocklist in localStorage). Apple may require this if they reject for UGC; ship pre-emptively in v1.0.1 to be safe.
-- [ ] **Native push notifications** — replace the web `Notification` API in `chrome.jsx:366` with `@capacitor/push-notifications`. Required for set-time reminders to actually fire when the app is backgrounded on iOS (web push doesn't work in WKWebView).
+- [x] **Map redesign** — DONE 2026-05-14 across commits `8f712cd`..`f109803`. RealMap (MapLibre + heatmap + Apple-Maps chrome) shipped, but **reverted to v1.0 SVG `TopDownMap` in `139b50e` (2026-05-15) for EDC night**. Both implementations are in the binary; `MapScreen` calls `TopDownMap`.
+- [ ] **Re-enable RealMap post-festival** — once EDC weekend is over, swap `<TopDownMap …>` at `map.jsx:2269` back to `<RealMap …>` (or restore the toggle). RealMap function lives at `map.jsx:2780` with all the polish from the May 14 session preserved. ⚠️ **Do NOT purge `TopDownMap`** — it's the live map until this swap happens.
+- [x] **UGC report + block** — DONE 2026-05-15 (v131). `⋯` button on each non-mine `CrewChat` bubble opens an inline menu (Report message / Block sender / Cancel). Report opens a reason sheet (5 chips: spam · harassment · sexual · violence · other + 500-char optional note) and inserts a row into `crew_message_reports` with a snapshot of body+sender+reporter. Block is per-device (`localStorage.plursky_blocked_pids_v1`) and filters blocked senders' messages AND polls AND votes out of render. `BlockedManager` pill above the input shows count + per-pid Unblock buttons. ⚠️ **MANUAL STEP**: run the new `crew_message_reports` DDL block in the Supabase SQL editor before the first user reports a message (see top of `supabase.jsx` — table + index + RLS insert policy). Reports are queryable from the Supabase dashboard for now; an Edge Function → email hello@plursky.com trigger is a future enhancement.
+- [x] **Native local notifications** — DONE 2026-05-15 (v131). Installed `@capacitor/local-notifications@^6` (corrected from the TODO's `@capacitor/push-notifications`, which is for server-sent APNs/FCM — Plursky has no backend for that). `chrome.jsx:useNotifications` now branches on `window.Capacitor.Plugins.LocalNotifications`: native gets OS-level scheduled alerts that fire when the app is killed; web keeps the existing setTimeout + `reg.showNotification` fallback. `scheduleReminders` collapses to a single `LocalNotifications.schedule({ at: Date })` call on native (cancels prior slate first). `loadAndReschedule` is a no-op on native because the OS holds the schedule across app lifecycle. Stable int32-safe IDs derived from artist id so cancel/replace is trivial. "How to re-enable" copy + "blocked" copy branch on native (Settings → Plursky → Notifications vs Safari site permissions). ⚠️ **MANUAL STEP**: `npx cap sync ios` then archive + submit a v1.1.x update to reach App Store users. Website users are unchanged.
 - [ ] **Apple Music dev token** — `APPLE_DEV_TOKEN` in `spotify.jsx:8` is empty. Get a MusicKit JWT from developer.apple.com → MusicKit identifier. Valid 6 months. Card stays hidden until set (v89 gate).
 - [ ] **Friend DMs (PING replacement)** — extend `crew_messages` to 1:1 room id (`dm-${sortedPidA}-${sortedPidB}`), swap out `_fakeReply()` in `map.jsx`. Reuses same table + RLS.
 - [ ] **Smart search bar** — natural-language lineup queries via a server-side LLM proxy. Replaces the removed v97 BYOK chat.

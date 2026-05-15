@@ -65,6 +65,34 @@ create policy "anon insert crew msgs" on crew_messages for insert
   with check (length(body) between 1 and 500 and length(crew_code) between 4 and 12);
 -- Enable Realtime INSERT stream so subscribers get new messages without polling.
 alter publication supabase_realtime add table crew_messages;
+
+-- v131: UGC moderation — Apple App Store Guideline 1.2 (Safety / UGC) requires
+-- a way for users to report objectionable messages and a developer commitment
+-- to respond. Plursky commits to 24h response via hello@plursky.com (also
+-- noted in the privacy policy + reviewer notes). The table stores a snapshot
+-- of the reported message (body + sender + ts) so deletion or edits don't
+-- destroy evidence. Reporter pid is captured so we can rate-limit / detect
+-- abuse of the report system itself.
+create table if not exists crew_message_reports (
+  id              bigserial primary key,
+  message_id      bigint   not null,
+  crew_code       text     not null,
+  sender_pid      text     not null,
+  sender_name     text     not null,
+  body_snapshot   text     not null,
+  reporter_pid    text     not null,
+  reporter_name   text,
+  reason          text     not null check (reason in ('spam','harassment','sexual','violence','other')),
+  reporter_note   text     check (reporter_note is null or length(reporter_note) <= 500),
+  created_at      timestamptz not null default now()
+);
+create index if not exists crew_message_reports_ts_idx
+  on crew_message_reports (created_at desc);
+alter table crew_message_reports enable row level security;
+create policy "anon insert reports" on crew_message_reports for insert
+  with check (length(body_snapshot) <= 600 and reporter_pid <> sender_pid);
+-- No SELECT policy → anon clients cannot read other users' reports. Reports
+-- are accessed via the Supabase dashboard or a future admin view only.
 ─────────────────────────────────────────────────────────────────── */
 
 const SUPABASE_URL  = "https://pzoijbqsbbwyuyjinjtj.supabase.co";
@@ -1427,6 +1455,64 @@ async function sbLiveShareFetch(token) {
   return data;
 }
 
+// ─── UGC moderation (v131) ────────────────────────────────────
+// Apple App Store Guideline 1.2 requires a way to (a) report objectionable
+// messages and (b) block abusive users. Reports persist a snapshot of the
+// reported message (body + sender) so deletion/edit can't destroy evidence.
+// Blocks are per-device — stored in localStorage and applied client-side so
+// the blocked sender's messages disappear from this user's CrewChat without
+// any server round-trip (and without notifying the blocked party).
+
+const BLOCKED_PIDS_KEY = "plursky_blocked_pids_v1";
+
+function sbGetBlockedPids() {
+  try {
+    const arr = JSON.parse(localStorage.getItem(BLOCKED_PIDS_KEY) || "[]");
+    return Array.isArray(arr) ? arr : [];
+  } catch { return []; }
+}
+function sbIsBlocked(pid) {
+  return !!pid && sbGetBlockedPids().includes(pid);
+}
+function sbBlockPid(pid) {
+  if (!pid) return;
+  const cur = sbGetBlockedPids();
+  if (cur.includes(pid)) return;
+  cur.push(pid);
+  try { localStorage.setItem(BLOCKED_PIDS_KEY, JSON.stringify(cur)); } catch {}
+  try { window.dispatchEvent(new CustomEvent("plursky-blocklist-change")); } catch {}
+}
+function sbUnblockPid(pid) {
+  const next = sbGetBlockedPids().filter(p => p !== pid);
+  try { localStorage.setItem(BLOCKED_PIDS_KEY, JSON.stringify(next)); } catch {}
+  try { window.dispatchEvent(new CustomEvent("plursky-blocklist-change")); } catch {}
+}
+
+async function sbCrewReportMessage({ message, code, reporterPid, reporterName, reason, note }) {
+  if (!_sb) return { error: "no_supabase" };
+  if (!message || !message.id) return { error: "no_message" };
+  if (!reporterPid || reporterPid === message.sender_pid) return { error: "self_report" };
+  const allowedReasons = new Set(["spam", "harassment", "sexual", "violence", "other"]);
+  const safeReason = allowedReasons.has(reason) ? reason : "other";
+  const body = (message.body || "").slice(0, 600);
+  try {
+    const { error } = await _sb.from("crew_message_reports").insert({
+      message_id:    message.id,
+      crew_code:     code,
+      sender_pid:    message.sender_pid,
+      sender_name:   message.sender_name || "Friend",
+      body_snapshot: body,
+      reporter_pid:  reporterPid,
+      reporter_name: (reporterName || "").slice(0, 80) || null,
+      reason:        safeReason,
+      reporter_note: (note || "").trim().slice(0, 500) || null,
+    });
+    return { error: error?.message || null };
+  } catch (e) {
+    return { error: e?.message || "network" };
+  }
+}
+
 // ─── Poll / vote message protocol ─────────────────────────────
 // Polls and votes piggyback on crew_messages so we don't need a new
 // table — keeps the surface small for App Store review. Format:
@@ -1462,13 +1548,189 @@ function _formatVoteBody(pollId, option) {
   return `[VOTE ${pollId}] ${option}`;
 }
 
+// Inline action sheet shown when the user taps "Report message" on a bubble.
+// 5 reason chips (matches the check-constraint on crew_message_reports.reason)
+// + a 500-char optional note. Submit inserts the row; the parent shows a
+// "REPORTED · 24H" confirmation banner on success.
+function ReportSheet({ message, code, reporterPid, reporterName, onClose, onSubmitted }) {
+  const [reason, setReason] = React.useState("harassment");
+  const [note,   setNote]   = React.useState("");
+  const [busy,   setBusy]   = React.useState(false);
+  const [err,    setErr]    = React.useState(null);
+
+  const REASONS = [
+    { id: "spam",       label: "Spam" },
+    { id: "harassment", label: "Harassment" },
+    { id: "sexual",     label: "Sexual content" },
+    { id: "violence",   label: "Violence or threats" },
+    { id: "other",      label: "Something else" },
+  ];
+
+  const submit = async () => {
+    if (busy) return;
+    setBusy(true);
+    setErr(null);
+    const { error } = await sbCrewReportMessage({
+      message, code, reporterPid, reporterName, reason, note,
+    });
+    setBusy(false);
+    if (error) { setErr(error); return; }
+    onSubmitted?.();
+  };
+
+  return (
+    <div style={{
+      background: "var(--paper-2)", border: "1px solid var(--line-2)",
+      borderRadius: 12, padding: "12px 14px", marginBottom: 8,
+      display: "flex", flexDirection: "column", gap: 10,
+    }}>
+      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>
+        REPORT MESSAGE
+      </div>
+      <div style={{
+        padding: "8px 10px", borderRadius: 8,
+        background: "var(--paper)", border: "1px solid var(--line)",
+        fontSize: 12, color: "var(--ink)", lineHeight: 1.4,
+        maxHeight: 80, overflowY: "auto",
+      }}>
+        <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", marginBottom: 4 }}>
+          FROM {(message.sender_name || "Friend").toUpperCase()}
+        </div>
+        <div style={{ wordBreak: "break-word" }}>{message.body}</div>
+      </div>
+      <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 700 }}>
+        WHY ARE YOU REPORTING?
+      </div>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
+        {REASONS.map(r => {
+          const on = reason === r.id;
+          return (
+            <button key={r.id} onClick={() => setReason(r.id)} style={{
+              padding: "7px 11px", borderRadius: 999,
+              background: on ? "var(--ink)" : "var(--paper)",
+              color:      on ? "var(--paper)" : "var(--ink)",
+              border:     on ? "none" : "1px solid var(--line-2)",
+              cursor: "pointer",
+              fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1, fontWeight: 700,
+            }}>{r.label}</button>
+          );
+        })}
+      </div>
+      <textarea
+        value={note}
+        onChange={e => setNote(e.target.value.slice(0, 500))}
+        placeholder="Add context (optional)"
+        rows={2}
+        style={{
+          padding: "8px 10px", borderRadius: 8,
+          background: "var(--paper)", border: "1px solid var(--line-2)",
+          fontFamily: "Geist", fontSize: 12, color: "var(--ink)", outline: "none",
+          resize: "vertical", minHeight: 44,
+        }}
+      />
+      {err && (
+        <div className="mono" style={{
+          fontSize: 9, letterSpacing: 1, color: "var(--ember)",
+          padding: "4px 8px", textAlign: "center",
+        }}>· {err.toUpperCase()} ·</div>
+      )}
+      <div style={{ display: "flex", gap: 6 }}>
+        <button onClick={onClose} disabled={busy} style={{
+          flex: 1, padding: "9px 10px", borderRadius: 999,
+          background: "var(--paper)", color: "var(--ink)",
+          border: "1px solid var(--line-2)", cursor: "pointer",
+          fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+        }}>CANCEL</button>
+        <button onClick={submit} disabled={busy} style={{
+          flex: 1, padding: "9px 10px", borderRadius: 999,
+          background: busy ? "var(--paper)" : "var(--ember)",
+          color: busy ? "var(--muted)" : "#fff",
+          border: "none", cursor: busy ? "default" : "pointer",
+          fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+        }}>{busy ? "SENDING…" : "SUBMIT REPORT"}</button>
+      </div>
+    </div>
+  );
+}
+
+// Renders a small "X BLOCKED" pill that expands into a list with Unblock
+// buttons. Apple App Store Guidelines require users to be able to *un*block,
+// not just block.
+function BlockedManager({ blockedPids, recentMsgs, onUnblock }) {
+  const [open, setOpen] = React.useState(false);
+  // Pid → most recent name we saw for them, so we show "Block JANE" not
+  // "Block pid_abc123…" even after the messages have been filtered out.
+  const nameForPid = React.useMemo(() => {
+    const map = {};
+    (recentMsgs || []).forEach(m => {
+      if (m.sender_pid && m.sender_name) map[m.sender_pid] = m.sender_name;
+    });
+    return map;
+  }, [recentMsgs]);
+
+  return (
+    <div style={{ marginBottom: 8 }}>
+      <button onClick={() => setOpen(o => !o)} style={{
+        width: "100%", padding: "7px 11px", borderRadius: 8,
+        background: "var(--paper-2)", border: "1px solid var(--line)",
+        color: "var(--muted)", cursor: "pointer", textAlign: "left",
+        fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+        display: "flex", justifyContent: "space-between", alignItems: "center",
+      }}>
+        <span>🚫 {blockedPids.length} BLOCKED</span>
+        <span style={{ transform: open ? "rotate(180deg)" : "none", transition: "transform .15s" }}>▾</span>
+      </button>
+      {open && (
+        <div style={{
+          marginTop: 4, padding: 4, borderRadius: 8,
+          background: "var(--paper)", border: "1px solid var(--line)",
+          display: "flex", flexDirection: "column", gap: 2,
+        }}>
+          {blockedPids.map(pid => {
+            const label = nameForPid[pid] || `${pid.slice(0, 8)}…`;
+            return (
+              <div key={pid} style={{
+                display: "flex", alignItems: "center", gap: 8,
+                padding: "5px 8px",
+              }}>
+                <span style={{ flex: 1, fontSize: 12, color: "var(--ink)" }}>{label}</span>
+                <button onClick={() => onUnblock(pid)} style={{
+                  padding: "4px 9px", borderRadius: 999,
+                  background: "transparent", color: "var(--ink)",
+                  border: "1px solid var(--line-2)", cursor: "pointer",
+                  fontFamily: "Geist Mono, monospace", fontSize: 8.5, letterSpacing: 1, fontWeight: 700,
+                }}>UNBLOCK</button>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function CrewChat({ code, myPid, myName }) {
   const [msgs,   setMsgs]   = React.useState([]);
   const [input,  setInput]  = React.useState("");
   const [busy,   setBusy]   = React.useState(false);
   const [loaded, setLoaded] = React.useState(false);
+  // UGC moderation state (v131): which message has its action menu open,
+  // the per-device blocklist, and a transient confirmation banner shown
+  // after a report is submitted.
+  const [menuMsgId,   setMenuMsgId]   = React.useState(null);
+  const [reportMsg,   setReportMsg]   = React.useState(null);  // message being reported (opens reason sheet)
+  const [reportSent,  setReportSent]  = React.useState(false);
+  const [blockedPids, setBlockedPids] = React.useState(() => sbGetBlockedPids());
   const threadRef = React.useRef(null);
   const inputRef  = React.useRef(null);
+
+  React.useEffect(() => {
+    const refresh = () => setBlockedPids(sbGetBlockedPids());
+    window.addEventListener("plursky-blocklist-change", refresh);
+    return () => window.removeEventListener("plursky-blocklist-change", refresh);
+  }, []);
+
+  const blockedSet = React.useMemo(() => new Set(blockedPids), [blockedPids]);
 
   // Reset thread state whenever the room changes (e.g. user joins a different
   // crew) so old messages don't bleed across rooms while the new fetch runs.
@@ -1512,26 +1774,34 @@ function CrewChat({ code, myPid, myName }) {
     if (el) el.scrollTop = el.scrollHeight;
   }, [msgs.length]);
 
-  // Polls + vote tallies derived from msgs. Each user's *latest* VOTE
+  // Hide messages from blocked senders entirely. Done in one place so polls,
+  // votes, and the bubble list all stay consistent (a blocked user's poll
+  // shouldn't appear, nor should their vote count in the tally).
+  const visibleMsgs = React.useMemo(
+    () => msgs.filter(m => !blockedSet.has(m.sender_pid)),
+    [msgs, blockedSet]
+  );
+
+  // Polls + vote tallies derived from visibleMsgs. Each user's *latest* VOTE
   // wins, ordered by created_at. Polls and votes are filtered out of
   // the regular message list at render time so the thread stays tidy.
   const pollState = React.useMemo(() => {
     const polls = {};
-    msgs.forEach(m => {
+    visibleMsgs.forEach(m => {
       const p = _parsePoll(m.body);
       if (p) polls[p.id] = {
         ...p, author_pid: m.sender_pid, author_name: m.sender_name, ts: m.created_at,
         votes: polls[p.id]?.votes || {},
       };
     });
-    msgs.forEach(m => {
+    visibleMsgs.forEach(m => {
       const v = _parseVote(m.body);
       if (!v) return;
       if (!polls[v.pollId]) return; // orphan vote (poll not yet seen)
       polls[v.pollId].votes[m.sender_pid] = { option: v.option, ts: m.created_at, name: m.sender_name };
     });
     return polls;
-  }, [msgs]);
+  }, [visibleMsgs]);
 
   // Inline poll-creator state. Default question matches the most common
   // festival use case; user can edit before sending.
@@ -1630,17 +1900,20 @@ function CrewChat({ code, myPid, myName }) {
           <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", textAlign: "center", padding: "16px 0" }}>
             LOADING…
           </div>
-        ) : msgs.length === 0 ? (
+        ) : visibleMsgs.length === 0 ? (
           <div style={{ textAlign: "center", padding: "18px 0" }}>
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginBottom: 4 }}>QUIET</div>
-            <div style={{ fontSize: 12, color: "var(--muted)", lineHeight: 1.4 }}>Be the first to drop a message.</div>
+            <div style={{ fontSize: 12, color: "var(--muted)", lineHeight: 1.4 }}>
+              {msgs.length === 0 ? "Be the first to drop a message." : "All messages are from blocked users."}
+            </div>
           </div>
-        ) : msgs.map(m => {
+        ) : visibleMsgs.map(m => {
           // Hide raw VOTE messages — their data is reflected in the poll
           // tally card. Poll messages render as a special card.
           if (_parseVote(m.body)) return null;
           const parsedPoll = _parsePoll(m.body);
           const mine = m.sender_pid === myPid;
+          const menuOpen = menuMsgId === m.id;
           if (parsedPoll) {
             const live = pollState[parsedPoll.id];
             const tally = {};
@@ -1740,13 +2013,97 @@ function CrewChat({ code, myPid, myName }) {
                   cursor: m._failed ? "pointer" : "default",
                   wordBreak: "break-word",
                 }}>{m.body}</div>
-              <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: m._failed ? "var(--ember)" : "var(--muted)", marginTop: 2, padding: "0 4px" }}>
-                {m._failed ? "FAILED · TAP TO RETRY" : fmtTime(m.created_at)}
+              <div className="mono" style={{
+                fontSize: 8, letterSpacing: 0.8,
+                color: m._failed ? "var(--ember)" : "var(--muted)",
+                marginTop: 2, padding: "0 4px",
+                display: "flex", alignItems: "center", gap: 6,
+              }}>
+                <span>{m._failed ? "FAILED · TAP TO RETRY" : fmtTime(m.created_at)}</span>
+                {!mine && !m._pending && !m._failed && (
+                  <button
+                    onClick={() => setMenuMsgId(menuOpen ? null : m.id)}
+                    aria-label="Message options"
+                    title="Report or block"
+                    style={{
+                      background: "transparent", border: "none", padding: "2px 6px",
+                      borderRadius: 8, color: "var(--muted)", cursor: "pointer",
+                      fontFamily: "inherit", fontSize: 12, letterSpacing: 1,
+                      minHeight: 18, lineHeight: 1,
+                    }}
+                  >⋯</button>
+                )}
               </div>
+              {menuOpen && !mine && (
+                <div style={{
+                  marginTop: 6, padding: 6, borderRadius: 12,
+                  background: "var(--paper)", border: "1px solid var(--line)",
+                  boxShadow: "0 4px 14px rgba(0,0,0,0.05)",
+                  display: "flex", flexDirection: "column", gap: 2,
+                  minWidth: 200, maxWidth: "85%",
+                }}>
+                  <button onClick={() => { setReportMsg(m); setMenuMsgId(null); }} style={{
+                    padding: "9px 12px", borderRadius: 8,
+                    background: "transparent", border: "none", cursor: "pointer",
+                    color: "var(--ink)", textAlign: "left",
+                    fontFamily: "inherit", fontSize: 13,
+                    display: "flex", alignItems: "center", gap: 8,
+                  }}>
+                    <span aria-hidden style={{ fontSize: 13 }}>🚩</span>
+                    <span>Report message</span>
+                  </button>
+                  <button onClick={() => {
+                    sbBlockPid(m.sender_pid);
+                    setMenuMsgId(null);
+                  }} style={{
+                    padding: "9px 12px", borderRadius: 8,
+                    background: "transparent", border: "none", cursor: "pointer",
+                    color: "var(--ember)", textAlign: "left",
+                    fontFamily: "inherit", fontSize: 13,
+                    display: "flex", alignItems: "center", gap: 8,
+                  }}>
+                    <span aria-hidden style={{ fontSize: 13 }}>🚫</span>
+                    <span>Block {(m.sender_name || "Friend")}</span>
+                  </button>
+                  <button onClick={() => setMenuMsgId(null)} style={{
+                    padding: "9px 12px", borderRadius: 8,
+                    background: "transparent", border: "none", cursor: "pointer",
+                    color: "var(--muted)", textAlign: "left",
+                    fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+                  }}>CANCEL</button>
+                </div>
+              )}
             </div>
           );
         })}
       </div>
+      {reportMsg && (
+        <ReportSheet
+          message={reportMsg}
+          code={code}
+          reporterPid={myPid}
+          reporterName={myName}
+          onClose={() => setReportMsg(null)}
+          onSubmitted={() => { setReportMsg(null); setReportSent(true); setTimeout(() => setReportSent(false), 2400); }}
+        />
+      )}
+      {reportSent && (
+        <div style={{
+          padding: "8px 12px", marginBottom: 8, borderRadius: 10,
+          background: "rgba(45,122,85,0.12)", color: "var(--success)",
+          fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2,
+          textAlign: "center", fontWeight: 700,
+        }}>
+          ✓ REPORTED · WE REVIEW WITHIN 24H
+        </div>
+      )}
+      {blockedPids.length > 0 && (
+        <BlockedManager
+          blockedPids={blockedPids}
+          recentMsgs={msgs}
+          onUnblock={(pid) => sbUnblockPid(pid)}
+        />
+      )}
       {pollOpen && (
         <div style={{
           background: "var(--paper-2)", border: "1px solid var(--line-2)",
@@ -2034,6 +2391,7 @@ Object.assign(window, {
   FriendsCard, CrewCard,
   sbGetOrCreateGroupCode, sbGroupJoin, sbGroupLeave, sbGroupUpdate, sbGetCrewCount,
   sbCrewFetchMessages, sbCrewSendMessage, sbCrewSubscribeMessages,
+  sbCrewReportMessage, sbGetBlockedPids, sbIsBlocked, sbBlockPid, sbUnblockPid,
   sbOutboxList, sbOutboxDrain, sbOutboxInit,
   sbGenerateShareToken, sbLiveShareStart, sbLiveShareUpdate, sbLiveShareStop, sbLiveShareFetch,
 });

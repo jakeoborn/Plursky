@@ -360,19 +360,77 @@ function InstallBanner() {
   );
 }
 
-// ── Push notifications ─────────────────────────────────────────
-// SW push handler (sw.js) is already live — a VAPID server send goes
-// straight to the device even when the app is closed. For in-browser
-// scheduling we use real UTC timestamps so reminders fire at the right
-// wall-clock time during the festival, and we persist them to
-// localStorage so they survive page reloads.
+// ── Notifications (v131: native + web hybrid) ──────────────────
+// Two paths sharing the same { supported, perm, enable, showLocal } API:
+//
+//   • Native iOS (Capacitor): @capacitor/local-notifications schedules
+//     reminders at the OS level so they fire when the app is killed.
+//     This is the only way set-time reminders actually work on iOS —
+//     web Notification doesn't exist inside WKWebView, and setTimeout
+//     stops when the app is backgrounded.
+//
+//   • Web (plursky.com): real wall-clock setTimeout(showNotification)
+//     via the service-worker registration. Persisted to localStorage so
+//     a reload re-registers any reminders that haven't fired yet.
+//
+// SW push handler (sw.js) is also live for future server-sent VAPID
+// pushes, but Plursky has no backend for that today — only locally
+// scheduled set-time reminders.
+
+function _capLocalNotifications() {
+  const cap = window.Capacitor;
+  if (!cap?.isNativePlatform?.()) return null;
+  return cap.Plugins?.LocalNotifications || null;
+}
+
+// Map a string artist id to a deterministic int32-safe positive integer.
+// LocalNotifications.schedule requires numeric ids; reusing the same id
+// for the same artist makes cancel/replace trivial.
+function _notifIdForArtist(id) {
+  let h = 0;
+  for (let i = 0; i < id.length; i++) h = ((h * 31) + id.charCodeAt(i)) | 0;
+  return (Math.abs(h) % 1_999_999_999) + 1; // 1..~2e9, never 0
+}
+// Distinct id for the test ping so it doesn't collide with any artist's
+// reminder slot.
+const _TEST_NOTIF_ID = 9_999_001;
 
 function useNotifications() {
-  const supported = typeof Notification !== "undefined";
-  const [perm, setPerm] = React.useState(supported ? Notification.permission : "unsupported");
+  const ln = _capLocalNotifications();
+  const webSupported = typeof Notification !== "undefined";
+  const supported = !!ln || webSupported;
+
+  const [perm, setPerm] = React.useState(() => {
+    if (ln)            return "checking";   // resolved by the effect below
+    if (webSupported)  return Notification.permission;
+    return "unsupported";
+  });
+
+  // On native: resolve the current permission state once on mount so the
+  // UI can show ENABLED / OFF / BLOCKED accurately.
+  React.useEffect(() => {
+    if (!ln) return;
+    let cancelled = false;
+    ln.checkPermissions().then(res => {
+      if (cancelled) return;
+      setPerm(_mapDisplayPerm(res?.display));
+    }).catch(() => { if (!cancelled) setPerm("default"); });
+    return () => { cancelled = true; };
+  }, []);
 
   const enable = async () => {
-    if (!supported) return "unsupported";
+    if (ln) {
+      try {
+        const res = await ln.requestPermissions();
+        const next = _mapDisplayPerm(res?.display);
+        setPerm(next);
+        return next;
+      } catch {
+        setPerm("denied");
+        return "denied";
+      }
+    }
+    if (!webSupported) return "unsupported";
     if (perm === "granted") return "granted";
     const result = await Notification.requestPermission();
     setPerm(result);
@@ -380,7 +438,27 @@ function useNotifications() {
   };
 
   const showLocal = async (title, opts = {}) => {
-    if (!supported || perm !== "granted") return false;
+    if (perm !== "granted") return false;
+    if (ln) {
+      // Native path: schedule one second from now so the OS still treats
+      // this as a real scheduled notification (firing immediately can be
+      // dropped on some iOS versions when the app is foreground).
+      try {
+        await ln.schedule({
+          notifications: [{
+            id: _TEST_NOTIF_ID,
+            title,
+            body: opts.body || "",
+            schedule: { at: new Date(Date.now() + 1000) },
+            sound: undefined,
+            smallIcon: "ic_stat_icon_config_sample",
+            extra: opts.data || {},
+          }],
+        });
+        return true;
+      } catch { return false; }
+    }
+    if (!webSupported) return false;
     try {
       const reg = await navigator.serviceWorker?.ready;
       if (reg) {
@@ -397,6 +475,16 @@ function useNotifications() {
   };
 
   return { supported, perm, enable, showLocal };
+}
+
+// LocalNotifications.{check,request}Permissions returns
+// { display: 'granted' | 'denied' | 'prompt' | 'prompt-with-rationale' }
+// We collapse the two prompt-ish states into web's "default" so the rest
+// of the UI can use a single shape.
+function _mapDisplayPerm(display) {
+  if (display === "granted") return "granted";
+  if (display === "denied")  return "denied";
+  return "default";
 }
 
 // Convert an artist's set start to a real UTC timestamp (respects
@@ -427,15 +515,21 @@ function setReminderLeadMin(mins) {
 }
 
 // Schedule reminders for all upcoming saved sets using real wall-clock time.
-// Lead-time is configurable (5/15/30/60 min, default 15). Persists reminder
-// list so a reload can re-register any that haven't fired yet.
+// Lead-time is configurable (5/15/30/60 min, default 15).
+//
+// Native path: hand the full list to LocalNotifications.schedule with
+// `at: new Date(fireMs)`. The OS owns the schedule from there — the app
+// can die, the user can hard-quit, the phone can reboot, and the alert
+// still fires. Cancels prior plursky-owned notifications first so the
+// list is always a fresh mirror of the saved set.
+//
+// Web path: setTimeout each pending reminder and persist to localStorage
+// so a reload can rehydrate any that haven't fired yet.
 function scheduleReminders(state, showLocal) {
-  _SCHEDULED.forEach(h => clearTimeout(h));
-  _SCHEDULED.clear();
-
+  const ln = _capLocalNotifications();
   const now = Date.now();
-  const pending = [];
   const leadMin = getReminderLeadMin();
+  const pending = [];
 
   state.saved.forEach(id => {
     const a = ARTISTS.find(x => x.id === id);
@@ -446,25 +540,66 @@ function scheduleReminders(state, showLocal) {
     const delayMs = fireMs - now;
     if (delayMs <= 0 || delayMs > 24 * 3600000) return; // upcoming within 24 h only
     const stage = STAGES.find(s => s.id === a.stage);
-    const handle = setTimeout(() => {
-      showLocal(`${a.name} starts in ${leadMin} min`, {
-        body: `${stage?.name || ""} · ${fmt12(a.start)}`,
-        tag: `set-${a.id}`,
-        data: { url: "/" },
-      });
-      _SCHEDULED.delete(a.id);
-    }, delayMs);
-    _SCHEDULED.set(a.id, handle);
-    pending.push({ id: a.id, name: a.name, stageName: stage?.name || "", start: a.start, fireMs, leadMin });
+    pending.push({
+      id: a.id,
+      notifId: _notifIdForArtist(a.id),
+      name: a.name,
+      stageName: stage?.name || "",
+      start: a.start,
+      fireMs, leadMin,
+    });
   });
 
+  if (ln) {
+    // Native: cancel the previous slate, then schedule fresh. We cancel by
+    // explicit id list so we don't blow away third-party Capacitor plugins'
+    // notifications (none exist today, but cheap insurance).
+    const prevIds = Array.from(_SCHEDULED.values()).filter(v => typeof v === "number");
+    const allIds  = new Set([...prevIds, ...pending.map(p => p.notifId)]);
+    _SCHEDULED.clear();
+    ln.cancel({ notifications: [...allIds].map(id => ({ id })) }).catch(() => {});
+    if (pending.length > 0) {
+      ln.schedule({
+        notifications: pending.map(p => ({
+          id:    p.notifId,
+          title: `${p.name} starts in ${p.leadMin} min`,
+          body:  `${p.stageName} · ${fmt12(p.start)}`,
+          schedule: { at: new Date(p.fireMs), allowWhileIdle: true },
+          extra: { artistId: p.id, url: "/" },
+        })),
+      }).catch(() => {});
+    }
+    pending.forEach(p => _SCHEDULED.set(p.id, p.notifId));
+    try { localStorage.setItem(_REMINDERS_KEY, JSON.stringify(pending)); } catch {}
+    return _SCHEDULED.size;
+  }
+
+  // Web fallback: setTimeout per reminder.
+  _SCHEDULED.forEach(h => { if (typeof h !== "number") clearTimeout(h); });
+  _SCHEDULED.clear();
+  pending.forEach(p => {
+    const handle = setTimeout(() => {
+      showLocal(`${p.name} starts in ${p.leadMin} min`, {
+        body: `${p.stageName} · ${fmt12(p.start)}`,
+        tag: `set-${p.id}`,
+        data: { url: "/" },
+      });
+      _SCHEDULED.delete(p.id);
+    }, p.fireMs - now);
+    _SCHEDULED.set(p.id, handle);
+  });
   try { localStorage.setItem(_REMINDERS_KEY, JSON.stringify(pending)); } catch {}
   return _SCHEDULED.size;
 }
 
 // On mount: reload any reminders that were persisted before the page
 // refreshed and haven't fired yet.
+//
+// Native: a no-op — the OS holds the schedule across app lifecycle.
+// (NotificationsCard's effect still calls scheduleReminders when the
+// saved-set list changes, so any drift gets reconciled.)
 function loadAndReschedule(showLocal) {
+  if (_capLocalNotifications()) return 0;
   let count = 0;
   try {
     const saved = JSON.parse(localStorage.getItem(_REMINDERS_KEY) || "[]");
@@ -576,7 +711,9 @@ function NotificationsCard({ state }) {
             ? `${scheduled} reminder${scheduled === 1 ? "" : "s"} set · alerts fire even when Plursky is in the background.`
             : "No sets starting in the next 24 hours — reminders will activate automatically during the festival."
           : perm === "denied"
-            ? "Notifications are blocked for this site."
+            ? (window.Capacitor?.isNativePlatform?.()
+                ? "Notifications are blocked in iOS Settings."
+                : "Notifications are blocked for this site.")
             : `Get a notification ${leadMin} minutes before each saved set so you don't miss a thing.`}
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12, flexWrap: "wrap" }}>
@@ -606,7 +743,11 @@ function NotificationsCard({ state }) {
           <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700, marginBottom: 6 }}>
             HOW TO RE-ENABLE
           </div>
-          {/iPhone|iPad|iPod/.test(navigator.userAgent) ? (
+          {window.Capacitor?.isNativePlatform?.() ? (
+            <div style={{ fontSize: 11, color: "var(--ink)", lineHeight: 1.55 }}>
+              iPhone: <strong>Settings</strong> → <strong>Plursky</strong> → <strong>Notifications</strong> → set <em>Allow Notifications</em> ON.
+            </div>
+          ) : /iPhone|iPad|iPod/.test(navigator.userAgent) ? (
             <div style={{ fontSize: 11, color: "var(--ink)", lineHeight: 1.55 }}>
               iPhone: <strong>Settings</strong> → <strong>Apps</strong> → <strong>Safari</strong> → <strong>Notifications</strong> → find <em>plursky.com</em> → Allow
             </div>
