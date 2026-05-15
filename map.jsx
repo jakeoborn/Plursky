@@ -2806,8 +2806,13 @@ function RealMap({
   React.useEffect(() => {
     _ensureRealMapStyles();
     let cancelled = false;
+    console.log("[plursky-map] RealMap useEffect — calling _loadMapLibre()");
     _loadMapLibre().then((maplibregl) => {
-      if (cancelled || !containerRef.current) return;
+      console.log("[plursky-map] _loadMapLibre resolved — MapLibre loaded");
+      if (cancelled || !containerRef.current) {
+        console.warn("[plursky-map] aborted post-load: cancelled=" + cancelled + " hasContainer=" + !!containerRef.current);
+        return;
+      }
       const center = FESTIVAL_CONFIG.gps;
       const initialStyle = REAL_MAP_STYLES[styleKey] || REAL_MAP_STYLES.stylized;
       const map = new maplibregl.Map({
@@ -3362,6 +3367,7 @@ function RealMap({
       // One-shot setup that runs after the first style finishes loading.
       // Markers (DOM overlays) persist across setStyle(), so we add them once.
       map.on("load", () => {
+        console.log("[plursky-map] map.on('load') fired");
         if (cancelled) return;
 
         // Lock panning to the festival footprint + tiny buffer. The map
@@ -3454,11 +3460,13 @@ function RealMap({
       map.on("error", (e) => {
         if (cancelled) return;
         const msg = (e && e.error && e.error.message) || "tile load failed";
+        console.error("[plursky-map] MapLibre error:", msg, e?.error || e);
         // Tile fetch errors fire constantly while panning out-of-bounds;
         // only surface the first one.
         setErr(prev => prev || msg);
       });
     }).catch(e => {
+      console.error("[plursky-map] _loadMapLibre rejected:", e?.message || e, e);
       if (!cancelled) setErr(e.message || "library failed to load");
     });
 
