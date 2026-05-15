@@ -2829,10 +2829,10 @@ function RealMap({
         // (Snapchat-style "this map is for the fairgrounds, not Vegas").
         // setMaxBounds below pins panning to ±400m of the festival.
         zoom: 16.2,
-        // Flat top-down (pitch 0) on initial load so the map opens centered
-        // and oriented like a paper map, not an isometric scene. flyTo on
-        // stage tap still lifts pitch for the cinematic zoom-in.
-        pitch: 0,
+        // Slight isometric pitch — Snapchat Map vibe. Each stage's iconic
+        // 3D shape (lotus, pyramid, dome, gear, etc.) reads as a stylized
+        // building, with the name pill floating above it.
+        pitch: 18,
         bearing: 0,
         attributionControl: false,
       });
@@ -3204,10 +3204,9 @@ function RealMap({
               type: "fill",
               paint: {
                 "fill-color":   ["get", "color"],
-                // Much softer — was 0.22, which competed with the new
-                // DOM POI markers. Keep zones as a subtle ground hint,
-                // not a primary visual.
-                "fill-opacity": 0.10,
+                // Soft ground glow — visible enough to read as a stage zone,
+                // not so loud it competes with the 3D iconic shape on top.
+                "fill-opacity": 0.20,
                 "fill-antialias": true,
               },
             });
@@ -3324,7 +3323,6 @@ function RealMap({
             source: "stages-3d",
             type: "fill-extrusion",
             filter: ["==", ["get", "tier"], "base"],
-            layout: { visibility: "none" },
             paint: {
               "fill-extrusion-color":   ["get", "color"],
               "fill-extrusion-height":  ["get", "height"],
@@ -3339,7 +3337,6 @@ function RealMap({
             source: "stages-3d",
             type: "fill-extrusion",
             filter: ["==", ["get", "tier"], "main"],
-            layout: { visibility: "none" },
             paint: {
               "fill-extrusion-color":   ["get", "color"],
               "fill-extrusion-height":  ["get", "height"],
@@ -3439,43 +3436,29 @@ function RealMap({
             .addTo(map);
         });
 
-        // Stage POI markers — colored dot + stage name pill stacked.
-        // Apple-Maps-POI / Snapchat-pin style. Each marker is the
-        // primary visual for navigation: you immediately see which
-        // stage is which by color + name. The 3D extrusion layers are
-        // hidden in setupOverlayLayers so these dots are the focus.
+        // Stage name pills — float ABOVE each 3D iconic shape so users
+        // can read the stage name at a glance. The 3D shape itself is
+        // the visual icon (Kinetic lotus, Quantum pyramid, etc.) and
+        // the pill is just the label. Tap either to open the place card.
         stages.forEach(s => {
           const { lat, lng } = mapToGps(s.x, s.y);
-          const wrap = document.createElement("div");
-          wrap.style.cssText =
-            "display:flex;flex-direction:column;align-items:center;gap:4px;" +
-            "pointer-events:auto;cursor:pointer;";
-
-          const dot = document.createElement("div");
-          dot.style.cssText =
-            `width:36px;height:36px;border-radius:999px;background:${s.color};` +
-            "border:3px solid #fff;" +
-            "box-shadow:0 4px 14px rgba(0,0,0,0.55),0 0 0 1px rgba(0,0,0,0.25);";
-
-          const name = document.createElement("div");
-          name.style.cssText =
+          const pill = document.createElement("div");
+          pill.style.cssText =
             "background:rgba(247,237,224,0.96);color:#1a120d;" +
-            "border:1px solid rgba(26,18,13,0.18);" +
-            "padding:3px 9px;border-radius:999px;" +
-            "font-family:'Geist Mono',monospace;font-size:10px;" +
+            `border:2px solid ${s.color};` +
+            "padding:4px 11px;border-radius:999px;" +
+            "font-family:'Geist Mono',monospace;font-size:10.5px;" +
             "letter-spacing:1.1px;font-weight:800;white-space:nowrap;" +
-            "box-shadow:0 2px 8px rgba(0,0,0,0.35);";
-          name.textContent = s.name.toUpperCase();
-
-          wrap.appendChild(dot);
-          wrap.appendChild(name);
-          wrap.onclick = () => onPickStageRef.current && onPickStageRef.current(s.id);
-
-          stageMarkersRef.current[s.id] = new maplibregl.Marker({ element: wrap, anchor: "center" })
+            "box-shadow:0 4px 12px rgba(0,0,0,0.45);" +
+            "pointer-events:auto;cursor:pointer;" +
+            "transform:translate(0,-44px);";  // float above the 3D shape
+          pill.textContent = s.name.toUpperCase();
+          pill.onclick = () => onPickStageRef.current && onPickStageRef.current(s.id);
+          stageMarkersRef.current[s.id] = new maplibregl.Marker({ element: pill, anchor: "center" })
             .setLngLat([lng, lat])
             .addTo(map);
         });
-        console.log("[plursky-map] stage POI markers added:", stages.length);
+        console.log("[plursky-map] stage name pills added:", stages.length);
 
         // Avatar — outer halo (pulse animation) + inner amber dot
         const avWrap = document.createElement("div");
