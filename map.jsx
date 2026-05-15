@@ -2801,7 +2801,7 @@ function RealMap({
   const [loaded, setLoaded] = React.useState(false);
   const [err, setErr] = React.useState(null);
   const [styleKey, setStyleKey] = React.useState(() => {
-    try { return localStorage.getItem("plursky_real_map_style") || "stylized"; } catch { return "stylized"; }
+    try { return localStorage.getItem("plursky_real_map_style") || "satellite"; } catch { return "satellite"; }
   });
 
   React.useEffect(() => { onPickStageRef.current = onPickStage; }, [onPickStage]);
@@ -3788,30 +3788,30 @@ function RealMap({
 
       {/* Style switcher — Stylized / Satellite. Positioned below the
           MapScreen's top-right icon column (GPS + Layers) so they don't stack. */}
-      {loaded && (
-        <div style={{
-          position: "absolute", top: 108, right: 10, zIndex: 4,
-          display: "flex", background: "rgba(6,4,18,0.78)",
-          border: "1px solid rgba(255,255,255,0.18)",
-          borderRadius: 999, padding: 3, gap: 2,
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
-        }}>
-          {Object.entries(REAL_MAP_STYLES).map(([k, cfg]) => {
-            const on = styleKey === k;
-            return (
-              <button key={k} onClick={() => pickStyle(k)} style={{
-                background: on ? "var(--ember)" : "transparent",
-                color: "#fff", border: "none",
-                padding: "5px 11px", borderRadius: 999,
-                fontFamily: "'Geist Mono',monospace", fontSize: 9,
-                letterSpacing: 1.3, fontWeight: 700,
-                cursor: "pointer", transition: "background 0.15s",
-              }}>{cfg.label}</button>
-            );
-          })}
-        </div>
-      )}
+      {/* Style toggle — always visible (was gated on `loaded`, which never
+          flipped true for some users → toggle was hidden). */}
+      <div style={{
+        position: "absolute", top: 108, right: 10, zIndex: 4,
+        display: "flex", background: "rgba(6,4,18,0.78)",
+        border: "1px solid rgba(255,255,255,0.18)",
+        borderRadius: 999, padding: 3, gap: 2,
+        backdropFilter: "blur(8px)",
+        WebkitBackdropFilter: "blur(8px)",
+      }}>
+        {Object.entries(REAL_MAP_STYLES).map(([k, cfg]) => {
+          const on = styleKey === k;
+          return (
+            <button key={k} onClick={() => pickStyle(k)} style={{
+              background: on ? "var(--ember)" : "transparent",
+              color: "#fff", border: "none",
+              padding: "5px 11px", borderRadius: 999,
+              fontFamily: "'Geist Mono',monospace", fontSize: 9,
+              letterSpacing: 1.3, fontWeight: 700,
+              cursor: "pointer", transition: "background 0.15s",
+            }}>{cfg.label}</button>
+          );
+        })}
+      </div>
 
       {/* (Removed the LOADING MAP overlay — basemap tiles + stage layers
           render progressively as MapLibre fetches them; a full-screen
