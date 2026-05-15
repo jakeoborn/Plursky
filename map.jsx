@@ -3204,7 +3204,10 @@ function RealMap({
               type: "fill",
               paint: {
                 "fill-color":   ["get", "color"],
-                "fill-opacity": 0.22,
+                // Much softer — was 0.22, which competed with the new
+                // DOM POI markers. Keep zones as a subtle ground hint,
+                // not a primary visual.
+                "fill-opacity": 0.10,
                 "fill-antialias": true,
               },
             });
@@ -3298,6 +3301,11 @@ function RealMap({
         // colored cylinder rising out of the poster (Pokémon-Go gym vibe).
         // Tap = onPickStage. Selected stage updates via setData on the
         // GeoJSON source (no DOM marker class flipping needed).
+        // 3D stage extrusions hidden — DOM markers (added in the load
+        // handler) are now the primary visual for navigation. The
+        // extrusion source/layers are kept in place so we can flip
+        // them back on later via setLayoutProperty if we want the
+        // Snapchat-3D atmosphere back.
         _safeLayer("stages-3d", () => {
         const _sd = stagesExtrusionData(null);
         console.log("[plursky-map] stages-3d features:", _sd.features.length);
@@ -3316,6 +3324,7 @@ function RealMap({
             source: "stages-3d",
             type: "fill-extrusion",
             filter: ["==", ["get", "tier"], "base"],
+            layout: { visibility: "none" },
             paint: {
               "fill-extrusion-color":   ["get", "color"],
               "fill-extrusion-height":  ["get", "height"],
@@ -3330,6 +3339,7 @@ function RealMap({
             source: "stages-3d",
             type: "fill-extrusion",
             filter: ["==", ["get", "tier"], "main"],
+            layout: { visibility: "none" },
             paint: {
               "fill-extrusion-color":   ["get", "color"],
               "fill-extrusion-height":  ["get", "height"],
@@ -3429,30 +3439,43 @@ function RealMap({
             .addTo(map);
         });
 
-        // Stage labels — DOM markers anchored above each 3D pillar. The
-        // pillar geometry itself (with click handler) lives in the
-        // stages-3d fill-extrusion layer above; this just floats the name.
-        // Stage name labels — bigger, stage-colored, sitting just below
-        // each stage shape so they read like a Snapchat-Map POI pin.
+        // Stage POI markers — colored dot + stage name pill stacked.
+        // Apple-Maps-POI / Snapchat-pin style. Each marker is the
+        // primary visual for navigation: you immediately see which
+        // stage is which by color + name. The 3D extrusion layers are
+        // hidden in setupOverlayLayers so these dots are the focus.
         stages.forEach(s => {
           const { lat, lng } = mapToGps(s.x, s.y);
-          const labelEl = document.createElement("div");
-          labelEl.style.cssText =
-            `background:${s.color};color:#fff;` +
-            "border:1.5px solid rgba(255,255,255,0.85);" +
-            "padding:4px 11px;border-radius:999px;" +
-            "font-family:'Geist Mono',monospace;font-size:11px;" +
+          const wrap = document.createElement("div");
+          wrap.style.cssText =
+            "display:flex;flex-direction:column;align-items:center;gap:4px;" +
+            "pointer-events:auto;cursor:pointer;";
+
+          const dot = document.createElement("div");
+          dot.style.cssText =
+            `width:36px;height:36px;border-radius:999px;background:${s.color};` +
+            "border:3px solid #fff;" +
+            "box-shadow:0 4px 14px rgba(0,0,0,0.55),0 0 0 1px rgba(0,0,0,0.25);";
+
+          const name = document.createElement("div");
+          name.style.cssText =
+            "background:rgba(247,237,224,0.96);color:#1a120d;" +
+            "border:1px solid rgba(26,18,13,0.18);" +
+            "padding:3px 9px;border-radius:999px;" +
+            "font-family:'Geist Mono',monospace;font-size:10px;" +
             "letter-spacing:1.1px;font-weight:800;white-space:nowrap;" +
-            "box-shadow:0 4px 14px rgba(0,0,0,0.55);" +
-            "pointer-events:auto;cursor:pointer;" +
-            "transform:translate(0,32px);";
-          labelEl.textContent = s.name.toUpperCase();
-          labelEl.onclick = () => onPickStageRef.current && onPickStageRef.current(s.id);
-          stageMarkersRef.current[s.id] = new maplibregl.Marker({ element: labelEl, anchor: "center" })
+            "box-shadow:0 2px 8px rgba(0,0,0,0.35);";
+          name.textContent = s.name.toUpperCase();
+
+          wrap.appendChild(dot);
+          wrap.appendChild(name);
+          wrap.onclick = () => onPickStageRef.current && onPickStageRef.current(s.id);
+
+          stageMarkersRef.current[s.id] = new maplibregl.Marker({ element: wrap, anchor: "center" })
             .setLngLat([lng, lat])
             .addTo(map);
         });
-        console.log("[plursky-map] stage labels added:", stages.length);
+        console.log("[plursky-map] stage POI markers added:", stages.length);
 
         // Avatar — outer halo (pulse animation) + inner amber dot
         const avWrap = document.createElement("div");
