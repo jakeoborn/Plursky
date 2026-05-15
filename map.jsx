@@ -4845,11 +4845,31 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
 }
 
 // ── MESSAGE DRAWER ── per-friend chat with offline queue + canned replies
-// Pass myPresId + friend.presId to enable real Supabase Realtime DMs.
-// Falls back to the demo bot when either presId is absent or Supabase is unconfigured.
+// Pass myPresId + friend.presId to enable real Supabase-persisted DMs.
+// Persisted DMs (v132) piggyback on crew_messages with a sorted-pair
+// `dm-${pidA}-${pidB}` room id — both sides resolve to the same room
+// without coordinating, and threads survive reloads + offline gaps
+// (vs the prior ephemeral broadcast channel).
+// Falls back to the demo bot when either presId is absent or the
+// persisted DM helpers aren't loaded.
+function _crewRowToThreadItem(row, myPid) {
+  return {
+    id: row.id,
+    from: row.sender_pid === myPid ? "me" : "them",
+    text: row.body,
+    ts:   new Date(row.created_at).getTime(),
+    status: "sent",
+  };
+}
 function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onSwitchToMeet }) {
-  const isRealDM = !!(myPresId && friend.presId && typeof sbDMSubscribe === "function");
-  const dmKey = isRealDM ? sbDMChannelKey(myPresId, friend.presId) : null;
+  const isRealDM = !!(myPresId && friend.presId && typeof sbDMSend === "function");
+  const myName = (() => {
+    try {
+      return localStorage.getItem("plursky_display_name")
+          || localStorage.getItem("user_name")
+          || "Me";
+    } catch { return "Me"; }
+  })();
 
   const [thread, setThread] = React.useState(() => loadThread(friend.id));
   const [draft, setDraft] = React.useState("");
@@ -4864,18 +4884,35 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
     return () => { if (replyTimer.current) clearTimeout(replyTimer.current); };
   }, [friend.id]);
 
-  // Subscribe to Supabase DM channel when real DM is available
+  // Persisted DM path: fetch the full thread from crew_messages on open
+  // (server is source of truth) and subscribe to new INSERTs. Failures
+  // fall through to the localStorage-only thread so offline-on-open
+  // still shows something.
   React.useEffect(() => {
     if (!isRealDM) return;
-    return sbDMSubscribe(dmKey, (payload) => {
-      if (payload.from === myPresId) return; // echo guard
-      const incoming = { from: "them", text: payload.text, ts: payload.ts || Date.now() };
+    let cancelled = false;
+    sbDMFetchMessages(myPresId, friend.presId).then(rows => {
+      if (cancelled) return;
+      const server = rows.map(r => _crewRowToThreadItem(r, myPresId));
+      // Preserve any local "queued" items not yet on server (offline sends).
+      const localPending = threadRef.current.filter(m => m.status === "queued");
+      const next = [...server, ...localPending];
+      setThread(next);
+      saveThread(friend.id, next);
+    }).catch(() => {});
+    const unsub = sbDMSubscribe(myPresId, friend.presId, (row) => {
+      // Skip our own echoes — the optimistic stub from `send` covers it.
+      if (row.sender_pid === myPresId) return;
+      const incoming = _crewRowToThreadItem(row, myPresId);
+      // De-dup on row id in case the same INSERT fires more than once.
+      if (threadRef.current.some(m => m.id === incoming.id)) return;
       const updated = [...threadRef.current, incoming];
       setThread(updated);
       saveThread(friend.id, updated);
       setTyping(false);
     });
-  }, [dmKey]);
+    return () => { cancelled = true; unsub?.(); };
+  }, [isRealDM, myPresId, friend.presId]);
 
   React.useEffect(() => {
     if (scrollerRef.current) scrollerRef.current.scrollTop = scrollerRef.current.scrollHeight;
@@ -4885,22 +4922,34 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
   const status = friendStatus(friend.id);
   const statusAge = status ? Math.round((Date.now() - status.ts) / 60000) : null;
 
-  const send = (text) => {
+  const send = async (text) => {
     const trimmed = text.trim();
     if (!trimmed) return;
     const stamped = trimmed +
       (avatarStage && /(my (loc|spot)|where|here)/i.test(trimmed) && !/[a-z]field|stage/i.test(trimmed)
         ? ` (${STAGES.find(s => s.id === avatarStage)?.short || ""})` : "");
-    const newThread = [...thread, { from: "me", text: stamped, ts: Date.now(), status: navigator.onLine ? "sent" : "queued" }];
+    const optimisticTs = Date.now();
+    const optimistic = { from: "me", text: stamped, ts: optimisticTs, status: navigator.onLine ? "sent" : "queued" };
+    const newThread = [...thread, optimistic];
     setThread(newThread);
     saveThread(friend.id, newThread);
     setDraft("");
 
     if (isRealDM) {
-      // Real Supabase broadcast — no bot reply
-      sbDMSend(dmKey, { from: myPresId, text: stamped, ts: Date.now() });
+      // Persisted DM via crew_messages with `dm-${sortedPids}` room id.
+      // sbCrewSendMessage queues to the offline outbox if the network is
+      // down, so the message isn't lost. The realtime INSERT echo will
+      // arrive shortly and de-dup against the row id we get back on
+      // refetch — for now the optimistic stub stays as-is.
+      const { error } = await sbDMSend(myPresId, friend.presId, myName, stamped);
+      if (error && error !== "queued") {
+        // Mark the optimistic stub as failed so the user can see it.
+        setThread(prev => prev.map(m =>
+          m.ts === optimisticTs && m.from === "me" ? { ...m, status: "failed" } : m
+        ));
+      }
     } else {
-      // Demo bot
+      // Demo bot (LIME/FROG/NEON/PLUM — no presId, no server room).
       const [reply, delay] = _fakeReply(stamped);
       setTyping(true);
       replyTimer.current = setTimeout(() => {

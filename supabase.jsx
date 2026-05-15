@@ -62,9 +62,18 @@ create index if not exists crew_messages_code_ts_idx
 alter table crew_messages enable row level security;
 create policy "anon read crew msgs"   on crew_messages for select using (true);
 create policy "anon insert crew msgs" on crew_messages for insert
-  with check (length(body) between 1 and 500 and length(crew_code) between 4 and 12);
+  with check (length(body) between 1 and 500 and length(crew_code) between 4 and 40);
 -- Enable Realtime INSERT stream so subscribers get new messages without polling.
 alter publication supabase_realtime add table crew_messages;
+
+-- v132 ONE-TIME MIGRATION — if the original policy was created with the
+-- old `length(crew_code) between 4 and 12` bound, run the following to
+-- relax it so the 1:1 DM channel keys (`dm-${pidA}-${pidB}`, ~24 chars)
+-- can also use this table. Idempotent — safe to run even on fresh installs.
+--   drop policy if exists "anon insert crew msgs" on crew_messages;
+--   create policy "anon insert crew msgs" on crew_messages for insert
+--     with check (length(body) between 1 and 500
+--                 and length(crew_code) between 4 and 40);
 
 -- v131: UGC moderation — Apple App Store Guideline 1.2 (Safety / UGC) requires
 -- a way for users to report objectionable messages and a developer commitment
@@ -1118,48 +1127,6 @@ function _FriendRows({ friends, state, setState }) {
   );
 }
 
-// ── Realtime DM channels ──────────────────────────────────────
-// Point-to-point broadcast channel keyed by sorted pair of plursky_pid values.
-// Works purely in-memory per session — messages also saved to localStorage by
-// the caller so threads persist across reloads.
-const _dmChannels = new Map(); // channelKey → { ch, cbs: Set }
-
-function sbDMChannelKey(idA, idB) {
-  return `dm-${[idA, idB].sort().join("-")}`;
-}
-
-function sbDMSubscribe(channelKey, cb) {
-  if (!_sb) return () => {};
-  let entry = _dmChannels.get(channelKey);
-  if (!entry) {
-    const ch = _sb.channel(channelKey);
-    ch.on("broadcast", { event: "msg" }, ({ payload }) => {
-      const e = _dmChannels.get(channelKey);
-      if (e) e.cbs.forEach(fn => { try { fn(payload); } catch {} });
-    }).subscribe();
-    entry = { ch, cbs: new Set() };
-    _dmChannels.set(channelKey, entry);
-  }
-  entry.cbs.add(cb);
-  return () => {
-    entry.cbs.delete(cb);
-    if (entry.cbs.size === 0) {
-      try { _sb.removeChannel(entry.ch); } catch {}
-      _dmChannels.delete(channelKey);
-    }
-  };
-}
-
-async function sbDMSend(channelKey, payload) {
-  if (!_sb) return false;
-  const entry = _dmChannels.get(channelKey);
-  if (!entry) return false;
-  try {
-    await entry.ch.send({ type: "broadcast", event: "msg", payload });
-    return true;
-  } catch { return false; }
-}
-
 // ── Group / Crew mode ────────────────────────────────────────
 // Supabase broadcast channel keyed by 6-char crew code.
 // Each member broadcasts their saved set IDs so everyone sees
@@ -1368,6 +1335,29 @@ function sbCrewSubscribeMessages(code, onMessage) {
     })
     .subscribe();
   return () => { try { _sb.removeChannel(ch); } catch {} };
+}
+
+// ── Persisted 1:1 DMs (v132) ──────────────────────────────────
+// Piggyback on crew_messages with `crew_code = dm-${sortedPidA}-${sortedPidB}`
+// so 1:1 friend threads survive reloads AND offline gaps (vs the previous
+// ephemeral broadcast channel). The sorted-pair key means both sides
+// compute the same room id without coordinating.
+//
+// The crew_messages RLS policy was widened in v132 to allow crew_code
+// length up to 40 — see the SQL doc at top of file. Until that ALTER
+// POLICY has been run on a project, sbDMSend will fail with
+// "violates row-level security policy".
+function sbDMRoomCode(idA, idB) {
+  return `dm-${[idA, idB].sort().join("-")}`;
+}
+async function sbDMFetchMessages(myPid, otherPid, limit = 100) {
+  return sbCrewFetchMessages(sbDMRoomCode(myPid, otherPid), limit);
+}
+async function sbDMSend(myPid, otherPid, myName, body) {
+  return sbCrewSendMessage(sbDMRoomCode(myPid, otherPid), myPid, myName, body);
+}
+function sbDMSubscribe(myPid, otherPid, onMessage) {
+  return sbCrewSubscribeMessages(sbDMRoomCode(myPid, otherPid), onMessage);
 }
 
 // ─── Live Share links ───────────────────────────────────────────
@@ -2387,11 +2377,11 @@ Object.assign(window, {
   sbGetArtistSaveCounts,
   sbPresenceJoin, sbPresenceUpdate, sbPresenceLeave, sbPresenceRefresh, sbOnPresenceChange,
   sbGetMyPresId, sbGetPresSnap, sbFindByPingCode,
-  sbDMChannelKey, sbDMSubscribe, sbDMSend,
   FriendsCard, CrewCard,
   sbGetOrCreateGroupCode, sbGroupJoin, sbGroupLeave, sbGroupUpdate, sbGetCrewCount,
   sbCrewFetchMessages, sbCrewSendMessage, sbCrewSubscribeMessages,
   sbCrewReportMessage, sbGetBlockedPids, sbIsBlocked, sbBlockPid, sbUnblockPid,
+  sbDMRoomCode, sbDMFetchMessages, sbDMSend, sbDMSubscribe,
   sbOutboxList, sbOutboxDrain, sbOutboxInit,
   sbGenerateShareToken, sbLiveShareStart, sbLiveShareUpdate, sbLiveShareStop, sbLiveShareFetch,
 });
