@@ -847,7 +847,7 @@ function LineupScreen({ state, setState }) {
         );
       })()}
 
-      <ScrollBody style={{ padding: viewMode === "grid" ? 0 : "0 16px 20px" }}>
+      <ScrollBody style={{ padding: viewMode === "grid" ? "0 0 80px" : "0 16px 90px" }}>
         {/* "Save the Day" empty-state CTA — when no sets are saved for the
             selected day, a single ember card batch-saves every tier-3
             headliner. Disappears once the day has any save. */}

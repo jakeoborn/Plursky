@@ -24,3 +24,4 @@ supabase/.branches/
 
 # Screenshot dev artifacts (real submission shots go through App Store Connect)
 screenshots/Simulator Screenshot*
+.qa-walkthrough.mjs

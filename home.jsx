@@ -1145,7 +1145,7 @@ function HomeScreen({ state, setState }) {
 
   return (
     <Screen bg="var(--paper)">
-      <ScrollBody style={{ padding: 0 }}>
+      <ScrollBody style={{ padding: "0 0 70px" }}>
       {/* Masthead — scrolls with content (was previously pinned, now flows
           naturally so the home tab stops feeling like a fixed-header app) */}
       <div style={{

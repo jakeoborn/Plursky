@@ -1379,7 +1379,7 @@ function SpotifyScreen({ state, setState }) {
         <TopBar title={<span>Music</span>} sub="SOUNDTRACK" tight />
       </div>
 
-      <ScrollBody style={{ padding: "10px 20px 24px" }}>
+      <ScrollBody style={{ padding: "10px 20px 94px" }}>
 
         {/* Native-iOS Spotify fallback hint (v132). On the App Store binary
             before the @capacitor/browser OAuth path landed, Spotify connect
@@ -2661,7 +2661,7 @@ function MemoriesScreen({ state, setState }) {
           />
         </div>
       </div>
-      <ScrollBody style={{ padding: "0 20px 24px" }}>
+      <ScrollBody style={{ padding: "0 20px 94px" }}>
         {DAYS.map(d => {
           const moments = (all[d.n] || []).slice().sort((a, b) => a.createdAt - b.createdAt);
           const dateInfo = FESTIVAL_CONFIG.dayDates?.[d.n];
@@ -2831,7 +2831,7 @@ function MeScreen({ state, setState }) {
       <div style={{ padding: "8px 20px" }}>
         <TopBar title={<span>Me</span>} sub={FESTIVAL_CONFIG.shortName.toUpperCase()} tight />
       </div>
-      <ScrollBody style={{ padding: "10px 20px 24px" }}>
+      <ScrollBody style={{ padding: "10px 20px 94px" }}>
         {/* ── 1. Identity card (Runbuds-modeled) ───────────────────
             Centered avatar in the user's ping color, serif name,
             ping-code chip in mono caps, festival-day tagline. */}
