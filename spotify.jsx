@@ -2482,6 +2482,14 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
     if (!file) return;
     setBusy(true); setErr("");
     try {
+      // Read EXIF BEFORE compression — _compressMomentImage repaints onto a
+      // canvas which strips EXIF entirely. If we get a usable date+(GPS) the
+      // matcher pre-fills the artist chip so the user usually just hits SAVE.
+      const meta = await _parseExifMeta(file).catch(() => null);
+      if (meta && meta.date && !artistId) {
+        const matched = _matchArtistForPhoto(meta, savedNightArtists.map(a => a.id));
+        if (matched.artistId) setArtistId(matched.artistId);
+      }
       const b = await _compressMomentImage(file);
       if (previewUrl) URL.revokeObjectURL(previewUrl);
       setBlob(b);
@@ -2619,9 +2627,184 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
   );
 }
 
+// ── EXIF + auto-tag (v135) ────────────────────────────────────
+// Parse JPEG EXIF for DateTimeOriginal + GPSLatitude/Longitude so a
+// photo dragged in from Camera Roll lands on the right artist without
+// the user picking from a chip list. iOS encodes EXIF time as local
+// wall-clock (no tz) — at EDC that's PT, so we treat the parsed
+// "YYYY:MM:DD HH:MM:SS" string as PT and convert to epoch ms via the
+// festival's day-midnight UTC constants (which already bake in PT).
+
+const _EXIF_TAG_EXIF_IFD = 0x8769;
+const _EXIF_TAG_GPS_IFD  = 0x8825;
+const _EXIF_TAG_DATETIME_ORIGINAL = 0x9003;
+const _EXIF_TAG_GPS_LAT_REF = 0x0001;
+const _EXIF_TAG_GPS_LAT     = 0x0002;
+const _EXIF_TAG_GPS_LNG_REF = 0x0003;
+const _EXIF_TAG_GPS_LNG     = 0x0004;
+
+async function _parseExifMeta(file) {
+  const out = { date: null, lat: null, lng: null };
+  if (!file || !/^image\//.test(file.type)) return out;
+  try {
+    // 256 KB is enough for the APP1 segment on any modern phone photo.
+    const buf = await file.slice(0, 256 * 1024).arrayBuffer();
+    const dv = new DataView(buf);
+    if (dv.getUint16(0) !== 0xFFD8) return out; // not a JPEG → no EXIF
+    let off = 2;
+    while (off + 4 < dv.byteLength) {
+      if (dv.getUint8(off) !== 0xFF) break;
+      const marker = dv.getUint16(off);
+      const len    = dv.getUint16(off + 2);
+      if (marker === 0xFFE1 && len > 8) {
+        // "Exif\0\0" header at off+4
+        const exifHdr =
+          dv.getUint8(off + 4) === 0x45 && // E
+          dv.getUint8(off + 5) === 0x78 && // x
+          dv.getUint8(off + 6) === 0x69 && // i
+          dv.getUint8(off + 7) === 0x66;   // f
+        if (!exifHdr) { off += 2 + len; continue; }
+        const tiff = off + 10;
+        const byteOrder = dv.getUint16(tiff);
+        const little = byteOrder === 0x4949;
+        const u16 = (p) => dv.getUint16(p, little);
+        const u32 = (p) => dv.getUint32(p, little);
+        if (u16(tiff + 2) !== 0x002A) return out;
+        const ifd0 = tiff + u32(tiff + 4);
+        const readEntries = (ifdOff) => {
+          const n = u16(ifdOff);
+          const entries = {};
+          for (let i = 0; i < n; i++) {
+            const eOff = ifdOff + 2 + i * 12;
+            entries[u16(eOff)] = {
+              type:  u16(eOff + 2),
+              count: u32(eOff + 4),
+              valOff: eOff + 8, // 4-byte value or pointer
+            };
+          }
+          return entries;
+        };
+        const ifd0Entries = readEntries(ifd0);
+        // ExifIFD → DateTimeOriginal
+        const exifPtr = ifd0Entries[_EXIF_TAG_EXIF_IFD];
+        if (exifPtr) {
+          const exifIfd = tiff + u32(exifPtr.valOff);
+          const exifEntries = readEntries(exifIfd);
+          const dto = exifEntries[_EXIF_TAG_DATETIME_ORIGINAL];
+          if (dto && dto.count > 0) {
+            // ASCII at value or pointer (string > 4 bytes → pointer)
+            const strOff = dto.count > 4 ? tiff + u32(dto.valOff) : dto.valOff;
+            let str = "";
+            for (let i = 0; i < Math.min(dto.count - 1, 24); i++) {
+              const c = dv.getUint8(strOff + i);
+              if (c === 0) break;
+              str += String.fromCharCode(c);
+            }
+            // Format: "YYYY:MM:DD HH:MM:SS"
+            const m = /^(\d{4}):(\d{2}):(\d{2})\s+(\d{2}):(\d{2}):(\d{2})/.exec(str);
+            if (m) {
+              // Build PT epoch — EDC festival is in Vegas (UTC-7 PDT in May).
+              // FESTIVAL_CONFIG.dayDates[*].midnightUtc already encodes that
+              // (e.g. May 15 00:00 PT = May 15 07:00 UTC). We compute the
+              // photo's offset from its calendar day's PT midnight, then add
+              // to the day's midnightUtc to land on a true UTC epoch.
+              const yr = +m[1], mo = +m[2], dy = +m[3];
+              const hh = +m[4], mm = +m[5], ss = +m[6];
+              // For now, ignore the date-from-EXIF year/month and just use
+              // time-of-day vs. nearest festival night. This sidesteps EXIF
+              // timezone weirdness — if a photo was taken at 11:30 PM it was
+              // taken at 11:30 PM whatever the device clock thinks the day is.
+              out.date = { yr, mo, dy, hh, mm, ss };
+            }
+          }
+        }
+        // GPSIFD → Latitude + Longitude
+        const gpsPtr = ifd0Entries[_EXIF_TAG_GPS_IFD];
+        if (gpsPtr) {
+          const gpsIfd = tiff + u32(gpsPtr.valOff);
+          const gpsEntries = readEntries(gpsIfd);
+          const readRationalDeg = (entry) => {
+            if (!entry || entry.count !== 3 || entry.type !== 5) return null;
+            const off2 = tiff + u32(entry.valOff);
+            const r = (p) => u32(p) / u32(p + 4);
+            return r(off2) + r(off2 + 8) / 60 + r(off2 + 16) / 3600;
+          };
+          const lat = readRationalDeg(gpsEntries[_EXIF_TAG_GPS_LAT]);
+          const lng = readRationalDeg(gpsEntries[_EXIF_TAG_GPS_LNG]);
+          if (lat != null) {
+            const refEntry = gpsEntries[_EXIF_TAG_GPS_LAT_REF];
+            const refCh = refEntry ? String.fromCharCode(dv.getUint8(refEntry.valOff)) : "N";
+            out.lat = refCh === "S" ? -lat : lat;
+          }
+          if (lng != null) {
+            const refEntry = gpsEntries[_EXIF_TAG_GPS_LNG_REF];
+            const refCh = refEntry ? String.fromCharCode(dv.getUint8(refEntry.valOff)) : "E";
+            out.lng = refCh === "W" ? -lng : lng;
+          }
+        }
+        return out;
+      }
+      off += 2 + len;
+    }
+  } catch {}
+  return out;
+}
+
+// Given EXIF metadata + the list of saved-set IDs the user has tagged for
+// any night, pick the best matching artist:
+//   1. Prefer an artist whose set window contains the photo time AND whose
+//      stage is closest to the photo GPS (if GPS available).
+//   2. If no time match in saved sets, expand to ALL artists on that night.
+//   3. If still nothing, return null.
+function _matchArtistForPhoto({ date, lat, lng }, savedIds) {
+  if (!date) return { artistId: null, night: null, reason: "no_date" };
+  const minOfDay = date.hh * 60 + date.mm; // 0..1439
+  // Adjust: any time before 06:00 is treated as still belonging to the
+  // PREVIOUS festival day (sets often run until 5–6 AM in Vegas).
+  const adjustedMin = minOfDay < 360 ? minOfDay + 1440 : minOfDay;
+  // Per-night candidates
+  const nights = Object.keys(window.FESTIVAL_CONFIG?.dayDates || {}).map(n => +n);
+  const candidates = [];
+  for (const night of nights) {
+    for (const a of (window.ARTISTS || [])) {
+      if (a.day !== night) continue;
+      const [sh, sm] = a.start.split(":").map(Number);
+      const [eh, em] = a.end.split(":").map(Number);
+      // Same post-midnight rollover trick as _artistStartMs
+      const startMin = (sh < 6 ? sh + 24 : sh) * 60 + sm;
+      const endMin   = (eh < 6 ? eh + 24 : eh) * 60 + em;
+      if (adjustedMin >= startMin - 5 && adjustedMin <= endMin + 10) {
+        candidates.push({ a, night, startMin, endMin });
+      }
+    }
+  }
+  if (candidates.length === 0) return { artistId: null, night: null, reason: "no_time_match" };
+  // Prefer saved artists first
+  const savedSet = new Set(savedIds || []);
+  const inSaved = candidates.filter(c => savedSet.has(c.a.id));
+  const pool = inSaved.length > 0 ? inSaved : candidates;
+  // GPS tiebreaker: if we have photo GPS + the stage has a known anchor,
+  // pick the closest. Otherwise pick by tightest time fit (start time).
+  const stageDist = (a) => {
+    if (lat == null || lng == null) return Infinity;
+    const anchor = (window.FESTIVAL_CONFIG?.gpsAnchors || []).find(g => g.stageId === a.stage);
+    if (!anchor) return Infinity;
+    const dLat = lat - anchor.lat, dLng = lng - anchor.lng;
+    return dLat * dLat + dLng * dLng;
+  };
+  pool.sort((x, y) => {
+    const dx = stageDist(x.a), dy = stageDist(y.a);
+    if (dx !== Infinity && dy !== Infinity && Math.abs(dx - dy) > 1e-9) return dx - dy;
+    return Math.abs(adjustedMin - x.startMin) - Math.abs(adjustedMin - y.startMin);
+  });
+  return { artistId: pool[0].a.id, night: pool[0].night, reason: "matched" };
+}
+
 function MemoriesScreen({ state, setState }) {
   const [all, setAll] = React.useState(_readMoments);
   const [adding, setAdding] = React.useState(null); // night number being added to, or null
+  const [batch, setBatch] = React.useState(null);   // null | { total, done, results: [{name, night, artistId, err?}] }
+  const batchInputRef = React.useRef(null);
 
   const handleAdd = (moment) => {
     const next = { ..._readMoments() };
@@ -2629,6 +2812,51 @@ function MemoriesScreen({ state, setState }) {
     _writeMoments(next);
     setAll(next);
     setAdding(null);
+  };
+
+  // Auto-import multiple photos at once. For each file we read EXIF, ask the
+  // matcher which artist+night it belongs to, compress + save to IndexedDB,
+  // and write a moment. Photos with no EXIF date are skipped (the user can
+  // still manually add them via the per-night ADD MOMENT button).
+  const handleBatchPick = async (e) => {
+    const files = Array.from(e.target.files || []);
+    e.target.value = ""; // allow re-pick of same files
+    if (files.length === 0) return;
+    const results = [];
+    setBatch({ total: files.length, done: 0, results });
+    const savedIds = state.saved || [];
+    const current = { ..._readMoments() };
+    for (let i = 0; i < files.length; i++) {
+      const f = files[i];
+      try {
+        const meta = await _parseExifMeta(f).catch(() => null);
+        const matched = meta ? _matchArtistForPhoto(meta, savedIds) : { artistId: null, night: null, reason: "no_exif" };
+        if (!matched.night) {
+          results.push({ name: f.name, night: null, artistId: null, err: matched.reason });
+        } else {
+          const blob = await _compressMomentImage(f);
+          const id = `m_${Date.now()}_${i}_${Math.random().toString(36).slice(2, 6)}`;
+          const photoId = `p_${id}`;
+          await _putPhoto(photoId, blob);
+          const moment = {
+            id, night: matched.night, text: "", artistId: matched.artistId, photoId,
+            createdAt: Date.now(),
+            // Capture the original photo's EXIF time too — surfaces the
+            // "taken at" stamp instead of "imported at" in the future.
+            takenAt: meta?.date ? `${meta.date.yr}-${String(meta.date.mo).padStart(2,"0")}-${String(meta.date.dy).padStart(2,"0")} ${String(meta.date.hh).padStart(2,"0")}:${String(meta.date.mm).padStart(2,"0")}` : null,
+          };
+          current[matched.night] = [...(current[matched.night] || []), moment];
+          results.push({ name: f.name, night: matched.night, artistId: matched.artistId });
+        }
+      } catch (err) {
+        results.push({ name: f.name, night: null, artistId: null, err: err?.message || "failed" });
+      }
+      setBatch({ total: files.length, done: i + 1, results: results.slice() });
+    }
+    _writeMoments(current);
+    setAll(current);
+    // Auto-dismiss summary banner after 6s if user doesn't tap it
+    setTimeout(() => setBatch(b => (b && b.done === b.total ? null : b)), 6000);
   };
 
   const handleDelete = async (moment) => {
@@ -2662,6 +2890,57 @@ function MemoriesScreen({ state, setState }) {
         </div>
       </div>
       <ScrollBody style={{ padding: "0 20px 94px" }}>
+        {/* v135 batch import — auto-tags each photo by EXIF time + GPS,
+            then drops it into the right night without further input. */}
+        <input
+          ref={batchInputRef}
+          type="file"
+          accept="image/*"
+          multiple
+          onChange={handleBatchPick}
+          style={{ display: "none" }}
+        />
+        <button onClick={() => batchInputRef.current?.click()}
+          disabled={!!batch && batch.done < batch.total}
+          style={{
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            width: "100%", marginTop: 12, padding: "12px 14px",
+            background: "linear-gradient(135deg, rgba(232,93,46,0.12), rgba(123,61,154,0.10))",
+            border: "1px solid rgba(232,93,46,0.4)",
+            borderRadius: 14, color: "var(--ink)", cursor: "pointer",
+          }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <span style={{ fontSize: 17 }}>✨</span>
+            <div style={{ textAlign: "left" }}>
+              <div className="serif" style={{ fontSize: 16, lineHeight: 1.1 }}>Import from camera roll</div>
+              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2, fontWeight: 700 }}>
+                AUTO-TAGS BY TIME + LOCATION
+              </div>
+            </div>
+          </div>
+          <span className="mono" style={{
+            background: "var(--ember)", color: "#fff",
+            padding: "5px 11px", borderRadius: 999,
+            fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+          }}>{batch && batch.done < batch.total ? `${batch.done}/${batch.total}` : "PICK"}</span>
+        </button>
+        {batch && batch.done === batch.total && (() => {
+          const ok = batch.results.filter(r => !r.err).length;
+          const skip = batch.results.length - ok;
+          return (
+            <div onClick={() => setBatch(null)} style={{
+              marginTop: 8, padding: "9px 12px",
+              background: "rgba(45,122,85,0.12)", border: "1px solid rgba(45,122,85,0.4)",
+              borderRadius: 10, cursor: "pointer",
+              display: "flex", alignItems: "center", justifyContent: "space-between",
+            }}>
+              <span className="mono" style={{ fontSize: 9.5, letterSpacing: 1.2, color: "var(--success)", fontWeight: 700 }}>
+                ✓ {ok} ADDED{skip > 0 ? ` · ${skip} SKIPPED (NO TIME/LOCATION DATA)` : ""}
+              </span>
+              <span className="mono" style={{ fontSize: 9, color: "var(--muted)" }}>TAP TO DISMISS</span>
+            </div>
+          );
+        })()}
         {DAYS.map(d => {
           const moments = (all[d.n] || []).slice().sort((a, b) => a.createdAt - b.createdAt);
           const dateInfo = FESTIVAL_CONFIG.dayDates?.[d.n];
