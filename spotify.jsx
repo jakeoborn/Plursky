@@ -2380,6 +2380,40 @@ function _compressMomentImage(file) {
   });
 }
 
+// v135: videos go in as-is — no transcoding in-browser (would need FFmpeg
+// WASM, way too heavy). Cap at 200 MB per clip so a stray 4K Cinematic
+// can't blow out the IndexedDB quota in a single import.
+const _MAX_VIDEO_BYTES = 200 * 1024 * 1024;
+async function _processMomentMedia(file) {
+  if (/^image\//.test(file.type)) {
+    return { blob: await _compressMomentImage(file), kind: "image" };
+  }
+  if (/^video\//.test(file.type)) {
+    if (file.size > _MAX_VIDEO_BYTES) {
+      throw new Error(`Video too large (${Math.round(file.size / 1048576)} MB > 200 MB cap)`);
+    }
+    // Store raw — modern iOS records H.265/HEVC which Safari plays natively.
+    return { blob: file, kind: "video" };
+  }
+  throw new Error("Unsupported file type: " + file.type);
+}
+
+// Fall back to `file.lastModified` for date when EXIF is missing (always for
+// videos, sometimes for screenshots / edited photos). iOS preserves capture
+// time as lastModified for camera-roll content, so this is reliable enough
+// for set-time matching.
+function _metaFromFile(file, exifMeta) {
+  const out = { date: exifMeta?.date || null, lat: exifMeta?.lat ?? null, lng: exifMeta?.lng ?? null };
+  if (!out.date && file?.lastModified) {
+    const d = new Date(file.lastModified);
+    out.date = {
+      yr: d.getFullYear(), mo: d.getMonth() + 1, dy: d.getDate(),
+      hh: d.getHours(), mm: d.getMinutes(), ss: d.getSeconds(),
+    };
+  }
+  return out;
+}
+
 function _fmtMomentTime(ts) {
   const d = new Date(ts);
   let h = d.getHours();
@@ -2419,10 +2453,18 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick }) {
     }}>
       {moment.photoId && (
         photoUrl ? (
-          <img src={photoUrl} alt="" style={{
-            width: "100%", borderRadius: 10, display: "block",
-            marginBottom: moment.text ? 10 : 8,
-          }}/>
+          moment.kind === "video" ? (
+            <video src={photoUrl} controls playsInline preload="metadata" style={{
+              width: "100%", borderRadius: 10, display: "block",
+              marginBottom: moment.text ? 10 : 8,
+              background: "#000",
+            }}/>
+          ) : (
+            <img src={photoUrl} alt="" style={{
+              width: "100%", borderRadius: 10, display: "block",
+              marginBottom: moment.text ? 10 : 8,
+            }}/>
+          )
         ) : (
           <div style={{
             width: "100%", aspectRatio: "4/3", borderRadius: 10,
@@ -2477,25 +2519,28 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
   // Revoke any preview URL on unmount/replace.
   React.useEffect(() => () => { if (previewUrl) URL.revokeObjectURL(previewUrl); }, [previewUrl]);
 
+  const [mediaKind, setMediaKind] = React.useState("image"); // image | video
   const handlePhoto = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
     setBusy(true); setErr("");
     try {
-      // Read EXIF BEFORE compression — _compressMomentImage repaints onto a
-      // canvas which strips EXIF entirely. If we get a usable date+(GPS) the
-      // matcher pre-fills the artist chip so the user usually just hits SAVE.
-      const meta = await _parseExifMeta(file).catch(() => null);
+      // Read EXIF / fall back to file.lastModified so the matcher can pre-fill
+      // the artist chip. _compressMomentImage strips EXIF (canvas re-encode)
+      // so we have to read it BEFORE processing.
+      const exif = await _parseExifMeta(file).catch(() => null);
+      const meta = _metaFromFile(file, exif);
       if (meta && meta.date && !artistId) {
         const matched = _matchArtistForPhoto(meta, savedNightArtists.map(a => a.id));
         if (matched.artistId) setArtistId(matched.artistId);
       }
-      const b = await _compressMomentImage(file);
+      const out = await _processMomentMedia(file);
       if (previewUrl) URL.revokeObjectURL(previewUrl);
-      setBlob(b);
-      setPreviewUrl(URL.createObjectURL(b));
-    } catch {
-      setErr("Couldn't load that photo.");
+      setBlob(out.blob);
+      setMediaKind(out.kind);
+      setPreviewUrl(URL.createObjectURL(out.blob));
+    } catch (err) {
+      setErr(err?.message || "Couldn't load that file.");
     }
     setBusy(false);
   };
@@ -2520,6 +2565,7 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
       }
       const moment = {
         id, night, text: text.trim(), artistId, photoId,
+        kind: blob ? mediaKind : null,
         createdAt: Date.now(),
       };
       onAdd(moment);
@@ -2541,8 +2587,13 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
     }}>
       {previewUrl ? (
         <div style={{ position: "relative", marginBottom: 10 }}>
-          <img src={previewUrl} alt="" style={{ width: "100%", borderRadius: 10, display: "block" }}/>
-          <button onClick={clearPhoto} aria-label="Remove photo" style={{
+          {mediaKind === "video" ? (
+            <video src={previewUrl} controls playsInline
+              style={{ width: "100%", borderRadius: 10, display: "block", background: "#000" }}/>
+          ) : (
+            <img src={previewUrl} alt="" style={{ width: "100%", borderRadius: 10, display: "block" }}/>
+          )}
+          <button onClick={clearPhoto} aria-label="Remove media" style={{
             position: "absolute", top: 8, right: 8,
             width: 28, height: 28, borderRadius: 999,
             background: "rgba(0,0,0,0.55)", color: "#fff",
@@ -2559,8 +2610,8 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
           color: "var(--muted)",
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
         }}>
-          <span>📷 ADD A PHOTO (OPTIONAL)</span>
-          <input type="file" accept="image/*" capture="environment"
+          <span>📷 ADD PHOTO OR VIDEO (OPTIONAL)</span>
+          <input type="file" accept="image/*,video/*"
             onChange={handlePhoto} style={{ display: "none" }}/>
         </label>
       )}
@@ -2829,20 +2880,23 @@ function MemoriesScreen({ state, setState }) {
     for (let i = 0; i < files.length; i++) {
       const f = files[i];
       try {
-        const meta = await _parseExifMeta(f).catch(() => null);
-        const matched = meta ? _matchArtistForPhoto(meta, savedIds) : { artistId: null, night: null, reason: "no_exif" };
+        // EXIF for JPEGs; falls back to file.lastModified for videos /
+        // photos without EXIF (screenshots, edited images). Either way the
+        // matcher takes the same shape.
+        const exif = await _parseExifMeta(f).catch(() => null);
+        const meta = _metaFromFile(f, exif);
+        const matched = meta?.date ? _matchArtistForPhoto(meta, savedIds) : { artistId: null, night: null, reason: "no_date" };
         if (!matched.night) {
           results.push({ name: f.name, night: null, artistId: null, err: matched.reason });
         } else {
-          const blob = await _compressMomentImage(f);
+          const out = await _processMomentMedia(f);
           const id = `m_${Date.now()}_${i}_${Math.random().toString(36).slice(2, 6)}`;
           const photoId = `p_${id}`;
-          await _putPhoto(photoId, blob);
+          await _putPhoto(photoId, out.blob);
           const moment = {
             id, night: matched.night, text: "", artistId: matched.artistId, photoId,
+            kind: out.kind,
             createdAt: Date.now(),
-            // Capture the original photo's EXIF time too — surfaces the
-            // "taken at" stamp instead of "imported at" in the future.
             takenAt: meta?.date ? `${meta.date.yr}-${String(meta.date.mo).padStart(2,"0")}-${String(meta.date.dy).padStart(2,"0")} ${String(meta.date.hh).padStart(2,"0")}:${String(meta.date.mm).padStart(2,"0")}` : null,
           };
           current[matched.night] = [...(current[matched.night] || []), moment];
@@ -2895,7 +2949,7 @@ function MemoriesScreen({ state, setState }) {
         <input
           ref={batchInputRef}
           type="file"
-          accept="image/*"
+          accept="image/*,video/*"
           multiple
           onChange={handleBatchPick}
           style={{ display: "none" }}
