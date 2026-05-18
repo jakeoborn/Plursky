@@ -657,6 +657,10 @@ function ArtistScreen({ state, setState }) {
         followers:     match.followers?.total || 0,
         genres:        match.genres || [],
         topTrackNames,
+        // v141: cache the Spotify artist ID so the SPOTIFY social link
+        // can open the artist page directly instead of dumping the user
+        // into search results.
+        spotifyId:     match.id || null,
       };
       setSpotifyStats(stats);
       try {
@@ -925,10 +929,14 @@ function ArtistScreen({ state, setState }) {
           </div>
         </div>
 
-        {/* Social search links */}
+        {/* Social search links — SPOTIFY goes to the artist's PAGE directly
+            when we've cached the Spotify artist ID (set during the stats
+            fetch); falls back to the search-by-artist URL otherwise. */}
         <div style={{ display: "flex", gap: 6, marginBottom: 18, flexWrap: "wrap" }}>
           {[
-            { label: "SPOTIFY", url: `https://open.spotify.com/search/${encodeURIComponent(activeName)}/artists` },
+            { label: "SPOTIFY", url: spotifyStats?.spotifyId
+                ? `https://open.spotify.com/artist/${spotifyStats.spotifyId}`
+                : `https://open.spotify.com/search/${encodeURIComponent(activeName)}/artists` },
             { label: "SOUNDCLOUD", url: `https://soundcloud.com/search?q=${encodeURIComponent(activeName)}` },
             { label: "RA", url: `https://ra.co/search?query=${encodeURIComponent(activeName)}` },
             { label: "INSTAGRAM", url: `https://www.instagram.com/explore/tags/${encodeURIComponent(activeName.replace(/\s+/g,"").toLowerCase())}` },
