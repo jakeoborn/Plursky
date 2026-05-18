@@ -12,7 +12,14 @@ const _SL_TTL = 24 * 3600000; // cache 24 h
 // v2 cache key — invalidates the empty `[]` arrays stale clients wrote
 // while the direct fetch was CORS-failing.
 async function fetchSetlists(artistName) {
-  const cacheKey = `setlist_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
+  // v3: setlist.fm only has documented song lists for a small minority of
+  // DJ/EDM gigs (it's a fan-submitted database — rock acts get transcribed,
+  // dance acts mostly don't). Previously we filtered to "must have songs"
+  // and returned an empty array for almost every Plursky artist. Now we
+  // keep the most-recent setlists regardless of whether anyone wrote down
+  // the tracklist; the card renders venue + date + a SETLIST.FM ↗ link as
+  // the minimum useful payload, and shows the song list when present.
+  const cacheKey = `setlist_${artistName.toLowerCase().replace(/\W+/g, "_")}_v3`;
   try {
     const c = JSON.parse(localStorage.getItem(cacheKey) || "null");
     if (c && Date.now() - c.fetchedAt < _SL_TTL) return c.data;
@@ -24,9 +31,13 @@ async function fetchSetlists(artistName) {
     );
     if (!res.ok) return [];
     const json = await res.json();
-    const lists = (json.setlist || [])
-      .filter(s => (s.sets?.set || []).some(set => (set.song || []).length > 0))
-      .slice(0, 3);
+    // Prefer setlists with songs (they're more useful), but accept gig-only
+    // entries too. Sort with-songs first so the section leads with the
+    // richest data, then top up with venue-only entries to fill the slot.
+    const all = json.setlist || [];
+    const withSongs = all.filter(s => (s.sets?.set || []).some(set => (set.song || []).length > 0));
+    const venueOnly = all.filter(s => !(s.sets?.set || []).some(set => (set.song || []).length > 0));
+    const lists = [...withSongs.slice(0, 3), ...venueOnly.slice(0, Math.max(0, 5 - withSongs.length))].slice(0, 5);
     try { localStorage.setItem(cacheKey, JSON.stringify({ data: lists, fetchedAt: Date.now() })); } catch {}
     return lists;
   } catch { return []; }
@@ -1422,30 +1433,40 @@ function ArtistScreen({ state, setState }) {
                     )}
                   </div>
 
-                  <div style={{ borderTop: "1px solid var(--line)", paddingTop: 6 }}>
-                    {displaySongs.map((song, si) => {
-                      const sn = song.name?.toLowerCase();
-                      const isBanger = spotifyStats?.topTrackNames?.includes(sn)
-                                    || lfm?.topTrackNames?.includes(sn);
-                      return (
-                        <div key={si} style={{ display: "flex", alignItems: "center", gap: 10, padding: "3px 0" }}>
-                          <span className="mono" style={{ fontSize: 9, color: "var(--muted)", width: 18, textAlign: "right", flexShrink: 0 }}>{si + 1}</span>
-                          <span style={{ fontSize: 13, color: isBanger ? stage.color : "var(--ink)", fontWeight: isBanger ? 600 : 400, flex: 1 }}>{song.name}</span>
-                          {isBanger && <span className="mono" style={{ fontSize: 7, letterSpacing: 1, color: stage.color, fontWeight: 700 }}>BANGER</span>}
-                          {song.tape && <span className="mono" style={{ fontSize: 8, color: "var(--muted)", letterSpacing: 1 }}>TAPE</span>}
-                        </div>
-                      );
-                    })}
-                    {songs.length > 5 && (
-                      <button onClick={() => setSlExpanded(e => ({ ...e, [idx]: !e[idx] }))} style={{
-                        background: "transparent", border: "none", cursor: "pointer",
-                        fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2,
-                        color: "var(--ember)", padding: "6px 0 2px", display: "block",
-                      }}>
-                        {isOpen ? "SHOW LESS ↑" : `+${songs.length - 5} MORE SONGS ↓`}
-                      </button>
-                    )}
-                  </div>
+                  {songs.length === 0 ? (
+                    <div className="mono" style={{
+                      borderTop: "1px solid var(--line)", paddingTop: 8,
+                      fontSize: 9.5, letterSpacing: 1, color: "var(--muted)",
+                      fontStyle: "italic",
+                    }}>
+                      SONGS NOT DOCUMENTED · TAP SETLIST.FM ↗ FOR DETAILS
+                    </div>
+                  ) : (
+                    <div style={{ borderTop: "1px solid var(--line)", paddingTop: 6 }}>
+                      {displaySongs.map((song, si) => {
+                        const sn = song.name?.toLowerCase();
+                        const isBanger = spotifyStats?.topTrackNames?.includes(sn)
+                                      || lfm?.topTrackNames?.includes(sn);
+                        return (
+                          <div key={si} style={{ display: "flex", alignItems: "center", gap: 10, padding: "3px 0" }}>
+                            <span className="mono" style={{ fontSize: 9, color: "var(--muted)", width: 18, textAlign: "right", flexShrink: 0 }}>{si + 1}</span>
+                            <span style={{ fontSize: 13, color: isBanger ? stage.color : "var(--ink)", fontWeight: isBanger ? 600 : 400, flex: 1 }}>{song.name}</span>
+                            {isBanger && <span className="mono" style={{ fontSize: 7, letterSpacing: 1, color: stage.color, fontWeight: 700 }}>BANGER</span>}
+                            {song.tape && <span className="mono" style={{ fontSize: 8, color: "var(--muted)", letterSpacing: 1 }}>TAPE</span>}
+                          </div>
+                        );
+                      })}
+                      {songs.length > 5 && (
+                        <button onClick={() => setSlExpanded(e => ({ ...e, [idx]: !e[idx] }))} style={{
+                          background: "transparent", border: "none", cursor: "pointer",
+                          fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2,
+                          color: "var(--ember)", padding: "6px 0 2px", display: "block",
+                        }}>
+                          {isOpen ? "SHOW LESS ↑" : `+${songs.length - 5} MORE SONGS ↓`}
+                        </button>
+                      )}
+                    </div>
+                  )}
                 </div>
               );
             })}
