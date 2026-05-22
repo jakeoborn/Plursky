@@ -112,15 +112,6 @@ const _sb = (SUPABASE_URL && SUPABASE_ANON)
   : null;
 
 // ── Auth ──────────────────────────────────────────────────────
-async function sbSignIn(email) {
-  if (!_sb) return { error: "Supabase not configured" };
-  const { error } = await _sb.auth.signInWithOtp({
-    email,
-    options: { emailRedirectTo: window.location.origin },
-  });
-  return { error: error?.message || null };
-}
-
 // Sign in with Spotify via Supabase OAuth — requires Spotify enabled in
 // Supabase Dashboard → Auth → Providers. See SQL comment above for setup.
 async function sbSignInWithSpotify() {
@@ -501,9 +492,6 @@ async function sbExportUserData(state) {
 function AccountCard({ state, setState }) {
   const configured = !!(SUPABASE_URL && SUPABASE_ANON);
   const [sbUser, setSbUser] = React.useState(null);
-  const [email,  setEmail]  = React.useState("");
-  const [phase,  setPhase]  = React.useState("idle"); // idle | sending | sent | error
-  const [errMsg, setErrMsg] = React.useState("");
   // Apple Sign-In needs its own busy/error state so the button gives
   // visible feedback the moment it's tapped — silent failure here was
   // the v1.0(3) App Review rejection (Guideline 2.1a).
@@ -546,14 +534,6 @@ function AccountCard({ state, setState }) {
       }
     });
   }, [configured]);
-
-  const handleSignIn = async () => {
-    if (!email.trim()) return;
-    setPhase("sending");
-    const { error } = await sbSignIn(email.trim());
-    if (error) { setPhase("error"); setErrMsg(error); }
-    else setPhase("sent");
-  };
 
   const handleApple = async () => {
     if (appleBusy) return;
@@ -773,10 +753,7 @@ function AccountCard({ state, setState }) {
 
       {configured && !sbUser && (
         <>
-          {/* Sign in with Apple — sole sign-in method as of v1.0(7). Email
-              magic link was removed at Jake's request after two App Review
-              rejections that centered on the Apple flow. The underlying
-              sbSignIn(email) helper stays in code for a future restore. */}
+          {/* Sign in with Apple — sole sign-in method. */}
           <button onClick={handleApple} disabled={appleBusy} style={{
             width: "100%", marginBottom: appleErr ? 6 : 0,
             background: appleBusy ? "#444" : "#000",
@@ -2465,7 +2442,7 @@ function CrewCard({ state }) {
 }
 
 Object.assign(window, {
-  AccountCard, sbSignIn, sbSignInWithSpotify, sbSignInWithApple, sbDeleteAccount, sbSignOut, sbGetUser, sbPush, sbPull, sbOnAuthChange,
+  AccountCard, sbSignInWithSpotify, sbSignInWithApple, sbDeleteAccount, sbSignOut, sbGetUser, sbPush, sbPull, sbOnAuthChange,
   sbGetArtistSaveCounts,
   sbPresenceJoin, sbPresenceUpdate, sbPresenceLeave, sbPresenceRefresh, sbOnPresenceChange,
   sbGetMyPresId, sbGetPresSnap, sbFindByPingCode,
