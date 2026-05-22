@@ -1,26 +1,53 @@
 # Plursky — To-Do List
 
-_Last full sweep: 2026-05-20 (post-EDC). Web is at v149; App Store is
-still on `1.2 (12)` — everything from v131 onward is website-only until
-v1.3 is archived._
+_Last full sweep: 2026-05-20 (post-EDC). v1.3 submitted to Apple
+**2026-05-22** — In Review. Web is at v152._
 
-## 🚨 SHIP-BLOCKING — the App Store binary is way out of date
+## 🍿 v1.3 SUBMITTED — WAITING ON APPLE
 
-7+ weeks of fixes have landed on the website but iOS users on
-`1.2 (12)` (still the App Store version) have none of it. Archive +
-submit a v1.3 to ship:
+**Status (2026-05-22):** Plursky Live `1.3 (13)` is **submitted to Apple
+App Review**. Expected decision in ~24–48 h.
 
-- [ ] **`npx cap sync ios`** — copies the new dist/ + registers the
-      plugins added since the last archive (`@capacitor/local-notifications`,
-      `@capacitor/browser`, `@capacitor/app`) and the `plursky://` URL
-      scheme into the Xcode project.
-- [ ] **Bump `CURRENT_PROJECT_VERSION 12 → 13`** in
-      `ios/App/App.xcodeproj/project.pbxproj` (both Debug + Release
-      configurations). `MARKETING_VERSION 1.2 → 1.3` recommended given
-      the scope.
-- [ ] **Archive in Xcode → Distribute App → App Store Connect →
-      Upload**. Then in App Store Connect: create version `1.3`, fill
-      "What's New", attach build 13, **Submit for Review**.
+### What to watch for
+
+- Email from `appstoreconnect@apple.com`:
+  - "**Your app status is now In Review**" — picked up by a reviewer
+  - "**Ready for Sale / Distribution**" — approved, can release
+  - "**Rejected**" — see "If rejected" below
+
+### If approved
+
+- Choose between manual release ("Pending Developer Release") vs
+  automatic. Post-festival there's no urgency, so manual is fine —
+  pick a day, hit Release.
+- Once live, grab the numeric App ID from the App Store URL and paste
+  it into `APP_STORE_ID` in `spotify.jsx` (currently `null`). That
+  makes the in-app rating prompt's web fallback deep-link directly
+  to the Plursky listing instead of a generic search.
+- Move attention to the 🟠 PRODUCT GAPS section below.
+
+### If rejected — most likely reasons (in order of probability)
+
+1. **UGC moderation pushback on CrewChat** — already solved (v131 ships
+   in-app Report + Block + Unblock). If they still flag, point at the
+   reviewer-notes block (📚 LISTING TEXT → "App Review reviewer notes
+   (v1.3)") which explains the whole moderation surface.
+2. **Photo / camera roll usage** — Memories uses a plain
+   `<input type=file accept=image/*,video/*>` only — no PhotoKit, no
+   Camera plugin. Reviewer notes already explain "photos read via
+   standard file picker and stored locally in IndexedDB; never
+   transmitted."
+3. **plursky:// URL scheme purpose** — they sometimes ask what custom
+   schemes are for. Answer: round-trips the Spotify OAuth callback
+   into the app from SafariViewController. Used only by `@capacitor/browser`
+   's redirect handler.
+
+### ✓ Completed submission steps
+
+- [x] **`npx cap sync ios`** — done 2026-05-22
+- [x] **Bumped to 1.3 (13)** in `project.pbxproj` — done 2026-05-22
+      (commit `f7d8440`)
+- [x] **Archived + submitted via Xcode** — done 2026-05-22
 
 ### What ships in v1.3 (build 13)
 
