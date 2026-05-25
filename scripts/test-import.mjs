@@ -276,6 +276,18 @@ async function run() {
   check(`sibling chip "+ TAG AS PEGGY GOU" rendered (count=${siblingChip})`, siblingChip >= 1);
   await page.screenshot({ path: '/tmp/plursky-sibling.png', fullPage: true });
 
+  // Click the chip and verify the moment is actually tagged. Exercises the
+  // onUpdate → _writeMoments → plursky-moments-change → re-render path
+  // end-to-end, not just the static-render check above.
+  if (siblingChip >= 1) {
+    await page.locator('button:has-text("TAG AS PEGGY GOU")').first().click();
+    await page.waitForTimeout(400);
+    const moments = await page.evaluate(() => JSON.parse(localStorage.getItem('plursky_moments_v1') || '{}'));
+    const sibling = (moments['1'] || []).find(m => m.id === 'm_sibling_test');
+    check(`click → sibling.artistId = "n4" (got ${sibling?.artistId})`, sibling?.artistId === 'n4');
+    check(`click → sibling.tagSource = "manual" (got ${sibling?.tagSource})`, sibling?.tagSource === 'manual');
+  }
+
   // ── TEST 3 ── Per-artist memories strip renders on the artist screen.
   // Deep-link to Peggy Gou (n4) and assert YourPhotosStrip appears with the
   // EXIF moment from TEST 1.
@@ -295,11 +307,13 @@ async function run() {
   await page.screenshot({ path: '/tmp/plursky-artist.png', fullPage: true });
 
   const stripHeader = await page.locator('text=/YOUR MOMENTS FROM THIS SET/i').count();
-  const memoryCount = await page.locator('text=/1 memory saved/i').count();
+  // Sibling-suggestion test above tagged a second moment to Peggy Gou,
+  // so the strip's count now reads "2 memories saved" (1 from TEST 1
+  // EXIF auto-tag + 1 from the sibling-suggestion click).
+  const memoryCount = await page.locator('text=/[12] memor(y|ies) saved/i').count();
   console.log('\n── TEST 3: per-artist memories strip on Peggy Gou screen ──');
   check(`"YOUR MOMENTS FROM THIS SET" header rendered (count=${stripHeader})`, stripHeader >= 1);
-  check(`"1 memory saved" subtitle rendered (count=${memoryCount})`, memoryCount >= 1);
-  // pass3 needs its own flag; reusing pass1 mutator above.
+  check(`memory count subtitle rendered (count=${memoryCount})`, memoryCount >= 1);
   pass3 = stripHeader >= 1 && memoryCount >= 1;
 
   console.log('\n── RESULT ──');

@@ -2621,6 +2621,17 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
             fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
           }}>+ TAG A SET</button>
         )}
+        {/* Escape hatch — when sibling-suggestion is showing, also give the
+            user a way to open the full editor in case the neighbour-pick
+            is wrong (e.g., 3 nearby moments tagged Peggy Gou but THIS
+            shot was a side trip to Cosmic Meadow). */}
+        {!artist && suggestion && onUpdate && (
+          <button onClick={() => setEditing(true)} className="mono" style={{
+            background: "transparent", border: "none", color: "var(--muted)",
+            cursor: "pointer", fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
+            padding: "3px 5px",
+          }}>OTHER</button>
+        )}
         <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 600 }}>
           {_fmtMomentTime(moment.createdAt)} · {idx + 1}/{total}
         </span>
@@ -3140,8 +3151,8 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds) {
   // EDC. Don't force-tag the closest artist in that case; surface as
   // "off_stage" so the UI shows 📍 BETWEEN SETS instead of a wrong
   // artist chip. With anchors for all 9 stages (data.jsx gpsAnchors,
-  // v157+), 80m is the tightest threshold that doesn't false-positive
-  // "back of the crowd". Earlier v157 launch used 150m because only 3
+  // v158+), 80m is the tightest threshold that doesn't false-positive
+  // "back of the crowd". Earlier v158 launch used 150m because only 3
   // of 9 anchors were calibrated — that left big gaps near the other
   // 6 stages, forcing a conservative threshold.
   if (lat != null && lng != null) {
@@ -4930,7 +4941,7 @@ async function _shareRecapCard(recap) {
   const file = new File([blob], filename, { type: "image/png" });
   const title = `My ${window.FESTIVAL_CONFIG?.shortName || "festival"}`;
 
-  // Native iOS path (v157): @capacitor/share with `files` (data URL) — more
+  // Native iOS path (v158): @capacitor/share with `files` (data URL) — more
   // reliable inside WKWebView than the web `navigator.share({ files })` path
   // which can fail silently in some iOS versions.
   const capShare = window.Capacitor?.Plugins?.Share;
