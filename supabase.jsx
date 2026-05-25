@@ -2618,6 +2618,56 @@ function CrewCard({ state }) {
   );
 }
 
+// ── Live Presence — track users at stages during festival ─────────
+// Unlike the crew-scoped friend presence above, this is a festival-wide
+// anonymous headcount per stage. Any Plursky user at the festival gets
+// counted; the UI shows "47 HERE NOW" on the stage detail screen.
+// No DB table needed — pure Supabase Realtime presence channels.
+let _stagePresChannel = null;
+let _currentPresenceStage = null;
+
+function joinStagePresence(stageId) {
+  if (!_sb || !stageId) return;
+  if (_currentPresenceStage === stageId) return;
+
+  // Leave previous stage channel
+  if (_stagePresChannel) {
+    _stagePresChannel.unsubscribe();
+    _stagePresChannel = null;
+  }
+
+  _currentPresenceStage = stageId;
+  const deviceId = localStorage.getItem("plursky-device-id") || (() => {
+    const id = `anon_${Math.random().toString(36).slice(2, 8)}`;
+    try { localStorage.setItem("plursky-device-id", id); } catch {}
+    return id;
+  })();
+
+  _stagePresChannel = _sb.channel(`stage:${stageId}`, {
+    config: { presence: { key: deviceId } },
+  });
+
+  _stagePresChannel.on("presence", { event: "sync" }, () => {
+    const state = _stagePresChannel.presenceState();
+    const count = Object.keys(state).length;
+    window.dispatchEvent(new CustomEvent("plursky-presence", { detail: { stageId, count } }));
+  });
+
+  _stagePresChannel.subscribe(async (status) => {
+    if (status === "SUBSCRIBED") {
+      await _stagePresChannel.track({ stage: stageId, joined: Date.now() });
+    }
+  });
+}
+
+function leaveStagePresence() {
+  if (_stagePresChannel) {
+    _stagePresChannel.unsubscribe();
+    _stagePresChannel = null;
+  }
+  _currentPresenceStage = null;
+}
+
 Object.assign(window, {
   AccountCard, sbSignInWithSpotify, sbSignInWithApple, sbDeleteAccount, sbSignOut, sbGetUser, sbPush, sbPull, sbOnAuthChange,
   sbGetArtistSaveCounts,
@@ -2630,4 +2680,5 @@ Object.assign(window, {
   sbDMRoomCode, sbDMFetchMessages, sbDMSend, sbDMSubscribe,
   sbOutboxList, sbOutboxDrain, sbOutboxInit,
   sbGenerateShareToken, sbLiveShareStart, sbLiveShareUpdate, sbLiveShareStop, sbLiveShareFetch,
+  joinStagePresence, leaveStagePresence,
 });

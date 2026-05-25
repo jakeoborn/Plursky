@@ -86,6 +86,15 @@ async function fetchAppleMusicArtists() {
   } catch { return []; }
 }
 
+// ShazamKit bridge — iOS only, auto-detects via Capacitor
+if (window.Capacitor?.isNativePlatform()) {
+  try {
+    window.ShazamPlugin = window.Capacitor.Plugins.ShazamPlugin || null;
+  } catch { window.ShazamPlugin = null; }
+} else {
+  window.ShazamPlugin = null;
+}
+
 const SPOTIFY_CLIENT_ID     = "2219c68606c54629a8799f467a996a81";
 const SPOTIFY_REDIRECT_WEB  = "https://plursky.com/callback";
 // v132: native iOS uses a custom URL scheme so Spotify's redirect comes back
@@ -2857,23 +2866,68 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
         </div>
       )}
       {nowPlaying && (
-        <div style={{ marginTop: 5, display: "flex", alignItems: "center", gap: 6 }}>
-          <div className="mono" style={{
-            fontSize: 8, letterSpacing: 0.8, fontWeight: 700,
-            color: stage?.color || "var(--horizon)",
-            display: "flex", alignItems: "center", gap: 4, flex: 1, minWidth: 0,
-          }}>
-            <span style={{ fontSize: 10, flexShrink: 0 }}>♫</span>
-            <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-              {nowPlaying.song?.toUpperCase()}
-            </span>
+        <div style={{
+          marginTop: 5, animation: "song-fade-in 0.5s ease-out",
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            <div style={{
+              width: 22, height: 22, borderRadius: 22, flexShrink: 0,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              background: `${stage?.color || "var(--horizon)"}22`,
+              animation: "song-ripple 1.5s ease-out",
+            }}>
+              <span style={{ fontSize: 10, color: stage?.color || "var(--horizon)" }}>♫</span>
+            </div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div className="mono" style={{
+                fontSize: 8, letterSpacing: 0.8, fontWeight: 700,
+                color: stage?.color || "var(--horizon)",
+                overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+              }}>
+                {nowPlaying.song?.toUpperCase()}
+              </div>
+              {nowPlaying.source === "1001tracklists" && artist && (() => {
+                const CFG = window.FESTIVAL_CONFIG || {};
+                const dm = CFG.dayDates?.[artist.day];
+                if (!dm) return null;
+                const [sh, sm] = artist.start.split(":").map(Number);
+                const [eh, em] = artist.end.split(":").map(Number);
+                const setStartMs = dm.midnightUtc + (sh < 6 ? sh + 24 : sh) * 3600000 + sm * 60000;
+                const setEndMs = dm.midnightUtc + (eh < 6 ? eh + 24 : eh) * 3600000 + em * 60000;
+                const photoMs = Date.parse(moment.takenAt?.replace(" ", "T"));
+                if (isNaN(photoMs)) return null;
+                const elapsed = photoMs - setStartMs;
+                const duration = setEndMs - setStartMs;
+                if (duration <= 0 || elapsed < 0) return null;
+                const pct = Math.min(elapsed / duration, 1);
+                const mins = Math.round(elapsed / 60000);
+                const totalMins = Math.round(duration / 60000);
+                return (
+                  <div className="mono" style={{
+                    fontSize: 6.5, letterSpacing: 0.8, color: "var(--muted)",
+                    marginTop: 1, display: "flex", alignItems: "center", gap: 4,
+                  }}>
+                    <span>{mins}min into {totalMins}min set</span>
+                    <div style={{
+                      width: 30, height: 3, borderRadius: 2,
+                      background: "rgba(255,255,255,0.1)",
+                    }}>
+                      <div style={{
+                        width: `${pct * 100}%`, height: "100%", borderRadius: 2,
+                        background: stage?.color || "var(--horizon)",
+                      }} />
+                    </div>
+                  </div>
+                );
+              })()}
+            </div>
+            <span className="mono" style={{
+              fontSize: 6.5, letterSpacing: 0.8, padding: "2px 5px", borderRadius: 4, flexShrink: 0,
+              background: nowPlaying.confidence === "exact" ? "rgba(45,122,85,0.15)" : "rgba(232,93,46,0.1)",
+              color: nowPlaying.confidence === "exact" ? "var(--success)" : "var(--ember)",
+              fontWeight: 700,
+            }}>{nowPlaying.confidence === "exact" ? "EXACT" : "~EST"}</span>
           </div>
-          <span className="mono" style={{
-            fontSize: 6.5, letterSpacing: 0.8, padding: "2px 5px", borderRadius: 4, flexShrink: 0,
-            background: nowPlaying.confidence === "exact" ? "rgba(45,122,85,0.15)" : "rgba(232,93,46,0.1)",
-            color: nowPlaying.confidence === "exact" ? "var(--success)" : "var(--ember)",
-            fontWeight: 700,
-          }}>{nowPlaying.confidence === "exact" ? "EXACT" : "~EST"}</span>
         </div>
       )}
       {editing && onUpdate && (
@@ -5201,6 +5255,25 @@ function _fmtHrsMin(mins) {
   return `${h}H ${m}M`;
 }
 
+function _aggregateSoundtrack(moments) {
+  const songMap = {};
+  const artists = window.ARTISTS || [];
+  for (const m of Object.values(moments)) {
+    if (!m.artistId || !m.takenAt) continue;
+    const artist = artists.find(a => a.id === m.artistId);
+    if (!artist) continue;
+    const cached = _setlistCache[artist.name.toLowerCase().replace(/\W+/g, "_")];
+    if (!cached || cached.source !== "1001tracklists") continue;
+    const match = _matchSongAtTime(artist, cached, m.takenAt);
+    if (!match) continue;
+    const key = match.song.toLowerCase();
+    if (!songMap[key]) songMap[key] = { song: match.song, count: 0, artists: new Set() };
+    songMap[key].count++;
+    songMap[key].artists.add(artist.name);
+  }
+  return Object.values(songMap).sort((a, b) => b.count - a.count);
+}
+
 // ── Festival Wrapped — Spotify-style swipeable story ─────────────
 function WrappedStory({ recap, onClose }) {
   const [idx, setIdx] = React.useState(0);
@@ -5261,6 +5334,28 @@ function WrappedStory({ recap, onClose }) {
       kicker: "MEMORIES CAPTURED",
       headline: <>{recap.photosCount + recap.videosCount}</>,
       sub: `${recap.photosCount} photos${recap.videosCount ? ` · ${recap.videosCount} videos` : ""} — your festival, preserved`,
+    });
+    const soundtrack = _aggregateSoundtrack(_readMoments());
+    if (soundtrack.length > 0) c.push({
+      bg: "linear-gradient(155deg, #0a0618 0%, #1DB954 100%)",
+      kicker: "YOUR SOUNDTRACK",
+      headline: <>{soundtrack.length} <span style={{ fontSize: "0.5em" }}>songs captured</span></>,
+      sub: soundtrack.slice(0, 3).map(s => s.song).join(" · "),
+      custom: React.createElement("div", { style: { marginTop: 16, textAlign: "left", width: "100%", maxWidth: 300 } },
+        soundtrack.slice(0, 5).map((s, i) => React.createElement("div", {
+          key: i,
+          className: "mono",
+          style: {
+            fontSize: 9, letterSpacing: 0.8, padding: "6px 0",
+            borderBottom: i < 4 ? "1px solid rgba(255,255,255,0.1)" : "none",
+            display: "flex", justifyContent: "space-between", alignItems: "center",
+            color: "rgba(255,255,255,0.9)",
+          },
+        },
+          React.createElement("span", { style: { fontWeight: 700 } }, `${i + 1}. ${s.song}`),
+          React.createElement("span", { style: { color: "rgba(255,255,255,0.4)", fontSize: 8 } }, `${s.count} photo${s.count > 1 ? "s" : ""}`)
+        ))
+      ),
     });
     c.push({
       bg: "linear-gradient(155deg, #0a0618 0%, #6D28D9 50%, #e85d2e 100%)",
@@ -5335,6 +5430,7 @@ function WrappedStory({ recap, onClose }) {
           fontSize: 14, color: "rgba(255,255,255,0.6)", textAlign: "center",
           lineHeight: 1.5, maxWidth: 280,
         }}>{card.sub}</div>
+          {card.custom && card.custom}
       </div>
 
       <div style={{
@@ -5402,7 +5498,7 @@ function RecapCard({ accent = "var(--ink)", paper = "var(--paper)", children, mo
 // the listing on web; otherwise it falls back to a generic search. The
 // native iOS path (InAppReview, see requestRating) doesn't depend on this
 // value — it's only the web-fallback / Account-card link.
-const APP_STORE_ID = null; // ← paste your 1.3 App Store ID here (post-approval)
+const APP_STORE_ID = 6768888507;
 
 // ── Plursky+ paywall ──────────────────────────────────────────────
 // Free: 1 static collage per festival (watermarked). Plus: unlimited
@@ -7458,6 +7554,59 @@ function RecapScreen({ state, setState }) {
           </button>
         )}
 
+        {/* YOUR SOUNDTRACK */}
+        {(() => {
+          const soundtrack = _aggregateSoundtrack(_readMoments());
+          if (!soundtrack.length) return null;
+          return (
+            <RecapCard kicker="YOUR SOUNDTRACK" paper="#1DB95418" mono="#1DB954">
+              <div className="serif" style={{ fontSize: 28, lineHeight: 1.1, letterSpacing: -0.4, marginBottom: 10 }}>
+                <span style={{ color: "#1DB954" }}>{soundtrack.length}</span> songs were playing when you took photos
+              </div>
+              <div style={{ marginTop: 8 }}>
+                {soundtrack.slice(0, 5).map((s, i) => (
+                  <div key={i} style={{
+                    display: "flex", justifyContent: "space-between", alignItems: "center",
+                    padding: "7px 0",
+                    borderBottom: i < Math.min(soundtrack.length, 5) - 1 ? "1px solid var(--line)" : "none",
+                  }}>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div className="mono" style={{
+                        fontSize: 9, fontWeight: 700, letterSpacing: 0.6,
+                        overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+                      }}>
+                        {i + 1}. {s.song}
+                      </div>
+                      <div className="mono" style={{ fontSize: 7, color: "var(--muted)", letterSpacing: 0.8, marginTop: 1 }}>
+                        {[...s.artists].join(", ")}
+                      </div>
+                    </div>
+                    <div className="mono" style={{
+                      fontSize: 7, letterSpacing: 0.8, color: "#1DB954", fontWeight: 700, flexShrink: 0, marginLeft: 8,
+                    }}>
+                      {s.count} {s.count === 1 ? "PHOTO" : "PHOTOS"}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {soundtrack.length > 0 && (
+                <button onClick={() => {
+                  const q = soundtrack.slice(0, 10).map(s => s.song).join(" ");
+                  window.open(`https://open.spotify.com/search/${encodeURIComponent(q)}`, "_blank");
+                }} style={{
+                  marginTop: 12, width: "100%", padding: "10px 16px",
+                  borderRadius: 20, border: "none", cursor: "pointer",
+                  background: "#1DB954", color: "#fff", fontWeight: 700,
+                  fontSize: 11, letterSpacing: 1,
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+                }}>
+                  <span style={{ fontSize: 14 }}>♫</span> FIND ON SPOTIFY
+                </button>
+              )}
+            </RecapCard>
+          );
+        })()}
+
         {/* TOP STAGE */}
         {recap.topStage && (
           <RecapCard
@@ -8220,7 +8369,225 @@ function RecapScreen({ state, setState }) {
   );
 }
 
+/* ─── NowPlayingBar ──────────────────────────────────────────────── */
+function NowPlayingBar() {
+  const [liveState, setLiveState] = React.useState({ stage: null, artist: null, song: null, listening: false, usersHere: 0 });
+  const [captured, setCaptured] = React.useState(false);
+  const CFG = window.FESTIVAL_CONFIG || {};
+
+  // Check if we're during festival hours
+  const isFestivalLive = React.useMemo(() => {
+    if (!CFG.dayDates) return false;
+    const now = Date.now();
+    for (const dd of Object.values(CFG.dayDates)) {
+      const openMs = dd.midnightUtc + 19 * 3600000; // 7pm
+      const closeMs = dd.midnightUtc + (5.5 + 24) * 3600000; // 5:30am next day
+      if (now >= openMs && now <= closeMs) return true;
+    }
+    return false;
+  }, []);
+
+  // GPS watch for current stage
+  React.useEffect(() => {
+    if (!isFestivalLive) return;
+    let watchId;
+    const anchors = CFG.gpsAnchors || [];
+    if (!anchors.length || !navigator.geolocation) return;
+
+    watchId = navigator.geolocation.watchPosition((pos) => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+      const dists = anchors.map(a => ({ stageId: a.stageId, dist: _haversineMeters(lat, lng, a.lat, a.lng) }));
+      const nearest = dists.sort((a, b) => a.dist - b.dist)[0];
+      if (!nearest || nearest.dist > 200) { setLiveState(s => ({ ...s, stage: null, artist: null })); return; }
+
+      const stageObj = (window.STAGES || []).find(s => s.id === nearest.stageId);
+      const now = new Date();
+      const hh = now.getHours();
+      const mm = now.getMinutes();
+      const adjustedMin = (hh < 6 ? hh + 24 : hh) * 60 + mm;
+
+      // Find current night
+      let currentNight = null;
+      if (CFG.dayDates) {
+        const nowMs = Date.now();
+        for (const [day, dd] of Object.entries(CFG.dayDates)) {
+          const openMs = dd.midnightUtc + 19 * 3600000;
+          const closeMs = dd.midnightUtc + (5.5 + 24) * 3600000;
+          if (nowMs >= openMs && nowMs <= closeMs) { currentNight = parseInt(day); break; }
+        }
+      }
+
+      // Find artist playing now at this stage
+      let currentArtist = null;
+      if (currentNight) {
+        for (const a of (window.ARTISTS || [])) {
+          if (a.day !== currentNight || a.stage !== nearest.stageId) continue;
+          const [sh, sm] = a.start.split(":").map(Number);
+          const [eh, em] = a.end.split(":").map(Number);
+          const startMin = (sh < 6 ? sh + 24 : sh) * 60 + sm;
+          const endMin = (eh < 6 ? eh + 24 : eh) * 60 + em;
+          if (adjustedMin >= startMin && adjustedMin < endMin) { currentArtist = a; break; }
+        }
+      }
+
+      setLiveState(s => ({ ...s, stage: stageObj, artist: currentArtist }));
+      if (stageObj?.id && window.joinStagePresence) window.joinStagePresence(stageObj.id);
+    }, null, { enableHighAccuracy: true, maximumAge: 10000 });
+
+    return () => {
+      if (watchId) navigator.geolocation.clearWatch(watchId);
+      if (window.leaveStagePresence) window.leaveStagePresence();
+    };
+  }, [isFestivalLive]);
+
+  // Listen for presence count updates
+  React.useEffect(() => {
+    const onPresence = (e) => {
+      if (e.detail?.stageId === liveState.stage?.id) {
+        setLiveState(s => ({ ...s, usersHere: e.detail.count }));
+      }
+    };
+    window.addEventListener("plursky-presence", onPresence);
+    return () => window.removeEventListener("plursky-presence", onPresence);
+  }, [liveState.stage?.id]);
+
+  // Estimated song from tracklist position
+  const estimatedSong = React.useMemo(() => {
+    if (!liveState.artist) return null;
+    const key = liveState.artist.name.toLowerCase().replace(/\W+/g, "_");
+    const cached = _setlistCache[key];
+    if (!cached) return null;
+    const now = new Date().toISOString().replace("T", " ").slice(0, 19);
+    return _matchSongAtTime(liveState.artist, cached, now);
+  }, [liveState.artist]);
+
+  const handleShazam = async () => {
+    setLiveState(s => ({ ...s, listening: true }));
+    try {
+      if (window.Capacitor?.isNativePlatform() && window.ShazamPlugin) {
+        const result = await window.ShazamPlugin.identify();
+        if (result?.title) {
+          setLiveState(s => ({ ...s, song: { song: `${result.artist} — ${result.title}`, source: "shazam", confidence: "exact" }, listening: false }));
+          return;
+        }
+      }
+      // Fallback: use estimated song
+      if (estimatedSong) {
+        setLiveState(s => ({ ...s, song: estimatedSong, listening: false }));
+      } else {
+        setLiveState(s => ({ ...s, listening: false }));
+      }
+    } catch {
+      setLiveState(s => ({ ...s, listening: false }));
+    }
+  };
+
+  const handleCapture = () => {
+    const song = liveState.song || estimatedSong;
+    const momentId = `cap_${Date.now()}`;
+    const moments = _readMoments();
+    moments[momentId] = {
+      id: momentId,
+      artistId: liveState.artist?.id || null,
+      takenAt: new Date().toISOString().replace("T", " ").slice(0, 19),
+      tagSource: "live_capture",
+      night: liveState.artist?.day || null,
+      songCapture: song ? { song: song.song, source: song.source || "live" } : null,
+      hasGps: true,
+    };
+    try { localStorage.setItem("plursky-moments", JSON.stringify(moments)); } catch {}
+    window.dispatchEvent(new Event("plursky-moments-change"));
+    setCaptured(true);
+    if (window.Capacitor?.isNativePlatform()) {
+      try { window.Capacitor?.Plugins?.Haptics?.impact({ style: "medium" }); } catch {}
+    }
+    setTimeout(() => setCaptured(false), 2000);
+  };
+
+  if (!isFestivalLive || !liveState.stage) return null;
+
+  const displaySong = liveState.song || estimatedSong;
+  const stageColor = liveState.stage?.color || "var(--horizon)";
+
+  return (
+    <div style={{
+      position: "fixed", bottom: 64, left: 8, right: 8, zIndex: 900,
+      borderRadius: 16, overflow: "hidden",
+      background: "rgba(10,6,24,0.92)",
+      backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
+      boxShadow: `0 8px 32px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.08), 0 0 20px ${stageColor}33`,
+      padding: "10px 14px",
+      animation: "song-fade-in 0.4s ease-out",
+    }}>
+      {/* Stage color accent line */}
+      <div style={{
+        position: "absolute", top: 0, left: 0, right: 0, height: 2,
+        background: `linear-gradient(90deg, ${stageColor}, ${stageColor}66)`,
+      }} />
+
+      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        {/* Pulsing live dot + stage info */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 3 }}>
+            <div style={{
+              width: 6, height: 6, borderRadius: 6, background: "#ef4444",
+              animation: "pulse 2s infinite",
+            }} />
+            <span className="mono" style={{
+              fontSize: 7, letterSpacing: 1.4, fontWeight: 700, color: stageColor,
+            }}>LIVE · {liveState.stage?.name?.toUpperCase()}{liveState.usersHere > 1 ? ` · ${liveState.usersHere} HERE` : ""}</span>
+          </div>
+
+          {liveState.artist && (
+            <div className="serif" style={{
+              fontSize: 15, color: "#fff", lineHeight: 1.2,
+              overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+            }}>{liveState.artist.name}</div>
+          )}
+
+          {displaySong && (
+            <div className="mono" style={{
+              fontSize: 7.5, letterSpacing: 0.6, color: "rgba(255,255,255,0.5)",
+              marginTop: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+              display: "flex", alignItems: "center", gap: 4,
+            }}>
+              <span style={{ color: stageColor, fontSize: 9 }}>♫</span>
+              {displaySong.song}
+            </div>
+          )}
+        </div>
+
+        {/* What's Playing button */}
+        <button onClick={handleShazam} disabled={liveState.listening} style={{
+          width: 36, height: 36, borderRadius: 36, border: "none", cursor: "pointer",
+          background: liveState.listening ? `${stageColor}44` : `${stageColor}22`,
+          color: stageColor, fontSize: 16,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          animation: liveState.listening ? "pulse 1s infinite" : "none",
+          transition: "background 0.2s",
+        }} title="What's playing?">
+          {liveState.listening ? "..." : "🎵"}
+        </button>
+
+        {/* Capture button */}
+        <button onClick={handleCapture} style={{
+          height: 36, borderRadius: 36, border: "none", cursor: "pointer",
+          padding: "0 14px",
+          background: captured ? "var(--success)" : "linear-gradient(135deg, #6D28D9, #e85d2e)",
+          color: "#fff", fontWeight: 700, fontSize: 9, letterSpacing: 1.2,
+          display: "flex", alignItems: "center", gap: 5,
+          transition: "all 0.3s",
+          fontFamily: "Geist Mono, monospace",
+        }}>
+          {captured ? "✓ SAVED" : "CAPTURE"}
+        </button>
+      </div>
+    </div>
+  );
+}
+
 Object.assign(window, {
+  NowPlayingBar,
   SpotifyScreen, MeScreen, MemoriesScreen, RecapScreen, fetchPreviewUrl,
   ensureSpotifyProfile, getSpotifyProfileSync, createEdcPlaylist,
   startSpotifyAuth, PackListCard,

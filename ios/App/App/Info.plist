@@ -54,6 +54,8 @@
 	     Read access only — we never write to the user's library. -->
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Plursky uses your photo library so you can attach photos and videos to the sets you caught at the festival.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Plursky uses the microphone with ShazamKit to identify the song currently playing at the stage.</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<!-- Plursky is paper-and-ink only by design (see DESIGN.md). Lock the
