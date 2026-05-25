@@ -2465,6 +2465,7 @@ const _TAG_SOURCE_LABEL = {
   filetime:             { text: "AUTO · FILE TIME",  tone: "ok" },
   "exif-night-only":    { text: "EXIF NIGHT · PICK A SET", tone: "warn" },
   "filetime-night-only":{ text: "FILE TIME · PICK A SET",  tone: "warn" },
+  off_stage:            { text: "📍 BETWEEN SETS",    tone: "info" },
   fallback:             { text: "FALLBACK · RETAG",  tone: "warn" },
   manual:               { text: "MANUAL",            tone: "ok" },
 };
@@ -2487,11 +2488,13 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
     ? nightArtists
     : (savedNightArtists.length ? savedNightArtists : nightArtists);
   const setArtist = (id) => {
+    try { window.plurskyHaptic?.("LIGHT"); } catch {}
     onUpdate?.(moment, { artistId: id, tagSource: "manual", autoTagged: false });
     setEditing(false);
   };
   const moveToNight = (n) => {
     if (n === moment.night) return;
+    try { window.plurskyHaptic?.("LIGHT"); } catch {}
     // Drop artist when moving nights — old artist almost certainly belonged
     // to the wrong night's lineup. User picks a new one from the new night.
     onUpdate?.(moment, { night: n, artistId: null, tagSource: "manual", autoTagged: false });
@@ -3045,11 +3048,44 @@ function _photoFestivalNight(date) {
   return null;
 }
 
+// Great-circle distance in meters. Only used for off-stage detection so
+// precision isn't critical, but haversine is ~5 lines and exact.
+function _haversineMeters(lat1, lng1, lat2, lng2) {
+  const R = 6371000;
+  const toRad = (d) => d * Math.PI / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a = Math.sin(dLat / 2) ** 2 +
+            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
 function _matchArtistForPhoto({ date, lat, lng }, savedIds) {
   if (!date) return { artistId: null, night: null, reason: "no_date" };
   // First: which festival night does this photo's DATE place it in?
   const night = _photoFestivalNight(date);
   if (!night) return { artistId: null, night: null, reason: "outside_festival_window" };
+
+  // Off-stage check (v1.4): if the photo has GPS and it's beyond ~150m
+  // from EVERY known stage anchor, the user wasn't AT a set — they were
+  // on Rainbow Road, at the food court, in line for a charger, in Down-
+  // town EDC. Don't force-tag the closest artist in that case; surface
+  // as "off-stage" so the UI shows 📍 BETWEEN SETS instead of a wrong
+  // artist chip. Threshold is conservative because the lineup only has 3
+  // calibration anchors (kinetic / cosmic / basspod) covering ~600m of
+  // festival footprint — true stage edges may be 50-80m from these
+  // anchors, so 150m total leaves headroom for "actually at the stage
+  // but toward the back" without false-positiving real between-stages
+  // moments.
+  if (lat != null && lng != null) {
+    const anchors = window.FESTIVAL_CONFIG?.gpsAnchors || [];
+    if (anchors.length > 0) {
+      const minMeters = Math.min(...anchors.map(a => _haversineMeters(lat, lng, a.lat, a.lng)));
+      if (minMeters > 150) {
+        return { artistId: null, night, reason: "off_stage", distMeters: Math.round(minMeters) };
+      }
+    }
+  }
 
   // Then: which artist on THAT night was playing at the photo's time?
   const minOfDay = date.hh * 60 + date.mm;
@@ -3338,6 +3374,7 @@ function MemoriesScreen({ state, setState }) {
         const hadExifDate = !!exif?.date;
         const hadFileTime = !exif?.date && !!meta?.date;
         const tagSource =
+          matched.reason === "off_stage"  ? "off_stage" :
           matched.artistId && hadExifDate ? "exif" :
           matched.artistId && hadFileTime ? "filetime" :
           matched.night    && hadExifDate ? "exif-night-only" :
@@ -3783,6 +3820,7 @@ function AttendanceReview({ night, savedNightArtists }) {
     return () => window.removeEventListener("plursky-attended-change", refresh);
   }, [night]);
   const toggle = (id) => {
+    try { window.plurskyHaptic?.(attended.has(id) ? "LIGHT" : "MEDIUM"); } catch {}
     if (attended.has(id)) unmarkAttended(night, id);
     else markAttended(night, id, "manual");
   };
@@ -4642,7 +4680,16 @@ function RecapCard({ accent = "var(--ink)", paper = "var(--paper)", children, mo
 // onward (1st visit = "let me see what this is"; 2nd = "I like this enough
 // to come back") via a localStorage visit counter. Plus a manual link in
 // the AccountCard for users who never opens Recap.
-const APP_STORE_ID = null; // TODO: paste the App Store Connect numeric ID once 1.3 is published
+// Numeric App Store ID — paste the digits from your App Store listing URL.
+// 1) Open https://apps.apple.com/us/app/plursky-live in any browser
+// 2) Grab the trailing "/id<NUMBER>" from the URL (10-12 digits)
+// 3) Replace null below with the number (no quotes, no slashes)
+//
+// Once set, the in-app rating prompt's web fallback deep-links straight to
+// the listing on web; otherwise it falls back to a generic search. The
+// native iOS path (InAppReview, see requestRating) doesn't depend on this
+// value — it's only the web-fallback / Account-card link.
+const APP_STORE_ID = null; // ← paste your 1.3 App Store ID here (post-approval)
 function _appStoreUrl() {
   if (APP_STORE_ID) return `https://apps.apple.com/app/plursky-live/id${APP_STORE_ID}`;
   return "https://apps.apple.com/search?term=plursky%20live";
@@ -4804,7 +4851,7 @@ async function _shareRecapCard(recap) {
   const file = new File([blob], filename, { type: "image/png" });
   const title = `My ${window.FESTIVAL_CONFIG?.shortName || "festival"}`;
 
-  // Native iOS path (v155): @capacitor/share with `files` (data URL) — more
+  // Native iOS path (v156): @capacitor/share with `files` (data URL) — more
   // reliable inside WKWebView than the web `navigator.share({ files })` path
   // which can fail silently in some iOS versions.
   const capShare = window.Capacitor?.Plugins?.Share;

@@ -47,6 +47,13 @@
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Plursky uses your location to show your position on the festival map and find the nearest stages.</string>
+	<!-- Photos access lets users attach photos and videos from their camera
+	     roll to the sets they caught at the festival. We use Apple's native
+	     PHPicker via @capacitor/camera (added v1.4); it preserves EXIF capture
+	     time + GPS, which is what powers auto-tagging by artist and stage.
+	     Read access only — we never write to the user's library. -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Plursky uses your photo library so you can attach photos and videos to the sets you caught at the festival.</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<!-- Plursky is paper-and-ink only by design (see DESIGN.md). Lock the

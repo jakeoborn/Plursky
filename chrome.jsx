@@ -1385,6 +1385,19 @@ function StatusStrip() {
   );
 }
 
+// Tactile feedback. No-op on web (plugin silently skips); fires a short
+// haptic bump on iOS via @capacitor/haptics. Use sparingly — every save,
+// send, retag, and toggle taps this; high-frequency UI like scroll
+// shouldn't. Style is one of: LIGHT / MEDIUM / HEAVY (default light).
+function plurskyHaptic(style = "LIGHT") {
+  try {
+    const cap = window.Capacitor;
+    if (!cap?.isNativePlatform?.()) return;
+    const H = cap.Plugins?.Haptics;
+    H?.impact?.({ style });
+  } catch {}
+}
+
 Object.assign(window, {
   Screen, ScrollBody, TopBar, TabBar, Pill, ArtistSwatch, Wordmark,
   useArtistPhoto,
@@ -1395,4 +1408,5 @@ Object.assign(window, {
   FestivalChip, FestivalSwitcher,
   useBatterySaver, BatterySaverCard, BatterySaverToast, setBatterySaverMode,
   useOnlineStatus, StatusStrip,
+  plurskyHaptic,
 });

@@ -451,7 +451,7 @@ async function sbExportUserData(state) {
   const filename = `plursky-export-${(window.FESTIVAL_CONFIG?.id || "festival")}-${Date.now()}.json`;
   const title = "Plursky data export";
 
-  // v155: native iOS via @capacitor/share — more reliable inside WKWebView
+  // v156: native iOS via @capacitor/share — more reliable inside WKWebView
   // than navigator.share, which silently fails on some iOS versions when
   // sharing a File from a blob URL.
   const capShare = window.Capacitor?.Plugins?.Share;
@@ -1946,6 +1946,7 @@ function CrewChat({ code, myPid, myName }) {
 
   const sendBody = async (body, replaceStubId) => {
     setBusy(true);
+    try { window.plurskyHaptic?.("LIGHT"); } catch {}
     const optimistic = {
       id: -Date.now() - Math.floor(Math.random() * 1000),
       sender_pid: myPid,

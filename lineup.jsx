@@ -1979,7 +1979,8 @@ function ShareMenuItem({ icon, label, sub, onClick }) {
 }
 
 function toggleSave(state, setState, id) {
-  try { navigator.vibrate([30]); } catch {}
+  try { navigator.vibrate([30]); } catch {}                  // Android web fallback
+  try { window.plurskyHaptic?.("LIGHT"); } catch {}          // iOS native (v1.4)
   const has = state.saved.includes(id);
   const next = has ? state.saved.filter(x => x !== id) : [...state.saved, id];
   setState({ ...state, saved: next });
