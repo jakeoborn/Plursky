@@ -2510,6 +2510,65 @@ function _siblingSuggestionFor(moment, allMoments) {
   return { artistId: bestId, count: bestCount };
 }
 
+// One-tap bulk retag for a stuck untagged batch. Appears above the TO
+// RETAG group when 3+ moments are sitting untagged and the user has
+// saved artists for that night. Tap a chip → all moments in the group
+// get that artistId at once. Confirms before applying since this is a
+// destructive-ish action (it overwrites any partial tags).
+function BulkRetagRow({ moments, savedNightArtists, onUpdate }) {
+  const [confirmId, setConfirmId] = React.useState(null);
+  const apply = (artistId) => {
+    try { window.plurskyHaptic?.("MEDIUM"); } catch {}
+    for (const m of moments) {
+      onUpdate?.(m, { artistId, tagSource: "manual", autoTagged: false });
+    }
+    setConfirmId(null);
+  };
+  return (
+    <div style={{
+      margin: "8px 0 10px", padding: "9px 10px",
+      background: "var(--paper-2)", border: "1px dashed var(--line-2)", borderRadius: 10,
+    }}>
+      <div className="mono" style={{
+        fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700,
+        marginBottom: 6,
+      }}>
+        ⚡ BULK · TAG ALL {moments.length} AS
+      </div>
+      <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+        {savedNightArtists
+          .slice()
+          .sort((a, b) => (a.start || "").localeCompare(b.start || ""))
+          .map(a => {
+            const stage = STAGES.find(s => s.id === a.stage);
+            const isConfirming = confirmId === a.id;
+            return (
+              <button key={a.id}
+                onClick={() => isConfirming ? apply(a.id) : setConfirmId(a.id)}
+                className="mono" style={{
+                  padding: "5px 10px", borderRadius: 999,
+                  background: isConfirming ? "var(--ember)" : (stage ? `${stage.color}18` : "var(--paper)"),
+                  color:      isConfirming ? "#fff" : (stage ? stage.color : "var(--ink)"),
+                  border:     isConfirming ? "none" : (stage ? `1px solid ${stage.color}40` : "1px solid var(--line-2)"),
+                  fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
+                  whiteSpace: "nowrap",
+                }}>
+                {isConfirming ? `TAP AGAIN TO TAG ${moments.length}` : a.name.toUpperCase()}
+              </button>
+            );
+          })}
+        {confirmId && (
+          <button onClick={() => setConfirmId(null)} className="mono" style={{
+            background: "transparent", border: "none", color: "var(--muted)",
+            cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+            padding: "5px 8px",
+          }}>CANCEL</button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, savedArtistIds }) {
   const photoUrl = useMomentPhoto(moment.photoId);
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
@@ -3151,8 +3210,8 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds) {
   // EDC. Don't force-tag the closest artist in that case; surface as
   // "off_stage" so the UI shows 📍 BETWEEN SETS instead of a wrong
   // artist chip. With anchors for all 9 stages (data.jsx gpsAnchors,
-  // v159+), 80m is the tightest threshold that doesn't false-positive
-  // "back of the crowd". Earlier v159 launch used 150m because only 3
+  // v160+), 80m is the tightest threshold that doesn't false-positive
+  // "back of the crowd". Earlier v160 launch used 150m because only 3
   // of 9 anchors were calibrated — that left big gaps near the other
   // 6 stages, forcing a conservative threshold.
   if (lat != null && lng != null) {
@@ -3863,6 +3922,19 @@ function MemoriesScreen({ state, setState }) {
                           flexShrink: 0,
                         }}>{groupMoments.length} {groupMoments.length === 1 ? "MOMENT" : "MOMENTS"}</span>
                       </button>
+                      {/* Bulk retag: when the TO RETAG group has 3+ moments
+                          AND the user has saved sets on this night, surface
+                          a chip row that one-taps all of them to the same
+                          artist. Cheaper-than-AI escape from a stuck
+                          batch where EXIF was stripped on a bunch of
+                          photos at the same set. */}
+                      {isUntagged && groupMoments.length >= 3 && savedNightArtists.length > 0 && (
+                        <BulkRetagRow
+                          moments={groupMoments}
+                          savedNightArtists={savedNightArtists}
+                          onUpdate={handleUpdate}
+                        />
+                      )}
                       {groupMoments.map((m, i) => (
                         <MomentCard
                           key={m.id}
@@ -4953,7 +5025,7 @@ async function _shareRecapCard(recap) {
   const file = new File([blob], filename, { type: "image/png" });
   const title = `My ${window.FESTIVAL_CONFIG?.shortName || "festival"}`;
 
-  // Native iOS path (v159): @capacitor/share with `files` (data URL) — more
+  // Native iOS path (v160): @capacitor/share with `files` (data URL) — more
   // reliable inside WKWebView than the web `navigator.share({ files })` path
   // which can fail silently in some iOS versions.
   const capShare = window.Capacitor?.Plugins?.Share;

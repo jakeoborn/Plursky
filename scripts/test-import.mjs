@@ -248,6 +248,144 @@ async function run() {
   check(`STAGE view: Neon Garden header rendered (count=${stageViewNeon})`, stageViewNeon >= 1);
   await page.screenshot({ path: '/tmp/plursky-memories-stage.png', fullPage: true });
 
+  // ── TEST 4 ── Off-stage detection. Craft a JPEG with EXIF date inside
+  // Peggy Gou's time window BUT GPS at a location ~900m south/east of
+  // the festival (36.265, -115.005 — well outside any 80m anchor radius).
+  // Expected: moment lands on night 1 with tagSource="off_stage" and
+  // artistId=null, NOT auto-tagged to Peggy Gou despite the time match.
+  await page.evaluate(async () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = canvas.height = 1;
+    canvas.getContext('2d').fillStyle = '#a8a';
+    canvas.getContext('2d').fillRect(0, 0, 1, 1);
+    const blob = await new Promise(r => canvas.toBlob(r, 'image/jpeg', 0.85));
+    const buf = new Uint8Array(await blob.arrayBuffer());
+
+    // EXIF crafter with GPS support. Layout (TIFF-relative bytes):
+    //   0-7    TIFF header (II + magic + IFD0 offset = 8)
+    //   8-9    IFD0 count = 2
+    //   10-21  IFD0 entry 0 = ExifIFD pointer  → ExifIFD @ 38
+    //   22-33  IFD0 entry 1 = GPSIFD pointer   → GPSIFD  @ 76
+    //   34-37  next IFD = 0
+    //   38-39  ExifIFD count = 1
+    //   40-51  DateTimeOriginal entry         → string  @ 56
+    //   52-55  next IFD = 0
+    //   56-75  date string (20 bytes)
+    //   76-77  GPSIFD count = 4
+    //   78-89  GPSLatRef entry (ASCII inline)
+    //   90-101 GPSLat entry → 3 rationals @ 130
+    //   102-113 GPSLngRef entry (ASCII inline)
+    //   114-125 GPSLng entry → 3 rationals @ 154
+    //   126-129 next IFD = 0
+    //   130-177 GPS rationals (24 bytes lat + 24 bytes lng)
+    function makeExifApp1Gps(dateStr, lat, lng) {
+      const TIFF_LEN = 178;
+      const tiff = new Uint8Array(TIFF_LEN);
+      const dv   = new DataView(tiff.buffer);
+
+      // TIFF header (little-endian)
+      dv.setUint8(0, 0x49); dv.setUint8(1, 0x49);
+      dv.setUint16(2, 0x002A, true);
+      dv.setUint32(4, 8, true);
+
+      // IFD0 — 2 entries
+      dv.setUint16(8, 2, true);
+      dv.setUint16(10, 0x8769, true); dv.setUint16(12, 4, true);
+      dv.setUint32(14, 1, true);      dv.setUint32(18, 38, true);
+      dv.setUint16(22, 0x8825, true); dv.setUint16(24, 4, true);
+      dv.setUint32(26, 1, true);      dv.setUint32(30, 76, true);
+      dv.setUint32(34, 0, true);
+
+      // ExifIFD — 1 entry
+      dv.setUint16(38, 1, true);
+      dv.setUint16(40, 0x9003, true); dv.setUint16(42, 2, true);
+      dv.setUint32(44, 20, true);     dv.setUint32(48, 56, true);
+      dv.setUint32(52, 0, true);
+      const s = dateStr + '\0';
+      for (let i = 0; i < 20; i++) tiff[56 + i] = s.charCodeAt(i) || 0;
+
+      // GPSIFD — 4 entries
+      dv.setUint16(76, 4, true);
+      // GPSLatRef ("N" or "S") inline at entry valOff = 86
+      dv.setUint16(78, 0x0001, true); dv.setUint16(80, 2, true);
+      dv.setUint32(82, 2, true);
+      tiff[86] = lat >= 0 ? 0x4E : 0x53; tiff[87] = 0;
+      // GPSLat — 3 rationals at offset 130
+      dv.setUint16(90, 0x0002, true); dv.setUint16(92, 5, true);
+      dv.setUint32(94, 3, true);      dv.setUint32(98, 130, true);
+      // GPSLngRef ("E" or "W") inline at entry valOff = 110
+      dv.setUint16(102, 0x0003, true); dv.setUint16(104, 2, true);
+      dv.setUint32(106, 2, true);
+      tiff[110] = lng >= 0 ? 0x45 : 0x57; tiff[111] = 0;
+      // GPSLng — 3 rationals at offset 154
+      dv.setUint16(114, 0x0004, true); dv.setUint16(116, 5, true);
+      dv.setUint32(118, 3, true);      dv.setUint32(122, 154, true);
+      dv.setUint32(126, 0, true);
+
+      // GPS rationals — deg/1, min/1, sec/1000
+      function writeDMS(off, val) {
+        const a = Math.abs(val);
+        const deg = Math.floor(a);
+        const minFloat = (a - deg) * 60;
+        const min = Math.floor(minFloat);
+        const secMilli = Math.round((minFloat - min) * 60 * 1000);
+        dv.setUint32(off + 0,  deg, true);     dv.setUint32(off + 4,  1, true);
+        dv.setUint32(off + 8,  min, true);     dv.setUint32(off + 12, 1, true);
+        dv.setUint32(off + 16, secMilli, true); dv.setUint32(off + 20, 1000, true);
+      }
+      writeDMS(130, lat);
+      writeDMS(154, lng);
+
+      // Wrap in APP1 segment
+      const app1Len = 2 + 6 + TIFF_LEN; // length includes itself
+      const out = new Uint8Array(2 + app1Len);
+      const odv = new DataView(out.buffer);
+      odv.setUint16(0, 0xFFE1, false);
+      odv.setUint16(2, app1Len, false);
+      out[4] = 0x45; out[5] = 0x78; out[6] = 0x69; out[7] = 0x66; // Exif
+      out[8] = 0; out[9] = 0;
+      out.set(tiff, 10);
+      return out;
+    }
+
+    // GPS at 36.265, -115.005 → ~900m south-east of the festival site,
+    // well outside the 80m radius of every stage anchor.
+    const exifSeg = makeExifApp1Gps('2026:05:15 23:35:00', 36.265, -115.005);
+    const full = new Uint8Array(2 + exifSeg.length + (buf.length - 2));
+    full.set(buf.subarray(0, 2), 0);
+    full.set(exifSeg, 2);
+    full.set(buf.subarray(2), 2 + exifSeg.length);
+
+    const file = new File([full], 'off-stage-test.jpg', {
+      type: 'image/jpeg', lastModified: Date.now(),
+    });
+    const tx = new DataTransfer();
+    tx.items.add(file);
+    const inp = document.querySelector('input[type=file][accept*="image"][multiple]');
+    inp.files = tx.files;
+    inp.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+
+  await page.waitForFunction(() => {
+    const m = JSON.parse(localStorage.getItem('plursky_moments_v1') || '{}');
+    return Object.values(m).flat().some(x => x.tagSource === 'off_stage');
+  }, { timeout: 15000 }).catch(() => {});
+
+  const offStageMoment = await page.evaluate(() => {
+    const m = JSON.parse(localStorage.getItem('plursky_moments_v1') || '{}');
+    return Object.values(m).flat().find(x => x.tagSource === 'off_stage') || null;
+  });
+  console.log('\n── TEST 4: off-stage GPS detection (EXIF GPS at 36.265, -115.005) ──');
+  check('moment with tagSource="off_stage" was written', !!offStageMoment);
+  if (offStageMoment) {
+    check(`night = 1 (got ${offStageMoment.night})`, offStageMoment.night === 1);
+    check(`artistId = null (got ${offStageMoment.artistId})`, offStageMoment.artistId === null);
+    check(`takenAt parsed from EXIF (got ${offStageMoment.takenAt})`, offStageMoment.takenAt === '2026-05-15 23:35');
+    check(`parsedGps present (got ${JSON.stringify(offStageMoment.parsedGps)})`,
+          offStageMoment.parsedGps && Math.abs(offStageMoment.parsedGps.lat - 36.265) < 0.001 &&
+          Math.abs(offStageMoment.parsedGps.lng - (-115.005)) < 0.001);
+  }
+
   // ── SIBLING-SUGGESTION ── Inject a third moment in localStorage at a
   // capture time within 30 min of the Peggy Gou-tagged moment from TEST 1.
   // The Memories card for that third moment should render a

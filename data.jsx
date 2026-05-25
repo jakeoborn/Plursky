@@ -147,6 +147,64 @@ const FESTIVALS_REGISTRY = [
     emoji: "🌵",
     region: "North America",
   },
+  // ─── Preview entries (visible in the switcher as "Coming soon") ───
+  // These are intentionally minimal — name + dates + brand colors only.
+  // To turn one ON: ship a full FESTIVAL_CONFIG (same shape as EDC LV
+  // 2026's), plus a STAGES + ARTISTS + AMENITIES data set, then flip
+  // `available: true`. See data.jsx top of file for the contract.
+  //
+  // Why hardcoded vs CMS-driven: each festival's STAGES + ARTISTS is
+  // ~500 lines of structured data. Hosting it remote (Supabase table,
+  // markdown in repo, etc.) adds load-order complexity for marginal
+  // benefit at the current scale. Re-evaluate at festival #5.
+  {
+    config: {
+      id:        "edc-orlando-2026",
+      name:      "EDC Orlando 2026",
+      shortName: "EDC Orlando",
+      brand:     "EDC",
+      tagline:   "Three nights under the kinetic sky",
+      location:  "Tinker Field · Orlando",
+      dates:     "Nov 13–15, 2026",
+      year:      2026,
+    },
+    available: false,
+    accent:    "#22c55e",
+    emoji:     "🌴",
+    region:    "North America",
+  },
+  {
+    config: {
+      id:        "tomorrowland-2026",
+      name:      "Tomorrowland 2026",
+      shortName: "Tomorrowland",
+      brand:     "Tomorrowland",
+      tagline:   "We are one",
+      location:  "De Schorre · Boom, Belgium",
+      dates:     "Jul 17–26, 2026",
+      year:      2026,
+    },
+    available: false,
+    accent:    "#fbbf24",
+    emoji:     "🍄",
+    region:    "Europe",
+  },
+  {
+    config: {
+      id:        "coachella-2027",
+      name:      "Coachella 2027",
+      shortName: "Coachella",
+      brand:     "Coachella",
+      tagline:   "Two weekends, one polo field",
+      location:  "Empire Polo Club · Indio, CA",
+      dates:     "Apr 9–18, 2027",
+      year:      2027,
+    },
+    available: false,
+    accent:    "#ec4899",
+    emoji:     "🌵",
+    region:    "North America",
+  },
 ];
 
 // Read the user's chosen festival from localStorage. Defaults to the
