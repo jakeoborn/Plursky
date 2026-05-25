@@ -544,6 +544,130 @@ function ShareArtistButton({ artist }) {
   );
 }
 
+// Per-artist photo/video strip — the start of the per-artist memories
+// rewatch loop. Pulls every moment whose artistId matches and shows up to
+// 6 thumbnails in a horizontal scroll. Tap a thumbnail → Memories tab,
+// scrolled to the right night. Tap VIEW ALL → same. Hidden entirely when
+// the user has no moments tagged to this artist, so it's zero visual
+// noise for the long tail.
+//
+// Relies on three globals from spotify.jsx (loaded after artist.jsx but
+// resolved at render-time, not parse-time): _readMoments, useMomentPhoto,
+// and the existing { tab: "memories", memoriesNight: n } setState pattern.
+function _YourMomentThumb({ moment, accent, onClick }) {
+  const url = useMomentPhoto(moment.photoId);
+  return (
+    <button onClick={onClick} aria-label="Open moment" style={{
+      width: 76, height: 76, flexShrink: 0,
+      borderRadius: 10, overflow: "hidden",
+      background: "var(--paper-2)",
+      border: `1px solid ${accent}22`,
+      padding: 0, cursor: "pointer", position: "relative",
+    }}>
+      {url ? (
+        moment.kind === "video" ? (
+          <>
+            <video src={url} muted playsInline preload="metadata" style={{
+              width: "100%", height: "100%", objectFit: "cover", display: "block",
+            }}/>
+            <span aria-hidden="true" style={{
+              position: "absolute", inset: 0, display: "flex",
+              alignItems: "center", justifyContent: "center",
+              color: "#fff", fontSize: 18,
+              textShadow: "0 1px 4px rgba(0,0,0,0.7)",
+              pointerEvents: "none",
+            }}>▶</span>
+          </>
+        ) : (
+          <img src={url} alt="" style={{
+            width: "100%", height: "100%", objectFit: "cover", display: "block",
+          }}/>
+        )
+      ) : (
+        <span className="mono" style={{
+          position: "absolute", inset: 0, display: "flex",
+          alignItems: "center", justifyContent: "center",
+          fontSize: 8, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700,
+        }}>···</span>
+      )}
+    </button>
+  );
+}
+
+function YourPhotosStrip({ artistId, night, accent, onOpen }) {
+  // Re-read when the Memories tab updates moments. Cheap (~hundreds of
+  // bytes from localStorage) and avoids prop-drilling through the artist
+  // screen. The "plursky-moments-change" event is dispatched by
+  // handleUpdate / handleAdd / handleDelete in MemoriesScreen — see those
+  // for the matching dispatcher (added in v153).
+  const [moments, setMoments] = React.useState(() => {
+    try { return _readMoments(); } catch { return {}; }
+  });
+  React.useEffect(() => {
+    const refresh = () => { try { setMoments(_readMoments()); } catch {} };
+    window.addEventListener("plursky-moments-change", refresh);
+    // Also refresh when this screen re-mounts, in case moments changed
+    // in another tab/window.
+    refresh();
+    return () => window.removeEventListener("plursky-moments-change", refresh);
+  }, []);
+  const mine = React.useMemo(() => {
+    const out = [];
+    for (const n of Object.keys(moments)) {
+      for (const m of (moments[n] || [])) {
+        if (m.artistId === artistId) out.push(m);
+      }
+    }
+    // Newest first so the most recent capture is leftmost.
+    return out.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+  }, [moments, artistId]);
+  if (mine.length === 0) return null;
+  const preview = mine.slice(0, 6);
+  const more = mine.length - preview.length;
+  return (
+    <div style={{
+      marginBottom: 18, padding: "12px 14px",
+      background: "var(--paper-2)", border: "1px solid var(--line)",
+      borderRadius: 14,
+    }}>
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
+        <div>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: accent, fontWeight: 700 }}>
+            ◐ YOUR MOMENTS FROM THIS SET
+          </div>
+          <div className="serif" style={{ fontSize: 14, color: "var(--ink)", marginTop: 2 }}>
+            {mine.length} {mine.length === 1 ? "memory" : "memories"} saved
+          </div>
+        </div>
+        <button onClick={() => onOpen(night)} className="mono" style={{
+          background: "transparent", border: "none", color: "var(--muted)",
+          cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+          padding: 0,
+        }}>VIEW ALL →</button>
+      </div>
+      <div style={{
+        display: "flex", gap: 8, overflowX: "auto",
+        // Pull padding out so the scroll edges don't clip on touch devices.
+        margin: "0 -2px", padding: "0 2px 2px",
+        scrollbarWidth: "none", WebkitOverflowScrolling: "touch",
+      }}>
+        {preview.map(m => (
+          <_YourMomentThumb key={m.id} moment={m} accent={accent} onClick={() => onOpen(m.night)} />
+        ))}
+        {more > 0 && (
+          <button onClick={() => onOpen(night)} className="mono" aria-label={`View all ${mine.length} moments`} style={{
+            width: 76, height: 76, flexShrink: 0,
+            borderRadius: 10,
+            background: "transparent",
+            border: `1px dashed ${accent}66`, color: accent,
+            cursor: "pointer", fontSize: 11, letterSpacing: 1, fontWeight: 700,
+          }}>+{more}</button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function ArtistScreen({ state, setState }) {
   const a = ARTISTS.find(ar => ar.id === state.artist);
   if (!a) return null;
@@ -943,6 +1067,16 @@ function ArtistScreen({ state, setState }) {
             }}>SCHEDULE</button>
           </div>
         </div>
+
+        {/* Per-artist memories strip — the first surface in the rewatch
+            loop. Hidden when the user has no moments tagged to this
+            artist, so it adds zero noise for sets they didn't catch. */}
+        <YourPhotosStrip
+          artistId={a.id}
+          night={a.day}
+          accent={stage.color}
+          onOpen={(n) => setState({ ...state, tab: "memories", memoriesNight: n, artist: null })}
+        />
 
         {/* Social search links — SPOTIFY goes to the artist's PAGE directly
             when we've cached the Spotify artist ID (set during the stats

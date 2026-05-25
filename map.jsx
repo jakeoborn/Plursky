@@ -4735,6 +4735,78 @@ function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, m
   return <StageLineupSheet stage={stage} walk={walk} dist={dist} peek={peek} setPeek={setPeek} onClose={onClose} onOpenArtist={onOpenArtist} nowAtStage={nowAtStage} state={state} setState={setState}/>;
 }
 
+// Per-stage memories strip — same rewatch loop as the per-artist strip on
+// the Artist screen, filtered by every moment whose tagged artist plays
+// THIS stage. Hidden when the user has nothing here. Reuses
+// _YourMomentThumb from artist.jsx (top-level globals; resolved at render
+// time even though map.jsx parses first in the load order).
+function YourStagePhotosStrip({ stageId, accent, onOpen }) {
+  const [moments, setMoments] = React.useState(() => {
+    try { return _readMoments(); } catch { return {}; }
+  });
+  React.useEffect(() => {
+    const refresh = () => { try { setMoments(_readMoments()); } catch {} };
+    window.addEventListener("plursky-moments-change", refresh);
+    refresh();
+    return () => window.removeEventListener("plursky-moments-change", refresh);
+  }, []);
+  const mine = React.useMemo(() => {
+    const out = [];
+    for (const n of Object.keys(moments)) {
+      for (const m of (moments[n] || [])) {
+        if (!m.artistId) continue;
+        const a = ARTISTS.find(x => x.id === m.artistId);
+        if (a?.stage === stageId) out.push(m);
+      }
+    }
+    return out.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+  }, [moments, stageId]);
+  if (mine.length === 0) return null;
+  const preview = mine.slice(0, 6);
+  const more = mine.length - preview.length;
+  return (
+    <div style={{
+      marginBottom: 10, padding: "10px 12px",
+      background: `${accent}14`, border: `1px solid ${accent}40`,
+      borderRadius: 12,
+    }}>
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 8 }}>
+        <div>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: accent, fontWeight: 700 }}>
+            ◐ YOUR NIGHTS AT THIS STAGE
+          </div>
+          <div className="serif" style={{ fontSize: 13, color: "var(--ink)", marginTop: 2 }}>
+            {mine.length} {mine.length === 1 ? "memory" : "memories"} saved
+          </div>
+        </div>
+        <button onClick={onOpen} className="mono" style={{
+          background: "transparent", border: "none", color: "var(--muted)",
+          cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+          padding: 0,
+        }}>VIEW ALL →</button>
+      </div>
+      <div style={{
+        display: "flex", gap: 6, overflowX: "auto",
+        margin: "0 -2px", padding: "0 2px 2px",
+        scrollbarWidth: "none", WebkitOverflowScrolling: "touch",
+      }}>
+        {preview.map(m => (
+          <_YourMomentThumb key={m.id} moment={m} accent={accent} onClick={() => onOpen(m.night)} />
+        ))}
+        {more > 0 && (
+          <button onClick={onOpen} className="mono" aria-label={`View all ${mine.length} memories`} style={{
+            width: 76, height: 76, flexShrink: 0,
+            borderRadius: 10,
+            background: "transparent",
+            border: `1px dashed ${accent}66`, color: accent,
+            cursor: "pointer", fontSize: 11, letterSpacing: 1, fontWeight: 700,
+          }}>+{more}</button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArtist, nowAtStage, state, setState }) {
   const [day, setDay] = React.useState(NOW.day);
   const [expanded, setExpanded] = React.useState(false);
@@ -4852,6 +4924,14 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
           )}
         </div>
       )}
+
+      {/* Per-stage memories strip — second surface in the rewatch loop.
+          Hidden when there's nothing here yet. */}
+      <YourStagePhotosStrip
+        stageId={stage.id}
+        accent={stage.color}
+        onOpen={(n) => setState({ ...state, tab: "memories", memoriesNight: n || NOW.day, focusStage: null })}
+      />
 
       {/* Day tabs */}
       <div style={{ display: "flex", gap: 4, marginBottom: 10 }}>

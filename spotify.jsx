@@ -2316,6 +2316,9 @@ function _readMoments() {
 }
 function _writeMoments(all) {
   localStorage.setItem(MOMENTS_KEY, JSON.stringify(all));
+  // Fire so cross-screen consumers (per-artist strip on Artist screen,
+  // Recap counts, etc.) re-read without prop-drilling.
+  try { window.dispatchEvent(new CustomEvent("plursky-moments-change")); } catch {}
 }
 function _countMoments() {
   const all = _readMoments();
@@ -2454,10 +2457,45 @@ function useMomentPhoto(photoId) {
   return url;
 }
 
-function MomentCard({ moment, idx, total, onDelete, onArtistClick }) {
+// Short label for how a moment got its tag. Shown as a small chip so the
+// user can tell at a glance whether the auto-tagger was confident or
+// dropped this one into a fallback bucket they should retag.
+const _TAG_SOURCE_LABEL = {
+  exif:                 { text: "AUTO · EXIF",       tone: "ok" },
+  filetime:             { text: "AUTO · FILE TIME",  tone: "ok" },
+  "exif-night-only":    { text: "EXIF NIGHT · PICK A SET", tone: "warn" },
+  "filetime-night-only":{ text: "FILE TIME · PICK A SET",  tone: "warn" },
+  fallback:             { text: "FALLBACK · RETAG",  tone: "warn" },
+  manual:               { text: "MANUAL",            tone: "ok" },
+};
+
+function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, savedArtistIds }) {
   const photoUrl = useMomentPhoto(moment.photoId);
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
+  const [editing, setEditing] = React.useState(false);
+  const tagInfo = _TAG_SOURCE_LABEL[moment.tagSource] || null;
+  // Prefer the saved-on-this-night sets as the picker options (most likely
+  // intent), with an "all sets" expand for the rare case the user took a
+  // photo at a set they hadn't saved.
+  const [showAll, setShowAll] = React.useState(false);
+  // Recompute on every render so a night-change inside the editor swaps in
+  // the new night's lineup without needing a parent re-key.
+  const nightArtists = ARTISTS.filter(a => a.day === moment.night);
+  const savedNightArtists = nightArtists.filter(a => (savedArtistIds || []).includes(a.id));
+  const pickerArtists = showAll
+    ? nightArtists
+    : (savedNightArtists.length ? savedNightArtists : nightArtists);
+  const setArtist = (id) => {
+    onUpdate?.(moment, { artistId: id, tagSource: "manual", autoTagged: false });
+    setEditing(false);
+  };
+  const moveToNight = (n) => {
+    if (n === moment.night) return;
+    // Drop artist when moving nights — old artist almost certainly belonged
+    // to the wrong night's lineup. User picks a new one from the new night.
+    onUpdate?.(moment, { night: n, artistId: null, tagSource: "manual", autoTagged: false });
+  };
   return (
     <div style={{
       background: "var(--paper-2)", border: "1px solid var(--line)",
@@ -2496,7 +2534,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick }) {
         </div>
       )}
       <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 8, flexWrap: "wrap" }}>
-        {artist && (
+        {artist ? (
           <button onClick={() => onArtistClick(artist.id)} className="mono" style={{
             background: stage ? `${stage.color}18` : "var(--paper)",
             color:      stage ? stage.color       : "var(--muted)",
@@ -2504,10 +2542,24 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick }) {
             borderRadius: 999, padding: "3px 9px",
             fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
           }}>♬ {artist.name.toUpperCase()}</button>
+        ) : (
+          <button onClick={() => setEditing(true)} className="mono" style={{
+            background: "rgba(232,93,46,0.12)", color: "var(--ember)",
+            border: "1px dashed rgba(232,93,46,0.5)",
+            borderRadius: 999, padding: "3px 9px",
+            fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
+          }}>+ TAG A SET</button>
         )}
         <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 600 }}>
           {_fmtMomentTime(moment.createdAt)} · {idx + 1}/{total}
         </span>
+        {artist && onUpdate && (
+          <button onClick={() => setEditing(e => !e)} className="mono" style={{
+            background: "transparent", border: "none", color: "var(--muted)",
+            cursor: "pointer", fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
+            padding: "3px 5px",
+          }}>{editing ? "DONE" : "EDIT TAG"}</button>
+        )}
         <button onClick={() => onDelete(moment)} aria-label="Delete moment" className="mono" style={{
           marginLeft: "auto",
           background: "transparent", border: "none",
@@ -2516,8 +2568,145 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick }) {
           padding: "3px 5px",
         }}>DELETE</button>
       </div>
+      {tagInfo && (
+        <div className="mono" title={moment.takenAt ? `Photo time: ${moment.takenAt}` : undefined}
+          style={{
+            marginTop: 6, fontSize: 8.5, letterSpacing: 1.2, fontWeight: 700,
+            color: tagInfo.tone === "warn" ? "var(--ember)" : "var(--muted)",
+          }}>
+          {tagInfo.text}{moment.takenAt ? ` · ${moment.takenAt.slice(11) /* HH:MM */}` : ""}
+        </div>
+      )}
+      {editing && onUpdate && (
+        <div style={{
+          marginTop: 10, paddingTop: 10,
+          borderTop: "1px solid var(--line)",
+        }}>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginBottom: 6, fontWeight: 700 }}>
+            NIGHT
+          </div>
+          <div style={{ display: "flex", gap: 6, marginBottom: 10 }}>
+            {(window.DAYS || []).map(d => {
+              const on = moment.night === d.n;
+              return (
+                <button key={d.n} onClick={() => moveToNight(d.n)} className="mono" style={{
+                  flex: 1, padding: "6px 0", borderRadius: 8,
+                  background: on ? "var(--ink)"   : "var(--paper)",
+                  color:      on ? "var(--paper)" : "var(--ink)",
+                  border:     on ? "none"          : "1px solid var(--line-2)",
+                  fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
+                }}>{(d.label || `DAY ${d.n}`).toString().toUpperCase()}</button>
+              );
+            })}
+          </div>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginBottom: 6, fontWeight: 700 }}>
+            {showAll ? "ALL SETS THIS NIGHT" : (savedNightArtists?.length ? "YOUR SAVED SETS THIS NIGHT" : "SETS THIS NIGHT")}
+          </div>
+          <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 8 }}>
+            {pickerArtists
+              .slice()
+              .sort((a, b) => a.start.localeCompare(b.start))
+              .map(a => {
+                const on = moment.artistId === a.id;
+                return (
+                  <button key={a.id} onClick={() => setArtist(on ? null : a.id)} className="mono" style={{
+                    padding: "5px 10px", borderRadius: 999,
+                    background: on ? "var(--ink)"   : "var(--paper)",
+                    color:      on ? "var(--paper)" : "var(--ink)",
+                    border:     on ? "none"          : "1px solid var(--line-2)",
+                    fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
+                    whiteSpace: "nowrap",
+                  }}>{a.name.toUpperCase()}</button>
+                );
+              })}
+            {pickerArtists.length === 0 && (
+              <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 600 }}>
+                NO SETS LISTED FOR THIS NIGHT
+              </span>
+            )}
+          </div>
+          {savedNightArtists?.length > 0 && (nightArtists?.length || 0) > savedNightArtists.length && (
+            <button onClick={() => setShowAll(s => !s)} className="mono" style={{
+              background: "transparent", border: "none", color: "var(--muted)",
+              cursor: "pointer", fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
+              padding: 0,
+            }}>{showAll ? "← BACK TO SAVED ONLY" : "SHOW ALL SETS THIS NIGHT →"}</button>
+          )}
+        </div>
+      )}
     </div>
   );
+}
+
+// Shared renderer for the ARTIST / STAGE views in MemoriesScreen.
+// Takes a flat moment list and a key extractor, builds groups, sorts,
+// and renders each group as a stage-colored header + the MomentCards
+// under it. Untagged moments float to the bottom via the sortKeys hook.
+function _renderByGroup({ allMoments, keyOf, headerFor, sortKeys, state, setState, handleDelete, handleUpdate }) {
+  const groups = new Map();
+  for (const m of allMoments) {
+    const k = keyOf(m);
+    if (!groups.has(k)) groups.set(k, []);
+    groups.get(k).push(m);
+  }
+  const keys = [...groups.keys()].sort(sortKeys);
+  if (keys.length === 0) {
+    return (
+      <div style={{
+        padding: "28px 14px", textAlign: "center", marginTop: 18,
+        border: "1px dashed var(--line-2)", borderRadius: 14,
+        background: "var(--paper-2)",
+      }}>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>
+          NO MOMENTS YET — IMPORT FROM CAMERA ROLL ABOVE
+        </div>
+      </div>
+    );
+  }
+  return keys.map(k => {
+    const items = groups.get(k).slice().sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    const h = headerFor(k);
+    return (
+      <div key={k} style={{ marginTop: 18 }}>
+        <button onClick={h.onClick || undefined} disabled={!h.onClick} style={{
+          display: "flex", alignItems: "center", gap: 8,
+          width: "100%", padding: "6px 4px",
+          background: "transparent", border: "none",
+          textAlign: "left", cursor: h.onClick ? "pointer" : "default",
+        }}>
+          <span style={{
+            width: 4, alignSelf: "stretch",
+            background: h.accent, borderRadius: 3, minHeight: 30,
+          }}/>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div className="mono" style={{
+              fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: h.accent,
+            }}>{h.mono}</div>
+            <div className="serif" style={{
+              fontSize: 18, color: "var(--ink)", lineHeight: 1.1, marginTop: 2,
+              whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+            }}>{h.serif}</div>
+          </div>
+          <span className="mono" style={{
+            fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 700,
+            flexShrink: 0,
+          }}>{items.length} {items.length === 1 ? "MOMENT" : "MOMENTS"}</span>
+        </button>
+        {items.map((m, i) => (
+          <MomentCard
+            key={m.id}
+            moment={m}
+            idx={i}
+            total={items.length}
+            onDelete={handleDelete}
+            onUpdate={handleUpdate}
+            savedArtistIds={state.saved || []}
+            onArtistClick={(id) => setState(s => ({ ...s, artist: id }))}
+          />
+        ))}
+      </div>
+    );
+  });
 }
 
 function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
@@ -2579,6 +2768,7 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
         id, night, text: text.trim(), artistId, photoId,
         kind: blob ? mediaKind : null,
         createdAt: Date.now(),
+        tagSource: artistId ? "manual" : undefined,
       };
       onAdd(moment);
     } catch (e) {
@@ -3107,11 +3297,18 @@ function MemoriesScreen({ state, setState }) {
 
   // Auto-import multiple photos at once. For each file we read EXIF, ask the
   // matcher which artist+night it belongs to, compress + save to IndexedDB,
-  // and write a moment. Photos with no EXIF date are skipped (the user can
-  // still manually add them via the per-night ADD MOMENT button).
+  // and write a moment. Photos with no EXIF date land in a fallback night
+  // and surface a RETAG chip so the user can fix them.
   const handleBatchPick = async (e) => {
     const files = Array.from(e.target.files || []);
     e.target.value = ""; // allow re-pick of same files
+    return processImportedFiles(files);
+  };
+
+  // The actual ingest loop. Pulled out of handleBatchPick so the native
+  // @capacitor/camera picker can feed it File objects directly without
+  // going through a hidden <input>.
+  const processImportedFiles = async (files) => {
     if (files.length === 0) return;
     const results = [];
     setBatch({ total: files.length, done: 0, results });
@@ -3135,6 +3332,17 @@ function MemoriesScreen({ state, setState }) {
         // into the current festival night untagged. User can re-tag from
         // the moment card later or delete if it doesn't belong.
         const night = matched.night || fallbackNight;
+        // Why was this tag picked? Surface it on the moment so the card can
+        // show "TAGGED FROM EXIF" vs "FALLBACK — RETAG", and so we can debug
+        // import failures from the UI alone.
+        const hadExifDate = !!exif?.date;
+        const hadFileTime = !exif?.date && !!meta?.date;
+        const tagSource =
+          matched.artistId && hadExifDate ? "exif" :
+          matched.artistId && hadFileTime ? "filetime" :
+          matched.night    && hadExifDate ? "exif-night-only" :
+          matched.night    && hadFileTime ? "filetime-night-only" :
+          "fallback";
         const out = await _processMomentMedia(f);
         const id = `m_${Date.now()}_${i}_${Math.random().toString(36).slice(2, 6)}`;
         const photoId = `p_${id}`;
@@ -3146,9 +3354,12 @@ function MemoriesScreen({ state, setState }) {
           takenAt: meta?.date ? `${meta.date.yr}-${String(meta.date.mo).padStart(2,"0")}-${String(meta.date.dy).padStart(2,"0")} ${String(meta.date.hh).padStart(2,"0")}:${String(meta.date.mm).padStart(2,"0")}` : null,
           // Mark fallback drops so the UI can show a "Tap to retag" hint.
           autoTagged: !!matched.artistId,
+          tagSource,
+          parsedGps: exif?.lat != null && exif?.lng != null ? { lat: exif.lat, lng: exif.lng } : null,
+          fileType: f.type || null,
         };
         current[night] = [...(current[night] || []), moment];
-        results.push({ name: f.name, night, artistId: matched.artistId, fallback: !matched.night });
+        results.push({ name: f.name, night, artistId: matched.artistId, fallback: !matched.night, tagSource });
       } catch (err) {
         results.push({ name: f.name, night: null, artistId: null, err: err?.message || "failed" });
       }
@@ -3171,7 +3382,85 @@ function MemoriesScreen({ state, setState }) {
     setAll(next);
   };
 
+  // v1.4-ready: route the import button through the native @capacitor/camera
+  // PHPicker when (a) we're inside the iOS Capacitor shell AND (b) the
+  // __USE_NATIVE_PICKER__ flag has been flipped on. PHPicker reliably
+  // preserves EXIF DateTimeOriginal across the HEIC→JPEG conversion,
+  // unlike WebKit's `<input type="file">` path which strips EXIF on edge-
+  // case photos and zeroes out `lastModified`. GPS still requires the
+  // user to grant "All Photos" access in iOS Settings — without that,
+  // PHPicker hands us the same location-stripped copy.
+  //
+  // Until v1.4 ships (needs NSPhotoLibraryUsageDescription in Info.plist
+  // + a fresh App Store submission), the flag stays off and we use the
+  // original web file input — same behaviour as today's 1.3 build.
+  const pickViaNative = async () => {
+    const cap = window.Capacitor;
+    if (!cap?.isNativePlatform?.() || !window.__USE_NATIVE_PICKER__) return null;
+    const Camera = cap.Plugins?.Camera;
+    if (!Camera?.pickImages) return null;
+    try {
+      const result = await Camera.pickImages({ quality: 100, limit: 50 });
+      const photos = result?.photos || [];
+      if (photos.length === 0) return [];
+      return await Promise.all(photos.map(async (p, i) => {
+        // webPath is a capacitor:// URL pointing at a temp JPEG in the
+        // app's tmp dir. fetch() reads it as a blob, then we wrap it back
+        // into a File so the existing pipeline sees the same shape it
+        // would from <input type="file">.
+        const blob = await fetch(p.webPath).then(r => r.blob());
+        return new File([blob], `pick-${Date.now()}-${i}.${p.format || 'jpg'}`, {
+          type: blob.type || 'image/jpeg',
+          lastModified: Date.now(),
+        });
+      }));
+    } catch (err) {
+      console.warn('[memories] native pickImages failed; falling back to web input', err);
+      return null;
+    }
+  };
+
+  const handlePickClick = async () => {
+    const nativeFiles = await pickViaNative();
+    if (nativeFiles && nativeFiles.length > 0) {
+      await processImportedFiles(nativeFiles);
+    } else if (nativeFiles === null) {
+      // Native path declined to handle (flag off / not in Capacitor / errored).
+      // Fall through to the existing hidden-input click.
+      batchInputRef.current?.click();
+    }
+    // nativeFiles === [] means the user opened the native picker and cancelled
+    // without picking — don't fall back to the web input, just no-op.
+  };
+
+  // In-place edit (e.g. retagging the artist on an auto-imported photo
+  // that landed without a match). Re-reads from disk first so concurrent
+  // batch imports don't get clobbered.
+  const handleUpdate = (moment, patch) => {
+    const next = { ..._readMoments() };
+    for (const n of Object.keys(next)) {
+      next[n] = (next[n] || []).map(m => m.id === moment.id ? { ...m, ...patch } : m);
+    }
+    _writeMoments(next);
+    setAll(next);
+  };
+
   const totalCount = Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
+
+  // Three lenses on the same data. Default is "night" (preserves the
+  // festival narrative + keeps + ADD MOMENT and the attendance review
+  // affordances per night). "artist" and "stage" are rewatch lenses:
+  // flatten across all nights, group by the dimension. Untagged moments
+  // always float to a bottom group so retag work is grouped.
+  const [view, setView] = React.useState("night");
+  // Flatten moments once for the artist/stage views.
+  const allMoments = React.useMemo(() => {
+    const out = [];
+    for (const n of Object.keys(all)) {
+      for (const m of (all[n] || [])) out.push(m);
+    }
+    return out;
+  }, [all]);
 
   return (
     <Screen bg="var(--paper)">
@@ -3201,7 +3490,7 @@ function MemoriesScreen({ state, setState }) {
           onChange={handleBatchPick}
           style={{ display: "none" }}
         />
-        <button onClick={() => batchInputRef.current?.click()}
+        <button onClick={handlePickClick}
           disabled={!!batch && batch.done < batch.total}
           style={{
             display: "flex", alignItems: "center", justifyContent: "space-between",
@@ -3226,23 +3515,110 @@ function MemoriesScreen({ state, setState }) {
           }}>{batch && batch.done < batch.total ? `${batch.done}/${batch.total}` : "PICK"}</span>
         </button>
         {batch && batch.done === batch.total && (() => {
-          const ok = batch.results.filter(r => !r.err).length;
-          const skip = batch.results.length - ok;
+          const tagged    = batch.results.filter(r => !r.err && r.artistId).length;
+          const needRetag = batch.results.filter(r => !r.err && !r.artistId).length;
+          const failed    = batch.results.filter(r => r.err).length;
+          const allTagged = tagged > 0 && needRetag === 0 && failed === 0;
           return (
             <div onClick={() => setBatch(null)} style={{
               marginTop: 8, padding: "9px 12px",
-              background: "rgba(45,122,85,0.12)", border: "1px solid rgba(45,122,85,0.4)",
+              background: allTagged ? "rgba(45,122,85,0.12)" : "rgba(232,93,46,0.10)",
+              border: allTagged ? "1px solid rgba(45,122,85,0.4)" : "1px solid rgba(232,93,46,0.4)",
               borderRadius: 10, cursor: "pointer",
-              display: "flex", alignItems: "center", justifyContent: "space-between",
             }}>
-              <span className="mono" style={{ fontSize: 9.5, letterSpacing: 1.2, color: "var(--success)", fontWeight: 700 }}>
-                ✓ {ok} ADDED{skip > 0 ? ` · ${skip} SKIPPED (NO TIME/LOCATION DATA)` : ""}
-              </span>
-              <span className="mono" style={{ fontSize: 9, color: "var(--muted)" }}>TAP TO DISMISS</span>
+              <div className="mono" style={{
+                fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+                color: allTagged ? "var(--success)" : "var(--ember)",
+              }}>
+                ✓ {tagged} TAGGED{needRetag > 0 ? ` · ${needRetag} NEED RETAG` : ""}{failed > 0 ? ` · ${failed} FAILED` : ""}
+              </div>
+              {needRetag > 0 && (
+                <div className="mono" style={{ marginTop: 4, fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 600 }}>
+                  iOS sometimes strips photo time when copying — tap an untagged moment to pick its set.
+                </div>
+              )}
+              <div className="mono" style={{ marginTop: 4, fontSize: 9, color: "var(--muted)" }}>TAP TO DISMISS</div>
             </div>
           );
         })()}
-        {DAYS.map(d => {
+        {/* View selector — three lenses on the same moments. NIGHT is the
+            "manage" view (with + ADD MOMENT and the per-night attendance
+            review). ARTIST and STAGE are rewatch lenses that flatten
+            everything across the weekend. */}
+        <div style={{
+          display: "flex", gap: 4, marginTop: 14, marginBottom: 8,
+          padding: 3, background: "var(--paper-2)", borderRadius: 10,
+          border: "1px solid var(--line)",
+        }}>
+          {[
+            { id: "night",  label: "NIGHT" },
+            { id: "artist", label: "ARTIST" },
+            { id: "stage",  label: "STAGE" },
+          ].map(v => {
+            const on = view === v.id;
+            return (
+              <button key={v.id} onClick={() => setView(v.id)} className="mono" style={{
+                flex: 1, padding: "8px 0", borderRadius: 8,
+                background: on ? "var(--ink)"   : "transparent",
+                color:      on ? "var(--paper)" : "var(--muted)",
+                border: "none", cursor: "pointer",
+                fontSize: 9.5, letterSpacing: 1.3, fontWeight: 700,
+              }}>{v.label}</button>
+            );
+          })}
+        </div>
+        {view === "artist" && _renderByGroup({
+          allMoments,
+          keyOf: m => m.artistId || "__untagged__",
+          headerFor: (key) => {
+            if (key === "__untagged__") return { mono: "TO RETAG", serif: "Untagged moments", accent: "var(--ember)", onClick: null };
+            const a = ARTISTS.find(x => x.id === key);
+            const s = a ? STAGES.find(st => st.id === a.stage) : null;
+            return {
+              mono: (s?.short || "").toUpperCase() + (s ? " STAGE" : ""),
+              serif: a?.name || "Unknown",
+              accent: s?.color || "var(--muted)",
+              onClick: a ? () => setState(st => ({ ...st, artist: a.id })) : null,
+            };
+          },
+          sortKeys: (a, b) => {
+            if (a === "__untagged__") return 1;
+            if (b === "__untagged__") return -1;
+            const savedSet = new Set(state.saved || []);
+            const aSaved = savedSet.has(a), bSaved = savedSet.has(b);
+            if (aSaved !== bSaved) return aSaved ? -1 : 1;
+            const aA = ARTISTS.find(x => x.id === a);
+            const bA = ARTISTS.find(x => x.id === b);
+            return (aA?.day || 99) - (bA?.day || 99)
+                || (aA?.start || "99:99").localeCompare(bA?.start || "99:99");
+          },
+          state, setState, handleDelete, handleUpdate,
+        })}
+        {view === "stage" && _renderByGroup({
+          allMoments,
+          keyOf: m => {
+            if (!m.artistId) return "__untagged__";
+            const a = ARTISTS.find(x => x.id === m.artistId);
+            return a?.stage || "__untagged__";
+          },
+          headerFor: (key) => {
+            if (key === "__untagged__") return { mono: "TO RETAG", serif: "Untagged moments", accent: "var(--ember)", onClick: null };
+            const s = STAGES.find(st => st.id === key);
+            return {
+              mono: (s?.short || key).toUpperCase(),
+              serif: s?.name || "Unknown stage",
+              accent: s?.color || "var(--muted)",
+              onClick: s ? () => setState(st => ({ ...st, tab: "map", focusStage: s.id })) : null,
+            };
+          },
+          sortKeys: (a, b) => {
+            if (a === "__untagged__") return 1;
+            if (b === "__untagged__") return -1;
+            return (STAGES.find(s => s.id === a)?.name || "").localeCompare(STAGES.find(s => s.id === b)?.name || "");
+          },
+          state, setState, handleDelete, handleUpdate,
+        })}
+        {view === "night" && DAYS.map(d => {
           const moments = (all[d.n] || []).slice().sort((a, b) => a.createdAt - b.createdAt);
           const dateInfo = FESTIVAL_CONFIG.dayDates?.[d.n];
           const savedNightArtists = state.saved
@@ -3283,16 +3659,87 @@ function MemoriesScreen({ state, setState }) {
                 </div>
               )}
 
-              {moments.map((m, i) => (
-                <MomentCard
-                  key={m.id}
-                  moment={m}
-                  idx={i}
-                  total={moments.length}
-                  onDelete={handleDelete}
-                  onArtistClick={(id) => setState(s => ({ ...s, artist: id }))}
-                />
-              ))}
+              {(() => {
+                // Group this night's moments by artist (with null = untagged
+                // floated to the bottom). Saved-on-this-night artists come
+                // first, sorted by set start time, then any other artists
+                // (e.g. you took a photo at a set you hadn't saved), then
+                // the untagged group last so retag work is grouped where
+                // the user can find it.
+                const groups = new Map(); // artistId → moments[]
+                for (const m of moments) {
+                  const key = m.artistId || "__untagged__";
+                  if (!groups.has(key)) groups.set(key, []);
+                  groups.get(key).push(m);
+                }
+                const savedSet = new Set(state.saved || []);
+                const orderedKeys = [...groups.keys()].sort((aId, bId) => {
+                  if (aId === "__untagged__") return 1;
+                  if (bId === "__untagged__") return -1;
+                  const aSaved = savedSet.has(aId), bSaved = savedSet.has(bId);
+                  if (aSaved !== bSaved) return aSaved ? -1 : 1;
+                  const aA = ARTISTS.find(x => x.id === aId);
+                  const bA = ARTISTS.find(x => x.id === bId);
+                  return (aA?.start || "99:99").localeCompare(bA?.start || "99:99");
+                });
+                return orderedKeys.map(aId => {
+                  const groupMoments = groups.get(aId);
+                  const isUntagged = aId === "__untagged__";
+                  const artist = !isUntagged ? ARTISTS.find(x => x.id === aId) : null;
+                  const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
+                  const accent = isUntagged ? "var(--ember)" : (stage?.color || "var(--muted)");
+                  return (
+                    <div key={aId} style={{ marginTop: 10 }}>
+                      <button
+                        onClick={() => !isUntagged && setState(s => ({ ...s, artist: aId }))}
+                        disabled={isUntagged}
+                        style={{
+                          display: "flex", alignItems: "center", gap: 8,
+                          width: "100%", padding: "6px 4px",
+                          background: "transparent", border: "none",
+                          textAlign: "left",
+                          cursor: isUntagged ? "default" : "pointer",
+                        }}>
+                        <span style={{
+                          width: 4, alignSelf: "stretch",
+                          background: accent, borderRadius: 3,
+                        }}/>
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div className="mono" style={{
+                            fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
+                            color: accent,
+                          }}>
+                            {isUntagged ? "TO RETAG" : (stage?.short || stage?.name || "").toUpperCase()}
+                          </div>
+                          <div className="serif" style={{
+                            fontSize: 17, color: "var(--ink)", lineHeight: 1.1,
+                            marginTop: 2,
+                            whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+                          }}>
+                            {isUntagged ? "Untagged moments" : artist?.name || "Unknown"}
+                          </div>
+                        </div>
+                        <span className="mono" style={{
+                          fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 700,
+                          flexShrink: 0,
+                        }}>{groupMoments.length} {groupMoments.length === 1 ? "MOMENT" : "MOMENTS"}</span>
+                      </button>
+                      {groupMoments.map((m, i) => (
+                        <MomentCard
+                          key={m.id}
+                          moment={m}
+                          idx={i}
+                          total={groupMoments.length}
+                          onDelete={handleDelete}
+                          onUpdate={handleUpdate}
+                          savedArtistIds={state.saved || []}
+                          onArtistClick={(id) => setState(s => ({ ...s, artist: id }))}
+                        />
+                      ))}
+                    </div>
+                  );
+                });
+              })()}
 
               {adding === d.n ? (
                 <AddMomentForm
@@ -4357,7 +4804,7 @@ async function _shareRecapCard(recap) {
   const file = new File([blob], filename, { type: "image/png" });
   const title = `My ${window.FESTIVAL_CONFIG?.shortName || "festival"}`;
 
-  // Native iOS path (v152): @capacitor/share with `files` (data URL) — more
+  // Native iOS path (v153): @capacitor/share with `files` (data URL) — more
   // reliable inside WKWebView than the web `navigator.share({ files })` path
   // which can fail silently in some iOS versions.
   const capShare = window.Capacitor?.Plugins?.Share;

@@ -133,6 +133,24 @@ One-time setup steps Claude can't do via tooling.
 
 Ordered by impact-per-engineering-hour.
 
+- [ ] **v1.4 native photo picker** — `@capacitor/camera@^6.1.3` is
+      installed (2026-05-24) and the JS branch is wired in
+      `spotify.jsx` (`pickViaNative` → `handlePickClick`) behind the
+      `window.__USE_NATIVE_PICKER__` flag. To enable for v1.4:
+      1. Add `NSPhotoLibraryUsageDescription` to `ios/App/App/Info.plist`
+         (e.g. "Plursky uses your photo library so you can attach
+         photos and videos to the sets you caught at EDC.")
+      2. `npm run cap:sync` (adds the pod, regenerates Podfile.lock).
+      3. Set `window.__USE_NATIVE_PICKER__ = true` somewhere early
+         (e.g. in `index.html` inside a `Capacitor.isNativePlatform()`
+         check, or just hard-on for iOS — see `pickViaNative` for the
+         exact predicate).
+      4. Bump iOS version 1.3 (13) → 1.4 (14), build, submit.
+      Why it matters: `<input type="file">` in WKWebView strips EXIF
+      DateTimeOriginal on edge-case photos and zeroes out lastModified,
+      which is why post-festival imports were landing untagged. PHPicker
+      preserves EXIF reliably. GPS still requires the user to grant
+      "All Photos" access in iOS Settings.
 - [ ] **Manage storage UI** — Memories writes blobs to IndexedDB with
       no size visibility. A heavy weekend can stash 500MB+. Add a
       "Storage used · X MB · Clear all" row inside Memories (or Me →
