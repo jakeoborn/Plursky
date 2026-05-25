@@ -9,6 +9,7 @@ const FESTIVAL_END_MS   = FESTIVAL_CONFIG.endMs;
 // day) to absolute Date for the given festival day. Anchors to the day's
 // midnight in the festival's tz (stored in FESTIVAL_CONFIG.dayDates).
 function festivalNightDate(day, hhmm) {
+  if (!hhmm) return new Date(NaN);
   const [h, m] = hhmm.split(":").map(Number);
   const dayMeta = FESTIVAL_CONFIG.dayDates[day];
   if (!dayMeta) return new Date(NaN);
@@ -122,22 +123,24 @@ function TonightCard({ state, setState }) {
     return mins < 60 ? `${mins}m ago` : `${Math.round(mins / 60)}h ago`;
   })();
   const day = NOW.day; // 1, 2, or 3 during festival
-  const sunTimes = FESTIVAL_CONFIG.sunTimes;
-  const sun = sunTimes[day];
+  const sunTimes = FESTIVAL_CONFIG.sunTimes || {};
+  const sun = sunTimes[day] || sunTimes[1] || { rise: "07:00", set: "19:00" };
   const now = Date.now();
   const isPreEvent = now < FESTIVAL_START_MS;
 
   // Next sunrise & sunset to display
   const sunsetMs = festivalNightDate(day, sun.set).getTime();
   const sunriseMs = festivalNightDate(day, sun.rise).getTime();
+  const nextSun = sunTimes[day + 1] || sun;
   const nextSunsetMs = sunsetMs > now ? sunsetMs
-    : (day < 3 ? festivalNightDate(day + 1, sunTimes[day + 1].set).getTime() : null);
+    : (day < 3 ? festivalNightDate(day + 1, nextSun.set).getTime() : null);
   const nextSunriseMs = sunriseMs > now ? sunriseMs
-    : (day < 3 ? festivalNightDate(day + 1, sunTimes[day + 1].rise).getTime() : null);
+    : (day < 3 ? festivalNightDate(day + 1, nextSun.rise).getTime() : null);
 
   // Last shuttle: only relevant in the wee hours after midnight on a
-  // festival night.
-  const lastShuttleMs = festivalNightDate(day, FESTIVAL_CONFIG.lastShuttleHHMM).getTime();
+  // festival night. Not all festivals have shuttle data.
+  const lastShuttleMs = FESTIVAL_CONFIG.lastShuttleHHMM
+    ? festivalNightDate(day, FESTIVAL_CONFIG.lastShuttleHHMM).getTime() : NaN;
   const inShuttleWindow = !isPreEvent && now < lastShuttleMs && (lastShuttleMs - now) < 4 * 3600000;
   const shuttleMins = Math.floor((lastShuttleMs - now) / 60000);
   const shuttleUrgent = inShuttleWindow && shuttleMins < 60;
