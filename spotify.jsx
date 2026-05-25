@@ -5029,7 +5029,7 @@ const APP_STORE_ID = null; // ← paste your 1.3 App Store ID here (post-approva
 
 // ── Plursky+ paywall ──────────────────────────────────────────────
 // Free: 1 static collage per festival (watermarked). Plus: unlimited
-// collages, no watermark, GIF, video. $4.99/festival or $9.99/yr.
+// collages, no watermark, GIF, video. $2.99/festival or $7.99/yr.
 //
 // IAP is handled by RevenueCat (@revenuecat/purchases-capacitor).
 // On native: RevenueCat manages StoreKit, receipt validation, and
@@ -5040,8 +5040,8 @@ const APP_STORE_ID = null; // ← paste your 1.3 App Store ID here (post-approva
 const PLUS_KEY = "plursky_plus_active";
 const RC_API_KEY = ""; // ← paste RevenueCat Apple API key here
 const RC_PRODUCT_IDS = {
-  festival: "plursky_plus_festival",  // $4.99 non-consumable
-  annual:   "plursky_plus_annual",    // $9.99/yr auto-renewable
+  festival: "plursky_plus_festival",  // $2.99 non-consumable
+  annual:   "plursky_plus_annual",    // $7.99/yr auto-renewable
 };
 const RC_ENTITLEMENT = "plus";
 
@@ -5199,7 +5199,7 @@ function PlusGate({ children, feature }) {
           cursor: busy ? "wait" : "pointer",
           boxShadow: "0 4px 20px rgba(109,40,217,0.45), 0 0 40px rgba(232,93,46,0.2)",
         }}>
-          {busy ? "PROCESSING…" : "$4.99 / FESTIVAL"}
+          {busy ? "PROCESSING…" : "$2.99 / FESTIVAL"}
         </button>
         <div className="mono" style={{
           fontSize: 8, letterSpacing: 1, color: "rgba(255,255,255,0.35)",
