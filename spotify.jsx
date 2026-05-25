@@ -4804,7 +4804,7 @@ async function _shareRecapCard(recap) {
   const file = new File([blob], filename, { type: "image/png" });
   const title = `My ${window.FESTIVAL_CONFIG?.shortName || "festival"}`;
 
-  // Native iOS path (v154): @capacitor/share with `files` (data URL) — more
+  // Native iOS path (v155): @capacitor/share with `files` (data URL) — more
   // reliable inside WKWebView than the web `navigator.share({ files })` path
   // which can fail silently in some iOS versions.
   const capShare = window.Capacitor?.Plugins?.Share;

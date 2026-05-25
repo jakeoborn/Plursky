@@ -451,7 +451,7 @@ async function sbExportUserData(state) {
   const filename = `plursky-export-${(window.FESTIVAL_CONFIG?.id || "festival")}-${Date.now()}.json`;
   const title = "Plursky data export";
 
-  // v154: native iOS via @capacitor/share — more reliable inside WKWebView
+  // v155: native iOS via @capacitor/share — more reliable inside WKWebView
   // than navigator.share, which silently fails on some iOS versions when
   // sharing a File from a blob URL.
   const capShare = window.Capacitor?.Plugins?.Share;
@@ -1390,22 +1390,24 @@ function sbOutboxInit() {
 }
 
 async function sbCrewSendMessage(code, pid, name, body) {
-  if (!code) return { error: "no_code" };
+  if (!code) return { error: "no_code", queued: false };
   const trimmed = (body || "").trim().slice(0, 500);
-  if (!trimmed) return { error: "empty" };
+  if (!trimmed) return { error: "empty", queued: false };
   // No Supabase yet — queue and let the drainer pick it up later.
   if (!_sb) {
     sbOutboxAdd({ type: "crew_msg", code, pid, name, body: trimmed });
-    return { error: "queued" };
+    return { error: null, queued: true };
   }
   const { error } = await _sbCrewInsertRaw(code, pid, name, trimmed);
   if (error) {
-    // Likely offline or Supabase blip. Persist for retry; caller still
-    // sees an error so the optimistic stub can mark itself accordingly,
-    // but the message isn't lost.
+    // Network blip / offline / Supabase outage — persist for retry. Tell
+    // the caller this was queued (not a true permanent failure) so the
+    // optimistic stub shows "⏱ QUEUED" instead of "FAILED · TAP TO RETRY"
+    // (which would create a duplicate when the drainer eventually succeeds).
     sbOutboxAdd({ type: "crew_msg", code, pid, name, body: trimmed });
+    return { error: null, queued: true };
   }
-  return { error };
+  return { error: null, queued: false };
 }
 
 // Subscribe to INSERTs scoped to a crew_code. Calls onMessage(row) for each
@@ -1799,8 +1801,37 @@ function CrewChat({ code, myPid, myName }) {
   const [reportMsg,   setReportMsg]   = React.useState(null);  // message being reported (opens reason sheet)
   const [reportSent,  setReportSent]  = React.useState(false);
   const [blockedPids, setBlockedPids] = React.useState(() => sbGetBlockedPids());
+  // Connection + outbox banner state. The connection comes from
+  // `navigator.onLine` (and the online/offline events). The queue size
+  // comes from the outbox so the user can see "3 messages waiting" even
+  // when they didn't queue them in this session (e.g., app foregrounded
+  // after losing service mid-festival).
+  const [online,    setOnline]    = React.useState(() => (typeof navigator !== "undefined" ? navigator.onLine : true));
+  const [queueSize, setQueueSize] = React.useState(() => sbOutboxList().filter(e => e.type === "crew_msg" && e.code === code).length);
   const threadRef = React.useRef(null);
   const inputRef  = React.useRef(null);
+
+  // Listen for connection changes + recompute the queue size whenever the
+  // outbox changes. Re-runs of the drainer trigger an "online" event check
+  // here; we poll once per second while queued so the banner counter ticks
+  // down as messages drain. Cheap (localStorage read).
+  React.useEffect(() => {
+    const onOnline  = () => setOnline(true);
+    const onOffline = () => setOnline(false);
+    window.addEventListener("online",  onOnline);
+    window.addEventListener("offline", onOffline);
+    const tick = setInterval(() => {
+      try {
+        const n = sbOutboxList().filter(e => e.type === "crew_msg" && e.code === code).length;
+        setQueueSize(prev => prev !== n ? n : prev);
+      } catch {}
+    }, 1000);
+    return () => {
+      window.removeEventListener("online",  onOnline);
+      window.removeEventListener("offline", onOffline);
+      clearInterval(tick);
+    };
+  }, [code]);
 
   React.useEffect(() => {
     const refresh = () => setBlockedPids(sbGetBlockedPids());
@@ -1928,8 +1959,13 @@ function CrewChat({ code, myPid, myName }) {
     } else {
       setMsgs(prev => [...prev, optimistic]);
     }
-    const { error } = await sbCrewSendMessage(code, myPid, myName, body);
-    if (error) {
+    const { error, queued } = await sbCrewSendMessage(code, myPid, myName, body);
+    if (queued) {
+      // Outbox holds it; the drainer will send + realtime echo will replace
+      // the stub. Render distinctly so the user knows it's safe (not lost)
+      // and to suppress tap-to-retry (which would duplicate).
+      setMsgs(prev => prev.map(m => m.id === optimistic.id ? { ...m, _queued: true, _pending: false } : m));
+    } else if (error) {
       setMsgs(prev => prev.map(m => m.id === optimistic.id ? { ...m, _failed: true, _pending: false } : m));
     } else {
       // Realtime echo normally replaces the stub within ~500ms. Safety net:
@@ -1968,6 +2004,24 @@ function CrewChat({ code, myPid, myName }) {
       <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginBottom: 6, padding: "0 2px" }}>
         CREW CHAT
       </div>
+      {/* Offline / queue banner. Two states:
+            • online + queue > 0 → "sending N…" (drainer working through)
+            • offline           → "offline — N queued, will send when online"
+          Hidden when online + queue empty (the common case). */}
+      {(!online || queueSize > 0) && (
+        <div className="mono" style={{
+          marginBottom: 6, padding: "7px 10px", borderRadius: 10,
+          background: !online ? "rgba(232,93,46,0.10)" : "var(--paper-2)",
+          border: !online ? "1px solid rgba(232,93,46,0.35)" : "1px solid var(--line)",
+          color: !online ? "var(--ember)" : "var(--muted)",
+          fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
+          display: "flex", alignItems: "center", gap: 6,
+        }}>
+          <span>{!online ? "⏱ OFFLINE" : "↑ SENDING"}</span>
+          <span style={{ color: "var(--muted)", fontWeight: 600 }}>·</span>
+          <span>{queueSize} {queueSize === 1 ? "MESSAGE" : "MESSAGES"} {!online ? "QUEUED" : "DRAINING"}</span>
+        </div>
+      )}
       <div ref={threadRef} style={{
         maxHeight: 280, overflowY: "auto",
         background: "var(--paper)", border: "1px solid var(--line)", borderRadius: 12,
@@ -2086,8 +2140,9 @@ function CrewChat({ code, myPid, myName }) {
                   background: mine ? "var(--ink)" : "var(--paper-2)",
                   color:      mine ? "var(--paper)" : "var(--ink)",
                   fontSize: 13, lineHeight: 1.4,
-                  opacity: m._pending ? 0.55 : 1,
-                  border: m._failed ? "1px solid var(--ember)" : "none",
+                  opacity: m._pending ? 0.55 : (m._queued ? 0.75 : 1),
+                  // Dashed border on queued; solid ember on truly failed.
+                  border: m._failed ? "1px solid var(--ember)" : (m._queued ? "1px dashed var(--line-2)" : "none"),
                   cursor: m._failed ? "pointer" : "default",
                   wordBreak: "break-word",
                 }}>{m.body}</div>
@@ -2097,8 +2152,12 @@ function CrewChat({ code, myPid, myName }) {
                 marginTop: 2, padding: "0 4px",
                 display: "flex", alignItems: "center", gap: 6,
               }}>
-                <span>{m._failed ? "FAILED · TAP TO RETRY" : fmtTime(m.created_at)}</span>
-                {!mine && !m._pending && !m._failed && (
+                <span>
+                  {m._failed ? "FAILED · TAP TO RETRY"
+                    : m._queued ? "⏱ QUEUED · WILL SEND WHEN ONLINE"
+                    : fmtTime(m.created_at)}
+                </span>
+                {!mine && !m._pending && !m._failed && !m._queued && (
                   <button
                     onClick={() => setMenuMsgId(menuOpen ? null : m.id)}
                     aria-label="Message options"
