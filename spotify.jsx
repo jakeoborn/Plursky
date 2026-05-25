@@ -2470,12 +2470,69 @@ const _TAG_SOURCE_LABEL = {
   manual:               { text: "MANUAL",            tone: "ok" },
 };
 
+// Best-available capture time for a moment. handleBatchPick stores both
+// `createdAt` (import wall-clock, same for every photo in a batch) and
+// `takenAt` (the actual EXIF / lastModified capture moment, formatted as
+// "YYYY-MM-DD HH:MM"). Manually-added moments have no takenAt; their
+// createdAt IS the capture moment. Prefer takenAt when present.
+function _momentCaptureMs(m) {
+  if (m.takenAt) {
+    const t = Date.parse(m.takenAt.replace(" ", "T"));
+    if (!isNaN(t)) return t;
+  }
+  return m.createdAt || 0;
+}
+
+// Free-tier "AI workaround": find other moments tagged within ±30 min of
+// THIS moment's CAPTURE time (not import time) on the same night and
+// suggest the most-common artist. If the user has already tagged any
+// moment near this photo's time, we have strong signal without calling a
+// vision model. Returns null when there's nothing to suggest.
+function _siblingSuggestionFor(moment, allMoments) {
+  if (moment.artistId) return null;
+  const nightMoments = allMoments[moment.night] || [];
+  const myTime = _momentCaptureMs(moment);
+  if (!myTime) return null;
+  const WINDOW_MS = 30 * 60 * 1000;
+  const counts = new Map();
+  for (const m of nightMoments) {
+    if (!m.artistId || m.id === moment.id) continue;
+    const theirTime = _momentCaptureMs(m);
+    if (!theirTime) continue;
+    if (Math.abs(theirTime - myTime) > WINDOW_MS) continue;
+    counts.set(m.artistId, (counts.get(m.artistId) || 0) + 1);
+  }
+  if (counts.size === 0) return null;
+  let bestId = null, bestCount = 0;
+  for (const [id, n] of counts) {
+    if (n > bestCount) { bestId = id; bestCount = n; }
+  }
+  return { artistId: bestId, count: bestCount };
+}
+
 function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, savedArtistIds }) {
   const photoUrl = useMomentPhoto(moment.photoId);
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
   const [editing, setEditing] = React.useState(false);
   const tagInfo = _TAG_SOURCE_LABEL[moment.tagSource] || null;
+  // Sibling-suggestion: cheap "AI workaround" for untagged moments. Reads
+  // localStorage moments (~hundreds of bytes) on each render — and on the
+  // "plursky-moments-change" event so cascading retags update siblings.
+  const [allMoments, setAllMoments] = React.useState(() => {
+    try { return _readMoments(); } catch { return {}; }
+  });
+  React.useEffect(() => {
+    const refresh = () => { try { setAllMoments(_readMoments()); } catch {} };
+    window.addEventListener("plursky-moments-change", refresh);
+    return () => window.removeEventListener("plursky-moments-change", refresh);
+  }, []);
+  const suggestion = React.useMemo(
+    () => _siblingSuggestionFor(moment, allMoments),
+    [moment.id, moment.artistId, moment.night, moment.createdAt, allMoments]
+  );
+  const suggestedArtist = suggestion ? ARTISTS.find(a => a.id === suggestion.artistId) : null;
+  const suggestedStage  = suggestedArtist ? STAGES.find(s => s.id === suggestedArtist.stage) : null;
   // Prefer the saved-on-this-night sets as the picker options (most likely
   // intent), with an "all sets" expand for the rare case the user took a
   // photo at a set they hadn't saved.
@@ -2545,6 +2602,17 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
             borderRadius: 999, padding: "3px 9px",
             fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
           }}>♬ {artist.name.toUpperCase()}</button>
+        ) : suggestion ? (
+          <button onClick={() => setArtist(suggestion.artistId)} className="mono" title={`${suggestion.count} other moment${suggestion.count === 1 ? "" : "s"} in the same 30-min window tagged to this artist`} style={{
+            background: suggestedStage ? `${suggestedStage.color}18` : "var(--paper-2)",
+            color:      suggestedStage ? suggestedStage.color       : "var(--ink)",
+            border:     suggestedStage ? `1px dashed ${suggestedStage.color}66` : "1px dashed var(--line-2)",
+            borderRadius: 999, padding: "3px 9px",
+            fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
+            whiteSpace: "nowrap",
+          }}>
+            + TAG AS {suggestedArtist?.name.toUpperCase() || "—"} ({suggestion.count})
+          </button>
         ) : (
           <button onClick={() => setEditing(true)} className="mono" style={{
             background: "rgba(232,93,46,0.12)", color: "var(--ember)",
@@ -3066,22 +3134,21 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds) {
   const night = _photoFestivalNight(date);
   if (!night) return { artistId: null, night: null, reason: "outside_festival_window" };
 
-  // Off-stage check (v1.4): if the photo has GPS and it's beyond ~150m
-  // from EVERY known stage anchor, the user wasn't AT a set — they were
-  // on Rainbow Road, at the food court, in line for a charger, in Down-
-  // town EDC. Don't force-tag the closest artist in that case; surface
-  // as "off-stage" so the UI shows 📍 BETWEEN SETS instead of a wrong
-  // artist chip. Threshold is conservative because the lineup only has 3
-  // calibration anchors (kinetic / cosmic / basspod) covering ~600m of
-  // festival footprint — true stage edges may be 50-80m from these
-  // anchors, so 150m total leaves headroom for "actually at the stage
-  // but toward the back" without false-positiving real between-stages
-  // moments.
+  // Off-stage check: if the photo has GPS and it's beyond ~80m from
+  // EVERY known stage anchor, the user wasn't AT a set — they were on
+  // Rainbow Road, at the food court, in line for a charger, in Downtown
+  // EDC. Don't force-tag the closest artist in that case; surface as
+  // "off_stage" so the UI shows 📍 BETWEEN SETS instead of a wrong
+  // artist chip. With anchors for all 9 stages (data.jsx gpsAnchors,
+  // v157+), 80m is the tightest threshold that doesn't false-positive
+  // "back of the crowd". Earlier v157 launch used 150m because only 3
+  // of 9 anchors were calibrated — that left big gaps near the other
+  // 6 stages, forcing a conservative threshold.
   if (lat != null && lng != null) {
     const anchors = window.FESTIVAL_CONFIG?.gpsAnchors || [];
     if (anchors.length > 0) {
       const minMeters = Math.min(...anchors.map(a => _haversineMeters(lat, lng, a.lat, a.lng)));
-      if (minMeters > 150) {
+      if (minMeters > 80) {
         return { artistId: null, night, reason: "off_stage", distMeters: Math.round(minMeters) };
       }
     }
@@ -3307,6 +3374,18 @@ function MemoriesScreen({ state, setState }) {
   const [batch, setBatch] = React.useState(null);   // null | { total, done, results: [{name, night, artistId, err?}] }
   const batchInputRef = React.useRef(null);
   const nightSectionRefs = React.useRef({});
+
+  // Stay in sync with cross-screen retags. The local handlers (handleAdd /
+  // handleUpdate / handleDelete) all call setAll directly so this listener
+  // is only doing work for external writes — e.g., the user retags a
+  // moment from the Artist screen's "YourPhotosStrip" and we want the
+  // Memories tab to reflect that next time they swap to it. _writeMoments
+  // dispatches "plursky-moments-change" on every write.
+  React.useEffect(() => {
+    const refresh = () => { try { setAll(_readMoments()); } catch {} };
+    window.addEventListener("plursky-moments-change", refresh);
+    return () => window.removeEventListener("plursky-moments-change", refresh);
+  }, []);
 
   // v141: when a user taps a FRI/SAT/SUN row on the Me-tab History list,
   // it sets state.memoriesNight + state.tab="memories". This effect scrolls
@@ -4851,7 +4930,7 @@ async function _shareRecapCard(recap) {
   const file = new File([blob], filename, { type: "image/png" });
   const title = `My ${window.FESTIVAL_CONFIG?.shortName || "festival"}`;
 
-  // Native iOS path (v156): @capacitor/share with `files` (data URL) — more
+  // Native iOS path (v157): @capacitor/share with `files` (data URL) — more
   // reliable inside WKWebView than the web `navigator.share({ files })` path
   // which can fail silently in some iOS versions.
   const capShare = window.Capacitor?.Plugins?.Share;

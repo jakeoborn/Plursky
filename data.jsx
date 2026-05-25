@@ -87,10 +87,33 @@ const FESTIVAL_CONFIG = {
   // (Insomniac typically releases ~2 weeks before the festival).
   // Update these once the 2026 map drops; the affine transform in
   // map.jsx auto-retunes the whole GPS→SVG projection.
+  //
+  // Three anchors (kinetic / cosmic / basspod) were measured during
+  // pre-festival site reconnaissance and define the SVG↔GPS affine
+  // transform. The other six (quantum / bionic / stereo / neon / waste
+  // / circuit) are DERIVED from that transform using their SVG layout
+  // coordinates — they snap cleanly to the same projection so adding
+  // them doesn't shift any existing math, but it gives the off-stage
+  // detector (_matchArtistForPhoto in spotify.jsx) a tight reference
+  // point near every stage instead of only three. Threshold drops
+  // 150m → 80m as a result.
+  //
+  // Verify by overlaying these on Google Maps satellite view of the
+  // Las Vegas Motor Speedway infield — each anchor should land at
+  // its stage's apparent center on a previous EDC's footprint
+  // (Insomniac re-uses similar layouts year-over-year).
   gpsAnchors: [
+    // Calibrated (do not move without re-deriving the others)
     { stageId: "kinetic", lat: 36.27512, lng: -115.0118 },
     { stageId: "cosmic",  lat: 36.27370, lng: -115.0148 },
     { stageId: "basspod", lat: 36.27075, lng: -115.0123 },
+    // Derived from the SVG layout via the kinetic/cosmic/basspod affine
+    { stageId: "quantum", lat: 36.27433, lng: -115.0103 },
+    { stageId: "bionic",  lat: 36.27544, lng: -115.0139 },
+    { stageId: "stereo",  lat: 36.27404, lng: -115.0129 },
+    { stageId: "neon",    lat: 36.27226, lng: -115.0096 },
+    { stageId: "waste",   lat: 36.27179, lng: -115.0137 },
+    { stageId: "circuit", lat: 36.27088, lng: -115.0107 },
   ],
 
   // ── Weather ──

@@ -248,6 +248,34 @@ async function run() {
   check(`STAGE view: Neon Garden header rendered (count=${stageViewNeon})`, stageViewNeon >= 1);
   await page.screenshot({ path: '/tmp/plursky-memories-stage.png', fullPage: true });
 
+  // ── SIBLING-SUGGESTION ── Inject a third moment in localStorage at a
+  // capture time within 30 min of the Peggy Gou-tagged moment from TEST 1.
+  // The Memories card for that third moment should render a
+  // "+ TAG AS PEGGY GOU" suggestion chip (no AI required).
+  await page.evaluate(() => {
+    const m = JSON.parse(localStorage.getItem('plursky_moments_v1') || '{}');
+    m['1'] = m['1'] || [];
+    m['1'].push({
+      id: 'm_sibling_test',
+      night: 1,
+      text: '',
+      artistId: null,            // untagged, sibling-suggest should kick in
+      photoId: null,
+      kind: 'image',
+      createdAt: Date.now(),
+      takenAt: '2026-05-15 23:50',  // 15 min after Peggy Gou-tagged moment (23:35)
+      autoTagged: false,
+      tagSource: 'fallback',
+    });
+    localStorage.setItem('plursky_moments_v1', JSON.stringify(m));
+    window.dispatchEvent(new CustomEvent('plursky-moments-change'));
+  });
+  await page.waitForTimeout(600);
+  const siblingChip = await page.locator('button:has-text("TAG AS PEGGY GOU")').count();
+  console.log('\n── SIBLING-SUGGESTION: untagged moment near a tagged one ──');
+  check(`sibling chip "+ TAG AS PEGGY GOU" rendered (count=${siblingChip})`, siblingChip >= 1);
+  await page.screenshot({ path: '/tmp/plursky-sibling.png', fullPage: true });
+
   // ── TEST 3 ── Per-artist memories strip renders on the artist screen.
   // Deep-link to Peggy Gou (n4) and assert YourPhotosStrip appears with the
   // EXIF moment from TEST 1.
