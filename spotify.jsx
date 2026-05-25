@@ -5030,15 +5030,115 @@ const APP_STORE_ID = null; // ← paste your 1.3 App Store ID here (post-approva
 // ── Plursky+ paywall ──────────────────────────────────────────────
 // Free: 1 static collage per festival (watermarked). Plus: unlimited
 // collages, no watermark, GIF, video. $4.99/festival or $9.99/yr.
-// For now the subscription state is a localStorage flag. When you wire
-// up StoreKit / @capacitor/purchases, set this key in the receipt
-// verification callback.
+//
+// IAP is handled by RevenueCat (@revenuecat/purchases-capacitor).
+// On native: RevenueCat manages StoreKit, receipt validation, and
+// entitlement checks. On web: falls back to localStorage flag.
+//
+// Setup: create products in App Store Connect, configure them in
+// RevenueCat dashboard, paste your API key below.
 const PLUS_KEY = "plursky_plus_active";
+const RC_API_KEY = ""; // ← paste RevenueCat Apple API key here
+const RC_PRODUCT_IDS = {
+  festival: "plursky_plus_festival",  // $4.99 non-consumable
+  annual:   "plursky_plus_annual",    // $9.99/yr auto-renewable
+};
+const RC_ENTITLEMENT = "plus";
+
+let _rcInitialized = false;
+async function _initRevenueCat() {
+  if (_rcInitialized || !RC_API_KEY) return;
+  if (!window.Capacitor?.isNativePlatform?.()) return;
+  try {
+    const { Purchases } = await import("@revenuecat/purchases-capacitor");
+    await Purchases.configure({ apiKey: RC_API_KEY });
+    _rcInitialized = true;
+    const { customerInfo } = await Purchases.getCustomerInfo();
+    _syncEntitlements(customerInfo);
+    Purchases.addCustomerInfoUpdateListener(({ customerInfo: info }) => _syncEntitlements(info));
+    console.log("[plursky-iap] RevenueCat initialized");
+  } catch (e) { console.warn("[plursky-iap] init failed:", e); }
+}
+
+function _syncEntitlements(info) {
+  const active = info?.entitlements?.active?.[RC_ENTITLEMENT];
+  _setPlusSub(!!active);
+}
+
+async function _purchasePlus(productId) {
+  if (!window.Capacitor?.isNativePlatform?.()) {
+    console.log("[plursky-iap] web mode — toggling Plus for testing");
+    _setPlusSub(true);
+    return { success: true, web: true };
+  }
+  if (!_rcInitialized) await _initRevenueCat();
+  if (!_rcInitialized) return { success: false, error: "RevenueCat not configured" };
+  try {
+    const { Purchases } = await import("@revenuecat/purchases-capacitor");
+    const { offerings } = await Purchases.getOfferings();
+    const pkg = offerings?.current?.availablePackages?.find(p =>
+      p.product?.identifier === productId
+    );
+    if (!pkg) {
+      console.warn("[plursky-iap] product not found:", productId);
+      return { success: false, error: "Product not available" };
+    }
+    const { customerInfo } = await Purchases.purchasePackage({ aPackage: pkg });
+    _syncEntitlements(customerInfo);
+    return { success: !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT] };
+  } catch (e) {
+    if (e?.code === "1" || e?.message?.includes("cancelled")) {
+      return { success: false, cancelled: true };
+    }
+    console.error("[plursky-iap] purchase error:", e);
+    return { success: false, error: e.message };
+  }
+}
+
+async function _restorePurchases() {
+  if (!window.Capacitor?.isNativePlatform?.()) return { success: false, error: "Web mode" };
+  if (!_rcInitialized) await _initRevenueCat();
+  if (!_rcInitialized) return { success: false, error: "RevenueCat not configured" };
+  try {
+    const { Purchases } = await import("@revenuecat/purchases-capacitor");
+    const { customerInfo } = await Purchases.restorePurchases();
+    _syncEntitlements(customerInfo);
+    const restored = !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT];
+    return { success: true, restored };
+  } catch (e) {
+    console.error("[plursky-iap] restore error:", e);
+    return { success: false, error: e.message };
+  }
+}
+
 function _isPlusSub() { try { return localStorage.getItem(PLUS_KEY) === "1"; } catch { return false; } }
 function _setPlusSub(v) { try { localStorage.setItem(PLUS_KEY, v ? "1" : "0"); } catch {} }
 
-function PlusGate({ children, feature, onUpgrade }) {
+// Initialize RevenueCat on first load (non-blocking)
+try { _initRevenueCat(); } catch {}
+
+function PlusGate({ children, feature }) {
   if (_isPlusSub()) return children;
+  const [busy, setBusy] = React.useState(false);
+
+  const handlePurchase = async (productId) => {
+    setBusy(true);
+    try {
+      const result = await _purchasePlus(productId || RC_PRODUCT_IDS.festival);
+      if (result.success) window.location.reload();
+    } catch {}
+    setBusy(false);
+  };
+
+  const handleRestore = async () => {
+    setBusy(true);
+    try {
+      const result = await _restorePurchases();
+      if (result.restored) window.location.reload();
+      else if (!result.restored && result.success) alert("No previous Plursky+ purchase found for this Apple ID.");
+    } catch {}
+    setBusy(false);
+  };
 
   const _PLUS_PERKS = [
     ["No watermarks", "Clean, brandable exports"],
@@ -5092,14 +5192,14 @@ function PlusGate({ children, feature, onUpgrade }) {
           ))}
         </div>
 
-        <button onClick={onUpgrade} className="mono" style={{
+        <button onClick={() => handlePurchase(RC_PRODUCT_IDS.festival)} disabled={busy} className="mono" style={{
           padding: "11px 28px", borderRadius: 12, border: "none",
-          background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
+          background: busy ? "rgba(109,40,217,0.5)" : "linear-gradient(135deg, #6D28D9, #e85d2e)",
           color: "#fff", fontSize: 11, letterSpacing: 1.4, fontWeight: 700,
-          cursor: "pointer",
+          cursor: busy ? "wait" : "pointer",
           boxShadow: "0 4px 20px rgba(109,40,217,0.45), 0 0 40px rgba(232,93,46,0.2)",
         }}>
-          $4.99 / FESTIVAL
+          {busy ? "PROCESSING…" : "$4.99 / FESTIVAL"}
         </button>
         <div className="mono" style={{
           fontSize: 8, letterSpacing: 1, color: "rgba(255,255,255,0.35)",
@@ -5107,6 +5207,14 @@ function PlusGate({ children, feature, onUpgrade }) {
         }}>
           ONE-TIME · PER FESTIVAL
         </div>
+        <button onClick={handleRestore} disabled={busy} className="mono" style={{
+          marginTop: 10, padding: "4px 12px", borderRadius: 6,
+          border: "1px solid rgba(255,255,255,0.15)", background: "transparent",
+          color: "rgba(255,255,255,0.4)", fontSize: 8, letterSpacing: 1,
+          cursor: "pointer",
+        }}>
+          RESTORE PURCHASE
+        </button>
       </div>
     </div>
   );
@@ -7559,6 +7667,6 @@ Object.assign(window, {
   _renderCollage, _renderCollageGif, _shareCollage,
   _shareArtistCollage, _shareStageCollage, _shareNightCollage, _shareWeekendCollage, _shareCrewCollage,
   _renderRecapVideo, _shareRecapVideo, _detectBeats, _VIDEO_TEMPLATES,
-  _isPlusSub, _setPlusSub, PlusGate, _canShare, _getCustomAccent, _setCustomAccent, _archiveRecap, _getRecapArchive, _canAccessFestival,
+  _isPlusSub, _setPlusSub, PlusGate, _purchasePlus, _restorePurchases, RC_PRODUCT_IDS, _canShare, _getCustomAccent, _setCustomAccent, _archiveRecap, _getRecapArchive, _canAccessFestival,
   _shareFestivalDNA, _shareFestivalPassport, _shareFilmStrip, _shareCrewComparison,
 });
