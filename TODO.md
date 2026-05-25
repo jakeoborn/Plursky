@@ -1,12 +1,13 @@
 # Plursky — To-Do List
 
-_Last full sweep: 2026-05-20 (post-EDC). v1.3 submitted to Apple
-**2026-05-22** — In Review. Web is at v152._
+_Last full sweep: 2026-05-25. v1.4 submitted to Apple 2026-05-25 — In
+Review. v1.3 approved 2026-05-24, currently live. Web at v163. v1.5
+epic ready to start._
 
-## 🍿 v1.3 SUBMITTED — WAITING ON APPLE
+## 🍿 v1.4 SUBMITTED — WAITING ON APPLE
 
-**Status (2026-05-22):** Plursky Live `1.3 (13)` is **submitted to Apple
-App Review**. Expected decision in ~24–48 h.
+**Status (2026-05-25):** Plursky Live `1.4 (14)` is **submitted to Apple
+App Review**. Expected decision in ~24-48h. Commit `61a15cc`.
 
 ### What to watch for
 
@@ -17,26 +18,21 @@ App Review**. Expected decision in ~24–48 h.
 
 ### If approved
 
-- Choose between manual release ("Pending Developer Release") vs
-  automatic. Post-festival there's no urgency, so manual is fine —
-  pick a day, hit Release.
-- Once live, grab the numeric App ID from the App Store URL and paste
-  it into `APP_STORE_ID` in `spotify.jsx` (currently `null`). That
-  makes the in-app rating prompt's web fallback deep-link directly
-  to the Plursky listing instead of a generic search.
-- Move attention to the 🟠 PRODUCT GAPS section below.
+- Hit **Release this Version** in App Store Connect (unless you set
+  auto-release).
+- Grab the numeric App Store ID from the listing URL and paste into
+  `APP_STORE_ID` at `spotify.jsx:4693` (currently `null`). Bump
+  cache-bust and push. Unblocks the rating-prompt web fallback.
+- Move attention to the 🍿 v1.5 EPIC section below.
 
 ### If rejected — most likely reasons (in order of probability)
 
-1. **UGC moderation pushback on CrewChat** — already solved (v131 ships
-   in-app Report + Block + Unblock). If they still flag, point at the
-   reviewer-notes block (📚 LISTING TEXT → "App Review reviewer notes
-   (v1.3)") which explains the whole moderation surface.
-2. **Photo / camera roll usage** — Memories uses a plain
-   `<input type=file accept=image/*,video/*>` only — no PhotoKit, no
-   Camera plugin. Reviewer notes already explain "photos read via
-   standard file picker and stored locally in IndexedDB; never
-   transmitted."
+1. **NSPhotoLibraryUsageDescription wording** — already user-friendly
+   in Info.plist ("attach photos and videos to the sets you caught
+   at the festival"). If they push back, point at the App Review
+   answer below.
+2. **UGC moderation pushback on CrewChat** — already solved (v131 ships
+   in-app Report + Block + Unblock).
 3. **plursky:// URL scheme purpose** — they sometimes ask what custom
    schemes are for. Answer: round-trips the Spotify OAuth callback
    into the app from SafariViewController. Used only by `@capacitor/browser`
@@ -189,24 +185,10 @@ is the video upgrade.
 
 Ordered by impact-per-engineering-hour.
 
-- [ ] **v1.4 native photo picker** — `@capacitor/camera@^6.1.3` is
-      installed (2026-05-24) and the JS branch is wired in
-      `spotify.jsx` (`pickViaNative` → `handlePickClick`) behind the
-      `window.__USE_NATIVE_PICKER__` flag. To enable for v1.4:
-      1. Add `NSPhotoLibraryUsageDescription` to `ios/App/App/Info.plist`
-         (e.g. "Plursky uses your photo library so you can attach
-         photos and videos to the sets you caught at EDC.")
-      2. `npm run cap:sync` (adds the pod, regenerates Podfile.lock).
-      3. Set `window.__USE_NATIVE_PICKER__ = true` somewhere early
-         (e.g. in `index.html` inside a `Capacitor.isNativePlatform()`
-         check, or just hard-on for iOS — see `pickViaNative` for the
-         exact predicate).
-      4. Bump iOS version 1.3 (13) → 1.4 (14), build, submit.
-      Why it matters: `<input type="file">` in WKWebView strips EXIF
-      DateTimeOriginal on edge-case photos and zeroes out lastModified,
-      which is why post-festival imports were landing untagged. PHPicker
-      preserves EXIF reliably. GPS still requires the user to grant
-      "All Photos" access in iOS Settings.
+- [x] **v1.4 native photo picker** — SHIPPED in v1.4 (submitted
+      2026-05-25). `@capacitor/camera@^6.1.3` in Podfile;
+      `NSPhotoLibraryUsageDescription` set; `__USE_NATIVE_PICKER__`
+      flag flipped on for native platforms in `index.html`.
 - [ ] **Manage storage UI** — Memories writes blobs to IndexedDB with
       no size visibility. A heavy weekend can stash 500MB+. Add a
       "Storage used · X MB · Clear all" row inside Memories (or Me →
@@ -417,22 +399,36 @@ Privacy policy: plursky.com/privacy
 lineup,vegas,rave,edm,schedule,dj sets,playlist,set times,plur,kandi,stage map,discover
 ```
 
-### App Review reviewer notes (v1.3)
+### App Review reviewer notes (v1.4)
 ```
-Plursky is a free festival-companion app for EDC Las Vegas 2026 (May 15-17, 2026). No ads, no analytics, no third-party tracking. Works offline once content is precached.
+Plursky is a free festival-companion app. No ads, no analytics, no
+third-party tracking. Works offline once content is precached.
 
-NEW IN v1.3:
-  - "Recap" screen on Me tab — post-festival summary, shareable.
-  - "SETS YOU CAUGHT" attendance checklist under each night in
-    Memories.
-  - "Import from camera roll" auto-tags photos/videos to set + night
-    via EXIF time + GPS. All blobs stored locally in IndexedDB; no
-    upload.
-  - In-chat Report message + Block sender on every CrewChat bubble.
-  - 1:1 friend DMs persisted via Supabase Realtime (same trust model
-    as Crew Chat: 6-char code is the secret).
-  - Native Spotify OAuth via SafariViewController + plursky://callback
-    URL scheme (replaces the web-redirect-out-and-back pattern).
+NEW IN v1.4:
+  - Native Photos picker via @capacitor/camera (PHPicker). Used to
+    attach photos and videos to the music sets the user caught at the
+    festival. EXIF capture time + GPS feed the auto-tag-by-artist
+    feature. Read-only; we never write to the user's library.
+  - "Per-artist + per-stage memories" — the user's tagged photos now
+    appear under each artist on the Artist screen and each stage on
+    the Map. Local-only; never transmitted.
+  - "Between sets" detection — photos with GPS far from any stage
+    anchor (>80m) no longer get force-tagged to a wrong artist.
+  - Sibling-suggestion: tag one moment, neighbours in the same 30-min
+    window auto-suggest the same artist (pure on-device heuristic,
+    no AI / no network call).
+  - Shareable photo collages — Canvas-rendered 1080×1350 PNG for
+    Instagram / TikTok sharing.
+  - Haptic feedback (via @capacitor/haptics) on save / send / retag
+    actions.
+  - Bulk retag, bidirectional crew presence, offline-safe crew chat
+    with queued-message indicator.
+
+NSPhotoLibraryUsageDescription string:
+  "Plursky uses your photo library so you can attach photos and
+  videos to the sets you caught at the festival."
+
+ALL PRIOR v1.3 FEATURES UNCHANGED.
 
 CORE FEATURES (no account required):
   - Lineup: 250 artists, 9 stages, 3 nights
