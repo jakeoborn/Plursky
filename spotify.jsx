@@ -3151,8 +3151,8 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds) {
   // EDC. Don't force-tag the closest artist in that case; surface as
   // "off_stage" so the UI shows 📍 BETWEEN SETS instead of a wrong
   // artist chip. With anchors for all 9 stages (data.jsx gpsAnchors,
-  // v158+), 80m is the tightest threshold that doesn't false-positive
-  // "back of the crowd". Earlier v158 launch used 150m because only 3
+  // v159+), 80m is the tightest threshold that doesn't false-positive
+  // "back of the crowd". Earlier v159 launch used 150m because only 3
   // of 9 anchors were calibrated — that left big gaps near the other
   // 6 stages, forcing a conservative threshold.
   if (lat != null && lng != null) {
@@ -3579,7 +3579,19 @@ function MemoriesScreen({ state, setState }) {
   // affordances per night). "artist" and "stage" are rewatch lenses:
   // flatten across all nights, group by the dimension. Untagged moments
   // always float to a bottom group so retag work is grouped.
-  const [view, setView] = React.useState("night");
+  // Persisted across navigations — users settle on one lens; resetting
+  // to "night" every time the user comes back from another tab was
+  // unnecessary friction.
+  const [view, setView] = React.useState(() => {
+    try {
+      const v = localStorage.getItem("plursky_memories_view_v1");
+      if (v === "night" || v === "artist" || v === "stage") return v;
+    } catch {}
+    return "night";
+  });
+  React.useEffect(() => {
+    try { localStorage.setItem("plursky_memories_view_v1", view); } catch {}
+  }, [view]);
   // Flatten moments once for the artist/stage views.
   const allMoments = React.useMemo(() => {
     const out = [];
@@ -4941,7 +4953,7 @@ async function _shareRecapCard(recap) {
   const file = new File([blob], filename, { type: "image/png" });
   const title = `My ${window.FESTIVAL_CONFIG?.shortName || "festival"}`;
 
-  // Native iOS path (v158): @capacitor/share with `files` (data URL) — more
+  // Native iOS path (v159): @capacitor/share with `files` (data URL) — more
   // reliable inside WKWebView than the web `navigator.share({ files })` path
   // which can fail silently in some iOS versions.
   const capShare = window.Capacitor?.Plugins?.Share;
