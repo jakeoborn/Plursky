@@ -275,11 +275,10 @@ function setActiveFestivalAndReload(id) {
 //   wasteLAND       — orange (desert)
 //   bassPOD         — royal blue
 //   circuitGROUNDS  — navy blue (paired blue zone with bassPOD)
-// Stage x/y coords are calibrated to Insomniac's official EDC LV 2025
-// site map (north-up orientation, 0-100 SVG grid). Constrained to fit
-// inside the tri-oval infield (inner radius ~31 around 50,50). When the
-// 2026 map drops, just update these 9 x/y pairs and the GPS affine in
-// FESTIVAL_CONFIG.gpsAnchors and the whole projection re-tunes.
+// Stage x/y coords calibrated to Insomniac's official EDC LV 2026
+// site map (north-up orientation, 0-100 SVG grid). Validated May 2026.
+// Constrained to fit inside the tri-oval infield (inner radius ~31
+// around 50,50).
 const STAGES = [
   { id: "kinetic", name: "Kinetic Field",   short: "KIN", color: "#e85d2e", x: 50, y: 22, size: 1.7,  desc: "Mainstage · headliners, sunrise sets",
     vibe: "Sunrise Cathedral",  vibeNote: "Park here for the sunrise set. Mainstage scale, screen on screen, and the only place worth standing still.",  peak: "03:00–05:30" },
@@ -295,7 +294,7 @@ const STAGES = [
   { id: "cosmic",  name: "Cosmic Meadow",   short: "CSM", color: "#fbbf24", x: 14, y: 52, size: 1.2,
     vibe: "Wide-Open Vibe",     vibeNote: "Open-air, art cars, room to breathe. Best stage to wander in and out of.",                                     peak: "22:00–02:00",
     desc: "Open-air · big room, legends" },
-  { id: "neon",    name: "Neon Garden",     short: "NEN", color: "#ec4899", x: 80, y: 50, size: 1.05,
+  { id: "neon",    name: "Neon Garden",     short: "NEN", color: "#ec4899", x: 74, y: 53, size: 1.05,
     vibe: "House Heads HQ",     vibeNote: "If you came for house, this is the room. Long blends, deep selectors, tightest crowd of the night.",            peak: "00:00–04:30",
     desc: "House, deep techno" },
   { id: "waste",   name: "Wasteland",       short: "WST", color: "#f97316", x: 30, y: 72, size: 1.0,
