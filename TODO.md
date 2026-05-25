@@ -129,6 +129,62 @@ One-time setup steps Claude can't do via tooling.
 
 ---
 
+## 🍿 v1.5 EPIC — RECAP VIDEO + COLLAGE EXTENSIONS
+
+Phase 1 of the recap video story already shipped in v1.4 — the static
+photo collage (`_renderCollage` in `spotify.jsx` plus per-artist /
+per-stage / per-night / weekend share buttons across the app). Phase 2
+is the video upgrade.
+
+### Already shipped in v1.4
+
+- ✅ Per-artist collage on Artist screen
+- ✅ Per-stage collage on Map place card
+- ✅ Per-night collage on Memories tab night header
+- ✅ Weekend collage on Recap screen
+
+### Phase 1 follow-ons (free, additive — pick anytime)
+
+- [ ] **Crew collage** — "📸 SHARE OUR WEEKEND" in Crew Mode section.
+      Pulls moments tagged to crew members' artists. Needs a Supabase
+      query to find what artistIds the crew tagged. ~45 min.
+- [ ] **Animated GIF version** — bundle gif.js, upgrade `_renderCollage`
+      to optionally emit 8-15 frames with Ken Burns zoom and crossfade
+      transitions between photos. Shareable as .gif, plays inline in
+      most messengers + IG/TT. ~4-6 hours.
+
+### Phase 2 — paywalled recap video (~2 weeks, premium tier)
+
+- [ ] **Beat-synced cuts.** Analyze the music waveform (Web Audio API
+      AnalyserNode → frequency-domain energy curve), detect peaks, drop
+      transitions on the beats. 2-3 days.
+- [ ] **AI cut detection.** Score each video clip's 2-second windows by
+      audio energy + visual motion + crowd density; keep the most
+      "interesting" 2s of each. Pure on-device (no API spend) using a
+      lightweight CoreML model wrapped in a Capacitor plugin, OR a
+      cheap server-side call. 3-5 days.
+- [ ] **Multiple template styles.** Festival Diary (slow, serif,
+      vertical), Highlight Reel (fast cuts, drops on beat), Day-in-the-
+      Life (chronological narration). Each is a different timing
+      curve + transition set. 1-2 days each.
+- [ ] **No watermark** in the paywalled tier (watermark stays in the
+      free static collage).
+- [ ] **Custom music import.** User picks from their Apple Music /
+      Spotify library — iOS has MPMediaPicker for the former, Spotify
+      SDK has track browsing. The user-supplied music CAN'T be
+      re-uploaded publicly (DRM) so the export is local-only and they
+      hand off to TikTok/IG/etc. for sharing with their licensed
+      catalogs. 2-3 days.
+
+### Monetization model (proposed)
+
+- Free: 1 static collage per festival, watermarked
+- **Plursky+ ($4.99/festival or $9.99/yr)**: unlimited collages, no
+  watermark, animated GIF, paywalled video tier
+- Test at 5% conversion of 10k users × $5 = $2.5k/festival baseline
+
+---
+
 ## 🟠 PRODUCT GAPS — sessions, not one-liners
 
 Ordered by impact-per-engineering-hour.

@@ -3315,8 +3315,8 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds) {
   // EDC. Don't force-tag the closest artist in that case; surface as
   // "off_stage" so the UI shows 📍 BETWEEN SETS instead of a wrong
   // artist chip. With anchors for all 9 stages (data.jsx gpsAnchors,
-  // v162+), 80m is the tightest threshold that doesn't false-positive
-  // "back of the crowd". Earlier v162 launch used 150m because only 3
+  // v163+), 80m is the tightest threshold that doesn't false-positive
+  // "back of the crowd". Earlier v163 launch used 150m because only 3
   // of 9 anchors were calibrated — that left big gaps near the other
   // 6 stages, forcing a conservative threshold.
   if (lat != null && lng != null) {
@@ -3944,9 +3944,22 @@ function MemoriesScreen({ state, setState }) {
                   · {(dateInfo?.short || `DAY ${d.n}`).toString().toUpperCase()}
                 </div>
                 {moments.length > 0 && (
-                  <div className="mono" style={{ marginLeft: "auto", fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700 }}>
-                    {moments.length} MOMENT{moments.length === 1 ? "" : "S"}
-                  </div>
+                  <>
+                    <button
+                      onClick={() => window._shareNightCollage?.(d.n, moments)}
+                      className="mono"
+                      title={`Share a collage of ${d.label}`}
+                      style={{
+                        marginLeft: "auto",
+                        background: "var(--ember)", color: "#fff", border: "none",
+                        borderRadius: 999, padding: "4px 10px", cursor: "pointer",
+                        fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+                        whiteSpace: "nowrap",
+                      }}>📸 SHARE</button>
+                    <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700 }}>
+                      {moments.length} MOMENT{moments.length === 1 ? "" : "S"}
+                    </div>
+                  </>
                 )}
               </div>
 
@@ -5130,7 +5143,7 @@ async function _shareRecapCard(recap) {
   const file = new File([blob], filename, { type: "image/png" });
   const title = `My ${window.FESTIVAL_CONFIG?.shortName || "festival"}`;
 
-  // Native iOS path (v162): @capacitor/share with `files` (data URL) — more
+  // Native iOS path (v163): @capacitor/share with `files` (data URL) — more
   // reliable inside WKWebView than the web `navigator.share({ files })` path
   // which can fail silently in some iOS versions.
   const capShare = window.Capacitor?.Plugins?.Share;
@@ -5171,17 +5184,15 @@ async function _shareRecapCard(recap) {
   return true;
 }
 
-// Per-artist shareable collage. Stepping stone toward a full TikTok-style
-// recap video (v1.5) — same compositing math, frozen on one frame. Pulls
-// each moment's photo from IDB, lays them out in a mosaic, brands with
-// stage color + festival name. 1080×1350 = Instagram 4:5, also works as a
-// Story since the safe area is centered.
-async function _renderArtistCollage(artist, moments) {
+// Generic shareable collage. Same renderer underlies the per-artist,
+// per-stage, per-night, and weekend collages — only title/subtitle/
+// kicker/accent/moments change. 1080×1350 = Instagram 4:5, also reads
+// as a Story since the safe area is centered.
+async function _renderCollage({ title, subtitle, kicker, accent, moments }) {
   const W = 1080, H = 1350;
   const canvas = document.createElement("canvas");
   canvas.width = W; canvas.height = H;
   const ctx = canvas.getContext("2d");
-  const stage = (window.STAGES || []).find(s => s.id === artist.stage) || {};
   const CFG = window.FESTIVAL_CONFIG || {};
 
   try {
@@ -5190,34 +5201,31 @@ async function _renderArtistCollage(artist, moments) {
     await document.fonts.load("700 20px 'Geist Mono'");
   } catch {}
 
-  // Cream paper background
   ctx.fillStyle = "#f7ede0";
   ctx.fillRect(0, 0, W, H);
 
-  // Stage-colored header band — anchors the brand, names the set
+  // Accent-colored header band
   const headerH = 230;
-  ctx.fillStyle = stage.color || "#1a120d";
+  ctx.fillStyle = accent || "#1a120d";
   ctx.fillRect(0, 0, W, headerH);
   ctx.fillStyle = "rgba(255,255,255,0.78)";
   ctx.font = "700 22px 'Geist Mono', monospace";
   ctx.textAlign = "left";
-  ctx.fillText(`PLURSKY · ${(CFG.shortName || CFG.name || "FESTIVAL").toUpperCase()}`, 60, 80);
-  // Artist name (italic serif, big)
+  ctx.fillText(kicker || `PLURSKY · ${(CFG.shortName || CFG.name || "FESTIVAL").toUpperCase()}`, 60, 80);
+  // Title — truncate to fit
   ctx.fillStyle = "#fff";
   ctx.font = "italic 400 84px 'Instrument Serif', serif";
-  // Truncate long names so they fit on one line
-  let name = artist.name;
-  ctx.font = "italic 400 84px 'Instrument Serif', serif";
-  while (ctx.measureText(name).width > W - 120 && name.length > 4) {
-    name = name.slice(0, -2);
+  let safeTitle = title || "Memories";
+  while (ctx.measureText(safeTitle).width > W - 120 && safeTitle.length > 4) {
+    safeTitle = safeTitle.slice(0, -2);
   }
-  if (name !== artist.name) name = name.slice(0, -1) + "…";
-  ctx.fillText(name, 60, 170);
-  // Stage · day · time
-  ctx.fillStyle = "rgba(255,255,255,0.88)";
-  ctx.font = "700 18px 'Geist Mono', monospace";
-  const dayShort = CFG.dayDates?.[artist.day]?.short || `DAY ${artist.day}`;
-  ctx.fillText(`${(stage.name || "").toUpperCase()} · ${dayShort.toUpperCase()} · ${artist.start}–${artist.end}`, 60, 210);
+  if (safeTitle !== (title || "Memories")) safeTitle = safeTitle.slice(0, -1) + "…";
+  ctx.fillText(safeTitle, 60, 170);
+  if (subtitle) {
+    ctx.fillStyle = "rgba(255,255,255,0.88)";
+    ctx.font = "700 18px 'Geist Mono', monospace";
+    ctx.fillText(subtitle, 60, 210);
+  }
 
   // Photo mosaic area (between header + footer)
   const footerH = 110;
@@ -5300,20 +5308,22 @@ async function _renderArtistCollage(artist, moments) {
   return canvas;
 }
 
-async function _shareArtistCollage(artist, moments) {
+// Generic share helper. Renders + shares + downloads-on-fallback. The
+// per-{artist,stage,night,weekend} wrappers below just feed this their
+// specific title/subtitle/accent.
+async function _shareCollage({ title, subtitle, kicker, accent, moments, filenameSlug, shareTitle }) {
   let canvas;
-  try { canvas = await _renderArtistCollage(artist, moments); }
-  catch (e) { console.error("[plursky-collage] render failed:", e); return false; }
+  try {
+    canvas = await _renderCollage({ title, subtitle, kicker, accent, moments });
+  } catch (e) { console.error("[plursky-collage] render failed:", e); return false; }
   const blob = await new Promise(r => canvas.toBlob(r, "image/png"));
   if (!blob) return false;
   try { window.plurskyHaptic?.("LIGHT"); } catch {}
-  const safeName = (artist.name || "set").toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 32);
-  const filename = `plursky-${safeName}.png`;
+  const slug = (filenameSlug || title || "set").toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 32);
+  const filename = `plursky-${slug}.png`;
   const file = new File([blob], filename, { type: "image/png" });
-  const title = `${artist.name} at ${window.FESTIVAL_CONFIG?.shortName || "the festival"}`;
+  const sheetTitle = shareTitle || `${title} at ${window.FESTIVAL_CONFIG?.shortName || "the festival"}`;
 
-  // Native iOS path first — @capacitor/share with data URL is more reliable
-  // than navigator.share inside WKWebView. Same pattern as _shareRecapCard.
   const capShare = window.Capacitor?.Plugins?.Share;
   if (capShare?.share && window.Capacitor?.isNativePlatform?.()) {
     try {
@@ -5323,28 +5333,102 @@ async function _shareArtistCollage(artist, moments) {
         r.onerror = reject;
         r.readAsDataURL(blob);
       });
-      await capShare.share({ title, files: [dataUrl] });
+      await capShare.share({ title: sheetTitle, files: [dataUrl] });
       return true;
     } catch (e) {
       if (e?.message && !/cancel|abort/i.test(e.message)) console.warn("[plursky-share]", e.message);
     }
   }
-  // Web with file-share support (modern Chrome, Safari iOS 15+, Edge)
   if (navigator.share && typeof navigator.canShare === "function" && navigator.canShare({ files: [file] })) {
     try {
-      await navigator.share({ files: [file], title });
+      await navigator.share({ files: [file], title: sheetTitle });
       return true;
     } catch (e) {
       if (e?.name === "AbortError") return false;
     }
   }
-  // Fallback: download the PNG
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url; a.download = filename;
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   setTimeout(() => URL.revokeObjectURL(url), 1000);
   return true;
+}
+
+// Per-{artist, stage, night, weekend} share entry points. Each computes
+// the right title/subtitle/accent + filters moments before delegating to
+// _shareCollage. All exposed via window so any screen can call them.
+
+async function _shareArtistCollage(artist, moments) {
+  const stage = (window.STAGES || []).find(s => s.id === artist.stage) || {};
+  const CFG = window.FESTIVAL_CONFIG || {};
+  const dayShort = CFG.dayDates?.[artist.day]?.short || `DAY ${artist.day}`;
+  return _shareCollage({
+    title:    artist.name,
+    subtitle: `${(stage.name || "").toUpperCase()} · ${dayShort.toUpperCase()} · ${artist.start}–${artist.end}`,
+    accent:   stage.color || "#1a120d",
+    moments,
+    filenameSlug: artist.name,
+    shareTitle:   `${artist.name} at ${CFG.shortName || "the festival"}`,
+  });
+}
+
+async function _shareStageCollage(stage, momentsAcrossArtists) {
+  const CFG = window.FESTIVAL_CONFIG || {};
+  return _shareCollage({
+    title:    stage.name,
+    subtitle: `MY NIGHTS AT ${stage.short || stage.name?.toUpperCase()}`,
+    accent:   stage.color || "#1a120d",
+    moments:  momentsAcrossArtists,
+    filenameSlug: `stage-${stage.short || stage.id}`,
+    shareTitle:   `My ${stage.name} at ${CFG.shortName || "the festival"}`,
+  });
+}
+
+async function _shareNightCollage(night, momentsForNight) {
+  const CFG = window.FESTIVAL_CONFIG || {};
+  const di = CFG.dayDates?.[night] || {};
+  return _shareCollage({
+    title:    di.name || `Night ${night}`,
+    subtitle: `${(CFG.shortName || CFG.name || "FESTIVAL").toUpperCase()} · ${(di.short || `DAY ${night}`).toUpperCase()}`,
+    accent:   "#e85d2e", // ember — no single stage owns a night
+    moments:  momentsForNight,
+    filenameSlug: `night-${night}`,
+    shareTitle:   `My ${di.name || "festival night"} at ${CFG.shortName || "the festival"}`,
+  });
+}
+
+async function _shareWeekendCollage(allMoments) {
+  const CFG = window.FESTIVAL_CONFIG || {};
+  // Pick the 6 "best" moments: try to spread across nights + prefer
+  // those tagged to an artist (signal of "this one mattered"). Falls
+  // back to most-recent when there's nothing tagged.
+  const tagged   = allMoments.filter(m => m.artistId);
+  const untagged = allMoments.filter(m => !m.artistId);
+  const pool = tagged.length >= 6 ? tagged : [...tagged, ...untagged];
+  // Round-robin across nights so the collage spans the weekend
+  const byNight = new Map();
+  for (const m of pool) {
+    if (!byNight.has(m.night)) byNight.set(m.night, []);
+    byNight.get(m.night).push(m);
+  }
+  const picked = [];
+  const nights = [...byNight.keys()].sort((a, b) => a - b);
+  while (picked.length < 6 && nights.some(n => byNight.get(n).length > 0)) {
+    for (const n of nights) {
+      const arr = byNight.get(n);
+      if (arr.length > 0) picked.push(arr.shift());
+      if (picked.length >= 6) break;
+    }
+  }
+  return _shareCollage({
+    title:    "My Weekend",
+    subtitle: `${(CFG.shortName || CFG.name || "FESTIVAL").toUpperCase()} · ${CFG.dates || ""}`,
+    accent:   "#1a120d", // ink — weekend recap is "monolithic"
+    moments:  picked,
+    filenameSlug: `weekend-${CFG.id || "festival"}`,
+    shareTitle:   `My ${CFG.shortName || "festival weekend"}`,
+  });
 }
 
 function RecapScreen({ state, setState }) {
@@ -5652,12 +5736,33 @@ function RecapScreen({ state, setState }) {
               {recap.photosCount} PHOTO{recap.photosCount === 1 ? "" : "S"}
               {recap.videosCount > 0 ? ` · ${recap.videosCount} VIDEO${recap.videosCount === 1 ? "" : "S"}` : ""}
             </div>
-            <button onClick={() => setState(s => ({ ...s, tab: "memories" }))} style={{
-              marginTop: 14, padding: "8px 14px", borderRadius: 999,
-              background: "var(--ink)", color: "var(--paper)", border: "none",
-              fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
-              cursor: "pointer", alignSelf: "flex-start",
-            }}>OPEN MEMORIES →</button>
+            <div style={{ display: "flex", gap: 8, marginTop: 14, flexWrap: "wrap" }}>
+              <button onClick={() => setState(s => ({ ...s, tab: "memories" }))} style={{
+                padding: "8px 14px", borderRadius: 999,
+                background: "var(--ink)", color: "var(--paper)", border: "none",
+                fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+                cursor: "pointer",
+              }}>OPEN MEMORIES →</button>
+              <button
+                onClick={async () => {
+                  // Grab every moment from localStorage, hand to the weekend
+                  // collage builder which picks 6 best across nights.
+                  const all = [];
+                  try {
+                    const raw = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
+                    for (const n of Object.keys(raw)) {
+                      for (const m of (raw[n] || [])) all.push(m);
+                    }
+                  } catch {}
+                  await window._shareWeekendCollage?.(all);
+                }}
+                style={{
+                  padding: "8px 14px", borderRadius: 999,
+                  background: "var(--ember)", color: "#fff", border: "none",
+                  fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+                  cursor: "pointer",
+                }}>📸 SHARE WEEKEND</button>
+            </div>
           </RecapCard>
         )}
 
@@ -5780,5 +5885,6 @@ Object.assign(window, {
   SpotifyScreen, MeScreen, MemoriesScreen, RecapScreen, fetchPreviewUrl,
   ensureSpotifyProfile, getSpotifyProfileSync, createEdcPlaylist,
   startSpotifyAuth, PackListCard,
-  _renderArtistCollage, _shareArtistCollage,
+  _renderCollage, _shareCollage,
+  _shareArtistCollage, _shareStageCollage, _shareNightCollage, _shareWeekendCollage,
 });

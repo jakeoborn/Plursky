@@ -4740,7 +4740,7 @@ function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, m
 // THIS stage. Hidden when the user has nothing here. Reuses
 // _YourMomentThumb from artist.jsx (top-level globals; resolved at render
 // time even though map.jsx parses first in the load order).
-function YourStagePhotosStrip({ stageId, accent, onOpen }) {
+function YourStagePhotosStrip({ stageId, accent, onOpen, stageObj }) {
   const [moments, setMoments] = React.useState(() => {
     try { return _readMoments(); } catch { return {}; }
   });
@@ -4779,11 +4779,25 @@ function YourStagePhotosStrip({ stageId, accent, onOpen }) {
             {mine.length} {mine.length === 1 ? "memory" : "memories"} saved
           </div>
         </div>
-        <button onClick={onOpen} className="mono" style={{
-          background: "transparent", border: "none", color: "var(--muted)",
-          cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-          padding: 0,
-        }}>VIEW ALL →</button>
+        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+          {stageObj && mine.length > 0 && (
+            <button
+              onClick={() => window._shareStageCollage?.(stageObj, mine)}
+              className="mono"
+              title="Share a photo collage of your nights at this stage"
+              style={{
+                background: accent, color: "#fff", border: "none",
+                borderRadius: 999, padding: "5px 11px", cursor: "pointer",
+                fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+                whiteSpace: "nowrap",
+              }}>📸 SHARE</button>
+          )}
+          <button onClick={onOpen} className="mono" style={{
+            background: "transparent", border: "none", color: "var(--muted)",
+            cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+            padding: 0,
+          }}>VIEW ALL →</button>
+        </div>
       </div>
       <div style={{
         display: "flex", gap: 6, overflowX: "auto",
@@ -4930,6 +4944,7 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
       <YourStagePhotosStrip
         stageId={stage.id}
         accent={stage.color}
+        stageObj={stage}
         onOpen={(n) => setState({ ...state, tab: "memories", memoriesNight: n || NOW.day, focusStage: null })}
       />
 
