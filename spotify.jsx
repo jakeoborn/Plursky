@@ -5030,6 +5030,71 @@ function PlusGate({ children, feature, onUpgrade }) {
     ),
   );
 }
+// P1: Export rate limiter — 3/day free, unlimited Plus
+const DAILY_SHARE_LIMIT = 5;
+function _getShareCount() {
+  try {
+    const raw = JSON.parse(localStorage.getItem("plursky_share_count") || "{}");
+    const today = new Date().toISOString().slice(0, 10);
+    return raw.date === today ? (raw.count || 0) : 0;
+  } catch { return 0; }
+}
+function _incShareCount() {
+  const today = new Date().toISOString().slice(0, 10);
+  const count = _getShareCount() + 1;
+  try { localStorage.setItem("plursky_share_count", JSON.stringify({ date: today, count })); } catch {}
+  return count;
+}
+function _canShare() {
+  if (_isPlusSub()) return { allowed: true, remaining: Infinity };
+  const used = _getShareCount();
+  return { allowed: used < DAILY_SHARE_LIMIT, remaining: DAILY_SHARE_LIMIT - used };
+}
+function _showShareLimitToast() {
+  let el = document.getElementById("plursky-share-limit");
+  if (el) return;
+  el = document.createElement("div");
+  el.id = "plursky-share-limit";
+  el.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:9999;padding:14px 20px;text-align:center;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:1.2px;font-weight:700;color:#fff;background:#e85d2e;";
+  el.textContent = "📸 DAILY SHARE LIMIT REACHED · UPGRADE TO PLURSKY+ FOR UNLIMITED";
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 4000);
+}
+
+// P2: Resolution gate — free=540, Plus=1080
+function _exportScale() { return _isPlusSub() ? 1 : 0.5; }
+function _exportW() { return Math.round(1080 * _exportScale()); }
+function _exportH(baseH) { return Math.round((baseH || 1350) * _exportScale()); }
+
+// P3: Festival archive — snapshot recaps per festival
+function _archiveRecap(festivalId, recap) {
+  try {
+    const key = "plursky_recap_archive";
+    const archive = JSON.parse(localStorage.getItem(key) || "{}");
+    archive[festivalId] = { ...recap, archivedAt: Date.now() };
+    localStorage.setItem(key, JSON.stringify(archive));
+  } catch {}
+}
+function _getRecapArchive() {
+  try { return JSON.parse(localStorage.getItem("plursky_recap_archive") || "{}"); } catch { return {}; }
+}
+
+// P4: Priority preview gate
+function _canAccessFestival(festivalEntry) {
+  if (festivalEntry.available) return true;
+  if (festivalEntry.previewOnly && _isPlusSub()) return true;
+  return false;
+}
+
+// P5: Custom accent color — Plus-only
+function _getCustomAccent() {
+  if (!_isPlusSub()) return null;
+  try { return localStorage.getItem("plursky_custom_accent") || null; } catch { return null; }
+}
+function _setCustomAccent(hex) {
+  try { localStorage.setItem("plursky_custom_accent", hex); } catch {}
+}
+
 function _appStoreUrl() {
   if (APP_STORE_ID) return `https://apps.apple.com/app/plursky-live/id${APP_STORE_ID}`;
   return "https://apps.apple.com/search?term=plursky%20live";
@@ -5554,6 +5619,7 @@ function _videoProgress(show, pct) {
 }
 
 async function _shareRecapVideo({ moments, audioUrl, template, title, subtitle, accent, recap, format }) {
+  const gate = _canShare(); if (!gate.allowed) { _showShareLimitToast(); return false; }
   _videoProgress(true, 0);
   let blob;
   try {
@@ -5931,6 +5997,10 @@ async function _renderCollage({ title, subtitle, kicker, accent, moments, avatar
 // per-{artist,stage,night,weekend} wrappers below just feed this their
 // specific title/subtitle/accent.
 async function _shareCollage({ title, subtitle, kicker, accent, moments, avatars, totemUrl, filenameSlug, shareTitle, format }) {
+  const gate = _canShare();
+  if (!gate.allowed) { _showShareLimitToast(); return false; }
+  const customAccent = _getCustomAccent();
+  if (customAccent) accent = customAccent;
   let blob;
   if (format === "gif") {
     _gifProgress(true);
@@ -5948,6 +6018,7 @@ async function _shareCollage({ title, subtitle, kicker, accent, moments, avatars
     if (!blob) return false;
   }
   try { window.plurskyHaptic?.("LIGHT"); } catch {}
+  _incShareCount();
   const isGif = format === "gif";
   const slug = (filenameSlug || title || "set").toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 32);
   const filename = `plursky-${slug}.${isGif ? "gif" : "png"}`;
@@ -6176,11 +6247,13 @@ async function _renderFestivalDNA(moments) {
 }
 
 async function _shareFestivalDNA(moments) {
+  const gate = _canShare(); if (!gate.allowed) { _showShareLimitToast(); return false; }
   const c = await _renderFestivalDNA(moments);
   if (!c) return false;
   const blob = await new Promise(r => c.toBlob(r, "image/png"));
   if (!blob) return false;
   try { window.plurskyHaptic?.("MEDIUM"); } catch {}
+  _incShareCount();
   const file = new File([blob], "plursky-festival-dna.png", { type: "image/png" });
   const sheetTitle = `My Festival DNA — ${window.FESTIVAL_CONFIG?.shortName || "festival"}`;
   if (navigator.share && typeof navigator.canShare === "function" && navigator.canShare({ files: [file] })) {
@@ -6320,11 +6393,13 @@ async function _renderFestivalPassport(state) {
 }
 
 async function _shareFestivalPassport(state) {
+  const gate = _canShare(); if (!gate.allowed) { _showShareLimitToast(); return false; }
   const c = await _renderFestivalPassport(state);
   if (!c) return false;
   const blob = await new Promise(r => c.toBlob(r, "image/png"));
   if (!blob) return false;
   try { window.plurskyHaptic?.("MEDIUM"); } catch {}
+  _incShareCount();
   const file = new File([blob], "plursky-festival-passport.png", { type: "image/png" });
   if (navigator.share && typeof navigator.canShare === "function" && navigator.canShare({ files: [file] })) {
     try { await navigator.share({ files: [file], title: "My Festival Passport" }); return true; } catch {}
@@ -6415,11 +6490,13 @@ async function _renderFilmStrip(moments) {
 }
 
 async function _shareFilmStrip(moments) {
+  const gate = _canShare(); if (!gate.allowed) { _showShareLimitToast(); return false; }
   const c = await _renderFilmStrip(moments);
   if (!c) return false;
   const blob = await new Promise(r => c.toBlob(r, "image/png"));
   if (!blob) return false;
   try { window.plurskyHaptic?.("MEDIUM"); } catch {}
+  _incShareCount();
   const file = new File([blob], "plursky-film-strip.png", { type: "image/png" });
   if (navigator.share && typeof navigator.canShare === "function" && navigator.canShare({ files: [file] })) {
     try { await navigator.share({ files: [file], title: "Festival Film Strip" }); return true; } catch {}
@@ -6564,11 +6641,13 @@ function _hiddenGemFor(savedIds, artists) {
 }
 
 async function _shareCrewComparison(myName, myState, otherName, otherArtistIds) {
+  const gate = _canShare(); if (!gate.allowed) { _showShareLimitToast(); return false; }
   const c = await _renderCrewComparison(myName, myState, otherName, otherArtistIds);
   if (!c) return false;
   const blob = await new Promise(r => c.toBlob(r, "image/png"));
   if (!blob) return false;
   try { window.plurskyHaptic?.("MEDIUM"); } catch {}
+  _incShareCount();
   const file = new File([blob], "plursky-crew-showdown.png", { type: "image/png" });
   if (navigator.share && typeof navigator.canShare === "function" && navigator.canShare({ files: [file] })) {
     try { await navigator.share({ files: [file], title: "Crew Showdown" }); return true; } catch {}
@@ -6590,7 +6669,10 @@ function RecapScreen({ state, setState }) {
   // v151: ask for an iOS rating on 2nd+ Recap visit. iOS handles cool-off
   // (3 prompts / year) so we don't need to be cute about it.
   React.useEffect(() => {
-    if (recap.setsCount > 0 || recap.momentsCount > 0) _maybeAutoRatingPromptOnRecap();
+    if (recap.setsCount > 0 || recap.momentsCount > 0) {
+      _maybeAutoRatingPromptOnRecap();
+      _archiveRecap(CFG.id, recap);
+    }
   }, []);
 
   // v148: async-load the hero photo blob from IndexedDB so we can paint it
@@ -7122,6 +7204,52 @@ function RecapScreen({ state, setState }) {
           </RecapCard>
         )}
 
+        {/* P5: CUSTOM ACCENT (Plus-only) */}
+        {_isPlusSub() && (
+          <RecapCard kicker="YOUR STYLE" paper="var(--paper)">
+            <div className="serif" style={{ fontSize: 22, lineHeight: 1.1, letterSpacing: -0.3 }}>
+              Pick your <span style={{ fontStyle: "italic", color: _getCustomAccent() || "var(--ember)" }}>accent color</span>.
+            </div>
+            <div className="mono" style={{ fontSize: 9, color: "var(--muted)", marginTop: 4, letterSpacing: 1 }}>
+              Applies to all collages, GIFs, and video exports.
+            </div>
+            <div style={{ display: "flex", gap: 8, marginTop: 12, flexWrap: "wrap" }}>
+              {["#e85d2e","#6D28D9","#ec4899","#2563eb","#22c55e","#f97316","#1a120d","#14b8a6","#fbbf24"].map(c => (
+                <button key={c} onClick={() => { _setCustomAccent(c); setState(s => ({ ...s })); }} style={{
+                  width: 32, height: 32, borderRadius: 32, background: c, border: _getCustomAccent() === c ? "3px solid var(--ink)" : "2px solid var(--line)",
+                  cursor: "pointer", boxShadow: _getCustomAccent() === c ? "0 0 0 2px var(--paper), 0 0 0 4px var(--ink)" : "none",
+                }} />
+              ))}
+              <button onClick={() => { _setCustomAccent(""); setState(s => ({ ...s })); }} className="mono" style={{
+                height: 32, padding: "0 10px", borderRadius: 32, background: "var(--paper-2)", border: "1px solid var(--line-2)",
+                cursor: "pointer", fontSize: 8, letterSpacing: 1, color: "var(--muted)", fontWeight: 700,
+              }}>RESET</button>
+            </div>
+          </RecapCard>
+        )}
+
+        {/* P3: FESTIVAL ARCHIVE (Plus-only) */}
+        {_isPlusSub() && (() => {
+          const archive = _getRecapArchive();
+          const archiveEntries = Object.entries(archive).filter(([id]) => id !== FESTIVAL_CONFIG.id);
+          if (!archiveEntries.length) return null;
+          return (
+            <RecapCard kicker="PAST FESTIVALS" paper="var(--paper)">
+              <div className="serif" style={{ fontSize: 22, lineHeight: 1.1, letterSpacing: -0.3, marginBottom: 10 }}>
+                Your festival <span style={{ fontStyle: "italic", color: "var(--horizon)" }}>archive</span>.
+              </div>
+              {archiveEntries.map(([id, r]) => (
+                <div key={id} style={{ padding: "10px 12px", borderRadius: 10, background: "var(--paper-2)", border: "1px solid var(--line)", marginBottom: 6 }}>
+                  <div className="serif" style={{ fontSize: 16 }}>{id.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}</div>
+                  <div className="mono" style={{ fontSize: 9, color: "var(--muted)", marginTop: 2 }}>
+                    {r.setsCount || 0} sets · {r.momentsCount || 0} memories · {r.stagesVisitedCount || 0} stages
+                  </div>
+                </div>
+              ))}
+            </RecapCard>
+          );
+        })()}
+
         {/* WEEKEND PLAYLIST */}
         {state.spotifyConnected && recap.setsCount > 0 && (
           <RecapCard kicker="YOUR SOUNDTRACK" paper="var(--paper)">
@@ -7244,6 +7372,6 @@ Object.assign(window, {
   _renderCollage, _renderCollageGif, _shareCollage,
   _shareArtistCollage, _shareStageCollage, _shareNightCollage, _shareWeekendCollage, _shareCrewCollage,
   _renderRecapVideo, _shareRecapVideo, _detectBeats, _VIDEO_TEMPLATES,
-  _isPlusSub, _setPlusSub, PlusGate,
+  _isPlusSub, _setPlusSub, PlusGate, _canShare, _getCustomAccent, _setCustomAccent, _archiveRecap, _getRecapArchive, _canAccessFestival,
   _shareFestivalDNA, _shareFestivalPassport, _shareFilmStrip, _shareCrewComparison,
 });

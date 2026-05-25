@@ -2040,7 +2040,18 @@ function CrewChat({ code, myPid, myName }) {
               {msgs.length === 0 ? "Be the first to drop a message." : "All messages are from blocked users."}
             </div>
           </div>
-        ) : visibleMsgs.map(m => {
+        ) : visibleMsgs.map((m, _msgIdx) => {
+          // P6: subtle promo card every 15 messages for free users
+          const _promoCard = (!window._isPlusSub?.() && _msgIdx > 0 && _msgIdx % 15 === 0) ? React.createElement("div", {
+            key: `promo-${_msgIdx}`, style: {
+              padding: "10px 14px", borderRadius: 12, marginBottom: 6, textAlign: "center",
+              background: "linear-gradient(135deg, rgba(109,40,217,0.08), rgba(232,93,46,0.08))",
+              border: "1px solid rgba(109,40,217,0.12)",
+            },
+          },
+            React.createElement("div", { className: "mono", style: { fontSize: 9, letterSpacing: 1.2, color: "#6D28D9", fontWeight: 700 } }, "✨ PLURSKY+ · CREW SHOWDOWN · FESTIVAL DNA · NO WATERMARKS"),
+            React.createElement("div", { className: "mono", style: { fontSize: 8, color: "var(--muted)", marginTop: 3 } }, "$4.99 / festival"),
+          ) : null;
           // Hide raw VOTE messages — their data is reflected in the poll
           // tally card. Poll messages render as a special card.
           if (_parseVote(m.body)) return null;
@@ -2058,8 +2069,9 @@ function CrewChat({ code, myPid, myName }) {
                 if (tally[v.option] != null) { tally[v.option] += 1; totalVotes += 1; }
               });
             }
-            return (
-              <div key={m.id} style={{
+            return (<React.Fragment key={m.id}>
+              {_promoCard}
+              <div style={{
                 background: "var(--paper-2)", borderRadius: 14,
                 padding: "12px 14px", margin: "4px 0",
                 border: "1px solid var(--line)",
@@ -2122,10 +2134,11 @@ function CrewChat({ code, myPid, myName }) {
                   {totalVotes} {totalVotes === 1 ? "VOTE" : "VOTES"} · {fmtTime(m.created_at)}
                 </div>
               </div>
-            );
+            </React.Fragment>);
           }
-          return (
-            <div key={m.id} style={{
+          return (<React.Fragment key={m.id}>
+            {_promoCard}
+            <div style={{
               display: "flex", flexDirection: "column",
               alignItems: mine ? "flex-end" : "flex-start",
             }}>
@@ -2212,7 +2225,7 @@ function CrewChat({ code, myPid, myName }) {
                 </div>
               )}
             </div>
-          );
+          </React.Fragment>);
         })}
       </div>
       {reportMsg && (

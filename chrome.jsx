@@ -948,9 +948,11 @@ function FestivalChip({ compact = false, accent = "var(--ink)" }) {
 
 function FestivalSwitcher({ onClose }) {
   const activeId = FESTIVAL_CONFIG.id;
-  const onPick = (id, available) => {
-    if (!available || id === activeId) { onClose(); return; }
-    setActiveFestivalAndReload(id);
+  const onPick = (id, entry) => {
+    if (id === activeId) { onClose(); return; }
+    if (entry.available) { setActiveFestivalAndReload(id); return; }
+    if (entry.previewOnly && window._isPlusSub?.()) { setActiveFestivalAndReload(id); return; }
+    onClose();
   };
   const byRegion = {};
   FESTIVALS_REGISTRY.forEach(f => {
@@ -990,8 +992,8 @@ function FestivalSwitcher({ onClose }) {
                 const isActive = f.config.id === activeId;
                 const dimmed = !f.available;
                 return (
-                  <button key={f.config.id} onClick={() => onPick(f.config.id, f.available)}
-                    disabled={!f.available && !isActive}
+                  <button key={f.config.id} onClick={() => onPick(f.config.id, f)}
+                    disabled={!f.available && !f.previewOnly && !isActive}
                     style={{
                       display: "flex", alignItems: "center", gap: 12,
                       padding: "12px 14px", borderRadius: 14,
@@ -1017,7 +1019,12 @@ function FestivalSwitcher({ onClose }) {
                         ACTIVE
                       </div>
                     )}
-                    {!isActive && !f.available && (
+                    {!isActive && !f.available && f.previewOnly && (
+                      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, padding: "3px 7px", borderRadius: 999, background: "#6D28D9", color: "#fff" }}>
+                        PLUS EARLY
+                      </div>
+                    )}
+                    {!isActive && !f.available && !f.previewOnly && (
                       <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, padding: "3px 7px", borderRadius: 999, background: "var(--paper)", color: "var(--muted)", border: "1px solid var(--line-2)" }}>
                         SOON
                       </div>
