@@ -196,7 +196,7 @@ function NightWizard({ state, setState, onClose }) {
                     ...dayArtists.map(a => `  ${fmt12(a.start)}  ${a.name}`), ""];
                 });
                 const text = [`My ${FESTIVAL_CONFIG.name} lineup (${ids.length} sets):`, "", ...lines].join("\n").trim();
-                if (navigator.share) { navigator.share({ title: "My EDC lineup", text }).catch(() => {}); }
+                if (navigator.share) { navigator.share({ title: `My ${FESTIVAL_CONFIG.shortName || "festival"} lineup`, text }).catch(() => {}); }
                 else { try { navigator.clipboard.writeText(text); } catch {} }
               }}
               title="Share lineup"
@@ -1812,7 +1812,7 @@ function printLineupPDF(state) {
   const html = `<!DOCTYPE html>
 <html><head>
 <meta charset="UTF-8">
-<title>My EDC LV 2026 — Plursky</title>
+<title>My Plan — Plursky</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -1849,7 +1849,7 @@ function printLineupPDF(state) {
   <div class="head">
     <div>
       <div class="brand">PLURSKY</div>
-      <h1>My EDC <em>plan</em></h1>
+      <h1>My <em>plan</em></h1>
     </div>
     <div class="meta">
       <b>${saved.length}</b> SETS · <b>${stages}</b> STAGES<br>
@@ -2038,11 +2038,11 @@ async function shareLineupImage(state) {
   ctx.textAlign = "left";
   ctx.fillStyle = "rgba(26,18,13,0.55)";
   ctx.font = '600 22px "Geist Mono", monospace';
-  ctx.fillText("PLURSKY · MY EDC LV 2026", 80, 130);
+  ctx.fillText(`PLURSKY · MY ${(FESTIVAL_CONFIG.shortName || "").toUpperCase()}`, 80, 130);
 
   ctx.fillStyle = "#1a120d";
   ctx.font = '108px "Instrument Serif", serif';
-  ctx.fillText("My EDC", 80, 280);
+  ctx.fillText(`My ${FESTIVAL_CONFIG.brand || "Festival"}`, 80, 280);
   ctx.font = 'italic 108px "Instrument Serif", serif';
   ctx.fillStyle = "#e85d2e";
   ctx.fillText("plan", 380, 280);
@@ -2125,7 +2125,7 @@ async function shareLineupImage(state) {
       // Try Web Share API w/ files first (iOS 15+, Android Chrome)
       if (navigator.canShare?.({ files: [file] }) && navigator.share) {
         try {
-          await navigator.share({ files: [file], title: "My EDC 2026 plan" });
+          await navigator.share({ files: [file], title: `My ${FESTIVAL_CONFIG.shortName || "festival"} plan` });
           resolve({ ok: true, mode: "share" });
           return;
         } catch (e) {

@@ -567,7 +567,7 @@ function ShareArtistButton({ artist }) {
 // Relies on three globals from spotify.jsx (loaded after artist.jsx but
 // resolved at render-time, not parse-time): _readMoments, useMomentPhoto,
 // and the existing { tab: "memories", memoriesNight: n } setState pattern.
-function _YourMomentThumb({ moment, accent, onClick }) {
+function _YourMomentThumb({ moment, accent, onClick, style: overrideStyle }) {
   const url = useMomentPhoto(moment.photoId);
   return (
     <button onClick={onClick} aria-label="Open moment" style={{
@@ -576,6 +576,7 @@ function _YourMomentThumb({ moment, accent, onClick }) {
       background: "var(--paper-2)",
       border: `1px solid ${accent}22`,
       padding: 0, cursor: "pointer", position: "relative",
+      ...overrideStyle,
     }}>
       {url ? (
         moment.kind === "video" ? (

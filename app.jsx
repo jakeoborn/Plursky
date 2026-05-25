@@ -37,7 +37,7 @@ function OnboardingModal({ onDone, setState, state }) {
     {
       kicker: "WELCOME",
       title: <>Welcome to <span style={{ fontStyle: "italic", color: "var(--ember)" }}>Plursky</span></>,
-      body: "Your online-first companion for EDC Las Vegas 2026 — and it still works when service drops at the festival. Lineup, stage map, friends, sunrise sets — all in one place.",
+      body: `Your online-first companion for ${FESTIVAL_CONFIG.name || "the festival"} — and it still works when service drops at the festival. Lineup, stage map, friends, sunrise sets — all in one place.`,
       input: (
         <input
           type="text"
@@ -67,7 +67,7 @@ function OnboardingModal({ onDone, setState, state }) {
       kicker: "STEP 3 OF 3",
       title: <>Reminders before each <span style={{ fontStyle: "italic", color: "var(--ember)" }}>set</span></>,
       body: notifSupported
-        ? "Get a push 15 minutes before any saved set starts — including the sunrise sets at Kinetic Field. We don't track you, no account needed."
+        ? `Get a push 15 minutes before any saved set starts — including the sunrise sets at ${STAGES.find(s => s.id === FESTIVAL_CONFIG.mainStageId)?.name || "the main stage"}. We don't track you, no account needed.`
         : "Push notifications aren't supported in this browser. You can still set custom alarms from the Lineup page.",
       cta: !notifSupported
         ? { label: "GOT IT", onClick: finish }

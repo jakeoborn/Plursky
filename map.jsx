@@ -730,7 +730,7 @@ function IAmAtSheet({ onClose, initialStage, onStatusSet }) {
     if (!stage) return;
     persistMyStatus(selected);
     onStatusSet(selected);
-    const text = `I'm at ${stage.name} at EDC LV 2026 🎧 come find me — plursky.com`;
+    const text = `I'm at ${stage.name} at ${FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name} 🎧 come find me — plursky.com`;
     if (navigator.share) {
       try { await navigator.share({ text, title: "Where I'm at" }); } catch {}
     } else {
@@ -869,7 +869,7 @@ function ShareLinkRow({ token }) {
   const onShare = async () => {
     try {
       if (navigator.share) {
-        await navigator.share({ title: "Find me at EDC", text: "Live location on Plursky", url });
+        await navigator.share({ title: `Find me at ${FESTIVAL_CONFIG.brand || "the festival"}`, text: "Live location on Plursky", url });
       } else if (navigator.clipboard) {
         await navigator.clipboard.writeText(url);
         setCopied(true);
@@ -1259,7 +1259,7 @@ function MeetupsSheet({ onClose }) {
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             <input value={name} onChange={(e) => setName(e.target.value)}
-              placeholder="Sunrise at Kinetic" maxLength={60}
+              placeholder={`Find a stage or friend`} maxLength={60}
               style={{
                 padding: "10px 12px", borderRadius: 10,
                 border: "1px solid var(--line-2)", background: "var(--paper)",
@@ -1506,7 +1506,7 @@ function WeatherStrip() {
       <span className="mono" style={{
         fontSize: 8.5, letterSpacing: 1.2, fontWeight: 700, flexShrink: 0,
         color: isAlert ? "var(--ember)" : "var(--muted)",
-      }}>LVMS</span>
+      }}>{(FESTIVAL_CONFIG.locationShort || FESTIVAL_CONFIG.brand || "").toUpperCase()}</span>
       <span style={{
         flex: 1, minWidth: 0, fontSize: 11.5, fontWeight: 500, color: "var(--ink)",
         whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",

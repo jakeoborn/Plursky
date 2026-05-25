@@ -161,7 +161,7 @@ function TonightCard({ state, setState }) {
     })();
     const target = `${pdtH.toString().padStart(2, "0")}:${utcM.toString().padStart(2, "0")}`;
     return ARTISTS.find(a =>
-      a.day === sunriseDay && a.stage === "kinetic"
+      a.day === sunriseDay && a.stage === (FESTIVAL_CONFIG.mainStageId || "kinetic")
       && toNightMin(a.start) <= toNightMin(target) && toNightMin(a.end) > toNightMin(target)
     );
   })();

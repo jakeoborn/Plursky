@@ -1437,14 +1437,14 @@ function SpotifyScreen({ state, setState }) {
           <div className="serif" style={{ fontSize: 26, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 10, maxWidth: "78%" }}>
             {connected
               ? <>Your lineup is <span style={{ fontStyle: "italic" }}>personalised</span></>
-              : <>Build your <span style={{ fontStyle: "italic" }}>perfect</span> EDC night</>}
+              : <>Build your <span style={{ fontStyle: "italic" }}>perfect</span> festival night</>}
           </div>
           <div style={{ fontSize: 12, opacity: 0.75, lineHeight: 1.55, marginBottom: connected && spotifyArtists !== null && (playlistScanFailed || noScopeRecord) ? 8 : 16, maxWidth: "88%" }}>
             {connected
               ? matched.length
-                ? `${matched.length} EDC artists match · scanned top, recent, liked songs${playlistCount > 0 ? ` + ${playlistCount} playlist${playlistCount === 1 ? "" : "s"}` : ""}.`
+                ? `${matched.length} artists match · scanned top, recent, liked songs${playlistCount > 0 ? ` + ${playlistCount} playlist${playlistCount === 1 ? "" : "s"}` : ""}.`
                 : spotifyArtists === null ? "Loading your taste…" : "No direct matches — showing genre-based picks below."
-              : "Link Spotify to see your EDC matches, genre breakdown, and play 30-sec previews on any artist."}
+              : "Link Spotify to see your matches, genre breakdown, and play 30-sec previews on any artist."}
           </div>
 
           {connected && spotifyArtists !== null && (playlistScanFailed || noScopeRecord || missingFollowScope) && (
@@ -1526,14 +1526,14 @@ function SpotifyScreen({ state, setState }) {
           </div>
           <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 8, maxWidth: "78%" }}>
             {amConnected
-              ? <>{amMatched.length} EDC <span style={{ fontStyle: "italic" }}>matches</span> found</>
+              ? <>{amMatched.length} festival <span style={{ fontStyle: "italic" }}>matches</span> found</>
               : <>Don't use Spotify? <span style={{ fontStyle: "italic" }}>Link Apple Music</span></>}
           </div>
 
           {!amConnected && (
             <>
               <div style={{ fontSize: 12, opacity: 0.65, lineHeight: 1.5, marginBottom: 14, maxWidth: "88%" }}>
-                Scan your Apple Music library to find which EDC artists you already know and love.
+                Scan your Apple Music library to find which artists you already know and love.
               </div>
               {amError && (
                 <div style={{ fontSize: 11, color: "#f87171", marginBottom: 8 }}>{amError}</div>
@@ -1601,7 +1601,7 @@ function SpotifyScreen({ state, setState }) {
               }} />
             </div>
             <div style={{ fontSize: 12, color: "var(--muted)", lineHeight: 1.5 }}>
-              {matched.length} of {ARTISTS.length} EDC artists match your Spotify — scanned across top, recent, liked &amp; playlists.
+              {matched.length} of {ARTISTS.length} artists match your Spotify — scanned across top, recent, liked &amp; playlists.
             </div>
           </div>
         )}
@@ -1674,7 +1674,7 @@ function SpotifyScreen({ state, setState }) {
 
         {/* ── Artist picks ──────────────────────────────── */}
         <div className="serif" style={{ fontSize: 22, letterSpacing: -0.3, marginBottom: 3 }}>
-          {connected && matched.length ? "Your EDC matches" : "Top picks for EDC"}
+          {connected && matched.length ? "Your matches" : "Top picks for you"}
         </div>
         <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginBottom: 14 }}>
           {connected && matched.length ? "FROM YOUR SPOTIFY · TAP TO VIEW" : "HEADLINERS · TAP + TO SAVE"}
@@ -1716,7 +1716,7 @@ function SpotifyScreen({ state, setState }) {
               Recommended for you
             </div>
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginBottom: 14 }}>
-              EDC ARTISTS THAT MATCH YOUR TASTE · NOT IN YOUR TOP YET
+              ARTISTS THAT MATCH YOUR TASTE · NOT IN YOUR TOP YET
             </div>
             {discoveries.map(a => {
               const stg     = STAGES.find(s => s.id === a.stage);
@@ -1790,7 +1790,7 @@ function SpotifyScreen({ state, setState }) {
                         padding: "7px 0", borderBottom: "1px solid var(--line)",
                       }}>
                         <div style={{ fontSize: 14, color: isEdc ? "var(--ink)" : "var(--muted)", fontWeight: isEdc ? 500 : 400 }}>
-                          {a.name}{isEdc && <span style={{ fontSize: 10, color: "var(--ember)", marginLeft: 6 }}>· EDC</span>}
+                          {a.name}{isEdc && <span style={{ fontSize: 10, color: "var(--ember)", marginLeft: 6 }}>· ✓</span>}
                         </div>
                         <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: srcColor }}>{srcLabel}</div>
                       </div>
@@ -2062,7 +2062,7 @@ function BadgesSection({ state }) {
     { id: "techno-vault",  icon: "▣", name: "Techno Vault",     desc: "Save 3+ Circuit Grounds sets",       earned: byStage("circuit") >= 3 },
     { id: "bass-faithful", icon: "◆", name: "Bass Faithful",    desc: "Save 3+ Basspod or Wasteland sets",  earned: (byStage("basspod") + byStage("waste")) >= 3 },
     { id: "marathon",      icon: "⌬", name: "Marathon",         desc: "6+ hours of saved music",            earned: totalMin >= 360 },
-    { id: "thirty-years",  icon: "✺", name: "30 Years Crew",    desc: "Plursky for EDC LV 2026's 30th",     earned: true },
+    { id: "thirty-years",  icon: "✺", name: "30 Years Crew",    desc: "Plursky veteran crew",     earned: true },
   ];
 
   const earned = BADGES.filter(b => b.earned);
@@ -3326,12 +3326,27 @@ function _haversineMeters(lat1, lng1, lat2, lng2) {
 }
 
 function _matchNearestLocation(lat, lng) {
-  const mapToGps = window.mapToGps;
   const amenities = window.AMENITIES || [];
-  if (!mapToGps || !amenities.length) return null;
+  if (!amenities.length) return null;
+  const cfg = window.FESTIVAL_CONFIG || {};
+  const mapToGps = window.mapToGps;
+  const hasAffine = !!(cfg.gpsAnchors?.length >= 3);
+
+  const amenityToGps = (am) => {
+    if (hasAffine && mapToGps) return mapToGps(am.x, am.y);
+    if (!cfg.gps) return null;
+    const scale = (cfg.gps.onSiteRadiusMi || 0.4) * 1609.34 / 50;
+    const mPerDegLat = 111320;
+    const mPerDegLng = 111320 * Math.cos(cfg.gps.lat * Math.PI / 180);
+    return {
+      lat: cfg.gps.lat + ((am.y - 50) * scale) / mPerDegLat,
+      lng: cfg.gps.lng + ((am.x - 50) * scale) / mPerDegLng,
+    };
+  };
+
   let best = null, bestDist = Infinity;
   for (const am of amenities) {
-    const gps = mapToGps(am.x, am.y);
+    const gps = amenityToGps(am);
     if (!gps) continue;
     const d = _haversineMeters(lat, lng, gps.lat, gps.lng);
     if (d < bestDist) { bestDist = d; best = am; }
@@ -4345,9 +4360,10 @@ function MeScreen({ state, setState }) {
 
   // Tagline — "DAY N OF EDC LV 2026" once the festival is live, otherwise
   // a pre-festival countdown line with the date range.
+  const _cfg = window.FESTIVAL_CONFIG || {};
   const tagline = daysHere
-    ? `DAY ${daysHere} OF EDC LV 2026`
-    : "EDC LV 2026 · MAY 15–17";
+    ? `DAY ${daysHere} OF ${(_cfg.shortName || _cfg.brand || "").toUpperCase()}`
+    : `${(_cfg.shortName || _cfg.brand || "").toUpperCase()} · ${(_cfg.dates || "").toUpperCase()}`;
 
   return (
     <Screen bg="var(--paper)">
@@ -4720,7 +4736,7 @@ function FollowedNudge({ state, setState }) {
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
         <div>
           <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "#1DB954", fontWeight: 700 }}>
-            YOU FOLLOW {followed.length} EDC ACT{followed.length > 1 ? "S" : ""} NOT IN YOUR LINEUP
+            YOU FOLLOW {followed.length} {(FESTIVAL_CONFIG.brand || "").toUpperCase()} ACT{followed.length > 1 ? "S" : ""} NOT IN YOUR LINEUP
           </span>
         </div>
         <div style={{ display: "flex", gap: 6 }}>

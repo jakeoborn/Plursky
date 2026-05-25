@@ -1138,7 +1138,7 @@ function FriendsCard({ state, setState }) {
 function _FriendsHeader({ count, live }) {
   return (
     <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
-      <div className="serif" style={{ fontSize: 22 }}>Friends at EDC</div>
+      <div className="serif" style={{ fontSize: 22 }}>Friends at {window.FESTIVAL_CONFIG?.brand || "the festival"}</div>
       {live && count > 0 && (
         <span className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--success)" }}>
           ● {count} LIVE
