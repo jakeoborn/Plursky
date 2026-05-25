@@ -1,8 +1,10 @@
 # Plursky — To-Do List
 
-_Last full sweep: 2026-05-25. v1.4 submitted to Apple 2026-05-25 — In
-Review. v1.3 approved 2026-05-24, currently live. Web at v163. v1.5
-epic ready to start._
+_Last full sweep: 2026-05-25 (late). v1.4 submitted to Apple — In
+Review. v1.3 live. Web at v163 (v1.5 code committed but not bumped).
+v1.5 SHIPPED: crew collage, GIF, recap video, Plursky+ paywall, ACL
+2026, Spotify genre/vibe features. Next: bump cache-bust, wire IAP,
+test all features in browser._
 
 ## 🍿 v1.4 SUBMITTED — WAITING ON APPLE
 
@@ -139,45 +141,70 @@ is the video upgrade.
 - ✅ Per-night collage on Memories tab night header
 - ✅ Weekend collage on Recap screen
 
-### Phase 1 follow-ons (free, additive — pick anytime)
+### ✅ Phase 1 — SHIPPED (2026-05-25)
 
-- [ ] **Crew collage** — "📸 SHARE OUR WEEKEND" in Crew Mode section.
-      Pulls moments tagged to crew members' artists. Needs a Supabase
-      query to find what artistIds the crew tagged. ~45 min.
-- [ ] **Animated GIF version** — bundle gif.js, upgrade `_renderCollage`
-      to optionally emit 8-15 frames with Ken Burns zoom and crossfade
-      transitions between photos. Shareable as .gif, plays inline in
-      most messengers + IG/TT. ~4-6 hours.
+- [x] **Crew collage** — `_shareCrewCollage`, overlap-priority photo
+      selection, crew avatar circles in footer, crew totem photo picker
+- [x] **Animated GIF** — gif.js lazy-loaded, Ken Burns + crossfade,
+      🎬 GIF button on all 5 entry points, gradient progress banner
+- [x] **Crew totem** — photo picker for physical festival totem,
+      renders on collage header, breathing pulse animation
 
-### Phase 2 — paywalled recap video (~2 weeks, premium tier)
+### ✅ Phase 2 — SHIPPED (2026-05-25)
 
-- [ ] **Beat-synced cuts.** Analyze the music waveform (Web Audio API
-      AnalyserNode → frequency-domain energy curve), detect peaks, drop
-      transitions on the beats. 2-3 days.
-- [ ] **AI cut detection.** Score each video clip's 2-second windows by
-      audio energy + visual motion + crowd density; keep the most
-      "interesting" 2s of each. Pure on-device (no API spend) using a
-      lightweight CoreML model wrapped in a Capacitor plugin, OR a
-      cheap server-side call. 3-5 days.
-- [ ] **Multiple template styles.** Festival Diary (slow, serif,
-      vertical), Highlight Reel (fast cuts, drops on beat), Day-in-the-
-      Life (chronological narration). Each is a different timing
-      curve + transition set. 1-2 days each.
-- [ ] **No watermark** in the paywalled tier (watermark stays in the
-      free static collage).
-- [ ] **Custom music import.** User picks from their Apple Music /
-      Spotify library — iOS has MPMediaPicker for the former, Spotify
-      SDK has track browsing. The user-supplied music CAN'T be
-      re-uploaded publicly (DRM) so the export is local-only and they
-      hand off to TikTok/IG/etc. for sharing with their licensed
-      catalogs. 2-3 days.
+- [x] **Recap video engine** — Canvas frame sequencer → MediaRecorder
+      WebM at 30fps/4Mbps. `_renderRecapVideo` + `_shareRecapVideo`.
+- [x] **Beat detection** — Web Audio `decodeAudioData` → RMS energy
+      windowing → peak extraction with 250ms debounce.
+- [x] **3 templates** — Highlight Reel (fast zoom cuts on beats),
+      Festival Diary (slow crossfades, Plus-only), Day-in-the-Life
+      (slides, chronological, Plus-only).
+- [x] **Plursky+ paywall** — `_isPlusSub()`, diagonal watermark on all
+      free-tier exports, `PlusGate` component, rate limit (5 shares/day
+      free, unlimited Plus).
+- [x] **Custom music import** — Spotify track search + iTunes fallback,
+      inline preview playback (Plus-only).
 
-### Monetization model (proposed)
+### ✅ Wow features — SHIPPED (2026-05-25)
 
-- Free: 1 static collage per festival, watermarked
-- **Plursky+ ($4.99/festival or $9.99/yr)**: unlimited collages, no
-  watermark, animated GIF, paywalled video tier
+- [x] 🧬 **Festival DNA** — unique color barcode from photo dominants
+- [x] 🛂 **Festival Passport** — stamped stage card with badge
+- [x] 🎞️ **Film Strip** — retro Kodak negative with sprocket holes
+- [x] ⚔️ **Crew Showdown** — head-to-head stats comparison card
+- [x] 🎵 **Spotify overlay** — "You've played this X×" on video
+- [x] 🎥 **3D parallax** — depth layers on video frames (Plus-only)
+- [x] 🎨 **Custom accent** — color picker in Recap (Plus-only)
+- [x] 📂 **Festival archive** — past recap snapshots (Plus-only)
+- [x] 🔓 **Priority preview** — early access to new festivals (Plus)
+- [x] 💬 **Crew promo** — subtle upsell every 15 messages (free only)
+- [x] 📊 **Genre breakdown** — bar chart RecapCard from caught artists
+- [x] ⚡ **Festival Vibe Score** — energy ring (0-100) RecapCard
+
+### ✅ Multi-festival — SHIPPED (2026-05-25)
+
+- [x] **ACL 2026** — Austin City Limits, 10 stages at Zilker Park,
+      125 artists (W1/W2 splits), full FESTIVAL_CONFIG, `available: true`
+- [x] **Multi-festival data switching** — STAGES/ARTISTS/AMENITIES
+      resolve per active festival via conditional at bottom of data.jsx
+
+### Monetization — LIVE (code-side, IAP not wired)
+
+- Free: 1080p collages (watermarked), 5 shares/day, Highlight Reel
+  template, auto-selected soundtrack, all features accessible
+- **Plursky+ ($4.99/festival or $9.99/yr)**: no watermark, unlimited
+  shares, 3 templates, custom soundtrack, 3D parallax, Spotify overlay,
+  custom accent, festival archive, priority preview, no crew promo
 - Test at 5% conversion of 10k users × $5 = $2.5k/festival baseline
+
+### What's left for v1.5
+
+- [ ] **Bump cache-bust** v163 → v164 (after v1.4 Apple decision)
+- [ ] **Wire real IAP** — `@capacitor/purchases` or StoreKit native
+- [ ] **Test all features in browser** — video, GIF, festival switch
+- [ ] **ACL stage assignments** — update when official schedule drops
+- [ ] **ACL set times** — update with real times (currently estimated)
+- [ ] **Zilker Park map** — TopDownMap SVG or MapLibre for ACL
+- [ ] **AI cut detection** — deferred (needs CoreML or server-side)
 
 ---
 
