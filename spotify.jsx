@@ -5734,6 +5734,7 @@ async function _renderCollageGif({ title, subtitle, kicker, accent, moments, ava
       ctx.fillStyle = "#f7ede0"; ctx.fillRect(0, 0, W, H);
       drawChrome();
       drawPhoto(imgs[i], 1 + 0.06 * f, dir * f * 8, -f * 4, 1);
+      if (!_isPlusSub()) { ctx.save(); ctx.translate(W/2, mT + mH/2); ctx.rotate(-Math.PI/6); ctx.fillStyle = "rgba(255,255,255,0.18)"; ctx.font = "700 32px 'Geist Mono', monospace"; ctx.textAlign = "center"; ctx.fillText("PLURSKY+", 0, 0); ctx.restore(); }
       gif.addFrame(ctx, { copy: true, delay: 500 });
     }
     if (imgs.length > 1) {
@@ -5742,6 +5743,7 @@ async function _renderCollageGif({ title, subtitle, kicker, accent, moments, ava
       drawChrome();
       drawPhoto(imgs[i], 1.06, dir * 8, -4, 0.35);
       drawPhoto(next, 1, 0, 0, 0.65);
+      if (!_isPlusSub()) { ctx.save(); ctx.translate(W/2, mT + mH/2); ctx.rotate(-Math.PI/6); ctx.fillStyle = "rgba(255,255,255,0.18)"; ctx.font = "700 32px 'Geist Mono', monospace"; ctx.textAlign = "center"; ctx.fillText("PLURSKY+", 0, 0); ctx.restore(); }
       gif.addFrame(ctx, { copy: true, delay: 250 });
     }
   }
@@ -6158,6 +6160,11 @@ async function _renderFestivalDNA(moments) {
   ctx.fillStyle = "rgba(247,237,224,0.5)";
   ctx.fillText(`${(CFG.shortName || "FESTIVAL").toUpperCase()} · ${colors.length} MOMENTS · YOUR UNIQUE PALETTE`, W/2, 210);
 
+  if (!_isPlusSub()) {
+    ctx.save(); ctx.translate(W/2, stripY + stripH/2); ctx.rotate(-Math.PI/6);
+    ctx.fillStyle = "rgba(247,237,224,0.2)"; ctx.font = "700 64px 'Geist Mono', monospace"; ctx.textAlign = "center";
+    ctx.fillText("PLURSKY+", 0, 0); ctx.restore();
+  }
   ctx.fillStyle = "rgba(247,237,224,0.3)";
   ctx.font = "700 12px 'Geist Mono', monospace";
   ctx.fillText("MADE WITH PLURSKY+", W/2, H - 80);
@@ -6296,6 +6303,11 @@ async function _renderFestivalPassport(state) {
     ctx.restore();
   });
 
+  if (!_isPlusSub()) {
+    ctx.save(); ctx.translate(W/2, H/2); ctx.rotate(-Math.PI/6);
+    ctx.fillStyle = "rgba(26,18,13,0.12)"; ctx.font = "700 72px 'Geist Mono', monospace"; ctx.textAlign = "center";
+    ctx.fillText("PLURSKY+", 0, 0); ctx.restore();
+  }
   ctx.fillStyle = "rgba(26,18,13,0.25)";
   ctx.font = "700 12px 'Geist Mono', monospace";
   ctx.textAlign = "center";
@@ -6393,6 +6405,11 @@ async function _renderFilmStrip(moments) {
   ctx.font = "700 11px 'Geist Mono', monospace";
   ctx.textAlign = "right";
   ctx.fillText("PLURSKY+ · plursky.com", W - filmPad, H - 35);
+  if (!_isPlusSub()) {
+    ctx.save(); ctx.translate(W/2, stripY + stripH/2); ctx.rotate(-Math.PI/12);
+    ctx.fillStyle = "rgba(247,237,224,0.2)"; ctx.font = "700 48px 'Geist Mono', monospace"; ctx.textAlign = "center";
+    ctx.fillText("PLURSKY+", 0, 0); ctx.restore();
+  }
 
   return c;
 }
@@ -6507,6 +6524,11 @@ async function _renderCrewComparison(myName, myState, otherName, otherArtistIds)
     ctx.fillText(`SHARED SETS: ${overlapNames.join(" · ").toUpperCase()}${overlap.length > 4 ? ` + ${overlap.length - 4} MORE` : ""}`, W/2, rowY + 20);
   }
 
+  if (!_isPlusSub()) {
+    ctx.save(); ctx.translate(W/2, H/2 + 40); ctx.rotate(-Math.PI/6);
+    ctx.fillStyle = "rgba(247,237,224,0.12)"; ctx.font = "700 64px 'Geist Mono', monospace"; ctx.textAlign = "center";
+    ctx.fillText("PLURSKY+", 0, 0); ctx.restore();
+  }
   ctx.fillStyle = "rgba(247,237,224,0.2)";
   ctx.font = "700 11px 'Geist Mono', monospace";
   ctx.textAlign = "center";
@@ -6957,25 +6979,33 @@ function RecapScreen({ state, setState }) {
                 <span style={{ fontStyle: "italic", color: "#a78bfa" }}>video</span>.
               </div>
               <div style={{ display: "flex", gap: 6, marginTop: 12 }}>
-                {["highlight", "diary", "ditl"].map(t => (
-                  <button key={t} onClick={() => setVidTemplate(t)} className="mono" style={{
-                    padding: "5px 10px", borderRadius: 999, cursor: "pointer", border: "none",
-                    background: vidTemplate === t ? "#6D28D9" : "rgba(247,237,224,0.1)",
-                    color: vidTemplate === t ? "#fff" : "rgba(247,237,224,0.5)",
-                    fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                  }}>{t === "highlight" ? "HIGHLIGHT REEL" : t === "diary" ? "FESTIVAL DIARY" : "DAY IN THE LIFE"}</button>
-                ))}
+                {["highlight", "diary", "ditl"].map(t => {
+                  const locked = t !== "highlight" && !_isPlusSub();
+                  return (
+                    <button key={t} onClick={() => locked ? null : setVidTemplate(t)} className="mono" style={{
+                      padding: "5px 10px", borderRadius: 999, cursor: locked ? "default" : "pointer", border: "none",
+                      background: vidTemplate === t ? "#6D28D9" : "rgba(247,237,224,0.1)",
+                      color: vidTemplate === t ? "#fff" : locked ? "rgba(247,237,224,0.25)" : "rgba(247,237,224,0.5)",
+                      fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+                      opacity: locked ? 0.6 : 1,
+                    }}>{t === "highlight" ? "HIGHLIGHT REEL" : t === "diary" ? "🔒 FESTIVAL DIARY" : "🔒 DAY IN THE LIFE"}{locked ? "" : ""}</button>
+                  );
+                })}
               </div>
               <div className="mono" style={{ fontSize: 9, color: "rgba(247,237,224,0.35)", marginTop: 8, letterSpacing: 1 }}>
                 {vidTemplate === "highlight" ? "Fast cuts synced to the beat — your best moments, drop by drop." : vidTemplate === "diary" ? "Slow, cinematic. Your weekend told as a story." : "Morning to sunrise — one continuous timeline."}
               </div>
 
-              {/* Track picker */}
+              {/* Track picker — Plus-only custom music */}
               <div style={{ marginTop: 14 }}>
                 <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "rgba(247,237,224,0.4)", marginBottom: 6 }}>
-                  🎵 {selectedTrack ? "SOUNDTRACK" : "PICK A SONG (OPTIONAL)"}
+                  🎵 {selectedTrack ? "SOUNDTRACK" : _isPlusSub() ? "PICK A SONG (OPTIONAL)" : "🔒 CUSTOM SOUNDTRACK · PLURSKY+"}
                 </div>
-                {selectedTrack ? (
+                {!_isPlusSub() && !selectedTrack ? (
+                  <div className="mono" style={{ padding: "8px 12px", borderRadius: 10, background: "rgba(247,237,224,0.04)", border: "1px solid rgba(247,237,224,0.08)", color: "rgba(247,237,224,0.2)", fontSize: 11, textAlign: "center" }}>
+                    Upgrade to Plursky+ to pick your own soundtrack
+                  </div>
+                ) : selectedTrack ? (
                   <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 10px", borderRadius: 10, background: "rgba(109,40,217,0.2)" }}>
                     {selectedTrack.album?.images?.[0]?.url && (
                       <img src={selectedTrack.album.images[0].url} style={{ width: 32, height: 32, borderRadius: 6 }} />
