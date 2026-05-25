@@ -430,12 +430,35 @@ function App() {
       lineupDay:       validDay || NOW.day,
       friendLineup:    validFriendIds.length ? validFriendIds : null,
       friendName:      validFriendIds.length ? validFrom : null,
+      _navStack:       [],
     };
   });
 
   React.useEffect(() => {
     try { localStorage.setItem(_SAVED_KEY, JSON.stringify(state.saved)); } catch {}
   }, [state.saved]);
+
+  const _pushNav = React.useCallback((next) => {
+    setState(prev => ({
+      ...prev,
+      ...next,
+      _navStack: [...(prev._navStack || []).slice(-4), { tab: prev.tab, artist: prev.artist, focusStage: prev.focusStage }],
+    }));
+  }, []);
+
+  const _popNav = React.useCallback(() => {
+    setState(prev => {
+      const stack = [...(prev._navStack || [])];
+      const entry = stack.pop();
+      if (!entry) return { ...prev, artist: null };
+      return { ...prev, ...entry, _navStack: stack };
+    });
+  }, []);
+
+  React.useEffect(() => {
+    window._pushNav = _pushNav;
+    window._popNav = _popNav;
+  }, [_pushNav, _popNav]);
 
   // Auto-schedule push reminders whenever saves change (if permission already granted)
   React.useEffect(() => {

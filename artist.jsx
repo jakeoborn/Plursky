@@ -923,7 +923,7 @@ function ArtistScreen({ state, setState }) {
           position: "absolute", inset: 0,
           background: "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 40%, rgba(26,18,13,0.85) 100%)",
         }} />
-        <button onClick={() => setState({ ...state, artist: null })} style={{
+        <button onClick={() => window._popNav ? window._popNav() : setState({ ...state, artist: null })} style={{
           position: "absolute", top: 14, left: 14,
           width: 38, height: 38, borderRadius: 38,
           background: "rgba(255,255,255,0.18)", backdropFilter: "blur(8px)",
@@ -1091,13 +1091,13 @@ function ArtistScreen({ state, setState }) {
             )}
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 6, flexShrink: 0 }}>
-            <button onClick={() => setState({ ...state, tab: "map", focusStage: a.stage, artist: null })} style={{
+            <button onClick={() => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "map", focusStage: a.stage, artist: null })} style={{
               background: "transparent", border: "1px solid var(--line-2)",
               borderRadius: 999, padding: "6px 12px",
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2,
               cursor: "pointer",
             }}>ON MAP</button>
-            <button onClick={() => setState({ ...state, tab: "lineup", lineupDay: a.day, lineupHighlight: a.id, artist: null })} style={{
+            <button onClick={() => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "lineup", lineupDay: a.day, lineupHighlight: a.id, artist: null })} style={{
               background: "transparent", border: "1px solid var(--line-2)",
               borderRadius: 999, padding: "6px 12px",
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2,
@@ -1114,7 +1114,7 @@ function ArtistScreen({ state, setState }) {
           night={a.day}
           accent={stage.color}
           artistObj={a}
-          onOpen={(n) => setState({ ...state, tab: "memories", memoriesNight: n, artist: null })}
+          onOpen={(n) => (window._pushNav || ((x) => setState({ ...state, ...x })))({ tab: "memories", memoriesNight: n, artist: null })}
         />
 
         {/* Social search links — SPOTIFY goes to the artist's PAGE directly
@@ -1260,7 +1260,7 @@ function ArtistScreen({ state, setState }) {
                 currentArtist={a}
                 currentStage={stage}
                 similar={lfm.similar}
-                onSelectArtist={(id) => setState(st => ({ ...st, artist: id }))}
+                onSelectArtist={(id) => window._pushNav ? window._pushNav({ artist: id }) : setState(st => ({ ...st, artist: id }))}
               />
             )}
           </div>

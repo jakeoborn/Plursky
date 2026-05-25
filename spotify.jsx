@@ -3776,7 +3776,7 @@ function MemoriesScreen({ state, setState }) {
   return (
     <Screen bg="var(--paper)">
       <div style={{ padding: "8px 20px", display: "flex", alignItems: "center", gap: 10 }}>
-        <button onClick={() => setState(s => ({ ...s, tab: "me" }))} aria-label="Back" style={{
+        <button onClick={() => window._popNav ? window._popNav() : setState(s => ({ ...s, tab: "me" }))} aria-label="Back" style={{
           background: "transparent", border: "none", padding: 0, cursor: "pointer",
           fontSize: 22, color: "var(--ink)", lineHeight: 1,
           width: 30, height: 30, display: "flex", alignItems: "center", justifyContent: "center",
@@ -6903,7 +6903,7 @@ function RecapScreen({ state, setState }) {
   const CFG   = window.FESTIVAL_CONFIG || {};
   const fmt12 = window.fmt12 || ((t) => t);
 
-  const back = () => setState(s => ({ ...s, tab: "me" }));
+  const back = () => window._popNav ? window._popNav() : setState(s => ({ ...s, tab: "me" }));
 
   // v151: ask for an iOS rating on 2nd+ Recap visit. iOS handles cool-off
   // (3 prompts / year) so we don't need to be cute about it.

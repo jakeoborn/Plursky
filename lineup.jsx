@@ -751,8 +751,18 @@ function LineupScreen({ state, setState }) {
 
   return (
     <Screen bg="var(--paper)">
-      <div style={{ padding: "8px 20px 8px" }}>
-        <TopBar title={<span>Lineup</span>} sub={`${FESTIVAL_CONFIG.brand.toUpperCase()} · ${FESTIVAL_CONFIG.dates.toUpperCase()}`} tight />
+      <div style={{ padding: "8px 20px 8px", display: "flex", alignItems: "center", gap: 8 }}>
+        {state._navStack?.length > 0 && (
+          <button onClick={() => window._popNav?.()} style={{
+            width: 32, height: 32, borderRadius: 8,
+            background: "var(--paper-2)", border: "1px solid var(--line)",
+            color: "var(--ink)", cursor: "pointer", fontSize: 16, flexShrink: 0,
+            display: "flex", alignItems: "center", justifyContent: "center",
+          }}>←</button>
+        )}
+        <div style={{ flex: 1 }}>
+          <TopBar title={<span>Lineup</span>} sub={`${FESTIVAL_CONFIG.brand.toUpperCase()} · ${FESTIVAL_CONFIG.dates.toUpperCase()}`} tight />
+        </div>
       </div>
 
       {/* Day tabs — now with per-day saved + conflict badges baked in so a

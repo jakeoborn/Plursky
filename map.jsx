@@ -1977,6 +1977,17 @@ function MapScreen({ state, setState }) {
       <div style={{ flex: 1, position: "relative", overflow: "hidden", background: "var(--paper-2)" }}>
         <WellnessPill />
 
+        {state._navStack?.length > 0 && (
+          <button onClick={() => window._popNav?.()} style={{
+            position: "absolute", top: 12, left: 10, zIndex: 5,
+            width: 38, height: 38, borderRadius: 12,
+            background: "rgba(247,237,224,0.92)", backdropFilter: "blur(10px)",
+            border: "1px solid var(--line-2)", color: "var(--ink)",
+            cursor: "pointer", fontSize: 16,
+            display: "flex", alignItems: "center", justifyContent: "center",
+          }}>←</button>
+        )}
+
         {/* ── Top-right icon column — GPS toggle + Layers menu. Glass
             background so it reads over any map style. */}
         <div style={{
