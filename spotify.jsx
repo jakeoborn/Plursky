@@ -2486,10 +2486,22 @@ function useMomentPhoto(photoId) {
 // user can tell at a glance whether the auto-tagger was confident or
 // dropped this one into a fallback bucket they should retag.
 // ── Setlist-to-photo song matching ──────────────────────────────
+// Two sources: 1001tracklists (has timestamps, best for DJs) and
+// setlist.fm (has API, best for live acts). Try 1001tl first.
+const TL_PROXY = "https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/proxy-1001tl";
 const _setlistCache = {};
-async function _getSetlistForArtist(artistName) {
-  const key = artistName.toLowerCase().replace(/\W+/g, "_");
-  if (_setlistCache[key]) return _setlistCache[key];
+
+async function _get1001tlData(artistName) {
+  try {
+    const res = await fetch(`${TL_PROXY}?artist=${encodeURIComponent(artistName)}`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (data.tracks?.length > 0) return { source: "1001tracklists", tracks: data.tracks, url: data.url };
+    return null;
+  } catch { return null; }
+}
+
+async function _getSetlistFmData(artistName) {
   try {
     const setlists = await window.fetchSetlists?.(artistName);
     if (!setlists?.length) return null;
@@ -2501,47 +2513,68 @@ async function _getSetlistForArtist(artistName) {
     });
     const target = festSetlist || setlists[0];
     const songs = (target.sets?.set || []).flatMap(s => (s.song || []).map(song => song.name)).filter(Boolean);
-    const result = songs.length > 0 ? { songs, venue: target.venue?.name, date: target.eventDate } : null;
-    _setlistCache[key] = result;
-    return result;
+    if (!songs.length) return null;
+    return { source: "setlist.fm", songs, venue: target.venue?.name };
   } catch { return null; }
 }
 
-function _estimateSongAtTime(artist, setlistData, photoTakenAt) {
-  if (!setlistData?.songs?.length || !photoTakenAt || !artist) return null;
+async function _getTracklistForArtist(artistName) {
+  const key = artistName.toLowerCase().replace(/\W+/g, "_");
+  if (_setlistCache[key]) return _setlistCache[key];
+  const tl = await _get1001tlData(artistName);
+  if (tl) { _setlistCache[key] = tl; return tl; }
+  const sl = await _getSetlistFmData(artistName);
+  if (sl) { _setlistCache[key] = sl; return sl; }
+  _setlistCache[key] = null;
+  return null;
+}
+
+function _matchSongAtTime(artist, trackData, photoTakenAt) {
+  if (!photoTakenAt || !artist) return null;
   const CFG = window.FESTIVAL_CONFIG || {};
   const dm = CFG.dayDates?.[artist.day];
   if (!dm) return null;
   const [sh, sm] = artist.start.split(":").map(Number);
-  const [eh, em] = artist.end.split(":").map(Number);
   const setStartMs = dm.midnightUtc + (sh < 6 ? sh + 24 : sh) * 3600000 + sm * 60000;
-  const setEndMs = dm.midnightUtc + (eh < 6 ? eh + 24 : eh) * 3600000 + em * 60000;
-  const setDuration = setEndMs - setStartMs;
-  if (setDuration <= 0) return null;
   const photoMs = Date.parse(photoTakenAt.replace(" ", "T"));
   if (isNaN(photoMs)) return null;
-  const elapsed = photoMs - setStartMs;
-  if (elapsed < 0 || elapsed > setDuration) return null;
-  const songIdx = Math.min(
-    Math.floor((elapsed / setDuration) * setlistData.songs.length),
-    setlistData.songs.length - 1
-  );
-  return setlistData.songs[songIdx];
+  const elapsedMs = photoMs - setStartMs;
+  if (elapsedMs < 0) return null;
+
+  if (trackData.source === "1001tracklists" && trackData.tracks?.length) {
+    let matched = trackData.tracks[0];
+    for (const t of trackData.tracks) {
+      if (t.timeMs <= elapsedMs) matched = t;
+      else break;
+    }
+    const display = matched.artist ? `${matched.artist} — ${matched.title}` : matched.title;
+    return { song: display, source: "1001tracklists", confidence: "exact", url: trackData.url };
+  }
+
+  if (trackData.source === "setlist.fm" && trackData.songs?.length) {
+    const [eh, em] = artist.end.split(":").map(Number);
+    const setEndMs = dm.midnightUtc + (eh < 6 ? eh + 24 : eh) * 3600000 + em * 60000;
+    const setDuration = setEndMs - setStartMs;
+    if (setDuration <= 0 || elapsedMs > setDuration) return null;
+    const idx = Math.min(Math.floor((elapsedMs / setDuration) * trackData.songs.length), trackData.songs.length - 1);
+    return { song: trackData.songs[idx], source: "setlist.fm", confidence: "estimated" };
+  }
+  return null;
 }
 
 function useSetlistSong(artist, takenAt) {
-  const [song, setSong] = React.useState(null);
+  const [result, setResult] = React.useState(null);
   React.useEffect(() => {
     if (!artist || !takenAt) return;
     let cancelled = false;
-    _getSetlistForArtist(artist.name).then(data => {
+    _getTracklistForArtist(artist.name).then(data => {
       if (cancelled || !data) return;
-      const s = _estimateSongAtTime(artist, data, takenAt);
-      if (s) setSong(s);
+      const r = _matchSongAtTime(artist, data, takenAt);
+      if (r) setResult(r);
     });
     return () => { cancelled = true; };
   }, [artist?.id, takenAt]);
-  return song;
+  return result;
 }
 
 const _TAG_SOURCE_LABEL = {
@@ -2818,12 +2851,23 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
         </div>
       )}
       {nowPlaying && (
-        <div className="mono" style={{
-          marginTop: 5, fontSize: 8, letterSpacing: 1, fontWeight: 700,
-          color: stage?.color || "var(--horizon)",
-          display: "flex", alignItems: "center", gap: 5,
-        }}>
-          <span style={{ fontSize: 10 }}>♫</span> {nowPlaying.toUpperCase()}
+        <div style={{ marginTop: 5, display: "flex", alignItems: "center", gap: 6 }}>
+          <div className="mono" style={{
+            fontSize: 8, letterSpacing: 0.8, fontWeight: 700,
+            color: stage?.color || "var(--horizon)",
+            display: "flex", alignItems: "center", gap: 4, flex: 1, minWidth: 0,
+          }}>
+            <span style={{ fontSize: 10, flexShrink: 0 }}>♫</span>
+            <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+              {nowPlaying.song?.toUpperCase()}
+            </span>
+          </div>
+          <span className="mono" style={{
+            fontSize: 6.5, letterSpacing: 0.8, padding: "2px 5px", borderRadius: 4, flexShrink: 0,
+            background: nowPlaying.confidence === "exact" ? "rgba(45,122,85,0.15)" : "rgba(232,93,46,0.1)",
+            color: nowPlaying.confidence === "exact" ? "var(--success)" : "var(--ember)",
+            fontWeight: 700,
+          }}>{nowPlaying.confidence === "exact" ? "EXACT" : "~EST"}</span>
         </div>
       )}
       {editing && onUpdate && (
