@@ -5082,6 +5082,167 @@ function _fmtHrsMin(mins) {
   return `${h}H ${m}M`;
 }
 
+// ── Festival Wrapped — Spotify-style swipeable story ─────────────
+function WrappedStory({ recap, onClose }) {
+  const [idx, setIdx] = React.useState(0);
+  const CFG = window.FESTIVAL_CONFIG || {};
+  const heroUrl = useMomentPhoto(recap.heroPhotoMoment?.photoId);
+
+  const cards = React.useMemo(() => {
+    const c = [];
+    c.push({
+      bg: "linear-gradient(155deg, #0a0618 0%, #6D28D9 50%, #e85d2e 100%)",
+      kicker: (CFG.shortName || "FESTIVAL").toUpperCase() + " · " + (CFG.year || ""),
+      headline: <>Your <em>Wrapped</em></>,
+      sub: `${recap.setsCount} sets · ${recap.nights} nights · ${recap.stagesVisitedCount} stages`,
+    });
+    if (recap.setsCount > 0) c.push({
+      bg: "linear-gradient(155deg, #1a120d 0%, #e85d2e 100%)",
+      kicker: "SETS CAUGHT",
+      headline: <>{recap.setsCount}</>,
+      sub: `across ${recap.nights} night${recap.nights !== 1 ? "s" : ""} and ${recap.stagesVisitedCount} stages`,
+    });
+    if (recap.topStage) c.push({
+      bg: `linear-gradient(155deg, #0a0618 0%, ${recap.topStage.color} 100%)`,
+      kicker: "YOUR HOME STAGE",
+      headline: <>{recap.topStage.name}</>,
+      sub: `${Math.round(recap.topStageMin / 60 * 10) / 10} hours spent here`,
+    });
+    if (recap.topGenre) c.push({
+      bg: "linear-gradient(155deg, #0a0618 0%, #ec4899 100%)",
+      kicker: "TOP GENRE",
+      headline: <>{recap.topGenre}</>,
+      sub: recap.genreBreakdown ? Object.entries(recap.genreBreakdown).sort((a,b) => b[1]-a[1]).slice(0,3).map(([g,n]) => `${g}: ${n}`).join(" · ") : "",
+    });
+    if (recap.totalMin > 0) {
+      const mi = recap.walkingMetersHi ? (recap.walkingMetersHi / 1609.34).toFixed(1) : null;
+      c.push({
+        bg: "linear-gradient(155deg, #1a120d 0%, #22c55e 100%)",
+        kicker: "TIME UNDER THE SKY",
+        headline: <>{Math.round(recap.totalMin / 60 * 10) / 10}<span style={{ fontSize: "0.5em" }}> hours</span></>,
+        sub: mi ? `~${mi} miles walked between stages` : `${recap.setsCount} sets across ${recap.nights} nights`,
+      });
+    }
+    if (recap.sunriseSetsCount > 0) c.push({
+      bg: "linear-gradient(155deg, #1a120d 0%, #fbbf24 60%, #e85d2e 100%)",
+      kicker: "SUNRISE WARRIOR",
+      headline: <>{recap.sunriseSetsCount} sunrise set{recap.sunriseSetsCount > 1 ? "s" : ""}</>,
+      sub: recap.lastSet ? `Last set ended at ${window.fmt12?.(recap.lastSet.end) || recap.lastSet.end}` : "",
+    });
+    if (recap.hiddenGem) c.push({
+      bg: "linear-gradient(155deg, #0a0618 0%, #7b3d9a 100%)",
+      kicker: "YOUR HIDDEN GEM",
+      headline: <>{recap.hiddenGem.name}</>,
+      sub: `Only ${recap.hiddenGem._pop}% mainstream — you found something special`,
+    });
+    if (recap.momentsCount > 0) c.push({
+      bg: heroUrl
+        ? `linear-gradient(155deg, rgba(10,6,24,0.8) 0%, rgba(109,40,217,0.7) 100%), url(${heroUrl}) center/cover`
+        : "linear-gradient(155deg, #0a0618 0%, #6D28D9 100%)",
+      kicker: "MEMORIES CAPTURED",
+      headline: <>{recap.photosCount + recap.videosCount}</>,
+      sub: `${recap.photosCount} photos${recap.videosCount ? ` · ${recap.videosCount} videos` : ""} — your festival, preserved`,
+    });
+    c.push({
+      bg: "linear-gradient(155deg, #0a0618 0%, #6D28D9 50%, #e85d2e 100%)",
+      kicker: "THAT'S A WRAP",
+      headline: <>See you next year</>,
+      sub: `${recap.setsCount} sets · ${recap.stagesVisitedCount} stages · ${recap.momentsCount} memories`,
+      final: true,
+    });
+    return c;
+  }, [recap, heroUrl]);
+
+  const card = cards[idx] || cards[0];
+  const next = () => setIdx(i => Math.min(i + 1, cards.length - 1));
+  const prev = () => setIdx(i => Math.max(i - 1, 0));
+
+  const handleTap = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    if (x < rect.width * 0.3) prev();
+    else next();
+  };
+
+  const handleExport = async () => {
+    if (!_isPlusSub()) { alert("Upgrade to Plursky+ to export your Wrapped cards."); return; }
+    try { await _shareRecapCard(recap); } catch {}
+  };
+
+  return (
+    <div style={{
+      position: "fixed", inset: 0, zIndex: 9999,
+      background: "#000", display: "flex", flexDirection: "column",
+    }}>
+      <div style={{
+        display: "flex", gap: 3, padding: "12px 16px 0",
+        position: "absolute", top: 0, left: 0, right: 0, zIndex: 2,
+      }}>
+        {cards.map((_, i) => (
+          <div key={i} style={{
+            flex: 1, height: 3, borderRadius: 2,
+            background: i <= idx ? "#fff" : "rgba(255,255,255,0.25)",
+            transition: "background 0.3s",
+          }} />
+        ))}
+      </div>
+
+      <button onClick={onClose} style={{
+        position: "absolute", top: 22, right: 16, zIndex: 3,
+        width: 36, height: 36, borderRadius: 36, border: "none",
+        background: "rgba(255,255,255,0.15)", color: "#fff",
+        fontSize: 18, cursor: "pointer", backdropFilter: "blur(4px)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+      }}>✕</button>
+
+      <div onClick={handleTap} style={{
+        flex: 1, display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center",
+        padding: "60px 32px 120px",
+        background: card.bg,
+        transition: "background 0.5s",
+        cursor: "pointer", userSelect: "none",
+      }}>
+        <div className="mono" style={{
+          fontSize: 10, letterSpacing: 2, color: "rgba(255,255,255,0.5)",
+          fontWeight: 700, marginBottom: 24,
+        }}>{card.kicker}</div>
+        <div className="serif" style={{
+          fontSize: card.headline?.props?.children?.toString?.()?.length > 15 ? 38 : 64,
+          lineHeight: 0.95, color: "#fff", textAlign: "center",
+          letterSpacing: -1, marginBottom: 16,
+        }}>{card.headline}</div>
+        <div style={{
+          fontSize: 14, color: "rgba(255,255,255,0.6)", textAlign: "center",
+          lineHeight: 1.5, maxWidth: 280,
+        }}>{card.sub}</div>
+      </div>
+
+      <div style={{
+        position: "absolute", bottom: 0, left: 0, right: 0,
+        padding: "20px 24px 40px",
+        display: "flex", justifyContent: "center", gap: 12,
+      }}>
+        {card.final ? (
+          <button onClick={onClose} className="mono" style={{
+            padding: "12px 32px", borderRadius: 999, border: "none",
+            background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
+            color: "#fff", fontSize: 11, letterSpacing: 1.4, fontWeight: 700,
+            cursor: "pointer", boxShadow: "0 4px 20px rgba(109,40,217,0.4)",
+          }}>CLOSE WRAPPED</button>
+        ) : (
+          <button onClick={handleExport} className="mono" style={{
+            padding: "10px 20px", borderRadius: 999,
+            border: "1px solid rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.08)",
+            color: "rgba(255,255,255,0.7)", fontSize: 9, letterSpacing: 1.4, fontWeight: 700,
+            cursor: "pointer", backdropFilter: "blur(4px)",
+          }}>↗ SHARE CARD{!_isPlusSub() ? " · PLUS" : ""}</button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function RecapCard({ accent = "var(--ink)", paper = "var(--paper)", children, mono, kicker }) {
   return (
     <div style={{
@@ -6999,6 +7160,7 @@ function RecapScreen({ state, setState }) {
   const recap = React.useMemo(() => _computeRecap(state), [state]);
   const CFG   = window.FESTIVAL_CONFIG || {};
   const fmt12 = window.fmt12 || ((t) => t);
+  const [wrappedOpen, setWrappedOpen] = React.useState(false);
 
   const back = () => window._popNav ? window._popNav() : setState(s => ({ ...s, tab: "me" }));
 
@@ -7128,8 +7290,10 @@ function RecapScreen({ state, setState }) {
               fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.3, fontWeight: 700,
               backdropFilter: "blur(8px)",
             }}>↗ SHARE</button>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "rgba(247,237,224,0.75)", fontWeight: 700, marginBottom: 10 }}>
-            YOUR {(CFG.shortName || "FESTIVAL").toUpperCase()} · {CFG.year || ""}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "rgba(247,237,224,0.75)", fontWeight: 700, marginBottom: 10 }}>
+              YOUR {(CFG.shortName || "FESTIVAL").toUpperCase()} · {CFG.year || ""}
+            </div>
           </div>
           <div className="serif" style={{ fontSize: 40, lineHeight: 0.95, letterSpacing: -0.5, marginBottom: 18 }}>
             That was <span style={{ fontStyle: "italic", color: "var(--flare)" }}>your</span> weekend.
@@ -7153,6 +7317,27 @@ function RecapScreen({ state, setState }) {
             </div>
           </div>
         </div>
+
+        {/* WRAPPED CTA */}
+        {recap.setsCount > 0 && (
+          <button onClick={() => setWrappedOpen(true)} style={{
+            width: "100%", padding: "16px 20px", marginBottom: 14,
+            borderRadius: 16, border: "none", cursor: "pointer",
+            background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
+            color: "#fff", display: "flex", alignItems: "center", justifyContent: "space-between",
+            boxShadow: "0 4px 20px rgba(109,40,217,0.35)",
+          }}>
+            <div style={{ textAlign: "left" }}>
+              <div className="serif" style={{ fontSize: 20, lineHeight: 1.1 }}>
+                Your <em>Wrapped</em>
+              </div>
+              <div className="mono" style={{ fontSize: 8, letterSpacing: 1.4, color: "rgba(255,255,255,0.6)", marginTop: 3, fontWeight: 700 }}>
+                SWIPE THROUGH YOUR FESTIVAL STORY
+              </div>
+            </div>
+            <span style={{ fontSize: 22 }}>→</span>
+          </button>
+        )}
 
         {/* TOP STAGE */}
         {recap.topStage && (
@@ -7560,6 +7745,164 @@ function RecapScreen({ state, setState }) {
           </RecapCard>
         )}
 
+        {/* AI SET RECOMMENDER — HIDDEN GEMS */}
+        {(() => {
+          let discoveries = [];
+          try {
+            const raw = localStorage.getItem("spotify_matched_v1");
+            const spotifyArtists = JSON.parse(localStorage.getItem("spotify_top_artists_v1") || "null");
+            const matched = raw ? JSON.parse(raw) : [];
+            if (spotifyArtists?.length) discoveries = getDiscoveries(spotifyArtists, matched, state.saved, 5);
+          } catch {}
+          if (!discoveries.length) return null;
+          const freeLimit = 2;
+          const showAll = _isPlusSub();
+          const visible = showAll ? discoveries : discoveries.slice(0, freeLimit);
+          return (
+            <RecapCard kicker="HIDDEN GEMS — AI PICKS FOR YOU" paper="var(--night)" accent="#fff">
+              <div className="serif" style={{ fontSize: 22, lineHeight: 1.1, color: "#f7ede0", marginBottom: 12 }}>
+                Artists you'd <em style={{ color: "#a78bfa" }}>love</em>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {visible.map((a, i) => {
+                  const stage = STAGES.find(s => s.id === a.stage);
+                  const isSaved = (state.saved || []).includes(a.id);
+                  return (
+                    <div key={a.id} style={{
+                      display: "flex", alignItems: "center", gap: 10,
+                      padding: "10px 12px", borderRadius: 10,
+                      background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)",
+                    }}>
+                      <div style={{
+                        width: 28, height: 28, borderRadius: "50%", flexShrink: 0,
+                        background: stage?.color || "#6D28D9",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        fontSize: 12, color: "#fff", fontWeight: 700,
+                      }}>{i + 1}</div>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ fontSize: 13, fontWeight: 600, color: "#f7ede0", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</div>
+                        <div className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(255,255,255,0.4)", marginTop: 2 }}>
+                          {a._reason || (stage?.name || "")} · {FESTIVAL_CONFIG.dayDates?.[a.day]?.short || ""} {window.fmt12?.(a.start) || a.start}
+                        </div>
+                      </div>
+                      <button onClick={() => {
+                        if (isSaved) return;
+                        setState(s => ({ ...s, saved: [...new Set([...s.saved, a.id])] }));
+                        try { window.plurskyHaptic?.("LIGHT"); } catch {}
+                      }} className="mono" style={{
+                        padding: "5px 10px", borderRadius: 999, flexShrink: 0,
+                        background: isSaved ? "rgba(45,122,85,0.3)" : "rgba(167,139,250,0.2)",
+                        border: isSaved ? "1px solid rgba(45,122,85,0.5)" : "1px solid rgba(167,139,250,0.4)",
+                        color: isSaved ? "#2d7a55" : "#a78bfa",
+                        fontSize: 8, letterSpacing: 1.2, fontWeight: 700, cursor: "pointer",
+                      }}>{isSaved ? "✓ SAVED" : "+ SAVE"}</button>
+                    </div>
+                  );
+                })}
+                {!showAll && discoveries.length > freeLimit && (
+                  <PlusGate feature="all hidden gems">
+                    <div style={{ padding: 20, textAlign: "center" }}>
+                      <div className="mono" style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", letterSpacing: 1.2 }}>
+                        +{discoveries.length - freeLimit} MORE PICKS WAITING
+                      </div>
+                    </div>
+                  </PlusGate>
+                )}
+              </div>
+            </RecapCard>
+          );
+        })()}
+
+        {/* CREW COMPATIBILITY */}
+        {crewStats?.total > 0 && (
+          <RecapCard kicker="CREW COMPATIBILITY" paper="var(--paper)">
+            <div className="serif" style={{ fontSize: 22, lineHeight: 1.1, marginBottom: 12 }}>
+              Your crew <em style={{ color: "var(--ember)" }}>vibe check</em>
+            </div>
+            <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5, marginBottom: 10 }}>
+              {crewStats.total} messages sent in crew chat{crewStats.topChatter ? ` · ${crewStats.topChatter[0]} was the most active` : ""}.
+            </div>
+            <PlusGate feature="crew compatibility">
+              <button onClick={async () => {
+                try { await window._shareCrewComparison?.(state); } catch {}
+              }} className="mono" style={{
+                width: "100%", padding: "11px", borderRadius: 10, border: "none", cursor: "pointer",
+                background: "linear-gradient(135deg, var(--ember), var(--horizon))",
+                color: "#fff", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
+              }}>EXPORT CREW SHOWDOWN CARD</button>
+            </PlusGate>
+          </RecapCard>
+        )}
+
+        {/* TRADING CARDS — collectible per-artist cards */}
+        {recap.setsCount > 0 && (
+          <RecapCard kicker="FESTIVAL TRADING CARDS" paper="var(--paper)">
+            <div className="serif" style={{ fontSize: 22, lineHeight: 1.1, marginBottom: 6 }}>
+              Collect your <em style={{ color: "var(--horizon)" }}>set cards</em>
+            </div>
+            <div style={{ fontSize: 12, color: "var(--muted)", lineHeight: 1.5, marginBottom: 12 }}>
+              {recap.setsCount} cards earned — one for every set you caught. Export as shareable collectibles.
+            </div>
+            <div className="no-scrollbar" style={{ display: "flex", gap: 8, overflowX: "auto", marginBottom: 10, padding: "2px 0" }}>
+              {(() => {
+                const attended = window.getAllAttended?.() || {};
+                const artists = Object.values(attended).flat().map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).slice(0, 6);
+                return artists.map((a, i) => {
+                  const stage = STAGES.find(s => s.id === a.stage);
+                  return (
+                    <div key={a.id} style={{
+                      width: 90, height: 130, flexShrink: 0, borderRadius: 10,
+                      background: `linear-gradient(155deg, ${stage?.color || "#6D28D9"}22 0%, ${stage?.color || "#6D28D9"}44 100%)`,
+                      border: `1.5px solid ${stage?.color || "#6D28D9"}55`,
+                      padding: "10px 8px", display: "flex", flexDirection: "column",
+                      justifyContent: "space-between",
+                    }}>
+                      <div className="mono" style={{ fontSize: 7, letterSpacing: 1.2, color: stage?.color || "var(--muted)", fontWeight: 700 }}>
+                        {stage?.short || ""}
+                      </div>
+                      <div>
+                        <div style={{ fontSize: 11, fontWeight: 700, lineHeight: 1.2, color: "var(--ink)" }}>
+                          {a.name.length > 14 ? a.name.slice(0, 13) + "…" : a.name}
+                        </div>
+                        <div className="mono" style={{ fontSize: 7, color: "var(--muted)", marginTop: 3, letterSpacing: 0.8 }}>
+                          {FESTIVAL_CONFIG.dayDates?.[a.day]?.short || ""} · {window.fmt12?.(a.start) || a.start}
+                        </div>
+                      </div>
+                      <div className="mono" style={{ fontSize: 7, letterSpacing: 1, color: stage?.color, fontWeight: 700, textAlign: "right" }}>
+                        #{String(i + 1).padStart(3, "0")}
+                      </div>
+                    </div>
+                  );
+                });
+              })()}
+            </div>
+            <PlusGate feature="trading cards export">
+              <button onClick={async () => {
+                try { await window._shareFestivalPassport?.(state); } catch {}
+              }} className="mono" style={{
+                width: "100%", padding: "11px", borderRadius: 10, border: "none", cursor: "pointer",
+                background: "var(--ink)", color: "var(--paper)",
+                fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
+              }}>EXPORT FULL COLLECTION</button>
+            </PlusGate>
+          </RecapCard>
+        )}
+
+        {/* SETLIST OVERLAY — post-festival feature */}
+        {recap.momentsCount > 0 && recap.setsCount > 0 && (
+          <RecapCard kicker="SETLIST MEMORIES" paper="var(--paper)">
+            <div className="serif" style={{ fontSize: 22, lineHeight: 1.1, marginBottom: 6 }}>
+              What was <em style={{ color: "var(--ember)" }}>playing</em>?
+            </div>
+            <div style={{ fontSize: 12, color: "var(--muted)", lineHeight: 1.5 }}>
+              After the festival, we'll match your photos to the actual setlist — showing exactly which song was playing when you took each shot. Check back when setlists are published.
+            </div>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--horizon)", fontWeight: 700, marginTop: 10 }}>
+              COMING AFTER FESTIVAL · PLUS EXCLUSIVE
+            </div>
+          </RecapCard>
+        )}
+
         {/* PLURSKY+ WOW FEATURES */}
         {recap.momentsCount > 0 && (
           <RecapCard kicker="PLURSKY+ EXCLUSIVES" paper="#1a120d" accent="#fff">
@@ -7753,6 +8096,7 @@ function RecapScreen({ state, setState }) {
           </div>
         </RecapCard>
       </ScrollBody>
+      {wrappedOpen && <WrappedStory recap={recap} onClose={() => setWrappedOpen(false)} />}
     </Screen>
   );
 }
