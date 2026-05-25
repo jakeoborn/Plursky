@@ -1148,6 +1148,14 @@ async function fetchSpotifyTopArtists() {
     const result = [...top, ...extras];
     result._playlistCount = _playlistCount;
     result._playlistScanOk = _playlistScanOk;
+
+    // S1: Cache artist scores for video overlay + artist card stats
+    const cache = {};
+    result.forEach(a => {
+      if (a.name) cache[a.name.toLowerCase()] = { score: a._score || 0, playCount: Math.round((a._score || 0) / 3), source: a._source || "top" };
+    });
+    window._spotifyArtistCache = cache;
+
     return result;
   } catch {
     return [];
@@ -4940,6 +4948,32 @@ function _computeRecap(state) {
       .filter(a => a && !caughtArtists.some(ca => ca.id === a.id))
       .sort((a, b) => (b.tier || 0) - (a.tier || 0))
       .slice(0, 6),
+
+    // S2: Genre breakdown from caught artists
+    genreBreakdown: (() => {
+      const counts = {};
+      caughtArtists.forEach(a => {
+        const g = (a.genre || "").toLowerCase();
+        if (g) counts[g] = (counts[g] || 0) + 1;
+      });
+      return Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([genre, count]) => ({ genre, count }));
+    })(),
+
+    // S4: Festival vibe score — energy heuristic from genres
+    vibeScore: (() => {
+      const highEnergy = ["dubstep","bass","hardstyle","hardcore","drum and bass","dnb","tech house","techno","riddim","psytrance","hard dance"];
+      const chill = ["ambient","downtempo","lofi","acoustic","folk","singer-songwriter","jazz","blues"];
+      let energy = 0, total = 0;
+      caughtArtists.forEach(a => {
+        const g = (a.genre || "").toLowerCase();
+        if (!g) return;
+        total++;
+        if (highEnergy.some(k => g.includes(k))) energy++;
+        else if (chill.some(k => g.includes(k))) energy -= 0.3;
+        else energy += 0.5;
+      });
+      return total > 0 ? Math.min(100, Math.max(0, Math.round(energy / total * 100))) : null;
+    })(),
   };
 }
 
@@ -7167,6 +7201,62 @@ function RecapScreen({ state, setState }) {
             </RecapCard>
           );
         })()}
+
+        {/* S2: GENRE BREAKDOWN */}
+        {recap.genreBreakdown?.length > 0 && (
+          <RecapCard kicker="YOUR GENRE MIX" paper="var(--paper)">
+            <div className="serif" style={{ fontSize: 26, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 12 }}>
+              Your festival was <span style={{ fontStyle: "italic", color: "var(--ember)" }}>{recap.genreBreakdown[0]?.genre || "eclectic"}</span>.
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+              {recap.genreBreakdown.map(({ genre, count }, i) => {
+                const maxCount = recap.genreBreakdown[0]?.count || 1;
+                return (
+                  <div key={genre} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", width: 120, textAlign: "right", flexShrink: 0, fontWeight: 600 }}>
+                      {genre.toUpperCase()}
+                    </div>
+                    <div style={{ flex: 1, height: 18, borderRadius: 9, background: "var(--paper-2)", overflow: "hidden" }}>
+                      <div style={{
+                        width: `${Math.max(8, Math.round(count / maxCount * 100))}%`, height: "100%",
+                        borderRadius: 9, background: i === 0 ? "var(--ember)" : i === 1 ? "#6D28D9" : "var(--line-2)",
+                        transition: "width .3s",
+                      }} />
+                    </div>
+                    <div className="mono" style={{ fontSize: 10, fontWeight: 700, color: "var(--ink)", width: 20, textAlign: "right" }}>{count}</div>
+                  </div>
+                );
+              })}
+            </div>
+          </RecapCard>
+        )}
+
+        {/* S4: FESTIVAL VIBE SCORE */}
+        {recap.vibeScore != null && (
+          <RecapCard kicker="FESTIVAL VIBE" paper="var(--paper)">
+            <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+              <div style={{ position: "relative", width: 80, height: 80, flexShrink: 0 }}>
+                <svg width="80" height="80" viewBox="0 0 80 80">
+                  <circle cx="40" cy="40" r="34" fill="none" stroke="var(--line)" strokeWidth="6" />
+                  <circle cx="40" cy="40" r="34" fill="none" stroke={recap.vibeScore >= 70 ? "#e85d2e" : recap.vibeScore >= 40 ? "#6D28D9" : "#2d7a55"} strokeWidth="6"
+                    strokeDasharray={`${recap.vibeScore * 2.136} 213.6`} strokeLinecap="round"
+                    transform="rotate(-90 40 40)" />
+                </svg>
+                <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <span className="mono" style={{ fontSize: 18, fontWeight: 700 }}>{recap.vibeScore}</span>
+                </div>
+              </div>
+              <div>
+                <div className="serif" style={{ fontSize: 24, lineHeight: 1.1 }}>
+                  {recap.vibeScore >= 80 ? "Peak energy." : recap.vibeScore >= 60 ? "High octane." : recap.vibeScore >= 40 ? "Balanced vibe." : "Laid back."}
+                </div>
+                <div className="mono" style={{ fontSize: 9, color: "var(--muted)", marginTop: 4, letterSpacing: 1 }}>
+                  {recap.vibeScore >= 70 ? "YOU CHASED THE DROPS ALL WEEKEND" : recap.vibeScore >= 40 ? "MIX OF ENERGY + CHILL" : "YOU FOUND THE QUIET CORNERS"}
+                </div>
+              </div>
+            </div>
+          </RecapCard>
+        )}
 
         {/* PLURSKY+ WOW FEATURES */}
         {recap.momentsCount > 0 && (
