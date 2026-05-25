@@ -594,7 +594,7 @@ function _YourMomentThumb({ moment, accent, onClick }) {
   );
 }
 
-function YourPhotosStrip({ artistId, night, accent, onOpen }) {
+function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj }) {
   // Re-read when the Memories tab updates moments. Cheap (~hundreds of
   // bytes from localStorage) and avoids prop-drilling through the artist
   // screen. The "plursky-moments-change" event is dispatched by
@@ -639,11 +639,26 @@ function YourPhotosStrip({ artistId, night, accent, onOpen }) {
             {mine.length} {mine.length === 1 ? "memory" : "memories"} saved
           </div>
         </div>
-        <button onClick={() => onOpen(night)} className="mono" style={{
-          background: "transparent", border: "none", color: "var(--muted)",
-          cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-          padding: 0,
-        }}>VIEW ALL →</button>
+        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+          {artistObj && mine.length > 0 && (
+            <button
+              onClick={() => window._shareArtistCollage?.(artistObj, mine)}
+              className="mono"
+              title="Share a photo collage of this set"
+              style={{
+                background: accent, color: "#fff", border: "none",
+                borderRadius: 999, padding: "5px 11px", cursor: "pointer",
+                fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+                display: "inline-flex", alignItems: "center", gap: 5,
+                whiteSpace: "nowrap",
+              }}>📸 SHARE</button>
+          )}
+          <button onClick={() => onOpen(night)} className="mono" style={{
+            background: "transparent", border: "none", color: "var(--muted)",
+            cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+            padding: 0,
+          }}>VIEW ALL →</button>
+        </div>
       </div>
       <div style={{
         display: "flex", gap: 8, overflowX: "auto",
@@ -1075,6 +1090,7 @@ function ArtistScreen({ state, setState }) {
           artistId={a.id}
           night={a.day}
           accent={stage.color}
+          artistObj={a}
           onOpen={(n) => setState({ ...state, tab: "memories", memoriesNight: n, artist: null })}
         />
 

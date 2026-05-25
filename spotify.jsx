@@ -3315,8 +3315,8 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds) {
   // EDC. Don't force-tag the closest artist in that case; surface as
   // "off_stage" so the UI shows 📍 BETWEEN SETS instead of a wrong
   // artist chip. With anchors for all 9 stages (data.jsx gpsAnchors,
-  // v161+), 80m is the tightest threshold that doesn't false-positive
-  // "back of the crowd". Earlier v161 launch used 150m because only 3
+  // v162+), 80m is the tightest threshold that doesn't false-positive
+  // "back of the crowd". Earlier v162 launch used 150m because only 3
   // of 9 anchors were calibrated — that left big gaps near the other
   // 6 stages, forcing a conservative threshold.
   if (lat != null && lng != null) {
@@ -5130,7 +5130,7 @@ async function _shareRecapCard(recap) {
   const file = new File([blob], filename, { type: "image/png" });
   const title = `My ${window.FESTIVAL_CONFIG?.shortName || "festival"}`;
 
-  // Native iOS path (v161): @capacitor/share with `files` (data URL) — more
+  // Native iOS path (v162): @capacitor/share with `files` (data URL) — more
   // reliable inside WKWebView than the web `navigator.share({ files })` path
   // which can fail silently in some iOS versions.
   const capShare = window.Capacitor?.Plugins?.Share;
@@ -5167,6 +5167,182 @@ async function _shareRecapCard(recap) {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  return true;
+}
+
+// Per-artist shareable collage. Stepping stone toward a full TikTok-style
+// recap video (v1.5) — same compositing math, frozen on one frame. Pulls
+// each moment's photo from IDB, lays them out in a mosaic, brands with
+// stage color + festival name. 1080×1350 = Instagram 4:5, also works as a
+// Story since the safe area is centered.
+async function _renderArtistCollage(artist, moments) {
+  const W = 1080, H = 1350;
+  const canvas = document.createElement("canvas");
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext("2d");
+  const stage = (window.STAGES || []).find(s => s.id === artist.stage) || {};
+  const CFG = window.FESTIVAL_CONFIG || {};
+
+  try {
+    await document.fonts.load("400 96px 'Instrument Serif'");
+    await document.fonts.load("italic 400 80px 'Instrument Serif'");
+    await document.fonts.load("700 20px 'Geist Mono'");
+  } catch {}
+
+  // Cream paper background
+  ctx.fillStyle = "#f7ede0";
+  ctx.fillRect(0, 0, W, H);
+
+  // Stage-colored header band — anchors the brand, names the set
+  const headerH = 230;
+  ctx.fillStyle = stage.color || "#1a120d";
+  ctx.fillRect(0, 0, W, headerH);
+  ctx.fillStyle = "rgba(255,255,255,0.78)";
+  ctx.font = "700 22px 'Geist Mono', monospace";
+  ctx.textAlign = "left";
+  ctx.fillText(`PLURSKY · ${(CFG.shortName || CFG.name || "FESTIVAL").toUpperCase()}`, 60, 80);
+  // Artist name (italic serif, big)
+  ctx.fillStyle = "#fff";
+  ctx.font = "italic 400 84px 'Instrument Serif', serif";
+  // Truncate long names so they fit on one line
+  let name = artist.name;
+  ctx.font = "italic 400 84px 'Instrument Serif', serif";
+  while (ctx.measureText(name).width > W - 120 && name.length > 4) {
+    name = name.slice(0, -2);
+  }
+  if (name !== artist.name) name = name.slice(0, -1) + "…";
+  ctx.fillText(name, 60, 170);
+  // Stage · day · time
+  ctx.fillStyle = "rgba(255,255,255,0.88)";
+  ctx.font = "700 18px 'Geist Mono', monospace";
+  const dayShort = CFG.dayDates?.[artist.day]?.short || `DAY ${artist.day}`;
+  ctx.fillText(`${(stage.name || "").toUpperCase()} · ${dayShort.toUpperCase()} · ${artist.start}–${artist.end}`, 60, 210);
+
+  // Photo mosaic area (between header + footer)
+  const footerH = 110;
+  const mosaicTop = headerH;
+  const mosaicH = H - headerH - footerH;
+  const mosaicW = W;
+  const gap = 8;
+
+  // Pull image blobs from IDB (filter out videos for v1 — video frames
+  // require seeking + decode, deferred to v1.5 video recap).
+  const photoMoments = moments.filter(m => m.photoId && (m.kind === "image" || !m.kind)).slice(0, 6);
+  const imgs = await Promise.all(photoMoments.map(async (m) => {
+    try {
+      const blob = await _getPhoto(m.photoId);
+      if (!blob) return null;
+      return await new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = () => resolve(null);
+        img.src = URL.createObjectURL(blob);
+      });
+    } catch { return null; }
+  }));
+  const valid = imgs.filter(Boolean);
+  const n = valid.length;
+
+  // Layout grid by count — each entry is [x, y, w, h] inside the mosaic
+  let cells;
+  if (n === 0)       cells = [];
+  else if (n === 1)  cells = [[0, 0, mosaicW, mosaicH]];
+  else if (n === 2)  cells = [[0, 0, mosaicW/2, mosaicH], [mosaicW/2, 0, mosaicW/2, mosaicH]];
+  else if (n === 3)  cells = [[0, 0, mosaicW*0.6, mosaicH], [mosaicW*0.6, 0, mosaicW*0.4, mosaicH/2], [mosaicW*0.6, mosaicH/2, mosaicW*0.4, mosaicH/2]];
+  else if (n === 4)  cells = [[0, 0, mosaicW/2, mosaicH/2], [mosaicW/2, 0, mosaicW/2, mosaicH/2], [0, mosaicH/2, mosaicW/2, mosaicH/2], [mosaicW/2, mosaicH/2, mosaicW/2, mosaicH/2]];
+  else { // 5 or 6 — 3 across, 2 rows
+    const cw = mosaicW / 3, ch = mosaicH / 2;
+    cells = [
+      [0, 0, cw, ch], [cw, 0, cw, ch], [cw*2, 0, cw, ch],
+      [0, ch, cw, ch], [cw, ch, cw, ch], [cw*2, ch, cw, ch],
+    ].slice(0, n);
+  }
+
+  // Draw each photo cover-fit into its cell
+  valid.forEach((img, i) => {
+    const [x, y, w, h] = cells[i];
+    const ix = x + gap/2, iy = mosaicTop + y + gap/2;
+    const iw = w - gap, ih = h - gap;
+    const scale = Math.max(iw / img.width, ih / img.height);
+    const dw = img.width * scale;
+    const dh = img.height * scale;
+    const dx = ix - (dw - iw) / 2;
+    const dy = iy - (dh - ih) / 2;
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(ix, iy, iw, ih);
+    ctx.clip();
+    ctx.drawImage(img, dx, dy, dw, dh);
+    ctx.restore();
+  });
+
+  // Empty state — collage requested but no photos in IDB
+  if (n === 0) {
+    ctx.fillStyle = "rgba(26,18,13,0.45)";
+    ctx.font = "italic 400 52px 'Instrument Serif', serif";
+    ctx.textAlign = "center";
+    ctx.fillText("No photos yet from this set", W/2, mosaicTop + mosaicH/2);
+  }
+
+  // Footer band — branding + count
+  ctx.fillStyle = "#1a120d";
+  ctx.fillRect(0, H - footerH, W, footerH);
+  ctx.fillStyle = "#f7ede0";
+  ctx.textAlign = "left";
+  ctx.font = "700 22px 'Geist Mono', monospace";
+  ctx.fillText(`MADE WITH PLURSKY · ${n} MOMENT${n === 1 ? "" : "S"}`, 60, H - 55);
+  ctx.fillStyle = "rgba(247,237,224,0.7)";
+  ctx.font = "italic 400 24px 'Instrument Serif', serif";
+  ctx.textAlign = "right";
+  ctx.fillText("plursky.com", W - 60, H - 55);
+
+  return canvas;
+}
+
+async function _shareArtistCollage(artist, moments) {
+  let canvas;
+  try { canvas = await _renderArtistCollage(artist, moments); }
+  catch (e) { console.error("[plursky-collage] render failed:", e); return false; }
+  const blob = await new Promise(r => canvas.toBlob(r, "image/png"));
+  if (!blob) return false;
+  try { window.plurskyHaptic?.("LIGHT"); } catch {}
+  const safeName = (artist.name || "set").toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 32);
+  const filename = `plursky-${safeName}.png`;
+  const file = new File([blob], filename, { type: "image/png" });
+  const title = `${artist.name} at ${window.FESTIVAL_CONFIG?.shortName || "the festival"}`;
+
+  // Native iOS path first — @capacitor/share with data URL is more reliable
+  // than navigator.share inside WKWebView. Same pattern as _shareRecapCard.
+  const capShare = window.Capacitor?.Plugins?.Share;
+  if (capShare?.share && window.Capacitor?.isNativePlatform?.()) {
+    try {
+      const dataUrl = await new Promise((resolve, reject) => {
+        const r = new FileReader();
+        r.onload = () => resolve(r.result);
+        r.onerror = reject;
+        r.readAsDataURL(blob);
+      });
+      await capShare.share({ title, files: [dataUrl] });
+      return true;
+    } catch (e) {
+      if (e?.message && !/cancel|abort/i.test(e.message)) console.warn("[plursky-share]", e.message);
+    }
+  }
+  // Web with file-share support (modern Chrome, Safari iOS 15+, Edge)
+  if (navigator.share && typeof navigator.canShare === "function" && navigator.canShare({ files: [file] })) {
+    try {
+      await navigator.share({ files: [file], title });
+      return true;
+    } catch (e) {
+      if (e?.name === "AbortError") return false;
+    }
+  }
+  // Fallback: download the PNG
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
   setTimeout(() => URL.revokeObjectURL(url), 1000);
   return true;
 }
@@ -5604,4 +5780,5 @@ Object.assign(window, {
   SpotifyScreen, MeScreen, MemoriesScreen, RecapScreen, fetchPreviewUrl,
   ensureSpotifyProfile, getSpotifyProfileSync, createEdcPlaylist,
   startSpotifyAuth, PackListCard,
+  _renderArtistCollage, _shareArtistCollage,
 });
