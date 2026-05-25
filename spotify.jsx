@@ -5039,32 +5039,79 @@ function _setPlusSub(v) { try { localStorage.setItem(PLUS_KEY, v ? "1" : "0"); }
 
 function PlusGate({ children, feature, onUpgrade }) {
   if (_isPlusSub()) return children;
-  return React.createElement("div", {
-    style: { position: "relative", borderRadius: 14, overflow: "hidden" },
-  },
-    React.createElement("div", { style: { filter: "blur(3px)", pointerEvents: "none", opacity: 0.5 } }, children),
-    React.createElement("div", {
-      style: {
+
+  const _PLUS_PERKS = [
+    ["No watermarks", "Clean, brandable exports"],
+    ["Unlimited shares", "No daily limit"],
+    ["Premium templates", "Film Strip, Passport & more"],
+    ["Custom accents", "Pick your festival color"],
+  ];
+
+  return (
+    <div style={{ position: "relative", borderRadius: 14, overflow: "hidden" }}>
+      <div style={{ filter: "blur(3px)", pointerEvents: "none", opacity: 0.35 }}>{children}</div>
+      <div style={{
         position: "absolute", inset: 0, display: "flex", flexDirection: "column",
-        alignItems: "center", justifyContent: "center", gap: 8,
-        background: "rgba(26,18,13,0.7)", backdropFilter: "blur(4px)",
-      },
-    },
-      React.createElement("div", { className: "serif", style: { fontSize: 22, color: "#fff" } }, "Plursky+"),
-      React.createElement("div", { className: "mono", style: { fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.6)" } }, `UNLOCK ${(feature || "THIS FEATURE").toUpperCase()}`),
-      React.createElement("button", {
-        onClick: onUpgrade,
-        className: "mono",
-        style: {
-          marginTop: 8, padding: "9px 18px", borderRadius: 10, border: "none",
-          background: "linear-gradient(135deg, #6D28D9, #e85d2e)", color: "#fff",
-          fontSize: 10, letterSpacing: 1.4, fontWeight: 700, cursor: "pointer",
-        },
-      }, "$4.99 / FESTIVAL · UPGRADE"),
-    ),
+        alignItems: "center", justifyContent: "center", gap: 0,
+        background: "linear-gradient(180deg, rgba(26,18,13,0.85) 0%, rgba(109,40,217,0.55) 100%)",
+        backdropFilter: "blur(6px)",
+      }}>
+        <div style={{
+          width: 38, height: 38, borderRadius: "50%", marginBottom: 10,
+          background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          boxShadow: "0 0 24px rgba(109,40,217,0.5)",
+        }}>
+          <span style={{ fontSize: 18 }}>+</span>
+        </div>
+        <div className="serif" style={{ fontSize: 26, color: "#fff", letterSpacing: -0.5 }}>Plursky+</div>
+        <div className="mono" style={{
+          fontSize: 9, letterSpacing: 1.4, color: "rgba(255,255,255,0.5)",
+          marginTop: 4, marginBottom: 14,
+        }}>
+          UNLOCK {(feature || "THIS FEATURE").toUpperCase()}
+        </div>
+
+        <div style={{
+          display: "flex", flexDirection: "column", gap: 7, width: "80%", maxWidth: 240,
+          marginBottom: 16,
+        }}>
+          {_PLUS_PERKS.map(([title, sub], i) => (
+            <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{
+                width: 18, height: 18, borderRadius: "50%", flexShrink: 0,
+                background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: 10, color: "#fff", fontWeight: 700,
+              }}>&#10003;</div>
+              <div>
+                <div style={{ fontSize: 11, color: "#fff", fontWeight: 600 }}>{title}</div>
+                <div style={{ fontSize: 9, color: "rgba(255,255,255,0.45)" }}>{sub}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <button onClick={onUpgrade} className="mono" style={{
+          padding: "11px 28px", borderRadius: 12, border: "none",
+          background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
+          color: "#fff", fontSize: 11, letterSpacing: 1.4, fontWeight: 700,
+          cursor: "pointer",
+          boxShadow: "0 4px 20px rgba(109,40,217,0.45), 0 0 40px rgba(232,93,46,0.2)",
+        }}>
+          $4.99 / FESTIVAL
+        </button>
+        <div className="mono" style={{
+          fontSize: 8, letterSpacing: 1, color: "rgba(255,255,255,0.35)",
+          marginTop: 8,
+        }}>
+          ONE-TIME · PER FESTIVAL
+        </div>
+      </div>
+    </div>
   );
 }
-// P1: Export rate limiter — 3/day free, unlimited Plus
+// P1: Export rate limiter — 5/day free, unlimited Plus
 const DAILY_SHARE_LIMIT = 5;
 function _getShareCount() {
   try {
@@ -5342,8 +5389,9 @@ const _VIDEO_TEMPLATES = {
 };
 
 async function _detectBeats(audioUrl) {
+  let actx;
   try {
-    const actx = new (window.AudioContext || window.webkitAudioContext)();
+    actx = new (window.AudioContext || window.webkitAudioContext)();
     const res = await fetch(audioUrl);
     const buf = await res.arrayBuffer();
     const audio = await actx.decodeAudioData(buf);
@@ -5366,9 +5414,9 @@ async function _detectBeats(audioUrl) {
         lastBeat = e.time;
       }
     }
-    actx.close();
     return beats;
   } catch { return []; }
+  finally { try { actx?.close(); } catch {} }
 }
 
 function _buildVideoTimeline(imgs, beats, duration, tmpl) {
@@ -5617,8 +5665,30 @@ async function _renderRecapVideo({ moments, audioUrl, template, title, subtitle,
   const recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 4_000_000 });
   recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
 
+  const cleanup = () => {
+    try { stream.getTracks().forEach(t => t.stop()); } catch {}
+    if (audioEl) { audioEl.pause(); audioEl.currentTime = 0; }
+    canvas.width = 0; canvas.height = 0;
+  };
+
   return new Promise((resolve) => {
-    recorder.onstop = () => resolve(new Blob(chunks, { type: mimeType }));
+    const TIMEOUT = (DURATION + 10) * 1000;
+    const timer = setTimeout(() => {
+      try { recorder.stop(); } catch {}
+      cleanup();
+      resolve(null);
+    }, TIMEOUT);
+
+    recorder.onstop = () => {
+      clearTimeout(timer);
+      cleanup();
+      resolve(chunks.length ? new Blob(chunks, { type: mimeType }) : null);
+    };
+    recorder.onerror = () => {
+      clearTimeout(timer);
+      cleanup();
+      resolve(null);
+    };
     recorder.start(100);
     if (audioEl) audioEl.play().catch(() => {});
 
@@ -5626,8 +5696,7 @@ async function _renderRecapVideo({ moments, audioUrl, template, title, subtitle,
     const tick = () => {
       const elapsed = (performance.now() - t0) / 1000;
       if (elapsed >= DURATION) {
-        recorder.stop();
-        if (audioEl) { audioEl.pause(); audioEl.currentTime = 0; }
+        try { recorder.stop(); } catch {}
         return;
       }
       _renderVideoFrame(ctx, W, H, elapsed, timeline, chrome, tmpl);
@@ -5643,12 +5712,35 @@ function _videoProgress(show, pct) {
   if (show && !el) {
     el = document.createElement("div");
     el.id = "plursky-video-progress";
-    el.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:9999;padding:14px 20px;text-align:center;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:1.4px;font-weight:700;color:#fff;background:linear-gradient(135deg,#1a120d,#6D28D9);";
+    el.style.cssText = "position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,6,24,0.92);backdrop-filter:blur(8px);";
+    el.innerHTML = `
+      <svg width="120" height="120" viewBox="0 0 120 120" style="margin-bottom:20px">
+        <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6"/>
+        <circle id="vp-ring" cx="60" cy="60" r="52" fill="none" stroke="url(#vp-grad)" stroke-width="6"
+          stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7"
+          transform="rotate(-90 60 60)" style="transition:stroke-dashoffset .3s"/>
+        <defs><linearGradient id="vp-grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#6D28D9"/><stop offset="100%" stop-color="#e85d2e"/>
+        </linearGradient></defs>
+        <text id="vp-pct" x="60" y="66" text-anchor="middle" fill="#fff"
+          font-family="'Geist Mono',monospace" font-size="24" font-weight="700">0%</text>
+      </svg>
+      <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:1.6px;font-weight:700;color:#fff;margin-bottom:6px">
+        RENDERING YOUR RECAP
+      </div>
+      <div style="font-family:'Geist',sans-serif;font-size:12px;color:rgba(255,255,255,0.4)">
+        Keep Plursky open while we create your video
+      </div>
+    `;
     document.body.appendChild(el);
   }
   if (el) {
     if (!show) { el.remove(); return; }
-    el.textContent = `🎬 RENDERING VIDEO… ${Math.round((pct || 0) * 100)}%`;
+    const p = Math.round((pct || 0) * 100);
+    const ring = el.querySelector("#vp-ring");
+    const txt = el.querySelector("#vp-pct");
+    if (ring) ring.setAttribute("stroke-dashoffset", String(326.7 * (1 - (pct || 0))));
+    if (txt) txt.textContent = p + "%";
   }
 }
 
@@ -5848,7 +5940,12 @@ async function _renderCollageGif({ title, subtitle, kicker, accent, moments, ava
     }
   }
 
-  return new Promise(r => { gif.on("finished", r); gif.render(); });
+  return new Promise((resolve) => {
+    const timer = setTimeout(() => { try { gif.abort(); } catch {} resolve(null); }, 30000);
+    gif.on("finished", (blob) => { clearTimeout(timer); resolve(blob); });
+    gif.on("error", () => { clearTimeout(timer); resolve(null); });
+    try { gif.render(); } catch { clearTimeout(timer); resolve(null); }
+  });
 }
 
 // Generic shareable collage. Same renderer underlies the per-artist,

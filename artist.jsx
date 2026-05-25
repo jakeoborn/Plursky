@@ -48,12 +48,22 @@ function _slDate(d) {
   const [day, m, y] = d.split("-");
   return `${["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+m-1]} ${+day}, ${y}`;
 }
-function _slIsEdc(sl) {
+function _slIsThisFestival(sl) {
   const v = (sl.venue?.name || "").toLowerCase();
   const c = (sl.venue?.city?.name || "").toLowerCase();
-  return v.includes("edc") || v.includes("las vegas motor") ||
-    v.includes("kinetic") || v.includes("cosmic") || v.includes("circuit") ||
-    (v.includes("las vegas") && c.includes("las vegas"));
+  const brand = (FESTIVAL_CONFIG.brand || "").toLowerCase();
+  const loc = (FESTIVAL_CONFIG.locationShort || FESTIVAL_CONFIG.location || "").toLowerCase();
+  if (brand && v.includes(brand)) return true;
+  if (brand === "edc") {
+    return v.includes("las vegas motor") || v.includes("kinetic") ||
+      v.includes("cosmic") || v.includes("circuit") ||
+      (v.includes("las vegas") && c.includes("las vegas"));
+  }
+  if (brand === "acl") {
+    return v.includes("zilker") || v.includes("austin city limits") ||
+      (c.includes("austin") && v.includes("park"));
+  }
+  return loc && (v.includes(loc) || c.includes(loc));
 }
 
 // ── YouTube ────────────────────────────────────────────────────
@@ -89,7 +99,8 @@ async function fetchYouTubeSet(artistName) {
     // Prefer results that mention EDC, festival, or live in the title
     const scored = items.map(i => {
       const t = (i.snippet?.title || "").toLowerCase();
-      return { i, score: (t.includes("edc") ? 3 : 0) + (t.includes("festival") ? 2 : 0) + (t.includes("live") ? 1 : 0) };
+      const brand = (FESTIVAL_CONFIG.brand || "").toLowerCase();
+      return { i, score: (brand && t.includes(brand) ? 3 : 0) + (t.includes("festival") ? 2 : 0) + (t.includes("live") ? 1 : 0) };
     });
     scored.sort((a, b) => b.score - a.score);
     const best = scored[0].i;
@@ -151,7 +162,9 @@ async function fetchMixcloud(artistName) {
       const json = await res.json();
       return json.data || [];
     };
-    let items = await fetchItems(`${artistName} EDC`);
+    const _brand = (FESTIVAL_CONFIG.brand || "").toLowerCase();
+    const _loc = (FESTIVAL_CONFIG.locationShort || "").toLowerCase();
+    let items = await fetchItems(`${artistName} ${FESTIVAL_CONFIG.brand || "festival"}`);
     if (!items.length) items = await fetchItems(artistName);
     if (!items.length) return [];
     const an = artistName.toLowerCase();
@@ -163,8 +176,8 @@ async function fetchMixcloud(artistName) {
       const ageYears = (now - new Date(item.created_time || 0).getTime()) / (365.25 * 24 * 3600000);
       return {
         item,
-        score: (t.includes("edc")        ? 4 : 0) +
-               (t.includes("las vegas")  ? 3 : 0) +
+        score: (_brand && t.includes(_brand) ? 4 : 0) +
+               (_loc && t.includes(_loc)     ? 3 : 0) +
                (t.includes("live")       ? 2 : 0) +
                (t.includes("set")        ? 1 : 0) +
                (u.includes(an) || t.includes(an) ? 2 : 0) +
@@ -418,7 +431,7 @@ function SpiderWeb({ currentArtist, currentStage, similar, onSelectArtist }) {
         </span>
         {edcCount > 0 && (
           <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: currentStage.color, fontWeight: 700 }}>
-            {edcCount} ALSO AT EDC — TAP TO EXPLORE
+            {edcCount} ALSO AT {(FESTIVAL_CONFIG.brand || FESTIVAL_CONFIG.shortName || "").toUpperCase()} — TAP TO EXPLORE
           </span>
         )}
       </div>
@@ -516,7 +529,7 @@ function ShareArtistButton({ artist }) {
   const handleShare = () => {
     const url = `${window.location.origin}${window.location.pathname}?artist=${artist.id}`;
     if (navigator.share) {
-      navigator.share({ title: artist.name + " @ EDC Las Vegas 2026", url }).catch(() => {});
+      navigator.share({ title: artist.name + " @ " + (FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name), url }).catch(() => {});
     } else {
       navigator.clipboard.writeText(url).then(() => {
         setCopied(true);
@@ -1256,7 +1269,7 @@ function ArtistScreen({ state, setState }) {
         {/* ── YouTube live set ─────────────────────────────── */}
         <div id="artist-section-livestream" />
         {(() => {
-          const ytSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(activeName + " live set EDC")}`;
+          const ytSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(activeName + " live set " + (FESTIVAL_CONFIG.brand || FESTIVAL_CONFIG.shortName))}`;
           return (
             <div style={{ marginBottom: 18 }}>
               <div className="mono" style={{
@@ -1561,7 +1574,7 @@ function ArtistScreen({ state, setState }) {
               const songs = (sl.sets?.set || []).flatMap(s => s.song || []);
               const isOpen = !!slExpanded[idx];
               const displaySongs = isOpen ? songs : songs.slice(0, 5);
-              const isEdc = _slIsEdc(sl);
+              const isFest = _slIsThisFestival(sl);
               const venue = sl.venue?.name || "";
               const city  = sl.venue?.city?.name || "";
               const state = sl.venue?.city?.stateCode || sl.venue?.city?.country?.code || "";
@@ -1569,13 +1582,13 @@ function ArtistScreen({ state, setState }) {
                 <div key={idx} style={{
                   background: "var(--paper-2)", borderRadius: 12,
                   padding: "12px 14px", marginBottom: 10,
-                  border: `1px solid ${isEdc ? "rgba(232,93,46,0.4)" : "var(--line)"}`,
+                  border: `1px solid ${isFest ? "rgba(232,93,46,0.4)" : "var(--line)"}`,
                 }}>
                   <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 8 }}>
                     <div>
-                      {isEdc && (
+                      {isFest && (
                         <div className="mono" style={{ fontSize: 8, letterSpacing: 1.4, color: "var(--ember)", fontWeight: 700, marginBottom: 3 }}>
-                          ★ EDC LAS VEGAS
+                          ★ {(FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.brand || "").toUpperCase()}
                         </div>
                       )}
                       <div className="mono" style={{ fontSize: 10, letterSpacing: 0.8, color: "var(--ink)", fontWeight: 600 }}>

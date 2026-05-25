@@ -282,12 +282,15 @@ const ON_SITE_RADIUS_MI  = FESTIVAL_CONFIG.gps.onSiteRadiusMi;
 
 // 3-point Cramer affine: [mapX, mapY] = M · [lat, lng, 1]
 function _solveMapAffine() {
+  if (!FESTIVAL_CONFIG.gpsAnchors || FESTIVAL_CONFIG.gpsAnchors.length < 3) return null;
   const find = (id) => STAGES.find(s => s.id === id);
   const [a0, a1, a2] = FESTIVAL_CONFIG.gpsAnchors;
+  if (!find(a0.stageId) || !find(a1.stageId) || !find(a2.stageId)) return null;
   const A = { lat: a0.lat, lng: a0.lng, mx: find(a0.stageId).x, my: find(a0.stageId).y };
   const B = { lat: a1.lat, lng: a1.lng, mx: find(a1.stageId).x, my: find(a1.stageId).y };
   const C = { lat: a2.lat, lng: a2.lng, mx: find(a2.stageId).x, my: find(a2.stageId).y };
   const det = A.lat*(B.lng - C.lng) - A.lng*(B.lat - C.lat) + (B.lat*C.lng - C.lat*B.lng);
+  if (Math.abs(det) < 1e-12) return null;
   const solve = (v1, v2, v3) => {
     // Cramer's rule for [v1; v2; v3] = M * [a; b; c] where M is the
     // 3-anchor [lat,lng,1] system. Last term of `a` had its sign
@@ -304,6 +307,7 @@ function _solveMapAffine() {
 }
 const MAP_AFFINE = _solveMapAffine();
 function gpsToMap(lat, lng) {
+  if (!MAP_AFFINE) return { x: 50, y: 50 };
   return {
     x: MAP_AFFINE.x[0]*lat + MAP_AFFINE.x[1]*lng + MAP_AFFINE.x[2],
     y: MAP_AFFINE.y[0]*lat + MAP_AFFINE.y[1]*lng + MAP_AFFINE.y[2],
@@ -2828,6 +2832,7 @@ function _loadMapLibre() {
 // Inverse of gpsToMap. Given a 100-space (x, y) inside the LVMS infield,
 // return (lat, lng). Same 3-point affine, solved in the other direction.
 function mapToGps(x, y) {
+  if (!MAP_AFFINE) return { lat: FESTIVAL_CONFIG.gps.lat, lng: FESTIVAL_CONFIG.gps.lng };
   const A = MAP_AFFINE.x;  // [ax, ay, cx]
   const B = MAP_AFFINE.y;  // [bx, by, cy]
   const det = A[0]*B[1] - A[1]*B[0];
@@ -3074,6 +3079,7 @@ function RealMap({
       // surrounded by horizon-purple, so when zoomed out users see a
       // recognizable racetrack silhouette around the festival footprint.
       const grandstandFeature = () => {
+        if (!FESTIVAL_CONFIG.venue?.ovalBounds) return null;
         const b = FESTIVAL_CONFIG.venue.ovalBounds;
         // Outer ring (the grandstand outline) + inner ring (the infield)
         // = a "donut" extrusion that traces the speedway grandstand.
@@ -3146,6 +3152,7 @@ function RealMap({
       // lots, casinos, the airport, etc. all get masked. The festival
       // footprint shows through the hole.
       const edcClipFeature = () => {
+        if (!FESTIVAL_CONFIG.venue?.festivalBounds) return null;
         const b = FESTIVAL_CONFIG.venue.festivalBounds;
         return {
           type: "Feature",
@@ -3167,6 +3174,7 @@ function RealMap({
       // Polygon of *just* the festival footprint, used as a `within` filter
       // to constrain the 3D building extrusion layer.
       const festivalFootprint = () => {
+        if (!FESTIVAL_CONFIG.venue?.festivalBounds) return null;
         const b = FESTIVAL_CONFIG.venue.festivalBounds;
         return {
           type: "Feature",
@@ -3209,6 +3217,7 @@ function RealMap({
         // grounds show through. Restored after the Cramer fix; the polygon
         // hole now lines up with the actual festival GPS.
         _safeLayer("outside-mask", () => {
+          if (!FESTIVAL_CONFIG.venue?.festivalBounds) return;
           const _maskFeature = () => {
             const b = FESTIVAL_CONFIG.venue.festivalBounds;
             const cx = (b.west + b.east) / 2;
@@ -3254,10 +3263,12 @@ function RealMap({
 
         // Festival floor — warm Plursky tint over the festival rectangle.
         _safeLayer("festival-floor", () => {
+          const fp = festivalFootprint();
+          if (!fp) return;
           if (!map.getSource("festival-floor")) {
             map.addSource("festival-floor", {
               type: "geojson",
-              data: festivalFootprint(),
+              data: fp,
             });
           }
           if (!map.getLayer("festival-floor")) {
@@ -3519,8 +3530,10 @@ function RealMap({
         // Lock panning to the festival footprint + tiny buffer. The map
         // is for the fairgrounds exclusively (Snapchat-style focus); users
         // shouldn't be able to pan out to the Strip or surrounding Vegas.
-        const b = FESTIVAL_CONFIG.venue.festivalBounds;
-        map.setMaxBounds([[b.west - 0.004, b.south - 0.004], [b.east + 0.004, b.north + 0.004]]);
+        if (FESTIVAL_CONFIG.venue?.festivalBounds) {
+          const b = FESTIVAL_CONFIG.venue.festivalBounds;
+          map.setMaxBounds([[b.west - 0.004, b.south - 0.004], [b.east + 0.004, b.north + 0.004]]);
+        }
 
         // Sub-landmark text labels — named places/walkways drawn on the
         // EDC poster. Same data the SVG TopDownMap LABELS toggle uses,
@@ -4567,9 +4580,37 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
 // Uber/Lyft web links — these auto-bridge to the native app if installed,
 // else fall through to the in-browser request flow.
 function RideshareSheet({ onClose }) {
-  // Festival's published rideshare pickup zone (FESTIVAL_CONFIG.rideshareGps).
-  // Pre-set as the pickup pin in both Uber and Lyft universal links so the
-  // driver knows exactly where you are.
+  if (!FESTIVAL_CONFIG.rideshareGps) {
+    return (
+      <div onClick={onClose} style={{
+        position: "absolute", inset: 0, zIndex: 12,
+        background: "rgba(0,0,0,0.45)", backdropFilter: "blur(4px)",
+        display: "flex", alignItems: "flex-end",
+        animation: "fadeIn .2s",
+      }}>
+        <div onClick={e => e.stopPropagation()} style={{
+          background: "var(--paper)", color: "var(--ink)",
+          borderTopLeftRadius: 22, borderTopRightRadius: 22,
+          width: "100%", padding: "28px 24px 36px", textAlign: "center",
+        }}>
+          <div style={{
+            width: 48, height: 48, borderRadius: "50%", margin: "0 auto 14px",
+            background: "var(--paper-2)", display: "flex", alignItems: "center", justifyContent: "center",
+            fontSize: 22,
+          }}>🚗</div>
+          <div className="serif" style={{ fontSize: 20, fontWeight: 400, marginBottom: 6 }}>Rideshare coming soon</div>
+          <div style={{ fontSize: 12, color: "var(--muted)", lineHeight: 1.5, maxWidth: 260, margin: "0 auto" }}>
+            We're mapping pickup zones for {FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name}. Check back closer to the festival.
+          </div>
+          <button onClick={onClose} className="mono" style={{
+            marginTop: 18, padding: "10px 32px", borderRadius: 10, border: "none",
+            background: "var(--ink)", color: "var(--paper)",
+            fontSize: 11, letterSpacing: 1.2, fontWeight: 700, cursor: "pointer",
+          }}>GOT IT</button>
+        </div>
+      </div>
+    );
+  }
   const { lat, lng, label, note } = FESTIVAL_CONFIG.rideshareGps;
   const open = (url) => { window.open(url, "_blank", "noopener"); onClose(); };
   const nickname = encodeURIComponent(`${FESTIVAL_CONFIG.brand} Rideshare Pickup`);
