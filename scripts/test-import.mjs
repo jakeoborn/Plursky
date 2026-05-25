@@ -386,6 +386,55 @@ async function run() {
           Math.abs(offStageMoment.parsedGps.lng - (-115.005)) < 0.001);
   }
 
+  // ── TEST 5 ── Resilience to WebKit EXIF stripping.
+  // Import a JPEG with NO EXIF segment whatsoever, but with the iOS
+  // screenshot filename pattern. The filename-date heuristic should
+  // catch the date and the moment should land on night 1 (Friday) at
+  // 23:35 — Peggy Gou's set. If EXIF + XMP + filename all fail, the
+  // lastModified guard kicks the moment into the fallback bucket
+  // instead of trusting the WebKit conversion timestamp.
+  await page.evaluate(async () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = canvas.height = 1;
+    canvas.getContext('2d').fillStyle = '#caa';
+    canvas.getContext('2d').fillRect(0, 0, 1, 1);
+    const blob = await new Promise(r => canvas.toBlob(r, 'image/jpeg', 0.85));
+    // No EXIF, no XMP. Filename carries the date.
+    const file = new File([blob], 'Screenshot 2026-05-15 at 23.35.49.png', {
+      type: 'image/jpeg', lastModified: Date.now(),
+    });
+    const tx = new DataTransfer();
+    tx.items.add(file);
+    const inp = document.querySelector('input[type=file][accept*="image"][multiple]');
+    inp.files = tx.files;
+    inp.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+
+  await page.waitForFunction(() => {
+    const m = JSON.parse(localStorage.getItem('plursky_moments_v1') || '{}');
+    return Object.values(m).flat().some(x => x.takenAt === '2026-05-15 23:35' && x.id !== undefined && !x.id.startsWith('m_177') ? false : x.takenAt === '2026-05-15 23:35');
+  }, { timeout: 15000 }).catch(() => {});
+
+  const screenshotMoment = await page.evaluate(() => {
+    const m = JSON.parse(localStorage.getItem('plursky_moments_v1') || '{}');
+    const all = Object.values(m).flat();
+    // Find the screenshot import (most recent, with the takenAt we just set).
+    return all
+      .filter(x => x.takenAt === '2026-05-15 23:35')
+      .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0))[0] || null;
+  });
+  console.log('\n── TEST 5: filename-date heuristic catches WebKit-stripped JPEG ──');
+  check('moment recovered via filename heuristic', !!screenshotMoment);
+  if (screenshotMoment) {
+    check(`night = 1 (got ${screenshotMoment.night})`, screenshotMoment.night === 1);
+    check(`takenAt = 2026-05-15 23:35 (got ${screenshotMoment.takenAt})`,
+          screenshotMoment.takenAt === '2026-05-15 23:35');
+    // It should be auto-tagged to Peggy Gou (n4) because the time falls
+    // in her window — no EXIF, no XMP, but the filename gave us the date.
+    check(`artistId = "n4" via Peggy Gou time match (got ${screenshotMoment.artistId})`,
+          screenshotMoment.artistId === 'n4');
+  }
+
   // ── SIBLING-SUGGESTION ── Inject a third moment in localStorage at a
   // capture time within 30 min of the Peggy Gou-tagged moment from TEST 1.
   // The Memories card for that third moment should render a
@@ -445,10 +494,10 @@ async function run() {
   await page.screenshot({ path: '/tmp/plursky-artist.png', fullPage: true });
 
   const stripHeader = await page.locator('text=/YOUR MOMENTS FROM THIS SET/i').count();
-  // Sibling-suggestion test above tagged a second moment to Peggy Gou,
-  // so the strip's count now reads "2 memories saved" (1 from TEST 1
-  // EXIF auto-tag + 1 from the sibling-suggestion click).
-  const memoryCount = await page.locator('text=/[12] memor(y|ies) saved/i').count();
+  // Earlier tests add multiple moments tagged to Peggy Gou (EXIF
+  // auto-tag + filename-heuristic auto-tag + sibling-suggestion click).
+  // Just assert SOME positive integer count subtitle is present.
+  const memoryCount = await page.locator('text=/\\d+ memor(y|ies) saved/i').count();
   console.log('\n── TEST 3: per-artist memories strip on Peggy Gou screen ──');
   check(`"YOUR MOMENTS FROM THIS SET" header rendered (count=${stripHeader})`, stripHeader >= 1);
   check(`memory count subtitle rendered (count=${memoryCount})`, memoryCount >= 1);

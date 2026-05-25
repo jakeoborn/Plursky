@@ -2413,18 +2413,35 @@ async function _processMomentMedia(file) {
   throw new Error("Unsupported file type: " + file.type);
 }
 
-// Fall back to `file.lastModified` for date when EXIF is missing (always for
-// videos, sometimes for screenshots / edited photos). iOS preserves capture
-// time as lastModified for camera-roll content, so this is reliable enough
-// for set-time matching.
+// Fallback ladder when EXIF is missing:
+//   1. XMP date (handled in _parseExifMeta — it scans XMP segments too now)
+//   2. Filename pattern (iOS "Screenshot ..." / "Photo on ..." / Android
+//      IMG_YYYYMMDD_HHMMSS)
+//   3. file.lastModified — BUT only if it's clearly the original capture
+//      time, not the WebKit conversion timestamp. iOS WKWebView's
+//      HEIC→JPEG conversion sets lastModified to "now"; trusting that
+//      would dump every photo into the current festival night fallback.
+//      The heuristic: lastModified within 30s of now ⇒ conversion stamp,
+//      skip it.
 function _metaFromFile(file, exifMeta) {
   const out = { date: exifMeta?.date || null, lat: exifMeta?.lat ?? null, lng: exifMeta?.lng ?? null };
+  if (!out.date) {
+    const fileDate = _parseFilenameDate(file?.name);
+    if (fileDate) out.date = fileDate;
+  }
   if (!out.date && file?.lastModified) {
-    const d = new Date(file.lastModified);
-    out.date = {
-      yr: d.getFullYear(), mo: d.getMonth() + 1, dy: d.getDate(),
-      hh: d.getHours(), mm: d.getMinutes(), ss: d.getSeconds(),
-    };
+    const ageMs = Date.now() - file.lastModified;
+    // <30s old = almost certainly WebKit's conversion timestamp, not the
+    // photo's real capture time. Skip in that case so the moment lands
+    // as fallback (truthfully no-date) rather than tagged to today's
+    // night using a manufactured timestamp.
+    if (ageMs >= 30 * 1000) {
+      const d = new Date(file.lastModified);
+      out.date = {
+        yr: d.getFullYear(), mo: d.getMonth() + 1, dy: d.getDate(),
+        hh: d.getHours(), mm: d.getMinutes(), ss: d.getSeconds(),
+      };
+    }
   }
   return out;
 }
@@ -3037,6 +3054,70 @@ const _EXIF_TAG_GPS_LAT     = 0x0002;
 const _EXIF_TAG_GPS_LNG_REF = 0x0003;
 const _EXIF_TAG_GPS_LNG     = 0x0004;
 
+// Try multiple date formats — ISO 8601 (XMP-style) and EXIF (colon-sep).
+// Returns the canonical { yr, mo, dy, hh, mm, ss } shape or null.
+function _parseDateString(s) {
+  if (!s) return null;
+  // ISO 8601: 2026-05-15T23:35:00(.000)?(±HH:MM|Z)?
+  let m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/.exec(s);
+  if (m) return { yr: +m[1], mo: +m[2], dy: +m[3], hh: +m[4], mm: +m[5], ss: +m[6] };
+  // EXIF colon: 2026:05:15 23:35:00
+  m = /^(\d{4}):(\d{2}):(\d{2})\s+(\d{2}):(\d{2}):(\d{2})/.exec(s);
+  if (m) return { yr: +m[1], mo: +m[2], dy: +m[3], hh: +m[4], mm: +m[5], ss: +m[6] };
+  return null;
+}
+
+// XMP packets are XML embedded in an APP1 segment with the prefix
+// "http://ns.adobe.com/xap/1.0/\0". WebKit (and most iOS pickers)
+// sometimes strip the binary EXIF block but leave the XMP intact — so
+// this is a real recovery path for "the photo has no DateTimeOriginal
+// but the XMP CreateDate is fine". Regex over the packet text is way
+// simpler than spinning up a DOM parser for the rare cases we hit it.
+function _parseXmpDateFromText(xmpText) {
+  if (!xmpText) return null;
+  const patterns = [
+    /<exif:DateTimeOriginal>([^<]+)<\/exif:DateTimeOriginal>/,
+    /exif:DateTimeOriginal=["']([^"']+)["']/,
+    /<photoshop:DateCreated>([^<]+)<\/photoshop:DateCreated>/,
+    /photoshop:DateCreated=["']([^"']+)["']/,
+    /<xmp:CreateDate>([^<]+)<\/xmp:CreateDate>/,
+    /xmp:CreateDate=["']([^"']+)["']/,
+  ];
+  for (const re of patterns) {
+    const m = re.exec(xmpText);
+    if (m) {
+      const parsed = _parseDateString(m[1].trim());
+      if (parsed) return parsed;
+    }
+  }
+  return null;
+}
+
+// Tertiary fallback when both EXIF and XMP are stripped: iOS screenshots
+// and a few other system-generated files encode the capture time in the
+// filename. Worth a try because file.lastModified on the WebKit picker
+// path is usually the conversion timestamp (= "right now"), not when
+// the photo was taken.
+function _parseFilenameDate(name) {
+  if (!name) return null;
+  let m;
+  // iOS screenshot: "Screenshot 2026-05-15 at 23.35.49.png"
+  m = /Screenshot\s+(\d{4})-(\d{2})-(\d{2})\s+at\s+(\d{2})\.(\d{2})\.(\d{2})/i.exec(name);
+  if (m) return { yr: +m[1], mo: +m[2], dy: +m[3], hh: +m[4], mm: +m[5], ss: +m[6] };
+  // iOS "Photo on" format: "Photo on 2026-05-15 at 11.35 PM.jpg"
+  m = /Photo\s+on\s+(\d{4})-(\d{2})-(\d{2})\s+at\s+(\d{1,2})\.(\d{2})\s*(AM|PM)/i.exec(name);
+  if (m) {
+    let hh = +m[4];
+    if (/PM/i.test(m[6]) && hh < 12) hh += 12;
+    if (/AM/i.test(m[6]) && hh === 12) hh = 0;
+    return { yr: +m[1], mo: +m[2], dy: +m[3], hh, mm: +m[5], ss: 0 };
+  }
+  // Android camera: "IMG_20260515_233549.jpg" / "VID_20260515_233549.mp4"
+  m = /[IV][MD][GP]_(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})/.exec(name);
+  if (m) return { yr: +m[1], mo: +m[2], dy: +m[3], hh: +m[4], mm: +m[5], ss: +m[6] };
+  return null;
+}
+
 async function _parseExifMeta(file) {
   const out = { date: null, lat: null, lng: null };
   if (!file || !/^image\//.test(file.type)) return out;
@@ -3045,6 +3126,10 @@ async function _parseExifMeta(file) {
     const buf = await file.slice(0, 256 * 1024).arrayBuffer();
     const dv = new DataView(buf);
     if (dv.getUint16(0) !== 0xFFD8) return out; // not a JPEG → no EXIF
+    // Scan ALL APP1 segments — a file may have separate EXIF + XMP
+    // segments, and WebKit's HEIC→JPEG conversion is observed to
+    // sometimes strip one but preserve the other. Try both before
+    // giving up.
     let off = 2;
     while (off + 4 < dv.byteLength) {
       if (dv.getUint8(off) !== 0xFF) break;
@@ -3057,7 +3142,27 @@ async function _parseExifMeta(file) {
           dv.getUint8(off + 5) === 0x78 && // x
           dv.getUint8(off + 6) === 0x69 && // i
           dv.getUint8(off + 7) === 0x66;   // f
-        if (!exifHdr) { off += 2 + len; continue; }
+        if (!exifHdr) {
+          // Not EXIF — maybe XMP. Check the Adobe namespace header.
+          if (!out.date) {
+            const XMP_HDR = "http://ns.adobe.com/xap/1.0/";
+            let isXmp = true;
+            for (let i = 0; i < XMP_HDR.length; i++) {
+              if (dv.getUint8(off + 4 + i) !== XMP_HDR.charCodeAt(i)) { isXmp = false; break; }
+            }
+            if (isXmp) {
+              const xmpStart = off + 4 + XMP_HDR.length + 1; // skip header + NUL
+              const xmpEnd   = off + 2 + len;
+              let text = "";
+              for (let i = xmpStart; i < Math.min(xmpEnd, dv.byteLength); i++) {
+                text += String.fromCharCode(dv.getUint8(i));
+              }
+              const xmpDate = _parseXmpDateFromText(text);
+              if (xmpDate) out.date = xmpDate;
+            }
+          }
+          off += 2 + len; continue;
+        }
         const tiff = off + 10;
         const byteOrder = dv.getUint16(tiff);
         const little = byteOrder === 0x4949;
@@ -3210,8 +3315,8 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds) {
   // EDC. Don't force-tag the closest artist in that case; surface as
   // "off_stage" so the UI shows 📍 BETWEEN SETS instead of a wrong
   // artist chip. With anchors for all 9 stages (data.jsx gpsAnchors,
-  // v160+), 80m is the tightest threshold that doesn't false-positive
-  // "back of the crowd". Earlier v160 launch used 150m because only 3
+  // v161+), 80m is the tightest threshold that doesn't false-positive
+  // "back of the crowd". Earlier v161 launch used 150m because only 3
   // of 9 anchors were calibrated — that left big gaps near the other
   // 6 stages, forcing a conservative threshold.
   if (lat != null && lng != null) {
@@ -5025,7 +5130,7 @@ async function _shareRecapCard(recap) {
   const file = new File([blob], filename, { type: "image/png" });
   const title = `My ${window.FESTIVAL_CONFIG?.shortName || "festival"}`;
 
-  // Native iOS path (v160): @capacitor/share with `files` (data URL) — more
+  // Native iOS path (v161): @capacitor/share with `files` (data URL) — more
   // reliable inside WKWebView than the web `navigator.share({ files })` path
   // which can fail silently in some iOS versions.
   const capShare = window.Capacitor?.Plugins?.Share;

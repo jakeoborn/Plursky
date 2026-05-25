@@ -451,7 +451,7 @@ async function sbExportUserData(state) {
   const filename = `plursky-export-${(window.FESTIVAL_CONFIG?.id || "festival")}-${Date.now()}.json`;
   const title = "Plursky data export";
 
-  // v160: native iOS via @capacitor/share — more reliable inside WKWebView
+  // v161: native iOS via @capacitor/share — more reliable inside WKWebView
   // than navigator.share, which silently fails on some iOS versions when
   // sharing a File from a blob URL.
   const capShare = window.Capacitor?.Plugins?.Share;
