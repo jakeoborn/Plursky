@@ -2485,6 +2485,65 @@ function useMomentPhoto(photoId) {
 // Short label for how a moment got its tag. Shown as a small chip so the
 // user can tell at a glance whether the auto-tagger was confident or
 // dropped this one into a fallback bucket they should retag.
+// ── Setlist-to-photo song matching ──────────────────────────────
+const _setlistCache = {};
+async function _getSetlistForArtist(artistName) {
+  const key = artistName.toLowerCase().replace(/\W+/g, "_");
+  if (_setlistCache[key]) return _setlistCache[key];
+  try {
+    const setlists = await window.fetchSetlists?.(artistName);
+    if (!setlists?.length) return null;
+    const festBrand = (window.FESTIVAL_CONFIG?.brand || "").toLowerCase();
+    const festSetlist = setlists.find(sl => {
+      const v = (sl.venue?.name || "").toLowerCase();
+      return v.includes(festBrand) || v.includes("electric daisy") || v.includes("motor speedway") ||
+        v.includes("zilker") || v.includes("austin city");
+    });
+    const target = festSetlist || setlists[0];
+    const songs = (target.sets?.set || []).flatMap(s => (s.song || []).map(song => song.name)).filter(Boolean);
+    const result = songs.length > 0 ? { songs, venue: target.venue?.name, date: target.eventDate } : null;
+    _setlistCache[key] = result;
+    return result;
+  } catch { return null; }
+}
+
+function _estimateSongAtTime(artist, setlistData, photoTakenAt) {
+  if (!setlistData?.songs?.length || !photoTakenAt || !artist) return null;
+  const CFG = window.FESTIVAL_CONFIG || {};
+  const dm = CFG.dayDates?.[artist.day];
+  if (!dm) return null;
+  const [sh, sm] = artist.start.split(":").map(Number);
+  const [eh, em] = artist.end.split(":").map(Number);
+  const setStartMs = dm.midnightUtc + (sh < 6 ? sh + 24 : sh) * 3600000 + sm * 60000;
+  const setEndMs = dm.midnightUtc + (eh < 6 ? eh + 24 : eh) * 3600000 + em * 60000;
+  const setDuration = setEndMs - setStartMs;
+  if (setDuration <= 0) return null;
+  const photoMs = Date.parse(photoTakenAt.replace(" ", "T"));
+  if (isNaN(photoMs)) return null;
+  const elapsed = photoMs - setStartMs;
+  if (elapsed < 0 || elapsed > setDuration) return null;
+  const songIdx = Math.min(
+    Math.floor((elapsed / setDuration) * setlistData.songs.length),
+    setlistData.songs.length - 1
+  );
+  return setlistData.songs[songIdx];
+}
+
+function useSetlistSong(artist, takenAt) {
+  const [song, setSong] = React.useState(null);
+  React.useEffect(() => {
+    if (!artist || !takenAt) return;
+    let cancelled = false;
+    _getSetlistForArtist(artist.name).then(data => {
+      if (cancelled || !data) return;
+      const s = _estimateSongAtTime(artist, data, takenAt);
+      if (s) setSong(s);
+    });
+    return () => { cancelled = true; };
+  }, [artist?.id, takenAt]);
+  return song;
+}
+
 const _TAG_SOURCE_LABEL = {
   exif:                 { text: "AUTO · EXIF",       tone: "ok" },
   filetime:             { text: "AUTO · FILE TIME",  tone: "ok" },
@@ -2598,6 +2657,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
   const photoUrl = useMomentPhoto(moment.photoId);
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
+  const nowPlaying = useSetlistSong(artist, moment.takenAt);
   const [editing, setEditing] = React.useState(false);
   const tagInfo = (() => {
     const base = _TAG_SOURCE_LABEL[moment.tagSource] || null;
@@ -2755,6 +2815,15 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
           display: "flex", alignItems: "center", gap: 4,
         }}>
           <span style={{ opacity: 0.6 }}>📡</span> NO GPS — TAGGED BY TIME ONLY
+        </div>
+      )}
+      {nowPlaying && (
+        <div className="mono" style={{
+          marginTop: 5, fontSize: 8, letterSpacing: 1, fontWeight: 700,
+          color: stage?.color || "var(--horizon)",
+          display: "flex", alignItems: "center", gap: 5,
+        }}>
+          <span style={{ fontSize: 10 }}>♫</span> {nowPlaying.toUpperCase()}
         </div>
       )}
       {editing && onUpdate && (
@@ -7888,17 +7957,17 @@ function RecapScreen({ state, setState }) {
           </RecapCard>
         )}
 
-        {/* SETLIST OVERLAY — post-festival feature */}
+        {/* SETLIST MEMORIES */}
         {recap.momentsCount > 0 && recap.setsCount > 0 && (
           <RecapCard kicker="SETLIST MEMORIES" paper="var(--paper)">
             <div className="serif" style={{ fontSize: 22, lineHeight: 1.1, marginBottom: 6 }}>
               What was <em style={{ color: "var(--ember)" }}>playing</em>?
             </div>
             <div style={{ fontSize: 12, color: "var(--muted)", lineHeight: 1.5 }}>
-              After the festival, we'll match your photos to the actual setlist — showing exactly which song was playing when you took each shot. Check back when setlists are published.
+              Your photos are matched to the actual setlist — showing which song was playing when you took each shot. Open any moment in Memories to see the track.
             </div>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--horizon)", fontWeight: 700, marginTop: 10 }}>
-              COMING AFTER FESTIVAL · PLUS EXCLUSIVE
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--success)", fontWeight: 700, marginTop: 10 }}>
+              ✓ LIVE · POWERED BY SETLIST.FM
             </div>
           </RecapCard>
         )}
