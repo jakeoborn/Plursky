@@ -30,15 +30,22 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.4";
 // invoke this function from a browser. Bare-Origin requests (server-to-server,
 // curl) skip CORS entirely so they're unaffected; the JWT check below is what
 // actually enforces who can delete whom.
-const ALLOWED_ORIGINS = new Set([
+const EXACT_ORIGINS = new Set([
   "https://plursky.com",
   "https://www.plursky.com",
   "capacitor://localhost",   // iOS Capacitor runtime
-  "http://localhost",        // local dev
-  "http://localhost:8080",
 ]);
+const ORIGIN_PATTERNS = [
+  /^http:\/\/localhost(:\d+)?$/,
+  /^http:\/\/127\.0\.0\.1(:\d+)?$/,
+];
+function isAllowedOrigin(origin: string | null): boolean {
+  if (!origin) return false;
+  if (EXACT_ORIGINS.has(origin)) return true;
+  return ORIGIN_PATTERNS.some((re) => re.test(origin));
+}
 function corsFor(origin: string | null) {
-  const allow = origin && ALLOWED_ORIGINS.has(origin) ? origin : "https://plursky.com";
+  const allow = isAllowedOrigin(origin) ? origin! : "https://plursky.com";
   return {
     "Access-Control-Allow-Origin":  allow,
     "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",

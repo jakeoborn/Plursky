@@ -451,7 +451,7 @@ async function sbExportUserData(state) {
   const filename = `plursky-export-${(window.FESTIVAL_CONFIG?.id || "festival")}-${Date.now()}.json`;
   const title = "Plursky data export";
 
-  // v153: native iOS via @capacitor/share — more reliable inside WKWebView
+  // v154: native iOS via @capacitor/share — more reliable inside WKWebView
   // than navigator.share, which silently fails on some iOS versions when
   // sharing a File from a blob URL.
   const capShare = window.Capacitor?.Plugins?.Share;
@@ -1218,9 +1218,12 @@ function sbGroupJoin(code, { pid, name, artistIds }, onChange) {
   if (!_sb) return () => {};
   sbGroupLeave(code);
   const members = new Map();
-  const entry = { ch: null, members, myState: { pid, name, artistIds } };
+  const entry = { ch: null, members, myState: { pid, name, artistIds }, hb: null };
   const ch = _sb.channel(`group-${code}`);
   entry.ch = ch;
+  const sendState = () => {
+    try { ch.send({ type: "broadcast", event: "lineup", payload: entry.myState }); } catch {}
+  };
   ch.on("broadcast", { event: "lineup" }, ({ payload }) => {
     // Ignore our own echoes and malformed payloads.
     if (!payload || !payload.pid || payload.pid === entry.myState.pid) return;
@@ -1230,14 +1233,30 @@ function sbGroupJoin(code, { pid, name, artistIds }, onChange) {
     // Echo our state to a member we hadn't seen before. Supabase broadcast is
     // fire-and-forget — historical messages aren't replayed to new joiners — so
     // without this echo, a friend who joins after the host never learns that
-    // the host is in the channel. Echo terminates because we only echo on the
-    // first sighting of a pid; on the second message from same pid, we skip.
+    // the host is in the channel. Echo twice with a small delay because the
+    // new joiner's subscribe + receive pipeline isn't always ready in time for
+    // the immediate echo (audit-confirmed race on 2026-05-24: A would see B
+    // but B never saw A's initial echo). The 1.5s repeat papers over that.
     if (isNew) {
-      try { ch.send({ type: "broadcast", event: "lineup", payload: entry.myState }); } catch {}
+      sendState();
+      setTimeout(sendState, 1500);
     }
   }).subscribe(status => {
     if (status !== "SUBSCRIBED") return;
-    try { ch.send({ type: "broadcast", event: "lineup", payload: entry.myState }); } catch {}
+    // Initial broadcast salvo: send immediately, then again at 800ms and 2.5s.
+    // Handles the case where we're the LATE joiner — the host's echo is in
+    // flight and might arrive before our subscribe is fully wired, but ours
+    // gets to them on at least one of the three sends. Cheap belt-and-
+    // suspenders for a real two-phone scenario where networks aren't perfect.
+    sendState();
+    setTimeout(sendState, 800);
+    setTimeout(sendState, 2500);
+    // Periodic heartbeat keeps presence fresh — backgrounded tabs that get
+    // WebSocket-throttled can resurrect their membership on next heartbeat,
+    // and any member who drops + rejoins quickly gets picked up by everyone
+    // else. 25s is shorter than Supabase's default WS ping (30s) so we
+    // refresh strictly inside the connection's keep-alive window.
+    entry.hb = setInterval(sendState, 25000);
   });
   _groupChannels.set(code, entry);
   return () => sbGroupLeave(code);

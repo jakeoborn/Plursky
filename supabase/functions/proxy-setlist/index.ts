@@ -17,16 +17,29 @@
 // `SETLISTFM_KEY` env var, set via `supabase secrets set` (NOT the
 // SUPABASE_-reserved namespace).
 
-const ALLOWED_ORIGINS = new Set([
+// Origins allowed to call the proxy. Exact matches plus a pattern list for
+// local-dev convenience (any port on localhost / 127.0.0.1). We deliberately
+// don't echo arbitrary origins back — only allowed ones get the `*-Origin`
+// header, so a stranger embedding the endpoint in their page still hits a
+// CORS error.
+const EXACT_ORIGINS = new Set([
   "https://plursky.com",
   "https://www.plursky.com",
   "capacitor://localhost",
-  "http://localhost",
-  "http://localhost:8080",
 ]);
+const ORIGIN_PATTERNS = [
+  /^http:\/\/localhost(:\d+)?$/,
+  /^http:\/\/127\.0\.0\.1(:\d+)?$/,
+];
+
+function isAllowedOrigin(origin: string | null): boolean {
+  if (!origin) return false;
+  if (EXACT_ORIGINS.has(origin)) return true;
+  return ORIGIN_PATTERNS.some((re) => re.test(origin));
+}
 
 function corsFor(origin: string | null) {
-  const ok = origin && ALLOWED_ORIGINS.has(origin);
+  const ok = isAllowedOrigin(origin);
   return {
     "Access-Control-Allow-Origin":  ok ? origin! : "https://plursky.com",
     "Access-Control-Allow-Methods": "GET, OPTIONS",

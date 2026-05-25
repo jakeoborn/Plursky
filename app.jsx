@@ -152,6 +152,16 @@ function SearchModal({ onClose, onSelectArtist }) {
 
   React.useEffect(() => { setTimeout(() => inputRef.current?.focus(), 60); }, []);
 
+  // Global Escape — previously only the input's onKeyDown listened, so once
+  // focus left the input (e.g. user scrolled the result list or tapped a
+  // chip) Escape became a dead key and the modal got stuck open. Listening
+  // on document fixes that.
+  React.useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
   const query = q.trim().toLowerCase();
   const DAY_MAP = { fri: 1, friday: 1, "day 1": 1, sat: 2, saturday: 2, "day 2": 2, sun: 3, sunday: 3, "day 3": 3 };
   const dayFilter = DAY_MAP[query];
@@ -344,7 +354,7 @@ function App() {
   React.useEffect(() => {
     try { sbOutboxInit?.(); } catch {}
   }, []);
-  // Native Spotify OAuth handoff (v153). When the user finishes the
+  // Native Spotify OAuth handoff (v154). When the user finishes the
   // SafariViewController flow, the appUrlOpen listener in spotify.jsx
   // exchanges the code for a token and dispatches this event. Mirror it
   // into React state so the UI flips from "Connect Spotify" to "Connected"
@@ -564,7 +574,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v153",
+        version: "v154",
       }));
     } catch {}
   }
@@ -597,7 +607,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 11, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
-          PLURSKY · v153
+          PLURSKY · v154
         </div>
       </div>
     );
