@@ -425,13 +425,13 @@ function PostFestivalRecap({ state, setState }) {
             {FESTIVAL_CONFIG.name.toUpperCase()} · {FESTIVAL_CONFIG.dates.toUpperCase()}
           </div>
           <div className="serif" style={{ fontSize: 34, lineHeight: 0.95, letterSpacing: -0.5, marginBottom: 6 }}>
-            That was{" "}
-            <span style={{ fontStyle: "italic", color: "var(--ember)" }}>electric.</span>
+            {FESTIVAL_CONFIG.brand === "EDC" ? <>That was{" "}<span style={{ fontStyle: "italic", color: "var(--ember)" }}>electric.</span></>
+              : <>{FESTIVAL_CONFIG.shortName} — that's a{" "}<span style={{ fontStyle: "italic", color: "var(--ember)" }}>wrap.</span></>}
           </div>
           <div style={{ fontSize: 13, color: "rgba(255,255,255,0.65)", marginTop: 12, lineHeight: 1.5 }}>
             {savedIds.length
-              ? `You saved ${savedIds.length} set${savedIds.length !== 1 ? "s" : ""} across ${byDay.length} night${byDay.length !== 1 ? "s" : ""}. See you under the electric sky next year.`
-              : "The festival is over. See you under the electric sky next year."}
+              ? `You saved ${savedIds.length} set${savedIds.length !== 1 ? "s" : ""} across ${byDay.length} night${byDay.length !== 1 ? "s" : ""}. See you next year!`
+              : "The festival is over. See you next year!"}
           </div>
         </div>
       </div>
@@ -1205,7 +1205,11 @@ function HomeScreen({ state, setState }) {
         {countdown ? (
           <>
             <div className="serif" style={{ fontSize: 36, lineHeight: 0.95, letterSpacing: -0.5 }}>
-              Under the <span style={{ fontStyle: "italic", color: "var(--ember)" }}>electric sky</span> in
+              {(() => {
+                const words = (FESTIVAL_CONFIG.tagline || "Under the electric sky").split(/\s/);
+                const last = words.pop();
+                return <>{words.join(" ")} <span style={{ fontStyle: "italic", color: "var(--ember)" }}>{last}</span> in</>;
+              })()}
             </div>
             <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginTop: 10 }}>
               <CountdownPart n={countdown.days}  label="DAYS" />
@@ -1382,7 +1386,7 @@ function HomeScreen({ state, setState }) {
             color: "var(--muted)", cursor: "pointer",
             fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.3, fontWeight: 600,
           }}>
-            FIRST EDC? READ THE BASICS →
+            FIRST {FESTIVAL_CONFIG.brand || "TIME"}? READ THE BASICS →
           </button>
         </div>
       )}
