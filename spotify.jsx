@@ -2488,16 +2488,22 @@ function useMomentPhoto(photoId) {
 // ── Setlist-to-photo song matching ──────────────────────────────
 // Two sources: 1001tracklists (has timestamps, best for DJs) and
 // setlist.fm (has API, best for live acts). Try 1001tl first.
-const TL_PROXY = "https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/proxy-1001tl";
 const _setlistCache = {};
 
-async function _get1001tlData(artistName) {
+async function _getSupabaseTracklist(artistName) {
   try {
-    const res = await fetch(`${TL_PROXY}?artist=${encodeURIComponent(artistName)}`);
+    const festId = window.FESTIVAL_CONFIG?.id || "edc-lv-2026";
+    const url = `https://pzoijbqsbbwyuyjinjtj.supabase.co/rest/v1/tracklists?artist_name=eq.${encodeURIComponent(artistName)}&festival_id=eq.${encodeURIComponent(festId)}&select=tracks,source,source_url`;
+    const res = await fetch(url, {
+      headers: {
+        "apikey": window.SUPABASE_ANON || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB6b2lqYnFzYmJ3eXV5amluanRqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU3NzkwNDUsImV4cCI6MjAzMTM1NTA0NX0.aYMVriNmLAlkCN4DI1HGrj7VH9MNUxbYg8I1kpGl3Ow",
+        "Accept": "application/json",
+      },
+    });
     if (!res.ok) return null;
-    const data = await res.json();
-    if (data.tracks?.length > 0) return { source: "1001tracklists", tracks: data.tracks, url: data.url };
-    return null;
+    const rows = await res.json();
+    if (!rows?.length || !rows[0].tracks?.length) return null;
+    return { source: rows[0].source || "1001tracklists", tracks: rows[0].tracks, url: rows[0].source_url };
   } catch { return null; }
 }
 
@@ -2521,7 +2527,7 @@ async function _getSetlistFmData(artistName) {
 async function _getTracklistForArtist(artistName) {
   const key = artistName.toLowerCase().replace(/\W+/g, "_");
   if (_setlistCache[key]) return _setlistCache[key];
-  const tl = await _get1001tlData(artistName);
+  const tl = await _getSupabaseTracklist(artistName);
   if (tl) { _setlistCache[key] = tl; return tl; }
   const sl = await _getSetlistFmData(artistName);
   if (sl) { _setlistCache[key] = sl; return sl; }
