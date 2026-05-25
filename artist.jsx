@@ -635,73 +635,87 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj }) {
     return out.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
   }, [moments, artistId]);
   if (mine.length === 0) return null;
-  const preview = mine.slice(0, 6);
+  const preview = mine.slice(0, 8);
   const more = mine.length - preview.length;
+  const vids = mine.filter(m => m.kind === "video").length;
   return (
     <div style={{
-      marginBottom: 18, padding: "12px 14px",
-      background: "var(--paper-2)", border: "1px solid var(--line)",
-      borderRadius: 14,
+      marginBottom: 18, borderRadius: 16, overflow: "hidden",
+      background: "var(--night)", color: "#fff",
+      boxShadow: `0 0 24px ${accent}22, inset 0 1px 0 rgba(255,255,255,0.06)`,
     }}>
-      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
-        <div>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: accent, fontWeight: 700 }}>
-            ◐ YOUR MOMENTS FROM THIS SET
+      <div style={{ padding: "14px 16px 10px" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 2 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{
+              width: 6, height: 6, borderRadius: "50%", background: accent,
+              boxShadow: `0 0 8px ${accent}`,
+            }} />
+            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, fontWeight: 700, color: accent }}>
+              YOUR MOMENTS
+            </span>
           </div>
-          <div className="serif" style={{ fontSize: 14, color: "var(--ink)", marginTop: 2 }}>
-            {mine.length} {mine.length === 1 ? "memory" : "memories"} saved
-          </div>
-        </div>
-        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          {artistObj && mine.length > 0 && (<>
-            <button
-              onClick={() => window._shareArtistCollage?.(artistObj, mine)}
-              className="mono"
-              title="Share a photo collage of this set"
-              style={{
-                background: accent, color: "#fff", border: "none",
-                borderRadius: 999, padding: "5px 11px", cursor: "pointer",
-                fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                display: "inline-flex", alignItems: "center", gap: 5,
-                whiteSpace: "nowrap",
-              }}>📸 SHARE</button>
-            <button
-              onClick={() => window._shareArtistCollage?.(artistObj, mine, "gif")}
-              className="mono"
-              title="Share an animated GIF of this set"
-              style={{
-                background: "#6D28D9", color: "#fff", border: "none",
-                borderRadius: 999, padding: "5px 11px", cursor: "pointer",
-                fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                whiteSpace: "nowrap",
-              }}>🎬 GIF</button>
-          </>)}
           <button onClick={() => onOpen(night)} className="mono" style={{
-            background: "transparent", border: "none", color: "var(--muted)",
-            cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-            padding: 0,
+            background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.1)",
+            borderRadius: 999, padding: "4px 10px", cursor: "pointer",
+            color: "rgba(255,255,255,0.5)", fontSize: 8, letterSpacing: 1.2, fontWeight: 700,
           }}>VIEW ALL →</button>
         </div>
+        <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginTop: 4 }}>
+          <span className="serif" style={{ fontSize: 20, color: "#fff" }}>{mine.length}</span>
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>
+            {mine.length === 1 ? "memory" : "memories"}{vids > 0 ? ` · ${vids} video${vids > 1 ? "s" : ""}` : ""}
+          </span>
+        </div>
       </div>
-      <div style={{
-        display: "flex", gap: 8, overflowX: "auto",
-        // Pull padding out so the scroll edges don't clip on touch devices.
-        margin: "0 -2px", padding: "0 2px 2px",
+
+      <div className="no-scrollbar" style={{
+        display: "flex", gap: 6, overflowX: "auto", padding: "0 16px 12px",
         scrollbarWidth: "none", WebkitOverflowScrolling: "touch",
       }}>
-        {preview.map(m => (
-          <_YourMomentThumb key={m.id} moment={m} accent={accent} onClick={() => onOpen(m.night)} />
+        {preview.map((m, i) => (
+          <_YourMomentThumb key={m.id} moment={m} accent={accent} onClick={() => onOpen(m.night)}
+            style={{
+              width: 82, height: 110, borderRadius: 8,
+              border: `1px solid rgba(255,255,255,0.08)`,
+              boxShadow: i === 0 ? `0 0 12px ${accent}33` : undefined,
+            }} />
         ))}
         {more > 0 && (
           <button onClick={() => onOpen(night)} className="mono" aria-label={`View all ${mine.length} moments`} style={{
-            width: 76, height: 76, flexShrink: 0,
-            borderRadius: 10,
-            background: "transparent",
-            border: `1px dashed ${accent}66`, color: accent,
-            cursor: "pointer", fontSize: 11, letterSpacing: 1, fontWeight: 700,
+            width: 82, height: 110, flexShrink: 0, borderRadius: 8,
+            background: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(255,255,255,0.08)", color: accent,
+            cursor: "pointer", fontSize: 13, fontWeight: 700,
+            display: "flex", alignItems: "center", justifyContent: "center",
           }}>+{more}</button>
         )}
       </div>
+
+      {artistObj && mine.length > 0 && (
+        <div style={{
+          display: "flex", gap: 8, padding: "0 16px 14px",
+        }}>
+          <button
+            onClick={() => window._shareArtistCollage?.(artistObj, mine)}
+            className="mono"
+            style={{
+              flex: 1, padding: "8px 0", borderRadius: 8,
+              background: `${accent}18`, border: `1px solid ${accent}40`,
+              color: accent, cursor: "pointer",
+              fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+            }}>SHARE COLLAGE</button>
+          <button
+            onClick={() => window._shareArtistCollage?.(artistObj, mine, "gif")}
+            className="mono"
+            style={{
+              flex: 1, padding: "8px 0", borderRadius: 8,
+              background: "rgba(109,40,217,0.15)", border: "1px solid rgba(109,40,217,0.35)",
+              color: "#a78bfa", cursor: "pointer",
+              fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+            }}>CREATE GIF</button>
+        </div>
+      )}
     </div>
   );
 }

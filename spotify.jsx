@@ -2599,7 +2599,13 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
   const [editing, setEditing] = React.useState(false);
-  const tagInfo = _TAG_SOURCE_LABEL[moment.tagSource] || null;
+  const tagInfo = (() => {
+    const base = _TAG_SOURCE_LABEL[moment.tagSource] || null;
+    if (moment.tagSource === "off_stage" && moment.location) {
+      return { text: `${moment.location.icon} ${moment.location.label.toUpperCase()}`, tone: "info" };
+    }
+    return base;
+  })();
   // Sibling-suggestion: cheap "AI workaround" for untagged moments. Reads
   // localStorage moments (~hundreds of bytes) on each render — and on the
   // "plursky-moments-change" event so cascading retags update siblings.
@@ -2740,7 +2746,15 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
             marginTop: 6, fontSize: 8.5, letterSpacing: 1.2, fontWeight: 700,
             color: tagInfo.tone === "warn" ? "var(--ember)" : "var(--muted)",
           }}>
-          {tagInfo.text}{moment.takenAt ? ` · ${moment.takenAt.slice(11) /* HH:MM */}` : ""}
+          {tagInfo.text}{moment.takenAt ? ` · ${moment.takenAt.slice(11)}` : ""}
+        </div>
+      )}
+      {moment.hasGps === false && moment.autoTagged && (
+        <div className="mono" style={{
+          marginTop: 4, fontSize: 7.5, letterSpacing: 1, color: "var(--muted)",
+          display: "flex", alignItems: "center", gap: 4,
+        }}>
+          <span style={{ opacity: 0.6 }}>📡</span> NO GPS — TAGGED BY TIME ONLY
         </div>
       )}
       {editing && onUpdate && (
@@ -3311,6 +3325,22 @@ function _haversineMeters(lat1, lng1, lat2, lng2) {
   return 2 * R * Math.asin(Math.sqrt(a));
 }
 
+function _matchNearestLocation(lat, lng) {
+  const mapToGps = window.mapToGps;
+  const amenities = window.AMENITIES || [];
+  if (!mapToGps || !amenities.length) return null;
+  let best = null, bestDist = Infinity;
+  for (const am of amenities) {
+    const gps = mapToGps(am.x, am.y);
+    if (!gps) continue;
+    const d = _haversineMeters(lat, lng, gps.lat, gps.lng);
+    if (d < bestDist) { bestDist = d; best = am; }
+  }
+  if (!best || bestDist > 200) return null;
+  const ICONS = { water: "💧", food: "🍔", med: "🏥", toilet: "🚻", art: "🎨", info: "ℹ️", charge: "🔋", locker: "🔐" };
+  return { label: best.label, type: best.type, icon: ICONS[best.type] || "📍", distMeters: Math.round(bestDist) };
+}
+
 function _matchArtistForPhoto({ date, lat, lng }, savedIds) {
   if (!date) return { artistId: null, night: null, reason: "no_date" };
   // First: which festival night does this photo's DATE place it in?
@@ -3330,9 +3360,11 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds) {
   if (lat != null && lng != null) {
     const anchors = window.FESTIVAL_CONFIG?.gpsAnchors || [];
     if (anchors.length > 0) {
-      const minMeters = Math.min(...anchors.map(a => _haversineMeters(lat, lng, a.lat, a.lng)));
-      if (minMeters > 80) {
-        return { artistId: null, night, reason: "off_stage", distMeters: Math.round(minMeters) };
+      const stageDistances = anchors.map(a => ({ stageId: a.stageId, dist: _haversineMeters(lat, lng, a.lat, a.lng) }));
+      const minMeters = Math.min(...stageDistances.map(s => s.dist));
+      if (minMeters > 120) {
+        const loc = _matchNearestLocation(lat, lng);
+        return { artistId: null, night, reason: "off_stage", distMeters: Math.round(minMeters), location: loc };
       }
     }
   }
@@ -3606,12 +3638,28 @@ function MemoriesScreen({ state, setState }) {
   // The actual ingest loop. Pulled out of handleBatchPick so the native
   // @capacitor/camera picker can feed it File objects directly without
   // going through a hidden <input>.
+  const _fileFingerprint = async (file) => {
+    try {
+      const slice = file.slice(0, 2048);
+      const buf = await slice.arrayBuffer();
+      const bytes = new Uint8Array(buf);
+      let h = 0x811c9dc5;
+      for (let i = 0; i < bytes.length; i++) { h ^= bytes[i]; h = Math.imul(h, 0x01000193); }
+      return `${(h >>> 0).toString(36)}_${file.size}_${file.name.replace(/[^a-zA-Z0-9.]/g, "")}`;
+    } catch { return null; }
+  };
+
   const processImportedFiles = async (files) => {
     if (files.length === 0) return;
     const results = [];
     setBatch({ total: files.length, done: 0, results });
     const savedIds = state.saved || [];
     const current = { ..._readMoments() };
+
+    const existingFingerprints = new Set();
+    for (const moments of Object.values(current)) {
+      for (const m of moments) { if (m._fingerprint) existingFingerprints.add(m._fingerprint); }
+    }
     // Fallback target night when we can't infer one from EXIF: prefer the
     // current festival day, then yesterday (post-midnight shoot earlier in
     // the morning), else the first festival night. Better to import every
@@ -3620,9 +3668,17 @@ function MemoriesScreen({ state, setState }) {
     const fallbackNight = (window.NOW?.day && allNights.includes(window.NOW.day))
       ? window.NOW.day
       : (allNights[allNights.length - 1] || 1);
+    let skippedDupes = 0;
     for (let i = 0; i < files.length; i++) {
       const f = files[i];
       try {
+        const fp = await _fileFingerprint(f);
+        if (fp && existingFingerprints.has(fp)) {
+          skippedDupes++;
+          results.push({ name: f.name, night: null, artistId: null, skipped: "duplicate" });
+          setBatch({ total: files.length, done: i + 1, results: results.slice() });
+          continue;
+        }
         const exif = await _parseExifMeta(f).catch(() => null);
         const meta = _metaFromFile(f, exif);
         const matched = meta?.date ? _matchArtistForPhoto(meta, savedIds) : { artistId: null, night: null, reason: "no_date" };
@@ -3651,12 +3707,15 @@ function MemoriesScreen({ state, setState }) {
           kind: out.kind,
           createdAt: Date.now(),
           takenAt: meta?.date ? `${meta.date.yr}-${String(meta.date.mo).padStart(2,"0")}-${String(meta.date.dy).padStart(2,"0")} ${String(meta.date.hh).padStart(2,"0")}:${String(meta.date.mm).padStart(2,"0")}` : null,
-          // Mark fallback drops so the UI can show a "Tap to retag" hint.
           autoTagged: !!matched.artistId,
           tagSource,
           parsedGps: exif?.lat != null && exif?.lng != null ? { lat: exif.lat, lng: exif.lng } : null,
+          location: matched.location || null,
+          hasGps: !!(exif?.lat != null && exif?.lng != null),
           fileType: f.type || null,
+          _fingerprint: fp || null,
         };
+        if (fp) existingFingerprints.add(fp);
         current[night] = [...(current[night] || []), moment];
         results.push({ name: f.name, night, artistId: matched.artistId, fallback: !matched.night, tagSource });
       } catch (err) {
@@ -3826,9 +3885,10 @@ function MemoriesScreen({ state, setState }) {
           }}>{batch && batch.done < batch.total ? `${batch.done}/${batch.total}` : "PICK"}</span>
         </button>
         {batch && batch.done === batch.total && (() => {
-          const tagged    = batch.results.filter(r => !r.err && r.artistId).length;
-          const needRetag = batch.results.filter(r => !r.err && !r.artistId).length;
+          const tagged    = batch.results.filter(r => !r.err && !r.skipped && r.artistId).length;
+          const needRetag = batch.results.filter(r => !r.err && !r.skipped && !r.artistId).length;
           const failed    = batch.results.filter(r => r.err).length;
+          const dupes     = batch.results.filter(r => r.skipped === "duplicate").length;
           const allTagged = tagged > 0 && needRetag === 0 && failed === 0;
           return (
             <div onClick={() => setBatch(null)} style={{
@@ -3841,7 +3901,7 @@ function MemoriesScreen({ state, setState }) {
                 fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
                 color: allTagged ? "var(--success)" : "var(--ember)",
               }}>
-                ✓ {tagged} TAGGED{needRetag > 0 ? ` · ${needRetag} NEED RETAG` : ""}{failed > 0 ? ` · ${failed} FAILED` : ""}
+                ✓ {tagged} TAGGED{needRetag > 0 ? ` · ${needRetag} NEED RETAG` : ""}{dupes > 0 ? ` · ${dupes} SKIPPED (DUPLICATE)` : ""}{failed > 0 ? ` · ${failed} FAILED` : ""}
               </div>
               {needRetag > 0 && (
                 <div className="mono" style={{ marginTop: 4, fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 600 }}>
@@ -4608,7 +4668,28 @@ function MeScreen({ state, setState }) {
             </>
           );
         })()}
-        <div style={{ padding: 20 }} />
+        <div style={{
+          padding: "24px 0 40px", textAlign: "center",
+          borderTop: "1px solid var(--line)", marginTop: 24,
+        }}>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", marginBottom: 10 }}>
+            PLURSKY · {window.FESTIVAL_CONFIG?.shortName || ""}
+          </div>
+          <div style={{ display: "flex", justifyContent: "center", gap: 16 }}>
+            <a href="https://plursky.com/privacy" target="_blank" rel="noopener noreferrer"
+              className="mono" style={{ fontSize: 8, letterSpacing: 1.2, color: "var(--muted)", textDecoration: "none" }}>
+              PRIVACY POLICY
+            </a>
+            <a href="https://plursky.com/terms" target="_blank" rel="noopener noreferrer"
+              className="mono" style={{ fontSize: 8, letterSpacing: 1.2, color: "var(--muted)", textDecoration: "none" }}>
+              TERMS
+            </a>
+            <button onClick={() => window.open("mailto:hello@plursky.com")}
+              className="mono" style={{ fontSize: 8, letterSpacing: 1.2, color: "var(--muted)", background: "none", border: "none", cursor: "pointer", padding: 0 }}>
+              CONTACT
+            </button>
+          </div>
+        </div>
       </ScrollBody>
     </Screen>
   );
