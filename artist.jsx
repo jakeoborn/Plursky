@@ -640,7 +640,7 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj }) {
           </div>
         </div>
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          {artistObj && mine.length > 0 && (
+          {artistObj && mine.length > 0 && (<>
             <button
               onClick={() => window._shareArtistCollage?.(artistObj, mine)}
               className="mono"
@@ -652,7 +652,17 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj }) {
                 display: "inline-flex", alignItems: "center", gap: 5,
                 whiteSpace: "nowrap",
               }}>📸 SHARE</button>
-          )}
+            <button
+              onClick={() => window._shareArtistCollage?.(artistObj, mine, "gif")}
+              className="mono"
+              title="Share an animated GIF of this set"
+              style={{
+                background: "#6D28D9", color: "#fff", border: "none",
+                borderRadius: 999, padding: "5px 11px", cursor: "pointer",
+                fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+                whiteSpace: "nowrap",
+              }}>🎬 GIF</button>
+          </>)}
           <button onClick={() => onOpen(night)} className="mono" style={{
             background: "transparent", border: "none", color: "var(--muted)",
             cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,

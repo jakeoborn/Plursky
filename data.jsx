@@ -191,6 +191,44 @@ const FESTIVALS_REGISTRY = [
   },
   {
     config: {
+      id:        "acl-2026",
+      name:      "Austin City Limits 2026",
+      shortName: "ACL 2026",
+      brand:     "ACL",
+      tagline:   "Two weekends in Zilker Park",
+      location:  "Zilker Park · Austin, TX",
+      locationShort: "Zilker Park",
+      dates:     "Oct 2–4 & 9–11, 2026",
+      year:      2026,
+      startMs: Date.UTC(2026, 9, 2, 17, 0, 0),
+      endMs:   Date.UTC(2026, 9, 12, 5, 0, 0),
+      tz:      "America/Chicago",
+      tzAbbr:  "CDT",
+      utcOffsetHours: -5,
+      dayDates: {
+        1: { y: 2026, m: 9, d: 2, name: "Friday",   short: "FRI",
+             midnightUtc: Date.UTC(2026, 9, 2, 5, 0, 0) },
+        2: { y: 2026, m: 9, d: 3, name: "Saturday", short: "SAT",
+             midnightUtc: Date.UTC(2026, 9, 3, 5, 0, 0) },
+        3: { y: 2026, m: 9, d: 4, name: "Sunday",   short: "SUN",
+             midnightUtc: Date.UTC(2026, 9, 4, 5, 0, 0) },
+      },
+      sunTimes: {
+        1: { rise: "07:19", set: "19:09" },
+        2: { rise: "07:20", set: "19:08" },
+        3: { rise: "07:21", set: "19:07" },
+      },
+      gps: { lat: 30.2630, lng: -97.7730, onSiteRadiusMi: 0.4 },
+      mainStageId: "honda",
+      weatherEndpoint: "https://api.weather.gov/points/30.26,-97.77",
+    },
+    available: true,
+    accent:    "#e85d2e",
+    emoji:     "🤠",
+    region:    "North America",
+  },
+  {
+    config: {
       id:        "coachella-2027",
       name:      "Coachella 2027",
       shortName: "Coachella",
@@ -698,8 +736,195 @@ const ESSENTIALS = [
   { id: "e6", icon: "consent", title: "Consent & Reporting",       sub: "Tap for anonymous report line",   tone: "ember" },
 ];
 
+// ─────────────────────────────────────────────────────────────
+// ACL 2026 — Austin City Limits at Zilker Park
+// ─────────────────────────────────────────────────────────────
+// Stage x/y calibrated to the ACL 2025 Zilker Park map (north-up,
+// 0–100 grid). Compass: N=up, Lady Bird Lake = top-right,
+// Barton Springs Rd = bottom, Andrew Zilker Rd = left edge.
+const ACL_STAGES = [
+  { id: "amex",    name: "American Express",  short: "AMEX", color: "#ec4899", x: 90, y: 48, size: 1.7, desc: "Mainstage · headliners",       vibe: "Main Event",       vibeNote: "The big stage. Headliners close here every night.",             peak: "17:00–22:00" },
+  { id: "titos",   name: "Tito's Stage",      short: "TIT",  color: "#f97316", x: 72, y: 32, size: 1.2, desc: "Upper-right · mid-large stage", vibe: "Texas Heat",        vibeNote: "Austin locals + rising stars. Vodka optional.",                 peak: "13:00–19:00" },
+  { id: "miller",  name: "Miller Lite Stage", short: "MIL",  color: "#38bdf8", x: 42, y: 18, size: 1.0, desc: "Top-center · by Lady Bird entrance", vibe: "Chill Vibes", vibeNote: "Shade, cold beer, great sound.",                                peak: "13:00–19:00" },
+  { id: "tmobile", name: "T-Mobile Stage",    short: "TMO",  color: "#a855f7", x: 25, y: 38, size: 1.2, desc: "Left side · third stage",      vibe: "Discovery Stage",   vibeNote: "Where you find your next obsession.",                          peak: "14:00–20:00" },
+  { id: "ladybird",name: "Lady Bird Stage",   short: "LBD",  color: "#22c55e", x: 58, y: 48, size: 1.1, desc: "Center · mid-size stage",      vibe: "By the Lake",       vibeNote: "Breezy lakeside sets. Best sunset views.",                      peak: "14:00–20:00" },
+  { id: "bmi",     name: "BMI Stage",         short: "BMI",  color: "#fbbf24", x: 38, y: 55, size: 0.9, desc: "Center-left · songwriter stage",vibe: "Songwriter's Corner",vibeNote: "Stripped-down, intimate. Singer-songwriter heaven.",           peak: "12:00–18:00" },
+  { id: "barton",  name: "Barton Springs",    short: "BAR",  color: "#14b8a6", x: 50, y: 72, size: 0.85,desc: "Bottom-center · small stage",   vibe: "Deep Cuts",         vibeNote: "Hidden gem stage near Barton Springs entrance.",                peak: "12:00–17:00" },
+  { id: "bonus",   name: "Bonus Tracks",      short: "BNS",  color: "#2563eb", x: 72, y: 58, size: 0.7, desc: "Right-center · smallest stage", vibe: "First Timers",      vibeNote: "Local acts, first-ever festival sets. Near the grove.",         peak: "11:00–16:00" },
+  { id: "beatbox", name: "BEATBOX",           short: "BBX",  color: "#1e40af", x: 30, y: 72, size: 0.75,desc: "Bottom-left · electronic stage",vibe: "Bass Haven",        vibeNote: "DJs, producers, electronic acts. Near west entrance.",          peak: "14:00–21:00" },
+  { id: "aclfest", name: "ACL Fest Stage",    short: "ACL",  color: "#ef4444", x: 52, y: 32, size: 1.0, desc: "Center · general stage",        vibe: "Heart of the Park", vibeNote: "Central stage surrounded by food vendors and activations.",     peak: "12:00–19:00" },
+];
+
+const _aclMk = (id, name, genre, stage, day, start, end, wk) => {
+  const h = parseInt(start.split(':')[0]);
+  const tier = h >= 20 ? 3 : h >= 17 ? 2 : 1;
+  return { id, name, genre, country: "—", stage, day, start, end, tier, weekend: wk || "both",
+    img: `linear-gradient(135deg, ${ACL_STAGES.find(s=>s.id===stage)?.color || "#e85d2e"}, #1a0a28)`,
+    bio: `Playing ACL 2026.${wk ? ` Weekend ${wk} only.` : ""}` };
+};
+
+const ACL_ARTISTS = [
+  // ── FRIDAY ──
+  // American Express (headliners)
+  _aclMk("af1", "Charli XCX",            "Pop",           "amex",    1, "20:00","22:00"),
+  _aclMk("af2", "Skrillex",              "Electronic",    "amex",    1, "20:00","22:00","W1"),
+  _aclMk("af3", "Kings of Leon",         "Rock",          "amex",    1, "20:00","22:00","W2"),
+  // Honda (sub-headliners)
+  _aclMk("af4", "Turnstile",             "Hardcore Punk",  "honda",  1, "19:30","21:00"),
+  _aclMk("af5", "Labrinth",              "R&B / Electronic","honda", 1, "17:30","19:00"),
+  _aclMk("af6", "The Chainsmokers",      "Electro Pop",   "honda",  1, "15:30","17:00"),
+  _aclMk("af7", "Leon Thomas",           "R&B",           "titos",  1, "18:00","19:30"),
+  _aclMk("af8", "Brandon Flowers",       "Indie Rock",    "tmobile", 1, "19:00","20:30","W1"),
+  // Mid-tier
+  _aclMk("af9",  "Amyl and the Sniffers","Punk Rock",     "tmobile", 1, "17:00","18:30"),
+  _aclMk("af10", "Steve Aoki",           "EDM",           "beatbox", 1, "19:00","20:30"),
+  _aclMk("af11", "Jesse Welles",         "Country Pop",   "ladybird",1, "16:00","17:00"),
+  _aclMk("af12", "BUNT.",                "Folk Electronic","miller", 1, "15:00","16:00"),
+  _aclMk("af13", "Bella Kay",            "Pop",           "titos",  1, "16:00","17:00","W2"),
+  _aclMk("af14", "Paris Paloma",         "Folk Pop",      "bmi",    1, "16:00","17:30"),
+  _aclMk("af15", "LP",                   "Indie Pop",     "ladybird",1, "14:00","15:00"),
+  _aclMk("af16", "Rusowsky",             "Indie Pop",     "barton", 1, "15:00","16:00"),
+  _aclMk("af17", "Natasha Bedingfield",  "Pop",           "miller", 1, "17:00","18:00","W2"),
+  _aclMk("af18", "Łaszewo",              "Electronic",    "beatbox", 1, "17:00","18:00","W2"),
+  _aclMk("af19", "Kingfishr",            "Indie",         "barton", 1, "14:00","15:00","W2"),
+  _aclMk("af20", "Marlon Funaki",        "Indie",         "bmi",    1, "14:00","15:00","W1"),
+  _aclMk("af21", "CMAT",                 "Country Pop",   "ladybird",1, "12:30","13:30"),
+  _aclMk("af22", "Rebecca Black",        "Pop",           "miller", 1, "13:00","14:00","W1"),
+  _aclMk("af23", "Bo Staloch",           "Folk",          "bmi",    1, "12:00","13:00","W1"),
+  _aclMk("af24", "Molly Santana",        "R&B",           "bonus",  1, "14:00","15:00","W1"),
+  _aclMk("af25", "World Famous Pets",    "Indie",         "bonus",  1, "14:00","15:00","W2"),
+  _aclMk("af26", "Faouzia",              "Pop",           "tmobile", 1, "14:00","15:00"),
+  _aclMk("af27", "Hunx and His Punx",    "Garage Punk",   "barton", 1, "12:00","13:00","W1"),
+  _aclMk("af28", "New Constellations",   "Indie",         "bonus",  1, "12:00","13:00","W1"),
+  _aclMk("af29", "Asleep at the Wheel",  "Country",       "bmi",    1, "15:00","16:00","W1"),
+  _aclMk("af30", "S.G. Goodman",         "Americana",     "barton", 1, "13:00","14:00","W2"),
+  _aclMk("af31", "Cassandra Coleman",    "Soul",          "bonus",  1, "15:00","16:00","W2"),
+  _aclMk("af32", "Brigitte Calls Me Baby","Indie Pop",    "barton", 1, "16:00","17:00","W2"),
+  _aclMk("af33", "Dallas Wax",           "Indie",         "bonus",  1, "13:00","14:00","W2"),
+  _aclMk("af34", "Night Traveler",       "Indie",         "bonus",  1, "13:00","14:00","W1"),
+  _aclMk("af35", "Grocery Bag",          "Indie Rock",    "barton", 1, "11:00","12:00","W1"),
+  _aclMk("af36", "Joe Jordan",           "Singer-Songwriter","bonus",1,"11:00","12:00","W2"),
+  _aclMk("af37", "Happy Landing",        "Indie",         "barton", 1, "11:00","12:00","W2"),
+  _aclMk("af38", "Girlfriend",           "Pop",           "bonus",  1, "16:00","17:00","W2"),
+  _aclMk("af39", "Elle Coves",           "Dream Pop",     "barton", 1, "17:00","18:00","W1"),
+  _aclMk("af40", "Izzy Escobar",         "Pop",           "bonus",  1, "11:00","12:00","W1"),
+  _aclMk("af41", "Almost Heaven",        "Indie",         "bonus",  1, "12:00","13:00","W2"),
+  _aclMk("af42", "Solomon Hicks",        "Blues",         "bmi",    1, "11:00","12:00","W1"),
+  _aclMk("af43", "Leon Knight",          "R&B",           "bonus",  1, "15:00","16:00","W2"),
+  _aclMk("af44", "The 4411",             "Soul",          "bonus",  1, "16:00","17:00","W1"),
+
+  // ── SATURDAY ──
+  _aclMk("as1", "Rüfüs Du Sol",          "Electronic",    "amex",    2, "20:00","22:00"),
+  _aclMk("as2", "Lorde",                 "Art Pop",       "honda",   2, "19:30","21:00"),
+  _aclMk("as3", "Lola Young",            "Pop / Soul",    "tmobile", 2, "19:00","20:30"),
+  _aclMk("as4", "Young Miko",            "Reggaeton",     "titos",   2, "19:00","20:30"),
+  _aclMk("as5", "Bleachers",             "Indie Pop",     "honda",   2, "17:30","19:00"),
+  _aclMk("as6", "Lykke Li",              "Indie Pop",     "ladybird",2, "18:00","19:30"),
+  _aclMk("as7", "Levity",                "Electronic",    "beatbox", 2, "19:00","20:30"),
+  _aclMk("as8", "Suki Waterhouse",       "Indie Pop",     "tmobile", 2, "17:00","18:30"),
+  _aclMk("as9", "Sienna Spiro",          "Pop",           "miller",  2, "17:00","18:30","W2"),
+  _aclMk("as10","Snow Strippers",        "Electro Pop",   "beatbox", 2, "17:00","18:30"),
+  _aclMk("as11","It's Murph",            "Pop",           "ladybird",2, "16:00","17:00"),
+  _aclMk("as12","Fakemink",              "Electronic",    "beatbox", 2, "15:00","16:30"),
+  _aclMk("as13","Palace",                "Indie Rock",    "miller",  2, "15:00","16:30","W1"),
+  _aclMk("as14","¥øu$uk€ ¥uk1mat$u",     "Electronic",    "beatbox", 2, "13:00","14:30"),
+  _aclMk("as15","Skye Newman",           "Indie",         "bmi",     2, "16:00","17:00"),
+  _aclMk("as16","Rodrigo y Gabriela",    "Acoustic",      "titos",   2, "17:00","18:30"),
+  _aclMk("as17","Balu Brigada",          "Indie Pop",     "ladybird",2, "14:00","15:00"),
+  _aclMk("as18","Rochelle Jordan",       "R&B",           "beatbox", 2, "12:00","13:00","W1"),
+  _aclMk("as19","Arcy Drive",            "Indie",         "barton",  2, "15:00","16:00"),
+  _aclMk("as20","Finn Wolfhard",         "Indie Rock",    "miller",  2, "13:00","14:00"),
+  _aclMk("as21","Ryan Beatty",           "Indie Pop",     "bmi",     2, "14:00","15:30"),
+  _aclMk("as22","Don West",              "Hip Hop",       "titos",   2, "15:00","16:00"),
+  _aclMk("as23","Temper City",           "Indie",         "barton",  2, "13:00","14:00"),
+  _aclMk("as24","Gabriel Jacoby",        "R&B",           "bmi",     2, "12:00","13:00","W2"),
+  _aclMk("as25","Night Tapes",           "Dream Pop",     "barton",  2, "14:00","15:00"),
+  _aclMk("as26","DJ Cassandra",          "Electronic",    "beatbox", 2, "11:00","12:00","W1"),
+  _aclMk("as27","Cure for Paranoia",     "Hip Hop",       "bonus",   2, "14:00","15:00","W1"),
+  _aclMk("as28","Nat Myers",             "Blues",         "bmi",     2, "11:00","12:00","W2"),
+  _aclMk("as29","Chloe Qisha",           "Pop",           "bonus",   2, "13:00","14:00","W2"),
+  _aclMk("as30","Fai Laci",              "Indie",         "bonus",   2, "12:00","13:00","W1"),
+  _aclMk("as31","Emma Ogier",            "Pop",           "bonus",   2, "11:00","12:00","W1"),
+  _aclMk("as32","Common People",         "Indie",         "barton",  2, "12:00","13:00","W2"),
+  _aclMk("as33","Coleman Jennings",      "Country",       "barton",  2, "11:00","12:00","W1"),
+  _aclMk("as34","Damaris Bojor",         "Pop",           "bonus",   2, "15:00","16:00","W2"),
+  _aclMk("as35","Fightmaster",           "Rock",          "bonus",   2, "16:00","17:00","W1"),
+  _aclMk("as36","Lluvii",                "Indie",         "bonus",   2, "11:00","12:00","W2"),
+  _aclMk("as37","Montclair",             "Indie Rock",    "barton",  2, "16:00","17:00","W2"),
+  _aclMk("as38","Left Lucid",            "Indie",         "bonus",   2, "14:00","15:00","W2"),
+  _aclMk("as39","Presley Regier",        "Singer-Songwriter","bonus",2,"13:00","14:00","W2"),
+
+  // ── SUNDAY ──
+  _aclMk("au1", "Twenty One Pilots",     "Alt Rock",      "amex",    3, "20:00","22:00"),
+  _aclMk("au2", "The xx",                "Indie Electronic","honda",  3, "19:30","21:00"),
+  _aclMk("au3", "Geese",                 "Art Rock",      "tmobile", 3, "19:00","20:30"),
+  _aclMk("au4", "Sofi Tukker",           "House",         "beatbox", 3, "19:00","20:30"),
+  _aclMk("au5", "Parcels",               "Disco / Funk",  "ladybird",3, "18:00","19:30"),
+  _aclMk("au6", "The War on Drugs",      "Indie Rock",    "honda",   3, "17:30","19:00"),
+  _aclMk("au7", "Blood Orange",          "Art Pop / R&B", "tmobile", 3, "17:00","18:30"),
+  _aclMk("au8", "Max McNown",            "Pop",           "titos",   3, "18:00","19:30"),
+  _aclMk("au9", "Cannons",               "Synth Pop",     "miller",  3, "17:00","18:30","W1"),
+  _aclMk("au10","Audrey Hobert",         "Indie",         "ladybird",3, "16:00","17:00"),
+  _aclMk("au11","Saint Motel",           "Indie Pop",     "miller",  3, "15:00","16:30"),
+  _aclMk("au12","Houndmouth",            "Americana",     "bmi",     3, "16:00","17:30","W2"),
+  _aclMk("au13","Fcukers",               "Punk",          "tmobile", 3, "15:00","16:00"),
+  _aclMk("au14","Stella Lefty",          "Indie",         "barton",  3, "15:00","16:00","W1"),
+  _aclMk("au15","Underscores",           "Hyperpop",      "beatbox", 3, "17:00","18:30","W1"),
+  _aclMk("au16","Claire Rosinkranz",     "Pop",           "ladybird",3, "14:00","15:00"),
+  _aclMk("au17","Noga Erez",             "Art Pop",       "titos",   3, "16:00","17:00"),
+  _aclMk("au18","Rio Kosta",             "Indie",         "barton",  3, "13:00","14:00"),
+  _aclMk("au19","Josh Conway",           "Country",       "bmi",     3, "14:00","15:00","W1"),
+  _aclMk("au20","Ethan Regan",           "Indie",         "barton",  3, "14:00","15:00","W2"),
+  _aclMk("au21","Bad Nerves",            "Punk Rock",     "miller",  3, "13:00","14:00","W1"),
+  _aclMk("au22","Charlotte Lawrence",    "Pop",           "ladybird",3, "12:30","13:30","W2"),
+  _aclMk("au23","Paloma Morphy",         "Indie",         "bmi",     3, "12:00","13:00"),
+  _aclMk("au24","Sunday (1994)",         "Indie Rock",    "miller",  3, "14:00","15:00"),
+  _aclMk("au25","Rum Jungle",            "Indie",         "barton",  3, "16:00","17:00","W2"),
+  _aclMk("au26","Calder Allen",          "Country",       "titos",   3, "14:00","15:00"),
+  _aclMk("au27","Fancy Hagood",          "Folk Pop",      "bmi",     3, "15:00","16:00","W1"),
+  _aclMk("au28","Britton",               "Country",       "bonus",   3, "13:00","14:00","W1"),
+  _aclMk("au29","Solya",                 "Indie",         "bonus",   3, "14:00","15:00","W1"),
+  _aclMk("au30","Villanelle",            "Indie",         "bonus",   3, "15:00","16:00","W1"),
+  _aclMk("au31","Kevin Atwater",         "R&B",           "bonus",   3, "13:00","14:00","W2"),
+  _aclMk("au32","Thomas Day",            "Pop",           "bonus",   3, "11:00","12:00","W1"),
+  _aclMk("au33","Aaron Rowe",            "Indie",         "bonus",   3, "12:00","13:00","W1"),
+  _aclMk("au34","Lauren Sanderson",      "Pop",           "barton",  3, "11:00","12:00","W1"),
+  _aclMk("au35","Vwillz",                "Electronic",    "beatbox", 3, "15:00","16:30","W2"),
+  _aclMk("au36","Sasha Keable",          "R&B",           "bonus",   3, "14:00","15:00","W2"),
+  _aclMk("au37","Rubio",                 "Latin",         "barton",  3, "12:00","13:00","W1"),
+  _aclMk("au38","Marzz",                 "R&B",           "bonus",   3, "15:00","16:00","W2"),
+  _aclMk("au39","Chelsea Jordan",        "R&B",           "bonus",   3, "11:00","12:00","W2"),
+  _aclMk("au40","The Moriah Sisters",    "Country",       "bmi",     3, "11:00","12:00","W1"),
+  _aclMk("au41","The Huston-Tillotson University Jazz Collective","Jazz","bmi",3,"11:00","12:00","W2"),
+];
+
+const ACL_AMENITIES = [
+  { id: "aa1", type: "water",  label: "Hydration",      x: 35, y: 40 },
+  { id: "aa2", type: "water",  label: "Hydration",      x: 65, y: 55 },
+  { id: "aa3", type: "food",   label: "ACL Eats",       x: 50, y: 35 },
+  { id: "aa4", type: "food",   label: "ACL Eats South",  x: 45, y: 65 },
+  { id: "aa5", type: "med",    label: "Medical",        x: 55, y: 60 },
+  { id: "aa6", type: "toilet", label: "Restrooms",      x: 30, y: 30 },
+  { id: "aa7", type: "toilet", label: "Restrooms",      x: 70, y: 45 },
+  { id: "aa8", type: "info",   label: "Guest Services",  x: 20, y: 35 },
+];
+
+// ── Multi-festival data switching ──────────────────────────────────
+// When the active festival changes, STAGES / ARTISTS / AMENITIES
+// resolve to the right data set. The rest of the app reads from
+// window.STAGES etc. and doesn't care which festival is active.
+const _activeId = getActiveFestivalId();
+const _isACL = _activeId === "acl-2026";
+const _STAGES    = _isACL ? ACL_STAGES    : STAGES;
+const _ARTISTS   = _isACL ? ACL_ARTISTS   : ARTISTS;
+const _AMENITIES = _isACL ? ACL_AMENITIES : AMENITIES;
+const _FESTIVAL_CONFIG = _isACL
+  ? FESTIVALS_REGISTRY.find(f => f.config.id === "acl-2026").config
+  : FESTIVAL_CONFIG;
+
 Object.assign(window, {
-  FESTIVAL, FESTIVAL_CONFIG, STAGES, AMENITIES, AVATAR_START, FRIENDS, ARTISTS,
+  FESTIVAL: _FESTIVAL_CONFIG, FESTIVAL_CONFIG: _FESTIVAL_CONFIG,
+  STAGES: _STAGES, AMENITIES: _AMENITIES, AVATAR_START, FRIENDS, ARTISTS: _ARTISTS,
   DAYS, NOW, ALERTS, ESSENTIALS, fmt12,
   FESTIVALS_REGISTRY, getActiveFestivalId, setActiveFestivalAndReload,
 });

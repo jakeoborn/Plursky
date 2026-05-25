@@ -4780,7 +4780,7 @@ function YourStagePhotosStrip({ stageId, accent, onOpen, stageObj }) {
           </div>
         </div>
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          {stageObj && mine.length > 0 && (
+          {stageObj && mine.length > 0 && (<>
             <button
               onClick={() => window._shareStageCollage?.(stageObj, mine)}
               className="mono"
@@ -4791,7 +4791,17 @@ function YourStagePhotosStrip({ stageId, accent, onOpen, stageObj }) {
                 fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
                 whiteSpace: "nowrap",
               }}>📸 SHARE</button>
-          )}
+            <button
+              onClick={() => window._shareStageCollage?.(stageObj, mine, "gif")}
+              className="mono"
+              title="Share an animated GIF of your nights at this stage"
+              style={{
+                background: "#6D28D9", color: "#fff", border: "none",
+                borderRadius: 999, padding: "5px 11px", cursor: "pointer",
+                fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+                whiteSpace: "nowrap",
+              }}>🎬 GIF</button>
+          </>)}
           <button onClick={onOpen} className="mono" style={{
             background: "transparent", border: "none", color: "var(--muted)",
             cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,

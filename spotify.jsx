@@ -3956,6 +3956,16 @@ function MemoriesScreen({ state, setState }) {
                         fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
                         whiteSpace: "nowrap",
                       }}>📸 SHARE</button>
+                    <button
+                      onClick={() => window._shareNightCollage?.(d.n, moments, "gif")}
+                      className="mono"
+                      title={`Share an animated GIF of ${d.label}`}
+                      style={{
+                        background: "#6D28D9", color: "#fff", border: "none",
+                        borderRadius: 999, padding: "4px 10px", cursor: "pointer",
+                        fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+                        whiteSpace: "nowrap",
+                      }}>🎬 GIF</button>
                     <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700 }}>
                       {moments.length} MOMENT{moments.length === 1 ? "" : "S"}
                     </div>
@@ -4982,6 +4992,44 @@ function RecapCard({ accent = "var(--ink)", paper = "var(--paper)", children, mo
 // native iOS path (InAppReview, see requestRating) doesn't depend on this
 // value — it's only the web-fallback / Account-card link.
 const APP_STORE_ID = null; // ← paste your 1.3 App Store ID here (post-approval)
+
+// ── Plursky+ paywall ──────────────────────────────────────────────
+// Free: 1 static collage per festival (watermarked). Plus: unlimited
+// collages, no watermark, GIF, video. $4.99/festival or $9.99/yr.
+// For now the subscription state is a localStorage flag. When you wire
+// up StoreKit / @capacitor/purchases, set this key in the receipt
+// verification callback.
+const PLUS_KEY = "plursky_plus_active";
+function _isPlusSub() { try { return localStorage.getItem(PLUS_KEY) === "1"; } catch { return false; } }
+function _setPlusSub(v) { try { localStorage.setItem(PLUS_KEY, v ? "1" : "0"); } catch {} }
+
+function PlusGate({ children, feature, onUpgrade }) {
+  if (_isPlusSub()) return children;
+  return React.createElement("div", {
+    style: { position: "relative", borderRadius: 14, overflow: "hidden" },
+  },
+    React.createElement("div", { style: { filter: "blur(3px)", pointerEvents: "none", opacity: 0.5 } }, children),
+    React.createElement("div", {
+      style: {
+        position: "absolute", inset: 0, display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center", gap: 8,
+        background: "rgba(26,18,13,0.7)", backdropFilter: "blur(4px)",
+      },
+    },
+      React.createElement("div", { className: "serif", style: { fontSize: 22, color: "#fff" } }, "Plursky+"),
+      React.createElement("div", { className: "mono", style: { fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.6)" } }, `UNLOCK ${(feature || "THIS FEATURE").toUpperCase()}`),
+      React.createElement("button", {
+        onClick: onUpgrade,
+        className: "mono",
+        style: {
+          marginTop: 8, padding: "9px 18px", borderRadius: 10, border: "none",
+          background: "linear-gradient(135deg, #6D28D9, #e85d2e)", color: "#fff",
+          fontSize: 10, letterSpacing: 1.4, fontWeight: 700, cursor: "pointer",
+        },
+      }, "$4.99 / FESTIVAL · UPGRADE"),
+    ),
+  );
+}
 function _appStoreUrl() {
   if (APP_STORE_ID) return `https://apps.apple.com/app/plursky-live/id${APP_STORE_ID}`;
   return "https://apps.apple.com/search?term=plursky%20live";
@@ -5184,11 +5232,528 @@ async function _shareRecapCard(recap) {
   return true;
 }
 
+// ── RECAP VIDEO ENGINE ──────────────────────────────────────────────
+// Canvas-based frame sequencer → MediaRecorder WebM. Beat-synced when
+// audio is provided. Three templates: highlight, diary, ditl.
+
+const _VIDEO_TEMPLATES = {
+  highlight: { transition: "zoom", holdSec: 1.2, transitionSec: 0.3, fontStyle: "bold", order: "energy" },
+  diary:     { transition: "crossfade", holdSec: 3.0, transitionSec: 0.8, fontStyle: "serif", order: "chronological" },
+  ditl:      { transition: "slide", holdSec: 2.0, transitionSec: 0.5, fontStyle: "mono", order: "chronological" },
+};
+
+async function _detectBeats(audioUrl) {
+  try {
+    const actx = new (window.AudioContext || window.webkitAudioContext)();
+    const res = await fetch(audioUrl);
+    const buf = await res.arrayBuffer();
+    const audio = await actx.decodeAudioData(buf);
+    const data = audio.getChannelData(0);
+    const sr = audio.sampleRate;
+    const windowSize = Math.floor(sr * 0.05);
+    const energies = [];
+    for (let i = 0; i < data.length - windowSize; i += windowSize) {
+      let sum = 0;
+      for (let j = 0; j < windowSize; j++) sum += data[i + j] * data[i + j];
+      energies.push({ time: i / sr, energy: sum / windowSize });
+    }
+    const avgEnergy = energies.reduce((s, e) => s + e.energy, 0) / energies.length;
+    const threshold = avgEnergy * 1.8;
+    const beats = [];
+    let lastBeat = -0.3;
+    for (const e of energies) {
+      if (e.energy > threshold && e.time - lastBeat > 0.25) {
+        beats.push(e.time);
+        lastBeat = e.time;
+      }
+    }
+    actx.close();
+    return beats;
+  } catch { return []; }
+}
+
+function _buildVideoTimeline(imgs, beats, duration, tmpl) {
+  const timeline = [];
+  const titleEnd = 2.5;
+  const statsStart = duration - 5;
+  const endCardStart = duration - 2;
+  timeline.push({ start: 0, end: titleEnd, type: "title" });
+  const photoWindow = statsStart - titleEnd;
+  if (imgs.length === 0) {
+    timeline.push({ start: titleEnd, end: statsStart, type: "empty" });
+  } else if (beats && beats.length >= imgs.length) {
+    const beatSlots = beats.filter(b => b >= titleEnd && b <= statsStart);
+    let slotIdx = 0;
+    for (let i = 0; i < imgs.length && slotIdx < beatSlots.length; i++) {
+      const start = beatSlots[slotIdx];
+      const end = slotIdx + 1 < beatSlots.length ? beatSlots[slotIdx + 1] : statsStart;
+      timeline.push({ start, end, photo: imgs[i], transition: tmpl.transition });
+      slotIdx++;
+    }
+  } else {
+    const perPhoto = photoWindow / imgs.length;
+    for (let i = 0; i < imgs.length; i++) {
+      timeline.push({
+        start: titleEnd + i * perPhoto,
+        end: titleEnd + (i + 1) * perPhoto,
+        photo: imgs[i],
+        transition: tmpl.transition,
+      });
+    }
+  }
+  timeline.push({ start: statsStart, end: endCardStart, type: "stats" });
+  timeline.push({ start: endCardStart, end: duration, type: "end" });
+  return timeline;
+}
+
+function _renderVideoFrame(ctx, W, H, t, timeline, chrome, tmpl) {
+  const CFG = window.FESTIVAL_CONFIG || {};
+  const seg = timeline.find(s => t >= s.start && t < s.end) || timeline[timeline.length - 1];
+  const segProgress = (t - seg.start) / (seg.end - seg.start);
+
+  ctx.fillStyle = "#1a120d";
+  ctx.fillRect(0, 0, W, H);
+
+  if (seg.type === "title") {
+    const fade = Math.min(1, segProgress * 2);
+    ctx.globalAlpha = fade;
+    ctx.fillStyle = chrome.accent || "#6D28D9";
+    ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = "#fff";
+    ctx.font = "italic 400 72px 'Instrument Serif', serif";
+    ctx.textAlign = "center";
+    ctx.fillText(chrome.title || "My Weekend", W / 2, H / 2 - 40);
+    ctx.font = "700 18px 'Geist Mono', monospace";
+    ctx.fillStyle = "rgba(255,255,255,0.7)";
+    ctx.fillText(chrome.subtitle || (CFG.shortName || "FESTIVAL").toUpperCase(), W / 2, H / 2 + 20);
+    ctx.font = "700 14px 'Geist Mono', monospace";
+    ctx.fillStyle = "rgba(255,255,255,0.4)";
+    ctx.fillText("MADE WITH PLURSKY", W / 2, H - 60);
+    ctx.globalAlpha = 1;
+    return;
+  }
+
+  if (seg.type === "stats") {
+    const recap = chrome.recap || {};
+    ctx.fillStyle = "#f7ede0";
+    ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = "#1a120d";
+    ctx.font = "italic 400 56px 'Instrument Serif', serif";
+    ctx.textAlign = "center";
+    ctx.fillText("The Numbers", W / 2, 200);
+    ctx.font = "700 16px 'Geist Mono', monospace";
+    ctx.fillStyle = "rgba(26,18,13,0.6)";
+    const stats = [
+      recap.setsCount ? `${recap.setsCount} SETS CAUGHT` : null,
+      recap.stagesVisitedCount ? `${recap.stagesVisitedCount} STAGES VISITED` : null,
+      recap.momentsCount ? `${recap.momentsCount} MEMORIES CAPTURED` : null,
+      recap.topStage ? `TOP STAGE: ${recap.topStage.name?.toUpperCase()}` : null,
+      recap.topGenre ? `TOP GENRE: ${recap.topGenre.toUpperCase()}` : null,
+    ].filter(Boolean);
+    stats.forEach((s, i) => {
+      const staggerFade = Math.min(1, Math.max(0, (segProgress - i * 0.12) * 4));
+      ctx.globalAlpha = staggerFade;
+      ctx.fillText(s, W / 2, 300 + i * 50);
+    });
+    ctx.globalAlpha = 1;
+    return;
+  }
+
+  if (seg.type === "end") {
+    ctx.fillStyle = chrome.accent || "#6D28D9";
+    ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = "#fff";
+    ctx.font = "italic 400 48px 'Instrument Serif', serif";
+    ctx.textAlign = "center";
+    ctx.fillText("plursky.com", W / 2, H / 2 - 10);
+    ctx.font = "700 14px 'Geist Mono', monospace";
+    ctx.fillStyle = "rgba(255,255,255,0.5)";
+    ctx.fillText("YOUR FESTIVAL. YOUR STORY.", W / 2, H / 2 + 40);
+    return;
+  }
+
+  if (seg.type === "empty" || !seg.photo) return;
+  const { img, moment } = seg.photo;
+  const artist = moment?.artistId ? (window.ARTISTS || []).find(a => a.id === moment.artistId) : null;
+  const stage = artist ? (window.STAGES || []).find(s => s.id === artist.stage) : null;
+
+  const transitionDur = tmpl.transitionSec || 0.3;
+  const fadeIn = Math.min(1, segProgress * (seg.end - seg.start) / transitionDur);
+  const fadeOut = Math.min(1, (1 - segProgress) * (seg.end - seg.start) / transitionDur);
+  const alpha = Math.min(fadeIn, fadeOut);
+
+  // W2: 3D parallax — foreground layer moves faster than background
+  const kenBurnsZoom = 1 + 0.08 * segProgress;
+  const parallaxFg = (segProgress - 0.5) * 30;
+  const parallaxBg = (segProgress - 0.5) * 12;
+  const panY = (segProgress - 0.5) * 8;
+
+  ctx.save();
+  ctx.globalAlpha = Math.max(0.01, alpha);
+  const sc = Math.max(W / img.width, H / img.height) * kenBurnsZoom;
+  const dw = img.width * sc, dh = img.height * sc;
+  ctx.drawImage(img, (W - dw) / 2 + parallaxBg, (H - dh) / 2 + panY, dw, dh);
+
+  if (_isPlusSub()) {
+    ctx.globalAlpha = Math.max(0.01, alpha) * 0.15;
+    const fgZoom = kenBurnsZoom * 1.03;
+    const fgSc = Math.max(W / img.width, H / img.height) * fgZoom;
+    const fgDw = img.width * fgSc, fgDh = img.height * fgSc;
+    ctx.globalCompositeOperation = "screen";
+    ctx.drawImage(img, (W - fgDw) / 2 + parallaxFg, (H - fgDh) / 2 + panY * 1.5, fgDw, fgDh);
+    ctx.globalCompositeOperation = "source-over";
+  }
+  ctx.globalAlpha = 1;
+  ctx.restore();
+
+  ctx.fillStyle = "rgba(0,0,0,0.35)";
+  ctx.fillRect(0, H - 200, W, 200);
+
+  if (artist) {
+    ctx.fillStyle = "#fff";
+    ctx.font = "italic 400 42px 'Instrument Serif', serif";
+    ctx.textAlign = "left";
+    ctx.fillText(artist.name, 60, H - 120);
+    if (stage) {
+      ctx.fillStyle = stage.color || "rgba(255,255,255,0.7)";
+      ctx.font = "700 14px 'Geist Mono', monospace";
+      ctx.fillText(`${stage.name?.toUpperCase()} · ${artist.start || ""}`, 60, H - 80);
+    }
+  }
+
+  // W4: Spotify listening overlay
+  if (_isPlusSub() && artist) {
+    const cache = window._spotifyArtistCache || {};
+    const entry = cache[artist.name?.toLowerCase()];
+    const playCount = entry?.playCount || entry?.topTrackPop;
+    if (playCount) {
+      const fadeOverlay = Math.min(1, Math.max(0, (segProgress - 0.2) * 3));
+      ctx.globalAlpha = fadeOverlay * 0.9;
+      ctx.fillStyle = "rgba(0,0,0,0.5)";
+      const pillW = 320, pillH = 36, pillX = 60, pillY = 60;
+      ctx.beginPath();
+      ctx.roundRect(pillX, pillY, pillW, pillH, pillH / 2);
+      ctx.fill();
+      ctx.fillStyle = "#1DB954";
+      ctx.font = "700 11px 'Geist Mono', monospace";
+      ctx.textAlign = "left";
+      ctx.fillText(`♫ YOU'VE PLAYED THIS ARTIST ${playCount}× ON SPOTIFY`, pillX + 16, pillY + 23);
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  if (!_isPlusSub()) {
+    ctx.save();
+    ctx.translate(W / 2, H / 2);
+    ctx.rotate(-Math.PI / 6);
+    ctx.fillStyle = "rgba(255,255,255,0.15)";
+    ctx.font = "700 48px 'Geist Mono', monospace";
+    ctx.textAlign = "center";
+    ctx.fillText("PLURSKY+", 0, 0);
+    ctx.restore();
+  }
+
+  const progressY = 30, progressR = 18;
+  ctx.strokeStyle = "rgba(255,255,255,0.2)";
+  ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.arc(W - 50, progressY + progressR, progressR, 0, Math.PI * 2); ctx.stroke();
+  ctx.strokeStyle = "#fff";
+  ctx.beginPath(); ctx.arc(W - 50, progressY + progressR, progressR, -Math.PI / 2, -Math.PI / 2 + (t / (timeline[timeline.length - 1]?.end || 15)) * Math.PI * 2); ctx.stroke();
+}
+
+async function _renderRecapVideo({ moments, audioUrl, template, title, subtitle, kicker, accent, avatars, totemUrl, recap, onProgress }) {
+  const W = 1080, H = 1350, FPS = 30;
+  const CFG = window.FESTIVAL_CONFIG || {};
+
+  try {
+    await document.fonts.load("italic 400 72px 'Instrument Serif'");
+    await document.fonts.load("700 18px 'Geist Mono'");
+  } catch {}
+
+  const photoMoments = moments.filter(m => m.photoId && (m.kind === "image" || !m.kind)).slice(0, 12);
+  const imgs = [];
+  for (const m of photoMoments) {
+    try {
+      const blob = await _getPhoto(m.photoId);
+      if (!blob) continue;
+      const img = await new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = URL.createObjectURL(blob); });
+      if (img) imgs.push({ img, moment: m });
+    } catch {}
+  }
+  if (!imgs.length) return null;
+
+  let beats = audioUrl ? await _detectBeats(audioUrl) : [];
+  const DURATION = audioUrl ? 30 : 15;
+  const tmpl = _VIDEO_TEMPLATES[template || "highlight"] || _VIDEO_TEMPLATES.highlight;
+  const timeline = _buildVideoTimeline(imgs, beats, DURATION, tmpl);
+
+  const canvas = document.createElement("canvas");
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext("2d");
+
+  if (typeof canvas.captureStream !== "function") return null;
+
+  const stream = canvas.captureStream(FPS);
+  let audioEl = null;
+  if (audioUrl) {
+    try {
+      audioEl = new Audio();
+      audioEl.crossOrigin = "anonymous";
+      audioEl.src = audioUrl;
+      await new Promise((r, j) => { audioEl.oncanplaythrough = r; audioEl.onerror = () => { audioEl = null; r(); }; });
+      if (audioEl) {
+        const actx = new (window.AudioContext || window.webkitAudioContext)();
+        const src = actx.createMediaElementSource(audioEl);
+        const dest = actx.createMediaStreamDestination();
+        src.connect(dest);
+        src.connect(actx.destination);
+        for (const t of dest.stream.getAudioTracks()) stream.addTrack(t);
+      }
+    } catch { audioEl = null; }
+  }
+
+  const chrome = { title: title || "My Weekend", subtitle: subtitle || `${(CFG.shortName || "FESTIVAL").toUpperCase()} · ${CFG.dates || ""}`, accent: accent || "#1a120d", recap: recap || {} };
+  const chunks = [];
+  const mimeType = MediaRecorder.isTypeSupported?.("video/webm;codecs=vp9") ? "video/webm;codecs=vp9" : "video/webm";
+  const recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 4_000_000 });
+  recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
+
+  return new Promise((resolve) => {
+    recorder.onstop = () => resolve(new Blob(chunks, { type: mimeType }));
+    recorder.start(100);
+    if (audioEl) audioEl.play().catch(() => {});
+
+    const t0 = performance.now();
+    const tick = () => {
+      const elapsed = (performance.now() - t0) / 1000;
+      if (elapsed >= DURATION) {
+        recorder.stop();
+        if (audioEl) { audioEl.pause(); audioEl.currentTime = 0; }
+        return;
+      }
+      _renderVideoFrame(ctx, W, H, elapsed, timeline, chrome, tmpl);
+      if (onProgress) onProgress(elapsed / DURATION);
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+}
+
+function _videoProgress(show, pct) {
+  let el = document.getElementById("plursky-video-progress");
+  if (show && !el) {
+    el = document.createElement("div");
+    el.id = "plursky-video-progress";
+    el.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:9999;padding:14px 20px;text-align:center;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:1.4px;font-weight:700;color:#fff;background:linear-gradient(135deg,#1a120d,#6D28D9);";
+    document.body.appendChild(el);
+  }
+  if (el) {
+    if (!show) { el.remove(); return; }
+    el.textContent = `🎬 RENDERING VIDEO… ${Math.round((pct || 0) * 100)}%`;
+  }
+}
+
+async function _shareRecapVideo({ moments, audioUrl, template, title, subtitle, accent, recap, format }) {
+  _videoProgress(true, 0);
+  let blob;
+  try {
+    blob = await _renderRecapVideo({
+      moments, audioUrl, template, title, subtitle, accent, recap,
+      onProgress: (p) => _videoProgress(true, p),
+    });
+  } catch (e) { console.error("[plursky-video]", e); }
+  _videoProgress(false);
+  if (!blob) return false;
+
+  try { window.plurskyHaptic?.("MEDIUM"); } catch {}
+  const filename = "plursky-recap.webm";
+  const file = new File([blob], filename, { type: blob.type });
+  const sheetTitle = `My ${window.FESTIVAL_CONFIG?.shortName || "festival"} recap`;
+
+  const capShare = window.Capacitor?.Plugins?.Share;
+  if (capShare?.share && window.Capacitor?.isNativePlatform?.()) {
+    try {
+      const dataUrl = await new Promise((resolve, reject) => {
+        const r = new FileReader(); r.onload = () => resolve(r.result); r.onerror = reject; r.readAsDataURL(blob);
+      });
+      await capShare.share({ title: sheetTitle, files: [dataUrl] });
+      return true;
+    } catch (e) { if (e?.message && !/cancel|abort/i.test(e.message)) console.warn("[plursky-share]", e.message); }
+  }
+  if (navigator.share && typeof navigator.canShare === "function" && navigator.canShare({ files: [file] })) {
+    try { await navigator.share({ files: [file], title: sheetTitle }); return true; }
+    catch (e) { if (e?.name === "AbortError") return false; }
+  }
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  return true;
+}
+
+// GIF support — lazy-loaded on first use so gif.js is never fetched
+// unless someone taps a GIF button.
+let _gifWorkerBlobUrl = null;
+async function _ensureGifJs() {
+  if (window.GIF) return;
+  await new Promise((resolve, reject) => {
+    const s = document.createElement("script");
+    s.src = "https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.js";
+    s.onload = resolve;
+    s.onerror = () => reject(new Error("Failed to load gif.js"));
+    document.head.appendChild(s);
+  });
+  if (!_gifWorkerBlobUrl) {
+    const res = await fetch("https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.worker.js");
+    const text = await res.text();
+    _gifWorkerBlobUrl = URL.createObjectURL(new Blob([text], { type: "application/javascript" }));
+  }
+}
+
+function _gifProgress(show) {
+  let el = document.getElementById("plursky-gif-progress");
+  if (show && !el) {
+    el = document.createElement("div");
+    el.id = "plursky-gif-progress";
+    el.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:9999;padding:12px 20px;text-align:center;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:1.4px;font-weight:700;color:#fff;background:linear-gradient(135deg,#6D28D9,#e85d2e);";
+    el.textContent = "⏳ CREATING GIF…";
+    document.body.appendChild(el);
+  } else if (!show && el) {
+    el.remove();
+  }
+}
+
+async function _renderCollageGif({ title, subtitle, kicker, accent, moments, avatars, totemUrl }) {
+  await _ensureGifJs();
+  const W = 540, H = 675;
+  const CFG = window.FESTIVAL_CONFIG || {};
+
+  try {
+    await document.fonts.load("italic 400 42px 'Instrument Serif'");
+    await document.fonts.load("700 11px 'Geist Mono'");
+  } catch {}
+
+  let totemImg = null;
+  if (totemUrl) {
+    try { totemImg = await new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = totemUrl; }); } catch {}
+  }
+
+  const photoMoments = moments.filter(m => m.photoId && (m.kind === "image" || !m.kind)).slice(0, 6);
+  const imgs = [];
+  for (const m of photoMoments) {
+    try {
+      const blob = await _getPhoto(m.photoId);
+      if (!blob) continue;
+      const img = await new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = URL.createObjectURL(blob); });
+      if (img) imgs.push(img);
+    } catch {}
+  }
+  if (!imgs.length) return null;
+
+  const c = document.createElement("canvas");
+  c.width = W; c.height = H;
+  const ctx = c.getContext("2d");
+  const hH = 115, fH = 55, mT = hH, mH = H - hH - fH;
+
+  const drawChrome = () => {
+    ctx.fillStyle = accent || "#1a120d";
+    ctx.fillRect(0, 0, W, hH);
+    const tL = totemImg ? 100 : 30;
+    if (totemImg) {
+      const tR = 30, tCx = 60, tCy = hH / 2;
+      ctx.save();
+      ctx.beginPath(); ctx.arc(tCx, tCy, tR, 0, Math.PI * 2); ctx.clip();
+      const ts = Math.max(tR * 2 / totemImg.width, tR * 2 / totemImg.height);
+      ctx.drawImage(totemImg, tCx - totemImg.width * ts / 2, tCy - totemImg.height * ts / 2, totemImg.width * ts, totemImg.height * ts);
+      ctx.restore();
+      ctx.strokeStyle = "rgba(255,255,255,0.5)"; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(tCx, tCy, tR, 0, Math.PI * 2); ctx.stroke();
+    }
+    ctx.fillStyle = "rgba(255,255,255,0.78)";
+    ctx.font = "700 11px 'Geist Mono', monospace";
+    ctx.textAlign = "left";
+    ctx.fillText(kicker || `PLURSKY · ${(CFG.shortName || CFG.name || "FESTIVAL").toUpperCase()}`, tL, 40);
+    ctx.fillStyle = "#fff";
+    ctx.font = "italic 400 42px 'Instrument Serif', serif";
+    let safe = title || "Memories";
+    while (ctx.measureText(safe).width > W - tL - 30 && safe.length > 4) safe = safe.slice(0, -2);
+    if (safe !== (title || "Memories")) safe = safe.slice(0, -1) + "…";
+    ctx.fillText(safe, tL, 85);
+    if (subtitle) {
+      ctx.fillStyle = "rgba(255,255,255,0.88)";
+      ctx.font = "700 9px 'Geist Mono', monospace";
+      ctx.fillText(subtitle, tL, 105);
+    }
+    ctx.fillStyle = "#1a120d";
+    ctx.fillRect(0, H - fH, W, fH);
+    let ftx = 30;
+    if (avatars && avatars.length > 0) {
+      const avR = 8, avStep = 11, cy = H - fH / 2;
+      const avN = Math.min(avatars.length, 8);
+      for (let ai = avN - 1; ai >= 0; ai--) {
+        const cx = 30 + avR + ai * avStep;
+        ctx.fillStyle = "#1a120d";
+        ctx.beginPath(); ctx.arc(cx, cy, avR + 1, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = avatars[ai].color || "#7b3d9a";
+        ctx.beginPath(); ctx.arc(cx, cy, avR, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "#fff";
+        ctx.font = "700 7px 'Geist Mono', monospace";
+        ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        ctx.fillText((avatars[ai].initial || "?")[0], cx, cy + 1);
+      }
+      ftx = 30 + avR * 2 + (avN - 1) * avStep + 8;
+      ctx.textBaseline = "alphabetic";
+    }
+    ctx.fillStyle = "#f7ede0";
+    ctx.textAlign = "left";
+    ctx.font = "700 11px 'Geist Mono', monospace";
+    ctx.fillText("MADE WITH PLURSKY", ftx, H - 27);
+    ctx.fillStyle = "rgba(247,237,224,0.7)";
+    ctx.font = "italic 400 12px 'Instrument Serif', serif";
+    ctx.textAlign = "right";
+    ctx.fillText("plursky.com", W - 30, H - 27);
+  };
+
+  const drawPhoto = (img, zoom, panX, panY, alpha) => {
+    ctx.save();
+    ctx.beginPath(); ctx.rect(0, mT, W, mH); ctx.clip();
+    if (alpha < 1) ctx.globalAlpha = alpha;
+    const sc = Math.max(W / img.width, mH / img.height) * zoom;
+    const dw = img.width * sc, dh = img.height * sc;
+    ctx.drawImage(img, (W - dw) / 2 + panX, mT + (mH - dh) / 2 + panY, dw, dh);
+    ctx.globalAlpha = 1;
+    ctx.restore();
+  };
+
+  const gif = new GIF({ workers: 2, quality: 10, width: W, height: H, workerScript: _gifWorkerBlobUrl });
+
+  for (let i = 0; i < imgs.length; i++) {
+    const dir = i % 2 === 0 ? 1 : -1;
+    for (let f = 0; f < 2; f++) {
+      ctx.fillStyle = "#f7ede0"; ctx.fillRect(0, 0, W, H);
+      drawChrome();
+      drawPhoto(imgs[i], 1 + 0.06 * f, dir * f * 8, -f * 4, 1);
+      gif.addFrame(ctx, { copy: true, delay: 500 });
+    }
+    if (imgs.length > 1) {
+      const next = imgs[(i + 1) % imgs.length];
+      ctx.fillStyle = "#f7ede0"; ctx.fillRect(0, 0, W, H);
+      drawChrome();
+      drawPhoto(imgs[i], 1.06, dir * 8, -4, 0.35);
+      drawPhoto(next, 1, 0, 0, 0.65);
+      gif.addFrame(ctx, { copy: true, delay: 250 });
+    }
+  }
+
+  return new Promise(r => { gif.on("finished", r); gif.render(); });
+}
+
 // Generic shareable collage. Same renderer underlies the per-artist,
 // per-stage, per-night, and weekend collages — only title/subtitle/
 // kicker/accent/moments change. 1080×1350 = Instagram 4:5, also reads
 // as a Story since the safe area is centered.
-async function _renderCollage({ title, subtitle, kicker, accent, moments }) {
+async function _renderCollage({ title, subtitle, kicker, accent, moments, avatars, totemUrl }) {
   const W = 1080, H = 1350;
   const canvas = document.createElement("canvas");
   canvas.width = W; canvas.height = H;
@@ -5201,6 +5766,13 @@ async function _renderCollage({ title, subtitle, kicker, accent, moments }) {
     await document.fonts.load("700 20px 'Geist Mono'");
   } catch {}
 
+  let totemImg = null;
+  if (totemUrl) {
+    try {
+      totemImg = await new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = totemUrl; });
+    } catch {}
+  }
+
   ctx.fillStyle = "#f7ede0";
   ctx.fillRect(0, 0, W, H);
 
@@ -5208,23 +5780,38 @@ async function _renderCollage({ title, subtitle, kicker, accent, moments }) {
   const headerH = 230;
   ctx.fillStyle = accent || "#1a120d";
   ctx.fillRect(0, 0, W, headerH);
+
+  const textLeft = totemImg ? 200 : 60;
+
+  if (totemImg) {
+    const tR = 60, tCx = 120, tCy = headerH / 2;
+    ctx.save();
+    ctx.beginPath(); ctx.arc(tCx, tCy, tR, 0, Math.PI * 2); ctx.clip();
+    const ts = Math.max(tR * 2 / totemImg.width, tR * 2 / totemImg.height);
+    ctx.drawImage(totemImg, tCx - totemImg.width * ts / 2, tCy - totemImg.height * ts / 2, totemImg.width * ts, totemImg.height * ts);
+    ctx.restore();
+    ctx.strokeStyle = "rgba(255,255,255,0.5)";
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.arc(tCx, tCy, tR, 0, Math.PI * 2); ctx.stroke();
+  }
+
   ctx.fillStyle = "rgba(255,255,255,0.78)";
   ctx.font = "700 22px 'Geist Mono', monospace";
   ctx.textAlign = "left";
-  ctx.fillText(kicker || `PLURSKY · ${(CFG.shortName || CFG.name || "FESTIVAL").toUpperCase()}`, 60, 80);
-  // Title — truncate to fit
+  ctx.fillText(kicker || `PLURSKY · ${(CFG.shortName || CFG.name || "FESTIVAL").toUpperCase()}`, textLeft, 80);
   ctx.fillStyle = "#fff";
   ctx.font = "italic 400 84px 'Instrument Serif', serif";
   let safeTitle = title || "Memories";
-  while (ctx.measureText(safeTitle).width > W - 120 && safeTitle.length > 4) {
+  const maxTitleW = W - textLeft - 60;
+  while (ctx.measureText(safeTitle).width > maxTitleW && safeTitle.length > 4) {
     safeTitle = safeTitle.slice(0, -2);
   }
   if (safeTitle !== (title || "Memories")) safeTitle = safeTitle.slice(0, -1) + "…";
-  ctx.fillText(safeTitle, 60, 170);
+  ctx.fillText(safeTitle, textLeft, 170);
   if (subtitle) {
     ctx.fillStyle = "rgba(255,255,255,0.88)";
     ctx.font = "700 18px 'Geist Mono', monospace";
-    ctx.fillText(subtitle, 60, 210);
+    ctx.fillText(subtitle, textLeft, 210);
   }
 
   // Photo mosaic area (between header + footer)
@@ -5293,13 +5880,43 @@ async function _renderCollage({ title, subtitle, kicker, accent, moments }) {
     ctx.fillText("No photos yet from this set", W/2, mosaicTop + mosaicH/2);
   }
 
-  // Footer band — branding + count
+  // Watermark for free tier
+  if (n > 0 && !_isPlusSub()) {
+    ctx.save();
+    ctx.translate(W / 2, mosaicTop + mosaicH / 2);
+    ctx.rotate(-Math.PI / 6);
+    ctx.fillStyle = "rgba(255,255,255,0.18)";
+    ctx.font = "700 64px 'Geist Mono', monospace";
+    ctx.textAlign = "center";
+    ctx.fillText("PLURSKY+", 0, 0);
+    ctx.restore();
+  }
+
+  // Footer band — branding + count + optional crew avatars
   ctx.fillStyle = "#1a120d";
   ctx.fillRect(0, H - footerH, W, footerH);
+  let footerTextX = 60;
+  if (avatars && avatars.length > 0) {
+    const avR = 15, avStep = 22, centerY = H - footerH / 2;
+    const avCount = Math.min(avatars.length, 8);
+    for (let ai = avCount - 1; ai >= 0; ai--) {
+      const cx = 60 + avR + ai * avStep;
+      ctx.fillStyle = "#1a120d";
+      ctx.beginPath(); ctx.arc(cx, centerY, avR + 2, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = avatars[ai].color || "#7b3d9a";
+      ctx.beginPath(); ctx.arc(cx, centerY, avR, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = "#fff";
+      ctx.font = "700 13px 'Geist Mono', monospace";
+      ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText((avatars[ai].initial || "?")[0], cx, centerY + 1);
+    }
+    footerTextX = 60 + avR * 2 + (avCount - 1) * avStep + 16;
+    ctx.textBaseline = "alphabetic";
+  }
   ctx.fillStyle = "#f7ede0";
   ctx.textAlign = "left";
   ctx.font = "700 22px 'Geist Mono', monospace";
-  ctx.fillText(`MADE WITH PLURSKY · ${n} MOMENT${n === 1 ? "" : "S"}`, 60, H - 55);
+  ctx.fillText(`MADE WITH PLURSKY · ${n} MOMENT${n === 1 ? "" : "S"}`, footerTextX, H - 55);
   ctx.fillStyle = "rgba(247,237,224,0.7)";
   ctx.font = "italic 400 24px 'Instrument Serif', serif";
   ctx.textAlign = "right";
@@ -5311,17 +5928,28 @@ async function _renderCollage({ title, subtitle, kicker, accent, moments }) {
 // Generic share helper. Renders + shares + downloads-on-fallback. The
 // per-{artist,stage,night,weekend} wrappers below just feed this their
 // specific title/subtitle/accent.
-async function _shareCollage({ title, subtitle, kicker, accent, moments, filenameSlug, shareTitle }) {
-  let canvas;
-  try {
-    canvas = await _renderCollage({ title, subtitle, kicker, accent, moments });
-  } catch (e) { console.error("[plursky-collage] render failed:", e); return false; }
-  const blob = await new Promise(r => canvas.toBlob(r, "image/png"));
-  if (!blob) return false;
+async function _shareCollage({ title, subtitle, kicker, accent, moments, avatars, totemUrl, filenameSlug, shareTitle, format }) {
+  let blob;
+  if (format === "gif") {
+    _gifProgress(true);
+    try {
+      blob = await _renderCollageGif({ title, subtitle, kicker, accent, moments, avatars, totemUrl });
+    } catch (e) { console.error("[plursky-collage] gif render failed:", e); }
+    _gifProgress(false);
+    if (!blob) return false;
+  } else {
+    let canvas;
+    try {
+      canvas = await _renderCollage({ title, subtitle, kicker, accent, moments, avatars, totemUrl });
+    } catch (e) { console.error("[plursky-collage] render failed:", e); return false; }
+    blob = await new Promise(r => canvas.toBlob(r, "image/png"));
+    if (!blob) return false;
+  }
   try { window.plurskyHaptic?.("LIGHT"); } catch {}
+  const isGif = format === "gif";
   const slug = (filenameSlug || title || "set").toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 32);
-  const filename = `plursky-${slug}.png`;
-  const file = new File([blob], filename, { type: "image/png" });
+  const filename = `plursky-${slug}.${isGif ? "gif" : "png"}`;
+  const file = new File([blob], filename, { type: isGif ? "image/gif" : "image/png" });
   const sheetTitle = shareTitle || `${title} at ${window.FESTIVAL_CONFIG?.shortName || "the festival"}`;
 
   const capShare = window.Capacitor?.Plugins?.Share;
@@ -5359,7 +5987,7 @@ async function _shareCollage({ title, subtitle, kicker, accent, moments, filenam
 // the right title/subtitle/accent + filters moments before delegating to
 // _shareCollage. All exposed via window so any screen can call them.
 
-async function _shareArtistCollage(artist, moments) {
+async function _shareArtistCollage(artist, moments, format) {
   const stage = (window.STAGES || []).find(s => s.id === artist.stage) || {};
   const CFG = window.FESTIVAL_CONFIG || {};
   const dayShort = CFG.dayDates?.[artist.day]?.short || `DAY ${artist.day}`;
@@ -5370,10 +5998,11 @@ async function _shareArtistCollage(artist, moments) {
     moments,
     filenameSlug: artist.name,
     shareTitle:   `${artist.name} at ${CFG.shortName || "the festival"}`,
+    format,
   });
 }
 
-async function _shareStageCollage(stage, momentsAcrossArtists) {
+async function _shareStageCollage(stage, momentsAcrossArtists, format) {
   const CFG = window.FESTIVAL_CONFIG || {};
   return _shareCollage({
     title:    stage.name,
@@ -5382,31 +6011,29 @@ async function _shareStageCollage(stage, momentsAcrossArtists) {
     moments:  momentsAcrossArtists,
     filenameSlug: `stage-${stage.short || stage.id}`,
     shareTitle:   `My ${stage.name} at ${CFG.shortName || "the festival"}`,
+    format,
   });
 }
 
-async function _shareNightCollage(night, momentsForNight) {
+async function _shareNightCollage(night, momentsForNight, format) {
   const CFG = window.FESTIVAL_CONFIG || {};
   const di = CFG.dayDates?.[night] || {};
   return _shareCollage({
     title:    di.name || `Night ${night}`,
     subtitle: `${(CFG.shortName || CFG.name || "FESTIVAL").toUpperCase()} · ${(di.short || `DAY ${night}`).toUpperCase()}`,
-    accent:   "#e85d2e", // ember — no single stage owns a night
+    accent:   "#e85d2e",
     moments:  momentsForNight,
     filenameSlug: `night-${night}`,
     shareTitle:   `My ${di.name || "festival night"} at ${CFG.shortName || "the festival"}`,
+    format,
   });
 }
 
-async function _shareWeekendCollage(allMoments) {
+async function _shareWeekendCollage(allMoments, format) {
   const CFG = window.FESTIVAL_CONFIG || {};
-  // Pick the 6 "best" moments: try to spread across nights + prefer
-  // those tagged to an artist (signal of "this one mattered"). Falls
-  // back to most-recent when there's nothing tagged.
   const tagged   = allMoments.filter(m => m.artistId);
   const untagged = allMoments.filter(m => !m.artistId);
   const pool = tagged.length >= 6 ? tagged : [...tagged, ...untagged];
-  // Round-robin across nights so the collage spans the weekend
   const byNight = new Map();
   for (const m of pool) {
     if (!byNight.has(m.night)) byNight.set(m.night, []);
@@ -5424,11 +6051,511 @@ async function _shareWeekendCollage(allMoments) {
   return _shareCollage({
     title:    "My Weekend",
     subtitle: `${(CFG.shortName || CFG.name || "FESTIVAL").toUpperCase()} · ${CFG.dates || ""}`,
-    accent:   "#1a120d", // ink — weekend recap is "monolithic"
+    accent:   "#1a120d",
     moments:  picked,
     filenameSlug: `weekend-${CFG.id || "festival"}`,
     shareTitle:   `My ${CFG.shortName || "festival weekend"}`,
+    format,
   });
+}
+
+async function _shareCrewCollage({ crewNames, avatars, crewArtistIds, overlapIds, format, totemUrl }) {
+  const CFG = window.FESTIVAL_CONFIG || {};
+  const all = [];
+  try {
+    const raw = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
+    for (const k of Object.keys(raw)) for (const m of (raw[k] || [])) all.push(m);
+  } catch {}
+
+  const overlapSet = new Set(overlapIds || []);
+  const crewSet = new Set(crewArtistIds || []);
+  const overlapMoments = all.filter(m => m.artistId && overlapSet.has(m.artistId));
+  const crewMoments = all.filter(m => m.artistId && crewSet.has(m.artistId));
+  const pool = overlapMoments.length >= 6 ? overlapMoments : crewMoments.length > 0 ? crewMoments : all;
+
+  const tagged = pool.filter(m => m.artistId);
+  const untagged = pool.filter(m => !m.artistId);
+  const source = tagged.length >= 6 ? tagged : [...tagged, ...untagged];
+  const byNight = new Map();
+  for (const m of source) {
+    if (!byNight.has(m.night)) byNight.set(m.night, []);
+    byNight.get(m.night).push(m);
+  }
+  const picked = [];
+  const nights = [...byNight.keys()].sort((a, b) => a - b);
+  while (picked.length < 6 && nights.some(n => byNight.get(n).length > 0)) {
+    for (const n of nights) {
+      const arr = byNight.get(n);
+      if (arr.length > 0) picked.push(arr.shift());
+      if (picked.length >= 6) break;
+    }
+  }
+
+  let subtitle = (crewNames || []).map(n => n.toUpperCase()).join(" · ");
+  if (subtitle.length > 55) subtitle = `${crewNames.length} CREW · ${(overlapIds || []).length} SETS IN COMMON`;
+
+  return _shareCollage({
+    title: "Our Weekend",
+    subtitle,
+    kicker: `PLURSKY · ${(CFG.shortName || CFG.name || "FESTIVAL").toUpperCase()} · CREW`,
+    accent: "#6D28D9",
+    moments: picked,
+    avatars,
+    totemUrl,
+    filenameSlug: `crew-${CFG.id || "festival"}`,
+    shareTitle: `Our crew's weekend at ${CFG.shortName || "the festival"}`,
+    format,
+  });
+}
+
+// ── WOW FEATURES (Plursky+ exclusive) ──────────────────────────────
+
+// W1: Festival DNA — unique color barcode from your weekend's photos
+async function _renderFestivalDNA(moments) {
+  const photoMoments = moments.filter(m => m.photoId && (m.kind === "image" || !m.kind)).slice(0, 20);
+  const colors = [];
+  for (const m of photoMoments) {
+    try {
+      const blob = await _getPhoto(m.photoId);
+      if (!blob) continue;
+      const img = await new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = URL.createObjectURL(blob); });
+      if (!img) continue;
+      const tc = document.createElement("canvas");
+      tc.width = 32; tc.height = 32;
+      const tctx = tc.getContext("2d");
+      tctx.drawImage(img, 0, 0, 32, 32);
+      const d = tctx.getImageData(0, 0, 32, 32).data;
+      let rSum = 0, gSum = 0, bSum = 0;
+      for (let i = 0; i < d.length; i += 4) { rSum += d[i]; gSum += d[i+1]; bSum += d[i+2]; }
+      const px = d.length / 4;
+      colors.push(`rgb(${Math.round(rSum/px)},${Math.round(gSum/px)},${Math.round(bSum/px)})`);
+    } catch {}
+  }
+  if (!colors.length) return null;
+
+  const W = 1080, H = 1350;
+  const CFG = window.FESTIVAL_CONFIG || {};
+  const c = document.createElement("canvas"); c.width = W; c.height = H;
+  const ctx = c.getContext("2d");
+
+  try { await document.fonts.load("italic 400 72px 'Instrument Serif'"); await document.fonts.load("700 16px 'Geist Mono'"); } catch {}
+
+  ctx.fillStyle = "#1a120d"; ctx.fillRect(0, 0, W, H);
+
+  const stripY = 320, stripH = 600;
+  const barW = W / colors.length;
+  colors.forEach((c, i) => { ctx.fillStyle = c; ctx.fillRect(i * barW, stripY, barW + 1, stripH); });
+
+  ctx.fillStyle = "rgba(26,18,13,0.3)";
+  ctx.fillRect(0, stripY, W, 2);
+  ctx.fillRect(0, stripY + stripH - 2, W, 2);
+
+  ctx.fillStyle = "#f7ede0";
+  ctx.font = "italic 400 72px 'Instrument Serif', serif";
+  ctx.textAlign = "center";
+  ctx.fillText("Festival DNA", W/2, 160);
+  ctx.font = "700 16px 'Geist Mono', monospace";
+  ctx.fillStyle = "rgba(247,237,224,0.5)";
+  ctx.fillText(`${(CFG.shortName || "FESTIVAL").toUpperCase()} · ${colors.length} MOMENTS · YOUR UNIQUE PALETTE`, W/2, 210);
+
+  ctx.fillStyle = "rgba(247,237,224,0.3)";
+  ctx.font = "700 12px 'Geist Mono', monospace";
+  ctx.fillText("MADE WITH PLURSKY+", W/2, H - 80);
+  ctx.fillStyle = "rgba(247,237,224,0.5)";
+  ctx.font = "italic 400 20px 'Instrument Serif', serif";
+  ctx.fillText("plursky.com", W/2, H - 50);
+
+  return c;
+}
+
+async function _shareFestivalDNA(moments) {
+  const c = await _renderFestivalDNA(moments);
+  if (!c) return false;
+  const blob = await new Promise(r => c.toBlob(r, "image/png"));
+  if (!blob) return false;
+  try { window.plurskyHaptic?.("MEDIUM"); } catch {}
+  const file = new File([blob], "plursky-festival-dna.png", { type: "image/png" });
+  const sheetTitle = `My Festival DNA — ${window.FESTIVAL_CONFIG?.shortName || "festival"}`;
+  if (navigator.share && typeof navigator.canShare === "function" && navigator.canShare({ files: [file] })) {
+    try { await navigator.share({ files: [file], title: sheetTitle }); return true; } catch {}
+  }
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a"); a.href = url; a.download = "plursky-festival-dna.png";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  return true;
+}
+
+// W3: Festival Passport — stamped stage card
+async function _renderFestivalPassport(state) {
+  const W = 1080, H = 1350;
+  const CFG = window.FESTIVAL_CONFIG || {};
+  const c = document.createElement("canvas"); c.width = W; c.height = H;
+  const ctx = c.getContext("2d");
+
+  try { await document.fonts.load("italic 400 56px 'Instrument Serif'"); await document.fonts.load("700 14px 'Geist Mono'"); } catch {}
+
+  ctx.fillStyle = "#f7ede0"; ctx.fillRect(0, 0, W, H);
+  ctx.strokeStyle = "rgba(26,18,13,0.15)"; ctx.lineWidth = 2;
+  ctx.strokeRect(40, 40, W - 80, H - 80);
+  ctx.strokeRect(50, 50, W - 100, H - 100);
+
+  ctx.fillStyle = "#1a120d";
+  ctx.font = "italic 400 56px 'Instrument Serif', serif";
+  ctx.textAlign = "center";
+  ctx.fillText("Festival Passport", W/2, 140);
+  ctx.font = "700 14px 'Geist Mono', monospace";
+  ctx.fillStyle = "rgba(26,18,13,0.4)";
+  ctx.fillText(`${(CFG.shortName || "FESTIVAL").toUpperCase()} · ${CFG.dates || "2026"}`, W/2, 180);
+
+  const attended = [];
+  try {
+    const raw = JSON.parse(localStorage.getItem("plursky_attended_v1") || "{}");
+    for (const [id, v] of Object.entries(raw)) { if (v) attended.push(id); }
+  } catch {}
+
+  const stages = window.STAGES || [];
+  const artists = window.ARTISTS || [];
+  const stageStats = new Map();
+  for (const aid of attended) {
+    const a = artists.find(x => x.id === aid);
+    if (!a) continue;
+    const s = stages.find(x => x.id === a.stage);
+    if (!s) continue;
+    if (!stageStats.has(s.id)) stageStats.set(s.id, { stage: s, count: 0 });
+    stageStats.get(s.id).count++;
+  }
+
+  const sorted = [...stageStats.values()].sort((a, b) => b.count - a.count);
+  const setsTotal = attended.length;
+  const badge = setsTotal >= 20 ? "FESTIVAL VETERAN" : setsTotal >= 10 ? "WEEKEND WARRIOR" : setsTotal >= 5 ? "EXPLORER" : "FIRST TIMER";
+
+  ctx.save();
+  ctx.translate(W/2, 260);
+  ctx.strokeStyle = setsTotal >= 20 ? "#e85d2e" : setsTotal >= 10 ? "#6D28D9" : "#2d7a55";
+  ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.arc(0, 0, 40, 0, Math.PI * 2); ctx.stroke();
+  ctx.beginPath(); ctx.arc(0, 0, 34, 0, Math.PI * 2); ctx.stroke();
+  ctx.fillStyle = ctx.strokeStyle;
+  ctx.font = "700 10px 'Geist Mono', monospace";
+  ctx.textAlign = "center"; ctx.textBaseline = "middle";
+  ctx.fillText(badge, 0, 0);
+  ctx.restore();
+
+  ctx.font = "700 11px 'Geist Mono', monospace";
+  ctx.fillStyle = "rgba(26,18,13,0.35)";
+  ctx.textAlign = "center";
+  ctx.fillText(`${setsTotal} SETS CAUGHT · ${stageStats.size} STAGES VISITED`, W/2, 330);
+
+  const stampStartY = 380;
+  const cols = 3, stampW = 280, stampH = 200, gapX = 40, gapY = 30;
+  const startX = (W - cols * stampW - (cols - 1) * gapX) / 2;
+
+  sorted.slice(0, 9).forEach((entry, i) => {
+    const col = i % cols, row = Math.floor(i / cols);
+    const x = startX + col * (stampW + gapX);
+    const y = stampStartY + row * (stampH + gapY);
+    const s = entry.stage;
+
+    ctx.save();
+    ctx.translate(x + stampW/2, y + stampH/2);
+    ctx.rotate((Math.random() - 0.5) * 0.15);
+
+    ctx.strokeStyle = s.color || "#e85d2e";
+    ctx.lineWidth = 2.5;
+    ctx.globalAlpha = 0.7;
+    const r = 8;
+    ctx.beginPath();
+    ctx.moveTo(-stampW/2 + r, -stampH/2);
+    ctx.lineTo(stampW/2 - r, -stampH/2);
+    ctx.quadraticCurveTo(stampW/2, -stampH/2, stampW/2, -stampH/2 + r);
+    ctx.lineTo(stampW/2, stampH/2 - r);
+    ctx.quadraticCurveTo(stampW/2, stampH/2, stampW/2 - r, stampH/2);
+    ctx.lineTo(-stampW/2 + r, stampH/2);
+    ctx.quadraticCurveTo(-stampW/2, stampH/2, -stampW/2, stampH/2 - r);
+    ctx.lineTo(-stampW/2, -stampH/2 + r);
+    ctx.quadraticCurveTo(-stampW/2, -stampH/2, -stampW/2 + r, -stampH/2);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+
+    ctx.fillStyle = s.color || "#1a120d";
+    ctx.font = "italic 400 28px 'Instrument Serif', serif";
+    ctx.textAlign = "center";
+    ctx.fillText(s.name || s.id, 0, -15);
+    ctx.font = "700 32px 'Geist Mono', monospace";
+    ctx.fillText(`${entry.count}`, 0, 30);
+    ctx.font = "700 10px 'Geist Mono', monospace";
+    ctx.fillStyle = "rgba(26,18,13,0.4)";
+    ctx.fillText("SETS CAUGHT", 0, 55);
+
+    ctx.font = "700 9px 'Geist Mono', monospace";
+    ctx.fillStyle = s.color || "#e85d2e";
+    ctx.fillText("✓ STAMPED", 0, 80);
+
+    ctx.restore();
+  });
+
+  ctx.fillStyle = "rgba(26,18,13,0.25)";
+  ctx.font = "700 12px 'Geist Mono', monospace";
+  ctx.textAlign = "center";
+  ctx.fillText("MADE WITH PLURSKY+", W/2, H - 80);
+  ctx.fillStyle = "rgba(26,18,13,0.4)";
+  ctx.font = "italic 400 18px 'Instrument Serif', serif";
+  ctx.fillText("plursky.com", W/2, H - 55);
+
+  return c;
+}
+
+async function _shareFestivalPassport(state) {
+  const c = await _renderFestivalPassport(state);
+  if (!c) return false;
+  const blob = await new Promise(r => c.toBlob(r, "image/png"));
+  if (!blob) return false;
+  try { window.plurskyHaptic?.("MEDIUM"); } catch {}
+  const file = new File([blob], "plursky-festival-passport.png", { type: "image/png" });
+  if (navigator.share && typeof navigator.canShare === "function" && navigator.canShare({ files: [file] })) {
+    try { await navigator.share({ files: [file], title: "My Festival Passport" }); return true; } catch {}
+  }
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a"); a.href = url; a.download = "plursky-festival-passport.png";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  return true;
+}
+
+// W5: Photo Film Strip — retro Kodak negative export
+async function _renderFilmStrip(moments) {
+  const photoMoments = moments.filter(m => m.photoId && (m.kind === "image" || !m.kind)).slice(0, 6);
+  const imgs = [];
+  for (const m of photoMoments) {
+    try {
+      const blob = await _getPhoto(m.photoId);
+      if (!blob) continue;
+      const img = await new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = URL.createObjectURL(blob); });
+      if (img) imgs.push({ img, moment: m });
+    } catch {}
+  }
+  if (!imgs.length) return null;
+
+  const CFG = window.FESTIVAL_CONFIG || {};
+  const frameW = 300, frameH = 420, sprocketR = 10, sprocketGap = 40;
+  const filmPad = 50, borderW = 35;
+  const W = imgs.length * frameW + (imgs.length - 1) * 20 + filmPad * 2 + borderW * 2;
+  const H = frameH + borderW * 2 + filmPad * 2 + 120;
+  const c = document.createElement("canvas"); c.width = W; c.height = H;
+  const ctx = c.getContext("2d");
+
+  try { await document.fonts.load("italic 400 36px 'Instrument Serif'"); await document.fonts.load("700 11px 'Geist Mono'"); } catch {}
+
+  ctx.fillStyle = "#1a120d"; ctx.fillRect(0, 0, W, H);
+
+  const stripY = 60;
+  const stripH = frameH + borderW * 2;
+  ctx.fillStyle = "#2a1f15"; ctx.fillRect(0, stripY, W, stripH);
+
+  for (let x = filmPad; x < W - filmPad; x += sprocketGap) {
+    ctx.fillStyle = "#1a120d";
+    ctx.beginPath(); ctx.roundRect(x, stripY + 6, 18, 12, 3); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(x, stripY + stripH - 18, 18, 12, 3); ctx.fill();
+  }
+
+  imgs.forEach(({ img, moment }, i) => {
+    const x = filmPad + borderW + i * (frameW + 20);
+    const y = stripY + borderW;
+
+    ctx.fillStyle = "#0a0806"; ctx.fillRect(x - 4, y - 4, frameW + 8, frameH + 8);
+    ctx.save();
+    ctx.beginPath(); ctx.rect(x, y, frameW, frameH); ctx.clip();
+    const sc = Math.max(frameW / img.width, frameH / img.height);
+    const dw = img.width * sc, dh = img.height * sc;
+    ctx.drawImage(img, x + (frameW - dw) / 2, y + (frameH - dh) / 2, dw, dh);
+    ctx.restore();
+
+    ctx.fillStyle = "rgba(232,93,46,0.7)";
+    ctx.font = "700 9px 'Geist Mono', monospace";
+    ctx.textAlign = "center";
+    ctx.fillText(`${i + 1}A`, x + frameW / 2, y + frameH + 22);
+
+    const artist = moment?.artistId ? (window.ARTISTS || []).find(a => a.id === moment.artistId) : null;
+    if (artist) {
+      ctx.fillStyle = "rgba(247,237,224,0.6)";
+      ctx.font = "700 8px 'Geist Mono', monospace";
+      ctx.fillText(artist.name.toUpperCase().slice(0, 18), x + frameW / 2, y - 10);
+    }
+  });
+
+  ctx.fillStyle = "#f7ede0";
+  ctx.font = "italic 400 36px 'Instrument Serif', serif";
+  ctx.textAlign = "left";
+  ctx.fillText(`${CFG.shortName || "Festival"} Memories`, filmPad, H - 30);
+  ctx.fillStyle = "rgba(247,237,224,0.4)";
+  ctx.font = "700 11px 'Geist Mono', monospace";
+  ctx.textAlign = "right";
+  ctx.fillText("PLURSKY+ · plursky.com", W - filmPad, H - 35);
+
+  return c;
+}
+
+async function _shareFilmStrip(moments) {
+  const c = await _renderFilmStrip(moments);
+  if (!c) return false;
+  const blob = await new Promise(r => c.toBlob(r, "image/png"));
+  if (!blob) return false;
+  try { window.plurskyHaptic?.("MEDIUM"); } catch {}
+  const file = new File([blob], "plursky-film-strip.png", { type: "image/png" });
+  if (navigator.share && typeof navigator.canShare === "function" && navigator.canShare({ files: [file] })) {
+    try { await navigator.share({ files: [file], title: "Festival Film Strip" }); return true; } catch {}
+  }
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a"); a.href = url; a.download = "plursky-film-strip.png";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  return true;
+}
+
+// W6: Crew Comparison Card — head-to-head stats
+async function _renderCrewComparison(myName, myState, otherName, otherArtistIds) {
+  const W = 1080, H = 1350;
+  const CFG = window.FESTIVAL_CONFIG || {};
+  const c = document.createElement("canvas"); c.width = W; c.height = H;
+  const ctx = c.getContext("2d");
+
+  try { await document.fonts.load("italic 400 56px 'Instrument Serif'"); await document.fonts.load("700 14px 'Geist Mono'"); } catch {}
+
+  ctx.fillStyle = "#1a120d"; ctx.fillRect(0, 0, W, H);
+
+  ctx.fillStyle = "#fff";
+  ctx.font = "italic 400 56px 'Instrument Serif', serif";
+  ctx.textAlign = "center";
+  ctx.fillText("Crew Showdown", W/2, 120);
+  ctx.font = "700 14px 'Geist Mono', monospace";
+  ctx.fillStyle = "rgba(255,255,255,0.4)";
+  ctx.fillText(`${(CFG.shortName || "FESTIVAL").toUpperCase()} · ${CFG.dates || ""}`, W/2, 160);
+
+  const mySaved = myState.saved || [];
+  const theirSaved = otherArtistIds || [];
+  const overlap = mySaved.filter(id => theirSaved.includes(id));
+  const myOnly = mySaved.filter(id => !theirSaved.includes(id));
+  const theirOnly = theirSaved.filter(id => !mySaved.includes(id));
+
+  const artists = window.ARTISTS || [];
+  const stages = window.STAGES || [];
+
+  const myTopStage = _topStageFor(mySaved, artists, stages);
+  const theirTopStage = _topStageFor(theirSaved, artists, stages);
+
+  const myGem = _hiddenGemFor(mySaved, artists);
+  const theirGem = _hiddenGemFor(theirSaved, artists);
+
+  const midX = W / 2;
+  const colL = W * 0.25, colR = W * 0.75;
+
+  ctx.fillStyle = "#6D28D9"; ctx.beginPath(); ctx.arc(colL, 260, 40, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = "#fff"; ctx.font = "700 22px 'Geist Mono', monospace"; ctx.textAlign = "center";
+  ctx.fillText((myName || "ME")[0].toUpperCase(), colL, 268);
+  ctx.fillStyle = "#e85d2e"; ctx.beginPath(); ctx.arc(colR, 260, 40, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = "#fff"; ctx.fillText((otherName || "THEM")[0].toUpperCase(), colR, 268);
+
+  ctx.font = "italic 400 24px 'Instrument Serif', serif";
+  ctx.fillStyle = "#f7ede0";
+  ctx.fillText(myName || "Me", colL, 330);
+  ctx.fillText(otherName || "Friend", colR, 330);
+
+  const rows = [
+    { label: "SETS SAVED", left: `${mySaved.length}`, right: `${theirSaved.length}` },
+    { label: "IN COMMON", left: `${overlap.length}`, right: `${overlap.length}`, highlight: true },
+    { label: "UNIQUE PICKS", left: `${myOnly.length}`, right: `${theirOnly.length}` },
+    { label: "TOP STAGE", left: myTopStage?.name?.toUpperCase() || "—", right: theirTopStage?.name?.toUpperCase() || "—" },
+    { label: "HIDDEN GEM", left: myGem || "—", right: theirGem || "—" },
+  ];
+
+  let rowY = 400;
+  rows.forEach(row => {
+    ctx.fillStyle = row.highlight ? "rgba(109,40,217,0.15)" : "rgba(247,237,224,0.04)";
+    ctx.fillRect(80, rowY - 25, W - 160, 60);
+
+    ctx.fillStyle = row.highlight ? "#a78bfa" : "rgba(247,237,224,0.35)";
+    ctx.font = "700 10px 'Geist Mono', monospace";
+    ctx.textAlign = "center";
+    ctx.fillText(row.label, midX, rowY - 5);
+
+    ctx.fillStyle = "#f7ede0";
+    ctx.font = "700 22px 'Geist Mono', monospace";
+    ctx.textAlign = "center";
+    ctx.fillText(row.left, colL, rowY + 22);
+    ctx.fillText(row.right, colR, rowY + 22);
+
+    rowY += 80;
+  });
+
+  const vsY = 260;
+  ctx.fillStyle = "#1a120d";
+  ctx.beginPath(); ctx.arc(midX, vsY, 25, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = "rgba(247,237,224,0.2)"; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.arc(midX, vsY, 25, 0, Math.PI * 2); ctx.stroke();
+  ctx.fillStyle = "#f7ede0"; ctx.font = "italic 400 20px 'Instrument Serif', serif";
+  ctx.textAlign = "center"; ctx.textBaseline = "middle";
+  ctx.fillText("vs", midX, vsY + 1);
+  ctx.textBaseline = "alphabetic";
+
+  if (overlap.length > 0) {
+    const overlapNames = overlap.slice(0, 4).map(id => { const a = artists.find(x => x.id === id); return a?.name || id; });
+    ctx.fillStyle = "rgba(247,237,224,0.3)";
+    ctx.font = "700 10px 'Geist Mono', monospace";
+    ctx.textAlign = "center";
+    ctx.fillText(`SHARED SETS: ${overlapNames.join(" · ").toUpperCase()}${overlap.length > 4 ? ` + ${overlap.length - 4} MORE` : ""}`, W/2, rowY + 20);
+  }
+
+  ctx.fillStyle = "rgba(247,237,224,0.2)";
+  ctx.font = "700 11px 'Geist Mono', monospace";
+  ctx.textAlign = "center";
+  ctx.fillText("MADE WITH PLURSKY+", W/2, H - 70);
+  ctx.fillStyle = "rgba(247,237,224,0.4)";
+  ctx.font = "italic 400 18px 'Instrument Serif', serif";
+  ctx.fillText("plursky.com", W/2, H - 42);
+
+  return c;
+}
+
+function _topStageFor(savedIds, artists, stages) {
+  const counts = new Map();
+  for (const id of savedIds) {
+    const a = artists.find(x => x.id === id);
+    if (!a) continue;
+    counts.set(a.stage, (counts.get(a.stage) || 0) + 1);
+  }
+  let topId = null, topN = 0;
+  for (const [sid, n] of counts) { if (n > topN) { topId = sid; topN = n; } }
+  return topId ? stages.find(s => s.id === topId) : null;
+}
+
+function _hiddenGemFor(savedIds, artists) {
+  let gem = null, lowestPop = Infinity;
+  for (const id of savedIds) {
+    const a = artists.find(x => x.id === id);
+    if (!a) continue;
+    const pop = a.spotifyPop ?? a.popularity ?? 50;
+    if (pop < lowestPop) { lowestPop = pop; gem = a.name; }
+  }
+  return gem;
+}
+
+async function _shareCrewComparison(myName, myState, otherName, otherArtistIds) {
+  const c = await _renderCrewComparison(myName, myState, otherName, otherArtistIds);
+  if (!c) return false;
+  const blob = await new Promise(r => c.toBlob(r, "image/png"));
+  if (!blob) return false;
+  try { window.plurskyHaptic?.("MEDIUM"); } catch {}
+  const file = new File([blob], "plursky-crew-showdown.png", { type: "image/png" });
+  if (navigator.share && typeof navigator.canShare === "function" && navigator.canShare({ files: [file] })) {
+    try { await navigator.share({ files: [file], title: "Crew Showdown" }); return true; } catch {}
+  }
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a"); a.href = url; a.download = "plursky-crew-showdown.png";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  return true;
 }
 
 function RecapScreen({ state, setState }) {
@@ -5762,7 +6889,206 @@ function RecapScreen({ state, setState }) {
                   fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
                   cursor: "pointer",
                 }}>📸 SHARE WEEKEND</button>
+              <button
+                onClick={async () => {
+                  const all = [];
+                  try {
+                    const raw = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
+                    for (const n of Object.keys(raw)) {
+                      for (const m of (raw[n] || [])) all.push(m);
+                    }
+                  } catch {}
+                  await window._shareWeekendCollage?.(all, "gif");
+                }}
+                style={{
+                  padding: "8px 14px", borderRadius: 999,
+                  background: "#6D28D9", color: "#fff", border: "none",
+                  fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+                  cursor: "pointer",
+                }}>🎬 GIF</button>
             </div>
+          </RecapCard>
+        )}
+
+        {/* RECAP VIDEO */}
+        {recap.momentsCount >= 3 && (() => {
+          const [vidTemplate, setVidTemplate] = React.useState("highlight");
+          const [vidState, setVidState] = React.useState("idle");
+          const [trackQuery, setTrackQuery] = React.useState("");
+          const [trackResults, setTrackResults] = React.useState([]);
+          const [selectedTrack, setSelectedTrack] = React.useState(null);
+          const [previewAudio, setPreviewAudio] = React.useState(null);
+          const [searching, setSearching] = React.useState(false);
+
+          const searchTracks = async (q) => {
+            if (!q || q.length < 2) { setTrackResults([]); return; }
+            setSearching(true);
+            try {
+              const token = localStorage.getItem("spotify_token");
+              if (token) {
+                const res = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(q)}&type=track&limit=6`, { headers: { Authorization: `Bearer ${token}` } });
+                if (res.ok) {
+                  const d = await res.json();
+                  setTrackResults((d.tracks?.items || []).filter(t => t.preview_url).slice(0, 5));
+                }
+              } else {
+                const res = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(q)}&entity=song&limit=6`);
+                if (res.ok) {
+                  const d = await res.json();
+                  setTrackResults((d.results || []).filter(t => t.previewUrl).slice(0, 5).map(t => ({ name: t.trackName, artists: [{ name: t.artistName }], preview_url: t.previewUrl, album: { images: [{ url: t.artworkUrl60 }] } })));
+                }
+              }
+            } catch {}
+            setSearching(false);
+          };
+
+          const togglePreview = (url) => {
+            if (previewAudio) { previewAudio.pause(); setPreviewAudio(null); }
+            if (previewAudio?.src === url) return;
+            const a = new Audio(url);
+            a.play().catch(() => {});
+            setPreviewAudio(a);
+          };
+
+          return (
+            <RecapCard kicker="RECAP VIDEO" paper="#1a120d" accent="#fff">
+              <div className="serif" style={{ fontSize: 28, lineHeight: 1.05, color: "#f7ede0", letterSpacing: -0.3 }}>
+                Turn your memories into a{" "}
+                <span style={{ fontStyle: "italic", color: "#a78bfa" }}>video</span>.
+              </div>
+              <div style={{ display: "flex", gap: 6, marginTop: 12 }}>
+                {["highlight", "diary", "ditl"].map(t => (
+                  <button key={t} onClick={() => setVidTemplate(t)} className="mono" style={{
+                    padding: "5px 10px", borderRadius: 999, cursor: "pointer", border: "none",
+                    background: vidTemplate === t ? "#6D28D9" : "rgba(247,237,224,0.1)",
+                    color: vidTemplate === t ? "#fff" : "rgba(247,237,224,0.5)",
+                    fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+                  }}>{t === "highlight" ? "HIGHLIGHT REEL" : t === "diary" ? "FESTIVAL DIARY" : "DAY IN THE LIFE"}</button>
+                ))}
+              </div>
+              <div className="mono" style={{ fontSize: 9, color: "rgba(247,237,224,0.35)", marginTop: 8, letterSpacing: 1 }}>
+                {vidTemplate === "highlight" ? "Fast cuts synced to the beat — your best moments, drop by drop." : vidTemplate === "diary" ? "Slow, cinematic. Your weekend told as a story." : "Morning to sunrise — one continuous timeline."}
+              </div>
+
+              {/* Track picker */}
+              <div style={{ marginTop: 14 }}>
+                <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "rgba(247,237,224,0.4)", marginBottom: 6 }}>
+                  🎵 {selectedTrack ? "SOUNDTRACK" : "PICK A SONG (OPTIONAL)"}
+                </div>
+                {selectedTrack ? (
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 10px", borderRadius: 10, background: "rgba(109,40,217,0.2)" }}>
+                    {selectedTrack.album?.images?.[0]?.url && (
+                      <img src={selectedTrack.album.images[0].url} style={{ width: 32, height: 32, borderRadius: 6 }} />
+                    )}
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: 13, color: "#f7ede0", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{selectedTrack.name}</div>
+                      <div className="mono" style={{ fontSize: 9, color: "rgba(247,237,224,0.5)" }}>{selectedTrack.artists?.[0]?.name}</div>
+                    </div>
+                    <button onClick={() => { setSelectedTrack(null); if (previewAudio) { previewAudio.pause(); setPreviewAudio(null); } }} className="mono" style={{
+                      background: "none", border: "none", color: "rgba(247,237,224,0.4)", cursor: "pointer", fontSize: 14, padding: "4px",
+                    }}>×</button>
+                  </div>
+                ) : (
+                  <>
+                    <input
+                      type="text" value={trackQuery}
+                      onChange={e => { setTrackQuery(e.target.value); searchTracks(e.target.value); }}
+                      placeholder="Search for a song…"
+                      style={{
+                        width: "100%", padding: "8px 12px", borderRadius: 10,
+                        background: "rgba(247,237,224,0.08)", border: "1px solid rgba(247,237,224,0.1)",
+                        color: "#f7ede0", fontFamily: "Geist Mono, monospace", fontSize: 11,
+                        outline: "none",
+                      }}
+                    />
+                    {trackResults.length > 0 && (
+                      <div style={{ marginTop: 6, display: "flex", flexDirection: "column", gap: 4 }}>
+                        {trackResults.map((tr, i) => (
+                          <button key={i} onClick={() => { setSelectedTrack(tr); setTrackResults([]); setTrackQuery(""); togglePreview(tr.preview_url); }} style={{
+                            display: "flex", alignItems: "center", gap: 8, padding: "6px 8px", borderRadius: 8,
+                            background: "rgba(247,237,224,0.05)", border: "none", cursor: "pointer", textAlign: "left", width: "100%",
+                          }}>
+                            {tr.album?.images?.[0]?.url && <img src={tr.album.images[0].url} style={{ width: 28, height: 28, borderRadius: 4 }} />}
+                            <div style={{ flex: 1, minWidth: 0 }}>
+                              <div style={{ fontSize: 12, color: "#f7ede0", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{tr.name}</div>
+                              <div className="mono" style={{ fontSize: 8, color: "rgba(247,237,224,0.4)" }}>{tr.artists?.[0]?.name}</div>
+                            </div>
+                            <div className="mono" style={{ fontSize: 8, color: "#a78bfa" }}>▶</div>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                    {searching && <div className="mono" style={{ fontSize: 9, color: "rgba(247,237,224,0.3)", marginTop: 4 }}>Searching…</div>}
+                  </>
+                )}
+              </div>
+
+              <button
+                disabled={vidState === "rendering"}
+                onClick={async () => {
+                  if (previewAudio) { previewAudio.pause(); setPreviewAudio(null); }
+                  setVidState("rendering");
+                  const all = [];
+                  try {
+                    const raw = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
+                    for (const n of Object.keys(raw)) for (const m of (raw[n] || [])) all.push(m);
+                  } catch {}
+                  let audioUrl = selectedTrack?.preview_url || null;
+                  if (!audioUrl && recap.topByPop?.name) {
+                    try { const r = await fetchPreviewUrl(recap.topByPop.name); audioUrl = r?.url; } catch {}
+                  }
+                  await window._shareRecapVideo?.({
+                    moments: all, audioUrl, template: vidTemplate, recap,
+                    title: "My Weekend",
+                    subtitle: `${(CFG.shortName || "FESTIVAL").toUpperCase()} · ${CFG.dates || ""}`,
+                    accent: "#6D28D9",
+                  });
+                  setVidState("idle");
+                }}
+                className="mono"
+                style={{
+                  width: "100%", marginTop: 14, padding: "13px",
+                  background: vidState === "rendering" ? "rgba(109,40,217,0.4)" : "linear-gradient(135deg, #6D28D9, #e85d2e)",
+                  color: "#fff", border: "none", borderRadius: 12, cursor: vidState === "rendering" ? "wait" : "pointer",
+                  fontSize: 11, letterSpacing: 1.4, fontWeight: 700,
+                }}>{vidState === "rendering" ? "⏳ RENDERING…" : "🎬 CREATE RECAP VIDEO"}</button>
+            </RecapCard>
+          );
+        })()}
+
+        {/* PLURSKY+ WOW FEATURES */}
+        {recap.momentsCount > 0 && (
+          <RecapCard kicker="PLURSKY+ EXCLUSIVES" paper="#1a120d" accent="#fff">
+            <div className="serif" style={{ fontSize: 24, lineHeight: 1.1, color: "#f7ede0", letterSpacing: -0.3 }}>
+              Your weekend, <span style={{ fontStyle: "italic", color: "#a78bfa" }}>elevated</span>.
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 14 }}>
+              <button onClick={async () => {
+                const all = []; try { const raw = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}"); for (const n of Object.keys(raw)) for (const m of (raw[n] || [])) all.push(m); } catch {}
+                await window._shareFestivalDNA?.(all);
+              }} className="mono" style={{
+                padding: "11px", background: "linear-gradient(90deg, #e85d2e, #6D28D9, #2d7a55, #f59a36)", color: "#fff",
+                border: "none", borderRadius: 10, cursor: "pointer", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
+              }}>🧬 FESTIVAL DNA — YOUR UNIQUE COLOR BARCODE</button>
+              <button onClick={() => window._shareFestivalPassport?.(state)} className="mono" style={{
+                padding: "11px", background: "rgba(247,237,224,0.08)", color: "#f7ede0",
+                border: "1px solid rgba(247,237,224,0.15)", borderRadius: 10, cursor: "pointer",
+                fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
+              }}>🛂 FESTIVAL PASSPORT — STAGE STAMPS</button>
+              <button onClick={async () => {
+                const all = []; try { const raw = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}"); for (const n of Object.keys(raw)) for (const m of (raw[n] || [])) all.push(m); } catch {}
+                await window._shareFilmStrip?.(all);
+              }} className="mono" style={{
+                padding: "11px", background: "rgba(247,237,224,0.08)", color: "#f7ede0",
+                border: "1px solid rgba(247,237,224,0.15)", borderRadius: 10, cursor: "pointer",
+                fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
+              }}>🎞️ FILM STRIP — RETRO PHOTO REEL</button>
+            </div>
+            {!_isPlusSub() && (
+              <div className="mono" style={{ fontSize: 8.5, color: "rgba(247,237,224,0.3)", marginTop: 10, textAlign: "center", letterSpacing: 1.2 }}>
+                FREE PREVIEW WITH WATERMARK · UPGRADE TO REMOVE
+              </div>
+            )}
           </RecapCard>
         )}
 
@@ -5885,6 +7211,9 @@ Object.assign(window, {
   SpotifyScreen, MeScreen, MemoriesScreen, RecapScreen, fetchPreviewUrl,
   ensureSpotifyProfile, getSpotifyProfileSync, createEdcPlaylist,
   startSpotifyAuth, PackListCard,
-  _renderCollage, _shareCollage,
-  _shareArtistCollage, _shareStageCollage, _shareNightCollage, _shareWeekendCollage,
+  _renderCollage, _renderCollageGif, _shareCollage,
+  _shareArtistCollage, _shareStageCollage, _shareNightCollage, _shareWeekendCollage, _shareCrewCollage,
+  _renderRecapVideo, _shareRecapVideo, _detectBeats, _VIDEO_TEMPLATES,
+  _isPlusSub, _setPlusSub, PlusGate,
+  _shareFestivalDNA, _shareFestivalPassport, _shareFilmStrip, _shareCrewComparison,
 });

@@ -2342,6 +2342,8 @@ function CrewCard({ state }) {
   // social sections on the Me tab and most users don't use it. Auto-expand
   // when joined so members stay visible without an extra tap.
   const [expanded, setExpanded] = React.useState(false);
+  const [totemUrl, setTotemUrl] = React.useState(null);
+  const totemInputRef = React.useRef(null);
   const leaveRef = React.useRef(null);
 
   const myPid  = sbGetMyPresId();
@@ -2379,6 +2381,35 @@ function CrewCard({ state }) {
   }, []);
 
   React.useEffect(() => () => { if (leaveRef.current) leaveRef.current(); }, []);
+
+  React.useEffect(() => {
+    (async () => {
+      try {
+        const db = await new Promise((res, rej) => { const r = indexedDB.open("plursky_memories", 1); r.onsuccess = e => res(e.target.result); r.onerror = e => rej(e.target.error); r.onupgradeneeded = e => { if (!e.target.result.objectStoreNames.contains("photos")) e.target.result.createObjectStore("photos", { keyPath: "id" }); }; });
+        const r = db.transaction("photos", "readonly").objectStore("photos").get("crew_totem");
+        r.onsuccess = () => { if (r.result?.blob) setTotemUrl(URL.createObjectURL(r.result.blob)); };
+      } catch {}
+    })();
+  }, []);
+
+  const pickTotem = async (file) => {
+    if (!file) return;
+    const canvas = document.createElement("canvas");
+    canvas.width = 256; canvas.height = 256;
+    const ctx = canvas.getContext("2d");
+    const img = await new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = URL.createObjectURL(file); });
+    if (!img) return;
+    const scale = Math.max(256 / img.width, 256 / img.height);
+    const dw = img.width * scale, dh = img.height * scale;
+    ctx.drawImage(img, (256 - dw) / 2, (256 - dh) / 2, dw, dh);
+    const blob = await new Promise(r => canvas.toBlob(r, "image/jpeg", 0.85));
+    try {
+      const db = await new Promise((res, rej) => { const r = indexedDB.open("plursky_memories", 1); r.onsuccess = e => res(e.target.result); r.onerror = e => rej(e.target.error); });
+      const tx = db.transaction("photos", "readwrite");
+      tx.objectStore("photos").put({ id: "crew_totem", blob, createdAt: Date.now() });
+    } catch {}
+    setTotemUrl(URL.createObjectURL(blob));
+  };
 
   const others = [...members.entries()].filter(([pid]) => pid !== myPid);
 
@@ -2455,8 +2486,18 @@ function CrewCard({ state }) {
             background: "var(--ink)", color: "var(--paper)",
             display: "flex", alignItems: "center", gap: 12,
           }}>
+            <button onClick={() => totemInputRef.current?.click()} className={totemUrl ? "totem-alive" : ""} style={{
+              width: 44, height: 44, borderRadius: 44, flexShrink: 0,
+              border: totemUrl ? "2px solid rgba(247,237,224,0.5)" : "2px dashed rgba(247,237,224,0.3)",
+              background: totemUrl ? `url(${totemUrl}) center/cover` : "rgba(247,237,224,0.08)",
+              cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+              color: "rgba(247,237,224,0.4)", fontSize: 16, padding: 0,
+              animation: totemUrl ? "totem-pulse 3s ease-in-out infinite" : "none",
+            }}>{totemUrl ? "" : "📷"}</button>
+            <input ref={totemInputRef} type="file" accept="image/*" style={{ display: "none" }}
+              onChange={e => { pickTotem(e.target.files?.[0]); e.target.value = ""; }} />
             <div style={{ flex: 1 }}>
-              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "rgba(247,237,224,0.45)", marginBottom: 3 }}>CREW CODE — SHARE WITH FRIENDS</div>
+              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "rgba(247,237,224,0.45)", marginBottom: 3 }}>{totemUrl ? "YOUR TOTEM · TAP TO CHANGE" : "TAP 📷 TO SET YOUR TOTEM"}</div>
               <div className="mono" style={{ fontSize: 28, letterSpacing: 8, fontWeight: 700, lineHeight: 1 }}>{code}</div>
             </div>
             <button onClick={async () => {
@@ -2510,6 +2551,50 @@ function CrewCard({ state }) {
                     {(m.artistIds || []).filter(id => state.saved.includes(id)).length} IN COMMON
                   </div>
                 </div>
+              ))}
+            </div>
+          )}
+          {others.length > 0 && (() => {
+            const _crewShare = async (fmt) => {
+              const crewNames = [myName || "Me"];
+              const avs = [{ initial: (myName || "M")[0].toUpperCase(), color: _presColor(myPid) }];
+              const crewArtistIds = new Set(state.saved || []);
+              const overlapIds = new Set();
+              for (const [pid, m] of others) {
+                crewNames.push(m.name || "Friend");
+                avs.push({ initial: (m.name || "F")[0].toUpperCase(), color: _presColor(pid) });
+                for (const id of (m.artistIds || [])) {
+                  crewArtistIds.add(id);
+                  if ((state.saved || []).includes(id)) overlapIds.add(id);
+                }
+              }
+              await window._shareCrewCollage?.({ crewNames, avatars: avs, crewArtistIds: [...crewArtistIds], overlapIds: [...overlapIds], format: fmt, totemUrl });
+            };
+            return (
+              <div style={{ display: "flex", gap: 8, marginTop: 10 }}>
+                <button onClick={() => _crewShare()} style={{
+                  flex: 1, padding: "11px",
+                  background: "#6D28D9", color: "#fff",
+                  border: "none", borderRadius: 10, cursor: "pointer",
+                  fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
+                }}>📸 SHARE OUR WEEKEND</button>
+                <button onClick={() => _crewShare("gif")} style={{
+                  padding: "11px 14px",
+                  background: "#6D28D9", color: "#fff",
+                  border: "none", borderRadius: 10, cursor: "pointer",
+                  fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
+                }}>🎬 GIF</button>
+              </div>
+            );
+          })()}
+          {others.length > 0 && (
+            <div style={{ display: "flex", flexDirection: "column", gap: 6, marginTop: 6 }}>
+              {others.map(([pid, m]) => (
+                <button key={pid} onClick={() => window._shareCrewComparison?.(myName, state, m.name || "Friend", m.artistIds || [])} className="mono" style={{
+                  padding: "8px 11px", background: "rgba(109,40,217,0.08)", color: "var(--ink)",
+                  border: "1px solid rgba(109,40,217,0.15)", borderRadius: 10, cursor: "pointer",
+                  fontSize: 9, letterSpacing: 1.2, fontWeight: 700, textAlign: "left",
+                }}>⚔️ SHOWDOWN VS {(m.name || "FRIEND").toUpperCase()}</button>
               ))}
             </div>
           )}
