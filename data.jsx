@@ -260,10 +260,9 @@ function setActiveFestivalAndReload(id) {
   window.location.reload();
 }
 
-// Stage positions on the LVMS infield. The track is E-W elongated (long
-// straightaways top + bottom, semicircle turns on left/right ends), so
-// kineticFIELD sits along the north straight, basspod along the south
-// straight, and cosmic/neon anchor the east + west turns.
+// Stage positions on the LVMS infield. The tri-oval's long axis runs
+// roughly N-S; kineticFIELD sits near the north end, basspod near the
+// south, cosmic anchors the west side, and neon the east.
 //
 // Stage colours mirror the official EDC poster's zone palette:
 //   kineticFIELD    — ember red (mainstage)
