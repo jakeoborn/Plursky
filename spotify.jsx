@@ -8511,18 +8511,19 @@ function NowPlayingBar() {
   const handleCapture = () => {
     const song = liveState.song || estimatedSong;
     const momentId = `cap_${Date.now()}`;
-    const moments = _readMoments();
-    moments[momentId] = {
+    const night = liveState.artist?.day || 1;
+    const all = _readMoments();
+    all[night] = [...(all[night] || []), {
       id: momentId,
+      night,
       artistId: liveState.artist?.id || null,
       takenAt: new Date().toISOString().replace("T", " ").slice(0, 19),
       tagSource: "live_capture",
-      night: liveState.artist?.day || null,
+      createdAt: Date.now(),
       songCapture: song ? { song: song.song, source: song.source || "live" } : null,
       hasGps: true,
-    };
-    try { localStorage.setItem("plursky-moments", JSON.stringify(moments)); } catch {}
-    window.dispatchEvent(new Event("plursky-moments-change"));
+    }];
+    _writeMoments(all);
     setCaptured(true);
     if (window.Capacitor?.isNativePlatform()) {
       try { window.Capacitor?.Plugins?.Haptics?.impact({ style: "medium" }); } catch {}
