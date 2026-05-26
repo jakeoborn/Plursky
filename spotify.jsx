@@ -95,6 +95,7 @@ if (window.Capacitor?.isNativePlatform()) {
   window.ShazamPlugin = null;
 }
 
+
 const SPOTIFY_CLIENT_ID     = "2219c68606c54629a8799f467a996a81";
 const SPOTIFY_REDIRECT_WEB  = "https://plursky.com/callback";
 // v132: native iOS uses a custom URL scheme so Spotify's redirect comes back
@@ -1496,7 +1497,7 @@ function SpotifyScreen({ state, setState }) {
               <BuildPlaylistButton state={state} />
             )}
             <button
-              onClick={() => connected ? disconnectSpotify(setState, state) : startSpotifyAuth()}
+              onClick={() => { if (!connected) window.plurskyHaptic?.("MEDIUM"); connected ? disconnectSpotify(setState, state) : startSpotifyAuth(); }}
               style={{
                 background: "rgba(247,237,224,0.12)", color: "var(--paper)",
                 border: "1px solid rgba(247,237,224,0.28)",
@@ -5008,6 +5009,7 @@ function BuildPlaylistButton({ state }) {
     if (status === "done" && result?.url) {
       window.open(result.url, "_blank", "noopener"); return;
     }
+    window.plurskyHaptic?.("MEDIUM");
     run();
   };
 
@@ -5914,6 +5916,7 @@ async function _shareRecapCard(recap) {
   catch (e) { console.error("[plursky-recap] render failed:", e); return false; }
   const blob = await new Promise(r => canvas.toBlob(r, "image/png"));
   if (!blob) return false;
+  window.plurskyHaptic?.("LIGHT");
   const filename = `plursky-recap-${(window.FESTIVAL_CONFIG?.id || "festival")}.png`;
   const file = new File([blob], filename, { type: "image/png" });
   const title = `My ${window.FESTIVAL_CONFIG?.shortName || "festival"}`;
@@ -8532,9 +8535,7 @@ function NowPlayingBar() {
     }];
     _writeMoments(all);
     setCaptured(true);
-    if (window.Capacitor?.isNativePlatform()) {
-      try { window.Capacitor?.Plugins?.Haptics?.impact({ style: "medium" }); } catch {}
-    }
+    window.plurskyHaptic?.("MEDIUM");
     setTimeout(() => setCaptured(false), 2000);
   };
 

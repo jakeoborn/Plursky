@@ -247,12 +247,8 @@ Ordered by impact-per-engineering-hour.
       2026-05-25). `@capacitor/camera@^6.1.3` in Podfile;
       `NSPhotoLibraryUsageDescription` set; `__USE_NATIVE_PICKER__`
       flag flipped on for native platforms in `index.html`.
-- [ ] **Manage storage UI** — Memories writes blobs to IndexedDB with
-      no size visibility. A heavy weekend can stash 500MB+. Add a
-      "Storage used · X MB · Clear all" row inside Memories (or Me →
-      Settings) with per-night and per-moment delete. Uses the
-      `navigator.storage.estimate()` web API. (in progress — see
-      v150)
+- [x] **Manage storage UI** — StorageManager component at bottom of
+      Memories screen with per-night purge + clear all. v150.
 - [ ] **Re-enable RealMap post-festival** — both implementations are
       in the binary; `MapScreen` calls `TopDownMap` at `map.jsx:2269`.
       Swap to `<RealMap …>` (or a runtime toggle) to bring back the
@@ -310,7 +306,7 @@ Ordered by impact-per-engineering-hour.
 
 ## 🟡 POLISH + RISK REDUCTION
 
-- [ ] **Wire `@capacitor/haptics` into primary CTAs** — Dim Hour shipped
+- [x] **Wire `@capacitor/haptics` into primary CTAs** — Dim Hour shipped
       this 2026-05-21 (commit on main; see Dim Hour memory
       `feedback_check_skills_catalog_first.md` for the broader skill-
       catalog directive that motivated it). Same pattern fits Plursky:
