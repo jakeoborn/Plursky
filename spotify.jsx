@@ -8631,4 +8631,5 @@ Object.assign(window, {
   _renderRecapVideo, _shareRecapVideo, _detectBeats, _VIDEO_TEMPLATES,
   _isPlusSub, _setPlusSub, PlusGate, _purchasePlus, _restorePurchases, RC_PRODUCT_IDS, _canShare, _getCustomAccent, _setCustomAccent, _archiveRecap, _getRecapArchive, _canAccessFestival,
   _shareFestivalDNA, _shareFestivalPassport, _shareFilmStrip, _shareCrewComparison,
+  _getTracklistForArtist,
 });

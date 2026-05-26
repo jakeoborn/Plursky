@@ -758,16 +758,19 @@ function ArtistScreen({ state, setState }) {
   const [mcTracks,  setMcTracks]  = React.useState(undefined);
   const [mcPlaying, setMcPlaying] = React.useState(null); // key of playing track
   const [tadb,      setTadb]      = React.useState(undefined);
+  const [edcTracklist, setEdcTracklist] = React.useState(undefined);
+  const [tlExpanded, setTlExpanded] = React.useState(false);
   React.useEffect(() => {
-    setYtPlaying(false); setMcPlaying(null);
+    setYtPlaying(false); setMcPlaying(null); setTlExpanded(false);
     setLfm(undefined); setSetlists(undefined); setYtVideo(undefined); setTmEvents(undefined);
-    setMcTracks(undefined); setTadb(undefined);
+    setMcTracks(undefined); setTadb(undefined); setEdcTracklist(undefined);
     fetchLastfm(activeName, a.genre).then(setLfm);
     fetchSetlists(activeName).then(setSetlists);
     fetchYouTubeSet(activeName).then(setYtVideo);
     fetchTicketmaster(activeName).then(setTmEvents);
     fetchMixcloud(activeName).then(setMcTracks);
     fetchAudioDB(activeName, a.genre).then(setTadb);
+    if (window._getTracklistForArtist) window._getTracklistForArtist(a.name).then(setEdcTracklist);
   }, [a.id, activeB2B]);
 
   // Spotify stats: popularity, followers, genres — loaded from cache or fetched alongside photo
@@ -1042,9 +1045,11 @@ function ArtistScreen({ state, setState }) {
         }}>
           {[
             { id: "artist-section-bio",        label: "BIO" },
+            { id: "artist-section-tracklist",  label: "TRACKLIST" },
             { id: "artist-section-livestream", label: "LIVE SET" },
             { id: "artist-section-setlists",   label: "SETLISTS" },
             { id: "artist-section-similar",    label: "SIMILAR" },
+            { id: "artist-section-upcoming",   label: "UPCOMING" },
           ].map(c => (
             <button
               key={c.id}
@@ -1153,6 +1158,80 @@ function ArtistScreen({ state, setState }) {
             }}>{label} ↗</a>
           ))}
         </div>
+
+        {/* ── EDC tracklist (1001tracklists) ─────────────── */}
+        <div id="artist-section-tracklist" />
+        {edcTracklist && edcTracklist.source === "1001tracklists" && edcTracklist.tracks?.length > 0 && (() => {
+          const tracks = edcTracklist.tracks;
+          const shown = tlExpanded ? tracks : tracks.slice(0, 8);
+          const fmtTime = (t) => {
+            if (!t) return "";
+            const parts = t.replace(/^0:/, "").split(":");
+            if (parts.length === 3) return `${parts[0]}:${parts[1].padStart(2,"0")}:${parts[2].padStart(2,"0")}`;
+            if (parts.length === 2) return `${parts[0]}:${parts[1].padStart(2,"0")}`;
+            return t;
+          };
+          return (
+            <div style={{
+              marginBottom: 18, borderRadius: 16, overflow: "hidden",
+              background: "var(--ink)", color: "#fff",
+              boxShadow: `0 0 24px ${stage.color}22`,
+            }}>
+              <div style={{ padding: "14px 16px 8px" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <span style={{ fontSize: 14 }}>♫</span>
+                    <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, fontWeight: 700, color: stage.color }}>
+                      WHAT THEY PLAYED AT {(FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.brand || "EDC").toUpperCase()}
+                    </span>
+                  </div>
+                  <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(255,255,255,0.35)" }}>
+                    {tracks.length} TRACKS
+                  </span>
+                </div>
+              </div>
+              <div style={{ padding: "0 16px 12px" }}>
+                {shown.map((t, i) => (
+                  <div key={i} style={{
+                    display: "flex", alignItems: "baseline", gap: 10, padding: "5px 0",
+                    borderTop: i === 0 ? `1px solid rgba(255,255,255,0.06)` : "none",
+                  }}>
+                    <span className="mono" style={{ fontSize: 8, color: "rgba(255,255,255,0.25)", width: 38, textAlign: "right", flexShrink: 0 }}>
+                      {fmtTime(t.time)}
+                    </span>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: 13, color: "#fff", lineHeight: 1.3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                        {t.title}
+                      </div>
+                      {t.artist && t.artist !== a.name && (
+                        <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "rgba(255,255,255,0.4)", marginTop: 1 }}>
+                          {t.artist}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+                {tracks.length > 8 && (
+                  <button onClick={() => setTlExpanded(e => !e)} style={{
+                    background: "transparent", border: "none", cursor: "pointer",
+                    fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2,
+                    color: stage.color, padding: "8px 0 2px", display: "block",
+                  }}>
+                    {tlExpanded ? "SHOW LESS ↑" : `+${tracks.length - 8} MORE TRACKS ↓`}
+                  </button>
+                )}
+              </div>
+              {edcTracklist.url && (
+                <a href={edcTracklist.url} target="_blank" rel="noopener noreferrer" style={{
+                  display: "block", padding: "10px 16px",
+                  borderTop: "1px solid rgba(255,255,255,0.06)",
+                  fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.2,
+                  color: "rgba(255,255,255,0.35)", textDecoration: "none", textAlign: "center",
+                }}>SOURCE: 1001TRACKLISTS ↗</a>
+              )}
+            </div>
+          );
+        })()}
 
         {/* ── Spotify stats ─────────────────────────────────── */}
         {connected && spotifyStats && (spotifyStats.popularity > 0 || spotifyStats.followers > 0) && (
@@ -1513,6 +1592,7 @@ function ArtistScreen({ state, setState }) {
         })()}
 
         {/* ── Upcoming shows (Ticketmaster) ────────────────── */}
+        <div id="artist-section-upcoming" />
         {TICKETMASTER_KEY && (
           <div style={{ marginBottom: 18 }}>
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", marginBottom: 10, display: "flex", alignItems: "center", gap: 8 }}>
@@ -1766,11 +1846,11 @@ function ArtistScreen({ state, setState }) {
           border: "none", cursor: "pointer",
           fontFamily: "Geist Mono, monospace", fontSize: 11, letterSpacing: 1.4, fontWeight: 500,
         }}>{saved ? "✓ SAVED TO LINEUP" : "+ ADD TO LINEUP"}</button>
-        <button style={{
+        <button onClick={() => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "memories", memoriesNight: a.day, artist: null })} style={{
           width: 54, borderRadius: 14,
           background: "transparent", border: "1px solid var(--line-2)",
-          cursor: "pointer", fontSize: 20,
-        }}>♡</button>
+          cursor: "pointer", fontSize: 16,
+        }}>📸</button>
       </div>
     </Screen>
   );
