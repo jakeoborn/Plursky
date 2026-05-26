@@ -124,6 +124,7 @@ const FESTIVAL_CONFIG = {
 
   // ── Defaults ──
   mainStageId: "kinetic",
+  mapImage: "edc-map-2026.jpg",
 };
 
 // Backwards-compat alias — older code reads `FESTIVAL.name` etc.
