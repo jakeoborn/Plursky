@@ -238,7 +238,6 @@ const FESTIVALS_REGISTRY = [
         { stageId: "bmi",      lat: 30.26266, lng: -97.77315 },
         { stageId: "barton",   lat: 30.26118, lng: -97.77123 },
         { stageId: "bonus",    lat: 30.26199, lng: -97.76954 },
-        { stageId: "aclfest",  lat: 30.26457, lng: -97.77217 },
       ],
       mainStageId: "honda",
       mapImage: "acl-map-2025.webp",
@@ -775,7 +774,6 @@ const ACL_STAGES = [
   { id: "barton",  name: "Barton Springs",    short: "BAR",  color: "#14b8a6", x: 48, y: 72, size: 0.85,desc: "South · near Barton Springs entrance", vibe: "Deep Cuts", vibeNote: "Hidden gem stage near Barton Springs entrance.",                peak: "12:00–17:00" },
   { id: "bonus",   name: "Bonus Tracks",      short: "BNS",  color: "#2563eb", x: 62, y: 62, size: 0.7, desc: "South-east · smallest stage",   vibe: "First Timers",      vibeNote: "Local acts, first-ever festival sets. Near the grove.",         peak: "11:00–16:00" },
   { id: "beatbox", name: "BEATBOX",           short: "BBX",  color: "#1e40af", x: 30, y: 70, size: 0.75,desc: "South-west · electronic stage",  vibe: "Bass Haven",        vibeNote: "DJs, producers, electronic acts. Near west entrance.",          peak: "14:00–21:00" },
-  { id: "aclfest", name: "ACL Fest Stage",    short: "ACL",  color: "#ef4444", x: 40, y: 32, size: 1.0, desc: "Center-north · general stage",   vibe: "Heart of the Park", vibeNote: "Central stage surrounded by food vendors and activations.",     peak: "12:00–19:00" },
 ];
 
 const _aclMk = (id, name, genre, stage, day, start, end, wk) => {
@@ -919,6 +917,13 @@ const ACL_ARTISTS = [
   _aclMk("au39","Chelsea Jordan",        "R&B",           "bonus",   3, "11:00","12:00","W2"),
   _aclMk("au40","The Moriah Sisters",    "Country",       "bmi",     3, "11:00","12:00","W1"),
   _aclMk("au41","The Huston-Tillotson University Jazz Collective","Jazz","bmi",3,"11:00","12:00","W2"),
+  // Missing artists added from ACL 2026 official lineup audit
+  _aclMk("af40", "The Marias",            "Indie Pop",     "titos",   1, "17:00","18:30"),
+  _aclMk("af41", "Role Model",            "Indie Pop",     "ladybird",1, "17:00","18:00"),
+  _aclMk("as40", "Rilo Kiley",            "Indie Rock",    "tmobile", 2, "18:00","19:30"),
+  _aclMk("as41", "Djo",                   "Indie",         "ladybird",2, "16:00","17:00"),
+  _aclMk("au42", "Pierce The Veil",       "Post-Hardcore", "tmobile", 3, "16:00","17:00"),
+  _aclMk("au43", "Sabrina Claudio",       "R&B",           "titos",   3, "17:00","18:00"),
 ];
 
 const ACL_AMENITIES = [
