@@ -1,15 +1,15 @@
 # Plursky — To-Do List
 
-_Last full sweep: 2026-05-25 (late). v1.4 submitted to Apple — In
-Review. v1.3 live. Web at v163 (v1.5 code committed but not bumped).
-v1.5 SHIPPED: crew collage, GIF, recap video, Plursky+ paywall, ACL
-2026, Spotify genre/vibe features. Next: bump cache-bust, wire IAP,
-test all features in browser._
+_Last full sweep: 2026-05-25. v1.4 (14) APPROVED & LIVE. Web at v164.
+iOS 1.5 (15) version-bumped, ready to submit after ShazamKit device
+test. 23 tracklists in Supabase (558 tracks). NowPlayingBar debug
+toggle added. RevenueCat IAP code-wired, API key blank. Next: wire
+RevenueCat dashboard, test ShazamKit on device, submit 1.5._
 
-## 🍿 v1.4 SUBMITTED — WAITING ON APPLE
+## ✅ v1.4 APPROVED & LIVE
 
-**Status (2026-05-25):** Plursky Live `1.4 (14)` is **submitted to Apple
-App Review**. Expected decision in ~24-48h. Commit `61a15cc`.
+**Status (2026-05-25):** Plursky Live `1.4 (14)` **APPROVED & LIVE**.
+APP_STORE_ID = 6768888507. Cache-bust v164.
 
 ### What to watch for
 
@@ -70,7 +70,32 @@ App Review**. Expected decision in ~24-48h. Commit `61a15cc`.
   - **v146** — Photo set-detection bug fix (was matching by time-only,
     ignoring date — Saturday photos could land on Friday artists)
 
-### What's-New copy for App Store Connect
+### What's-New copy for App Store Connect (v1.5)
+
+```
+What song was playing when you took that photo?
+
+NOW PLAYING
+A floating bar shows what's playing at your stage in real
+time — artist, song, and how many people are around you.
+Tap the music note to Shazam-identify the exact track.
+
+YOUR SOUNDTRACK
+Every photo you import now shows the song that was playing
+when you took it, matched from real DJ tracklists. Your
+Festival Wrapped includes a "Your Soundtrack" card with your
+top songs across the weekend.
+
+CAPTURE THE MOMENT
+Tap "Capture" on the Now Playing bar to save a timestamped
+memory — the artist, the song, the stage — without even
+opening the camera.
+
+HAPTIC FEEDBACK
+Subtle taps on save, share, and capture actions. Feels native.
+```
+
+### What's-New copy for App Store Connect (v1.4)
 
 ```
 Built for the morning after the festival.
@@ -191,16 +216,22 @@ is the video upgrade.
 
 - Free: 1080p collages (watermarked), 5 shares/day, Highlight Reel
   template, auto-selected soundtrack, all features accessible
-- **Plursky+ ($4.99/festival or $9.99/yr)**: no watermark, unlimited
+- **Plursky+ ($2.99/festival or $7.99/yr)**: no watermark, unlimited
   shares, 3 templates, custom soundtrack, 3D parallax, Spotify overlay,
   custom accent, festival archive, priority preview, no crew promo
-- Test at 5% conversion of 10k users × $5 = $2.5k/festival baseline
+- Test at 5% conversion of 10k users × $3 = $1.5k/festival baseline
 
 ### What's left for v1.5
 
-- [ ] **Bump cache-bust** v163 → v164 (after v1.4 Apple decision)
-- [ ] **Wire real IAP** — `@capacitor/purchases` or StoreKit native
-- [ ] **Test all features in browser** — video, GIF, festival switch
+- [x] **Bump cache-bust** v163 → v164 — done 2026-05-25
+- [x] **NowPlayingBar debug toggle** — `localStorage.setItem("plursky-debug-live", "true")`
+- [x] **iOS deployment target** 13.0 → 15.0 (RevenueCat requires it)
+- [x] **iOS version bump** to 1.5 (15) — ready to submit
+- [x] **5 new tracklists** — Sub Focus, Peggy Gou b2b Ki/Ki, Vintage Culture, MEDUZA, The Prodigy
+- [x] **handleCapture storage fix** — was writing to wrong key + format
+- [ ] **Wire RevenueCat** — paste API key, set up App Store Connect products
+- [ ] **Test ShazamKit** on physical device
+- [ ] **Submit iOS 1.5 (15)** to App Store
 - [ ] **ACL stage assignments** — update when official schedule drops
 - [ ] **ACL set times** — update with real times (currently estimated)
 - [ ] **Zilker Park map** — TopDownMap SVG or MapLibre for ACL
@@ -248,10 +279,8 @@ Ordered by impact-per-engineering-hour.
       Falls back to `navigator.share` then blob-URL download. Reads the
       blob as a base64 data URL before handing to the plugin — Capacitor
       Share accepts data URLs but not raw File objects.
-- [ ] **Paste the App Store ID into `APP_STORE_ID`** (`spotify.jsx`)
-      once v1.3 is live. Current rating prompt's web fallback opens a
-      generic App Store search; with the real ID it deep-links to the
-      Plursky listing.
+- [x] **Paste the App Store ID into `APP_STORE_ID`** (`spotify.jsx`)
+      — done 2026-05-25 (APP_STORE_ID = 6768888507).
 - [ ] **Lineup virtualization** — list view renders all 300+ artists
       at once. Fine on a fast phone, sluggish on older ones. Wrap in
       a windowing strategy (intersection-observer-based render
@@ -426,30 +455,36 @@ Privacy policy: plursky.com/privacy
 lineup,vegas,rave,edm,schedule,dj sets,playlist,set times,plur,kandi,stage map,discover
 ```
 
-### App Review reviewer notes (v1.4)
+### App Review reviewer notes (v1.5)
 ```
 Plursky is a free festival-companion app. No ads, no analytics, no
 third-party tracking. Works offline once content is precached.
 
-NEW IN v1.4:
-  - Native Photos picker via @capacitor/camera (PHPicker). Used to
-    attach photos and videos to the music sets the user caught at the
-    festival. EXIF capture time + GPS feed the auto-tag-by-artist
-    feature. Read-only; we never write to the user's library.
-  - "Per-artist + per-stage memories" — the user's tagged photos now
-    appear under each artist on the Artist screen and each stage on
-    the Map. Local-only; never transmitted.
-  - "Between sets" detection — photos with GPS far from any stage
-    anchor (>80m) no longer get force-tagged to a wrong artist.
-  - Sibling-suggestion: tag one moment, neighbours in the same 30-min
-    window auto-suggest the same artist (pure on-device heuristic,
-    no AI / no network call).
-  - Shareable photo collages — Canvas-rendered 1080×1350 PNG for
-    Instagram / TikTok sharing.
-  - Haptic feedback (via @capacitor/haptics) on save / send / retag
-    actions.
-  - Bulk retag, bidirectional crew presence, offline-safe crew chat
-    with queued-message indicator.
+NEW IN v1.5:
+  - NOW PLAYING BAR — floating widget during festival hours showing
+    the user's current stage (via GPS), the artist playing, and the
+    estimated song (matched from 1001tracklists data). Includes:
+    · ShazamKit integration for real-time song identification (new
+      NSMicrophoneUsageDescription — mic used ONLY when user taps
+      the "What's playing?" button, never in background)
+    · "Capture This Moment" button to save a timestamped text-only
+      memory of the current artist + song without taking a photo
+    · Supabase Realtime presence counter ("47 HERE") per stage
+  - SHAZAMKIT PLUGIN — native Swift plugin using SHSession for
+    music identification. 12s auto-timeout, stops on first match.
+    Gracefully falls back to estimated song if no match.
+  - SONG-TO-PHOTO MATCHING — 23 artist tracklists (558 tracks)
+    from 1001tracklists.com. Each imported photo gets a "♫ playing"
+    chip showing the estimated song at the moment the photo was taken.
+  - SET PROGRESS BAR — "35min into 70min set" with stage-colored fill
+    on photo cards.
+  - WRAPPED SOUNDTRACK — "Your Soundtrack" card in Festival Wrapped
+    with top songs aggregated from photo timestamps. "Find on Spotify"
+    button for each song.
+  - HAPTIC FEEDBACK — @capacitor/haptics on save-set, share, capture,
+    and Spotify connect actions.
+
+ALL v1.4 FEATURES UNCHANGED.
 
 NSPhotoLibraryUsageDescription string:
   "Plursky uses your photo library so you can attach photos and

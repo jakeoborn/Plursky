@@ -8469,6 +8469,13 @@ function NowPlayingBar() {
     return () => window.removeEventListener("plursky-presence", onPresence);
   }, [liveState.stage?.id]);
 
+  // Pre-fetch tracklist for the current artist so estimatedSong can read it
+  const [tracklistReady, setTracklistReady] = React.useState(0);
+  React.useEffect(() => {
+    if (!liveState.artist?.name) return;
+    _getTracklistForArtist(liveState.artist.name).then(() => setTracklistReady(n => n + 1));
+  }, [liveState.artist?.name]);
+
   // Estimated song from tracklist position (debug: pick track from mid-set)
   const estimatedSong = React.useMemo(() => {
     if (!liveState.artist) return null;
@@ -8485,7 +8492,7 @@ function NowPlayingBar() {
     }
     const now = new Date().toISOString().replace("T", " ").slice(0, 19);
     return _matchSongAtTime(liveState.artist, cached, now);
-  }, [liveState.artist, debugLive]);
+  }, [liveState.artist, debugLive, tracklistReady]);
 
   const handleShazam = async () => {
     setLiveState(s => ({ ...s, listening: true }));
