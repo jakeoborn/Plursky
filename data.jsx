@@ -220,6 +220,26 @@ const FESTIVALS_REGISTRY = [
         3: { rise: "07:21", set: "19:07" },
       },
       gps: { lat: 30.2630, lng: -97.7730, onSiteRadiusMi: 0.4 },
+      // ⚠ GPS anchors for Zilker Park — calibrated against ACL 2025
+      // map overlaid on satellite imagery.  Three reference anchors
+      // (amex / miller / beatbox) were placed at known Zilker Park
+      // landmarks; the remaining stages are derived via the same
+      // 3-point Cramer affine used by EDC (see map.jsx).
+      gpsAnchors: [
+        // Calibrated (do not move without re-deriving the others)
+        { stageId: "amex",    lat: 30.26360, lng: -97.76640 },
+        { stageId: "miller",  lat: 30.26600, lng: -97.77240 },
+        { stageId: "beatbox", lat: 30.26140, lng: -97.77340 },
+        // Derived from the SVG layout via the amex/miller/beatbox affine
+        { stageId: "honda",    lat: 30.26411, lng: -97.77434 },
+        { stageId: "titos",    lat: 30.26484, lng: -97.76916 },
+        { stageId: "tmobile",  lat: 30.26411, lng: -97.77434 },
+        { stageId: "ladybird", lat: 30.26303, lng: -97.77098 },
+        { stageId: "bmi",      lat: 30.26266, lng: -97.77315 },
+        { stageId: "barton",   lat: 30.26118, lng: -97.77123 },
+        { stageId: "bonus",    lat: 30.26199, lng: -97.76954 },
+        { stageId: "aclfest",  lat: 30.26457, lng: -97.77217 },
+      ],
       mainStageId: "honda",
       mapImage: "acl-map-2025.webp",
       mapTheme: "park",
