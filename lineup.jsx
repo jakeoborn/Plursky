@@ -558,8 +558,7 @@ function LineupScreen({ state, setState }) {
     try { return localStorage.getItem('plursky_lineup_view') || 'list'; } catch { return 'list'; }
   });
   React.useEffect(() => { try { localStorage.setItem('plursky_lineup_view', viewMode); } catch {} }, [viewMode]);
-  // v138: per-day section refs so the FRI/SAT/SUN tabs scroll-to-section
-  // when grid view is on (the grid shows all 3 days in one continuous page).
+  // v138: per-day section refs (kept for potential future use).
   const gridSectionRefs = React.useRef({});
 
   // v140: force a re-render every 30 s so the NOW indicator line on the
@@ -573,66 +572,8 @@ function LineupScreen({ state, setState }) {
     return () => clearInterval(id);
   }, []);
 
-  // v139: a single rAF-throttled scroll listener on the ScrollBody does
-  // two things at once:
-  //   (a) saves scrollTop to sessionStorage so navigating into an artist
-  //       and coming back restores the exact position — fixes the "go to
-  //       SAT, tap an artist, come back, end up on FRI" bug;
-  //   (b) keeps the FRI/SAT/SUN day picker highlight in sync with whichever
-  //       section the user has scrolled into the top of the viewport.
-  // On mount we restore from sessionStorage in a rAF so layout is committed
-  // first. On unmount + remount the listener re-attaches.
-  const SCROLL_KEY = "plursky_lineup_scroll_v1";
-  React.useEffect(() => {
-    if (viewMode !== "grid") return;
-    const root = document.querySelector('[data-lineup-scroll]');
-    if (!root) return;
-
-    const restoreId = requestAnimationFrame(() => {
-      try {
-        const y = parseInt(sessionStorage.getItem(SCROLL_KEY) || "0", 10);
-        if (y > 0) root.scrollTop = y;
-      } catch {}
-    });
-
-    let pending = false;
-    const tick = () => {
-      const rootTop = root.getBoundingClientRect().top;
-      // Persist position
-      try { sessionStorage.setItem(SCROLL_KEY, String(root.scrollTop)); } catch {}
-      // Day picker sync — section whose top edge is at or just above the
-      // ScrollBody's top edge, and whose bottom is still below.
-      let bestDay = null;
-      for (const dn of [1, 2, 3]) {
-        const el = gridSectionRefs.current[dn];
-        if (!el) continue;
-        const r = el.getBoundingClientRect();
-        if (r.top - rootTop <= 100 && r.bottom - rootTop > 100) bestDay = dn;
-      }
-      if (bestDay) setDay(bestDay);
-      pending = false;
-    };
-    const onScroll = () => {
-      if (pending) return;
-      pending = true;
-      requestAnimationFrame(tick);
-    };
-    root.addEventListener("scroll", onScroll, { passive: true });
-    requestAnimationFrame(tick); // initial sync
-
-    return () => {
-      cancelAnimationFrame(restoreId);
-      root.removeEventListener("scroll", onScroll);
-    };
-  }, [viewMode]);
-
-  // Reset stored scroll position when leaving grid view so list-mode users
-  // who later flip to grid get a fresh top-of-page on first switch.
-  React.useEffect(() => {
-    if (viewMode === "list") {
-      try { sessionStorage.removeItem(SCROLL_KEY); } catch {}
-    }
-  }, [viewMode]);
+  // (v165: grid now shows one day at a time like list, so the scroll-to-
+  // section listener and sessionStorage position restore are no longer needed.)
   // Sort: time (chronological), tier (headliners first), stage (grouped by stage order)
   const [sortBy, setSortBy] = React.useState("time");
   // Active-filter count powers the badge on the FILTERS trigger button — replaces
@@ -773,12 +714,6 @@ function LineupScreen({ state, setState }) {
           return (
             <button key={d.n} onClick={() => {
               setDay(d.n);
-              // In grid mode the page renders all 3 days continuously; the
-              // tab acts as a scroll-to-section anchor.
-              if (viewMode === "grid") {
-                const el = gridSectionRefs.current[d.n];
-                if (el?.scrollIntoView) el.scrollIntoView({ behavior: "smooth", block: "start" });
-              }
             }} style={{
               flex: 1,
               padding: "10px 8px",
@@ -1004,63 +939,33 @@ function LineupScreen({ state, setState }) {
             </button>
           );
         })()}
-        {viewMode === "grid" && !(filter === "saved" && state.saved.length === 0) && (
-          // v138: all-3-days continuous grid + per-day saved-sets sidebar.
-          // The day tabs above scroll to the matching section instead of
-          // filtering — feels like one long page rather than three tabbed
-          // schedules. Each section has its own sidebar slice so the user
-          // can see what they picked for that night at a glance.
-          [1, 2, 3].map(dn => {
-            const dayMeta = DAYS.find(x => x.n === dn);
-            const dayArt  = ARTISTS.filter(a => a.day === dn);
-            return (
-              <div
-                key={dn}
-                ref={el => { gridSectionRefs.current[dn] = el; }}
-                style={{ scrollMarginTop: 12 }}
-              >
-                {dn !== 1 && (
-                  <div style={{
-                    height: 1, background: "var(--line-2)",
-                    margin: "26px 16px 0",
-                  }}/>
-                )}
-                <div
-                  data-day-header={dn}
-                  style={{
-                    position: "sticky", top: 0, zIndex: 6,
-                    display: "flex", alignItems: "baseline", gap: 10,
-                    padding: "12px 16px 8px",
-                    background: "var(--paper)",
-                    borderBottom: "1px solid var(--line)",
-                  }}>
-                  <div className="serif" style={{ fontSize: 22 }}>{dayMeta?.label || `Day ${dn}`}</div>
-                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>
-                    · {(dayMeta?.date || "").toUpperCase()}
-                  </div>
-                  <div className="mono" style={{ marginLeft: "auto", fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700 }}>
-                    {dayArt.length} SETS
-                  </div>
-                </div>
-                <div style={{ display: "flex", gap: 0, alignItems: "stretch", padding: "0 0 10px" }}>
-                  <SavedSidebar day={dn} state={state} setState={setState} />
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <TimelineGrid
-                      day={dn}
-                      allDayArtists={dayArt}
-                      state={state}
-                      setState={setState}
-                      matchesActive={matchesActive}
-                      conflictById={conflictById}
-                      spotifyMatchedIds={spotifyMatchedIds}
-                      highlightId={highlightId}
-                    />
-                  </div>
+        {viewMode === "grid" && !(filter === "saved" && state.saved.length === 0) && (() => {
+          // v165: grid now shows only the selected day (like list mode) so
+          // navigation is clean — no more scrolling through all 3 days.
+          const dayMeta = DAYS.find(x => x.n === day);
+          const dayArt  = ARTISTS.filter(a => a.day === day);
+          return (
+            <div
+              ref={el => { gridSectionRefs.current[day] = el; }}
+            >
+              <div style={{ display: "flex", gap: 0, alignItems: "stretch", padding: "0 0 10px" }}>
+                <SavedSidebar day={day} state={state} setState={setState} />
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <TimelineGrid
+                    day={day}
+                    allDayArtists={dayArt}
+                    state={state}
+                    setState={setState}
+                    matchesActive={matchesActive}
+                    conflictById={conflictById}
+                    spotifyMatchedIds={spotifyMatchedIds}
+                    highlightId={highlightId}
+                  />
                 </div>
               </div>
-            );
-          })
-        )}
+            </div>
+          );
+        })()}
         {viewMode === "list" && dayArtists.length === 0 && (
           <div style={{ padding: 40, textAlign: "center" }}>
             <div className="serif" style={{ fontSize: 22, color: "var(--muted)", fontStyle: "italic", marginBottom: 6 }}>
