@@ -533,6 +533,8 @@ function LineupScreen({ state, setState }) {
   const [tierFilter, setTierFilter] = React.useState("all"); // all | head | prime | open | legend
   const [wizardOpen, setWizardOpen] = React.useState(false);
   const [genreFilter, setGenreFilter] = React.useState("all");
+  const hasWeekends = ARTISTS.some(a => a.weekend && a.weekend !== "both");
+  const [weekendFilter, setWeekendFilter] = React.useState("all"); // all | W1 | W2
 
   // After the screen renders, scroll the highlighted card/block into view and
   // let the CSS flash play. Then clear the highlight so re-mounts don't fire
@@ -582,11 +584,13 @@ function LineupScreen({ state, setState }) {
   const activeFilterCount = (tierFilter !== "all" ? 1 : 0)
                           + (stageFilter !== "all" ? 1 : 0)
                           + (genreFilter !== "all" ? 1 : 0)
+                          + (weekendFilter !== "all" ? 1 : 0)
                           + (filter !== "all" ? 1 : 0)
                           + (sortBy !== "time" ? 1 : 0);
   React.useEffect(() => setGenreFilter("all"), [day]);
 
   const matchesActive = (a) => {
+    if (weekendFilter !== "all" && a.weekend !== weekendFilter && a.weekend !== "both") return false;
     if (filter !== "all" && !state.saved.includes(a.id)) return false;
     if (stageFilter !== "all" && a.stage !== stageFilter) return false;
     if (genreFilter !== "all" && a.genre !== genreFilter) return false;
@@ -615,6 +619,7 @@ function LineupScreen({ state, setState }) {
 
   const dayArtists = ARTISTS
     .filter(a => a.day === day)
+    .filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both")
     .filter(a => filter === "all" || state.saved.includes(a.id))
     .filter(a => stageFilter === "all" || a.stage === stageFilter)
     .filter(a => genreFilter === "all" || a.genre === genreFilter)
@@ -740,6 +745,31 @@ function LineupScreen({ state, setState }) {
           );
         })}
       </div>
+
+      {/* Weekend toggle — only shows for multi-weekend festivals like ACL */}
+      {hasWeekends && (
+        <div style={{
+          display: "flex", gap: 4, padding: "8px 16px 6px",
+          borderBottom: "1px solid var(--line)",
+        }}>
+          {[
+            { value: "all", label: "BOTH WEEKENDS" },
+            { value: "W1",  label: "WEEKEND 1" },
+            { value: "W2",  label: "WEEKEND 2" },
+          ].map(w => {
+            const on = weekendFilter === w.value;
+            return (
+              <button key={w.value} onClick={() => setWeekendFilter(w.value)} className="mono" style={{
+                flex: 1, padding: "7px 6px", borderRadius: 8,
+                background: on ? "var(--ink)" : "transparent",
+                color: on ? "var(--paper)" : "var(--muted)",
+                border: on ? "none" : "1px solid var(--line-2)",
+                fontSize: 8.5, letterSpacing: 1.2, fontWeight: 700, cursor: "pointer",
+              }}>{w.label}</button>
+            );
+          })}
+        </div>
+      )}
 
       {/* Compact toolbar: view mode segment + single FILTERS trigger.
           All filter/sort dimensions live inside the bottom sheet now —
@@ -1082,6 +1112,15 @@ function LineupScreen({ state, setState }) {
                       border: "0.5px solid rgba(123,61,154,0.5)",
                     }}>👥 {n}</span>
                   ) : null; })()}
+                  {hasWeekends && a.weekend && a.weekend !== "both" && (
+                    <span className="mono" style={{
+                      fontSize: 7.5, letterSpacing: 1.2, fontWeight: 700,
+                      color: a.weekend === "W1" ? "#2563eb" : "#9333ea",
+                      background: a.weekend === "W1" ? "rgba(37,99,235,0.1)" : "rgba(147,51,234,0.1)",
+                      padding: "1px 6px", borderRadius: 999,
+                      border: `0.5px solid ${a.weekend === "W1" ? "rgba(37,99,235,0.4)" : "rgba(147,51,234,0.4)"}`,
+                    }}>{a.weekend}</span>
+                  )}
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 3 }}>
                   <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: stage.color, fontWeight: 600, textTransform: "uppercase" }}>
