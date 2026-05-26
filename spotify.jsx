@@ -8375,8 +8375,13 @@ function NowPlayingBar() {
   const [captured, setCaptured] = React.useState(false);
   const CFG = window.FESTIVAL_CONFIG || {};
 
-  // Check if we're during festival hours
+  const debugLive = React.useMemo(() => {
+    try { return localStorage.getItem("plursky-debug-live") === "true"; } catch { return false; }
+  }, []);
+
+  // Check if we're during festival hours (or debug override)
   const isFestivalLive = React.useMemo(() => {
+    if (debugLive) return true;
     if (!CFG.dayDates) return false;
     const now = Date.now();
     for (const dd of Object.values(CFG.dayDates)) {
@@ -8385,11 +8390,24 @@ function NowPlayingBar() {
       if (now >= openMs && now <= closeMs) return true;
     }
     return false;
-  }, []);
+  }, [debugLive]);
 
-  // GPS watch for current stage
+  // GPS watch for current stage (debug: simulate first stage + first artist on night 1)
   React.useEffect(() => {
     if (!isFestivalLive) return;
+
+    if (debugLive) {
+      const stages = window.STAGES || [];
+      const artists = window.ARTISTS || [];
+      const debugStage = stages[0];
+      const debugArtist = artists.find(a => a.stage === debugStage?.id && a.day === 1) || artists[0];
+      if (debugStage) {
+        setLiveState(s => ({ ...s, stage: debugStage, artist: debugArtist || null }));
+        if (window.joinStagePresence) window.joinStagePresence(debugStage.id);
+      }
+      return () => { if (window.leaveStagePresence) window.leaveStagePresence(); };
+    }
+
     let watchId;
     const anchors = CFG.gpsAnchors || [];
     if (!anchors.length || !navigator.geolocation) return;
@@ -8438,7 +8456,7 @@ function NowPlayingBar() {
       if (watchId) navigator.geolocation.clearWatch(watchId);
       if (window.leaveStagePresence) window.leaveStagePresence();
     };
-  }, [isFestivalLive]);
+  }, [isFestivalLive, debugLive]);
 
   // Listen for presence count updates
   React.useEffect(() => {
@@ -8451,15 +8469,23 @@ function NowPlayingBar() {
     return () => window.removeEventListener("plursky-presence", onPresence);
   }, [liveState.stage?.id]);
 
-  // Estimated song from tracklist position
+  // Estimated song from tracklist position (debug: pick track from mid-set)
   const estimatedSong = React.useMemo(() => {
     if (!liveState.artist) return null;
     const key = liveState.artist.name.toLowerCase().replace(/\W+/g, "_");
     const cached = _setlistCache[key];
     if (!cached) return null;
+    if (debugLive && cached.source === "1001tracklists" && cached.tracks?.length) {
+      const t = cached.tracks[Math.floor(cached.tracks.length / 3)];
+      const display = t.artist ? `${t.artist} — ${t.title}` : t.title;
+      return { song: display, source: "1001tracklists", confidence: "exact (debug)", url: cached.url };
+    }
+    if (debugLive && cached.source === "setlist.fm" && cached.songs?.length) {
+      return { song: cached.songs[Math.floor(cached.songs.length / 3)], source: "setlist.fm", confidence: "estimated (debug)" };
+    }
     const now = new Date().toISOString().replace("T", " ").slice(0, 19);
     return _matchSongAtTime(liveState.artist, cached, now);
-  }, [liveState.artist]);
+  }, [liveState.artist, debugLive]);
 
   const handleShazam = async () => {
     setLiveState(s => ({ ...s, listening: true }));
