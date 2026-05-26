@@ -4167,6 +4167,10 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           </filter>
         </defs>
 
+        {/* Festival-specific map background */}
+        {FESTIVAL_CONFIG.mapImage ? (
+          <image href={FESTIVAL_CONFIG.mapImage} x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMid slice"/>
+        ) : (<>
         {/* Night sky base */}
         <rect x="0" y="0" width="100" height="100" fill="url(#mapGround)"/>
 
@@ -4252,6 +4256,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
             <circle cx={g.x} cy={g.y} r="0.5" fill="#fff"/>
           </g>
         ))}
+        </>)}
 
         {/* Amenity markers — coloured dots tuned for paper bg. Render before
             stages so stage markers always sit on top. Hidden when the user

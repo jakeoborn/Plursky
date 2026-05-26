@@ -220,6 +220,8 @@ const FESTIVALS_REGISTRY = [
       },
       gps: { lat: 30.2630, lng: -97.7730, onSiteRadiusMi: 0.4 },
       mainStageId: "honda",
+      mapImage: "acl-map-2025.webp",
+      mapTheme: "park",
       weatherEndpoint: "https://api.weather.gov/points/30.26,-97.77",
     },
     available: true,
@@ -740,18 +742,19 @@ const ESSENTIALS = [
 // Stage x/y calibrated to the ACL 2025 Zilker Park map (north-up,
 // 0–100 grid). Compass: N=up, Lady Bird Lake = top-right,
 // Barton Springs Rd = bottom, Andrew Zilker Rd = left edge.
+// Positions calibrated against the official ACL 2025 patron map (acl-map-2025.webp).
 const ACL_STAGES = [
-  { id: "honda",   name: "Honda Stage",       short: "HON",  color: "#e85d2e", x: 10, y: 48, size: 1.7, desc: "West headliner stage",          vibe: "The Other Main",   vibeNote: "Second headliner stage. Opposite end from AMEX. Sub-headliners close here.", peak: "17:00–22:00" },
-  { id: "amex",    name: "American Express",  short: "AMEX", color: "#ec4899", x: 90, y: 48, size: 1.7, desc: "East headliner stage",          vibe: "Main Event",       vibeNote: "The big stage. Headliners close here every night.",             peak: "17:00–22:00" },
-  { id: "titos",   name: "Tito's Stage",      short: "TIT",  color: "#f97316", x: 72, y: 32, size: 1.2, desc: "Upper-right · mid-large stage", vibe: "Texas Heat",        vibeNote: "Austin locals + rising stars. Vodka optional.",                 peak: "13:00–19:00" },
-  { id: "miller",  name: "Miller Lite Stage", short: "MIL",  color: "#38bdf8", x: 42, y: 18, size: 1.0, desc: "Top-center · by Lady Bird entrance", vibe: "Chill Vibes", vibeNote: "Shade, cold beer, great sound.",                                peak: "13:00–19:00" },
-  { id: "tmobile", name: "T-Mobile Stage",    short: "TMO",  color: "#a855f7", x: 25, y: 38, size: 1.2, desc: "Left side · third stage",      vibe: "Discovery Stage",   vibeNote: "Where you find your next obsession.",                          peak: "14:00–20:00" },
-  { id: "ladybird",name: "Lady Bird Stage",   short: "LBD",  color: "#22c55e", x: 58, y: 48, size: 1.1, desc: "Center · mid-size stage",      vibe: "By the Lake",       vibeNote: "Breezy lakeside sets. Best sunset views.",                      peak: "14:00–20:00" },
-  { id: "bmi",     name: "BMI Stage",         short: "BMI",  color: "#fbbf24", x: 38, y: 68, size: 0.9, desc: "South side · songwriter stage",  vibe: "Songwriter's Corner",vibeNote: "Stripped-down, intimate. Singer-songwriter heaven.",           peak: "12:00–18:00" },
-  { id: "barton",  name: "Barton Springs",    short: "BAR",  color: "#14b8a6", x: 50, y: 72, size: 0.85,desc: "Bottom-center · small stage",   vibe: "Deep Cuts",         vibeNote: "Hidden gem stage near Barton Springs entrance.",                peak: "12:00–17:00" },
-  { id: "bonus",   name: "Bonus Tracks",      short: "BNS",  color: "#2563eb", x: 72, y: 58, size: 0.7, desc: "Right-center · smallest stage", vibe: "First Timers",      vibeNote: "Local acts, first-ever festival sets. Near the grove.",         peak: "11:00–16:00" },
-  { id: "beatbox", name: "BEATBOX",           short: "BBX",  color: "#1e40af", x: 30, y: 72, size: 0.75,desc: "Bottom-left · electronic stage",vibe: "Bass Haven",        vibeNote: "DJs, producers, electronic acts. Near west entrance.",          peak: "14:00–21:00" },
-  { id: "aclfest", name: "ACL Fest Stage",    short: "ACL",  color: "#ef4444", x: 52, y: 32, size: 1.0, desc: "Center · general stage",        vibe: "Heart of the Park", vibeNote: "Central stage surrounded by food vendors and activations.",     peak: "12:00–19:00" },
+  { id: "honda",   name: "Honda Stage",       short: "HON",  color: "#e85d2e", x: 22, y: 38, size: 1.5, desc: "West side · sub-headliners",    vibe: "The Other Main",   vibeNote: "Second headliner stage. Opposite end from AMEX.",               peak: "17:00–22:00" },
+  { id: "amex",    name: "American Express",  short: "AMEX", color: "#ec4899", x: 88, y: 42, size: 1.7, desc: "East side · headliners",        vibe: "Main Event",       vibeNote: "The big stage. Headliners close here every night.",             peak: "17:00–22:00" },
+  { id: "titos",   name: "Tito's Stage",      short: "TIT",  color: "#f97316", x: 65, y: 28, size: 1.2, desc: "North-east · mid-large stage",  vibe: "Texas Heat",        vibeNote: "Austin locals + rising stars. Vodka optional.",                 peak: "13:00–19:00" },
+  { id: "miller",  name: "Miller Lite Stage", short: "MIL",  color: "#38bdf8", x: 38, y: 15, size: 1.0, desc: "North · by Lady Bird Lake",     vibe: "Chill Vibes",       vibeNote: "Shade, cold beer, great sound. Closest to the lake.",           peak: "13:00–19:00" },
+  { id: "tmobile", name: "T-Mobile Stage",    short: "TMO",  color: "#a855f7", x: 22, y: 38, size: 1.2, desc: "West side · third stage",       vibe: "Discovery Stage",   vibeNote: "Where you find your next obsession.",                          peak: "14:00–20:00" },
+  { id: "ladybird",name: "Lady Bird Stage",   short: "LBD",  color: "#22c55e", x: 50, y: 50, size: 1.1, desc: "Center · mid-size stage",       vibe: "By the Lake",       vibeNote: "Breezy sets in the heart of the park. Best sunset views.",       peak: "14:00–20:00" },
+  { id: "bmi",     name: "BMI Stage",         short: "BMI",  color: "#fbbf24", x: 32, y: 55, size: 0.9, desc: "Center-left · songwriter stage", vibe: "Songwriter's Corner",vibeNote: "Stripped-down, intimate. Singer-songwriter heaven.",           peak: "12:00–18:00" },
+  { id: "barton",  name: "Barton Springs",    short: "BAR",  color: "#14b8a6", x: 48, y: 72, size: 0.85,desc: "South · near Barton Springs entrance", vibe: "Deep Cuts", vibeNote: "Hidden gem stage near Barton Springs entrance.",                peak: "12:00–17:00" },
+  { id: "bonus",   name: "Bonus Tracks",      short: "BNS",  color: "#2563eb", x: 62, y: 62, size: 0.7, desc: "South-east · smallest stage",   vibe: "First Timers",      vibeNote: "Local acts, first-ever festival sets. Near the grove.",         peak: "11:00–16:00" },
+  { id: "beatbox", name: "BEATBOX",           short: "BBX",  color: "#1e40af", x: 30, y: 70, size: 0.75,desc: "South-west · electronic stage",  vibe: "Bass Haven",        vibeNote: "DJs, producers, electronic acts. Near west entrance.",          peak: "14:00–21:00" },
+  { id: "aclfest", name: "ACL Fest Stage",    short: "ACL",  color: "#ef4444", x: 40, y: 32, size: 1.0, desc: "Center-north · general stage",   vibe: "Heart of the Park", vibeNote: "Central stage surrounded by food vendors and activations.",     peak: "12:00–19:00" },
 ];
 
 const _aclMk = (id, name, genre, stage, day, start, end, wk) => {
