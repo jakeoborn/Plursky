@@ -4403,15 +4403,29 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           );
         })}
 
+        {/* Crew proximity glow — shared ring when you and a friend are near the same spot */}
+        {friends.map(f => {
+          const dist = Math.hypot(f.x - avatar.x, f.y - avatar.y);
+          if (dist > 8) return null;
+          const mx = (f.x + avatar.x) / 2, my = (f.y + avatar.y) / 2;
+          return (
+            <circle key={`prox-${f.id}`} cx={mx} cy={my} r="5" fill="none" stroke={f.color} strokeWidth="0.4" opacity="0.5">
+              <animate attributeName="r" values="3;7;3" dur="2.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.5;0.1;0.5" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+          );
+        })}
+
         {/* Friends */}
         {friends.map(f => {
           const focused = meetGroup.includes(f.id);
+          const nearby = Math.hypot(f.x - avatar.x, f.y - avatar.y) <= 8;
           return (
             <g key={f.id}>
-              <circle cx={f.x} cy={f.y} r="2.5" fill={f.color} opacity="0.22">
-                <animate attributeName="r" values="2;3.5;2" dur="2.8s" repeatCount="indefinite"/>
+              <circle cx={f.x} cy={f.y} r="2.5" fill={f.color} opacity={nearby ? 0.35 : 0.22}>
+                <animate attributeName="r" values={nearby ? "2.5;4;2.5" : "2;3.5;2"} dur={nearby ? "1.8s" : "2.8s"} repeatCount="indefinite"/>
               </circle>
-              <circle cx={f.x} cy={f.y} r={focused ? 1.8 : 1.5} fill={f.avatarTone} stroke="rgba(255,255,255,0.9)" strokeWidth="0.5"/>
+              <circle cx={f.x} cy={f.y} r={focused ? 1.8 : 1.5} fill={f.avatarTone} stroke={nearby ? "#fff" : "rgba(255,255,255,0.9)"} strokeWidth={nearby ? 0.7 : 0.5}/>
             </g>
           );
         })}
@@ -4426,6 +4440,34 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
             <circle cx={meetTarget.x} cy={meetTarget.y} r="1.6" fill="#e85d2e" stroke="#fff" strokeWidth="0.5"/>
           </g>
         )}
+
+        {/* Walking route line — animated dashed path from avatar to selected stage */}
+        {selected && !meetMode && (() => {
+          const target = stages.find(s => s.id === selected);
+          if (!target) return null;
+          const dist = Math.hypot(target.x - avatar.x, target.y - avatar.y);
+          if (dist < 4) return null;
+          const mid1x = avatar.x + (target.x - avatar.x) * 0.33 + (Math.random() > 0.5 ? 3 : -3);
+          const mid1y = avatar.y + (target.y - avatar.y) * 0.33;
+          const mid2x = avatar.x + (target.x - avatar.x) * 0.66;
+          const mid2y = avatar.y + (target.y - avatar.y) * 0.66 + (Math.random() > 0.5 ? 2 : -2);
+          const walkMins = typeof _pairKey === "function" && typeof WALK_PAIRS !== "undefined"
+            ? (WALK_PAIRS[_pairKey(_nearestStageId(avatar.x, avatar.y) || "", selected)] || [0, 0])
+            : [0, 0];
+          const etaMin = Math.round((walkMins[0] + walkMins[1]) / 2) || Math.round(dist * 0.4);
+          return (
+            <g>
+              <path d={`M${avatar.x},${avatar.y} C${mid1x},${mid1y} ${mid2x},${mid2y} ${target.x},${target.y}`}
+                fill="none" stroke={target.color} strokeWidth="0.6" strokeDasharray="2 2" opacity="0.6">
+                <animate attributeName="stroke-dashoffset" values="0;-8" dur="1.5s" repeatCount="indefinite"/>
+              </path>
+              <text x={(avatar.x + target.x) / 2} y={(avatar.y + target.y) / 2 - 2}
+                textAnchor="middle" fontSize="3" fontFamily="Geist Mono, monospace" fontWeight="700"
+                fill={target.color} opacity="0.85"
+              >{etaMin} MIN</text>
+            </g>
+          );
+        })()}
 
         {/* Avatar — you */}
         <g>

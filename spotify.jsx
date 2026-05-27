@@ -8645,11 +8645,35 @@ function NowPlayingBar() {
       padding: "10px 14px",
       animation: "song-fade-in 0.4s ease-out",
     }}>
-      {/* Stage color accent line */}
-      <div style={{
-        position: "absolute", top: 0, left: 0, right: 0, height: 2,
-        background: `linear-gradient(90deg, ${stageColor}, ${stageColor}66)`,
-      }} />
+      {/* Set progress ring — SVG arc showing how far through the set */}
+      {liveState.artist && (() => {
+        const nowMin = typeof toNightMin === "function" && NOW?.time ? toNightMin(NOW.time) : 0;
+        const startMin = typeof toNightMin === "function" ? toNightMin(liveState.artist.start) : 0;
+        const endMin = typeof toNightMin === "function" ? toNightMin(liveState.artist.end) : 1;
+        const total = Math.max(1, endMin - startMin);
+        const elapsed = Math.max(0, nowMin - startMin);
+        const pct = Math.min(1, elapsed / total);
+        const minsLeft = Math.max(0, Math.round(total - elapsed));
+        return (
+          <div style={{
+            position: "absolute", top: 0, left: 0, right: 0, height: 3, overflow: "hidden", borderRadius: "16px 16px 0 0",
+          }}>
+            <div style={{
+              width: `${pct * 100}%`, height: "100%",
+              background: `linear-gradient(90deg, ${stageColor}, ${stageColor}cc)`,
+              borderRadius: "0 3px 3px 0",
+              transition: "width 30s linear",
+              boxShadow: `0 0 8px ${stageColor}`,
+            }}/>
+            {minsLeft > 0 && minsLeft <= 10 && (
+              <div className="mono" style={{
+                position: "absolute", right: 6, top: 5, fontSize: 8, letterSpacing: 1,
+                color: stageColor, fontWeight: 800, textShadow: "0 1px 4px rgba(0,0,0,0.8)",
+              }}>{minsLeft}M LEFT</div>
+            )}
+          </div>
+        );
+      })()}
 
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
         {/* Pulsing live dot + stage info */}

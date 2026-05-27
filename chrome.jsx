@@ -56,13 +56,29 @@ function TabBar({ active, onChange }) {
     { id: "map",     label: "Map",    icon: MapIcon },
     { id: "me",      label: "Me",     icon: MeIcon },
   ];
+  const _liveMainColor = React.useMemo(() => {
+    try {
+      const stages = window.STAGES || [];
+      const artists = window.ARTISTS || [];
+      const main = window.FESTIVAL_CONFIG?.mainStageId;
+      if (!main || !window.NOW?.time || !window.NOW?.day) return null;
+      const nowMin = window.toNightMin(window.NOW.time);
+      const live = artists.find(a => a.stage === main && a.day === window.NOW.day &&
+        nowMin >= window.toNightMin(a.start) && nowMin < window.toNightMin(a.end));
+      if (!live) return null;
+      return stages.find(s => s.id === main)?.color || null;
+    } catch { return null; }
+  }, []);
+
   return (
     <div style={{
       background: "var(--paper-2)",
-      borderTop: "1px solid var(--line)",
+      borderTop: _liveMainColor ? `2px solid ${_liveMainColor}` : "1px solid var(--line)",
+      boxShadow: _liveMainColor ? `0 -2px 12px ${_liveMainColor}22` : undefined,
       padding: "6px 10px 10px",
       display: "flex",
       justifyContent: "space-around",
+      transition: "border-color 1s ease, box-shadow 1s ease",
     }}>
       {tabs.map(t => {
         const Icon = t.icon;
