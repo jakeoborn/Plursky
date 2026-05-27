@@ -5575,7 +5575,7 @@ const APP_STORE_ID = 6768888507;
 // Setup: create products in App Store Connect, configure them in
 // RevenueCat dashboard, paste your API key below.
 const PLUS_KEY = "plursky_plus_active";
-const RC_API_KEY = ""; // ← paste RevenueCat Apple API key here
+const RC_API_KEY = "appl_xXQYsWOMgIpVPdCTxiXmPeyxFId";
 const RC_PRODUCT_IDS = {
   festival: "plursky_plus_festival",  // $2.99 non-consumable
   annual:   "plursky_plus_annual",    // $7.99/yr auto-renewable
