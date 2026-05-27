@@ -1267,7 +1267,7 @@ function HomeScreen({ state, setState }) {
               </svg>
               {offline ? "OFF" : (!countdown && !isPostFestival ? "LIVE" : "ON")}
             </button>
-            <button onClick={() => setAlertsOpen(true)} style={{
+            <button onClick={() => setAlertsOpen(true)} aria-label="Alerts" style={{
               position: "relative", background: "transparent", border: "none",
               padding: 4, cursor: "pointer", color: "var(--ink)",
             }}>

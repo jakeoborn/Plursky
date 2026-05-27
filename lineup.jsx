@@ -1676,6 +1676,23 @@ function TierStars({ tier }) {
 // Festival timezone + day → date map come from FESTIVAL_CONFIG so this
 // works for any festival once the config is loaded. Emit DTSTART/DTEND
 // with TZID so any calendar app picks the right local time.
+const _TZ_DB = {
+  "America/Los_Angeles": { std: "PST", dst: "PDT", stdOff: "-0800", dstOff: "-0700", dstStart: "FREQ=YEARLY;BYMONTH=3;BYDAY=2SU", stdStart: "FREQ=YEARLY;BYMONTH=11;BYDAY=1SU" },
+  "America/Chicago":     { std: "CST", dst: "CDT", stdOff: "-0600", dstOff: "-0500", dstStart: "FREQ=YEARLY;BYMONTH=3;BYDAY=2SU", stdStart: "FREQ=YEARLY;BYMONTH=11;BYDAY=1SU" },
+  "America/New_York":    { std: "EST", dst: "EDT", stdOff: "-0500", dstOff: "-0400", dstStart: "FREQ=YEARLY;BYMONTH=3;BYDAY=2SU", stdStart: "FREQ=YEARLY;BYMONTH=11;BYDAY=1SU" },
+  "America/Denver":      { std: "MST", dst: "MDT", stdOff: "-0700", dstOff: "-0600", dstStart: "FREQ=YEARLY;BYMONTH=3;BYDAY=2SU", stdStart: "FREQ=YEARLY;BYMONTH=11;BYDAY=1SU" },
+};
+function _icsTimezone(tz) {
+  const t = _TZ_DB[tz] || _TZ_DB["America/Los_Angeles"];
+  return [
+    "BEGIN:VTIMEZONE", `TZID:${tz}`,
+    "BEGIN:DAYLIGHT", `TZOFFSETFROM:${t.stdOff}`, `TZOFFSETTO:${t.dstOff}`,
+    `TZNAME:${t.dst}`, "DTSTART:19700308T020000", `RRULE:${t.dstStart}`, "END:DAYLIGHT",
+    "BEGIN:STANDARD", `TZOFFSETFROM:${t.dstOff}`, `TZOFFSETTO:${t.stdOff}`,
+    `TZNAME:${t.std}`, "DTSTART:19701101T020000", `RRULE:${t.stdStart}`, "END:STANDARD",
+    "END:VTIMEZONE",
+  ];
+}
 function _setTimeToLocalDate(day, hhmm) {
   const meta = FESTIVAL_CONFIG.dayDates[day];
   const d = new Date(meta.y, meta.m, meta.d);
@@ -1738,23 +1755,7 @@ async function exportLineupICS(state) {
     "METHOD:PUBLISH",
     `X-WR-CALNAME:My ${fname}`,
     `X-WR-TIMEZONE:${tz}`,
-    "BEGIN:VTIMEZONE",
-    `TZID:${tz}`,
-    "BEGIN:DAYLIGHT",
-    "TZOFFSETFROM:-0800",
-    "TZOFFSETTO:-0700",
-    "TZNAME:PDT",
-    "DTSTART:19700308T020000",
-    "RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU",
-    "END:DAYLIGHT",
-    "BEGIN:STANDARD",
-    "TZOFFSETFROM:-0700",
-    "TZOFFSETTO:-0800",
-    "TZNAME:PST",
-    "DTSTART:19701101T020000",
-    "RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU",
-    "END:STANDARD",
-    "END:VTIMEZONE",
+    ..._icsTimezone(tz),
     events,
     "END:VCALENDAR",
   ].join("\r\n");

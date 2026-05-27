@@ -56,6 +56,8 @@ function TabBar({ active, onChange }) {
     { id: "map",     label: "Map",    icon: MapIcon },
     { id: "me",      label: "Me",     icon: MeIcon },
   ];
+  const [_tick, _setTick] = React.useState(0);
+  React.useEffect(() => { const id = setInterval(() => _setTick(t => t + 1), 30000); return () => clearInterval(id); }, []);
   const _liveMainColor = React.useMemo(() => {
     try {
       const stages = window.STAGES || [];
@@ -68,7 +70,7 @@ function TabBar({ active, onChange }) {
       if (!live) return null;
       return stages.find(s => s.id === main)?.color || null;
     } catch { return null; }
-  }, []);
+  }, [_tick]);
 
   return (
     <div style={{
@@ -700,7 +702,7 @@ function detectCurrentArtist(lat, lng, opts = {}) {
     const [eh, em] = a.end.split(":").map(Number);
     const start = (sh < 6 ? sh + 24 : sh) * 60 + sm;
     const end   = (eh < 6 ? eh + 24 : eh) * 60 + em;
-    return nowMin >= start && nowMin <= end;
+    return nowMin >= start && nowMin < end;
   });
   if (!playing) return null;
   return { artistId: playing.id, stageId: best.stageId, night: now.day, distM: Math.round(best.d) };

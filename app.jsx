@@ -297,7 +297,7 @@ function SearchModal({ onClose, onSelectArtist }) {
             background: "var(--paper-2)", border: "none", borderRadius: 99,
             width: 20, height: 20, color: "var(--muted)", fontSize: 13,
             cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
-          }}>×</button>
+          }} aria-label="Clear">×</button>
         )}
         <button onClick={onClose} style={{
           background: "transparent", border: "none", color: "var(--ember)",
