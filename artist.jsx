@@ -770,81 +770,119 @@ function ArtistAtmosphere({ genre, stageColor, tier }) {
 
   const fx = _genreToVfx(genre);
   const intense = tier === 3;
-  const count = intense ? 16 : 10;
+  const beamCount = intense ? 5 : 3;
 
-  const particles = React.useMemo(() =>
-    Array.from({ length: count }, (_, i) => ({
-      x: (i * 37 + 13) % 100,
-      y: (i * 53 + 7) % 100,
-      size: fx === "haze" ? 12 + (i % 3) * 8 : fx === "strobe" ? 2 + (i % 2) : 3 + (i % 3) * 2,
-      delay: (i * 0.4) % 4,
-      dur: fx === "strobe" ? 1.2 + (i % 3) * 0.4 : fx === "haze" ? 5 + (i % 3) * 2 : 3 + (i % 4),
-    })), [fx, count]);
-
-  const anim = fx === "pyro" || fx === "amber" ? "vfx-rise"
-    : fx === "strobe" ? "vfx-fall"
-    : fx === "haze" ? "vfx-drift"
-    : "vfx-rise";
+  const beams = React.useMemo(() =>
+    Array.from({ length: beamCount }, (_, i) => ({
+      left: 15 + (i * 70 / Math.max(1, beamCount - 1)),
+      width: intense ? 3 : 2,
+      dur: 4 + (i % 3) * 1.5,
+      delay: i * 0.6,
+    })), [beamCount, intense]);
 
   return (
     <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none", zIndex: 1 }}>
-      {particles.map((p, i) => (
-        <div key={i} style={{
-          position: "absolute",
-          left: `${p.x}%`,
-          bottom: fx === "pyro" || fx === "amber" ? 0 : undefined,
-          top: fx === "strobe" ? 0 : fx === "pyro" || fx === "amber" ? undefined : `${p.y}%`,
-          width: p.size, height: fx === "grid" ? 1 : p.size,
-          borderRadius: fx === "grid" ? 0 : "50%",
-          background: fx === "amber" ? "#fbbf24" : stageColor,
-          filter: fx === "haze" ? `blur(${p.size * 0.6}px)` : fx === "laser" ? `blur(${p.size * 0.3}px)` : "none",
-          opacity: 0,
-          animation: `${anim} ${p.dur}s ease-in-out ${p.delay}s infinite`,
+
+      {/* Stage light beams — triangular cones sweeping from top */}
+      {(fx === "laser" || fx === "grid" || fx === "trance" || fx === "strobe") && beams.map((b, i) => (
+        <div key={`beam-${i}`} style={{
+          position: "absolute", top: 0, left: `${b.left}%`,
+          width: `${b.width}%`, height: "100%",
+          background: `linear-gradient(180deg, ${stageColor}90 0%, ${stageColor}20 40%, transparent 80%)`,
+          transformOrigin: "top center",
+          animation: `vfx-beam-sweep ${b.dur}s ease-in-out ${b.delay}s infinite`,
+          filter: "blur(3px)",
         }}/>
       ))}
 
+      {/* Laser fan — SVG lines radiating from a point */}
       {(fx === "laser" || fx === "grid") && (
-        <svg style={{ position: "absolute", inset: 0, opacity: 0.12 }} viewBox="0 0 100 100" preserveAspectRatio="none">
-          {[15, 35, 55, 75, 90].map((x, i) => (
-            <line key={i} x1={x} y1="0" x2={x + (i % 2 ? 12 : -12)} y2="100"
-              stroke={stageColor} strokeWidth="0.4" opacity="0.7">
-              <animate attributeName="x1" values={`${x};${x+18};${x}`} dur={`${3+i*0.7}s`} repeatCount="indefinite"/>
-              <animate attributeName="x2" values={`${x+(i%2?12:-12)};${x+(i%2?-5:18)};${x+(i%2?12:-12)}`} dur={`${4+i*0.5}s`} repeatCount="indefinite"/>
+        <svg style={{ position: "absolute", inset: 0, opacity: 0.25 }} viewBox="0 0 100 100" preserveAspectRatio="none">
+          {[20, 35, 50, 65, 80].map((x, i) => (
+            <line key={i} x1="50" y1="0" x2={x} y2="100"
+              stroke={stageColor} strokeWidth="0.3" opacity="0.8">
+              <animate attributeName="x1" values={`${45+i*2};${55-i*2};${45+i*2}`} dur={`${5+i*0.8}s`} repeatCount="indefinite"/>
+              <animate attributeName="x2" values={`${x};${x+(i%2?15:-15)};${x}`} dur={`${3+i*0.6}s`} repeatCount="indefinite"/>
             </line>
           ))}
         </svg>
       )}
 
-      {fx === "spotlight" && (
+      {/* Scanning spotlight — horizontal sweep */}
+      <div style={{
+        position: "absolute", top: 0,
+        width: "30%", height: "100%",
+        background: `radial-gradient(ellipse at 50% 0%, ${stageColor}35, transparent 70%)`,
+        animation: `vfx-scan ${intense ? 3 : 5}s ease-in-out infinite`,
+        filter: "blur(8px)",
+      }}/>
+
+      {/* Color wash — pulsing ambient glow from below (stage floor) */}
+      <div style={{
+        position: "absolute", bottom: 0, left: 0, right: 0, height: "60%",
+        background: `linear-gradient(0deg, ${stageColor}30 0%, ${stageColor}10 40%, transparent 100%)`,
+        animation: "vfx-wash 3.5s ease-in-out infinite",
+      }}/>
+
+      {/* Haze / fog effect — soft diffuse layer */}
+      {(fx === "haze" || fx === "house" || fx === "glow") && (
         <div style={{
-          position: "absolute", bottom: 0, left: "20%", right: "20%", height: "70%",
-          background: `linear-gradient(0deg, rgba(255,255,255,0.08) 0%, transparent 100%)`,
-          borderRadius: "50% 50% 0 0",
-          animation: "vfx-pulse 3s ease-in-out infinite",
+          position: "absolute", bottom: "10%", left: "-10%", right: "-10%", height: "40%",
+          background: `radial-gradient(ellipse at 50% 100%, rgba(255,255,255,0.08), transparent 70%)`,
+          filter: "blur(20px)",
+          animation: "vfx-wash 5s ease-in-out 1s infinite",
         }}/>
       )}
 
-      {fx === "neon" && (
-        <div style={{
-          position: "absolute", inset: 0,
-          background: `radial-gradient(ellipse at 50% 70%, ${stageColor}20, transparent 65%)`,
-          animation: "vfx-pulse 2.5s ease-in-out infinite",
-        }}/>
-      )}
-
+      {/* Strobe flash */}
       {fx === "strobe" && (
         <div style={{
           position: "absolute", inset: 0,
-          background: `radial-gradient(ellipse at 50% 20%, rgba(255,255,255,0.15), transparent 60%)`,
+          background: "rgba(255,255,255,0.15)",
           animation: "vfx-strobe 2.4s ease-in-out infinite",
         }}/>
       )}
 
-      <div style={{
-        position: "absolute", inset: 0,
-        background: `radial-gradient(ellipse at 50% 85%, ${stageColor}15, transparent 55%)`,
-        animation: "vfx-pulse 4s ease-in-out infinite",
-      }}/>
+      {/* Neon underglow */}
+      {fx === "neon" && (
+        <div style={{
+          position: "absolute", bottom: 0, left: "10%", right: "10%", height: "50%",
+          background: `radial-gradient(ellipse at 50% 100%, ${stageColor}40, transparent 65%)`,
+          animation: "vfx-wash 2.5s ease-in-out infinite",
+        }}/>
+      )}
+
+      {/* Pyro — upward sparks */}
+      {(fx === "pyro" || fx === "amber") && Array.from({ length: intense ? 8 : 5 }, (_, i) => (
+        <div key={`spark-${i}`} style={{
+          position: "absolute", bottom: 0,
+          left: `${10 + (i * 80 / (intense ? 7 : 4))}%`,
+          width: 2, height: 2, borderRadius: "50%",
+          background: fx === "amber" ? "#fbbf24" : stageColor,
+          boxShadow: `0 0 4px ${fx === "amber" ? "#fbbf24" : stageColor}`,
+          animation: `vfx-rise ${2.5 + (i % 3) * 0.8}s ease-out ${(i * 0.5) % 3}s infinite`,
+        }}/>
+      ))}
+
+      {/* Spotlight cone for rock/indie */}
+      {fx === "spotlight" && (
+        <div style={{
+          position: "absolute", top: 0, left: "30%", width: "40%", height: "100%",
+          background: `linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 70%)`,
+          clipPath: "polygon(40% 0%, 60% 0%, 100% 100%, 0% 100%)",
+          animation: "vfx-beam-sweep 6s ease-in-out infinite",
+          transformOrigin: "top center",
+        }}/>
+      )}
+
+      {/* Ambient flicker overlay */}
+      {intense && (
+        <div style={{
+          position: "absolute", inset: 0,
+          background: `radial-gradient(ellipse at 50% 30%, ${stageColor}12, transparent 60%)`,
+          animation: "vfx-flicker 4s ease-in-out infinite",
+        }}/>
+      )}
     </div>
   );
 }
@@ -1126,23 +1164,37 @@ function ArtistScreen({ state, setState }) {
       }}>
         <div style={{
           position: "absolute", inset: 0, top: -30,
-          background: heroPhoto ? "var(--ink)" : a.img,
+          background: heroPhoto
+            ? "var(--ink)"
+            : `linear-gradient(160deg, var(--ink) 0%, ${stage?.color || "#2a1a3d"}44 40%, var(--ink) 100%)`,
           backgroundImage: heroPhoto ? `url(${heroPhoto})` : undefined,
           backgroundSize: "cover",
           backgroundPosition: "center 20%",
           transform: `translateY(${heroParallax}px)`,
           willChange: "transform",
         }}/>
-        <ArtistAtmosphere genre={a.genre} stageColor={stage?.color || "var(--ember)"} tier={a.tier} />
-        {a.tier === 3 && <PyroStarburst color={stage?.color || "var(--ember)"} />}
+        {heroPhoto && <ArtistAtmosphere genre={a.genre} stageColor={stage?.color || "var(--ember)"} tier={a.tier} />}
+        {!heroPhoto && (
+          <div style={{
+            position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none", zIndex: 1,
+          }}>
+            <div style={{
+              position: "absolute", top: "30%", left: "50%", transform: "translate(-50%, -50%)",
+              width: 180, height: 180, borderRadius: "50%",
+              background: `radial-gradient(circle, ${stage?.color || "var(--ember)"}30, transparent 70%)`,
+              animation: "vfx-pulse 4s ease-in-out infinite",
+            }}/>
+          </div>
+        )}
+        {a.tier === 3 && heroPhoto && <PyroStarburst color={stage?.color || "var(--ember)"} />}
         <div style={{
           position: "absolute", inset: 0, zIndex: 2,
           background: heroPhoto
             ? `linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0) 35%, ${stage?.color || "rgba(26,18,13,1)"}22 65%, rgba(26,18,13,0.92) 100%)`
-            : "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 40%, rgba(26,18,13,0.85) 100%)",
+            : `linear-gradient(180deg, transparent 0%, ${stage?.color || "rgba(26,18,13,1)"}15 50%, rgba(26,18,13,0.95) 100%)`,
         }} />
         <button onClick={() => window._popNav ? window._popNav() : setState({ ...state, artist: null })} style={{
-          position: "absolute", top: 14, left: 14,
+          position: "absolute", top: 14, left: 14, zIndex: 10,
           width: 38, height: 38, borderRadius: 38,
           background: "rgba(255,255,255,0.18)", backdropFilter: "blur(8px)",
           border: "1px solid rgba(255,255,255,0.3)",
@@ -1150,7 +1202,7 @@ function ArtistScreen({ state, setState }) {
           display: "flex", alignItems: "center", justifyContent: "center",
         }}>←</button>
 
-        <div style={{ position: "absolute", top: 14, right: 14, display: "flex", gap: 6, alignItems: "center" }}>
+        <div style={{ position: "absolute", top: 14, right: 14, zIndex: 10, display: "flex", gap: 6, alignItems: "center" }}>
           {connected && preview !== "none" && (
             <button onClick={handlePreview} style={{
               display: "inline-flex", alignItems: "center", gap: 5,
