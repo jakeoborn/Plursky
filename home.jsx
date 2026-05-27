@@ -2213,6 +2213,7 @@ function AlertsDrawer({ alerts, onClose, onOpenMap, onOpenLineup }) {
         borderTopLeftRadius: 22, borderTopRightRadius: 22,
         maxHeight: "78%", display: "flex", flexDirection: "column",
         boxShadow: "0 -10px 30px rgba(0,0,0,0.35)", position: "relative",
+        animation: "sheetUp 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
       }}>
         <div style={{ padding: "14px 18px 10px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid var(--line)" }}>
           <div>

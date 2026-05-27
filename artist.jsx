@@ -1379,19 +1379,20 @@ function ArtistScreen({ state, setState }) {
             fetch); falls back to the search-by-artist URL otherwise. */}
         <div style={{ display: "flex", gap: 6, marginBottom: 18, flexWrap: "wrap" }}>
           {[
-            { label: "SPOTIFY", url: spotifyStats?.spotifyId
+            { label: "SPOTIFY", accent: "#1DB954", url: spotifyStats?.spotifyId
                 ? `https://open.spotify.com/artist/${spotifyStats.spotifyId}`
                 : `https://open.spotify.com/search/${encodeURIComponent(activeName)}/artists` },
-            { label: "SOUNDCLOUD", url: `https://soundcloud.com/search?q=${encodeURIComponent(activeName)}` },
-            { label: "RA", url: `https://ra.co/search?query=${encodeURIComponent(activeName)}` },
-            { label: "INSTAGRAM", url: `https://www.instagram.com/explore/tags/${encodeURIComponent(activeName.replace(/\s+/g,"").toLowerCase())}` },
-            { label: "𝕏", url: `https://x.com/search?q=${encodeURIComponent(activeName)}` },
-          ].map(({ label, url }) => (
+            { label: "SOUNDCLOUD", accent: "#ff5500", url: `https://soundcloud.com/search?q=${encodeURIComponent(activeName)}` },
+            { label: "RA", accent: "#000", url: `https://ra.co/search?query=${encodeURIComponent(activeName)}` },
+            { label: "INSTAGRAM", accent: "#E1306C", url: `https://www.instagram.com/explore/tags/${encodeURIComponent(activeName.replace(/\s+/g,"").toLowerCase())}` },
+            { label: "𝕏", accent: "#000", url: `https://x.com/search?q=${encodeURIComponent(activeName)}` },
+          ].map(({ label, url, accent }) => (
             <a key={label} href={url} target="_blank" rel="noopener noreferrer" style={{
               fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.2, fontWeight: 700,
               padding: "5px 10px", borderRadius: 999,
-              background: "var(--paper-2)", border: "1px solid var(--line-2)",
-              color: "var(--muted)", textDecoration: "none",
+              background: `${accent}10`, border: `1px solid ${accent}30`,
+              color: accent, textDecoration: "none",
+              transition: "background 0.15s",
             }}>{label} ↗</a>
           ))}
         </div>
@@ -1912,7 +1913,14 @@ function ArtistScreen({ state, setState }) {
             )}
 
             {tmEvents !== undefined && tmEvents !== null && tmEvents.length === 0 && (
-              <div style={{ fontSize: 12, color: "var(--muted)", fontStyle: "italic" }}>No upcoming shows found.</div>
+              <div style={{
+                padding: "16px 14px", borderRadius: 12,
+                background: "var(--paper-2)", border: "1px solid var(--line)",
+                textAlign: "center",
+              }}>
+                <div style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>🎤</div>
+                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)" }}>NO UPCOMING SHOWS FOUND</div>
+              </div>
             )}
 
             {Array.isArray(tmEvents) && tmEvents.map((ev, idx) => (
@@ -1991,7 +1999,14 @@ function ArtistScreen({ state, setState }) {
             )}
 
             {setlists !== undefined && setlists !== null && setlists.length === 0 && (
-              <div style={{ fontSize: 12, color: "var(--muted)", fontStyle: "italic" }}>No documented setlists found.</div>
+              <div style={{
+                padding: "16px 14px", borderRadius: 12,
+                background: "var(--paper-2)", border: "1px solid var(--line)",
+                textAlign: "center",
+              }}>
+                <div style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>♫</div>
+                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)" }}>NO DOCUMENTED SETLISTS</div>
+              </div>
             )}
 
             {Array.isArray(setlists) && setlists.map((sl, idx) => {

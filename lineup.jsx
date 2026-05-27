@@ -252,6 +252,7 @@ function NightWizard({ state, setState, onClose }) {
       <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "14px 16px 40px" }}>
         {sorted.length === 0 ? (
           <div style={{ textAlign: "center", paddingTop: 60 }}>
+            <div style={{ fontSize: 28, opacity: 0.25, marginBottom: 6 }}>★</div>
             <div className="serif" style={{ fontSize: 24, fontStyle: "italic", color: "var(--muted)" }}>Nothing saved</div>
             <div className="mono" style={{ fontSize: 10, letterSpacing: 1.3, color: "var(--muted)", marginTop: 8 }}>
               SAVE SETS IN LINEUP FIRST
@@ -1165,6 +1166,28 @@ function LineupScreen({ state, setState }) {
           );
         })}
       </ScrollBody>
+
+      {viewMode === "grid" && NOW.day === day && NOW.time && (
+        <button onClick={() => {
+          const el = document.querySelector("[data-lineup-scroll]");
+          const nowMin = toNightMin(NOW.time);
+          if (el && nowMin >= GRID_START_MIN && nowMin <= GRID_END_MIN) {
+            const top = (nowMin - GRID_START_MIN) * GRID_PX_PER_MIN - 120;
+            el.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+          }
+        }} style={{
+          position: "absolute", bottom: 80, right: 16, zIndex: 8,
+          background: "var(--ember)", color: "#fff", border: "none",
+          borderRadius: 999, padding: "8px 14px",
+          boxShadow: "0 4px 16px rgba(232,93,46,0.4)",
+          fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.4, fontWeight: 800,
+          cursor: "pointer", display: "flex", alignItems: "center", gap: 5,
+          animation: "springIn 0.3s ease-out",
+        }}>
+          <span style={{ width: 6, height: 6, borderRadius: 6, background: "#fff", animation: "pulse 1.6s infinite" }}/>
+          NOW
+        </button>
+      )}
 
       {filterSheetOpen && (
         <LineupFilterSheet

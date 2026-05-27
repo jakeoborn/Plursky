@@ -130,6 +130,7 @@ function OnboardingModal({ onDone, setState, state }) {
           ))}
         </div>
 
+        <div key={step} style={{ animation: "slideUp 0.25s ease-out" }}>
         <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--muted)", marginBottom: 6, fontWeight: 600 }}>
           {cur.kicker}
         </div>
@@ -159,6 +160,7 @@ function OnboardingModal({ onDone, setState, state }) {
             }}>{cur.skip.label}</button>
           )}
         </div>
+        </div>{/* close step animation wrapper */}
       </div>
     </div>
   );
@@ -272,7 +274,7 @@ function SearchModal({ onClose, onSelectArtist }) {
         {query.length === 0 ? (
           <div style={{ padding: "14px 16px" }}>
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.5, color: "var(--muted)", marginBottom: 10 }}>QUICK SEARCH</div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 18 }}>
               {QUICK.map(t => (
                 <button key={t.label} onClick={() => setQ(t.q)} style={{
                   background: "var(--paper-2)", border: "1px solid var(--line-2)",
@@ -282,11 +284,45 @@ function SearchModal({ onClose, onSelectArtist }) {
                 }}>{t.label}</button>
               ))}
             </div>
+            {state.saved.length > 0 && (
+              <>
+                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.5, color: "var(--muted)", marginBottom: 8 }}>
+                  YOUR LINEUP · {state.saved.length} SETS
+                </div>
+                {state.saved.slice(0, 6).map(id => {
+                  const a = ARTISTS.find(x => x.id === id);
+                  if (!a) return null;
+                  const st = STAGES.find(s => s.id === a.stage);
+                  return (
+                    <button key={a.id} onClick={() => { onSelectArtist(a.id); onClose(); }} style={{
+                      display: "flex", gap: 10, padding: "8px 0", width: "100%",
+                      borderBottom: "1px solid var(--line)", background: "transparent",
+                      cursor: "pointer", textAlign: "left", alignItems: "center",
+                    }}>
+                      <div style={{ width: 3, height: 28, borderRadius: 3, background: st?.color, flexShrink: 0 }}/>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div className="serif" style={{ fontSize: 16, lineHeight: 1.1, color: "var(--ink)" }}>{a.name}</div>
+                        <div className="mono" style={{ fontSize: 9, letterSpacing: 0.8, color: "var(--muted)", marginTop: 2 }}>
+                          {st?.short} · DAY {a.day} · {fmt12(a.start)}
+                        </div>
+                      </div>
+                      <span style={{ fontSize: 10, color: "var(--ember)" }}>★</span>
+                    </button>
+                  );
+                })}
+                {state.saved.length > 6 && (
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", padding: "8px 0", textAlign: "center" }}>
+                    +{state.saved.length - 6} MORE
+                  </div>
+                )}
+              </>
+            )}
           </div>
         ) : results.length === 0 ? (
           <div style={{ padding: 48, textAlign: "center" }}>
+            <div style={{ fontSize: 32, opacity: 0.3, marginBottom: 8 }}>🔍</div>
             <div className="serif" style={{ fontSize: 22, color: "var(--muted)", fontStyle: "italic" }}>No results</div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)", marginTop: 6 }}>TRY A STAGE NAME OR GENRE</div>
+            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)", marginTop: 6 }}>TRY A STAGE NAME, GENRE, OR DAY</div>
           </div>
         ) : (
           <>
