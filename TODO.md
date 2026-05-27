@@ -140,6 +140,42 @@ One-time setup steps Claude can't do via tooling.
       submission workflow + paste-ready form answers in the
       "Spotify Quota Extension" appendix at the bottom of this file.
 
+### 🔴 Manual steps from Session 9 (2026-05-27)
+
+- [ ] **Bump cache-bust to v165** — run:
+      `sed -i '' 's/v164/v165/g' index.html sw.js app.jsx`
+      then push to deploy.
+
+- [ ] **Create `og-card.png`** — 1200×630 OG card image for social
+      link previews. Upload to `plursky.com/og-card.png`. The OG meta
+      tags in index.html already reference this URL. Design: Plursky
+      logo + "Festival Companion" + desert-dawn gradient.
+
+- [ ] **Deploy `recognize-song` Edge Function** — Supabase Edge Function
+      that proxies mic audio to ACRCloud or AudD for web song recognition.
+      Client code in spotify.jsx sends FormData with audio blob to:
+      `https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/recognize-song`
+      Needs: ACRCloud account + API key stored as Supabase secret.
+
+- [ ] **ShazamKit capability in Xcode** — Enable ShazamKit in Signing &
+      Capabilities for the iOS native build. The `ShazamPlugin` Capacitor
+      plugin is already referenced in spotify.jsx.
+
+- [ ] **Paste RC_API_KEY** from RevenueCat dashboard into spotify.jsx:5514
+      (still blank from previous sessions).
+
+- [ ] **Submit iOS 1.5 (15)** — Archive + submit after device testing.
+      Test the VFX atmosphere system (battery impact check), night-mode
+      theme transition, NowPlayingBar progress bar, and ShazamKit.
+
+- [ ] **Real-device testing** — Android Chrome (Samsung Galaxy S series),
+      iPhone SE (375px width), iPhone 15 Pro Max (430px), landscape mode.
+      Check: VFX particle performance, night theme contrast, search sheet
+      heights on short screens, grid horizontal scroll smoothness.
+
+- [ ] **Spotify Quota Extension** — still pending from previous session.
+      App `2219c68606c54629a8799f467a996a81` is in Development Mode.
+
 ### ✓ Completed manual steps
 
 - [x] **2026-05-15** — `crew_message_reports` DDL applied
