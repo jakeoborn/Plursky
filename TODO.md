@@ -1,11 +1,10 @@
 # Plursky — To-Do List
 
-_Last full sweep: 2026-05-26. v1.4 (14) LIVE. iOS 1.5 (15) ready.
-Cache-bust v164. 13 commits since last sweep. Official maps for EDC +
-ACL. ACL launch-ready: 131 artists, GPS anchors, weekend toggle, Honda
-stage. 23 EDC tracklists verified. Crew chat audited — working. Artist
-cards with tracklist section. Next: RevenueCat, ShazamKit device test,
-submit 1.5, bump cache-bust._
+_Last full sweep: 2026-05-27. v1.4 (14) LIVE. iOS 1.5 (15) ready to submit.
+Cache-bust v165. RevenueCat API key wired. A++ polish session done (stagger
+animations, parallax hero, VFX onboarding, skeletons, haptics, keyboard
+avoidance, arm64 fix). Next: finish RevenueCat product setup, ShazamKit
+device test, submit 1.5._
 
 ## ✅ v1.4 APPROVED & LIVE
 
@@ -140,11 +139,35 @@ One-time setup steps Claude can't do via tooling.
       submission workflow + paste-ready form answers in the
       "Spotify Quota Extension" appendix at the bottom of this file.
 
-### 🔴 Manual steps from Session 9 (2026-05-27)
+### 🔴 Manual steps from Session 10 (2026-05-27)
 
-- [ ] **Bump cache-bust to v165** — run:
-      `sed -i '' 's/v164/v165/g' index.html sw.js app.jsx`
-      then push to deploy.
+- [ ] **Finish RevenueCat product setup** — RevenueCat project "Plursky
+      Live" exists, Apple app added (`com.plursky.app`), API key wired
+      (`appl_...` in spotify.jsx:5578). Remaining steps:
+      1. **App Store Connect → In-App Purchases** — create two products:
+         - `plursky_plus_festival` — non-consumable, $2.99
+         - `plursky_plus_annual` — auto-renewable subscription, $7.99/yr
+      2. **RevenueCat → Products** — add both product IDs
+      3. **RevenueCat → Entitlements** — create "plursky_plus" entitlement,
+         attach both products to it
+      4. **RevenueCat → Offerings** — create a "default" offering with
+         both products
+      5. **Test in Xcode sandbox** — sandbox Apple ID, purchase flow,
+         verify entitlement check works
+
+- [ ] **Build & submit iOS 1.5 (15)** — steps:
+      1. `npm run build` (or `node scripts/build.mjs`)
+      2. `npx cap sync ios`
+      3. `npx cap open ios`
+      4. Select signing team (Apple Team X54Q9P743S)
+      5. Product → Archive → Distribute → App Store Connect → Upload
+      Test before archiving: keyboard avoidance on inputs, onboarding
+      VFX preview, lineup stagger animations, parallax hero scroll,
+      ShazamKit on physical device.
+
+- [ ] **ShazamKit capability in Xcode** — Enable ShazamKit in Signing &
+      Capabilities for the iOS native build. The `ShazamPlugin` Capacitor
+      plugin is already referenced in spotify.jsx.
 
 - [ ] **Create `og-card.png`** — 1200×630 OG card image for social
       link previews. Upload to `plursky.com/og-card.png`. The OG meta
@@ -157,17 +180,6 @@ One-time setup steps Claude can't do via tooling.
       `https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/recognize-song`
       Needs: ACRCloud account + API key stored as Supabase secret.
 
-- [ ] **ShazamKit capability in Xcode** — Enable ShazamKit in Signing &
-      Capabilities for the iOS native build. The `ShazamPlugin` Capacitor
-      plugin is already referenced in spotify.jsx.
-
-- [ ] **Paste RC_API_KEY** from RevenueCat dashboard into spotify.jsx:5514
-      (still blank from previous sessions).
-
-- [ ] **Submit iOS 1.5 (15)** — Archive + submit after device testing.
-      Test the VFX atmosphere system (battery impact check), night-mode
-      theme transition, NowPlayingBar progress bar, and ShazamKit.
-
 - [ ] **Real-device testing** — Android Chrome (Samsung Galaxy S series),
       iPhone SE (375px width), iPhone 15 Pro Max (430px), landscape mode.
       Check: VFX particle performance, night theme contrast, search sheet
@@ -175,6 +187,21 @@ One-time setup steps Claude can't do via tooling.
 
 - [ ] **Spotify Quota Extension** — still pending from previous session.
       App `2219c68606c54629a8799f467a996a81` is in Development Mode.
+
+### ✓ Completed from Session 9/10
+
+- [x] **Bump cache-bust to v165** — done 2026-05-27 (commit `2162403`)
+- [x] **Paste RC_API_KEY** — wired `appl_...` key from RevenueCat
+      (commit `7a2c812`)
+- [x] **arm64 in Info.plist** — was armv7 (would fail submission),
+      fixed 2026-05-27
+- [x] **A++ visual polish** — 10 items: IntersectionObserver stagger,
+      skeleton grids, VFX onboarding, FESTIVAL_CONFIG types, stage-color
+      search dots, parallax hero, conflict haptic, entrance animations,
+      Spotify spring, CSS custom properties
+- [x] **iOS keyboard avoidance** — visualViewport resize listener
+- [x] **Debug console gating** — map.jsx + spotify.jsx console.log
+      behind dev flag
 
 ### ✓ Completed manual steps
 
@@ -273,7 +300,8 @@ is the video upgrade.
 - [x] **iOS version bump** to 1.5 (15) — ready to submit
 - [x] **5 new tracklists** — Sub Focus, Peggy Gou b2b Ki/Ki, Vintage Culture, MEDUZA, The Prodigy
 - [x] **handleCapture storage fix** — was writing to wrong key + format
-- [ ] **Wire RevenueCat** — paste API key, set up App Store Connect products
+- [x] **Wire RevenueCat API key** — `appl_...` key pasted (2026-05-27)
+- [ ] **Set up RevenueCat products + entitlements** — see Manual Steps
 - [ ] **Test ShazamKit** on physical device
 - [ ] **Submit iOS 1.5 (15)** to App Store
 - [ ] **ACL stage assignments** — update when official schedule drops
