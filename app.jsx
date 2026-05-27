@@ -37,7 +37,30 @@ function OnboardingModal({ onDone, setState, state }) {
     {
       kicker: "WELCOME",
       title: <>Welcome to <span style={{ fontStyle: "italic", color: "var(--ember)" }}>Plursky</span></>,
-      body: `Your festival companion for ${FESTIVAL_CONFIG.name || "the festival"} — lineup, stage map, friends, and set times all in one place. Works offline when service drops.`,
+      body: `${ARTISTS.length} artists across ${STAGES.length} stages. Live map, walking ETAs, conflict detection, crew meetups, and set reminders — all offline. Built for ${FESTIVAL_CONFIG.name || "the festival"}.`,
+      preview: (
+        <div style={{
+          display: "flex", gap: 6, overflowX: "auto", margin: "12px -22px 0", padding: "0 22px",
+          scrollbarWidth: "none",
+        }}>
+          {STAGES.slice(0, 5).map(s => (
+            <div key={s.id} style={{
+              flexShrink: 0, width: 80, padding: "8px 6px",
+              background: `${s.color}14`, border: `1px solid ${s.color}44`,
+              borderRadius: 10, textAlign: "center",
+            }}>
+              <div style={{
+                width: 28, height: 28, borderRadius: 28, background: s.color,
+                margin: "0 auto 6px", display: "flex", alignItems: "center", justifyContent: "center",
+                boxShadow: `0 0 12px ${s.color}44`,
+              }}>
+                <span style={{ fontSize: 10, color: "#fff", fontWeight: 800 }}>{ARTISTS.filter(a => a.stage === s.id).length}</span>
+              </div>
+              <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--ink)", fontWeight: 700 }}>{s.short}</div>
+            </div>
+          ))}
+        </div>
+      ),
       input: (
         <input
           type="text"
@@ -117,6 +140,7 @@ function OnboardingModal({ onDone, setState, state }) {
           {cur.body}
         </div>
 
+        {cur.preview}
         {cur.input}
 
         <div style={{ display: "grid", gap: 8, marginTop: 18 }}>
@@ -587,8 +611,46 @@ styleTag.textContent = `
   @keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
   button:active { opacity: 0.75; }
+  @keyframes confetti-fall { 0% { transform: translateY(-10px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
 `;
 document.head.appendChild(styleTag);
+
+function CelebrationOverlay() {
+  const [particles, setParticles] = React.useState([]);
+  React.useEffect(() => {
+    window._plurskyCelebrate = () => {
+      const colors = ["#e85d2e", "#f59a36", "#fbbf24", "#7b3d9a", "#38bdf8", "#22c55e", "#ec4899", "#fff"];
+      const p = Array.from({ length: 36 }, (_, i) => ({
+        id: Date.now() + i,
+        x: 10 + Math.random() * 80,
+        size: 4 + Math.random() * 6,
+        color: colors[i % colors.length],
+        dur: 1.2 + Math.random() * 1.5,
+        delay: Math.random() * 0.4,
+        shape: i % 3,
+      }));
+      setParticles(p);
+      navigator.vibrate?.([15, 50, 15, 50, 30]);
+      setTimeout(() => setParticles([]), 3000);
+    };
+    return () => { delete window._plurskyCelebrate; };
+  }, []);
+  if (!particles.length) return null;
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 9999, pointerEvents: "none", overflow: "hidden" }}>
+      {particles.map(p => (
+        <div key={p.id} style={{
+          position: "absolute", left: `${p.x}%`, top: -10,
+          width: p.size, height: p.shape === 2 ? p.size * 1.6 : p.size,
+          borderRadius: p.shape === 0 ? "50%" : p.shape === 1 ? "2px" : 0,
+          background: p.color,
+          transform: p.shape === 2 ? "rotate(45deg)" : undefined,
+          animation: `confetti-fall ${p.dur}s ease-in ${p.delay}s forwards`,
+        }}/>
+      ))}
+    </div>
+  );
+}
 
 // Top-level error boundary. Without one, a single component throw blanks the
 // whole app — at a festival with bad LTE that's a user we never get back.
@@ -647,5 +709,5 @@ class RootErrorBoundary extends React.Component {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <RootErrorBoundary><App /></RootErrorBoundary>
+  <RootErrorBoundary><App /><CelebrationOverlay /></RootErrorBoundary>
 );

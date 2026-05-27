@@ -764,6 +764,10 @@ function _genreToVfx(genre) {
 }
 
 function ArtistAtmosphere({ genre, stageColor, tier }) {
+  const { active: bsActive } = useBatterySaver();
+  const prefersReduced = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+  if (bsActive || prefersReduced) return null;
+
   const fx = _genreToVfx(genre);
   const intense = tier === 3;
   const count = intense ? 16 : 10;
@@ -846,8 +850,10 @@ function ArtistAtmosphere({ genre, stageColor, tier }) {
 }
 
 function PyroStarburst({ color }) {
+  const { active: bsActive } = useBatterySaver();
+  const prefersReduced = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
   const [fired, setFired] = React.useState(false);
-  const [visible, setVisible] = React.useState(true);
+  const [visible, setVisible] = React.useState(!bsActive && !prefersReduced);
   React.useEffect(() => {
     const t1 = setTimeout(() => setFired(true), 80);
     const t2 = setTimeout(() => setVisible(false), 1800);

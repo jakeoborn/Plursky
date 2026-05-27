@@ -1986,8 +1986,17 @@ function toggleSave(state, setState, id) {
   setState({ ...state, saved: next });
   try {
     const label = a?.name ? a.name.toUpperCase() : "SET";
-    const msg = has ? `REMOVED · ${label}` : hasConflict ? `SAVED · ${label} · ⚠ CLASH` : `SAVED · ${next.length} SETS`;
+    const isFirstSave = !has && state.saved.length === 0;
+    const isMilestone = !has && [5, 10, 15, 20].includes(next.length);
+    const msg = has ? `REMOVED · ${label}`
+      : isFirstSave ? `✦ FIRST SET SAVED · ${label} · LET'S GO`
+      : isMilestone ? `✦ ${next.length} SETS · ${label} · LINEUP GROWING`
+      : hasConflict ? `SAVED · ${label} · ⚠ CLASH`
+      : `SAVED · ${next.length} SETS`;
     window.plurskyToast?.(msg);
+    if ((isFirstSave || isMilestone) && !has) {
+      window._plurskyCelebrate?.();
+    }
   } catch {}
 }
 
