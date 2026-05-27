@@ -732,11 +732,10 @@ const ARTISTS = [
   mk("bp33","Æon:Mode (Sunrise Set)",  "Dubstep / Bass",         "basspod", 3, "04:30", "05:30"),
 ];
 
-const DAYS = [
-  { n: 1, label: "FRI", date: "May 15" },
-  { n: 2, label: "SAT", date: "May 16" },
-  { n: 3, label: "SUN", date: "May 17" },
-];
+const DAYS = Object.entries(FESTIVAL_CONFIG.dayDates).map(([n, d]) => {
+  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return { n: +n, label: d.short, date: `${months[d.m]} ${d.d}` };
+});
 
 // NOW is a live-computed Proxy — every access reflects the real clock.
 // All existing NOW.xxx consumers continue working without any changes.
@@ -834,7 +833,7 @@ const _aclMk = (id, name, genre, stage, day, start, end, wk) => {
 const ACL_ARTISTS = [
   // ── FRIDAY ──
   // American Express (headliners)
-  _aclMk("af1", "Charli XCX",            "Pop",           "amex",    1, "20:00","22:00"),
+  _aclMk("af1", "Charli XCX",            "Pop",           "amex",    1, "18:00","20:00"),
   _aclMk("af2", "Skrillex",              "Electronic",    "amex",    1, "20:00","22:00","W1"),
   _aclMk("af3", "Kings of Leon",         "Rock",          "amex",    1, "20:00","22:00","W2"),
   // Honda (sub-headliners)
@@ -842,7 +841,7 @@ const ACL_ARTISTS = [
   _aclMk("af5", "Labrinth",              "R&B / Electronic","honda", 1, "18:30","18:00"),
   _aclMk("af6", "The Chainsmokers",      "Electro Pop",   "honda",  1, "16:30","18:00"),
   _aclMk("af7", "Leon Thomas",           "R&B",           "titos",  1, "19:00","18:30"),
-  _aclMk("af8", "Brandon Flowers",       "Indie Rock",    "tmobile", 1, "18:00","19:30","W1"),
+  _aclMk("af8", "Brandon Flowers",       "Indie Rock",    "tmobile", 1, "19:00","20:30","W1"),
   // Mid-tier
   _aclMk("af9",  "Amyl and the Sniffers","Punk Rock",     "tmobile", 1, "18:00","19:30"),
   _aclMk("af10", "Steve Aoki",           "EDM",           "beatbox", 1, "18:00","19:30"),
@@ -853,7 +852,7 @@ const ACL_ARTISTS = [
   _aclMk("af15", "LP",                   "Indie Pop",     "ladybird",1, "15:00","16:00"),
   _aclMk("af16", "Rusowsky",             "Indie Pop",     "barton", 1, "16:00","17:00"),
   _aclMk("af17", "Natasha Bedingfield",  "Pop",           "miller", 1, "18:00","19:00","W2"),
-  _aclMk("af18", "Łaszewo",              "Electronic",    "beatbox", 1, "18:00","19:00","W2"),
+  _aclMk("af18", "Łaszewo",              "Electronic",    "beatbox", 1, "16:30","18:00","W2"),
   _aclMk("af19", "Kingfishr",            "Indie",         "barton", 1, "15:00","16:00","W2"),
   _aclMk("af20", "Marlon Funaki",        "Indie",         "bmi",    1, "15:00","16:00","W1"),
   _aclMk("af21", "CMAT",                 "Country Pop",   "ladybird",1, "13:30","14:30"),
@@ -878,7 +877,7 @@ const ACL_ARTISTS = [
   _aclMk("af40", "Izzy Escobar",         "Pop",           "bonus",  1, "12:00","13:00","W1"),
   _aclMk("af41", "Almost Heaven",        "Indie",         "bonus",  1, "13:00","14:00","W2"),
   _aclMk("af42", "Solomon Hicks",        "Blues",         "bmi",    1, "12:00","13:00","W1"),
-  _aclMk("af43", "Leon Knight",          "R&B",           "bonus",  1, "16:00","17:00","W2"),
+  _aclMk("af43", "Leon Knight",          "R&B",           "bonus",  1, "12:00","13:00","W2"),
   _aclMk("af44", "The 4411",             "Soul",          "bonus",  1, "17:00","18:00","W1"),
 
   // ── SATURDAY ──
@@ -889,15 +888,15 @@ const ACL_ARTISTS = [
   _aclMk("as5", "Bleachers",             "Indie Pop",     "honda",   2, "18:30","18:00"),
   _aclMk("as6", "Lykke Li",              "Indie Pop",     "ladybird",2, "19:00","18:30"),
   _aclMk("as7", "Levity",                "Electronic",    "beatbox", 2, "18:00","19:30"),
-  _aclMk("as8", "Suki Waterhouse",       "Indie Pop",     "tmobile", 2, "18:00","19:30"),
+  _aclMk("as8", "Suki Waterhouse",       "Indie Pop",     "tmobile", 2, "16:00","17:30"),
   _aclMk("as9", "Sienna Spiro",          "Pop",           "miller",  2, "18:00","19:30","W2"),
-  _aclMk("as10","Snow Strippers",        "Electro Pop",   "beatbox", 2, "18:00","19:30"),
+  _aclMk("as10","Snow Strippers",        "Electro Pop",   "beatbox", 2, "15:00","16:30"),
   _aclMk("as11","It's Murph",            "Pop",           "ladybird",2, "17:00","18:00"),
   _aclMk("as12","Fakemink",              "Electronic",    "beatbox", 2, "16:00","17:30"),
   _aclMk("as13","Palace",                "Indie Rock",    "miller",  2, "16:00","17:30","W1"),
   _aclMk("as14","¥øu$uk€ ¥uk1mat$u",     "Electronic",    "beatbox", 2, "14:00","15:30"),
   _aclMk("as15","Skye Newman",           "Indie",         "bmi",     2, "17:00","18:00"),
-  _aclMk("as16","Rodrigo y Gabriela",    "Acoustic",      "titos",   2, "18:00","19:30"),
+  _aclMk("as16","Rodrigo y Gabriela",    "Acoustic",      "titos",   2, "15:00","16:30"),
   _aclMk("as17","Balu Brigada",          "Indie Pop",     "ladybird",2, "15:00","16:00"),
   _aclMk("as18","Rochelle Jordan",       "R&B",           "beatbox", 2, "13:00","14:00","W1"),
   _aclMk("as19","Arcy Drive",            "Indie",         "barton",  2, "16:00","17:00"),
@@ -920,7 +919,7 @@ const ACL_ARTISTS = [
   _aclMk("as36","Lluvii",                "Indie",         "bonus",   2, "12:00","13:00","W2"),
   _aclMk("as37","Montclair",             "Indie Rock",    "barton",  2, "17:00","18:00","W2"),
   _aclMk("as38","Left Lucid",            "Indie",         "bonus",   2, "15:00","16:00","W2"),
-  _aclMk("as39","Presley Regier",        "Singer-Songwriter","bonus",2,"14:00","15:00","W2"),
+  _aclMk("as39","Presley Regier",        "Singer-Songwriter","bonus",2,"13:00","14:00","W2"),
 
   // ── SUNDAY ──
   _aclMk("au1", "Twenty One Pilots",     "Alt Rock",      "amex",    3, "20:00","22:00"),
@@ -929,7 +928,7 @@ const ACL_ARTISTS = [
   _aclMk("au4", "Sofi Tukker",           "House",         "beatbox", 3, "18:00","19:30"),
   _aclMk("au5", "Parcels",               "Disco / Funk",  "ladybird",3, "19:00","18:30"),
   _aclMk("au6", "The War on Drugs",      "Indie Rock",    "honda",   3, "18:30","18:00"),
-  _aclMk("au7", "Blood Orange",          "Art Pop / R&B", "tmobile", 3, "18:00","19:30"),
+  _aclMk("au7", "Blood Orange",          "Art Pop / R&B", "tmobile", 3, "15:00","16:30"),
   _aclMk("au8", "Max McNown",            "Pop",           "titos",   3, "19:00","18:30"),
   _aclMk("au9", "Cannons",               "Synth Pop",     "miller",  3, "18:00","19:30","W1"),
   _aclMk("au10","Audrey Hobert",         "Indie",         "ladybird",3, "17:00","18:00"),
@@ -937,7 +936,7 @@ const ACL_ARTISTS = [
   _aclMk("au12","Houndmouth",            "Americana",     "bmi",     3, "17:00","18:30","W2"),
   _aclMk("au13","Fcukers",               "Punk",          "tmobile", 3, "16:00","17:00"),
   _aclMk("au14","Stella Lefty",          "Indie",         "barton",  3, "16:00","17:00","W1"),
-  _aclMk("au15","Underscores",           "Hyperpop",      "beatbox", 3, "18:00","19:30","W1"),
+  _aclMk("au15","Underscores",           "Hyperpop",      "beatbox", 3, "16:00","17:30","W1"),
   _aclMk("au16","Claire Rosinkranz",     "Pop",           "ladybird",3, "15:00","16:00"),
   _aclMk("au17","Noga Erez",             "Art Pop",       "titos",   3, "17:00","18:00"),
   _aclMk("au18","Rio Kosta",             "Indie",         "barton",  3, "14:00","15:00"),
@@ -965,10 +964,10 @@ const ACL_ARTISTS = [
   _aclMk("au40","The Moriah Sisters",    "Country",       "bmi",     3, "12:00","13:00","W1"),
   _aclMk("au41","The Huston-Tillotson University Jazz Collective","Jazz","bmi",3,"12:00","13:00","W2"),
   // Missing artists added from ACL 2026 official lineup audit
-  _aclMk("af40", "The Marias",            "Indie Pop",     "titos",   1, "18:00","19:30"),
-  _aclMk("af41", "Role Model",            "Indie Pop",     "ladybird",1, "18:00","19:00"),
-  _aclMk("as40", "Rilo Kiley",            "Indie Rock",    "tmobile", 2, "19:00","18:30"),
-  _aclMk("as41", "Djo",                   "Indie",         "ladybird",2, "17:00","18:00"),
+  _aclMk("af45", "The Marias",            "Indie Pop",     "titos",   1, "18:00","19:30"),
+  _aclMk("af46", "Role Model",            "Indie Pop",     "ladybird",1, "18:00","19:00"),
+  _aclMk("as40", "Rilo Kiley",            "Indie Rock",    "tmobile", 2, "18:00","19:30"),
+  _aclMk("as41", "Djo",                   "Indie",         "ladybird",2, "14:00","15:30"),
   _aclMk("au42", "Pierce The Veil",       "Post-Hardcore", "tmobile", 3, "17:00","18:00"),
   _aclMk("au43", "Sabrina Claudio",       "R&B",           "titos",   3, "18:00","19:00"),
 ];

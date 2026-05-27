@@ -212,16 +212,22 @@ function useStaggerFade(depKey) {
       entries.forEach(e => {
         if (!e.isIntersecting) return;
         const t = e.target;
-        const delay = idx * 50;
-        idx++;
-        setTimeout(() => {
-          t.style.transition = "opacity 0.35s ease, transform 0.35s var(--ease-spring)";
+        if (idx < 8) {
+          const delay = idx * 40;
+          setTimeout(() => {
+            t.style.transition = "opacity 0.3s ease, transform 0.3s var(--ease-spring)";
+            t.style.opacity = "1";
+            t.style.transform = "translateY(0)";
+          }, delay);
+        } else {
+          t.style.transition = "none";
           t.style.opacity = "1";
           t.style.transform = "translateY(0)";
-        }, delay);
+        }
+        idx++;
         obs.unobserve(t);
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.05 });
     targets.forEach(t => obs.observe(t));
     return () => obs.disconnect();
   }, [depKey]);
