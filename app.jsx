@@ -475,7 +475,7 @@ function App() {
     const id = setInterval(update, 60000);
     return () => clearInterval(id);
   }, []);
-  // Native Spotify OAuth handoff (v164). When the user finishes the
+  // Native Spotify OAuth handoff (v165). When the user finishes the
   // SafariViewController flow, the appUrlOpen listener in spotify.jsx
   // exchanges the code for a token and dispatches this event. Mirror it
   // into React state so the UI flips from "Connect Spotify" to "Connected"
@@ -760,7 +760,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v164",
+        version: "v165",
       }));
     } catch {}
   }
@@ -793,7 +793,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
-          PLURSKY · v164
+          PLURSKY · v165
         </div>
       </div>
     );

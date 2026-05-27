@@ -3250,7 +3250,7 @@ function RealMap({
         if (stages && stages.length) {
           const s0 = stages[0];
           const ll = mapToGps(s0.x, s0.y);
-          console.log(`[plursky-map] stage[0] = id:${s0.id} svg(${s0.x},${s0.y}) → lat:${ll?.lat?.toFixed(5)} lng:${ll?.lng?.toFixed(5)}`);
+          _mapLog(`[plursky-map] stage[0] = id:${s0.id} svg(${s0.x},${s0.y}) → lat:${ll?.lat?.toFixed(5)} lng:${ll?.lng?.toFixed(5)}`);
         }
 
         // Repaint basemap into Plursky palette + hide buildings/parking.
