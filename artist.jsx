@@ -770,64 +770,39 @@ function ArtistAtmosphere({ genre, stageColor, tier }) {
 
   const intense = tier === 3;
 
-  const bokeh = React.useMemo(() =>
-    Array.from({ length: intense ? 7 : 4 }, (_, i) => ({
-      x: 10 + (i * 67 + 23) % 80,
-      y: 10 + (i * 41 + 17) % 70,
-      size: 30 + (i % 3) * 25,
-      dur: 6 + (i % 4) * 2,
-      delay: i * 1.2,
-    })), [intense]);
-
   return (
     <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none", zIndex: 1 }}>
 
-      {/* Stage color bleed — ambient light from below like stage wash */}
+      {/* Breathing color wash — two overlapping gradients that pulse
+          at different rates, creating a slow-moving ambient light effect
+          like stage wash lights cycling. This is the signature motion. */}
       <div style={{
-        position: "absolute", bottom: 0, left: "-20%", right: "-20%", height: "70%",
-        background: `radial-gradient(ellipse at 50% 100%, ${stageColor}40, ${stageColor}15 40%, transparent 75%)`,
-        animation: "vfx-wash 4s ease-in-out infinite",
+        position: "absolute", inset: "-30%",
+        background: `radial-gradient(ellipse at 30% 80%, ${stageColor}35, transparent 60%)`,
+        animation: `vfx-wash ${intense ? 3 : 5}s ease-in-out infinite`,
+      }}/>
+      <div style={{
+        position: "absolute", inset: "-30%",
+        background: `radial-gradient(ellipse at 70% 20%, ${stageColor}25, transparent 55%)`,
+        animation: `vfx-wash ${intense ? 4 : 6}s ease-in-out 2s infinite`,
       }}/>
 
-      {/* Top-edge color accent — like stage lights above */}
+      {/* Edge glow — warm light pooling at the bottom like stage floor wash */}
       <div style={{
-        position: "absolute", top: 0, left: 0, right: 0, height: "40%",
-        background: `radial-gradient(ellipse at 50% 0%, ${stageColor}18, transparent 70%)`,
-        animation: "vfx-wash 5s ease-in-out 1.5s infinite",
+        position: "absolute", bottom: 0, left: 0, right: 0, height: "45%",
+        background: `linear-gradient(0deg, ${stageColor}28, transparent)`,
       }}/>
 
-      {/* Bokeh circles — out-of-focus light orbs, like concert photography */}
-      {bokeh.map((b, i) => (
-        <div key={i} style={{
-          position: "absolute",
-          left: `${b.x}%`, top: `${b.y}%`,
-          width: b.size, height: b.size, borderRadius: "50%",
-          background: `radial-gradient(circle, ${stageColor}20, transparent 70%)`,
-          border: `1px solid ${stageColor}12`,
-          animation: `vfx-drift ${b.dur}s ease-in-out ${b.delay}s infinite`,
-        }}/>
-      ))}
-
-      {/* Slow scanning light — like a follow-spot sweeping */}
+      {/* Headliner extra: slow sweeping highlight like a follow-spot */}
       {intense && (
         <div style={{
           position: "absolute", top: 0,
-          width: "40%", height: "100%",
-          background: `radial-gradient(ellipse at 50% 0%, ${stageColor}20, transparent 70%)`,
-          animation: `vfx-scan 8s ease-in-out infinite`,
-          filter: "blur(20px)",
+          width: "50%", height: "100%",
+          background: `radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.06), transparent 70%)`,
+          animation: "vfx-scan 10s ease-in-out infinite",
+          filter: "blur(30px)",
         }}/>
       )}
-
-      {/* Subtle lens flare — diagonal streak */}
-      <div style={{
-        position: "absolute", top: "15%", right: "-10%",
-        width: "50%", height: 1,
-        background: `linear-gradient(90deg, transparent 0%, ${stageColor}30 30%, rgba(255,255,255,0.15) 50%, ${stageColor}30 70%, transparent 100%)`,
-        transform: "rotate(-25deg)",
-        filter: "blur(2px)",
-        animation: "vfx-wash 6s ease-in-out 2s infinite",
-      }}/>
     </div>
   );
 }
