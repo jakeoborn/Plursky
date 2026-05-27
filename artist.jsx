@@ -768,121 +768,66 @@ function ArtistAtmosphere({ genre, stageColor, tier }) {
   const prefersReduced = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
   if (bsActive || prefersReduced) return null;
 
-  const fx = _genreToVfx(genre);
   const intense = tier === 3;
-  const beamCount = intense ? 5 : 3;
 
-  const beams = React.useMemo(() =>
-    Array.from({ length: beamCount }, (_, i) => ({
-      left: 15 + (i * 70 / Math.max(1, beamCount - 1)),
-      width: intense ? 3 : 2,
-      dur: 4 + (i % 3) * 1.5,
-      delay: i * 0.6,
-    })), [beamCount, intense]);
+  const bokeh = React.useMemo(() =>
+    Array.from({ length: intense ? 7 : 4 }, (_, i) => ({
+      x: 10 + (i * 67 + 23) % 80,
+      y: 10 + (i * 41 + 17) % 70,
+      size: 30 + (i % 3) * 25,
+      dur: 6 + (i % 4) * 2,
+      delay: i * 1.2,
+    })), [intense]);
 
   return (
     <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none", zIndex: 1 }}>
 
-      {/* Stage light beams — triangular cones sweeping from top */}
-      {(fx === "laser" || fx === "grid" || fx === "trance" || fx === "strobe") && beams.map((b, i) => (
-        <div key={`beam-${i}`} style={{
-          position: "absolute", top: 0, left: `${b.left}%`,
-          width: `${b.width}%`, height: "100%",
-          background: `linear-gradient(180deg, ${stageColor}90 0%, ${stageColor}20 40%, transparent 80%)`,
-          transformOrigin: "top center",
-          animation: `vfx-beam-sweep ${b.dur}s ease-in-out ${b.delay}s infinite`,
-          filter: "blur(3px)",
+      {/* Stage color bleed — ambient light from below like stage wash */}
+      <div style={{
+        position: "absolute", bottom: 0, left: "-20%", right: "-20%", height: "70%",
+        background: `radial-gradient(ellipse at 50% 100%, ${stageColor}40, ${stageColor}15 40%, transparent 75%)`,
+        animation: "vfx-wash 4s ease-in-out infinite",
+      }}/>
+
+      {/* Top-edge color accent — like stage lights above */}
+      <div style={{
+        position: "absolute", top: 0, left: 0, right: 0, height: "40%",
+        background: `radial-gradient(ellipse at 50% 0%, ${stageColor}18, transparent 70%)`,
+        animation: "vfx-wash 5s ease-in-out 1.5s infinite",
+      }}/>
+
+      {/* Bokeh circles — out-of-focus light orbs, like concert photography */}
+      {bokeh.map((b, i) => (
+        <div key={i} style={{
+          position: "absolute",
+          left: `${b.x}%`, top: `${b.y}%`,
+          width: b.size, height: b.size, borderRadius: "50%",
+          background: `radial-gradient(circle, ${stageColor}20, transparent 70%)`,
+          border: `1px solid ${stageColor}12`,
+          animation: `vfx-drift ${b.dur}s ease-in-out ${b.delay}s infinite`,
         }}/>
       ))}
 
-      {/* Laser fan — SVG lines radiating from a point */}
-      {(fx === "laser" || fx === "grid") && (
-        <svg style={{ position: "absolute", inset: 0, opacity: 0.25 }} viewBox="0 0 100 100" preserveAspectRatio="none">
-          {[20, 35, 50, 65, 80].map((x, i) => (
-            <line key={i} x1="50" y1="0" x2={x} y2="100"
-              stroke={stageColor} strokeWidth="0.3" opacity="0.8">
-              <animate attributeName="x1" values={`${45+i*2};${55-i*2};${45+i*2}`} dur={`${5+i*0.8}s`} repeatCount="indefinite"/>
-              <animate attributeName="x2" values={`${x};${x+(i%2?15:-15)};${x}`} dur={`${3+i*0.6}s`} repeatCount="indefinite"/>
-            </line>
-          ))}
-        </svg>
-      )}
-
-      {/* Scanning spotlight — horizontal sweep */}
-      <div style={{
-        position: "absolute", top: 0,
-        width: "30%", height: "100%",
-        background: `radial-gradient(ellipse at 50% 0%, ${stageColor}35, transparent 70%)`,
-        animation: `vfx-scan ${intense ? 3 : 5}s ease-in-out infinite`,
-        filter: "blur(8px)",
-      }}/>
-
-      {/* Color wash — pulsing ambient glow from below (stage floor) */}
-      <div style={{
-        position: "absolute", bottom: 0, left: 0, right: 0, height: "60%",
-        background: `linear-gradient(0deg, ${stageColor}30 0%, ${stageColor}10 40%, transparent 100%)`,
-        animation: "vfx-wash 3.5s ease-in-out infinite",
-      }}/>
-
-      {/* Haze / fog effect — soft diffuse layer */}
-      {(fx === "haze" || fx === "house" || fx === "glow") && (
-        <div style={{
-          position: "absolute", bottom: "10%", left: "-10%", right: "-10%", height: "40%",
-          background: `radial-gradient(ellipse at 50% 100%, rgba(255,255,255,0.08), transparent 70%)`,
-          filter: "blur(20px)",
-          animation: "vfx-wash 5s ease-in-out 1s infinite",
-        }}/>
-      )}
-
-      {/* Strobe flash */}
-      {fx === "strobe" && (
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "rgba(255,255,255,0.15)",
-          animation: "vfx-strobe 2.4s ease-in-out infinite",
-        }}/>
-      )}
-
-      {/* Neon underglow */}
-      {fx === "neon" && (
-        <div style={{
-          position: "absolute", bottom: 0, left: "10%", right: "10%", height: "50%",
-          background: `radial-gradient(ellipse at 50% 100%, ${stageColor}40, transparent 65%)`,
-          animation: "vfx-wash 2.5s ease-in-out infinite",
-        }}/>
-      )}
-
-      {/* Pyro — upward sparks */}
-      {(fx === "pyro" || fx === "amber") && Array.from({ length: intense ? 8 : 5 }, (_, i) => (
-        <div key={`spark-${i}`} style={{
-          position: "absolute", bottom: 0,
-          left: `${10 + (i * 80 / (intense ? 7 : 4))}%`,
-          width: 2, height: 2, borderRadius: "50%",
-          background: fx === "amber" ? "#fbbf24" : stageColor,
-          boxShadow: `0 0 4px ${fx === "amber" ? "#fbbf24" : stageColor}`,
-          animation: `vfx-rise ${2.5 + (i % 3) * 0.8}s ease-out ${(i * 0.5) % 3}s infinite`,
-        }}/>
-      ))}
-
-      {/* Spotlight cone for rock/indie */}
-      {fx === "spotlight" && (
-        <div style={{
-          position: "absolute", top: 0, left: "30%", width: "40%", height: "100%",
-          background: `linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 70%)`,
-          clipPath: "polygon(40% 0%, 60% 0%, 100% 100%, 0% 100%)",
-          animation: "vfx-beam-sweep 6s ease-in-out infinite",
-          transformOrigin: "top center",
-        }}/>
-      )}
-
-      {/* Ambient flicker overlay */}
+      {/* Slow scanning light — like a follow-spot sweeping */}
       {intense && (
         <div style={{
-          position: "absolute", inset: 0,
-          background: `radial-gradient(ellipse at 50% 30%, ${stageColor}12, transparent 60%)`,
-          animation: "vfx-flicker 4s ease-in-out infinite",
+          position: "absolute", top: 0,
+          width: "40%", height: "100%",
+          background: `radial-gradient(ellipse at 50% 0%, ${stageColor}20, transparent 70%)`,
+          animation: `vfx-scan 8s ease-in-out infinite`,
+          filter: "blur(20px)",
         }}/>
       )}
+
+      {/* Subtle lens flare — diagonal streak */}
+      <div style={{
+        position: "absolute", top: "15%", right: "-10%",
+        width: "50%", height: 1,
+        background: `linear-gradient(90deg, transparent 0%, ${stageColor}30 30%, rgba(255,255,255,0.15) 50%, ${stageColor}30 70%, transparent 100%)`,
+        transform: "rotate(-25deg)",
+        filter: "blur(2px)",
+        animation: "vfx-wash 6s ease-in-out 2s infinite",
+      }}/>
     </div>
   );
 }
