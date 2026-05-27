@@ -693,7 +693,7 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj }) {
         </div>
         <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginTop: 4 }}>
           <span className="serif" style={{ fontSize: 20, color: "#fff" }}>{mine.length}</span>
-          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>
+          <span style={{ fontSize: 10, color: "rgba(255,255,255,0.45)" }}>
             {mine.length === 1 ? "memory" : "memories"}{vids > 0 ? ` · ${vids} video${vids > 1 ? "s" : ""}` : ""}
           </span>
         </div>
@@ -750,6 +750,149 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj }) {
   );
 }
 
+function _genreToVfx(genre) {
+  const g = (genre || "").toLowerCase();
+  if (/trance|psy|progressive/.test(g))           return "laser";
+  if (/dubstep|bass|dnb|drum/.test(g))             return "strobe";
+  if (/house|disco|afro|garage/.test(g))            return "haze";
+  if (/techno|industrial|electro/.test(g))          return "grid";
+  if (/hardstyle|hardcore|hard dance/.test(g))      return "pyro";
+  if (/rock|indie|alternative|punk/.test(g))        return "spotlight";
+  if (/hip.?hop|r&b|rap|trap/.test(g))              return "neon";
+  if (/country|folk|americana/.test(g))             return "amber";
+  return "glow";
+}
+
+function ArtistAtmosphere({ genre, stageColor, tier }) {
+  const fx = _genreToVfx(genre);
+  const intense = tier === 3;
+  const count = intense ? 16 : 10;
+
+  const particles = React.useMemo(() =>
+    Array.from({ length: count }, (_, i) => ({
+      x: (i * 37 + 13) % 100,
+      y: (i * 53 + 7) % 100,
+      size: fx === "haze" ? 12 + (i % 3) * 8 : fx === "strobe" ? 2 + (i % 2) : 3 + (i % 3) * 2,
+      delay: (i * 0.4) % 4,
+      dur: fx === "strobe" ? 1.2 + (i % 3) * 0.4 : fx === "haze" ? 5 + (i % 3) * 2 : 3 + (i % 4),
+    })), [fx, count]);
+
+  const anim = fx === "pyro" || fx === "amber" ? "vfx-rise"
+    : fx === "strobe" ? "vfx-fall"
+    : fx === "haze" ? "vfx-drift"
+    : "vfx-rise";
+
+  return (
+    <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none", zIndex: 1 }}>
+      {particles.map((p, i) => (
+        <div key={i} style={{
+          position: "absolute",
+          left: `${p.x}%`,
+          bottom: fx === "pyro" || fx === "amber" ? 0 : undefined,
+          top: fx === "strobe" ? 0 : fx === "pyro" || fx === "amber" ? undefined : `${p.y}%`,
+          width: p.size, height: fx === "grid" ? 1 : p.size,
+          borderRadius: fx === "grid" ? 0 : "50%",
+          background: fx === "amber" ? "#fbbf24" : stageColor,
+          filter: fx === "haze" ? `blur(${p.size * 0.6}px)` : fx === "laser" ? `blur(${p.size * 0.3}px)` : "none",
+          opacity: 0,
+          animation: `${anim} ${p.dur}s ease-in-out ${p.delay}s infinite`,
+        }}/>
+      ))}
+
+      {(fx === "laser" || fx === "grid") && (
+        <svg style={{ position: "absolute", inset: 0, opacity: 0.12 }} viewBox="0 0 100 100" preserveAspectRatio="none">
+          {[15, 35, 55, 75, 90].map((x, i) => (
+            <line key={i} x1={x} y1="0" x2={x + (i % 2 ? 12 : -12)} y2="100"
+              stroke={stageColor} strokeWidth="0.4" opacity="0.7">
+              <animate attributeName="x1" values={`${x};${x+18};${x}`} dur={`${3+i*0.7}s`} repeatCount="indefinite"/>
+              <animate attributeName="x2" values={`${x+(i%2?12:-12)};${x+(i%2?-5:18)};${x+(i%2?12:-12)}`} dur={`${4+i*0.5}s`} repeatCount="indefinite"/>
+            </line>
+          ))}
+        </svg>
+      )}
+
+      {fx === "spotlight" && (
+        <div style={{
+          position: "absolute", bottom: 0, left: "20%", right: "20%", height: "70%",
+          background: `linear-gradient(0deg, rgba(255,255,255,0.08) 0%, transparent 100%)`,
+          borderRadius: "50% 50% 0 0",
+          animation: "vfx-pulse 3s ease-in-out infinite",
+        }}/>
+      )}
+
+      {fx === "neon" && (
+        <div style={{
+          position: "absolute", inset: 0,
+          background: `radial-gradient(ellipse at 50% 70%, ${stageColor}20, transparent 65%)`,
+          animation: "vfx-pulse 2.5s ease-in-out infinite",
+        }}/>
+      )}
+
+      {fx === "strobe" && (
+        <div style={{
+          position: "absolute", inset: 0,
+          background: `radial-gradient(ellipse at 50% 20%, rgba(255,255,255,0.15), transparent 60%)`,
+          animation: "vfx-strobe 2.4s ease-in-out infinite",
+        }}/>
+      )}
+
+      <div style={{
+        position: "absolute", inset: 0,
+        background: `radial-gradient(ellipse at 50% 85%, ${stageColor}15, transparent 55%)`,
+        animation: "vfx-pulse 4s ease-in-out infinite",
+      }}/>
+    </div>
+  );
+}
+
+function PyroStarburst({ color }) {
+  const [fired, setFired] = React.useState(false);
+  const [visible, setVisible] = React.useState(true);
+  React.useEffect(() => {
+    const t1 = setTimeout(() => setFired(true), 80);
+    const t2 = setTimeout(() => setVisible(false), 1800);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, []);
+
+  const sparks = React.useMemo(() =>
+    Array.from({ length: 28 }, (_, i) => {
+      const angle = (i / 28) * Math.PI * 2 + (i % 3) * 0.15;
+      const dist = 50 + (i % 5) * 20;
+      return {
+        x: Math.cos(angle) * dist,
+        y: Math.sin(angle) * dist - 25,
+        size: 2 + (i % 4) * 1.2,
+        color: i % 4 === 0 ? "#fbbf24" : i % 4 === 1 ? color : i % 4 === 2 ? "#fff" : "#f59a36",
+        delay: (i % 7) * 25,
+      };
+    }), [color]);
+
+  if (!visible) return null;
+  return (
+    <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none", zIndex: 2 }}>
+      {sparks.map((s, i) => (
+        <div key={i} style={{
+          position: "absolute", left: "50%", top: "38%",
+          width: s.size, height: s.size, borderRadius: "50%",
+          background: s.color,
+          boxShadow: `0 0 ${s.size * 3}px ${s.color}`,
+          transform: fired ? `translate(${s.x}px, ${s.y}px) scale(0.2)` : "translate(0, 0) scale(1.8)",
+          opacity: fired ? 0 : 1,
+          transition: `all ${0.7 + (i % 4) * 0.15}s ease-out ${s.delay}ms`,
+        }}/>
+      ))}
+      {!fired && (
+        <div style={{
+          position: "absolute", left: "50%", top: "38%",
+          width: 6, height: 6, borderRadius: "50%",
+          background: "#fff", marginLeft: -3, marginTop: -3,
+          boxShadow: `0 0 30px 10px rgba(255,255,255,0.6), 0 0 60px 20px ${color}55`,
+        }}/>
+      )}
+    </div>
+  );
+}
+
 function ArtistScreen({ state, setState }) {
   const a = ARTISTS.find(ar => ar.id === state.artist);
   if (!a) return null;
@@ -769,6 +912,13 @@ function ArtistScreen({ state, setState }) {
   const [fetchedPhoto, setFetchedPhoto] = React.useState(null);
   const heroPhoto = artistImages[activeName.toLowerCase()] || fetchedPhoto || (tadb?.image ?? null);
   const saved = state.saved.includes(a.id);
+  const [saveFlash, setSaveFlash] = React.useState(false);
+  const handleSave = () => {
+    toggleSave(state, setState, a.id);
+    setSaveFlash(true);
+    navigator.vibrate?.([saved ? 15 : 35]);
+    setTimeout(() => setSaveFlash(false), 400);
+  };
   const [note, setNote] = React.useState(() => _getArtistNotes()[a.id] || "");
   const handleNote = (text) => {
     setNote(text);
@@ -953,21 +1103,34 @@ function ArtistScreen({ state, setState }) {
   };
 
   const connected = isSpotifyConnected();
+  const [heroParallax, setHeroParallax] = React.useState(0);
+  const scrollBodyRef = React.useRef(null);
 
   return (
     <Screen bg="var(--paper)">
-      <ScrollBody>
+      <ScrollBody ref={scrollBodyRef} onScroll={(e) => {
+        const y = e.currentTarget.scrollTop;
+        setHeroParallax(Math.min(60, y * 0.3));
+      }}>
       {/* Hero */}
       <div style={{
         height: 300, position: "relative",
-        background: heroPhoto ? "var(--ink)" : a.img,
-        backgroundImage: heroPhoto ? `url(${heroPhoto})` : undefined,
-        backgroundSize: "cover",
-        backgroundPosition: "center 20%",
+        overflow: "hidden",
         color: "#fff",
       }}>
         <div style={{
-          position: "absolute", inset: 0,
+          position: "absolute", inset: 0, top: -30,
+          background: heroPhoto ? "var(--ink)" : a.img,
+          backgroundImage: heroPhoto ? `url(${heroPhoto})` : undefined,
+          backgroundSize: "cover",
+          backgroundPosition: "center 20%",
+          transform: `translateY(${heroParallax}px)`,
+          willChange: "transform",
+        }}/>
+        <ArtistAtmosphere genre={a.genre} stageColor={stage?.color || "var(--ember)"} tier={a.tier} />
+        {a.tier === 3 && <PyroStarburst color={stage?.color || "var(--ember)"} />}
+        <div style={{
+          position: "absolute", inset: 0, zIndex: 2,
           background: heroPhoto
             ? `linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0) 35%, ${stage?.color || "rgba(26,18,13,1)"}22 65%, rgba(26,18,13,0.92) 100%)`
             : "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 40%, rgba(26,18,13,0.85) 100%)",
@@ -1011,7 +1174,7 @@ function ArtistScreen({ state, setState }) {
 
         <div style={{ position: "absolute", bottom: 16, left: 18, right: 18 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-            <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1.6, opacity: 0.85, fontWeight: 600 }}>
+            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, opacity: 0.85, fontWeight: 600 }}>
               {a.genre.toUpperCase()}
             </div>
             {stage && (
@@ -1083,36 +1246,57 @@ function ArtistScreen({ state, setState }) {
           );
         })()}
 
-        {/* Section-jump chips — IMDb pattern; anchor-scrolls to deep sections */}
-        <div style={{
-          display: "flex", gap: 6, overflowX: "auto", overflowY: "hidden",
-          marginBottom: 16, marginLeft: -20, marginRight: -20,
-          paddingLeft: 20, paddingRight: 20,
-          scrollbarWidth: "none",
-        }}>
-          {[
+        {/* Section-jump chips — scroll-spy highlights the active section */}
+        {(() => {
+          const sections = [
             { id: "artist-section-bio",        label: "BIO" },
             { id: "artist-section-tracklist",  label: "TRACKLIST" },
             { id: "artist-section-livestream", label: "LIVE SET" },
             { id: "artist-section-setlists",   label: "SETLISTS" },
             { id: "artist-section-similar",    label: "SIMILAR" },
             { id: "artist-section-upcoming",   label: "UPCOMING" },
-          ].map(c => (
-            <button
-              key={c.id}
-              onClick={() => {
-                document.getElementById(c.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-              }}
-              style={{
-                background: "var(--paper-2)", border: "1px solid var(--line-2)",
-                borderRadius: 999, padding: "6px 12px",
-                fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 600,
-                color: "var(--ink)", cursor: "pointer",
-                whiteSpace: "nowrap", flexShrink: 0,
-              }}
-            >{c.label}</button>
-          ))}
-        </div>
+          ];
+          const [activeChip, setActiveChip] = React.useState(sections[0].id);
+          React.useEffect(() => {
+            if (!window.IntersectionObserver) return;
+            const obs = new IntersectionObserver((entries) => {
+              for (const e of entries) {
+                if (e.isIntersecting) { setActiveChip(e.target.id); break; }
+              }
+            }, { rootMargin: "-40% 0px -50% 0px", threshold: 0 });
+            sections.forEach(s => { const el = document.getElementById(s.id); if (el) obs.observe(el); });
+            return () => obs.disconnect();
+          }, [a.id]);
+          return (
+            <div style={{
+              display: "flex", gap: 6, overflowX: "auto", overflowY: "hidden",
+              marginBottom: 16, marginLeft: -20, marginRight: -20,
+              paddingLeft: 20, paddingRight: 20,
+              scrollbarWidth: "none",
+            }}>
+              {sections.map(c => {
+                const on = activeChip === c.id;
+                return (
+                  <button
+                    key={c.id}
+                    onClick={() => {
+                      document.getElementById(c.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }}
+                    style={{
+                      background: on ? "var(--ink)" : "var(--paper-2)",
+                      border: on ? "1px solid var(--ink)" : "1px solid var(--line-2)",
+                      borderRadius: 999, padding: "6px 12px",
+                      fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 600,
+                      color: on ? "var(--paper)" : "var(--ink)", cursor: "pointer",
+                      whiteSpace: "nowrap", flexShrink: 0,
+                      transition: "all 0.2s ease",
+                    }}
+                  >{c.label}</button>
+                );
+              })}
+            </div>
+          );
+        })()}
 
         {/* Bio — moved above the stage card so it sits in the initial
             viewport (was getting pushed below the fold by the new stat
@@ -1326,6 +1510,26 @@ function ArtistScreen({ state, setState }) {
         )}
 
         {/* ── Last.fm stats ─────────────────────────────────── */}
+        {LASTFM_KEY && lfm === undefined && (
+          <div style={{ marginBottom: 18 }}>
+            <div style={{ display: "flex", gap: 10, marginBottom: 12 }}>
+              {[0, 1].map(i => (
+                <div key={i} style={{ flex: 1, background: "var(--paper-2)", border: "1px solid var(--line)", borderRadius: 12, padding: "10px 14px" }}>
+                  <div className="skel" style={{ width: "50%", height: 22, marginBottom: 8 }}/>
+                  <div className="skel" style={{ width: "70%", height: 9 }}/>
+                </div>
+              ))}
+            </div>
+            <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+              {[0, 1, 2].map(i => <div key={i} className="skel" style={{ width: 64, height: 24, borderRadius: 999 }}/>)}
+            </div>
+            <div style={{ marginTop: 12 }}>
+              <div className="skel" style={{ width: "100%", height: 13, marginBottom: 6 }}/>
+              <div className="skel" style={{ width: "85%", height: 13, marginBottom: 6 }}/>
+              <div className="skel" style={{ width: "60%", height: 13 }}/>
+            </div>
+          </div>
+        )}
         {LASTFM_KEY && lfm && (
           <div style={{ marginBottom: 18 }}>
             {/* Listener + play count row */}
@@ -1548,13 +1752,27 @@ function ArtistScreen({ state, setState }) {
               }}>
                 <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
                   MIXCLOUD SETS
-                  {mcTracks === undefined && <span style={{ fontSize: 8, opacity: 0.6 }}>LOADING…</span>}
                 </span>
                 <a href={mcSearchUrl} target="_blank" rel="noopener noreferrer" style={{
                   fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.1,
                   color: "var(--muted)", textDecoration: "none",
                 }}>SEARCH ↗</a>
               </div>
+
+              {/* Skeleton */}
+              {mcTracks === undefined && (
+                <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                  {[0, 1].map(i => (
+                    <div key={i} style={{ display: "flex", gap: 12, alignItems: "center", background: "var(--ink)", borderRadius: 14, overflow: "hidden" }}>
+                      <div className="skel-dark" style={{ width: 72, height: 72, flexShrink: 0, borderRadius: 0 }}/>
+                      <div style={{ flex: 1, padding: "10px 14px 10px 0" }}>
+                        <div className="skel-dark" style={{ width: "80%", height: 12, marginBottom: 8 }}/>
+                        <div className="skel-dark" style={{ width: "50%", height: 8 }}/>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
 
               {/* Results */}
               {Array.isArray(mcTracks) && mcTracks.length > 0 && mcTracks.map((track, idx) => (
@@ -1671,8 +1889,21 @@ function ArtistScreen({ state, setState }) {
           <div style={{ marginBottom: 18 }}>
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", marginBottom: 10, display: "flex", alignItems: "center", gap: 8 }}>
               UPCOMING SHOWS
-              {tmEvents === undefined && <span style={{ fontSize: 8, opacity: 0.7 }}>LOADING…</span>}
             </div>
+
+            {tmEvents === undefined && (
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {[0, 1].map(i => (
+                  <div key={i} style={{ background: "var(--paper-2)", border: "1px solid var(--line)", borderRadius: 12, padding: "12px 16px", display: "flex", alignItems: "center", gap: 12 }}>
+                    <div className="skel" style={{ width: 42, height: 56, borderRadius: 8 }}/>
+                    <div style={{ flex: 1 }}>
+                      <div className="skel" style={{ width: "75%", height: 13, marginBottom: 6 }}/>
+                      <div className="skel" style={{ width: "50%", height: 9 }}/>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
 
             {tmEvents !== undefined && tmEvents !== null && tmEvents.length === 0 && (
               <div style={{ fontSize: 12, color: "var(--muted)", fontStyle: "italic" }}>No upcoming shows found.</div>
@@ -1681,7 +1912,7 @@ function ArtistScreen({ state, setState }) {
             {Array.isArray(tmEvents) && tmEvents.map((ev, idx) => (
               <div key={idx} style={{
                 background: "var(--paper-2)", border: "1px solid var(--line)",
-                borderRadius: 12, padding: "11px 14px", marginBottom: 8,
+                borderRadius: 12, padding: "12px 16px", marginBottom: 8,
                 display: "flex", alignItems: "center", gap: 12,
               }}>
                 {/* Date block */}
@@ -1732,8 +1963,26 @@ function ArtistScreen({ state, setState }) {
           <div style={{ marginBottom: 18 }}>
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", marginBottom: 10, display: "flex", alignItems: "center", gap: 8 }}>
               SETLIST HISTORY
-              {setlists === undefined && <span style={{ fontSize: 8, opacity: 0.7 }}>LOADING…</span>}
             </div>
+
+            {setlists === undefined && (
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {[0, 1].map(i => (
+                  <div key={i} style={{ background: "var(--paper-2)", borderRadius: 12, padding: "12px 14px", border: "1px solid var(--line)" }}>
+                    <div className="skel" style={{ width: "40%", height: 10, marginBottom: 8 }}/>
+                    <div className="skel" style={{ width: "70%", height: 12, marginBottom: 10 }}/>
+                    <div style={{ borderTop: "1px solid var(--line)", paddingTop: 8, display: "flex", flexDirection: "column", gap: 6 }}>
+                      {[0, 1, 2].map(j => (
+                        <div key={j} style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                          <div className="skel" style={{ width: 18, height: 9 }}/>
+                          <div className="skel" style={{ flex: 1, height: 13 }}/>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
 
             {setlists !== undefined && setlists !== null && setlists.length === 0 && (
               <div style={{ fontSize: 12, color: "var(--muted)", fontStyle: "italic" }}>No documented setlists found.</div>
@@ -1778,7 +2027,7 @@ function ArtistScreen({ state, setState }) {
                   {songs.length === 0 ? (
                     <div className="mono" style={{
                       borderTop: "1px solid var(--line)", paddingTop: 8,
-                      fontSize: 9.5, letterSpacing: 1, color: "var(--muted)",
+                      fontSize: 10, letterSpacing: 1, color: "var(--muted)",
                       fontStyle: "italic",
                     }}>
                       SONGS NOT DOCUMENTED · TAP SETLIST.FM ↗ FOR DETAILS
@@ -1793,7 +2042,7 @@ function ArtistScreen({ state, setState }) {
                           <div key={si} style={{ display: "flex", alignItems: "center", gap: 10, padding: "3px 0" }}>
                             <span className="mono" style={{ fontSize: 9, color: "var(--muted)", width: 18, textAlign: "right", flexShrink: 0 }}>{si + 1}</span>
                             <span style={{ fontSize: 13, color: isBanger ? stage.color : "var(--ink)", fontWeight: isBanger ? 600 : 400, flex: 1 }}>{song.name}</span>
-                            {isBanger && <span className="mono" style={{ fontSize: 7, letterSpacing: 1, color: stage.color, fontWeight: 700 }}>BANGER</span>}
+                            {isBanger && <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: stage.color, fontWeight: 700 }}>BANGER</span>}
                             {song.tape && <span className="mono" style={{ fontSize: 8, color: "var(--muted)", letterSpacing: 1 }}>TAPE</span>}
                           </div>
                         );
@@ -1909,17 +2158,23 @@ function ArtistScreen({ state, setState }) {
       <div style={{
         flexShrink: 0,
         padding: "12px 20px calc(10px + env(safe-area-inset-bottom)) 20px",
-        background: "var(--paper)",
+        background: saveFlash ? (saved ? "rgba(45,122,85,0.08)" : "var(--paper)") : "var(--paper)",
         borderTop: "1px solid var(--line)",
         display: "flex", gap: 8,
+        transition: "background 0.3s ease",
       }}>
-        <button onClick={() => toggleSave(state, setState, a.id)} style={{
+        <button onClick={handleSave} style={{
           flex: 1, padding: "14px", borderRadius: 14,
           background: saved ? "var(--ink)" : "var(--ember)",
           color: saved ? "var(--paper)" : "#fff",
           border: "none", cursor: "pointer",
-          fontFamily: "Geist Mono, monospace", fontSize: 11, letterSpacing: 1.4, fontWeight: 500,
-        }}>{saved ? "✓ SAVED TO LINEUP" : "+ ADD TO LINEUP"}</button>
+          fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 500,
+          transition: "background 0.2s ease, transform 0.35s var(--ease-spring)",
+          transform: saveFlash ? "scale(1.03)" : "scale(1)",
+        }}>
+          {saveFlash && saved && <span style={{ animation: "checkIn 0.35s ease", display: "inline-block", marginRight: 4 }}>✓</span>}
+          {saved ? (saveFlash ? "SAVED!" : "✓ SAVED TO LINEUP") : "+ ADD TO LINEUP"}
+        </button>
         <button onClick={() => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "memories", memoriesNight: a.day, artist: null })} style={{
           width: 54, borderRadius: 14,
           background: "transparent", border: "1px solid var(--line-2)",

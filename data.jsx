@@ -125,6 +125,7 @@ const FESTIVAL_CONFIG = {
   // ── Defaults ──
   mainStageId: "kinetic",
   mapImage: "edc-map-2026.jpg",
+  mapStyle: "image-overlay",
 };
 
 // Backwards-compat alias — older code reads `FESTIVAL.name` etc.
@@ -203,6 +204,10 @@ const FESTIVALS_REGISTRY = [
       year:      2026,
       startMs: Date.UTC(2026, 9, 2, 17, 0, 0),
       endMs:   Date.UTC(2026, 9, 12, 5, 0, 0),
+      weekendStartMs: {
+        W1: Date.UTC(2026, 9, 2, 17, 0, 0),
+        W2: Date.UTC(2026, 9, 9, 17, 0, 0),
+      },
       tz:      "America/Chicago",
       tzAbbr:  "CDT",
       utcOffsetHours: -5,
@@ -241,6 +246,7 @@ const FESTIVALS_REGISTRY = [
       ],
       mainStageId: "honda",
       mapImage: "acl-map-2025.webp",
+      mapStyle: "image-overlay",
       mapTheme: "park",
       weatherEndpoint: "https://api.weather.gov/points/30.26,-97.77",
     },

@@ -168,9 +168,9 @@ function TonightCard({ state, setState }) {
 
   const card = (label, value, sub, accent) => (
     <div style={{ flex: 1, minWidth: 0 }}>
-      <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.4, color: "rgba(247,237,224,0.55)", fontWeight: 600 }}>{label}</div>
+      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "rgba(247,237,224,0.55)", fontWeight: 600 }}>{label}</div>
       <div style={{ fontFamily: "Geist Mono, monospace", fontSize: 18, fontWeight: 600, color: accent || "var(--paper)", marginTop: 3, lineHeight: 1 }}>{value}</div>
-      {sub && <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.1, color: "rgba(247,237,224,0.6)", marginTop: 4 }}>{sub}</div>}
+      {sub && <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "rgba(247,237,224,0.6)", marginTop: 4 }}>{sub}</div>}
     </div>
   );
 
@@ -192,16 +192,16 @@ function TonightCard({ state, setState }) {
       }}/>
       <div style={{ position: "relative" }}>
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 12 }}>
-          <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1.6, color: "rgba(247,237,224,0.6)" }}>
+          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "rgba(247,237,224,0.6)" }}>
             {isPreEvent ? "OPENING NIGHT" : `TONIGHT · DAY ${day}`}
           </div>
           {period && (
-            <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "rgba(247,237,224,0.5)", display: "flex", alignItems: "center", gap: 5 }}>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(247,237,224,0.5)", display: "flex", alignItems: "center", gap: 5 }}>
               NWS · {period.name.toUpperCase()}
               {cacheAgeLabel && (
                 <span style={{
                   background: "rgba(247,237,224,0.1)", border: "1px solid rgba(247,237,224,0.18)",
-                  borderRadius: 4, padding: "1px 5px", fontSize: 7.5, letterSpacing: 1,
+                  borderRadius: 4, padding: "1px 5px", fontSize: 8, letterSpacing: 1,
                 }}>
                   CACHED · {cacheAgeLabel}
                 </span>
@@ -266,15 +266,25 @@ function TonightCard({ state, setState }) {
   );
 }
 
-function preEventCountdown() {
+function preEventCountdown(savedIds) {
   const now = Date.now();
   if (now >= FESTIVAL_START_MS) return null;
-  const diff = FESTIVAL_START_MS - now;
+  let targetMs = FESTIVAL_START_MS;
+  if (FESTIVAL_CONFIG.weekendStartMs) {
+    const saved = (savedIds || []).map(id => ARTISTS.find(a => a.id === id)).filter(Boolean);
+    const w2Count = saved.filter(a => a.weekend === "W2").length;
+    const w1Count = saved.filter(a => a.weekend === "W1").length;
+    if (w2Count > w1Count) targetMs = FESTIVAL_CONFIG.weekendStartMs.W2 || targetMs;
+    else if (w1Count > 0) targetMs = FESTIVAL_CONFIG.weekendStartMs.W1 || targetMs;
+  }
+  const diff = targetMs - now;
+  if (diff <= 0) return null;
   return {
     days:  Math.floor(diff / 86400000),
     hours: Math.floor((diff / 3600000) % 24),
     mins:  Math.floor((diff / 60000) % 60),
     secs:  Math.floor((diff / 1000) % 60),
+    weekend: FESTIVAL_CONFIG.weekendStartMs ? (targetMs === FESTIVAL_CONFIG.weekendStartMs?.W2 ? "W2" : "W1") : null,
   };
 }
 
@@ -442,13 +452,13 @@ function PostFestivalRecap({ state, setState }) {
           background: "var(--paper-2)", border: "1px solid var(--line)",
           borderRadius: 18, padding: "16px 16px 8px", marginBottom: 14,
         }}>
-          <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1.6, color: "var(--muted)", fontWeight: 600, marginBottom: 14 }}>
+          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--muted)", fontWeight: 600, marginBottom: 14 }}>
             YOUR SAVED SETS
           </div>
           {byDay.map(({ day, meta, artists }) => (
             <div key={day} style={{ marginBottom: 14 }}>
               <div className="mono" style={{
-                fontSize: 8.5, letterSpacing: 1.8, color: "var(--ember)",
+                fontSize: 9, letterSpacing: 1.8, color: "var(--ember)",
                 fontWeight: 700, marginBottom: 8,
               }}>
                 {meta.short} · {meta.name.toUpperCase()}
@@ -468,7 +478,7 @@ function PostFestivalRecap({ state, setState }) {
                       <div className="serif" style={{ fontSize: 16, lineHeight: 1.1, color: "var(--ink)" }}>
                         {a.name}
                       </div>
-                      <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", marginTop: 1 }}>
+                      <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 1 }}>
                         {stage ? stage.short : ""} · {fmt12(a.start)}–{fmt12(a.end)}
                       </div>
                     </div>
@@ -526,8 +536,9 @@ function DayStrip({ value, onChange, hasYesterday, hasUpcoming }) {
               border: "none", borderRadius: 999,
               cursor: t.enabled ? "pointer" : "default",
               fontFamily: "Geist Mono, monospace",
-              fontSize: 9.5, letterSpacing: 1.3, fontWeight: 700,
-              transition: "background 0.15s, color 0.15s",
+              fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
+              transform: active ? "scale(1)" : "scale(0.95)",
+              transition: "all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)",
             }}>
             {t.label}
           </button>
@@ -652,7 +663,7 @@ function F1TonightHero({ state, setState }) {
                 : `TONIGHT · ${dayMeta?.name?.toUpperCase() || "DAY " + day}`}
           </div>
           <div className="mono" style={{
-            fontSize: 8.5, letterSpacing: 1.4, color: "rgba(255,255,255,0.55)", fontWeight: 600,
+            fontSize: 9, letterSpacing: 1.4, color: "rgba(255,255,255,0.55)", fontWeight: 600,
           }}>
             {phase === "pre"
               ? FESTIVAL_CONFIG.dates.toUpperCase()
@@ -663,7 +674,7 @@ function F1TonightHero({ state, setState }) {
         {/* Pre-festival: countdown + Artist of the Day spotlight */}
         {phase === "pre" && (
           <>
-            <div className="serif" style={{ fontSize: 30, lineHeight: 0.96, letterSpacing: -0.5, marginBottom: 6 }}>
+            <div className="serif" style={{ fontSize: 28, lineHeight: 0.96, letterSpacing: -0.5, marginBottom: 6 }}>
               {FESTIVAL_CONFIG.dayDates[1]?.short} · <span style={{ fontStyle: "italic", color: accent }}>{FESTIVAL_CONFIG.brand}</span>
             </div>
             <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 1.4, marginBottom: 14 }}>
@@ -707,7 +718,7 @@ function F1TonightHero({ state, setState }) {
                       whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
                     }}>{spotlight.name}</div>
                     <div className="mono" style={{
-                      fontSize: 8.5, letterSpacing: 0.8, color: "rgba(255,255,255,0.55)", marginTop: 3,
+                      fontSize: 9, letterSpacing: 0.8, color: "rgba(255,255,255,0.55)", marginTop: 3,
                     }}>
                       {sStage?.name?.toUpperCase() || ""} · DAY {spotlight.day} · {fmt12(spotlight.start)}
                     </div>
@@ -752,7 +763,7 @@ function F1TonightHero({ state, setState }) {
         {/* Doors-not-yet-open phase */}
         {phase === "doors" && (
           <>
-            <div className="serif" style={{ fontSize: 30, lineHeight: 0.96, letterSpacing: -0.4, marginBottom: 6 }}>
+            <div className="serif" style={{ fontSize: 28, lineHeight: 0.96, letterSpacing: -0.4, marginBottom: 6 }}>
               {dayMeta?.name || ("Day " + day)}{" "}
               <span style={{ fontStyle: "italic", color: accent }}>Night</span>
             </div>
@@ -783,13 +794,13 @@ function F1TonightHero({ state, setState }) {
                 }}>
                 <div style={{ width: 3, alignSelf: "stretch", background: accent, borderRadius: 3, minHeight: 36 }}/>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.4, color: accent, fontWeight: 700 }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: accent, fontWeight: 700 }}>
                     {savedIds.includes(featured.id) ? "YOUR HEADLINER" : "TONIGHT'S HEADLINER"}
                   </div>
                   <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, marginTop: 2 }}>
                     {featured.name}
                   </div>
-                  <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "rgba(255,255,255,0.6)", marginTop: 2 }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.6)", marginTop: 2 }}>
                     {stage?.short || ""} · {fmt12(featured.start)}
                   </div>
                 </div>
@@ -801,7 +812,7 @@ function F1TonightHero({ state, setState }) {
         {/* Between-sets phase (festival on, no artist live on any stage). */}
         {phase === "between" && (
           <>
-            <div className="serif" style={{ fontSize: 30, lineHeight: 0.96, letterSpacing: -0.4, marginBottom: 6 }}>
+            <div className="serif" style={{ fontSize: 28, lineHeight: 0.96, letterSpacing: -0.4, marginBottom: 6 }}>
               Stage <span style={{ fontStyle: "italic", color: accent }}>changeover</span>
             </div>
             <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 1.4, marginBottom: 12 }}>
@@ -818,13 +829,13 @@ function F1TonightHero({ state, setState }) {
                 }}>
                 <div style={{ width: 3, alignSelf: "stretch", background: accent, borderRadius: 3, minHeight: 36 }}/>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.4, color: accent, fontWeight: 700 }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: accent, fontWeight: 700 }}>
                     UP NEXT TONIGHT
                   </div>
                   <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, marginTop: 2 }}>
                     {featured.name}
                   </div>
-                  <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "rgba(255,255,255,0.6)", marginTop: 2 }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.6)", marginTop: 2 }}>
                     {stage?.short || ""} · {fmt12(featured.start)}
                   </div>
                 </div>
@@ -949,7 +960,7 @@ function LastNightRecap({ state, setState }) {
             borderLeft: i > 0 ? "1px solid var(--line)" : "none",
           }}>
             <div className="mono" style={{
-              fontSize: 8.5, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 600,
+              fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 600,
             }}>{s.label}</div>
             <div style={{
               fontFamily: "Geist Mono, monospace", fontSize: 18, fontWeight: 600,
@@ -1089,7 +1100,7 @@ function UpcomingTeaser({ state, setState }) {
                         )}
                       </div>
                       <div className="mono" style={{
-                        fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", marginTop: 1,
+                        fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 1,
                       }}>
                         {stage?.short} · {fmt12(a.start)}–{fmt12(a.end)}
                       </div>
@@ -1139,7 +1150,7 @@ function HomeScreen({ state, setState }) {
 
   // Re-render every minute so the pre-event countdown stays accurate
   useTick(60000);
-  const countdown = preEventCountdown();
+  const countdown = preEventCountdown(state.saved);
   const isPostFestival = Date.now() > FESTIVAL_END_MS;
 
   // Offline prep: prefetch photos for any saved sets we haven't cached yet,
@@ -1188,9 +1199,35 @@ function HomeScreen({ state, setState }) {
   const alerts = _dynAlerts.length ? _dynAlerts : (state.alerts || ALERTS);
   const unread = alerts.filter(a => a.unread).length;
 
+  const [pullRefresh, setPullRefresh] = React.useState(false);
+  const _prRef = React.useRef({ startY: 0, pulling: false });
+  const handlePullStart = (e) => { _prRef.current = { startY: e.touches[0].clientY, pulling: false }; };
+  const handlePullMove = (e) => {
+    const el = e.currentTarget;
+    if (el.scrollTop > 0) return;
+    const dy = e.touches[0].clientY - _prRef.current.startY;
+    if (dy > 60 && !_prRef.current.pulling) {
+      _prRef.current.pulling = true;
+      setPullRefresh(true);
+      navigator.vibrate?.([15]);
+      setTimeout(() => { setPullRefresh(false); window.location.reload(); }, 600);
+    }
+  };
+
   return (
     <Screen bg="var(--paper)">
-      <ScrollBody style={{ padding: "0 0 70px" }}>
+      <ScrollBody style={{ padding: "0 0 70px" }} onTouchStart={handlePullStart} onTouchMove={handlePullMove}>
+      {pullRefresh && (
+        <div style={{
+          display: "flex", justifyContent: "center", padding: "12px 0",
+        }}>
+          <div style={{
+            width: 20, height: 20, borderRadius: "50%",
+            border: "2px solid var(--line)", borderTopColor: "var(--ember)",
+            animation: "spin 0.8s linear infinite",
+          }}/>
+        </div>
+      )}
       {/* Masthead — scrolls with content (was previously pinned, now flows
           naturally so the home tab stops feeling like a fixed-header app) */}
       <div style={{
@@ -1291,7 +1328,7 @@ function HomeScreen({ state, setState }) {
                   }}>
                   <span style={{ fontSize: 24, lineHeight: 1, flexShrink: 0 }}>✦</span>
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div className="serif" style={{ fontSize: 19, lineHeight: 1.05 }}>
+                    <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>
                       Your <span style={{ fontStyle: "italic", color: "var(--flare)" }}>weekend</span>, recapped
                     </div>
                     <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "rgba(247,237,224,0.7)", marginTop: 4, fontWeight: 700 }}>
@@ -1336,10 +1373,10 @@ function HomeScreen({ state, setState }) {
               display: "flex", alignItems: "center", gap: 10,
               background: "linear-gradient(135deg, rgba(232,93,46,0.12), rgba(123,61,154,0.10))",
               border: "1px solid rgba(232,93,46,0.4)",
-              borderRadius: 14, padding: "11px 13px",
+              borderRadius: 14, padding: "12px 12px",
             }}>
               <span style={{ fontSize: 18, flexShrink: 0 }}>✦</span>
-              <div style={{ flex: 1, minWidth: 0, fontSize: 12.5, color: "var(--ink)", lineHeight: 1.4 }}>
+              <div style={{ flex: 1, minWidth: 0, fontSize: 13, color: "var(--ink)", lineHeight: 1.4 }}>
                 Personalize Plursky — name, Spotify, reminders.
               </div>
               <button onClick={() => window.plurskyOpenOnboarding?.()} style={{
@@ -1353,7 +1390,7 @@ function HomeScreen({ state, setState }) {
                 setSetupBannerDismissed(true);
               }} style={{
                 background: "transparent", border: "none", color: "var(--muted)",
-                fontSize: 17, cursor: "pointer", flexShrink: 0, lineHeight: 1,
+                fontSize: 18, cursor: "pointer", flexShrink: 0, lineHeight: 1,
               }}>×</button>
             </div>
           </div>
@@ -1364,10 +1401,10 @@ function HomeScreen({ state, setState }) {
             <div style={{
               display: "flex", alignItems: "center", gap: 10,
               background: "rgba(123,61,154,0.1)", border: "1px solid rgba(123,61,154,0.35)",
-              borderRadius: 14, padding: "11px 13px",
+              borderRadius: 14, padding: "12px 12px",
             }}>
-              <span style={{ fontSize: 17, flexShrink: 0 }}>🔔</span>
-              <div style={{ flex: 1, minWidth: 0, fontSize: 12.5, color: "var(--ink)", lineHeight: 1.4 }}>
+              <span style={{ fontSize: 18, flexShrink: 0 }}>🔔</span>
+              <div style={{ flex: 1, minWidth: 0, fontSize: 13, color: "var(--ink)", lineHeight: 1.4 }}>
                 Get notified 15 min before each saved set
               </div>
               <button onClick={async () => {
@@ -1385,7 +1422,7 @@ function HomeScreen({ state, setState }) {
                 try { localStorage.setItem("notif_nudge_dismissed", "1"); } catch {}
               }} style={{
                 background: "transparent", border: "none", color: "var(--muted)",
-                fontSize: 17, cursor: "pointer", flexShrink: 0, lineHeight: 1,
+                fontSize: 18, cursor: "pointer", flexShrink: 0, lineHeight: 1,
               }}>×</button>
             </div>
           </div>
@@ -1402,7 +1439,7 @@ function HomeScreen({ state, setState }) {
                 <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "#fbbf24", fontWeight: 700, marginBottom: 3 }}>
                   NWS WEATHER ALERT
                 </div>
-                <div style={{ fontSize: 12.5, color: "var(--ink)", lineHeight: 1.4 }}>
+                <div style={{ fontSize: 13, color: "var(--ink)", lineHeight: 1.4 }}>
                   {weatherAlert.shortForecast} — check the weather card below for details.
                 </div>
               </div>
@@ -1446,7 +1483,7 @@ function HomeScreen({ state, setState }) {
       </div>
       )}
 
-      <div style={{ padding: "16px 16px 24px" }}>
+      <div ref={useStaggerFade()} style={{ padding: "16px 16px 24px" }}>
         {/* ── YESTERDAY tab ───────────────────────────────────── */}
         {homeSubTab === "yesterday" && (
           <LastNightRecap state={state} setState={setState} />
@@ -1464,7 +1501,7 @@ function HomeScreen({ state, setState }) {
         {isPostFestival && <PostFestivalRecap state={state} setState={setState} />}
 
         {/* F1-style hero card — pre/during phases (post handled above). */}
-        {!isPostFestival && <F1TonightHero state={state} setState={setState} />}
+        {!isPostFestival && <div data-animate><F1TonightHero state={state} setState={setState} /></div>}
 
         {/* Live festival sections — hidden pre-event and post-festival */}
         {!countdown && !isPostFestival && (
@@ -1508,10 +1545,10 @@ function HomeScreen({ state, setState }) {
                   </span>
                 </div>
 
-                <div className="serif" style={{ fontSize: 38, lineHeight: 0.96, letterSpacing: -0.5, marginBottom: 4 }}>
+                <div className="serif" style={{ fontSize: 34, lineHeight: 0.96, letterSpacing: -0.5, marginBottom: 4 }}>
                   {current.name}
                 </div>
-                <div className="mono" style={{ fontSize: 11, letterSpacing: 1.4, opacity: 0.85, marginBottom: 22 }}>
+                <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, opacity: 0.85, marginBottom: 22 }}>
                   {current.genre.toUpperCase()} · {fmt12(current.start)}–{fmt12(current.end)}
                 </div>
 
@@ -1604,13 +1641,84 @@ function HomeScreen({ state, setState }) {
           </>
         )}
 
+        {/* Pre-festival hype: headliner countdown cards rotating by day.
+            Shows top-tier artists grouped by night with days-until countdown. */}
+        {countdown && (() => {
+          const headliners = ARTISTS.filter(a => a.tier >= 2)
+            .sort((a, b) => (b.tier - a.tier) || a.day - b.day || toNightMin(a.start) - toNightMin(b.start))
+            .slice(0, 9);
+          if (!headliners.length) return null;
+          const dayGroups = [1, 2, 3].map(d => ({
+            day: d, meta: FESTIVAL_CONFIG.dayDates[d],
+            artists: headliners.filter(a => a.day === d).slice(0, 3),
+          })).filter(g => g.artists.length);
+          return (
+            <div style={{ marginTop: 18 }}>
+              <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--muted)", fontWeight: 600, marginBottom: 10 }}>
+                LINEUP HIGHLIGHTS
+              </div>
+              <div className="no-scrollbar" style={{
+                display: "flex", gap: 10, overflowX: "auto", scrollbarWidth: "none",
+                marginRight: -16, paddingRight: 16,
+              }}>
+                {dayGroups.map(g => {
+                  const gateMs = g.meta?.midnightUtc ? g.meta.midnightUtc + 18 * 3600000 : 0;
+                  const daysUntil = gateMs > Date.now() ? Math.ceil((gateMs - Date.now()) / 86400000) : 0;
+                  return (
+                    <div key={g.day} style={{
+                      flexShrink: 0, width: 200,
+                      background: "var(--paper-2)", border: "1px solid var(--line)",
+                      borderRadius: 14, padding: "12px 14px", overflow: "hidden",
+                    }}>
+                      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 8 }}>
+                        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--ember)", fontWeight: 700 }}>
+                          {g.meta?.name?.toUpperCase() || `DAY ${g.day}`}
+                        </span>
+                        {daysUntil > 0 && (
+                          <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--muted)" }}>
+                            {daysUntil}D
+                          </span>
+                        )}
+                      </div>
+                      {g.artists.map(a => {
+                        const st = STAGES.find(s => s.id === a.stage);
+                        return (
+                          <button key={a.id} onClick={() => setState({ ...state, artist: a.id })} style={{
+                            display: "flex", alignItems: "center", gap: 8, width: "100%",
+                            background: "transparent", border: "none", padding: "4px 0",
+                            cursor: "pointer", textAlign: "left",
+                          }}>
+                            <div style={{
+                              width: 3, height: 28, borderRadius: 3,
+                              background: st?.color || "var(--line-2)", flexShrink: 0,
+                            }}/>
+                            <div style={{ flex: 1, minWidth: 0 }}>
+                              <div className="serif" style={{
+                                fontSize: 14, lineHeight: 1.1, color: "var(--ink)",
+                                whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+                              }}>{a.name}</div>
+                              <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--muted)", marginTop: 1 }}>
+                                {st?.short || ""} · {fmt12(a.start)}
+                              </div>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })()}
+
         {/* Tonight: sunrise/sunset · weather · last-shuttle countdown */}
-        {!isPostFestival && <TonightCard state={state} setState={setState} />}
+        <div data-animate>{!isPostFestival && <TonightCard state={state} setState={setState} />}</div>
 
         {/* Don't-miss strip — auto-detected legendary moments (sunrise sets
             + B2B collabs) for the relevant day. Vets came for THESE, so they
             sit prominently between the night card and the artist gossip. */}
-        {!isPostFestival && <DontMissStrip day={countdown ? 1 : NOW.day} state={state} setState={setState} />}
+        <div data-animate>{!isPostFestival && <DontMissStrip day={countdown ? 1 : NOW.day} state={state} setState={setState} />}</div>
 
         {/* Friend's shared lineup — appears when ?lineup= deep link was opened. */}
         {state.friendLineup?.length > 0 && (
@@ -1684,14 +1792,14 @@ function HomeScreen({ state, setState }) {
                   <div key={day} style={{ marginBottom: 10 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
                       <div className="mono" style={{
-                        fontSize: 8.5, letterSpacing: 1.8, color: "var(--ember)",
+                        fontSize: 9, letterSpacing: 1.8, color: "var(--ember)",
                         fontWeight: 700,
                       }}>
                         {meta.short} · {meta.name.toUpperCase()}
                       </div>
                       {conflictCount > 0 && (
                         <span className="mono" style={{
-                          fontSize: 7.5, letterSpacing: 1.2, color: "var(--ember)",
+                          fontSize: 8, letterSpacing: 1.2, color: "var(--ember)",
                           padding: "1px 5px", borderRadius: 3, fontWeight: 700,
                           border: "1px solid var(--ember)",
                         }}>{conflictCount} CLASH</span>
@@ -1732,13 +1840,13 @@ function HomeScreen({ state, setState }) {
                                 </div>
                                 {conflict && (
                                   <span className="mono" style={{
-                                    fontSize: 7.5, letterSpacing: 1.2, color: "var(--ember)",
+                                    fontSize: 8, letterSpacing: 1.2, color: "var(--ember)",
                                     padding: "1px 4px", borderRadius: 3, fontWeight: 700,
                                     border: "1px solid var(--ember)",
                                   }}>CLASH</span>
                                 )}
                               </div>
-                              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", marginTop: 1 }}>
+                              <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 1 }}>
                                 {stage ? stage.short : ""} · {fmt12(a.start)}–{fmt12(a.end)}
                               </div>
                             </div>
@@ -1808,7 +1916,7 @@ function LiveAcrossStrip({ strip, state, setState }) {
   return (
     <div style={{ marginBottom: 18 }}>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 8 }}>
-        <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1.6, color: "var(--muted)", fontWeight: 600 }}>
+        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--muted)", fontWeight: 600 }}>
           LIVE ACROSS STAGES
         </div>
         <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ember)" }}>
@@ -1850,7 +1958,7 @@ function LiveAcrossStrip({ strip, state, setState }) {
                       flexShrink: 0,
                     }}/>
                   )}
-                  <span className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: stage.color, fontWeight: 700 }}>
+                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: stage.color, fontWeight: 700 }}>
                     {stage.short}
                   </span>
                 </div>
@@ -1871,14 +1979,14 @@ function LiveAcrossStrip({ strip, state, setState }) {
                   }}>
                     {artist.name}
                   </div>
-                  <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
                     {fmt12(artist.start)}–{fmt12(artist.end)}
                   </div>
                 </>
               ) : upcoming ? (
                 <>
                   <div style={{
-                    fontSize: 11, lineHeight: 1.15, marginTop: 4,
+                    fontSize: 10, lineHeight: 1.15, marginTop: 4,
                     color: nextSaved ? stage.color : "var(--muted)",
                     whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
                     fontStyle: "italic",
@@ -1894,7 +2002,7 @@ function LiveAcrossStrip({ strip, state, setState }) {
                   <div className="serif" style={{ fontSize: 13, lineHeight: 1.1, marginTop: 4, color: "var(--muted)" }}>
                     Stage dark
                   </div>
-                  <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
                     {stage.name.toUpperCase()}
                   </div>
                 </>
@@ -1944,7 +2052,7 @@ function TonightsPlan({ plan, state, setState }) {
               background: "rgba(232,93,46,0.07)", borderRadius: 8,
               border: "1px solid rgba(232,93,46,0.2)",
             }}>
-              <span className="mono" style={{ fontSize: 9.5, letterSpacing: 1.3, color: "var(--ember)" }}>
+              <span className="mono" style={{ fontSize: 10, letterSpacing: 1.3, color: "var(--ember)" }}>
                 ⚠ {tightCount} TIGHT TRANSITION{tightCount > 1 ? "S" : ""} · CHECK LEAVE-BY TIMES
               </span>
               {conflicts.length > 0 && (
@@ -2021,11 +2129,11 @@ function PlanRow({ entry, state, setState }) {
         }}>
         <div style={{ width: 44 }}>
           <div className="mono" style={{
-            fontSize: 11, letterSpacing: 1,
+            fontSize: 10, letterSpacing: 1,
             color: isLive ? stage.color : "var(--ink)",
             fontWeight: isLive ? 700 : 500,
           }}>{fmt12(a.start)}</div>
-          <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)" }}>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>
             {isLive ? "LIVE" : isPast ? "DONE" : minsUntil < 60 ? `${minsUntil}m` : `${Math.floor(minsUntil/60)}h${(minsUntil%60).toString().padStart(2,"0")}`}
           </div>
         </div>
@@ -2063,7 +2171,7 @@ function CountdownPart({ n, label }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
       <div className="serif" style={{
-        fontSize: 56, lineHeight: 0.92, letterSpacing: -1.5,
+        fontSize: 52, lineHeight: 0.92, letterSpacing: -1.5,
         color: "var(--ink)",
         fontVariantNumeric: "tabular-nums",
       }}>
@@ -2084,7 +2192,7 @@ function homeBtn(kind) {
     border: "none", cursor: "pointer",
     borderRadius: 999, padding: "11px 16px",
     fontFamily: "Geist Mono, monospace",
-    fontSize: 11, letterSpacing: 1.2, fontWeight: 500,
+    fontSize: 10, letterSpacing: 1.2, fontWeight: 500,
     textTransform: "uppercase",
   };
   if (kind === "solid")  return { ...base, background: "#fff", color: "var(--ink)" };
@@ -2309,7 +2417,7 @@ function FirstTimerGuide({ onClose, onOpenMap, onOpenLineup }) {
                   border: "none", cursor: "pointer", textAlign: "left",
                 }}>
                   <span style={{ fontSize: 20 }}>{s.icon}</span>
-                  <span className="serif" style={{ flex: 1, fontSize: 17, lineHeight: 1 }}>{s.title}</span>
+                  <span className="serif" style={{ flex: 1, fontSize: 18, lineHeight: 1 }}>{s.title}</span>
                   <span className="mono" style={{
                     fontSize: 10, color: "var(--muted)", fontWeight: 700,
                     transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
@@ -2345,13 +2453,13 @@ function FirstTimerGuide({ onClose, onOpenMap, onOpenLineup }) {
               flex: 1, padding: "10px 12px",
               background: "var(--ink)", color: "var(--paper)",
               border: "none", borderRadius: 10, cursor: "pointer",
-              fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.3, fontWeight: 700,
+              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
             }}>EXPLORE MAP</button>
             <button onClick={onOpenLineup} style={{
               flex: 1, padding: "10px 12px",
               background: "var(--paper)", color: "var(--ink)",
               border: "1px solid var(--line-2)", borderRadius: 10, cursor: "pointer",
-              fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.3, fontWeight: 700,
+              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
             }}>BROWSE LINEUP</button>
           </div>
         </div>
@@ -2402,7 +2510,7 @@ function ShareLineupButton({ savedIds }) {
       background: flash ? "var(--success)" : "var(--ink)",
       color: "var(--paper)", border: "none", borderRadius: 999,
       padding: "5px 10px", cursor: "pointer",
-      fontSize: 8.5, letterSpacing: 1.3, fontWeight: 700,
+      fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
       transition: "background 0.2s",
     }}>
       {flash === "shared" ? "✓ SHARED" : flash === "copied" ? "✓ COPIED" : "↗ SHARE"}
@@ -2458,20 +2566,20 @@ function FriendLineupBanner({ state, setState }) {
         <button onClick={() => setExpanded(e => !e)} className="mono" style={{
           background: "var(--ink)", color: "var(--paper)", border: "none",
           borderRadius: 999, padding: "8px 14px", cursor: "pointer",
-          fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+          fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
         }}>{expanded ? "HIDE SETS" : "VIEW SETS"}</button>
         {fresh.length > 0 && (
           <button onClick={addOverlap} className="mono" style={{
             background: "var(--ember)", color: "#fff", border: "none",
             borderRadius: 999, padding: "8px 14px", cursor: "pointer",
-            fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+            fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           }}>+ ADD {fresh.length} NEW</button>
         )}
         <button onClick={addAll} className="mono" style={{
           background: "transparent", color: "var(--ink)",
           border: "1px solid var(--line-2)",
           borderRadius: 999, padding: "8px 14px", cursor: "pointer",
-          fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+          fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
         }}>+ ADD ALL</button>
       </div>
       {expanded && (
@@ -2486,7 +2594,7 @@ function FriendLineupBanner({ state, setState }) {
             return (
               <div key={day} style={{ marginBottom: 10 }}>
                 <div className="mono" style={{
-                  fontSize: 8.5, letterSpacing: 1.6, color: "var(--horizon)",
+                  fontSize: 9, letterSpacing: 1.6, color: "var(--horizon)",
                   fontWeight: 700, marginBottom: 6,
                 }}>
                   {meta.short} · {meta.name.toUpperCase()}
@@ -2517,7 +2625,7 @@ function FriendLineupBanner({ state, setState }) {
                       </div>
                       {isOverlap && (
                         <span className="mono" style={{
-                          fontSize: 7.5, letterSpacing: 1, color: "var(--success)",
+                          fontSize: 8, letterSpacing: 1, color: "var(--success)",
                           fontWeight: 700,
                         }}>MATCH</span>
                       )}

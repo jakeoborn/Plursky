@@ -48,7 +48,7 @@ function OnboardingModal({ onDone, setState, state }) {
           style={{
             width: "100%", padding: "12px 14px", marginTop: 12,
             background: "var(--paper-2)", border: "1px solid var(--line-2)",
-            borderRadius: 12, fontFamily: "Geist, sans-serif", fontSize: 15,
+            borderRadius: 12, fontFamily: "Geist, sans-serif", fontSize: 14,
             color: "var(--ink)", outline: "none",
           }}/>
       ),
@@ -107,13 +107,13 @@ function OnboardingModal({ onDone, setState, state }) {
           ))}
         </div>
 
-        <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1.6, color: "var(--muted)", marginBottom: 6, fontWeight: 600 }}>
+        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--muted)", marginBottom: 6, fontWeight: 600 }}>
           {cur.kicker}
         </div>
         <div className="serif" style={{ fontSize: 32, lineHeight: 1.05, letterSpacing: -0.4, marginBottom: 12 }}>
           {cur.title}
         </div>
-        <div style={{ fontSize: 13.5, color: "var(--muted)", lineHeight: 1.5, marginBottom: 18 }}>
+        <div style={{ fontSize: 14, color: "var(--muted)", lineHeight: 1.5, marginBottom: 18 }}>
           {cur.body}
         </div>
 
@@ -123,7 +123,7 @@ function OnboardingModal({ onDone, setState, state }) {
           <button onClick={cur.cta.onClick} style={{
             background: "var(--ink)", color: "var(--paper)", border: "none",
             borderRadius: 999, padding: "13px 18px",
-            fontFamily: "Geist Mono, monospace", fontSize: 11, letterSpacing: 1.4, fontWeight: 700,
+            fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
             cursor: "pointer",
           }}>{cur.cta.label}</button>
           {cur.skip && (
@@ -222,7 +222,7 @@ function SearchModal({ onClose, onSelectArtist }) {
           placeholder="Artist, stage, genre, day…"
           style={{
             flex: 1, background: "transparent", border: "none", outline: "none",
-            fontFamily: "Geist, sans-serif", fontSize: 17, color: "var(--ink)",
+            fontFamily: "Geist, sans-serif", fontSize: 18, color: "var(--ink)",
           }}
           onKeyDown={e => {
             if (e.key === "Escape") onClose();
@@ -282,15 +282,15 @@ function SearchModal({ onClose, onSelectArtist }) {
                   <div style={{ width: 4, alignSelf: "stretch", background: stage.color, borderRadius: 3, flexShrink: 0 }} />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: "flex", alignItems: "baseline", gap: 6, flexWrap: "wrap" }}>
-                      <span className="serif" style={{ fontSize: 19, lineHeight: 1.05, letterSpacing: -0.2 }}>{a.name}</span>
-                      {leg && <span className="mono" style={{ fontSize: 7.5, letterSpacing: 1, color: "#fbbf24", fontWeight: 800 }}>★ DON'T MISS</span>}
+                      <span className="serif" style={{ fontSize: 20, lineHeight: 1.05, letterSpacing: -0.2 }}>{a.name}</span>
+                      {leg && <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "#fbbf24", fontWeight: 800 }}>★ DON'T MISS</span>}
                     </div>
                     <div style={{ display: "flex", gap: 5, marginTop: 2, alignItems: "center" }}>
-                      <span className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: stage.color, fontWeight: 600, textTransform: "uppercase" }}>{stage.short}</span>
+                      <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: stage.color, fontWeight: 600, textTransform: "uppercase" }}>{stage.short}</span>
                       <span style={{ color: "var(--muted)" }}>·</span>
-                      <span className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)" }}>{DAY_LABEL[a.day]} {fmt12(a.start)}–{fmt12(a.end)}</span>
+                      <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>{DAY_LABEL[a.day]} {fmt12(a.start)}–{fmt12(a.end)}</span>
                       <span style={{ color: "var(--muted)" }}>·</span>
-                      <span className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", textTransform: "uppercase" }}>{a.genre}</span>
+                      <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", textTransform: "uppercase" }}>{a.genre}</span>
                     </div>
                   </div>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -332,7 +332,7 @@ function ToastHost() {
       <div className="mono" style={{
         background: "var(--ink)", color: "var(--paper)",
         padding: "9px 16px", borderRadius: 999,
-        fontSize: 11, letterSpacing: 1.2, fontWeight: 600,
+        fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
         boxShadow: "0 6px 20px rgba(0,0,0,0.25)",
         animation: "fadeIn .15s",
       }}>{msg.text}</div>
@@ -529,7 +529,7 @@ function App() {
                 border: "none", cursor: "pointer",
                 display: "flex", alignItems: "center", gap: 7,
                 boxShadow: "0 4px 16px rgba(0,0,0,0.28)",
-                fontFamily: "Geist Mono, monospace", fontSize: 11, letterSpacing: 1.4, fontWeight: 700,
+                fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
               }}
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
@@ -636,7 +636,7 @@ class RootErrorBoundary extends React.Component {
         <button onClick={this.reload} style={{
           background: "#1a120d", color: "#f7ede0", border: "none",
           borderRadius: 12, padding: "12px 22px", cursor: "pointer",
-          fontFamily: "Geist Mono, monospace", fontSize: 11, letterSpacing: 1.4, fontWeight: 700,
+          fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
           PLURSKY · v164

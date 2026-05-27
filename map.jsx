@@ -213,7 +213,7 @@ function WellnessPill() {
             borderRadius: 16, padding: 16,
             boxShadow: "0 14px 40px rgba(0,0,0,0.4)",
           }}>
-            <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1.6, color: "var(--muted)", marginBottom: 6 }}>
+            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--muted)", marginBottom: 6 }}>
               WELLNESS · DESERT DEFAULTS
             </div>
             <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, marginBottom: 12 }}>
@@ -229,14 +229,14 @@ function WellnessPill() {
               <div style={{ height: 6, background: "var(--line)", borderRadius: 6, overflow: "hidden" }}>
                 <div style={{ width: `${hyd}%`, height: "100%", background: hydColor, borderRadius: 6, transition: "width .35s" }}/>
               </div>
-              <div style={{ fontSize: 10.5, color: "var(--muted)", marginTop: 5, lineHeight: 1.4 }}>
+              <div style={{ fontSize: 10, color: "var(--muted)", marginTop: 5, lineHeight: 1.4 }}>
                 {hyd > 70 ? "Cruising — top up next set." : hyd > 40 ? "Hit a water station soon." : "Drink water now. ~−1% per 90 sec in the heat."}
               </div>
               <button onClick={drank} style={{
                 marginTop: 8, width: "100%",
                 background: "#38bdf8", color: "#fff", border: "none",
                 borderRadius: 10, padding: "10px 12px",
-                fontFamily: "Geist Mono, monospace", fontSize: 11, letterSpacing: 1.2, fontWeight: 700,
+                fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
                 cursor: "pointer",
               }}>💧 LOGGED · DRANK WATER</button>
             </div>
@@ -247,14 +247,14 @@ function WellnessPill() {
                 <span className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: restColor, fontWeight: 700 }}>ON FEET</span>
                 <span className="serif" style={{ fontSize: 24, color: restColor }}>{restLabel}</span>
               </div>
-              <div style={{ fontSize: 10.5, color: "var(--muted)", marginTop: 0, lineHeight: 1.4 }}>
+              <div style={{ fontSize: 10, color: "var(--muted)", marginTop: 0, lineHeight: 1.4 }}>
                 {restMin < 75 ? "Pace is good." : restMin < 120 ? "Sit down at the next break." : "Take 10 min off your feet — you'll dance harder later."}
               </div>
               <button onClick={rested} style={{
                 marginTop: 8, width: "100%",
                 background: "var(--paper-2)", color: "var(--ink)", border: "1px solid var(--line-2)",
                 borderRadius: 10, padding: "10px 12px",
-                fontFamily: "Geist Mono, monospace", fontSize: 11, letterSpacing: 1.2, fontWeight: 700,
+                fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
                 cursor: "pointer",
               }}>🦵 LOGGED · TOOK A BREAK</button>
             </div>
@@ -262,7 +262,7 @@ function WellnessPill() {
             <button onClick={() => setOpen(false)} style={{
               marginTop: 12, width: "100%",
               background: "transparent", border: "none",
-              fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.4, color: "var(--muted)",
+              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, color: "var(--muted)",
               cursor: "pointer", textTransform: "uppercase",
             }}>Close</button>
           </div>
@@ -659,26 +659,26 @@ function PingSheet({ onClose, onDropPin, friends }) {
         }}>
           <div>
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.5, opacity: 0.6, marginBottom: 2 }}>YOUR CODE</div>
-            <div className="serif" style={{ fontSize: 38, letterSpacing: 4, fontWeight: 400 }}>{myCode}</div>
+            <div className="serif" style={{ fontSize: 34, letterSpacing: 4, fontWeight: 400 }}>{myCode}</div>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
             <button onClick={shareCode} style={{
               background: "var(--ember)", color: "#fff", border: "none",
               borderRadius: 8, padding: "7px 14px",
-              fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
               cursor: "pointer",
             }}>SHARE</button>
             <button onClick={copyCode} style={{
               background: "transparent", color: "var(--paper)",
               border: "1px solid rgba(247,237,224,0.35)",
               borderRadius: 8, padding: "7px 14px",
-              fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
               cursor: "pointer",
             }}>{copied ? "COPIED" : "COPY"}</button>
           </div>
         </div>
 
-        <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1.4, fontWeight: 700, color: "var(--muted)", marginBottom: 6 }}>
+        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, fontWeight: 700, color: "var(--muted)", marginBottom: 6 }}>
           DROP A PIN FROM A FRIEND'S CODE
         </div>
         <div style={{ display: "flex", gap: 8 }}>
@@ -707,13 +707,13 @@ function PingSheet({ onClose, onDropPin, friends }) {
         </div>
         {feedback && (
           <div className="mono" style={{
-            marginTop: 10, fontSize: 9.5, letterSpacing: 1.1, fontWeight: 700,
+            marginTop: 10, fontSize: 10, letterSpacing: 1.1, fontWeight: 700,
             color: feedback.kind === "ok" ? "var(--success)"
                  : feedback.kind === "err" ? "var(--ember)"
                  : "var(--horizon)",
           }}>{feedback.text}</div>
         )}
-        <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", marginTop: 14, lineHeight: 1.5 }}>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 14, lineHeight: 1.5 }}>
           TIP: use the <span style={{ color: "var(--success)", fontWeight: 700 }}>CREW</span> button above for live real-time tracking with friends.
         </div>
       </div>
@@ -782,7 +782,7 @@ function IAmAtSheet({ onClose, initialStage, onStatusSet }) {
                 display: "flex", flexDirection: "column", alignItems: "center", gap: 4,
               }}>
                 <span style={{ width: 8, height: 8, borderRadius: 8, background: on ? "rgba(255,255,255,0.7)" : s.color }} />
-                <span className="mono" style={{ fontSize: 7.5, letterSpacing: 0.8, fontWeight: on ? 700 : 500, textAlign: "center", lineHeight: 1.2 }}>{s.short}</span>
+                <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, fontWeight: on ? 700 : 500, textAlign: "center", lineHeight: 1.2 }}>{s.short}</span>
               </button>
             );
           })}
@@ -887,7 +887,7 @@ function ShareLinkRow({ token }) {
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500 }}>Shareable link</div>
         <div className="mono" style={{
-          fontSize: 8.5, letterSpacing: 0.6, color: "var(--muted)",
+          fontSize: 9, letterSpacing: 0.6, color: "var(--muted)",
           marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
         }}>{url}</div>
       </div>
@@ -988,7 +988,7 @@ function ShareLocationSheet({
             background: active ? "rgba(255,255,255,0.92)" : "var(--line-2)",
             animation: active ? "pulse 1.6s infinite" : "none",
           }}/>
-          <span className="serif" style={{ fontSize: 17, flex: 1 }}>
+          <span className="serif" style={{ fontSize: 18, flex: 1 }}>
             {active ? "Sharing now" : "Not sharing"}
           </span>
           {active && (
@@ -1020,7 +1020,7 @@ function ShareLocationSheet({
             <span style={{ fontSize: 18 }}>📍</span>
             <div style={{ flex: 1 }}>
               <div style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500 }}>My GPS location</div>
-              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
                 {gpsStatus === "live" && gpsPos
                   ? `LIVE · ±${Math.round(gpsPos.accuracy || 0)}m`
                   : gpsStatus === "locating" ? "FINDING…"
@@ -1044,7 +1044,7 @@ function ShareLocationSheet({
             <span style={{ fontSize: 18 }}>🎪</span>
             <div style={{ flex: 1 }}>
               <div style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500 }}>Current stage</div>
-              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
                 {stage ? stage.name.toUpperCase() : "NOT SET — TAP “I'M AT” FIRST"}
               </div>
             </div>
@@ -1093,7 +1093,7 @@ function ShareLocationSheet({
 
         {/* Battery callout */}
         <div className="mono" style={{
-          fontSize: 8.5, letterSpacing: 1.1, color: "var(--muted)",
+          fontSize: 9, letterSpacing: 1.1, color: "var(--muted)",
           marginBottom: 14, textAlign: "center",
         }}>
           ⚡ USES ~1% MORE BATTERY PER HOUR
@@ -1209,7 +1209,7 @@ function MeetupsSheet({ onClose }) {
             padding: "20px 12px", borderRadius: 12,
             background: "var(--paper-2)", textAlign: "center", marginBottom: 12,
           }}>
-            <div className="serif" style={{ fontSize: 17, marginBottom: 4 }}>No meetups yet</div>
+            <div className="serif" style={{ fontSize: 18, marginBottom: 4 }}>No meetups yet</div>
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)" }}>
               CREATE ONE BELOW
             </div>
@@ -1505,11 +1505,11 @@ function WeatherStrip() {
     }}>
       <span style={{ fontSize: 14, lineHeight: 1, flexShrink: 0 }}>{emoji}</span>
       <span className="mono" style={{
-        fontSize: 8.5, letterSpacing: 1.2, fontWeight: 700, flexShrink: 0,
+        fontSize: 9, letterSpacing: 1.2, fontWeight: 700, flexShrink: 0,
         color: isAlert ? "var(--ember)" : "var(--muted)",
       }}>{(FESTIVAL_CONFIG.locationShort || FESTIVAL_CONFIG.brand || "").toUpperCase()}</span>
       <span style={{
-        flex: 1, minWidth: 0, fontSize: 11.5, fontWeight: 500, color: "var(--ink)",
+        flex: 1, minWidth: 0, fontSize: 13, fontWeight: 500, color: "var(--ink)",
         whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
       }}>{w.tempF}°F · {label}</span>
       <span className="mono" style={{
@@ -1547,12 +1547,12 @@ function SunriseStrip({ avatar, onSelect }) {
       boxShadow: "0 3px 10px rgba(245,154,54,0.30)",
     }}>
       <span style={{ fontSize: 14, lineHeight: 1, flexShrink: 0 }}>🌅</span>
-      <span className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, fontWeight: 800, opacity: 0.92, flexShrink: 0 }}>SUNRISE</span>
+      <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 800, opacity: 0.92, flexShrink: 0 }}>SUNRISE</span>
       <span style={{
-        flex: 1, minWidth: 0, fontSize: 11.5, fontWeight: 500,
+        flex: 1, minWidth: 0, fontSize: 13, fontWeight: 500,
         whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
       }}>{isUp ? "Sun's up — head to the lotus" : "Hold the line"}</span>
-      <span className="mono" style={{ fontSize: 9.5, letterSpacing: 1, fontWeight: 800, flexShrink: 0 }}>
+      <span className="mono" style={{ fontSize: 10, letterSpacing: 1, fontWeight: 800, flexShrink: 0 }}>
         {isUp ? "NOW" : `${minsUntil}M`} · {walkLabel}M
       </span>
     </button>
@@ -1593,7 +1593,7 @@ function NextSetStrip({ savedIds, avatar, onSelect }) {
           fontSize: 8, letterSpacing: 1.3, fontWeight: 700, opacity: 0.7, lineHeight: 1.1,
         }}>{next.isLive ? "★ NEXT — LIVE" : "★ NEXT"}</div>
         <div className="serif" style={{
-          fontSize: 14.5, lineHeight: 1.15, letterSpacing: -0.2,
+          fontSize: 14, lineHeight: 1.15, letterSpacing: -0.2,
           whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
         }}>
           {next.artist.name}
@@ -1607,7 +1607,7 @@ function NextSetStrip({ savedIds, avatar, onSelect }) {
           {headline}
         </div>
         <div className="mono" style={{
-          fontSize: 8.5, letterSpacing: 0.9, fontWeight: 600,
+          fontSize: 9, letterSpacing: 0.9, fontWeight: 600,
           opacity: willBeLate ? 1 : 0.7,
           color: willBeLate ? "#fbbf24" : "inherit",
           marginTop: 1,
@@ -1967,9 +1967,7 @@ function MapScreen({ state, setState }) {
     : "DEMO";
   const gpsActive = gpsLive && (gpsStatus === "live" || gpsStatus === "locating");
 
-  // Show the bottom search sheet only when the map is in its default state
-  // (no stage selected, not in meet mode, not in compass-driven full-bleed UI).
-  const showSearchSheet = !stage && !meetMode;
+  // Unified sheet handles visibility internally based on stage/meetMode/search state.
 
   return (
     <Screen bg="var(--paper)" ink="var(--ink)">
@@ -2048,7 +2046,7 @@ function MapScreen({ state, setState }) {
               opacity: mapZoom >= MAP_ZOOM_MAX ? 0.35 : 1,
               display: "flex", alignItems: "center", justifyContent: "center",
               color: "var(--ink)", fontFamily: "Geist Mono, monospace",
-              fontSize: 17, fontWeight: 600, lineHeight: 1,
+              fontSize: 18, fontWeight: 600, lineHeight: 1,
             }}>+</button>
             <button onClick={zoomOut} disabled={mapZoom <= MAP_ZOOM_MIN} aria-label="Zoom out" style={{
               width: 46, height: 36, padding: 0,
@@ -2057,7 +2055,7 @@ function MapScreen({ state, setState }) {
               opacity: mapZoom <= MAP_ZOOM_MIN ? 0.35 : 1,
               display: "flex", alignItems: "center", justifyContent: "center",
               color: "var(--ink)", fontFamily: "Geist Mono, monospace",
-              fontSize: 19, fontWeight: 600, lineHeight: 1,
+              fontSize: 20, fontWeight: 600, lineHeight: 1,
             }}>−</button>
             {(mapZoom !== 1 || mapPan.x !== 0 || mapPan.y !== 0) && (
               <button onClick={zoomReset} aria-label="Reset zoom" style={{
@@ -2164,22 +2162,33 @@ function MapScreen({ state, setState }) {
             NextSet / Sunrise / Weather heads-up strips. Auto-expands while
             typing to show stage + artist results. Hidden when a stage is
             selected or meet mode is active so the place card takes over. */}
-        {showSearchSheet && (() => {
-          const isOpen = searchSheetExpanded || search.trim().length > 0;
+        {/* ── UNIFIED BOTTOM SHEET ────────────────────────────────
+            Single surface: collapsed → half → full → place-card.
+            Friends live inside the sheet as avatar dots (collapsed) or
+            a full row (half). Stage place card is the same surface. */}
+        {(() => {
+          const hasPlaceCard = !!(stage || (meetMode && meetTarget));
+          const sheetMode = hasPlaceCard ? "place-card" : search.trim().length > 0 ? "full" : searchSheetExpanded ? "half" : "collapsed";
+          const isShort = typeof window !== "undefined" && window.innerHeight < 700;
+          const sheetMaxH = sheetMode === "full" ? (isShort ? "44vh" : "48vh") : sheetMode === "half" ? (isShort ? 260 : 320) : 82;
+
+          if (sheetMode === "place-card") return null;
+
           return (
             <div style={{
-              position: "absolute", left: 8, right: 8, bottom: 58,
+              position: "absolute", left: 8, right: 8, bottom: 10,
               zIndex: 5,
               background: "var(--paper)",
               border: "1px solid var(--line-2)",
               borderRadius: 16,
               boxShadow: "0 -6px 24px rgba(0,0,0,0.18)",
-              maxHeight: isOpen ? "48vh" : "auto",
+              maxHeight: sheetMaxH,
               overflow: "hidden",
               display: "flex", flexDirection: "column",
-              transition: "max-height 0.2s ease-out",
+              transition: "max-height 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+              willChange: "max-height",
             }}>
-              {/* Drag handle — tap to toggle expanded state */}
+              {/* Drag handle */}
               <div onClick={() => setSearchSheetExpanded(e => !e)} style={{
                 display: "flex", justifyContent: "center", cursor: "pointer",
                 padding: "6px 0 4px", flexShrink: 0,
@@ -2188,7 +2197,7 @@ function MapScreen({ state, setState }) {
               </div>
 
               {/* Search input pill */}
-              <div style={{ padding: "0 8px 8px", flexShrink: 0 }}>
+              <div style={{ padding: "0 8px 6px", flexShrink: 0 }}>
                 <div style={{
                   display: "flex", alignItems: "center", gap: 7,
                   background: "var(--paper-2)",
@@ -2221,7 +2230,57 @@ function MapScreen({ state, setState }) {
                 </div>
               </div>
 
-              {/* Search results (when typing) */}
+              {/* Collapsed: friend avatar dots + MEET UP inline */}
+              {sheetMode === "collapsed" && (
+                <div style={{ padding: "0 10px 8px", display: "flex", alignItems: "center", gap: 5, flexShrink: 0 }}>
+                  <button onClick={() => {
+                    if (meetMode) { setMeetMode(false); setMeetTarget(null); setMeetGroup([]); }
+                    else { setMeetMode(true); }
+                  }} style={{
+                    background: meetMode ? "var(--ember)" : "var(--ink)",
+                    color: "#fff", border: "none", borderRadius: 999, padding: "4px 10px",
+                    fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+                    cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0,
+                  }}>{meetMode ? "× CANCEL" : "MEET UP"}</button>
+                  <div className="no-scrollbar" style={{ display: "flex", gap: 3, flex: 1, overflowX: "auto", scrollbarWidth: "none" }}>
+                    {friends.map(f => {
+                      const unread = unreadCount(f.id);
+                      return (
+                        <button key={f.id} onClick={() => setChatFriend(f)} style={{
+                          position: "relative", flexShrink: 0, width: 22, height: 22,
+                          borderRadius: 22, background: f.avatarTone, border: "1.5px solid #fff",
+                          padding: 0, cursor: "pointer",
+                        }}>
+                          {unread > 0 && <span style={{
+                            position: "absolute", top: -3, right: -3,
+                            width: 8, height: 8, borderRadius: 8,
+                            background: "var(--ember)", border: "1px solid var(--paper)",
+                          }}/>}
+                        </button>
+                      );
+                    })}
+                    {crewFriends.map(f => (
+                      <button key={f.id} onClick={() => setChatFriend({ id: f.id, presId: f.id, name: f.name, avatarTone: f.color, x: f.x, y: f.y })} style={{
+                        flexShrink: 0, width: 22, height: 22, borderRadius: 22,
+                        background: `${f.color}44`, border: `1.5px solid ${f.color}`,
+                        padding: 0, cursor: "pointer", position: "relative",
+                      }}>
+                        <span style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          <span style={{ width: 6, height: 6, borderRadius: 6, background: f.color, animation: "pulse 1.6s infinite" }}/>
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                  <button onClick={() => setMoreOpen(o => !o)} style={{
+                    background: "var(--paper-2)", border: "1px solid var(--line-2)",
+                    borderRadius: 999, width: 26, height: 22, padding: 0,
+                    cursor: "pointer", flexShrink: 0, fontSize: 14, fontWeight: 700,
+                    display: "flex", alignItems: "center", justifyContent: "center", color: "var(--ink)",
+                  }}>⋯</button>
+                </div>
+              )}
+
+              {/* Search results (full) */}
               {search && (
                 <div style={{ overflowY: "auto", padding: "0 8px 10px", flex: 1 }}>
                   <div style={{ background: "var(--paper-2)", borderRadius: 10 }}>
@@ -2260,69 +2319,135 @@ function MapScreen({ state, setState }) {
                 </div>
               )}
 
-              {/* Heads-up strips — ALWAYS visible (when not typing), regardless
-                  of sheet expanded state. NextSetStrip's countdown + walk
-                  time is the killer wayfinding piece; can't be hidden behind
-                  a tap. Same for sunrise + weather alerts. */}
-              {!search && (
-                <div style={{
-                  padding: "0 10px 8px",
-                  display: "flex", flexDirection: "column", gap: 8,
-                  flexShrink: 0,
-                }}>
-                  <NextSetStrip
-                    savedIds={state.saved}
-                    avatar={avatar}
-                    onSelect={(id) => { setSelectedStage(id); setPeek(false); setSearchSheetExpanded(false); }}
-                  />
-                  <SunriseStrip
-                    avatar={avatar}
-                    onSelect={(id) => { setSelectedStage(id); setPeek(false); setSearchSheetExpanded(false); }}
-                  />
-                  <WeatherStrip />
-                </div>
-              )}
-
-              {/* Find Nearby chips — only when the sheet is tapped open.
-                  Drawer-style affordance for "I need water/medic/etc"; not
-                  needed in the default collapsed view. */}
-              {!search && searchSheetExpanded && (
-                <div style={{
-                  overflowY: "auto", padding: "0 10px 12px",
-                  display: "flex", flexDirection: "column", gap: 8, flex: 1,
-                }}>
-                  <div style={{ display: "flex", gap: 6, overflowX: "auto", scrollbarWidth: "none", paddingBottom: 2 }}>
-                    {[
-                      { type: "water",  label: "Water",  emoji: "💧", color: "#38bdf8" },
-                      { type: "med",    label: "Medic",  emoji: "✚",  color: "#f87171" },
-                      { type: "toilet", label: "Toilet", emoji: "🚻", color: "#94a3b8" },
-                      { type: "charge", label: "Charge", emoji: "⚡", color: "#facc15" },
-                      { type: "locker", label: "Locker", emoji: "🔒", color: "#a78bfa" },
-                    ].map(c => (
-                      <button key={c.type} onClick={() => {
-                        const matches = (typeof AMENITIES !== "undefined" ? AMENITIES : []).filter(a => a.type === c.type);
-                        if (!matches.length) return;
-                        const nearest = matches
-                          .map(a => ({ ...a, _d: Math.hypot(a.x - avatar.x, a.y - avatar.y) }))
-                          .sort((a, b) => a._d - b._d)[0];
-                        setMeetTarget({ x: nearest.x, y: nearest.y, label: nearest.label, isAmenity: true });
-                        setMeetMode(true);
-                        setSearchSheetExpanded(false);
-                      }} className="mono" style={{
-                        flexShrink: 0,
-                        display: "inline-flex", alignItems: "center", gap: 6,
-                        padding: "7px 12px", borderRadius: 999,
-                        background: "var(--paper-2)", border: `1px solid ${c.color}55`,
-                        color: "var(--ink)", cursor: "pointer",
-                        fontSize: 9.5, letterSpacing: 1.1, fontWeight: 700,
-                        whiteSpace: "nowrap",
-                      }}>
-                        <span style={{ fontSize: 13, lineHeight: 1 }}>{c.emoji}</span>
-                        <span>{c.label.toUpperCase()}</span>
-                      </button>
-                    ))}
+              {/* Half: heads-up strips + Find Nearby + friends row */}
+              {!search && sheetMode === "half" && (
+                <>
+                  <div style={{
+                    padding: "0 10px 8px",
+                    display: "flex", flexDirection: "column", gap: 8,
+                    flexShrink: 0,
+                  }}>
+                    <NextSetStrip
+                      savedIds={state.saved}
+                      avatar={avatar}
+                      onSelect={(id) => { setSelectedStage(id); setPeek(false); setSearchSheetExpanded(false); }}
+                    />
+                    <SunriseStrip
+                      avatar={avatar}
+                      onSelect={(id) => { setSelectedStage(id); setPeek(false); setSearchSheetExpanded(false); }}
+                    />
+                    <WeatherStrip />
                   </div>
-                </div>
+                  <div style={{ padding: "0 10px 6px" }}>
+                    <div className="no-scrollbar" style={{ display: "flex", gap: 6, overflowX: "auto", scrollbarWidth: "none", paddingBottom: 2 }}>
+                      {[
+                        { type: "water",  label: "Water",  emoji: "💧", color: "#38bdf8" },
+                        { type: "med",    label: "Medic",  emoji: "✚",  color: "#f87171" },
+                        { type: "toilet", label: "Toilet", emoji: "🚻", color: "#94a3b8" },
+                        { type: "charge", label: "Charge", emoji: "⚡", color: "#facc15" },
+                        { type: "locker", label: "Locker", emoji: "🔒", color: "#a78bfa" },
+                      ].map(c => (
+                        <button key={c.type} onClick={() => {
+                          const matches = (typeof AMENITIES !== "undefined" ? AMENITIES : []).filter(a => a.type === c.type);
+                          if (!matches.length) return;
+                          const nearest = matches
+                            .map(a => ({ ...a, _d: Math.hypot(a.x - avatar.x, a.y - avatar.y) }))
+                            .sort((a, b) => a._d - b._d)[0];
+                          setMeetTarget({ x: nearest.x, y: nearest.y, label: nearest.label, isAmenity: true });
+                          setMeetMode(true);
+                          setSearchSheetExpanded(false);
+                        }} className="mono" style={{
+                          flexShrink: 0,
+                          display: "inline-flex", alignItems: "center", gap: 6,
+                          padding: "7px 12px", borderRadius: 999,
+                          background: "var(--paper-2)", border: `1px solid ${c.color}55`,
+                          color: "var(--ink)", cursor: "pointer",
+                          fontSize: 10, letterSpacing: 1.1, fontWeight: 700,
+                          whiteSpace: "nowrap",
+                        }}>
+                          <span style={{ fontSize: 13, lineHeight: 1 }}>{c.emoji}</span>
+                          <span>{c.label.toUpperCase()}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Friends row inside the sheet */}
+                  <div style={{
+                    padding: "4px 8px 8px", display: "flex", alignItems: "center", gap: 6,
+                    borderTop: "1px solid var(--line)", flexShrink: 0,
+                  }}>
+                    <button onClick={() => {
+                      if (meetMode) { setMeetMode(false); setMeetTarget(null); setMeetGroup([]); }
+                      else { setMeetMode(true); }
+                    }} style={{
+                      background: meetMode ? "var(--ember)" : "var(--ink)",
+                      color: "#fff", border: "none", borderRadius: 999, padding: "6px 11px",
+                      fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
+                      cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0,
+                    }}>{meetMode ? "× CANCEL" : "MEET UP"}</button>
+                    <button onClick={() => setMoreOpen(o => !o)} style={{
+                      background: moreOpen ? "var(--ink)" : "var(--paper-2)",
+                      color: moreOpen ? "var(--paper)" : "var(--ink)",
+                      border: moreOpen ? "none" : "1px solid var(--line-2)",
+                      borderRadius: 999, width: 32, height: 26, padding: 0,
+                      cursor: "pointer", flexShrink: 0, fontSize: 16, fontWeight: 700,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                    }}>⋯</button>
+                    <div className="no-scrollbar" style={{ display: "flex", gap: 5, overflowX: "auto", flex: 1, scrollbarWidth: "none" }}>
+                      {friends.map(f => {
+                        const d = Math.round(Math.sqrt((f.x-avatar.x)**2 + (f.y-avatar.y)**2) * 1.8);
+                        const active = meetGroup.includes(f.id);
+                        return (
+                          <button key={f.id} onClick={() => { if (meetMode) { toggleGroupMember(f.id); return; } setChatFriend(f); }}
+                            style={{
+                              position: "relative", flexShrink: 0, display: "flex", alignItems: "center", gap: 5,
+                              padding: "3px 8px 3px 3px", borderRadius: 999,
+                              background: active ? f.color : "var(--paper-2)",
+                              border: `1px solid ${active ? f.color : "var(--line-2)"}`,
+                              color: active ? "#fff" : "var(--ink)",
+                              cursor: "pointer",
+                              fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 0.4, fontWeight: 600,
+                            }}>
+                            <span style={{ width: 14, height: 14, borderRadius: 14, background: f.avatarTone, border: "1.2px solid #fff", flexShrink: 0 }}/>
+                            {f.name.toUpperCase()}·{d}M
+                            {unreadCount(f.id) > 0 && !meetMode && (
+                              <span style={{
+                                position: "absolute", top: -3, right: -3,
+                                minWidth: 14, height: 14, padding: "0 4px",
+                                background: "var(--ember)", color: "#fff",
+                                borderRadius: 14, fontSize: 8, fontWeight: 700,
+                                display: "flex", alignItems: "center", justifyContent: "center",
+                                border: "1.5px solid var(--paper)",
+                              }}>{unreadCount(f.id)}</span>
+                            )}
+                          </button>
+                        );
+                      })}
+                      {crewFriends.map(f => {
+                        const st = STAGES.find(s => s.id === f.stageId);
+                        const minsAgo = f.ts ? Math.floor((Date.now() - f.ts) / 60000) : null;
+                        const age = minsAgo == null ? "" : minsAgo < 1 ? " · now" : ` · ${minsAgo}m`;
+                        return (
+                          <button key={f.id}
+                            onClick={() => setChatFriend({ id: f.id, presId: f.id, name: f.name, avatarTone: f.color, x: f.x, y: f.y })}
+                            style={{
+                              flexShrink: 0, display: "flex", alignItems: "center", gap: 5,
+                              padding: "3px 8px 3px 5px", borderRadius: 999,
+                              background: `${f.color}22`, border: `1px solid ${f.color}`,
+                              fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 0.4, fontWeight: 600,
+                              color: "var(--ink)", cursor: "pointer",
+                            }}>
+                            <span style={{ width: 7, height: 7, borderRadius: 7, background: f.color, animation: "pulse 1.6s infinite", flexShrink: 0 }}/>
+                            {f.name.toUpperCase()}
+                            <span style={{ fontSize: 8, opacity: 0.7, letterSpacing: 0.8, color: st?.color }}>
+                              {st?.short || ""}{age}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </>
               )}
             </div>
           );
@@ -2346,135 +2471,53 @@ function MapScreen({ state, setState }) {
           <GroundPeek stage={stage} onClose={() => setPeek(false)} />
         )}
 
-        {/* Meet mode banner */}
+        {/* Meet mode banner — full-width bar with clear affordance */}
         {meetMode && (
           <div style={{
-            position: "absolute", top: 10, left: "50%", transform: "translateX(-50%)",
-            background: meetTarget ? "var(--ember)" : "var(--paper)",
-            border: meetTarget ? "none" : "1px solid var(--ember)",
-            color: meetTarget ? "#fff" : "var(--ember)",
-            padding: "7px 13px", borderRadius: 999,
+            position: "absolute", top: 0, left: 0, right: 0,
+            background: meetTarget ? "var(--ember)" : "rgba(26,18,13,0.92)",
+            color: "#fff",
+            padding: "10px 14px",
+            paddingTop: "calc(10px + env(safe-area-inset-top, 0px))",
             fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
-            boxShadow: meetTarget ? "0 4px 16px rgba(232,93,46,0.5)" : "none",
-            zIndex: 5, display: "flex", alignItems: "center", gap: 7,
+            boxShadow: "0 4px 16px rgba(0,0,0,0.35)",
+            zIndex: 8, display: "flex", alignItems: "center", gap: 10,
+            animation: "springIn 0.3s ease-out",
           }}>
-            {meetTarget ? (
-              <>
-                <span style={{ width: 7, height: 7, borderRadius: 7, background: "#fff", animation: "pulse 1.4s infinite" }}/>
-                {meetTarget.isAmenity
-                  ? `→ ${meetTarget.label.toUpperCase()}`
-                  : `${meetTarget.label.toUpperCase()} · ${meetGroup.length > 1 ? `GROUP (${meetGroup.length + 1})` : "BOTH"} WALKING`}
-              </>
-            ) : meetGroup.length ? "TAP MAP TO DROP PIN" : "PICK FRIENDS OR TAP MAP"}
+            <span style={{ flex: 1, display: "flex", alignItems: "center", gap: 7 }}>
+              {meetTarget ? (
+                <>
+                  <span style={{ width: 7, height: 7, borderRadius: 7, background: "#fff", animation: "pulse 1.4s infinite" }}/>
+                  {meetTarget.isAmenity
+                    ? `→ ${meetTarget.label.toUpperCase()}`
+                    : `${meetTarget.label.toUpperCase()} · ${meetGroup.length > 1 ? `GROUP (${meetGroup.length + 1})` : "BOTH"} WALKING`}
+                </>
+              ) : meetGroup.length ? "TAP THE MAP TO DROP A PIN" : "MEET MODE — TAP MAP TO DROP A PIN"}
+            </span>
+            <button onClick={() => { setMeetMode(false); setMeetTarget(null); setMeetGroup([]); }} style={{
+              background: "rgba(255,255,255,0.2)", border: "none", borderRadius: 999,
+              padding: "5px 12px", color: "#fff", cursor: "pointer",
+              fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+            }}>× CANCEL</button>
           </div>
         )}
 
-        {/* Friends bar (bottom overlay, always visible) */}
-        <div style={{
-          position: "absolute", left: 10, right: 10, bottom: stage || meetMode ? 140 : 10,
-          background: "var(--paper)",
-          border: "1px solid var(--line-2)",
-          borderRadius: 14, padding: 6,
-          boxShadow: "0 6px 20px rgba(26,18,13,0.12)",
-          display: "flex", alignItems: "center", gap: 6,
-          transition: "bottom 0.3s",
-        }}>
-          <button onClick={() => {
-            if (meetMode) { setMeetMode(false); setMeetTarget(null); setMeetGroup([]); }
-            else { setMeetMode(true); }
-          }} style={{
-            background: meetMode ? "var(--ember)" : "var(--ink)",
-            color: "#fff",
-            border: "none", borderRadius: 999, padding: "6px 11px",
-            fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.3, fontWeight: 700,
-            cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0,
-          }}>{meetMode ? "× CANCEL" : "MEET UP"}</button>
-          <button onClick={() => setMoreOpen(o => !o)} aria-label="More actions" title="Ping / Crew / I'm at" style={{
-            position: "relative",
-            background: moreOpen ? "var(--ink)" : "var(--paper-2)",
-            color: moreOpen ? "var(--paper)" : "var(--ink)",
-            border: moreOpen ? "none" : "1px solid var(--line-2)",
-            borderRadius: 999, width: 32, height: 26, padding: 0,
-            cursor: "pointer", flexShrink: 0,
-            fontSize: 16, fontWeight: 700, lineHeight: 1,
-            display: "flex", alignItems: "center", justifyContent: "center",
+        {/* PLACE CARD — same visual surface as unified sheet, positioned as absolute overlay */}
+        {(stage || (meetMode && meetTarget)) && (
+          <div style={{
+            position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 6,
           }}>
-            ⋯
-            {(isSharing || myStatusStage) && (
-              <span style={{
-                position: "absolute", top: -2, right: -2,
-                width: 8, height: 8, borderRadius: 8,
-                background: isSharing
-                  ? "var(--success)"
-                  : (myStatusStage ? (STAGES.find(s => s.id === myStatusStage)?.color || "var(--ember)") : "var(--ember)"),
-                border: "1.5px solid var(--paper)",
-              }}/>
-            )}
-          </button>
-          <div className="no-scrollbar" style={{
-            display: moreOpen ? "none" : "flex",
-            gap: 5, overflowX: "auto", flex: 1, scrollbarWidth: "none",
-          }}>
-            {friends.map(f => {
-              const d = Math.round(Math.sqrt((f.x-avatar.x)**2 + (f.y-avatar.y)**2) * 1.8);
-              const active = meetGroup.includes(f.id);
-              const unread = unreadCount(f.id);
-              const handleClick = () => {
-                if (meetMode) { toggleGroupMember(f.id); return; }
-                setChatFriend(f);
-              };
-              return (
-                <button key={f.id} onClick={handleClick}
-                  style={{
-                    position: "relative",
-                    flexShrink: 0, display: "flex", alignItems: "center", gap: 5,
-                    padding: "3px 8px 3px 3px", borderRadius: 999,
-                    background: active ? f.color : "var(--paper-2)",
-                    border: `1px solid ${active ? f.color : "var(--line-2)"}`,
-                    color: active ? "#fff" : "var(--ink)",
-                    cursor: "pointer",
-                    fontFamily: "Geist Mono, monospace", fontSize: 8.5, letterSpacing: 0.4, fontWeight: 600,
-                  }}>
-                  <span style={{ width: 14, height: 14, borderRadius: 14, background: f.avatarTone, border: "1.2px solid #fff", flexShrink: 0 }}/>
-                  {f.name.toUpperCase()}·{d}M
-                  {unread > 0 && !meetMode && (
-                    <span style={{
-                      position: "absolute", top: -3, right: -3,
-                      minWidth: 14, height: 14, padding: "0 4px",
-                      background: "var(--ember)", color: "#fff",
-                      borderRadius: 14, fontSize: 8, fontWeight: 700,
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      border: "1.5px solid var(--paper)",
-                    }}>{unread}</span>
-                  )}
-                </button>
-              );
-            })}
-            {crewFriends.map(f => {
-              const st = STAGES.find(s => s.id === f.stageId);
-              const minsAgo = f.ts ? Math.floor((Date.now() - f.ts) / 60000) : null;
-              const age = minsAgo == null ? "" : minsAgo < 1 ? " · now" : ` · ${minsAgo}m`;
-              return (
-                <button key={f.id}
-                  onClick={() => setChatFriend({ id: f.id, presId: f.id, name: f.name, avatarTone: f.color, x: f.x, y: f.y })}
-                  style={{
-                    flexShrink: 0, display: "flex", alignItems: "center", gap: 5,
-                    padding: "3px 8px 3px 5px", borderRadius: 999,
-                    background: `${f.color}22`,
-                    border: `1px solid ${f.color}`,
-                    fontFamily: "Geist Mono, monospace", fontSize: 8.5, letterSpacing: 0.4, fontWeight: 600,
-                    color: "var(--ink)", cursor: "pointer",
-                  }}>
-                  <span style={{ width: 7, height: 7, borderRadius: 7, background: f.color, animation: "pulse 1.6s infinite", flexShrink: 0 }}/>
-                  {f.name.toUpperCase()}
-                  <span style={{ fontSize: 7.5, opacity: 0.7, letterSpacing: 0.8, color: st?.color }}>
-                    {st?.short || ""}{age}
-                  </span>
-                </button>
-              );
-            })}
+            <BottomSheet
+              stage={stage} nowAtStage={nowAtStage} dist={dist} walk={walk}
+              peek={peek} setPeek={setPeek}
+              meetMode={meetMode} meetTarget={meetTarget} friends={friends} meetGroup={meetGroup} avatar={avatar}
+              onClose={() => setSelectedStage(null)}
+              onCancelMeet={() => { setMeetMode(false); setMeetTarget(null); setMeetGroup([]); }}
+              onOpenArtist={(id) => setState({ ...state, tab: "home", artist: id })}
+              state={state} setState={setState}
+            />
           </div>
-        </div>
+        )}
 
         {/* More-actions popover (PING / CREW / I'M AT) */}
         {moreOpen && (
@@ -2484,7 +2527,7 @@ function MapScreen({ state, setState }) {
             }}/>
             <div style={{
               position: "absolute", left: 10, right: 10,
-              bottom: stage || meetMode ? 184 : 54, zIndex: 7,
+              bottom: stage || meetMode ? 184 : 96, zIndex: 7,
               background: "var(--paper)", border: "1px solid var(--line-2)",
               borderRadius: 14, padding: 5,
               boxShadow: "0 10px 28px rgba(26,18,13,0.20)",
@@ -2496,7 +2539,7 @@ function MapScreen({ state, setState }) {
               }}>
                 <span style={{ fontSize: 14, width: 18 }}>◉</span>
                 <span style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500, flex: 1 }}>Ping code</span>
-                <span className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", fontWeight: 700 }}>SHARE / DROP</span>
+                <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", fontWeight: 700 }}>SHARE / DROP</span>
               </button>
               <button onClick={() => { setShareOpen(true); setMoreOpen(false); }} style={{
                 width: "100%", display: "flex", alignItems: "center", gap: 10,
@@ -2513,7 +2556,7 @@ function MapScreen({ state, setState }) {
                 <span style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500, flex: 1 }}>
                   Share with crew{crewFriends.length > 0 ? ` · ${crewFriends.length}` : ""}
                 </span>
-                <span className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: isSharing ? "var(--success)" : "var(--muted)", fontWeight: 700 }}>
+                <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: isSharing ? "var(--success)" : "var(--muted)", fontWeight: 700 }}>
                   {isSharing ? "ON" : "OFF"}
                 </span>
               </button>
@@ -2528,7 +2571,7 @@ function MapScreen({ state, setState }) {
                     <span style={{ fontSize: 14, width: 18 }}>📍</span>
                     <span style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500, flex: 1 }}>I'm at…</span>
                     <span className="mono" style={{
-                      fontSize: 8.5, letterSpacing: 1, fontWeight: 700,
+                      fontSize: 9, letterSpacing: 1, fontWeight: 700,
                       color: ms ? ms.color : "var(--muted)",
                     }}>{ms ? ms.short : "PICK STAGE"}</span>
                   </button>
@@ -2542,7 +2585,7 @@ function MapScreen({ state, setState }) {
                 <span style={{ fontSize: 14, width: 18 }}>🗓</span>
                 <span style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500, flex: 1 }}>Meetups</span>
                 <span className="mono" style={{
-                  fontSize: 8.5, letterSpacing: 1, color: meetups.length ? "var(--ember)" : "var(--muted)", fontWeight: 700,
+                  fontSize: 9, letterSpacing: 1, color: meetups.length ? "var(--ember)" : "var(--muted)", fontWeight: 700,
                 }}>{meetups.length ? `${meetups.length} UPCOMING` : "NONE"}</span>
               </button>
               <button onClick={() => { setRideshareOpen(true); setMoreOpen(false); }} style={{
@@ -2552,7 +2595,7 @@ function MapScreen({ state, setState }) {
               }}>
                 <span style={{ fontSize: 14, width: 18 }}>🚗</span>
                 <span style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500, flex: 1 }}>Rideshare</span>
-                <span className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", fontWeight: 700 }}>UBER / LYFT</span>
+                <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", fontWeight: 700 }}>UBER / LYFT</span>
               </button>
             </div>
           </>
@@ -2577,18 +2620,7 @@ function MapScreen({ state, setState }) {
         />
       )}
 
-      {/* BOTTOM SHEET */}
-      {(stage || (meetMode && meetTarget)) && (
-        <BottomSheet
-          stage={stage} nowAtStage={nowAtStage} dist={dist} walk={walk}
-          peek={peek} setPeek={setPeek}
-          meetMode={meetMode} meetTarget={meetTarget} friends={friends} meetGroup={meetGroup} avatar={avatar}
-          onClose={() => setSelectedStage(null)}
-          onCancelMeet={() => { setMeetMode(false); setMeetTarget(null); setMeetGroup([]); }}
-          onOpenArtist={(id) => setState({ ...state, tab: "home", artist: id })}
-          state={state} setState={setState}
-        />
-      )}
+      {/* BottomSheet moved inside map container as absolute overlay */}
 
       {rideshareOpen && <RideshareSheet onClose={() => setRideshareOpen(false)} />}
 
@@ -4164,22 +4196,42 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         </defs>
 
         {/* Festival-specific map background */}
-        {FESTIVAL_CONFIG.mapImage ? (<>
-          <image href={FESTIVAL_CONFIG.mapImage} x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMid slice" opacity="0.85"/>
+        {FESTIVAL_CONFIG.mapStyle === "image-overlay" && FESTIVAL_CONFIG.mapImage ? (<>
           <defs>
+            <filter id="mapClean" colorInterpolationFilters="sRGB">
+              <feColorMatrix type="saturate" values="0.55"/>
+              <feColorMatrix type="matrix" values="1.02 0.04 0 0 0.03  0 1.0 0.02 0 0.02  0 0 0.96 0 0.01  0 0 0 1 0"/>
+            </filter>
             <linearGradient id="mapFadeL" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stopColor="#e8dfcf" stopOpacity="0.92"/>
-              <stop offset="0.55" stopColor="#e8dfcf" stopOpacity="0.35"/>
+              <stop offset="0" stopColor="#e8dfcf" stopOpacity="0.96"/>
+              <stop offset="0.35" stopColor="#e8dfcf" stopOpacity="0.7"/>
+              <stop offset="0.65" stopColor="#e8dfcf" stopOpacity="0.15"/>
               <stop offset="1" stopColor="#e8dfcf" stopOpacity="0"/>
             </linearGradient>
-            <radialGradient id="mapVignette" cx="50%" cy="50%" r="55%">
+            <linearGradient id="mapFadeB" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#e8dfcf" stopOpacity="0"/>
+              <stop offset="0.7" stopColor="#e8dfcf" stopOpacity="0"/>
+              <stop offset="0.88" stopColor="#e8dfcf" stopOpacity="0.5"/>
+              <stop offset="1" stopColor="#e8dfcf" stopOpacity="0.92"/>
+            </linearGradient>
+            <linearGradient id="mapFadeT" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#e8dfcf" stopOpacity="0.8"/>
+              <stop offset="0.12" stopColor="#e8dfcf" stopOpacity="0.3"/>
+              <stop offset="0.25" stopColor="#e8dfcf" stopOpacity="0"/>
+            </linearGradient>
+            <radialGradient id="mapVignette" cx="50%" cy="45%" r="52%">
               <stop offset="0" stopColor="#000" stopOpacity="0"/>
-              <stop offset="0.75" stopColor="#000" stopOpacity="0"/>
-              <stop offset="1" stopColor="#000" stopOpacity="0.22"/>
+              <stop offset="0.7" stopColor="#000" stopOpacity="0"/>
+              <stop offset="1" stopColor="#1a120d" stopOpacity="0.28"/>
             </radialGradient>
           </defs>
-          <rect x="0" y="0" width="15" height="100" fill="url(#mapFadeL)"/>
+          <rect x="0" y="0" width="100" height="100" fill="var(--paper-2)"/>
+          <image href={FESTIVAL_CONFIG.mapImage} x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMid slice" opacity="0.82" filter="url(#mapClean)"/>
+          <rect x="0" y="0" width="22" height="100" fill="url(#mapFadeL)"/>
+          <rect x="0" y="0" width="100" height="100" fill="url(#mapFadeB)"/>
+          <rect x="0" y="0" width="100" height="100" fill="url(#mapFadeT)"/>
           <rect x="0" y="0" width="100" height="100" fill="url(#mapVignette)"/>
+          <rect x="0" y="0" width="100" height="100" fill="rgba(247,237,224,0.06)"/>
         </>) : (<>
         {/* Night sky base */}
         <rect x="0" y="0" width="100" height="100" fill="url(#mapGround)"/>
@@ -4383,7 +4435,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         <div style={{
           position: "absolute", left: "50%", top: "43%",
           transform: "translate(-50%, -130%)",
-          fontFamily: "Geist Mono, monospace", fontSize: 7, letterSpacing: 2.2, fontWeight: 700,
+          fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 2.2, fontWeight: 700,
           color: "rgba(232,93,46,0.85)",
         }}>DAISY LANE</div>
 
@@ -4396,7 +4448,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           <div key={i} style={{
             position: "absolute", left: `${g.x}%`, top: `${g.y}%`,
             transform: `translate(-50%, -50%)${counterRot}`,
-            fontFamily: "Geist Mono, monospace", fontSize: 5.6, letterSpacing: 1.4, fontWeight: 700,
+            fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.4, fontWeight: 700,
             color: "rgba(80,230,160,0.92)",
             textShadow: "0 0 8px rgba(80,230,160,0.5)",
             whiteSpace: "nowrap", pointerEvents: "none",
@@ -4497,7 +4549,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
             transform: `translate(-50%, 14px)${counterRot}`,
             background: f.color, color: "#fff",
             padding: "2px 7px", borderRadius: 999,
-            fontFamily: "Geist Mono, monospace", fontSize: 8.5, letterSpacing: 1.2, fontWeight: 700,
+            fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
             boxShadow: `0 3px 10px ${f.color}66`, pointerEvents: "none",
           }}>
             {f.name.toUpperCase()}
@@ -4556,7 +4608,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           transform: `translate(-50%, -22px)${counterRot}`,
           background: "rgba(245,154,54,0.95)", color: "#fff",
           padding: "2px 8px", borderRadius: 999,
-          fontFamily: "Geist Mono, monospace", fontSize: 8.5, letterSpacing: 1.3, fontWeight: 700,
+          fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
           pointerEvents: "none", boxShadow: "0 3px 10px rgba(245,154,54,0.45)",
         }}>YOU</div>
       </div>
@@ -4630,7 +4682,7 @@ function RideshareSheet({ onClose }) {
           <button onClick={onClose} className="mono" style={{
             marginTop: 18, padding: "10px 32px", borderRadius: 10, border: "none",
             background: "var(--ink)", color: "var(--paper)",
-            fontSize: 11, letterSpacing: 1.2, fontWeight: 700, cursor: "pointer",
+            fontSize: 10, letterSpacing: 1.2, fontWeight: 700, cursor: "pointer",
           }}>GOT IT</button>
         </div>
       </div>
@@ -4658,13 +4710,13 @@ function RideshareSheet({ onClose }) {
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 12 }}>
           <div style={{ width: 36, height: 4, borderRadius: 4, background: "var(--line-2)" }}/>
         </div>
-        <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1.6, color: "var(--muted)", marginBottom: 4 }}>
+        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--muted)", marginBottom: 4 }}>
           RIDESHARE · {label.toUpperCase()}
         </div>
-        <div className="serif" style={{ fontSize: 26, lineHeight: 1.05, marginBottom: 10 }}>
+        <div className="serif" style={{ fontSize: 24, lineHeight: 1.05, marginBottom: 10 }}>
           Get a ride from {FESTIVAL_CONFIG.locationShort}
         </div>
-        <div style={{ fontSize: 12.5, color: "var(--muted)", lineHeight: 1.5, marginBottom: 16 }}>
+        <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5, marginBottom: 16 }}>
           {note} Pin pre-set so your driver finds you.
         </div>
 
@@ -4685,7 +4737,7 @@ function RideshareSheet({ onClose }) {
             background: "transparent", color: "var(--muted)",
             border: "1px solid var(--line-2)",
             borderRadius: 12, padding: "12px 16px",
-            fontFamily: "Geist Mono, monospace", fontSize: 11, letterSpacing: 1.2, fontWeight: 600,
+            fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
             cursor: "pointer",
           }}>CANCEL</button>
         </div>
@@ -4780,7 +4832,7 @@ function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, m
             <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>{title}</div>
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 2 }}>ETA ~{eta} MIN · {routingLabel}</div>
           </div>
-          <button onClick={onCancelMeet} style={{ background: "transparent", border: "1px solid var(--line-2)", color: "var(--muted)", borderRadius: 999, padding: "7px 10px", cursor: "pointer", fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 600 }}>END</button>
+          <button onClick={onCancelMeet} style={{ background: "transparent", border: "1px solid var(--line-2)", color: "var(--muted)", borderRadius: 999, padding: "7px 10px", cursor: "pointer", fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600 }}>END</button>
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
           <div style={{ flex: "1 0 calc(50% - 4px)", background: "var(--paper-2)", borderRadius: 10, padding: "7px 10px" }}>
@@ -4889,7 +4941,7 @@ function YourStagePhotosStrip({ stageId, accent, onOpen, stageObj }) {
             borderRadius: 10,
             background: "transparent",
             border: `1px dashed ${accent}66`, color: accent,
-            cursor: "pointer", fontSize: 11, letterSpacing: 1, fontWeight: 700,
+            cursor: "pointer", fontSize: 10, letterSpacing: 1, fontWeight: 700,
           }}>+{more}</button>
         )}
       </div>
@@ -4915,6 +4967,7 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
       maxHeight: expanded ? "72vh" : "auto",
       display: "flex", flexDirection: "column",
       overflow: "hidden",
+      animation: "sheetUp 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
     }}>
       {/* Stage-color hero strip — Apple Maps place-card pattern. Drag handle
           sits on top in white so it's visible against any stage color. */}
@@ -4962,7 +5015,7 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
           color:      peek ? "#fff"        : "var(--ink)",
           border:     peek ? "none"        : "1px solid var(--line-2)",
           borderRadius: 999, padding: "7px 13px", cursor: "pointer",
-          fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+          fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           display: "inline-flex", alignItems: "center", gap: 5,
           whiteSpace: "nowrap",
         }}>{peek ? "◉ PEEK" : "◯ PEEK"}</button>
@@ -4971,7 +5024,7 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
           background: "var(--paper-2)", border: "1px solid var(--line-2)",
           color: "var(--ink)",
           borderRadius: 999, padding: "7px 13px", cursor: "pointer",
-          fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+          fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           whiteSpace: "nowrap",
         }}>☰ LINEUP</button>
         <button onClick={() => { if (typeof sbShareLink === "function") { /* fallthrough */ } onClose(); /* close sheet, user can use Meet from rideshare or share */ }} className="mono" style={{
@@ -4979,7 +5032,7 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
           background: "var(--paper-2)", border: "1px solid var(--line-2)",
           color: "var(--muted)",
           borderRadius: 999, padding: "7px 13px", cursor: "pointer",
-          fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+          fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           whiteSpace: "nowrap",
           display: walk.lo > 25 ? "inline-flex" : "none",
         }}>↗ FAR · {walk.lo}M</button>
@@ -5002,7 +5055,7 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
               color: stage.color, textTransform: "uppercase",
             }}>{stage.vibe}</div>
             {stage.peak && (
-              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 600 }}>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 600 }}>
                 PEAKS {stage.peak}
               </div>
             )}
@@ -5058,7 +5111,7 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
             animation: "pulse 1.6s infinite", flexShrink: 0,
           }}/>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.6, fontWeight: 700, opacity: 0.9 }}>ON STAGE NOW</div>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, fontWeight: 700, opacity: 0.9 }}>ON STAGE NOW</div>
             <div className="serif" style={{ fontSize: 16, lineHeight: 1.05 }}>{nowAtStage.name}</div>
           </div>
           <div className="mono" style={{ fontSize: 9, letterSpacing: 1, opacity: 0.9, whiteSpace: "nowrap" }}>
@@ -5096,12 +5149,12 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
               opacity: live ? 1 : 0.92,
             }}>
               <div style={{ width: 52, flexShrink: 0 }}>
-                <div className="mono" style={{ fontSize: 11, letterSpacing: 0.3, fontWeight: 600, color: live ? stage.color : "var(--ink)" }}>{fmt12(s.start)}</div>
-                <div className="mono" style={{ fontSize: 8.5, letterSpacing: 0.8, color: "var(--muted)" }}>{fmt12(s.end)}</div>
+                <div className="mono" style={{ fontSize: 10, letterSpacing: 0.3, fontWeight: 600, color: live ? stage.color : "var(--ink)" }}>{fmt12(s.start)}</div>
+                <div className="mono" style={{ fontSize: 9, letterSpacing: 0.8, color: "var(--muted)" }}>{fmt12(s.end)}</div>
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div className="serif" style={{ fontSize: 17, lineHeight: 1.1, letterSpacing: -0.2 }}>{s.name}</div>
-                <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
+                <div className="serif" style={{ fontSize: 18, lineHeight: 1.1, letterSpacing: -0.2 }}>{s.name}</div>
+                <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
                   {s.genre.toUpperCase()}
                 </div>
               </div>
@@ -5344,7 +5397,7 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
               <div className="serif" style={{ fontSize: 18, color: "var(--muted)", fontStyle: "italic" }}>
                 No messages yet
               </div>
-              <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1.2, color: "var(--muted)", marginTop: 6 }}>
+              <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)", marginTop: 6 }}>
                 TAP A QUICK REPLY ↓
               </div>
             </div>
@@ -5356,7 +5409,7 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
               <React.Fragment key={i}>
                 {showTime && (
                   <div className="mono" style={{
-                    textAlign: "center", fontSize: 8.5, letterSpacing: 1.3,
+                    textAlign: "center", fontSize: 9, letterSpacing: 1.3,
                     color: "var(--muted)", margin: "8px 0 6px", textTransform: "uppercase",
                   }}>{fmtTime(m.ts)}</div>
                 )}
@@ -5419,7 +5472,7 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
                 background: qr.smart ? "var(--ember)" : "var(--paper-2)",
                 color: qr.smart ? "#fff" : "var(--ink)",
                 border: qr.smart ? "none" : "1px solid var(--line-2)",
-                fontSize: 9.5, letterSpacing: 1.1, fontWeight: 600,
+                fontSize: 10, letterSpacing: 1.1, fontWeight: 600,
                 cursor: "pointer", textTransform: "uppercase",
                 display: "inline-flex", alignItems: "center", gap: 4,
               }}>

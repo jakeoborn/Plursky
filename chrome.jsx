@@ -69,7 +69,7 @@ function TabBar({ active, onChange }) {
         const on = active === t.id;
         return (
           <button key={t.id}
-            onClick={() => onChange(t.id)}
+            onClick={() => { haptic.light(); onChange(t.id); }}
             style={{
               background: "transparent", border: "none", cursor: "pointer",
               display: "flex", flexDirection: "column", alignItems: "center", gap: 2,
@@ -170,6 +170,46 @@ function Pill({ children, tone = "ink", style }) {
       ...style,
     }}>{children}</span>
   );
+}
+
+// ── Haptic vocabulary ─────────────────────────────────────────
+// Light: navigation, tab switch. Medium: save/unsave. Heavy: conflict.
+const haptic = {
+  light:  () => navigator.vibrate?.([10]),
+  medium: () => navigator.vibrate?.([30]),
+  heavy:  () => navigator.vibrate?.([50, 30, 50]),
+};
+
+// ── Stagger-fade entrance for scrollable cards ───────────────
+// Returns a ref to attach to a container. Children with
+// [data-animate] get an intersection-triggered fade-in.
+function useStaggerFade() {
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el || !window.IntersectionObserver) return;
+    const targets = el.querySelectorAll("[data-animate]");
+    if (!targets.length) return;
+    targets.forEach(t => { t.style.opacity = "0"; t.style.transform = "translateY(8px)"; });
+    let idx = 0;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const t = e.target;
+        const delay = idx * 50;
+        idx++;
+        setTimeout(() => {
+          t.style.transition = "opacity 0.35s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)";
+          t.style.opacity = "1";
+          t.style.transform = "translateY(0)";
+        }, delay);
+        obs.unobserve(t);
+      });
+    }, { threshold: 0.1 });
+    targets.forEach(t => obs.observe(t));
+    return () => obs.disconnect();
+  }, []);
+  return ref;
 }
 
 // ── Artist photo cache + rate-limited Spotify fetch ──────────
@@ -358,7 +398,7 @@ function InstallBanner() {
         <button onClick={ip.install} style={{
           background: "var(--ember)", color: "#fff", border: "none",
           borderRadius: 999, padding: "7px 12px", cursor: "pointer",
-          fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+          fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           flexShrink: 0,
         }}>INSTALL</button>
       )}
@@ -843,10 +883,10 @@ function NotificationsCard({ state }) {
           {flash === "enabled" ? "✓ ENABLED" : flash === "tested" ? "✓ TEST SENT" : label}
         </span>
       </div>
-      <div className="serif" style={{ fontSize: 19, lineHeight: 1.1, marginBottom: 4 }}>
+      <div className="serif" style={{ fontSize: 20, lineHeight: 1.1, marginBottom: 4 }}>
         {leadMin}-min head-up before each set
       </div>
-      <div style={{ fontSize: 11.5, color: "var(--muted)", lineHeight: 1.5, marginBottom: perm === "denied" ? 8 : 12 }}>
+      <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5, marginBottom: perm === "denied" ? 8 : 12 }}>
         {perm === "granted"
           ? scheduled > 0
             ? `${scheduled} reminder${scheduled === 1 ? "" : "s"} set · alerts fire even when Plursky is in the background.`
@@ -870,7 +910,7 @@ function NotificationsCard({ state }) {
                 background: on ? "var(--ink)" : "transparent",
                 color: on ? "var(--paper)" : "var(--ink)",
                 border: on ? "none" : "1px solid var(--line-2)",
-                fontSize: 9.5, letterSpacing: 1.1, fontWeight: on ? 700 : 500,
+                fontSize: 10, letterSpacing: 1.1, fontWeight: on ? 700 : 500,
               }}>{m}M</button>
             );
           })}
@@ -885,15 +925,15 @@ function NotificationsCard({ state }) {
             HOW TO RE-ENABLE
           </div>
           {window.Capacitor?.isNativePlatform?.() ? (
-            <div style={{ fontSize: 11, color: "var(--ink)", lineHeight: 1.55 }}>
+            <div style={{ fontSize: 13, color: "var(--ink)", lineHeight: 1.55 }}>
               iPhone: <strong>Settings</strong> → <strong>Plursky</strong> → <strong>Notifications</strong> → set <em>Allow Notifications</em> ON.
             </div>
           ) : /iPhone|iPad|iPod/.test(navigator.userAgent) ? (
-            <div style={{ fontSize: 11, color: "var(--ink)", lineHeight: 1.55 }}>
+            <div style={{ fontSize: 13, color: "var(--ink)", lineHeight: 1.55 }}>
               iPhone: <strong>Settings</strong> → <strong>Apps</strong> → <strong>Safari</strong> → <strong>Notifications</strong> → find <em>plursky.com</em> → Allow
             </div>
           ) : (
-            <div style={{ fontSize: 11, color: "var(--ink)", lineHeight: 1.55 }}>
+            <div style={{ fontSize: 13, color: "var(--ink)", lineHeight: 1.55 }}>
               Tap the <strong>lock icon</strong> (or <strong>ⓘ</strong>) in your browser's address bar → <strong>Site settings</strong> → <strong>Notifications</strong> → set to <strong>Allow</strong>, then reload.
             </div>
           )}
@@ -986,10 +1026,10 @@ function FestivalSwitcher({ onClose }) {
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 12 }}>
           <div style={{ width: 36, height: 4, borderRadius: 4, background: "var(--line-2)" }}/>
         </div>
-        <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1.6, color: "var(--muted)", marginBottom: 4 }}>
+        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--muted)", marginBottom: 4 }}>
           PICK A FESTIVAL
         </div>
-        <div className="serif" style={{ fontSize: 26, lineHeight: 1.05, marginBottom: 18 }}>
+        <div className="serif" style={{ fontSize: 24, lineHeight: 1.05, marginBottom: 18 }}>
           Where are you raving?
         </div>
 
@@ -1021,7 +1061,7 @@ function FestivalSwitcher({ onClose }) {
                       <div className="serif" style={{ fontSize: 18, lineHeight: 1.05, fontWeight: 400 }}>
                         {f.config.name}
                       </div>
-                      <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1, marginTop: 3, opacity: 0.85 }}>
+                      <div className="mono" style={{ fontSize: 10, letterSpacing: 1, marginTop: 3, opacity: 0.85 }}>
                         {f.config.location.toUpperCase()} · {f.config.dates.toUpperCase()}
                       </div>
                     </div>
@@ -1229,7 +1269,7 @@ function BatterySaverToast() {
         <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--flare)", fontWeight: 700 }}>
           BATTERY SAVER ON
         </div>
-        <div style={{ fontSize: 11.5, lineHeight: 1.35, marginTop: 2, color: "rgba(247,237,224,0.85)" }}>
+        <div style={{ fontSize: 13, lineHeight: 1.35, marginTop: 2, color: "rgba(247,237,224,0.85)" }}>
           {reason}
         </div>
       </div>
@@ -1269,10 +1309,10 @@ function BatterySaverCard() {
           {active ? "✓ ACTIVE" : "STANDBY"}
         </span>
       </div>
-      <div className="serif" style={{ fontSize: 19, lineHeight: 1.1, marginBottom: 4 }}>
+      <div className="serif" style={{ fontSize: 20, lineHeight: 1.1, marginBottom: 4 }}>
         Stretch the phone past sunrise
       </div>
-      <div style={{ fontSize: 11.5, color: "var(--muted)", lineHeight: 1.5, marginBottom: 12 }}>
+      <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5, marginBottom: 12 }}>
         Dims the screen, freezes animations, and slows GPS polling.
         Auto kicks in at 2 AM or when battery drops under 25%.
       </div>
@@ -1289,7 +1329,7 @@ function BatterySaverCard() {
               background: on ? "var(--ink)" : "transparent",
               color: on ? "var(--paper)" : "var(--ink)",
               border: "none", borderRadius: 999, padding: "7px 10px",
-              fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
               cursor: "pointer",
             }}>{s.label}</button>
           );
@@ -1372,7 +1412,7 @@ function StatusStrip() {
       padding: "0 16px",
       background: "var(--paper-2)",
       borderBottom: "1px solid var(--line)",
-      fontSize: 9.5, letterSpacing: 1.4, fontWeight: 600,
+      fontSize: 10, letterSpacing: 1.4, fontWeight: 600,
       color: "var(--muted)",
     }}>
       <span>{day} · {hh}:{mm}</span>

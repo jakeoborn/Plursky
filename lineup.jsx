@@ -235,7 +235,7 @@ function NightWizard({ state, setState, onClose }) {
               border: on ? "none" : "1px solid var(--line)",
               transition: "all .15s",
             }}>
-              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: on ? "rgba(247,237,224,0.55)" : "var(--muted)" }}>{d.short}</div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: on ? "rgba(247,237,224,0.55)" : "var(--muted)" }}>{d.short}</div>
               <div className="mono" style={{ fontSize: 20, fontWeight: 700, letterSpacing: -0.5, color: on ? "var(--paper)" : "var(--ink)", lineHeight: 1.15 }}>{d.count}</div>
               {d.clashes > 0
                 ? <div className="mono" style={{ fontSize: 8, color: "var(--ember)", letterSpacing: 0.8, marginTop: 1 }}>⚠ {d.clashes} CLASH</div>
@@ -283,12 +283,12 @@ function NightWizard({ state, setState, onClose }) {
                           <div style={{ fontSize: 14, fontWeight: 600, color: clash ? "var(--paper)" : "var(--ink)", lineHeight: 1.2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                             {a.name}
                           </div>
-                          <div className="mono" style={{ fontSize: 8.5, letterSpacing: 0.9, color: clash ? "rgba(247,237,224,0.5)" : "var(--muted)", marginTop: 3 }}>
+                          <div className="mono" style={{ fontSize: 9, letterSpacing: 0.9, color: clash ? "rgba(247,237,224,0.5)" : "var(--muted)", marginTop: 3 }}>
                             {stage.short} · {fmt12(a.start)}–{fmt12(a.end)}
                           </div>
                         </div>
                         <div style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0 }}>
-                          {clash && <span className="mono" style={{ fontSize: 7.5, letterSpacing: 1, color: "var(--ember)", fontWeight: 700 }}>⚠ CLASH</span>}
+                          {clash && <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--ember)", fontWeight: 700 }}>⚠ CLASH</span>}
                           <button onClick={() => drop(a.id)} style={{
                             background: "rgba(232,93,46,0.12)", border: "1px solid rgba(232,93,46,0.25)",
                             borderRadius: 999, padding: "3px 9px", cursor: "pointer",
@@ -342,7 +342,7 @@ function NightWizard({ state, setState, onClose }) {
             {/* Sunrise */}
             {sunrise && (
               <div style={{ display: "flex", gap: 10, alignItems: "center", marginTop: 6 }}>
-                <div className="mono" style={{ width: 36, flexShrink: 0, fontSize: 8.5, color: "var(--flare)", textAlign: "right", letterSpacing: 0.5 }}>{sunrise}</div>
+                <div className="mono" style={{ width: 36, flexShrink: 0, fontSize: 9, color: "var(--flare)", textAlign: "right", letterSpacing: 0.5 }}>{sunrise}</div>
                 <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 8 }}>
                   <div style={{ flex: 1, height: 1, background: `linear-gradient(90deg, var(--flare), transparent)` }} />
                   <span className="mono" style={{ fontSize: 8, letterSpacing: 1.4, color: "var(--flare)", fontWeight: 700 }}>☀ SUNRISE</span>
@@ -395,7 +395,7 @@ function LineupFilterSheet({
     background: on ? (accent || "var(--ink)") : "var(--paper-2)",
     color: on ? "#fff" : "var(--ink)",
     border: on ? "none" : "1px solid var(--line-2)",
-    fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.1,
+    fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.1,
     fontWeight: on ? 700 : 500, cursor: "pointer", whiteSpace: "nowrap",
   });
   const sectionLabel = {
@@ -502,7 +502,7 @@ function LineupFilterSheet({
             padding: "11px 16px", borderRadius: 999,
             background: "transparent", color: "var(--muted)",
             border: "1px solid var(--line-2)", cursor: "pointer",
-            fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+            fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           }}>RESET</button>
           <button onClick={() => onApply(f)} className="mono" style={{
             flex: 1, padding: "11px 14px", borderRadius: 999,
@@ -765,7 +765,7 @@ function LineupScreen({ state, setState }) {
                 background: on ? "var(--ink)" : "transparent",
                 color: on ? "var(--paper)" : "var(--muted)",
                 border: on ? "none" : "1px solid var(--line-2)",
-                fontSize: 8.5, letterSpacing: 1.2, fontWeight: 700, cursor: "pointer",
+                fontSize: 9, letterSpacing: 1.2, fontWeight: 700, cursor: "pointer",
               }}>{w.label}</button>
             );
           })}
@@ -809,7 +809,7 @@ function LineupScreen({ state, setState }) {
           background: activeFilterCount > 0 ? "var(--ember)" : "transparent",
           color: activeFilterCount > 0 ? "#fff" : "var(--ink)",
           border: activeFilterCount > 0 ? "none" : "1px solid var(--line-2)",
-          fontSize: 9.5, letterSpacing: 1.1, cursor: "pointer",
+          fontSize: 10, letterSpacing: 1.1, cursor: "pointer",
           fontWeight: 700, whiteSpace: "nowrap",
           display: "inline-flex", alignItems: "center", gap: 6,
         }}>
@@ -818,7 +818,7 @@ function LineupScreen({ state, setState }) {
             <span style={{
               background: "rgba(255,255,255,0.28)",
               borderRadius: 999, padding: "1px 7px",
-              fontSize: 8.5, fontWeight: 800,
+              fontSize: 9, fontWeight: 800,
             }}>{activeFilterCount}</span>
           )}
         </button>
@@ -905,16 +905,16 @@ function LineupScreen({ state, setState }) {
           }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: stage.vibeNote ? 5 : 0 }}>
               <span className="mono" style={{
-                fontSize: 8.5, letterSpacing: 1.2, fontWeight: 800,
+                fontSize: 9, letterSpacing: 1.2, fontWeight: 800,
                 color: stage.color, textTransform: "uppercase",
               }}>{stage.vibe}</span>
               {stage.peak && (
-                <span className="mono" style={{ fontSize: 7.5, letterSpacing: 1, color: "var(--muted)", fontWeight: 600 }}>
+                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--muted)", fontWeight: 600 }}>
                   · PEAKS {stage.peak}
                 </span>
               )}
               {stage.desc && (
-                <span className="mono" style={{ fontSize: 7.5, letterSpacing: 0.9, color: "var(--muted)", marginLeft: "auto" }}>
+                <span className="mono" style={{ fontSize: 8, letterSpacing: 0.9, color: "var(--muted)", marginLeft: "auto" }}>
                   {stage.desc.toUpperCase()}
                 </span>
               )}
@@ -960,11 +960,11 @@ function LineupScreen({ state, setState }) {
                 <div className="serif" style={{ fontSize: 18, lineHeight: 1.05, color: "#fff" }}>
                   Save all headliners for {dayLabel}
                 </div>
-                <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1.2, marginTop: 3, opacity: 0.9, fontWeight: 700 }}>
+                <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, marginTop: 3, opacity: 0.9, fontWeight: 700 }}>
                   +{dayHeads.length} SETS · TAP TO ADD
                 </div>
               </div>
-              <span className="mono" style={{ fontSize: 11, letterSpacing: 1.3, fontWeight: 800, flexShrink: 0 }}>
+              <span className="mono" style={{ fontSize: 10, letterSpacing: 1.3, fontWeight: 800, flexShrink: 0 }}>
                 SAVE →
               </span>
             </button>
@@ -1117,7 +1117,7 @@ function LineupScreen({ state, setState }) {
                   ) : null; })()}
                   {hasWeekends && a.weekend && a.weekend !== "both" && (
                     <span className="mono" style={{
-                      fontSize: 7.5, letterSpacing: 1.2, fontWeight: 700,
+                      fontSize: 8, letterSpacing: 1.2, fontWeight: 700,
                       color: a.weekend === "W1" ? "#2563eb" : "#9333ea",
                       background: a.weekend === "W1" ? "rgba(37,99,235,0.1)" : "rgba(147,51,234,0.1)",
                       padding: "1px 6px", borderRadius: 999,
@@ -1145,7 +1145,7 @@ function LineupScreen({ state, setState }) {
                       textTransform: "uppercase",
                     }}>{stage.vibe}</span>
                     {stage.peak && (
-                      <span className="mono" style={{ fontSize: 7.5, letterSpacing: 0.9, color: "var(--muted)" }}>
+                      <span className="mono" style={{ fontSize: 8, letterSpacing: 0.9, color: "var(--muted)" }}>
                         PEAKS {stage.peak}
                       </span>
                     )}
@@ -1264,7 +1264,7 @@ function SavedSidebar({ day, state, setState }) {
         borderBottom: "1px solid var(--line-2)",
       }}>
         <div className="mono" style={{
-          fontSize: 8.5, letterSpacing: 1.2, color: "var(--muted)",
+          fontSize: 9, letterSpacing: 1.2, color: "var(--muted)",
           fontWeight: 700,
         }}>MY SETS · {saved.length}</div>
       </div>
@@ -1312,7 +1312,7 @@ function SavedSidebar({ day, state, setState }) {
                   lineHeight: 1.1,
                 }}>{a.name}</div>
                 <div className="mono" style={{
-                  fontSize: 7.5, letterSpacing: 0.5, fontWeight: 600,
+                  fontSize: 8, letterSpacing: 0.5, fontWeight: 600,
                   color: isLive ? "var(--success)" : "var(--muted)",
                 }}>
                   {isLive ? "● LIVE" : `${a.start}–${a.end}`}
@@ -1327,7 +1327,7 @@ function SavedSidebar({ day, state, setState }) {
                   background: "rgba(0,0,0,0.06)", color: "var(--muted)",
                   border: "none", cursor: "pointer",
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: 11, fontWeight: 700, lineHeight: 1,
+                  fontSize: 10, fontWeight: 700, lineHeight: 1,
                   alignSelf: "flex-start",
                 }}>×</span>
             </button>
@@ -1379,7 +1379,7 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
               borderBottom: `2.5px solid ${s.color}`,
             }}>
               <div className="mono" style={{
-                fontSize: 9.5, letterSpacing: 0.6, fontWeight: 800,
+                fontSize: 10, letterSpacing: 0.6, fontWeight: 800,
                 color: "var(--ink)",
               }}>{s.short}</div>
             </div>
@@ -1433,10 +1433,20 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
                   const isHeadliner = a.tier === 3;
                   const fillAlpha = isHeadliner ? "38" : "22";
                   const dimAlpha = isHeadliner ? "14" : "08";
+                  const _lpRef = React.useRef(null);
                   return (
                     <div key={a.id}
                       data-lineup-highlight={isHighlighted ? "true" : undefined}
                       onClick={() => setState({ ...state, artist: a.id })}
+                      onTouchStart={() => {
+                        _lpRef.current = setTimeout(() => {
+                          _lpRef.current = null;
+                          toggleSave(state, setState, a.id);
+                          navigator.vibrate?.([35]);
+                        }, 500);
+                      }}
+                      onTouchEnd={() => { if (_lpRef.current) clearTimeout(_lpRef.current); }}
+                      onTouchMove={() => { if (_lpRef.current) clearTimeout(_lpRef.current); }}
                       style={{
                         position: "absolute",
                         top, left: 2, right: 2,
@@ -1448,6 +1458,7 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
                         cursor: "pointer",
                         overflow: "hidden",
                         opacity: active || isHighlighted ? 1 : 0.32,
+                        transition: "opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-left 0.2s ease",
                         boxShadow: clash && active
                           ? "inset 0 0 0 1.5px var(--ember)"
                           : (isHeadliner && (active || isHighlighted)
@@ -1509,7 +1520,7 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
               <span className="mono" style={{
                 position: "absolute",
                 left: -GUTTER_W + 4, top: -8,
-                fontSize: 7.5, letterSpacing: 0.6,
+                fontSize: 8, letterSpacing: 0.6,
                 color: "#fff", fontWeight: 800,
                 background: "var(--ember)",
                 padding: "1px 4px", borderRadius: 3,
@@ -1556,7 +1567,7 @@ function ConflictResolver({ conflicts, onKeep, onKeepBoth, onSplit }) {
             <path d="M12 10 V14" strokeLinecap="round"/>
             <circle cx="12" cy="17" r="0.7" fill="var(--ember)"/>
           </svg>
-          <span className="mono" style={{ fontSize: 9.5, letterSpacing: 1.6, color: "var(--ember)", fontWeight: 700 }}>
+          <span className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--ember)", fontWeight: 700 }}>
             CONFLICT {idx + 1}/{conflicts.length}
           </span>
         </div>
@@ -1573,8 +1584,8 @@ function ConflictResolver({ conflicts, onKeep, onKeepBoth, onSplit }) {
               background: "rgba(247,237,224,0.06)", borderRadius: 12, padding: "9px 10px",
               borderLeft: `3px solid ${stg.color}`,
             }}>
-              <div className="serif" style={{ fontSize: 17, lineHeight: 1.05 }}>{art.name}</div>
-              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "rgba(247,237,224,0.55)", marginTop: 3 }}>
+              <div className="serif" style={{ fontSize: 18, lineHeight: 1.05 }}>{art.name}</div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(247,237,224,0.55)", marginTop: 3 }}>
                 {stg.name.toUpperCase()} · {fmt12(art.start)}–{fmt12(art.end)}
               </div>
               <button onClick={() => onKeep(art.id, i === 0 ? b.id : a.id)} style={{
@@ -1957,15 +1968,26 @@ function ShareMenuItem({ icon, label, sub, onClick }) {
 }
 
 function toggleSave(state, setState, id) {
-  try { navigator.vibrate([30]); } catch {}                  // Android web fallback
-  try { window.plurskyHaptic?.("LIGHT"); } catch {}          // iOS native (v1.4)
   const has = state.saved.includes(id);
   const next = has ? state.saved.filter(x => x !== id) : [...state.saved, id];
+  const a = ARTISTS.find(x => x.id === id);
+  const hasConflict = !has && a && next.some(sid => {
+    if (sid === id) return false;
+    const b = ARTISTS.find(x => x.id === sid);
+    return b && b.day === a.day && overlaps(a, b);
+  });
+  if (hasConflict) {
+    try { navigator.vibrate([50, 30, 50]); } catch {}
+    try { window.plurskyHaptic?.("HEAVY"); } catch {}
+  } else {
+    try { navigator.vibrate([has ? 15 : 30]); } catch {}
+    try { window.plurskyHaptic?.(has ? "LIGHT" : "MEDIUM"); } catch {}
+  }
   setState({ ...state, saved: next });
   try {
-    const a = ARTISTS.find(x => x.id === id);
     const label = a?.name ? a.name.toUpperCase() : "SET";
-    window.plurskyToast?.(has ? `REMOVED · ${label}` : `SAVED · ${next.length} SETS`);
+    const msg = has ? `REMOVED · ${label}` : hasConflict ? `SAVED · ${label} · ⚠ CLASH` : `SAVED · ${next.length} SETS`;
+    window.plurskyToast?.(msg);
   } catch {}
 }
 

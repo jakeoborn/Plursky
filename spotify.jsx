@@ -1420,7 +1420,7 @@ function SpotifyScreen({ state, setState }) {
             border: "1px solid rgba(232,93,46,0.35)",
             borderRadius: 12,
           }}>
-            <span aria-hidden style={{ fontSize: 15, flexShrink: 0 }}>ℹ️</span>
+            <span aria-hidden style={{ fontSize: 14, flexShrink: 0 }}>ℹ️</span>
             <div style={{ fontSize: 12, color: "var(--ink)", lineHeight: 1.45 }}>
               If Spotify sign-in stalls, open <strong>plursky.com</strong> in mobile Safari — it works there reliably and your saved sets sync if you signed in with Apple on Me.
             </div>
@@ -1444,7 +1444,7 @@ function SpotifyScreen({ state, setState }) {
           <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, opacity: 0.65, marginBottom: 8 }}>
             {connected ? "CONNECTED" : "CONNECT SPOTIFY"}
           </div>
-          <div className="serif" style={{ fontSize: 26, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 10, maxWidth: "78%" }}>
+          <div className="serif" style={{ fontSize: 24, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 10, maxWidth: "78%" }}>
             {connected
               ? <>Your lineup is <span style={{ fontStyle: "italic" }}>personalised</span></>
               : <>Build your <span style={{ fontStyle: "italic" }}>perfect</span> festival night</>}
@@ -1462,7 +1462,7 @@ function SpotifyScreen({ state, setState }) {
               onClick={() => { disconnectSpotify(setState, state); startSpotifyAuth(); }}
               style={{
                 display: "block", width: "100%", textAlign: "left",
-                fontSize: 11, lineHeight: 1.5, marginBottom: 14,
+                fontSize: 13, lineHeight: 1.5, marginBottom: 14,
                 background: "rgba(245,154,54,0.18)", border: "1px solid rgba(245,154,54,0.4)",
                 borderRadius: 8, padding: "8px 10px", color: "#fde68a",
                 cursor: "pointer", fontFamily: "inherit",
@@ -1476,7 +1476,7 @@ function SpotifyScreen({ state, setState }) {
           )}
 
           {tokenBad && (
-            <div style={{ fontSize: 11, color: "#f87171", marginBottom: 10, letterSpacing: 0.8 }}>
+            <div style={{ fontSize: 13, color: "#f87171", marginBottom: 10, letterSpacing: 0.8 }}>
               Session expired — please reconnect.
             </div>
           )}
@@ -1499,12 +1499,14 @@ function SpotifyScreen({ state, setState }) {
             <button
               onClick={() => { if (!connected) window.plurskyHaptic?.("MEDIUM"); connected ? disconnectSpotify(setState, state) : startSpotifyAuth(); }}
               style={{
-                background: "rgba(247,237,224,0.12)", color: "var(--paper)",
-                border: "1px solid rgba(247,237,224,0.28)",
+                background: connected ? "rgba(29,185,84,0.2)" : "rgba(247,237,224,0.12)",
+                color: "var(--paper)",
+                border: connected ? "1px solid rgba(29,185,84,0.5)" : "1px solid rgba(247,237,224,0.28)",
                 borderRadius: 999, padding: "10px 16px", cursor: "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 500,
+                transition: "all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
               }}>
-              {connected ? "DISCONNECT" : "CONNECT ACCOUNT"}
+              {connected ? "✓ CONNECTED" : "CONNECT ACCOUNT"}
             </button>
           </div>
         </div>
@@ -1546,7 +1548,7 @@ function SpotifyScreen({ state, setState }) {
                 Scan your Apple Music library to find which artists you already know and love.
               </div>
               {amError && (
-                <div style={{ fontSize: 11, color: "#f87171", marginBottom: 8 }}>{amError}</div>
+                <div style={{ fontSize: 13, color: "#f87171", marginBottom: 8 }}>{amError}</div>
               )}
               <button onClick={handleAmConnect} disabled={amLoading} style={{
                 background: "#fc3c44", color: "#fff", border: "none",
@@ -1599,7 +1601,7 @@ function SpotifyScreen({ state, setState }) {
                   YOUR SPOTIFY VS THE LINEUP
                 </div>
               </div>
-              <div className="serif" style={{ fontSize: 44, lineHeight: 1, letterSpacing: -1.5 }}>
+              <div className="serif" style={{ fontSize: 42, lineHeight: 1, letterSpacing: -1.5 }}>
                 {Math.round(matched.length / ARTISTS.length * 100)}<span style={{ fontSize: 22, opacity: 0.45 }}>%</span>
               </div>
             </div>
@@ -1637,7 +1639,7 @@ function SpotifyScreen({ state, setState }) {
                 <div key={genre} style={{ marginBottom: 10 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
                     <span style={{ fontSize: 13, textTransform: "capitalize", color: "var(--ink)" }}>{genre}</span>
-                    <span className="mono" style={{ fontSize: 9.5, letterSpacing: 0.8, color: "var(--muted)" }}>{pct}%</span>
+                    <span className="mono" style={{ fontSize: 10, letterSpacing: 0.8, color: "var(--muted)" }}>{pct}%</span>
                   </div>
                   <div style={{ height: 5, background: "var(--line)", borderRadius: 5, overflow: "hidden" }}>
                     <div style={{
@@ -1667,14 +1669,14 @@ function SpotifyScreen({ state, setState }) {
               }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
                   <div className="serif" style={{ fontSize: 18, lineHeight: 1 }}>{stage.name}</div>
-                  <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1.2, color: stage.color, fontWeight: 700 }}>
+                  <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: stage.color, fontWeight: 700 }}>
                     {pct}% MATCH
                   </div>
                 </div>
                 <div style={{ height: 3, background: "var(--line)", borderRadius: 3, overflow: "hidden", marginBottom: 6 }}>
                   <div style={{ width: `${pct}%`, height: "100%", background: stage.color, borderRadius: 3 }} />
                 </div>
-                <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)" }}>
+                <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>
                   {stage.desc.toUpperCase()}
                 </div>
               </div>
@@ -1744,7 +1746,7 @@ function SpotifyScreen({ state, setState }) {
                       {stg.name} · DAY {a.day} · {fmt12(a.start)}
                     </div>
                     {a._reason && (
-                      <div style={{ fontSize: 11, fontStyle: "italic", color: "var(--horizon)", marginTop: 3, lineHeight: 1.3 }}>
+                      <div style={{ fontSize: 10, fontStyle: "italic", color: "var(--horizon)", marginTop: 3, lineHeight: 1.3 }}>
                         {a._reason}
                       </div>
                     )}
@@ -1781,7 +1783,7 @@ function SpotifyScreen({ state, setState }) {
                   {spotifyArtists.length} ARTISTS FROM YOUR SPOTIFY
                 </div>
               </div>
-              <div className="mono" style={{ fontSize: 11, color: "var(--muted)", letterSpacing: 1 }}>
+              <div className="mono" style={{ fontSize: 10, color: "var(--muted)", letterSpacing: 1 }}>
                 {showAllArtists ? "▲ HIDE" : "▼ SHOW"}
               </div>
             </button>
@@ -1802,7 +1804,7 @@ function SpotifyScreen({ state, setState }) {
                         <div style={{ fontSize: 14, color: isEdc ? "var(--ink)" : "var(--muted)", fontWeight: isEdc ? 500 : 400 }}>
                           {a.name}{isEdc && <span style={{ fontSize: 10, color: "var(--ember)", marginLeft: 6 }}>· ✓</span>}
                         </div>
-                        <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: srcColor }}>{srcLabel}</div>
+                        <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: srcColor }}>{srcLabel}</div>
                       </div>
                     );
                   })}
@@ -1895,8 +1897,8 @@ function SafetyCards() {
               <SafetyIcon kind={item.icon} color={item.color} />
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="serif" style={{ fontSize: 17, lineHeight: 1.1 }}>{item.title}</div>
-              <div style={{ fontSize: 11.5, color: "var(--muted)", marginTop: 3, lineHeight: 1.45 }}>{item.sub}</div>
+              <div className="serif" style={{ fontSize: 18, lineHeight: 1.1 }}>{item.title}</div>
+              <div style={{ fontSize: 13, color: "var(--muted)", marginTop: 3, lineHeight: 1.45 }}>{item.sub}</div>
             </div>
             {item.href && (
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" style={{ flexShrink: 0, marginTop: 4 }}>
@@ -1982,7 +1984,7 @@ function PackListCard() {
           color: "#fff", fontSize: 12, fontWeight: 700,
           flexShrink: 0, transition: "all .15s",
         }}>{checked[it.id] ? "✓" : ""}</span>
-        <span style={{ fontSize: 15, opacity: 0.7, width: 22, textAlign: "center" }}>{it.emoji}</span>
+        <span style={{ fontSize: 14, opacity: 0.7, width: 22, textAlign: "center" }}>{it.emoji}</span>
         <span style={{
           flex: 1, fontFamily: "Geist, sans-serif", fontSize: 14,
           color: checked[it.id] ? "var(--muted)" : "var(--ink)",
@@ -2028,7 +2030,7 @@ function PackListCard() {
           color: draft.trim() ? "#fff" : "var(--muted)",
           border: "none", borderRadius: 10, padding: "9px 14px",
           cursor: draft.trim() ? "pointer" : "default",
-          fontFamily: "Geist Mono, monospace", fontSize: 11, letterSpacing: 1, fontWeight: 700,
+          fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1, fontWeight: 700,
           transition: "all .15s",
         }}>ADD</button>
       </div>
@@ -2090,7 +2092,7 @@ function BadgesSection({ state }) {
     background: on ? "linear-gradient(135deg, var(--ember), var(--horizon))" : "var(--paper-2)",
     color: on ? "#fff" : "var(--muted)",
     display: "flex", alignItems: "center", justifyContent: "center",
-    fontFamily: "Instrument Serif, serif", fontSize: 17, flexShrink: 0,
+    fontFamily: "Instrument Serif, serif", fontSize: 18, flexShrink: 0,
     border: on ? "none" : "1px solid var(--line-2)",
   });
 
@@ -2281,7 +2283,7 @@ function HistoryRecordsSection({ state, setState }) {
                 fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
                 color: n.isPast ? "var(--muted)" : (n.isLive ? "var(--success)" : "var(--horizon)"),
               }}>{n.isPast ? "DONE" : n.isLive ? "TONIGHT" : "UPCOMING"}</div>
-              <span className="mono" style={{ fontSize: 11, color: "var(--muted)", marginLeft: 6 }}>›</span>
+              <span className="mono" style={{ fontSize: 10, color: "var(--muted)", marginLeft: 6 }}>›</span>
             </button>
           ))}
         </div>
@@ -2788,7 +2790,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
         )
       )}
       {moment.text && (
-        <div className="serif" style={{ fontSize: 17, lineHeight: 1.3, color: "var(--ink)" }}>
+        <div className="serif" style={{ fontSize: 18, lineHeight: 1.3, color: "var(--ink)" }}>
           {moment.text}
         </div>
       )}
@@ -2852,7 +2854,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
       {tagInfo && (
         <div className="mono" title={moment.takenAt ? `Photo time: ${moment.takenAt}` : undefined}
           style={{
-            marginTop: 6, fontSize: 8.5, letterSpacing: 1.2, fontWeight: 700,
+            marginTop: 6, fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
             color: tagInfo.tone === "warn" ? "var(--ember)" : "var(--muted)",
           }}>
           {tagInfo.text}{moment.takenAt ? ` · ${moment.takenAt.slice(11)}` : ""}
@@ -2860,7 +2862,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
       )}
       {moment.hasGps === false && moment.autoTagged && (
         <div className="mono" style={{
-          marginTop: 4, fontSize: 7.5, letterSpacing: 1, color: "var(--muted)",
+          marginTop: 4, fontSize: 8, letterSpacing: 1, color: "var(--muted)",
           display: "flex", alignItems: "center", gap: 4,
         }}>
           <span style={{ opacity: 0.6 }}>📡</span> NO GPS — TAGGED BY TIME ONLY
@@ -2905,7 +2907,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
                 const totalMins = Math.round(duration / 60000);
                 return (
                   <div className="mono" style={{
-                    fontSize: 6.5, letterSpacing: 0.8, color: "var(--muted)",
+                    fontSize: 8, letterSpacing: 0.8, color: "var(--muted)",
                     marginTop: 1, display: "flex", alignItems: "center", gap: 4,
                   }}>
                     <span>{mins}min into {totalMins}min set</span>
@@ -2923,7 +2925,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
               })()}
             </div>
             <span className="mono" style={{
-              fontSize: 6.5, letterSpacing: 0.8, padding: "2px 5px", borderRadius: 4, flexShrink: 0,
+              fontSize: 8, letterSpacing: 0.8, padding: "2px 5px", borderRadius: 4, flexShrink: 0,
               background: nowPlaying.confidence === "exact" ? "rgba(45,122,85,0.15)" : "rgba(232,93,46,0.1)",
               color: nowPlaying.confidence === "exact" ? "var(--success)" : "var(--ember)",
               fontWeight: 700,
@@ -3211,19 +3213,19 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
       )}
 
       {err && (
-        <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1, color: "#c14a4a", marginBottom: 10, fontWeight: 700 }}>
+        <div className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "#c14a4a", marginBottom: 10, fontWeight: 700 }}>
           {err}
         </div>
       )}
 
       <div style={{ display: "flex", gap: 8 }}>
         <button onClick={onCancel} disabled={busy} className="mono" style={{
-          flex: 1, padding: "11px", borderRadius: 10,
+          flex: 1, padding: "12px", borderRadius: 10,
           background: "transparent", border: "1px solid var(--line-2)", color: "var(--ink)",
           fontSize: 10, letterSpacing: 1.2, fontWeight: 700, cursor: busy ? "default" : "pointer",
         }}>CANCEL</button>
         <button onClick={handleSave} disabled={busy} className="mono" style={{
-          flex: 2, padding: "11px", borderRadius: 10,
+          flex: 2, padding: "12px", borderRadius: 10,
           background: busy ? "var(--muted)" : "var(--ember)",
           color: "#fff", border: "none",
           fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
@@ -3708,7 +3710,7 @@ function StorageManager({ all, onChange }) {
                   {d.label} <span className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "var(--muted)", fontWeight: 600 }}>· {list.length} TOTAL</span>
                 </div>
                 {(photos > 0 || videos > 0) && (
-                  <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", marginTop: 2, fontWeight: 600 }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2, fontWeight: 600 }}>
                     {photos > 0 && `${photos} PHOTO${photos === 1 ? "" : "S"}`}
                     {photos > 0 && videos > 0 && " · "}
                     {videos > 0 && `${videos} VIDEO${videos === 1 ? "" : "S"}`}
@@ -3719,17 +3721,17 @@ function StorageManager({ all, onChange }) {
                 <div style={{ display: "flex", gap: 4 }}>
                   <button onClick={() => setConfirming(null)} disabled={busy} className="mono" style={{
                     padding: "4px 9px", borderRadius: 999, background: "transparent", border: "1px solid var(--line-2)",
-                    color: "var(--ink)", cursor: "pointer", fontSize: 8.5, letterSpacing: 1, fontWeight: 700,
+                    color: "var(--ink)", cursor: "pointer", fontSize: 9, letterSpacing: 1, fontWeight: 700,
                   }}>CANCEL</button>
                   <button onClick={() => handlePurge(d.n)} disabled={busy} className="mono" style={{
                     padding: "4px 9px", borderRadius: 999, background: "var(--ember)", color: "#fff", border: "none",
-                    cursor: "pointer", fontSize: 8.5, letterSpacing: 1, fontWeight: 700,
+                    cursor: "pointer", fontSize: 9, letterSpacing: 1, fontWeight: 700,
                   }}>{busy ? "..." : "DELETE"}</button>
                 </div>
               ) : (
                 <button onClick={() => setConfirming(d.n)} aria-label="Clear night" className="mono" style={{
                   padding: "4px 9px", borderRadius: 999, background: "transparent", border: "1px solid var(--line-2)",
-                  color: "var(--muted)", cursor: "pointer", fontSize: 8.5, letterSpacing: 1, fontWeight: 700,
+                  color: "var(--muted)", cursor: "pointer", fontSize: 9, letterSpacing: 1, fontWeight: 700,
                 }}>CLEAR</button>
               )}
             </div>
@@ -3744,17 +3746,17 @@ function StorageManager({ all, onChange }) {
               background: "rgba(232,93,46,0.10)", border: "1px solid rgba(232,93,46,0.5)",
               display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8,
             }}>
-              <span style={{ fontSize: 11.5, color: "var(--ink)" }}>
+              <span style={{ fontSize: 13, color: "var(--ink)" }}>
                 Delete all {totalMoments} moments?
               </span>
               <div style={{ display: "flex", gap: 4, flexShrink: 0 }}>
                 <button onClick={() => setConfirming(null)} disabled={busy} className="mono" style={{
                   padding: "5px 10px", borderRadius: 999, background: "transparent", border: "1px solid var(--line-2)",
-                  color: "var(--ink)", cursor: "pointer", fontSize: 8.5, letterSpacing: 1, fontWeight: 700,
+                  color: "var(--ink)", cursor: "pointer", fontSize: 9, letterSpacing: 1, fontWeight: 700,
                 }}>NO</button>
                 <button onClick={() => handlePurge("all")} disabled={busy} className="mono" style={{
                   padding: "5px 10px", borderRadius: 999, background: "var(--ember)", color: "#fff", border: "none",
-                  cursor: "pointer", fontSize: 8.5, letterSpacing: 1, fontWeight: 700,
+                  cursor: "pointer", fontSize: 9, letterSpacing: 1, fontWeight: 700,
                 }}>{busy ? "..." : "DELETE ALL"}</button>
               </div>
             </div>
@@ -3763,7 +3765,7 @@ function StorageManager({ all, onChange }) {
               padding: "8px 14px", width: "100%", borderRadius: 8,
               background: "transparent", border: "1px dashed var(--line-2)",
               color: "var(--muted)", cursor: "pointer",
-              fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+              fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
             }}>🗑  CLEAR ALL MEMORIES</button>
           )}
         </div>
@@ -4062,7 +4064,7 @@ function MemoriesScreen({ state, setState }) {
             <span style={{ fontSize: 17 }}>✨</span>
             <div style={{ textAlign: "left" }}>
               <div className="serif" style={{ fontSize: 16, lineHeight: 1.1 }}>Import from camera roll</div>
-              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2, fontWeight: 700 }}>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2, fontWeight: 700 }}>
                 AUTO-TAGS BY TIME + LOCATION
               </div>
             </div>
@@ -4087,7 +4089,7 @@ function MemoriesScreen({ state, setState }) {
               borderRadius: 10, cursor: "pointer",
             }}>
               <div className="mono" style={{
-                fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+                fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
                 color: allTagged ? "var(--success)" : "var(--ember)",
               }}>
                 ✓ {tagged} TAGGED{needRetag > 0 ? ` · ${needRetag} NEED RETAG` : ""}{dupes > 0 ? ` · ${dupes} SKIPPED (DUPLICATE)` : ""}{failed > 0 ? ` · ${failed} FAILED` : ""}
@@ -4122,7 +4124,7 @@ function MemoriesScreen({ state, setState }) {
                 background: on ? "var(--ink)"   : "transparent",
                 color:      on ? "var(--paper)" : "var(--muted)",
                 border: "none", cursor: "pointer",
-                fontSize: 9.5, letterSpacing: 1.3, fontWeight: 700,
+                fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
               }}>{v.label}</button>
             );
           })}
@@ -4295,7 +4297,7 @@ function MemoriesScreen({ state, setState }) {
                             {isUntagged ? "TO RETAG" : (stage?.short || stage?.name || "").toUpperCase()}
                           </div>
                           <div className="serif" style={{
-                            fontSize: 17, color: "var(--ink)", lineHeight: 1.1,
+                            fontSize: 18, color: "var(--ink)", lineHeight: 1.1,
                             marginTop: 2,
                             whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
                           }}>
@@ -4418,12 +4420,12 @@ function AttendanceReview({ night, savedNightArtists }) {
                   background: on ? "var(--success)" : "transparent",
                   border: on ? "none" : "1.5px solid var(--line-2)",
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  color: "#fff", fontSize: 11, fontWeight: 700,
+                  color: "#fff", fontSize: 10, fontWeight: 700,
                 }}>{on ? "✓" : ""}</span>
                 <div style={{ width: 3, alignSelf: "stretch", background: stage?.color || "var(--line-2)", borderRadius: 3 }}/>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div className="serif" style={{ fontSize: 15, lineHeight: 1.1 }}>{a.name}</div>
-                  <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", marginTop: 2, fontWeight: 600 }}>
+                  <div className="serif" style={{ fontSize: 14, lineHeight: 1.1 }}>{a.name}</div>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2, fontWeight: 600 }}>
                     {(stage?.short || "").toUpperCase()} · {a.start}
                   </div>
                 </div>
@@ -4498,6 +4500,8 @@ function MeScreen({ state, setState }) {
   // Settings (Notifications / Battery / Pack list / Wizard) folded into a
   // single disclosure so the festival-flavored top of the page reads first.
   const [settingsOpen, setSettingsOpen] = React.useState(false);
+  const [festivalOpen, setFestivalOpen] = React.useState(true);
+  const [socialOpen, setSocialOpen] = React.useState(true);
 
   // Stats — kept locally per the spec; intentionally cheap, not precious.
   // SETS CAUGHT now reflects real attendance (live GPS auto-detect + manual
@@ -4695,7 +4699,7 @@ function MeScreen({ state, setState }) {
           }}>
             <span style={{ fontSize: 24, lineHeight: 1, flexShrink: 0 }}>✦</span>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="serif" style={{ fontSize: 21, lineHeight: 1.05 }}>
+              <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>
                 Your <span style={{ fontStyle: "italic", color: "var(--flare)" }}>{_cfg.brand || "festival"}</span> weekend
               </div>
               <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "rgba(247,237,224,0.65)", marginTop: 4, fontWeight: 700 }}>
@@ -4706,66 +4710,114 @@ function MeScreen({ state, setState }) {
           </button>
         )}
 
-        <div style={{ borderTop: "1px solid var(--line)", marginTop: 6, marginBottom: 18 }}/>
-        <HistoryRecordsSection state={state} setState={setState} />
-
-        <div style={{ borderTop: "1px solid var(--line)", marginTop: 6, marginBottom: 18 }}/>
-        <div id="plursky-badges-anchor"/>
-        <BadgesSection state={state} />
-
-        <div style={{ borderTop: "1px solid var(--line)", marginTop: 6, marginBottom: 18 }}/>
-        <button
-          onClick={() => setState({ ...state, tab: "spotify" })}
-          style={{
-            display: "flex", alignItems: "center", gap: 12,
-            width: "100%", padding: "13px 14px", marginBottom: 14,
-            background: state.spotifyConnected
-              ? "linear-gradient(135deg, rgba(29,185,84,0.12), rgba(123,61,154,0.10))"
-              : "var(--paper-2)",
-            border: state.spotifyConnected
-              ? "1px solid rgba(29,185,84,0.4)"
-              : "1px solid var(--line-2)",
-            borderRadius: 14, cursor: "pointer", textAlign: "left",
+        {/* ── FESTIVAL section (collapsible) ──────────────────── */}
+        <div style={{ borderTop: "1px solid var(--line)", marginTop: 6, paddingTop: 14, marginBottom: 18 }}>
+          <button onClick={() => setFestivalOpen(o => !o)} style={{
+            width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
+            background: "transparent", border: "none", cursor: "pointer", padding: "0 0 12px",
+            textAlign: "left", color: "var(--ink)",
           }}>
-          <div style={{
-            width: 38, height: 38, borderRadius: 38, flexShrink: 0,
-            background: state.spotifyConnected
-              ? "linear-gradient(135deg, #1DB954, var(--horizon))"
-              : "linear-gradient(135deg, var(--ember), var(--horizon))",
-            display: "flex", alignItems: "center", justifyContent: "center",
-          }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="7" cy="17" r="2.5"/><circle cx="17" cy="15" r="2.5"/>
-              <path d="M9.5 17 L9.5 5 L19.5 3 L19.5 15"/>
+            <div>
+              <div className="serif" style={{ fontSize: 22, lineHeight: 1.05 }}>
+                Festival
+              </div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginTop: 3 }}>
+                HISTORY · BADGES · MUSIC · HEADLINERS
+              </div>
+            </div>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+              style={{ flexShrink: 0, transition: "transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)", transform: festivalOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
+              <path d="M9 18 L15 12 L9 6"/>
             </svg>
-          </div>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div className="serif" style={{ fontSize: 18, lineHeight: 1.05, color: "var(--ink)" }}>
-              {state.spotifyConnected ? "Music · matched" : "Match the lineup to your Spotify"}
+          </button>
+          <div style={{
+            display: "grid",
+            gridTemplateRows: festivalOpen ? "1fr" : "0fr",
+            transition: "grid-template-rows 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+          }}>
+            <div style={{ overflow: "hidden" }}>
+              <HistoryRecordsSection state={state} setState={setState} />
+              <div style={{ marginTop: 14 }}/>
+              <div id="plursky-badges-anchor"/>
+              <BadgesSection state={state} />
+              <div style={{ marginTop: 14 }}/>
+              <button
+                onClick={() => setState({ ...state, tab: "spotify" })}
+                style={{
+                  display: "flex", alignItems: "center", gap: 12,
+                  width: "100%", padding: "13px 14px", marginBottom: 14,
+                  background: state.spotifyConnected
+                    ? "linear-gradient(135deg, rgba(29,185,84,0.12), rgba(123,61,154,0.10))"
+                    : "var(--paper-2)",
+                  border: state.spotifyConnected
+                    ? "1px solid rgba(29,185,84,0.4)"
+                    : "1px solid var(--line-2)",
+                  borderRadius: 14, cursor: "pointer", textAlign: "left",
+                }}>
+                <div style={{
+                  width: 38, height: 38, borderRadius: 38, flexShrink: 0,
+                  background: state.spotifyConnected
+                    ? "linear-gradient(135deg, #1DB954, var(--horizon))"
+                    : "linear-gradient(135deg, var(--ember), var(--horizon))",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="7" cy="17" r="2.5"/><circle cx="17" cy="15" r="2.5"/>
+                    <path d="M9.5 17 L9.5 5 L19.5 3 L19.5 15"/>
+                  </svg>
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div className="serif" style={{ fontSize: 18, lineHeight: 1.05, color: "var(--ink)" }}>
+                    {state.spotifyConnected ? "Music · matched" : "Match the lineup to your Spotify"}
+                  </div>
+                  <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)", marginTop: 3 }}>
+                    {state.spotifyConnected ? "TOP ARTISTS · DISCOVERIES · BUILD PLAYLIST" : "TAP TO CONNECT"}
+                  </div>
+                </div>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                  <path d="M9 18 L15 12 L9 6"/>
+                </svg>
+              </button>
             </div>
-            <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1.2, color: "var(--muted)", marginTop: 3 }}>
-              {state.spotifyConnected ? "TOP ARTISTS · DISCOVERIES · BUILD PLAYLIST" : "TAP TO CONNECT"}
-            </div>
           </div>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-            <path d="M9 18 L15 12 L9 6"/>
-          </svg>
-        </button>
+        </div>
 
-        <div style={{ borderTop: "1px solid var(--line)", marginTop: 6, marginBottom: 18 }}/>
-        <div className="serif" style={{ fontSize: 22, marginBottom: 3 }}>
-          Friends & <span style={{ fontStyle: "italic" }}>crew</span>
+        {/* ── SOCIAL section (collapsible) ─────────────────────── */}
+        <div style={{ borderTop: "1px solid var(--line)", paddingTop: 14, marginBottom: 18 }}>
+          <button onClick={() => setSocialOpen(o => !o)} style={{
+            width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
+            background: "transparent", border: "none", cursor: "pointer", padding: "0 0 12px",
+            textAlign: "left", color: "var(--ink)",
+          }}>
+            <div>
+              <div className="serif" style={{ fontSize: 22, lineHeight: 1.05 }}>
+                Friends & <span style={{ fontStyle: "italic" }}>crew</span>
+              </div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginTop: 3 }}>
+                LIVE LOCATION · SHARED LINEUPS
+              </div>
+            </div>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+              style={{ flexShrink: 0, transition: "transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)", transform: socialOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
+              <path d="M9 18 L15 12 L9 6"/>
+            </svg>
+          </button>
+          <div style={{
+            display: "grid",
+            gridTemplateRows: socialOpen ? "1fr" : "0fr",
+            transition: "grid-template-rows 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+          }}>
+            <div style={{ overflow: "hidden" }}>
+              <div style={{ marginBottom: 14 }}>
+                <FriendsCard state={state} setState={setState} />
+              </div>
+              <div style={{ marginBottom: 14 }}>
+                <CrewCard state={state} />
+              </div>
+              <AccountCard state={state} setState={setState} />
+            </div>
+          </div>
         </div>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginBottom: 14 }}>
-          LIVE LOCATION · SHARED LINEUPS
-        </div>
-        <div style={{ marginBottom: 14 }}>
-          <FriendsCard state={state} setState={setState} />
-        </div>
-        <div style={{ marginBottom: 14 }}>
-          <CrewCard state={state} />
-        </div>
-        <AccountCard state={state} setState={setState} />
 
         {/* Settings — folds Notifications, Battery saver, Pack list, and the
             setup-wizard re-run into one disclosure to keep the festival top
@@ -4787,7 +4839,7 @@ function MeScreen({ state, setState }) {
               </div>
             </div>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-              style={{ flexShrink: 0, transition: "transform 0.2s", transform: settingsOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
+              style={{ flexShrink: 0, transition: "transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)", transform: settingsOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
               <path d="M9 18 L15 12 L9 6"/>
             </svg>
           </button>
@@ -4801,7 +4853,7 @@ function MeScreen({ state, setState }) {
                   background: "transparent", border: "1px solid var(--line-2)",
                   borderRadius: 999, padding: "8px 14px", cursor: "pointer",
                   color: "var(--muted)",
-                  fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 600,
+                  fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
                 }}>
                   ↻ RE-RUN SETUP WIZARD
                 </button>
@@ -5438,7 +5490,7 @@ function WrappedStory({ recap, onClose }) {
           <button onClick={onClose} className="mono" style={{
             padding: "12px 32px", borderRadius: 999, border: "none",
             background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
-            color: "#fff", fontSize: 11, letterSpacing: 1.4, fontWeight: 700,
+            color: "#fff", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
             cursor: "pointer", boxShadow: "0 4px 20px rgba(109,40,217,0.4)",
           }}>CLOSE WRAPPED</button>
         ) : (
@@ -5633,7 +5685,7 @@ function PlusGate({ children, feature }) {
         }}>
           <span style={{ fontSize: 18 }}>+</span>
         </div>
-        <div className="serif" style={{ fontSize: 26, color: "#fff", letterSpacing: -0.5 }}>Plursky+</div>
+        <div className="serif" style={{ fontSize: 24, color: "#fff", letterSpacing: -0.5 }}>Plursky+</div>
         <div className="mono" style={{
           fontSize: 9, letterSpacing: 1.4, color: "rgba(255,255,255,0.5)",
           marginTop: 4, marginBottom: 14,
@@ -5654,7 +5706,7 @@ function PlusGate({ children, feature }) {
                 fontSize: 10, color: "#fff", fontWeight: 700,
               }}>&#10003;</div>
               <div>
-                <div style={{ fontSize: 11, color: "#fff", fontWeight: 600 }}>{title}</div>
+                <div style={{ fontSize: 10, color: "#fff", fontWeight: 600 }}>{title}</div>
                 <div style={{ fontSize: 9, color: "rgba(255,255,255,0.45)" }}>{sub}</div>
               </div>
             </div>
@@ -5664,7 +5716,7 @@ function PlusGate({ children, feature }) {
         <button onClick={() => handlePurchase(RC_PRODUCT_IDS.festival)} disabled={busy} className="mono" style={{
           padding: "11px 28px", borderRadius: 12, border: "none",
           background: busy ? "rgba(109,40,217,0.5)" : "linear-gradient(135deg, #6D28D9, #e85d2e)",
-          color: "#fff", fontSize: 11, letterSpacing: 1.4, fontWeight: 700,
+          color: "#fff", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
           cursor: busy ? "wait" : "pointer",
           boxShadow: "0 4px 20px rgba(109,40,217,0.45), 0 0 40px rgba(232,93,46,0.2)",
         }}>
@@ -7499,7 +7551,7 @@ function RecapScreen({ state, setState }) {
               padding: "7px 12px", borderRadius: 999,
               background: "rgba(247,237,224,0.18)", color: "#f7ede0",
               border: "1px solid rgba(247,237,224,0.35)", cursor: "pointer",
-              fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.3, fontWeight: 700,
+              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
               backdropFilter: "blur(8px)",
             }}>↗ SHARE</button>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
@@ -7507,25 +7559,25 @@ function RecapScreen({ state, setState }) {
               YOUR {(CFG.shortName || "FESTIVAL").toUpperCase()} · {CFG.year || ""}
             </div>
           </div>
-          <div className="serif" style={{ fontSize: 40, lineHeight: 0.95, letterSpacing: -0.5, marginBottom: 18 }}>
+          <div className="serif" style={{ fontSize: 42, lineHeight: 0.95, letterSpacing: -0.5, marginBottom: 18 }}>
             That was <span style={{ fontStyle: "italic", color: "var(--flare)" }}>your</span> weekend.
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
             <div>
               <div className="serif" style={{ fontSize: 36, lineHeight: 1 }}>{recap.setsCount}</div>
-              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.3, fontWeight: 700, color: "rgba(247,237,224,0.7)", marginTop: 3 }}>SETS CAUGHT</div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "rgba(247,237,224,0.7)", marginTop: 3 }}>SETS CAUGHT</div>
             </div>
             <div>
               <div className="serif" style={{ fontSize: 36, lineHeight: 1 }}>{_fmtHrsMin(recap.totalMin)}</div>
-              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.3, fontWeight: 700, color: "rgba(247,237,224,0.7)", marginTop: 3 }}>ON DANCEFLOORS</div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "rgba(247,237,224,0.7)", marginTop: 3 }}>ON DANCEFLOORS</div>
             </div>
             <div>
               <div className="serif" style={{ fontSize: 36, lineHeight: 1 }}>{recap.nights}</div>
-              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.3, fontWeight: 700, color: "rgba(247,237,224,0.7)", marginTop: 3 }}>NIGHTS</div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "rgba(247,237,224,0.7)", marginTop: 3 }}>NIGHTS</div>
             </div>
             <div>
               <div className="serif" style={{ fontSize: 36, lineHeight: 1 }}>{recap.headlinersCaught}</div>
-              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.3, fontWeight: 700, color: "rgba(247,237,224,0.7)", marginTop: 3 }}>HEADLINERS</div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "rgba(247,237,224,0.7)", marginTop: 3 }}>HEADLINERS</div>
             </div>
           </div>
         </div>
@@ -7574,12 +7626,12 @@ function RecapScreen({ state, setState }) {
                       }}>
                         {i + 1}. {s.song}
                       </div>
-                      <div className="mono" style={{ fontSize: 7, color: "var(--muted)", letterSpacing: 0.8, marginTop: 1 }}>
+                      <div className="mono" style={{ fontSize: 8, color: "var(--muted)", letterSpacing: 0.8, marginTop: 1 }}>
                         {[...s.artists].join(", ")}
                       </div>
                     </div>
                     <div className="mono" style={{
-                      fontSize: 7, letterSpacing: 0.8, color: "#1DB954", fontWeight: 700, flexShrink: 0, marginLeft: 8,
+                      fontSize: 8, letterSpacing: 0.8, color: "#1DB954", fontWeight: 700, flexShrink: 0, marginLeft: 8,
                     }}>
                       {s.count} {s.count === 1 ? "PHOTO" : "PHOTOS"}
                     </div>
@@ -7594,7 +7646,7 @@ function RecapScreen({ state, setState }) {
                   marginTop: 12, width: "100%", padding: "10px 16px",
                   borderRadius: 20, border: "none", cursor: "pointer",
                   background: "#1DB954", color: "#fff", fontWeight: 700,
-                  fontSize: 11, letterSpacing: 1,
+                  fontSize: 10, letterSpacing: 1,
                   display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
                 }}>
                   <span style={{ fontSize: 14 }}>♫</span> FIND ON SPOTIFY
@@ -7614,7 +7666,7 @@ function RecapScreen({ state, setState }) {
             <div className="serif" style={{ fontSize: 32, lineHeight: 1, letterSpacing: -0.4, marginBottom: 8 }}>
               You lived at <span style={{ fontStyle: "italic", color: recap.topStage.color }}>{recap.topStage.name}</span>
             </div>
-            <div className="mono" style={{ fontSize: 11, letterSpacing: 1, color: "var(--muted)", marginTop: 6, fontWeight: 600 }}>
+            <div className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "var(--muted)", marginTop: 6, fontWeight: 600 }}>
               {_fmtHrsMin(recap.topStageMin)} of your weekend was right here
             </div>
           </RecapCard>
@@ -7633,7 +7685,7 @@ function RecapScreen({ state, setState }) {
         {/* TOP GENRE */}
         {recap.topGenre && (
           <RecapCard kicker="THE SOUND OF YOUR WEEKEND" paper="var(--paper)">
-            <div className="serif" style={{ fontSize: 30, lineHeight: 1.0, letterSpacing: -0.4 }}>
+            <div className="serif" style={{ fontSize: 28, lineHeight: 1.0, letterSpacing: -0.4 }}>
               You went deep on{" "}
               <span style={{ fontStyle: "italic", color: "var(--horizon)" }}>{recap.topGenre}</span>.
             </div>
@@ -7680,7 +7732,7 @@ function RecapScreen({ state, setState }) {
         {/* STAGES VISITED */}
         {recap.stagesVisitedCount > 0 && (
           <RecapCard kicker={`STAGES VISITED · ${recap.stagesVisitedCount} OF ${(window.STAGES || []).length}`}>
-            <div className="serif" style={{ fontSize: 30, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 10 }}>
+            <div className="serif" style={{ fontSize: 28, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 10 }}>
               {recap.stagesVisitedCount === (window.STAGES || []).length
                 ? <>Every <span style={{ fontStyle: "italic", color: "var(--ember)" }}>stage</span>. Completionist.</>
                 : <>You set foot at <span style={{ fontStyle: "italic", color: "var(--ember)" }}>{recap.stagesVisitedCount}</span> of {(window.STAGES || []).length} stages.</>}
@@ -7700,7 +7752,7 @@ function RecapScreen({ state, setState }) {
         {/* WALKING DISTANCE */}
         {recap.walkingMinutesHi > 0 && (
           <RecapCard kicker="DISTANCE COVERED">
-            <div className="serif" style={{ fontSize: 30, lineHeight: 1.05, letterSpacing: -0.3 }}>
+            <div className="serif" style={{ fontSize: 28, lineHeight: 1.05, letterSpacing: -0.3 }}>
               You walked roughly{" "}
               <span style={{ fontStyle: "italic", color: "var(--horizon)" }}>
                 {recap.walkingMetersHi >= 1000
@@ -7718,7 +7770,7 @@ function RecapScreen({ state, setState }) {
         {/* B2B SETS */}
         {recap.b2bCount > 0 && (
           <RecapCard kicker={`B2B SETS · ${recap.b2bCount}`}>
-            <div className="serif" style={{ fontSize: 30, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 8 }}>
+            <div className="serif" style={{ fontSize: 28, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 8 }}>
               You caught {recap.b2bCount === 1 ? "a" : recap.b2bCount} <span style={{ fontStyle: "italic", color: "var(--ember)" }}>back-to-back</span> collab{recap.b2bCount === 1 ? "" : "s"}.
             </div>
             <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.45 }}>
@@ -7757,7 +7809,7 @@ function RecapScreen({ state, setState }) {
               <button onClick={() => setState(s => ({ ...s, tab: "memories" }))} style={{
                 padding: "8px 14px", borderRadius: 999,
                 background: "var(--ink)", color: "var(--paper)", border: "none",
-                fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+                fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
                 cursor: "pointer",
               }}>OPEN MEMORIES →</button>
               <button
@@ -7776,7 +7828,7 @@ function RecapScreen({ state, setState }) {
                 style={{
                   padding: "8px 14px", borderRadius: 999,
                   background: "var(--ember)", color: "#fff", border: "none",
-                  fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+                  fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
                   cursor: "pointer",
                 }}>📸 SHARE WEEKEND</button>
               <button
@@ -7793,7 +7845,7 @@ function RecapScreen({ state, setState }) {
                 style={{
                   padding: "8px 14px", borderRadius: 999,
                   background: "#6D28D9", color: "#fff", border: "none",
-                  fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+                  fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
                   cursor: "pointer",
                 }}>🎬 GIF</button>
             </div>
@@ -7866,11 +7918,11 @@ function RecapScreen({ state, setState }) {
 
               {/* Track picker — Plus-only custom music */}
               <div style={{ marginTop: 14 }}>
-                <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "rgba(247,237,224,0.4)", marginBottom: 6 }}>
+                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(247,237,224,0.4)", marginBottom: 6 }}>
                   🎵 {selectedTrack ? "SOUNDTRACK" : _isPlusSub() ? "PICK A SONG (OPTIONAL)" : "🔒 CUSTOM SOUNDTRACK · PLURSKY+"}
                 </div>
                 {!_isPlusSub() && !selectedTrack ? (
-                  <div className="mono" style={{ padding: "8px 12px", borderRadius: 10, background: "rgba(247,237,224,0.04)", border: "1px solid rgba(247,237,224,0.08)", color: "rgba(247,237,224,0.2)", fontSize: 11, textAlign: "center" }}>
+                  <div className="mono" style={{ padding: "8px 12px", borderRadius: 10, background: "rgba(247,237,224,0.04)", border: "1px solid rgba(247,237,224,0.08)", color: "rgba(247,237,224,0.2)", fontSize: 10, textAlign: "center" }}>
                     Upgrade to Plursky+ to pick your own soundtrack
                   </div>
                 ) : selectedTrack ? (
@@ -7895,7 +7947,7 @@ function RecapScreen({ state, setState }) {
                       style={{
                         width: "100%", padding: "8px 12px", borderRadius: 10,
                         background: "rgba(247,237,224,0.08)", border: "1px solid rgba(247,237,224,0.1)",
-                        color: "#f7ede0", fontFamily: "Geist Mono, monospace", fontSize: 11,
+                        color: "#f7ede0", fontFamily: "Geist Mono, monospace", fontSize: 10,
                         outline: "none",
                       }}
                     />
@@ -7948,7 +8000,7 @@ function RecapScreen({ state, setState }) {
                   width: "100%", marginTop: 14, padding: "13px",
                   background: vidState === "rendering" ? "rgba(109,40,217,0.4)" : "linear-gradient(135deg, #6D28D9, #e85d2e)",
                   color: "#fff", border: "none", borderRadius: 12, cursor: vidState === "rendering" ? "wait" : "pointer",
-                  fontSize: 11, letterSpacing: 1.4, fontWeight: 700,
+                  fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
                 }}>{vidState === "rendering" ? "⏳ RENDERING…" : "🎬 CREATE RECAP VIDEO"}</button>
             </RecapCard>
           );
@@ -7957,7 +8009,7 @@ function RecapScreen({ state, setState }) {
         {/* S2: GENRE BREAKDOWN */}
         {recap.genreBreakdown?.length > 0 && (
           <RecapCard kicker="YOUR GENRE MIX" paper="var(--paper)">
-            <div className="serif" style={{ fontSize: 26, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 12 }}>
+            <div className="serif" style={{ fontSize: 24, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 12 }}>
               Your festival was <span style={{ fontStyle: "italic", color: "var(--ember)" }}>{recap.genreBreakdown[0]?.genre || "eclectic"}</span>.
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
@@ -8091,7 +8143,7 @@ function RecapScreen({ state, setState }) {
               <button onClick={async () => {
                 try { await window._shareCrewComparison?.(state); } catch {}
               }} className="mono" style={{
-                width: "100%", padding: "11px", borderRadius: 10, border: "none", cursor: "pointer",
+                width: "100%", padding: "12px", borderRadius: 10, border: "none", cursor: "pointer",
                 background: "linear-gradient(135deg, var(--ember), var(--horizon))",
                 color: "#fff", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
               }}>EXPORT CREW SHOWDOWN CARD</button>
@@ -8122,18 +8174,18 @@ function RecapScreen({ state, setState }) {
                       padding: "10px 8px", display: "flex", flexDirection: "column",
                       justifyContent: "space-between",
                     }}>
-                      <div className="mono" style={{ fontSize: 7, letterSpacing: 1.2, color: stage?.color || "var(--muted)", fontWeight: 700 }}>
+                      <div className="mono" style={{ fontSize: 8, letterSpacing: 1.2, color: stage?.color || "var(--muted)", fontWeight: 700 }}>
                         {stage?.short || ""}
                       </div>
                       <div>
-                        <div style={{ fontSize: 11, fontWeight: 700, lineHeight: 1.2, color: "var(--ink)" }}>
+                        <div style={{ fontSize: 10, fontWeight: 700, lineHeight: 1.2, color: "var(--ink)" }}>
                           {a.name.length > 14 ? a.name.slice(0, 13) + "…" : a.name}
                         </div>
-                        <div className="mono" style={{ fontSize: 7, color: "var(--muted)", marginTop: 3, letterSpacing: 0.8 }}>
+                        <div className="mono" style={{ fontSize: 8, color: "var(--muted)", marginTop: 3, letterSpacing: 0.8 }}>
                           {FESTIVAL_CONFIG.dayDates?.[a.day]?.short || ""} · {window.fmt12?.(a.start) || a.start}
                         </div>
                       </div>
-                      <div className="mono" style={{ fontSize: 7, letterSpacing: 1, color: stage?.color, fontWeight: 700, textAlign: "right" }}>
+                      <div className="mono" style={{ fontSize: 8, letterSpacing: 1, color: stage?.color, fontWeight: 700, textAlign: "right" }}>
                         #{String(i + 1).padStart(3, "0")}
                       </div>
                     </div>
@@ -8145,7 +8197,7 @@ function RecapScreen({ state, setState }) {
               <button onClick={async () => {
                 try { await window._shareFestivalPassport?.(state); } catch {}
               }} className="mono" style={{
-                width: "100%", padding: "11px", borderRadius: 10, border: "none", cursor: "pointer",
+                width: "100%", padding: "12px", borderRadius: 10, border: "none", cursor: "pointer",
                 background: "var(--ink)", color: "var(--paper)",
                 fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
               }}>EXPORT FULL COLLECTION</button>
@@ -8179,11 +8231,11 @@ function RecapScreen({ state, setState }) {
                 const all = []; try { const raw = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}"); for (const n of Object.keys(raw)) for (const m of (raw[n] || [])) all.push(m); } catch {}
                 await window._shareFestivalDNA?.(all);
               }} className="mono" style={{
-                padding: "11px", background: "linear-gradient(90deg, #e85d2e, #6D28D9, #2d7a55, #f59a36)", color: "#fff",
+                padding: "12px", background: "linear-gradient(90deg, #e85d2e, #6D28D9, #2d7a55, #f59a36)", color: "#fff",
                 border: "none", borderRadius: 10, cursor: "pointer", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
               }}>🧬 FESTIVAL DNA — YOUR UNIQUE COLOR BARCODE</button>
               <button onClick={() => window._shareFestivalPassport?.(state)} className="mono" style={{
-                padding: "11px", background: "rgba(247,237,224,0.08)", color: "#f7ede0",
+                padding: "12px", background: "rgba(247,237,224,0.08)", color: "#f7ede0",
                 border: "1px solid rgba(247,237,224,0.15)", borderRadius: 10, cursor: "pointer",
                 fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
               }}>🛂 FESTIVAL PASSPORT — STAGE STAMPS</button>
@@ -8191,13 +8243,13 @@ function RecapScreen({ state, setState }) {
                 const all = []; try { const raw = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}"); for (const n of Object.keys(raw)) for (const m of (raw[n] || [])) all.push(m); } catch {}
                 await window._shareFilmStrip?.(all);
               }} className="mono" style={{
-                padding: "11px", background: "rgba(247,237,224,0.08)", color: "#f7ede0",
+                padding: "12px", background: "rgba(247,237,224,0.08)", color: "#f7ede0",
                 border: "1px solid rgba(247,237,224,0.15)", borderRadius: 10, cursor: "pointer",
                 fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
               }}>🎞️ FILM STRIP — RETRO PHOTO REEL</button>
             </div>
             {!_isPlusSub() && (
-              <div className="mono" style={{ fontSize: 8.5, color: "rgba(247,237,224,0.3)", marginTop: 10, textAlign: "center", letterSpacing: 1.2 }}>
+              <div className="mono" style={{ fontSize: 9, color: "rgba(247,237,224,0.3)", marginTop: 10, textAlign: "center", letterSpacing: 1.2 }}>
                 FREE PREVIEW WITH WATERMARK · UPGRADE TO REMOVE
               </div>
             )}
@@ -8256,7 +8308,7 @@ function RecapScreen({ state, setState }) {
             <div className="serif" style={{ fontSize: 28, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 14 }}>
               Take the weekend <span style={{ fontStyle: "italic", color: "var(--horizon)" }}>home</span> with you.
             </div>
-            <div style={{ fontSize: 12.5, color: "var(--muted)", lineHeight: 1.5, marginBottom: 14 }}>
+            <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5, marginBottom: 14 }}>
               Build a Spotify playlist of every set you actually caught — top tracks from each, in chronological set order.
             </div>
             {playlistState.status === "done" ? (
@@ -8264,7 +8316,7 @@ function RecapScreen({ state, setState }) {
                 padding: "10px 12px", borderRadius: 10,
                 background: "rgba(45,122,85,0.12)", border: "1px solid rgba(45,122,85,0.4)",
               }}>
-                <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1.2, color: "var(--success)", fontWeight: 700, marginBottom: 6 }}>
+                <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--success)", fontWeight: 700, marginBottom: 6 }}>
                   ✓ {playlistState.added} TRACKS ADDED
                 </div>
                 {playlistState.url && (
@@ -8279,7 +8331,7 @@ function RecapScreen({ state, setState }) {
                 background: playlistState.status === "building" ? "var(--paper-2)" : "#1DB954",
                 color: playlistState.status === "building" ? "var(--muted)" : "#fff",
                 border: "none", borderRadius: 999, padding: "11px 18px",
-                fontFamily: "Geist Mono, monospace", fontSize: 10.5, letterSpacing: 1.3, fontWeight: 700,
+                fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
                 cursor: playlistState.status === "building" ? "default" : "pointer",
                 alignSelf: "flex-start",
               }}>
@@ -8287,7 +8339,7 @@ function RecapScreen({ state, setState }) {
               </button>
             )}
             {playlistState.status === "error" && (
-              <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1, color: "#c14a4a", marginTop: 8, fontWeight: 600 }}>
+              <div className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "#c14a4a", marginTop: 8, fontWeight: 600 }}>
                 {playlistState.msg}
               </div>
             )}
@@ -8300,7 +8352,7 @@ function RecapScreen({ state, setState }) {
             <div className="serif" style={{ fontSize: 28, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 10 }}>
               You saved {recap.missedSaved.length} sets you didn't make it to.
             </div>
-            <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1, color: "var(--muted)", marginBottom: 10, fontWeight: 600 }}>
+            <div className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "var(--muted)", marginBottom: 10, fontWeight: 600 }}>
               CATCH THEM NEXT YEAR
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
@@ -8317,7 +8369,7 @@ function RecapScreen({ state, setState }) {
                     }}>
                     <div style={{ width: 3, alignSelf: "stretch", background: stage?.color || "var(--line-2)", borderRadius: 2, flexShrink: 0 }}/>
                     <span style={{ fontSize: 13, color: "var(--ink)", fontWeight: 500, flex: 1 }}>{a.name}</span>
-                    <span className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", fontWeight: 600 }}>
+                    <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", fontWeight: 600 }}>
                       {stage?.short || ""}
                     </span>
                   </button>
@@ -8341,7 +8393,7 @@ function RecapScreen({ state, setState }) {
               </div>
             )}
             {crewStats.uniqueSenders > 1 && (
-              <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1, color: "var(--muted)", marginTop: 10, fontWeight: 600 }}>
+              <div className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "var(--muted)", marginTop: 10, fontWeight: 600 }}>
                 {crewStats.uniqueSenders} VOICES · 1 PLUR
               </div>
             )}
@@ -8563,20 +8615,20 @@ function NowPlayingBar() {
               animation: "pulse 2s infinite",
             }} />
             <span className="mono" style={{
-              fontSize: 7, letterSpacing: 1.4, fontWeight: 700, color: stageColor,
+              fontSize: 8, letterSpacing: 1.4, fontWeight: 700, color: stageColor,
             }}>LIVE · {liveState.stage?.name?.toUpperCase()}{liveState.usersHere > 1 ? ` · ${liveState.usersHere} HERE` : ""}</span>
           </div>
 
           {liveState.artist && (
             <div className="serif" style={{
-              fontSize: 15, color: "#fff", lineHeight: 1.2,
+              fontSize: 14, color: "#fff", lineHeight: 1.2,
               overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
             }}>{liveState.artist.name}</div>
           )}
 
           {displaySong && (
             <div className="mono" style={{
-              fontSize: 7.5, letterSpacing: 0.6, color: "rgba(255,255,255,0.5)",
+              fontSize: 8, letterSpacing: 0.6, color: "rgba(255,255,255,0.5)",
               marginTop: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
               display: "flex", alignItems: "center", gap: 4,
             }}>
