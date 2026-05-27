@@ -8546,6 +8546,7 @@ function NowPlayingBar() {
   const handleShazam = async () => {
     setLiveState(s => ({ ...s, listening: true }));
     try {
+      // Path 1: Native iOS ShazamKit
       if (window.Capacitor?.isNativePlatform() && window.ShazamPlugin) {
         const result = await window.ShazamPlugin.identify();
         if (result?.title) {
@@ -8553,7 +8554,51 @@ function NowPlayingBar() {
           return;
         }
       }
-      // Fallback: use estimated song
+      // Path 2: Web audio capture → recognition API
+      if (navigator.mediaDevices?.getUserMedia) {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          const recorder = new MediaRecorder(stream, { mimeType: MediaRecorder.isTypeSupported("audio/webm") ? "audio/webm" : "audio/mp4" });
+          const chunks = [];
+          recorder.ondataavailable = (e) => { if (e.data.size > 0) chunks.push(e.data); };
+          recorder.onstop = async () => {
+            stream.getTracks().forEach(t => t.stop());
+            const blob = new Blob(chunks, { type: recorder.mimeType });
+            try {
+              const form = new FormData();
+              form.append("audio", blob, "sample.webm");
+              const res = await fetch("https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/recognize-song", {
+                method: "POST", body: form,
+              });
+              if (res.ok) {
+                const data = await res.json();
+                if (data.title) {
+                  setLiveState(s => ({ ...s,
+                    song: { song: `${data.artist || "?"} — ${data.title}`, source: "web-recognition", confidence: "exact" },
+                    listening: false,
+                  }));
+                  window.plurskyToast?.(`♫ ${data.title}`);
+                  return;
+                }
+              }
+            } catch {}
+            if (estimatedSong) {
+              setLiveState(s => ({ ...s, song: estimatedSong, listening: false }));
+            } else {
+              setLiveState(s => ({ ...s, listening: false }));
+              window.plurskyToast?.("Couldn't identify — try again closer to a speaker");
+            }
+          };
+          recorder.start();
+          setTimeout(() => { if (recorder.state === "recording") recorder.stop(); }, 8000);
+          return;
+        } catch (micErr) {
+          if (micErr.name === "NotAllowedError") {
+            window.plurskyToast?.("Mic access denied — enable in browser settings");
+          }
+        }
+      }
+      // Path 3: Fallback to estimated song from tracklist
       if (estimatedSong) {
         setLiveState(s => ({ ...s, song: estimatedSong, listening: false }));
       } else {
