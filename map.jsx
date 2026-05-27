@@ -4365,15 +4365,31 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           const on = s.id === selected;
           const r = 2.8 + (s.size - 1) * 1.1;
           const savedHere = savedByStage[s.id];
+          const nowMin = NOW.time ? toNightMin(NOW.time) : 0;
+          const liveArtist = typeof ARTISTS !== "undefined" ? ARTISTS.find(a =>
+            a.stage === s.id && a.day === NOW.day &&
+            nowMin >= toNightMin(a.start) && nowMin < toNightMin(a.end)
+          ) : null;
+          const energyR = liveArtist ? (liveArtist.tier === 3 ? 12 : liveArtist.tier === 2 ? 9 : 6) : 0;
           return (
             <g key={s.id} style={{ cursor: "pointer" }} onClick={(e) => { e.stopPropagation(); onPickStage(s.id); }}>
+              {liveArtist && !on && (<>
+                <circle cx={s.x} cy={s.y} r={r + 2} fill="none" stroke={s.color} strokeWidth="0.4" opacity="0.7">
+                  <animate attributeName="r" values={`${r + 2};${r + energyR};${r + 2}`} dur={liveArtist.tier === 3 ? "1.8s" : "2.4s"} repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="0.6;0;0.6" dur={liveArtist.tier === 3 ? "1.8s" : "2.4s"} repeatCount="indefinite"/>
+                </circle>
+                <circle cx={s.x} cy={s.y} r={r + 1} fill="none" stroke={s.color} strokeWidth="0.25" opacity="0.4">
+                  <animate attributeName="r" values={`${r + 1};${r + energyR * 0.6};${r + 1}`} dur="3s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="0.4;0;0.4" dur="3s" repeatCount="indefinite"/>
+                </circle>
+              </>)}
               {on && (
                 <circle cx={s.x} cy={s.y} r={r + 1} fill="none" stroke={s.color} strokeWidth="0.5" opacity="0.9">
                   <animate attributeName="r" values={`${r};${r+6};${r}`} dur="2s" repeatCount="indefinite"/>
                   <animate attributeName="opacity" values="0.8;0;0.8" dur="2s" repeatCount="indefinite"/>
                 </circle>
               )}
-              <circle cx={s.x} cy={s.y} r={r + 2.4} fill={s.color} opacity={on ? 0.32 : 0.14} filter="url(#stageglow)"/>
+              <circle cx={s.x} cy={s.y} r={r + 2.4} fill={s.color} opacity={on ? 0.32 : liveArtist ? 0.22 : 0.14} filter="url(#stageglow)"/>
               <StageIcon id={s.id} cx={s.x} cy={s.y} r={r} on={on} color={s.color}/>
               {/* Gold ★ pin if the user has an upcoming saved set on this stage */}
               {savedHere && (

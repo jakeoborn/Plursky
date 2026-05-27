@@ -419,6 +419,22 @@ function App() {
   React.useEffect(() => {
     try { sbOutboxInit?.(); } catch {}
   }, []);
+  // Night-aware theme — shifts palette with the sky during the festival.
+  React.useEffect(() => {
+    const update = () => {
+      const now = Date.now();
+      if (now < FESTIVAL_CONFIG.startMs || now > FESTIVAL_CONFIG.endMs) {
+        document.documentElement.className = "";
+        return;
+      }
+      const h = new Date().getHours();
+      const theme = h >= 20 || h < 4 ? "theme-night" : h >= 4 && h < 7 ? "theme-dawn" : h >= 17 && h < 20 ? "theme-sunset" : "";
+      document.documentElement.className = theme;
+    };
+    update();
+    const id = setInterval(update, 60000);
+    return () => clearInterval(id);
+  }, []);
   // Native Spotify OAuth handoff (v164). When the user finishes the
   // SafariViewController flow, the appUrlOpen listener in spotify.jsx
   // exchanges the code for a token and dispatches this event. Mirror it
@@ -744,6 +760,76 @@ class RootErrorBoundary extends React.Component {
   }
 }
 
+function SetStartingCinematic() {
+  const [show, setShow] = React.useState(null);
+  const shownRef = React.useRef(new Set());
+  React.useEffect(() => {
+    const check = () => {
+      try {
+        const saved = JSON.parse(localStorage.getItem(`${FESTIVAL_CONFIG.id}_saved_v1`) || "[]");
+        if (!saved.length || !NOW.time || !NOW.day) return;
+        const nowMin = toNightMin(NOW.time);
+        for (const id of saved) {
+          const a = ARTISTS.find(x => x.id === id);
+          if (!a || a.day !== NOW.day) continue;
+          const startMin = toNightMin(a.start);
+          const diff = startMin - nowMin;
+          if (diff > 0 && diff <= 3 && !shownRef.current.has(a.id)) {
+            shownRef.current.add(a.id);
+            const stage = STAGES.find(s => s.id === a.stage);
+            setShow({ artist: a, stage, minsLeft: diff });
+            navigator.vibrate?.([30, 50, 30, 50, 60]);
+            setTimeout(() => setShow(null), 6000);
+            return;
+          }
+        }
+      } catch {}
+    };
+    const id = setInterval(check, 30000);
+    check();
+    return () => clearInterval(id);
+  }, []);
+  if (!show) return null;
+  const { artist: a, stage, minsLeft } = show;
+  const vfx = _genreToVfx(a.genre);
+  return (
+    <div style={{
+      position: "fixed", inset: 0, zIndex: 9998,
+      background: "rgba(13,8,4,0.92)", color: "#fff",
+      display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+      animation: "fadeIn 0.5s ease-out",
+      backdropFilter: "blur(12px)",
+    }} onClick={() => setShow(null)}>
+      <div style={{
+        position: "absolute", inset: 0, opacity: 0.15,
+        background: `radial-gradient(ellipse at 50% 40%, ${stage?.color || "var(--ember)"}, transparent 70%)`,
+        animation: "vfx-pulse 2s ease-in-out infinite",
+      }}/>
+      <div style={{ position: "relative", textAlign: "center", padding: "0 32px" }}>
+        <div className="mono" style={{
+          fontSize: 10, letterSpacing: 3, color: stage?.color || "var(--ember)", fontWeight: 800, marginBottom: 12,
+          animation: "vfx-pulse 1.5s ease-in-out infinite",
+        }}>SET STARTING</div>
+        <div className="serif" style={{
+          fontSize: 42, lineHeight: 0.95, letterSpacing: -1, marginBottom: 8,
+          textShadow: `0 0 40px ${stage?.color || "var(--ember)"}55`,
+        }}>{a.name}</div>
+        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: stage?.color || "#fff", marginBottom: 24 }}>
+          {stage?.name?.toUpperCase() || ""} · {fmt12(a.start)}
+        </div>
+        <div style={{
+          fontFamily: "Geist Mono, monospace", fontSize: 52, fontWeight: 200,
+          letterSpacing: 2, fontVariantNumeric: "tabular-nums",
+          color: "#fff", textShadow: `0 0 30px ${stage?.color || "var(--ember)"}`,
+        }}>{minsLeft} MIN</div>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "rgba(255,255,255,0.4)", marginTop: 20 }}>
+          TAP TO DISMISS
+        </div>
+      </div>
+    </div>
+  );
+}
+
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <RootErrorBoundary><App /><CelebrationOverlay /></RootErrorBoundary>
+  <RootErrorBoundary><App /><CelebrationOverlay /><SetStartingCinematic /></RootErrorBoundary>
 );
