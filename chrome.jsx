@@ -277,6 +277,25 @@ function _queuePhoto(name) {
   return new Promise(resolve => { _photoQueue.push({ name, resolve }); _drainPhotoQueue(); });
 }
 
+function _fetchItunesPhoto(name) {
+  return fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(name)}&entity=musicArtist&limit=1`)
+    .then(r => r.json())
+    .then(d => {
+      const art = d.results?.[0];
+      if (!art?.artistName) return null;
+      if (art.artistName.toLowerCase() !== name.toLowerCase()) return null;
+      const url = (art.artworkUrl100 || "").replace("100x100", "600x600");
+      if (!url) return null;
+      try {
+        const cache = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
+        cache[name.toLowerCase()] = url;
+        localStorage.setItem("artist_images_v1", JSON.stringify(cache));
+      } catch {}
+      return url;
+    })
+    .catch(() => null);
+}
+
 function useArtistPhoto(name) {
   const [photo, setPhoto] = React.useState(() => {
     try { return JSON.parse(localStorage.getItem("artist_images_v1") || "{}")[name.toLowerCase()] || null; }
@@ -284,11 +303,18 @@ function useArtistPhoto(name) {
   });
   React.useEffect(() => {
     if (photo) return;
+    let live = true;
     const token   = localStorage.getItem("spotify_token");
     const expires = localStorage.getItem("spotify_expires");
-    if (!token || !expires || Date.now() >= parseInt(expires)) return;
-    let live = true;
-    _queuePhoto(name).then(img => { if (live && img) setPhoto(img); });
+    if (token && expires && Date.now() < parseInt(expires)) {
+      _queuePhoto(name).then(img => {
+        if (!live) return;
+        if (img) { setPhoto(img); return; }
+        _fetchItunesPhoto(name).then(url => { if (live && url) setPhoto(url); });
+      });
+    } else {
+      _fetchItunesPhoto(name).then(url => { if (live && url) setPhoto(url); });
+    }
     return () => { live = false; };
   }, [name.toLowerCase()]);
   return photo;
