@@ -155,24 +155,15 @@ One-time setup steps Claude can't do via tooling.
       5. **Test in Xcode sandbox** — sandbox Apple ID, purchase flow,
          verify entitlement check works
 
-- [ ] **Build & submit iOS 1.5 (15)** — steps:
-      1. `npm run build` (or `node scripts/build.mjs`)
-      2. `npx cap sync ios`
-      3. `npx cap open ios`
-      4. Select signing team (Apple Team X54Q9P743S)
-      5. Product → Archive → Distribute → App Store Connect → Upload
-      Test before archiving: keyboard avoidance on inputs, onboarding
-      VFX preview, lineup stagger animations, parallax hero scroll,
-      ShazamKit on physical device.
+- [x] **Build & submit iOS 1.0.5** — submitted 2026-05-27.
 
-- [ ] **ShazamKit capability in Xcode** — Enable ShazamKit in Signing &
-      Capabilities for the iOS native build. The `ShazamPlugin` Capacitor
-      plugin is already referenced in spotify.jsx.
+- [x] **ShazamKit entitlement** — added to App.entitlements directly
+      (com.apple.developer.shazamkit). Xcode UI search didn't find it
+      but the entitlement is in the plist.
 
-- [ ] **Create `og-card.png`** — 1200×630 OG card image for social
-      link previews. Upload to `plursky.com/og-card.png`. The OG meta
-      tags in index.html already reference this URL. Design: Plursky
-      logo + "Festival Companion" + desert-dawn gradient.
+- [ ] **Deploy `og-card.png`** — file created (1200×630, desert-dawn
+      palette). Upload to plursky.com static hosting. Already referenced
+      by OG meta tags in index.html.
 
 - [ ] **Deploy `recognize-song` Edge Function** — Supabase Edge Function
       that proxies mic audio to ACRCloud or AudD for web song recognition.
@@ -202,6 +193,16 @@ One-time setup steps Claude can't do via tooling.
 - [x] **iOS keyboard avoidance** — visualViewport resize listener
 - [x] **Debug console gating** — map.jsx + spotify.jsx console.log
       behind dev flag
+- [x] **Full code audit** — 0 open items. Fixed: 7 reversed ACL times,
+      duplicate stage coords, all hardcoded EDC strings, null guards,
+      ICS timezone dynamic, TabBar refresh, attendance boundary, aria
+      labels, toggleSave stale closure, SearchModal crash guard
+- [x] **ACL schedule fixes** — DAYS dynamic, stage names expanded,
+      duplicate IDs fixed, times shifted to 12 PM start
+- [x] **iTunes photo fallback** — useArtistPhoto falls back to iTunes
+      API when Spotify not connected
+- [x] **Cinematic artist VFX** — breathing color wash (Spotify-inspired)
+- [x] **OG card created** — og-card.png + og-card.svg in repo
 
 ### ✓ Completed manual steps
 
