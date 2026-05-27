@@ -1504,9 +1504,10 @@ function SpotifyScreen({ state, setState }) {
                 border: connected ? "1px solid rgba(29,185,84,0.5)" : "1px solid rgba(247,237,224,0.28)",
                 borderRadius: 999, padding: "10px 16px", cursor: "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 500,
-                transition: "all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
+                transition: "all 0.3s var(--ease-spring)",
+                animation: connected && spotifyArtists === null ? "savePop 1.2s ease-in-out infinite" : undefined,
               }}>
-              {connected ? "✓ CONNECTED" : "CONNECT ACCOUNT"}
+              {connected && spotifyArtists === null ? "⟳ LOADING…" : connected ? "✓ CONNECTED" : "CONNECT ACCOUNT"}
             </button>
           </div>
         </div>
@@ -1686,11 +1687,26 @@ function SpotifyScreen({ state, setState }) {
 
         {/* ── Artist picks ──────────────────────────────── */}
         <div className="serif" style={{ fontSize: 22, letterSpacing: -0.3, marginBottom: 3 }}>
-          {connected && matched.length ? "Your matches" : "Top picks for you"}
+          {connected && matched.length ? "Your matches" : connected && spotifyArtists === null ? "Loading your matches" : "Top picks for you"}
         </div>
         <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginBottom: 14 }}>
-          {connected && matched.length ? "FROM YOUR SPOTIFY · TAP TO VIEW" : "HEADLINERS · TAP + TO SAVE"}
+          {connected && matched.length ? "FROM YOUR SPOTIFY · TAP TO VIEW" : connected && spotifyArtists === null ? "SCANNING YOUR LIBRARY…" : "HEADLINERS · TAP + TO SAVE"}
         </div>
+
+        {connected && spotifyArtists === null && (
+          <div style={{ marginBottom: 14 }}>
+            {[1,2,3,4].map(i => (
+              <div key={i} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 0", borderBottom: "1px solid var(--line)" }}>
+                <div className="skel" style={{ width: 48, height: 48, borderRadius: 48, flexShrink: 0 }}/>
+                <div style={{ flex: 1 }}>
+                  <div className="skel" style={{ width: `${50 + i * 10}%`, height: 14, marginBottom: 6 }}/>
+                  <div className="skel" style={{ width: "40%", height: 9 }}/>
+                </div>
+                <div className="skel" style={{ width: 34, height: 34, borderRadius: 34, flexShrink: 0 }}/>
+              </div>
+            ))}
+          </div>
+        )}
 
         {recs.map(a => {
           const realId  = a._realId || a.id;
@@ -4548,11 +4564,11 @@ function MeScreen({ state, setState }) {
       <div style={{ padding: "8px 20px" }}>
         <TopBar title={<span>Me</span>} sub={FESTIVAL_CONFIG.shortName.toUpperCase()} tight />
       </div>
-      <ScrollBody style={{ padding: "10px 20px 94px" }}>
+      <ScrollBody ref={useStaggerFade("me")} style={{ padding: "10px 20px 94px" }}>
         {/* ── 1. Identity card (Runbuds-modeled) ───────────────────
             Centered avatar in the user's ping color, serif name,
             ping-code chip in mono caps, festival-day tagline. */}
-        <div style={{
+        <div data-animate style={{
           display: "flex", flexDirection: "column", alignItems: "center",
           padding: "18px 16px 20px", marginBottom: 16,
         }}>
@@ -4612,7 +4628,7 @@ function MeScreen({ state, setState }) {
         {/* ── 2. Three-stat row (Forest-modeled) ───────────────────
             Sets caught (saved sets whose day has passed/is today),
             crew (live presence count), days here (NOW.day). */}
-        <div style={{
+        <div data-animate style={{
           display: "grid", gridTemplateColumns: "1fr 1fr 1fr",
           background: "var(--paper-2)", border: "1px solid var(--line)",
           borderRadius: 14, padding: "14px 4px", marginBottom: 18,
@@ -4641,7 +4657,7 @@ function MeScreen({ state, setState }) {
         {/* ── 3. 4-card grid (komoot-modeled) ──────────────────────
             Quick jumps to Saved, Memories (stub), Crew (stub),
             Badges (stub). 2x2 square-ish cells with emoji + count. */}
-        <div style={{
+        <div data-animate style={{
           display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10,
           marginBottom: 22,
         }}>
@@ -4711,7 +4727,7 @@ function MeScreen({ state, setState }) {
         )}
 
         {/* ── FESTIVAL section (collapsible) ──────────────────── */}
-        <div style={{ borderTop: "1px solid var(--line)", marginTop: 6, paddingTop: 14, marginBottom: 18 }}>
+        <div data-animate style={{ borderTop: "1px solid var(--line)", marginTop: 6, paddingTop: 14, marginBottom: 18 }}>
           <button onClick={() => setFestivalOpen(o => !o)} style={{
             width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
             background: "transparent", border: "none", cursor: "pointer", padding: "0 0 12px",
@@ -4726,14 +4742,14 @@ function MeScreen({ state, setState }) {
               </div>
             </div>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-              style={{ flexShrink: 0, transition: "transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)", transform: festivalOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
+              style={{ flexShrink: 0, transition: "transform 0.25s var(--ease-spring)", transform: festivalOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
               <path d="M9 18 L15 12 L9 6"/>
             </svg>
           </button>
           <div style={{
             display: "grid",
             gridTemplateRows: festivalOpen ? "1fr" : "0fr",
-            transition: "grid-template-rows 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+            transition: "grid-template-rows 0.3s var(--ease-smooth)",
           }}>
             <div style={{ overflow: "hidden" }}>
               <HistoryRecordsSection state={state} setState={setState} />
@@ -4798,14 +4814,14 @@ function MeScreen({ state, setState }) {
               </div>
             </div>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-              style={{ flexShrink: 0, transition: "transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)", transform: socialOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
+              style={{ flexShrink: 0, transition: "transform 0.25s var(--ease-spring)", transform: socialOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
               <path d="M9 18 L15 12 L9 6"/>
             </svg>
           </button>
           <div style={{
             display: "grid",
             gridTemplateRows: socialOpen ? "1fr" : "0fr",
-            transition: "grid-template-rows 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+            transition: "grid-template-rows 0.3s var(--ease-smooth)",
           }}>
             <div style={{ overflow: "hidden" }}>
               <div style={{ marginBottom: 14 }}>
@@ -4839,7 +4855,7 @@ function MeScreen({ state, setState }) {
               </div>
             </div>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-              style={{ flexShrink: 0, transition: "transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)", transform: settingsOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
+              style={{ flexShrink: 0, transition: "transform 0.25s var(--ease-spring)", transform: settingsOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
               <path d="M9 18 L15 12 L9 6"/>
             </svg>
           </button>
@@ -5577,7 +5593,7 @@ async function _initRevenueCat() {
     const { customerInfo } = await Purchases.getCustomerInfo();
     _syncEntitlements(customerInfo);
     Purchases.addCustomerInfoUpdateListener(({ customerInfo: info }) => _syncEntitlements(info));
-    console.log("[plursky-iap] RevenueCat initialized");
+    if (typeof DEV !== "undefined") console.log("[plursky-iap] RevenueCat initialized");
   } catch (e) { console.warn("[plursky-iap] init failed:", e); }
 }
 
@@ -5588,7 +5604,7 @@ function _syncEntitlements(info) {
 
 async function _purchasePlus(productId) {
   if (!window.Capacitor?.isNativePlatform?.()) {
-    console.log("[plursky-iap] web mode — toggling Plus for testing");
+    if (typeof DEV !== "undefined") console.log("[plursky-iap] web mode — toggling Plus for testing");
     _setPlusSub(true);
     return { success: true, web: true };
   }

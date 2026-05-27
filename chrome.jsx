@@ -14,9 +14,9 @@ function Screen({ children, bg = "var(--paper)", pad = true, ink = "var(--ink)" 
   );
 }
 
-function ScrollBody({ children, style, ...rest }) {
+const ScrollBody = React.forwardRef(function ScrollBody({ children, style, ...rest }, fwdRef) {
   return (
-    <div {...rest} style={{
+    <div ref={fwdRef} {...rest} style={{
       flex: 1, overflowY: "auto", overflowX: "hidden",
       WebkitOverflowScrolling: "touch",
       ...style,
@@ -24,7 +24,7 @@ function ScrollBody({ children, style, ...rest }) {
       {children}
     </div>
   );
-}
+});
 
 function TopBar({ title, right, sub, tight }) {
   return (
@@ -199,7 +199,7 @@ const haptic = {
 // ── Stagger-fade entrance for scrollable cards ───────────────
 // Returns a ref to attach to a container. Children with
 // [data-animate] get an intersection-triggered fade-in.
-function useStaggerFade() {
+function useStaggerFade(depKey) {
   const ref = React.useRef(null);
   React.useEffect(() => {
     const el = ref.current;
@@ -215,7 +215,7 @@ function useStaggerFade() {
         const delay = idx * 50;
         idx++;
         setTimeout(() => {
-          t.style.transition = "opacity 0.35s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)";
+          t.style.transition = "opacity 0.35s ease, transform 0.35s var(--ease-spring)";
           t.style.opacity = "1";
           t.style.transform = "translateY(0)";
         }, delay);
@@ -224,7 +224,7 @@ function useStaggerFade() {
     }, { threshold: 0.1 });
     targets.forEach(t => obs.observe(t));
     return () => obs.disconnect();
-  }, []);
+  }, [depKey]);
   return ref;
 }
 
@@ -1471,6 +1471,27 @@ function plurskyHaptic(style = "LIGHT") {
     H?.impact?.({ style });
   } catch {}
 }
+
+// iOS keyboard avoidance — when the virtual keyboard opens on iOS,
+// scroll the focused input into view so it isn't hidden. Uses the
+// visualViewport API which fires reliably in WKWebView/Safari.
+(function _initKbAvoidance() {
+  if (typeof window === "undefined") return;
+  const vv = window.visualViewport;
+  if (!vv) return;
+  let prev = vv.height;
+  vv.addEventListener("resize", () => {
+    const shrunk = vv.height < prev - 60;
+    prev = vv.height;
+    if (!shrunk) return;
+    const el = document.activeElement;
+    if (el && (el.tagName === "INPUT" || el.tagName === "TEXTAREA")) {
+      requestAnimationFrame(() => {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    }
+  });
+})();
 
 Object.assign(window, {
   Screen, ScrollBody, TopBar, TabBar, Pill, ArtistSwatch, Wordmark,

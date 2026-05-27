@@ -391,13 +391,14 @@ function LineupFilterSheet({
       }).length;
   }, [f, day, savedSet]);
 
-  const chip = (on, accent) => ({
+  const chip = (on, accent, delay) => ({
     flexShrink: 0, padding: "6px 12px", borderRadius: 999,
     background: on ? (accent || "var(--ink)") : "var(--paper-2)",
     color: on ? "#fff" : "var(--ink)",
     border: on ? "none" : "1px solid var(--line-2)",
     fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.1,
     fontWeight: on ? 700 : 500, cursor: "pointer", whiteSpace: "nowrap",
+    animation: delay != null ? `springIn 0.3s ease-out ${delay}ms both` : undefined,
   });
   const sectionLabel = {
     fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700,
@@ -432,9 +433,9 @@ function LineupFilterSheet({
             {[
               { id: "all",   label: "ALL" },
               { id: "saved", label: `MINE${savedCount ? ` · ${savedCount}` : ""}`, accent: "var(--ember)" },
-            ].map(o => (
+            ].map((o, i) => (
               <button key={o.id} onClick={() => set("filter", o.id)}
-                style={chip(f.filter === o.id, o.accent)}>{o.label}</button>
+                style={chip(f.filter === o.id, o.accent, i * 25)}>{o.label}</button>
             ))}
           </div>
 
@@ -447,9 +448,9 @@ function LineupFilterSheet({
               { id: "head",   label: "HEADLINERS",    accent: "var(--ember)" },
               { id: "prime",  label: "PRIME TIME",    accent: "var(--horizon)" },
               { id: "open",   label: "OPENERS",       accent: "var(--success)" },
-            ].map(t => (
+            ].map((t, i) => (
               <button key={t.id} onClick={() => set("tierFilter", t.id)}
-                style={chip(f.tierFilter === t.id, t.accent)}>{t.label}</button>
+                style={chip(f.tierFilter === t.id, t.accent, 50 + i * 25)}>{t.label}</button>
             ))}
           </div>
 
@@ -457,10 +458,10 @@ function LineupFilterSheet({
           <div style={sectionLabel}>STAGE</div>
           <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
             <button onClick={() => set("stageFilter", "all")}
-              style={chip(f.stageFilter === "all")}>ALL STAGES</button>
-            {STAGES.map(s => (
+              style={chip(f.stageFilter === "all", undefined, 175)}>ALL STAGES</button>
+            {STAGES.map((s, i) => (
               <button key={s.id} onClick={() => set("stageFilter", s.id)}
-                style={chip(f.stageFilter === s.id, s.color)}>{s.short || s.name}</button>
+                style={chip(f.stageFilter === s.id, s.color, 200 + i * 25)}>{s.short || s.name}</button>
             ))}
           </div>
 
@@ -470,10 +471,10 @@ function LineupFilterSheet({
               <div style={sectionLabel}>GENRE</div>
               <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
                 <button onClick={() => set("genreFilter", "all")}
-                  style={chip(f.genreFilter === "all")}>ALL GENRES</button>
-                {dayGenres.map(g => (
+                  style={chip(f.genreFilter === "all", undefined, 425)}>ALL GENRES</button>
+                {dayGenres.map((g, i) => (
                   <button key={g} onClick={() => set("genreFilter", g)}
-                    style={chip(f.genreFilter === g, "var(--horizon)")}>{g.toUpperCase()}</button>
+                    style={chip(f.genreFilter === g, "var(--horizon)", 450 + i * 25)}>{g.toUpperCase()}</button>
                 ))}
               </div>
             </>
@@ -486,9 +487,9 @@ function LineupFilterSheet({
               { id: "time",  label: "TIME" },
               { id: "tier",  label: "TIER" },
               { id: "stage", label: "STAGE" },
-            ].map(o => (
+            ].map((o, i) => (
               <button key={o.id} onClick={() => set("sortBy", o.id)}
-                style={chip(f.sortBy === o.id)}>{o.label}</button>
+                style={chip(f.sortBy === o.id, undefined, 600 + i * 25)}>{o.label}</button>
             ))}
           </div>
         </div>
@@ -929,7 +930,7 @@ function LineupScreen({ state, setState }) {
         );
       })()}
 
-      <ScrollBody data-lineup-scroll style={{ padding: viewMode === "grid" ? "0 0 80px" : "0 16px 90px" }}>
+      <ScrollBody data-lineup-scroll ref={useStaggerFade(`${day}-${viewMode}-${filter}-${stageFilter}-${tierFilter}-${genreFilter}-${sortBy}-${weekendFilter}`)} style={{ padding: viewMode === "grid" ? "0 0 80px" : "0 16px 90px" }}>
         {/* "Save the Day" empty-state CTA — when no sets are saved for the
             selected day, a single ember card batch-saves every tier-3
             headliner. Disappears once the day has any save. */}
@@ -1049,6 +1050,7 @@ function LineupScreen({ state, setState }) {
           })();
           return (
             <div key={a.id}
+              data-animate
               data-lineup-highlight={isHighlighted ? "true" : undefined}
               style={{
                 display: "flex", gap: 10, padding: "12px 8px",
@@ -1558,6 +1560,12 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
 
 function ConflictResolver({ conflicts, onKeep, onKeepBoth, onSplit }) {
   const [idx, setIdx] = React.useState(0);
+  React.useEffect(() => {
+    if (conflicts.length > 0) {
+      try { navigator.vibrate([50, 30, 50]); } catch {}
+      try { window.plurskyHaptic?.("HEAVY"); } catch {}
+    }
+  }, [conflicts.length]);
   // If the current index falls out of range because a conflict was just
   // resolved (state mutation upstream re-renders us with a shorter list),
   // clamp back into bounds.

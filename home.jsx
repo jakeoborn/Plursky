@@ -538,7 +538,7 @@ function DayStrip({ value, onChange, hasYesterday, hasUpcoming }) {
               fontFamily: "Geist Mono, monospace",
               fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
               transform: active ? "scale(1)" : "scale(0.95)",
-              transition: "all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)",
+              transition: "all 0.25s var(--ease-spring)",
             }}>
             {t.label}
           </button>
@@ -555,7 +555,7 @@ function DayStrip({ value, onChange, hasYesterday, hasUpcoming }) {
 //   3. During-festival, mid-night              — "● LIVE · Now at <stage>"
 //   4. Post-festival                           — caller renders PostFestivalRecap
 // Accent = stage colour of the relevant artist (mainstage red as fallback).
-function F1TonightHero({ state, setState }) {
+function F1TonightHero({ state, setState, parallax = 0 }) {
   const now = Date.now();
   const isPreEvent  = now < FESTIVAL_START_MS;
   const isPostEvent = now > FESTIVAL_END_MS;
@@ -636,10 +636,12 @@ function F1TonightHero({ state, setState }) {
       {/* Background photo with vignette — shows in all phases when available */}
       {photo && (
         <div style={{
-          position: "absolute", top: 4, left: 0, right: 0, bottom: 0,
+          position: "absolute", top: 4, left: 0, right: 0, bottom: -20,
           backgroundImage: `url(${photo})`,
           backgroundSize: "cover", backgroundPosition: "center 18%",
           opacity: phase === "pre" ? 0.22 : 0.32,
+          transform: `translateY(${-parallax * 0.3}px) scale(1.08)`,
+          willChange: "transform",
         }}/>
       )}
       <div style={{
@@ -1199,6 +1201,13 @@ function HomeScreen({ state, setState }) {
   const alerts = _dynAlerts.length ? _dynAlerts : (state.alerts || ALERTS);
   const unread = alerts.filter(a => a.unread).length;
 
+  const [heroParallax, setHeroParallax] = React.useState(0);
+  const scrollRef = React.useRef(null);
+  const handleHomeScroll = React.useCallback(() => {
+    const el = scrollRef.current;
+    if (el) setHeroParallax(Math.min(el.scrollTop * 0.35, 80));
+  }, []);
+
   const [pullRefresh, setPullRefresh] = React.useState(false);
   const _prRef = React.useRef({ startY: 0, pulling: false });
   const handlePullStart = (e) => { _prRef.current = { startY: e.touches[0].clientY, pulling: false }; };
@@ -1216,7 +1225,7 @@ function HomeScreen({ state, setState }) {
 
   return (
     <Screen bg="var(--paper)">
-      <ScrollBody style={{ padding: "0 0 70px" }} onTouchStart={handlePullStart} onTouchMove={handlePullMove}>
+      <ScrollBody ref={scrollRef} onScroll={handleHomeScroll} style={{ padding: "0 0 70px" }} onTouchStart={handlePullStart} onTouchMove={handlePullMove}>
       {pullRefresh && (
         <div style={{
           display: "flex", justifyContent: "center", padding: "12px 0",
@@ -1501,7 +1510,7 @@ function HomeScreen({ state, setState }) {
         {isPostFestival && <PostFestivalRecap state={state} setState={setState} />}
 
         {/* F1-style hero card — pre/during phases (post handled above). */}
-        {!isPostFestival && <div data-animate><F1TonightHero state={state} setState={setState} /></div>}
+        {!isPostFestival && <div data-animate><F1TonightHero state={state} setState={setState} parallax={heroParallax} /></div>}
 
         {/* Live festival sections — hidden pre-event and post-festival */}
         {!countdown && !isPostFestival && (
@@ -2213,7 +2222,7 @@ function AlertsDrawer({ alerts, onClose, onOpenMap, onOpenLineup }) {
         borderTopLeftRadius: 22, borderTopRightRadius: 22,
         maxHeight: "78%", display: "flex", flexDirection: "column",
         boxShadow: "0 -10px 30px rgba(0,0,0,0.35)", position: "relative",
-        animation: "sheetUp 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+        animation: "sheetUp 0.3s var(--ease-smooth)",
       }}>
         <div style={{ padding: "14px 18px 10px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid var(--line)" }}>
           <div>

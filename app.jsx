@@ -39,27 +39,64 @@ function OnboardingModal({ onDone, setState, state }) {
       title: <>Welcome to <span style={{ fontStyle: "italic", color: "var(--ember)" }}>Plursky</span></>,
       body: `${ARTISTS.length} artists across ${STAGES.length} stages. Live map, walking ETAs, conflict detection, crew meetups, and set reminders — all offline. Built for ${FESTIVAL_CONFIG.name || "the festival"}.`,
       preview: (
-        <div style={{
-          display: "flex", gap: 6, overflowX: "auto", margin: "12px -22px 0", padding: "0 22px",
-          scrollbarWidth: "none",
-        }}>
-          {STAGES.slice(0, 5).map(s => (
-            <div key={s.id} style={{
-              flexShrink: 0, width: 80, padding: "8px 6px",
-              background: `${s.color}14`, border: `1px solid ${s.color}44`,
-              borderRadius: 10, textAlign: "center",
-            }}>
-              <div style={{
-                width: 28, height: 28, borderRadius: 28, background: s.color,
-                margin: "0 auto 6px", display: "flex", alignItems: "center", justifyContent: "center",
-                boxShadow: `0 0 12px ${s.color}44`,
-              }}>
-                <span style={{ fontSize: 10, color: "#fff", fontWeight: 800 }}>{ARTISTS.filter(a => a.stage === s.id).length}</span>
-              </div>
-              <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--ink)", fontWeight: 700 }}>{s.short}</div>
+        <>
+          {/* VFX hero showcase — 3-second animated preview of the festival atmosphere */}
+          <div style={{
+            margin: "12px -22px 0", borderRadius: 14, overflow: "hidden",
+            height: 120, position: "relative",
+            background: "linear-gradient(160deg, #1a1030 0%, #2a1a3d 50%, #1a120d 100%)",
+          }}>
+            <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
+              {Array.from({ length: 14 }, (_, i) => {
+                const colors = STAGES.slice(0, 5).map(s => s.color);
+                const c = colors[i % colors.length];
+                return React.createElement("div", { key: i, style: {
+                  position: "absolute",
+                  left: `${(i * 37 + 13) % 100}%`,
+                  bottom: i % 3 === 0 ? 0 : undefined,
+                  top: i % 3 !== 0 ? `${(i * 53 + 7) % 100}%` : undefined,
+                  width: i % 3 === 2 ? 10 + (i % 3) * 6 : 3 + (i % 3) * 2,
+                  height: i % 3 === 2 ? 10 + (i % 3) * 6 : 3 + (i % 3) * 2,
+                  borderRadius: "50%", background: c,
+                  filter: i % 3 === 2 ? `blur(${6}px)` : "none",
+                  opacity: 0,
+                  animation: `${i % 3 === 0 ? "vfx-rise" : i % 3 === 2 ? "vfx-drift" : "vfx-fall"} ${3 + (i % 4)}s ease-in-out ${(i * 0.4) % 4}s infinite`,
+                }});
+              })}
             </div>
-          ))}
-        </div>
+            <div style={{
+              position: "absolute", bottom: 0, left: 0, right: 0,
+              background: "linear-gradient(0deg, rgba(26,16,48,0.9) 0%, transparent 100%)",
+              padding: "24px 16px 10px",
+            }}>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.8, color: "var(--ember)", fontWeight: 800 }}>
+                SEE WHAT PLURSKY LOOKS LIKE AT THE FESTIVAL
+              </div>
+            </div>
+          </div>
+          {/* Stage chips */}
+          <div style={{
+            display: "flex", gap: 6, overflowX: "auto", margin: "10px -22px 0", padding: "0 22px",
+            scrollbarWidth: "none",
+          }}>
+            {STAGES.slice(0, 5).map(s => (
+              <div key={s.id} style={{
+                flexShrink: 0, width: 80, padding: "8px 6px",
+                background: `${s.color}14`, border: `1px solid ${s.color}44`,
+                borderRadius: 10, textAlign: "center",
+              }}>
+                <div style={{
+                  width: 28, height: 28, borderRadius: 28, background: s.color,
+                  margin: "0 auto 6px", display: "flex", alignItems: "center", justifyContent: "center",
+                  boxShadow: `0 0 12px ${s.color}44`,
+                }}>
+                  <span style={{ fontSize: 10, color: "#fff", fontWeight: 800 }}>{ARTISTS.filter(a => a.stage === s.id).length}</span>
+                </div>
+                <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--ink)", fontWeight: 700 }}>{s.short}</div>
+              </div>
+            ))}
+          </div>
+        </>
       ),
       input: (
         <input
@@ -275,12 +312,13 @@ function SearchModal({ onClose, onSelectArtist }) {
           <div style={{ padding: "14px 16px" }}>
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.5, color: "var(--muted)", marginBottom: 10 }}>QUICK SEARCH</div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 18 }}>
-              {QUICK.map(t => (
+              {QUICK.map((t, qi) => (
                 <button key={t.label} onClick={() => setQ(t.q)} style={{
                   background: "var(--paper-2)", border: "1px solid var(--line-2)",
                   borderRadius: 999, padding: "6px 14px", cursor: "pointer",
                   fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1, color: "var(--ink)",
                   fontWeight: 600, transition: "background 0.12s, border-color 0.12s",
+                  animation: `springIn 0.3s ease-out ${qi * 25}ms both`,
                 }}>{t.label}</button>
               ))}
             </div>
@@ -299,7 +337,7 @@ function SearchModal({ onClose, onSelectArtist }) {
                       borderBottom: "1px solid var(--line)", background: "transparent",
                       cursor: "pointer", textAlign: "left", alignItems: "center",
                     }}>
-                      <div style={{ width: 3, height: 28, borderRadius: 3, background: st?.color, flexShrink: 0 }}/>
+                      <span style={{ width: 6, height: 6, borderRadius: 6, background: st?.color, boxShadow: `0 0 5px ${st?.color}66`, flexShrink: 0 }}/>
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div className="serif" style={{ fontSize: 16, lineHeight: 1.1, color: "var(--ink)" }}>{a.name}</div>
                         <div className="mono" style={{ fontSize: 9, letterSpacing: 0.8, color: "var(--muted)", marginTop: 2 }}>
@@ -329,7 +367,7 @@ function SearchModal({ onClose, onSelectArtist }) {
             <div className="mono" style={{ padding: "10px 16px 4px", fontSize: 9, letterSpacing: 1.5, color: "var(--muted)" }}>
               {results.length} RESULT{results.length !== 1 ? "S" : ""}
             </div>
-            {results.map(a => {
+            {results.map((a, ri) => {
               const stage = STAGES.find(s => s.id === a.stage);
               const leg = isLegendary(a);
               return (
@@ -338,6 +376,7 @@ function SearchModal({ onClose, onSelectArtist }) {
                   borderBottom: "1px solid var(--line)", width: "100%",
                   background: "transparent", cursor: "pointer", textAlign: "left",
                   alignItems: "center", border: "none", borderBottom: "1px solid var(--line)",
+                  animation: ri < 12 ? `springIn 0.3s ease-out ${ri * 30}ms both` : undefined,
                 }}>
                   <div style={{ width: 4, alignSelf: "stretch", background: stage.color, borderRadius: 3, flexShrink: 0 }} />
                   <div style={{ flex: 1, minWidth: 0 }}>
@@ -346,6 +385,7 @@ function SearchModal({ onClose, onSelectArtist }) {
                       {leg && <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "#fbbf24", fontWeight: 800 }}>★ DON'T MISS</span>}
                     </div>
                     <div style={{ display: "flex", gap: 5, marginTop: 2, alignItems: "center" }}>
+                      <span style={{ width: 6, height: 6, borderRadius: 6, background: stage.color, boxShadow: `0 0 5px ${stage.color}66`, flexShrink: 0 }}/>
                       <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: stage.color, fontWeight: 600, textTransform: "uppercase" }}>{stage.short}</span>
                       <span style={{ color: "var(--muted)" }}>·</span>
                       <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>{DAY_LABEL[a.day]} {fmt12(a.start)}–{fmt12(a.end)}</span>

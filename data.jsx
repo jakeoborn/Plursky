@@ -1,6 +1,46 @@
 // Las Vegas 2026 — real lineup by stage (public lineup info, Plursky is an independent companion app)
 
 // ─────────────────────────────────────────────────────────────
+// FESTIVAL_CONFIG — Type Definitions
+// ─────────────────────────────────────────────────────────────
+/** @typedef {{ y: number, m: number, d: number, name: string, short: string, midnightUtc: number }} DayDate */
+/** @typedef {{ rise: string, set: string }} SunTime */
+/** @typedef {{ lat: number, lng: number, onSiteRadiusMi: number }} FestivalGps */
+/** @typedef {{ lat: number, lng: number, label: string, note: string }} RideshareGps */
+/** @typedef {{ north: number, south: number, west: number, east: number }} GeoBounds */
+/** @typedef {{ lat: number, lng: number }} GeoPoint */
+/** @typedef {{ name: string, address: string, trackLengthMi: number, trackShape: string, bankingTurnsDeg: number, bankingStraightsDeg: number, ovalBounds: GeoBounds, ovalCenter: GeoPoint, festivalBounds: GeoBounds }} Venue */
+/** @typedef {{ stageId: string, lat: number, lng: number }} GpsAnchor */
+/**
+ * @typedef {Object} FestivalConfig
+ * @property {string} id - Unique festival identifier (e.g. "edc-lv-2026")
+ * @property {string} name - Full display name
+ * @property {string} shortName - Compact name for tight spaces
+ * @property {string} brand - Festival brand (EDC, ACL, etc.)
+ * @property {string} tagline - One-liner descriptor
+ * @property {string} location - Full venue + region
+ * @property {string} locationShort - Venue name only
+ * @property {string} dates - Human-readable date range
+ * @property {number} year - Festival year
+ * @property {number} startMs - UTC ms timestamp for gates open
+ * @property {number} endMs - UTC ms timestamp for festival close
+ * @property {string} tz - IANA timezone identifier
+ * @property {string} tzAbbr - Timezone abbreviation (PDT, CDT, etc.)
+ * @property {number} utcOffsetHours - UTC offset in hours
+ * @property {Object<number, DayDate>} dayDates - Day number → date metadata
+ * @property {Object<number, SunTime>} sunTimes - Day number → sunrise/sunset
+ * @property {string} lastShuttleHHMM - Last shuttle clock time (HH:MM)
+ * @property {FestivalGps} gps - Festival centroid + radius
+ * @property {RideshareGps} rideshareGps - Rideshare pickup zone
+ * @property {Venue} venue - Venue physical details
+ * @property {GpsAnchor[]} gpsAnchors - Stage GPS calibration points
+ * @property {string} weatherEndpoint - Weather API URL
+ * @property {string} mainStageId - Default/main stage identifier
+ * @property {string} mapImage - Map asset filename
+ * @property {string} mapStyle - Map rendering style
+ */
+
+// ─────────────────────────────────────────────────────────────
 // FESTIVAL_CONFIG
 // ─────────────────────────────────────────────────────────────
 // Single source of truth for everything festival-specific. Drop
@@ -8,6 +48,7 @@
 // Man, etc.) and the entire app re-skins for it. Phase 1 of the
 // multi-festival rollout — Phase 2 will introduce a FESTIVALS
 // registry + a switcher UI.
+/** @type {FestivalConfig} */
 const FESTIVAL_CONFIG = {
   // ── Identity ──
   id:           "edc-lv-2026",

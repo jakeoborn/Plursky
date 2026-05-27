@@ -1,6 +1,9 @@
 ﻿// Hybrid map — top-down navigation (default) + ground-level peek when a stage is selected.
 // Designed to feel like a real wayfinding app: glanceable, easy to meet friends, easy to route.
 
+const _mapDebug = (() => { try { return localStorage.getItem("plursky-debug") === "1"; } catch { return false; } })();
+const _mapLog = (...a) => { if (_mapDebug) console.log(...a); };
+
 // ── Messaging ─────────────────────────────────────────────────
 // Per-friend chat threads persisted in localStorage. Demo seed so the
 // drawer feels alive; real backend would replace _fakeReply with a fetch.
@@ -2185,7 +2188,7 @@ function MapScreen({ state, setState }) {
               maxHeight: sheetMaxH,
               overflow: "hidden",
               display: "flex", flexDirection: "column",
-              transition: "max-height 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+              transition: "max-height 0.3s var(--ease-smooth)",
               willChange: "max-height",
             }}>
               {/* Drag handle */}
@@ -2284,23 +2287,25 @@ function MapScreen({ state, setState }) {
               {search && (
                 <div style={{ overflowY: "auto", padding: "0 8px 10px", flex: 1 }}>
                   <div style={{ background: "var(--paper-2)", borderRadius: 10 }}>
-                    {stageMatches.map(s => (
+                    {stageMatches.map((s, si) => (
                       <button key={`stage-${s.id}`} onClick={() => { setSelectedStage(s.id); setSearch(""); setSearchSheetExpanded(false); }} style={{
                         width: "100%", display: "flex", alignItems: "center", gap: 8, padding: "8px 12px",
                         background: "transparent", border: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer",
                         borderRadius: 10,
+                        animation: `springIn 0.3s ease-out ${si * 30}ms both`,
                       }}>
                         <span style={{ width: 8, height: 8, borderRadius: 8, background: s.color, boxShadow: `0 0 6px ${s.color}` }}/>
                         <span style={{ fontFamily: "Geist, sans-serif", fontSize: 13 }}>{s.name}</span>
                       </button>
                     ))}
-                    {artistMatches.map(a => {
+                    {artistMatches.map((a, ai) => {
                       const st = STAGES.find(s => s.id === a.stage);
                       return (
                         <button key={`artist-${a.id}`} onClick={() => { setSelectedStage(a.stage); setSearch(""); setSearchSheetExpanded(false); }} style={{
                           width: "100%", display: "flex", alignItems: "center", gap: 8, padding: "8px 12px",
                           background: "transparent", border: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer",
                           borderRadius: 10,
+                          animation: `springIn 0.3s ease-out ${(stageMatches.length + ai) * 30}ms both`,
                         }}>
                           <span style={{ width: 8, height: 8, borderRadius: 8, background: st?.color || "var(--muted)" }}/>
                           <span style={{ fontFamily: "Geist, sans-serif", fontSize: 13, flex: 1, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</span>
@@ -2915,9 +2920,9 @@ function RealMap({
   React.useEffect(() => {
     _ensureRealMapStyles();
     let cancelled = false;
-    console.log("[plursky-map] RealMap useEffect — calling _loadMapLibre()");
+    _mapLog("[plursky-map] RealMap useEffect — calling _loadMapLibre()");
     _loadMapLibre().then((maplibregl) => {
-      console.log("[plursky-map] _loadMapLibre resolved — MapLibre loaded");
+      _mapLog("[plursky-map] _loadMapLibre resolved — MapLibre loaded");
       if (cancelled || !containerRef.current) {
         console.warn("[plursky-map] aborted post-load: cancelled=" + cancelled + " hasContainer=" + !!containerRef.current);
         return;
@@ -3241,7 +3246,7 @@ function RealMap({
       };
 
       const setupOverlayLayers = () => {
-        console.log("[plursky-map] setupOverlayLayers START — stages count:", stages?.length || 0);
+        _mapLog("[plursky-map] setupOverlayLayers START — stages count:", stages?.length || 0);
         if (stages && stages.length) {
           const s0 = stages[0];
           const ll = mapToGps(s0.x, s0.y);
@@ -3345,7 +3350,7 @@ function RealMap({
         });
         _safeLayer("stage-zones", () => {
           const _zd = stageZonesData();
-          console.log("[plursky-map] stage-zones features:", _zd.features.length, "first poly verts:", _zd.features[0]?.geometry?.coordinates?.[0]?.length || 0);
+          _mapLog("[plursky-map] stage-zones features:", _zd.features.length, "first poly verts:", _zd.features[0]?.geometry?.coordinates?.[0]?.length || 0);
           if (!map.getSource("stage-zones")) {
             map.addSource("stage-zones", { type: "geojson", data: _zd });
           }
@@ -3459,7 +3464,7 @@ function RealMap({
         // Snapchat-3D atmosphere back.
         _safeLayer("stages-3d", () => {
         const _sd = stagesExtrusionData(null);
-        console.log("[plursky-map] stages-3d features:", _sd.features.length);
+        _mapLog("[plursky-map] stages-3d features:", _sd.features.length);
         if (!map.getSource("stages-3d")) {
           map.addSource("stages-3d", { type: "geojson", data: _sd });
         }
@@ -3523,12 +3528,12 @@ function RealMap({
           const existing = (map.getStyle().layers || [])
             .filter((l) => /festival|stage|plaza|route/.test(l.id))
             .map((l) => `${l.id}(${l.type})`);
-          console.log("[plursky-map] my layers after setup:", existing.join(", ") || "(none)");
+          _mapLog("[plursky-map] my layers after setup:", existing.join(", ") || "(none)");
         } catch (e) {
           console.error("[plursky-map] getStyle failed:", e);
         }
 
-        console.log("[plursky-map] setupOverlayLayers END");
+        _mapLog("[plursky-map] setupOverlayLayers END");
 
         if (!map.getSource("route")) {
           map.addSource("route", {
@@ -3563,7 +3568,7 @@ function RealMap({
       // One-shot setup that runs after the first style finishes loading.
       // Markers (DOM overlays) persist across setStyle(), so we add them once.
       map.on("load", () => {
-        console.log("[plursky-map] map.on('load') fired");
+        _mapLog("[plursky-map] map.on('load') fired");
         if (cancelled) return;
 
         // Lock panning to the festival footprint + tiny buffer. The map
@@ -3615,7 +3620,7 @@ function RealMap({
             .setLngLat([lng, lat])
             .addTo(map);
         });
-        console.log("[plursky-map] stage name pills added:", stages.length);
+        _mapLog("[plursky-map] stage name pills added:", stages.length);
 
         // Avatar — outer halo (pulse animation) + inner amber dot
         const avWrap = document.createElement("div");
@@ -3916,7 +3921,7 @@ function RealMap({
     const cfg = REAL_MAP_STYLES[styleKey];
     if (!cfg) return;
     try {
-      console.log("[plursky-map] setStyle →", styleKey);
+      _mapLog("[plursky-map] setStyle →", styleKey);
       mapRef.current.setStyle(cfg.style || cfg.url);
     } catch (e) { console.error("[plursky-map] setStyle failed:", e); }
   }, [styleKey]);
@@ -5025,7 +5030,7 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
       maxHeight: expanded ? "72vh" : "auto",
       display: "flex", flexDirection: "column",
       overflow: "hidden",
-      animation: "sheetUp 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+      animation: "sheetUp 0.3s var(--ease-smooth)",
     }}>
       {/* Stage-color hero strip — Apple Maps place-card pattern. Drag handle
           sits on top in white so it's visible against any stage color. */}
