@@ -1,2 +1,2 @@
 # Plursky
-EDC Las Vegas 2026 festival companion app
+Festival companion app — EDC, ACL, and more

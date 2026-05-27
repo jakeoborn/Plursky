@@ -37,7 +37,7 @@ function OnboardingModal({ onDone, setState, state }) {
     {
       kicker: "WELCOME",
       title: <>Welcome to <span style={{ fontStyle: "italic", color: "var(--ember)" }}>Plursky</span></>,
-      body: `Your online-first companion for ${FESTIVAL_CONFIG.name || "the festival"} — and it still works when service drops at the festival. Lineup, stage map, friends, sunrise sets — all in one place.`,
+      body: `Your festival companion for ${FESTIVAL_CONFIG.name || "the festival"} — lineup, stage map, friends, and set times all in one place. Works offline when service drops.`,
       input: (
         <input
           type="text"
@@ -200,7 +200,11 @@ function SearchModal({ onClose, onSelectArtist }) {
   const DAY_LABEL = { 1: "FRI", 2: "SAT", 3: "SUN" };
 
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 80, background: "var(--paper)", display: "flex", flexDirection: "column" }}>
+    <div style={{
+      position: "fixed", inset: 0, zIndex: 80, background: "var(--paper)",
+      display: "flex", flexDirection: "column",
+      animation: "slideUp 0.2s ease-out",
+    }}>
       {/* Input row */}
       <div style={{
         display: "flex", alignItems: "center", gap: 10,
@@ -248,8 +252,9 @@ function SearchModal({ onClose, onSelectArtist }) {
               {QUICK.map(t => (
                 <button key={t.label} onClick={() => setQ(t.q)} style={{
                   background: "var(--paper-2)", border: "1px solid var(--line-2)",
-                  borderRadius: 999, padding: "5px 12px", cursor: "pointer",
+                  borderRadius: 999, padding: "6px 14px", cursor: "pointer",
                   fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1, color: "var(--ink)",
+                  fontWeight: 600, transition: "background 0.12s, border-color 0.12s",
                 }}>{t.label}</button>
               ))}
             </div>
@@ -579,6 +584,9 @@ styleTag.textContent = `
      character feels alive when standing on the tilted ground plane. */
   @keyframes isoBob { 0%,100% { translate: 0 0; } 50% { translate: 0 -6px; } }
   @keyframes isoShadowPulse { 0%,100% { transform: translate(-50%, -50%) scale(1); opacity: 0.55; } 50% { transform: translate(-50%, -50%) scale(0.82); opacity: 0.35; } }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+  button:active { opacity: 0.75; }
 `;
 document.head.appendChild(styleTag);
 

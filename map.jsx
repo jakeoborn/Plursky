@@ -189,13 +189,14 @@ function WellnessPill() {
         position: "absolute", top: 14, left: 10, zIndex: 4,
         display: "flex", alignItems: "center", gap: 7,
         padding: "5px 10px 5px 7px", borderRadius: 999,
-        background: "rgba(247,237,224,0.96)",
+        background: "rgba(247,237,224,0.88)",
         border: `1px solid ${hyd < 40 || restMin > 120 ? "#c14a4a" : "var(--line-2)"}`,
         backdropFilter: "blur(10px)",
+        WebkitBackdropFilter: "blur(10px)",
         color: "var(--ink)",
-        fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1, fontWeight: 600,
+        fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 0.8, fontWeight: 600,
         cursor: "pointer",
-        boxShadow: hyd < 40 ? "0 0 0 4px rgba(193,74,74,0.16)" : "0 2px 8px rgba(26,18,13,0.08)",
+        boxShadow: hyd < 40 ? "0 0 0 4px rgba(193,74,74,0.16)" : "0 2px 8px rgba(26,18,13,0.06)",
       }}>
         <span style={{ fontSize: 12 }}>💧</span>
         <span style={{ color: hyd > 70 ? "var(--ink)" : hyd > 40 ? "#b8651b" : "#c14a4a", fontWeight: 700 }}>{hyd}%</span>
@@ -2011,28 +2012,10 @@ function MapScreen({ state, setState }) {
               {gpsActive && <circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/>}
             </svg>
             <span className="mono" style={{
-              fontSize: 7.5, letterSpacing: 1, fontWeight: 800, lineHeight: 1,
+              fontSize: 9, letterSpacing: 0.8, fontWeight: 800, lineHeight: 1,
             }}>{gpsLabel}</span>
           </button>
-          <button onClick={() => setMenuOpen(o => !o)} aria-label="Map layers" style={{
-            width: 46, height: 38, borderRadius: 14,
-            background: menuOpen ? "var(--ink)" : "rgba(247,237,224,0.92)",
-            color: menuOpen ? "var(--paper)" : "var(--ink)",
-            border: menuOpen ? "none" : "1px solid var(--line-2)",
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)",
-            cursor: "pointer", padding: 0,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            boxShadow: "0 4px 12px rgba(0,0,0,0.10)",
-          }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 3 L21 8 L12 13 L3 8 Z"/>
-              <path d="M3 12 L12 17 L21 12"/>
-              <path d="M3 16 L12 21 L21 16"/>
-            </svg>
-          </button>
-          {/* Zoom column — paper-glass capsule mirroring the GPS/Layers style.
-              Stack vertically: +, –, RESET (only when zoomed away from 1×). */}
+          {/* Unified control capsule — layers + zoom in one glass pill */}
           <div style={{
             display: "flex", flexDirection: "column",
             background: "rgba(247,237,224,0.92)",
@@ -2042,6 +2025,21 @@ function MapScreen({ state, setState }) {
             WebkitBackdropFilter: "blur(10px)",
             boxShadow: "0 4px 12px rgba(0,0,0,0.10)",
           }}>
+            <button onClick={() => setMenuOpen(o => !o)} aria-label="Map layers" style={{
+              width: 46, height: 36, padding: 0,
+              background: menuOpen ? "var(--ink)" : "transparent",
+              color: menuOpen ? "var(--paper)" : "var(--ink)",
+              border: "none",
+              borderBottom: "1px solid var(--line)",
+              cursor: "pointer",
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 3 L21 8 L12 13 L3 8 Z"/>
+                <path d="M3 12 L12 17 L21 12"/>
+                <path d="M3 16 L12 21 L21 16"/>
+              </svg>
+            </button>
             <button onClick={zoomIn} disabled={mapZoom >= MAP_ZOOM_MAX} aria-label="Zoom in" style={{
               width: 46, height: 36, padding: 0,
               background: "transparent", border: "none",
@@ -2079,7 +2077,7 @@ function MapScreen({ state, setState }) {
           <>
             <div onClick={() => setMenuOpen(false)} style={{ position: "fixed", inset: 0, zIndex: 5 }}/>
             <div style={{
-              position: "absolute", top: 96, right: 10, zIndex: 6,
+              position: "absolute", top: 90, right: 10, zIndex: 6,
               background: "var(--paper)", border: "1px solid var(--line-2)",
               borderRadius: 12, padding: 5, minWidth: 220,
               boxShadow: "0 10px 28px rgba(26,18,13,0.20)",
@@ -2148,32 +2146,18 @@ function MapScreen({ state, setState }) {
           <div style={{
             position: "absolute", top: 12, left: "50%", transform: "translateX(-50%)",
             zIndex: 4,
-            padding: "4px 10px", borderRadius: 999,
+            padding: "5px 12px", borderRadius: 999,
             background: "rgba(245,154,54,0.95)", color: "#fff",
             backdropFilter: "blur(8px)",
+            boxShadow: "0 2px 10px rgba(0,0,0,0.15)",
           }} title={`${liveAvatar.mi.toFixed(1)} mi from venue · showing demo`}>
-            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700 }}>
-              {liveAvatar.mi.toFixed(0)}MI OFF · DEMO MODE
+            <span className="mono" style={{ fontSize: 10, letterSpacing: 1, fontWeight: 700 }}>
+              {liveAvatar.mi >= 1 ? `${liveAvatar.mi.toFixed(0)} MI AWAY` : "OUTSIDE VENUE"} · DEMO
             </span>
           </div>
         )}
 
-        {/* Rideshare FAB — Uber/Lyft deep links to the south pickup zone */}
-        <button onClick={() => setRideshareOpen(true)} aria-label="Rideshare pickup" style={{
-          position: "absolute", right: 12,
-          // Floats above the active bottom UI: place card (when stage/meet),
-          // expanded search sheet (when typing or tapped), or just friends bar.
-          bottom: stage || meetMode
-            ? 200
-            : (searchSheetExpanded || search.trim() ? 380 : 130),
-          width: 46, height: 46, borderRadius: 46,
-          background: "var(--paper)", color: "var(--ink)",
-          border: "1px solid var(--line-2)",
-          boxShadow: "0 6px 18px rgba(0,0,0,0.28)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          cursor: "pointer", zIndex: 4, transition: "bottom 0.3s",
-          fontSize: 22,
-        }}>🚗</button>
+        {/* Rideshare FAB — hidden; accessible via ⋯ menu to reduce map clutter */}
 
         {/* Bottom search sheet — Apple Maps pattern. Collapsed = just the
             input pill above the Friends bar. Expanded = Find Nearby chips +
@@ -2190,10 +2174,10 @@ function MapScreen({ state, setState }) {
               border: "1px solid var(--line-2)",
               borderRadius: 16,
               boxShadow: "0 -6px 24px rgba(0,0,0,0.18)",
-              maxHeight: isOpen ? "62vh" : "auto",
+              maxHeight: isOpen ? "48vh" : "auto",
               overflow: "hidden",
               display: "flex", flexDirection: "column",
-              transition: "max-height 0.25s ease",
+              transition: "max-height 0.2s ease-out",
             }}>
               {/* Drag handle — tap to toggle expanded state */}
               <div onClick={() => setSearchSheetExpanded(e => !e)} style={{
@@ -2346,7 +2330,7 @@ function MapScreen({ state, setState }) {
 
         <TopDownMap
           avatar={avatar} heading={heading} friends={friends} stages={STAGES}
-          saved={state.saved} showLabels={showLabels} showHeat={showHeat}
+          saved={state.saved} showLabels={showLabels} showHeat={showHeat} showAmenities={searchSheetExpanded}
           compass={compass && compassStatus === "live"}
           compassHeading={compassHeading}
           selected={selectedStage} meetMode={meetMode} meetTarget={meetTarget} meetGroup={meetGroup}
@@ -2427,7 +2411,10 @@ function MapScreen({ state, setState }) {
               }}/>
             )}
           </button>
-          <div className="no-scrollbar" style={{ display: "flex", gap: 5, overflowX: "auto", flex: 1, scrollbarWidth: "none" }}>
+          <div className="no-scrollbar" style={{
+            display: moreOpen ? "none" : "flex",
+            gap: 5, overflowX: "auto", flex: 1, scrollbarWidth: "none",
+          }}>
             {friends.map(f => {
               const d = Math.round(Math.sqrt((f.x-avatar.x)**2 + (f.y-avatar.y)**2) * 1.8);
               const active = meetGroup.includes(f.id);
@@ -2557,6 +2544,15 @@ function MapScreen({ state, setState }) {
                 <span className="mono" style={{
                   fontSize: 8.5, letterSpacing: 1, color: meetups.length ? "var(--ember)" : "var(--muted)", fontWeight: 700,
                 }}>{meetups.length ? `${meetups.length} UPCOMING` : "NONE"}</span>
+              </button>
+              <button onClick={() => { setRideshareOpen(true); setMoreOpen(false); }} style={{
+                width: "100%", display: "flex", alignItems: "center", gap: 10,
+                padding: "9px 11px", background: "transparent", border: "none",
+                borderRadius: 8, cursor: "pointer", color: "var(--ink)", textAlign: "left",
+              }}>
+                <span style={{ fontSize: 14, width: 18 }}>🚗</span>
+                <span style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500, flex: 1 }}>Rideshare</span>
+                <span className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", fontWeight: 700 }}>UBER / LYFT</span>
               </button>
             </div>
           </>
@@ -4000,7 +3996,7 @@ function _crowdDensity(stageId, nowMin) {
 }
 
 // ---- TOP-DOWN NAVIGATION MAP ----
-function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels = false, showHeat = false, compass = false, compassHeading = 0, selected, meetMode, meetTarget, meetGroup = [], crewFriends = [], zoom = 1, pan = { x: 0, y: 0 }, zoomMin = 0.7, zoomMax = 3.5, onZoomChange, onPanChange, onPickStage, onClick }) {
+function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels = false, showHeat = false, showAmenities = false, compass = false, compassHeading = 0, selected, meetMode, meetTarget, meetGroup = [], crewFriends = [], zoom = 1, pan = { x: 0, y: 0 }, zoomMin = 0.7, zoomMax = 3.5, onZoomChange, onPanChange, onPickStage, onClick }) {
   // Compass mode: rotate the entire map by -heading so the user's facing
   // direction is always "up" on screen. Readable text labels counter-rotate
   // back to upright so they stay legible at any heading.
@@ -4168,9 +4164,23 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         </defs>
 
         {/* Festival-specific map background */}
-        {FESTIVAL_CONFIG.mapImage ? (
-          <image href={FESTIVAL_CONFIG.mapImage} x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMid slice"/>
-        ) : (<>
+        {FESTIVAL_CONFIG.mapImage ? (<>
+          <image href={FESTIVAL_CONFIG.mapImage} x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMid slice" opacity="0.85"/>
+          <defs>
+            <linearGradient id="mapFadeL" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stopColor="#e8dfcf" stopOpacity="0.92"/>
+              <stop offset="0.55" stopColor="#e8dfcf" stopOpacity="0.35"/>
+              <stop offset="1" stopColor="#e8dfcf" stopOpacity="0"/>
+            </linearGradient>
+            <radialGradient id="mapVignette" cx="50%" cy="50%" r="55%">
+              <stop offset="0" stopColor="#000" stopOpacity="0"/>
+              <stop offset="0.75" stopColor="#000" stopOpacity="0"/>
+              <stop offset="1" stopColor="#000" stopOpacity="0.22"/>
+            </radialGradient>
+          </defs>
+          <rect x="0" y="0" width="15" height="100" fill="url(#mapFadeL)"/>
+          <rect x="0" y="0" width="100" height="100" fill="url(#mapVignette)"/>
+        </>) : (<>
         {/* Night sky base */}
         <rect x="0" y="0" width="100" height="100" fill="url(#mapGround)"/>
 
@@ -4258,10 +4268,9 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         ))}
         </>)}
 
-        {/* Amenity markers — coloured dots tuned for paper bg. Render before
-            stages so stage markers always sit on top. Hidden when the user
-            is in meet mode so the route line stays the focal point. */}
-        {!meetMode && (typeof AMENITIES !== "undefined" ? AMENITIES : []).map(a => {
+        {/* Amenity markers — only shown when search sheet is expanded (Find
+            Nearby mode). Otherwise they add visual noise over the map. */}
+        {!meetMode && showAmenities && (typeof AMENITIES !== "undefined" ? AMENITIES : []).map(a => {
           const cfg = ({
             water:  { color: "#38bdf8", letter: ""  },
             food:   { color: "#fb923c", letter: ""  },

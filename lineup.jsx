@@ -719,6 +719,7 @@ function LineupScreen({ state, setState }) {
           return (
             <button key={d.n} onClick={() => {
               setDay(d.n);
+              setState(s => ({ ...s, lineupDay: d.n }));
             }} style={{
               flex: 1,
               padding: "10px 8px",
@@ -979,7 +980,9 @@ function LineupScreen({ state, setState }) {
               ref={el => { gridSectionRefs.current[day] = el; }}
             >
               <div style={{ display: "flex", gap: 0, alignItems: "stretch", padding: "0 0 10px" }}>
-                <SavedSidebar day={day} state={state} setState={setState} />
+                {state.saved.some(id => ARTISTS.find(a => a.id === id && a.day === day)) && (
+                  <SavedSidebar day={day} state={state} setState={setState} />
+                )}
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <TimelineGrid
                     day={day}
@@ -1203,15 +1206,27 @@ function overlaps(a, b) {
   return aS < bE && bS < aE;
 }
 
-// Shared grid time-mapping constants — used by both TimelineGrid (the
-// 9-stage schedule) and SavedSidebar (the user's picks for that night).
-// Keeping them at module scope means each saved set in the sidebar lines
-// up vertically with the corresponding set block in the grid.
-const GRID_START_MIN = 19 * 60;            // 19:00
-const GRID_END_MIN   = (24 + 5) * 60 + 30; // 05:30 next day
+// Grid time bounds derived from actual artist data so daytime festivals
+// (ACL 11:00–22:00) and nighttime (EDC 19:00–05:30) both work correctly.
+const _gridBounds = (() => {
+  const all = typeof ARTISTS !== "undefined" ? ARTISTS : [];
+  if (!all.length) return { start: 19 * 60, end: (24 + 5) * 60 + 30 };
+  let lo = Infinity, hi = -Infinity;
+  all.forEach(a => {
+    const s = toNightMin(a.start), e = toNightMin(a.end);
+    if (s < lo) lo = s;
+    if (e > hi) hi = e;
+  });
+  return {
+    start: Math.floor(lo / 60) * 60,
+    end: Math.ceil(hi / 60) * 60,
+  };
+})();
+const GRID_START_MIN = _gridBounds.start;
+const GRID_END_MIN   = _gridBounds.end;
 const GRID_PX_PER_MIN = 1.8;
 const GRID_TOTAL_H = (GRID_END_MIN - GRID_START_MIN) * GRID_PX_PER_MIN;
-const GRID_HEADER_H = 36; // matches the sticky stage header height in TimelineGrid
+const GRID_HEADER_H = 30;
 function _minToTop(m) {
   return (Math.max(GRID_START_MIN, Math.min(GRID_END_MIN, m)) - GRID_START_MIN) * GRID_PX_PER_MIN;
 }
@@ -1324,20 +1339,20 @@ function SavedSidebar({ day, state, setState }) {
 }
 
 function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conflictById, spotifyMatchedIds, highlightId }) {
-  const COL_W = 76;
-  const GUTTER_W = 38;
-  // Time constants are hoisted to module scope so SavedSidebar can share
-  // them. Alias here so the rest of the component reads the same way.
+  const COL_W = 94;
+  const GUTTER_W = 44;
   const PX_PER_MIN = GRID_PX_PER_MIN;
   const TOTAL_H = GRID_TOTAL_H;
   const minToTop = _minToTop;
 
   const HOURS = [];
-  for (let h = 19; h <= 24 + 5; h++) {
-    HOURS.push({ label: `${String(h % 24).padStart(2, "0")}:00`, mins: h * 60 });
+  for (let h = Math.floor(GRID_START_MIN / 60); h <= Math.floor(GRID_END_MIN / 60); h++) {
+    const h24 = h % 24;
+    const suffix = h24 < 12 ? "AM" : "PM";
+    const h12 = h24 === 0 ? 12 : h24 > 12 ? h24 - 12 : h24;
+    HOURS.push({ label: `${h12} ${suffix}`, mins: h * 60 });
   }
 
-  // NOW indicator — only when viewing today
   let nowTop = null;
   if (NOW.day === day && NOW.time) {
     const nm = toNightMin(NOW.time);
@@ -1351,22 +1366,20 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
         <div style={{
           position: "sticky", top: 0, zIndex: 5,
           display: "flex", background: "var(--paper)",
-          borderBottom: "1px solid var(--line-2)",
+          borderBottom: "2px solid var(--line)",
         }}>
           <div style={{ width: GUTTER_W, flexShrink: 0 }} />
           {STAGES.map(s => (
             <div key={s.id} style={{
               width: COL_W, flexShrink: 0,
-              padding: "8px 4px 7px",
+              padding: "6px 4px 6px",
               textAlign: "center",
               borderLeft: "1px solid var(--line)",
+              background: `${s.color}0a`,
+              borderBottom: `2.5px solid ${s.color}`,
             }}>
-              <div style={{
-                width: 8, height: 8, borderRadius: 8,
-                background: s.color, margin: "0 auto 3px",
-              }} />
               <div className="mono" style={{
-                fontSize: 8.5, letterSpacing: 0.8, fontWeight: 700,
+                fontSize: 9.5, letterSpacing: 0.6, fontWeight: 800,
                 color: "var(--ink)",
               }}>{s.short}</div>
             </div>
@@ -1380,22 +1393,23 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
             {HOURS.map(h => (
               <div key={h.label} className="mono" style={{
                 position: "absolute",
-                top: minToTop(h.mins) - 5,
+                top: minToTop(h.mins) - 6,
                 right: 6,
-                fontSize: 8.5, letterSpacing: 0.5,
-                color: "var(--muted)", fontWeight: 600,
+                fontSize: 9, letterSpacing: 0.3,
+                color: "var(--muted)", fontWeight: 700,
               }}>{h.label}</div>
             ))}
           </div>
 
           {/* Stage columns */}
-          {STAGES.map(stage => {
+          {STAGES.map((stage, si) => {
             const stageArtists = allDayArtists.filter(a => a.stage === stage.id);
             return (
               <div key={stage.id} style={{
                 width: COL_W, flexShrink: 0,
                 position: "relative", height: TOTAL_H,
                 borderLeft: "1px solid var(--line)",
+                background: si % 2 === 0 ? "transparent" : "rgba(26,18,13,0.018)",
               }}>
                 {/* Hour grid lines */}
                 {HOURS.map(h => (
@@ -1410,14 +1424,15 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
                   const start = toNightMin(a.start);
                   const end = toNightMin(a.end);
                   const top = minToTop(start);
-                  const height = Math.max(20, minToTop(end) - top);
+                  const height = Math.max(24, minToTop(end) - top);
                   const active = matchesActive(a);
                   const saved = state.saved.includes(a.id);
                   const clash = !!conflictById[a.id];
                   const matched = spotifyMatchedIds && spotifyMatchedIds.has && spotifyMatchedIds.has(a.id);
                   const isHighlighted = highlightId === a.id;
-                  // tier-3 (headliner) gets a stronger fill so anchors pop
-                  const fillAlpha = a.tier === 3 ? "40" : "26";
+                  const isHeadliner = a.tier === 3;
+                  const fillAlpha = isHeadliner ? "38" : "22";
+                  const dimAlpha = isHeadliner ? "14" : "08";
                   return (
                     <div key={a.id}
                       data-lineup-highlight={isHighlighted ? "true" : undefined}
@@ -1426,41 +1441,50 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
                         position: "absolute",
                         top, left: 2, right: 2,
                         height,
-                        background: `${stage.color}${active || isHighlighted ? fillAlpha : "0c"}`,
-                        borderLeft: `3px solid ${active || isHighlighted ? stage.color : stage.color + "55"}`,
-                        borderRadius: 4,
-                        padding: "3px 5px 3px 6px",
+                        background: `${stage.color}${active || isHighlighted ? fillAlpha : dimAlpha}`,
+                        borderLeft: `3px solid ${active || isHighlighted ? stage.color : stage.color + "44"}`,
+                        borderRadius: 6,
+                        padding: "4px 6px 4px 7px",
                         cursor: "pointer",
                         overflow: "hidden",
-                        // When dimmed by filters, force the highlighted block back to full opacity
-                        // so the SCHEDULE handoff lands on something the user can actually see.
-                        opacity: active || isHighlighted ? 1 : 0.28,
-                        boxShadow: clash && active ? "inset 0 0 0 1.5px var(--ember)" : "none",
+                        opacity: active || isHighlighted ? 1 : 0.32,
+                        boxShadow: clash && active
+                          ? "inset 0 0 0 1.5px var(--ember)"
+                          : (isHeadliner && (active || isHighlighted)
+                            ? `0 2px 8px ${stage.color}33`
+                            : "none"),
                         zIndex: isHighlighted ? 6 : undefined,
                         animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined,
                         display: "flex", flexDirection: "column",
                       }}>
-                      <div className="serif" style={{
-                        fontSize: 10.5, fontWeight: 700, lineHeight: 1.05,
+                      <div style={{
+                        fontSize: isHeadliner ? 12.5 : 11.5,
+                        fontWeight: isHeadliner ? 800 : 700,
+                        lineHeight: 1.1,
                         color: "var(--ink)",
-                        whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-                        paddingRight: saved ? 9 : 0,
+                        overflow: "hidden", textOverflow: "ellipsis",
+                        display: "-webkit-box", WebkitLineClamp: height > 60 ? 2 : 1,
+                        WebkitBoxOrient: "vertical",
+                        paddingRight: saved ? 12 : 0,
+                        fontFamily: isHeadliner
+                          ? "Instrument Serif, Georgia, serif"
+                          : "Geist, -apple-system, sans-serif",
                       }}>{a.name}</div>
                       <div className="mono" style={{
-                        fontSize: 7.5, letterSpacing: 0.4,
-                        color: "var(--muted)", marginTop: 1,
-                      }}>{fmt12(a.start)}{height > 34 ? `–${fmt12(a.end)}` : ""}</div>
+                        fontSize: 8, letterSpacing: 0.3,
+                        color: "var(--muted)", marginTop: 2,
+                      }}>{fmt12(a.start)}{height > 38 ? ` – ${fmt12(a.end)}` : ""}</div>
                       {saved && (
                         <span style={{
-                          position: "absolute", top: 2, right: 4,
-                          fontSize: 9, color: "var(--ember)", fontWeight: 800,
+                          position: "absolute", top: 3, right: 5,
+                          fontSize: 10, color: "var(--ember)", fontWeight: 800,
                           lineHeight: 1,
                         }}>★</span>
                       )}
-                      {!saved && matched && height > 26 && (
+                      {!saved && matched && height > 30 && (
                         <span style={{
-                          position: "absolute", top: 3, right: 4,
-                          fontSize: 8, color: "#1DB954", fontWeight: 800,
+                          position: "absolute", top: 4, right: 5,
+                          fontSize: 9, color: "#1DB954", fontWeight: 800,
                           lineHeight: 1,
                         }}>♫</span>
                       )}

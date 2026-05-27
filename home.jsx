@@ -577,7 +577,16 @@ function F1TonightHero({ state, setState }) {
       .sort((a, b) => (b.tier || 0) - (a.tier || 0))[0] || null;
   })();
 
-  const featured = live || headliner;
+  // Artist of the Day — rotates through headliners daily during pre-festival.
+  const spotlight = (() => {
+    if (!isPreEvent) return null;
+    const headliners = ARTISTS.filter(a => a.tier === 3).sort((a, b) => a.id.localeCompare(b.id));
+    if (!headliners.length) return null;
+    const dayIndex = Math.floor(Date.now() / 86400000) % headliners.length;
+    return headliners[dayIndex];
+  })();
+
+  const featured = live || headliner || spotlight;
   const stage = featured ? STAGES.find(s => s.id === featured.stage) : null;
   const accent = stage?.color || "var(--ember)";
   const photo  = useArtistPhoto(featured?.name || "");
@@ -613,22 +622,22 @@ function F1TonightHero({ state, setState }) {
       {/* Accent stripe along the top edge — F1 brand-bar feel */}
       <div style={{ height: 4, background: accent }}/>
 
-      {/* Background photo if we have one, with vignette */}
-      {phase !== "pre" && photo && (
+      {/* Background photo with vignette — shows in all phases when available */}
+      {photo && (
         <div style={{
           position: "absolute", top: 4, left: 0, right: 0, bottom: 0,
           backgroundImage: `url(${photo})`,
           backgroundSize: "cover", backgroundPosition: "center 18%",
-          opacity: 0.32,
+          opacity: phase === "pre" ? 0.22 : 0.32,
         }}/>
       )}
-      {phase !== "pre" && (
-        <div style={{
-          position: "absolute", top: 4, left: 0, right: 0, bottom: 0,
-          background: `radial-gradient(120% 80% at 80% 0%, ${accent}30, transparent 55%), linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.55) 100%)`,
-          pointerEvents: "none",
-        }}/>
-      )}
+      <div style={{
+        position: "absolute", top: 4, left: 0, right: 0, bottom: 0,
+        background: phase === "pre"
+          ? `linear-gradient(180deg, rgba(26,18,13,0.6) 0%, rgba(26,18,13,0.85) 100%)`
+          : `radial-gradient(120% 80% at 80% 0%, ${accent}30, transparent 55%), linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.55) 100%)`,
+        pointerEvents: "none",
+      }}/>
 
       <div style={{ position: "relative", padding: "16px 18px 18px" }}>
         {/* Header chip-row: round number + date */}
@@ -651,19 +660,20 @@ function F1TonightHero({ state, setState }) {
           </div>
         </div>
 
-        {/* Pre-festival: countdown + date */}
+        {/* Pre-festival: countdown + Artist of the Day spotlight */}
         {phase === "pre" && (
           <>
             <div className="serif" style={{ fontSize: 30, lineHeight: 0.96, letterSpacing: -0.5, marginBottom: 6 }}>
               {FESTIVAL_CONFIG.dayDates[1]?.short} · <span style={{ fontStyle: "italic", color: accent }}>{FESTIVAL_CONFIG.brand}</span>
             </div>
             <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 1.4, marginBottom: 14 }}>
-              {FESTIVAL_CONFIG.locationShort} · gates open Friday 4PM.
+              {FESTIVAL_CONFIG.locationShort} · gates open {FESTIVAL_CONFIG.dayDates[1]?.name || "Friday"}.
             </div>
             <div style={{
               display: "flex", alignItems: "baseline", gap: 10,
               padding: "10px 12px", borderRadius: 10,
               background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
+              marginBottom: spotlight ? 16 : 0,
             }}>
               <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: accent, fontWeight: 800 }}>
                 STARTS IN
@@ -676,6 +686,38 @@ function F1TonightHero({ state, setState }) {
                 {preDays != null && preDays > 0 ? `${preDays}D ` : ""}{preLabel || "—"}
               </div>
             </div>
+            {spotlight && (() => {
+              const sStage = STAGES.find(s => s.id === spotlight.stage);
+              return (
+                <button onClick={() => setState({ ...state, artist: spotlight.id })} style={{
+                  display: "flex", alignItems: "center", gap: 12, width: "100%",
+                  padding: "10px 12px", borderRadius: 12,
+                  background: `rgba(255,255,255,0.06)`,
+                  border: `1px solid ${sStage?.color || accent}33`,
+                  cursor: "pointer", textAlign: "left", color: "#fff",
+                }}>
+                  <ArtistSwatch artist={spotlight} size={44} />
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div className="mono" style={{
+                      fontSize: 8, letterSpacing: 1.6, color: sStage?.color || accent,
+                      fontWeight: 800, marginBottom: 3,
+                    }}>ARTIST OF THE DAY</div>
+                    <div className="serif" style={{
+                      fontSize: 20, lineHeight: 1, letterSpacing: -0.3,
+                      whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+                    }}>{spotlight.name}</div>
+                    <div className="mono" style={{
+                      fontSize: 8.5, letterSpacing: 0.8, color: "rgba(255,255,255,0.55)", marginTop: 3,
+                    }}>
+                      {sStage?.name?.toUpperCase() || ""} · DAY {spotlight.day} · {fmt12(spotlight.start)}
+                    </div>
+                  </div>
+                  <div style={{
+                    color: "rgba(255,255,255,0.4)", fontSize: 16, flexShrink: 0,
+                  }}>→</div>
+                </button>
+              );
+            })()}
           </>
         )}
 
@@ -1391,17 +1433,18 @@ function HomeScreen({ state, setState }) {
         </div>
       )}
 
-      {/* Day-strip segmented control (Apple Sports–style). Sub-tab state is
-          local to HomeScreen; the master `state.tab` still drives the main
-          4-tab nav at the bottom of the app. */}
+      {/* Day-strip segmented control — hidden pre-festival since
+          Yesterday/Today/Upcoming is meaningless months out. */}
+      {!countdown && (
       <div style={{ padding: "10px 16px 4px" }}>
         <DayStrip
           value={homeSubTab}
           onChange={setHomeSubTab}
-          hasYesterday={!countdown && !isPostFestival && NOW.day > 1}
-          hasUpcoming={countdown || (!isPostFestival && NOW.day < 3)}
+          hasYesterday={!isPostFestival && NOW.day > 1}
+          hasUpcoming={!isPostFestival && NOW.day < 3}
         />
       </div>
+      )}
 
       <div style={{ padding: "16px 16px 24px" }}>
         {/* ── YESTERDAY tab ───────────────────────────────────── */}
@@ -1592,14 +1635,19 @@ function HomeScreen({ state, setState }) {
               .sort((a, b) => toNightMin(a.start) - toNightMin(b.start)),
           })).filter(d => d.artists.length);
           if (!byDay.length) return (
-            <div style={{
-              background: "var(--paper-2)", border: "1px solid var(--line)",
-              borderRadius: 16, padding: "16px 16px", marginTop: 18, textAlign: "center",
+            <button onClick={() => setState({ ...state, tab: "lineup" })} style={{
+              width: "100%", background: "var(--paper-2)", border: "1px dashed var(--line)",
+              borderRadius: 18, padding: "28px 20px", marginTop: 18, textAlign: "center",
+              cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
             }}>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)" }}>
-                NO SAVED SETS YET — BROWSE THE LINEUP ↓
+              <div style={{ fontSize: 28, opacity: 0.4 }}>+</div>
+              <div className="serif" style={{ fontSize: 18, color: "var(--ink)", fontStyle: "italic" }}>
+                Build your lineup
               </div>
-            </div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)" }}>
+                TAP TO BROWSE {ARTISTS.length} ARTISTS
+              </div>
+            </button>
           );
           return (
             <div style={{ marginTop: 22 }}>

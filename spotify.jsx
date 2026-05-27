@@ -4696,7 +4696,7 @@ function MeScreen({ state, setState }) {
             <span style={{ fontSize: 24, lineHeight: 1, flexShrink: 0 }}>✦</span>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div className="serif" style={{ fontSize: 21, lineHeight: 1.05 }}>
-                Your <span style={{ fontStyle: "italic", color: "var(--flare)" }}>EDC</span> weekend
+                Your <span style={{ fontStyle: "italic", color: "var(--flare)" }}>{_cfg.brand || "festival"}</span> weekend
               </div>
               <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "rgba(247,237,224,0.65)", marginTop: 4, fontWeight: 700 }}>
                 THE RECAP · {getAttendedCount?.() || 0} SETS CAUGHT · TAP TO SEE
@@ -4706,22 +4706,14 @@ function MeScreen({ state, setState }) {
           </button>
         )}
 
-        {/* ── History / Records toggle (Runbuds-modeled) ────────────
-            Night-by-night recap rows + festival superlatives below the
-            stat grid. History = per-day saved-set count + time + top
-            stage; Records = derived best-of stats from saved data. */}
+        <div style={{ borderTop: "1px solid var(--line)", marginTop: 6, marginBottom: 18 }}/>
         <HistoryRecordsSection state={state} setState={setState} />
 
-        {/* ── Badges (Me+ / Plenty of Fish-modeled) ─────────────────
-            Festival milestones earned from saved-set behavior. Earned
-            badges full-color; locked ones grayed with their unlock
-            criteria visible so users know what to chase. */}
+        <div style={{ borderTop: "1px solid var(--line)", marginTop: 6, marginBottom: 18 }}/>
         <div id="plursky-badges-anchor"/>
         <BadgesSection state={state} />
 
-        {/* Music — primary entry to SpotifyScreen now that the Music tab is
-            gone (v92 fold). Connect status is the headline; tapping opens
-            the full Music screen with top artists, discoveries, playlist build. */}
+        <div style={{ borderTop: "1px solid var(--line)", marginTop: 6, marginBottom: 18 }}/>
         <button
           onClick={() => setState({ ...state, tab: "spotify" })}
           style={{
@@ -4760,17 +4752,19 @@ function MeScreen({ state, setState }) {
           </svg>
         </button>
 
-        {/* Friends — live via Supabase Realtime Presence */}
-        <div style={{ marginBottom: 20 }}>
+        <div style={{ borderTop: "1px solid var(--line)", marginTop: 6, marginBottom: 18 }}/>
+        <div className="serif" style={{ fontSize: 22, marginBottom: 3 }}>
+          Friends & <span style={{ fontStyle: "italic" }}>crew</span>
+        </div>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginBottom: 14 }}>
+          LIVE LOCATION · SHARED LINEUPS
+        </div>
+        <div style={{ marginBottom: 14 }}>
           <FriendsCard state={state} setState={setState} />
         </div>
-
-        {/* Crew mode — shared saved lineups */}
-        <div style={{ marginBottom: 20 }}>
+        <div style={{ marginBottom: 14 }}>
           <CrewCard state={state} />
         </div>
-
-        {/* Cloud account / sync */}
         <AccountCard state={state} setState={setState} />
 
         {/* Settings — folds Notifications, Battery saver, Pack list, and the

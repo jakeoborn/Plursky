@@ -1,6 +1,6 @@
 # Plursky — Visual Design System
 
-A festival-companion app for EDC Las Vegas. Aesthetic: **desert-dawn editorial.**
+A multi-festival companion app (EDC, ACL, and more). Aesthetic: **desert-dawn editorial.**
 Warm paper, ink, ember; serif display + mono caps. Reads like a printed
 program zine, behaves like a phone app. **Not** dark-mode, **not** neon-rave,
 **not** Material — those are explicit non-goals.

@@ -60,7 +60,7 @@ function TabBar({ active, onChange }) {
     <div style={{
       background: "var(--paper-2)",
       borderTop: "1px solid var(--line)",
-      padding: "8px 10px 10px",
+      padding: "6px 10px 10px",
       display: "flex",
       justifyContent: "space-around",
     }}>
@@ -72,13 +72,24 @@ function TabBar({ active, onChange }) {
             onClick={() => onChange(t.id)}
             style={{
               background: "transparent", border: "none", cursor: "pointer",
-              display: "flex", flexDirection: "column", alignItems: "center", gap: 3,
-              padding: "4px 8px",
+              display: "flex", flexDirection: "column", alignItems: "center", gap: 2,
+              padding: "4px 12px",
               color: on ? "var(--ink)" : "var(--muted)",
               minWidth: 54,
+              transition: "color 0.15s ease",
+              position: "relative",
             }}>
+            {on && <div style={{
+              position: "absolute", top: -6, left: "50%", transform: "translateX(-50%)",
+              width: 20, height: 2.5, borderRadius: 2,
+              background: "var(--ember)",
+            }}/>}
             <Icon on={on} />
-            <span className="mono" style={{ fontSize: 9, letterSpacing: 1, textTransform: "uppercase", fontWeight: on ? 600 : 400 }}>
+            <span className="mono" style={{
+              fontSize: 9, letterSpacing: 1, textTransform: "uppercase",
+              fontWeight: on ? 700 : 400,
+              transition: "font-weight 0.15s, color 0.15s",
+            }}>
               {t.label}
             </span>
           </button>

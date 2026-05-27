@@ -382,7 +382,7 @@ const mk = (id, name, genre, stage, day, start, end, bio) => {
   return {
     id, name, genre, country: "—", stage, day, start, end, tier,
     img: `linear-gradient(135deg, ${STAGES.find(s=>s.id===stage).color}, #1a0a28)`,
-    bio: bio || "Playing EDC Las Vegas 2026."
+    bio: bio || `Playing ${FESTIVAL_CONFIG?.name || "EDC Las Vegas 2026"}.`
   };
 };
 

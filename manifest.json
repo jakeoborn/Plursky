@@ -1,7 +1,7 @@
 {
-  "name": "Plursky — EDC Las Vegas 2026",
+  "name": "Plursky — Festival Companion",
   "short_name": "PLURSKY",
-  "description": "Your online-first festival companion for EDC Las Vegas 2026 — fully usable when service drops. Personalized lineup matching via Spotify & Apple Music, interactive stage map, set reminders, real-time friend locations, and cloud sync.",
+  "description": "Your festival companion — lineup, stage map, friends, set reminders, and cloud sync. Works offline when service drops. Supports EDC Las Vegas, ACL Austin, and more.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

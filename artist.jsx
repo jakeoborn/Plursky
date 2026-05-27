@@ -80,9 +80,15 @@ function _slIsThisFestival(sl) {
 const YOUTUBE_KEY = "AIzaSyDl2DjwIVG-cTN-KBaJkMNmtFRKVLvPLOo";
 const _YT_TTL = 24 * 3600000;
 
+function _parseDuration(iso) {
+  const m = (iso || "").match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  if (!m) return 0;
+  return (parseInt(m[1] || 0) * 60 + parseInt(m[2] || 0)) + (parseInt(m[3] || 0) / 60);
+}
+
 async function fetchYouTubeSet(artistName) {
   if (!YOUTUBE_KEY) return null;
-  const cacheKey = `yt_${artistName.toLowerCase().replace(/\W+/g, "_")}_v1`;
+  const cacheKey = `yt_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
   try {
     const c = JSON.parse(localStorage.getItem(cacheKey) || "null");
     if (c && Date.now() - c.fetchedAt < _YT_TTL) return c.data;
@@ -90,24 +96,47 @@ async function fetchYouTubeSet(artistName) {
   try {
     const q = encodeURIComponent(`${artistName} live set full`);
     const res = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${q}&key=${YOUTUBE_KEY}`
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=8&q=${q}&key=${YOUTUBE_KEY}`
     );
     if (!res.ok) return null;
     const json = await res.json();
     const items = (json.items || []).filter(i => i.id?.videoId);
     if (!items.length) return null;
-    // Prefer results that mention EDC, festival, or live in the title
+
+    const ids = items.map(i => i.id.videoId).join(",");
+    const statsRes = await fetch(
+      `https://www.googleapis.com/youtube/v3/videos?part=contentDetails,statistics&id=${ids}&key=${YOUTUBE_KEY}`
+    );
+    const statsMap = {};
+    if (statsRes.ok) {
+      const sj = await statsRes.json();
+      (sj.items || []).forEach(v => {
+        statsMap[v.id] = {
+          views: parseInt(v.statistics?.viewCount || "0"),
+          durationMin: _parseDuration(v.contentDetails?.duration),
+        };
+      });
+    }
+
+    const brand = (FESTIVAL_CONFIG.brand || "").toLowerCase();
     const scored = items.map(i => {
       const t = (i.snippet?.title || "").toLowerCase();
-      const brand = (FESTIVAL_CONFIG.brand || "").toLowerCase();
-      return { i, score: (brand && t.includes(brand) ? 3 : 0) + (t.includes("festival") ? 2 : 0) + (t.includes("live") ? 1 : 0) };
+      const relevance = (brand && t.includes(brand) ? 4 : 0)
+        + (t.includes("festival") ? 2 : 0)
+        + (t.includes("live") ? 1 : 0);
+      const st = statsMap[i.id.videoId] || { views: 0, durationMin: 0 };
+      const durBonus = st.durationMin > 50 ? 6 : st.durationMin > 20 ? 4 : st.durationMin > 10 ? 1 : 0;
+      const viewBonus = st.views > 0 ? Math.log10(st.views) : 0;
+      return { i, score: relevance * 3 + durBonus + viewBonus, stats: st };
     });
     scored.sort((a, b) => b.score - a.score);
-    const best = scored[0].i;
+    const best = scored[0];
     const data = {
-      videoId: best.id.videoId,
-      title: best.snippet?.title || "",
-      thumbnail: best.snippet?.thumbnails?.high?.url || best.snippet?.thumbnails?.default?.url || "",
+      videoId: best.i.id.videoId,
+      title: best.i.snippet?.title || "",
+      thumbnail: best.i.snippet?.thumbnails?.high?.url || best.i.snippet?.thumbnails?.default?.url || "",
+      views: best.stats.views,
+      durationMin: Math.round(best.stats.durationMin),
     };
     try { localStorage.setItem(cacheKey, JSON.stringify({ data, fetchedAt: Date.now() })); } catch {}
     return data;
@@ -930,16 +959,18 @@ function ArtistScreen({ state, setState }) {
       <ScrollBody>
       {/* Hero */}
       <div style={{
-        height: 260, position: "relative",
+        height: 300, position: "relative",
         background: heroPhoto ? "var(--ink)" : a.img,
         backgroundImage: heroPhoto ? `url(${heroPhoto})` : undefined,
         backgroundSize: "cover",
-        backgroundPosition: "center top",
+        backgroundPosition: "center 20%",
         color: "#fff",
       }}>
         <div style={{
           position: "absolute", inset: 0,
-          background: "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 40%, rgba(26,18,13,0.85) 100%)",
+          background: heroPhoto
+            ? `linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0) 35%, ${stage?.color || "rgba(26,18,13,1)"}22 65%, rgba(26,18,13,0.92) 100%)`
+            : "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 40%, rgba(26,18,13,0.85) 100%)",
         }} />
         <button onClick={() => window._popNav ? window._popNav() : setState({ ...state, artist: null })} style={{
           position: "absolute", top: 14, left: 14,
@@ -978,11 +1009,27 @@ function ArtistScreen({ state, setState }) {
           <ShareArtistButton artist={a} />
         </div>
 
-        <div style={{ position: "absolute", bottom: 14, left: 18, right: 18 }}>
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, opacity: 0.85, marginBottom: 6 }}>
-            {a.genre.toUpperCase()}
+        <div style={{ position: "absolute", bottom: 16, left: 18, right: 18 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+            <div className="mono" style={{ fontSize: 9.5, letterSpacing: 1.6, opacity: 0.85, fontWeight: 600 }}>
+              {a.genre.toUpperCase()}
+            </div>
+            {stage && (
+              <div style={{
+                width: 4, height: 4, borderRadius: 4, background: stage.color,
+                boxShadow: `0 0 6px ${stage.color}`,
+              }}/>
+            )}
+            {stage && (
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: stage.color, fontWeight: 700 }}>
+                {stage.name.toUpperCase()}
+              </div>
+            )}
           </div>
-          <div className="serif" style={{ fontSize: isB2B ? 32 : 48, lineHeight: 0.9, letterSpacing: -1 }}>{a.name}</div>
+          <div className="serif" style={{
+            fontSize: isB2B ? 34 : 52, lineHeight: 0.88, letterSpacing: -1.5,
+            textShadow: "0 2px 20px rgba(0,0,0,0.5)",
+          }}>{a.name}</div>
         </div>
       </div>
 
@@ -1379,47 +1426,74 @@ function ArtistScreen({ state, setState }) {
 
               {/* Loading */}
               {YOUTUBE_KEY && ytVideo === undefined && (
-                <div style={{ fontSize: 12, color: "var(--muted)", fontStyle: "italic" }}>Loading…</div>
+                <div style={{
+                  borderRadius: 16, overflow: "hidden", aspectRatio: "16/9",
+                  background: "var(--paper-2)", border: "1px solid var(--line)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  <div style={{
+                    width: 20, height: 20, borderRadius: "50%",
+                    border: "2px solid var(--line)", borderTopColor: "var(--muted)",
+                    animation: "spin 0.8s linear infinite",
+                  }}/>
+                </div>
               )}
 
               {/* Thumbnail → tap to embed */}
               {YOUTUBE_KEY && ytVideo && !ytPlaying && (
                 <div onClick={() => setYtPlaying(true)} style={{
-                  position: "relative", borderRadius: 14, overflow: "hidden",
+                  position: "relative", borderRadius: 16, overflow: "hidden",
                   aspectRatio: "16/9", cursor: "pointer",
                   background: "var(--ink)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.25)",
                 }}>
                   {ytVideo.thumbnail && (
                     <img src={ytVideo.thumbnail} alt={ytVideo.title} style={{
                       width: "100%", height: "100%", objectFit: "cover", display: "block",
                     }} />
                   )}
-                  {/* Dark overlay */}
                   <div style={{
                     position: "absolute", inset: 0,
-                    background: "rgba(0,0,0,0.3)",
+                    background: "linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.75) 100%)",
                     display: "flex", alignItems: "center", justifyContent: "center",
                   }}>
                     <div style={{
-                      width: 58, height: 58, borderRadius: 58,
-                      background: "rgba(255,0,0,0.9)",
+                      width: 62, height: 62, borderRadius: 62,
+                      background: "rgba(255,0,0,0.92)",
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      boxShadow: "0 4px 20px rgba(0,0,0,0.45)",
+                      boxShadow: "0 6px 28px rgba(255,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)",
+                      transition: "transform 0.15s",
                     }}>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff">
                         <path d="M8 5 L19 12 L8 19 Z"/>
                       </svg>
                     </div>
                   </div>
-                  {/* Title bar */}
                   <div style={{
                     position: "absolute", bottom: 0, left: 0, right: 0,
-                    background: "linear-gradient(0deg, rgba(0,0,0,0.75) 0%, transparent 100%)",
-                    padding: "28px 12px 10px",
+                    padding: "32px 14px 12px",
                   }}>
-                    <div style={{ fontSize: 12, color: "#fff", lineHeight: 1.3 }}>{ytVideo.title}</div>
-                    <div className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "rgba(255,255,255,0.6)", marginTop: 3 }}>
-                      TAP TO PLAY
+                    <div style={{ fontSize: 13, color: "#fff", lineHeight: 1.3, fontWeight: 500 }}>{ytVideo.title}</div>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 5 }}>
+                      <span className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "rgba(255,255,255,0.5)" }}>
+                        TAP TO PLAY
+                      </span>
+                      {ytVideo.durationMin > 0 && (
+                        <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "rgba(255,255,255,0.5)" }}>
+                          {ytVideo.durationMin >= 60
+                            ? `${Math.floor(ytVideo.durationMin / 60)}H ${ytVideo.durationMin % 60}M`
+                            : `${ytVideo.durationMin} MIN`}
+                        </span>
+                      )}
+                      {ytVideo.views > 0 && (
+                        <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "rgba(255,255,255,0.5)", marginLeft: "auto" }}>
+                          {ytVideo.views >= 1e6
+                            ? `${(ytVideo.views / 1e6).toFixed(1)}M`
+                            : ytVideo.views >= 1e3
+                            ? `${(ytVideo.views / 1e3).toFixed(0)}K`
+                            : ytVideo.views} VIEWS
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -1453,7 +1527,7 @@ function ArtistScreen({ state, setState }) {
                   <div>
                     <div style={{ fontSize: 13, color: "var(--ink)", fontWeight: 500 }}>Watch on YouTube</div>
                     <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2 }}>
-                      {activeName.toUpperCase()} LIVE SET · EDC
+                      {activeName.toUpperCase()} LIVE SET · {(FESTIVAL_CONFIG.brand || "FESTIVAL").toUpperCase()}
                     </div>
                   </div>
                   <div style={{ marginLeft: "auto", color: "var(--muted)", fontSize: 14 }}>↗</div>
@@ -1465,7 +1539,7 @@ function ArtistScreen({ state, setState }) {
 
         {/* ── Mixcloud sets ────────────────────────────────── */}
         {(() => {
-          const mcSearchUrl = `https://www.mixcloud.com/search/?q=${encodeURIComponent(activeName + " EDC")}`;
+          const mcSearchUrl = `https://www.mixcloud.com/search/?q=${encodeURIComponent(activeName + " " + (FESTIVAL_CONFIG.brand || "festival"))}`;
           return (
             <div style={{ marginBottom: 18 }}>
               <div className="mono" style={{
