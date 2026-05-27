@@ -1,10 +1,11 @@
 # Plursky — To-Do List
 
-_Last full sweep: 2026-05-25. v1.4 (14) APPROVED & LIVE. Web at v164.
-iOS 1.5 (15) version-bumped, ready to submit after ShazamKit device
-test. 23 tracklists in Supabase (558 tracks). NowPlayingBar debug
-toggle added. RevenueCat IAP code-wired, API key blank. Next: wire
-RevenueCat dashboard, test ShazamKit on device, submit 1.5._
+_Last full sweep: 2026-05-26. v1.4 (14) LIVE. iOS 1.5 (15) ready.
+Cache-bust v164. 13 commits since last sweep. Official maps for EDC +
+ACL. ACL launch-ready: 131 artists, GPS anchors, weekend toggle, Honda
+stage. 23 EDC tracklists verified. Crew chat audited — working. Artist
+cards with tracklist section. Next: RevenueCat, ShazamKit device test,
+submit 1.5, bump cache-bust._
 
 ## ✅ v1.4 APPROVED & LIVE
 
@@ -205,12 +206,19 @@ is the video upgrade.
 - [x] 📊 **Genre breakdown** — bar chart RecapCard from caught artists
 - [x] ⚡ **Festival Vibe Score** — energy ring (0-100) RecapCard
 
-### ✅ Multi-festival — SHIPPED (2026-05-25)
+### ✅ Multi-festival — SHIPPED (2026-05-25, enhanced 2026-05-26)
 
-- [x] **ACL 2026** — Austin City Limits, 10 stages at Zilker Park,
-      125 artists (W1/W2 splits), full FESTIVAL_CONFIG, `available: true`
+- [x] **ACL 2026** — 10 stages at Zilker Park, 131 artists (W1/W2),
+      GPS anchors, official 2025 map as background, weekend toggle
 - [x] **Multi-festival data switching** — STAGES/ARTISTS/AMENITIES
       resolve per active festival via conditional at bottom of data.jsx
+- [x] **Official maps** — EDC 2026 + ACL 2025 patron maps as SVG
+      backgrounds with interactive stage markers overlaid
+- [x] **GPS anchors for ACL** — 3 calibrated + 8 derived for Zilker Park
+- [x] **Weekend 1/2 toggle** — W1/W2/BOTH filter + badge pills on cards
+- [x] **Honda stage** — ACL sub-headliner stage added (was missing)
+- [x] **6 missing ACL artists** — The Marias, Role Model, Rilo Kiley,
+      Djo, Pierce The Veil, Sabrina Claudio
 
 ### Monetization — LIVE (code-side, IAP not wired)
 
