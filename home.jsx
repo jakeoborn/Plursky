@@ -1550,7 +1550,7 @@ function HomeScreen({ state, setState }) {
                     animation: "pulse 1.6s ease-in-out infinite",
                   }} />
                   <span className="mono" style={{ fontSize: 10, letterSpacing: 2, fontWeight: 600 }}>
-                    NOW PLAYING · {stageOf(current.stage).name.toUpperCase()}
+                    NOW PLAYING · {stageOf(current.stage)?.name?.toUpperCase() || ""}
                   </span>
                 </div>
 
@@ -1632,7 +1632,7 @@ function HomeScreen({ state, setState }) {
                   {next.name}
                 </div>
                 <div className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
-                  {stageOf(next.stage).name.toUpperCase()} · {fmt12(next.start)}
+                  {stageOf(next.stage)?.name?.toUpperCase() || ""} · {fmt12(next.start)}
                 </div>
               </div>
               <button onClick={() => setState({ ...state, tab: "home", artist: next.id })} style={{
@@ -2287,7 +2287,7 @@ function DontMissStrip({ day, state, setState }) {
       }}>
         {moments.map(a => {
           const stage = STAGES.find(s => s.id === a.stage);
-          const isSunrise = stage?.id === "kinetic" && parseInt(a.end) >= 5 && parseInt(a.end) < 6;
+          const isSunrise = stage?.id === FESTIVAL_CONFIG.mainStageId && parseInt(a.end) >= 5 && parseInt(a.end) < 6;
           return (
             <button key={a.id} onClick={() => setState({ ...state, tab: "home", artist: a.id })} style={{
               flexShrink: 0, width: 168, padding: "10px 11px", textAlign: "left",
@@ -2400,7 +2400,7 @@ function FirstTimerGuide({ onClose, onOpenMap, onOpenLineup }) {
         }}>
           <div>
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--ember)", fontWeight: 700 }}>
-              FIRST TIME AT EDC
+              FIRST TIME AT {FESTIVAL_CONFIG.brand.toUpperCase()}
             </div>
             <div className="serif" style={{ fontSize: 24, lineHeight: 1, marginTop: 2 }}>
               The basics
@@ -2495,12 +2495,12 @@ function ShareLineupButton({ savedIds }) {
 
   const onShare = async () => {
     const url = _buildShareUrl(savedIds);
-    const text = `My EDC lineup — ${savedIds.length} sets saved on Plursky`;
+    const text = `My ${FESTIVAL_CONFIG.brand} lineup — ${savedIds.length} sets saved on Plursky`;
     // navigator.share lights up the OS share sheet on iOS/Android — clipboard
     // is the desktop / unsupported-browser fallback.
     if (navigator.share) {
       try {
-        await navigator.share({ title: "My EDC lineup", text, url });
+        await navigator.share({ title: `My ${FESTIVAL_CONFIG.brand} lineup`, text, url });
         setFlash("shared"); setTimeout(() => setFlash(null), 1800);
         return;
       } catch (e) {

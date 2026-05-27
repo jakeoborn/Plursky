@@ -1795,7 +1795,7 @@ function printLineupPDF(state) {
     .sort((a, b) => a.day - b.day || toNightMin(a.start) - toNightMin(b.start));
   if (saved.length === 0) return { ok: false, reason: "empty" };
 
-  const dayLabel = { 1: "FRI · MAY 15", 2: "SAT · MAY 16", 3: "SUN · MAY 17" };
+  const dayLabel = Object.fromEntries(DAYS.map(d => [d.n, `${d.label} · ${d.date.toUpperCase()}`]));
   const stages = [...new Set(saved.map(a => a.stage))].length;
   const grouped = { 1: [], 2: [], 3: [] };
   saved.forEach(a => grouped[a.day].push(a));
@@ -1863,8 +1863,8 @@ function printLineupPDF(state) {
     </div>
     <div class="meta">
       <b>${saved.length}</b> SETS · <b>${stages}</b> STAGES<br>
-      LAS VEGAS MOTOR SPEEDWAY<br>
-      MAY 15–17 · 2026
+      ${FESTIVAL_CONFIG.locationShort.toUpperCase()}<br>
+      ${FESTIVAL_CONFIG.dates.toUpperCase()} · ${FESTIVAL_CONFIG.year}
     </div>
   </div>
   ${dayBlock(1, grouped[1])}
@@ -2014,7 +2014,7 @@ function toggleSave(state, setState, id) {
     try { navigator.vibrate([has ? 15 : 30]); } catch {}
     try { window.plurskyHaptic?.(has ? "LIGHT" : "MEDIUM"); } catch {}
   }
-  setState({ ...state, saved: next });
+  setState(s => ({ ...s, saved: next }));
   try {
     const label = a?.name ? a.name.toUpperCase() : "SET";
     const isFirstSave = !has && state.saved.length === 0;
@@ -2085,7 +2085,7 @@ async function shareLineupImage(state) {
   // Set list
   let y = 470;
   let lastDay = null;
-  const dayMeta = { 1: { label: "FRI", date: "MAY 15" }, 2: { label: "SAT", date: "MAY 16" }, 3: { label: "SUN", date: "MAY 17" } };
+  const dayMeta = Object.fromEntries(DAYS.map(d => [d.n, { label: d.label, date: d.date.toUpperCase() }]));
 
   for (const a of saved) {
     if (a.day !== lastDay) {

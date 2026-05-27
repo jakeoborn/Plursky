@@ -235,9 +235,9 @@ function SearchModal({ onClose, onSelectArtist }) {
     return (
       a.name.toLowerCase().includes(query) ||
       a.genre.toLowerCase().includes(query) ||
-      stage.name.toLowerCase().includes(query) ||
-      stage.short.toLowerCase().includes(query) ||
-      (stage.vibe || "").toLowerCase().includes(query) ||
+      (stage?.name || "").toLowerCase().includes(query) ||
+      (stage?.short || "").toLowerCase().includes(query) ||
+      (stage?.vibe || "").toLowerCase().includes(query) ||
       (["legend","legendary","sunrise","b2b"].includes(query) && isLegendary(a))
     );
   }).sort((a, b) => {
