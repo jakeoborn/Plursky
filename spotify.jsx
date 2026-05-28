@@ -2593,6 +2593,7 @@ function _HomeMemoryThumb({ moment, onClick }) {
 // retention loop's front door so the rewatch surface isn't buried in Me.
 function HomeMemoriesStrip({ state, setState }) {
   const [all, setAll] = React.useState(() => { try { return _readMoments(); } catch { return {}; } });
+  const [reel, setReel] = React.useState(null);
   React.useEffect(() => {
     const refresh = () => { try { setAll(_readMoments()); } catch {} };
     window.addEventListener("plursky-moments-change", refresh);
@@ -2608,20 +2609,56 @@ function HomeMemoriesStrip({ state, setState }) {
       .slice(0, 10);
   }, [all]);
 
+  // One-tap recap from Home plays the most-recent night chronologically —
+  // same reel as Story's PLAY RECAP, but a single tap from the front door.
+  const reelData = React.useMemo(() => {
+    if (!recent.length) return null;
+    const night = recent[0].night || NOW.day || 1;
+    const ms = (all[night] || []).filter(m => m.photoId).sort((a, b) => {
+      const ta = a.takenAt || "", tb = b.takenAt || "";
+      if (ta && tb) return ta.localeCompare(tb);
+      return (a.createdAt || 0) - (b.createdAt || 0);
+    });
+    const DAYS = window.DAYS || [];
+    const dm = DAYS.find(d => d.n === night);
+    const label = dm ? (dm.label.charAt(0) + dm.label.slice(1).toLowerCase()) + " night" : `Night ${night}`;
+    return { moments: ms, label };
+  }, [all, recent]);
+
   if (recent.length === 0) return null;
   const total = recent.length;
   const go = (night) => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "memories", memoriesNight: night, artist: null });
+  const canRecap = reelData && reelData.moments.length >= 2;
 
   return (
     <div data-animate style={{ marginTop: 22 }}>
+      {reel && (
+        <MemoryReel
+          moments={reel.moments}
+          nightLabel={reel.label}
+          festival={window.FESTIVAL_CONFIG?.shortName || window.FESTIVAL_CONFIG?.name || ""}
+          onClose={() => setReel(null)}
+          onOpenArtist={(id) => setState({ ...state, tab: "lineup", artist: id })}
+        />
+      )}
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
         <div className="serif" style={{ fontSize: 22 }}>
           Your <span style={{ fontStyle: "italic", color: "var(--ember)" }}>memories</span>
         </div>
-        <button onClick={() => go(NOW.day)} className="mono" style={{
-          background: "transparent", border: "none", cursor: "pointer",
-          fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700,
-        }}>SEE ALL →</button>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          {canRecap && (
+            <button onClick={() => setReel(reelData)} className="mono" style={{
+              display: "flex", alignItems: "center", gap: 5,
+              background: "linear-gradient(135deg, var(--ember), #7b3d9a)",
+              border: "none", borderRadius: 999, padding: "5px 11px",
+              color: "#fff", cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 800,
+            }}><span style={{ fontSize: 10 }}>▶</span> RECAP</button>
+          )}
+          <button onClick={() => go(NOW.day)} className="mono" style={{
+            background: "transparent", border: "none", cursor: "pointer",
+            fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700,
+          }}>SEE ALL →</button>
+        </div>
       </div>
       <div className="no-scrollbar" style={{
         display: "flex", gap: 8, overflowX: "auto", scrollbarWidth: "none",
