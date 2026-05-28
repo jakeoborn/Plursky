@@ -2545,12 +2545,23 @@ function _HomeMemoryThumb({ moment, onClick }) {
       background: url ? "#000" : "var(--paper-2)", cursor: "pointer", padding: 0,
     }}>
       {url ? (
-        <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
+        // Video needs <video preload="metadata"> to paint a poster frame —
+        // a blob URL inside <img> renders as a blank/black tile.
+        moment.kind === "video" ? (
+          <video src={url} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
+        ) : (
+          <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
+        )
       ) : (
         <div className="skel" style={{ width: "100%", height: "100%" }}/>
       )}
       {moment.kind === "video" && (
-        <div style={{ position: "absolute", top: 6, right: 6, fontSize: 11 }}>▶</div>
+        <div style={{
+          position: "absolute", top: 6, right: 6, width: 20, height: 20,
+          borderRadius: 20, background: "rgba(0,0,0,0.45)", color: "#fff",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          fontSize: 9, paddingLeft: 1,
+        }}>▶</div>
       )}
       <div style={{
         position: "absolute", bottom: 0, left: 0, right: 0,
@@ -4206,8 +4217,39 @@ function _MemoryStoryBeat({ moment, isLast, onOpen }) {
           <div className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2 }}>{stage.name.toUpperCase()}</div>
         )}
         {url && (
-          <button onClick={onOpen} style={{ marginTop: 8, padding: 0, border: "none", background: "none", cursor: "pointer", display: "block", width: "100%" }}>
-            <img src={url} alt="" style={{ width: "100%", borderRadius: 12, display: "block", maxHeight: 340, objectFit: "cover" }}/>
+          <button onClick={onOpen} style={{ marginTop: 8, padding: 0, border: "none", background: "none", cursor: "pointer", display: "block", width: "100%", position: "relative" }}>
+            {moment.kind === "video" ? (
+              <>
+                {/* preload="metadata" paints the first frame as a poster;
+                    tapping opens the lightbox player (controls + autoplay).
+                    Before the fix this rendered inside an <img>, so video
+                    moments showed as a broken tile in the default Story view. */}
+                <video src={url} muted playsInline preload="metadata" style={{
+                  width: "100%", borderRadius: 12, display: "block",
+                  maxHeight: 340, objectFit: "cover", background: "#000",
+                  pointerEvents: "none",
+                }}/>
+                <span style={{
+                  position: "absolute", inset: 0, display: "flex",
+                  alignItems: "center", justifyContent: "center", pointerEvents: "none",
+                }}>
+                  <span style={{
+                    width: 52, height: 52, borderRadius: 52,
+                    background: "rgba(0,0,0,0.5)", color: "#fff",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: 19, paddingLeft: 3,
+                  }}>▶</span>
+                </span>
+                <span className="mono" style={{
+                  position: "absolute", bottom: 8, right: 8,
+                  background: "rgba(0,0,0,0.6)", color: "#fff",
+                  fontSize: 8, letterSpacing: 1, fontWeight: 700,
+                  padding: "2px 6px", borderRadius: 999, pointerEvents: "none",
+                }}>VIDEO</span>
+              </>
+            ) : (
+              <img src={url} alt="" style={{ width: "100%", borderRadius: 12, display: "block", maxHeight: 340, objectFit: "cover" }}/>
+            )}
           </button>
         )}
       </div>
@@ -4443,40 +4485,54 @@ function MemoriesScreen({ state, setState }) {
     setAll(next);
   };
 
-  // v1.4-ready: route the import button through the native @capacitor/camera
+  // Route the import button through the native @capawesome/capacitor-file-picker
   // PHPicker when (a) we're inside the iOS Capacitor shell AND (b) the
-  // __USE_NATIVE_PICKER__ flag has been flipped on. PHPicker reliably
-  // preserves EXIF DateTimeOriginal across the HEIC→JPEG conversion,
-  // unlike WebKit's `<input type="file">` path which strips EXIF on edge-
-  // case photos and zeroes out `lastModified`. GPS still requires the
-  // user to grant "All Photos" access in iOS Settings — without that,
-  // PHPicker hands us the same location-stripped copy.
+  // __USE_NATIVE_PICKER__ flag is on. `pickMedia` returns BOTH photos and
+  // videos from one native sheet (Camera.pickImages was photos-only — the
+  // reason videos couldn't be imported on the native build).
   //
-  // Until v1.4 ships (needs NSPhotoLibraryUsageDescription in Info.plist
-  // + a fresh App Store submission), the flag stays off and we use the
-  // original web file input — same behaviour as today's 1.3 build.
+  // skipTranscoding:false is load-bearing: iOS then transcodes HEIC photos
+  // to JPEG, which keeps EXIF DateTimeOriginal in a form _parseExifMeta can
+  // read (it bails on non-JPEG). That preserves time-based auto-tagging —
+  // the whole point of the native picker. Videos come through as-is/MP4 and
+  // get stored raw by _processMomentMedia.
+  //
+  // PHPicker is out-of-process, so it needs NO NSPhotoLibraryUsageDescription
+  // and triggers no permission prompt. GPS is stripped by PHPicker unless the
+  // user grants full library access in iOS Settings — same as before.
   const pickViaNative = async () => {
     const cap = window.Capacitor;
     if (!cap?.isNativePlatform?.() || !window.__USE_NATIVE_PICKER__) return null;
-    const Camera = cap.Plugins?.Camera;
-    if (!Camera?.pickImages) return null;
+    const FilePicker = cap.Plugins?.FilePicker;
+    if (!FilePicker?.pickMedia) return null;
     try {
-      const result = await Camera.pickImages({ quality: 100, limit: 50 });
-      const photos = result?.photos || [];
-      if (photos.length === 0) return [];
-      return await Promise.all(photos.map(async (p, i) => {
-        // webPath is a capacitor:// URL pointing at a temp JPEG in the
-        // app's tmp dir. fetch() reads it as a blob, then we wrap it back
-        // into a File so the existing pipeline sees the same shape it
-        // would from <input type="file">.
-        const blob = await fetch(p.webPath).then(r => r.blob());
-        return new File([blob], `pick-${Date.now()}-${i}.${p.format || 'jpg'}`, {
-          type: blob.type || 'image/jpeg',
-          lastModified: Date.now(),
-        });
-      }));
+      const result = await FilePicker.pickMedia({ skipTranscoding: false, limit: 50, readData: false });
+      const files = result?.files || [];
+      if (files.length === 0) return [];
+      const out = [];
+      for (let i = 0; i < files.length; i++) {
+        const f = files[i];
+        // `path` is a native file URL; convertFileSrc makes it loadable by
+        // the WebView so fetch() can read it into a Blob, then we wrap it as
+        // a File so the existing ingest pipeline sees the same shape it would
+        // from <input type="file">.
+        const src = f.path ? (cap.convertFileSrc ? cap.convertFileSrc(f.path) : f.path) : null;
+        if (!src) continue;
+        const blob = await fetch(src).then(r => r.blob());
+        const isVideo = /^video\//.test(f.mimeType || "") || /\.(mov|mp4|m4v)$/i.test(f.name || "");
+        const type = f.mimeType || blob.type || (isVideo ? "video/mp4" : "image/jpeg");
+        const name = f.name || `pick-${i}.${isVideo ? "mp4" : "jpg"}`;
+        out.push(new File([blob], name, {
+          type,
+          // modifiedAt is the freshly-transcoded temp file's mtime (≈now),
+          // which the <30s heuristic in _metaFromFile correctly ignores so
+          // photos tag from real EXIF rather than the conversion stamp.
+          lastModified: f.modifiedAt || Date.now(),
+        }));
+      }
+      return out;
     } catch (err) {
-      console.warn('[memories] native pickImages failed; falling back to web input', err);
+      console.warn('[memories] native pickMedia failed; falling back to web input', err);
       return null;
     }
   };

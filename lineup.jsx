@@ -976,7 +976,13 @@ function LineupScreen({ state, setState }) {
           // v165: grid now shows only the selected day (like list mode) so
           // navigation is clean — no more scrolling through all 3 days.
           const dayMeta = DAYS.find(x => x.n === day);
-          const dayArt  = ARTISTS.filter(a => a.day === day);
+          // Grid respects the weekend toggle by HIDING the other weekend's
+          // sets (not dimming) — otherwise W1/W2 acts sharing a stage+slot
+          // (e.g. Skrillex W1 vs Kings of Leon W2 on amex) would stack and
+          // collide. "Both" sets always show.
+          const dayArt  = ARTISTS
+            .filter(a => a.day === day)
+            .filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both");
           return (
             <div
               ref={el => { gridSectionRefs.current[day] = el; }}
@@ -1231,6 +1237,42 @@ function overlaps(a, b) {
   return aS < bE && bS < aE;
 }
 
+// Calendar-style lane assignment for a single stage column: sets that overlap
+// in time get placed in side-by-side sub-lanes instead of stacking on top of
+// each other. Returns a map of set id -> { lane, lanes } where `lanes` is the
+// width-divisor for that set's overlap cluster. Used to keep "Both Weekends"
+// view legible — W1/W2 acts sharing a slot sit next to each other.
+function layoutLanes(sets) {
+  const items = sets
+    .map(a => ({ a, s: toNightMin(a.start), e: toNightMin(a.end) }))
+    .sort((x, y) => x.s - y.s || x.e - y.e);
+  const result = {};
+  let cluster = [];
+  let clusterEnd = -Infinity;
+  const flush = () => {
+    if (!cluster.length) return;
+    const colEnds = []; // running end time of the last set placed in each lane
+    cluster.forEach(it => {
+      let placed = false;
+      for (let c = 0; c < colEnds.length; c++) {
+        if (colEnds[c] <= it.s) { colEnds[c] = it.e; it.lane = c; placed = true; break; }
+      }
+      if (!placed) { it.lane = colEnds.length; colEnds.push(it.e); }
+    });
+    const lanes = colEnds.length;
+    cluster.forEach(it => { result[it.a.id] = { lane: it.lane, lanes }; });
+    cluster = [];
+    clusterEnd = -Infinity;
+  };
+  items.forEach(it => {
+    if (cluster.length && it.s >= clusterEnd) flush();
+    cluster.push(it);
+    if (it.e > clusterEnd) clusterEnd = it.e;
+  });
+  flush();
+  return result;
+}
+
 // Grid time bounds derived from actual artist data so daytime festivals
 // (ACL 11:00–22:00) and nighttime (EDC 19:00–05:30) both work correctly.
 const _gridBounds = (() => {
@@ -1384,17 +1426,23 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
     if (nm >= GRID_START_MIN && nm <= GRID_END_MIN) nowTop = minToTop(nm);
   }
 
+  // Only render stage columns that actually have sets for this day/weekend —
+  // keeps the grid as narrow as possible so there's less to scroll past.
+  const cols = STAGES
+    .map(s => ({ stage: s, artists: allDayArtists.filter(a => a.stage === s.id) }))
+    .filter(c => c.artists.length > 0);
+
   return (
     <div style={{ overflowX: "auto", overflowY: "visible", width: "100%", paddingBottom: 20 }}>
-      <div style={{ minWidth: GUTTER_W + STAGES.length * COL_W, position: "relative" }}>
+      <div style={{ minWidth: GUTTER_W + cols.length * COL_W, position: "relative" }}>
         {/* Sticky stage header */}
         <div style={{
           position: "sticky", top: 0, zIndex: 5,
           display: "flex", background: "var(--paper)",
           borderBottom: "2px solid var(--line)",
         }}>
-          <div style={{ width: GUTTER_W, flexShrink: 0 }} />
-          {STAGES.map(s => (
+          <div style={{ width: GUTTER_W, flexShrink: 0, position: "sticky", left: 0, zIndex: 6, background: "var(--paper)" }} />
+          {cols.map(({ stage: s }) => (
             <div key={s.id} style={{
               width: COL_W, flexShrink: 0,
               padding: "6px 4px 6px",
@@ -1413,8 +1461,12 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
 
         {/* Body: time gutter + stage columns */}
         <div style={{ display: "flex", position: "relative" }}>
-          {/* Time gutter */}
-          <div style={{ width: GUTTER_W, flexShrink: 0, position: "relative", height: TOTAL_H }}>
+          {/* Time gutter — sticky-left so hour labels stay visible while
+              scrolling across stages. */}
+          <div style={{
+            width: GUTTER_W, flexShrink: 0, position: "sticky", left: 0,
+            height: TOTAL_H, zIndex: 3, background: "var(--paper)",
+          }}>
             {HOURS.map(h => (
               <div key={h.label} className="mono" style={{
                 position: "absolute",
@@ -1427,8 +1479,8 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
           </div>
 
           {/* Stage columns */}
-          {STAGES.map((stage, si) => {
-            const stageArtists = allDayArtists.filter(a => a.stage === stage.id);
+          {cols.map(({ stage, artists: stageArtists }, si) => {
+            const lanes = layoutLanes(stageArtists);
             return (
               <div key={stage.id} style={{
                 width: COL_W, flexShrink: 0,
@@ -1450,6 +1502,11 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
                   const end = toNightMin(a.end);
                   const top = minToTop(start);
                   const height = Math.max(24, minToTop(end) - top);
+                  // Lane geometry: split the column when sets overlap in time.
+                  const lay = lanes[a.id] || { lane: 0, lanes: 1 };
+                  const laneGap = lay.lanes > 1 ? 1.5 : 0;
+                  const laneW = (COL_W - 4 - laneGap * (lay.lanes - 1)) / lay.lanes;
+                  const laneLeft = 2 + lay.lane * (laneW + laneGap);
                   const active = matchesActive(a);
                   const saved = state.saved.includes(a.id);
                   const clash = !!conflictById[a.id];
@@ -1474,7 +1531,7 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
                       onTouchMove={() => { if (_lpRef.current) clearTimeout(_lpRef.current); }}
                       style={{
                         position: "absolute",
-                        top, left: 2, right: 2,
+                        top, left: laneLeft, width: laneW,
                         height,
                         background: `${stage.color}${active || isHighlighted ? fillAlpha : dimAlpha}`,
                         borderLeft: `3px solid ${active || isHighlighted ? stage.color : stage.color + "44"}`,
@@ -1509,7 +1566,8 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
                       <div className="mono" style={{
                         fontSize: 8, letterSpacing: 0.3,
                         color: "var(--muted)", marginTop: 2,
-                      }}>{fmt12(a.start)}{height > 38 ? ` – ${fmt12(a.end)}` : ""}</div>
+                        whiteSpace: "nowrap",
+                      }}>{fmt12(a.start)}{height > 38 && lay.lanes === 1 ? ` – ${fmt12(a.end)}` : ""}</div>
                       {saved && (
                         <span style={{
                           position: "absolute", top: 3, right: 5,
