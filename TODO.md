@@ -331,9 +331,14 @@ is the video upgrade.
 - [ ] **Activate Apple Music** — all code written, just needs MusicKit JWT
 - [x] **Error vs empty state** — retry buttons on Setlists, YouTube, Ticketmaster
 - [x] **Playlist rebuild progress** — "BUILDING · 12/40 ARTISTS"
-- [ ] **YouTube server-side proxy** — protect 10k/day quota
+- [ ] **YouTube server-side proxy** — protect 10k/day quota (needs Supabase deploy)
 - [x] **Uber/Lyft deep links** — already existed in RideshareSheet
 - [x] **Weather loading skeleton** — skeleton card while NWS loads
+- [x] **Hourly weather** — NWS forecastHourly, 12h temp sparkline on Tonight card
+- [x] **Cloud sync conflict resolution** — removal tombstones with timestamps
+- [x] **Per-festival recap archive** — auto-archive on festival switch + archive list
+- [x] **Storage 80% warning** — banner in StorageManager
+- [ ] **Zilker Park map** — needs SVG asset from Jake
 - [ ] **Hourly weather** — OpenWeatherMap for festival-day granularity
 - [ ] **Conflict resolution for cloud sync** — removed_ids or timestamps
 - [ ] **Track recognize-song edge function** — source not in repo
