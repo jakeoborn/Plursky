@@ -892,10 +892,39 @@ let _presCh   = null;
 let _presCbs  = new Set();
 let _presSnap = {};
 let _presMyId = null;
+let _myLoc    = null; // my last-broadcast location payload, for heartbeat + echo
+
+// IMPLEMENTATION NOTE (2026-05-28): switched from Supabase Realtime
+// *Presence* to *Broadcast*. A 5-client backend test showed presence
+// track() returning "ok" but never syncing (zero sync events, even for
+// self) on this project, while broadcast delivered reliably (5/5). So
+// crew location now rides the same broadcast mechanism the group-lineup
+// share already uses successfully. Public API is unchanged — callers
+// (map pins, FindByPingCode, etc.) still read _presSnap via sbGetPresSnap
+// / sbOnPresenceChange. Each member periodically re-broadcasts (fire-and-
+// forget has no history), late joiners send a "request" that prompts
+// everyone to re-announce, and stale entries (>90s) are pruned.
+
+const _PRES_STALE_MS = 90000;
+
+function _presPrune() {
+  const now = Date.now();
+  let changed = false;
+  for (const [id, e] of Object.entries(_presSnap)) {
+    if (id !== _presMyId && now - (e.ts || 0) > _PRES_STALE_MS) { delete _presSnap[id]; changed = true; }
+  }
+  return changed;
+}
 
 function _presNotify() {
+  _presPrune();
   const s = { ..._presSnap };
   _presCbs.forEach(fn => { try { fn(s); } catch {} });
+}
+
+function _broadcastMyLoc() {
+  if (!_presCh || !_myLoc) return;
+  try { _presCh.send({ type: "broadcast", event: "loc", payload: { ..._myLoc, ts: Date.now() } }); } catch {}
 }
 
 function sbPresenceJoin({ name, stageId, gps }) {
@@ -903,28 +932,32 @@ function sbPresenceJoin({ name, stageId, gps }) {
   _presMyId = _myPresId();
   const color = _presColor(_presMyId);
   if (_presCh) { _sb.removeChannel(_presCh); _presCh = null; }
-  _presCh = _sb.channel(_presChannelName(), {
-    config: { presence: { key: _presMyId } },
-  });
+
+  let pingCode;
+  try { pingCode = localStorage.getItem("ping_code") || undefined; } catch {}
+  _myLoc = { pid: _presMyId, name, stageId, color, pingCode, gps, ts: Date.now() };
+
+  _presCh = _sb.channel(_presChannelName(), { config: { broadcast: { self: false } } });
   _presCh
-    .on("presence", { event: "sync" }, () => {
-      const raw  = _presCh.presenceState();
-      const snap = {};
-      Object.entries(raw).forEach(([key, arr]) => {
-        const e = arr[arr.length - 1];
-        if (e) snap[key] = e;
-      });
-      _presSnap = snap;
+    // Someone shared their location → merge into the snapshot
+    .on("broadcast", { event: "loc" }, ({ payload }) => {
+      if (!payload?.pid || payload.pid === _presMyId) return;
+      _presSnap[payload.pid] = payload;
       _presNotify();
+    })
+    // A late joiner asked everyone to re-announce → re-broadcast mine
+    .on("broadcast", { event: "loc-req" }, () => { _broadcastMyLoc(); })
+    // Someone explicitly left → drop them immediately
+    .on("broadcast", { event: "loc-bye" }, ({ payload }) => {
+      if (payload?.pid && _presSnap[payload.pid]) { delete _presSnap[payload.pid]; _presNotify(); }
     })
     .subscribe(async status => {
       if (status === "SUBSCRIBED") {
-        let pingCode;
-        try { pingCode = localStorage.getItem("ping_code") || undefined; } catch {}
-        // `gps` is { lat, lng, accuracy } when the user opts into live-location
-        // sharing in the Share With Crew sheet; otherwise undefined and clients
-        // fall back to rendering just the stageId.
-        await _presCh.track({ name, stageId, color, ts: Date.now(), pingCode, gps });
+        // Put myself in the snapshot, announce, and ask others to announce
+        _presSnap[_presMyId] = { ..._myLoc, ts: Date.now() };
+        _broadcastMyLoc();
+        try { _presCh.send({ type: "broadcast", event: "loc-req", payload: { pid: _presMyId } }); } catch {}
+        _presNotify();
         _startPresenceHeartbeat();
       }
     });
@@ -933,37 +966,41 @@ function sbPresenceJoin({ name, stageId, gps }) {
 // Accepts either a plain stageId (legacy, kept so old call sites still work)
 // or a partial { stageId?, gps? } update merged onto the current state.
 async function sbPresenceUpdate(arg) {
-  if (!_presCh || !_presMyId) return;
-  const cur = (_presCh.presenceState()[_presMyId] || [])[0];
-  if (!cur) return;
+  if (!_presCh || !_myLoc) return;
   const patch = typeof arg === "string" ? { stageId: arg } : (arg || {});
-  await _presCh.track({ ...cur, ...patch, ts: Date.now() });
+  _myLoc = { ..._myLoc, ...patch, ts: Date.now() };
+  _presSnap[_presMyId] = { ..._myLoc };
+  _broadcastMyLoc();
+  _presNotify();
 }
 
 let _heartbeatId = null;
 function _startPresenceHeartbeat() {
   if (_heartbeatId) clearInterval(_heartbeatId);
-  _heartbeatId = setInterval(() => { sbPresenceUpdate({}); }, 60000);
+  // 20s heartbeat: fire-and-forget broadcast has no history, so periodic
+  // re-announce keeps everyone fresh and beats the 90s stale cutoff.
+  _heartbeatId = setInterval(() => { _broadcastMyLoc(); _presNotify(); }, 20000);
 }
 function _stopPresenceHeartbeat() {
   if (_heartbeatId) { clearInterval(_heartbeatId); _heartbeatId = null; }
 }
 
-// Re-join presence on the channel matching the current crew code. Called
-// after a crew code change so a sharing user moves to the new crew's channel
-// instead of being stranded on the previous one.
+// Re-join on the channel matching the current crew code. Called after a
+// crew code change so a sharing user moves to the new crew's channel.
 function sbPresenceRefresh() {
-  if (!_presCh || !_presMyId) return false;
-  const cur = (_presCh.presenceState()[_presMyId] || [])[0];
-  if (!cur) return false;
-  sbPresenceJoin({ name: cur.name, stageId: cur.stageId });
+  if (!_myLoc) return false;
+  sbPresenceJoin({ name: _myLoc.name, stageId: _myLoc.stageId, gps: _myLoc.gps });
   return true;
 }
 
 function sbPresenceLeave() {
   _stopPresenceHeartbeat();
-  if (_presCh && _sb) { _sb.removeChannel(_presCh); _presCh = null; }
+  if (_presCh && _sb) {
+    try { _presCh.send({ type: "broadcast", event: "loc-bye", payload: { pid: _presMyId } }); } catch {}
+    _sb.removeChannel(_presCh); _presCh = null;
+  }
   _presSnap = {};
+  _myLoc = null;
   _presMyId = null;
   _presNotify();
 }
