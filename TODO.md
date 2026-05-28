@@ -303,6 +303,39 @@ is the video upgrade.
 - [x] **handleCapture storage fix** — was writing to wrong key + format
 - [x] **Wire RevenueCat API key** — `appl_...` key pasted (2026-05-27)
 - [ ] **Set up RevenueCat products + entitlements** — see Manual Steps
+
+### What's new in v1.6 (submitted 2026-05-27)
+
+- [x] All v1.5 A++ visual polish (stagger, parallax, VFX onboarding, etc.)
+- [x] iTunes photo fallback (artist photos without Spotify)
+- [x] Cinematic breathing VFX on artist cards
+- [x] ACL schedule: headliner times matched to 2025 pattern, zero conflicts
+- [x] Full stage names in filters (HONDA, TITO'S, LADY BIRD, etc.)
+- [x] Dynamic DAYS from FESTIVAL_CONFIG (no more hardcoded EDC dates)
+- [x] Full code audit: all critical + high + low items fixed
+- [x] ShazamKit entitlement + App Service enabled
+
+### v1.7 Roadmap — API Integration A++
+
+**Shipped (web, pending next iOS build):**
+- [x] Last.fm label fix (LISTENERS not MONTHLY)
+- [x] Preview URL caching in localStorage
+- [x] ShazamKit 10s timeout + progress
+- [x] Web audio recording progress counter
+- [x] Spotify scan streaming progress ("PLAYLIST 6/12")
+- [x] Preview audio 300ms fade-out on card close
+- [x] Auto-sync saved sets to cloud (3s debounce)
+- [x] Presence heartbeat every 60s
+
+**Still to build:**
+- [ ] **Activate Apple Music** — all code written, just needs MusicKit JWT
+- [ ] **Error vs empty state** — retry buttons on transient API failures
+- [ ] **Playlist rebuild progress** — "Adding tracks... 12/40"
+- [ ] **YouTube server-side proxy** — protect 10k/day quota
+- [ ] **Uber/Lyft deep links** — one-tap rideshare from map
+- [ ] **Hourly weather** — OpenWeatherMap for festival-day granularity
+- [ ] **Conflict resolution for cloud sync** — removed_ids or timestamps
+- [ ] **Track recognize-song edge function** — source not in repo
 - [ ] **Test ShazamKit** on physical device
 - [ ] **Submit iOS 1.5 (15)** to App Store
 - [ ] **ACL stage assignments** — update when official schedule drops
