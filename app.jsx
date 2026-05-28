@@ -475,7 +475,7 @@ function App() {
     const id = setInterval(update, 60000);
     return () => clearInterval(id);
   }, []);
-  // Native Spotify OAuth handoff (v166). When the user finishes the
+  // Native Spotify OAuth handoff (v167). When the user finishes the
   // SafariViewController flow, the appUrlOpen listener in spotify.jsx
   // exchanges the code for a token and dispatches this event. Mirror it
   // into React state so the UI flips from "Connect Spotify" to "Connected"
@@ -667,12 +667,18 @@ function App() {
           )}
           <ToastHost />
         </div>
-        {!state.artist && (
-          <TabBar
-            active={["spotify", "memories", "recap"].includes(state.tab) ? "me" : state.tab}
-            onChange={t => setState({ ...state, tab: t })}
-          />
-        )}
+        {!state.artist && (() => {
+          const postFest = (() => { try { return Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity); } catch { return false; } })();
+          // Post-festival the Memories tab is in the bar, so "memories" maps
+          // to itself; pre-festival it folds into Me (where its card lives).
+          const meFold = postFest ? ["spotify", "recap"] : ["spotify", "memories", "recap"];
+          return (
+            <TabBar
+              active={meFold.includes(state.tab) ? "me" : state.tab}
+              onChange={t => setState({ ...state, tab: t })}
+            />
+          );
+        })()}
       </div>
       {searchOpen && (
         <SearchModal
@@ -771,7 +777,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v166",
+        version: "v167",
       }));
     } catch {}
   }
@@ -804,7 +810,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
-          PLURSKY · v166
+          PLURSKY · v167
         </div>
       </div>
     );

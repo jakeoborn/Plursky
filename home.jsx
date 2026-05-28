@@ -1813,6 +1813,11 @@ function HomeScreen({ state, setState }) {
           );
         })()}
 
+        {/* Your Memories strip — the rewatch loop's front door. Surfaces
+            recent captures so Memories isn't buried in the Me tab. Renders
+            during + after the festival once any photos exist. */}
+        {window.HomeMemoriesStrip && React.createElement(window.HomeMemoriesStrip, { state, setState })}
+
         {/* Tonight: sunrise/sunset · weather · last-shuttle countdown */}
         <div data-animate>{!isPostFestival && <TonightCard state={state} setState={setState} />}</div>
 

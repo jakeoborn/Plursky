@@ -2534,6 +2534,84 @@ function useMomentPhoto(photoId) {
   return url;
 }
 
+// Single memory thumbnail for the home strip — loads its photo blob lazily.
+function _HomeMemoryThumb({ moment, onClick }) {
+  const url = useMomentPhoto(moment.photoId);
+  const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
+  return (
+    <button onClick={onClick} style={{
+      flexShrink: 0, width: 96, height: 128, borderRadius: 14,
+      border: "1px solid var(--line)", overflow: "hidden", position: "relative",
+      background: url ? "#000" : "var(--paper-2)", cursor: "pointer", padding: 0,
+    }}>
+      {url ? (
+        <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
+      ) : (
+        <div className="skel" style={{ width: "100%", height: "100%" }}/>
+      )}
+      {moment.kind === "video" && (
+        <div style={{ position: "absolute", top: 6, right: 6, fontSize: 11 }}>▶</div>
+      )}
+      <div style={{
+        position: "absolute", bottom: 0, left: 0, right: 0,
+        background: "linear-gradient(0deg, rgba(0,0,0,0.8), transparent)",
+        padding: "16px 8px 7px",
+      }}>
+        <div className="mono" style={{ fontSize: 8, letterSpacing: 0.6, color: "#fff", fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+          {artist ? artist.name.toUpperCase() : "NIGHT " + moment.night}
+        </div>
+      </div>
+    </button>
+  );
+}
+
+// Home-screen "Your Memories" strip (B) — horizontal scroll of the most
+// recent captured photos/videos. Grows as the festival progresses; the
+// retention loop's front door so the rewatch surface isn't buried in Me.
+function HomeMemoriesStrip({ state, setState }) {
+  const [all, setAll] = React.useState(() => { try { return _readMoments(); } catch { return {}; } });
+  React.useEffect(() => {
+    const refresh = () => { try { setAll(_readMoments()); } catch {} };
+    window.addEventListener("plursky-moments-change", refresh);
+    return () => window.removeEventListener("plursky-moments-change", refresh);
+  }, []);
+
+  const recent = React.useMemo(() => {
+    const flat = [];
+    Object.values(all).forEach(arr => { if (Array.isArray(arr)) flat.push(...arr); });
+    return flat
+      .filter(m => m.photoId)
+      .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0))
+      .slice(0, 10);
+  }, [all]);
+
+  if (recent.length === 0) return null;
+  const total = recent.length;
+  const go = (night) => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "memories", memoriesNight: night, artist: null });
+
+  return (
+    <div data-animate style={{ marginTop: 22 }}>
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
+        <div className="serif" style={{ fontSize: 22 }}>
+          Your <span style={{ fontStyle: "italic", color: "var(--ember)" }}>memories</span>
+        </div>
+        <button onClick={() => go(NOW.day)} className="mono" style={{
+          background: "transparent", border: "none", cursor: "pointer",
+          fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700,
+        }}>SEE ALL →</button>
+      </div>
+      <div className="no-scrollbar" style={{
+        display: "flex", gap: 8, overflowX: "auto", scrollbarWidth: "none",
+        marginRight: -16, paddingRight: 16,
+      }}>
+        {recent.map(m => (
+          <_HomeMemoryThumb key={m.id} moment={m} onClick={() => go(m.night || NOW.day)} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // Short label for how a moment got its tag. Shown as a small chip so the
 // user can tell at a glance whether the auto-tagger was confident or
 // dropped this one into a fallback bucket they should retag.
@@ -8922,7 +9000,7 @@ function NowPlayingBar() {
 Object.assign(window, {
   NowPlayingBar,
   SpotifyScreen, MeScreen, MemoriesScreen, RecapScreen, fetchPreviewUrl,
-  archiveFestival,
+  archiveFestival, HomeMemoriesStrip,
   ensureSpotifyProfile, getSpotifyProfileSync, createEdcPlaylist,
   startSpotifyAuth, PackListCard,
   _renderCollage, _renderCollageGif, _shareCollage,

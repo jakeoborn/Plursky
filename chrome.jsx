@@ -50,7 +50,19 @@ function TopBar({ title, right, sub, tight }) {
 // Bottom tab nav — 4 tabs after v92 collapse (Music folded into Me).
 // SpotifyScreen still routes via state.tab="spotify" but Me lights up in the bar.
 function TabBar({ active, onChange }) {
-  const tabs = [
+  // Post-festival, the Map loses utility (you're not navigating stages
+  // anymore) while Memories becomes the reason to keep the app. Swap the
+  // Map tab for Memories once the festival ends — the lifecycle pivot from
+  // live wayfinding to the rewatch loop.
+  const isPostFestival = (() => {
+    try { return Date.now() > (window.FESTIVAL_CONFIG?.endMs || Infinity); } catch { return false; }
+  })();
+  const tabs = isPostFestival ? [
+    { id: "home",     label: "Today",    icon: HomeIcon },
+    { id: "lineup",   label: "Lineup",   icon: LineupIcon },
+    { id: "memories", label: "Memories", icon: MemoriesIcon },
+    { id: "me",       label: "Me",       icon: MeIcon },
+  ] : [
     { id: "home",    label: "Today",  icon: HomeIcon },
     { id: "lineup",  label: "Lineup", icon: LineupIcon },
     { id: "map",     label: "Map",    icon: MapIcon },
@@ -156,6 +168,15 @@ function MusicIcon({ on }) {
       <circle cx="7" cy="17" r="2.5" />
       <circle cx="17" cy="15" r="2.5" />
       <path d="M9.5 17 L9.5 5 L19.5 3 L19.5 15" />
+    </svg>
+  );
+}
+function MemoriesIcon({ on }) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" style={stroke(on)}>
+      <rect x="3" y="5" width="18" height="14" rx="2.5" />
+      <circle cx="8.5" cy="10" r="1.6" />
+      <path d="M3 16 L9 11 L13 14.5 L17 11 L21 14.5" />
     </svg>
   );
 }
