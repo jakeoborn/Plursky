@@ -218,11 +218,17 @@ function TonightCard({ state, setState }) {
             sunriseArtistId ? `${sunriseArtistId.name.toUpperCase()} · KINETIC` : `IN ${sunriseSet}`,
             "#fbbf24"
           )}
-          {period && card(
+          {period ? card(
             "WEATHER",
             `${period.temperature}°${period.temperatureUnit}`,
             `${period.windSpeed} ${period.windDirection}`,
             "#a8d4ff"
+          ) : (
+            <div style={{ flex: 1, minWidth: 80, padding: "8px 10px", borderRadius: 10, background: "rgba(247,237,224,0.06)", border: "1px solid rgba(247,237,224,0.1)" }}>
+              <div className="skel-dark" style={{ width: "60%", height: 8, marginBottom: 6 }}/>
+              <div className="skel-dark" style={{ width: "80%", height: 14, marginBottom: 4 }}/>
+              <div className="skel-dark" style={{ width: "50%", height: 8 }}/>
+            </div>
           )}
         </div>
 

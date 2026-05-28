@@ -29,7 +29,7 @@ async function fetchSetlists(artistName) {
       `${SETLISTS_PROXY_URL}?artistName=${encodeURIComponent(artistName)}&p=1`,
       { headers: { "Accept": "application/json" } }
     );
-    if (!res.ok) return [];
+    if (!res.ok) { const e = new Error("api"); e._retry = true; throw e; }
     const json = await res.json();
     // Prefer setlists with songs (they're more useful), but accept gig-only
     // entries too. Sort with-songs first so the section leads with the
@@ -40,7 +40,7 @@ async function fetchSetlists(artistName) {
     const lists = [...withSongs.slice(0, 3), ...venueOnly.slice(0, Math.max(0, 5 - withSongs.length))].slice(0, 5);
     try { localStorage.setItem(cacheKey, JSON.stringify({ data: lists, fetchedAt: Date.now() })); } catch {}
     return lists;
-  } catch { return []; }
+  } catch (e) { if (e?._retry || e instanceof TypeError) throw e; return []; }
 }
 
 function _slDate(d) {
@@ -98,7 +98,7 @@ async function fetchYouTubeSet(artistName) {
     const res = await fetch(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=8&q=${q}&key=${YOUTUBE_KEY}`
     );
-    if (!res.ok) return null;
+    if (!res.ok) { const e = new Error("api"); e._retry = true; throw e; }
     const json = await res.json();
     const items = (json.items || []).filter(i => i.id?.videoId);
     if (!items.length) return null;
@@ -140,7 +140,7 @@ async function fetchYouTubeSet(artistName) {
     };
     try { localStorage.setItem(cacheKey, JSON.stringify({ data, fetchedAt: Date.now() })); } catch {}
     return data;
-  } catch { return null; }
+  } catch (e) { if (e?._retry || e instanceof TypeError) throw e; return null; }
 }
 
 // ── Deezer photo fallback ──────────────────────────────────────
@@ -386,7 +386,7 @@ async function fetchTicketmaster(artistName) {
       `?keyword=${encodeURIComponent(artistName)}&classificationName=music` +
       `&sort=date,asc&size=6&apikey=${TICKETMASTER_KEY}`
     );
-    if (!res.ok) return [];
+    if (!res.ok) { const e = new Error("api"); e._retry = true; throw e; }
     const json = await res.json();
     const events = (json._embedded?.events || []).map(ev => {
       const venue = ev._embedded?.venues?.[0] || {};
@@ -404,7 +404,7 @@ async function fetchTicketmaster(artistName) {
     const data = events.slice(0, 5);
     try { localStorage.setItem(cacheKey, JSON.stringify({ data, fetchedAt: Date.now() })); } catch {}
     return data;
-  } catch { return []; }
+  } catch (e) { if (e?._retry || e instanceof TypeError) throw e; return []; }
 }
 
 function _tmDate(d) {
@@ -898,19 +898,23 @@ function ArtistScreen({ state, setState }) {
   const [ytVideo,   setYtVideo]   = React.useState(undefined);
   const [ytPlaying, setYtPlaying] = React.useState(false);
   const [tmEvents,  setTmEvents]  = React.useState(undefined);
+  const [tmError,   setTmError]   = React.useState(false);
   const [mcTracks,  setMcTracks]  = React.useState(undefined);
   const [mcPlaying, setMcPlaying] = React.useState(null); // key of playing track
   const [tadb,      setTadb]      = React.useState(undefined);
+  const [slError,   setSlError]   = React.useState(false);
+  const [ytError,   setYtError]   = React.useState(false);
   const [edcTracklist, setEdcTracklist] = React.useState(undefined);
   const [tlExpanded, setTlExpanded] = React.useState(false);
   React.useEffect(() => {
     setYtPlaying(false); setMcPlaying(null); setTlExpanded(false);
     setLfm(undefined); setSetlists(undefined); setYtVideo(undefined); setTmEvents(undefined);
     setMcTracks(undefined); setTadb(undefined); setEdcTracklist(undefined);
+    setSlError(false); setYtError(false); setTmError(false);
     fetchLastfm(activeName, a.genre).then(setLfm);
-    fetchSetlists(activeName).then(setSetlists);
-    fetchYouTubeSet(activeName).then(setYtVideo);
-    fetchTicketmaster(activeName).then(setTmEvents);
+    fetchSetlists(activeName).then(setSetlists).catch(() => { setSetlists([]); setSlError(true); });
+    fetchYouTubeSet(activeName).then(setYtVideo).catch(() => { setYtVideo(null); setYtError(true); });
+    fetchTicketmaster(activeName).then(setTmEvents).catch(() => { setTmEvents([]); setTmError(true); });
     fetchMixcloud(activeName).then(setMcTracks);
     fetchAudioDB(activeName, a.genre).then(setTadb);
     if (window._getTracklistForArtist) window._getTracklistForArtist(a.name).then(setEdcTracklist);
@@ -1703,6 +1707,36 @@ function ArtistScreen({ state, setState }) {
                 </div>
               )}
 
+              {/* No result — show error retry or fallback search link */}
+              {YOUTUBE_KEY && ytVideo === null && (
+                <div style={{
+                  padding: "16px 14px", borderRadius: 12,
+                  background: "var(--paper-2)", border: "1px solid var(--line)",
+                  textAlign: "center",
+                }}>
+                  <div style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>▶</div>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)" }}>
+                    {ytError ? "COULDN'T LOAD VIDEO" : "NO LIVE SET FOUND"}
+                  </div>
+                  {ytError && (
+                    <button onClick={() => { setYtError(false); setYtVideo(undefined); fetchYouTubeSet(activeName).then(setYtVideo).catch(() => { setYtVideo(null); setYtError(true); }); }} className="mono" style={{
+                      marginTop: 8, padding: "6px 14px", borderRadius: 999,
+                      background: "var(--paper-2)", border: "1px solid var(--line-2)",
+                      color: "var(--ink)", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+                      cursor: "pointer",
+                    }}>↻ RETRY</button>
+                  )}
+                  {!ytError && (
+                    <a href={ytSearchUrl} target="_blank" rel="noopener noreferrer" className="mono" style={{
+                      display: "inline-block", marginTop: 8, padding: "6px 14px", borderRadius: 999,
+                      background: "var(--paper-2)", border: "1px solid var(--line-2)",
+                      color: "var(--muted)", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+                      textDecoration: "none",
+                    }}>SEARCH YOUTUBE ↗</a>
+                  )}
+                </div>
+              )}
+
               {/* No API key — just show the search link as a button */}
               {!YOUTUBE_KEY && (
                 <a href={ytSearchUrl} target="_blank" rel="noopener noreferrer" style={{
@@ -1900,7 +1934,17 @@ function ArtistScreen({ state, setState }) {
                 textAlign: "center",
               }}>
                 <div style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>🎤</div>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)" }}>NO UPCOMING SHOWS FOUND</div>
+                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)" }}>
+                  {tmError ? "COULDN'T LOAD SHOWS" : "NO UPCOMING SHOWS FOUND"}
+                </div>
+                {tmError && (
+                  <button onClick={() => { setTmError(false); setTmEvents(undefined); fetchTicketmaster(activeName).then(setTmEvents).catch(() => { setTmEvents([]); setTmError(true); }); }} className="mono" style={{
+                    marginTop: 8, padding: "6px 14px", borderRadius: 999,
+                    background: "var(--paper-2)", border: "1px solid var(--line-2)",
+                    color: "var(--ink)", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+                    cursor: "pointer",
+                  }}>↻ RETRY</button>
+                )}
               </div>
             )}
 
@@ -1986,7 +2030,17 @@ function ArtistScreen({ state, setState }) {
                 textAlign: "center",
               }}>
                 <div style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>♫</div>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)" }}>NO DOCUMENTED SETLISTS</div>
+                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)" }}>
+                  {slError ? "COULDN'T LOAD SETLISTS" : "NO DOCUMENTED SETLISTS"}
+                </div>
+                {slError && (
+                  <button onClick={() => { setSlError(false); setSetlists(undefined); fetchSetlists(activeName).then(setSetlists).catch(() => { setSetlists([]); setSlError(true); }); }} className="mono" style={{
+                    marginTop: 8, padding: "6px 14px", borderRadius: 999,
+                    background: "var(--paper-2)", border: "1px solid var(--line-2)",
+                    color: "var(--ink)", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+                    cursor: "pointer",
+                  }}>↻ RETRY</button>
+                )}
               </div>
             )}
 

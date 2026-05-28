@@ -773,6 +773,7 @@ async function createEdcPlaylist(state, opts = {}) {
   // search calls. Higher widths trigger 429s that the retry helper has to
   // unwind — slower overall than a slightly narrower fan-out.
   for (let i = 0; i < sorted.length; i += 4) {
+    try { opts.onProgress?.(`${Math.min(i + 4, sorted.length)}/${sorted.length} ARTISTS`); } catch {}
     await Promise.all(sorted.slice(i, i + 4).map(search));
   }
 
@@ -5045,11 +5046,13 @@ function FollowedNudge({ state, setState }) {
 function BuildPlaylistButton({ state }) {
   const [status, setStatus] = React.useState("idle"); // idle | working | done | err
   const [result, setResult] = React.useState(null);
+  const [buildProgress, setBuildProgress] = React.useState("");
 
   const run = async () => {
     setStatus("working");
+    setBuildProgress("");
     try {
-      const r = await createEdcPlaylist(state);
+      const r = await createEdcPlaylist(state, { onProgress: (msg) => setBuildProgress(msg) });
       setResult(r);
       if (r.ok) {
         setStatus("done");
@@ -5100,7 +5103,7 @@ function BuildPlaylistButton({ state }) {
 
   let label, bg = "rgba(29,185,84,0.14)", color = "#1DB954", border = "1px solid #1DB954";
   if (status === "working") {
-    label = "BUILDING…";
+    label = buildProgress ? `BUILDING · ${buildProgress}` : "BUILDING…";
   } else if (status === "done") {
     const missed = result?.missed || 0;
     label = missed > 0
