@@ -2822,7 +2822,143 @@ function BulkRetagRow({ moments, savedNightArtists, onUpdate }) {
   );
 }
 
-function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, savedArtistIds }) {
+// ── Full-screen photo lightbox — the rewatch surface ─────────────
+// Tap any memory to open it full-bleed on black: the photo, the artist,
+// and — the Plursky signature — the song that was playing the moment you
+// took it. Swipe or tap edges to move through the group. Modeled on
+// Careem/NAVER photo viewers (close top-left, counter top-right, caption
+// + filmstrip at the bottom) per the Mobbin design pass.
+function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick }) {
+  const m = moments[index];
+  const photoUrl = useMomentPhoto(m?.photoId);
+  const artist = m?.artistId ? ARTISTS.find(a => a.id === m.artistId) : null;
+  const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
+  const song   = useSetlistSong(artist, m?.takenAt);
+  const touch  = React.useRef({ x: 0 });
+
+  React.useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight" && index < moments.length - 1) onIndexChange(index + 1);
+      if (e.key === "ArrowLeft" && index > 0) onIndexChange(index - 1);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [index, moments.length]);
+
+  if (!m) return null;
+  const prettyTime = (() => {
+    if (!m.takenAt) return null;
+    try {
+      const t = m.takenAt.split(" ")[1] || "";
+      const [h, mm] = t.split(":").map(Number);
+      const ap = h >= 12 ? "PM" : "AM"; const h12 = h % 12 || 12;
+      return `${h12}:${String(mm).padStart(2, "0")} ${ap}`;
+    } catch { return null; }
+  })();
+
+  const onTouchStart = (e) => { touch.current.x = e.touches[0].clientX; };
+  const onTouchEnd = (e) => {
+    const dx = e.changedTouches[0].clientX - touch.current.x;
+    if (dx < -50 && index < moments.length - 1) onIndexChange(index + 1);
+    if (dx >  50 && index > 0) onIndexChange(index - 1);
+  };
+
+  return (
+    <div style={{
+      position: "fixed", inset: 0, zIndex: 200, background: "#000",
+      display: "flex", flexDirection: "column", animation: "fadeIn .2s",
+      paddingTop: "env(safe-area-inset-top, 0px)",
+    }}>
+      {/* Top bar */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px", flexShrink: 0 }}>
+        <button onClick={onClose} aria-label="Close" style={{
+          width: 36, height: 36, borderRadius: 36, border: "none",
+          background: "rgba(255,255,255,0.14)", color: "#fff", fontSize: 18, cursor: "pointer",
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}>✕</button>
+        <span className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "rgba(255,255,255,0.7)", fontWeight: 700 }}>
+          {index + 1} / {moments.length}
+        </span>
+      </div>
+
+      {/* Photo — tap left/right thirds to navigate */}
+      <div onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} style={{
+        flex: 1, position: "relative", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
+      }}>
+        {photoUrl ? (
+          m.kind === "video"
+            ? <video src={photoUrl} controls playsInline autoPlay style={{ maxWidth: "100%", maxHeight: "100%" }}/>
+            : <img src={photoUrl} alt="" style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}/>
+        ) : (
+          <div className="skel-dark" style={{ width: "80%", height: "60%", borderRadius: 12 }}/>
+        )}
+        {index > 0 && (
+          <button onClick={() => onIndexChange(index - 1)} aria-label="Previous" style={{
+            position: "absolute", left: 0, top: 0, bottom: 0, width: "30%",
+            background: "transparent", border: "none", cursor: "pointer", color: "transparent",
+          }}>‹</button>
+        )}
+        {index < moments.length - 1 && (
+          <button onClick={() => onIndexChange(index + 1)} aria-label="Next" style={{
+            position: "absolute", right: 0, top: 0, bottom: 0, width: "30%",
+            background: "transparent", border: "none", cursor: "pointer", color: "transparent",
+          }}>›</button>
+        )}
+      </div>
+
+      {/* Caption — artist · song that was playing · stage · time */}
+      <div style={{ padding: "16px 20px calc(20px + env(safe-area-inset-bottom, 0px))", flexShrink: 0 }}>
+        {artist ? (
+          <button onClick={() => { onArtistClick?.(artist.id); onClose(); }} style={{
+            background: "transparent", border: "none", padding: 0, textAlign: "left", cursor: "pointer", display: "block",
+          }}>
+            <div className="serif" style={{ fontSize: 26, lineHeight: 1, color: "#fff", marginBottom: 6 }}>
+              {artist.name}
+            </div>
+          </button>
+        ) : (
+          <div className="serif" style={{ fontSize: 22, lineHeight: 1, color: "rgba(255,255,255,0.6)", fontStyle: "italic", marginBottom: 6 }}>
+            Untagged moment
+          </div>
+        )}
+        {song?.song && (
+          <div className="mono" style={{ fontSize: 11, letterSpacing: 0.8, color: stage?.color || "var(--ember)", fontWeight: 700, marginBottom: 4 }}>
+            ♫ {song.song}
+          </div>
+        )}
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.5)", fontWeight: 600 }}>
+          {[stage?.name?.toUpperCase(), prettyTime, m.location?.label?.toUpperCase()].filter(Boolean).join(" · ")}
+        </div>
+
+        {/* Filmstrip — quick-jump within the group */}
+        {moments.length > 1 && (
+          <div className="no-scrollbar" style={{ display: "flex", gap: 5, overflowX: "auto", marginTop: 14, scrollbarWidth: "none" }}>
+            {moments.map((mm, i) => (
+              <_LightboxThumb key={mm.id} moment={mm} active={i === index} onClick={() => onIndexChange(i)} />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function _LightboxThumb({ moment, active, onClick }) {
+  const url = useMomentPhoto(moment.photoId);
+  return (
+    <button onClick={onClick} style={{
+      flexShrink: 0, width: 44, height: 44, borderRadius: 8, padding: 0, cursor: "pointer",
+      border: active ? "2px solid #fff" : "2px solid transparent",
+      opacity: active ? 1 : 0.5, overflow: "hidden", background: "#222",
+      transition: "opacity 0.15s",
+    }}>
+      {url && <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>}
+    </button>
+  );
+}
+
+function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, savedArtistIds, groupMoments, onOpenLightbox }) {
   const photoUrl = useMomentPhoto(moment.photoId);
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
@@ -2889,9 +3025,10 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
               background: "#000",
             }}/>
           ) : (
-            <img src={photoUrl} alt="" style={{
+            <img src={photoUrl} alt="" onClick={() => onOpenLightbox?.(groupMoments || [moment], idx || 0)} style={{
               width: "100%", borderRadius: 10, display: "block",
               marginBottom: moment.text ? 10 : 8,
+              cursor: "pointer",
             }}/>
           )
         ) : (
@@ -3116,7 +3253,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
 // Takes a flat moment list and a key extractor, builds groups, sorts,
 // and renders each group as a stage-colored header + the MomentCards
 // under it. Untagged moments float to the bottom via the sortKeys hook.
-function _renderByGroup({ allMoments, keyOf, headerFor, sortKeys, state, setState, handleDelete, handleUpdate }) {
+function _renderByGroup({ allMoments, keyOf, headerFor, sortKeys, state, setState, handleDelete, handleUpdate, onOpenLightbox }) {
   const groups = new Map();
   for (const m of allMoments) {
     const k = keyOf(m);
@@ -3172,6 +3309,8 @@ function _renderByGroup({ allMoments, keyOf, headerFor, sortKeys, state, setStat
             moment={m}
             idx={i}
             total={items.length}
+            groupMoments={items}
+            onOpenLightbox={onOpenLightbox}
             onDelete={handleDelete}
             onUpdate={handleUpdate}
             savedArtistIds={state.saved || []}
@@ -3908,8 +4047,10 @@ function MemoriesScreen({ state, setState }) {
   const [all, setAll] = React.useState(_readMoments);
   const [adding, setAdding] = React.useState(null); // night number being added to, or null
   const [batch, setBatch] = React.useState(null);   // null | { total, done, results: [{name, night, artistId, err?}] }
+  const [lightbox, setLightbox] = React.useState(null); // null | { moments: [], index }
   const batchInputRef = React.useRef(null);
   const nightSectionRefs = React.useRef({});
+  const openLightbox = React.useCallback((moments, index) => setLightbox({ moments, index }), []);
 
   // Stay in sync with cross-screen retags. The local handlers (handleAdd /
   // handleUpdate / handleDelete) all call setAll directly so this listener
@@ -4155,6 +4296,15 @@ function MemoriesScreen({ state, setState }) {
 
   return (
     <Screen bg="var(--paper)">
+      {lightbox && (
+        <MomentLightbox
+          moments={lightbox.moments}
+          index={lightbox.index}
+          onClose={() => setLightbox(null)}
+          onIndexChange={(i) => setLightbox(lb => ({ ...lb, index: i }))}
+          onArtistClick={(id) => setState(s => ({ ...s, artist: id }))}
+        />
+      )}
       <div style={{ padding: "8px 20px", display: "flex", alignItems: "center", gap: 10 }}>
         <button onClick={() => window._popNav ? window._popNav() : setState(s => ({ ...s, tab: "me" }))} aria-label="Back" style={{
           background: "transparent", border: "none", padding: 0, cursor: "pointer",
@@ -4284,7 +4434,7 @@ function MemoriesScreen({ state, setState }) {
             return (aA?.day || 99) - (bA?.day || 99)
                 || (aA?.start || "99:99").localeCompare(bA?.start || "99:99");
           },
-          state, setState, handleDelete, handleUpdate,
+          state, setState, handleDelete, handleUpdate, onOpenLightbox: openLightbox,
         })}
         {view === "stage" && _renderByGroup({
           allMoments,
@@ -4308,7 +4458,7 @@ function MemoriesScreen({ state, setState }) {
             if (b === "__untagged__") return -1;
             return (STAGES.find(s => s.id === a)?.name || "").localeCompare(STAGES.find(s => s.id === b)?.name || "");
           },
-          state, setState, handleDelete, handleUpdate,
+          state, setState, handleDelete, handleUpdate, onOpenLightbox: openLightbox,
         })}
         {view === "night" && DAYS.map(d => {
           const moments = (all[d.n] || []).slice().sort((a, b) => a.createdAt - b.createdAt);
@@ -4458,6 +4608,8 @@ function MemoriesScreen({ state, setState }) {
                           moment={m}
                           idx={i}
                           total={groupMoments.length}
+                          groupMoments={groupMoments}
+                          onOpenLightbox={openLightbox}
                           onDelete={handleDelete}
                           onUpdate={handleUpdate}
                           savedArtistIds={state.saved || []}
