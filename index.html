@@ -223,16 +223,16 @@
       window.__USE_NATIVE_PICKER__ = true;
     }
   </script>
-  <script type="text/babel" src="ios-frame.jsx?v=v169"></script>
-  <script type="text/babel" src="data.jsx?v=v169"></script>
-  <script type="text/babel" src="supabase.jsx?v=v169"></script>
-  <script type="text/babel" src="chrome.jsx?v=v169"></script>
-  <script type="text/babel" src="home.jsx?v=v169"></script>
-  <script type="text/babel" src="map.jsx?v=v169"></script>
-  <script type="text/babel" src="lineup.jsx?v=v169"></script>
-  <script type="text/babel" src="artist.jsx?v=v169"></script>
-  <script type="text/babel" src="spotify.jsx?v=v169"></script>
-  <script type="text/babel" src="app.jsx?v=v169"></script>
+  <script type="text/babel" src="ios-frame.jsx?v=v170"></script>
+  <script type="text/babel" src="data.jsx?v=v170"></script>
+  <script type="text/babel" src="supabase.jsx?v=v170"></script>
+  <script type="text/babel" src="chrome.jsx?v=v170"></script>
+  <script type="text/babel" src="home.jsx?v=v170"></script>
+  <script type="text/babel" src="map.jsx?v=v170"></script>
+  <script type="text/babel" src="lineup.jsx?v=v170"></script>
+  <script type="text/babel" src="artist.jsx?v=v170"></script>
+  <script type="text/babel" src="spotify.jsx?v=v170"></script>
+  <script type="text/babel" src="app.jsx?v=v170"></script>
 
   <script>
 
@@ -264,7 +264,7 @@
               .map(k => caches.delete(k))
         )
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v169', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v170', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 

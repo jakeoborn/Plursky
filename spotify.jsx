@@ -2459,6 +2459,22 @@ function _compressMomentImage(file) {
 // WASM, way too heavy). Cap at 200 MB per clip so a stray 4K Cinematic
 // can't blow out the IndexedDB quota in a single import.
 const _MAX_VIDEO_BYTES = 200 * 1024 * 1024;
+// Read a video's duration (seconds) by loading just its metadata. Used to
+// stamp moments so tiles can show a 0:48-style badge like Photos/Facebook.
+function _videoDuration(blob) {
+  return new Promise((resolve) => {
+    try {
+      const url = URL.createObjectURL(blob);
+      const v = document.createElement("video");
+      v.preload = "metadata";
+      const done = (d) => { try { URL.revokeObjectURL(url); } catch {} resolve(Number.isFinite(d) && d > 0 ? d : null); };
+      v.onloadedmetadata = () => done(v.duration);
+      v.onerror = () => done(null);
+      v.src = url;
+    } catch { resolve(null); }
+  });
+}
+
 async function _processMomentMedia(file) {
   if (/^image\//.test(file.type)) {
     return { blob: await _compressMomentImage(file), kind: "image" };
@@ -2468,7 +2484,8 @@ async function _processMomentMedia(file) {
       throw new Error(`Video too large (${Math.round(file.size / 1048576)} MB > 200 MB cap)`);
     }
     // Store raw — modern iOS records H.265/HEVC which Safari plays natively.
-    return { blob: file, kind: "video" };
+    const duration = await _videoDuration(file);
+    return { blob: file, kind: "video", duration };
   }
   throw new Error("Unsupported file type: " + file.type);
 }
@@ -2556,12 +2573,7 @@ function _HomeMemoryThumb({ moment, onClick }) {
         <div className="skel" style={{ width: "100%", height: "100%" }}/>
       )}
       {moment.kind === "video" && (
-        <div style={{
-          position: "absolute", top: 6, right: 6, width: 20, height: 20,
-          borderRadius: 20, background: "rgba(0,0,0,0.45)", color: "#fff",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: 9, paddingLeft: 1,
-        }}>▶</div>
+        <_VideoBadge seconds={moment.duration} style={{ position: "absolute", top: 6, right: 6 }}/>
       )}
       <div style={{
         position: "absolute", bottom: 0, left: 0, right: 0,
@@ -2984,21 +2996,32 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
       }}>
         {photoUrl ? (
           m.kind === "video"
-            ? <video src={photoUrl} controls playsInline autoPlay style={{ maxWidth: "100%", maxHeight: "100%" }}/>
+            ? <_LightboxVideo key={m.id} src={photoUrl}/>
             : <img src={photoUrl} alt="" style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}/>
         ) : (
           <div className="skel-dark" style={{ width: "80%", height: "60%", borderRadius: 12 }}/>
         )}
+        {/* Visible chevrons — vertically centered at the edges so they read
+            as navigation and clear the video's center play + bottom scrubber.
+            (Replaced invisible full-height tap-zones that hid the controls.) */}
         {index > 0 && (
           <button onClick={() => onIndexChange(index - 1)} aria-label="Previous" style={{
-            position: "absolute", left: 0, top: 0, bottom: 0, width: "30%",
-            background: "transparent", border: "none", cursor: "pointer", color: "transparent",
+            position: "absolute", left: 10, top: "50%", transform: "translateY(-50%)",
+            width: 40, height: 40, borderRadius: 40, zIndex: 3,
+            background: "rgba(255,255,255,0.16)", backdropFilter: "blur(6px)",
+            WebkitBackdropFilter: "blur(6px)", border: "none", cursor: "pointer",
+            color: "#fff", fontSize: 22, lineHeight: 1, paddingBottom: 3,
+            display: "flex", alignItems: "center", justifyContent: "center",
           }}>‹</button>
         )}
         {index < moments.length - 1 && (
           <button onClick={() => onIndexChange(index + 1)} aria-label="Next" style={{
-            position: "absolute", right: 0, top: 0, bottom: 0, width: "30%",
-            background: "transparent", border: "none", cursor: "pointer", color: "transparent",
+            position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)",
+            width: 40, height: 40, borderRadius: 40, zIndex: 3,
+            background: "rgba(255,255,255,0.16)", backdropFilter: "blur(6px)",
+            WebkitBackdropFilter: "blur(6px)", border: "none", cursor: "pointer",
+            color: "#fff", fontSize: 22, lineHeight: 1, paddingBottom: 3,
+            display: "flex", alignItems: "center", justifyContent: "center",
           }}>›</button>
         )}
       </div>
@@ -3074,6 +3097,104 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
   );
 }
 
+// mm:ss clock formatter shared by the player + duration badges.
+function _fmtClock(sec) {
+  sec = Math.max(0, Math.floor(sec || 0));
+  const m = Math.floor(sec / 60), s = sec % 60;
+  return `${m}:${String(s).padStart(2, "0")}`;
+}
+
+// A small "▶ 0:48" pill for video tiles — matches Photos/Facebook/Instagram.
+// Falls back to a bare ▶ when duration is unknown (older imports).
+function _VideoBadge({ seconds, style }) {
+  return (
+    <span className="mono" style={{
+      display: "inline-flex", alignItems: "center", gap: 3,
+      background: "rgba(0,0,0,0.6)", color: "#fff",
+      fontSize: 8, letterSpacing: 0.5, fontWeight: 700,
+      padding: "2px 6px", borderRadius: 999, pointerEvents: "none",
+      ...style,
+    }}>
+      <span style={{ fontSize: 7 }}>▶</span>{seconds ? _fmtClock(seconds) : "VIDEO"}
+    </span>
+  );
+}
+
+// Custom full-screen video player for the lightbox. Replaces the bare
+// <video controls> (whose native chrome fought the edge tap-zones, making
+// scrubbing impossible). Modeled on Netflix/HBO: tap-to-toggle, a clean
+// scrubber with time, persistent mute. Scrubber/mute stopPropagation so
+// they don't trigger the lightbox's swipe-to-next.
+function _LightboxVideo({ src }) {
+  const ref = React.useRef(null);
+  const [playing, setPlaying] = React.useState(false);
+  const [cur, setCur] = React.useState(0);
+  const [dur, setDur] = React.useState(0);
+  const [muted, setMuted] = React.useState(() => {
+    try { return localStorage.getItem("plursky_lb_muted_v1") === "1"; } catch { return false; }
+  });
+  const [flash, setFlash] = React.useState(false);
+
+  React.useEffect(() => { if (ref.current) ref.current.muted = muted; }, [muted]);
+
+  const toggle = () => {
+    const v = ref.current; if (!v) return;
+    if (v.paused) v.play().catch(() => {}); else v.pause();
+    setFlash(true); setTimeout(() => setFlash(false), 450);
+    try { window.plurskyHaptic?.("LIGHT"); } catch {}
+  };
+  const seek = (e) => {
+    const v = ref.current; if (!v || !dur) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const cx = e.touches ? e.touches[0].clientX : e.clientX;
+    v.currentTime = Math.max(0, Math.min(1, (cx - rect.left) / rect.width)) * dur;
+  };
+  const pct = dur ? (cur / dur) * 100 : 0;
+  const stop = (e) => e.stopPropagation();
+
+  return (
+    <div style={{ position: "relative", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <video ref={ref} src={src} autoPlay playsInline muted={muted}
+        onClick={toggle}
+        onTimeUpdate={() => { const v = ref.current; if (v) setCur(v.currentTime); }}
+        onLoadedMetadata={() => { const v = ref.current; if (v) setDur(v.duration || 0); }}
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+        style={{ maxWidth: "100%", maxHeight: "100%", display: "block" }}/>
+      {/* Center play/pause — persistent ▶ when paused, brief flash otherwise */}
+      {(!playing || flash) && (
+        <div style={{
+          position: "absolute", pointerEvents: "none",
+          width: 66, height: 66, borderRadius: 66,
+          background: "rgba(0,0,0,0.5)", display: "flex",
+          alignItems: "center", justifyContent: "center",
+          color: "#fff", fontSize: 26, paddingLeft: playing ? 0 : 4,
+          transition: "opacity .2s", opacity: 1,
+        }}>{playing ? "❚❚" : "▶"}</div>
+      )}
+      {/* Mute toggle */}
+      <button onClick={(e) => { stop(e); setMuted(mm => { const nx = !mm; try { localStorage.setItem("plursky_lb_muted_v1", nx ? "1" : "0"); } catch {} return nx; }); }}
+        aria-label={muted ? "Unmute" : "Mute"} style={{
+          position: "absolute", top: 12, right: 12, width: 38, height: 38, borderRadius: 38,
+          background: "rgba(0,0,0,0.5)", border: "none", color: "#fff", fontSize: 15, cursor: "pointer",
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}>{muted ? "🔇" : "🔊"}</button>
+      {/* Scrubber */}
+      <div onClick={stop} onTouchStart={stop} onTouchEnd={stop} style={{ position: "absolute", left: 14, right: 14, bottom: 12 }}>
+        <div onClick={seek} onTouchMove={seek} onTouchStart={seek} style={{
+          height: 5, borderRadius: 5, background: "rgba(255,255,255,0.28)", position: "relative", cursor: "pointer",
+        }}>
+          <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${pct}%`, background: "#fff", borderRadius: 5 }}/>
+          <div style={{ position: "absolute", left: `${pct}%`, top: "50%", transform: "translate(-50%,-50%)", width: 12, height: 12, borderRadius: 12, background: "#fff", boxShadow: "0 1px 3px rgba(0,0,0,0.5)" }}/>
+        </div>
+        <div className="mono" style={{ display: "flex", justifyContent: "space-between", marginTop: 5, fontSize: 8, letterSpacing: 1, color: "rgba(255,255,255,0.7)", fontWeight: 700 }}>
+          <span>{_fmtClock(cur)}</span><span>{_fmtClock(dur)}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function _LightboxThumb({ moment, active, onClick }) {
   const url = useMomentPhoto(moment.photoId);
   return (
@@ -3081,9 +3202,15 @@ function _LightboxThumb({ moment, active, onClick }) {
       flexShrink: 0, width: 44, height: 44, borderRadius: 8, padding: 0, cursor: "pointer",
       border: active ? "2px solid #fff" : "2px solid transparent",
       opacity: active ? 1 : 0.5, overflow: "hidden", background: "#222",
-      transition: "opacity 0.15s",
+      transition: "opacity 0.15s", position: "relative",
     }}>
-      {url && <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>}
+      {url && (moment.kind === "video"
+        ? <video src={url} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
+        : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
+      )}
+      {moment.kind === "video" && (
+        <span style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: 10, textShadow: "0 1px 2px rgba(0,0,0,0.6)", pointerEvents: "none" }}>▶</span>
+      )}
     </button>
   );
 }
@@ -4240,12 +4367,7 @@ function _MemoryStoryBeat({ moment, isLast, onOpen }) {
                     fontSize: 19, paddingLeft: 3,
                   }}>▶</span>
                 </span>
-                <span className="mono" style={{
-                  position: "absolute", bottom: 8, right: 8,
-                  background: "rgba(0,0,0,0.6)", color: "#fff",
-                  fontSize: 8, letterSpacing: 1, fontWeight: 700,
-                  padding: "2px 6px", borderRadius: 999, pointerEvents: "none",
-                }}>VIDEO</span>
+                <_VideoBadge seconds={moment.duration} style={{ position: "absolute", bottom: 8, right: 8 }}/>
               </>
             ) : (
               <img src={url} alt="" style={{ width: "100%", borderRadius: 12, display: "block", maxHeight: 340, objectFit: "cover" }}/>
@@ -4450,6 +4572,7 @@ function MemoriesScreen({ state, setState }) {
         const moment = {
           id, night, text: "", artistId: matched.artistId, photoId,
           kind: out.kind,
+          duration: out.duration ?? null,
           createdAt: Date.now(),
           takenAt: meta?.date ? `${meta.date.yr}-${String(meta.date.mo).padStart(2,"0")}-${String(meta.date.dy).padStart(2,"0")} ${String(meta.date.hh).padStart(2,"0")}:${String(meta.date.mm).padStart(2,"0")}` : null,
           autoTagged: !!matched.artistId,
