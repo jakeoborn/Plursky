@@ -2928,6 +2928,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
   const touch  = React.useRef({ x: 0 });
   const [idState, setIdState] = React.useState("idle"); // idle|listening|matching|done|fail
   const [mismatch, setMismatch] = React.useState(null);  // suggested artist if audio disagrees with tag
+  const [sharing, setSharing] = React.useState(false);
 
   React.useEffect(() => { setIdState("idle"); setMismatch(null); }, [index]);
 
@@ -3050,6 +3051,29 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
         <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.5)", fontWeight: 600 }}>
           {[stage?.name?.toUpperCase(), prettyTime, m.location?.label?.toUpperCase()].filter(Boolean).join(" · ")}
         </div>
+
+        {/* Share — renders a branded story card with the photo + the song
+            that was playing, and opens the OS share sheet. */}
+        <button onClick={async () => {
+          if (sharing) return;
+          setSharing(true);
+          try { window.plurskyHaptic?.("LIGHT"); } catch {}
+          await _shareMoment(m, {
+            artistName: artist?.name,
+            songLabel: song?.song || null,
+            stageColor: stage?.color,
+            subLabel: [stage?.name, prettyTime].filter(Boolean).join(" · "),
+            timeLabel: prettyTime,
+            festival: FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name,
+          }).catch(() => {});
+          setSharing(false);
+        }} disabled={sharing} className="mono" style={{
+          marginTop: 14, padding: "10px 14px", borderRadius: 999, width: "100%",
+          background: "#fff", color: "#0d0a08", border: "none",
+          fontSize: 11, letterSpacing: 1.3, fontWeight: 800, cursor: "pointer",
+          display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
+          opacity: sharing ? 0.6 : 1,
+        }}>{sharing ? "PREPARING…" : "↗  SHARE THIS MOMENT"}</button>
 
         {/* Retroactive song ID — video moments only. The audio you shot
             becomes the recognition sample: estimate → proven. */}
@@ -3193,6 +3217,133 @@ function _LightboxVideo({ src }) {
       </div>
     </div>
   );
+}
+
+// ── Share a moment ───────────────────────────────────────────────
+// Renders a 1080×1920 story card: the photo (or video's first frame) as a
+// full-bleed hero, the artist + the song that was playing + stage/time, and
+// the Plursky wordmark watermark in the footer. The watermark is the
+// free-tier differentiator (it's branding, not a feature gate), so every
+// share carries it. Shares the PNG via the OS sheet, falling back to download.
+function _imgFromBlob(blob) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(blob);
+    const img = new Image();
+    img.onload = () => resolve({ img, revoke: () => { try { URL.revokeObjectURL(url); } catch {} } });
+    img.onerror = () => { try { URL.revokeObjectURL(url); } catch {} reject(new Error("img")); };
+    img.src = url;
+  });
+}
+function _frameFromVideoBlob(blob) {
+  return new Promise((resolve) => {
+    try {
+      const url = URL.createObjectURL(blob);
+      const v = document.createElement("video");
+      v.muted = true; v.playsInline = true; v.preload = "metadata"; v.src = url;
+      const fail = () => { try { URL.revokeObjectURL(url); } catch {} resolve(null); };
+      v.onloadeddata = () => { try { v.currentTime = Math.min(0.1, (v.duration || 1) * 0.1); } catch { fail(); } };
+      v.onseeked = () => {
+        try {
+          const c = document.createElement("canvas");
+          c.width = v.videoWidth || 1080; c.height = v.videoHeight || 1920;
+          c.getContext("2d").drawImage(v, 0, 0);
+          URL.revokeObjectURL(url);
+          resolve(c);
+        } catch { fail(); }
+      };
+      v.onerror = fail;
+    } catch { resolve(null); }
+  });
+}
+function _drawCover(ctx, src, dx, dy, dw, dh) {
+  const sW = src.width || src.videoWidth, sH = src.height || src.videoHeight;
+  if (!sW || !sH) return;
+  const ir = sW / sH, r = dw / dh;
+  let sw, sh, sx, sy;
+  if (ir > r) { sh = sH; sw = sh * r; sx = (sW - sw) / 2; sy = 0; }
+  else { sw = sW; sh = sw / r; sx = 0; sy = (sH - sh) / 2; }
+  ctx.drawImage(src, sx, sy, sw, sh, dx, dy, dw, dh);
+}
+async function _shareMoment(moment, meta) {
+  const blob = await _getPhoto(moment.photoId).catch(() => null);
+  if (!blob) return { ok: false, reason: "no_photo" };
+  let source = null, revoke = null;
+  if (moment.kind === "video") {
+    source = await _frameFromVideoBlob(blob);
+  } else {
+    try { const r = await _imgFromBlob(blob); source = r.img; revoke = r.revoke; } catch {}
+  }
+  try { await (document.fonts?.ready || Promise.resolve()); } catch {}
+
+  const W = 1080, H = 1920, HERO = 1320;
+  const cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+  const ctx = cv.getContext("2d");
+  ctx.fillStyle = "#0d0a08"; ctx.fillRect(0, 0, W, H);
+  if (source) _drawCover(ctx, source, 0, 0, W, HERO);
+  else { ctx.fillStyle = "#1a120d"; ctx.fillRect(0, 0, W, HERO); }
+  if (revoke) revoke();
+
+  // Fade the hero into the text panel
+  const g = ctx.createLinearGradient(0, HERO - 360, 0, HERO);
+  g.addColorStop(0, "rgba(13,10,8,0)"); g.addColorStop(1, "#0d0a08");
+  ctx.fillStyle = g; ctx.fillRect(0, HERO - 360, W, 360);
+
+  const accent = meta.stageColor || "#e85d2e";
+  let y = HERO + 30;
+  ctx.textAlign = "left";
+  if (meta.timeLabel) {
+    ctx.fillStyle = "rgba(255,255,255,0.6)";
+    ctx.font = '700 30px "Geist Mono", monospace';
+    ctx.fillText(meta.timeLabel.toUpperCase(), 80, y); y += 70;
+  }
+  ctx.fillStyle = "#fff";
+  ctx.font = '92px "Instrument Serif", serif';
+  let name = meta.artistName || "A moment";
+  if (ctx.measureText(name).width > W - 160) {
+    while (ctx.measureText(name + "…").width > W - 160 && name.length) name = name.slice(0, -1);
+    name += "…";
+  }
+  ctx.fillText(name, 80, y + 70); y += 130;
+  if (meta.songLabel) {
+    ctx.fillStyle = accent;
+    ctx.font = '700 34px "Geist Mono", monospace';
+    let s = "♫ " + meta.songLabel;
+    if (ctx.measureText(s).width > W - 160) {
+      while (ctx.measureText(s + "…").width > W - 160 && s.length) s = s.slice(0, -1);
+      s += "…";
+    }
+    ctx.fillText(s, 80, y); y += 56;
+  }
+  if (meta.subLabel) {
+    ctx.fillStyle = "rgba(255,255,255,0.55)";
+    ctx.font = '600 26px "Geist Mono", monospace';
+    ctx.fillText(meta.subLabel.toUpperCase(), 80, y);
+  }
+
+  // Footer watermark
+  ctx.textAlign = "left";
+  ctx.fillStyle = "#fff";
+  ctx.font = '800 40px "Geist Mono", monospace';
+  ctx.fillText("PLURSKY", 80, H - 70);
+  ctx.fillStyle = "rgba(255,255,255,0.45)";
+  ctx.font = '600 26px "Geist Mono", monospace';
+  ctx.textAlign = "right";
+  ctx.fillText((meta.festival || "").toUpperCase() + "  ·  PLURSKY.COM", W - 80, H - 72);
+
+  const fname = `plursky-${(meta.artistName || "moment").toLowerCase().replace(/[^a-z0-9]+/g, "-")}.png`;
+  const out = await new Promise((res) => cv.toBlob(res, "image/png", 0.92));
+  if (!out) return { ok: false, reason: "encode_fail" };
+  const file = new File([out], fname, { type: "image/png" });
+  if (navigator.canShare?.({ files: [file] }) && navigator.share) {
+    try { await navigator.share({ files: [file], title: meta.artistName ? `${meta.artistName} — Plursky` : "Plursky" }); return { ok: true, mode: "share" }; }
+    catch (e) { if (e?.name === "AbortError") return { ok: true, mode: "abort" }; }
+  }
+  const url = URL.createObjectURL(out);
+  const link = document.createElement("a");
+  link.href = url; link.download = fname;
+  document.body.appendChild(link); link.click(); document.body.removeChild(link);
+  setTimeout(() => { try { URL.revokeObjectURL(url); } catch {} }, 1500);
+  return { ok: true, mode: "download" };
 }
 
 function _LightboxThumb({ moment, active, onClick }) {
@@ -4300,6 +4451,171 @@ function StorageManager({ all, onChange }) {
   );
 }
 
+// ── Recap reel — the auto-advancing montage ──────────────────────
+// Full-screen story player (Instagram/Snapchat/Apple Memory Mixes): segmented
+// progress bars up top, a Ken Burns drift on photos, autoplay for video, the
+// artist + song that was playing animated over each beat. Tap right=next,
+// left=prev, press-and-hold=pause. Ends on a recap card with Share + Replay.
+// No background music track (we can't license one) — video beats play their
+// own audio, photo beats are silent.
+function MemoryReel({ moments, festival, nightLabel, onClose, onOpenArtist }) {
+  const [idx, setIdx] = React.useState(0);
+  const [ended, setEnded] = React.useState(false);
+  const [prog, setProg] = React.useState(0);
+  const pausedRef = React.useRef(false);
+  const [pausedUI, setPausedUI] = React.useState(false);
+  const m = moments[idx];
+  const url = useMomentPhoto(m?.photoId);
+  const vidRef = React.useRef(null);
+  const advanceRef = React.useRef(() => {});
+
+  const artist = m?.artistId ? ARTISTS.find(a => a.id === m.artistId) : null;
+  const stage = artist ? STAGES.find(s => s.id === artist.stage) : null;
+  const est = useSetlistSong(artist, m?.takenAt);
+  const song = m?.confirmedSong || est?.song;
+  const PHOTO_MS = 3800;
+  const dur = m?.kind === "video" ? Math.min((m.duration || 6), 15) * 1000 : PHOTO_MS;
+
+  advanceRef.current = () => {
+    if (idx + 1 >= moments.length) { setEnded(true); }
+    else { setIdx(idx + 1); }
+  };
+
+  const setPaused = (v) => { pausedRef.current = v; setPausedUI(v); const vid = vidRef.current; if (vid) { if (v) vid.pause(); else vid.play().catch(() => {}); } };
+
+  // Per-slide progress + auto-advance. Re-runs only when the slide changes;
+  // pause is read from a ref so toggling it doesn't restart the timer.
+  React.useEffect(() => {
+    if (ended || !m) return;
+    let raf, last = performance.now(), acc = 0, stop = false;
+    setProg(0);
+    const tick = (now) => {
+      if (stop) return;
+      const dt = now - last; last = now;
+      if (!pausedRef.current) {
+        acc += dt;
+        const p = Math.min(1, acc / dur);
+        setProg(p);
+        if (p >= 1) { advanceRef.current(); return; }
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => { stop = true; cancelAnimationFrame(raf); };
+  }, [idx, ended, dur]);
+
+  React.useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight") advanceRef.current();
+      if (e.key === "ArrowLeft") setIdx(i => Math.max(0, i - 1));
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  // Hold-to-pause vs tap-to-navigate.
+  const holdRef = React.useRef({ t: null, held: false });
+  const onDown = () => { holdRef.current.held = false; holdRef.current.t = setTimeout(() => { holdRef.current.held = true; setPaused(true); }, 180); };
+  const onUp = (e, side) => {
+    clearTimeout(holdRef.current.t);
+    if (holdRef.current.held) { setPaused(false); return; }
+    if (side === "prev") { if (idx > 0) setIdx(idx - 1); }
+    else advanceRef.current();
+  };
+
+  const fmtTime = (() => {
+    if (!m?.takenAt) return null;
+    try { const [h, mm] = (m.takenAt.split(" ")[1] || "").split(":").map(Number); const ap = h >= 12 ? "PM" : "AM"; return `${h % 12 || 12}:${String(mm).padStart(2, "0")} ${ap}`; } catch { return null; }
+  })();
+
+  const tagged = moments.filter(x => x.artistId).length;
+  const vids = moments.filter(x => x.kind === "video").length;
+
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 250, background: "#000", overflow: "hidden", animation: "fadeIn .2s" }}>
+      <style>{`@keyframes plurskyKB{from{transform:scale(1.001) translate(0,0)}to{transform:scale(1.12) translate(-1.5%,-2%)}}@keyframes reelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}`}</style>
+
+      {!ended ? (
+        <>
+          {/* Media */}
+          <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "#000" }}>
+            {url && (m.kind === "video" ? (
+              // Muted so iOS reliably autoplays each beat (autoplay-with-sound
+              // is blocked without a fresh gesture); full audio lives in the
+              // lightbox. The song that was playing still shows as a caption.
+              <video ref={vidRef} key={m.id} src={url} autoPlay playsInline muted
+                onEnded={() => advanceRef.current()}
+                style={{ width: "100%", height: "100%", objectFit: "contain" }}/>
+            ) : (
+              <img key={m.id} src={url} alt="" style={{
+                width: "100%", height: "100%", objectFit: "cover",
+                animation: `plurskyKB ${PHOTO_MS + 400}ms linear forwards`,
+                animationPlayState: pausedUI ? "paused" : "running",
+              }}/>
+            ))}
+            {/* Legibility scrims */}
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 160, background: "linear-gradient(180deg, rgba(0,0,0,0.6), transparent)", pointerEvents: "none" }}/>
+            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 280, background: "linear-gradient(0deg, rgba(0,0,0,0.75), transparent)", pointerEvents: "none" }}/>
+          </div>
+
+          {/* Tap zones */}
+          <div onPointerDown={onDown} onPointerUp={(e) => onUp(e, "prev")} style={{ position: "absolute", left: 0, top: 60, bottom: 0, width: "33%", zIndex: 4 }}/>
+          <div onPointerDown={onDown} onPointerUp={(e) => onUp(e, "next")} style={{ position: "absolute", right: 0, top: 60, bottom: 0, width: "67%", zIndex: 4 }}/>
+
+          {/* Progress segments */}
+          <div style={{ position: "absolute", top: "calc(10px + env(safe-area-inset-top, 0px))", left: 12, right: 12, display: "flex", gap: 4, zIndex: 6 }}>
+            {moments.map((_, i) => (
+              <div key={i} style={{ flex: 1, height: 3, borderRadius: 3, background: "rgba(255,255,255,0.3)", overflow: "hidden" }}>
+                <div style={{ height: "100%", background: "#fff", width: i < idx ? "100%" : i === idx ? `${prog * 100}%` : "0%", transition: i === idx ? "none" : "width .2s" }}/>
+              </div>
+            ))}
+          </div>
+
+          {/* Close + pause hint */}
+          <button onClick={onClose} aria-label="Close" style={{ position: "absolute", top: "calc(24px + env(safe-area-inset-top, 0px))", right: 14, zIndex: 7, width: 34, height: 34, borderRadius: 34, background: "rgba(0,0,0,0.4)", border: "none", color: "#fff", fontSize: 16, cursor: "pointer" }}>✕</button>
+
+          {/* Caption */}
+          <div key={`cap-${idx}`} style={{ position: "absolute", left: 20, right: 20, bottom: "calc(34px + env(safe-area-inset-bottom, 0px))", zIndex: 6, animation: "reelIn .4s ease-out", pointerEvents: "none" }}>
+            {fmtTime && <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "rgba(255,255,255,0.75)", fontWeight: 700, marginBottom: 6 }}>{fmtTime}</div>}
+            <div className="serif" style={{ fontSize: 34, lineHeight: 1, color: "#fff" }}>{artist?.name || "A moment"}</div>
+            {song && <div className="mono" style={{ fontSize: 11, letterSpacing: 0.8, color: stage?.color || "#e85d2e", fontWeight: 700, marginTop: 8 }}>♫ {song}{m.confirmedSong ? " · SHAZAMED" : ""}</div>}
+            {stage && <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.6)", fontWeight: 600, marginTop: 4 }}>{stage.name.toUpperCase()}</div>}
+          </div>
+
+          {pausedUI && (
+            <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none", zIndex: 5 }}>
+              <div style={{ width: 64, height: 64, borderRadius: 64, background: "rgba(0,0,0,0.45)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: 24 }}>❚❚</div>
+            </div>
+          )}
+        </>
+      ) : (
+        /* Recap card */
+        <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 30, textAlign: "center", background: "radial-gradient(120% 80% at 50% 0%, rgba(232,93,46,0.25), #0d0a08 60%)" }}>
+          <button onClick={onClose} aria-label="Close" style={{ position: "absolute", top: "calc(24px + env(safe-area-inset-top, 0px))", right: 14, width: 34, height: 34, borderRadius: 34, background: "rgba(255,255,255,0.12)", border: "none", color: "#fff", fontSize: 16, cursor: "pointer" }}>✕</button>
+          <div className="mono" style={{ fontSize: 10, letterSpacing: 2, color: "rgba(255,255,255,0.6)", fontWeight: 700, marginBottom: 14 }}>THAT WAS</div>
+          <div className="serif" style={{ fontSize: 44, lineHeight: 1.05, color: "#fff", marginBottom: 10 }}>
+            Your <span style={{ fontStyle: "italic", color: "var(--ember)" }}>{nightLabel || "night"}</span>
+          </div>
+          <div className="mono" style={{ fontSize: 11, letterSpacing: 1.3, color: "rgba(255,255,255,0.7)", fontWeight: 600 }}>
+            {moments.length} {moments.length === 1 ? "MOMENT" : "MOMENTS"}{tagged ? ` · ${tagged} TAGGED` : ""}{vids ? ` · ${vids} VIDEO${vids === 1 ? "" : "S"}` : ""}
+          </div>
+          <div style={{ display: "flex", gap: 10, marginTop: 30 }}>
+            <button onClick={() => { setEnded(false); setIdx(0); }} className="mono" style={{ padding: "12px 20px", borderRadius: 999, background: "rgba(255,255,255,0.14)", border: "1px solid rgba(255,255,255,0.3)", color: "#fff", fontSize: 11, letterSpacing: 1.3, fontWeight: 700, cursor: "pointer" }}>↺ REPLAY</button>
+            <button onClick={async () => {
+              const hero = moments.find(x => x.kind === "video") || moments.find(x => x.artistId) || moments[0];
+              if (!hero) return;
+              const a = hero.artistId ? ARTISTS.find(x => x.id === hero.artistId) : null;
+              const s = a ? STAGES.find(x => x.id === a.stage) : null;
+              await _shareMoment(hero, { artistName: a?.name, songLabel: hero.confirmedSong || null, stageColor: s?.color, subLabel: nightLabel, festival }).catch(() => {});
+            }} className="mono" style={{ padding: "12px 20px", borderRadius: 999, background: "#fff", border: "none", color: "#0d0a08", fontSize: 11, letterSpacing: 1.3, fontWeight: 800, cursor: "pointer" }}>↗ SHARE</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── "That Night" story view ──────────────────────────────────────
 // Weaves the four facts into one chronological scroll per night: a
 // vertical timeline where each captured moment becomes a beat —
@@ -4379,7 +4695,7 @@ function _MemoryStoryBeat({ moment, isLast, onOpen }) {
   );
 }
 
-function MemoryStory({ allMoments, state, setState, onOpenLightbox }) {
+function MemoryStory({ allMoments, state, setState, onOpenLightbox, onPlayReel }) {
   const [night, setNight] = React.useState(() => {
     const nights = [...new Set(allMoments.map(m => m.night))].sort((a, b) => a - b);
     return nights[0] || NOW.day || 1;
@@ -4436,6 +4752,18 @@ function MemoryStory({ allMoments, state, setState, onOpenLightbox }) {
           {beats.length} {beats.length === 1 ? "MOMENT" : "MOMENTS"} · YOUR STORY
         </div>
       </div>
+      {beats.length >= 2 && onPlayReel && (
+        <button onClick={() => onPlayReel(beats, dayMeta ? (dayMeta.label.charAt(0) + dayMeta.label.slice(1).toLowerCase()) + " night" : `Night ${night}`)} style={{
+          display: "flex", alignItems: "center", justifyContent: "center", gap: 9,
+          width: "100%", marginBottom: 18, padding: "13px 16px", borderRadius: 14,
+          background: "linear-gradient(135deg, var(--ember), #7b3d9a)", border: "none",
+          color: "#fff", cursor: "pointer",
+        }}>
+          <span style={{ fontSize: 15 }}>▶</span>
+          <span className="mono" style={{ fontSize: 12, letterSpacing: 1.4, fontWeight: 800 }}>PLAY RECAP</span>
+          <span className="mono" style={{ fontSize: 9, letterSpacing: 1, fontWeight: 600, opacity: 0.8 }}>· {beats.length} BEATS</span>
+        </button>
+      )}
       {beats.map((m, i) => (
         <_MemoryStoryBeat
           key={m.id}
@@ -4453,9 +4781,11 @@ function MemoriesScreen({ state, setState }) {
   const [adding, setAdding] = React.useState(null); // night number being added to, or null
   const [batch, setBatch] = React.useState(null);   // null | { total, done, results: [{name, night, artistId, err?}] }
   const [lightbox, setLightbox] = React.useState(null); // null | { moments: [], index }
+  const [reel, setReel] = React.useState(null); // null | { moments: [], label }
   const batchInputRef = React.useRef(null);
   const nightSectionRefs = React.useRef({});
   const openLightbox = React.useCallback((moments, index) => setLightbox({ moments, index }), []);
+  const playReel = React.useCallback((moments, label) => { if (moments?.length) setReel({ moments, label }); }, []);
 
   // Stay in sync with cross-screen retags. The local handlers (handleAdd /
   // handleUpdate / handleDelete) all call setAll directly so this listener
@@ -4730,6 +5060,15 @@ function MemoriesScreen({ state, setState }) {
           }}
         />
       )}
+      {reel && (
+        <MemoryReel
+          moments={reel.moments}
+          nightLabel={reel.label}
+          festival={FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name}
+          onClose={() => setReel(null)}
+          onOpenArtist={(id) => setState(s => ({ ...s, artist: id }))}
+        />
+      )}
       <div style={{ padding: "8px 20px", display: "flex", alignItems: "center", gap: 10 }}>
         <button onClick={() => window._popNav ? window._popNav() : setState(s => ({ ...s, tab: "me" }))} aria-label="Back" style={{
           background: "transparent", border: "none", padding: 0, cursor: "pointer",
@@ -4835,7 +5174,7 @@ function MemoriesScreen({ state, setState }) {
             );
           })}
         </div>
-        {view === "story" && <MemoryStory allMoments={allMoments} state={state} setState={setState} onOpenLightbox={openLightbox} />}
+        {view === "story" && <MemoryStory allMoments={allMoments} state={state} setState={setState} onOpenLightbox={openLightbox} onPlayReel={playReel} />}
         {view === "artist" && _renderByGroup({
           allMoments,
           keyOf: m => m.artistId || "__untagged__",
