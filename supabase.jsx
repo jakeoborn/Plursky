@@ -2410,6 +2410,7 @@ function CrewCard({ state }) {
   // social sections on the Me tab and most users don't use it. Auto-expand
   // when joined so members stay visible without an extra tap.
   const [expanded, setExpanded] = React.useState(false);
+  const [expandedPid, setExpandedPid] = React.useState(null); // crew member whose lineup is open
   const [totemUrl, setTotemUrl] = React.useState(null);
   const totemInputRef = React.useRef(null);
   const leaveRef = React.useRef(null);
@@ -2599,27 +2600,71 @@ function CrewCard({ state }) {
             </div>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-              {others.map(([pid, m]) => (
-                <div key={pid} style={{
-                  display: "flex", alignItems: "center", gap: 12, padding: "11px 14px",
-                  background: "var(--paper)", border: "1px solid var(--line)", borderRadius: 12,
-                }}>
-                  <div style={{
-                    width: 36, height: 36, borderRadius: 36, background: _presColor(pid),
-                    color: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
-                    fontFamily: "Instrument Serif, serif", fontSize: 17, flexShrink: 0,
-                  }}>{(m.name || "?")[0].toUpperCase()}</div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div className="serif" style={{ fontSize: 16 }}>{m.name || "Friend"}</div>
-                    <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2 }}>
-                      {(m.artistIds || []).length} SETS SAVED
-                    </div>
+              {others.map(([pid, m]) => {
+                const ids = m.artistIds || [];
+                const inCommon = ids.filter(id => state.saved.includes(id)).length;
+                const isOpen = expandedPid === pid;
+                const ARTISTS = window.ARTISTS || [];
+                const STAGES = window.STAGES || [];
+                // Their picks, sorted by day then start time, with stage color
+                const picks = ids
+                  .map(id => ARTISTS.find(a => a.id === id))
+                  .filter(Boolean)
+                  .sort((a, b) => (a.day || 0) - (b.day || 0) || (a.start || "").localeCompare(b.start || ""));
+                return (
+                  <div key={pid} style={{
+                    background: "var(--paper)", border: "1px solid var(--line)", borderRadius: 12, overflow: "hidden",
+                  }}>
+                    <button onClick={() => setExpandedPid(isOpen ? null : pid)} style={{
+                      width: "100%", display: "flex", alignItems: "center", gap: 12, padding: "11px 14px",
+                      background: "transparent", border: "none", cursor: "pointer", textAlign: "left",
+                    }}>
+                      <div style={{
+                        width: 36, height: 36, borderRadius: 36, background: _presColor(pid),
+                        color: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
+                        fontFamily: "Instrument Serif, serif", fontSize: 17, flexShrink: 0,
+                      }}>{(m.name || "?")[0].toUpperCase()}</div>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div className="serif" style={{ fontSize: 16, color: "var(--ink)" }}>{m.name || "Friend"}</div>
+                        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2 }}>
+                          {ids.length} SETS{inCommon > 0 ? ` · ${inCommon} IN COMMON` : ""}
+                        </div>
+                      </div>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                        style={{ flexShrink: 0, transition: "transform 0.25s var(--ease-spring)", transform: isOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
+                        <path d="M9 18 L15 12 L9 6"/>
+                      </svg>
+                    </button>
+                    {isOpen && (
+                      <div style={{ padding: "0 14px 12px", borderTop: "1px solid var(--line)" }}>
+                        {picks.length === 0 ? (
+                          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", padding: "12px 0" }}>
+                            NO SETS SAVED YET
+                          </div>
+                        ) : picks.map(a => {
+                          const st = STAGES.find(s => s.id === a.stage);
+                          const shared = state.saved.includes(a.id);
+                          return (
+                            <div key={a.id} style={{
+                              display: "flex", alignItems: "center", gap: 8, padding: "7px 0",
+                              borderBottom: "1px solid var(--line)",
+                            }}>
+                              <span style={{ width: 6, height: 6, borderRadius: 6, background: st?.color || "var(--muted)", flexShrink: 0 }}/>
+                              <span style={{ flex: 1, minWidth: 0, fontSize: 13, color: "var(--ink)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</span>
+                              {shared && (
+                                <span className="mono" style={{ fontSize: 7.5, letterSpacing: 1, fontWeight: 800, color: "var(--horizon)", background: "rgba(123,61,154,0.12)", padding: "1px 5px", borderRadius: 999 }}>BOTH</span>
+                              )}
+                              <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--muted)", flexShrink: 0 }}>
+                                {(st?.short || "").toUpperCase()} · {window.fmt12 ? window.fmt12(a.start) : a.start}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
-                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--horizon)" }}>
-                    {(m.artistIds || []).filter(id => state.saved.includes(id)).length} IN COMMON
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
           {others.length > 0 && (() => {
