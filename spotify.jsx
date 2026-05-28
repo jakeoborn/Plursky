@@ -2822,19 +2822,104 @@ function BulkRetagRow({ moments, savedNightArtists, onUpdate }) {
   );
 }
 
+// ── Retroactive song ID from a video's own audio ─────────────────
+// The unlock: the music in a video you already shot IS the recognition
+// sample. Identifying it turns the song tag from a tracklist *estimate*
+// into ground truth — and if the matched artist contradicts the photo's
+// auto-tag, that's a signal to fix the tag (and therefore the location).
+// Native iOS uses ShazamPlugin.identifyFile (exact, on-device). Web
+// captures the playing video's audio and routes it to the recognize-song
+// proxy. Returns { title, artist, source } or null.
+async function identifySongFromVideo(moment, onProgress) {
+  if (!moment?.photoId || moment.kind !== "video") return null;
+  const blob = await _getPhoto(moment.photoId).catch(() => null);
+  if (!blob) return null;
+  const url = URL.createObjectURL(blob);
+  try {
+    onProgress?.("listening");
+    // Web path: play the video muted-to-user through Web Audio, record
+    // ~10s of its audio track, hand the clip to the recognition proxy.
+    const video = document.createElement("video");
+    video.src = url; video.muted = false; video.volume = 0; // route to graph, not speakers
+    video.playsInline = true;
+    await new Promise((res, rej) => { video.onloadedmetadata = res; video.onerror = rej; });
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return null;
+    const ctx = new AC();
+    const srcNode = ctx.createMediaElementSource(video);
+    const dest = ctx.createMediaStreamDestination();
+    srcNode.connect(dest);
+    const rec = new MediaRecorder(dest.stream, { mimeType: MediaRecorder.isTypeSupported("audio/webm") ? "audio/webm" : "audio/mp4" });
+    const chunks = [];
+    rec.ondataavailable = (e) => { if (e.data.size > 0) chunks.push(e.data); };
+    const done = new Promise((resolve) => { rec.onstop = resolve; });
+    rec.start();
+    await video.play().catch(() => {});
+    const clipMs = Math.min(12000, (video.duration || 12) * 1000);
+    await new Promise(r => setTimeout(r, clipMs));
+    if (rec.state === "recording") rec.stop();
+    await done;
+    video.pause();
+    try { ctx.close(); } catch {}
+    const audioBlob = new Blob(chunks, { type: rec.mimeType });
+    onProgress?.("matching");
+    const form = new FormData();
+    form.append("audio", audioBlob, "clip.webm");
+    const res = await fetch("https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/recognize-song", {
+      method: "POST", body: form,
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (!data?.title) return null;
+    return { title: data.title, artist: data.artist || "", source: "video-shazam" };
+  } catch { return null; }
+  finally { URL.revokeObjectURL(url); }
+}
+
+// Given a Shazam-matched artist name, find the lineup artist it best
+// corresponds to — used to detect when a video's true audio disagrees
+// with the photo's auto-tag (proves the user was at a different stage).
+function _lineupArtistFromShazam(shazamArtist) {
+  if (!shazamArtist) return null;
+  const norm = shazamArtist.toLowerCase().trim();
+  return ARTISTS.find(a => {
+    const an = a.name.toLowerCase();
+    return an === norm || an.includes(norm) || norm.includes(an.split(/ b2b /i)[0]);
+  }) || null;
+}
+
 // ── Full-screen photo lightbox — the rewatch surface ─────────────
 // Tap any memory to open it full-bleed on black: the photo, the artist,
 // and — the Plursky signature — the song that was playing the moment you
 // took it. Swipe or tap edges to move through the group. Modeled on
 // Careem/NAVER photo viewers (close top-left, counter top-right, caption
 // + filmstrip at the bottom) per the Mobbin design pass.
-function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick }) {
+function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick, onUpdate }) {
   const m = moments[index];
   const photoUrl = useMomentPhoto(m?.photoId);
   const artist = m?.artistId ? ARTISTS.find(a => a.id === m.artistId) : null;
   const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
-  const song   = useSetlistSong(artist, m?.takenAt);
+  const estimatedSong = useSetlistSong(artist, m?.takenAt);
+  // Prefer a Shazam-confirmed song over the tracklist estimate.
+  const song   = m?.confirmedSong ? { song: m.confirmedSong } : estimatedSong;
   const touch  = React.useRef({ x: 0 });
+  const [idState, setIdState] = React.useState("idle"); // idle|listening|matching|done|fail
+  const [mismatch, setMismatch] = React.useState(null);  // suggested artist if audio disagrees with tag
+
+  React.useEffect(() => { setIdState("idle"); setMismatch(null); }, [index]);
+
+  const runIdentify = async () => {
+    setIdState("listening");
+    const result = await identifySongFromVideo(m, (p) => setIdState(p));
+    if (!result) { setIdState("fail"); setTimeout(() => setIdState("idle"), 2500); return; }
+    setIdState("done");
+    const confirmed = result.artist ? `${result.artist} — ${result.title}` : result.title;
+    onUpdate?.(m, { confirmedSong: confirmed, songSource: "video-shazam" });
+    // Cross-check: does the recognized artist contradict the photo's tag?
+    const matchedArtist = _lineupArtistFromShazam(result.artist);
+    if (matchedArtist && matchedArtist.id !== m.artistId) setMismatch(matchedArtist);
+    try { window.plurskyHaptic?.("MEDIUM"); } catch {}
+  };
 
   React.useEffect(() => {
     const onKey = (e) => {
@@ -2925,11 +3010,45 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick 
         {song?.song && (
           <div className="mono" style={{ fontSize: 11, letterSpacing: 0.8, color: stage?.color || "var(--ember)", fontWeight: 700, marginBottom: 4 }}>
             ♫ {song.song}
+            {m.confirmedSong && <span style={{ color: "rgba(255,255,255,0.45)", marginLeft: 6 }}>· SHAZAMED</span>}
           </div>
         )}
         <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.5)", fontWeight: 600 }}>
           {[stage?.name?.toUpperCase(), prettyTime, m.location?.label?.toUpperCase()].filter(Boolean).join(" · ")}
         </div>
+
+        {/* Retroactive song ID — video moments only. The audio you shot
+            becomes the recognition sample: estimate → proven. */}
+        {m.kind === "video" && !m.confirmedSong && (
+          <button onClick={runIdentify} disabled={idState !== "idle" && idState !== "fail"} className="mono" style={{
+            marginTop: 12, padding: "9px 14px", borderRadius: 999, width: "100%",
+            background: idState === "fail" ? "rgba(232,93,46,0.2)" : "rgba(255,255,255,0.12)",
+            border: "1px solid rgba(255,255,255,0.25)", color: "#fff",
+            fontSize: 10, letterSpacing: 1.3, fontWeight: 700, cursor: "pointer",
+          }}>
+            {idState === "idle"      ? "🎵 IDENTIFY THE SONG FROM THIS VIDEO"
+             : idState === "listening" ? "● LISTENING TO YOUR VIDEO…"
+             : idState === "matching"  ? "◌ MATCHING…"
+             : idState === "fail"      ? "NO MATCH — TRY ANOTHER CLIP"
+             : "✓ IDENTIFIED"}
+          </button>
+        )}
+
+        {/* Audio disagrees with the auto-tag → offer the correction */}
+        {mismatch && (
+          <button onClick={() => { onUpdate?.(m, { artistId: mismatch.id, tagSource: "video-shazam", autoTagged: false }); setMismatch(null); }} style={{
+            marginTop: 8, padding: "10px 12px", borderRadius: 10, width: "100%",
+            background: "rgba(245,154,54,0.15)", border: "1px solid rgba(245,154,54,0.45)",
+            color: "#fde68a", cursor: "pointer", textAlign: "left",
+          }}>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, marginBottom: 2 }}>
+              AUDIO SAYS {mismatch.name.toUpperCase()}
+            </div>
+            <div style={{ fontSize: 12, lineHeight: 1.4 }}>
+              This video's song is {mismatch.name}'s — retag this moment to them? (You were probably at {STAGES.find(s => s.id === mismatch.stage)?.name || "their stage"}.)
+            </div>
+          </button>
+        )}
 
         {/* Filmstrip — quick-jump within the group */}
         {moments.length > 1 && (
@@ -4043,6 +4162,128 @@ function StorageManager({ all, onChange }) {
   );
 }
 
+// ── "That Night" story view ──────────────────────────────────────
+// Weaves the four facts into one chronological scroll per night: a
+// vertical timeline where each captured moment becomes a beat —
+// time · artist · the song that was playing · the photo. Reads like
+// a story of the night instead of a grid of files. The emotional
+// payoff surface for the who/what/where/when graph.
+function _MemoryStoryBeat({ moment, isLast, onOpen }) {
+  const url = useMomentPhoto(moment.photoId);
+  const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
+  const stage = artist ? STAGES.find(s => s.id === artist.stage) : null;
+  const estSong = useSetlistSong(artist, moment.takenAt);
+  const song = moment.confirmedSong || estSong?.song;
+  const accent = stage?.color || "var(--muted)";
+  const time = (() => {
+    if (!moment.takenAt) return null;
+    try {
+      const [h, mm] = (moment.takenAt.split(" ")[1] || "").split(":").map(Number);
+      const ap = h >= 12 ? "PM" : "AM"; return `${h % 12 || 12}:${String(mm).padStart(2,"0")} ${ap}`;
+    } catch { return null; }
+  })();
+  return (
+    <div style={{ display: "flex", gap: 12, position: "relative" }}>
+      {/* Timeline rail */}
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0, width: 14 }}>
+        <div style={{ width: 11, height: 11, borderRadius: 11, background: accent, marginTop: 5, boxShadow: `0 0 0 3px ${accent}22` }}/>
+        {!isLast && <div style={{ flex: 1, width: 2, background: "var(--line)", marginTop: 2 }}/>}
+      </div>
+      {/* Beat */}
+      <div style={{ flex: 1, minWidth: 0, paddingBottom: 20 }}>
+        {time && <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700, marginBottom: 3 }}>{time}</div>}
+        {artist ? (
+          <div className="serif" style={{ fontSize: 20, lineHeight: 1.05, color: "var(--ink)" }}>{artist.name}</div>
+        ) : (
+          <div className="serif" style={{ fontSize: 18, fontStyle: "italic", color: "var(--muted)" }}>A moment</div>
+        )}
+        {song && (
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 0.8, color: accent, fontWeight: 700, marginTop: 3 }}>
+            ♫ {song}{moment.confirmedSong ? " · SHAZAMED" : ""}
+          </div>
+        )}
+        {stage && (
+          <div className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2 }}>{stage.name.toUpperCase()}</div>
+        )}
+        {url && (
+          <button onClick={onOpen} style={{ marginTop: 8, padding: 0, border: "none", background: "none", cursor: "pointer", display: "block", width: "100%" }}>
+            <img src={url} alt="" style={{ width: "100%", borderRadius: 12, display: "block", maxHeight: 340, objectFit: "cover" }}/>
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function MemoryStory({ allMoments, state, setState, onOpenLightbox }) {
+  const [night, setNight] = React.useState(() => {
+    const nights = [...new Set(allMoments.map(m => m.night))].sort((a, b) => a - b);
+    return nights[0] || NOW.day || 1;
+  });
+  const nights = React.useMemo(
+    () => [...new Set(allMoments.map(m => m.night))].sort((a, b) => a - b),
+    [allMoments]
+  );
+  const beats = React.useMemo(() => {
+    return allMoments
+      .filter(m => m.night === night)
+      .sort((a, b) => {
+        const ta = a.takenAt || "", tb = b.takenAt || "";
+        if (ta && tb) return ta.localeCompare(tb);
+        return (a.createdAt || 0) - (b.createdAt || 0);
+      });
+  }, [allMoments, night]);
+
+  if (allMoments.length === 0) {
+    return (
+      <div style={{ padding: "28px 14px", textAlign: "center", marginTop: 18, border: "1px dashed var(--line-2)", borderRadius: 14, background: "var(--paper-2)" }}>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>
+          NO MOMENTS YET — IMPORT FROM CAMERA ROLL ABOVE
+        </div>
+      </div>
+    );
+  }
+
+  const dayMeta = DAYS.find(d => d.n === night);
+  return (
+    <div style={{ marginTop: 14 }}>
+      {nights.length > 1 && (
+        <div style={{ display: "flex", gap: 6, marginBottom: 16 }}>
+          {nights.map(n => {
+            const dm = DAYS.find(d => d.n === n);
+            const on = n === night;
+            return (
+              <button key={n} onClick={() => setNight(n)} className="mono" style={{
+                flex: 1, padding: "8px 0", borderRadius: 8,
+                background: on ? "var(--ink)" : "var(--paper-2)",
+                color: on ? "var(--paper)" : "var(--muted)",
+                border: on ? "none" : "1px solid var(--line)",
+                fontSize: 9, letterSpacing: 1.2, fontWeight: 700, cursor: "pointer",
+              }}>{dm?.label || `DAY ${n}`}</button>
+            );
+          })}
+        </div>
+      )}
+      <div style={{ marginBottom: 16 }}>
+        <div className="serif" style={{ fontSize: 26, lineHeight: 1, color: "var(--ink)" }}>
+          {dayMeta ? dayMeta.label.charAt(0) + dayMeta.label.slice(1).toLowerCase() : `Night ${night}`} <span style={{ fontStyle: "italic", color: "var(--ember)" }}>night</span>
+        </div>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginTop: 4, fontWeight: 700 }}>
+          {beats.length} {beats.length === 1 ? "MOMENT" : "MOMENTS"} · YOUR STORY
+        </div>
+      </div>
+      {beats.map((m, i) => (
+        <_MemoryStoryBeat
+          key={m.id}
+          moment={m}
+          isLast={i === beats.length - 1}
+          onOpen={() => onOpenLightbox(beats, i)}
+        />
+      ))}
+    </div>
+  );
+}
+
 function MemoriesScreen({ state, setState }) {
   const [all, setAll] = React.useState(_readMoments);
   const [adding, setAdding] = React.useState(null); // night number being added to, or null
@@ -4278,9 +4519,9 @@ function MemoriesScreen({ state, setState }) {
   const [view, setView] = React.useState(() => {
     try {
       const v = localStorage.getItem("plursky_memories_view_v1");
-      if (v === "night" || v === "artist" || v === "stage") return v;
+      if (v === "story" || v === "night" || v === "artist" || v === "stage") return v;
     } catch {}
-    return "night";
+    return "story";
   });
   React.useEffect(() => {
     try { localStorage.setItem("plursky_memories_view_v1", view); } catch {}
@@ -4303,6 +4544,11 @@ function MemoriesScreen({ state, setState }) {
           onClose={() => setLightbox(null)}
           onIndexChange={(i) => setLightbox(lb => ({ ...lb, index: i }))}
           onArtistClick={(id) => setState(s => ({ ...s, artist: id }))}
+          onUpdate={(mom, patch) => {
+            handleUpdate(mom, patch);
+            // Reflect the patch in the open lightbox immediately
+            setLightbox(lb => lb ? { ...lb, moments: lb.moments.map(mm => mm.id === mom.id ? { ...mm, ...patch } : mm) } : lb);
+          }}
         />
       )}
       <div style={{ padding: "8px 20px", display: "flex", alignItems: "center", gap: 10 }}>
@@ -4393,6 +4639,7 @@ function MemoriesScreen({ state, setState }) {
           border: "1px solid var(--line)",
         }}>
           {[
+            { id: "story",  label: "STORY" },
             { id: "night",  label: "NIGHT" },
             { id: "artist", label: "ARTIST" },
             { id: "stage",  label: "STAGE" },
@@ -4409,6 +4656,7 @@ function MemoriesScreen({ state, setState }) {
             );
           })}
         </div>
+        {view === "story" && <MemoryStory allMoments={allMoments} state={state} setState={setState} onOpenLightbox={openLightbox} />}
         {view === "artist" && _renderByGroup({
           allMoments,
           keyOf: m => m.artistId || "__untagged__",

@@ -6,12 +6,77 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
     public let identifier = "ShazamPlugin"
     public let jsName = "ShazamPlugin"
     public let pluginMethods: [CAPPluginMethod] = [
-        CAPPluginMethod(name: "identify", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "identify", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "identifyFile", returnType: CAPPluginReturnPromise)
     ]
 
     private var session: SHSession?
     private var audioEngine: AVAudioEngine?
     private var savedCall: CAPPluginCall?
+
+    // Identify a song from a recorded video/audio FILE rather than the live
+    // mic. This is the retroactive-Shazam path: the audio you already
+    // captured in a festival video becomes the recognition sample, so the
+    // song tag goes from "estimated from tracklist" to "proven from your
+    // own recording". Reads the file's audio track in PCM chunks and feeds
+    // them to the same SHSession streaming matcher.
+    @objc func identifyFile(_ call: CAPPluginCall) {
+        guard let path = call.getString("path") else {
+            call.reject("Missing file path"); return
+        }
+        let url = URL(fileURLWithPath: path.replacingOccurrences(of: "file://", with: ""))
+        savedCall = call
+        session = SHSession()
+        session?.delegate = self
+
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
+            let asset = AVURLAsset(url: url)
+            guard let track = asset.tracks(withMediaType: .audio).first,
+                  let reader = try? AVAssetReader(asset: asset) else {
+                DispatchQueue.main.async {
+                    self.savedCall?.resolve(["matched": false, "title": "", "artist": ""])
+                    self.savedCall = nil
+                }
+                return
+            }
+            let settings: [String: Any] = [
+                AVFormatIDKey: kAudioFormatLinearPCM,
+                AVLinearPCMIsFloatKey: true,
+                AVLinearPCMBitDepthKey: 32,
+                AVLinearPCMIsNonInterleaved: false,
+                AVSampleRateKey: 44100,
+                AVNumberOfChannelsKey: 1,
+            ]
+            let output = AVAssetReaderTrackOutput(track: track, outputSettings: settings)
+            reader.add(output)
+            reader.startReading()
+
+            let fmt = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 44100, channels: 1, interleaved: false)!
+            while reader.status == .reading {
+                guard let sampleBuffer = output.copyNextSampleBuffer(),
+                      let blockBuffer = CMSampleBufferGetDataBuffer(sampleBuffer) else { break }
+                let length = CMBlockBufferGetDataLength(blockBuffer)
+                let frameCount = AVAudioFrameCount(length / 4)
+                guard frameCount > 0,
+                      let pcmBuffer = AVAudioPCMBuffer(pcmFormat: fmt, frameCapacity: frameCount) else { continue }
+                pcmBuffer.frameLength = frameCount
+                if let dst = pcmBuffer.floatChannelData?[0] {
+                    CMBlockBufferCopyDataBytes(blockBuffer, atOffset: 0, dataLength: length, destination: dst)
+                }
+                self.session?.matchStreamingBuffer(pcmBuffer, at: nil)
+                CMSampleBufferInvalidate(sampleBuffer)
+            }
+            // Give the matcher a beat to resolve; if no delegate callback
+            // fires within 6s, resolve as no-match.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 6) { [weak self] in
+                if let call = self?.savedCall {
+                    call.resolve(["matched": false, "title": "", "artist": ""])
+                    self?.savedCall = nil
+                }
+            }
+        }
+    }
 
     @objc func identify(_ call: CAPPluginCall) {
         savedCall = call
