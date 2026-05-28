@@ -881,6 +881,7 @@ function sbPresenceJoin({ name, stageId, gps }) {
         // sharing in the Share With Crew sheet; otherwise undefined and clients
         // fall back to rendering just the stageId.
         await _presCh.track({ name, stageId, color, ts: Date.now(), pingCode, gps });
+        _startPresenceHeartbeat();
       }
     });
 }
@@ -895,6 +896,15 @@ async function sbPresenceUpdate(arg) {
   await _presCh.track({ ...cur, ...patch, ts: Date.now() });
 }
 
+let _heartbeatId = null;
+function _startPresenceHeartbeat() {
+  if (_heartbeatId) clearInterval(_heartbeatId);
+  _heartbeatId = setInterval(() => { sbPresenceUpdate({}); }, 60000);
+}
+function _stopPresenceHeartbeat() {
+  if (_heartbeatId) { clearInterval(_heartbeatId); _heartbeatId = null; }
+}
+
 // Re-join presence on the channel matching the current crew code. Called
 // after a crew code change so a sharing user moves to the new crew's channel
 // instead of being stranded on the previous one.
@@ -907,6 +917,7 @@ function sbPresenceRefresh() {
 }
 
 function sbPresenceLeave() {
+  _stopPresenceHeartbeat();
   if (_presCh && _sb) { _sb.removeChannel(_presCh); _presCh = null; }
   _presSnap = {};
   _presMyId = null;

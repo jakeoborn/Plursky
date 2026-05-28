@@ -959,7 +959,8 @@ async function fetchFollowedEdcArtists(savedIds) {
   return result;
 }
 
-async function fetchSpotifyTopArtists() {
+async function fetchSpotifyTopArtists(onProgress) {
+  const _progress = (msg) => { try { onProgress?.(msg); } catch {} };
   const token = await getValidToken();
   if (!token) return [];
   const ranges = [
@@ -977,6 +978,7 @@ async function fetchSpotifyTopArtists() {
       ["spotify_token","spotify_expires"].forEach(k => localStorage.removeItem(k));
       return null;
     }
+    _progress("TOP ARTISTS");
     const datas = await Promise.all(responses.map(r => r.ok ? r.json() : { items: [] }));
     // Dedupe by artist id; score = Σ weight × (51 − rank) across the ranges they appear in.
     const byId = new Map();
@@ -1019,6 +1021,7 @@ async function fetchSpotifyTopArtists() {
         });
       } catch {}
     };
+    _progress("LIKED SONGS + FOLLOWING");
     // Pull recently-played (max 50) + first 6 pages of liked songs (300 tracks).
     // More pages → more EDM artists who appear only a few times in the library.
     // Followed artists — cursor-paginated, different shape from track-based pulls.
@@ -1058,6 +1061,7 @@ async function fetchSpotifyTopArtists() {
       pullFollowing(),
     ]);
 
+    _progress("SCANNING PLAYLISTS");
     // Walk ALL playlists (owned + followed) — paginate both the playlist list
     // and each playlist's tracks so a 1000-song playlist is fully scanned.
     // _playlistCount stays 0 if the scope or token blocks the list endpoint.
@@ -1151,6 +1155,7 @@ async function fetchSpotifyTopArtists() {
 
       // 6-wide concurrency keeps us under Spotify's rate limit
       for (let i = 0; i < allPlaylists.length; i += 6) {
+        _progress(`PLAYLIST ${Math.min(i + 6, allPlaylists.length)}/${allPlaylists.length}`);
         await Promise.all(allPlaylists.slice(i, i + 6).map(fetchPl));
       }
     } catch {}
@@ -1177,6 +1182,22 @@ async function fetchSpotifyTopArtists() {
 // now return null. Falls back to iTunes Search (free, no auth, CORS-OK)
 // which still serves 30s previews for ~95% of mainstream artists.
 async function fetchPreviewUrl(artistName) {
+  const cacheKey = "preview_urls_v1";
+  try {
+    const cached = JSON.parse(localStorage.getItem(cacheKey) || "{}");
+    const entry = cached[artistName.toLowerCase()];
+    if (entry) return entry;
+  } catch {}
+
+  const _cachePreview = (result) => {
+    try {
+      const cached = JSON.parse(localStorage.getItem(cacheKey) || "{}");
+      cached[artistName.toLowerCase()] = result;
+      localStorage.setItem(cacheKey, JSON.stringify(cached));
+    } catch {}
+    return result;
+  };
+
   const token = localStorage.getItem("spotify_token");
   const firstWord = artistName.toLowerCase().split(" ")[0];
 
@@ -1194,7 +1215,7 @@ async function fetchPreviewUrl(artistName) {
           t.preview_url &&
           t.artists.some(a => a.name.toLowerCase().includes(firstWord))
         ) || tracks.find(t => t.preview_url);
-        if (first) return { url: first.preview_url, name: first.name, source: "spotify" };
+        if (first) return _cachePreview({ url: first.preview_url, name: first.name, source: "spotify" });
       }
     } catch {}
   }
@@ -1209,7 +1230,7 @@ async function fetchPreviewUrl(artistName) {
     const first = results.find(t =>
       t.previewUrl && t.artistName?.toLowerCase().includes(firstWord)
     ) || results.find(t => t.previewUrl);
-    return first ? { url: first.previewUrl, name: first.trackName, source: "itunes" } : null;
+    return first ? _cachePreview({ url: first.previewUrl, name: first.trackName, source: "itunes" }) : null;
   } catch {
     return null;
   }
@@ -1322,6 +1343,7 @@ function SpotifyScreen({ state, setState }) {
   const [playlistCount,     setPlaylistCount]     = React.useState(null);
   const [playlistScanFailed, setPlaylistScanFailed] = React.useState(false);
   const [showAllArtists,  setShowAllArtists]  = React.useState(false);
+  const [scanProgress,    setScanProgress]    = React.useState("");
 
   // Apple Music state
   const [amConnected, setAmConnected] = React.useState(() => !!localStorage.getItem("am_user_token"));
@@ -1330,8 +1352,9 @@ function SpotifyScreen({ state, setState }) {
   const [amError,     setAmError]     = React.useState("");
 
   React.useEffect(() => {
-    if (!connected) { setSpotifyArtists([]); setPlaylistCount(null); setPlaylistScanFailed(false); return; }
-    fetchSpotifyTopArtists().then(artists => {
+    if (!connected) { setSpotifyArtists([]); setPlaylistCount(null); setPlaylistScanFailed(false); setScanProgress(""); return; }
+    fetchSpotifyTopArtists((msg) => setScanProgress(msg)).then(artists => {
+      setScanProgress("");
       if (artists === null) { setTokenBad(true); setState({ ...state, spotifyConnected: false }); }
       else {
         setSpotifyArtists(artists);
@@ -1690,7 +1713,7 @@ function SpotifyScreen({ state, setState }) {
           {connected && matched.length ? "Your matches" : connected && spotifyArtists === null ? "Loading your matches" : "Top picks for you"}
         </div>
         <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginBottom: 14 }}>
-          {connected && matched.length ? "FROM YOUR SPOTIFY · TAP TO VIEW" : connected && spotifyArtists === null ? "SCANNING YOUR LIBRARY…" : "HEADLINERS · TAP + TO SAVE"}
+          {connected && matched.length ? "FROM YOUR SPOTIFY · TAP TO VIEW" : connected && spotifyArtists === null ? (scanProgress ? `SCANNING · ${scanProgress}` : "SCANNING YOUR LIBRARY…") : "HEADLINERS · TAP + TO SAVE"}
         </div>
 
         {connected && spotifyArtists === null && (
@@ -8559,26 +8582,41 @@ function NowPlayingBar() {
     return _matchSongAtTime(liveState.artist, cached, now);
   }, [liveState.artist, debugLive, tracklistReady]);
 
+  const [listenProgress, setListenProgress] = React.useState(0);
+
   const handleShazam = async () => {
     setLiveState(s => ({ ...s, listening: true }));
+    setListenProgress(0);
     try {
-      // Path 1: Native iOS ShazamKit
-      if (window.Capacitor?.isNativePlatform() && window.ShazamPlugin) {
-        const result = await window.ShazamPlugin.identify();
-        if (result?.title) {
-          setLiveState(s => ({ ...s, song: { song: `${result.artist} — ${result.title}`, source: "shazam", confidence: "exact" }, listening: false }));
-          return;
+      // Path 1: Native iOS ShazamKit (10s timeout)
+      if (window.Capacitor?.isNativePlatform?.() && window.ShazamPlugin) {
+        const timeout = new Promise((_, rej) => setTimeout(() => rej(new Error("timeout")), 10000));
+        const progressId = setInterval(() => setListenProgress(p => Math.min(p + 10, 95)), 1000);
+        try {
+          const result = await Promise.race([window.ShazamPlugin.identify(), timeout]);
+          clearInterval(progressId);
+          if (result?.title) {
+            setLiveState(s => ({ ...s, song: { song: `${result.artist} — ${result.title}`, source: "shazam", confidence: "exact" }, listening: false }));
+            setListenProgress(100);
+            return;
+          }
+        } catch {
+          clearInterval(progressId);
+          window.plurskyToast?.("No match — try again closer to a speaker");
         }
       }
-      // Path 2: Web audio capture → recognition API
+      // Path 2: Web audio capture → recognition API (8s with countdown)
       if (navigator.mediaDevices?.getUserMedia) {
         try {
           const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
           const recorder = new MediaRecorder(stream, { mimeType: MediaRecorder.isTypeSupported("audio/webm") ? "audio/webm" : "audio/mp4" });
           const chunks = [];
           recorder.ondataavailable = (e) => { if (e.data.size > 0) chunks.push(e.data); };
+          const progressId = setInterval(() => setListenProgress(p => Math.min(p + 12.5, 95)), 1000);
           recorder.onstop = async () => {
+            clearInterval(progressId);
             stream.getTracks().forEach(t => t.stop());
+            setListenProgress(95);
             const blob = new Blob(chunks, { type: recorder.mimeType });
             try {
               const form = new FormData();
@@ -8593,6 +8631,7 @@ function NowPlayingBar() {
                     song: { song: `${data.artist || "?"} — ${data.title}`, source: "web-recognition", confidence: "exact" },
                     listening: false,
                   }));
+                  setListenProgress(100);
                   window.plurskyToast?.(`♫ ${data.title}`);
                   return;
                 }
@@ -8604,6 +8643,7 @@ function NowPlayingBar() {
               setLiveState(s => ({ ...s, listening: false }));
               window.plurskyToast?.("Couldn't identify — try again closer to a speaker");
             }
+            setListenProgress(0);
           };
           recorder.start();
           setTimeout(() => { if (recorder.state === "recording") recorder.stop(); }, 8000);
@@ -8623,6 +8663,7 @@ function NowPlayingBar() {
     } catch {
       setLiveState(s => ({ ...s, listening: false }));
     }
+    setListenProgress(0);
   };
 
   const handleCapture = () => {

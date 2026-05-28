@@ -1026,7 +1026,16 @@ function ArtistScreen({ state, setState }) {
   // Stop audio and reset when navigating away
   React.useEffect(() => {
     return () => {
-      if (audioRef.current) { audioRef.current.pause(); audioRef.current = null; }
+      const audio = audioRef.current;
+      if (audio) {
+        let vol = audio.volume;
+        const fade = setInterval(() => {
+          vol -= 0.15;
+          if (vol <= 0) { clearInterval(fade); audio.pause(); audio.volume = 1; }
+          else audio.volume = vol;
+        }, 30);
+        audioRef.current = null;
+      }
     };
   }, []);
 
@@ -1525,7 +1534,7 @@ function ArtistScreen({ state, setState }) {
                       {_fmtCount(lfm.listeners)}
                     </div>
                     <div className="mono" style={{ fontSize: 8, letterSpacing: 1.3, color: "var(--muted)", marginTop: 4 }}>
-                      MONTHLY LISTENERS
+                      LISTENERS
                     </div>
                   </div>
                 )}

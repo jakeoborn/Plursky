@@ -559,6 +559,17 @@ function App() {
     try { localStorage.setItem(_SAVED_KEY, JSON.stringify(state.saved)); } catch {}
   }, [state.saved]);
 
+  React.useEffect(() => {
+    if (!state.saved.length) return;
+    const id = setTimeout(async () => {
+      try {
+        const user = await window.sbGetUser?.();
+        if (user) await window.sbPush?.(state.saved);
+      } catch {}
+    }, 3000);
+    return () => clearTimeout(id);
+  }, [state.saved.join(",")]);
+
   const _pushNav = React.useCallback((next) => {
     setState(prev => ({
       ...prev,
