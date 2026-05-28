@@ -2565,7 +2565,9 @@ function _HomeMemoryThumb({ moment, onClick }) {
         // Video needs <video preload="metadata"> to paint a poster frame —
         // a blob URL inside <img> renders as a blank/black tile.
         moment.kind === "video" ? (
-          <video src={url} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
+          // #t=0.1 forces iOS to decode + paint the first frame as a poster;
+          // without it the tile stays black until the video is touched.
+          <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
         ) : (
           <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
         )
@@ -2622,7 +2624,7 @@ function HomeMemoriesStrip({ state, setState }) {
     const DAYS = window.DAYS || [];
     const dm = DAYS.find(d => d.n === night);
     const label = dm ? (dm.label.charAt(0) + dm.label.slice(1).toLowerCase()) + " night" : `Night ${night}`;
-    return { moments: ms, label };
+    return { moments: ms, label, night };
   }, [all, recent]);
 
   if (recent.length === 0) return null;
@@ -2636,9 +2638,11 @@ function HomeMemoriesStrip({ state, setState }) {
         <MemoryReel
           moments={reel.moments}
           nightLabel={reel.label}
+          night={reel.night}
           festival={window.FESTIVAL_CONFIG?.shortName || window.FESTIVAL_CONFIG?.name || ""}
           onClose={() => setReel(null)}
           onOpenArtist={(id) => setState({ ...state, tab: "lineup", artist: id })}
+          onMakeVideo={() => setState({ ...state, tab: "recap", artist: null })}
         />
       )}
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
@@ -2652,7 +2656,7 @@ function HomeMemoriesStrip({ state, setState }) {
               background: "linear-gradient(135deg, var(--ember), #7b3d9a)",
               border: "none", borderRadius: 999, padding: "5px 11px",
               color: "#fff", cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 800,
-            }}><span style={{ fontSize: 10 }}>▶</span> RECAP</button>
+            }}><span style={{ fontSize: 10 }}>▶</span> PLAY</button>
           )}
           <button onClick={() => go(NOW.day)} className="mono" style={{
             background: "transparent", border: "none", cursor: "pointer",
@@ -3393,7 +3397,7 @@ function _LightboxThumb({ moment, active, onClick }) {
       transition: "opacity 0.15s", position: "relative",
     }}>
       {url && (moment.kind === "video"
-        ? <video src={url} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
+        ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
         : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
       )}
       {moment.kind === "video" && (
@@ -4495,7 +4499,7 @@ function StorageManager({ all, onChange }) {
 // left=prev, press-and-hold=pause. Ends on a recap card with Share + Replay.
 // No background music track (we can't license one) — video beats play their
 // own audio, photo beats are silent.
-function MemoryReel({ moments, festival, nightLabel, onClose, onOpenArtist }) {
+function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtist, onMakeVideo }) {
   const [idx, setIdx] = React.useState(0);
   const [ended, setEnded] = React.useState(false);
   const [prog, setProg] = React.useState(0);
@@ -4639,7 +4643,14 @@ function MemoryReel({ moments, festival, nightLabel, onClose, onOpenArtist }) {
           </div>
           <div style={{ display: "flex", gap: 10, marginTop: 30 }}>
             <button onClick={() => { setEnded(false); setIdx(0); }} className="mono" style={{ padding: "12px 20px", borderRadius: 999, background: "rgba(255,255,255,0.14)", border: "1px solid rgba(255,255,255,0.3)", color: "#fff", fontSize: 11, letterSpacing: 1.3, fontWeight: 700, cursor: "pointer" }}>↺ REPLAY</button>
+            {/* Share the whole night as a multi-moment collage (matches the
+                night-view 📸 SHARE), not a single hero photo. Falls back to a
+                single-moment story card if this reel isn't tied to a night. */}
             <button onClick={async () => {
+              if (night != null && window._shareNightCollage) {
+                await window._shareNightCollage(night, moments).catch(() => {});
+                return;
+              }
               const hero = moments.find(x => x.kind === "video") || moments.find(x => x.artistId) || moments[0];
               if (!hero) return;
               const a = hero.artistId ? ARTISTS.find(x => x.id === hero.artistId) : null;
@@ -4647,6 +4658,11 @@ function MemoryReel({ moments, festival, nightLabel, onClose, onOpenArtist }) {
               await _shareMoment(hero, { artistName: a?.name, songLabel: hero.confirmedSong || null, stageColor: s?.color, subLabel: nightLabel, festival }).catch(() => {});
             }} className="mono" style={{ padding: "12px 20px", borderRadius: 999, background: "#fff", border: "none", color: "#0d0a08", fontSize: 11, letterSpacing: 1.3, fontWeight: 800, cursor: "pointer" }}>↗ SHARE</button>
           </div>
+          {/* Cross-link to the exportable MP4 — instant in-app play and the
+              beat-synced recap video are complementary, not duplicates. */}
+          {onMakeVideo && (
+            <button onClick={() => { onClose(); onMakeVideo(); }} className="mono" style={{ marginTop: 14, padding: "10px 18px", borderRadius: 999, background: "transparent", border: "1px solid rgba(255,255,255,0.25)", color: "rgba(255,255,255,0.85)", fontSize: 10, letterSpacing: 1.3, fontWeight: 700, cursor: "pointer" }}>🎬 MAKE A RECAP VIDEO</button>
+          )}
         </div>
       )}
     </div>
@@ -4704,7 +4720,7 @@ function _MemoryStoryBeat({ moment, isLast, onOpen }) {
                     tapping opens the lightbox player (controls + autoplay).
                     Before the fix this rendered inside an <img>, so video
                     moments showed as a broken tile in the default Story view. */}
-                <video src={url} muted playsInline preload="metadata" style={{
+                <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{
                   width: "100%", borderRadius: 12, display: "block",
                   maxHeight: 340, objectFit: "cover", background: "#000",
                   pointerEvents: "none",
@@ -4790,14 +4806,14 @@ function MemoryStory({ allMoments, state, setState, onOpenLightbox, onPlayReel }
         </div>
       </div>
       {beats.length >= 2 && onPlayReel && (
-        <button onClick={() => onPlayReel(beats, dayMeta ? (dayMeta.label.charAt(0) + dayMeta.label.slice(1).toLowerCase()) + " night" : `Night ${night}`)} style={{
+        <button onClick={() => onPlayReel(beats, dayMeta ? (dayMeta.label.charAt(0) + dayMeta.label.slice(1).toLowerCase()) + " night" : `Night ${night}`, night)} style={{
           display: "flex", alignItems: "center", justifyContent: "center", gap: 9,
           width: "100%", marginBottom: 18, padding: "13px 16px", borderRadius: 14,
           background: "linear-gradient(135deg, var(--ember), #7b3d9a)", border: "none",
           color: "#fff", cursor: "pointer",
         }}>
           <span style={{ fontSize: 15 }}>▶</span>
-          <span className="mono" style={{ fontSize: 12, letterSpacing: 1.4, fontWeight: 800 }}>PLAY RECAP</span>
+          <span className="mono" style={{ fontSize: 12, letterSpacing: 1.4, fontWeight: 800 }}>PLAY</span>
           <span className="mono" style={{ fontSize: 9, letterSpacing: 1, fontWeight: 600, opacity: 0.8 }}>· {beats.length} BEATS</span>
         </button>
       )}
@@ -4822,7 +4838,7 @@ function MemoriesScreen({ state, setState }) {
   const batchInputRef = React.useRef(null);
   const nightSectionRefs = React.useRef({});
   const openLightbox = React.useCallback((moments, index) => setLightbox({ moments, index }), []);
-  const playReel = React.useCallback((moments, label) => { if (moments?.length) setReel({ moments, label }); }, []);
+  const playReel = React.useCallback((moments, label, night) => { if (moments?.length) setReel({ moments, label, night }); }, []);
 
   // Stay in sync with cross-screen retags. The local handlers (handleAdd /
   // handleUpdate / handleDelete) all call setAll directly so this listener
@@ -5101,9 +5117,11 @@ function MemoriesScreen({ state, setState }) {
         <MemoryReel
           moments={reel.moments}
           nightLabel={reel.label}
+          night={reel.night}
           festival={FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name}
           onClose={() => setReel(null)}
           onOpenArtist={(id) => setState(s => ({ ...s, artist: id }))}
+          onMakeVideo={() => setState(s => ({ ...s, tab: "recap", artist: null }))}
         />
       )}
       <div style={{ padding: "8px 20px", display: "flex", alignItems: "center", gap: 10 }}>

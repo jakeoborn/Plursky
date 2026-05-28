@@ -610,7 +610,7 @@ function _YourMomentThumb({ moment, accent, onClick, style: overrideStyle }) {
       {url ? (
         moment.kind === "video" ? (
           <>
-            <video src={url} muted playsInline preload="metadata" style={{
+            <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{
               width: "100%", height: "100%", objectFit: "cover", display: "block",
             }}/>
             <span aria-hidden="true" style={{
