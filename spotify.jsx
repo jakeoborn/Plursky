@@ -2612,7 +2612,7 @@ function HomeMemoriesStrip({ state, setState }) {
   }, [all]);
 
   // One-tap recap from Home plays the most-recent night chronologically —
-  // same reel as Story's PLAY RECAP, but a single tap from the front door.
+  // same reel as Story's PLAY button, but a single tap from the front door.
   const reelData = React.useMemo(() => {
     if (!recent.length) return null;
     const night = recent[0].night || NOW.day || 1;
@@ -4659,9 +4659,12 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
             }} className="mono" style={{ padding: "12px 20px", borderRadius: 999, background: "#fff", border: "none", color: "#0d0a08", fontSize: 11, letterSpacing: 1.3, fontWeight: 800, cursor: "pointer" }}>↗ SHARE</button>
           </div>
           {/* Cross-link to the exportable MP4 — instant in-app play and the
-              beat-synced recap video are complementary, not duplicates. */}
-          {onMakeVideo && (
-            <button onClick={() => { onClose(); onMakeVideo(); }} className="mono" style={{ marginTop: 14, padding: "10px 18px", borderRadius: 999, background: "transparent", border: "1px solid rgba(255,255,255,0.25)", color: "rgba(255,255,255,0.85)", fontSize: 10, letterSpacing: 1.3, fontWeight: 700, cursor: "pointer" }}>🎬 MAKE A RECAP VIDEO</button>
+              beat-synced recap video are complementary, not duplicates. Only
+              shown when there are ≥3 moments, since RecapScreen gates the
+              RECAP VIDEO card on momentsCount >= 3 — below that this would
+              dead-end on a screen with no exporter. */}
+          {onMakeVideo && moments.length >= 3 && (
+            <button onClick={() => { onClose(); onMakeVideo(); }} className="mono" style={{ marginTop: 14, padding: "10px 18px", borderRadius: 999, background: "transparent", border: "1px solid rgba(255,255,255,0.25)", color: "rgba(255,255,255,0.85)", fontSize: 10, letterSpacing: 1.3, fontWeight: 700, cursor: "pointer" }}>🎬 CREATE RECAP VIDEO</button>
           )}
         </div>
       )}
@@ -9352,18 +9355,14 @@ function RecapScreen({ state, setState }) {
             <div className="serif" style={{ fontSize: 22, lineHeight: 1.1, marginBottom: 12 }}>
               Your crew <em style={{ color: "var(--ember)" }}>vibe check</em>
             </div>
-            <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5, marginBottom: 10 }}>
+            <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5 }}>
               {crewStats.total} messages sent in crew chat{crewStats.topChatter ? ` · ${crewStats.topChatter[0]} was the most active` : ""}.
             </div>
-            <PlusGate feature="crew compatibility">
-              <button onClick={async () => {
-                try { await window._shareCrewComparison?.(state); } catch {}
-              }} className="mono" style={{
-                width: "100%", padding: "12px", borderRadius: 10, border: "none", cursor: "pointer",
-                background: "linear-gradient(135deg, var(--ember), var(--horizon))",
-                color: "#fff", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
-              }}>EXPORT CREW SHOWDOWN CARD</button>
-            </PlusGate>
+            {/* The "Crew Showdown" export needs a SECOND person to compare
+                against (myName, myState, otherName, otherArtistIds), which only
+                exists in the crew screen. _shareCrewComparison is correctly
+                wired there (supabase.jsx); a one-arg call from here threw on
+                myState.saved and silently did nothing, so the button is gone. */}
           </RecapCard>
         )}
 
