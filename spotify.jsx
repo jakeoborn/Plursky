@@ -3723,13 +3723,25 @@ function StorageManager({ all, onChange }) {
         )}
       </div>
       {usedPct != null && (
-        <div style={{ height: 4, background: "var(--paper)", borderRadius: 4, overflow: "hidden", marginBottom: 10 }}>
-          <div style={{
-            height: "100%", width: `${Math.min(100, usedPct)}%`,
-            background: usedPct > 80 ? "var(--ember)" : "var(--horizon)",
-            transition: "width 0.3s",
-          }}/>
-        </div>
+        <>
+          <div style={{ height: 4, background: "var(--paper)", borderRadius: 4, overflow: "hidden", marginBottom: usedPct > 80 ? 6 : 10 }}>
+            <div style={{
+              height: "100%", width: `${Math.min(100, usedPct)}%`,
+              background: usedPct > 80 ? "var(--ember)" : "var(--horizon)",
+              transition: "width 0.3s",
+            }}/>
+          </div>
+          {usedPct > 80 && (
+            <div className="mono" style={{
+              fontSize: 9, letterSpacing: 1.2, fontWeight: 700, marginBottom: 10,
+              color: "var(--ember)", background: "rgba(232,93,46,0.10)",
+              border: "1px solid rgba(232,93,46,0.3)", borderRadius: 8,
+              padding: "6px 10px",
+            }}>
+              ⚠ STORAGE {usedPct}% FULL · PURGE OLD NIGHTS TO FREE SPACE
+            </div>
+          )}
+        </>
       )}
       <div style={{ display: "flex", flexDirection: "column", gap: 4, marginTop: 4 }}>
         {DAYS.map(d => {

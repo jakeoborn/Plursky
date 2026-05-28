@@ -329,10 +329,11 @@ is the video upgrade.
 
 **Still to build:**
 - [ ] **Activate Apple Music** — all code written, just needs MusicKit JWT
-- [ ] **Error vs empty state** — retry buttons on transient API failures
-- [ ] **Playlist rebuild progress** — "Adding tracks... 12/40"
+- [x] **Error vs empty state** — retry buttons on Setlists, YouTube, Ticketmaster
+- [x] **Playlist rebuild progress** — "BUILDING · 12/40 ARTISTS"
 - [ ] **YouTube server-side proxy** — protect 10k/day quota
-- [ ] **Uber/Lyft deep links** — one-tap rideshare from map
+- [x] **Uber/Lyft deep links** — already existed in RideshareSheet
+- [x] **Weather loading skeleton** — skeleton card while NWS loads
 - [ ] **Hourly weather** — OpenWeatherMap for festival-day granularity
 - [ ] **Conflict resolution for cloud sync** — removed_ids or timestamps
 - [ ] **Track recognize-song edge function** — source not in repo
