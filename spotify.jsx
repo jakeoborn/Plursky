@@ -5148,6 +5148,71 @@ function BuildPlaylistButton({ state }) {
 }
 
 
+// ── Festival Archive — multi-festival memory ──────────────────
+// Snapshots the current festival's attendance + moments + saved sets
+// when the active festival changes (e.g., EDC ends, ACL activates).
+// Snapshots are immutable so users can scroll back through past festivals.
+const ARCHIVE_KEY = "plursky_festival_archive_v1";
+
+function _readArchive() {
+  try { return JSON.parse(localStorage.getItem(ARCHIVE_KEY) || "{}"); } catch { return {}; }
+}
+
+function archiveFestival(festivalId, festivalName, festivalConfig) {
+  if (!festivalId) return false;
+  try {
+    const archive = _readArchive();
+    // Don't overwrite an existing snapshot — first archive wins (the user
+    // explicitly archived) unless empty (auto-archive after re-entry).
+    const attended = JSON.parse(localStorage.getItem("plursky_attended_v1") || "{}");
+    const moments  = JSON.parse(localStorage.getItem("plursky_moments_v1")  || "{}");
+    const saved    = JSON.parse(localStorage.getItem("edc_saved") || "[]");
+    const totalAttended = Object.values(attended).reduce((s, a) => s + (Array.isArray(a) ? a.length : 0), 0);
+    const totalMoments  = Object.values(moments).reduce((s, a) => s + (Array.isArray(a) ? a.length : 0), 0);
+    if (totalAttended === 0 && totalMoments === 0 && saved.length === 0) return false;
+    archive[festivalId] = {
+      id: festivalId,
+      name: festivalName,
+      brand: festivalConfig?.brand,
+      year: festivalConfig?.year,
+      dates: festivalConfig?.dates,
+      locationShort: festivalConfig?.locationShort,
+      archivedAt: new Date().toISOString(),
+      saved, attended, moments,
+      totalAttended, totalMoments, totalSaved: saved.length,
+    };
+    localStorage.setItem(ARCHIVE_KEY, JSON.stringify(archive));
+    return true;
+  } catch { return false; }
+}
+
+// Auto-archive trigger: stamp the current festival ID on first load. When it
+// changes, snapshot the previous one. Runs once per session via a module-level
+// flag so multiple component mounts don't re-trigger.
+let _archiveCheckDone = false;
+function _maybeAutoArchive() {
+  if (_archiveCheckDone) return;
+  _archiveCheckDone = true;
+  try {
+    const cur = window.FESTIVAL_CONFIG?.id;
+    if (!cur) return;
+    const lastSeen = localStorage.getItem("plursky_last_festival_id");
+    if (lastSeen && lastSeen !== cur) {
+      // Festival switched — snapshot the previous one's data BEFORE it's
+      // co-mingled with the new festival
+      const archive = _readArchive();
+      if (!archive[lastSeen]) {
+        // Need the old config to populate the snapshot meta; pull from registry
+        const reg = window.FESTIVALS_REGISTRY || [];
+        const prevCfg = reg.find(r => r.config?.id === lastSeen)?.config;
+        archiveFestival(lastSeen, prevCfg?.name || lastSeen, prevCfg);
+      }
+    }
+    localStorage.setItem("plursky_last_festival_id", cur);
+  } catch {}
+}
+if (typeof window !== "undefined") setTimeout(_maybeAutoArchive, 100);
+
 // ── Festival Recap (v145) ─────────────────────────────────────
 // Spotify-Wrapped-style post-festival summary. Stitches together the
 // attendance store (plursky_attended_v1), saved sets, Memories moments,
@@ -7474,6 +7539,48 @@ async function _shareCrewComparison(myName, myState, otherName, otherArtistIds) 
   return true;
 }
 
+// ── Festival Archive list — shown when user has past festival snapshots
+function FestivalArchiveList({ archive }) {
+  if (!archive?.length) return null;
+  const sorted = [...archive].sort((a, b) => (b.archivedAt || "").localeCompare(a.archivedAt || ""));
+  return (
+    <div style={{ marginTop: 8, borderTop: "1px solid var(--line)", paddingTop: 20 }}>
+      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", fontWeight: 700, marginBottom: 10 }}>
+        FESTIVAL ARCHIVE · {archive.length} {archive.length === 1 ? "PAST FESTIVAL" : "PAST FESTIVALS"}
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {sorted.map(f => (
+          <div key={f.id} style={{
+            display: "flex", alignItems: "center", gap: 12,
+            padding: "12px 14px", borderRadius: 14,
+            background: "var(--paper-2)", border: "1px solid var(--line)",
+          }}>
+            <div style={{
+              width: 44, height: 44, borderRadius: 12,
+              background: "linear-gradient(135deg, var(--ember), var(--horizon))",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              color: "#fff", fontWeight: 800, fontSize: 16, flexShrink: 0,
+            }}>
+              {(f.brand || f.name || "?").slice(0, 2).toUpperCase()}
+            </div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div className="serif" style={{ fontSize: 17, lineHeight: 1.1, color: "var(--ink)" }}>
+                {f.name || f.id}
+              </div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", marginTop: 3 }}>
+                {f.dates ? `${f.dates.toUpperCase()} · ` : ""}{f.totalAttended} CAUGHT · {f.totalMoments} MEMORIES
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", marginTop: 10, textAlign: "center" }}>
+        TAP TO VIEW · COMING SOON
+      </div>
+    </div>
+  );
+}
+
 function RecapScreen({ state, setState }) {
   const recap = React.useMemo(() => _computeRecap(state), [state]);
   const CFG   = window.FESTIVAL_CONFIG || {};
@@ -7549,8 +7656,11 @@ function RecapScreen({ state, setState }) {
     }
   };
 
-  // Empty-state guard — nothing to recap
+  // Empty-state guard — nothing to recap (for the current festival).
+  // Still show past festival archives if any exist.
   if (recap.setsCount === 0 && recap.momentsCount === 0) {
+    const archive = (typeof _readArchive === "function") ? _readArchive() : {};
+    const archived = Object.values(archive).filter(f => f.id !== CFG.id);
     return (
       <Screen bg="var(--paper)">
         <div style={{ padding: "8px 20px", display: "flex", alignItems: "center", gap: 10 }}>
@@ -7562,7 +7672,7 @@ function RecapScreen({ state, setState }) {
           <TopBar title={<span>Recap</span>} sub={CFG.shortName?.toUpperCase()} tight />
         </div>
         <ScrollBody style={{ padding: "10px 20px 94px" }}>
-          <div style={{ padding: "40px 0", textAlign: "center" }}>
+          <div style={{ padding: "40px 0 24px", textAlign: "center" }}>
             <div className="serif" style={{ fontSize: 24, color: "var(--muted)", fontStyle: "italic", marginBottom: 8 }}>
               Nothing to recap yet
             </div>
@@ -7570,6 +7680,7 @@ function RecapScreen({ state, setState }) {
               MARK SETS YOU CAUGHT IN MEMORIES — TODAY'S WEEKEND RECAP WILL FILL IN
             </div>
           </div>
+          {archived.length > 0 && <FestivalArchiveList archive={archived} />}
         </ScrollBody>
       </Screen>
     );
@@ -8811,6 +8922,7 @@ function NowPlayingBar() {
 Object.assign(window, {
   NowPlayingBar,
   SpotifyScreen, MeScreen, MemoriesScreen, RecapScreen, fetchPreviewUrl,
+  archiveFestival,
   ensureSpotifyProfile, getSpotifyProfileSync, createEdcPlaylist,
   startSpotifyAuth, PackListCard,
   _renderCollage, _renderCollageGif, _shareCollage,

@@ -28,9 +28,9 @@ function fmtCountdown(ms) {
 }
 
 // ── NWS weather (free, keyless, browser-CORS-friendly) ──
-// Caches forecast in localStorage for 1h so we don't hammer the API on
-// every render. Returns the *next* daily period (e.g., "Tonight" or
-// "Friday") with shortForecast + temperature + wind.
+// Two endpoints: forecast (6 daily/12hr periods) for at-a-glance Tonight
+// card; forecastHourly (next 7 days at 1h granularity) for the festival
+// day curve. Both cached for 1h.
 async function fetchEdcForecast() {
   try {
     const cacheKey = `forecast_${FESTIVAL_CONFIG.id}`;
@@ -48,9 +48,54 @@ async function fetchEdcForecast() {
     }).then(r => r.ok ? r.json() : null);
     if (!forecast) return null;
     const data = forecast.properties.periods.slice(0, 6);
-    localStorage.setItem(`forecast_${FESTIVAL_CONFIG.id}`, JSON.stringify({ fetchedAt: Date.now(), data }));
+    localStorage.setItem(cacheKey, JSON.stringify({ fetchedAt: Date.now(), data }));
     return data;
   } catch { return null; }
+}
+
+// Hourly forecast — used for festival-day temp curve and current-hour
+// temp on map/home. 24h granularity is overkill for casual "is it hot
+// tonight?" but exact when you're deciding between sunset set and
+// staying for sunrise. Cached separately so the 6-period cache TTL
+// doesn't get reset by hourly fetches.
+async function fetchHourlyForecast() {
+  try {
+    const cacheKey = `forecast_hourly_${FESTIVAL_CONFIG.id}`;
+    const cacheRaw = localStorage.getItem(cacheKey);
+    if (cacheRaw) {
+      const c = JSON.parse(cacheRaw);
+      if (Date.now() - c.fetchedAt < 3600000) return c.data;
+    }
+    const points = await fetch(FESTIVAL_CONFIG.weatherEndpoint, {
+      headers: { Accept: "application/geo+json" },
+    }).then(r => r.ok ? r.json() : null);
+    if (!points?.properties?.forecastHourly) return null;
+    const forecast = await fetch(points.properties.forecastHourly, {
+      headers: { Accept: "application/geo+json" },
+    }).then(r => r.ok ? r.json() : null);
+    if (!forecast) return null;
+    // Keep next 48 hours — covers the rest of today + tomorrow's full curve
+    const data = (forecast.properties.periods || []).slice(0, 48).map(p => ({
+      startTime: p.startTime,
+      temperature: p.temperature,
+      temperatureUnit: p.temperatureUnit,
+      shortForecast: p.shortForecast,
+      windSpeed: p.windSpeed,
+      probabilityOfPrecipitation: p.probabilityOfPrecipitation?.value || 0,
+    }));
+    localStorage.setItem(cacheKey, JSON.stringify({ fetchedAt: Date.now(), data }));
+    return data;
+  } catch { return null; }
+}
+
+function useHourlyForecast() {
+  const [hours, setHours] = React.useState(null);
+  React.useEffect(() => {
+    let alive = true;
+    fetchHourlyForecast().then(h => { if (alive) setHours(h); });
+    return () => { alive = false; };
+  }, []);
+  return hours;
 }
 
 function useNwsForecast() {
@@ -116,6 +161,7 @@ function pickRelevantPeriod(periods) {
 function TonightCard({ state, setState }) {
   const { periods, fromCache, fetchedAt } = useNwsForecast();
   const period = pickRelevantPeriod(periods);
+  const hourly = useHourlyForecast();
   const cacheAgeLabel = (() => {
     if (!fromCache || !fetchedAt) return null;
     const mins = Math.round((Date.now() - fetchedAt) / 60000);
@@ -231,6 +277,46 @@ function TonightCard({ state, setState }) {
             </div>
           )}
         </div>
+
+        {/* Hourly temperature curve — shows the next 12 hours so you can
+            see whether tonight's headliner slot will be warmer/cooler */}
+        {hourly?.length > 0 && (() => {
+          const next12 = hourly.slice(0, 12);
+          const temps = next12.map(h => h.temperature);
+          const min = Math.min(...temps), max = Math.max(...temps);
+          const range = max - min || 1;
+          const W = 280, H = 40;
+          const points = next12.map((h, i) => {
+            const x = (i / (next12.length - 1)) * W;
+            const y = H - ((h.temperature - min) / range) * (H - 8) - 4;
+            return `${x},${y}`;
+          }).join(" ");
+          const firstHour = new Date(next12[0].startTime).getHours();
+          const fmtH = (h) => h === 0 ? "12a" : h < 12 ? `${h}a` : h === 12 ? "12p" : `${h - 12}p`;
+          const lastHour = new Date(next12[next12.length - 1].startTime).getHours();
+          return (
+            <div style={{ marginTop: 14, padding: "10px 12px", borderRadius: 10, background: "rgba(247,237,224,0.05)", border: "1px solid rgba(247,237,224,0.1)" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
+                <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "rgba(247,237,224,0.55)", fontWeight: 600 }}>
+                  NEXT 12H
+                </span>
+                <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "rgba(247,237,224,0.5)" }}>
+                  {min}° → {max}°
+                </span>
+              </div>
+              <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" style={{ width: "100%", height: H, display: "block" }}>
+                <polyline points={points} fill="none" stroke="#a8d4ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                {next12.map((h, i) => i % 3 === 0 && (
+                  <circle key={i} cx={(i / (next12.length - 1)) * W} cy={H - ((h.temperature - min) / range) * (H - 8) - 4} r="1.5" fill="#a8d4ff"/>
+                ))}
+              </svg>
+              <div style={{ display: "flex", justifyContent: "space-between", marginTop: 4 }}>
+                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(247,237,224,0.4)" }}>{fmtH(firstHour)}</span>
+                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(247,237,224,0.4)" }}>{fmtH(lastHour)}</span>
+              </div>
+            </div>
+          );
+        })()}
 
         {inShuttleWindow && (
           <button

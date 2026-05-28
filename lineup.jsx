@@ -2002,6 +2002,10 @@ function ShareMenuItem({ icon, label, sub, onClick }) {
 function toggleSave(state, setState, id) {
   const has = state.saved.includes(id);
   const next = has ? state.saved.filter(x => x !== id) : [...state.saved, id];
+  // Tombstone tracking for cloud sync conflict resolution — unsaves get a
+  // timestamp so deletion propagates instead of being undone by union merge
+  if (has) { try { window.sbMarkRemoved?.(id); } catch {} }
+  else     { try { window.sbClearRemoved?.(id); } catch {} }
   const a = ARTISTS.find(x => x.id === id);
   const hasConflict = !has && a && next.some(sid => {
     if (sid === id) return false;

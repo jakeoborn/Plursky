@@ -359,12 +359,35 @@ async function sbPush(artistIds, notes) {
     notes:      notes,
     updated_at: new Date().toISOString(),
   };
-  // Attach Spotify profile snapshot so it persists to cloud
+  // Attach Spotify profile + removed_at tombstones so deletions
+  // propagate across devices. Without this, union-merge would resurrect
+  // unsaved artists on every sync.
   try {
     const raw = localStorage.getItem("spotify_profile");
-    if (raw) row.meta = { spotify: JSON.parse(raw) };
+    const removedRaw = localStorage.getItem("plursky_removed_at_v1");
+    row.meta = {};
+    if (raw) row.meta.spotify = JSON.parse(raw);
+    if (removedRaw) row.meta.removed_at = JSON.parse(removedRaw);
   } catch {}
   await _sb.from("user_data").upsert(row);
+}
+
+// Tombstone an artist removal locally so subsequent sbPush includes it
+// and other devices respect the deletion.
+function sbMarkRemoved(artistId) {
+  try {
+    const map = JSON.parse(localStorage.getItem("plursky_removed_at_v1") || "{}");
+    map[artistId] = new Date().toISOString();
+    localStorage.setItem("plursky_removed_at_v1", JSON.stringify(map));
+  } catch {}
+}
+
+// Clear tombstone when user re-saves an artist they previously removed
+function sbClearRemoved(artistId) {
+  try {
+    const map = JSON.parse(localStorage.getItem("plursky_removed_at_v1") || "{}");
+    if (map[artistId]) { delete map[artistId]; localStorage.setItem("plursky_removed_at_v1", JSON.stringify(map)); }
+  } catch {}
 }
 
 async function sbPull() {
@@ -373,7 +396,7 @@ async function sbPull() {
   if (!user) return null;
   const { data } = await _sb
     .from("user_data")
-    .select("artist_ids, notes, meta")
+    .select("artist_ids, notes, meta, updated_at")
     .eq("user_id", user.id)
     .single();
   return data || null;
@@ -518,12 +541,33 @@ function AccountCard({ state, setState }) {
       if (event === "SIGNED_IN" && session?.provider_token) {
         setState(st => ({ ...st, spotifyConnected: true }));
       }
-      // On sign-in, pull cloud data and merge into local state
+      // On sign-in, pull cloud data and merge into local state.
+      // Conflict resolution: union the saved sets, then exclude any
+      // artist with a removal tombstone newer than the cloud row's
+      // updated_at (local deletion wins) AND any artist with a CLOUD
+      // tombstone newer than its local re-save (cloud deletion wins).
       if (event === "SIGNED_IN" && user) {
         sbPull().then(cloud => {
           if (!cloud) return;
           setState(st => {
-            const merged = [...new Set([...st.saved, ...(cloud.artist_ids || [])])];
+            // Merge tombstones: cloud + local, taking the latest timestamp per artist
+            const cloudRemoved = cloud.meta?.removed_at || {};
+            let localRemoved = {};
+            try { localRemoved = JSON.parse(localStorage.getItem("plursky_removed_at_v1") || "{}"); } catch {}
+            const mergedRemoved = { ...cloudRemoved };
+            Object.entries(localRemoved).forEach(([id, ts]) => {
+              if (!mergedRemoved[id] || ts > mergedRemoved[id]) mergedRemoved[id] = ts;
+            });
+            try { localStorage.setItem("plursky_removed_at_v1", JSON.stringify(mergedRemoved)); } catch {}
+
+            const cloudUpdated = cloud.updated_at || new Date(0).toISOString();
+            const union = new Set([...st.saved, ...(cloud.artist_ids || [])]);
+            // Drop any artist whose tombstone is newer than the cloud row
+            // (means a device unsaved them after the cloud row was last pushed)
+            for (const [id, removedAt] of Object.entries(mergedRemoved)) {
+              if (removedAt > cloudUpdated) union.delete(id);
+            }
+            const merged = [...union];
             let localNotes = {};
             try { localNotes = JSON.parse(localStorage.getItem("artist_notes_v1") || "{}"); } catch {}
             const mergedNotes = { ...localNotes, ...cloud.notes };
@@ -2681,6 +2725,7 @@ function leaveStagePresence() {
 
 Object.assign(window, {
   AccountCard, sbSignInWithSpotify, sbSignInWithApple, sbDeleteAccount, sbSignOut, sbGetUser, sbPush, sbPull, sbOnAuthChange,
+  sbMarkRemoved, sbClearRemoved,
   sbGetArtistSaveCounts,
   sbPresenceJoin, sbPresenceUpdate, sbPresenceLeave, sbPresenceRefresh, sbOnPresenceChange,
   sbGetMyPresId, sbGetPresSnap, sbFindByPingCode,
