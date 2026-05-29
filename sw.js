@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v176';
+﻿const CACHE      = 'plursky-v177';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v176';
+const APP_VER    = 'v177';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -25,6 +25,7 @@ const LOCAL = [
   `./map.jsx?v=${APP_VER}`,
   `./lineup.jsx?v=${APP_VER}`,
   `./artist.jsx?v=${APP_VER}`,
+  `./spotify-api.jsx?v=${APP_VER}`,
   `./recap-engine.jsx?v=${APP_VER}`,
   `./spotify.jsx?v=${APP_VER}`,
   `./app.jsx?v=${APP_VER}`,
