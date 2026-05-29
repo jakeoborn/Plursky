@@ -12,11 +12,12 @@ Apple Music LIVE, native ShazamKit video-ID. All web-live; iOS needs 1.0.7._
 3. **2-device test** — rally-point + crew-cluster broadcast round-trip (couldn't verify headless).
 4. **In-app verify ACL map** (switch to ACL) + send Memories screenshots for the polish pass.
 
-### B. Music synergy (Spotify × Apple Music × Shazam)
-5. **Your Weekend Soundtrack** [IN PROGRESS] — playlist from Shazam-confirmed moment songs + saved top tracks → Spotify OR Apple Music.
-6. **Service-agnostic playlist UI** — surface "import from Spotify → build on Apple Music" (beats Spotify's 5-user cap).
-7. **Shazam → attendance + discovery** — confirmed lineup artist auto-confirms the set + suggests saving.
-8. **Recap-video soundtrack from your songs** — score the recap export with your Shazam'd tracks.
+### B. Music synergy (Spotify × Apple Music × Shazam) — ✅ ALL SHIPPED v188
+5. ✅ **Your Weekend Soundtrack** — playlist from Shazam-confirmed moment songs + saved top tracks → Spotify OR Apple Music. (45e9151)
+6. ✅ **Service-agnostic framing** — caption: saved sets → either service; beats Spotify's cap. (bd7848c)
+7. ✅ **Shazam → attendance** — recognized song = proof of attendance, auto-markAttended. (bd7848c)
+8. ✅ **Recap-video soundtrack from your songs** — exporter prefers a Shazam'd song's preview. (bd7848c)
+   _All four need the iOS 1.0.7 build (#1) for Shazam to populate confirmed songs on-device._
 
 ### C. Jake's manual / external actions
 9. **Spotify Extended Quota Mode** application (unblocks playlist creation for >5 users).
