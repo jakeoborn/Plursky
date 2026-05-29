@@ -1629,6 +1629,13 @@ function MapScreen({ state, setState }) {
   const [meetMode, setMeetMode] = React.useState(false);
   const [meetTarget, setMeetTarget] = React.useState(null);
   const [meetGroup, setMeetGroup] = React.useState([]);
+  // Rally: a meet point I've broadcast to my crew (sender), and one a crew
+  // member has broadcast to me (receiver). dismissed tracks rallies I've
+  // declined so the 20s re-broadcast doesn't keep re-popping the banner.
+  const [rallySent, setRallySent] = React.useState(false);
+  const [incomingRally, setIncomingRally] = React.useState(null);
+  const dismissedRallyRef = React.useRef(new Set());
+  const clearMeet = () => { setMeetMode(false); setMeetTarget(null); setMeetGroup([]); setRallySent(false); sbClearRally(); };
   const [search, setSearch] = React.useState("");
   // Bottom search sheet (Apple Maps pattern). Tap to expand from a thin
   // pill to a full sheet showing Find Nearby + heads-up strips. Auto-expands
@@ -1816,6 +1823,13 @@ function MapScreen({ state, setState }) {
 
   // Subscribe to Supabase Realtime presence — crew members broadcasting their stage
   React.useEffect(() => sbOnPresenceChange(s => setCrewSnap({ ...s })), []);
+
+  // Incoming rally points from crew. Ignore ones I've dismissed (the caller
+  // re-broadcasts every 20s) and clear the banner when the caller cancels.
+  React.useEffect(() => sbOnRally(r => {
+    if (r && dismissedRallyRef.current.has(r.rallyId)) return;
+    setIncomingRally(r || null);
+  }), []);
 
   // Convert presence snap → map positions for rendering
   const myPresId = sbGetMyPresId();
@@ -2237,7 +2251,7 @@ function MapScreen({ state, setState }) {
               {sheetMode === "collapsed" && (
                 <div style={{ padding: "0 10px 8px", display: "flex", alignItems: "center", gap: 5, flexShrink: 0 }}>
                   <button onClick={() => {
-                    if (meetMode) { setMeetMode(false); setMeetTarget(null); setMeetGroup([]); }
+                    if (meetMode) { clearMeet(); }
                     else { setMeetMode(true); }
                   }} style={{
                     background: meetMode ? "var(--ember)" : "var(--ink)",
@@ -2382,7 +2396,7 @@ function MapScreen({ state, setState }) {
                     borderTop: "1px solid var(--line)", flexShrink: 0,
                   }}>
                     <button onClick={() => {
-                      if (meetMode) { setMeetMode(false); setMeetTarget(null); setMeetGroup([]); }
+                      if (meetMode) { clearMeet(); }
                       else { setMeetMode(true); }
                     }} style={{
                       background: meetMode ? "var(--ember)" : "var(--ink)",
@@ -2499,11 +2513,62 @@ function MapScreen({ state, setState }) {
                 </>
               ) : meetGroup.length ? "TAP THE MAP TO DROP A PIN" : "MEET MODE — TAP MAP TO DROP A PIN"}
             </span>
-            <button onClick={() => { setMeetMode(false); setMeetTarget(null); setMeetGroup([]); }} style={{
+            {meetTarget && isSharing && (
+              <button onClick={() => {
+                const ok = sbBroadcastRally({
+                  x: meetTarget.x, y: meetTarget.y, label: meetTarget.label,
+                  stageId: meetTarget.stageId || _nearestStageId(meetTarget.x, meetTarget.y),
+                });
+                if (ok) setRallySent(true);
+              }} disabled={rallySent} style={{
+                background: rallySent ? "rgba(255,255,255,0.25)" : "#fff",
+                color: rallySent ? "#fff" : "var(--ember)",
+                border: "none", borderRadius: 999, padding: "5px 12px",
+                cursor: rallySent ? "default" : "pointer",
+                fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 800,
+              }}>{rallySent ? "✓ CREW PINGED" : "📣 RALLY CREW"}</button>
+            )}
+            <button onClick={clearMeet} style={{
               background: "rgba(255,255,255,0.2)", border: "none", borderRadius: 999,
               padding: "5px 12px", color: "#fff", cursor: "pointer",
               fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
             }}>× CANCEL</button>
+          </div>
+        )}
+
+        {/* Incoming rally — a crew member dropped a meet point and pinged us */}
+        {incomingRally && (
+          <div style={{
+            position: "absolute", top: 0, left: 0, right: 0, zIndex: 9,
+            background: "linear-gradient(135deg, #7b3d9a, var(--ember))",
+            color: "#fff", padding: "10px 14px",
+            paddingTop: "calc(10px + env(safe-area-inset-top, 0px))",
+            boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
+            display: "flex", alignItems: "center", gap: 10,
+            animation: "springIn 0.3s ease-out",
+          }}>
+            <span style={{ fontSize: 18 }}>📣</span>
+            <span style={{ flex: 1, minWidth: 0 }}>
+              <span className="mono" style={{ display: "block", fontSize: 8.5, letterSpacing: 1.3, fontWeight: 800, opacity: 0.85 }}>
+                {(incomingRally.fromName || "CREW").toUpperCase()} WANTS TO MEET
+              </span>
+              <span style={{ display: "block", fontSize: 13, fontWeight: 700, marginTop: 1, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                {incomingRally.label} · {distToMins(Math.hypot(incomingRally.x - avatar.x, incomingRally.y - avatar.y))} min away
+              </span>
+            </span>
+            <button onClick={() => {
+              dismissedRallyRef.current.add(incomingRally.rallyId);
+              setMeetMode(true);
+              setMeetTarget({ x: incomingRally.x, y: incomingRally.y, label: incomingRally.label, isRally: true });
+              setIncomingRally(null);
+            }} className="mono" style={{
+              background: "#fff", color: "var(--ember)", border: "none", borderRadius: 999,
+              padding: "6px 13px", cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 800, flexShrink: 0,
+            }}>HEAD OVER</button>
+            <button onClick={() => { dismissedRallyRef.current.add(incomingRally.rallyId); setIncomingRally(null); }} aria-label="Dismiss" style={{
+              background: "rgba(0,0,0,0.2)", color: "#fff", border: "none", borderRadius: 999,
+              width: 26, height: 26, cursor: "pointer", fontSize: 12, flexShrink: 0,
+            }}>✕</button>
           </div>
         )}
 
@@ -2517,7 +2582,7 @@ function MapScreen({ state, setState }) {
               peek={peek} setPeek={setPeek}
               meetMode={meetMode} meetTarget={meetTarget} friends={friends} meetGroup={meetGroup} avatar={avatar}
               onClose={() => setSelectedStage(null)}
-              onCancelMeet={() => { setMeetMode(false); setMeetTarget(null); setMeetGroup([]); }}
+              onCancelMeet={clearMeet}
               onOpenArtist={(id) => setState({ ...state, tab: "home", artist: id })}
               state={state} setState={setState}
             />

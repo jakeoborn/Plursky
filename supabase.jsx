@@ -893,6 +893,9 @@ let _presCbs  = new Set();
 let _presSnap = {};
 let _presMyId = null;
 let _myLoc    = null; // my last-broadcast location payload, for heartbeat + echo
+let _myRally    = null; // rally point I'm calling (sender), re-broadcast like _myLoc
+let _activeRally = null; // latest rally I've RECEIVED from a crew member
+let _rallyCbs   = new Set();
 
 // IMPLEMENTATION NOTE (2026-05-28): switched from Supabase Realtime
 // *Presence* to *Broadcast*. A 5-client backend test showed presence
@@ -946,10 +949,21 @@ function sbPresenceJoin({ name, stageId, gps }) {
       _presNotify();
     })
     // A late joiner asked everyone to re-announce → re-broadcast mine
-    .on("broadcast", { event: "loc-req" }, () => { _broadcastMyLoc(); })
+    // (location AND any rally I'm calling, since fire-and-forget has no history)
+    .on("broadcast", { event: "loc-req" }, () => { _broadcastMyLoc(); _broadcastMyRally(); })
     // Someone explicitly left → drop them immediately
     .on("broadcast", { event: "loc-bye" }, ({ payload }) => {
       if (payload?.pid && _presSnap[payload.pid]) { delete _presSnap[payload.pid]; _presNotify(); }
+    })
+    // A crew member called a rally point → surface it to converge on
+    .on("broadcast", { event: "rally" }, ({ payload }) => {
+      if (!payload?.rallyId || payload.fromPid === _presMyId) return;
+      _activeRally = payload;
+      _rallyNotify();
+    })
+    // Rally caller cleared it → drop it everywhere
+    .on("broadcast", { event: "rally-clear" }, ({ payload }) => {
+      if (_activeRally && _activeRally.fromPid === payload?.fromPid) { _activeRally = null; _rallyNotify(); }
     })
     .subscribe(async status => {
       if (status === "SUBSCRIBED") {
@@ -979,7 +993,7 @@ function _startPresenceHeartbeat() {
   if (_heartbeatId) clearInterval(_heartbeatId);
   // 20s heartbeat: fire-and-forget broadcast has no history, so periodic
   // re-announce keeps everyone fresh and beats the 90s stale cutoff.
-  _heartbeatId = setInterval(() => { _broadcastMyLoc(); _presNotify(); }, 20000);
+  _heartbeatId = setInterval(() => { _broadcastMyLoc(); _broadcastMyRally(); _presNotify(); }, 20000);
 }
 function _stopPresenceHeartbeat() {
   if (_heartbeatId) { clearInterval(_heartbeatId); _heartbeatId = null; }
@@ -1001,6 +1015,8 @@ function sbPresenceLeave() {
   }
   _presSnap = {};
   _myLoc = null;
+  _myRally = null;
+  _activeRally = null;
   _presMyId = null;
   _presNotify();
 }
@@ -1009,6 +1025,37 @@ function sbOnPresenceChange(cb) {
   _presCbs.add(cb);
   return () => _presCbs.delete(cb);
 }
+
+// ── Rally point (shared meet-up) ─────────────────────────────
+// One crew member calls a rally; everyone else receives { x, y, label,
+// stageId, fromName } and can converge on it. Rides the same crew broadcast
+// channel as location, so it's scoped to your crew. Re-broadcast on the
+// heartbeat + on loc-req (fire-and-forget has no history), and cleared
+// explicitly or when the caller leaves.
+function _broadcastMyRally() {
+  if (!_presCh || !_myRally) return;
+  try { _presCh.send({ type: "broadcast", event: "rally", payload: { ..._myRally, ts: Date.now() } }); } catch {}
+}
+function _rallyNotify() { const r = _activeRally; _rallyCbs.forEach(fn => { try { fn(r); } catch {} }); }
+
+// Call a rally. Requires being joined to the crew channel (i.e. sharing).
+function sbBroadcastRally({ x, y, label, stageId }) {
+  if (!_presCh) return false;
+  _myRally = {
+    rallyId: (_presMyId || "me") + "_" + Date.now(),
+    x, y, label, stageId: stageId || null,
+    fromPid: _presMyId, fromName: (_myLoc && _myLoc.name) || "Someone",
+  };
+  _broadcastMyRally();
+  return true;
+}
+// Cancel the rally I called (tells crew to drop it).
+function sbClearRally() {
+  if (!_myRally) return;
+  _myRally = null;
+  if (_presCh) { try { _presCh.send({ type: "broadcast", event: "rally-clear", payload: { fromPid: _presMyId } }); } catch {} }
+}
+function sbOnRally(cb) { _rallyCbs.add(cb); return () => _rallyCbs.delete(cb); }
 
 // Always returns a stable device id. Falls back to the persisted localStorage
 // pid (`plursky_pid`) before presence has been joined, so callers like
@@ -2811,6 +2858,7 @@ Object.assign(window, {
   sbGetArtistSaveCounts,
   sbPresenceJoin, sbPresenceUpdate, sbPresenceLeave, sbPresenceRefresh, sbOnPresenceChange,
   sbGetMyPresId, sbGetPresSnap, sbFindByPingCode,
+  sbBroadcastRally, sbClearRally, sbOnRally,
   FriendsCard, CrewCard,
   sbGetOrCreateGroupCode, sbGroupJoin, sbGroupLeave, sbGroupUpdate, sbGetCrewCount,
   sbCrewFetchMessages, sbCrewSendMessage, sbCrewSubscribeMessages,
