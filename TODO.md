@@ -1,10 +1,52 @@
 # Plursky — To-Do List
 
-_Last full sweep: 2026-05-27. v1.4 (14) LIVE. iOS 1.5 (15) ready to submit.
-Cache-bust v165. RevenueCat API key wired. A++ polish session done (stagger
+## ⭐ MASTER OPEN ITEMS — sweep 2026-05-29 (web @ v186; iOS LIVE 1.0.6)
+
+_Session 13 shipped: reel/recap audit, ACL map (real artwork), spotify.jsx
+split ×3, recap-ready nudge, Spotify auto-create, rally + crew-cluster meetup,
+Apple Music LIVE, native ShazamKit video-ID. All web-live; iOS needs 1.0.7._
+
+### A. Ship-gate (get this session's work onto devices)
+1. **iOS 1.0.7 rebuild** — `MARKETING_VERSION→1.0.7`, `npx cap sync ios`, build, submit. Gates EVERYTHING native this session: Apple Music, ShazamKit video-ID, ACL map, black-poster fix, split files, rally/cluster.
+2. **Test Apple Music "BUILD PLAYLIST" on web** (plursky.com) — validate the live MusicKit token end-to-end.
+3. **2-device test** — rally-point + crew-cluster broadcast round-trip (couldn't verify headless).
+4. **In-app verify ACL map** (switch to ACL) + send Memories screenshots for the polish pass.
+
+### B. Music synergy (Spotify × Apple Music × Shazam)
+5. **Your Weekend Soundtrack** [IN PROGRESS] — playlist from Shazam-confirmed moment songs + saved top tracks → Spotify OR Apple Music.
+6. **Service-agnostic playlist UI** — surface "import from Spotify → build on Apple Music" (beats Spotify's 5-user cap).
+7. **Shazam → attendance + discovery** — confirmed lineup artist auto-confirms the set + suggests saving.
+8. **Recap-video soundtrack from your songs** — score the recap export with your Shazam'd tracks.
+
+### C. Jake's manual / external actions
+9. **Spotify Extended Quota Mode** application (unblocks playlist creation for >5 users).
+10. **RevenueCat products + entitlements in ASC** — `plursky_plus_festival` $2.99, `plursky_plus_annual` $7.99/yr.
+11. **Refresh Apple MusicKit token** before ~Nov 2026 (6-mo expiry) — `scripts/sign-musickit-token.mjs`.
+12. **Deploy og-card.png** (1200×630 social share image).
+
+### D. Optional / deferred build
+13. **recognize-song Edge Function** (web Shazam fallback; needs AudD/ACRCloud key) — low priority given iOS focus.
+14. **Plus/RevenueCat monolith extraction** (last spotify.jsx split).
+15. **YouTube server-side proxy** (protect 10k/day quota).
+16. **Lineup virtualization** (300+ artists render perf).
+17. **Native push notifications** — set-time reminders during festival.
+18. **Smart search bar** (NL lineup queries) · **Friend-lookup backend** (PING codes) · **AR stage finder** · **Voice queries**.
+19. **Account data export** (Apple compliance) · **Onboarding flow bump** · **Memory storage soft cap** · **Attendance edge cases**.
+20. **Update ACL stage assignments + set times** when the official 2026 schedule drops (currently estimated from 2025).
+21. **Re-enable RealMap (BETA)** post-festival.
+
+### E. Ops / security (before scale)
+22. **Supabase backups / PITR** · 23. **Uptime monitoring** · 24. **Supabase refresh-token rotation** · 25. **Rotate public API keys** (setlist.fm / YouTube / Last.fm / TM).
+
+### F. Strategic
+26. **Insomniac partnership pitch** (post-EDC evidence: Recap + memories + meetup).
+27. **Multi-festival platform** expansion (registry exists; Coachella next).
+
+---
+
+_Older sweep: 2026-05-27. v1.4 (14) LIVE. A++ polish session done (stagger
 animations, parallax hero, VFX onboarding, skeletons, haptics, keyboard
-avoidance, arm64 fix). Next: finish RevenueCat product setup, ShazamKit
-device test, submit 1.5._
+avoidance, arm64 fix)._
 
 ## ✅ v1.4 APPROVED & LIVE
 
