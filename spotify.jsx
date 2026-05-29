@@ -208,6 +208,14 @@ function SpotifyScreen({ state, setState }) {
               {connected && spotifyArtists === null ? "⟳ LOADING…" : connected ? "✓ CONNECTED" : "CONNECT ACCOUNT"}
             </button>
           </div>
+          {/* #6 service-agnostic framing: your saved sets are the source;
+              export to whichever service you have. Lets non-Spotify users
+              (or anyone hitting Spotify's 5-user cap) still get a playlist. */}
+          {APPLE_DEV_TOKEN && state.saved.length > 0 && (
+            <div className="mono" style={{ marginTop: 10, fontSize: 9, letterSpacing: 0.5, lineHeight: 1.5, color: "rgba(247,237,224,0.55)" }}>
+              💡 Your saved sets build a playlist on <span style={{ color: "rgba(247,237,224,0.92)", fontWeight: 700 }}>Spotify or Apple Music</span> — import your taste from one, export to either. No Spotify needed for the Apple Music playlist.
+            </div>
+          )}
         </div>
 
         {/* ── Followed artists nudge ────────────────────── */}
@@ -1744,6 +1752,14 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
     // Cross-check: does the recognized artist contradict the photo's tag?
     const matchedArtist = _lineupArtistFromShazam(result.artist);
     if (matchedArtist && matchedArtist.id !== m.artistId) setMismatch(matchedArtist);
+    // #7 proof-of-attendance: a song recognized from your OWN video is proof
+    // you were at that set — auto-confirm attendance (feeds Recap "sets
+    // caught" + the playlist "attended" source). Prefer the Shazam-matched
+    // lineup artist; fall back to the moment's tag.
+    const heardId = matchedArtist?.id || m.artistId;
+    if (heardId && m.night != null && typeof markAttended === "function") {
+      try { markAttended(m.night, heardId, "shazam"); } catch {}
+    }
     try { window.plurskyHaptic?.("MEDIUM"); } catch {}
   };
 
@@ -6072,6 +6088,15 @@ function RecapScreen({ state, setState }) {
                     for (const n of Object.keys(raw)) for (const m of (raw[n] || [])) all.push(m);
                   } catch {}
                   let audioUrl = selectedTrack?.preview_url || null;
+                  // #8: prefer a song you ACTUALLY heard (Shazam-confirmed in
+                  // your moments) as the recap soundtrack — your real festival
+                  // audio over a generic top track.
+                  if (!audioUrl) {
+                    try {
+                      const mine = (window._collectMomentSongs?.() || [])[0];
+                      if (mine) { const r = await fetchPreviewUrl(`${mine.artist} ${mine.title}`.trim()); audioUrl = r?.url; }
+                    } catch {}
+                  }
                   if (!audioUrl && recap.topByPop?.name) {
                     try { const r = await fetchPreviewUrl(recap.topByPop.name); audioUrl = r?.url; } catch {}
                   }
