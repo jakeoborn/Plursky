@@ -80,8 +80,8 @@ Apple Music build playlist · Shazam a video · PHPicker (no photo-perm prompt).
 
 ## Source of truth
 - **App Store Connect** is the source of truth for the iOS version, NOT the
-  pbxproj (which historically drifted to 1.5/1.6). Current ASC: was `1.0.6`
-  LIVE → `1.0.7 (17)` prepped for submit.
+  pbxproj (which historically drifted to 1.5/1.6). Current ASC: `1.6`
+  LIVE → `1.7 (18)` prepped for submit.
 - **Apple keys/services**: App ID `com.plursky.app` + Media ID
   `media.com.plursky.app` both have MusicKit + ShazamKit enabled.
   MusicKit dev token expires ~6mo → `scripts/sign-musickit-token.mjs`.
