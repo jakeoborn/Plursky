@@ -25,8 +25,14 @@ await mkdir(dist, { recursive: true });
 
 const entries = await readdir(root, { withFileTypes: true });
 const jsxFiles = entries.filter(e => e.isFile() && e.name.endsWith('.jsx')).map(e => e.name);
+// Image assets (map artwork, etc.) so the iOS bundle has them too — without
+// this, image-overlay maps (EDC aerial, ACL park) are blank in the native app.
+const imgFiles = entries
+  .filter(e => e.isFile() && /\.(webp|jpe?g|png|gif|svg)$/i.test(e.name))
+  .map(e => e.name);
 
-for (const file of [...COPY, ...jsxFiles]) {
+const allFiles = [...new Set([...COPY, ...jsxFiles, ...imgFiles])];
+for (const file of allFiles) {
   const src = path.join(root, file);
   if (!existsSync(src)) {
     console.warn(`[build] skip missing: ${file}`);
@@ -35,4 +41,4 @@ for (const file of [...COPY, ...jsxFiles]) {
   await cp(src, path.join(dist, file));
 }
 
-console.log(`[build] dist/ ready (${COPY.length + jsxFiles.length} files)`);
+console.log(`[build] dist/ ready (${allFiles.length} files)`);
