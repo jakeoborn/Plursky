@@ -287,7 +287,13 @@ const FESTIVALS_REGISTRY = [
       ],
       mainStageId: "honda",
       mapImage: "acl-map-2025.webp",
-      mapStyle: "image-overlay",
+      // Native Plursky vector park (not image-overlay): the official ACL
+      // patron map is a legend-heavy infographic that can't be sliced into
+      // the square 0–100 grid without cropping AMEX and bleeding the legend
+      // in. mapTheme "park" draws Zilker as vectors (lake / lawn / springs)
+      // under the stylized stage icons, so the stage coords are the source
+      // of truth. mapImage kept only for the optional real-map fallback.
+      mapStyle: "vector",
       mapTheme: "park",
       weatherEndpoint: "https://api.weather.gov/points/30.26,-97.77",
     },

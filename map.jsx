@@ -4198,6 +4198,26 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
             <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" result="blur"/>
             <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
+          {/* ── Zilker park theme (ACL) — dusk palette, keeps the moody
+              Plursky look so the saturated stage glows stay legible ── */}
+          <radialGradient id="parkGround" cx="50%" cy="46%" r="78%">
+            <stop offset="0%"   stopColor="#1c3a23"/>
+            <stop offset="55%"  stopColor="#142b1a"/>
+            <stop offset="100%" stopColor="#0b1810"/>
+          </radialGradient>
+          <radialGradient id="lawnGlow" cx="50%" cy="48%" r="62%">
+            <stop offset="0%"   stopColor="rgba(126,186,96,0.20)"/>
+            <stop offset="100%" stopColor="rgba(126,186,96,0)"/>
+          </radialGradient>
+          <linearGradient id="lakeWater" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%"   stopColor="#1d5360"/>
+            <stop offset="100%" stopColor="#0e2f39"/>
+          </linearGradient>
+          <radialGradient id="parkVignette" cx="50%" cy="46%" r="58%">
+            <stop offset="0%"   stopColor="#000" stopOpacity="0"/>
+            <stop offset="72%"  stopColor="#000" stopOpacity="0"/>
+            <stop offset="100%" stopColor="#06120a" stopOpacity="0.5"/>
+          </radialGradient>
         </defs>
 
         {/* Festival-specific map background */}
@@ -4237,6 +4257,95 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           <rect x="0" y="0" width="100" height="100" fill="url(#mapFadeT)"/>
           <rect x="0" y="0" width="100" height="100" fill="url(#mapVignette)"/>
           <rect x="0" y="0" width="100" height="100" fill="rgba(247,237,224,0.06)"/>
+        </>) : FESTIVAL_CONFIG.mapTheme === "park" ? (<>
+          {/* ── Zilker Park (ACL) — north-up: Lady Bird Lake along the top,
+              great lawn center, Barton Springs pool SW, tree groves SE/edges.
+              Stage coords are the source of truth; features are drawn to
+              match real Zilker geography around them. ── */}
+          <rect x="0" y="0" width="100" height="100" fill="url(#parkGround)"/>
+
+          {/* Great lawn — soft green core the main stages frame */}
+          <ellipse cx="52" cy="47" rx="42" ry="33" fill="url(#lawnGlow)"/>
+          <ellipse cx="52" cy="48" rx="30" ry="20" fill="rgba(120,176,92,0.07)"/>
+
+          {/* Lady Bird Lake — top edge, dipping lower on the east bend */}
+          <path d="M0,0 H100 V8 C84,15 70,12 52,10 C36,8.5 18,9.5 0,13 Z" fill="url(#lakeWater)"/>
+          <path d="M0,13 C18,9.5 36,8.5 52,10 C70,12 84,15 100,8" fill="none" stroke="rgba(160,220,230,0.22)" strokeWidth="0.4"/>
+          <path d="M6,11.5 C24,8.6 40,8 56,9.4" fill="none" stroke="rgba(160,220,230,0.10)" strokeWidth="0.3" strokeDasharray="2 2.4"/>
+
+          {/* Barton Springs pool — SW, the long spring-fed pool */}
+          <path d="M10,84 C18,80 30,80 38,83 C42,84.5 42,88 38,89.4 C30,92 18,92 11,89 C8,87.8 8,85.2 10,84 Z" fill="url(#lakeWater)" opacity="0.92"/>
+          <path d="M12,85 C20,81.8 30,81.8 37,84.4" fill="none" stroke="rgba(160,220,230,0.18)" strokeWidth="0.35"/>
+
+          {/* Roads — Andrew Zilker Rd (W edge) + Barton Springs Rd (S edge) */}
+          <path d="M5,8 V96" stroke="rgba(210,196,160,0.10)" strokeWidth="2.2" fill="none" strokeLinecap="round"/>
+          <path d="M2,93 H98" stroke="rgba(210,196,160,0.10)" strokeWidth="2.6" fill="none" strokeLinecap="round"/>
+
+          {/* Pedestrian walkways linking the stages — warm tan glow + dashes */}
+          <g stroke="rgba(225,205,160,0.13)" strokeWidth="2.6" fill="none" strokeLinecap="round">
+            <path d="M8,52 Q30,50 52,49 Q72,48 92,58"/>
+            <path d="M52,49 Q44,32 38,16"/>
+            <path d="M52,49 Q60,38 65,28"/>
+            <path d="M52,49 Q49,62 48,71"/>
+            <path d="M48,71 Q39,71 30,70"/>
+            <path d="M52,49 Q57,56 62,62"/>
+            <path d="M22,38 Q22,47 22,55"/>
+          </g>
+          <g stroke="rgba(235,220,180,0.30)" strokeWidth="0.4" fill="none" strokeLinecap="round" strokeDasharray="1.3 1.7">
+            <path d="M8,52 Q30,50 52,49 Q72,48 92,58"/>
+            <path d="M52,49 Q44,32 38,16"/>
+            <path d="M52,49 Q60,38 65,28"/>
+            <path d="M52,49 Q49,62 48,71"/>
+            <path d="M48,71 Q39,71 30,70"/>
+            <path d="M52,49 Q57,56 62,62"/>
+          </g>
+
+          {/* Tree canopies — perimeter cover + the SE Zilker grove */}
+          {[[8,17],[14,14],[20,19],[6,30],[9,43],[7,57],[12,79],[19,86],[25,82],[40,89],[52,91],[60,87],[66,57],[72,63],[68,70],[75,55],[70,49],[94,50],[92,65],[95,37],[78,20],[85,16],[44,33],[58,33]].map(([tx,ty],i)=>(
+            <g key={`tree-${i}`}>
+              <circle cx={tx} cy={ty} r="2.1" fill="#1f4a2a" opacity="0.92"/>
+              <circle cx={tx-0.55} cy={ty-0.6} r="0.7" fill="rgba(150,205,120,0.4)"/>
+            </g>
+          ))}
+
+          {/* Orientation labels */}
+          <text x="50" y="5.2" textAnchor="middle" fontSize="2.4" fill="rgba(180,225,235,0.5)" fontFamily="Geist Mono, monospace" fontWeight="700">LADY BIRD LAKE</text>
+          <text x="24" y="87.4" textAnchor="middle" fontSize="1.9" fill="rgba(180,225,235,0.45)" fontFamily="Geist Mono, monospace" fontWeight="700">BARTON SPRINGS</text>
+
+          {/* Crowd heatmap — same density model as the night map */}
+          {showHeat && (() => {
+            const nowMin = toNightMin(NOW.time);
+            return (
+              <g>
+                <defs>
+                  <filter id="crowdBlurPark" x="-80%" y="-80%" width="260%" height="260%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="4.5"/>
+                  </filter>
+                </defs>
+                <g filter="url(#crowdBlurPark)">
+                  {stages.map(s => {
+                    const d = _crowdDensity(s.id, nowMin);
+                    if (d < 0.06) return null;
+                    const r = 5 + d * 11;
+                    const col = d > 0.72 ? "#ef4444" : d > 0.44 ? "#f97316" : "#fbbf24";
+                    return <circle key={s.id} cx={s.x} cy={s.y} r={r} fill={col} opacity={0.28 + d * 0.38}/>;
+                  })}
+                </g>
+              </g>
+            );
+          })()}
+
+          {/* Entrance gates — box offices + Barton Springs entrances */}
+          {[{x:7,y:54},{x:93,y:60},{x:42,y:91},{x:62,y:90}].map((g,i)=>(
+            <g key={`gate-${i}`}>
+              <circle cx={g.x} cy={g.y} r="2.6" fill="rgba(34,197,94,0.20)"/>
+              <circle cx={g.x} cy={g.y} r="1.4" fill="#22c55e" stroke="rgba(255,255,255,0.9)" strokeWidth="0.32"/>
+              <circle cx={g.x} cy={g.y} r="0.45" fill="#fff"/>
+            </g>
+          ))}
+
+          {/* Vignette to seat the park in the app's dark frame */}
+          <rect x="0" y="0" width="100" height="100" fill="url(#parkVignette)"/>
         </>) : (<>
         {/* Night sky base */}
         <rect x="0" y="0" width="100" height="100" fill="url(#mapGround)"/>
