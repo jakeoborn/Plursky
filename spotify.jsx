@@ -186,6 +186,7 @@ function SpotifyScreen({ state, setState }) {
             {connected && state.saved.length > 0 && (
               <BuildPlaylistButton state={state} />
             )}
+            {state.saved.length > 0 && <AppleMusicPlaylistButton state={state} />}
             <button
               onClick={() => { if (!connected) window.plurskyHaptic?.("MEDIUM"); connected ? disconnectSpotify(setState, state) : startSpotifyAuth(); }}
               style={{
@@ -4558,6 +4559,57 @@ function BuildPlaylistButton({ state }) {
     <button onClick={onClick} disabled={status === "working"} style={{
       background: bg, color, border,
       borderRadius: 999, padding: "10px 16px",
+      cursor: status === "working" ? "wait" : "pointer",
+      fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
+      transition: "all .2s",
+    }}>{label}</button>
+  );
+}
+
+// Apple Music playlist builder — sibling of BuildPlaylistButton. Apple Music
+// has no Dev-Mode user cap or creation block, so this is the unblocked path.
+// Renders nothing until APPLE_DEV_TOKEN is configured (see spotify-api.jsx),
+// so it's invisible until Apple Music is wired up.
+function AppleMusicPlaylistButton({ state }) {
+  const [status, setStatus] = React.useState("idle"); // idle | working | done | err
+  const [result, setResult] = React.useState(null);
+  const [prog, setProg]     = React.useState("");
+  if (!_appleMusicConfigured()) return null;
+
+  const run = async () => {
+    setStatus("working"); setProg("");
+    try {
+      const r = await createAppleMusicPlaylist(state, { onProgress: setProg });
+      setResult(r);
+      setStatus(r.ok ? "done" : "err");
+      if (!r.ok && r.reason !== "not_connected") setTimeout(() => setStatus("idle"), 4500);
+    } catch (e) {
+      setResult({ ok: false, reason: "create_fail", message: String(e?.message || e) });
+      setStatus("err"); setTimeout(() => setStatus("idle"), 4500);
+    }
+  };
+  const onClick = () => { if (status === "working") return; window.plurskyHaptic?.("MEDIUM"); run(); };
+
+  let label, bg = "rgba(250,45,90,0.14)", color = "#fa2d5a", border = "1px solid #fa2d5a";
+  if (status === "working") {
+    label = prog ? `BUILDING · ${prog}` : "BUILDING…";
+  } else if (status === "done") {
+    const missed = result?.missed || 0;
+    label = missed > 0 ? `✓ ${result?.added} TRACKS (${missed} not found)` : `✓ ${result?.added} TRACKS IN APPLE MUSIC`;
+    bg = "#fa2d5a"; color = "#fff"; border = "none";
+  } else if (status === "err") {
+    if (result?.reason === "not_connected") label = "↻ TAP TO CONNECT APPLE MUSIC";
+    else if (result?.reason === "empty") label = "SAVE SETS FIRST";
+    else if (result?.reason === "no_tracks") label = "✕ NO TRACKS FOUND";
+    else label = `✕ ${result?.status || ""} TRY AGAIN`;
+    bg = "rgba(248,113,113,0.18)"; color = "#fecaca"; border = "1px solid #f87171";
+  } else {
+    label = "BUILD APPLE MUSIC PLAYLIST";
+  }
+
+  return (
+    <button onClick={onClick} disabled={status === "working"} style={{
+      background: bg, color, border, borderRadius: 999, padding: "10px 16px",
       cursor: status === "working" ? "wait" : "pointer",
       fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
       transition: "all .2s",

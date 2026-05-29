@@ -102,6 +102,103 @@ async function fetchAppleMusicArtists() {
   } catch { return []; }
 }
 
+function _appleMusicConfigured() { return !!APPLE_DEV_TOKEN; }
+
+// Build an Apple Music playlist from saved/attended sets. The big win over
+// Spotify: the Apple Music API has NO Development-Mode 5-user cap and NO
+// playlist-creation block — any Apple Music subscriber can authorize and we
+// POST /me/library/playlists directly. Inert until APPLE_DEV_TOKEN is set
+// (see top of file). Mirrors createEdcPlaylist: day-ordered FRI→SAT→SUN,
+// more tracks for higher-tier acts.
+async function createAppleMusicPlaylist(state, opts = {}) {
+  const prog = (m) => { if (opts.onProgress) opts.onProgress(m); };
+  if (!APPLE_DEV_TOKEN) return { ok: false, reason: "not_configured" };
+
+  let ut = null;
+  try { ut = localStorage.getItem("am_user_token"); } catch {}
+  if (!ut) {
+    const c = await connectAppleMusic();           // prompts MusicKit authorize
+    if (!c.ok) return { ok: false, reason: "not_connected", message: c.error };
+    try { ut = localStorage.getItem("am_user_token"); } catch {}
+  }
+  if (!ut) return { ok: false, reason: "not_connected" };
+
+  const devHeaders  = { Authorization: `Bearer ${APPLE_DEV_TOKEN}` };
+  const userHeaders = { ...devHeaders, "Music-User-Token": ut };
+
+  const source = opts.source === "attended" ? "attended" : "saved";
+  const sourceIds = source === "attended"
+    ? Object.values(window.getAllAttended?.() || {}).flat()
+    : (state.saved || []);
+  const saved = sourceIds.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean);
+  if (!saved.length) return { ok: false, reason: "empty" };
+
+  const timeKey = hhmm => { const h = parseInt(hhmm); return h < 6 ? h + 24 : h; };
+  const sorted = [...saved].sort((a, b) =>
+    a.day !== b.day ? a.day - b.day : timeKey(a.start) - timeKey(b.start)
+  );
+  const trackLimit = tier => tier === 3 ? 5 : tier === 2 ? 4 : 3;
+
+  // Storefront drives which catalog we search; default to US if lookup fails.
+  let storefront = "us";
+  try {
+    const sr = await fetch("https://api.music.apple.com/v1/me/storefront", { headers: userHeaders });
+    if (sr.ok) { const sj = await sr.json(); storefront = sj.data?.[0]?.id || "us"; }
+  } catch {}
+
+  // Resolve each saved artist to catalog song IDs, kept in set order.
+  const tracks = [];
+  const seen = new Set();
+  let missed = 0;
+  for (const a of sorted) {
+    prog(`Finding ${a.name}…`);
+    try {
+      const r = await fetch(
+        `https://api.music.apple.com/v1/catalog/${storefront}/search?types=songs&limit=15&term=${encodeURIComponent(a.name)}`,
+        { headers: devHeaders }
+      );
+      if (!r.ok) { missed++; continue; }
+      const j = await r.json();
+      const songs = j.results?.songs?.data || [];
+      const ln = a.name.toLowerCase();
+      const byArtist = songs.filter(s => (s.attributes?.artistName || "").toLowerCase().includes(ln));
+      const pool = byArtist.length ? byArtist : songs.slice(0, 1);
+      let added = 0;
+      for (const s of pool) {
+        if (added >= trackLimit(a.tier)) break;
+        if (s.id && !seen.has(s.id)) { seen.add(s.id); tracks.push({ id: s.id, type: "songs" }); added++; }
+      }
+      if (!added) missed++;
+    } catch { missed++; }
+  }
+  if (!tracks.length) return { ok: false, reason: "no_tracks" };
+
+  prog("Creating playlist…");
+  const CFG = window.FESTIVAL_CONFIG || {};
+  const dateStr = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  const res = await fetch("https://api.music.apple.com/v1/me/library/playlists", {
+    method: "POST",
+    headers: { ...userHeaders, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      attributes: {
+        name: `${CFG.shortName || "Festival"} — Plursky`,
+        description: `${saved.length} sets · headliners deep · FRI→SAT→SUN · built with Plursky · ${dateStr}`,
+      },
+      relationships: { tracks: { data: tracks } },
+    }),
+  });
+  if (!res.ok) {
+    if (res.status === 401 || res.status === 403) {
+      try { localStorage.removeItem("am_user_token"); } catch {}
+      return { ok: false, reason: "reconnect", status: res.status };
+    }
+    return { ok: false, reason: "create_fail", status: res.status };
+  }
+  let id = null;
+  try { const j = await res.json(); id = j.data?.[0]?.id || null; } catch {}
+  return { ok: true, service: "apple", added: tracks.length, missed, id };
+}
+
 // ShazamKit bridge — iOS only, auto-detects via Capacitor
 if (window.Capacitor?.isNativePlatform()) {
   try {
@@ -1392,4 +1489,5 @@ function getDiscoveries(spotifyArtists, matched, savedIds, max = 8) {
 Object.assign(window, {
   startSpotifyAuth, ensureSpotifyProfile, getSpotifyProfileSync,
   createEdcPlaylist, fetchPreviewUrl,
+  connectAppleMusic, disconnectAppleMusic, createAppleMusicPlaylist, _appleMusicConfigured,
 });
