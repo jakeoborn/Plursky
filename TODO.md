@@ -1,6 +1,9 @@
 # Plursky — To-Do List
 
-## ⭐ MASTER OPEN ITEMS — sweep 2026-05-29 (web @ v186; iOS LIVE 1.0.6)
+> **Shipping?** See **[RELEASE.md](RELEASE.md)** — sync iOS, cache-bust, web
+> deploy, and App Store submit commands.
+
+## ⭐ MASTER OPEN ITEMS — sweep 2026-05-29 (web @ v188; iOS 1.0.7 prepped)
 
 _Session 13 shipped: reel/recap audit, ACL map (real artwork), spotify.jsx
 split ×3, recap-ready nudge, Spotify auto-create, rally + crew-cluster meetup,
