@@ -1621,10 +1621,35 @@ function BulkRetagRow({ moments, savedNightArtists, onUpdate }) {
 // Native iOS uses ShazamPlugin.identifyFile (exact, on-device). Web
 // captures the playing video's audio and routes it to the recognize-song
 // proxy. Returns { title, artist, source } or null.
+function _blobToBase64(blob) {
+  return new Promise((resolve, reject) => {
+    const fr = new FileReader();
+    fr.onload = () => { const s = String(fr.result); const i = s.indexOf(","); resolve(i >= 0 ? s.slice(i + 1) : s); };
+    fr.onerror = reject;
+    fr.readAsDataURL(blob);
+  });
+}
+
 async function identifySongFromVideo(moment, onProgress) {
   if (!moment?.photoId || moment.kind !== "video") return null;
   const blob = await _getPhoto(moment.photoId).catch(() => null);
   if (!blob) return null;
+
+  // Native iOS (focus path): hand the clip to on-device ShazamKit via the
+  // ShazamPlugin — free, accurate, no backend. The web recognizer below is
+  // the fallback for browser/PWA.
+  if (window.Capacitor?.isNativePlatform?.() && window.ShazamPlugin?.identifyBase64) {
+    try {
+      onProgress?.("listening");
+      const base64 = await _blobToBase64(blob);
+      const ext = (blob.type || "").includes("quicktime") ? "mov" : "mp4";
+      onProgress?.("matching");
+      const r = await window.ShazamPlugin.identifyBase64({ data: base64, ext });
+      if (r?.matched && r.title) return { title: r.title, artist: r.artist || "", source: "video-shazam" };
+      return null; // native ran but found no match — don't bother the web path
+    } catch { /* fall through to the web recognizer */ }
+  }
+
   const url = URL.createObjectURL(blob);
   try {
     onProgress?.("listening");

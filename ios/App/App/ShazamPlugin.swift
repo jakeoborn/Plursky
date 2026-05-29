@@ -7,7 +7,8 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
     public let jsName = "ShazamPlugin"
     public let pluginMethods: [CAPPluginMethod] = [
         CAPPluginMethod(name: "identify", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "identifyFile", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "identifyFile", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "identifyBase64", returnType: CAPPluginReturnPromise)
     ]
 
     private var session: SHSession?
@@ -25,12 +26,33 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
             call.reject("Missing file path"); return
         }
         let url = URL(fileURLWithPath: path.replacingOccurrences(of: "file://", with: ""))
+        matchFromURL(url, call: call, tempURL: nil)
+    }
+
+    // Identify from base64-encoded media — lets the JS side hand over a video
+    // blob straight from IndexedDB without the Filesystem plugin. We write it
+    // to a temp file, run the same matcher, then delete the temp file.
+    @objc func identifyBase64(_ call: CAPPluginCall) {
+        guard let b64 = call.getString("data"), let data = Data(base64Encoded: b64) else {
+            call.reject("Missing or invalid base64 data"); return
+        }
+        let ext = call.getString("ext") ?? "mp4"
+        let tmp = URL(fileURLWithPath: NSTemporaryDirectory())
+            .appendingPathComponent("shazam-\(UUID().uuidString).\(ext)")
+        do { try data.write(to: tmp) } catch { call.reject("Failed to write temp file"); return }
+        matchFromURL(tmp, call: call, tempURL: tmp)
+    }
+
+    // Shared file→PCM→matcher path. Deletes tempURL (if any) once the audio
+    // track has been fully read into the matcher.
+    private func matchFromURL(_ url: URL, call: CAPPluginCall, tempURL: URL?) {
         savedCall = call
         session = SHSession()
         session?.delegate = self
 
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
+            defer { if let t = tempURL { try? FileManager.default.removeItem(at: t) } }
             let asset = AVURLAsset(url: url)
             guard let track = asset.tracks(withMediaType: .audio).first,
                   let reader = try? AVAssetReader(asset: asset) else {
