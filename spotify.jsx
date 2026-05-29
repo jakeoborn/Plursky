@@ -1256,6 +1256,20 @@ function _HomeMemoryThumb({ moment, onClick }) {
   );
 }
 
+// Tracks how many moments a night had the last time its recap was played or
+// dismissed, so the "recap ready" nudge only re-appears when there are NEW
+// moments since — never nags about a recap you've already seen.
+function _readRecapSeen() {
+  try { return JSON.parse(localStorage.getItem("plursky_recap_seen_v1") || "{}"); } catch { return {}; }
+}
+function _markRecapSeen(night, count) {
+  try {
+    const m = _readRecapSeen();
+    m[night] = count;
+    localStorage.setItem("plursky_recap_seen_v1", JSON.stringify(m));
+  } catch {}
+}
+
 // Home-screen "Your Memories" strip (B) — horizontal scroll of the most
 // recent captured photos/videos. Grows as the festival progresses; the
 // retention loop's front door so the rewatch surface isn't buried in Me.
@@ -1293,6 +1307,22 @@ function HomeMemoriesStrip({ state, setState }) {
     return { moments: ms, label, night };
   }, [all, recent]);
 
+  // Proactive resurfacing: a recap is "ready" when the most-recent night has
+  // enough moments to feel like a story (≥3) AND has new moments since the
+  // user last played/dismissed it. This is the retention pull from the front
+  // door — turns passive capture into an active rewatch prompt.
+  const [seen, setSeen] = React.useState(_readRecapSeen);
+  const recapReady = React.useMemo(() => {
+    if (!reelData || reelData.moments.length < 3) return null;
+    if (reelData.moments.length <= (seen[reelData.night] || 0)) return null;
+    return reelData;
+  }, [reelData, seen]);
+
+  // Playing or dismissing both record the current count so the nudge won't
+  // re-appear until there are genuinely new moments.
+  const playRecap = (data) => { _markRecapSeen(data.night, data.moments.length); setSeen(_readRecapSeen()); setReel(data); };
+  const dismissRecap = () => { if (recapReady) { _markRecapSeen(recapReady.night, recapReady.moments.length); setSeen(_readRecapSeen()); } };
+
   if (recent.length === 0) return null;
   const total = recent.length;
   const go = (night) => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "memories", memoriesNight: night, artist: null });
@@ -1311,13 +1341,43 @@ function HomeMemoriesStrip({ state, setState }) {
           onMakeVideo={() => setState({ ...state, tab: "recap", artist: null })}
         />
       )}
+      {recapReady && (() => {
+        const vids = recapReady.moments.filter(m => m.kind === "video").length;
+        return (
+          <button onClick={() => playRecap(recapReady)} style={{
+            width: "100%", display: "flex", alignItems: "center", gap: 12,
+            padding: "13px 14px", marginBottom: 14, borderRadius: 16, cursor: "pointer",
+            border: "none", textAlign: "left",
+            background: "linear-gradient(135deg, var(--ember), #7b3d9a)",
+            boxShadow: "0 6px 20px rgba(232,93,46,0.28)",
+          }}>
+            <span style={{
+              width: 42, height: 42, flexShrink: 0, borderRadius: 999,
+              background: "rgba(255,255,255,0.18)", display: "flex",
+              alignItems: "center", justifyContent: "center", fontSize: 18, color: "#fff",
+            }}>▶</span>
+            <span style={{ flex: 1, minWidth: 0 }}>
+              <span className="mono" style={{ display: "block", fontSize: 8.5, letterSpacing: 1.4, fontWeight: 800, color: "rgba(255,255,255,0.8)" }}>RECAP READY</span>
+              <span className="serif" style={{ display: "block", fontSize: 18, lineHeight: 1.1, color: "#fff", marginTop: 1 }}>Your {recapReady.label}</span>
+              <span className="mono" style={{ display: "block", fontSize: 9, letterSpacing: 0.6, color: "rgba(255,255,255,0.78)", marginTop: 3, fontWeight: 600 }}>
+                {recapReady.moments.length} MOMENTS{vids ? ` · ${vids} VIDEO${vids === 1 ? "" : "S"}` : ""} · TAP TO PLAY
+              </span>
+            </span>
+            <span onClick={(e) => { e.stopPropagation(); dismissRecap(); }} role="button" aria-label="Dismiss" style={{
+              flexShrink: 0, width: 26, height: 26, borderRadius: 999,
+              background: "rgba(0,0,0,0.18)", color: "#fff", fontSize: 12,
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}>✕</span>
+          </button>
+        );
+      })()}
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
         <div className="serif" style={{ fontSize: 22 }}>
           Your <span style={{ fontStyle: "italic", color: "var(--ember)" }}>memories</span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           {canRecap && (
-            <button onClick={() => setReel(reelData)} className="mono" style={{
+            <button onClick={() => playRecap(reelData)} className="mono" style={{
               display: "flex", alignItems: "center", gap: 5,
               background: "linear-gradient(135deg, var(--ember), #7b3d9a)",
               border: "none", borderRadius: 999, padding: "5px 11px",
