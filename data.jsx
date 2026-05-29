@@ -135,7 +135,7 @@ const FESTIVAL_CONFIG = {
   // / circuit) are DERIVED from that transform using their SVG layout
   // coordinates — they snap cleanly to the same projection so adding
   // them doesn't shift any existing math, but it gives the off-stage
-  // detector (_matchArtistForPhoto in spotify.jsx) a tight reference
+  // detector (_matchArtistForPhoto in photo-tag.jsx) a tight reference
   // point near every stage instead of only three. Threshold drops
   // 150m → 80m as a result.
   //

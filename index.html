@@ -223,18 +223,19 @@
       window.__USE_NATIVE_PICKER__ = true;
     }
   </script>
-  <script type="text/babel" src="ios-frame.jsx?v=v179"></script>
-  <script type="text/babel" src="data.jsx?v=v179"></script>
-  <script type="text/babel" src="supabase.jsx?v=v179"></script>
-  <script type="text/babel" src="chrome.jsx?v=v179"></script>
-  <script type="text/babel" src="home.jsx?v=v179"></script>
-  <script type="text/babel" src="map.jsx?v=v179"></script>
-  <script type="text/babel" src="lineup.jsx?v=v179"></script>
-  <script type="text/babel" src="artist.jsx?v=v179"></script>
-  <script type="text/babel" src="spotify-api.jsx?v=v179"></script>
-  <script type="text/babel" src="recap-engine.jsx?v=v179"></script>
-  <script type="text/babel" src="spotify.jsx?v=v179"></script>
-  <script type="text/babel" src="app.jsx?v=v179"></script>
+  <script type="text/babel" src="ios-frame.jsx?v=v180"></script>
+  <script type="text/babel" src="data.jsx?v=v180"></script>
+  <script type="text/babel" src="supabase.jsx?v=v180"></script>
+  <script type="text/babel" src="chrome.jsx?v=v180"></script>
+  <script type="text/babel" src="home.jsx?v=v180"></script>
+  <script type="text/babel" src="map.jsx?v=v180"></script>
+  <script type="text/babel" src="lineup.jsx?v=v180"></script>
+  <script type="text/babel" src="artist.jsx?v=v180"></script>
+  <script type="text/babel" src="photo-tag.jsx?v=v180"></script>
+  <script type="text/babel" src="spotify-api.jsx?v=v180"></script>
+  <script type="text/babel" src="recap-engine.jsx?v=v180"></script>
+  <script type="text/babel" src="spotify.jsx?v=v180"></script>
+  <script type="text/babel" src="app.jsx?v=v180"></script>
 
   <script>
 
@@ -266,7 +267,7 @@
               .map(k => caches.delete(k))
         )
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v179', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v180', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 
