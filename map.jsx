@@ -1635,6 +1635,9 @@ function MapScreen({ state, setState }) {
   const [rallySent, setRallySent] = React.useState(false);
   const [incomingRally, setIncomingRally] = React.useState(null);
   const dismissedRallyRef = React.useRef(new Set());
+  // "Crew gathered here": dismissed cluster signature (stageId:count) so the
+  // nudge only re-appears when the gathering grows.
+  const [clusterDismissed, setClusterDismissed] = React.useState(null);
   const clearMeet = () => { setMeetMode(false); setMeetTarget(null); setMeetGroup([]); setRallySent(false); sbClearRally(); };
   const [search, setSearch] = React.useState("");
   // Bottom search sheet (Apple Maps pattern). Tap to expand from a thin
@@ -1857,6 +1860,27 @@ function MapScreen({ state, setState }) {
         };
       }).filter(Boolean);
   }, [crewSnap, myPresId]);
+
+  // Cluster crew by stage; surface the biggest gathering (>=2) as a nudge.
+  // Serendipity layer that complements the active rally — "5 of your crew
+  // are at Kinetic" → head over. Uses real crew presence (empty in demo).
+  const crewCluster = React.useMemo(() => {
+    if (!crewFriends.length) return null;
+    const byStage = {};
+    for (const f of crewFriends) {
+      const sid = f.stageId || _nearestStageId(f.x, f.y);
+      if (!sid) continue;
+      (byStage[sid] = byStage[sid] || []).push(f);
+    }
+    let best = null;
+    for (const [sid, arr] of Object.entries(byStage)) {
+      if (arr.length >= 2 && (!best || arr.length > best.members.length)) {
+        const st = STAGES.find(s => s.id === sid);
+        if (st) best = { stage: st, members: arr };
+      }
+    }
+    return best;
+  }, [crewFriends]);
 
   // Persist shareState whenever it changes (or clear it when nulled).
   React.useEffect(() => {
@@ -2571,6 +2595,52 @@ function MapScreen({ state, setState }) {
             }}>✕</button>
           </div>
         )}
+
+        {/* "Crew gathered here" — serendipity nudge when >=2 crew share a stage */}
+        {(() => {
+          if (!crewCluster || meetMode || incomingRally) return null;
+          const sig = `${crewCluster.stage.id}:${crewCluster.members.length}`;
+          if (sig === clusterDismissed) return null;
+          const headOver = () => {
+            setMeetMode(true);
+            setMeetTarget({ x: crewCluster.stage.x, y: crewCluster.stage.y, label: crewCluster.stage.name, stageId: crewCluster.stage.id });
+            setClusterDismissed(sig);
+          };
+          return (
+            <div style={{
+              position: "absolute", top: 0, left: 0, right: 0, zIndex: 8,
+              background: "linear-gradient(135deg, #2d7a55, #1a120d)", color: "#fff",
+              padding: "10px 14px", paddingTop: "calc(10px + env(safe-area-inset-top, 0px))",
+              boxShadow: "0 4px 16px rgba(0,0,0,0.35)",
+              display: "flex", alignItems: "center", gap: 10, animation: "springIn 0.3s ease-out",
+            }}>
+              <span style={{ display: "flex", flexShrink: 0 }}>
+                {crewCluster.members.slice(0, 3).map((m, i) => (
+                  <span key={m.id} style={{
+                    width: 22, height: 22, borderRadius: 22, background: m.color || "#888",
+                    border: "2px solid #1a120d", marginLeft: i ? -7 : 0,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: 9, fontWeight: 800, color: "#fff", fontFamily: "Geist Mono, monospace",
+                  }}>{(m.name || "?")[0].toUpperCase()}</span>
+                ))}
+              </span>
+              <span style={{ flex: 1, minWidth: 0 }}>
+                <span className="mono" style={{ display: "block", fontSize: 8.5, letterSpacing: 1.3, fontWeight: 800, opacity: 0.8 }}>CREW GATHERED</span>
+                <span style={{ display: "block", fontSize: 13, fontWeight: 700, marginTop: 1, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                  {crewCluster.members.length} of your crew at {crewCluster.stage.name}
+                </span>
+              </span>
+              <button onClick={headOver} className="mono" style={{
+                background: "#fff", color: "#2d7a55", border: "none", borderRadius: 999,
+                padding: "6px 13px", cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 800, flexShrink: 0,
+              }}>HEAD OVER</button>
+              <button onClick={() => setClusterDismissed(sig)} aria-label="Dismiss" style={{
+                background: "rgba(0,0,0,0.2)", color: "#fff", border: "none", borderRadius: 999,
+                width: 26, height: 26, cursor: "pointer", fontSize: 12, flexShrink: 0,
+              }}>✕</button>
+            </div>
+          );
+        })()}
 
         {/* PLACE CARD — same visual surface as unified sheet, positioned as absolute overlay */}
         {(stage || (meetMode && meetTarget)) && (
