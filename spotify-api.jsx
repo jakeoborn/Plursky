@@ -659,6 +659,30 @@ async function _findPlurskyPlaylist(token, profileId) {
   return { error: "not_found" };
 }
 
+// Auto-create the user's "Plursky" playlist via POST. Succeeds when the app
+// has Spotify Extended Quota Mode (or the account is on the dev allowlist).
+// Development Mode 403s this — callers then fall back to asking the user to
+// create the playlist by hand, after which _findPlurskyPlaylist takes over.
+// Returns { playlist } | { error: "forbidden", status } | { error: "fetch_failed", status }
+async function _createPlurskyPlaylist(token, profileId) {
+  try {
+    const r = await fetch(`https://api.spotify.com/v1/users/${profileId}/playlists`, {
+      method: "POST",
+      headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: "Plursky",
+        description: "Your festival sets · built with Plursky · plursky.com",
+        public: false,
+      }),
+    });
+    if (r.ok) return { playlist: await r.json() };
+    if (r.status === 401 || r.status === 403) return { error: "forbidden", status: r.status };
+    return { error: "fetch_failed", status: r.status };
+  } catch {
+    return { error: "fetch_failed", status: 0 };
+  }
+}
+
 // #12 Build my playlist — push the user's saved EDC sets into their existing
 // "Plursky" Spotify playlist (created manually, see _findPlurskyPlaylist).
 // Skips artists Spotify can't find.
@@ -702,14 +726,26 @@ async function createEdcPlaylist(state, opts = {}) {
     }
     return { ok: false, reason: "create_fail", status: lookup.status, message: "Spotify lookup failed" };
   }
+  let playlist;
   if (lookup.error === "not_found" || !lookup.playlist) {
-    return {
-      ok: false,
-      reason: "no_target_playlist",
-      message: "Create empty Spotify playlist named 'Plursky' first",
-    };
+    // No existing "Plursky" playlist — try to create one automatically.
+    // Works with Extended Quota Mode / allowlisted accounts; Development Mode
+    // 403s, in which case we fall back to the manual create-it-yourself flow.
+    const created = await _createPlurskyPlaylist(token, profile.id);
+    if (created.playlist) {
+      playlist = created.playlist;
+    } else if (created.error === "forbidden") {
+      return {
+        ok: false,
+        reason: "no_target_playlist",
+        message: "Create empty Spotify playlist named 'Plursky' first",
+      };
+    } else {
+      return { ok: false, reason: "create_fail", status: created.status, message: "Couldn't create playlist" };
+    }
+  } else {
+    playlist = lookup.playlist;
   }
-  const playlist = lookup.playlist;
   try { localStorage.setItem("plursky_target_playlist_id", playlist.id); } catch {}
 
   // 2) Top tracks per saved artist, kept in day buckets for FRI→SAT→SUN ordering.
