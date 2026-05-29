@@ -104,6 +104,39 @@ async function fetchAppleMusicArtists() {
 
 function _appleMusicConfigured() { return !!APPLE_DEV_TOKEN; }
 
+// "Your Weekend Soundtrack" source — the exact songs Shazam confirmed in the
+// user's captured moments. Returns unique [{ title, artist }]. Uses the raw
+// confirmedTitle/confirmedArtist when present; falls back to parsing the
+// "Artist — Title" display string or the moment's tagged lineup artist. This
+// is the magic: the real tracks they were physically there for, not a guess.
+function _collectMomentSongs() {
+  let all = {};
+  try { all = (typeof _readMoments === "function" ? _readMoments() : (window._readMoments?.() || {})); } catch {}
+  const out = [], seen = new Set();
+  for (const arr of Object.values(all || {})) {
+    if (!Array.isArray(arr)) continue;
+    for (const m of arr) {
+      if (!m || (!m.confirmedTitle && !m.confirmedSong)) continue;
+      let title = m.confirmedTitle, artist = m.confirmedArtist;
+      if (!title && m.confirmedSong) {
+        const parts = String(m.confirmedSong).split(" — ");
+        if (parts.length >= 2) { artist = artist || parts[0]; title = parts.slice(1).join(" — "); }
+        else title = m.confirmedSong;
+      }
+      if (!artist && m.artistId) {
+        const a = (typeof ARTISTS !== "undefined" ? ARTISTS : window.ARTISTS || []).find(x => x.id === m.artistId);
+        artist = a?.name || "";
+      }
+      if (!title) continue;
+      const key = (title + "|" + (artist || "")).toLowerCase().trim();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push({ title, artist: artist || "" });
+    }
+  }
+  return out;
+}
+
 // Build an Apple Music playlist from saved/attended sets. The big win over
 // Spotify: the Apple Music API has NO Development-Mode 5-user cap and NO
 // playlist-creation block — any Apple Music subscriber can authorize and we
@@ -146,10 +179,27 @@ async function createAppleMusicPlaylist(state, opts = {}) {
     if (sr.ok) { const sj = await sr.json(); storefront = sj.data?.[0]?.id || "us"; }
   } catch {}
 
-  // Resolve each saved artist to catalog song IDs, kept in set order.
   const tracks = [];
   const seen = new Set();
   let missed = 0;
+
+  // Soundtrack mode: lead with the exact songs Shazam confirmed in your
+  // moments — the real tracks you were there for — then fill with saved sets.
+  let songsMatched = 0;
+  if (opts.soundtrack) {
+    for (const ms of _collectMomentSongs()) {
+      prog(`Finding ${ms.title}…`);
+      try {
+        const term = encodeURIComponent(`${ms.title} ${ms.artist}`.trim());
+        const r = await fetch(`https://api.music.apple.com/v1/catalog/${storefront}/search?types=songs&limit=5&term=${term}`, { headers: devHeaders });
+        if (!r.ok) continue;
+        const s = ((await r.json()).results?.songs?.data || [])[0];
+        if (s?.id && !seen.has(s.id)) { seen.add(s.id); tracks.push({ id: s.id, type: "songs" }); songsMatched++; }
+      } catch {}
+    }
+  }
+
+  // Resolve each saved artist to catalog song IDs, kept in set order.
   for (const a of sorted) {
     prog(`Finding ${a.name}…`);
     try {
@@ -181,8 +231,10 @@ async function createAppleMusicPlaylist(state, opts = {}) {
     headers: { ...userHeaders, "Content-Type": "application/json" },
     body: JSON.stringify({
       attributes: {
-        name: `${CFG.shortName || "Festival"} — Plursky`,
-        description: `${saved.length} sets · headliners deep · FRI→SAT→SUN · built with Plursky · ${dateStr}`,
+        name: opts.soundtrack ? `${CFG.shortName || "Festival"} — Your Weekend` : `${CFG.shortName || "Festival"} — Plursky`,
+        description: opts.soundtrack
+          ? `${songsMatched} song${songsMatched === 1 ? "" : "s"} you were there for + ${saved.length} sets · built with Plursky · ${dateStr}`
+          : `${saved.length} sets · headliners deep · FRI→SAT→SUN · built with Plursky · ${dateStr}`,
       },
       relationships: { tracks: { data: tracks } },
     }),
@@ -196,7 +248,7 @@ async function createAppleMusicPlaylist(state, opts = {}) {
   }
   let id = null;
   try { const j = await res.json(); id = j.data?.[0]?.id || null; } catch {}
-  return { ok: true, service: "apple", added: tracks.length, missed, id };
+  return { ok: true, service: "apple", added: tracks.length, missed, songsMatched, id };
 }
 
 // ShazamKit bridge — iOS only, auto-detects via Capacitor
@@ -926,10 +978,29 @@ async function createEdcPlaylist(state, opts = {}) {
     await Promise.all(sorted.slice(i, i + 4).map(search));
   }
 
+  // Soundtrack mode: lead with the exact tracks Shazam confirmed in your
+  // moments — the real songs you were there for — then the saved-set tracks.
+  const soundtrackUris = [];
+  let songsMatched = 0;
+  if (opts.soundtrack) {
+    for (const ms of _collectMomentSongs()) {
+      try { opts.onProgress?.(`♫ ${ms.title}`); } catch {}
+      const q = ms.artist ? `track:"${ms.title}" artist:"${ms.artist}"` : `track:"${ms.title}"`;
+      const tr = await fetchWithRetry(
+        `https://api.spotify.com/v1/search?q=${encodeURIComponent(q)}&type=track&limit=5`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      if (!tr || !tr.ok) continue;
+      const t = ((await tr.json()).tracks?.items || [])[0];
+      if (t?.uri && !seenUris.has(t.uri)) { seenUris.add(t.uri); soundtrackUris.push(t.uri); songsMatched++; }
+    }
+  }
+
   // 3) Replace existing tracks: PUT clears+sets the first batch, POST appends rest.
   //    PUT with { uris: [] } clears entirely — runs even if we have zero matched
   //    tracks, so a rebuild with no matches still empties the playlist.
   const allUris = [
+    ...soundtrackUris,
     ...(urisByDay[1] || []),
     ...(urisByDay[2] || []),
     ...(urisByDay[3] || []),
@@ -981,6 +1052,7 @@ async function createEdcPlaylist(state, opts = {}) {
     added: addedCount,
     total: sorted.length,
     missed,
+    songsMatched,
     url:   playlist.external_urls?.spotify || `https://open.spotify.com/playlist/${playlist.id}`,
     id:    playlist.id,
   };
@@ -1490,4 +1562,5 @@ Object.assign(window, {
   startSpotifyAuth, ensureSpotifyProfile, getSpotifyProfileSync,
   createEdcPlaylist, fetchPreviewUrl,
   connectAppleMusic, disconnectAppleMusic, createAppleMusicPlaylist, _appleMusicConfigured,
+  _collectMomentSongs,
 });

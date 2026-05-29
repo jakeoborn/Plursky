@@ -187,6 +187,13 @@ function SpotifyScreen({ state, setState }) {
               <BuildPlaylistButton state={state} />
             )}
             {state.saved.length > 0 && <AppleMusicPlaylistButton state={state} />}
+            {/* "Your Weekend Soundtrack" — appears once Shazam has confirmed
+                songs in your moments: the real tracks you were there for,
+                exportable to either service. */}
+            {(window._collectMomentSongs?.() || []).length > 0 && (<>
+              {connected && <BuildPlaylistButton state={state} soundtrack />}
+              <AppleMusicPlaylistButton state={state} soundtrack />
+            </>)}
             <button
               onClick={() => { if (!connected) window.plurskyHaptic?.("MEDIUM"); connected ? disconnectSpotify(setState, state) : startSpotifyAuth(); }}
               style={{
@@ -1731,7 +1738,9 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
     if (!result) { setIdState("fail"); setTimeout(() => setIdState("idle"), 2500); return; }
     setIdState("done");
     const confirmed = result.artist ? `${result.artist} — ${result.title}` : result.title;
-    onUpdate?.(m, { confirmedSong: confirmed, songSource: "video-shazam" });
+    // Keep the raw title/artist (not just the display string) so the Weekend
+    // Soundtrack can search the exact track on Spotify/Apple Music.
+    onUpdate?.(m, { confirmedSong: confirmed, confirmedTitle: result.title, confirmedArtist: result.artist || "", songSource: "video-shazam" });
     // Cross-check: does the recognized artist contradict the photo's tag?
     const matchedArtist = _lineupArtistFromShazam(result.artist);
     if (matchedArtist && matchedArtist.id !== m.artistId) setMismatch(matchedArtist);
@@ -4499,7 +4508,7 @@ function FollowedNudge({ state, setState }) {
   );
 }
 
-function BuildPlaylistButton({ state }) {
+function BuildPlaylistButton({ state, soundtrack }) {
   const [status, setStatus] = React.useState("idle"); // idle | working | done | err
   const [result, setResult] = React.useState(null);
   const [buildProgress, setBuildProgress] = React.useState("");
@@ -4508,7 +4517,7 @@ function BuildPlaylistButton({ state }) {
     setStatus("working");
     setBuildProgress("");
     try {
-      const r = await createEdcPlaylist(state, { onProgress: (msg) => setBuildProgress(msg) });
+      const r = await createEdcPlaylist(state, { soundtrack, onProgress: (msg) => setBuildProgress(msg) });
       setResult(r);
       if (r.ok) {
         setStatus("done");
@@ -4561,9 +4570,9 @@ function BuildPlaylistButton({ state }) {
   if (status === "working") {
     label = buildProgress ? `BUILDING · ${buildProgress}` : "BUILDING…";
   } else if (status === "done") {
-    const missed = result?.missed || 0;
-    label = missed > 0
-      ? `✓ ${result?.added} TRACKS (${missed} not on Spotify) — OPEN ↗`
+    const sm = result?.songsMatched || 0;
+    label = soundtrack && sm > 0
+      ? `✓ ${sm} OF YOUR SONGS + ${result?.added - sm} MORE — OPEN ↗`
       : `✓ ${result?.added} TRACKS · FRI→SAT→SUN — OPEN ↗`;
     bg = "#1DB954"; color = "#000"; border = "none";
   } else if (status === "err") {
@@ -4577,7 +4586,7 @@ function BuildPlaylistButton({ state }) {
     } else label = "✕ TRY AGAIN";
     bg = "rgba(248,113,113,0.18)"; color = "#fecaca"; border = "1px solid #f87171";
   } else {
-    label = "BUILD MY PLAYLIST";
+    label = soundtrack ? "🎵 SOUNDTRACK → SPOTIFY" : "BUILD MY PLAYLIST";
   }
 
   return (
@@ -4595,7 +4604,7 @@ function BuildPlaylistButton({ state }) {
 // has no Dev-Mode user cap or creation block, so this is the unblocked path.
 // Renders nothing until APPLE_DEV_TOKEN is configured (see spotify-api.jsx),
 // so it's invisible until Apple Music is wired up.
-function AppleMusicPlaylistButton({ state }) {
+function AppleMusicPlaylistButton({ state, soundtrack }) {
   const [status, setStatus] = React.useState("idle"); // idle | working | done | err
   const [result, setResult] = React.useState(null);
   const [prog, setProg]     = React.useState("");
@@ -4604,7 +4613,7 @@ function AppleMusicPlaylistButton({ state }) {
   const run = async () => {
     setStatus("working"); setProg("");
     try {
-      const r = await createAppleMusicPlaylist(state, { onProgress: setProg });
+      const r = await createAppleMusicPlaylist(state, { soundtrack, onProgress: setProg });
       setResult(r);
       setStatus(r.ok ? "done" : "err");
       if (!r.ok && r.reason !== "not_connected") setTimeout(() => setStatus("idle"), 4500);
@@ -4619,8 +4628,10 @@ function AppleMusicPlaylistButton({ state }) {
   if (status === "working") {
     label = prog ? `BUILDING · ${prog}` : "BUILDING…";
   } else if (status === "done") {
-    const missed = result?.missed || 0;
-    label = missed > 0 ? `✓ ${result?.added} TRACKS (${missed} not found)` : `✓ ${result?.added} TRACKS IN APPLE MUSIC`;
+    const sm = result?.songsMatched || 0;
+    label = soundtrack && sm > 0
+      ? `✓ ${sm} OF YOUR SONGS + ${result?.added - sm} MORE`
+      : `✓ ${result?.added} TRACKS IN APPLE MUSIC`;
     bg = "#fa2d5a"; color = "#fff"; border = "none";
   } else if (status === "err") {
     if (result?.reason === "not_connected") label = "↻ TAP TO CONNECT APPLE MUSIC";
@@ -4629,7 +4640,7 @@ function AppleMusicPlaylistButton({ state }) {
     else label = `✕ ${result?.status || ""} TRY AGAIN`;
     bg = "rgba(248,113,113,0.18)"; color = "#fecaca"; border = "1px solid #f87171";
   } else {
-    label = "BUILD APPLE MUSIC PLAYLIST";
+    label = soundtrack ? "🎵 SOUNDTRACK → APPLE MUSIC" : "BUILD APPLE MUSIC PLAYLIST";
   }
 
   return (
