@@ -3294,6 +3294,47 @@ function MemoryStory({ allMoments, state, setState, onOpenLightbox, onPlayReel }
   );
 }
 
+// A++ default lens: a dense, scannable photo grid of every moment (newest
+// first) — the view people expect from a "memories" tab (Apple/Google Photos,
+// Retro, Snapchat). Tap a tile → full-screen lightbox.
+function _GridTile({ moment, onClick }) {
+  const url = useMomentPhoto(moment.photoId);
+  const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
+  return (
+    <button onClick={onClick} style={{
+      position: "relative", aspectRatio: "1 / 1", borderRadius: 10, overflow: "hidden",
+      border: "1px solid var(--line)", background: url ? "#000" : "var(--paper-2)",
+      padding: 0, cursor: "pointer",
+    }}>
+      {url ? (moment.kind === "video"
+        ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
+        : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
+      ) : <div className="skel" style={{ width: "100%", height: "100%" }}/>}
+      {moment.kind === "video" && <_VideoBadge seconds={moment.duration} style={{ position: "absolute", top: 5, right: 5 }}/>}
+      <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, background: "linear-gradient(0deg, rgba(0,0,0,0.8), transparent)", padding: "16px 6px 5px" }}>
+        <div className="mono" style={{ fontSize: 7.5, letterSpacing: 0.5, color: artist ? "#fff" : "rgba(255,255,255,0.7)", fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+          {artist ? artist.name.toUpperCase() : "+ TAP TO TAG"}
+        </div>
+      </div>
+    </button>
+  );
+}
+
+function MemoryGrid({ allMoments, onOpenLightbox }) {
+  const sorted = React.useMemo(() =>
+    allMoments.filter(m => m.photoId).slice().sort((a, b) => {
+      const ta = a.takenAt || "", tb = b.takenAt || "";
+      if (ta && tb) return tb.localeCompare(ta);
+      return (b.createdAt || 0) - (a.createdAt || 0);
+    }), [allMoments]);
+  if (!sorted.length) return null;
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6, marginTop: 4 }}>
+      {sorted.map((m, i) => <_GridTile key={m.id} moment={m} onClick={() => onOpenLightbox(sorted, i)} />)}
+    </div>
+  );
+}
+
 function MemoriesScreen({ state, setState }) {
   const [all, setAll] = React.useState(_readMoments);
   const [adding, setAdding] = React.useState(null); // night number being added to, or null
@@ -3546,9 +3587,9 @@ function MemoriesScreen({ state, setState }) {
   const [view, setView] = React.useState(() => {
     try {
       const v = localStorage.getItem("plursky_memories_view_v1");
-      if (v === "story" || v === "night" || v === "artist" || v === "stage") return v;
+      if (["grid", "story", "night", "artist", "stage"].includes(v)) return v;
     } catch {}
-    return "story";
+    return "grid";
   });
   React.useEffect(() => {
     try { localStorage.setItem("plursky_memories_view_v1", view); } catch {}
@@ -3589,20 +3630,14 @@ function MemoriesScreen({ state, setState }) {
           onMakeVideo={() => setState(s => ({ ...s, tab: "recap", artist: null }))}
         />
       )}
-      <div style={{ padding: "8px 20px", display: "flex", alignItems: "center", gap: 10 }}>
-        <button onClick={() => window._popNav ? window._popNav() : setState(s => ({ ...s, tab: "me" }))} aria-label="Back" style={{
-          background: "transparent", border: "none", padding: 0, cursor: "pointer",
-          fontSize: 22, color: "var(--ink)", lineHeight: 1,
-          width: 30, height: 30, display: "flex", alignItems: "center", justifyContent: "center",
-          flexShrink: 0,
-        }}>←</button>
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <TopBar
-            title={<span>Memories</span>}
-            sub={`${totalCount} ${totalCount === 1 ? "MOMENT" : "MOMENTS"} · ${FESTIVAL_CONFIG.shortName.toUpperCase()}`}
-            tight
-          />
-        </div>
+      {/* Memories is a root bottom-nav tab — no back arrow (that read as a
+          sub-screen). The tab bar is the way out. */}
+      <div style={{ padding: "8px 20px" }}>
+        <TopBar
+          title={<span>Memories</span>}
+          sub={`${totalCount} ${totalCount === 1 ? "MOMENT" : "MOMENTS"} · ${FESTIVAL_CONFIG.shortName.toUpperCase()}`}
+          tight
+        />
       </div>
       <ScrollBody style={{ padding: "0 20px 94px" }}>
         {/* v135 batch import — auto-tags each photo by EXIF time + GPS,
@@ -3677,6 +3712,7 @@ function MemoriesScreen({ state, setState }) {
           border: "1px solid var(--line)",
         }}>
           {[
+            { id: "grid",   label: "GRID" },
             { id: "story",  label: "STORY" },
             { id: "night",  label: "NIGHT" },
             { id: "artist", label: "ARTIST" },
@@ -3694,6 +3730,7 @@ function MemoriesScreen({ state, setState }) {
             );
           })}
         </div>
+        {view === "grid" && <MemoryGrid allMoments={allMoments} onOpenLightbox={openLightbox} />}
         {view === "story" && <MemoryStory allMoments={allMoments} state={state} setState={setState} onOpenLightbox={openLightbox} onPlayReel={playReel} />}
         {view === "artist" && _renderByGroup({
           allMoments,
