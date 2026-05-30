@@ -1160,8 +1160,9 @@ function LineupScreen({ state, setState }) {
                   </div>
                 )}
               </div>
-              <button onClick={() => toggleSave(state, setState, a.id)} style={{
-                width: 36, height: 36, borderRadius: 36,
+              <button onClick={() => toggleSave(state, setState, a.id)}
+                aria-label={saved ? `Unsave ${a.name}` : `Save ${a.name}`} aria-pressed={saved} style={{
+                width: 44, height: 44, borderRadius: 44, flexShrink: 0,
                 background: saved ? "var(--ember)" : "transparent",
                 border: saved ? "none" : "1px solid var(--line-2)",
                 color: saved ? "#fff" : "var(--ink)",
@@ -2213,11 +2214,13 @@ async function shareLineupImage(state) {
   ctx.font = 'italic 26px "Instrument Serif", serif';
   ctx.fillText("Three nights under the electric sky", W / 2, H - 70);
 
-  // Export
+  // Export — filename derives from the ACTIVE festival (was hardcoded to EDC,
+  // which exported the wrong brand for ACL + every future festival).
+  const fname = `my-${(FESTIVAL_CONFIG.id || FESTIVAL_CONFIG.shortName || "festival").toLowerCase().replace(/[^a-z0-9]+/g, "-")}.png`;
   return new Promise((resolve) => {
     cv.toBlob(async (blob) => {
       if (!blob) { resolve({ ok: false, reason: "encode_fail" }); return; }
-      const file = new File([blob], "my-edc-2026.png", { type: "image/png" });
+      const file = new File([blob], fname, { type: "image/png" });
       // Try Web Share API w/ files first (iOS 15+, Android Chrome)
       if (navigator.canShare?.({ files: [file] }) && navigator.share) {
         try {
@@ -2232,7 +2235,7 @@ async function shareLineupImage(state) {
       // Fallback: trigger download
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
-      link.href = url; link.download = "my-edc-2026.png";
+      link.href = url; link.download = fname;
       document.body.appendChild(link); link.click(); document.body.removeChild(link);
       setTimeout(() => URL.revokeObjectURL(url), 1500);
       resolve({ ok: true, mode: "download" });

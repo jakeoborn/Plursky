@@ -4354,7 +4354,7 @@ function MeScreen({ state, setState }) {
             { key: "memories", label: "MEMORIES", count: _countMoments(), icon: "◐",
               onClick: () => setState(s => ({ ...s, tab: "memories" })) },
             { key: "crew",     label: "CREW",     count: crewCount,   icon: "☷",
-              onClick: () => alert("See Crew below") },
+              onClick: () => document.getElementById("plursky-crew-anchor")?.scrollIntoView({ behavior: "smooth", block: "start" }) },
             { key: "badges",   label: "BADGES",   count: badgesEarnedCount, icon: "✦",
               onClick: () => {
                 document.getElementById("plursky-badges-anchor")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -4516,7 +4516,7 @@ function MeScreen({ state, setState }) {
               <div style={{ marginBottom: 14 }}>
                 <FriendsCard state={state} setState={setState} />
               </div>
-              <div style={{ marginBottom: 14 }}>
+              <div id="plursky-crew-anchor" style={{ marginBottom: 14, scrollMarginTop: 12 }}>
                 <CrewCard state={state} />
               </div>
               <AccountCard state={state} setState={setState} />

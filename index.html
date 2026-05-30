@@ -53,7 +53,7 @@
     --sky:#6f8fb8;
     --line:rgba(26,18,13,0.12);
     --line-2:rgba(26,18,13,0.22);
-    --muted:rgba(26,18,13,0.55);
+    --muted:rgba(26,18,13,0.68);
     --success:#2d7a55;
     /* ── Type scale (4-tier) ── */
     --fs-label-s:8px; --fs-label:9px; --fs-label-l:10px;
@@ -69,10 +69,10 @@
     --ease-smooth:cubic-bezier(0.22,0.61,0.36,1);
   }
   /* ── Night-aware theme (festival hours) ── */
-  .theme-sunset{--ink:#1a120d;--paper:#f5e6d0;--paper-2:#e8d4b8;--line:rgba(26,18,13,0.14);--line-2:rgba(26,18,13,0.24);--muted:rgba(26,18,13,0.6)}
-  .theme-night{--ink:#f0e6d8;--paper:#0d0a14;--paper-2:#1a1030;--line:rgba(240,230,216,0.1);--line-2:rgba(240,230,216,0.18);--muted:rgba(240,230,216,0.5);--dune:#3d2e5c}
+  .theme-sunset{--ink:#1a120d;--paper:#f5e6d0;--paper-2:#e8d4b8;--line:rgba(26,18,13,0.14);--line-2:rgba(26,18,13,0.24);--muted:rgba(26,18,13,0.68)}
+  .theme-night{--ink:#f0e6d8;--paper:#0d0a14;--paper-2:#1a1030;--line:rgba(240,230,216,0.1);--line-2:rgba(240,230,216,0.18);--muted:rgba(240,230,216,0.62);--dune:#3d2e5c}
   .theme-night html,.theme-night body{background:#0d0a14;color:#f0e6d8}
-  .theme-dawn{--ink:#1a120d;--paper:#f0e0f0;--paper-2:#e0d0e8;--line:rgba(26,18,13,0.12);--line-2:rgba(26,18,13,0.2);--muted:rgba(26,18,13,0.5);--horizon:#9b5dba}
+  .theme-dawn{--ink:#1a120d;--paper:#f0e0f0;--paper-2:#e0d0e8;--line:rgba(26,18,13,0.12);--line-2:rgba(26,18,13,0.2);--muted:rgba(26,18,13,0.62);--horizon:#9b5dba}
   button { transition: opacity 0.1s ease; }
   @keyframes totem-pulse{0%,100%{box-shadow:0 0 0 0 rgba(109,40,217,0.4);transform:scale(1)}50%{box-shadow:0 0 12px 4px rgba(109,40,217,0.25);transform:scale(1.06)}}
   @keyframes song-ripple {
@@ -223,19 +223,19 @@
       window.__USE_NATIVE_PICKER__ = true;
     }
   </script>
-  <script type="text/babel" src="ios-frame.jsx?v=v194"></script>
-  <script type="text/babel" src="data.jsx?v=v194"></script>
-  <script type="text/babel" src="supabase.jsx?v=v194"></script>
-  <script type="text/babel" src="chrome.jsx?v=v194"></script>
-  <script type="text/babel" src="home.jsx?v=v194"></script>
-  <script type="text/babel" src="map.jsx?v=v194"></script>
-  <script type="text/babel" src="lineup.jsx?v=v194"></script>
-  <script type="text/babel" src="artist.jsx?v=v194"></script>
-  <script type="text/babel" src="photo-tag.jsx?v=v194"></script>
-  <script type="text/babel" src="spotify-api.jsx?v=v194"></script>
-  <script type="text/babel" src="recap-engine.jsx?v=v194"></script>
-  <script type="text/babel" src="spotify.jsx?v=v194"></script>
-  <script type="text/babel" src="app.jsx?v=v194"></script>
+  <script type="text/babel" src="ios-frame.jsx?v=v195"></script>
+  <script type="text/babel" src="data.jsx?v=v195"></script>
+  <script type="text/babel" src="supabase.jsx?v=v195"></script>
+  <script type="text/babel" src="chrome.jsx?v=v195"></script>
+  <script type="text/babel" src="home.jsx?v=v195"></script>
+  <script type="text/babel" src="map.jsx?v=v195"></script>
+  <script type="text/babel" src="lineup.jsx?v=v195"></script>
+  <script type="text/babel" src="artist.jsx?v=v195"></script>
+  <script type="text/babel" src="photo-tag.jsx?v=v195"></script>
+  <script type="text/babel" src="spotify-api.jsx?v=v195"></script>
+  <script type="text/babel" src="recap-engine.jsx?v=v195"></script>
+  <script type="text/babel" src="spotify.jsx?v=v195"></script>
+  <script type="text/babel" src="app.jsx?v=v195"></script>
 
   <script>
 
@@ -267,7 +267,7 @@
               .map(k => caches.delete(k))
         )
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v194', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v195', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 

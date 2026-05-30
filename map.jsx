@@ -2180,6 +2180,22 @@ function MapScreen({ state, setState }) {
           </div>
         )}
 
+        {/* #6 Persistent live-sharing badge — sharing state is the trust
+            backbone of the crew moat, so it's unmissable + one tap to stop
+            (was buried in the overflow menu / a fumbleable GPS icon). */}
+        {isSharing && (
+          <button onClick={() => setShareState(null)} aria-label="Stop sharing your location" style={{
+            position: "absolute", top: 46, left: "50%", transform: "translateX(-50%)",
+            zIndex: 6, display: "flex", alignItems: "center", gap: 7,
+            padding: "5px 12px", borderRadius: 999, cursor: "pointer", border: "none",
+            background: "rgba(45,122,85,0.96)", color: "#fff",
+            boxShadow: "0 2px 10px rgba(0,0,0,0.35)", backdropFilter: "blur(8px)",
+          }}>
+            <span style={{ width: 7, height: 7, borderRadius: 7, background: "#fff", animation: "pulse 1.6s infinite" }}/>
+            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 800 }}>SHARING · TAP TO STOP</span>
+          </button>
+        )}
+
         {/* Off-site demo pill — top-center near GPS denied; clarifies we're showing demo data */}
         {liveAvatar?.offSite && !(gpsLive && gpsStatus === "denied") && (
           <div style={{
