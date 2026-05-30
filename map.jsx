@@ -1967,12 +1967,34 @@ function MapScreen({ state, setState }) {
   // Search matches stages AND artists. Artist rows surface as
   // "Artist → stage", and tapping focuses that performer's stage on the map.
   const searchQuery = search.trim().toLowerCase();
-  const stageMatches = searchQuery
-    ? STAGES.filter(s => s.name.toLowerCase().includes(searchQuery))
-    : [];
-  const artistMatches = searchQuery
-    ? ARTISTS.filter(a => a.name.toLowerCase().includes(searchQuery)).slice(0, 16)
-    : [];
+  // Relevance score so "mar" surfaces "Marshmello" above "Armin van…" etc.
+  // exact > prefix > word-start > substring, with a small tier tiebreak so
+  // headliners win ties. (report-card #7)
+  const _relevance = (name, term) => {
+    const n = name.toLowerCase();
+    if (n === term) return 100;
+    if (n.startsWith(term)) return 80;
+    if (n.split(/\s+/).some(w => w.startsWith(term))) return 60;
+    if (n.includes(term)) return 40;
+    return 0;
+  };
+  const stageMatches = React.useMemo(() => {
+    if (!searchQuery) return [];
+    return STAGES
+      .map(s => ({ s, score: _relevance(s.name, searchQuery) }))
+      .filter(x => x.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .map(x => x.s);
+  }, [searchQuery]);
+  const artistMatches = React.useMemo(() => {
+    if (!searchQuery) return [];
+    return ARTISTS
+      .map(a => ({ a, score: _relevance(a.name, searchQuery) }))
+      .filter(x => x.score > 0)
+      .sort((x, y) => (y.score - x.score) || ((y.a.tier || 0) - (x.a.tier || 0)))
+      .slice(0, 16)
+      .map(x => x.a);
+  }, [searchQuery]);
 
   // Click on map → drop meet pin
   const handleMapClick = (e) => {
@@ -2341,28 +2363,39 @@ function MapScreen({ state, setState }) {
               {search && (
                 <div style={{ overflowY: "auto", padding: "0 8px 10px", flex: 1 }}>
                   <div style={{ background: "var(--paper-2)", borderRadius: 10 }}>
-                    {stageMatches.map((s, si) => (
+                    {stageMatches.length > 0 && (
+                      <div className="mono" style={{ padding: "8px 12px 4px", fontSize: 9, letterSpacing: 1.4, color: "var(--muted)" }}>STAGES</div>
+                    )}
+                    {stageMatches.map((s) => (
                       <button key={`stage-${s.id}`} onClick={() => { setSelectedStage(s.id); setSearch(""); setSearchSheetExpanded(false); }} style={{
-                        width: "100%", display: "flex", alignItems: "center", gap: 8, padding: "8px 12px",
+                        width: "100%", display: "flex", alignItems: "center", gap: 8, padding: "10px 12px",
                         background: "transparent", border: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer",
                         borderRadius: 10,
-                        animation: `springIn 0.3s ease-out ${si * 30}ms both`,
                       }}>
                         <span style={{ width: 8, height: 8, borderRadius: 8, background: s.color, boxShadow: `0 0 6px ${s.color}` }}/>
                         <span style={{ fontFamily: "Geist, sans-serif", fontSize: 13 }}>{s.name}</span>
                       </button>
                     ))}
-                    {artistMatches.map((a, ai) => {
+                    {artistMatches.length > 0 && (
+                      <div className="mono" style={{ padding: "8px 12px 4px", fontSize: 9, letterSpacing: 1.4, color: "var(--muted)" }}>ARTISTS</div>
+                    )}
+                    {artistMatches.map((a) => {
                       const st = STAGES.find(s => s.id === a.stage);
+                      const isSaved = state.saved.includes(a.id);
+                      const when = a.start ? `${a.start}${a.day ? ` · D${a.day}` : ""}` : "";
                       return (
                         <button key={`artist-${a.id}`} onClick={() => { setSelectedStage(a.stage); setSearch(""); setSearchSheetExpanded(false); }} style={{
-                          width: "100%", display: "flex", alignItems: "center", gap: 8, padding: "8px 12px",
+                          width: "100%", display: "flex", alignItems: "center", gap: 8, padding: "10px 12px",
                           background: "transparent", border: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer",
                           borderRadius: 10,
-                          animation: `springIn 0.3s ease-out ${(stageMatches.length + ai) * 30}ms both`,
                         }}>
-                          <span style={{ width: 8, height: 8, borderRadius: 8, background: st?.color || "var(--muted)" }}/>
-                          <span style={{ fontFamily: "Geist, sans-serif", fontSize: 13, flex: 1, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</span>
+                          <span style={{ width: 8, height: 8, borderRadius: 8, background: st?.color || "var(--muted)", flexShrink: 0 }}/>
+                          <span style={{ display: "flex", flexDirection: "column", flex: 1, minWidth: 0, gap: 1 }}>
+                            <span style={{ fontFamily: "Geist, sans-serif", fontSize: 13, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                              {isSaved && <span style={{ color: "var(--ember)", marginRight: 4 }}>★</span>}{a.name}
+                            </span>
+                            {when && <span className="mono" style={{ fontSize: 9, letterSpacing: 0.5, color: "var(--muted)" }}>{when}</span>}
+                          </span>
                           <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", flexShrink: 0 }}>
                             → {st?.short || st?.name || ""}
                           </span>
@@ -2370,8 +2403,9 @@ function MapScreen({ state, setState }) {
                       );
                     })}
                     {stageMatches.length === 0 && artistMatches.length === 0 && (
-                      <div style={{ padding: "12px 14px", fontSize: 12, color: "var(--muted)", fontStyle: "italic" }}>
-                        No matches for "{search}"
+                      <div style={{ padding: "18px 14px", textAlign: "center" }}>
+                        <div style={{ fontSize: 13, color: "var(--ink)", marginBottom: 4 }}>No matches for "{search}"</div>
+                        <div style={{ fontSize: 11, color: "var(--muted)" }}>Try an artist name, a stage, or a genre.</div>
                       </div>
                     )}
                   </div>

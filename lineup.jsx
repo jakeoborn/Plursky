@@ -537,6 +537,7 @@ function LineupScreen({ state, setState }) {
   const [genreFilter, setGenreFilter] = React.useState("all");
   const hasWeekends = ARTISTS.some(a => a.weekend && a.weekend !== "both");
   const [weekendFilter, setWeekendFilter] = React.useState("all"); // all | W1 | W2
+  const [q, setQ] = React.useState(""); // artist/stage/genre search
 
   // After the screen renders, scroll the highlighted card/block into view and
   // let the CSS flash play. Then clear the highlight so re-mounts don't fire
@@ -619,47 +620,64 @@ function LineupScreen({ state, setState }) {
       .map(([g]) => g);
   }, [day]);
 
-  const dayArtists = ARTISTS
-    .filter(a => a.day === day)
-    .filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both")
-    .filter(a => filter === "all" || state.saved.includes(a.id))
-    .filter(a => stageFilter === "all" || a.stage === stageFilter)
-    .filter(a => genreFilter === "all" || a.genre === genreFilter)
-    .filter(a => {
-      if (tierFilter === "all") return true;
-      if (tierFilter === "head") return a.tier === 3;
-      if (tierFilter === "prime") return a.tier === 2;
-      if (tierFilter === "open") return a.tier === 1;
-      if (tierFilter === "legend") return isLegendary(a);
-      return true;
-    })
-    .sort((a, b) => {
-      // EDC runs 19:00→05:00 — treat early AM as "next day" (hour + 24)
-      const toSlot = t => { const h = parseInt(t.split(":")[0]); return h < 8 ? h + 24 : h; };
-      // Apply sort: time (default) | tier (headliners first, then time) | stage (group by stage)
-      if (sortBy === "tier") {
-        if (a.tier !== b.tier) return b.tier - a.tier;
-      } else if (sortBy === "stage") {
-        const ai = STAGES.findIndex(s => s.id === a.stage);
-        const bi = STAGES.findIndex(s => s.id === b.stage);
-        if (ai !== bi) return ai - bi;
-      }
-      return toSlot(a.start) - toSlot(b.start);
-    });
+  // Memoized so the 6-filter chain + sort only recomputes when an input
+  // actually changes — was rebuilding over all 400+ artists on every render
+  // (perf jank on older phones, report-card #8). Search (#3) folds in here.
+  const savedSetIds = React.useMemo(() => new Set(state.saved), [state.saved]);
+  const dayArtists = React.useMemo(() => {
+    const term = q.trim().toLowerCase();
+    return ARTISTS
+      .filter(a => a.day === day)
+      .filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both")
+      .filter(a => filter === "all" || savedSetIds.has(a.id))
+      .filter(a => stageFilter === "all" || a.stage === stageFilter)
+      .filter(a => genreFilter === "all" || a.genre === genreFilter)
+      .filter(a => {
+        if (tierFilter === "all") return true;
+        if (tierFilter === "head") return a.tier === 3;
+        if (tierFilter === "prime") return a.tier === 2;
+        if (tierFilter === "open") return a.tier === 1;
+        if (tierFilter === "legend") return isLegendary(a);
+        return true;
+      })
+      .filter(a => {
+        if (!term) return true;
+        const st = STAGES.find(s => s.id === a.stage);
+        return a.name.toLowerCase().includes(term)
+          || (a.genre || "").toLowerCase().includes(term)
+          || (st?.name || "").toLowerCase().includes(term);
+      })
+      .sort((a, b) => {
+        // EDC runs 19:00→05:00 — treat early AM as "next day" (hour + 24)
+        const toSlot = t => { const h = parseInt(t.split(":")[0]); return h < 8 ? h + 24 : h; };
+        if (sortBy === "tier") {
+          if (a.tier !== b.tier) return b.tier - a.tier;
+        } else if (sortBy === "stage") {
+          const ai = STAGES.findIndex(s => s.id === a.stage);
+          const bi = STAGES.findIndex(s => s.id === b.stage);
+          if (ai !== bi) return ai - bi;
+        }
+        return toSlot(a.start) - toSlot(b.start);
+      });
+  }, [day, weekendFilter, filter, stageFilter, genreFilter, tierFilter, sortBy, q, savedSetIds]);
 
-  // Per-day saved counts + conflict counts for the 3-day overview ribbon.
-  const dayStats = DAYS.map(d => {
-    const savedThisDay = ARTISTS.filter(x => x.day === d.n && state.saved.includes(x.id));
+  // Per-day saved counts + conflict counts — memoized on saved only (was an
+  // O(n²)-per-day overlap loop on every render, report-card #8).
+  const dayStats = React.useMemo(() => DAYS.map(d => {
+    const savedThisDay = ARTISTS.filter(x => x.day === d.n && savedSetIds.has(x.id));
     let clashes = 0;
     for (let i = 0; i < savedThisDay.length; i++)
       for (let j = i + 1; j < savedThisDay.length; j++)
         if (overlaps(savedThisDay[i], savedThisDay[j])) clashes++;
     return { ...d, count: savedThisDay.length, clashes };
-  });
-  const totalSaved = dayStats.reduce((s, d) => s + d.count, 0);
+  }), [savedSetIds]);
+  const totalSaved = React.useMemo(() => dayStats.reduce((s, d) => s + d.count, 0), [dayStats]);
 
   // conflicts: 2+ saved sets overlap in time
-  const savedToday = ARTISTS.filter(a => a.day === day && state.saved.includes(a.id));
+  const savedToday = React.useMemo(
+    () => ARTISTS.filter(a => a.day === day && savedSetIds.has(a.id)),
+    [day, savedSetIds]
+  );
   // v141: pairs the user has explicitly "kept both" on — we still show them
   // as conflicts in the per-card ⚠ chip (information stays available) but
   // skip them in the top-level ConflictResolver card so it stops nagging.
@@ -677,25 +695,29 @@ function LineupScreen({ state, setState }) {
       return next;
     });
   };
-  const conflicts = [];
   // conflictById: artist.id → array of saved set names this artist clashes with.
   // Powers the per-card ⚠ chip so users can spot WHICH saved sets clash, not
-  // just the day-tab total.
-  const conflictById = {};
-  for (let i = 0; i < savedToday.length; i++) {
-    for (let j = i + 1; j < savedToday.length; j++) {
-      if (overlaps(savedToday[i], savedToday[j])) {
-        const a = savedToday[i], b = savedToday[j];
-        if (!ackedPairs.has(_pairKey(a.id, b.id))) {
-          conflicts.push([a, b]);
+  // just the day-tab total. Memoized — was an O(n²) overlap loop on every
+  // render (report-card #8); now only recomputes when saved/day/acks change.
+  const { conflicts, conflictById } = React.useMemo(() => {
+    const _conflicts = [];
+    const _byId = {};
+    for (let i = 0; i < savedToday.length; i++) {
+      for (let j = i + 1; j < savedToday.length; j++) {
+        if (overlaps(savedToday[i], savedToday[j])) {
+          const a = savedToday[i], b = savedToday[j];
+          if (!ackedPairs.has(_pairKey(a.id, b.id))) {
+            _conflicts.push([a, b]);
+          }
+          // Per-card chip stays even after KEEP BOTH so the warning info
+          // doesn't disappear — the only thing that hides is the resolver card.
+          (_byId[a.id] = _byId[a.id] || []).push(b.name);
+          (_byId[b.id] = _byId[b.id] || []).push(a.name);
         }
-        // Per-card chip stays even after KEEP BOTH so the warning info
-        // doesn't disappear — the only thing that hides is the resolver card.
-        (conflictById[a.id] = conflictById[a.id] || []).push(b.name);
-        (conflictById[b.id] = conflictById[b.id] || []).push(a.name);
       }
     }
-  }
+    return { conflicts: _conflicts, conflictById: _byId };
+  }, [savedToday, ackedPairs]);
 
   return (
     <Screen bg="var(--paper)">
@@ -833,6 +855,42 @@ function LineupScreen({ state, setState }) {
             whiteSpace: "nowrap",
           }}>SORT: {sortBy.toUpperCase()}</span>
         )}
+      </div>
+
+      {/* Search row (#3) — sticky under the toolbar; matches artist, stage, or
+          genre. Works in both LIST and GRID. Empty out → full lineup returns. */}
+      <div style={{ padding: "8px 16px 4px" }}>
+        <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
+          <span aria-hidden="true" style={{
+            position: "absolute", left: 12, fontSize: 13, color: "var(--muted)",
+            pointerEvents: "none",
+          }}>⌕</span>
+          <input
+            value={q}
+            onChange={e => setQ(e.target.value)}
+            placeholder="Search artists, stages, genres…"
+            aria-label="Search the lineup"
+            style={{
+              width: "100%", boxSizing: "border-box",
+              padding: "9px 34px 9px 32px", borderRadius: 12,
+              border: "1px solid var(--line-2)", background: "var(--paper-2)",
+              color: "var(--ink)", fontSize: 14, outline: "none",
+              fontFamily: "inherit",
+            }}
+          />
+          {q && (
+            <button
+              onClick={() => setQ("")}
+              aria-label="Clear search"
+              style={{
+                position: "absolute", right: 6, width: 28, height: 28,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                borderRadius: 999, border: "none", background: "transparent",
+                color: "var(--muted)", fontSize: 16, cursor: "pointer",
+              }}
+            >×</button>
+          )}
+        </div>
       </div>
 
       {/* Actions row — MY NIGHT / SHARE / SURPRISE / SETS COUNT.
