@@ -12,19 +12,25 @@ unmemoized/unvirtualized renders. Prioritized:
 
 1. ✅ **Memories metadata → Supabase backup** (97a8f01).
 2. ✅ **Daylight contrast** (b35151b) — raised --muted across all 4 themes (AA). (Per-surface Recap-hero/place-card pixel polish still optional.)
-3. ⬜ **Lineup artist search** (M) — biggest discovery gap (3 judges).
+3. ✅ **Lineup artist search** (3b… v196) — sticky search bar (artist/stage/genre) in LIST + GRID, clearable.
 4. ⬜ **Redesign Map place card** (M) — 9px mono → metadata grid + Go Here/Save CTA.
 5. ✅ **Hardcoded `my-edc-2026.png` export → dynamic** (b35151b). (Stale tier cache still open.)
 6. ✅ **Persistent 'SHARING · TAP TO STOP' badge** (b35151b).
-7. ⬜ **Rank + enrich Map search** (M); drop fake-hierarchy stagger.
-8. ⬜ **Memoize Lineup filter chain + kill O(n²) conflict loop** (M) — jank on old phones.
-9. ⬜ **Virtualize Memories lists** + fix leaked video URLs / paused RAF (M).
+7. ✅ **Rank + enrich Map search** (v196) — relevance ranking (exact>prefix>word-start>substring + tier tiebreak), rows show set time/day/★saved, STAGES/ARTISTS headers, friendly empty state; stagger dropped.
+8. ✅ **Memoize Lineup filter chain + kill O(n²) conflict loop** (v196) — dayArtists/dayStats/savedToday/conflicts all useMemo'd over a Set-based saved lookup.
+9. ⬜ **Virtualize Memories lists** + fix leaked video URLs / paused RAF (M) — **next biggest perf win**.
 10. ✅ **Crew cell alert() → smooth scroll** (b35151b). (Dead Badges anchor already worked.)
 11. 🟡 **Lineup save UX** — 44×44 target + aria DONE (b35151b); 3s undo toast + long-press feedback still open.
 12. 🟡 **A11y sweep** — save button + sharing badge labeled; full alt-text/aria-label sweep (~90% controls) still open.
 - Phase B (later): photo/video BLOB backup to Supabase Storage (cost/Plus/wifi policy).
 
-## ⭐ MASTER OPEN ITEMS — updated 2026-05-30 (web @ v188; **iOS 1.7 (18) APPROVED & LIVE** 🎉)
+> **⚠️ iOS train is BEHIND web.** Report-card #2/#3/#5/#6/#7/#8/#10/#11(partial)/#12(partial)
+> all shipped to **web @ v196** but are NOT on device yet — they need an
+> **iOS 1.8 (19)** rebuild (`node scripts/build.mjs && npx cap sync ios`,
+> bump MARKETING_VERSION→1.8 / CURRENT_PROJECT_VERSION→19, archive). Last
+> on-device build is still **1.7 (18)**.
+
+## ⭐ MASTER OPEN ITEMS — updated 2026-05-30 (web @ v196; **iOS 1.7 (18) APPROVED & LIVE** 🎉)
 
 _Session 13 shipped + LIVE on iOS 1.7: reel/recap audit, ACL map (real
 artwork), spotify.jsx split ×3, recap-ready nudge, Spotify auto-create,
