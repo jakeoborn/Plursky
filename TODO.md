@@ -10,18 +10,18 @@ Lineup B+, Memories B+, Profile B (+ self-graded Home B+, Music B). Recurring
 defects: weak search · WCAG-failing daylight contrast on key moments ·
 unmemoized/unvirtualized renders. Prioritized:
 
-1. ✅ **Memories metadata → Supabase backup** (97a8f01) — done.
-2. ⬜ **Recap + Map place-card daylight contrast** (S) — fails WCAG AA, unreadable at noon.
+1. ✅ **Memories metadata → Supabase backup** (97a8f01).
+2. ✅ **Daylight contrast** (b35151b) — raised --muted across all 4 themes (AA). (Per-surface Recap-hero/place-card pixel polish still optional.)
 3. ⬜ **Lineup artist search** (M) — biggest discovery gap (3 judges).
 4. ⬜ **Redesign Map place card** (M) — 9px mono → metadata grid + Go Here/Save CTA.
-5. ⬜ **Fix hardcoded `my-edc-2026.png` export + stale tier cache** (S) — multi-festival liability.
-6. ⬜ **Persistent GPS/sharing status badge** (Map, S) — trust backbone of crew moat.
+5. ✅ **Hardcoded `my-edc-2026.png` export → dynamic** (b35151b). (Stale tier cache still open.)
+6. ✅ **Persistent 'SHARING · TAP TO STOP' badge** (b35151b).
 7. ⬜ **Rank + enrich Map search** (M); drop fake-hierarchy stagger.
 8. ⬜ **Memoize Lineup filter chain + kill O(n²) conflict loop** (M) — jank on old phones.
 9. ⬜ **Virtualize Memories lists** + fix leaked video URLs / paused RAF (M).
-10. ⬜ **Profile: replace alert() crew nav + dead Badges anchor** (S).
-11. ⬜ **Lineup save UX**: 3s undo, 44×44 targets, long-press feedback (S).
-12. ⬜ **A11y sweep**: alt-text, AA contrast, aria-labels (~90% controls unlabeled) (S).
+10. ✅ **Crew cell alert() → smooth scroll** (b35151b). (Dead Badges anchor already worked.)
+11. 🟡 **Lineup save UX** — 44×44 target + aria DONE (b35151b); 3s undo toast + long-press feedback still open.
+12. 🟡 **A11y sweep** — save button + sharing badge labeled; full alt-text/aria-label sweep (~90% controls) still open.
 - Phase B (later): photo/video BLOB backup to Supabase Storage (cost/Plus/wifi policy).
 
 ## ⭐ MASTER OPEN ITEMS — updated 2026-05-30 (web @ v188; **iOS 1.7 (18) APPROVED & LIVE** 🎉)
