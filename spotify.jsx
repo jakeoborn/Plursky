@@ -1225,7 +1225,18 @@ function useMomentPhoto(photoId, enabled = true) {
     if (!photoId || !enabled) { setUrl(null); return; }
     let cancelled = false;
     let objectUrl = null;
-    _getPhoto(photoId).then(blob => {
+    _getPhoto(photoId).then(async blob => {
+      if (cancelled) return;
+      // Restore-on-view: this device doesn't have the blob locally (fresh
+      // install / cleared cache) — pull it from the cloud backup if present,
+      // re-cache to IndexedDB, then show it. No-ops for never-backed-up photos.
+      if (!blob && typeof window.sbDownloadMomentMedia === "function") {
+        try {
+          const cloud = await window.sbDownloadMomentMedia(photoId);
+          if (cancelled) return;
+          if (cloud) { try { await _putPhoto(photoId, cloud); } catch {} blob = cloud; }
+        } catch {}
+      }
       if (cancelled || !blob) return;
       objectUrl = URL.createObjectURL(blob);
       setUrl(objectUrl);
@@ -1255,6 +1266,46 @@ function useNearViewport(rootMargin = "600px 0px") {
     return () => obs.disconnect();
   }, [rootMargin]);
   return [ref, near];
+}
+
+// ── Cloud media backup (Plursky+, manual, wifi-only) ──────────────
+// Best-effort wifi gate: block only on a KNOWN cellular connection; allow when
+// the type is unavailable (iOS WKWebView usually doesn't expose it).
+function _onWifi() {
+  try {
+    const c = navigator.connection;
+    if (c && c.type && !["wifi", "ethernet", "unknown"].includes(c.type)) return false;
+  } catch {}
+  return true;
+}
+
+// Mirror every not-yet-backed-up moment photo to Supabase Storage, then stamp
+// `backedUp` on the moment (one batched write at the end so we don't fire N
+// re-renders). Returns {done, failed, total} or {error}.
+async function _backupMyWeekend(onProgress) {
+  if (typeof window.sbUploadMomentMedia !== "function") return { error: "offline" };
+  const user = window.sbGetUser ? await window.sbGetUser() : null;
+  if (!user) return { error: "signin" };
+  const all = _readMoments();
+  const pending = [];
+  for (const n of Object.keys(all)) for (const m of (all[n] || [])) {
+    if (m.photoId && !m.backedUp) pending.push(m);
+  }
+  let done = 0, failed = 0;
+  const succeeded = new Set();
+  for (const m of pending) {
+    const blob = await _getPhoto(m.photoId).catch(() => null);
+    if (!blob) { failed++; onProgress?.({ done, failed, total: pending.length }); continue; }
+    const ok = await window.sbUploadMomentMedia(m.photoId, blob);
+    if (ok) { succeeded.add(m.id); done++; } else failed++;
+    onProgress?.({ done, failed, total: pending.length });
+  }
+  if (succeeded.size) {
+    const cur = _readMoments();
+    for (const n of Object.keys(cur)) cur[n] = (cur[n] || []).map(x => succeeded.has(x.id) ? { ...x, backedUp: true } : x);
+    _writeMoments(cur);
+  }
+  return { done, failed, total: pending.length };
 }
 
 // Single memory thumbnail for the home strip — loads its photo blob lazily.
@@ -3433,6 +3484,9 @@ function MemoriesScreen({ state, setState }) {
   const [batch, setBatch] = React.useState(null);   // null | { total, done, results: [{name, night, artistId, err?}] }
   const [lightbox, setLightbox] = React.useState(null); // null | { moments: [], index }
   const [reel, setReel] = React.useState(null); // null | { moments: [], label }
+  const [backupBusy, setBackupBusy] = React.useState(false); // cloud-backup in progress
+  const [backupProg, setBackupProg] = React.useState(null);  // { done, total } while running
+  const [showPlus, setShowPlus] = React.useState(false);     // paywall overlay (free taps backup)
   const batchInputRef = React.useRef(null);
   const nightSectionRefs = React.useRef({});
   const openLightbox = React.useCallback((moments, index) => setLightbox({ moments, index }), []);
@@ -3696,6 +3750,26 @@ function MemoriesScreen({ state, setState }) {
     return out;
   }, [all]);
 
+  // Cloud-backup status (X/Y) + handler. Plus-gated media backup, manual,
+  // wifi-only. Free users tapping it open the paywall overlay.
+  const backupStat = React.useMemo(() => {
+    let total = 0, done = 0;
+    for (const m of allMoments) { if (!m.photoId) continue; total++; if (m.backedUp) done++; }
+    return { total, done };
+  }, [allMoments]);
+  const handleBackup = async () => {
+    if (!_isPlusSub()) { setShowPlus(true); return; }
+    if (!_onWifi()) { window.plurskyToast?.("Wi-Fi only — connect to back up your media"); return; }
+    setBackupBusy(true);
+    setBackupProg({ done: backupStat.done, total: backupStat.total });
+    const res = await _backupMyWeekend(p => setBackupProg({ done: backupStat.done + p.done, total: backupStat.total }));
+    setBackupBusy(false); setBackupProg(null);
+    setAll(_readMoments()); // refresh backedUp flags → button updates
+    if (res?.error === "signin") window.plurskyToast?.("Sign in on the Me tab to back up");
+    else if (res?.error) window.plurskyToast?.("Backup unavailable right now");
+    else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}`);
+  };
+
   return (
     <Screen bg="var(--paper)">
       {lightbox && (
@@ -3824,6 +3898,56 @@ function MemoriesScreen({ state, setState }) {
               borderRadius: 999, padding: "9px 16px", cursor: "pointer",
               fontSize: 10, letterSpacing: 1.2, fontWeight: 800,
             }}>▶ PLAY</button>
+          </div>
+        )}
+
+        {/* Cloud backup (Plursky+) — manual, wifi-only. Free taps open the
+            paywall; Plus runs the upload and shows X/Y backed up. */}
+        {backupStat.total > 0 && (
+          <button onClick={handleBackup} disabled={backupBusy}
+            aria-label={_isPlusSub() ? "Back up your memories to the cloud" : "Back up to cloud — Plursky Plus"}
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "space-between",
+              width: "100%", marginTop: 8, padding: "11px 14px",
+              background: "var(--paper-2)", border: "1px solid var(--line)",
+              borderRadius: 14, color: "var(--ink)", cursor: backupBusy ? "wait" : "pointer",
+            }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
+              <span style={{ fontSize: 16 }}>☁️</span>
+              <div style={{ textAlign: "left", minWidth: 0 }}>
+                <div className="serif" style={{ fontSize: 15, lineHeight: 1.1 }}>
+                  {backupBusy ? "Backing up…" : (backupStat.done >= backupStat.total ? "Memories backed up" : "Back up my weekend")}
+                </div>
+                <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2, fontWeight: 700 }}>
+                  {backupBusy && backupProg ? `${backupProg.done}/${backupProg.total}`
+                    : backupStat.done >= backupStat.total ? "ALL SAFE IN THE CLOUD"
+                    : `${backupStat.done}/${backupStat.total} BACKED UP · WI-FI ONLY`}
+                </div>
+              </div>
+            </div>
+            <span className="mono" style={{
+              flexShrink: 0, color: "#fff", padding: "5px 11px", borderRadius: 999,
+              fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+              background: _isPlusSub() ? "var(--ember)" : "linear-gradient(135deg,#6D28D9,#e85d2e)",
+            }}>{_isPlusSub() ? (backupStat.done >= backupStat.total ? "✓" : "BACK UP") : "PLUS"}</span>
+          </button>
+        )}
+
+        {/* Paywall overlay — shown when a free user taps cloud backup. */}
+        {showPlus && (
+          <div onClick={() => setShowPlus(false)} style={{
+            position: "fixed", inset: 0, zIndex: 260, background: "rgba(0,0,0,0.6)",
+            display: "flex", alignItems: "center", justifyContent: "center", padding: 20,
+            animation: "fadeIn .2s",
+          }}>
+            <div onClick={e => e.stopPropagation()} style={{ position: "relative", width: "100%", maxWidth: 340 }}>
+              <button onClick={() => setShowPlus(false)} aria-label="Close" style={{
+                position: "absolute", top: -14, right: -6, zIndex: 1,
+                width: 30, height: 30, borderRadius: 30, background: "#fff", border: "none",
+                color: "#1a120d", fontSize: 16, fontWeight: 700, cursor: "pointer",
+              }}>×</button>
+              <PlusGate feature="cloud backup"><div style={{ height: 460 }} /></PlusGate>
+            </div>
           </div>
         )}
 
@@ -5567,7 +5691,7 @@ function PlusGate({ children, feature }) {
   const handlePurchase = async (productId) => {
     setBusy(true);
     try {
-      const result = await _purchasePlus(productId || RC_PRODUCT_IDS.festival);
+      const result = await _purchasePlus(productId || RC_PRODUCT_IDS.annual);
       if (result.success) window.location.reload();
     } catch {}
     setBusy(false);
@@ -5585,6 +5709,7 @@ function PlusGate({ children, feature }) {
 
   const _PLUS_PERKS = [
     ["No watermarks", "Clean, brandable exports"],
+    ["Cloud backup", "Your photos & videos, saved safely"],
     ["Unlimited shares", "No daily limit"],
     ["Premium templates", "Film Strip, Passport & more"],
     ["Custom accents", "Pick your festival color"],

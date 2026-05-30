@@ -2878,7 +2878,40 @@ function leaveStagePresence() {
   _currentPresenceStage = null;
 }
 
+// ── Moment media backup (Supabase Storage; private bucket 'moment-media') ──
+// Mirrors IndexedDB photo/video blobs to Storage under {auth_uid}/{photoId} so
+// Memories survive device loss / reinstall. Metadata already syncs via
+// user_data; this is the heavy blob layer (Plus-gated + manual + wifi-only in
+// the UI). Bucket + per-user RLS are provisioned in the Supabase dashboard.
+const _MEDIA_BUCKET = "moment-media";
+const _cloudMissing = new Set(); // photoIds confirmed absent in cloud — skip refetch storms
+
+async function sbUploadMomentMedia(photoId, blob) {
+  if (!_sb || !photoId || !blob) return false;
+  try {
+    const user = await sbGetUser();
+    if (!user) return false;
+    const { error } = await _sb.storage.from(_MEDIA_BUCKET)
+      .upload(`${user.id}/${photoId}`, blob, { upsert: true, contentType: blob.type || "application/octet-stream" });
+    if (error) { console.warn("[backup] upload failed:", photoId, error.message); return false; }
+    _cloudMissing.delete(photoId);
+    return true;
+  } catch (e) { console.warn("[backup] upload error:", e?.message); return false; }
+}
+
+async function sbDownloadMomentMedia(photoId) {
+  if (!_sb || !photoId || _cloudMissing.has(photoId)) return null;
+  try {
+    const user = await sbGetUser();
+    if (!user) return null;
+    const { data, error } = await _sb.storage.from(_MEDIA_BUCKET).download(`${user.id}/${photoId}`);
+    if (error || !data) { _cloudMissing.add(photoId); return null; }
+    return data; // Blob
+  } catch { return null; }
+}
+
 Object.assign(window, {
+  sbUploadMomentMedia, sbDownloadMomentMedia,
   AccountCard, sbSignInWithSpotify, sbSignInWithApple, sbDeleteAccount, sbSignOut, sbGetUser, sbPush, sbPull, sbOnAuthChange,
   sbMarkRemoved, sbClearRemoved,
   sbGetArtistSaveCounts,
