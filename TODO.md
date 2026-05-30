@@ -24,24 +24,23 @@ unmemoized/unvirtualized renders. Prioritized:
 12. ✅ **A11y sweep** (v197→v199) — icon/emoji/SVG-only buttons + unlabeled `<img>` across all screens carry `aria-label`/`alt` (~35), icon toggles `aria-pressed`, bottom nav `aria-current`, toast `role=status aria-live`, global `:focus-visible` ring (2.4.7). v199 WCAG-finish: map stage hit-areas (SVG `<g>` + label divs) now `role=button`+`aria-label`+`tabIndex`+Enter/Space; place-card hero/GO HERE/nav-icon auto-flip ink dark-vs-white by luminance (`_inkOn`) so light stages (yellow/cyan/green) stay readable; metadata-cell note → `--muted` (was failing stage.color on light); Esc-to-close on place card + nav bar. Residual (minor, pre-existing long-tail): inherited stage-color content cards (vibe / "ON STAGE NOW") still use white-on-color for light stages; full SR walkthrough + focus-trap depth not yet audited.
 - Phase B (later): photo/video BLOB backup to Supabase Storage (cost/Plus/wifi policy).
 
-> **⏳ iOS 1.8 (19) PREPPED — awaiting archive.** Web @ **v198** with the full
-> report-card cluster (#2/#3/#4/#5/#6/#7/#8/#9/#10/#11/#12). `dist/` rebuilt +
-> `npx cap sync ios` done; pbxproj bumped to **MARKETING_VERSION 1.8 /
-> CURRENT_PROJECT_VERSION 19** (both configs); native bundle re-synced + verified @ v198.
-> **Remaining (Jake, interactive):** `npx cap open ios` → Any iOS Device →
-> Product ▸ Archive → Distribute ▸ App Store Connect ▸ Upload. Last on-device
-> build is still **1.7 (18)** until that lands. On-device smoke tests owed on
-> 1.8: Apple Music BUILD PLAYLIST · Shazam-a-video · 2-device rally · ACL map.
+> **🚀 iOS 1.8 (19) SUBMITTED FOR REVIEW — 2026-05-30.** Web @ **v199** with the
+> full report-card cluster (#2–#12) + judge-fix follow-up. Archived from the
+> v199 bundle (pbxproj 1.8/19). Refreshed App Store description (festival-
+> agnostic, adds Memories/recap + Apple Music + Shazam) + What's New submitted.
+> **Next:** watch for Apple's email (In Review → Ready / Rejected), then Release.
+> **Owed once on device (TestFlight/approved):** Apple Music BUILD PLAYLIST ·
+> Shazam-a-video · 2-device rally · ACL map render. Last LIVE build: 1.7 (18).
 
-## ⭐ MASTER OPEN ITEMS — updated 2026-05-30 (web @ **v199**; **iOS 1.7 (18) LIVE**, **1.8 (19) prepped — awaiting archive** 🎉)
+## ⭐ MASTER OPEN ITEMS — updated 2026-05-30 (web @ **v199**; **iOS 1.7 (18) LIVE**, **1.8 (19) SUBMITTED FOR REVIEW** 🚀)
 
 _Session 13 shipped + LIVE on iOS 1.7: reel/recap audit, ACL map (real
 artwork), spotify.jsx split ×3, recap-ready nudge, Spotify auto-create,
 rally + crew-cluster meetup, Apple Music, native ShazamKit video-ID, the 4
 music synergies._
 
-### A. Ship-gate — on-device smoke tests, now owed on **1.8 (19)** (prepped @ v199, awaiting archive)
-1. ✅ **iOS 1.7 (18) shipped & live.** Next archive = **1.8 (19)** (pbxproj bumped, dist/ synced @ v199).
+### A. Ship-gate — **1.8 (19) submitted for review 2026-05-30**; smoke tests owed on TestFlight/approval
+1. ✅ **iOS 1.7 (18) live; 1.8 (19) submitted.** When approved → hit **Release** in ASC.
 2. **Test Apple Music "BUILD PLAYLIST"** + **Shazam a video** on the 1.8 build (on-device smoke test).
 3. **2-device test** — rally-point + crew-cluster broadcast round-trip.
 4. **In-app verify ACL map** renders on device.
