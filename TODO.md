@@ -3,17 +3,18 @@
 > **Shipping?** See **[RELEASE.md](RELEASE.md)** — sync iOS, cache-bust, web
 > deploy, and App Store submit commands.
 
-## ⭐ MASTER OPEN ITEMS — sweep 2026-05-29 (web @ v188; iOS 1.0.7 prepped)
+## ⭐ MASTER OPEN ITEMS — updated 2026-05-30 (web @ v188; **iOS 1.7 (18) APPROVED & LIVE** 🎉)
 
-_Session 13 shipped: reel/recap audit, ACL map (real artwork), spotify.jsx
-split ×3, recap-ready nudge, Spotify auto-create, rally + crew-cluster meetup,
-Apple Music LIVE, native ShazamKit video-ID. All web-live; iOS needs 1.0.7._
+_Session 13 shipped + LIVE on iOS 1.7: reel/recap audit, ACL map (real
+artwork), spotify.jsx split ×3, recap-ready nudge, Spotify auto-create,
+rally + crew-cluster meetup, Apple Music, native ShazamKit video-ID, the 4
+music synergies._
 
-### A. Ship-gate (get this session's work onto devices)
-1. **iOS 1.0.7 rebuild** — `MARKETING_VERSION→1.0.7`, `npx cap sync ios`, build, submit. Gates EVERYTHING native this session: Apple Music, ShazamKit video-ID, ACL map, black-poster fix, split files, rally/cluster.
-2. **Test Apple Music "BUILD PLAYLIST" on web** (plursky.com) — validate the live MusicKit token end-to-end.
-3. **2-device test** — rally-point + crew-cluster broadcast round-trip (couldn't verify headless).
-4. **In-app verify ACL map** (switch to ACL) + send Memories screenshots for the polish pass.
+### A. Ship-gate — ✅ DONE (iOS 1.7 (18) approved & live 2026-05-30)
+1. ✅ **iOS 1.7 (18) shipped** — all session-13 native work is live on device.
+2. **Test Apple Music "BUILD PLAYLIST"** + **Shazam a video** on the live 1.7 build (on-device smoke test).
+3. **2-device test** — rally-point + crew-cluster broadcast round-trip.
+4. **In-app verify ACL map** + send Memories screenshots for the polish pass.
 
 ### B. Music synergy (Spotify × Apple Music × Shazam) — ✅ ALL SHIPPED v188
 5. ✅ **Your Weekend Soundtrack** — playlist from Shazam-confirmed moment songs + saved top tracks → Spotify OR Apple Music. (45e9151)
