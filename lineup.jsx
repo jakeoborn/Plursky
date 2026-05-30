@@ -987,22 +987,21 @@ function LineupScreen({ state, setState }) {
             <div
               ref={el => { gridSectionRefs.current[day] = el; }}
             >
-              <div style={{ display: "flex", gap: 0, alignItems: "stretch", padding: "0 0 10px" }}>
-                {state.saved.some(id => ARTISTS.find(a => a.id === id && a.day === day)) && (
-                  <SavedSidebar day={day} state={state} setState={setState} />
-                )}
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <TimelineGrid
-                    day={day}
-                    allDayArtists={dayArt}
-                    state={state}
-                    setState={setState}
-                    matchesActive={matchesActive}
-                    conflictById={conflictById}
-                    spotifyMatchedIds={spotifyMatchedIds}
-                    highlightId={highlightId}
-                  />
-                </div>
+              {/* MY SETS rail removed — it ate ~100px (a third of the width)
+                  and duplicated info already shown in-grid (saved sets are
+                  highlighted), the day chips, and LIST view. The grid now gets
+                  the full width so more stages are visible at once. */}
+              <div style={{ padding: "0 0 10px" }}>
+                <TimelineGrid
+                  day={day}
+                  allDayArtists={dayArt}
+                  state={state}
+                  setState={setState}
+                  matchesActive={matchesActive}
+                  conflictById={conflictById}
+                  spotifyMatchedIds={spotifyMatchedIds}
+                  highlightId={highlightId}
+                />
               </div>
             </div>
           );
@@ -1433,7 +1432,11 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
     .filter(c => c.artists.length > 0);
 
   return (
-    <div style={{ overflowX: "auto", overflowY: "visible", width: "100%", paddingBottom: 20 }}>
+    // Constrained-height scroll box so the sticky stage header (top:0) and
+    // time gutter (left:0) actually FREEZE while you scroll both axes — the
+    // classic frozen-header grid. Previously overflowX:auto forced overflowY
+    // to auto with no height bound, so the header scrolled away with the page.
+    <div style={{ overflow: "auto", maxHeight: "calc(100dvh - 208px)", width: "100%", WebkitOverflowScrolling: "touch", paddingBottom: 20 }}>
       <div style={{ minWidth: GUTTER_W + cols.length * COL_W, position: "relative" }}>
         {/* Sticky stage header */}
         <div style={{
