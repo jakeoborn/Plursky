@@ -22,7 +22,7 @@ unmemoized/unvirtualized renders. Prioritized:
 10. ✅ **Crew cell alert() → smooth scroll** (b35151b). (Dead Badges anchor already worked.)
 11. ✅ **Lineup save UX** (v197) — 3s UNDO toast (reverts saved set + cloud tombstone) via upgraded `plurskyToast(text, {actionLabel,onAction,duration})`; grid long-press-to-save now shows live feedback (stage-color fill bar + block dip + haptic) and guards the trailing artist-nav click.
 12. ✅ **A11y sweep** (v197→v199) — icon/emoji/SVG-only buttons + unlabeled `<img>` across all screens carry `aria-label`/`alt` (~35), icon toggles `aria-pressed`, bottom nav `aria-current`, toast `role=status aria-live`, global `:focus-visible` ring (2.4.7). v199 WCAG-finish: map stage hit-areas (SVG `<g>` + label divs) now `role=button`+`aria-label`+`tabIndex`+Enter/Space; place-card hero/GO HERE/nav-icon auto-flip ink dark-vs-white by luminance (`_inkOn`) so light stages (yellow/cyan/green) stay readable; metadata-cell note → `--muted` (was failing stage.color on light); Esc-to-close on place card + nav bar. Residual (minor, pre-existing long-tail): inherited stage-color content cards (vibe / "ON STAGE NOW") still use white-on-color for light stages; full SR walkthrough + focus-trap depth not yet audited.
-- Phase B (later): photo/video BLOB backup to Supabase Storage (cost/Plus/wifi policy).
+- Phase B: photo/video BLOB backup to Supabase Storage — **P1 SHIPPED (v201)**: bucket `moment-media` + RLS live, `sbUpload/DownloadMomentMedia`, `_backupMyWeekend`, restore-on-view in `useMomentPhoto`, "Back up my weekend · X/Y" row (free metadata + Plus media, manual + wifi-only). Untested: signed-in upload round-trip. P2 open: auto-sync, videos, per-user storage cap + soft warning.
 
 > **🚀 iOS 1.8 (19) SUBMITTED FOR REVIEW — 2026-05-30.** Web @ **v199** with the
 > full report-card cluster (#2–#12) + judge-fix follow-up. Archived from the
@@ -54,7 +54,7 @@ music synergies._
 
 ### C. Jake's manual / external actions
 9. **Spotify Extended Quota Mode** application (unblocks playlist creation for >5 users).
-10. **RevenueCat products + entitlements in ASC** — `plursky_plus_festival` $2.99, `plursky_plus_annual` $7.99/yr.
+10. **Plursky+ go-live = create `plursky_plus_annual` ($7.99/yr) in ASC + map to entitlement `plus` in a "current" RevenueCat offering** → unblocks revenue (purchase code + annual-only paywall already shipped v200; can go live on the current build). Per-festival ($2.99) deferred (needs festival-scoped entitlement). Also: run the `moment-media` bucket SQL (DONE 2026-05-30) for backup.
 11. **Refresh Apple MusicKit token** before ~Nov 2026 (6-mo expiry) — `scripts/sign-musickit-token.mjs`.
 12. ✅ **og-card.png** (1200×630) — present + referenced in index.html, live on plursky.com.
 
