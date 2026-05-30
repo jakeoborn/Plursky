@@ -3965,7 +3965,31 @@ function AttendanceReview({ night, savedNightArtists }) {
   );
 }
 
+// Collapsible section — used to tuck away during-festival surfaces (badges,
+// safety) once the festival is over, so the post-fest Me tab leads with what
+// still matters. Tap the header to expand.
+function Collapsible({ title, defaultOpen = false, children }) {
+  const [open, setOpen] = React.useState(defaultOpen);
+  return (
+    <div style={{ marginTop: 20 }}>
+      <button onClick={() => setOpen(o => !o)} className="mono" style={{
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        width: "100%", background: "var(--paper-2)", border: "1px solid var(--line)",
+        borderRadius: 12, padding: "12px 14px", cursor: "pointer",
+        fontSize: 11, letterSpacing: 1.3, fontWeight: 700, color: "var(--ink)",
+      }}>
+        <span>{title}</span>
+        <span style={{ color: "var(--muted)", fontSize: 12 }}>{open ? "▾" : "▸"}</span>
+      </button>
+      {open && <div style={{ marginTop: 12 }}>{children}</div>}
+    </div>
+  );
+}
+
 function MeScreen({ state, setState }) {
+  // Post-festival: during-festival sections (badges, safety) collapse so the
+  // Me tab isn't cluttered with stuff that only mattered on-site.
+  const _mePostFest = Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity);
   // Build identity from Spotify profile when available, else fall back to user-set name
   const [profile, setProfile] = React.useState(getSpotifyProfileSync);
   const [localName, setLocalName] = React.useState(() => {
@@ -4260,7 +4284,9 @@ function MeScreen({ state, setState }) {
               <HistoryRecordsSection state={state} setState={setState} />
               <div style={{ marginTop: 14 }}/>
               <div id="plursky-badges-anchor"/>
-              <BadgesSection state={state} />
+              {_mePostFest
+                ? <Collapsible title="🏅 BADGES"><BadgesSection state={state} /></Collapsible>
+                : <BadgesSection state={state} />}
               <div style={{ marginTop: 14 }}/>
               <button
                 onClick={() => setState({ ...state, tab: "spotify" })}
@@ -4383,14 +4409,19 @@ function MeScreen({ state, setState }) {
           )}
         </div>
 
-        {/* Safety & Wellness — harm-reduction one tap away */}
-        <div className="serif" style={{ fontSize: 22, marginTop: 20, marginBottom: 3 }}>
-          Safety & <span style={{ fontStyle: "italic" }}>care</span>
-        </div>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginBottom: 12 }}>
-          ON-SITE TEAMS · NO QUESTIONS ASKED
-        </div>
-        <SafetyCards />
+        {/* Safety & Wellness — harm-reduction one tap away. Collapses
+            post-festival (on-site teams aren't relevant once it's over). */}
+        {_mePostFest ? (
+          <Collapsible title="🛟 SAFETY & CARE"><SafetyCards /></Collapsible>
+        ) : (<>
+          <div className="serif" style={{ fontSize: 22, marginTop: 20, marginBottom: 3 }}>
+            Safety & <span style={{ fontStyle: "italic" }}>care</span>
+          </div>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginBottom: 12 }}>
+            ON-SITE TEAMS · NO QUESTIONS ASKED
+          </div>
+          <SafetyCards />
+        </>)}
 
         {/* Your headliners — saved tier-3 sets, tappable to artist screen.
             Replaces the old static "Memories" grid which was unlinked

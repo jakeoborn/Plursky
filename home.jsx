@@ -511,32 +511,11 @@ function PostFestivalRecap({ state, setState }) {
 
   return (
     <div style={{ padding: "0 0 24px" }}>
-      {/* Hero */}
-      <div style={{
-        background: "linear-gradient(135deg, #1a0a2e 0%, #0d1b2a 60%, #0a1628 100%)",
-        borderRadius: 22, padding: "28px 22px 24px", marginBottom: 14,
-        color: "#fff", position: "relative", overflow: "hidden",
-      }}>
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,100,30,0.18), transparent 70%)",
-          pointerEvents: "none",
-        }}/>
-        <div style={{ position: "relative" }}>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 2, color: "rgba(255,255,255,0.5)", marginBottom: 10 }}>
-            {FESTIVAL_CONFIG.name.toUpperCase()} · {FESTIVAL_CONFIG.dates.toUpperCase()}
-          </div>
-          <div className="serif" style={{ fontSize: 34, lineHeight: 0.95, letterSpacing: -0.5, marginBottom: 6 }}>
-            {FESTIVAL_CONFIG.brand === "EDC" ? <>That was{" "}<span style={{ fontStyle: "italic", color: "var(--ember)" }}>electric.</span></>
-              : <>{FESTIVAL_CONFIG.shortName} — that's a{" "}<span style={{ fontStyle: "italic", color: "var(--ember)" }}>wrap.</span></>}
-          </div>
-          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.65)", marginTop: 12, lineHeight: 1.5 }}>
-            {savedIds.length
-              ? `You saved ${savedIds.length} set${savedIds.length !== 1 ? "s" : ""} across ${byDay.length} night${byDay.length !== 1 ? "s" : ""}. See you next year!`
-              : "The festival is over. See you next year!"}
-          </div>
-        </div>
-      </div>
+      {/* No duplicate hero here — the HomeScreen header already says
+          "<fest> — that's a wrap" + the recap CTA. Lead with the real payoff:
+          your Memories (photos/videos + one-tap recap). The strip renders
+          nothing if there are no moments. */}
+      {window.HomeMemoriesStrip && React.createElement(window.HomeMemoriesStrip, { state, setState })}
 
       {/* Saved sets recap grouped by day */}
       {byDay.length > 0 && (
@@ -1571,15 +1550,16 @@ function HomeScreen({ state, setState }) {
         </div>
       )}
 
-      {/* Day-strip segmented control — hidden pre-festival since
-          Yesterday/Today/Upcoming is meaningless months out. */}
-      {!countdown && (
+      {/* Day-strip segmented control — hidden pre-festival (meaningless months
+          out) AND post-festival (no "today" once it's wrapped — that toggle
+          was the main "doesn't make sense" offender). */}
+      {!countdown && !isPostFestival && (
       <div style={{ padding: "10px 16px 4px" }}>
         <DayStrip
           value={homeSubTab}
           onChange={setHomeSubTab}
-          hasYesterday={!isPostFestival && NOW.day > 1}
-          hasUpcoming={!isPostFestival && NOW.day < 3}
+          hasYesterday={NOW.day > 1}
+          hasUpcoming={NOW.day < 3}
         />
       </div>
       )}
@@ -1596,7 +1576,9 @@ function HomeScreen({ state, setState }) {
         )}
 
         {/* ── TODAY tab ───────────────────────────────────────── */}
-        {homeSubTab === "today" && <>
+        {/* Post-festival forces this branch (the day-strip is hidden, so
+            homeSubTab could otherwise be stuck on yesterday/upcoming). */}
+        {(homeSubTab === "today" || isPostFestival) && <>
 
         {/* Post-festival recap — on TODAY when the festival has wrapped. */}
         {isPostFestival && <PostFestivalRecap state={state} setState={setState} />}
