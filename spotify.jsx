@@ -1737,8 +1737,28 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
   const [idState, setIdState] = React.useState("idle"); // idle|listening|matching|done|fail
   const [mismatch, setMismatch] = React.useState(null);  // suggested artist if audio disagrees with tag
   const [sharing, setSharing] = React.useState(false);
+  const [retagging, setRetagging] = React.useState(false); // inline "fix the artist" picker
+  const [retagQuery, setRetagQuery] = React.useState("");
 
-  React.useEffect(() => { setIdState("idle"); setMismatch(null); }, [index]);
+  React.useEffect(() => { setIdState("idle"); setMismatch(null); setRetagging(false); setRetagQuery(""); }, [index]);
+
+  // Auto-tag guesses a stage by time (usually the mainstage) and gets the
+  // night/stage wrong when there's no GPS. So the fix must search the WHOLE
+  // lineup, not just this moment's guessed night. Quick-picks = acts playing
+  // at this time across stages; the search box reaches every artist/day.
+  const retagOptions = React.useMemo(() => {
+    const q = retagQuery.trim().toLowerCase();
+    if (q) {
+      return ARTISTS.filter(a => a.name.toLowerCase().includes(q)).slice(0, 24);
+    }
+    if (!m) return [];
+    const hhmm = (m.takenAt?.split(" ")[1] || "").slice(0, 5);
+    const t = hhmm ? toNightMin(hhmm) : null;
+    const night = m.night || NOW.day;
+    const all = ARTISTS.filter(a => a.day === night);
+    const playing = t != null ? all.filter(a => toNightMin(a.start) <= t && t < toNightMin(a.end)) : [];
+    return (playing.length ? playing : all).slice().sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+  }, [m, retagQuery]);
 
   const runIdentify = async () => {
     setIdState("listening");
@@ -1869,6 +1889,33 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
         <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.5)", fontWeight: 600 }}>
           {[stage?.name?.toUpperCase(), prettyTime, m.location?.label?.toUpperCase()].filter(Boolean).join(" · ")}
         </div>
+
+        {/* Wrong artist? Auto-tag guesses by stage+time and is often wrong when
+            you roam (e.g. tagged Martin Garrix but you were at John Summit).
+            Fix it inline to whoever was actually playing at this time. */}
+        <button onClick={() => setRetagging(r => !r)} className="mono" style={{
+          marginTop: 9, background: "transparent", border: "none", padding: 0,
+          color: "rgba(255,255,255,0.6)", fontSize: 9, letterSpacing: 1.1, fontWeight: 700, cursor: "pointer",
+        }}>{retagging ? "✕ CANCEL" : (artist ? "✎ WRONG ACT? FIX IT" : "✎ TAG THIS MOMENT")}</button>
+        {retagging && (
+          <div className="no-scrollbar" style={{ marginTop: 8, maxHeight: 176, overflowY: "auto", display: "flex", flexDirection: "column", gap: 6 }}>
+            {retagOptions.map(a => {
+              const st = STAGES.find(s => s.id === a.stage);
+              const on = a.id === m.artistId;
+              return (
+                <button key={a.id} onClick={() => { onUpdate?.(m, { artistId: a.id, tagSource: "manual", autoTagged: false }); setRetagging(false); try { window.plurskyHaptic?.("LIGHT"); } catch {} }} style={{
+                  display: "flex", alignItems: "center", gap: 8, padding: "8px 10px", borderRadius: 10,
+                  background: on ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.06)",
+                  border: `1px solid ${on ? "#fff" : "rgba(255,255,255,0.14)"}`, cursor: "pointer", textAlign: "left",
+                }}>
+                  <span style={{ width: 8, height: 8, borderRadius: 8, background: st?.color || "#888", flexShrink: 0 }}/>
+                  <span style={{ flex: 1, minWidth: 0, color: "#fff", fontSize: 13, fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</span>
+                  <span className="mono" style={{ fontSize: 8, letterSpacing: 0.6, color: "rgba(255,255,255,0.5)", flexShrink: 0 }}>{st?.short || ""} · {window.fmt12?.(a.start) || a.start}</span>
+                </button>
+              );
+            })}
+          </div>
+        )}
 
         {/* Share — renders a branded story card with the photo + the song
             that was playing, and opens the OS share sheet. */}

@@ -338,6 +338,36 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds) {
     }
   }
 
+  // SMARTEST SIGNAL: you film the sets you planned to see. Match the photo's
+  // ABSOLUTE capture time against your SAVED sets' absolute windows. This
+  // beats night-bucketing + stage-guessing: if you saved John Summit (Kinetic
+  // day 2, 00:32–01:42) and filmed at 01:00, this tags John Summit even if the
+  // night heuristic mis-bucketed it as day 3 (Martin Garrix). Uses each set's
+  // day-midnight (UTC) + start/end, so it's night-correct by construction.
+  const photoMs = _photoEpochUtc(date);
+  const setWindow = (a) => {
+    const dm = window.FESTIVAL_CONFIG?.dayDates?.[a.day];
+    if (!dm) return null;
+    const [sh, sm] = a.start.split(":").map(Number);
+    const [eh, em] = a.end.split(":").map(Number);
+    return {
+      startMs: dm.midnightUtc + ((sh < 6 ? sh + 24 : sh) * 60 + sm) * 60000,
+      endMs:   dm.midnightUtc + ((eh < 6 ? eh + 24 : eh) * 60 + em) * 60000,
+    };
+  };
+  const savedHits = (savedIds || [])
+    .map(id => (window.ARTISTS || []).find(a => a.id === id))
+    .filter(Boolean)
+    .map(a => { const w = setWindow(a); return w ? { a, ...w } : null; })
+    .filter(Boolean)
+    .filter(x => photoMs >= x.startMs - 5 * 60000 && photoMs <= x.endMs + 10 * 60000);
+  if (savedHits.length) {
+    // Tightest-fit if you somehow saved two overlapping sets (rare).
+    savedHits.sort((x, y) => (x.endMs - x.startMs) - (y.endMs - y.startMs));
+    const hit = savedHits[0];
+    return { artistId: hit.a.id, night: hit.a.day, reason: "saved_set_time" };
+  }
+
   // Then: which artist on THAT night was playing at the photo's time?
   const minOfDay = date.hh * 60 + date.mm;
   const adjustedMin = minOfDay < 360 ? minOfDay + 1440 : minOfDay;
