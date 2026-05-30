@@ -1214,10 +1214,15 @@ function _fmtMomentTime(ts) {
   return `${h}:${m.toString().padStart(2, "0")} ${ampm}`;
 }
 
-function useMomentPhoto(photoId) {
+// `enabled` gates the IndexedDB read + object-URL creation. Passing it false
+// (e.g. for an off-screen MomentCard) keeps the URL unallocated and revokes
+// any existing one — bounding decoded-image memory in long lists WITHOUT
+// unmounting the card (so in-progress edit state survives). Defaults true so
+// the many call sites that always want the photo are unchanged.
+function useMomentPhoto(photoId, enabled = true) {
   const [url, setUrl] = React.useState(null);
   React.useEffect(() => {
-    if (!photoId) { setUrl(null); return; }
+    if (!photoId || !enabled) { setUrl(null); return; }
     let cancelled = false;
     let objectUrl = null;
     _getPhoto(photoId).then(blob => {
@@ -1229,8 +1234,27 @@ function useMomentPhoto(photoId) {
       cancelled = true;
       if (objectUrl) URL.revokeObjectURL(objectUrl);
     };
-  }, [photoId]);
+  }, [photoId, enabled]);
   return url;
+}
+
+// Returns [ref, near] — attach ref to an element; `near` flips true while it
+// is within rootMargin of the viewport and false when it scrolls far away.
+// Used to defer heavy work (photo loads) to on-screen rows without unmounting.
+function useNearViewport(rootMargin = "600px 0px") {
+  const ref = React.useRef(null);
+  const [near, setNear] = React.useState(false);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (!window.IntersectionObserver) { setNear(true); return; }
+    const obs = new IntersectionObserver((entries) => {
+      setNear(entries[entries.length - 1].isIntersecting);
+    }, { rootMargin });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [rootMargin]);
+  return [ref, near];
 }
 
 // Single memory thumbnail for the home strip — loads its photo blob lazily.
@@ -2232,7 +2256,11 @@ function _LightboxThumb({ moment, active, onClick }) {
 }
 
 function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, savedArtistIds, groupMoments, onOpenLightbox }) {
-  const photoUrl = useMomentPhoto(moment.photoId);
+  // Defer the photo load until the card is near the viewport — the card stays
+  // mounted (edit state intact), but off-screen cards in long night/group
+  // lists don't each hold a decoded image + live blob URL.
+  const [cardRef, near] = useNearViewport();
+  const photoUrl = useMomentPhoto(moment.photoId, near);
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
   const nowPlaying = useSetlistSong(artist, moment.takenAt);
@@ -2285,7 +2313,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
     onUpdate?.(moment, { night: n, artistId: null, tagSource: "manual", autoTagged: false });
   };
   return (
-    <div style={{
+    <div ref={cardRef} style={{
       background: "var(--paper-2)", border: "1px solid var(--line)",
       borderRadius: 14, padding: 12, marginBottom: 10,
     }}>

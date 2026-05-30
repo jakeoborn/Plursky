@@ -1655,15 +1655,19 @@ function MapScreen({ state, setState }) {
       return next;
     });
   }, []);
-  // "GO HERE" on a stage → route there with a live ETA, reusing the meet
-  // routing surface (avatar walks + ETA card). Drops any active group so it
-  // reads as solo navigation to the stage, labelled with the stage name.
+  // "GO HERE" on a stage → enter a lightweight navigation mode. Selecting a
+  // stage already draws the animated walking route + ETA on the map (see the
+  // route-line block in the SVG); GO HERE just collapses the full place card
+  // to a slim "ROUTING TO" bar so that route is visible and you can start
+  // walking. No meet-card reuse — this is purpose-built wayfinding chrome.
+  const [navigating, setNavigating] = React.useState(false);
+  // Any change of selected stage (pick a different one, or close) exits nav
+  // mode so the next stage opens to its full card. GO HERE keeps the SAME
+  // selectedStage, so this effect doesn't fire and nav mode sticks.
+  React.useEffect(() => { setNavigating(false); }, [selectedStage]);
   const goToStage = React.useCallback((st) => {
     if (!st) return;
-    setSelectedStage(null);
-    setMeetGroup([]);
-    setMeetTarget({ x: st.x, y: st.y, label: st.name });
-    setMeetMode(true);
+    setNavigating(true);
   }, []);
 
   const [search, setSearch] = React.useState("");
@@ -2492,6 +2496,28 @@ function MapScreen({ state, setState }) {
                       ))}
                     </div>
                   </div>
+                  {/* Saved spots — quick-tap destinations for ♥-saved stages,
+                      the reachable home for the place-card SAVE action. */}
+                  {savedStages.size > 0 && (
+                    <div style={{ padding: "0 10px 6px" }}>
+                      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", fontWeight: 700, padding: "0 2px 5px" }}>SAVED SPOTS</div>
+                      <div className="no-scrollbar" style={{ display: "flex", gap: 6, overflowX: "auto", scrollbarWidth: "none", paddingBottom: 2 }}>
+                        {STAGES.filter(s => savedStages.has(s.id)).map(s => (
+                          <button key={`saved-${s.id}`} onClick={() => { setSelectedStage(s.id); setPeek(false); setSearchSheetExpanded(false); }}
+                            aria-label={`Open ${s.name}`} className="mono" style={{
+                            flexShrink: 0, display: "inline-flex", alignItems: "center", gap: 6,
+                            padding: "7px 12px", borderRadius: 999,
+                            background: "var(--paper-2)", border: `1px solid ${s.color}66`,
+                            color: "var(--ink)", cursor: "pointer",
+                            fontSize: 10, letterSpacing: 1.1, fontWeight: 700, whiteSpace: "nowrap",
+                          }}>
+                            <span style={{ color: "var(--ember)", fontSize: 11, lineHeight: 1 }}>♥</span>
+                            <span>{s.name.toUpperCase()}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                   {/* Friends row inside the sheet */}
                   <div style={{
                     padding: "4px 8px 8px", display: "flex", alignItems: "center", gap: 6,
@@ -2725,18 +2751,26 @@ function MapScreen({ state, setState }) {
           <div style={{
             position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 6,
           }}>
-            <BottomSheet
-              stage={stage} nowAtStage={nowAtStage} dist={dist} walk={walk}
-              peek={peek} setPeek={setPeek}
-              meetMode={meetMode} meetTarget={meetTarget} friends={friends} meetGroup={meetGroup} avatar={avatar}
-              onClose={() => setSelectedStage(null)}
-              onCancelMeet={clearMeet}
-              onOpenArtist={(id) => setState({ ...state, tab: "home", artist: id })}
-              onGoHere={goToStage}
-              stageSaved={stage ? savedStages.has(stage.id) : false}
-              onToggleSave={toggleSavedStage}
-              state={state} setState={setState}
-            />
+            {stage && navigating ? (
+              <StageNavBar
+                stage={stage} walk={walk}
+                onDetails={() => setNavigating(false)}
+                onStop={() => { setNavigating(false); setSelectedStage(null); }}
+              />
+            ) : (
+              <BottomSheet
+                stage={stage} nowAtStage={nowAtStage} dist={dist} walk={walk}
+                peek={peek} setPeek={setPeek}
+                meetMode={meetMode} meetTarget={meetTarget} friends={friends} meetGroup={meetGroup} avatar={avatar}
+                onClose={() => setSelectedStage(null)}
+                onCancelMeet={clearMeet}
+                onOpenArtist={(id) => setState({ ...state, tab: "home", artist: id })}
+                onGoHere={goToStage}
+                stageSaved={stage ? savedStages.has(stage.id) : false}
+                onToggleSave={toggleSavedStage}
+                state={state} setState={setState}
+              />
+            )}
           </div>
         )}
 
@@ -5134,6 +5168,44 @@ function GroundPeek({ stage, onClose }) {
 }
 
 // ---- BOTTOM SHEET ----
+// Slim "navigating" chrome shown after GO HERE: collapses the full place card
+// so the animated walking route + ETA already drawn on the map are visible.
+// Purpose-built wayfinding (not the meet card) — DETAILS reopens the card,
+// STOP deselects the stage.
+function StageNavBar({ stage, walk, onDetails, onStop }) {
+  const eta = walk.lo === walk.hi ? `${walk.lo}` : `${walk.lo}–${walk.hi}`;
+  return (
+    <div style={{
+      background: "var(--paper)", color: "var(--ink)",
+      padding: "12px 14px calc(12px + env(safe-area-inset-bottom, 0px))",
+      borderTopLeftRadius: 22, borderTopRightRadius: 22,
+      boxShadow: "0 -10px 30px rgba(0,0,0,0.4)",
+      display: "flex", alignItems: "center", gap: 11,
+      animation: "sheetUp 0.25s var(--ease-smooth)",
+    }}>
+      <div style={{
+        width: 40, height: 40, borderRadius: 40, background: stage.color, flexShrink: 0,
+        display: "flex", alignItems: "center", justifyContent: "center",
+      }}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+      </div>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, fontWeight: 700, color: stage.color }}>ROUTING TO</div>
+        <div className="serif" style={{ fontSize: 19, lineHeight: 1.05, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{stage.name}</div>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 600, marginTop: 1 }}>~{eta} MIN · FOLLOW THE ROUTE</div>
+      </div>
+      <button onClick={onDetails} aria-label="Show stage details" className="mono" style={{
+        flexShrink: 0, background: "var(--paper-2)", border: "1px solid var(--line-2)", color: "var(--ink)",
+        borderRadius: 999, padding: "9px 13px", cursor: "pointer", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
+      }}>DETAILS</button>
+      <button onClick={onStop} aria-label="Stop routing" className="mono" style={{
+        flexShrink: 0, background: "var(--ink)", border: "none", color: "var(--paper)",
+        borderRadius: 999, padding: "9px 13px", cursor: "pointer", fontSize: 10, letterSpacing: 1.2, fontWeight: 800,
+      }}>✕ STOP</button>
+    </div>
+  );
+}
+
 function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, meetTarget, friends, meetGroup = [], avatar, onClose, onCancelMeet, onOpenArtist, onGoHere, stageSaved, onToggleSave, state, setState }) {
   if (meetMode && meetTarget) {
     const groupFriends = meetGroup.map(id => friends.find(fr => fr.id === id)).filter(Boolean);
@@ -5152,8 +5224,8 @@ function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, m
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><path d="M12 2 C8 2 5 5 5 9 c0 5 7 13 7 13 s7-8 7-13 c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5" fill="#fff"/></svg>
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--ember)", fontWeight: 700 }}>{groupFriends.length === 0 ? "ROUTING TO" : "MEETING"}</div>
-            <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>{groupFriends.length === 0 ? (meetTarget.label || title) : title}</div>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--ember)", fontWeight: 700 }}>MEETING</div>
+            <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>{title}</div>
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 2 }}>ETA ~{eta} MIN · {routingLabel}</div>
           </div>
           <button onClick={onCancelMeet} style={{ background: "transparent", border: "1px solid var(--line-2)", color: "var(--muted)", borderRadius: 999, padding: "7px 10px", cursor: "pointer", fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600 }}>END</button>

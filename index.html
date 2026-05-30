@@ -90,6 +90,8 @@
   @keyframes springIn{0%{opacity:0;transform:translateY(8px) scale(0.97)}60%{transform:translateY(-2px) scale(1.01)}100%{opacity:1;transform:translateY(0) scale(1)}}
   .skel{background:linear-gradient(90deg,var(--paper-2) 25%,rgba(26,18,13,0.08) 50%,var(--paper-2) 75%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite;border-radius:6px}
   .skel-dark{background:linear-gradient(90deg,rgba(247,237,224,0.04) 25%,rgba(247,237,224,0.08) 50%,rgba(247,237,224,0.04) 75%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite;border-radius:6px}
+  /* Keyboard-only focus ring (WCAG 2.4.7) — :focus-visible so it never shows on mouse/touch tap. */
+  :focus-visible{outline:2px solid var(--ember);outline-offset:2px;border-radius:3px}
   @media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important}}
   @keyframes vfx-rise{0%{transform:translateY(0);opacity:0}8%{opacity:1}85%{opacity:.8}100%{transform:translateY(-140px) translateX(12px);opacity:0}}
   @keyframes vfx-fall{0%{transform:translateY(-10px);opacity:0}5%{opacity:.9}90%{opacity:.6}100%{transform:translateY(320px);opacity:0}}
@@ -223,19 +225,19 @@
       window.__USE_NATIVE_PICKER__ = true;
     }
   </script>
-  <script type="text/babel" src="ios-frame.jsx?v=v197"></script>
-  <script type="text/babel" src="data.jsx?v=v197"></script>
-  <script type="text/babel" src="supabase.jsx?v=v197"></script>
-  <script type="text/babel" src="chrome.jsx?v=v197"></script>
-  <script type="text/babel" src="home.jsx?v=v197"></script>
-  <script type="text/babel" src="map.jsx?v=v197"></script>
-  <script type="text/babel" src="lineup.jsx?v=v197"></script>
-  <script type="text/babel" src="artist.jsx?v=v197"></script>
-  <script type="text/babel" src="photo-tag.jsx?v=v197"></script>
-  <script type="text/babel" src="spotify-api.jsx?v=v197"></script>
-  <script type="text/babel" src="recap-engine.jsx?v=v197"></script>
-  <script type="text/babel" src="spotify.jsx?v=v197"></script>
-  <script type="text/babel" src="app.jsx?v=v197"></script>
+  <script type="text/babel" src="ios-frame.jsx?v=v198"></script>
+  <script type="text/babel" src="data.jsx?v=v198"></script>
+  <script type="text/babel" src="supabase.jsx?v=v198"></script>
+  <script type="text/babel" src="chrome.jsx?v=v198"></script>
+  <script type="text/babel" src="home.jsx?v=v198"></script>
+  <script type="text/babel" src="map.jsx?v=v198"></script>
+  <script type="text/babel" src="lineup.jsx?v=v198"></script>
+  <script type="text/babel" src="artist.jsx?v=v198"></script>
+  <script type="text/babel" src="photo-tag.jsx?v=v198"></script>
+  <script type="text/babel" src="spotify-api.jsx?v=v198"></script>
+  <script type="text/babel" src="recap-engine.jsx?v=v198"></script>
+  <script type="text/babel" src="spotify.jsx?v=v198"></script>
+  <script type="text/babel" src="app.jsx?v=v198"></script>
 
   <script>
 
@@ -267,7 +269,7 @@
               .map(k => caches.delete(k))
         )
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v197', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v198', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 
