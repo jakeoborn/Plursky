@@ -3591,6 +3591,7 @@ function MemoriesScreen({ state, setState }) {
     } catch {}
     return "grid";
   });
+  const [memQuery, setMemQuery] = React.useState(""); // grid search: artist/song/stage
   React.useEffect(() => {
     try { localStorage.setItem("plursky_memories_view_v1", view); } catch {}
   }, [view]);
@@ -3702,11 +3703,56 @@ function MemoriesScreen({ state, setState }) {
             </div>
           );
         })()}
-        {/* View selector — three lenses on the same moments. NIGHT is the
-            "manage" view (with + ADD MOMENT and the per-night attendance
-            review). ARTIST and STAGE are rewatch lenses that flatten
-            everything across the weekend. */}
-        <div style={{
+
+        {/* ✨ Create recap hero — the payoff CTA. Plays an auto-advancing reel
+            of the whole weekend; the recap-video export lives one tap deeper. */}
+        {allMoments.filter(m => m.photoId).length >= 3 && (
+          <div style={{
+            marginTop: 12, padding: "14px 16px", borderRadius: 16,
+            background: "linear-gradient(135deg, var(--ember), #7b3d9a)",
+            display: "flex", alignItems: "center", gap: 12,
+          }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div className="serif" style={{ fontSize: 19, lineHeight: 1.05, color: "#fff" }}>
+                Relive your <span style={{ fontStyle: "italic" }}>weekend</span>
+              </div>
+              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "rgba(255,255,255,0.8)", fontWeight: 700, marginTop: 3 }}>
+                {allMoments.filter(m => m.photoId).length} MOMENTS · AUTO-PLAY REEL
+              </div>
+            </div>
+            <button onClick={() => {
+              const ms = allMoments.filter(m => m.photoId).slice().sort((a, b) => {
+                const ta = a.takenAt || "", tb = b.takenAt || "";
+                if (ta && tb) return ta.localeCompare(tb);
+                return (a.createdAt || 0) - (b.createdAt || 0);
+              });
+              playReel(ms, FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name, null);
+            }} className="mono" style={{
+              flexShrink: 0, background: "#fff", color: "var(--ember)", border: "none",
+              borderRadius: 999, padding: "9px 16px", cursor: "pointer",
+              fontSize: 10, letterSpacing: 1.2, fontWeight: 800,
+            }}>▶ PLAY</button>
+          </div>
+        )}
+
+        {/* Inviting empty state — first run, no moments yet. */}
+        {totalCount === 0 && (
+          <div style={{ marginTop: 20, padding: "32px 22px", textAlign: "center", borderRadius: 18, background: "var(--paper-2)", border: "1px solid var(--line)" }}>
+            <div style={{ fontSize: 34, marginBottom: 10 }}>📸</div>
+            <div className="serif" style={{ fontSize: 22, lineHeight: 1.1, color: "var(--ink)", marginBottom: 8 }}>
+              Your weekend, <span style={{ fontStyle: "italic", color: "var(--ember)" }}>remembered</span>
+            </div>
+            <div style={{ fontSize: 13, lineHeight: 1.5, color: "var(--muted)", maxWidth: 280, margin: "0 auto" }}>
+              Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap.
+            </div>
+            <button onClick={handlePickClick} className="mono" style={{ marginTop: 16, padding: "11px 20px", borderRadius: 999, background: "var(--ember)", color: "#fff", border: "none", cursor: "pointer", fontSize: 11, letterSpacing: 1.2, fontWeight: 700 }}>✨ IMPORT FROM CAMERA ROLL</button>
+          </div>
+        )}
+
+        {/* View selector — lenses on the same moments. GRID (default) is the
+            scannable photo grid; NIGHT is the "manage" view (+ ADD MOMENT +
+            attendance review); ARTIST/STAGE/STORY are rewatch lenses. */}
+        {totalCount > 0 && <div style={{
           display: "flex", gap: 4, marginTop: 14, marginBottom: 8,
           padding: 3, background: "var(--paper-2)", borderRadius: 10,
           border: "1px solid var(--line)",
@@ -3729,8 +3775,36 @@ function MemoriesScreen({ state, setState }) {
               }}>{v.label}</button>
             );
           })}
-        </div>
-        {view === "grid" && <MemoryGrid allMoments={allMoments} onOpenLightbox={openLightbox} />}
+        </div>}
+        {view === "grid" && (<>
+          {/* Search — filter the grid by artist, song, or stage. */}
+          <input
+            value={memQuery}
+            onChange={e => setMemQuery(e.target.value)}
+            placeholder="Search artist, song, or stage…"
+            className="mono"
+            style={{
+              width: "100%", boxSizing: "border-box", marginBottom: 8,
+              padding: "9px 12px", borderRadius: 999,
+              background: "var(--paper-2)", border: "1px solid var(--line)",
+              color: "var(--ink)", fontSize: 11, letterSpacing: 0.5, outline: "none",
+            }}
+          />
+          <MemoryGrid
+            allMoments={(() => {
+              const q = memQuery.trim().toLowerCase();
+              if (!q) return allMoments;
+              return allMoments.filter(m => {
+                const a = m.artistId ? ARTISTS.find(x => x.id === m.artistId) : null;
+                const s = a ? STAGES.find(st => st.id === a.stage) : null;
+                return (a?.name || "").toLowerCase().includes(q)
+                  || (m.confirmedSong || "").toLowerCase().includes(q)
+                  || (s?.name || "").toLowerCase().includes(q);
+              });
+            })()}
+            onOpenLightbox={openLightbox}
+          />
+        </>)}
         {view === "story" && <MemoryStory allMoments={allMoments} state={state} setState={setState} onOpenLightbox={openLightbox} onPlayReel={playReel} />}
         {view === "artist" && _renderByGroup({
           allMoments,
