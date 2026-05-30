@@ -66,7 +66,7 @@ music synergies._
 16. **Lineup virtualization** (300+ artists render perf).
 17. **Native push notifications** — set-time reminders during festival.
 18. **Smart search bar** (NL lineup queries) · **Friend-lookup backend** (PING codes) · **AR stage finder** · **Voice queries**.
-19. **Account data export** (Apple compliance) · **Onboarding flow bump** · **Memory storage soft cap** · **Attendance edge cases**.
+19. ✅ **Account deletion + data export** (Apple G5.1.1(v)) — DONE: `sbDeleteAccount` ("DELETE ACCOUNT") + `sbExportUserData` ("EXPORT MY DATA") on the Me tab. _(Still optional/minor: onboarding-flow bump · memory storage soft cap · attendance edge cases.)_
 20. **Update ACL stage assignments + set times** when the official 2026 schedule drops (currently estimated from 2025).
 21. **Re-enable RealMap (BETA)** post-festival.
 
