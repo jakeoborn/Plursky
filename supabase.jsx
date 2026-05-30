@@ -368,6 +368,12 @@ async function sbPush(artistIds, notes) {
     row.meta = {};
     if (raw) row.meta.spotify = JSON.parse(raw);
     if (removedRaw) row.meta.removed_at = JSON.parse(removedRaw);
+    // Back up Memories METADATA (tags, confirmed songs, times, stages — the
+    // irreplaceable hand-tagged data) so a wiped/switched phone can restore it.
+    // Photo/video blobs live in IndexedDB and are NOT backed up here (too
+    // large; needs Supabase Storage — see roadmap). Capped to keep the row sane.
+    const momentsRaw = localStorage.getItem("plursky_moments_v1");
+    if (momentsRaw && momentsRaw.length < 800000) row.meta.moments = JSON.parse(momentsRaw);
   } catch {}
   await _sb.from("user_data").upsert(row);
 }
@@ -574,6 +580,26 @@ function AccountCard({ state, setState }) {
             try { localStorage.setItem("artist_notes_v1", JSON.stringify(mergedNotes)); } catch {}
             return { ...st, saved: merged };
           });
+          // Restore Memories metadata from the cloud — add any moment not
+          // present locally so a wiped/new device gets the archive back. Local
+          // wins (never clobber on-device edits). Blobs aren't restored here.
+          try {
+            const cloudMoments = cloud.meta?.moments;
+            if (cloudMoments && typeof cloudMoments === "object") {
+              const local = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
+              let added = 0;
+              for (const night of Object.keys(cloudMoments)) {
+                const localArr = Array.isArray(local[night]) ? local[night] : [];
+                const haveIds = new Set(localArr.map(m => m && m.id));
+                const restored = (cloudMoments[night] || []).filter(m => m && m.id && !haveIds.has(m.id));
+                if (restored.length) { local[night] = [...localArr, ...restored]; added += restored.length; }
+              }
+              if (added) {
+                localStorage.setItem("plursky_moments_v1", JSON.stringify(local));
+                try { window.dispatchEvent(new Event("plursky-moments-change")); } catch {}
+              }
+            }
+          } catch {}
         });
       }
     });
