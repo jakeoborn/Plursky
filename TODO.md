@@ -54,10 +54,11 @@ music synergies._
 
 ### C. Jake's manual / external actions
 9. **Spotify Extended Quota Mode** application (unblocks playlist creation for >5 users).
-10. **Plursky+ go-live** (purchase code + annual paywall shipped v200; goes live on the CURRENT build once configured):
-    - ⏳ **BLOCKER / long-pole — Paid Applications agreement must be ACTIVE** (ASC → Business → accept Paid Apps + fill Bank Account + Tax). Bank/tax verification can take ~1–2 business days. Do FIRST; everything else fails until green.
-    - create `plursky_plus_annual` ($7.99/yr auto-renewable) in ASC → map to entitlement `plus` in a **Current** RevenueCat offering → sandbox test.
-    - Per-festival ($2.99) deferred (needs festival-scoped entitlement). `moment-media` bucket SQL = DONE 2026-05-30.
+10. **Plursky+ go-live — CONFIG COMPLETE (2026-05-30), 2 steps left:**
+    - ✅ Code (purchase loop + `plus` gating, annual paywall + disclosure, v200) · ASC product `plursky_plus_annual` $7.99/yr (Ready to Submit) · RevenueCat (entitlement `plus` + Current offering `Default`/Plursky+ → `plursky_plus_annual`; app linked, public key matches code). Verified end-to-end.
+    - ⏳ **(1) Paid Applications agreement → ACTIVE** (ASC → Business → Bank Account + Tax; ~1–2 business days). ALL IAP incl. sandbox fails until green.
+    - ⏳ **(2) Sandbox test** once agreement active (sandbox Apple ID → buy → watermark off + Restore works). Then Plus is LIVE on the current build — no resubmit.
+    - Per-festival ($2.99) deferred (needs festival-scoped entitlement). `moment-media` bucket SQL = DONE.
 11. **Refresh Apple MusicKit token** before ~Nov 2026 (6-mo expiry) — `scripts/sign-musickit-token.mjs`.
 12. ✅ **og-card.png** (1200×630) — present + referenced in index.html, live on plursky.com.
 
