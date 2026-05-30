@@ -567,7 +567,7 @@ function ShareArtistButton({ artist }) {
     }
   };
   return (
-    <button onClick={handleShare} style={{
+    <button onClick={handleShare} aria-label={copied ? "Link copied" : "Share artist"} style={{
       width: 32, height: 32, borderRadius: 32,
       background: copied ? "rgba(45,122,85,0.85)" : "rgba(255,255,255,0.15)",
       backdropFilter: "blur(8px)",
@@ -1126,7 +1126,7 @@ function ArtistScreen({ state, setState }) {
             ? `linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0) 35%, ${stage?.color || "rgba(26,18,13,1)"}22 65%, rgba(26,18,13,0.92) 100%)`
             : `linear-gradient(180deg, transparent 0%, ${stage?.color || "rgba(26,18,13,1)"}15 50%, rgba(26,18,13,0.95) 100%)`,
         }} />
-        <button onClick={() => window._popNav ? window._popNav() : setState({ ...state, artist: null })} style={{
+        <button onClick={() => window._popNav ? window._popNav() : setState({ ...state, artist: null })} aria-label="Back" style={{
           position: "absolute", top: 14, left: 14, zIndex: 10,
           width: 38, height: 38, borderRadius: 38,
           background: "rgba(255,255,255,0.18)", backdropFilter: "blur(8px)",
@@ -2149,7 +2149,7 @@ function ArtistScreen({ state, setState }) {
           display: "flex", alignItems: "center", gap: 12,
         }}>
           {/* Play/Pause button */}
-          <button onClick={handlePreview} style={{
+          <button onClick={handlePreview} aria-label={playing ? "Pause preview" : "Play preview"} aria-pressed={playing} style={{
             width: 44, height: 44, borderRadius: 44, border: "none",
             background: !connected ? "rgba(247,237,224,0.1)"
               : playing ? "var(--ember)"
@@ -2231,7 +2231,7 @@ function ArtistScreen({ state, setState }) {
           {saveFlash && saved && <span style={{ animation: "checkIn 0.35s ease", display: "inline-block", marginRight: 4 }}>✓</span>}
           {saved ? (saveFlash ? "SAVED!" : "✓ SAVED TO LINEUP") : "+ ADD TO LINEUP"}
         </button>
-        <button onClick={() => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "memories", memoriesNight: a.day, artist: null })} style={{
+        <button onClick={() => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "memories", memoriesNight: a.day, artist: null })} aria-label="Open memories" style={{
           width: 54, borderRadius: 14,
           background: "transparent", border: "1px solid var(--line-2)",
           cursor: "pointer", fontSize: 16,

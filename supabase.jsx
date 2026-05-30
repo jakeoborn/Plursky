@@ -2665,7 +2665,7 @@ function CrewCard({ state }) {
             background: "var(--ink)", color: "var(--paper)",
             display: "flex", alignItems: "center", gap: 12,
           }}>
-            <button onClick={() => totemInputRef.current?.click()} className={totemUrl ? "totem-alive" : ""} style={{
+            <button onClick={() => totemInputRef.current?.click()} aria-label={totemUrl ? "Change crew totem photo" : "Set crew totem photo"} className={totemUrl ? "totem-alive" : ""} style={{
               width: 44, height: 44, borderRadius: 44, flexShrink: 0,
               border: totemUrl ? "2px solid rgba(247,237,224,0.5)" : "2px dashed rgba(247,237,224,0.3)",
               background: totemUrl ? `url(${totemUrl}) center/cover` : "rgba(247,237,224,0.08)",

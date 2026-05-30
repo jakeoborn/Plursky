@@ -13,22 +13,25 @@ unmemoized/unvirtualized renders. Prioritized:
 1. ✅ **Memories metadata → Supabase backup** (97a8f01).
 2. ✅ **Daylight contrast** (b35151b) — raised --muted across all 4 themes (AA). (Per-surface Recap-hero/place-card pixel polish still optional.)
 3. ✅ **Lineup artist search** (3b… v196) — sticky search bar (artist/stage/genre) in LIST + GRID, clearable.
-4. ⬜ **Redesign Map place card** (M) — 9px mono → metadata grid + Go Here/Save CTA.
+4. ✅ **Redesign Map place card** (v197) — stage place card now an Apple-Maps-style metadata grid (WALK/DISTANCE/SETS cells) + GO HERE (routes via meet ETA surface) / ♥ SAVE (localStorage bookmark, also shown in search list). Modeled on Apple Maps "Foothills Park" + Zenly per Mobbin.
 5. ✅ **Hardcoded `my-edc-2026.png` export → dynamic** (b35151b). (Stale tier cache still open.)
 6. ✅ **Persistent 'SHARING · TAP TO STOP' badge** (b35151b).
 7. ✅ **Rank + enrich Map search** (v196) — relevance ranking (exact>prefix>word-start>substring + tier tiebreak), rows show set time/day/★saved, STAGES/ARTISTS headers, friendly empty state; stagger dropped.
 8. ✅ **Memoize Lineup filter chain + kill O(n²) conflict loop** (v196) — dayArtists/dayStats/savedToday/conflicts all useMemo'd over a Set-based saved lookup.
-9. ⬜ **Virtualize Memories lists** + fix leaked video URLs / paused RAF (M) — **next biggest perf win**.
+9. ✅ **Virtualize Memories grid** (v197) — IntersectionObserver render-windowing (`_LazyMount`, no lib) on the GRID view: off-screen tiles unmount → frees decoded media + revokes object-URLs (the leaked-video-URL fix). MemoryReel now clamps RAF dt + pauses on `visibilitychange` so backgrounding can't skip beats. (Night/group MomentCard views left un-windowed to preserve in-progress retag state.)
 10. ✅ **Crew cell alert() → smooth scroll** (b35151b). (Dead Badges anchor already worked.)
-11. 🟡 **Lineup save UX** — 44×44 target + aria DONE (b35151b); 3s undo toast + long-press feedback still open.
-12. 🟡 **A11y sweep** — save button + sharing badge labeled; full alt-text/aria-label sweep (~90% controls) still open.
+11. ✅ **Lineup save UX** (v197) — 3s UNDO toast (reverts saved set + cloud tombstone) via upgraded `plurskyToast(text, {actionLabel,onAction,duration})`; grid long-press-to-save now shows live feedback (stage-color fill bar + block dip + haptic) and guards the trailing artist-nav click.
+12. ✅ **A11y sweep** (v197) — icon/emoji/symbol-only buttons + unlabeled `<img>` across home/lineup/map/spotify/artist/supabase/chrome/app now carry `aria-label`/`alt` (~35 added), icon-only toggles get `aria-pressed`, bottom nav gets `aria-current`, toast is `role=status aria-live`. (Text-bearing buttons were already accessible.)
 - Phase B (later): photo/video BLOB backup to Supabase Storage (cost/Plus/wifi policy).
 
-> **⚠️ iOS train is BEHIND web.** Report-card #2/#3/#5/#6/#7/#8/#10/#11(partial)/#12(partial)
-> all shipped to **web @ v196** but are NOT on device yet — they need an
-> **iOS 1.8 (19)** rebuild (`node scripts/build.mjs && npx cap sync ios`,
-> bump MARKETING_VERSION→1.8 / CURRENT_PROJECT_VERSION→19, archive). Last
-> on-device build is still **1.7 (18)**.
+> **⏳ iOS 1.8 (19) PREPPED — awaiting archive.** Web @ **v197** with the full
+> report-card cluster (#2/#3/#4/#5/#6/#7/#8/#9/#10/#11/#12). `dist/` rebuilt +
+> `npx cap sync ios` done; pbxproj bumped to **MARKETING_VERSION 1.8 /
+> CURRENT_PROJECT_VERSION 19** (both configs); native bundle verified @ v197.
+> **Remaining (Jake, interactive):** `npx cap open ios` → Any iOS Device →
+> Product ▸ Archive → Distribute ▸ App Store Connect ▸ Upload. Last on-device
+> build is still **1.7 (18)** until that lands. On-device smoke tests owed on
+> 1.8: Apple Music BUILD PLAYLIST · Shazam-a-video · 2-device rally · ACL map.
 
 ## ⭐ MASTER OPEN ITEMS — updated 2026-05-30 (web @ v196; **iOS 1.7 (18) APPROVED & LIVE** 🎉)
 

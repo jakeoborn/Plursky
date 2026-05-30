@@ -411,31 +411,45 @@ function SearchModal({ onClose, onSelectArtist }) {
 function ToastHost() {
   const [msg, setMsg] = React.useState(null);
   React.useEffect(() => {
-    window.plurskyToast = (text) => {
+    // window.plurskyToast(text, opts?) — opts: { actionLabel, onAction, duration }.
+    // Text-only calls keep the old 1600ms quick-confirm behaviour; passing an
+    // action turns it into an actionable toast (e.g. a 3s UNDO).
+    window.plurskyToast = (text, opts = {}) => {
       setMsg(null);
-      requestAnimationFrame(() => setMsg({ text, id: Date.now() }));
+      requestAnimationFrame(() => setMsg({ text, id: Date.now(), ...opts }));
       try { navigator.vibrate?.(15); } catch {}
     };
     return () => { delete window.plurskyToast; };
   }, []);
   React.useEffect(() => {
     if (!msg) return;
-    const t = setTimeout(() => setMsg(null), 1600);
+    const t = setTimeout(() => setMsg(null), msg.duration || 1600);
     return () => clearTimeout(t);
   }, [msg?.id]);
   if (!msg) return null;
+  const hasAction = msg.actionLabel && typeof msg.onAction === "function";
   return (
     <div style={{
       position: "absolute", left: 0, right: 0, bottom: 80, zIndex: 95,
-      display: "flex", justifyContent: "center", pointerEvents: "none",
+      display: "flex", justifyContent: "center", pointerEvents: "none", padding: "0 16px",
     }}>
-      <div className="mono" style={{
+      <div className="mono" role="status" aria-live="polite" style={{
         background: "var(--ink)", color: "var(--paper)",
-        padding: "9px 16px", borderRadius: 999,
+        padding: hasAction ? "7px 7px 7px 16px" : "9px 16px", borderRadius: 999,
         fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
         boxShadow: "0 6px 20px rgba(0,0,0,0.25)",
-        animation: "fadeIn .15s",
-      }}>{msg.text}</div>
+        animation: "fadeIn .15s", display: "flex", alignItems: "center", gap: 12, maxWidth: "100%",
+        pointerEvents: hasAction ? "auto" : "none",
+      }}>
+        <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{msg.text}</span>
+        {hasAction && (
+          <button onClick={() => { try { msg.onAction(); } catch {} setMsg(null); }} className="mono" style={{
+            flexShrink: 0, background: "var(--paper)", color: "var(--ink)", border: "none",
+            borderRadius: 999, padding: "6px 13px", cursor: "pointer",
+            fontSize: 10, letterSpacing: 1.2, fontWeight: 800,
+          }}>{msg.actionLabel}</button>
+        )}
+      </div>
     </div>
   );
 }
@@ -777,7 +791,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v196",
+        version: "v197",
       }));
     } catch {}
   }
@@ -810,7 +824,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
-          PLURSKY · v196
+          PLURSKY · v197
         </div>
       </div>
     );

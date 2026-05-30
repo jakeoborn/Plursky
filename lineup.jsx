@@ -158,7 +158,7 @@ function NightWizard({ state, setState, onClose }) {
         paddingTop: "calc(16px + env(safe-area-inset-top, 0px))",
         borderBottom: "1px solid var(--line)",
       }}>
-        <button onClick={onClose} style={{
+        <button onClick={onClose} aria-label="Close Build My Night" style={{
           width: 36, height: 36, borderRadius: 36, background: "var(--paper-2)",
           border: "1px solid var(--line-2)", fontSize: 18, cursor: "pointer",
           display: "flex", alignItems: "center", justifyContent: "center",
@@ -173,6 +173,7 @@ function NightWizard({ state, setState, onClose }) {
           {Array.from(local).length > 0 && (<>
             <button
               onClick={() => exportSavedSetsICS(Array.from(local))}
+              aria-label="Export to calendar"
               title="Export to calendar"
               style={{
                 width: 36, height: 36, borderRadius: 36,
@@ -199,6 +200,7 @@ function NightWizard({ state, setState, onClose }) {
                 if (navigator.share) { navigator.share({ title: `My ${FESTIVAL_CONFIG.shortName || "festival"} lineup`, text }).catch(() => {}); }
                 else { try { navigator.clipboard.writeText(text); } catch {} }
               }}
+              aria-label="Share lineup"
               title="Share lineup"
               style={{
                 width: 36, height: 36, borderRadius: 36,
@@ -420,7 +422,7 @@ function LineupFilterSheet({
       }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
           <span className="mono" style={{ fontSize: 10, letterSpacing: 1.5, fontWeight: 800 }}>FILTERS</span>
-          <button onClick={onClose} style={{
+          <button onClick={onClose} aria-label="Close filters" style={{
             background: "transparent", border: "none", color: "var(--muted)",
             fontSize: 18, cursor: "pointer", lineHeight: 1,
           }}>×</button>
@@ -723,7 +725,7 @@ function LineupScreen({ state, setState }) {
     <Screen bg="var(--paper)">
       <div style={{ padding: "8px 20px 8px", display: "flex", alignItems: "center", gap: 8 }}>
         {state._navStack?.length > 0 && (
-          <button onClick={() => window._popNav?.()} style={{
+          <button onClick={() => window._popNav?.()} aria-label="Go back" style={{
             width: 32, height: 32, borderRadius: 8,
             background: "var(--paper-2)", border: "1px solid var(--line)",
             color: "var(--ink)", cursor: "pointer", fontSize: 16, flexShrink: 0,
@@ -1578,19 +1580,37 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
                   const fillAlpha = isHeadliner ? "38" : "22";
                   const dimAlpha = isHeadliner ? "14" : "08";
                   const _lpRef = React.useRef(null);
+                  const _firedRef = React.useRef(false);
+                  // Long-press-to-save with live feedback: a stage-colour bar
+                  // fills along the bottom edge over the 500ms hold + the block
+                  // dips slightly, so the gesture is visibly building instead of
+                  // a blind wait. _firedRef stops the trailing click from also
+                  // opening the artist after a successful long-press save.
+                  const _resetHold = (e) => {
+                    const el = e.currentTarget, fill = el.querySelector("[data-lpfill]");
+                    el.style.transform = "";
+                    if (fill) { fill.style.transition = "width .12s"; fill.style.width = "0%"; }
+                    if (_lpRef.current) { clearTimeout(_lpRef.current); _lpRef.current = null; }
+                  };
                   return (
                     <div key={a.id}
                       data-lineup-highlight={isHighlighted ? "true" : undefined}
-                      onClick={() => setState({ ...state, artist: a.id })}
-                      onTouchStart={() => {
+                      onClick={() => { if (_firedRef.current) { _firedRef.current = false; return; } setState({ ...state, artist: a.id }); }}
+                      onPointerDown={(e) => {
+                        const el = e.currentTarget, fill = el.querySelector("[data-lpfill]");
+                        el.style.transform = "scale(0.97)";
+                        if (fill) { fill.style.transition = "none"; fill.style.width = "0%"; void fill.offsetWidth; fill.style.transition = "width 0.5s linear"; fill.style.width = "100%"; }
+                        try { window.plurskyHaptic?.("LIGHT"); navigator.vibrate?.(8); } catch {}
                         _lpRef.current = setTimeout(() => {
-                          _lpRef.current = null;
-                          toggleSave(state, setState, a.id);
-                          navigator.vibrate?.([35]);
+                          _lpRef.current = null; _firedRef.current = true;
+                          el.style.transform = "";
+                          if (fill) { fill.style.transition = "none"; fill.style.width = "0%"; }
+                          toggleSave(state, setState, a.id); // handles haptic + 3s undo toast
                         }, 500);
                       }}
-                      onTouchEnd={() => { if (_lpRef.current) clearTimeout(_lpRef.current); }}
-                      onTouchMove={() => { if (_lpRef.current) clearTimeout(_lpRef.current); }}
+                      onPointerUp={_resetHold}
+                      onPointerLeave={_resetHold}
+                      onPointerCancel={_resetHold}
                       style={{
                         position: "absolute",
                         top, left: laneLeft, width: laneW,
@@ -1602,7 +1622,7 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
                         cursor: "pointer",
                         overflow: "hidden",
                         opacity: active || isHighlighted ? 1 : 0.32,
-                        transition: "opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-left 0.2s ease",
+                        transition: "opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-left 0.2s ease, transform 0.12s ease",
                         boxShadow: clash && active
                           ? "inset 0 0 0 1.5px var(--ember)"
                           : (isHeadliner && (active || isHighlighted)
@@ -1644,6 +1664,13 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
                           lineHeight: 1,
                         }}>♫</span>
                       )}
+                      {/* Long-press hold-progress fill (driven imperatively in
+                          the pointer handlers above; 0% at rest). */}
+                      <div data-lpfill aria-hidden="true" style={{
+                        position: "absolute", left: 0, bottom: 0, height: 3, width: "0%",
+                        background: stage.color, borderRadius: "0 0 6px 6px",
+                        pointerEvents: "none", zIndex: 3,
+                      }}/>
                     </div>
                   );
                 })}
@@ -2121,6 +2148,7 @@ function ShareMenuItem({ icon, label, sub, onClick }) {
 
 function toggleSave(state, setState, id) {
   const has = state.saved.includes(id);
+  const prevSaved = state.saved;
   const next = has ? state.saved.filter(x => x !== id) : [...state.saved, id];
   // Tombstone tracking for cloud sync conflict resolution — unsaves get a
   // timestamp so deletion propagates instead of being undone by union merge
@@ -2149,7 +2177,17 @@ function toggleSave(state, setState, id) {
       : isMilestone ? `✦ ${next.length} SETS · ${label} · LINEUP GROWING`
       : hasConflict ? `SAVED · ${label} · ⚠ CLASH`
       : `SAVED · ${next.length} SETS`;
-    window.plurskyToast?.(msg);
+    // 3s UNDO toast — restores the exact prior saved set and reverses the
+    // cloud-sync tombstone so an accidental tap (or long-press) is one tap to
+    // revert. Re-saving clears the removal tombstone; un-saving re-adds it.
+    const undo = () => {
+      if (has) { try { window.sbClearRemoved?.(id); } catch {} }
+      else     { try { window.sbMarkRemoved?.(id); } catch {} }
+      setState(s => ({ ...s, saved: prevSaved }));
+      try { window.plurskyHaptic?.("LIGHT"); } catch {}
+      window.plurskyToast?.(has ? `RE-SAVED · ${label}` : `REMOVED · ${label}`);
+    };
+    window.plurskyToast?.(msg, { actionLabel: "UNDO", onAction: undo, duration: 3000 });
     if ((isFirstSave || isMilestone) && !has) {
       window._plurskyCelebrate?.();
     }

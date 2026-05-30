@@ -1468,7 +1468,7 @@ function HomeScreen({ state, setState }) {
               <button onClick={() => {
                 try { localStorage.setItem("setup_banner_dismissed", "1"); } catch {}
                 setSetupBannerDismissed(true);
-              }} style={{
+              }} aria-label="Dismiss" style={{
                 background: "transparent", border: "none", color: "var(--muted)",
                 fontSize: 18, cursor: "pointer", flexShrink: 0, lineHeight: 1,
               }}>×</button>
@@ -1500,7 +1500,7 @@ function HomeScreen({ state, setState }) {
               <button onClick={() => {
                 setNotifNudgeDismissed(true);
                 try { localStorage.setItem("notif_nudge_dismissed", "1"); } catch {}
-              }} style={{
+              }} aria-label="Dismiss" style={{
                 background: "transparent", border: "none", color: "var(--muted)",
                 fontSize: 18, cursor: "pointer", flexShrink: 0, lineHeight: 1,
               }}>×</button>
@@ -1523,7 +1523,7 @@ function HomeScreen({ state, setState }) {
                   {weatherAlert.shortForecast} — check the weather card below for details.
                 </div>
               </div>
-              <button onClick={() => setWeatherAlertDismissed(true)} style={{
+              <button onClick={() => setWeatherAlertDismissed(true)} aria-label="Dismiss" style={{
                 background: "transparent", border: "none", cursor: "pointer",
                 color: "var(--muted)", fontSize: 18, lineHeight: 1, padding: "0 2px", flexShrink: 0,
               }}>×</button>
@@ -1670,6 +1670,8 @@ function HomeScreen({ state, setState }) {
                             : [...saved, current.id] });
                         }}
                         title={isSaved ? "Unsave set" : "Save set"}
+                        aria-label={isSaved ? "Unsave set" : "Save set"}
+                        aria-pressed={isSaved}
                         style={{
                           marginLeft: "auto", background: "transparent",
                           border: "1.5px solid rgba(255,255,255,0.4)",
@@ -2639,7 +2641,7 @@ function FriendLineupBanner({ state, setState }) {
         <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--horizon)", fontWeight: 700 }}>
           SHARED WITH YOU{state.friendName ? ` · ${state.friendName.toUpperCase()}` : ""}
         </span>
-        <button onClick={dismiss} style={{
+        <button onClick={dismiss} aria-label="Dismiss" style={{
           background: "transparent", border: "none", color: "var(--muted)",
           cursor: "pointer", fontSize: 14, padding: 0, lineHeight: 1,
         }}>×</button>

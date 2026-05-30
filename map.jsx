@@ -645,7 +645,7 @@ function PingSheet({ onClose, onDropPin, friends }) {
       }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
           <span className="mono" style={{ fontSize: 10, letterSpacing: 1.5, fontWeight: 800 }}>PING CODES</span>
-          <button onClick={onClose} style={{
+          <button onClick={onClose} aria-label="Close" style={{
             background: "transparent", border: "none", color: "var(--muted)",
             fontSize: 18, cursor: "pointer", lineHeight: 1,
           }}>×</button>
@@ -766,7 +766,7 @@ function IAmAtSheet({ onClose, initialStage, onStatusSet }) {
       }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
           <span className="mono" style={{ fontSize: 10, letterSpacing: 1.5, fontWeight: 800 }}>WHERE ARE YOU?</span>
-          <button onClick={onClose} style={{
+          <button onClick={onClose} aria-label="Close" style={{
             background: "transparent", border: "none", color: "var(--muted)",
             fontSize: 18, cursor: "pointer", lineHeight: 1,
           }}>×</button>
@@ -960,7 +960,7 @@ function ShareLocationSheet({
         {/* Header */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
           <span className="mono" style={{ fontSize: 10, letterSpacing: 1.5, fontWeight: 800 }}>SHARE WITH CREW</span>
-          <button onClick={onClose} style={{
+          <button onClick={onClose} aria-label="Close" style={{
             background: "transparent", border: "none", color: "var(--muted)",
             fontSize: 18, cursor: "pointer", lineHeight: 1,
           }}>×</button>
@@ -1196,7 +1196,7 @@ function MeetupsSheet({ onClose }) {
       }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
           <span className="mono" style={{ fontSize: 10, letterSpacing: 1.5, fontWeight: 800 }}>MEETUPS</span>
-          <button onClick={onClose} style={{
+          <button onClick={onClose} aria-label="Close" style={{
             background: "transparent", border: "none", color: "var(--muted)",
             fontSize: 18, cursor: "pointer", lineHeight: 1,
           }}>×</button>
@@ -1639,6 +1639,33 @@ function MapScreen({ state, setState }) {
   // nudge only re-appears when the gathering grows.
   const [clusterDismissed, setClusterDismissed] = React.useState(null);
   const clearMeet = () => { setMeetMode(false); setMeetTarget(null); setMeetGroup([]); setRallySent(false); sbClearRally(); };
+
+  // Saved stages — a lightweight bookmark set persisted to localStorage so
+  // "♥ SAVE" on the place card sticks across sessions. Surfaced back on the
+  // card (filled heart) and as a ♥ marker in the search list.
+  const [savedStages, setSavedStages] = React.useState(() => {
+    try { return new Set(JSON.parse(localStorage.getItem("plursky_saved_stages_v1") || "[]")); }
+    catch { return new Set(); }
+  });
+  const toggleSavedStage = React.useCallback((id) => {
+    setSavedStages(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id); else next.add(id);
+      try { localStorage.setItem("plursky_saved_stages_v1", JSON.stringify([...next])); } catch {}
+      return next;
+    });
+  }, []);
+  // "GO HERE" on a stage → route there with a live ETA, reusing the meet
+  // routing surface (avatar walks + ETA card). Drops any active group so it
+  // reads as solo navigation to the stage, labelled with the stage name.
+  const goToStage = React.useCallback((st) => {
+    if (!st) return;
+    setSelectedStage(null);
+    setMeetGroup([]);
+    setMeetTarget({ x: st.x, y: st.y, label: st.name });
+    setMeetMode(true);
+  }, []);
+
   const [search, setSearch] = React.useState("");
   // Bottom search sheet (Apple Maps pattern). Tap to expand from a thin
   // pill to a full sheet showing Find Nearby + heads-up strips. Auto-expands
@@ -2040,7 +2067,7 @@ function MapScreen({ state, setState }) {
         <WellnessPill />
 
         {state._navStack?.length > 0 && (
-          <button onClick={() => window._popNav?.()} style={{
+          <button onClick={() => window._popNav?.()} aria-label="Back" style={{
             position: "absolute", top: 12, left: 10, zIndex: 5,
             width: 38, height: 38, borderRadius: 12,
             background: "rgba(247,237,224,0.92)", backdropFilter: "blur(10px)",
@@ -2056,7 +2083,7 @@ function MapScreen({ state, setState }) {
           position: "absolute", top: 12, right: 10, zIndex: 4,
           display: "flex", flexDirection: "column", gap: 6,
         }}>
-          <button onClick={() => setGpsLive(g => !g)} aria-label="Toggle GPS" style={{
+          <button onClick={() => setGpsLive(g => !g)} aria-label="Toggle GPS" aria-pressed={gpsActive} style={{
             minWidth: 46, padding: "6px 8px", borderRadius: 14,
             background: gpsActive ? "var(--ember)" : "rgba(247,237,224,0.92)",
             color: gpsActive ? "#fff" : (gpsStatus === "denied" ? "#c14a4a" : "var(--ink)"),
@@ -2086,7 +2113,7 @@ function MapScreen({ state, setState }) {
             WebkitBackdropFilter: "blur(10px)",
             boxShadow: "0 4px 12px rgba(0,0,0,0.10)",
           }}>
-            <button onClick={() => setMenuOpen(o => !o)} aria-label="Map layers" style={{
+            <button onClick={() => setMenuOpen(o => !o)} aria-label="Map layers" aria-pressed={menuOpen} style={{
               width: 46, height: 36, padding: 0,
               background: menuOpen ? "var(--ink)" : "transparent",
               color: menuOpen ? "var(--paper)" : "var(--ink)",
@@ -2325,7 +2352,7 @@ function MapScreen({ state, setState }) {
                     {friends.map(f => {
                       const unread = unreadCount(f.id);
                       return (
-                        <button key={f.id} onClick={() => setChatFriend(f)} style={{
+                        <button key={f.id} onClick={() => setChatFriend(f)} aria-label={`Chat with ${f.name}`} style={{
                           position: "relative", flexShrink: 0, width: 22, height: 22,
                           borderRadius: 22, background: f.avatarTone, border: "1.5px solid #fff",
                           padding: 0, cursor: "pointer",
@@ -2339,7 +2366,7 @@ function MapScreen({ state, setState }) {
                       );
                     })}
                     {crewFriends.map(f => (
-                      <button key={f.id} onClick={() => setChatFriend({ id: f.id, presId: f.id, name: f.name, avatarTone: f.color, x: f.x, y: f.y })} style={{
+                      <button key={f.id} onClick={() => setChatFriend({ id: f.id, presId: f.id, name: f.name, avatarTone: f.color, x: f.x, y: f.y })} aria-label={`Chat with ${f.name}`} style={{
                         flexShrink: 0, width: 22, height: 22, borderRadius: 22,
                         background: `${f.color}44`, border: `1.5px solid ${f.color}`,
                         padding: 0, cursor: "pointer", position: "relative",
@@ -2350,7 +2377,7 @@ function MapScreen({ state, setState }) {
                       </button>
                     ))}
                   </div>
-                  <button onClick={() => setMoreOpen(o => !o)} style={{
+                  <button onClick={() => setMoreOpen(o => !o)} aria-label="More options" aria-pressed={moreOpen} style={{
                     background: "var(--paper-2)", border: "1px solid var(--line-2)",
                     borderRadius: 999, width: 26, height: 22, padding: 0,
                     cursor: "pointer", flexShrink: 0, fontSize: 14, fontWeight: 700,
@@ -2373,7 +2400,8 @@ function MapScreen({ state, setState }) {
                         borderRadius: 10,
                       }}>
                         <span style={{ width: 8, height: 8, borderRadius: 8, background: s.color, boxShadow: `0 0 6px ${s.color}` }}/>
-                        <span style={{ fontFamily: "Geist, sans-serif", fontSize: 13 }}>{s.name}</span>
+                        <span style={{ fontFamily: "Geist, sans-serif", fontSize: 13, flex: 1 }}>{s.name}</span>
+                        {savedStages.has(s.id) && <span aria-label="Saved" style={{ color: "var(--ember)", fontSize: 12 }}>♥</span>}
                       </button>
                     ))}
                     {artistMatches.length > 0 && (
@@ -2478,7 +2506,7 @@ function MapScreen({ state, setState }) {
                       fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
                       cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0,
                     }}>{meetMode ? "× CANCEL" : "MEET UP"}</button>
-                    <button onClick={() => setMoreOpen(o => !o)} style={{
+                    <button onClick={() => setMoreOpen(o => !o)} aria-label="More options" aria-pressed={moreOpen} style={{
                       background: moreOpen ? "var(--ink)" : "var(--paper-2)",
                       color: moreOpen ? "var(--paper)" : "var(--ink)",
                       border: moreOpen ? "none" : "1px solid var(--line-2)",
@@ -2704,6 +2732,9 @@ function MapScreen({ state, setState }) {
               onClose={() => setSelectedStage(null)}
               onCancelMeet={clearMeet}
               onOpenArtist={(id) => setState({ ...state, tab: "home", artist: id })}
+              onGoHere={goToStage}
+              stageSaved={stage ? savedStages.has(stage.id) : false}
+              onToggleSave={toggleSavedStage}
               state={state} setState={setState}
             />
           </div>
@@ -5085,7 +5116,7 @@ function GroundPeek({ stage, onClose }) {
         <rect x="65" y="108" width="70" height="14" rx="7" fill="rgba(10,4,20,0.9)" stroke={stage.color} strokeWidth="0.8"/>
         <text x="100" y="117" textAnchor="middle" fill={stage.color} fontFamily="Geist Mono, monospace" fontSize="7" fontWeight="700" letterSpacing="1">{stage.name.toUpperCase()}</text>
       </svg>
-      <button onClick={onClose} style={{
+      <button onClick={onClose} aria-label="Close" style={{
         position: "absolute", top: 4, right: 4,
         width: 20, height: 20, borderRadius: 20,
         background: "rgba(10,4,20,0.85)", border: "1px solid rgba(247,237,224,0.3)",
@@ -5103,7 +5134,7 @@ function GroundPeek({ stage, onClose }) {
 }
 
 // ---- BOTTOM SHEET ----
-function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, meetTarget, friends, meetGroup = [], avatar, onClose, onCancelMeet, onOpenArtist, state, setState }) {
+function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, meetTarget, friends, meetGroup = [], avatar, onClose, onCancelMeet, onOpenArtist, onGoHere, stageSaved, onToggleSave, state, setState }) {
   if (meetMode && meetTarget) {
     const groupFriends = meetGroup.map(id => friends.find(fr => fr.id === id)).filter(Boolean);
     const youDist = Math.sqrt((meetTarget.x-avatar.x)**2 + (meetTarget.y-avatar.y)**2);
@@ -5121,8 +5152,8 @@ function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, m
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><path d="M12 2 C8 2 5 5 5 9 c0 5 7 13 7 13 s7-8 7-13 c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5" fill="#fff"/></svg>
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--ember)", fontWeight: 700 }}>MEETING</div>
-            <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>{title}</div>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--ember)", fontWeight: 700 }}>{groupFriends.length === 0 ? "ROUTING TO" : "MEETING"}</div>
+            <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>{groupFriends.length === 0 ? (meetTarget.label || title) : title}</div>
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 2 }}>ETA ~{eta} MIN · {routingLabel}</div>
           </div>
           <button onClick={onCancelMeet} style={{ background: "transparent", border: "1px solid var(--line-2)", color: "var(--muted)", borderRadius: 999, padding: "7px 10px", cursor: "pointer", fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600 }}>END</button>
@@ -5143,7 +5174,7 @@ function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, m
     );
   }
   if (!stage) return null;
-  return <StageLineupSheet stage={stage} walk={walk} dist={dist} peek={peek} setPeek={setPeek} onClose={onClose} onOpenArtist={onOpenArtist} nowAtStage={nowAtStage} state={state} setState={setState}/>;
+  return <StageLineupSheet stage={stage} walk={walk} dist={dist} peek={peek} setPeek={setPeek} onClose={onClose} onOpenArtist={onOpenArtist} onGoHere={onGoHere} stageSaved={stageSaved} onToggleSave={onToggleSave} nowAtStage={nowAtStage} state={state} setState={setState}/>;
 }
 
 // Per-stage memories strip — same rewatch loop as the per-artist strip on
@@ -5242,7 +5273,7 @@ function YourStagePhotosStrip({ stageId, accent, onOpen, stageObj }) {
   );
 }
 
-function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArtist, nowAtStage, state, setState }) {
+function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArtist, onGoHere, stageSaved, onToggleSave, nowAtStage, state, setState }) {
   const [day, setDay] = React.useState(NOW.day);
   const [expanded, setExpanded] = React.useState(false);
   const toSlot = t => { const h = parseInt(t.split(":")[0]); return h < 8 ? h + 24 : h; };
@@ -5282,10 +5313,6 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
             <div className="serif" style={{ fontSize: 24, lineHeight: 1, letterSpacing: -0.3 }}>
               {stage.name}
             </div>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 600, opacity: 0.88, marginTop: 5 }}>
-              {walk.lo === walk.hi ? `${walk.lo}` : `${walk.lo}–${walk.hi}`} MIN WALK{walk.peak ? " · PEAK" : ""} · ~{Math.round(dist*22)}M · {totalAcrossDays} SETS · 3 NIGHTS
-              {walk.plan && <span style={{ fontWeight: 800 }}> · PLAN 20+</span>}
-            </div>
           </div>
           <button onClick={onClose} aria-label="Close" style={{
             background: "rgba(255,255,255,0.22)", border: "1px solid rgba(255,255,255,0.35)",
@@ -5297,38 +5324,75 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
         </div>
       </div>
 
-      {/* Action chip row — Apple Maps place-card pattern. */}
+      {/* Metadata grid — Apple-Maps place-card stat cells. Replaces the old
+          crammed single 9px line: each fact gets its own scannable cell. */}
       <div style={{
-        display: "flex", gap: 6, padding: "10px 14px 4px",
-        overflowX: "auto", scrollbarWidth: "none",
+        display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6,
+        padding: "10px 14px 0",
       }}>
-        <button onClick={() => setPeek(p => !p)} className="mono" style={{
-          flexShrink: 0,
-          background: peek ? stage.color : "var(--paper-2)",
-          color:      peek ? "#fff"        : "var(--ink)",
-          border:     peek ? "none"        : "1px solid var(--line-2)",
-          borderRadius: 999, padding: "7px 13px", cursor: "pointer",
-          fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-          display: "inline-flex", alignItems: "center", gap: 5,
-          whiteSpace: "nowrap",
+        {[
+          { label: "WALK", value: walk.lo === walk.hi ? `${walk.lo}` : `${walk.lo}–${walk.hi}`, unit: "min", note: walk.peak ? "PEAK" : walk.plan ? "PLAN 20+" : null },
+          { label: "DISTANCE", value: `${Math.round(dist*22)}`, unit: "m", note: null },
+          { label: "SETS", value: `${sets.length}`, unit: day === NOW.day ? "today" : "set day", note: `${totalAcrossDays} · 3 NIGHTS` },
+        ].map(c => (
+          <div key={c.label} style={{
+            background: "var(--paper-2)", border: "1px solid var(--line)",
+            borderRadius: 12, padding: "8px 10px", minWidth: 0,
+          }}>
+            <div className="mono" style={{ fontSize: 8, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>{c.label}</div>
+            <div className="serif" style={{ fontSize: 20, lineHeight: 1, marginTop: 3, color: "var(--ink)" }}>
+              {c.value}<span style={{ fontSize: 10, fontWeight: 400, color: "var(--muted)" }}> {c.unit}</span>
+            </div>
+            {c.note && <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: stage.color, fontWeight: 700, marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{c.note}</div>}
+          </div>
+        ))}
+      </div>
+
+      {/* Primary CTA row — GO HERE (route + live ETA) · PEEK · SAVE.
+          Apple-Maps "Directions / … / bookmark" pattern. */}
+      <div style={{ display: "flex", gap: 6, padding: "8px 14px 0" }}>
+        <button onClick={() => onGoHere?.(stage)} className="mono" style={{
+          flex: 2, background: stage.color, color: "#fff", border: "none",
+          borderRadius: 12, padding: "11px 10px", cursor: "pointer",
+          fontSize: 11, letterSpacing: 1.2, fontWeight: 800,
+          display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
+        }}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+          GO HERE
+        </button>
+        <button onClick={() => setPeek(p => !p)} aria-pressed={peek} className="mono" style={{
+          flex: 1, background: peek ? stage.color : "var(--paper-2)",
+          color: peek ? "#fff" : "var(--ink)",
+          border: peek ? "none" : "1px solid var(--line-2)",
+          borderRadius: 12, padding: "11px 8px", cursor: "pointer",
+          fontSize: 11, letterSpacing: 1.2, fontWeight: 700,
         }}>{peek ? "◉ PEEK" : "◯ PEEK"}</button>
+        <button onClick={() => onToggleSave?.(stage.id)} aria-pressed={!!stageSaved}
+          aria-label={stageSaved ? "Saved — remove this stage" : "Save this stage"} className="mono" style={{
+          flex: 1, background: stageSaved ? "rgba(232,93,46,0.12)" : "var(--paper-2)",
+          color: stageSaved ? "var(--ember)" : "var(--ink)",
+          border: stageSaved ? "1px solid rgba(232,93,46,0.45)" : "1px solid var(--line-2)",
+          borderRadius: 12, padding: "11px 8px", cursor: "pointer",
+          fontSize: 11, letterSpacing: 1.2, fontWeight: 700,
+          display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 5,
+        }}>{stageSaved ? "♥ SAVED" : "♡ SAVE"}</button>
+      </div>
+
+      {/* Secondary — full lineup + far-stage hint. */}
+      <div style={{ display: "flex", gap: 6, padding: "8px 14px 2px" }}>
         <button onClick={() => setState({ ...state, tab: "lineup", lineupDay: day, stageFilter: stage.id })} className="mono" style={{
-          flexShrink: 0,
-          background: "var(--paper-2)", border: "1px solid var(--line-2)",
-          color: "var(--ink)",
-          borderRadius: 999, padding: "7px 13px", cursor: "pointer",
-          fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-          whiteSpace: "nowrap",
-        }}>☰ LINEUP</button>
-        <button onClick={() => { if (typeof sbShareLink === "function") { /* fallthrough */ } onClose(); /* close sheet, user can use Meet from rideshare or share */ }} className="mono" style={{
-          flexShrink: 0,
-          background: "var(--paper-2)", border: "1px solid var(--line-2)",
-          color: "var(--muted)",
-          borderRadius: 999, padding: "7px 13px", cursor: "pointer",
-          fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-          whiteSpace: "nowrap",
-          display: walk.lo > 25 ? "inline-flex" : "none",
-        }}>↗ FAR · {walk.lo}M</button>
+          flex: 1, background: "transparent", border: "1px solid var(--line-2)",
+          color: "var(--muted)", borderRadius: 999, padding: "7px 13px", cursor: "pointer",
+          fontSize: 10, letterSpacing: 1.2, fontWeight: 700, whiteSpace: "nowrap",
+        }}>☰ FULL LINEUP</button>
+        {walk.lo > 25 && (
+          <div className="mono" style={{
+            flexShrink: 0, background: "rgba(193,74,74,0.1)", border: "1px solid rgba(193,74,74,0.35)",
+            color: "#c14a4a", borderRadius: 999, padding: "7px 13px",
+            fontSize: 10, letterSpacing: 1.2, fontWeight: 700, whiteSpace: "nowrap",
+            display: "inline-flex", alignItems: "center",
+          }}>↗ FAR · {walk.lo} MIN</div>
+        )}
       </div>
 
       <div style={{ padding: "6px 14px 0" }}>
@@ -5458,7 +5522,7 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
                   padding: "2px 6px", borderRadius: 4,
                 }}>LIVE</span>
               )}
-              <button onClick={toggleSaveSet} style={{
+              <button onClick={toggleSaveSet} aria-pressed={isSaved} aria-label={isSaved ? `Remove ${s.name} from saved sets` : `Save ${s.name}`} style={{
                 background: isSaved ? "var(--ember)" : "transparent",
                 border: `1px solid ${isSaved ? "var(--ember)" : "var(--line-2)"}`,
                 color: isSaved ? "#fff" : "var(--muted)",
@@ -5794,7 +5858,7 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
               color: "var(--ink)", outline: "none",
             }}
           />
-          <button onClick={() => send(draft)} disabled={!draft.trim()} style={{
+          <button onClick={() => send(draft)} disabled={!draft.trim()} aria-label="Send message" style={{
             width: 38, height: 38, borderRadius: 38,
             background: draft.trim() ? "var(--ember)" : "var(--line-2)",
             color: "#fff", border: "none",

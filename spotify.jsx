@@ -715,7 +715,7 @@ function PackListCard() {
         }}>{it.label}</span>
       </button>
       {isCustom && (
-        <button onClick={() => removeCustom(it.id)} style={{
+        <button onClick={() => removeCustom(it.id)} aria-label="Remove item" style={{
           background: "transparent", border: "none", cursor: "pointer",
           color: "var(--muted)", fontSize: 16, lineHeight: 1, padding: "0 2px", flexShrink: 0,
         }}>×</button>
@@ -2214,7 +2214,7 @@ async function _shareMoment(moment, meta) {
 function _LightboxThumb({ moment, active, onClick }) {
   const url = useMomentPhoto(moment.photoId);
   return (
-    <button onClick={onClick} style={{
+    <button onClick={onClick} aria-label="View moment" style={{
       flexShrink: 0, width: 44, height: 44, borderRadius: 8, padding: 0, cursor: "pointer",
       border: active ? "2px solid #fff" : "2px solid transparent",
       opacity: active ? 1 : 0.5, overflow: "hidden", background: "#222",
@@ -2994,7 +2994,10 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
     setProg(0);
     const tick = (now) => {
       if (stop) return;
-      const dt = now - last; last = now;
+      // Clamp the frame delta: a backgrounded tab freezes RAF, so the first
+      // frame after resume would otherwise carry the whole hidden duration
+      // and fast-forward past several beats. 100ms also smooths any GC stall.
+      const dt = Math.min(now - last, 100); last = now;
       if (!pausedRef.current) {
         acc += dt;
         const p = Math.min(1, acc / dur);
@@ -3016,6 +3019,15 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [onClose]);
+
+  // Backgrounding the app would otherwise keep the (muted) video playing and
+  // let progress lurch on return. Pause on hide; the user taps to resume so
+  // they never miss a beat they weren't looking at.
+  React.useEffect(() => {
+    const onVis = () => { if (document.hidden) setPaused(true); };
+    document.addEventListener("visibilitychange", onVis);
+    return () => document.removeEventListener("visibilitychange", onVis);
+  }, []);
 
   // Hold-to-pause vs tap-to-navigate.
   const holdRef = React.useRef({ t: null, held: false });
@@ -3178,7 +3190,7 @@ function _MemoryStoryBeat({ moment, isLast, onOpen }) {
           <div className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2 }}>{stage.name.toUpperCase()}</div>
         )}
         {url && (
-          <button onClick={onOpen} style={{ marginTop: 8, padding: 0, border: "none", background: "none", cursor: "pointer", display: "block", width: "100%", position: "relative" }}>
+          <button onClick={onOpen} aria-label="Open moment" style={{ marginTop: 8, padding: 0, border: "none", background: "none", cursor: "pointer", display: "block", width: "100%", position: "relative" }}>
             {moment.kind === "video" ? (
               <>
                 {/* preload="metadata" paints the first frame as a poster;
@@ -3294,6 +3306,48 @@ function MemoryStory({ allMoments, state, setState, onOpenLightbox, onPlayReel }
   );
 }
 
+// Render-windowing wrapper (no lib). Mounts `children` only while the row is
+// near the viewport (rootMargin pre-mounts ~one screen ahead so scrolling
+// reveals ready tiles, not skeletons); otherwise renders a fixed-size
+// placeholder so scroll position is preserved. Unmounting off-screen tiles
+// frees their decoded image/video AND lets useMomentPhoto's cleanup revoke
+// the object URL — the fix for the leaked-video-URL pile-up and the jank that
+// hit once the grid held 100+ moments (every tile used to mount at once, each
+// holding a live blob URL + a <video preload=metadata>). Falls back to
+// always-visible where IntersectionObserver is absent.
+function _LazyMount({ children, placeholder, minHeight = 120, rootMargin = "800px 0px", style }) {
+  const ref = React.useRef(null);
+  const [visible, setVisible] = React.useState(false);
+  const [measured, setMeasured] = React.useState(null);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (!window.IntersectionObserver) { setVisible(true); return; }
+    const obs = new IntersectionObserver((entries) => {
+      const e = entries[entries.length - 1];
+      if (e.isIntersecting) { setVisible(true); }
+      else {
+        // Snapshot the rendered footprint before unmounting so the spacer
+        // keeps the same height (no scroll jump when content drops out).
+        const h = el.offsetHeight;
+        if (h) setMeasured(h);
+        setVisible(false);
+      }
+    }, { rootMargin });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [rootMargin]);
+  return (
+    <div ref={ref} style={style}>
+      {visible
+        ? children
+        : (placeholder != null
+            ? placeholder
+            : <div aria-hidden="true" style={{ height: measured || minHeight }} />)}
+    </div>
+  );
+}
+
 // A++ default lens: a dense, scannable photo grid of every moment (newest
 // first) — the view people expect from a "memories" tab (Apple/Google Photos,
 // Retro, Snapchat). Tap a tile → full-screen lightbox.
@@ -3302,7 +3356,8 @@ function _GridTile({ moment, onClick }) {
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   return (
     <button onClick={onClick} style={{
-      position: "relative", aspectRatio: "1 / 1", borderRadius: 10, overflow: "hidden",
+      position: "relative", width: "100%", height: "100%", aspectRatio: "1 / 1",
+      borderRadius: 10, overflow: "hidden",
       border: "1px solid var(--line)", background: url ? "#000" : "var(--paper-2)",
       padding: 0, cursor: "pointer",
     }}>
@@ -3330,7 +3385,16 @@ function MemoryGrid({ allMoments, onOpenLightbox }) {
   if (!sorted.length) return null;
   return (
     <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6, marginTop: 4 }}>
-      {sorted.map((m, i) => <_GridTile key={m.id} moment={m} onClick={() => onOpenLightbox(sorted, i)} />)}
+      {sorted.map((m, i) => (
+        <_LazyMount
+          key={m.id}
+          rootMargin="600px 0px"
+          style={{ aspectRatio: "1 / 1" }}
+          placeholder={<div className="skel" style={{ width: "100%", height: "100%", borderRadius: 10 }} />}
+        >
+          <_GridTile moment={m} onClick={() => onOpenLightbox(sorted, i)} />
+        </_LazyMount>
+      ))}
     </div>
   );
 }
@@ -5279,7 +5343,7 @@ function WrappedStory({ recap, onClose }) {
         ))}
       </div>
 
-      <button onClick={onClose} style={{
+      <button onClick={onClose} aria-label="Close" style={{
         position: "absolute", top: 22, right: 16, zIndex: 3,
         width: 36, height: 36, borderRadius: 36, border: "none",
         background: "rgba(255,255,255,0.15)", color: "#fff",
@@ -6221,13 +6285,13 @@ function RecapScreen({ state, setState }) {
                 ) : selectedTrack ? (
                   <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 10px", borderRadius: 10, background: "rgba(109,40,217,0.2)" }}>
                     {selectedTrack.album?.images?.[0]?.url && (
-                      <img src={selectedTrack.album.images[0].url} style={{ width: 32, height: 32, borderRadius: 6 }} />
+                      <img src={selectedTrack.album.images[0].url} alt="" style={{ width: 32, height: 32, borderRadius: 6 }} />
                     )}
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ fontSize: 13, color: "#f7ede0", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{selectedTrack.name}</div>
                       <div className="mono" style={{ fontSize: 9, color: "rgba(247,237,224,0.5)" }}>{selectedTrack.artists?.[0]?.name}</div>
                     </div>
-                    <button onClick={() => { setSelectedTrack(null); if (previewAudio) { previewAudio.pause(); setPreviewAudio(null); } }} className="mono" style={{
+                    <button onClick={() => { setSelectedTrack(null); if (previewAudio) { previewAudio.pause(); setPreviewAudio(null); } }} aria-label="Remove song" className="mono" style={{
                       background: "none", border: "none", color: "rgba(247,237,224,0.4)", cursor: "pointer", fontSize: 14, padding: "4px",
                     }}>×</button>
                   </div>
@@ -6251,7 +6315,7 @@ function RecapScreen({ state, setState }) {
                             display: "flex", alignItems: "center", gap: 8, padding: "6px 8px", borderRadius: 8,
                             background: "rgba(247,237,224,0.05)", border: "none", cursor: "pointer", textAlign: "left", width: "100%",
                           }}>
-                            {tr.album?.images?.[0]?.url && <img src={tr.album.images[0].url} style={{ width: 28, height: 28, borderRadius: 4 }} />}
+                            {tr.album?.images?.[0]?.url && <img src={tr.album.images[0].url} alt="" style={{ width: 28, height: 28, borderRadius: 4 }} />}
                             <div style={{ flex: 1, minWidth: 0 }}>
                               <div style={{ fontSize: 12, color: "#f7ede0", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{tr.name}</div>
                               <div className="mono" style={{ fontSize: 8, color: "rgba(247,237,224,0.4)" }}>{tr.artists?.[0]?.name}</div>

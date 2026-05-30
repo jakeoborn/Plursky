@@ -100,6 +100,7 @@ function TabBar({ active, onChange }) {
         return (
           <button key={t.id}
             onClick={() => { haptic.light(); onChange(t.id); }}
+            aria-current={on ? "page" : undefined}
             style={{
               background: "transparent", border: "none", cursor: "pointer",
               display: "flex", flexDirection: "column", alignItems: "center", gap: 2,
