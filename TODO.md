@@ -13,21 +13,21 @@ unmemoized/unvirtualized renders. Prioritized:
 1. ✅ **Memories metadata → Supabase backup** (97a8f01).
 2. ✅ **Daylight contrast** (b35151b) — raised --muted across all 4 themes (AA). (Per-surface Recap-hero/place-card pixel polish still optional.)
 3. ✅ **Lineup artist search** (3b… v196) — sticky search bar (artist/stage/genre) in LIST + GRID, clearable.
-4. ✅ **Redesign Map place card** (v197) — stage place card now an Apple-Maps-style metadata grid (WALK/DISTANCE/SETS cells) + GO HERE (routes via meet ETA surface) / ♥ SAVE (localStorage bookmark, also shown in search list). Modeled on Apple Maps "Foothills Park" + Zenly per Mobbin.
+4. ✅ **Redesign Map place card** (v197→v198) — Apple-Maps-style metadata grid (WALK/DISTANCE/SETS cells). GO HERE now collapses the card to a purpose-built slim `StageNavBar` ("ROUTING TO <stage>") revealing the already-drawn walking route (v198 de-seam — no longer reuses the meet card). ♥ SAVE persists to localStorage + surfaces as a "SAVED SPOTS" chip row in the search sheet (v198 reachability). Modeled on Apple Maps "Foothills Park" + Zenly per Mobbin. Verified live (Playwright/ACL).
 5. ✅ **Hardcoded `my-edc-2026.png` export → dynamic** (b35151b). (Stale tier cache still open.)
 6. ✅ **Persistent 'SHARING · TAP TO STOP' badge** (b35151b).
 7. ✅ **Rank + enrich Map search** (v196) — relevance ranking (exact>prefix>word-start>substring + tier tiebreak), rows show set time/day/★saved, STAGES/ARTISTS headers, friendly empty state; stagger dropped.
 8. ✅ **Memoize Lineup filter chain + kill O(n²) conflict loop** (v196) — dayArtists/dayStats/savedToday/conflicts all useMemo'd over a Set-based saved lookup.
-9. ✅ **Virtualize Memories grid** (v197) — IntersectionObserver render-windowing (`_LazyMount`, no lib) on the GRID view: off-screen tiles unmount → frees decoded media + revokes object-URLs (the leaked-video-URL fix). MemoryReel now clamps RAF dt + pauses on `visibilitychange` so backgrounding can't skip beats. (Night/group MomentCard views left un-windowed to preserve in-progress retag state.)
+9. ✅ **Virtualize Memories** (v197→v198) — GRID view uses `_LazyMount` IntersectionObserver windowing (off-screen tiles unmount → free decoded media + revoke object-URLs = leaked-video-URL fix). NIGHT/GROUP `MomentCard` views now defer the photo via `useMomentPhoto(id, enabled)` + `useNearViewport` — off-screen cards drop their decoded image/URL but stay mounted (preserves in-progress retag state) (v198). MemoryReel clamps RAF dt + pauses on `visibilitychange`.
 10. ✅ **Crew cell alert() → smooth scroll** (b35151b). (Dead Badges anchor already worked.)
 11. ✅ **Lineup save UX** (v197) — 3s UNDO toast (reverts saved set + cloud tombstone) via upgraded `plurskyToast(text, {actionLabel,onAction,duration})`; grid long-press-to-save now shows live feedback (stage-color fill bar + block dip + haptic) and guards the trailing artist-nav click.
 12. 🟡 **A11y sweep** — DONE: icon/emoji/SVG-only buttons + unlabeled `<img>` across all screens now carry `aria-label`/`alt` (~35), icon toggles `aria-pressed`, bottom nav `aria-current`, toast `role=status aria-live`, global `:focus-visible` ring (WCAG 2.4.7). STILL OPEN (not yet a full WCAG audit): screen-reader walkthrough, contrast re-check on the new place-card cells, focus-order/trap in modals/sheets, reduced-motion coverage of the new long-press fill, labels on the interactive SVG map elements (stage `<g>` hit-areas).
 - Phase B (later): photo/video BLOB backup to Supabase Storage (cost/Plus/wifi policy).
 
-> **⏳ iOS 1.8 (19) PREPPED — awaiting archive.** Web @ **v197** with the full
+> **⏳ iOS 1.8 (19) PREPPED — awaiting archive.** Web @ **v198** with the full
 > report-card cluster (#2/#3/#4/#5/#6/#7/#8/#9/#10/#11/#12). `dist/` rebuilt +
 > `npx cap sync ios` done; pbxproj bumped to **MARKETING_VERSION 1.8 /
-> CURRENT_PROJECT_VERSION 19** (both configs); native bundle verified @ v197.
+> CURRENT_PROJECT_VERSION 19** (both configs); native bundle re-synced + verified @ v198.
 > **Remaining (Jake, interactive):** `npx cap open ios` → Any iOS Device →
 > Product ▸ Archive → Distribute ▸ App Store Connect ▸ Upload. Last on-device
 > build is still **1.7 (18)** until that lands. On-device smoke tests owed on
