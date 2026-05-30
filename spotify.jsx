@@ -5635,20 +5635,28 @@ function PlusGate({ children, feature }) {
           ))}
         </div>
 
-        <button onClick={() => handlePurchase(RC_PRODUCT_IDS.festival)} disabled={busy} className="mono" style={{
+        <button onClick={() => handlePurchase(RC_PRODUCT_IDS.annual)} disabled={busy} className="mono" style={{
           padding: "11px 28px", borderRadius: 12, border: "none",
           background: busy ? "rgba(109,40,217,0.5)" : "linear-gradient(135deg, #6D28D9, #e85d2e)",
           color: "#fff", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
           cursor: busy ? "wait" : "pointer",
           boxShadow: "0 4px 20px rgba(109,40,217,0.45), 0 0 40px rgba(232,93,46,0.2)",
         }}>
-          {busy ? "PROCESSING…" : "$2.99 / FESTIVAL"}
+          {busy ? "PROCESSING…" : "$7.99 / YEAR"}
         </button>
+        {/* Auto-renewable subscription disclosure — required for App Store
+            review (Guideline 3.1.2): name, price, term, auto-renew + T&Cs. */}
         <div className="mono" style={{
-          fontSize: 8, letterSpacing: 1, color: "rgba(255,255,255,0.35)",
-          marginTop: 8,
+          fontSize: 8, letterSpacing: 0.5, color: "rgba(255,255,255,0.4)",
+          marginTop: 8, lineHeight: 1.5, maxWidth: 264, textAlign: "center",
         }}>
-          ONE-TIME · PER FESTIVAL
+          Plursky+ · $7.99/year, auto-renews until cancelled. Payment is charged to
+          your Apple ID; manage or cancel anytime in Settings.
+          <div style={{ marginTop: 4 }}>
+            <a href="./terms.html" target="_blank" rel="noopener" style={{ color: "rgba(255,255,255,0.6)" }}>Terms</a>
+            {"   ·   "}
+            <a href="./privacy.html" target="_blank" rel="noopener" style={{ color: "rgba(255,255,255,0.6)" }}>Privacy</a>
+          </div>
         </div>
         <button onClick={handleRestore} disabled={busy} className="mono" style={{
           marginTop: 10, padding: "4px 12px", borderRadius: 6,
