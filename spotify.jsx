@@ -1268,7 +1268,9 @@ function useNearViewport(rootMargin = "600px 0px") {
   return [ref, near];
 }
 
-// ── Cloud media backup (Plursky+, manual, wifi-only) ──────────────
+// ── Cloud media backup (Plursky+) ─────────────────────────────────
+// P1: manual + wifi-only. P2: auto-backup (opt-in toggle) + a per-user storage
+// cap so a phone full of 200MB videos can't run up the bill.
 // Best-effort wifi gate: block only on a KNOWN cellular connection; allow when
 // the type is unavailable (iOS WKWebView usually doesn't expose it).
 function _onWifi() {
@@ -1278,34 +1280,50 @@ function _onWifi() {
   } catch {}
   return true;
 }
+const _BACKUP_SOFT_CAP = 1024 * 1024 * 1024;     // 1 GB — warn
+const _BACKUP_HARD_CAP = 2 * 1024 * 1024 * 1024; // 2 GB — stop uploading
+function _autoBackupOn() { try { return localStorage.getItem("plursky_autobackup") !== "0"; } catch { return true; } } // default on (Plus)
+function _setAutoBackup(v) { try { localStorage.setItem("plursky_autobackup", v ? "1" : "0"); } catch {} }
+function _fmtSize(b) { if (!b) return "0 MB"; const mb = b / 1048576; return mb >= 1024 ? (mb / 1024).toFixed(1) + " GB" : Math.max(1, Math.round(mb)) + " MB"; }
+// Cloud bytes used = sum of per-moment backedUpBytes (accurate across deletes
+// + re-uploads, unlike a running counter).
+function _backedUpBytes(all) {
+  let b = 0;
+  for (const n of Object.keys(all)) for (const m of (all[n] || [])) if (m.backedUp) b += (m.backedUpBytes || 0);
+  return b;
+}
 
-// Mirror every not-yet-backed-up moment photo to Supabase Storage, then stamp
-// `backedUp` on the moment (one batched write at the end so we don't fire N
-// re-renders). Returns {done, failed, total} or {error}.
+// Mirror every not-yet-backed-up moment photo/video to Supabase Storage, then
+// stamp `backedUp` + `backedUpBytes` on the moment (one batched write at the
+// end so we don't fire N re-renders). Stops at the hard cap. Returns
+// {done, failed, total, capped, usedBytes} or {error}.
 async function _backupMyWeekend(onProgress) {
   if (typeof window.sbUploadMomentMedia !== "function") return { error: "offline" };
   const user = window.sbGetUser ? await window.sbGetUser() : null;
   if (!user) return { error: "signin" };
   const all = _readMoments();
+  let usedBytes = _backedUpBytes(all);
   const pending = [];
   for (const n of Object.keys(all)) for (const m of (all[n] || [])) {
     if (m.photoId && !m.backedUp) pending.push(m);
   }
-  let done = 0, failed = 0;
-  const succeeded = new Set();
+  let done = 0, failed = 0, capped = false;
+  const succeeded = {}; // id -> bytes
   for (const m of pending) {
     const blob = await _getPhoto(m.photoId).catch(() => null);
     if (!blob) { failed++; onProgress?.({ done, failed, total: pending.length }); continue; }
+    if (usedBytes + blob.size > _BACKUP_HARD_CAP) { capped = true; break; }
     const ok = await window.sbUploadMomentMedia(m.photoId, blob);
-    if (ok) { succeeded.add(m.id); done++; } else failed++;
+    if (ok) { succeeded[m.id] = blob.size; usedBytes += blob.size; done++; } else failed++;
     onProgress?.({ done, failed, total: pending.length });
   }
-  if (succeeded.size) {
+  const ids = Object.keys(succeeded);
+  if (ids.length) {
     const cur = _readMoments();
-    for (const n of Object.keys(cur)) cur[n] = (cur[n] || []).map(x => succeeded.has(x.id) ? { ...x, backedUp: true } : x);
+    for (const n of Object.keys(cur)) cur[n] = (cur[n] || []).map(x => succeeded[x.id] != null ? { ...x, backedUp: true, backedUpBytes: succeeded[x.id] } : x);
     _writeMoments(cur);
   }
-  return { done, failed, total: pending.length };
+  return { done, failed, total: pending.length, capped, usedBytes };
 }
 
 // Single memory thumbnail for the home strip — loads its photo blob lazily.
@@ -3750,13 +3768,21 @@ function MemoriesScreen({ state, setState }) {
     return out;
   }, [all]);
 
-  // Cloud-backup status (X/Y) + handler. Plus-gated media backup, manual,
-  // wifi-only. Free users tapping it open the paywall overlay.
+  // Cloud-backup status (X/Y + bytes) + handler. Plus-gated media backup.
+  // Free users tapping it open the paywall overlay.
+  const [autoOn, setAutoOn] = React.useState(() => _autoBackupOn());
+  const _autoBusy = React.useRef(false);
   const backupStat = React.useMemo(() => {
-    let total = 0, done = 0;
-    for (const m of allMoments) { if (!m.photoId) continue; total++; if (m.backedUp) done++; }
-    return { total, done };
+    let total = 0, done = 0, bytes = 0;
+    for (const m of allMoments) { if (!m.photoId) continue; total++; if (m.backedUp) { done++; bytes += (m.backedUpBytes || 0); } }
+    return { total, done, bytes };
   }, [allMoments]);
+  const _afterBackup = (res) => {
+    if (res?.error === "signin") window.plurskyToast?.("Sign in on the Me tab to back up");
+    else if (res?.error) window.plurskyToast?.("Backup unavailable right now");
+    else if (res?.capped) window.plurskyToast?.(`Backup limit reached (${_fmtSize(_BACKUP_HARD_CAP)}) · ${res.done} saved`);
+    else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}`);
+  };
   const handleBackup = async () => {
     if (!_isPlusSub()) { setShowPlus(true); return; }
     if (!_onWifi()) { window.plurskyToast?.("Wi-Fi only — connect to back up your media"); return; }
@@ -3765,10 +3791,25 @@ function MemoriesScreen({ state, setState }) {
     const res = await _backupMyWeekend(p => setBackupProg({ done: backupStat.done + p.done, total: backupStat.total }));
     setBackupBusy(false); setBackupProg(null);
     setAll(_readMoments()); // refresh backedUp flags → button updates
-    if (res?.error === "signin") window.plurskyToast?.("Sign in on the Me tab to back up");
-    else if (res?.error) window.plurskyToast?.("Backup unavailable right now");
-    else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}`);
+    _afterBackup(res);
   };
+  // P2 auto-backup: Plus + opted-in + Wi-Fi → quietly catch up pending uploads
+  // on mount and whenever moments change (e.g. after an import). Ref-guarded
+  // against concurrent runs; no-ops when nothing is pending.
+  React.useEffect(() => {
+    if (!autoOn || !_isPlusSub() || !_onWifi() || _autoBusy.current) return;
+    if (!allMoments.some(m => m.photoId && !m.backedUp)) return;
+    let cancelled = false;
+    (async () => {
+      if (!(window.sbGetUser && await window.sbGetUser())) return;
+      if (cancelled || _autoBusy.current) return;
+      _autoBusy.current = true;
+      const res = await _backupMyWeekend().catch(() => null);
+      _autoBusy.current = false;
+      if (!cancelled) { setAll(_readMoments()); if (res?.done) window.plurskyToast?.(`☁ Auto-backed up ${res.done}`); }
+    })();
+    return () => { cancelled = true; };
+  }, [allMoments, autoOn]);
 
   return (
     <Screen bg="var(--paper)">
@@ -3918,10 +3959,12 @@ function MemoriesScreen({ state, setState }) {
                 <div className="serif" style={{ fontSize: 15, lineHeight: 1.1 }}>
                   {backupBusy ? "Backing up…" : (backupStat.done >= backupStat.total ? "Memories backed up" : "Back up my weekend")}
                 </div>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2, fontWeight: 700 }}>
-                  {backupBusy && backupProg ? `${backupProg.done}/${backupProg.total}`
-                    : backupStat.done >= backupStat.total ? "ALL SAFE IN THE CLOUD"
-                    : `${backupStat.done}/${backupStat.total} BACKED UP · WI-FI ONLY`}
+                <div className="mono" style={{ fontSize: 9, letterSpacing: 1, marginTop: 2, fontWeight: 700,
+                  color: backupStat.bytes >= _BACKUP_SOFT_CAP ? "var(--ember)" : "var(--muted)" }}>
+                  {backupBusy && backupProg ? `BACKING UP… ${backupProg.done}/${backupProg.total}`
+                    : backupStat.done >= backupStat.total ? `ALL SAFE · ${_fmtSize(backupStat.bytes)}`
+                    : `${backupStat.done}/${backupStat.total} · ${_fmtSize(backupStat.bytes)} · WI-FI`}
+                  {backupStat.bytes >= _BACKUP_SOFT_CAP ? ` · NEAR ${_fmtSize(_BACKUP_HARD_CAP)} LIMIT` : ""}
                 </div>
               </div>
             </div>
@@ -3930,6 +3973,18 @@ function MemoriesScreen({ state, setState }) {
               fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
               background: _isPlusSub() ? "var(--ember)" : "linear-gradient(135deg,#6D28D9,#e85d2e)",
             }}>{_isPlusSub() ? (backupStat.done >= backupStat.total ? "✓" : "BACK UP") : "PLUS"}</span>
+          </button>
+        )}
+
+        {/* P2: auto-backup toggle (Plus). Default on; wifi-only. */}
+        {backupStat.total > 0 && _isPlusSub() && (
+          <button onClick={() => { const v = !autoOn; _setAutoBackup(v); setAutoOn(v); }} className="mono" aria-pressed={autoOn} style={{
+            display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+            width: "100%", marginTop: 6, padding: "7px 12px", borderRadius: 10,
+            background: "transparent", border: "1px solid var(--line)",
+            color: "var(--muted)", cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+          }}>
+            AUTO-BACKUP ON WI-FI · <span style={{ color: autoOn ? "var(--success)" : "var(--muted)" }}>{autoOn ? "ON" : "OFF"}</span>
           </button>
         )}
 
