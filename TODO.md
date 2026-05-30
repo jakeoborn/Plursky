@@ -21,7 +21,7 @@ unmemoized/unvirtualized renders. Prioritized:
 9. ✅ **Virtualize Memories** (v197→v198) — GRID view uses `_LazyMount` IntersectionObserver windowing (off-screen tiles unmount → free decoded media + revoke object-URLs = leaked-video-URL fix). NIGHT/GROUP `MomentCard` views now defer the photo via `useMomentPhoto(id, enabled)` + `useNearViewport` — off-screen cards drop their decoded image/URL but stay mounted (preserves in-progress retag state) (v198). MemoryReel clamps RAF dt + pauses on `visibilitychange`.
 10. ✅ **Crew cell alert() → smooth scroll** (b35151b). (Dead Badges anchor already worked.)
 11. ✅ **Lineup save UX** (v197) — 3s UNDO toast (reverts saved set + cloud tombstone) via upgraded `plurskyToast(text, {actionLabel,onAction,duration})`; grid long-press-to-save now shows live feedback (stage-color fill bar + block dip + haptic) and guards the trailing artist-nav click.
-12. 🟡 **A11y sweep** — DONE: icon/emoji/SVG-only buttons + unlabeled `<img>` across all screens now carry `aria-label`/`alt` (~35), icon toggles `aria-pressed`, bottom nav `aria-current`, toast `role=status aria-live`, global `:focus-visible` ring (WCAG 2.4.7). STILL OPEN (not yet a full WCAG audit): screen-reader walkthrough, contrast re-check on the new place-card cells, focus-order/trap in modals/sheets, reduced-motion coverage of the new long-press fill, labels on the interactive SVG map elements (stage `<g>` hit-areas).
+12. ✅ **A11y sweep** (v197→v199) — icon/emoji/SVG-only buttons + unlabeled `<img>` across all screens carry `aria-label`/`alt` (~35), icon toggles `aria-pressed`, bottom nav `aria-current`, toast `role=status aria-live`, global `:focus-visible` ring (2.4.7). v199 WCAG-finish: map stage hit-areas (SVG `<g>` + label divs) now `role=button`+`aria-label`+`tabIndex`+Enter/Space; place-card hero/GO HERE/nav-icon auto-flip ink dark-vs-white by luminance (`_inkOn`) so light stages (yellow/cyan/green) stay readable; metadata-cell note → `--muted` (was failing stage.color on light); Esc-to-close on place card + nav bar. Residual (minor, pre-existing long-tail): inherited stage-color content cards (vibe / "ON STAGE NOW") still use white-on-color for light stages; full SR walkthrough + focus-trap depth not yet audited.
 - Phase B (later): photo/video BLOB backup to Supabase Storage (cost/Plus/wifi policy).
 
 > **⏳ iOS 1.8 (19) PREPPED — awaiting archive.** Web @ **v198** with the full
@@ -33,31 +33,31 @@ unmemoized/unvirtualized renders. Prioritized:
 > build is still **1.7 (18)** until that lands. On-device smoke tests owed on
 > 1.8: Apple Music BUILD PLAYLIST · Shazam-a-video · 2-device rally · ACL map.
 
-## ⭐ MASTER OPEN ITEMS — updated 2026-05-30 (web @ v196; **iOS 1.7 (18) APPROVED & LIVE** 🎉)
+## ⭐ MASTER OPEN ITEMS — updated 2026-05-30 (web @ **v199**; **iOS 1.7 (18) LIVE**, **1.8 (19) prepped — awaiting archive** 🎉)
 
 _Session 13 shipped + LIVE on iOS 1.7: reel/recap audit, ACL map (real
 artwork), spotify.jsx split ×3, recap-ready nudge, Spotify auto-create,
 rally + crew-cluster meetup, Apple Music, native ShazamKit video-ID, the 4
 music synergies._
 
-### A. Ship-gate — ✅ DONE (iOS 1.7 (18) approved & live 2026-05-30)
-1. ✅ **iOS 1.7 (18) shipped** — all session-13 native work is live on device.
-2. **Test Apple Music "BUILD PLAYLIST"** + **Shazam a video** on the live 1.7 build (on-device smoke test).
+### A. Ship-gate — on-device smoke tests, now owed on **1.8 (19)** (prepped @ v199, awaiting archive)
+1. ✅ **iOS 1.7 (18) shipped & live.** Next archive = **1.8 (19)** (pbxproj bumped, dist/ synced @ v199).
+2. **Test Apple Music "BUILD PLAYLIST"** + **Shazam a video** on the 1.8 build (on-device smoke test).
 3. **2-device test** — rally-point + crew-cluster broadcast round-trip.
-4. **In-app verify ACL map** + send Memories screenshots for the polish pass.
+4. **In-app verify ACL map** renders on device.
 
 ### B. Music synergy (Spotify × Apple Music × Shazam) — ✅ ALL SHIPPED v188
 5. ✅ **Your Weekend Soundtrack** — playlist from Shazam-confirmed moment songs + saved top tracks → Spotify OR Apple Music. (45e9151)
 6. ✅ **Service-agnostic framing** — caption: saved sets → either service; beats Spotify's cap. (bd7848c)
 7. ✅ **Shazam → attendance** — recognized song = proof of attendance, auto-markAttended. (bd7848c)
 8. ✅ **Recap-video soundtrack from your songs** — exporter prefers a Shazam'd song's preview. (bd7848c)
-   _All four need the iOS 1.0.7 build (#1) for Shazam to populate confirmed songs on-device._
+   _All four need an on-device build (now 1.8 (19)) for Shazam to populate confirmed songs._
 
 ### C. Jake's manual / external actions
 9. **Spotify Extended Quota Mode** application (unblocks playlist creation for >5 users).
 10. **RevenueCat products + entitlements in ASC** — `plursky_plus_festival` $2.99, `plursky_plus_annual` $7.99/yr.
 11. **Refresh Apple MusicKit token** before ~Nov 2026 (6-mo expiry) — `scripts/sign-musickit-token.mjs`.
-12. **Deploy og-card.png** (1200×630 social share image).
+12. ✅ **og-card.png** (1200×630) — present + referenced in index.html, live on plursky.com.
 
 ### D. Optional / deferred build
 13. **recognize-song Edge Function** (web Shazam fallback; needs AudD/ACRCloud key) — low priority given iOS focus.

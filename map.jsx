@@ -4646,7 +4646,10 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           ) : null;
           const energyR = liveArtist ? (liveArtist.tier === 3 ? 12 : liveArtist.tier === 2 ? 9 : 6) : 0;
           return (
-            <g key={s.id} style={{ cursor: "pointer" }} onClick={(e) => { e.stopPropagation(); onPickStage(s.id); }}>
+            <g key={s.id} role="button" tabIndex={0} aria-label={`${s.name} stage`}
+              style={{ cursor: "pointer" }}
+              onClick={(e) => { e.stopPropagation(); onPickStage(s.id); }}
+              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onPickStage(s.id); } }}>
               {liveArtist && !on && (<>
                 <circle cx={s.x} cy={s.y} r={r + 2} fill="none" stroke={s.color} strokeWidth="0.4" opacity="0.7">
                   <animate attributeName="r" values={`${r + 2};${r + energyR};${r + 2}`} dur={liveArtist.tier === 3 ? "1.8s" : "2.4s"} repeatCount="indefinite"/>
@@ -4867,7 +4870,9 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
             W: { transform: `translate(calc(-100% - ${off}px), -50%)${counterRot}` },
           }[anchor];
           return (
-            <div key={s.id} onClick={(e) => { e.stopPropagation(); onPickStage(s.id); }}
+            <div key={s.id} role="button" tabIndex={0} aria-label={`${s.name} stage`}
+              onClick={(e) => { e.stopPropagation(); onPickStage(s.id); }}
+              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onPickStage(s.id); } }}
               style={{
                 position: "absolute", ...pos, ...tx,
                 pointerEvents: "auto", cursor: "pointer",
@@ -5168,12 +5173,30 @@ function GroundPeek({ stage, onClose }) {
 }
 
 // ---- BOTTOM SHEET ----
+// WCAG contrast helper — picks dark vs white ink for text/icons sitting ON a
+// stage color, so light stages (cyan/green/yellow) don't render unreadable
+// white text on the hero / GO HERE button / nav icon. Relative-luminance gate.
+function _inkOn(hex) {
+  try {
+    const h = String(hex).replace("#", "");
+    const n = h.length === 3 ? h.split("").map(c => c + c).join("") : h;
+    const ch = i => { let v = parseInt(n.slice(i, i + 2), 16) / 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
+    const L = 0.2126 * ch(0) + 0.7152 * ch(2) + 0.0722 * ch(4);
+    return L > 0.45 ? "#1a120d" : "#fff";
+  } catch { return "#fff"; }
+}
+
 // Slim "navigating" chrome shown after GO HERE: collapses the full place card
 // so the animated walking route + ETA already drawn on the map are visible.
 // Purpose-built wayfinding (not the meet card) — DETAILS reopens the card,
 // STOP deselects the stage.
 function StageNavBar({ stage, walk, onDetails, onStop }) {
   const eta = walk.lo === walk.hi ? `${walk.lo}` : `${walk.lo}–${walk.hi}`;
+  React.useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onStop(); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onStop]);
   return (
     <div style={{
       background: "var(--paper)", color: "var(--ink)",
@@ -5187,10 +5210,10 @@ function StageNavBar({ stage, walk, onDetails, onStop }) {
         width: 40, height: 40, borderRadius: 40, background: stage.color, flexShrink: 0,
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={_inkOn(stage.color)} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, fontWeight: 700, color: stage.color }}>ROUTING TO</div>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, fontWeight: 700, color: "var(--muted)" }}>ROUTING TO</div>
         <div className="serif" style={{ fontSize: 19, lineHeight: 1.05, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{stage.name}</div>
         <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 600, marginTop: 1 }}>~{eta} MIN · FOLLOW THE ROUTE</div>
       </div>
@@ -5353,6 +5376,13 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
     .filter(a => a.stage === stage.id && a.day === day)
     .sort((a, b) => toSlot(a.start) - toSlot(b.start));
   const totalAcrossDays = ARTISTS.filter(a => a.stage === stage.id).length;
+  const heroInk = _inkOn(stage.color);
+  // Esc closes the place card (keyboard / a11y parity with the × button).
+  React.useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
 
   return (
     <div style={{
@@ -5365,17 +5395,18 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
       overflow: "hidden",
       animation: "sheetUp 0.3s var(--ease-smooth)",
     }}>
-      {/* Stage-color hero strip — Apple Maps place-card pattern. Drag handle
-          sits on top in white so it's visible against any stage color. */}
+      {/* Stage-color hero strip — Apple Maps place-card pattern. Ink (text +
+          handle + close) auto-flips to dark on light stage colors so it stays
+          WCAG-readable on cyan/green/yellow stages, not just dark ones. */}
       <div style={{
-        background: stage.color, color: "#fff",
+        background: stage.color, color: heroInk,
         padding: "6px 16px 12px", position: "relative",
       }}>
         <div onClick={() => setExpanded(e => !e)} style={{
           display: "flex", justifyContent: "center", cursor: "pointer",
           padding: "2px 0 8px",
         }}>
-          <div style={{ width: 36, height: 4, borderRadius: 4, background: "rgba(255,255,255,0.55)" }}/>
+          <div style={{ width: 36, height: 4, borderRadius: 4, background: heroInk === "#fff" ? "rgba(255,255,255,0.55)" : "rgba(26,18,13,0.45)" }}/>
         </div>
         <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
           <div style={{ flex: 1, minWidth: 0 }}>
@@ -5387,8 +5418,9 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
             </div>
           </div>
           <button onClick={onClose} aria-label="Close" style={{
-            background: "rgba(255,255,255,0.22)", border: "1px solid rgba(255,255,255,0.35)",
-            color: "#fff", borderRadius: 999, width: 30, height: 30, padding: 0,
+            background: heroInk === "#fff" ? "rgba(255,255,255,0.22)" : "rgba(26,18,13,0.14)",
+            border: `1px solid ${heroInk === "#fff" ? "rgba(255,255,255,0.35)" : "rgba(26,18,13,0.25)"}`,
+            color: heroInk, borderRadius: 999, width: 30, height: 30, padding: 0,
             cursor: "pointer", fontSize: 16, fontWeight: 700, flexShrink: 0,
             display: "flex", alignItems: "center", justifyContent: "center",
             backdropFilter: "blur(6px)",
@@ -5415,7 +5447,7 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
             <div className="serif" style={{ fontSize: 20, lineHeight: 1, marginTop: 3, color: "var(--ink)" }}>
               {c.value}<span style={{ fontSize: 10, fontWeight: 400, color: "var(--muted)" }}> {c.unit}</span>
             </div>
-            {c.note && <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: stage.color, fontWeight: 700, marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{c.note}</div>}
+            {c.note && <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--muted)", fontWeight: 700, marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{c.note}</div>}
           </div>
         ))}
       </div>
@@ -5424,12 +5456,12 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
           Apple-Maps "Directions / … / bookmark" pattern. */}
       <div style={{ display: "flex", gap: 6, padding: "8px 14px 0" }}>
         <button onClick={() => onGoHere?.(stage)} className="mono" style={{
-          flex: 2, background: stage.color, color: "#fff", border: "none",
+          flex: 2, background: stage.color, color: heroInk, border: "none",
           borderRadius: 12, padding: "11px 10px", cursor: "pointer",
           fontSize: 11, letterSpacing: 1.2, fontWeight: 800,
           display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
         }}>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={heroInk} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
           GO HERE
         </button>
         <button onClick={() => setPeek(p => !p)} aria-pressed={peek} className="mono" style={{
