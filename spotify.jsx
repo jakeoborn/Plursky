@@ -1457,6 +1457,30 @@ function HomeMemoriesStrip({ state, setState }) {
   const playRecap = (data) => { _markRecapSeen(data.night, data.moments.length); setSeen(_readRecapSeen()); setReel(data); };
   const dismissRecap = () => { if (recapReady) { _markRecapSeen(recapReady.night, recapReady.moments.length); setSeen(_readRecapSeen()); } };
 
+  // #8 — "Last night in 15s." When a recap is ready, play a tight hero-ranked
+  // highlight (best ~6, videos/peak shots first) instead of the full roll, and
+  // frame it as a morning-after nudge when the app is opened the next day. We
+  // don't force-autoplay (browsers block it + it's intrusive) — the auto-
+  // surfaced nudge IS the trigger; one tap plays.
+  const HIGHLIGHT_CAP = 6;
+  const highlightReel = React.useMemo(() => {
+    if (!recapReady) return null;
+    const best = recapReady.moments.slice()
+      .sort((a, b) => _heroScore(b) - _heroScore(a))
+      .slice(0, HIGHLIGHT_CAP)
+      .sort((a, b) => { const ta = a.takenAt || "", tb = b.takenAt || ""; return (ta && tb) ? ta.localeCompare(tb) : (a.createdAt || 0) - (b.createdAt || 0); });
+    return { ...recapReady, moments: best };
+  }, [recapReady]);
+  const morningAfter = (() => {
+    try { const h = parseInt((window.NOW?.time || "").split(":")[0], 10); return h >= 4 && h <= 15; } catch { return false; }
+  })();
+  const playHighlights = () => {
+    if (!recapReady || !highlightReel) return;
+    _markRecapSeen(recapReady.night, recapReady.moments.length);
+    setSeen(_readRecapSeen());
+    setReel(highlightReel);
+  };
+
   if (recent.length === 0) return null;
   const total = recent.length;
   const go = (night) => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "memories", memoriesNight: night, artist: null });
@@ -1476,9 +1500,10 @@ function HomeMemoriesStrip({ state, setState }) {
         />
       )}
       {recapReady && (() => {
-        const vids = recapReady.moments.filter(m => m.kind === "video").length;
+        const clips = (highlightReel || recapReady).moments;
+        const vids = clips.filter(m => m.kind === "video").length;
         return (
-          <button onClick={() => playRecap(recapReady)} style={{
+          <button onClick={playHighlights} style={{
             width: "100%", display: "flex", alignItems: "center", gap: 12,
             padding: "13px 14px", marginBottom: 14, borderRadius: 16, cursor: "pointer",
             border: "none", textAlign: "left",
@@ -1491,10 +1516,10 @@ function HomeMemoriesStrip({ state, setState }) {
               alignItems: "center", justifyContent: "center", fontSize: 18, color: "#fff",
             }}>▶</span>
             <span style={{ flex: 1, minWidth: 0 }}>
-              <span className="mono" style={{ display: "block", fontSize: 8.5, letterSpacing: 1.4, fontWeight: 800, color: "rgba(255,255,255,0.8)" }}>RECAP READY</span>
-              <span className="serif" style={{ display: "block", fontSize: 18, lineHeight: 1.1, color: "#fff", marginTop: 1 }}>Your {recapReady.label}</span>
+              <span className="mono" style={{ display: "block", fontSize: 8.5, letterSpacing: 1.4, fontWeight: 800, color: "rgba(255,255,255,0.8)" }}>{morningAfter ? "LAST NIGHT IN 15s" : "RECAP READY"}</span>
+              <span className="serif" style={{ display: "block", fontSize: 18, lineHeight: 1.1, color: "#fff", marginTop: 1 }}>{morningAfter ? `Your ${recapReady.label}, recapped` : `Your ${recapReady.label}`}</span>
               <span className="mono" style={{ display: "block", fontSize: 9, letterSpacing: 0.6, color: "rgba(255,255,255,0.78)", marginTop: 3, fontWeight: 600 }}>
-                {recapReady.moments.length} MOMENTS{vids ? ` · ${vids} VIDEO${vids === 1 ? "" : "S"}` : ""} · TAP TO PLAY
+                {clips.length} BEST {clips.length === 1 ? "CLIP" : "CLIPS"}{vids ? ` · ${vids} VIDEO${vids === 1 ? "" : "S"}` : ""} · TAP TO PLAY
               </span>
             </span>
             <span onClick={(e) => { e.stopPropagation(); dismissRecap(); }} role="button" aria-label="Dismiss" style={{
@@ -1595,7 +1620,7 @@ function _matchSongAtTime(artist, trackData, photoTakenAt) {
   const dm = CFG.dayDates?.[artist.day];
   if (!dm) return null;
   const [sh, sm] = artist.start.split(":").map(Number);
-  const setStartMs = dm.midnightUtc + (sh < 6 ? sh + 24 : sh) * 3600000 + sm * 60000;
+  const setStartMs = dm.midnightUtc + (sh < 8 ? sh + 24 : sh) * 3600000 + sm * 60000;
   const photoMs = Date.parse(photoTakenAt.replace(" ", "T"));
   if (isNaN(photoMs)) return null;
   const elapsedMs = photoMs - setStartMs;
@@ -1613,7 +1638,7 @@ function _matchSongAtTime(artist, trackData, photoTakenAt) {
 
   if (trackData.source === "setlist.fm" && trackData.songs?.length) {
     const [eh, em] = artist.end.split(":").map(Number);
-    const setEndMs = dm.midnightUtc + (eh < 6 ? eh + 24 : eh) * 3600000 + em * 60000;
+    const setEndMs = dm.midnightUtc + (eh < 8 ? eh + 24 : eh) * 3600000 + em * 60000;
     const setDuration = setEndMs - setStartMs;
     if (setDuration <= 0 || elapsedMs > setDuration) return null;
     const idx = Math.min(Math.floor((elapsedMs / setDuration) * trackData.songs.length), trackData.songs.length - 1);
@@ -2659,6 +2684,147 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
 // Takes a flat moment list and a key extractor, builds groups, sorts,
 // and renders each group as a stage-colored header + the MomentCards
 // under it. Untagged moments float to the bottom via the sortKeys hook.
+// ── Hero pick (v205) ──────────────────────────────────────────────
+// Score a moment for "best shot of this group" so night/artist/stage groups
+// can lead with their strongest photo instead of just newest-first. Pure
+// function over data we already capture — no new permissions. Higher = better.
+//   • favorite (#7 hook)         — a human star always wins
+//   • peak proximity             — shots near the set's climax (~75% through)
+//                                  are the drops/sing-alongs you remember
+//   • confirmedSong / video / GPS / caption — secondary "this was a real
+//                                  moment" signals
+function _heroScore(m) {
+  if (!m || !m.photoId) return -Infinity;     // text-only can't be a cover
+  let score = 0;
+  if (m.favorite) score += 1000;
+  const a = m.artistId ? (window.ARTISTS || []).find(x => x.id === m.artistId) : null;
+  const cap = _momentCaptureMs(m);
+  if (a && cap) {
+    const dm = window.FESTIVAL_CONFIG?.dayDates?.[a.day];
+    if (dm && a.start && a.end) {
+      const [sh, sm] = a.start.split(":").map(Number);
+      const [eh, em] = a.end.split(":").map(Number);
+      const s = dm.midnightUtc + ((sh < 8 ? sh + 24 : sh) * 60 + sm) * 60000;
+      const e = dm.midnightUtc + ((eh < 8 ? eh + 24 : eh) * 60 + em) * 60000;
+      const dur = e - s;
+      if (dur > 0) {
+        const peak = s + dur * 0.75;           // climax sits in the last third
+        score += Math.max(0, 1 - Math.abs(cap - peak) / dur) * 60;
+      }
+    }
+  }
+  if (m.confirmedSong) score += 25;
+  if (m.kind === "video") score += 20;
+  if (m.hasGps)         score += 10;
+  if (m.text)           score += 6;
+  return score;
+}
+function _pickHeroMoment(items) {
+  let best = null, bestScore = -Infinity;
+  for (const m of (items || [])) {
+    const s = _heroScore(m);
+    if (s > bestScore) { bestScore = s; best = m; }
+  }
+  return (best && best.photoId) ? best : ((items || []).find(m => m.photoId) || null);
+}
+
+// Small rounded cover thumb for a group header — deferred photo load like the
+// cards. Lives outside the header <button> (no nested buttons) as its own tap
+// target that opens the group's lightbox at the hero.
+function _GroupHeroThumb({ moment, accent, onClick }) {
+  const url = useMomentPhoto(moment?.photoId);
+  if (!moment?.photoId) return null;
+  return (
+    <button onClick={onClick} aria-label="Open best shot" style={{
+      flexShrink: 0, width: 46, height: 46, borderRadius: 10, padding: 0, cursor: "pointer",
+      overflow: "hidden", border: `1.5px solid ${accent || "var(--line-2)"}`,
+      background: "#222", position: "relative",
+    }}>
+      {url && (moment.kind === "video"
+        ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
+        : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
+      )}
+      {moment.kind === "video" && (
+        <span style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: 11, textShadow: "0 1px 2px rgba(0,0,0,0.6)", pointerEvents: "none" }}>▶</span>
+      )}
+    </button>
+  );
+}
+
+// ── #3 Set-song timeline (v205) ───────────────────────────────────
+// "The song you were filming." For a single-artist group, fetch the set's
+// tracklist and surface a compact, tappable index of the tracks you captured
+// — tap a song, jump straight to that photo/clip. Reuses _getTracklistForArtist
+// + _matchSongAtTime (the same engine MomentCard's "now playing" line uses), so
+// it renders nothing unless a real tracklist exists AND a capture maps to a
+// track. confirmedSong (Shazam) always wins over the time-estimated match.
+function SetSongTimeline({ artist, moments, onOpenMoment }) {
+  const [data, setData] = React.useState(undefined); // undefined=loading · null=none
+  const [open, setOpen] = React.useState(false);
+  React.useEffect(() => {
+    if (!artist?.name) { setData(null); return; }
+    let cancelled = false;
+    _getTracklistForArtist(artist.name)
+      .then(d => { if (!cancelled) setData(d || null); })
+      .catch(() => { if (!cancelled) setData(null); });
+    return () => { cancelled = true; };
+  }, [artist?.id]);
+
+  const filmed = React.useMemo(() => {
+    if (!data) return [];
+    return (moments || [])
+      .filter(m => m.photoId && (m.takenAt || m.confirmedSong))
+      .map(m => {
+        const match = m.confirmedSong
+          ? { song: m.confirmedSong, confidence: "exact" }
+          : _matchSongAtTime(artist, data, m.takenAt);
+        return match?.song ? { m, song: match.song, confidence: match.confidence } : null;
+      })
+      .filter(Boolean)
+      .sort((a, b) => (a.m.takenAt || "").localeCompare(b.m.takenAt || ""));
+  }, [data, moments, artist?.id]);
+
+  const stage = artist ? (window.STAGES || []).find(s => s.id === artist.stage) : null;
+  const accent = stage?.color || "var(--horizon)";
+  if (data === undefined || !filmed.length) return null;
+
+  return (
+    <div style={{ margin: "2px 0 8px", padding: "8px 10px", background: "var(--paper-2)", border: `1px solid ${accent}33`, borderRadius: 12 }}>
+      <button onClick={() => setOpen(o => !o)} aria-expanded={open} className="mono" style={{
+        display: "flex", alignItems: "center", gap: 8, width: "100%",
+        background: "transparent", border: "none", cursor: "pointer", padding: 0,
+        color: accent, fontSize: 9, letterSpacing: 1.2, fontWeight: 800, textAlign: "left",
+      }}>
+        <span>🎵 {filmed.length} SONG{filmed.length === 1 ? "" : "S"} YOU FILMED</span>
+        <span style={{ marginLeft: "auto", color: "var(--muted)", fontSize: 11 }}>{open ? "▾" : "▸"}</span>
+      </button>
+      {open && (
+        <div style={{ marginTop: 8, display: "flex", flexDirection: "column", gap: 6 }}>
+          {filmed.map(({ m, song, confidence }) => (
+            <div key={m.id} role="button" tabIndex={0}
+              onClick={() => onOpenMoment?.(m)}
+              onKeyDown={e => { if (e.key === "Enter" || e.key === " ") onOpenMoment?.(m); }}
+              style={{
+                display: "flex", alignItems: "center", gap: 10, width: "100%",
+                background: "var(--paper)", border: "1px solid var(--line)", borderRadius: 10,
+                padding: 6, cursor: "pointer", textAlign: "left",
+              }}>
+              <_GroupHeroThumb moment={m} accent={accent} onClick={() => onOpenMoment?.(m)} />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div className="mono" style={{ fontSize: 11, fontWeight: 700, color: "var(--ink)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>♫ {song}</div>
+                <div className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--muted)", fontWeight: 700, marginTop: 2 }}>
+                  {m.takenAt ? m.takenAt.slice(11) : ""}{confidence === "exact" ? " · EXACT" : " · ~EST"}{m.kind === "video" ? " · VIDEO" : ""}
+                </div>
+              </div>
+              <span className="mono" style={{ fontSize: 9, color: accent, fontWeight: 700, flexShrink: 0 }}>OPEN ›</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function _renderByGroup({ allMoments, keyOf, headerFor, sortKeys, state, setState, handleDelete, handleUpdate, onOpenLightbox }) {
   const groups = new Map();
   for (const m of allMoments) {
@@ -2681,34 +2847,44 @@ function _renderByGroup({ allMoments, keyOf, headerFor, sortKeys, state, setStat
     );
   }
   return keys.map(k => {
-    const items = groups.get(k).slice().sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    const chrono = groups.get(k).slice().sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    // Lead with the strongest shot, then the rest newest-first. The same hero
+    // is the group's cover thumbnail in the header.
+    const hero = _pickHeroMoment(chrono);
+    const items = hero ? [hero, ...chrono.filter(m => m.id !== hero.id)] : chrono;
     const h = headerFor(k);
     return (
       <div key={k} style={{ marginTop: 18 }}>
-        <button onClick={h.onClick || undefined} disabled={!h.onClick} style={{
-          display: "flex", alignItems: "center", gap: 8,
-          width: "100%", padding: "6px 4px",
-          background: "transparent", border: "none",
-          textAlign: "left", cursor: h.onClick ? "pointer" : "default",
-        }}>
-          <span style={{
-            width: 4, alignSelf: "stretch",
-            background: h.accent, borderRadius: 3, minHeight: 30,
-          }}/>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div className="mono" style={{
-              fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: h.accent,
-            }}>{h.mono}</div>
-            <div className="serif" style={{
-              fontSize: 18, color: "var(--ink)", lineHeight: 1.1, marginTop: 2,
-              whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-            }}>{h.serif}</div>
-          </div>
-          <span className="mono" style={{
-            fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 700,
-            flexShrink: 0,
-          }}>{items.length} {items.length === 1 ? "MOMENT" : "MOMENTS"}</span>
-        </button>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <button onClick={h.onClick || undefined} disabled={!h.onClick} style={{
+            display: "flex", alignItems: "center", gap: 8,
+            flex: 1, minWidth: 0, padding: "6px 4px",
+            background: "transparent", border: "none",
+            textAlign: "left", cursor: h.onClick ? "pointer" : "default",
+          }}>
+            <span style={{
+              width: 4, alignSelf: "stretch",
+              background: h.accent, borderRadius: 3, minHeight: 30,
+            }}/>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div className="mono" style={{
+                fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: h.accent,
+              }}>{h.mono}</div>
+              <div className="serif" style={{
+                fontSize: 18, color: "var(--ink)", lineHeight: 1.1, marginTop: 2,
+                whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+              }}>{h.serif}</div>
+            </div>
+            <span className="mono" style={{
+              fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 700,
+              flexShrink: 0,
+            }}>{items.length} {items.length === 1 ? "MOMENT" : "MOMENTS"}</span>
+          </button>
+          {hero && onOpenLightbox && (
+            <_GroupHeroThumb moment={hero} accent={h.accent}
+              onClick={() => onOpenLightbox(items, 0)} />
+          )}
+        </div>
         {items.map((m, i) => (
           <MomentCard
             key={m.id}
@@ -3260,7 +3436,7 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
                 await window._shareNightCollage(night, moments).catch(() => {});
                 return;
               }
-              const hero = moments.find(x => x.kind === "video") || moments.find(x => x.artistId) || moments[0];
+              const hero = _pickHeroMoment(moments) || moments.find(x => x.kind === "video") || moments.find(x => x.artistId) || moments[0];
               if (!hero) return;
               const a = hero.artistId ? ARTISTS.find(x => x.id === hero.artistId) : null;
               const s = a ? STAGES.find(x => x.id === a.stage) : null;
@@ -4269,14 +4445,22 @@ function MemoriesScreen({ state, setState }) {
                   const artist = !isUntagged ? ARTISTS.find(x => x.id === aId) : null;
                   const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
                   const accent = isUntagged ? "var(--ember)" : (stage?.color || "var(--muted)");
+                  // Tagged groups lead with their best shot (+ a cover thumb);
+                  // the untagged group stays chronological so retag work is
+                  // predictable.
+                  const hero = isUntagged ? null : _pickHeroMoment(groupMoments);
+                  const orderedMoments = hero
+                    ? [hero, ...groupMoments.filter(m => m.id !== hero.id)]
+                    : groupMoments;
                   return (
                     <div key={aId} style={{ marginTop: 10 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                       <button
                         onClick={() => !isUntagged && setState(s => ({ ...s, artist: aId }))}
                         disabled={isUntagged}
                         style={{
                           display: "flex", alignItems: "center", gap: 8,
-                          width: "100%", padding: "6px 4px",
+                          flex: 1, minWidth: 0, padding: "6px 4px",
                           background: "transparent", border: "none",
                           textAlign: "left",
                           cursor: isUntagged ? "default" : "pointer",
@@ -4305,6 +4489,20 @@ function MemoriesScreen({ state, setState }) {
                           flexShrink: 0,
                         }}>{groupMoments.length} {groupMoments.length === 1 ? "MOMENT" : "MOMENTS"}</span>
                       </button>
+                      {hero && (
+                        <_GroupHeroThumb moment={hero} accent={accent}
+                          onClick={() => openLightbox(orderedMoments, 0)} />
+                      )}
+                      </div>
+                      {/* #3 — "the song you were filming": a tappable index of
+                          the tracks you captured during this set. */}
+                      {!isUntagged && artist && (
+                        <SetSongTimeline
+                          artist={artist}
+                          moments={orderedMoments}
+                          onOpenMoment={(m) => openLightbox(orderedMoments, Math.max(0, orderedMoments.findIndex(x => x.id === m.id)))}
+                        />
+                      )}
                       {/* Bulk retag: when the TO RETAG group has 3+ moments
                           AND the user has saved sets on this night, surface
                           a chip row that one-taps all of them to the same
@@ -4318,13 +4516,13 @@ function MemoriesScreen({ state, setState }) {
                           onUpdate={handleUpdate}
                         />
                       )}
-                      {groupMoments.map((m, i) => (
+                      {orderedMoments.map((m, i) => (
                         <MomentCard
                           key={m.id}
                           moment={m}
                           idx={i}
-                          total={groupMoments.length}
-                          groupMoments={groupMoments}
+                          total={orderedMoments.length}
+                          groupMoments={orderedMoments}
                           onOpenLightbox={openLightbox}
                           onDelete={handleDelete}
                           onUpdate={handleUpdate}
