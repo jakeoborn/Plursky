@@ -538,7 +538,11 @@ function LineupScreen({ state, setState }) {
   const [wizardOpen, setWizardOpen] = React.useState(false);
   const [genreFilter, setGenreFilter] = React.useState("all");
   const hasWeekends = ARTISTS.some(a => a.weekend && a.weekend !== "both");
-  const [weekendFilter, setWeekendFilter] = React.useState("all"); // all | W1 | W2
+  // Two-weekend festivals: pick a weekend (no "Both" — it stacked W1/W2 acts in
+  // the same slot and read as clutter). Default to W1. Single-weekend festivals
+  // stay "all" so their (untagged) sets aren't filtered out, and the selector
+  // below is hidden anyway via hasWeekends.
+  const [weekendFilter, setWeekendFilter] = React.useState(() => hasWeekends ? "W1" : "all"); // W1 | W2 (| "all" only when no weekends)
   const [q, setQ] = React.useState(""); // artist/stage/genre search
 
   // After the screen renders, scroll the highlighted card/block into view and
@@ -565,6 +569,12 @@ function LineupScreen({ state, setState }) {
     try { return localStorage.getItem('plursky_lineup_view') || 'list'; } catch { return 'list'; }
   });
   React.useEffect(() => { try { localStorage.setItem('plursky_lineup_view', viewMode); } catch {} }, [viewMode]);
+  // v204: grid "Fit" toggle — squeeze every stage column onto one screen (no
+  // horizontal scroll). Off by default (94px scrollable grid stays the norm).
+  const [gridFit, setGridFit] = React.useState(() => {
+    try { return localStorage.getItem('plursky_grid_fit') === '1'; } catch { return false; }
+  });
+  React.useEffect(() => { try { localStorage.setItem('plursky_grid_fit', gridFit ? '1' : '0'); } catch {} }, [gridFit]);
   // v138: per-day section refs (kept for potential future use).
   const gridSectionRefs = React.useRef({});
 
@@ -589,7 +599,6 @@ function LineupScreen({ state, setState }) {
   const activeFilterCount = (tierFilter !== "all" ? 1 : 0)
                           + (stageFilter !== "all" ? 1 : 0)
                           + (genreFilter !== "all" ? 1 : 0)
-                          + (weekendFilter !== "all" ? 1 : 0)
                           + (filter !== "all" ? 1 : 0)
                           + (sortBy !== "time" ? 1 : 0);
   React.useEffect(() => setGenreFilter("all"), [day]);
@@ -780,7 +789,6 @@ function LineupScreen({ state, setState }) {
           borderBottom: "1px solid var(--line)",
         }}>
           {[
-            { value: "all", label: "BOTH WEEKENDS" },
             { value: "W1",  label: "WEEKEND 1" },
             { value: "W2",  label: "WEEKEND 2" },
           ].map(w => {
@@ -829,6 +837,15 @@ function LineupScreen({ state, setState }) {
             fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
             whiteSpace: "nowrap",
           }}>◎ MAP</button>
+          {viewMode === "grid" && (
+            <button onClick={() => setGridFit(f => !f)} aria-pressed={gridFit} className="mono" style={{
+              padding: "3px 9px", borderRadius: 999, border: "none",
+              background: gridFit ? "var(--ember)" : "transparent",
+              color: gridFit ? "#fff" : "var(--ink)",
+              fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
+              whiteSpace: "nowrap",
+            }}>⛶ FIT</button>
+          )}
         </div>
         <button onClick={() => setFilterSheetOpen(true)} className="mono" style={{
           flexShrink: 0, padding: "5px 11px", borderRadius: 999,
@@ -1061,6 +1078,7 @@ function LineupScreen({ state, setState }) {
                   conflictById={conflictById}
                   spotifyMatchedIds={spotifyMatchedIds}
                   highlightId={highlightId}
+                  fit={gridFit}
                 />
               </div>
             </div>
@@ -1465,12 +1483,21 @@ function SavedSidebar({ day, state, setState }) {
   );
 }
 
-function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conflictById, spotifyMatchedIds, highlightId }) {
-  const COL_W = 94;
+function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conflictById, spotifyMatchedIds, highlightId, fit = false }) {
   const GUTTER_W = 44;
   const PX_PER_MIN = GRID_PX_PER_MIN;
   const TOTAL_H = GRID_TOTAL_H;
   const minToTop = _minToTop;
+  // "Fit" mode squeezes all stage columns onto one screen (no horizontal
+  // scroll). Track viewport width so the column width recomputes on rotate/
+  // resize. Default (fit off) keeps the fixed 94px scrollable grid.
+  const [vw, setVw] = React.useState(() => (typeof window !== "undefined" ? window.innerWidth : 390));
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onR = () => setVw(window.innerWidth);
+    window.addEventListener("resize", onR);
+    return () => window.removeEventListener("resize", onR);
+  }, []);
   // Per-set long-press state, keyed by id. MUST be a single stable hook —
   // calling useRef inside the set-block .map() below would change the hook
   // count whenever the visible set count changes (e.g. switching weekend
@@ -1496,6 +1523,14 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
   const cols = STAGES
     .map(s => ({ stage: s, artists: allDayArtists.filter(a => a.stage === s.id) }))
     .filter(c => c.artists.length > 0);
+
+  // Column width: fixed 94px (scrollable) by default; in Fit mode divide the
+  // available width across all columns so every stage shows with no horizontal
+  // scroll. MIN_COL=30 keeps set-block labels just legible even at ~10 stages.
+  const MIN_COL = 30;
+  const COL_W = fit && cols.length > 0
+    ? Math.max(MIN_COL, Math.floor((vw - GUTTER_W - 2) / cols.length))
+    : 94;
 
   return (
     // Constrained-height scroll box so the sticky stage header (top:0) and

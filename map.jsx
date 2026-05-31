@@ -4408,7 +4408,15 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
       transition: gestureRef.current.mode ? "none" : "transform 0.18s linear",
       willChange: "transform",
     }}>
-      <svg viewBox="0 0 100 100" width="100%" height="100%" preserveAspectRatio="xMidYMid meet"
+      {/* xMidYMin (top-anchored) instead of xMidYMid: the map is a square
+          (100×100) inside a taller-than-wide container, so centering left a
+          navy letterbox band both ABOVE and below it — the top band pushed the
+          layers/zoom + OFF-SITE controls into dead space. Anchoring to the top
+          collapses the top band entirely (controls now sit over the map) and
+          drops the single remaining band to the bottom, where the floating
+          search sheet + Friends bar already cover it. Whole map stays visible
+          (meet = no cropping). */}
+      <svg viewBox="0 0 100 100" width="100%" height="100%" preserveAspectRatio="xMidYMin meet"
         onClick={guardedClick}
         style={{ position: "absolute", inset: 0, cursor: meetMode ? "crosshair" : "default", display: "block" }}>
         <defs>

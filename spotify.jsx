@@ -1067,6 +1067,29 @@ function _countMoments() {
   return Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
 }
 
+// Multi-festival scoping (v204). Moments share ONE localStorage key keyed by
+// night, not festival — so without this filter EDC moments bleed onto the ACL
+// page (both use nights 1/2/3). New moments are stamped with `festivalId` at
+// creation; legacy moments (pre-v204, no festivalId) are backfilled by
+// _maybeAutoArchive to the festival that was active when last seen. Here we
+// keep a moment if it belongs to the ACTIVE festival; a legacy un-stamped
+// moment is only shown when we haven't switched festivals (last seen === cur),
+// so switching to a new festival hides the prior one's un-migrated moments too.
+function _activeMoments(all) {
+  const cur = window.FESTIVAL_CONFIG?.id;
+  if (!cur) return all || {};
+  let last = null;
+  try { last = localStorage.getItem("plursky_last_festival_id"); } catch {}
+  const out = {};
+  for (const night of Object.keys(all || {})) {
+    const arr = all[night];
+    if (!Array.isArray(arr)) continue;
+    const kept = arr.filter(m => m && (m.festivalId ? m.festivalId === cur : (!last || last === cur)));
+    if (kept.length) out[night] = kept;
+  }
+  return out;
+}
+
 let _memDbP = null;
 function _openMemDB() {
   if (_memDbP) return _memDbP;
@@ -1383,7 +1406,9 @@ function _markRecapSeen(night, count) {
 // recent captured photos/videos. Grows as the festival progresses; the
 // retention loop's front door so the rewatch surface isn't buried in Me.
 function HomeMemoriesStrip({ state, setState }) {
-  const [all, setAll] = React.useState(() => { try { return _readMoments(); } catch { return {}; } });
+  const [rawAll, setAll] = React.useState(() => { try { return _readMoments(); } catch { return {}; } });
+  // Scope to the active festival so EDC moments don't bleed onto the ACL home.
+  const all = React.useMemo(() => _activeMoments(rawAll), [rawAll]);
   const [reel, setReel] = React.useState(null);
   React.useEffect(() => {
     const refresh = () => { try { setAll(_readMoments()); } catch {} };
@@ -2419,78 +2444,89 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
           {moment.text}
         </div>
       )}
-      <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 8, flexWrap: "wrap" }}>
-        {artist ? (
-          <button onClick={() => onArtistClick(artist.id)} className="mono" style={{
-            background: stage ? `${stage.color}18` : "var(--paper)",
-            color:      stage ? stage.color       : "var(--muted)",
-            border:     stage ? `1px solid ${stage.color}40` : "1px solid var(--line-2)",
-            borderRadius: 999, padding: "3px 9px",
-            fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
-          }}>♬ {artist.name.toUpperCase()}</button>
-        ) : suggestion ? (
-          <button onClick={() => setArtist(suggestion.artistId)} className="mono" title={`${suggestion.count} other moment${suggestion.count === 1 ? "" : "s"} in the same 30-min window tagged to this artist`} style={{
-            background: suggestedStage ? `${suggestedStage.color}18` : "var(--paper-2)",
-            color:      suggestedStage ? suggestedStage.color       : "var(--ink)",
-            border:     suggestedStage ? `1px dashed ${suggestedStage.color}66` : "1px dashed var(--line-2)",
-            borderRadius: 999, padding: "3px 9px",
-            fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
-            whiteSpace: "nowrap",
-          }}>
-            + TAG AS {suggestedArtist?.name.toUpperCase() || "—"} ({suggestion.count})
-          </button>
-        ) : (
-          <button onClick={() => setEditing(true)} className="mono" style={{
-            background: "rgba(232,93,46,0.12)", color: "var(--ember)",
-            border: "1px dashed rgba(232,93,46,0.5)",
-            borderRadius: 999, padding: "3px 9px",
-            fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
-          }}>+ TAG A SET</button>
-        )}
-        {/* Escape hatch — when sibling-suggestion is showing, also give the
-            user a way to open the full editor in case the neighbour-pick
-            is wrong (e.g., 3 nearby moments tagged Peggy Gou but THIS
-            shot was a side trip to Cosmic Meadow). */}
-        {!artist && suggestion && onUpdate && (
-          <button onClick={() => setEditing(true)} className="mono" style={{
-            background: "transparent", border: "none", color: "var(--muted)",
-            cursor: "pointer", fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
-            padding: "3px 5px",
-          }}>OTHER</button>
-        )}
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 600 }}>
-          {_fmtMomentTime(moment.createdAt)} · {idx + 1}/{total}
-        </span>
-        {artist && onUpdate && (
-          <button onClick={() => setEditing(e => !e)} className="mono" style={{
-            background: "transparent", border: "none", color: "var(--muted)",
-            cursor: "pointer", fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
-            padding: "3px 5px",
-          }}>{editing ? "DONE" : "EDIT TAG"}</button>
-        )}
-        <button onClick={() => onDelete(moment)} aria-label="Delete moment" className="mono" style={{
-          marginLeft: "auto",
-          background: "transparent", border: "none",
-          color: "var(--muted)", cursor: "pointer",
-          fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
-          padding: "3px 5px",
-        }}>DELETE</button>
+      {/* PRIMARY row — the artist/tag chip + capture time read first. Edit and
+          delete are demoted to a muted, right-aligned cluster so the card has
+          a clear hierarchy instead of one crammed wrapping line. */}
+      <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 8 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap", flex: 1, minWidth: 0 }}>
+          {artist ? (
+            <button onClick={() => onArtistClick(artist.id)} className="mono" style={{
+              background: stage ? `${stage.color}18` : "var(--paper)",
+              color:      stage ? stage.color       : "var(--muted)",
+              border:     stage ? `1px solid ${stage.color}40` : "1px solid var(--line-2)",
+              borderRadius: 999, padding: "3px 9px",
+              fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
+            }}>♬ {artist.name.toUpperCase()}</button>
+          ) : suggestion ? (
+            <button onClick={() => setArtist(suggestion.artistId)} className="mono" title={`${suggestion.count} other moment${suggestion.count === 1 ? "" : "s"} in the same 30-min window tagged to this artist`} style={{
+              background: suggestedStage ? `${suggestedStage.color}18` : "var(--paper-2)",
+              color:      suggestedStage ? suggestedStage.color       : "var(--ink)",
+              border:     suggestedStage ? `1px dashed ${suggestedStage.color}66` : "1px dashed var(--line-2)",
+              borderRadius: 999, padding: "3px 9px",
+              fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
+              whiteSpace: "nowrap",
+            }}>
+              + TAG AS {suggestedArtist?.name.toUpperCase() || "—"} ({suggestion.count})
+            </button>
+          ) : (
+            <button onClick={() => setEditing(true)} className="mono" style={{
+              background: "rgba(232,93,46,0.12)", color: "var(--ember)",
+              border: "1px dashed rgba(232,93,46,0.5)",
+              borderRadius: 999, padding: "3px 9px",
+              fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
+            }}>+ TAG A SET</button>
+          )}
+          {/* Low-confidence auto-tag (2+ overlapping sets): invite a fix
+              prominently rather than letting a possibly-wrong tag look sure. */}
+          {artist && moment.tagAmbiguous && onUpdate && !editing && (
+            <button onClick={() => setEditing(true)} className="mono" title="More than one set overlapped this time — tap to confirm or fix the tag" style={{
+              background: "rgba(232,93,46,0.12)", color: "var(--ember)",
+              border: "1px dashed rgba(232,93,46,0.5)",
+              borderRadius: 999, padding: "3px 9px",
+              fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
+              whiteSpace: "nowrap",
+            }}>✎ FIX TAG?</button>
+          )}
+          {/* Escape hatch when a sibling-suggestion is showing but wrong. */}
+          {!artist && suggestion && onUpdate && (
+            <button onClick={() => setEditing(true)} className="mono" style={{
+              background: "transparent", border: "none", color: "var(--muted)",
+              cursor: "pointer", fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
+              padding: "3px 5px",
+            }}>OTHER</button>
+          )}
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0 }}>
+          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 600 }}>
+            {_fmtMomentTime(moment.createdAt)}
+          </span>
+          {artist && onUpdate && (
+            <button onClick={() => setEditing(e => !e)} aria-label={editing ? "Done editing" : "Edit tag"} className="mono" style={{
+              background: editing ? "var(--ink)" : "transparent",
+              color: editing ? "var(--paper)" : "var(--muted)",
+              border: "none", borderRadius: 999, cursor: "pointer",
+              fontSize: editing ? 9 : 12, letterSpacing: 1.1, fontWeight: 700,
+              padding: editing ? "3px 8px" : "3px 5px",
+            }}>{editing ? "DONE" : "✎"}</button>
+          )}
+          <button onClick={() => onDelete(moment)} aria-label="Delete moment" style={{
+            background: "transparent", border: "none",
+            color: "var(--muted)", cursor: "pointer",
+            fontSize: 14, lineHeight: 1, opacity: 0.55, padding: "3px 4px",
+          }}>×</button>
+        </div>
       </div>
-      {tagInfo && (
+      {/* SECONDARY — tag provenance + GPS note, muted and small so it sits
+          clearly below the primary line. */}
+      {(tagInfo || (moment.hasGps === false && moment.autoTagged)) && (
         <div className="mono" title={moment.takenAt ? `Photo time: ${moment.takenAt}` : undefined}
           style={{
-            marginTop: 6, fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-            color: tagInfo.tone === "warn" ? "var(--ember)" : "var(--muted)",
+            marginTop: 6, fontSize: 8.5, letterSpacing: 1, fontWeight: 600,
+            color: tagInfo?.tone === "warn" ? "var(--ember)" : "var(--muted)",
+            opacity: tagInfo?.tone === "warn" ? 1 : 0.85,
           }}>
-          {tagInfo.text}{moment.takenAt ? ` · ${moment.takenAt.slice(11)}` : ""}
-        </div>
-      )}
-      {moment.hasGps === false && moment.autoTagged && (
-        <div className="mono" style={{
-          marginTop: 4, fontSize: 8, letterSpacing: 1, color: "var(--muted)",
-          display: "flex", alignItems: "center", gap: 4,
-        }}>
-          <span style={{ opacity: 0.6 }}>📡</span> NO GPS — TAGGED BY TIME ONLY
+          {tagInfo ? `${tagInfo.text}${moment.takenAt ? ` · ${moment.takenAt.slice(11)}` : ""}` : ""}
+          {moment.hasGps === false && moment.autoTagged ? `${tagInfo ? "  ·  " : ""}📡 NO GPS` : ""}
         </div>
       )}
       {nowPlaying && (
@@ -2715,7 +2751,8 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
       const exif = await _parseExifMeta(file).catch(() => null);
       const meta = _metaFromFile(file, exif);
       if (meta && meta.date && !artistId) {
-        const matched = _matchArtistForPhoto(meta, savedNightArtists.map(a => a.id));
+        const attendedIds = Object.values(window.getAllAttended?.() || {}).flat();
+        const matched = _matchArtistForPhoto(meta, savedNightArtists.map(a => a.id), attendedIds);
         if (matched.artistId) setArtistId(matched.artistId);
       }
       const out = await _processMomentMedia(file);
@@ -2751,6 +2788,7 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
         id, night, text: text.trim(), artistId, photoId,
         kind: blob ? mediaKind : null,
         createdAt: Date.now(),
+        festivalId: window.FESTIVAL_CONFIG?.id || null,
         tagSource: artistId ? "manual" : undefined,
       };
       onAdd(moment);
@@ -3497,7 +3535,11 @@ function MemoryGrid({ allMoments, onOpenLightbox }) {
 }
 
 function MemoriesScreen({ state, setState }) {
-  const [all, setAll] = React.useState(_readMoments);
+  const [rawAll, setAll] = React.useState(_readMoments);
+  // Scope all views/counts to the active festival (moments share one store
+  // keyed by night across festivals). Writes still go to the full store via
+  // _readMoments()/_writeMoments in the handlers, preserving other festivals.
+  const all = React.useMemo(() => _activeMoments(rawAll), [rawAll]);
   const [adding, setAdding] = React.useState(null); // night number being added to, or null
   const [batch, setBatch] = React.useState(null);   // null | { total, done, results: [{name, night, artistId, err?}] }
   const [lightbox, setLightbox] = React.useState(null); // null | { moments: [], index }
@@ -3574,6 +3616,7 @@ function MemoriesScreen({ state, setState }) {
     const results = [];
     setBatch({ total: files.length, done: 0, results });
     const savedIds = state.saved || [];
+    const attendedIds = Object.values(window.getAllAttended?.() || {}).flat();
     const current = { ..._readMoments() };
 
     const existingFingerprints = new Set();
@@ -3601,7 +3644,7 @@ function MemoriesScreen({ state, setState }) {
         }
         const exif = await _parseExifMeta(f).catch(() => null);
         const meta = _metaFromFile(f, exif);
-        const matched = meta?.date ? _matchArtistForPhoto(meta, savedIds) : { artistId: null, night: null, reason: "no_date" };
+        const matched = meta?.date ? _matchArtistForPhoto(meta, savedIds, attendedIds) : { artistId: null, night: null, reason: "no_date" };
         // v141: never skip — if EXIF/lastModified didn't pick a night, drop
         // into the current festival night untagged. User can re-tag from
         // the moment card later or delete if it doesn't belong.
@@ -3630,6 +3673,11 @@ function MemoriesScreen({ state, setState }) {
           takenAt: meta?.date ? `${meta.date.yr}-${String(meta.date.mo).padStart(2,"0")}-${String(meta.date.dy).padStart(2,"0")} ${String(meta.date.hh).padStart(2,"0")}:${String(meta.date.mm).padStart(2,"0")}` : null,
           autoTagged: !!matched.artistId,
           tagSource,
+          // Low-confidence auto-tag: 2+ sets overlap this timestamp and GPS
+          // couldn't separate them. Keep the best guess but flag it so the
+          // card surfaces a prominent "fix tag" chip instead of looking sure.
+          tagAmbiguous: !!(matched.artistId && matched.ambiguous),
+          festivalId: window.FESTIVAL_CONFIG?.id || null,
           parsedGps: exif?.lat != null && exif?.lng != null ? { lat: exif.lat, lng: exif.lng } : null,
           location: matched.location || null,
           hasGps: !!(exif?.lat != null && exif?.lng != null),
@@ -5179,6 +5227,21 @@ function _maybeAutoArchive() {
     const cur = window.FESTIVAL_CONFIG?.id;
     if (!cur) return;
     const lastSeen = localStorage.getItem("plursky_last_festival_id");
+    // Backfill festivalId on legacy moments (pre-v204) so multi-festival
+    // scoping works. They belong to whatever festival was active when they
+    // were created = the last-seen festival (or the current one on first run).
+    // Run BEFORE the switch handling so the prior festival's moments are
+    // correctly attributed and then scoped out of the now-active festival.
+    try {
+      const moments = _readMoments();
+      const attribId = lastSeen || cur;
+      let changed = false;
+      for (const arr of Object.values(moments)) {
+        if (!Array.isArray(arr)) continue;
+        for (const m of arr) { if (m && !m.festivalId) { m.festivalId = attribId; changed = true; } }
+      }
+      if (changed) _writeMoments(moments);
+    } catch {}
     if (lastSeen && lastSeen !== cur) {
       // Festival switched — snapshot the previous one's data BEFORE it's
       // co-mingled with the new festival
@@ -5203,7 +5266,7 @@ if (typeof window !== "undefined") setTimeout(_maybeAutoArchive, 100);
 // long-form recap the user can screenshot at will.
 function _computeRecap(state) {
   const attended = getAllAttended();                // { night: artistId[] }
-  const moments  = _readMoments();                   // { night: moment[] }
+  const moments  = _activeMoments(_readMoments());   // active-festival { night: moment[] }
   const ARTISTS  = window.ARTISTS || [];
   const STAGES   = window.STAGES  || [];
   const CFG      = window.FESTIVAL_CONFIG;

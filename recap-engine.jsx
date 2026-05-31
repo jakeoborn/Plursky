@@ -1079,7 +1079,9 @@ async function _shareCrewCollage({ crewNames, avatars, crewArtistIds, overlapIds
   const all = [];
   try {
     const raw = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
-    for (const k of Object.keys(raw)) for (const m of (raw[k] || [])) all.push(m);
+    // Scope to the active festival so a crew collage doesn't mix EDC + ACL.
+    const scoped = (typeof _activeMoments === "function") ? _activeMoments(raw) : raw;
+    for (const k of Object.keys(scoped)) for (const m of (scoped[k] || [])) all.push(m);
   } catch {}
 
   const overlapSet = new Set(overlapIds || []);

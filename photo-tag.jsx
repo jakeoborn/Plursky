@@ -310,7 +310,12 @@ function _matchNearestLocation(lat, lng) {
   return { label: best.label, type: best.type, icon: ICONS[best.type] || "📍", distMeters: Math.round(bestDist) };
 }
 
-function _matchArtistForPhoto({ date, lat, lng }, savedIds) {
+// `attendedIds` (v204): sets the user actually WATCHED outrank sets they
+// merely SAVED. Scoring is attended(+1000) > saved(+500) > any-on-night. When
+// 2+ sets at the SAME tier contain the capture time (overnight overlap across
+// stages) we keep the best guess but flag `ambiguous` + `alternatives` so the
+// card can surface a "fix tag" chip instead of silently committing to one.
+function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds) {
   if (!date) return { artistId: null, night: null, reason: "no_date" };
   // First: which festival night does this photo's DATE place it in?
   const night = _photoFestivalNight(date);
@@ -345,39 +350,59 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds) {
   // night heuristic mis-bucketed it as day 3 (Martin Garrix). Uses each set's
   // day-midnight (UTC) + start/end, so it's night-correct by construction.
   const photoMs = _photoEpochUtc(date);
+  // <8h post-midnight is treated as "still the same festival night" — must
+  // match lineup.jsx toNightMin + _photoFestivalNight so a 1–6 AM set lands
+  // on its own night and not the next calendar day.
   const setWindow = (a) => {
     const dm = window.FESTIVAL_CONFIG?.dayDates?.[a.day];
     if (!dm) return null;
     const [sh, sm] = a.start.split(":").map(Number);
     const [eh, em] = a.end.split(":").map(Number);
     return {
-      startMs: dm.midnightUtc + ((sh < 6 ? sh + 24 : sh) * 60 + sm) * 60000,
-      endMs:   dm.midnightUtc + ((eh < 6 ? eh + 24 : eh) * 60 + em) * 60000,
+      startMs: dm.midnightUtc + ((sh < 8 ? sh + 24 : sh) * 60 + sm) * 60000,
+      endMs:   dm.midnightUtc + ((eh < 8 ? eh + 24 : eh) * 60 + em) * 60000,
     };
   };
-  const savedHits = (savedIds || [])
+  // SMARTEST SIGNAL: you film the sets you planned to see / actually saw.
+  // Match the photo's ABSOLUTE capture time against the windows of every set
+  // you ATTENDED (+1000) or SAVED (+500). Attended wins because being there is
+  // ground truth; saved is intent. Night-correct by construction.
+  const attendedSet = new Set(attendedIds || []);
+  const savedSet    = new Set(savedIds || []);
+  const priorIds    = [...new Set([...(attendedIds || []), ...(savedIds || [])])];
+  const priorHits = priorIds
     .map(id => (window.ARTISTS || []).find(a => a.id === id))
     .filter(Boolean)
-    .map(a => { const w = setWindow(a); return w ? { a, ...w } : null; })
+    .map(a => { const w = setWindow(a); return w ? { a, ...w, score: attendedSet.has(a.id) ? 1000 : 500 } : null; })
     .filter(Boolean)
     .filter(x => photoMs >= x.startMs - 5 * 60000 && photoMs <= x.endMs + 10 * 60000);
-  if (savedHits.length) {
-    // Tightest-fit if you somehow saved two overlapping sets (rare).
-    savedHits.sort((x, y) => (x.endMs - x.startMs) - (y.endMs - y.startMs));
-    const hit = savedHits[0];
-    return { artistId: hit.a.id, night: hit.a.day, reason: "saved_set_time" };
+  if (priorHits.length) {
+    // Highest tier first (attended > saved); tightest-fit as tiebreak.
+    priorHits.sort((x, y) => (y.score - x.score) || ((x.endMs - x.startMs) - (y.endMs - y.startMs)));
+    const hit = priorHits[0];
+    // Ambiguous only when 2+ DISTINCT sets share the TOP tier and both contain
+    // the time (e.g. two saved sets overlap across stages) — an attended set
+    // outranking a saved one is a clear win, not a tie.
+    const topTier = priorHits.filter(h => h.score === hit.score);
+    const ambiguous = topTier.length > 1;
+    return {
+      artistId: hit.a.id, night: hit.a.day,
+      reason: attendedSet.has(hit.a.id) ? "attended_set_time" : "saved_set_time",
+      ambiguous,
+      alternatives: ambiguous ? topTier.map(h => h.a.id) : undefined,
+    };
   }
 
   // Then: which artist on THAT night was playing at the photo's time?
   const minOfDay = date.hh * 60 + date.mm;
-  const adjustedMin = minOfDay < 360 ? minOfDay + 1440 : minOfDay;
+  const adjustedMin = minOfDay < 480 ? minOfDay + 1440 : minOfDay;
   const candidates = [];
   for (const a of (window.ARTISTS || [])) {
     if (a.day !== night) continue;
     const [sh, sm] = a.start.split(":").map(Number);
     const [eh, em] = a.end.split(":").map(Number);
-    const startMin = (sh < 6 ? sh + 24 : sh) * 60 + sm;
-    const endMin   = (eh < 6 ? eh + 24 : eh) * 60 + em;
+    const startMin = (sh < 8 ? sh + 24 : sh) * 60 + sm;
+    const endMin   = (eh < 8 ? eh + 24 : eh) * 60 + em;
     if (adjustedMin >= startMin - 5 && adjustedMin <= endMin + 10) {
       candidates.push({ a, startMin, endMin });
     }
@@ -388,10 +413,10 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds) {
     // shuttle line, etc.).
     return { artistId: null, night, reason: "no_artist_at_time" };
   }
-  // Prefer saved artists; GPS tiebreaker; then tightest time fit
-  const savedSet = new Set(savedIds || []);
-  const inSaved = candidates.filter(c => savedSet.has(c.a.id));
-  const pool = inSaved.length > 0 ? inSaved : candidates;
+  // Prefer ATTENDED, then SAVED, then any; GPS tiebreaker; then tightest fit.
+  const inAttended = candidates.filter(c => attendedSet.has(c.a.id));
+  const inSaved    = candidates.filter(c => savedSet.has(c.a.id));
+  const pool = inAttended.length ? inAttended : (inSaved.length ? inSaved : candidates);
   const stageDist = (a) => {
     if (lat == null || lng == null) return Infinity;
     const anchor = (window.FESTIVAL_CONFIG?.gpsAnchors || []).find(g => g.stageId === a.stage);
@@ -404,5 +429,15 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds) {
     if (dx !== Infinity && dy !== Infinity && Math.abs(dx - dy) > 1e-9) return dx - dy;
     return Math.abs(adjustedMin - x.startMin) - Math.abs(adjustedMin - y.startMin);
   });
-  return { artistId: pool[0].a.id, night, reason: "matched" };
+  // Two+ sets overlap this timestamp and GPS didn't cleanly separate the
+  // stages → keep the best guess but flag it so the card shows a fix-tag chip.
+  const dists = pool.map(c => stageDist(c.a));
+  const gpsSeparated = dists.every(d => d !== Infinity) &&
+    [...dists].sort((a, b) => a - b).slice(0, 2).reduce((a, b) => b - a, 0) > 1e-9;
+  const ambiguous = pool.length > 1 && !gpsSeparated;
+  return {
+    artistId: pool[0].a.id, night, reason: "matched",
+    ambiguous,
+    alternatives: ambiguous ? pool.map(c => c.a.id) : undefined,
+  };
 }
