@@ -27,11 +27,36 @@ unmemoized/unvirtualized renders. Prioritized:
 > **🎉 iOS 1.8 (19) APPROVED — 2026-05-30** (release pending/rolling out; hit
 > "Release This Version" in ASC if manual). Carries the full report-card cluster
 > (#2–#12) + judge-fix follow-up + WCAG finish + cloud backup P1/P2 to device.
-> Web @ **v202**. Refreshed App Store description + What's New shipped with it.
+> Web @ **v203** (Weekend-2 crash fix, 2026-05-31). Refreshed App Store description + What's New shipped with it.
 > **Owed once live on device:** Apple Music BUILD PLAYLIST · Shazam-a-video ·
 > 2-device rally · ACL map render. Next iOS build → **1.9 (20)**.
 
-## ⭐ MASTER OPEN ITEMS — updated 2026-05-30 (web @ **v202**; **iOS 1.8 (19) APPROVED** 🎉 release pending/rolling out)
+## 🛠️ ON-DEVICE BUGS — found 2026-05-31 (do in a FRESH session, clean tools)
+
+**Weekend-2 crash → FIXED & SHIPPED (v203).** `TimelineGrid` called `useRef`
+inside the set-block `.map()` (Rules-of-Hooks); switching weekend / any filter
+that changed the set count crashed to the error boundary. Now one stable
+`_blockRefs` ref-map. Babel + mount-probe verified, pushed to web, iOS native
+bundle synced (Xcode archive + submit → 1.9 (20) still owed).
+
+Remaining 5 (speced, chosen approaches in parens — all on ACL unless noted):
+- [ ] **Auto-tag wrong artist** — `photo-tag.jsx` `_matchArtistForPhoto` already
+      matches capture-time vs saved-set windows; fixes: inline `setWindow()`
+      <6h post-midnight cutoff → unify to <8; pass **attended ids** (not just
+      `savedIds`) for the +1000 prior; on 2+ overlapping candidates add a
+      one-tap **fix-tag chip** (best-guess + correct). Data's all there — easy.
+- [ ] **EDC memories on ACL page** — moments in one un-scoped
+      `plursky_moments_v1` (keyed by night, not festival). Stamp `festivalId`,
+      filter live views to `FESTIVAL_CONFIG.id`, fix archive-on-switch (~5137).
+- [ ] **Map letterbox bands + floating top-right control** — `map.jsx` SVG
+      `preserveAspectRatio="xMidYMid meet"` + container taller than map →
+      navy bands; controls anchor to container edge. **Fit whole map.**
+- [ ] **Grid fit-all-stages** — `lineup.jsx` `TimelineGrid` `COL_W=94` fixed →
+      h-scroll. Add a **"Fit" toggle** (scroll stays default).
+- [ ] **Memories UX** — `MomentCard` (spotify.jsx ~2327) cramped chip/EDIT/
+      DELETE/time/tag-source row; tighten hierarchy, fold in fix-tag chip.
+
+## ⭐ MASTER OPEN ITEMS — updated 2026-05-31 (web @ **v203**; **iOS 1.8 (19) APPROVED** 🎉 release pending; next build 1.9 (20))
 
 _Session 13 shipped + LIVE on iOS 1.7: reel/recap audit, ACL map (real
 artwork), spotify.jsx split ×3, recap-ready nudge, Spotify auto-create,
