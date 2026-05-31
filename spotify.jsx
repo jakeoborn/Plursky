@@ -2095,7 +2095,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
             {idState === "idle"      ? "🎵 IDENTIFY THE SONG FROM THIS VIDEO"
              : idState === "listening" ? "● LISTENING TO YOUR VIDEO…"
              : idState === "matching"  ? "◌ MATCHING…"
-             : idState === "fail"      ? "NO MATCH — TRY ANOTHER CLIP"
+             : idState === "fail"      ? "NO MATCH — TRY A LOUDER CLIP"
              : "✓ IDENTIFIED"}
           </button>
         )}
@@ -3975,7 +3975,11 @@ function MemoriesScreen({ state, setState }) {
   const [view, setView] = React.useState(() => {
     try {
       const v = localStorage.getItem("plursky_memories_view_v1");
-      if (["grid", "story", "night", "artist", "stage"].includes(v)) return v;
+      // v206: lenses simplified to GRID · STORY · NIGHT (the old 5-tab bar read
+      // as cluttered). A persisted artist/stage selection falls back to NIGHT —
+      // you still reach a single artist by tapping its group header.
+      if (v === "artist" || v === "stage") return "night";
+      if (["grid", "story", "night"].includes(v)) return v;
     } catch {}
     return "grid";
   });
@@ -4244,9 +4248,11 @@ function MemoriesScreen({ state, setState }) {
           </div>
         )}
 
-        {/* View selector — lenses on the same moments. GRID (default) is the
-            scannable photo grid; NIGHT is the "manage" view (+ ADD MOMENT +
-            attendance review); ARTIST/STAGE/STORY are rewatch lenses. */}
+        {/* View selector (v206) — three clear lenses instead of five. GRID is
+            the scannable photo wall, STORY is the auto-play reel, NIGHT is the
+            "manage" view (+ ADD MOMENT + retag, grouped by night→artist with
+            the hero + song timeline). Per-artist / per-stage are reached by
+            tapping a group, not a top-level tab. */}
         {totalCount > 0 && <div style={{
           display: "flex", gap: 4, marginTop: 14, marginBottom: 8,
           padding: 3, background: "var(--paper-2)", borderRadius: 10,
@@ -4256,8 +4262,6 @@ function MemoriesScreen({ state, setState }) {
             { id: "grid",   label: "GRID" },
             { id: "story",  label: "STORY" },
             { id: "night",  label: "NIGHT" },
-            { id: "artist", label: "ARTIST" },
-            { id: "stage",  label: "STAGE" },
           ].map(v => {
             const on = view === v.id;
             return (

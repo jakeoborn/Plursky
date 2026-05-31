@@ -43,8 +43,25 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
         matchFromURL(tmp, call: call, tempURL: tmp)
     }
 
+    private func resolveNoMatch() {
+        DispatchQueue.main.async {
+            self.savedCall?.resolve(["matched": false, "title": "", "artist": ""])
+            self.savedCall = nil
+        }
+    }
+
     // Shared file→PCM→matcher path. Deletes tempURL (if any) once the audio
-    // track has been fully read into the matcher.
+    // track has been read.
+    //
+    // We accumulate the WHOLE clip into a single SHSignature via
+    // SHSignatureGenerator and then match it once, instead of pumping each PCM
+    // buffer into matchStreamingBuffer(_:at:nil). That streaming call is built
+    // for real-time mic input; feeding a whole file through it as fast as the
+    // reader yields, with a nil timestamp, stamps every buffer at "now" and
+    // collapses the signature's timeline — so the matcher effectively only ever
+    // sees a sliver of audio and almost always returns no-match on a real clip.
+    // The signature-generator path is Apple's intended way to recognise a
+    // pre-recorded file and gives the matcher the full, correctly-timed sample.
     private func matchFromURL(_ url: URL, call: CAPPluginCall, tempURL: URL?) {
         savedCall = call
         session = SHSession()
@@ -56,11 +73,7 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
             let asset = AVURLAsset(url: url)
             guard let track = asset.tracks(withMediaType: .audio).first,
                   let reader = try? AVAssetReader(asset: asset) else {
-                DispatchQueue.main.async {
-                    self.savedCall?.resolve(["matched": false, "title": "", "artist": ""])
-                    self.savedCall = nil
-                }
-                return
+                self.resolveNoMatch(); return
             }
             let settings: [String: Any] = [
                 AVFormatIDKey: kAudioFormatLinearPCM,
@@ -75,23 +88,33 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
             reader.startReading()
 
             let fmt = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 44100, channels: 1, interleaved: false)!
+            let generator = SHSignatureGenerator()
+            var sampleOffset: AVAudioFramePosition = 0   // contiguous timeline
+            var appended = false
             while reader.status == .reading {
                 guard let sampleBuffer = output.copyNextSampleBuffer(),
                       let blockBuffer = CMSampleBufferGetDataBuffer(sampleBuffer) else { break }
                 let length = CMBlockBufferGetDataLength(blockBuffer)
                 let frameCount = AVAudioFrameCount(length / 4)
-                guard frameCount > 0,
-                      let pcmBuffer = AVAudioPCMBuffer(pcmFormat: fmt, frameCapacity: frameCount) else { continue }
-                pcmBuffer.frameLength = frameCount
-                if let dst = pcmBuffer.floatChannelData?[0] {
-                    CMBlockBufferCopyDataBytes(blockBuffer, atOffset: 0, dataLength: length, destination: dst)
+                if frameCount > 0, let pcmBuffer = AVAudioPCMBuffer(pcmFormat: fmt, frameCapacity: frameCount) {
+                    pcmBuffer.frameLength = frameCount
+                    if let dst = pcmBuffer.floatChannelData?[0] {
+                        CMBlockBufferCopyDataBytes(blockBuffer, atOffset: 0, dataLength: length, destination: dst)
+                    }
+                    let when = AVAudioTime(sampleTime: sampleOffset, atRate: 44100)
+                    do { try generator.append(pcmBuffer, at: when); appended = true } catch { /* skip bad chunk */ }
+                    sampleOffset += AVAudioFramePosition(frameCount)
                 }
-                self.session?.matchStreamingBuffer(pcmBuffer, at: nil)
                 CMSampleBufferInvalidate(sampleBuffer)
             }
-            // Give the matcher a beat to resolve; if no delegate callback
-            // fires within 6s, resolve as no-match.
-            DispatchQueue.main.asyncAfter(deadline: .now() + 6) { [weak self] in
+            guard appended else { self.resolveNoMatch(); return }
+
+            // Match the accumulated signature; didFind/didNotFind resolves the call.
+            let signature = generator.signature()
+            self.session?.match(signature)
+
+            // Safety net if no delegate callback fires.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 8) { [weak self] in
                 if let call = self?.savedCall {
                     call.resolve(["matched": false, "title": "", "artist": ""])
                     self?.savedCall = nil
