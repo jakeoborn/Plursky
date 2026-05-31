@@ -1471,6 +1471,11 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
   const PX_PER_MIN = GRID_PX_PER_MIN;
   const TOTAL_H = GRID_TOTAL_H;
   const minToTop = _minToTop;
+  // Per-set long-press state, keyed by id. MUST be a single stable hook —
+  // calling useRef inside the set-block .map() below would change the hook
+  // count whenever the visible set count changes (e.g. switching weekend
+  // filter), which crashes React with "rendered fewer/more hooks". (v200)
+  const _blockRefs = React.useRef({});
 
   const HOURS = [];
   for (let h = Math.floor(GRID_START_MIN / 60); h <= Math.floor(GRID_END_MIN / 60); h++) {
@@ -1579,30 +1584,29 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
                   const isHeadliner = a.tier === 3;
                   const fillAlpha = isHeadliner ? "38" : "22";
                   const dimAlpha = isHeadliner ? "14" : "08";
-                  const _lpRef = React.useRef(null);
-                  const _firedRef = React.useRef(false);
+                  const _store = (_blockRefs.current[a.id] || (_blockRefs.current[a.id] = { lp: null, fired: false }));
                   // Long-press-to-save with live feedback: a stage-colour bar
                   // fills along the bottom edge over the 500ms hold + the block
                   // dips slightly, so the gesture is visibly building instead of
-                  // a blind wait. _firedRef stops the trailing click from also
+                  // a blind wait. _store.fired stops the trailing click from also
                   // opening the artist after a successful long-press save.
                   const _resetHold = (e) => {
                     const el = e.currentTarget, fill = el.querySelector("[data-lpfill]");
                     el.style.transform = "";
                     if (fill) { fill.style.transition = "width .12s"; fill.style.width = "0%"; }
-                    if (_lpRef.current) { clearTimeout(_lpRef.current); _lpRef.current = null; }
+                    if (_store.lp) { clearTimeout(_store.lp); _store.lp = null; }
                   };
                   return (
                     <div key={a.id}
                       data-lineup-highlight={isHighlighted ? "true" : undefined}
-                      onClick={() => { if (_firedRef.current) { _firedRef.current = false; return; } setState({ ...state, artist: a.id }); }}
+                      onClick={() => { if (_store.fired) { _store.fired = false; return; } setState({ ...state, artist: a.id }); }}
                       onPointerDown={(e) => {
                         const el = e.currentTarget, fill = el.querySelector("[data-lpfill]");
                         el.style.transform = "scale(0.97)";
                         if (fill) { fill.style.transition = "none"; fill.style.width = "0%"; void fill.offsetWidth; fill.style.transition = "width 0.5s linear"; fill.style.width = "100%"; }
                         try { window.plurskyHaptic?.("LIGHT"); navigator.vibrate?.(8); } catch {}
-                        _lpRef.current = setTimeout(() => {
-                          _lpRef.current = null; _firedRef.current = true;
+                        _store.lp = setTimeout(() => {
+                          _store.lp = null; _store.fired = true;
                           el.style.transform = "";
                           if (fill) { fill.style.transition = "none"; fill.style.width = "0%"; }
                           toggleSave(state, setState, a.id); // handles haptic + 3s undo toast
