@@ -24,15 +24,14 @@ unmemoized/unvirtualized renders. Prioritized:
 12. ✅ **A11y sweep** (v197→v199) — icon/emoji/SVG-only buttons + unlabeled `<img>` across all screens carry `aria-label`/`alt` (~35), icon toggles `aria-pressed`, bottom nav `aria-current`, toast `role=status aria-live`, global `:focus-visible` ring (2.4.7). v199 WCAG-finish: map stage hit-areas (SVG `<g>` + label divs) now `role=button`+`aria-label`+`tabIndex`+Enter/Space; place-card hero/GO HERE/nav-icon auto-flip ink dark-vs-white by luminance (`_inkOn`) so light stages (yellow/cyan/green) stay readable; metadata-cell note → `--muted` (was failing stage.color on light); Esc-to-close on place card + nav bar. Residual (minor, pre-existing long-tail): inherited stage-color content cards (vibe / "ON STAGE NOW") still use white-on-color for light stages; full SR walkthrough + focus-trap depth not yet audited.
 - Phase B: photo/video BLOB backup to Supabase Storage — **P1 + P2 SHIPPED (v202)**. P1: bucket `moment-media` + RLS, `sbUpload/DownloadMomentMedia`, `_backupMyWeekend`, restore-on-view in `useMomentPhoto`, "Back up my weekend · X/Y" row (free metadata + Plus media, manual + wifi). P2: auto-backup toggle (Plus, wifi, default on), per-moment `backedUpBytes` + 1GB soft / 2GB hard storage cap, usage display, videos. **Only gap: signed-in upload/restore round-trip not yet tested** (needs real Supabase auth — web sign-in or on-device).
 
-> **🚀 iOS 1.8 (19) SUBMITTED FOR REVIEW — 2026-05-30.** Web @ **v199** with the
-> full report-card cluster (#2–#12) + judge-fix follow-up. Archived from the
-> v199 bundle (pbxproj 1.8/19). Refreshed App Store description (festival-
-> agnostic, adds Memories/recap + Apple Music + Shazam) + What's New submitted.
-> **Next:** watch for Apple's email (In Review → Ready / Rejected), then Release.
-> **Owed once on device (TestFlight/approved):** Apple Music BUILD PLAYLIST ·
-> Shazam-a-video · 2-device rally · ACL map render. Last LIVE build: 1.7 (18).
+> **🎉 iOS 1.8 (19) APPROVED — 2026-05-30** (release pending/rolling out; hit
+> "Release This Version" in ASC if manual). Carries the full report-card cluster
+> (#2–#12) + judge-fix follow-up + WCAG finish + cloud backup P1/P2 to device.
+> Web @ **v202**. Refreshed App Store description + What's New shipped with it.
+> **Owed once live on device:** Apple Music BUILD PLAYLIST · Shazam-a-video ·
+> 2-device rally · ACL map render. Next iOS build → **1.9 (20)**.
 
-## ⭐ MASTER OPEN ITEMS — updated 2026-05-30 (web @ **v199**; **iOS 1.7 (18) LIVE**, **1.8 (19) SUBMITTED FOR REVIEW** 🚀)
+## ⭐ MASTER OPEN ITEMS — updated 2026-05-30 (web @ **v202**; **iOS 1.8 (19) APPROVED** 🎉 release pending/rolling out)
 
 _Session 13 shipped + LIVE on iOS 1.7: reel/recap audit, ACL map (real
 artwork), spotify.jsx split ×3, recap-ready nudge, Spotify auto-create,
