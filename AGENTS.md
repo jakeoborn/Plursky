@@ -4,6 +4,12 @@ If you are an AI agent (Clicky, Claude Code, a GitHub bot, etc.) about to touch
 this repo: **read this first, then `CLAUDE.md` and `RELEASE.md`.** They encode
 rules that cause real breakage if ignored.
 
+> **Clicky — current on-device QA brief: [`QA-v208.md`](QA-v208.md).** It has the
+> per-feature checklist for the latest release (the 4 Memories features + Shazam
+> + backup), how to run each (Simulator vs iPhone Mirroring), and the GitHub-issue
+> format for the handoff loop. Run it and file an issue per failure. Section 8
+> there covers the **archive + submit `1.9 (20)`** flow.
+
 Plursky is a music-festival companion app: a **no-bundler static SPA** (plain
 `.jsx` files loaded as `<script type="text/babel">`) that ships to the web
 (plursky.com via GitHub Pages) **and** to iOS (App Store, via Capacitor).
