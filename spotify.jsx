@@ -1868,6 +1868,47 @@ function _lineupArtistFromShazam(shazamArtist) {
 // took it. Swipe or tap edges to move through the group. Modeled on
 // Careem/NAVER photo viewers (close top-left, counter top-right, caption
 // + filmstrip at the bottom) per the Mobbin design pass.
+// ⭐ Favorite — _heroScore already weights `m.favorite` at +1000, so starring a
+// shot promotes it to the group/night cover. `_FavStar` is the tappable toggle
+// (lightbox top bar + each MomentCard); `_FavBadge` is a display-only gold pip
+// that marks favorited tiles in the grid/story so they read at a glance.
+function _FavStar({ favorite, onToggle, tone }) {
+  const dark = tone === "dark";
+  return (
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        try { window.plurskyHaptic?.(favorite ? "LIGHT" : "MEDIUM"); } catch {}
+        onToggle?.(!favorite);
+      }}
+      aria-label={favorite ? "Remove from favorites" : "Mark as favorite"}
+      aria-pressed={favorite}
+      style={{
+        display: "flex", alignItems: "center", justifyContent: "center",
+        border: "none", cursor: "pointer", lineHeight: 1,
+        background: dark ? "rgba(255,255,255,0.14)" : "transparent",
+        width: dark ? 36 : "auto", height: dark ? 36 : "auto",
+        borderRadius: dark ? 36 : 999, padding: dark ? 0 : "3px 5px",
+        fontSize: dark ? 17 : 13,
+        color: favorite ? "#f5c451" : (dark ? "rgba(255,255,255,0.7)" : "var(--muted)"),
+        transition: "color .15s ease, transform .15s ease",
+        transform: favorite ? "scale(1.06)" : "scale(1)",
+      }}
+    >{favorite ? "★" : "☆"}</button>
+  );
+}
+function _FavBadge({ style }) {
+  return (
+    <span aria-hidden="true" style={{
+      position: "absolute", display: "flex", alignItems: "center", justifyContent: "center",
+      width: 20, height: 20, borderRadius: 20, fontSize: 11, lineHeight: 1,
+      background: "rgba(0,0,0,0.5)", color: "#f5c451",
+      textShadow: "0 1px 2px rgba(0,0,0,0.5)", pointerEvents: "none",
+      ...style,
+    }}>★</span>
+  );
+}
+
 function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick, onUpdate }) {
   const m = moments[index];
   const photoUrl = useMomentPhoto(m?.photoId);
@@ -1967,9 +2008,15 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           background: "rgba(255,255,255,0.14)", color: "#fff", fontSize: 18, cursor: "pointer",
           display: "flex", alignItems: "center", justifyContent: "center",
         }}>✕</button>
-        <span className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "rgba(255,255,255,0.7)", fontWeight: 700 }}>
-          {index + 1} / {moments.length}
-        </span>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <span className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "rgba(255,255,255,0.7)", fontWeight: 700 }}>
+            {index + 1} / {moments.length}
+          </span>
+          {onUpdate && (
+            <_FavStar favorite={!!m.favorite} tone="dark"
+              onToggle={(v) => onUpdate(m, { favorite: v })} />
+          )}
+        </div>
       </div>
 
       {/* Photo — tap left/right thirds to navigate */}
@@ -2525,6 +2572,10 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
           <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 600 }}>
             {_fmtMomentTime(moment.createdAt)}
           </span>
+          {onUpdate && (
+            <_FavStar favorite={!!moment.favorite} tone="light"
+              onToggle={(v) => onUpdate(moment, { favorite: v })} />
+          )}
           {artist && onUpdate && (
             <button onClick={() => setEditing(e => !e)} aria-label={editing ? "Done editing" : "Edit tag"} className="mono" style={{
               background: editing ? "var(--ink)" : "transparent",
@@ -3529,6 +3580,7 @@ function _MemoryStoryBeat({ moment, isLast, onOpen }) {
             ) : (
               <img src={url} alt="" style={{ width: "100%", borderRadius: 12, display: "block", maxHeight: 340, objectFit: "cover" }}/>
             )}
+            {moment.favorite && <_FavBadge style={{ top: 8, left: 8 }}/>}
           </button>
         )}
       </div>
@@ -3677,6 +3729,7 @@ function _GridTile({ moment, onClick }) {
         : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
       ) : <div className="skel" style={{ width: "100%", height: "100%" }}/>}
       {moment.kind === "video" && <_VideoBadge seconds={moment.duration} style={{ position: "absolute", top: 5, right: 5 }}/>}
+      {moment.favorite && <_FavBadge style={{ top: 5, left: 5 }}/>}
       <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, background: "linear-gradient(0deg, rgba(0,0,0,0.8), transparent)", padding: "16px 6px 5px" }}>
         <div className="mono" style={{ fontSize: 7.5, letterSpacing: 0.5, color: artist ? "#fff" : "rgba(255,255,255,0.7)", fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
           {artist ? artist.name.toUpperCase() : "+ TAP TO TAG"}
