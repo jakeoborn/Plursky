@@ -2802,6 +2802,80 @@ function _GroupHeroThumb({ moment, accent, onClick }) {
   );
 }
 
+// "Your peak · 20 min" — the densest 20-minute window of the night, the
+// stretch where you shot the most. A sliding window over capture times
+// (EXIF, falling back to import time) picks the start that captures the most
+// moments. Only a "peak" if it clusters 3+ — a sparse night has no peak.
+function _peakWindow(moments, windowMs) {
+  windowMs = windowMs || 20 * 60000;
+  const timed = (moments || [])
+    .filter(m => m.photoId)
+    .map(m => ({ m, t: _momentCaptureMs(m) }))
+    .filter(x => x.t > 0)
+    .sort((a, b) => a.t - b.t);
+  if (timed.length < 3) return null;
+  let best = null;
+  for (let i = 0; i < timed.length; i++) {
+    const end = timed[i].t + windowMs;
+    const items = [];
+    for (let j = i; j < timed.length && timed[j].t < end; j++) items.push(timed[j].m);
+    if (!best || items.length > best.items.length) {
+      best = { items, startMs: timed[i].t, endMs: timed[i + items.length - 1].t };
+    }
+  }
+  return (best && best.items.length >= 3) ? best : null;
+}
+
+// Spotify-Wrapped-style stat card for the peak window: the count, the clock
+// range, a thumb strip, and a one-tap "relive" reel of just that stretch.
+function _clock12(ms) {
+  const d = new Date(ms);
+  let h = d.getHours(); const mn = d.getMinutes();
+  const ap = h >= 12 ? "PM" : "AM"; h = h % 12 || 12;
+  return `${h}:${String(mn).padStart(2, "0")} ${ap}`;
+}
+function PeakMomentCard({ peak, accent, onOpenLightbox, onPlayReel }) {
+  if (!peak) return null;
+  const { items, startMs, endMs } = peak;
+  const a = accent || "var(--ember)";
+  return (
+    <div style={{
+      marginTop: 10, marginBottom: 6, borderRadius: 14, padding: 12,
+      background: `linear-gradient(135deg, ${a}1f, var(--paper-2))`,
+      border: `1px solid ${a}40`,
+    }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
+        <span style={{ fontSize: 15 }}>🔥</span>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.4, fontWeight: 800, color: a }}>
+            YOUR PEAK · 20 MIN
+          </div>
+          <div className="serif" style={{ fontSize: 17, color: "var(--ink)", lineHeight: 1.1, marginTop: 1 }}>
+            {items.length} moments in 20 minutes
+          </div>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", fontWeight: 600, marginTop: 2 }}>
+            {_clock12(startMs)} – {_clock12(endMs)}
+          </div>
+        </div>
+        {onPlayReel && (
+          <button onClick={() => { try { window.plurskyHaptic?.("MEDIUM"); } catch {} onPlayReel(items); }} className="mono" style={{
+            flexShrink: 0, background: a, color: "#fff", border: "none",
+            borderRadius: 999, padding: "7px 13px", cursor: "pointer",
+            fontSize: 9, letterSpacing: 1.2, fontWeight: 800,
+            display: "flex", alignItems: "center", gap: 5,
+          }}>▶ RELIVE</button>
+        )}
+      </div>
+      <div className="no-scrollbar" style={{ display: "flex", gap: 5, overflowX: "auto", marginTop: 10 }}>
+        {items.map((m, i) => (
+          <_GroupHeroThumb key={m.id} moment={m} accent={a}
+            onClick={() => onOpenLightbox?.(items, i)} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ── #3 Set-song timeline (v205) ───────────────────────────────────
 // "The song you were filming." For a single-artist group, fetch the set's
 // tracklist and surface a compact, tappable index of the tracks you captured
@@ -3588,6 +3662,113 @@ function _MemoryStoryBeat({ moment, isLast, onOpen }) {
   );
 }
 
+// Night scrubber — drag along the night to scan it by time. Each moment is a
+// tick placed by its capture time across the night's span; dragging snaps to
+// the nearest moment and previews its thumb + clock, release opens it in the
+// lightbox. Models the Apple Photos year-scrubber / a video timeline. Pointer
+// events cover mouse + touch; setPointerCapture keeps the drag smooth.
+function _ScrubPreview({ moment }) {
+  const url = useMomentPhoto(moment?.photoId);
+  return (
+    <div style={{
+      width: 56, height: 56, borderRadius: 10, overflow: "hidden",
+      border: "1.5px solid var(--ink)", background: "#000", flexShrink: 0,
+      boxShadow: "0 4px 14px rgba(0,0,0,0.4)",
+    }}>
+      {url && (moment.kind === "video"
+        ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
+        : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>)}
+    </div>
+  );
+}
+function NightScrubber({ moments, onSeek }) {
+  const trackRef = React.useRef(null);
+  const [active, setActive] = React.useState(null); // index while dragging, else null
+  const timed = React.useMemo(
+    () => (moments || []).map(m => ({ m, t: _momentCaptureMs(m) })).sort((a, b) => a.t - b.t),
+    [moments]
+  );
+  if (timed.length < 2) return null;
+  const t0 = timed[0].t, t1 = timed[timed.length - 1].t;
+  const span = Math.max(1, t1 - t0);
+  const fracOf = (i) => (timed[i].t - t0) / span;
+  const idxFromX = (clientX) => {
+    const el = trackRef.current; if (!el) return 0;
+    const r = el.getBoundingClientRect();
+    const f = Math.min(1, Math.max(0, (clientX - r.left) / r.width));
+    let best = 0, bd = Infinity;
+    for (let i = 0; i < timed.length; i++) { const d = Math.abs(fracOf(i) - f); if (d < bd) { bd = d; best = i; } }
+    return best;
+  };
+  const down = (e) => {
+    try { e.currentTarget.setPointerCapture(e.pointerId); } catch {}
+    const i = idxFromX(e.clientX); if (i !== active) { try { window.plurskyHaptic?.("LIGHT"); } catch {} } setActive(i);
+  };
+  const move = (e) => { if (active == null) return; const i = idxFromX(e.clientX); if (i !== active) { try { window.plurskyHaptic?.("LIGHT"); } catch {} setActive(i); } };
+  const up = () => { if (active != null) onSeek?.(active); setActive(null); };
+
+  // Hour gridlines across the span.
+  const hourMarks = [];
+  const firstHour = Math.ceil(t0 / 3600000) * 3600000;
+  for (let h = firstHour; h <= t1; h += 3600000) hourMarks.push(h);
+  const activeFrac = active != null ? fracOf(active) : null;
+
+  return (
+    <div style={{ marginBottom: 16, userSelect: "none" }}>
+      {/* Preview bubble while dragging */}
+      <div style={{ height: 66, display: "flex", alignItems: "flex-end", marginBottom: 4, position: "relative" }}>
+        {active != null && (
+          <div style={{
+            position: "absolute", bottom: 0,
+            left: `clamp(0px, ${activeFrac * 100}%, 100%)`, transform: "translateX(-50%)",
+            display: "flex", flexDirection: "column", alignItems: "center", gap: 4,
+            pointerEvents: "none",
+          }}>
+            <_ScrubPreview moment={timed[active].m} />
+            <span className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--ink)", fontWeight: 700 }}>
+              {_clock12(timed[active].t)}
+            </span>
+          </div>
+        )}
+      </div>
+      {/* Track */}
+      <div
+        ref={trackRef}
+        onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up}
+        role="slider" aria-label="Scrub the night by time"
+        aria-valuemin={0} aria-valuemax={timed.length - 1} aria-valuenow={active ?? 0}
+        style={{ position: "relative", height: 26, cursor: "pointer", touchAction: "none" }}
+      >
+        {/* base rail */}
+        <div style={{ position: "absolute", left: 0, right: 0, top: 11, height: 4, borderRadius: 4, background: "var(--line)" }}/>
+        {/* hour ticks */}
+        {hourMarks.map((h, i) => {
+          const f = (h - t0) / span;
+          return <div key={`h${i}`} style={{ position: "absolute", left: `${f * 100}%`, top: 7, width: 1, height: 12, background: "var(--line-2)" }}/>;
+        })}
+        {/* moment ticks */}
+        {timed.map((x, i) => {
+          const on = i === active;
+          const fav = x.m.favorite;
+          return (
+            <div key={x.m.id} style={{
+              position: "absolute", left: `${fracOf(i) * 100}%`, top: on ? 4 : 8,
+              transform: "translateX(-50%)",
+              width: on ? 4 : 3, height: on ? 18 : 10, borderRadius: 3,
+              background: fav ? "#f5c451" : (on ? "var(--ink)" : "var(--ember)"),
+              opacity: on ? 1 : 0.7, transition: "all .08s ease",
+            }}/>
+          );
+        })}
+      </div>
+      <div style={{ display: "flex", justifyContent: "space-between", marginTop: 2 }}>
+        <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--muted)", fontWeight: 700 }}>{_clock12(t0)}</span>
+        <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--muted)", fontWeight: 700 }}>{_clock12(t1)}</span>
+      </div>
+    </div>
+  );
+}
+
 function MemoryStory({ allMoments, state, setState, onOpenLightbox, onPlayReel }) {
   const [night, setNight] = React.useState(() => {
     const nights = [...new Set(allMoments.map(m => m.night))].sort((a, b) => a - b);
@@ -3645,6 +3826,7 @@ function MemoryStory({ allMoments, state, setState, onOpenLightbox, onPlayReel }
           {beats.length} {beats.length === 1 ? "MOMENT" : "MOMENTS"} · YOUR STORY
         </div>
       </div>
+      <NightScrubber moments={beats} onSeek={(i) => onOpenLightbox(beats, i)} />
       {beats.length >= 2 && onPlayReel && (
         <button onClick={() => onPlayReel(beats, dayMeta ? (dayMeta.label.charAt(0) + dayMeta.label.slice(1).toLowerCase()) + " night" : `Night ${night}`, night)} style={{
           display: "flex", alignItems: "center", justifyContent: "center", gap: 9,
@@ -3714,21 +3896,37 @@ function _LazyMount({ children, placeholder, minHeight = 120, rootMargin = "800p
 // A++ default lens: a dense, scannable photo grid of every moment (newest
 // first) — the view people expect from a "memories" tab (Apple/Google Photos,
 // Retro, Snapchat). Tap a tile → full-screen lightbox.
-function _GridTile({ moment, onClick }) {
+function _GridTile({ moment, onClick, stackCount = 1 }) {
   const url = useMomentPhoto(moment.photoId);
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
+  const stacked = stackCount > 1;
   return (
     <button onClick={onClick} style={{
       position: "relative", width: "100%", height: "100%", aspectRatio: "1 / 1",
       borderRadius: 10, overflow: "hidden",
       border: "1px solid var(--line)", background: url ? "#000" : "var(--paper-2)",
       padding: 0, cursor: "pointer",
+      // Burst stack: fake two cards peeking out bottom-right (Apple Photos
+      // stack tile). Shadow stays within the 6px grid gap so it doesn't
+      // collide with the neighbour.
+      boxShadow: stacked
+        ? "2.5px 2.5px 0 -0.5px var(--paper-2), 2.5px 2.5px 0 0 var(--line), 5px 5px 0 -1px var(--paper-2), 5px 5px 0 -0.5px var(--line)"
+        : "none",
     }}>
       {url ? (moment.kind === "video"
         ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
         : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
       ) : <div className="skel" style={{ width: "100%", height: "100%" }}/>}
       {moment.kind === "video" && <_VideoBadge seconds={moment.duration} style={{ position: "absolute", top: 5, right: 5 }}/>}
+      {stacked && (
+        <span className="mono" aria-label={`Burst of ${stackCount}`} style={{
+          position: "absolute", top: 5, right: 5,
+          display: "inline-flex", alignItems: "center", gap: 3,
+          background: "rgba(0,0,0,0.6)", color: "#fff",
+          fontSize: 8, letterSpacing: 0.5, fontWeight: 700,
+          padding: "2px 6px", borderRadius: 999, pointerEvents: "none",
+        }}><span style={{ fontSize: 9 }}>⧉</span>{stackCount}</span>
+      )}
       {moment.favorite && <_FavBadge style={{ top: 5, left: 5 }}/>}
       <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, background: "linear-gradient(0deg, rgba(0,0,0,0.8), transparent)", padding: "16px 6px 5px" }}>
         <div className="mono" style={{ fontSize: 7.5, letterSpacing: 0.5, color: artist ? "#fff" : "rgba(255,255,255,0.7)", fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
@@ -3739,6 +3937,28 @@ function _GridTile({ moment, onClick }) {
   );
 }
 
+// Burst stacking: collapse a run of photos shot in quick succession (same
+// artist/untagged, ≤4s apart, images — not videos) into one stacked tile, so
+// 12 near-identical shots of a drop don't bury the rest of the night. Operates
+// on the already-sorted (newest-first) list, so burst siblings are adjacent.
+// The lightbox still receives the FULL list, so swiping traverses the whole
+// burst — the collapse is display-only.
+function _stackBursts(sorted, burstMs) {
+  burstMs = burstMs || 4000;
+  const stacks = [];
+  for (const m of sorted) {
+    const last = stacks[stacks.length - 1];
+    const t = _momentCaptureMs(m);
+    if (last && m.kind === "image" && last.kind === "image"
+        && (last.artistId || null) === (m.artistId || null)
+        && Math.abs(last._t - t) <= burstMs) {
+      last.items.push(m); last._t = t;
+    } else {
+      stacks.push({ items: [m], kind: m.kind, artistId: m.artistId || null, _t: t });
+    }
+  }
+  return stacks;
+}
 function MemoryGrid({ allMoments, onOpenLightbox }) {
   const sorted = React.useMemo(() =>
     allMoments.filter(m => m.photoId).slice().sort((a, b) => {
@@ -3746,19 +3966,116 @@ function MemoryGrid({ allMoments, onOpenLightbox }) {
       if (ta && tb) return tb.localeCompare(ta);
       return (b.createdAt || 0) - (a.createdAt || 0);
     }), [allMoments]);
+  const stacks = React.useMemo(() => _stackBursts(sorted), [sorted]);
   if (!sorted.length) return null;
   return (
     <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6, marginTop: 4 }}>
-      {sorted.map((m, i) => (
-        <_LazyMount
-          key={m.id}
-          rootMargin="600px 0px"
-          style={{ aspectRatio: "1 / 1" }}
-          placeholder={<div className="skel" style={{ width: "100%", height: "100%", borderRadius: 10 }} />}
-        >
-          <_GridTile moment={m} onClick={() => onOpenLightbox(sorted, i)} />
-        </_LazyMount>
-      ))}
+      {stacks.map((st) => {
+        const hero = (st.items.length > 1 ? _pickHeroMoment(st.items) : st.items[0]) || st.items[0];
+        const idx = sorted.indexOf(hero);
+        return (
+          <_LazyMount
+            key={hero.id}
+            rootMargin="600px 0px"
+            style={{ aspectRatio: "1 / 1" }}
+            placeholder={<div className="skel" style={{ width: "100%", height: "100%", borderRadius: 10 }} />}
+          >
+            <_GridTile moment={hero} stackCount={st.items.length}
+              onClick={() => onOpenLightbox(sorted, idx < 0 ? 0 : idx)} />
+          </_LazyMount>
+        );
+      })}
+    </div>
+  );
+}
+
+// Map lens — "where your night happened." Clusters moments onto the festival
+// basemap by stage (artist→stage, or GPS projected to the nearest stage via
+// map.jsx's gpsToMap/_nearestStageId), one count-pin per stage. Read-only:
+// reuses STAGES coords + FESTIVAL_CONFIG.mapImage rather than the full
+// MapScreen (which is coupled to live crew/zoom/meet state). Tap a pin → that
+// stage's moments in the lightbox.
+function MemoriesMapLens({ moments, onPinTap }) {
+  const { pins, unplaced } = React.useMemo(() => {
+    const byStage = new Map();
+    let unplaced = 0;
+    for (const m of (moments || [])) {
+      if (!m.photoId) continue;
+      let stageId = null;
+      const a = m.artistId ? ARTISTS.find(x => x.id === m.artistId) : null;
+      if (a) stageId = a.stage;
+      else if (m.parsedGps && typeof gpsToMap === "function") {
+        const p = gpsToMap(m.parsedGps.lat, m.parsedGps.lng);
+        if (p && typeof _nearestStageId === "function") stageId = _nearestStageId(p.x, p.y);
+      }
+      const stage = stageId ? STAGES.find(s => s.id === stageId) : null;
+      if (!stage) { unplaced++; continue; }
+      if (!byStage.has(stageId)) byStage.set(stageId, []);
+      byStage.get(stageId).push(m);
+    }
+    const pins = [...byStage.entries()]
+      .map(([id, items]) => ({ id, items, stage: STAGES.find(s => s.id === id) }))
+      .sort((a, b) => b.items.length - a.items.length);
+    return { pins, unplaced };
+  }, [moments]);
+
+  if (!pins.length) {
+    return (
+      <div style={{ padding: "28px 14px", textAlign: "center", marginTop: 14, border: "1px dashed var(--line-2)", borderRadius: 14, background: "var(--paper-2)" }}>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>
+          NO LOCATED MOMENTS YET — TAG A SET OR IMPORT GPS PHOTOS
+        </div>
+      </div>
+    );
+  }
+
+  const img = (typeof FESTIVAL_CONFIG !== "undefined") ? FESTIVAL_CONFIG.mapImage : null;
+  return (
+    <div style={{ marginTop: 14 }}>
+      <div style={{
+        position: "relative", width: "100%", aspectRatio: "1 / 1",
+        borderRadius: 16, overflow: "hidden", border: "1px solid var(--line)",
+        background: "#0a0f0b",
+      }}>
+        <svg viewBox="0 0 100 100" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"
+          style={{ position: "absolute", inset: 0, display: "block" }}>
+          {img && <image href={img} x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMid slice" opacity="0.65"/>}
+          <rect x="0" y="0" width="100" height="100" fill="rgba(8,7,11,0.42)"/>
+          {pins.map(p => {
+            const s = p.stage, c = p.items.length;
+            const r = 3 + Math.min(6, Math.log2(c + 1) * 1.7);
+            return (
+              <g key={p.id} onClick={() => onPinTap?.(p)} style={{ cursor: "pointer" }}>
+                <circle cx={s.x} cy={s.y} r={r + 1.6} fill={s.color} opacity="0.22"/>
+                <circle cx={s.x} cy={s.y} r={r} fill={s.color} opacity="0.92" stroke="#fff" strokeWidth="0.5"/>
+                <text x={s.x} y={s.y} textAnchor="middle" dominantBaseline="central"
+                  fontSize={Math.max(2.4, r * 0.9)} fontWeight="800" fill="#fff"
+                  fontFamily="ui-monospace, monospace" style={{ pointerEvents: "none" }}>{c}</text>
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+      {/* Tappable legend — same targets as the pins, for fat fingers + a11y. */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 10 }}>
+        {pins.map(p => (
+          <button key={p.id} onClick={() => onPinTap?.(p)} className="mono" style={{
+            display: "flex", alignItems: "center", gap: 6,
+            background: `${p.stage.color}1a`, color: p.stage.color,
+            border: `1px solid ${p.stage.color}44`, borderRadius: 999,
+            padding: "5px 10px", cursor: "pointer",
+            fontSize: 9, letterSpacing: 1, fontWeight: 700,
+          }}>
+            <span style={{ width: 7, height: 7, borderRadius: 7, background: p.stage.color }}/>
+            {(p.stage.short || p.stage.name).toUpperCase()} · {p.items.length}
+          </button>
+        ))}
+      </div>
+      {unplaced > 0 && (
+        <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", fontWeight: 600, marginTop: 8, opacity: 0.8 }}>
+          +{unplaced} UNTAGGED MOMENT{unplaced === 1 ? "" : "S"} NOT ON THE MAP
+        </div>
+      )}
     </div>
   );
 }
@@ -4032,7 +4349,7 @@ function MemoriesScreen({ state, setState }) {
       // as cluttered). A persisted artist/stage selection falls back to NIGHT —
       // you still reach a single artist by tapping its group header.
       if (v === "artist" || v === "stage") return "night";
-      if (["grid", "story", "night"].includes(v)) return v;
+      if (["grid", "story", "night", "map"].includes(v)) return v;
     } catch {}
     return "grid";
   });
@@ -4315,6 +4632,7 @@ function MemoriesScreen({ state, setState }) {
             { id: "grid",   label: "GRID" },
             { id: "story",  label: "STORY" },
             { id: "night",  label: "NIGHT" },
+            { id: "map",    label: "MAP" },
           ].map(v => {
             const on = view === v.id;
             return (
@@ -4358,6 +4676,7 @@ function MemoriesScreen({ state, setState }) {
           />
         </>)}
         {view === "story" && <MemoryStory allMoments={allMoments} state={state} setState={setState} onOpenLightbox={openLightbox} onPlayReel={playReel} />}
+        {view === "map" && <MemoriesMapLens moments={allMoments} onPinTap={(p) => openLightbox(p.items, 0)} />}
         {view === "artist" && _renderByGroup({
           allMoments,
           keyOf: m => m.artistId || "__untagged__",
@@ -4460,6 +4779,15 @@ function MemoriesScreen({ state, setState }) {
                   </>
                 )}
               </div>
+
+              {moments.length > 0 && (
+                <PeakMomentCard
+                  peak={_peakWindow(moments)}
+                  accent="var(--ember)"
+                  onOpenLightbox={openLightbox}
+                  onPlayReel={(items) => playReel(items, `${d.label} peak`, d.n)}
+                />
+              )}
 
               {moments.length === 0 && adding !== d.n && (
                 <div style={{
