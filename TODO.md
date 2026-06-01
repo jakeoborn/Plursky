@@ -27,7 +27,9 @@ unmemoized/unvirtualized renders. Prioritized:
 > **🎉 iOS 1.8 (19) APPROVED — 2026-05-30** (release pending/rolling out; hit
 > "Release This Version" in ASC if manual). Carries the full report-card cluster
 > (#2–#12) + judge-fix follow-up + WCAG finish + cloud backup P1/P2 to device.
-> Web @ **v203** (Weekend-2 crash fix, 2026-05-31). Refreshed App Store description + What's New shipped with it.
+> Web @ **v206** (2026-06-01): v203 Weekend-2 crash fix → v204 5-bug batch →
+> v205 Memories hero/song-timeline/last-night reel → v206 3-lens simplify +
+> native Shazam fix. Refreshed App Store description + What's New shipped earlier.
 > **Owed once live on device:** Apple Music BUILD PLAYLIST · Shazam-a-video ·
 > 2-device rally · ACL map render. Next iOS build → **1.9 (20)**.
 
@@ -39,24 +41,58 @@ that changed the set count crashed to the error boundary. Now one stable
 `_blockRefs` ref-map. Babel + mount-probe verified, pushed to web, iOS native
 bundle synced (Xcode archive + submit → 1.9 (20) still owed).
 
-Remaining 5 (speced, chosen approaches in parens — all on ACL unless noted):
-- [ ] **Auto-tag wrong artist** — `photo-tag.jsx` `_matchArtistForPhoto` already
-      matches capture-time vs saved-set windows; fixes: inline `setWindow()`
-      <6h post-midnight cutoff → unify to <8; pass **attended ids** (not just
-      `savedIds`) for the +1000 prior; on 2+ overlapping candidates add a
-      one-tap **fix-tag chip** (best-guess + correct). Data's all there — easy.
-- [ ] **EDC memories on ACL page** — moments in one un-scoped
-      `plursky_moments_v1` (keyed by night, not festival). Stamp `festivalId`,
-      filter live views to `FESTIVAL_CONFIG.id`, fix archive-on-switch (~5137).
-- [ ] **Map letterbox bands + floating top-right control** — `map.jsx` SVG
-      `preserveAspectRatio="xMidYMid meet"` + container taller than map →
-      navy bands; controls anchor to container edge. **Fit whole map.**
-- [ ] **Grid fit-all-stages** — `lineup.jsx` `TimelineGrid` `COL_W=94` fixed →
-      h-scroll. Add a **"Fit" toggle** (scroll stays default).
-- [ ] **Memories UX** — `MomentCard` (spotify.jsx ~2327) cramped chip/EDIT/
-      DELETE/time/tag-source row; tighten hierarchy, fold in fix-tag chip.
+**All 5 → FIXED & SHIPPED (v204, 2026-05-31).** Babel + mount + real-app
+screenshots + a matcher unit test on the real 241-artist lineup all verified.
+- [x] **Auto-tag wrong artist** — `_matchArtistForPhoto` now weighs **attended**
+      ids (+1000 > saved +500 > any), unified the post-midnight cutoff to <8h
+      (also fixed in `_matchSongAtTime`), and flags `ambiguous` on 2+ overlapping
+      candidates → MomentCard **"✎ FIX TAG?"** chip. Call sites pass attendedIds.
+- [x] **EDC memories on ACL page** — new `_activeMoments()` scopes Home/Memories/
+      recap to `FESTIVAL_CONFIG.id`; new moments stamp `festivalId`; legacy
+      moments backfilled in `_maybeAutoArchive`.
+- [x] **Map letterbox** — SVG top-anchored (`xMidYMin`) so the navy band
+      collapses to the bottom (under the search sheet) + controls sit over the map.
+- [x] **Grid fit-all-stages** — `TimelineGrid` **"⛶ FIT" toggle** sizes columns
+      to fit every stage on one screen; 94px scroll stays default.
+- [x] **Memories UX** — `MomentCard` row re-tiered: primary (artist+time),
+      muted secondary provenance line, demoted edit/delete (×), folded-in fix-tag.
+- [x] **Grid weekend filter** (bonus) — dropped "Both", W1/W2 only (default W1;
+      hidden until artists carry W1/W2 tags — none do today).
 
-## ⭐ MASTER OPEN ITEMS — updated 2026-05-31 (web @ **v203**; **iOS 1.8 (19) APPROVED** 🎉 release pending; next build 1.9 (20))
+## ✨ MEMORIES PRESENTATION + UX — v205/v206 (2026-06-01)
+
+- [x] **Auto "hero" pick** (v205) — `_heroScore`/`_pickHeroMoment` ranks photos by
+      set-climax proximity (~75% through) + confirmedSong/video/GPS/caption + a
+      ⭐ favorite hook. Night/artist/stage groups lead with their best shot +
+      show it as a header cover thumb (`_GroupHeroThumb`); recap share-hero reuses
+      it. Unit-tested on the real lineup.
+- [x] **Set-song timeline** (v205) — `SetSongTimeline`: tap a song you filmed →
+      jump to that clip (reuses tracklist engine; hidden without a match).
+- [x] **"Last night in 15s"** (v205) — home recap nudge plays a tight hero-ranked
+      highlight (best ~6, videos/peak first) + morning-after framing.
+- [x] **Memories simplified to 3 lenses** (v206) — GRID·STORY·NIGHT (was 5;
+      artist/stage reached by tapping a group). Persisted artist/stage → NIGHT.
+- [x] **Native Shazam file-match fix** (v206) — `ShazamPlugin.swift` rewritten to
+      use `SHSignatureGenerator` (was misusing `matchStreamingBuffer(_,at:nil)`
+      which collapsed the signature timeline → near-certain no-match). ⚠️ **NEEDS
+      ON-DEVICE TEST** (can't compile/run ShazamKit headless; Clicky's job). Some
+      crowd/DJ-edit clips will still legitimately fail.
+- [x] **AGENTS.md** (3c47fc2) — guardrails so Clicky (+ any AI agent) inherits the
+      hard rules; Claude Code owns commits to `main`, Clicky = visual QA / on-
+      device / dashboards / issues.
+
+### Memories polish backlog (next, not yet built)
+- [ ] **Burst / near-dup stacking** — cluster captures within ~15s into one
+      expandable stack (reuses `takenAt` + `_fingerprint`).
+- [ ] **"Peak 20 min" card** — busiest capture window = your high point.
+- [ ] **Map lens** — plot moments on the festival map by GPS (reuses `parsedGps`
+      + `map.jsx` + `mapToGps`).
+- [ ] **Night scrubber** — horizontal time axis, photos pinned at capture time.
+- [ ] **⭐ Favorite (one-tap)** — `_heroScore` already has the `favorite` hook.
+- [ ] **MomentCard right-edge bleed** — content appears to overflow the 390px
+      viewport (seen in screenshots); Clicky to confirm on device.
+
+## ⭐ MASTER OPEN ITEMS — updated 2026-06-01 (web @ **v206**; **iOS 1.8 (19) APPROVED** 🎉 release pending; next build 1.9 (20) carries v203–v206)
 
 _Session 13 shipped + LIVE on iOS 1.7: reel/recap audit, ACL map (real
 artwork), spotify.jsx split ×3, recap-ready nudge, Spotify auto-create,
