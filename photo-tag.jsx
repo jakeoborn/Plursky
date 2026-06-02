@@ -96,7 +96,14 @@ function _parseFilenameDate(name) {
 
 async function _parseExifMeta(file) {
   const out = { date: null, lat: null, lng: null };
-  if (!file || !/^image\//.test(file.type)) return out;
+  if (!file) return out;
+  // Videos carry no JPEG EXIF — their capture time + GPS live in the MP4/MOV
+  // `moov` atom. Without this, videos fell through to file.lastModified (=
+  // the WebKit picker's import time), so every clip auto-tagged to "now" →
+  // wrong artist/night. Delegate to the atom reader so a video matches by its
+  // true capture time like a photo does. (v209 — fixes mis-tagged videos.)
+  if (/^video\//.test(file.type)) return _parseVideoMeta(file);
+  if (!/^image\//.test(file.type)) return out;
   try {
     // 256 KB is enough for the APP1 segment on any modern phone photo.
     const buf = await file.slice(0, 256 * 1024).arrayBuffer();
@@ -220,6 +227,64 @@ async function _parseExifMeta(file) {
         return out;
       }
       off += 2 + len;
+    }
+  } catch {}
+  return out;
+}
+
+// MP4/MOV capture metadata (v209) — videos store creation time in the `moov`
+// → `mvhd` box (seconds since 1904-01-01 UTC) and, on iOS, GPS in a `©xyz`
+// (ISO-6709) box. We walk only the TOP-LEVEL boxes (skipping the huge `mdat`
+// by offset — never reading it) to find `moov`, then read just that box. The
+// mvhd time is UTC; we convert to festival-LOCAL wall-clock to match how EXIF
+// DateTimeOriginal is treated downstream (see _photoEpochUtc).
+async function _parseVideoMeta(file) {
+  const out = { date: null, lat: null, lng: null };
+  if (!file) return out;
+  try {
+    const size = file.size;
+    const slice = async (start, len) =>
+      new DataView(await file.slice(start, start + Math.min(len, size - start)).arrayBuffer());
+    // 1) Walk top-level boxes to locate `moov` (often at EOF on iOS).
+    let pos = 0, moov = null;
+    while (pos + 8 <= size) {
+      const h = await slice(pos, 16);
+      let boxSize = h.getUint32(0);
+      const type = String.fromCharCode(h.getUint8(4), h.getUint8(5), h.getUint8(6), h.getUint8(7));
+      let hdr = 8;
+      if (boxSize === 1) { boxSize = h.getUint32(8) * 4294967296 + h.getUint32(12); hdr = 16; }
+      else if (boxSize === 0) { boxSize = size - pos; }
+      if (boxSize < hdr) break;
+      if (type === "moov") { moov = await slice(pos, Math.min(boxSize, 2 * 1024 * 1024)); break; }
+      pos += boxSize;
+    }
+    if (!moov) return out;
+    // 2) Scan the (small, structured) moov for mvhd creation time + ©xyz GPS.
+    const n = moov.byteLength;
+    const is = (i, a, b, c, d) =>
+      moov.getUint8(i) === a && moov.getUint8(i+1) === b && moov.getUint8(i+2) === c && moov.getUint8(i+3) === d;
+    for (let i = 0; i + 8 <= n; i++) {
+      if (!out.date && is(i, 0x6d, 0x76, 0x68, 0x64)) { // 'mvhd'
+        const ver = moov.getUint8(i + 4);
+        const secs = ver === 1
+          ? moov.getUint32(i + 8) * 4294967296 + moov.getUint32(i + 12)
+          : moov.getUint32(i + 8);
+        const unixMs = (secs - 2082844800) * 1000; // 1904→1970 epoch shift
+        if (secs > 2082844800 && isFinite(unixMs)) {
+          const d = new Date(unixMs + _festivalTzOffsetHours() * 3600000);
+          out.date = { yr: d.getUTCFullYear(), mo: d.getUTCMonth() + 1, dy: d.getUTCDate(),
+                       hh: d.getUTCHours(), mm: d.getUTCMinutes(), ss: d.getUTCSeconds() };
+        }
+      }
+      if (out.lat == null && is(i, 0xA9, 0x78, 0x79, 0x7a)) { // '©xyz'
+        const len = moov.getUint16(i + 4);
+        let s = "";
+        for (let k = 0; k < Math.min(len, 64); k++) {
+          const c = moov.getUint8(i + 8 + k); if (!c) break; s += String.fromCharCode(c);
+        }
+        const m = /([+-]\d+(?:\.\d+)?)([+-]\d+(?:\.\d+)?)/.exec(s); // ISO-6709 "+36.27-115.01/"
+        if (m) { out.lat = parseFloat(m[1]); out.lng = parseFloat(m[2]); }
+      }
     }
   } catch {}
   return out;
