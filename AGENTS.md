@@ -16,17 +16,33 @@ Plursky is a music-festival companion app: a **no-bundler static SPA** (plain
 
 ---
 
+## 0. Approval gate (HARD RULE — applies to EVERY agent)
+
+**No patching, version bumping, build sync, committing, pushing, or issue
+filing should happen until the user explicitly approves the next
+implementation step.**
+
+Diagnose, read, propose — freely. But STOP before any action that changes the
+repo, the deploy, the build, or GitHub (edits, `vNNN` bumps, `cap sync`,
+commits, pushes, PRs, issues). Surface the plan and wait for an explicit
+"yes / go / do it" from the user for *that specific step*. One approval covers
+the step it was given for, not the next one. When in doubt, ask.
+
+---
+
 ## 1. Who owns what
 
-| Agent | Owns | Must NOT |
+| Agent | May do (after approval) | NEVER |
 |---|---|---|
-| **Claude Code** (terminal) | All repo surgery: multi-file edits, version bumps, the verify gate, **commits to `main`** | — |
-| **Clicky** (on-screen) | Visual QA on the live app, **on-device testing**, web-dashboard ops (App Store Connect, RevenueCat), Xcode triage, **filing issues** | **Commit to `main`** |
-| **Any other agent** | Branches / PRs / issues | Commit to `main` |
+| **Claude Code** (terminal) | Repo surgery: multi-file edits, version bumps, the verify gate, **commits/merges to `main`** | Act without the approval gate above |
+| **Clicky** (on-screen) | Visual QA on the live app, **on-device testing**, web-dashboard ops (App Store Connect, RevenueCat), Xcode triage. Code changes only via **branch + PR** | **Commit or push to `main`**; act without approval |
+| **Any other agent** | Branches / PRs / issues | Commit or push to `main` |
 
 `main` is the **live deploy** (push to main → plursky.com updates). Only Claude
-Code commits there, and only after the verify gate below. Everyone else: open a
-branch/PR or file a GitHub issue, and let Claude Code execute it.
+Code commits there, and only after both the approval gate (§0) and the verify
+gate (§2) pass. **Clicky has GitHub write access but must NOT push to `main`** —
+it opens a branch + PR (or files an issue) and lets Claude Code run the gate and
+merge. Direct-to-main from Clicky bypasses the only validation Plursky has.
 
 **The handoff loop:** Clicky sees a problem on screen → files a GitHub issue →
 Claude Code implements + verifies + ships → Clicky re-checks on the real device.
