@@ -43,9 +43,9 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
         matchFromURL(tmp, call: call, tempURL: tmp)
     }
 
-    private func resolveNoMatch() {
+    private func resolveNoMatch(_ debug: [String: Any] = [:]) {
         DispatchQueue.main.async {
-            self.savedCall?.resolve(["matched": false, "title": "", "artist": ""])
+            self.savedCall?.resolve(["matched": false, "title": "", "artist": "", "debug": debug])
             self.savedCall = nil
         }
     }
@@ -71,10 +71,20 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
             guard let self = self else { return }
             defer { if let t = tempURL { try? FileManager.default.removeItem(at: t) } }
             let asset = AVURLAsset(url: url)
+            let fileBytes = (try? FileManager.default.attributesOfItem(atPath: url.path)[.size] as? NSNumber)?.intValue ?? 0
+            var debug: [String: Any] = [
+                "fileBytes": fileBytes,
+                "durationSeconds": CMTimeGetSeconds(asset.duration),
+                "audioTrack": false,
+                "sampleBuffers": 0,
+                "framesAppended": 0,
+            ]
             guard let track = asset.tracks(withMediaType: .audio).first,
                   let reader = try? AVAssetReader(asset: asset) else {
-                self.resolveNoMatch(); return
+                debug["reason"] = "no-audio-track-or-reader"
+                self.resolveNoMatch(debug); return
             }
+            debug["audioTrack"] = true
             let settings: [String: Any] = [
                 AVFormatIDKey: kAudioFormatLinearPCM,
                 AVLinearPCMIsFloatKey: true,
@@ -94,20 +104,25 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
             while reader.status == .reading {
                 guard let sampleBuffer = output.copyNextSampleBuffer(),
                       let blockBuffer = CMSampleBufferGetDataBuffer(sampleBuffer) else { break }
+                debug["sampleBuffers"] = (debug["sampleBuffers"] as? Int ?? 0) + 1
                 let length = CMBlockBufferGetDataLength(blockBuffer)
-                let frameCount = AVAudioFrameCount(length / 4)
+                let sampleCount = CMSampleBufferGetNumSamples(sampleBuffer)
+                let frameCount = AVAudioFrameCount(sampleCount > 0 ? sampleCount : length / 4)
                 if frameCount > 0, let pcmBuffer = AVAudioPCMBuffer(pcmFormat: fmt, frameCapacity: frameCount) {
                     pcmBuffer.frameLength = frameCount
                     if let dst = pcmBuffer.floatChannelData?[0] {
-                        CMBlockBufferCopyDataBytes(blockBuffer, atOffset: 0, dataLength: length, destination: dst)
+                        CMBlockBufferCopyDataBytes(blockBuffer, atOffset: 0, dataLength: min(length, Int(frameCount) * 4), destination: dst)
                     }
                     let when = AVAudioTime(sampleTime: sampleOffset, atRate: 44100)
                     do { try generator.append(pcmBuffer, at: when); appended = true } catch { /* skip bad chunk */ }
                     sampleOffset += AVAudioFramePosition(frameCount)
+                    debug["framesAppended"] = (debug["framesAppended"] as? Int ?? 0) + Int(frameCount)
                 }
                 CMSampleBufferInvalidate(sampleBuffer)
             }
-            guard appended else { self.resolveNoMatch(); return }
+            debug["readerStatus"] = reader.status.rawValue
+            if let err = reader.error { debug["readerError"] = err.localizedDescription }
+            guard appended else { debug["reason"] = "no-pcm-appended"; self.resolveNoMatch(debug); return }
 
             // Match the accumulated signature; didFind/didNotFind resolves the call.
             let signature = generator.signature()
@@ -116,7 +131,9 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
             // Safety net if no delegate callback fires.
             DispatchQueue.main.asyncAfter(deadline: .now() + 8) { [weak self] in
                 if let call = self?.savedCall {
-                    call.resolve(["matched": false, "title": "", "artist": ""])
+                    var timedOut = debug
+                    timedOut["reason"] = "match-timeout"
+                    call.resolve(["matched": false, "title": "", "artist": "", "debug": timedOut])
                     self?.savedCall = nil
                 }
             }
@@ -166,7 +183,7 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
     public func session(_ session: SHSession, didFind match: SHMatch) {
         stopListening()
         guard let item = match.mediaItems.first else {
-            savedCall?.resolve(["matched": false, "title": "", "artist": ""])
+            savedCall?.resolve(["matched": false, "title": "", "artist": "", "debug": ["reason": "empty-match"]])
             savedCall = nil
             return
         }
@@ -182,7 +199,7 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
 
     public func session(_ session: SHSession, didNotFindMatchFor signature: SHSignature, error: (any Error)?) {
         stopListening()
-        savedCall?.resolve(["matched": false, "title": "", "artist": ""])
+        savedCall?.resolve(["matched": false, "title": "", "artist": "", "debug": ["reason": "did-not-find", "error": error?.localizedDescription ?? ""]])
         savedCall = nil
     }
 }

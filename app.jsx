@@ -460,7 +460,9 @@ function App() {
   // step is skippable and the empty-state nudges on Home pick up the rest
   // for anyone who skips through.
   const [showOnboarding, setShowOnboarding] = React.useState(() => {
-    try { return localStorage.getItem("onboarded") !== ONBOARD_VERSION; }
+    try {
+      return localStorage.getItem("onboarded") !== ONBOARD_VERSION;
+    }
     catch { return false; }
   });
   const [searchOpen, setSearchOpen] = React.useState(false);
@@ -516,7 +518,8 @@ function App() {
     } catch {}
 
     // Parse deep-link params: ?artist=ID, ?tab=map, ?stage=kinetic, ?day=1, ?lineup=k9,k11,c5
-    const params = new URLSearchParams(window.location.search);
+    const rawSearch = window.location.search || (window.location.hash?.startsWith("#?") ? window.location.hash.slice(1) : "");
+    const params = new URLSearchParams(rawSearch);
     const dlArtist = params.get("artist");
     const dlTab    = params.get("tab");
     const dlStage  = params.get("stage");
@@ -525,7 +528,7 @@ function App() {
     const dlFrom   = params.get("from"); // optional friend name
     const dlCrew   = params.get("crew"); // crew code from a shared invite link
     const validArtist = dlArtist && ARTISTS.find(a => a.id === dlArtist) ? dlArtist : null;
-    const validTab    = ["home","map","lineup","spotify","me"].includes(dlTab) ? dlTab : null;
+    const validTab    = ["home","map","lineup","spotify","me","memories"].includes(dlTab) ? dlTab : null;
     const validStage  = dlStage && STAGES.find(s => s.id === dlStage || s.short.toLowerCase() === dlStage.toLowerCase()) ? dlStage : null;
     const validDay    = dlDay && [1,2,3].includes(+dlDay) ? +dlDay : null;
     // Decode shared lineup: comma-joined IDs validated against the local lineup so
@@ -572,6 +575,30 @@ function App() {
   React.useEffect(() => {
     try { localStorage.setItem(_SAVED_KEY, JSON.stringify(state.saved)); } catch {}
   }, [state.saved]);
+
+  React.useEffect(() => {
+    const applyUrlParams = (rawUrl) => {
+      try {
+        const u = new URL(rawUrl || "", "capacitor://localhost");
+        const raw = u.search || (u.hash?.startsWith("#?") ? u.hash.slice(1) : "");
+        const params = new URLSearchParams(raw);
+        const tab = params.get("tab");
+        if (["home","map","lineup","spotify","me","memories"].includes(tab)) {
+          setState(prev => ({ ...prev, tab }));
+          setShowOnboarding(false);
+        }
+      } catch {}
+    };
+    window.plurskyApplyUrlParams = applyUrlParams;
+    let sub = null;
+    try {
+      const capApp = window.Capacitor?.Plugins?.App;
+      if (capApp?.addListener) {
+        Promise.resolve(capApp.addListener("appUrlOpen", ({ url }) => applyUrlParams(url))).then(s => { sub = s; }).catch(() => {});
+      }
+    } catch {}
+    return () => { try { sub?.remove?.(); } catch {}; delete window.plurskyApplyUrlParams; };
+  }, []);
 
   React.useEffect(() => {
     if (!state.saved.length) return;
@@ -791,7 +818,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v209",
+        version: "v210",
       }));
     } catch {}
   }
@@ -824,7 +851,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
-          PLURSKY · v209
+          PLURSKY · v210
         </div>
       </div>
     );
