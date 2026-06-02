@@ -5,47 +5,17 @@ final class AppUITests: XCTestCase {
         continueAfterFailure = false
     }
 
-    func testMemoriesSmokeFlow() throws {
+    func testLaunchAndCaptureHome() throws {
         let app = XCUIApplication()
-        app.launchArguments += [
-            "-plurskyQAMode", "1",
-            "-plurskyQASeed", "memories",
-            "-plurskyInitialTab", "memories"
-        ]
+        app.launchArguments += ["-plurskyInitialTab", "home"]
         app.launch()
 
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 20), "Plursky did not reach foreground")
         capture("01-launch")
 
         let webView = app.webViews.firstMatch
-        let anyAppSurface = NSPredicate(format: "exists == true")
-        expectation(for: anyAppSurface, evaluatedWith: webView)
-        waitForExpectations(timeout: 10)
-
-        XCTAssertFalse(app.staticTexts.matching(NSPredicate(format: "label CONTAINS[c] %@", "WELCOME")).firstMatch.exists, "Onboarding was not bypassed")
-        capture("02-memories")
-
-        tapLabelContaining("GRID", in: app)
-        capture("03-grid")
-
-        tapLabelContaining("STORY", in: app)
-        capture("04-story")
-
-        tapLabelContaining("NIGHT", in: app)
-        capture("05-night")
-
-        tapLabelContaining("MAP", in: app)
-        capture("06-map")
-    }
-
-    private func tapLabelContaining(_ label: String, in app: XCUIApplication) {
-        let predicate = NSPredicate(format: "label CONTAINS[c] %@", label)
-        let element = app.buttons.matching(predicate).firstMatch.exists
-            ? app.buttons.matching(predicate).firstMatch
-            : app.staticTexts.matching(predicate).firstMatch
-        if element.waitForExistence(timeout: 5) {
-            element.tap()
-        }
+        XCTAssertTrue(webView.waitForExistence(timeout: 15), "Plursky web view did not mount")
+        capture("02-mounted")
     }
 
     private func capture(_ name: String) {

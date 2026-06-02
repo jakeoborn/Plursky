@@ -4,6 +4,7 @@ import WebKit
 
 final class PlurskyBridgeViewController: CAPBridgeViewController {
     override func webViewConfiguration(for instanceConfiguration: InstanceConfiguration) -> WKWebViewConfiguration {
+        #if DEBUG
         let configuration = super.webViewConfiguration(for: instanceConfiguration)
         let args = ProcessInfo.processInfo.arguments
         let env = ProcessInfo.processInfo.environment
@@ -28,8 +29,12 @@ final class PlurskyBridgeViewController: CAPBridgeViewController {
         }
 
         return configuration
+        #else
+        return super.webViewConfiguration(for: instanceConfiguration)
+        #endif
     }
 
+    #if DEBUG
     private static func qaParams(arguments: [String], environment: [String: String]) -> [(String, String)] {
         var params: [(String, String)] = []
 
@@ -58,4 +63,5 @@ final class PlurskyBridgeViewController: CAPBridgeViewController {
     private static func escape(_ value: String) -> String {
         value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? value
     }
+    #endif
 }
