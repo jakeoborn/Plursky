@@ -239,7 +239,7 @@ async function _parseExifMeta(file) {
 // mvhd time is UTC; we convert to festival-LOCAL wall-clock to match how EXIF
 // DateTimeOriginal is treated downstream (see _photoEpochUtc).
 async function _parseVideoMeta(file) {
-  const out = { date: null, lat: null, lng: null };
+  const out = { date: null, lat: null, lng: null, timestampSource: null, locationSource: null, rawUtcMs: null };
   if (!file) return out;
   try {
     const size = file.size;
@@ -259,33 +259,60 @@ async function _parseVideoMeta(file) {
       pos += boxSize;
     }
     if (!moov) return out;
-    // 2) Scan the (small, structured) moov for mvhd creation time + ©xyz GPS.
+    // 2) Walk the (small, structured) moov for mvhd creation time + GPS.
     const n = moov.byteLength;
-    const is = (i, a, b, c, d) =>
-      moov.getUint8(i) === a && moov.getUint8(i+1) === b && moov.getUint8(i+2) === c && moov.getUint8(i+3) === d;
-    for (let i = 0; i + 8 <= n; i++) {
-      if (!out.date && is(i, 0x6d, 0x76, 0x68, 0x64)) { // 'mvhd'
-        const ver = moov.getUint8(i + 4);
-        const secs = ver === 1
-          ? moov.getUint32(i + 8) * 4294967296 + moov.getUint32(i + 12)
-          : moov.getUint32(i + 8);
+    const typeAt = (dv, i) => String.fromCharCode(dv.getUint8(i), dv.getUint8(i+1), dv.getUint8(i+2), dv.getUint8(i+3));
+    const parseIso6709 = (s) => {
+      const m = /([+-]\d+(?:\.\d+)?)([+-]\d+(?:\.\d+)?)/.exec(s || "");
+      return m ? { lat: parseFloat(m[1]), lng: parseFloat(m[2]) } : null;
+    };
+    const readAscii = (start, len) => {
+      let s = "";
+      for (let k = 0; k < Math.min(len, 256) && start + k < n; k++) {
+        const c = moov.getUint8(start + k);
+        if (!c) continue;
+        if (c >= 32 && c <= 126) s += String.fromCharCode(c);
+      }
+      return s;
+    };
+    const visit = (start, end, depth) => {
+      if (depth > 6) return;
+      let pos = start;
+      while (pos + 8 <= end && pos + 8 <= n) {
+        let boxSize = moov.getUint32(pos);
+        const type = typeAt(moov, pos + 4);
+        let hdr = 8;
+        if (boxSize === 1 && pos + 16 <= n) { boxSize = moov.getUint32(pos + 8) * 4294967296 + moov.getUint32(pos + 12); hdr = 16; }
+        else if (boxSize === 0) boxSize = end - pos;
+        if (!boxSize || boxSize < hdr || pos + boxSize > n + 1) break;
+        const payload = pos + hdr;
+        const boxEnd = Math.min(n, pos + boxSize);
+        if (!out.date && type === "mvhd" && boxEnd - payload >= 16) {
+          const ver = moov.getUint8(payload);
+          const secs = ver === 1 && boxEnd - payload >= 28
+            ? moov.getUint32(payload + 4) * 4294967296 + moov.getUint32(payload + 8)
+            : moov.getUint32(payload + 4);
         const unixMs = (secs - 2082844800) * 1000; // 1904→1970 epoch shift
-        if (secs > 2082844800 && isFinite(unixMs)) {
+          const tooFuture = unixMs > Date.now() + 366 * 24 * 3600000;
+          if (secs > 2082844800 && isFinite(unixMs) && !tooFuture) {
           const d = new Date(unixMs + _festivalTzOffsetHours() * 3600000);
           out.date = { yr: d.getUTCFullYear(), mo: d.getUTCMonth() + 1, dy: d.getUTCDate(),
                        hh: d.getUTCHours(), mm: d.getUTCMinutes(), ss: d.getUTCSeconds() };
+            out.timestampSource = "video-mvhd";
+            out.rawUtcMs = unixMs;
         }
       }
-      if (out.lat == null && is(i, 0xA9, 0x78, 0x79, 0x7a)) { // '©xyz'
-        const len = moov.getUint16(i + 4);
-        let s = "";
-        for (let k = 0; k < Math.min(len, 64); k++) {
-          const c = moov.getUint8(i + 8 + k); if (!c) break; s += String.fromCharCode(c);
+        if (out.lat == null && (type === "©xyz" || type === "data")) {
+          const p = parseIso6709(readAscii(payload, boxEnd - payload));
+          if (p) { out.lat = p.lat; out.lng = p.lng; out.locationSource = type === "©xyz" ? "video-xyz" : "video-quicktime-location"; }
         }
-        const m = /([+-]\d+(?:\.\d+)?)([+-]\d+(?:\.\d+)?)/.exec(s); // ISO-6709 "+36.27-115.01/"
-        if (m) { out.lat = parseFloat(m[1]); out.lng = parseFloat(m[2]); }
+        if (["trak", "mdia", "minf", "stbl", "udta", "meta", "ilst", "moov"].includes(type)) {
+          visit(type === "meta" ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1);
+        }
+        pos += boxSize;
       }
-    }
+    };
+    visit(8, n, 0);
   } catch {}
   return out;
 }

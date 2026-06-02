@@ -1067,6 +1067,38 @@ function _countMoments() {
   return Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
 }
 
+function _seedQaMoments() {
+  try {
+    if (_countMoments() > 0) return;
+    const festId = window.FESTIVAL_CONFIG?.id || "edc-lv-2026";
+    const mk = (id, night, artistId, takenAt, favorite) => ({
+      id, night, text: "QA seeded moment", artistId, photoId: `qa_${id}`,
+      kind: "image", duration: null, createdAt: Date.now(), takenAt,
+      takenAtSource: "qa-seed", locationSource: "stage-fallback",
+      autoTagged: !!artistId, tagSource: artistId ? "qa-seed" : "fallback",
+      favorite: !!favorite, festivalId: festId,
+    });
+    _writeMoments({
+      1: [
+        mk("qa_peak_1", 1, "k6", "2026-05-16 00:34", true),
+        mk("qa_peak_2", 1, "k6", "2026-05-16 00:38", false),
+        mk("qa_peak_3", 1, "k6", "2026-05-16 00:41", false),
+        mk("qa_burst_1", 1, "k7", "2026-05-16 01:50", false),
+        mk("qa_burst_2", 1, "k7", "2026-05-16 01:50", false),
+      ],
+    });
+  } catch {}
+}
+function _maybeSeedQaMoments() {
+  try {
+    const rawSearch = window.location.search || (window.location.hash?.startsWith("#?") ? window.location.hash.slice(1) : "");
+    const params = new URLSearchParams(rawSearch);
+    if (params.get("qaSeed") === "memories") _seedQaMoments();
+  } catch {}
+}
+try { window.plurskySeedQaMoments = _seedQaMoments; } catch {}
+_maybeSeedQaMoments();
+
 // Multi-festival scoping (v204). Moments share ONE localStorage key keyed by
 // night, not festival — so without this filter EDC moments bleed onto the ACL
 // page (both use nights 1/2/3). New moments are stamped with `festivalId` at
@@ -1206,10 +1238,16 @@ async function _processMomentMedia(file) {
 //      The heuristic: lastModified within 30s of now ⇒ conversion stamp,
 //      skip it.
 function _metaFromFile(file, exifMeta) {
-  const out = { date: exifMeta?.date || null, lat: exifMeta?.lat ?? null, lng: exifMeta?.lng ?? null };
+  const out = {
+    date: exifMeta?.date || null,
+    lat: exifMeta?.lat ?? null,
+    lng: exifMeta?.lng ?? null,
+    takenAtSource: exifMeta?.timestampSource || (exifMeta?.date ? (/^video\//.test(file?.type || "") ? "video" : "exif") : "none"),
+    locationSource: exifMeta?.locationSource || ((exifMeta?.lat != null && exifMeta?.lng != null) ? (/^video\//.test(file?.type || "") ? "video-gps" : "exif-gps") : "none"),
+  };
   if (!out.date) {
     const fileDate = _parseFilenameDate(file?.name);
-    if (fileDate) out.date = fileDate;
+    if (fileDate) { out.date = fileDate; out.takenAtSource = "filename"; }
   }
   if (!out.date && file?.lastModified) {
     const ageMs = Date.now() - file.lastModified;
@@ -1219,10 +1257,11 @@ function _metaFromFile(file, exifMeta) {
     // night using a manufactured timestamp.
     if (ageMs >= 30 * 1000) {
       const d = new Date(file.lastModified);
-      out.date = {
+      const fileDate = {
         yr: d.getFullYear(), mo: d.getMonth() + 1, dy: d.getDate(),
         hh: d.getHours(), mm: d.getMinutes(), ss: d.getSeconds(),
       };
+      if (_photoFestivalNight(fileDate) != null) { out.date = fileDate; out.takenAtSource = "file-lastModified"; }
     }
   }
   return out;
@@ -3945,16 +3984,18 @@ function _GridTile({ moment, onClick, stackCount = 1 }) {
 // burst — the collapse is display-only.
 function _stackBursts(sorted, burstMs) {
   burstMs = burstMs || 4000;
+  const stageOf = (m) => m.stageId || (m.artistId ? ARTISTS.find(a => a.id === m.artistId)?.stage : null) || null;
   const stacks = [];
   for (const m of sorted) {
     const last = stacks[stacks.length - 1];
     const t = _momentCaptureMs(m);
     if (last && m.kind === "image" && last.kind === "image"
         && (last.artistId || null) === (m.artistId || null)
+        && (last.stageId || null) === stageOf(m)
         && Math.abs(last._t - t) <= burstMs) {
       last.items.push(m); last._t = t;
     } else {
-      stacks.push({ items: [m], kind: m.kind, artistId: m.artistId || null, _t: t });
+      stacks.push({ items: [m], kind: m.kind, artistId: m.artistId || null, stageId: stageOf(m), _t: t });
     }
   }
   return stacks;
@@ -4002,12 +4043,12 @@ function MemoriesMapLens({ moments, onPinTap }) {
     for (const m of (moments || [])) {
       if (!m.photoId) continue;
       let stageId = null;
-      const a = m.artistId ? ARTISTS.find(x => x.id === m.artistId) : null;
-      if (a) stageId = a.stage;
-      else if (m.parsedGps && typeof gpsToMap === "function") {
+      if (m.parsedGps && typeof gpsToMap === "function") {
         const p = gpsToMap(m.parsedGps.lat, m.parsedGps.lng);
         if (p && typeof _nearestStageId === "function") stageId = _nearestStageId(p.x, p.y);
       }
+      const a = m.artistId ? ARTISTS.find(x => x.id === m.artistId) : null;
+      if (!stageId && a) stageId = a.stage;
       const stage = stageId ? STAGES.find(s => s.id === stageId) : null;
       if (!stage) { unplaced++; continue; }
       if (!byStage.has(stageId)) byStage.set(stageId, []);
@@ -4199,12 +4240,17 @@ function MemoriesScreen({ state, setState }) {
         // show "TAGGED FROM EXIF" vs "FALLBACK — RETAG", and so we can debug
         // import failures from the UI alone.
         const hadExifDate = !!exif?.date;
-        const hadFileTime = !exif?.date && !!meta?.date;
+        const hadFileTime = meta?.takenAtSource === "file-lastModified";
+        const hadTrustedMeta = !!meta?.date && meta.takenAtSource !== "file-lastModified" && meta.takenAtSource !== "none";
         const tagSource =
           matched.reason === "off_stage"  ? "off_stage" :
           matched.artistId && hadExifDate ? "exif" :
+          matched.artistId && /^video-/.test(meta?.takenAtSource || "") ? "video-metadata" :
+          matched.artistId && hadTrustedMeta ? meta.takenAtSource :
           matched.artistId && hadFileTime ? "filetime" :
           matched.night    && hadExifDate ? "exif-night-only" :
+          matched.night    && /^video-/.test(meta?.takenAtSource || "") ? "video-night-only" :
+          matched.night    && hadTrustedMeta ? `${meta.takenAtSource}-night-only` :
           matched.night    && hadFileTime ? "filetime-night-only" :
           "fallback";
         const out = await _processMomentMedia(f);
@@ -4217,6 +4263,10 @@ function MemoriesScreen({ state, setState }) {
           duration: out.duration ?? null,
           createdAt: Date.now(),
           takenAt: meta?.date ? `${meta.date.yr}-${String(meta.date.mo).padStart(2,"0")}-${String(meta.date.dy).padStart(2,"0")} ${String(meta.date.hh).padStart(2,"0")}:${String(meta.date.mm).padStart(2,"0")}` : null,
+          takenAtSource: meta?.takenAtSource || "none",
+          locationSource: meta?.locationSource || ((meta?.lat != null && meta?.lng != null) ? "gps" : "none"),
+          importedAt: new Date().toISOString(),
+          needsRetag: out.kind === "video" && (!meta?.takenAtSource || meta.takenAtSource === "file-lastModified" || meta.takenAtSource === "none"),
           autoTagged: !!matched.artistId,
           tagSource,
           // Low-confidence auto-tag: 2+ sets overlap this timestamp and GPS
