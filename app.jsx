@@ -461,9 +461,6 @@ function App() {
   // for anyone who skips through.
   const [showOnboarding, setShowOnboarding] = React.useState(() => {
     try {
-      const rawSearch = window.location.search || (window.location.hash?.startsWith("#?") ? window.location.hash.slice(1) : "");
-      const params = new URLSearchParams(rawSearch);
-      if (params.get("qaMode") === "1") { localStorage.setItem("onboarded", ONBOARD_VERSION); return false; }
       return localStorage.getItem("onboarded") !== ONBOARD_VERSION;
     }
     catch { return false; }
@@ -585,8 +582,6 @@ function App() {
         const u = new URL(rawUrl || "", "capacitor://localhost");
         const raw = u.search || (u.hash?.startsWith("#?") ? u.hash.slice(1) : "");
         const params = new URLSearchParams(raw);
-        if (params.get("qaMode") === "1") localStorage.setItem("onboarded", ONBOARD_VERSION);
-        if (params.get("qaSeed") === "memories") { try { window.plurskySeedQaMoments?.(); } catch {} }
         const tab = params.get("tab");
         if (["home","map","lineup","spotify","me","memories"].includes(tab)) {
           setState(prev => ({ ...prev, tab }));
@@ -823,7 +818,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v209",
+        version: "v210",
       }));
     } catch {}
   }
@@ -856,7 +851,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
-          PLURSKY · v209
+          PLURSKY · v210
         </div>
       </div>
     );

@@ -302,9 +302,9 @@ async function _parseVideoMeta(file) {
             out.rawUtcMs = unixMs;
         }
       }
-        if (out.lat == null && (type === "©xyz" || type === "data")) {
+        if (out.lat == null && type === "©xyz") {
           const p = parseIso6709(readAscii(payload, boxEnd - payload));
-          if (p) { out.lat = p.lat; out.lng = p.lng; out.locationSource = type === "©xyz" ? "video-xyz" : "video-quicktime-location"; }
+          if (p) { out.lat = p.lat; out.lng = p.lng; out.locationSource = "video-xyz"; }
         }
         if (["trak", "mdia", "minf", "stbl", "udta", "meta", "ilst", "moov"].includes(type)) {
           visit(type === "meta" ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1);

@@ -1067,37 +1067,6 @@ function _countMoments() {
   return Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
 }
 
-function _seedQaMoments() {
-  try {
-    if (_countMoments() > 0) return;
-    const festId = window.FESTIVAL_CONFIG?.id || "edc-lv-2026";
-    const mk = (id, night, artistId, takenAt, favorite) => ({
-      id, night, text: "QA seeded moment", artistId, photoId: `qa_${id}`,
-      kind: "image", duration: null, createdAt: Date.now(), takenAt,
-      takenAtSource: "qa-seed", locationSource: "stage-fallback",
-      autoTagged: !!artistId, tagSource: artistId ? "qa-seed" : "fallback",
-      favorite: !!favorite, festivalId: festId,
-    });
-    _writeMoments({
-      1: [
-        mk("qa_peak_1", 1, "k6", "2026-05-16 00:34", true),
-        mk("qa_peak_2", 1, "k6", "2026-05-16 00:38", false),
-        mk("qa_peak_3", 1, "k6", "2026-05-16 00:41", false),
-        mk("qa_burst_1", 1, "k7", "2026-05-16 01:50", false),
-        mk("qa_burst_2", 1, "k7", "2026-05-16 01:50", false),
-      ],
-    });
-  } catch {}
-}
-function _maybeSeedQaMoments() {
-  try {
-    const rawSearch = window.location.search || (window.location.hash?.startsWith("#?") ? window.location.hash.slice(1) : "");
-    const params = new URLSearchParams(rawSearch);
-    if (params.get("qaSeed") === "memories") _seedQaMoments();
-  } catch {}
-}
-try { window.plurskySeedQaMoments = _seedQaMoments; } catch {}
-_maybeSeedQaMoments();
 
 // Multi-festival scoping (v204). Moments share ONE localStorage key keyed by
 // night, not festival — so without this filter EDC moments bleed onto the ACL
