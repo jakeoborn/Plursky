@@ -24,14 +24,40 @@ unmemoized/unvirtualized renders. Prioritized:
 12. ✅ **A11y sweep** (v197→v199) — icon/emoji/SVG-only buttons + unlabeled `<img>` across all screens carry `aria-label`/`alt` (~35), icon toggles `aria-pressed`, bottom nav `aria-current`, toast `role=status aria-live`, global `:focus-visible` ring (2.4.7). v199 WCAG-finish: map stage hit-areas (SVG `<g>` + label divs) now `role=button`+`aria-label`+`tabIndex`+Enter/Space; place-card hero/GO HERE/nav-icon auto-flip ink dark-vs-white by luminance (`_inkOn`) so light stages (yellow/cyan/green) stay readable; metadata-cell note → `--muted` (was failing stage.color on light); Esc-to-close on place card + nav bar. Residual (minor, pre-existing long-tail): inherited stage-color content cards (vibe / "ON STAGE NOW") still use white-on-color for light stages; full SR walkthrough + focus-trap depth not yet audited.
 - Phase B: photo/video BLOB backup to Supabase Storage — **P1 + P2 SHIPPED (v202)**. P1: bucket `moment-media` + RLS, `sbUpload/DownloadMomentMedia`, `_backupMyWeekend`, restore-on-view in `useMomentPhoto`, "Back up my weekend · X/Y" row (free metadata + Plus media, manual + wifi). P2: auto-backup toggle (Plus, wifi, default on), per-moment `backedUpBytes` + 1GB soft / 2GB hard storage cap, usage display, videos. **Only gap: signed-in upload/restore round-trip not yet tested** (needs real Supabase auth — web sign-in or on-device).
 
-> **🎉 iOS 1.8 (19) APPROVED — 2026-05-30** (release pending/rolling out; hit
-> "Release This Version" in ASC if manual). Carries the full report-card cluster
-> (#2–#12) + judge-fix follow-up + WCAG finish + cloud backup P1/P2 to device.
-> Web @ **v206** (2026-06-01): v203 Weekend-2 crash fix → v204 5-bug batch →
-> v205 Memories hero/song-timeline/last-night reel → v206 3-lens simplify +
-> native Shazam fix. Refreshed App Store description + What's New shipped earlier.
-> **Owed once live on device:** Apple Music BUILD PLAYLIST · Shazam-a-video ·
-> 2-device rally · ACL map render. Next iOS build → **1.9 (20)**.
+> **🎉 iOS 1.9 (20) APPROVED — 2026-06-02** (carries v201→v210). Web @ **v211**.
+> Next iOS build → **1.10 (21)** (1.10 > 1.9 numerically — valid, NOT 1.0.x).
+>
+> ## 🔧 v211 (2026-06-03) — live-build bug fixes [SHIPPED to web; iOS needs 1.10 (21)]
+> - [x] **Auto-tag dropping the correct artist** — root cause was NOT the matcher
+>   (proven correct 6/6 vs real 241-artist lineup). In `photo-tag.jsx
+>   _matchArtistForPhoto` the **GPS "off-stage" gate ran BEFORE the attended/saved
+>   set-time match** — a crowd photo >120m from a stage's single anchor returned
+>   `off_stage` and discarded the correct attended-set match. Reordered:
+>   attended/saved + capture-time (ground truth) wins first; off-stage is now a
+>   FALLBACK only. Verified Node real-lineup harness + headless-Chrome mount probe.
+> - [x] **Live Shazam mic** (`ShazamPlugin.swift identify`) — (1) activate
+>   AVAudioSession (`.record/.measurement`) BEFORE reading the input format (was
+>   stale/zero → no match); (2) pass the tap's real `AVAudioTime` instead of `nil`
+>   (nil collapsed the stream timeline). Debug payload added. **Needs on-device tap
+>   to confirm** (Swift not compilable in the fix env) — Clicky P0.
+> - ⚠️ Existing mis-tagged moments don't auto-fix (matcher runs on import/retag only)
+>   → re-import or use the ✎ FIX TAG chip. iOS users get both only on **1.10 (21)**.
+>
+> ## 🗺️ NEXT FEATURE — GPS photo-overlay map lens (Mobbin-inspired) [QUEUED]
+> Scatter actual photo/video **thumbnails at their real GPS coordinates** on the
+> EDC map (vs today's `MemoriesMapLens` which only buckets by stage as count
+> bubbles). Pieces already exist — reuse, don't rebuild:
+> - `gpsToMap(lat,lng) → {x,y}` (0–100 map coords) · `m.parsedGps` on each moment
+>   · `FESTIVAL_CONFIG.mapImage` (EDC SVG) · `useMomentPhoto(photoId)` (blob URL).
+> - Design refs (Mobbin): Snapchat **Snap Map** memories pins, Apple Photos
+>   **Places**, **Zenly** — small rounded thumbnail "pins" with a stage-color ring,
+>   slight scatter/declutter for overlapping coords, tap → lightbox. Photos w/o GPS
+>   fall back to their tagged artist's stage position (jittered).
+> - Add as a toggle in the MAP lens (CLUSTERS ⇄ PHOTOS) so the existing view stays.
+> - Verify: Babel + mount probe + **rendered screenshot visual review** before ship.
+>
+> **Owed on device (1.9/20 or 1.10/21):** Apple Music BUILD PLAYLIST · Shazam-a-set
+> (live mic) · Shazam-a-video · 2-device rally · cloud-backup round-trip.
 
 ## 🛠️ ON-DEVICE BUGS — found 2026-05-31 (do in a FRESH session, clean tools)
 
