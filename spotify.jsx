@@ -4090,6 +4090,188 @@ function MemoriesMapLens({ moments, onPinTap }) {
   );
 }
 
+// Deterministic small offset from a moment id — used to nudge GPS-less
+// thumbnails off their stage's exact center so same-stage moments don't stack
+// pixel-perfect (and to give each pin a stable "scattered polaroid" rotation).
+function _idHash(id) {
+  let h = 0; const s = String(id || "");
+  for (let i = 0; i < s.length; i++) h = (Math.imul(h, 31) + s.charCodeAt(i)) | 0;
+  return h >>> 0;
+}
+function _idJitter(id, amp = 2.6) {
+  const h = _idHash(id);
+  const ang = ((h % 997) / 997) * Math.PI * 2;
+  const rad = amp * (0.35 + 0.65 * (((h >>> 9) % 991) / 991));
+  return { dx: Math.cos(ang) * rad, dy: Math.sin(ang) * rad };
+}
+// Sortable capture time — prefer real EXIF/video takenAt, else createdAt.
+function _momentTime(m) {
+  if (m && m.takenAt) { const t = Date.parse(m.takenAt.replace(" ", "T")); if (!isNaN(t)) return t; }
+  return (m && m.createdAt) || 0;
+}
+
+// One scattered photo/video thumbnail pinned on the basemap. Loads its blob
+// lazily via useMomentPhoto (cloud restore-on-view), shows a stage-color ring,
+// a ▶ marker on videos, and a "+N" badge when it fronts a declustered group.
+function _PhotoPin({ cluster, onTap }) {
+  const m = cluster.face;
+  const url = useMomentPhoto(m.photoId, cluster.enabled !== false);
+  const ring = (cluster.stage && cluster.stage.color) || "#9aa";
+  const rot = ((_idHash(m.id) % 17) - 8); // -8..+8deg, stable per pin
+  const extra = cluster.items.length - 1;
+  const SIZE = cluster.items.length > 1 ? 52 : 46;
+  return (
+    <button onClick={() => onTap && onTap(cluster)} style={{
+      position: "absolute", left: cluster.x + "%", top: cluster.y + "%",
+      transform: `translate(-50%,-50%) rotate(${rot}deg)`,
+      width: SIZE, height: SIZE, padding: 0, border: "none",
+      background: "transparent", cursor: "pointer",
+      zIndex: 2 + Math.min(40, cluster.items.length),
+    }}>
+      <div style={{
+        width: "100%", height: "100%", borderRadius: 10, overflow: "hidden",
+        border: `2px solid ${ring}`, background: url ? "#000" : "var(--paper-2)",
+        boxShadow: "0 3px 9px rgba(0,0,0,0.5)",
+      }}>
+        {url ? (
+          m.kind === "video"
+            ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
+            : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
+        ) : <div className="skel" style={{ width: "100%", height: "100%" }}/>}
+      </div>
+      {m.kind === "video" && (
+        <span className="mono" style={{
+          position: "absolute", bottom: 3, left: 3, display: "inline-flex", alignItems: "center",
+          background: "rgba(0,0,0,0.62)", color: "#fff", fontSize: 7, fontWeight: 800,
+          padding: "1px 4px", borderRadius: 999, pointerEvents: "none",
+        }}>▶</span>
+      )}
+      {extra > 0 && (
+        <span className="mono" style={{
+          position: "absolute", top: -7, right: -7, minWidth: 17, height: 17, padding: "0 3px",
+          display: "inline-flex", alignItems: "center", justifyContent: "center",
+          background: ring, color: "#fff", fontSize: 9, fontWeight: 800,
+          borderRadius: 999, border: "1.5px solid #fff", boxShadow: "0 1px 3px rgba(0,0,0,0.4)",
+          pointerEvents: "none",
+        }}>+{extra}</span>
+      )}
+    </button>
+  );
+}
+
+// Photo-scatter map lens — drops the actual photo/video thumbnails at their
+// real GPS coordinates on the festival basemap (vs MemoriesMapLens' per-stage
+// count bubbles). No GPS → sits on the tagged artist's stage with a small
+// deterministic jitter. Nearby thumbnails decluster into one face + "+N".
+// Visible thumbnails capped for perf; the rest roll into a "+N more" note.
+function MemoriesPhotoMapLens({ moments, onPinTap }) {
+  const CAP = 24, CLUSTER_R = 6;
+  const { clusters, hidden, unplaced } = React.useMemo(() => {
+    const placed = [];
+    let unplaced = 0;
+    for (const m of (moments || [])) {
+      if (!m.photoId) continue;
+      let xy = null, stageId = null;
+      if (m.parsedGps && typeof gpsToMap === "function") {
+        const p = gpsToMap(m.parsedGps.lat, m.parsedGps.lng);
+        if (p) { xy = { x: p.x, y: p.y }; if (typeof _nearestStageId === "function") stageId = _nearestStageId(p.x, p.y); }
+      }
+      if (!xy) {
+        const a = m.artistId ? ARTISTS.find(x => x.id === m.artistId) : null;
+        const stage = a ? STAGES.find(s => s.id === a.stage) : null;
+        if (!stage) { unplaced++; continue; }
+        const j = _idJitter(m.id);
+        xy = { x: stage.x + j.dx, y: stage.y + j.dy };
+        stageId = stage.id;
+      }
+      if (!stageId && typeof _nearestStageId === "function") stageId = _nearestStageId(xy.x, xy.y);
+      const stage = stageId ? STAGES.find(s => s.id === stageId) : null;
+      placed.push({ m, x: xy.x, y: xy.y, stage, t: _momentTime(m) });
+    }
+    // Greedy decluster: newest first, absorb everything within CLUSTER_R units.
+    const sorted = placed.slice().sort((a, b) => b.t - a.t);
+    const used = new Array(sorted.length).fill(false);
+    const clusters = [];
+    for (let i = 0; i < sorted.length; i++) {
+      if (used[i]) continue;
+      const head = sorted[i]; used[i] = true;
+      const group = [head];
+      for (let j = i + 1; j < sorted.length; j++) {
+        if (used[j]) continue;
+        if (Math.hypot(sorted[j].x - head.x, sorted[j].y - head.y) <= CLUSTER_R) { used[j] = true; group.push(sorted[j]); }
+      }
+      clusters.push({ x: head.x, y: head.y, stage: head.stage, face: head.m, items: group.map(g => g.m) });
+    }
+    const visible = clusters.slice(0, CAP);
+    const hidden = clusters.slice(CAP).reduce((n, c) => n + c.items.length, 0);
+    return { clusters: visible, hidden, unplaced };
+  }, [moments]);
+
+  if (!clusters.length) {
+    return (
+      <div style={{ padding: "28px 14px", textAlign: "center", marginTop: 14, border: "1px dashed var(--line-2)", borderRadius: 14, background: "var(--paper-2)" }}>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>
+          NOTHING TO MAP YET — IMPORT GPS PHOTOS OR TAG SETS
+        </div>
+      </div>
+    );
+  }
+
+  const img = (typeof FESTIVAL_CONFIG !== "undefined") ? FESTIVAL_CONFIG.mapImage : null;
+  return (
+    <div style={{ marginTop: 14 }}>
+      <div style={{
+        position: "relative", width: "100%", aspectRatio: "1 / 1",
+        borderRadius: 16, overflow: "hidden", border: "1px solid var(--line)",
+        background: "#0a0f0b",
+      }}>
+        <svg viewBox="0 0 100 100" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"
+          style={{ position: "absolute", inset: 0, display: "block" }}>
+          {img && <image href={img} x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>}
+          <rect x="0" y="0" width="100" height="100" fill="rgba(8,7,11,0.5)"/>
+        </svg>
+        {clusters.map((c, i) => <_PhotoPin key={c.face.id || i} cluster={c} onTap={onPinTap}/>)}
+      </div>
+      {(hidden > 0 || unplaced > 0) && (
+        <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", fontWeight: 600, marginTop: 8, opacity: 0.85, display: "flex", flexWrap: "wrap", gap: 10 }}>
+          {hidden > 0 && <span>+{hidden} MORE THUMBNAIL{hidden === 1 ? "" : "S"} CLUSTERED</span>}
+          {unplaced > 0 && <span>+{unplaced} UNTAGGED NOT ON THE MAP</span>}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// MAP-lens wrapper: a CLUSTERS ⇄ PHOTOS segmented toggle over the two lenses.
+// Defaults to CLUSTERS (the v206 count-bubble view) so existing behavior is
+// preserved; PHOTOS is the v212 GPS photo-scatter. Choice persists.
+function MemoriesMapTab({ moments, onPinTap }) {
+  const [mode, setMode] = React.useState(() => {
+    try { return localStorage.getItem("plursky_maplens_mode") === "photos" ? "photos" : "clusters"; } catch { return "clusters"; }
+  });
+  const pick = (m) => { setMode(m); try { localStorage.setItem("plursky_maplens_mode", m); } catch {} };
+  return (
+    <div>
+      <div style={{ display: "flex", gap: 4, padding: 3, background: "var(--paper-2)", borderRadius: 9, border: "1px solid var(--line)" }}>
+        {[{ id: "clusters", label: "CLUSTERS" }, { id: "photos", label: "PHOTOS" }].map(o => {
+          const on = mode === o.id;
+          return (
+            <button key={o.id} onClick={() => pick(o.id)} className="mono" style={{
+              flex: 1, padding: "6px 0", borderRadius: 7,
+              background: on ? "var(--ink)" : "transparent",
+              color: on ? "var(--paper)" : "var(--muted)",
+              border: "none", cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+            }}>{o.label}</button>
+          );
+        })}
+      </div>
+      {mode === "photos"
+        ? <MemoriesPhotoMapLens moments={moments} onPinTap={onPinTap}/>
+        : <MemoriesMapLens moments={moments} onPinTap={onPinTap}/>}
+    </div>
+  );
+}
+
 function MemoriesScreen({ state, setState }) {
   const [rawAll, setAll] = React.useState(_readMoments);
   // Scope all views/counts to the active festival (moments share one store
@@ -4695,7 +4877,7 @@ function MemoriesScreen({ state, setState }) {
           />
         </>)}
         {view === "story" && <MemoryStory allMoments={allMoments} state={state} setState={setState} onOpenLightbox={openLightbox} onPlayReel={playReel} />}
-        {view === "map" && <MemoriesMapLens moments={allMoments} onPinTap={(p) => openLightbox(p.items, 0)} />}
+        {view === "map" && <MemoriesMapTab moments={allMoments} onPinTap={(p) => openLightbox(p.items, 0)} />}
         {view === "artist" && _renderByGroup({
           allMoments,
           keyOf: m => m.artistId || "__untagged__",
