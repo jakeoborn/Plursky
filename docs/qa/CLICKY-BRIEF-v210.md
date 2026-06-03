@@ -38,6 +38,33 @@ These come from how the last three PR rounds went. None are blame — every fix 
 
 ---
 
+## P0b — Verify auto-tag on real photos/videos 🔴 (equal priority to P0)
+
+**Why:** The auto-tag fixes (v209 video capture-time, v211 GPS-off-stage reorder) pass the Node + headless harness on the real 241-artist lineup, but they have **never been confirmed against real EDC W2 photos on a device** — and this exact fix has been reported "working" falsely in past sessions. Harness-green ≠ tags-your-weekend-right. This is the second-biggest open risk.
+
+**Where:** `photo-tag.jsx` (`_matchArtistForPhoto`, `_parseExifMeta`, `_parseVideoMeta`). Web is **v212** (live); iOS users only get the fix on the next build **1.10 (21)**.
+
+**Precondition:** your EDC W2 **saved + attended sets must be present in the app** for that weekend — the fix relies on attended/saved set-time as the ground-truth signal. Confirm those exist before testing, or every case falls back to GPS/heuristics and the test proves nothing.
+
+**Method:** for each photo/video below, you must already KNOW the truth (which artist/stage you were actually at when you shot it). Re-import it (auto-tag runs on import/retag only), then compare the tag to that known truth. Report each as:
+`moment → known: <artist> @ <HH:MM> <stage> → tagged: <result> ✅/❌`
+
+**Checklist (re-import a real file for each):**
+1. **Core case** — a photo you KNOW was taken mid-set (e.g. "Tiësto · Kinetic · Sat ~02:10") → must tag to **that exact artist**. This is the headline failure that started all this.
+2. **Off-stage / back-of-crowd** (the v211 fix) — a photo taken while standing far from the stage anchor (back of the field, walking) **during an attended set** → must STILL tag to the attended artist, **not** "off-stage" / wrong / untagged.
+3. **Post-midnight set** — a photo from a set after 00:00 (e.g. 01:00–04:00) → must tag to **that night's** correct artist, not bleed onto the next calendar day.
+4. **GPS-less photo** — a photo with no GPS (screenshot, edited, or stripped) taken during a saved set → must still tag via set-time (clean fallback), not go untagged.
+5. **Video capture-time** (v209) — a real MP4/MOV shot at a known time → must tag by **capture time, not import time**, and pull GPS if the file has it.
+6. **FIX TAG path** — pick an already-mis-tagged moment → confirm the **✎ FIX TAG** chip lets you correct it manually (old moments do NOT auto-fix; only re-import or this chip will).
+
+**Acceptance criteria (report ALL):**
+- ✅ **PASS only if every case's tag == the known truth.** One wrong tag = report it as ❌ with the moment's known artist/time/stage + what it tagged to + whether that set was saved/attended + whether the photo had GPS — so the failing signal path is diagnosable.
+- State device model + iOS version, and whether you tested **web v212** (Safari on plursky.com) or the **iOS bundle** (note: iOS isn't fixed until 1.10/21 is installed).
+
+**Do NOT report "auto-tag works" unless real photos with known ground truth tagged correctly on a real import.** "The harness passes" is not this.
+
+---
+
 ## P1 — Make the Memories UI test real 🟠
 
 **Why:** `AppUITests.swift` → `testLaunchAndCaptureHome` currently only checks the app launches and the webview mounts. It exercises none of the Memories flow. We want a test that actually drives grid → story → night → map and confirms content renders.
@@ -74,7 +101,7 @@ Run these on a real device on the 1.9 (20) build. Batch them; report each with w
 - **Branch + PR only** — never push to `main`. Name branches `clicky/<topic>`.
 - **One PR per concern** (P0 verification report can be a comment/doc; P1 and P2b are separate code PRs).
 - For any JS change: it must pass the **Plursky verify gate** (Babel parse + headless mount probe + screenshot) — Claude Code runs this before merge, but flag in the PR that JS changed so it isn't missed.
-- For any shipped JS change: **bump the cache-bust** `vNNN` in lockstep across `index.html` + `sw.js` + `app.jsx` (currently v210 → next is v211). Do NOT touch the `// vNNN` historical comments in `spotify.jsx`.
+- For any shipped JS change: **bump the cache-bust** `vNNN` in lockstep across `index.html` + `sw.js` + `app.jsx` (currently **v212** → next is v213). Do NOT touch the `// vNNN` historical comments in `spotify.jsx`.
 - Wait for Jake's per-step approval before pushing/opening the PR.
 
 **When you report a result, lead with what you verified, not what you intended.** That's the one thing that will make every handoff land clean.

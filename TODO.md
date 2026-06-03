@@ -24,8 +24,9 @@ unmemoized/unvirtualized renders. Prioritized:
 12. ✅ **A11y sweep** (v197→v199) — icon/emoji/SVG-only buttons + unlabeled `<img>` across all screens carry `aria-label`/`alt` (~35), icon toggles `aria-pressed`, bottom nav `aria-current`, toast `role=status aria-live`, global `:focus-visible` ring (2.4.7). v199 WCAG-finish: map stage hit-areas (SVG `<g>` + label divs) now `role=button`+`aria-label`+`tabIndex`+Enter/Space; place-card hero/GO HERE/nav-icon auto-flip ink dark-vs-white by luminance (`_inkOn`) so light stages (yellow/cyan/green) stay readable; metadata-cell note → `--muted` (was failing stage.color on light); Esc-to-close on place card + nav bar. Residual (minor, pre-existing long-tail): inherited stage-color content cards (vibe / "ON STAGE NOW") still use white-on-color for light stages; full SR walkthrough + focus-trap depth not yet audited.
 - Phase B: photo/video BLOB backup to Supabase Storage — **P1 + P2 SHIPPED (v202)**. P1: bucket `moment-media` + RLS, `sbUpload/DownloadMomentMedia`, `_backupMyWeekend`, restore-on-view in `useMomentPhoto`, "Back up my weekend · X/Y" row (free metadata + Plus media, manual + wifi). P2: auto-backup toggle (Plus, wifi, default on), per-moment `backedUpBytes` + 1GB soft / 2GB hard storage cap, usage display, videos. **Only gap: signed-in upload/restore round-trip not yet tested** (needs real Supabase auth — web sign-in or on-device).
 
-> **🎉 iOS 1.9 (20) APPROVED — 2026-06-02** (carries v201→v210). Web @ **v211**.
-> Next iOS build → **1.10 (21)** (1.10 > 1.9 numerically — valid, NOT 1.0.x).
+> **🎉 iOS 1.9 (20) APPROVED — 2026-06-02** (carries v201→v210). Web @ **v212**.
+> Next iOS build → **1.10 (21)** (1.10 > 1.9 numerically — valid, NOT 1.0.x;
+> carries v211 auto-tag/Shazam fixes + v212 GPS photo-map lens).
 >
 > ## 🔧 v211 (2026-06-03) — live-build bug fixes [SHIPPED to web; iOS needs 1.10 (21)]
 > - [x] **Auto-tag dropping the correct artist** — root cause was NOT the matcher
@@ -43,18 +44,21 @@ unmemoized/unvirtualized renders. Prioritized:
 > - ⚠️ Existing mis-tagged moments don't auto-fix (matcher runs on import/retag only)
 >   → re-import or use the ✎ FIX TAG chip. iOS users get both only on **1.10 (21)**.
 >
-> ## 🗺️ NEXT FEATURE — GPS photo-overlay map lens (Mobbin-inspired) [QUEUED]
-> Scatter actual photo/video **thumbnails at their real GPS coordinates** on the
-> EDC map (vs today's `MemoriesMapLens` which only buckets by stage as count
-> bubbles). Pieces already exist — reuse, don't rebuild:
-> - `gpsToMap(lat,lng) → {x,y}` (0–100 map coords) · `m.parsedGps` on each moment
->   · `FESTIVAL_CONFIG.mapImage` (EDC SVG) · `useMomentPhoto(photoId)` (blob URL).
-> - Design refs (Mobbin): Snapchat **Snap Map** memories pins, Apple Photos
->   **Places**, **Zenly** — small rounded thumbnail "pins" with a stage-color ring,
->   slight scatter/declutter for overlapping coords, tap → lightbox. Photos w/o GPS
->   fall back to their tagged artist's stage position (jittered).
-> - Add as a toggle in the MAP lens (CLUSTERS ⇄ PHOTOS) so the existing view stays.
-> - Verify: Babel + mount probe + **rendered screenshot visual review** before ship.
+> ## 🗺️ GPS photo-overlay map lens — ✅ SHIPPED v212 (2026-06-03)
+> Scatters actual photo/video **thumbnails at their real GPS coordinates** on the
+> EDC map, as a `CLUSTERS ⇄ PHOTOS` toggle in the Memories MAP lens (the existing
+> count-bubble `MemoriesMapLens` stays as CLUSTERS, default). New in `spotify.jsx`:
+> - **`MemoriesPhotoMapLens`** — `gpsToMap(parsedGps)→{x,y}` scatter; greedy
+>   decluster within 6 map-units (newest = face, "+N" badge); 24-thumb cap +
+>   "+N more" note; GPS-less moments fall back to their tagged artist's stage
+>   with a stable per-id jitter; empty state.
+> - **`_PhotoPin`** — lazy `useMomentPhoto` thumbnail (cloud restore-on-view),
+>   2px stage-color ring, soft shadow, slight per-pin rotation (scattered
+>   polaroid), ▶ video marker, cluster badge.
+> - **`MemoriesMapTab`** — the segmented toggle; choice persists.
+> - Verified: Babel + headless mount probe + rendered screenshot (8 sample GPS
+>   moments on the EDC map). ⚠️ **On-device pass with real EDC W2 GPS photos still
+>   owed** (do thumbnails land on the right stages? declustering feel in a crowd?).
 >
 > **Owed on device (1.9/20 or 1.10/21):** Apple Music BUILD PLAYLIST · Shazam-a-set
 > (live mic) · Shazam-a-video · 2-device rally · cloud-backup round-trip.
