@@ -413,27 +413,14 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds) {
   const night = _photoFestivalNight(date);
   if (!night) return { artistId: null, night: null, reason: "outside_festival_window" };
 
-  // Off-stage check: if the photo has GPS and it's beyond ~80m from
-  // EVERY known stage anchor, the user wasn't AT a set — they were on
-  // Rainbow Road, at the food court, in line for a charger, in Downtown
-  // EDC. Don't force-tag the closest artist in that case; surface as
-  // "off_stage" so the UI shows 📍 BETWEEN SETS instead of a wrong
-  // artist chip. With anchors for all 9 stages (data.jsx gpsAnchors,
-  // v163+), 80m is the tightest threshold that doesn't false-positive
-  // "back of the crowd". Earlier v163 launch used 150m because only 3
-  // of 9 anchors were calibrated — that left big gaps near the other
-  // 6 stages, forcing a conservative threshold.
-  if (lat != null && lng != null) {
-    const anchors = window.FESTIVAL_CONFIG?.gpsAnchors || [];
-    if (anchors.length > 0) {
-      const stageDistances = anchors.map(a => ({ stageId: a.stageId, dist: _haversineMeters(lat, lng, a.lat, a.lng) }));
-      const minMeters = Math.min(...stageDistances.map(s => s.dist));
-      if (minMeters > 120) {
-        const loc = _matchNearestLocation(lat, lng);
-        return { artistId: null, night, reason: "off_stage", distMeters: Math.round(minMeters), location: loc };
-      }
-    }
-  }
+  // NOTE: the GPS "off-stage" gate used to run HERE, before the attended/
+  // saved set-time match — which was a bug. A photo taken from the middle/
+  // back of a crowd is routinely >120m from a stage's single anchor point,
+  // so the gate would return "off_stage" and DISCARD a perfectly good
+  // attended-set match (you told us you watched that set AND filmed during
+  // its window — that's ground truth that GPS drift must not override).
+  // The off-stage gate now runs LATER, only as a fallback when no attended/
+  // saved set contains the capture time. (v211 fix.)
 
   // SMARTEST SIGNAL: you film the sets you planned to see. Match the photo's
   // ABSOLUTE capture time against your SAVED sets' absolute windows. This
@@ -483,6 +470,25 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds) {
       ambiguous,
       alternatives: ambiguous ? topTier.map(h => h.a.id) : undefined,
     };
+  }
+
+  // Off-stage check (FALLBACK ONLY — runs after the attended/saved set-time
+  // match above has already failed). If the photo has GPS and it's beyond
+  // ~120m from EVERY stage anchor AND we couldn't tie it to a set you
+  // saved/attended, you were probably between sets — on Rainbow Road, at a
+  // vendor, in a charger line. Surface "off_stage" so the UI shows
+  // 📍 BETWEEN SETS instead of force-tagging the nearest stage's artist.
+  // This is deliberately AFTER the prior-set match so crowd-distance GPS
+  // never overrides ground truth (you told us you watched that set).
+  if (lat != null && lng != null) {
+    const anchors = window.FESTIVAL_CONFIG?.gpsAnchors || [];
+    if (anchors.length > 0) {
+      const minMeters = Math.min(...anchors.map(a => _haversineMeters(lat, lng, a.lat, a.lng)));
+      if (minMeters > 120) {
+        const loc = _matchNearestLocation(lat, lng);
+        return { artistId: null, night, reason: "off_stage", distMeters: Math.round(minMeters), location: loc };
+      }
+    }
   }
 
   // Then: which artist on THAT night was playing at the photo's time?
