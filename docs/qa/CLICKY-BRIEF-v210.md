@@ -2,7 +2,20 @@
 
 **From:** Claude Code (verify-gate + merge owner)
 **To:** Clicky (on-device QA + branch/PR author)
-**Context:** PR #1 just merged to `main` (commit `e3cd618`). Web is now **v210**. iOS is still **1.9 (20)**, about to be archived + submitted to Apple. Your Shazam + video-tagging fixes are in this build but **not yet verified on a real device.**
+**Context:** Web is now **v212** (live). iOS is still **1.9 (20)** — that version is **already APPROVED**, so it can't be resubmitted; the next build must be **1.10 (21)**. The Shazam + auto-tag fixes are in this build but **not yet verified on a real device** — that verification is what gates the submit. **Do NOT bump the version or archive** — Jake/Claude Code own that step.
+
+---
+
+## ▶ START HERE — run order (the rest of this doc is detail)
+
+1. **Pull latest `main`**, read this doc.
+2. **P0 — Shazam** on a real iPhone (real mic, real song). 🔴
+3. **P0b — Auto-tag** on real EDC W2 photos/videos (6-case ground-truth checklist). 🔴
+4. **v212 PHOTOS map lens** sanity check — Memories → MAP → toggle PHOTOS. 🟡
+5. **General smoke** on 1.9 (20) — all 5 tabs + Memories, no crashes. 🟡
+
+**The one rule that makes every handoff land:** report **what you actually exercised**, not what you intended. "Tiësto photo re-imported → tagged Tiësto ✅" is a pass; "auto-tag works" is not.
+**Submit work as:** branch + PR only (`clicky/<topic>`), never push to `main`; wait for Jake's per-step approval before pushing (AGENTS.md §0).
 
 ---
 
