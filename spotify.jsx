@@ -4502,9 +4502,9 @@ function MemoriesScreen({ state, setState }) {
           // card surfaces a prominent "fix tag" chip instead of looking sure.
           tagAmbiguous: !!(matched.artistId && matched.ambiguous),
           festivalId: window.FESTIVAL_CONFIG?.id || null,
-          parsedGps: exif?.lat != null && exif?.lng != null ? { lat: exif.lat, lng: exif.lng } : null,
+          parsedGps: meta?.lat != null && meta?.lng != null ? { lat: meta.lat, lng: meta.lng } : null,
           location: matched.location || null,
-          hasGps: !!(exif?.lat != null && exif?.lng != null),
+          hasGps: !!(meta?.lat != null && meta?.lng != null),
           fileType: f.type || null,
           _fingerprint: fp || null,
         };
