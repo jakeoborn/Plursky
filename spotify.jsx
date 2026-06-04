@@ -2142,6 +2142,40 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           {[stage?.name?.toUpperCase(), prettyTime, m.location?.label?.toUpperCase()].filter(Boolean).join(" · ")}
         </div>
 
+        {/* Prominent video-song proof: this is the P0 Shazam verification
+            route for real clips. It uses the video's own audio through the
+            native ShazamPlugin on iOS, then stores the exact song result. */}
+        {m.kind === "video" && !m.confirmedSong && (
+          <button onClick={runIdentify} disabled={idState !== "idle" && idState !== "fail"} className="mono" style={{
+            marginTop: 12, padding: "12px 14px", borderRadius: 14, width: "100%",
+            background: idState === "fail"
+              ? "linear-gradient(135deg, rgba(232,93,46,0.28), rgba(245,154,54,0.16))"
+              : "linear-gradient(135deg, rgba(109,40,217,0.85), rgba(232,93,46,0.78))",
+            border: "1px solid rgba(255,255,255,0.22)", color: "#fff",
+            boxShadow: "0 10px 28px rgba(0,0,0,0.28)",
+            fontSize: 10, letterSpacing: 1.3, fontWeight: 800, cursor: "pointer",
+            display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
+            opacity: (idState !== "idle" && idState !== "fail") ? 0.85 : 1,
+          }}>
+            <span style={{ display: "flex", alignItems: "center", gap: 9 }}>
+              <span style={{ fontSize: 18, lineHeight: 1 }}>{idState === "listening" ? "●" : "🎵"}</span>
+              <span style={{ textAlign: "left" }}>
+                <span style={{ display: "block" }}>
+                  {idState === "idle"      ? "SHAZAM THIS VIDEO"
+                   : idState === "listening" ? "LISTENING TO YOUR VIDEO…"
+                   : idState === "matching"  ? "MATCHING WITH SHAZAM…"
+                   : idState === "fail"      ? "NO MATCH — TRY A LOUDER CLIP"
+                   : "IDENTIFIED"}
+                </span>
+                <span style={{ display: "block", marginTop: 3, fontSize: 8, letterSpacing: 1, color: "rgba(255,255,255,0.72)", fontWeight: 700 }}>
+                  PROVES THE SONG FROM THE CLIP'S AUDIO
+                </span>
+              </span>
+            </span>
+            <span style={{ fontSize: 18 }}>→</span>
+          </button>
+        )}
+
         {/* Wrong artist? Auto-tag guesses by stage+time and is often wrong when
             you roam (e.g. tagged Martin Garrix but you were at John Summit).
             Fix it inline to whoever was actually playing at this time. */}
@@ -2191,23 +2225,6 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
           opacity: sharing ? 0.6 : 1,
         }}>{sharing ? "PREPARING…" : "↗  SHARE THIS MOMENT"}</button>
-
-        {/* Retroactive song ID — video moments only. The audio you shot
-            becomes the recognition sample: estimate → proven. */}
-        {m.kind === "video" && !m.confirmedSong && (
-          <button onClick={runIdentify} disabled={idState !== "idle" && idState !== "fail"} className="mono" style={{
-            marginTop: 12, padding: "9px 14px", borderRadius: 999, width: "100%",
-            background: idState === "fail" ? "rgba(232,93,46,0.2)" : "rgba(255,255,255,0.12)",
-            border: "1px solid rgba(255,255,255,0.25)", color: "#fff",
-            fontSize: 10, letterSpacing: 1.3, fontWeight: 700, cursor: "pointer",
-          }}>
-            {idState === "idle"      ? "🎵 IDENTIFY THE SONG FROM THIS VIDEO"
-             : idState === "listening" ? "● LISTENING TO YOUR VIDEO…"
-             : idState === "matching"  ? "◌ MATCHING…"
-             : idState === "fail"      ? "NO MATCH — TRY A LOUDER CLIP"
-             : "✓ IDENTIFIED"}
-          </button>
-        )}
 
         {/* Audio disagrees with the auto-tag → offer the correction */}
         {mismatch && (
