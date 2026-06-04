@@ -24,11 +24,24 @@ unmemoized/unvirtualized renders. Prioritized:
 12. ✅ **A11y sweep** (v197→v199) — icon/emoji/SVG-only buttons + unlabeled `<img>` across all screens carry `aria-label`/`alt` (~35), icon toggles `aria-pressed`, bottom nav `aria-current`, toast `role=status aria-live`, global `:focus-visible` ring (2.4.7). v199 WCAG-finish: map stage hit-areas (SVG `<g>` + label divs) now `role=button`+`aria-label`+`tabIndex`+Enter/Space; place-card hero/GO HERE/nav-icon auto-flip ink dark-vs-white by luminance (`_inkOn`) so light stages (yellow/cyan/green) stay readable; metadata-cell note → `--muted` (was failing stage.color on light); Esc-to-close on place card + nav bar. Residual (minor, pre-existing long-tail): inherited stage-color content cards (vibe / "ON STAGE NOW") still use white-on-color for light stages; full SR walkthrough + focus-trap depth not yet audited.
 - Phase B: photo/video BLOB backup to Supabase Storage — **P1 + P2 SHIPPED (v202)**. P1: bucket `moment-media` + RLS, `sbUpload/DownloadMomentMedia`, `_backupMyWeekend`, restore-on-view in `useMomentPhoto`, "Back up my weekend · X/Y" row (free metadata + Plus media, manual + wifi). P2: auto-backup toggle (Plus, wifi, default on), per-moment `backedUpBytes` + 1GB soft / 2GB hard storage cap, usage display, videos. **Only gap: signed-in upload/restore round-trip not yet tested** (needs real Supabase auth — web sign-in or on-device).
 
-> **🎉 iOS 1.9 (20) APPROVED — 2026-06-02** (carries v201→v210). Web @ **v212**.
-> Next iOS build → **1.10 (21)** (1.10 > 1.9 numerically — valid, NOT 1.0.x;
-> carries v211 auto-tag/Shazam fixes + v212 GPS photo-map lens).
+> **🚀 iOS 1.10 (21) BEING SUBMITTED — 2026-06-04.** Web @ **v218 LIVE**.
+> pbxproj bumped 1.9/20 → 1.10/21 (commit `593bda5`), native bundle re-synced
+> to v218, **Clicky on-device verified** (video auto-tag + Shazam + native
+> upload). Awaiting Jake's Xcode **archive → Distribute** (GUI). Prior 1.9 (20)
+> APPROVED 2026-06-02. Carries v211–v218.
 >
-> ## 🔧 v211 (2026-06-03) — live-build bug fixes [SHIPPED to web; iOS needs 1.10 (21)]
+> ### Web wave since v211 (all SHIPPED + on main):
+> - **v211** auto-tag GPS-off-stage reorder (set-time wins) + live-mic Shazam fix
+> - **v212** GPS photo-overlay map lens (PHOTOS ⇄ CLUSTERS) — see below
+> - **v213** Clicky PR#2 video-time archive recovery (fingerprint match)
+> - **v214** Clicky PR#3 prominent "SHAZAM THIS VIDEO" callout
+> - **v215** import resilience (per-file persist + non-silent toasts)
+> - **v216** Clicky PR#4 ext-fallback when picker `file.type` empty + parsedGps/hasGps from resolved `meta`
+> - **v217** Clicky PR#5 native Shazam `identifyFile({path})` over base64 round-trip
+> - **v218** live-capture `hasGps:false` tidy + exif-vs-meta audit (clean)
+> - ⚠️ **Web video import is an iOS-Safari `<input type=file>` limitation** (Safari stalls exporting HEVC/iCloud video) → videos import reliably ONLY in the native app; web QA = photos.
+>
+> ## 🔧 v211 (2026-06-03) — live-build bug fixes [SHIPPED; in iOS 1.10 (21)]
 > - [x] **Auto-tag dropping the correct artist** — root cause was NOT the matcher
 >   (proven correct 6/6 vs real 241-artist lineup). In `photo-tag.jsx
 >   _matchArtistForPhoto` the **GPS "off-stage" gate ran BEFORE the attended/saved
@@ -60,8 +73,11 @@ unmemoized/unvirtualized renders. Prioritized:
 >   moments on the EDC map). ⚠️ **On-device pass with real EDC W2 GPS photos still
 >   owed** (do thumbnails land on the right stages? declustering feel in a crowd?).
 >
-> **Owed on device (1.9/20 or 1.10/21):** Apple Music BUILD PLAYLIST · Shazam-a-set
-> (live mic) · Shazam-a-video · 2-device rally · cloud-backup round-trip.
+> **On-device status for 1.10 (21):** ✅ video auto-tag · ✅ Shazam · ✅ native
+> media upload (Clicky verified 2026-06-04). Still owed/untested: Apple Music
+> BUILD PLAYLIST · 2-device rally · cloud-backup round-trip · **Plursky+
+> purchase flow** (needs Paid Apps agreement Active + sandbox) · map-lens with
+> real EDC W2 GPS photos. None block the 1.10 (21) archive.
 
 ## 🛠️ ON-DEVICE BUGS — found 2026-05-31 (do in a FRESH session, clean tools)
 
@@ -112,28 +128,26 @@ screenshots + a matcher unit test on the real 241-artist lineup all verified.
       device / dashboards / issues.
 
 ### Memories polish backlog (next, not yet built)
-- [ ] **Burst / near-dup stacking** — cluster captures within ~15s into one
-      expandable stack (reuses `takenAt` + `_fingerprint`).
-- [ ] **"Peak 20 min" card** — busiest capture window = your high point.
-- [ ] **Map lens** — plot moments on the festival map by GPS (reuses `parsedGps`
-      + `map.jsx` + `mapToGps`).
-- [ ] **Night scrubber** — horizontal time axis, photos pinned at capture time.
-- [ ] **⭐ Favorite (one-tap)** — `_heroScore` already has the `favorite` hook.
+- [x] **Burst / near-dup stacking** (v208) — cluster within ~15s into a stack.
+- [x] **"Peak 20 min" card** (v208) — busiest capture window.
+- [x] **Map lens** — count-bubble (v208) + GPS photo-scatter PHOTOS lens (v212).
+- [x] **Night scrubber** (v208) — horizontal time axis at capture time.
+- [x] **⭐ Favorite (one-tap)** (v207) — `_heroScore` `favorite` hook wired.
 - [ ] **MomentCard right-edge bleed** — content appears to overflow the 390px
-      viewport (seen in screenshots); Clicky to confirm on device.
+      viewport (seen in screenshots); Clicky to confirm on device. (STILL OPEN)
 
-## ⭐ MASTER OPEN ITEMS — updated 2026-06-01 (web @ **v206**; **iOS 1.8 (19) APPROVED** 🎉 release pending; next build 1.9 (20) carries v203–v206)
+## ⭐ MASTER OPEN ITEMS — updated 2026-06-04 (web @ **v218** LIVE; **iOS 1.10 (21) being submitted** — pbxproj 593bda5, bundle v218, Clicky on-device verified; Xcode archive = Jake. Prior 1.9 (20) APPROVED 2026-06-02)
 
 _Session 13 shipped + LIVE on iOS 1.7: reel/recap audit, ACL map (real
 artwork), spotify.jsx split ×3, recap-ready nudge, Spotify auto-create,
 rally + crew-cluster meetup, Apple Music, native ShazamKit video-ID, the 4
 music synergies._
 
-### A. Ship-gate — **1.8 (19) submitted for review 2026-05-30**; smoke tests owed on TestFlight/approval
-1. ✅ **iOS 1.7 (18) live; 1.8 (19) submitted.** When approved → hit **Release** in ASC.
-2. **Test Apple Music "BUILD PLAYLIST"** + **Shazam a video** on the 1.8 build (on-device smoke test).
-3. **2-device test** — rally-point + crew-cluster broadcast round-trip.
-4. **In-app verify ACL map** renders on device.
+### A. Ship-gate — **1.10 (21) being submitted 2026-06-04** (1.9/20 APPROVED & live-able)
+1. ✅ **1.9 (20) APPROVED**; **1.10 (21)** pbxproj-bumped + bundle synced to v218 (commit 593bda5). → Jake: Xcode **archive → Distribute → App Store Connect**, attach build 21, submit.
+2. ✅ **Video auto-tag + Shazam + native upload** verified on device (Clicky 2026-06-04).
+3. ⏳ **Apple Music "BUILD PLAYLIST"** + **2-device rally** + **cloud-backup round-trip** — still owed on device (don't block archive).
+4. ⏳ **Plursky+ purchase** — needs Paid Apps agreement Active + sandbox test (see §C.10).
 
 ### B. Music synergy (Spotify × Apple Music × Shazam) — ✅ ALL SHIPPED v188
 5. ✅ **Your Weekend Soundtrack** — playlist from Shazam-confirmed moment songs + saved top tracks → Spotify OR Apple Music. (45e9151)
