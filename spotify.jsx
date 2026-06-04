@@ -1236,6 +1236,60 @@ function _metaFromFile(file, exifMeta) {
   return out;
 }
 
+function _momentTakenAtToDateParts(takenAt) {
+  const m = String(takenAt || "").match(/^(\d{4})-(\d{2})-(\d{2})\s+(\d{2}):(\d{2})(?::(\d{2}))?/);
+  if (!m) return null;
+  return { yr: +m[1], mo: +m[2], dy: +m[3], hh: +m[4], mm: +m[5], ss: +(m[6] || 0) };
+}
+
+function _momentDatePartsToTakenAt(date) {
+  if (!date) return null;
+  return `${date.yr}-${String(date.mo).padStart(2,"0")}-${String(date.dy).padStart(2,"0")} ${String(date.hh).padStart(2,"0")}:${String(date.mm).padStart(2,"0")}`;
+}
+
+function _mediaFingerprintParts(fp) {
+  const parts = String(fp || "").split("_");
+  if (parts.length < 3) return null;
+  const size = parts[1];
+  const basename = parts.slice(2).join("_").toLowerCase();
+  if (!/^\d+$/.test(size) || !basename) return null;
+  return { size, basename };
+}
+
+function _findArchivedVideoMomentForFingerprint(fp) {
+  const cur = window.FESTIVAL_CONFIG?.id;
+  if (!cur || !fp) return null;
+  const target = _mediaFingerprintParts(fp);
+  if (!target) return null;
+  try {
+    const archive = JSON.parse(localStorage.getItem("plursky_festival_archive_v1") || "{}");
+    const archivedMoments = archive?.[cur]?.moments || {};
+    const matches = [];
+    for (const arr of Object.values(archivedMoments)) {
+      if (!Array.isArray(arr)) continue;
+      for (const m of arr) {
+        if (!m || m.kind !== "video" || !m.takenAt) continue;
+        const parts = _mediaFingerprintParts(m._fingerprint);
+        if (parts && parts.size === target.size && parts.basename === target.basename) matches.push(m);
+      }
+    }
+    return matches.length === 1 ? matches[0] : null;
+  } catch { return null; }
+}
+
+function _recoverVideoMetaFromArchive(file, fp, meta) {
+  if (!/^video\//.test(file?.type || "")) return null;
+  const archiveMoment = _findArchivedVideoMomentForFingerprint(fp);
+  const recoveredDate = _momentTakenAtToDateParts(archiveMoment?.takenAt);
+  if (!archiveMoment || !recoveredDate) return null;
+  const parsedNight = meta?.date ? _photoFestivalNight(meta.date) : null;
+  if (parsedNight != null && meta?.takenAtSource !== "file-lastModified" && meta?.takenAtSource !== "none") return null;
+  return {
+    meta: { ...(meta || {}), date: recoveredDate, takenAtSource: "archive-recovered" },
+    moment: archiveMoment,
+  };
+}
+
 function _fmtMomentTime(ts) {
   const d = new Date(ts);
   let h = d.getHours();
@@ -4381,7 +4435,9 @@ function MemoriesScreen({ state, setState }) {
           continue;
         }
         const exif = await _parseExifMeta(f).catch(() => null);
-        const meta = _metaFromFile(f, exif);
+        const baseMeta = _metaFromFile(f, exif);
+        const recovered = _recoverVideoMetaFromArchive(f, fp, baseMeta);
+        const meta = recovered?.meta || baseMeta;
         const matched = meta?.date ? _matchArtistForPhoto(meta, savedIds, attendedIds) : { artistId: null, night: null, reason: "no_date" };
         // v141: never skip — if EXIF/lastModified didn't pick a night, drop
         // into the current festival night untagged. User can re-tag from
@@ -4394,6 +4450,7 @@ function MemoriesScreen({ state, setState }) {
         const hadFileTime = meta?.takenAtSource === "file-lastModified";
         const hadTrustedMeta = !!meta?.date && meta.takenAtSource !== "file-lastModified" && meta.takenAtSource !== "none";
         const tagSource =
+          recovered ? "archive-recovered" :
           matched.reason === "off_stage"  ? "off_stage" :
           matched.artistId && hadExifDate ? "exif" :
           matched.artistId && /^video-/.test(meta?.takenAtSource || "") ? "video-metadata" :
@@ -4413,12 +4470,12 @@ function MemoriesScreen({ state, setState }) {
           kind: out.kind,
           duration: out.duration ?? null,
           createdAt: Date.now(),
-          takenAt: meta?.date ? `${meta.date.yr}-${String(meta.date.mo).padStart(2,"0")}-${String(meta.date.dy).padStart(2,"0")} ${String(meta.date.hh).padStart(2,"0")}:${String(meta.date.mm).padStart(2,"0")}` : null,
+          takenAt: _momentDatePartsToTakenAt(meta?.date),
           takenAtSource: meta?.takenAtSource || "none",
           locationSource: meta?.locationSource || ((meta?.lat != null && meta?.lng != null) ? "gps" : "none"),
           importedAt: new Date().toISOString(),
-          needsRetag: out.kind === "video" && (!meta?.takenAtSource || meta.takenAtSource === "file-lastModified" || meta.takenAtSource === "none"),
-          autoTagged: !!matched.artistId,
+          needsRetag: out.kind === "video" && !recovered && (!meta?.takenAtSource || meta.takenAtSource === "file-lastModified" || meta.takenAtSource === "none"),
+          autoTagged: !!(matched.artistId || recovered?.moment?.artistId),
           tagSource,
           // Low-confidence auto-tag: 2+ sets overlap this timestamp and GPS
           // couldn't separate them. Keep the best guess but flag it so the
@@ -4431,6 +4488,7 @@ function MemoriesScreen({ state, setState }) {
           fileType: f.type || null,
           _fingerprint: fp || null,
         };
+        if (recovered?.moment?.artistId && !moment.artistId) moment.artistId = recovered.moment.artistId;
         if (fp) existingFingerprints.add(fp);
         current[night] = [...(current[night] || []), moment];
         results.push({ name: f.name, night, artistId: matched.artistId, fallback: !matched.night, tagSource });
@@ -6004,6 +6062,49 @@ function archiveFestival(festivalId, festivalName, festivalConfig) {
 // changes, snapshot the previous one. Runs once per session via a module-level
 // flag so multiple component mounts don't re-trigger.
 let _archiveCheckDone = false;
+let _videoArchiveRecoveryDone = false;
+function _recoverCurrentVideoMomentsFromArchive() {
+  if (_videoArchiveRecoveryDone) return;
+  _videoArchiveRecoveryDone = true;
+  try {
+    const cur = window.FESTIVAL_CONFIG?.id;
+    if (!cur) return;
+    const all = _readMoments();
+    let changed = false;
+    const moves = [];
+    for (const night of Object.keys(all)) {
+      const arr = Array.isArray(all[night]) ? all[night] : [];
+      for (const m of arr) {
+        if (!m || m.kind !== "video" || !m._fingerprint) continue;
+        if (m.festivalId && m.festivalId !== cur) continue;
+        const parsed = _momentTakenAtToDateParts(m.takenAt);
+        const parsedNight = parsed ? _photoFestivalNight(parsed) : null;
+        const needsRecovery = parsedNight == null || !m.artistId || m.tagSource === "fallback" || m.needsRetag;
+        if (!needsRecovery) continue;
+        const archived = _findArchivedVideoMomentForFingerprint(m._fingerprint);
+        const recoveredDate = _momentTakenAtToDateParts(archived?.takenAt);
+        if (!archived || !recoveredDate) continue;
+        m.takenAt = archived.takenAt;
+        m.takenAtSource = "archive-recovered";
+        m.artistId = archived.artistId || m.artistId || null;
+        const recoveredNight = archived.night || _photoFestivalNight(recoveredDate) || m.night;
+        m.night = recoveredNight;
+        m.tagSource = "archive-recovered";
+        m.autoTagged = !!m.artistId;
+        m.needsRetag = false;
+        m.tagAmbiguous = false;
+        if (!m.festivalId) m.festivalId = cur;
+        if (String(recoveredNight) !== String(night)) moves.push({ from: night, to: String(recoveredNight), moment: m });
+        changed = true;
+      }
+    }
+    for (const move of moves) {
+      all[move.from] = (all[move.from] || []).filter(m => m !== move.moment);
+      all[move.to] = [...(all[move.to] || []), move.moment];
+    }
+    if (changed) _writeMoments(all);
+  } catch {}
+}
 function _maybeAutoArchive() {
   if (_archiveCheckDone) return;
   _archiveCheckDone = true;
@@ -6041,6 +6142,7 @@ function _maybeAutoArchive() {
   } catch {}
 }
 if (typeof window !== "undefined") setTimeout(_maybeAutoArchive, 100);
+if (typeof window !== "undefined") setTimeout(_recoverCurrentVideoMomentsFromArchive, 200);
 
 // ── Festival Recap (v145) ─────────────────────────────────────
 // Spotify-Wrapped-style post-festival summary. Stitches together the
