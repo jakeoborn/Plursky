@@ -102,8 +102,12 @@ async function _parseExifMeta(file) {
   // the WebKit picker's import time), so every clip auto-tagged to "now" →
   // wrong artist/night. Delegate to the atom reader so a video matches by its
   // true capture time like a photo does. (v209 — fixes mis-tagged videos.)
-  if (/^video\//.test(file.type)) return _parseVideoMeta(file);
-  if (!/^image\//.test(file.type)) return out;
+  const name = String(file.name || "");
+  const type = String(file.type || "");
+  const isVideo = /^video\//.test(type) || /\.(mov|mp4|m4v)$/i.test(name);
+  const isImage = /^image\//.test(type) || /\.(jpe?g|heic|png|webp)$/i.test(name);
+  if (isVideo) return _parseVideoMeta(file);
+  if (!isImage) return out;
   try {
     // 256 KB is enough for the APP1 segment on any modern phone photo.
     const buf = await file.slice(0, 256 * 1024).arrayBuffer();
