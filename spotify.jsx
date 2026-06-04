@@ -1858,9 +1858,16 @@ async function identifySongFromVideo(moment, onProgress) {
   // Native iOS (focus path): hand the clip to on-device ShazamKit via the
   // ShazamPlugin — free, accurate, no backend. The web recognizer below is
   // the fallback for browser/PWA.
-  if (window.Capacitor?.isNativePlatform?.() && window.ShazamPlugin?.identifyBase64) {
+  if (window.Capacitor?.isNativePlatform?.() && window.ShazamPlugin) {
     try {
       onProgress?.("listening");
+      if (moment.nativePath && window.ShazamPlugin.identifyFile) {
+        onProgress?.("matching");
+        const r = await window.ShazamPlugin.identifyFile({ path: moment.nativePath });
+        if (r?.matched && r.title) return { title: r.title, artist: r.artist || "", source: "video-shazam" };
+        return null;
+      }
+      if (!window.ShazamPlugin.identifyBase64) return null;
       const base64 = await _blobToBase64(blob);
       const ext = (blob.type || "").includes("quicktime") ? "mov" : "mp4";
       onProgress?.("matching");
@@ -4497,6 +4504,7 @@ function MemoriesScreen({ state, setState }) {
           needsRetag: out.kind === "video" && !recovered && (!meta?.takenAtSource || meta.takenAtSource === "file-lastModified" || meta.takenAtSource === "none"),
           autoTagged: !!(matched.artistId || recovered?.moment?.artistId),
           tagSource,
+          nativePath: out.kind === "video" ? (f.nativePath || null) : null,
           // Low-confidence auto-tag: 2+ sets overlap this timestamp and GPS
           // couldn't separate them. Keep the best guess but flag it so the
           // card surfaces a prominent "fix tag" chip instead of looking sure.
@@ -4587,13 +4595,18 @@ function MemoriesScreen({ state, setState }) {
         const isVideo = /^video\//.test(f.mimeType || "") || /\.(mov|mp4|m4v)$/i.test(f.name || "");
         const type = f.mimeType || blob.type || (isVideo ? "video/mp4" : "image/jpeg");
         const name = f.name || `pick-${i}.${isVideo ? "mp4" : "jpg"}`;
-        out.push(new File([blob], name, {
+        const pickedFile = new File([blob], name, {
           type,
           // modifiedAt is the freshly-transcoded temp file's mtime (≈now),
           // which the <30s heuristic in _metaFromFile correctly ignores so
           // photos tag from real EXIF rather than the conversion stamp.
           lastModified: f.modifiedAt || Date.now(),
-        }));
+        });
+        if (isVideo && f.path) {
+          try { Object.defineProperty(pickedFile, "nativePath", { value: f.path }); }
+          catch { pickedFile.nativePath = f.path; }
+        }
+        out.push(pickedFile);
       }
       return out;
     } catch (err) {

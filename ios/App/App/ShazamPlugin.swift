@@ -25,7 +25,9 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
         guard let path = call.getString("path") else {
             call.reject("Missing file path"); return
         }
-        let url = URL(fileURLWithPath: path.replacingOccurrences(of: "file://", with: ""))
+        let url = URL(string: path)?.isFileURL == true
+            ? URL(string: path)!
+            : URL(fileURLWithPath: path.replacingOccurrences(of: "file://", with: ""))
         matchFromURL(url, call: call, tempURL: nil)
     }
 
