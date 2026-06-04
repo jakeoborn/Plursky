@@ -8216,7 +8216,10 @@ function NowPlayingBar() {
       tagSource: "live_capture",
       createdAt: Date.now(),
       songCapture: song ? { song: song.song, source: song.source || "live" } : null,
-      hasGps: true,
+      // Live "Capture this moment" has no photo, so no real GPS coordinates.
+      // hasGps must reflect that we have no parsedGps (was hardcoded true,
+      // which only inflated hero-scoring by +10 for these text captures).
+      hasGps: false,
     }];
     _writeMoments(all);
     setCaptured(true);
