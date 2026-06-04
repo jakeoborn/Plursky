@@ -4421,7 +4421,10 @@ function MemoriesScreen({ state, setState }) {
   };
 
   const processImportedFiles = async (files) => {
-    if (files.length === 0) return;
+    if (files.length === 0) {
+      window.plurskyToast?.("No photos received — pick a few at a time; if they're in iCloud, open them in Photos first so they download.");
+      return;
+    }
     const results = [];
     setBatch({ total: files.length, done: 0, results });
     const savedIds = state.saved || [];
@@ -4509,13 +4512,29 @@ function MemoriesScreen({ state, setState }) {
         if (fp) existingFingerprints.add(fp);
         current[night] = [...(current[night] || []), moment];
         results.push({ name: f.name, night, artistId: matched.artistId, fallback: !matched.night, tagSource });
+        // Persist + refresh after EACH file so a mid-batch Safari crash/OOM
+        // (common on large iOS selections that include videos / iCloud photos)
+        // keeps what's already imported and the grid fills in live — instead
+        // of buffering everything in memory and losing it all if the tab dies
+        // before the loop finishes. Photo blobs live in IndexedDB, so this
+        // only re-serializes lightweight moment metadata each pass.
+        _writeMoments(current);
+        setAll({ ...current });
       } catch (err) {
         results.push({ name: f.name, night: null, artistId: null, err: err?.message || "failed" });
       }
       setBatch({ total: files.length, done: i + 1, results: results.slice() });
     }
     _writeMoments(current);
-    setAll(current);
+    setAll({ ...current });
+    // Never fail silently: if nothing landed, say why out loud.
+    const okCount = results.filter(r => !r.err && !r.skipped).length;
+    if (okCount === 0) {
+      const failed = results.filter(r => r.err).length;
+      const dupes  = results.filter(r => r.skipped === "duplicate").length;
+      if (dupes && !failed) window.plurskyToast?.(`Already imported — ${dupes} duplicate${dupes === 1 ? "" : "s"} skipped`);
+      else window.plurskyToast?.(`Couldn't import ${failed} file${failed === 1 ? "" : "s"} — try a few at a time${failed ? ` · ${results.find(r => r.err)?.err || "failed"}` : ""}`);
+    }
     // Auto-dismiss summary banner after 6s if user doesn't tap it
     setTimeout(() => setBatch(b => (b && b.done === b.total ? null : b)), 6000);
   };
