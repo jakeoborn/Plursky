@@ -4350,6 +4350,66 @@ function MemoriesMapTab({ moments, onPinTap }) {
   );
 }
 
+// v219: per-night inline map ("where this night happened"), collapsed by
+// default so TIMELINE stays calm. Reuses the MAP-tab lens scoped to one night —
+// this is where the old top-level MAP lens now lives.
+function _NightMap({ moments, onPinTap }) {
+  const [open, setOpen] = React.useState(false);
+  if (!moments || !moments.length) return null;
+  return (
+    <div style={{ marginTop: 8 }}>
+      <button onClick={() => setOpen(o => !o)} className="mono" style={{
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        width: "100%", padding: "9px 12px", borderRadius: 10,
+        background: "var(--paper-2)", border: "1px solid var(--line)",
+        color: "var(--muted)", cursor: "pointer",
+        fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
+      }}>
+        <span>📍 WHERE THIS NIGHT HAPPENED</span>
+        <span>{open ? "▾" : "▸"}</span>
+      </button>
+      {open && <div style={{ marginTop: 8 }}><MemoriesMapTab moments={moments} onPinTap={onPinTap} /></div>}
+    </div>
+  );
+}
+
+// v219: one share affordance per night instead of two buttons (📸 SHARE +
+// 🎬 GIF) competing with the day title. A single "SHARE ▾" opens a small menu.
+function _NightShareMenu({ night, moments }) {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div style={{ position: "relative", marginLeft: "auto" }}>
+      <button onClick={() => setOpen(o => !o)} className="mono" style={{
+        background: "var(--ember)", color: "#fff", border: "none",
+        borderRadius: 999, padding: "4px 10px", cursor: "pointer",
+        fontSize: 9, letterSpacing: 1.2, fontWeight: 700, whiteSpace: "nowrap",
+      }}>📸 SHARE ▾</button>
+      {open && (
+        <>
+          <div onClick={() => setOpen(false)} style={{ position: "fixed", inset: 0, zIndex: 4 }} />
+          <div style={{
+            position: "absolute", right: 0, top: "calc(100% + 4px)", zIndex: 5,
+            background: "var(--paper)", border: "1px solid var(--line)", borderRadius: 10,
+            boxShadow: "0 6px 20px rgba(0,0,0,0.18)", overflow: "hidden", minWidth: 140,
+          }}>
+            {[["📸 Collage", undefined], ["🎬 Animated GIF", "gif"]].map(([lbl, mode], i) => (
+              <button key={lbl}
+                onClick={() => { setOpen(false); window._shareNightCollage?.(night, moments, mode); }}
+                className="mono" style={{
+                  display: "block", width: "100%", textAlign: "left",
+                  background: "transparent", border: "none",
+                  borderTop: i ? "1px solid var(--line)" : "none",
+                  padding: "10px 12px", cursor: "pointer",
+                  fontSize: 10, letterSpacing: 0.6, color: "var(--ink)", fontWeight: 600,
+                }}>{lbl}</button>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 function MemoriesScreen({ state, setState }) {
   const [rawAll, setAll] = React.useState(_readMoments);
   // Scope all views/counts to the active festival (moments share one store
@@ -4656,12 +4716,19 @@ function MemoriesScreen({ state, setState }) {
       // v206: lenses simplified to GRID · STORY · NIGHT (the old 5-tab bar read
       // as cluttered). A persisted artist/stage selection falls back to NIGHT —
       // you still reach a single artist by tapping its group header.
-      if (v === "artist" || v === "stage") return "night";
-      if (["grid", "story", "night", "map"].includes(v)) return v;
+      // v219: lenses collapsed to two modes — WALL (grid) · TIMELINE (night).
+      // Legacy story/map/artist/stage all fold into TIMELINE: the per-night map
+      // is inline now, and the whole-weekend reel is the "Relive your weekend"
+      // hero at the top. Unknown/legacy → WALL (the calm default browse wall).
+      if (["grid", "night"].includes(v)) return v;
+      if (["story", "map", "artist", "stage"].includes(v)) return "night";
     } catch {}
     return "grid";
   });
   const [memQuery, setMemQuery] = React.useState(""); // grid search: artist/song/stage
+  // v219: TIMELINE defaults to pure relive. Attendance check-off + ADD MOMENT
+  // (data-entry) hide behind MANAGE so they don't clutter the browse surface.
+  const [manage, setManage] = React.useState(false);
   React.useEffect(() => {
     try { localStorage.setItem("plursky_memories_view_v1", view); } catch {}
   }, [view]);
@@ -4848,9 +4915,24 @@ function MemoriesScreen({ state, setState }) {
           </div>
         )}
 
+        {/* MANAGE reveals the data surfaces (cloud backup + per-night
+            attendance check-off + ADD MOMENT). Default-off keeps the screen a
+            calm relive view, not a control panel. */}
+        {totalCount > 0 && (
+          <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 8 }}>
+            <button onClick={() => setManage(m => !m)} className="mono" style={{
+              background: manage ? "var(--ink)" : "transparent",
+              color: manage ? "var(--paper)" : "var(--muted)",
+              border: "1px solid var(--line)", borderRadius: 999,
+              padding: "5px 12px", cursor: "pointer",
+              fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
+            }}>{manage ? "✓ DONE MANAGING" : "⚙ MANAGE"}</button>
+          </div>
+        )}
+
         {/* Cloud backup (Plursky+) — manual, wifi-only. Free taps open the
-            paywall; Plus runs the upload and shows X/Y backed up. */}
-        {backupStat.total > 0 && (
+            paywall; Plus runs the upload and shows X/Y backed up. Behind MANAGE. */}
+        {manage && backupStat.total > 0 && (
           <button onClick={handleBackup} disabled={backupBusy}
             aria-label={_isPlusSub() ? "Back up your memories to the cloud" : "Back up to cloud — Plursky Plus"}
             style={{
@@ -4882,8 +4964,8 @@ function MemoriesScreen({ state, setState }) {
           </button>
         )}
 
-        {/* P2: auto-backup toggle (Plus). Default on; wifi-only. */}
-        {backupStat.total > 0 && _isPlusSub() && (
+        {/* P2: auto-backup toggle (Plus). Default on; wifi-only. Behind MANAGE. */}
+        {manage && backupStat.total > 0 && _isPlusSub() && (
           <button onClick={() => { const v = !autoOn; _setAutoBackup(v); setAutoOn(v); }} className="mono" aria-pressed={autoOn} style={{
             display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
             width: "100%", marginTop: 6, padding: "7px 12px", borderRadius: 10,
@@ -4937,10 +5019,8 @@ function MemoriesScreen({ state, setState }) {
           border: "1px solid var(--line)",
         }}>
           {[
-            { id: "grid",   label: "GRID" },
-            { id: "story",  label: "STORY" },
-            { id: "night",  label: "NIGHT" },
-            { id: "map",    label: "MAP" },
+            { id: "grid",   label: "WALL" },
+            { id: "night",  label: "TIMELINE" },
           ].map(v => {
             const on = view === v.id;
             return (
@@ -4983,61 +5063,16 @@ function MemoriesScreen({ state, setState }) {
             onOpenLightbox={openLightbox}
           />
         </>)}
-        {view === "story" && <MemoryStory allMoments={allMoments} state={state} setState={setState} onOpenLightbox={openLightbox} onPlayReel={playReel} />}
-        {view === "map" && <MemoriesMapTab moments={allMoments} onPinTap={(p) => openLightbox(p.items, 0)} />}
-        {view === "artist" && _renderByGroup({
-          allMoments,
-          keyOf: m => m.artistId || "__untagged__",
-          headerFor: (key) => {
-            if (key === "__untagged__") return { mono: "TO RETAG", serif: "Untagged moments", accent: "var(--ember)", onClick: null };
-            const a = ARTISTS.find(x => x.id === key);
-            const s = a ? STAGES.find(st => st.id === a.stage) : null;
-            return {
-              mono: (s?.short || "").toUpperCase() + (s ? " STAGE" : ""),
-              serif: a?.name || "Unknown",
-              accent: s?.color || "var(--muted)",
-              onClick: a ? () => setState(st => ({ ...st, artist: a.id })) : null,
-            };
-          },
-          sortKeys: (a, b) => {
-            if (a === "__untagged__") return 1;
-            if (b === "__untagged__") return -1;
-            const savedSet = new Set(state.saved || []);
-            const aSaved = savedSet.has(a), bSaved = savedSet.has(b);
-            if (aSaved !== bSaved) return aSaved ? -1 : 1;
-            const aA = ARTISTS.find(x => x.id === a);
-            const bA = ARTISTS.find(x => x.id === b);
-            return (aA?.day || 99) - (bA?.day || 99)
-                || (aA?.start || "99:99").localeCompare(bA?.start || "99:99");
-          },
-          state, setState, handleDelete, handleUpdate, onOpenLightbox: openLightbox,
-        })}
-        {view === "stage" && _renderByGroup({
-          allMoments,
-          keyOf: m => {
-            if (!m.artistId) return "__untagged__";
-            const a = ARTISTS.find(x => x.id === m.artistId);
-            return a?.stage || "__untagged__";
-          },
-          headerFor: (key) => {
-            if (key === "__untagged__") return { mono: "TO RETAG", serif: "Untagged moments", accent: "var(--ember)", onClick: null };
-            const s = STAGES.find(st => st.id === key);
-            return {
-              mono: (s?.short || key).toUpperCase(),
-              serif: s?.name || "Unknown stage",
-              accent: s?.color || "var(--muted)",
-              onClick: s ? () => setState(st => ({ ...st, tab: "map", focusStage: s.id })) : null,
-            };
-          },
-          sortKeys: (a, b) => {
-            if (a === "__untagged__") return 1;
-            if (b === "__untagged__") return -1;
-            return (STAGES.find(s => s.id === a)?.name || "").localeCompare(STAGES.find(s => s.id === b)?.name || "");
-          },
-          state, setState, handleDelete, handleUpdate, onOpenLightbox: openLightbox,
-        })}
+        {/* v219: STORY/MAP/ARTIST/STAGE lenses folded into the 2-mode model.
+            The whole-weekend reel is the "Relive your weekend" hero above; the
+            per-night map is inline in TIMELINE; per-artist is reached by tapping
+            a group header. */}
         {view === "night" && DAYS.map(d => {
-          const moments = (all[d.n] || []).slice().sort((a, b) => a.createdAt - b.createdAt);
+          // Chronological by when the moment was CAPTURED (takenAt), not when
+          // it was imported — _momentTime falls back to createdAt only when the
+          // capture time is missing. takenAt carries a full date+time, so a clip
+          // shot at 00:32 naturally sorts after one shot at 23:35 the same night.
+          const moments = (all[d.n] || []).slice().sort((a, b) => _momentTime(a) - _momentTime(b));
           const dateInfo = FESTIVAL_CONFIG.dayDates?.[d.n];
           const savedNightArtists = state.saved
             .map(id => ARTISTS.find(a => a.id === id))
@@ -5056,31 +5091,11 @@ function MemoriesScreen({ state, setState }) {
                   {d.label}
                 </div>
                 <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", fontWeight: 700 }}>
-                  · {(dateInfo?.short || `DAY ${d.n}`).toString().toUpperCase()}
+                  · {dateInfo ? `${["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"][dateInfo.m]} ${dateInfo.d}` : `DAY ${d.n}`}
                 </div>
                 {moments.length > 0 && (
                   <>
-                    <button
-                      onClick={() => window._shareNightCollage?.(d.n, moments)}
-                      className="mono"
-                      title={`Share a collage of ${d.label}`}
-                      style={{
-                        marginLeft: "auto",
-                        background: "var(--ember)", color: "#fff", border: "none",
-                        borderRadius: 999, padding: "4px 10px", cursor: "pointer",
-                        fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                        whiteSpace: "nowrap",
-                      }}>📸 SHARE</button>
-                    <button
-                      onClick={() => window._shareNightCollage?.(d.n, moments, "gif")}
-                      className="mono"
-                      title={`Share an animated GIF of ${d.label}`}
-                      style={{
-                        background: "#6D28D9", color: "#fff", border: "none",
-                        borderRadius: 999, padding: "4px 10px", cursor: "pointer",
-                        fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                        whiteSpace: "nowrap",
-                      }}>🎬 GIF</button>
+                    <_NightShareMenu night={d.n} moments={moments} />
                     <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700 }}>
                       {moments.length} MOMENT{moments.length === 1 ? "" : "S"}
                     </div>
@@ -5095,6 +5110,12 @@ function MemoriesScreen({ state, setState }) {
                   onOpenLightbox={openLightbox}
                   onPlayReel={(items) => playReel(items, `${d.label} peak`, d.n)}
                 />
+              )}
+
+              {/* Inline "where this night happened" map — absorbs the old MAP
+                  lens, scoped to this night, collapsed by default. */}
+              {moments.length > 0 && (
+                <_NightMap moments={moments} onPinTap={(p) => openLightbox(p.items, 0)} />
               )}
 
               {moments.length === 0 && adding !== d.n && (
@@ -5130,7 +5151,12 @@ function MemoriesScreen({ state, setState }) {
                   if (aSaved !== bSaved) return aSaved ? -1 : 1;
                   const aA = ARTISTS.find(x => x.id === aId);
                   const bA = ARTISTS.find(x => x.id === bId);
-                  return (aA?.start || "99:99").localeCompare(bA?.start || "99:99");
+                  // Order by night-relative start (toNightMin rolls post-midnight
+                  // sets past the evening ones) so the night reads in real order,
+                  // not lexically (which floated 00:32 above 20:00).
+                  const aMin = aA?.start ? (window.toNightMin?.(aA.start) ?? 9999) : 9999;
+                  const bMin = bA?.start ? (window.toNightMin?.(bA.start) ?? 9999) : 9999;
+                  return aMin - bMin;
                 });
                 return orderedKeys.map(aId => {
                   const groupMoments = groups.get(aId);
@@ -5228,7 +5254,7 @@ function MemoriesScreen({ state, setState }) {
                 });
               })()}
 
-              {adding === d.n ? (
+              {(manage || adding === d.n) && (adding === d.n ? (
                 <AddMomentForm
                   night={d.n}
                   savedNightArtists={savedNightArtists}
@@ -5243,9 +5269,9 @@ function MemoriesScreen({ state, setState }) {
                   fontSize: 10, letterSpacing: 1.4, fontWeight: 700, cursor: "pointer",
                   marginTop: moments.length > 0 ? 4 : 0,
                 }}>+ ADD MOMENT</button>
-              )}
+              ))}
 
-              {savedNightArtists.length > 0 && (
+              {manage && savedNightArtists.length > 0 && (
                 <AttendanceReview night={d.n} savedNightArtists={savedNightArtists} />
               )}
             </div>
@@ -5291,7 +5317,7 @@ function AttendanceReview({ night, savedNightArtists }) {
       <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
         {savedNightArtists
           .slice()
-          .sort((a, b) => a.start.localeCompare(b.start))
+          .sort((a, b) => (window.toNightMin?.(a.start) ?? 9999) - (window.toNightMin?.(b.start) ?? 9999))
           .map(a => {
             const on = attended.has(a.id);
             const stage = STAGES.find(s => s.id === a.stage);
@@ -5315,7 +5341,7 @@ function AttendanceReview({ night, savedNightArtists }) {
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div className="serif" style={{ fontSize: 14, lineHeight: 1.1 }}>{a.name}</div>
                   <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2, fontWeight: 600 }}>
-                    {(stage?.short || "").toUpperCase()} · {a.start}
+                    {(stage?.short || "").toUpperCase()} · {fmt12(a.start)}
                   </div>
                 </div>
                 {src === "gps" && (
