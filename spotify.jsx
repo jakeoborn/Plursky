@@ -1838,9 +1838,9 @@ function BulkRetagRow({ moments, savedNightArtists, onUpdate }) {
 // sample. Identifying it turns the song tag from a tracklist *estimate*
 // into ground truth — and if the matched artist contradicts the photo's
 // auto-tag, that's a signal to fix the tag (and therefore the location).
-// Native iOS uses ShazamPlugin.identifyFile (exact, on-device). Web
-// captures the playing video's audio and routes it to the recognize-song
-// proxy. Returns { title, artist, source } or null.
+// Native iOS uses ShazamPlugin.identifyFile (exact, on-device). There is
+// no deployed web recognizer today, so browser/PWA video recognition returns
+// null instead of calling the known-404 recognize-song endpoint.
 function _blobToBase64(blob) {
   return new Promise((resolve, reject) => {
     const fr = new FileReader();
@@ -1856,8 +1856,8 @@ async function identifySongFromVideo(moment, onProgress) {
   if (!blob) return null;
 
   // Native iOS (focus path): hand the clip to on-device ShazamKit via the
-  // ShazamPlugin — free, accurate, no backend. The web recognizer below is
-  // the fallback for browser/PWA.
+  // ShazamPlugin — free, accurate, no backend. Browser/PWA returns null
+  // because the web recognition proxy is not deployed.
   if (window.Capacitor?.isNativePlatform?.() && window.ShazamPlugin) {
     try {
       onProgress?.("listening");
@@ -1874,49 +1874,10 @@ async function identifySongFromVideo(moment, onProgress) {
       const r = await window.ShazamPlugin.identifyBase64({ data: base64, ext });
       if (r?.matched && r.title) return { title: r.title, artist: r.artist || "", source: "video-shazam" };
       return null; // native ran but found no match — don't bother the web path
-    } catch { /* fall through to the web recognizer */ }
+    } catch { return null; }
   }
 
-  const url = URL.createObjectURL(blob);
-  try {
-    onProgress?.("listening");
-    // Web path: play the video muted-to-user through Web Audio, record
-    // ~10s of its audio track, hand the clip to the recognition proxy.
-    const video = document.createElement("video");
-    video.src = url; video.muted = false; video.volume = 0; // route to graph, not speakers
-    video.playsInline = true;
-    await new Promise((res, rej) => { video.onloadedmetadata = res; video.onerror = rej; });
-    const AC = window.AudioContext || window.webkitAudioContext;
-    if (!AC) return null;
-    const ctx = new AC();
-    const srcNode = ctx.createMediaElementSource(video);
-    const dest = ctx.createMediaStreamDestination();
-    srcNode.connect(dest);
-    const rec = new MediaRecorder(dest.stream, { mimeType: MediaRecorder.isTypeSupported("audio/webm") ? "audio/webm" : "audio/mp4" });
-    const chunks = [];
-    rec.ondataavailable = (e) => { if (e.data.size > 0) chunks.push(e.data); };
-    const done = new Promise((resolve) => { rec.onstop = resolve; });
-    rec.start();
-    await video.play().catch(() => {});
-    const clipMs = Math.min(12000, (video.duration || 12) * 1000);
-    await new Promise(r => setTimeout(r, clipMs));
-    if (rec.state === "recording") rec.stop();
-    await done;
-    video.pause();
-    try { ctx.close(); } catch {}
-    const audioBlob = new Blob(chunks, { type: rec.mimeType });
-    onProgress?.("matching");
-    const form = new FormData();
-    form.append("audio", audioBlob, "clip.webm");
-    const res = await fetch("https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/recognize-song", {
-      method: "POST", body: form,
-    });
-    if (!res.ok) return null;
-    const data = await res.json();
-    if (!data?.title) return null;
-    return { title: data.title, artist: data.artist || "", source: "video-shazam" };
-  } catch { return null; }
-  finally { URL.revokeObjectURL(url); }
+  return null;
 }
 
 // Given a Shazam-matched artist name, find the lineup artist it best
@@ -8190,61 +8151,20 @@ function NowPlayingBar() {
           return;
         }
       }
-      // Path 2: Web audio capture → recognition API (8s with countdown)
-      if (navigator.mediaDevices?.getUserMedia) {
-        try {
-          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-          const recorder = new MediaRecorder(stream, { mimeType: MediaRecorder.isTypeSupported("audio/webm") ? "audio/webm" : "audio/mp4" });
-          const chunks = [];
-          recorder.ondataavailable = (e) => { if (e.data.size > 0) chunks.push(e.data); };
-          const progressId = setInterval(() => setListenProgress(p => Math.min(p + 12.5, 95)), 1000);
-          recorder.onstop = async () => {
-            clearInterval(progressId);
-            stream.getTracks().forEach(t => t.stop());
-            setListenProgress(95);
-            const blob = new Blob(chunks, { type: recorder.mimeType });
-            try {
-              const form = new FormData();
-              form.append("audio", blob, "sample.webm");
-              const res = await fetch("https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/recognize-song", {
-                method: "POST", body: form,
-              });
-              if (res.ok) {
-                const data = await res.json();
-                if (data.title) {
-                  setLiveState(s => ({ ...s,
-                    song: { song: `${data.artist || "?"} — ${data.title}`, source: "web-recognition", confidence: "exact" },
-                    listening: false,
-                  }));
-                  setListenProgress(100);
-                  window.plurskyToast?.(`♫ ${data.title}`);
-                  return;
-                }
-              }
-            } catch {}
-            if (estimatedSong) {
-              setLiveState(s => ({ ...s, song: estimatedSong, listening: false }));
-            } else {
-              setLiveState(s => ({ ...s, listening: false }));
-              window.plurskyToast?.("Couldn't identify — try again closer to a speaker");
-            }
-            setListenProgress(0);
-          };
-          recorder.start();
-          setTimeout(() => { if (recorder.state === "recording") recorder.stop(); }, 8000);
-          return;
-        } catch (micErr) {
-          if (micErr.name === "NotAllowedError") {
-            window.plurskyToast?.("Mic access denied — enable in browser settings");
-          }
-        }
-      }
-      // Path 3: Fallback to estimated song from tracklist
+      // Path 2: Web / non-native. There is no deployed web recognizer today
+      // (`recognize-song` 404s), so do not record 8 seconds of mic audio and
+      // then pretend recognition failed. Web can only show the schedule estimate;
+      // exact Shazam is native-device only.
       if (estimatedSong) {
         setLiveState(s => ({ ...s, song: estimatedSong, listening: false }));
-      } else {
-        setLiveState(s => ({ ...s, listening: false }));
+        setListenProgress(0);
+        window.plurskyToast?.("Exact Shazam needs the iPhone build — showing the set estimate");
+        return;
       }
+      setLiveState(s => ({ ...s, listening: false }));
+      setListenProgress(0);
+      window.plurskyToast?.("Exact Shazam works in the iPhone build, not on web");
+      return;
     } catch {
       setLiveState(s => ({ ...s, listening: false }));
     }

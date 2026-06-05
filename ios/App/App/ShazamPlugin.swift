@@ -144,6 +144,7 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
     }
 
     @objc func identify(_ call: CAPPluginCall) {
+        print("⚡️[Shazam] START live mic")
         savedCall = call
 
         session = SHSession()
@@ -178,12 +179,14 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
             DispatchQueue.main.asyncAfter(deadline: .now() + 12) { [weak self] in
                 self?.stopListening()
                 if let call = self?.savedCall {
+                    print("⚡️[Shazam] MIC-TIMEOUT · sampleRate=\(recordingFormat.sampleRate)")
                     call.resolve(["matched": false, "title": "", "artist": "",
                                   "debug": ["reason": "mic-timeout", "sampleRate": recordingFormat.sampleRate]])
                     self?.savedCall = nil
                 }
             }
         } catch {
+            print("⚡️[Shazam] MIC-ERROR · \(error.localizedDescription)")
             call.reject("Failed to start audio: \(error.localizedDescription)")
         }
     }
@@ -199,10 +202,12 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
     public func session(_ session: SHSession, didFind match: SHMatch) {
         stopListening()
         guard let item = match.mediaItems.first else {
+            print("⚡️[Shazam] DID-NOT-FIND · empty-match")
             savedCall?.resolve(["matched": false, "title": "", "artist": "", "debug": ["reason": "empty-match"]])
             savedCall = nil
             return
         }
+        print("⚡️[Shazam] MATCH · \(item.artist ?? "?") — \(item.title ?? "?")")
         savedCall?.resolve([
             "matched": true,
             "title": item.title ?? "",
@@ -215,6 +220,7 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
 
     public func session(_ session: SHSession, didNotFindMatchFor signature: SHSignature, error: (any Error)?) {
         stopListening()
+        print("⚡️[Shazam] DID-NOT-FIND · \(error?.localizedDescription ?? "no-error")")
         savedCall?.resolve(["matched": false, "title": "", "artist": "", "debug": ["reason": "did-not-find", "error": error?.localizedDescription ?? ""]])
         savedCall = nil
     }
