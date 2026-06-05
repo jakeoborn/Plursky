@@ -8151,10 +8151,16 @@ function NowPlayingBar() {
     setLiveState(s => ({ ...s, listening: true }));
     setListenProgress(0);
     try {
-      // Path 1: Native iOS ShazamKit (10s timeout)
+      // Path 1: Native iOS ShazamKit — the ONLY working recognizer on device
+      // (the web recognizer below is a 404 in production). So on native we treat
+      // ShazamKit's answer as FINAL — success, honest no-match, or timeout — and
+      // never fall through to the dead web path (which only wasted 8s recording
+      // and then lied with "couldn't identify"). Timeout is 14s: native auto-
+      // stops listening at 12s, so a 10s JS guard was ABORTING matches that were
+      // about to land. The guard must outlast the native listen window.
       if (window.Capacitor?.isNativePlatform?.() && window.ShazamPlugin) {
-        const timeout = new Promise((_, rej) => setTimeout(() => rej(new Error("timeout")), 10000));
-        const progressId = setInterval(() => setListenProgress(p => Math.min(p + 10, 95)), 1000);
+        const timeout = new Promise((_, rej) => setTimeout(() => rej(new Error("timeout")), 14000));
+        const progressId = setInterval(() => setListenProgress(p => Math.min(p + 7, 95)), 1000);
         try {
           const result = await Promise.race([window.ShazamPlugin.identify(), timeout]);
           clearInterval(progressId);
@@ -8163,9 +8169,25 @@ function NowPlayingBar() {
             setListenProgress(100);
             return;
           }
+          // Native listened and found nothing in Apple's catalog — routine for
+          // live DJ sets, mashups, and unreleased IDs. Be honest; if we have a
+          // tracklist estimate, offer it rather than leaving them empty-handed.
+          clearInterval(progressId);
+          setListenProgress(0);
+          if (estimatedSong) {
+            setLiveState(s => ({ ...s, song: estimatedSong, listening: false }));
+            window.plurskyToast?.("No exact match (live/unreleased?) — showing the set estimate");
+          } else {
+            setLiveState(s => ({ ...s, listening: false }));
+            window.plurskyToast?.("No match — live & unreleased sets often aren't in Shazam's catalog");
+          }
+          return;
         } catch {
           clearInterval(progressId);
-          window.plurskyToast?.("No match — try again closer to a speaker");
+          setListenProgress(0);
+          setLiveState(s => ({ ...s, listening: false }));
+          window.plurskyToast?.("Shazam timed out — move closer to a speaker and try again");
+          return;
         }
       }
       // Path 2: Web audio capture → recognition API (8s with countdown)

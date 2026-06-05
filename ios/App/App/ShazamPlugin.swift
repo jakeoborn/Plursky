@@ -46,6 +46,7 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
     }
 
     private func resolveNoMatch(_ debug: [String: Any] = [:]) {
+        print("⚡️[Shazam] NO MATCH (file path) · debug=\(debug)")
         DispatchQueue.main.async {
             self.savedCall?.resolve(["matched": false, "title": "", "artist": "", "debug": debug])
             self.savedCall = nil
