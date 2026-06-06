@@ -58,6 +58,21 @@ async function exportSavedSetsICS(savedIds) {
   const icsContent = lines.join("\r\n");
   const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
   const fileName = `${FESTIVAL_CONFIG.id}-plursky.ics`;
+
+  // Native iOS first — @capacitor/share with a data URL, same v163 house
+  // pattern as every other share fn (navigator.share({files}) can fail
+  // silently inside WKWebView).
+  const capShare = window.Capacitor?.Plugins?.Share;
+  if (capShare?.share && window.Capacitor?.isNativePlatform?.()) {
+    try {
+      const dataUrl = await new Promise((resolve, reject) => {
+        const r = new FileReader(); r.onload = () => resolve(r.result); r.onerror = reject; r.readAsDataURL(blob);
+      });
+      await capShare.share({ title: `My ${FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name} schedule`, files: [dataUrl] });
+      return;
+    } catch (e) { if (e?.message && !/cancel|abort/i.test(e.message)) console.warn("[plursky-ics]", e.message); }
+  }
+
   const shareFile = new File([blob], fileName, { type: "text/plain" });
   if (navigator.canShare?.({ files: [shareFile] }) && navigator.share) {
     try { await navigator.share({ files: [shareFile], title: `My ${FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name}` }); return; }
@@ -865,6 +880,19 @@ function LineupScreen({ state, setState }) {
             }}>{activeFilterCount}</span>
           )}
         </button>
+        {/* Pre-festival utility: saved sets → .ics into Calendar. The same
+            export already lives in the NightWizard header; this surfaces it
+            from the main schedule (Partiful/Eventbrite add-to-calendar
+            pattern — affordance on the schedule itself). */}
+        {state.saved.length > 0 && (
+          <button onClick={() => { window.plurskyHaptic?.("LIGHT"); exportSavedSetsICS(state.saved); }} className="mono" style={{
+            flexShrink: 0, padding: "5px 11px", borderRadius: 999,
+            background: "transparent", color: "var(--ink)",
+            border: "1px solid var(--line-2)",
+            fontSize: 10, letterSpacing: 1.1, cursor: "pointer",
+            fontWeight: 700, whiteSpace: "nowrap",
+          }}>📅 CALENDAR</button>
+        )}
         {sortBy !== "time" && (
           <span className="mono" style={{
             flexShrink: 0, padding: "5px 9px", borderRadius: 999,
