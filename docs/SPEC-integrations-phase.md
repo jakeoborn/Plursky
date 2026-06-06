@@ -1,5 +1,13 @@
 # Plursky — Integrations Phase Spec (2026-06-06)
 
+> **STATUS 2026-06-06 (end of day):** #1 ✅ v223 · #2 ✅ v224 (was already
+> built — audit below missed it; only the OPEN↗ link was added) · #3 ✅ no
+> code (already wired AND live: `proxy-setlist` Edge Function deployed with
+> SETLISTFM_KEY — the "free key" dep below is stale) · #5 ✅ v225 (export
+> existed in NightWizard; added native share path + Lineup toolbar chip).
+> **Remaining: #4 (native Live Activity) and #6 (festival year, builds on #1).**
+> Lesson for #4/#6: grep before building — items 2/3/5 all partially existed.
+
 Source: agent-browser (Playwright) gap audit of the live app, screen by screen.
 Plursky's core loop is solid (capture → auto-tag to artist → relive). The
 biggest *strategic* gaps are **distribution** (the app makes memories but can't
