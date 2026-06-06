@@ -3,6 +3,35 @@
 > **Shipping?** See **[RELEASE.md](RELEASE.md)** — sync iOS, cache-bust, web
 > deploy, and App Store submit commands.
 
+## 🗓️ v219–v222 wave + integrations roadmap (2026-06-05/06)
+
+**Shipped to main / plursky.com:**
+- [x] **v219** (283bfda) Memories 2-mode redesign — lenses collapsed to **WALL · TIMELINE** (STORY → "Relive your weekend" hero, MAP → inline per-night "WHERE THIS NIGHT HAPPENED" strip, dead artist/stage lenses removed); ⚙ MANAGE hides attendance/add-moment/backup; one **📸 SHARE ▾** menu per night; NIGHT ordering by `toNightMin` + AM/PM (`fmt12`) + capture-time sort (`_momentTime`); "FRI · MAY 15" date label.
+- [x] **v220** (030f465) Shazam live-mic — JS guard 10s→14s (was aborting the native 12s listen) + dropped the dead 404 web fallback (native path is terminal) + honest no-match copy.
+- [x] **v221** (c9f876b, PR#6) — removed dead `recognize-song` (404) fallback from BOTH Shazam paths (live-mic + video); added `⚡️[Shazam]` Swift console labels (START/MATCH/DID-NOT-FIND/MIC-TIMEOUT/MIC-ERROR).
+
+**Built + verified, NOT yet shipped — pending Jake's ship go (§0 gate):**
+- [ ] **v222** = bump v221→v222 + commit (home.jsx + spotify.jsx) + push → plursky.com + `cap sync ios`:
+  - **SETS YOU WATCHED spine** (TIMELINE): attended sets are the backbone in set-time order; each clip slots under the artist it was filmed during; caught-but-not-filmed sets show "You were here · no clips from this set yet"; unmatched clips → "Other moments". Verified via Playwright agent-browser test (9/9, real nav).
+  - **4 visual-bug fixes** (from the agent-browser audit): (1) Today duplicate recap/memories cards — gate the strip `!isPostFestival` since `PostFestivalRecap` renders its own; (2) WALL storage meter + CLEAR-ALL moved behind ⚙ MANAGE; (3) Me duplicate CREW stat removed (now clean 2-stat row; CREW stays as the tappable grid tile); (4) MomentCard time label now shows **capture time** (`_momentTime`) not import time (`createdAt`).
+
+**Owed on-device QA — must run from the Xcode DEVICE build (App Store 1.10/21 still carries v218):**
+- [ ] Real camera-roll **auto-tag ground truth** (only on-device with real clips can confirm)
+- [ ] **Live-mic Shazam** — released track → exact match; live/unreleased ID → honest no-match (no hang); capture the `⚡️[Shazam]` console line
+- [ ] Signed-in **backup round-trip** · **Plus sandbox** purchase (needs Paid Apps agreement Active) · **GPS map lens** on real on-site photos
+- Brief: `docs/qa/CLICKY-BRIEF-v221.md` (PART B interactive runbook). ⚠️ Clicky's runtime CANNOT drive an unlocked device by hand — these are **Jake's** checks, not Clicky's.
+
+**Deferred / low-priority:**
+- [ ] **Map discoverability** — the inline "WHERE THIS NIGHT HAPPENED" strip is collapsed by default; some users will miss it. Design tweak, not a defect.
+
+**🔌 Integrations phase (gap audit 2026-06-06 — full spec: `docs/SPEC-integrations-phase.md`):**
+1. [ ] **9:16 story-format recap export** → IG/TikTok/Stories via share sheet, artist+song overlaid. HIGHEST leverage (distribution/growth loop + Insomniac-pitch evidence). No new API key.
+2. [ ] **Apple Music playlist** of the weekend soundtrack (MusicKit dev token already in code; Spotify path already wired — mirror it).
+3. [ ] **Setlist.fm API** — pull the real played setlist for an attended set → upgrade the tracklist estimate to "the songs you actually heard".
+4. [ ] **iOS Live Activity / Lock-Screen widget** — "Next set: Kinetic · 20 min" during the festival (native; needs device verify).
+5. [ ] **Calendar .ics export** of saved sets (conflict-aware), pre-festival.
+6. [ ] **"Your festival year"** — cross-festival Spotify-Wrapped-style annual recap (multi-festival data already exists).
+
 ## 🧪 REPORT-CARD ROADMAP — judge panel, 2026-05-30 (overall **B+**)
 
 25-agent panel (UX/Visual/Value/Festival-goer/Perf+A11y) graded Map B+,

@@ -2617,7 +2617,8 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0 }}>
           <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 600 }}>
-            {_fmtMomentTime(moment.createdAt)}
+            {/* When you FILMED it (takenAt), not when you imported it (createdAt). */}
+            {_fmtMomentTime(_momentTime(moment))}
           </span>
           {onUpdate && (
             <_FavStar favorite={!!moment.favorite} tone="light"
@@ -5092,127 +5093,137 @@ function MemoriesScreen({ state, setState }) {
               )}
 
               {(() => {
-                // Group this night's moments by artist (with null = untagged
-                // floated to the bottom). Saved-on-this-night artists come
-                // first, sorted by set start time, then any other artists
-                // (e.g. you took a photo at a set you hadn't saved), then
-                // the untagged group last so retag work is grouped where
-                // the user can find it.
-                const groups = new Map(); // artistId → moments[]
+                // v222: "SETS YOU WATCHED" spine. The sets you marked attended
+                // (plus any artist you have a clip for) ARE the backbone, in
+                // set-time order; each photo/video slots under the artist it was
+                // filmed during. Sets you caught but didn't film still show.
+                // Clips that matched no set drop to OTHER MOMENTS at the bottom.
+                const attendedSet = (typeof getAttendedForNight === "function" ? getAttendedForNight(d.n) : null) || new Set();
+                const byArtist = new Map(); // artistId → moments[]
+                const untagged = [];
                 for (const m of moments) {
-                  const key = m.artistId || "__untagged__";
-                  if (!groups.has(key)) groups.set(key, []);
-                  groups.get(key).push(m);
+                  if (m.artistId) {
+                    if (!byArtist.has(m.artistId)) byArtist.set(m.artistId, []);
+                    byArtist.get(m.artistId).push(m);
+                  } else untagged.push(m);
                 }
-                const savedSet = new Set(state.saved || []);
-                const orderedKeys = [...groups.keys()].sort((aId, bId) => {
-                  if (aId === "__untagged__") return 1;
-                  if (bId === "__untagged__") return -1;
-                  const aSaved = savedSet.has(aId), bSaved = savedSet.has(bId);
-                  if (aSaved !== bSaved) return aSaved ? -1 : 1;
-                  const aA = ARTISTS.find(x => x.id === aId);
-                  const bA = ARTISTS.find(x => x.id === bId);
-                  // Order by night-relative start (toNightMin rolls post-midnight
-                  // sets past the evening ones) so the night reads in real order,
-                  // not lexically (which floated 00:32 above 20:00).
-                  const aMin = aA?.start ? (window.toNightMin?.(aA.start) ?? 9999) : 9999;
-                  const bMin = bA?.start ? (window.toNightMin?.(bA.start) ?? 9999) : 9999;
-                  return aMin - bMin;
-                });
-                return orderedKeys.map(aId => {
-                  const groupMoments = groups.get(aId);
-                  const isUntagged = aId === "__untagged__";
-                  const artist = !isUntagged ? ARTISTS.find(x => x.id === aId) : null;
-                  const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
-                  const accent = isUntagged ? "var(--ember)" : (stage?.color || "var(--muted)");
-                  // Tagged groups lead with their best shot (+ a cover thumb);
-                  // the untagged group stays chronological so retag work is
-                  // predictable.
-                  const hero = isUntagged ? null : _pickHeroMoment(groupMoments);
-                  const orderedMoments = hero
-                    ? [hero, ...groupMoments.filter(m => m.id !== hero.id)]
-                    : groupMoments;
-                  return (
-                    <div key={aId} style={{ marginTop: 10 }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <button
-                        onClick={() => !isUntagged && setState(s => ({ ...s, artist: aId }))}
-                        disabled={isUntagged}
-                        style={{
-                          display: "flex", alignItems: "center", gap: 8,
-                          flex: 1, minWidth: 0, padding: "6px 4px",
-                          background: "transparent", border: "none",
-                          textAlign: "left",
-                          cursor: isUntagged ? "default" : "pointer",
-                        }}>
-                        <span style={{
-                          width: 4, alignSelf: "stretch",
-                          background: accent, borderRadius: 3,
-                        }}/>
-                        <div style={{ flex: 1, minWidth: 0 }}>
-                          <div className="mono" style={{
-                            fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
-                            color: accent,
-                          }}>
-                            {isUntagged ? "TO RETAG" : (stage?.short || stage?.name || "").toUpperCase()}
-                          </div>
-                          <div className="serif" style={{
-                            fontSize: 18, color: "var(--ink)", lineHeight: 1.1,
-                            marginTop: 2,
-                            whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-                          }}>
-                            {isUntagged ? "Untagged moments" : artist?.name || "Unknown"}
-                          </div>
-                        </div>
-                        <span className="mono" style={{
-                          fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 700,
-                          flexShrink: 0,
-                        }}>{groupMoments.length} {groupMoments.length === 1 ? "MOMENT" : "MOMENTS"}</span>
-                      </button>
-                      {hero && (
-                        <_GroupHeroThumb moment={hero} accent={accent}
-                          onClick={() => openLightbox(orderedMoments, 0)} />
-                      )}
+                // Spine = sets you attended ∪ artists you filmed, by set start.
+                const spineIds = [...new Set([...attendedSet, ...byArtist.keys()])]
+                  .filter(id => ARTISTS.find(a => a.id === id))
+                  .sort((aId, bId) => {
+                    const aA = ARTISTS.find(x => x.id === aId), bA = ARTISTS.find(x => x.id === bId);
+                    const aMin = aA?.start ? (window.toNightMin?.(aA.start) ?? 9999) : 9999;
+                    const bMin = bA?.start ? (window.toNightMin?.(bA.start) ?? 9999) : 9999;
+                    return aMin - bMin;
+                  });
+                if (!spineIds.length && !untagged.length) return null;
+                return (
+                  <>
+                    {spineIds.length > 0 && (
+                      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", fontWeight: 700, marginTop: 14, marginBottom: 2 }}>
+                        SETS YOU WATCHED
                       </div>
-                      {/* #3 — "the song you were filming": a tappable index of
-                          the tracks you captured during this set. */}
-                      {!isUntagged && artist && (
-                        <SetSongTimeline
-                          artist={artist}
-                          moments={orderedMoments}
-                          onOpenMoment={(m) => openLightbox(orderedMoments, Math.max(0, orderedMoments.findIndex(x => x.id === m.id)))}
-                        />
-                      )}
-                      {/* Bulk retag: when the TO RETAG group has 3+ moments
-                          AND the user has saved sets on this night, surface
-                          a chip row that one-taps all of them to the same
-                          artist. Cheaper-than-AI escape from a stuck
-                          batch where EXIF was stripped on a bunch of
-                          photos at the same set. */}
-                      {isUntagged && groupMoments.length >= 3 && savedNightArtists.length > 0 && (
-                        <BulkRetagRow
-                          moments={groupMoments}
-                          savedNightArtists={savedNightArtists}
-                          onUpdate={handleUpdate}
-                        />
-                      )}
-                      {orderedMoments.map((m, i) => (
-                        <MomentCard
-                          key={m.id}
-                          moment={m}
-                          idx={i}
-                          total={orderedMoments.length}
-                          groupMoments={orderedMoments}
-                          onOpenLightbox={openLightbox}
-                          onDelete={handleDelete}
-                          onUpdate={handleUpdate}
-                          savedArtistIds={state.saved || []}
-                          onArtistClick={(id) => setState(s => ({ ...s, artist: id }))}
-                        />
-                      ))}
-                    </div>
-                  );
-                });
+                    )}
+                    {spineIds.map(aId => {
+                      const artist = ARTISTS.find(x => x.id === aId);
+                      const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
+                      const accent = stage?.color || "var(--muted)";
+                      const groupMoments = byArtist.get(aId) || [];
+                      const hero = groupMoments.length ? _pickHeroMoment(groupMoments) : null;
+                      const orderedMoments = hero ? [hero, ...groupMoments.filter(m => m.id !== hero.id)] : groupMoments;
+                      const setTime = artist?.start ? fmt12(artist.start) : "";
+                      return (
+                        <div key={aId} style={{ marginTop: 10 }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                            <button
+                              onClick={() => setState(s => ({ ...s, artist: aId }))}
+                              style={{
+                                display: "flex", alignItems: "center", gap: 8,
+                                flex: 1, minWidth: 0, padding: "6px 4px",
+                                background: "transparent", border: "none",
+                                textAlign: "left", cursor: "pointer",
+                              }}>
+                              <span style={{ width: 4, alignSelf: "stretch", background: accent, borderRadius: 3 }}/>
+                              <div style={{ flex: 1, minWidth: 0 }}>
+                                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: accent }}>
+                                  {[(stage?.short || stage?.name || "").toUpperCase(), setTime].filter(Boolean).join(" · ")}
+                                </div>
+                                <div className="serif" style={{ fontSize: 18, color: "var(--ink)", lineHeight: 1.1, marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                                  {artist?.name || "Unknown"}
+                                </div>
+                              </div>
+                              <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: groupMoments.length ? "var(--muted)" : "var(--line-2)", fontWeight: 700, flexShrink: 0 }}>
+                                {groupMoments.length ? `${groupMoments.length} ${groupMoments.length === 1 ? "CLIP" : "CLIPS"}` : "✓ CAUGHT"}
+                              </span>
+                            </button>
+                            {hero && (
+                              <_GroupHeroThumb moment={hero} accent={accent} onClick={() => openLightbox(orderedMoments, 0)} />
+                            )}
+                          </div>
+                          {/* "the song you were filming": tappable index of tracks captured during this set. */}
+                          {artist && groupMoments.length > 0 && (
+                            <SetSongTimeline
+                              artist={artist}
+                              moments={orderedMoments}
+                              onOpenMoment={(m) => openLightbox(orderedMoments, Math.max(0, orderedMoments.findIndex(x => x.id === m.id)))}
+                            />
+                          )}
+                          {groupMoments.length === 0 && (
+                            <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", fontWeight: 600, padding: "4px 0 2px 12px" }}>
+                              You were here · no clips from this set yet
+                            </div>
+                          )}
+                          {orderedMoments.map((m, i) => (
+                            <MomentCard
+                              key={m.id}
+                              moment={m}
+                              idx={i}
+                              total={orderedMoments.length}
+                              groupMoments={orderedMoments}
+                              onOpenLightbox={openLightbox}
+                              onDelete={handleDelete}
+                              onUpdate={handleUpdate}
+                              savedArtistIds={state.saved || []}
+                              onArtistClick={(id) => setState(s => ({ ...s, artist: id }))}
+                            />
+                          ))}
+                        </div>
+                      );
+                    })}
+                    {untagged.length > 0 && (
+                      <div key="__other__" style={{ marginTop: 14 }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "6px 4px" }}>
+                          <span style={{ width: 4, alignSelf: "stretch", background: "var(--ember)", borderRadius: 3 }}/>
+                          <div style={{ flex: 1, minWidth: 0 }}>
+                            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "var(--ember)" }}>BETWEEN SETS</div>
+                            <div className="serif" style={{ fontSize: 18, color: "var(--ink)", lineHeight: 1.1, marginTop: 2 }}>Other moments</div>
+                          </div>
+                          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 700, flexShrink: 0 }}>
+                            {untagged.length} {untagged.length === 1 ? "CLIP" : "CLIPS"}
+                          </span>
+                        </div>
+                        {/* Bulk-retag: one tap drops a stuck batch (EXIF stripped) onto the same set. */}
+                        {untagged.length >= 3 && savedNightArtists.length > 0 && (
+                          <BulkRetagRow moments={untagged} savedNightArtists={savedNightArtists} onUpdate={handleUpdate} />
+                        )}
+                        {untagged.map((m, i) => (
+                          <MomentCard
+                            key={m.id}
+                            moment={m}
+                            idx={i}
+                            total={untagged.length}
+                            groupMoments={untagged}
+                            onOpenLightbox={openLightbox}
+                            onDelete={handleDelete}
+                            onUpdate={handleUpdate}
+                            savedArtistIds={state.saved || []}
+                            onArtistClick={(id) => setState(s => ({ ...s, artist: id }))}
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </>
+                );
               })()}
 
               {(manage || adding === d.n) && (adding === d.n ? (
@@ -5239,7 +5250,9 @@ function MemoriesScreen({ state, setState }) {
           );
         })}
 
-        <StorageManager all={all} onChange={() => setAll(_readMoments())} />
+        {/* Storage meter + per-night CLEAR + CLEAR-ALL is destructive admin —
+            keep it off the browse surface, behind ⚙ MANAGE. */}
+        {manage && <StorageManager all={all} onChange={() => setAll(_readMoments())} />}
       </ScrollBody>
     </Screen>
   );
@@ -5509,17 +5522,17 @@ function MeScreen({ state, setState }) {
           }}>{tagline}</div>
         </div>
 
-        {/* ── 2. Three-stat row (Forest-modeled) ───────────────────
-            Sets caught (saved sets whose day has passed/is today),
-            crew (live presence count), days here (NOW.day). */}
+        {/* ── 2. Two-stat row ──────────────────────────────────────
+            Sets caught + days here. CREW used to sit here too, but it's
+            already a tappable tile in the grid below — dropped here to
+            kill the duplicate stat. */}
         <div data-animate style={{
-          display: "grid", gridTemplateColumns: "1fr 1fr 1fr",
+          display: "grid", gridTemplateColumns: "1fr 1fr",
           background: "var(--paper-2)", border: "1px solid var(--line)",
           borderRadius: 14, padding: "14px 4px", marginBottom: 18,
         }}>
           {[
             { n: setsCaught, label: "SETS CAUGHT" },
-            { n: crewCount,  label: "CREW" },
             { n: daysHere,   label: "DAYS HERE" },
           ].map((s, i) => (
             <div key={s.label} style={{
