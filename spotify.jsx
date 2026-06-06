@@ -7426,6 +7426,7 @@ function RecapScreen({ state, setState }) {
         {/* RECAP VIDEO */}
         {recap.momentsCount >= 3 && (() => {
           const [vidTemplate, setVidTemplate] = React.useState("highlight");
+          const [vidFormat, setVidFormat] = React.useState("story");
           const [vidState, setVidState] = React.useState("idle");
           const [trackQuery, setTrackQuery] = React.useState("");
           const [trackResults, setTrackResults] = React.useState([]);
@@ -7485,6 +7486,24 @@ function RecapScreen({ state, setState }) {
               </div>
               <div className="mono" style={{ fontSize: 9, color: "rgba(247,237,224,0.35)", marginTop: 8, letterSpacing: 1 }}>
                 {vidTemplate === "highlight" ? "Fast cuts synced to the beat — your best moments, drop by drop." : vidTemplate === "diary" ? "Slow, cinematic. Your weekend told as a story." : "Morning to sunrise — one continuous timeline."}
+              </div>
+
+              {/* Export format — story-first, modeled on Riveo/Lapse export
+                  pickers (ratio chips above the export CTA). 9:16 lands in
+                  IG Stories / TikTok; 4:5 is the classic feed cut. */}
+              <div style={{ display: "flex", gap: 6, marginTop: 12, alignItems: "center" }}>
+                {[["story", "📱 STORY 9:16"], ["feed", "FEED 4:5"]].map(([f, label]) => (
+                  <button key={f} onClick={() => setVidFormat(f)} className="mono" style={{
+                    padding: "5px 10px", borderRadius: 999, cursor: "pointer",
+                    border: vidFormat === f ? "1px solid #a78bfa" : "1px solid rgba(247,237,224,0.15)",
+                    background: vidFormat === f ? "rgba(109,40,217,0.35)" : "transparent",
+                    color: vidFormat === f ? "#fff" : "rgba(247,237,224,0.5)",
+                    fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+                  }}>{label}</button>
+                ))}
+                <span className="mono" style={{ fontSize: 8, color: "rgba(247,237,224,0.3)", letterSpacing: 1 }}>
+                  {vidFormat === "story" ? "FOR IG STORIES · TIKTOK" : "FOR THE FEED"}
+                </span>
               </div>
 
               {/* Track picker — Plus-only custom music */}
@@ -7568,7 +7587,7 @@ function RecapScreen({ state, setState }) {
                     try { const r = await fetchPreviewUrl(recap.topByPop.name); audioUrl = r?.url; } catch {}
                   }
                   await window._shareRecapVideo?.({
-                    moments: all, audioUrl, template: vidTemplate, recap,
+                    moments: all, audioUrl, template: vidTemplate, format: vidFormat, recap,
                     title: "My Weekend",
                     subtitle: `${(CFG.shortName || "FESTIVAL").toUpperCase()} · ${CFG.dates || ""}`,
                     accent: "#6D28D9",

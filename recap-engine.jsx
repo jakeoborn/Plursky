@@ -190,8 +190,30 @@ async function _shareRecapCard(recap) {
 }
 
 // ── RECAP VIDEO ENGINE ──────────────────────────────────────────────
-// Canvas-based frame sequencer → MediaRecorder WebM. Beat-synced when
-// audio is provided. Three templates: highlight, diary, ditl.
+// Canvas-based frame sequencer → MediaRecorder (mp4 where supported —
+// iOS WKWebView and IG/TikTok need it — webm otherwise). Beat-synced
+// when audio is provided. Three templates: highlight, diary, ditl.
+// Formats: "feed" 1080×1350 (default) or "story" 1080×1920 with
+// IG-story safe margins + caught-song overlay.
+
+// Best caught-song for a moment: Shazam-confirmed → live capture →
+// setlist estimate (same sources useSetlistSong reads, minus the hook).
+// Runs as an async pre-pass before video rendering so frames can draw
+// it synchronously. Returns { title, confidence } or null.
+async function _resolveMomentSong(m) {
+  if (m?.confirmedSong && m?.confirmedTitle) return { title: m.confirmedTitle, confidence: "exact" };
+  if (m?.songCapture?.song) return { title: m.songCapture.song, confidence: m.songCapture.source === "shazam" ? "exact" : "estimated" };
+  const artist = m?.artistId ? (window.ARTISTS || []).find(a => a.id === m.artistId) : null;
+  if (!artist || !m?.takenAt) return null;
+  if (typeof _getTracklistForArtist !== "function" || typeof _matchSongAtTime !== "function") return null;
+  try {
+    const data = await _getTracklistForArtist(artist.name);
+    if (!data) return null;
+    const r = _matchSongAtTime(artist, data, m.takenAt);
+    if (r?.song) return { title: r.song, confidence: r.confidence || "estimated" };
+  } catch {}
+  return null;
+}
 
 const _VIDEO_TEMPLATES = {
   highlight: { transition: "zoom", holdSec: 1.2, transitionSec: 0.3, fontStyle: "bold", order: "energy" },
@@ -286,19 +308,21 @@ function _renderVideoFrame(ctx, W, H, t, timeline, chrome, tmpl) {
     ctx.fillText(chrome.subtitle || (CFG.shortName || "FESTIVAL").toUpperCase(), W / 2, H / 2 + 20);
     ctx.font = "700 14px 'Geist Mono', monospace";
     ctx.fillStyle = "rgba(255,255,255,0.4)";
-    ctx.fillText("MADE WITH PLURSKY", W / 2, H - 60);
+    ctx.fillText("MADE WITH PLURSKY", W / 2, H - 60 - (chrome.story ? 270 : 0));
     ctx.globalAlpha = 1;
     return;
   }
 
   if (seg.type === "stats") {
     const recap = chrome.recap || {};
+    // Story format: push content below IG's top chrome (~250px at 1920).
+    const oy = chrome.story ? 200 : 0;
     ctx.fillStyle = "#f7ede0";
     ctx.fillRect(0, 0, W, H);
     ctx.fillStyle = "#1a120d";
     ctx.font = "italic 400 56px 'Instrument Serif', serif";
     ctx.textAlign = "center";
-    ctx.fillText("The Numbers", W / 2, 200);
+    ctx.fillText("The Numbers", W / 2, 200 + oy);
     ctx.font = "700 16px 'Geist Mono', monospace";
     ctx.fillStyle = "rgba(26,18,13,0.6)";
     const stats = [
@@ -311,7 +335,7 @@ function _renderVideoFrame(ctx, W, H, t, timeline, chrome, tmpl) {
     stats.forEach((s, i) => {
       const staggerFade = Math.min(1, Math.max(0, (segProgress - i * 0.12) * 4));
       ctx.globalAlpha = staggerFade;
-      ctx.fillText(s, W / 2, 300 + i * 50);
+      ctx.fillText(s, W / 2, 300 + oy + i * 50);
     });
     ctx.globalAlpha = 1;
     return;
@@ -364,19 +388,49 @@ function _renderVideoFrame(ctx, W, H, t, timeline, chrome, tmpl) {
   ctx.globalAlpha = 1;
   ctx.restore();
 
+  // Caption band. Story (9:16) keeps text inside the IG-safe area — IG's
+  // own chrome covers roughly the bottom 270px at 1080×1920 — so every
+  // bottom-anchored element lifts by `safe`. The band extends to the
+  // bottom edge so the lifted text never floats on bare photo.
+  const safe = chrome.story ? 270 : 0;
+  const song = seg.photo.song;
+  const bandH = song ? 250 : 200;
   ctx.fillStyle = "rgba(0,0,0,0.35)";
-  ctx.fillRect(0, H - 200, W, 200);
+  ctx.fillRect(0, H - bandH - safe, W, bandH + safe);
 
   if (artist) {
     ctx.fillStyle = "#fff";
-    ctx.font = "italic 400 42px 'Instrument Serif', serif";
+    ctx.font = `italic 400 ${chrome.story ? 52 : 42}px 'Instrument Serif', serif`;
     ctx.textAlign = "left";
-    ctx.fillText(artist.name, 60, H - 120);
+    ctx.fillText(artist.name, 60, H - safe - (song ? 170 : 120));
+    if (song) {
+      ctx.font = "700 22px 'Geist Mono', monospace";
+      let st = song.title;
+      while (ctx.measureText(`♫ ${st}…`).width > W - 140 && st.length > 6) st = st.slice(0, -2);
+      if (st !== song.title) st += "…";
+      ctx.fillStyle = "#f59a36";
+      ctx.fillText(`♫ ${st}`, 60, H - safe - 115);
+      if (song.confidence !== "exact") {
+        ctx.fillStyle = "rgba(255,255,255,0.45)";
+        ctx.font = "700 12px 'Geist Mono', monospace";
+        ctx.fillText("SETLIST ESTIMATE", 60, H - safe - 88);
+      }
+    }
     if (stage) {
       ctx.fillStyle = stage.color || "rgba(255,255,255,0.7)";
       ctx.font = "700 14px 'Geist Mono', monospace";
-      ctx.fillText(`${stage.name?.toUpperCase()} · ${artist.start || ""}`, 60, H - 80);
+      ctx.fillText(`${stage.name?.toUpperCase()} · ${artist.start || ""}`, 60, H - safe - (song ? 50 : 80));
     }
+  }
+
+  // Story export carries the Plursky watermark on every photo frame —
+  // the free-tier differentiator stays visible when the clip leaves the app.
+  if (chrome.story) {
+    ctx.fillStyle = "rgba(255,255,255,0.45)";
+    ctx.font = "700 13px 'Geist Mono', monospace";
+    ctx.textAlign = "right";
+    ctx.fillText("MADE WITH PLURSKY · PLURSKY.COM", W - 50, H - safe - 50);
+    ctx.textAlign = "left";
   }
 
   // W4: Spotify listening overlay
@@ -411,7 +465,7 @@ function _renderVideoFrame(ctx, W, H, t, timeline, chrome, tmpl) {
     ctx.restore();
   }
 
-  const progressY = 30, progressR = 18;
+  const progressY = chrome.story ? 140 : 30, progressR = 18;
   ctx.strokeStyle = "rgba(255,255,255,0.2)";
   ctx.lineWidth = 3;
   ctx.beginPath(); ctx.arc(W - 50, progressY + progressR, progressR, 0, Math.PI * 2); ctx.stroke();
@@ -419,8 +473,9 @@ function _renderVideoFrame(ctx, W, H, t, timeline, chrome, tmpl) {
   ctx.beginPath(); ctx.arc(W - 50, progressY + progressR, progressR, -Math.PI / 2, -Math.PI / 2 + (t / (timeline[timeline.length - 1]?.end || 15)) * Math.PI * 2); ctx.stroke();
 }
 
-async function _renderRecapVideo({ moments, audioUrl, template, title, subtitle, kicker, accent, avatars, totemUrl, recap, onProgress }) {
-  const W = 1080, H = 1350, FPS = 30;
+async function _renderRecapVideo({ moments, audioUrl, template, title, subtitle, kicker, accent, avatars, totemUrl, recap, onProgress, format }) {
+  const story = format === "story";
+  const W = 1080, H = story ? 1920 : 1350, FPS = 30;
   const CFG = window.FESTIVAL_CONFIG || {};
 
   try {
@@ -435,7 +490,11 @@ async function _renderRecapVideo({ moments, audioUrl, template, title, subtitle,
       const blob = await _getPhoto(m.photoId);
       if (!blob) continue;
       const img = await new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = URL.createObjectURL(blob); });
-      if (img) imgs.push({ img, moment: m });
+      if (!img) continue;
+      // Caught-song pre-pass — resolved up front so the frame loop stays sync.
+      let song = null;
+      try { song = await _resolveMomentSong(m); } catch {}
+      imgs.push({ img, moment: m, song });
     } catch {}
   }
   if (!imgs.length) return null;
@@ -470,17 +529,27 @@ async function _renderRecapVideo({ moments, audioUrl, template, title, subtitle,
     } catch { audioEl = null; }
   }
 
-  const chrome = { title: title || "My Weekend", subtitle: subtitle || `${(CFG.shortName || "FESTIVAL").toUpperCase()} · ${CFG.dates || ""}`, accent: accent || "#1a120d", recap: recap || {} };
+  const chrome = { title: title || "My Weekend", subtitle: subtitle || `${(CFG.shortName || "FESTIVAL").toUpperCase()} · ${CFG.dates || ""}`, accent: accent || "#1a120d", recap: recap || {}, story };
   const chunks = [];
-  const mimeType = MediaRecorder.isTypeSupported?.("video/webm;codecs=vp9") ? "video/webm;codecs=vp9" : "video/webm";
-  const recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 4_000_000 });
-  recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
 
   const cleanup = () => {
     try { stream.getTracks().forEach(t => t.stop()); } catch {}
     if (audioEl) { audioEl.pause(); audioEl.currentTime = 0; }
     canvas.width = 0; canvas.height = 0;
   };
+
+  // mp4 first: iOS WKWebView's MediaRecorder has NO webm support (the old
+  // hardcoded webm constructor threw there), and IG/TikTok only ingest mp4.
+  // Chrome falls through to webm where mp4 recording isn't available.
+  const mimeType = ["video/mp4;codecs=avc1", "video/mp4", "video/webm;codecs=vp9", "video/webm"]
+    .find(t => { try { return MediaRecorder.isTypeSupported?.(t); } catch { return false; } }) || "video/webm";
+  let recorder;
+  try { recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 4_000_000 }); }
+  catch {
+    try { recorder = new MediaRecorder(stream); }
+    catch { cleanup(); return null; }
+  }
+  recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
 
   return new Promise((resolve) => {
     const TIMEOUT = (DURATION + 10) * 1000;
@@ -493,7 +562,7 @@ async function _renderRecapVideo({ moments, audioUrl, template, title, subtitle,
     recorder.onstop = () => {
       clearTimeout(timer);
       cleanup();
-      resolve(chunks.length ? new Blob(chunks, { type: mimeType }) : null);
+      resolve(chunks.length ? new Blob(chunks, { type: recorder.mimeType || mimeType }) : null);
     };
     recorder.onerror = () => {
       clearTimeout(timer);
@@ -561,7 +630,7 @@ async function _shareRecapVideo({ moments, audioUrl, template, title, subtitle, 
   let blob;
   try {
     blob = await _renderRecapVideo({
-      moments, audioUrl, template, title, subtitle, accent, recap,
+      moments, audioUrl, template, title, subtitle, accent, recap, format,
       onProgress: (p) => _videoProgress(true, p),
     });
   } catch (e) { console.error("[plursky-video]", e); }
@@ -569,7 +638,8 @@ async function _shareRecapVideo({ moments, audioUrl, template, title, subtitle, 
   if (!blob) return false;
 
   try { window.plurskyHaptic?.("MEDIUM"); } catch {}
-  const filename = "plursky-recap.webm";
+  const ext = /mp4/.test(blob.type || "") ? "mp4" : "webm";
+  const filename = `plursky-recap${format === "story" ? "-story" : ""}.${ext}`;
   const file = new File([blob], filename, { type: blob.type });
   const sheetTitle = `My ${window.FESTIVAL_CONFIG?.shortName || "festival"} recap`;
 
