@@ -6037,16 +6037,23 @@ function AppleMusicPlaylistButton({ state, soundtrack }) {
       setStatus("err"); setTimeout(() => setStatus("idle"), 4500);
     }
   };
-  const onClick = () => { if (status === "working") return; window.plurskyHaptic?.("MEDIUM"); run(); };
+  const onClick = () => {
+    if (status === "working") return;
+    // When done, clicking opens the playlist in Apple Music (parity with
+    // the Spotify button) — user-initiated, so popup-safe.
+    if (status === "done" && result?.url) { window.open(result.url, "_blank", "noopener"); return; }
+    window.plurskyHaptic?.("MEDIUM"); run();
+  };
 
   let label, bg = "rgba(250,45,90,0.14)", color = "#fa2d5a", border = "1px solid #fa2d5a";
   if (status === "working") {
     label = prog ? `BUILDING · ${prog}` : "BUILDING…";
   } else if (status === "done") {
     const sm = result?.songsMatched || 0;
+    const open = result?.url ? " — OPEN ↗" : "";
     label = soundtrack && sm > 0
-      ? `✓ ${sm} OF YOUR SONGS + ${result?.added - sm} MORE`
-      : `✓ ${result?.added} TRACKS IN APPLE MUSIC`;
+      ? `✓ ${sm} OF YOUR SONGS + ${result?.added - sm} MORE${open}`
+      : `✓ ${result?.added} TRACKS IN APPLE MUSIC${open}`;
     bg = "#fa2d5a"; color = "#fff"; border = "none";
   } else if (status === "err") {
     if (result?.reason === "not_connected") label = "↻ TAP TO CONNECT APPLE MUSIC";

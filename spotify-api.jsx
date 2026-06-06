@@ -248,7 +248,9 @@ async function createAppleMusicPlaylist(state, opts = {}) {
   }
   let id = null;
   try { const j = await res.json(); id = j.data?.[0]?.id || null; } catch {}
-  return { ok: true, service: "apple", added: tracks.length, missed, songsMatched, id };
+  // Library-playlist deep link — opens the Music app on iOS, web player otherwise.
+  const url = id ? `https://music.apple.com/library/playlist/${id}` : null;
+  return { ok: true, service: "apple", added: tracks.length, missed, songsMatched, id, url };
 }
 
 // ShazamKit bridge — iOS only, auto-detects via Capacitor
