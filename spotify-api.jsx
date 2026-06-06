@@ -38,22 +38,43 @@ function _loadMusicKit() {
   return _mkLoadP;
 }
 
-async function connectAppleMusic() {
-  if (!APPLE_DEV_TOKEN) return { error: "not_configured" };
-  try {
-    await _loadMusicKit();
+// v226 fix: pre-warm — load musickit.js + configure WITHOUT prompting.
+// Idempotent; call it on screen mount. Keeping this OUT of the click
+// handler matters: Safari only allows the authorize() popup inside a
+// fresh user gesture, and awaiting a CDN script load + configure()
+// inside the click spends the gesture → popup silently blocked →
+// "Authorization failed". (This was why connecting Apple Music broke.)
+let _mkConfigured = false;
+async function _ensureMusicKitConfigured() {
+  if (!APPLE_DEV_TOKEN) throw new Error("not_configured");
+  await _loadMusicKit();
+  if (!_mkConfigured) {
     await MusicKit.configure({
       developerToken: APPLE_DEV_TOKEN,
       app: { name: "Plursky", build: "1.0.0" },
     });
-    const music = MusicKit.getInstance();
+    _mkConfigured = true;
+  }
+  return MusicKit.getInstance();
+}
+
+async function connectAppleMusic() {
+  if (!APPLE_DEV_TOKEN) return { error: "not_configured" };
+  try {
+    const music = await _ensureMusicKitConfigured();
     await music.authorize();
     const ut = music.musicUserToken;
     if (!ut) return { error: "No user token — authorization may have been denied." };
     localStorage.setItem("am_user_token", ut);
     return { ok: true };
   } catch (e) {
-    return { error: e?.message || "Authorization failed" };
+    const msg = e?.message || "";
+    // A blocked/closed popup surfaces as a bare AUTHORIZATION_ERROR (or no
+    // message at all) — name the real likely cause instead of a shrug.
+    if (!msg || /popup|window|blocked|AUTHORIZATION_ERROR/i.test(msg)) {
+      return { error: "Apple's sign-in window couldn't open. Allow pop-ups for plursky.com, then tap CONNECT again." };
+    }
+    return { error: msg };
   }
 }
 
@@ -1563,6 +1584,6 @@ function getDiscoveries(spotifyArtists, matched, savedIds, max = 8) {
 Object.assign(window, {
   startSpotifyAuth, ensureSpotifyProfile, getSpotifyProfileSync,
   createEdcPlaylist, fetchPreviewUrl,
-  connectAppleMusic, disconnectAppleMusic, createAppleMusicPlaylist, _appleMusicConfigured,
+  connectAppleMusic, disconnectAppleMusic, createAppleMusicPlaylist, _appleMusicConfigured, _ensureMusicKitConfigured,
   _collectMomentSongs,
 });

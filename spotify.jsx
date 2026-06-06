@@ -43,6 +43,14 @@ function SpotifyScreen({ state, setState }) {
     });
   }, [amConnected]);
 
+  // v226: pre-warm MusicKit (CDN script + configure) on screen mount so a
+  // CONNECT tap calls authorize() directly inside the user gesture. Safari
+  // blocks the authorize popup when the gesture is spent awaiting the
+  // script load — this was the Apple Music "can't connect" bug.
+  React.useEffect(() => {
+    if (APPLE_DEV_TOKEN && !amConnected) { _ensureMusicKitConfigured().catch(() => {}); }
+  }, []);
+
   const handleAmConnect = async () => {
     if (!APPLE_DEV_TOKEN) return;
     setAmLoading(true); setAmError("");
@@ -6200,6 +6208,86 @@ function _maybeAutoArchive() {
 if (typeof window !== "undefined") setTimeout(_maybeAutoArchive, 100);
 if (typeof window !== "undefined") setTimeout(_recoverCurrentVideoMomentsFromArchive, 200);
 
+// ── "Your Festival Year" (v226 · integrations #6) ─────────────
+// Cross-festival ANNUAL aggregate: archive snapshots + the live active
+// festival → one Wrapped-style summary. Lineups for non-active festivals
+// resolve via the top-level data.jsx globals (everything is global across
+// <script type=text/babel> — see CLAUDE.md §5), so archived attended IDs
+// still map to artist names after a festival switch.
+function _artistsForFestival(festId) {
+  try {
+    if (window.FESTIVAL_CONFIG?.id === festId) return window.ARTISTS || [];
+    if (festId === "acl-2026" && typeof ACL_ARTISTS !== "undefined") return ACL_ARTISTS;
+    if (typeof ARTISTS !== "undefined") return ARTISTS; // EDC base lineup
+  } catch {}
+  return window.ARTISTS || [];
+}
+
+function _computeFestivalYear() {
+  const CFG = window.FESTIVAL_CONFIG || {};
+  const entries = [];
+
+  // Past festivals from the archive (the active one is read live below —
+  // an archived copy of the current id would be stale, so skip it)
+  try {
+    Object.values(_readArchive()).forEach(f => {
+      if (!f || f.id === CFG.id) return;
+      entries.push({
+        id: f.id, name: f.name || f.id, brand: f.brand, year: f.year,
+        dates: f.dates, attended: f.attended || {}, moments: f.totalMoments || 0,
+        archived: true,
+      });
+    });
+  } catch {}
+
+  // Active festival, live data
+  try {
+    entries.push({
+      id: CFG.id, name: CFG.name || CFG.id, brand: CFG.brand, year: CFG.year,
+      dates: CFG.dates, attended: getAllAttended(),
+      moments: Object.values(_activeMoments(_readMoments())).flat().length,
+      archived: false,
+    });
+  } catch {}
+
+  // Per-festival stats: sets, artist names (for cross-festival top
+  // artists), minutes on dancefloors from lineup set times.
+  const artistCounts = {};
+  const festivals = [];
+  let totalSets = 0, totalMoments = 0, totalMin = 0;
+  entries.forEach(e => {
+    const lineup = _artistsForFestival(e.id);
+    let sets = 0;
+    Object.values(e.attended || {}).forEach(ids => (Array.isArray(ids) ? ids : []).forEach(aid => {
+      sets++;
+      const a = lineup.find(x => x.id === aid);
+      if (a?.name) artistCounts[a.name] = (artistCounts[a.name] || 0) + 1;
+      if (a?.start && a?.end) {
+        const sm = window.toNightMin?.(a.start) || 0;
+        const em = window.toNightMin?.(a.end)   || 0;
+        totalMin += Math.max(0, em - sm);
+      }
+    }));
+    if (sets === 0 && e.moments === 0) return; // nothing happened there
+    festivals.push({ id: e.id, name: e.name, brand: e.brand, year: e.year, dates: e.dates, sets, moments: e.moments, archived: e.archived });
+    totalSets += sets;
+    totalMoments += e.moments;
+  });
+
+  const topArtists = Object.entries(artistCounts)
+    .sort((a, b) => b[1] - a[1]).slice(0, 5)
+    .map(([name, count]) => ({ name, count }));
+  const years = festivals.map(f => f.year).filter(Boolean);
+
+  return {
+    year: years.length ? Math.max(...years) : (CFG.year || new Date().getFullYear()),
+    festivals,
+    totalFestivals: festivals.length,
+    archivedCount: festivals.filter(f => f.archived).length,
+    totalSets, totalMoments, totalMin, topArtists,
+  };
+}
+
 // ── Festival Recap (v145) ─────────────────────────────────────
 // Spotify-Wrapped-style post-festival summary. Stitches together the
 // attendance store (plursky_attended_v1), saved sets, Memories moments,
@@ -6952,6 +7040,94 @@ function _maybeAutoRatingPromptOnRecap() {
 }
 
 
+// ── "Your Festival Year" card (v226 · integrations #6) ──────────────
+// Wrapped-style cross-festival annual aggregate. Modeled on Goodreads
+// "Year in Books" (annual stat card) + Opal "Let's recap" (dark card,
+// single share-story CTA). Only renders once there's ≥1 ARCHIVED festival
+// with data — with just the active festival it would duplicate the
+// weekend recap above it. Free for everyone; the exported card carries
+// the Plursky watermark (the free-tier differentiator).
+function FestivalYearCard({ yearData }) {
+  const [sharing, setSharing] = React.useState(false);
+  if (!yearData || yearData.archivedCount < 1 || yearData.totalFestivals < 2) return null;
+  const yd = yearData;
+  const shareYear = async () => {
+    if (sharing) return;
+    setSharing(true);
+    try { await window._shareFestivalYearCard?.(yd); } catch {}
+    setSharing(false);
+  };
+  return (
+    <RecapCard kicker={`YOUR FESTIVAL YEAR · ${yd.year}`} paper="#0a0618" accent="#fff" mono="rgba(247,237,224,0.5)">
+      <div className="serif" style={{ fontSize: 28, lineHeight: 1.05, color: "#f7ede0", letterSpacing: -0.3 }}>
+        {yd.totalFestivals} festivals. One{" "}
+        <span style={{ fontStyle: "italic", color: "#a78bfa" }}>year</span>.
+      </div>
+      <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "rgba(247,237,224,0.6)", marginTop: 8 }}>
+        {yd.totalSets} SETS · {yd.totalMoments} MEMORIES{yd.totalMin > 0 ? ` · ${_fmtHrsMin(yd.totalMin).toUpperCase()} ON DANCEFLOORS` : ""}
+      </div>
+
+      {/* Per-festival rows — FestivalArchiveList's visual language, dark */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 6, marginTop: 14 }}>
+        {yd.festivals.map(f => (
+          <div key={f.id} style={{
+            display: "flex", alignItems: "center", gap: 10,
+            padding: "9px 12px", borderRadius: 12,
+            background: "rgba(247,237,224,0.06)", border: "1px solid rgba(247,237,224,0.1)",
+          }}>
+            <div style={{
+              width: 34, height: 34, borderRadius: 10, flexShrink: 0,
+              background: "linear-gradient(135deg, var(--ember), #6D28D9)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              color: "#fff", fontWeight: 800, fontSize: 12,
+            }}>
+              {(f.brand || f.name || "?").slice(0, 2).toUpperCase()}
+            </div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div className="serif" style={{ fontSize: 15, lineHeight: 1.1, color: "#f7ede0", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                {f.name}
+              </div>
+              <div className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(247,237,224,0.45)", marginTop: 2 }}>
+                {f.sets} SETS · {f.moments} MEMORIES{f.archived ? "" : " · LIVE"}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Top artists across all festivals */}
+      {yd.topArtists.length > 0 && (
+        <div style={{ marginTop: 12 }}>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "rgba(247,237,224,0.4)", fontWeight: 700, marginBottom: 6 }}>
+            YOUR ARTISTS OF THE YEAR
+          </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+            {yd.topArtists.slice(0, 3).map(a => (
+              <span key={a.name} className="mono" style={{
+                padding: "4px 10px", borderRadius: 999,
+                background: "rgba(167,139,250,0.15)", border: "1px solid rgba(167,139,250,0.3)",
+                color: "#e9e2f7", fontSize: 9, letterSpacing: 1, fontWeight: 700,
+              }}>★ {a.name.toUpperCase()}{a.count > 1 ? ` ×${a.count}` : ""}</span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <button
+        onClick={shareYear}
+        disabled={sharing}
+        className="mono"
+        style={{
+          width: "100%", marginTop: 14, padding: "13px",
+          background: sharing ? "rgba(109,40,217,0.4)" : "linear-gradient(135deg, #6D28D9, #e85d2e)",
+          color: "#fff", border: "none", borderRadius: 12,
+          cursor: sharing ? "wait" : "pointer",
+          fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
+        }}>{sharing ? "⏳ RENDERING…" : "📤 SHARE YOUR YEAR"}</button>
+    </RecapCard>
+  );
+}
+
 // ── Festival Archive list — shown when user has past festival snapshots
 function FestivalArchiveList({ archive }) {
   if (!archive?.length) return null;
@@ -6996,6 +7172,11 @@ function FestivalArchiveList({ archive }) {
 
 function RecapScreen({ state, setState }) {
   const recap = React.useMemo(() => _computeRecap(state), [state]);
+  // v226 (#6): cross-festival annual aggregate — null-safe so a recap
+  // with no archive renders exactly as before.
+  const yearData = React.useMemo(() => {
+    try { return _computeFestivalYear(); } catch { return null; }
+  }, [state]);
   const CFG   = window.FESTIVAL_CONFIG || {};
   const fmt12 = window.fmt12 || ((t) => t);
   const [wrappedOpen, setWrappedOpen] = React.useState(false);
@@ -7093,6 +7274,9 @@ function RecapScreen({ state, setState }) {
               MARK SETS YOU CAUGHT IN MEMORIES — TODAY'S WEEKEND RECAP WILL FILL IN
             </div>
           </div>
+          {/* #6 (v226): a past-festival user with an empty current festival
+              still gets their year recap above the archive list */}
+          <FestivalYearCard yearData={yearData} />
           {archived.length > 0 && <FestivalArchiveList archive={archived} />}
         </ScrollBody>
       </Screen>
@@ -7881,6 +8065,9 @@ function RecapScreen({ state, setState }) {
             </div>
           </RecapCard>
         )}
+
+        {/* #6 (v226): YOUR FESTIVAL YEAR — cross-festival annual recap */}
+        <FestivalYearCard yearData={yearData} />
 
         {/* P3: FESTIVAL ARCHIVE (Plus-only) */}
         {_isPlusSub() && (() => {

@@ -141,12 +141,20 @@ async function _shareRecapCard(recap) {
   let canvas;
   try { canvas = await _renderRecapShareCard(recap); }
   catch (e) { console.error("[plursky-recap] render failed:", e); return false; }
+  return _shareCanvasAsImage(canvas, {
+    filename: `plursky-recap-${(window.FESTIVAL_CONFIG?.id || "festival")}.png`,
+    title: `My ${window.FESTIVAL_CONFIG?.shortName || "festival"}`,
+  });
+}
+
+// v226: shared PNG share tail — canvas → blob → native Capacitor sheet →
+// web navigator.share({ files }) → download fallback. Extracted verbatim
+// from _shareRecapCard so the Festival Year card uses the same path.
+async function _shareCanvasAsImage(canvas, { filename, title }) {
   const blob = await new Promise(r => canvas.toBlob(r, "image/png"));
   if (!blob) return false;
   window.plurskyHaptic?.("LIGHT");
-  const filename = `plursky-recap-${(window.FESTIVAL_CONFIG?.id || "festival")}.png`;
   const file = new File([blob], filename, { type: "image/png" });
-  const title = `My ${window.FESTIVAL_CONFIG?.shortName || "festival"}`;
 
   // Native iOS path (v163): @capacitor/share with `files` (data URL) — more
   // reliable inside WKWebView than the web `navigator.share({ files })` path
@@ -187,6 +195,154 @@ async function _shareRecapCard(recap) {
   document.body.removeChild(a);
   setTimeout(() => URL.revokeObjectURL(url), 1000);
   return true;
+}
+
+// ── FESTIVAL YEAR CARD (v226 · integrations #6) ─────────────────────
+// Spotify-Wrapped-style ANNUAL share card: aggregates every festival
+// attended this year (archive snapshots + the live festival) into one
+// 1080×1920 story-format image. Modeled on Goodreads "Year in Books"
+// (annual stat card) + the existing weekend card's visual system so the
+// two exports read as a family. Takes the object _computeFestivalYear()
+// (spotify.jsx) builds: { year, festivals[], totalFestivals, totalSets,
+// totalMoments, totalMin, topArtists[] }.
+async function _renderFestivalYearCard(yd) {
+  const W = 1080, H = 1920;
+  const canvas = document.createElement("canvas");
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext("2d");
+
+  try {
+    await document.fonts.load("700 italic 96px 'Instrument Serif'");
+    await document.fonts.load("700 24px 'Geist Mono'");
+    await document.fonts.load("500 64px Geist");
+  } catch {}
+
+  // Background — deep night → horizon purple → ember. Darker start than
+  // the weekend card so the two are siblings, not twins.
+  const grad = ctx.createLinearGradient(0, 0, W, H);
+  grad.addColorStop(0,    "#0a0618");
+  grad.addColorStop(0.55, "#6D28D9");
+  grad.addColorStop(1,    "#e85d2e");
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  // Starfield (same generator as the weekend card)
+  ctx.fillStyle = "rgba(247,237,224,0.4)";
+  let s = 0xdeadbeef;
+  for (let i = 0; i < 60; i++) {
+    s = Math.imul(s ^ (s >>> 17), 0x45d9f3b);
+    const rng = () => ((s = Math.imul(s, 0x119de1f3)) >>> 0) / 0x100000000;
+    const x = rng() * W, y = rng() * H * 0.5;
+    const r = 1 + rng() * 2.5;
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+  }
+
+  // Kicker
+  ctx.fillStyle = "rgba(247,237,224,0.65)";
+  ctx.font = "700 26px 'Geist Mono', monospace";
+  ctx.textAlign = "left";
+  ctx.fillText(`PLURSKY · YOUR FESTIVAL YEAR`, 72, 130);
+
+  // Title
+  ctx.fillStyle = "#f7ede0";
+  ctx.font = "400 130px 'Instrument Serif', serif";
+  ctx.fillText("That was", 72, 290);
+  ctx.font = "italic 400 130px 'Instrument Serif', serif";
+  ctx.fillStyle = "#f59a36";
+  ctx.fillText(`your ${yd.year}.`, 72, 440);
+
+  // 2x2 stats grid — festivals / sets / memories / hours
+  const fmtHrs = (typeof _fmtHrsMin === "function")
+    ? _fmtHrsMin
+    : (m) => `${Math.round((m || 0) / 60)}h`;
+  const cells = [
+    { big: String(yd.totalFestivals), small: yd.totalFestivals === 1 ? "FESTIVAL" : "FESTIVALS" },
+    { big: String(yd.totalSets),      small: "SETS CAUGHT" },
+    { big: String(yd.totalMoments),   small: "MEMORIES" },
+    { big: fmtHrs(yd.totalMin),       small: "ON DANCEFLOORS" },
+  ];
+  const gridTop = 560, cellH = 230, cellW = W / 2;
+  cells.forEach((c, i) => {
+    const col = i % 2, row = Math.floor(i / 2);
+    const x = col * cellW + 72;
+    const y = gridTop + row * cellH;
+    ctx.fillStyle = "#f7ede0";
+    ctx.font = "400 130px 'Instrument Serif', serif";
+    ctx.fillText(c.big, x, y + 130);
+    ctx.fillStyle = "rgba(247,237,224,0.65)";
+    ctx.font = "700 22px 'Geist Mono', monospace";
+    ctx.fillText(c.small, x, y + 175);
+  });
+
+  // Festival rows — accent rule + name + per-festival counts
+  let fy = gridTop + cellH * 2 + 70;
+  ctx.fillStyle = "rgba(247,237,224,0.7)";
+  ctx.font = "700 22px 'Geist Mono', monospace";
+  ctx.fillText("WHERE THE YEAR TOOK YOU", 72, fy);
+  fy += 28;
+  const rows = (yd.festivals || []).slice(0, 4);
+  rows.forEach((f) => {
+    ctx.fillStyle = "#f59a36";
+    ctx.fillRect(72, fy + 14, 44, 5);
+    ctx.fillStyle = "#f7ede0";
+    ctx.font = "italic 400 62px 'Instrument Serif', serif";
+    ctx.fillText(f.name || f.id, 140, fy + 62);
+    ctx.fillStyle = "rgba(247,237,224,0.6)";
+    ctx.font = "700 22px 'Geist Mono', monospace";
+    ctx.fillText(`${f.sets} SETS · ${f.moments} MEMORIES`, 140, fy + 100);
+    fy += 130;
+  });
+  if ((yd.festivals || []).length > 4) {
+    ctx.fillStyle = "rgba(247,237,224,0.6)";
+    ctx.font = "700 22px 'Geist Mono', monospace";
+    ctx.fillText(`+ ${yd.festivals.length - 4} MORE`, 140, fy + 30);
+    fy += 60;
+  }
+
+  // Top-artist pill rows (same flow layout as the weekend card's
+  // headliner pills) — clamped above the watermark zone.
+  if (yd.topArtists?.length) {
+    let hy = Math.max(fy + 60, H - 420);
+    ctx.fillStyle = "rgba(247,237,224,0.7)";
+    ctx.font = "700 22px 'Geist Mono', monospace";
+    ctx.fillText("YOUR ARTISTS OF THE YEAR", 72, hy);
+    ctx.font = "700 28px 'Geist Mono', monospace";
+    ctx.fillStyle = "#f7ede0";
+    let lineY = hy + 60;
+    let lineW = 0;
+    yd.topArtists.slice(0, 6).forEach((a) => {
+      if (lineY > H - 150) return; // keep clear of the watermark
+      const text = "★ " + a.name.toUpperCase() + (a.count > 1 ? ` ×${a.count}` : "");
+      const w = ctx.measureText(text).width + 40;
+      if (lineW + w > W - 144) {
+        lineY += 60;
+        lineW = 0;
+        if (lineY > H - 150) return;
+      }
+      ctx.fillText(text, 72 + lineW, lineY);
+      lineW += w + 24;
+    });
+  }
+
+  // Watermark — the free-tier differentiator, always on
+  ctx.fillStyle = "rgba(247,237,224,0.55)";
+  ctx.textAlign = "left";
+  ctx.font = "700 26px 'Geist Mono', monospace";
+  ctx.fillText("PLURSKY.COM", 72, H - 90);
+  ctx.textAlign = "right";
+  ctx.fillText(`FESTIVAL YEAR · ${yd.year}`, W - 72, H - 90);
+
+  return canvas;
+}
+
+async function _shareFestivalYearCard(yd) {
+  let canvas;
+  try { canvas = await _renderFestivalYearCard(yd); }
+  catch (e) { console.error("[plursky-year] render failed:", e); return false; }
+  return _shareCanvasAsImage(canvas, {
+    filename: `plursky-festival-year-${yd?.year || "recap"}.png`,
+    title: `My ${yd?.year || ""} festival year`.trim(),
+  });
 }
 
 // ── RECAP VIDEO ENGINE ──────────────────────────────────────────────
@@ -1680,4 +1836,5 @@ Object.assign(window, {
   _shareArtistCollage, _shareStageCollage, _shareNightCollage, _shareWeekendCollage, _shareCrewCollage,
   _renderRecapVideo, _shareRecapVideo, _detectBeats, _VIDEO_TEMPLATES,
   _shareFestivalDNA, _shareFestivalPassport, _shareFilmStrip, _shareCrewComparison,
+  _renderFestivalYearCard, _shareFestivalYearCard, _shareCanvasAsImage,
 });
