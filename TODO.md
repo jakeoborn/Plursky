@@ -3,6 +3,50 @@
 > **Shipping?** See **[RELEASE.md](RELEASE.md)** — sync iOS, cache-bust, web
 > deploy, and App Store submit commands.
 
+## 📋 REPORT CLOSE-OUT — items pulled from agent reports (2026-06-07)
+
+> **Status: iOS 1.11 (22) SUBMITTED to Apple 2026-06-07** (pbxproj 4d8679c, carries
+> web v219–v228 incl. Forest scaffold gated off). Web @ v228 LIVE. Next bump v229
+> = Forest flip (~Jun 16) → then iOS 1.12 archive.
+> Source reports moved (privacy — public repo): **`~/Plursky-private/`**
+> {radiate-recon-report.md + screens · qa-v221-xcui-results · vegas-edc-export}.
+
+**From Radiate recon (Clicky, 2026-06-07) — desktop wrapper blocked most checks:**
+- [ ] **Jake 5-min phone check on Radiate** (closes everything desktop recon couldn't):
+      open Electric Forest community → screenshot pinned rules/moderator posts →
+      open + composer → note attachment types (photo/video/poll/link?) → type
+      `plursky.com` in a caption draft WITHOUT posting → is it tappable/auto-linked?
+      Also peek Lost Lands + EDC Orlando feeds (not reached from desktop).
+- [ ] **Recap story-card legibility audit** — Radiate is image-first (links unverified),
+      so the 9:16 export must carry `plursky.com` + CTA baked into the image, readable
+      at feed size. Audit `_renderRecapVideo`/story-card watermark; beef up if needed.
+- [ ] **Draft EDC LV founder post** — Radiate's biggest community (205k) + Jake has
+      real EDC W2 recap content TODAY. First authentic post; tests format before the
+      Forest push (Forest posts target Jun 20–24, drafted → Jake-approved).
+- Recon facts: Forest 93,693 joined / ~2.6k posts-week (very active); Jake = @jtp21,
+  profile shows NO bio/link field; feed = photo + caption, tall images display large.
+
+**From QA-v221 XCUITest reports (2026-06-05, Part A + B):**
+- [ ] **TIMELINE "3 SHARE buttons" XCUITest FAIL** — likely one-per-night BY DESIGN
+      (v219 = one 📸 SHARE ▾ per night × 3 nights) and the brief's expectation was
+      wrong. Verify visually; either fix a real dup or correct the QA brief assertion.
+- [ ] **Night ordering visual pass still owed** — code-backed only (static probe
+      confirmed 19:00→…→00:32→04:14); brief requires an unlocked-device scroll
+      + screenshot of a post-midnight night.
+- [ ] **B7 web video "SHAZAM THIS VIDEO"** — graceful no-match fallback is
+      code-backed only; needs one real click on a seeded web video moment.
+- ⚠️ QA harness lesson: screenshots against a LOCKED iPhone capture the lock screen —
+  unlock the device before any XCUITest visual-evidence run.
+- (B2–B6 = the already-tracked "Owed on-device QA" list below — unchanged, all
+  still blocked on Jake-manual: camera-roll clips, live audio, signed-in backup,
+  Paid Apps agreement + sandbox, real GPS photos.)
+
+**From vegas-edc-export (Clicky, 2026-06-03):**
+- [ ] **Import the festival-candidate set into the NATIVE app** — 118 files (~1.9GB)
+      pre-filtered from iCloud `Ai/Plursky` (now at `~/Plursky-private/vegas-edc-export/
+      festival-candidates/`). This doubles as the **B2 auto-tag ground-truth dataset**
+      (pick 8–10 clips, compare tags vs memory) and feeds the Memories rewatch loop.
+
 ## 🗓️ v219–v225 wave + integrations roadmap (2026-06-05/06)
 
 **Shipped to main / plursky.com:**
