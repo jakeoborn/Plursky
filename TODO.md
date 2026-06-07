@@ -33,9 +33,20 @@
 1. [x] **9:16 story-format recap export** — SHIPPED v223 (see wave above). Device QA owed: share sheet lists IG/TikTok + mp4 plays.
 2. [x] **Apple Music playlist** — already existed; OPEN↗ added v224. Device QA owed: real MusicKit authorize in WKWebView + playlist lands in library.
 3. [x] **Setlist.fm API** — already wired + live; verified 2026-06-06, no code.
-4. [ ] **iOS Live Activity / Lock-Screen widget** — "Next set: Kinetic · 20 min" during the festival (native Swift target; needs device verify). ← NEXT (with #6)
+4. [ ] **iOS Live Activity / Lock-Screen widget** — "Next set: Kinetic · 20 min" during the festival (native Swift target; needs device verify). ← only remaining integrations item
 5. [x] **Calendar .ics export** — shipped v225 (native share path + Lineup toolbar chip). Device QA owed: .ics opens in Calendar from share sheet.
-6. [ ] **"Your festival year"** — cross-festival Wrapped-style annual recap; builds on #1's story pipeline + `_readArchive()`. ← NEXT (fresh session; kickoff brief in session notes)
+6. [x] **"Your festival year"** — SHIPPED **v226** (1dc6749): `_computeFestivalYear()` aggregates archive + live festival (artist names resolve cross-festival via `_artistsForFestival`); `FestivalYearCard` on Recap (both states); `_renderFestivalYearCard` 1080×1920 story card + `_shareCanvasAsImage` shared share-tail. Same commit: **Apple Music connect FIX** — MusicKit now pre-warms on Music screen mount (CDN load inside the CONNECT tap was spending Safari's user gesture → authorize popup silently blocked). Real-account authorize still on the device-QA list.
+
+**Also shipped 2026-06-06:**
+- [x] **v227** (c9496cf) **Festival-aware badges** — ACL was showing EDC content (hardcoded "All 9 Stages", Quantum Valley/Neon Garden stage badges, 30 Years Crew). Now `_computeBadges()` + `_FESTIVAL_BADGE_PACKS` per festival (ACL: Closing Time / Amex Front Row / Honda Faithful / Springs Local / Three-Day Texan / Zilker Crew); Me-grid count uses the same fn (deleted the desync-prone mirror at the old spotify.jsx:5441); BADGES section always Collapsible. ⚠️ `cap sync ios` NOT yet run for v226/v227 — ride the next archive.
+
+## 🎪 MULTI-FESTIVAL EXPANSION WAVE — full spec: `docs/SPEC-add-festivals.md` (2026-06-06)
+Why: the Radiate partnership pitch (drafted, **HOLDING — NOT sent**; copy in Jake's Mail drafts → radtherhino@radiatetheworld.com) needs festival coverage matching Radiate's biggest communities first. One festival per fresh session:
+1. [ ] **Electric Forest** (Jun 25–28 — TIME-CRITICAL, 93k Radiate members) + prerequisite refactor: data.jsx `_isACL` ternary → `_DATA_SETS` registry lookup; also generalize `_artistsForFestival` (spotify.jsx)
+2. [ ] **Lost Lands** (Sept, 103k — 2nd-biggest community on Radiate)
+3. [ ] **EDC Orlando** (Nov, 91k, Insomniac — registry preview stub exists: fill + flip `available`)
+4. [ ] Bonnaroo (Jun 11–14) ONLY if set times are already published — check edmtrain first
+- [ ] After Forest ships → **Jake sends the Radiate email** from Mail (add the custom-playlists paragraph from session notes; attach a real recap-card export)
 
 ## 🧪 REPORT-CARD ROADMAP — judge panel, 2026-05-30 (overall **B+**)
 
