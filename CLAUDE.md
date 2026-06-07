@@ -37,6 +37,12 @@ declarations become **global**, so cross-file calls work by bare name
 matters for **eval-time** references (e.g. a top-level `Object.assign(window,…)`);
 runtime calls resolve regardless of order. When splitting files, the consumer's
 `window`-exports must not name a symbol that moved out, unless that file loads first.
+⚠️ **Bare names resolve through WINDOW props** (empirically proven v228), so a
+later `Object.assign(window, …)` OVERWRITES them: data.jsx's festival switch
+replaces `ARTISTS`/`FESTIVAL_CONFIG`/`STAGES`/`AMENITIES`/`DAYS` with the
+ACTIVE festival's values everywhere. Bare `ARTISTS` ≠ "the EDC base lineup" —
+non-active-festival data MUST go through `_DATA_SETS` (this exact mistake made
+v226's Festival Year resolve archived EDC ids against the ACL lineup).
 
 ## 6. Don't rebuild what exists
 There's a full recap/share engine (`recap-engine.jsx`), Spotify/Apple API
