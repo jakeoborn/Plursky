@@ -356,8 +356,14 @@ function _photoFestivalNight(date) {
   for (const n of Object.keys(cfg.dayDates).map(Number)) {
     const dm = cfg.dayDates[n];
     if (!dm) continue;
-    const startMs = dm.midnightUtc + 19 * 3600000;     // 19:00 PT of day N
-    const endMs   = dm.midnightUtc + 30 * 3600000;     // 06:00 PT day N+1
+    // 11:00 local of day N → 06:00 local day N+1. Was 19:00→06:00 (EDC's
+    // overnight shape) — but daytime festivals (ACL, Electric Forest) run
+    // sets from ~noon, so every afternoon photo fell outside the window
+    // and the attended/saved set-time match never ran. 11:00 still can't
+    // overlap the previous night's +30h end (06:00 < 11:00), so post-
+    // midnight photos keep bucketing to the night they belong to.
+    const startMs = dm.midnightUtc + 11 * 3600000;     // 11:00 local, day N
+    const endMs   = dm.midnightUtc + 30 * 3600000;     // 06:00 local, day N+1
     if (photoMs >= startMs - 30 * 60000 && photoMs <= endMs + 30 * 60000) return n;
   }
   return null;

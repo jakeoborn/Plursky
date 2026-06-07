@@ -190,6 +190,85 @@ const FESTIVALS_REGISTRY = [
     emoji: "🌵",
     region: "North America",
   },
+  {
+    // ── Electric Forest 2026 — Double JJ Ranch, Rothbury MI ──
+    // ⛔ GATE (SPEC-add-festivals §1): full data set is built below
+    // (EF_STAGES / EF_ARTISTS / EF_AMENITIES) but official SET TIMES are
+    // NOT published yet (checked 2026-06-06; they historically drop ~9
+    // days out — 2025's landed Jun 16). All set times + per-artist stage
+    // assignments below are PROVISIONAL. Flip `available: true` ONLY
+    // after replacing them with the official schedule + official 2026
+    // map + recalibrated gpsAnchors.
+    config: {
+      id:        "electric-forest-2026",
+      name:      "Electric Forest 2026",
+      shortName: "Forest 2026",
+      brand:     "Electric Forest",
+      tagline:   "Four days under the electric canopy",
+      location:  "Double JJ Ranch · Rothbury, MI",
+      locationShort: "Double JJ Ranch",
+      dates:     "Jun 25–28, 2026",
+      year:      2026,
+      startMs: Date.UTC(2026, 5, 25, 16, 0, 0), // Jun 25 noon EDT (venue opens day 1)
+      endMs:   Date.UTC(2026, 5, 29, 6, 0, 0),  // Jun 29 02:00 EDT (Sunday close)
+      tz:      "America/Detroit",
+      tzAbbr:  "EDT",
+      utcOffsetHours: -4,
+      // Forest runs FOUR days (Thu–Sun) — one more than EDC/ACL.
+      dayDates: {
+        1: { y: 2026, m: 5, d: 25, name: "Thursday", short: "THU",
+             midnightUtc: Date.UTC(2026, 5, 25, 4, 0, 0) },
+        2: { y: 2026, m: 5, d: 26, name: "Friday",   short: "FRI",
+             midnightUtc: Date.UTC(2026, 5, 26, 4, 0, 0) },
+        3: { y: 2026, m: 5, d: 27, name: "Saturday", short: "SAT",
+             midnightUtc: Date.UTC(2026, 5, 27, 4, 0, 0) },
+        4: { y: 2026, m: 5, d: 28, name: "Sunday",   short: "SUN",
+             midnightUtc: Date.UTC(2026, 5, 28, 4, 0, 0) },
+      },
+      sunTimes: {
+        1: { rise: "06:08", set: "21:26" },
+        2: { rise: "06:08", set: "21:26" },
+        3: { rise: "06:09", set: "21:26" },
+        4: { rise: "06:09", set: "21:26" },
+      },
+      // ⚠ PROVISIONAL venue centroid (Double JJ Ranch festival grounds,
+      // east of US-31 / south of Winston Rd; Rothbury village itself is
+      // at 43.5072,-86.3476). Recalibrate against the official 2026 map
+      // + satellite imagery at the flip session — see map.jsx ACL notes
+      // for the 3-point Cramer affine workflow.
+      gps: { lat: 43.4995, lng: -86.3340, onSiteRadiusMi: 0.7 },
+      // ⚠ ALL anchors PROVISIONAL (derived from the venue centroid +
+      // fan-map relative layout, NOT satellite-calibrated). The first
+      // three (ranch / tripolee / sherwood) are the calibration trio;
+      // re-measure those on satellite at the flip session and re-derive
+      // the rest via the Cramer affine.
+      gpsAnchors: [
+        { stageId: "ranch",       lat: 43.50300, lng: -86.33950 },
+        { stageId: "tripolee",    lat: 43.49550, lng: -86.33700 },
+        { stageId: "sherwood",    lat: 43.50000, lng: -86.33200 },
+        // Derived from the trio above via the SVG layout
+        { stageId: "observatory", lat: 43.50180, lng: -86.32800 },
+        { stageId: "hangar",      lat: 43.49800, lng: -86.32650 },
+        { stageId: "honeybee",    lat: 43.49880, lng: -86.33050 },
+        { stageId: "carousel",    lat: 43.49600, lng: -86.32850 },
+      ],
+      mainStageId: "ranch",
+      // ef-forest-2026.jpg = PROVISIONAL original abstract forest overlay
+      // (generated, not traced — feedback_map_session_lessons). Replace
+      // with the processed official 2026 patron map (acl-park.webp
+      // treatment: legend cropped, padded square) when it drops.
+      mapImage: "ef-forest-2026.jpg",
+      mapStyle: "image-overlay",
+      mapTheme: "forest",
+      weatherEndpoint: "https://api.weather.gov/points/43.50,-86.33",
+      // Flip-session marker: replace provisional set times/stages, then delete.
+      setTimesProvisional: true,
+    },
+    available: false,
+    accent:    "#34d399",
+    emoji:     "🌲",
+    region:    "North America",
+  },
   // ─── Preview entries (visible in the switcher as "Coming soon") ───
   // These are intentionally minimal — name + dates + brand colors only.
   // To turn one ON: ship a full FESTIVAL_CONFIG (same shape as EDC LV
@@ -736,10 +815,15 @@ const ARTISTS = [
   mk("bp33","Æon:Mode (Sunrise Set)",  "Dubstep / Bass",         "basspod", 3, "04:30", "05:30"),
 ];
 
-const DAYS = Object.entries(FESTIVAL_CONFIG.dayDates).map(([n, d]) => {
+// Day chips for any festival config. The window export at the bottom of
+// this file re-derives DAYS from the ACTIVE config — this const is only
+// the EDC default for anything that reads it before the switch runs.
+function _daysFor(cfg) {
   const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  return { n: +n, label: d.short, date: `${months[d.m]} ${d.d}` };
-});
+  return Object.entries(cfg.dayDates || {}).map(([n, d]) =>
+    ({ n: +n, label: d.short, date: `${months[d.m]} ${d.d}` }));
+}
+const DAYS = _daysFor(FESTIVAL_CONFIG);
 
 // NOW is a live-computed Proxy — every access reflects the real clock.
 // All existing NOW.xxx consumers continue working without any changes.
@@ -987,22 +1071,211 @@ const ACL_AMENITIES = [
   { id: "aa8", type: "info",   label: "Guest Services",  x: 20, y: 35 },
 ];
 
+// ─────────────────────────────────────────────────────────────
+// Electric Forest 2026 — Double JJ Ranch, Rothbury MI
+// ─────────────────────────────────────────────────────────────
+// ⚠ EVERYTHING below the stage list is PROVISIONAL (registry entry is
+// available:false — see the gate note there). The day-by-day LINEUP is
+// real (official, ~123 acts); per-artist STAGE assignments and SET
+// TIMES are placeholders until the official schedule drops (~Jun 16).
+// Stage x/y are percent positions on the provisional ef-forest-2026.jpg
+// overlay (north-up): Ranch Arena NW field, Sherwood Forest center-east
+// woods (Sherwood Court / Honeybee), Tripolee by the south entrance,
+// Hangar + Carousel Club east/south-east.
+const EF_STAGES = [
+  { id: "ranch",       name: "Ranch Arena",      short: "RANCH",   color: "#34d399", x: 28, y: 22, size: 1.7, desc: "North field · headliners",        vibe: "Main Event",       vibeNote: "Headliners close the open-air main stage every night.",      peak: "18:00–00:00" },
+  { id: "sherwood",    name: "Sherwood Court",   short: "SHERWOOD",color: "#a855f7", x: 55, y: 42, size: 1.4, desc: "Heart of the forest · second main", vibe: "Forest Magic",     vibeNote: "Lights in the trees, art everywhere. The Forest signature.", peak: "17:00–00:00" },
+  { id: "tripolee",    name: "Tripolee",         short: "TRIPOLEE",color: "#f97316", x: 38, y: 72, size: 1.3, desc: "Near main entrance · dance stage",  vibe: "House & Bass HQ",  vibeNote: "Big-production dance stage right as you walk in.",           peak: "16:00–02:00" },
+  { id: "observatory", name: "The Observatory",  short: "OBSRV",   color: "#38bdf8", x: 74, y: 30, size: 1.0, desc: "Forest edge · discovery stage",     vibe: "Sunset Sessions",  vibeNote: "Indie, jam and live electronic as the sun drops.",           peak: "14:00–22:00" },
+  { id: "hangar",      name: "The Hangar",       short: "HANGAR",  color: "#f43f5e", x: 80, y: 55, size: 0.9, desc: "East side · bass hangar",           vibe: "Headbanger Haven", vibeNote: "DnB and dubstep all day into the night.",                    peak: "17:00–02:00" },
+  { id: "honeybee",    name: "Honeybee Hideout", short: "HONEYBEE",color: "#eab308", x: 62, y: 58, size: 0.7, desc: "Hidden in the forest",              vibe: "Secret Sets",      vibeNote: "Tiny stage, big surprises. Blink and you miss it.",          peak: "14:00–23:00" },
+  { id: "carousel",    name: "Carousel Club",    short: "CAROUSEL",color: "#2563eb", x: 70, y: 74, size: 0.8, desc: "South-east · club in the pines",    vibe: "Tropical Disco",   vibeNote: "House and disco 'til late at the Forest's club.",            peak: "18:00–02:00" },
+];
+
+// Tier from start hour like _aclMk, but Forest-shifted: evening headline
+// slots start 20:00+, and post-midnight closers (h<8 → next day per
+// toNightMin) also count as tier 3.
+const _efMk = (id, name, genre, stage, day, start, end) => {
+  const h = parseInt(start.split(':')[0]);
+  const nh = h < 8 ? h + 24 : h;
+  const tier = nh >= 20 ? 3 : nh >= 16 ? 2 : 1;
+  return { id, name, genre, country: "—", stage, day, start, end, tier,
+    img: `linear-gradient(135deg, ${EF_STAGES.find(s=>s.id===stage)?.color || "#34d399"}, #07120c)`,
+    bio: "Playing Electric Forest 2026. Set time provisional — official schedule drops about a week before the Forest." };
+};
+
+// Official day-by-day lineup (festivaldust audit 2026-06-06). id prefix =
+// day: eft Thu / eff Fri / efs Sat / efu Sun. Repeat performers (Channel
+// Tres, Jigitz, Lyrah, Underscores, Vandelux) keep one entry per day.
+const EF_ARTISTS = [
+  // ── THURSDAY (day 1) ──
+  _efMk("eft1",  "Excision",              "Dubstep",            "ranch",       1, "22:30","00:00"),
+  _efMk("eft2",  "Ganja White Night",     "Dubstep",            "ranch",       1, "21:00","22:30"),
+  _efMk("eft3",  "Disco Lines",           "House",              "tripolee",    1, "22:00","23:30"),
+  _efMk("eft4",  "Odd Mob",               "House",              "tripolee",    1, "20:30","22:00"),
+  _efMk("eft5",  "Eli Brown",             "Techno",             "tripolee",    1, "00:00","01:30"),
+  _efMk("eft6",  "D.O.D",                 "House",              "tripolee",    1, "19:00","20:30"),
+  _efMk("eft7",  "All:Lo Collective",     "Bass / Lo-Fi",       "tripolee",    1, "16:00","19:00"),
+  _efMk("eft8",  "Devault",               "Bass / Electronic",  "sherwood",    1, "21:30","23:00"),
+  _efMk("eft9",  "ALLEYCVT",              "Bass",               "sherwood",    1, "20:00","21:30"),
+  _efMk("eft10", "Eggy",                  "Jam",                "sherwood",    1, "18:30","20:00"),
+  _efMk("eft11", "EFFIN",                 "Dubstep",            "hangar",      1, "21:00","22:30"),
+  _efMk("eft12", "JKYL & HYDE",           "Bass",               "hangar",      1, "22:30","00:00"),
+  _efMk("eft13", "Magoo",                 "Bass",               "hangar",      1, "19:30","21:00"),
+  _efMk("eft14", "Shima",                 "Bass",               "hangar",      1, "18:00","19:30"),
+  _efMk("eft15", "Stolen Gin",            "Indie Jam",          "observatory", 1, "17:00","18:30"),
+  _efMk("eft16", "Bipolar Sunshine",      "Indie Electronic",   "observatory", 1, "19:00","20:00"),
+  _efMk("eft17", "Night Tapes",           "Dream Pop",          "observatory", 1, "20:30","21:30"),
+  _efMk("eft18", "Midnight Generation",   "Electronic",         "observatory", 1, "15:30","16:30"),
+  _efMk("eft19", "Dixon's Violin",        "Ambient Live",       "observatory", 1, "14:00","15:00"),
+  _efMk("eft20", "MCR-T",                 "Techno",             "carousel",    1, "23:00","00:30"),
+  _efMk("eft21", "LSD Clownsystem",       "Techno",             "carousel",    1, "00:30","02:00"),
+  _efMk("eft22", "Westend",               "Tech House",         "carousel",    1, "21:30","23:00"),
+  _efMk("eft23", "HERSHE",                "House",              "carousel",    1, "20:00","21:30"),
+  _efMk("eft24", "Daniel Allan",          "Electronic",         "honeybee",    1, "18:00","19:00"),
+  _efMk("eft25", "Close Friends Only",    "House",              "honeybee",    1, "19:30","20:30"),
+  _efMk("eft26", "Bardo",                 "Electronic",         "honeybee",    1, "16:30","17:30"),
+  _efMk("eft27", "ProbCause",             "Hip-Hop / Electronic","honeybee",   1, "21:00","22:00"),
+  _efMk("eft28", "Jackie Hollander",      "Indie",              "honeybee",    1, "15:00","16:00"),
+  // ── FRIDAY (day 2) ──
+  _efMk("eff1",  "Galantis",              "Dance Pop",          "ranch",       2, "22:30","00:00"),
+  _efMk("eff2",  "Passion Pit",           "Indie Pop",          "ranch",       2, "21:00","22:15"),
+  _efMk("eff3",  "SBTRKT",                "Electronic",         "sherwood",    2, "22:00","23:30"),
+  _efMk("eff4",  "Channel Tres",          "House / Rap",        "sherwood",    2, "20:30","21:45"),
+  _efMk("eff5",  "Daily Bread",           "Bass / Soul",        "sherwood",    2, "19:00","20:30"),
+  _efMk("eff6",  "Purple Disco Machine",  "Disco House",        "tripolee",    2, "22:30","00:00"),
+  _efMk("eff7",  "Sammy Virji",           "UK Garage",          "tripolee",    2, "00:00","01:30"),
+  _efMk("eff8",  "SIDEPIECE",             "House",              "tripolee",    2, "21:00","22:30"),
+  _efMk("eff9",  "Levity",                "Bass",               "tripolee",    2, "19:30","21:00"),
+  _efMk("eff10", "Ship Wrek",             "Bass",               "tripolee",    2, "18:00","19:30"),
+  _efMk("eff11", "Andy C",                "Drum & Bass",        "hangar",      2, "23:00","00:30"),
+  _efMk("eff12", "Wilkinson",             "Drum & Bass",        "hangar",      2, "21:30","23:00"),
+  _efMk("eff13", "Ivy Lab",               "Bass",               "hangar",      2, "00:30","02:00"),
+  _efMk("eff14", "MUZZ",                  "Drum & Bass",        "hangar",      2, "20:00","21:30"),
+  _efMk("eff15", "Nitepunk",              "Bass",               "hangar",      2, "18:30","20:00"),
+  _efMk("eff16", "MOTIFV",                "Bass",               "hangar",      2, "17:00","18:30"),
+  _efMk("eff17", "Dogs In A Pile",        "Jam",                "observatory", 2, "17:30","19:00"),
+  _efMk("eff18", "Couch",                 "Funk Pop",           "observatory", 2, "16:00","17:00"),
+  _efMk("eff19", "INIKO",                 "Pop / Soul",         "observatory", 2, "19:30","20:30"),
+  _efMk("eff20", "Mild Minds",            "Electronic",         "observatory", 2, "21:00","22:00"),
+  _efMk("eff21", "The Flints",            "Indie",              "observatory", 2, "14:30","15:30"),
+  _efMk("eff22", "Kaleena Zanders",       "House Vocals",       "carousel",    2, "20:00","21:00"),
+  _efMk("eff23", "Casey Club",            "House",              "carousel",    2, "18:30","20:00"),
+  _efMk("eff24", "CREG",                  "House",              "carousel",    2, "21:00","22:30"),
+  _efMk("eff25", "Ranger Trucco",         "House",              "carousel",    2, "22:30","00:00"),
+  _efMk("eff26", "Richard Finger",        "House",              "carousel",    2, "00:00","01:30"),
+  _efMk("eff27", "Saint Ludo",            "House",              "honeybee",    2, "19:00","20:00"),
+  _efMk("eff28", "Brunello",              "Melodic House",      "honeybee",    2, "20:30","21:30"),
+  _efMk("eff29", "Supertaste",            "Indie Dance",        "honeybee",    2, "17:30","18:30"),
+  _efMk("eff30", "Swimming Paul",         "Electronic",         "honeybee",    2, "16:00","17:00"),
+  _efMk("eff31", "Łaszewo",               "Electronic",         "honeybee",    2, "21:45","22:45"),
+  _efMk("eff32", "Nikita, The Wicked",    "Electronic",         "honeybee",    2, "22:45","23:45"),
+  // ── SATURDAY (day 3) ──
+  _efMk("efs1",  "The String Cheese Incident","Jam",            "ranch",       3, "19:00","21:00"),
+  _efMk("efs2",  "Chris Lake",            "House",              "ranch",       3, "22:00","23:30"),
+  _efMk("efs3",  "Madeon",                "Electronic",         "sherwood",    3, "22:30","00:00"),
+  _efMk("efs4",  "Shpongle",              "Psybient",           "sherwood",    3, "20:30","22:00"),
+  _efMk("efs5",  "Sam Gellaitry",         "Electronic",         "sherwood",    3, "19:00","20:00"),
+  _efMk("efs6",  "DJ Diesel b2b T-Pain",  "Bass",               "tripolee",    3, "21:30","23:00"),
+  _efMk("efs7",  "ISOxo",                 "Bass",               "tripolee",    3, "23:00","00:30"),
+  _efMk("efs8",  "Whethan",               "Electronic",         "tripolee",    3, "20:00","21:30"),
+  _efMk("efs9",  "Sippy",                 "Bass",               "tripolee",    3, "18:30","20:00"),
+  _efMk("efs10", "Steller",               "Bass",               "tripolee",    3, "17:00","18:30"),
+  _efMk("efs11", "Sullivan King",         "Metal Dubstep",      "hangar",      3, "22:00","23:30"),
+  _efMk("efs12", "Kai Wachi",             "Dubstep",            "hangar",      3, "20:30","22:00"),
+  _efMk("efs13", "Ravenscoon",            "Bass",               "hangar",      3, "23:30","01:00"),
+  _efMk("efs14", "CHMURA",                "Bass",               "hangar",      3, "19:00","20:30"),
+  _efMk("efs15", "RIOT",                  "Bass",               "hangar",      3, "17:30","19:00"),
+  _efMk("efs16", "EOTO",                  "Livetronica",        "observatory", 3, "22:00","23:30"),
+  _efMk("efs17", "Tourist",               "Electronic",         "observatory", 3, "20:30","21:45"),
+  _efMk("efs18", "Underscores",           "Hyperpop",           "observatory", 3, "19:00","20:00"),
+  _efMk("efs19", "Tiffany Day",           "Pop",                "observatory", 3, "17:30","18:30"),
+  _efMk("efs20", "Vandelux",              "Electronic",         "observatory", 3, "16:00","17:00"),
+  _efMk("efs21", "Rio Kosta",             "Indie",              "observatory", 3, "14:30","15:30"),
+  _efMk("efs22", "Channel Tres",          "House / Rap",        "carousel",    3, "23:00","00:30"),
+  _efMk("efs23", "Rochelle Jordan",       "R&B Electronic",     "carousel",    3, "20:00","21:00"),
+  _efMk("efs24", "The Sponges",           "Funk House",         "carousel",    3, "21:30","23:00"),
+  _efMk("efs25", "Avello",                "House",              "carousel",    3, "18:30","20:00"),
+  _efMk("efs26", "Capochino",             "House",              "carousel",    3, "17:00","18:30"),
+  _efMk("efs27", "HEYZ",                  "Techno",             "carousel",    3, "00:30","02:00"),
+  _efMk("efs28", "INJI",                  "Dance Pop",          "honeybee",    3, "19:00","20:00"),
+  _efMk("efs29", "Lyrah",                 "Electronic Pop",     "honeybee",    3, "17:30","18:30"),
+  _efMk("efs30", "Snow Wife",             "Pop",                "honeybee",    3, "20:30","21:30"),
+  _efMk("efs31", "Starjunk 95",           "Future Funk",        "honeybee",    3, "22:00","23:00"),
+  _efMk("efs32", "Cain Culto",            "Electronic",         "honeybee",    3, "16:00","17:00"),
+  _efMk("efs33", "COSTA",                 "Melodic House",      "honeybee",    3, "23:30","00:30"),
+  _efMk("efs34", "Jigitz",                "House",              "honeybee",    3, "14:30","15:30"),
+  // ── SUNDAY (day 4) ──
+  _efMk("efu1",  "ILLENIUM",              "Melodic Bass",       "ranch",       4, "22:30","00:00"),
+  _efMk("efu2",  "GRiZ",                  "Funk Bass",          "ranch",       4, "20:45","22:15"),
+  _efMk("efu3",  "Kaskade",               "House",              "sherwood",    4, "22:00","23:30"),
+  _efMk("efu4",  "Lane 8",                "Melodic House",      "sherwood",    4, "20:30","22:00"),
+  _efMk("efu5",  "Yaeji",                 "House / Pop",        "sherwood",    4, "19:00","20:15"),
+  _efMk("efu6",  "LSDREAM",               "Bass",               "tripolee",    4, "22:00","23:30"),
+  _efMk("efu7",  "Wooli",                 "Dubstep",            "tripolee",    4, "20:30","22:00"),
+  _efMk("efu8",  "Oppidan",               "UKG / Bass",         "tripolee",    4, "19:00","20:30"),
+  _efMk("efu9",  "Bob Moses",             "Electronic Live",    "observatory", 4, "20:30","21:45"),
+  _efMk("efu10", "Daniel Donato's Cosmic Country","Country Jam","observatory", 4, "17:30","19:00"),
+  _efMk("efu11", "Deadtronica",           "Livetronica",        "observatory", 4, "19:15","20:15"),
+  _efMk("efu12", "Jean Dawson",           "Alt Pop",            "observatory", 4, "16:00","17:00"),
+  _efMk("efu13", "Bombargo",              "Funk Pop",           "observatory", 4, "14:30","15:30"),
+  _efMk("efu14", "Underscores",           "Hyperpop",           "observatory", 4, "22:00","23:00"),
+  _efMk("efu15", "LIGHTCODE",             "Bass",               "hangar",      4, "20:00","21:30"),
+  _efMk("efu16", "Wax Monkey",            "Bass",               "hangar",      4, "18:30","20:00"),
+  _efMk("efu17", "Wes Mills",             "Bass",               "hangar",      4, "17:00","18:30"),
+  _efMk("efu18", "OMNOM",                 "House",              "carousel",    4, "21:00","22:30"),
+  _efMk("efu19", "MPH",                   "UK Garage",          "carousel",    4, "22:30","00:00"),
+  _efMk("efu20", "Mary Droppinz",         "House",              "carousel",    4, "19:30","21:00"),
+  _efMk("efu21", "Jigitz",                "House",              "carousel",    4, "18:00","19:30"),
+  _efMk("efu22", "Vandelux",              "Electronic",         "carousel",    4, "16:30","18:00"),
+  _efMk("efu23", "Vincent Antone",        "Electronic",         "carousel",    4, "15:00","16:30"),
+  _efMk("efu24", "QRION",                 "Melodic House",      "honeybee",    4, "20:00","21:00"),
+  _efMk("efu25", "Chris Luno",            "House",              "honeybee",    4, "18:30","19:30"),
+  _efMk("efu26", "Bricknasty",            "Funk / R&B",         "honeybee",    4, "15:30","16:30"),
+  _efMk("efu27", "Frost Children",        "Hyperpop",           "honeybee",    4, "17:00","18:00"),
+  _efMk("efu28", "Lyrah",                 "Electronic Pop",     "honeybee",    4, "21:30","22:30"),
+  _efMk("efu29", "River Tiber",           "R&B",                "honeybee",    4, "14:00","15:00"),
+];
+
+const EF_AMENITIES = [
+  { id: "efa1", type: "water",  label: "Hydration",       x: 40, y: 35 },
+  { id: "efa2", type: "water",  label: "Hydration",       x: 60, y: 65 },
+  { id: "efa3", type: "food",   label: "Forest Eats",     x: 48, y: 30 },
+  { id: "efa4", type: "food",   label: "Main St. Eats",   x: 35, y: 62 },
+  { id: "efa5", type: "med",    label: "Medical",         x: 52, y: 55 },
+  { id: "efa6", type: "toilet", label: "Restrooms",       x: 30, y: 40 },
+  { id: "efa7", type: "toilet", label: "Restrooms",       x: 68, y: 48 },
+  { id: "efa8", type: "info",   label: "Info & Lost+Found", x: 42, y: 78 },
+];
+
 // ── Multi-festival data switching ──────────────────────────────────
-// When the active festival changes, STAGES / ARTISTS / AMENITIES
-// resolve to the right data set. The rest of the app reads from
-// window.STAGES etc. and doesn't care which festival is active.
+// Registry-keyed data sets (v228, was a two-festival ternary): when the
+// active festival changes, STAGES / ARTISTS / AMENITIES / FESTIVAL_CONFIG
+// / DAYS resolve to the right set. The rest of the app reads from
+// window.STAGES etc. and doesn't care which festival is active. Adding a
+// festival = one entry here + its data above + a registry config.
+// Re-evaluate CMS-hosted data at festival #5 (see registry note).
+// NOTE: _DATA_SETS is also exported on window — spotify.jsx's
+// _artistsForFestival reads it so ARCHIVED festivals resolve their
+// ORIGINAL lineups (bare ARTISTS here gets overwritten with the active
+// set by the Object.assign below, so it can't serve archives).
+const _regConfig = (id) => FESTIVALS_REGISTRY.find(f => f.config.id === id).config;
+const _DATA_SETS = {
+  "edc-lv-2026":          { stages: STAGES,     artists: ARTISTS,     amenities: AMENITIES,     config: FESTIVAL_CONFIG },
+  "acl-2026":             { stages: ACL_STAGES, artists: ACL_ARTISTS, amenities: ACL_AMENITIES, config: _regConfig("acl-2026") },
+  "electric-forest-2026": { stages: EF_STAGES,  artists: EF_ARTISTS,  amenities: EF_AMENITIES,  config: _regConfig("electric-forest-2026") },
+};
 const _activeId = getActiveFestivalId();
-const _isACL = _activeId === "acl-2026";
-const _STAGES    = _isACL ? ACL_STAGES    : STAGES;
-const _ARTISTS   = _isACL ? ACL_ARTISTS   : ARTISTS;
-const _AMENITIES = _isACL ? ACL_AMENITIES : AMENITIES;
-const _FESTIVAL_CONFIG = _isACL
-  ? FESTIVALS_REGISTRY.find(f => f.config.id === "acl-2026").config
-  : FESTIVAL_CONFIG;
+const _active = _DATA_SETS[_activeId] || _DATA_SETS["edc-lv-2026"];
 
 Object.assign(window, {
-  FESTIVAL: _FESTIVAL_CONFIG, FESTIVAL_CONFIG: _FESTIVAL_CONFIG,
-  STAGES: _STAGES, AMENITIES: _AMENITIES, AVATAR_START, FRIENDS, ARTISTS: _ARTISTS,
-  DAYS, NOW, ALERTS, ESSENTIALS, fmt12,
+  FESTIVAL: _active.config, FESTIVAL_CONFIG: _active.config,
+  STAGES: _active.stages, AMENITIES: _active.amenities, AVATAR_START, FRIENDS, ARTISTS: _active.artists,
+  // DAYS must follow the ACTIVE festival (Forest runs 4 days Thu–Sun;
+  // EDC/ACL run 3 Fri–Sun). The top-level DAYS const was derived from the
+  // EDC config at eval time and showed EDC dates on ACL — re-derive here.
+  DAYS: _daysFor(_active.config),
+  NOW, ALERTS, ESSENTIALS, fmt12,
   FESTIVALS_REGISTRY, getActiveFestivalId, setActiveFestivalAndReload,
+  _DATA_SETS,
 });
