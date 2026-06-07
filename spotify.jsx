@@ -769,44 +769,81 @@ function PackListCard() {
 }
 
 // Me+ / Plenty of Fish-modeled badges section. Festival milestones
-// derived from state.saved + ARTISTS data, no new infra. Earned badges
-// render full-color; locked stay greyed out with their unlock criteria
-// visible so users know what to chase.
-function BadgesSection({ state }) {
-  const saved = state.saved || [];
-  const savedArtists = saved
-    .map(id => window.ARTISTS?.find(a => a.id === id))
+// derived from state.saved + the ACTIVE festival's ARTISTS/STAGES data.
+// Earned badges render full-color; locked stay greyed out with their
+// unlock criteria visible so users know what to chase.
+//
+// v227: badge defs are festival-aware. Core badges derive their numbers
+// from the active festival's data ("All N Stages"); flavored stage /
+// special badges come from a per-festival pack below — ACL was showing
+// EDC content (Quantum Valley, Sunrise Survivor, 30 Years Crew) because
+// the old list hardcoded EDC stage ids + lore.
+const _FESTIVAL_BADGE_PACKS = {
+  "edc-lv-2026": (ctx) => [
+    { id: "sunrise",       icon: "☀", name: "Sunrise Survivor", desc: "Save a set running past 2 AM",
+      earned: ctx.savedArtists.some(a => (window.toNightMin?.(a.start) || 0) >= 18 * 60) },
+    { id: "trance-fam",    icon: "△", name: "Trance Family",    desc: "Save 3+ Quantum Valley sets",        earned: ctx.byStage("quantum") >= 3 },
+    { id: "house-heads",   icon: "⬡", name: "House Heads HQ",   desc: "Save 3+ Neon Garden sets",           earned: ctx.byStage("neon") >= 3 },
+    { id: "techno-vault",  icon: "▣", name: "Techno Vault",     desc: "Save 3+ Circuit Grounds sets",       earned: ctx.byStage("circuit") >= 3 },
+    { id: "bass-faithful", icon: "◆", name: "Bass Faithful",    desc: "Save 3+ Basspod or Wasteland sets",  earned: (ctx.byStage("basspod") + ctx.byStage("waste")) >= 3 },
+    { id: "thirty-years",  icon: "✺", name: "30 Years Crew",    desc: "Part of EDC's 30th year",            earned: true },
+  ],
+  "acl-2026": (ctx) => [
+    { id: "closing-time",   icon: "☾", name: "Closing Time",     desc: "Save a headline-hour set (8 PM+)",
+      earned: ctx.savedArtists.some(a => (window.toNightMin?.(a.start) || 0) >= 12 * 60) },
+    { id: "amex-front",     icon: "△", name: "Amex Front Row",   desc: "Save 3+ American Express sets",     earned: ctx.byStage("amex") >= 3 },
+    { id: "honda-faithful", icon: "⬡", name: "Honda Faithful",   desc: "Save 3+ Honda Stage sets",          earned: ctx.byStage("honda") >= 3 },
+    { id: "springs-local",  icon: "▣", name: "Springs Local",    desc: "Save 3+ Barton Springs or Bonus Tracks sets",
+      earned: (ctx.byStage("barton") + ctx.byStage("bonus")) >= 3 },
+    { id: "three-day",      icon: "◆", name: "Three-Day Texan",  desc: "Save a set on all 3 days",
+      earned: new Set(ctx.savedArtists.map(a => a.day)).size >= 3 },
+    { id: "zilker-crew",    icon: "✺", name: "Zilker Crew",      desc: "Two weekends in the park",           earned: true },
+  ],
+};
+
+// Single source of truth for badge defs + earned state. BadgesSection AND
+// the Me-grid earned count both call this — the old separate mirror in
+// MeScreen desynced whenever the defs changed.
+function _computeBadges(saved) {
+  const ARTISTS = window.ARTISTS || [];
+  const STAGES  = window.STAGES || [];
+  const savedArtists = (saved || [])
+    .map(id => ARTISTS.find(a => a.id === id))
     .filter(Boolean);
   const stageCount = new Set(savedArtists.map(a => a.stage)).size;
   const headlinerCount = savedArtists.filter(a => a.tier === 3).length;
   const byStage = (stageId) => savedArtists.filter(a => a.stage === stageId).length;
-  // Hours of music saved across all nights
+  // Hours of music saved across the run
   const totalMin = savedArtists.reduce((acc, a) => {
     const s = window.toNightMin?.(a.start) || 0;
     const e = window.toNightMin?.(a.end) || 0;
     return acc + Math.max(0, e - s);
   }, 0);
-  const hasSunriseSet = savedArtists.some(a => {
-    const s = window.toNightMin?.(a.start) || 0;
-    return s >= 18 * 60; // 02:00+ in night-min space = sunrise-adjacent
-  });
+  const nStages = STAGES.length || 9;
 
-  const BADGES = [
-    { id: "first-save",    icon: "✦", name: "First Save",       desc: "Save your first set",                earned: savedArtists.length >= 1 },
-    { id: "all-stages",    icon: "◉", name: "All 9 Stages",     desc: "Save a set from every stage",        earned: stageCount >= 9 },
-    { id: "five-stages",   icon: "◍", name: "Five Stages",      desc: "Save sets across 5+ stages",         earned: stageCount >= 5 },
-    { id: "headliner",     icon: "★", name: "Headliner Hunter", desc: "Save 3+ tier-3 headliner sets",      earned: headlinerCount >= 3 },
-    { id: "sunrise",       icon: "☀", name: "Sunrise Survivor", desc: "Save a set running past 2 AM",       earned: hasSunriseSet },
-    { id: "ten-deep",      icon: "▤", name: "Ten Deep",         desc: "10+ saved sets across the run",      earned: savedArtists.length >= 10 },
-    { id: "twenty-deep",   icon: "▥", name: "Twenty Deep",      desc: "20+ saved sets across the run",      earned: savedArtists.length >= 20 },
-    { id: "trance-fam",    icon: "△", name: "Trance Family",    desc: "Save 3+ Quantum Valley sets",        earned: byStage("quantum") >= 3 },
-    { id: "house-heads",   icon: "⬡", name: "House Heads HQ",   desc: "Save 3+ Neon Garden sets",           earned: byStage("neon") >= 3 },
-    { id: "techno-vault",  icon: "▣", name: "Techno Vault",     desc: "Save 3+ Circuit Grounds sets",       earned: byStage("circuit") >= 3 },
-    { id: "bass-faithful", icon: "◆", name: "Bass Faithful",    desc: "Save 3+ Basspod or Wasteland sets",  earned: (byStage("basspod") + byStage("waste")) >= 3 },
-    { id: "marathon",      icon: "⌬", name: "Marathon",         desc: "6+ hours of saved music",            earned: totalMin >= 360 },
-    { id: "thirty-years",  icon: "✺", name: "30 Years Crew",    desc: "Plursky veteran crew",     earned: true },
+  const core = [
+    { id: "first-save",  icon: "✦", name: "First Save",            desc: "Save your first set",           earned: savedArtists.length >= 1 },
+    { id: "all-stages",  icon: "◉", name: `All ${nStages} Stages`, desc: "Save a set from every stage",   earned: stageCount >= nStages },
+    { id: "five-stages", icon: "◍", name: "Five Stages",           desc: "Save sets across 5+ stages",    earned: stageCount >= 5 },
+    { id: "headliner",   icon: "★", name: "Headliner Hunter",      desc: "Save 3+ headliner sets",        earned: headlinerCount >= 3 },
+    { id: "ten-deep",    icon: "▤", name: "Ten Deep",              desc: "10+ saved sets across the run", earned: savedArtists.length >= 10 },
+    { id: "twenty-deep", icon: "▥", name: "Twenty Deep",           desc: "20+ saved sets across the run", earned: savedArtists.length >= 20 },
+    { id: "marathon",    icon: "⌬", name: "Marathon",              desc: "6+ hours of saved music",       earned: totalMin >= 360 },
   ];
+  const ctx = { savedArtists, byStage, stageCount, headlinerCount, totalMin };
+  const pack = _FESTIVAL_BADGE_PACKS[window.FESTIVAL_CONFIG?.id];
+  // Future festival without a curated pack → core + a main-stage badge
+  const flavored = pack ? pack(ctx)
+    : (window.FESTIVAL_CONFIG?.mainStageId ? [{
+        id: "main-stage", icon: "◆", name: "Main Stage Regular",
+        desc: "Save 3+ main-stage sets",
+        earned: byStage(window.FESTIVAL_CONFIG.mainStageId) >= 3,
+      }] : []);
+  return [...core, ...flavored];
+}
 
+function BadgesSection({ state }) {
+  const BADGES = _computeBadges(state.saved);
   const earned = BADGES.filter(b => b.earned);
   const locked = BADGES.filter(b => !b.earned);
 
@@ -5436,26 +5473,13 @@ function MeScreen({ state, setState }) {
   }, []);
   const daysHere = NOW.day || 0;
   const savedCount = state.saved.length;
-  // Earned-badge count for the 4-card grid badge — cheap derivation mirroring
-  // BadgesSection's logic. Always at least 1 (the "30 Years Crew" auto-earn).
-  const badgesEarnedCount = React.useMemo(() => {
-    const savedArtists = state.saved.map(id => ARTISTS.find(x => x.id === id)).filter(Boolean);
-    const stages = new Set(savedArtists.map(a => a.stage));
-    const heads  = savedArtists.filter(a => a.tier === 3).length;
-    const byStg  = (id) => savedArtists.filter(a => a.stage === id).length;
-    let n = 1; // 30 Years Crew always
-    if (savedArtists.length >= 1) n++;
-    if (savedArtists.length >= 10) n++;
-    if (savedArtists.length >= 20) n++;
-    if (stages.size >= 5) n++;
-    if (stages.size >= 9) n++;
-    if (heads >= 3) n++;
-    if (byStg("quantum") >= 3) n++;
-    if (byStg("neon") >= 3) n++;
-    if (byStg("circuit") >= 3) n++;
-    if (byStg("basspod") + byStg("waste") >= 3) n++;
-    return n;
-  }, [state.saved]);
+  // Earned-badge count for the 4-card grid — same source of truth as
+  // BadgesSection (v227: the old hand-mirrored copy here desynced and
+  // carried EDC-only stage ids onto ACL).
+  const badgesEarnedCount = React.useMemo(
+    () => _computeBadges(state.saved).filter(b => b.earned).length,
+    [state.saved]
+  );
 
   // Tagline — "DAY N OF EDC LV 2026" once the festival is live, otherwise
   // a pre-festival countdown line with the date range.
@@ -5660,9 +5684,9 @@ function MeScreen({ state, setState }) {
               <HistoryRecordsSection state={state} setState={setState} />
               <div style={{ marginTop: 14 }}/>
               <div id="plursky-badges-anchor"/>
-              {_mePostFest
-                ? <Collapsible title="🏅 BADGES"><BadgesSection state={state} /></Collapsible>
-                : <BadgesSection state={state} />}
+              {/* v227: always collapsed by default — 13 rows of badges per
+                  festival is a wall; the grid card already shows the count */}
+              <Collapsible title="🏅 BADGES"><BadgesSection state={state} /></Collapsible>
               <div style={{ marginTop: 14 }}/>
               <button
                 onClick={() => setState({ ...state, tab: "spotify" })}
