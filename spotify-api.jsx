@@ -58,8 +58,22 @@ async function _ensureMusicKitConfigured() {
   return MusicKit.getInstance();
 }
 
+// Apple's MusicKit web-authorize sheet can only hand the user token back to
+// an origin registered on the MusicKit identifier (Media ID). `localhost`
+// (dev server, iOS Simulator, Capacitor WKWebView) is NOT registrable, so the
+// consent sheet loads but Allow dead-ends — it never posts back. Short-circuit
+// with a clear message BEFORE opening the sheet instead of stranding the user.
+const AM_AUTHORIZED_HOSTS = ["plursky.com", "www.plursky.com"];
+function _appleMusicOriginOk() {
+  try { return AM_AUTHORIZED_HOSTS.includes(location.hostname); }
+  catch { return false; }
+}
+
 async function connectAppleMusic() {
   if (!APPLE_DEV_TOKEN) return { error: "not_configured" };
+  if (!_appleMusicOriginOk()) {
+    return { error: "Apple Music connect only works on plursky.com. Open the live site (not localhost) and tap CONNECT there." };
+  }
   try {
     const music = await _ensureMusicKitConfigured();
     await music.authorize();

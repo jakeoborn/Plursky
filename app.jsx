@@ -117,7 +117,7 @@ function OnboardingModal({ onDone, setState, state }) {
     {
       kicker: "STEP 2 OF 3",
       title: <>Match the <span style={{ fontStyle: "italic", color: "var(--ember)" }}>lineup</span> to your Spotify</>,
-      body: "Connect Spotify and we'll mark every artist you already love across all 175 sets, plus surface deep-cut discoveries you don't know yet.",
+      body: `Connect Spotify and we'll mark every artist you already love across all ${ARTISTS.length} sets, plus surface deep-cut discoveries you don't know yet.`,
       cta: state.spotifyConnected
         ? { label: "✓ ALREADY CONNECTED — CONTINUE", onClick: next }
         : { label: "CONNECT SPOTIFY", onClick: () => startSpotifyAuth() },
@@ -818,7 +818,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v228",
+        version: "v229",
       }));
     } catch {}
   }
@@ -851,7 +851,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
-          PLURSKY · v228
+          PLURSKY · v229
         </div>
       </div>
     );
