@@ -280,15 +280,65 @@ const FESTIVALS_REGISTRY = [
   // markdown in repo, etc.) adds load-order complexity for marginal
   // benefit at the current scale. Re-evaluate at festival #5.
   {
+    // ── EDC Orlando 2026 — Tinker Field, Orlando FL ──
+    // ⛔ GATE (revival wave 2026-08-22): full data set (EDCO_STAGES /
+    // EDCO_ARTISTS / EDCO_AMENITIES) is staged below; DATES CORRECTED vs
+    // the June preview stub, which carried "Nov 13–15, 2026" — the
+    // official dates per the Insomniac press release (2026-06-23) and
+    // orlando.edc.com are NOV 6–8, 2026. Day-by-day lineup is REAL
+    // (109 acts, official site day filters); set times, per-artist stage
+    // assignments, and the official 2026 map are NOT published yet
+    // (checked 2026-08-22; Insomniac drops them in the EDC app ~1-2
+    // weeks out). Flip `available: true` ONLY after the flip session
+    // replaces times/stages/map + recalibrates gpsAnchors.
     config: {
       id:        "edc-orlando-2026",
       name:      "EDC Orlando 2026",
       shortName: "EDC Orlando",
       brand:     "EDC",
-      tagline:   "Three nights under the kinetic sky",
+      tagline:   "Three nights under the kinetic Florida sky",
       location:  "Tinker Field · Orlando",
-      dates:     "Nov 13–15, 2026",
+      locationShort: "Tinker Field",
+      dates:     "Nov 6–8, 2026",
       year:      2026,
+      // NOTE: Nov 6-8 is AFTER US DST ends (Nov 1) — Orlando is EST (UTC-5).
+      startMs: Date.UTC(2026, 10, 6, 21, 0, 0), // Nov 6 16:00 EST gates
+      endMs:   Date.UTC(2026, 10, 9, 5, 0, 0),  // Nov 9 00:00 EST Sunday close
+      tz:      "America/New_York",
+      tzAbbr:  "EST",
+      utcOffsetHours: -5,
+      dayDates: {
+        1: { y: 2026, m: 10, d: 6, name: "Friday",   short: "FRI", midnightUtc: Date.UTC(2026, 10, 6, 5, 0, 0) },
+        2: { y: 2026, m: 10, d: 7, name: "Saturday", short: "SAT", midnightUtc: Date.UTC(2026, 10, 7, 5, 0, 0) },
+        3: { y: 2026, m: 10, d: 8, name: "Sunday",   short: "SUN", midnightUtc: Date.UTC(2026, 10, 8, 5, 0, 0) },
+      },
+      // Early-Nov Orlando approximates (theme guidance only): sunrise
+      // ~06:38 / sunset ~17:35 EST, drifting ~1 min/day. Not load-bearing.
+      sunTimes: {
+        1: { rise: "06:38", set: "17:35" },
+        2: { rise: "06:39", set: "17:34" },
+        3: { rise: "06:40", set: "17:33" },
+      },
+      // ⚠ PROVISIONAL venue centroid (Tinker Field Plaza, Nominatim
+      // 2026-08-22). Recalibrate against the official 2026 map + satellite.
+      gps: { lat: 28.5382, lng: -81.4053, onSiteRadiusMi: 0.6 },
+      // ⚠ ALL anchors PROVISIONAL (venue centroid offsets only).
+      gpsAnchors: [
+        { stageId: "kinetic", lat: 28.53890, lng: -81.40450 },
+        { stageId: "circuit", lat: 28.53760, lng: -81.40630 },
+        { stageId: "neon",    lat: 28.53800, lng: -81.40320 },
+        { stageId: "stereo",  lat: 28.53920, lng: -81.40610 },
+        { stageId: "bacardi", lat: 28.53720, lng: -81.40400 },
+      ],
+      mainStageId: "kinetic",
+      // edco-tinker-2026.jpg = PROVISIONAL generated abstract overlay
+      // (ImageMagick plasma, not traced). Replace with the processed
+      // official 2026 map when it drops.
+      mapImage: "edco-tinker-2026.jpg",
+      mapStyle: "image-overlay",
+      mapTheme: "park",
+      weatherEndpoint: "https://api.weather.gov/points/28.54,-81.41",
+      setTimesProvisional: true,
     },
     available: false,
     accent:    "#22c55e",
@@ -1259,11 +1309,163 @@ const EF_AMENITIES = [
 // _artistsForFestival reads it so ARCHIVED festivals resolve their
 // ORIGINAL lineups (bare ARTISTS here gets overwritten with the active
 // set by the Object.assign below, so it can't serve archives).
+
+// ══════════════════════ EDC ORLANDO 2026 (revival scaffold 2026-08-22) ══════
+// Lineup + DAY SPLITS are REAL (official orlando.edc.com/lineup day
+// filters, 109 acts; audited vs Insomniac press release 2026-06-23).
+// Set times + per-artist stage assignments + official 2026 map are NOT
+// published — every artist sits on stage "tba" with placeholder
+// 12:00-13:00 times until the flip session. Stage names verified from
+// orlando.edc.com/experience/stages (incl. 5th stage CASA BACARDÍ).
+
+const EDCO_STAGES = [
+  { id: "kinetic", name: "kineticFIELD",   short: "KINETIC",  color: "#f97316", x: 50, y: 24, size: 1.7, desc: "Main stage",               vibe: "Main Event",      vibeNote: "Headliners under the electric sky.",                 peak: "18:00–00:00" },
+  { id: "circuit", name: "circuitGROUNDS", short: "CIRCUIT",  color: "#38bdf8", x: 26, y: 44, size: 1.4, desc: "Epic-melody big room",     vibe: "Big Melodies",    vibeNote: "Trance, melodic bass, anthem energy.",               peak: "16:00–00:00" },
+  { id: "neon",    name: "neonGARDEN",     short: "NEON",     color: "#a855f7", x: 74, y: 44, size: 1.3, desc: "Factory 93 home base",     vibe: "House & Techno",  vibeNote: "Factory 93 takeover territory, four-on-the-floor.",  peak: "15:00–00:00" },
+  { id: "stereo",  name: "stereoBLOOM",    short: "STEREO",   color: "#f43f5e", x: 36, y: 70, size: 1.1, desc: "Insomniac Records stage",  vibe: "Label Sounds",    vibeNote: "Insomniac Records + Dreamstate hosting.",            peak: "14:00–23:00" },
+  { id: "bacardi", name: "CASA BACARDÍ",   short: "BACARDÍ",  color: "#22c55e", x: 64, y: 70, size: 0.9, desc: "Lounge stage",             vibe: "Lounge Sessions", vibeNote: "Day-party energy under the palms.",                  peak: "13:00–20:00" },
+  { id: "tba",    name: "Schedule TBA",    short: "TBA",      color: "#9ca3af", x: 50, y: 50, size: 0.1, desc: "PROVISIONAL: stage assignments drop with the official schedule", vibe: "Unscheduled", vibeNote: "Every artist sits here until the official schedule assigns stages + times.", peak: "—" },
+];
+
+const _edcoMk = (id, name, genre, day, start, end) => {
+  return { id, name, genre, country: "—", stage: "tba", day, start, end, tier: 1,
+    img: `linear-gradient(135deg, #22c55e, #04170c)`,
+    bio: "Playing EDC Orlando 2026. Day is official (orlando.edc.com day filters); set time + stage are placeholders until the official schedule drops in the Insomniac app (~1-2 weeks out)." };
+};
+
+// Official day-by-day lineup (orlando.edc.com/lineup day filters, audited
+// 2026-08-22: Fri 36 / Sat 36 / Sun 37 = 109 acts). id prefix:
+// ecf Fri Nov 6 / ecs Sat Nov 7 / ecu Sun Nov 8. Genre tags agent-assigned
+// for the press-release groupings, default "Electronic" otherwise.
+const EDCO_ARTISTS = [
+  _edcoMk("ecf1", "AAT",                                      "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf2", "Adventure Club (Sunset Set)",              "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf3", "Afrojack",                                 "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf4", "Alesso (Sunset Set)",                      "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf5", "Azzecca",                                  "House", 1, "12:00","13:00"),
+  _edcoMk("ecf6", "Benda B2B Vastive",                        "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf7", "Big Florida",                              "Bass", 1, "12:00","13:00"),
+  _edcoMk("ecf8", "Bou B2B Kanine",                           "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf9", "Brunello (Sunset Set)",                    "House", 1, "12:00","13:00"),
+  _edcoMk("ecf10", "Bullet Tooth B2B Sidney Charles",          "Techno", 1, "12:00","13:00"),
+  _edcoMk("ecf11", "Chris Lorenzo",                            "House", 1, "12:00","13:00"),
+  _edcoMk("ecf12", "David Guetta",                             "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf13", "HAYLA",                                    "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf14", "IDEMI",                                    "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf15", "Inbal",                                    "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf16", "Interplanetary Criminal",                  "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf17", "JOA",                                      "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf18", "Josh Baker",                               "House", 1, "12:00","13:00"),
+  _edcoMk("ecf19", "Joshwa",                                   "House", 1, "12:00","13:00"),
+  _edcoMk("ecf20", "Kompany",                                  "Bass", 1, "12:00","13:00"),
+  _edcoMk("ecf21", "KREAM",                                    "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf22", "Level Up",                                 "Bass", 1, "12:00","13:00"),
+  _edcoMk("ecf23", "Levity",                                   "Bass", 1, "12:00","13:00"),
+  _edcoMk("ecf24", "MALUGI (Sunset Set)",                      "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf25", "Matthias",                                 "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf26", "Mau P",                                    "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf27", "MPH",                                      "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf28", "Omar+",                                    "House", 1, "12:00","13:00"),
+  _edcoMk("ecf29", "Pegassi",                                  "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf30", "Prospa B2B Josh Baker",                    "House", 1, "12:00","13:00"),
+  _edcoMk("ecf31", "Prospa",                                   "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf32", "RAJE",                                     "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf33", "Sloth",                                    "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf34", "Whethan",                                  "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf35", "Wooli",                                    "Bass", 1, "12:00","13:00"),
+  _edcoMk("ecf36", "Zack Martino",                             "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecs1", "Aaron Hibell",                             "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs2", "ACRAZE B2B CID",                           "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs3", "Alan Walker (Sunset Set)",                 "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs4", "Alison Wonderland",                        "Bass", 2, "12:00","13:00"),
+  _edcoMk("ecs5", "ALLEYCVT",                                 "Bass", 2, "12:00","13:00"),
+  _edcoMk("ecs6", "Alves",                                    "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs7", "AVELLO",                                   "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs8", "AYYBO",                                    "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs9", "ChaseWest",                                "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs10", "Dennis Cruz",                              "House", 2, "12:00","13:00"),
+  _edcoMk("ecs11", "Devault (Sunset Set)",                     "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs12", "Discip",                                   "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs13", "Disco Lines",                              "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs14", "Fallon",                                   "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs15", "Franky Rizardo",                           "House", 2, "12:00","13:00"),
+  _edcoMk("ecs16", "Fury with MC Dino",                        "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs17", "Gabss",                                    "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs18", "Greg 99",                                  "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs19", "Jkyl & Hyde",                              "Bass", 2, "12:00","13:00"),
+  _edcoMk("ecs20", "Kaskade",                                  "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs21", "KinAhau",                                  "House", 2, "12:00","13:00"),
+  _edcoMk("ecs22", "LAYZ",                                     "Bass", 2, "12:00","13:00"),
+  _edcoMk("ecs23", "MADVKTM",                                  "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs24", "Mai Iachetti",                             "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs25", "Max Dean, Luke Dean",                      "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs26", "Me n ü",                                   "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs27", "Miguelle & Tons",                          "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs28", "Monoky",                                   "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs29", "Nico Moreno",                              "Techno", 2, "12:00","13:00"),
+  _edcoMk("ecs30", "Ray Volpe",                                "Bass", 2, "12:00","13:00"),
+  _edcoMk("ecs31", "Roddy Lima",                               "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs32", "Rossi. (Sunset Set)",                      "House", 2, "12:00","13:00"),
+  _edcoMk("ecs33", "Skull Machine (Black Tiger Sex Machine x Kai Wachi)", "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs34", "Steve Aoki",                               "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs35", "Subsonic",                                 "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs36", "Twinsick",                                 "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecu1", "A Little Sound",                           "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu2", "Adrián Mills",                             "Techno", 3, "12:00","13:00"),
+  _edcoMk("ecu3", "Alok",                                     "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu4", "AR/CO",                                    "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu5", "ATLiens",                                  "Bass", 3, "12:00","13:00"),
+  _edcoMk("ecu6", "Boogie T",                                 "Bass", 3, "12:00","13:00"),
+  _edcoMk("ecu7", "Boys Noize B2B Brutalismus 3000",          "Techno", 3, "12:00","13:00"),
+  _edcoMk("ecu8", "Chef Boyarbeatz",                          "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu9", "CØNTRA",                                   "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu10", "Deorro B2B DJ Diesel",                     "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu11", "Discovery Project",                        "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu12", "ESSE",                                     "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu13", "Hardwell",                                 "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu14", "Holy Priest",                              "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu15", "I Hate Models",                            "Techno", 3, "12:00","13:00"),
+  _edcoMk("ecu16", "Ian Asher",                                "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu17", "Jessica Audiffred",                        "Bass", 3, "12:00","13:00"),
+  _edcoMk("ecu18", "Kaivon",                                   "Bass", 3, "12:00","13:00"),
+  _edcoMk("ecu19", "KI/KI",                                    "Techno", 3, "12:00","13:00"),
+  _edcoMk("ecu20", "Klangkuenstler",                           "Techno", 3, "12:00","13:00"),
+  _edcoMk("ecu21", "Know Good",                                "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu22", "M81!",                                     "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu23", "Maddix",                                   "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu24", "Marlon Hoffstadt (Sunset Set)",            "Techno", 3, "12:00","13:00"),
+  _edcoMk("ecu25", "Martin Garrix",                            "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu26", "Meduza",                                   "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu27", "Of The Trees (Sunset Set)",                "Bass", 3, "12:00","13:00"),
+  _edcoMk("ecu28", "phrva",                                    "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu29", "Ravenscoon",                               "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu30", "San Holo (Wholesome Riddim Set)",          "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu31", "SHDW",                                     "Techno", 3, "12:00","13:00"),
+  _edcoMk("ecu32", "Sippy",                                    "Bass", 3, "12:00","13:00"),
+  _edcoMk("ecu33", "SLANDER (Sunset Set)",                     "Bass", 3, "12:00","13:00"),
+  _edcoMk("ecu34", "Taiki Nulight",                            "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu35", "TroyBoi",                                  "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu36", "Ultrathem",                                "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu37", "And the most important headliner of all You", "Electronic", 3, "12:00","13:00"),
+];
+
+const EDCO_AMENITIES = [
+  { id: "eoa1", type: "water",  label: "Hydration",            x: 44, y: 30 },
+  { id: "eoa2", type: "water",  label: "Hydration",            x: 60, y: 62 },
+  { id: "eoa3", type: "food",   label: "Vendor Village",       x: 50, y: 50 },
+  { id: "eoa4", type: "food",   label: "Westside Eats",        x: 22, y: 58 },
+  { id: "eoa5", type: "med",    label: "Medical",              x: 54, y: 40 },
+  { id: "eoa6", type: "toilet", label: "Restrooms",            x: 30, y: 40 },
+  { id: "eoa7", type: "toilet", label: "Restrooms",            x: 70, y: 56 },
+  { id: "eoa8", type: "info",   label: "Info & Guest Services", x: 48, y: 18 },
+];
+
 const _regConfig = (id) => FESTIVALS_REGISTRY.find(f => f.config.id === id).config;
 const _DATA_SETS = {
   "edc-lv-2026":          { stages: STAGES,     artists: ARTISTS,     amenities: AMENITIES,     config: FESTIVAL_CONFIG },
   "acl-2026":             { stages: ACL_STAGES, artists: ACL_ARTISTS, amenities: ACL_AMENITIES, config: _regConfig("acl-2026") },
   "electric-forest-2026": { stages: EF_STAGES,  artists: EF_ARTISTS,  amenities: EF_AMENITIES,  config: _regConfig("electric-forest-2026") },
+  "edc-orlando-2026":      { stages: EDCO_STAGES, artists: EDCO_ARTISTS, amenities: EDCO_AMENITIES, config: _regConfig("edc-orlando-2026") },
 };
 const _activeId = getActiveFestivalId();
 const _active = _DATA_SETS[_activeId] || _DATA_SETS["edc-lv-2026"];
