@@ -1,0 +1,21 @@
+name: sanity
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  sanity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install
+        run: npm ci --ignore-scripts
+      - name: Build (scripts/build.mjs copy step)
+        run: node scripts/build.mjs
+      - name: JSX parse gate (repo's own TypeScript; syntax only, no typecheck)
+        run: npx tsc --noEmit --allowJs --checkJs false --jsx preserve --skipLibCheck $(git ls-files '*.jsx' ':!ios/**')
