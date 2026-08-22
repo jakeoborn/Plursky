@@ -1787,6 +1787,7 @@ const _TAG_SOURCE_LABEL = {
   "exif-night-only":    { text: "EXIF NIGHT · PICK A SET", tone: "warn" },
   "filetime-night-only":{ text: "FILE TIME · PICK A SET",  tone: "warn" },
   off_stage:            { text: "📍 BETWEEN SETS",    tone: "info" },
+  "stage-neighbor":    { text: "NEARBY SET · VERIFY",   tone: "warn" },
   fallback:             { text: "FALLBACK · RETAG",  tone: "warn" },
   manual:               { text: "MANUAL",            tone: "ok" },
 };
@@ -4557,6 +4558,7 @@ function MemoriesScreen({ state, setState }) {
         const hadTrustedMeta = !!meta?.date && meta.takenAtSource !== "file-lastModified" && meta.takenAtSource !== "none";
         const tagSource =
           recovered ? "archive-recovered" :
+          matched.reason === "stage_time_proximity" ? "stage-neighbor" :
           matched.reason === "off_stage"  ? "off_stage" :
           matched.artistId && hadExifDate ? "exif" :
           matched.artistId && /^video-/.test(meta?.takenAtSource || "") ? "video-metadata" :

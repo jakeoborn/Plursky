@@ -464,7 +464,11 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds) {
     .filter(Boolean)
     .map(a => { const w = setWindow(a); return w ? { a, ...w, score: attendedSet.has(a.id) ? 1000 : 500 } : null; })
     .filter(Boolean)
-    .filter(x => photoMs >= x.startMs - 5 * 60000 && photoMs <= x.endMs + 10 * 60000);
+    // Trailing tolerance: attended sets get +20 (you being THERE is ground
+    // truth; film often continues a few min into the changeover), saved keeps
+    // the legacy +10. (2026-08-22 founder field report at EDC.)
+    .filter(x => photoMs >= x.startMs - 5 * 60000 &&
+                 photoMs <= x.endMs + (attendedSet.has(x.a.id) ? 20 : 10) * 60000);
   if (priorHits.length) {
     // Highest tier first (attended > saved); tightest-fit as tiebreak.
     priorHits.sort((x, y) => (y.score - x.score) || ((x.endMs - x.startMs) - (y.endMs - y.startMs)));
@@ -516,6 +520,38 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds) {
     }
   }
   if (candidates.length === 0) {
+    // CHANGEOVER-GAP RESCUE (founder field report, EDC 2026-08-22): a photo
+    // taken while stages switch acts used to land untagged ("no artist at
+    // time") even when GPS pins the user INSIDE a stage's footprint and the
+    // 20-minute setlist says exactly who was up last/down next. If GPS is
+    // within 120m of a stage anchor, tag that stage's temporally-nearest set
+    // when it's within 60 min — flagged `ambiguous` so the card shows the
+    // FIX TAG chip instead of pretending certainty.
+    if (lat != null && lng != null) {
+      const anchors = window.FESTIVAL_CONFIG?.gpsAnchors || [];
+      let nearStage = null, nearStageM = Infinity;
+      for (const g of anchors) {
+        const m = _haversineMeters(lat, lng, g.lat, g.lng);
+        if (m < nearStageM) { nearStageM = m; nearStage = g.stageId; }
+      }
+      if (nearStage && nearStageM <= 120) {
+        let best = null, bestGap = Infinity;
+        for (const a of (window.ARTISTS || [])) {
+          if (a.day !== night || a.stage !== nearStage) continue;
+          const [sh, sm] = a.start.split(":").map(Number);
+          const [eh, em] = a.end.split(":").map(Number);
+          const startMin = (sh < 8 ? sh + 24 : sh) * 60 + sm;
+          const endMin   = (eh < 8 ? eh + 24 : eh) * 60 + em;
+          const gap = adjustedMin < startMin ? startMin - adjustedMin : (adjustedMin > endMin ? adjustedMin - endMin : 0);
+          if (gap > 0 && gap < bestGap) { bestGap = gap; best = a; }
+        }
+        if (best && bestGap <= 60) {
+          return { artistId: best.id, night, reason: "stage_time_proximity",
+                   ambiguous: true, alternatives: undefined,
+                   proximity: { stageId: nearStage, meters: Math.round(nearStageM), gapMin: bestGap } };
+        }
+      }
+    }
     // We know the night but no specific artist — return the night so the
     // photo still lands in the right bucket (e.g. between sets, in the
     // shuttle line, etc.).
