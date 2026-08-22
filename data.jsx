@@ -269,6 +269,90 @@ const FESTIVALS_REGISTRY = [
     emoji:     "🌲",
     region:    "North America",
   },
+  {
+    // ── Lost Lands 2026 — Legend Valley, Thornville OH ──
+    // ⛔ GATE (revival wave 2026-08-22): full data set is built below
+  // (LL_STAGES / LL_ARTISTS / LL_AMENITIES) but official SET TIMES, per-
+  // artist STAGE assignments, and the official 2026 MAP are NOT published
+  // yet (checked 2026-08-22; Lost Lands historically drops the schedule in
+  // its own app ~1-2 weeks out; 2025's schedule landed ~Sep 10-15). The
+  // DAY-by-DAY lineup below is real (official daily lineups, festivaldust
+  // audit 2026-08-22, 201 acts incl. Wed/Thu early-entry); everything
+  // timestamped or stage-assigned is PROVISIONAL. Flip `available: true`
+  // ONLY after replacing times/stages with the official schedule +
+  // official 2026 map + calibrated gpsAnchors.
+  config: {
+    id:        "lost-lands-2026",
+    name:      "Lost Lands 2026",
+    shortName: "Lost Lands",
+    brand:     "Lost Lands",
+    tagline:   "Five nights in the prehistoric valley",
+    location:  "Legend Valley · Thornville, OH",
+    locationShort: "Legend Valley",
+    dates:     "Sep 16–20, 2026",
+    year:      2026,
+    // Early-entry programming Wed 16 + Thu 17 (camping/pre-party stages);
+    // main event Fri 18–Sun 20.
+    startMs: Date.UTC(2026, 8, 16, 21, 0, 0), // Sep 16 17:00 EDT (early entry)
+    endMs:   Date.UTC(2026, 8, 21, 6, 0, 0),  // Sep 21 02:00 EDT (Sunday close)
+    tz:      "America/New_York",
+    tzAbbr:  "EDT",
+    utcOffsetHours: -4,
+    // Lost Lands runs FIVE days (Wed–Sun), two more than EDC/ACL.
+    dayDates: {
+      1: { y: 2026, m: 8, d: 16, name: "Wednesday", short: "WED",
+           midnightUtc: Date.UTC(2026, 8, 16, 4, 0, 0) },
+      2: { y: 2026, m: 8, d: 17, name: "Thursday",  short: "THU",
+           midnightUtc: Date.UTC(2026, 8, 17, 4, 0, 0) },
+      3: { y: 2026, m: 8, d: 18, name: "Friday",    short: "FRI",
+           midnightUtc: Date.UTC(2026, 8, 18, 4, 0, 0) },
+      4: { y: 2026, m: 8, d: 19, name: "Saturday",  short: "SAT",
+           midnightUtc: Date.UTC(2026, 8, 19, 4, 0, 0) },
+      5: { y: 2026, m: 8, d: 20, name: "Sunday",    short: "SUN",
+           midnightUtc: Date.UTC(2026, 8, 20, 4, 0, 0) },
+    },
+    // Sep 18 verified via sunrise-sunset.org (07:12 / 19:35 EDT);
+    // other days interpolated ±1–2 min (theme guidance only, not
+    // load-bearing).
+    sunTimes: {
+      1: { rise: "07:10", set: "19:39" },
+      2: { rise: "07:11", set: "19:37" },
+      3: { rise: "07:12", set: "19:35" },
+      4: { rise: "07:13", set: "19:33" },
+      5: { rise: "07:14", set: "19:31" },
+    },
+    // ⚠ PROVISIONAL venue centroid (Legend Valley, Thornville OH; NWS
+    // resolves this to Harbor Hills, OH - grid ILN/104,82 - verified
+    // reachable 2026-08-22). Recalibrate against the official 2026 map +
+    // satellite at the flip session.
+    gps: { lat: 39.9337, lng: -82.4495, onSiteRadiusMi: 0.8 },
+    // ⚠ ALL anchors PROVISIONAL (venue centroid only). Stage positions
+    // recalibrate with the 3-point Cramer affine at the flip session.
+    gpsAnchors: [
+      { stageId: "prehistoric",  lat: 39.93450, lng: -82.44750 },
+      { stageId: "wompy",        lat: 39.93520, lng: -82.45100 },
+      { stageId: "subsidia",     lat: 39.93300, lng: -82.44700 },
+      { stageId: "forest",       lat: 39.93260, lng: -82.45150 },
+      { stageId: "crater",       lat: 39.93480, lng: -82.44930 },
+      { stageId: "raptoralley",  lat: 39.93380, lng: -82.45250 },
+      { stageId: "grove",        lat: 39.93180, lng: -82.45450 },
+    ],
+    mainStageId: "prehistoric",
+    // ll-valley-2026.jpg = PROVISIONAL generated abstract valley overlay
+    // (ImageMagick plasma, not traced). Replace with the processed
+    // official 2026 patron map (acl-park.webp treatment) when it drops.
+    mapImage: "ll-valley-2026.jpg",
+    mapStyle: "image-overlay",
+    mapTheme: "forest",
+    weatherEndpoint: "https://api.weather.gov/points/39.93,-82.45",
+    // Flip-session marker: replace provisional set times/stages, then delete.
+    setTimesProvisional: true,
+  },
+  available: false,
+  accent:    "#d97706",
+  emoji:     "🦖",
+  region:    "North America",
+},
   // ─── Preview entries (visible in the switcher as "Coming soon") ───
   // These are intentionally minimal — name + dates + brand colors only.
   // To turn one ON: ship a full FESTIVAL_CONFIG (same shape as EDC LV
@@ -1259,11 +1343,260 @@ const EF_AMENITIES = [
 // _artistsForFestival reads it so ARCHIVED festivals resolve their
 // ORIGINAL lineups (bare ARTISTS here gets overwritten with the active
 // set by the Object.assign below, so it can't serve archives).
+
+// ─────────────────────────────────────────────────────────────
+// LOST LANDS 2026 (Legend Valley, Thornville OH · Sep 16–20)
+// ⚠ EVERYTHING below the stage list is PROVISIONAL (registry entry is
+// available:false — see the gate note in FESTIVALS_REGISTRY). The
+// DAY-by-DAY lineup is real: official daily lineup art, festivaldust
+// audit 2026-08-22, 201 acts (Day 1 = Wed Sep 16 early entry, Day 2 =
+// Thu Sep 17, Days 3–5 = Fri–Sun main event). Per-artist STAGE
+// assignments and SET TIMES are placeholders: official 2026 schedule is
+// not yet published (2025's dropped ~1 week out in the official app).
+// Replacement at the flip session: real times/stages, official map,
+// Delete setTimesProvisional, recalibrate anchors, flip available:true.
+const LL_STAGES = [
+  { id: "prehistoric", name: "Prehistoric Stage", short: "PREHISTORIC", color: "#f97316", x: 50, y: 20, size: 1.7, desc: "Main stage · the colossus",          vibe: "Main Event",         vibeNote: "Headliners and dinosaur-scale production.",                    peak: "16:00–00:00" },
+  { id: "wompy",       name: "Wompy Woods",       short: "WOMPY",       color: "#22c55e", x: 24, y: 38, size: 1.4, desc: "Wooded rim · heavy bass woods",      vibe: "Headbanger Haven",   vibeNote: "Dubstep in the trees. The Lost Lands signature pit.",        peak: "15:00–00:00" },
+  { id: "subsidia",    name: "Subsidia",          short: "SUBSIDIA",    color: "#eab308", x: 50, y: 80, size: 1.2, desc: "Excision's label stage",             vibe: "Subsidia Takeover",  vibeNote: "Excision's own roster, curated nightly.",                    peak: "15:00–00:00" },
+  { id: "forest",      name: "Forest Stage",      short: "FOREST",      color: "#34d399", x: 22, y: 62, size: 1.0, desc: "Tree canopy stage",                  vibe: "Forest Magic",       vibeNote: "Melodic and live electronic under the canopy.",              peak: "14:00–23:00" },
+  { id: "crater",      name: "Crater Stage",      short: "CRATER",      color: "#a855f7", x: 62, y: 36, size: 1.1, desc: "360° surround crater",               vibe: "360 Surround",       vibeNote: "DJ in the middle, crowd on all sides.",                      peak: "15:00–00:00" },
+  { id: "raptoralley", name: "Raptor Alley",      short: "RAPTOR",      color: "#f43f5e", x: 76, y: 60, size: 0.8, desc: "Late-night alley",                  vibe: "Late Night",         vibeNote: "Programming after the mains close.",                         peak: "22:00–02:00" },
+  { id: "grove",       name: "The Grove",         short: "GROVE",       color: "#38bdf8", x: 36, y: 88, size: 0.8, desc: "Campgrounds stage",                  vibe: "Campground Sessions",vibeNote: "Where early-entry and early-morning sets live.",             peak: "12:00–20:00" },
+  { id: "tba",         name: "Schedule TBA",      short: "TBA",         color: "#9ca3af", x: 50, y: 50, size: 0.1, desc: "PROVISIONAL: stage assignments drop with the official schedule", vibe: "Unscheduled", vibeNote: "Every artist sits here until the official schedule assigns stages + times.", peak: "—" },
+];
+
+const _llMk = (id, name, genre, day, start, end) => {
+  return { id, name, genre, country: "—", stage: "tba", day, start, end, tier: 1,
+    img: `linear-gradient(135deg, #d97706, #1a0f04)`,
+    bio: "Playing Lost Lands 2026. Day is official; set time + stage are placeholders until the official schedule drops (~1 week out) in the Lost Lands app." };
+};
+
+// Official day-by-day lineup (festivaldust audit 2026-08-22 vs the
+// official daily-lineup art). id prefix = day: llw Wed 16 / llt Thu 17
+// (early entry) / llf Fri 18 / lls Sat 19 / llu Sun 20. Genre tags are
+// agent-assigned for the majors, default "Electronic" otherwise.
+const LL_ARTISTS = [
+  _llMk("llf1",      "$J",                                "Electronic",          3, "12:00","13:00"),
+  _llMk("lls1",      "2DY4",                              "Electronic",          4, "12:00","13:00"),
+  _llMk("llu1",      "ADVENTURE CLUB",                    "Melodic Bass",        5, "12:00","13:00"),
+  _llMk("lls2",      "AEON:MODE",                         "Electronic",          4, "12:00","13:00"),
+  _llMk("llt1",      "ALIENPARK",                         "Electronic",          2, "12:00","13:00"),
+  _llMk("lls3",      "ALL THE REASON",                    "Electronic",          4, "12:00","13:00"),
+  _llMk("llu2",      "ALLEYCVT B2B CRANKDAT",             "Electronic",          5, "12:00","13:00"),
+  _llMk("llu3",      "ARLO",                              "Electronic",          5, "12:00","13:00"),
+  _llMk("llu4",      "ARMNHMR",                           "Electronic",          5, "12:00","13:00"),
+  _llMk("llu5",      "ATLIENS",                           "Bass / Trap",         5, "12:00","13:00"),
+  _llMk("lls4",      "AU5",                               "Electronic",          4, "12:00","13:00"),
+  _llMk("lls5",      "AUDIOFREQ",                         "Electronic",          4, "12:00","13:00"),
+  _llMk("llf2",      "AUSTERIA",                          "Electronic",          3, "12:00","13:00"),
+  _llMk("llu6",      "AVELLO",                            "Electronic",          5, "12:00","13:00"),
+  _llMk("llf3",      "BADKLAAT",                          "Electronic",          3, "12:00","13:00"),
+  _llMk("llw1",      "BARELY ALIVE",                      "Electronic",          1, "12:00","13:00"),
+  _llMk("llf4",      "BASSTRIPPER",                       "Electronic",          3, "12:00","13:00"),
+  _llMk("llf5",      "BEAR GRILLZ",                       "Dubstep",             3, "12:00","13:00"),
+  _llMk("lls6",      "BELLA RENEE",                       "Electronic",          4, "12:00","13:00"),
+  _llMk("llf6",      "BENDA",                             "Electronic",          3, "12:00","13:00"),
+  _llMk("lls7",      "BIG FLORIDA",                       "Electronic",          4, "12:00","13:00"),
+  _llMk("llu7",      "BOOGIE T",                          "Electronic",          5, "12:00","13:00"),
+  _llMk("llf7",      "BORGORE",                           "Dubstep",             3, "12:00","13:00"),
+  _llMk("lls8",      "BOU",                               "Drum & Bass",         4, "12:00","13:00"),
+  _llMk("lls9",      "BRAINRACK",                         "Electronic",          4, "12:00","13:00"),
+  _llMk("llw2",      "CALCIUM B2B MAD DUBZ",              "Electronic",          1, "12:00","13:00"),
+  _llMk("llf8",      "CANABLISS",                         "Electronic",          3, "12:00","13:00"),
+  _llMk("lls10",     "CAPOCHINO",                         "Electronic",          4, "12:00","13:00"),
+  _llMk("llf9",      "CASEY CLUB",                        "Electronic",          3, "12:00","13:00"),
+  _llMk("llw3",      "CASPA",                             "Electronic",          1, "12:00","13:00"),
+  _llMk("llu8",      "CHAMPAGNE DRIP",                    "Melodic Bass",        5, "12:00","13:00"),
+  _llMk("llw4",      "CHASSI",                            "Electronic",          1, "12:00","13:00"),
+  _llMk("lls11",     "CHOZEN",                            "Electronic",          4, "12:00","13:00"),
+  _llMk("llu9",      "CODD DUBZ",                         "Electronic",          5, "12:00","13:00"),
+  _llMk("lls12",     "CRAZE",                             "Electronic",          4, "12:00","13:00"),
+  _llMk("lls13",     "CRAZE B2B DIESELBOY",               "Electronic",          4, "12:00","13:00"),
+  _llMk("llf10",     "CRIZZLY",                           "Electronic",          3, "12:00","13:00"),
+  _llMk("lls14",     "CRUMB PIT",                         "Electronic",          4, "12:00","13:00"),
+  _llMk("llu10",     "CRYSTAL SKIES",                     "Melodic Bass",        5, "12:00","13:00"),
+  _llMk("lls15",     "CYCLOPS",                           "Electronic",          4, "12:00","13:00"),
+  _llMk("lls16",     "DARKSIDERZ B2B MADGRRL",            "Electronic",          4, "12:00","13:00"),
+  _llMk("llt2",      "DEADCROW",                          "Electronic",          2, "12:00","13:00"),
+  _llMk("lls17",     "DELTA HEAVY",                       "Drum & Bass",         4, "12:00","13:00"),
+  _llMk("llf11",     "DION TIMMER",                       "Dubstep",             3, "12:00","13:00"),
+  _llMk("llt3",      "DIRT MONKEY",                       "Electronic",          2, "12:00","13:00"),
+  _llMk("lls18",     "DIRTYPHONICS",                      "Drum & Bass",         4, "12:00","13:00"),
+  _llMk("llf12",     "DIRTYSNATCHA",                      "Electronic",          3, "12:00","13:00"),
+  _llMk("llu11",     "DISTANT MATTER",                    "Electronic",          5, "12:00","13:00"),
+  _llMk("llw5",      "DISTINCT MOTIVE",                   "Electronic",          1, "12:00","13:00"),
+  _llMk("llf13",     "DOCTOR P",                          "Dubstep",             3, "12:00","13:00"),
+  _llMk("llf14",     "DODGE & FUSKI",                     "Dubstep",             3, "12:00","13:00"),
+  _llMk("lls19",     "DR. FRESCH",                        "Bass House",          4, "12:00","13:00"),
+  _llMk("llf15",     "DR. USHUU",                         "Electronic",          3, "12:00","13:00"),
+  _llMk("llu12",     "DREAM TAKERS",                      "Electronic",          5, "12:00","13:00"),
+  _llMk("llf16",     "DRINKURWATER",                      "Electronic",          3, "12:00","13:00"),
+  _llMk("llf17",     "DUBSCRIBE",                         "Electronic",          3, "12:00","13:00"),
+  _llMk("lls20",     "EFFIN",                             "Electronic",          4, "12:00","13:00"),
+  _llMk("llw6",      "EMORFIK B2B USAYBFLOW",             "Electronic",          1, "12:00","13:00"),
+  _llMk("llu13",     "EPTIC",                             "Dubstep",             5, "12:00","13:00"),
+  _llMk("llu14",     "EXCISION",                          "Dubstep",             5, "12:00","13:00"),
+  _llMk("llu15",     "EXCISION B2B SPACE LACES",          "Dubstep",             5, "12:00","13:00"),
+  _llMk("llu16",     "FINNUH",                            "Electronic",          5, "12:00","13:00"),
+  _llMk("lls21",     "FLOSSTRADAMUS",                     "Trap",                4, "12:00","13:00"),
+  _llMk("lls22",     "FLUX PAVILION",                     "Dubstep",             4, "12:00","13:00"),
+  _llMk("llt4",      "FUNTCASE",                          "Dubstep",             2, "12:00","13:00"),
+  _llMk("llf18",     "FUTURE EXIT",                       "Electronic",          3, "12:00","13:00"),
+  _llMk("lls23",     "GANJA WHITE NIGHT",                 "Dubstep",             4, "12:00","13:00"),
+  _llMk("llw7",      "GARDELLA",                          "Electronic",          1, "12:00","13:00"),
+  _llMk("llu17",     "GHASTLY",                           "Bass House",          5, "12:00","13:00"),
+  _llMk("lls24",     "GHENGAR",                           "Electronic",          4, "12:00","13:00"),
+  _llMk("lls25",     "GLADDE PALING",                     "Electronic",          4, "12:00","13:00"),
+  _llMk("llu18",     "GRABBITZ",                          "Electronic Rock",     5, "12:00","13:00"),
+  _llMk("lls26",     "GREEN MATTER",                      "Electronic",          4, "12:00","13:00"),
+  _llMk("llw8",      "HAIRITAGE",                         "Electronic",          1, "12:00","13:00"),
+  _llMk("llu19",     "HALIENE",                           "Melodic Bass / Vocal",5, "12:00","13:00"),
+  _llMk("lls27",     "HEDEX",                             "Drum & Bass",         4, "12:00","13:00"),
+  _llMk("llw9",      "HERSHE",                            "Electronic",          1, "12:00","13:00"),
+  _llMk("lls28",     "HEYZ",                              "Electronic",          4, "12:00","13:00"),
+  _llMk("llf19",     "HOL!",                              "Electronic",          3, "12:00","13:00"),
+  _llMk("llu20",     "HOSTAGE SITUATION",                 "Electronic",          5, "12:00","13:00"),
+  _llMk("llu21",     "HURTBOX",                           "Electronic",          5, "12:00","13:00"),
+  _llMk("lls29",     "HVDES",                             "Electronic",          4, "12:00","13:00"),
+  _llMk("llw10",     "HYDRAULIX",                         "Electronic",          1, "12:00","13:00"),
+  _llMk("lls30",     "ILLENIUM",                          "Melodic Bass",        4, "12:00","13:00"),
+  _llMk("lls31",     "IMANU",                             "Drum & Bass",         4, "12:00","13:00"),
+  _llMk("llf20",     "INFEKT B2B SAMPLIFIRE",             "Riddim",              3, "12:00","13:00"),
+  _llMk("lls32",     "IVORY",                             "Electronic",          4, "12:00","13:00"),
+  _llMk("llf21",     "IVY LAB",                           "Electronic",          3, "12:00","13:00"),
+  _llMk("llf22",     "IZADI",                             "Electronic",          3, "12:00","13:00"),
+  _llMk("llw11",     "IZZY VADIM",                        "Electronic",          1, "12:00","13:00"),
+  _llMk("llw12",     "JAENGA",                            "Electronic",          1, "12:00","13:00"),
+  _llMk("llf23",     "JANTSEN",                           "Dubstep",             3, "12:00","13:00"),
+  _llMk("lls33",     "JESSICA AUDIFFRED",                 "Electronic",          4, "12:00","13:00"),
+  _llMk("llf24",     "JKYL & HYDE",                       "Electronic",          3, "12:00","13:00"),
+  _llMk("lls34",     "JOSH TEED",                         "Electronic",          4, "12:00","13:00"),
+  _llMk("lls35",     "KAI WACHI",                         "Electronic",          4, "12:00","13:00"),
+  _llMk("llu22",     "KILLMATTER",                        "Electronic",          5, "12:00","13:00"),
+  _llMk("llf25",     "KLIPTIC",                           "Electronic",          3, "12:00","13:00"),
+  _llMk("llf26",     "KLO",                               "Electronic",          3, "12:00","13:00"),
+  _llMk("llu23",     "KNOW GOOD",                         "Electronic",          5, "12:00","13:00"),
+  _llMk("llu24",     "KOMPANY",                           "Electronic",          5, "12:00","13:00"),
+  _llMk("llu25",     "KREWELLA",                          "Electronic Pop",      5, "12:00","13:00"),
+  _llMk("lls36",     "LAYZ",                              "Electronic",          4, "12:00","13:00"),
+  _llMk("llf27",     "LAZRUS",                            "Electronic",          3, "12:00","13:00"),
+  _llMk("lls37",     "LEOTRIX",                           "Electronic",          4, "12:00","13:00"),
+  _llMk("llf28",     "LEVITY",                            "Bass",                3, "12:00","13:00"),
+  _llMk("lls38",     "LIL TEXAS",                         "Hardcore",            4, "12:00","13:00"),
+  _llMk("llf29",     "LIQUID STRANGER",                   "Dubstep",             3, "12:00","13:00"),
+  _llMk("lls39",     "LOWCATION",                         "Electronic",          4, "12:00","13:00"),
+  _llMk("llu26",     "LUCI",                              "Electronic",          5, "12:00","13:00"),
+  _llMk("llf30",     "LUMASI",                            "Electronic",          3, "12:00","13:00"),
+  _llMk("llt5",      "MACHAKI",                           "Electronic",          2, "12:00","13:00"),
+  _llMk("llu27",     "MAD DUBZ",                          "Electronic",          5, "12:00","13:00"),
+  _llMk("lls40",     "MEFJUS",                            "Drum & Bass",         4, "12:00","13:00"),
+  _llMk("llt6",      "MEGA B2B2B2B PRE-PARTY",            "Electronic",          2, "12:00","13:00"),
+  _llMk("llw13",     "MILE32",                            "Electronic",          1, "12:00","13:00"),
+  _llMk("llt7",      "MINDSET",                           "Electronic",          2, "12:00","13:00"),
+  _llMk("llu28",     "MODAL NODES",                       "Electronic",          5, "12:00","13:00"),
+  _llMk("lls41",     "MOZEY",                             "Electronic",          4, "12:00","13:00"),
+  _llMk("llw14",     "MPORT",                             "Electronic",          1, "12:00","13:00"),
+  _llMk("llw15",     "MUERTE",                            "Electronic",          1, "12:00","13:00"),
+  _llMk("lls42",     "MYRIAS",                            "Electronic",          4, "12:00","13:00"),
+  _llMk("lls43",     "MYTHM",                             "Electronic",          4, "12:00","13:00"),
+  _llMk("lls44",     "NEOTEK",                            "Electronic",          4, "12:00","13:00"),
+  _llMk("llf31",     "NEUMONIC",                          "Electronic",          3, "12:00","13:00"),
+  _llMk("llf32",     "NGHTMRE",                           "Bass / Trap",         3, "12:00","13:00"),
+  _llMk("llw16",     "NIKITA, THE WICKED",                "Electronic",          1, "12:00","13:00"),
+  _llMk("llf33",     "NIMDA",                             "Electronic",          3, "12:00","13:00"),
+  _llMk("lls45",     "NOETIKA",                           "Electronic",          4, "12:00","13:00"),
+  _llMk("llu29",     "OG NIXIN",                          "Riddim",              5, "12:00","13:00"),
+  _llMk("llf34",     "OLIVERSE",                          "Electronic",          3, "12:00","13:00"),
+  _llMk("llu30",     "ONARA",                             "Electronic",          5, "12:00","13:00"),
+  _llMk("llf35",     "PAPER SKIES",                       "Electronic",          3, "12:00","13:00"),
+  _llMk("llu31",     "PASSPORT",                          "Electronic",          5, "12:00","13:00"),
+  _llMk("llf36",     "PEGBOARD NERDS",                    "Electro House",       3, "12:00","13:00"),
+  _llMk("lls46",     "PHASEONE",                          "Electronic",          4, "12:00","13:00"),
+  _llMk("llt8",      "PHRVA",                             "Electronic",          2, "12:00","13:00"),
+  _llMk("llf37",     "PONI",                              "Electronic",          3, "12:00","13:00"),
+  _llMk("llu32",     "PRETTY SWEET",                      "Electronic",          5, "12:00","13:00"),
+  _llMk("llf38",     "PROBCAUSE",                         "Electronic",          3, "12:00","13:00"),
+  _llMk("lls47",     "PROSECUTE",                         "Electronic",          4, "12:00","13:00"),
+  _llMk("llf39",     "RAVENSCOON",                        "Dubstep",             3, "12:00","13:00"),
+  _llMk("llf40",     "REAPER",                            "Electronic",          3, "12:00","13:00"),
+  _llMk("llu33",     "REMK",                              "Electronic",          5, "12:00","13:00"),
+  _llMk("llf41",     "RICHARD FINGER",                    "Electronic",          3, "12:00","13:00"),
+  _llMk("llf42",     "RIOT",                              "Electronic",          3, "12:00","13:00"),
+  _llMk("llw17",     "RIOT TEN",                          "Electronic",          1, "12:00","13:00"),
+  _llMk("llu34",     "ROI*",                              "Electronic",          5, "12:00","13:00"),
+  _llMk("llt9",      "RSUN",                              "Electronic",          2, "12:00","13:00"),
+  _llMk("llu35",     "RYNS",                              "Electronic",          5, "12:00","13:00"),
+  _llMk("llt10",     "RZRKT",                             "Electronic",          2, "12:00","13:00"),
+  _llMk("lls48",     "SAINT MILLER",                      "Electronic",          4, "12:00","13:00"),
+  _llMk("llf43",     "SETH DAVID",                        "Electronic",          3, "12:00","13:00"),
+  _llMk("lls49",     "SEVEN LIONS",                       "Melodic Bass",        4, "12:00","13:00"),
+  _llMk("llf44",     "SHLUMP",                            "Electronic",          3, "12:00","13:00"),
+  _llMk("llf45",     "SIGMA",                             "Electronic",          3, "12:00","13:00"),
+  _llMk("llf46",     "SIPPY",                             "Electronic",          3, "12:00","13:00"),
+  _llMk("llu36",     "SISTO",                             "Electronic",          5, "12:00","13:00"),
+  _llMk("llu37",     "SKILAH",                            "Electronic",          5, "12:00","13:00"),
+  _llMk("lls50",     "SLANDER",                           "Melodic Bass",        4, "12:00","13:00"),
+  _llMk("llw18",     "SMOAKLAND",                         "Electronic",          1, "12:00","13:00"),
+  _llMk("llu38",     "SODOWN",                            "Electronic",          5, "12:00","13:00"),
+  _llMk("lls51",     "SPACE WIZARD",                      "Electronic",          4, "12:00","13:00"),
+  _llMk("llu39",     "SPORTMODE",                         "Electronic",          5, "12:00","13:00"),
+  _llMk("llu40",     "SQISHI",                            "Electronic",          5, "12:00","13:00"),
+  _llMk("lls52",     "STONED LEVEL",                      "Electronic",          4, "12:00","13:00"),
+  _llMk("llu41",     "STUMPI",                            "Electronic",          5, "12:00","13:00"),
+  _llMk("llf47",     "SUBSONIC",                          "Electronic",          3, "12:00","13:00"),
+  _llMk("lls53",     "SUBTRONICS B2B LEVEL UP",           "Dubstep",             4, "12:00","13:00"),
+  _llMk("llf48",     "SULLIVAN KING B2B RAY VOLPE",       "Rocktronic",          3, "12:00","13:00"),
+  _llMk("llt11",     "SUPER FUTURE",                      "Electronic",          2, "12:00","13:00"),
+  _llMk("llu42",     "TAIKI NULIGHT",                     "Bass House",          5, "12:00","13:00"),
+  _llMk("llf49",     "THE RESISTANCE",                    "Electronic",          3, "12:00","13:00"),
+  _llMk("llf50",     "THE WIDDLER",                       "Electronic",          3, "12:00","13:00"),
+  _llMk("lls54",     "TISOKI",                            "Electronic",          4, "12:00","13:00"),
+  _llMk("lls55",     "TOKYO MACHINE",                     "Electro House",       4, "12:00","13:00"),
+  _llMk("llu43",     "TRIVECTA",                          "Melodic Bass",        5, "12:00","13:00"),
+  _llMk("lls56",     "TRUTH",                             "Electronic",          4, "12:00","13:00"),
+  _llMk("llf51",     "TWOPERCENT",                        "Electronic",          3, "12:00","13:00"),
+  _llMk("llf52",     "TYNAN",                             "Electronic",          3, "12:00","13:00"),
+  _llMk("llu44",     "USAYBFLOW",                         "Electronic",          5, "12:00","13:00"),
+  _llMk("llf53",     "VAMPA",                             "Electronic",          3, "12:00","13:00"),
+  _llMk("llu45",     "VIRTUAL RIOT",                      "Dubstep",             5, "12:00","13:00"),
+  _llMk("llf54",     "VKTM",                              "Electronic",          3, "12:00","13:00"),
+  _llMk("llu46",     "WARLORD",                           "Electronic",          5, "12:00","13:00"),
+  _llMk("llu47",     "WAX MOTIF",                         "House",               5, "12:00","13:00"),
+  _llMk("lls57",     "WHALES",                            "Electronic",          4, "12:00","13:00"),
+  _llMk("lls58",     "WHETHAN",                           "Future Bass",         4, "12:00","13:00"),
+  _llMk("llf55",     "WILEY",                             "Electronic",          3, "12:00","13:00"),
+  _llMk("llu48",     "WILLIAM BLACK",                     "Melodic Bass",        5, "12:00","13:00"),
+  _llMk("llu49",     "WONKYWILLA",                        "Electronic",          5, "12:00","13:00"),
+  _llMk("llf56",     "WOOLI",                             "Electronic",          3, "12:00","13:00"),
+  _llMk("lls59",     "WRAZ",                              "Electronic",          4, "12:00","13:00"),
+  _llMk("llf57",     "XOTIX",                             "Electronic",          3, "12:00","13:00"),
+  _llMk("llu50",     "YETEP",                             "Electronic",          5, "12:00","13:00"),
+  _llMk("llf58",     "YOOKIE",                            "Electronic",          3, "12:00","13:00"),
+  _llMk("llu51",     "YVM3",                              "Electronic",          5, "12:00","13:00"),
+  _llMk("llf59",     "ZERO",                              "Electronic",          3, "12:00","13:00"),
+  _llMk("lls60",     "ZINGARA",                           "Electronic",          4, "12:00","13:00"),
+  _llMk("llu52",     "ZOEY808",                           "Electronic",          5, "12:00","13:00"),
+  _llMk("lls61",     "ZOMBOY",                            "Dubstep",             4, "12:00","13:00"),
+];
+
+const LL_AMENITIES = [
+  { id: "lla1", type: "water",  label: "Hydration",       x: 44, y: 32 },
+  { id: "lla2", type: "water",  label: "Hydration",       x: 58, y: 70 },
+  { id: "lla3", type: "food",   label: "Valley Eats",     x: 46, y: 52 },
+  { id: "lla4", type: "food",   label: "Campground Eats", x: 30, y: 82 },
+  { id: "lla5", type: "med",    label: "Medical",         x: 52, y: 44 },
+  { id: "lla6", type: "toilet", label: "Restrooms",       x: 28, y: 44 },
+  { id: "lla7", type: "toilet", label: "Restrooms",       x: 66, y: 52 },
+  { id: "lla8", type: "info",   label: "Info & Lost+Found", x: 48, y: 24 },
+];
+
 const _regConfig = (id) => FESTIVALS_REGISTRY.find(f => f.config.id === id).config;
 const _DATA_SETS = {
   "edc-lv-2026":          { stages: STAGES,     artists: ARTISTS,     amenities: AMENITIES,     config: FESTIVAL_CONFIG },
   "acl-2026":             { stages: ACL_STAGES, artists: ACL_ARTISTS, amenities: ACL_AMENITIES, config: _regConfig("acl-2026") },
   "electric-forest-2026": { stages: EF_STAGES,  artists: EF_ARTISTS,  amenities: EF_AMENITIES,  config: _regConfig("electric-forest-2026") },
+  "lost-lands-2026":      { stages: LL_STAGES,  artists: LL_ARTISTS,  amenities: LL_AMENITIES,  config: _regConfig("lost-lands-2026") },
 };
 const _activeId = getActiveFestivalId();
 const _active = _DATA_SETS[_activeId] || _DATA_SETS["edc-lv-2026"];
