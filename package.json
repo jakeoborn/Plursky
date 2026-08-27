@@ -2,7 +2,7 @@
   "name": "plursky",
   "version": "0.0.1",
   "private": true,
-  "description": "Festival companion app \u2014 EDC, ACL, and more",
+  "description": "Festival companion app — EDC, ACL, and more",
   "scripts": {
     "build": "node scripts/build.mjs",
     "cap:sync": "npm run build && npx cap sync ios",
