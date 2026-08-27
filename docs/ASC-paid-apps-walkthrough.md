@@ -4,10 +4,31 @@ Written 2026-08-22. Everything here is a step only the Account Holder can do —
 on his Apple Account, and the tax form can't be edited afterward. No secrets in this file:
 where a value is private (TIN, bank numbers) it says which value to use, not the value.
 
-Why it matters: Plursky+ is fully built and wired (code v200, RevenueCat verified, product
-`plursky_plus_annual` sitting Ready to Submit) but **every in-app purchase — including sandbox
-testing — fails until the Paid Apps agreement is active**. See TODO.md §C.10. Apple's own
-estimate is ~1–2 business days from submission to active.
+> ## ⚠️ STATUS 2026-08-27 — THIS IS NO LONGER A BLOCKER. Steps 0–3 ARE DONE.
+>
+> Observed on Jake's live App Store Connect account on **2026-08-27**:
+>
+> | Row | State |
+> |---|---|
+> | Paid Apps agreement | **Active** — effective 2026-05-13, expires **2027-03-23** |
+> | Tax form (W-9) | **Active** |
+> | Banking | **Active** |
+>
+> The premise this document was written on — "every in-app purchase, including
+> sandbox testing, fails until the Paid Apps agreement is active" — was true when
+> it was written on 2026-08-22 and is **false now**. Do not re-litigate it, do not
+> re-run Steps 1–3, and do not report IAP work as blocked on Paid Apps.
+> **Sandbox purchase testing is unblocked.**
+>
+> Steps 0–3 below are kept as the procedure, not as a to-do: they are what to
+> follow if the agreement ever lapses. One real future date to watch —
+> **the agreement expires 2027-03-23** and Apple requires re-signing before then
+> or paid transactions stop.
+
+Why it was written: Plursky+ is fully built and wired (code v200, RevenueCat verified) but at
+the time **every in-app purchase — including sandbox testing — failed until the Paid Apps
+agreement went active**. See TODO.md §C.10. Apple's own estimate was ~1–2 business days from
+submission to active; in the event it was signed and went active before 2026-08-27.
 
 Current account facts (verified from the live listings):
 - Enrollment: individual. Seller reads "Jacob Oborn" on both apps
@@ -60,10 +81,13 @@ Business → Agreements → **Bank Accounts** → *Add Bank Account*.
 A 2FA code prompt may appear here too.
 Ref: https://developer.apple.com/help/app-store-connect/manage-banking-information/enter-banking-information/
 
-## Step 4 — verify it went active
+## Step 4 — verify it went active  ✅ DONE 2026-08-27
 Business → Agreements: the Paid Apps row should show active with tax and bank status green.
-Then run the sandbox purchase test (TODO.md §C.10 step 2): sandbox Apple ID → buy → watermark
-turns off → Restore works. Plus goes live on the current build — no resubmit needed.
+**Verified 2026-08-27: Paid Apps Active (2026-05-13 → 2027-03-23), tax Active, banking Active.**
+
+What remains is NOT this document's subject: the sandbox purchase test itself
+(sandbox Apple ID → buy → watermark turns off → Restore works). Plus goes live on
+the current build — no resubmit needed.
 
 ## Getting paid
 Payments go out "within 45 days of the last day of the fiscal month in which the transaction

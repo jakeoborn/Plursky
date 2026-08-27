@@ -39,7 +39,8 @@
   unlock the device before any XCUITest visual-evidence run.
 - (B2–B6 = the already-tracked "Owed on-device QA" list below — unchanged, all
   still blocked on Jake-manual: camera-roll clips, live audio, signed-in backup,
-  Paid Apps agreement + sandbox, real GPS photos.)
+  sandbox purchase, real GPS photos. NOTE: Paid Apps is **Active since 2026-05-13**
+  (verified on ASC 2026-08-27) — the sandbox test is no longer blocked ON IT.)
 
 **From vegas-edc-export (Clicky, 2026-06-03):**
 - [ ] **Import the festival-candidate set into the NATIVE app** — 118 files (~1.9GB)
@@ -66,7 +67,7 @@
 **Owed on-device QA — must run from the Xcode DEVICE build (App Store 1.10/21 still carries v218):**
 - [ ] Real camera-roll **auto-tag ground truth** (only on-device with real clips can confirm)
 - [ ] **Live-mic Shazam** — released track → exact match; live/unreleased ID → honest no-match (no hang); capture the `⚡️[Shazam]` console line
-- [ ] Signed-in **backup round-trip** · **Plus sandbox** purchase (needs Paid Apps agreement Active) · **GPS map lens** on real on-site photos
+- [ ] Signed-in **backup round-trip** · **Plus sandbox** purchase (Paid Apps **Active** since 2026-05-13 — verified 2026-08-27, NOT a blocker) · **GPS map lens** on real on-site photos
 - [ ] **NEW from v223–v225** (next Xcode archive carries them): story export → share sheet lists IG/TikTok + **mp4** plays (the WebM→mp4 fix is what un-breaks native recap video); Apple Music — real MusicKit authorize in WKWebView + playlist lands in library (web also works: plursky.com → Me → Music); 📅 CALENDAR chip → .ics opens in Calendar.
 - Brief: `docs/qa/CLICKY-BRIEF-v221.md` (PART B interactive runbook). ⚠️ Clicky's runtime CANNOT drive an unlocked device by hand — these are **Jake's** checks, not Clicky's.
 
@@ -165,7 +166,7 @@ unmemoized/unvirtualized renders. Prioritized:
 > **On-device status for 1.10 (21):** ✅ video auto-tag · ✅ Shazam · ✅ native
 > media upload (Clicky verified 2026-06-04). Still owed/untested: Apple Music
 > BUILD PLAYLIST · 2-device rally · cloud-backup round-trip · **Plursky+
-> purchase flow** (needs Paid Apps agreement Active + sandbox) · map-lens with
+> purchase flow** (Paid Apps **Active** — sandbox test only) · map-lens with
 > real EDC W2 GPS photos. None block the 1.10 (21) archive.
 
 ## 🛠️ ON-DEVICE BUGS — found 2026-05-31 (do in a FRESH session, clean tools)
@@ -236,7 +237,9 @@ music synergies._
 1. ✅ **1.9 (20) APPROVED**; **1.10 (21)** pbxproj-bumped + bundle synced to v218 (commit 593bda5). → Jake: Xcode **archive → Distribute → App Store Connect**, attach build 21, submit.
 2. ✅ **Video auto-tag + Shazam + native upload** verified on device (Clicky 2026-06-04).
 3. ⏳ **Apple Music "BUILD PLAYLIST"** + **2-device rally** + **cloud-backup round-trip** — still owed on device (don't block archive).
-4. ⏳ **Plursky+ purchase** — needs Paid Apps agreement Active + sandbox test (see §C.10).
+4. ⏳ **Plursky+ purchase** — sandbox test only. Paid Apps agreement is **Active**
+   (2026-05-13 → 2027-03-23) and RevenueCat + ASC are live as of 2026-08-27, so this
+   is founder-device work, not a config blocker. See `docs/ASC-paid-apps-walkthrough.md`.
 
 ### B. Music synergy (Spotify × Apple Music × Shazam) — ✅ ALL SHIPPED v188
 5. ✅ **Your Weekend Soundtrack** — playlist from Shazam-confirmed moment songs + saved top tracks → Spotify OR Apple Music. (45e9151)
