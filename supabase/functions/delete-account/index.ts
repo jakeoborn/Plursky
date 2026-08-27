@@ -90,19 +90,17 @@ Deno.serve(async (req) => {
       status: 401, headers: { ...CORS, "content-type": "application/json" },
     });
 
-  // Hard delete: drop the user_data row first, then auth.users.
+  // Hard delete: purge Storage blobs, then the user_data row, then auth.users.
   const admin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
     auth: { autoRefreshToken: false, persistSession: false },
   });
-  // user_data row is RLS-protected but the service-role client bypasses RLS.
-  // Ignore "no rows found" — first-time accounts may not have a row yet.
-  await admin.from("user_data").delete().eq("user_id", user.id);
-
   // Moment media purge: delete-account previously left every blob in the
   // private 'moment-media' bucket (paths are {uid}/{photoId}) — orphaned
-  // forever once auth.users went away. Purge FIRST so a failure here fails
-  // the request before the auth user is gone (no orphan state). Pages of
-  // 1000 paths per Storage list() call.
+  // forever once auth.users went away. Runs BEFORE the user_data delete and
+  // the auth delete: a failure here must leave the account fully intact and
+  // retryable, never half-deleted. Pages of 1000 paths per list() call;
+  // upload paths are flat ({uid}/{photoId}, see sbUploadMomentMedia), so
+  // list() returns files only and the loop terminates.
   const MEDIA_BUCKET = "moment-media";
   let mediaRemoved = 0;
   try {
@@ -127,6 +125,10 @@ Deno.serve(async (req) => {
       { status: 500, headers: { ...CORS, "content-type": "application/json" } },
     );
   }
+
+  // user_data row is RLS-protected but the service-role client bypasses RLS.
+  // Ignore "no rows found" — first-time accounts may not have a row yet.
+  await admin.from("user_data").delete().eq("user_id", user.id);
 
   const { error: delErr } = await admin.auth.admin.deleteUser(user.id);
   if (delErr)
