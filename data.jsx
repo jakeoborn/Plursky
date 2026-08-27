@@ -145,16 +145,24 @@ const FESTIVAL_CONFIG = {
   // (Insomniac re-uses similar layouts year-over-year).
   gpsAnchors: [
     // Calibrated (do not move without re-deriving the others)
-    { stageId: "kinetic", lat: 36.27512, lng: -115.0118 },
-    { stageId: "cosmic",  lat: 36.27370, lng: -115.0148 },
-    { stageId: "basspod", lat: 36.27075, lng: -115.0123 },
-    // Derived from the SVG layout via the kinetic/cosmic/basspod affine
-    { stageId: "quantum", lat: 36.27433, lng: -115.0103 },
-    { stageId: "bionic",  lat: 36.27544, lng: -115.0139 },
-    { stageId: "stereo",  lat: 36.27404, lng: -115.0129 },
-    { stageId: "neon",    lat: 36.27226, lng: -115.0096 },
-    { stageId: "waste",   lat: 36.27179, lng: -115.0137 },
-    { stageId: "circuit", lat: 36.27088, lng: -115.0107 },
+    { stageId: "kinetic", lat: 36.27512, lng: -115.01180 },
+    { stageId: "cosmic",  lat: 36.27370, lng: -115.01480 },
+    { stageId: "basspod", lat: 36.27075, lng: -115.01230 },
+    // Derived from the SVG layout via the kinetic/cosmic/basspod affine.
+    // RE-DERIVED 2026-08-27: these were labelled "derived" but did not
+    // actually satisfy the affine. Feeding each stored anchor back through
+    // gpsToMap() should return that stage's own x/y; `neon` came back 6.85
+    // grid units out (~85 m on this footprint) — a typo'd longitude, not
+    // rounding. It matters beyond the map: photo-tag.jsx attributes photos
+    // to a stage by comparing EXIF GPS against these anchors, so a stage
+    // sitting 85 m from where the app thinks it is mis-tags the photos
+    // taken at it. The rest moved <1 unit (4-decimal rounding, now 5).
+    { stageId: "quantum", lat: 36.27433, lng: -115.01026 },
+    { stageId: "bionic",  lat: 36.27544, lng: -115.01386 },
+    { stageId: "stereo",  lat: 36.27404, lng: -115.01285 },
+    { stageId: "neon",    lat: 36.27218, lng: -115.01010 },
+    { stageId: "waste",   lat: 36.27179, lng: -115.01366 },
+    { stageId: "circuit", lat: 36.27088, lng: -115.01068 },
   ],
 
   // ── Weather ──
@@ -167,6 +175,38 @@ const FESTIVAL_CONFIG = {
   mainStageId: "kinetic",
   mapImage: "edc-map-2026.jpg",
   mapStyle: "image-overlay",
+
+  // ── Named landmarks (walkways, districts, standalone art) ──
+  // Places printed on the official patron map that are NOT stages, in the
+  // same 0-100 grid the STAGES x/y use. Drawn behind the "Landmark labels"
+  // toggle on both map renderers.
+  //
+  // This list USED to be hardcoded twice inside map.jsx — once in TopDownMap
+  // (behind the toggle) and once in RealMap (always on). Both copies were
+  // EDC's, with no festival gate, so switching to ACL or Lost Lands drew
+  // "KINETIC TRAIL" and "DAISY FIELDS" across Zilker Park and Legend Valley.
+  // Per-festival data belongs in the per-festival config: a festival with no
+  // `landmarks` key now correctly renders none.
+  landmarks: [
+    // Walkways
+    { label: "KINETIC TRAIL",   x: 41, y: 28, rot: -55, color: "rgba(251,191,36,0.85)",  size: 6.8, ls: 1.6 },
+    { label: "MEMORY LANE",     x: 33, y: 55, rot: -90, color: "rgba(247,237,224,0.7)",  size: 6.8, ls: 1.6 },
+    { label: "POWER PATH",      x: 67, y: 38, rot: -90, color: "rgba(167,139,250,0.85)", size: 6.8, ls: 1.6 },
+    { label: "RAINBOW ROAD",    x: 65, y: 64, rot: -90, color: "rgba(244,114,182,0.85)", size: 6.8, ls: 1.6 },
+    { label: "ELECTRIC AVENUE", x: 50, y: 62, rot:   0, color: "rgba(252,211,77,0.95)",  size: 6.8, ls: 2.0 },
+    { label: "BASS LANE",       x: 56, y: 71, rot: -90, color: "rgba(96,165,250,0.85)",  size: 6.5, ls: 1.6 },
+    { label: "NOMADS ALLEY",    x: 22, y: 70, rot: -22, color: "rgba(247,237,224,0.7)",  size: 6.5, ls: 1.5 },
+    // Sub-areas / districts
+    { label: "DAISY FIELDS",    x: 40, y: 24, rot:   0, color: "rgba(252,211,77,0.85)",  size: 5.8, ls: 1.4 },
+    { label: "NOMADS LAND",     x: 38, y: 70, rot:   0, color: "rgba(252,211,77,0.95)",  size: 6.5, ls: 1.6 },
+    // Inside-plaza landmarks
+    { label: "RAINBOW BAZAAR",  x: 50, y: 47, rot:   0, color: "rgba(255,255,255,0.92)", size: 5.8, ls: 1.4 },
+    { label: "DOWNTOWN EDC",    x: 50, y: 55, rot:   0, color: "rgba(251,191,36,0.95)",  size: 6.5, ls: 1.6 },
+    // Standalone landmarks
+    { label: "FLOWER TUNNEL",   x: 45, y: 33, rot:   0, color: "rgba(244,114,182,0.9)",  size: 6.2, ls: 1.5 },
+    { label: "PIXEL FOREST",    x: 78, y: 60, rot:   0, color: "rgba(244,114,182,0.85)", size: 6.2, ls: 1.5 },
+    { label: "NOMADS PORTAL",   x: 38, y: 76, rot:   0, color: "rgba(244,114,182,0.85)", size: 5.6, ls: 1.4 },
+  ],
 };
 
 // Backwards-compat alias — older code reads `FESTIVAL.name` etc.
@@ -246,11 +286,17 @@ const FESTIVALS_REGISTRY = [
         { stageId: "ranch",       lat: 43.50300, lng: -86.33950 },
         { stageId: "tripolee",    lat: 43.49550, lng: -86.33700 },
         { stageId: "sherwood",    lat: 43.50000, lng: -86.33200 },
-        // Derived from the trio above via the SVG layout
-        { stageId: "observatory", lat: 43.50180, lng: -86.32800 },
-        { stageId: "hangar",      lat: 43.49800, lng: -86.32650 },
-        { stageId: "honeybee",    lat: 43.49880, lng: -86.33050 },
-        { stageId: "carousel",    lat: 43.49600, lng: -86.32850 },
+        // Derived from the trio above via the SVG layout.
+        // RE-DERIVED 2026-08-27 — same defect as EDC LV: labelled derived,
+        // never actually run through the affine. Worst offender was
+        // `honeybee` at 8.14 grid units. The trio itself is still the
+        // PROVISIONAL centroid-based guess flagged above, so this makes the
+        // set self-consistent WITHOUT making it satellite-true; the flip
+        // session still owes all four a real measurement.
+        { stageId: "observatory", lat: 43.50180, lng: -86.32655 },
+        { stageId: "hangar",      lat: 43.49805, lng: -86.32502 },
+        { stageId: "honeybee",    lat: 43.49760, lng: -86.33013 },
+        { stageId: "carousel",    lat: 43.49520, lng: -86.32797 },
       ],
       mainStageId: "ranch",
       // ef-forest-2026.jpg = PROVISIONAL original abstract forest overlay
@@ -277,6 +323,11 @@ const FESTIVALS_REGISTRY = [
     // drops ~1 week out). All start/end, stage assignments, stage x/y,
     // gpsAnchors, and the map image are PROVISIONAL. Flip `available: true`
     // only after the official schedule + 2026 patron map land.
+    // NOT re-derived on 2026-08-27 (the work order leaves LL provisional).
+    // For the flip session: `forest-stage` is 39.9 grid units off the
+    // prehistoric/wompy-woods/crater affine, `raptor-alley` 14.9, `grove`
+    // 12.3, `subsidia` 9.3. Re-measure the trio on satellite, then re-derive
+    // the rest from it rather than by eye.
     config: {
       id:        "lost-lands-2026",
       name:      "Lost Lands 2026",
@@ -399,6 +450,10 @@ const FESTIVALS_REGISTRY = [
       // 2026-08-22). Recalibrate against the official 2026 map + satellite.
       gps: { lat: 28.5382, lng: -81.4053, onSiteRadiusMi: 0.6 },
       // ⚠ ALL anchors PROVISIONAL (venue centroid offsets only).
+      // NOT re-derived (per the work order, EDCO stays provisional). For the
+      // flip session: `stereo` is 56.9 grid units off the kinetic/circuit/neon
+      // affine and `bacardi` 13.0 — over half the footprint. Re-measure the
+      // trio on satellite first, then re-derive the other two from it.
       gpsAnchors: [
         { stageId: "kinetic", lat: 28.53890, lng: -81.40450 },
         { stageId: "circuit", lat: 28.53760, lng: -81.40630 },
@@ -481,14 +536,19 @@ const FESTIVALS_REGISTRY = [
         { stageId: "amex",    lat: 30.26360, lng: -97.76640 },
         { stageId: "miller",  lat: 30.26600, lng: -97.77240 },
         { stageId: "beatbox", lat: 30.26140, lng: -97.77340 },
-        // Derived from the SVG layout via the amex/miller/beatbox affine
-        { stageId: "honda",    lat: 30.26411, lng: -97.77434 },
-        { stageId: "titos",    lat: 30.26484, lng: -97.76916 },
-        { stageId: "tmobile",  lat: 30.26230, lng: -97.77500 },
-        { stageId: "ladybird", lat: 30.26303, lng: -97.77098 },
-        { stageId: "bmi",      lat: 30.26266, lng: -97.77315 },
-        { stageId: "barton",   lat: 30.26118, lng: -97.77123 },
-        { stageId: "bonus",    lat: 30.26199, lng: -97.76954 },
+        // Derived from the SVG layout via the amex/miller/beatbox affine.
+        // RE-DERIVED 2026-08-27 — same defect as EDC LV and Forest. `tmobile`
+        // was 28.7 grid units off its own stated derivation and `honda` 17.9
+        // (~190 m across Zilker), which for photo-tag.jsx means photos shot
+        // at Honda could resolve to a neighbouring stage. ACL is `available:
+        // true`, so this one was live.
+        { stageId: "honda",    lat: 30.26581, lng: -97.77409 },
+        { stageId: "titos",    lat: 30.26533, lng: -97.76755 },
+        { stageId: "tmobile",  lat: 30.26504, lng: -97.77471 },
+        { stageId: "ladybird", lat: 30.26332, lng: -97.77077 },
+        { stageId: "bmi",      lat: 30.26313, lng: -97.77306 },
+        { stageId: "barton",   lat: 30.26130, lng: -97.77042 },
+        { stageId: "bonus",    lat: 30.26216, lng: -97.76991 },
       ],
       mainStageId: "honda",
       // acl-park.webp = the official ACL patron map, processed for the app:

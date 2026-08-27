@@ -43,6 +43,68 @@ for (const f of jsx) {
 if (bad) fail(`${bad} file(s) failed the react-preset transform`);
 console.log(`  ✓ all ${jsx.length} parsed`);
 
+// ── 1b. GPS anchor self-consistency ────────────────────────────────────────
+// Every festival's gpsAnchors comment says the non-calibration anchors were
+// "derived from the SVG layout via the <trio> affine". Nothing enforced it, and
+// on 2026-08-27 none of the five festivals actually satisfied it — EDC LV's
+// `neon` was 6.9 grid units out, ACL's `tmobile` 28.7, EDC Orlando's `stereo`
+// 56.9 (over half the footprint). These anchors are not decorative: map.jsx
+// projects the official map and every dot through them, and photo-tag.jsx
+// attributes a photo to a stage by matching EXIF GPS against them, so a bad
+// anchor silently mis-tags real memories.
+//
+// The check: push each stored anchor back through the affine its own first
+// three anchors define. It must land on that stage's x/y. Fatal for a LIVE
+// festival; a warning for a gated one, whose whole data layer is provisional
+// by construction and is re-measured at its flip session.
+{
+  const vm = await import("node:vm");
+  const ctx = { window:{}, console, Date, Math, JSON, Object, Array, String, Number,
+    isNaN, parseInt, parseFloat, fetch:()=>{},
+    localStorage:{ getItem:()=>null, setItem:()=>{}, removeItem:()=>{} } };
+  vm.createContext(ctx);
+  vm.runInContext(readFileSync(join(ROOT,"data.jsx"),"utf8") +
+    "\n;__o={REG:FESTIVALS_REGISTRY,DS:_DATA_SETS};", ctx);
+  const { REG, DS } = ctx.__o;
+  const TOL = 1.5;   // grid units on the 0-100 layout; ~20 m at EDC's scale
+  console.log("▸ GPS anchor gate — anchors must satisfy their own affine");
+  let hard = 0, soft = 0, checked = 0;
+  for (const f of REG) {
+    const cfg = f.config, stages = DS[cfg.id]?.stages || [];
+    const an = cfg.gpsAnchors || [];
+    if (an.length < 3 || !stages.length) continue;
+    const at = (id) => stages.find(s => s.id === id);
+    const [a0,a1,a2] = an;
+    if (!at(a0.stageId) || !at(a1.stageId) || !at(a2.stageId)) continue;
+    const A={lat:a0.lat,lng:a0.lng,mx:at(a0.stageId).x,my:at(a0.stageId).y};
+    const B={lat:a1.lat,lng:a1.lng,mx:at(a1.stageId).x,my:at(a1.stageId).y};
+    const C={lat:a2.lat,lng:a2.lng,mx:at(a2.stageId).x,my:at(a2.stageId).y};
+    const det=A.lat*(B.lng-C.lng)-A.lng*(B.lat-C.lat)+(B.lat*C.lng-C.lat*B.lng);
+    if (Math.abs(det) < 1e-12) continue;
+    const sol=(v1,v2,v3)=>[
+      (v1*(B.lng-C.lng)-A.lng*(v2-v3)+(C.lng*v2-B.lng*v3))/det,
+      (A.lat*(v2-v3)-v1*(B.lat-C.lat)+(B.lat*v3-C.lat*v2))/det,
+      (A.lat*(B.lng*v3-C.lng*v2)-A.lng*(B.lat*v3-C.lat*v2)+v1*(B.lat*C.lng-C.lat*B.lng))/det];
+    const X=sol(A.mx,B.mx,C.mx), Y=sol(A.my,B.my,C.my);
+    let worst = 0, who = "";
+    for (const a of an) {
+      const st = at(a.stageId); if (!st) continue;
+      const e = Math.hypot(X[0]*a.lat+X[1]*a.lng+X[2]-st.x, Y[0]*a.lat+Y[1]*a.lng+Y[2]-st.y);
+      if (e > worst) { worst = e; who = a.stageId; }
+    }
+    checked++;
+    const bad = worst > TOL;
+    const tag = !bad ? "  ok" : (f.available ? "  ✗ " : "  ! ");
+    console.log(`${tag} ${cfg.id.padEnd(22)} worst ${worst.toFixed(2)} (${who})`);
+    if (bad && f.available) hard++;
+    else if (bad) soft++;
+  }
+  if (!checked) console.log("  (no festival has both anchors and stages)");
+  if (soft) console.log(`  ${soft} gated festival(s) inconsistent — re-derive at the flip session`);
+  if (hard) fail(`${hard} LIVE festival(s) have gpsAnchors that do not satisfy their own affine`);
+  console.log(`  ✓ ${checked} festival(s) checked, live ones consistent within ${TOL} grid units`);
+}
+
 if (process.argv.includes("--parse-only")) process.exit(0);
 
 // ── 2. Mount probe ─────────────────────────────────────────────────────────
