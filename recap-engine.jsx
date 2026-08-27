@@ -462,8 +462,8 @@ function _renderVideoFrame(ctx, W, H, t, timeline, chrome, tmpl) {
     ctx.font = "700 18px 'Geist Mono', monospace";
     ctx.fillStyle = "rgba(255,255,255,0.7)";
     ctx.fillText(chrome.subtitle || (CFG.shortName || "FESTIVAL").toUpperCase(), W / 2, H / 2 + 20);
-    ctx.font = "700 14px 'Geist Mono', monospace";
-    ctx.fillStyle = "rgba(255,255,255,0.4)";
+    ctx.font = "700 18px 'Geist Mono', monospace";
+    ctx.fillStyle = "rgba(255,255,255,0.6)";
     ctx.fillText("MADE WITH PLURSKY", W / 2, H - 60 - (chrome.story ? 270 : 0));
     ctx.globalAlpha = 1;
     return;
@@ -582,8 +582,8 @@ function _renderVideoFrame(ctx, W, H, t, timeline, chrome, tmpl) {
   // Story export carries the Plursky watermark on every photo frame —
   // the free-tier differentiator stays visible when the clip leaves the app.
   if (chrome.story) {
-    ctx.fillStyle = "rgba(255,255,255,0.45)";
-    ctx.font = "700 13px 'Geist Mono', monospace";
+    ctx.fillStyle = "rgba(255,255,255,0.6)";
+    ctx.font = "700 17px 'Geist Mono', monospace";
     ctx.textAlign = "right";
     ctx.fillText("MADE WITH PLURSKY · PLURSKY.COM", W - 50, H - safe - 50);
     ctx.textAlign = "left";
@@ -1406,10 +1406,10 @@ async function _renderFestivalDNA(moments) {
     ctx.fillStyle = "rgba(247,237,224,0.2)"; ctx.font = "700 64px 'Geist Mono', monospace"; ctx.textAlign = "center";
     ctx.fillText("PLURSKY+", 0, 0); ctx.restore();
   }
-  ctx.fillStyle = "rgba(247,237,224,0.3)";
-  ctx.font = "700 12px 'Geist Mono', monospace";
-  ctx.fillText("MADE WITH PLURSKY+", W/2, H - 80);
   ctx.fillStyle = "rgba(247,237,224,0.5)";
+  ctx.font = "700 14px 'Geist Mono', monospace";
+  ctx.fillText("MADE WITH PLURSKY+", W/2, H - 80);
+  ctx.fillStyle = "rgba(247,237,224,0.65)";
   ctx.font = "italic 400 20px 'Instrument Serif', serif";
   ctx.fillText("plursky.com", W/2, H - 50);
 
@@ -1551,11 +1551,11 @@ async function _renderFestivalPassport(state) {
     ctx.fillStyle = "rgba(26,18,13,0.12)"; ctx.font = "700 72px 'Geist Mono', monospace"; ctx.textAlign = "center";
     ctx.fillText("PLURSKY+", 0, 0); ctx.restore();
   }
-  ctx.fillStyle = "rgba(26,18,13,0.25)";
-  ctx.font = "700 12px 'Geist Mono', monospace";
+  ctx.fillStyle = "rgba(26,18,13,0.45)";
+  ctx.font = "700 14px 'Geist Mono', monospace";
   ctx.textAlign = "center";
   ctx.fillText("MADE WITH PLURSKY+", W/2, H - 80);
-  ctx.fillStyle = "rgba(26,18,13,0.4)";
+  ctx.fillStyle = "rgba(26,18,13,0.6)";
   ctx.font = "italic 400 18px 'Instrument Serif', serif";
   ctx.fillText("plursky.com", W/2, H - 55);
 
