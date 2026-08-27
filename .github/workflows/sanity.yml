@@ -27,7 +27,23 @@ jobs:
       - name: Build (scripts/build.mjs copy step)
         run: node scripts/build.mjs
 
+      # Cheapest gate first: three files, one regex, fails in milliseconds.
+      # The v230 -> v231 -> v232 cascade happened because three PRs each
+      # hand-sed'd the version and nothing checked they agreed.
+      - name: Cache-bust drift check (index.html + sw.js + app.jsx)
+        run: node scripts/bump.mjs --check
+
       # Syntax only — no typecheck. Pinned to the repo's devDependency so
       # CI and local agree on what "parses" means.
       - name: JSX parse gate (syntax only, no typecheck)
         run: npx --yes --package=typescript@6.0.3 tsc --noEmit --allowJs --checkJs false --jsx preserve --skipLibCheck $(git ls-files '*.jsx' ':!ios/**')
+
+      # The real gate. AGENTS.md §2 rule 2 has always required a Babel
+      # react-preset transform AND a headless mount probe per change; both were
+      # manual, which means skippable, and it let the local check and CI drift.
+      # scripts/verify.mjs is that check as code, run by both.
+      - name: Chrome present (mount probe needs it)
+        run: google-chrome --version
+
+      - name: Verify gate (babel react-preset + headless mount probe)
+        run: node scripts/verify.mjs
