@@ -32,7 +32,7 @@
 
 <div class="mono">PLURSKY · PRIVACY POLICY</div>
 <h1>Privacy.</h1>
-<p class="mono">LAST UPDATED 12 MAY 2026</p>
+<p class="mono">LAST UPDATED 26 AUGUST 2026</p>
 
 <p class="lede">
   Plursky is a festival companion app supporting EDC, ACL, and more. We try to
@@ -42,9 +42,9 @@
 
 <h2>What we collect</h2>
 
-<p><strong>Account data.</strong> If you sign in with Apple or via an email magic link, our backend (Supabase) stores:</p>
+<p><strong>Account data.</strong> If you sign in (Apple or Spotify), our backend (Supabase) stores:</p>
 <ul>
-  <li>The unique user ID assigned by Apple, or your email address.</li>
+  <li>The unique user ID from the provider you sign in with.</li>
   <li>Your display name (only if you provide one).</li>
 </ul>
 
@@ -55,14 +55,14 @@
   <li>Your local display name, crew code, and friend-share preferences.</li>
 </ul>
 
-<p><strong>Spotify data (only if you connect Spotify).</strong> We use Spotify's standard OAuth (PKCE). Plursky reads:</p>
+<p><strong>Spotify data (only if you connect Spotify).</strong> We use Spotify's standard OAuth. Plursky reads:</p>
 <ul>
   <li>Your top artists, followed artists, saved tracks, and recent listening — to match the EDC lineup against your taste.</li>
   <li>Your Spotify profile (display name, country, premium status, avatar) — shown only to you in-app.</li>
 </ul>
 <p>Plursky writes to one of your Spotify playlists (named "Plursky" or "My EDC Lineup") only when you tap "BUILD MY PLAYLIST." Your Spotify access token lives in your browser's local storage — it never leaves your device except to talk directly to Spotify.</p>
 
-<p><strong>Location.</strong> If you open the Map tab and grant permission, your device's GPS coordinates are used <em>only</em> in-browser to draw your dot on the venue map. Coordinates are <strong>never sent to our servers</strong>, never logged, never shared with anyone — not even your crew.</p>
+<p><strong>Location.</strong> If you open the Map tab and grant permission, your device's GPS coordinates are used <em>only</em> on the device to draw your dot on the venue map. Coordinates are <strong>never sent to our servers</strong>, never logged, never shared with anyone — not even your crew. One exception path, by your choice only: if you enable cloud backup for Moments, the photo/video files you back up are stored as captured, including any location metadata embedded in the file itself (see "Moments" below).</p>
 
 <p><strong>Crew & friends.</strong> If you join a crew using a 6-character code, the following is broadcast in real time to other crew members on the same code:</p>
 <ul>
@@ -74,30 +74,42 @@
 
 <p><strong>Notifications.</strong> If you enable set reminders, Plursky schedules them locally in your browser. We do not run a push-notification server — no one at Plursky can send you a notification.</p>
 
+<p><strong>Moments: photos and videos you add.</strong> When you add photos or videos from your camera roll or camera to Memories, Plursky reads them — and the metadata embedded in them (capture time, and GPS coordinates if the file has them) — <strong>on your device only</strong>, to place each moment on the right set, stage, and night. Nothing uploads by itself. If you turn on backup ("Back up my weekend"), the files you back up are stored in our backend (Supabase) in a private bucket, as captured — including whatever metadata the file carries. Artist/setlist-matching runs on the device against festival data bundled with the app; the setlist lookups it may trigger send only an artist name and festival id, never anything about you.</p>
+
+<p><strong>Microphone & song recognition.</strong> Plursky only listens when you explicitly start Shazam ("CATCH THIS SONG" live listen, or identifying a song in a video you added). Recognition happens through Apple's Shazam service: an acoustic fingerprint (not a recording of your voice or the venue) is matched against Apple's catalog. We never receive or store the audio itself; we store only the result (song title + artist) and only for that moment.</p>
+
+<p><strong>Apple Music (only if you connect Apple Music).</strong> MusicKit runs on your device. Plursky reads your library's <em>artists list</em> and your storefront region — to match the lineup against your taste — and writes one or more playlists only when you tap the build button. Your Apple Music tokens live on your device; they never pass through our servers.</p>
+
+<p><strong>Plursky+ (paid features).</strong> Purchases are handled by Apple's App Store and RevenueCat. When you buy or restore Plursky+, RevenueCat stores a purchase identifier for your app install so we know what you're entitled to (backup of photos/videos is the Plus feature today). We never see, process, or store your card number, Apple ID payment details, or billing address. The app is otherwise free.</p>
+
 <h2>What we don't collect</h2>
 <ul>
   <li>No analytics SDKs, no Google Analytics, no Mixpanel, no anything similar.</li>
   <li>No advertising identifiers (IDFA, etc.). Plursky displays no ads.</li>
-  <li>No payment data — Plursky is free.</li>
   <li>No browsing history outside the app.</li>
-  <li>No microphone, no camera, no contacts, no health data.</li>
+  <li>No contacts, no health data.</li>
+  <li>No passive listening or recording: the microphone and camera/gallery open only when you deliberately start Shazam or add a moment.</li>
+  <li>No card or payment details — Apple and RevenueCat handle purchases end to end.</li>
 </ul>
 
 <h2>Who we share data with</h2>
 <p>We share what's necessary with the following service providers, and nothing more:</p>
 <ul>
-  <li><strong>Supabase</strong> — hosts the backend database and the Sign in with Apple verification. <a href="https://supabase.com/privacy" target="_blank" rel="noopener">supabase.com/privacy</a></li>
+  <li><strong>Supabase</strong> — hosts the backend database, sign-in verification, and (if you enable backup) your backed-up Moments media. <a href="https://supabase.com/privacy" target="_blank" rel="noopener">supabase.com/privacy</a></li>
   <li><strong>Spotify</strong> — only if you connect; data flows directly browser ↔ Spotify. <a href="https://www.spotify.com/legal/privacy-policy/" target="_blank" rel="noopener">spotify.com/legal/privacy-policy</a></li>
-  <li><strong>Apple</strong> — for Sign in with Apple identity tokens. <a href="https://www.apple.com/legal/privacy/en-ww/" target="_blank" rel="noopener">apple.com/legal/privacy</a></li>
+  <li><strong>Apple</strong> — for Sign in with Apple identity tokens, Apple Music (MusicKit) library access, Shazam song recognition, and App Store payment processing. <a href="https://www.apple.com/legal/privacy/en-ww/" target="_blank" rel="noopener">apple.com/legal/privacy</a></li>
+  <li><strong>RevenueCat</strong> — processes Plursky+ purchase status (no card details; a purchase identifier tied to your install). <a href="https://www.revenuecat.com/privacy/" target="_blank" rel="noopener">revenuecat.com/privacy</a></li>
   <li><strong>YouTube</strong> — fetched read-only for artist trailer thumbnails. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></li>
+  <li><strong>setlist.fm & 1001tracklists</strong> — read-only setlist lookups through our backend; queried by artist name only, never with anything identifying you. <a href="https://www.setlist.fm/help/privacy" target="_blank" rel="noopener">setlist.fm/help/privacy</a></li>
+  <li><strong>U.S. National Weather Service</strong> — read-only weather lookup for festival locations; no personal data is sent. <a href="https://www.weather.gov/privacy" target="_blank" rel="noopener">weather.gov/privacy</a></li>
 </ul>
 <p>We do not sell your data to anyone, ever.</p>
 
 <h2>How long we keep it</h2>
-<p>Account data + saved sets stay in Supabase until you delete your account. Crew chat messages persist in Supabase indefinitely (because late joiners need to see the thread) — they aren't tied to your account, but they do carry your display name. Location data is never stored, anywhere.</p>
+<p>Account data + saved sets stay in Supabase until you delete your account. Backed-up Moments media stays in its private bucket until you delete it in-app or delete your account, either of which removes it. Crew chat messages persist in Supabase indefinitely (because late joiners need to see the thread) — they aren't tied to your account, but they do carry your display name. Your live location is never stored, anywhere.</p>
 
 <h2>Deleting your account</h2>
-<p>Inside the app: <strong>Me → Cloud account → DELETE ACCOUNT</strong>. This hard-deletes your auth record and your <code>user_data</code> row from our backend. Crew chat messages you've sent are not automatically removed because they belong to the crew thread; contact us if you want them purged.</p>
+<p>Inside the app: <strong>Me → Cloud account → DELETE ACCOUNT</strong>. This hard-deletes your auth record and your <code>user_data</code> row from our backend. Crew chat messages you've sent are not automatically removed because they belong to the crew thread; backed-up Moments media <strong>is</strong> deleted — the delete flow purges your media from its private bucket before removing your account. For crew messages, contact us and we'll purge them.</p>
 
 <h2>Children</h2>
 <p>Plursky is not directed at children under 13. Most supported festivals are 18+ or 21+ events.</p>
