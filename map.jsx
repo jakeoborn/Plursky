@@ -1679,13 +1679,12 @@ function MapScreen({ state, setState }) {
   const [chatFriend, setChatFriend] = React.useState(null);
   const [rideshareOpen, setRideshareOpen] = React.useState(false);
   const [showLabels, setShowLabels] = React.useState(false);
-  // Official patron map over the real basemap. Default ON — it is the whole
-  // point of a festival map — but persisted, because someone who flipped the
-  // BETA real map on specifically to see real satellite geography needs a way
-  // to get the poster back out of the way.
-  const [showOfficialMap, setShowOfficialMap] = React.useState(() => {
-    try { return localStorage.getItem("plursky_official_map") !== "0"; } catch { return true; }
-  });
+  // Official patron map over the real basemap: always on, no toggle. A
+  // More-menu control was proposed with this layer and VETOED — the poster
+  // IS the festival map, so a switch to turn it off is a setting nobody
+  // needs and one more row in an already-long menu. RealMap's `officialMap`
+  // prop defaults to true and stays in its signature so the layer remains
+  // addressable if that call is ever revisited.
   const [showHeat,   setShowHeat]   = React.useState(false);
   // Real map (BETA) — guarded re-enable (2026-08-22). Never again a broken
   // festival-night map (EDC 2026-05-15 revert 139b50e): opt-in flag,
@@ -2216,15 +2215,6 @@ function MapScreen({ state, setState }) {
                 },
                 { id: "crowd",  label: "🔥  Crowd heatmap",   active: showHeat,   onToggle: () => setShowHeat(s => !s) },
                 { id: "labels", label: "🏷  Landmark labels", active: showLabels, onToggle: () => setShowLabels(s => !s) },
-                ...(useRealMap && FESTIVAL_CONFIG.mapStyle === "image-overlay" && FESTIVAL_CONFIG.mapImage ? [
-                  { id: "officialmap", label: "🗺  Official festival map", active: showOfficialMap,
-                    onToggle: () => {
-                      const v = !showOfficialMap;
-                      try { localStorage.setItem("plursky_official_map", v ? "1" : "0"); } catch {}
-                      setShowOfficialMap(v);
-                    },
-                  },
-                ] : []),
                 { id: "realmap", label: "🗺  Real map (BETA)",  active: useRealMap,
                   onToggle: () => {
                     const v = !useRealMap;
@@ -2648,7 +2638,6 @@ function MapScreen({ state, setState }) {
             saved={state.saved}
             showHeat={showHeat}
             showLabels={showLabels}
-            officialMap={showOfficialMap}
             compass={compass && compassStatus === "live"}
             compassHeading={compassHeading}
             selected={selectedStage}
