@@ -269,6 +269,82 @@ const FESTIVALS_REGISTRY = [
     emoji:     "🌲",
     region:    "North America",
   },
+  {
+    // ── Lost Lands 2026 — Legend Valley, Thornville OH ──
+    // ⛔ GATE (same pattern as Forest): lineup + day assignments are REAL
+    // (official daily poster, aug 2026) but SET TIMES + STAGES are NOT
+    // published yet (checked 2026-08-22; official app schedule historically
+    // drops ~1 week out). All start/end, stage assignments, stage x/y,
+    // gpsAnchors, and the map image are PROVISIONAL. Flip `available: true`
+    // only after the official schedule + 2026 patron map land.
+    config: {
+      id:        "lost-lands-2026",
+      name:      "Lost Lands 2026",
+      shortName: "Lost Lands",
+      brand:     "Lost Lands",
+      tagline:   "Three nights in Legend Valley",
+      location:  "Legend Valley · Thornville, OH",
+      locationShort: "Legend Valley",
+      dates:     "Sep 18–20, 2026",
+      year:      2026,
+      startMs: Date.UTC(2026, 8, 16, 16, 0, 0), // Sep 16 noon EDT (early-entry Wed opens)
+      endMs:   Date.UTC(2026, 8, 21, 6, 0, 0),  // Sep 21 02:00 EDT (Sunday close)
+      tz:      "America/New_York",
+      tzAbbr:  "EDT",
+      utcOffsetHours: -4,
+      // Lost Lands runs FIVE program days: Wed–Thu early entry (pre-party,
+      // Crater Stage) + Fri–Sun main days.
+      dayDates: {
+        1: { y: 2026, m: 8, d: 16, name: "Wednesday", short: "WED",
+             midnightUtc: Date.UTC(2026, 8, 16, 4, 0, 0) },
+        2: { y: 2026, m: 8, d: 17, name: "Thursday",  short: "THU",
+             midnightUtc: Date.UTC(2026, 8, 17, 4, 0, 0) },
+        3: { y: 2026, m: 8, d: 18, name: "Friday",    short: "FRI",
+             midnightUtc: Date.UTC(2026, 8, 18, 4, 0, 0) },
+        4: { y: 2026, m: 8, d: 19, name: "Saturday",  short: "SAT",
+             midnightUtc: Date.UTC(2026, 8, 19, 4, 0, 0) },
+        5: { y: 2026, m: 8, d: 20, name: "Sunday",    short: "SUN",
+             midnightUtc: Date.UTC(2026, 8, 20, 4, 0, 0) },
+      },
+      // sunrise-sunset.org @ venue coords (EDT reads):
+      sunTimes: {
+        1: { rise: "07:11", set: "19:38" },
+        2: { rise: "07:11", set: "19:37" },
+        3: { rise: "07:12", set: "19:35" },
+        4: { rise: "07:13", set: "19:34" },
+        5: { rise: "07:14", set: "19:32" },
+      },
+      // Venue centroid from OpenStreetMap (Legend Valley, 7585 Jacksontown
+      // Rd SE, Thornville OH); NWS points endpoint verified live 2026-08-22.
+      gps: { lat: 39.9403, lng: -82.4039, onSiteRadiusMi: 1.0 },
+      // ⚠ ALL anchors PROVISIONAL (spread around the centroid from the
+      // general stage layout - no 2026 patron map exists yet). Recalibrate
+      // at the flip session per the map.jsx ACL 3-point affine workflow.
+      gpsAnchors: [
+        { stageId: "prehistoric",  lat: 39.93800, lng: -82.40650 },
+        { stageId: "wompy-woods",  lat: 39.94150, lng: -82.40100 },
+        { stageId: "crater",       lat: 39.94050, lng: -82.40750 },
+        { stageId: "subsidia",     lat: 39.94180, lng: -82.40450 },
+        { stageId: "forest-stage", lat: 39.93900, lng: -82.40200 },
+        { stageId: "raptor-alley", lat: 39.94250, lng: -82.40700 },
+        { stageId: "grove",        lat: 39.94300, lng: -82.40150 },
+      ],
+      mainStageId: "prehistoric",
+      // lostlands-2026.jpg = PROVISIONAL generated abstract valley overlay
+      // (ImageMagick gradient, NOT traced). Replace with the processed
+      // official 2026 patron map (acl-park.webp treatment) when it drops.
+      mapImage: "lostlands-2026.jpg",
+      mapStyle: "image-overlay",
+      mapTheme: "forest",
+      weatherEndpoint: "https://api.weather.gov/points/39.9403,-82.4039",
+      // Flip-session marker: replace provisional set times/stages, then delete.
+      setTimesProvisional: true,
+    },
+    available: false,
+    accent:    "#84cc16",
+    emoji:     "🦖",
+    region:    "North America",
+  },
   // ─── Preview entries (visible in the switcher as "Coming soon") ───
   // These are intentionally minimal — name + dates + brand colors only.
   // To turn one ON: ship a full FESTIVAL_CONFIG (same shape as EDC LV
@@ -280,15 +356,65 @@ const FESTIVALS_REGISTRY = [
   // markdown in repo, etc.) adds load-order complexity for marginal
   // benefit at the current scale. Re-evaluate at festival #5.
   {
+    // ── EDC Orlando 2026 — Tinker Field, Orlando FL ──
+    // ⛔ GATE (revival wave 2026-08-22): full data set (EDCO_STAGES /
+    // EDCO_ARTISTS / EDCO_AMENITIES) is staged below; DATES CORRECTED vs
+    // the June preview stub, which carried "Nov 13–15, 2026" — the
+    // official dates per the Insomniac press release (2026-06-23) and
+    // orlando.edc.com are NOV 6–8, 2026. Day-by-day lineup is REAL
+    // (109 acts, official site day filters); set times, per-artist stage
+    // assignments, and the official 2026 map are NOT published yet
+    // (checked 2026-08-22; Insomniac drops them in the EDC app ~1-2
+    // weeks out). Flip `available: true` ONLY after the flip session
+    // replaces times/stages/map + recalibrates gpsAnchors.
     config: {
       id:        "edc-orlando-2026",
       name:      "EDC Orlando 2026",
       shortName: "EDC Orlando",
       brand:     "EDC",
-      tagline:   "Three nights under the kinetic sky",
+      tagline:   "Three nights under the kinetic Florida sky",
       location:  "Tinker Field · Orlando",
-      dates:     "Nov 13–15, 2026",
+      locationShort: "Tinker Field",
+      dates:     "Nov 6–8, 2026",
       year:      2026,
+      // NOTE: Nov 6-8 is AFTER US DST ends (Nov 1) — Orlando is EST (UTC-5).
+      startMs: Date.UTC(2026, 10, 6, 21, 0, 0), // Nov 6 16:00 EST gates
+      endMs:   Date.UTC(2026, 10, 9, 5, 0, 0),  // Nov 9 00:00 EST Sunday close
+      tz:      "America/New_York",
+      tzAbbr:  "EST",
+      utcOffsetHours: -5,
+      dayDates: {
+        1: { y: 2026, m: 10, d: 6, name: "Friday",   short: "FRI", midnightUtc: Date.UTC(2026, 10, 6, 5, 0, 0) },
+        2: { y: 2026, m: 10, d: 7, name: "Saturday", short: "SAT", midnightUtc: Date.UTC(2026, 10, 7, 5, 0, 0) },
+        3: { y: 2026, m: 10, d: 8, name: "Sunday",   short: "SUN", midnightUtc: Date.UTC(2026, 10, 8, 5, 0, 0) },
+      },
+      // Early-Nov Orlando approximates (theme guidance only): sunrise
+      // ~06:38 / sunset ~17:35 EST, drifting ~1 min/day. Not load-bearing.
+      sunTimes: {
+        1: { rise: "06:38", set: "17:35" },
+        2: { rise: "06:39", set: "17:34" },
+        3: { rise: "06:40", set: "17:33" },
+      },
+      // ⚠ PROVISIONAL venue centroid (Tinker Field Plaza, Nominatim
+      // 2026-08-22). Recalibrate against the official 2026 map + satellite.
+      gps: { lat: 28.5382, lng: -81.4053, onSiteRadiusMi: 0.6 },
+      // ⚠ ALL anchors PROVISIONAL (venue centroid offsets only).
+      gpsAnchors: [
+        { stageId: "kinetic", lat: 28.53890, lng: -81.40450 },
+        { stageId: "circuit", lat: 28.53760, lng: -81.40630 },
+        { stageId: "neon",    lat: 28.53800, lng: -81.40320 },
+        { stageId: "stereo",  lat: 28.53920, lng: -81.40610 },
+        { stageId: "bacardi", lat: 28.53720, lng: -81.40400 },
+      ],
+      mainStageId: "kinetic",
+      // edco-tinker-2026.jpg = PROVISIONAL generated abstract overlay
+      // (ImageMagick plasma, not traced). Replace with the processed
+      // official 2026 map when it drops.
+      mapImage: "edco-tinker-2026.jpg",
+      mapStyle: "image-overlay",
+      mapTheme: "park",
+      weatherEndpoint: "https://api.weather.gov/points/28.54,-81.41",
+      setTimesProvisional: true,
     },
     available: false,
     accent:    "#22c55e",
@@ -1259,11 +1385,412 @@ const EF_AMENITIES = [
 // _artistsForFestival reads it so ARCHIVED festivals resolve their
 // ORIGINAL lineups (bare ARTISTS here gets overwritten with the active
 // set by the Object.assign below, so it can't serve archives).
+
+// ══════════════════════ EDC ORLANDO 2026 (revival scaffold 2026-08-22) ══════
+// Lineup + DAY SPLITS are REAL (official orlando.edc.com/lineup day
+// filters, 109 acts; audited vs Insomniac press release 2026-06-23).
+// Set times + per-artist stage assignments + official 2026 map are NOT
+// published — every artist sits on stage "tba" with placeholder
+// 12:00-13:00 times until the flip session. Stage names verified from
+// orlando.edc.com/experience/stages (incl. 5th stage CASA BACARDÍ).
+
+const EDCO_STAGES = [
+  { id: "kinetic", name: "kineticFIELD",   short: "KINETIC",  color: "#f97316", x: 50, y: 24, size: 1.7, desc: "Main stage",               vibe: "Main Event",      vibeNote: "Headliners under the electric sky.",                 peak: "18:00–00:00" },
+  { id: "circuit", name: "circuitGROUNDS", short: "CIRCUIT",  color: "#38bdf8", x: 26, y: 44, size: 1.4, desc: "Epic-melody big room",     vibe: "Big Melodies",    vibeNote: "Trance, melodic bass, anthem energy.",               peak: "16:00–00:00" },
+  { id: "neon",    name: "neonGARDEN",     short: "NEON",     color: "#a855f7", x: 74, y: 44, size: 1.3, desc: "Factory 93 home base",     vibe: "House & Techno",  vibeNote: "Factory 93 takeover territory, four-on-the-floor.",  peak: "15:00–00:00" },
+  { id: "stereo",  name: "stereoBLOOM",    short: "STEREO",   color: "#f43f5e", x: 36, y: 70, size: 1.1, desc: "Insomniac Records stage",  vibe: "Label Sounds",    vibeNote: "Insomniac Records + Dreamstate hosting.",            peak: "14:00–23:00" },
+  { id: "bacardi", name: "CASA BACARDÍ",   short: "BACARDÍ",  color: "#22c55e", x: 64, y: 70, size: 0.9, desc: "Lounge stage",             vibe: "Lounge Sessions", vibeNote: "Day-party energy under the palms.",                  peak: "13:00–20:00" },
+  { id: "tba",    name: "Schedule TBA",    short: "TBA",      color: "#9ca3af", x: 50, y: 50, size: 0.1, desc: "PROVISIONAL: stage assignments drop with the official schedule", vibe: "Unscheduled", vibeNote: "Every artist sits here until the official schedule assigns stages + times.", peak: "—" },
+];
+
+const _edcoMk = (id, name, genre, day, start, end) => {
+  return { id, name, genre, country: "—", stage: "tba", day, start, end, tier: 1,
+    img: `linear-gradient(135deg, #22c55e, #04170c)`,
+    bio: "Playing EDC Orlando 2026. Day is official (orlando.edc.com day filters); set time + stage are placeholders until the official schedule drops in the Insomniac app (~1-2 weeks out)." };
+};
+
+// Official day-by-day lineup (orlando.edc.com/lineup day filters, audited
+// 2026-08-22: Fri 36 / Sat 36 / Sun 37 = 109 acts). id prefix:
+// ecf Fri Nov 6 / ecs Sat Nov 7 / ecu Sun Nov 8. Genre tags agent-assigned
+// for the press-release groupings, default "Electronic" otherwise.
+const EDCO_ARTISTS = [
+  _edcoMk("ecf1", "AAT",                                      "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf2", "Adventure Club (Sunset Set)",              "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf3", "Afrojack",                                 "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf4", "Alesso (Sunset Set)",                      "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf5", "Azzecca",                                  "House", 1, "12:00","13:00"),
+  _edcoMk("ecf6", "Benda B2B Vastive",                        "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf7", "Big Florida",                              "Bass", 1, "12:00","13:00"),
+  _edcoMk("ecf8", "Bou B2B Kanine",                           "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf9", "Brunello (Sunset Set)",                    "House", 1, "12:00","13:00"),
+  _edcoMk("ecf10", "Bullet Tooth B2B Sidney Charles",          "Techno", 1, "12:00","13:00"),
+  _edcoMk("ecf11", "Chris Lorenzo",                            "House", 1, "12:00","13:00"),
+  _edcoMk("ecf12", "David Guetta",                             "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf13", "HAYLA",                                    "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf14", "IDEMI",                                    "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf15", "Inbal",                                    "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf16", "Interplanetary Criminal",                  "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf17", "JOA",                                      "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf18", "Josh Baker",                               "House", 1, "12:00","13:00"),
+  _edcoMk("ecf19", "Joshwa",                                   "House", 1, "12:00","13:00"),
+  _edcoMk("ecf20", "Kompany",                                  "Bass", 1, "12:00","13:00"),
+  _edcoMk("ecf21", "KREAM",                                    "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf22", "Level Up",                                 "Bass", 1, "12:00","13:00"),
+  _edcoMk("ecf23", "Levity",                                   "Bass", 1, "12:00","13:00"),
+  _edcoMk("ecf24", "MALUGI (Sunset Set)",                      "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf25", "Matthias",                                 "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf26", "Mau P",                                    "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf27", "MPH",                                      "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf28", "Omar+",                                    "House", 1, "12:00","13:00"),
+  _edcoMk("ecf29", "Pegassi",                                  "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf30", "Prospa B2B Josh Baker",                    "House", 1, "12:00","13:00"),
+  _edcoMk("ecf31", "Prospa",                                   "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf32", "RAJE",                                     "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf33", "Sloth",                                    "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf34", "Whethan",                                  "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecf35", "Wooli",                                    "Bass", 1, "12:00","13:00"),
+  _edcoMk("ecf36", "Zack Martino",                             "Electronic", 1, "12:00","13:00"),
+  _edcoMk("ecs1", "Aaron Hibell",                             "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs2", "ACRAZE B2B CID",                           "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs3", "Alan Walker (Sunset Set)",                 "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs4", "Alison Wonderland",                        "Bass", 2, "12:00","13:00"),
+  _edcoMk("ecs5", "ALLEYCVT",                                 "Bass", 2, "12:00","13:00"),
+  _edcoMk("ecs6", "Alves",                                    "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs7", "AVELLO",                                   "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs8", "AYYBO",                                    "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs9", "ChaseWest",                                "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs10", "Dennis Cruz",                              "House", 2, "12:00","13:00"),
+  _edcoMk("ecs11", "Devault (Sunset Set)",                     "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs12", "Discip",                                   "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs13", "Disco Lines",                              "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs14", "Fallon",                                   "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs15", "Franky Rizardo",                           "House", 2, "12:00","13:00"),
+  _edcoMk("ecs16", "Fury with MC Dino",                        "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs17", "Gabss",                                    "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs18", "Greg 99",                                  "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs19", "Jkyl & Hyde",                              "Bass", 2, "12:00","13:00"),
+  _edcoMk("ecs20", "Kaskade",                                  "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs21", "KinAhau",                                  "House", 2, "12:00","13:00"),
+  _edcoMk("ecs22", "LAYZ",                                     "Bass", 2, "12:00","13:00"),
+  _edcoMk("ecs23", "MADVKTM",                                  "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs24", "Mai Iachetti",                             "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs25", "Max Dean, Luke Dean",                      "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs26", "Me n ü",                                   "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs27", "Miguelle & Tons",                          "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs28", "Monoky",                                   "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs29", "Nico Moreno",                              "Techno", 2, "12:00","13:00"),
+  _edcoMk("ecs30", "Ray Volpe",                                "Bass", 2, "12:00","13:00"),
+  _edcoMk("ecs31", "Roddy Lima",                               "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs32", "Rossi. (Sunset Set)",                      "House", 2, "12:00","13:00"),
+  _edcoMk("ecs33", "Skull Machine (Black Tiger Sex Machine x Kai Wachi)", "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs34", "Steve Aoki",                               "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs35", "Subsonic",                                 "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecs36", "Twinsick",                                 "Electronic", 2, "12:00","13:00"),
+  _edcoMk("ecu1", "A Little Sound",                           "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu2", "Adrián Mills",                             "Techno", 3, "12:00","13:00"),
+  _edcoMk("ecu3", "Alok",                                     "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu4", "AR/CO",                                    "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu5", "ATLiens",                                  "Bass", 3, "12:00","13:00"),
+  _edcoMk("ecu6", "Boogie T",                                 "Bass", 3, "12:00","13:00"),
+  _edcoMk("ecu7", "Boys Noize B2B Brutalismus 3000",          "Techno", 3, "12:00","13:00"),
+  _edcoMk("ecu8", "Chef Boyarbeatz",                          "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu9", "CØNTRA",                                   "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu10", "Deorro B2B DJ Diesel",                     "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu11", "Discovery Project",                        "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu12", "ESSE",                                     "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu13", "Hardwell",                                 "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu14", "Holy Priest",                              "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu15", "I Hate Models",                            "Techno", 3, "12:00","13:00"),
+  _edcoMk("ecu16", "Ian Asher",                                "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu17", "Jessica Audiffred",                        "Bass", 3, "12:00","13:00"),
+  _edcoMk("ecu18", "Kaivon",                                   "Bass", 3, "12:00","13:00"),
+  _edcoMk("ecu19", "KI/KI",                                    "Techno", 3, "12:00","13:00"),
+  _edcoMk("ecu20", "Klangkuenstler",                           "Techno", 3, "12:00","13:00"),
+  _edcoMk("ecu21", "Know Good",                                "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu22", "M81!",                                     "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu23", "Maddix",                                   "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu24", "Marlon Hoffstadt (Sunset Set)",            "Techno", 3, "12:00","13:00"),
+  _edcoMk("ecu25", "Martin Garrix",                            "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu26", "Meduza",                                   "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu27", "Of The Trees (Sunset Set)",                "Bass", 3, "12:00","13:00"),
+  _edcoMk("ecu28", "phrva",                                    "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu29", "Ravenscoon",                               "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu30", "San Holo (Wholesome Riddim Set)",          "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu31", "SHDW",                                     "Techno", 3, "12:00","13:00"),
+  _edcoMk("ecu32", "Sippy",                                    "Bass", 3, "12:00","13:00"),
+  _edcoMk("ecu33", "SLANDER (Sunset Set)",                     "Bass", 3, "12:00","13:00"),
+  _edcoMk("ecu34", "Taiki Nulight",                            "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu35", "TroyBoi",                                  "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu36", "Ultrathem",                                "Electronic", 3, "12:00","13:00"),
+  _edcoMk("ecu37", "And the most important headliner of all You", "Electronic", 3, "12:00","13:00"),
+];
+
+const EDCO_AMENITIES = [
+  { id: "eoa1", type: "water",  label: "Hydration",            x: 44, y: 30 },
+  { id: "eoa2", type: "water",  label: "Hydration",            x: 60, y: 62 },
+  { id: "eoa3", type: "food",   label: "Vendor Village",       x: 50, y: 50 },
+  { id: "eoa4", type: "food",   label: "Westside Eats",        x: 22, y: 58 },
+  { id: "eoa5", type: "med",    label: "Medical",              x: 54, y: 40 },
+  { id: "eoa6", type: "toilet", label: "Restrooms",            x: 30, y: 40 },
+  { id: "eoa7", type: "toilet", label: "Restrooms",            x: 70, y: 56 },
+  { id: "eoa8", type: "info",   label: "Info & Guest Services", x: 48, y: 18 },
+];
+
+// ── Lost Lands 2026 — Legend Valley, Thornville OH (Sep 18–20; early entry Sep 16–17) ──
+// Day-by-day lineup = official daily-lineups poster (lostlandsfestival.com,
+// aug 2026; mirrored day assignments cross-checked against festivaldust 2026-08-22).
+// ⛔ SET TIMES + STAGES NOT PUBLISHED (official app schedule drops ~1 week out):
+// every start/end, per-artist stage, stage x/y, and genre label below is
+// PROVISIONAL placeholder grid. Do NOT flip `available: true` until the flip
+// session replaces them with the official schedule + official 2026 patron map.
+const LL_STAGES = [
+  { id: "prehistoric",  name: "Prehistoric Paradox", short: "PREHISTORIC", color: "#f97316", x: 50, y: 68, size: 2.2, desc: "Legend Valley main stage", vibe: "Main Energy", vibeNote: "The big one. Pyro, lasers, the whole valley answers.", peak: "17:00–00:00" },
+  { id: "wompy-woods",  name: "Wompy Woods",         short: "WOMPY",      color: "#84cc16", x: 68, y: 45, size: 1.6, desc: "Forest-draped second stage", vibe: "In The Trees", vibeNote: "Wobbles in the woods; fan-favorite for a reason.", peak: "14:00–23:00" },
+  { id: "crater",       name: "The Crater",          short: "CRATER",     color: "#a855f7", x: 38, y: 50, size: 1.5, desc: "360-degree immersive stage", vibe: "Surround Sound", vibeNote: "Bass in the round - the pre-party home.", peak: "14:00–23:00" },
+  { id: "subsidia",     name: "Subsidia Stage",      short: "SUBSIDIA",   color: "#22d3ee", x: 58, y: 38, size: 1.3, desc: "Excision-label showcase stage", vibe: "Label Night", vibeNote: "Subsidia Records takeover energy.", peak: "14:00–22:00" },
+  { id: "forest-stage", name: "Forest Stage",        short: "FOREST",     color: "#34d399", x: 30, y: 62, size: 1.1, desc: "Deep-in-the-trees stage", vibe: "Hidden Forest", vibeNote: "Small canopy, big wubs.", peak: "14:00–22:00" },
+  { id: "raptor-alley", name: "Raptor Alley",        short: "RAPTOR",     color: "#ef4444", x: 45, y: 25, size: 0.9, desc: "Late-night after-hours lane", vibe: "After Hours", vibeNote: "The valley does not sleep.", peak: "23:00–04:00" },
+  { id: "grove",        name: "The Grove",           short: "GROVE",      color: "#eab308", x: 62, y: 22, size: 0.8, desc: "Campground stage", vibe: "Campground", vibeNote: "Morning-to-late sets where the camps live.", peak: "10:00–22:00" },
+];
+
+// Tier from curated headliner list (schedule-independent); genres are best-
+// known for the obvious names and default to "Bass" for the rest - Lost
+// Lands is a bass festival, so the default is honest. Both get corrected at
+// the flip session when the official schedule lands.
+const _llMk = (id, name, genre, tier, stage, day) => {
+  const times = tier === 3 ? ["22:30","00:00"] : tier === 2 ? ["20:00","21:30"] : ["17:00","18:30"];
+  return { id, name, genre, country: "—", stage, day, start: times[0], end: times[1], tier,
+    img: `linear-gradient(135deg, ${LL_STAGES.find(s=>s.id===stage)?.color || "#84cc16"}, #0a1a0c)`,
+    bio: "Playing Lost Lands 2026. Set time + stage provisional - official schedule drops in the Lost Lands app about a week out." };
+};
+
+const LL_ARTISTS = [
+  // ── WEDNESDAY (day 1 - early entry pre-party) ──
+  _llMk("llw1", "Barely Alive", "Dubstep", 2, "crater", 1),
+  _llMk("llw2", "Calcium B2B Mad Dubz", "Bass", 2, "crater", 1),
+  _llMk("llw3", "Caspa", "Dubstep", 2, "crater", 1),
+  _llMk("llw4", "Chassi", "Bass", 2, "crater", 1),
+  _llMk("llw5", "Distinct Motive", "Deep Dubstep", 2, "crater", 1),
+  _llMk("llw6", "Emorfik B2B Usaybflow", "Bass", 2, "crater", 1),
+  _llMk("llw7", "Gardella", "Bass", 2, "crater", 1),
+  _llMk("llw8", "Hairitage", "Bass", 2, "crater", 1),
+  _llMk("llw9", "Hershe", "Bass", 2, "crater", 1),
+  _llMk("llw10", "Hydraulix", "Bass", 2, "crater", 1),
+  _llMk("llw11", "Izzy Vadim", "Bass", 2, "crater", 1),
+  _llMk("llw12", "Jaenga", "Bass", 2, "crater", 1),
+  _llMk("llw13", "Mile32", "Bass", 2, "crater", 1),
+  _llMk("llw14", "MPORT", "Bass", 2, "crater", 1),
+  _llMk("llw15", "Muerte", "Bass", 2, "crater", 1),
+  _llMk("llw16", "Nikita, The Wicked", "Bass", 2, "crater", 1),
+  _llMk("llw17", "Riot Ten", "Dubstep", 2, "crater", 1),
+  _llMk("llw18", "Smoakland", "Bass", 2, "crater", 1),
+  // ── THURSDAY (day 2 - early entry) ──
+  _llMk("llh1", "Alienpark", "Bass", 2, "crater", 2),
+  _llMk("llh2", "Deadcrow", "Bass", 2, "crater", 2),
+  _llMk("llh3", "Dirt Monkey", "Dubstep", 2, "crater", 2),
+  _llMk("llh4", "Funtcase", "Dubstep", 2, "crater", 2),
+  _llMk("llh5", "Machaki", "Bass", 2, "crater", 2),
+  _llMk("llh6", "MEGA B2B2B2B2B PRE-PARTY", "Bass", 3, "crater", 2),
+  _llMk("llh7", "Mindset", "Bass", 2, "crater", 2),
+  _llMk("llh8", "Phrva", "Bass", 2, "crater", 2),
+  _llMk("llh9", "Rsun", "Bass", 2, "crater", 2),
+  _llMk("llh10", "RZRKT", "Bass", 2, "crater", 2),
+  _llMk("llh11", "Super Future", "Space Bass", 2, "crater", 2),
+  // ── FRIDAY (day 3) ──
+  _llMk("llf1", "$J", "Bass", 1, "subsidia", 3),
+  _llMk("llf2", "Austeria", "Bass", 1, "subsidia", 3),
+  _llMk("llf3", "Badklaat", "Bass", 1, "subsidia", 3),
+  _llMk("llf4", "Basstripper", "Bass", 1, "subsidia", 3),
+  _llMk("llf5", "Bear Grillz", "Dubstep", 2, "wompy-woods", 3),
+  _llMk("llf6", "Benda", "Bass", 1, "subsidia", 3),
+  _llMk("llf7", "Borgore", "Dubstep", 2, "wompy-woods", 3),
+  _llMk("llf8", "Canabliss", "Bass", 1, "subsidia", 3),
+  _llMk("llf9", "Casey Club", "Bass", 1, "subsidia", 3),
+  _llMk("llf10", "Crizzly", "Dubstep", 2, "wompy-woods", 3),
+  _llMk("llf11", "Dion Timmer", "Dubstep", 2, "wompy-woods", 3),
+  _llMk("llf12", "Dirtysnatcha", "Bass", 1, "subsidia", 3),
+  _llMk("llf13", "Doctor P", "Dubstep", 2, "wompy-woods", 3),
+  _llMk("llf14", "Dodge & Fuski", "Dubstep", 2, "wompy-woods", 3),
+  _llMk("llf15", "Dr. Ushuu", "Bass", 1, "subsidia", 3),
+  _llMk("llf16", "Drinkurwater", "Bass", 1, "subsidia", 3),
+  _llMk("llf17", "Dubscribe", "Bass", 1, "subsidia", 3),
+  _llMk("llf18", "Future Exit", "Bass", 1, "subsidia", 3),
+  _llMk("llf19", "HOL!", "Dubstep", 2, "wompy-woods", 3),
+  _llMk("llf20", "Infekt B2B Samplifire", "Riddim", 2, "wompy-woods", 3),
+  _llMk("llf21", "Ivy Lab", "Drum & Bass", 2, "wompy-woods", 3),
+  _llMk("llf22", "Izadi", "Bass", 1, "subsidia", 3),
+  _llMk("llf23", "Jantsen", "Dubstep", 2, "wompy-woods", 3),
+  _llMk("llf24", "Jkyl & Hyde", "Bass", 1, "subsidia", 3),
+  _llMk("llf25", "Kliptic", "Dubstep", 2, "wompy-woods", 3),
+  _llMk("llf26", "Klo", "Dubstep", 2, "wompy-woods", 3),
+  _llMk("llf27", "Lazrus", "Dubstep", 2, "wompy-woods", 3),
+  _llMk("llf28", "Levity", "Dubstep", 2, "wompy-woods", 3),
+  _llMk("llf29", "Liquid Stranger", "Space Bass", 2, "wompy-woods", 3),
+  _llMk("llf30", "Lumasi", "Bass", 1, "subsidia", 3),
+  _llMk("llf31", "Neumonic", "Bass", 2, "wompy-woods", 3),
+  _llMk("llf32", "Nghtmre", "Trap / Future Bass", 3, "prehistoric", 3),
+  _llMk("llf33", "Nimda", "Bass", 1, "subsidia", 3),
+  _llMk("llf34", "Oliverse", "Bass", 1, "subsidia", 3),
+  _llMk("llf35", "Paper Skies", "Melodic Bass", 2, "wompy-woods", 3),
+  _llMk("llf36", "Pegboard Nerds", "Electro / Dubstep", 2, "wompy-woods", 3),
+  _llMk("llf37", "Poni", "Bass", 1, "subsidia", 3),
+  _llMk("llf38", "Probcause", "Bass", 1, "subsidia", 3),
+  _llMk("llf39", "Ravenscoon", "Dubstep", 2, "wompy-woods", 3),
+  _llMk("llf40", "Reaper", "Dubstep", 2, "wompy-woods", 3),
+  _llMk("llf41", "Richard Finger", "Bass", 1, "subsidia", 3),
+  _llMk("llf42", "Riot", "Drum & Bass", 2, "wompy-woods", 3),
+  _llMk("llf43", "Seth David", "Bass", 1, "subsidia", 3),
+  _llMk("llf44", "Shlump", "Space Bass", 2, "wompy-woods", 3),
+  _llMk("llf45", "Sigma", "Drum & Bass", 2, "wompy-woods", 3),
+  _llMk("llf46", "Sippy", "Dubstep", 2, "wompy-woods", 3),
+  _llMk("llf47", "Subsonic", "Bass", 1, "subsidia", 3),
+  _llMk("llf48", "Sullivan King B2B Ray Volpe", "Rocktronic / Riddim", 3, "prehistoric", 3),
+  _llMk("llf49", "The Resistance", "Dubstep", 2, "wompy-woods", 3),
+  _llMk("llf50", "The Widdler", "Dubstep", 2, "wompy-woods", 3),
+  _llMk("llf51", "Twopercent", "Bass", 1, "subsidia", 3),
+  _llMk("llf52", "TYNAN", "Bass", 1, "subsidia", 3),
+  _llMk("llf53", "Vampa", "Dubstep", 2, "wompy-woods", 3),
+  _llMk("llf54", "VKTM", "Bass", 1, "subsidia", 3),
+  _llMk("llf55", "Wiley", "Space Bass", 2, "wompy-woods", 3),
+  _llMk("llf56", "Wooli", "Dubstep / Melodic Bass", 3, "prehistoric", 3),
+  _llMk("llf57", "Xotix", "Bass", 1, "subsidia", 3),
+  _llMk("llf58", "YOOKIE", "Dubstep / Hybrid", 2, "wompy-woods", 3),
+  _llMk("llf59", "Zero", "Bass", 1, "subsidia", 3),
+  // ── SATURDAY (day 4) ──
+  _llMk("lls1", "2DY4", "Bass", 1, "subsidia", 4),
+  _llMk("lls2", "AEON:MODE", "Bass", 1, "subsidia", 4),
+  _llMk("lls3", "All The Reason", "Bass", 1, "subsidia", 4),
+  _llMk("lls4", "Au5", "Melodic Dubstep", 2, "wompy-woods", 4),
+  _llMk("lls5", "Audiofreq", "Bass", 1, "subsidia", 4),
+  _llMk("lls6", "Bella Renee", "Bass", 1, "subsidia", 4),
+  _llMk("lls7", "Big Florida", "Bass", 1, "subsidia", 4),
+  _llMk("lls8", "Bou", "Drum & Bass", 2, "wompy-woods", 4),
+  _llMk("lls9", "Brainrack", "Bass", 1, "subsidia", 4),
+  _llMk("lls10", "Capochino", "Bass", 1, "subsidia", 4),
+  _llMk("lls11", "Chozen", "Bass", 1, "subsidia", 4),
+  _llMk("lls12", "Craze", "Bass", 1, "subsidia", 4),
+  _llMk("lls13", "Craze B2B Dieselboy", "Bass", 1, "subsidia", 4),
+  _llMk("lls14", "Crumb Pit", "Riddim", 2, "wompy-woods", 4),
+  _llMk("lls15", "Cyclops", "Bass", 1, "subsidia", 4),
+  _llMk("lls16", "Darksiderz B2B Madgrrl", "Bass", 1, "subsidia", 4),
+  _llMk("lls17", "Delta Heavy", "Drum & Bass", 2, "wompy-woods", 4),
+  _llMk("lls18", "Dirtyphonics", "Drum & Bass", 2, "wompy-woods", 4),
+  _llMk("lls19", "Dr. Fresch", "Bass House", 3, "prehistoric", 4),
+  _llMk("lls20", "Effin", "Bass", 1, "subsidia", 4),
+  _llMk("lls21", "Flosstradamus", "Trap", 3, "prehistoric", 4),
+  _llMk("lls22", "Flux Pavilion", "Dubstep", 3, "prehistoric", 4),
+  _llMk("lls23", "Ganja White Night", "Dubstep", 3, "prehistoric", 4),
+  _llMk("lls24", "GHENGAR", "Dubstep", 2, "wompy-woods", 4),
+  _llMk("lls25", "Gladde Paling", "Bass", 1, "subsidia", 4),
+  _llMk("lls26", "Green Matter", "Bass", 1, "subsidia", 4),
+  _llMk("lls27", "Hedex", "D&B / Jump-Up", 2, "wompy-woods", 4),
+  _llMk("lls28", "Heyz", "Dubstep / House", 2, "wompy-woods", 4),
+  _llMk("lls29", "HVDES", "Bass", 1, "subsidia", 4),
+  _llMk("lls30", "Illenium", "Melodic Bass", 3, "prehistoric", 4),
+  _llMk("lls31", "Imanu", "Drum & Bass", 2, "wompy-woods", 4),
+  _llMk("lls32", "Ivory", "Dubstep", 2, "wompy-woods", 4),
+  _llMk("lls33", "Jessica Audiffred", "Dubstep", 3, "prehistoric", 4),
+  _llMk("lls34", "Josh Teed", "Bass", 1, "subsidia", 4),
+  _llMk("lls35", "Kai Wachi", "Dubstep", 3, "prehistoric", 4),
+  _llMk("lls36", "Layz", "Dubstep", 2, "wompy-woods", 4),
+  _llMk("lls37", "Leotrix", "Future Riddim", 2, "wompy-woods", 4),
+  _llMk("lls38", "Lil Texas", "Bass", 1, "subsidia", 4),
+  _llMk("lls39", "Lowcation", "Bass", 1, "subsidia", 4),
+  _llMk("lls40", "Mefjus", "Drum & Bass", 2, "wompy-woods", 4),
+  _llMk("lls41", "Mozey", "Drum & Bass", 2, "wompy-woods", 4),
+  _llMk("lls42", "Myrias", "Bass", 1, "subsidia", 4),
+  _llMk("lls43", "Mythm", "Bass", 1, "subsidia", 4),
+  _llMk("lls44", "Neotek", "Bass", 1, "subsidia", 4),
+  _llMk("lls45", "Noetika", "Bass", 1, "subsidia", 4),
+  _llMk("lls46", "Phaseone", "Metalstep", 2, "wompy-woods", 4),
+  _llMk("lls47", "Prosecute", "Dubstep", 2, "wompy-woods", 4),
+  _llMk("lls48", "Saint Miller", "Bass", 2, "wompy-woods", 4),
+  _llMk("lls49", "Seven Lions", "Melodic Bass", 3, "prehistoric", 4),
+  _llMk("lls50", "Slander", "Melodic Bass", 3, "prehistoric", 4),
+  _llMk("lls51", "Space Wizard", "Bass", 1, "subsidia", 4),
+  _llMk("lls52", "Stoned Level", "Bass", 1, "subsidia", 4),
+  _llMk("lls53", "Subtronics B2B Level Up", "Riddim / Dubstep", 3, "prehistoric", 4),
+  _llMk("lls54", "Tisoki", "Dubstep", 2, "wompy-woods", 4),
+  _llMk("lls55", "Tokyo Machine", "Electro House", 3, "prehistoric", 4),
+  _llMk("lls56", "Truth", "Deep Dubstep", 2, "wompy-woods", 4),
+  _llMk("lls57", "Whales", "Bass", 1, "subsidia", 4),
+  _llMk("lls58", "Whethan", "Future Bass", 3, "prehistoric", 4),
+  _llMk("lls59", "Wraz", "Bass", 1, "subsidia", 4),
+  _llMk("lls60", "Zingara", "Bass", 1, "subsidia", 4),
+  _llMk("lls61", "Zomboy", "Dubstep", 3, "prehistoric", 4),
+  // ── SUNDAY (day 5) ──
+  _llMk("llu1", "Adventure Club", "Melodic Dubstep", 2, "wompy-woods", 5),
+  _llMk("llu2", "Alleycvt B2B Crankdat", "Bass", 1, "subsidia", 5),
+  _llMk("llu3", "Arlo", "Bass", 2, "wompy-woods", 5),
+  _llMk("llu4", "Armnhmr", "Melodic Bass", 2, "wompy-woods", 5),
+  _llMk("llu5", "Atliens", "Bass", 2, "wompy-woods", 5),
+  _llMk("llu6", "Avello", "Bass", 1, "subsidia", 5),
+  _llMk("llu7", "Boogie T", "Bass", 1, "subsidia", 5),
+  _llMk("llu8", "Champagne Drip", "Space Bass", 2, "wompy-woods", 5),
+  _llMk("llu9", "Codd Dubz", "Bass", 1, "subsidia", 5),
+  _llMk("llu10", "Crystal Skies", "Melodic Dubstep", 2, "wompy-woods", 5),
+  _llMk("llu11", "Distant Matter", "Bass", 1, "subsidia", 5),
+  _llMk("llu12", "Dream Takers", "Bass", 1, "subsidia", 5),
+  _llMk("llu13", "Eptic", "Dubstep", 3, "prehistoric", 5),
+  _llMk("llu14", "Excision", "Dubstep", 3, "prehistoric", 5),
+  _llMk("llu15", "Excision B2B Space Laces", "Dubstep", 3, "prehistoric", 5),
+  _llMk("llu16", "FINNUH", "Bass", 1, "subsidia", 5),
+  _llMk("llu17", "Ghastly", "Bass", 2, "wompy-woods", 5),
+  _llMk("llu18", "Grabbitz", "Electronic / Rock", 3, "prehistoric", 5),
+  _llMk("llu19", "Haliene", "Melodic Bass", 2, "wompy-woods", 5),
+  _llMk("llu20", "Hostage Situation", "Bass", 2, "wompy-woods", 5),
+  _llMk("llu21", "Hurtbox", "Riddim", 2, "wompy-woods", 5),
+  _llMk("llu22", "Killmatter", "Bass", 1, "subsidia", 5),
+  _llMk("llu23", "Know Good", "Bass", 1, "subsidia", 5),
+  _llMk("llu24", "Kompany", "Dubstep", 3, "prehistoric", 5),
+  _llMk("llu25", "Krewella", "Electro / Bass", 3, "prehistoric", 5),
+  _llMk("llu26", "Luci", "Pop / Electronic", 2, "wompy-woods", 5),
+  _llMk("llu27", "Mad Dubz", "Bass", 1, "subsidia", 5),
+  _llMk("llu28", "Modal Nodes", "Bass", 1, "subsidia", 5),
+  _llMk("llu29", "OG NIXIN", "Bass", 1, "subsidia", 5),
+  _llMk("llu30", "Onara", "Bass", 1, "subsidia", 5),
+  _llMk("llu31", "Passport", "Bass", 1, "subsidia", 5),
+  _llMk("llu32", "Pretty Sweet", "Bass", 1, "subsidia", 5),
+  _llMk("llu33", "Remk", "Bass", 1, "subsidia", 5),
+  _llMk("llu34", "ROI*", "Bass", 1, "subsidia", 5),
+  _llMk("llu35", "Ryns", "Bass", 1, "subsidia", 5),
+  _llMk("llu36", "Sisto", "House", 2, "wompy-woods", 5),
+  _llMk("llu37", "Skilah", "Bass", 1, "subsidia", 5),
+  _llMk("llu38", "Sodown", "Bass", 1, "subsidia", 5),
+  _llMk("llu39", "Sportmode", "House", 2, "wompy-woods", 5),
+  _llMk("llu40", "SQISHI", "Bass", 1, "subsidia", 5),
+  _llMk("llu41", "Stumpi", "Bass", 1, "subsidia", 5),
+  _llMk("llu42", "Taiki Nulight", "Bass House", 2, "wompy-woods", 5),
+  _llMk("llu43", "Trivecta", "Melodic Bass", 2, "wompy-woods", 5),
+  _llMk("llu44", "Usaybflow", "Riddim", 2, "wompy-woods", 5),
+  _llMk("llu45", "Virtual Riot", "Dubstep", 3, "prehistoric", 5),
+  _llMk("llu46", "Warlord", "Bass", 1, "subsidia", 5),
+  _llMk("llu47", "Wax Motif", "Bass House", 2, "wompy-woods", 5),
+  _llMk("llu48", "William Black", "Melodic Bass", 2, "wompy-woods", 5),
+  _llMk("llu49", "Wonkywilla", "Dubstep", 2, "wompy-woods", 5),
+  _llMk("llu50", "Yetep", "Melodic Bass", 2, "wompy-woods", 5),
+  _llMk("llu51", "YVM3", "Dubstep", 2, "wompy-woods", 5),
+  _llMk("llu52", "Zoey808", "Bass", 1, "subsidia", 5),
+];
+
+const LL_AMENITIES = [
+  { id: "lla1", type: "water", label: "Free Water", x: 40, y: 35 },
+  { id: "lla2", type: "water", label: "Free Water", x: 62, y: 58 },
+  { id: "lla3", type: "food", label: "Food Vendors", x: 48, y: 30 },
+  { id: "lla4", type: "med", label: "Nest (Medical)", x: 52, y: 55 },
+  { id: "lla5", type: "info", label: "Info & Lost+Found", x: 42, y: 78 },
+  { id: "lla6", type: "toilet", label: "Restrooms", x: 30, y: 40 },
+  { id: "lla7", type: "toilet", label: "Restrooms", x: 68, y: 48 },
+  { id: "lla8", type: "info", label: "Lockers", x: 36, y: 52 },
+];
+
 const _regConfig = (id) => FESTIVALS_REGISTRY.find(f => f.config.id === id).config;
 const _DATA_SETS = {
   "edc-lv-2026":          { stages: STAGES,     artists: ARTISTS,     amenities: AMENITIES,     config: FESTIVAL_CONFIG },
   "acl-2026":             { stages: ACL_STAGES, artists: ACL_ARTISTS, amenities: ACL_AMENITIES, config: _regConfig("acl-2026") },
   "electric-forest-2026": { stages: EF_STAGES,  artists: EF_ARTISTS,  amenities: EF_AMENITIES,  config: _regConfig("electric-forest-2026") },
+  "lost-lands-2026":      { stages: LL_STAGES,  artists: LL_ARTISTS,  amenities: LL_AMENITIES,  config: _regConfig("lost-lands-2026") },
+  "edc-orlando-2026":     { stages: EDCO_STAGES, artists: EDCO_ARTISTS, amenities: EDCO_AMENITIES, config: _regConfig("edc-orlando-2026") },
 };
 const _activeId = getActiveFestivalId();
 const _active = _DATA_SETS[_activeId] || _DATA_SETS["edc-lv-2026"];
