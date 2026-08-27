@@ -799,7 +799,12 @@ const _FESTIVAL_BADGE_PACKS = {
       earned: new Set(ctx.savedArtists.map(a => a.day)).size >= 3 },
     { id: "zilker-crew",    icon: "✺", name: "Zilker Crew",      desc: "Two weekends in the park",           earned: true },
   ],
-  "electric-forest-2026": (ctx) => [
+  // Re-keyed 2026-08-27 with the festival roll. These badges are NOT
+  // 2026-lineup data — Ranch Arena / Sherwood Court / Tripolee / Honeybee
+  // Hideout / Carousel Club are Electric Forest's recurring stages, so they
+  // carry forward. Left keyed and ready for the 2027 flip session to fill in
+  // the data layer; inert until then, since a gated festival can't be active.
+  "electric-forest-2027": (ctx) => [
     { id: "canopy-after-dark", icon: "☾", name: "Canopy After Dark",  desc: "Save a set running past midnight",
       earned: ctx.savedArtists.some(a => (window.toNightMin?.(a.start) || 0) >= 24 * 60) },
     { id: "ranch-hand",        icon: "△", name: "Ranch Hand",         desc: "Save 3+ Ranch Arena sets",          earned: ctx.byStage("ranch") >= 3 },
@@ -809,7 +814,7 @@ const _FESTIVAL_BADGE_PACKS = {
       earned: (ctx.byStage("honeybee") + ctx.byStage("carousel")) >= 3 },
     { id: "four-day-forester", icon: "✦", name: "Four-Day Forester",  desc: "Save a set on all 4 days",
       earned: new Set(ctx.savedArtists.map(a => a.day)).size >= 4 },
-    { id: "forest-family",     icon: "✺", name: "Forest Family",      desc: "Part of Forest Family 2026",        earned: true },
+    { id: "forest-family",     icon: "✺", name: "Forest Family",      desc: "Part of Forest Family 2027",        earned: true },
   ],
 };
 

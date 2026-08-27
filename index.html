@@ -157,10 +157,10 @@
       <ul>
 <!-- FESTIVAL-LIST:START -->
         <li><a href="/f/edc-lv-2026/">EDC Las Vegas 2026</a> — May 15–17, 2026 · Las Vegas Motor Speedway · Nevada</li>
-        <li><a href="/f/electric-forest-2026/">Electric Forest 2026</a> — Jun 25–28, 2026 · Double JJ Ranch · Rothbury, MI</li>
+        <li><a href="/f/electric-forest-2027/">Electric Forest 2027</a> — Dates TBA · Double JJ Ranch · Rothbury, MI</li>
         <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026 · Legend Valley · Thornville, OH</li>
         <li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a> — Nov 6–8, 2026 · Tinker Field · Orlando</li>
-        <li><a href="/f/tomorrowland-2026/">Tomorrowland 2026</a> — Jul 17–26, 2026 · De Schorre · Boom, Belgium</li>
+        <li><a href="/f/tomorrowland-2027/">Tomorrowland 2027</a> — Dates TBA · De Schorre · Boom, Belgium</li>
         <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026 · Zilker Park · Austin, TX</li>
         <li><a href="/f/coachella-2027/">Coachella 2027</a> — Apr 9–18, 2027 · Empire Polo Club · Indio, CA</li>
         <!-- FESTIVAL-LIST:END -->
@@ -176,10 +176,10 @@
       <ul>
 <!-- NOSCRIPT-LIST:START -->
         <li><a href="/f/edc-lv-2026/">EDC Las Vegas 2026</a> — May 15–17, 2026 · Las Vegas Motor Speedway · Nevada</li>
-        <li><a href="/f/electric-forest-2026/">Electric Forest 2026</a> — Jun 25–28, 2026 · Double JJ Ranch · Rothbury, MI</li>
+        <li><a href="/f/electric-forest-2027/">Electric Forest 2027</a> — Dates TBA · Double JJ Ranch · Rothbury, MI</li>
         <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026 · Legend Valley · Thornville, OH</li>
         <li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a> — Nov 6–8, 2026 · Tinker Field · Orlando</li>
-        <li><a href="/f/tomorrowland-2026/">Tomorrowland 2026</a> — Jul 17–26, 2026 · De Schorre · Boom, Belgium</li>
+        <li><a href="/f/tomorrowland-2027/">Tomorrowland 2027</a> — Dates TBA · De Schorre · Boom, Belgium</li>
         <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026 · Zilker Park · Austin, TX</li>
         <li><a href="/f/coachella-2027/">Coachella 2027</a> — Apr 9–18, 2027 · Empire Polo Club · Indio, CA</li>
         <!-- NOSCRIPT-LIST:END -->
@@ -302,26 +302,26 @@
       window.__USE_NATIVE_PICKER__ = true;
     }
   </script>
-  <script type="text/babel" src="ios-frame.jsx?v=v235"></script>
-  <script type="text/babel" src="data.jsx?v=v235"></script>
-  <script type="text/babel" src="supabase.jsx?v=v235"></script>
-  <script type="text/babel" src="chrome.jsx?v=v235"></script>
-  <script type="text/babel" src="home.jsx?v=v235"></script>
-  <script type="text/babel" src="map.jsx?v=v235"></script>
-  <script type="text/babel" src="lineup.jsx?v=v235"></script>
-  <script type="text/babel" src="artist.jsx?v=v235"></script>
-  <script type="text/babel" src="photo-tag.jsx?v=v235"></script>
-  <script type="text/babel" src="spotify-api.jsx?v=v235"></script>
-  <script type="text/babel" src="recap-engine.jsx?v=v235"></script>
-  <script type="text/babel" src="spotify.jsx?v=v235"></script>
-  <script type="text/babel" src="app.jsx?v=v235"></script>
+  <script type="text/babel" src="ios-frame.jsx?v=v236"></script>
+  <script type="text/babel" src="data.jsx?v=v236"></script>
+  <script type="text/babel" src="supabase.jsx?v=v236"></script>
+  <script type="text/babel" src="chrome.jsx?v=v236"></script>
+  <script type="text/babel" src="home.jsx?v=v236"></script>
+  <script type="text/babel" src="map.jsx?v=v236"></script>
+  <script type="text/babel" src="lineup.jsx?v=v236"></script>
+  <script type="text/babel" src="artist.jsx?v=v236"></script>
+  <script type="text/babel" src="photo-tag.jsx?v=v236"></script>
+  <script type="text/babel" src="spotify-api.jsx?v=v236"></script>
+  <script type="text/babel" src="recap-engine.jsx?v=v236"></script>
+  <script type="text/babel" src="spotify.jsx?v=v236"></script>
+  <script type="text/babel" src="app.jsx?v=v236"></script>
 
   <script>
 
     // Build version stamp â€” bumped on every deploy that changes app behaviour.
     // If the running tab's stored version doesn't match, force a full reload
     // (bypassing browser HTTP cache that GH-Pages serves with max-age=600).
-    const APP_VERSION = 'v235';
+    const APP_VERSION = 'v236';
     try {
       const stored = localStorage.getItem('app_version');
       if (stored && stored !== APP_VERSION) {
@@ -342,11 +342,11 @@
     if ('serviceWorker' in navigator) {
       caches.keys().then(keys =>
         Promise.all(
-          keys.filter(k => k !== 'plursky-v235' && !k.startsWith('plursky-tiles-'))
+          keys.filter(k => k !== 'plursky-v236' && !k.startsWith('plursky-tiles-'))
               .map(k => caches.delete(k))
         )
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v235', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v236', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 
