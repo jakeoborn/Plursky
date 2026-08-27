@@ -1287,7 +1287,11 @@ function _metaFromFile(file, exifMeta) {
         yr: d.getFullYear(), mo: d.getMonth() + 1, dy: d.getDate(),
         hh: d.getHours(), mm: d.getMinutes(), ss: d.getSeconds(),
       };
-      if (_photoFestivalNight(fileDate) != null) { out.date = fileDate; out.takenAtSource = "file-lastModified"; }
+      // v235: was _photoFestivalNight(fileDate) — the ACTIVE festival only, so
+      // a real EDC capture time was rejected as junk whenever ACL happened to
+      // be selected, and the photo imported as no-date/fallback. Any festival
+      // we know about claiming the timestamp is enough to trust it.
+      if (_anyFestivalNight(fileDate) != null) { out.date = fileDate; out.takenAtSource = "file-lastModified"; }
     }
   }
   return out;
@@ -1339,7 +1343,10 @@ function _recoverVideoMetaFromArchive(file, fp, meta) {
   const archiveMoment = _findArchivedVideoMomentForFingerprint(fp);
   const recoveredDate = _momentTakenAtToDateParts(archiveMoment?.takenAt);
   if (!archiveMoment || !recoveredDate) return null;
-  const parsedNight = meta?.date ? _photoFestivalNight(meta.date) : null;
+  // v235: any known festival, not just the active one — otherwise a video
+  // whose own metadata is already good gets needlessly overwritten from the
+  // archive purely because a different festival is on screen.
+  const parsedNight = meta?.date ? (_anyFestivalNight(meta.date)?.night ?? null) : null;
   if (parsedNight != null && meta?.takenAtSource !== "file-lastModified" && meta?.takenAtSource !== "none") return null;
   return {
     meta: { ...(meta || {}), date: recoveredDate, takenAtSource: "archive-recovered" },
@@ -3160,7 +3167,16 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
       if (meta && meta.date && !artistId) {
         const attendedIds = Object.values(window.getAllAttended?.() || {}).flat();
         const matched = _matchArtistForPhoto(meta, savedNightArtists.map(a => a.id), attendedIds);
-        if (matched.artistId) setArtistId(matched.artistId);
+        // The chip must only ever name an artist from the festival this
+        // moment will be SAVED under (handleSave stamps the ACTIVE festival).
+        // Before v235 the matcher could only return active-festival artists
+        // so this was implicit; now that it resolves across festivals, a
+        // photo from a different one must leave the chip empty rather than
+        // pre-fill a name that belongs to another lineup.
+        const activeId = window.FESTIVAL_CONFIG?.id || null;
+        if (matched.artistId && (!matched.festivalId || matched.festivalId === activeId)) {
+          setArtistId(matched.artistId);
+        }
       }
       const out = await _processMomentMedia(file);
       if (previewUrl) URL.revokeObjectURL(previewUrl);
@@ -4590,7 +4606,13 @@ function MemoriesScreen({ state, setState }) {
           // couldn't separate them. Keep the best guess but flag it so the
           // card surfaces a prominent "fix tag" chip instead of looking sure.
           tagAmbiguous: !!(matched.artistId && matched.ambiguous),
-          festivalId: window.FESTIVAL_CONFIG?.id || null,
+          // v235: the festival the photo was TAKEN at, resolved from its
+          // timestamp + GPS — not whichever festival is on screen. Stamping
+          // the active one mis-filed every cross-festival import permanently:
+          // _activeMoments() hides a moment whose festivalId isn't current,
+          // so the photo vanished and switching festivals never brought it
+          // back. Falls back to the active festival when nothing resolved.
+          festivalId: matched.festivalId || window.FESTIVAL_CONFIG?.id || null,
           parsedGps: meta?.lat != null && meta?.lng != null ? { lat: meta.lat, lng: meta.lng } : null,
           location: matched.location || null,
           hasGps: !!(meta?.lat != null && meta?.lng != null),
@@ -4600,7 +4622,7 @@ function MemoriesScreen({ state, setState }) {
         if (recovered?.moment?.artistId && !moment.artistId) moment.artistId = recovered.moment.artistId;
         if (fp) existingFingerprints.add(fp);
         current[night] = [...(current[night] || []), moment];
-        results.push({ name: f.name, night, artistId: matched.artistId, fallback: !matched.night, tagSource });
+        results.push({ name: f.name, night, artistId: matched.artistId, fallback: !matched.night, tagSource, festivalId: moment.festivalId });
         // Persist + refresh after EACH file so a mid-batch Safari crash/OOM
         // (common on large iOS selections that include videos / iCloud photos)
         // keeps what's already imported and the grid fills in live — instead
@@ -4618,6 +4640,20 @@ function MemoriesScreen({ state, setState }) {
     setAll({ ...current });
     // Never fail silently: if nothing landed, say why out loud.
     const okCount = results.filter(r => !r.err && !r.skipped).length;
+    // ...and never file silently either. A cross-festival import is now
+    // stamped correctly, which means it is CORRECTLY not visible on this
+    // festival's page — indistinguishable from "the import failed" unless we
+    // say where the files went. (v235)
+    const activeFid = window.FESTIVAL_CONFIG?.id || null;
+    const elsewhere = results.filter(r => !r.err && !r.skipped && r.festivalId && r.festivalId !== activeFid);
+    if (elsewhere.length) {
+      const byFest = {};
+      for (const r of elsewhere) byFest[r.festivalId] = (byFest[r.festivalId] || 0) + 1;
+      const label = (id) => window._DATA_SETS?.[id]?.config?.shortName
+                         || window._DATA_SETS?.[id]?.config?.name || id;
+      const parts = Object.keys(byFest).map(id => `${byFest[id]} to ${label(id)}`);
+      window.plurskyToast?.(`Filed by capture date — ${parts.join(", ")}. Switch festivals to see them.`);
+    }
     if (okCount === 0) {
       const failed = results.filter(r => r.err).length;
       const dupes  = results.filter(r => r.skipped === "duplicate").length;

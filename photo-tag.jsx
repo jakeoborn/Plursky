@@ -335,24 +335,29 @@ async function _parseVideoMeta(file) {
 // Festival night N runs from Day N at 19:00 local to Day N+1 at 06:00 local.
 // `FESTIVAL_CONFIG.dayDates[n].midnightUtc` is the UTC epoch corresponding
 // to Day N's local 00:00, so [+19h, +30h] is the night window in UTC.
-function _festivalTzOffsetHours() {
-  const day1 = window.FESTIVAL_CONFIG?.dayDates?.[1];
+// v235: every one of these took its festival from window.FESTIVAL_CONFIG —
+// the ACTIVE one. They now take a config, defaulting to active, so the same
+// timestamp can be asked about EVERY known festival (see
+// _resolveFestivalForPhoto below). Callers that pass nothing behave exactly
+// as they did before.
+function _festivalTzOffsetHours(cfg) {
+  const day1 = (cfg || window.FESTIVAL_CONFIG)?.dayDates?.[1];
   if (!day1) return -7; // PT default
   return -new Date(day1.midnightUtc).getUTCHours();
 }
-function _photoEpochUtc(date) {
+function _photoEpochUtc(date, cfg) {
   // EXIF DateTimeOriginal / file.lastModified gives festival-local wall
   // clock (iOS phones store capture time in device-local, no tz). Convert
   // to UTC epoch using the festival's offset.
-  const offset = _festivalTzOffsetHours(); // e.g. -7 for PDT
+  const offset = _festivalTzOffsetHours(cfg); // e.g. -7 for PDT
   return Date.UTC(date.yr, date.mo - 1, date.dy, date.hh, date.mm, date.ss || 0)
        - offset * 3600000;
 }
-function _photoFestivalNight(date) {
+function _photoFestivalNight(date, cfgIn) {
   if (!date) return null;
-  const cfg = window.FESTIVAL_CONFIG;
+  const cfg = cfgIn || window.FESTIVAL_CONFIG;
   if (!cfg?.dayDates) return null;
-  const photoMs = _photoEpochUtc(date);
+  const photoMs = _photoEpochUtc(date, cfg);
   for (const n of Object.keys(cfg.dayDates).map(Number)) {
     const dm = cfg.dayDates[n];
     if (!dm) continue;
@@ -381,12 +386,138 @@ function _haversineMeters(lat1, lng1, lat2, lng2) {
   return 2 * R * Math.asin(Math.sqrt(a));
 }
 
-function _matchNearestLocation(lat, lng) {
-  const amenities = window.AMENITIES || [];
+// ── Which festival is this photo actually FROM? (v235) ────────────────────
+// Everything downstream used to read window.FESTIVAL_CONFIG / window.ARTISTS,
+// i.e. whichever festival is SELECTED — not the one the photo was taken at.
+// The failure that produces: import an EDC clip while ACL is the active
+// festival, and its May timestamp is checked against ACL's October dayDates,
+// matches no night, and comes back `outside_festival_window`. The importer
+// then does `night = matched.night || fallbackNight` and stamps
+// `festivalId: window.FESTIVAL_CONFIG.id`, so the EDC clip lands in ACL
+// night 1, untagged. That is not a display glitch you can switch away from:
+// _activeMoments() keeps a moment only when its festivalId is the current
+// one, so the wrong stamp is persisted and switching back to EDC does not
+// bring the clip back.
+//
+// Resolution order — timestamp first, geo purely as the tiebreak:
+//   1. Ask EVERY festival in _DATA_SETS which of ITS nights contains the
+//      capture time, each evaluated in its OWN timezone.
+//   2. Only if two or more claim it: keep those whose site the photo's GPS
+//      is actually near, then the nearest. Two festivals on one weekend is a
+//      real shape (EDC Orlando vs. a same-weekend event), and geo is the
+//      only thing that separates them.
+//   3. No festival claims the time → resolve against the ACTIVE festival,
+//      exactly as before, and let the caller's fallbackNight take over.
+function _activeDataSet() {
+  return {
+    id: window.FESTIVAL_CONFIG?.id || null,
+    config: window.FESTIVAL_CONFIG || {},
+    artists: window.ARTISTS || [],
+    amenities: window.AMENITIES || [],
+  };
+}
+// Only festivals the user can actually SWITCH TO are resolution candidates.
+// This is load-bearing, not tidiness: _DATA_SETS carries the gated entries
+// too (Lost Lands, EDC Orlando, Forest), and getActiveFestivalId() refuses
+// any id whose registry entry is `available: false`. Resolve a photo to a
+// gated festival and it gets stamped with an id the user can never select —
+// _activeMoments() would hide it on every screen with no way to reach it.
+// A gated festival's set times are PROVISIONAL anyway, so matching artists
+// against one would be wrong even if the moment were reachable.
+// The active festival is always a candidate (it is available by definition).
+function _allDataSets() {
+  const sets = window._DATA_SETS;
+  if (!sets) return [_activeDataSet()];
+  const reg = window.FESTIVALS_REGISTRY || [];
+  const activeId = window.FESTIVAL_CONFIG?.id || null;
+  const usable = (id) => id === activeId ||
+    !!reg.find(f => f?.config?.id === id && f.available);
+  return Object.keys(sets).filter(usable).map(id => ({
+    id,
+    config: sets[id]?.config || {},
+    artists: sets[id]?.artists || [],
+    amenities: sets[id]?.amenities || [],
+  }));
+}
+// Deliberately generous. `gps.onSiteRadiusMi` describes the FOOTPRINT, and a
+// campground / shuttle-lot / hotel photo sits outside it while still plainly
+// belonging to that festival. This radius only has to tell two festivals
+// apart — it is not a geofence, so erring wide costs nothing.
+function _nearSiteMeters(cfg) {
+  return Math.max((cfg?.gps?.onSiteRadiusMi || 0.4) * 1609.34 * 5, 15000);
+}
+function _festivalSiteMeters(cfg, lat, lng) {
+  const g = cfg?.gps;
+  if (!g || g.lat == null || g.lng == null) return null;
+  return _haversineMeters(lat, lng, g.lat, g.lng);
+}
+function _resolveFestivalForPhoto(meta) {
+  const active = _activeDataSet();
+  const asActive = (why) => ({ ...active, night: null, siteMeters: null, resolvedBy: why });
+  if (!meta?.date) return asActive("active_no_date");
+
+  // 1. TIME — every known festival, each in its own timezone.
+  let cands = _allDataSets()
+    .map(ds => ({ ds, night: _photoFestivalNight(meta.date, ds.config), meters: null }))
+    .filter(c => c.night != null);
+  if (!cands.length) return asActive("active_no_time_match");
+
+  let resolvedBy = "time";
+
+  // 2. GEO — only ever used to SEPARATE two time matches, never to reject a
+  //    lone one. A photo can legitimately have no GPS, or have GPS from the
+  //    campground; neither should cost it its festival.
+  const { lat, lng } = meta;
+  if (cands.length > 1 && lat != null && lng != null) {
+    for (const c of cands) c.meters = _festivalSiteMeters(c.ds.config, lat, lng);
+    const near = cands.filter(c => c.meters != null && c.meters <= _nearSiteMeters(c.ds.config));
+    if (near.length) { cands = near; resolvedBy = "time+geo"; }
+    if (cands.length > 1) {
+      const ranked = cands.filter(c => c.meters != null).sort((a, b) => a.meters - b.meters);
+      if (ranked.length) { cands = [ranked[0]]; resolvedBy = "time+geo_nearest"; }
+    }
+  }
+
+  // 3. Still tied with nothing to separate them: prefer the ACTIVE festival
+  //    if it is one of the claimants — you are most likely importing the one
+  //    you are looking at.
+  let win = cands[0];
+  if (cands.length > 1) {
+    win = cands.find(c => c.ds.id === active.id) || cands[0];
+    resolvedBy = "time_tie";
+  }
+  return { ...win.ds, night: win.night, siteMeters: win.meters, resolvedBy };
+}
+// "Does ANY festival we know about claim this timestamp?" Used by the
+// trust gates in spotify.jsx that previously asked only the active one and
+// so discarded a real capture time for a photo from a different festival.
+function _anyFestivalNight(date) {
+  if (!date) return null;
+  for (const ds of _allDataSets()) {
+    const night = _photoFestivalNight(date, ds.config);
+    if (night != null) return { festivalId: ds.id, night };
+  }
+  return null;
+}
+
+function _matchNearestLocation(lat, lng, ds) {
+  const set = ds || _activeDataSet();
+  const amenities = set.amenities || [];
   if (!amenities.length) return null;
-  const cfg = window.FESTIVAL_CONFIG || {};
-  const mapToGps = window.mapToGps;
-  const hasAffine = !!(cfg.gpsAnchors?.length >= 3);
+  const cfg = set.config || {};
+  // map.jsx's MAP_AFFINE is solved ONCE at eval time from the ACTIVE
+  // festival's anchors + stages, so mapToGps is hard-bound to that festival.
+  // Using it for a photo we resolved to a DIFFERENT festival would place
+  // that festival's amenities through the wrong affine — the exact class of
+  // bug this change exists to remove. For a non-active festival we therefore
+  // fall back to the config-driven radial approximation below, which is
+  // self-contained. Amenity naming is a 200 m nicety ("near Water Station"),
+  // so the coarser placement is an acceptable, bounded loss; artist tagging,
+  // which is what actually matters, uses cfg.gpsAnchors directly and stays
+  // exact for every festival.
+  const isActive = !set.id || set.id === window.FESTIVAL_CONFIG?.id;
+  const mapToGps = isActive ? window.mapToGps : null;
+  const hasAffine = !!(isActive && cfg.gpsAnchors?.length >= 3);
 
   const amenityToGps = (am) => {
     if (hasAffine && mapToGps) return mapToGps(am.x, am.y);
@@ -417,11 +548,22 @@ function _matchNearestLocation(lat, lng) {
 // 2+ sets at the SAME tier contain the capture time (overnight overlap across
 // stages) we keep the best guess but flag `ambiguous` + `alternatives` so the
 // card can surface a "fix tag" chip instead of silently committing to one.
-function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds) {
-  if (!date) return { artistId: null, night: null, reason: "no_date" };
-  // First: which festival night does this photo's DATE place it in?
-  const night = _photoFestivalNight(date);
-  if (!night) return { artistId: null, night: null, reason: "outside_festival_window" };
+//
+// v235: `ds` (a resolved data set) is optional. Omitted, the matcher resolves
+// the festival ITSELF from the timestamp + geo rather than assuming the
+// active one, and reports it back as `festivalId` so the caller stamps the
+// moment with the festival the photo is FROM, not the one on screen.
+function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds, ds) {
+  if (!date) return { artistId: null, night: null, festivalId: null, reason: "no_date" };
+  // First: WHICH festival, and which of its nights, does this photo's
+  // timestamp (+ GPS, as a tiebreak) place it in?
+  const set = ds || _resolveFestivalForPhoto({ date, lat, lng });
+  const cfg = set.config || {};
+  const artists = set.artists || [];
+  const festivalId = set.id || null;
+  const resolvedBy = set.resolvedBy || "explicit";
+  const night = _photoFestivalNight(date, cfg);
+  if (!night) return { artistId: null, night: null, festivalId, resolvedBy, reason: "outside_festival_window" };
 
   // NOTE: the GPS "off-stage" gate used to run HERE, before the attended/
   // saved set-time match — which was a bug. A photo taken from the middle/
@@ -438,12 +580,12 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds) {
   // day 2, 00:32–01:42) and filmed at 01:00, this tags John Summit even if the
   // night heuristic mis-bucketed it as day 3 (Martin Garrix). Uses each set's
   // day-midnight (UTC) + start/end, so it's night-correct by construction.
-  const photoMs = _photoEpochUtc(date);
+  const photoMs = _photoEpochUtc(date, cfg);
   // <8h post-midnight is treated as "still the same festival night" — must
   // match lineup.jsx toNightMin + _photoFestivalNight so a 1–6 AM set lands
   // on its own night and not the next calendar day.
   const setWindow = (a) => {
-    const dm = window.FESTIVAL_CONFIG?.dayDates?.[a.day];
+    const dm = cfg.dayDates?.[a.day];
     if (!dm) return null;
     const [sh, sm] = a.start.split(":").map(Number);
     const [eh, em] = a.end.split(":").map(Number);
@@ -460,7 +602,7 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds) {
   const savedSet    = new Set(savedIds || []);
   const priorIds    = [...new Set([...(attendedIds || []), ...(savedIds || [])])];
   const priorHits = priorIds
-    .map(id => (window.ARTISTS || []).find(a => a.id === id))
+    .map(id => artists.find(a => a.id === id))
     .filter(Boolean)
     .map(a => { const w = setWindow(a); return w ? { a, ...w, score: attendedSet.has(a.id) ? 1000 : 500 } : null; })
     .filter(Boolean)
@@ -479,7 +621,7 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds) {
     const topTier = priorHits.filter(h => h.score === hit.score);
     const ambiguous = topTier.length > 1;
     return {
-      artistId: hit.a.id, night: hit.a.day,
+      artistId: hit.a.id, night: hit.a.day, festivalId, resolvedBy,
       reason: attendedSet.has(hit.a.id) ? "attended_set_time" : "saved_set_time",
       ambiguous,
       alternatives: ambiguous ? topTier.map(h => h.a.id) : undefined,
@@ -495,12 +637,12 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds) {
   // This is deliberately AFTER the prior-set match so crowd-distance GPS
   // never overrides ground truth (you told us you watched that set).
   if (lat != null && lng != null) {
-    const anchors = window.FESTIVAL_CONFIG?.gpsAnchors || [];
+    const anchors = cfg.gpsAnchors || [];
     if (anchors.length > 0) {
       const minMeters = Math.min(...anchors.map(a => _haversineMeters(lat, lng, a.lat, a.lng)));
       if (minMeters > 120) {
-        const loc = _matchNearestLocation(lat, lng);
-        return { artistId: null, night, reason: "off_stage", distMeters: Math.round(minMeters), location: loc };
+        const loc = _matchNearestLocation(lat, lng, set);
+        return { artistId: null, night, festivalId, resolvedBy, reason: "off_stage", distMeters: Math.round(minMeters), location: loc };
       }
     }
   }
@@ -509,7 +651,7 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds) {
   const minOfDay = date.hh * 60 + date.mm;
   const adjustedMin = minOfDay < 480 ? minOfDay + 1440 : minOfDay;
   const candidates = [];
-  for (const a of (window.ARTISTS || [])) {
+  for (const a of artists) {
     if (a.day !== night) continue;
     const [sh, sm] = a.start.split(":").map(Number);
     const [eh, em] = a.end.split(":").map(Number);
@@ -528,7 +670,7 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds) {
     // when it's within 60 min — flagged `ambiguous` so the card shows the
     // FIX TAG chip instead of pretending certainty.
     if (lat != null && lng != null) {
-      const anchors = window.FESTIVAL_CONFIG?.gpsAnchors || [];
+      const anchors = cfg.gpsAnchors || [];
       let nearStage = null, nearStageM = Infinity;
       for (const g of anchors) {
         const m = _haversineMeters(lat, lng, g.lat, g.lng);
@@ -536,7 +678,7 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds) {
       }
       if (nearStage && nearStageM <= 120) {
         let best = null, bestGap = Infinity;
-        for (const a of (window.ARTISTS || [])) {
+        for (const a of artists) {
           if (a.day !== night || a.stage !== nearStage) continue;
           const [sh, sm] = a.start.split(":").map(Number);
           const [eh, em] = a.end.split(":").map(Number);
@@ -546,7 +688,7 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds) {
           if (gap > 0 && gap < bestGap) { bestGap = gap; best = a; }
         }
         if (best && bestGap <= 60) {
-          return { artistId: best.id, night, reason: "stage_time_proximity",
+          return { artistId: best.id, night, festivalId, resolvedBy, reason: "stage_time_proximity",
                    ambiguous: true, alternatives: undefined,
                    proximity: { stageId: nearStage, meters: Math.round(nearStageM), gapMin: bestGap } };
         }
@@ -555,7 +697,7 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds) {
     // We know the night but no specific artist — return the night so the
     // photo still lands in the right bucket (e.g. between sets, in the
     // shuttle line, etc.).
-    return { artistId: null, night, reason: "no_artist_at_time" };
+    return { artistId: null, night, festivalId, resolvedBy, reason: "no_artist_at_time" };
   }
   // Prefer ATTENDED, then SAVED, then any; GPS tiebreaker; then tightest fit.
   const inAttended = candidates.filter(c => attendedSet.has(c.a.id));
@@ -563,7 +705,7 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds) {
   const pool = inAttended.length ? inAttended : (inSaved.length ? inSaved : candidates);
   const stageDist = (a) => {
     if (lat == null || lng == null) return Infinity;
-    const anchor = (window.FESTIVAL_CONFIG?.gpsAnchors || []).find(g => g.stageId === a.stage);
+    const anchor = (cfg.gpsAnchors || []).find(g => g.stageId === a.stage);
     if (!anchor) return Infinity;
     const dLat = lat - anchor.lat, dLng = lng - anchor.lng;
     return dLat * dLat + dLng * dLng;
@@ -580,7 +722,7 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds) {
     [...dists].sort((a, b) => a - b).slice(0, 2).reduce((a, b) => b - a, 0) > 1e-9;
   const ambiguous = pool.length > 1 && !gpsSeparated;
   return {
-    artistId: pool[0].a.id, night, reason: "matched",
+    artistId: pool[0].a.id, night, festivalId, resolvedBy, reason: "matched",
     ambiguous,
     alternatives: ambiguous ? pool.map(c => c.a.id) : undefined,
   };
