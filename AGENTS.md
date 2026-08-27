@@ -125,3 +125,14 @@ needs to read it, it has to become a real private GitHub repo first; until
 then, treat "private" as "founder's eyes on this machine only".
 
 Docs-only, so no `vNNN` bump (§2 rule 3).
+
+### Festival flips (rescued from issue #18, 2026-08-22 — the issue is closed, this rule is not)
+
+**No public-facing flips without founder word.** Every festival scaffold PR
+lands `available: false`. A watch fires the flip session only when the
+**official set times publish**, and each flip is **its own PR** for founder /
+Claude Code review — never agent-merged, never folded into an unrelated PR.
+
+A gated entry whose event date has **passed** never flips. Retire it or roll it
+to next year — do not leave it sitting `available: false` forever, and check
+whether it is still being published to search (`/f/<id>/`, `sitemap.xml`).
