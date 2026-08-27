@@ -1,0 +1,78 @@
+# Spec: Plursky App Review submission (season pass IAP + Plursky+ Monthly) via the App Store Connect API
+
+Written 2026-08-27 by Instinct, for Claude to execute. Docs-only; no version bump.
+Authorization: Jake, 2026-08-27 4:48pm CT — "Can Claude do the Plursky app review, he did it end to end for Plursky."
+
+## Ground rules
+
+- Everything runs as Jake-local scripts: `cd ~/Downloads && node <script>.mjs`, paste full output back. Auth is ES256 JWT, Key ID `H2HAT6Y59J` (App Manager — Apple's doc confirms App Manager can submit to App Review), Issuer `723f14c8-5add-4449-afa9-3fad93d8e978`, key file `~/Downloads/AuthKey_H2HAT6Y59J.p8`.
+- The final submit PATCH is the point of no cheap return. If anything diverges from this spec while composing (extra required declarations, a build upload becoming necessary, unexpected 409s), STOP and report before firing it.
+- This spec submits for review only. No release, no phased release, no pricing or availability changes, nothing else on the store.
+
+## Current state (receipts from 2026-08-27)
+
+- App `6768888507` (Plursky Live) is live on the store.
+- Season pass IAP `6806003527` — NON_CONSUMABLE, $14.99 USA manual price, en-US localized. Current IAP version: `615b3fec-b764-4353-9af0-99310409f687` (PREPARE_FOR_SUBMISSION).
+- Monthly subscription `6806010811` — ONE_MONTH, $4.99 USA, en-US localized, in group `22124255` ("Plursky Plus", en-US group localization present).
+- Review screenshots COMPLETE on the v1 resources: monthly `f50476ff-c9dc-4bd1-a7e7-23577e143424`, season pass `ad8a74b6-0ed0-4d21-a8d5-c71cb12b2203` (uploaded via `subscriptionAppStoreReviewScreenshots` / `inAppPurchaseAppStoreReviewScreenshots`).
+- RevenueCat linkage live (ASC API key in RC, "Valid credentials"). RC store status still reads "Missing Metadata" — suspected cause is the 4.4.1 version-scoping gap, step 2 below.
+
+## Step 1 — readiness read (produces the deciding facts)
+
+Run `asc-review-readiness.mjs` v2 (in ~/Downloads; also in iMessage). Read-only. It prints:
+
+- **D1**: whether ANY IAP was ever approved (annual `6775060777` state — `READY_TO_SUBMIT` means never approved)
+- **D2**: whether a PREPARE_FOR_SUBMISSION app version already exists
+- **D3**: builds list with `processingState` and `usesNonExemptEncryption` (is a VALID build available for a new version)
+- **D4**: per-version metadata — localizations, images, review screenshot ON the version objects (IAP version, subscription versions, group version)
+- **D5**: the App Review contact record (contact info, demo account, notes)
+
+## Step 2 — close version-scope gaps (decided by D4)
+
+ASC API 4.4.1 moved review metadata to version-scoped objects and deprecated the v1 endpoints we used 2026-08-27. If D4 shows the version objects lacking screenshots or localizations, re-do them version-scoped BEFORE submitting:
+
+- IAP version screenshot: 4.4.1 "Create an in-app purchase image" (v2, scoped to `inAppPurchaseVersions` id `615b3fec-b764-4353-9af0-99310409f687`). Verify exact type/relationship names against Apple's OpenAPI spec before coding. Upload flow is the same reserve → PUT chunks → PATCH commit as the v4 script, and the commit PATCH accepts ONLY `uploaded` + `sourceFileChecksum` (MD5 hex) — `assetToken` 409s on UPDATE.
+- Subscription version: localizations + review image via the v2 subscription-version-scoped endpoints.
+- Group version: localization via the v2 group-version-scoped endpoint.
+- Screenshot file: `~/Downloads/paywall-*.png` (640x1136, both already on Jake's Mac).
+- Verify after: each version object lists its screenshot/localizations; Apple's "Missing Metadata" flips to "Ready to Submit" (RevenueCat's store status follows on its next poll — do not use the RC UI as the source of truth, it lags and serves stale reads).
+
+## Step 3 — App Review contact + demo account (D5)
+
+The app requires sign-in, so a demo account is mandatory. `PATCH /v1/appReviewDetails/{id}`:
+
+- `contactFirstName`, `contactLastName`, `contactPhone`, `contactEmail` — Jake's.
+- `demoAccountRequired: true`, `demoAccountName`, `demoAccountPassword` — **JAKE INPUT. Do not invent credentials.**
+- `notes` — draft: "In-app purchase unlocks watermark-free export and cloud backup. The paywall is reachable from the Me tab → PLUS. Season Pass is a one-time $14.99 purchase (no renewal). Plursky+ Monthly is $4.99/month auto-renewable; manage or cancel in Settings."
+
+## Step 4 — submission shape (decided by D1, D2, D3)
+
+Apple's rule (App Store Connect Help, "Submit an In-App Purchase"): the FIRST IAP of each type must be submitted WITH a new app version in the same submission; a new subscription group must be submitted with at least one of its subscriptions; everything reviewed together goes in ONE draft submission.
+
+**Branch A — an IAP is already approved:** items = season pass `inAppPurchaseVersion` + group `subscriptionGroupVersion` + monthly `subscriptionVersion`. No app version.
+
+**Branch B — nothing approved yet (expected):** Branch A's items PLUS a new iOS app version:
+
+- `POST /v1/appStoreVersions` {platform: IOS, versionString: live version +0.1 (take the live string from the readiness read), releaseType: MANUAL, app relationship `6768888507`}.
+- Attach a build: set the version's `build` relationship to a VALID build from D3. If Apple rejects reusing the currently-live build, STOP — a fresh build upload from Xcode/Transporter is the one step that cannot be scripted from here; hand back to Jake.
+- What's New text — **JAKE INPUT.** Placeholder draft: "Plursky+ Season Pass and Monthly: no-watermark exports, cloud backup, and premium templates."
+- If the API demands new declarations for the version (age rating, content rights), STOP and report — inherit-only is the assumption, not verified.
+
+## Step 5 — compose and submit (3-step flow, API 4.4.x)
+
+1. `POST /v1/reviewSubmissions` — relationships: app `6768888507` (verify whether `platform` is a required attribute against the OpenAPI spec first).
+2. `POST /v1/reviewSubmissionItems` — one per item from step 4, relationships: `reviewSubmission` + exactly one of `inAppPurchaseVersion` / `subscriptionVersion` / `subscriptionGroupVersion` / `appStoreVersion`.
+3. Report the composed submission (every item, version string, build id, demo account name only — never the password). On Jake's go: `PATCH /v1/reviewSubmissions/{id}` {submitted: true}.
+4. Verify: `GET /v1/reviewSubmissions/{id}?include=items` — items flip to WAITING_FOR_REVIEW, then IN_REVIEW.
+
+## Failure modes and rollback
+
+- Draft submissions are deletable: `DELETE /v1/reviewSubmissions/{id}` (draft only). Items removable: `DELETE /v1/reviewSubmissionItems/{id}`.
+- A new app version is deletable while PREPARE_FOR_SUBMISSION.
+- Traps verified live 2026-08-27: commit PATCHes accept ONLY `uploaded` + `sourceFileChecksum`; the IAP screenshot create relationship is `inAppPurchaseV2` (not `inAppPurchase`); probe-before-create — repeated POSTs can 409; trust Apple's API reads over any web UI.
+
+## Inputs Jake owes before the final PATCH
+
+1. Demo account email + password for App Review.
+2. What's New copy (Branch B).
+3. Go on the final submit PATCH — his 2026-08-27 4:48pm ask authorizes it; reconfirm ONLY if branch B forces a fresh build upload, since that changes what he must do.
