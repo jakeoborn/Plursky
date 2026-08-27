@@ -104,3 +104,24 @@ mount probe + screenshot) → `vNNN` bumped in lockstep (if it's a shipped JS
 change) → committed to `main` → (for iOS) `build.mjs` + `cap sync ios` run.
 Reporting status = stating what was *measured on the artifact*, not what was
 intended.
+
+### Work reports
+
+Write the report as a file in **`docs/reports/`** (`YYYY-MM-DD-<slug>.md`), not
+as an email and not only in chat. Lanes read the repo directly; a report that
+lives in a mailbox or a terminal scrollback is not readable by the next agent.
+Per-PR verification receipts still belong in the **PR body or a PR comment**,
+on the PR they describe — `docs/reports/` is for the cross-PR narrative.
+
+⚠️ **This repo is PUBLIC.** Do NOT put in `docs/reports/`:
+
+- an **unfixed** defect (a fixed one is fine — say so, and say what shipped),
+- **unreleased** pricing, or App Store / RevenueCat material not yet public,
+- partner, strategy or third-party material, or **anyone's personal data**.
+
+That content goes to `~/Plursky-private`. Note it is currently a plain local
+folder, **not a git repo** — so nothing in it is readable by a lane. If a lane
+needs to read it, it has to become a real private GitHub repo first; until
+then, treat "private" as "founder's eyes on this machine only".
+
+Docs-only, so no `vNNN` bump (§2 rule 3).
