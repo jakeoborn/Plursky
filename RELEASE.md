@@ -34,12 +34,29 @@ Notes:
 
 ## 2. Cache-bust bump (web app version `vNNN`)
 
-Bump in lockstep across `index.html` + `sw.js` + `app.jsx` (never hand-edit one):
+Bump in lockstep across `index.html` + `sw.js` + `app.jsx` — **use the script,
+never hand-edit one of the three:**
+
 ```bash
-sed -i '' 's/v188/v189/g' /Users/jaobo/Plursky/index.html \
+node scripts/bump.mjs --next   # or: node scripts/bump.mjs 234
+node scripts/bump.mjs --check  # verify the three agree (CI runs this)
+```
+
+It refuses to move backwards or sideways, refuses to run at all while the three
+files disagree, re-checks after writing, and skips `vNNN` inside comments — the
+repo has historical markers like `app.jsx:494` "(v196)" and the `// vNNN` notes
+in `spotify.jsx` that a blanket `sed` would happily rewrite.
+
+<details><summary>Emergency fallback if the script is broken</summary>
+
+```bash
+sed -i '' 's/v233/v234/g' /Users/jaobo/Plursky/index.html \
                           /Users/jaobo/Plursky/sw.js \
                           /Users/jaobo/Plursky/app.jsx
 ```
+Then check the historical comments were not caught: `grep -n "v19[0-9]" app.jsx spotify.jsx`.
+</details>
+
 New JS files must also be added to **both** `index.html` `<script>` tags and
 the `sw.js` LOCAL precache list (each with `?v=`).
 
