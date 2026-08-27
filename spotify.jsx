@@ -1787,7 +1787,7 @@ const _TAG_SOURCE_LABEL = {
   "exif-night-only":    { text: "EXIF NIGHT · PICK A SET", tone: "warn" },
   "filetime-night-only":{ text: "FILE TIME · PICK A SET",  tone: "warn" },
   off_stage:            { text: "📍 BETWEEN SETS",    tone: "info" },
-  "stage-neighbor":    { text: "NEARBY SET · VERIFY",   tone: "warn" },
+  "stage-neighbor":     { text: "NEARBY SET · VERIFY", tone: "warn" },
   fallback:             { text: "FALLBACK · RETAG",  tone: "warn" },
   manual:               { text: "MANUAL",            tone: "ok" },
 };
