@@ -1680,6 +1680,20 @@ function MapScreen({ state, setState }) {
   const [rideshareOpen, setRideshareOpen] = React.useState(false);
   const [showLabels, setShowLabels] = React.useState(false);
   const [showHeat,   setShowHeat]   = React.useState(false);
+  // Real map (BETA) — guarded re-enable (2026-08-22). Never again a broken
+  // festival-night map (EDC 2026-05-15 revert 139b50e): opt-in flag,
+  // auto-fallback to the offline-safe SVG TopDownMap on offline-at-mount,
+  // 12s boot timeout, 6 tile errors pre-first-load, or lib-load failure.
+  const [useRealMap, setUseRealMap] = React.useState(() => {
+    try { return localStorage.getItem("plursky_use_realmap") === "1"; } catch { return false; }
+  });
+  const [realMapNote, setRealMapNote] = React.useState(null);
+  const _disableRealMap = (why) => {
+    try { localStorage.removeItem("plursky_use_realmap"); } catch {}
+    setUseRealMap(false);
+    setRealMapNote((why || "Real map unavailable") + " — festival map shown");
+    setTimeout(() => setRealMapNote(null), 7000);
+  };
   // v133: pinch/button zoom + pan over the SVG TopDownMap. zoom=1 is fit-screen
   // (the v1.0 default view); >1 zooms in, <1 reveals more whitespace around
   // the festival footprint. Pan only takes effect when zoom > 1 — at zoom 1
@@ -2195,6 +2209,17 @@ function MapScreen({ state, setState }) {
                 },
                 { id: "crowd",  label: "🔥  Crowd heatmap",   active: showHeat,   onToggle: () => setShowHeat(s => !s) },
                 { id: "labels", label: "🏷  Landmark labels", active: showLabels, onToggle: () => setShowLabels(s => !s) },
+                { id: "realmap", label: "🗺  Real map (BETA)",  active: useRealMap,
+                  onToggle: () => {
+                    const v = !useRealMap;
+                    try {
+                      if (v) localStorage.setItem("plursky_use_realmap", "1");
+                      else localStorage.removeItem("plursky_use_realmap");
+                    } catch {}
+                    setRealMapNote(null);
+                    setUseRealMap(v);
+                  },
+                },
               ].map(item => (
                 <div key={item.id} role="button" onClick={item.onToggle} style={{
                   display: "flex", alignItems: "center", justifyContent: "space-between",
@@ -2600,18 +2625,50 @@ function MapScreen({ state, setState }) {
           );
         })()}
 
-        <TopDownMap
-          avatar={avatar} heading={heading} friends={friends} stages={STAGES}
-          saved={state.saved} showLabels={showLabels} showHeat={showHeat} showAmenities={searchSheetExpanded}
-          compass={compass && compassStatus === "live"}
-          compassHeading={compassHeading}
-          selected={selectedStage} meetMode={meetMode} meetTarget={meetTarget} meetGroup={meetGroup}
-          crewFriends={crewFriends}
-          zoom={mapZoom} pan={mapPan} zoomMin={MAP_ZOOM_MIN} zoomMax={MAP_ZOOM_MAX}
-          onZoomChange={setMapZoom} onPanChange={setMapPan}
-          onPickStage={(id) => { setSelectedStage(id); setPeek(false); }}
-          onClick={handleMapClick}
-        />
+        {useRealMap ? (
+          <RealMap
+            avatar={avatar} stages={STAGES}
+            crewFriends={crewFriends}
+            saved={state.saved}
+            showHeat={showHeat}
+            compass={compass && compassStatus === "live"}
+            compassHeading={compassHeading}
+            selected={selectedStage}
+            meetMode={meetMode} meetTarget={meetTarget}
+            onPickStage={(id) => { setSelectedStage(id); setPeek(false); }}
+            onMapClick={(xy) => {
+              if (!meetMode) return;
+              const names = meetGroup.map(id => friends.find(f => f.id === id)?.name).filter(Boolean);
+              setMeetTarget({ x: xy.x, y: xy.y, label: names.length ? `Meet ${names.join(" + ")}` : "Meet here" });
+            }}
+            onFatal={_disableRealMap}
+          />
+        ) : (
+          <TopDownMap
+            avatar={avatar} heading={heading} friends={friends} stages={STAGES}
+            saved={state.saved} showLabels={showLabels} showHeat={showHeat} showAmenities={searchSheetExpanded}
+            compass={compass && compassStatus === "live"}
+            compassHeading={compassHeading}
+            selected={selectedStage} meetMode={meetMode} meetTarget={meetTarget} meetGroup={meetGroup}
+            crewFriends={crewFriends}
+            zoom={mapZoom} pan={mapPan} zoomMin={MAP_ZOOM_MIN} zoomMax={MAP_ZOOM_MAX}
+            onZoomChange={setMapZoom} onPanChange={setMapPan}
+            onPickStage={(id) => { setSelectedStage(id); setPeek(false); }}
+            onClick={handleMapClick}
+          />
+        )}
+        {realMapNote && (
+          <div style={{
+            position: "absolute", top: 12, left: "50%", transform: "translateX(-50%)",
+            zIndex: 4, padding: "4px 10px", borderRadius: 999,
+            background: "rgba(245,154,54,0.95)", color: "#fff",
+            backdropFilter: "blur(8px)", maxWidth: "88%", textAlign: "center",
+          }}>
+            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700 }}>
+              {realMapNote.toUpperCase()}
+            </span>
+          </div>
+        )}
 
         {/* Ground-level peek window (picture-in-picture) */}
         {stage && peek && (
@@ -3145,6 +3202,7 @@ function RealMap({
   avatar, stages, crewFriends = [], saved = [],
   showHeat = false, compass = false, compassHeading = 0,
   selected, meetMode = false, meetTarget, onPickStage, onMapClick,
+  onFatal,
 }) {
   const containerRef = React.useRef(null);
   const mapRef = React.useRef(null);
@@ -3158,6 +3216,17 @@ function RealMap({
   const meetModeRef = React.useRef(meetMode);
   const [loaded, setLoaded] = React.useState(false);
   const [err, setErr] = React.useState(null);
+  // Fatal-fallback wiring (2026-08-22): one-shot; MapScreen flips back to the
+  // SVG TopDownMap and clears the BETA flag so a bad network/failing tiles
+  // can never trap the map again at festival time.
+  const fatalRef = React.useRef(false);
+  const loadedRef = React.useRef(false);
+  const tileErrRef = React.useRef(0);
+  const _fatal = React.useCallback((why) => {
+    if (fatalRef.current) return; fatalRef.current = true;
+    console.warn("[plursky-map] fatal — falling back to SVG map:", why);
+    try { onFatal?.(typeof why === "string" ? why : null); } catch {}
+  }, [onFatal]);
   const [styleKey, setStyleKey] = React.useState(() => {
     try { return localStorage.getItem("plursky_real_map_style") || "satellite"; } catch { return "satellite"; }
   });
@@ -3170,6 +3239,16 @@ function RealMap({
   React.useEffect(() => {
     _ensureRealMapStyles();
     let cancelled = false;
+    // Guards (2026-08-22): at a festival the network can be dead — don't strand
+    // the user on a map that needs remote tiles. Bail to the SVG map fast.
+    if (typeof navigator !== "undefined" && navigator.onLine === false) {
+      console.warn("[plursky-map] offline at mount — skipping RealMap");
+      _fatal("No network connection");
+      return () => {};
+    }
+    const bootTimer = setTimeout(() => {
+      if (!loadedRef.current && !fatalRef.current) _fatal("Real map timed out");
+    }, 12000);
     _mapLog("[plursky-map] RealMap useEffect — calling _loadMapLibre()");
     _loadMapLibre().then((maplibregl) => {
       _mapLog("[plursky-map] _loadMapLibre resolved — MapLibre loaded");
@@ -3890,6 +3969,7 @@ function RealMap({
           .addTo(map);
 
         setupOverlayLayers();
+        loadedRef.current = true;
         setLoaded(true);
       });
 
@@ -3922,13 +4002,16 @@ function RealMap({
         // Tile fetch errors fire constantly while panning out-of-bounds;
         // only surface the first one.
         setErr(prev => prev || msg);
+        tileErrRef.current += 1;
+        if (tileErrRef.current >= 6 && !loadedRef.current) _fatal("Real map tiles are failing");
       });
     }).catch(e => {
       console.error("[plursky-map] _loadMapLibre rejected:", e?.message || e, e);
-      if (!cancelled) setErr(e.message || "library failed to load");
+      if (!cancelled) { setErr(e.message || "library failed to load"); _fatal("Map library failed to load"); }
     });
 
     return () => {
+      clearTimeout(bootTimer);
       cancelled = true;
       if (mapRef.current) {
         try { mapRef.current.remove(); } catch {}
@@ -4248,8 +4331,13 @@ function RealMap({
           <div>MAP ERROR</div>
           <div style={{ color: "rgba(255,255,255,0.6)", fontSize: 9, maxWidth: 240 }}>{err}</div>
           <div style={{ color: "rgba(255,255,255,0.45)", fontSize: 8, marginTop: 4 }}>
-            Tip: turn off "Real map (BETA)" in the More menu to fall back to the SVG map.
+            Tip: the festival map below works offline — one tap switches and remembers.
           </div>
+          <button onClick={() => _fatal("Switched to festival map")} style={{
+            marginTop: 8, padding: "7px 16px", borderRadius: 999, border: "none",
+            background: "var(--ember)", color: "#fff", cursor: "pointer",
+            fontFamily: "'Geist Mono',monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+          }}>USE FESTIVAL MAP</button>
         </div>
       )}
     </div>
