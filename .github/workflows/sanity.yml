@@ -12,9 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # Node 22, not 20. @babel/core@8 declares engines
+      # `^22.18.0 || >=24.11.0`; on Node 20 npm ci emits EBADENGINE for every
+      # Babel package and the gate then passes by luck rather than by contract.
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       # `npm ci` is back, and it is the point of this step rather than a
       # formality. The lockfile used to be peer-inconsistent as committed:
