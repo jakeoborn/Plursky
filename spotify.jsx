@@ -6818,7 +6818,12 @@ async function _initRevenueCat() {
     _rcInitialized = true;
     const { customerInfo } = await Purchases.getCustomerInfo();
     _syncEntitlements(customerInfo);
-    Purchases.addCustomerInfoUpdateListener(({ customerInfo: info }) => _syncEntitlements(info));
+    // CustomerInfoUpdateListener = (customerInfo: CustomerInfo) => void — the
+    // listener receives CustomerInfo DIRECTLY. Destructuring `.customerInfo`
+    // off it gave undefined, and _syncEntitlements(undefined) calls
+    // _setPlusSub(false) — so every push update REVOKED Plus instead of
+    // syncing it. Also identical in v9 and v13.
+    Purchases.addCustomerInfoUpdateListener((info) => _syncEntitlements(info));
     if (typeof DEV !== "undefined") console.log("[plursky-iap] RevenueCat initialized");
   } catch (e) { console.warn("[plursky-iap] init failed:", e); }
 }
@@ -6862,7 +6867,13 @@ async function _purchasePlus(productId) {
   if (!_rcInitialized) return { success: false, error: "RevenueCat not configured" };
   try {
     const { Purchases } = await import("@revenuecat/purchases-capacitor");
-    const { offerings } = await Purchases.getOfferings();
+    // getOfferings() resolves to PurchasesOfferings ITSELF ({ all, current }),
+    // not to { offerings }. Destructuring `offerings` yielded undefined, so the
+    // find() below always ran on undefined and every purchase bailed out at
+    // "Product not available". Same signature in v9 and v13 — this was never a
+    // version difference, just wrong, and invisible because sandbox purchase
+    // testing is still blocked on the Paid Apps agreement.
+    const offerings = await Purchases.getOfferings();
     const pkg = offerings?.current?.availablePackages?.find(p =>
       p.product?.identifier === productId
     );

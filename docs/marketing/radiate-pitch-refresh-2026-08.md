@@ -7,7 +7,7 @@ Status: REFRESHED DRAFT. The June version sits HOLDING in Jake's Mail drafts (re
 - Watermark legibility: recap exports now carry a phone-legible `PLURSKY.COM` on all 8 export surfaces (PR #13).
 - Privacy page current for Shazam, Moments, backup, Plursky+ (PR #9).
 - Monetization rail: Plursky+ pricing confirmed by founder (2026-08-22): $14.99 festival-season pass (primary), $4.99/mo (secondary).
-  ⚠ Note vs docs/SPEC-season-pass-1499.md: that spec ships the pass as a **non-consumable**, which does NOT expire — so there is no "Sep 15–Nov 15 window" to describe. Either the spec's product type changes or this copy drops the window language. Founder call; not resolved here.
+  ✅ RESOLVED (founder, 2026-08-27): the product truth is the **non-consumable that never expires**. There is no "Sep 15–Nov 15 window" and no season expiry — do not describe one. The pass is a one-time purchase; "festival-season pass" is a NAME, not a term limit. Shipped paywall copy (PR #20) reads "one-time purchase. No subscription, nothing auto-renews." Keep any outbound copy consistent with that. The email body below never claimed a window, so nothing in it changed.
 - Retention + "fans going" proof point planned around Lost Lands weekend; community posts come as drafts first.
 
 ## Refreshed email copy (for Jake to review/edit before sending)

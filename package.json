@@ -21,7 +21,7 @@
     "@capacitor/local-notifications": "^6.1.3",
     "@capacitor/share": "^6.0.4",
     "@capawesome/capacitor-file-picker": "^6.2.0",
-    "@revenuecat/purchases-capacitor": "^13.1.2"
+    "@revenuecat/purchases-capacitor": "9.2.2"
   },
   "devDependencies": {
     "@capacitor/cli": "^6.2.0",
