@@ -1,6 +1,6 @@
 # Spec: Plursky App Review submission (season pass IAP + Plursky+ Monthly) via the App Store Connect API
 
-Written 2026-08-27 by Instinct, for Claude to execute. Docs-only; no version bump.
+Written 2026-08-27 by Instinct (v2, 6:20pm CT: fresh-build requirement, no-demo-account decision, approved What's New), for Claude to execute. Docs-only; no version bump.
 Authorization: Jake, 2026-08-27 4:48pm CT — "Can Claude do the Plursky app review, he did it end to end for Plursky."
 
 ## Ground rules
@@ -42,7 +42,7 @@ ASC API 4.4.1 moved review metadata to version-scoped objects and deprecated the
 The app requires sign-in, so a demo account is mandatory. `PATCH /v1/appReviewDetails/{id}`:
 
 - `contactFirstName`, `contactLastName`, `contactPhone`, `contactEmail` — Jake's.
-- `demoAccountRequired: true`, `demoAccountName`, `demoAccountPassword` — **JAKE INPUT. Do not invent credentials.**
+- `demoAccountRequired: false` — decided 2026-08-27 6:16pm CT: sign-in (Apple/Spotify OAuth) is optional, core identity is a device-local profile id, and the paywall path has no auth. No demo account; do not invent or request one. The monthly sub's reviewNote already states the paywall is reachable without login.
 - `notes` — draft: "In-app purchase unlocks watermark-free export and cloud backup. The paywall is reachable from the Me tab → PLUS. Season Pass is a one-time $14.99 purchase (no renewal). Plursky+ Monthly is $4.99/month auto-renewable; manage or cancel in Settings."
 
 ## Step 4 — submission shape (decided by D1, D2, D3)
@@ -54,8 +54,8 @@ Apple's rule (App Store Connect Help, "Submit an In-App Purchase"): the FIRST IA
 **Branch B — nothing approved yet (expected):** Branch A's items PLUS a new iOS app version:
 
 - `POST /v1/appStoreVersions` {platform: IOS, versionString: live version +0.1 (take the live string from the readiness read), releaseType: MANUAL, app relationship `6768888507`}.
-- Attach a build: set the version's `build` relationship to a VALID build from D3. If Apple rejects reusing the currently-live build, STOP — a fresh build upload from Xcode/Transporter is the one step that cannot be scripted from here; hand back to Jake.
-- What's New text — **JAKE INPUT.** Placeholder draft: "Plursky+ Season Pass and Monthly: no-watermark exports, cloud backup, and premium templates."
+- Attach a build: **a FRESH build from current main is REQUIRED.** capacitor.config.ts has webDir:'dist' (bundled snapshot, not the live site) and build 22 (2026-06-07) predates the season-pass/monthly paywall — reusing it would put an app in review that cannot reach the products. Jake builds from main (v233+), `npx cap sync`, archives, and uploads via Xcode/Transporter (Jake-at-his-Mac step, Claude-guided). Set the version's `build` relationship to the NEW build once it processes to VALID.
+- What's New text — **APPROVED by Jake 2026-08-27, use verbatim:** "Plursky+ is here. Season Pass ($14.99 one-time) and Monthly ($4.99) unlock watermark-free exports, cloud backup of your festival photos and videos, unlimited shares, and premium recap templates."
 - If the API demands new declarations for the version (age rating, content rights), STOP and report — inherit-only is the assumption, not verified.
 
 ## Step 5 — compose and submit (3-step flow, API 4.4.x)
@@ -73,6 +73,7 @@ Apple's rule (App Store Connect Help, "Submit an In-App Purchase"): the FIRST IA
 
 ## Inputs Jake owes before the final PATCH
 
-1. Demo account email + password for App Review.
-2. What's New copy (Branch B).
-3. Go on the final submit PATCH — his 2026-08-27 4:48pm ask authorizes it; reconfirm ONLY if branch B forces a fresh build upload, since that changes what he must do.
+1. ~~Demo account~~ — not required (decided 6:16pm CT).
+2. ~~What's New copy~~ — approved, verbatim above.
+3. A fresh iOS build uploaded from his Mac (Xcode/Transporter) — the one unscriptable step.
+4. Go on the final submit PATCH — his 2026-08-27 4:48pm ask authorizes it; reconfirm ONLY if anything diverges from this spec while composing.
