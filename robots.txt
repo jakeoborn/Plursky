@@ -1,0 +1,10 @@
+# plursky.com
+User-agent: *
+Allow: /
+
+# share.html serves per-user live-location links. They are unguessable and
+# ephemeral, and indexing one would publish somebody's location, so it is
+# disallowed here and kept out of sitemap.xml.
+Disallow: /share.html
+
+Sitemap: https://plursky.com/sitemap.xml

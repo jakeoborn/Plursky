@@ -520,6 +520,41 @@ function App() {
     // Parse deep-link params: ?artist=ID, ?tab=map, ?stage=kinetic, ?day=1, ?lineup=k9,k11,c5
     const rawSearch = window.location.search || (window.location.hash?.startsWith("#?") ? window.location.hash.slice(1) : "");
     const params = new URLSearchParams(rawSearch);
+
+    // ?f=<festival-id> (alias ?festival=) — the crawlable /f/<id>/ stubs link
+    // here so a visitor lands on the festival they were just reading about.
+    //
+    // Guarded deliberately, because the naive version RELOADS FOREVER:
+    // getActiveFestivalId() only honours a stored id when that festival is
+    // `available`, so writing a GATED id and reloading leaves the active
+    // festival unchanged while ?f= is still in the URL — and the next boot
+    // switches again, forever. Four of seven registry entries are gated, so
+    // this is the common case, not the edge case. Hence:
+    //   1. only switch when the festival would actually stick — the same rule
+    //      FestivalSwitcher applies (available, or previewOnly for Plus),
+    //   2. only when it differs from the festival already active,
+    //   3. strip the param BEFORE reloading, so even if 1 or 2 ever regress a
+    //      reload cannot re-trigger this.
+    const dlFest = params.get("f") || params.get("festival");
+    if (dlFest && typeof FESTIVALS_REGISTRY !== "undefined") {
+      const fEntry = FESTIVALS_REGISTRY.find(f => f.config.id === dlFest);
+      const canSwitch = !!fEntry && (fEntry.available || (fEntry.previewOnly && window._isPlusSub?.()));
+      if (canSwitch && dlFest !== FESTIVAL_CONFIG.id) {
+        try {
+          const u = new URL(window.location.href);
+          u.searchParams.delete("f");
+          u.searchParams.delete("festival");
+          if (u.hash.startsWith("#?")) {
+            const h = new URLSearchParams(u.hash.slice(2));
+            h.delete("f"); h.delete("festival");
+            u.hash = h.toString() ? "#?" + h.toString() : "";
+          }
+          window.history.replaceState({}, "", u.toString());
+        } catch {}
+        setActiveFestivalAndReload(dlFest);
+      }
+    }
+
     const dlArtist = params.get("artist");
     const dlTab    = params.get("tab");
     const dlStage  = params.get("stage");
@@ -818,7 +853,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v231",
+        version: "v232",
       }));
     } catch {}
   }
@@ -851,7 +886,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
-          PLURSKY · v231
+          PLURSKY · v232
         </div>
       </div>
     );
