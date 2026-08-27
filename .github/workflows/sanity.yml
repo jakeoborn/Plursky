@@ -4,6 +4,9 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   sanity:
     runs-on: ubuntu-latest
@@ -12,10 +15,19 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-      - name: Install
-        run: npm ci --ignore-scripts
+
+      # No `npm ci`. The lockfile is peer-inconsistent on purpose:
+      # @revenuecat/purchases-capacitor@13.1.2 declares peer
+      # @capacitor/core >=8.0.0 while the app is pinned to Capacitor 6,
+      # so `npm ci` always exits ERESOLVE. Neither step below needs the
+      # dependency tree — build.mjs imports only node: builtins, and the
+      # parse gate needs nothing but the compiler — so installing it is
+      # pure failure surface. (The RevenueCat/Capacitor mismatch itself is
+      # a real thing to settle at the next native build, not here.)
       - name: Build (scripts/build.mjs copy step)
         run: node scripts/build.mjs
-      - name: JSX parse gate (repo's own TypeScript; syntax only, no typecheck)
-        run: npx tsc --noEmit --allowJs --checkJs false --jsx preserve --skipLibCheck $(git ls-files '*.jsx' ':!ios/**')
+
+      # Syntax only — no typecheck. Pinned to the repo's devDependency so
+      # CI and local agree on what "parses" means.
+      - name: JSX parse gate (syntax only, no typecheck)
+        run: npx --yes --package=typescript@6.0.3 tsc --noEmit --allowJs --checkJs false --jsx preserve --skipLibCheck $(git ls-files '*.jsx' ':!ios/**')
