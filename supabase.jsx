@@ -2215,7 +2215,11 @@ function CrewChat({ code, myPid, myName }) {
             },
           },
             React.createElement("div", { className: "mono", style: { fontSize: 9, letterSpacing: 1.2, color: "#6D28D9", fontWeight: 700 } }, "✨ PLURSKY+ · CREW SHOWDOWN · FESTIVAL DNA · NO WATERMARKS"),
-            React.createElement("div", { className: "mono", style: { fontSize: 8, color: "var(--muted)", marginTop: 3 } }, "$4.99 / festival"),
+            // Price must match a product that is actually in the RevenueCat offering.
+            // "$4.99 / festival" matched none: festival is $2.99 AND deferred (never
+            // created in ASC), and $4.99 is the MONTHLY price. Mirror the paywall's
+            // primary CTA so the teaser and the sheet quote the same number.
+            React.createElement("div", { className: "mono", style: { fontSize: 8, color: "var(--muted)", marginTop: 3 } }, "$14.99 · SEASON PASS"),
           ) : null;
           // Hide raw VOTE messages — their data is reflected in the poll
           // tally card. Poll messages render as a special card.

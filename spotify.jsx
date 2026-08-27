@@ -6787,7 +6787,10 @@ const APP_STORE_ID = 6768888507;
 
 // ── Plursky+ paywall ──────────────────────────────────────────────
 // Free: 1 static collage per festival (watermarked). Plus: unlimited
-// collages, no watermark, GIF, video. $2.99/festival or $7.99/yr.
+// collages, no watermark, GIF, video. $14.99 season pass (one-time,
+// primary) or $4.99/mo. The $7.99/yr annual stays defined for the
+// buyers who already have it — same `plus` entitlement, no migration —
+// but is pulled from the RevenueCat offering, so it no longer sells.
 //
 // IAP is handled by RevenueCat (@revenuecat/purchases-capacitor).
 // On native: RevenueCat manages StoreKit, receipt validation, and
@@ -6798,8 +6801,10 @@ const APP_STORE_ID = 6768888507;
 const PLUS_KEY = "plursky_plus_active";
 const RC_API_KEY = "appl_xXQYsWOMgIpVPdCTxiXmPeyxFId";
 const RC_PRODUCT_IDS = {
-  festival: "plursky_plus_festival",  // $2.99 non-consumable
-  annual:   "plursky_plus_annual",    // $7.99/yr auto-renewable
+  festival: "plursky_plus_festival",     // $2.99 non-consumable (deferred — needs festival-scoped entitlement)
+  annual:   "plursky_plus_annual",       // $7.99/yr auto-renewable (LEGACY: kept in ASC, pulled from the offering)
+  season:   "plursky_season_pass_2026",  // $14.99 non-consumable — PRIMARY
+  monthly:  "plursky_plus_monthly",      // $4.99/mo auto-renewable — SECONDARY
 };
 const RC_ENTITLEMENT = "plus";
 
@@ -6903,16 +6908,21 @@ function PlusGate({ children, feature }) {
   // Hook first: an early `return children` above a useState is a conditional
   // hook call, which React only tolerates while the condition never flips.
   const [busy, setBusy] = React.useState(false);
+  // Which product is mid-purchase. `busy` still disables BOTH buttons; this
+  // only decides which one reads PROCESSING, so two buttons can't both claim
+  // to be processing the same tap. Null during restore (disabled, not labelled).
+  const [pending, setPending] = React.useState(null);
   if (_isPlusSub()) return children;
   const canBuy = _iapAvailable();
 
   const handlePurchase = async (productId) => {
-    setBusy(true);
+    const target = productId || RC_PRODUCT_IDS.season;
+    setBusy(true); setPending(target);
     try {
-      const result = await _purchasePlus(productId || RC_PRODUCT_IDS.annual);
+      const result = await _purchasePlus(target);
       if (result.success) window.location.reload();
     } catch {}
-    setBusy(false);
+    setBusy(false); setPending(null);
   };
 
   const handleRestore = async () => {
@@ -6979,28 +6989,55 @@ function PlusGate({ children, feature }) {
         </div>
 
         {canBuy ? (<>
-          <button onClick={() => handlePurchase(RC_PRODUCT_IDS.annual)} disabled={busy} className="mono" style={{
+          {/* PRIMARY — Season Pass. NON-CONSUMABLE, so this button must carry no
+              auto-renew language at all: renewal copy on a one-time purchase is a
+              Guideline 3.1.2 rejection. It also never expires, which is why the
+              line below says "one-time purchase" and not "for the 2026 season".
+              Button words + the line below are PROVISIONAL — founder copy. */}
+          <button onClick={() => handlePurchase(RC_PRODUCT_IDS.season)} disabled={busy} className="mono" style={{
             padding: "11px 28px", borderRadius: 12, border: "none",
             background: busy ? "rgba(109,40,217,0.5)" : "linear-gradient(135deg, #6D28D9, #e85d2e)",
             color: "#fff", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
             cursor: busy ? "wait" : "pointer",
             boxShadow: "0 4px 20px rgba(109,40,217,0.45), 0 0 40px rgba(232,93,46,0.2)",
           }}>
-            {busy ? "PROCESSING…" : "$7.99 / YEAR"}
+            {pending === RC_PRODUCT_IDS.season ? "PROCESSING…" : "$14.99 SEASON PASS"}
           </button>
-          {/* Auto-renewable subscription disclosure — required for App Store
-              review (Guideline 3.1.2): name, price, term, auto-renew + T&Cs. */}
           <div className="mono" style={{
             fontSize: 8, letterSpacing: 0.5, color: "rgba(255,255,255,0.4)",
-            marginTop: 8, lineHeight: 1.5, maxWidth: 264, textAlign: "center",
+            marginTop: 6, lineHeight: 1.5, maxWidth: 264, textAlign: "center",
           }}>
-            Plursky+ · $7.99/year, auto-renews until cancelled. Payment is charged to
+            Season Pass · $14.99 one-time purchase. No subscription, nothing auto-renews.
+          </div>
+
+          {/* SECONDARY — Monthly. AUTO-RENEWABLE, so it keeps the full Guideline
+              3.1.2 disclosure verbatim (name, price, term, auto-renew, where it's
+              charged, how to cancel) with only the price swapped. */}
+          <button onClick={() => handlePurchase(RC_PRODUCT_IDS.monthly)} disabled={busy} className="mono" style={{
+            marginTop: 12, padding: "9px 24px", borderRadius: 12,
+            border: "1px solid rgba(255,255,255,0.22)", background: "transparent",
+            color: busy ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.85)",
+            fontSize: 9, letterSpacing: 1.4, fontWeight: 700,
+            cursor: busy ? "wait" : "pointer",
+          }}>
+            {pending === RC_PRODUCT_IDS.monthly ? "PROCESSING…" : "$4.99 / MONTH"}
+          </button>
+          <div className="mono" style={{
+            fontSize: 8, letterSpacing: 0.5, color: "rgba(255,255,255,0.4)",
+            marginTop: 6, lineHeight: 1.5, maxWidth: 264, textAlign: "center",
+          }}>
+            Plursky+ · $4.99/month, auto-renews until cancelled. Payment is charged to
             your Apple ID; manage or cancel anytime in Settings.
-            <div style={{ marginTop: 4 }}>
-              <a href="./terms.html" target="_blank" rel="noopener" style={{ color: "rgba(255,255,255,0.6)" }}>Terms</a>
-              {"   ·   "}
-              <a href="./privacy.html" target="_blank" rel="noopener" style={{ color: "rgba(255,255,255,0.6)" }}>Privacy</a>
-            </div>
+          </div>
+
+          {/* Applies to both products — shown once. */}
+          <div className="mono" style={{
+            fontSize: 8, letterSpacing: 0.5, color: "rgba(255,255,255,0.4)",
+            marginTop: 6, textAlign: "center",
+          }}>
+            <a href="./terms.html" target="_blank" rel="noopener" style={{ color: "rgba(255,255,255,0.6)" }}>Terms</a>
+            {"   ·   "}
+            <a href="./privacy.html" target="_blank" rel="noopener" style={{ color: "rgba(255,255,255,0.6)" }}>Privacy</a>
           </div>
           <button onClick={handleRestore} disabled={busy} className="mono" style={{
             marginTop: 10, padding: "4px 12px", borderRadius: 6,
