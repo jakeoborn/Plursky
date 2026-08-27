@@ -2,12 +2,14 @@
   "name": "plursky",
   "version": "0.0.1",
   "private": true,
-  "description": "Festival companion app — EDC, ACL, and more",
+  "description": "Festival companion app \u2014 EDC, ACL, and more",
   "scripts": {
     "build": "node scripts/build.mjs",
     "cap:sync": "npm run build && npx cap sync ios",
     "cap:open": "npx cap open ios",
-    "cap:build": "npm run cap:sync && npm run cap:open"
+    "cap:build": "npm run cap:sync && npm run cap:open",
+    "verify": "node scripts/verify.mjs",
+    "bump": "node scripts/bump.mjs"
   },
   "dependencies": {
     "@capacitor-community/apple-sign-in": "^6.0.0",
@@ -24,6 +26,8 @@
     "@revenuecat/purchases-capacitor": "9.2.2"
   },
   "devDependencies": {
+    "@babel/core": "^8.0.1",
+    "@babel/preset-react": "^8.0.1",
     "@capacitor/cli": "^6.2.0",
     "playwright": "^1.60.0",
     "typescript": "^6.0.3"
