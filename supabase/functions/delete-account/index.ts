@@ -8,8 +8,9 @@
 //   2. We verify the JWT by calling auth.getUser() with the user's token —
 //      the anon client honors the Authorization header automatically.
 //   3. With a separate service-role client we:
-//        a. delete the row in public.user_data (the app's data row), and
-//        b. call auth.admin.deleteUser(uid) to remove the auth.users row.
+//        a. purge the user's blobs from the moment-media Storage bucket,
+//        b. delete the row in public.user_data (the app's data row), and
+//        c. call auth.admin.deleteUser(uid) to remove the auth.users row.
 //      Both are required: without (a) the row is orphaned + counted in
 //      get_artist_save_counts(); without (b) the user can still sign in.
 //
@@ -89,10 +90,42 @@ Deno.serve(async (req) => {
       status: 401, headers: { ...CORS, "content-type": "application/json" },
     });
 
-  // Hard delete: drop the user_data row first, then auth.users.
+  // Hard delete: purge Storage blobs, then the user_data row, then auth.users.
   const admin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
     auth: { autoRefreshToken: false, persistSession: false },
   });
+  // Moment media purge: delete-account previously left every blob in the
+  // private 'moment-media' bucket (paths are {uid}/{photoId}) — orphaned
+  // forever once auth.users went away. Runs BEFORE the user_data delete and
+  // the auth delete: a failure here must leave the account fully intact and
+  // retryable, never half-deleted. Pages of 1000 paths per list() call;
+  // upload paths are flat ({uid}/{photoId}, see sbUploadMomentMedia), so
+  // list() returns files only and the loop terminates.
+  const MEDIA_BUCKET = "moment-media";
+  let mediaRemoved = 0;
+  try {
+    for (;;) {
+      const { data: files, error: listErr } = await admin.storage
+        .from(MEDIA_BUCKET)
+        .list(user.id, { limit: 1000 });
+      if (listErr) throw listErr;
+      if (!files || files.length === 0) break;
+      const paths = files
+        .filter((f) => f.name && f.name !== ".emptyFolderPlaceholder")
+        .map((f) => `${user.id}/${f.name}`);
+      if (paths.length === 0) break;
+      const { error: rmErr } = await admin.storage.from(MEDIA_BUCKET).remove(paths);
+      if (rmErr) throw rmErr;
+      mediaRemoved += paths.length;
+      if (files.length < 1000) break;
+    }
+  } catch (e) {
+    return new Response(
+      JSON.stringify({ error: "media_purge_failed", detail: String(e) }),
+      { status: 500, headers: { ...CORS, "content-type": "application/json" } },
+    );
+  }
+
   // user_data row is RLS-protected but the service-role client bypasses RLS.
   // Ignore "no rows found" — first-time accounts may not have a row yet.
   await admin.from("user_data").delete().eq("user_id", user.id);
@@ -103,7 +136,7 @@ Deno.serve(async (req) => {
       status: 500, headers: { ...CORS, "content-type": "application/json" },
     });
 
-  return new Response(JSON.stringify({ ok: true, user_id: user.id }), {
+  return new Response(JSON.stringify({ ok: true, user_id: user.id, media_removed: mediaRemoved }), {
     status: 200, headers: { ...CORS, "content-type": "application/json" },
   });
 });
