@@ -37,7 +37,12 @@ fns you care about are `function`.
 
 ```bash
 cd /Users/jaobo/Plursky
-ORDER=$(grep -oE '[a-z-]+\.jsx' index.html | awk '!seen[$0]++')  # index.html load order
+# Match only real <script src="...">, NOT every "*.jsx" string in the file.
+# index.html PROSE mentions app.jsx and spotify.jsx in comments well above the
+# script tags, so the loose pattern hoisted both to the FRONT of the order.
+# app.jsx then evaluated before data.jsx and died on `FESTIVAL_CONFIG is not
+# defined` — a probe failure with healthy code behind it.
+ORDER=$(grep -oE 'src="[^"]+\.jsx' index.html | sed 's/src="//' | awk '!seen[$0]++')
 python3 -m http.server 8899 >/tmp/srv.log 2>&1 & SRV=$!; sleep 1
 python3 - "$ORDER" > __probe.html <<'PY'
 import sys

@@ -16,14 +16,22 @@ jobs:
         with:
           node-version: 20
 
-      # No `npm ci`. The lockfile is peer-inconsistent on purpose:
+      # `npm ci` is back, and it is the point of this step rather than a
+      # formality. The lockfile used to be peer-inconsistent as committed:
       # @revenuecat/purchases-capacitor@13.1.2 declares peer
-      # @capacitor/core >=8.0.0 while the app is pinned to Capacitor 6,
-      # so `npm ci` always exits ERESOLVE. Neither step below needs the
-      # dependency tree — build.mjs imports only node: builtins, and the
-      # parse gate needs nothing but the compiler — so installing it is
-      # pure failure surface. (The RevenueCat/Capacitor mismatch itself is
-      # a real thing to settle at the next native build, not here.)
+      # @capacitor/core >=8.0.0 while the app is pinned to Capacitor 6, so
+      # `npm ci` exited ERESOLVE and no native build could be produced at
+      # all. RevenueCat is now pinned to an EXACT 9.2.2 — the last release
+      # whose peer range is ^6.0.0 (10.0.0 moved to >=7.0.0, 12.x/13.x to
+      # >=8.0.0), so the tree resolves without --legacy-peer-deps.
+      #
+      # Keep the pin EXACT (no caret). A caret would let npm walk forward
+      # into 10.x and silently reintroduce the ERESOLVE this step exists to
+      # catch. Moving to RC 13 requires the Capacitor 8 upgrade, which is a
+      # separate scheduled project.
+      - name: Install (npm ci — guards the Capacitor 6 peer range)
+        run: npm ci
+
       - name: Build (scripts/build.mjs copy step)
         run: node scripts/build.mjs
 
