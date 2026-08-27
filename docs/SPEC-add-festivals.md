@@ -9,7 +9,7 @@ communities with post-festival content. Today Plursky covers EDC LV (passed)
 | Rank | Festival | Joined | Dates | Plursky |
 |---|---|---|---|---|
 | 1 | EDC Las Vegas | 205,639 | May (passed) | ✅ full |
-| 2 | **Lost Lands** | 103,356 | Sept 2026 | ❌ **P1** |
+| 2 | **Lost Lands** | 103,356 | **Sep 18–20** (early entry Sep 16–17) | preview → **filled+gated (#10)** |
 | 3 | **Electric Forest** | 93,621 | **Jun 25–28** | ❌ **P0 — time-critical** |
 | 4 | **EDC Orlando** | 91,376 | **Nov 6–8** (corrected 2026-08-22 vs official Insomniac press release; stub previously said Nov 13–15) | preview stub → **filled+gated (PR)** |
 | 5 | Bonnaroo | 63,108 | Jun 11–14 | only if set times already public |
