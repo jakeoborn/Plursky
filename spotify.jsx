@@ -6823,9 +6823,33 @@ function _syncEntitlements(info) {
   _setPlusSub(!!active);
 }
 
+// There is no StoreKit in the browser, so the web build cannot charge anyone.
+// This branch used to just flip Plus on for whoever clicked — fine on a dev
+// server, but plursky.com is public, so on the live site the paywall button
+// handed out Plus for free. Keep the toggle as a LOCAL testing affordance and
+// close it everywhere else. (Same shape as `_appleMusicOriginOk` in
+// spotify-api.jsx: a hostname allowlist, checked before the action.)
+const _IAP_DEV_HOSTS = ["localhost", "127.0.0.1", "[::1]", "::1", ""];
+function _iapDevHost() {
+  try {
+    const h = location.hostname;
+    return _IAP_DEV_HOSTS.includes(h) || h.endsWith(".local");
+  } catch { return false; }
+}
+// True when a purchase can actually be attempted: native (real StoreKit) or a
+// local dev host (the test toggle). False on plursky.com — the paywall reads
+// this to stop advertising a price it cannot take money for.
+function _iapAvailable() {
+  return !!window.Capacitor?.isNativePlatform?.() || _iapDevHost();
+}
+
 async function _purchasePlus(productId) {
   if (!window.Capacitor?.isNativePlatform?.()) {
-    if (typeof DEV !== "undefined") console.log("[plursky-iap] web mode — toggling Plus for testing");
+    if (!_iapDevHost()) {
+      console.warn("[plursky-iap] purchase blocked — web build has no StoreKit");
+      return { success: false, unsupported: true, error: "Plursky+ purchases are only available in the iOS app." };
+    }
+    console.log("[plursky-iap] local dev host — toggling Plus for testing");
     _setPlusSub(true);
     return { success: true, web: true };
   }
@@ -6876,8 +6900,11 @@ function _setPlusSub(v) { try { localStorage.setItem(PLUS_KEY, v ? "1" : "0"); }
 try { _initRevenueCat(); } catch {}
 
 function PlusGate({ children, feature }) {
-  if (_isPlusSub()) return children;
+  // Hook first: an early `return children` above a useState is a conditional
+  // hook call, which React only tolerates while the condition never flips.
   const [busy, setBusy] = React.useState(false);
+  if (_isPlusSub()) return children;
+  const canBuy = _iapAvailable();
 
   const handlePurchase = async (productId) => {
     setBusy(true);
@@ -6951,37 +6978,63 @@ function PlusGate({ children, feature }) {
           ))}
         </div>
 
-        <button onClick={() => handlePurchase(RC_PRODUCT_IDS.annual)} disabled={busy} className="mono" style={{
-          padding: "11px 28px", borderRadius: 12, border: "none",
-          background: busy ? "rgba(109,40,217,0.5)" : "linear-gradient(135deg, #6D28D9, #e85d2e)",
-          color: "#fff", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
-          cursor: busy ? "wait" : "pointer",
-          boxShadow: "0 4px 20px rgba(109,40,217,0.45), 0 0 40px rgba(232,93,46,0.2)",
-        }}>
-          {busy ? "PROCESSING…" : "$7.99 / YEAR"}
-        </button>
-        {/* Auto-renewable subscription disclosure — required for App Store
-            review (Guideline 3.1.2): name, price, term, auto-renew + T&Cs. */}
-        <div className="mono" style={{
-          fontSize: 8, letterSpacing: 0.5, color: "rgba(255,255,255,0.4)",
-          marginTop: 8, lineHeight: 1.5, maxWidth: 264, textAlign: "center",
-        }}>
-          Plursky+ · $7.99/year, auto-renews until cancelled. Payment is charged to
-          your Apple ID; manage or cancel anytime in Settings.
-          <div style={{ marginTop: 4 }}>
-            <a href="./terms.html" target="_blank" rel="noopener" style={{ color: "rgba(255,255,255,0.6)" }}>Terms</a>
-            {"   ·   "}
-            <a href="./privacy.html" target="_blank" rel="noopener" style={{ color: "rgba(255,255,255,0.6)" }}>Privacy</a>
+        {canBuy ? (<>
+          <button onClick={() => handlePurchase(RC_PRODUCT_IDS.annual)} disabled={busy} className="mono" style={{
+            padding: "11px 28px", borderRadius: 12, border: "none",
+            background: busy ? "rgba(109,40,217,0.5)" : "linear-gradient(135deg, #6D28D9, #e85d2e)",
+            color: "#fff", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
+            cursor: busy ? "wait" : "pointer",
+            boxShadow: "0 4px 20px rgba(109,40,217,0.45), 0 0 40px rgba(232,93,46,0.2)",
+          }}>
+            {busy ? "PROCESSING…" : "$7.99 / YEAR"}
+          </button>
+          {/* Auto-renewable subscription disclosure — required for App Store
+              review (Guideline 3.1.2): name, price, term, auto-renew + T&Cs. */}
+          <div className="mono" style={{
+            fontSize: 8, letterSpacing: 0.5, color: "rgba(255,255,255,0.4)",
+            marginTop: 8, lineHeight: 1.5, maxWidth: 264, textAlign: "center",
+          }}>
+            Plursky+ · $7.99/year, auto-renews until cancelled. Payment is charged to
+            your Apple ID; manage or cancel anytime in Settings.
+            <div style={{ marginTop: 4 }}>
+              <a href="./terms.html" target="_blank" rel="noopener" style={{ color: "rgba(255,255,255,0.6)" }}>Terms</a>
+              {"   ·   "}
+              <a href="./privacy.html" target="_blank" rel="noopener" style={{ color: "rgba(255,255,255,0.6)" }}>Privacy</a>
+            </div>
           </div>
-        </div>
-        <button onClick={handleRestore} disabled={busy} className="mono" style={{
-          marginTop: 10, padding: "4px 12px", borderRadius: 6,
-          border: "1px solid rgba(255,255,255,0.15)", background: "transparent",
-          color: "rgba(255,255,255,0.4)", fontSize: 8, letterSpacing: 1,
-          cursor: "pointer",
-        }}>
-          RESTORE PURCHASE
-        </button>
+          <button onClick={handleRestore} disabled={busy} className="mono" style={{
+            marginTop: 10, padding: "4px 12px", borderRadius: 6,
+            border: "1px solid rgba(255,255,255,0.15)", background: "transparent",
+            color: "rgba(255,255,255,0.4)", fontSize: 8, letterSpacing: 1,
+            cursor: "pointer",
+          }}>
+            RESTORE PURCHASE
+          </button>
+        </>) : (
+          /* Web build: no StoreKit, so there is nothing to charge. Don't show a
+             price next to a button that cannot take money — point at the app
+             instead. RESTORE is hidden too; `_restorePurchases` already
+             returns "Web mode" off-native, so it could only ever fail here. */
+          <div className="mono" style={{
+            fontSize: 9, letterSpacing: 0.6, color: "rgba(255,255,255,0.55)",
+            marginTop: 2, lineHeight: 1.6, maxWidth: 264, textAlign: "center",
+          }}>
+            Plursky+ is available in the iOS app.
+            <div style={{ marginTop: 8 }}>
+              <a href={_appStoreUrl()} target="_blank" rel="noopener" style={{
+                display: "inline-block", padding: "8px 20px", borderRadius: 10,
+                background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
+                color: "#fff", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
+                textDecoration: "none",
+              }}>GET THE APP</a>
+            </div>
+            <div style={{ marginTop: 10 }}>
+              <a href="./terms.html" target="_blank" rel="noopener" style={{ color: "rgba(255,255,255,0.5)" }}>Terms</a>
+              {"   ·   "}
+              <a href="./privacy.html" target="_blank" rel="noopener" style={{ color: "rgba(255,255,255,0.5)" }}>Privacy</a>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
