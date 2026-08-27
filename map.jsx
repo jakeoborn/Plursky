@@ -1679,6 +1679,13 @@ function MapScreen({ state, setState }) {
   const [chatFriend, setChatFriend] = React.useState(null);
   const [rideshareOpen, setRideshareOpen] = React.useState(false);
   const [showLabels, setShowLabels] = React.useState(false);
+  // Official patron map over the real basemap. Default ON — it is the whole
+  // point of a festival map — but persisted, because someone who flipped the
+  // BETA real map on specifically to see real satellite geography needs a way
+  // to get the poster back out of the way.
+  const [showOfficialMap, setShowOfficialMap] = React.useState(() => {
+    try { return localStorage.getItem("plursky_official_map") !== "0"; } catch { return true; }
+  });
   const [showHeat,   setShowHeat]   = React.useState(false);
   // Real map (BETA) — guarded re-enable (2026-08-22). Never again a broken
   // festival-night map (EDC 2026-05-15 revert 139b50e): opt-in flag,
@@ -2209,6 +2216,15 @@ function MapScreen({ state, setState }) {
                 },
                 { id: "crowd",  label: "🔥  Crowd heatmap",   active: showHeat,   onToggle: () => setShowHeat(s => !s) },
                 { id: "labels", label: "🏷  Landmark labels", active: showLabels, onToggle: () => setShowLabels(s => !s) },
+                ...(useRealMap && FESTIVAL_CONFIG.mapStyle === "image-overlay" && FESTIVAL_CONFIG.mapImage ? [
+                  { id: "officialmap", label: "🗺  Official festival map", active: showOfficialMap,
+                    onToggle: () => {
+                      const v = !showOfficialMap;
+                      try { localStorage.setItem("plursky_official_map", v ? "1" : "0"); } catch {}
+                      setShowOfficialMap(v);
+                    },
+                  },
+                ] : []),
                 { id: "realmap", label: "🗺  Real map (BETA)",  active: useRealMap,
                   onToggle: () => {
                     const v = !useRealMap;
@@ -2631,6 +2647,8 @@ function MapScreen({ state, setState }) {
             crewFriends={crewFriends}
             saved={state.saved}
             showHeat={showHeat}
+            showLabels={showLabels}
+            officialMap={showOfficialMap}
             compass={compass && compassStatus === "live"}
             compassHeading={compassHeading}
             selected={selectedStage}
@@ -3192,6 +3210,57 @@ function mapToGps(x, y) {
   return { lat, lng };
 }
 
+// ── Official-map (poster) geo-anchoring ───────────────────────
+// The official patron map is authored against the SAME 0-100 grid the stage
+// x/y live on, so mapToGps() already knows how to place it in the world. The
+// only subtlety is HOW MUCH of the image the 0-100 box covers.
+//
+// TopDownMap draws it as <image x=0 y=0 width=100 height=100
+// preserveAspectRatio="xMidYMid slice"> — "slice" means COVER: scale until the
+// short edge fills, centre, crop the overflow. Three of the five assets are
+// deliberately square (acl-park 1708², ef-forest 1200², lostlands 1400²) so
+// cover is exact and the extent is the plain 0-100 box. Two are NOT:
+// edc-map-2026.jpg is 1320×1649 and edco-tinker-2026.jpg is 960×1200, both
+// ~0.80 aspect, so the SVG crops ~12.5% off the top AND bottom.
+//
+// MapLibre's `image` source does no cropping — it stretches the WHOLE image
+// into the quad it is given. Feeding it the plain 0-100 corners would squash
+// EDC's poster by 25% vertically and slide every printed feature off the stage
+// dots. So we return the extent the FULL image occupies in 0-100 space, which
+// for a 0.8-aspect asset runs y = -12.5 .. 112.5. The cropped strips then sit
+// outside the SVG's box but in the geographically correct place, which is
+// strictly more map, correctly anchored.
+function _officialMapExtent(natW, natH) {
+  if (!natW || !natH) return { x0: 0, y0: 0, x1: 100, y1: 100 };
+  const scale = Math.max(100 / natW, 100 / natH);   // "slice" == CSS cover
+  const w = natW * scale, h = natH * scale;
+  const x0 = (100 - w) / 2, y0 = (100 - h) / 2;
+  return { x0, y0, x1: x0 + w, y1: y0 + h };
+}
+
+// Natural dimensions of a map asset, memoised per src. Measured at runtime
+// rather than hardcoded so replacing a provisional poster with the official
+// one (the flip-session ritual) needs no code change — drop the file in and
+// the anchoring retunes itself.
+const _imgDimsCache = {};
+function _officialMapDims(src) {
+  if (_imgDimsCache[src]) return _imgDimsCache[src];
+  _imgDimsCache[src] = new Promise((resolve) => {
+    const im = new Image();
+    im.onload  = () => resolve({ w: im.naturalWidth, h: im.naturalHeight });
+    im.onerror = () => resolve(null);
+    im.src = src;
+  });
+  return _imgDimsCache[src];
+}
+
+// Corner quad for a MapLibre `image` source: [TL, TR, BR, BL] as [lng, lat].
+function _officialMapCorners(natW, natH) {
+  const e = _officialMapExtent(natW, natH);
+  const pt = (x, y) => { const { lat, lng } = mapToGps(x, y); return [lng, lat]; };
+  return [pt(e.x0, e.y0), pt(e.x1, e.y0), pt(e.x1, e.y1), pt(e.x0, e.y1)];
+}
+
 // ─── RealMap ────────────────────────────────────────────────────
 // MapLibre-based festival map. Real LVMS geography, native pinch-zoom
 // and pan, tilted pitch for a 3D feel. Stage markers + avatar + route
@@ -3200,7 +3269,8 @@ function mapToGps(x, y) {
 // when off, MapScreen falls back to the SVG TopDownMap.
 function RealMap({
   avatar, stages, crewFriends = [], saved = [],
-  showHeat = false, compass = false, compassHeading = 0,
+  showHeat = false, showLabels = false, officialMap = true,
+  compass = false, compassHeading = 0,
   selected, meetMode = false, meetTarget, onPickStage, onMapClick,
   onFatal,
 }) {
@@ -3211,6 +3281,10 @@ function RealMap({
   const meetMarkerRef = React.useRef(null);
   const savedStarMarkersRef = React.useRef({});
   const friendMarkersRef = React.useRef({}); // id -> { marker, lastSig }
+  const landmarkElsRef = React.useRef([]);  // landmark label elements, toggled by showLabels
+  const officialMapDimsRef = React.useRef(null); // natural {w,h} of the poster asset
+  const officialMapRef = React.useRef(officialMap);
+  const showLabelsRef = React.useRef(showLabels);
   const onPickStageRef = React.useRef(onPickStage);
   const onMapClickRef = React.useRef(onMapClick);
   const meetModeRef = React.useRef(meetMode);
@@ -3230,6 +3304,29 @@ function RealMap({
   const [styleKey, setStyleKey] = React.useState(() => {
     try { return localStorage.getItem("plursky_real_map_style") || "satellite"; } catch { return "satellite"; }
   });
+
+  // Read through a ref so the map-init effect (which runs once) always sees
+  // the CURRENT toggle state without listing showLabels as a dependency and
+  // tearing the whole map down on every toggle.
+  const _applyLandmarkVisibility = React.useCallback(() => {
+    const vis = showLabelsRef.current ? "" : "none";
+    landmarkElsRef.current.forEach((el) => { el.style.display = vis; });
+  }, []);
+  React.useEffect(() => {
+    showLabelsRef.current = showLabels;
+    _applyLandmarkVisibility();
+  }, [showLabels, _applyLandmarkVisibility]);
+
+  // Official-map toggle. Visibility rather than add/remove: re-adding the
+  // layer would re-download the asset and re-race the beforeId placement.
+  React.useEffect(() => {
+    officialMapRef.current = officialMap;
+    const map = mapRef.current;
+    if (!map || !map.getLayer?.("official-map")) return;
+    try {
+      map.setLayoutProperty("official-map", "visibility", officialMap ? "visible" : "none");
+    } catch {}
+  }, [officialMap]);
 
   React.useEffect(() => { onPickStageRef.current = onPickStage; }, [onPickStage]);
   React.useEffect(() => { onMapClickRef.current  = onMapClick;  }, [onMapClick]);
@@ -3350,30 +3447,15 @@ function RealMap({
         }),
       });
 
-      // Sub-landmark labels — named places drawn on the EDC poster
-      // (walkways + districts + standalone art). Mirror of the SVG
-      // TopDownMap's LABELS toggle list, projected into GPS. Rendered
-      // as DOM markers below.
-      const SUB_LANDMARKS = [
-        // Walkways
-        { label: "KINETIC TRAIL",   x: 41, y: 28, rot: -55, color: "rgba(251,191,36,0.92)" },
-        { label: "MEMORY LANE",     x: 33, y: 55, rot: -90, color: "rgba(247,237,224,0.85)" },
-        { label: "POWER PATH",      x: 67, y: 38, rot: -90, color: "rgba(167,139,250,0.92)" },
-        { label: "RAINBOW ROAD",    x: 65, y: 64, rot: -90, color: "rgba(244,114,182,0.92)" },
-        { label: "ELECTRIC AVENUE", x: 50, y: 62, rot:   0, color: "rgba(252,211,77,1)"     },
-        { label: "BASS LANE",       x: 56, y: 71, rot: -90, color: "rgba(96,165,250,0.92)"  },
-        { label: "NOMADS ALLEY",    x: 22, y: 70, rot: -22, color: "rgba(247,237,224,0.85)" },
-        // Districts
-        { label: "DAISY FIELDS",    x: 40, y: 24, rot:   0, color: "rgba(252,211,77,0.92)"  },
-        { label: "NOMADS LAND",     x: 38, y: 70, rot:   0, color: "rgba(252,211,77,1)"     },
-        // Inside-plaza
-        { label: "RAINBOW BAZAAR",  x: 50, y: 47, rot:   0, color: "rgba(255,255,255,0.95)" },
-        { label: "DOWNTOWN EDC",    x: 50, y: 55, rot:   0, color: "rgba(251,191,36,1)"     },
-        // Standalone landmarks
-        { label: "FLOWER TUNNEL",   x: 45, y: 33, rot:   0, color: "rgba(244,114,182,0.95)" },
-        { label: "PIXEL FOREST",    x: 78, y: 60, rot:   0, color: "rgba(244,114,182,0.92)" },
-        { label: "NOMADS PORTAL",   x: 38, y: 76, rot:   0, color: "rgba(244,114,182,0.92)" },
-      ];
+      // Sub-landmark labels — named places printed on the official patron
+      // map (walkways + districts + standalone art), projected into GPS and
+      // rendered as DOM markers below.
+      //
+      // Was a hardcoded EDC list here AND a second copy in TopDownMap. Both
+      // are now FESTIVAL_CONFIG.landmarks, so ACL no longer gets "KINETIC
+      // TRAIL" drawn across Zilker Park. A festival with no landmarks key
+      // renders none, which is the correct empty state rather than a bug.
+      const SUB_LANDMARKS = FESTIVAL_CONFIG.landmarks || [];
 
       // Stage heights tuned for Snapchat-style isometric overlay — building
       // scale (12-32m), NOT the prior 80-220m skyscrapers. At pitch ~22°
@@ -3677,6 +3759,65 @@ function RealMap({
             };
           }),
         });
+        // Official patron map — the printed festival map, geo-anchored over the
+        // real basemap. This is the layer the render-order comment above has
+        // described since the RealMap landed ("clip first -> poster on top");
+        // it was never actually built, so the real map showed satellite
+        // imagery with dots on it and none of the festival's own cartography.
+        //
+        // Placed with an explicit beforeId rather than by call order: the
+        // natural image dimensions arrive asynchronously, so this can be
+        // re-invoked AFTER stage-zones/plaza/route already exist. Appending
+        // would then draw the poster over the stage dots, routes and presence
+        // dots — the exact inversion the work order rules out.
+        const _addOfficialMap = () => {
+          // NOTE: deliberately NOT gated on officialMapRef.current. Skipping
+          // creation while the toggle is off would leave the visibility effect
+          // below with no layer to turn back ON, making the toggle one-way.
+          // Build it always; set initial visibility from the toggle.
+          if (FESTIVAL_CONFIG.mapStyle !== "image-overlay" || !FESTIVAL_CONFIG.mapImage) return;
+          if (!MAP_AFFINE) return;   // no anchors -> no defensible placement
+          const dims = officialMapDimsRef.current;
+          if (!dims) return;         // still loading; the .then() below re-runs us
+          const src = FESTIVAL_CONFIG.mapImage;
+          const coordinates = _officialMapCorners(dims.w, dims.h);
+          if (!map.getSource("official-map")) {
+            map.addSource("official-map", { type: "image", url: src, coordinates });
+          } else {
+            // Style swaps preserve nothing, but a re-run on an existing source
+            // should still retune if the affine changed under us.
+            try { map.getSource("official-map").setCoordinates(coordinates); } catch {}
+          }
+          if (!map.getLayer("official-map")) {
+            const below = ["stage-zones", "plaza", "route-line", "stages-3d"]
+              .find(id => map.getLayer(id));
+            map.addLayer({
+              id: "official-map",
+              type: "raster",
+              source: "official-map",
+              layout: { visibility: officialMapRef.current ? "visible" : "none" },
+              paint: {
+                // Park maps (ACL) are clean line art and read best near-opaque;
+                // the poster-style ones (EDC) are dense and busy, so they sit
+                // back far enough for the basemap and the dots to stay legible.
+                "raster-opacity": FESTIVAL_CONFIG.mapTheme === "park" ? 0.92 : 0.78,
+                "raster-fade-duration": 0,
+                "raster-resampling": "linear",
+              },
+            }, below);
+            _mapLog("[plursky-map] official-map added", src, dims.w + "x" + dims.h,
+                    below ? "below " + below : "(top — no overlay layers yet)");
+          }
+        };
+        _safeLayer("official-map", _addOfficialMap);
+        if (!officialMapDimsRef.current && FESTIVAL_CONFIG.mapImage) {
+          _officialMapDims(FESTIVAL_CONFIG.mapImage).then((d) => {
+            if (cancelled || !d || !mapRef.current) return;
+            officialMapDimsRef.current = d;
+            _safeLayer("official-map", _addOfficialMap);
+          });
+        }
+
         _safeLayer("stage-zones", () => {
           const _zd = stageZonesData();
           _mapLog("[plursky-map] stage-zones features:", _zd.features.length, "first poly verts:", _zd.features[0]?.geometry?.coordinates?.[0]?.length || 0);
@@ -3908,9 +4049,15 @@ function RealMap({
           map.setMaxBounds([[b.west - 0.004, b.south - 0.004], [b.east + 0.004, b.north + 0.004]]);
         }
 
-        // Sub-landmark text labels — named places/walkways drawn on the
-        // EDC poster. Same data the SVG TopDownMap LABELS toggle uses,
-        // projected into GPS via mapToGps + rendered as DOM markers.
+        // Sub-landmark text labels — named places/walkways printed on the
+        // official patron map, projected into GPS via mapToGps + rendered as
+        // DOM markers.
+        //
+        // These used to be created unconditionally, so the More menu's
+        // "Landmark labels" toggle moved the SVG map and did nothing at all on
+        // the real map. The elements are kept in a ref and shown/hidden by the
+        // showLabels effect below rather than rebuilt, because Marker churn on
+        // every toggle also churns the GPS projection.
         SUB_LANDMARKS.forEach((lm) => {
           const { lat, lng } = mapToGps(lm.x, lm.y);
           const el = document.createElement("div");
@@ -3922,10 +4069,12 @@ function RealMap({
             "pointer-events:none;" +
             `transform:rotate(${lm.rot}deg);`;
           el.textContent = lm.label;
+          landmarkElsRef.current.push(el);
           new maplibregl.Marker({ element: el, anchor: "center" })
             .setLngLat([lng, lat])
             .addTo(map);
         });
+        _applyLandmarkVisibility();
 
         // Stage name pills — float ABOVE each 3D iconic shape so users
         // can read the stage name at a glance. The 3D shape itself is
@@ -4900,28 +5049,11 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           }}>{g.label}</div>
         ))}
 
-        {/* Named landmarks + walkways from the official EDC map.
-            Hidden by default; toggle "LABELS" in the search header to show. */}
-        {showLabels && [
-          // Walkways
-          { label: "KINETIC TRAIL",   x: 41, y: 28, rot: -55, color: "rgba(251,191,36,0.85)",  size: 6.8, ls: 1.6 },
-          { label: "MEMORY LANE",     x: 33, y: 55, rot: -90, color: "rgba(247,237,224,0.7)",  size: 6.8, ls: 1.6 },
-          { label: "POWER PATH",      x: 67, y: 38, rot: -90, color: "rgba(167,139,250,0.85)", size: 6.8, ls: 1.6 },
-          { label: "RAINBOW ROAD",    x: 65, y: 64, rot: -90, color: "rgba(244,114,182,0.85)", size: 6.8, ls: 1.6 },
-          { label: "ELECTRIC AVENUE", x: 50, y: 62, rot: 0,   color: "rgba(252,211,77,0.95)",  size: 6.8, ls: 2.0 },
-          { label: "BASS LANE",       x: 56, y: 71, rot: -90, color: "rgba(96,165,250,0.85)",  size: 6.5, ls: 1.6 },
-          { label: "NOMADS ALLEY",    x: 22, y: 70, rot: -22, color: "rgba(247,237,224,0.7)",  size: 6.5, ls: 1.5 },
-          // Sub-areas / districts
-          { label: "DAISY FIELDS",    x: 40, y: 24, rot: 0,   color: "rgba(252,211,77,0.85)",  size: 5.8, ls: 1.4 },
-          { label: "NOMADS LAND",     x: 38, y: 70, rot: 0,   color: "rgba(252,211,77,0.95)",  size: 6.5, ls: 1.6 },
-          // Inside-plaza landmarks
-          { label: "RAINBOW BAZAAR",  x: 50, y: 47, rot: 0,   color: "rgba(255,255,255,0.92)", size: 5.8, ls: 1.4 },
-          { label: "DOWNTOWN EDC",    x: 50, y: 55, rot: 0,   color: "rgba(251,191,36,0.95)",  size: 6.5, ls: 1.6 },
-          // Standalone landmarks
-          { label: "FLOWER TUNNEL",   x: 45, y: 33, rot: 0,   color: "rgba(244,114,182,0.9)",  size: 6.2, ls: 1.5 },
-          { label: "PIXEL FOREST",    x: 78, y: 60, rot: 0,   color: "rgba(244,114,182,0.85)", size: 6.2, ls: 1.5 },
-          { label: "NOMADS PORTAL",   x: 38, y: 76, rot: 0,   color: "rgba(244,114,182,0.85)", size: 5.6, ls: 1.4 },
-        ].map((lm, i) => (
+        {/* Named landmarks + walkways from the official patron map.
+            Hidden by default; toggle "Landmark labels" in the More menu.
+            Per-festival via FESTIVAL_CONFIG.landmarks — this was an inline
+            EDC-only array, duplicated in RealMap, drawn on every festival. */}
+        {showLabels && (FESTIVAL_CONFIG.landmarks || []).map((lm, i) => (
           <div key={i} style={{
             position: "absolute", left: `${lm.x}%`, top: `${lm.y}%`,
             transform: `translate(-50%, -50%) rotate(${lm.rot}deg)`,
