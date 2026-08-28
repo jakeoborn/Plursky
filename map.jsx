@@ -4614,8 +4614,56 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
     onClick?.(e);
   };
 
+  // ── Viewport-fill geometry (v237) ────────────────────────────────────────
+  // The map is authored in a square 0–100 space, but the container is a tall
+  // phone viewport. A square viewBox with `meet` therefore rendered the art at
+  // 430×430 inside 430×932 and left 52% of the screen as flat #060412 — the
+  // "too small" complaint from 2026-05-13, never actually fixed (the old
+  // xMidYMin comment only MOVED the band to the bottom, and the claim that the
+  // search sheet covers it is false: the band measured 480px, the sheet ~150px).
+  //
+  // Worse, the HTML overlays (stage pills, friends, avatar) position by `%` of
+  // the CONTAINER while the SVG art only occupied the top 430px of it, so the
+  // two coordinate systems diverged: 3 of EDC's 9 stage labels rendered BELOW
+  // the art entirely, floating on black (WASTELAND 531px, BASSPOD 538px,
+  // CIRCUIT GROUNDS 559px, against an art bottom of 452px).
+  //
+  // Fix: give the viewBox the CONTAINER's aspect ratio so the SVG content box
+  // and the container are the same rectangle — then `%` overlays and SVG units
+  // finally describe the same space. The 0–100 map is centred inside the taller
+  // viewBox via `yOff`, and `mapY()` applies the identical offset to every HTML
+  // overlay. One offset, both systems.
+  const boxRef = React.useRef(null);
+  const [box, setBox] = React.useState({ w: 0, h: 0 });
+  React.useEffect(() => {
+    const el = boxRef.current;
+    if (!el) return;
+    const read = () => {
+      const r = el.getBoundingClientRect();
+      if (r.width > 0 && r.height > 0) {
+        setBox(p => (Math.abs(p.w - r.width) < 0.5 && Math.abs(p.h - r.height) < 0.5)
+          ? p : { w: r.width, h: r.height });
+      }
+    };
+    read();
+    if (typeof ResizeObserver === "undefined") {
+      window.addEventListener("resize", read);
+      return () => window.removeEventListener("resize", read);
+    }
+    const ro = new ResizeObserver(read);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  // Never shorter than the authored square, so a wide/landscape container keeps
+  // the old behaviour instead of cropping the festival.
+  const VB_H = (box.w > 0 && box.h > 0) ? Math.max(100, (100 * box.h) / box.w) : 100;
+  const yOff = (VB_H - 100) / 2;
+  // Map-space y (0–100) → percentage of the container, matching the SVG exactly.
+  const mapY = (y) => ((Number(y) + yOff) / VB_H) * 100;
+
   return (
-    <div style={{
+    <div ref={boxRef} style={{
       position: "absolute", inset: 0, overflow: "hidden",
       background: "#060412",
       touchAction: "none",
@@ -4634,15 +4682,13 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
       transition: gestureRef.current.mode ? "none" : "transform 0.18s linear",
       willChange: "transform",
     }}>
-      {/* xMidYMin (top-anchored) instead of xMidYMid: the map is a square
-          (100×100) inside a taller-than-wide container, so centering left a
-          navy letterbox band both ABOVE and below it — the top band pushed the
-          layers/zoom + OFF-SITE controls into dead space. Anchoring to the top
-          collapses the top band entirely (controls now sit over the map) and
-          drops the single remaining band to the bottom, where the floating
-          search sheet + Friends bar already cover it. Whole map stays visible
-          (meet = no cropping). */}
-      <svg viewBox="0 0 100 100" width="100%" height="100%" preserveAspectRatio="xMidYMin meet"
+      {/* viewBox now carries the CONTAINER's aspect ratio (see the geometry note
+          above), so the SVG content box === the container box. There is no
+          letterbox left to anchor, which is why this is xMidYMid again: `meet`
+          and `slice` are equivalent when the ratios match. The whole festival
+          stays visible (no cropping) and the space that used to be flat #060412
+          is now filled by the ground gradient below. */}
+      <svg viewBox={`0 0 100 ${VB_H}`} width="100%" height="100%" preserveAspectRatio="xMidYMid meet"
         onClick={guardedClick}
         style={{ position: "absolute", inset: 0, cursor: meetMode ? "crosshair" : "default", display: "block" }}>
         <defs>
@@ -4683,6 +4729,15 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
             <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
         </defs>
+
+        {/* Ground fills the ENTIRE viewBox, not just the authored square, so the
+            space above/below the festival is night sky rather than flat #060412. */}
+        <rect x="0" y="0" width="100" height={VB_H} fill="url(#mapGround)"/>
+
+        {/* Everything below is authored in 0–100 map space; this one translate
+            centres it in the taller viewBox. `mapY()` applies the SAME offset to
+            the HTML overlays, which is what keeps pills glued to their stages. */}
+        <g transform={`translate(0 ${yOff})`}>
 
         {/* Festival-specific map background */}
         {FESTIVAL_CONFIG.mapStyle === "image-overlay" && FESTIVAL_CONFIG.mapImage ? (<>
@@ -4738,7 +4793,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           </>)}
         </>) : (<>
         {/* Night sky base */}
-        <rect x="0" y="0" width="100" height="100" fill="url(#mapGround)"/>
+        {/* (ground moved above the translate group so it fills the whole viewBox) */}
 
         {/* Starfield — pre-computed positions, no re-render flicker */}
         <g filter="url(#starbloom)">
@@ -5002,6 +5057,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           <circle cx={avatar.x} cy={avatar.y} r="1.8" fill="#f59a36" stroke="rgba(255,255,255,0.95)" strokeWidth="0.6"/>
           <circle cx={avatar.x} cy={avatar.y} r="0.7" fill="#fff"/>
         </g>
+        </g>
       </svg>
 
       {/* HTML label overlay — sized to match the SVG's xMidYMid-meet square so
@@ -5029,7 +5085,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           { label: "GATE P",   x: 18, y: 91 },
         ].map((g, i) => (
           <div key={i} style={{
-            position: "absolute", left: `${g.x}%`, top: `${g.y}%`,
+            position: "absolute", left: `${g.x}%`, top: `${mapY(g.y)}%`,
             transform: `translate(-50%, -50%)${counterRot}`,
             fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.4, fontWeight: 700,
             color: "rgba(80,230,160,0.92)",
@@ -5044,7 +5100,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
             EDC-only array, duplicated in RealMap, drawn on every festival. */}
         {showLabels && (FESTIVAL_CONFIG.landmarks || []).map((lm, i) => (
           <div key={i} style={{
-            position: "absolute", left: `${lm.x}%`, top: `${lm.y}%`,
+            position: "absolute", left: `${lm.x}%`, top: `${mapY(lm.y)}%`,
             transform: `translate(-50%, -50%) rotate(${lm.rot}deg)`,
             fontFamily: "Geist Mono, monospace",
             fontSize: lm.size, letterSpacing: lm.ls, fontWeight: 700,
@@ -5078,7 +5134,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
             if (s.y > 78) return "N";   // far south → label north of dot
             return anchorFor(s);
           })();
-          const pos = { left: `${s.x}%`, top: `${s.y}%` };
+          const pos = { left: `${s.x}%`, top: `${mapY(s.y)}%` };
           const off = 18;
           const tx = {
             N: { transform: `translate(-50%, calc(-100% - ${off}px))${counterRot}` },
@@ -5119,7 +5175,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
 
         {friends.map(f => meetGroup.includes(f.id) && (
           <div key={f.id} style={{
-            position: "absolute", left: `${f.x}%`, top: `${f.y}%`,
+            position: "absolute", left: `${f.x}%`, top: `${mapY(f.y)}%`,
             transform: `translate(-50%, 14px)${counterRot}`,
             background: f.color, color: "#fff",
             padding: "2px 7px", borderRadius: 999,
@@ -5136,7 +5192,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           const atStage = f.stageId ? stages.find(s => s.id === f.stageId) : null;
           return (
             <div key={`crew-${f.id}`} style={{
-              position: "absolute", left: `${f.x}%`, top: `${f.y}%`,
+              position: "absolute", left: `${f.x}%`, top: `${mapY(f.y)}%`,
               transform: `translate(-50%, calc(-100% - 4px))${counterRot}`,
               display: "flex", flexDirection: "column", alignItems: "center", gap: 4,
               pointerEvents: "none",
@@ -5184,7 +5240,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         })}
 
         <div style={{
-          position: "absolute", left: `${avatar.x}%`, top: `${avatar.y}%`,
+          position: "absolute", left: `${avatar.x}%`, top: `${mapY(avatar.y)}%`,
           transform: `translate(-50%, -22px)${counterRot}`,
           background: "rgba(245,154,54,0.95)", color: "#fff",
           padding: "2px 8px", borderRadius: 999,
