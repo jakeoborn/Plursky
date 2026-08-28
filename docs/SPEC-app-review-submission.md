@@ -5,7 +5,11 @@ Authorization: Jake, 2026-08-27 4:48pm CT — "Can Claude do the Plursky app rev
 
 ## Ground rules
 
-- Everything runs as Jake-local scripts: `cd ~/Downloads && node <script>.mjs`, paste full output back. Auth is ES256 JWT, Key ID `H2HAT6Y59J` (App Manager — Apple's doc confirms App Manager can submit to App Review), Issuer `723f14c8-5add-4449-afa9-3fad93d8e978`, key file `~/Downloads/AuthKey_H2HAT6Y59J.p8`.
+- Everything runs as Jake-local scripts: `cd ~/Downloads && node <script>.mjs`, paste full output back. Auth is ES256 JWT.
+- **Key IDs and the Issuer ID are deliberately NOT recorded in this repo — it is public.** They live only on Jake's Mac as `~/Downloads/AuthKey_<KEY_ID>.p8`; read them off the filenames or ask Jake. Neither is a secret without the matching `.p8`, but there is no reason to publish them.
+- **Two different keys are in play, and they are not interchangeable** (learned the hard way 2026-08-27):
+  - a **metadata key** — Admin role, used for every API read and for product/version/review-submission writes. It **cannot cloud-sign.** Using it for `xcodebuild -exportArchive` fails with `Cloud signing permission error` / `No signing certificate "iOS Distribution" found`, even though the key is Admin (`GET /v1/users` returns 200). Cloud-signing is a capability granted when the key is created, not a function of role.
+  - an **archive key** — the only one carrying cloud-signing access. Use it for all `xcodebuild archive` / `-exportArchive` / upload runs. There is no distribution certificate in the Mac's keychain; Apple signs server-side via `-allowProvisioningUpdates`, so nothing is installed locally.
 - The final submit PATCH is the point of no cheap return. If anything diverges from this spec while composing (extra required declarations, a build upload becoming necessary, unexpected 409s), STOP and report before firing it.
 - This spec submits for review only. No release, no phased release, no pricing or availability changes, nothing else on the store.
 
