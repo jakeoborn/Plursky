@@ -43,6 +43,25 @@ for (const f of jsx) {
 if (bad) fail(`${bad} file(s) failed the react-preset transform`);
 console.log(`  ✓ all ${jsx.length} parsed`);
 
+// The wave-1 festival data modules are plain .js, so the *.jsx glob above skips
+// them — but they are loaded by index.html and a syntax error in one would take
+// data.jsx's registry down with it. Same transform, same gate.
+const fdata = execFileSync("git", ["ls-files", "data/festivals/*.js"], { cwd: ROOT })
+  .toString().trim().split("\n").filter(Boolean);
+if (fdata.length) {
+  console.log(`▸ Parse gate — festival data modules (${fdata.length})`);
+  let fbad = 0;
+  for (const f of fdata) {
+    try {
+      await transformAsync(readFileSync(join(ROOT, f), "utf8"), {
+        filename: f, presets: [["@babel/preset-react", {}]], babelrc: false, configFile: false,
+      });
+    } catch (e) { console.error(`  ✗ ${f}: ${e.message.split("\n")[0]}`); fbad++; }
+  }
+  if (fbad) fail(`${fbad} festival data module(s) failed to parse`);
+  console.log(`  ✓ all ${fdata.length} parsed`);
+}
+
 // ── 1b. GPS anchor self-consistency ────────────────────────────────────────
 // Every festival's gpsAnchors comment says the non-calibration anchors were
 // "derived from the SVG layout via the <trio> affine". Nothing enforced it, and
@@ -63,7 +82,13 @@ console.log(`  ✓ all ${jsx.length} parsed`);
     isNaN, parseInt, parseFloat, fetch:()=>{},
     localStorage:{ getItem:()=>null, setItem:()=>{}, removeItem:()=>{} } };
   vm.createContext(ctx);
-  vm.runInContext(readFileSync(join(ROOT,"data.jsx"),"utf8") +
+  // The wave-1 festivals register themselves on window.PLURSKY_FESTIVALS, so
+  // their modules have to run before data.jsx here exactly as they do in the
+  // browser — otherwise the gate silently checks four festivals instead of nine.
+  const mods = execFileSync("git", ["ls-files", "data/festivals/*.js"], { cwd: ROOT })
+    .toString().trim().split("\n").filter(Boolean)
+    .map(f => readFileSync(join(ROOT, f), "utf8")).join("\n");
+  vm.runInContext(mods + "\n" + readFileSync(join(ROOT,"data.jsx"),"utf8") +
     "\n;__o={REG:FESTIVALS_REGISTRY,DS:_DATA_SETS};", ctx);
   const { REG, DS } = ctx.__o;
   const TOL = 1.5;   // grid units on the 0-100 layout; ~20 m at EDC's scale

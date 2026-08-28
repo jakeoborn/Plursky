@@ -14,7 +14,7 @@
 // data.jsx is a browser script (top-level consts + a window export), so it is
 // evaluated in a VM with a window shim rather than imported.
 
-import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
@@ -30,7 +30,16 @@ const ctx = {
   localStorage: { getItem: () => null, setItem: () => {}, removeItem: () => {} },
 };
 vm.createContext(ctx);
+// Wave-1 festivals live in data/festivals/*.js and register themselves on
+// window.PLURSKY_FESTIVALS. Run them first, the same order index.html uses, or
+// the registry data.jsx builds here is missing five festivals and their /f/
+// pages silently stop being generated.
+const festivalModules = readdirSync(path.join(root, 'data', 'festivals'))
+  .filter(f => f.endsWith('.js')).sort()
+  .map(f => readFileSync(path.join(root, 'data', 'festivals', f), 'utf8'))
+  .join('\n');
 vm.runInContext(
+  festivalModules + '\n' +
   readFileSync(path.join(root, 'data.jsx'), 'utf8') +
   '\n;__out = { REG: FESTIVALS_REGISTRY, DS: _DATA_SETS };',
   ctx,

@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v236';
+﻿const CACHE      = 'plursky-v237';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v236';
+const APP_VER    = 'v237';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -17,6 +17,21 @@ const LOCAL = [
   './icon-192.png',
   './icon-512.png',
   './apple-touch-icon.png',
+  // Wave-1 festival data modules. Must be cached alongside data.jsx and must
+  // load before it — index.html enforces the order; this list only has to make
+  // sure they are all present offline. A missing one drops that festival from
+  // the switcher (data.jsx warns and skips) rather than breaking the app.
+  `./data/festivals/ultra-miami-2026.js?v=${APP_VER}`,
+  `./data/festivals/governors-ball-2026.js?v=${APP_VER}`,
+  `./data/festivals/summerfest-2026.js?v=${APP_VER}`,
+  `./data/festivals/lollapalooza-2026.js?v=${APP_VER}`,
+  `./data/festivals/outside-lands-2026.js?v=${APP_VER}`,
+  // Generated ground plates for the same five (mapImage targets).
+  './ultra-2026.svg',
+  './govball-2026.svg',
+  './summerfest-2026.svg',
+  './lolla-2026.svg',
+  './osl-2026.svg',
   `./ios-frame.jsx?v=${APP_VER}`,
   `./data.jsx?v=${APP_VER}`,
   `./supabase.jsx?v=${APP_VER}`,

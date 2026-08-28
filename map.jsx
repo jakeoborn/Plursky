@@ -5061,7 +5061,19 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           // so always-on dark label pills would clutter + duplicate. On park,
           // show a stage's pill only when it's selected; the crisp pin carries
           // the rest. EDC's text-free aerial keeps labels always on.
-          if (FESTIVAL_CONFIG.mapTheme === "park" && !on) return null;
+          //
+          // That test used to be `mapTheme === "park"`, which conflates two
+          // different things: mapTheme is about ART STYLE (crisp full-bleed vs
+          // faded aerial), not about typography. The wave-1 ground plates are
+          // park-themed AND print no text whatsoever, so keying the pills off
+          // the theme left Ultra, Gov Ball, Summerfest, Lolla and Outside Lands
+          // as nine unlabelled coloured dots with no way to tell them apart.
+          // Ask what the code actually means — does this festival's map art
+          // already print the stage names? — and default to the old answer for
+          // any festival that hasn't said.
+          const artPrintsStageNames = FESTIVAL_CONFIG.mapPrintsStageNames
+            ?? (FESTIVAL_CONFIG.mapTheme === "park");
+          if (artPrintsStageNames && !on) return null;
           // Edge-aware anchor: edge stages prefer vertical anchors (N/S) so
           // their labels don't collide with the central Rainbow Road / plaza
           // landmarks. Pure top/bottom edges fall back to inward push.
