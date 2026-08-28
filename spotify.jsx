@@ -6934,6 +6934,54 @@ async function _purchasePlus(productId) {
   }
 }
 
+// ── Live store prices ─────────────────────────────────────────
+// The paywall used to hardcode "$14.99" / "$4.99" as display strings. They
+// were correct, but only by coincidence: nothing read the price the store
+// actually charges, so an App Store Connect price change — or any non-US
+// storefront, where the real price is a different number in a different
+// currency — would have shown every user a price we do not charge them.
+// RevenueCat already hands us a localised `priceString` per package; these
+// read it, and fall back to the previous literals so a failed/absent
+// offerings fetch (web build, no network, pre-StoreKit) renders exactly what
+// it rendered before.
+const PLUS_PRICE_FALLBACK = {
+  [RC_PRODUCT_IDS.season]:  "$14.99",
+  [RC_PRODUCT_IDS.monthly]: "$4.99",
+};
+
+async function _plusPriceStrings() {
+  if (!window.Capacitor?.isNativePlatform?.()) return null;
+  if (!_rcInitialized) await _initRevenueCat();
+  if (!_rcInitialized) return null;
+  try {
+    const { Purchases } = await import("@revenuecat/purchases-capacitor");
+    const offerings = await Purchases.getOfferings();
+    const out = {};
+    for (const pkg of offerings?.current?.availablePackages || []) {
+      const id = pkg.product?.identifier, price = pkg.product?.priceString;
+      if (id && price) out[id] = price;
+    }
+    return Object.keys(out).length ? out : null;
+  } catch (e) {
+    console.warn("[plursky-iap] price lookup failed, using fallback copy:", e?.message);
+    return null;
+  }
+}
+
+// Prices for the paywall. Starts on the fallback literals so the first paint
+// is never blank, then swaps in the store's own strings when they land.
+function usePlusPrices() {
+  const [prices, setPrices] = React.useState(PLUS_PRICE_FALLBACK);
+  React.useEffect(() => {
+    let dead = false;
+    _plusPriceStrings().then(live => {
+      if (!dead && live) setPrices({ ...PLUS_PRICE_FALLBACK, ...live });
+    });
+    return () => { dead = true; };
+  }, []);
+  return prices;
+}
+
 async function _restorePurchases() {
   if (!window.Capacitor?.isNativePlatform?.()) return { success: false, error: "Web mode" };
   if (!_rcInitialized) await _initRevenueCat();
@@ -6964,6 +7012,7 @@ function PlusGate({ children, feature }) {
   // only decides which one reads PROCESSING, so two buttons can't both claim
   // to be processing the same tap. Null during restore (disabled, not labelled).
   const [pending, setPending] = React.useState(null);
+  const prices = usePlusPrices();
   if (_isPlusSub()) return children;
   const canBuy = _iapAvailable();
 
@@ -7053,13 +7102,13 @@ function PlusGate({ children, feature }) {
             cursor: busy ? "wait" : "pointer",
             boxShadow: "0 4px 20px rgba(109,40,217,0.45), 0 0 40px rgba(232,93,46,0.2)",
           }}>
-            {pending === RC_PRODUCT_IDS.season ? "PROCESSING…" : "$14.99 SEASON PASS"}
+            {pending === RC_PRODUCT_IDS.season ? "PROCESSING…" : `${prices[RC_PRODUCT_IDS.season]} SEASON PASS`}
           </button>
           <div className="mono" style={{
             fontSize: 8, letterSpacing: 0.5, color: "rgba(255,255,255,0.4)",
             marginTop: 6, lineHeight: 1.5, maxWidth: 264, textAlign: "center",
           }}>
-            Season Pass · $14.99 one-time purchase. No subscription, nothing auto-renews.
+            Season Pass · {prices[RC_PRODUCT_IDS.season]} one-time purchase. No subscription, nothing auto-renews.
           </div>
 
           {/* SECONDARY — Monthly. AUTO-RENEWABLE, so it keeps the full Guideline
@@ -7072,13 +7121,13 @@ function PlusGate({ children, feature }) {
             fontSize: 9, letterSpacing: 1.4, fontWeight: 700,
             cursor: busy ? "wait" : "pointer",
           }}>
-            {pending === RC_PRODUCT_IDS.monthly ? "PROCESSING…" : "$4.99 / MONTH"}
+            {pending === RC_PRODUCT_IDS.monthly ? "PROCESSING…" : `${prices[RC_PRODUCT_IDS.monthly]} / MONTH`}
           </button>
           <div className="mono" style={{
             fontSize: 8, letterSpacing: 0.5, color: "rgba(255,255,255,0.4)",
             marginTop: 6, lineHeight: 1.5, maxWidth: 264, textAlign: "center",
           }}>
-            Plursky+ · $4.99/month, auto-renews until cancelled. Payment is charged to
+            Plursky+ · {prices[RC_PRODUCT_IDS.monthly]}/month, auto-renews until cancelled. Payment is charged to
             your Apple ID; manage or cancel anytime in Settings.
           </div>
 
