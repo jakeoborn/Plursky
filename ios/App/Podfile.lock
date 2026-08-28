@@ -20,12 +20,12 @@ PODS:
     - Capacitor
   - CapawesomeCapacitorFilePicker (6.2.0):
     - Capacitor
-  - PurchasesHybridCommon (18.7.0):
-    - RevenueCat (= 5.73.0)
-  - RevenueCat (5.73.0)
-  - RevenuecatPurchasesCapacitor (13.1.2):
+  - PurchasesHybridCommon (13.26.0):
+    - RevenueCat (= 5.20.0)
+  - RevenueCat (5.20.0)
+  - RevenuecatPurchasesCapacitor (9.2.2):
     - Capacitor
-    - PurchasesHybridCommon (= 18.7.0)
+    - PurchasesHybridCommon (= 13.26.0)
 
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/@capacitor/ios`)"
@@ -84,9 +84,9 @@ SPEC CHECKSUMS:
   CapacitorLocalNotifications: 801867e687c42dd2b33c1e22e08f48e6738d2f72
   CapacitorShare: 77ff779e3b7c6ae9fb5461e52cf7ef805d429491
   CapawesomeCapacitorFilePicker: c40822f0a39f86855321943c7829d52bca7f01bd
-  PurchasesHybridCommon: 90419d67c688e485c84da8d1864f9663a198751a
-  RevenueCat: 3210d4f19cef963a1422f38e424fc599e2f0f7c6
-  RevenuecatPurchasesCapacitor: 049b0135c96493a5e250badc4e2c5ebe436f4e5e
+  PurchasesHybridCommon: fa166fc8b385cf80f581f923c91d8ccffe5dd7f8
+  RevenueCat: e47ff90dfd271fde155a4befe48e8fc02e8281e4
+  RevenuecatPurchasesCapacitor: 6727a4dc1455bdf2374259420719ce5dfbe957fa
 
 PODFILE CHECKSUM: 3157d55141aae7bfe2f913c4bd1afb9cdc4730f0
 
