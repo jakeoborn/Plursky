@@ -3200,17 +3200,38 @@ function mapToGps(x, y) {
 }
 
 // ── Official-map (poster) geo-anchoring ───────────────────────
-// The official patron map is authored against the SAME 0-100 grid the stage
-// x/y live on, so mapToGps() already knows how to place it in the world. The
-// only subtlety is HOW MUCH of the image the 0-100 box covers.
+// The stage x/y ARE measured against this poster (as of 2026-08-28 they are
+// read straight off it), so the 0-100 grid and the artwork agree by
+// construction. What does NOT follow — and what the previous version of this
+// comment asserted — is that mapToGps() therefore "knows how to place it in
+// the world". IT DOES NOT, for EDC.
+//
+// MEASURED 2026-08-28 against OSM's LVMS geometry (the joined oval ring comes
+// to 2,480 m = 1.541 mi against the nominal 1.5-mile superspeedway, so the
+// ground truth is sound):
+//   * The poster is an ILLUSTRATION, not a survey. Best-fit similarity of its
+//     oval onto the real one still leaves a 7.5% mean / 27.2% worst radial
+//     residual (~29 m / ~104 m at the 382 m mean radius).
+//   * At that best fit the grandstand the poster draws at the BOTTOM of the
+//     oval lands on world bearing 52 deg, while the real grandstand (OSM
+//     "Section 1".."Section 4") centres on bearing 351 deg — 61 deg, or 388 m,
+//     apart. Two independent cues (oval shape/axis vs. a named landmark)
+//     disagree irreconcilably, so no rotation registers the poster.
+// Consequence: poster space and world space are DIFFERENT SPACES for EDC.
+// Keep them decoupled. x/y answers "where on the art"; gpsAnchors answers
+// "where on the planet", and photo-tag.jsx reads gpsAnchors DIRECTLY (not via
+// this affine) precisely so a bad affine cannot mis-tag a photo.
+// Full write-up: ~/Plursky-private/EDC-MAP-REGISTRATION-2026-08-28.md
+//
+// The remaining subtlety here is HOW MUCH of the image the 0-100 box covers.
 //
 // TopDownMap draws it as <image x=0 y=0 width=100 height=100
 // preserveAspectRatio="xMidYMid slice"> — "slice" means COVER: scale until the
 // short edge fills, centre, crop the overflow. Three of the five assets are
 // deliberately square (acl-park 1708², ef-forest 1200², lostlands 1400²) so
 // cover is exact and the extent is the plain 0-100 box. Two are NOT:
-// edc-map-2026.jpg is 1320×1649 and edco-tinker-2026.jpg is 960×1200, both
-// ~0.80 aspect, so the SVG crops ~12.5% off the top AND bottom.
+// edc-map-2026.jpg is 1080×1350 and edco-tinker-2026.jpg is 960×1200, both
+// 0.80 aspect, so the SVG crops 12.5% off the top AND bottom.
 //
 // MapLibre's `image` source does no cropping — it stretches the WHOLE image
 // into the quad it is given. Feeding it the plain 0-100 corners would squash

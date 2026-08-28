@@ -76,6 +76,23 @@ if (fdata.length) {
 // three anchors define. It must land on that stage's x/y. Fatal for a LIVE
 // festival; a warning for a gated one, whose whole data layer is provisional
 // by construction and is re-measured at its flip session.
+//
+// ⚠️ WHAT THIS CHECK CANNOT SEE (learned 2026-08-28). It is CIRCULAR whenever
+// the anchors were themselves "derived from the SVG layout via the affine",
+// which is exactly how most of them were produced: derive anchors from x/y
+// through an affine, then assert they satisfy that affine, and it passes by
+// construction no matter how wrong the anchors are in the real world. EDC LV
+// passed this gate for months while three of its nine anchors — including
+// Kinetic Field, the main stage — sat OUTSIDE the speedway oval, on the track
+// banking. Deriving world coordinates from poster coordinates is the bug, not
+// the fix: a stylised poster is not a projection of the ground.
+//
+// So two things now happen. Festivals whose config says
+// `mapArtIsGeoregistered: false` skip the affine check entirely (its premise
+// is false for them), and EVERY festival that declares `venue.footprint` gets
+// checked against REAL geometry instead: each anchor must fall inside the
+// venue polygon. That one is not circular — it can only be satisfied by
+// anchors that are actually in the right place.
 {
   const vm = await import("node:vm");
   const ctx = { window:{}, console, Date, Math, JSON, Object, Array, String, Number,
@@ -99,6 +116,10 @@ if (fdata.length) {
     const an = cfg.gpsAnchors || [];
     if (an.length < 3 || !stages.length) continue;
     const at = (id) => stages.find(s => s.id === id);
+    if (cfg.mapArtIsGeoregistered === false) {
+      console.log(`  –  ${cfg.id.padEnd(22)} affine check skipped — map art is not georegistered`);
+      continue;
+    }
     const [a0,a1,a2] = an;
     if (!at(a0.stageId) || !at(a1.stageId) || !at(a2.stageId)) continue;
     const A={lat:a0.lat,lng:a0.lng,mx:at(a0.stageId).x,my:at(a0.stageId).y};
@@ -128,6 +149,52 @@ if (fdata.length) {
   if (soft) console.log(`  ${soft} gated festival(s) inconsistent — re-derive at the flip session`);
   if (hard) fail(`${hard} LIVE festival(s) have gpsAnchors that do not satisfy their own affine`);
   console.log(`  ✓ ${checked} festival(s) checked, live ones consistent within ${TOL} grid units`);
+
+  // ── Anchors must fall inside the real venue ──────────────────────────────
+  // Not circular: `venue.footprint` is surveyed geometry (OSM), so this can
+  // only pass if the anchors are genuinely in the right place. A festival
+  // listed below is a KNOWN, MEASURED defect awaiting ground truth, not a
+  // bypass — removing the entry is the one-line change once it is resolved.
+  const ANCHORS_PENDING_GROUND_TRUTH = {
+    "edc-lv-2026":
+      "3 of 9 anchors sit outside the LVMS oval (kinetic 16 m, cosmic 95 m, " +
+      "bionic 152 m). They were derived from poster space, which does not " +
+      "register to the world; no satellite capture of a finished EDC build " +
+      "exists to re-measure from. Founder decision pending — see " +
+      "~/Plursky-private/EDC-MAP-REGISTRATION-2026-08-28.md",
+  };
+  const inside = (lat, lng, poly) => {
+    let c = false;
+    for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+      const [yi, xi] = poly[i], [yj, xj] = poly[j];
+      if ((yi > lat) !== (yj > lat) && lng < ((xj - xi) * (lat - yi)) / (yj - yi) + xi) c = !c;
+    }
+    return c;
+  };
+  console.log("▸ Venue footprint gate — anchors must fall inside the real venue");
+  let fpHard = 0, fpChecked = 0, fpWaived = 0;
+  for (const f of REG) {
+    const cfg = f.config, poly = cfg.venue?.footprint;
+    const an = cfg.gpsAnchors || [];
+    if (!poly?.length || !an.length) continue;
+    fpChecked++;
+    const out = an.filter(a => !inside(a.lat, a.lng, poly)).map(a => a.stageId);
+    const waiver = ANCHORS_PENDING_GROUND_TRUTH[cfg.id];
+    if (!out.length) { console.log(`  ok ${cfg.id.padEnd(22)} all ${an.length} anchors inside`); continue; }
+    if (waiver) {
+      fpWaived++;
+      console.log(`  !  ${cfg.id.padEnd(22)} ${out.length}/${an.length} OUTSIDE (${out.join(", ")}) — PENDING`);
+      console.log(`     ${waiver}`);
+    } else if (f.available) {
+      fpHard++;
+      console.log(`  ✗  ${cfg.id.padEnd(22)} ${out.length}/${an.length} OUTSIDE (${out.join(", ")})`);
+    } else {
+      console.log(`  !  ${cfg.id.padEnd(22)} ${out.length}/${an.length} outside (${out.join(", ")}) — gated`);
+    }
+  }
+  if (!fpChecked) console.log("  (no festival declares venue.footprint yet)");
+  if (fpHard) fail(`${fpHard} LIVE festival(s) have gpsAnchors outside their own venue`);
+  if (fpWaived) console.log(`  ${fpWaived} festival(s) waived pending ground truth — see notes above`);
 }
 
 if (process.argv.includes("--parse-only")) process.exit(0);
