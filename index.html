@@ -312,36 +312,36 @@
       window.__USE_NATIVE_PICKER__ = true;
     }
   </script>
-  <script type="text/babel" src="ios-frame.jsx?v=v243"></script>
+  <script type="text/babel" src="ios-frame.jsx?v=v244"></script>
   <!-- Multi-festival wave 1. Plain .js (no JSX), so they load as normal scripts
        and are parsed before Babel even starts on the chain below. Each is an
        IIFE that registers itself on window.PLURSKY_FESTIVALS; data.jsx reads
        that map, so these MUST stay above it. Mirrored in sw.js's precache. -->
-  <script src="data/festivals/ultra-miami-2026.js?v=v243"></script>
-  <script src="data/festivals/governors-ball-2026.js?v=v243"></script>
-  <script src="data/festivals/summerfest-2026.js?v=v243"></script>
-  <script src="data/festivals/lollapalooza-2026.js?v=v243"></script>
-  <script src="data/festivals/outside-lands-2026.js?v=v243"></script>
-  <script src="data/festivals/iii-points-2026.js?v=v243"></script>
-  <script type="text/babel" src="data.jsx?v=v243"></script>
-  <script type="text/babel" src="supabase.jsx?v=v243"></script>
-  <script type="text/babel" src="chrome.jsx?v=v243"></script>
-  <script type="text/babel" src="home.jsx?v=v243"></script>
-  <script type="text/babel" src="map.jsx?v=v243"></script>
-  <script type="text/babel" src="lineup.jsx?v=v243"></script>
-  <script type="text/babel" src="artist.jsx?v=v243"></script>
-  <script type="text/babel" src="photo-tag.jsx?v=v243"></script>
-  <script type="text/babel" src="spotify-api.jsx?v=v243"></script>
-  <script type="text/babel" src="recap-engine.jsx?v=v243"></script>
-  <script type="text/babel" src="spotify.jsx?v=v243"></script>
-  <script type="text/babel" src="app.jsx?v=v243"></script>
+  <script src="data/festivals/ultra-miami-2026.js?v=v244"></script>
+  <script src="data/festivals/governors-ball-2026.js?v=v244"></script>
+  <script src="data/festivals/summerfest-2026.js?v=v244"></script>
+  <script src="data/festivals/lollapalooza-2026.js?v=v244"></script>
+  <script src="data/festivals/outside-lands-2026.js?v=v244"></script>
+  <script src="data/festivals/iii-points-2026.js?v=v244"></script>
+  <script type="text/babel" src="data.jsx?v=v244"></script>
+  <script type="text/babel" src="supabase.jsx?v=v244"></script>
+  <script type="text/babel" src="chrome.jsx?v=v244"></script>
+  <script type="text/babel" src="home.jsx?v=v244"></script>
+  <script type="text/babel" src="map.jsx?v=v244"></script>
+  <script type="text/babel" src="lineup.jsx?v=v244"></script>
+  <script type="text/babel" src="artist.jsx?v=v244"></script>
+  <script type="text/babel" src="photo-tag.jsx?v=v244"></script>
+  <script type="text/babel" src="spotify-api.jsx?v=v244"></script>
+  <script type="text/babel" src="recap-engine.jsx?v=v244"></script>
+  <script type="text/babel" src="spotify.jsx?v=v244"></script>
+  <script type="text/babel" src="app.jsx?v=v244"></script>
 
   <script>
 
     // Build version stamp â€” bumped on every deploy that changes app behaviour.
     // If the running tab's stored version doesn't match, force a full reload
     // (bypassing browser HTTP cache that GH-Pages serves with max-age=600).
-    const APP_VERSION = 'v243';
+    const APP_VERSION = 'v244';
     try {
       const stored = localStorage.getItem('app_version');
       if (stored && stored !== APP_VERSION) {
@@ -362,11 +362,11 @@
     if ('serviceWorker' in navigator) {
       caches.keys().then(keys =>
         Promise.all(
-          keys.filter(k => k !== 'plursky-v243' && !k.startsWith('plursky-tiles-'))
+          keys.filter(k => k !== 'plursky-v244' && !k.startsWith('plursky-tiles-'))
               .map(k => caches.delete(k))
         )
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v243', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v244', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 
