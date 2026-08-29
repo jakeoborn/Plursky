@@ -204,17 +204,39 @@ writeFileSync(PROBE, `<!doctype html><meta charset="utf-8">
 <iframe id="f" src="/" style="width:420px;height:900px;border:0"></iframe>
 <script>
 window.__e=[];addEventListener("error",e=>__e.push(e.message));
-setTimeout(()=>{
-  let o;
+// POLL, don't sleep. This used to read the iframe once at a fixed 9s and
+// report whatever it found. That is a race, not a measurement: on a cold or
+// loaded machine Babel had not finished compiling the script chain yet, so
+// the gate failed RED with root=0 on a perfectly healthy tree. Sample every
+// 250ms and stop at the first fully-mounted reading; only the DEADLINE is a
+// failure, and a healthy app now also finishes sooner than 9s.
+var FNS=${JSON.stringify(FNS)};
+var DEADLINE=11500, t0=Date.now();
+function read(){
   try{
-    const w=document.getElementById("f").contentWindow, d=w.document, r=d.getElementById("root");
-    o={root:r?r.childElementCount:-1, chars:r?r.innerHTML.length:0,
-       fns:${JSON.stringify(FNS)}.map(f=>f+"="+typeof w[f]),
-       errs:(w.__probeErrs||[]).concat(window.__e)};
-  }catch(err){ o={root:-1,chars:0,fns:[],errs:["probe: "+err.message]}; }
-  const p=document.createElement("pre"); p.id="R"; p.textContent=JSON.stringify(o);
+    var w=document.getElementById("f").contentWindow, r=w.document.getElementById("root");
+    return {root:r?r.childElementCount:-1, chars:r?r.innerHTML.length:0,
+            fns:FNS.map(function(f){return f+"="+typeof w[f];}),
+            errs:(w.__probeErrs||[]).concat(window.__e), waitedMs:Date.now()-t0};
+  }catch(err){ return {root:-1,chars:0,fns:[],errs:["probe: "+err.message],waitedMs:Date.now()-t0}; }
+}
+function emit(o){
+  var p=document.createElement("pre"); p.id="R"; p.textContent=JSON.stringify(o);
   document.body.appendChild(p);
-},9000);
+}
+var lastChars=-1, stable=0;
+(function tick(){
+  var o=read();
+  var mounted=o.root>0 && o.fns.every(function(f){return f.slice(-9)==="=function";});
+  // "Mounted" is not "rendered": #root gains its first child while the tree
+  // below is still filling in, and stopping there dropped the rendered-chars
+  // reading from ~19k to ~1.4k — a gate that no longer proves much. So also
+  // wait for the DOM to stop growing: three identical size samples in a row.
+  stable = (o.chars===lastChars) ? stable+1 : 0;
+  lastChars=o.chars;
+  if((mounted&&stable>=2)||Date.now()-t0>=DEADLINE) return emit(o);
+  setTimeout(tick,250);
+})();
 </script>`);
 
 console.log("▸ Mount probe — real index.html, headless Chrome");
@@ -241,6 +263,7 @@ const r = JSON.parse(m[1].replace(/&quot;/g,'"').replace(/&amp;/g,"&").replace(/
 
 console.log(`  root children : ${r.root}`);
 console.log(`  rendered chars: ${r.chars}`);
+if (r.waitedMs != null) console.log(`  settled after : ${r.waitedMs} ms`);
 const okFns = r.fns.filter(f => f.endsWith("=function"));
 console.log(`  globals       : ${okFns.length}/${r.fns.length} present`);
 for (const f of r.fns) if (!f.endsWith("=function")) console.log(`      ✗ ${f}`);
