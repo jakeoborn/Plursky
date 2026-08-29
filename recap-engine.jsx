@@ -408,6 +408,84 @@ async function _detectBeats(audioUrl) {
   finally { try { actx?.close(); } catch {} }
 }
 
+// ── Phase 2: video moments in the recap engine ───────────────────────────
+// THE CLIP POLICY, in one place so all five surfaces cut identically and the
+// variants differ in chrome rather than in video handling.
+const _CLIP_MAX_SEC = 3;
+// Only one clip is on screen at a time; the rest stay paused so a 12-clip
+// recap does not decode twelve videos at once on a phone.
+let _activeClipVideo = null;
+// Trim to the MIDDLE. The start of a phone clip is the hand coming up and the
+// end is it coming down; the middle is the shot.
+function _clipWindow(durationSec, beats, atSec) {
+  const d = Number(durationSec) || 0;
+  if (!d || d <= _CLIP_MAX_SEC) return { start: 0, len: d || _CLIP_MAX_SEC };
+  // Beat-align when the track gave us a grid, else centre.
+  if (beats && beats.length) {
+    const mid = (d - _CLIP_MAX_SEC) / 2;
+    let best = mid, bestGap = Infinity;
+    for (const b of beats) {
+      const cand = b % Math.max(1, d - _CLIP_MAX_SEC);
+      const gap = Math.abs(cand - mid);
+      if (gap < bestGap) { bestGap = gap; best = cand; }
+    }
+    return { start: Math.max(0, Math.min(best, d - _CLIP_MAX_SEC)), len: _CLIP_MAX_SEC };
+  }
+  return { start: (d - _CLIP_MAX_SEC) / 2, len: _CLIP_MAX_SEC };
+}
+//
+// ⛔ ORDERING CONSTRAINT — measured, do not "optimise" past it. Retroactive
+// song ID must run on the FULL clip, never on a trim. A 137 s clip matched at
+// four different offsets; a 3 s cut would have destroyed all four. That is why
+// this trim is RENDER-ONLY and writes nothing back: no trimmed blob is ever
+// persisted, stored on the moment, or handed to identifySongFromVideo. If you
+// are ever tempted to cache the cut, identify first.
+//
+// One loader for all five surfaces. `playable` is the only difference: the
+// recap VIDEO gets a live <video> element, which canvas drawImage accepts
+// exactly like an Image — so the whole draw path (Ken Burns, parallax,
+// overlays) works on video with no changes at all. Static collages and GIFs
+// cannot play anything, so there a video contributes an extracted frame.
+async function _recapSources(moments, cap, opts = {}) {
+  const playable = !!opts.playable;
+  const beats = opts.beats || null;
+  const picked = (moments || []).filter(m => m && m.photoId).slice(0, cap);
+  const out = [];
+  for (const m of picked) {
+    try {
+      const blob = await _getPhoto(m.photoId);
+      if (!blob) continue;
+      const isVideo = m.kind === "video";
+      let img = null, clip = null;
+      if (isVideo && playable) {
+        const v = await new Promise(r => {
+          const el = document.createElement("video");
+          el.muted = true; el.playsInline = true; el.preload = "auto";
+          el.onloadeddata = () => r(el);
+          el.onerror = () => r(null);
+          el.src = URL.createObjectURL(blob);
+        });
+        if (!v) continue;
+        clip = _clipWindow(v.duration || m.duration, beats);
+        try { v.currentTime = clip.start; } catch {}
+        img = v;
+      } else if (isVideo) {
+        // Static surface: a frame stands in for the clip.
+        const c = (typeof _frameFromVideoBlob === "function") ? await _frameFromVideoBlob(blob) : null;
+        if (!c) continue;
+        img = c;
+      } else {
+        img = await new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = URL.createObjectURL(blob); });
+        if (!img) continue;
+      }
+      let song = null;
+      try { song = await _resolveMomentSong(m); } catch {}
+      out.push({ img, moment: m, song, isVideo, clip });
+    } catch {}
+  }
+  return out;
+}
+
 function _buildVideoTimeline(imgs, beats, duration, tmpl) {
   const timeline = [];
   const titleEnd = 2.5;
@@ -512,6 +590,21 @@ function _renderVideoFrame(ctx, W, H, t, timeline, chrome, tmpl) {
 
   if (seg.type === "empty" || !seg.photo) return;
   const { img, moment } = seg.photo;
+  // A video source is driven from HERE rather than on a schedule, because the
+  // draw loop is the only thing that knows which segment is on screen right
+  // now. canvas drawImage takes an HTMLVideoElement exactly like an Image, so
+  // everything below this line — Ken Burns, parallax, the overlays — is
+  // unchanged and works on video for free.
+  if (img && img.tagName === "VIDEO") {
+    const clip = seg.photo.clip || { start: 0, len: _CLIP_MAX_SEC };
+    if (_activeClipVideo && _activeClipVideo !== img) { try { _activeClipVideo.pause(); } catch {} }
+    _activeClipVideo = img;
+    const lo = clip.start, hi = clip.start + clip.len;
+    // Let it play at 1x for real motion, and only intervene when it runs past
+    // the trim window — seeking every frame would stutter worse than it helps.
+    if (img.currentTime < lo - 0.05 || img.currentTime > hi) { try { img.currentTime = lo; } catch {} }
+    if (img.paused) { try { const pr = img.play(); if (pr && pr.catch) pr.catch(() => {}); } catch {} }
+  }
   const artist = moment?.artistId ? (window.ARTISTS || []).find(a => a.id === moment.artistId) : null;
   const stage = artist ? (window.STAGES || []).find(s => s.id === artist.stage) : null;
 
@@ -639,23 +732,12 @@ async function _renderRecapVideo({ moments, audioUrl, template, title, subtitle,
     await document.fonts.load("700 18px 'Geist Mono'");
   } catch {}
 
-  const photoMoments = moments.filter(m => m.photoId && (m.kind === "image" || !m.kind)).slice(0, 12);
-  const imgs = [];
-  for (const m of photoMoments) {
-    try {
-      const blob = await _getPhoto(m.photoId);
-      if (!blob) continue;
-      const img = await new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = URL.createObjectURL(blob); });
-      if (!img) continue;
-      // Caught-song pre-pass — resolved up front so the frame loop stays sync.
-      let song = null;
-      try { song = await _resolveMomentSong(m); } catch {}
-      imgs.push({ img, moment: m, song });
-    } catch {}
-  }
-  if (!imgs.length) return null;
-
+  // Beats are detected BEFORE loading, because the clip trim beat-aligns.
   let beats = audioUrl ? await _detectBeats(audioUrl) : [];
+  // Videos included, and playable. Same cap of 12 as photos — a clip costs far
+  // more to decode than a still, so the cap is the performance guard.
+  const imgs = await _recapSources(moments, 12, { playable: true, beats });
+  if (!imgs.length) return null;
   const DURATION = audioUrl ? 30 : 15;
   const tmpl = _VIDEO_TEMPLATES[template || "highlight"] || _VIDEO_TEMPLATES.highlight;
   const timeline = _buildVideoTimeline(imgs, beats, DURATION, tmpl);
@@ -689,6 +771,8 @@ async function _renderRecapVideo({ moments, audioUrl, template, title, subtitle,
   const chunks = [];
 
   const cleanup = () => {
+    try { if (_activeClipVideo) { _activeClipVideo.pause(); _activeClipVideo = null; } } catch {}
+    try { for (const s of imgs) if (s.img && s.img.tagName === "VIDEO") { s.img.pause(); if (s.img.src) URL.revokeObjectURL(s.img.src); } } catch {}
     try { stream.getTracks().forEach(t => t.stop()); } catch {}
     if (audioEl) { audioEl.pause(); audioEl.currentTime = 0; }
     canvas.width = 0; canvas.height = 0;
@@ -868,16 +952,9 @@ async function _renderCollageGif({ title, subtitle, kicker, accent, moments, ava
     try { totemImg = await new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = totemUrl; }); } catch {}
   }
 
-  const photoMoments = moments.filter(m => m.photoId && (m.kind === "image" || !m.kind)).slice(0, 6);
-  const imgs = [];
-  for (const m of photoMoments) {
-    try {
-      const blob = await _getPhoto(m.photoId);
-      if (!blob) continue;
-      const img = await new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = URL.createObjectURL(blob); });
-      if (img) imgs.push(img);
-    } catch {}
-  }
+  // Videos participate here too — a static surface cannot play one, so each
+  // contributes an extracted frame via the shared loader.
+  const imgs = (await _recapSources(moments, 6)).map(s => s.img);
   if (!imgs.length) return null;
 
   const c = document.createElement("canvas");
@@ -1059,19 +1136,9 @@ async function _renderCollage({ title, subtitle, kicker, accent, moments, avatar
 
   // Pull image blobs from IDB (filter out videos for v1 — video frames
   // require seeking + decode, deferred to v1.5 video recap).
-  const photoMoments = moments.filter(m => m.photoId && (m.kind === "image" || !m.kind)).slice(0, 6);
-  const imgs = await Promise.all(photoMoments.map(async (m) => {
-    try {
-      const blob = await _getPhoto(m.photoId);
-      if (!blob) return null;
-      return await new Promise((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve(img);
-        img.onerror = () => resolve(null);
-        img.src = URL.createObjectURL(blob);
-      });
-    } catch { return null; }
-  }));
+  // Videos participate here too — a static surface cannot play one, so each
+  // contributes an extracted frame via the shared loader.
+  const imgs = (await _recapSources(moments, 6)).map(s => s.img);
   const valid = imgs.filter(Boolean);
   const n = valid.length;
 
@@ -1355,14 +1422,12 @@ async function _shareCrewCollage({ crewNames, avatars, crewArtistIds, overlapIds
 
 // W1: Festival DNA — unique color barcode from your weekend's photos
 async function _renderFestivalDNA(moments) {
-  const photoMoments = moments.filter(m => m.photoId && (m.kind === "image" || !m.kind)).slice(0, 20);
+  // Videos participate here too — a static surface cannot play one, so each
+  // contributes an extracted frame via the shared loader.
   const colors = [];
-  for (const m of photoMoments) {
+  for (const src of await _recapSources(moments, 20)) {
     try {
-      const blob = await _getPhoto(m.photoId);
-      if (!blob) continue;
-      const img = await new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = URL.createObjectURL(blob); });
-      if (!img) continue;
+      const img = src.img;
       const tc = document.createElement("canvas");
       tc.width = 32; tc.height = 32;
       const tctx = tc.getContext("2d");
@@ -1583,16 +1648,9 @@ async function _shareFestivalPassport(state) {
 
 // W5: Photo Film Strip — retro Kodak negative export
 async function _renderFilmStrip(moments) {
-  const photoMoments = moments.filter(m => m.photoId && (m.kind === "image" || !m.kind)).slice(0, 6);
-  const imgs = [];
-  for (const m of photoMoments) {
-    try {
-      const blob = await _getPhoto(m.photoId);
-      if (!blob) continue;
-      const img = await new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = URL.createObjectURL(blob); });
-      if (img) imgs.push({ img, moment: m });
-    } catch {}
-  }
+  // Videos participate here too — a static surface cannot play one, so each
+  // contributes an extracted frame via the shared loader.
+  const imgs = (await _recapSources(moments, 6)).map(s => ({ img: s.img, moment: s.moment }));
   if (!imgs.length) return null;
 
   const CFG = window.FESTIVAL_CONFIG || {};
