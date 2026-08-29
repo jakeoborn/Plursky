@@ -4600,9 +4600,15 @@ function _NightShareMenu({ night, moments }) {
             background: "var(--paper)", border: "1px solid var(--line)", borderRadius: 10,
             boxShadow: "0 6px 20px rgba(0,0,0,0.18)", overflow: "hidden", minWidth: 140,
           }}>
-            {[["📸 Collage", undefined], ["🎬 Animated GIF", "gif"]].map(([lbl, mode], i) => (
+            {[["📸 Collage", undefined], ["🎬 Animated GIF", "gif"], ["🎞 Night video", "video"]].map(([lbl, mode], i) => (
               <button key={lbl}
-                onClick={() => { setOpen(false); window._shareNightCollage?.(night, moments, mode); }}
+                onClick={() => {
+                  setOpen(false);
+                  // "Night N", chronological across stages — the same renderer
+                  // the weekend recap uses, just a narrower scope.
+                  if (mode === "video") { window._shareScopedRecap?.({ scope: "night", night, moments }); return; }
+                  window._shareNightCollage?.(night, moments, mode);
+                }}
                 className="mono" style={{
                   display: "block", width: "100%", textAlign: "left",
                   background: "transparent", border: "none",
