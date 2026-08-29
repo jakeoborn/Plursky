@@ -2068,7 +2068,17 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
     onUpdate?.(m, { confirmedSong: confirmed, confirmedTitle: result.title, confirmedArtist: result.artist || "", songSource: "video-shazam" });
     // Cross-check: does the recognized artist contradict the photo's tag?
     const matchedArtist = _lineupArtistFromShazam(result.artist);
-    if (matchedArtist && matchedArtist.id !== m.artistId) setMismatch(matchedArtist);
+    // _lineupArtistFromShazam searches the WHOLE lineup, every night. Offering
+    // an artist who does not play on this moment's night would mint an
+    // impossible artistId+night pair — and handleUpdate merges a patch inside
+    // the moment's existing night bucket (the store is keyed by night), so
+    // accepting could not move it even if we set `night`. Recovering a wrong
+    // night from the song is real and worth doing, but it needs to move the
+    // moment between buckets; that belongs with 0.4's date-unverified work.
+    // Until then, only offer a swap that is actually possible.
+    if (matchedArtist && matchedArtist.id !== m.artistId && matchedArtist.day === m.night) {
+      setMismatch(matchedArtist);
+    }
     // #7 proof-of-attendance: a song recognized from your OWN video is proof
     // you were at that set — auto-confirm attendance (feeds Recap "sets
     // caught" + the playlist "attended" source). Prefer the Shazam-matched
@@ -4633,6 +4643,16 @@ function MemoriesScreen({ state, setState }) {
           // played no part. Kept on the record so a later re-tag pass can find
           // every poster-decided moment once real anchors land for its stage.
           anchorSource: matched.anchorSource || null,
+          // GPSHPositioningError in metres, and whether it was coarse enough
+          // that stage-level discrimination was refused. Kept on the record so
+          // "why is this untagged" is answerable from the moment alone.
+          gpsAccM: meta?.acc != null ? Math.round(meta.acc) : null,
+          gpsRejected: !!matched.gpsRejected,
+          // Compass heading at capture. Nothing reads it yet — it is the input
+          // for triangulating a real stage position from a future batch, and
+          // it can only ever be captured at import.
+          heading: meta?.heading != null ? Math.round(meta.heading) : null,
+          headingRef: meta?.headingRef || null,
           // v235: the festival the photo was TAKEN at, resolved from its
           // timestamp + GPS — not whichever festival is on screen. Stamping
           // the active one mis-filed every cross-festival import permanently:
