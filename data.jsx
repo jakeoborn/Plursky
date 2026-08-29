@@ -711,7 +711,11 @@ const mk = (id, name, genre, stage, day, start, end, bio) => {
   const tier = (h < 6 || h >= 23) ? 3 : (h >= 21) ? 2 : 1;
   return {
     id, name, genre, country: "—", stage, day, start, end, tier,
-    img: `linear-gradient(135deg, ${STAGES.find(s=>s.id===stage).color}, #1a0a28)`,
+    // `|| STAGES[0]` matches what every wave-1 module's mk() already does.
+    // Without it an artist whose stage id has no matching stage — or any
+    // festival with an empty STAGES list — throws on `.color` at eval time,
+    // which kills the data layer before the app ever renders.
+    img: `linear-gradient(135deg, ${(STAGES.find(s=>s.id===stage) || STAGES[0] || { color: "#22d3ee" }).color}, #1a0a28)`,
     bio: bio || `Playing ${FESTIVAL_CONFIG?.name || "EDC Las Vegas 2026"}.`
   };
 };
@@ -1696,9 +1700,16 @@ const LL_AMENITIES = [
 // festival out of the switcher with a console warning; it does not throw and
 // take the whole app's data layer down with it. The existing four festivals
 // above are untouched — moving them out is a separate, riskier change.
+// ⚠️ THIS IS AN ALLOW-LIST, NOT A SCAN. A module can register itself on
+// window.PLURSKY_FESTIVALS, load cleanly, parse in the verify gate, and still
+// never appear in the app if its id is missing here — it fails silently, with
+// no warning, because the loop never asks for it. (Caught 2026-08-29 when
+// iii-points-2026 booted straight back to EDC.) Adding a festival module means
+// adding its id HERE as well as to index.html and sw.js.
 const _WAVE1_IDS = [
   "ultra-miami-2026", "governors-ball-2026", "summerfest-2026",
   "lollapalooza-2026", "outside-lands-2026",
+  "iii-points-2026",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {

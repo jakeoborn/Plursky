@@ -201,7 +201,16 @@ function TonightCard({ state, setState }) {
     const utcH = d.getUTCHours(), utcM = d.getUTCMinutes();
     const pdtH = (utcH + 24 - 7) % 24;
     const sunriseDay = (() => {
-      const days = [festivalNightDate(1, sun.rise), festivalNightDate(2, sunTimes[2].rise), festivalNightDate(3, sunTimes[3].rise)];
+      // Was hardcoded to [1, 2, 3] and read sunTimes[2]/sunTimes[3] with no
+      // guard, so ANY festival with fewer than three program days threw
+      // "Cannot read properties of undefined (reading 'rise')" and took the
+      // whole Today screen to the error boundary. That is four of the
+      // thirteen registered festivals — the three 2027 scaffolds (0 days)
+      // and III Points (1). Derive the list from the festival's own
+      // dayDates instead of assuming EDC's shape.
+      const days = Object.keys(FESTIVAL_CONFIG.dayDates || { 1: null })
+        .map(Number).sort((a, b) => a - b)
+        .map(n => festivalNightDate(n, (sunTimes[n] || sun).rise));
       const idx = days.findIndex(x => Math.abs(x.getTime() - nextSunriseMs) < 60000);
       return idx + 1;
     })();

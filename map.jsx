@@ -1696,11 +1696,29 @@ function MapScreen({ state, setState }) {
   // festival-night map (EDC 2026-05-15 revert 139b50e): opt-in flag,
   // auto-fallback to the offline-safe SVG TopDownMap on offline-at-mount,
   // 12s boot timeout, 6 tile errors pre-first-load, or lib-load failure.
+  // `mapMode: "real"` festivals have no map art and no stage grid to draw —
+  // III Points 2026 is the first. For them the real basemap is not the BETA
+  // alternative to a festival map, it IS the festival map, so it opens on and
+  // the More-menu row that would toggle it away is not rendered. Drawing an
+  // SVG ground plate for a venue whose layout nobody has published would be
+  // the poster-space-as-world-space defect PR #36 removed from EDC LV.
+  const REAL_MAP_ONLY = FESTIVAL_CONFIG.mapMode === "real";
   const [useRealMap, setUseRealMap] = React.useState(() => {
+    if (REAL_MAP_ONLY) return true;
     try { return localStorage.getItem("plursky_use_realmap") === "1"; } catch { return false; }
   });
   const [realMapNote, setRealMapNote] = React.useState(null);
   const _disableRealMap = (why) => {
+    // On a REAL_MAP_ONLY festival there is no festival map to fall back TO —
+    // TopDownMap would render an empty plate with no stages and no art, which
+    // reads as a broken app rather than as "not published yet". Keep the real
+    // map mounted so its own error surface (and the venue card under it) is
+    // what the user sees.
+    if (REAL_MAP_ONLY) {
+      setRealMapNote((why || "Map unavailable") + " — check your connection");
+      setTimeout(() => setRealMapNote(null), 7000);
+      return;
+    }
     try { localStorage.removeItem("plursky_use_realmap"); } catch {}
     setUseRealMap(false);
     setRealMapNote((why || "Real map unavailable") + " — festival map shown");
@@ -1952,7 +1970,7 @@ function MapScreen({ state, setState }) {
   // through dedicated effects below.
   React.useEffect(() => {
     if (!isSharing) { sbPresenceLeave(); return; }
-    const stageId = shareState.includeStage ? (myStatusStage || STAGES[0].id) : null;
+    const stageId = shareState.includeStage ? (myStatusStage || STAGES[0]?.id || null) : null;
     const gps = (shareState.includeGps && gpsPos)
       ? { lat: gpsPos.lat, lng: gpsPos.lng, accuracy: gpsPos.accuracy }
       : undefined;
@@ -1969,7 +1987,7 @@ function MapScreen({ state, setState }) {
     const gps = (shareState?.includeGps && gpsPos)
       ? { lat: gpsPos.lat, lng: gpsPos.lng, accuracy: gpsPos.accuracy }
       : undefined;
-    const stageId = shareState?.includeStage ? (myStatusStage || STAGES[0].id) : null;
+    const stageId = shareState?.includeStage ? (myStatusStage || STAGES[0]?.id || null) : null;
     if (gps || stageId !== undefined) sbPresenceUpdate({ gps, stageId });
     if (shareState?.token) sbLiveShareUpdate(shareState.token, { gps, stageId });
   }, [
@@ -1996,7 +2014,7 @@ function MapScreen({ state, setState }) {
       gps: (shareState.includeGps && gpsPos)
         ? { lat: gpsPos.lat, lng: gpsPos.lng, accuracy: gpsPos.accuracy }
         : undefined,
-      stageId: shareState.includeStage ? (myStatusStage || STAGES[0].id) : null,
+      stageId: shareState.includeStage ? (myStatusStage || STAGES[0]?.id || null) : null,
     });
     const tokenCapture = shareState.token;
     return () => { sbLiveShareStop(tokenCapture); };
@@ -2223,7 +2241,7 @@ function MapScreen({ state, setState }) {
                 { id: "amenity", label: "🚻  Amenity key", active: amenityKey,
                   onToggle: () => { setAmenityKey(v => !v); setAmenityFilter(null); } },
                 { id: "labels", label: "🏷  Landmark labels", active: showLabels, onToggle: () => setShowLabels(s => !s) },
-                { id: "realmap", label: "🗺  Real map (BETA)",  active: useRealMap,
+                ...(REAL_MAP_ONLY ? [] : [{ id: "realmap", label: "🗺  Real map (BETA)",  active: useRealMap,
                   onToggle: () => {
                     const v = !useRealMap;
                     try {
@@ -2233,7 +2251,7 @@ function MapScreen({ state, setState }) {
                     setRealMapNote(null);
                     setUseRealMap(v);
                   },
-                },
+                }]),
               ].map(item => (
                 <div key={item.id} role="button" onClick={item.onToggle} style={{
                   display: "flex", alignItems: "center", justifyContent: "space-between",
@@ -2699,6 +2717,7 @@ function MapScreen({ state, setState }) {
         {useRealMap ? (
           <RealMap
             avatar={avatar} stages={STAGES}
+            officialMap={!!FESTIVAL_CONFIG.mapImage}
             crewFriends={crewFriends}
             saved={state.saved}
             showHeat={showHeat}
@@ -3704,20 +3723,32 @@ function RealMap({
       };
       // Polygon of *just* the festival footprint, used as a `within` filter
       // to constrain the 3D building extrusion layer.
+      // `venue.footprint` is a SURVEYED ring ([lat,lng] pairs, OSM);
+      // `venue.festivalBounds` is a hand-drawn N/S/E/W box. Prefer the survey
+      // when a festival has one — it is the real outline rather than the box
+      // that contains it, and for a venue like Mana Wynwood (a building on a
+      // street grid) the difference is the whole point of drawing it at all.
+      const _footprintRing = () => {
+        const fp = FESTIVAL_CONFIG.venue?.footprint;
+        if (!fp?.length || fp.length < 3) return null;
+        const ring = fp.map(([lat, lng]) => [lng, lat]);   // GeoJSON is lng,lat
+        const [f0, fN] = [ring[0], ring[ring.length - 1]];
+        if (f0[0] !== fN[0] || f0[1] !== fN[1]) ring.push([f0[0], f0[1]]);
+        return ring;
+      };
+      const _boundsRing = () => {
+        const b = FESTIVAL_CONFIG.venue?.festivalBounds;
+        if (!b) return null;
+        return [
+          [b.west, b.north], [b.east, b.north],
+          [b.east, b.south], [b.west, b.south],
+          [b.west, b.north],
+        ];
+      };
       const festivalFootprint = () => {
-        if (!FESTIVAL_CONFIG.venue?.festivalBounds) return null;
-        const b = FESTIVAL_CONFIG.venue.festivalBounds;
-        return {
-          type: "Feature",
-          geometry: {
-            type: "Polygon",
-            coordinates: [[
-              [b.west, b.north], [b.east, b.north],
-              [b.east, b.south], [b.west, b.south],
-              [b.west, b.north],
-            ]],
-          },
-        };
+        const ring = _footprintRing() || _boundsRing();
+        if (!ring) return null;
+        return { type: "Feature", geometry: { type: "Polygon", coordinates: [ring] } };
       };
 
       // Style-dependent layers (clip mask, EDC poster, 3D buildings, route)
@@ -3748,11 +3779,25 @@ function RealMap({
         // grounds show through. Restored after the Cramer fix; the polygon
         // hole now lines up with the actual festival GPS.
         _safeLayer("outside-mask", () => {
-          if (!FESTIVAL_CONFIG.venue?.festivalBounds) return;
+          // The mask dims everything outside the grounds so the festival is
+          // the only thing you read. That is right at EDC, where outside the
+          // speedway is empty desert and parking — nothing you need.
+          //
+          // It is WRONG for a mapMode:"real" festival. Mana Wynwood is a
+          // building on a city street grid, and the streets are exactly how
+          // you find the door: you arrive on NW 5th Ave, not inside the
+          // venue. Masking them leaves a grey block floating in beige. With
+          // no stage pins to draw yet, the surroundings are the whole value
+          // of this screen.
+          if (FESTIVAL_CONFIG.mapMode === "real") return;
+          const _hole = _footprintRing() || _boundsRing();
+          if (!_hole) return;
           const _maskFeature = () => {
-            const b = FESTIVAL_CONFIG.venue.festivalBounds;
-            const cx = (b.west + b.east) / 2;
-            const cy = (b.north + b.south) / 2;
+            // Centre the big outer square on the hole's own extent, so this
+            // works for a surveyed ring exactly as it did for a bounds box.
+            const xs = _hole.map(p => p[0]), ys = _hole.map(p => p[1]);
+            const cx = (Math.min(...xs) + Math.max(...xs)) / 2;
+            const cy = (Math.min(...ys) + Math.max(...ys)) / 2;
             const big = 0.02; // ~2km half-edge — covers visible viewport at zoom 16
             return {
               type: "Feature",
@@ -3766,11 +3811,7 @@ function RealMap({
                     [cx - big, cy - big],
                   ],
                   // Inner ring CW — festival "window"
-                  [
-                    [b.west, b.north], [b.east, b.north],
-                    [b.east, b.south], [b.west, b.south],
-                    [b.west, b.north],
-                  ],
+                  _hole,
                 ],
               },
             };
@@ -4555,14 +4596,43 @@ function RealMap({
         }}>
           <div>MAP ERROR</div>
           <div style={{ color: "rgba(255,255,255,0.6)", fontSize: 9, maxWidth: 240 }}>{err}</div>
-          <div style={{ color: "rgba(255,255,255,0.45)", fontSize: 8, marginTop: 4 }}>
-            Tip: the festival map below works offline — one tap switches and remembers.
-          </div>
-          <button onClick={() => _fatal("Switched to festival map")} style={{
-            marginTop: 8, padding: "7px 16px", borderRadius: 999, border: "none",
-            background: "var(--ember)", color: "#fff", cursor: "pointer",
-            fontFamily: "'Geist Mono',monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-          }}>USE FESTIVAL MAP</button>
+          {/* "USE FESTIVAL MAP" is only an offer worth making when a festival
+              map EXISTS. On a mapMode:"real" festival there is no art and no
+              stage grid, so that button drops the user onto a blank plate —
+              a worse screen than the error, and one that reads as a broken
+              app rather than as "not published yet". Show the venue instead:
+              the address is the thing you actually need if the map is down
+              and you are trying to get there. */}
+          {FESTIVAL_CONFIG.mapMode === "real" ? (
+            <>
+              <div style={{ color: "rgba(255,255,255,0.75)", fontSize: 10, marginTop: 10, letterSpacing: 1.1 }}>
+                {FESTIVAL_CONFIG.venue?.name || FESTIVAL_CONFIG.locationShort}
+              </div>
+              <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 9, maxWidth: 240 }}>
+                {FESTIVAL_CONFIG.venue?.address || FESTIVAL_CONFIG.location}
+              </div>
+              <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 8, marginTop: 6, maxWidth: 250 }}>
+                The official festival map publishes before doors. Until then this
+                screen needs a connection.
+              </div>
+              <button onClick={() => { setErr(null); fatalRef.current = false; tileErrRef.current = 0; }} style={{
+                marginTop: 10, padding: "7px 16px", borderRadius: 999, border: "none",
+                background: "var(--ember)", color: "#fff", cursor: "pointer",
+                fontFamily: "'Geist Mono',monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+              }}>RETRY</button>
+            </>
+          ) : (
+            <>
+              <div style={{ color: "rgba(255,255,255,0.45)", fontSize: 8, marginTop: 4 }}>
+                Tip: the festival map below works offline — one tap switches and remembers.
+              </div>
+              <button onClick={() => _fatal("Switched to festival map")} style={{
+                marginTop: 8, padding: "7px 16px", borderRadius: 999, border: "none",
+                background: "var(--ember)", color: "#fff", cursor: "pointer",
+                fontFamily: "'Geist Mono',monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+              }}>USE FESTIVAL MAP</button>
+            </>
+          )}
         </div>
       )}
     </div>
