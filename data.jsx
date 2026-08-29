@@ -193,6 +193,9 @@ const FESTIVAL_CONFIG = {
   mainStageId: "kinetic",
   mapImage: "edc-map-2026.jpg",
   mapStyle: "image-overlay",
+  // The poster prints all nine stage names in display type (verified against
+  // the asset, 2026-08-27), so Plursky must not echo them a few pixels away.
+  mapPrintsStageNames: true,
 
   // The patron poster is an ILLUSTRATION, not a survey: measured 2026-08-28,
   // the best-fit similarity of its oval onto the real LVMS oval still leaves a

@@ -1686,6 +1686,12 @@ function MapScreen({ state, setState }) {
   // prop defaults to true and stays in its signature so the layer remains
   // addressable if that call is ever revisited.
   const [showHeat,   setShowHeat]   = React.useState(false);
+  // Amenity key — the poster prints its own legend, but at phone width it
+  // renders a few pixels tall and is unreadable. This draws Plursky's own
+  // key over the map and doubles as a filter (tap a row → only that type),
+  // which the baked-in raster legend can never do.
+  const [amenityKey, setAmenityKey] = React.useState(false);
+  const [amenityFilter, setAmenityFilter] = React.useState(null);
   // Real map (BETA) — guarded re-enable (2026-08-22). Never again a broken
   // festival-night map (EDC 2026-05-15 revert 139b50e): opt-in flag,
   // auto-fallback to the offline-safe SVG TopDownMap on offline-at-mount,
@@ -2214,6 +2220,8 @@ function MapScreen({ state, setState }) {
                   onToggle: () => { if (compass) { setCompass(false); setCompassStatus("off"); } else enableCompass(); },
                 },
                 { id: "crowd",  label: "🔥  Crowd heatmap",   active: showHeat,   onToggle: () => setShowHeat(s => !s) },
+                { id: "amenity", label: "🚻  Amenity key", active: amenityKey,
+                  onToggle: () => { setAmenityKey(v => !v); setAmenityFilter(null); } },
                 { id: "labels", label: "🏷  Landmark labels", active: showLabels, onToggle: () => setShowLabels(s => !s) },
                 { id: "realmap", label: "🗺  Real map (BETA)",  active: useRealMap,
                   onToggle: () => {
@@ -2257,10 +2265,67 @@ function MapScreen({ state, setState }) {
             padding: "4px 10px", borderRadius: 999,
             background: "rgba(193,74,74,0.95)", color: "#fff",
             backdropFilter: "blur(8px)",
-          }}>
-            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700 }}>
-              GPS DENIED · ENABLE LOCATION IN BROWSER
+            maxWidth: "calc(100% - 120px)",
+          }} title="Location permission is denied — enable it for this site to place yourself on the map">
+            {/* One line, always. The long form wrapped to two lines at phone
+                width and sat across the top of the artwork for the whole
+                festival; the GPS chip in the corner already reads DENIED. */}
+            <span className="mono" style={{
+              fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+              whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+              display: "block",
+            }}>
+              GPS DENIED · ENABLE LOCATION
             </span>
+          </div>
+        )}
+
+        {/* Amenity key — legible replacement for the poster's baked-in legend.
+            Tap a row to isolate that type on the map; tap again to clear. */}
+        {amenityKey && !meetMode && (
+          <div style={{
+            position: "absolute", left: 10, top: 90, zIndex: 6,
+            background: "rgba(247,237,224,0.94)",
+            border: "1px solid var(--line-2)", borderRadius: 12,
+            padding: 4, minWidth: 124,
+            backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
+            boxShadow: "0 6px 20px rgba(26,18,13,0.22)",
+          }}>
+            {AMENITY_KEY.map(a => {
+              const on = amenityFilter === a.type;
+              // Hide a row with nothing behind it, but never print the count:
+              // AMENITIES is a sample of the poster's inventory (2 restrooms
+              // to its ~15), so a number here would read as "EDC has two".
+              const present = (typeof AMENITIES !== "undefined" ? AMENITIES : [])
+                .some(x => x.type === a.type);
+              if (!present) return null;
+              return (
+                <div key={a.type} role="button" tabIndex={0}
+                  aria-label={`Show only ${a.label} on the map`} aria-pressed={on}
+                  onClick={() => setAmenityFilter(f => f === a.type ? null : a.type)}
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setAmenityFilter(f => f === a.type ? null : a.type); } }}
+                  style={{
+                    display: "flex", alignItems: "center", gap: 7,
+                    padding: "5px 7px", borderRadius: 8, cursor: "pointer",
+                    background: on ? "var(--ink)" : "transparent",
+                    opacity: amenityFilter && !on ? 0.42 : 1,
+                    transition: "background 0.12s, opacity 0.12s",
+                  }}>
+                  <span style={{
+                    width: 13, height: 13, borderRadius: 13, flexShrink: 0,
+                    background: a.color, border: "1.5px solid #fff",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.3)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontFamily: "Geist Mono, monospace", fontSize: 8,
+                    fontWeight: 900, color: "#fff", lineHeight: 1,
+                  }}>{a.letter}</span>
+                  <span style={{
+                    fontSize: 11, fontWeight: 600, flex: 1,
+                    color: on ? "var(--paper)" : "var(--ink)",
+                  }}>{a.label}</span>
+                </div>
+              );
+            })}
           </div>
         )}
 
@@ -2653,7 +2718,8 @@ function MapScreen({ state, setState }) {
         ) : (
           <TopDownMap
             avatar={avatar} heading={heading} friends={friends} stages={STAGES}
-            saved={state.saved} showLabels={showLabels} showHeat={showHeat} showAmenities={searchSheetExpanded}
+            saved={state.saved} showLabels={showLabels} showHeat={showHeat}
+            showAmenities={searchSheetExpanded || amenityKey} amenityFilter={amenityKey ? amenityFilter : null}
             compass={compass && compassStatus === "live"}
             compassHeading={compassHeading}
             selected={selectedStage} meetMode={meetMode} meetTarget={meetTarget} meetGroup={meetGroup}
@@ -4529,14 +4595,39 @@ function _crowdDensity(stageId, nowMin) {
   return 0.04; // ambient
 }
 
+// ── Amenity key ─────────────────────────────────────────
+// ONE source of truth for the amenity palette. The SVG dots and the on-map
+// legend both read this, so a new type can never render as an unexplained
+// coloured dot — which is what shipped before: the map drew eight colours and
+// the only key was the one printed inside the poster raster, ~3px tall at
+// phone size and effectively invisible. Ordered by what you need at 3am.
+const AMENITY_KEY = [
+  { type: "med",    color: "#ef4444", letter: "+", label: "First aid" },
+  { type: "water",  color: "#38bdf8", letter: "",  label: "Water" },
+  { type: "toilet", color: "#64748b", letter: "",  label: "Restrooms" },
+  { type: "food",   color: "#fb923c", letter: "",  label: "Food" },
+  { type: "charge", color: "#facc15", letter: "⚡", label: "Charging" },
+  { type: "locker", color: "#a78bfa", letter: "L", label: "Lockers" },
+  { type: "info",   color: "#16a34a", letter: "i", label: "Info / lost" },
+  { type: "art",    color: "#f59a36", letter: "",  label: "Art" },
+];
+const AMENITY_STYLE = Object.fromEntries(AMENITY_KEY.map(a => [a.type, a]));
+
 // ---- TOP-DOWN NAVIGATION MAP ----
-function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels = false, showHeat = false, showAmenities = false, compass = false, compassHeading = 0, selected, meetMode, meetTarget, meetGroup = [], crewFriends = [], zoom = 1, pan = { x: 0, y: 0 }, zoomMin = 0.7, zoomMax = 3.5, onZoomChange, onPanChange, onPickStage, onClick }) {
+function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels = false, showHeat = false, showAmenities = false, amenityFilter = null, compass = false, compassHeading = 0, selected, meetMode, meetTarget, meetGroup = [], crewFriends = [], zoom = 1, pan = { x: 0, y: 0 }, zoomMin = 0.7, zoomMax = 3.5, onZoomChange, onPanChange, onPickStage, onClick }) {
   // Compass mode: rotate the entire map by -heading so the user's facing
   // direction is always "up" on screen. Readable text labels counter-rotate
   // back to upright so they stay legible at any heading.
   const mapRotate = compass ? -compassHeading : 0;
   const counterRot = compass ? ` rotate(${compassHeading}deg)` : "";
   const sel = stages.find(s => s.id === selected);
+
+  // Does this festival's map ARTWORK print its own stage names? Was inferred
+  // from `mapTheme === "park"`, which conflated two unrelated things — a
+  // theme is about palette, not typography. EDC's poster prints all nine
+  // stage names in display type, so it wanted the rule and never got it.
+  const artPrintsStageNames = FESTIVAL_CONFIG.mapPrintsStageNames
+    ?? (FESTIVAL_CONFIG.mapTheme === "park");
 
   // Stages where the user has an upcoming saved set today — used to draw a
   // gold ★ overlay so users can spot at a glance "where am I going next?"
@@ -4576,6 +4667,9 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
 
   // Push label OUT from stage in the direction farthest from the Daisy Lane
   // plaza centre (50,50), so labels never collide with the central rectangle.
+  // Artist names are long enough to collide on a phone; stage names were not.
+  const _pillName = (n) => (n && n.length > 14 ? n.slice(0, 13).trimEnd() + "…" : n || "").toUpperCase();
+
   const anchorFor = (s) => {
     const cx = 50, cy = 50;
     const dx = s.x - cx, dy = s.y - cy;
@@ -4635,8 +4729,56 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
     onClick?.(e);
   };
 
+  // ── Viewport-fill geometry (v237) ────────────────────────────────────────
+  // The map is authored in a square 0–100 space, but the container is a tall
+  // phone viewport. A square viewBox with `meet` therefore rendered the art at
+  // 430×430 inside 430×932 and left 52% of the screen as flat #060412 — the
+  // "too small" complaint from 2026-05-13, never actually fixed (the old
+  // xMidYMin comment only MOVED the band to the bottom, and the claim that the
+  // search sheet covers it is false: the band measured 480px, the sheet ~150px).
+  //
+  // Worse, the HTML overlays (stage pills, friends, avatar) position by `%` of
+  // the CONTAINER while the SVG art only occupied the top 430px of it, so the
+  // two coordinate systems diverged: 3 of EDC's 9 stage labels rendered BELOW
+  // the art entirely, floating on black (WASTELAND 531px, BASSPOD 538px,
+  // CIRCUIT GROUNDS 559px, against an art bottom of 452px).
+  //
+  // Fix: give the viewBox the CONTAINER's aspect ratio so the SVG content box
+  // and the container are the same rectangle — then `%` overlays and SVG units
+  // finally describe the same space. The 0–100 map is centred inside the taller
+  // viewBox via `yOff`, and `mapY()` applies the identical offset to every HTML
+  // overlay. One offset, both systems.
+  const boxRef = React.useRef(null);
+  const [box, setBox] = React.useState({ w: 0, h: 0 });
+  React.useEffect(() => {
+    const el = boxRef.current;
+    if (!el) return;
+    const read = () => {
+      const r = el.getBoundingClientRect();
+      if (r.width > 0 && r.height > 0) {
+        setBox(p => (Math.abs(p.w - r.width) < 0.5 && Math.abs(p.h - r.height) < 0.5)
+          ? p : { w: r.width, h: r.height });
+      }
+    };
+    read();
+    if (typeof ResizeObserver === "undefined") {
+      window.addEventListener("resize", read);
+      return () => window.removeEventListener("resize", read);
+    }
+    const ro = new ResizeObserver(read);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  // Never shorter than the authored square, so a wide/landscape container keeps
+  // the old behaviour instead of cropping the festival.
+  const VB_H = (box.w > 0 && box.h > 0) ? Math.max(100, (100 * box.h) / box.w) : 100;
+  const yOff = (VB_H - 100) / 2;
+  // Map-space y (0–100) → percentage of the container, matching the SVG exactly.
+  const mapY = (y) => ((Number(y) + yOff) / VB_H) * 100;
+
   return (
-    <div style={{
+    <div ref={boxRef} style={{
       position: "absolute", inset: 0, overflow: "hidden",
       background: "#060412",
       touchAction: "none",
@@ -4655,15 +4797,13 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
       transition: gestureRef.current.mode ? "none" : "transform 0.18s linear",
       willChange: "transform",
     }}>
-      {/* xMidYMin (top-anchored) instead of xMidYMid: the map is a square
-          (100×100) inside a taller-than-wide container, so centering left a
-          navy letterbox band both ABOVE and below it — the top band pushed the
-          layers/zoom + OFF-SITE controls into dead space. Anchoring to the top
-          collapses the top band entirely (controls now sit over the map) and
-          drops the single remaining band to the bottom, where the floating
-          search sheet + Friends bar already cover it. Whole map stays visible
-          (meet = no cropping). */}
-      <svg viewBox="0 0 100 100" width="100%" height="100%" preserveAspectRatio="xMidYMin meet"
+      {/* viewBox now carries the CONTAINER's aspect ratio (see the geometry note
+          above), so the SVG content box === the container box. There is no
+          letterbox left to anchor, which is why this is xMidYMid again: `meet`
+          and `slice` are equivalent when the ratios match. The whole festival
+          stays visible (no cropping) and the space that used to be flat #060412
+          is now filled by the ground gradient below. */}
+      <svg viewBox={`0 0 100 ${VB_H}`} width="100%" height="100%" preserveAspectRatio="xMidYMid meet"
         onClick={guardedClick}
         style={{ position: "absolute", inset: 0, cursor: meetMode ? "crosshair" : "default", display: "block" }}>
         <defs>
@@ -4704,6 +4844,15 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
             <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
         </defs>
+
+        {/* Ground fills the ENTIRE viewBox, not just the authored square, so the
+            space above/below the festival is night sky rather than flat #060412. */}
+        <rect x="0" y="0" width="100" height={VB_H} fill="url(#mapGround)"/>
+
+        {/* Everything below is authored in 0–100 map space; this one translate
+            centres it in the taller viewBox. `mapY()` applies the SAME offset to
+            the HTML overlays, which is what keeps pills glued to their stages. */}
+        <g transform={`translate(0 ${yOff})`}>
 
         {/* Festival-specific map background */}
         {FESTIVAL_CONFIG.mapStyle === "image-overlay" && FESTIVAL_CONFIG.mapImage ? (<>
@@ -4759,7 +4908,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           </>)}
         </>) : (<>
         {/* Night sky base */}
-        <rect x="0" y="0" width="100" height="100" fill="url(#mapGround)"/>
+        {/* (ground moved above the translate group so it fills the whole viewBox) */}
 
         {/* Starfield — pre-computed positions, no re-render flicker */}
         <g filter="url(#starbloom)">
@@ -4847,17 +4996,10 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
 
         {/* Amenity markers — only shown when search sheet is expanded (Find
             Nearby mode). Otherwise they add visual noise over the map. */}
-        {!meetMode && showAmenities && (typeof AMENITIES !== "undefined" ? AMENITIES : []).map(a => {
-          const cfg = ({
-            water:  { color: "#38bdf8", letter: ""  },
-            food:   { color: "#fb923c", letter: ""  },
-            med:    { color: "#ef4444", letter: "+" },
-            toilet: { color: "#64748b", letter: ""  },
-            art:    { color: "#f59a36", letter: ""  },
-            info:   { color: "#16a34a", letter: "i" },
-            charge: { color: "#facc15", letter: "⚡" },
-            locker: { color: "#a78bfa", letter: "L" },
-          })[a.type] || { color: "#000", letter: "" };
+        {!meetMode && showAmenities && (typeof AMENITIES !== "undefined" ? AMENITIES : [])
+          .filter(a => !amenityFilter || a.type === amenityFilter)
+          .map(a => {
+          const cfg = AMENITY_STYLE[a.type] || { color: "#000", letter: "" };
           return (
             <g key={a.id}>
               <circle cx={a.x} cy={a.y} r="1.4" fill={cfg.color} opacity="0.92" stroke="#fff" strokeWidth="0.22"/>
@@ -5023,6 +5165,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           <circle cx={avatar.x} cy={avatar.y} r="1.8" fill="#f59a36" stroke="rgba(255,255,255,0.95)" strokeWidth="0.6"/>
           <circle cx={avatar.x} cy={avatar.y} r="0.7" fill="#fff"/>
         </g>
+        </g>
       </svg>
 
       {/* HTML label overlay — sized to match the SVG's xMidYMid-meet square so
@@ -5050,7 +5193,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           { label: "GATE P",   x: 18, y: 91 },
         ].map((g, i) => (
           <div key={i} style={{
-            position: "absolute", left: `${g.x}%`, top: `${g.y}%`,
+            position: "absolute", left: `${g.x}%`, top: `${mapY(g.y)}%`,
             transform: `translate(-50%, -50%)${counterRot}`,
             fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.4, fontWeight: 700,
             color: "rgba(80,230,160,0.92)",
@@ -5065,7 +5208,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
             EDC-only array, duplicated in RealMap, drawn on every festival. */}
         {showLabels && (FESTIVAL_CONFIG.landmarks || []).map((lm, i) => (
           <div key={i} style={{
-            position: "absolute", left: `${lm.x}%`, top: `${lm.y}%`,
+            position: "absolute", left: `${lm.x}%`, top: `${mapY(lm.y)}%`,
             transform: `translate(-50%, -50%) rotate(${lm.rot}deg)`,
             fontFamily: "Geist Mono, monospace",
             fontSize: lm.size, letterSpacing: lm.ls, fontWeight: 700,
@@ -5078,23 +5221,29 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
 
         {stages.map(s => {
           const on = s.id === selected;
-          // The ACL park map already prints every stage name in its artwork,
-          // so always-on dark label pills would clutter + duplicate. On park,
-          // show a stage's pill only when it's selected; the crisp pin carries
-          // the rest. EDC's text-free aerial keeps labels always on.
+          // Map artwork that PRINTS its own stage names doesn't need ours.
+          // ACL's park map always did; edc-map-2026.jpg does too (it prints
+          // all nine in display type), so the old "EDC's text-free aerial"
+          // exemption is retired — the flag now names the actual property
+          // instead of leaning on the theme.
           //
-          // That test used to be `mapTheme === "park"`, which conflates two
-          // different things: mapTheme is about ART STYLE (crisp full-bleed vs
-          // faded aerial), not about typography. The wave-1 ground plates are
-          // park-themed AND print no text whatsoever, so keying the pills off
-          // the theme left Ultra, Gov Ball, Summerfest, Lolla and Outside Lands
-          // as nine unlabelled coloured dots with no way to tell them apart.
-          // Ask what the code actually means — does this festival's map art
-          // already print the stage names? — and default to the old answer for
-          // any festival that hasn't said.
-          const artPrintsStageNames = FESTIVAL_CONFIG.mapPrintsStageNames
-            ?? (FESTIVAL_CONFIG.mapTheme === "park");
-          if (artPrintsStageNames && !on) return null;
+          // The pill that survives is the one the poster CANNOT print: YOUR
+          // next set here, and how long you have. Everything else goes quiet
+          // — the artwork is already the label layer.
+          //
+          // Labelling every live stage instead was tried and reverted: artist
+          // names run to ~22 characters where stage names run to ~10, so nine
+          // of them collided into an unreadable pile in the middle of the map.
+          // That trades duplication for clutter, which is the same complaint.
+          const savedHere = savedByStage[s.id];
+          const label = on ? s.name.toUpperCase()
+            : !artPrintsStageNames ? s.name.toUpperCase()
+            : savedHere ? `★ ${_pillName(savedHere.artist.name)}${
+                savedHere.isLive ? " · NOW"
+                : savedHere.minsUntil <= 90 ? ` · ${savedHere.minsUntil}M` : ""}`
+            : null;
+          if (label === null) return null;
+          const liveArtist = savedHere?.isLive ? savedHere.artist : null;
           // Edge-aware anchor: edge stages prefer vertical anchors (N/S) so
           // their labels don't collide with the central Rainbow Road / plaza
           // landmarks. Pure top/bottom edges fall back to inward push.
@@ -5109,13 +5258,26 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
             }
             if (s.y < 22) return "S";   // far north → label south of dot
             if (s.y > 78) return "N";   // far south → label north of dot
-            return anchorFor(s);
+            // Never point a side anchor AT the nearest edge — an "E" label on
+            // a stage two-thirds across runs straight off the viewport, which
+            // is what clipped "QUANTUM…" and "NEO…" mid-word. Flip it inward.
+            const a = anchorFor(s);
+            if (a === "E" && s.x > 62) return "W";
+            if (a === "W" && s.x < 38) return "E";
+            return a;
           })();
-          const pos = { left: `${s.x}%`, top: `${s.y}%` };
+          const pos = { left: `${s.x}%`, top: `${mapY(s.y)}%` };
           const off = 18;
+          // Edge-flip. A pill centred on a stage near either margin used to
+          // run off-screen ("QUANTUM…", "NEO…" were clipped mid-word). Slide
+          // the anchor point across the pill as the stage approaches an edge:
+          // centred in the middle of the map, left-aligned at the left
+          // margin, right-aligned at the right — no measuring required.
+          const hx = Math.max(0, Math.min(1, (s.x - 8) / 84));
+          const shiftX = `${(-hx * 100).toFixed(1)}%`;
           const tx = {
-            N: { transform: `translate(-50%, calc(-100% - ${off}px))${counterRot}` },
-            S: { transform: `translate(-50%, ${off}px)${counterRot}` },
+            N: { transform: `translate(${shiftX}, calc(-100% - ${off}px))${counterRot}` },
+            S: { transform: `translate(${shiftX}, ${off}px)${counterRot}` },
             E: { transform: `translate(${off}px, -50%)${counterRot}` },
             W: { transform: `translate(calc(-100% - ${off}px), -50%)${counterRot}` },
           }[anchor];
@@ -5135,6 +5297,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
                 fontSize: on ? 9.5 : 8.5,
                 letterSpacing: 1.2, fontWeight: 700,
                 whiteSpace: "nowrap",
+                maxWidth: "46vw", overflow: "hidden", textOverflow: "ellipsis",
                 boxShadow: on
                   ? `0 4px 18px ${s.color}66, 0 0 8px ${s.color}33`
                   : "0 1px 0 rgba(0,0,0,0.4), 0 2px 12px rgba(0,0,0,0.5)",
@@ -5144,15 +5307,16 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
                 display: "inline-block", width: 6, height: 6, borderRadius: 6,
                 background: on ? "#fff" : s.color, marginRight: 6,
                 verticalAlign: "1px",
+                animation: liveArtist && !on ? "pulse 1.6s infinite" : "none",
               }}/>
-              {s.name.toUpperCase()}
+              {label}
             </div>
           );
         })}
 
         {friends.map(f => meetGroup.includes(f.id) && (
           <div key={f.id} style={{
-            position: "absolute", left: `${f.x}%`, top: `${f.y}%`,
+            position: "absolute", left: `${f.x}%`, top: `${mapY(f.y)}%`,
             transform: `translate(-50%, 14px)${counterRot}`,
             background: f.color, color: "#fff",
             padding: "2px 7px", borderRadius: 999,
@@ -5169,7 +5333,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           const atStage = f.stageId ? stages.find(s => s.id === f.stageId) : null;
           return (
             <div key={`crew-${f.id}`} style={{
-              position: "absolute", left: `${f.x}%`, top: `${f.y}%`,
+              position: "absolute", left: `${f.x}%`, top: `${mapY(f.y)}%`,
               transform: `translate(-50%, calc(-100% - 4px))${counterRot}`,
               display: "flex", flexDirection: "column", alignItems: "center", gap: 4,
               pointerEvents: "none",
@@ -5217,7 +5381,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         })}
 
         <div style={{
-          position: "absolute", left: `${avatar.x}%`, top: `${avatar.y}%`,
+          position: "absolute", left: `${avatar.x}%`, top: `${mapY(avatar.y)}%`,
           transform: `translate(-50%, -22px)${counterRot}`,
           background: "rgba(245,154,54,0.95)", color: "#fff",
           padding: "2px 8px", borderRadius: 999,
