@@ -1633,6 +1633,35 @@ const LL_AMENITIES = [
   { id: "lla8", type: "info", label: "Lockers", x: 36, y: 52 },
 ];
 
+// ── Multi-festival wave 1 — five retrospective 2026 builds ───────────
+// Ultra Miami, Governors Ball, Summerfest, Lollapalooza and Outside Lands.
+// Their data layers live in data/festivals/<id>.js rather than here: between
+// them they carry ~1,000 set times, which would more than double this file and
+// make every future lineup edit a merge hazard in the one file every screen
+// imports. Each module is an IIFE that leaks nothing and registers itself on
+// window.PLURSKY_FESTIVALS, so the only contract is "load before data.jsx" —
+// enforced in index.html, mirrored in sw.js's precache list and in
+// scripts/verify.mjs's probe.
+//
+// Registration is defensive on purpose. A module that failed to load (stale
+// service-worker cache mid-deploy, a 404 on a renamed file) drops that one
+// festival out of the switcher with a console warning; it does not throw and
+// take the whole app's data layer down with it. The existing four festivals
+// above are untouched — moving them out is a separate, riskier change.
+const _WAVE1_IDS = [
+  "ultra-miami-2026", "governors-ball-2026", "summerfest-2026",
+  "lollapalooza-2026", "outside-lands-2026",
+];
+const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
+for (const _id of _WAVE1_IDS) {
+  const _f = _WAVE1[_id];
+  if (!_f || !_f.config || !_f.stages || !_f.artists) {
+    console.warn("[plursky] festival module missing or incomplete:", _id);
+    continue;
+  }
+  FESTIVALS_REGISTRY.push({ config: _f.config, ...(_f.registry || { available: false }) });
+}
+
 const _regConfig = (id) => FESTIVALS_REGISTRY.find(f => f.config.id === id).config;
 const _DATA_SETS = {
   "edc-lv-2026":          { stages: STAGES,     artists: ARTISTS,     amenities: AMENITIES,     config: FESTIVAL_CONFIG },
@@ -1640,6 +1669,10 @@ const _DATA_SETS = {
   "lost-lands-2026":      { stages: LL_STAGES,  artists: LL_ARTISTS,  amenities: LL_AMENITIES,  config: _regConfig("lost-lands-2026") },
   "edc-orlando-2026":     { stages: EDCO_STAGES, artists: EDCO_ARTISTS, amenities: EDCO_AMENITIES, config: _regConfig("edc-orlando-2026") },
 };
+for (const _id of _WAVE1_IDS) {
+  const _f = _WAVE1[_id];
+  if (_f) _DATA_SETS[_id] = { stages: _f.stages, artists: _f.artists, amenities: _f.amenities, config: _f.config };
+}
 const _activeId = getActiveFestivalId();
 const _active = _DATA_SETS[_activeId] || _DATA_SETS["edc-lv-2026"];
 

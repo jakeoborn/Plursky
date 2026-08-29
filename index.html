@@ -163,6 +163,11 @@
         <li><a href="/f/tomorrowland-2027/">Tomorrowland 2027</a> — Dates TBA · De Schorre · Boom, Belgium</li>
         <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026 · Zilker Park · Austin, TX</li>
         <li><a href="/f/coachella-2027/">Coachella 2027</a> — Apr 9–18, 2027 · Empire Polo Club · Indio, CA</li>
+        <li><a href="/f/ultra-miami-2026/">Ultra Miami 2026</a> — Mar 27–29, 2026 · Bayfront Park · Miami, FL</li>
+        <li><a href="/f/governors-ball-2026/">Governors Ball 2026</a> — Jun 5–7, 2026 · Flushing Meadows Corona Park · Queens, NY</li>
+        <li><a href="/f/summerfest-2026/">Summerfest 2026</a> — Jun 18–20, Jun 25–27 &amp; Jul 2–4, 2026 · Henry Maier Festival Park · Milwaukee, WI</li>
+        <li><a href="/f/lollapalooza-2026/">Lollapalooza 2026</a> — Jul 30 – Aug 2, 2026 · Grant Park · Chicago, IL</li>
+        <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026 · Golden Gate Park · San Francisco, CA</li>
         <!-- FESTIVAL-LIST:END -->
       </ul>
       <p class="boot-foot"><a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></p>
@@ -182,6 +187,11 @@
         <li><a href="/f/tomorrowland-2027/">Tomorrowland 2027</a> — Dates TBA · De Schorre · Boom, Belgium</li>
         <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026 · Zilker Park · Austin, TX</li>
         <li><a href="/f/coachella-2027/">Coachella 2027</a> — Apr 9–18, 2027 · Empire Polo Club · Indio, CA</li>
+        <li><a href="/f/ultra-miami-2026/">Ultra Miami 2026</a> — Mar 27–29, 2026 · Bayfront Park · Miami, FL</li>
+        <li><a href="/f/governors-ball-2026/">Governors Ball 2026</a> — Jun 5–7, 2026 · Flushing Meadows Corona Park · Queens, NY</li>
+        <li><a href="/f/summerfest-2026/">Summerfest 2026</a> — Jun 18–20, Jun 25–27 &amp; Jul 2–4, 2026 · Henry Maier Festival Park · Milwaukee, WI</li>
+        <li><a href="/f/lollapalooza-2026/">Lollapalooza 2026</a> — Jul 30 – Aug 2, 2026 · Grant Park · Chicago, IL</li>
+        <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026 · Golden Gate Park · San Francisco, CA</li>
         <!-- NOSCRIPT-LIST:END -->
       </ul>
       <p class="boot-foot"><a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></p>
@@ -303,6 +313,15 @@
     }
   </script>
   <script type="text/babel" src="ios-frame.jsx?v=v237"></script>
+  <!-- Multi-festival wave 1. Plain .js (no JSX), so they load as normal scripts
+       and are parsed before Babel even starts on the chain below. Each is an
+       IIFE that registers itself on window.PLURSKY_FESTIVALS; data.jsx reads
+       that map, so these MUST stay above it. Mirrored in sw.js's precache. -->
+  <script src="data/festivals/ultra-miami-2026.js?v=v237"></script>
+  <script src="data/festivals/governors-ball-2026.js?v=v237"></script>
+  <script src="data/festivals/summerfest-2026.js?v=v237"></script>
+  <script src="data/festivals/lollapalooza-2026.js?v=v237"></script>
+  <script src="data/festivals/outside-lands-2026.js?v=v237"></script>
   <script type="text/babel" src="data.jsx?v=v237"></script>
   <script type="text/babel" src="supabase.jsx?v=v237"></script>
   <script type="text/babel" src="chrome.jsx?v=v237"></script>

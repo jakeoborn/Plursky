@@ -17,6 +17,21 @@ const LOCAL = [
   './icon-192.png',
   './icon-512.png',
   './apple-touch-icon.png',
+  // Wave-1 festival data modules. Must be cached alongside data.jsx and must
+  // load before it — index.html enforces the order; this list only has to make
+  // sure they are all present offline. A missing one drops that festival from
+  // the switcher (data.jsx warns and skips) rather than breaking the app.
+  `./data/festivals/ultra-miami-2026.js?v=${APP_VER}`,
+  `./data/festivals/governors-ball-2026.js?v=${APP_VER}`,
+  `./data/festivals/summerfest-2026.js?v=${APP_VER}`,
+  `./data/festivals/lollapalooza-2026.js?v=${APP_VER}`,
+  `./data/festivals/outside-lands-2026.js?v=${APP_VER}`,
+  // Generated ground plates for the same five (mapImage targets).
+  './ultra-2026.svg',
+  './govball-2026.svg',
+  './summerfest-2026.svg',
+  './lolla-2026.svg',
+  './osl-2026.svg',
   `./ios-frame.jsx?v=${APP_VER}`,
   `./data.jsx?v=${APP_VER}`,
   `./supabase.jsx?v=${APP_VER}`,

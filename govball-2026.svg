@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 100 100">
+<title>Governors Ball 2026 — generated ground plate</title>
+<desc>Abstract site plate generated from this festival's own stage and amenity coordinates. Not the official patron map; no festival artwork is reproduced.</desc>
+<defs>
+  <radialGradient id="glow"><stop offset="0" stop-color="#fff" stop-opacity=".30"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+  <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.6"/></filter>
+</defs>
+<rect width="100" height="100" fill="#10281a"/>
+<rect x="3" y="3" width="94" height="94" rx="4" fill="#1a4028"/>
+<path d="M4 8 Q 33.9 5.8 60.1 8 T 95 9.4" stroke="#245536" stroke-opacity=".30" stroke-width=".35" fill="none"/>
+<path d="M4 15 Q 33.9 12.8 60.1 15 T 95 16.4" stroke="#245536" stroke-opacity=".30" stroke-width=".35" fill="none"/>
+<path d="M4 22 Q 33.9 19.8 60.1 22 T 95 23.4" stroke="#245536" stroke-opacity=".30" stroke-width=".35" fill="none"/>
+<path d="M4 29 Q 33.9 26.8 60.1 29 T 95 30.4" stroke="#245536" stroke-opacity=".30" stroke-width=".35" fill="none"/>
+<path d="M4 36 Q 33.9 33.8 60.1 36 T 95 37.4" stroke="#245536" stroke-opacity=".30" stroke-width=".35" fill="none"/>
+<path d="M4 43 Q 33.9 40.8 60.1 43 T 95 44.4" stroke="#245536" stroke-opacity=".30" stroke-width=".35" fill="none"/>
+<path d="M4 50 Q 33.9 47.8 60.1 50 T 95 51.4" stroke="#245536" stroke-opacity=".30" stroke-width=".35" fill="none"/>
+<path d="M4 57 Q 33.9 54.8 60.1 57 T 95 58.4" stroke="#245536" stroke-opacity=".30" stroke-width=".35" fill="none"/>
+<path d="M4 64 Q 33.9 61.8 60.1 64 T 95 65.4" stroke="#245536" stroke-opacity=".30" stroke-width=".35" fill="none"/>
+<path d="M4 71 Q 33.9 68.8 60.1 71 T 95 72.4" stroke="#245536" stroke-opacity=".30" stroke-width=".35" fill="none"/>
+<path d="M4 78 Q 33.9 75.8 60.1 78 T 95 79.4" stroke="#245536" stroke-opacity=".30" stroke-width=".35" fill="none"/>
+<path d="M4 85 Q 33.9 82.8 60.1 85 T 95 86.4" stroke="#245536" stroke-opacity=".30" stroke-width=".35" fill="none"/>
+<path d="M4 92 Q 33.9 89.8 60.1 92 T 95 93.4" stroke="#245536" stroke-opacity=".30" stroke-width=".35" fill="none"/>
+<path d="M 61 31.2 L 46.3 71.9 L 18.3 48.4" stroke="#f7ede0" stroke-opacity=".16" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<line x1="34.1" y1="59.4" x2="46.3" y2="71.9" stroke="#f7ede0" stroke-opacity=".07" stroke-width=".6"/>
+<line x1="48.8" y1="34.4" x2="61" y2="31.2" stroke="#f7ede0" stroke-opacity=".07" stroke-width=".6"/>
+<line x1="28" y1="50" x2="18.3" y2="48.4" stroke="#f7ede0" stroke-opacity=".07" stroke-width=".6"/>
+<line x1="56.1" y1="65.6" x2="46.3" y2="71.9" stroke="#f7ede0" stroke-opacity=".07" stroke-width=".6"/>
+<line x1="36.6" y1="26.6" x2="61" y2="31.2" stroke="#f7ede0" stroke-opacity=".07" stroke-width=".6"/>
+<line x1="40.2" y1="45.3" x2="18.3" y2="48.4" stroke="#f7ede0" stroke-opacity=".07" stroke-width=".6"/>
+<line x1="24.4" y1="75" x2="46.3" y2="71.9" stroke="#f7ede0" stroke-opacity=".07" stroke-width=".6"/>
+<circle cx="46.3" cy="71.9" r="12.6" fill="#ec4899" fill-opacity=".17" filter="url(#soft)"/>
+<circle cx="46.3" cy="71.9" r="5.7" fill="url(#glow)"/>
+<circle cx="61" cy="31.2" r="10.9" fill="#facc15" fill-opacity=".17" filter="url(#soft)"/>
+<circle cx="61" cy="31.2" r="4.9" fill="url(#glow)"/>
+<circle cx="18.3" cy="48.4" r="9.5" fill="#22c55e" fill-opacity=".17" filter="url(#soft)"/>
+<circle cx="18.3" cy="48.4" r="4.3" fill="url(#glow)"/>
+</svg>
