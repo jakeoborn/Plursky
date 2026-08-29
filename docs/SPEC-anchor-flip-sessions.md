@@ -15,7 +15,11 @@ below assumes its `verify.mjs` anchor gate is on `main`.
   **TOL = 1.5 grid units** (~20 m at EDC's scale). **Fatal for a live
   festival, warning for a gated one.**
 - Re-derived and green: `edc-lv-2026` (0.09), `electric-forest-2026` (0.01),
-  `acl-2026` (0.07).
+  `acl-2026` (0.07). **Superseded for EDC LV (2026-08-29):** the 2026 poster
+  is art, not a survey, so `mapArtIsGeoregistered: false` now makes the gate
+  SKIP `edc-lv-2026` outright — it is not green, it is unchecked. Its nine
+  pins are held PROVISIONAL by the venue-footprint waiver (kinetic, cosmic,
+  bionic outside the LVMS oval). Do not read the 0.09 above as current.
 - Left provisional, with measured residuals: `lost-lands-2026` (worst 39.91,
   `forest-stage`), `edc-orlando-2026` (worst 56.90, `stereo`).
 - Stated limit, quoted from the report because this spec exists partly to
@@ -114,6 +118,27 @@ the venue. Fix is a cropped asset, not code — but the crop is constrained:
 - **PR 4 (`photo-tag.jsx` cross-festival, v235)** and **PR 5 (EF/TML 2027
   roll, v236)** — already open as #28 and #30.
 - **EF 2026 dead-entry retirement** — superseded by #30's roll-forward.
+
+## `crowdAnchors` are NOT part of this ritual (added 2026-08-29)
+
+`data.jsx` now carries a **second** anchor field. Keep the two apart during
+any flip session:
+
+| field | derived from | who reads it |
+|---|---|---|
+| `gpsAnchors` | poster/satellite, trio + affine | the MAP (`mapToGps`, ~25 sites) |
+| `crowdAnchors` | **measured** user GPS clusters | the TAGGER + live stage presence |
+
+- **Never push a `crowdAnchor` through the affine.** Its whole value is that
+  it was measured where people actually stand, which at EDC's kinetic is
+  438 m from the art pin. Re-deriving it would throw away the measurement
+  and reintroduce the skew that silently disabled live stage presence at the
+  main stage.
+- **Never edit a `crowdAnchor` to make the anchor gate pass.** It is not in
+  that gate. It has its own gate (n ≥ 3, spread < 100 m, in-venue,
+  `soleSetInWindow` attested) and that gate takes **no waivers**.
+- Replacing `gpsAnchors` at a flip session leaves `crowdAnchors` untouched
+  and still correct — that separation is the point of the field existing.
 
 ## Hard rules that bind every scope above
 
