@@ -3304,8 +3304,14 @@ function mapToGps(x, y) {
 //     disagree irreconcilably, so no rotation registers the poster.
 // Consequence: poster space and world space are DIFFERENT SPACES for EDC.
 // Keep them decoupled. x/y answers "where on the art"; gpsAnchors answers
-// "where on the planet", and photo-tag.jsx reads gpsAnchors DIRECTLY (not via
-// this affine) precisely so a bad affine cannot mis-tag a photo.
+// "where on the planet", and the tagger reads anchors DIRECTLY (not via this
+// affine) precisely so a bad affine cannot mis-tag a photo.
+// v241: there is now a THIRD space. crowdAnchors answers "where does a person
+// STAND to watch this stage", and the tagger, detectCurrentArtist and stage
+// presence all read `resolvedStageAnchors()` (crowd where measured, poster
+// otherwise) rather than gpsAnchors. The affine below deliberately still reads
+// gpsAnchors: it registers ART, and feeding it crowd centroids would slide the
+// blue dot 13-46 units on a 100-unit grid.
 // Full write-up: ~/Plursky-private/EDC-MAP-REGISTRATION-2026-08-28.md
 //
 // The remaining subtlety here is HOW MUCH of the image the 0-100 box covers.

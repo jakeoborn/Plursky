@@ -637,12 +637,23 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds, ds) {
   // This is deliberately AFTER the prior-set match so crowd-distance GPS
   // never overrides ground truth (you told us you watched that set).
   if (lat != null && lng != null) {
-    const anchors = cfg.gpsAnchors || [];
+    // Crowd anchors where measured, poster pins otherwise. This gate is why
+    // 0.2 matters beyond tagging: with kinetic's pin 438 m from where its
+    // crowd actually stands, eight tight-fix photos taken AT the main stage
+    // were 218-317 m from every anchor and got dumped here as "between sets".
+    const anchors = resolvedStageAnchors(cfg);
     if (anchors.length > 0) {
-      const minMeters = Math.min(...anchors.map(a => _haversineMeters(lat, lng, a.lat, a.lng)));
+      let nearest = null, minMeters = Infinity;
+      for (const a of anchors) {
+        const m = _haversineMeters(lat, lng, a.lat, a.lng);
+        if (m < minMeters) { minMeters = m; nearest = a; }
+      }
       if (minMeters > 120) {
         const loc = _matchNearestLocation(lat, lng, set);
-        return { artistId: null, night, festivalId, resolvedBy, reason: "off_stage", distMeters: Math.round(minMeters), location: loc };
+        // Stamp provenance: an off_stage verdict reached against a poster pin
+        // is a weaker claim than one reached against a measured position.
+        return { artistId: null, night, festivalId, resolvedBy, reason: "off_stage", distMeters: Math.round(minMeters), location: loc,
+                 anchorSource: nearest ? nearest.anchorSource : null };
       }
     }
   }
@@ -670,11 +681,11 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds, ds) {
     // when it's within 60 min — flagged `ambiguous` so the card shows the
     // FIX TAG chip instead of pretending certainty.
     if (lat != null && lng != null) {
-      const anchors = cfg.gpsAnchors || [];
-      let nearStage = null, nearStageM = Infinity;
+      const anchors = resolvedStageAnchors(cfg);
+      let nearStage = null, nearStageM = Infinity, nearSource = null;
       for (const g of anchors) {
         const m = _haversineMeters(lat, lng, g.lat, g.lng);
-        if (m < nearStageM) { nearStageM = m; nearStage = g.stageId; }
+        if (m < nearStageM) { nearStageM = m; nearStage = g.stageId; nearSource = g.anchorSource; }
       }
       if (nearStage && nearStageM <= 120) {
         let best = null, bestGap = Infinity;
@@ -689,7 +700,7 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds, ds) {
         }
         if (best && bestGap <= 60) {
           return { artistId: best.id, night, festivalId, resolvedBy, reason: "stage_time_proximity",
-                   ambiguous: true, alternatives: undefined,
+                   ambiguous: true, alternatives: undefined, anchorSource: nearSource,
                    proximity: { stageId: nearStage, meters: Math.round(nearStageM), gapMin: bestGap } };
         }
       }
@@ -703,9 +714,10 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds, ds) {
   const inAttended = candidates.filter(c => attendedSet.has(c.a.id));
   const inSaved    = candidates.filter(c => savedSet.has(c.a.id));
   const pool = inAttended.length ? inAttended : (inSaved.length ? inSaved : candidates);
+  const _anchors = resolvedStageAnchors(cfg);
   const stageDist = (a) => {
     if (lat == null || lng == null) return Infinity;
-    const anchor = (cfg.gpsAnchors || []).find(g => g.stageId === a.stage);
+    const anchor = _anchors.find(g => g.stageId === a.stage);
     if (!anchor) return Infinity;
     const dLat = lat - anchor.lat, dLng = lng - anchor.lng;
     return dLat * dLat + dLng * dLng;
@@ -720,10 +732,19 @@ function _matchArtistForPhoto({ date, lat, lng }, savedIds, attendedIds, ds) {
   const dists = pool.map(c => stageDist(c.a));
   const gpsSeparated = dists.every(d => d !== Infinity) &&
     [...dists].sort((a, b) => a - b).slice(0, 2).reduce((a, b) => b - a, 0) > 1e-9;
-  const ambiguous = pool.length > 1 && !gpsSeparated;
+  // Provenance of the anchor that actually decided this match. Only meaningful
+  // when GPS did the separating — with no fix, or with a single candidate, the
+  // anchor never entered into it and flagging would be noise.
+  const winnerAnchor = _anchors.find(g => g.stageId === pool[0].a.stage) || null;
+  const gpsDecided = lat != null && lng != null && pool.length > 1 && gpsSeparated;
+  const anchorSource = gpsDecided ? (winnerAnchor ? winnerAnchor.anchorSource : null) : null;
+  // POSTER-FALLBACK HONESTY FLAG. A match separated by a pin we know was
+  // measured off a poster is a guess wearing a confident face — keep it (it
+  // still beats no tag) but surface the FIX TAG chip, same as a GPS tie.
+  const ambiguous = (pool.length > 1 && !gpsSeparated) || anchorSource === "poster";
   return {
     artistId: pool[0].a.id, night, festivalId, resolvedBy, reason: "matched",
-    ambiguous,
+    ambiguous, anchorSource,
     alternatives: ambiguous ? pool.map(c => c.a.id) : undefined,
   };
 }

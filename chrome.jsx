@@ -700,7 +700,13 @@ function detectCurrentArtist(lat, lng, opts = {}) {
   if (typeof lat !== "number" || typeof lng !== "number") return null;
   const cfg = window.FESTIVAL_CONFIG;
   if (!cfg) return null;
-  const anchors = cfg.gpsAnchors || [];
+  // Crowd anchors where measured. This function compares the USER'S live
+  // position against stage pins at a 140 m radius — with kinetic's poster pin
+  // 438 m from its crowd, a user standing at the main stage was 279 m from the
+  // NEAREST anchor and this returned null every time. Live stage detection was
+  // silently dead at the biggest stage on site.
+  const anchors = (typeof resolvedStageAnchors === "function")
+    ? resolvedStageAnchors(cfg) : (cfg.gpsAnchors || []);
   if (anchors.length === 0) return null;
   const radius = opts.radiusM || 140;
   const now = window.NOW;

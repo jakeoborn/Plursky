@@ -195,6 +195,49 @@ if (fdata.length) {
   if (!fpChecked) console.log("  (no festival declares venue.footprint yet)");
   if (fpHard) fail(`${fpHard} LIVE festival(s) have gpsAnchors outside their own venue`);
   if (fpWaived) console.log(`  ${fpWaived} festival(s) waived pending ground truth — see notes above`);
+
+  // ── Crowd-anchor gate ────────────────────────────────────────────────────
+  // crowdAnchors are MEASURED positions, so unlike gpsAnchors there is no
+  // waiver here and none should ever be added: a crowd centroid that falls
+  // outside the venue is not "pending ground truth", it is wrong.
+  //
+  // Honest about what this can and cannot prove. n >= 3, spread < 100 m, and
+  // in-venue are CHECKED. The third shipping condition — exactly one
+  // saved/attended set live in the window — is NOT checkable here: it depends
+  // on the replay's schedule window, and the neon/quantum blend rejected this
+  // round (n=4, tight spread) would pass a pure n/spread test. So it is
+  // carried as an explicit attestation, `soleSetInWindow: true`, and the gate
+  // refuses any anchor that omits it. That does not verify the claim — it
+  // forces someone to make it, which is what stops a future batch script from
+  // dumping centroids in silently. cosmic (n=1) IS caught mechanically.
+  console.log("▸ Crowd-anchor gate — measured anchors, no waivers");
+  let caHard = 0, caTotal = 0, caFest = 0;
+  for (const f of REG) {
+    const cfg = f.config, poly = cfg.venue?.footprint;
+    const ca = cfg.crowdAnchors || [];
+    if (!ca.length) continue;
+    caFest++;
+    const stages = DS[cfg.id]?.stages || [];
+    for (const a of ca) {
+      caTotal++;
+      const problems = [];
+      if (stages.length && !stages.some(s => s.id === a.stageId)) problems.push("unknown stageId");
+      if (!(typeof a.n === "number" && a.n >= 3)) problems.push(`n=${a.n} (need >= 3)`);
+      if (!(typeof a.spreadM === "number" && a.spreadM < 100)) problems.push(`spreadM=${a.spreadM} (need < 100)`);
+      if (!a.measuredAt || !a.source) problems.push("missing provenance (measuredAt/source)");
+      if (a.soleSetInWindow !== true) problems.push("missing soleSetInWindow attestation (blend check)");
+      if (poly?.length && !inside(a.lat, a.lng, poly)) problems.push("OUTSIDE the venue footprint");
+      if (problems.length) {
+        caHard++;
+        console.log(`  ✗  ${cfg.id}/${a.stageId} — ${problems.join("; ")}`);
+      } else {
+        console.log(`  ok ${cfg.id.padEnd(16)} ${String(a.stageId).padEnd(9)} n=${String(a.n).padEnd(3)} nights=${a.nights} spread=${a.spreadM}m  ${a.source}`);
+      }
+    }
+  }
+  if (!caFest) console.log("  (no festival declares crowdAnchors yet)");
+  if (caHard) fail(`${caHard} crowd anchor(s) violate the shipping rule (n >= 3, spread < 100 m, in-venue, soleSetInWindow attested)`);
+  if (caTotal) console.log(`  ✓ ${caTotal} crowd anchor(s) across ${caFest} festival(s) — all measured, all in-venue`);
 }
 
 if (process.argv.includes("--parse-only")) process.exit(0);

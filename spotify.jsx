@@ -4623,6 +4623,11 @@ function MemoriesScreen({ state, setState }) {
           // couldn't separate them. Keep the best guess but flag it so the
           // card surfaces a prominent "fix tag" chip instead of looking sure.
           tagAmbiguous: !!(matched.artistId && matched.ambiguous),
+          // Which anchor class decided this tag: "crowd" (measured) or
+          // "poster" (derived from the map art, known-skewed). null when GPS
+          // played no part. Kept on the record so a later re-tag pass can find
+          // every poster-decided moment once real anchors land for its stage.
+          anchorSource: matched.anchorSource || null,
           // v235: the festival the photo was TAKEN at, resolved from its
           // timestamp + GPS — not whichever festival is on screen. Stamping
           // the active one mis-filed every cross-festival import permanently:
@@ -8493,7 +8498,11 @@ function NowPlayingBar() {
     }
 
     let watchId;
-    const anchors = CFG.gpsAnchors || [];
+    // Crowd anchors where measured — same reason as chrome.jsx's
+    // detectCurrentArtist: at a 200 m threshold, a poster pin 438 m off meant
+    // presence never fired for anyone standing at kinetic.
+    const anchors = (typeof resolvedStageAnchors === "function")
+      ? resolvedStageAnchors(CFG) : (CFG.gpsAnchors || []);
     if (!anchors.length || !navigator.geolocation) return;
 
     watchId = navigator.geolocation.watchPosition((pos) => {
