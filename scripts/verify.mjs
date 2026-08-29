@@ -195,6 +195,42 @@ if (fdata.length) {
   if (!fpChecked) console.log("  (no festival declares venue.footprint yet)");
   if (fpHard) fail(`${fpHard} LIVE festival(s) have gpsAnchors outside their own venue`);
   if (fpWaived) console.log(`  ${fpWaived} festival(s) waived pending ground truth — see notes above`);
+
+  // ── Crowd-anchor gate ────────────────────────────────────────────────────
+  // crowdAnchors are MEASURED positions, so unlike gpsAnchors there is no
+  // waiver here and none should ever be added: a crowd centroid that falls
+  // outside the venue is not "pending ground truth", it is wrong. The shipping
+  // rule is enforced mechanically so a future batch cannot quietly ship a
+  // blend or an n=1 point — those are exactly the two that were rejected by
+  // hand this round (neon/quantum blend, cosmic n=1) and hand-rejection does
+  // not survive the next session.
+  console.log("▸ Crowd-anchor gate — measured anchors, no waivers");
+  let caHard = 0, caTotal = 0, caFest = 0;
+  for (const f of REG) {
+    const cfg = f.config, poly = cfg.venue?.footprint;
+    const ca = cfg.crowdAnchors || [];
+    if (!ca.length) continue;
+    caFest++;
+    const stages = DS[cfg.id]?.stages || [];
+    for (const a of ca) {
+      caTotal++;
+      const problems = [];
+      if (stages.length && !stages.some(s => s.id === a.stageId)) problems.push("unknown stageId");
+      if (!(typeof a.n === "number" && a.n >= 3)) problems.push(`n=${a.n} (need >= 3)`);
+      if (!(typeof a.spreadM === "number" && a.spreadM < 100)) problems.push(`spreadM=${a.spreadM} (need < 100)`);
+      if (!a.measuredAt || !a.source) problems.push("missing provenance (measuredAt/source)");
+      if (poly?.length && !inside(a.lat, a.lng, poly)) problems.push("OUTSIDE the venue footprint");
+      if (problems.length) {
+        caHard++;
+        console.log(`  ✗  ${cfg.id}/${a.stageId} — ${problems.join("; ")}`);
+      } else {
+        console.log(`  ok ${cfg.id.padEnd(16)} ${String(a.stageId).padEnd(9)} n=${String(a.n).padEnd(3)} nights=${a.nights} spread=${a.spreadM}m  ${a.source}`);
+      }
+    }
+  }
+  if (!caFest) console.log("  (no festival declares crowdAnchors yet)");
+  if (caHard) fail(`${caHard} crowd anchor(s) violate the shipping rule (n >= 3, spread < 100 m, inside the venue)`);
+  if (caTotal) console.log(`  ✓ ${caTotal} crowd anchor(s) across ${caFest} festival(s) — all measured, all in-venue`);
 }
 
 if (process.argv.includes("--parse-only")) process.exit(0);

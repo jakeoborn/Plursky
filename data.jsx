@@ -183,6 +183,42 @@ const FESTIVAL_CONFIG = {
     { stageId: "circuit", lat: 36.27088, lng: -115.01068 },
   ],
 
+  // ── Crowd anchors (MEASURED — the tagger reads these, the map does not) ──
+  // gpsAnchors above are POSTER-derived: they answer "where did the artist
+  // draw this stage", and three of the nine fall outside the real speedway.
+  // These answer a different question — "where does a person STAND to watch
+  // this stage" — and they come from replaying real camera-roll GPS against
+  // the lineup. The tagger, live stage detection and presence all compare a
+  // USER'S position, taken from inside a crowd, so a crowd centroid is the
+  // correct target for them, not a compromise.
+  //
+  // ⛔ THIS IS A SEPARATE FIELD ON PURPOSE. Do NOT "simplify" by writing these
+  // into gpsAnchors. MAP_AFFINE (map.jsx) is solved from the FIRST THREE
+  // gpsAnchors and kinetic is a0 — measured, moving kinetic here slides the
+  // blue dot 13-46 units on a 100-unit grid and drags ~25 mapToGps call sites
+  // with it (friends, meetups, landmarks, navigation, the whole RealMap stage
+  // layer). Art registration and crowd position are not the same measurement.
+  //
+  // SHIPPING RULE for any future derivation — all three must hold:
+  //   (a) n >= 3        (b) spreadM < 100
+  //   (c) exactly ONE saved/attended set live in the window
+  // (c) is what keeps blends out: an n=4 cluster at 36.27188,-115.00856 sits
+  // between neon and quantum because both were watched from nearly the same
+  // spot, so it anchors NEITHER. cosmic is n=1 and also excluded. Enforced by
+  // the crowd-anchor gate in scripts/verify.mjs, which also requires each one
+  // to fall inside venue.footprint.
+  crowdAnchors: [
+    // 438 m ESE of the poster pin. n=11 over TWO nights and the centroid moved
+    // 5.7 m when the second night was added — an independent night agreeing to
+    // within six metres is what makes this a measurement and not an anecdote.
+    { stageId: "kinetic", lat: 36.27395, lng: -115.00714, n: 11, nights: 2,
+      spreadM: 85, measuredAt: "2026-08-29", source: "jake-edc2026-batch1+2" },
+    // Agrees with its poster pin to 100 m, so this one changes little — kept
+    // for uniformity and because it is the only pin independently validated.
+    { stageId: "circuit", lat: 36.27003, lng: -115.01105, n: 6, nights: 1,
+      spreadM: 20, measuredAt: "2026-08-29", source: "jake-edc2026-batch2" },
+  ],
+
   // ── Weather ──
   // NWS endpoint for US festivals (free, keyless). For non-US
   // festivals, swap to OpenWeatherMap or another provider and the
@@ -1022,6 +1058,34 @@ const ARTISTS = [
 // Day chips for any festival config. The window export at the bottom of
 // this file re-derives DAYS from the ACTIVE config — this const is only
 // the EDC default for anything that reads it before the switch runs.
+// Resolve the anchor set the TAGGER should use: a measured crowd anchor where
+// one exists, otherwise the poster-derived pin. Every entry carries where it
+// came from, because a match decided against a poster pin is a weaker claim
+// than one decided against a measured position and the UI has to say so.
+//
+// ⚠️ This is deliberately NOT used by map.jsx's MAP_AFFINE. The affine
+// registers ART to the world and must keep reading gpsAnchors directly — see
+// the crowdAnchors comment in FESTIVAL_CONFIG for the measured blast radius.
+//
+// Falling back to a known-skewed poster pin (rather than refusing to match)
+// is the deliberate call: for the six stages with no measurement yet, a
+// flagged guess beats tagging nothing at all.
+function resolvedStageAnchors(cfg) {
+  const byId = new Map();
+  for (const g of (cfg?.gpsAnchors || [])) {
+    if (!g || typeof g.lat !== "number" || typeof g.lng !== "number") continue;
+    byId.set(g.stageId, { stageId: g.stageId, lat: g.lat, lng: g.lng, anchorSource: "poster" });
+  }
+  for (const c of (cfg?.crowdAnchors || [])) {
+    if (!c || typeof c.lat !== "number" || typeof c.lng !== "number") continue;
+    byId.set(c.stageId, { stageId: c.stageId, lat: c.lat, lng: c.lng, anchorSource: "crowd" });
+  }
+  return Array.from(byId.values());
+}
+function resolvedStageAnchor(cfg, stageId) {
+  return resolvedStageAnchors(cfg).find(a => a.stageId === stageId) || null;
+}
+
 function _daysFor(cfg) {
   const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   return Object.entries(cfg.dayDates || {}).map(([n, d]) =>
@@ -1744,5 +1808,6 @@ Object.assign(window, {
   DAYS: _daysFor(_active.config),
   NOW, ALERTS, ESSENTIALS, fmt12,
   FESTIVALS_REGISTRY, getActiveFestivalId, setActiveFestivalAndReload,
+  resolvedStageAnchors, resolvedStageAnchor,
   _DATA_SETS,
 });
