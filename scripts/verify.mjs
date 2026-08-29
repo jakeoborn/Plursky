@@ -154,14 +154,39 @@ if (fdata.length) {
   // Not circular: `venue.footprint` is surveyed geometry (OSM), so this can
   // only pass if the anchors are genuinely in the right place. A festival
   // listed below is a KNOWN, MEASURED defect awaiting ground truth, not a
-  // bypass — removing the entry is the one-line change once it is resolved.
+  // bypass — deleting the entry is the one-line change once it is resolved.
+  //
+  // A waiver names the EXACT anchors it excuses, never the festival. The
+  // first version waived by festival id, which quietly meant "edc-lv may
+  // have any anchors anywhere": a fourth stage drifting out of the oval, or
+  // one of the six good ones going bad in a later edit, would have printed
+  // the same reassuring PENDING line. A waiver that grows to cover new
+  // breakage is not a waiver, it is a disabled gate. So the set is closed in
+  // both directions — an unlisted anchor outside the venue is still fatal,
+  // and a listed anchor that has come back INSIDE fails too, because a
+  // waiver outliving its defect is how a repo ends up carrying excuses for
+  // bugs it already fixed.
+  //
+  // Not switched to a wider `festivalBounds` polygon: no surveyed bounds for
+  // the EDC build exist, so any polygon drawn big enough to contain these
+  // three would be sized FROM the anchors it is meant to test — the same
+  // derive-then-assert circularity that let the main stage sit on the track
+  // banking for months. A gate you widen until it passes tests nothing.
   const ANCHORS_PENDING_GROUND_TRUTH = {
-    "edc-lv-2026":
-      "3 of 9 anchors sit outside the LVMS oval (kinetic 16 m, cosmic 95 m, " +
-      "bionic 152 m). They were derived from poster space, which does not " +
-      "register to the world; no satellite capture of a finished EDC build " +
-      "exists to re-measure from. Founder decision pending — see " +
-      "~/Plursky-private/EDC-MAP-REGISTRATION-2026-08-28.md",
+    "edc-lv-2026": {
+      // Provisional by founder decision (2026-08-29): do NOT nudge these
+      // inside the oval to satisfy the gate. kinetic and cosmic are two of
+      // the three anchors the affine basis is solved from, so moving them
+      // re-derives the six dependent anchors and manufactures precision
+      // nobody measured. They stay put until a real geo source exists.
+      stageIds: ["kinetic", "cosmic", "bionic"],
+      note:
+        "3 of 9 anchors sit outside the LVMS oval (kinetic 16 m, cosmic 95 m, " +
+        "bionic 152 m). They were derived from poster space, which does not " +
+        "register to the world; no satellite capture of a finished EDC build " +
+        "exists to re-measure from. Held PROVISIONAL pending a real geo " +
+        "source — see ~/Plursky-private/EDC-MAP-REGISTRATION-2026-08-28.md",
+    },
   };
   const inside = (lat, lng, poly) => {
     let c = false;
@@ -180,11 +205,27 @@ if (fdata.length) {
     fpChecked++;
     const out = an.filter(a => !inside(a.lat, a.lng, poly)).map(a => a.stageId);
     const waiver = ANCHORS_PENDING_GROUND_TRUTH[cfg.id];
-    if (!out.length) { console.log(`  ok ${cfg.id.padEnd(22)} all ${an.length} anchors inside`); continue; }
-    if (waiver) {
+    const excused = new Set(waiver?.stageIds || []);
+    // Anchors outside the venue that NO waiver covers — the real finding.
+    const unexcused = out.filter(id => !excused.has(id));
+    // Anchors a waiver still excuses that are no longer outside — the waiver
+    // has outlived the defect and must shrink.
+    const stale = (waiver?.stageIds || []).filter(id => !out.includes(id));
+
+    if (!out.length && !waiver) { console.log(`  ok ${cfg.id.padEnd(22)} all ${an.length} anchors inside`); continue; }
+
+    if (waiver && !unexcused.length && !stale.length) {
       fpWaived++;
       console.log(`  !  ${cfg.id.padEnd(22)} ${out.length}/${an.length} OUTSIDE (${out.join(", ")}) — PENDING`);
-      console.log(`     ${waiver}`);
+      console.log(`     ${waiver.note}`);
+    } else if (waiver && stale.length) {
+      fpHard++;
+      console.log(`  ✗  ${cfg.id.padEnd(22)} waiver is STALE — ${stale.join(", ")} now inside the venue`);
+      console.log(`     Drop ${stale.map(s => `"${s}"`).join(", ")} from ANCHORS_PENDING_GROUND_TRUTH["${cfg.id}"].stageIds.`);
+    } else if (waiver) {
+      fpHard++;
+      console.log(`  ✗  ${cfg.id.padEnd(22)} ${unexcused.length} UNWAIVED anchor(s) outside (${unexcused.join(", ")})`);
+      console.log(`     The waiver covers ${[...excused].join(", ")} only. Measure these, do not extend the waiver.`);
     } else if (f.available) {
       fpHard++;
       console.log(`  ✗  ${cfg.id.padEnd(22)} ${out.length}/${an.length} OUTSIDE (${out.join(", ")})`);
@@ -193,7 +234,7 @@ if (fdata.length) {
     }
   }
   if (!fpChecked) console.log("  (no festival declares venue.footprint yet)");
-  if (fpHard) fail(`${fpHard} LIVE festival(s) have gpsAnchors outside their own venue`);
+  if (fpHard) fail(`${fpHard} festival(s) failed the venue footprint gate — see above`);
   if (fpWaived) console.log(`  ${fpWaived} festival(s) waived pending ground truth — see notes above`);
 }
 
