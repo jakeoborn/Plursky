@@ -25,6 +25,19 @@
 const _EXIF_TAG_EXIF_IFD = 0x8769;
 const _EXIF_TAG_GPS_IFD  = 0x8825;
 const _EXIF_TAG_DATETIME_ORIGINAL = 0x9003;
+// 0x001F GPSHPositioningError — RATIONAL, metres. iOS writes it on every fix.
+// It is the difference between "you were at the waste stage" and "your phone
+// had no idea where it was": a measured 2,808 m fix was confidently
+// stage-separated and tagged, while a same-minute video put the user 700 m
+// away. Read but never used until now.
+const _EXIF_TAG_GPS_HPOS_ERR = 0x001F;
+// 0x0011 GPSImgDirection (+ 0x0010 ref, "T" true / "M" magnetic) — RATIONAL,
+// degrees. Nothing consumes this yet. It is captured now because it can ONLY
+// be captured at import: heading plus position triangulates where a stage IS,
+// rather than approximating it with the crowd centroid, and every photo
+// imported before a consumer exists loses the data permanently.
+const _EXIF_TAG_GPS_IMG_DIR     = 0x0011;
+const _EXIF_TAG_GPS_IMG_DIR_REF = 0x0010;
 const _EXIF_TAG_GPS_LAT_REF = 0x0001;
 const _EXIF_TAG_GPS_LAT     = 0x0002;
 const _EXIF_TAG_GPS_LNG_REF = 0x0003;
@@ -95,7 +108,7 @@ function _parseFilenameDate(name) {
 }
 
 async function _parseExifMeta(file) {
-  const out = { date: null, lat: null, lng: null };
+  const out = { date: null, lat: null, lng: null, acc: null, heading: null, headingRef: null };
   if (!file) return out;
   // Videos carry no JPEG EXIF — their capture time + GPS live in the MP4/MOV
   // `moov` atom. Without this, videos fell through to file.lastModified (=
@@ -226,6 +239,23 @@ async function _parseExifMeta(file) {
             const refEntry = gpsEntries[_EXIF_TAG_GPS_LNG_REF];
             const refCh = refEntry ? String.fromCharCode(dv.getUint8(refEntry.valOff)) : "E";
             out.lng = refCh === "W" ? -lng : lng;
+          }
+          // Single RATIONAL (8 bytes, so always out-of-line via valOff).
+          const readRational1 = (entry) => {
+            if (!entry || entry.count !== 1 || entry.type !== 5) return null;
+            const off2 = tiff + u32(entry.valOff);
+            const den = u32(off2 + 4);
+            if (!den) return null;
+            const v = u32(off2) / den;
+            return isFinite(v) ? v : null;
+          };
+          const acc = readRational1(gpsEntries[_EXIF_TAG_GPS_HPOS_ERR]);
+          if (acc != null && acc >= 0) out.acc = acc;
+          const dir = readRational1(gpsEntries[_EXIF_TAG_GPS_IMG_DIR]);
+          if (dir != null && dir >= 0 && dir <= 360) {
+            out.heading = dir;
+            const dRef = gpsEntries[_EXIF_TAG_GPS_IMG_DIR_REF];
+            out.headingRef = dRef ? String.fromCharCode(dv.getUint8(dRef.valOff)) : "T";
           }
         }
         return out;
@@ -573,7 +603,13 @@ function _matchNearestLocation(lat, lng, ds) {
 // the festival ITSELF from the timestamp + geo rather than assuming the
 // active one, and reports it back as `festivalId` so the caller stamps the
 // moment with the festival the photo is FROM, not the one on screen.
-function _matchArtistForPhoto({ date, lat, lng, rawUtcMs }, savedIds, attendedIds, ds) {
+// Above this, a fix cannot tell two stages apart. Stage anchors sit ~100-300 m
+// from each other, so a fix with 2,808 m of claimed error "separates" them by
+// pure noise — and it did: that photo was confidently tagged to waste while a
+// same-minute video put the user 700 m away. The threshold is deliberately
+// generous; the point is to reject garbage, not to demand a perfect fix.
+const _GPS_STAGE_MAX_ACC_M = 200;
+function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, attendedIds, ds) {
   if (!date && rawUtcMs == null) return { artistId: null, night: null, festivalId: null, reason: "no_date" };
   // First: WHICH festival, and which of its nights, does this photo's
   // timestamp (+ GPS, as a tiebreak) place it in?
@@ -586,9 +622,16 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs }, savedIds, attendedId
   // against the right zone. Everything downstream — the night bucket, the
   // set-time window, the takenAt stamped on the moment — uses this, not the
   // provisional one guessed at parse time.
+  // A coarse fix stays usable for FESTIVAL resolution — "which venue, hundreds
+  // of km apart" is a question a 2.8 km error can still answer — but is blinded
+  // for every STAGE-level decision below. Resolution already happened above.
+  const gpsUsableForStage = acc == null || acc <= _GPS_STAGE_MAX_ACC_M;
+  const sLat = gpsUsableForStage ? lat : null;
+  const sLng = gpsUsableForStage ? lng : null;
+  const gpsRejected = !gpsUsableForStage && lat != null;
   const localDate = (rawUtcMs != null) ? _wallClockFromUtc(rawUtcMs, cfg) : date;
   const night = _photoFestivalNight(localDate, cfg, rawUtcMs);
-  if (!night) return { artistId: null, night: null, festivalId, resolvedBy, reason: "outside_festival_window" };
+  if (!night) return { localDate, gpsRejected, artistId: null, night: null, festivalId, resolvedBy, reason: "outside_festival_window" };
 
   // NOTE: the GPS "off-stage" gate used to run HERE, before the attended/
   // saved set-time match — which was a bug. A photo taken from the middle/
@@ -615,7 +658,7 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs }, savedIds, attendedId
     const [sh, sm] = a.start.split(":").map(Number);
     const [eh, em] = a.end.split(":").map(Number);
     return {
-      localDate,
+      localDate, gpsRejected,
       startMs: dm.midnightUtc + ((sh < 8 ? sh + 24 : sh) * 60 + sm) * 60000,
       endMs:   dm.midnightUtc + ((eh < 8 ? eh + 24 : eh) * 60 + em) * 60000,
     };
@@ -647,7 +690,7 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs }, savedIds, attendedId
     const topTier = priorHits.filter(h => h.score === hit.score);
     const ambiguous = topTier.length > 1;
     return {
-      localDate,
+      localDate, gpsRejected,
       artistId: hit.a.id, night: hit.a.day, festivalId, resolvedBy,
       reason: attendedSet.has(hit.a.id) ? "attended_set_time" : "saved_set_time",
       ambiguous,
@@ -663,7 +706,7 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs }, savedIds, attendedId
   // 📍 BETWEEN SETS instead of force-tagging the nearest stage's artist.
   // This is deliberately AFTER the prior-set match so crowd-distance GPS
   // never overrides ground truth (you told us you watched that set).
-  if (lat != null && lng != null) {
+  if (sLat != null && sLng != null) {
     // Crowd anchors where measured, poster pins otherwise. This gate is why
     // 0.2 matters beyond tagging: with kinetic's pin 438 m from where its
     // crowd actually stands, eight tight-fix photos taken AT the main stage
@@ -672,14 +715,14 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs }, savedIds, attendedId
     if (anchors.length > 0) {
       let nearest = null, minMeters = Infinity;
       for (const a of anchors) {
-        const m = _haversineMeters(lat, lng, a.lat, a.lng);
+        const m = _haversineMeters(sLat, sLng, a.lat, a.lng);
         if (m < minMeters) { minMeters = m; nearest = a; }
       }
       if (minMeters > 120) {
-        const loc = _matchNearestLocation(lat, lng, set);
+        const loc = _matchNearestLocation(sLat, sLng, set);
         // Stamp provenance: an off_stage verdict reached against a poster pin
         // is a weaker claim than one reached against a measured position.
-        return { localDate, artistId: null, night, festivalId, resolvedBy, reason: "off_stage", distMeters: Math.round(minMeters), location: loc,
+        return { localDate, gpsRejected, artistId: null, night, festivalId, resolvedBy, reason: "off_stage", distMeters: Math.round(minMeters), location: loc,
                  anchorSource: nearest ? nearest.anchorSource : null };
       }
     }
@@ -707,11 +750,11 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs }, savedIds, attendedId
     // within 120m of a stage anchor, tag that stage's temporally-nearest set
     // when it's within 60 min — flagged `ambiguous` so the card shows the
     // FIX TAG chip instead of pretending certainty.
-    if (lat != null && lng != null) {
+    if (sLat != null && sLng != null) {
       const anchors = resolvedStageAnchors(cfg);
       let nearStage = null, nearStageM = Infinity, nearSource = null;
       for (const g of anchors) {
-        const m = _haversineMeters(lat, lng, g.lat, g.lng);
+        const m = _haversineMeters(sLat, sLng, g.lat, g.lng);
         if (m < nearStageM) { nearStageM = m; nearStage = g.stageId; nearSource = g.anchorSource; }
       }
       if (nearStage && nearStageM <= 120) {
@@ -726,7 +769,7 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs }, savedIds, attendedId
           if (gap > 0 && gap < bestGap) { bestGap = gap; best = a; }
         }
         if (best && bestGap <= 60) {
-          return { localDate, artistId: best.id, night, festivalId, resolvedBy, reason: "stage_time_proximity",
+          return { localDate, gpsRejected, artistId: best.id, night, festivalId, resolvedBy, reason: "stage_time_proximity",
                    ambiguous: true, alternatives: undefined, anchorSource: nearSource,
                    proximity: { stageId: nearStage, meters: Math.round(nearStageM), gapMin: bestGap } };
         }
@@ -735,7 +778,7 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs }, savedIds, attendedId
     // We know the night but no specific artist — return the night so the
     // photo still lands in the right bucket (e.g. between sets, in the
     // shuttle line, etc.).
-    return { localDate, artistId: null, night, festivalId, resolvedBy, reason: "no_artist_at_time" };
+    return { localDate, gpsRejected, artistId: null, night, festivalId, resolvedBy, reason: "no_artist_at_time" };
   }
   // Prefer ATTENDED, then SAVED, then any; GPS tiebreaker; then tightest fit.
   const inAttended = candidates.filter(c => attendedSet.has(c.a.id));
@@ -743,10 +786,10 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs }, savedIds, attendedId
   const pool = inAttended.length ? inAttended : (inSaved.length ? inSaved : candidates);
   const _anchors = resolvedStageAnchors(cfg);
   const stageDist = (a) => {
-    if (lat == null || lng == null) return Infinity;
+    if (sLat == null || sLng == null) return Infinity;
     const anchor = _anchors.find(g => g.stageId === a.stage);
     if (!anchor) return Infinity;
-    const dLat = lat - anchor.lat, dLng = lng - anchor.lng;
+    const dLat = sLat - anchor.lat, dLng = sLng - anchor.lng;
     return dLat * dLat + dLng * dLng;
   };
   pool.sort((x, y) => {
@@ -763,14 +806,14 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs }, savedIds, attendedId
   // when GPS did the separating — with no fix, or with a single candidate, the
   // anchor never entered into it and flagging would be noise.
   const winnerAnchor = _anchors.find(g => g.stageId === pool[0].a.stage) || null;
-  const gpsDecided = lat != null && lng != null && pool.length > 1 && gpsSeparated;
+  const gpsDecided = sLat != null && sLng != null && pool.length > 1 && gpsSeparated;
   const anchorSource = gpsDecided ? (winnerAnchor ? winnerAnchor.anchorSource : null) : null;
   // POSTER-FALLBACK HONESTY FLAG. A match separated by a pin we know was
   // measured off a poster is a guess wearing a confident face — keep it (it
   // still beats no tag) but surface the FIX TAG chip, same as a GPS tie.
   const ambiguous = (pool.length > 1 && !gpsSeparated) || anchorSource === "poster";
   return {
-      localDate,
+      localDate, gpsRejected,
     artistId: pool[0].a.id, night, festivalId, resolvedBy, reason: "matched",
     ambiguous, anchorSource,
     alternatives: ambiguous ? pool.map(c => c.a.id) : undefined,
