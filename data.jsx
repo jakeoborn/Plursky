@@ -122,6 +122,24 @@ const FESTIVAL_CONFIG = {
     ovalCenter:    { lat: 36.27155,   lng: -115.01120 },
     // Full EDC build footprint (oval + dirt extension + south lots)
     festivalBounds:{ north: 36.27780, south: 36.26720, west: -115.01740, east: -115.00500 },
+
+    // MEASURED footprint: the speedway oval itself, as [lat, lng] taken from
+    // OpenStreetMap ways 27545411 + 1548033195 + 1548033196 (all named "Las
+    // Vegas Motor Speedway"), joined into a closed ring and decimated to 14
+    // points. Sanity check on the source: the joined ring measures 2,480 m =
+    // 1.541 mi against the nominal 1.5-mile superspeedway.
+    // Accessed 2026-08-28 via the Overpass API.
+    //
+    // This is REAL geometry, unlike the eyeballed boxes above, so scripts/
+    // verify.mjs uses it to assert that every gpsAnchor actually falls inside
+    // the venue. Three of EDC's nine currently do not — see the anchor gate.
+    footprint: [
+      [36.26972, -115.00983], [36.27166, -115.00693], [36.27282, -115.00580],
+      [36.27430, -115.00576], [36.27543, -115.00693], [36.27567, -115.00873],
+      [36.27535, -115.01057], [36.27469, -115.01232], [36.27360, -115.01363],
+      [36.27164, -115.01474], [36.27014, -115.01479], [36.26900, -115.01363],
+      [36.26874, -115.01182], [36.26951, -115.01015],
+    ],
   },
 
   // ⚠ PROVISIONAL anchors — pending official 2026 EDC site map
@@ -179,6 +197,15 @@ const FESTIVAL_CONFIG = {
   // the asset, 2026-08-27), so Plursky must not echo them a few pixels away.
   mapPrintsStageNames: true,
 
+  // The patron poster is an ILLUSTRATION, not a survey: measured 2026-08-28,
+  // the best-fit similarity of its oval onto the real LVMS oval still leaves a
+  // 27% worst-case radial residual, and it draws the grandstand at the bottom
+  // END of the oval where the real one runs along the NW SIDE (61 deg / 388 m
+  // apart). So STAGES x/y (art space) is NOT an affine image of gpsAnchors
+  // (world space), and any check that assumes it is will be circular.
+  // See ~/Plursky-private/EDC-MAP-REGISTRATION-2026-08-28.md
+  mapArtIsGeoregistered: false,
+
   // ── Named landmarks (walkways, districts, standalone art) ──
   // Places printed on the official patron map that are NOT stages, in the
   // same 0-100 grid the STAGES x/y use. Drawn behind the "Landmark labels"
@@ -192,23 +219,23 @@ const FESTIVAL_CONFIG = {
   // `landmarks` key now correctly renders none.
   landmarks: [
     // Walkways
-    { label: "KINETIC TRAIL",   x: 41, y: 28, rot: -55, color: "rgba(251,191,36,0.85)",  size: 6.8, ls: 1.6 },
-    { label: "MEMORY LANE",     x: 33, y: 55, rot: -90, color: "rgba(247,237,224,0.7)",  size: 6.8, ls: 1.6 },
-    { label: "POWER PATH",      x: 67, y: 38, rot: -90, color: "rgba(167,139,250,0.85)", size: 6.8, ls: 1.6 },
-    { label: "RAINBOW ROAD",    x: 65, y: 64, rot: -90, color: "rgba(244,114,182,0.85)", size: 6.8, ls: 1.6 },
-    { label: "ELECTRIC AVENUE", x: 50, y: 62, rot:   0, color: "rgba(252,211,77,0.95)",  size: 6.8, ls: 2.0 },
-    { label: "BASS LANE",       x: 56, y: 71, rot: -90, color: "rgba(96,165,250,0.85)",  size: 6.5, ls: 1.6 },
-    { label: "NOMADS ALLEY",    x: 22, y: 70, rot: -22, color: "rgba(247,237,224,0.7)",  size: 6.5, ls: 1.5 },
+    { label: "KINETIC TRAIL",   x: 38.3, y: 21.4, rot: -55, color: "rgba(251,191,36,0.85)",  size: 6.8, ls: 1.6 },
+    { label: "MEMORY LANE",     x: 25.0, y: 55.3, rot: -90, color: "rgba(247,237,224,0.7)",  size: 6.8, ls: 1.6 },
+    { label: "POWER PATH",      x: 51.8, y: 46.4, rot: -90, color: "rgba(167,139,250,0.85)", size: 6.8, ls: 1.6 },
+    { label: "RAINBOW ROAD",    x: 47.9, y: 67.1, rot: -90, color: "rgba(244,114,182,0.85)", size: 6.8, ls: 1.6 },
+    { label: "ELECTRIC AVENUE", x: 35.6, y: 71.9, rot:   0, color: "rgba(252,211,77,0.95)",  size: 6.8, ls: 2.0 },
+    { label: "BASS LANE",       x: 44.3, y: 82.1, rot: -90, color: "rgba(96,165,250,0.85)",  size: 6.5, ls: 1.6 },
+    { label: "NOMADS ALLEY",    x: 28.7, y: 77.1, rot: -22, color: "rgba(247,237,224,0.7)",  size: 6.5, ls: 1.5 },
     // Sub-areas / districts
-    { label: "DAISY FIELDS",    x: 40, y: 24, rot:   0, color: "rgba(252,211,77,0.85)",  size: 5.8, ls: 1.4 },
-    { label: "NOMADS LAND",     x: 38, y: 70, rot:   0, color: "rgba(252,211,77,0.95)",  size: 6.5, ls: 1.6 },
+    { label: "DAISY FIELDS",    x: 28.2, y: 22.4, rot:   0, color: "rgba(252,211,77,0.85)",  size: 5.8, ls: 1.4 },
+    { label: "NOMADS LAND",     x: 32.2, y: 87.2, rot:   0, color: "rgba(252,211,77,0.95)",  size: 6.5, ls: 1.6 },
     // Inside-plaza landmarks
-    { label: "RAINBOW BAZAAR",  x: 50, y: 47, rot:   0, color: "rgba(255,255,255,0.92)", size: 5.8, ls: 1.4 },
-    { label: "DOWNTOWN EDC",    x: 50, y: 55, rot:   0, color: "rgba(251,191,36,0.95)",  size: 6.5, ls: 1.6 },
+    { label: "RAINBOW BAZAAR",  x: 34.5, y: 46.2, rot:   0, color: "rgba(255,255,255,0.92)", size: 5.8, ls: 1.4 },
+    { label: "DOWNTOWN EDC",    x: 36.5, y: 61.8, rot:   0, color: "rgba(251,191,36,0.95)",  size: 6.5, ls: 1.6 },
     // Standalone landmarks
-    { label: "FLOWER TUNNEL",   x: 45, y: 33, rot:   0, color: "rgba(244,114,182,0.9)",  size: 6.2, ls: 1.5 },
-    { label: "PIXEL FOREST",    x: 78, y: 60, rot:   0, color: "rgba(244,114,182,0.85)", size: 6.2, ls: 1.5 },
-    { label: "NOMADS PORTAL",   x: 38, y: 76, rot:   0, color: "rgba(244,114,182,0.85)", size: 5.6, ls: 1.4 },
+    { label: "FLOWER TUNNEL",   x: 40.8, y: 29.2, rot:   0, color: "rgba(244,114,182,0.9)",  size: 6.2, ls: 1.5 },
+    { label: "PIXEL FOREST",    x: 58.3, y: 64.0, rot:   0, color: "rgba(244,114,182,0.85)", size: 6.2, ls: 1.5 },
+    { label: "NOMADS PORTAL",   x: 33.2, y: 75.6, rot:   0, color: "rgba(244,114,182,0.85)", size: 5.6, ls: 1.4 },
   ],
 };
 
@@ -583,65 +610,86 @@ function setActiveFestivalAndReload(id) {
 // Constrained to fit inside the tri-oval infield (inner radius ~31
 // around 50,50).
 const STAGES = [
-  { id: "kinetic", name: "Kinetic Field",   short: "KIN", color: "#e85d2e", x: 50, y: 22, size: 1.7,  desc: "Mainstage · headliners, sunrise sets",
+  { id: "kinetic", name: "Kinetic Field",   short: "KIN", color: "#e85d2e", x: 46.0, y: 9.2, size: 1.7,  desc: "Mainstage · headliners, sunrise sets",
     vibe: "Sunrise Cathedral",  vibeNote: "Park here for the sunrise set. Mainstage scale, screen on screen, and the only place worth standing still.",  peak: "03:00–05:30" },
-  { id: "quantum", name: "Quantum Valley",  short: "QNT", color: "#38bdf8", x: 70, y: 26, size: 1.1,
+  { id: "quantum", name: "Quantum Valley",  short: "QNT", color: "#38bdf8", x: 58.0, y: 25.5, size: 1.1,
     vibe: "Trance Family",      vibeNote: "Hands up for ten hours straight. ASOT crowd, melodic, weeping at 4 AM.",                                       peak: "01:00–05:00",
     desc: "Trance, psytrance" },
-  { id: "bionic",  name: "Bionic Jungle",   short: "BIO", color: "#14b8a6", x: 24, y: 26, size: 1.0,
+  { id: "bionic",  name: "Bionic Jungle",   short: "BIO", color: "#14b8a6", x: 16.5, y: 25.2, size: 1.0,
     vibe: "Underground Forest", vibeNote: "Tucked, leafy, intimate. Where tastemakers go between mainstage acts.",                                        peak: "00:00–04:00",
     desc: "House, tech house" },
-  { id: "stereo",  name: "Stereo Bloom",    short: "STR", color: "#22c55e", x: 38, y: 40, size: 0.95,
+  { id: "stereo",  name: "Stereo Bloom",    short: "STR", color: "#22c55e", x: 28.7, y: 31.3, size: 0.95,
     vibe: "Deepest Crowd",      vibeNote: "Smaller stage, heavier heads. Tech house with a real ear in the crowd.",                                       peak: "23:30–03:30",
     desc: "Tech house, underground" },
-  { id: "cosmic",  name: "Cosmic Meadow",   short: "CSM", color: "#fbbf24", x: 14, y: 52, size: 1.2,
+  { id: "cosmic",  name: "Cosmic Meadow",   short: "CSM", color: "#fbbf24", x: 17.4, y: 51.2, size: 1.2,
     vibe: "Wide-Open Vibe",     vibeNote: "Open-air, art cars, room to breathe. Best stage to wander in and out of.",                                     peak: "22:00–02:00",
     desc: "Open-air · big room, legends" },
-  { id: "neon",    name: "Neon Garden",     short: "NEN", color: "#ec4899", x: 74, y: 53, size: 1.05,
+  { id: "neon",    name: "Neon Garden",     short: "NEN", color: "#ec4899", x: 57.9, y: 52.4, size: 1.05,
     vibe: "House Heads HQ",     vibeNote: "If you came for house, this is the room. Long blends, deep selectors, tightest crowd of the night.",            peak: "00:00–04:30",
     desc: "House, deep techno" },
-  { id: "waste",   name: "Wasteland",       short: "WST", color: "#f97316", x: 30, y: 72, size: 1.0,
+  { id: "waste",   name: "Wasteland",       short: "WST", color: "#f97316", x: 17.7, y: 90.1, size: 1.0,
     vibe: "Hard Dance Pit",     vibeNote: "Hardstyle, hardcore, raw. Bring earplugs you actually trust. The only stage where the BPM never drops.",        peak: "23:00–04:00",
     desc: "Dubstep, bass" },
-  { id: "basspod", name: "Basspod",         short: "BAS", color: "#2563eb", x: 48, y: 80, size: 1.05,
+  { id: "basspod", name: "Basspod",         short: "BAS", color: "#2563eb", x: 43.0, y: 94.7, size: 1.05,
     vibe: "Loudest Drops",      vibeNote: "Dubstep, riddim, headbang central. Kicks you can feel in your sternum from a quarter-mile out.",                peak: "23:00–03:30",
     desc: "Dubstep, hard bass" },
-  { id: "circuit", name: "Circuit Grounds", short: "CIR", color: "#1e40af", x: 68, y: 72, size: 1.15,
+  { id: "circuit", name: "Circuit Grounds", short: "CIR", color: "#1e40af", x: 57.2, y: 95.9, size: 1.15,
     vibe: "Techno Vault",       vibeNote: "Industrial techno temple. Drifters from Berghain feel at home. Lasers cut through fog like blades.",            peak: "01:00–05:00",
     desc: "Techno, big room" },
 ];
 
 const AMENITIES = [
-  { id: "a1", type: "water",  label: "Hydration",   x: 40, y: 40 },
-  { id: "a2", type: "water",  label: "Hydration",   x: 60, y: 60 },
-  { id: "a3", type: "water",  label: "Hydration",   x: 62, y: 38 },
-  { id: "a4", type: "food",   label: "Rainbow Bazaar",  x: 45, y: 48 },
-  { id: "a5", type: "med",    label: "Medic",       x: 55, y: 25 },
-  { id: "a6", type: "med",    label: "Medic",       x: 32, y: 70 },
-  { id: "a7", type: "toilet", label: "Restrooms",   x: 35, y: 58 },
-  { id: "a8", type: "toilet", label: "Restrooms",   x: 65, y: 68 },
-  { id: "a9", type: "art",    label: "Daisy Lane",  x: 50, y: 50 },
-  { id: "a10",type: "info",   label: "Info / Lost", x: 55, y: 45 },
+  // MEASURED off the official EDC LV 2026 patron map (edc-map-2026.jpg), not
+  // estimated. Every entry below is a badge that was located by template-
+  // matching the poster's own legend icons against detected icon discs, then
+  // confirmed by eye — see ~/Plursky-private/EDC-MAP-REGISTRATION-2026-08-28.md.
+  // The previous list was largely invented ("these track the obvious crowd
+  // arteries"), which is why it carried 2 restrooms against the poster's 6.
+  //
+  // Coordinates are the same 0-100 grid the STAGES x/y use, derived from the
+  // poster pixel position as x = px * 100/1080, y = px * 100/1080 - 12.5
+  // (the cover-fit extent of a 1080x1350 asset in the 100x100 box).
+  //
+  // NOTE the poster distinguishes GA from VIP for restrooms and water; both
+  // collapse to the app's single `toilet` / `water` type, with the tier kept
+  // in the label so the UI can say which is which.
 
-  // Phone-charging banks. EDC publishes "battery charging stations" on the
-  // Amenities page without exact coords, so these track the obvious crowd
-  // arteries (Rainbow Road + each major stage plaza).
-  { id: "ch1", type: "charge", label: "Charging — Rainbow Road",  x: 50, y: 55 },
-  { id: "ch2", type: "charge", label: "Charging — Kinetic Plaza", x: 48, y: 26 },
-  { id: "ch3", type: "charge", label: "Charging — Quantum Walk",  x: 64, y: 34 },
-  { id: "ch4", type: "charge", label: "Charging — Cosmic Walk",   x: 16, y: 56 },
-  { id: "ch5", type: "charge", label: "Charging — Basspod Plaza", x: 52, y: 76 },
-  { id: "ch6", type: "charge", label: "Charging — Circuit Plaza", x: 68, y: 70 },
+  // ── Restrooms (poster: 2 GA + 4 VIP badges) ──
+  { id: "wc1", type: "toilet", label: "Restrooms — Bionic Jungle",   x: 13.3, y: 21.4 },
+  { id: "wc2", type: "toilet", label: "Restrooms — Neon Garden",     x: 70.0, y: 69.7 },
+  { id: "wc3", type: "toilet", label: "VIP Restrooms — Kinetic",     x: 60.2, y: 10.1, tier: "VIP" },
+  { id: "wc4", type: "toilet", label: "VIP Restrooms — Quantum",     x: 70.2, y: 35.1, tier: "VIP" },
+  { id: "wc5", type: "toilet", label: "VIP Restrooms — Circuit",     x: 68.5, y: 81.2, tier: "VIP" },
+  { id: "wc6", type: "toilet", label: "VIP Restrooms — Basspod",     x: 23.0, y: 99.9, tier: "VIP" },
 
-  // Mobile Charging Lockers (Insomniac's official locker partner). 5 banks:
-  // GA on Rainbow Road, three VIP-only at stage VIPs, one inside Passport
-  // Lounge. Each contains a universal iPhone+Android charger.
-  // Source: secure.mobilecharginglockers.com — EDC LV 2026 listings.
-  { id: "lk1", type: "locker", label: "Lockers — Main Merch (GA)",      x: 50, y: 52, tier: "GA",       price: "$30 day · $90 / 3-day" },
-  { id: "lk2", type: "locker", label: "Lockers — VIP Kinetic",          x: 48, y: 18, tier: "VIP",      price: "$90 · sold out" },
-  { id: "lk3", type: "locker", label: "Lockers — VIP Circuit Grounds",  x: 72, y: 70, tier: "VIP",      price: "$90 / 3-day" },
-  { id: "lk4", type: "locker", label: "Lockers — VIP Basspod",          x: 52, y: 78, tier: "VIP",      price: "$90 / 3-day" },
-  { id: "lk5", type: "locker", label: "Lockers — Passport Lounge",      x: 78, y: 42, tier: "Passport", price: "$25 day · $75 / 3-day" },
+  // ── Water: droplet badges + the numbered "TAPS" refill banks ──
+  { id: "w1", type: "water", label: "VIP Water — Kinetic",     x: 53.7, y:  6.2, tier: "VIP" },
+  { id: "w2", type: "water", label: "76 Taps — Quantum",       x: 64.0, y: 15.2 },
+  { id: "w3", type: "water", label: "VIP Water — Neon",        x: 69.0, y: 40.6, tier: "VIP" },
+  { id: "w4", type: "water", label: "64 Taps — Cosmic Meadow", x: 19.4, y: 47.1 },
+  { id: "w5", type: "water", label: "64 Taps — Memory Lane",   x: 22.7, y: 63.7 },
+  { id: "w6", type: "water", label: "32 Taps — Camp EDC",      x:  6.7, y: 70.9 },
+  { id: "w7", type: "water", label: "VIP Water — Circuit",     x: 60.5, y: 76.7, tier: "VIP" },
+  { id: "w8", type: "water", label: "VIP Water — Wasteland",   x: 26.5, y: 82.8, tier: "VIP" },
+
+  // ── First aid ──
+  { id: "md1", type: "med", label: "First Aid — Kinetic",   x: 22.6, y: 10.1 },
+  { id: "md2", type: "med", label: "First Aid — Gate S",    x: 68.2, y: 21.4 },
+  { id: "md3", type: "med", label: "First Aid — Wasteland", x: 13.6, y: 86.7 },
+  { id: "md4", type: "med", label: "First Aid — Circuit",   x: 52.3, y: 84.8 },
+
+  // ── Charging (chargeFUZE banks) ──
+  { id: "ch1", type: "charge", label: "Charging — Stereo Bloom",    x: 25.5, y: 26.8 },
+  { id: "ch2", type: "charge", label: "Charging — Rainbow Road",    x: 43.9, y: 55.3 },
+  { id: "ch3", type: "charge", label: "Charging — Bass Lane",       x: 43.2, y: 87.1 },
+
+  // ── Info / lost & found ──
+  { id: "i1", type: "info", label: "Info",          x: 21.2, y: 44.1 },
+  { id: "i2", type: "info", label: "Lost & Found",  x:  7.0, y: 48.5 },
+
+  // ── Lockers · General store ──
+  { id: "lk1", type: "locker", label: "Lockers — Quantum Valley", x: 55.9, y: 20.2 },
+  { id: "f1",  type: "food",   label: "General Store — Downtown", x: 42.4, y: 65.5 },
 ];
 
 const AVATAR_START = { x: 50, y: 52 };
