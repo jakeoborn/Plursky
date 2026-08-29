@@ -349,33 +349,113 @@ function sbOnAuthChange(cb) {
 }
 
 // ── Cloud sync ────────────────────────────────────────────────
+// Device-local moment fields that must NOT be synced. `nativePath` is an iOS
+// file:// path that means nothing on another device; `_fingerprint` is a
+// dedupe hash recomputed at import. Measured at ~16% of the serialized blob,
+// and dropping them costs the restore nothing.
+const _MOMENT_LOCAL_FIELDS = ["nativePath", "_fingerprint"];
+function _slimMomentsForSync(all) {
+  const out = {};
+  for (const night of Object.keys(all || {})) {
+    const arr = all[night];
+    if (!Array.isArray(arr)) continue;
+    out[night] = arr.map(m => {
+      if (!m || typeof m !== "object") return m;
+      const copy = { ...m };
+      for (const f of _MOMENT_LOCAL_FIELDS) delete copy[f];
+      return copy;
+    });
+  }
+  return out;
+}
+// Ceiling on the moments blob. This is about request size, not about
+// protecting Postgres — jsonb handles megabytes, and localStorage itself caps
+// near 5MB, so the blob can never be unbounded. At a measured 742 bytes per
+// moment the old 800,000 limit tripped at ~1,078 moments (a single season of
+// heavy use); this holds ~3,200 slimmed ones.
+const _MOMENTS_SYNC_BUDGET = 2000000;
+
 async function sbPush(artistIds, notes) {
   if (!_sb) return;
   const user = await sbGetUser();
   if (!user) return;
   const row = {
     user_id:    user.id,
-    artist_ids: artistIds,
-    notes:      notes,
     updated_at: new Date().toISOString(),
   };
+  // EVERY column here is upserted WHOLESALE, so anything we fail to rebuild on
+  // this pass is deleted server-side. Read the row first and treat it as the
+  // floor: a local read that throws leaves the cloud copy STALE instead of
+  // WIPING it. `null`/undefined from a caller means "I could not read this —
+  // keep what is up there"; an empty array or object means "genuinely empty,
+  // write it". That distinction matters because sbPushMoments pushes on behalf
+  // of the moment store and has no App state to source a saved list from —
+  // without it, one moment write would clear the user's whole saved lineup.
+  let server = {};
+  try {
+    const { data } = await _sb.from("user_data").select("artist_ids, notes, meta").eq("user_id", user.id).single();
+    if (data && typeof data === "object") server = data;
+  } catch {}
+  row.artist_ids = Array.isArray(artistIds) ? artistIds : (Array.isArray(server.artist_ids) ? server.artist_ids : []);
+  row.notes      = (notes && typeof notes === "object") ? notes : (server.notes && typeof server.notes === "object" ? server.notes : {});
+  const serverMeta = (server.meta && typeof server.meta === "object") ? server.meta : {};
+  row.meta = { ...serverMeta };
+  delete row.meta.momentsSyncWarning;
   // Attach Spotify profile + removed_at tombstones so deletions
   // propagate across devices. Without this, union-merge would resurrect
-  // unsaved artists on every sync.
+  // unsaved artists on every sync. Separate try blocks: one bad key must not
+  // take the others down with it.
   try {
     const raw = localStorage.getItem("spotify_profile");
-    const removedRaw = localStorage.getItem("plursky_removed_at_v1");
-    row.meta = {};
     if (raw) row.meta.spotify = JSON.parse(raw);
+  } catch {}
+  try {
+    const removedRaw = localStorage.getItem("plursky_removed_at_v1");
     if (removedRaw) row.meta.removed_at = JSON.parse(removedRaw);
-    // Back up Memories METADATA (tags, confirmed songs, times, stages — the
-    // irreplaceable hand-tagged data) so a wiped/switched phone can restore it.
-    // Photo/video blobs live in IndexedDB and are NOT backed up here (too
-    // large; needs Supabase Storage — see roadmap). Capped to keep the row sane.
+  } catch {}
+  // Back up Memories METADATA (tags, confirmed songs, times, stages — the
+  // irreplaceable hand-tagged data) so a wiped/switched phone can restore it.
+  // Photo/video blobs live in IndexedDB and are NOT backed up here (too
+  // large; needs Supabase Storage — see roadmap).
+  try {
     const momentsRaw = localStorage.getItem("plursky_moments_v1");
-    if (momentsRaw && momentsRaw.length < 800000) row.meta.moments = JSON.parse(momentsRaw);
+    if (momentsRaw) {
+      const slim = _slimMomentsForSync(JSON.parse(momentsRaw));
+      const size = JSON.stringify(slim).length;
+      if (size <= _MOMENTS_SYNC_BUDGET) {
+        row.meta.moments = slim;
+      } else {
+        // Over budget: keep whatever the server already has (inherited above)
+        // and RECORD that we did. The old code dropped the key silently, and
+        // because the upsert replaces `meta` wholesale that deleted the cloud
+        // backup of the one thing in this row that cannot be re-derived.
+        row.meta.momentsSyncWarning = { size, budget: _MOMENTS_SYNC_BUDGET, at: new Date().toISOString() };
+      }
+    }
   } catch {}
   await _sb.from("user_data").upsert(row);
+}
+
+// Moment writes have to sync too. sbPush needs the saved list + notes, which
+// only App held — so tagging a moment never pushed anything. The auto-push in
+// app.jsx is additionally gated on `state.saved.length`, so a user who imports
+// photos but saves no artists synced NOTHING. This reads both from
+// localStorage so any moment write can trigger its own push.
+async function sbPushMoments() {
+  if (!_sb) return;
+  // null, NOT [] — see the merge comment in sbPush. A missing key or a parse
+  // failure must not be reported as "the user saved nothing".
+  let saved = null, notes = null;
+  try {
+    const fid = window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id;
+    const raw = fid ? localStorage.getItem(`${fid}_saved_v1`) : null;
+    if (raw) { const p = JSON.parse(raw); if (Array.isArray(p)) saved = p; }
+  } catch {}
+  try {
+    const raw = localStorage.getItem("artist_notes_v1");
+    if (raw) { const p = JSON.parse(raw); if (p && typeof p === "object") notes = p; }
+  } catch {}
+  await sbPush(saved, notes);
 }
 
 // Tombstone an artist removal locally so subsequent sbPush includes it
@@ -598,6 +678,22 @@ function AccountCard({ state, setState }) {
                 localStorage.setItem("plursky_moments_v1", JSON.stringify(local));
                 try { window.dispatchEvent(new Event("plursky-moments-change")); } catch {}
               }
+            }
+          } catch {}
+          // BACKFILL. The push hook lives in _writeMoments, so it only fires on
+          // a WRITE — a library that was imported before this shipped would sit
+          // on-device forever, never touched again, never uploaded. (Measured
+          // 2026-08-29: a real account had a full local library and an empty
+          // server meta.moments with updated_at untouched since June 13.) Note
+          // the restore above writes localStorage DIRECTLY rather than through
+          // _writeMoments, so it does not trigger the hook either. One shot per
+          // auth event, after the merge, so local-only moments reach the cloud
+          // without the user having to touch anything. Converges: pull merged
+          // cloud into local, this pushes the union back up.
+          try {
+            const localRaw = localStorage.getItem("plursky_moments_v1");
+            if (localRaw && localRaw.length > 2 && window.sbPushMoments) {
+              setTimeout(() => { try { window.sbPushMoments()?.catch?.(() => {}); } catch {} }, 1500);
             }
           } catch {}
         });
@@ -2917,7 +3013,7 @@ async function sbDownloadMomentMedia(photoId) {
 Object.assign(window, {
   sbUploadMomentMedia, sbDownloadMomentMedia,
   AccountCard, sbSignInWithSpotify, sbSignInWithApple, sbDeleteAccount, sbSignOut, sbGetUser, sbPush, sbPull, sbOnAuthChange,
-  sbMarkRemoved, sbClearRemoved,
+  sbMarkRemoved, sbClearRemoved, sbPushMoments,
   sbGetArtistSaveCounts,
   sbPresenceJoin, sbPresenceUpdate, sbPresenceLeave, sbPresenceRefresh, sbOnPresenceChange,
   sbGetMyPresId, sbGetPresSnap, sbFindByPingCode,
