@@ -638,7 +638,7 @@ function _YourMomentThumb({ moment, accent, onClick, style: overrideStyle }) {
   );
 }
 
-function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj }) {
+function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj, onOpenMap }) {
   // Re-read when the Memories tab updates moments. Cheap (~hundreds of
   // bytes from localStorage) and avoids prop-drilling through the artist
   // screen. The "plursky-moments-change" event is dispatched by
@@ -656,16 +656,70 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj }) {
     return () => window.removeEventListener("plursky-moments-change", refresh);
   }, []);
   const mine = React.useMemo(() => {
+    // Scope to the ACTIVE festival before matching. Artist ids are
+    // festival-local (`k24` exists in more than one lineup), so an unscoped
+    // match would pull another festival's moments onto this hero.
+    const scoped = (typeof _activeMoments === "function") ? _activeMoments(moments) : moments;
     const out = [];
-    for (const n of Object.keys(moments)) {
-      for (const m of (moments[n] || [])) {
+    for (const n of Object.keys(scoped)) {
+      for (const m of (scoped[n] || [])) {
         if (m.artistId === artistId) out.push(m);
       }
     }
     // Newest first so the most recent capture is leftmost.
     return out.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
   }, [moments, artistId]);
-  if (mine.length === 0) return null;
+
+  // Tapping your own photo used to bounce to the Memories tab at that night —
+  // you lost the artist you were looking at and had to find the shot again.
+  // Open it here instead, on the moment you actually tapped.
+  const [lightbox, setLightbox] = React.useState(null);
+  const openAt = (i) => setLightbox({ moments: mine, index: i });
+  const updateMoment = (mom, patch) => {
+    try {
+      const all = _readMoments();
+      for (const n of Object.keys(all)) {
+        all[n] = (all[n] || []).map(m => m.id === mom.id ? { ...m, ...patch } : m);
+      }
+      _writeMoments(all);            // fires plursky-moments-change + cloud push
+      setLightbox(lb => lb ? { ...lb, moments: lb.moments.map(m => m.id === mom.id ? { ...m, ...patch } : m) } : lb);
+    } catch {}
+  };
+
+  // EMPTY STATE. This returned null, so an artist you filmed nothing at
+  // rendered NOTHING — no prompt, no hint that the feature exists at all. The
+  // set time and stage are the useful thing to show instead: the answer to
+  // "why don't I have anything here" is usually "you haven't gone yet".
+  if (mine.length === 0) {
+    const stage = (typeof STAGES !== "undefined" ? STAGES : window.STAGES || []).find(x => x.id === artistObj?.stage);
+    const when = artistObj?.start ? `${typeof fmt12 === "function" ? fmt12(artistObj.start) : artistObj.start}${artistObj.end ? `–${typeof fmt12 === "function" ? fmt12(artistObj.end) : artistObj.end}` : ""}` : null;
+    return (
+      <div style={{
+        marginBottom: 18, borderRadius: 16, padding: "16px",
+        background: "var(--night)", color: "#fff",
+        border: "1px dashed rgba(255,255,255,0.12)",
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(255,255,255,0.25)" }} />
+          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, fontWeight: 700, color: "rgba(255,255,255,0.4)" }}>
+            YOUR MOMENTS
+          </span>
+        </div>
+        <div style={{ fontSize: 13, lineHeight: 1.5, color: "rgba(255,255,255,0.7)" }}>
+          You haven't filmed anything at {artistObj?.name || "this set"} yet.
+        </div>
+        {(when || stage) && (
+          <button onClick={() => onOpenMap?.(artistObj)} className="mono" style={{
+            marginTop: 10, padding: "8px 12px", borderRadius: 8, width: "100%",
+            background: `${accent}18`, border: `1px solid ${accent}40`, color: accent,
+            cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700, textAlign: "left",
+          }}>
+            {stage ? `${stage.name.toUpperCase()}` : "FIND THE STAGE"}{when ? ` · ${when}` : ""} →
+          </button>
+        )}
+      </div>
+    );
+  }
   const preview = mine.slice(0, 8);
   const more = mine.length - preview.length;
   const vids = mine.filter(m => m.kind === "video").length;
@@ -705,7 +759,7 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj }) {
         scrollbarWidth: "none", WebkitOverflowScrolling: "touch",
       }}>
         {preview.map((m, i) => (
-          <_YourMomentThumb key={m.id} moment={m} accent={accent} onClick={() => onOpen(m.night)}
+          <_YourMomentThumb key={m.id} moment={m} accent={accent} onClick={() => openAt(i)}
             style={{
               width: 82, height: 110, borderRadius: 8,
               border: `1px solid rgba(255,255,255,0.08)`,
@@ -746,6 +800,16 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj }) {
               fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
             }}>CREATE GIF</button>
         </div>
+      )}
+      {lightbox && typeof MomentLightbox === "function" && (
+        <MomentLightbox
+          moments={lightbox.moments}
+          index={lightbox.index}
+          onClose={() => setLightbox(null)}
+          onIndexChange={(i) => setLightbox(lb => lb ? { ...lb, index: i } : lb)}
+          onArtistClick={() => setLightbox(null)}
+          onUpdate={updateMoment}
+        />
       )}
     </div>
   );
@@ -1369,6 +1433,7 @@ function ArtistScreen({ state, setState }) {
           accent={stage.color}
           artistObj={a}
           onOpen={(n) => (window._pushNav || ((x) => setState({ ...state, ...x })))({ tab: "memories", memoriesNight: n, artist: null })}
+          onOpenMap={(art) => (window._pushNav || ((x) => setState({ ...state, ...x })))({ tab: "map", focusStage: art?.stage || a.stage, artist: null })}
         />
 
         {/* Social search links — SPOTIFY goes to the artist's PAGE directly
