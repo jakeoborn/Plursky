@@ -204,19 +204,29 @@ const FESTIVAL_CONFIG = {
   //   (c) exactly ONE saved/attended set live in the window
   // (c) is what keeps blends out: an n=4 cluster at 36.27188,-115.00856 sits
   // between neon and quantum because both were watched from nearly the same
-  // spot, so it anchors NEITHER. cosmic is n=1 and also excluded. Enforced by
-  // the crowd-anchor gate in scripts/verify.mjs, which also requires each one
-  // to fall inside venue.footprint.
+  // spot, so it anchors NEITHER. cosmic is n=1 and also excluded.
+  //
+  // ⚠️ (a) and (b) are CHECKED by the gate in scripts/verify.mjs. (c) CANNOT
+  // BE — it depends on the replay's schedule window, not on anything in this
+  // file, and the rejected blend would sail through a pure n/spread test
+  // (n=4, tight spread). So (c) is carried as an EXPLICIT ATTESTATION:
+  // `soleSetInWindow: true`. The gate cannot verify the claim, but it refuses
+  // any anchor that does not make it — which turns a silent omission into a
+  // deliberate signature, and stops a future batch script from dumping
+  // centroids straight in. The gate also requires each anchor to fall inside
+  // venue.footprint.
   crowdAnchors: [
     // 438 m ESE of the poster pin. n=11 over TWO nights and the centroid moved
     // 5.7 m when the second night was added — an independent night agreeing to
     // within six metres is what makes this a measurement and not an anecdote.
     { stageId: "kinetic", lat: 36.27395, lng: -115.00714, n: 11, nights: 2,
-      spreadM: 85, measuredAt: "2026-08-29", source: "jake-edc2026-batch1+2" },
+      spreadM: 85, soleSetInWindow: true, measuredAt: "2026-08-29",
+      source: "jake-edc2026-batch1+2" },
     // Agrees with its poster pin to 100 m, so this one changes little — kept
     // for uniformity and because it is the only pin independently validated.
     { stageId: "circuit", lat: 36.27003, lng: -115.01105, n: 6, nights: 1,
-      spreadM: 20, measuredAt: "2026-08-29", source: "jake-edc2026-batch2" },
+      spreadM: 20, soleSetInWindow: true, measuredAt: "2026-08-29",
+      source: "jake-edc2026-batch2" },
   ],
 
   // ── Weather ──
