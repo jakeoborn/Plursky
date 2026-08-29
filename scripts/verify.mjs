@@ -380,6 +380,16 @@ for (const f of r.fns) if (!f.endsWith("=function")) console.log(`      ✗ ${f}
 if (r.errs.length) console.log(`  console errors: ${r.errs.join(" / ")}`);
 
 if (r.root < 1) fail(`#root has ${r.root} children — the app did not mount`);
+// `root >= 1` does NOT mean the app rendered: RootErrorBoundary also produces
+// exactly one child, and so does a render caught mid-flight. This number was
+// printed but never asserted, so both failure modes read as a pass. Observed
+// 2026-08-29: a probe that settled slowly under load reported 2,066 chars
+// against a healthy 19,376 and the gate still went green.
+// A trip here is either a real regression or a slow-machine capture — re-run
+// once to tell them apart; a regression reproduces, a slow capture does not.
+const MIN_RENDERED_CHARS = 5000;
+if (r.chars < MIN_RENDERED_CHARS)
+  fail(`#root rendered only ${r.chars} chars (floor ${MIN_RENDERED_CHARS}) — error boundary or a partial render, not a healthy mount`);
 const missing = r.fns.filter(f => !f.endsWith("=function"));
 if (missing.length) fail(`not a function: ${missing.join(", ")}`);
 if (r.errs.length) fail(`${r.errs.length} console error(s) during boot`);
