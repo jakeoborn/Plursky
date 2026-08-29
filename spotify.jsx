@@ -1363,7 +1363,8 @@ function _recoverVideoMetaFromArchive(file, fp, meta) {
   // v235: any known festival, not just the active one — otherwise a video
   // whose own metadata is already good gets needlessly overwritten from the
   // archive purely because a different festival is on screen.
-  const parsedNight = meta?.date ? (_anyFestivalNight(meta.date)?.night ?? null) : null;
+  const parsedNight = (meta?.date || meta?.rawUtcMs != null)
+    ? (_anyFestivalNight(meta.date, meta.rawUtcMs)?.night ?? null) : null;
   if (parsedNight != null && meta?.takenAtSource !== "file-lastModified" && meta?.takenAtSource !== "none") return null;
   return {
     meta: { ...(meta || {}), date: recoveredDate, takenAtSource: "archive-recovered" },
@@ -4611,7 +4612,11 @@ function MemoriesScreen({ state, setState }) {
           kind: out.kind,
           duration: out.duration ?? null,
           createdAt: Date.now(),
-          takenAt: _momentDatePartsToTakenAt(meta?.date),
+          // matched.localDate is meta.date re-derived against the festival the
+          // photo actually belongs to. For images the two are identical; for a
+          // video imported while a DIFFERENT festival is active it is the fix —
+          // the parse-time value used the on-screen festival's offset.
+          takenAt: _momentDatePartsToTakenAt(matched?.localDate || meta?.date),
           takenAtSource: meta?.takenAtSource || "none",
           locationSource: meta?.locationSource || ((meta?.lat != null && meta?.lng != null) ? "gps" : "none"),
           importedAt: new Date().toISOString(),
