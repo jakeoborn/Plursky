@@ -801,6 +801,20 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj, onOpenMap
             }}>CREATE GIF</button>
         </div>
       )}
+      {artistObj && mine.length > 0 && (
+        <div style={{ padding: "0 16px 14px" }}>
+          {/* "My {artist} set" — every clip tagged to this act, one tap. */}
+          <button
+            onClick={() => window._shareScopedRecap?.({ scope: "artist", artist: artistObj, moments: mine })}
+            className="mono"
+            style={{
+              width: "100%", padding: "10px 0", borderRadius: 8,
+              background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
+              border: "none", color: "#fff", cursor: "pointer",
+              fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+            }}>🎞 MY {String(artistObj.name || "").toUpperCase()} SET</button>
+        </div>
+      )}
       {lightbox && typeof MomentLightbox === "function" && (
         <MomentLightbox
           moments={lightbox.moments}

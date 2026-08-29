@@ -585,6 +585,21 @@ function _renderVideoFrame(ctx, W, H, t, timeline, chrome, tmpl) {
     ctx.font = "700 14px 'Geist Mono', monospace";
     ctx.fillStyle = "rgba(255,255,255,0.5)";
     ctx.fillText("YOUR FESTIVAL. YOUR STORY.", W / 2, H / 2 + 40);
+    // The festival, named. Every share is an ad, and the mark alone does not
+    // say which event it is an ad FOR — the name is what makes a reshare
+    // legible to someone who was not there.
+    const _cfgEnd = window.FESTIVAL_CONFIG || {};
+    const _fest = (_cfgEnd.shortName || _cfgEnd.name || "").toUpperCase();
+    if (_fest) {
+      ctx.font = "700 18px 'Geist Mono', monospace";
+      ctx.fillStyle = "rgba(255,255,255,0.85)";
+      ctx.fillText(_fest, W / 2, H / 2 + 92);
+      if (_cfgEnd.dates) {
+        ctx.font = "700 12px 'Geist Mono', monospace";
+        ctx.fillStyle = "rgba(255,255,255,0.4)";
+        ctx.fillText(String(_cfgEnd.dates).toUpperCase(), W / 2, H / 2 + 116);
+      }
+    }
     return;
   }
 
@@ -862,6 +877,39 @@ function _videoProgress(show, pct) {
     if (ring) ring.setAttribute("stroke-dashoffset", String(326.7 * (1 - (pct || 0))));
     if (txt) txt.textContent = p + "%";
   }
+}
+
+// ── Scope presets ────────────────────────────────────────────────────────
+// The founder's asks, one tap each. All three feed the SAME renderer — the
+// only thing a preset decides is which moments go in and what the title card
+// says, which is why this is a wrapper and not three implementations.
+//   artist  → "My {artist} set"   every clip tagged to one act
+//   night   → "Night {N}"          chronological across stages
+//   weekend → the existing recap flow
+async function _shareScopedRecap({ scope, artist, night, moments, audioUrl, template, format, recap, accent }) {
+  const CFG = window.FESTIVAL_CONFIG || {};
+  const all = moments || [];
+  let picked = all, title = "My Weekend";
+  if (scope === "artist" && artist) {
+    picked = all.filter(m => m && m.artistId === artist.id);
+    title = `My ${artist.name} set`;
+  } else if (scope === "night" && night != null) {
+    picked = all
+      .filter(m => m && String(m.night) === String(night))
+      .slice()
+      .sort((a, b) => String(a.takenAt || "").localeCompare(String(b.takenAt || "")));
+    title = `Night ${night}`;
+  }
+  if (!picked.length) {
+    try { window.plurskyToast?.("Nothing to make a video from yet"); } catch {}
+    return { ok: false, reason: "no_moments" };
+  }
+  return _shareRecapVideo({
+    moments: picked, audioUrl, template, format, recap,
+    title,
+    subtitle: `${(CFG.shortName || "FESTIVAL").toUpperCase()} · ${CFG.dates || ""}`,
+    accent: accent || "#6D28D9",
+  });
 }
 
 async function _shareRecapVideo({ moments, audioUrl, template, title, subtitle, accent, recap, format }) {
@@ -1892,7 +1940,7 @@ async function _shareCrewComparison(myName, myState, otherName, otherArtistIds) 
 Object.assign(window, {
   _renderCollage, _renderCollageGif, _shareCollage,
   _shareArtistCollage, _shareStageCollage, _shareNightCollage, _shareWeekendCollage, _shareCrewCollage,
-  _renderRecapVideo, _shareRecapVideo, _detectBeats, _VIDEO_TEMPLATES,
+  _renderRecapVideo, _shareRecapVideo, _shareScopedRecap, _detectBeats, _VIDEO_TEMPLATES,
   _shareFestivalDNA, _shareFestivalPassport, _shareFilmStrip, _shareCrewComparison,
   _renderFestivalYearCard, _shareFestivalYearCard, _shareCanvasAsImage,
 });
