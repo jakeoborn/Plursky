@@ -2009,16 +2009,59 @@ function _soleSlotForArtist(artistId) {
   const slots = all.filter(a => a.id === artistId);
   return slots.length === 1 ? slots[0] : null;
 }
+// EVERY lineup artist a Shazam artist string could be referring to. A collab
+// credit names several: "Meet Again - Kaskade, Layton Giordani & Natalie Jane"
+// contains two acts who both played, on DIFFERENT NIGHTS.
+// _lineupArtistFromShazam returns .find() — the first in array order, which is
+// arbitrary with respect to correctness. It picked Kaskade (Saturday, one
+// slot) for a clip that was Layton Giordani (Sunday), and because Kaskade has
+// exactly one slot the single-slot check passed and recovery filed the moment
+// into the wrong night with full confidence.
+function _lineupArtistsFromShazam(shazamArtist) {
+  if (!shazamArtist) return [];
+  const norm = String(shazamArtist).toLowerCase().trim();
+  const all = (typeof ARTISTS !== "undefined" ? ARTISTS : window.ARTISTS || []);
+  const seen = new Set(), out = [];
+  for (const a of all) {
+    const an = String(a.name || "").toLowerCase();
+    if (!an) continue;
+    if (an === norm || an.includes(norm) || norm.includes(an.split(/ b2b /i)[0])) {
+      if (seen.has(a.id)) continue;
+      seen.add(a.id); out.push(a);
+    }
+  }
+  return out;
+}
+// The single rule both refusals collapse into: every slot the song could be
+// pointing at, across every artist its credit names. Recovery is only safe
+// when that set has exactly ONE member — one act, playing once. Two acts on
+// different nights is the collab case; one act playing twice is the
+// double-booking case; both mean the song says WHO, not WHEN.
+function _slotsForShazamArtist(shazamArtist) {
+  const out = [];
+  for (const a of _lineupArtistsFromShazam(shazamArtist)) {
+    const all = (typeof ARTISTS !== "undefined" ? ARTISTS : window.ARTISTS || []);
+    for (const slot of all.filter(x => x.id === a.id)) out.push(slot);
+  }
+  return out;
+}
 // Can this moment's night be recovered from its identified song? Only worth
 // offering when the night is actually in doubt — a moment with a trustworthy
 // EXIF date does not need rescuing, and overriding one would be a regression.
-function _songRecoveryFor(moment, matchedArtist) {
+function _songRecoveryFor(moment, matchedArtist, shazamArtistRaw) {
   if (!moment || !matchedArtist) return null;
   if (!moment.dateUnverified && moment.tagSource !== "fallback") return null;
-  const slot = _soleSlotForArtist(matchedArtist.id);
+  // Resolve against the RAW credit when we have it, not just the one artist
+  // .find() happened to return — that is where the collab hazard lives.
+  const slots = shazamArtistRaw ? _slotsForShazamArtist(shazamArtistRaw)
+                                : (_soleSlotForArtist(matchedArtist.id) ? [_soleSlotForArtist(matchedArtist.id)] : []);
+  if (slots.length !== 1) return null;
+  const slot = slots[0];
   if (!slot || slot.day == null) return null;
   if (String(slot.day) === String(moment.night) && moment.artistId === slot.id) return null;
-  return { artistId: slot.id, night: slot.day, stage: slot.stage, name: matchedArtist.name };
+  const name = (typeof ARTISTS !== "undefined" ? ARTISTS : window.ARTISTS || [])
+    .find(a => a.id === slot.id)?.name || matchedArtist.name;
+  return { artistId: slot.id, night: slot.day, stage: slot.stage, name };
 }
 
 // Given a Shazam-matched artist name, find the lineup artist it best
@@ -2127,6 +2170,10 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
     onUpdate?.(m, { confirmedSong: confirmed, confirmedTitle: result.title, confirmedArtist: result.artist || "", songSource: "video-shazam" });
     // Cross-check: does the recognized artist contradict the photo's tag?
     const matchedArtist = _lineupArtistFromShazam(result.artist);
+    // A credit naming more than one lineup act cannot single anyone out, so
+    // neither prompt below may act on it. Same reason for both: .find() would
+    // be choosing by array order, not by evidence.
+    const creditIsAmbiguous = _lineupArtistsFromShazam(result.artist).length > 1;
     // _lineupArtistFromShazam searches the WHOLE lineup, every night. Offering
     // an artist who does not play on this moment's night would mint an
     // impossible artistId+night pair — and handleUpdate merges a patch inside
@@ -2135,14 +2182,14 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
     // night from the song is real and worth doing, but it needs to move the
     // moment between buckets; that belongs with 0.4's date-unverified work.
     // Until then, only offer a swap that is actually possible.
-    if (matchedArtist && matchedArtist.id !== m.artistId && matchedArtist.day === m.night) {
+    if (matchedArtist && !creditIsAmbiguous && matchedArtist.id !== m.artistId && matchedArtist.day === m.night) {
       setMismatch(matchedArtist);
     } else if (matchedArtist && onRecoverNight) {
       // Different night. Normally that pairing is impossible and 0.1 gates the
       // swap — but when the night itself is the untrustworthy part, the song is
       // better evidence than the timestamp that produced it. Only offered when
       // the artist has exactly one slot, so "who" implies "when".
-      const rec = _songRecoveryFor(m, matchedArtist);
+      const rec = _songRecoveryFor(m, matchedArtist, result.artist);
       if (rec) setRecovery(rec);
     }
     // #7 proof-of-attendance: a song recognized from your OWN video is proof
