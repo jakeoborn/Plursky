@@ -1311,6 +1311,32 @@ function _metaFromFile(file, exifMeta) {
       if (_anyFestivalNight(fileDate) != null) { out.date = fileDate; out.takenAtSource = "file-lastModified"; }
     }
   }
+  // ── 0.4: is this capture time actually the capture time? ──────────────
+  // iMessage and most social re-encodes REWRITE the capture time to the
+  // moment of export and strip GPS with it. Measured on a real batch: 10 of
+  // 19 videos arrived re-stamped. The tell is that the "capture" time and the
+  // file's own mtime agree almost exactly, because both were written by the
+  // same re-encode — a genuine capture is minutes to months older than the
+  // file that carries it.
+  //
+  // Deliberately NOT silent: the old behaviour stamped a manufactured
+  // timestamp into a real festival night, which is the worst outcome — wrong
+  // AND confident. A moment flagged here still imports and still gets its best
+  // guess; it just says out loud that the date is unproven.
+  //
+  // False positive: a photo taken and imported within two minutes. It costs a
+  // confirm chip, and the asymmetry is the point — a visible ask beats a
+  // silent mis-file. (Both sides are read in device-local time, which is the
+  // same clock the re-encode wrote, so the comparison holds.)
+  if (out.date && file?.lastModified) {
+    const capMs = new Date(out.date.yr, out.date.mo - 1, out.date.dy,
+                           out.date.hh, out.date.mm, out.date.ss || 0).getTime();
+    const deltaMs = Math.abs(capMs - file.lastModified);
+    if (isFinite(deltaMs) && deltaMs <= _DATE_UNVERIFIED_WINDOW_MS) {
+      out.dateUnverified = true;
+      out.dateUnverifiedDeltaS = Math.round(deltaMs / 1000);
+    }
+  }
   return out;
 }
 
@@ -1806,6 +1832,10 @@ function useSetlistSong(artist, takenAt) {
   return result;
 }
 
+// A capture time this close to the file's own mtime was almost certainly
+// written by the same re-encode that produced the file.
+const _DATE_UNVERIFIED_WINDOW_MS = 2 * 60 * 1000;
+
 const _TAG_SOURCE_LABEL = {
   exif:                 { text: "AUTO · EXIF",       tone: "ok" },
   filetime:             { text: "AUTO · FILE TIME",  tone: "ok" },
@@ -1814,6 +1844,7 @@ const _TAG_SOURCE_LABEL = {
   off_stage:            { text: "📍 BETWEEN SETS",    tone: "info" },
   "stage-neighbor":     { text: "NEARBY SET · VERIFY", tone: "warn" },
   fallback:             { text: "FALLBACK · RETAG",  tone: "warn" },
+  "song-recovered":     { text: "RECOVERED · SONG",  tone: "ok" },
   manual:               { text: "MANUAL",            tone: "ok" },
 };
 
@@ -1963,6 +1994,33 @@ async function identifySongFromVideo(moment, onProgress) {
   return null;
 }
 
+// ── 0.4 recovery: the song is the evidence the metadata lost ─────────────
+// An EXIF-stripped clip has a manufactured date, so its night is a guess. But
+// a song identified from its own audio places it at a SET, and a set has a
+// night and a stage. Measured on the real batch: this recovered night/stage
+// for 5 of 13 transit-damaged videos.
+//
+// GATED ON EXACTLY ONE SLOT. If the artist plays twice in the festival the
+// song says who, not when, and picking either slot would be inventing
+// precision. Returns null rather than guessing.
+function _soleSlotForArtist(artistId) {
+  if (!artistId) return null;
+  const all = (typeof ARTISTS !== "undefined" ? ARTISTS : window.ARTISTS || []);
+  const slots = all.filter(a => a.id === artistId);
+  return slots.length === 1 ? slots[0] : null;
+}
+// Can this moment's night be recovered from its identified song? Only worth
+// offering when the night is actually in doubt — a moment with a trustworthy
+// EXIF date does not need rescuing, and overriding one would be a regression.
+function _songRecoveryFor(moment, matchedArtist) {
+  if (!moment || !matchedArtist) return null;
+  if (!moment.dateUnverified && moment.tagSource !== "fallback") return null;
+  const slot = _soleSlotForArtist(matchedArtist.id);
+  if (!slot || slot.day == null) return null;
+  if (String(slot.day) === String(moment.night) && moment.artistId === slot.id) return null;
+  return { artistId: slot.id, night: slot.day, stage: slot.stage, name: matchedArtist.name };
+}
+
 // Given a Shazam-matched artist name, find the lineup artist it best
 // corresponds to — used to detect when a video's true audio disagrees
 // with the photo's auto-tag (proves the user was at a different stage).
@@ -2022,7 +2080,7 @@ function _FavBadge({ style }) {
   );
 }
 
-function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick, onUpdate }) {
+function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick, onUpdate, onRecoverNight }) {
   const m = moments[index];
   const photoUrl = useMomentPhoto(m?.photoId);
   const artist = m?.artistId ? ARTISTS.find(a => a.id === m.artistId) : null;
@@ -2033,11 +2091,12 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
   const touch  = React.useRef({ x: 0 });
   const [idState, setIdState] = React.useState("idle"); // idle|listening|matching|done|fail
   const [mismatch, setMismatch] = React.useState(null);  // suggested artist if audio disagrees with tag
+  const [recovery, setRecovery] = React.useState(null);  // 0.4: song can rescue an unverified night
   const [sharing, setSharing] = React.useState(false);
   const [retagging, setRetagging] = React.useState(false); // inline "fix the artist" picker
   const [retagQuery, setRetagQuery] = React.useState("");
 
-  React.useEffect(() => { setIdState("idle"); setMismatch(null); setRetagging(false); setRetagQuery(""); }, [index]);
+  React.useEffect(() => { setIdState("idle"); setMismatch(null); setRecovery(null); setRetagging(false); setRetagQuery(""); }, [index]);
 
   // Auto-tag guesses a stage by time (usually the mainstage) and gets the
   // night/stage wrong when there's no GPS. So the fix must search the WHOLE
@@ -2078,6 +2137,13 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
     // Until then, only offer a swap that is actually possible.
     if (matchedArtist && matchedArtist.id !== m.artistId && matchedArtist.day === m.night) {
       setMismatch(matchedArtist);
+    } else if (matchedArtist && onRecoverNight) {
+      // Different night. Normally that pairing is impossible and 0.1 gates the
+      // swap — but when the night itself is the untrustworthy part, the song is
+      // better evidence than the timestamp that produced it. Only offered when
+      // the artist has exactly one slot, so "who" implies "when".
+      const rec = _songRecoveryFor(m, matchedArtist);
+      if (rec) setRecovery(rec);
     }
     // #7 proof-of-attendance: a song recognized from your OWN video is proof
     // you were at that set — auto-confirm attendance (feeds Recap "sets
@@ -2299,6 +2365,26 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
             </div>
             <div style={{ fontSize: 12, lineHeight: 1.4 }}>
               This video's song is {mismatch.name}'s — retag this moment to them? (You were probably at {STAGES.find(s => s.id === mismatch.stage)?.name || "their stage"}.)
+            </div>
+          </button>
+        )}
+
+        {/* 0.4: the song rescued a night the metadata could not vouch for.
+            Distinct from the mismatch prompt above — that one corrects WHO
+            within a night we trust; this one corrects WHEN, and has to move the
+            moment between night buckets. */}
+        {recovery && (
+          <button onClick={() => { onRecoverNight?.(m, recovery); setRecovery(null); }} style={{
+            marginTop: 8, padding: "10px 12px", borderRadius: 10, width: "100%",
+            background: "rgba(56,189,248,0.15)", border: "1px solid rgba(56,189,248,0.45)",
+            color: "#bae6fd", cursor: "pointer", textAlign: "left",
+          }}>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, marginBottom: 2 }}>
+              RECOVER FROM SONG · NIGHT {recovery.night}
+            </div>
+            <div style={{ fontSize: 12, lineHeight: 1.4 }}>
+              This clip's date was unverified, but its song is {recovery.name}'s and they played once —
+              night {recovery.night}{STAGES.find(s => s.id === recovery.stage)?.name ? ` at ${STAGES.find(s => s.id === recovery.stage).name}` : ""}. File it there?
             </div>
           </button>
         )}
@@ -2698,6 +2784,17 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
               fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
               whiteSpace: "nowrap",
             }}>✎ FIX TAG?</button>
+          )}
+          {/* 0.4: says out loud that this night is a guess. Shown whether or
+              not a song ever identifies — roughly half of real clips never do,
+              so the flag cannot depend on the remedy. */}
+          {moment.dateUnverified && !editing && (
+            <span className="mono" title="The capture time matched the file's own timestamp, so it was probably rewritten when the file was shared. This night is a guess." style={{
+              background: "rgba(56,189,248,0.12)", color: "#7dd3fc",
+              border: "1px dashed rgba(56,189,248,0.5)",
+              borderRadius: 999, padding: "3px 9px",
+              fontSize: 9, letterSpacing: 1, fontWeight: 700, whiteSpace: "nowrap",
+            }}>◷ DATE UNVERIFIED</span>
           )}
           {/* Escape hatch when a sibling-suggestion is showing but wrong. */}
           {!artist && suggestion && onUpdate && (
@@ -4648,6 +4745,12 @@ function MemoriesScreen({ state, setState }) {
           // "why is this untagged" is answerable from the moment alone.
           gpsAccM: meta?.acc != null ? Math.round(meta.acc) : null,
           gpsRejected: !!matched.gpsRejected,
+          // The capture time matched the file's mtime — this night is a guess
+          // dressed as a fact until something confirms it. Song recovery below
+          // is the first remedy; the flag ships regardless, because roughly
+          // half of real clips never identify.
+          dateUnverified: !!meta?.dateUnverified,
+          dateUnverifiedDeltaS: meta?.dateUnverifiedDeltaS ?? null,
           // Compass heading at capture. Nothing reads it yet — it is the input
           // for triangulating a real stage position from a future batch, and
           // it can only ever be captured at import.
@@ -4804,6 +4907,35 @@ function MemoriesScreen({ state, setState }) {
     setAll(next);
   };
 
+  // 0.4: move a moment to the night its song proves. handleUpdate CANNOT do
+  // this — the store is keyed by night, so it merges a patch inside whichever
+  // bucket already holds the moment and setting `night` there would desync the
+  // field from its array. Same remove-then-insert shape as the archive
+  // recovery path below.
+  const handleRecoverNight = (moment, rec) => {
+    if (!moment || !rec || rec.night == null) return;
+    const next = { ..._readMoments() };
+    const to = String(rec.night);
+    let found = null;
+    for (const n of Object.keys(next)) {
+      const arr = next[n] || [];
+      const hit = arr.find(m => m.id === moment.id);
+      if (!hit) continue;
+      found = { ...hit, night: rec.night, artistId: rec.artistId,
+                tagSource: "song-recovered", autoTagged: false,
+                dateUnverified: false, needsRetag: false, tagAmbiguous: false };
+      next[n] = arr.filter(m => m.id !== moment.id);
+    }
+    if (!found) return;
+    next[to] = [...(next[to] || []), found];
+    _writeMoments(next);
+    setAll(next);
+    try { window.plurskyHaptic?.("MEDIUM"); } catch {}
+    if (found.night != null && typeof markAttended === "function") {
+      try { markAttended(found.night, found.artistId, "shazam"); } catch {}
+    }
+  };
+
   const totalCount = Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
 
   // Three lenses on the same data. Default is "night" (preserves the
@@ -4897,6 +5029,7 @@ function MemoriesScreen({ state, setState }) {
           onClose={() => setLightbox(null)}
           onIndexChange={(i) => setLightbox(lb => ({ ...lb, index: i }))}
           onArtistClick={(id) => setState(s => ({ ...s, artist: id }))}
+          onRecoverNight={handleRecoverNight}
           onUpdate={(mom, patch) => {
             handleUpdate(mom, patch);
             // Reflect the patch in the open lightbox immediately
