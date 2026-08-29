@@ -1118,11 +1118,23 @@ function _readMoments() {
   try { return JSON.parse(localStorage.getItem(MOMENTS_KEY) || "{}"); }
   catch { return {}; }
 }
+let _momentSyncTimer = null;
 function _writeMoments(all) {
   localStorage.setItem(MOMENTS_KEY, JSON.stringify(all));
   // Fire so cross-screen consumers (per-artist strip on Artist screen,
   // Recap counts, etc.) re-read without prop-drilling.
   try { window.dispatchEvent(new CustomEvent("plursky-moments-change")); } catch {}
+  // Cloud-back the tags. Every moment write funnels through here — import,
+  // retag, favorite, delete, Shazam write-back — so this one hook is the whole
+  // sync trigger. Trailing debounce because import persists after EVERY file:
+  // a 300-file batch pushes once when it settles, not 300 times. Silent and
+  // best-effort — sbPushMoments no-ops when signed out or unconfigured.
+  try {
+    clearTimeout(_momentSyncTimer);
+    _momentSyncTimer = setTimeout(() => {
+      try { window.sbPushMoments?.()?.catch?.(() => {}); } catch {}
+    }, 2500);
+  } catch {}
 }
 function _countMoments() {
   const all = _readMoments();

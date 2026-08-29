@@ -678,17 +678,21 @@ function App() {
   // card already shows sync status. When NOT signed in, fire a one-time toast
   // after the first save so users know cloud backup exists.
   React.useEffect(() => {
-    if (!state.saved.length) return;
     let cancelled = false;
     const t = setTimeout(async () => {
       if (cancelled) return;
       try {
         const user = window.sbGetUser ? await window.sbGetUser() : null;
+        // The `!state.saved.length` early-return that used to sit here blocked
+        // the PUSH as well as the nudge. Two things broke: a note-only or
+        // moment-only user never synced at all, and un-saving your LAST artist
+        // never propagated — the server kept the stale artist_ids forever. The
+        // nudge toast still waits for a real save; the push no longer does.
         if (user && window.sbPush) {
           let notes = {};
           try { notes = JSON.parse(localStorage.getItem("artist_notes_v1") || "{}"); } catch {}
           await window.sbPush(state.saved, notes);
-        } else {
+        } else if (state.saved.length) {
           const seen = (() => { try { return localStorage.getItem("cloud_nudge_seen") === "1"; } catch { return false; } })();
           if (!seen && typeof window.plurskyToast === "function") {
             try { localStorage.setItem("cloud_nudge_seen", "1"); } catch {}
@@ -853,7 +857,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v239",
+        version: "v240",
       }));
     } catch {}
   }
@@ -886,7 +890,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
-          PLURSKY · v239
+          PLURSKY · v240
         </div>
       </div>
     );

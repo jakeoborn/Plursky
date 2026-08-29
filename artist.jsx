@@ -414,6 +414,7 @@ function _tmDate(d) {
 }
 
 const ARTIST_NOTES_KEY = "artist_notes_v1";
+let _noteSyncTimer = null;
 function _getArtistNotes() {
   try { return JSON.parse(localStorage.getItem(ARTIST_NOTES_KEY) || "{}"); }
   catch { return {}; }
@@ -889,6 +890,17 @@ function ArtistScreen({ state, setState }) {
     const notes = _getArtistNotes();
     if (text.trim()) notes[a.id] = text; else delete notes[a.id];
     try { localStorage.setItem(ARTIST_NOTES_KEY, JSON.stringify(notes)); } catch {}
+    // Notes are the other hand-written store, and they had no sync trigger of
+    // their own: app.jsx's auto-push only re-runs when the SAVED LIST changes,
+    // so typing a note and never touching the lineup again never reached the
+    // cloud. Same trailing debounce as _writeMoments — one push per burst of
+    // keystrokes, silent, no-ops when signed out.
+    try {
+      clearTimeout(_noteSyncTimer);
+      _noteSyncTimer = setTimeout(() => {
+        try { window.sbPushMoments?.()?.catch?.(() => {}); } catch {}
+      }, 2500);
+    } catch {}
   };
 
   // ── Last.fm + Setlist.fm + YouTube state ────────────────
