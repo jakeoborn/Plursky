@@ -5743,6 +5743,14 @@ function MeScreen({ state, setState }) {
   const [settingsOpen, setSettingsOpen] = React.useState(false);
   const [festivalOpen, setFestivalOpen] = React.useState(true);
   const [socialOpen, setSocialOpen] = React.useState(true);
+  // Plursky+ paywall overlay, opened from the always-visible row below.
+  // App Review 2.1(b) rejected 1.12: every other paywall entry sits behind
+  // content a fresh install does not have — cloud backup needs imported
+  // moments AND the MANAGE toggle, hidden gems needs a connected Spotify,
+  // trading cards needs a saved lineup. A reviewer could reach none of
+  // them, so the IAPs read as missing. This row is the unconditional one.
+  const [plusOpen, setPlusOpen] = React.useState(false);
+  const plusActive = _isPlusSub();
 
   // Stats — kept locally per the spec; intentionally cheap, not precious.
   // SETS CAUGHT now reflects real attendance (live GPS auto-detect + manual
@@ -5865,6 +5873,87 @@ function MeScreen({ state, setState }) {
             </div>
           ))}
         </div>
+
+        {/* ── Plursky+ entry (v249) ─────────────────────────────
+            UNCONDITIONAL BY DESIGN. Every other paywall entry is content-
+            gated, which is what App Review 2.1(b) rejected 1.12 for — the
+            reviewer could not reach a single in-app purchase on a fresh
+            install. This row renders for everyone, on first launch, with no
+            data of any kind required, and opens the existing PlusGate.
+            ⚠ Do NOT wrap this in a condition. Not `savedCount > 0`, not
+            "festival is over", not a disclosure. Its whole job is being the
+            one paywall entry that cannot be missed. It carries no price
+            strings either — the overlay reads live prices via usePlusPrices,
+            so this row cannot drift out of sync with the store.
+            PLACEMENT IS MEASURED, not chosen by feel. At iPhone 14 Pro size
+            the Me tab's scroller is 596px; sitting below the 4-card grid put
+            this row's top at 630px — off-screen until the reviewer scrolls,
+            which is a thin fix for a rejection whose literal cause was "could
+            not find the IAPs". Above the grid it lands at ~409px, fully
+            visible at scrollTop=0. Moving it back down re-breaks that. */}
+        {plusActive ? (
+          <div style={{
+            display: "flex", alignItems: "center", gap: 12,
+            width: "100%", padding: "14px 16px", marginBottom: 14,
+            background: "var(--paper-2)", border: "1px solid var(--line-2)",
+            borderRadius: 16, color: "var(--ink)", textAlign: "left",
+          }}>
+            <span style={{
+              width: 30, height: 30, borderRadius: "50%", flexShrink: 0,
+              background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              color: "#fff", fontSize: 16, fontWeight: 700, lineHeight: 1,
+            }}>+</span>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>Plursky+</div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginTop: 4, fontWeight: 700 }}>
+                ACTIVE · THANK YOU
+              </div>
+            </div>
+            <span className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--success)", fontWeight: 700 }}>✓</span>
+          </div>
+        ) : (
+          <button onClick={() => setPlusOpen(true)}
+            aria-label="Plursky Plus — see what's included and subscribe"
+            style={{
+              display: "flex", alignItems: "center", gap: 12,
+              width: "100%", padding: "14px 16px", marginBottom: 14,
+              background: "linear-gradient(135deg, #6D28D9 0%, #e85d2e 100%)",
+              border: "none", borderRadius: 16,
+              color: "#fff", cursor: "pointer", textAlign: "left",
+              fontFamily: "inherit",
+              boxShadow: "0 4px 18px rgba(109,40,217,0.30)",
+            }}>
+            <span style={{ fontSize: 24, lineHeight: 1, flexShrink: 0, fontWeight: 700 }}>+</span>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>
+                Plursky<span style={{ fontStyle: "italic" }}>+</span>
+              </div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "rgba(255,255,255,0.72)", marginTop: 4, fontWeight: 700 }}>
+                NO WATERMARKS · CLOUD BACKUP · MORE
+              </div>
+            </div>
+            <span style={{ fontSize: 18, opacity: 0.85 }}>→</span>
+          </button>
+        )}
+
+        {/* Paywall overlay — same shape as the cloud-backup one in Memories. */}
+        {plusOpen && (
+          <div onClick={() => setPlusOpen(false)} style={{
+            position: "fixed", inset: 0, zIndex: 260, background: "rgba(0,0,0,0.6)",
+            display: "flex", alignItems: "center", justifyContent: "center", padding: 20,
+            animation: "fadeIn .2s",
+          }}>
+            <div onClick={e => e.stopPropagation()} style={{ position: "relative", width: "100%", maxWidth: 340 }}>
+              <button onClick={() => setPlusOpen(false)} aria-label="Close" style={{
+                position: "absolute", top: -14, right: -6, zIndex: 1,
+                width: 30, height: 30, borderRadius: 30, background: "#fff", border: "none",
+                color: "#1a120d", fontSize: 16, fontWeight: 700, cursor: "pointer",
+              }}>×</button>
+              <PlusGate feature="everything in Plursky+"><div style={{ height: 460 }} /></PlusGate>
+            </div>
+          </div>
+        )}
 
         {/* ── 3. 4-card grid (komoot-modeled) ──────────────────────
             Quick jumps to Saved, Memories (stub), Crew (stub),
