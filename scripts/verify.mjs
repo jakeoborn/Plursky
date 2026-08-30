@@ -332,6 +332,9 @@ const PORT = server.address().port;
 
 // Must live at the server root so the iframe is same-origin and its globals
 // are reachable.
+// Floor for a healthy render. Used BOTH as the probe's settle condition
+// and as the final assertion, so a slow machine waits instead of failing.
+const MIN_RENDERED_CHARS = 5000;
 const PROBE = join(ROOT, "__verify_probe.html");
 // One top-level symbol per source file. A file whose evaluation dies still
 // leaves the others intact and the app can still mount, so `root > 0` alone
@@ -378,7 +381,14 @@ function emit(o){
 var lastChars=-1, stable=0;
 (function tick(){
   var o=read();
-  var mounted=o.root>0 && o.fns.every(function(f){return f.slice(-9)==="=function";});
+  // index.html ships ~2,066 chars of SEO fallback markup INSIDE #root, and it
+  // is perfectly stable until React commits over it. So root>0 plus "three
+  // identical samples" was satisfiable by the pre-hydration page: the gate
+  // sampled the fallback, called it settled, and then failed itself on the
+  // 5,000-char floor below — red on a tree whose app mounts fine. The floor
+  // has to gate the WAIT, not just the verdict.
+  var mounted=o.root>0 && o.chars>=${MIN_RENDERED_CHARS} &&
+              o.fns.every(function(f){return f.slice(-9)==="=function";});
   // "Mounted" is not "rendered": #root gains its first child while the tree
   // below is still filling in, and stopping there dropped the rendered-chars
   // reading from ~19k to ~1.4k — a gate that no longer proves much. So also
@@ -428,7 +438,6 @@ if (r.root < 1) fail(`#root has ${r.root} children — the app did not mount`);
 // against a healthy 19,376 and the gate still went green.
 // A trip here is either a real regression or a slow-machine capture — re-run
 // once to tell them apart; a regression reproduces, a slow capture does not.
-const MIN_RENDERED_CHARS = 5000;
 if (r.chars < MIN_RENDERED_CHARS)
   fail(`#root rendered only ${r.chars} chars (floor ${MIN_RENDERED_CHARS}) — error boundary or a partial render, not a healthy mount`);
 const missing = r.fns.filter(f => !f.endsWith("=function"));
