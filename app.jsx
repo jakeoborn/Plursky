@@ -14,6 +14,34 @@ const ONBOARD_VERSION = "v1";
 // otherwise have to discover by browsing into Me / Music. Each step can be
 // skipped, but doing them once sets up the most valuable hooks (Spotify
 // matching, push reminders, name personalisation) before the festival.
+// Stage-coloured particle atmosphere. Lifted out of the step-1 hero so the
+// onboarding backdrop and the hero share one definition and cannot drift.
+// STAGES is the ACTIVE festival's stage list, so the particles are that
+// festival's palette — see CLAUDE.md §5 on window-resolved bare names.
+function VfxParticleField({ count = 14, scale = 1 }) {
+  const colors = (typeof STAGES !== "undefined" ? STAGES : []).slice(0, 5).map(s => s.color);
+  if (!colors.length) return null;
+  return (
+    <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
+      {Array.from({ length: count }, (_, i) => {
+        const c = colors[i % colors.length];
+        const size = (i % 3 === 2 ? 10 + (i % 3) * 6 : 3 + (i % 3) * 2) * scale;
+        return React.createElement("div", { key: i, style: {
+          position: "absolute",
+          left: `${(i * 37 + 13) % 100}%`,
+          bottom: i % 3 === 0 ? 0 : undefined,
+          top: i % 3 !== 0 ? `${(i * 53 + 7) % 100}%` : undefined,
+          width: size, height: size,
+          borderRadius: "50%", background: c,
+          filter: i % 3 === 2 ? "blur(6px)" : "none",
+          opacity: 0,
+          animation: `${i % 3 === 0 ? "vfx-rise" : i % 3 === 2 ? "vfx-drift" : "vfx-fall"} ${3 + (i % 4)}s ease-in-out ${(i * 0.4) % 4}s infinite`,
+        }});
+      })}
+    </div>
+  );
+}
+
 function OnboardingModal({ onDone, setState, state }) {
   const [step, setStep] = React.useState(0);
   const [name, setName] = React.useState(() => {
@@ -46,24 +74,7 @@ function OnboardingModal({ onDone, setState, state }) {
             height: 120, position: "relative",
             background: "linear-gradient(160deg, #1a1030 0%, #2a1a3d 50%, #1a120d 100%)",
           }}>
-            <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
-              {Array.from({ length: 14 }, (_, i) => {
-                const colors = STAGES.slice(0, 5).map(s => s.color);
-                const c = colors[i % colors.length];
-                return React.createElement("div", { key: i, style: {
-                  position: "absolute",
-                  left: `${(i * 37 + 13) % 100}%`,
-                  bottom: i % 3 === 0 ? 0 : undefined,
-                  top: i % 3 !== 0 ? `${(i * 53 + 7) % 100}%` : undefined,
-                  width: i % 3 === 2 ? 10 + (i % 3) * 6 : 3 + (i % 3) * 2,
-                  height: i % 3 === 2 ? 10 + (i % 3) * 6 : 3 + (i % 3) * 2,
-                  borderRadius: "50%", background: c,
-                  filter: i % 3 === 2 ? `blur(${6}px)` : "none",
-                  opacity: 0,
-                  animation: `${i % 3 === 0 ? "vfx-rise" : i % 3 === 2 ? "vfx-drift" : "vfx-fall"} ${3 + (i % 4)}s ease-in-out ${(i * 0.4) % 4}s infinite`,
-                }});
-              })}
-            </div>
+            <VfxParticleField count={14} />
             <div style={{
               position: "absolute", bottom: 0, left: 0, right: 0,
               background: "linear-gradient(0deg, rgba(26,16,48,0.9) 0%, transparent 100%)",
@@ -143,14 +154,27 @@ function OnboardingModal({ onDone, setState, state }) {
   return (
     <div style={{
       position: "absolute", inset: 0, zIndex: 100,
-      background: "rgba(13,8,4,0.55)", backdropFilter: "blur(6px)",
+      // OPAQUE, not a scrim. This was rgba(13,8,4,0.55) + backdropFilter
+      // blur(6px), which meant the first thing a new user ever saw was the
+      // map screen smeared behind frosted glass — festival art rendered as
+      // an artifact of not having dismissed a sheet yet. A blur does not
+      // hide the map, it advertises it badly. Same gradient as the step-1
+      // hero, so the backdrop and the hero read as one surface.
+      background: "linear-gradient(160deg, #1a1030 0%, #2a1a3d 50%, #1a120d 100%)",
       display: "flex", alignItems: "flex-end", animation: "fadeIn .25s",
+      overflow: "hidden",
     }}>
+      {/* Same particle field as the hero, sparser and larger for full-bleed. */}
+      <VfxParticleField count={18} scale={1.6} />
       <div style={{
         background: "var(--paper)", color: "var(--ink)",
         borderTopLeftRadius: 26, borderTopRightRadius: 26,
         width: "100%", padding: "16px 22px 26px",
         boxShadow: "0 -16px 50px rgba(0,0,0,0.4)",
+        // The particle field is absolutely positioned, so a STATIC sheet
+        // would paint underneath it — positioned elements win the paint
+        // order regardless of source order. Make the sheet positioned too.
+        position: "relative", zIndex: 1,
       }}>
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 10 }}>
           <div style={{ width: 38, height: 4, borderRadius: 4, background: "var(--line-2)" }}/>
@@ -857,7 +881,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v249",
+        version: "v250",
       }));
     } catch {}
   }
@@ -890,7 +914,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
-          PLURSKY · v249
+          PLURSKY · v250
         </div>
       </div>
     );

@@ -625,12 +625,68 @@ const FESTIVALS_REGISTRY = [
 // Read the user's chosen festival from localStorage. Defaults to the
 // first registered festival. Switching festivals reloads the page so
 // the new FESTIVAL_CONFIG takes effect cleanly.
+// A stored pick keeps working for a week past the festival's end — that is
+// the window where someone is still tagging photos and re-watching the
+// weekend, and yanking the app to the next event mid-recap would be worse
+// than showing a finished festival. After that, move on.
+const _FESTIVAL_STALE_MS = 7 * 24 * 60 * 60 * 1000;
+
+// Which festival should a fresh install open on?
+//
+// This used to be `FESTIVALS_REGISTRY[0]`, which is registry ORDER, not time:
+// entry 0 is edc-lv-2026, and it ended in May. Every fresh install after that
+// rooted on a finished festival, so onboarding greeted new users with
+// "Built for EDC Las Vegas 2026" and a lineup that already happened.
+//
+// Ordering is by date, but the candidate set is `available` ONLY. The two
+// nearest events today are lost-lands (18d) and edc-orlando (69d) and BOTH
+// are gated — a pure nearest-by-date pick would select one and effectively
+// flip it, which AGENTS.md §4 says only its own PR may do.
+//
+// Entries with no startMs/endMs (coachella-2027 carries a `dates` string but
+// no timestamps; "Dates TBA" entries carry neither) are not comparable and
+// are skipped rather than sorted as 0 — treating a missing date as the epoch
+// would rank an unannounced festival ahead of every real one.
+function _resolveDefaultFestivalId(now) {
+  const avail = FESTIVALS_REGISTRY.filter(f => f && f.available && f.config && f.config.id);
+  if (!avail.length) return FESTIVALS_REGISTRY[0].config.id;
+  const dated = avail.filter(f =>
+    typeof f.config.startMs === "number" && typeof f.config.endMs === "number");
+  if (!dated.length) return avail[0].config.id;
+
+  // In progress wins outright — you are AT it.
+  const live = dated
+    .filter(f => now >= f.config.startMs && now <= f.config.endMs)
+    .sort((a, b) => a.config.startMs - b.config.startMs);
+  if (live.length) return live[0].config.id;
+
+  // Otherwise the soonest one still ahead.
+  const upcoming = dated
+    .filter(f => f.config.startMs > now)
+    .sort((a, b) => a.config.startMs - b.config.startMs);
+  if (upcoming.length) return upcoming[0].config.id;
+
+  // Nothing ahead: the most RECENTLY ended, which is the one whose photos are
+  // still on the phone. Registry order would have picked an arbitrary entry.
+  return dated.slice().sort((a, b) => b.config.endMs - a.config.endMs)[0].config.id;
+}
+
 function getActiveFestivalId() {
+  const now = Date.now();
   try {
     const stored = localStorage.getItem("active_festival_id");
-    if (stored && FESTIVALS_REGISTRY.find(f => f.config.id === stored && f.available)) return stored;
+    const entry = stored && FESTIVALS_REGISTRY.find(f => f.config.id === stored && f.available);
+    if (entry) {
+      const end = entry.config.endMs;
+      // Undated stored pick: honour it. We cannot call it stale without a date,
+      // and it was an explicit user choice.
+      if (typeof end !== "number" || now - end <= _FESTIVAL_STALE_MS) return stored;
+      // Stale — fall through and auto-advance. Deliberately NOT written back to
+      // localStorage: the stored key stays the user's explicit choice, so this
+      // stays a resolution rule and never silently overwrites what they picked.
+    }
   } catch {}
-  return FESTIVALS_REGISTRY[0].config.id;
+  return _resolveDefaultFestivalId(now);
 }
 function setActiveFestivalAndReload(id) {
   try { localStorage.setItem("active_festival_id", id); } catch {}
@@ -1818,6 +1874,7 @@ Object.assign(window, {
   DAYS: _daysFor(_active.config),
   NOW, ALERTS, ESSENTIALS, fmt12,
   FESTIVALS_REGISTRY, getActiveFestivalId, setActiveFestivalAndReload,
+  _resolveDefaultFestivalId,
   resolvedStageAnchors, resolvedStageAnchor,
   _DATA_SETS,
 });
