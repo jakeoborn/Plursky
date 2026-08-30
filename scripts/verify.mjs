@@ -51,6 +51,31 @@ if (symlinks.length) {
 }
 console.log("  ✓ none");
 
+// ── 0b. Podfile path gate ──────────────────────────────────────────────────
+// Second face of the same symlink bug. `npx cap sync ios` REWRITES every pod
+// path from the resolved realpath of node_modules, so running it in a
+// worktree whose node_modules is a symlink emits
+// `:path => '../../../wtmap/node_modules/@capacitor/ios'` — a path outside
+// the repo, pointing at a scratchpad that exists on exactly one machine.
+// Committed, that breaks `pod install` for every clean checkout and CI.
+// Caught by hand on 2026-08-29 while preparing the 1.12 (24) resubmit; a
+// gate is cheaper than catching it by hand twice.
+const podfile = join(ROOT, "ios/App/Podfile");
+console.log("▸ Podfile path gate — pod paths must stay inside the repo");
+if (existsSync(podfile)) {
+  const bad = readFileSync(podfile, "utf8").split("\n")
+    .filter(l => /:path\s*=>|require_relative/.test(l))
+    .filter(l => !/(\.\.\/){1,2}node_modules\//.test(l) && /node_modules/.test(l));
+  if (bad.length) {
+    for (const l of bad) console.log(`  ✗  ${l.trim()}`);
+    fail(
+      `${bad.length} pod path(s) escape the repo — re-run \`npx cap sync ios\` ` +
+      `in a worktree where node_modules is a REAL directory, not a symlink.`
+    );
+  }
+  console.log("  ✓ all pod paths repo-relative");
+} else console.log("  – no Podfile");
+
 // ── 1. Parse gate ──────────────────────────────────────────────────────────
 // Babel with the react preset — the same transform the browser applies to each
 // <script type="text/babel">. tsc's syntax pass does NOT cover JSX semantics
