@@ -21,6 +21,36 @@ import { transformAsync } from "@babel/core";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const fail = m => { console.error(`\n✗ ${m}`); process.exit(1); };
 
+// ── 0. Tracked-symlink gate ────────────────────────────────────────────────
+// A symlink committed at the repo root killed the GitHub Pages deploy on
+// 2026-08-29: `git add -A` picked up a `node_modules` symlink because
+// .gitignore said `node_modules/`, and a trailing slash matches DIRECTORIES
+// ONLY. Its target was an absolute path outside the repo, so on the runner it
+// dangled and `actions/upload-pages-artifact`'s `tar --dereference` exited 1
+// with "File removed before we read it". The deploy failed on two consecutive
+// merges while plursky.com kept serving the build from before them.
+//
+// Nothing caught it: sanity.yml is green on a tree that cannot deploy, because
+// every gate reads FILES and this is a property of the INDEX. So the check is
+// on the index. It is deliberately absolute — the repo ships no symlinks and
+// has no reason to, and a "symlinks that resolve" rule would still pass
+// locally (where the target exists) and fail on the runner, which is exactly
+// the failure being prevented.
+const symlinks = execFileSync("git", ["ls-files", "-s"], { cwd: ROOT })
+  .toString().trim().split("\n").filter(Boolean)
+  .filter(l => l.startsWith("120000"))
+  .map(l => l.split("\t").slice(1).join("\t"));
+console.log("▸ Tracked-symlink gate — the index must contain no symlinks");
+if (symlinks.length) {
+  for (const f of symlinks) console.log(`  ✗  ${f}`);
+  fail(
+    `${symlinks.length} symlink(s) tracked in git — this breaks the Pages ` +
+    `deploy (tar --dereference cannot follow them on the runner). ` +
+    `Remove with: git rm --cached ${symlinks.join(" ")}`
+  );
+}
+console.log("  ✓ none");
+
 // ── 1. Parse gate ──────────────────────────────────────────────────────────
 // Babel with the react preset — the same transform the browser applies to each
 // <script type="text/babel">. tsc's syntax pass does NOT cover JSX semantics

@@ -4,7 +4,13 @@ Thumbs.db
 *.log
 
 # Node
-node_modules/
+# NO trailing slash. `node_modules/` matches DIRECTORIES ONLY, so a symlink
+# named node_modules — which is what a shared-install worktree has — sailed
+# straight past it and got committed by `git add -A` (2026-08-29). That
+# symlink pointed outside the repo, so on the Pages runner it dangled and
+# `tar --dereference` failed the deploy: plursky.com sat on a stale build
+# while main moved two versions ahead.
+node_modules
 dist/
 
 # Capacitor / iOS
