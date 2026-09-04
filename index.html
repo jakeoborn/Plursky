@@ -168,6 +168,7 @@
         <li><a href="/f/summerfest-2026/">Summerfest 2026</a> — Jun 18–20, Jun 25–27 &amp; Jul 2–4, 2026 · Henry Maier Festival Park · Milwaukee, WI</li>
         <li><a href="/f/lollapalooza-2026/">Lollapalooza 2026</a> — Jul 30 – Aug 2, 2026 · Grant Park · Chicago, IL</li>
         <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026 · Golden Gate Park · San Francisco, CA</li>
+        <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026 · Mana Wynwood · Miami, FL</li>
         <!-- FESTIVAL-LIST:END -->
       </ul>
       <p class="boot-foot"><a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></p>
@@ -192,6 +193,7 @@
         <li><a href="/f/summerfest-2026/">Summerfest 2026</a> — Jun 18–20, Jun 25–27 &amp; Jul 2–4, 2026 · Henry Maier Festival Park · Milwaukee, WI</li>
         <li><a href="/f/lollapalooza-2026/">Lollapalooza 2026</a> — Jul 30 – Aug 2, 2026 · Grant Park · Chicago, IL</li>
         <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026 · Golden Gate Park · San Francisco, CA</li>
+        <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026 · Mana Wynwood · Miami, FL</li>
         <!-- NOSCRIPT-LIST:END -->
       </ul>
       <p class="boot-foot"><a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></p>
@@ -312,36 +314,36 @@
       window.__USE_NATIVE_PICKER__ = true;
     }
   </script>
-  <script type="text/babel" src="ios-frame.jsx?v=v250"></script>
+  <script type="text/babel" src="ios-frame.jsx?v=v251"></script>
   <!-- Multi-festival wave 1. Plain .js (no JSX), so they load as normal scripts
        and are parsed before Babel even starts on the chain below. Each is an
        IIFE that registers itself on window.PLURSKY_FESTIVALS; data.jsx reads
        that map, so these MUST stay above it. Mirrored in sw.js's precache. -->
-  <script src="data/festivals/ultra-miami-2026.js?v=v250"></script>
-  <script src="data/festivals/governors-ball-2026.js?v=v250"></script>
-  <script src="data/festivals/summerfest-2026.js?v=v250"></script>
-  <script src="data/festivals/lollapalooza-2026.js?v=v250"></script>
-  <script src="data/festivals/outside-lands-2026.js?v=v250"></script>
-  <script src="data/festivals/iii-points-2026.js?v=v250"></script>
-  <script type="text/babel" src="data.jsx?v=v250"></script>
-  <script type="text/babel" src="supabase.jsx?v=v250"></script>
-  <script type="text/babel" src="chrome.jsx?v=v250"></script>
-  <script type="text/babel" src="home.jsx?v=v250"></script>
-  <script type="text/babel" src="map.jsx?v=v250"></script>
-  <script type="text/babel" src="lineup.jsx?v=v250"></script>
-  <script type="text/babel" src="artist.jsx?v=v250"></script>
-  <script type="text/babel" src="photo-tag.jsx?v=v250"></script>
-  <script type="text/babel" src="spotify-api.jsx?v=v250"></script>
-  <script type="text/babel" src="recap-engine.jsx?v=v250"></script>
-  <script type="text/babel" src="spotify.jsx?v=v250"></script>
-  <script type="text/babel" src="app.jsx?v=v250"></script>
+  <script src="data/festivals/ultra-miami-2026.js?v=v251"></script>
+  <script src="data/festivals/governors-ball-2026.js?v=v251"></script>
+  <script src="data/festivals/summerfest-2026.js?v=v251"></script>
+  <script src="data/festivals/lollapalooza-2026.js?v=v251"></script>
+  <script src="data/festivals/outside-lands-2026.js?v=v251"></script>
+  <script src="data/festivals/iii-points-2026.js?v=v251"></script>
+  <script type="text/babel" src="data.jsx?v=v251"></script>
+  <script type="text/babel" src="supabase.jsx?v=v251"></script>
+  <script type="text/babel" src="chrome.jsx?v=v251"></script>
+  <script type="text/babel" src="home.jsx?v=v251"></script>
+  <script type="text/babel" src="map.jsx?v=v251"></script>
+  <script type="text/babel" src="lineup.jsx?v=v251"></script>
+  <script type="text/babel" src="artist.jsx?v=v251"></script>
+  <script type="text/babel" src="photo-tag.jsx?v=v251"></script>
+  <script type="text/babel" src="spotify-api.jsx?v=v251"></script>
+  <script type="text/babel" src="recap-engine.jsx?v=v251"></script>
+  <script type="text/babel" src="spotify.jsx?v=v251"></script>
+  <script type="text/babel" src="app.jsx?v=v251"></script>
 
   <script>
 
     // Build version stamp â€” bumped on every deploy that changes app behaviour.
     // If the running tab's stored version doesn't match, force a full reload
     // (bypassing browser HTTP cache that GH-Pages serves with max-age=600).
-    const APP_VERSION = 'v250';
+    const APP_VERSION = 'v251';
     try {
       const stored = localStorage.getItem('app_version');
       if (stored && stored !== APP_VERSION) {
@@ -362,11 +364,11 @@
     if ('serviceWorker' in navigator) {
       caches.keys().then(keys =>
         Promise.all(
-          keys.filter(k => k !== 'plursky-v250' && !k.startsWith('plursky-tiles-'))
+          keys.filter(k => k !== 'plursky-v251' && !k.startsWith('plursky-tiles-'))
               .map(k => caches.delete(k))
         )
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v250', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v251', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 
