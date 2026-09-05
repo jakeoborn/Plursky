@@ -1963,24 +1963,37 @@ function HomeScreen({
   React.useEffect(() => {
     var saved = state.saved || [];
     if (!saved.length || !navigator.onLine) return;
+    if (typeof fetchAudioDB !== "function") return;
     var cached = {};
     try {
       cached = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
     } catch {}
     var missing = saved.map(id => ARTISTS.find(a => a.id === id)).filter(a => a && !cached[a.name.toLowerCase()]).slice(0, 12);
-    missing.forEach(a => {
-      if (typeof fetchDeezerPhoto !== "function") return;
-      fetchDeezerPhoto(a.name).then(img => {
-        if (!img) return;
+    if (!missing.length) return;
+    var live = true;
+    (async () => {
+      for (var a of missing) {
+        if (!live) return;
+        var img = null;
         try {
-          var imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-          if (!imgs[a.name.toLowerCase()]) {
-            imgs[a.name.toLowerCase()] = img;
-            localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
-          }
+          img = (await fetchAudioDB(a.name, a.genre))?.image || null;
         } catch {}
-      });
-    });
+        if (!live) return;
+        if (img) {
+          try {
+            var imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
+            if (!imgs[a.name.toLowerCase()]) {
+              imgs[a.name.toLowerCase()] = img;
+              localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
+            }
+          } catch {}
+        }
+        await new Promise(r => setTimeout(r, 400));
+      }
+    })();
+    return () => {
+      live = false;
+    };
   }, [state.saved?.length]);
   var current = ARTISTS.find(a => a.id === NOW.currentArtistId) || null;
   var next = ARTISTS.find(a => a.id === NOW.nextArtistId) || null;

@@ -143,37 +143,6 @@ async function fetchYouTubeSet(artistName) {
   } catch (e) { if (e?._retry || e instanceof TypeError) throw e; return null; }
 }
 
-// ── Deezer photo fallback ──────────────────────────────────────
-// Public API, no key, CORS-enabled. Used when Spotify is disconnected
-// or returns no image (esp. for electronic acts not on TADB).
-const _DZ_TTL = 7 * 24 * 3600000;
-
-async function fetchDeezerPhoto(artistName) {
-  const cacheKey = `deezer_photo_${artistName.toLowerCase().replace(/\W+/g, "_")}_v1`;
-  try {
-    const c = JSON.parse(localStorage.getItem(cacheKey) || "null");
-    if (c && Date.now() - c.fetchedAt < _DZ_TTL) return c.data;
-  } catch {}
-  try {
-    const res = await fetch(
-      `https://api.deezer.com/search/artist?q=${encodeURIComponent(artistName)}&limit=3`
-    );
-    if (!res.ok) return null;
-    const json = await res.json();
-    const ln = artistName.toLowerCase();
-    const items = json.data || [];
-    const match = items.find(x => (x.name || "").toLowerCase() === ln)
-      || items.find(x => ln.includes((x.name || "").toLowerCase()))
-      || items[0];
-    const img = match?.picture_xl || match?.picture_big || match?.picture_medium || null;
-    // Reject obvious placeholder (Deezer returns a default silhouette for unmatched artists)
-    const isPlaceholder = img && /\/artist\/?$|\/images\/artist\/?$/.test(img);
-    const final = isPlaceholder ? null : img;
-    try { localStorage.setItem(cacheKey, JSON.stringify({ data: final, fetchedAt: Date.now() })); } catch {}
-    return final;
-  } catch { return null; }
-}
-
 // ── Mixcloud ───────────────────────────────────────────────────
 // Free public API — no key required.
 const _MC_TTL = 24 * 3600000;
@@ -1001,19 +970,26 @@ function ArtistScreen({ state, setState }) {
   // every single render and `tadb?.image` never contributed anything. It read
   // like a working fallback chain and was dead code.
   //
-  // That mattered because the other two links are also dead for most users:
-  //  · artistImages cache — only ever written by the Deezer effect below
-  //  · fetchedPhoto      — Spotify, which needs the user to have connected
-  //  · api.deezer.com    — returns CORS headers but NO
+  // That mattered because the other links were dead for most users too:
+  //  · fetchedPhoto — Spotify, which needs the user to have connected
+  //  · api.deezer.com — returned CORS headers but NO
   //    access-control-allow-origin (measured 2026-09-05), so the browser
-  //    blocks every response and fetchDeezerPhoto's catch returns null
+  //    blocked every response and the catch returned null. It was removed in
+  //    v254 rather than left firing one guaranteed-failing request per artist
+  //    view. If photo coverage gaps show up, the follow-up is a NATIVE HTTP
+  //    bridge (Capacitor), where same-origin policy does not apply — not a
+  //    second attempt at calling it from the browser.
   // So on a fresh install with no Spotify there was no path to a photo at
   // all, which is exactly what Jake reported. TheAudioDB does send
   // access-control-allow-origin: * and had a thumbnail for the first artist
   // tried, so it is the lane that actually works today.
+  //
+  // artistImages is a SHARED cache with several writers (Spotify here and in
+  // chrome.jsx, iTunes in chrome.jsx, TheAudioDB below), so a hit cannot be
+  // attributed to any one of them — hence the honest "CACHED" label.
   const heroPhotoCache = artistImages[activeName.toLowerCase()] || null;
   const heroPhoto = heroPhotoCache || fetchedPhoto || (tadb?.image ?? null);
-  const heroPhotoSrc = heroPhotoCache ? "DEEZER"
+  const heroPhotoSrc = heroPhotoCache ? "CACHED"
     : fetchedPhoto ? "SPOTIFY"
     : (tadb?.image ? "THEAUDIODB" : null);
   const [slError,   setSlError]   = React.useState(false);
@@ -1033,6 +1009,23 @@ function ArtistScreen({ state, setState }) {
     fetchAudioDB(activeName, a.genre).then(setTadb);
     if (window._getTracklistForArtist) window._getTracklistForArtist(a.name).then(setEdcTracklist);
   }, [a.id, activeB2B]);
+
+  // Persist the TheAudioDB thumbnail into the SHARED artist_images_v1 cache.
+  // Deezer used to be the only thing seeding this cache for users with no
+  // Spotify connection, and it was CORS-blocked, so those users saw a photo on
+  // the artist screen (via tadb.image, read directly) and a grey placeholder
+  // everywhere else. Writing it here closes that gap through the lane that
+  // works. Never overwrite an existing entry — Spotify's images are higher
+  // resolution and chrome.jsx's queue may already have won the race.
+  React.useEffect(() => {
+    const img = tadb?.image;
+    if (!img) return;
+    const ln = activeName.toLowerCase();
+    try {
+      const imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
+      if (!imgs[ln]) { imgs[ln] = img; localStorage.setItem("artist_images_v1", JSON.stringify(imgs)); }
+    } catch {}
+  }, [tadb, activeName]);
 
   // Spotify stats: popularity, followers, genres — loaded from cache or fetched alongside photo
   const [spotifyStats, setSpotifyStats] = React.useState(null);
@@ -1056,20 +1049,9 @@ function ArtistScreen({ state, setState }) {
       if (cached) { setSpotifyStats(cached); hasCachedStats = true; }
       else setSpotifyStats(null);
     } catch { setSpotifyStats(null); }
-    // Deezer fallback runs regardless of Spotify connection — covers disconnected
-    // users and acts Spotify can't find. functional setState avoids racing Spotify.
+    // The photo fallback for disconnected users is TheAudioDB, fetched by the
+    // effect above and persisted by the one below — not a second call here.
     const ln = activeName.toLowerCase();
-    if (!artistImages[ln]) {
-      fetchDeezerPhoto(activeName).then(img => {
-        if (img) {
-          setFetchedPhoto(prev => prev || img);
-          try {
-            const imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-            if (!imgs[ln]) { imgs[ln] = img; localStorage.setItem("artist_images_v1", JSON.stringify(imgs)); }
-          } catch {}
-        }
-      });
-    }
     // Skip Spotify network call if we already have both photo and stats cached
     if (artistImages[ln] && hasCachedStats) return;
     if (!localStorage.getItem("spotify_token") && !localStorage.getItem("spotify_refresh_token")) return;

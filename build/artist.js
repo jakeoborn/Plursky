@@ -126,34 +126,6 @@ async function fetchYouTubeSet(artistName) {
     return null;
   }
 }
-var _DZ_TTL = 7 * 24 * 3600000;
-async function fetchDeezerPhoto(artistName) {
-  var cacheKey = `deezer_photo_${artistName.toLowerCase().replace(/\W+/g, "_")}_v1`;
-  try {
-    var c = JSON.parse(localStorage.getItem(cacheKey) || "null");
-    if (c && Date.now() - c.fetchedAt < _DZ_TTL) return c.data;
-  } catch {}
-  try {
-    var res = await fetch(`https://api.deezer.com/search/artist?q=${encodeURIComponent(artistName)}&limit=3`);
-    if (!res.ok) return null;
-    var json = await res.json();
-    var ln = artistName.toLowerCase();
-    var items = json.data || [];
-    var match = items.find(x => (x.name || "").toLowerCase() === ln) || items.find(x => ln.includes((x.name || "").toLowerCase())) || items[0];
-    var img = match?.picture_xl || match?.picture_big || match?.picture_medium || null;
-    var isPlaceholder = img && /\/artist\/?$|\/images\/artist\/?$/.test(img);
-    var final = isPlaceholder ? null : img;
-    try {
-      localStorage.setItem(cacheKey, JSON.stringify({
-        data: final,
-        fetchedAt: Date.now()
-      }));
-    } catch {}
-    return final;
-  } catch {
-    return null;
-  }
-}
 var _MC_TTL = 24 * 3600000;
 async function fetchMixcloud(artistName) {
   var cacheKey = `mc_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
@@ -1189,7 +1161,7 @@ function ArtistScreen({
   var [tadb, setTadb] = React.useState(undefined);
   var heroPhotoCache = artistImages[activeName.toLowerCase()] || null;
   var heroPhoto = heroPhotoCache || fetchedPhoto || (tadb?.image ?? null);
-  var heroPhotoSrc = heroPhotoCache ? "DEEZER" : fetchedPhoto ? "SPOTIFY" : tadb?.image ? "THEAUDIODB" : null;
+  var heroPhotoSrc = heroPhotoCache ? "CACHED" : fetchedPhoto ? "SPOTIFY" : tadb?.image ? "THEAUDIODB" : null;
   var [slError, setSlError] = React.useState(false);
   var [ytError, setYtError] = React.useState(false);
   var [edcTracklist, setEdcTracklist] = React.useState(undefined);
@@ -1225,6 +1197,18 @@ function ArtistScreen({
     fetchAudioDB(activeName, a.genre).then(setTadb);
     if (window._getTracklistForArtist) window._getTracklistForArtist(a.name).then(setEdcTracklist);
   }, [a.id, activeB2B]);
+  React.useEffect(() => {
+    var img = tadb?.image;
+    if (!img) return;
+    var ln = activeName.toLowerCase();
+    try {
+      var imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
+      if (!imgs[ln]) {
+        imgs[ln] = img;
+        localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
+      }
+    } catch {}
+  }, [tadb, activeName]);
   var [spotifyStats, setSpotifyStats] = React.useState(null);
   var [saveCount, setSaveCount] = React.useState(null);
   React.useEffect(() => {
@@ -1247,20 +1231,6 @@ function ArtistScreen({
       setSpotifyStats(null);
     }
     var ln = activeName.toLowerCase();
-    if (!artistImages[ln]) {
-      fetchDeezerPhoto(activeName).then(img => {
-        if (img) {
-          setFetchedPhoto(prev => prev || img);
-          try {
-            var imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-            if (!imgs[ln]) {
-              imgs[ln] = img;
-              localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
-            }
-          } catch {}
-        }
-      });
-    }
     if (artistImages[ln] && hasCachedStats) return;
     if (!localStorage.getItem("spotify_token") && !localStorage.getItem("spotify_refresh_token")) return;
     var ctrl = new AbortController();

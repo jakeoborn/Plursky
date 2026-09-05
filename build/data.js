@@ -611,17 +611,9 @@ var FESTIVALS_REGISTRY = [{
       lat: 30.26504,
       lng: -97.77471
     }, {
-      stageId: "ladybird",
-      lat: 30.26332,
-      lng: -97.77077
-    }, {
       stageId: "bmi",
       lat: 30.26313,
       lng: -97.77306
-    }, {
-      stageId: "bonus",
-      lat: 30.26216,
-      lng: -97.76991
     }],
     mainStageId: "amex",
     mapImage: "acl-park.webp",
@@ -1157,18 +1149,6 @@ var ACL_STAGES = [{
   vibeNote: "Second headline stage — Skrillex, Lorde and The xx close here.",
   peak: "16:00–22:00"
 }, {
-  id: "ladybird",
-  name: "Lady Bird Stage",
-  short: "LADY BIRD",
-  color: "#22c55e",
-  x: 48,
-  y: 52,
-  size: 1.1,
-  desc: "Center · mid-size stage",
-  vibe: "By the Lake",
-  vibeNote: "Breezy sets in the heart of the park. Best sunset views.",
-  peak: "14:00–20:00"
-}, {
   id: "bmi",
   name: "BMI Stage",
   short: "BMI",
@@ -1180,18 +1160,6 @@ var ACL_STAGES = [{
   vibe: "Songwriter's Corner",
   vibeNote: "Stripped-down, intimate. Singer-songwriter heaven.",
   peak: "12:00–18:00"
-}, {
-  id: "bonus",
-  name: "Bonus Tracks",
-  short: "BONUS",
-  color: "#2563eb",
-  x: 57,
-  y: 64,
-  size: 0.7,
-  desc: "South-east · smallest stage",
-  vibe: "First Timers",
-  vibeNote: "Local acts, first-ever festival sets. Near the grove.",
-  peak: "11:00–16:00"
 }, {
   id: "beatbox",
   name: "BEATBOX",

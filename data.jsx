@@ -599,15 +599,23 @@ const FESTIVALS_REGISTRY = [
         // Safe to delete: the calibration trio is amex/miller/beatbox
         // (indices 0-2), so the affine is untouched and no other anchor moves.
         //
+        // 2026-09-05: `ladybird` and `bonus` REMOVED TOO — same affine
+        // reasoning, different justification. Both ARE real stages in the
+        // park, but the official 2026 grid programs ZERO sets on either, so
+        // their only effect on the app was a filter chip that selects nothing
+        // and a map pin nobody walks to. Dropping the anchors is the strictly
+        // safer half: a photo shot near Lady Bird was resolving to a stage
+        // with no artist to attribute it to. If ACL programs them in a later
+        // year, restore the def AND the anchor together — the lat/lng are in
+        // git history at this commit's parent.
+        //
         // ⚠ `snapchat` (new for 2026, 15 sets) has NO anchor on purpose. The
         // official 2026 patron map is not published, so its real position is
         // unknown, and a guessed anchor would silently mis-tag photos — worse
         // than no anchor, which simply declines to geo-match that stage.
         { stageId: "titos",    lat: 30.26533, lng: -97.76755 },
         { stageId: "tmobile",  lat: 30.26504, lng: -97.77471 },
-        { stageId: "ladybird", lat: 30.26332, lng: -97.77077 },
         { stageId: "bmi",      lat: 30.26313, lng: -97.77306 },
-        { stageId: "bonus",    lat: 30.26216, lng: -97.76991 },
       ],
       // Was "honda", which this pass deletes. amex is the app's own biggest
       // stage (size 1.7, "headliners close here every night") and the 2026
@@ -1267,9 +1275,7 @@ const ACL_STAGES = [
   { id: "titos",   name: "Tito's Stage",      short: "TITO'S",color: "#f97316", x: 80, y: 31, size: 1.2, desc: "North-east · mid-large stage",  vibe: "Texas Heat",        vibeNote: "Austin locals + rising stars. Vodka optional.",                 peak: "13:00–19:00" },
   { id: "miller",  name: "Miller Lite Stage", short: "MILLER",color: "#38bdf8", x: 31, y: 24, size: 1.0, desc: "North · by Lady Bird Lake",     vibe: "Chill Vibes",       vibeNote: "Shade, cold beer, great sound. Closest to the lake.",           peak: "13:00–19:00" },
   { id: "tmobile", name: "T-Mobile Stage",    short: "T-MOBILE",color: "#a855f7", x: 8, y: 34, size: 1.6, desc: "West side · co-headliners",   vibe: "The Other Main",   vibeNote: "Second headline stage — Skrillex, Lorde and The xx close here.", peak: "16:00–22:00" },
-  { id: "ladybird",name: "Lady Bird Stage",   short: "LADY BIRD",color: "#22c55e", x: 48, y: 52, size: 1.1, desc: "Center · mid-size stage",       vibe: "By the Lake",       vibeNote: "Breezy sets in the heart of the park. Best sunset views.",       peak: "14:00–20:00" },
   { id: "bmi",     name: "BMI Stage",         short: "BMI",  color: "#fbbf24", x: 25, y: 54, size: 0.9, desc: "Center-left · songwriter stage", vibe: "Songwriter's Corner",vibeNote: "Stripped-down, intimate. Singer-songwriter heaven.",           peak: "12:00–18:00" },
-  { id: "bonus",   name: "Bonus Tracks",      short: "BONUS",color: "#2563eb", x: 57, y: 64, size: 0.7, desc: "South-east · smallest stage",   vibe: "First Timers",      vibeNote: "Local acts, first-ever festival sets. Near the grove.",         peak: "11:00–16:00" },
   { id: "beatbox", name: "BEATBOX",           short: "BBX",  color: "#1e40af", x: 22, y: 72, size: 0.75,desc: "South-west · electronic stage",  vibe: "Bass Haven",        vibeNote: "DJs, producers, electronic acts. Near west entrance.",          peak: "14:00–21:00" },
 ];
 
@@ -1296,9 +1302,11 @@ const _aclMk = (id, name, genre, stage, day, start, end, wk) => {
 //  · "Silent Disco" (Tito's, 20:00-22:00 nightly) is a real poster slot.
 //  · Kiddie Limits / side-stage strip excluded — not in the app stage model.
 //
-// 137 entries across 7 programmed stages. Lady Bird and Bonus Tracks keep
-// their defs (physically in the park, on the 2025 map the app renders) but
-// have ZERO 2026 programming, so they carry no sets.
+// 137 entries across 7 programmed stages — which is now every stage the app
+// defines for ACL. Lady Bird and Bonus Tracks are physically in the park and
+// on the 2025 map the app renders, but carry ZERO 2026 programming, so their
+// defs were dropped in v254 rather than ship two filter chips that select
+// nothing. See the gpsAnchors note above before restoring them.
 const ACL_ARTISTS = [
   // ── FRIDAY (day 1) ──
   // T-Mobile
