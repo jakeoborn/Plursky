@@ -730,7 +730,8 @@ function _matchArtistForPhoto({
   var winnerAnchor = _anchors.find(g => g.stageId === pool[0].a.stage) || null;
   var gpsDecided = sLat != null && sLng != null && pool.length > 1 && gpsSeparated;
   var anchorSource = gpsDecided ? winnerAnchor ? winnerAnchor.anchorSource : null : null;
-  var ambiguous = pool.length > 1 && !gpsSeparated || anchorSource === "poster";
+  var surveyGrade = anchorSource === "osm" || anchorSource === "crowd";
+  var ambiguous = pool.length > 1 && !gpsSeparated || anchorSource != null && !surveyGrade;
   return {
     localDate,
     gpsRejected,

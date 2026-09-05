@@ -225,8 +225,58 @@ if (fdata.length) {
     "\n;__o={REG:FESTIVALS_REGISTRY,DS:_DATA_SETS};", ctx);
   const { REG, DS } = ctx.__o;
   const TOL = 1.5;   // grid units on the 0-100 layout; ~20 m at EDC's scale
+
+  // ── Anchor provenance gate ───────────────────────────────────────────────
+  // Every gpsAnchor must say where its lat/lng came from, and an anchor that
+  // was computed FROM the map grid may never be used to validate that grid.
+  //
+  // This exists because the affine gate below cannot tell the difference on
+  // its own. Tito's anchor was exactly mapToGps(80,31) — back-computed from a
+  // stage position that was itself ~132 m wrong — and because a derived value
+  // reproduces its own affine perfectly, the gate reported ACL at "worst 0.06"
+  // and stayed green. The check was real; its input was circular.
+  //
+  // Inference cannot recover this after the fact: the same Tito's anchor,
+  // re-derived and rounded to six decimal places, now shows a residual of
+  // 0.004 — indistinguishable from a genuine measurement at that scale. So
+  // provenance has to be DECLARED at the point the number is written down,
+  // which is the only moment anyone actually knows it.
+  const VALID_SRC = new Set(["osm", "crowd", "poster", "prov", "derived"]);
+  const EVIDENCE_SRC = new Set(["osm", "crowd"]);
+  {
+    console.log("▸ Anchor provenance gate — every anchor declares its source");
+    let undeclared = 0, badSrc = 0, inBasis = 0, total = 0;
+    const tally = {};
+    for (const f of REG) {
+      const cfg = f.config, an = cfg.gpsAnchors || [];
+      an.forEach((a, i) => {
+        total++;
+        tally[a.src || "(none)"] = (tally[a.src || "(none)"] || 0) + 1;
+        if (a.src == null) {
+          console.log(`  ✗  ${cfg.id} / ${a.stageId} — no src`);
+          undeclared++;
+        } else if (!VALID_SRC.has(a.src)) {
+          console.log(`  ✗  ${cfg.id} / ${a.stageId} — src "${a.src}" is not a known provenance`);
+          badSrc++;
+        }
+        // A derived anchor in the leading triple would mean the affine is
+        // solved from a number the affine produced. Fatal regardless of
+        // whether the festival is live — a gated festival flips eventually.
+        if (i < 3 && a.src === "derived" && cfg.mapArtIsGeoregistered !== false) {
+          console.log(`  ✗  ${cfg.id} / ${a.stageId} — derived anchor in the calibration basis`);
+          inBasis++;
+        }
+      });
+    }
+    console.log(`  ${Object.entries(tally).sort().map(([k,v]) => `${k}=${v}`).join("  ")}`);
+    if (undeclared) fail(`${undeclared} gpsAnchor(s) do not declare src — see the GpsAnchor typedef in data.jsx`);
+    if (badSrc) fail(`${badSrc} gpsAnchor(s) declare an unknown src`);
+    if (inBasis) fail(`${inBasis} calibration-basis anchor(s) are derived — the affine would be validating itself`);
+    console.log(`  ✓ ${total} anchor(s), all declared; no derived anchor in any calibration basis`);
+  }
+
   console.log("▸ GPS anchor gate — anchors must satisfy their own affine");
-  let hard = 0, soft = 0, checked = 0;
+  let hard = 0, soft = 0, checked = 0, blind = 0, unsourced = 0;
   for (const f of REG) {
     const cfg = f.config, stages = DS[cfg.id]?.stages || [];
     const an = cfg.gpsAnchors || [];
@@ -248,23 +298,51 @@ if (fdata.length) {
       (A.lat*(v2-v3)-v1*(B.lat-C.lat)+(B.lat*v3-C.lat*v2))/det,
       (A.lat*(B.lng*v3-C.lng*v2)-A.lng*(B.lat*v3-C.lat*v2)+v1*(B.lat*C.lng-C.lat*B.lng))/det];
     const X=sol(A.mx,B.mx,C.mx), Y=sol(A.my,B.my,C.my);
-    let worst = 0, who = "";
-    for (const a of an) {
-      const st = at(a.stageId); if (!st) continue;
+    // Residuals are only EVIDENCE for anchors that could have disagreed.
+    //  · the leading three ARE the affine — their residual is zero by
+    //    construction and always was.
+    //  · a "derived" anchor was back-computed from this same affine, so it
+    //    also cannot disagree. Counting it is a self-check.
+    // Tito's was exactly mapToGps(80,31) — 0 m from its own prediction — and
+    // this gate printed "worst 0.06" over a 132 m error until someone looked
+    // at the map. The number was never wrong; it was answering a question
+    // nobody should have asked.
+    let worst = 0, who = "", evidence = 0;
+    const notEvidence = [];
+    for (let i = 0; i < an.length; i++) {
+      const a = an[i], st = at(a.stageId); if (!st) continue;
       const e = Math.hypot(X[0]*a.lat+X[1]*a.lng+X[2]-st.x, Y[0]*a.lat+Y[1]*a.lng+Y[2]-st.y);
+      if (i < 3) continue;                                  // is the affine
+      if (!EVIDENCE_SRC.has(a.src)) { notEvidence.push(`${a.stageId}:${a.src}`); continue; }
+      evidence++;
       if (e > worst) { worst = e; who = a.stageId; }
     }
     checked++;
-    const bad = worst > TOL;
+    const bad = evidence > 0 && worst > TOL;
     const tag = !bad ? "  ok" : (f.available ? "  ✗ " : "  ! ");
-    console.log(`${tag} ${cfg.id.padEnd(22)} worst ${worst.toFixed(2)} (${who})`);
+    // The basis IS the registration. If none of the three came from outside
+    // the app, every distance the map reports is a guess propagated with
+    // great precision — which is a separate failure from having no
+    // cross-check, and the more serious one.
+    const basisSrc = [a0, a1, a2].map(a => a.src);
+    const basisSourced = basisSrc.some(x => EVIDENCE_SRC.has(x));
+    const detail = evidence
+      ? `worst ${worst.toFixed(2)} (${who}) over ${evidence} independent anchor(s)`
+      : notEvidence.length
+        ? `no cross-check — all ${notEvidence.length} non-basis anchor(s) are ${[...new Set(notEvidence.map(x=>x.split(":")[1]))].join("/")}`
+        : `no cross-check — ${an.length} anchor(s), all of them the basis`;
+    console.log(`${tag} ${cfg.id.padEnd(22)} basis ${basisSrc.join("/")} · ${detail}`);
+    if (!basisSourced && f.available) unsourced++;
+    if (!evidence && f.available) blind++;
     if (bad && f.available) hard++;
     else if (bad) soft++;
   }
   if (!checked) console.log("  (no festival has both anchors and stages)");
   if (soft) console.log(`  ${soft} gated festival(s) inconsistent — re-derive at the flip session`);
   if (hard) fail(`${hard} LIVE festival(s) have gpsAnchors that do not satisfy their own affine`);
-  console.log(`  ✓ ${checked} festival(s) checked, live ones consistent within ${TOL} grid units`);
+  if (unsourced) console.log(`  ⚠ ${unsourced} LIVE festival(s) have a calibration basis with no osm/crowd anchor — the whole registration is unsourced`);
+  if (blind) console.log(`  ⚠ ${blind} LIVE festival(s) have no independent cross-check on the affine`);
+  console.log(`  ✓ ${checked} festival(s) checked; where independent anchors exist they agree within ${TOL} grid units`);
 
   // ── Anchors must fall inside the real venue ──────────────────────────────
   // Not circular: `venue.footprint` is surveyed geometry (OSM), so this can

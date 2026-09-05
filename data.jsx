@@ -10,7 +10,23 @@
 /** @typedef {{ north: number, south: number, west: number, east: number }} GeoBounds */
 /** @typedef {{ lat: number, lng: number }} GeoPoint */
 /** @typedef {{ name: string, address: string, trackLengthMi: number, trackShape: string, bankingTurnsDeg: number, bankingStraightsDeg: number, ovalBounds: GeoBounds, ovalCenter: GeoPoint, festivalBounds: GeoBounds }} Venue */
-/** @typedef {{ stageId: string, lat: number, lng: number }} GpsAnchor */
+/**
+ * `src` is the anchor's PROVENANCE and it is required — see the provenance
+ * gate in scripts/verify.mjs for why. Values, strongest first:
+ *   "osm"     — real-world geometry (OpenStreetMap). Independent evidence.
+ *   "crowd"   — measured from user GPS pings (see crowdAnchors). Evidence.
+ *   "poster"  — read off official festival map art. Constrains the affine,
+ *               but art is not a survey, so it is not treated as evidence.
+ *   "prov"    — provisional placeholder. Not evidence.
+ *   "derived" — back-computed from the affine or the x/y grid. NOT EVIDENCE,
+ *               and never permitted in the calibration basis: an anchor
+ *               computed from the affine cannot disagree with it, so checking
+ *               it proves nothing. This is not hypothetical — Tito's carried
+ *               an anchor that was exactly mapToGps(80,31), and the gate
+ *               reported "worst 0.06" over a 132 m error for months.
+ * @typedef {{ stageId: string, lat: number, lng: number,
+ *             src: "osm"|"crowd"|"poster"|"prov"|"derived" }} GpsAnchor
+ */
 /**
  * @typedef {Object} FestivalConfig
  * @property {string} id - Unique festival identifier (e.g. "edc-lv-2026")
@@ -167,9 +183,9 @@ const FESTIVAL_CONFIG = {
   // (Insomniac re-uses similar layouts year-over-year).
   gpsAnchors: [
     // Calibrated (do not move without re-deriving the others)
-    { stageId: "kinetic", lat: 36.27512, lng: -115.01180 },
-    { stageId: "cosmic",  lat: 36.27370, lng: -115.01480 },
-    { stageId: "basspod", lat: 36.27075, lng: -115.01230 },
+    { stageId: "kinetic", lat: 36.27512, lng: -115.01180, src: "poster" },
+    { stageId: "cosmic",  lat: 36.27370, lng: -115.01480, src: "poster" },
+    { stageId: "basspod", lat: 36.27075, lng: -115.01230, src: "poster" },
     // Derived from the SVG layout via the kinetic/cosmic/basspod affine.
     // RE-DERIVED 2026-08-27: these were labelled "derived" but did not
     // actually satisfy the affine. Feeding each stored anchor back through
@@ -179,12 +195,12 @@ const FESTIVAL_CONFIG = {
     // to a stage by comparing EXIF GPS against these anchors, so a stage
     // sitting 85 m from where the app thinks it is mis-tags the photos
     // taken at it. The rest moved <1 unit (4-decimal rounding, now 5).
-    { stageId: "quantum", lat: 36.27433, lng: -115.01026 },
-    { stageId: "bionic",  lat: 36.27544, lng: -115.01386 },
-    { stageId: "stereo",  lat: 36.27404, lng: -115.01285 },
-    { stageId: "neon",    lat: 36.27218, lng: -115.01010 },
-    { stageId: "waste",   lat: 36.27179, lng: -115.01366 },
-    { stageId: "circuit", lat: 36.27088, lng: -115.01068 },
+    { stageId: "quantum", lat: 36.27433, lng: -115.01026, src: "poster" },
+    { stageId: "bionic",  lat: 36.27544, lng: -115.01386, src: "poster" },
+    { stageId: "stereo",  lat: 36.27404, lng: -115.01285, src: "poster" },
+    { stageId: "neon",    lat: 36.27218, lng: -115.01010, src: "poster" },
+    { stageId: "waste",   lat: 36.27179, lng: -115.01366, src: "poster" },
+    { stageId: "circuit", lat: 36.27088, lng: -115.01068, src: "poster" },
   ],
 
   // ── Crowd anchors (MEASURED — the tagger reads these, the map does not) ──
@@ -404,13 +420,13 @@ const FESTIVALS_REGISTRY = [
       // general stage layout - no 2026 patron map exists yet). Recalibrate
       // at the flip session per the map.jsx ACL 3-point affine workflow.
       gpsAnchors: [
-        { stageId: "prehistoric",  lat: 39.93800, lng: -82.40650 },
-        { stageId: "wompy-woods",  lat: 39.94150, lng: -82.40100 },
-        { stageId: "crater",       lat: 39.94050, lng: -82.40750 },
-        { stageId: "subsidia",     lat: 39.94180, lng: -82.40450 },
-        { stageId: "forest-stage", lat: 39.93900, lng: -82.40200 },
-        { stageId: "raptor-alley", lat: 39.94250, lng: -82.40700 },
-        { stageId: "grove",        lat: 39.94300, lng: -82.40150 },
+        { stageId: "prehistoric",  lat: 39.93800, lng: -82.40650, src: "prov" },
+        { stageId: "wompy-woods",  lat: 39.94150, lng: -82.40100, src: "prov" },
+        { stageId: "crater",       lat: 39.94050, lng: -82.40750, src: "prov" },
+        { stageId: "subsidia",     lat: 39.94180, lng: -82.40450, src: "prov" },
+        { stageId: "forest-stage", lat: 39.93900, lng: -82.40200, src: "prov" },
+        { stageId: "raptor-alley", lat: 39.94250, lng: -82.40700, src: "prov" },
+        { stageId: "grove",        lat: 39.94300, lng: -82.40150, src: "prov" },
       ],
       mainStageId: "prehistoric",
       // lostlands-2026.jpg = PROVISIONAL generated abstract valley overlay
@@ -487,11 +503,11 @@ const FESTIVALS_REGISTRY = [
       // affine and `bacardi` 13.0 — over half the footprint. Re-measure the
       // trio on satellite first, then re-derive the other two from it.
       gpsAnchors: [
-        { stageId: "kinetic", lat: 28.53890, lng: -81.40450 },
-        { stageId: "circuit", lat: 28.53760, lng: -81.40630 },
-        { stageId: "neon",    lat: 28.53800, lng: -81.40320 },
-        { stageId: "stereo",  lat: 28.53920, lng: -81.40610 },
-        { stageId: "bacardi", lat: 28.53720, lng: -81.40400 },
+        { stageId: "kinetic", lat: 28.53890, lng: -81.40450, src: "prov" },
+        { stageId: "circuit", lat: 28.53760, lng: -81.40630, src: "prov" },
+        { stageId: "neon",    lat: 28.53800, lng: -81.40320, src: "prov" },
+        { stageId: "stereo",  lat: 28.53920, lng: -81.40610, src: "prov" },
+        { stageId: "bacardi", lat: 28.53720, lng: -81.40400, src: "prov" },
       ],
       mainStageId: "kinetic",
       // edco-tinker-2026.jpg = PROVISIONAL generated abstract overlay
@@ -581,9 +597,9 @@ const FESTIVALS_REGISTRY = [
       // 3-point Cramer affine used by EDC (see map.jsx).
       gpsAnchors: [
         // Calibrated (do not move without re-deriving the others)
-        { stageId: "amex",    lat: 30.26360, lng: -97.76640 },
-        { stageId: "miller",  lat: 30.26600, lng: -97.77240 },
-        { stageId: "beatbox", lat: 30.26140, lng: -97.77340 },
+        { stageId: "amex",    lat: 30.26360, lng: -97.76640, src: "poster" },
+        { stageId: "miller",  lat: 30.26600, lng: -97.77240, src: "poster" },
+        { stageId: "beatbox", lat: 30.26140, lng: -97.77340, src: "poster" },
         // Derived from the SVG layout via the amex/miller/beatbox affine.
         // RE-DERIVED 2026-08-27 — same defect as EDC LV and Forest. `tmobile`
         // was 28.7 grid units off its own stated derivation (~190 m across
@@ -620,9 +636,9 @@ const FESTIVALS_REGISTRY = [
         // mapToGps(68,37) through the same amex/miller/beatbox affine, so it is
         // derived too, but from a map position verified against the art. Treat
         // it as map-accurate, not survey-accurate.
-        { stageId: "titos",    lat: 30.264752, lng: -97.768756 },
-        { stageId: "tmobile",  lat: 30.26504, lng: -97.77471 },
-        { stageId: "bmi",      lat: 30.26313, lng: -97.77306 },
+        { stageId: "titos",    lat: 30.264752, lng: -97.768756, src: "derived" },
+        { stageId: "tmobile",  lat: 30.26504, lng: -97.77471, src: "poster" },
+        { stageId: "bmi",      lat: 30.26313, lng: -97.77306, src: "poster" },
       ],
       // Was "honda", which this pass deletes. amex is the app's own biggest
       // stage (size 1.7, "headliners close here every night") and the 2026
@@ -1195,7 +1211,11 @@ function resolvedStageAnchors(cfg) {
   const byId = new Map();
   for (const g of (cfg?.gpsAnchors || [])) {
     if (!g || typeof g.lat !== "number" || typeof g.lng !== "number") continue;
-    byId.set(g.stageId, { stageId: g.stageId, lat: g.lat, lng: g.lng, anchorSource: "poster" });
+    // Was hardcoded "poster" for every gpsAnchor, which was a placeholder from
+    // before anchors recorded where they came from. Now that they do, pass it
+    // through: an OSM-sourced anchor is genuinely more trustworthy than one
+    // eyeballed off map art, and photo-tag.jsx keys its ambiguity flag on this.
+    byId.set(g.stageId, { stageId: g.stageId, lat: g.lat, lng: g.lng, anchorSource: g.src || "poster" });
   }
   for (const c of (cfg?.crowdAnchors || [])) {
     if (!c || typeof c.lat !== "number" || typeof c.lng !== "number") continue;

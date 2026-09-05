@@ -729,16 +729,16 @@
     gpsAnchors: [
       // Ordered so the leading triple spans the largest triangle — map.jsx's
       // _solveMapAffine reads only the first three, and a thin triple is unstable.
-      { stageId: "bmo",           lat: 43.02862, lng: -87.89660 },  // osm
-      { stageId: "briggs",        lat: 43.02980, lng: -87.89941 },  // osm
-      { stageId: "uline",         lat: 43.03532, lng: -87.89824 },  // osm
-      { stageId: "amph",          lat: 43.02716, lng: -87.89759 },  // osm
-      { stageId: "generac",       lat: 43.03109, lng: -87.89940 },  // osm
-      { stageId: "miller",        lat: 43.03216, lng: -87.89962 },  // osm
-      { stageId: "aurora",        lat: 43.03352, lng: -87.89837 },  // osm
-      { stageId: "tmobile",       lat: 43.03442, lng: -87.89789 },  // osm
-      { stageId: "johnsonville",  lat: 43.03489, lng: -87.89906 },  // osm
-      { stageId: "amfamhouse",    lat: 43.03060, lng: -87.89860 },  // prov
+      { stageId: "bmo",           lat: 43.02862, lng: -87.89660, src: "osm" },
+      { stageId: "briggs",        lat: 43.02980, lng: -87.89941, src: "osm" },
+      { stageId: "uline",         lat: 43.03532, lng: -87.89824, src: "osm" },
+      { stageId: "amph",          lat: 43.02716, lng: -87.89759, src: "osm" },
+      { stageId: "generac",       lat: 43.03109, lng: -87.89940, src: "osm" },
+      { stageId: "miller",        lat: 43.03216, lng: -87.89962, src: "osm" },
+      { stageId: "aurora",        lat: 43.03352, lng: -87.89837, src: "osm" },
+      { stageId: "tmobile",       lat: 43.03442, lng: -87.89789, src: "osm" },
+      { stageId: "johnsonville",  lat: 43.03489, lng: -87.89906, src: "osm" },
+      { stageId: "amfamhouse",    lat: 43.03060, lng: -87.89860, src: "prov" },
     ],
     weatherEndpoint: "https://api.weather.gov/points/43.03,-87.90",
     mainStageId: "amph",

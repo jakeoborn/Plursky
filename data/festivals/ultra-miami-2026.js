@@ -319,13 +319,13 @@
     gpsAnchors: [
       // Ordered so the leading triple spans the largest triangle — map.jsx's
       // _solveMapAffine reads only the first three, and a thin triple is unstable.
-      { stageId: "worldwide",     lat: 25.77230, lng: -80.18700 },  // prov
-      { stageId: "cove",          lat: 25.77450, lng: -80.18450 },  // prov
-      { stageId: "umfradio",      lat: 25.77700, lng: -80.18780 },  // prov
-      { stageId: "main",          lat: 25.77790, lng: -80.18620 },  // prov
-      { stageId: "megastructure", lat: 25.77180, lng: -80.18520 },  // prov
-      { stageId: "live",          lat: 25.77620, lng: -80.18606 },  // osm
-      { stageId: "oasis",         lat: 25.77430, lng: -80.18750 },  // prov
+      { stageId: "worldwide",     lat: 25.77230, lng: -80.18700, src: "prov" },
+      { stageId: "cove",          lat: 25.77450, lng: -80.18450, src: "prov" },
+      { stageId: "umfradio",      lat: 25.77700, lng: -80.18780, src: "prov" },
+      { stageId: "main",          lat: 25.77790, lng: -80.18620, src: "prov" },
+      { stageId: "megastructure", lat: 25.77180, lng: -80.18520, src: "prov" },
+      { stageId: "live",          lat: 25.77620, lng: -80.18606, src: "osm" },
+      { stageId: "oasis",         lat: 25.77430, lng: -80.18750, src: "prov" },
     ],
     weatherEndpoint: "https://api.weather.gov/points/25.78,-80.19",
     mainStageId: "main",
