@@ -1,7 +1,13 @@
 #!/usr/bin/env node
 // Copies the static SPA into dist/ for Capacitor to bundle into the iOS app.
+//
+// Since v253 the app loads COMPILED js from build/, not raw .jsx, so this
+// runs the compile first. Pages serves build/ straight out of the repo and
+// the iOS shell bundles dist/build/ — one output directory, two consumers,
+// and neither can drift because both come from this one step.
 import { cp, mkdir, rm, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -20,11 +26,16 @@ const COPY = [
   'og.svg',
 ];
 
+// Compile FIRST — dist/ must never carry a build/ older than the sources.
+execFileSync(process.execPath, [path.join(root, 'scripts', 'compile.mjs')],
+  { cwd: root, stdio: 'inherit' });
+
 await rm(dist, { recursive: true, force: true });
 await mkdir(dist, { recursive: true });
 
 const entries = await readdir(root, { withFileTypes: true });
-const jsxFiles = entries.filter(e => e.isFile() && e.name.endsWith('.jsx')).map(e => e.name);
+// .jsx sources are deliberately NOT copied: nothing loads them any more, and
+// shipping them would put ~1.7MB of dead weight in the iOS bundle.
 // Image assets (map artwork, etc.) so the iOS bundle has them too — without
 // this, image-overlay maps (EDC aerial, ACL park) are blank in the native app.
 const imgFiles = entries
@@ -42,7 +53,18 @@ const dataFiles = existsSync(path.join(root, 'data', 'festivals'))
       .filter(f => f.endsWith('.js')).map(f => path.join('data', 'festivals', f))
   : [];
 
-const allFiles = [...new Set([...COPY, ...jsxFiles, ...imgFiles, ...dataFiles])];
+// Compiled output. This is what index.html and sw.js actually reference now,
+// so a miss here is a blank app in the native shell, not a slow one.
+const buildFiles = existsSync(path.join(root, 'build'))
+  ? (await readdir(path.join(root, 'build')))
+      .filter(f => f.endsWith('.js')).map(f => path.join('build', f))
+  : [];
+if (!buildFiles.length) {
+  console.error('[build] build/ is empty — compile.mjs produced nothing');
+  process.exit(1);
+}
+
+const allFiles = [...new Set([...COPY, ...buildFiles, ...imgFiles, ...dataFiles])];
 for (const file of allFiles) {
   const src = path.join(root, file);
   if (!existsSync(src)) {

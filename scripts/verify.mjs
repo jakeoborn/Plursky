@@ -76,6 +76,67 @@ if (existsSync(podfile)) {
   console.log("  ✓ all pod paths repo-relative");
 } else console.log("  – no Podfile");
 
+// ── 0c. Precompile gates (v253) ────────────────────────────────────────────
+// The app no longer transpiles in the browser. Three ways that can rot:
+// index.html slipping back to text/babel, build/ going stale against the
+// sources it was compiled from, and sw.js precaching URLs nobody requests
+// (which strands offline users on the previous version).
+{
+  console.log("▸ Precompile gate — no in-browser Babel, build/ current");
+  const html = readFileSync(join(ROOT, "index.html"), "utf8");
+
+  if (/type="text\/babel"/.test(html))
+    fail("index.html still has a text/babel script — the browser would need Babel again");
+  if (/@babel\/standalone/.test(html))
+    fail("index.html still loads babel-standalone");
+  for (const dev of ["react.development.js", "react-dom.development.js"])
+    if (html.includes(dev)) fail(`index.html ships ${dev} — production builds only`);
+
+  const { compileTargets, compileOne, hostileSyntax } = await import("./compile.mjs");
+  const names = compileTargets(html);
+  if (names.length < 10) fail(`only ${names.length} compile target(s) found in index.html`);
+
+  // Byte-compare the committed output against a fresh in-memory compile. A
+  // stale build/ is invisible at runtime — the app boots happily on last
+  // week's code — so it has to be caught here.
+  let stale = [];
+  for (const n of names) {
+    const out = join(ROOT, "build", `${n}.js`);
+    if (!existsSync(out)) { stale.push(`${n}.js (missing)`); continue; }
+    const fresh = await compileOne(n);
+    if (hostileSyntax(fresh).length) fail(`${n}.js contains iOS-hostile syntax`);
+    if (readFileSync(out, "utf8") !== fresh) stale.push(`${n}.js`);
+  }
+  if (stale.length)
+    fail(`build/ is stale vs sources: ${stale.join(", ")} — run node scripts/compile.mjs`);
+
+  // sw.js precaches by URL. A missed file fails addAll ATOMICALLY, which
+  // wedges an updating user on the old service worker.
+  const sw = readFileSync(join(ROOT, "sw.js"), "utf8");
+  const swBuilt = [...sw.matchAll(/`\.\/build\/([A-Za-z0-9._-]+)\.js\?v=/g)].map(m => m[1]);
+  const missingSw = names.filter(n => !swBuilt.includes(n));
+  const extraSw  = swBuilt.filter(n => !names.includes(n));
+  if (missingSw.length) fail(`sw.js precache is missing: ${missingSw.join(", ")}`);
+  if (extraSw.length)   fail(`sw.js precaches files index.html does not load: ${extraSw.join(", ")}`);
+  if (/@babel\/standalone/.test(sw)) fail("sw.js still precaches babel-standalone");
+
+  // The check above compares the WORKING TREE against a fresh compile, which
+  // catches "forgot to recompile". It cannot catch "committed a stale build/",
+  // because CI runs build.mjs before this and would have silently regenerated
+  // it. So also require that build/ be clean against the index — in CI the
+  // checkout starts clean, so any diff here means the commit was stale.
+  // Locally that is just uncommitted work in progress, hence warn-only.
+  const dirty = execFileSync("git", ["status", "--porcelain", "--", "build"], { cwd: ROOT })
+    .toString().trim();
+  if (dirty) {
+    if (process.env.CI)
+      fail(`build/ differs from the commit — recompile and commit:\n${dirty}`);
+    console.log(`  ! build/ has uncommitted changes (fine locally, fatal in CI)`);
+  }
+
+  console.log(`  ✓ ${names.length} compiled file(s) current, sw.js mirrors index.html`);
+}
+
 // ── 1. Parse gate ──────────────────────────────────────────────────────────
 // Babel with the react preset — the same transform the browser applies to each
 // <script type="text/babel">. tsc's syntax pass does NOT cover JSX semantics
@@ -426,8 +487,19 @@ function read(){
     var w=document.getElementById("f").contentWindow, r=w.document.getElementById("root");
     return {root:r?r.childElementCount:-1, chars:r?r.innerHTML.length:0,
             fns:FNS.map(function(f){return f+"="+typeof w[f];}),
+            // ⚠ The whole multi-festival switch rides on this. data.jsx ends
+            // with Object.assign(window,{FESTIVAL_CONFIG:<active>,…}) and every
+            // later file reads those by BARE NAME — which only reaches the
+            // window property if top-level declarations were lowered to var.
+            // Ship const and the bare names hit the shadowing EDC base
+            // declarations instead: app boots, mounts, passes every other
+            // check, and quietly serves EDC's config at ACL. Measured in v253.
+            winProps:["FESTIVAL_START_MS","FESTIVAL_CONFIG","ARTISTS","STAGES"]
+              .map(function(k){return k+"="+typeof w[k];}),
+            activeId:(function(){try{return w.FESTIVAL_CONFIG&&w.FESTIVAL_CONFIG.id;}catch(e){return "?";}})(),
+            preCd:(function(){try{return w.preEventCountdown?JSON.stringify(w.preEventCountdown([])):"nofn";}catch(e){return "threw";}})(),
             errs:(w.__probeErrs||[]).concat(window.__e), waitedMs:Date.now()-t0};
-  }catch(err){ return {root:-1,chars:0,fns:[],errs:["probe: "+err.message],waitedMs:Date.now()-t0}; }
+  }catch(err){ return {root:-1,chars:0,fns:[],winProps:[],activeId:"?",preCd:"?",errs:["probe: "+err.message],waitedMs:Date.now()-t0}; }
 }
 function emit(o){
   var p=document.createElement("pre"); p.id="R"; p.textContent=JSON.stringify(o);
@@ -497,6 +569,26 @@ if (r.chars < MIN_RENDERED_CHARS)
   fail(`#root rendered only ${r.chars} chars (floor ${MIN_RENDERED_CHARS}) — error boundary or a partial render, not a healthy mount`);
 const missing = r.fns.filter(f => !f.endsWith("=function"));
 if (missing.length) fail(`not a function: ${missing.join(", ")}`);
+
+// ── The window-property contract (v253) ───────────────────────────────────
+// Bare cross-file names must reach the window properties data.jsx assigns,
+// not shadowing top-level declarations. If the compile stops lowering
+// const→var this is the ONLY check that notices: everything above still
+// passes while the app serves the wrong festival's data.
+const badProps = (r.winProps || []).filter(p => p.endsWith("=undefined"));
+console.log(`  window props  : ${(r.winProps || []).length - badProps.length}/${(r.winProps || []).length} reachable`);
+if (badProps.length)
+  fail(`top-level declarations are not reaching window (${badProps.join(", ")}) — ` +
+       `compile.mjs must lower const/let to var, see CLAUDE.md §5`);
+
+// And the observable consequence, so the contract is checked by BEHAVIOUR and
+// not only by shape: the active festival must be the resolved one, and the
+// pre-event countdown must actually produce a countdown.
+console.log(`  active festival: ${r.activeId}`);
+if (!r.activeId || r.activeId === "?") fail("no active festival resolved");
+if (r.preCd === "null" || r.preCd === "threw")
+  fail(`preEventCountdown returned ${r.preCd} — bare-name resolution is reading a stale config`);
+
 if (r.errs.length) fail(`${r.errs.length} console error(s) during boot`);
 
 console.log("\n✓ verify gate passed");

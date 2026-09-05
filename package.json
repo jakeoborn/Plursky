@@ -27,6 +27,8 @@
   },
   "devDependencies": {
     "@babel/core": "^8.0.1",
+    "@babel/plugin-transform-block-scoping": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
     "@babel/preset-react": "^8.0.1",
     "@capacitor/cli": "^6.2.0",
     "playwright": "^1.60.0",

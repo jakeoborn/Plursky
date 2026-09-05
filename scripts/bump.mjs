@@ -125,3 +125,13 @@ for (const f of FILES) {
 }
 console.log(`\nv${from} → v${to} (${total} replacements)`);
 check("after");
+
+// Since v253 the browser loads compiled JS from build/, and app.jsx carries
+// the version string — so a bump that does not recompile leaves build/app.js
+// announcing the OLD version while index.html requests the new one. Recompile
+// here so the bump stays a single, complete step.
+{
+  const { execFileSync } = await import("node:child_process");
+  execFileSync(process.execPath, [join(ROOT, "scripts", "compile.mjs")],
+    { cwd: ROOT, stdio: "inherit" });
+}
