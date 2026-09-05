@@ -792,9 +792,17 @@ const _FESTIVAL_BADGE_PACKS = {
     { id: "closing-time",   icon: "☾", name: "Closing Time",     desc: "Save a headline-hour set (8 PM+)",
       earned: ctx.savedArtists.some(a => (window.toNightMin?.(a.start) || 0) >= 12 * 60) },
     { id: "amex-front",     icon: "△", name: "Amex Front Row",   desc: "Save 3+ American Express sets",     earned: ctx.byStage("amex") >= 3 },
-    { id: "honda-faithful", icon: "⬡", name: "Honda Faithful",   desc: "Save 3+ Honda Stage sets",          earned: ctx.byStage("honda") >= 3 },
-    { id: "springs-local",  icon: "▣", name: "Springs Local",    desc: "Save 3+ Barton Springs or Bonus Tracks sets",
-      earned: (ctx.byStage("barton") + ctx.byStage("bonus")) >= 3 },
+    // Re-keyed 2026-09-04 with the official grid. These two pointed at stages
+    // that do not exist in 2026 — `honda` and `barton` were app inventions
+    // (not on the official patron map) and are now deleted, and `bonus` has
+    // ZERO 2026 programming. byStage() on any of them is permanently 0, so
+    // both badges were unearnable by construction: visible, described, and
+    // impossible. Re-pointed at stages the official grid actually programs,
+    // keeping the same shape — one headline-stage badge, one digging badge.
+    { id: "tmobile-faithful", icon: "⬡", name: "West Side Regular", desc: "Save 3+ T-Mobile Stage sets",
+      earned: ctx.byStage("tmobile") >= 3 },
+    { id: "crate-digger",   icon: "▣", name: "Crate Digger",     desc: "Save 3+ BMI or Tito's sets",
+      earned: (ctx.byStage("bmi") + ctx.byStage("titos")) >= 3 },
     { id: "three-day",      icon: "◆", name: "Three-Day Texan",  desc: "Save a set on all 3 days",
       earned: new Set(ctx.savedArtists.map(a => a.day)).size >= 3 },
     { id: "zilker-crew",    icon: "✺", name: "Zilker Crew",      desc: "Two weekends in the park",           earned: true },
