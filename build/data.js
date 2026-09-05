@@ -1,0 +1,1638 @@
+var FESTIVAL_CONFIG = {
+  id: "edc-lv-2026",
+  name: "EDC Las Vegas 2026",
+  shortName: "EDC LV 2026",
+  brand: "EDC",
+  tagline: "Three nights under the electric sky",
+  location: "Las Vegas Motor Speedway · Nevada",
+  locationShort: "Las Vegas Motor Speedway",
+  dates: "May 15–17, 2026",
+  year: 2026,
+  startMs: Date.UTC(2026, 4, 16, 0, 0, 0),
+  endMs: Date.UTC(2026, 4, 18, 12, 0, 0),
+  tz: "America/Los_Angeles",
+  tzAbbr: "PDT",
+  utcOffsetHours: -7,
+  dayDates: {
+    1: {
+      y: 2026,
+      m: 4,
+      d: 15,
+      name: "Friday",
+      short: "FRI",
+      midnightUtc: Date.UTC(2026, 4, 15, 7, 0, 0)
+    },
+    2: {
+      y: 2026,
+      m: 4,
+      d: 16,
+      name: "Saturday",
+      short: "SAT",
+      midnightUtc: Date.UTC(2026, 4, 16, 7, 0, 0)
+    },
+    3: {
+      y: 2026,
+      m: 4,
+      d: 17,
+      name: "Sunday",
+      short: "SUN",
+      midnightUtc: Date.UTC(2026, 4, 17, 7, 0, 0)
+    }
+  },
+  sunTimes: {
+    1: {
+      rise: "05:36",
+      set: "19:34"
+    },
+    2: {
+      rise: "05:35",
+      set: "19:35"
+    },
+    3: {
+      rise: "05:34",
+      set: "19:36"
+    }
+  },
+  lastShuttleHHMM: "05:45",
+  gps: {
+    lat: 36.27370,
+    lng: -115.0125,
+    onSiteRadiusMi: 0.5
+  },
+  rideshareGps: {
+    lat: 36.258,
+    lng: -115.011,
+    label: "South Lot · Rideshare Pickup",
+    note: "Drivers can't enter the venue. Walk south through the rideshare gate."
+  },
+  venue: {
+    name: "Las Vegas Motor Speedway",
+    address: "7000 N Las Vegas Blvd, Las Vegas, NV 89115",
+    trackLengthMi: 1.5,
+    trackShape: "tri-oval",
+    bankingTurnsDeg: 20,
+    bankingStraightsDeg: 9,
+    ovalBounds: {
+      north: 36.27520,
+      south: 36.26790,
+      west: -115.01700,
+      east: -115.00540
+    },
+    ovalCenter: {
+      lat: 36.27155,
+      lng: -115.01120
+    },
+    festivalBounds: {
+      north: 36.27780,
+      south: 36.26720,
+      west: -115.01740,
+      east: -115.00500
+    },
+    footprint: [[36.26972, -115.00983], [36.27166, -115.00693], [36.27282, -115.00580], [36.27430, -115.00576], [36.27543, -115.00693], [36.27567, -115.00873], [36.27535, -115.01057], [36.27469, -115.01232], [36.27360, -115.01363], [36.27164, -115.01474], [36.27014, -115.01479], [36.26900, -115.01363], [36.26874, -115.01182], [36.26951, -115.01015]]
+  },
+  gpsAnchors: [{
+    stageId: "kinetic",
+    lat: 36.27512,
+    lng: -115.01180
+  }, {
+    stageId: "cosmic",
+    lat: 36.27370,
+    lng: -115.01480
+  }, {
+    stageId: "basspod",
+    lat: 36.27075,
+    lng: -115.01230
+  }, {
+    stageId: "quantum",
+    lat: 36.27433,
+    lng: -115.01026
+  }, {
+    stageId: "bionic",
+    lat: 36.27544,
+    lng: -115.01386
+  }, {
+    stageId: "stereo",
+    lat: 36.27404,
+    lng: -115.01285
+  }, {
+    stageId: "neon",
+    lat: 36.27218,
+    lng: -115.01010
+  }, {
+    stageId: "waste",
+    lat: 36.27179,
+    lng: -115.01366
+  }, {
+    stageId: "circuit",
+    lat: 36.27088,
+    lng: -115.01068
+  }],
+  crowdAnchors: [{
+    stageId: "kinetic",
+    lat: 36.27395,
+    lng: -115.00714,
+    n: 11,
+    nights: 2,
+    spreadM: 85,
+    soleSetInWindow: true,
+    measuredAt: "2026-08-29",
+    source: "jake-edc2026-batch1+2"
+  }, {
+    stageId: "circuit",
+    lat: 36.27003,
+    lng: -115.01105,
+    n: 6,
+    nights: 1,
+    spreadM: 20,
+    soleSetInWindow: true,
+    measuredAt: "2026-08-29",
+    source: "jake-edc2026-batch2"
+  }],
+  weatherEndpoint: "https://api.weather.gov/points/36.27,-115.01",
+  mainStageId: "kinetic",
+  mapImage: "edc-map-2026.jpg",
+  mapStyle: "image-overlay",
+  mapPrintsStageNames: true,
+  mapArtIsGeoregistered: false,
+  landmarks: [{
+    label: "KINETIC TRAIL",
+    x: 38.3,
+    y: 21.4,
+    rot: -55,
+    color: "rgba(251,191,36,0.85)",
+    size: 6.8,
+    ls: 1.6
+  }, {
+    label: "MEMORY LANE",
+    x: 25.0,
+    y: 55.3,
+    rot: -90,
+    color: "rgba(247,237,224,0.7)",
+    size: 6.8,
+    ls: 1.6
+  }, {
+    label: "POWER PATH",
+    x: 51.8,
+    y: 46.4,
+    rot: -90,
+    color: "rgba(167,139,250,0.85)",
+    size: 6.8,
+    ls: 1.6
+  }, {
+    label: "RAINBOW ROAD",
+    x: 47.9,
+    y: 67.1,
+    rot: -90,
+    color: "rgba(244,114,182,0.85)",
+    size: 6.8,
+    ls: 1.6
+  }, {
+    label: "ELECTRIC AVENUE",
+    x: 35.6,
+    y: 71.9,
+    rot: 0,
+    color: "rgba(252,211,77,0.95)",
+    size: 6.8,
+    ls: 2.0
+  }, {
+    label: "BASS LANE",
+    x: 44.3,
+    y: 82.1,
+    rot: -90,
+    color: "rgba(96,165,250,0.85)",
+    size: 6.5,
+    ls: 1.6
+  }, {
+    label: "NOMADS ALLEY",
+    x: 28.7,
+    y: 77.1,
+    rot: -22,
+    color: "rgba(247,237,224,0.7)",
+    size: 6.5,
+    ls: 1.5
+  }, {
+    label: "DAISY FIELDS",
+    x: 28.2,
+    y: 22.4,
+    rot: 0,
+    color: "rgba(252,211,77,0.85)",
+    size: 5.8,
+    ls: 1.4
+  }, {
+    label: "NOMADS LAND",
+    x: 32.2,
+    y: 87.2,
+    rot: 0,
+    color: "rgba(252,211,77,0.95)",
+    size: 6.5,
+    ls: 1.6
+  }, {
+    label: "RAINBOW BAZAAR",
+    x: 34.5,
+    y: 46.2,
+    rot: 0,
+    color: "rgba(255,255,255,0.92)",
+    size: 5.8,
+    ls: 1.4
+  }, {
+    label: "DOWNTOWN EDC",
+    x: 36.5,
+    y: 61.8,
+    rot: 0,
+    color: "rgba(251,191,36,0.95)",
+    size: 6.5,
+    ls: 1.6
+  }, {
+    label: "FLOWER TUNNEL",
+    x: 40.8,
+    y: 29.2,
+    rot: 0,
+    color: "rgba(244,114,182,0.9)",
+    size: 6.2,
+    ls: 1.5
+  }, {
+    label: "PIXEL FOREST",
+    x: 58.3,
+    y: 64.0,
+    rot: 0,
+    color: "rgba(244,114,182,0.85)",
+    size: 6.2,
+    ls: 1.5
+  }, {
+    label: "NOMADS PORTAL",
+    x: 33.2,
+    y: 75.6,
+    rot: 0,
+    color: "rgba(244,114,182,0.85)",
+    size: 5.6,
+    ls: 1.4
+  }]
+};
+var FESTIVAL = FESTIVAL_CONFIG;
+var FESTIVALS_REGISTRY = [{
+  config: FESTIVAL_CONFIG,
+  available: true,
+  accent: "#e85d2e",
+  emoji: "🌵",
+  region: "North America"
+}, {
+  config: {
+    id: "electric-forest-2027",
+    name: "Electric Forest 2027",
+    shortName: "Forest 2027",
+    brand: "Electric Forest",
+    tagline: "Four days under the electric canopy",
+    location: "Double JJ Ranch · Rothbury, MI",
+    locationShort: "Double JJ Ranch",
+    dates: "Dates TBA",
+    year: 2027
+  },
+  available: false,
+  accent: "#34d399",
+  emoji: "🌲",
+  region: "North America"
+}, {
+  config: {
+    id: "lost-lands-2026",
+    name: "Lost Lands 2026",
+    shortName: "Lost Lands",
+    brand: "Lost Lands",
+    tagline: "Three nights in Legend Valley",
+    location: "Legend Valley · Thornville, OH",
+    locationShort: "Legend Valley",
+    dates: "Sep 18–20, 2026",
+    year: 2026,
+    startMs: Date.UTC(2026, 8, 16, 16, 0, 0),
+    endMs: Date.UTC(2026, 8, 21, 6, 0, 0),
+    tz: "America/New_York",
+    tzAbbr: "EDT",
+    utcOffsetHours: -4,
+    dayDates: {
+      1: {
+        y: 2026,
+        m: 8,
+        d: 16,
+        name: "Wednesday",
+        short: "WED",
+        midnightUtc: Date.UTC(2026, 8, 16, 4, 0, 0)
+      },
+      2: {
+        y: 2026,
+        m: 8,
+        d: 17,
+        name: "Thursday",
+        short: "THU",
+        midnightUtc: Date.UTC(2026, 8, 17, 4, 0, 0)
+      },
+      3: {
+        y: 2026,
+        m: 8,
+        d: 18,
+        name: "Friday",
+        short: "FRI",
+        midnightUtc: Date.UTC(2026, 8, 18, 4, 0, 0)
+      },
+      4: {
+        y: 2026,
+        m: 8,
+        d: 19,
+        name: "Saturday",
+        short: "SAT",
+        midnightUtc: Date.UTC(2026, 8, 19, 4, 0, 0)
+      },
+      5: {
+        y: 2026,
+        m: 8,
+        d: 20,
+        name: "Sunday",
+        short: "SUN",
+        midnightUtc: Date.UTC(2026, 8, 20, 4, 0, 0)
+      }
+    },
+    sunTimes: {
+      1: {
+        rise: "07:11",
+        set: "19:38"
+      },
+      2: {
+        rise: "07:11",
+        set: "19:37"
+      },
+      3: {
+        rise: "07:12",
+        set: "19:35"
+      },
+      4: {
+        rise: "07:13",
+        set: "19:34"
+      },
+      5: {
+        rise: "07:14",
+        set: "19:32"
+      }
+    },
+    gps: {
+      lat: 39.9403,
+      lng: -82.4039,
+      onSiteRadiusMi: 1.0
+    },
+    gpsAnchors: [{
+      stageId: "prehistoric",
+      lat: 39.93800,
+      lng: -82.40650
+    }, {
+      stageId: "wompy-woods",
+      lat: 39.94150,
+      lng: -82.40100
+    }, {
+      stageId: "crater",
+      lat: 39.94050,
+      lng: -82.40750
+    }, {
+      stageId: "subsidia",
+      lat: 39.94180,
+      lng: -82.40450
+    }, {
+      stageId: "forest-stage",
+      lat: 39.93900,
+      lng: -82.40200
+    }, {
+      stageId: "raptor-alley",
+      lat: 39.94250,
+      lng: -82.40700
+    }, {
+      stageId: "grove",
+      lat: 39.94300,
+      lng: -82.40150
+    }],
+    mainStageId: "prehistoric",
+    mapImage: "lostlands-2026.jpg",
+    mapStyle: "image-overlay",
+    mapTheme: "forest",
+    weatherEndpoint: "https://api.weather.gov/points/39.9403,-82.4039",
+    setTimesProvisional: true
+  },
+  available: false,
+  accent: "#84cc16",
+  emoji: "🦖",
+  region: "North America"
+}, {
+  config: {
+    id: "edc-orlando-2026",
+    name: "EDC Orlando 2026",
+    shortName: "EDC Orlando",
+    brand: "EDC",
+    tagline: "Three nights under the kinetic Florida sky",
+    location: "Tinker Field · Orlando",
+    locationShort: "Tinker Field",
+    dates: "Nov 6–8, 2026",
+    year: 2026,
+    startMs: Date.UTC(2026, 10, 6, 21, 0, 0),
+    endMs: Date.UTC(2026, 10, 9, 5, 0, 0),
+    tz: "America/New_York",
+    tzAbbr: "EST",
+    utcOffsetHours: -5,
+    dayDates: {
+      1: {
+        y: 2026,
+        m: 10,
+        d: 6,
+        name: "Friday",
+        short: "FRI",
+        midnightUtc: Date.UTC(2026, 10, 6, 5, 0, 0)
+      },
+      2: {
+        y: 2026,
+        m: 10,
+        d: 7,
+        name: "Saturday",
+        short: "SAT",
+        midnightUtc: Date.UTC(2026, 10, 7, 5, 0, 0)
+      },
+      3: {
+        y: 2026,
+        m: 10,
+        d: 8,
+        name: "Sunday",
+        short: "SUN",
+        midnightUtc: Date.UTC(2026, 10, 8, 5, 0, 0)
+      }
+    },
+    sunTimes: {
+      1: {
+        rise: "06:38",
+        set: "17:35"
+      },
+      2: {
+        rise: "06:39",
+        set: "17:34"
+      },
+      3: {
+        rise: "06:40",
+        set: "17:33"
+      }
+    },
+    gps: {
+      lat: 28.5382,
+      lng: -81.4053,
+      onSiteRadiusMi: 0.6
+    },
+    gpsAnchors: [{
+      stageId: "kinetic",
+      lat: 28.53890,
+      lng: -81.40450
+    }, {
+      stageId: "circuit",
+      lat: 28.53760,
+      lng: -81.40630
+    }, {
+      stageId: "neon",
+      lat: 28.53800,
+      lng: -81.40320
+    }, {
+      stageId: "stereo",
+      lat: 28.53920,
+      lng: -81.40610
+    }, {
+      stageId: "bacardi",
+      lat: 28.53720,
+      lng: -81.40400
+    }],
+    mainStageId: "kinetic",
+    mapImage: "edco-tinker-2026.jpg",
+    mapStyle: "image-overlay",
+    mapTheme: "park",
+    weatherEndpoint: "https://api.weather.gov/points/28.54,-81.41",
+    setTimesProvisional: true
+  },
+  available: false,
+  accent: "#22c55e",
+  emoji: "🌴",
+  region: "North America"
+}, {
+  config: {
+    id: "tomorrowland-2027",
+    name: "Tomorrowland 2027",
+    shortName: "Tomorrowland",
+    brand: "Tomorrowland",
+    tagline: "We are one",
+    location: "De Schorre · Boom, Belgium",
+    dates: "Dates TBA",
+    year: 2027
+  },
+  available: false,
+  accent: "#fbbf24",
+  emoji: "🍄",
+  region: "Europe"
+}, {
+  config: {
+    id: "acl-2026",
+    name: "Austin City Limits 2026",
+    shortName: "ACL 2026",
+    brand: "ACL",
+    tagline: "Two weekends in Zilker Park",
+    location: "Zilker Park · Austin, TX",
+    locationShort: "Zilker Park",
+    dates: "Oct 2–4 & 9–11, 2026",
+    year: 2026,
+    startMs: Date.UTC(2026, 9, 2, 17, 0, 0),
+    endMs: Date.UTC(2026, 9, 12, 5, 0, 0),
+    weekendStartMs: {
+      W1: Date.UTC(2026, 9, 2, 17, 0, 0),
+      W2: Date.UTC(2026, 9, 9, 17, 0, 0)
+    },
+    lineupAnnouncedMs: Date.UTC(2026, 4, 5, 5, 0, 0),
+    tz: "America/Chicago",
+    tzAbbr: "CDT",
+    utcOffsetHours: -5,
+    dayDates: {
+      1: {
+        y: 2026,
+        m: 9,
+        d: 2,
+        name: "Friday",
+        short: "FRI",
+        midnightUtc: Date.UTC(2026, 9, 2, 5, 0, 0)
+      },
+      2: {
+        y: 2026,
+        m: 9,
+        d: 3,
+        name: "Saturday",
+        short: "SAT",
+        midnightUtc: Date.UTC(2026, 9, 3, 5, 0, 0)
+      },
+      3: {
+        y: 2026,
+        m: 9,
+        d: 4,
+        name: "Sunday",
+        short: "SUN",
+        midnightUtc: Date.UTC(2026, 9, 4, 5, 0, 0)
+      }
+    },
+    sunTimes: {
+      1: {
+        rise: "07:19",
+        set: "19:09"
+      },
+      2: {
+        rise: "07:20",
+        set: "19:08"
+      },
+      3: {
+        rise: "07:21",
+        set: "19:07"
+      }
+    },
+    gps: {
+      lat: 30.2630,
+      lng: -97.7730,
+      onSiteRadiusMi: 0.4
+    },
+    gpsAnchors: [{
+      stageId: "amex",
+      lat: 30.26360,
+      lng: -97.76640
+    }, {
+      stageId: "miller",
+      lat: 30.26600,
+      lng: -97.77240
+    }, {
+      stageId: "beatbox",
+      lat: 30.26140,
+      lng: -97.77340
+    }, {
+      stageId: "titos",
+      lat: 30.26533,
+      lng: -97.76755
+    }, {
+      stageId: "tmobile",
+      lat: 30.26504,
+      lng: -97.77471
+    }, {
+      stageId: "ladybird",
+      lat: 30.26332,
+      lng: -97.77077
+    }, {
+      stageId: "bmi",
+      lat: 30.26313,
+      lng: -97.77306
+    }, {
+      stageId: "bonus",
+      lat: 30.26216,
+      lng: -97.76991
+    }],
+    mainStageId: "amex",
+    mapImage: "acl-park.webp",
+    mapStyle: "image-overlay",
+    mapTheme: "park",
+    weatherEndpoint: "https://api.weather.gov/points/30.26,-97.77"
+  },
+  available: true,
+  accent: "#e85d2e",
+  emoji: "🤠",
+  region: "North America"
+}, {
+  config: {
+    id: "coachella-2027",
+    name: "Coachella 2027",
+    shortName: "Coachella",
+    brand: "Coachella",
+    tagline: "Two weekends, one polo field",
+    location: "Empire Polo Club · Indio, CA",
+    dates: "Apr 9–18, 2027",
+    year: 2027
+  },
+  available: false,
+  accent: "#ec4899",
+  emoji: "🌵",
+  region: "North America"
+}];
+var _FESTIVAL_STALE_MS = 7 * 24 * 60 * 60 * 1000;
+function _resolveDefaultFestivalId(now) {
+  var avail = FESTIVALS_REGISTRY.filter(f => f && f.available && f.config && f.config.id);
+  if (!avail.length) return FESTIVALS_REGISTRY[0].config.id;
+  var dated = avail.filter(f => typeof f.config.startMs === "number" && typeof f.config.endMs === "number");
+  if (!dated.length) return avail[0].config.id;
+  var live = dated.filter(f => now >= f.config.startMs && now <= f.config.endMs).sort((a, b) => a.config.startMs - b.config.startMs);
+  if (live.length) return live[0].config.id;
+  var upcoming = dated.filter(f => f.config.startMs > now).sort((a, b) => a.config.startMs - b.config.startMs);
+  if (upcoming.length) return upcoming[0].config.id;
+  return dated.slice().sort((a, b) => b.config.endMs - a.config.endMs)[0].config.id;
+}
+function getActiveFestivalId() {
+  var now = Date.now();
+  try {
+    var stored = localStorage.getItem("active_festival_id");
+    var entry = stored && FESTIVALS_REGISTRY.find(f => f.config.id === stored && f.available);
+    if (entry) {
+      var end = entry.config.endMs;
+      if (typeof end !== "number" || now - end <= _FESTIVAL_STALE_MS) return stored;
+    }
+  } catch {}
+  return _resolveDefaultFestivalId(now);
+}
+function setActiveFestivalAndReload(id) {
+  try {
+    localStorage.setItem("active_festival_id", id);
+  } catch {}
+  window.location.reload();
+}
+var STAGES = [{
+  id: "kinetic",
+  name: "Kinetic Field",
+  short: "KIN",
+  color: "#e85d2e",
+  x: 46.0,
+  y: 9.2,
+  size: 1.7,
+  desc: "Mainstage · headliners, sunrise sets",
+  vibe: "Sunrise Cathedral",
+  vibeNote: "Park here for the sunrise set. Mainstage scale, screen on screen, and the only place worth standing still.",
+  peak: "03:00–05:30"
+}, {
+  id: "quantum",
+  name: "Quantum Valley",
+  short: "QNT",
+  color: "#38bdf8",
+  x: 58.0,
+  y: 25.5,
+  size: 1.1,
+  vibe: "Trance Family",
+  vibeNote: "Hands up for ten hours straight. ASOT crowd, melodic, weeping at 4 AM.",
+  peak: "01:00–05:00",
+  desc: "Trance, psytrance"
+}, {
+  id: "bionic",
+  name: "Bionic Jungle",
+  short: "BIO",
+  color: "#14b8a6",
+  x: 16.5,
+  y: 25.2,
+  size: 1.0,
+  vibe: "Underground Forest",
+  vibeNote: "Tucked, leafy, intimate. Where tastemakers go between mainstage acts.",
+  peak: "00:00–04:00",
+  desc: "House, tech house"
+}, {
+  id: "stereo",
+  name: "Stereo Bloom",
+  short: "STR",
+  color: "#22c55e",
+  x: 28.7,
+  y: 31.3,
+  size: 0.95,
+  vibe: "Deepest Crowd",
+  vibeNote: "Smaller stage, heavier heads. Tech house with a real ear in the crowd.",
+  peak: "23:30–03:30",
+  desc: "Tech house, underground"
+}, {
+  id: "cosmic",
+  name: "Cosmic Meadow",
+  short: "CSM",
+  color: "#fbbf24",
+  x: 17.4,
+  y: 51.2,
+  size: 1.2,
+  vibe: "Wide-Open Vibe",
+  vibeNote: "Open-air, art cars, room to breathe. Best stage to wander in and out of.",
+  peak: "22:00–02:00",
+  desc: "Open-air · big room, legends"
+}, {
+  id: "neon",
+  name: "Neon Garden",
+  short: "NEN",
+  color: "#ec4899",
+  x: 57.9,
+  y: 52.4,
+  size: 1.05,
+  vibe: "House Heads HQ",
+  vibeNote: "If you came for house, this is the room. Long blends, deep selectors, tightest crowd of the night.",
+  peak: "00:00–04:30",
+  desc: "House, deep techno"
+}, {
+  id: "waste",
+  name: "Wasteland",
+  short: "WST",
+  color: "#f97316",
+  x: 17.7,
+  y: 90.1,
+  size: 1.0,
+  vibe: "Hard Dance Pit",
+  vibeNote: "Hardstyle, hardcore, raw. Bring earplugs you actually trust. The only stage where the BPM never drops.",
+  peak: "23:00–04:00",
+  desc: "Dubstep, bass"
+}, {
+  id: "basspod",
+  name: "Basspod",
+  short: "BAS",
+  color: "#2563eb",
+  x: 43.0,
+  y: 94.7,
+  size: 1.05,
+  vibe: "Loudest Drops",
+  vibeNote: "Dubstep, riddim, headbang central. Kicks you can feel in your sternum from a quarter-mile out.",
+  peak: "23:00–03:30",
+  desc: "Dubstep, hard bass"
+}, {
+  id: "circuit",
+  name: "Circuit Grounds",
+  short: "CIR",
+  color: "#1e40af",
+  x: 57.2,
+  y: 95.9,
+  size: 1.15,
+  vibe: "Techno Vault",
+  vibeNote: "Industrial techno temple. Drifters from Berghain feel at home. Lasers cut through fog like blades.",
+  peak: "01:00–05:00",
+  desc: "Techno, big room"
+}];
+var AMENITIES = [{
+  id: "wc1",
+  type: "toilet",
+  label: "Restrooms — Bionic Jungle",
+  x: 13.3,
+  y: 21.4
+}, {
+  id: "wc2",
+  type: "toilet",
+  label: "Restrooms — Neon Garden",
+  x: 70.0,
+  y: 69.7
+}, {
+  id: "wc3",
+  type: "toilet",
+  label: "VIP Restrooms — Kinetic",
+  x: 60.2,
+  y: 10.1,
+  tier: "VIP"
+}, {
+  id: "wc4",
+  type: "toilet",
+  label: "VIP Restrooms — Quantum",
+  x: 70.2,
+  y: 35.1,
+  tier: "VIP"
+}, {
+  id: "wc5",
+  type: "toilet",
+  label: "VIP Restrooms — Circuit",
+  x: 68.5,
+  y: 81.2,
+  tier: "VIP"
+}, {
+  id: "wc6",
+  type: "toilet",
+  label: "VIP Restrooms — Basspod",
+  x: 23.0,
+  y: 99.9,
+  tier: "VIP"
+}, {
+  id: "w1",
+  type: "water",
+  label: "VIP Water — Kinetic",
+  x: 53.7,
+  y: 6.2,
+  tier: "VIP"
+}, {
+  id: "w2",
+  type: "water",
+  label: "76 Taps — Quantum",
+  x: 64.0,
+  y: 15.2
+}, {
+  id: "w3",
+  type: "water",
+  label: "VIP Water — Neon",
+  x: 69.0,
+  y: 40.6,
+  tier: "VIP"
+}, {
+  id: "w4",
+  type: "water",
+  label: "64 Taps — Cosmic Meadow",
+  x: 19.4,
+  y: 47.1
+}, {
+  id: "w5",
+  type: "water",
+  label: "64 Taps — Memory Lane",
+  x: 22.7,
+  y: 63.7
+}, {
+  id: "w6",
+  type: "water",
+  label: "32 Taps — Camp EDC",
+  x: 6.7,
+  y: 70.9
+}, {
+  id: "w7",
+  type: "water",
+  label: "VIP Water — Circuit",
+  x: 60.5,
+  y: 76.7,
+  tier: "VIP"
+}, {
+  id: "w8",
+  type: "water",
+  label: "VIP Water — Wasteland",
+  x: 26.5,
+  y: 82.8,
+  tier: "VIP"
+}, {
+  id: "md1",
+  type: "med",
+  label: "First Aid — Kinetic",
+  x: 22.6,
+  y: 10.1
+}, {
+  id: "md2",
+  type: "med",
+  label: "First Aid — Gate S",
+  x: 68.2,
+  y: 21.4
+}, {
+  id: "md3",
+  type: "med",
+  label: "First Aid — Wasteland",
+  x: 13.6,
+  y: 86.7
+}, {
+  id: "md4",
+  type: "med",
+  label: "First Aid — Circuit",
+  x: 52.3,
+  y: 84.8
+}, {
+  id: "ch1",
+  type: "charge",
+  label: "Charging — Stereo Bloom",
+  x: 25.5,
+  y: 26.8
+}, {
+  id: "ch2",
+  type: "charge",
+  label: "Charging — Rainbow Road",
+  x: 43.9,
+  y: 55.3
+}, {
+  id: "ch3",
+  type: "charge",
+  label: "Charging — Bass Lane",
+  x: 43.2,
+  y: 87.1
+}, {
+  id: "i1",
+  type: "info",
+  label: "Info",
+  x: 21.2,
+  y: 44.1
+}, {
+  id: "i2",
+  type: "info",
+  label: "Lost & Found",
+  x: 7.0,
+  y: 48.5
+}, {
+  id: "lk1",
+  type: "locker",
+  label: "Lockers — Quantum Valley",
+  x: 55.9,
+  y: 20.2
+}, {
+  id: "f1",
+  type: "food",
+  label: "General Store — Downtown",
+  x: 42.4,
+  y: 65.5
+}];
+var AVATAR_START = {
+  x: 50,
+  y: 52
+};
+var FRIENDS = [];
+var gradFor = stageId => {
+  var s = STAGES.find(st => st.id === stageId);
+  return `linear-gradient(135deg, ${s.color}, #1a0a28)`;
+};
+var mk = (id, name, genre, stage, day, start, end, bio) => {
+  var h = parseInt(start.split(':')[0]);
+  var tier = h < 6 || h >= 23 ? 3 : h >= 21 ? 2 : 1;
+  return {
+    id,
+    name,
+    genre,
+    country: "—",
+    stage,
+    day,
+    start,
+    end,
+    tier,
+    img: `linear-gradient(135deg, ${(STAGES.find(s => s.id === stage) || STAGES[0] || {
+      color: "#22d3ee"
+    }).color}, #1a0a28)`,
+    bio: bio || `Playing ${FESTIVAL_CONFIG?.name || "EDC Las Vegas 2026"}.`
+  };
+};
+function fmt12(t) {
+  if (!t || typeof t !== "string") return t;
+  var [hStr, mStr] = t.split(":");
+  var h = parseInt(hStr, 10);
+  if (isNaN(h)) return t;
+  var h12 = h === 0 ? 12 : h > 12 ? h - 12 : h;
+  var ap = h < 12 ? "AM" : "PM";
+  return `${h12}:${mStr} ${ap}`;
+}
+var ARTISTS = [mk("k1", "Laidback Luke b2b Chuckie", "House", "kinetic", 1, "19:00", "20:00"), mk("k2", "Korolova", "Melodic Techno", "kinetic", 1, "20:00", "21:00"), mk("k3", "Argy", "Melodic Techno", "kinetic", 1, "21:00", "22:00"), mk("k4", "Chris Lorenzo", "Bass House", "kinetic", 1, "22:07", "23:15"), mk("k5", "Sofi Tukker", "House", "kinetic", 1, "23:19", "00:30"), mk("k6", "The Chainsmokers", "Electro Pop", "kinetic", 1, "00:32", "01:42"), mk("k7", "FISHER", "Tech House", "kinetic", 1, "01:47", "02:57"), mk("k8", "Porter Robinson (DJ Set)", "Electronic", "kinetic", 1, "03:01", "04:11"), mk("k9", "Charlotte de Witte", "Techno", "kinetic", 1, "04:14", "05:29", "Belgian techno queen, mainstage rarity."), mk("k10", "AR/CO", "Live Electronic", "kinetic", 2, "19:00", "20:00"), mk("k11", "Hayla", "DnB Vocalist", "kinetic", 2, "20:00", "21:00"), mk("k12", "Sub Focus", "DnB", "kinetic", 2, "21:00", "22:00"), mk("k13", "Steve Aoki", "Electro", "kinetic", 2, "22:07", "23:15"), mk("k14", "Hardwell", "Big Room", "kinetic", 2, "23:19", "00:29"), mk("k15", "John Summit", "Tech House", "kinetic", 2, "00:32", "01:42"), mk("k16", "Subtronics", "Dubstep", "kinetic", 2, "01:47", "02:57"), mk("k17", "Kaskade", "Progressive House", "kinetic", 2, "03:01", "04:11"), mk("k18", "Above & Beyond (Sunrise Set)", "Trance", "kinetic", 2, "04:14", "05:29", "Group therapy under the desert dawn."), mk("k19", "Trace", "DnB", "kinetic", 3, "19:00", "20:00"), mk("k20", "Ship Wrek", "Bass", "kinetic", 3, "20:00", "21:00"), mk("k21", "Layton Giordani", "Techno", "kinetic", 3, "21:00", "22:00"), mk("k22", "Funk Tribu", "Hard Techno", "kinetic", 3, "22:07", "23:15"), mk("k23", "GRiZ b2b Wooli", "Bass / Funk", "kinetic", 3, "23:19", "00:29"), mk("k24", "Zedd", "Electro House", "kinetic", 3, "00:32", "01:42"), mk("k25", "Martin Garrix", "Big Room / Progressive", "kinetic", 3, "01:47", "02:57", "Dutch headliner. Animals-era anthems to melodic trance."), mk("k26", "Cloonee", "Tech House", "kinetic", 3, "03:01", "04:11"), mk("k27", "Armin van Buuren (Sunrise Set)", "Trance", "kinetic", 3, "04:14", "05:29", "ASOT captain. Sunrise trance ceremony."), mk("cg1", "1991", "DnB", "circuit", 1, "19:00", "20:00"), mk("cg2", "Bou", "DnB", "circuit", 1, "20:00", "21:00"), mk("cg3", "Nico Moreno", "Hard Techno", "circuit", 1, "21:00", "22:00"), mk("cg4", "I Hate Models", "Industrial Techno", "circuit", 1, "22:00", "23:15"), mk("cg5", "Levity", "Melodic Bass", "circuit", 1, "23:15", "00:25"), mk("cg6", "Wooli", "Melodic Bass", "circuit", 1, "00:25", "01:35"), mk("cg7", "The Outlaw", "Hard Techno", "circuit", 1, "01:35", "02:35"), mk("cg8", "Holy Priest", "Hard Techno", "circuit", 1, "02:35", "03:30"), mk("cg9", "Ray Volpe", "Dubstep", "circuit", 1, "03:30", "04:30"), mk("cg10", "Level Up", "Dubstep", "circuit", 1, "04:30", "05:30"), mk("cg11", "DJ Mandy", "House", "circuit", 2, "19:00", "20:00"), mk("cg12", "RØZ", "House", "circuit", 2, "20:00", "21:15"), mk("cg13", "Kettama", "Rave / Breaks", "circuit", 2, "21:15", "22:45"), mk("cg14", "Sammy Virji", "UK Garage", "circuit", 2, "22:45", "00:15"), mk("cg15", "Tiësto", "Big Room", "circuit", 2, "00:15", "01:45"), mk("cg16", "Peggy Gou b2b Ki/Ki", "House / Techno", "circuit", 2, "01:45", "03:15"), mk("cg17", "Boys Noize", "Electro", "circuit", 2, "03:15", "04:30"), mk("cg18", "Lilly Palmer", "Techno", "circuit", 2, "04:30", "05:30"), mk("cg19", "Linska", "Techno", "circuit", 3, "19:00", "20:30"), mk("cg20", "ANNA", "Techno", "circuit", 3, "20:30", "22:00"), mk("cg21", "Beltran", "Tech House", "circuit", 3, "22:00", "23:30"), mk("cg22", "Chris Stussy", "Tech House", "circuit", 3, "23:30", "01:00"), mk("cg23", "Solomun", "Melodic House", "circuit", 3, "01:00", "02:30"), mk("cg24", "Vintage Culture", "Melodic House", "circuit", 3, "02:30", "04:00"), mk("cg25", "Kevin de Vries", "Melodic Techno", "circuit", 3, "04:00", "05:30"), mk("n1", "Anastazja", "Trance / Techno", "neon", 1, "19:00", "20:30"), mk("n2", "Mestiza", "Electronic", "neon", 1, "20:30", "22:00"), mk("n3", "DJ Tennis b2b Chloé Caillet", "House", "neon", 1, "22:00", "23:30"), mk("n4", "Peggy Gou", "House", "neon", 1, "23:30", "01:00"), mk("n5", "Adriatique", "Melodic Techno", "neon", 1, "01:00", "02:30"), mk("n6", "Joseph Capriati", "Techno", "neon", 1, "02:30", "04:00"), mk("n7", "Eli Brown", "Techno", "neon", 1, "04:00", "05:30"), mk("n8", "Mink", "Techno", "neon", 2, "19:00", "20:30"), mk("n9", "Silvie Loto", "Techno", "neon", 2, "20:30", "22:00"), mk("n10", "Ahmed Spins", "Afrohouse", "neon", 2, "22:00", "23:30"), mk("n11", "Luciano", "Tech House", "neon", 2, "23:30", "01:30"), mk("n12", "Prospa", "House", "neon", 2, "01:30", "03:30"), mk("n13", "Josh Baker b2b Kettama b2b Prospa", "Breaks / House", "neon", 2, "03:30", "05:30"), mk("n14", "Bad Beat", "Techno", "neon", 3, "19:00", "20:15"), mk("n21", "Frankie Bones", "Breakbeat", "neon", 3, "20:15", "21:30"), mk("n15", "Adiel", "Techno", "neon", 3, "21:30", "22:50"), mk("n16", "DJ Gigola", "Techno", "neon", 3, "22:50", "00:10"), mk("n20", "999999999", "Hard Techno / Gabber", "neon", 3, "00:10", "01:30"), mk("n17", "Indira Paganotto", "Acid Techno", "neon", 3, "01:30", "02:50"), mk("n18", "Ki/Ki", "Trance / Techno", "neon", 3, "02:50", "04:10"), mk("n19", "Klangkuenstler", "Techno", "neon", 3, "04:10", "05:30"), mk("c2", "Jackie Hollander", "Tech House", "cosmic", 1, "19:00", "19:55"), mk("c3", "Roddy Lima", "House", "cosmic", 1, "19:55", "20:55"), mk("c4", "Westend", "Tech House", "cosmic", 1, "20:55", "21:55"), mk("c5", "Walker & Royce b2b VNSSA", "Tech House", "cosmic", 1, "21:55", "22:55"), mk("c6", "Underworld", "Electronica", "cosmic", 1, "23:10", "00:10", "Born Slippy. Two decks, a mic, a legacy."), mk("c7", "MEDUZA", "House", "cosmic", 1, "00:25", "01:45"), mk("c8", "Notion", "Bass", "cosmic", 1, "01:47", "02:47"), mk("c9", "MPH", "Bass House", "cosmic", 1, "02:47", "04:02"), mk("c10", "San Pacho", "Afrohouse", "cosmic", 1, "04:02", "05:30"), mk("c11", "Frost Children", "Electronic", "cosmic", 2, "19:00", "20:15"), mk("c12", "Hannah Laing", "Hard House / Techno", "cosmic", 2, "20:15", "21:25"), mk("c13", "Snow Strippers", "Hyperpop / Electronic", "cosmic", 2, "21:25", "22:15"), mk("c14", "VTSS (In The Round)", "Techno", "cosmic", 2, "22:15", "23:30"), mk("c15", "The Prodigy", "Breakbeat / Big Beat", "cosmic", 2, "23:35", "00:35", "Firestarters. Legendary live set."), mk("c16", "BUNT. (In The Round)", "Folktronica", "cosmic", 2, "00:40", "02:10"), mk("c17", "Interplanetary Criminal", "UK Bass", "cosmic", 2, "02:10", "03:30"), mk("c18", "Malugi", "Techno", "cosmic", 2, "03:30", "04:30"), mk("c19", "DJ Gigola b2b MCR-T", "Techno", "cosmic", 2, "04:30", "05:30"), mk("c20", "Gravagerz", "Bass", "cosmic", 3, "19:00", "20:00"), mk("c21", "Nostalgix", "Bass House", "cosmic", 3, "20:00", "21:00"), mk("c22", "William Black", "Melodic Bass", "cosmic", 3, "21:00", "22:00"), mk("c23", "San Holo (Wholesome Riddim Set)", "Melodic Bass", "cosmic", 3, "22:00", "23:00"), mk("c24", "Dabin", "Melodic Bass", "cosmic", 3, "23:00", "00:05"), mk("c25", "Alison Wonderland", "Future Bass", "cosmic", 3, "00:05", "01:05"), mk("c26", "Seven Lions", "Melodic Bass", "cosmic", 3, "01:05", "02:20"), mk("c27", "Restricted", "Hardstyle", "cosmic", 3, "02:20", "03:20"), mk("c28", "Black Tiger Sex Machine", "Bass House", "cosmic", 3, "03:20", "04:30"), mk("c29", "Nico Moreno b2b Holy Priest", "Hard Techno", "cosmic", 3, "04:30", "05:30"), mk("b2", "Stacy Christine", "House", "bionic", 1, "19:00", "20:00"), mk("b3", "The Carry Nation", "House", "bionic", 1, "20:00", "21:30"), mk("b4", "Massimiliano Pagliara", "House", "bionic", 1, "21:30", "23:00"), mk("b5", "Paramida", "Disco / House", "bionic", 1, "23:00", "00:30"), mk("b6", "Salute b2b Chloé Caillet", "UK Garage", "bionic", 1, "00:30", "02:30"), mk("b7", "Robert Hood", "Detroit Techno", "bionic", 1, "02:30", "04:00", "Detroit techno originator."), mk("b8", "Avalon Emerson", "Electro / House", "bionic", 1, "04:00", "05:30"), mk("b9", "Spray", "House", "bionic", 2, "20:00", "21:00"), mk("b10", "Bashkka b2b Sedef Adasi", "House", "bionic", 2, "21:00", "22:30"), mk("b11", "HAAi b2b Luke Alessi", "House", "bionic", 2, "22:30", "00:00"), mk("b12", "MCR-T", "Techno", "bionic", 2, "00:00", "01:15"), mk("b13", "Bad Boombox b2b Ollie Lishman", "House", "bionic", 2, "01:15", "02:30"), mk("b14", "Benwal", "House", "bionic", 2, "02:30", "03:30"), mk("b15", "Baugruppe90", "Techno", "bionic", 2, "03:30", "04:30"), mk("b16", "Club Angel", "House", "bionic", 2, "04:30", "05:30"), mk("b17", "Alves", "House", "bionic", 3, "19:00", "20:30"), mk("b18", "Isabella", "Techno", "bionic", 3, "20:30", "22:30"), mk("b19", "Kinahau", "House", "bionic", 3, "22:30", "00:00"), mk("b20", "Tiga", "Electro / House", "bionic", 3, "00:00", "01:30"), mk("b21", "DJ Tennis b2b Red Axes", "House", "bionic", 3, "01:30", "03:30"), mk("b22", "Beltran b2b Simas", "Tech House", "bionic", 3, "03:30", "05:30"), mk("q1", "Sarah de Warren", "Trance Vocalist", "quantum", 1, "19:00", "20:00"), mk("q2", "Matty Ralph", "Trance", "quantum", 1, "20:00", "21:00"), mk("q3", "Cold Blue", "Trance", "quantum", 1, "21:00", "22:00"), mk("q4", "Pegassi", "Psytrance", "quantum", 1, "22:00", "23:00"), mk("q5", "Darude", "Trance", "quantum", 1, "23:00", "00:00"), mk("q6", "Cosmic Gate", "Trance", "quantum", 1, "00:00", "01:00"), mk("q7", "Gareth Emery", "Trance", "quantum", 1, "01:00", "02:00"), mk("q8", "Ilan Bluestone", "Trance", "quantum", 1, "02:00", "03:00"), mk("q9", "Paul van Dyk", "Trance", "quantum", 1, "03:00", "04:00"), mk("q10", "Darren Porter", "Trance", "quantum", 1, "04:00", "05:30"), mk("q11", "Maria Healy", "Trance / Techno", "quantum", 2, "19:00", "20:30"), mk("q12", "Superstrings", "Trance", "quantum", 2, "20:30", "21:30"), mk("q13", "Billy Gillies", "Trance", "quantum", 2, "21:30", "22:30"), mk("q14", "Paul Oakenfold", "Trance", "quantum", 2, "22:30", "23:30"), mk("q15", "Andrew Rayel", "Trance", "quantum", 2, "23:30", "00:30"), mk("q16", "Maddix", "Big Room / Techno", "quantum", 2, "00:30", "01:30"), mk("q17", "Mathame", "Melodic Techno", "quantum", 2, "01:30", "02:30"), mk("q18", "Astrix", "Psytrance", "quantum", 2, "02:30", "03:30"), mk("q19", "T78", "Acid Techno", "quantum", 2, "03:30", "04:30"), mk("q20", "Thomas Schumacher", "Techno", "quantum", 2, "04:30", "05:30"), mk("q21", "Warung", "Melodic House", "quantum", 3, "19:00", "20:00"), mk("q22", "Shingo Nakamura", "Progressive", "quantum", 3, "20:00", "21:00", "Melodic progressive. Sunset specialist."), mk("q23", "Rebūke", "Techno", "quantum", 3, "21:00", "22:00"), mk("q24", "Cristoph", "Progressive House", "quantum", 3, "22:00", "23:00"), mk("q25", "Eli & Fur", "Melodic House", "quantum", 3, "23:00", "00:00"), mk("q26", "Tinlicker (DJ Set)", "Melodic House", "quantum", 3, "00:00", "01:00"), mk("q27", "Cassian", "Melodic House", "quantum", 3, "01:00", "02:15"), mk("q28", "Massano", "Melodic Techno", "quantum", 3, "02:15", "03:30"), mk("q29", "Innellea", "Melodic Techno", "quantum", 3, "03:30", "04:30"), mk("q30", "Kream", "Melodic House", "quantum", 3, "04:30", "05:30"), mk("w1", "Dømina", "Hardstyle", "waste", 1, "19:00", "20:30"), mk("w2", "Serafina", "Hardstyle", "waste", 1, "20:30", "21:30"), mk("w3", "Johannes Schuster", "Hardstyle", "waste", 1, "21:30", "22:30"), mk("w4", "Adrian Mills", "Hardstyle", "waste", 1, "22:30", "23:30"), mk("w5", "Cloudy", "Hardstyle", "waste", 1, "23:30", "00:30"), mk("w6", "Kuko", "Hardstyle", "waste", 1, "00:30", "01:30"), mk("w7", "Gravedgr", "Hardstyle", "waste", 1, "01:30", "02:30"), mk("w8", "Rebekah", "Industrial Techno", "waste", 1, "02:30", "03:30"), mk("w9", "Dyen", "Hardstyle", "waste", 1, "03:30", "04:30"), mk("w10", "Stan Christ", "Hardstyle", "waste", 1, "04:30", "05:30"), mk("w11", "Cutdwn", "Hardstyle", "waste", 2, "19:00", "20:30"), mk("w12", "Dead X", "Hard Dance", "waste", 2, "20:30", "21:30"), mk("w13", "The Saints", "Hardcore", "waste", 2, "21:30", "22:30"), mk("w14", "Rob Gee b2b Lenny Dee", "Hardcore", "waste", 2, "22:30", "23:30"), mk("w15", "Lady Faith b2b LNY TNZ", "Hardstyle", "waste", 2, "23:30", "00:30"), mk("w16", "Audiofreq b3b Code Black b3b Toneshifterz", "Hardstyle", "waste", 2, "00:30", "01:30"), mk("w17", "Da Tweekaz", "Hardstyle", "waste", 2, "01:30", "02:30"), mk("w18", "Lil Texas", "Hardcore", "waste", 2, "02:30", "03:30"), mk("w19", "Mish", "Hardstyle", "waste", 2, "03:30", "04:30"), mk("w30", "Alyssa Jolee", "Hardstyle", "waste", 2, "04:30", "05:30"), mk("w20", "Sihk", "Hardstyle", "waste", 3, "19:00", "20:30"), mk("w21", "Clawz", "Hardstyle", "waste", 3, "20:30", "21:30"), mk("w22", "The Purge", "Hardstyle", "waste", 3, "21:30", "22:30"), mk("w23", "Yosuf", "Hardstyle", "waste", 3, "22:30", "23:30"), mk("w24", "DJ Isaac", "Hardstyle", "waste", 3, "23:30", "00:30"), mk("w25", "Vieze Asbak", "Hardcore", "waste", 3, "00:30", "01:30"), mk("w26", "Sub Zero Project", "Hardstyle", "waste", 3, "01:30", "02:30"), mk("w27", "Rooler", "Hardcore / Uptempo", "waste", 3, "02:30", "03:30"), mk("w28", "Warface", "Hardstyle", "waste", 3, "03:30", "04:30"), mk("w29", "Madgrrl b2b Vessel", "Hardstyle", "waste", 3, "04:30", "05:30"), mk("s1", "Abana b2b Juliet Mendoza", "Tech House", "stereo", 1, "19:00", "20:00"), mk("s2", "Slamm", "Tech House", "stereo", 1, "20:00", "21:00"), mk("s3", "Luuk van Dijk", "Tech House", "stereo", 1, "21:00", "22:15"), mk("s4", "Omar+", "House", "stereo", 1, "22:15", "23:30"), mk("s5", "Luke Dean", "Tech House", "stereo", 1, "23:30", "00:45"), mk("s6", "Josh Baker", "Tech House", "stereo", 1, "00:45", "02:00"), mk("s7", "Max Dean", "Tech House", "stereo", 1, "02:00", "03:15"), mk("s8", "Obskür", "Tech House", "stereo", 1, "03:15", "04:30"), mk("s9", "Toman", "Tech House", "stereo", 1, "04:30", "05:30"), mk("s10", "Slugg", "Tech House", "stereo", 2, "19:00", "20:00"), mk("s11", "Discip", "Tech House", "stereo", 2, "21:00", "22:00"), mk("s12", "Omnom", "Bass House", "stereo", 2, "22:00", "23:15"), mk("s13", "Noizu", "Bass House", "stereo", 2, "23:15", "00:30"), mk("s14", "Wax Motif", "Bass House", "stereo", 2, "00:30", "01:45"), mk("s15", "Cid", "Tech House", "stereo", 2, "01:45", "03:00"), mk("s16", "HNTR", "Bass House", "stereo", 2, "03:00", "04:15"), mk("s17", "Bolo (Sunrise Set)", "Tech House", "stereo", 2, "04:15", "05:30"), mk("s18", "KLO", "Tech House", "stereo", 3, "19:00", "20:00"), mk("s19", "Murphy's Law", "Tech House", "stereo", 3, "20:00", "21:15"), mk("s20", "Sidney Charles b2b Bushbaby", "Tech House", "stereo", 3, "21:15", "22:30"), mk("s21", "Skream", "Dubstep / House", "stereo", 3, "22:30", "23:45"), mk("s22", "Hamdi", "UK Bass", "stereo", 3, "23:45", "01:00"), mk("s23", "Chris Lorenzo b2b Bullet Tooth", "Bass House", "stereo", 3, "01:00", "02:15"), mk("s24", "Silva Bumpa", "UK House", "stereo", 3, "02:15", "03:30"), mk("s25", "Morgan Seatree", "Tech House", "stereo", 3, "03:30", "04:30"), mk("s26", "Lu.Re", "Tech House", "stereo", 3, "04:30", "05:30"), mk("bp21", "Riot", "Dubstep", "basspod", 1, "19:00", "19:50"), mk("bp22", "Heyz", "Dubstep", "basspod", 1, "19:50", "20:40"), mk("bp23", "Muzz", "Dubstep", "basspod", 1, "20:40", "21:30"), mk("bp24", "Gorillat", "Dubstep", "basspod", 1, "21:30", "22:30"), mk("bp25", "Ghengar", "Dubstep", "basspod", 1, "22:30", "23:30"), mk("bp26", "Deathpact", "Dubstep", "basspod", 1, "23:30", "00:30"), mk("bp27", "ATLiens", "Dubstep", "basspod", 1, "00:30", "01:30"), mk("bp28", "Kai Wachi", "Dubstep", "basspod", 1, "01:30", "02:30"), mk("bp29", "Adventure Club (Throwback Set)", "Dubstep", "basspod", 1, "02:30", "03:30"), mk("bp30", "Culture Shock", "DnB", "basspod", 1, "03:30", "04:30"), mk("bp31", "Cyclops", "Dubstep", "basspod", 1, "04:30", "05:30"), mk("bp1", "Fallen with MC Dino", "Dubstep", "basspod", 2, "19:00", "19:50"), mk("bp2", "Avello b2b Dennett", "Dubstep", "basspod", 2, "19:50", "20:40"), mk("bp3", "Viperactive", "Dubstep", "basspod", 2, "20:40", "21:30"), mk("bp4", "Hybrid Minds", "Liquid DnB", "basspod", 2, "21:30", "22:30"), mk("bp5", "YDG", "Dubstep", "basspod", 2, "22:30", "23:30"), mk("bp6", "Delta Heavy", "DnB", "basspod", 2, "23:30", "00:30"), mk("bp7", "Getter", "Dubstep", "basspod", 2, "00:30", "01:30"), mk("bp8", "Eptic b2b Space Laces", "Dubstep", "basspod", 2, "01:30", "02:30"), mk("bp9", "Doctor P b2b Flux Pavilion b3b Funtcase", "Dubstep", "basspod", 2, "02:30", "03:30"), mk("bp10", "Hol!", "Dubstep", "basspod", 2, "03:30", "04:30"), mk("bp11", "Mary Droppinz", "Dubstep", "basspod", 2, "04:30", "05:30"), mk("bp12", "Nightstalker with MC Dino", "Dubstep", "basspod", 3, "19:00", "19:50"), mk("bp13", "Sippy", "Dubstep", "basspod", 3, "19:50", "20:40"), mk("bp14", "Eazybaked", "Bass", "basspod", 3, "20:40", "21:30"), mk("bp15", "Infekt b2b Samplifire", "Dubstep", "basspod", 3, "21:30", "22:30"), mk("bp32", "A.M.C w/ Phantom", "DnB", "basspod", 3, "22:30", "23:30"), mk("bp16", "Virtual Riot", "Dubstep", "basspod", 3, "23:30", "00:30"), mk("bp17", "Peekaboo", "Dubstep", "basspod", 3, "00:30", "01:30"), mk("bp18", "Ahee b2b Liquid Stranger", "Dubstep / Bass", "basspod", 3, "01:30", "02:30"), mk("bp19", "Whethan", "Electronic", "basspod", 3, "02:30", "03:30"), mk("bp20", "Boogie T b2b Distinct Motive", "Dubstep", "basspod", 3, "03:30", "04:30"), mk("bp33", "Æon:Mode (Sunrise Set)", "Dubstep / Bass", "basspod", 3, "04:30", "05:30")];
+function resolvedStageAnchors(cfg) {
+  var byId = new Map();
+  for (var g of cfg?.gpsAnchors || []) {
+    if (!g || typeof g.lat !== "number" || typeof g.lng !== "number") continue;
+    byId.set(g.stageId, {
+      stageId: g.stageId,
+      lat: g.lat,
+      lng: g.lng,
+      anchorSource: "poster"
+    });
+  }
+  for (var c of cfg?.crowdAnchors || []) {
+    if (!c || typeof c.lat !== "number" || typeof c.lng !== "number") continue;
+    byId.set(c.stageId, {
+      stageId: c.stageId,
+      lat: c.lat,
+      lng: c.lng,
+      anchorSource: "crowd"
+    });
+  }
+  return Array.from(byId.values());
+}
+function resolvedStageAnchor(cfg, stageId) {
+  return resolvedStageAnchors(cfg).find(a => a.stageId === stageId) || null;
+}
+function _daysFor(cfg) {
+  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  return Object.entries(cfg.dayDates || {}).map(([n, d]) => ({
+    n: +n,
+    label: d.short,
+    date: `${months[d.m]} ${d.d}`
+  }));
+}
+var DAYS = _daysFor(FESTIVAL_CONFIG);
+var _nowCache = null;
+var _nowCacheAt = 0;
+function _computeNow() {
+  var utcNow = Date.now();
+  if (_nowCache && utcNow - _nowCacheAt < 30000) return _nowCache;
+  var localMs = utcNow + FESTIVAL_CONFIG.utcOffsetHours * 3600000;
+  var hh = Math.floor(localMs / 3600000) % 24;
+  var mm = Math.floor(localMs / 60000) % 60;
+  var timeStr = `${String(hh).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
+  function absMs(day, hhmm) {
+    var [h, m] = hhmm.split(":").map(Number);
+    var base = FESTIVAL_CONFIG.dayDates[day]?.midnightUtc;
+    if (!base) return Infinity;
+    return base + (h < 8 ? 86400000 : 0) + h * 3600000 + m * 60000;
+  }
+  var liveNow = ARTISTS.filter(a => {
+    var s = absMs(a.day, a.start),
+      e = absMs(a.day, a.end);
+    return utcNow >= s && utcNow < e;
+  });
+  var currentArtist = liveNow.find(a => a.stage === FESTIVAL_CONFIG.mainStageId) || [...liveNow].sort((a, b) => (b.tier || 0) - (a.tier || 0))[0] || null;
+  var nextArtist = ARTISTS.filter(a => absMs(a.day, a.start) > utcNow).sort((a, b) => absMs(a.day, a.start) - absMs(b.day, b.start))[0] || null;
+  var day = currentArtist?.day || nextArtist?.day || 1;
+  var elapsedMin = currentArtist ? Math.max(0, Math.floor((utcNow - absMs(currentArtist.day, currentArtist.start)) / 60000)) : 0;
+  _nowCache = {
+    day,
+    time: timeStr,
+    currentArtistId: currentArtist?.id || null,
+    nextArtistId: nextArtist?.id || null,
+    elapsedMin
+  };
+  _nowCacheAt = utcNow;
+  return _nowCache;
+}
+var NOW = new Proxy({}, {
+  get(_, prop) {
+    return _computeNow()[prop];
+  }
+});
+var ALERTS = [];
+var ESSENTIALS = [{
+  id: "e1",
+  icon: "med",
+  title: "Medical & Mental Health",
+  sub: "3 medic tents · 24/7 roamers",
+  tone: "ember"
+}, {
+  id: "e2",
+  icon: "water",
+  title: "Water Refill Stations",
+  sub: "9 stations · always free",
+  tone: "sky"
+}, {
+  id: "e3",
+  icon: "shuttle",
+  title: "Shuttles & Rideshare",
+  sub: "Last shuttle 5:45 AM · Lot E",
+  tone: "dune"
+}, {
+  id: "e4",
+  icon: "lost",
+  title: "Lost & Found",
+  sub: "Info booth · Daisy Lane",
+  tone: "horizon"
+}, {
+  id: "e5",
+  icon: "info",
+  title: "Entry Hours & Policies",
+  sub: "Gates 4PM–5AM · no re-entry",
+  tone: "ink"
+}, {
+  id: "e6",
+  icon: "consent",
+  title: "Consent & Reporting",
+  sub: "Tap for anonymous report line",
+  tone: "ember"
+}];
+var ACL_STAGES = [{
+  id: "amex",
+  name: "American Express",
+  short: "AMEX",
+  color: "#ec4899",
+  x: 92,
+  y: 49,
+  size: 1.7,
+  desc: "East side · headliners",
+  vibe: "Main Event",
+  vibeNote: "The big stage. Headliners close here every night.",
+  peak: "17:00–22:00"
+}, {
+  id: "snapchat",
+  name: "Snapchat Stage",
+  short: "SNAPCHAT",
+  color: "#facc15",
+  x: 66,
+  y: 42,
+  size: 1.2,
+  desc: "Location TBA · check the on-site map",
+  vibe: "New for 2026",
+  vibeNote: "New sponsor stage. Placement confirms when ACL publishes the 2026 map.",
+  peak: "14:00–21:00"
+}, {
+  id: "titos",
+  name: "Tito's Stage",
+  short: "TITO'S",
+  color: "#f97316",
+  x: 80,
+  y: 31,
+  size: 1.2,
+  desc: "North-east · mid-large stage",
+  vibe: "Texas Heat",
+  vibeNote: "Austin locals + rising stars. Vodka optional.",
+  peak: "13:00–19:00"
+}, {
+  id: "miller",
+  name: "Miller Lite Stage",
+  short: "MILLER",
+  color: "#38bdf8",
+  x: 31,
+  y: 24,
+  size: 1.0,
+  desc: "North · by Lady Bird Lake",
+  vibe: "Chill Vibes",
+  vibeNote: "Shade, cold beer, great sound. Closest to the lake.",
+  peak: "13:00–19:00"
+}, {
+  id: "tmobile",
+  name: "T-Mobile Stage",
+  short: "T-MOBILE",
+  color: "#a855f7",
+  x: 8,
+  y: 34,
+  size: 1.6,
+  desc: "West side · co-headliners",
+  vibe: "The Other Main",
+  vibeNote: "Second headline stage — Skrillex, Lorde and The xx close here.",
+  peak: "16:00–22:00"
+}, {
+  id: "ladybird",
+  name: "Lady Bird Stage",
+  short: "LADY BIRD",
+  color: "#22c55e",
+  x: 48,
+  y: 52,
+  size: 1.1,
+  desc: "Center · mid-size stage",
+  vibe: "By the Lake",
+  vibeNote: "Breezy sets in the heart of the park. Best sunset views.",
+  peak: "14:00–20:00"
+}, {
+  id: "bmi",
+  name: "BMI Stage",
+  short: "BMI",
+  color: "#fbbf24",
+  x: 25,
+  y: 54,
+  size: 0.9,
+  desc: "Center-left · songwriter stage",
+  vibe: "Songwriter's Corner",
+  vibeNote: "Stripped-down, intimate. Singer-songwriter heaven.",
+  peak: "12:00–18:00"
+}, {
+  id: "bonus",
+  name: "Bonus Tracks",
+  short: "BONUS",
+  color: "#2563eb",
+  x: 57,
+  y: 64,
+  size: 0.7,
+  desc: "South-east · smallest stage",
+  vibe: "First Timers",
+  vibeNote: "Local acts, first-ever festival sets. Near the grove.",
+  peak: "11:00–16:00"
+}, {
+  id: "beatbox",
+  name: "BEATBOX",
+  short: "BBX",
+  color: "#1e40af",
+  x: 22,
+  y: 72,
+  size: 0.75,
+  desc: "South-west · electronic stage",
+  vibe: "Bass Haven",
+  vibeNote: "DJs, producers, electronic acts. Near west entrance.",
+  peak: "14:00–21:00"
+}];
+var _aclMk = (id, name, genre, stage, day, start, end, wk) => {
+  var h = parseInt(start.split(':')[0]);
+  var tier = h >= 19 ? 3 : h >= 16 ? 2 : 1;
+  return {
+    id,
+    name,
+    genre,
+    country: "—",
+    stage,
+    day,
+    start,
+    end,
+    tier,
+    weekend: wk || "both",
+    img: `linear-gradient(135deg, ${ACL_STAGES.find(s => s.id === stage)?.color || "#e85d2e"}, #1a0a28)`,
+    bio: `Playing ACL 2026.${wk ? ` Weekend ${wk} only.` : ""}`
+  };
+};
+var ACL_ARTISTS = [_aclMk("af01", "Asleep At The Wheel", "—", "tmobile", 1, "13:00", "13:45", "W1"), _aclMk("af02", "Happy Landing", "—", "tmobile", 1, "13:00", "13:45", "W2"), _aclMk("af03", "New Constellations", "—", "tmobile", 1, "14:30", "15:15", "W1"), _aclMk("af04", "Bella Kay", "—", "tmobile", 1, "14:30", "15:15", "W2"), _aclMk("af05", "Jesse Welles", "—", "tmobile", 1, "16:15", "17:15"), _aclMk("af06", "Turnstile", "—", "tmobile", 1, "18:15", "19:15"), _aclMk("af07", "Skrillex", "Electronic", "tmobile", 1, "20:15", "22:00", "W1"), _aclMk("af08", "Kings of Leon", "Rock", "tmobile", 1, "20:15", "22:00", "W2"), _aclMk("af09", "Faouzia", "—", "miller", 1, "13:45", "14:30", "W1"), _aclMk("af10", "Radio Free Alice", "—", "miller", 1, "13:45", "14:30", "W2"), _aclMk("af11", "Paris Paloma", "—", "miller", 1, "15:15", "16:15", "W1"), _aclMk("af12", "Sienna Spiro", "—", "miller", 1, "15:30", "16:15", "W2"), _aclMk("af13", "Brandon Flowers", "—", "miller", 1, "17:15", "18:15", "W1"), _aclMk("af14", "Paris Paloma", "—", "miller", 1, "17:15", "18:15", "W2"), _aclMk("af15", "Leon Thomas", "—", "miller", 1, "19:15", "20:15"), _aclMk("af16", "Elle Coves", "—", "bmi", 1, "13:45", "14:30", "W1"), _aclMk("af17", "Leon Knight", "—", "bmi", 1, "13:45", "14:30", "W2"), _aclMk("af18", "Izzy Escobar", "—", "bmi", 1, "15:30", "16:15", "W1"), _aclMk("af19", "Girlfriend", "—", "bmi", 1, "15:30", "16:15", "W2"), _aclMk("af20", "Grocery Bag", "—", "bmi", 1, "17:15", "18:15", "W1"), _aclMk("af21", "Joe Jordan", "—", "bmi", 1, "17:15", "18:15", "W2"), _aclMk("af22", "Night Traveler", "—", "beatbox", 1, "14:00", "14:45", "W1"), _aclMk("af23", "S.G. Goodman", "—", "beatbox", 1, "14:00", "14:45", "W2"), _aclMk("af24", "Marlon Funaki", "—", "beatbox", 1, "15:30", "16:30", "W1"), _aclMk("af25", "World Famous Pets", "—", "beatbox", 1, "15:30", "16:30", "W2"), _aclMk("af26", "Rusowsky", "—", "beatbox", 1, "17:30", "18:30"), _aclMk("af27", "Molly Santana", "—", "beatbox", 1, "19:30", "20:30", "W1"), _aclMk("af28", "Live", "Rock", "beatbox", 1, "19:30", "20:30", "W2"), _aclMk("af29", "The 4411", "—", "titos", 1, "12:45", "13:30", "W1"), _aclMk("af30", "Almost Heaven", "—", "titos", 1, "12:45", "13:30", "W2"), _aclMk("af31", "Solomon Hicks", "—", "titos", 1, "14:00", "14:45", "W1"), _aclMk("af32", "Cassandra Coleman", "—", "titos", 1, "14:00", "14:45", "W2"), _aclMk("af33", "Bo Staloch", "—", "titos", 1, "15:15", "16:00"), _aclMk("af34", "Rebecca Black", "—", "titos", 1, "16:30", "17:30", "W1"), _aclMk("af35", "Natasha Bedingfield", "—", "titos", 1, "16:30", "17:30", "W2"), _aclMk("af36", "Steve Aoki", "Electronic", "titos", 1, "18:30", "19:30"), _aclMk("af37", "Silent Disco", "—", "titos", 1, "20:00", "22:00"), _aclMk("af38", "Elijah Delgado", "—", "snapchat", 1, "14:00", "14:45", "W1"), _aclMk("af39", "Dallas Wax", "—", "snapchat", 1, "14:00", "14:45", "W2"), _aclMk("af40", "LP", "—", "snapchat", 1, "15:30", "16:30"), _aclMk("af41", "BUNT.", "Electronic", "snapchat", 1, "17:30", "18:30"), _aclMk("af42", "The Chainsmokers", "Electronic", "snapchat", 1, "19:30", "20:30"), _aclMk("af43", "Hunx And His Punx", "—", "amex", 1, "13:15", "14:00", "W1"), _aclMk("af44", "Brigitte Calls Me Baby", "—", "amex", 1, "13:15", "14:00", "W2"), _aclMk("af45", "CMAT", "—", "amex", 1, "14:45", "15:30", "W1"), _aclMk("af46", "Faouzia", "—", "amex", 1, "14:45", "15:30", "W2"), _aclMk("af47", "Amyl And The Sniffers", "—", "amex", 1, "16:30", "17:30"), _aclMk("af48", "Labrinth", "—", "amex", 1, "18:30", "19:30"), _aclMk("af49", "Charli XCX", "Pop", "amex", 1, "20:40", "22:00"), _aclMk("as01", "Night Tapes", "—", "tmobile", 2, "13:00", "13:45"), _aclMk("as02", "Balu Brigada", "—", "tmobile", 2, "14:30", "15:15"), _aclMk("as03", "Suki Waterhouse", "—", "tmobile", 2, "16:15", "17:15"), _aclMk("as04", "Bleachers", "—", "tmobile", 2, "18:15", "19:15"), _aclMk("as05", "Lorde", "Pop", "tmobile", 2, "20:15", "22:00"), _aclMk("as06", "Temper City", "—", "miller", 2, "13:45", "14:30"), _aclMk("as07", "Arcy Drive", "—", "miller", 2, "15:15", "16:15", "W1"), _aclMk("as08", "Laszewo", "—", "miller", 2, "15:15", "16:15", "W2"), _aclMk("as09", "Snow Strippers", "Electronic", "miller", 2, "17:15", "18:15"), _aclMk("as10", "Levity", "Electronic", "miller", 2, "19:15", "20:15"), _aclMk("as11", "Fightmaster", "—", "bmi", 2, "12:45", "13:15", "W1"), _aclMk("as12", "Macy Todd", "—", "bmi", 2, "12:45", "13:15", "W2"), _aclMk("as13", "Emma Ogier", "—", "bmi", 2, "13:45", "14:30", "W1"), _aclMk("as14", "Damaris Bojor", "—", "bmi", 2, "13:45", "14:30", "W2"), _aclMk("as15", "Coleman Jennings", "—", "bmi", 2, "15:30", "16:15", "W1"), _aclMk("as16", "Common People", "—", "bmi", 2, "15:30", "16:15", "W2"), _aclMk("as17", "Fai Laci", "—", "bmi", 2, "17:15", "18:15", "W1"), _aclMk("as18", "Chloe Qisha", "—", "bmi", 2, "17:15", "18:15", "W2"), _aclMk("as19", "Cure For Paranoia", "—", "beatbox", 2, "14:00", "14:45", "W1"), _aclMk("as20", "LLUVII", "—", "beatbox", 2, "14:00", "14:45", "W2"), _aclMk("as21", "Ryan Beatty", "—", "beatbox", 2, "15:30", "16:30", "W1"), _aclMk("as22", "Arcy Drive", "—", "beatbox", 2, "15:30", "16:30", "W2"), _aclMk("as23", "Palace", "—", "beatbox", 2, "17:30", "18:30", "W1"), _aclMk("as24", "Ryan Beatty", "—", "beatbox", 2, "17:30", "18:30", "W2"), _aclMk("as25", "Fakemink", "—", "beatbox", 2, "19:30", "20:30"), _aclMk("as26", "Left Lucid", "—", "titos", 2, "12:45", "13:30", "W1"), _aclMk("as27", "Montclair", "—", "titos", 2, "12:45", "13:30", "W2"), _aclMk("as28", "DJ Cassandra", "—", "titos", 2, "14:00", "14:45", "W1"), _aclMk("as29", "Nat Myers", "—", "titos", 2, "14:00", "14:45", "W2"), _aclMk("as30", "Don West", "—", "titos", 2, "15:15", "16:00"), _aclMk("as31", "Rodrigo Y Gabriela", "—", "titos", 2, "16:30", "17:30"), _aclMk("as32", "Yousuke Yukimatsu", "Electronic", "titos", 2, "18:30", "19:30"), _aclMk("as33", "Silent Disco", "—", "titos", 2, "20:00", "22:00"), _aclMk("as34", "Rochelle Jordan", "—", "snapchat", 2, "14:00", "14:45", "W1"), _aclMk("as35", "Gabriel Jacoby", "—", "snapchat", 2, "14:00", "14:45", "W2"), _aclMk("as36", "Skye Newman", "—", "snapchat", 2, "15:30", "16:30"), _aclMk("as37", "It's Murph", "Electronic", "snapchat", 2, "17:30", "18:30"), _aclMk("as38", "Lykke Li", "—", "snapchat", 2, "19:30", "20:30"), _aclMk("as39", "Annie DiRusso", "—", "amex", 2, "13:15", "14:00"), _aclMk("as40", "Finn Wolfhard", "—", "amex", 2, "14:45", "15:30"), _aclMk("as41", "Young Miko", "—", "amex", 2, "16:30", "17:30"), _aclMk("as42", "Lola Young", "—", "amex", 2, "18:30", "19:30"), _aclMk("as43", "Rüfüs Du Sol", "Electronic", "amex", 2, "20:30", "22:00"), _aclMk("au01", "Solya", "—", "tmobile", 3, "13:15", "14:00", "W1"), _aclMk("au02", "Thomas Day", "—", "tmobile", 3, "13:15", "14:00", "W2"), _aclMk("au03", "Stella Lefty", "—", "tmobile", 3, "14:45", "15:30", "W1"), _aclMk("au04", "Charlotte Lawrence", "—", "tmobile", 3, "14:45", "15:30", "W2"), _aclMk("au05", "Audrey Hobert", "—", "tmobile", 3, "16:30", "17:30"), _aclMk("au06", "Geese", "—", "tmobile", 3, "18:30", "19:30"), _aclMk("au07", "The xx", "—", "tmobile", 3, "20:30", "22:00"), _aclMk("au08", "Jess Williamson", "—", "miller", 3, "14:00", "14:45", "W1"), _aclMk("au09", "Joshua Jensen", "—", "miller", 3, "14:00", "14:45", "W2"), _aclMk("au10", "Claire Rosinkranz", "—", "miller", 3, "15:30", "16:30"), _aclMk("au11", "Saint Motel", "—", "miller", 3, "17:30", "18:30"), _aclMk("au12", "Parcels", "—", "miller", 3, "19:30", "20:30"), _aclMk("au13", "Rubio", "—", "bmi", 3, "12:45", "13:15", "W1"), _aclMk("au14", "Marzz", "—", "bmi", 3, "12:45", "13:15", "W2"), _aclMk("au15", "Aaron Rowe", "—", "bmi", 3, "14:00", "14:45", "W1"), _aclMk("au16", "Chelsea Jordan", "—", "bmi", 3, "14:00", "14:45", "W2"), _aclMk("au17", "Fancy Hagood", "—", "bmi", 3, "15:30", "16:15", "W1"), _aclMk("au18", "Vwillz", "—", "bmi", 3, "15:30", "16:15", "W2"), _aclMk("au19", "Lauren Sanderson", "—", "bmi", 3, "17:30", "18:30", "W1"), _aclMk("au20", "Sasha Keable", "—", "bmi", 3, "18:00", "18:30", "W2"), _aclMk("au21", "Britton", "—", "beatbox", 3, "14:00", "14:45", "W1"), _aclMk("au22", "Kevin Atwater", "—", "beatbox", 3, "14:00", "14:45", "W2"), _aclMk("au23", "Underscores", "—", "beatbox", 3, "15:30", "16:30", "W1"), _aclMk("au24", "Bad Nerves", "—", "beatbox", 3, "15:30", "16:30", "W2"), _aclMk("au25", "Noga Erez", "—", "beatbox", 3, "17:30", "18:30"), _aclMk("au26", "Blood Orange", "—", "beatbox", 3, "19:30", "20:30"), _aclMk("au27", "The Moriah Sisters", "—", "titos", 3, "12:45", "13:30", "W1"), _aclMk("au28", "Huston-Tillotson University Jazz Collective", "—", "titos", 3, "12:45", "13:30", "W2"), _aclMk("au29", "Paloma Morphy", "—", "titos", 3, "14:00", "14:45"), _aclMk("au30", "Calder Allen", "—", "titos", 3, "15:15", "16:00"), _aclMk("au31", "Rio Kosta", "—", "titos", 3, "16:30", "17:30"), _aclMk("au32", "Fcukers", "—", "titos", 3, "18:30", "19:30"), _aclMk("au33", "Silent Disco", "—", "titos", 3, "20:00", "22:00"), _aclMk("au34", "Sunday (1994)", "—", "snapchat", 3, "14:00", "14:45"), _aclMk("au35", "Grace Ives", "—", "snapchat", 3, "15:30", "16:30", "W2"), _aclMk("au36", "Cannons", "—", "snapchat", 3, "17:30", "18:30", "W1"), _aclMk("au37", "Houndmouth", "—", "snapchat", 3, "17:30", "18:30", "W2"), _aclMk("au38", "The War On Drugs", "—", "snapchat", 3, "19:30", "20:30"), _aclMk("au39", "Villanelle", "—", "amex", 3, "13:15", "14:00", "W1"), _aclMk("au40", "Rum Jungle", "—", "amex", 3, "13:15", "14:00", "W2"), _aclMk("au41", "Dexter And The Moonrocks", "—", "amex", 3, "14:45", "15:30", "W1"), _aclMk("au42", "Ethan Regan", "—", "amex", 3, "14:45", "15:30", "W2"), _aclMk("au43", "Max McNown", "—", "amex", 3, "16:30", "17:30"), _aclMk("au44", "Sofi Tukker", "Electronic", "amex", 3, "18:30", "19:30"), _aclMk("au45", "Twenty One Pilots", "—", "amex", 3, "20:30", "22:00")];
+var ACL_AMENITIES = [{
+  id: "aa1",
+  type: "water",
+  label: "Hydration",
+  x: 35,
+  y: 40
+}, {
+  id: "aa2",
+  type: "water",
+  label: "Hydration",
+  x: 65,
+  y: 55
+}, {
+  id: "aa3",
+  type: "food",
+  label: "ACL Eats",
+  x: 50,
+  y: 35
+}, {
+  id: "aa4",
+  type: "food",
+  label: "ACL Eats South",
+  x: 45,
+  y: 65
+}, {
+  id: "aa5",
+  type: "med",
+  label: "Medical",
+  x: 55,
+  y: 60
+}, {
+  id: "aa6",
+  type: "toilet",
+  label: "Restrooms",
+  x: 30,
+  y: 30
+}, {
+  id: "aa7",
+  type: "toilet",
+  label: "Restrooms",
+  x: 70,
+  y: 45
+}, {
+  id: "aa8",
+  type: "info",
+  label: "Guest Services",
+  x: 20,
+  y: 35
+}];
+var EDCO_STAGES = [{
+  id: "kinetic",
+  name: "kineticFIELD",
+  short: "KINETIC",
+  color: "#f97316",
+  x: 50,
+  y: 24,
+  size: 1.7,
+  desc: "Main stage",
+  vibe: "Main Event",
+  vibeNote: "Headliners under the electric sky.",
+  peak: "18:00–00:00"
+}, {
+  id: "circuit",
+  name: "circuitGROUNDS",
+  short: "CIRCUIT",
+  color: "#38bdf8",
+  x: 26,
+  y: 44,
+  size: 1.4,
+  desc: "Epic-melody big room",
+  vibe: "Big Melodies",
+  vibeNote: "Trance, melodic bass, anthem energy.",
+  peak: "16:00–00:00"
+}, {
+  id: "neon",
+  name: "neonGARDEN",
+  short: "NEON",
+  color: "#a855f7",
+  x: 74,
+  y: 44,
+  size: 1.3,
+  desc: "Factory 93 home base",
+  vibe: "House & Techno",
+  vibeNote: "Factory 93 takeover territory, four-on-the-floor.",
+  peak: "15:00–00:00"
+}, {
+  id: "stereo",
+  name: "stereoBLOOM",
+  short: "STEREO",
+  color: "#f43f5e",
+  x: 36,
+  y: 70,
+  size: 1.1,
+  desc: "Insomniac Records stage",
+  vibe: "Label Sounds",
+  vibeNote: "Insomniac Records + Dreamstate hosting.",
+  peak: "14:00–23:00"
+}, {
+  id: "bacardi",
+  name: "CASA BACARDÍ",
+  short: "BACARDÍ",
+  color: "#22c55e",
+  x: 64,
+  y: 70,
+  size: 0.9,
+  desc: "Lounge stage",
+  vibe: "Lounge Sessions",
+  vibeNote: "Day-party energy under the palms.",
+  peak: "13:00–20:00"
+}, {
+  id: "tba",
+  name: "Schedule TBA",
+  short: "TBA",
+  color: "#9ca3af",
+  x: 50,
+  y: 50,
+  size: 0.1,
+  desc: "PROVISIONAL: stage assignments drop with the official schedule",
+  vibe: "Unscheduled",
+  vibeNote: "Every artist sits here until the official schedule assigns stages + times.",
+  peak: "—"
+}];
+var _edcoMk = (id, name, genre, day, start, end) => {
+  return {
+    id,
+    name,
+    genre,
+    country: "—",
+    stage: "tba",
+    day,
+    start,
+    end,
+    tier: 1,
+    img: `linear-gradient(135deg, #22c55e, #04170c)`,
+    bio: "Playing EDC Orlando 2026. Day is official (orlando.edc.com day filters); set time + stage are placeholders until the official schedule drops in the Insomniac app (~1-2 weeks out)."
+  };
+};
+var EDCO_ARTISTS = [_edcoMk("ecf1", "AAT", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf2", "Adventure Club (Sunset Set)", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf3", "Afrojack", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf4", "Alesso (Sunset Set)", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf5", "Azzecca", "House", 1, "12:00", "13:00"), _edcoMk("ecf6", "Benda B2B Vastive", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf7", "Big Florida", "Bass", 1, "12:00", "13:00"), _edcoMk("ecf8", "Bou B2B Kanine", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf9", "Brunello (Sunset Set)", "House", 1, "12:00", "13:00"), _edcoMk("ecf10", "Bullet Tooth B2B Sidney Charles", "Techno", 1, "12:00", "13:00"), _edcoMk("ecf11", "Chris Lorenzo", "House", 1, "12:00", "13:00"), _edcoMk("ecf12", "David Guetta", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf13", "HAYLA", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf14", "IDEMI", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf15", "Inbal", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf16", "Interplanetary Criminal", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf17", "JOA", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf18", "Josh Baker", "House", 1, "12:00", "13:00"), _edcoMk("ecf19", "Joshwa", "House", 1, "12:00", "13:00"), _edcoMk("ecf20", "Kompany", "Bass", 1, "12:00", "13:00"), _edcoMk("ecf21", "KREAM", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf22", "Level Up", "Bass", 1, "12:00", "13:00"), _edcoMk("ecf23", "Levity", "Bass", 1, "12:00", "13:00"), _edcoMk("ecf24", "MALUGI (Sunset Set)", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf25", "Matthias", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf26", "Mau P", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf27", "MPH", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf28", "Omar+", "House", 1, "12:00", "13:00"), _edcoMk("ecf29", "Pegassi", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf30", "Prospa B2B Josh Baker", "House", 1, "12:00", "13:00"), _edcoMk("ecf31", "Prospa", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf32", "RAJE", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf33", "Sloth", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf34", "Whethan", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecf35", "Wooli", "Bass", 1, "12:00", "13:00"), _edcoMk("ecf36", "Zack Martino", "Electronic", 1, "12:00", "13:00"), _edcoMk("ecs1", "Aaron Hibell", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs2", "ACRAZE B2B CID", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs3", "Alan Walker (Sunset Set)", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs4", "Alison Wonderland", "Bass", 2, "12:00", "13:00"), _edcoMk("ecs5", "ALLEYCVT", "Bass", 2, "12:00", "13:00"), _edcoMk("ecs6", "Alves", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs7", "AVELLO", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs8", "AYYBO", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs9", "ChaseWest", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs10", "Dennis Cruz", "House", 2, "12:00", "13:00"), _edcoMk("ecs11", "Devault (Sunset Set)", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs12", "Discip", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs13", "Disco Lines", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs14", "Fallon", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs15", "Franky Rizardo", "House", 2, "12:00", "13:00"), _edcoMk("ecs16", "Fury with MC Dino", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs17", "Gabss", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs18", "Greg 99", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs19", "Jkyl & Hyde", "Bass", 2, "12:00", "13:00"), _edcoMk("ecs20", "Kaskade", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs21", "KinAhau", "House", 2, "12:00", "13:00"), _edcoMk("ecs22", "LAYZ", "Bass", 2, "12:00", "13:00"), _edcoMk("ecs23", "MADVKTM", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs24", "Mai Iachetti", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs25", "Max Dean, Luke Dean", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs26", "Me n ü", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs27", "Miguelle & Tons", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs28", "Monoky", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs29", "Nico Moreno", "Techno", 2, "12:00", "13:00"), _edcoMk("ecs30", "Ray Volpe", "Bass", 2, "12:00", "13:00"), _edcoMk("ecs31", "Roddy Lima", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs32", "Rossi. (Sunset Set)", "House", 2, "12:00", "13:00"), _edcoMk("ecs33", "Skull Machine (Black Tiger Sex Machine x Kai Wachi)", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs34", "Steve Aoki", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs35", "Subsonic", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecs36", "Twinsick", "Electronic", 2, "12:00", "13:00"), _edcoMk("ecu1", "A Little Sound", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu2", "Adrián Mills", "Techno", 3, "12:00", "13:00"), _edcoMk("ecu3", "Alok", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu4", "AR/CO", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu5", "ATLiens", "Bass", 3, "12:00", "13:00"), _edcoMk("ecu6", "Boogie T", "Bass", 3, "12:00", "13:00"), _edcoMk("ecu7", "Boys Noize B2B Brutalismus 3000", "Techno", 3, "12:00", "13:00"), _edcoMk("ecu8", "Chef Boyarbeatz", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu9", "CØNTRA", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu10", "Deorro B2B DJ Diesel", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu11", "Discovery Project", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu12", "ESSE", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu13", "Hardwell", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu14", "Holy Priest", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu15", "I Hate Models", "Techno", 3, "12:00", "13:00"), _edcoMk("ecu16", "Ian Asher", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu17", "Jessica Audiffred", "Bass", 3, "12:00", "13:00"), _edcoMk("ecu18", "Kaivon", "Bass", 3, "12:00", "13:00"), _edcoMk("ecu19", "KI/KI", "Techno", 3, "12:00", "13:00"), _edcoMk("ecu20", "Klangkuenstler", "Techno", 3, "12:00", "13:00"), _edcoMk("ecu21", "Know Good", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu22", "M81!", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu23", "Maddix", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu24", "Marlon Hoffstadt (Sunset Set)", "Techno", 3, "12:00", "13:00"), _edcoMk("ecu25", "Martin Garrix", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu26", "Meduza", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu27", "Of The Trees (Sunset Set)", "Bass", 3, "12:00", "13:00"), _edcoMk("ecu28", "phrva", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu29", "Ravenscoon", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu30", "San Holo (Wholesome Riddim Set)", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu31", "SHDW", "Techno", 3, "12:00", "13:00"), _edcoMk("ecu32", "Sippy", "Bass", 3, "12:00", "13:00"), _edcoMk("ecu33", "SLANDER (Sunset Set)", "Bass", 3, "12:00", "13:00"), _edcoMk("ecu34", "Taiki Nulight", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu35", "TroyBoi", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu36", "Ultrathem", "Electronic", 3, "12:00", "13:00"), _edcoMk("ecu37", "And the most important headliner of all You", "Electronic", 3, "12:00", "13:00")];
+var EDCO_AMENITIES = [{
+  id: "eoa1",
+  type: "water",
+  label: "Hydration",
+  x: 44,
+  y: 30
+}, {
+  id: "eoa2",
+  type: "water",
+  label: "Hydration",
+  x: 60,
+  y: 62
+}, {
+  id: "eoa3",
+  type: "food",
+  label: "Vendor Village",
+  x: 50,
+  y: 50
+}, {
+  id: "eoa4",
+  type: "food",
+  label: "Westside Eats",
+  x: 22,
+  y: 58
+}, {
+  id: "eoa5",
+  type: "med",
+  label: "Medical",
+  x: 54,
+  y: 40
+}, {
+  id: "eoa6",
+  type: "toilet",
+  label: "Restrooms",
+  x: 30,
+  y: 40
+}, {
+  id: "eoa7",
+  type: "toilet",
+  label: "Restrooms",
+  x: 70,
+  y: 56
+}, {
+  id: "eoa8",
+  type: "info",
+  label: "Info & Guest Services",
+  x: 48,
+  y: 18
+}];
+var LL_STAGES = [{
+  id: "prehistoric",
+  name: "Prehistoric Paradox",
+  short: "PREHISTORIC",
+  color: "#f97316",
+  x: 50,
+  y: 68,
+  size: 2.2,
+  desc: "Legend Valley main stage",
+  vibe: "Main Energy",
+  vibeNote: "The big one. Pyro, lasers, the whole valley answers.",
+  peak: "17:00–00:00"
+}, {
+  id: "wompy-woods",
+  name: "Wompy Woods",
+  short: "WOMPY",
+  color: "#84cc16",
+  x: 68,
+  y: 45,
+  size: 1.6,
+  desc: "Forest-draped second stage",
+  vibe: "In The Trees",
+  vibeNote: "Wobbles in the woods; fan-favorite for a reason.",
+  peak: "14:00–23:00"
+}, {
+  id: "crater",
+  name: "The Crater",
+  short: "CRATER",
+  color: "#a855f7",
+  x: 38,
+  y: 50,
+  size: 1.5,
+  desc: "360-degree immersive stage",
+  vibe: "Surround Sound",
+  vibeNote: "Bass in the round - the pre-party home.",
+  peak: "14:00–23:00"
+}, {
+  id: "subsidia",
+  name: "Subsidia Stage",
+  short: "SUBSIDIA",
+  color: "#22d3ee",
+  x: 58,
+  y: 38,
+  size: 1.3,
+  desc: "Excision-label showcase stage",
+  vibe: "Label Night",
+  vibeNote: "Subsidia Records takeover energy.",
+  peak: "14:00–22:00"
+}, {
+  id: "forest-stage",
+  name: "Forest Stage",
+  short: "FOREST",
+  color: "#34d399",
+  x: 30,
+  y: 62,
+  size: 1.1,
+  desc: "Deep-in-the-trees stage",
+  vibe: "Hidden Forest",
+  vibeNote: "Small canopy, big wubs.",
+  peak: "14:00–22:00"
+}, {
+  id: "raptor-alley",
+  name: "Raptor Alley",
+  short: "RAPTOR",
+  color: "#ef4444",
+  x: 45,
+  y: 25,
+  size: 0.9,
+  desc: "Late-night after-hours lane",
+  vibe: "After Hours",
+  vibeNote: "The valley does not sleep.",
+  peak: "23:00–04:00"
+}, {
+  id: "grove",
+  name: "The Grove",
+  short: "GROVE",
+  color: "#eab308",
+  x: 62,
+  y: 22,
+  size: 0.8,
+  desc: "Campground stage",
+  vibe: "Campground",
+  vibeNote: "Morning-to-late sets where the camps live.",
+  peak: "10:00–22:00"
+}];
+var _llMk = (id, name, genre, tier, stage, day) => {
+  var times = tier === 3 ? ["22:30", "00:00"] : tier === 2 ? ["20:00", "21:30"] : ["17:00", "18:30"];
+  return {
+    id,
+    name,
+    genre,
+    country: "—",
+    stage,
+    day,
+    start: times[0],
+    end: times[1],
+    tier,
+    img: `linear-gradient(135deg, ${LL_STAGES.find(s => s.id === stage)?.color || "#84cc16"}, #0a1a0c)`,
+    bio: "Playing Lost Lands 2026. Set time + stage provisional - official schedule drops in the Lost Lands app about a week out."
+  };
+};
+var LL_ARTISTS = [_llMk("llw1", "Barely Alive", "Dubstep", 2, "crater", 1), _llMk("llw2", "Calcium B2B Mad Dubz", "Bass", 2, "crater", 1), _llMk("llw3", "Caspa", "Dubstep", 2, "crater", 1), _llMk("llw4", "Chassi", "Bass", 2, "crater", 1), _llMk("llw5", "Distinct Motive", "Deep Dubstep", 2, "crater", 1), _llMk("llw6", "Emorfik B2B Usaybflow", "Bass", 2, "crater", 1), _llMk("llw7", "Gardella", "Bass", 2, "crater", 1), _llMk("llw8", "Hairitage", "Bass", 2, "crater", 1), _llMk("llw9", "Hershe", "Bass", 2, "crater", 1), _llMk("llw10", "Hydraulix", "Bass", 2, "crater", 1), _llMk("llw11", "Izzy Vadim", "Bass", 2, "crater", 1), _llMk("llw12", "Jaenga", "Bass", 2, "crater", 1), _llMk("llw13", "Mile32", "Bass", 2, "crater", 1), _llMk("llw14", "MPORT", "Bass", 2, "crater", 1), _llMk("llw15", "Muerte", "Bass", 2, "crater", 1), _llMk("llw16", "Nikita, The Wicked", "Bass", 2, "crater", 1), _llMk("llw17", "Riot Ten", "Dubstep", 2, "crater", 1), _llMk("llw18", "Smoakland", "Bass", 2, "crater", 1), _llMk("llh1", "Alienpark", "Bass", 2, "crater", 2), _llMk("llh2", "Deadcrow", "Bass", 2, "crater", 2), _llMk("llh3", "Dirt Monkey", "Dubstep", 2, "crater", 2), _llMk("llh4", "Funtcase", "Dubstep", 2, "crater", 2), _llMk("llh5", "Machaki", "Bass", 2, "crater", 2), _llMk("llh6", "MEGA B2B2B2B2B PRE-PARTY", "Bass", 3, "crater", 2), _llMk("llh7", "Mindset", "Bass", 2, "crater", 2), _llMk("llh8", "Phrva", "Bass", 2, "crater", 2), _llMk("llh9", "Rsun", "Bass", 2, "crater", 2), _llMk("llh10", "RZRKT", "Bass", 2, "crater", 2), _llMk("llh11", "Super Future", "Space Bass", 2, "crater", 2), _llMk("llf1", "$J", "Bass", 1, "subsidia", 3), _llMk("llf2", "Austeria", "Bass", 1, "subsidia", 3), _llMk("llf3", "Badklaat", "Bass", 1, "subsidia", 3), _llMk("llf4", "Basstripper", "Bass", 1, "subsidia", 3), _llMk("llf5", "Bear Grillz", "Dubstep", 2, "wompy-woods", 3), _llMk("llf6", "Benda", "Bass", 1, "subsidia", 3), _llMk("llf7", "Borgore", "Dubstep", 2, "wompy-woods", 3), _llMk("llf8", "Canabliss", "Bass", 1, "subsidia", 3), _llMk("llf9", "Casey Club", "Bass", 1, "subsidia", 3), _llMk("llf10", "Crizzly", "Dubstep", 2, "wompy-woods", 3), _llMk("llf11", "Dion Timmer", "Dubstep", 2, "wompy-woods", 3), _llMk("llf12", "Dirtysnatcha", "Bass", 1, "subsidia", 3), _llMk("llf13", "Doctor P", "Dubstep", 2, "wompy-woods", 3), _llMk("llf14", "Dodge & Fuski", "Dubstep", 2, "wompy-woods", 3), _llMk("llf15", "Dr. Ushuu", "Bass", 1, "subsidia", 3), _llMk("llf16", "Drinkurwater", "Bass", 1, "subsidia", 3), _llMk("llf17", "Dubscribe", "Bass", 1, "subsidia", 3), _llMk("llf18", "Future Exit", "Bass", 1, "subsidia", 3), _llMk("llf19", "HOL!", "Dubstep", 2, "wompy-woods", 3), _llMk("llf20", "Infekt B2B Samplifire", "Riddim", 2, "wompy-woods", 3), _llMk("llf21", "Ivy Lab", "Drum & Bass", 2, "wompy-woods", 3), _llMk("llf22", "Izadi", "Bass", 1, "subsidia", 3), _llMk("llf23", "Jantsen", "Dubstep", 2, "wompy-woods", 3), _llMk("llf24", "Jkyl & Hyde", "Bass", 1, "subsidia", 3), _llMk("llf25", "Kliptic", "Dubstep", 2, "wompy-woods", 3), _llMk("llf26", "Klo", "Dubstep", 2, "wompy-woods", 3), _llMk("llf27", "Lazrus", "Dubstep", 2, "wompy-woods", 3), _llMk("llf28", "Levity", "Dubstep", 2, "wompy-woods", 3), _llMk("llf29", "Liquid Stranger", "Space Bass", 2, "wompy-woods", 3), _llMk("llf30", "Lumasi", "Bass", 1, "subsidia", 3), _llMk("llf31", "Neumonic", "Bass", 2, "wompy-woods", 3), _llMk("llf32", "Nghtmre", "Trap / Future Bass", 3, "prehistoric", 3), _llMk("llf33", "Nimda", "Bass", 1, "subsidia", 3), _llMk("llf34", "Oliverse", "Bass", 1, "subsidia", 3), _llMk("llf35", "Paper Skies", "Melodic Bass", 2, "wompy-woods", 3), _llMk("llf36", "Pegboard Nerds", "Electro / Dubstep", 2, "wompy-woods", 3), _llMk("llf37", "Poni", "Bass", 1, "subsidia", 3), _llMk("llf38", "Probcause", "Bass", 1, "subsidia", 3), _llMk("llf39", "Ravenscoon", "Dubstep", 2, "wompy-woods", 3), _llMk("llf40", "Reaper", "Dubstep", 2, "wompy-woods", 3), _llMk("llf41", "Richard Finger", "Bass", 1, "subsidia", 3), _llMk("llf42", "Riot", "Drum & Bass", 2, "wompy-woods", 3), _llMk("llf43", "Seth David", "Bass", 1, "subsidia", 3), _llMk("llf44", "Shlump", "Space Bass", 2, "wompy-woods", 3), _llMk("llf45", "Sigma", "Drum & Bass", 2, "wompy-woods", 3), _llMk("llf46", "Sippy", "Dubstep", 2, "wompy-woods", 3), _llMk("llf47", "Subsonic", "Bass", 1, "subsidia", 3), _llMk("llf48", "Sullivan King B2B Ray Volpe", "Rocktronic / Riddim", 3, "prehistoric", 3), _llMk("llf49", "The Resistance", "Dubstep", 2, "wompy-woods", 3), _llMk("llf50", "The Widdler", "Dubstep", 2, "wompy-woods", 3), _llMk("llf51", "Twopercent", "Bass", 1, "subsidia", 3), _llMk("llf52", "TYNAN", "Bass", 1, "subsidia", 3), _llMk("llf53", "Vampa", "Dubstep", 2, "wompy-woods", 3), _llMk("llf54", "VKTM", "Bass", 1, "subsidia", 3), _llMk("llf55", "Wiley", "Space Bass", 2, "wompy-woods", 3), _llMk("llf56", "Wooli", "Dubstep / Melodic Bass", 3, "prehistoric", 3), _llMk("llf57", "Xotix", "Bass", 1, "subsidia", 3), _llMk("llf58", "YOOKIE", "Dubstep / Hybrid", 2, "wompy-woods", 3), _llMk("llf59", "Zero", "Bass", 1, "subsidia", 3), _llMk("lls1", "2DY4", "Bass", 1, "subsidia", 4), _llMk("lls2", "AEON:MODE", "Bass", 1, "subsidia", 4), _llMk("lls3", "All The Reason", "Bass", 1, "subsidia", 4), _llMk("lls4", "Au5", "Melodic Dubstep", 2, "wompy-woods", 4), _llMk("lls5", "Audiofreq", "Bass", 1, "subsidia", 4), _llMk("lls6", "Bella Renee", "Bass", 1, "subsidia", 4), _llMk("lls7", "Big Florida", "Bass", 1, "subsidia", 4), _llMk("lls8", "Bou", "Drum & Bass", 2, "wompy-woods", 4), _llMk("lls9", "Brainrack", "Bass", 1, "subsidia", 4), _llMk("lls10", "Capochino", "Bass", 1, "subsidia", 4), _llMk("lls11", "Chozen", "Bass", 1, "subsidia", 4), _llMk("lls12", "Craze", "Bass", 1, "subsidia", 4), _llMk("lls13", "Craze B2B Dieselboy", "Bass", 1, "subsidia", 4), _llMk("lls14", "Crumb Pit", "Riddim", 2, "wompy-woods", 4), _llMk("lls15", "Cyclops", "Bass", 1, "subsidia", 4), _llMk("lls16", "Darksiderz B2B Madgrrl", "Bass", 1, "subsidia", 4), _llMk("lls17", "Delta Heavy", "Drum & Bass", 2, "wompy-woods", 4), _llMk("lls18", "Dirtyphonics", "Drum & Bass", 2, "wompy-woods", 4), _llMk("lls19", "Dr. Fresch", "Bass House", 3, "prehistoric", 4), _llMk("lls20", "Effin", "Bass", 1, "subsidia", 4), _llMk("lls21", "Flosstradamus", "Trap", 3, "prehistoric", 4), _llMk("lls22", "Flux Pavilion", "Dubstep", 3, "prehistoric", 4), _llMk("lls23", "Ganja White Night", "Dubstep", 3, "prehistoric", 4), _llMk("lls24", "GHENGAR", "Dubstep", 2, "wompy-woods", 4), _llMk("lls25", "Gladde Paling", "Bass", 1, "subsidia", 4), _llMk("lls26", "Green Matter", "Bass", 1, "subsidia", 4), _llMk("lls27", "Hedex", "D&B / Jump-Up", 2, "wompy-woods", 4), _llMk("lls28", "Heyz", "Dubstep / House", 2, "wompy-woods", 4), _llMk("lls29", "HVDES", "Bass", 1, "subsidia", 4), _llMk("lls30", "Illenium", "Melodic Bass", 3, "prehistoric", 4), _llMk("lls31", "Imanu", "Drum & Bass", 2, "wompy-woods", 4), _llMk("lls32", "Ivory", "Dubstep", 2, "wompy-woods", 4), _llMk("lls33", "Jessica Audiffred", "Dubstep", 3, "prehistoric", 4), _llMk("lls34", "Josh Teed", "Bass", 1, "subsidia", 4), _llMk("lls35", "Kai Wachi", "Dubstep", 3, "prehistoric", 4), _llMk("lls36", "Layz", "Dubstep", 2, "wompy-woods", 4), _llMk("lls37", "Leotrix", "Future Riddim", 2, "wompy-woods", 4), _llMk("lls38", "Lil Texas", "Bass", 1, "subsidia", 4), _llMk("lls39", "Lowcation", "Bass", 1, "subsidia", 4), _llMk("lls40", "Mefjus", "Drum & Bass", 2, "wompy-woods", 4), _llMk("lls41", "Mozey", "Drum & Bass", 2, "wompy-woods", 4), _llMk("lls42", "Myrias", "Bass", 1, "subsidia", 4), _llMk("lls43", "Mythm", "Bass", 1, "subsidia", 4), _llMk("lls44", "Neotek", "Bass", 1, "subsidia", 4), _llMk("lls45", "Noetika", "Bass", 1, "subsidia", 4), _llMk("lls46", "Phaseone", "Metalstep", 2, "wompy-woods", 4), _llMk("lls47", "Prosecute", "Dubstep", 2, "wompy-woods", 4), _llMk("lls48", "Saint Miller", "Bass", 2, "wompy-woods", 4), _llMk("lls49", "Seven Lions", "Melodic Bass", 3, "prehistoric", 4), _llMk("lls50", "Slander", "Melodic Bass", 3, "prehistoric", 4), _llMk("lls51", "Space Wizard", "Bass", 1, "subsidia", 4), _llMk("lls52", "Stoned Level", "Bass", 1, "subsidia", 4), _llMk("lls53", "Subtronics B2B Level Up", "Riddim / Dubstep", 3, "prehistoric", 4), _llMk("lls54", "Tisoki", "Dubstep", 2, "wompy-woods", 4), _llMk("lls55", "Tokyo Machine", "Electro House", 3, "prehistoric", 4), _llMk("lls56", "Truth", "Deep Dubstep", 2, "wompy-woods", 4), _llMk("lls57", "Whales", "Bass", 1, "subsidia", 4), _llMk("lls58", "Whethan", "Future Bass", 3, "prehistoric", 4), _llMk("lls59", "Wraz", "Bass", 1, "subsidia", 4), _llMk("lls60", "Zingara", "Bass", 1, "subsidia", 4), _llMk("lls61", "Zomboy", "Dubstep", 3, "prehistoric", 4), _llMk("llu1", "Adventure Club", "Melodic Dubstep", 2, "wompy-woods", 5), _llMk("llu2", "Alleycvt B2B Crankdat", "Bass", 1, "subsidia", 5), _llMk("llu3", "Arlo", "Bass", 2, "wompy-woods", 5), _llMk("llu4", "Armnhmr", "Melodic Bass", 2, "wompy-woods", 5), _llMk("llu5", "Atliens", "Bass", 2, "wompy-woods", 5), _llMk("llu6", "Avello", "Bass", 1, "subsidia", 5), _llMk("llu7", "Boogie T", "Bass", 1, "subsidia", 5), _llMk("llu8", "Champagne Drip", "Space Bass", 2, "wompy-woods", 5), _llMk("llu9", "Codd Dubz", "Bass", 1, "subsidia", 5), _llMk("llu10", "Crystal Skies", "Melodic Dubstep", 2, "wompy-woods", 5), _llMk("llu11", "Distant Matter", "Bass", 1, "subsidia", 5), _llMk("llu12", "Dream Takers", "Bass", 1, "subsidia", 5), _llMk("llu13", "Eptic", "Dubstep", 3, "prehistoric", 5), _llMk("llu14", "Excision", "Dubstep", 3, "prehistoric", 5), _llMk("llu15", "Excision B2B Space Laces", "Dubstep", 3, "prehistoric", 5), _llMk("llu16", "FINNUH", "Bass", 1, "subsidia", 5), _llMk("llu17", "Ghastly", "Bass", 2, "wompy-woods", 5), _llMk("llu18", "Grabbitz", "Electronic / Rock", 3, "prehistoric", 5), _llMk("llu19", "Haliene", "Melodic Bass", 2, "wompy-woods", 5), _llMk("llu20", "Hostage Situation", "Bass", 2, "wompy-woods", 5), _llMk("llu21", "Hurtbox", "Riddim", 2, "wompy-woods", 5), _llMk("llu22", "Killmatter", "Bass", 1, "subsidia", 5), _llMk("llu23", "Know Good", "Bass", 1, "subsidia", 5), _llMk("llu24", "Kompany", "Dubstep", 3, "prehistoric", 5), _llMk("llu25", "Krewella", "Electro / Bass", 3, "prehistoric", 5), _llMk("llu26", "Luci", "Pop / Electronic", 2, "wompy-woods", 5), _llMk("llu27", "Mad Dubz", "Bass", 1, "subsidia", 5), _llMk("llu28", "Modal Nodes", "Bass", 1, "subsidia", 5), _llMk("llu29", "OG NIXIN", "Bass", 1, "subsidia", 5), _llMk("llu30", "Onara", "Bass", 1, "subsidia", 5), _llMk("llu31", "Passport", "Bass", 1, "subsidia", 5), _llMk("llu32", "Pretty Sweet", "Bass", 1, "subsidia", 5), _llMk("llu33", "Remk", "Bass", 1, "subsidia", 5), _llMk("llu34", "ROI*", "Bass", 1, "subsidia", 5), _llMk("llu35", "Ryns", "Bass", 1, "subsidia", 5), _llMk("llu36", "Sisto", "House", 2, "wompy-woods", 5), _llMk("llu37", "Skilah", "Bass", 1, "subsidia", 5), _llMk("llu38", "Sodown", "Bass", 1, "subsidia", 5), _llMk("llu39", "Sportmode", "House", 2, "wompy-woods", 5), _llMk("llu40", "SQISHI", "Bass", 1, "subsidia", 5), _llMk("llu41", "Stumpi", "Bass", 1, "subsidia", 5), _llMk("llu42", "Taiki Nulight", "Bass House", 2, "wompy-woods", 5), _llMk("llu43", "Trivecta", "Melodic Bass", 2, "wompy-woods", 5), _llMk("llu44", "Usaybflow", "Riddim", 2, "wompy-woods", 5), _llMk("llu45", "Virtual Riot", "Dubstep", 3, "prehistoric", 5), _llMk("llu46", "Warlord", "Bass", 1, "subsidia", 5), _llMk("llu47", "Wax Motif", "Bass House", 2, "wompy-woods", 5), _llMk("llu48", "William Black", "Melodic Bass", 2, "wompy-woods", 5), _llMk("llu49", "Wonkywilla", "Dubstep", 2, "wompy-woods", 5), _llMk("llu50", "Yetep", "Melodic Bass", 2, "wompy-woods", 5), _llMk("llu51", "YVM3", "Dubstep", 2, "wompy-woods", 5), _llMk("llu52", "Zoey808", "Bass", 1, "subsidia", 5)];
+var LL_AMENITIES = [{
+  id: "lla1",
+  type: "water",
+  label: "Free Water",
+  x: 40,
+  y: 35
+}, {
+  id: "lla2",
+  type: "water",
+  label: "Free Water",
+  x: 62,
+  y: 58
+}, {
+  id: "lla3",
+  type: "food",
+  label: "Food Vendors",
+  x: 48,
+  y: 30
+}, {
+  id: "lla4",
+  type: "med",
+  label: "Nest (Medical)",
+  x: 52,
+  y: 55
+}, {
+  id: "lla5",
+  type: "info",
+  label: "Info & Lost+Found",
+  x: 42,
+  y: 78
+}, {
+  id: "lla6",
+  type: "toilet",
+  label: "Restrooms",
+  x: 30,
+  y: 40
+}, {
+  id: "lla7",
+  type: "toilet",
+  label: "Restrooms",
+  x: 68,
+  y: 48
+}, {
+  id: "lla8",
+  type: "info",
+  label: "Lockers",
+  x: 36,
+  y: 52
+}];
+var _WAVE1_IDS = ["ultra-miami-2026", "governors-ball-2026", "summerfest-2026", "lollapalooza-2026", "outside-lands-2026", "iii-points-2026"];
+var _WAVE1 = typeof window !== "undefined" && window.PLURSKY_FESTIVALS || {};
+for (var _id of _WAVE1_IDS) {
+  var _f = _WAVE1[_id];
+  if (!_f || !_f.config || !_f.stages || !_f.artists) {
+    console.warn("[plursky] festival module missing or incomplete:", _id);
+    continue;
+  }
+  FESTIVALS_REGISTRY.push({
+    config: _f.config,
+    ...(_f.registry || {
+      available: false
+    })
+  });
+}
+var _regConfig = id => FESTIVALS_REGISTRY.find(f => f.config.id === id).config;
+var _DATA_SETS = {
+  "edc-lv-2026": {
+    stages: STAGES,
+    artists: ARTISTS,
+    amenities: AMENITIES,
+    config: FESTIVAL_CONFIG
+  },
+  "acl-2026": {
+    stages: ACL_STAGES,
+    artists: ACL_ARTISTS,
+    amenities: ACL_AMENITIES,
+    config: _regConfig("acl-2026")
+  },
+  "lost-lands-2026": {
+    stages: LL_STAGES,
+    artists: LL_ARTISTS,
+    amenities: LL_AMENITIES,
+    config: _regConfig("lost-lands-2026")
+  },
+  "edc-orlando-2026": {
+    stages: EDCO_STAGES,
+    artists: EDCO_ARTISTS,
+    amenities: EDCO_AMENITIES,
+    config: _regConfig("edc-orlando-2026")
+  }
+};
+for (var _id2 of _WAVE1_IDS) {
+  var _f2 = _WAVE1[_id2];
+  if (_f2) _DATA_SETS[_id2] = {
+    stages: _f2.stages,
+    artists: _f2.artists,
+    amenities: _f2.amenities,
+    config: _f2.config
+  };
+}
+var _activeId = getActiveFestivalId();
+var _active = _DATA_SETS[_activeId] || _DATA_SETS["edc-lv-2026"];
+Object.assign(window, {
+  FESTIVAL: _active.config,
+  FESTIVAL_CONFIG: _active.config,
+  STAGES: _active.stages,
+  AMENITIES: _active.amenities,
+  AVATAR_START,
+  FRIENDS,
+  ARTISTS: _active.artists,
+  DAYS: _daysFor(_active.config),
+  NOW,
+  ALERTS,
+  ESSENTIALS,
+  fmt12,
+  FESTIVALS_REGISTRY,
+  getActiveFestivalId,
+  setActiveFestivalAndReload,
+  _resolveDefaultFestivalId,
+  resolvedStageAnchors,
+  resolvedStageAnchor,
+  _DATA_SETS
+});

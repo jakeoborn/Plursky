@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v252';
+﻿const CACHE      = 'plursky-v253';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v252';
+const APP_VER    = 'v253';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -33,19 +33,19 @@ const LOCAL = [
   './summerfest-2026.svg',
   './lolla-2026.svg',
   './osl-2026.svg',
-  `./ios-frame.jsx?v=${APP_VER}`,
-  `./data.jsx?v=${APP_VER}`,
-  `./supabase.jsx?v=${APP_VER}`,
-  `./chrome.jsx?v=${APP_VER}`,
-  `./home.jsx?v=${APP_VER}`,
-  `./map.jsx?v=${APP_VER}`,
-  `./lineup.jsx?v=${APP_VER}`,
-  `./artist.jsx?v=${APP_VER}`,
-  `./photo-tag.jsx?v=${APP_VER}`,
-  `./spotify-api.jsx?v=${APP_VER}`,
-  `./recap-engine.jsx?v=${APP_VER}`,
-  `./spotify.jsx?v=${APP_VER}`,
-  `./app.jsx?v=${APP_VER}`,
+  `./build/ios-frame.js?v=${APP_VER}`,
+  `./build/data.js?v=${APP_VER}`,
+  `./build/supabase.js?v=${APP_VER}`,
+  `./build/chrome.js?v=${APP_VER}`,
+  `./build/home.js?v=${APP_VER}`,
+  `./build/map.js?v=${APP_VER}`,
+  `./build/lineup.js?v=${APP_VER}`,
+  `./build/artist.js?v=${APP_VER}`,
+  `./build/photo-tag.js?v=${APP_VER}`,
+  `./build/spotify-api.js?v=${APP_VER}`,
+  `./build/recap-engine.js?v=${APP_VER}`,
+  `./build/spotify.js?v=${APP_VER}`,
+  `./build/app.js?v=${APP_VER}`,
 ];
 
 // Third-party CDN scripts â€” pinned exact versions, content is immutable.
@@ -53,9 +53,8 @@ const LOCAL = [
 // Each is caught individually so a CDN hiccup doesn't abort SW install.
 const CDN = [
   'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js',
-  'https://unpkg.com/react@18.3.1/umd/react.development.js',
-  'https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js',
-  'https://unpkg.com/@babel/standalone@7.29.0/babel.min.js',
+  'https://unpkg.com/react@18.3.1/umd/react.production.min.js',
+  'https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js',
   'https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap',
 ];
 

@@ -1,0 +1,3495 @@
+var SETLISTS_PROXY_URL = "https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/proxy-setlist";
+var _SL_TTL = 24 * 3600000;
+async function fetchSetlists(artistName) {
+  var cacheKey = `setlist_${artistName.toLowerCase().replace(/\W+/g, "_")}_v3`;
+  try {
+    var c = JSON.parse(localStorage.getItem(cacheKey) || "null");
+    if (c && Date.now() - c.fetchedAt < _SL_TTL) return c.data;
+  } catch {}
+  try {
+    var res = await fetch(`${SETLISTS_PROXY_URL}?artistName=${encodeURIComponent(artistName)}&p=1`, {
+      headers: {
+        "Accept": "application/json"
+      }
+    });
+    if (!res.ok) {
+      var e = new Error("api");
+      e._retry = true;
+      throw e;
+    }
+    var json = await res.json();
+    var all = json.setlist || [];
+    var withSongs = all.filter(s => (s.sets?.set || []).some(set => (set.song || []).length > 0));
+    var venueOnly = all.filter(s => !(s.sets?.set || []).some(set => (set.song || []).length > 0));
+    var lists = [...withSongs.slice(0, 3), ...venueOnly.slice(0, Math.max(0, 5 - withSongs.length))].slice(0, 5);
+    try {
+      localStorage.setItem(cacheKey, JSON.stringify({
+        data: lists,
+        fetchedAt: Date.now()
+      }));
+    } catch {}
+    return lists;
+  } catch (e) {
+    if (e?._retry || e instanceof TypeError) throw e;
+    return [];
+  }
+}
+function _slDate(d) {
+  var [day, m, y] = d.split("-");
+  return `${["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][+m - 1]} ${+day}, ${y}`;
+}
+function _slIsThisFestival(sl) {
+  var v = (sl.venue?.name || "").toLowerCase();
+  var c = (sl.venue?.city?.name || "").toLowerCase();
+  var brand = (FESTIVAL_CONFIG.brand || "").toLowerCase();
+  var loc = (FESTIVAL_CONFIG.locationShort || FESTIVAL_CONFIG.location || "").toLowerCase();
+  if (brand && v.includes(brand)) return true;
+  if (brand === "edc") {
+    return v.includes("las vegas motor") || v.includes("kinetic") || v.includes("cosmic") || v.includes("circuit") || v.includes("las vegas") && c.includes("las vegas");
+  }
+  if (brand === "acl") {
+    return v.includes("zilker") || v.includes("austin city limits") || c.includes("austin") && v.includes("park");
+  }
+  return loc && (v.includes(loc) || c.includes(loc));
+}
+var YOUTUBE_KEY = "AIzaSyDl2DjwIVG-cTN-KBaJkMNmtFRKVLvPLOo";
+var _YT_TTL = 24 * 3600000;
+function _parseDuration(iso) {
+  var m = (iso || "").match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  if (!m) return 0;
+  return parseInt(m[1] || 0) * 60 + parseInt(m[2] || 0) + parseInt(m[3] || 0) / 60;
+}
+async function fetchYouTubeSet(artistName) {
+  if (!YOUTUBE_KEY) return null;
+  var cacheKey = `yt_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
+  try {
+    var c = JSON.parse(localStorage.getItem(cacheKey) || "null");
+    if (c && Date.now() - c.fetchedAt < _YT_TTL) return c.data;
+  } catch {}
+  try {
+    var q = encodeURIComponent(`${artistName} live set full`);
+    var res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=8&q=${q}&key=${YOUTUBE_KEY}`);
+    if (!res.ok) {
+      var e = new Error("api");
+      e._retry = true;
+      throw e;
+    }
+    var json = await res.json();
+    var items = (json.items || []).filter(i => i.id?.videoId);
+    if (!items.length) return null;
+    var ids = items.map(i => i.id.videoId).join(",");
+    var statsRes = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=contentDetails,statistics&id=${ids}&key=${YOUTUBE_KEY}`);
+    var statsMap = {};
+    if (statsRes.ok) {
+      var sj = await statsRes.json();
+      (sj.items || []).forEach(v => {
+        statsMap[v.id] = {
+          views: parseInt(v.statistics?.viewCount || "0"),
+          durationMin: _parseDuration(v.contentDetails?.duration)
+        };
+      });
+    }
+    var brand = (FESTIVAL_CONFIG.brand || "").toLowerCase();
+    var scored = items.map(i => {
+      var t = (i.snippet?.title || "").toLowerCase();
+      var relevance = (brand && t.includes(brand) ? 4 : 0) + (t.includes("festival") ? 2 : 0) + (t.includes("live") ? 1 : 0);
+      var st = statsMap[i.id.videoId] || {
+        views: 0,
+        durationMin: 0
+      };
+      var durBonus = st.durationMin > 50 ? 6 : st.durationMin > 20 ? 4 : st.durationMin > 10 ? 1 : 0;
+      var viewBonus = st.views > 0 ? Math.log10(st.views) : 0;
+      return {
+        i,
+        score: relevance * 3 + durBonus + viewBonus,
+        stats: st
+      };
+    });
+    scored.sort((a, b) => b.score - a.score);
+    var best = scored[0];
+    var data = {
+      videoId: best.i.id.videoId,
+      title: best.i.snippet?.title || "",
+      thumbnail: best.i.snippet?.thumbnails?.high?.url || best.i.snippet?.thumbnails?.default?.url || "",
+      views: best.stats.views,
+      durationMin: Math.round(best.stats.durationMin)
+    };
+    try {
+      localStorage.setItem(cacheKey, JSON.stringify({
+        data,
+        fetchedAt: Date.now()
+      }));
+    } catch {}
+    return data;
+  } catch (e) {
+    if (e?._retry || e instanceof TypeError) throw e;
+    return null;
+  }
+}
+var _DZ_TTL = 7 * 24 * 3600000;
+async function fetchDeezerPhoto(artistName) {
+  var cacheKey = `deezer_photo_${artistName.toLowerCase().replace(/\W+/g, "_")}_v1`;
+  try {
+    var c = JSON.parse(localStorage.getItem(cacheKey) || "null");
+    if (c && Date.now() - c.fetchedAt < _DZ_TTL) return c.data;
+  } catch {}
+  try {
+    var res = await fetch(`https://api.deezer.com/search/artist?q=${encodeURIComponent(artistName)}&limit=3`);
+    if (!res.ok) return null;
+    var json = await res.json();
+    var ln = artistName.toLowerCase();
+    var items = json.data || [];
+    var match = items.find(x => (x.name || "").toLowerCase() === ln) || items.find(x => ln.includes((x.name || "").toLowerCase())) || items[0];
+    var img = match?.picture_xl || match?.picture_big || match?.picture_medium || null;
+    var isPlaceholder = img && /\/artist\/?$|\/images\/artist\/?$/.test(img);
+    var final = isPlaceholder ? null : img;
+    try {
+      localStorage.setItem(cacheKey, JSON.stringify({
+        data: final,
+        fetchedAt: Date.now()
+      }));
+    } catch {}
+    return final;
+  } catch {
+    return null;
+  }
+}
+var _MC_TTL = 24 * 3600000;
+async function fetchMixcloud(artistName) {
+  var cacheKey = `mc_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
+  try {
+    var c = JSON.parse(localStorage.getItem(cacheKey) || "null");
+    if (c && Date.now() - c.fetchedAt < _MC_TTL) return c.data;
+  } catch {}
+  try {
+    var fetchItems = async query => {
+      var res = await fetch(`https://api.mixcloud.com/search/?q=${encodeURIComponent(query)}&type=cloudcast&limit=15`);
+      if (!res.ok) return [];
+      var json = await res.json();
+      return json.data || [];
+    };
+    var _brand = (FESTIVAL_CONFIG.brand || "").toLowerCase();
+    var _loc = (FESTIVAL_CONFIG.locationShort || "").toLowerCase();
+    var items = await fetchItems(`${artistName} ${FESTIVAL_CONFIG.brand || "festival"}`);
+    if (!items.length) items = await fetchItems(artistName);
+    if (!items.length) return [];
+    var an = artistName.toLowerCase();
+    var now = Date.now();
+    var scored = items.map(item => {
+      var t = (item.name || "").toLowerCase();
+      var u = (item.user?.name || "").toLowerCase();
+      var plays = item.play_count || 0;
+      var ageYears = (now - new Date(item.created_time || 0).getTime()) / (365.25 * 24 * 3600000);
+      return {
+        item,
+        score: (_brand && t.includes(_brand) ? 4 : 0) + (_loc && t.includes(_loc) ? 3 : 0) + (t.includes("live") ? 2 : 0) + (t.includes("set") ? 1 : 0) + (u.includes(an) || t.includes(an) ? 2 : 0) + Math.min(Math.log10(plays + 1), 5) + (ageYears < 1 ? 3 : ageYears < 2 ? 2 : ageYears < 3 ? 1 : 0)
+      };
+    });
+    scored.sort((a, b) => b.score - a.score);
+    var data = scored.slice(0, 4).map(s => ({
+      key: s.item.key,
+      name: s.item.name || "",
+      url: s.item.url || "",
+      thumbnail: s.item.pictures?.large || s.item.pictures?.medium || null,
+      user: s.item.user?.name || "",
+      duration: s.item.audio_length || s.item.cloudcast_length || 0,
+      plays: s.item.play_count || 0
+    }));
+    try {
+      localStorage.setItem(cacheKey, JSON.stringify({
+        data,
+        fetchedAt: Date.now()
+      }));
+    } catch {}
+    return data;
+  } catch {
+    return [];
+  }
+}
+function _mcDur(s) {
+  if (!s) return "";
+  var h = Math.floor(s / 3600),
+    m = Math.floor(s % 3600 / 60);
+  return h > 0 ? `${h}h ${m}m` : `${m}m`;
+}
+function _mcFmt(n) {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `${Math.round(n / 1_000)}K`;
+  return n ? String(n) : "";
+}
+var _ELECTRONIC_KEYWORDS = ["electronic", "dance", "edm", "house", "techno", "trance", "dubstep", "drum and bass", "dnb", "drum & bass", "bass", "garage", "hardstyle", "breakbeat", "acid", "trap", "electro", "club", "rave", "psytrance", "tech", "ambient", "downtempo", "progressive", "synthwave", "jungle", "future bass", "moombahton", "nu-disco", "disco", "phonk", "riddim", "hardcore", "happy hardcore", "uk garage", "dance-pop", "synth"];
+function _isElectronic(text) {
+  if (!text) return false;
+  var lower = String(text).toLowerCase();
+  return _ELECTRONIC_KEYWORDS.some(k => lower.includes(k));
+}
+function _validateGenreMatch(lineupGenre, ...externalFields) {
+  if (!_isElectronic(lineupGenre)) return true;
+  return externalFields.some(_isElectronic);
+}
+var _TADB_TTL = 7 * 24 * 3600000;
+async function fetchAudioDB(artistName, lineupGenre) {
+  var cacheKey = `tadb_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
+  try {
+    var c = JSON.parse(localStorage.getItem(cacheKey) || "null");
+    if (c && Date.now() - c.fetchedAt < _TADB_TTL) return c.data;
+  } catch {}
+  try {
+    var res = await fetch(`https://www.theaudiodb.com/api/v1/json/2/search.php?s=${encodeURIComponent(artistName)}`);
+    if (!res.ok) return null;
+    var json = await res.json();
+    var artist = (json.artists || [])[0];
+    if (!artist) return null;
+    if (!_validateGenreMatch(lineupGenre, artist.strGenre, artist.strStyle, artist.strMood)) {
+      try {
+        localStorage.setItem(cacheKey, JSON.stringify({
+          data: null,
+          fetchedAt: Date.now()
+        }));
+      } catch {}
+      return null;
+    }
+    var data = {
+      bio: artist.strBiographyEN || "",
+      image: artist.strArtistThumb || artist.strArtistFanart || null,
+      banner: artist.strArtistFanart2 || artist.strArtistFanart || null,
+      mood: artist.strMood || "",
+      style: artist.strStyle || "",
+      country: artist.strCountry || "",
+      formed: artist.intFormedYear || "",
+      website: artist.strWebsite || ""
+    };
+    try {
+      localStorage.setItem(cacheKey, JSON.stringify({
+        data,
+        fetchedAt: Date.now()
+      }));
+    } catch {}
+    return data;
+  } catch {
+    return null;
+  }
+}
+var LASTFM_KEY = "aae1625166e1c4fa3197ef44774c4ead";
+var _LFM_TTL = 24 * 3600000;
+async function fetchLastfm(artistName, lineupGenre) {
+  if (!LASTFM_KEY) return null;
+  var cacheKey = `lfm_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
+  try {
+    var c = JSON.parse(localStorage.getItem(cacheKey) || "null");
+    if (c && Date.now() - c.fetchedAt < _LFM_TTL) return c.data;
+  } catch {}
+  try {
+    var base = `https://ws.audioscrobbler.com/2.0/?format=json&api_key=${LASTFM_KEY}`;
+    var enc = encodeURIComponent(artistName);
+    var [infoRes, simRes, topRes] = await Promise.all([fetch(`${base}&method=artist.getinfo&artist=${enc}`), fetch(`${base}&method=artist.getsimilar&artist=${enc}&limit=5`), fetch(`${base}&method=artist.gettoptracks&artist=${enc}&limit=20`)]);
+    var infoJson = infoRes.ok ? await infoRes.json() : null;
+    var simJson = simRes.ok ? await simRes.json() : null;
+    var topJson = topRes.ok ? await topRes.json() : null;
+    var info = infoJson?.artist;
+    var similar = (simJson?.similarartists?.artist || []).slice(0, 5);
+    var lfmTagText = (info?.tags?.tag || []).map(t => t.name).join(" ");
+    if (info && !_validateGenreMatch(lineupGenre, lfmTagText, info?.bio?.summary)) {
+      try {
+        localStorage.setItem(cacheKey, JSON.stringify({
+          data: null,
+          fetchedAt: Date.now()
+        }));
+      } catch {}
+      return null;
+    }
+    var listeners = parseInt(info?.stats?.listeners || "0", 10);
+    var playcount = parseInt(info?.stats?.playcount || "0", 10);
+    var SKIP = new Set(["seen live", "male vocalists", "all", "pop"]);
+    var tags = (info?.tags?.tag || []).map(t => t.name).filter(t => !SKIP.has(t.toLowerCase())).slice(0, 5);
+    var rawBio = info?.bio?.summary || "";
+    var bio = rawBio.replace(/<a[^>]*>.*?<\/a>/gi, "").replace(/<[^>]+>/g, "").trim().split("\n")[0].slice(0, 280);
+    var topTrackNames = (topJson?.toptracks?.track || []).map(t => (t.name || "").toLowerCase()).filter(Boolean);
+    var data = {
+      listeners,
+      playcount,
+      tags,
+      bio,
+      similar,
+      topTrackNames,
+      url: info?.url || null
+    };
+    try {
+      localStorage.setItem(cacheKey, JSON.stringify({
+        data,
+        fetchedAt: Date.now()
+      }));
+    } catch {}
+    return data;
+  } catch {
+    return null;
+  }
+}
+function _fmtCount(n) {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `${Math.round(n / 1_000)}K`;
+  return String(n);
+}
+var TICKETMASTER_KEY = "GKAPS1SP4GIKOCNfR5iTDyzqR0G2yuxE";
+var _TM_TTL = 6 * 3600000;
+async function fetchTicketmaster(artistName) {
+  if (!TICKETMASTER_KEY) return null;
+  var cacheKey = `tm_${artistName.toLowerCase().replace(/\W+/g, "_")}_v1`;
+  try {
+    var c = JSON.parse(localStorage.getItem(cacheKey) || "null");
+    if (c && Date.now() - c.fetchedAt < _TM_TTL) return c.data;
+  } catch {}
+  try {
+    var res = await fetch(`https://app.ticketmaster.com/discovery/v2/events.json` + `?keyword=${encodeURIComponent(artistName)}&classificationName=music` + `&sort=date,asc&size=6&apikey=${TICKETMASTER_KEY}`);
+    if (!res.ok) {
+      var e = new Error("api");
+      e._retry = true;
+      throw e;
+    }
+    var json = await res.json();
+    var events = (json._embedded?.events || []).map(ev => {
+      var venue = ev._embedded?.venues?.[0] || {};
+      var city = venue.city?.name || "";
+      var state = venue.state?.stateCode || venue.country?.countryCode || "";
+      return {
+        name: ev.name,
+        date: ev.dates?.start?.localDate || "",
+        time: ev.dates?.start?.localTime || "",
+        venueName: venue.name || "",
+        location: [city, state].filter(Boolean).join(", "),
+        url: ev.url || null
+      };
+    }).filter(ev => ev.date);
+    var data = events.slice(0, 5);
+    try {
+      localStorage.setItem(cacheKey, JSON.stringify({
+        data,
+        fetchedAt: Date.now()
+      }));
+    } catch {}
+    return data;
+  } catch (e) {
+    if (e?._retry || e instanceof TypeError) throw e;
+    return [];
+  }
+}
+function _tmDate(d) {
+  var [y, m, day] = d.split("-");
+  return `${["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][+m - 1]} ${+day}, ${y}`;
+}
+var ARTIST_NOTES_KEY = "artist_notes_v1";
+var _noteSyncTimer = null;
+function _getArtistNotes() {
+  try {
+    return JSON.parse(localStorage.getItem(ARTIST_NOTES_KEY) || "{}");
+  } catch {
+    return {};
+  }
+}
+function SpiderWeb({
+  currentArtist,
+  currentStage,
+  similar,
+  onSelectArtist
+}) {
+  var W = 300,
+    H = 272;
+  var cx = W / 2,
+    cy = 122;
+  var R = 98;
+  var nodes = similar.slice(0, 6).map((s, i, arr) => {
+    var angle = i / arr.length * Math.PI * 2 - Math.PI / 2;
+    var sn = s.name.toLowerCase().trim();
+    var edcArtist = ARTISTS.find(ar => {
+      var an = ar.name.toLowerCase().trim();
+      return an === sn || an.includes(sn) || sn.includes(an);
+    });
+    var edcStage = edcArtist ? STAGES.find(st => st.id === edcArtist.stage) : null;
+    return {
+      name: s.name,
+      x: cx + Math.cos(angle) * R,
+      y: cy + Math.sin(angle) * R,
+      edcArtist,
+      edcStage
+    };
+  });
+  var edcCount = nodes.filter(n => n.edcArtist).length;
+  var truncate = (str, max) => str.length > max ? str.slice(0, max) + "…" : str;
+  return React.createElement("div", {
+    style: {
+      background: "var(--ink)",
+      borderRadius: 16,
+      padding: "12px 12px 8px",
+      marginBottom: 18
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: 6,
+      padding: "0 2px"
+    }
+  }, React.createElement("span", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1.5,
+      color: "rgba(247,237,224,0.45)",
+      fontWeight: 700
+    }
+  }, "SIMILAR ARTISTS"), edcCount > 0 && React.createElement("span", {
+    className: "mono",
+    style: {
+      fontSize: 8,
+      letterSpacing: 1,
+      color: currentStage.color,
+      fontWeight: 700
+    }
+  }, edcCount, " ALSO AT ", (FESTIVAL_CONFIG.brand || FESTIVAL_CONFIG.shortName || "").toUpperCase(), " — TAP TO EXPLORE")), React.createElement("svg", {
+    viewBox: `0 0 ${W} ${H}`,
+    width: "100%",
+    style: {
+      display: "block",
+      overflow: "visible"
+    }
+  }, React.createElement("defs", null, nodes.filter(n => n.edcStage).map((n, i) => React.createElement("radialGradient", {
+    key: `rg${i}`,
+    id: `spkGrad${i}`,
+    cx: "50%",
+    cy: "50%",
+    r: "50%"
+  }, React.createElement("stop", {
+    offset: "0%",
+    stopColor: n.edcStage.color,
+    stopOpacity: "0.28"
+  }), React.createElement("stop", {
+    offset: "100%",
+    stopColor: n.edcStage.color,
+    stopOpacity: "0"
+  })))), nodes.map((n, i) => React.createElement("line", {
+    key: `l${i}`,
+    x1: cx,
+    y1: cy,
+    x2: n.x,
+    y2: n.y,
+    stroke: n.edcStage ? n.edcStage.color : "rgba(247,237,224,0.07)",
+    strokeWidth: n.edcStage ? 1.4 : 0.8,
+    opacity: n.edcStage ? 0.5 : 1,
+    strokeDasharray: n.edcStage ? undefined : "2.5 4"
+  })), nodes.map((n, i) => n.edcStage && React.createElement("circle", {
+    key: `h${i}`,
+    cx: n.x,
+    cy: n.y,
+    r: 34,
+    fill: `url(#spkGrad${nodes.filter(x => x.edcStage).indexOf(n)})`
+  })), React.createElement("circle", {
+    cx: cx,
+    cy: cy,
+    r: 28,
+    fill: currentStage.color
+  }), React.createElement("circle", {
+    cx: cx,
+    cy: cy,
+    r: 33,
+    fill: "none",
+    stroke: currentStage.color,
+    strokeWidth: 1,
+    opacity: 0.3
+  }), React.createElement("text", {
+    x: cx,
+    y: cy,
+    textAnchor: "middle",
+    dominantBaseline: "middle",
+    fill: "#fff",
+    fontSize: currentArtist.name.length > 10 ? 7 : 8.5,
+    fontFamily: "Geist Mono, monospace",
+    fontWeight: "700"
+  }, truncate(currentArtist.name, 11)), nodes.map((n, i) => {
+    var r = n.edcArtist ? 21 : 14;
+    var labelY = n.y + r + 13;
+    var dayLabel = n.edcArtist ? ["FRI", "SAT", "SUN"][n.edcArtist.day - 1] : null;
+    return React.createElement("g", {
+      key: `n${i}`,
+      onClick: () => n.edcArtist && onSelectArtist(n.edcArtist.id),
+      style: {
+        cursor: n.edcArtist ? "pointer" : "default"
+      }
+    }, n.edcArtist && React.createElement("circle", {
+      cx: n.x,
+      cy: n.y,
+      r: 38,
+      fill: "transparent"
+    }), React.createElement("circle", {
+      cx: n.x,
+      cy: n.y,
+      r: r,
+      fill: n.edcStage ? n.edcStage.color : "rgba(247,237,224,0.07)",
+      stroke: n.edcStage ? "none" : "rgba(247,237,224,0.22)",
+      strokeWidth: 1
+    }), n.edcStage && React.createElement("circle", {
+      cx: n.x,
+      cy: n.y,
+      r: r + 6,
+      fill: "none",
+      stroke: n.edcStage.color,
+      strokeWidth: 0.9,
+      opacity: 0.35
+    }), React.createElement("text", {
+      x: n.x,
+      y: labelY,
+      textAnchor: "middle",
+      fill: n.edcStage ? "rgba(247,237,224,0.9)" : "rgba(247,237,224,0.32)",
+      fontSize: 7.5,
+      fontFamily: "Geist Mono, monospace",
+      fontWeight: n.edcStage ? "600" : "400"
+    }, truncate(n.name, 13)), n.edcStage && dayLabel && React.createElement("text", {
+      x: n.x,
+      y: labelY + 11,
+      textAnchor: "middle",
+      fill: n.edcStage.color,
+      fontSize: 7,
+      fontFamily: "Geist Mono, monospace",
+      fontWeight: "700"
+    }, n.edcStage.short, " · ", dayLabel));
+  })));
+}
+function ShareArtistButton({
+  artist
+}) {
+  var [copied, setCopied] = React.useState(false);
+  var handleShare = () => {
+    var url = `${window.location.origin}${window.location.pathname}?artist=${artist.id}`;
+    if (navigator.share) {
+      navigator.share({
+        title: artist.name + " @ " + (FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name),
+        url
+      }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(url).then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1800);
+      }).catch(() => {});
+    }
+  };
+  return React.createElement("button", {
+    onClick: handleShare,
+    "aria-label": copied ? "Link copied" : "Share artist",
+    style: {
+      width: 32,
+      height: 32,
+      borderRadius: 32,
+      background: copied ? "rgba(45,122,85,0.85)" : "rgba(255,255,255,0.15)",
+      backdropFilter: "blur(8px)",
+      border: "1px solid rgba(255,255,255,0.3)",
+      color: "#fff",
+      cursor: "pointer",
+      fontSize: 14,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      transition: "background 0.2s"
+    }
+  }, copied ? "✓" : React.createElement("svg", {
+    width: "13",
+    height: "13",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2.2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("circle", {
+    cx: "18",
+    cy: "5",
+    r: "3"
+  }), React.createElement("circle", {
+    cx: "6",
+    cy: "12",
+    r: "3"
+  }), React.createElement("circle", {
+    cx: "18",
+    cy: "19",
+    r: "3"
+  }), React.createElement("path", {
+    d: "M8.59 13.51 L15.42 17.49"
+  }), React.createElement("path", {
+    d: "M15.41 6.51 L8.59 10.49"
+  })));
+}
+function _YourMomentThumb({
+  moment,
+  accent,
+  onClick,
+  style: overrideStyle
+}) {
+  var url = useMomentPhoto(moment.photoId);
+  return React.createElement("button", {
+    onClick: onClick,
+    "aria-label": "Open moment",
+    style: {
+      width: 76,
+      height: 76,
+      flexShrink: 0,
+      borderRadius: 10,
+      overflow: "hidden",
+      background: "var(--paper-2)",
+      border: `1px solid ${accent}22`,
+      padding: 0,
+      cursor: "pointer",
+      position: "relative",
+      ...overrideStyle
+    }
+  }, url ? moment.kind === "video" ? React.createElement(React.Fragment, null, React.createElement("video", {
+    src: url + "#t=0.1",
+    muted: true,
+    playsInline: true,
+    preload: "metadata",
+    style: {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      display: "block"
+    }
+  }), React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      inset: 0,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "#fff",
+      fontSize: 18,
+      textShadow: "0 1px 4px rgba(0,0,0,0.7)",
+      pointerEvents: "none"
+    }
+  }, "▶")) : React.createElement("img", {
+    src: url,
+    alt: "",
+    style: {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      display: "block"
+    }
+  }) : React.createElement("span", {
+    className: "mono",
+    style: {
+      position: "absolute",
+      inset: 0,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontSize: 8,
+      letterSpacing: 1.2,
+      color: "var(--muted)",
+      fontWeight: 700
+    }
+  }, "···"));
+}
+function YourPhotosStrip({
+  artistId,
+  night,
+  accent,
+  onOpen,
+  artistObj,
+  onOpenMap
+}) {
+  var [moments, setMoments] = React.useState(() => {
+    try {
+      return _readMoments();
+    } catch {
+      return {};
+    }
+  });
+  React.useEffect(() => {
+    var refresh = () => {
+      try {
+        setMoments(_readMoments());
+      } catch {}
+    };
+    window.addEventListener("plursky-moments-change", refresh);
+    refresh();
+    return () => window.removeEventListener("plursky-moments-change", refresh);
+  }, []);
+  var mine = React.useMemo(() => {
+    var scoped = typeof _activeMoments === "function" ? _activeMoments(moments) : moments;
+    var out = [];
+    for (var n of Object.keys(scoped)) {
+      for (var m of scoped[n] || []) {
+        if (m.artistId === artistId) out.push(m);
+      }
+    }
+    return out.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+  }, [moments, artistId]);
+  var [lightbox, setLightbox] = React.useState(null);
+  var openAt = i => setLightbox({
+    moments: mine,
+    index: i
+  });
+  var updateMoment = (mom, patch) => {
+    try {
+      var all = _readMoments();
+      for (var n of Object.keys(all)) {
+        all[n] = (all[n] || []).map(m => m.id === mom.id ? {
+          ...m,
+          ...patch
+        } : m);
+      }
+      _writeMoments(all);
+      setLightbox(lb => lb ? {
+        ...lb,
+        moments: lb.moments.map(m => m.id === mom.id ? {
+          ...m,
+          ...patch
+        } : m)
+      } : lb);
+    } catch {}
+  };
+  if (mine.length === 0) {
+    var stage = (typeof STAGES !== "undefined" ? STAGES : window.STAGES || []).find(x => x.id === artistObj?.stage);
+    var when = artistObj?.start ? `${typeof fmt12 === "function" ? fmt12(artistObj.start) : artistObj.start}${artistObj.end ? `–${typeof fmt12 === "function" ? fmt12(artistObj.end) : artistObj.end}` : ""}` : null;
+    return React.createElement("div", {
+      style: {
+        marginBottom: 18,
+        borderRadius: 16,
+        padding: "16px",
+        background: "var(--night)",
+        color: "#fff",
+        border: "1px dashed rgba(255,255,255,0.12)"
+      }
+    }, React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        marginBottom: 6
+      }
+    }, React.createElement("div", {
+      style: {
+        width: 6,
+        height: 6,
+        borderRadius: "50%",
+        background: "rgba(255,255,255,0.25)"
+      }
+    }), React.createElement("span", {
+      className: "mono",
+      style: {
+        fontSize: 9,
+        letterSpacing: 1.6,
+        fontWeight: 700,
+        color: "rgba(255,255,255,0.4)"
+      }
+    }, "YOUR MOMENTS")), React.createElement("div", {
+      style: {
+        fontSize: 13,
+        lineHeight: 1.5,
+        color: "rgba(255,255,255,0.7)"
+      }
+    }, "You haven't filmed anything at ", artistObj?.name || "this set", " yet."), (when || stage) && React.createElement("button", {
+      onClick: () => onOpenMap?.(artistObj),
+      className: "mono",
+      style: {
+        marginTop: 10,
+        padding: "8px 12px",
+        borderRadius: 8,
+        width: "100%",
+        background: `${accent}18`,
+        border: `1px solid ${accent}40`,
+        color: accent,
+        cursor: "pointer",
+        fontSize: 9,
+        letterSpacing: 1.2,
+        fontWeight: 700,
+        textAlign: "left"
+      }
+    }, stage ? `${stage.name.toUpperCase()}` : "FIND THE STAGE", when ? ` · ${when}` : "", " →"));
+  }
+  var preview = mine.slice(0, 8);
+  var more = mine.length - preview.length;
+  var vids = mine.filter(m => m.kind === "video").length;
+  return React.createElement("div", {
+    style: {
+      marginBottom: 18,
+      borderRadius: 16,
+      overflow: "hidden",
+      background: "var(--night)",
+      color: "#fff",
+      boxShadow: `0 0 24px ${accent}22, inset 0 1px 0 rgba(255,255,255,0.06)`
+    }
+  }, React.createElement("div", {
+    style: {
+      padding: "14px 16px 10px"
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: 2
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 8
+    }
+  }, React.createElement("div", {
+    style: {
+      width: 6,
+      height: 6,
+      borderRadius: "50%",
+      background: accent,
+      boxShadow: `0 0 8px ${accent}`
+    }
+  }), React.createElement("span", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1.6,
+      fontWeight: 700,
+      color: accent
+    }
+  }, "YOUR MOMENTS")), React.createElement("button", {
+    onClick: () => onOpen(night),
+    className: "mono",
+    style: {
+      background: "rgba(255,255,255,0.08)",
+      border: "1px solid rgba(255,255,255,0.1)",
+      borderRadius: 999,
+      padding: "4px 10px",
+      cursor: "pointer",
+      color: "rgba(255,255,255,0.5)",
+      fontSize: 8,
+      letterSpacing: 1.2,
+      fontWeight: 700
+    }
+  }, "VIEW ALL →")), React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "baseline",
+      gap: 8,
+      marginTop: 4
+    }
+  }, React.createElement("span", {
+    className: "serif",
+    style: {
+      fontSize: 20,
+      color: "#fff"
+    }
+  }, mine.length), React.createElement("span", {
+    style: {
+      fontSize: 10,
+      color: "rgba(255,255,255,0.45)"
+    }
+  }, mine.length === 1 ? "memory" : "memories", vids > 0 ? ` · ${vids} video${vids > 1 ? "s" : ""}` : ""))), React.createElement("div", {
+    className: "no-scrollbar",
+    style: {
+      display: "flex",
+      gap: 6,
+      overflowX: "auto",
+      padding: "0 16px 12px",
+      scrollbarWidth: "none",
+      WebkitOverflowScrolling: "touch"
+    }
+  }, preview.map((m, i) => React.createElement(_YourMomentThumb, {
+    key: m.id,
+    moment: m,
+    accent: accent,
+    onClick: () => openAt(i),
+    style: {
+      width: 82,
+      height: 110,
+      borderRadius: 8,
+      border: `1px solid rgba(255,255,255,0.08)`,
+      boxShadow: i === 0 ? `0 0 12px ${accent}33` : undefined
+    }
+  })), more > 0 && React.createElement("button", {
+    onClick: () => onOpen(night),
+    className: "mono",
+    "aria-label": `View all ${mine.length} moments`,
+    style: {
+      width: 82,
+      height: 110,
+      flexShrink: 0,
+      borderRadius: 8,
+      background: "rgba(255,255,255,0.04)",
+      border: "1px solid rgba(255,255,255,0.08)",
+      color: accent,
+      cursor: "pointer",
+      fontSize: 13,
+      fontWeight: 700,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
+    }
+  }, "+", more)), artistObj && mine.length > 0 && React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      padding: "0 16px 14px"
+    }
+  }, React.createElement("button", {
+    onClick: () => window._shareArtistCollage?.(artistObj, mine),
+    className: "mono",
+    style: {
+      flex: 1,
+      padding: "8px 0",
+      borderRadius: 8,
+      background: `${accent}18`,
+      border: `1px solid ${accent}40`,
+      color: accent,
+      cursor: "pointer",
+      fontSize: 9,
+      letterSpacing: 1.2,
+      fontWeight: 700
+    }
+  }, "SHARE COLLAGE"), React.createElement("button", {
+    onClick: () => window._shareArtistCollage?.(artistObj, mine, "gif"),
+    className: "mono",
+    style: {
+      flex: 1,
+      padding: "8px 0",
+      borderRadius: 8,
+      background: "rgba(109,40,217,0.15)",
+      border: "1px solid rgba(109,40,217,0.35)",
+      color: "#a78bfa",
+      cursor: "pointer",
+      fontSize: 9,
+      letterSpacing: 1.2,
+      fontWeight: 700
+    }
+  }, "CREATE GIF")), artistObj && mine.length > 0 && React.createElement("div", {
+    style: {
+      padding: "0 16px 14px"
+    }
+  }, React.createElement("button", {
+    onClick: () => window._shareScopedRecap?.({
+      scope: "artist",
+      artist: artistObj,
+      moments: mine
+    }),
+    className: "mono",
+    style: {
+      width: "100%",
+      padding: "10px 0",
+      borderRadius: 8,
+      background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
+      border: "none",
+      color: "#fff",
+      cursor: "pointer",
+      fontSize: 9,
+      letterSpacing: 1.2,
+      fontWeight: 700
+    }
+  }, "🎞 MY ", String(artistObj.name || "").toUpperCase(), " SET")), lightbox && typeof MomentLightbox === "function" && React.createElement(MomentLightbox, {
+    moments: lightbox.moments,
+    index: lightbox.index,
+    onClose: () => setLightbox(null),
+    onIndexChange: i => setLightbox(lb => lb ? {
+      ...lb,
+      index: i
+    } : lb),
+    onArtistClick: () => setLightbox(null),
+    onUpdate: updateMoment
+  }));
+}
+function _genreToVfx(genre) {
+  var g = (genre || "").toLowerCase();
+  if (/trance|psy|progressive/.test(g)) return "laser";
+  if (/dubstep|bass|dnb|drum/.test(g)) return "strobe";
+  if (/house|disco|afro|garage/.test(g)) return "haze";
+  if (/techno|industrial|electro/.test(g)) return "grid";
+  if (/hardstyle|hardcore|hard dance/.test(g)) return "pyro";
+  if (/rock|indie|alternative|punk/.test(g)) return "spotlight";
+  if (/hip.?hop|r&b|rap|trap/.test(g)) return "neon";
+  if (/country|folk|americana/.test(g)) return "amber";
+  return "glow";
+}
+function ArtistAtmosphere({
+  genre,
+  stageColor,
+  tier
+}) {
+  var {
+    active: bsActive
+  } = useBatterySaver();
+  var prefersReduced = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+  if (bsActive || prefersReduced) return null;
+  var intense = tier === 3;
+  return React.createElement("div", {
+    style: {
+      position: "absolute",
+      inset: 0,
+      overflow: "hidden",
+      pointerEvents: "none",
+      zIndex: 1
+    }
+  }, React.createElement("div", {
+    style: {
+      position: "absolute",
+      inset: "-30%",
+      background: `radial-gradient(ellipse at 30% 80%, ${stageColor}35, transparent 60%)`,
+      animation: `vfx-wash ${intense ? 3 : 5}s ease-in-out infinite`
+    }
+  }), React.createElement("div", {
+    style: {
+      position: "absolute",
+      inset: "-30%",
+      background: `radial-gradient(ellipse at 70% 20%, ${stageColor}25, transparent 55%)`,
+      animation: `vfx-wash ${intense ? 4 : 6}s ease-in-out 2s infinite`
+    }
+  }), React.createElement("div", {
+    style: {
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      right: 0,
+      height: "45%",
+      background: `linear-gradient(0deg, ${stageColor}28, transparent)`
+    }
+  }), intense && React.createElement("div", {
+    style: {
+      position: "absolute",
+      top: 0,
+      width: "50%",
+      height: "100%",
+      background: `radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.06), transparent 70%)`,
+      animation: "vfx-scan 10s ease-in-out infinite",
+      filter: "blur(30px)"
+    }
+  }));
+}
+function PyroStarburst({
+  color
+}) {
+  var {
+    active: bsActive
+  } = useBatterySaver();
+  var prefersReduced = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+  var [fired, setFired] = React.useState(false);
+  var [visible, setVisible] = React.useState(!bsActive && !prefersReduced);
+  React.useEffect(() => {
+    var t1 = setTimeout(() => setFired(true), 80);
+    var t2 = setTimeout(() => setVisible(false), 1800);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, []);
+  var sparks = React.useMemo(() => Array.from({
+    length: 28
+  }, (_, i) => {
+    var angle = i / 28 * Math.PI * 2 + i % 3 * 0.15;
+    var dist = 50 + i % 5 * 20;
+    return {
+      x: Math.cos(angle) * dist,
+      y: Math.sin(angle) * dist - 25,
+      size: 2 + i % 4 * 1.2,
+      color: i % 4 === 0 ? "#fbbf24" : i % 4 === 1 ? color : i % 4 === 2 ? "#fff" : "#f59a36",
+      delay: i % 7 * 25
+    };
+  }), [color]);
+  if (!visible) return null;
+  return React.createElement("div", {
+    style: {
+      position: "absolute",
+      inset: 0,
+      overflow: "hidden",
+      pointerEvents: "none",
+      zIndex: 2
+    }
+  }, sparks.map((s, i) => React.createElement("div", {
+    key: i,
+    style: {
+      position: "absolute",
+      left: "50%",
+      top: "38%",
+      width: s.size,
+      height: s.size,
+      borderRadius: "50%",
+      background: s.color,
+      boxShadow: `0 0 ${s.size * 3}px ${s.color}`,
+      transform: fired ? `translate(${s.x}px, ${s.y}px) scale(0.2)` : "translate(0, 0) scale(1.8)",
+      opacity: fired ? 0 : 1,
+      transition: `all ${0.7 + i % 4 * 0.15}s ease-out ${s.delay}ms`
+    }
+  })), !fired && React.createElement("div", {
+    style: {
+      position: "absolute",
+      left: "50%",
+      top: "38%",
+      width: 6,
+      height: 6,
+      borderRadius: "50%",
+      background: "#fff",
+      marginLeft: -3,
+      marginTop: -3,
+      boxShadow: `0 0 30px 10px rgba(255,255,255,0.6), 0 0 60px 20px ${color}55`
+    }
+  }));
+}
+function ArtistScreen({
+  state,
+  setState
+}) {
+  var a = ARTISTS.find(ar => ar.id === state.artist);
+  if (!a) return null;
+  var stage = STAGES.find(s => s.id === a.stage);
+  var b2bParts = a.name.split(/ b2b /i).map(s => s.trim());
+  var isB2B = b2bParts.length > 1;
+  var [activeB2B, setActiveB2B] = React.useState(0);
+  React.useEffect(() => {
+    setActiveB2B(0);
+  }, [a.id]);
+  var activeName = isB2B ? b2bParts[activeB2B] : a.name;
+  var artistImages = React.useMemo(() => {
+    try {
+      return JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
+    } catch {
+      return {};
+    }
+  }, []);
+  var [fetchedPhoto, setFetchedPhoto] = React.useState(null);
+  var heroPhoto = artistImages[activeName.toLowerCase()] || fetchedPhoto || (tadb?.image ?? null);
+  var saved = state.saved.includes(a.id);
+  var [saveFlash, setSaveFlash] = React.useState(false);
+  var handleSave = () => {
+    toggleSave(state, setState, a.id);
+    setSaveFlash(true);
+    navigator.vibrate?.([saved ? 15 : 35]);
+    setTimeout(() => setSaveFlash(false), 400);
+  };
+  var [note, setNote] = React.useState(() => _getArtistNotes()[a.id] || "");
+  var handleNote = text => {
+    setNote(text);
+    var notes = _getArtistNotes();
+    if (text.trim()) notes[a.id] = text;else delete notes[a.id];
+    try {
+      localStorage.setItem(ARTIST_NOTES_KEY, JSON.stringify(notes));
+    } catch {}
+    try {
+      clearTimeout(_noteSyncTimer);
+      _noteSyncTimer = setTimeout(() => {
+        try {
+          window.sbPushMoments?.()?.catch?.(() => {});
+        } catch {}
+      }, 2500);
+    } catch {}
+  };
+  var [lfm, setLfm] = React.useState(undefined);
+  var [setlists, setSetlists] = React.useState(undefined);
+  var [slExpanded, setSlExpanded] = React.useState({});
+  var [ytVideo, setYtVideo] = React.useState(undefined);
+  var [ytPlaying, setYtPlaying] = React.useState(false);
+  var [tmEvents, setTmEvents] = React.useState(undefined);
+  var [tmError, setTmError] = React.useState(false);
+  var [mcTracks, setMcTracks] = React.useState(undefined);
+  var [mcPlaying, setMcPlaying] = React.useState(null);
+  var [tadb, setTadb] = React.useState(undefined);
+  var [slError, setSlError] = React.useState(false);
+  var [ytError, setYtError] = React.useState(false);
+  var [edcTracklist, setEdcTracklist] = React.useState(undefined);
+  var [tlExpanded, setTlExpanded] = React.useState(false);
+  React.useEffect(() => {
+    setYtPlaying(false);
+    setMcPlaying(null);
+    setTlExpanded(false);
+    setLfm(undefined);
+    setSetlists(undefined);
+    setYtVideo(undefined);
+    setTmEvents(undefined);
+    setMcTracks(undefined);
+    setTadb(undefined);
+    setEdcTracklist(undefined);
+    setSlError(false);
+    setYtError(false);
+    setTmError(false);
+    fetchLastfm(activeName, a.genre).then(setLfm);
+    fetchSetlists(activeName).then(setSetlists).catch(() => {
+      setSetlists([]);
+      setSlError(true);
+    });
+    fetchYouTubeSet(activeName).then(setYtVideo).catch(() => {
+      setYtVideo(null);
+      setYtError(true);
+    });
+    fetchTicketmaster(activeName).then(setTmEvents).catch(() => {
+      setTmEvents([]);
+      setTmError(true);
+    });
+    fetchMixcloud(activeName).then(setMcTracks);
+    fetchAudioDB(activeName, a.genre).then(setTadb);
+    if (window._getTracklistForArtist) window._getTracklistForArtist(a.name).then(setEdcTracklist);
+  }, [a.id, activeB2B]);
+  var [spotifyStats, setSpotifyStats] = React.useState(null);
+  var [saveCount, setSaveCount] = React.useState(null);
+  React.useEffect(() => {
+    setSaveCount(null);
+    if (typeof sbGetArtistSaveCounts === "function") {
+      sbGetArtistSaveCounts([a.id]).then(counts => setSaveCount(counts[a.id] ?? null));
+    }
+  }, [a.id]);
+  React.useEffect(() => {
+    setFetchedPhoto(null);
+    var hasCachedStats = false;
+    try {
+      var cache = JSON.parse(localStorage.getItem("spotify_artist_data_v1") || "{}");
+      var cached = cache[activeName.toLowerCase()];
+      if (cached) {
+        setSpotifyStats(cached);
+        hasCachedStats = true;
+      } else setSpotifyStats(null);
+    } catch {
+      setSpotifyStats(null);
+    }
+    var ln = activeName.toLowerCase();
+    if (!artistImages[ln]) {
+      fetchDeezerPhoto(activeName).then(img => {
+        if (img) {
+          setFetchedPhoto(prev => prev || img);
+          try {
+            var imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
+            if (!imgs[ln]) {
+              imgs[ln] = img;
+              localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
+            }
+          } catch {}
+        }
+      });
+    }
+    if (artistImages[ln] && hasCachedStats) return;
+    if (!localStorage.getItem("spotify_token") && !localStorage.getItem("spotify_refresh_token")) return;
+    var ctrl = new AbortController();
+    getValidToken().then(token => {
+      if (!token) return;
+      fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(activeName)}&type=artist&limit=3`, {
+        headers: {
+          Authorization: "Bearer " + token
+        },
+        signal: ctrl.signal
+      }).then(r => r.ok ? r.json() : null).then(async d => {
+        var ln = activeName.toLowerCase();
+        var items = d?.artists?.items || [];
+        var match = items.find(x => x.name.toLowerCase() === ln) || items.find(x => ln.includes(x.name.toLowerCase())) || items[0];
+        if (!match) return;
+        if (!artistImages[ln]) {
+          var img = match?.images?.[0]?.url;
+          if (img) {
+            setFetchedPhoto(img);
+            try {
+              var imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
+              imgs[ln] = img;
+              localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
+            } catch {}
+          }
+        }
+        var topTrackNames = [];
+        try {
+          var tr = await fetch(`https://api.spotify.com/v1/artists/${match.id}/top-tracks?market=US`, {
+            headers: {
+              Authorization: "Bearer " + token
+            },
+            signal: ctrl.signal
+          });
+          if (tr.ok) {
+            var tj = await tr.json();
+            topTrackNames = (tj.tracks || []).map(t => t.name.toLowerCase());
+          }
+        } catch {}
+        var stats = {
+          popularity: match.popularity || 0,
+          followers: match.followers?.total || 0,
+          genres: match.genres || [],
+          topTrackNames,
+          spotifyId: match.id || null
+        };
+        setSpotifyStats(stats);
+        try {
+          var _cache = JSON.parse(localStorage.getItem("spotify_artist_data_v1") || "{}");
+          _cache[ln] = stats;
+          localStorage.setItem("spotify_artist_data_v1", JSON.stringify(_cache));
+        } catch {}
+      }).catch(() => {});
+    });
+    return () => ctrl.abort();
+  }, [a.id, activeB2B]);
+  var audioRef = React.useRef(null);
+  var [preview, setPreview] = React.useState(null);
+  var [playing, setPlaying] = React.useState(false);
+  var [waveHeights, setWaveHeights] = React.useState([5, 9, 14, 10, 18, 13, 8, 15, 18, 11, 6]);
+  var isSpotifyConnected = () => {
+    var token = localStorage.getItem("spotify_token");
+    var expires = localStorage.getItem("spotify_expires");
+    return !!(token && expires && Date.now() < parseInt(expires));
+  };
+  React.useEffect(() => {
+    return () => {
+      var audio = audioRef.current;
+      if (audio) {
+        var vol = audio.volume;
+        var fade = setInterval(() => {
+          vol -= 0.15;
+          if (vol <= 0) {
+            clearInterval(fade);
+            audio.pause();
+            audio.volume = 1;
+          } else audio.volume = vol;
+        }, 30);
+        audioRef.current = null;
+      }
+    };
+  }, []);
+  React.useEffect(() => {
+    if (!playing) {
+      setWaveHeights([5, 9, 14, 10, 18, 13, 8, 15, 18, 11, 6]);
+      return;
+    }
+    var id = setInterval(() => {
+      setWaveHeights(prev => prev.map(h => Math.max(3, Math.min(20, h + (Math.random() - 0.5) * 7))));
+    }, 120);
+    return () => clearInterval(id);
+  }, [playing]);
+  var handlePreview = async () => {
+    if (!isSpotifyConnected()) return;
+    if (preview === "loading" || preview === "none") return;
+    if (!preview) {
+      setPreview("loading");
+      var result = await fetchPreviewUrl(activeName);
+      if (!result) {
+        setPreview("none");
+        return;
+      }
+      setPreview(result);
+      audioRef.current = new Audio(result.url);
+      audioRef.current.onended = () => setPlaying(false);
+      audioRef.current.play();
+      setPlaying(true);
+      return;
+    }
+    if (playing) {
+      audioRef.current.pause();
+      setPlaying(false);
+    } else {
+      audioRef.current.play();
+      setPlaying(true);
+    }
+  };
+  var connected = isSpotifyConnected();
+  var [heroParallax, setHeroParallax] = React.useState(0);
+  var scrollBodyRef = React.useRef(null);
+  return React.createElement(Screen, {
+    bg: "var(--paper)"
+  }, React.createElement(ScrollBody, {
+    ref: scrollBodyRef,
+    onScroll: e => {
+      var y = e.currentTarget.scrollTop;
+      setHeroParallax(Math.min(60, y * 0.3));
+    }
+  }, React.createElement("div", {
+    style: {
+      height: 300,
+      position: "relative",
+      overflow: "hidden",
+      color: "#fff"
+    }
+  }, React.createElement("div", {
+    style: {
+      position: "absolute",
+      inset: 0,
+      top: -30,
+      background: heroPhoto ? "var(--ink)" : `linear-gradient(160deg, var(--ink) 0%, ${stage?.color || "#2a1a3d"}44 40%, var(--ink) 100%)`,
+      backgroundImage: heroPhoto ? `url(${heroPhoto})` : undefined,
+      backgroundSize: "cover",
+      backgroundPosition: "center 20%",
+      transform: `translateY(${heroParallax}px)`,
+      willChange: "transform"
+    }
+  }), heroPhoto && React.createElement(ArtistAtmosphere, {
+    genre: a.genre,
+    stageColor: stage?.color || "var(--ember)",
+    tier: a.tier
+  }), !heroPhoto && React.createElement("div", {
+    style: {
+      position: "absolute",
+      inset: 0,
+      overflow: "hidden",
+      pointerEvents: "none",
+      zIndex: 1
+    }
+  }, React.createElement("div", {
+    style: {
+      position: "absolute",
+      top: "30%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      width: 180,
+      height: 180,
+      borderRadius: "50%",
+      background: `radial-gradient(circle, ${stage?.color || "var(--ember)"}30, transparent 70%)`,
+      animation: "vfx-pulse 4s ease-in-out infinite"
+    }
+  })), a.tier === 3 && heroPhoto && React.createElement(PyroStarburst, {
+    color: stage?.color || "var(--ember)"
+  }), React.createElement("div", {
+    style: {
+      position: "absolute",
+      inset: 0,
+      zIndex: 2,
+      background: heroPhoto ? `linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0) 35%, ${stage?.color || "rgba(26,18,13,1)"}22 65%, rgba(26,18,13,0.92) 100%)` : `linear-gradient(180deg, transparent 0%, ${stage?.color || "rgba(26,18,13,1)"}15 50%, rgba(26,18,13,0.95) 100%)`
+    }
+  }), React.createElement("button", {
+    onClick: () => window._popNav ? window._popNav() : setState({
+      ...state,
+      artist: null
+    }),
+    "aria-label": "Back",
+    style: {
+      position: "absolute",
+      top: 14,
+      left: 14,
+      zIndex: 10,
+      width: 38,
+      height: 38,
+      borderRadius: 38,
+      background: "rgba(255,255,255,0.18)",
+      backdropFilter: "blur(8px)",
+      border: "1px solid rgba(255,255,255,0.3)",
+      color: "#fff",
+      cursor: "pointer",
+      fontSize: 18,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
+    }
+  }, "←"), React.createElement("div", {
+    style: {
+      position: "absolute",
+      top: 14,
+      right: 14,
+      zIndex: 10,
+      display: "flex",
+      gap: 6,
+      alignItems: "center"
+    }
+  }, connected && preview !== "none" && React.createElement("button", {
+    onClick: handlePreview,
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 5,
+      background: playing ? "var(--ember)" : "rgba(255,255,255,0.18)",
+      backdropFilter: "blur(8px)",
+      border: "1px solid rgba(255,255,255,0.3)",
+      color: "#fff",
+      cursor: "pointer",
+      borderRadius: 999,
+      padding: "5px 10px",
+      fontFamily: "Geist Mono, monospace",
+      fontSize: 9,
+      letterSpacing: 1.2,
+      fontWeight: 700,
+      whiteSpace: "nowrap"
+    }
+  }, preview === "loading" ? React.createElement("span", {
+    style: {
+      width: 8,
+      height: 8,
+      borderRadius: "50%",
+      border: "1.5px solid rgba(255,255,255,0.4)",
+      borderTopColor: "#fff",
+      animation: "spin 0.75s linear infinite",
+      display: "inline-block"
+    }
+  }) : playing ? React.createElement("svg", {
+    width: "9",
+    height: "9",
+    viewBox: "0 0 24 24",
+    fill: "#fff"
+  }, React.createElement("rect", {
+    x: "6",
+    y: "4",
+    width: "4",
+    height: "16",
+    rx: "1"
+  }), React.createElement("rect", {
+    x: "14",
+    y: "4",
+    width: "4",
+    height: "16",
+    rx: "1"
+  })) : React.createElement("svg", {
+    width: "9",
+    height: "9",
+    viewBox: "0 0 24 24",
+    fill: "#fff"
+  }, React.createElement("path", {
+    d: "M8 5 L19 12 L8 19 Z"
+  })), "PREVIEW"), React.createElement(Pill, {
+    tone: "outline",
+    style: {
+      background: "rgba(255,255,255,0.15)",
+      color: "#fff",
+      backdropFilter: "blur(8px)",
+      borderColor: "rgba(255,255,255,0.3)"
+    }
+  }, "DAY ", a.day, " · ", fmt12(a.start)), React.createElement(ShareArtistButton, {
+    artist: a
+  })), React.createElement("div", {
+    style: {
+      position: "absolute",
+      bottom: 16,
+      left: 18,
+      right: 18
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      marginBottom: 8
+    }
+  }, React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 10,
+      letterSpacing: 1.6,
+      opacity: 0.85,
+      fontWeight: 600
+    }
+  }, a.genre.toUpperCase()), stage && React.createElement("div", {
+    style: {
+      width: 4,
+      height: 4,
+      borderRadius: 4,
+      background: stage.color,
+      boxShadow: `0 0 6px ${stage.color}`
+    }
+  }), stage && React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1.2,
+      color: stage.color,
+      fontWeight: 700
+    }
+  }, stage.name.toUpperCase())), React.createElement("div", {
+    className: "serif",
+    style: {
+      fontSize: isB2B ? 34 : 52,
+      lineHeight: 0.88,
+      letterSpacing: -1.5,
+      textShadow: "0 2px 20px rgba(0,0,0,0.5)"
+    }
+  }, a.name))), isB2B && React.createElement("div", {
+    style: {
+      display: "flex",
+      background: "var(--paper-2)",
+      borderBottom: "1px solid var(--line)"
+    }
+  }, b2bParts.map((part, i) => React.createElement("button", {
+    key: i,
+    onClick: () => setActiveB2B(i),
+    style: {
+      flex: 1,
+      padding: "11px 8px",
+      background: "transparent",
+      border: "none",
+      borderBottom: `2px solid ${activeB2B === i ? stage.color : "transparent"}`,
+      cursor: "pointer",
+      fontFamily: "Geist Mono, monospace",
+      fontSize: 9,
+      letterSpacing: 1.2,
+      color: activeB2B === i ? stage.color : "var(--muted)",
+      fontWeight: activeB2B === i ? 700 : 400,
+      transition: "color 0.15s, border-color 0.15s"
+    }
+  }, part.toUpperCase()))), React.createElement("div", {
+    style: {
+      padding: "18px 20px 24px"
+    }
+  }, (() => {
+    var cells = [];
+    if (saveCount != null && saveCount > 0) cells.push({
+      label: "GOING",
+      value: _fmtCount(saveCount)
+    });
+    if (spotifyStats?.followers > 0) cells.push({
+      label: "FOLLOWERS",
+      value: _fmtCount(spotifyStats.followers)
+    });
+    if (spotifyStats?.popularity > 0) cells.push({
+      label: "POPULARITY",
+      value: spotifyStats.popularity
+    });
+    if (cells.length === 0) return null;
+    return React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: `repeat(${cells.length}, 1fr)`,
+        background: "var(--paper-2)",
+        border: "1px solid var(--line)",
+        borderRadius: 14,
+        padding: "12px 4px",
+        marginBottom: 12
+      }
+    }, cells.map((c, i) => React.createElement("div", {
+      key: c.label,
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        borderLeft: i === 0 ? "none" : "1px solid var(--line)",
+        padding: "2px 6px"
+      }
+    }, React.createElement("div", {
+      className: "serif",
+      style: {
+        fontSize: 22,
+        lineHeight: 1,
+        marginBottom: 5
+      }
+    }, c.value), React.createElement("div", {
+      className: "mono",
+      style: {
+        fontSize: 8,
+        letterSpacing: 1.2,
+        color: "var(--muted)",
+        fontWeight: 700
+      }
+    }, c.label))));
+  })(), (() => {
+    var sections = [{
+      id: "artist-section-bio",
+      label: "BIO"
+    }, {
+      id: "artist-section-tracklist",
+      label: "TRACKLIST"
+    }, {
+      id: "artist-section-livestream",
+      label: "LIVE SET"
+    }, {
+      id: "artist-section-setlists",
+      label: "SETLISTS"
+    }, {
+      id: "artist-section-similar",
+      label: "SIMILAR"
+    }, {
+      id: "artist-section-upcoming",
+      label: "UPCOMING"
+    }];
+    var [activeChip, setActiveChip] = React.useState(sections[0].id);
+    React.useEffect(() => {
+      if (!window.IntersectionObserver) return;
+      var obs = new IntersectionObserver(entries => {
+        for (var e of entries) {
+          if (e.isIntersecting) {
+            setActiveChip(e.target.id);
+            break;
+          }
+        }
+      }, {
+        rootMargin: "-40% 0px -50% 0px",
+        threshold: 0
+      });
+      sections.forEach(s => {
+        var el = document.getElementById(s.id);
+        if (el) obs.observe(el);
+      });
+      return () => obs.disconnect();
+    }, [a.id]);
+    return React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 6,
+        overflowX: "auto",
+        overflowY: "hidden",
+        marginBottom: 16,
+        marginLeft: -20,
+        marginRight: -20,
+        paddingLeft: 20,
+        paddingRight: 20,
+        scrollbarWidth: "none"
+      }
+    }, sections.map(c => {
+      var on = activeChip === c.id;
+      return React.createElement("button", {
+        key: c.id,
+        onClick: () => {
+          document.getElementById(c.id)?.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        },
+        style: {
+          background: on ? "var(--ink)" : "var(--paper-2)",
+          border: on ? "1px solid var(--ink)" : "1px solid var(--line-2)",
+          borderRadius: 999,
+          padding: "6px 12px",
+          fontFamily: "Geist Mono, monospace",
+          fontSize: 9,
+          letterSpacing: 1.2,
+          fontWeight: 600,
+          color: on ? "var(--paper)" : "var(--ink)",
+          cursor: "pointer",
+          whiteSpace: "nowrap",
+          flexShrink: 0,
+          transition: "all 0.2s ease"
+        }
+      }, c.label);
+    }));
+  })(), React.createElement("div", {
+    id: "artist-section-bio",
+    className: "serif",
+    style: {
+      fontSize: 20,
+      lineHeight: 1.35,
+      marginBottom: tadb?.bio ? 8 : 16,
+      textWrap: "pretty"
+    }
+  }, a.bio), tadb?.bio && tadb.bio.length > 60 && React.createElement("div", {
+    style: {
+      fontSize: 13,
+      lineHeight: 1.6,
+      color: "var(--muted)",
+      marginBottom: 16
+    }
+  }, tadb.bio.slice(0, 320), tadb.bio.length > 320 ? "…" : "", (tadb.mood || tadb.style || tadb.country) && React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 6,
+      marginTop: 8,
+      flexWrap: "wrap"
+    }
+  }, [tadb.mood, tadb.style, tadb.country].filter(Boolean).map(tag => React.createElement("span", {
+    key: tag,
+    className: "mono",
+    style: {
+      fontSize: 8,
+      letterSpacing: 1,
+      padding: "3px 8px",
+      background: "var(--paper-2)",
+      border: "1px solid var(--line-2)",
+      borderRadius: 999,
+      color: "var(--muted)"
+    }
+  }, tag.toUpperCase())))), React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      padding: 14,
+      background: "var(--paper-2)",
+      borderRadius: 14,
+      marginBottom: 16
+    }
+  }, React.createElement("div", {
+    style: {
+      width: 6,
+      alignSelf: "stretch",
+      background: stage.color,
+      borderRadius: 3
+    }
+  }), React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, React.createElement("div", {
+    className: "serif",
+    style: {
+      fontSize: 20,
+      lineHeight: 1
+    }
+  }, stage.name), React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 10,
+      letterSpacing: 1.2,
+      color: "var(--muted)",
+      marginTop: 3
+    }
+  }, DAYS.find(d => d.n === a.day).label, " · ", fmt12(a.start), "–", fmt12(a.end)), saveCount != null && saveCount >= 2 && React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1.2,
+      color: stage.color,
+      marginTop: 5
+    }
+  }, "● ", saveCount, " FANS GOING")), React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 6,
+      flexShrink: 0
+    }
+  }, React.createElement("button", {
+    onClick: () => (window._pushNav || (n => setState({
+      ...state,
+      ...n
+    })))({
+      tab: "map",
+      focusStage: a.stage,
+      artist: null
+    }),
+    style: {
+      background: "transparent",
+      border: "1px solid var(--line-2)",
+      borderRadius: 999,
+      padding: "6px 12px",
+      fontFamily: "Geist Mono, monospace",
+      fontSize: 10,
+      letterSpacing: 1.2,
+      cursor: "pointer"
+    }
+  }, "ON MAP"), React.createElement("button", {
+    onClick: () => (window._pushNav || (n => setState({
+      ...state,
+      ...n
+    })))({
+      tab: "lineup",
+      lineupDay: a.day,
+      lineupHighlight: a.id,
+      artist: null
+    }),
+    style: {
+      background: "transparent",
+      border: "1px solid var(--line-2)",
+      borderRadius: 999,
+      padding: "6px 12px",
+      fontFamily: "Geist Mono, monospace",
+      fontSize: 10,
+      letterSpacing: 1.2,
+      cursor: "pointer",
+      whiteSpace: "nowrap"
+    }
+  }, "SCHEDULE"))), React.createElement(YourPhotosStrip, {
+    artistId: a.id,
+    night: a.day,
+    accent: stage.color,
+    artistObj: a,
+    onOpen: n => (window._pushNav || (x => setState({
+      ...state,
+      ...x
+    })))({
+      tab: "memories",
+      memoriesNight: n,
+      artist: null
+    }),
+    onOpenMap: art => (window._pushNav || (x => setState({
+      ...state,
+      ...x
+    })))({
+      tab: "map",
+      focusStage: art?.stage || a.stage,
+      artist: null
+    })
+  }), React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 6,
+      marginBottom: 18,
+      flexWrap: "wrap"
+    }
+  }, [{
+    label: "SPOTIFY",
+    accent: "#1DB954",
+    url: spotifyStats?.spotifyId ? `https://open.spotify.com/artist/${spotifyStats.spotifyId}` : `https://open.spotify.com/search/${encodeURIComponent(activeName)}/artists`
+  }, {
+    label: "SOUNDCLOUD",
+    accent: "#ff5500",
+    url: `https://soundcloud.com/search?q=${encodeURIComponent(activeName)}`
+  }, {
+    label: "RA",
+    accent: "#000",
+    url: `https://ra.co/search?query=${encodeURIComponent(activeName)}`
+  }, {
+    label: "INSTAGRAM",
+    accent: "#E1306C",
+    url: `https://www.instagram.com/explore/tags/${encodeURIComponent(activeName.replace(/\s+/g, "").toLowerCase())}`
+  }, {
+    label: "𝕏",
+    accent: "#000",
+    url: `https://x.com/search?q=${encodeURIComponent(activeName)}`
+  }].map(({
+    label,
+    url,
+    accent
+  }) => React.createElement("a", {
+    key: label,
+    href: url,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: {
+      fontFamily: "Geist Mono, monospace",
+      fontSize: 8,
+      letterSpacing: 1.2,
+      fontWeight: 700,
+      padding: "5px 10px",
+      borderRadius: 999,
+      background: `${accent}10`,
+      border: `1px solid ${accent}30`,
+      color: accent,
+      textDecoration: "none",
+      transition: "background 0.15s"
+    }
+  }, label, " ↗"))), React.createElement("div", {
+    id: "artist-section-tracklist"
+  }), edcTracklist && edcTracklist.source === "1001tracklists" && edcTracklist.tracks?.length > 0 && (() => {
+    var tracks = edcTracklist.tracks;
+    var shown = tlExpanded ? tracks : tracks.slice(0, 8);
+    var fmtTime = t => {
+      if (!t) return "";
+      var parts = t.replace(/^0:/, "").split(":");
+      if (parts.length === 3) return `${parts[0]}:${parts[1].padStart(2, "0")}:${parts[2].padStart(2, "0")}`;
+      if (parts.length === 2) return `${parts[0]}:${parts[1].padStart(2, "0")}`;
+      return t;
+    };
+    return React.createElement("div", {
+      style: {
+        marginBottom: 18,
+        borderRadius: 16,
+        overflow: "hidden",
+        background: "var(--ink)",
+        color: "#fff",
+        boxShadow: `0 0 24px ${stage.color}22`
+      }
+    }, React.createElement("div", {
+      style: {
+        padding: "14px 16px 8px"
+      }
+    }, React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between"
+      }
+    }, React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8
+      }
+    }, React.createElement("span", {
+      style: {
+        fontSize: 14
+      }
+    }, "♫"), React.createElement("span", {
+      className: "mono",
+      style: {
+        fontSize: 9,
+        letterSpacing: 1.6,
+        fontWeight: 700,
+        color: stage.color
+      }
+    }, "WHAT THEY PLAYED AT ", (FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.brand || "EDC").toUpperCase())), React.createElement("span", {
+      className: "mono",
+      style: {
+        fontSize: 8,
+        letterSpacing: 1,
+        color: "rgba(255,255,255,0.35)"
+      }
+    }, tracks.length, " TRACKS"))), React.createElement("div", {
+      style: {
+        padding: "0 16px 12px"
+      }
+    }, shown.map((t, i) => React.createElement("div", {
+      key: i,
+      style: {
+        display: "flex",
+        alignItems: "baseline",
+        gap: 10,
+        padding: "5px 0",
+        borderTop: i === 0 ? `1px solid rgba(255,255,255,0.06)` : "none"
+      }
+    }, React.createElement("span", {
+      className: "mono",
+      style: {
+        fontSize: 8,
+        color: "rgba(255,255,255,0.25)",
+        width: 38,
+        textAlign: "right",
+        flexShrink: 0
+      }
+    }, fmtTime(t.time)), React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 13,
+        color: "#fff",
+        lineHeight: 1.3,
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap"
+      }
+    }, t.title), t.artist && t.artist !== a.name && React.createElement("div", {
+      className: "mono",
+      style: {
+        fontSize: 8,
+        letterSpacing: 0.8,
+        color: "rgba(255,255,255,0.4)",
+        marginTop: 1
+      }
+    }, t.artist)))), tracks.length > 8 && React.createElement("button", {
+      onClick: () => setTlExpanded(e => !e),
+      style: {
+        background: "transparent",
+        border: "none",
+        cursor: "pointer",
+        fontFamily: "Geist Mono, monospace",
+        fontSize: 9,
+        letterSpacing: 1.2,
+        color: stage.color,
+        padding: "8px 0 2px",
+        display: "block"
+      }
+    }, tlExpanded ? "SHOW LESS ↑" : `+${tracks.length - 8} MORE TRACKS ↓`)), edcTracklist.url && React.createElement("a", {
+      href: edcTracklist.url,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: {
+        display: "block",
+        padding: "10px 16px",
+        borderTop: "1px solid rgba(255,255,255,0.06)",
+        fontFamily: "Geist Mono, monospace",
+        fontSize: 8,
+        letterSpacing: 1.2,
+        color: "rgba(255,255,255,0.35)",
+        textDecoration: "none",
+        textAlign: "center"
+      }
+    }, "SOURCE: 1001TRACKLISTS ↗"));
+  })(), connected && spotifyStats && (spotifyStats.popularity > 0 || spotifyStats.followers > 0) && React.createElement("div", {
+    style: {
+      marginBottom: 18
+    }
+  }, React.createElement("div", {
+    style: {
+      background: "var(--paper-2)",
+      border: "1px solid var(--line)",
+      borderRadius: 14,
+      padding: "14px 16px",
+      marginBottom: 8
+    }
+  }, spotifyStats.popularity > 0 && React.createElement("div", {
+    style: {
+      marginBottom: spotifyStats.followers > 0 ? 12 : 0
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      marginBottom: 5
+    }
+  }, React.createElement("span", {
+    className: "mono",
+    style: {
+      fontSize: 8,
+      letterSpacing: 1.4,
+      color: "var(--muted)"
+    }
+  }, "POPULARITY"), React.createElement("span", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      fontWeight: 700
+    }
+  }, spotifyStats.popularity, " / 100")), React.createElement("div", {
+    style: {
+      height: 5,
+      background: "var(--line-2)",
+      borderRadius: 5,
+      overflow: "hidden"
+    }
+  }, React.createElement("div", {
+    style: {
+      height: "100%",
+      width: `${spotifyStats.popularity}%`,
+      background: `linear-gradient(90deg, ${stage.color}88, ${stage.color})`,
+      borderRadius: 5,
+      transition: "width 0.8s ease"
+    }
+  }))), spotifyStats.followers > 0 && React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "baseline",
+      gap: 6
+    }
+  }, React.createElement("span", {
+    className: "serif",
+    style: {
+      fontSize: 24,
+      lineHeight: 1,
+      letterSpacing: -0.5
+    }
+  }, _fmtCount(spotifyStats.followers)), React.createElement("span", {
+    className: "mono",
+    style: {
+      fontSize: 8,
+      letterSpacing: 1.3,
+      color: "var(--muted)"
+    }
+  }, "SPOTIFY FOLLOWERS"))), spotifyStats.genres?.length > 0 && React.createElement("div", {
+    style: {
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 6
+    }
+  }, spotifyStats.genres.slice(0, 5).map(g => React.createElement("span", {
+    key: g,
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1,
+      padding: "4px 10px",
+      background: `${stage.color}18`,
+      border: `1px solid ${stage.color}38`,
+      borderRadius: 999,
+      color: stage.color,
+      fontWeight: 600
+    }
+  }, g.toUpperCase())))), LASTFM_KEY && lfm === undefined && React.createElement("div", {
+    style: {
+      marginBottom: 18
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 10,
+      marginBottom: 12
+    }
+  }, [0, 1].map(i => React.createElement("div", {
+    key: i,
+    style: {
+      flex: 1,
+      background: "var(--paper-2)",
+      border: "1px solid var(--line)",
+      borderRadius: 12,
+      padding: "10px 14px"
+    }
+  }, React.createElement("div", {
+    className: "skel",
+    style: {
+      width: "50%",
+      height: 22,
+      marginBottom: 8
+    }
+  }), React.createElement("div", {
+    className: "skel",
+    style: {
+      width: "70%",
+      height: 9
+    }
+  })))), React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 6,
+      flexWrap: "wrap"
+    }
+  }, [0, 1, 2].map(i => React.createElement("div", {
+    key: i,
+    className: "skel",
+    style: {
+      width: 64,
+      height: 24,
+      borderRadius: 999
+    }
+  }))), React.createElement("div", {
+    style: {
+      marginTop: 12
+    }
+  }, React.createElement("div", {
+    className: "skel",
+    style: {
+      width: "100%",
+      height: 13,
+      marginBottom: 6
+    }
+  }), React.createElement("div", {
+    className: "skel",
+    style: {
+      width: "85%",
+      height: 13,
+      marginBottom: 6
+    }
+  }), React.createElement("div", {
+    className: "skel",
+    style: {
+      width: "60%",
+      height: 13
+    }
+  }))), LASTFM_KEY && lfm && React.createElement("div", {
+    style: {
+      marginBottom: 18
+    }
+  }, (lfm.listeners > 0 || lfm.playcount > 0) && React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 10,
+      marginBottom: 12
+    }
+  }, lfm.listeners > 0 && React.createElement("div", {
+    style: {
+      flex: 1,
+      background: "var(--paper-2)",
+      border: "1px solid var(--line)",
+      borderRadius: 12,
+      padding: "10px 14px"
+    }
+  }, React.createElement("div", {
+    className: "serif",
+    style: {
+      fontSize: 22,
+      lineHeight: 1,
+      letterSpacing: -0.5
+    }
+  }, _fmtCount(lfm.listeners)), React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 8,
+      letterSpacing: 1.3,
+      color: "var(--muted)",
+      marginTop: 4
+    }
+  }, "LISTENERS")), lfm.playcount > 0 && React.createElement("div", {
+    style: {
+      flex: 1,
+      background: "var(--paper-2)",
+      border: "1px solid var(--line)",
+      borderRadius: 12,
+      padding: "10px 14px"
+    }
+  }, React.createElement("div", {
+    className: "serif",
+    style: {
+      fontSize: 22,
+      lineHeight: 1,
+      letterSpacing: -0.5
+    }
+  }, _fmtCount(lfm.playcount)), React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 8,
+      letterSpacing: 1.3,
+      color: "var(--muted)",
+      marginTop: 4
+    }
+  }, "TOTAL SCROBBLES"))), lfm.tags.length > 0 && React.createElement("div", {
+    style: {
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 6,
+      marginBottom: 12
+    }
+  }, lfm.tags.map(tag => React.createElement("span", {
+    key: tag,
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1.1,
+      padding: "4px 10px",
+      background: "var(--paper-2)",
+      border: "1px solid var(--line-2)",
+      borderRadius: 999,
+      color: "var(--muted)"
+    }
+  }, tag.toUpperCase()))), lfm.bio && lfm.bio.length > 40 && React.createElement("div", {
+    style: {
+      fontSize: 13,
+      lineHeight: 1.55,
+      color: "var(--muted)",
+      marginBottom: 12
+    }
+  }, lfm.bio, lfm.url && React.createElement("a", {
+    href: lfm.url,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: {
+      fontFamily: "Geist Mono, monospace",
+      fontSize: 8,
+      letterSpacing: 1.1,
+      color: "var(--ember)",
+      textDecoration: "none",
+      marginLeft: 8
+    }
+  }, "LAST.FM ↗")), React.createElement("div", {
+    id: "artist-section-similar"
+  }), lfm.similar.length > 0 && React.createElement(SpiderWeb, {
+    currentArtist: a,
+    currentStage: stage,
+    similar: lfm.similar,
+    onSelectArtist: id => window._pushNav ? window._pushNav({
+      artist: id
+    }) : setState(st => ({
+      ...st,
+      artist: id
+    }))
+  })), React.createElement("div", {
+    id: "artist-section-livestream"
+  }), (() => {
+    var ytSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(activeName + " live set " + (FESTIVAL_CONFIG.brand || FESTIVAL_CONFIG.shortName))}`;
+    return React.createElement("div", {
+      style: {
+        marginBottom: 18
+      }
+    }, React.createElement("div", {
+      className: "mono",
+      style: {
+        fontSize: 9,
+        letterSpacing: 1.4,
+        color: "var(--muted)",
+        marginBottom: 10,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between"
+      }
+    }, "LIVE SET", React.createElement("a", {
+      href: ytSearchUrl,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: {
+        fontFamily: "Geist Mono, monospace",
+        fontSize: 8,
+        letterSpacing: 1.1,
+        color: "var(--muted)",
+        textDecoration: "none"
+      }
+    }, "SEARCH YOUTUBE ↗")), YOUTUBE_KEY && ytVideo === undefined && React.createElement("div", {
+      style: {
+        borderRadius: 16,
+        overflow: "hidden",
+        aspectRatio: "16/9",
+        background: "var(--paper-2)",
+        border: "1px solid var(--line)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+      }
+    }, React.createElement("div", {
+      style: {
+        width: 20,
+        height: 20,
+        borderRadius: "50%",
+        border: "2px solid var(--line)",
+        borderTopColor: "var(--muted)",
+        animation: "spin 0.8s linear infinite"
+      }
+    })), YOUTUBE_KEY && ytVideo && !ytPlaying && React.createElement("div", {
+      onClick: () => setYtPlaying(true),
+      style: {
+        position: "relative",
+        borderRadius: 16,
+        overflow: "hidden",
+        aspectRatio: "16/9",
+        cursor: "pointer",
+        background: "var(--ink)",
+        boxShadow: "0 8px 32px rgba(0,0,0,0.25)"
+      }
+    }, ytVideo.thumbnail && React.createElement("img", {
+      src: ytVideo.thumbnail,
+      alt: ytVideo.title,
+      style: {
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        display: "block"
+      }
+    }), React.createElement("div", {
+      style: {
+        position: "absolute",
+        inset: 0,
+        background: "linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.75) 100%)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+      }
+    }, React.createElement("div", {
+      style: {
+        width: 62,
+        height: 62,
+        borderRadius: 62,
+        background: "rgba(255,0,0,0.92)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        boxShadow: "0 6px 28px rgba(255,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)",
+        transition: "transform 0.15s"
+      }
+    }, React.createElement("svg", {
+      width: "22",
+      height: "22",
+      viewBox: "0 0 24 24",
+      fill: "#fff"
+    }, React.createElement("path", {
+      d: "M8 5 L19 12 L8 19 Z"
+    })))), React.createElement("div", {
+      style: {
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        padding: "32px 14px 12px"
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 13,
+        color: "#fff",
+        lineHeight: 1.3,
+        fontWeight: 500
+      }
+    }, ytVideo.title), React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        marginTop: 5
+      }
+    }, React.createElement("span", {
+      className: "mono",
+      style: {
+        fontSize: 8,
+        letterSpacing: 1.1,
+        color: "rgba(255,255,255,0.5)"
+      }
+    }, "TAP TO PLAY"), ytVideo.durationMin > 0 && React.createElement("span", {
+      className: "mono",
+      style: {
+        fontSize: 8,
+        letterSpacing: 0.8,
+        color: "rgba(255,255,255,0.5)"
+      }
+    }, ytVideo.durationMin >= 60 ? `${Math.floor(ytVideo.durationMin / 60)}H ${ytVideo.durationMin % 60}M` : `${ytVideo.durationMin} MIN`), ytVideo.views > 0 && React.createElement("span", {
+      className: "mono",
+      style: {
+        fontSize: 8,
+        letterSpacing: 0.8,
+        color: "rgba(255,255,255,0.5)",
+        marginLeft: "auto"
+      }
+    }, ytVideo.views >= 1e6 ? `${(ytVideo.views / 1e6).toFixed(1)}M` : ytVideo.views >= 1e3 ? `${(ytVideo.views / 1e3).toFixed(0)}K` : ytVideo.views, " VIEWS")))), YOUTUBE_KEY && ytVideo && ytPlaying && React.createElement("div", {
+      style: {
+        borderRadius: 14,
+        overflow: "hidden",
+        aspectRatio: "16/9",
+        background: "#000"
+      }
+    }, React.createElement("iframe", {
+      src: `https://www.youtube.com/embed/${ytVideo.videoId}?autoplay=1`,
+      style: {
+        width: "100%",
+        height: "100%",
+        border: "none",
+        display: "block"
+      },
+      allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+      allowFullScreen: true
+    })), YOUTUBE_KEY && ytVideo === null && React.createElement("div", {
+      style: {
+        padding: "16px 14px",
+        borderRadius: 12,
+        background: "var(--paper-2)",
+        border: "1px solid var(--line)",
+        textAlign: "center"
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 20,
+        opacity: 0.3,
+        marginBottom: 4
+      }
+    }, "▶"), React.createElement("div", {
+      className: "mono",
+      style: {
+        fontSize: 9,
+        letterSpacing: 1.2,
+        color: "var(--muted)"
+      }
+    }, ytError ? "COULDN'T LOAD VIDEO" : "NO LIVE SET FOUND"), ytError && React.createElement("button", {
+      onClick: () => {
+        setYtError(false);
+        setYtVideo(undefined);
+        fetchYouTubeSet(activeName).then(setYtVideo).catch(() => {
+          setYtVideo(null);
+          setYtError(true);
+        });
+      },
+      className: "mono",
+      style: {
+        marginTop: 8,
+        padding: "6px 14px",
+        borderRadius: 999,
+        background: "var(--paper-2)",
+        border: "1px solid var(--line-2)",
+        color: "var(--ink)",
+        fontSize: 9,
+        letterSpacing: 1.2,
+        fontWeight: 700,
+        cursor: "pointer"
+      }
+    }, "↻ RETRY"), !ytError && React.createElement("a", {
+      href: ytSearchUrl,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      className: "mono",
+      style: {
+        display: "inline-block",
+        marginTop: 8,
+        padding: "6px 14px",
+        borderRadius: 999,
+        background: "var(--paper-2)",
+        border: "1px solid var(--line-2)",
+        color: "var(--muted)",
+        fontSize: 9,
+        letterSpacing: 1.2,
+        fontWeight: 700,
+        textDecoration: "none"
+      }
+    }, "SEARCH YOUTUBE ↗")), !YOUTUBE_KEY && React.createElement("a", {
+      href: ytSearchUrl,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        background: "var(--paper-2)",
+        border: "1px solid var(--line)",
+        borderRadius: 12,
+        padding: "12px 14px",
+        textDecoration: "none"
+      }
+    }, React.createElement("div", {
+      style: {
+        width: 36,
+        height: 36,
+        borderRadius: 36,
+        background: "#ff0000",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexShrink: 0
+      }
+    }, React.createElement("svg", {
+      width: "14",
+      height: "14",
+      viewBox: "0 0 24 24",
+      fill: "#fff"
+    }, React.createElement("path", {
+      d: "M8 5 L19 12 L8 19 Z"
+    }))), React.createElement("div", null, React.createElement("div", {
+      style: {
+        fontSize: 13,
+        color: "var(--ink)",
+        fontWeight: 500
+      }
+    }, "Watch on YouTube"), React.createElement("div", {
+      className: "mono",
+      style: {
+        fontSize: 9,
+        letterSpacing: 1.1,
+        color: "var(--muted)",
+        marginTop: 2
+      }
+    }, activeName.toUpperCase(), " LIVE SET · ", (FESTIVAL_CONFIG.brand || "FESTIVAL").toUpperCase())), React.createElement("div", {
+      style: {
+        marginLeft: "auto",
+        color: "var(--muted)",
+        fontSize: 14
+      }
+    }, "↗")));
+  })(), (() => {
+    var mcSearchUrl = `https://www.mixcloud.com/search/?q=${encodeURIComponent(activeName + " " + (FESTIVAL_CONFIG.brand || "festival"))}`;
+    return React.createElement("div", {
+      style: {
+        marginBottom: 18
+      }
+    }, React.createElement("div", {
+      className: "mono",
+      style: {
+        fontSize: 9,
+        letterSpacing: 1.4,
+        color: "var(--muted)",
+        marginBottom: 10,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between"
+      }
+    }, React.createElement("span", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 6
+      }
+    }, "MIXCLOUD SETS"), React.createElement("a", {
+      href: mcSearchUrl,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: {
+        fontFamily: "Geist Mono, monospace",
+        fontSize: 8,
+        letterSpacing: 1.1,
+        color: "var(--muted)",
+        textDecoration: "none"
+      }
+    }, "SEARCH ↗")), mcTracks === undefined && React.createElement("div", {
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        gap: 10
+      }
+    }, [0, 1].map(i => React.createElement("div", {
+      key: i,
+      style: {
+        display: "flex",
+        gap: 12,
+        alignItems: "center",
+        background: "var(--ink)",
+        borderRadius: 14,
+        overflow: "hidden"
+      }
+    }, React.createElement("div", {
+      className: "skel-dark",
+      style: {
+        width: 72,
+        height: 72,
+        flexShrink: 0,
+        borderRadius: 0
+      }
+    }), React.createElement("div", {
+      style: {
+        flex: 1,
+        padding: "10px 14px 10px 0"
+      }
+    }, React.createElement("div", {
+      className: "skel-dark",
+      style: {
+        width: "80%",
+        height: 12,
+        marginBottom: 8
+      }
+    }), React.createElement("div", {
+      className: "skel-dark",
+      style: {
+        width: "50%",
+        height: 8
+      }
+    }))))), Array.isArray(mcTracks) && mcTracks.length > 0 && mcTracks.map((track, idx) => React.createElement("div", {
+      key: track.key,
+      style: {
+        marginBottom: 10
+      }
+    }, mcPlaying !== track.key && React.createElement("div", {
+      onClick: () => setMcPlaying(track.key),
+      style: {
+        display: "flex",
+        gap: 12,
+        alignItems: "center",
+        background: "var(--ink)",
+        borderRadius: 14,
+        overflow: "hidden",
+        cursor: "pointer"
+      }
+    }, React.createElement("div", {
+      style: {
+        width: 72,
+        height: 72,
+        flexShrink: 0,
+        position: "relative",
+        background: "rgba(247,237,224,0.06)"
+      }
+    }, track.thumbnail && React.createElement("img", {
+      src: track.thumbnail,
+      alt: "",
+      style: {
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        display: "block"
+      }
+    }), React.createElement("div", {
+      style: {
+        position: "absolute",
+        inset: 0,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "rgba(0,0,0,0.35)"
+      }
+    }, React.createElement("div", {
+      style: {
+        width: 28,
+        height: 28,
+        borderRadius: 28,
+        background: "#ff5500",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+      }
+    }, React.createElement("svg", {
+      width: "10",
+      height: "10",
+      viewBox: "0 0 24 24",
+      fill: "#fff"
+    }, React.createElement("path", {
+      d: "M8 5 L19 12 L8 19 Z"
+    }))))), React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0,
+        padding: "10px 14px 10px 0"
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "var(--paper)",
+        lineHeight: 1.3,
+        fontWeight: 500,
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        display: "-webkit-box",
+        WebkitLineClamp: 2,
+        WebkitBoxOrient: "vertical"
+      }
+    }, track.name), React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 8,
+        marginTop: 5,
+        alignItems: "center"
+      }
+    }, React.createElement("span", {
+      className: "mono",
+      style: {
+        fontSize: 8,
+        letterSpacing: 1,
+        color: "#ff5500",
+        fontWeight: 700
+      }
+    }, track.user.toUpperCase()), track.duration > 0 && React.createElement("span", {
+      className: "mono",
+      style: {
+        fontSize: 8,
+        letterSpacing: 1,
+        color: "rgba(247,237,224,0.4)"
+      }
+    }, _mcDur(track.duration)), track.plays > 0 && React.createElement("span", {
+      className: "mono",
+      style: {
+        fontSize: 8,
+        letterSpacing: 1,
+        color: "rgba(247,237,224,0.35)"
+      }
+    }, _mcFmt(track.plays), " PLAYS")))), mcPlaying === track.key && React.createElement("div", {
+      style: {
+        borderRadius: 14,
+        overflow: "hidden",
+        background: "var(--ink)"
+      }
+    }, React.createElement("iframe", {
+      src: `https://www.mixcloud.com/widget/iframe/?feed=${encodeURIComponent(track.key)}&mini=0&hide_cover=0&light=0&autoplay=1`,
+      style: {
+        width: "100%",
+        height: 120,
+        border: "none",
+        display: "block"
+      },
+      allow: "autoplay"
+    }), React.createElement("button", {
+      onClick: () => setMcPlaying(null),
+      style: {
+        width: "100%",
+        background: "transparent",
+        border: "none",
+        padding: "8px 0 10px",
+        fontFamily: "Geist Mono, monospace",
+        fontSize: 9,
+        letterSpacing: 1.2,
+        color: "rgba(247,237,224,0.4)",
+        cursor: "pointer"
+      }
+    }, "▲ CLOSE")))), Array.isArray(mcTracks) && mcTracks.length === 0 && React.createElement("a", {
+      href: mcSearchUrl,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        background: "var(--paper-2)",
+        border: "1px solid var(--line)",
+        borderRadius: 12,
+        padding: "12px 14px",
+        textDecoration: "none"
+      }
+    }, React.createElement("div", {
+      style: {
+        width: 36,
+        height: 36,
+        borderRadius: 36,
+        background: "#ff5500",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexShrink: 0
+      }
+    }, React.createElement("svg", {
+      width: "14",
+      height: "14",
+      viewBox: "0 0 24 24",
+      fill: "#fff"
+    }, React.createElement("path", {
+      d: "M8 5 L19 12 L8 19 Z"
+    }))), React.createElement("div", null, React.createElement("div", {
+      style: {
+        fontSize: 13,
+        color: "var(--ink)",
+        fontWeight: 500
+      }
+    }, "Search on Mixcloud"), React.createElement("div", {
+      className: "mono",
+      style: {
+        fontSize: 9,
+        letterSpacing: 1.1,
+        color: "var(--muted)",
+        marginTop: 2
+      }
+    }, activeName.toUpperCase(), " · SETS & MIXES")), React.createElement("div", {
+      style: {
+        marginLeft: "auto",
+        color: "var(--muted)",
+        fontSize: 14
+      }
+    }, "↗")));
+  })(), React.createElement("div", {
+    id: "artist-section-upcoming"
+  }), TICKETMASTER_KEY && React.createElement("div", {
+    style: {
+      marginBottom: 18
+    }
+  }, React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1.4,
+      color: "var(--muted)",
+      marginBottom: 10,
+      display: "flex",
+      alignItems: "center",
+      gap: 8
+    }
+  }, "UPCOMING SHOWS"), tmEvents === undefined && React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 8
+    }
+  }, [0, 1].map(i => React.createElement("div", {
+    key: i,
+    style: {
+      background: "var(--paper-2)",
+      border: "1px solid var(--line)",
+      borderRadius: 12,
+      padding: "12px 16px",
+      display: "flex",
+      alignItems: "center",
+      gap: 12
+    }
+  }, React.createElement("div", {
+    className: "skel",
+    style: {
+      width: 42,
+      height: 56,
+      borderRadius: 8
+    }
+  }), React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, React.createElement("div", {
+    className: "skel",
+    style: {
+      width: "75%",
+      height: 13,
+      marginBottom: 6
+    }
+  }), React.createElement("div", {
+    className: "skel",
+    style: {
+      width: "50%",
+      height: 9
+    }
+  }))))), tmEvents !== undefined && tmEvents !== null && tmEvents.length === 0 && React.createElement("div", {
+    style: {
+      padding: "16px 14px",
+      borderRadius: 12,
+      background: "var(--paper-2)",
+      border: "1px solid var(--line)",
+      textAlign: "center"
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 20,
+      opacity: 0.3,
+      marginBottom: 4
+    }
+  }, "🎤"), React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1.2,
+      color: "var(--muted)"
+    }
+  }, tmError ? "COULDN'T LOAD SHOWS" : "NO UPCOMING SHOWS FOUND"), tmError && React.createElement("button", {
+    onClick: () => {
+      setTmError(false);
+      setTmEvents(undefined);
+      fetchTicketmaster(activeName).then(setTmEvents).catch(() => {
+        setTmEvents([]);
+        setTmError(true);
+      });
+    },
+    className: "mono",
+    style: {
+      marginTop: 8,
+      padding: "6px 14px",
+      borderRadius: 999,
+      background: "var(--paper-2)",
+      border: "1px solid var(--line-2)",
+      color: "var(--ink)",
+      fontSize: 9,
+      letterSpacing: 1.2,
+      fontWeight: 700,
+      cursor: "pointer"
+    }
+  }, "↻ RETRY")), Array.isArray(tmEvents) && tmEvents.map((ev, idx) => React.createElement("div", {
+    key: idx,
+    style: {
+      background: "var(--paper-2)",
+      border: "1px solid var(--line)",
+      borderRadius: 12,
+      padding: "12px 16px",
+      marginBottom: 8,
+      display: "flex",
+      alignItems: "center",
+      gap: 12
+    }
+  }, React.createElement("div", {
+    style: {
+      flexShrink: 0,
+      textAlign: "center",
+      background: "var(--ember)",
+      borderRadius: 8,
+      padding: "6px 10px",
+      minWidth: 42
+    }
+  }, React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 8,
+      letterSpacing: 1.1,
+      color: "rgba(255,255,255,0.75)"
+    }
+  }, ev.date ? _tmDate(ev.date).split(" ")[0].toUpperCase() : ""), React.createElement("div", {
+    className: "serif",
+    style: {
+      fontSize: 20,
+      lineHeight: 1,
+      color: "#fff",
+      letterSpacing: -0.5
+    }
+  }, ev.date ? _tmDate(ev.date).split(" ")[1].replace(",", "") : "—"), React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 8,
+      letterSpacing: 0.8,
+      color: "rgba(255,255,255,0.7)"
+    }
+  }, ev.date ? ev.date.split("-")[0] : "")), React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 13,
+      fontWeight: 500,
+      color: "var(--ink)",
+      lineHeight: 1.2,
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis"
+    }
+  }, ev.venueName), React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 0.8,
+      color: "var(--muted)",
+      marginTop: 3
+    }
+  }, ev.location, ev.time ? ` · ${ev.time.slice(0, 5)}` : "")), ev.url && React.createElement("a", {
+    href: ev.url,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: {
+      flexShrink: 0,
+      fontFamily: "Geist Mono, monospace",
+      fontSize: 8,
+      letterSpacing: 1.1,
+      color: "var(--ember)",
+      textDecoration: "none",
+      border: "1px solid var(--ember)",
+      borderRadius: 999,
+      padding: "5px 9px",
+      whiteSpace: "nowrap"
+    }
+  }, "TICKETS ↗")))), React.createElement("div", {
+    id: "artist-section-setlists"
+  }), SETLISTS_PROXY_URL && React.createElement("div", {
+    style: {
+      marginBottom: 18
+    }
+  }, React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1.4,
+      color: "var(--muted)",
+      marginBottom: 10,
+      display: "flex",
+      alignItems: "center",
+      gap: 8
+    }
+  }, "SETLIST HISTORY"), setlists === undefined && React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 10
+    }
+  }, [0, 1].map(i => React.createElement("div", {
+    key: i,
+    style: {
+      background: "var(--paper-2)",
+      borderRadius: 12,
+      padding: "12px 14px",
+      border: "1px solid var(--line)"
+    }
+  }, React.createElement("div", {
+    className: "skel",
+    style: {
+      width: "40%",
+      height: 10,
+      marginBottom: 8
+    }
+  }), React.createElement("div", {
+    className: "skel",
+    style: {
+      width: "70%",
+      height: 12,
+      marginBottom: 10
+    }
+  }), React.createElement("div", {
+    style: {
+      borderTop: "1px solid var(--line)",
+      paddingTop: 8,
+      display: "flex",
+      flexDirection: "column",
+      gap: 6
+    }
+  }, [0, 1, 2].map(j => React.createElement("div", {
+    key: j,
+    style: {
+      display: "flex",
+      gap: 10,
+      alignItems: "center"
+    }
+  }, React.createElement("div", {
+    className: "skel",
+    style: {
+      width: 18,
+      height: 9
+    }
+  }), React.createElement("div", {
+    className: "skel",
+    style: {
+      flex: 1,
+      height: 13
+    }
+  }))))))), setlists !== undefined && setlists !== null && setlists.length === 0 && React.createElement("div", {
+    style: {
+      padding: "16px 14px",
+      borderRadius: 12,
+      background: "var(--paper-2)",
+      border: "1px solid var(--line)",
+      textAlign: "center"
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 20,
+      opacity: 0.3,
+      marginBottom: 4
+    }
+  }, "♫"), React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1.2,
+      color: "var(--muted)"
+    }
+  }, slError ? "COULDN'T LOAD SETLISTS" : "NO DOCUMENTED SETLISTS"), slError && React.createElement("button", {
+    onClick: () => {
+      setSlError(false);
+      setSetlists(undefined);
+      fetchSetlists(activeName).then(setSetlists).catch(() => {
+        setSetlists([]);
+        setSlError(true);
+      });
+    },
+    className: "mono",
+    style: {
+      marginTop: 8,
+      padding: "6px 14px",
+      borderRadius: 999,
+      background: "var(--paper-2)",
+      border: "1px solid var(--line-2)",
+      color: "var(--ink)",
+      fontSize: 9,
+      letterSpacing: 1.2,
+      fontWeight: 700,
+      cursor: "pointer"
+    }
+  }, "↻ RETRY")), Array.isArray(setlists) && setlists.map((sl, idx) => {
+    var songs = (sl.sets?.set || []).flatMap(s => s.song || []);
+    var isOpen = !!slExpanded[idx];
+    var displaySongs = isOpen ? songs : songs.slice(0, 5);
+    var isFest = _slIsThisFestival(sl);
+    var venue = sl.venue?.name || "";
+    var city = sl.venue?.city?.name || "";
+    var state = sl.venue?.city?.stateCode || sl.venue?.city?.country?.code || "";
+    return React.createElement("div", {
+      key: idx,
+      style: {
+        background: "var(--paper-2)",
+        borderRadius: 12,
+        padding: "12px 14px",
+        marginBottom: 10,
+        border: `1px solid ${isFest ? "rgba(232,93,46,0.4)" : "var(--line)"}`
+      }
+    }, React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "space-between",
+        marginBottom: 8
+      }
+    }, React.createElement("div", null, isFest && React.createElement("div", {
+      className: "mono",
+      style: {
+        fontSize: 8,
+        letterSpacing: 1.4,
+        color: "var(--ember)",
+        fontWeight: 700,
+        marginBottom: 3
+      }
+    }, "★ ", (FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.brand || "").toUpperCase()), React.createElement("div", {
+      className: "mono",
+      style: {
+        fontSize: 10,
+        letterSpacing: 0.8,
+        color: "var(--ink)",
+        fontWeight: 600
+      }
+    }, _slDate(sl.eventDate)), React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "var(--muted)",
+        marginTop: 2
+      }
+    }, venue, city ? ` · ${city}${state ? `, ${state}` : ""}` : "")), sl.url && React.createElement("a", {
+      href: sl.url,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: {
+        fontFamily: "Geist Mono, monospace",
+        fontSize: 8,
+        letterSpacing: 1.1,
+        color: "var(--muted)",
+        textDecoration: "none",
+        flexShrink: 0,
+        marginLeft: 8,
+        marginTop: 2
+      }
+    }, "SETLIST.FM ↗")), songs.length === 0 ? React.createElement("div", {
+      className: "mono",
+      style: {
+        borderTop: "1px solid var(--line)",
+        paddingTop: 8,
+        fontSize: 10,
+        letterSpacing: 1,
+        color: "var(--muted)",
+        fontStyle: "italic"
+      }
+    }, "SONGS NOT DOCUMENTED · TAP SETLIST.FM ↗ FOR DETAILS") : React.createElement("div", {
+      style: {
+        borderTop: "1px solid var(--line)",
+        paddingTop: 6
+      }
+    }, displaySongs.map((song, si) => {
+      var sn = song.name?.toLowerCase();
+      var isBanger = spotifyStats?.topTrackNames?.includes(sn) || lfm?.topTrackNames?.includes(sn);
+      return React.createElement("div", {
+        key: si,
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+          padding: "3px 0"
+        }
+      }, React.createElement("span", {
+        className: "mono",
+        style: {
+          fontSize: 9,
+          color: "var(--muted)",
+          width: 18,
+          textAlign: "right",
+          flexShrink: 0
+        }
+      }, si + 1), React.createElement("span", {
+        style: {
+          fontSize: 13,
+          color: isBanger ? stage.color : "var(--ink)",
+          fontWeight: isBanger ? 600 : 400,
+          flex: 1
+        }
+      }, song.name), isBanger && React.createElement("span", {
+        className: "mono",
+        style: {
+          fontSize: 8,
+          letterSpacing: 1,
+          color: stage.color,
+          fontWeight: 700
+        }
+      }, "BANGER"), song.tape && React.createElement("span", {
+        className: "mono",
+        style: {
+          fontSize: 8,
+          color: "var(--muted)",
+          letterSpacing: 1
+        }
+      }, "TAPE"));
+    }), songs.length > 5 && React.createElement("button", {
+      onClick: () => setSlExpanded(e => ({
+        ...e,
+        [idx]: !e[idx]
+      })),
+      style: {
+        background: "transparent",
+        border: "none",
+        cursor: "pointer",
+        fontFamily: "Geist Mono, monospace",
+        fontSize: 9,
+        letterSpacing: 1.2,
+        color: "var(--ember)",
+        padding: "6px 0 2px",
+        display: "block"
+      }
+    }, isOpen ? "SHOW LESS ↑" : `+${songs.length - 5} MORE SONGS ↓`)));
+  })), React.createElement("div", {
+    style: {
+      marginBottom: 16
+    }
+  }, React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1.4,
+      color: "var(--muted)",
+      marginBottom: 6,
+      display: "flex",
+      alignItems: "center",
+      gap: 6
+    }
+  }, "MY NOTE", note.trim() && React.createElement("span", {
+    style: {
+      width: 5,
+      height: 5,
+      borderRadius: 5,
+      background: "var(--ember)"
+    }
+  })), React.createElement("textarea", {
+    value: note,
+    onChange: e => handleNote(e.target.value),
+    placeholder: "heard at Ultra 2024 · Alex recommended · must see",
+    rows: 2,
+    maxLength: 500,
+    style: {
+      width: "100%",
+      padding: "10px 12px",
+      boxSizing: "border-box",
+      background: "var(--paper-2)",
+      border: "1px solid var(--line-2)",
+      borderRadius: 12,
+      resize: "none",
+      fontFamily: "Geist, sans-serif",
+      fontSize: 14,
+      lineHeight: 1.4,
+      color: "var(--ink)",
+      outline: "none"
+    }
+  })), React.createElement("div", {
+    style: {
+      background: "var(--ink)",
+      color: "var(--paper)",
+      borderRadius: 16,
+      padding: 14,
+      marginBottom: 16,
+      display: "flex",
+      alignItems: "center",
+      gap: 12
+    }
+  }, React.createElement("button", {
+    onClick: handlePreview,
+    "aria-label": playing ? "Pause preview" : "Play preview",
+    "aria-pressed": playing,
+    style: {
+      width: 44,
+      height: 44,
+      borderRadius: 44,
+      border: "none",
+      background: !connected ? "rgba(247,237,224,0.1)" : playing ? "var(--ember)" : "#1DB954",
+      cursor: connected && preview !== "none" ? "pointer" : "default",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexShrink: 0,
+      transition: "background 0.2s"
+    }
+  }, preview === "loading" ? React.createElement("div", {
+    style: {
+      width: 16,
+      height: 16,
+      borderRadius: "50%",
+      border: "2px solid rgba(255,255,255,0.35)",
+      borderTopColor: "#fff",
+      animation: "spin 0.75s linear infinite"
+    }
+  }) : playing ? React.createElement("svg", {
+    width: "14",
+    height: "14",
+    viewBox: "0 0 24 24",
+    fill: "#fff"
+  }, React.createElement("rect", {
+    x: "5",
+    y: "4",
+    width: "4",
+    height: "16",
+    rx: "1"
+  }), React.createElement("rect", {
+    x: "15",
+    y: "4",
+    width: "4",
+    height: "16",
+    rx: "1"
+  })) : React.createElement("svg", {
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "#fff"
+  }, React.createElement("path", {
+    d: "M8 5 L19 12 L8 19 Z"
+  }))), React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    className: "serif",
+    style: {
+      fontSize: 16,
+      lineHeight: 1.1
+    }
+  }, preview && typeof preview === "object" ? preview.name : "30-sec Preview"), React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1.2,
+      color: "rgba(247,237,224,0.5)",
+      marginTop: 3
+    }
+  }, !connected ? "CONNECT SPOTIFY TO PREVIEW" : preview === "none" ? "NO PREVIEW AVAILABLE" : preview === "loading" ? "LOADING…" : playing ? "PLAYING · VIA SPOTIFY" : "TAP TO PLAY · 30 SEC")), React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 2,
+      height: 22,
+      flexShrink: 0
+    }
+  }, waveHeights.map((h, i) => React.createElement("div", {
+    key: i,
+    style: {
+      width: 2.5,
+      height: h,
+      background: playing ? i % 2 === 0 ? "var(--ember)" : "#f59a36" : connected ? "#1DB954" : "rgba(247,237,224,0.2)",
+      borderRadius: 2,
+      transition: "height 0.12s ease, background 0.3s"
+    }
+  })))))), React.createElement("div", {
+    style: {
+      flexShrink: 0,
+      padding: "12px 20px calc(10px + env(safe-area-inset-bottom)) 20px",
+      background: saveFlash ? saved ? "rgba(45,122,85,0.08)" : "var(--paper)" : "var(--paper)",
+      borderTop: "1px solid var(--line)",
+      display: "flex",
+      gap: 8,
+      transition: "background 0.3s ease"
+    }
+  }, React.createElement("button", {
+    onClick: handleSave,
+    style: {
+      flex: 1,
+      padding: "14px",
+      borderRadius: 14,
+      background: saved ? "var(--ink)" : "var(--ember)",
+      color: saved ? "var(--paper)" : "#fff",
+      border: "none",
+      cursor: "pointer",
+      fontFamily: "Geist Mono, monospace",
+      fontSize: 10,
+      letterSpacing: 1.4,
+      fontWeight: 500,
+      transition: "background 0.2s ease, transform 0.35s var(--ease-spring)",
+      transform: saveFlash ? "scale(1.03)" : "scale(1)"
+    }
+  }, saveFlash && saved && React.createElement("span", {
+    style: {
+      animation: "checkIn 0.35s ease",
+      display: "inline-block",
+      marginRight: 4
+    }
+  }, "✓"), saved ? saveFlash ? "SAVED!" : "✓ SAVED TO LINEUP" : "+ ADD TO LINEUP"), React.createElement("button", {
+    onClick: () => (window._pushNav || (n => setState({
+      ...state,
+      ...n
+    })))({
+      tab: "memories",
+      memoriesNight: a.day,
+      artist: null
+    }),
+    "aria-label": "Open memories",
+    style: {
+      width: 54,
+      borderRadius: 14,
+      background: "transparent",
+      border: "1px solid var(--line-2)",
+      cursor: "pointer",
+      fontSize: 16
+    }
+  }, "📸")));
+}
+Object.assign(window, {
+  ArtistScreen
+});
