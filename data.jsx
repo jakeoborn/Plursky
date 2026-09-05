@@ -24,6 +24,10 @@
  * @property {number} year - Festival year
  * @property {number} startMs - UTC ms timestamp for gates open
  * @property {number} endMs - UTC ms timestamp for festival close
+ * @property {number} [lineupAnnouncedMs] - UTC ms for the day this festival's
+ *   lineup dropped. Optional, and only ever a SOURCED date — the home
+ *   Festival Clock fills its sky from here to gates, and falls back to a
+ *   generic window when it is absent rather than assuming one.
  * @property {string} tz - IANA timezone identifier
  * @property {string} tzAbbr - Timezone abbreviation (PDT, CDT, etc.)
  * @property {number} utcOffsetHours - UTC offset in hours
@@ -548,6 +552,11 @@ const FESTIVALS_REGISTRY = [
         W1: Date.UTC(2026, 9, 2, 17, 0, 0),
         W2: Date.UTC(2026, 9, 9, 17, 0, 0),
       },
+      // Lineup reveal AND on-sale both landed Tue May 5 2026 (teased Apr 30).
+      // Day granularity is all the reporting gives, so this is local midnight
+      // — not a fabricated clock time. Drives the Festival Clock's sky fill.
+      // cbsaustin.com/news/local/acl-music-festival-to-announce-lineup-drop-tickets-next-week
+      lineupAnnouncedMs: Date.UTC(2026, 4, 5, 5, 0, 0),
       tz:      "America/Chicago",
       tzAbbr:  "CDT",
       utcOffsetHours: -5,
