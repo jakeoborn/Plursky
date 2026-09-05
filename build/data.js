@@ -604,8 +604,8 @@ var FESTIVALS_REGISTRY = [{
       lng: -97.77340
     }, {
       stageId: "titos",
-      lat: 30.26533,
-      lng: -97.76755
+      lat: 30.264752,
+      lng: -97.768756
     }, {
       stageId: "tmobile",
       lat: 30.26504,
@@ -660,7 +660,8 @@ function getActiveFestivalId() {
     var entry = stored && FESTIVALS_REGISTRY.find(f => f.config.id === stored && f.available);
     if (entry) {
       var end = entry.config.endMs;
-      if (typeof end !== "number" || now - end <= _FESTIVAL_STALE_MS) return stored;
+      var explicit = localStorage.getItem("active_festival_explicit") !== "0";
+      if (explicit || typeof end !== "number" || now - end <= _FESTIVAL_STALE_MS) return stored;
     }
   } catch {}
   return _resolveDefaultFestivalId(now);
@@ -668,6 +669,7 @@ function getActiveFestivalId() {
 function setActiveFestivalAndReload(id) {
   try {
     localStorage.setItem("active_festival_id", id);
+    localStorage.setItem("active_festival_explicit", "1");
   } catch {}
   window.location.reload();
 }
@@ -1117,8 +1119,8 @@ var ACL_STAGES = [{
   name: "Tito's Stage",
   short: "TITO'S",
   color: "#f97316",
-  x: 80,
-  y: 31,
+  x: 68,
+  y: 37,
   size: 1.2,
   desc: "North-east · mid-large stage",
   vibe: "Texas Heat",

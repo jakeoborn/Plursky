@@ -734,6 +734,22 @@ function LineupScreen({ state, setState }) {
       });
   }, [day, weekendFilter, filter, stageFilter, genreFilter, tierFilter, sortBy, q, savedSetIds]);
 
+  // When a search empties the current day, the overwhelmingly common reason is
+  // that the artist plays a DIFFERENT day — so say so rather than leaving the
+  // user to tap all three chips to find out. Same name/genre/stage test as the
+  // filter above, day deliberately ignored.
+  const _otherDayHits = React.useMemo(() => {
+    const term = q.trim().toLowerCase();
+    if (!term) return 0;
+    return ARTISTS.filter(a => {
+      if (a.day === day) return false;
+      const st = STAGES.find(s => s.id === a.stage);
+      return a.name.toLowerCase().includes(term)
+        || (a.genre || "").toLowerCase().includes(term)
+        || (st?.name || "").toLowerCase().includes(term);
+    }).length;
+  }, [q, day]);
+
   // Per-day saved counts + conflict counts — memoized on saved only (was an
   // O(n²)-per-day overlap loop on every render, report-card #8).
   const dayStats = React.useMemo(() => DAYS.map(d => {
@@ -1203,7 +1219,30 @@ function LineupScreen({ state, setState }) {
             </div>
           );
         })()}
-        {viewMode === "list" && dayArtists.length === 0 && (
+        {/* Zero rows has two completely different causes and they used to share
+            one message: a search that matched nothing told you "No sets saved
+            yet — TAP ANY [+] TO SAVE YOUR FIRST SET", which answers a question
+            nobody asked and hides the fact that the query is what emptied the
+            list. Search loses to nothing else here, because when a query is
+            active it is always the thing the user is looking at. */}
+        {viewMode === "list" && dayArtists.length === 0 && q.trim() !== "" && (
+          <div style={{ padding: 40, textAlign: "center" }}>
+            <div className="serif" style={{ fontSize: 22, color: "var(--muted)", fontStyle: "italic", marginBottom: 6 }}>
+              No matches for “{q.trim()}”
+            </div>
+            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
+              {_otherDayHits > 0
+                ? `${_otherDayHits} MATCH${_otherDayHits === 1 ? "" : "ES"} ON ANOTHER DAY`
+                : "NO ARTIST, STAGE OR GENRE BY THAT NAME"}
+            </div>
+            <button onClick={() => setQ("")} className="mono" style={{
+              marginTop: 14, padding: "8px 16px", borderRadius: 999,
+              background: "var(--ink)", color: "var(--paper)", border: "none",
+              fontSize: 10, letterSpacing: 1.4, fontWeight: 700, cursor: "pointer",
+            }}>CLEAR SEARCH</button>
+          </div>
+        )}
+        {viewMode === "list" && dayArtists.length === 0 && q.trim() === "" && (
           <div style={{ padding: 40, textAlign: "center" }}>
             <div className="serif" style={{ fontSize: 22, color: "var(--muted)", fontStyle: "italic", marginBottom: 6 }}>
               {state.saved.length === 0 ? "No sets saved yet" : "Nothing saved for this day"}
@@ -1608,7 +1647,7 @@ function SavedSidebar({ day, state, setState }) {
 function GridSetBlock({
   a, stage, state, setState, top, height, left, width,
   active, saved, clash, matched, isHighlighted, refStore,
-  showEndTime, dueMins,
+  showEndTime, dueMins, narrow = false,
 }) {
   const isHeadliner = a.tier === 3;
   const fillAlpha = isHeadliner ? "38" : "22";
@@ -1644,7 +1683,7 @@ function GridSetBlock({
         background: `${stage.color}${active || isHighlighted ? fillAlpha : dimAlpha}`,
         borderLeft: `3px solid ${active || isHighlighted ? stage.color : stage.color + "44"}`,
         borderRadius: 6,
-        padding: "4px 6px 4px 7px",
+        padding: narrow ? "3px 3px 3px 4px" : "4px 6px 4px 7px",
         cursor: "pointer", overflow: "hidden",
         opacity: active || isHighlighted ? 1 : 0.32,
         transition: "opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-left 0.2s ease, transform 0.12s ease",
@@ -1658,22 +1697,34 @@ function GridSetBlock({
         display: "flex", flexDirection: "column",
       }}>
       <div style={{
-        fontSize: isHeadliner ? 12.5 : 11.5,
+        fontSize: narrow ? 9.5 : isHeadliner ? 12.5 : 11.5,
         fontWeight: isHeadliner ? 800 : 700,
-        lineHeight: 1.1, color: "var(--ink)",
+        lineHeight: narrow ? 1.05 : 1.1, color: "var(--ink)",
         overflow: "hidden", textOverflow: "ellipsis",
-        display: "-webkit-box", WebkitLineClamp: height > 60 ? 2 : 1,
+        display: "-webkit-box",
+        WebkitLineClamp: narrow
+          ? (height > 46 ? 3 : height > 30 ? 2 : 1)
+          : (height > 60 ? 2 : 1),
         WebkitBoxOrient: "vertical",
-        paddingRight: saved ? 12 : 0,
+        // overflowWrap, NOT wordBreak. `wordBreak: break-word` breaks at any
+        // character even when a space break was available, which turned
+        // "Paris Paloma" into "Paris / Palom / a". overflowWrap breaks long
+        // tokens only when they would otherwise overflow, so short names wrap
+        // at their spaces and only genuinely-too-long words get split.
+        overflowWrap: "break-word",
+        paddingRight: saved ? (narrow ? 9 : 12) : 0,
         fontFamily: isHeadliner ? "Instrument Serif, Georgia, serif" : "Geist, -apple-system, sans-serif",
       }}>{a.name}</div>
       {/* Time label. The range only renders where it FITS — a 94px column
           clipped "2:45 PM - 3:30 P" mid-string, so narrow layouts show the
-          start time alone rather than a truncated lie. */}
-      <div className="mono" style={{
-        fontSize: 8, letterSpacing: 0.3, color: "var(--muted)",
-        marginTop: 2, whiteSpace: "nowrap",
-      }}>{fmt12(a.start)}{showEndTime && height > 38 ? ` – ${fmt12(a.end)}` : ""}</div>
+          start time alone rather than a truncated lie. Below `narrow` even the
+          start does not fit, and the hour gutter already carries it. */}
+      {!narrow && (
+        <div className="mono" style={{
+          fontSize: 8, letterSpacing: 0.3, color: "var(--muted)",
+          marginTop: 2, whiteSpace: "nowrap",
+        }}>{fmt12(a.start)}{showEndTime && height > 38 ? ` – ${fmt12(a.end)}` : ""}</div>
+      )}
       {dueMins != null && height > 46 && (
         <div className="mono" style={{
           marginTop: "auto", fontSize: 8, letterSpacing: 1, fontWeight: 800,
@@ -1782,6 +1833,14 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
     : Math.max(MIN_COL, Math.floor((boxW - GUTTER_W - 2) / Math.max(1, cols.length)));
   // Only the wide focus column has room for a full "7:15 PM – 8:00 PM".
   const showEndTime = COL_W >= 120;
+  // FIT packs every stage into one screen, so at 375px with 7 stages a column
+  // is ~47px wide and only ~34px of that is inside the padding. "12:45 PM" at
+  // 8px mono needs ~38px, so the time was being cut mid-glyph, and names were
+  // rendering three characters and an ellipsis. Below this width the block
+  // stops trying: the time comes off entirely (the hour gutter already encodes
+  // it — that is the whole point of a timetable) and the name gets the space,
+  // at a smaller size over more lines.
+  const narrow = COL_W < 72;
 
   const scrollToStage = (id) => {
     const i = cols.findIndex(c => c.stage.id === id);
@@ -1958,6 +2017,7 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
                         isHighlighted={highlightId === a.id}
                         refStore={_blockRefs.current[a.id] || (_blockRefs.current[a.id] = { lp: null, fired: false })}
                         showEndTime={showEndTime && lay.lanes === 1}
+                        narrow={narrow || laneW < 72}
                         dueMins={due && due.id === a.id ? due.mins : null}
                       />
                     );

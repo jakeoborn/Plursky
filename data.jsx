@@ -613,7 +613,14 @@ const FESTIVALS_REGISTRY = [
         // official 2026 patron map is not published, so its real position is
         // unknown, and a guessed anchor would silently mis-tag photos — worse
         // than no anchor, which simply declines to geo-match that stage.
-        { stageId: "titos",    lat: 30.26533, lng: -97.76755 },
+        // Re-derived 2026-09-05 alongside the x/y correction above. The old
+        // value was EXACTLY mapToGps(80,31) — i.e. it was never surveyed, it
+        // was computed from the wrong grid position, which is also why the
+        // affine gate passed on it: the check was circular. This one is
+        // mapToGps(68,37) through the same amex/miller/beatbox affine, so it is
+        // derived too, but from a map position verified against the art. Treat
+        // it as map-accurate, not survey-accurate.
+        { stageId: "titos",    lat: 30.264752, lng: -97.768756 },
         { stageId: "tmobile",  lat: 30.26504, lng: -97.77471 },
         { stageId: "bmi",      lat: 30.26313, lng: -97.77306 },
       ],
@@ -709,18 +716,35 @@ function getActiveFestivalId() {
     const entry = stored && FESTIVALS_REGISTRY.find(f => f.config.id === stored && f.available);
     if (entry) {
       const end = entry.config.endMs;
+      // An EXPLICIT pick outranks staleness, forever. Without this the switcher
+      // did not work at all for any finished festival: you picked one, the page
+      // reloaded, and this resolver immediately auto-advanced you off it because
+      // its endMs was more than a week old. Nothing was written back, so the
+      // bounce repeated on every single load — the pick could never take.
+      // setActiveFestivalAndReload stamps the flag below; a stored id with no
+      // flag predates it and is grandfathered as explicit, because that setter
+      // has always been the only writer of active_festival_id, so the value can
+      // only have come from a user tapping a festival.
+      const explicit = localStorage.getItem("active_festival_explicit") !== "0";
       // Undated stored pick: honour it. We cannot call it stale without a date,
       // and it was an explicit user choice.
-      if (typeof end !== "number" || now - end <= _FESTIVAL_STALE_MS) return stored;
-      // Stale — fall through and auto-advance. Deliberately NOT written back to
-      // localStorage: the stored key stays the user's explicit choice, so this
-      // stays a resolution rule and never silently overwrites what they picked.
+      if (explicit || typeof end !== "number" || now - end <= _FESTIVAL_STALE_MS) return stored;
+      // Not explicit and stale — fall through and auto-advance. Deliberately NOT
+      // written back: the stored key stays the user's choice, so this stays a
+      // resolution rule and never silently overwrites what they picked.
     }
   } catch {}
   return _resolveDefaultFestivalId(now);
 }
 function setActiveFestivalAndReload(id) {
-  try { localStorage.setItem("active_festival_id", id); } catch {}
+  try {
+    localStorage.setItem("active_festival_id", id);
+    // Marks this as a deliberate choice so getActiveFestivalId honours it even
+    // after the festival ends. Written as a flag rather than inferred from the
+    // id so that any future NON-user writer of active_festival_id (a deep link,
+    // a migration) can set "0" and keep the auto-advance behaviour.
+    localStorage.setItem("active_festival_explicit", "1");
+  } catch {}
   window.location.reload();
 }
 
@@ -1272,7 +1296,13 @@ const ACL_STAGES = [
   //   stage deliberately has NO gpsAnchor. Re-derive x/y AND add the anchor
   //   through the amex/miller/beatbox affine the moment the map drops.
   { id: "snapchat",name: "Snapchat Stage",    short: "SNAPCHAT",color: "#facc15", x: 66, y: 42, size: 1.2, desc: "Location TBA · check the on-site map", vibe: "New for 2026", vibeNote: "New sponsor stage. Placement confirms when ACL publishes the 2026 map.", peak: "14:00–21:00" },
-  { id: "titos",   name: "Tito's Stage",      short: "TITO'S",color: "#f97316", x: 80, y: 31, size: 1.2, desc: "North-east · mid-large stage",  vibe: "Texas Heat",        vibeNote: "Austin locals + rising stars. Vodka optional.",                 peak: "13:00–19:00" },
+  // x/y CORRECTED 2026-09-05 from (80,31), which put the pin ~132 m north-east
+  // of the stage — out in Lady Bird Lake. Measured off acl-park.webp (the image
+  // the app actually renders) and cross-checked against acl-map-2025.webp
+  // through the crop/scale between them; the two agree to ~0.4 grid units.
+  // (68,37) is the stage PLATFORM, matching how amex/miller/bmi/beatbox sit on
+  // their structures rather than their labels.
+  { id: "titos",   name: "Tito's Stage",      short: "TITO'S",color: "#f97316", x: 68, y: 37, size: 1.2, desc: "North-east · mid-large stage",  vibe: "Texas Heat",        vibeNote: "Austin locals + rising stars. Vodka optional.",                 peak: "13:00–19:00" },
   { id: "miller",  name: "Miller Lite Stage", short: "MILLER",color: "#38bdf8", x: 31, y: 24, size: 1.0, desc: "North · by Lady Bird Lake",     vibe: "Chill Vibes",       vibeNote: "Shade, cold beer, great sound. Closest to the lake.",           peak: "13:00–19:00" },
   { id: "tmobile", name: "T-Mobile Stage",    short: "T-MOBILE",color: "#a855f7", x: 8, y: 34, size: 1.6, desc: "West side · co-headliners",   vibe: "The Other Main",   vibeNote: "Second headline stage — Skrillex, Lorde and The xx close here.", peak: "16:00–22:00" },
   { id: "bmi",     name: "BMI Stage",         short: "BMI",  color: "#fbbf24", x: 25, y: 54, size: 0.9, desc: "Center-left · songwriter stage", vibe: "Songwriter's Corner",vibeNote: "Stripped-down, intimate. Singer-songwriter heaven.",           peak: "12:00–18:00" },

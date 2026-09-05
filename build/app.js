@@ -347,7 +347,8 @@ var _FID = FESTIVAL_CONFIG.id;
 var _SAVED_KEY = `${_FID}_saved_v1`;
 function SearchModal({
   onClose,
-  onSelectArtist
+  onSelectArtist,
+  saved = []
 }) {
   var [q, setQ] = React.useState("");
   var inputRef = React.useRef(null);
@@ -543,7 +544,7 @@ function SearchModal({
       transition: "background 0.12s, border-color 0.12s",
       animation: `springIn 0.3s ease-out ${qi * 25}ms both`
     }
-  }, t.label))), state.saved.length > 0 && React.createElement(React.Fragment, null, React.createElement("div", {
+  }, t.label))), saved.length > 0 && React.createElement(React.Fragment, null, React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 9,
@@ -551,7 +552,7 @@ function SearchModal({
       color: "var(--muted)",
       marginBottom: 8
     }
-  }, "YOUR LINEUP · ", state.saved.length, " SETS"), state.saved.slice(0, 6).map(id => {
+  }, "YOUR LINEUP · ", saved.length, " SETS"), saved.slice(0, 6).map(id => {
     var a = ARTISTS.find(x => x.id === id);
     if (!a) return null;
     var st = STAGES.find(s => s.id === a.stage);
@@ -607,7 +608,7 @@ function SearchModal({
         color: "var(--ember)"
       }
     }, "★"));
-  }), state.saved.length > 6 && React.createElement("div", {
+  }), saved.length > 6 && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 9,
@@ -616,7 +617,7 @@ function SearchModal({
       padding: "8px 0",
       textAlign: "center"
     }
-  }, "+", state.saved.length - 6, " MORE"))) : results.length === 0 ? React.createElement("div", {
+  }, "+", saved.length - 6, " MORE"))) : results.length === 0 ? React.createElement("div", {
     style: {
       padding: 48,
       textAlign: "center"
@@ -1196,7 +1197,8 @@ function App() {
     onSelectArtist: id => setState({
       ...state,
       artist: id
-    })
+    }),
+    saved: state.saved || []
   }), showOnboarding && React.createElement(OnboardingModal, {
     state: state,
     setState: setState,
@@ -1293,7 +1295,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v254"
+        version: "v255"
       }));
     } catch {}
   }
@@ -1358,7 +1360,7 @@ class RootErrorBoundary extends React.Component {
         letterSpacing: 1.2,
         color: "rgba(26,18,13,0.45)"
       }
-    }, "PLURSKY · v254"));
+    }, "PLURSKY · v255"));
   }
 }
 function SetStartingCinematic() {
