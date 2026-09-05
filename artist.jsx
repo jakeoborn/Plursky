@@ -953,7 +953,8 @@ function ArtistScreen({ state, setState }) {
   }, []);
   // On-demand photo: use cached image or fetch from Spotify search
   const [fetchedPhoto, setFetchedPhoto] = React.useState(null);
-  const heroPhoto = artistImages[activeName.toLowerCase()] || fetchedPhoto || (tadb?.image ?? null);
+  // heroPhoto is computed further down, AFTER `tadb` exists — see the note
+  // there. Computing it here silently produced "no photo" on every artist.
   const saved = state.saved.includes(a.id);
   const [saveFlash, setSaveFlash] = React.useState(false);
   const handleSave = () => {
@@ -992,6 +993,29 @@ function ArtistScreen({ state, setState }) {
   const [mcTracks,  setMcTracks]  = React.useState(undefined);
   const [mcPlaying, setMcPlaying] = React.useState(null); // key of playing track
   const [tadb,      setTadb]      = React.useState(undefined);
+
+  // ── Hero photo ───────────────────────────────────────────────────────────
+  // This used to be computed ~40 lines ABOVE the `tadb` declaration. Written
+  // as `const`, that is a temporal-dead-zone ReferenceError — but the build
+  // lowers const to var (CLAUDE.md §5), so `tadb` was simply `undefined` on
+  // every single render and `tadb?.image` never contributed anything. It read
+  // like a working fallback chain and was dead code.
+  //
+  // That mattered because the other two links are also dead for most users:
+  //  · artistImages cache — only ever written by the Deezer effect below
+  //  · fetchedPhoto      — Spotify, which needs the user to have connected
+  //  · api.deezer.com    — returns CORS headers but NO
+  //    access-control-allow-origin (measured 2026-09-05), so the browser
+  //    blocks every response and fetchDeezerPhoto's catch returns null
+  // So on a fresh install with no Spotify there was no path to a photo at
+  // all, which is exactly what Jake reported. TheAudioDB does send
+  // access-control-allow-origin: * and had a thumbnail for the first artist
+  // tried, so it is the lane that actually works today.
+  const heroPhotoCache = artistImages[activeName.toLowerCase()] || null;
+  const heroPhoto = heroPhotoCache || fetchedPhoto || (tadb?.image ?? null);
+  const heroPhotoSrc = heroPhotoCache ? "DEEZER"
+    : fetchedPhoto ? "SPOTIFY"
+    : (tadb?.image ? "THEAUDIODB" : null);
   const [slError,   setSlError]   = React.useState(false);
   const [ytError,   setYtError]   = React.useState(false);
   const [edcTracklist, setEdcTracklist] = React.useState(undefined);
@@ -1212,8 +1236,14 @@ function ArtistScreen({ state, setState }) {
         {a.tier === 3 && heroPhoto && <PyroStarburst color={stage?.color || "var(--ember)"} />}
         <div style={{
           position: "absolute", inset: 0, zIndex: 2,
+          // The scrim has to guarantee legibility over ANY photo, not just a
+          // dark one. The old ramp was still near-transparent where the name
+          // sits and a pale press shot (Charli XCX is a light pink frame)
+          // washed the name out completely. Now it darkens hard through the
+          // bottom third and puts a light veil up top so the back button and
+          // date pill survive a bright sky too.
           background: heroPhoto
-            ? `linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0) 35%, ${stage?.color || "rgba(26,18,13,1)"}22 65%, rgba(26,18,13,0.92) 100%)`
+            ? `linear-gradient(180deg, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.06) 26%, ${stage?.color || "rgba(26,18,13,1)"}22 52%, rgba(26,18,13,0.72) 76%, rgba(26,18,13,0.96) 100%)`
             : `linear-gradient(180deg, transparent 0%, ${stage?.color || "rgba(26,18,13,1)"}15 50%, rgba(26,18,13,0.95) 100%)`,
         }} />
         <button onClick={() => window._popNav ? window._popNav() : setState({ ...state, artist: null })} aria-label="Back" style={{
@@ -1253,7 +1283,21 @@ function ArtistScreen({ state, setState }) {
           <ShareArtistButton artist={a} />
         </div>
 
-        <div style={{ position: "absolute", bottom: 16, left: 18, right: 18 }}>
+        {heroPhoto && heroPhotoSrc && (
+          <div className="mono" aria-hidden="true" style={{
+            position: "absolute", top: 58, right: 14, zIndex: 3,
+            fontSize: 7.5, letterSpacing: 1, fontWeight: 700,
+            color: "rgba(255,255,255,0.55)",
+            textShadow: "0 1px 4px rgba(0,0,0,0.6)",
+          }}>PHOTO · {heroPhotoSrc}</div>
+        )}
+
+        {/* zIndex 3 puts the name/genre ABOVE the scrim. Without it the text
+            sat UNDER the gradient (scrim is zIndex 2) and every attempt to
+            improve legibility by darkening the scrim dimmed the text by the
+            same amount — proven by painting the scrim solid green and
+            watching the name go green with it. */}
+        <div style={{ position: "absolute", bottom: 16, left: 18, right: 18, zIndex: 3 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
             <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, opacity: 0.85, fontWeight: 600 }}>
               {a.genre.toUpperCase()}

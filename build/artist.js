@@ -1152,7 +1152,6 @@ function ArtistScreen({
     }
   }, []);
   var [fetchedPhoto, setFetchedPhoto] = React.useState(null);
-  var heroPhoto = artistImages[activeName.toLowerCase()] || fetchedPhoto || (tadb?.image ?? null);
   var saved = state.saved.includes(a.id);
   var [saveFlash, setSaveFlash] = React.useState(false);
   var handleSave = () => {
@@ -1188,6 +1187,9 @@ function ArtistScreen({
   var [mcTracks, setMcTracks] = React.useState(undefined);
   var [mcPlaying, setMcPlaying] = React.useState(null);
   var [tadb, setTadb] = React.useState(undefined);
+  var heroPhotoCache = artistImages[activeName.toLowerCase()] || null;
+  var heroPhoto = heroPhotoCache || fetchedPhoto || (tadb?.image ?? null);
+  var heroPhotoSrc = heroPhotoCache ? "DEEZER" : fetchedPhoto ? "SPOTIFY" : tadb?.image ? "THEAUDIODB" : null;
   var [slError, setSlError] = React.useState(false);
   var [ytError, setYtError] = React.useState(false);
   var [edcTracklist, setEdcTracklist] = React.useState(undefined);
@@ -1437,7 +1439,7 @@ function ArtistScreen({
       position: "absolute",
       inset: 0,
       zIndex: 2,
-      background: heroPhoto ? `linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0) 35%, ${stage?.color || "rgba(26,18,13,1)"}22 65%, rgba(26,18,13,0.92) 100%)` : `linear-gradient(180deg, transparent 0%, ${stage?.color || "rgba(26,18,13,1)"}15 50%, rgba(26,18,13,0.95) 100%)`
+      background: heroPhoto ? `linear-gradient(180deg, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.06) 26%, ${stage?.color || "rgba(26,18,13,1)"}22 52%, rgba(26,18,13,0.72) 76%, rgba(26,18,13,0.96) 100%)` : `linear-gradient(180deg, transparent 0%, ${stage?.color || "rgba(26,18,13,1)"}15 50%, rgba(26,18,13,0.95) 100%)`
     }
   }), React.createElement("button", {
     onClick: () => window._popNav ? window._popNav() : setState({
@@ -1536,12 +1538,27 @@ function ArtistScreen({
     }
   }, "DAY ", a.day, " · ", fmt12(a.start)), React.createElement(ShareArtistButton, {
     artist: a
-  })), React.createElement("div", {
+  })), heroPhoto && heroPhotoSrc && React.createElement("div", {
+    className: "mono",
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      top: 58,
+      right: 14,
+      zIndex: 3,
+      fontSize: 7.5,
+      letterSpacing: 1,
+      fontWeight: 700,
+      color: "rgba(255,255,255,0.55)",
+      textShadow: "0 1px 4px rgba(0,0,0,0.6)"
+    }
+  }, "PHOTO · ", heroPhotoSrc), React.createElement("div", {
     style: {
       position: "absolute",
       bottom: 16,
       left: 18,
-      right: 18
+      right: 18,
+      zIndex: 3
     }
   }, React.createElement("div", {
     style: {
