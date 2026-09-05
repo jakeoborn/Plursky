@@ -405,7 +405,17 @@ function preEventCountdown(savedIds) {
 // sun will actually stand over the park when gates open (startMs measured
 // against that span), and the silhouette wears the main stage's colour.
 // Swap the festival and the sky genuinely changes.
-const _SKY_HORIZON_MS = 90 * 86400000; // the sky starts filling 90 days out
+// The sky fills from the day the lineup dropped to the moment gates open —
+// both real dates, so nothing on the card is a chosen number. Festivals with
+// no SOURCED announcement date fall back to a generic window; that constant
+// is reached only when we genuinely don't know, never as a default.
+const _SKY_FALLBACK_MS = 90 * 86400000;
+
+function skyFillStartMs(targetMs) {
+  const announced = FESTIVAL_CONFIG.lineupAnnouncedMs;
+  if (typeof announced === "number" && announced < targetMs) return announced;
+  return targetMs - _SKY_FALLBACK_MS;
+}
 
 function _hhmmMin(s) {
   const parts = String(s || "").split(":").map(Number);
@@ -427,7 +437,17 @@ function festivalSunGeometry() {
   const local = new Date(FESTIVAL_START_MS + (FESTIVAL_CONFIG.utcOffsetHours || 0) * 3600000);
   const gatesMin = local.getUTCHours() * 60 + local.getUTCMinutes();
   const gatesFrac = Math.max(0.08, Math.min(0.92, (gatesMin - riseMin) / daylightMin));
-  return { daylightMin, gatesFrac };
+  return { daylightMin, gatesFrac, riseMin };
+}
+
+// Is `now` before day 1's sunrise, in the festival's local time? Without
+// sun data we treat the last day as night, which is the safe default for
+// the "go to sleep" copy.
+function beforeFestivalSunrise(now) {
+  const geo = festivalSunGeometry();
+  if (!geo) return true;
+  const local = new Date(now + (FESTIVAL_CONFIG.utcOffsetHours || 0) * 3600000);
+  return local.getUTCHours() * 60 + local.getUTCMinutes() < geo.riseMin;
 }
 
 // The festival's own identity colour, off the registry entry (it lives
@@ -442,9 +462,11 @@ function festivalAccent() {
 }
 
 // Fixed star field — deterministic, so the sky doesn't reshuffle every tick.
+// x as a FRACTION of band width (the viewBox is sized to the real element,
+// so absolute x would drift), y in absolute units from the top.
 const _SKY_STARS = [
-  [22, 18], [58, 34], [96, 12], [131, 40], [168, 21],
-  [204, 33], [238, 15], [268, 38], [44, 52], [149, 60], [283, 55],
+  [0.073, 18], [0.193, 34], [0.320, 12], [0.437, 40], [0.560, 21],
+  [0.680, 33], [0.793, 15], [0.893, 38], [0.147, 52], [0.497, 60], [0.943, 55],
 ];
 
 function FestivalSkyBand({ accent, progress, preDawn }) {
@@ -454,11 +476,28 @@ function FestivalSkyBand({ accent, progress, preDawn }) {
   // useId emits — a raw ":r1:" is not usable inside url(#…).
   const uid = React.useId().replace(/[^a-zA-Z0-9]/g, "");
   const idSky = `fcSky${uid}`, idGround = `fcGround${uid}`, idSun = `fcSun${uid}`;
+  // The viewBox is sized to the element's real pixel width so the scale
+  // stays 1:1. Previously it was a fixed 300 units with
+  // preserveAspectRatio="none", which stretched the band by ~25% on a
+  // 375px screen — the sun rendered as a visible ellipse.
+  const hostRef = React.useRef(null);
+  const [bandW, setBandW] = React.useState(375);
+  React.useLayoutEffect(() => {
+    const el = hostRef.current;
+    if (!el) return;
+    const read = () => setBandW(Math.max(240, Math.round(el.clientWidth || 375)));
+    read();
+    if (typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver(read);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   const geo = festivalSunGeometry();
   const mainStage = STAGES.find(s => s.id === FESTIVAL_CONFIG.mainStageId);
   const stageColor = (mainStage && mainStage.color) || accent;
   const sky = festivalAccent() || accent;
-  const W = 300, H = 120, HORIZON = 104;
+  const W = bandW, H = 120, HORIZON = 104;
 
   // Arc height tracks real day length: a 14-hour summer festival gets a
   // taller sun path than an 11-hour autumn one. 12h is the reference arc.
@@ -488,7 +527,8 @@ function FestivalSkyBand({ accent, progress, preDawn }) {
   }).join(" ");
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="120" preserveAspectRatio="none"
+    <div ref={hostRef} style={{ width: "100%", lineHeight: 0 }}>
+    <svg viewBox={`0 0 ${W} ${H}`} width="100%" height={H} preserveAspectRatio="none"
          aria-hidden="true" style={{ display: "block" }}>
       <defs>
         <linearGradient id={idSky} x1="0" y1="0" x2="0" y2="1">
@@ -518,8 +558,8 @@ function FestivalSkyBand({ accent, progress, preDawn }) {
       <rect x="0" y="0" width={W} height={HORIZON} fill={`url(#${idSky})`} />
       <rect x="0" y={HORIZON} width={W} height={H - HORIZON} fill={`url(#${idGround})`} />
 
-      {_SKY_STARS.map(([sx, sy], i) => (
-        <circle key={i} cx={sx} cy={sy} r={i % 3 === 0 ? 1.1 : 0.8}
+      {_SKY_STARS.map(([sf, sy], i) => (
+        <circle key={i} cx={(sf * W).toFixed(1)} cy={sy} r={i % 3 === 0 ? 1.1 : 0.8}
                 fill="#fff" opacity={starOpacity * (i % 2 ? 0.7 : 1)}
                 style={{ transition: ease }} />
       ))}
@@ -570,6 +610,7 @@ function FestivalSkyBand({ accent, progress, preDawn }) {
         </g>
       )}
     </svg>
+    </div>
   );
 }
 
@@ -871,15 +912,24 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
   const accent = (now < FESTIVAL_START_MS && festivalAccent()) || stageAccent;
   const photo  = useArtistPhoto(featured?.name || "");
 
-  // Pre-event: preEventCountdown normalizes hours into days AND targets the
-  // user's own weekend. fmtCountdown does neither — it returns a raw hour
-  // count, which is what rendered "26D 646H 55M" on this card before v252.
-  // It stays untouched: every OTHER caller is sub-24h and correct.
-  const preCd   = isPreEvent ? preEventCountdown(savedIds) : null;
-  const preDawn = !!preCd && preCd.days === 0;
-  // Sky fill: 0 at the 90-day horizon, 1 at gates.
-  const skyProgress = !preCd ? 1 : Math.max(0, Math.min(1,
-    1 - (preCd.targetMs - now) / _SKY_HORIZON_MS));
+  // Pre-event: preEventCountdown targets the user's own weekend, which the
+  // raw FESTIVAL_START_MS delta this used to compute could not do.
+  // (fmtCountdown's missing day-normalization — the "26D 646H 55M" half of
+  // the bug — is fixed at its definition, since the day cards hit it too.)
+  const preCd = isPreEvent ? preEventCountdown(savedIds) : null;
+  // "Pre-dawn" has to actually BE pre-dawn. days === 0 covers the whole 24h
+  // before gates, and ACL's gates are NOON — so a bare <24h test painted an
+  // ink sky and told the user to sleep at 9am, four hours after sunrise,
+  // contradicting the very sunTimes the sky is drawn from.
+  const preDawn = !!preCd && preCd.days === 0 && beforeFestivalSunrise(now);
+  // Sky fill: 0 the day the lineup dropped, 1 at gates.
+  const skyProgress = (() => {
+    if (!preCd) return 1;
+    const from = skyFillStartMs(preCd.targetMs);
+    const span = preCd.targetMs - from;
+    if (!(span > 0)) return 1;
+    return Math.max(0, Math.min(1, (now - from) / span));
+  })();
 
   // Tonight-but-pre-doors: first set of day hasn't started yet
   const firstSetMs = dayMeta && !isPreEvent && !isPostEvent
@@ -964,8 +1014,8 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
               {FESTIVAL_CONFIG.dayDates[1]?.short} · <span className="serif" style={{ fontStyle: "italic", fontWeight: 400, color: accent }}>{FESTIVAL_CONFIG.brand}</span>
             </div>
             <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 1.4, marginBottom: spotlight ? 16 : 0 }}>
-              {preDawn
-                ? `gates in ${preCd.hours}h ${preCd.mins}m — sleep.`
+              {preCd && preCd.days === 0
+                ? `gates in ${preCd.hours}h ${preCd.mins}m${preDawn ? " — sleep." : "."}`
                 : `${FESTIVAL_CONFIG.locationShort} · gates open ${FESTIVAL_CONFIG.dayDates[1]?.name || "Friday"}.`}
             </div>
             {spotlight && (() => {
