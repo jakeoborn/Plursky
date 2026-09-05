@@ -23,6 +23,11 @@ function fmtCountdown(ms) {
   const total = Math.floor(ms / 1000);
   const h = Math.floor(total / 3600);
   const m = Math.floor((total % 3600) / 60);
+  // ≥24h MUST normalize. The upcoming-night day cards feed this a delta of
+  // weeks pre-festival, which is how "657H 12M" shipped. Sub-24h output is
+  // byte-identical to before, so the sunrise/sunset chips and the doors
+  // countdown — which never cross a day — are unaffected.
+  if (h >= 24) return `${Math.floor(h / 24)}D ${h % 24}H`;
   if (h >= 1) return `${h}H ${m.toString().padStart(2, "0")}M`;
   return `${m} MIN`;
 }
@@ -386,7 +391,186 @@ function preEventCountdown(savedIds) {
     mins:  Math.floor((diff / 60000) % 60),
     secs:  Math.floor((diff / 1000) % 60),
     weekend: FESTIVAL_CONFIG.weekendStartMs ? (targetMs === FESTIVAL_CONFIG.weekendStartMs?.W2 ? "W2" : "W1") : null,
+    // Exposed so the Festival Clock's sky can count to the same instant the
+    // header strip does — otherwise a W2-weighted user sees a sun racing to
+    // Oct 2 above a countdown that reads Oct 9.
+    targetMs,
   };
+}
+
+// ── The Festival Clock ────────────────────────────────────────────────────
+// The sky band on the pre-festival home hero. Every mark it draws is this
+// festival's own data, which is the whole point of it: the arc is day 1's
+// real daylight span (config.sunTimes), the destination marker is where the
+// sun will actually stand over the park when gates open (startMs measured
+// against that span), and the silhouette wears the main stage's colour.
+// Swap the festival and the sky genuinely changes.
+const _SKY_HORIZON_MS = 90 * 86400000; // the sky starts filling 90 days out
+
+function _hhmmMin(s) {
+  const parts = String(s || "").split(":").map(Number);
+  if (parts.length < 2 || parts.some(n => !isFinite(n))) return null;
+  return parts[0] * 60 + parts[1];
+}
+
+// Day-1 solar geometry, or null when the festival ships no sunTimes — in
+// which case the band draws no sun at all rather than inventing a position.
+function festivalSunGeometry() {
+  const st = FESTIVAL_CONFIG.sunTimes && FESTIVAL_CONFIG.sunTimes[1];
+  if (!st) return null;
+  const riseMin = _hhmmMin(st.rise);
+  const setMin  = _hhmmMin(st.set);
+  if (riseMin == null || setMin == null || setMin <= riseMin) return null;
+  const daylightMin = setMin - riseMin;
+  // Gates-open as a local minute-of-day, from the config's own UTC start
+  // plus utcOffsetHours — no Intl, no tz database, no guess.
+  const local = new Date(FESTIVAL_START_MS + (FESTIVAL_CONFIG.utcOffsetHours || 0) * 3600000);
+  const gatesMin = local.getUTCHours() * 60 + local.getUTCMinutes();
+  const gatesFrac = Math.max(0.08, Math.min(0.92, (gatesMin - riseMin) / daylightMin));
+  return { daylightMin, gatesFrac };
+}
+
+// The festival's own identity colour, off the registry entry (it lives
+// beside `config`, not inside it). Distinct from the per-day stage accent:
+// the sky over Zilker in October is burnt orange whoever happens to be the
+// Artist of the Day, so it must not turn purple because Kings of Leon play
+// the T-Mobile stage.
+function festivalAccent() {
+  const e = (typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : [])
+    .find(f => f && f.config && f.config.id === FESTIVAL_CONFIG.id);
+  return (e && e.accent) || null;
+}
+
+// Fixed star field — deterministic, so the sky doesn't reshuffle every tick.
+const _SKY_STARS = [
+  [22, 18], [58, 34], [96, 12], [131, 40], [168, 21],
+  [204, 33], [238, 15], [268, 38], [44, 52], [149, 60], [283, 55],
+];
+
+function FestivalSkyBand({ accent, progress, preDawn }) {
+  // Gradient ids must be unique per instance: SVG paint refs are resolved
+  // document-wide, so two bands sharing id="fcSky" would both paint with
+  // whichever one the DOM reached first. Strip the punctuation React's
+  // useId emits — a raw ":r1:" is not usable inside url(#…).
+  const uid = React.useId().replace(/[^a-zA-Z0-9]/g, "");
+  const idSky = `fcSky${uid}`, idGround = `fcGround${uid}`, idSun = `fcSun${uid}`;
+  const geo = festivalSunGeometry();
+  const mainStage = STAGES.find(s => s.id === FESTIVAL_CONFIG.mainStageId);
+  const stageColor = (mainStage && mainStage.color) || accent;
+  const sky = festivalAccent() || accent;
+  const W = 300, H = 120, HORIZON = 104;
+
+  // Arc height tracks real day length: a 14-hour summer festival gets a
+  // taller sun path than an 11-hour autumn one. 12h is the reference arc.
+  const lift = geo ? Math.max(0.55, Math.min(1.15, geo.daylightMin / 720)) : 0.9;
+  const arcX = (x) => 22 + x * (W - 44);
+  const arcY = (x) => HORIZON - Math.sin(Math.PI * x) * 66 * lift;
+
+  const gates = geo ? geo.gatesFrac : null;
+  const sunAt = gates == null ? null : (preDawn ? 0 : gates * progress);
+  const px = sunAt == null ? 0 : arcX(sunAt);
+  const py = sunAt == null ? 0 : (preDawn ? HORIZON + 12 : arcY(sunAt));
+
+  // Silhouette sits on the far side of the horizon from the sun's
+  // destination, so the two never collide whatever the festival's gate time.
+  const rigFrac = (gates != null && gates >= 0.5) ? 0.22 : 0.78;
+  const rig = arcX(rigFrac);
+
+  const starOpacity = preDawn ? 0.1 : Math.max(0.12, 0.75 * (1 - progress));
+  const glow = preDawn ? 0.34 : 0.28 + 0.5 * progress;
+  const zenith = preDawn ? "#05040a" : "#130d14";
+  const ease = "opacity 700ms ease, transform 700ms ease";
+
+  // Full daylight path, sampled — the sun's whole day, faint, behind it.
+  const path = Array.from({ length: 25 }, (_, i) => {
+    const x = i / 24;
+    return `${i ? "L" : "M"}${arcX(x).toFixed(1)},${arcY(x).toFixed(1)}`;
+  }).join(" ");
+
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="120" preserveAspectRatio="none"
+         aria-hidden="true" style={{ display: "block" }}>
+      <defs>
+        <linearGradient id={idSky} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stopColor={zenith} />
+          {/* Pre-dawn holds ink almost to the ground, then breaks into a
+              hard band of accent right where the sun is about to come up.
+              Without this stop the gradient interpolated ink→accent across
+              the whole band and the "night before" read as a sunset. */}
+          {preDawn && <stop offset="72%" stopColor={zenith} />}
+          <stop offset={preDawn ? "90%" : "62%"} stopColor={sky} stopOpacity={glow * (preDawn ? 0.10 : 0.22)} />
+          <stop offset="100%" stopColor={sky} stopOpacity={glow * (preDawn ? 1.1 : 0.65)} />
+        </linearGradient>
+        <linearGradient id={idGround} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stopColor="#0b0812" />
+          <stop offset="100%" stopColor="#1f1517" />
+        </linearGradient>
+        <radialGradient id={idSun}>
+          <stop offset="0%"   stopColor="#fff8e6" />
+          <stop offset="55%"  stopColor={sky} />
+          <stop offset="100%" stopColor={sky} stopOpacity="0" />
+        </radialGradient>
+      </defs>
+
+      {/* Sky + ground. Opaque, so the card's artist photo never bleeds
+          through the sky — the horizon has to read as a horizon. */}
+      <rect x="0" y="0" width={W} height={HORIZON} fill={zenith} />
+      <rect x="0" y="0" width={W} height={HORIZON} fill={`url(#${idSky})`} />
+      <rect x="0" y={HORIZON} width={W} height={H - HORIZON} fill={`url(#${idGround})`} />
+
+      {_SKY_STARS.map(([sx, sy], i) => (
+        <circle key={i} cx={sx} cy={sy} r={i % 3 === 0 ? 1.1 : 0.8}
+                fill="#fff" opacity={starOpacity * (i % 2 ? 0.7 : 1)}
+                style={{ transition: ease }} />
+      ))}
+
+      {/* The day's full sun path + where the sun will be at gates. */}
+      {gates != null && (
+        <>
+          <path d={path} fill="none" stroke="#fff" strokeOpacity="0.13"
+                strokeWidth="1" strokeDasharray="2 5" />
+          <circle cx={arcX(gates)} cy={arcY(gates)} r="9" fill="none"
+                  stroke={sky} strokeOpacity="0.5" strokeWidth="1"
+                  strokeDasharray="2 3" />
+        </>
+      )}
+
+      <line x1="0" y1={HORIZON} x2={W} y2={HORIZON}
+            stroke={sky} strokeOpacity="0.7" strokeWidth="1" />
+
+      {/* Main-stage silhouette, assembling as the date closes in. */}
+      <g stroke={stageColor} fill="none" strokeLinecap="round">
+        <g opacity={0.35 + 0.35 * progress} style={{ transition: ease }}>
+          <line x1={rig - 26} y1={HORIZON} x2={rig - 26} y2={HORIZON - 26} strokeWidth="2" />
+          <line x1={rig + 26} y1={HORIZON} x2={rig + 26} y2={HORIZON - 26} strokeWidth="2" />
+          <path d={`M${rig - 26},${HORIZON - 26} L${rig - 34},${HORIZON - 58}`}
+                strokeWidth="1" strokeOpacity="0.35" />
+          <path d={`M${rig + 26},${HORIZON - 26} L${rig + 34},${HORIZON - 58}`}
+                strokeWidth="1" strokeOpacity="0.35" />
+        </g>
+        <g opacity={progress >= 0.4 ? 0.75 : 0} style={{ transition: ease }}>
+          <line x1={rig - 26} y1={HORIZON - 26} x2={rig + 26} y2={HORIZON - 26} strokeWidth="2" />
+          <line x1={rig - 12} y1={HORIZON} x2={rig - 12} y2={HORIZON - 26} strokeWidth="1" />
+          <line x1={rig + 12} y1={HORIZON} x2={rig + 12} y2={HORIZON - 26} strokeWidth="1" />
+        </g>
+        <g opacity={progress >= 0.8 ? 1 : 0} style={{ transition: ease }}>
+          <path d={`M${rig - 30},${HORIZON - 26} Q${rig},${HORIZON - 46} ${rig + 30},${HORIZON - 26}`}
+                strokeWidth="2" />
+          <circle cx={rig} cy={HORIZON - 30} r="16" fill={stageColor}
+                  fillOpacity="0.16" stroke="none" />
+        </g>
+      </g>
+
+      {/* The sun, climbing toward gates. Dim and low at 90 days out. */}
+      {sunAt != null && (
+        <g style={{ transition: ease }} transform={`translate(${px.toFixed(1)},${py.toFixed(1)})`}>
+          <circle r={preDawn ? 26 : 18} fill={`url(#${idSun})`}
+                  opacity={preDawn ? 0.7 : 0.25 + 0.55 * progress} />
+          {!preDawn && <circle r="6.5" fill="#fff3d6" opacity={0.55 + 0.45 * progress} />}
+        </g>
+      )}
+    </svg>
+  );
 }
 
 // Bumps every 30s so countdown stays accurate without spamming renders
@@ -634,7 +818,8 @@ function DayStrip({ value, onChange, hasYesterday, hasUpcoming }) {
 //   2. During-festival, before first set       — "Doors in Xh Ym" + headliner
 //   3. During-festival, mid-night              — "● LIVE · Now at <stage>"
 //   4. Post-festival                           — caller renders PostFestivalRecap
-// Accent = stage colour of the relevant artist (mainstage red as fallback).
+// Accent = the festival's colour pre-gates, the relevant artist's stage
+// colour once the festival is running (mainstage red as fallback).
 function F1TonightHero({ state, setState, parallax = 0 }) {
   const now = Date.now();
   const isPreEvent  = now < FESTIVAL_START_MS;
@@ -679,13 +864,22 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
 
   const featured = live || headliner || spotlight;
   const stage = featured ? STAGES.find(s => s.id === featured.stage) : null;
-  const accent = stage?.color || "var(--ember)";
+  const stageAccent = stage?.color || "var(--ember)";
+  // Pre-festival this card is about the FESTIVAL, so its stripe, border and
+  // eyebrow wear the festival's colour. Once the gates open it goes back to
+  // tracking whoever is actually on stage.
+  const accent = (now < FESTIVAL_START_MS && festivalAccent()) || stageAccent;
   const photo  = useArtistPhoto(featured?.name || "");
 
-  // Pre-event countdown delta to "doors" (festival start)
-  const preCountdown = isPreEvent ? FESTIVAL_START_MS - now : null;
-  const preLabel = preCountdown != null ? fmtCountdown(preCountdown) : null;
-  const preDays  = preCountdown != null ? Math.floor(preCountdown / 86400000) : null;
+  // Pre-event: preEventCountdown normalizes hours into days AND targets the
+  // user's own weekend. fmtCountdown does neither — it returns a raw hour
+  // count, which is what rendered "26D 646H 55M" on this card before v252.
+  // It stays untouched: every OTHER caller is sub-24h and correct.
+  const preCd   = isPreEvent ? preEventCountdown(savedIds) : null;
+  const preDawn = !!preCd && preCd.days === 0;
+  // Sky fill: 0 at the 90-day horizon, 1 at gates.
+  const skyProgress = !preCd ? 1 : Math.max(0, Math.min(1,
+    1 - (preCd.targetMs - now) / _SKY_HORIZON_MS));
 
   // Tonight-but-pre-doors: first set of day hasn't started yet
   const firstSetMs = dayMeta && !isPreEvent && !isPostEvent
@@ -705,7 +899,11 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
 
   return (
     <div style={{
-      background: "linear-gradient(160deg, var(--ink) 0%, #2a1a1f 60%, var(--ink) 100%)",
+      // Literal ink, NOT var(--ink): theme-night inverts that token to
+      // #f0e6d8, which turned this card cream while its text stayed
+      // hardcoded #fff — unreadable, and only during the festival's own
+      // 20:00–04:00 window, which is when this card matters most.
+      background: "linear-gradient(160deg, #1a120d 0%, #2a1a1f 60%, #1a120d 100%)",
       borderRadius: 16, padding: 0, marginBottom: 18,
       color: "#fff", position: "relative", overflow: "hidden",
       border: `1px solid ${accent}55`,
@@ -753,31 +951,22 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
           </div>
         </div>
 
-        {/* Pre-festival: countdown + Artist of the Day spotlight */}
+        {/* Pre-festival: the Festival Clock + Artist of the Day spotlight.
+            ⚠ There is deliberately NO numeric countdown in this card. The
+            HomeScreen header strip (CountdownPart DAYS/HRS/MIN) owns that
+            number and sits ~200px above; a pill here rendered it twice. */}
         {phase === "pre" && (
           <>
-            <div className="serif" style={{ fontSize: 28, lineHeight: 0.96, letterSpacing: -0.5, marginBottom: 6 }}>
-              {FESTIVAL_CONFIG.dayDates[1]?.short} · <span style={{ fontStyle: "italic", color: accent }}>{FESTIVAL_CONFIG.brand}</span>
+            <div style={{ margin: "-2px -18px 16px" }}>
+              <FestivalSkyBand accent={accent} progress={skyProgress} preDawn={preDawn} />
             </div>
-            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 1.4, marginBottom: 14 }}>
-              {FESTIVAL_CONFIG.locationShort} · gates open {FESTIVAL_CONFIG.dayDates[1]?.name || "Friday"}.
+            <div style={{ fontSize: 28, lineHeight: 0.96, letterSpacing: -0.5, marginBottom: 6, fontWeight: 600 }}>
+              {FESTIVAL_CONFIG.dayDates[1]?.short} · <span className="serif" style={{ fontStyle: "italic", fontWeight: 400, color: accent }}>{FESTIVAL_CONFIG.brand}</span>
             </div>
-            <div style={{
-              display: "flex", alignItems: "baseline", gap: 10,
-              padding: "10px 12px", borderRadius: 10,
-              background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
-              marginBottom: spotlight ? 16 : 0,
-            }}>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: accent, fontWeight: 800 }}>
-                STARTS IN
-              </div>
-              <div style={{
-                fontFamily: "Geist Mono, monospace", fontSize: 22, fontWeight: 600,
-                color: "#fff", letterSpacing: 0.5, fontVariantNumeric: "tabular-nums",
-                marginLeft: "auto",
-              }}>
-                {preDays != null && preDays > 0 ? `${preDays}D ` : ""}{preLabel || "—"}
-              </div>
+            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 1.4, marginBottom: spotlight ? 16 : 0 }}>
+              {preDawn
+                ? `gates in ${preCd.hours}h ${preCd.mins}m — sleep.`
+                : `${FESTIVAL_CONFIG.locationShort} · gates open ${FESTIVAL_CONFIG.dayDates[1]?.name || "Friday"}.`}
             </div>
             {spotlight && (() => {
               const sStage = STAGES.find(s => s.id === spotlight.stage);
