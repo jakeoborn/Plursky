@@ -337,6 +337,19 @@ const MAP_AFFINE = _solveMapAffine();
 // keeping its own copy — one number, no drift.
 const MAP_REGISTRATION_TOL_M = 25;
 
+// Stages the map is able to PLACE. A festival can legitimately have a real
+// stage with no known position: Nocturnal Wonderland 2026 bills Rave Cave with
+// 15 acts, but the only site map that exists (2025) shows it as an art
+// installation with no stage structure to read a position from, and guessing
+// one is the poster-space-as-world-space defect in miniature.
+//
+// Such a stage still belongs everywhere a stage belongs — pills, filters,
+// lineup cards, search. It just gets no pin. Passing it into the map layers
+// instead would feed mapToGps(undefined, undefined) to every geo builder and
+// draw a marker at NaN, which renders as an invisible-but-clickable ghost.
+const PLACED_STAGES = (typeof STAGES !== "undefined" ? STAGES : [])
+  .filter(s => typeof s.x === "number" && typeof s.y === "number");
+
 const MAP_REGISTRATION_SOURCED = (() => {
   const anchors = FESTIVAL_CONFIG.gpsAnchors || [];
   const basis = anchors.slice(0, 3);
@@ -2841,7 +2854,7 @@ function MapScreen({ state, setState }) {
 
         {useRealMap ? (
           <RealMap
-            avatar={avatar} stages={STAGES}
+            avatar={avatar} stages={PLACED_STAGES}
             officialMap={!!FESTIVAL_CONFIG.mapImage}
             crewFriends={crewFriends}
             saved={state.saved}
@@ -2861,7 +2874,7 @@ function MapScreen({ state, setState }) {
           />
         ) : (
           <TopDownMap
-            avatar={avatar} heading={heading} friends={friends} stages={STAGES}
+            avatar={avatar} heading={heading} friends={friends} stages={PLACED_STAGES}
             saved={state.saved} showLabels={showLabels} showHeat={showHeat}
             showAmenities={searchSheetExpanded || amenityKey} amenityFilter={amenityKey ? amenityFilter : null}
             compass={compass && compassStatus === "live"}
@@ -5392,23 +5405,21 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         aspectRatio: "1 / 1", transform: "translateY(-50%)",
         pointerEvents: "none",
       }}>
-        {/* EDC-specific place labels (Daisy Lane plaza, gates, landmark
-            walkways) — hidden on the ACL/park map, which uses the real
-            patron-map artwork for all of that. */}
-        {FESTIVAL_CONFIG.mapTheme !== "park" && (<>
-        <div style={{
+        {/* Place labels and entrance gates, PER FESTIVAL. This used to be a
+            hardcoded Las Vegas block behind `mapTheme !== "park"`, so any
+            festival that was not themed "park" drew EDC's Daisy Lane and
+            EDC's gates over its own site. A festival now gets these only by
+            declaring them. */}
+        {(FESTIVAL_CONFIG.placeLabel || (FESTIVAL_CONFIG.gates || []).length > 0) && (<>
+        {FESTIVAL_CONFIG.placeLabel && <div style={{
           position: "absolute", left: "50%", top: "43%",
           transform: "translate(-50%, -130%)",
           fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 2.2, fontWeight: 700,
           color: "rgba(232,93,46,0.85)",
-        }}>DAISY LANE</div>
+        }}>{FESTIVAL_CONFIG.placeLabel}</div>}
 
         {/* Entrance gate labels */}
-        {[
-          { label: "GATE S",   x: 76, y: 10 },
-          { label: "GATE C/D", x:  9, y: 44 },
-          { label: "GATE P",   x: 18, y: 91 },
-        ].map((g, i) => (
+        {(FESTIVAL_CONFIG.gates || []).map((g, i) => (
           <div key={i} style={{
             position: "absolute", left: `${g.x}%`, top: `${mapY(g.y)}%`,
             transform: `translate(-50%, -50%)${counterRot}`,

@@ -283,6 +283,19 @@ const FESTIVAL_CONFIG = {
   // "KINETIC TRAIL" and "DAISY FIELDS" across Zilker Park and Legend Valley.
   // Per-festival data belongs in the per-festival config: a festival with no
   // `landmarks` key now correctly renders none.
+  // The Daisy Lane plaza label and the entrance gates. These lived INLINE in
+  // map.jsx behind a `mapTheme !== "park"` guard, which meant every festival
+  // that was not themed "park" drew Las Vegas's gates on its own map. Harmless
+  // only by luck: every live festival except EDC happened to be "park". Lost
+  // Lands (forest) flips 2026-09-18 and Nocturnal Wonderland is forest too, so
+  // this was twelve days from shipping. Same defect `landmarks` below already
+  // had, same fix — the data belongs to the festival, not to the renderer.
+  placeLabel: "DAISY LANE",
+  gates: [
+    { label: "GATE S",   x: 76, y: 10 },
+    { label: "GATE C/D", x:  9, y: 44 },
+    { label: "GATE P",   x: 18, y: 91 },
+  ],
   landmarks: [
     // Walkways
     { label: "KINETIC TRAIL",   x: 38.3, y: 21.4, rot: -55, color: "rgba(251,191,36,0.85)",  size: 6.8, ls: 1.6 },
@@ -894,7 +907,15 @@ const mk = (id, name, genre, stage, day, start, end, bio) => {
 
 // 24h "HH:MM" → 12h "H:MM AM/PM" for display. Sort/diff logic still uses raw a.start.
 function fmt12(t) {
-  if (!t || typeof t !== "string") return t;
+  // A gated festival ships real acts with NO set time yet (start: ""), and 53
+  // call sites render `{stage.short} \u00b7 {fmt12(a.start)}`. Returning "" there
+  // printed a dangling separator — "MYSTIC \u00b7" with nothing after it — on every
+  // Today card for Nocturnal Wonderland 2026. Returning an em dash makes the
+  // absence read as deliberate, and fixes all 53 at once rather than guarding
+  // each one. Non-empty strings that simply do not parse still pass through
+  // unchanged, so a malformed time is still visible as itself.
+  if (t == null || t === "") return "\u2014";
+  if (typeof t !== "string") return t;
   const [hStr, mStr] = t.split(":");
   const h = parseInt(hStr, 10);
   if (isNaN(h)) return t;
@@ -1965,7 +1986,7 @@ const LL_AMENITIES = [
 const _WAVE1_IDS = [
   "ultra-miami-2026", "governors-ball-2026", "summerfest-2026",
   "lollapalooza-2026", "outside-lands-2026",
-  "iii-points-2026",
+  "iii-points-2026", "nocturnal-wonderland-2026",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {

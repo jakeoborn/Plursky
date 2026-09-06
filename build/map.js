@@ -487,6 +487,7 @@ function _solveMapAffine() {
 }
 var MAP_AFFINE = _solveMapAffine();
 var MAP_REGISTRATION_TOL_M = 25;
+var PLACED_STAGES = (typeof STAGES !== "undefined" ? STAGES : []).filter(s => typeof s.x === "number" && typeof s.y === "number");
 var MAP_REGISTRATION_SOURCED = (() => {
   var anchors = FESTIVAL_CONFIG.gpsAnchors || [];
   var basis = anchors.slice(0, 3);
@@ -4099,7 +4100,7 @@ function MapScreen({
     })))));
   })(), useRealMap ? React.createElement(RealMap, {
     avatar: avatar,
-    stages: STAGES,
+    stages: PLACED_STAGES,
     officialMap: !!FESTIVAL_CONFIG.mapImage,
     crewFriends: crewFriends,
     saved: state.saved,
@@ -4128,7 +4129,7 @@ function MapScreen({
     avatar: avatar,
     heading: heading,
     friends: friends,
-    stages: STAGES,
+    stages: PLACED_STAGES,
     saved: state.saved,
     showLabels: showLabels,
     showHeat: showHeat,
@@ -7390,7 +7391,7 @@ function TopDownMap({
       transform: "translateY(-50%)",
       pointerEvents: "none"
     }
-  }, FESTIVAL_CONFIG.mapTheme !== "park" && React.createElement(React.Fragment, null, React.createElement("div", {
+  }, (FESTIVAL_CONFIG.placeLabel || (FESTIVAL_CONFIG.gates || []).length > 0) && React.createElement(React.Fragment, null, FESTIVAL_CONFIG.placeLabel && React.createElement("div", {
     style: {
       position: "absolute",
       left: "50%",
@@ -7402,19 +7403,7 @@ function TopDownMap({
       fontWeight: 700,
       color: "rgba(232,93,46,0.85)"
     }
-  }, "DAISY LANE"), [{
-    label: "GATE S",
-    x: 76,
-    y: 10
-  }, {
-    label: "GATE C/D",
-    x: 9,
-    y: 44
-  }, {
-    label: "GATE P",
-    x: 18,
-    y: 91
-  }].map((g, i) => React.createElement("div", {
+  }, FESTIVAL_CONFIG.placeLabel), (FESTIVAL_CONFIG.gates || []).map((g, i) => React.createElement("div", {
     key: i,
     style: {
       position: "absolute",

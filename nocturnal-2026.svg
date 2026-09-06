@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 100 100">
+<title>Nocturnal Wonderland 2026 — generated ground plate</title>
+<desc>Abstract site plate. Stage positions are read from the 2025 official festival map (the 2026 map is not published); the artwork here is generated from those coordinates and reproduces no festival art. Not georeferenced.</desc>
+<defs>
+  <radialGradient id="glow"><stop offset="0" stop-color="#fff" stop-opacity=".34"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+  <radialGradient id="moon"><stop offset="0" stop-color="#e9d5ff" stop-opacity=".55"/><stop offset="1" stop-color="#e9d5ff" stop-opacity="0"/></radialGradient>
+  <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.5"/></filter>
+</defs>
+
+<rect width="100" height="100" fill="#0a0a1a"/>
+<rect x="3" y="3" width="94" height="94" rx="4" fill="#0f1226"/>
+<circle cx="84" cy="14" r="16" fill="url(#moon)"/>
+
+<!-- Festival field: the crescent that runs NE (Dawn Mountain) to SW (Beatbox),
+     traced in shape only from the 2025 site plan. -->
+<path d="M56 2 L88 6 L95 20 L79 33 L70 48 L56 57 L45 63 L40 79 L31 94 L14 91 L10 73 L19 57 L17 43 L27 35 L36 21 Z"
+      fill="#16351f" stroke="#2f6b3d" stroke-width=".5" opacity=".92"/>
+
+<!-- Trails, named on the 2025 map: Lost Trail (NE) and Starlight Trail (SW) -->
+<path d="M74 16 C70 26 66 32 62 40" stroke="#5b8fd6" stroke-width="1.5" fill="none" opacity=".55" stroke-linecap="round"/>
+<path d="M52 60 C44 68 38 74 30 80" stroke="#c9a227" stroke-width="1.5" fill="none" opacity=".5" stroke-linecap="round"/>
+
+<!-- Tree line -->
+<g fill="#1e4a2b" opacity=".75">
+  <circle cx="46" cy="14" r="1.7"/><circle cx="52" cy="20" r="1.3"/><circle cx="40" cy="28" r="1.5"/>
+  <circle cx="84" cy="26" r="1.6"/><circle cx="88" cy="16" r="1.2"/><circle cx="24" cy="48" r="1.5"/>
+  <circle cx="20" cy="66" r="1.7"/><circle cx="36" cy="88" r="1.4"/><circle cx="48" cy="72" r="1.3"/>
+  <circle cx="64" cy="62" r="1.5"/><circle cx="30" cy="40" r="1.2"/><circle cx="16" cy="80" r="1.3"/>
+</g>
+
+<!-- Stage glows, at the four positions the 2025 map supplies.
+     Rave Cave is deliberately absent: it has no known position. -->
+<g filter="url(#soft)">
+  <circle cx="70.8" cy="9.3"  r="7.5" fill="#f97316" opacity=".34"/>
+  <circle cx="61.7" cy="43.6" r="7"   fill="#14b8a6" opacity=".34"/>
+  <circle cx="29.9" cy="57.9" r="8.5" fill="#a855f7" opacity=".38"/>
+  <circle cx="26.0" cy="81.4" r="5.5" fill="#facc15" opacity=".30"/>
+</g>
+<g opacity=".9">
+  <circle cx="70.8" cy="9.3"  r="2.4" fill="#f97316"/>
+  <circle cx="61.7" cy="43.6" r="2.2" fill="#14b8a6"/>
+  <circle cx="29.9" cy="57.9" r="2.8" fill="#a855f7"/>
+  <circle cx="26.0" cy="81.4" r="1.8" fill="#facc15"/>
+</g>
+
+<!-- Entrance markers, from the 2025 map's own labels -->
+<g fill="#e879f9" opacity=".8">
+  <rect x="21" y="26" width="5" height="1.6" rx=".8"/>
+  <rect x="11" y="70" width="5" height="1.6" rx=".8"/>
+</g>
+</svg>
