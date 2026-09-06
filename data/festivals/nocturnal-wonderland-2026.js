@@ -26,7 +26,7 @@
 // SOURCE sun times: api.sunrise-sunset.org at the OSM centroid, 2026-09-06.
 //
 // ⛔ DO NOT take stage names from press coverage or search summaries. Search
-// results for this festival confidently return Labyrinth, Wolves\' Den and
+// results for this festival confidently return Labyrinth, Wolves' Den and
 // Sunken Garden — those are REAL Nocturnal stages from EARLIER YEARS, and the
 // 2026 site uses none of them. That mistake was live in this session before
 // the official pages were read. Official pages only.
@@ -37,31 +37,46 @@
 // STAGE POSITIONS: absent. No 2026 site map exists, and the festival build
 //   does not exist to measure off satellite either.
 //
-// ── SPATIAL MODEL ──
-// There is none, deliberately. Every positioned festival in this repo authors
-// each stage\'s real lat/lng and DERIVES its 0-100 grid x/y from that. Here the
-// stages are REAL but their positions are UNKNOWN, so they carry no x/y, there
-// are no gpsAnchors, and there is no map art. `mapMode: "real"` (the III
-// Points precedent) shows real tiles centred on the surveyed venue, the live
-// blue dot and the venue outline — all true, none of it drawn by us.
+// ── SPATIAL MODEL ── (revised 2026-09-06 after the founder supplied the
+// official 2025 festival map: "use the 2025 map if the 2026 map does not
+// exist")
 //
-// Giving these five stages invented x/y "just for the lineup UI" is the trap
-// to avoid: the moment a later flip switches mapMode off "real", invented
-// layout coordinates silently become geography. That is the poster-space-as-
-// world-space defect PR #36 removed from EDC LV, and the 2026-09-06 anchor
-// re-survey found the same class of error on three more festivals.
+// LAYOUT is real; GEOREFERENCE is not, and the difference is the whole point.
 //
-// No gpsAnchors also means MAP_AFFINE is null, so every distance and walk-time
-// readout suppresses itself through the v257/v260 honesty gate. Nothing here
-// quotes a number it cannot support.
+// The 2025 official map gives RELATIVE layout — which stage sits where in
+// relation to the others — so the four stages it shows carry 0-100 grid x/y
+// read off it, and nocturnal-2026.svg is an abstract plate GENERATED from
+// those coordinates (no festival artwork is reproduced; lostlands-2026.jpg
+// precedent). That is a real, browsable site map.
+//
+// It does NOT give world coordinates, so there are NO gpsAnchors. Turning
+// poster space into lat/lng is the exact defect PR #36 removed from EDC LV
+// and the 2026-09-06 re-survey found on three more festivals. The EDCO spec
+// (#68) does produce honest poster-class anchors, but by georeferencing the
+// art onto county orthophotos with a 7-point least-squares affine against
+// fixed street furniture. That measurement was not available in this session,
+// and the alternative — eyeballing lat/lng off a screenshot — is precisely
+// the invented precision the gate exists to stop. So: layout yes, anchors no,
+// and anchoring is specced work for a session that has the imagery.
+//
+// Consequence, and it is the correct one: MAP_AFFINE is null, so every
+// distance and walk-time readout suppresses itself through the v257/v260
+// honesty gate, and the blue dot stays on the real-map layer where it is
+// actually true. Nothing quotes a number it cannot support.
+//
+// ⚠ RAVE CAVE HAS NO POSITION. On the 2025 map it is an ART INSTALLATION in
+// the legend, not a stage; for 2026 the lineup bills it as a stage with 15
+// acts. It is real, its location is unknown, and map.jsx's PLACED_STAGES
+// filter drops stages it cannot place rather than drawing a pin at NaN.
 //
 // ── FLIP CHECKLIST (Insomniac app set times + site map, ~Sep 12) ──
 //   1. start/end per act from the official schedule; drop `provisional`.
-//   2. STAGES get real lat/lng measured against the official map; DERIVE x/y
-//      from them, never the reverse.
-//   3. gpsAnchors added, basis satellite-measured (src: "osm") or read off
-//      official art (src: "poster"). `derived` is banned from the basis.
-//   4. Drop `mapMode: "real"` only once 2 and 3 are real; add the overlay.
+//   2. GEOREFERENCE the site map onto ortho imagery the way #68 did for EDC
+//      Orlando, then add gpsAnchors — src "poster" for art reads, "osm" for
+//      satellite-measured features. `derived` is banned from the basis.
+//   3. Re-derive stage x/y from the measured lat/lng, never the reverse, and
+//      regenerate nocturnal-2026.svg from the corrected coordinates.
+//   4. Give Rave Cave a position, or leave it unplaced if still unknown.
 //   5. amenities from the official map legend.
 //   6. registry.available → true — its own PR, founder review (AGENTS.md).
 (function () {
@@ -72,22 +87,33 @@
   // rather than an invented one.
   const STAGES = [
     { id: "mysticwild", name: "Mystic Wild", short: "MYSTIC", color: "#a855f7", size: 1.7,
+      x: 29.9, y: 57.9,
       desc: "Main stage",
       vibe: "Claim Your Habitat",
       vibeNote: "\u201cGather your pack! At this grand scenic stage, hordes of wildly dancing creatures will claim their natural habitat.\u201d" },
     { id: "dawnmountain", name: "Dawn Mountain", short: "DAWN MTN", color: "#f97316", size: 1.4,
-      desc: "Bass",
+      x: 70.8, y: 9.3,
+      desc: "Bass \u00b7 Bassrush",
       vibe: "A Maze of Sound",
       vibeNote: "\u201cAs you wander the pathways through this maze of sound, never fear! The beasts within hunger only for music.\u201d" },
     { id: "auroraplains", name: "Aurora Plains", short: "AURORA", color: "#14b8a6", size: 1.3,
-      desc: "House + techno",
+      x: 61.7, y: 43.6,
+      desc: "House + techno \u00b7 Insomniac Records",
       vibe: "Aural Flora",
       vibeNote: "\u201cImmerse yourself in a lush valley of sound as you revel in the aural flora of this bountiful stage.\u201d" },
+    // ⚠ NO x/y ON PURPOSE. On the 2025 map "Rave Cave" is an ART
+    // INSTALLATION in the legend, not a stage, and it has no stage structure
+    // to read a position from. For 2026 the lineup bills it as a stage with
+    // 15 acts, so it is real — but its LOCATION is genuinely unknown, and the
+    // 2025 art cannot supply it. It shows up everywhere a stage should (pills,
+    // filters, lineup cards) and simply carries no map pin until the 2026 map
+    // lands. Do not borrow a nearby installation's spot.
     { id: "ravecave", name: "Rave Cave", short: "CAVE", color: "#ec4899", size: 1.1,
       desc: "Old-school + underground",
       vibe: "Creatures of the Night",
       vibeNote: "\u201cCalling all the creatures of the night!\u201d" },
     { id: "beatboxboombox", name: "Beatbox Boombox", short: "BOOMBOX", color: "#facc15", size: 0.9,
+      x: 26.0, y: 81.4,
       desc: "Art car",
       vibe: "The Art Car",
       vibeNote: "Billed on the official lineup with 18 acts of its own. Insomniac has not published a stage blurb for it." },
@@ -249,13 +275,23 @@
     // and carries deadmau5, Illenium and Seven Lions.
     mainStageId: "mysticwild",
     // ── THE MAP ──
-    // No mapImage, no image-overlay, no gpsAnchors. Stage positions are
-    // unpublished, so this festival opens straight onto the real basemap.
-    // See the header for why that is the honest choice, not a fallback.
-    mapMode: "real",
+    // Layout comes from the 2025 OFFICIAL map (founder call 2026-09-06: use
+    // 2025 if 2026 does not exist). nocturnal-2026.svg is GENERATED from the
+    // stage coordinates below — no festival artwork is reproduced, per the
+    // lostlands-2026.jpg precedent.
+    mapImage: "nocturnal-2026.svg",
+    mapStyle: "image-overlay",
+    mapTheme: "forest",
+    // The plate prints no stage names, so the pills carry them.
     mapPrintsStageNames: false,
-    // Nothing to register: there is no art, so the affine-vs-poster gate has
-    // no premise here. Not a waiver.
+    // ⚠ NO gpsAnchors, deliberately, and this is the important line.
+    // The 2025 map gives RELATIVE LAYOUT — which stage sits where, relative to
+    // the others. It does NOT give world coordinates, and converting poster
+    // space into lat/lng is precisely the defect PR #36 removed from EDC LV
+    // and the 2026-09-06 re-survey found on three more festivals. So the art
+    // places the pins and nothing claims to register them to the ground: no
+    // affine, so the v257/v260 gate suppresses every distance and walk time,
+    // and the blue dot stays on the real-map layer where it is actually true.
     mapArtIsGeoregistered: false,
     // Flip markers, read by humans rather than by code.
     setTimesProvisional: true,

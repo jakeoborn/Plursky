@@ -34,6 +34,7 @@ const LOCAL = [
   './summerfest-2026.svg',
   './lolla-2026.svg',
   './osl-2026.svg',
+  './nocturnal-2026.svg',
   `./build/ios-frame.js?v=${APP_VER}`,
   `./build/data.js?v=${APP_VER}`,
   `./build/supabase.js?v=${APP_VER}`,

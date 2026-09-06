@@ -163,6 +163,20 @@ var FESTIVAL_CONFIG = {
   mapStyle: "image-overlay",
   mapPrintsStageNames: true,
   mapArtIsGeoregistered: false,
+  placeLabel: "DAISY LANE",
+  gates: [{
+    label: "GATE S",
+    x: 76,
+    y: 10
+  }, {
+    label: "GATE C/D",
+    x: 9,
+    y: 44
+  }, {
+    label: "GATE P",
+    x: 18,
+    y: 91
+  }],
   landmarks: [{
     label: "KINETIC TRAIL",
     x: 38.3,
