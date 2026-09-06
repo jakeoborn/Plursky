@@ -2032,7 +2032,20 @@ function MapScreen({ state, setState }) {
   }, [shareState?.active, shareState?.expiresAt]);
 
   const stage = selectedStage ? STAGES.find(s => s.id === selectedStage) : null;
-  const nowAtStage = stage ? ARTISTS.find(a => a.stage === stage.id && a.day === NOW.day) : null;
+  // The FIRST set of the day on that stage is not "on stage now". This had no
+  // time window and no festival-window check at all, so tapping a stage 26 days
+  // before gates opened announced the day-1 opener as ON STAGE NOW — the app
+  // confidently reporting a performance that will not happen for a month.
+  // Mirrors liveAcrossStages(): inside the set's start..end, and only while the
+  // festival is actually running.
+  const nowAtStage = React.useMemo(() => {
+    if (!stage) return null;
+    const t = Date.now();
+    if (t < FESTIVAL_START_MS || t > FESTIVAL_END_MS) return null;
+    const mins = toNightMin(NOW.time);
+    return ARTISTS.find(a => a.stage === stage.id && a.day === NOW.day
+      && mins >= toNightMin(a.start) && mins < toNightMin(a.end)) || null;
+  }, [stage && stage.id, NOW.day, NOW.time]);
   const dx = stage ? stage.x - avatar.x : 0;
   const dy = stage ? stage.y - avatar.y : 0;
   const dist = Math.sqrt(dx*dx + dy*dy);

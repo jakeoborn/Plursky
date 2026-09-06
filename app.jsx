@@ -233,7 +233,13 @@ const _SAVED_KEY = `${_FID}_saved_v1`;
 // ── Global command-palette search ────────────────────────────
 // Searches all ~200 artists by name, stage, genre, or day keyword.
 // Lives in App so it overlays any tab without prop-drilling.
-function SearchModal({ onClose, onSelectArtist }) {
+// `saved` is a REQUIRED prop, not an optional nicety. The empty-query branch
+// below renders the user's lineup, and it read a bare `state` that has never
+// existed in this scope — so opening search threw "ReferenceError: state is
+// not defined" and blanked the whole app, every time, for every user.
+// Defaulted to [] so a future call site that forgets it degrades to "no
+// lineup yet" instead of taking the app down again.
+function SearchModal({ onClose, onSelectArtist, saved = [] }) {
   const [q, setQ] = React.useState("");
   const inputRef = React.useRef(null);
 
@@ -346,12 +352,12 @@ function SearchModal({ onClose, onSelectArtist }) {
                 }}>{t.label}</button>
               ))}
             </div>
-            {state.saved.length > 0 && (
+            {saved.length > 0 && (
               <>
                 <div className="mono" style={{ fontSize: 9, letterSpacing: 1.5, color: "var(--muted)", marginBottom: 8 }}>
-                  YOUR LINEUP · {state.saved.length} SETS
+                  YOUR LINEUP · {saved.length} SETS
                 </div>
-                {state.saved.slice(0, 6).map(id => {
+                {saved.slice(0, 6).map(id => {
                   const a = ARTISTS.find(x => x.id === id);
                   if (!a) return null;
                   const st = STAGES.find(s => s.id === a.stage);
@@ -372,9 +378,9 @@ function SearchModal({ onClose, onSelectArtist }) {
                     </button>
                   );
                 })}
-                {state.saved.length > 6 && (
+                {saved.length > 6 && (
                   <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", padding: "8px 0", textAlign: "center" }}>
-                    +{state.saved.length - 6} MORE
+                    +{saved.length - 6} MORE
                   </div>
                 )}
               </>
@@ -788,6 +794,7 @@ function App() {
         <SearchModal
           onClose={() => setSearchOpen(false)}
           onSelectArtist={(id) => setState({ ...state, artist: id })}
+          saved={state.saved || []}
         />
       )}
       {showOnboarding && (
@@ -881,7 +888,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v254",
+        version: "v255",
       }));
     } catch {}
   }
@@ -914,7 +921,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
-          PLURSKY · v254
+          PLURSKY · v255
         </div>
       </div>
     );

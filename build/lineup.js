@@ -1067,6 +1067,15 @@ function LineupScreen({
       return toSlot(a.start) - toSlot(b.start);
     });
   }, [day, weekendFilter, filter, stageFilter, genreFilter, tierFilter, sortBy, q, savedSetIds]);
+  var _otherDayHits = React.useMemo(() => {
+    var term = q.trim().toLowerCase();
+    if (!term) return 0;
+    return ARTISTS.filter(a => {
+      if (a.day === day) return false;
+      var st = STAGES.find(s => s.id === a.stage);
+      return a.name.toLowerCase().includes(term) || (a.genre || "").toLowerCase().includes(term) || (st?.name || "").toLowerCase().includes(term);
+    }).length;
+  }, [q, day]);
   var dayStats = React.useMemo(() => DAYS.map(d => {
     var savedThisDay = ARTISTS.filter(x => x.day === d.n && savedSetIds.has(x.id));
     var clashes = 0;
@@ -1705,7 +1714,42 @@ function LineupScreen({
       highlightId: highlightId,
       fit: gridFit
     })));
-  })(), viewMode === "list" && dayArtists.length === 0 && React.createElement("div", {
+  })(), viewMode === "list" && dayArtists.length === 0 && q.trim() !== "" && React.createElement("div", {
+    style: {
+      padding: 40,
+      textAlign: "center"
+    }
+  }, React.createElement("div", {
+    className: "serif",
+    style: {
+      fontSize: 22,
+      color: "var(--muted)",
+      fontStyle: "italic",
+      marginBottom: 6
+    }
+  }, "No matches for “", q.trim(), "”"), React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 10,
+      letterSpacing: 1.2,
+      color: "var(--muted)"
+    }
+  }, _otherDayHits > 0 ? `${_otherDayHits} MATCH${_otherDayHits === 1 ? "" : "ES"} ON ANOTHER DAY` : "NO ARTIST, STAGE OR GENRE BY THAT NAME"), React.createElement("button", {
+    onClick: () => setQ(""),
+    className: "mono",
+    style: {
+      marginTop: 14,
+      padding: "8px 16px",
+      borderRadius: 999,
+      background: "var(--ink)",
+      color: "var(--paper)",
+      border: "none",
+      fontSize: 10,
+      letterSpacing: 1.4,
+      fontWeight: 700,
+      cursor: "pointer"
+    }
+  }, "CLEAR SEARCH")), viewMode === "list" && dayArtists.length === 0 && q.trim() === "" && React.createElement("div", {
     style: {
       padding: 40,
       textAlign: "center"
@@ -2334,7 +2378,8 @@ function GridSetBlock({
   isHighlighted,
   refStore,
   showEndTime,
-  dueMins
+  dueMins,
+  narrow = false
 }) {
   var isHeadliner = a.tier === 3;
   var fillAlpha = isHeadliner ? "38" : "22";
@@ -2403,7 +2448,7 @@ function GridSetBlock({
       background: `${stage.color}${active || isHighlighted ? fillAlpha : dimAlpha}`,
       borderLeft: `3px solid ${active || isHighlighted ? stage.color : stage.color + "44"}`,
       borderRadius: 6,
-      padding: "4px 6px 4px 7px",
+      padding: narrow ? "3px 3px 3px 4px" : "4px 6px 4px 7px",
       cursor: "pointer",
       overflow: "hidden",
       opacity: active || isHighlighted ? 1 : 0.32,
@@ -2416,19 +2461,20 @@ function GridSetBlock({
     }
   }, React.createElement("div", {
     style: {
-      fontSize: isHeadliner ? 12.5 : 11.5,
+      fontSize: narrow ? 9.5 : isHeadliner ? 12.5 : 11.5,
       fontWeight: isHeadliner ? 800 : 700,
-      lineHeight: 1.1,
+      lineHeight: narrow ? 1.05 : 1.1,
       color: "var(--ink)",
       overflow: "hidden",
       textOverflow: "ellipsis",
       display: "-webkit-box",
-      WebkitLineClamp: height > 60 ? 2 : 1,
+      WebkitLineClamp: narrow ? height > 46 ? 3 : height > 30 ? 2 : 1 : height > 60 ? 2 : 1,
       WebkitBoxOrient: "vertical",
-      paddingRight: saved ? 12 : 0,
+      overflowWrap: "break-word",
+      paddingRight: saved ? narrow ? 9 : 12 : 0,
       fontFamily: isHeadliner ? "Instrument Serif, Georgia, serif" : "Geist, -apple-system, sans-serif"
     }
-  }, a.name), React.createElement("div", {
+  }, a.name), !narrow && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 8,
@@ -2572,6 +2618,7 @@ function TimelineGrid({
   var MIN_COL = 30;
   var COL_W = focus ? Math.max(200, boxW - GUTTER_W) : Math.max(MIN_COL, Math.floor((boxW - GUTTER_W - 2) / Math.max(1, cols.length)));
   var showEndTime = COL_W >= 120;
+  var narrow = COL_W < 72;
   var scrollToStage = id => {
     var i = cols.findIndex(c => c.stage.id === id);
     var el = scrollRef.current;
@@ -2794,6 +2841,7 @@ function TimelineGrid({
             fired: false
           }),
           showEndTime: showEndTime && lay.lanes === 1,
+          narrow: narrow || laneW < 72,
           dueMins: due && due.id === a.id ? due.mins : null
         });
       }));

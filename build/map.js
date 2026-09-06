@@ -2812,7 +2812,13 @@ function MapScreen({
     return () => clearTimeout(id);
   }, [shareState?.active, shareState?.expiresAt]);
   var stage = selectedStage ? STAGES.find(s => s.id === selectedStage) : null;
-  var nowAtStage = stage ? ARTISTS.find(a => a.stage === stage.id && a.day === NOW.day) : null;
+  var nowAtStage = React.useMemo(() => {
+    if (!stage) return null;
+    var t = Date.now();
+    if (t < FESTIVAL_START_MS || t > FESTIVAL_END_MS) return null;
+    var mins = toNightMin(NOW.time);
+    return ARTISTS.find(a => a.stage === stage.id && a.day === NOW.day && mins >= toNightMin(a.start) && mins < toNightMin(a.end)) || null;
+  }, [stage && stage.id, NOW.day, NOW.time]);
   var dx = stage ? stage.x - avatar.x : 0;
   var dy = stage ? stage.y - avatar.y : 0;
   var dist = Math.sqrt(dx * dx + dy * dy);
