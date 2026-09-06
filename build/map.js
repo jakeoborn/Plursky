@@ -745,7 +745,10 @@ function minsAwaySuffix(d, avatar) {
 }
 function gridDistMeters(ax, ay, bx, by, avatar) {
   if (!MAP_AFFINE || !readoutHonest(avatar)) return null;
-  return Math.round(Math.hypot(bx - ax, by - ay) * 22);
+  var a = mapToGps(ax, ay),
+    b = mapToGps(bx, by);
+  var m = distMiles(a.lat, a.lng, b.lat, b.lng) * 1609.34;
+  return isFinite(m) ? Math.round(m) : null;
 }
 function findNextSavedSet(savedIds) {
   var nowMin = toNightMin(NOW.time);
