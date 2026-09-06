@@ -122,13 +122,29 @@ for (const f of live) {
 // anchor set is exactly how edc-orlando-2026 carried five centroid offsets
 // 170-481 m from the real stages for two weeks. Audit them too, plainly
 // labelled, so a bad basis is caught at authoring time and not at flip time.
-const gated = REG.filter(f => f.available !== true && DS[f.config && f.config.id]
-                              && (DS[f.config.id].config.gpsAnchors || []).length);
-if (gated.length) {
+const gatedAll = REG.filter(f => f.available !== true && DS[f.config && f.config.id]);
+const gated = gatedAll.filter(f => (DS[f.config.id].config.gpsAnchors || []).length);
+// A gated festival that draws a MAP but declares no anchors produces no audit
+// row at all, so the lane looks clean when it is merely unmeasured. That is
+// not the same as mapMode "real", which needs no anchors by design. Name the
+// difference out loud — nocturnal-wonderland-2026 sat in the first state and
+// this section could not see it.
+const unanchored = gatedAll.filter(f => {
+  const c = DS[f.config.id].config;
+  return !(c.gpsAnchors || []).length && c.mapMode !== "real" && (c.mapImage || c.mapStyle);
+});
+if (gated.length || unanchored.length) {
   console.log(`\n\n══ GATED (not shipping — audited so the flip session inherits a known-good basis) ══`);
   for (const f of gated) {
     const id = f.config.id, ds = DS[id];
     console.log(audit(id, ds.stages, ds.config.gpsAnchors, "GATED").lines.join("\n"));
+  }
+  for (const f of unanchored) {
+    const c = DS[f.config.id].config;
+    const placed = (DS[f.config.id].stages || []).filter(st => Number.isFinite(st.x) && Number.isFinite(st.y)).length;
+    console.log(`\n### ${f.config.id} — GATED, UNANCHORED`);
+    console.log(`  draws ${c.mapImage || c.mapStyle} with ${placed} placed stage(s) and NO gpsAnchors`);
+    console.log(`  → MAP_AFFINE null; layout only, no registration. Nothing to audit until the flip adds anchors.`);
   }
 }
 

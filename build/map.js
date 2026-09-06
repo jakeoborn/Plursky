@@ -702,7 +702,7 @@ function _pairKey(a, b) {
 function _nearestStageId(x, y, radius = 9) {
   var best = null,
     bestD = radius;
-  for (var s of STAGES) {
+  for (var s of PLACED_STAGES) {
     var d = Math.hypot(s.x - x, s.y - y);
     if (d < bestD) {
       bestD = d;

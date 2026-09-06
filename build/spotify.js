@@ -7256,7 +7256,7 @@ function MemoriesPhotoMapLens({
         if (!xy) {
           var a = m.artistId ? ARTISTS.find(x => x.id === m.artistId) : null;
           var _stage = a ? STAGES.find(s => s.id === a.stage) : null;
-          if (!_stage) {
+          if (!_stage || !Number.isFinite(_stage.x) || !Number.isFinite(_stage.y)) {
             unplaced++;
             return 0;
           }

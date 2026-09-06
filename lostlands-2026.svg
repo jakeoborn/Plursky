@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 100 100">
+<title>Lost Lands 2026 — generated ground plate</title>
+<desc>Abstract site plate. Stage positions are read from the official 2025 Lost Lands festival map (the 2026 map is not published); the artwork here is generated from those coordinates and reproduces no festival art. North is up, established from the 2025 camping map's road labels. Not georeferenced — no world coordinates are derived from this plate.</desc>
+<defs>
+  <radialGradient id="glow"><stop offset="0" stop-color="#fff" stop-opacity=".34"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+  <radialGradient id="haze" cx="42%" cy="30%"><stop offset="0" stop-color="#2e7d4f" stop-opacity=".5"/><stop offset="1" stop-color="#2e7d4f" stop-opacity="0"/></radialGradient>
+  <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.5"/></filter>
+</defs>
+
+<rect width="100" height="100" fill="#07130c"/>
+<rect x="3" y="3" width="94" height="94" rx="4" fill="#0c2015"/>
+<rect x="3" y="3" width="94" height="94" rx="4" fill="url(#haze)"/>
+
+<!-- Festival field: the valley runs NW (Forest) to SE (Prehistoric), traced in
+     shape only from the 2025 site plan. -->
+<path d="M18 8 L62 6 L84 18 L88 44 L86 66 L80 93 L44 95 L22 88 L14 66 L18 44 L13 26 Z"
+      fill="#12351f" stroke="#2f6b3d" stroke-width=".5" opacity=".92"/>
+
+<!-- Main service loop, the tan spine the official map draws through the valley -->
+<path d="M24 16 C30 30 34 44 38 58 C42 70 56 80 74 86" stroke="#b39a63" stroke-width="1.6" fill="none" opacity=".5" stroke-linecap="round"/>
+<path d="M38 58 C50 54 66 52 78 51" stroke="#b39a63" stroke-width="1.3" fill="none" opacity=".42" stroke-linecap="round"/>
+<path d="M56 12 C54 26 48 38 40 46" stroke="#b39a63" stroke-width="1.1" fill="none" opacity=".36" stroke-linecap="round"/>
+
+<!-- Tree line -->
+<g fill="#1b4a2c" opacity=".75">
+  <circle cx="31" cy="9"  r="1.6"/><circle cx="40" cy="18" r="1.3"/><circle cx="17" cy="22" r="1.5"/>
+  <circle cx="66" cy="20" r="1.6"/><circle cx="74" cy="30" r="1.2"/><circle cx="30" cy="41" r="1.5"/>
+  <circle cx="18" cy="55" r="1.7"/><circle cx="44" cy="66" r="1.4"/><circle cx="62" cy="64" r="1.3"/>
+  <circle cx="86" cy="58" r="1.5"/><circle cx="26" cy="84" r="1.2"/><circle cx="58" cy="90" r="1.3"/>
+  <circle cx="70" cy="72" r="1.4"/><circle cx="47" cy="28" r="1.2"/>
+</g>
+
+<!-- Stage glows, at the six positions the 2025 festival map supplies.
+     The Grove is deliberately absent: it is a campground stage, west of
+     Route 13, off this field entirely. -->
+<g filter="url(#soft)">
+  <circle cx="75" cy="88" r="9.5" fill="#f97316" opacity=".38"/>
+  <circle cx="78" cy="51" r="7.5" fill="#84cc16" opacity=".34"/>
+  <circle cx="32" cy="74" r="7"   fill="#a855f7" opacity=".34"/>
+  <circle cx="22" cy="33" r="6.5" fill="#22d3ee" opacity=".32"/>
+  <circle cx="23" cy="13" r="6"   fill="#34d399" opacity=".30"/>
+  <circle cx="56" cy="12" r="5.5" fill="#ef4444" opacity=".30"/>
+</g>
+<g opacity=".9">
+  <circle cx="75" cy="88" r="3.2" fill="#f97316"/>
+  <circle cx="78" cy="51" r="2.4" fill="#84cc16"/>
+  <circle cx="32" cy="74" r="2.2" fill="#a855f7"/>
+  <circle cx="22" cy="33" r="2.0" fill="#22d3ee"/>
+  <circle cx="23" cy="13" r="1.8" fill="#34d399"/>
+  <circle cx="56" cy="12" r="1.6" fill="#ef4444"/>
+</g>
+
+<!-- Entrance markers, from the 2025 map's own labels: festival + VIP entrances
+     sit on the WEST edge, north of the glamping blocks. -->
+<g fill="#e879f9" opacity=".8">
+  <rect x="15" y="62" width="5" height="1.6" rx=".8"/>
+  <rect x="17" y="70" width="5" height="1.6" rx=".8"/>
+</g>
+</svg>

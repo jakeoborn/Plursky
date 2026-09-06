@@ -426,26 +426,66 @@ const FESTIVALS_REGISTRY = [
         4: { rise: "07:13", set: "19:34" },
         5: { rise: "07:14", set: "19:32" },
       },
-      // Venue centroid from OpenStreetMap (Legend Valley, 7585 Jacksontown
-      // Rd SE, Thornville OH); NWS points endpoint verified live 2026-08-22.
+      // Venue centroid from OpenStreetMap (Legend Valley, 7585 Kindle Road SE,
+      // Thornville OH — OSM way 694134820, amenity=events_venue); NWS points
+      // endpoint verified live 2026-08-22.
       gps: { lat: 39.9403, lng: -82.4039, onSiteRadiusMi: 1.0 },
-      // ⚠ ALL anchors PROVISIONAL (spread around the centroid from the
-      // general stage layout - no 2026 patron map exists yet). Recalibrate
-      // at the flip session per the map.jsx ACL 3-point affine workflow.
-      gpsAnchors: [
-        { stageId: "prehistoric",  lat: 39.93800, lng: -82.40650, src: "prov" },
-        { stageId: "wompy-woods",  lat: 39.94150, lng: -82.40100, src: "prov" },
-        { stageId: "crater",       lat: 39.94050, lng: -82.40750, src: "prov" },
-        { stageId: "subsidia",     lat: 39.94180, lng: -82.40450, src: "prov" },
-        { stageId: "forest-stage", lat: 39.93900, lng: -82.40200, src: "prov" },
-        { stageId: "raptor-alley", lat: 39.94250, lng: -82.40700, src: "prov" },
-        { stageId: "grove",        lat: 39.94300, lng: -82.40150, src: "prov" },
-      ],
+      // Real surveyed parcel boundary, OSM way 694134820, 23 vertices,
+      // 758 m N-S x 722 m E-W. Added 2026-09-06 so the venue-footprint gate
+      // actually RUNS for this festival — it only checks festivals that
+      // declare one, which is why nothing caught that 4 of the 7 anchors
+      // deleted below sat OUTSIDE the venue (raptor-alley 173 m out, grove
+      // 109 m, wompy-woods 61 m, subsidia 8 m). Whoever adds real anchors at
+      // the flip now gets that check for free.
+      venue: {
+        footprint: [
+          [39.94099, -82.40771], [39.94099, -82.40778], [39.93972, -82.40805],
+          [39.93902, -82.40821], [39.93847, -82.40830], [39.93839, -82.40828],
+          [39.93832, -82.40819], [39.93816, -82.40815], [39.93705, -82.40816],
+          [39.93696, -82.40809], [39.93691, -82.40799], [39.93686, -82.40777],
+          [39.93656, -82.40284], [39.93649, -82.40166], [39.93641, -82.40022],
+          [39.94095, -82.39985], [39.94095, -82.40192], [39.94107, -82.40229],
+          [39.94316, -82.40285], [39.94323, -82.40423], [39.94079, -82.40454],
+          [39.94089, -82.40630], [39.94099, -82.40771],
+        ],
+      },
+      // ⛔ NO gpsAnchors, and their REMOVAL is the point of this change.
+      //
+      // Seven `prov` anchors used to sit here — spread around the venue
+      // centroid from a general sense of the layout, with no map behind them.
+      // The GATED audit added in #73 put the basis affine 690 m out at
+      // forest-stage, 312 m at raptor-alley, 220 m at grove and 186 m at
+      // subsidia. Checking them against the real OSM parcel then showed FOUR
+      // OF SEVEN outside the venue altogether, and reading the official 2025
+      // festival map showed several on the wrong SIDE of it: forest-stage was
+      // placed south-east when the map has it north-west, raptor-alley
+      // north-west when it is north-east, prehistoric south-west when it is
+      // the south-east corner. `grove` was the clearest tell — it was put
+      // 205 m EAST of centre, inside the grounds, when the camping map has it
+      // west of Route 13 entirely, on the far side of the highway.
+      //
+      // They were not imprecise. They were invented, and three independent
+      // checks agreed. Deleting them is the honest state and it is a
+      // well-trodden one: MAP_AFFINE goes null, every distance and walk-time
+      // readout suppresses itself through the v257/v260 gate, and the blue dot
+      // stays on the real-map layer where it is actually true. Same posture as
+      // nocturnal-wonderland-2026, iii-points-2026, crssd-fall-2026 and
+      // portola-2026.
+      //
+      // FLIP SESSION (official 2026 map drops ~1 week out, so ~Sep 11):
+      // georeference that map onto ortho imagery of Legend Valley the way #68
+      // did for EDC Orlando and add anchors then — src "poster" for art reads,
+      // "osm" for satellite-measured features, `derived` banned from the
+      // basis. Re-derive stage x/y FROM the anchors, never the reverse, and
+      // regenerate lostlands-2026.svg from the corrected coordinates.
       mainStageId: "prehistoric",
-      // lostlands-2026.jpg = PROVISIONAL generated abstract valley overlay
-      // (ImageMagick gradient, NOT traced). Replace with the processed
-      // official 2026 patron map (acl-park.webp treatment) when it drops.
-      mapImage: "lostlands-2026.jpg",
+      // lostlands-2026.svg = generated abstract ground plate, regenerated
+      // 2026-09-06 from the corrected stage coordinates (the old .jpg was an
+      // ImageMagick gradient authored against the WRONG layout). It traces
+      // shape only and reproduces no festival artwork — nocturnal-2026.svg
+      // precedent. Replace with the processed official 2026 patron map
+      // (acl-park.webp treatment) when it drops.
+      mapImage: "lostlands-2026.svg",
       mapStyle: "image-overlay",
       mapTheme: "forest",
       weatherEndpoint: "https://api.weather.gov/points/39.9403,-82.4039",
@@ -1775,14 +1815,45 @@ const EDCO_AMENITIES = [
 // every start/end, per-artist stage, stage x/y, and genre label below is
 // PROVISIONAL placeholder grid. Do NOT flip `available: true` until the flip
 // session replaces them with the official schedule + official 2026 patron map.
+// Stage x/y are read off the OFFICIAL 2025 Lost Lands festival map
+// (lostlandsfestival.com, "LL25_Festival-Map"), re-derived 2026-09-06. They
+// replace an eyeballed grid that had the layout substantially wrong — it put
+// Forest Stage in the SOUTH-WEST when the official map has it NORTH-WEST, and
+// Prehistoric Paradox mid-valley when it is the SOUTH-EAST corner stage.
+//
+// ORIENTATION IS ESTABLISHED, not assumed. The companion 2025 CAMPING map
+// carries real road labels — I-70 along the top, Boundaries Rd along the
+// bottom, Licking Trails Rd west, Route 13 / Jacksontown Rd running north-
+// south — which fixes it as north-up, and the two maps agree on the shared
+// landmarks (Village Marketplace west, festival + VIP entrances on the west
+// edge north of the Jurassic Glamping blocks). So on this grid, up IS north.
+//
+// ONE isotropic scale (poster pixels → grid units), so relative distance
+// survives as well as relative bearing. The stage field is taller than it is
+// wide (1486 × 1103 poster px), which is why the north and south margins are
+// tight and the east/west ones are not. Do NOT stretch each axis to fill
+// 10..90 — see #73 for why that is a real distortion in a square map space.
+//
+// ⚠ THIS IS LAYOUT, NOT REGISTRATION. The map is stylized art with no survey
+// frame, so it yields no world coordinates and the module ships NO gpsAnchors
+// (see the config block). Never derive lat/lng from these numbers — that is
+// the exact defect PR #36 removed from EDC LV.
+//
+// ⚠ THE GROVE HAS NO POSITION, deliberately. It is a CAMPGROUND stage: the
+// 2025 camping map puts it west of Route 13, by Village Marketplace and RV
+// Camping — the far side of the highway from the festival grounds this plate
+// draws. It does not belong anywhere on this field, and map.jsx's
+// PLACED_STAGES filter drops a stage with no numeric x/y rather than drawing
+// a pin at NaN. Its artists still appear in the lineup. Same call as
+// Nocturnal's Rave Cave.
 const LL_STAGES = [
-  { id: "prehistoric",  name: "Prehistoric Paradox", short: "PREHISTORIC", color: "#f97316", x: 50, y: 68, size: 2.2, desc: "Legend Valley main stage", vibe: "Main Energy", vibeNote: "The big one. Pyro, lasers, the whole valley answers.", peak: "17:00–00:00" },
-  { id: "wompy-woods",  name: "Wompy Woods",         short: "WOMPY",      color: "#84cc16", x: 68, y: 45, size: 1.6, desc: "Forest-draped second stage", vibe: "In The Trees", vibeNote: "Wobbles in the woods; fan-favorite for a reason.", peak: "14:00–23:00" },
-  { id: "crater",       name: "The Crater",          short: "CRATER",     color: "#a855f7", x: 38, y: 50, size: 1.5, desc: "360-degree immersive stage", vibe: "Surround Sound", vibeNote: "Bass in the round - the pre-party home.", peak: "14:00–23:00" },
-  { id: "subsidia",     name: "Subsidia Stage",      short: "SUBSIDIA",   color: "#22d3ee", x: 58, y: 38, size: 1.3, desc: "Excision-label showcase stage", vibe: "Label Night", vibeNote: "Subsidia Records takeover energy.", peak: "14:00–22:00" },
-  { id: "forest-stage", name: "Forest Stage",        short: "FOREST",     color: "#34d399", x: 30, y: 62, size: 1.1, desc: "Deep-in-the-trees stage", vibe: "Hidden Forest", vibeNote: "Small canopy, big wubs.", peak: "14:00–22:00" },
-  { id: "raptor-alley", name: "Raptor Alley",        short: "RAPTOR",     color: "#ef4444", x: 45, y: 25, size: 0.9, desc: "Late-night after-hours lane", vibe: "After Hours", vibeNote: "The valley does not sleep.", peak: "23:00–04:00" },
-  { id: "grove",        name: "The Grove",           short: "GROVE",      color: "#eab308", x: 62, y: 22, size: 0.8, desc: "Campground stage", vibe: "Campground", vibeNote: "Morning-to-late sets where the camps live.", peak: "10:00–22:00" },
+  { id: "prehistoric",  name: "Prehistoric Paradox", short: "PREHISTORIC", color: "#f97316", x: 75, y: 88, size: 2.2, desc: "Legend Valley main stage", vibe: "Main Energy", vibeNote: "The big one. Pyro, lasers, the whole valley answers.", peak: "17:00–00:00" },
+  { id: "wompy-woods",  name: "Wompy Woods",         short: "WOMPY",      color: "#84cc16", x: 78, y: 51, size: 1.6, desc: "Forest-draped second stage", vibe: "In The Trees", vibeNote: "Wobbles in the woods; fan-favorite for a reason.", peak: "14:00–23:00" },
+  { id: "crater",       name: "The Crater",          short: "CRATER",     color: "#a855f7", x: 32, y: 74, size: 1.5, desc: "360-degree immersive stage", vibe: "Surround Sound", vibeNote: "Bass in the round - the pre-party home.", peak: "14:00–23:00" },
+  { id: "subsidia",     name: "Subsidia Stage",      short: "SUBSIDIA",   color: "#22d3ee", x: 22, y: 33, size: 1.3, desc: "Excision-label showcase stage", vibe: "Label Night", vibeNote: "Subsidia Records takeover energy.", peak: "14:00–22:00" },
+  { id: "forest-stage", name: "Forest Stage",        short: "FOREST",     color: "#34d399", x: 23, y: 13, size: 1.1, desc: "Deep-in-the-trees stage", vibe: "Hidden Forest", vibeNote: "Small canopy, big wubs.", peak: "14:00–22:00" },
+  { id: "raptor-alley", name: "Raptor Alley",        short: "RAPTOR",     color: "#ef4444", x: 56, y: 12, size: 0.9, desc: "Late-night after-hours lane", vibe: "After Hours", vibeNote: "The valley does not sleep.", peak: "23:00–04:00" },
+  { id: "grove",        name: "The Grove",           short: "GROVE",      color: "#eab308", size: 0.8, desc: "Campground stage", vibe: "Campground", vibeNote: "Morning-to-late sets where the camps live.", peak: "10:00–22:00" },
 ];
 
 // Tier from curated headliner list (schedule-independent); genres are best-
