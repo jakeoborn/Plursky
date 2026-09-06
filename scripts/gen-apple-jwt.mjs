@@ -17,7 +17,7 @@ import { homedir } from "node:os";
 
 // Edit these three if Apple Developer details change:
 const TEAM_ID    = "X54Q9P743S";          // Plursky Apple Developer team
-const KEY_ID     = "WXR4WNDFSY";          // Key ID from the .p8 filename
+const KEY_ID     = "GZVTM646C9";          // Key ID from the .p8 filename
 const SERVICES_ID = "com.plursky.app.web"; // Services ID (the "sub" claim)
 
 // Resolve key path — CLI arg OR default to ~/Downloads/AuthKey_<KEY_ID>.p8
