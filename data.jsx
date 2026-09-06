@@ -478,7 +478,14 @@ const FESTIVALS_REGISTRY = [
     // assignments, and the official 2026 map are NOT published yet
     // (checked 2026-08-22; Insomniac drops them in the EDC app ~1-2
     // weeks out). Flip `available: true` ONLY after the flip session
-    // replaces times/stages/map + recalibrates gpsAnchors.
+    // replaces times/stages/map.
+    //
+    // GEO IS DONE (2026-09-06, #68): centroid, the five gpsAnchors and the
+    // EDCO_STAGES x/y grid are all measured — see the block comments below.
+    // The flip session no longer owns recalibration; it owns (1) per-artist
+    // stage + set times from the Insomniac app, (2) the official 2026 map art
+    // replacing edco-tinker-2026.jpg, and (3) re-deriving ONLY the anchors of
+    // stages the 2026 layout actually moves.
     config: {
       id:        "edc-orlando-2026",
       name:      "EDC Orlando 2026",
@@ -507,20 +514,51 @@ const FESTIVALS_REGISTRY = [
         2: { rise: "06:39", set: "17:34" },
         3: { rise: "06:40", set: "17:33" },
       },
-      // ⚠ PROVISIONAL venue centroid (Tinker Field Plaza, Nominatim
-      // 2026-08-22). Recalibrate against the official 2026 map + satellite.
-      gps: { lat: 28.5382, lng: -81.4053, onSiteRadiusMi: 0.6 },
-      // ⚠ ALL anchors PROVISIONAL (venue centroid offsets only).
-      // NOT re-derived (per the work order, EDCO stays provisional). For the
-      // flip session: `stereo` is 56.9 grid units off the kinetic/circuit/neon
-      // affine and `bacardi` 13.0 — over half the footprint. Re-measure the
-      // trio on satellite first, then re-derive the other two from it.
+      // Grounds centroid, MEASURED 2026-09-06 from the festival polygon
+      // (Church St 28.54022 N / SR-408 + W Anderson ~28.5363 S / S Tampa
+      // -81.40353 W / S Nashville -81.39935 E). This replaces a Nominatim
+      // "Tinker Field Plaza" hit that sat 378 m WEST of the grounds, in the
+      // residential block on the far side of Tampa. onSiteRadiusMi 0.6 clears
+      // every anchor with room to spare — the farthest, neon, is 0.19 mi out.
+      gps: { lat: 28.53826, lng: -81.40144, onSiteRadiusMi: 0.6 },
+      // Anchors MEASURED 2026-09-06, replacing five venue-centroid offsets
+      // that were 170–481 m from the real stage positions. Method: the
+      // official EDCO 2025 map (Insomniac; north-up, real street frame)
+      // georeferenced onto Esri World Imagery Wayback 2025-09-25 = State of
+      // Florida / Orange County orthos, captured 2024-04-25 at 0.08 m/px,
+      // via a 7-point least-squares affine on fixed features (Church/Tampa,
+      // Tampa/408, Anderson/Nashville, 4 stadium corners). Fit residuals
+      // 22–96 m, which is the stylized art's own error, not the ortho's.
+      //
+      // src is "poster" for ALL FIVE and that is deliberate: these are reads
+      // off map ART, not surveyed features, so under the v260 taxonomy they
+      // are not evidence. Registration stays unsourced and every distance
+      // readout stays withheld — see the distance-readout gate. Do not
+      // promote any of these to "osm"/"crowd" without a real measurement.
+      //
+      // neon/stereo/bacardi were SNAPPED to the festival polygon where the
+      // raw fit landed outside the fence; each snap is inside the art's own
+      // residual envelope. Raw pre-snap fits, for the record:
+      //   kinetic 28.537000,-81.400398 (unsnapped)
+      //   circuit 28.539991,-81.402186 (unsnapped)
+      //   neon    28.539542,-81.397451 → snapped ~85 m W into the practice field
+      //   stereo  28.536498,-81.403728 → snapped ~85 m NE, east of Tampa
+      //   bacardi 28.535902,-81.402559 → snapped ~40 m N of SR-408
+      //
+      // ⚠ The old note claiming `stereo` was "56.9 grid units off the
+      // kinetic/circuit/neon affine" and `bacardi` 13.0 is GONE, not merely
+      // stale: it measured the centroid-offset artifact, never a real layout
+      // signal. The five stages are internally consistent once measured.
+      //
+      // FLIP SESSION: re-derive an anchor ONLY if the official 2026 map moves
+      // that stage. Same method, and re-check the x/y grid in EDCO_STAGES if
+      // you do — the two are derived together.
       gpsAnchors: [
-        { stageId: "kinetic", lat: 28.53890, lng: -81.40450, src: "prov" },
-        { stageId: "circuit", lat: 28.53760, lng: -81.40630, src: "prov" },
-        { stageId: "neon",    lat: 28.53800, lng: -81.40320, src: "prov" },
-        { stageId: "stereo",  lat: 28.53920, lng: -81.40610, src: "prov" },
-        { stageId: "bacardi", lat: 28.53720, lng: -81.40400, src: "prov" },
+        { stageId: "kinetic", lat: 28.53700, lng: -81.40040, src: "poster" }, // SE of the stadium, N of W Anderson, W of Nashville
+        { stageId: "circuit", lat: 28.53999, lng: -81.40219, src: "poster" }, // Tinker Field mowed rectangle, NE part
+        { stageId: "neon",    lat: 28.53900, lng: -81.39850, src: "poster" }, // practice field EAST of Nashville Ave — outside the core rectangle by design
+        { stageId: "stereo",  lat: 28.53730, lng: -81.40310, src: "poster" }, // field S of W South St, E of Tampa
+        { stageId: "bacardi", lat: 28.53660, lng: -81.40240, src: "poster" }, // N of SR-408, between Tampa and Lake Beardall
       ],
       mainStageId: "kinetic",
       // edco-tinker-2026.jpg = PROVISIONAL generated abstract overlay
@@ -1572,12 +1610,28 @@ const ACL_AMENITIES = [
 // 12:00-13:00 times until the flip session. Stage names verified from
 // orlando.edc.com/experience/stages (incl. 5th stage CASA BACARDÍ).
 
+// Stage x/y are a 0–100 GRID, and since v264 they are DERIVED from the
+// measured gpsAnchors above, not eyeballed. One isotropic scale (5.62 m per
+// grid unit) so the abstract layout is honest about relative position AND
+// relative distance: worst pairwise inter-stage error is 3.9 %, and that is
+// integer rounding, nothing else. The previous grid put kinetic at y=24 —
+// far NORTH — when the measured main stage is the SOUTH-EASTERN one.
+//
+// ⚠ Do not "square up" this grid by stretching it to fill 10..90 on both
+// axes. The east span (450 m) is 1.20x the north span (376 m), so filling
+// both would apply a 20 % vertical stretch and push worst pairwise error to
+// 9.6 %. The map space in map.jsx is 0–100 SQUARE, so a per-axis scale is a
+// real distortion, not a viewport artifact. The n/s margin is the honest
+// cost of preserving aspect.
+//
+// The plasma overlay art stays abstract, so nothing registers against it;
+// re-derive this grid with the anchors if the official 2026 map moves a stage.
 const EDCO_STAGES = [
-  { id: "kinetic", name: "kineticFIELD",   short: "KINETIC",  color: "#f97316", x: 50, y: 24, size: 1.7, desc: "Main stage",               vibe: "Main Event",      vibeNote: "Headliners under the electric sky.",                 peak: "18:00–00:00" },
-  { id: "circuit", name: "circuitGROUNDS", short: "CIRCUIT",  color: "#38bdf8", x: 26, y: 44, size: 1.4, desc: "Epic-melody big room",     vibe: "Big Melodies",    vibeNote: "Trance, melodic bass, anthem energy.",               peak: "16:00–00:00" },
-  { id: "neon",    name: "neonGARDEN",     short: "NEON",     color: "#a855f7", x: 74, y: 44, size: 1.3, desc: "Factory 93 home base",     vibe: "House & Techno",  vibeNote: "Factory 93 takeover territory, four-on-the-floor.",  peak: "15:00–00:00" },
-  { id: "stereo",  name: "stereoBLOOM",    short: "STEREO",   color: "#f43f5e", x: 36, y: 70, size: 1.1, desc: "Insomniac Records stage",  vibe: "Label Sounds",    vibeNote: "Insomniac Records + Dreamstate hosting.",            peak: "14:00–23:00" },
-  { id: "bacardi", name: "CASA BACARDÍ",   short: "BACARDÍ",  color: "#22c55e", x: 64, y: 70, size: 0.9, desc: "Lounge stage",             vibe: "Lounge Sessions", vibeNote: "Day-party energy under the palms.",                  peak: "13:00–20:00" },
+  { id: "kinetic", name: "kineticFIELD",   short: "KINETIC",  color: "#f97316", x: 57, y: 76, size: 1.7, desc: "Main stage",               vibe: "Main Event",      vibeNote: "Headliners under the electric sky.",                 peak: "18:00–00:00" },
+  { id: "circuit", name: "circuitGROUNDS", short: "CIRCUIT",  color: "#38bdf8", x: 26, y: 17, size: 1.4, desc: "Epic-melody big room",     vibe: "Big Melodies",    vibeNote: "Trance, melodic bass, anthem energy.",               peak: "16:00–00:00" },
+  { id: "neon",    name: "neonGARDEN",     short: "NEON",     color: "#a855f7", x: 90, y: 36, size: 1.3, desc: "Factory 93 home base",     vibe: "House & Techno",  vibeNote: "Factory 93 takeover territory, four-on-the-floor.",  peak: "15:00–00:00" },
+  { id: "stereo",  name: "stereoBLOOM",    short: "STEREO",   color: "#f43f5e", x: 10, y: 70, size: 1.1, desc: "Insomniac Records stage",  vibe: "Label Sounds",    vibeNote: "Insomniac Records + Dreamstate hosting.",            peak: "14:00–23:00" },
+  { id: "bacardi", name: "CASA BACARDÍ",   short: "BACARDÍ",  color: "#22c55e", x: 22, y: 83, size: 0.9, desc: "Lounge stage",             vibe: "Lounge Sessions", vibeNote: "Day-party energy under the palms.",                  peak: "13:00–20:00" },
   { id: "tba",    name: "Schedule TBA",    short: "TBA",      color: "#9ca3af", x: 50, y: 50, size: 0.1, desc: "PROVISIONAL: stage assignments drop with the official schedule", vibe: "Unscheduled", vibeNote: "Every artist sits here until the official schedule assigns stages + times.", peak: "—" },
 ];
 

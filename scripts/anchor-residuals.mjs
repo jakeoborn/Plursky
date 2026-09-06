@@ -117,6 +117,21 @@ for (const f of live) {
   const id = f.config.id, ds = DS[id];
   console.log(audit(id, ds.stages, ds.config.gpsAnchors || [], "SHIPPING TODAY").lines.join("\n"));
 }
+// Gated modules ship no readouts, so nothing here can be user-visible — but
+// their anchors are still the thing a flip session inherits, and an unaudited
+// anchor set is exactly how edc-orlando-2026 carried five centroid offsets
+// 170-481 m from the real stages for two weeks. Audit them too, plainly
+// labelled, so a bad basis is caught at authoring time and not at flip time.
+const gated = REG.filter(f => f.available !== true && DS[f.config && f.config.id]
+                              && (DS[f.config.id].config.gpsAnchors || []).length);
+if (gated.length) {
+  console.log(`\n\n══ GATED (not shipping — audited so the flip session inherits a known-good basis) ══`);
+  for (const f of gated) {
+    const id = f.config.id, ds = DS[id];
+    console.log(audit(id, ds.stages, ds.config.gpsAnchors, "GATED").lines.join("\n"));
+  }
+}
+
 if (PROPOSED) {
   console.log("\n\n══ PROPOSED PATCHES ══");
   for (const [id, anchors] of Object.entries(PROPOSED)) {

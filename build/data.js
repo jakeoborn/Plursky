@@ -503,35 +503,35 @@ var FESTIVALS_REGISTRY = [{
       }
     },
     gps: {
-      lat: 28.5382,
-      lng: -81.4053,
+      lat: 28.53826,
+      lng: -81.40144,
       onSiteRadiusMi: 0.6
     },
     gpsAnchors: [{
       stageId: "kinetic",
-      lat: 28.53890,
-      lng: -81.40450,
-      src: "prov"
+      lat: 28.53700,
+      lng: -81.40040,
+      src: "poster"
     }, {
       stageId: "circuit",
-      lat: 28.53760,
-      lng: -81.40630,
-      src: "prov"
+      lat: 28.53999,
+      lng: -81.40219,
+      src: "poster"
     }, {
       stageId: "neon",
-      lat: 28.53800,
-      lng: -81.40320,
-      src: "prov"
+      lat: 28.53900,
+      lng: -81.39850,
+      src: "poster"
     }, {
       stageId: "stereo",
-      lat: 28.53920,
-      lng: -81.40610,
-      src: "prov"
+      lat: 28.53730,
+      lng: -81.40310,
+      src: "poster"
     }, {
       stageId: "bacardi",
-      lat: 28.53720,
-      lng: -81.40400,
-      src: "prov"
+      lat: 28.53660,
+      lng: -81.40240,
+      src: "poster"
     }],
     mainStageId: "kinetic",
     mapImage: "edco-tinker-2026.jpg",
@@ -1280,8 +1280,8 @@ var EDCO_STAGES = [{
   name: "kineticFIELD",
   short: "KINETIC",
   color: "#f97316",
-  x: 50,
-  y: 24,
+  x: 57,
+  y: 76,
   size: 1.7,
   desc: "Main stage",
   vibe: "Main Event",
@@ -1293,7 +1293,7 @@ var EDCO_STAGES = [{
   short: "CIRCUIT",
   color: "#38bdf8",
   x: 26,
-  y: 44,
+  y: 17,
   size: 1.4,
   desc: "Epic-melody big room",
   vibe: "Big Melodies",
@@ -1304,8 +1304,8 @@ var EDCO_STAGES = [{
   name: "neonGARDEN",
   short: "NEON",
   color: "#a855f7",
-  x: 74,
-  y: 44,
+  x: 90,
+  y: 36,
   size: 1.3,
   desc: "Factory 93 home base",
   vibe: "House & Techno",
@@ -1316,7 +1316,7 @@ var EDCO_STAGES = [{
   name: "stereoBLOOM",
   short: "STEREO",
   color: "#f43f5e",
-  x: 36,
+  x: 10,
   y: 70,
   size: 1.1,
   desc: "Insomniac Records stage",
@@ -1328,8 +1328,8 @@ var EDCO_STAGES = [{
   name: "CASA BACARDÍ",
   short: "BACARDÍ",
   color: "#22c55e",
-  x: 64,
-  y: 70,
+  x: 22,
+  y: 83,
   size: 0.9,
   desc: "Lounge stage",
   vibe: "Lounge Sessions",
