@@ -1,0 +1,28 @@
+{
+  "_note": "The three desk re-surveys posted to issue #57 on 2026-09-06, transcribed verbatim including anchor order (the first three are the affine basis). src values are taken from the trailing comments in the patch, which were written as comments rather than as object properties. Score with: node scripts/anchor-residuals.mjs --proposed docs/reports/2026-09-06-proposed-anchors-issue-57.json",
+
+  "acl-2026": [
+    { "stageId": "amex",     "lat": 30.267233, "lng": -97.763236, "src": "osm" },
+    { "stageId": "miller",   "lat": 30.269017, "lng": -97.769316, "src": "osm" },
+    { "stageId": "tmobile",  "lat": 30.268021, "lng": -97.770282, "src": "osm" },
+    { "stageId": "ladybird", "lat": 30.266712, "lng": -97.766540, "src": "osm" },
+    { "stageId": "bmi",      "lat": 30.266404, "lng": -97.767698, "src": "derived" },
+    { "stageId": "bonus",    "lat": 30.265736, "lng": -97.764721, "src": "derived" }
+  ],
+
+  "ultra-miami-2026": [
+    { "stageId": "cove",          "lat": 25.77618, "lng": -80.18565, "src": "osm" },
+    { "stageId": "megastructure", "lat": 25.77731, "lng": -80.18721, "src": "osm" },
+    { "stageId": "oasis",         "lat": 25.77336, "lng": -80.18542, "src": "osm" },
+    { "stageId": "main",          "lat": 25.77482, "lng": -80.18593, "src": "osm" },
+    { "stageId": "worldwide",     "lat": 25.77593, "lng": -80.18693, "src": "osm" },
+    { "stageId": "umfradio",      "lat": 25.77328, "lng": -80.18584, "src": "osm" },
+    { "stageId": "live",          "lat": 25.77620, "lng": -80.18606, "src": "osm" }
+  ],
+
+  "governors-ball-2026": [
+    { "stageId": "grove",    "lat": 40.74750, "lng": -73.84209, "src": "osm" },
+    { "stageId": "verizon",  "lat": 40.74420, "lng": -73.84381, "src": "derived" },
+    { "stageId": "snapchat", "lat": 40.74284, "lng": -73.84262, "src": "derived" }
+  ]
+}
