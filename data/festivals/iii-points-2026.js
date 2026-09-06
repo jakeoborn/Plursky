@@ -68,8 +68,16 @@
   "use strict";
 
   // No stages published — see the header. This is intentionally empty, and
-  // the app must stay correct with it empty; that is asserted by the mount
-  // probe in scripts/verify.mjs, which boots this festival active.
+  // the app must stay correct with it empty.
+  //
+  // ⚠ This comment used to claim scripts/verify.mjs's mount probe boots this
+  // festival active and asserts that. It does not — the probe loads the real
+  // index.html with an empty localStorage, so it always boots whatever the
+  // resolver picks (acl-2026 today), and it cannot pick a gated festival at
+  // all: getActiveFestivalId requires `f.available`. Booting a gated
+  // festival needs a local flip; that is how this one and crssd-fall-2026
+  // were actually rendered. Do not trust the empty-STAGES path to a gate
+  // that is not there.
   const STAGES = [];
 
   // No amenity map published.

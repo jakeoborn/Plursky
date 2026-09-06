@@ -59,7 +59,16 @@ function OnboardingModal({ onDone, setState, state }) {
     } catch {}
     onDone();
   };
-  const next = () => setStep(s => s + 1);
+  // Clamped, and the clamp is load-bearing. `next` used to be `s => s + 1`
+  // with no ceiling, and `cur = STEPS[step]` right below has no fallback,
+  // so any input that landed two `next` calls in one React batch — a fast
+  // double-tap on CONTINUE, a touch that emits a duplicate click — ran off
+  // the end of STEPS and threw on `cur.kicker`. The modal blanked with no
+  // way forward and `onboarded` was never written, so it came back on every
+  // launch. Caught 2026-09-06 driving onboarding headlessly. STEPS is
+  // declared below this line, which is fine: `next` only reads it at click
+  // time, never at eval time.
+  const next = () => setStep(s => Math.min(s + 1, STEPS.length - 1));
 
   const STEPS = [
     {
@@ -888,7 +897,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v261",
+        version: "v262",
       }));
     } catch {}
   }
@@ -921,7 +930,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
-          PLURSKY · v261
+          PLURSKY · v262
         </div>
       </div>
     );
