@@ -486,6 +486,13 @@ function _solveMapAffine() {
   };
 }
 var MAP_AFFINE = _solveMapAffine();
+var MAP_REGISTRATION_SOURCED = (() => {
+  var basis = (FESTIVAL_CONFIG.gpsAnchors || []).slice(0, 3);
+  return basis.length === 3 && basis.some(a => a.src === "osm" || a.src === "crowd");
+})();
+function readoutHonest(avatar) {
+  return !avatar || !avatar.live || MAP_REGISTRATION_SOURCED;
+}
 function gpsToMap(lat, lng) {
   if (!MAP_AFFINE) return {
     x: 50,
@@ -699,7 +706,9 @@ function _distToBand(d) {
   if (d < 65) return [13, 20];
   return [18, 28];
 }
-function computeWalkRange(avatarX, avatarY, targetStage, dist, nowTime) {
+function computeWalkRange(avatar, targetStage, dist, nowTime) {
+  var avatarX = avatar.x,
+    avatarY = avatar.y;
   var lo, hi;
   var fromStage = _nearestStageId(avatarX, avatarY);
   if (fromStage && targetStage && fromStage !== targetStage.id) {
@@ -717,12 +726,26 @@ function computeWalkRange(avatarX, avatarY, targetStage, dist, nowTime) {
     lo,
     hi,
     peak: isPeak,
-    plan: isPeak && hi >= 15
+    plan: isPeak && hi >= 15,
+    known: readoutHonest(avatar)
   };
 }
-function distToMins(d) {
+function walkMinsLabel(walk) {
+  if (!walk || walk.known === false) return null;
+  return walk.lo === walk.hi ? `${walk.lo}` : `${walk.lo}\u2013${walk.hi}`;
+}
+function distToMins(d, avatar) {
+  if (!readoutHonest(avatar)) return null;
   var [lo, hi] = _distToBand(d);
   return Math.max(1, Math.round((lo + hi) / 2));
+}
+function minsAwaySuffix(d, avatar) {
+  var m = distToMins(d, avatar);
+  return m == null ? "" : ` \u00b7 ${m} min away`;
+}
+function gridDistMeters(ax, ay, bx, by, avatar) {
+  if (!MAP_AFFINE || !readoutHonest(avatar)) return null;
+  return Math.round(Math.hypot(bx - ax, by - ay) * 22);
 }
 function findNextSavedSet(savedIds) {
   var nowMin = toNightMin(NOW.time);
@@ -2261,8 +2284,8 @@ function SunriseStrip({
   var kin = STAGES.find(s => s.id === "kinetic");
   if (!kin) return null;
   var dist = Math.hypot(kin.x - avatar.x, kin.y - avatar.y);
-  var walk = computeWalkRange(avatar.x, avatar.y, kin, dist, NOW.time);
-  var walkLabel = walk.lo === walk.hi ? `${walk.lo}` : `${walk.lo}–${walk.hi}`;
+  var walk = computeWalkRange(avatar, kin, dist, NOW.time);
+  var walkLabel = walkMinsLabel(walk);
   var isUp = minsUntil <= 0;
   return React.createElement("button", {
     onClick: () => onSelect(kin.id),
@@ -2314,7 +2337,7 @@ function SunriseStrip({
       fontWeight: 800,
       flexShrink: 0
     }
-  }, isUp ? "NOW" : `${minsUntil}M`, " · ", walkLabel, "M"));
+  }, isUp ? "NOW" : `${minsUntil}M`, walkLabel ? ` \u00b7 ${walkLabel}M` : ""));
 }
 function NextSetStrip({
   savedIds,
@@ -2326,10 +2349,10 @@ function NextSetStrip({
   var stage = STAGES.find(s => s.id === next.artist.stage);
   if (!stage) return null;
   var dist = Math.hypot(stage.x - avatar.x, stage.y - avatar.y);
-  var walk = computeWalkRange(avatar.x, avatar.y, stage, dist, NOW.time);
-  var walkLabel = walk.lo === walk.hi ? `${walk.lo}` : `${walk.lo}–${walk.hi}`;
+  var walk = computeWalkRange(avatar, stage, dist, NOW.time);
+  var walkLabel = walkMinsLabel(walk);
   var headline = next.isLive ? `LIVE · ${next.minsLeft}M` : next.minsUntil < 60 ? `IN ${next.minsUntil}M` : `IN ${Math.floor(next.minsUntil / 60)}H ${next.minsUntil % 60}M`;
-  var willBeLate = !next.isLive && walk.hi >= next.minsUntil && next.minsUntil > 0;
+  var willBeLate = walkLabel != null && !next.isLive && walk.hi >= next.minsUntil && next.minsUntil > 0;
   return React.createElement("button", {
     onClick: () => onSelect(stage.id),
     style: {
@@ -2409,7 +2432,7 @@ function NextSetStrip({
       color: willBeLate ? "#fbbf24" : "inherit",
       marginTop: 1
     }
-  }, walkLabel, "M", willBeLate ? " ⚠" : "")));
+  }, walkLabel ? `${walkLabel}M` : "\u2014", willBeLate ? " \u26a0" : "")));
 }
 function MapScreen({
   state,
@@ -2625,7 +2648,8 @@ function MapScreen({
   var useDemo = !isLiveOnSite;
   var avatar = isLiveOnSite ? {
     x: liveAvatar.x,
-    y: liveAvatar.y
+    y: liveAvatar.y,
+    live: true
   } : demoAvatar;
   var {
     active: bsActive
@@ -2822,8 +2846,7 @@ function MapScreen({
   var dx = stage ? stage.x - avatar.x : 0;
   var dy = stage ? stage.y - avatar.y : 0;
   var dist = Math.sqrt(dx * dx + dy * dy);
-  var walk = computeWalkRange(avatar.x, avatar.y, stage, dist, NOW.time);
-  var meters = Math.round(dist * 22);
+  var walk = computeWalkRange(avatar, stage, dist, NOW.time);
   var searchQuery = search.trim().toLowerCase();
   var _relevance = (name, term) => {
     var n = name.toLowerCase();
@@ -4255,7 +4278,7 @@ function MapScreen({
       overflow: "hidden",
       textOverflow: "ellipsis"
     }
-  }, incomingRally.label, " · ", distToMins(Math.hypot(incomingRally.x - avatar.x, incomingRally.y - avatar.y)), " min away")), React.createElement("button", {
+  }, incomingRally.label, minsAwaySuffix(Math.hypot(incomingRally.x - avatar.x, incomingRally.y - avatar.y), avatar))), React.createElement("button", {
     onClick: () => {
       dismissedRallyRef.current.add(incomingRally.rallyId);
       setMeetMode(true);
@@ -7994,7 +8017,7 @@ function StageNavBar({
   onDetails,
   onStop
 }) {
-  var eta = walk.lo === walk.hi ? `${walk.lo}` : `${walk.lo}–${walk.hi}`;
+  var eta = walkMinsLabel(walk);
   React.useEffect(() => {
     var onKey = e => {
       if (e.key === "Escape") onStop();
@@ -8068,7 +8091,7 @@ function StageNavBar({
       fontWeight: 600,
       marginTop: 1
     }
-  }, "~", eta, " MIN · FOLLOW THE ROUTE")), React.createElement("button", {
+  }, eta ? `~${eta} MIN \u00b7 ` : "", "FOLLOW THE ROUTE")), React.createElement("button", {
     onClick: onDetails,
     "aria-label": "Show stage details",
     className: "mono",
@@ -8126,12 +8149,13 @@ function BottomSheet({
   if (meetMode && meetTarget) {
     var groupFriends = meetGroup.map(id => friends.find(fr => fr.id === id)).filter(Boolean);
     var youDist = Math.sqrt((meetTarget.x - avatar.x) ** 2 + (meetTarget.y - avatar.y) ** 2);
-    var youMins = distToMins(youDist);
+    var youMins = distToMins(youDist, avatar);
     var fEtas = groupFriends.map(f => ({
       f,
       mins: distToMins(Math.sqrt((meetTarget.x - f.x) ** 2 + (meetTarget.y - f.y) ** 2))
     }));
-    var eta = Math.max(youMins, ...fEtas.map(e => e.mins), 0);
+    var knownEtas = [youMins, ...fEtas.map(e => e.mins)].filter(m => m != null);
+    var eta = knownEtas.length ? Math.max(...knownEtas) : null;
     var title = groupFriends.length === 0 ? "Pinned spot" : groupFriends.length === 1 ? `You + ${groupFriends[0].name}` : `Group · ${groupFriends.length + 1} people`;
     var routingLabel = groupFriends.length > 1 ? "ALL ROUTING LIVE" : groupFriends.length === 1 ? "BOTH ROUTING LIVE" : "ROUTING LIVE";
     return React.createElement("div", {
@@ -8203,7 +8227,7 @@ function BottomSheet({
         color: "var(--muted)",
         marginTop: 2
       }
-    }, "ETA ~", eta, " MIN · ", routingLabel)), React.createElement("button", {
+    }, eta == null ? "" : `ETA ~${eta} MIN \u00b7 `, routingLabel)), React.createElement("button", {
       onClick: onCancelMeet,
       style: {
         background: "transparent",
@@ -8243,11 +8267,16 @@ function BottomSheet({
         fontSize: 18,
         marginTop: 2
       }
-    }, youMins, " ", React.createElement("span", {
+    }, youMins == null ? React.createElement("span", {
+      style: {
+        fontSize: 11,
+        color: "var(--muted)"
+      }
+    }, "UNSURVEYED") : React.createElement(React.Fragment, null, youMins, " ", React.createElement("span", {
       style: {
         fontSize: 11
       }
-    }, "min"))), fEtas.map(({
+    }, "min")))), fEtas.map(({
       f,
       mins
     }) => React.createElement("div", {
@@ -8282,6 +8311,7 @@ function BottomSheet({
     stage: stage,
     walk: walk,
     dist: dist,
+    distM: gridDistMeters(avatar.x, avatar.y, stage.x, stage.y, avatar),
     peek: peek,
     setPeek: setPeek,
     onClose: onClose,
@@ -8453,6 +8483,7 @@ function StageLineupSheet({
   stage,
   walk,
   dist,
+  distM,
   peek,
   setPeek,
   onClose,
@@ -8570,21 +8601,31 @@ function StageLineupSheet({
       gap: 6,
       padding: "10px 14px 0"
     }
-  }, [{
+  }, [walk.known === false ? {
     label: "WALK",
-    value: walk.lo === walk.hi ? `${walk.lo}` : `${walk.lo}–${walk.hi}`,
+    value: "—",
+    unit: "",
+    note: "UNSURVEYED"
+  } : {
+    label: "WALK",
+    value: walkMinsLabel(walk),
     unit: "min",
     note: walk.peak ? "PEAK" : walk.plan ? "PLAN 20+" : null
-  }, {
+  }, distM == null ? {
     label: "DISTANCE",
-    value: `${Math.round(dist * 22)}`,
+    value: "—",
+    unit: "",
+    note: "UNSURVEYED"
+  } : {
+    label: "DISTANCE",
+    value: `${distM}`,
     unit: "m",
     note: null
   }, {
     label: "SETS",
     value: `${sets.length}`,
     unit: day === NOW.day ? "today" : "set day",
-    note: `${totalAcrossDays} · 3 NIGHTS`
+    note: `${totalAcrossDays} · ${DAYS.length} NIGHTS`
   }].map(c => React.createElement("div", {
     key: c.label,
     style: {
@@ -8610,13 +8651,13 @@ function StageLineupSheet({
       marginTop: 3,
       color: "var(--ink)"
     }
-  }, c.value, React.createElement("span", {
+  }, c.value, c.unit ? React.createElement("span", {
     style: {
       fontSize: 10,
       fontWeight: 400,
       color: "var(--muted)"
     }
-  }, " ", c.unit)), c.note && React.createElement("div", {
+  }, " ", c.unit) : null), c.note && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 8,
@@ -8728,7 +8769,7 @@ function StageLineupSheet({
       fontWeight: 700,
       whiteSpace: "nowrap"
     }
-  }, "☰ FULL LINEUP"), walk.lo > 25 && React.createElement("div", {
+  }, "☰ FULL LINEUP"), walk.known !== false && walk.lo > 25 && React.createElement("div", {
     className: "mono",
     style: {
       flexShrink: 0,

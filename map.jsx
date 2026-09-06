@@ -310,6 +310,40 @@ function _solveMapAffine() {
   return { x: solve(A.mx, B.mx, C.mx), y: solve(A.my, B.my, C.my) };
 }
 const MAP_AFFINE = _solveMapAffine();
+
+// ── Is this registration SOURCED, or is it a guess? ───────────
+// MAP_AFFINE is solved from the first three gpsAnchors, and each of those
+// declares where its lat/lng came from (`src`; see the GpsAnchor typedef in
+// data.jsx). Only "osm" and "crowd" are EVIDENCE — a measurement taken from
+// outside this app. "poster" and "prov" mean somebody read a stage position
+// off festival artwork, which is an illustration, not a survey.
+//
+// The affine returns a number either way, and the number looks identical.
+// That is the whole problem. On ACL, Ultra and Governor's Ball today the
+// basis is poster/poster/poster or prov/prov/prov, so a standing user's real
+// GPS lands somewhere on a grid nobody ever registered to the ground — and
+// we then print "6-10 MIN WALK" off it to two significant figures. Founder
+// call 2026-09-05: false precision is worse than no number.
+//
+// What this does NOT gate, deliberately:
+//   · the blue dot itself — a dot reads as approximate, a duration does not
+//   · the demo avatar — openly a simulation; suppressing it would just make
+//     the pre-festival app look broken
+//   · distMiles() to the venue centroid — real lat/lng on both ends, never
+//     touches the affine
+const MAP_REGISTRATION_SOURCED = (() => {
+  const basis = (FESTIVAL_CONFIG.gpsAnchors || []).slice(0, 3);
+  return basis.length === 3 && basis.some(a => a.src === "osm" || a.src === "crowd");
+})();
+
+// A grid-space distance is only honest when BOTH hold: the position it starts
+// from is real, and the grid it is measured on registers to the world.
+// `avatar.live` is stamped on at the one place a real GPS fix becomes an
+// avatar, so the flag travels with the position instead of being re-derived.
+function readoutHonest(avatar) {
+  return !avatar || !avatar.live || MAP_REGISTRATION_SOURCED;
+}
+
 function gpsToMap(lat, lng) {
   if (!MAP_AFFINE) return { x: 50, y: 50 };
   return {
@@ -498,7 +532,8 @@ function _distToBand(d) {
 
 // { lo, hi, peak, plan } — `plan` flips on for the "plan 20+ min" advisory
 // during the 01:00-03:00 crowd peak when the upper bound is already > 15.
-function computeWalkRange(avatarX, avatarY, targetStage, dist, nowTime) {
+function computeWalkRange(avatar, targetStage, dist, nowTime) {
+  const avatarX = avatar.x, avatarY = avatar.y;
   let lo, hi;
   const fromStage = _nearestStageId(avatarX, avatarY);
   if (fromStage && targetStage && fromStage !== targetStage.id) {
@@ -511,13 +546,41 @@ function computeWalkRange(avatarX, avatarY, targetStage, dist, nowTime) {
   const isPeak = hour >= 1 && hour < 3;
   if (isPeak) { lo = Math.round(lo * 1.5); hi = Math.round(hi * 1.6); }
 
-  return { lo, hi, peak: isPeak, plan: isPeak && hi >= 15 };
+  return { lo, hi, peak: isPeak, plan: isPeak && hi >= 15, known: readoutHonest(avatar) };
+}
+
+// "6-10" / "8", or null when the number would be a guess in a measurement's
+// clothes. EVERY walk readout funnels through here, so a new call site cannot
+// quietly reintroduce the lie by formatting lo/hi itself.
+function walkMinsLabel(walk) {
+  if (!walk || walk.known === false) return null;
+  return walk.lo === walk.hi ? `${walk.lo}` : `${walk.lo}\u2013${walk.hi}`;
 }
 
 // Single-number flavour for meet-pin ETAs (avatar→pin / friend→pin).
-function distToMins(d) {
+function distToMins(d, avatar) {
+  if (!readoutHonest(avatar)) return null;
   const [lo, hi] = _distToBand(d);
   return Math.max(1, Math.round((lo + hi) / 2));
+}
+
+// " · 7 min away", or "" when we cannot honestly say. Empty rather than a
+// dash: this one is a fragment of a sentence, and "Ferris wheel · — min
+// away" reads as a bug where "Ferris wheel" reads as a place.
+function minsAwaySuffix(d, avatar) {
+  const m = distToMins(d, avatar);
+  return m == null ? "" : ` \u00b7 ${m} min away`;
+}
+
+// Grid distance → metres.
+//
+// 22 metres per grid unit, measured once at LVMS and applied to every venue.
+// That constant is wrong (see the follow-up PR that replaces it with a
+// projection through the affine) — it is kept here unchanged so that this
+// change is purely about WHEN a distance may be shown, not what it says.
+function gridDistMeters(ax, ay, bx, by, avatar) {
+  if (!MAP_AFFINE || !readoutHonest(avatar)) return null;
+  return Math.round(Math.hypot(bx - ax, by - ay) * 22);
 }
 
 // Find the user's next saved set today: live now, or starting soon. Returns
@@ -1536,8 +1599,8 @@ function SunriseStrip({ avatar, onSelect }) {
   const kin = STAGES.find(s => s.id === "kinetic");
   if (!kin) return null;
   const dist = Math.hypot(kin.x - avatar.x, kin.y - avatar.y);
-  const walk = computeWalkRange(avatar.x, avatar.y, kin, dist, NOW.time);
-  const walkLabel = walk.lo === walk.hi ? `${walk.lo}` : `${walk.lo}–${walk.hi}`;
+  const walk = computeWalkRange(avatar, kin, dist, NOW.time);
+  const walkLabel = walkMinsLabel(walk);
   const isUp = minsUntil <= 0;
 
   return (
@@ -1556,7 +1619,7 @@ function SunriseStrip({ avatar, onSelect }) {
         whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
       }}>{isUp ? "Sun's up — head to the lotus" : "Hold the line"}</span>
       <span className="mono" style={{ fontSize: 10, letterSpacing: 1, fontWeight: 800, flexShrink: 0 }}>
-        {isUp ? "NOW" : `${minsUntil}M`} · {walkLabel}M
+        {isUp ? "NOW" : `${minsUntil}M`}{walkLabel ? ` \u00b7 ${walkLabel}M` : ""}
       </span>
     </button>
   );
@@ -1568,8 +1631,8 @@ function NextSetStrip({ savedIds, avatar, onSelect }) {
   const stage = STAGES.find(s => s.id === next.artist.stage);
   if (!stage) return null;
   const dist = Math.hypot(stage.x - avatar.x, stage.y - avatar.y);
-  const walk = computeWalkRange(avatar.x, avatar.y, stage, dist, NOW.time);
-  const walkLabel = walk.lo === walk.hi ? `${walk.lo}` : `${walk.lo}–${walk.hi}`;
+  const walk = computeWalkRange(avatar, stage, dist, NOW.time);
+  const walkLabel = walkMinsLabel(walk);
 
   // "LIVE — 38m" vs "IN 0h 24m" framing
   const headline = next.isLive
@@ -1578,7 +1641,7 @@ function NextSetStrip({ savedIds, avatar, onSelect }) {
         ? `IN ${next.minsUntil}M`
         : `IN ${Math.floor(next.minsUntil/60)}H ${next.minsUntil%60}M`;
   // Walk vs start-time tension flag
-  const willBeLate = !next.isLive && walk.hi >= next.minsUntil && next.minsUntil > 0;
+  const willBeLate = walkLabel != null && !next.isLive && walk.hi >= next.minsUntil && next.minsUntil > 0;
 
   return (
     <button onClick={() => onSelect(stage.id)} style={{
@@ -1614,7 +1677,7 @@ function NextSetStrip({ savedIds, avatar, onSelect }) {
           opacity: willBeLate ? 1 : 0.7,
           color: willBeLate ? "#fbbf24" : "inherit",
           marginTop: 1,
-        }}>{walkLabel}M{willBeLate ? " ⚠" : ""}</div>
+        }}>{walkLabel ? `${walkLabel}M` : "\u2014"}{willBeLate ? " \u26a0" : ""}</div>
       </div>
     </button>
   );
@@ -1847,7 +1910,10 @@ function MapScreen({ state, setState }) {
   // When we don't have real on-site GPS, use the demo avatar (auto-walks
   // toward selected stage / meet pin so the routing UI stays interactive).
   const useDemo = !isLiveOnSite;
-  const avatar = isLiveOnSite ? { x: liveAvatar.x, y: liveAvatar.y } : demoAvatar;
+  // `live` marks this position as REAL, which is what makes a grid-space
+  // distance taken from it a claim rather than a simulation. It rides on the
+  // avatar so every consumer inherits it — see readoutHonest().
+  const avatar = isLiveOnSite ? { x: liveAvatar.x, y: liveAvatar.y, live: true } : demoAvatar;
 
   // Demo wander tick — only runs when not pinned to real on-site GPS.
   // Slows from 600ms → 2400ms in battery-saver mode (still feels alive,
@@ -2049,8 +2115,7 @@ function MapScreen({ state, setState }) {
   const dx = stage ? stage.x - avatar.x : 0;
   const dy = stage ? stage.y - avatar.y : 0;
   const dist = Math.sqrt(dx*dx + dy*dy);
-  const walk = computeWalkRange(avatar.x, avatar.y, stage, dist, NOW.time);
-  const meters = Math.round(dist * 22);
+  const walk = computeWalkRange(avatar, stage, dist, NOW.time);
 
   // Search matches stages AND artists. Artist rows surface as
   // "Artist → stage", and tapping focuses that performer's stage on the map.
@@ -2843,7 +2908,7 @@ function MapScreen({ state, setState }) {
                 {(incomingRally.fromName || "CREW").toUpperCase()} WANTS TO MEET
               </span>
               <span style={{ display: "block", fontSize: 13, fontWeight: 700, marginTop: 1, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                {incomingRally.label} · {distToMins(Math.hypot(incomingRally.x - avatar.x, incomingRally.y - avatar.y))} min away
+                {incomingRally.label}{minsAwaySuffix(Math.hypot(incomingRally.x - avatar.x, incomingRally.y - avatar.y), avatar)}
               </span>
             </span>
             <button onClick={() => {
@@ -5694,7 +5759,7 @@ function _inkOn(hex) {
 // Purpose-built wayfinding (not the meet card) — DETAILS reopens the card,
 // STOP deselects the stage.
 function StageNavBar({ stage, walk, onDetails, onStop }) {
-  const eta = walk.lo === walk.hi ? `${walk.lo}` : `${walk.lo}–${walk.hi}`;
+  const eta = walkMinsLabel(walk);
   React.useEffect(() => {
     const onKey = (e) => { if (e.key === "Escape") onStop(); };
     document.addEventListener("keydown", onKey);
@@ -5718,7 +5783,7 @@ function StageNavBar({ stage, walk, onDetails, onStop }) {
       <div style={{ flex: 1, minWidth: 0 }}>
         <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, fontWeight: 700, color: "var(--muted)" }}>ROUTING TO</div>
         <div className="serif" style={{ fontSize: 19, lineHeight: 1.05, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{stage.name}</div>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 600, marginTop: 1 }}>~{eta} MIN · FOLLOW THE ROUTE</div>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 600, marginTop: 1 }}>{eta ? `~${eta} MIN \u00b7 ` : ""}FOLLOW THE ROUTE</div>
       </div>
       <button onClick={onDetails} aria-label="Show stage details" className="mono" style={{
         flexShrink: 0, background: "var(--paper-2)", border: "1px solid var(--line-2)", color: "var(--ink)",
@@ -5736,9 +5801,13 @@ function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, m
   if (meetMode && meetTarget) {
     const groupFriends = meetGroup.map(id => friends.find(fr => fr.id === id)).filter(Boolean);
     const youDist = Math.sqrt((meetTarget.x-avatar.x)**2 + (meetTarget.y-avatar.y)**2);
-    const youMins = distToMins(youDist);
+    const youMins = distToMins(youDist, avatar);
     const fEtas = groupFriends.map(f => ({ f, mins: distToMins(Math.sqrt((meetTarget.x-f.x)**2 + (meetTarget.y-f.y)**2)) }));
-    const eta = Math.max(youMins, ...fEtas.map(e => e.mins), 0);
+    // Math.max(null, 8) is 8 — a suppressed YOUR ETA would have silently
+    // become "everyone's there already". Drop the unknowns, and if nothing
+    // is left there is no group ETA to state.
+    const knownEtas = [youMins, ...fEtas.map(e => e.mins)].filter(m => m != null);
+    const eta = knownEtas.length ? Math.max(...knownEtas) : null;
     const title = groupFriends.length === 0 ? "Pinned spot"
       : groupFriends.length === 1 ? `You + ${groupFriends[0].name}`
       : `Group · ${groupFriends.length + 1} people`;
@@ -5752,14 +5821,16 @@ function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, m
           <div style={{ flex: 1, minWidth: 0 }}>
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--ember)", fontWeight: 700 }}>MEETING</div>
             <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>{title}</div>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 2 }}>ETA ~{eta} MIN · {routingLabel}</div>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 2 }}>{eta == null ? "" : `ETA ~${eta} MIN \u00b7 `}{routingLabel}</div>
           </div>
           <button onClick={onCancelMeet} style={{ background: "transparent", border: "1px solid var(--line-2)", color: "var(--muted)", borderRadius: 999, padding: "7px 10px", cursor: "pointer", fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600 }}>END</button>
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
           <div style={{ flex: "1 0 calc(50% - 4px)", background: "var(--paper-2)", borderRadius: 10, padding: "7px 10px" }}>
             <div className="mono" style={{ fontSize: 8, letterSpacing: 1.3, color: "var(--muted)" }}>YOUR ETA</div>
-            <div className="serif" style={{ fontSize: 18, marginTop: 2 }}>{youMins} <span style={{ fontSize: 11 }}>min</span></div>
+            <div className="serif" style={{ fontSize: 18, marginTop: 2 }}>{youMins == null
+              ? <span style={{ fontSize: 11, color: "var(--muted)" }}>UNSURVEYED</span>
+              : <>{youMins} <span style={{ fontSize: 11 }}>min</span></>}</div>
           </div>
           {fEtas.map(({ f, mins }) => (
             <div key={f.id} style={{ flex: "1 0 calc(50% - 4px)", background: "var(--paper-2)", borderRadius: 10, padding: "7px 10px" }}>
@@ -5772,7 +5843,7 @@ function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, m
     );
   }
   if (!stage) return null;
-  return <StageLineupSheet stage={stage} walk={walk} dist={dist} peek={peek} setPeek={setPeek} onClose={onClose} onOpenArtist={onOpenArtist} onGoHere={onGoHere} stageSaved={stageSaved} onToggleSave={onToggleSave} nowAtStage={nowAtStage} state={state} setState={setState}/>;
+  return <StageLineupSheet stage={stage} walk={walk} dist={dist} distM={gridDistMeters(avatar.x, avatar.y, stage.x, stage.y, avatar)} peek={peek} setPeek={setPeek} onClose={onClose} onOpenArtist={onOpenArtist} onGoHere={onGoHere} stageSaved={stageSaved} onToggleSave={onToggleSave} nowAtStage={nowAtStage} state={state} setState={setState}/>;
 }
 
 // Per-stage memories strip — same rewatch loop as the per-artist strip on
@@ -5871,7 +5942,7 @@ function YourStagePhotosStrip({ stageId, accent, onOpen, stageObj }) {
   );
 }
 
-function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArtist, onGoHere, stageSaved, onToggleSave, nowAtStage, state, setState }) {
+function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, onOpenArtist, onGoHere, stageSaved, onToggleSave, nowAtStage, state, setState }) {
   const [day, setDay] = React.useState(NOW.day);
   const [expanded, setExpanded] = React.useState(false);
   const toSlot = t => { const h = parseInt(t.split(":")[0]); return h < 8 ? h + 24 : h; };
@@ -5938,9 +6009,16 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
         padding: "10px 14px 0",
       }}>
         {[
-          { label: "WALK", value: walk.lo === walk.hi ? `${walk.lo}` : `${walk.lo}–${walk.hi}`, unit: "min", note: walk.peak ? "PEAK" : walk.plan ? "PLAN 20+" : null },
-          { label: "DISTANCE", value: `${Math.round(dist*22)}`, unit: "m", note: null },
-          { label: "SETS", value: `${sets.length}`, unit: day === NOW.day ? "today" : "set day", note: `${totalAcrossDays} · 3 NIGHTS` },
+          // A dash with UNSURVEYED under it, never a number. Both cells keep
+          // their place in the grid so the card does not reflow, and the note
+          // says WHY — an unexplained "—" just reads as a broken app.
+          walk.known === false
+            ? { label: "WALK", value: "—", unit: "", note: "UNSURVEYED" }
+            : { label: "WALK", value: walkMinsLabel(walk), unit: "min", note: walk.peak ? "PEAK" : walk.plan ? "PLAN 20+" : null },
+          distM == null
+            ? { label: "DISTANCE", value: "—", unit: "", note: "UNSURVEYED" }
+            : { label: "DISTANCE", value: `${distM}`, unit: "m", note: null },
+          { label: "SETS", value: `${sets.length}`, unit: day === NOW.day ? "today" : "set day", note: `${totalAcrossDays} · ${DAYS.length} NIGHTS` },
         ].map(c => (
           <div key={c.label} style={{
             background: "var(--paper-2)", border: "1px solid var(--line)",
@@ -5948,7 +6026,7 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
           }}>
             <div className="mono" style={{ fontSize: 8, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>{c.label}</div>
             <div className="serif" style={{ fontSize: 20, lineHeight: 1, marginTop: 3, color: "var(--ink)" }}>
-              {c.value}<span style={{ fontSize: 10, fontWeight: 400, color: "var(--muted)" }}> {c.unit}</span>
+              {c.value}{c.unit ? <span style={{ fontSize: 10, fontWeight: 400, color: "var(--muted)" }}> {c.unit}</span> : null}
             </div>
             {c.note && <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--muted)", fontWeight: 700, marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{c.note}</div>}
           </div>
@@ -5992,7 +6070,7 @@ function StageLineupSheet({ stage, walk, dist, peek, setPeek, onClose, onOpenArt
           color: "var(--muted)", borderRadius: 999, padding: "7px 13px", cursor: "pointer",
           fontSize: 10, letterSpacing: 1.2, fontWeight: 700, whiteSpace: "nowrap",
         }}>☰ FULL LINEUP</button>
-        {walk.lo > 25 && (
+        {walk.known !== false && walk.lo > 25 && (
           <div className="mono" style={{
             flexShrink: 0, background: "rgba(193,74,74,0.1)", border: "1px solid rgba(193,74,74,0.35)",
             color: "#c14a4a", borderRadius: 999, padding: "7px 13px",
