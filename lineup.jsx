@@ -721,8 +721,17 @@ function LineupScreen({ state, setState }) {
           || (st?.name || "").toLowerCase().includes(term);
       })
       .sort((a, b) => {
-        // EDC runs 19:00→05:00 — treat early AM as "next day" (hour + 24)
-        const toSlot = t => { const h = parseInt(t.split(":")[0]); return h < 8 ? h + 24 : h; };
+        // Ties broken by toNightMin, NOT by an hour-only slot. This used to
+        // be a local `toSlot` that returned just the HOUR, so every set
+        // starting in the same hour compared equal and the "time" sort fell
+        // back to array order — which is stage-grouped. On EDC, where the
+        // module was written and sets start on the hour or half hour, that
+        // was invisible. On any festival with off-the-hour starts it is not:
+        // Portola's 2:40 / 2:45 / 2:50 block listed as 2:40, 2:45, 2:50,
+        // 2:45, and Lollapalooza, Summerfest and Outside Lands are all
+        // shipping the same misorder today. toNightMin is right there in
+        // this file, keeps the same early-AM rollover, and counts minutes.
+        // Found 2026-09-06 rendering the Portola lineup.
         if (sortBy === "tier") {
           if (a.tier !== b.tier) return b.tier - a.tier;
         } else if (sortBy === "stage") {
@@ -730,7 +739,7 @@ function LineupScreen({ state, setState }) {
           const bi = STAGES.findIndex(s => s.id === b.stage);
           if (ai !== bi) return ai - bi;
         }
-        return toSlot(a.start) - toSlot(b.start);
+        return toNightMin(a.start) - toNightMin(b.start);
       });
   }, [day, weekendFilter, filter, stageFilter, genreFilter, tierFilter, sortBy, q, savedSetIds]);
 
