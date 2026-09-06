@@ -620,10 +620,38 @@ const REGISTRATION_TOL_M = 25;
     return c;
   };
   console.log("▸ Venue footprint gate — anchors must fall inside the real venue");
-  let fpHard = 0, fpChecked = 0, fpWaived = 0;
+  let fpHard = 0, fpChecked = 0, fpWaived = 0, fpArmed = 0, fpUnbounded = 0, fpReal = 0;
   for (const f of REG) {
     const cfg = f.config, poly = cfg.venue?.footprint;
     const an = cfg.gpsAnchors || [];
+    // Arming must be VISIBLE (Instinct ruling, 2026-09-06). These two states
+    // used to `continue` silently, so a festival that had armed the gate but
+    // never measured anything, and a festival whose anchors no polygon can
+    // bound, both read exactly like a festival that passed. That is the same
+    // blind-spot class as the `available === true` gap and as the residuals
+    // gap before it: the audit looked clean because it was not looking.
+    // Both states are REPORTED, neither FAILS — declaring one half of the
+    // pair is a legitimate waypoint, it just must not masquerade as done.
+    if (poly?.length && !an.length) {
+      // mapMode "real" draws actual basemap tiles, so it needs no anchors by
+      // design and is not "unmeasured" in any meaningful sense. Counting it
+      // alongside a festival that genuinely has not been surveyed would
+      // overstate the problem, which is its own kind of dishonest report.
+      if (cfg.mapMode === "real") {
+        fpReal++;
+        console.log(`  ·  ${cfg.id.padEnd(22)} footprint declared (${poly.length} vertices) — real basemap, no anchors needed`);
+      } else {
+        fpArmed++;
+        console.log(`  ·  ${cfg.id.padEnd(22)} footprint declared (${poly.length} vertices), 0 anchors — ARMED, unmeasured`);
+        console.log(`     layout only — no registration until the flip adds anchors`);
+      }
+      continue;
+    }
+    if (!poly?.length && an.length) {
+      fpUnbounded++;
+      console.log(`  ·  ${cfg.id.padEnd(22)} ${an.length} anchor(s), NO footprint — UNGUARDED by this gate`);
+      continue;
+    }
     if (!poly?.length || !an.length) continue;
     fpChecked++;
     const out = an.filter(a => !inside(a.lat, a.lng, poly)).map(a => a.stageId);
@@ -649,16 +677,67 @@ const REGISTRATION_TOL_M = 25;
       fpHard++;
       console.log(`  ✗  ${cfg.id.padEnd(22)} ${unexcused.length} UNWAIVED anchor(s) outside (${unexcused.join(", ")})`);
       console.log(`     The waiver covers ${[...excused].join(", ")} only. Measure these, do not extend the waiver.`);
-    } else if (f.available) {
-      fpHard++;
-      console.log(`  ✗  ${cfg.id.padEnd(22)} ${out.length}/${an.length} OUTSIDE (${out.join(", ")})`);
     } else {
-      console.log(`  !  ${cfg.id.padEnd(22)} ${out.length}/${an.length} outside (${out.join(", ")}) — gated`);
+      // HARD regardless of `available` (Instinct ruling, 2026-09-06). This
+      // branch used to warn-and-pass for a gated festival, which inverted the
+      // whole point of the pre-flip lane: a basis authored weeks out surfaced
+      // as a warning, and the hard failure landed in flip week when there is
+      // no time to re-survey. Proven by experiment before the change — an
+      // anchor 11 km outside Glen Helen on gated Nocturnal printed `— gated`
+      // and verify still exited 0.
+      //
+      // Declaring BOTH a footprint and anchors is the opt-in: a festival with
+      // no footprint yet, or no anchors yet, still `continue`s above. So this
+      // cannot fail a festival that has not claimed to be georeferenced.
+      fpHard++;
+      const when = f.available ? "" : " (gated — fix before the flip, not during)";
+      console.log(`  ✗  ${cfg.id.padEnd(22)} ${out.length}/${an.length} OUTSIDE (${out.join(", ")})${when}`);
     }
   }
-  if (!fpChecked) console.log("  (no festival declares venue.footprint yet)");
+  if (!fpChecked && !fpArmed && !fpUnbounded && !fpReal) console.log("  (no festival declares venue.footprint yet)");
   if (fpHard) fail(`${fpHard} festival(s) failed the venue footprint gate — see above`);
   if (fpWaived) console.log(`  ${fpWaived} festival(s) waived pending ground truth — see notes above`);
+  if (fpReal) console.log(`  ${fpReal} festival(s) on a real basemap — anchors not applicable`);
+  if (fpArmed) console.log(`  ${fpArmed} festival(s) ARMED but unmeasured — the gate cannot vouch for them`);
+  if (fpUnbounded) console.log(`  ${fpUnbounded} festival(s) carry anchors no footprint bounds — this gate is silent on them`);
+  console.log(`  ✓ ${fpChecked} festival(s) actually checked against a real venue polygon`);
+
+  // ── Layout-only gate ─────────────────────────────────────────────────────
+  // Instinct ruling, 2026-09-06: layout-only is the DEFAULT posture for a
+  // gated festival. No new poster-class anchors pre-flip — while provenance
+  // stays FAIL the readouts are withheld either way, so they buy nothing and
+  // cost a basis that later has to be argued with. Lost Lands is the case
+  // that earned this: seven `prov` anchors that failed three independent
+  // checks and had to be deleted, not adjusted.
+  //
+  // Recorded as a gate rather than a comment because a comment is exactly
+  // what the next flip session will not read. EDC Orlando is grandfathered:
+  // its five poster anchors are already authored and internally consistent
+  // (3 m / 7 m off their own affine), so they stand as the calibration set
+  // for whenever a real osm/crowd source lands. That is the last batch.
+  const LAYOUT_ONLY_GRANDFATHERED = new Set(["edc-orlando-2026"]);
+  const LO_EVIDENCE = EVIDENCE_SRC;
+  console.log("▸ Layout-only gate — no new poster-class anchors on a gated festival");
+  let loHard = 0, loOk = 0;
+  for (const f of REG) {
+    if (f.available === true) continue;              // live festivals are out of scope
+    const cfg = f.config, an = cfg.gpsAnchors || [];
+    if (!an.length) { loOk++; continue; }            // layout only — the default, silently fine
+    const weak = an.filter(a => !LO_EVIDENCE.has(a.src)).map(a => `${a.stageId}(${a.src})`);
+    if (!weak.length) {
+      loOk++;
+      console.log(`  ok ${cfg.id.padEnd(22)} ${an.length} anchor(s), all evidence-class`);
+    } else if (LAYOUT_ONLY_GRANDFATHERED.has(cfg.id)) {
+      loOk++;
+      console.log(`  ok ${cfg.id.padEnd(22)} ${weak.length} poster-class anchor(s) — GRANDFATHERED calibration set`);
+    } else {
+      loHard++;
+      console.log(`  ✗  ${cfg.id.padEnd(22)} ${weak.length} new poster-class anchor(s): ${weak.join(", ")}`);
+      console.log(`     Gated festivals are layout-only. Delete these, or land an osm/crowd source first.`);
+    }
+  }
+  if (loHard) fail(`${loHard} gated festival(s) carry poster-class anchors — see above`);
+  console.log(`  ✓ ${loOk} gated festival(s) hold the layout-only default`);
 
   // ── Crowd-anchor gate ────────────────────────────────────────────────────
   // crowdAnchors are MEASURED positions, so unlike gpsAnchors there is no
