@@ -572,15 +572,26 @@ function minsAwaySuffix(d, avatar) {
   return m == null ? "" : ` \u00b7 ${m} min away`;
 }
 
-// Grid distance → metres.
+// Grid distance → metres, THROUGH THE AFFINE.
 //
-// 22 metres per grid unit, measured once at LVMS and applied to every venue.
-// That constant is wrong (see the follow-up PR that replaces it with a
-// projection through the affine) — it is kept here unchanged so that this
-// change is purely about WHEN a distance may be shown, not what it says.
+// This used to be `Math.round(dist * 22)`: 22 metres per grid unit, measured
+// once at LVMS and then applied to every venue in the app. It is wrong twice
+// over. Wrong per-festival — the affines actually imply ~6 m/unit at Ultra
+// and ~12 m/unit at Outside Lands, so Lollapalooza was quietly reporting
+// EDC's distances. And wrong in principle: the grids are ANISOTROPIC (2.3:1
+// at Summerfest, 1.9:1 at Lollapalooza, where a long lakefront site is drawn
+// onto a squarish grid), so no single metres-per-unit scalar exists to pick.
+// A distance that depends on direction cannot come from a constant.
+//
+// Projecting both endpoints through mapToGps() and haversining them needs no
+// invented constant and is direction-correct by construction. Where the
+// affine is unsourced this returns null and the caller shows nothing —
+// exactly the festivals where the old constant was least defensible.
 function gridDistMeters(ax, ay, bx, by, avatar) {
   if (!MAP_AFFINE || !readoutHonest(avatar)) return null;
-  return Math.round(Math.hypot(bx - ax, by - ay) * 22);
+  const a = mapToGps(ax, ay), b = mapToGps(bx, by);
+  const m = distMiles(a.lat, a.lng, b.lat, b.lng) * 1609.34;
+  return isFinite(m) ? Math.round(m) : null;
 }
 
 // Find the user's next saved set today: live now, or starting soon. Returns
