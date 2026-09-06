@@ -613,34 +613,24 @@ var FESTIVALS_REGISTRY = [{
     },
     gpsAnchors: [{
       stageId: "amex",
-      lat: 30.26360,
-      lng: -97.76640,
-      src: "poster"
+      lat: 30.267233,
+      lng: -97.763236,
+      src: "osm"
     }, {
       stageId: "miller",
-      lat: 30.26600,
-      lng: -97.77240,
-      src: "poster"
-    }, {
-      stageId: "beatbox",
-      lat: 30.26140,
-      lng: -97.77340,
-      src: "poster"
-    }, {
-      stageId: "titos",
-      lat: 30.264752,
-      lng: -97.768756,
-      src: "derived"
+      lat: 30.269017,
+      lng: -97.769316,
+      src: "osm"
     }, {
       stageId: "tmobile",
-      lat: 30.26504,
-      lng: -97.77471,
-      src: "poster"
+      lat: 30.268021,
+      lng: -97.770282,
+      src: "osm"
     }, {
       stageId: "bmi",
-      lat: 30.26313,
-      lng: -97.77306,
-      src: "poster"
+      lat: 30.266404,
+      lng: -97.767698,
+      src: "derived"
     }],
     mainStageId: "amex",
     mapImage: "acl-park.webp",

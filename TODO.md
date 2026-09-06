@@ -85,6 +85,32 @@
 **Also shipped 2026-06-06:**
 - [x] **v227** (c9496cf) **Festival-aware badges** — ACL was showing EDC content (hardcoded "All 9 Stages", Quantum Valley/Neon Garden stage badges, 30 Years Crew). Now `_computeBadges()` + `_FESTIVAL_BADGE_PACKS` per festival (ACL: Closing Time / Amex Front Row / Honda Faithful / Springs Local / Three-Day Texan / Zilker Crew); Me-grid count uses the same fn (deleted the desync-prone mirror at the old spotify.jsx:5441); BADGES section always Collapsible. ⚠️ `cap sync ios` NOT yet run for v226/v227 — ride the next archive.
 
+## 🗺️ MAP REGISTRATION — follow-ups from the 2026-09-06 anchor re-survey
+
+Full analysis: **`docs/reports/2026-09-06-anchor-resurvey-reconciliation.md`**.
+Re-run any claim here with `node scripts/anchor-residuals.mjs`.
+
+- [ ] **Redraw `ultra-2026.svg` from the surveyed layout** — design work, and the
+      only thing that clears Ultra's art waiver (`ART_WAIVERS` in
+      `scripts/verify.mjs`, **expires 2026-12-01**, and an expired waiver is a
+      hard CI failure). The measured anchors are all `osm` now, but the drawn
+      art is not an affine image of Bayfront Park: pushed through the basis,
+      `main` lands 53 grid units (~387 m) from where the art draws it. Founder
+      call 2026-09-06 was adopt-now-redraw-later, so the anchors already help
+      photo-tag; only the map picture is behind. Redraw, then delete the waiver.
+- [ ] **Anchor `snapchat` at ACL** when the official 2026 patron map publishes —
+      the one real 2026 stage still unanchored, and the only thing that can
+      corroborate ACL's (now satellite-measured) basis. Clears the 2026-10-19
+      registration waiver. ⚠ Do NOT inherit the 2024 Lady Bird coordinates: a
+      new sponsor stage is not necessarily the old stage's footprint.
+- [ ] **Governor's Ball needs a FOURTH tie point** — it has three stages, so all
+      three anchors ARE the affine basis and nothing can ever check them. The
+      fix is a non-stage landmark (the Unisphere, 40.746396/-73.845074), which
+      needs a small schema change since `gpsAnchors` are `stageId`-keyed.
+- [ ] **Re-verify Govball `snapchat`** against the 2026 patron map or recap
+      media — north/south conflict, currently 737 m wide, landed on the 2025
+      official map's south position as `poster`.
+
 ## 🎪 MULTI-FESTIVAL EXPANSION WAVE — full spec: `docs/SPEC-add-festivals.md` (2026-06-06)
 Why: the Radiate partnership pitch (drafted, **HOLDING — NOT sent**; copy in Jake's Mail drafts → radtherhino@radiatetheworld.com) needs festival coverage matching Radiate's biggest communities first. One festival per fresh session:
 1. [ ] **Electric Forest** (Jun 25–28 — TIME-CRITICAL, 93k Radiate members) + prerequisite refactor: data.jsx `_isACL` ternary → `_DATA_SETS` registry lookup; also generalize `_artistsForFestival` (spotify.jsx)

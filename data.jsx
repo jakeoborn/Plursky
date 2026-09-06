@@ -590,55 +590,54 @@ const FESTIVALS_REGISTRY = [
         3: { rise: "07:21", set: "19:07" },
       },
       gps: { lat: 30.2630, lng: -97.7730, onSiteRadiusMi: 0.4 },
-      // ⚠ GPS anchors for Zilker Park — calibrated against ACL 2025
-      // map overlaid on satellite imagery.  Three reference anchors
-      // (amex / miller / beatbox) were placed at known Zilker Park
-      // landmarks; the remaining stages are derived via the same
-      // 3-point Cramer affine used by EDC (see map.jsx).
+      // ⚠ GPS anchors for Zilker Park — RE-SURVEYED 2026-09-06.
+      //
+      // The old trio (amex/miller/beatbox) was read off the ACL patron map
+      // overlaid on satellite imagery. That poster is not affine-consistent —
+      // its local scale wanders between 5.8 and 11.3 m per grid unit — so no
+      // single affine could ever register it, which is why derivations off the
+      // old basis landed in Lady Bird Lake (titos) and on the Barton Springs
+      // Rd bridge (beatbox). Re-measured, the old anchors were 448–539 m out.
+      //
+      // The three below are SATELLITE measurements: Esri World Imagery
+      // Wayback, capture vintage 2024-11-18 (ACL 2024 mid-teardown — stage
+      // roofs, FOH towers and crowd fans all visible), read at z=19
+      // (~0.26 m/px) against the tile grid. Not poster reads.
       gpsAnchors: [
-        // Calibrated (do not move without re-deriving the others)
-        { stageId: "amex",    lat: 30.26360, lng: -97.76640, src: "poster" },
-        { stageId: "miller",  lat: 30.26600, lng: -97.77240, src: "poster" },
-        { stageId: "beatbox", lat: 30.26140, lng: -97.77340, src: "poster" },
-        // Derived from the SVG layout via the amex/miller/beatbox affine.
-        // RE-DERIVED 2026-08-27 — same defect as EDC LV and Forest. `tmobile`
-        // was 28.7 grid units off its own stated derivation (~190 m across
-        // Zilker), which for photo-tag.jsx means photos shot there could
-        // resolve to a neighbouring stage. ACL is `available: true`, so this
-        // one was live.
+        // Calibrated basis — do NOT reorder; _solveMapAffine() (map.jsx)
+        // reads only the first three.
+        { stageId: "amex",    lat: 30.267233, lng: -97.763236, src: "osm" },
+        { stageId: "miller",  lat: 30.269017, lng: -97.769316, src: "osm" },
+        { stageId: "tmobile", lat: 30.268021, lng: -97.770282, src: "osm" },
+        // Derived through the NEW basis. Low confidence — unmeasurable in the
+        // capture (tree cover + teardown), so this is arithmetic, not survey.
+        { stageId: "bmi",     lat: 30.266404, lng: -97.767698, src: "derived" },
         //
-        // 2026-09-04: `honda` and `barton` REMOVED. Neither is a real ACL
-        // stage — the official 2025 patron map shows eight (Miller Lite,
-        // T-Mobile, Tito's, American Express, Lady Bird, BMI, Bonus Tracks,
-        // Beatbox) and no Honda; "Barton Springs" appears there only as
-        // ENTRANCE names. Both were app inventions carrying derived anchors.
-        // Safe to delete: the calibration trio is amex/miller/beatbox
-        // (indices 0-2), so the affine is untouched and no other anchor moves.
+        // ⛔ NOT ANCHORED, deliberately — three reasons:
         //
-        // 2026-09-05: `ladybird` and `bonus` REMOVED TOO — same affine
-        // reasoning, different justification. Both ARE real stages in the
-        // park, but the official 2026 grid programs ZERO sets on either, so
-        // their only effect on the app was a filter chip that selects nothing
-        // and a map pin nobody walks to. Dropping the anchors is the strictly
-        // safer half: a photo shot near Lady Bird was resolving to a stage
-        // with no artist to attribute it to. If ACL programs them in a later
-        // year, restore the def AND the anchor together — the lat/lng are in
-        // git history at this commit's parent.
+        // `titos` + `beatbox`: deleted 2026-09-05. The poster's NE and S edges
+        // are distorted enough that new-affine derivations put them in water
+        // and on a road bridge. No anchor beats a wrong anchor — photo-tag.jsx
+        // declines to geo-match a stage it cannot place, which is the correct
+        // failure mode.
         //
-        // ⚠ `snapchat` (new for 2026, 15 sets) has NO anchor on purpose. The
-        // official 2026 patron map is not published, so its real position is
-        // unknown, and a guessed anchor would silently mis-tag photos — worse
-        // than no anchor, which simply declines to geo-match that stage.
-        // Re-derived 2026-09-05 alongside the x/y correction above. The old
-        // value was EXACTLY mapToGps(80,31) — i.e. it was never surveyed, it
-        // was computed from the wrong grid position, which is also why the
-        // affine gate passed on it: the check was circular. This one is
-        // mapToGps(68,37) through the same amex/miller/beatbox affine, so it is
-        // derived too, but from a map position verified against the art. Treat
-        // it as map-accurate, not survey-accurate.
-        { stageId: "titos",    lat: 30.264752, lng: -97.768756, src: "derived" },
-        { stageId: "tmobile",  lat: 30.26504, lng: -97.77471, src: "poster" },
-        { stageId: "bmi",      lat: 30.26313, lng: -97.77306, src: "poster" },
+        // `snapchat`: new for 2026 (15 sets), real position unknown until the
+        // official patron map publishes. It replaced the 2024 Lady Bird stage
+        // in the lineup, so the tempting move is to inherit Lady Bird's coords
+        // — don't. A new sponsor stage is not necessarily the old stage's
+        // footprint, and a guessed anchor mis-tags photos silently.
+        //
+        // `ladybird` / `bonus`: not stages in the 2026 app at all. They showed
+        // up as anchor targets in the 2026-09-06 desk survey, and `ladybird`
+        // is where that survey's "independent 34 m cross-check" lived — a real
+        // measurement against a stage this lineup does not have, so it cannot
+        // carry ACL's case. That is why the 2026-10-19 registration waiver
+        // STAYS: the basis is now measured, but nothing independent checks it.
+        // ⚠ For whoever reconciles this next: the comment replaced here (dated
+        // 2026-09-04) recorded both as real park stages with zero programmed
+        // sets, while Instinct records `ladybird` as 2024-only and `bonus` as
+        // a label borrowed from the Lollapalooza module. The two accounts
+        // disagree; the action is identical either way.
       ],
       // Was "honda", which this pass deletes. amex is the app's own biggest
       // stage (size 1.7, "headliners close here every night") and the 2026
