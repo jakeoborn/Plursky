@@ -1864,6 +1864,156 @@ function BatterySaverCard() {
     }
   }, battPct, "% ", battery.charging ? "· CHARGING" : "")));
 }
+var THEME_PREF_KEY = "theme_pref";
+var _TH = window._TH = window._TH || {
+  mode: (() => {
+    try {
+      return localStorage.getItem(THEME_PREF_KEY) || "auto";
+    } catch {
+      return "auto";
+    }
+  })(),
+  listeners: new Set()
+};
+function resolveThemeClass(mode) {
+  if (mode === "light") return "";
+  if (mode === "dark") return "theme-night";
+  var cfg = typeof window !== "undefined" && window.FESTIVAL_CONFIG || null;
+  if (!cfg || typeof cfg.startMs !== "number" || typeof cfg.endMs !== "number") return "";
+  var now = Date.now();
+  if (now < cfg.startMs || now > cfg.endMs) return "";
+  var h = new Date().getHours();
+  return h >= 20 || h < 4 ? "theme-night" : h >= 4 && h < 7 ? "theme-dawn" : h >= 17 && h < 20 ? "theme-sunset" : "";
+}
+function applyThemeClass() {
+  var next = resolveThemeClass(_TH.mode);
+  if (document.documentElement.className !== next) {
+    document.documentElement.className = next;
+  }
+  return next;
+}
+function setThemeMode(mode) {
+  if (!["auto", "light", "dark"].includes(mode)) return;
+  _TH.mode = mode;
+  try {
+    localStorage.setItem(THEME_PREF_KEY, mode);
+  } catch {}
+  applyThemeClass();
+  _TH.listeners.forEach(fn => {
+    try {
+      fn(mode);
+    } catch {}
+  });
+}
+if (!window._thInited) {
+  window._thInited = true;
+  try {
+    applyThemeClass();
+  } catch {}
+}
+function useThemeMode() {
+  var [, force] = React.useReducer(x => x + 1, 0);
+  React.useEffect(() => {
+    _TH.listeners.add(force);
+    return () => _TH.listeners.delete(force);
+  }, []);
+  return {
+    mode: _TH.mode,
+    setMode: setThemeMode
+  };
+}
+function ThemeCard() {
+  var {
+    mode,
+    setMode
+  } = useThemeMode();
+  var segs = [{
+    id: "auto",
+    label: "AUTO"
+  }, {
+    id: "light",
+    label: "LIGHT"
+  }, {
+    id: "dark",
+    label: "DARK"
+  }];
+  var activeClass = resolveThemeClass(mode);
+  var nowLabel = activeClass === "theme-night" ? "NIGHT" : activeClass === "theme-dawn" ? "DAWN" : activeClass === "theme-sunset" ? "SUNSET" : "LIGHT";
+  return React.createElement("div", {
+    style: {
+      padding: 14,
+      borderRadius: 14,
+      background: "var(--paper)",
+      border: "1px solid var(--line)",
+      marginBottom: 12
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: 6
+    }
+  }, React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 10,
+      letterSpacing: 1.5,
+      color: "var(--muted)",
+      fontWeight: 700
+    }
+  }, "THEME"), React.createElement("span", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1.3,
+      color: "var(--muted)",
+      fontWeight: 700
+    }
+  }, nowLabel)), React.createElement("div", {
+    className: "serif",
+    style: {
+      fontSize: 20,
+      lineHeight: 1.1,
+      marginBottom: 4
+    }
+  }, "Paper by day, stars by night"), React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: "var(--muted)",
+      lineHeight: 1.5,
+      marginBottom: 12
+    }
+  }, "Auto follows the sky during the festival. Pin light or dark anytime."), React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gap: 4,
+      background: "var(--paper-2)",
+      borderRadius: 999,
+      padding: 3,
+      border: "1px solid var(--line)"
+    }
+  }, segs.map(s => {
+    var on = mode === s.id;
+    return React.createElement("button", {
+      key: s.id,
+      onClick: () => setMode(s.id),
+      style: {
+        background: on ? "var(--ink)" : "transparent",
+        color: on ? "var(--paper)" : "var(--ink)",
+        border: "none",
+        borderRadius: 999,
+        padding: "7px 10px",
+        fontFamily: "Geist Mono, monospace",
+        fontSize: 10,
+        letterSpacing: 1.2,
+        fontWeight: 700,
+        cursor: "pointer"
+      }
+    }, s.label);
+  })));
+}
 function _useTickMs(intervalMs) {
   var [, force] = React.useReducer(x => x + 1, 0);
   React.useEffect(() => {
@@ -2033,6 +2183,11 @@ Object.assign(window, {
   BatterySaverCard,
   BatterySaverToast,
   setBatterySaverMode,
+  useThemeMode,
+  ThemeCard,
+  setThemeMode,
+  resolveThemeClass,
+  applyThemeClass,
   useOnlineStatus,
   StatusStrip,
   plurskyHaptic

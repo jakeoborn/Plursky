@@ -2299,7 +2299,7 @@ function ArtistScreen({
       fontFamily: "Geist Mono, monospace",
       fontSize: 8,
       letterSpacing: 1.1,
-      color: "var(--ember)",
+      color: "var(--ember-ink)",
       textDecoration: "none",
       marginLeft: 8
     }
@@ -3027,7 +3027,7 @@ function ArtistScreen({
       fontFamily: "Geist Mono, monospace",
       fontSize: 8,
       letterSpacing: 1.1,
-      color: "var(--ember)",
+      color: "var(--ember-ink)",
       textDecoration: "none",
       border: "1px solid var(--ember)",
       borderRadius: 999,
@@ -3178,7 +3178,7 @@ function ArtistScreen({
       style: {
         fontSize: 8,
         letterSpacing: 1.4,
-        color: "var(--ember)",
+        color: "var(--ember-ink)",
         fontWeight: 700,
         marginBottom: 3
       }
@@ -3280,7 +3280,7 @@ function ArtistScreen({
         fontFamily: "Geist Mono, monospace",
         fontSize: 9,
         letterSpacing: 1.2,
-        color: "var(--ember)",
+        color: "var(--ember-ink)",
         padding: "6px 0 2px",
         display: "block"
       }

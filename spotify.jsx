@@ -532,7 +532,7 @@ function SpotifyScreen({ state, setState }) {
                         padding: "7px 0", borderBottom: "1px solid var(--line)",
                       }}>
                         <div style={{ fontSize: 14, color: isEdc ? "var(--ink)" : "var(--muted)", fontWeight: isEdc ? 500 : 400 }}>
-                          {a.name}{isEdc && <span style={{ fontSize: 10, color: "var(--ember)", marginLeft: 6 }}>· ✓</span>}
+                          {a.name}{isEdc && <span style={{ fontSize: 10, color: "var(--ember-ink)", marginLeft: 6 }}>· ✓</span>}
                         </div>
                         <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: srcColor }}>{srcLabel}</div>
                       </div>
@@ -562,7 +562,7 @@ const SAFETY_LINKS = [
     id: "amnesty",
     title: "Amnesty Boxes",
     sub: "Drop unwanted substances at any entrance. No questions, no consequences.",
-    color: "var(--ember)",
+    color: "var(--ember-ink)",
     icon: "amnesty",
     href: "https://insomniac.com/festival/edc-las-vegas/2026/info/health-safety/",
   },
@@ -1710,7 +1710,7 @@ function HomeMemoriesStrip({ state, setState }) {
       })()}
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
         <div className="serif" style={{ fontSize: 22 }}>
-          Your <span style={{ fontStyle: "italic", color: "var(--ember)" }}>memories</span>
+          Your <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>memories</span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           {canRecap && (
@@ -2315,7 +2315,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           </div>
         )}
         {song?.song && (
-          <div className="mono" style={{ fontSize: 11, letterSpacing: 0.8, color: stage?.color || "var(--ember)", fontWeight: 700, marginBottom: 4 }}>
+          <div className="mono" style={{ fontSize: 11, letterSpacing: 0.8, color: stage?.color || "var(--ember-ink)", fontWeight: 700, marginBottom: 4 }}>
             ♫ {song.song}
             {m.confirmedSong && <span style={{ color: "rgba(255,255,255,0.45)", marginLeft: 6 }}>· SHAZAMED</span>}
           </div>
@@ -2823,7 +2823,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
             </button>
           ) : (
             <button onClick={() => setEditing(true)} className="mono" style={{
-              background: "rgba(232,93,46,0.12)", color: "var(--ember)",
+              background: "rgba(232,93,46,0.12)", color: "var(--ember-ink)",
               border: "1px dashed rgba(232,93,46,0.5)",
               borderRadius: 999, padding: "3px 9px",
               fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
@@ -2833,7 +2833,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
               prominently rather than letting a possibly-wrong tag look sure. */}
           {artist && moment.tagAmbiguous && onUpdate && !editing && (
             <button onClick={() => setEditing(true)} className="mono" title="More than one set overlapped this time — tap to confirm or fix the tag" style={{
-              background: "rgba(232,93,46,0.12)", color: "var(--ember)",
+              background: "rgba(232,93,46,0.12)", color: "var(--ember-ink)",
               border: "1px dashed rgba(232,93,46,0.5)",
               borderRadius: 999, padding: "3px 9px",
               fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
@@ -2891,7 +2891,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
         <div className="mono" title={moment.takenAt ? `Photo time: ${moment.takenAt}` : undefined}
           style={{
             marginTop: 6, fontSize: 8.5, letterSpacing: 1, fontWeight: 600,
-            color: tagInfo?.tone === "warn" ? "var(--ember)" : "var(--muted)",
+            color: tagInfo?.tone === "warn" ? "var(--ember-ink)" : "var(--muted)",
             opacity: tagInfo?.tone === "warn" ? 1 : 0.85,
           }}>
           {tagInfo ? `${tagInfo.text}${moment.takenAt ? ` · ${moment.takenAt.slice(11)}` : ""}` : ""}
@@ -2957,7 +2957,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
             <span className="mono" style={{
               fontSize: 8, letterSpacing: 0.8, padding: "2px 5px", borderRadius: 4, flexShrink: 0,
               background: nowPlaying.confidence === "exact" ? "rgba(45,122,85,0.15)" : "rgba(232,93,46,0.1)",
-              color: nowPlaying.confidence === "exact" ? "var(--success)" : "var(--ember)",
+              color: nowPlaying.confidence === "exact" ? "var(--success)" : "var(--ember-ink)",
               fontWeight: 700,
             }}>{nowPlaying.confidence === "exact" ? "EXACT" : "~EST"}</span>
           </div>
@@ -3600,7 +3600,7 @@ function StorageManager({ all, onChange }) {
           {usedPct > 80 && (
             <div className="mono" style={{
               fontSize: 9, letterSpacing: 1.2, fontWeight: 700, marginBottom: 10,
-              color: "var(--ember)", background: "rgba(232,93,46,0.10)",
+              color: "var(--ember-ink)", background: "rgba(232,93,46,0.10)",
               border: "1px solid rgba(232,93,46,0.3)", borderRadius: 8,
               padding: "6px 10px",
             }}>
@@ -3848,7 +3848,7 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
           <button onClick={onClose} aria-label="Close" style={{ position: "absolute", top: "calc(24px + env(safe-area-inset-top, 0px))", right: 14, width: 34, height: 34, borderRadius: 34, background: "rgba(255,255,255,0.12)", border: "none", color: "#fff", fontSize: 16, cursor: "pointer" }}>✕</button>
           <div className="mono" style={{ fontSize: 10, letterSpacing: 2, color: "rgba(255,255,255,0.6)", fontWeight: 700, marginBottom: 14 }}>THAT WAS</div>
           <div className="serif" style={{ fontSize: 44, lineHeight: 1.05, color: "#fff", marginBottom: 10 }}>
-            Your <span style={{ fontStyle: "italic", color: "var(--ember)" }}>{nightLabel || "night"}</span>
+            Your <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>{nightLabel || "night"}</span>
           </div>
           <div className="mono" style={{ fontSize: 11, letterSpacing: 1.3, color: "rgba(255,255,255,0.7)", fontWeight: 600 }}>
             {moments.length} {moments.length === 1 ? "MOMENT" : "MOMENTS"}{tagged ? ` · ${tagged} TAGGED` : ""}{vids ? ` · ${vids} VIDEO${vids === 1 ? "" : "S"}` : ""}
@@ -4122,7 +4122,7 @@ function MemoryStory({ allMoments, state, setState, onOpenLightbox, onPlayReel }
       )}
       <div style={{ marginBottom: 16 }}>
         <div className="serif" style={{ fontSize: 26, lineHeight: 1, color: "var(--ink)" }}>
-          {dayMeta ? dayMeta.label.charAt(0) + dayMeta.label.slice(1).toLowerCase() : `Night ${night}`} <span style={{ fontStyle: "italic", color: "var(--ember)" }}>night</span>
+          {dayMeta ? dayMeta.label.charAt(0) + dayMeta.label.slice(1).toLowerCase() : `Night ${night}`} <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>night</span>
         </div>
         <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginTop: 4, fontWeight: 700 }}>
           {beats.length} {beats.length === 1 ? "MOMENT" : "MOMENTS"} · YOUR STORY
@@ -5174,7 +5174,7 @@ function MemoriesScreen({ state, setState }) {
             }}>
               <div className="mono" style={{
                 fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-                color: allTagged ? "var(--success)" : "var(--ember)",
+                color: allTagged ? "var(--success)" : "var(--ember-ink)",
               }}>
                 ✓ {tagged} TAGGED{needRetag > 0 ? ` · ${needRetag} NEED RETAG` : ""}{dupes > 0 ? ` · ${dupes} SKIPPED (DUPLICATE)` : ""}{failed > 0 ? ` · ${failed} FAILED` : ""}
               </div>
@@ -5252,7 +5252,7 @@ function MemoriesScreen({ state, setState }) {
                   {backupBusy ? "Backing up…" : (backupStat.done >= backupStat.total ? "Memories backed up" : "Back up my weekend")}
                 </div>
                 <div className="mono" style={{ fontSize: 9, letterSpacing: 1, marginTop: 2, fontWeight: 700,
-                  color: backupStat.bytes >= _BACKUP_SOFT_CAP ? "var(--ember)" : "var(--muted)" }}>
+                  color: backupStat.bytes >= _BACKUP_SOFT_CAP ? "var(--ember-ink)" : "var(--muted)" }}>
                   {backupBusy && backupProg ? `BACKING UP… ${backupProg.done}/${backupProg.total}`
                     : backupStat.done >= backupStat.total ? `ALL SAFE · ${_fmtSize(backupStat.bytes)}`
                     : `${backupStat.done}/${backupStat.total} · ${_fmtSize(backupStat.bytes)} · WI-FI`}
@@ -5303,7 +5303,7 @@ function MemoriesScreen({ state, setState }) {
           <div style={{ marginTop: 20, padding: "32px 22px", textAlign: "center", borderRadius: 18, background: "var(--paper-2)", border: "1px solid var(--line)" }}>
             <div style={{ fontSize: 34, marginBottom: 10 }}>📸</div>
             <div className="serif" style={{ fontSize: 22, lineHeight: 1.1, color: "var(--ink)", marginBottom: 8 }}>
-              Your weekend, <span style={{ fontStyle: "italic", color: "var(--ember)" }}>remembered</span>
+              Your weekend, <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>remembered</span>
             </div>
             <div style={{ fontSize: 13, lineHeight: 1.5, color: "var(--muted)", maxWidth: 280, margin: "0 auto" }}>
               Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap.
@@ -5537,7 +5537,7 @@ function MemoriesScreen({ state, setState }) {
                         <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "6px 4px" }}>
                           <span style={{ width: 4, alignSelf: "stretch", background: "var(--ember)", borderRadius: 3 }}/>
                           <div style={{ flex: 1, minWidth: 0 }}>
-                            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "var(--ember)" }}>BETWEEN SETS</div>
+                            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "var(--ember-ink)" }}>BETWEEN SETS</div>
                             <div className="serif" style={{ fontSize: 18, color: "var(--ink)", lineHeight: 1.1, marginTop: 2 }}>Other moments</div>
                           </div>
                           <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 700, flexShrink: 0 }}>
@@ -6168,7 +6168,7 @@ function MeScreen({ state, setState }) {
             <div style={{ flex: 1, minWidth: 0 }}>
               <div className="serif" style={{ fontSize: 18, lineHeight: 1.05 }}>Settings</div>
               <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 3 }}>
-                NOTIFICATIONS · BATTERY · PACK LIST · WIZARD
+                NOTIFICATIONS · THEME · BATTERY · PACK LIST
               </div>
             </div>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
@@ -6179,6 +6179,7 @@ function MeScreen({ state, setState }) {
           {settingsOpen && (
             <div style={{ marginTop: 10 }}>
               <NotificationsCard state={state} />
+              <ThemeCard />
               <BatterySaverCard />
               <PackListCard />
               <div style={{ marginTop: 14 }}>
@@ -8003,7 +8004,7 @@ function RecapScreen({ state, setState }) {
         {recap.busiestNightCount > 0 && (
           <RecapCard kicker="BUSIEST NIGHT">
             <div className="serif" style={{ fontSize: 32, lineHeight: 1.0, letterSpacing: -0.4 }}>
-              <span style={{ fontStyle: "italic", color: "var(--ember)" }}>{recap.busiestNightLabel}</span> was your peak —
+              <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>{recap.busiestNightLabel}</span> was your peak —
               {" "}{recap.busiestNightCount} sets in one night.
             </div>
           </RecapCard>
@@ -8023,11 +8024,11 @@ function RecapScreen({ state, setState }) {
         {recap.firstSet && recap.lastSet && (
           <RecapCard kicker="BOOKENDS">
             <div className="serif" style={{ fontSize: 22, lineHeight: 1.15, marginBottom: 14 }}>
-              You opened with <span style={{ color: "var(--ember)" }}>{recap.firstSet.name}</span>
+              You opened with <span style={{ color: "var(--ember-ink)" }}>{recap.firstSet.name}</span>
               <span style={{ color: "var(--muted)", fontSize: 16 }}> · {fmt12(recap.firstSet.start)}</span>
             </div>
             <div className="serif" style={{ fontSize: 22, lineHeight: 1.15 }}>
-              and closed with <span style={{ color: "var(--ember)" }}>{recap.lastSet.name}</span>
+              and closed with <span style={{ color: "var(--ember-ink)" }}>{recap.lastSet.name}</span>
               <span style={{ color: "var(--muted)", fontSize: 16 }}> · {fmt12(recap.lastSet.start)}</span>
             </div>
           </RecapCard>
@@ -8061,8 +8062,8 @@ function RecapScreen({ state, setState }) {
           <RecapCard kicker={`STAGES VISITED · ${recap.stagesVisitedCount} OF ${(window.STAGES || []).length}`}>
             <div className="serif" style={{ fontSize: 28, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 10 }}>
               {recap.stagesVisitedCount === (window.STAGES || []).length
-                ? <>Every <span style={{ fontStyle: "italic", color: "var(--ember)" }}>stage</span>. Completionist.</>
-                : <>You set foot at <span style={{ fontStyle: "italic", color: "var(--ember)" }}>{recap.stagesVisitedCount}</span> of {(window.STAGES || []).length} stages.</>}
+                ? <>Every <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>stage</span>. Completionist.</>
+                : <>You set foot at <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>{recap.stagesVisitedCount}</span> of {(window.STAGES || []).length} stages.</>}
             </div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginTop: 8 }}>
               {recap.stagesVisitedNames.map(name => (
@@ -8098,7 +8099,7 @@ function RecapScreen({ state, setState }) {
         {recap.b2bCount > 0 && (
           <RecapCard kicker={`B2B SETS · ${recap.b2bCount}`}>
             <div className="serif" style={{ fontSize: 28, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 8 }}>
-              You caught {recap.b2bCount === 1 ? "a" : recap.b2bCount} <span style={{ fontStyle: "italic", color: "var(--ember)" }}>back-to-back</span> collab{recap.b2bCount === 1 ? "" : "s"}.
+              You caught {recap.b2bCount === 1 ? "a" : recap.b2bCount} <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>back-to-back</span> collab{recap.b2bCount === 1 ? "" : "s"}.
             </div>
             <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.45 }}>
               {recap.b2bNames.join(" · ")}
@@ -8125,7 +8126,7 @@ function RecapScreen({ state, setState }) {
         {recap.momentsCount > 0 && (
           <RecapCard kicker="MEMORIES" paper="var(--paper)">
             <div className="serif" style={{ fontSize: 32, lineHeight: 1.0, letterSpacing: -0.4 }}>
-              <span style={{ color: "var(--ember)" }}>{recap.momentsCount}</span>{" "}
+              <span style={{ color: "var(--ember-ink)" }}>{recap.momentsCount}</span>{" "}
               {recap.momentsCount === 1 ? "moment" : "moments"} captured.
             </div>
             <div className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "var(--muted)", marginTop: 10, fontWeight: 600 }}>
@@ -8365,7 +8366,7 @@ function RecapScreen({ state, setState }) {
         {recap.genreBreakdown?.length > 0 && (
           <RecapCard kicker="YOUR GENRE MIX" paper="var(--paper)">
             <div className="serif" style={{ fontSize: 24, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 12 }}>
-              Your festival was <span style={{ fontStyle: "italic", color: "var(--ember)" }}>{recap.genreBreakdown[0]?.genre || "eclectic"}</span>.
+              Your festival was <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>{recap.genreBreakdown[0]?.genre || "eclectic"}</span>.
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
               {recap.genreBreakdown.map(({ genre, count }, i) => {
@@ -8489,7 +8490,7 @@ function RecapScreen({ state, setState }) {
         {crewStats?.total > 0 && (
           <RecapCard kicker="CREW COMPATIBILITY" paper="var(--paper)">
             <div className="serif" style={{ fontSize: 22, lineHeight: 1.1, marginBottom: 12 }}>
-              Your crew <em style={{ color: "var(--ember)" }}>vibe check</em>
+              Your crew <em style={{ color: "var(--ember-ink)" }}>vibe check</em>
             </div>
             <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5 }}>
               {crewStats.total} messages sent in crew chat{crewStats.topChatter ? ` · ${crewStats.topChatter[0]} was the most active` : ""}.
@@ -8560,7 +8561,7 @@ function RecapScreen({ state, setState }) {
         {recap.momentsCount > 0 && recap.setsCount > 0 && (
           <RecapCard kicker="SETLIST MEMORIES" paper="var(--paper)">
             <div className="serif" style={{ fontSize: 22, lineHeight: 1.1, marginBottom: 6 }}>
-              What was <em style={{ color: "var(--ember)" }}>playing</em>?
+              What was <em style={{ color: "var(--ember-ink)" }}>playing</em>?
             </div>
             <div style={{ fontSize: 12, color: "var(--muted)", lineHeight: 1.5 }}>
               Your photos are matched to the actual setlist — showing which song was playing when you took each shot. Open any moment in Memories to see the track.
@@ -8611,7 +8612,7 @@ function RecapScreen({ state, setState }) {
         {_isPlusSub() && (
           <RecapCard kicker="YOUR STYLE" paper="var(--paper)">
             <div className="serif" style={{ fontSize: 22, lineHeight: 1.1, letterSpacing: -0.3 }}>
-              Pick your <span style={{ fontStyle: "italic", color: _getCustomAccent() || "var(--ember)" }}>accent color</span>.
+              Pick your <span style={{ fontStyle: "italic", color: _getCustomAccent() || "var(--ember-ink)" }}>accent color</span>.
             </div>
             <div className="mono" style={{ fontSize: 9, color: "var(--muted)", marginTop: 4, letterSpacing: 1 }}>
               Applies to all collages, GIFs, and video exports.
@@ -8737,7 +8738,7 @@ function RecapScreen({ state, setState }) {
         {crewStats && crewStats.total > 0 && (
           <RecapCard kicker={`CREW · ${crewStats.code}`}>
             <div className="serif" style={{ fontSize: 28, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 10 }}>
-              Your crew sent <span style={{ fontStyle: "italic", color: "var(--ember)" }}>{crewStats.total}</span> messages this weekend.
+              Your crew sent <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>{crewStats.total}</span> messages this weekend.
             </div>
             {crewStats.topSender && (
               <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5 }}>
@@ -8760,7 +8761,7 @@ function RecapScreen({ state, setState }) {
           paper="linear-gradient(155deg, var(--paper) 0%, rgba(245,154,54,0.18) 100%)"
         >
           <div className="serif" style={{ fontSize: 32, lineHeight: 1, letterSpacing: -0.4 }}>
-            See you under the <span style={{ fontStyle: "italic", color: "var(--ember)" }}>electric sky</span>.
+            See you under the <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>electric sky</span>.
           </div>
           <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)", marginTop: 10, fontWeight: 600 }}>
             PLURSKY · {CFG.year || ""}

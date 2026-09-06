@@ -879,7 +879,7 @@ function AccountCard({ state, setState }) {
                   padding: "10px 12px", background: "rgba(232,93,46,0.08)",
                   border: "1px solid rgba(232,93,46,0.35)", borderRadius: 10,
                 }}>
-                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ember)", marginBottom: 4 }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ember-ink)", marginBottom: 4 }}>
                     DELETE ACCOUNT?
                   </div>
                   <div style={{ fontSize: 12, color: "var(--ink)", lineHeight: 1.45, marginBottom: 10 }}>
@@ -1971,7 +1971,7 @@ function ReportSheet({ message, code, reporterPid, reporterName, onClose, onSubm
       />
       {err && (
         <div className="mono" style={{
-          fontSize: 9, letterSpacing: 1, color: "var(--ember)",
+          fontSize: 9, letterSpacing: 1, color: "var(--ember-ink)",
           padding: "4px 8px", textAlign: "center",
         }}>· {err.toUpperCase()} ·</div>
       )}
@@ -2275,7 +2275,7 @@ function CrewChat({ code, myPid, myName }) {
           marginBottom: 6, padding: "7px 10px", borderRadius: 10,
           background: !online ? "rgba(232,93,46,0.10)" : "var(--paper-2)",
           border: !online ? "1px solid rgba(232,93,46,0.35)" : "1px solid var(--line)",
-          color: !online ? "var(--ember)" : "var(--muted)",
+          color: !online ? "var(--ember-ink)" : "var(--muted)",
           fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
           display: "flex", alignItems: "center", gap: 6,
         }}>
@@ -2427,7 +2427,7 @@ function CrewChat({ code, myPid, myName }) {
                 }}>{m.body}</div>
               <div className="mono" style={{
                 fontSize: 8, letterSpacing: 0.8,
-                color: m._failed ? "var(--ember)" : "var(--muted)",
+                color: m._failed ? "var(--ember-ink)" : "var(--muted)",
                 marginTop: 2, padding: "0 4px",
                 display: "flex", alignItems: "center", gap: 6,
               }}>
@@ -2474,7 +2474,7 @@ function CrewChat({ code, myPid, myName }) {
                   }} style={{
                     padding: "9px 12px", borderRadius: 8,
                     background: "transparent", border: "none", cursor: "pointer",
-                    color: "var(--ember)", textAlign: "left",
+                    color: "var(--ember-ink)", textAlign: "left",
                     fontFamily: "inherit", fontSize: 13,
                     display: "flex", alignItems: "center", gap: 8,
                   }}>

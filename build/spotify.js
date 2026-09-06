@@ -936,7 +936,7 @@ function SpotifyScreen({
     }, a.name, isEdc && React.createElement("span", {
       style: {
         fontSize: 10,
-        color: "var(--ember)",
+        color: "var(--ember-ink)",
         marginLeft: 6
       }
     }, "· ✓")), React.createElement("div", {
@@ -960,7 +960,7 @@ var SAFETY_LINKS = [{
   id: "amnesty",
   title: "Amnesty Boxes",
   sub: "Drop unwanted substances at any entrance. No questions, no consequences.",
-  color: "var(--ember)",
+  color: "var(--ember-ink)",
   icon: "amnesty",
   href: "https://insomniac.com/festival/edc-las-vegas/2026/info/health-safety/"
 }, {
@@ -2671,7 +2671,7 @@ function HomeMemoriesStrip({
   }, "Your ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, "memories")), React.createElement("div", {
     style: {
@@ -3444,7 +3444,7 @@ function MomentLightbox({
     style: {
       fontSize: 11,
       letterSpacing: 0.8,
-      color: stage?.color || "var(--ember)",
+      color: stage?.color || "var(--ember-ink)",
       fontWeight: 700,
       marginBottom: 4
     }
@@ -4357,7 +4357,7 @@ function MomentCard({
     className: "mono",
     style: {
       background: "rgba(232,93,46,0.12)",
-      color: "var(--ember)",
+      color: "var(--ember-ink)",
       border: "1px dashed rgba(232,93,46,0.5)",
       borderRadius: 999,
       padding: "3px 9px",
@@ -4372,7 +4372,7 @@ function MomentCard({
     title: "More than one set overlapped this time — tap to confirm or fix the tag",
     style: {
       background: "rgba(232,93,46,0.12)",
-      color: "var(--ember)",
+      color: "var(--ember-ink)",
       border: "1px dashed rgba(232,93,46,0.5)",
       borderRadius: 999,
       padding: "3px 9px",
@@ -4466,7 +4466,7 @@ function MomentCard({
       fontSize: 8.5,
       letterSpacing: 1,
       fontWeight: 600,
-      color: tagInfo?.tone === "warn" ? "var(--ember)" : "var(--muted)",
+      color: tagInfo?.tone === "warn" ? "var(--ember-ink)" : "var(--muted)",
       opacity: tagInfo?.tone === "warn" ? 1 : 0.85
     }
   }, tagInfo ? `${tagInfo.text}${moment.takenAt ? ` · ${moment.takenAt.slice(11)}` : ""}` : "", moment.hasGps === false && moment.autoTagged ? `${tagInfo ? "  ·  " : ""}📡 NO GPS` : ""), nowPlaying && React.createElement("div", {
@@ -4564,7 +4564,7 @@ function MomentCard({
       borderRadius: 4,
       flexShrink: 0,
       background: nowPlaying.confidence === "exact" ? "rgba(45,122,85,0.15)" : "rgba(232,93,46,0.1)",
-      color: nowPlaying.confidence === "exact" ? "var(--success)" : "var(--ember)",
+      color: nowPlaying.confidence === "exact" ? "var(--success)" : "var(--ember-ink)",
       fontWeight: 700
     }
   }, nowPlaying.confidence === "exact" ? "EXACT" : "~EST"))), editing && onUpdate && React.createElement("div", {
@@ -5563,7 +5563,7 @@ function StorageManager({
       letterSpacing: 1.2,
       fontWeight: 700,
       marginBottom: 10,
-      color: "var(--ember)",
+      color: "var(--ember-ink)",
       background: "rgba(232,93,46,0.10)",
       border: "1px solid rgba(232,93,46,0.3)",
       borderRadius: 8,
@@ -6104,7 +6104,7 @@ function MemoryReel({
   }, "Your ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, nightLabel || "night")), React.createElement("div", {
     className: "mono",
@@ -6655,7 +6655,7 @@ function MemoryStory({
   }, dayMeta ? dayMeta.label.charAt(0) + dayMeta.label.slice(1).toLowerCase() : `Night ${night}`, " ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, "night")), React.createElement("div", {
     className: "mono",
@@ -8132,7 +8132,7 @@ function MemoriesScreen({
         fontSize: 10,
         letterSpacing: 1.2,
         fontWeight: 700,
-        color: allTagged ? "var(--success)" : "var(--ember)"
+        color: allTagged ? "var(--success)" : "var(--ember-ink)"
       }
     }, "✓ ", tagged, " TAGGED", needRetag > 0 ? ` · ${needRetag} NEED RETAG` : "", dupes > 0 ? ` · ${dupes} SKIPPED (DUPLICATE)` : "", failed > 0 ? ` · ${failed} FAILED` : ""), needRetag > 0 && React.createElement("div", {
       className: "mono",
@@ -8275,7 +8275,7 @@ function MemoriesScreen({
       letterSpacing: 1,
       marginTop: 2,
       fontWeight: 700,
-      color: backupStat.bytes >= _BACKUP_SOFT_CAP ? "var(--ember)" : "var(--muted)"
+      color: backupStat.bytes >= _BACKUP_SOFT_CAP ? "var(--ember-ink)" : "var(--muted)"
     }
   }, backupBusy && backupProg ? `BACKING UP… ${backupProg.done}/${backupProg.total}` : backupStat.done >= backupStat.total ? `ALL SAFE · ${_fmtSize(backupStat.bytes)}` : `${backupStat.done}/${backupStat.total} · ${_fmtSize(backupStat.bytes)} · WI-FI`, backupStat.bytes >= _BACKUP_SOFT_CAP ? ` · NEAR ${_fmtSize(_BACKUP_HARD_CAP)} LIMIT` : ""))), React.createElement("span", {
     className: "mono",
@@ -8387,7 +8387,7 @@ function MemoriesScreen({
   }, "Your weekend, ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, "remembered")), React.createElement("div", {
     style: {
@@ -8717,7 +8717,7 @@ function MemoriesScreen({
           fontSize: 9,
           letterSpacing: 1.3,
           fontWeight: 700,
-          color: "var(--ember)"
+          color: "var(--ember-ink)"
         }
       }, "BETWEEN SETS"), React.createElement("div", {
         className: "serif",
@@ -9748,7 +9748,7 @@ function MeScreen({
       color: "var(--muted)",
       marginTop: 3
     }
-  }, "NOTIFICATIONS · BATTERY · PACK LIST · WIZARD")), React.createElement("svg", {
+  }, "NOTIFICATIONS · THEME · BATTERY · PACK LIST")), React.createElement("svg", {
     width: "13",
     height: "13",
     viewBox: "0 0 24 24",
@@ -9770,7 +9770,7 @@ function MeScreen({
     }
   }, React.createElement(NotificationsCard, {
     state: state
-  }), React.createElement(BatterySaverCard, null), React.createElement(PackListCard, null), React.createElement("div", {
+  }), React.createElement(ThemeCard, null), React.createElement(BatterySaverCard, null), React.createElement(PackListCard, null), React.createElement("div", {
     style: {
       marginTop: 14
     }
@@ -12271,7 +12271,7 @@ function RecapScreen({
   }, React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, recap.busiestNightLabel), " was your peak —", " ", recap.busiestNightCount, " sets in one night.")), recap.topGenre && React.createElement(RecapCard, {
     kicker: "THE SOUND OF YOUR WEEKEND",
@@ -12299,7 +12299,7 @@ function RecapScreen({
     }
   }, "You opened with ", React.createElement("span", {
     style: {
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, recap.firstSet.name), React.createElement("span", {
     style: {
@@ -12314,7 +12314,7 @@ function RecapScreen({
     }
   }, "and closed with ", React.createElement("span", {
     style: {
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, recap.lastSet.name), React.createElement("span", {
     style: {
@@ -12372,12 +12372,12 @@ function RecapScreen({
   }, recap.stagesVisitedCount === (window.STAGES || []).length ? React.createElement(React.Fragment, null, "Every ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, "stage"), ". Completionist.") : React.createElement(React.Fragment, null, "You set foot at ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, recap.stagesVisitedCount), " of ", (window.STAGES || []).length, " stages.")), React.createElement("div", {
     style: {
@@ -12435,7 +12435,7 @@ function RecapScreen({
   }, "You caught ", recap.b2bCount === 1 ? "a" : recap.b2bCount, " ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, "back-to-back"), " collab", recap.b2bCount === 1 ? "" : "s", "."), React.createElement("div", {
     style: {
@@ -12476,7 +12476,7 @@ function RecapScreen({
     }
   }, React.createElement("span", {
     style: {
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, recap.momentsCount), " ", recap.momentsCount === 1 ? "moment" : "moments", " captured."), React.createElement("div", {
     className: "mono",
@@ -12927,7 +12927,7 @@ function RecapScreen({
   }, "Your festival was ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, recap.genreBreakdown[0]?.genre || "eclectic"), "."), React.createElement("div", {
     style: {
@@ -13185,7 +13185,7 @@ function RecapScreen({
     }
   }, "Your crew ", React.createElement("em", {
     style: {
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, "vibe check")), React.createElement("div", {
     style: {
@@ -13309,7 +13309,7 @@ function RecapScreen({
     }
   }, "What was ", React.createElement("em", {
     style: {
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, "playing"), "?"), React.createElement("div", {
     style: {
@@ -13428,7 +13428,7 @@ function RecapScreen({
   }, "Pick your ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: _getCustomAccent() || "var(--ember)"
+      color: _getCustomAccent() || "var(--ember-ink)"
     }
   }, "accent color"), "."), React.createElement("div", {
     className: "mono",
@@ -13683,7 +13683,7 @@ function RecapScreen({
   }, "Your crew sent ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, crewStats.total), " messages this weekend."), crewStats.topSender && React.createElement("div", {
     style: {
@@ -13717,7 +13717,7 @@ function RecapScreen({
   }, "See you under the ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, "electric sky"), "."), React.createElement("div", {
     className: "mono",

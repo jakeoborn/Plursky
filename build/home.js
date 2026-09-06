@@ -973,7 +973,7 @@ function PostFestivalRecap({
     style: {
       fontSize: 9,
       letterSpacing: 1.8,
-      color: "var(--ember)",
+      color: "var(--ember-ink)",
       fontWeight: 700,
       marginBottom: 8
     }
@@ -1653,7 +1653,7 @@ function LastNightRecap({
   }, meta?.name || "Day " + prevDay, " ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, "Night")), React.createElement("div", {
     className: "mono",
@@ -1812,7 +1812,7 @@ function UpcomingTeaser({
       style: {
         fontSize: 9,
         letterSpacing: 1.4,
-        color: "var(--ember)",
+        color: "var(--ember-ink)",
         fontWeight: 700
       }
     }, meta?.short, " · ", meta?.name?.toUpperCase()), React.createElement("div", {
@@ -2191,7 +2191,7 @@ function HomeScreen({
     return React.createElement(React.Fragment, null, words.join(" "), " ", React.createElement("span", {
       style: {
         fontStyle: "italic",
-        color: "var(--ember)"
+        color: "var(--ember-ink)"
       }
     }, last), " in");
   })()), React.createElement("div", {
@@ -2228,7 +2228,7 @@ function HomeScreen({
   }, FESTIVAL_CONFIG.brand, " ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, FESTIVAL_CONFIG.year), " — that's a wrap."), React.createElement("div", {
     className: "mono",
@@ -2309,7 +2309,7 @@ function HomeScreen({
   }, FESTIVAL_CONFIG.dayDates[NOW.day]?.name || "Day " + NOW.day, " at ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, FESTIVAL_CONFIG.brand)), React.createElement("div", {
     className: "mono",
@@ -2845,7 +2845,7 @@ function HomeScreen({
         style: {
           fontSize: 9,
           letterSpacing: 1.6,
-          color: "var(--ember)",
+          color: "var(--ember-ink)",
           fontWeight: 700
         }
       }, g.meta?.name?.toUpperCase() || `DAY ${g.day}`), daysUntil > 0 && React.createElement("span", {
@@ -2996,7 +2996,7 @@ function HomeScreen({
     }, "Your ", React.createElement("span", {
       style: {
         fontStyle: "italic",
-        color: "var(--ember)"
+        color: "var(--ember-ink)"
       }
     }, "lineup")), React.createElement("div", {
       style: {
@@ -3058,7 +3058,7 @@ function HomeScreen({
         style: {
           fontSize: 9,
           letterSpacing: 1.8,
-          color: "var(--ember)",
+          color: "var(--ember-ink)",
           fontWeight: 700
         }
       }, meta.short, " · ", meta.name.toUpperCase()), conflictCount > 0 && React.createElement("span", {
@@ -3066,7 +3066,7 @@ function HomeScreen({
         style: {
           fontSize: 8,
           letterSpacing: 1.2,
-          color: "var(--ember)",
+          color: "var(--ember-ink)",
           padding: "1px 5px",
           borderRadius: 3,
           fontWeight: 700,
@@ -3100,7 +3100,7 @@ function HomeScreen({
           style: {
             fontSize: 8,
             letterSpacing: 1.1,
-            color: tight ? "var(--ember)" : "var(--muted)",
+            color: tight ? "var(--ember-ink)" : "var(--muted)",
             fontWeight: tight ? 700 : 500
           }
         }, walk, " MIN WALK · ", prev.stage === a.stage ? "SAME STAGE" : `${STAGES.find(s => s.id === prev.stage)?.short} → ${stage?.short}`)), React.createElement("button", {
@@ -3146,7 +3146,7 @@ function HomeScreen({
           style: {
             fontSize: 8,
             letterSpacing: 1.2,
-            color: "var(--ember)",
+            color: "var(--ember-ink)",
             padding: "1px 4px",
             borderRadius: 3,
             fontWeight: 700,
@@ -3280,7 +3280,7 @@ function LiveAcrossStrip({
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, liveCount, "/", strip.length, " ON")), React.createElement("div", {
     className: "no-scrollbar",
@@ -3505,13 +3505,13 @@ function TonightsPlan({
     style: {
       fontSize: 10,
       letterSpacing: 1.3,
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, "⚠ ", tightCount, " TIGHT TRANSITION", tightCount > 1 ? "S" : "", " · CHECK LEAVE-BY TIMES"), conflicts.length > 0 && React.createElement("button", {
     onClick: () => setResolverOpen(r => !r),
     style: {
       background: resolverOpen ? "transparent" : "var(--ember)",
-      color: resolverOpen ? "var(--ember)" : "#fff",
+      color: resolverOpen ? "var(--ember-ink)" : "#fff",
       border: resolverOpen ? "1px solid var(--ember)" : "none",
       borderRadius: 6,
       padding: "4px 10px",
@@ -3584,7 +3584,7 @@ function PlanRow({
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: tight ? "var(--ember)" : "var(--muted)",
+      color: tight ? "var(--ember-ink)" : "var(--muted)",
       fontWeight: tight ? 700 : 500
     }
   }, walk, " MIN WALK · ", prev.stage === a.stage ? "SAME STAGE" : `${STAGES.find(s => s.id === prev.stage).short} → ${stage.short}`, leaveByLabel && ` · LEAVE BY ${leaveByLabel}`)), React.createElement("div", {
@@ -3663,7 +3663,7 @@ function PlanRow({
     style: {
       fontSize: 8,
       letterSpacing: 1.3,
-      color: "var(--ember)",
+      color: "var(--ember-ink)",
       padding: "1px 5px",
       borderRadius: 3,
       fontWeight: 700,
@@ -4059,7 +4059,7 @@ function FirstTimerGuide({
     style: {
       fontSize: 9,
       letterSpacing: 1.6,
-      color: "var(--ember)",
+      color: "var(--ember-ink)",
       fontWeight: 700
     }
   }, "FIRST TIME AT ", FESTIVAL_CONFIG.brand.toUpperCase()), React.createElement("div", {
@@ -4320,7 +4320,7 @@ function FriendLineupBanner({
   }, state.friendName ? state.friendName : "Your friend", "'s ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "var(--ember)"
+      color: "var(--ember-ink)"
     }
   }, "lineup")), React.createElement("div", {
     style: {

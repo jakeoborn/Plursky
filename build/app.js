@@ -75,7 +75,7 @@ function OnboardingModal({
     title: React.createElement(React.Fragment, null, "Welcome to ", React.createElement("span", {
       style: {
         fontStyle: "italic",
-        color: "var(--ember)"
+        color: "var(--ember-ink)"
       }
     }, "Plursky")),
     body: `${ARTISTS.length} artists across ${STAGES.length} stages. Live map, walking ETAs, conflict detection, crew meetups, and set reminders — all offline. Built for ${FESTIVAL_CONFIG.name || "the festival"}.`,
@@ -104,7 +104,7 @@ function OnboardingModal({
       style: {
         fontSize: 9,
         letterSpacing: 1.8,
-        color: "var(--ember)",
+        color: "var(--ember-ink)",
         fontWeight: 800
       }
     }, "SEE WHAT PLURSKY LOOKS LIKE AT THE FESTIVAL"))), React.createElement("div", {
@@ -182,7 +182,7 @@ function OnboardingModal({
     title: React.createElement(React.Fragment, null, "Match the ", React.createElement("span", {
       style: {
         fontStyle: "italic",
-        color: "var(--ember)"
+        color: "var(--ember-ink)"
       }
     }, "lineup"), " to your Spotify"),
     body: `Connect Spotify and we'll mark every artist you already love across all ${ARTISTS.length} sets, plus surface deep-cut discoveries you don't know yet.`,
@@ -202,7 +202,7 @@ function OnboardingModal({
     title: React.createElement(React.Fragment, null, "Reminders before each ", React.createElement("span", {
       style: {
         fontStyle: "italic",
-        color: "var(--ember)"
+        color: "var(--ember-ink)"
       }
     }, "set")),
     body: notifSupported ? `Get a push 15 minutes before any saved set starts — including the sunrise sets at ${STAGES.find(s => s.id === FESTIVAL_CONFIG.mainStageId)?.name || "the main stage"}. We don't track you, no account needed.` : "Push notifications aren't supported in this browser. You can still set custom alarms from the Lineup page.",
@@ -494,7 +494,7 @@ function SearchModal({
     style: {
       background: "transparent",
       border: "none",
-      color: "var(--ember)",
+      color: "var(--ember-ink)",
       fontFamily: "Geist Mono, monospace",
       fontSize: 10,
       letterSpacing: 1.1,
@@ -605,7 +605,7 @@ function SearchModal({
     }, st?.short, " · DAY ", a.day, " · ", fmt12(a.start))), React.createElement("span", {
       style: {
         fontSize: 10,
-        color: "var(--ember)"
+        color: "var(--ember-ink)"
       }
     }, "★"));
   }), saved.length > 6 && React.createElement("div", {
@@ -876,21 +876,14 @@ function App() {
       sbOutboxInit?.();
     } catch {}
   }, []);
+  var {
+    mode: themeMode
+  } = useThemeMode();
   React.useEffect(() => {
-    var update = () => {
-      var now = Date.now();
-      if (now < FESTIVAL_CONFIG.startMs || now > FESTIVAL_CONFIG.endMs) {
-        document.documentElement.className = "";
-        return;
-      }
-      var h = new Date().getHours();
-      var theme = h >= 20 || h < 4 ? "theme-night" : h >= 4 && h < 7 ? "theme-dawn" : h >= 17 && h < 20 ? "theme-sunset" : "";
-      document.documentElement.className = theme;
-    };
-    update();
-    var id = setInterval(update, 60000);
+    applyThemeClass();
+    var id = setInterval(applyThemeClass, 60000);
     return () => clearInterval(id);
-  }, []);
+  }, [themeMode]);
   React.useEffect(() => {
     var onConnect = e => {
       if (e?.detail?.ok) {
@@ -1295,7 +1288,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v266"
+        version: "v267"
       }));
     } catch {}
   }
@@ -1360,7 +1353,7 @@ class RootErrorBoundary extends React.Component {
         letterSpacing: 1.2,
         color: "rgba(26,18,13,0.45)"
       }
-    }, "PLURSKY · v266"));
+    }, "PLURSKY · v267"));
   }
 }
 function SetStartingCinematic() {
@@ -1445,7 +1438,7 @@ function SetStartingCinematic() {
     style: {
       fontSize: 10,
       letterSpacing: 3,
-      color: stage?.color || "var(--ember)",
+      color: stage?.color || "var(--ember-ink)",
       fontWeight: 800,
       marginBottom: 12,
       animation: "vfx-pulse 1.5s ease-in-out infinite"

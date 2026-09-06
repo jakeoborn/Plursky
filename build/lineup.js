@@ -393,7 +393,7 @@ function NightWizard({
       className: "mono",
       style: {
         fontSize: 8,
-        color: "var(--ember)",
+        color: "var(--ember-ink)",
         letterSpacing: 0.8,
         marginTop: 1
       }
@@ -517,7 +517,7 @@ function NightWizard({
         style: {
           fontSize: 8,
           letterSpacing: 1,
-          color: "var(--ember)",
+          color: "var(--ember-ink)",
           fontWeight: 700
         }
       }, "⚠ CLASH"), React.createElement("button", {
@@ -531,7 +531,7 @@ function NightWizard({
           fontFamily: "Geist Mono, monospace",
           fontSize: 8,
           letterSpacing: 1,
-          color: "var(--ember)"
+          color: "var(--ember-ink)"
         }
       }, "DROP")))));
     }
@@ -1892,7 +1892,7 @@ function LineupScreen({
         fontSize: 8,
         letterSpacing: 0.8,
         fontWeight: 800,
-        color: "var(--ember)",
+        color: "var(--ember-ink)",
         background: "rgba(232,93,46,0.12)",
         border: "0.5px solid rgba(232,93,46,0.55)",
         padding: "1px 4px",
@@ -2486,7 +2486,7 @@ function GridSetBlock({
       fontSize: 8,
       letterSpacing: 1,
       fontWeight: 800,
-      color: "var(--ember)",
+      color: "var(--ember-ink)",
       whiteSpace: "nowrap"
     }
   }, "YOU'RE DUE HERE · ", dueMins, " MIN"), saved && React.createElement("span", {
@@ -2495,7 +2495,7 @@ function GridSetBlock({
       top: 3,
       right: 5,
       fontSize: 10,
-      color: "var(--ember)",
+      color: "var(--ember-ink)",
       fontWeight: 800,
       lineHeight: 1
     }
@@ -2709,7 +2709,7 @@ function TimelineGrid({
         style: {
           fontSize: 8,
           fontWeight: 800,
-          color: on ? "#fff" : "var(--ember)"
+          color: on ? "#fff" : "var(--ember-ink)"
         }
       }, "★", n));
     })), focus && React.createElement("div", {
@@ -2930,7 +2930,7 @@ function ConflictResolver({
     style: {
       fontSize: 10,
       letterSpacing: 1.6,
-      color: "var(--ember)",
+      color: "var(--ember-ink)",
       fontWeight: 700
     }
   }, "CONFLICT ", idx + 1, "/", conflicts.length)), React.createElement("span", {
@@ -3542,7 +3542,7 @@ function ShareMenuItem({
     onMouseLeave: e => e.currentTarget.style.background = "transparent"
   }, React.createElement("span", {
     style: {
-      color: "var(--ember)",
+      color: "var(--ember-ink)",
       display: "flex"
     }
   }, ico), React.createElement("span", {

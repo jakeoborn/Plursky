@@ -885,7 +885,7 @@ function AccountCard({
       style: {
         fontSize: 9,
         letterSpacing: 1.2,
-        color: "var(--ember)",
+        color: "var(--ember-ink)",
         marginBottom: 4
       }
     }, "DELETE ACCOUNT?"), React.createElement("div", {
@@ -2329,7 +2329,7 @@ function ReportSheet({
     style: {
       fontSize: 9,
       letterSpacing: 1,
-      color: "var(--ember)",
+      color: "var(--ember-ink)",
       padding: "4px 8px",
       textAlign: "center"
     }
@@ -2672,7 +2672,7 @@ function CrewChat({
       borderRadius: 10,
       background: !online ? "rgba(232,93,46,0.10)" : "var(--paper-2)",
       border: !online ? "1px solid rgba(232,93,46,0.35)" : "1px solid var(--line)",
-      color: !online ? "var(--ember)" : "var(--muted)",
+      color: !online ? "var(--ember-ink)" : "var(--muted)",
       fontSize: 9,
       letterSpacing: 1.1,
       fontWeight: 700,
@@ -2912,7 +2912,7 @@ function CrewChat({
       style: {
         fontSize: 8,
         letterSpacing: 0.8,
-        color: m._failed ? "var(--ember)" : "var(--muted)",
+        color: m._failed ? "var(--ember-ink)" : "var(--muted)",
         marginTop: 2,
         padding: "0 4px",
         display: "flex",
@@ -2985,7 +2985,7 @@ function CrewChat({
         background: "transparent",
         border: "none",
         cursor: "pointer",
-        color: "var(--ember)",
+        color: "var(--ember-ink)",
         textAlign: "left",
         fontFamily: "inherit",
         fontSize: 13,
