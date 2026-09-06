@@ -93,39 +93,48 @@ var FESTIVAL_CONFIG = {
   gpsAnchors: [{
     stageId: "kinetic",
     lat: 36.27512,
-    lng: -115.01180
+    lng: -115.01180,
+    src: "poster"
   }, {
     stageId: "cosmic",
     lat: 36.27370,
-    lng: -115.01480
+    lng: -115.01480,
+    src: "poster"
   }, {
     stageId: "basspod",
     lat: 36.27075,
-    lng: -115.01230
+    lng: -115.01230,
+    src: "poster"
   }, {
     stageId: "quantum",
     lat: 36.27433,
-    lng: -115.01026
+    lng: -115.01026,
+    src: "poster"
   }, {
     stageId: "bionic",
     lat: 36.27544,
-    lng: -115.01386
+    lng: -115.01386,
+    src: "poster"
   }, {
     stageId: "stereo",
     lat: 36.27404,
-    lng: -115.01285
+    lng: -115.01285,
+    src: "poster"
   }, {
     stageId: "neon",
     lat: 36.27218,
-    lng: -115.01010
+    lng: -115.01010,
+    src: "poster"
   }, {
     stageId: "waste",
     lat: 36.27179,
-    lng: -115.01366
+    lng: -115.01366,
+    src: "poster"
   }, {
     stageId: "circuit",
     lat: 36.27088,
-    lng: -115.01068
+    lng: -115.01068,
+    src: "poster"
   }],
   crowdAnchors: [{
     stageId: "kinetic",
@@ -379,31 +388,38 @@ var FESTIVALS_REGISTRY = [{
     gpsAnchors: [{
       stageId: "prehistoric",
       lat: 39.93800,
-      lng: -82.40650
+      lng: -82.40650,
+      src: "prov"
     }, {
       stageId: "wompy-woods",
       lat: 39.94150,
-      lng: -82.40100
+      lng: -82.40100,
+      src: "prov"
     }, {
       stageId: "crater",
       lat: 39.94050,
-      lng: -82.40750
+      lng: -82.40750,
+      src: "prov"
     }, {
       stageId: "subsidia",
       lat: 39.94180,
-      lng: -82.40450
+      lng: -82.40450,
+      src: "prov"
     }, {
       stageId: "forest-stage",
       lat: 39.93900,
-      lng: -82.40200
+      lng: -82.40200,
+      src: "prov"
     }, {
       stageId: "raptor-alley",
       lat: 39.94250,
-      lng: -82.40700
+      lng: -82.40700,
+      src: "prov"
     }, {
       stageId: "grove",
       lat: 39.94300,
-      lng: -82.40150
+      lng: -82.40150,
+      src: "prov"
     }],
     mainStageId: "prehistoric",
     mapImage: "lostlands-2026.jpg",
@@ -480,23 +496,28 @@ var FESTIVALS_REGISTRY = [{
     gpsAnchors: [{
       stageId: "kinetic",
       lat: 28.53890,
-      lng: -81.40450
+      lng: -81.40450,
+      src: "prov"
     }, {
       stageId: "circuit",
       lat: 28.53760,
-      lng: -81.40630
+      lng: -81.40630,
+      src: "prov"
     }, {
       stageId: "neon",
       lat: 28.53800,
-      lng: -81.40320
+      lng: -81.40320,
+      src: "prov"
     }, {
       stageId: "stereo",
       lat: 28.53920,
-      lng: -81.40610
+      lng: -81.40610,
+      src: "prov"
     }, {
       stageId: "bacardi",
       lat: 28.53720,
-      lng: -81.40400
+      lng: -81.40400,
+      src: "prov"
     }],
     mainStageId: "kinetic",
     mapImage: "edco-tinker-2026.jpg",
@@ -593,27 +614,33 @@ var FESTIVALS_REGISTRY = [{
     gpsAnchors: [{
       stageId: "amex",
       lat: 30.26360,
-      lng: -97.76640
+      lng: -97.76640,
+      src: "poster"
     }, {
       stageId: "miller",
       lat: 30.26600,
-      lng: -97.77240
+      lng: -97.77240,
+      src: "poster"
     }, {
       stageId: "beatbox",
       lat: 30.26140,
-      lng: -97.77340
+      lng: -97.77340,
+      src: "poster"
     }, {
       stageId: "titos",
       lat: 30.264752,
-      lng: -97.768756
+      lng: -97.768756,
+      src: "derived"
     }, {
       stageId: "tmobile",
       lat: 30.26504,
-      lng: -97.77471
+      lng: -97.77471,
+      src: "poster"
     }, {
       stageId: "bmi",
       lat: 30.26313,
-      lng: -97.77306
+      lng: -97.77306,
+      src: "poster"
     }],
     mainStageId: "amex",
     mapImage: "acl-park.webp",
@@ -987,7 +1014,7 @@ function resolvedStageAnchors(cfg) {
       stageId: g.stageId,
       lat: g.lat,
       lng: g.lng,
-      anchorSource: "poster"
+      anchorSource: g.src || "poster"
     });
   }
   for (var c of cfg?.crowdAnchors || []) {

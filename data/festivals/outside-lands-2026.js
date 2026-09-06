@@ -297,13 +297,13 @@
     gpsAnchors: [
       // Ordered so the leading triple spans the largest triangle — map.jsx's
       // _solveMapAffine reads only the first three, and a thin triple is unstable.
-      { stageId: "landsend",      lat: 37.76819, lng: -122.49276 },  // osm
-      { stageId: "sutro",         lat: 37.77038, lng: -122.49045 },  // osm
-      { stageId: "soma",          lat: 37.76980, lng: -122.48380 },  // prov
-      { stageId: "twinpeaks",     lat: 37.76913, lng: -122.48569 },  // osm
-      { stageId: "panhandle",     lat: 37.77111, lng: -122.48485 },  // osm
-      { stageId: "dolores",       lat: 37.77060, lng: -122.48750 },  // prov
-      { stageId: "duboce",        lat: 37.76900, lng: -122.48900 },  // prov
+      { stageId: "landsend",      lat: 37.76819, lng: -122.49276, src: "osm" },
+      { stageId: "sutro",         lat: 37.77038, lng: -122.49045, src: "osm" },
+      { stageId: "soma",          lat: 37.76980, lng: -122.48380, src: "prov" },
+      { stageId: "twinpeaks",     lat: 37.76913, lng: -122.48569, src: "osm" },
+      { stageId: "panhandle",     lat: 37.77111, lng: -122.48485, src: "osm" },
+      { stageId: "dolores",       lat: 37.77060, lng: -122.48750, src: "prov" },
+      { stageId: "duboce",        lat: 37.76900, lng: -122.48900, src: "prov" },
     ],
     weatherEndpoint: "https://api.weather.gov/points/37.77,-122.49",
     mainStageId: "landsend",

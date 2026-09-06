@@ -811,7 +811,16 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
   // POSTER-FALLBACK HONESTY FLAG. A match separated by a pin we know was
   // measured off a poster is a guess wearing a confident face — keep it (it
   // still beats no tag) but surface the FIX TAG chip, same as a GPS tie.
-  const ambiguous = (pool.length > 1 && !gpsSeparated) || anchorSource === "poster";
+  // An anchor only stops a match being "ambiguous" if it came from something
+  // outside the app's own map art. This used to read `anchorSource === "poster"`,
+  // which was correct only because resolvedStageAnchors labelled EVERY gpsAnchor
+  // "poster" regardless of origin. Anchors now carry real provenance, so test
+  // the property that matters — surveyed or measured — rather than one label.
+  // Effect: OSM-sourced anchors (the wave-1 festivals) stop being flagged
+  // ambiguous, which they never should have been; poster/prov/derived are
+  // unchanged.
+  const surveyGrade = anchorSource === "osm" || anchorSource === "crowd";
+  const ambiguous = (pool.length > 1 && !gpsSeparated) || (anchorSource != null && !surveyGrade);
   return {
       localDate, gpsRejected,
     artistId: pool[0].a.id, night, festivalId, resolvedBy, reason: "matched",

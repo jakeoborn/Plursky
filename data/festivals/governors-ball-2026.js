@@ -189,9 +189,9 @@
     gpsAnchors: [
       // Ordered so the leading triple spans the largest triangle — map.jsx's
       // _solveMapAffine reads only the first three, and a thin triple is unstable.
-      { stageId: "verizon",       lat: 40.74620, lng: -73.84000 },  // prov
-      { stageId: "snapchat",      lat: 40.74880, lng: -73.83880 },  // prov
-      { stageId: "grove",         lat: 40.74770, lng: -73.84230 },  // prov
+      { stageId: "verizon",       lat: 40.74620, lng: -73.84000, src: "prov" },
+      { stageId: "snapchat",      lat: 40.74880, lng: -73.83880, src: "prov" },
+      { stageId: "grove",         lat: 40.74770, lng: -73.84230, src: "prov" },
     ],
     weatherEndpoint: "https://api.weather.gov/points/40.75,-73.84",
     mainStageId: "verizon",

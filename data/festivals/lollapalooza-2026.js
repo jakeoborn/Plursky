@@ -379,15 +379,15 @@
     gpsAnchors: [
       // Ordered so the leading triple spans the largest triangle — map.jsx's
       // _solveMapAffine reads only the first three, and a thin triple is unstable.
-      { stageId: "tmobile",       lat: 41.87963, lng: -87.61910 },  // osm
-      { stageId: "perrys",        lat: 41.87229, lng: -87.62151 },  // osm
-      { stageId: "kidza",         lat: 41.87300, lng: -87.61780 },  // prov
-      { stageId: "budlight",      lat: 41.87139, lng: -87.61887 },  // osm
-      { stageId: "titos",         lat: 41.87580, lng: -87.61897 },  // osm
-      { stageId: "allianz",       lat: 41.87450, lng: -87.62060 },  // prov
-      { stageId: "airbnb",        lat: 41.87720, lng: -87.62030 },  // prov
-      { stageId: "bmi",           lat: 41.87850, lng: -87.62080 },  // prov
-      { stageId: "bonus",         lat: 41.87350, lng: -87.62100 },  // prov
+      { stageId: "tmobile",       lat: 41.87963, lng: -87.61910, src: "osm" },
+      { stageId: "perrys",        lat: 41.87229, lng: -87.62151, src: "osm" },
+      { stageId: "kidza",         lat: 41.87300, lng: -87.61780, src: "prov" },
+      { stageId: "budlight",      lat: 41.87139, lng: -87.61887, src: "osm" },
+      { stageId: "titos",         lat: 41.87580, lng: -87.61897, src: "osm" },
+      { stageId: "allianz",       lat: 41.87450, lng: -87.62060, src: "prov" },
+      { stageId: "airbnb",        lat: 41.87720, lng: -87.62030, src: "prov" },
+      { stageId: "bmi",           lat: 41.87850, lng: -87.62080, src: "prov" },
+      { stageId: "bonus",         lat: 41.87350, lng: -87.62100, src: "prov" },
     ],
     weatherEndpoint: "https://api.weather.gov/points/41.88,-87.62",
     mainStageId: "tmobile",
