@@ -3,6 +3,22 @@ name: sanity
 on:
   pull_request:
     branches: [main]
+    # `edited` is NOT a default. Without it, RETARGETING a PR onto main fires
+    # pull_request.edited, which matches nothing, so the PR sits at checks=0
+    # forever and the only way out is closing and reopening it. That is not
+    # hypothetical — #65 had to be closed and reopened to get a green tick,
+    # and the stacked PRs before it only picked up checks because a
+    # force-push happened to follow the retarget.
+    #
+    # This matters here specifically because the house style is stacked PRs:
+    # every squash-merge orphans the next PR's base, so retargeting onto main
+    # is a routine step, not an edge case.
+    #
+    # Naming `types` REPLACES the default list, so the three defaults have to
+    # be spelled out again alongside it. Cost: title and body edits also
+    # trigger a run. Accepted deliberately — a few wasted minutes beats a PR
+    # that silently cannot be verified.
+    types: [opened, synchronize, reopened, edited]
 
 permissions:
   contents: read
