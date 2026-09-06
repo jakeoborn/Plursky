@@ -316,16 +316,44 @@
     },
     // Every anchor is the stage's own authored lat/lng, so the affine in
     // map.jsx reproduces each stage's x/y exactly. Verified by scripts/verify.mjs.
+    // RE-SURVEYED 2026-09-06. The anchors that shipped before were `prov` —
+    // placed from the published site layout and co-authored with the x/y
+    // grid, so they round-tripped through the affine at 0–1 m while sitting
+    // 200–650 m from the actual park. Self-consistent and fictional.
+    //
+    // These are registered to ground truth: the official Ultra 2026 site map
+    // (Ultra_Miami_SiteMap_2026.jpg) fitted to 7 Biscayne Blvd cross-street
+    // intersections from OSM, plus the FPL Solar Amphitheater measured off the
+    // 2026-01-29 satellite capture (which agrees with the OSM way centroid to
+    // 11 m). Affine residuals 4–45 m on the street labels; precision ~±25 m.
+    // The street labels are all collinear, so the amphitheater is the only
+    // off-line tie point — do not drop `live` from the fit.
+    //
+    // ⚠ x/y are NOT updated to match, on founder call 2026-09-06 (Q2:
+    // "adopt now, redraw later"). ultra-2026.svg is drawn art with no
+    // generator, and the real layout is not an affine image of it: pushed
+    // through this basis, `main` lands 387 m from where the art draws it,
+    // `live` 343 m, `umfradio` 310 m. Keeping the old x/y keeps every pin on
+    // its drawn structure. The consequence is that this festival CANNOT
+    // support a distance readout — corroboration fails by design here, not by
+    // accident — and the follow-up is to redraw the SVG from this layout.
+    // Until then the anchors earn their keep in photo-tag.jsx, which matches
+    // photo EXIF against real-world stage positions and was previously
+    // mis-tagging by up to 650 m.
     gpsAnchors: [
-      // Ordered so the leading triple spans the largest triangle — map.jsx's
-      // _solveMapAffine reads only the first three, and a thin triple is unstable.
-      { stageId: "worldwide",     lat: 25.77230, lng: -80.18700, src: "prov" },
-      { stageId: "cove",          lat: 25.77450, lng: -80.18450, src: "prov" },
-      { stageId: "umfradio",      lat: 25.77700, lng: -80.18780, src: "prov" },
-      { stageId: "main",          lat: 25.77790, lng: -80.18620, src: "prov" },
-      { stageId: "megastructure", lat: 25.77180, lng: -80.18520, src: "prov" },
+      // Leading triple spans the largest triangle — _solveMapAffine reads only
+      // the first three, and a thin triple is unstable. Do not reorder.
+      { stageId: "cove",          lat: 25.77618, lng: -80.18565, src: "osm" },
+      { stageId: "megastructure", lat: 25.77731, lng: -80.18721, src: "osm" },
+      { stageId: "oasis",         lat: 25.77336, lng: -80.18542, src: "osm" },
+      { stageId: "main",          lat: 25.77482, lng: -80.18593, src: "osm" },
+      { stageId: "worldwide",     lat: 25.77593, lng: -80.18693, src: "osm" },
+      { stageId: "umfradio",      lat: 25.77328, lng: -80.18584, src: "osm" },
+      // Unchanged — FPL Solar Amphitheater, the one anchor that was already
+      // measured. Map-art identity check, confirmed against the official map:
+      // the UPPER Resistance structure is THE COVE, the LOWER one (by
+      // Worldwide) is the MEGASTRUCTURE. Don't swap them.
       { stageId: "live",          lat: 25.77620, lng: -80.18606, src: "osm" },
-      { stageId: "oasis",         lat: 25.77430, lng: -80.18750, src: "prov" },
     ],
     weatherEndpoint: "https://api.weather.gov/points/25.78,-80.19",
     mainStageId: "main",

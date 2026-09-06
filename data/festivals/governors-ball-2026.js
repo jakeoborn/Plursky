@@ -186,12 +186,44 @@
     },
     // Every anchor is the stage's own authored lat/lng, so the affine in
     // map.jsx reproduces each stage's x/y exactly. Verified by scripts/verify.mjs.
+    // RE-SURVEYED 2026-09-06. No in-event satellite capture of Flushing
+    // Meadows exists (every Esri Wayback vintage 2022–2026 checked), and the
+    // lawn scarring in the 2025-09-25 capture is indistinguishable from a 2024
+    // pre-festival control, so no scar measurement was possible. Basis is the
+    // official GB25 premium-areas map registered to OSM (Meadow Lake Bridge,
+    // the Unisphere, the satellite-measured grove garden), corroborated by a
+    // GB2025 drone aerial showing the main stage beside the NY State Pavilion.
+    //
+    // ⚠ Three stages means these three anchors ARE the affine basis, so their
+    // residual is 0 by construction and proves nothing. There is no fourth
+    // stage to check them against; a non-stage landmark tie point (the
+    // Unisphere, 40.746396/-73.845074) would need a schema change, since
+    // anchors are stageId-keyed. Until then this festival cannot corroborate
+    // its own registration and distance readouts stay off.
     gpsAnchors: [
-      // Ordered so the leading triple spans the largest triangle — map.jsx's
-      // _solveMapAffine reads only the first three, and a thin triple is unstable.
-      { stageId: "verizon",       lat: 40.74620, lng: -73.84000, src: "prov" },
-      { stageId: "snapchat",      lat: 40.74880, lng: -73.83880, src: "prov" },
-      { stageId: "grove",         lat: 40.74770, lng: -73.84230, src: "prov" },
+      // Measured: the ringed trellis garden ("the grove") in the 2025-09-25
+      // capture. Tightens the old anchor by 28 m — it was already close.
+      { stageId: "grove",    lat: 40.74750, lng: -73.84209, src: "osm" },
+      // 2025 official map + aerial corroboration; the main stage sits on the
+      // lawn E of the NY State Pavilion. ±50 m. Big fix: the old anchor was
+      // 390 m away, in dense woods that cannot hold a main stage.
+      { stageId: "verizon",  lat: 40.74420, lng: -73.84381, src: "poster" },
+      // ⚠ CONFLICT, landed deliberately (founder call 2026-09-06, Q3). The
+      // module used to say "north field" and the old anchor sat N at
+      // 40.74880/-73.83880; the 2025 official map puts the second stage on the
+      // SOUTH lawn by Meadow Lake Bridge — 737 m away. The 2026 map is app-only
+      // and unarchived, so which layout 2026 uses is UNVERIFIED. The official
+      // map beats an unsourced authoring comment, and `poster` cannot flip
+      // readouts on under the corroboration rule, so the downside is bounded.
+      // Re-verify against the 2026 patron map or GB recap media.
+      //
+      // ⚠ Filed as `derived` in the founder call; corrected to `poster` here.
+      // In this codebase `derived` means BACK-COMPUTED FROM OUR OWN AFFINE,
+      // which is banned from the calibration basis because such an anchor
+      // cannot disagree with the transform that produced it. These two were
+      // read off official festival map art, which is exactly `poster`. Same
+      // strength (not evidence, cannot flip readouts on), accurate word.
+      { stageId: "snapchat", lat: 40.74284, lng: -73.84262, src: "poster" },
     ],
     weatherEndpoint: "https://api.weather.gov/points/40.75,-73.84",
     mainStageId: "verizon",

@@ -158,3 +158,58 @@ than quietly overriding a reviewer.
    map can be captured?
 4. **The second condition** — ship it as a hard gate alongside the anchors, or
    keep it advisory for one cycle?
+
+---
+
+## 6. Outcome — Instinct's answers, and what shipped (2026-09-06, later)
+
+Instinct re-ran `scripts/anchor-residuals.mjs`, reproduced every number, and
+answered all four. Implemented in one PR on top of the queue:
+
+| | answer | shipped as |
+|---|---|---|
+| Q1 ACL | `ladybird` is a 2024 stage the 2026 lineup replaced with Snapchat; `bonus` was a label borrowed from the Lollapalooza module. Waiver **stays**. | basis `amex/miller/tmobile` (osm) + `bmi` (derived); `2026-10-19` waiver kept, narrowed to `blind` |
+| Q2 Ultra | Adopt now, redraw later. | all 7 anchors `osm`; x/y untouched; dated art waiver + TODO for the SVG redraw |
+| Q3 Govball | Land the 2025-map south position, conflict recorded. | `grove` osm, `verizon`/`snapchat` **`poster`** (see below) |
+| Q4 gate | Ship the second condition as a hard gate. | both halves, runtime + CI, cross-checked against each other |
+
+### Two corrections made while implementing
+
+**Govball's `verizon`/`snapchat` are `poster`, not `derived`.** In this codebase
+`derived` has a narrow meaning — *back-computed from our own affine* — and is
+banned from the calibration basis, because such an anchor cannot disagree with
+the transform that produced it. Govball has three stages, so its three anchors
+*are* the basis, and filing them as `derived` tripped that gate. They were read
+off official festival map art, which is exactly what `poster` means. Same
+strength (not evidence, cannot flip readouts on), accurate word.
+
+**Ultra's waiver is a new kind.** Its anchors are all `osm` and its basis is
+sourced, so it has no *registration* finding left — its problem moved up a gate,
+to the affine-consistency check, which had no waiver mechanism. One was added in
+the same shape as the registration waivers (dated, closed in both directions).
+Expiry `2026-12-01`, chosen to force the redraw into the quiet window before the
+2027 festival roll rather than into Ultra flip week.
+
+### Verification
+
+Five mutations, each failing for its own stated reason, control green:
+
+| mutation | caught by |
+|---|---|
+| corroboration removed from `map.jsx` | readout gate — 3 festivals quote distances they cannot support |
+| Ultra art waiver deleted | affine gate — 1 live festival does not satisfy its own affine |
+| Ultra art waiver expired | affine gate — waiver EXPIRED, redraw or re-date deliberately |
+| art waiver names a festival that passes | staleness sweep — delete the entry |
+| `MAP_REGISTRATION_TOL_M` changed to 40 | drift assert — one number, two copies, already drifted |
+
+The third of those originally reported "STALE: it no longer fails the affine
+check", which is the opposite of true for an expired waiver. Fixed: an expired
+waiver now counts as *used* so the staleness sweep cannot contradict it.
+
+### Where the seven festivals landed
+
+No user-visible change on any of them — the three that quote distances still
+quote them, the four that don't still don't. What changed is that ACL, Ultra and
+Govball are now suppressed **on evidence** rather than for want of it, and their
+underlying anchors are real, which photo-tag.jsx benefits from immediately:
+Ultra's stages were previously 200–650 m from where they actually are.

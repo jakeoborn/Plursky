@@ -179,6 +179,9 @@ if (fdata.length) {
 }
 
 let REG_LIVE = [];
+// Mirrors MAP_REGISTRATION_TOL_M in map.jsx. The readout gate asserts the
+// two are equal, so this copy cannot silently drift from the shipped one.
+const REGISTRATION_TOL_M = 25;
 
 // ── 1b. GPS anchor self-consistency ────────────────────────────────────────
 // Every festival's gpsAnchors comment says the non-calibration anchors were
@@ -277,8 +280,39 @@ let REG_LIVE = [];
     console.log(`  ✓ ${total} anchor(s), all declared; no derived anchor in any calibration basis`);
   }
 
+  // One date for every waiver in this file — two clocks is one clock too many.
+  const TODAY = new Date().toISOString().slice(0, 10);
   console.log("▸ GPS anchor gate — anchors must satisfy their own affine");
   let hard = 0, soft = 0, checked = 0, blind = 0, unsourced = 0;
+  // ── Waiver: art that provably cannot carry an affine ──────────────────
+  // Different in kind from every other waiver in this file, because the
+  // defect is in the ART, not the anchors. Ultra's anchors are all `osm`,
+  // measured against the official 2026 site map registered through the OSM
+  // street grid. The drawn SVG simply is not an affine image of Bayfront
+  // Park, so pushing the real layout through it puts `main` 53 grid units
+  // (~387 m) from where the art draws it. No better survey fixes that —
+  // only redrawing the map does.
+  //
+  // Founder call 2026-09-06 (Q2): adopt the measured anchors now, redraw
+  // later. The anchors are already earning their keep in photo-tag.jsx,
+  // which was mis-attributing photos by up to 650 m; distance readouts stay
+  // suppressed either way, because MAP_REGISTRATION_SOURCED needs a sourced
+  // anchor that AGREES with the art and this festival has none.
+  //
+  // Closed in both directions, like the registration waivers below: an
+  // uncovered failure is fatal, an expired waiver is fatal, and a waiver
+  // naming a festival that now PASSES is fatal too — so this entry cannot
+  // outlive the redraw it is standing in for.
+  const ART_WAIVERS = {
+    "ultra-miami-2026": {
+      // Chosen to force the redraw into the quiet window before the 2027
+      // festival roll, rather than into Ultra flip week.
+      expires: "2026-12-01",
+      note: "ultra-2026.svg is drawn art, not a projection; redraw it from the surveyed layout, then delete this waiver.",
+    },
+  };
+  const artWaived = new Set();
+
   // Per-festival findings, so the waiver pass below can name the exact
   // condition it excuses instead of excusing a festival wholesale.
   const regFindings = [];
@@ -343,8 +377,25 @@ let REG_LIVE = [];
     if (conds.length) regFindings.push({ id: cfg.id, live: !!f.available, conds });
     if (!basisSourced && f.available) unsourced++;
     if (!evidence && f.available) blind++;
-    if (bad && f.available) hard++;
+    if (bad && f.available) {
+      const w = ART_WAIVERS[cfg.id];
+      if (!w) hard++;
+      else if (w.expires < TODAY) {
+        console.log(`  ✗  ${cfg.id} — art waiver EXPIRED ${w.expires} (today ${TODAY}); redraw the map or re-date it deliberately`);
+        // Counts as USED even though it is not honoured, so the staleness
+        // sweep below does not then report the opposite ("no longer fails").
+        artWaived.add(cfg.id);
+        hard++;
+      } else {
+        artWaived.add(cfg.id);
+        console.log(`     waived until ${w.expires} — ${w.note}`);
+      }
+    }
     else if (bad) soft++;
+  }
+  // A waiver for art that now fits is an excuse nobody is paying for.
+  for (const [id, w] of Object.entries(ART_WAIVERS)) {
+    if (!artWaived.has(id)) fail(`art waiver for ${id} is STALE: it no longer fails the affine check (expires ${w.expires}). Delete the entry.`);
   }
   if (!checked) console.log("  (no festival has both anchors and stages)");
   if (soft) console.log(`  ${soft} gated festival(s) inconsistent — re-derive at the flip session`);
@@ -373,50 +424,60 @@ let REG_LIVE = [];
   // no longer has is fatal, because an excuse that outlives its defect is how
   // a repo ends up carrying apologies for bugs it already fixed.
   const REGISTRATION_WAIVERS = {
+    // All three were re-surveyed at a desk on 2026-09-06 (issue #57), so the
+    // `unsourced` half of each of these waivers is GONE — every basis below
+    // is measured now. What survives is `blind`: a basis can be perfectly
+    // sourced and still have nothing independent to check it against, and
+    // that is the condition that keeps distance readouts off.
     "acl-2026": {
-      excuses: ["unsourced", "blind"],
+      excuses: ["blind"],
       expires: "2026-10-19",
-      // ⚠️ NOT resolved by the Weekend 2 crowd-anchor pass, though the first
-      // draft of this waiver said it was. A crowd anchor answers "where does
-      // a person STAND to watch this stage"; a gpsAnchor answers "where did
-      // the artist DRAW it". They are different quantities and data.jsx says
-      // so in bold — EDC's measured kinetic centroid is 438 m from its own
-      // poster pin. Feeding crowd centroids into the basis would not source
-      // the registration, it would re-register the poster art onto the
-      // audience and slide every mapToGps() call site with it.
+      // ⚠️ The 2026-09-06 desk survey ASKED for this waiver to be deleted, on
+      // the strength of a 34 m independent cross-check against `ladybird`.
+      // Retracted by Instinct 2026-09-06 once the reconciliation landed:
+      // `ladybird` is a 2024 stage that the 2026 lineup replaced with the
+      // Snapchat Stage, so the cross-check was real geometry against a stage
+      // this app does not have. `bonus` was a label borrowed from the
+      // Lollapalooza module. The basis (amex/miller/tmobile) is genuinely
+      // satellite-measured now; the only other anchor, `bmi`, is derived
+      // through that same basis and therefore cannot disagree with it.
       //
-      // So this is desk work like the other two: Zilker is a permanent public
-      // park (Barton Springs, the Great Lawn, the Hillside Theater) and the
-      // stage positions AS DRAWN can be registered against it without anyone
-      // flying anywhere. The crowd pass is still worth doing and still
-      // happens at Weekend 2 — it fixes photo auto-tagging, which is its own
-      // reason — but it is NOT on this gate's critical path.
-      note: "basis is poster/poster/poster off the Zilker art; needs an OSM/" +
-            "satellite re-survey of the park (desk work). The Weekend 2 crowd " +
-            "pass is a DIFFERENT measurement and does not clear this",
+      // Clears when the official 2026 patron map publishes and `snapchat` —
+      // the one real 2026 stage still unanchored — can be measured. That is
+      // an independent anchor, which is exactly what is missing.
+      //
+      // Still true, still worth repeating: the Weekend 2 crowd pass does NOT
+      // clear this. A crowd anchor answers "where does a person STAND"; a
+      // gpsAnchor answers "where did the artist DRAW it". EDC's measured
+      // kinetic centroid is 438 m from its own poster pin.
+      note: "basis is satellite-measured (amex/miller/tmobile) but nothing " +
+            "independent checks it — bmi is derived through that same basis. " +
+            "Needs the 2026 patron map to anchor snapchat",
     },
-    "ultra-miami-2026": {
-      excuses: ["unsourced"],
-      expires: "2026-10-19",
-      // NOT venue work. Bayfront Park is a permanent public park whose named
-      // features are already in OSM, so this is a desk re-survey nobody has
-      // sat down to do — the date is a review point, not an effort estimate.
-      note: "basis is prov/prov/prov; Bayfront Park has permanent OSM features " +
-            "to register against, so this is desk work, not a site visit",
-    },
+    // ultra-miami-2026 is NO LONGER HERE. Its basis is measured and it has
+    // four independent osm anchors, so it has neither registration finding.
+    // Its problem moved up a gate: those four anchors DISAGREE with the drawn
+    // art by up to 53 grid units, which is ART_WAIVERS above, not this.
     "governors-ball-2026": {
-      excuses: ["unsourced", "blind"],
+      excuses: ["blind"],
       expires: "2026-10-19",
-      // Also desk work — Flushing Meadows Corona Park is permanently mapped.
-      // "blind" here is structural: all three anchors ARE the basis, so no
-      // fourth anchor exists to disagree with them. Re-sourcing the three
-      // does not clear it; the re-survey has to ADD one.
-      note: "3 anchors, all of them the basis, all prov; Flushing Meadows is " +
-            "permanently mapped in OSM — desk re-survey, and it must add a " +
-            "FOURTH anchor or the affine stays uncheckable",
+      // `blind` here is structural and re-sourcing cannot fix it: Governor's
+      // Ball has three stages, so all three anchors ARE the basis and no
+      // fourth anchor exists to disagree with them. The 2026-09-06 survey
+      // measured `grove` off satellite and fitted the other two to the
+      // official 2025 map, which is a real improvement — verizon moved 390 m
+      // out of woods that cannot hold a main stage — but it cannot add a
+      // fourth stage that does not exist.
+      //
+      // Two ways out: the 2026 patron map (which would also settle the
+      // snapchat north/south conflict, currently 737 m wide), or a non-stage
+      // landmark tie point such as the Unisphere. The latter needs a schema
+      // change, since gpsAnchors are stageId-keyed.
+      note: "3 anchors, all of them the basis — structurally uncheckable " +
+            "until a fourth tie point exists. grove is satellite-measured; " +
+            "verizon and snapchat are fitted to the official 2025 map",
     },
   };
-  const TODAY = new Date().toISOString().slice(0, 10);
   const regProblems = [];
   const waived = new Set();
   for (const f of regFindings) {
@@ -456,11 +517,61 @@ let REG_LIVE = [];
 
   // Handed to the distance-readout gate below so it checks the app against
   // the SAME provenance the anchor gate just read, not a second opinion.
+  // `sourced` is BOTH halves of MAP_REGISTRATION_SOURCED, computed here
+  // independently of map.jsx so the readout gate below is a real cross-check
+  // and not the app agreeing with itself:
+  //
+  //   provenance    — the basis rests on a measurement, and
+  //   corroboration — at least one SOURCED anchor OUTSIDE the basis lands
+  //                   within MAP_REGISTRATION_TOL_M of where the affine
+  //                   actually draws its stage.
+  //
+  // Provenance alone shipped for one PR and was not enough. _solveMapAffine()
+  // fits the first three anchors exactly, so a basis can never disagree with
+  // itself; art whose local scale wanders (ACL's runs 5.8-11.3 m/unit) yields
+  // a transform that looks perfect at the three basis stages and puts the rest
+  // in a lake. Measured 2026-09-06: all three re-surveyed festivals passed
+  // provenance and would have switched their readouts back on.
+  const _mToGps = (X, Y, x, y) => {
+    const det = X[0]*Y[1] - X[1]*Y[0];
+    if (Math.abs(det) < 1e-12) return null;
+    return { lat: ( Y[1]*(x-X[2]) - X[1]*(y-Y[2])) / det,
+             lng: (-Y[0]*(x-X[2]) + X[0]*(y-Y[2])) / det };
+  };
+  const _hav = (la1, lo1, la2, lo2) => {
+    const R = 6371000, r = Math.PI/180;
+    const h = Math.sin((la2-la1)*r/2)**2 +
+              Math.cos(la1*r)*Math.cos(la2*r)*Math.sin((lo2-lo1)*r/2)**2;
+    return 2*R*Math.asin(Math.sqrt(h));
+  };
   REG_LIVE = REG.filter(f => f.available && (f.config.gpsAnchors || []).length >= 3)
-    .map(f => ({
-      id: f.config.id,
-      sourced: f.config.gpsAnchors.slice(0, 3).some(a => EVIDENCE_SRC.has(a.src)),
-    }));
+    .map(f => {
+      const an = f.config.gpsAnchors, stages = (DS[f.config.id] || {}).stages || [];
+      const provenance = an.slice(0, 3).some(a => EVIDENCE_SRC.has(a.src));
+      const st = id => stages.find(x => x.id === id);
+      const [a0, a1, a2] = an;
+      let corroborated = false;
+      if (provenance && st(a0.stageId) && st(a1.stageId) && st(a2.stageId)) {
+        const A = { lat: a0.lat, lng: a0.lng, mx: st(a0.stageId).x, my: st(a0.stageId).y };
+        const B = { lat: a1.lat, lng: a1.lng, mx: st(a1.stageId).x, my: st(a1.stageId).y };
+        const C = { lat: a2.lat, lng: a2.lng, mx: st(a2.stageId).x, my: st(a2.stageId).y };
+        const det = A.lat*(B.lng-C.lng) - A.lng*(B.lat-C.lat) + (B.lat*C.lng - C.lat*B.lng);
+        if (Math.abs(det) > 1e-12) {
+          const sol = (v1, v2, v3) => [
+            (v1*(B.lng-C.lng) - A.lng*(v2-v3) + (C.lng*v2 - B.lng*v3)) / det,
+            (A.lat*(v2-v3) - v1*(B.lat-C.lat) + (B.lat*v3 - C.lat*v2)) / det,
+            (A.lat*(B.lng*v3-C.lng*v2) - A.lng*(B.lat*v3-C.lat*v2) + v1*(B.lat*C.lng-C.lat*B.lng)) / det];
+          const X = sol(A.mx, B.mx, C.mx), Y = sol(A.my, B.my, C.my);
+          corroborated = an.slice(3).some(a => {
+            if (!EVIDENCE_SRC.has(a.src)) return false;
+            const s = st(a.stageId); if (!s) return false;
+            const g = _mToGps(X, Y, s.x, s.y); if (!g) return false;
+            return _hav(a.lat, a.lng, g.lat, g.lng) <= REGISTRATION_TOL_M;
+          });
+        }
+      }
+      return { id: f.config.id, sourced: provenance && corroborated };
+    });
 
   // ── Anchors must fall inside the real venue ──────────────────────────────
   // Not circular: `venue.footprint` is surveyed geometry (OSM), so this can
@@ -642,6 +753,9 @@ let REG_LIVE = [];
   let rdHard = 0, rdChecked = 0;
   for (const f of REG_LIVE) {
     const c = load(f.id);
+    if (c.MAP_REGISTRATION_TOL_M !== REGISTRATION_TOL_M) {
+      fail(`map.jsx MAP_REGISTRATION_TOL_M=${c.MAP_REGISTRATION_TOL_M} but verify.mjs uses ${REGISTRATION_TOL_M} — one number, two copies, already drifted`);
+    }
     const sourced = c.MAP_REGISTRATION_SOURCED;
     if (sourced !== f.sourced) {
       console.log(`  ✗  ${f.id} — map.jsx says registration sourced=${sourced}, the anchor data says ${f.sourced}`);

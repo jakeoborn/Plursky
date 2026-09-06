@@ -486,9 +486,21 @@ function _solveMapAffine() {
   };
 }
 var MAP_AFFINE = _solveMapAffine();
+var MAP_REGISTRATION_TOL_M = 25;
 var MAP_REGISTRATION_SOURCED = (() => {
-  var basis = (FESTIVAL_CONFIG.gpsAnchors || []).slice(0, 3);
-  return basis.length === 3 && basis.some(a => a.src === "osm" || a.src === "crowd");
+  var anchors = FESTIVAL_CONFIG.gpsAnchors || [];
+  var basis = anchors.slice(0, 3);
+  var isEvidence = a => a.src === "osm" || a.src === "crowd";
+  if (basis.length !== 3 || !basis.some(isEvidence)) return false;
+  if (!MAP_AFFINE) return false;
+  return anchors.slice(3).some(a => {
+    if (!isEvidence(a)) return false;
+    var s = STAGES.find(x => x.id === a.stageId);
+    if (!s) return false;
+    var g = mapToGps(s.x, s.y);
+    if (!g) return false;
+    return distMiles(a.lat, a.lng, g.lat, g.lng) * 1609.34 <= MAP_REGISTRATION_TOL_M;
+  });
 })();
 function readoutHonest(avatar) {
   return !avatar || !avatar.live || MAP_REGISTRATION_SOURCED;

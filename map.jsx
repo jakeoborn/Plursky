@@ -331,9 +331,41 @@ const MAP_AFFINE = _solveMapAffine();
 //     the pre-festival app look broken
 //   · distMiles() to the venue centroid — real lat/lng on both ends, never
 //     touches the affine
+// Tolerance for "the art actually fits these anchors". Every festival whose
+// x/y were derived FROM its anchors lands at 0-1 m, so 25 m is generous.
+// scripts/verify.mjs reads this value out of the compiled bundle rather than
+// keeping its own copy — one number, no drift.
+const MAP_REGISTRATION_TOL_M = 25;
+
 const MAP_REGISTRATION_SOURCED = (() => {
-  const basis = (FESTIVAL_CONFIG.gpsAnchors || []).slice(0, 3);
-  return basis.length === 3 && basis.some(a => a.src === "osm" || a.src === "crowd");
+  const anchors = FESTIVAL_CONFIG.gpsAnchors || [];
+  const basis = anchors.slice(0, 3);
+  const isEvidence = a => a.src === "osm" || a.src === "crowd";
+
+  // (1) PROVENANCE — the basis has to be built on a measurement.
+  if (basis.length !== 3 || !basis.some(isEvidence)) return false;
+  if (!MAP_AFFINE) return false;
+
+  // (2) CORROBORATION — provenance alone was never enough, and shipping it
+  // alone was a real hole (see docs/reports/2026-09-06-anchor-resurvey-
+  // reconciliation.md). It says the anchors are real; it says nothing about
+  // whether the ART they register onto is an affine projection of the ground.
+  // _solveMapAffine() fits the first three anchors EXACTLY, so the basis can
+  // never disagree with itself — a poster whose local scale wanders (ACL's
+  // runs 5.8-11.3 m/unit) yields a transform that looks perfect at the three
+  // basis stages and puts the others in a lake.
+  //
+  // So: at least one SOURCED anchor outside the basis has to land near where
+  // the affine actually draws its stage. That is the only part of this that
+  // can fail, and it is the part that catches distorted art.
+  return anchors.slice(3).some(a => {
+    if (!isEvidence(a)) return false;
+    const s = STAGES.find(x => x.id === a.stageId);
+    if (!s) return false;
+    const g = mapToGps(s.x, s.y);
+    if (!g) return false;
+    return distMiles(a.lat, a.lng, g.lat, g.lng) * 1609.34 <= MAP_REGISTRATION_TOL_M;
+  });
 })();
 
 // A grid-space distance is only honest when BOTH hold: the position it starts
