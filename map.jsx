@@ -559,7 +559,10 @@ function _pairKey(a, b) { return a < b ? `${a},${b}` : `${b},${a}`; }
 
 function _nearestStageId(x, y, radius = 9) {
   let best = null, bestD = radius;
-  for (const s of STAGES) {
+  // PLACED_STAGES, not STAGES: an unplaced stage has no position, so it can
+  // never be the nearest one. Iterating STAGES happened to work only because
+  // Math.hypot(NaN, NaN) < bestD is false — correct by accident. Say it.
+  for (const s of PLACED_STAGES) {
     const d = Math.hypot(s.x - x, s.y - y);
     if (d < bestD) { bestD = d; best = s.id; }
   }

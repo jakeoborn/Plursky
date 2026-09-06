@@ -4473,7 +4473,13 @@ function MemoriesPhotoMapLens({ moments, onPinTap }) {
       if (!xy) {
         const a = m.artistId ? ARTISTS.find(x => x.id === m.artistId) : null;
         const stage = a ? STAGES.find(s => s.id === a.stage) : null;
-        if (!stage) { unplaced++; continue; }
+        // A stage with no numeric x/y counts as no stage here. Some stages
+        // ship deliberately UNPLACED — Nocturnal's Rave Cave, Lost Lands' The
+        // Grove (a campground stage on the far side of Route 13) — because a
+        // pin we cannot place is worse than no pin. map.jsx filters them via
+        // PLACED_STAGES; this fallback had no such guard, so it would have
+        // built { x: NaN, y: NaN } and drawn the moment pin at NaN.
+        if (!stage || !Number.isFinite(stage.x) || !Number.isFinite(stage.y)) { unplaced++; continue; }
         const j = _idJitter(m.id);
         xy = { x: stage.x + j.dx, y: stage.y + j.dy };
         stageId = stage.id;

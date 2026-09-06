@@ -399,44 +399,11 @@ var FESTIVALS_REGISTRY = [{
       lng: -82.4039,
       onSiteRadiusMi: 1.0
     },
-    gpsAnchors: [{
-      stageId: "prehistoric",
-      lat: 39.93800,
-      lng: -82.40650,
-      src: "prov"
-    }, {
-      stageId: "wompy-woods",
-      lat: 39.94150,
-      lng: -82.40100,
-      src: "prov"
-    }, {
-      stageId: "crater",
-      lat: 39.94050,
-      lng: -82.40750,
-      src: "prov"
-    }, {
-      stageId: "subsidia",
-      lat: 39.94180,
-      lng: -82.40450,
-      src: "prov"
-    }, {
-      stageId: "forest-stage",
-      lat: 39.93900,
-      lng: -82.40200,
-      src: "prov"
-    }, {
-      stageId: "raptor-alley",
-      lat: 39.94250,
-      lng: -82.40700,
-      src: "prov"
-    }, {
-      stageId: "grove",
-      lat: 39.94300,
-      lng: -82.40150,
-      src: "prov"
-    }],
+    venue: {
+      footprint: [[39.94099, -82.40771], [39.94099, -82.40778], [39.93972, -82.40805], [39.93902, -82.40821], [39.93847, -82.40830], [39.93839, -82.40828], [39.93832, -82.40819], [39.93816, -82.40815], [39.93705, -82.40816], [39.93696, -82.40809], [39.93691, -82.40799], [39.93686, -82.40777], [39.93656, -82.40284], [39.93649, -82.40166], [39.93641, -82.40022], [39.94095, -82.39985], [39.94095, -82.40192], [39.94107, -82.40229], [39.94316, -82.40285], [39.94323, -82.40423], [39.94079, -82.40454], [39.94089, -82.40630], [39.94099, -82.40771]]
+    },
     mainStageId: "prehistoric",
-    mapImage: "lostlands-2026.jpg",
+    mapImage: "lostlands-2026.svg",
     mapStyle: "image-overlay",
     mapTheme: "forest",
     weatherEndpoint: "https://api.weather.gov/points/39.9403,-82.4039",
@@ -1418,8 +1385,8 @@ var LL_STAGES = [{
   name: "Prehistoric Paradox",
   short: "PREHISTORIC",
   color: "#f97316",
-  x: 50,
-  y: 68,
+  x: 75,
+  y: 88,
   size: 2.2,
   desc: "Legend Valley main stage",
   vibe: "Main Energy",
@@ -1430,8 +1397,8 @@ var LL_STAGES = [{
   name: "Wompy Woods",
   short: "WOMPY",
   color: "#84cc16",
-  x: 68,
-  y: 45,
+  x: 78,
+  y: 51,
   size: 1.6,
   desc: "Forest-draped second stage",
   vibe: "In The Trees",
@@ -1442,8 +1409,8 @@ var LL_STAGES = [{
   name: "The Crater",
   short: "CRATER",
   color: "#a855f7",
-  x: 38,
-  y: 50,
+  x: 32,
+  y: 74,
   size: 1.5,
   desc: "360-degree immersive stage",
   vibe: "Surround Sound",
@@ -1454,8 +1421,8 @@ var LL_STAGES = [{
   name: "Subsidia Stage",
   short: "SUBSIDIA",
   color: "#22d3ee",
-  x: 58,
-  y: 38,
+  x: 22,
+  y: 33,
   size: 1.3,
   desc: "Excision-label showcase stage",
   vibe: "Label Night",
@@ -1466,8 +1433,8 @@ var LL_STAGES = [{
   name: "Forest Stage",
   short: "FOREST",
   color: "#34d399",
-  x: 30,
-  y: 62,
+  x: 23,
+  y: 13,
   size: 1.1,
   desc: "Deep-in-the-trees stage",
   vibe: "Hidden Forest",
@@ -1478,8 +1445,8 @@ var LL_STAGES = [{
   name: "Raptor Alley",
   short: "RAPTOR",
   color: "#ef4444",
-  x: 45,
-  y: 25,
+  x: 56,
+  y: 12,
   size: 0.9,
   desc: "Late-night after-hours lane",
   vibe: "After Hours",
@@ -1490,8 +1457,6 @@ var LL_STAGES = [{
   name: "The Grove",
   short: "GROVE",
   color: "#eab308",
-  x: 62,
-  y: 22,
   size: 0.8,
   desc: "Campground stage",
   vibe: "Campground",
