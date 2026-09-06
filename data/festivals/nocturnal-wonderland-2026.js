@@ -45,7 +45,16 @@
 //
 // The 2025 official map gives RELATIVE layout — which stage sits where in
 // relation to the others — so the four stages it shows carry 0-100 grid x/y
-// read off it, and nocturnal-2026.svg is an abstract plate GENERATED from
+// read off it,
+//
+// ...and that read now has an INDEPENDENT corroboration (2026-09-06, #76).
+// EDM Identity's 2025 review describes the layout in prose without reference
+// to any map: entering the festival, Mystic Wild is on the far left, Dawn
+// Mountain on the far right, Aurora Plains in the middle of the two. The grid
+// agrees — mysticwild x=29.9, auroraplains x=61.7, dawnmountain x=70.8 — from
+// a source that could not have copied it. That is corroboration of the
+// LAYOUT only; it says nothing about world coordinates, and does not license
+// anchors. and nocturnal-2026.svg is an abstract plate GENERATED from
 // those coordinates (no festival artwork is reproduced; lostlands-2026.jpg
 // precedent). That is a real, browsable site map.
 //
@@ -74,6 +83,23 @@
 //   2. GEOREFERENCE the site map onto ortho imagery the way #68 did for EDC
 //      Orlando, then add gpsAnchors — src "poster" for art reads, "osm" for
 //      satellite-measured features. `derived` is banned from the basis.
+//      ── TIE POINTS ARE ALREADY FOUND (2026-09-06, #76). Glen Helen is
+//      unusually well surveyed in OSM, and these four are distinctive enough
+//      to recognise on any site map, so the flip session does not have to go
+//      looking. Fit the affine against these, not against street furniture:
+//        Large Lake            OSM way 437353375  centroid 34.20748,-117.40467  258 x 233 m
+//        Small Lake            OSM way 437353374  centroid 34.20579,-117.40466  171 x 174 m
+//        Amphitheater bowl     OSM way 233008519  centroid 34.20419,-117.40176   86 x 132 m
+//        Amphitheater building OSM way 233008518  centroid 34.20440,-117.40239   58 x  79 m
+//      Two named lakes 190 m apart on a north-south line, plus the bowl to
+//      the south-east, give three well-spread non-collinear points — which is
+//      the minimum an affine needs and more than EDC LV has ever had.
+//      ⚠ WHAT IS STILL MISSING is the map image itself. The 2025 official map
+//      is not retrievable from the open web (checked 2026-09-06: the official
+//      site publishes no map page, and the aggregators that mirrored Lost
+//      Lands' maps carry only Nocturnal's lineup poster). The flip session
+//      gets the 2026 map from the Insomniac app; THAT is the input, and no
+//      anchor may be authored before it exists.
 //   3. Re-derive stage x/y from the measured lat/lng, never the reverse, and
 //      regenerate nocturnal-2026.svg from the corrected coordinates.
 //   4. Give Rave Cave a position, or leave it unplaced if still unknown.
@@ -264,9 +290,50 @@
     venue: {
       name:    "Glen Helen Regional Park",
       address: "2555 Glen Helen Pkwy, San Bernardino, CA 92407",
-      // OSM bounding box of the festival grounds. Deliberately NOT called
-      // `footprint`: a bbox is a rectangle around a survey, not the survey
-      // itself, and the footprint gate is entitled to assume a real polygon.
+      // The SURVEY. OSM way 233008517, amenity=festival_grounds, 85 vertices,
+      // 558 m E-W x 676 m N-S — the actual festival-grounds ring, added
+      // 2026-09-06 (#76) so the venue-footprint gate RUNS here the moment the
+      // flip adds anchors. It only checks festivals that declare a footprint,
+      // and Lost Lands showed what that gap costs: four invented anchors sat
+      // outside their venue for weeks because nothing was watching.
+      footprint: [
+          [34.20677, -117.40236], [34.20638, -117.40256], [34.20589, -117.40277],
+          [34.20546, -117.40297], [34.20524, -117.40307], [34.20500, -117.40319],
+          [34.20482, -117.40338], [34.20473, -117.40347], [34.20452, -117.40367],
+          [34.20417, -117.40401], [34.20376, -117.40444], [34.20297, -117.40526],
+          [34.20271, -117.40577], [34.20255, -117.40575], [34.20239, -117.40572],
+          [34.20230, -117.40567], [34.20210, -117.40556], [34.20191, -117.40542],
+          [34.20183, -117.40537], [34.20176, -117.40531], [34.20171, -117.40524],
+          [34.20168, -117.40515], [34.20154, -117.40464], [34.20149, -117.40428],
+          [34.20153, -117.40343], [34.20167, -117.40267], [34.20186, -117.40191],
+          [34.20191, -117.40188], [34.20193, -117.40186], [34.20195, -117.40182],
+          [34.20188, -117.40173], [34.20189, -117.40169], [34.20191, -117.40164],
+          [34.20194, -117.40160], [34.20219, -117.40121], [34.20231, -117.40096],
+          [34.20255, -117.40045], [34.20269, -117.40023], [34.20284, -117.40010],
+          [34.20297, -117.39998], [34.20314, -117.39990], [34.20337, -117.39982],
+          [34.20357, -117.39975], [34.20376, -117.39971], [34.20427, -117.39976],
+          [34.20448, -117.39982], [34.20467, -117.39990], [34.20481, -117.39996],
+          [34.20497, -117.40004], [34.20515, -117.40019], [34.20525, -117.40026],
+          [34.20537, -117.40036], [34.20543, -117.40042], [34.20550, -117.40056],
+          [34.20546, -117.40083], [34.20553, -117.40086], [34.20556, -117.40086],
+          [34.20557, -117.40092], [34.20559, -117.40098], [34.20568, -117.40106],
+          [34.20570, -117.40104], [34.20576, -117.40108], [34.20574, -117.40112],
+          [34.20567, -117.40131], [34.20596, -117.40153], [34.20604, -117.40159],
+          [34.20608, -117.40165], [34.20610, -117.40171], [34.20611, -117.40177],
+          [34.20643, -117.40194], [34.20653, -117.40196], [34.20661, -117.40197],
+          [34.20669, -117.40199], [34.20680, -117.40203], [34.20689, -117.40207],
+          [34.20690, -117.40205], [34.20692, -117.40204], [34.20708, -117.40228],
+          [34.20716, -117.40237], [34.20722, -117.40240], [34.20757, -117.40240],
+          [34.20756, -117.40247], [34.20757, -117.40257], [34.20728, -117.40263],
+          [34.20677, -117.40236],
+      ],
+      // The BOX, kept deliberately. It is not a worse footprint — the two
+      // remaining consumers want a rectangle and nothing else will do: the
+      // basemap clip mask (an outer ring with a hole punched in it) and
+      // map.setMaxBounds, which takes a bbox by definition. Everything that
+      // wants the real outline reads `footprint` and map.jsx already prefers
+      // it. Its numbers are this polygon's own bounding box, so they cannot
+      // drift apart.
       festivalBounds: { north: 34.2075695, south: 34.2014929,
                         west: -117.4057721, east: -117.3997092 },
     },
