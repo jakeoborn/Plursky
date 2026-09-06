@@ -1053,10 +1053,6 @@ function LineupScreen({
       var st = STAGES.find(s => s.id === a.stage);
       return a.name.toLowerCase().includes(term) || (a.genre || "").toLowerCase().includes(term) || (st?.name || "").toLowerCase().includes(term);
     }).sort((a, b) => {
-      var toSlot = t => {
-        var h = parseInt(t.split(":")[0]);
-        return h < 8 ? h + 24 : h;
-      };
       if (sortBy === "tier") {
         if (a.tier !== b.tier) return b.tier - a.tier;
       } else if (sortBy === "stage") {
@@ -1064,7 +1060,7 @@ function LineupScreen({
         var bi = STAGES.findIndex(s => s.id === b.stage);
         if (ai !== bi) return ai - bi;
       }
-      return toSlot(a.start) - toSlot(b.start);
+      return toNightMin(a.start) - toNightMin(b.start);
     });
   }, [day, weekendFilter, filter, stageFilter, genreFilter, tierFilter, sortBy, q, savedSetIds]);
   var _otherDayHits = React.useMemo(() => {
