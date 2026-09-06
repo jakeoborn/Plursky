@@ -213,3 +213,67 @@ quote them, the four that don't still don't. What changed is that ACL, Ultra and
 Govball are now suppressed **on evidence** rather than for want of it, and their
 underlying anchors are real, which photo-tag.jsx benefits from immediately:
 Ultra's stages were previously 200–650 m from where they actually are.
+
+---
+
+## 7. Pre-flip sweep — and a second gate hole (2026-09-06, later still)
+
+The lane ran across every gated festival in the flip queue: **#73** EDC Orlando
+(v264), **#77** Lost Lands (v265), **#78** Nocturnal (v266). §3's hole was that
+`anchor-residuals.mjs` only audited `available === true`. Closing it surfaced
+another one, in the footprint gate this time, and in the same shape.
+
+### Proven by experiment, not by reading
+
+Injected two anchors into **gated** Nocturnal, one ~11 km outside Glen Helen.
+The gate noticed and did not care:
+
+```
+!  nocturnal-wonderland-2026 1/2 outside (dawnmountain) — gated
+VERIFY EXIT: 0
+```
+
+`verify.mjs` only hard-failed through the `else if (f.available)` branch. So a
+bad basis authored weeks before a flip surfaced as a **warning**, and the hard
+failure arrived in flip week — when there is no time left to re-survey. That is
+precisely inverted: the pre-flip lane exists to move that failure *earlier*.
+
+### Instinct's ruling
+
+> Make it hard. Once a festival declares both a footprint and anchors, the gate
+> hard-fails regardless of `available`. A bad basis surfacing as a warning
+> pre-flip and hard-failing in flip week is the exact failure mode this lane
+> exists to prevent.
+
+Shipped. Declaring **both** a footprint and anchors is the opt-in — a festival
+with neither still `continue`s past the gate, so nothing fails for a festival
+that has not yet claimed to be georeferenced.
+
+### Verification
+
+Same probe, re-run against the fix. The number moved:
+
+| | before | after |
+|---|---|---|
+| gated festival, anchor 11 km outside | `— gated`, **exit 0** | `✗ … (gated — fix before the flip, not during)`, **exit 1** |
+
+Probe reverted; control green (exit 0), baseline output unchanged — EDC LV
+remains the only festival the gate reports, still waived.
+
+### Still open
+
+Questions 2 and 3 from the same packet have not been answered:
+
+2. A declared-but-unexercised footprint is **invisible** — Lost Lands and
+   Nocturnal now declare real footprints with zero anchors, so the gate skips
+   them silently. Arming is unobservable, which is the same blind-spot class as
+   §3 and as the hole above.
+3. Poster-class anchors buy nothing functionally — provenance stays FAIL and
+   readouts stay withheld either way. Worth authoring pre-flip at all, or is
+   layout-only (the Lost Lands / Nocturnal posture) the better default until an
+   `osm` or `crowd` source exists?
+
+**#76** also remains open: Nocturnal's georeferencing is blocked on the official
+2026 map, which arrives via the Insomniac app at flip (~Sep 12). Tie points are
+pre-found — Large Lake `437353375`, Small Lake `437353374` (190 m apart, N–S),
+and the amphitheater bowl `233008519` to the south-east.

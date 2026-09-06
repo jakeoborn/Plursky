@@ -649,11 +649,21 @@ const REGISTRATION_TOL_M = 25;
       fpHard++;
       console.log(`  ✗  ${cfg.id.padEnd(22)} ${unexcused.length} UNWAIVED anchor(s) outside (${unexcused.join(", ")})`);
       console.log(`     The waiver covers ${[...excused].join(", ")} only. Measure these, do not extend the waiver.`);
-    } else if (f.available) {
-      fpHard++;
-      console.log(`  ✗  ${cfg.id.padEnd(22)} ${out.length}/${an.length} OUTSIDE (${out.join(", ")})`);
     } else {
-      console.log(`  !  ${cfg.id.padEnd(22)} ${out.length}/${an.length} outside (${out.join(", ")}) — gated`);
+      // HARD regardless of `available` (Instinct ruling, 2026-09-06). This
+      // branch used to warn-and-pass for a gated festival, which inverted the
+      // whole point of the pre-flip lane: a basis authored weeks out surfaced
+      // as a warning, and the hard failure landed in flip week when there is
+      // no time to re-survey. Proven by experiment before the change — an
+      // anchor 11 km outside Glen Helen on gated Nocturnal printed `— gated`
+      // and verify still exited 0.
+      //
+      // Declaring BOTH a footprint and anchors is the opt-in: a festival with
+      // no footprint yet, or no anchors yet, still `continue`s above. So this
+      // cannot fail a festival that has not claimed to be georeferenced.
+      fpHard++;
+      const when = f.available ? "" : " (gated — fix before the flip, not during)";
+      console.log(`  ✗  ${cfg.id.padEnd(22)} ${out.length}/${an.length} OUTSIDE (${out.join(", ")})${when}`);
     }
   }
   if (!fpChecked) console.log("  (no festival declares venue.footprint yet)");
