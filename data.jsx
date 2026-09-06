@@ -633,11 +633,14 @@ const FESTIVALS_REGISTRY = [
         // measurement against a stage this lineup does not have, so it cannot
         // carry ACL's case. That is why the 2026-10-19 registration waiver
         // STAYS: the basis is now measured, but nothing independent checks it.
-        // ⚠ For whoever reconciles this next: the comment replaced here (dated
-        // 2026-09-04) recorded both as real park stages with zero programmed
-        // sets, while Instinct records `ladybird` as 2024-only and `bonus` as
-        // a label borrowed from the Lollapalooza module. The two accounts
-        // disagree; the action is identical either way.
+        // RESOLVED 2026-09-06 (Instinct), and worth keeping because the repo
+        // carried the wrong version of it for two days: `ladybird` WAS a real
+        // ACL stage through 2024 — the 2026 lineup replaced it with Snapchat.
+        // `bonus` was never real here at all; the name was borrowed from the
+        // Lollapalooza module, which does have a Bonus Tracks stage. So the
+        // 2026-09-04 note this replaced was half right: it was correct that
+        // Lady Bird is a real park stage, wrong that Bonus Tracks is one.
+        // Neither is a 2026 stage, which is all this file needs to know.
       ],
       // Was "honda", which this pass deletes. amex is the app's own biggest
       // stage (size 1.7, "headliners close here every night") and the 2026
