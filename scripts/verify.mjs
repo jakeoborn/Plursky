@@ -614,8 +614,9 @@ let REG_LIVE = [];
       console: { log: noop, warn: noop, error: noop }, Date, Math, JSON, Object, Array,
       String, Number, Boolean, Set, Map, isNaN, parseInt, parseFloat, isFinite,
       setTimeout: noop, clearTimeout: noop, setInterval: noop, clearInterval: noop,
-      fetch: () => new Promise(noop),
-      localStorage: { getItem: k => (k in store ? store[k] : null), setItem: noop, removeItem: noop },
+      fetch: () => new Promise(noop), URLSearchParams, location: { search: "" },
+      localStorage: { getItem: k => (k in store ? store[k] : null),
+                      setItem: (k, v) => { store[k] = String(v); }, removeItem: k => { delete store[k]; } },
       navigator: { userAgent: "node", geolocation: {} },
       document: { addEventListener: noop, removeEventListener: noop, documentElement: { style: {} },
                   createElement: () => ({ style: {}, setAttribute: noop }), getElementById: () => null,
@@ -633,6 +634,7 @@ let REG_LIVE = [];
     vm.runInContext(mods, ctx);
     vm.runInContext(readFileSync(join(ROOT, "build/data.js"), "utf8"), ctx);
     vm.runInContext(readFileSync(join(ROOT, "build/map.js"), "utf8"), ctx);
+    vm.runInContext(readFileSync(join(ROOT, "build/survey.js"), "utf8"), ctx);
     return ctx;
   };
 
@@ -671,6 +673,60 @@ let REG_LIVE = [];
   }
   if (rdHard) fail(`${rdHard} festival(s) quote distances they cannot support — see above`);
   console.log(`  ✓ ${rdChecked} live festival(s): every grid readout matches its registration provenance`);
+
+  // ── The capture path must emit what the crowd-anchor gate accepts ──────
+  // survey.jsx exists to produce crowdAnchors rows, and the gate above
+  // decides whether a crowdAnchors row may ship. Those two rules living in
+  // different files is how a founder gets to a festival, records three
+  // stages, and finds out on the way home that the export is rejected. So
+  // the tool's output is round-tripped through the gate's own conditions
+  // here, on synthetic dwells, every run.
+  console.log("▸ Survey export gate — captured anchors must satisfy the shipping rule");
+  {
+    const c = load(REG_LIVE[0] ? REG_LIVE[0].id : "acl-2026");
+    const fid = c.FESTIVAL_CONFIG.id;
+    const st = (c.STAGES || [])[0];
+    const dwell = (stageId, n, spread, day) => ({
+      festivalId: fid, stageId, soleSet: true, startedAt: Date.UTC(2026, 9, day, 20),
+      samples: Array.from({ length: n }, (_, i) => ({
+        lat: 30.2669 + Math.sin(i * 2.4) * spread, lng: -97.7729 + Math.cos(i * 2.4) * spread,
+        acc: 8, ts: i,
+      })),
+    });
+    const seed = (rows) => c.localStorage.setItem("plursky_survey_v1", JSON.stringify(rows));
+    const bad = [];
+    // Good dwell ships; the three ways of being unshippable do not.
+    seed([dwell(st.id, 9, 0.00025, 9)]);
+    const roll = c.surveyRollup(fid);
+    if (!roll[0] || !roll[0].ok) bad.push("a clean 9-fix dwell was not shippable");
+    for (const [why, rows] of [
+      ["n<3",              [dwell(st.id, 2, 0.00025, 9)]],
+      ["spread>=100m",     [dwell(st.id, 6, 0.0020, 9)]],
+      ["unattested",       [{ ...dwell(st.id, 6, 0.00025, 9), soleSet: null }]],
+    ]) {
+      seed(rows);
+      const r = c.surveyRollup(fid)[0];
+      if (r && r.ok) bad.push(`${why} was allowed to ship`);
+      if (c.surveyExportBlock(fid) !== "") bad.push(`${why} still produced an export block`);
+    }
+    // And the shipping row has to satisfy the crowd-anchor gate field for field.
+    seed([dwell(st.id, 9, 0.00025, 9), dwell(st.id, 5, 0.00025, 10)]);
+    const block = c.surveyExportBlock(fid);
+    let rows = [];
+    try { rows = vm.runInContext(`(function(){ return ({ ${block.replace(/^\s*\/\/.*$/gm, "")} }).crowdAnchors; })()`, c); }
+    catch (e) { bad.push(`export block does not parse: ${e.message}`); }
+    for (const a of rows) {
+      if (!(c.STAGES || []).some(x => x.id === a.stageId)) bad.push("export names an unknown stageId");
+      if (!(typeof a.n === "number" && a.n >= 3)) bad.push("export n < 3");
+      if (!(typeof a.spreadM === "number" && a.spreadM < 100)) bad.push("export spreadM >= 100");
+      if (!a.measuredAt || !a.source) bad.push("export missing measuredAt/source");
+      if (a.soleSetInWindow !== true) bad.push("export missing the soleSetInWindow attestation");
+      if (!(typeof a.lat === "number" && typeof a.lng === "number")) bad.push("export lat/lng not numeric");
+    }
+    if (rows.length && rows[0].nights !== 2) bad.push(`two dwells on different days gave nights=${rows[0].nights}`);
+    if (bad.length) { bad.forEach(b => console.log(`  ✗  ${b}`)); fail(`survey export violates the crowd-anchor shipping rule`); }
+    console.log(`  ✓ export round-trips the gate; n<3, spread>=100 m and an unanswered attestation each refuse to ship`);
+  }
 }
 
 if (process.argv.includes("--parse-only")) process.exit(0);

@@ -1814,6 +1814,10 @@ function MapScreen({ state, setState }) {
   }, [meetupsOpen]);
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [moreOpen, setMoreOpen] = React.useState(false);
+  const [surveyOpen, setSurveyOpen] = React.useState(false);
+  // Founder tool (survey.jsx). Read once — the flag only changes via a
+  // ?survey=1 visit, which reloads anyway.
+  const surveyOn = React.useMemo(() => typeof surveyEnabled === "function" && surveyEnabled(), []);
   const [myStatusStage, setMyStatusStage] = React.useState(() => getMyStatus()?.stage || null);
   // shareState replaces the legacy `crewLive` boolean — single source of
   // truth for "what am I broadcasting and until when". Persisted so the
@@ -3079,6 +3083,18 @@ function MapScreen({ state, setState }) {
                 <span style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500, flex: 1 }}>Rideshare</span>
                 <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", fontWeight: 700 }}>UBER / LYFT</span>
               </button>
+              {surveyOn && (
+                <button onClick={() => { setSurveyOpen(true); setMoreOpen(false); }} style={{
+                  width: "100%", display: "flex", alignItems: "center", gap: 10,
+                  padding: "9px 11px", background: "transparent", border: "none",
+                  borderTop: "1px solid var(--line)", borderRadius: 8,
+                  cursor: "pointer", color: "var(--ink)", textAlign: "left",
+                }}>
+                  <span style={{ fontSize: 14, width: 18 }}>📐</span>
+                  <span style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500, flex: 1 }}>Crowd survey</span>
+                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--ember)", fontWeight: 700 }}>SURVEY MODE</span>
+                </button>
+              )}
             </div>
           </>
         )}
@@ -3105,6 +3121,10 @@ function MapScreen({ state, setState }) {
       {/* BottomSheet moved inside map container as absolute overlay */}
 
       {rideshareOpen && <RideshareSheet onClose={() => setRideshareOpen(false)} />}
+      {/* Seeded from the SELECTED stage, never from the avatar: guessing the
+          stage off a position we just declared unregistered would be the
+          same circularity this whole change exists to stop. */}
+      {surveyOpen && <SurveyPanel onClose={() => setSurveyOpen(false)} nearestStageId={selectedStage} />}
 
       {pingOpen && (
         <PingSheet
