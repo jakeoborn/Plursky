@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v260';
+﻿const CACHE      = 'plursky-v261';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v260';
+const APP_VER    = 'v261';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -27,6 +27,7 @@ const LOCAL = [
   `./data/festivals/lollapalooza-2026.js?v=${APP_VER}`,
   `./data/festivals/outside-lands-2026.js?v=${APP_VER}`,
   `./data/festivals/iii-points-2026.js?v=${APP_VER}`,
+  `./data/festivals/nocturnal-wonderland-2026.js?v=${APP_VER}`,
   // Generated ground plates for the same five (mapImage targets).
   './ultra-2026.svg',
   './govball-2026.svg',

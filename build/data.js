@@ -987,7 +987,8 @@ var mk = (id, name, genre, stage, day, start, end, bio) => {
   };
 };
 function fmt12(t) {
-  if (!t || typeof t !== "string") return t;
+  if (t == null || t === "") return "\u2014";
+  if (typeof t !== "string") return t;
   var [hStr, mStr] = t.split(":");
   var h = parseInt(hStr, 10);
   if (isNaN(h)) return t;
@@ -1549,7 +1550,7 @@ var LL_AMENITIES = [{
   x: 36,
   y: 52
 }];
-var _WAVE1_IDS = ["ultra-miami-2026", "governors-ball-2026", "summerfest-2026", "lollapalooza-2026", "outside-lands-2026", "iii-points-2026"];
+var _WAVE1_IDS = ["ultra-miami-2026", "governors-ball-2026", "summerfest-2026", "lollapalooza-2026", "outside-lands-2026", "iii-points-2026", "nocturnal-wonderland-2026"];
 var _WAVE1 = typeof window !== "undefined" && window.PLURSKY_FESTIVALS || {};
 for (var _id of _WAVE1_IDS) {
   var _f = _WAVE1[_id];
