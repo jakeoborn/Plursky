@@ -178,6 +178,8 @@ if (fdata.length) {
   console.log(`  ✓ all ${fdata.length} parsed`);
 }
 
+let REG_LIVE = [];
+
 // ── 1b. GPS anchor self-consistency ────────────────────────────────────────
 // Every festival's gpsAnchors comment says the non-calibration anchors were
 // "derived from the SVG layout via the <trio> affine". Nothing enforced it, and
@@ -277,6 +279,9 @@ if (fdata.length) {
 
   console.log("▸ GPS anchor gate — anchors must satisfy their own affine");
   let hard = 0, soft = 0, checked = 0, blind = 0, unsourced = 0;
+  // Per-festival findings, so the waiver pass below can name the exact
+  // condition it excuses instead of excusing a festival wholesale.
+  const regFindings = [];
   for (const f of REG) {
     const cfg = f.config, stages = DS[cfg.id]?.stages || [];
     const an = cfg.gpsAnchors || [];
@@ -332,6 +337,10 @@ if (fdata.length) {
         ? `no cross-check — all ${notEvidence.length} non-basis anchor(s) are ${[...new Set(notEvidence.map(x=>x.split(":")[1]))].join("/")}`
         : `no cross-check — ${an.length} anchor(s), all of them the basis`;
     console.log(`${tag} ${cfg.id.padEnd(22)} basis ${basisSrc.join("/")} · ${detail}`);
+    const conds = [];
+    if (!basisSourced) conds.push("unsourced");
+    if (!evidence) conds.push("blind");
+    if (conds.length) regFindings.push({ id: cfg.id, live: !!f.available, conds });
     if (!basisSourced && f.available) unsourced++;
     if (!evidence && f.available) blind++;
     if (bad && f.available) hard++;
@@ -340,9 +349,107 @@ if (fdata.length) {
   if (!checked) console.log("  (no festival has both anchors and stages)");
   if (soft) console.log(`  ${soft} gated festival(s) inconsistent — re-derive at the flip session`);
   if (hard) fail(`${hard} LIVE festival(s) have gpsAnchors that do not satisfy their own affine`);
-  if (unsourced) console.log(`  ⚠ ${unsourced} LIVE festival(s) have a calibration basis with no osm/crowd anchor — the whole registration is unsourced`);
-  if (blind) console.log(`  ⚠ ${blind} LIVE festival(s) have no independent cross-check on the affine`);
   console.log(`  ✓ ${checked} festival(s) checked; where independent anchors exist they agree within ${TOL} grid units`);
+
+  // ── Registration provenance is a GATE now, not a warning ─────────────
+  // Two findings used to print ⚠ and pass:
+  //   · unsourced — no osm/crowd anchor anywhere in the calibration basis, so
+  //     the whole grid-to-world registration is somebody reading poster art
+  //   · blind     — no independent anchor outside the basis, so nothing in
+  //     the data can contradict the affine even when it is wrong
+  // Both are now fatal for a LIVE festival (founder call 2026-09-05). A
+  // festival flipping available:true from here on gets NO waiver and has to
+  // arrive with a sourced basis — which is the point: the three below are
+  // grandfathered breakage, and everything after them is a choice.
+  //
+  // THE EXPIRY IS THE MECHANISM. The footprint waiver above has none and has
+  // already outlived several sessions; a waiver without a date is a quieter
+  // spelling of the warning it replaced. On its expiry date this gate goes
+  // red and someone has to either do the survey or consciously re-date it,
+  // which is a decision with a name on it rather than a line nobody reads.
+  //
+  // Same closure as the footprint waiver, in both directions: a condition no
+  // waiver excuses is fatal, AND a waiver excusing a condition the festival
+  // no longer has is fatal, because an excuse that outlives its defect is how
+  // a repo ends up carrying apologies for bugs it already fixed.
+  const REGISTRATION_WAIVERS = {
+    "acl-2026": {
+      excuses: ["unsourced", "blind"],
+      expires: "2026-10-19",
+      // Venue work, and it has a date: the founder is at Weekend 2 (Oct 9-11)
+      // and the crowd-anchor capture path is being built for exactly this.
+      // Three stages is enough to re-source the basis AND leave a fourth
+      // anchor over as the cross-check that clears "blind" too.
+      note: "basis is poster/poster/poster off the Zilker art; resolved by the " +
+            "Weekend 2 crowd-anchor pass (Oct 9-11), expiry allows a week to " +
+            "process the batch",
+    },
+    "ultra-miami-2026": {
+      excuses: ["unsourced"],
+      expires: "2026-10-19",
+      // NOT venue work. Bayfront Park is a permanent public park whose named
+      // features are already in OSM, so this is a desk re-survey nobody has
+      // sat down to do — the date is a review point, not an effort estimate.
+      note: "basis is prov/prov/prov; Bayfront Park has permanent OSM features " +
+            "to register against, so this is desk work, not a site visit",
+    },
+    "governors-ball-2026": {
+      excuses: ["unsourced", "blind"],
+      expires: "2026-10-19",
+      // Also desk work — Flushing Meadows Corona Park is permanently mapped.
+      // "blind" here is structural: all three anchors ARE the basis, so no
+      // fourth anchor exists to disagree with them. Re-sourcing the three
+      // does not clear it; the re-survey has to ADD one.
+      note: "3 anchors, all of them the basis, all prov; Flushing Meadows is " +
+            "permanently mapped in OSM — desk re-survey, and it must add a " +
+            "FOURTH anchor or the affine stays uncheckable",
+    },
+  };
+  const TODAY = new Date().toISOString().slice(0, 10);
+  const regProblems = [];
+  const waived = new Set();
+  for (const f of regFindings) {
+    if (!f.live) continue;              // gated festivals are provisional by construction
+    const w = REGISTRATION_WAIVERS[f.id];
+    const uncovered = f.conds.filter(c => !w || !w.excuses.includes(c));
+    if (uncovered.length) {
+      regProblems.push(`  ✗  ${f.id} — ${uncovered.join(", ")} with no waiver`);
+      continue;
+    }
+    if (w.expires < TODAY) {
+      regProblems.push(`  ✗  ${f.id} — waiver EXPIRED ${w.expires} (today ${TODAY}); re-survey it or re-date it deliberately`);
+      continue;
+    }
+    waived.add(f.id);
+    console.log(`  !  ${f.id.padEnd(22)} ${f.conds.join(" + ")} — WAIVED until ${w.expires}`);
+    console.log(`     ${w.note}`);
+  }
+  // A waiver that no longer excuses anything, or names a festival with no
+  // live finding at all, is stale — fatal, same as the footprint gate.
+  for (const [id, w] of Object.entries(REGISTRATION_WAIVERS)) {
+    const found = regFindings.find(f => f.id === id && f.live);
+    if (!found) {
+      regProblems.push(`  ✗  ${id} — waiver is STALE: no live registration finding at all. Delete the entry.`);
+      continue;
+    }
+    const stale = w.excuses.filter(c => !found.conds.includes(c));
+    if (stale.length) {
+      regProblems.push(`  ✗  ${id} — waiver is STALE: ${stale.join(", ")} no longer applies. Drop it from excuses.`);
+    }
+  }
+  if (regProblems.length) {
+    regProblems.forEach(l => console.log(l));
+    fail(`${regProblems.length} LIVE festival(s) have an unsourced or uncheckable map registration — see above`);
+  }
+  console.log(`  ✓ registration provenance: ${unsourced} unsourced, ${blind} blind — all ${waived.size} covered by a dated waiver`);
+
+  // Handed to the distance-readout gate below so it checks the app against
+  // the SAME provenance the anchor gate just read, not a second opinion.
+  REG_LIVE = REG.filter(f => f.available && (f.config.gpsAnchors || []).length >= 3)
+    .map(f => ({
+      id: f.config.id,
+      sourced: f.config.gpsAnchors.slice(0, 3).some(a => EVIDENCE_SRC.has(a.src)),
+    }));
 
   // ── Anchors must fall inside the real venue ──────────────────────────────
   // Not circular: `venue.footprint` is surveyed geometry (OSM), so this can
@@ -473,6 +580,86 @@ if (fdata.length) {
   if (!caFest) console.log("  (no festival declares crowdAnchors yet)");
   if (caHard) fail(`${caHard} crowd anchor(s) violate the shipping rule (n >= 3, spread < 100 m, in-venue, soleSetInWindow attested)`);
   if (caTotal) console.log(`  ✓ ${caTotal} crowd anchor(s) across ${caFest} festival(s) — all measured, all in-venue`);
+}
+
+// ── 1c. Distance-readout suppression ───────────────────────────────────────
+// The gate above establishes WHICH festivals have an unsourced registration.
+// This one establishes that the app then declines to quote distances on them,
+// which is the half a user actually experiences. Without it the two can drift:
+// someone re-sources a basis, or adds a fourth walk readout that formats
+// lo/hi itself, and the data says one thing while the screen says another.
+//
+// It runs the REAL compiled build/map.js against the REAL festival config in
+// a vm, and checks both directions per festival — suppressed for a live
+// position on an unsourced grid, and NOT suppressed anywhere else, because a
+// gate that only ever asserts absence would pass just as happily if the whole
+// map went blank.
+{
+  const vm = await import("node:vm");
+  const load = (fid) => {
+    const store = { active_festival_id: fid, active_festival_explicit: "1" };
+    const noop = () => {};
+    const ctx = {
+      console: { log: noop, warn: noop, error: noop }, Date, Math, JSON, Object, Array,
+      String, Number, Boolean, Set, Map, isNaN, parseInt, parseFloat, isFinite,
+      setTimeout: noop, clearTimeout: noop, setInterval: noop, clearInterval: noop,
+      fetch: () => new Promise(noop),
+      localStorage: { getItem: k => (k in store ? store[k] : null), setItem: noop, removeItem: noop },
+      navigator: { userAgent: "node", geolocation: {} },
+      document: { addEventListener: noop, removeEventListener: noop, documentElement: { style: {} },
+                  createElement: () => ({ style: {}, setAttribute: noop }), getElementById: () => null,
+                  querySelector: () => null, head: { appendChild: noop } },
+      React: new Proxy(function () {}, { get: () => () => null, apply: () => null }),
+      ReactDOM: { createRoot: () => ({ render: noop }) },
+    };
+    ctx.window = ctx; ctx.globalThis = ctx; ctx.self = ctx;
+    ctx.window.addEventListener = noop; ctx.window.removeEventListener = noop;
+    ctx.window.matchMedia = () => ({ matches: false, addEventListener: noop, addListener: noop });
+    vm.createContext(ctx);
+    const mods = execFileSync("git", ["ls-files", "data/festivals/*.js"], { cwd: ROOT })
+      .toString().trim().split("\n").filter(Boolean)
+      .map(f => readFileSync(join(ROOT, f), "utf8")).join("\n");
+    vm.runInContext(mods, ctx);
+    vm.runInContext(readFileSync(join(ROOT, "build/data.js"), "utf8"), ctx);
+    vm.runInContext(readFileSync(join(ROOT, "build/map.js"), "utf8"), ctx);
+    return ctx;
+  };
+
+  console.log("▸ Distance-readout gate — no metres or minutes off an unsourced grid");
+  let rdHard = 0, rdChecked = 0;
+  for (const f of REG_LIVE) {
+    const c = load(f.id);
+    const sourced = c.MAP_REGISTRATION_SOURCED;
+    if (sourced !== f.sourced) {
+      console.log(`  ✗  ${f.id} — map.jsx says registration sourced=${sourced}, the anchor data says ${f.sourced}`);
+      rdHard++; continue;
+    }
+    const stage = (c.STAGES || [])[1];
+    if (!stage) continue;
+    rdChecked++;
+    const d = Math.hypot(stage.x - 50, stage.y - 50);
+    const demo = { x: 50, y: 50 };
+    const live = { x: 50, y: 50, live: true };
+    const probes = {
+      walk:   a => c.walkMinsLabel(c.computeWalkRange(a, stage, d, "22:00")) != null,
+      mins:   a => c.distToMins(d, a) != null,
+      away:   a => c.minsAwaySuffix(d, a) !== "",
+      metres: a => c.gridDistMeters(50, 50, stage.x, stage.y, a) != null,
+    };
+    const bad = [];
+    for (const [name, probe] of Object.entries(probes)) {
+      // The demo avatar is an admitted simulation and keeps its numbers —
+      // blanking those would only make the pre-festival app look broken.
+      if (probe(demo) !== true) bad.push(`${name} suppressed for the DEMO avatar`);
+      if (probe(live) !== sourced) {
+        bad.push(sourced ? `${name} suppressed on a SOURCED map` : `${name} still quoted from a LIVE position`);
+      }
+    }
+    if (bad.length) { rdHard++; console.log(`  ✗  ${f.id} — ${bad.join("; ")}`); }
+    else console.log(`  ok ${f.id.padEnd(22)} ${sourced ? "sourced — readouts quoted" : "unsourced — 4/4 readouts withheld from a live position"}`);
+  }
+  if (rdHard) fail(`${rdHard} festival(s) quote distances they cannot support — see above`);
+  console.log(`  ✓ ${rdChecked} live festival(s): every grid readout matches its registration provenance`);
 }
 
 if (process.argv.includes("--parse-only")) process.exit(0);
