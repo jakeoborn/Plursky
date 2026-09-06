@@ -260,20 +260,66 @@ Same probe, re-run against the fix. The number moved:
 Probe reverted; control green (exit 0), baseline output unchanged — EDC LV
 remains the only festival the gate reports, still waived.
 
+### Rulings 2 and 3 — arming, and the layout-only default
+
+Instinct answered the rest of the packet the same day. Both shipped in the
+same PR, because both are the same gate reading honestly.
+
+**2 — make arming visible.** Two states used to `continue` silently: a
+festival that declared a footprint but had measured nothing, and a festival
+whose anchors no polygon can bound. Both read exactly like a festival that
+passed. They now print their own rows. Neither fails — declaring one half of
+the pair is a legitimate waypoint, it just must not masquerade as done.
+
+What that surfaced is larger than the question anticipated:
+
+| state | count |
+|---|---|
+| actually checked against a real venue polygon | **1** (EDC LV — and it is waived) |
+| carry anchors no footprint bounds | **7** (5 of them SHIPPING) |
+| armed but unmeasured | 2 (Lost Lands, Nocturnal) |
+| real basemap, anchors not applicable | 3 |
+
+The gate has been reporting a clean sheet on a sample of one. `mapMode: "real"`
+festivals are counted separately and deliberately: they need no anchors by
+design, and folding them into "unmeasured" would overstate the problem, which
+is its own kind of dishonest report.
+
+**3 — layout-only is the default.** No new poster-class anchors on a gated
+festival: while provenance stays FAIL the readouts are withheld either way, so
+they buy nothing and cost a basis that later has to be argued with. Lost Lands
+is the case that earned the rule — seven `prov` anchors that failed three
+independent checks and had to be deleted, not adjusted.
+
+Written as a **gate, not a comment**, because a comment is what the next flip
+session will not read. EDC Orlando is grandfathered: its five poster anchors
+are already authored and internally consistent (3 m / 7 m off their own
+affine), so they stand as the calibration set for whenever a real `osm` or
+`crowd` source lands. That is the last batch.
+
+### Verification — both new gates falsified before being trusted
+
+| probe | result |
+|---|---|
+| gated festival, anchor 11 km outside venue | `✗ … (gated — fix before the flip, not during)`, **exit 1** (was exit 0) |
+| gated festival, 2 in-venue `poster` anchors | `✗ … 2 new poster-class anchor(s)`, **exit 1** |
+| control, both probes reverted | **exit 0**, baseline output unchanged |
+
+The second probe had to be run twice. The first attempt placed an anchor
+outside Glen Helen, so the footprint gate failed first and `fail()` aborted
+before the layout-only gate ever ran — the probe proved the wrong thing. Moving
+both anchors inside the venue isolated the gate under test.
+
 ### Still open
 
-Questions 2 and 3 from the same packet have not been answered:
+**#76** — Nocturnal's georeferencing is blocked on the official 2026 map, which
+arrives via the Insomniac app at flip (~Sep 12). Instinct confirmed the
+posture: wait, do not invent. Tie points are pre-found and recorded — Large
+Lake `437353375`, Small Lake `437353374` (190 m apart, N–S), and the
+amphitheater bowl `233008519` to the south-east.
 
-2. A declared-but-unexercised footprint is **invisible** — Lost Lands and
-   Nocturnal now declare real footprints with zero anchors, so the gate skips
-   them silently. Arming is unobservable, which is the same blind-spot class as
-   §3 and as the hole above.
-3. Poster-class anchors buy nothing functionally — provenance stays FAIL and
-   readouts stay withheld either way. Worth authoring pre-flip at all, or is
-   layout-only (the Lost Lands / Nocturnal posture) the better default until an
-   `osm` or `crowd` source exists?
-
-**#76** also remains open: Nocturnal's georeferencing is blocked on the official
-2026 map, which arrives via the Insomniac app at flip (~Sep 12). Tie points are
-pre-found — Large Lake `437353375`, Small Lake `437353374` (190 m apart, N–S),
-and the amphitheater bowl `233008519` to the south-east.
+**Not addressed by any ruling:** the 7 festivals carrying anchors no footprint
+bounds, 5 of which are shipping today. Their anchors pass the affine and
+corroboration gates, so nothing here says they are wrong — only that this
+particular gate has never been able to speak to them. Adding footprints for
+them is a candidate for the next lane pass.
