@@ -376,13 +376,24 @@ let REG_LIVE = [];
     "acl-2026": {
       excuses: ["unsourced", "blind"],
       expires: "2026-10-19",
-      // Venue work, and it has a date: the founder is at Weekend 2 (Oct 9-11)
-      // and the crowd-anchor capture path is being built for exactly this.
-      // Three stages is enough to re-source the basis AND leave a fourth
-      // anchor over as the cross-check that clears "blind" too.
-      note: "basis is poster/poster/poster off the Zilker art; resolved by the " +
-            "Weekend 2 crowd-anchor pass (Oct 9-11), expiry allows a week to " +
-            "process the batch",
+      // ⚠️ NOT resolved by the Weekend 2 crowd-anchor pass, though the first
+      // draft of this waiver said it was. A crowd anchor answers "where does
+      // a person STAND to watch this stage"; a gpsAnchor answers "where did
+      // the artist DRAW it". They are different quantities and data.jsx says
+      // so in bold — EDC's measured kinetic centroid is 438 m from its own
+      // poster pin. Feeding crowd centroids into the basis would not source
+      // the registration, it would re-register the poster art onto the
+      // audience and slide every mapToGps() call site with it.
+      //
+      // So this is desk work like the other two: Zilker is a permanent public
+      // park (Barton Springs, the Great Lawn, the Hillside Theater) and the
+      // stage positions AS DRAWN can be registered against it without anyone
+      // flying anywhere. The crowd pass is still worth doing and still
+      // happens at Weekend 2 — it fixes photo auto-tagging, which is its own
+      // reason — but it is NOT on this gate's critical path.
+      note: "basis is poster/poster/poster off the Zilker art; needs an OSM/" +
+            "satellite re-survey of the park (desk work). The Weekend 2 crowd " +
+            "pass is a DIFFERENT measurement and does not clear this",
     },
     "ultra-miami-2026": {
       excuses: ["unsourced"],
