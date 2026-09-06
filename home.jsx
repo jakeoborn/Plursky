@@ -763,7 +763,7 @@ function PostFestivalRecap({ state, setState }) {
           {byDay.map(({ day, meta, artists }) => (
             <div key={day} style={{ marginBottom: 14 }}>
               <div className="mono" style={{
-                fontSize: 9, letterSpacing: 1.8, color: "var(--ember)",
+                fontSize: 9, letterSpacing: 1.8, color: "var(--ember-ink)",
                 fontWeight: 700, marginBottom: 8,
               }}>
                 {meta.short} · {meta.name.toUpperCase()}
@@ -1257,7 +1257,7 @@ function LastNightRecap({ state, setState }) {
       {/* Title */}
       <div className="serif" style={{ fontSize: 32, lineHeight: 0.95, letterSpacing: -0.4, marginBottom: 4 }}>
         {meta?.name || ("Day " + prevDay)}{" "}
-        <span style={{ fontStyle: "italic", color: "var(--ember)" }}>Night</span>
+        <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>Night</span>
       </div>
       <div className="mono" style={{
         fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", fontWeight: 600, marginBottom: 14,
@@ -1367,7 +1367,7 @@ function UpcomingTeaser({ state, setState }) {
             <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
               <div>
                 <div className="mono" style={{
-                  fontSize: 9, letterSpacing: 1.4, color: "var(--ember)", fontWeight: 700,
+                  fontSize: 9, letterSpacing: 1.4, color: "var(--ember-ink)", fontWeight: 700,
                 }}>
                   {meta?.short} · {meta?.name?.toUpperCase()}
                 </div>
@@ -1629,7 +1629,7 @@ function HomeScreen({ state, setState }) {
               {(() => {
                 const words = (FESTIVAL_CONFIG.tagline || "Under the electric sky").split(/\s/);
                 const last = words.pop();
-                return <>{words.join(" ")} <span style={{ fontStyle: "italic", color: "var(--ember)" }}>{last}</span> in</>;
+                return <>{words.join(" ")} <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>{last}</span> in</>;
               })()}
             </div>
             <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginTop: 10 }}>
@@ -1644,7 +1644,7 @@ function HomeScreen({ state, setState }) {
         ) : isPostFestival ? (
           <>
             <div className="serif" style={{ fontSize: 36, lineHeight: 0.95, letterSpacing: -0.5 }}>
-              {FESTIVAL_CONFIG.brand} <span style={{ fontStyle: "italic", color: "var(--ember)" }}>{FESTIVAL_CONFIG.year}</span> — that's a wrap.
+              {FESTIVAL_CONFIG.brand} <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>{FESTIVAL_CONFIG.year}</span> — that's a wrap.
             </div>
             <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "var(--muted)", marginTop: 6, marginBottom: 14 }}>
               {FESTIVAL_CONFIG.locationShort.toUpperCase()} · {FESTIVAL_CONFIG.dates.toUpperCase()}
@@ -1685,7 +1685,7 @@ function HomeScreen({ state, setState }) {
         ) : (
           <>
             <div className="serif" style={{ fontSize: 36, lineHeight: 0.95, letterSpacing: -0.5 }}>
-              {FESTIVAL_CONFIG.dayDates[NOW.day]?.name || "Day " + NOW.day} at <span style={{ fontStyle: "italic", color: "var(--ember)" }}>{FESTIVAL_CONFIG.brand}</span>
+              {FESTIVAL_CONFIG.dayDates[NOW.day]?.name || "Day " + NOW.day} at <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>{FESTIVAL_CONFIG.brand}</span>
             </div>
             <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "var(--muted)", marginTop: 6 }}>
               {FESTIVAL_CONFIG.locationShort.toUpperCase()} · {FESTIVAL_CONFIG.dates.toUpperCase()}
@@ -2018,7 +2018,7 @@ function HomeScreen({ state, setState }) {
                       borderRadius: 14, padding: "12px 14px", overflow: "hidden",
                     }}>
                       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 8 }}>
-                        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--ember)", fontWeight: 700 }}>
+                        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--ember-ink)", fontWeight: 700 }}>
                           {g.meta?.name?.toUpperCase() || `DAY ${g.day}`}
                         </span>
                         {daysUntil > 0 && (
@@ -2114,7 +2114,7 @@ function HomeScreen({ state, setState }) {
             <div style={{ marginTop: 22 }}>
               <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
                 <div className="serif" style={{ fontSize: 22 }}>
-                  Your <span style={{ fontStyle: "italic", color: "var(--ember)" }}>lineup</span>
+                  Your <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>lineup</span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                   <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)" }}>
@@ -2145,14 +2145,14 @@ function HomeScreen({ state, setState }) {
                   <div key={day} style={{ marginBottom: 10 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
                       <div className="mono" style={{
-                        fontSize: 9, letterSpacing: 1.8, color: "var(--ember)",
+                        fontSize: 9, letterSpacing: 1.8, color: "var(--ember-ink)",
                         fontWeight: 700,
                       }}>
                         {meta.short} · {meta.name.toUpperCase()}
                       </div>
                       {conflictCount > 0 && (
                         <span className="mono" style={{
-                          fontSize: 8, letterSpacing: 1.2, color: "var(--ember)",
+                          fontSize: 8, letterSpacing: 1.2, color: "var(--ember-ink)",
                           padding: "1px 5px", borderRadius: 3, fontWeight: 700,
                           border: "1px solid var(--ember)",
                         }}>{conflictCount} CLASH</span>
@@ -2170,7 +2170,7 @@ function HomeScreen({ state, setState }) {
                               <div style={{ width: 1, height: 14, background: tight ? "var(--ember)" : "var(--line-2)" }}/>
                               <span className="mono" style={{
                                 fontSize: 8, letterSpacing: 1.1,
-                                color: tight ? "var(--ember)" : "var(--muted)",
+                                color: tight ? "var(--ember-ink)" : "var(--muted)",
                                 fontWeight: tight ? 700 : 500,
                               }}>
                                 {walk} MIN WALK · {prev.stage === a.stage ? "SAME STAGE" : `${STAGES.find(s=>s.id===prev.stage)?.short} → ${stage?.short}`}
@@ -2193,7 +2193,7 @@ function HomeScreen({ state, setState }) {
                                 </div>
                                 {conflict && (
                                   <span className="mono" style={{
-                                    fontSize: 8, letterSpacing: 1.2, color: "var(--ember)",
+                                    fontSize: 8, letterSpacing: 1.2, color: "var(--ember-ink)",
                                     padding: "1px 4px", borderRadius: 3, fontWeight: 700,
                                     border: "1px solid var(--ember)",
                                   }}>CLASH</span>
@@ -2272,7 +2272,7 @@ function LiveAcrossStrip({ strip, state, setState }) {
         <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--muted)", fontWeight: 600 }}>
           LIVE ACROSS STAGES
         </div>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ember)" }}>
+        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ember-ink)" }}>
           {liveCount}/{strip.length} ON
         </span>
       </div>
@@ -2405,13 +2405,13 @@ function TonightsPlan({ plan, state, setState }) {
               background: "rgba(232,93,46,0.07)", borderRadius: 8,
               border: "1px solid rgba(232,93,46,0.2)",
             }}>
-              <span className="mono" style={{ fontSize: 10, letterSpacing: 1.3, color: "var(--ember)" }}>
+              <span className="mono" style={{ fontSize: 10, letterSpacing: 1.3, color: "var(--ember-ink)" }}>
                 ⚠ {tightCount} TIGHT TRANSITION{tightCount > 1 ? "S" : ""} · CHECK LEAVE-BY TIMES
               </span>
               {conflicts.length > 0 && (
                 <button onClick={() => setResolverOpen(r => !r)} style={{
                   background: resolverOpen ? "transparent" : "var(--ember)",
-                  color: resolverOpen ? "var(--ember)" : "#fff",
+                  color: resolverOpen ? "var(--ember-ink)" : "#fff",
                   border: resolverOpen ? "1px solid var(--ember)" : "none",
                   borderRadius: 6, padding: "4px 10px", cursor: "pointer",
                   fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
@@ -2461,7 +2461,7 @@ function PlanRow({ entry, state, setState }) {
           <div style={{ width: 1, height: 18, background: tight ? "var(--ember)" : "var(--line-2)" }}/>
           <span className="mono" style={{
             fontSize: 9, letterSpacing: 1.2,
-            color: tight ? "var(--ember)" : "var(--muted)",
+            color: tight ? "var(--ember-ink)" : "var(--muted)",
             fontWeight: tight ? 700 : 500,
           }}>
             {walk} MIN WALK · {prev.stage === a.stage ? "SAME STAGE" : `${STAGES.find(s=>s.id===prev.stage).short} → ${stage.short}`}
@@ -2502,7 +2502,7 @@ function PlanRow({ entry, state, setState }) {
             )}
             {conflict && (
               <span className="mono" style={{
-                fontSize: 8, letterSpacing: 1.3, color: "var(--ember)",
+                fontSize: 8, letterSpacing: 1.3, color: "var(--ember-ink)",
                 padding: "1px 5px", borderRadius: 3, fontWeight: 700,
                 border: "1px solid var(--ember)",
               }}>CLASH</span>
@@ -2743,7 +2743,7 @@ function FirstTimerGuide({ onClose, onOpenMap, onOpenLineup }) {
           borderTopLeftRadius: 22, borderTopRightRadius: 22,
         }}>
           <div>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--ember)", fontWeight: 700 }}>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--ember-ink)", fontWeight: 700 }}>
               FIRST TIME AT {FESTIVAL_CONFIG.brand.toUpperCase()}
             </div>
             <div className="serif" style={{ fontSize: 24, lineHeight: 1, marginTop: 2 }}>
@@ -2910,7 +2910,7 @@ function FriendLineupBanner({ state, setState }) {
         }}>×</button>
       </div>
       <div className="serif" style={{ fontSize: 22, lineHeight: 1.1, marginBottom: 4 }}>
-        {state.friendName ? state.friendName : "Your friend"}'s <span style={{ fontStyle: "italic", color: "var(--ember)" }}>lineup</span>
+        {state.friendName ? state.friendName : "Your friend"}'s <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>lineup</span>
       </div>
       <div style={{ fontSize: 12, color: "var(--ink)", opacity: 0.75, lineHeight: 1.5, marginBottom: 12 }}>
         {friendIds.length} sets saved · {overlap.length} match yours

@@ -255,7 +255,7 @@ function NightWizard({ state, setState, onClose }) {
               <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: on ? "rgba(247,237,224,0.55)" : "var(--muted)" }}>{d.short}</div>
               <div className="mono" style={{ fontSize: 20, fontWeight: 700, letterSpacing: -0.5, color: on ? "var(--paper)" : "var(--ink)", lineHeight: 1.15 }}>{d.count}</div>
               {d.clashes > 0
-                ? <div className="mono" style={{ fontSize: 8, color: "var(--ember)", letterSpacing: 0.8, marginTop: 1 }}>⚠ {d.clashes} CLASH</div>
+                ? <div className="mono" style={{ fontSize: 8, color: "var(--ember-ink)", letterSpacing: 0.8, marginTop: 1 }}>⚠ {d.clashes} CLASH</div>
                 : d.count > 0
                   ? <div className="mono" style={{ fontSize: 8, color: on ? "rgba(247,237,224,0.4)" : "var(--muted)", letterSpacing: 0.8, marginTop: 1 }}>● CLEAN</div>
                   : <div style={{ height: 12 }} />
@@ -306,11 +306,11 @@ function NightWizard({ state, setState, onClose }) {
                           </div>
                         </div>
                         <div style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0 }}>
-                          {clash && <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--ember)", fontWeight: 700 }}>⚠ CLASH</span>}
+                          {clash && <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--ember-ink)", fontWeight: 700 }}>⚠ CLASH</span>}
                           <button onClick={() => drop(a.id)} style={{
                             background: "rgba(232,93,46,0.12)", border: "1px solid rgba(232,93,46,0.25)",
                             borderRadius: 999, padding: "3px 9px", cursor: "pointer",
-                            fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1, color: "var(--ember)",
+                            fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1, color: "var(--ember-ink)",
                           }}>DROP</button>
                         </div>
                       </div>
@@ -1331,7 +1331,7 @@ function LineupScreen({ state, setState }) {
                 {clashWith && (
                   <div className="mono" title={`Overlaps with ${clashWith.join(", ")}`} style={{
                     marginTop: 4, fontSize: 8, letterSpacing: 0.8, fontWeight: 800,
-                    color: "var(--ember)", background: "rgba(232,93,46,0.12)",
+                    color: "var(--ember-ink)", background: "rgba(232,93,46,0.12)",
                     border: "0.5px solid rgba(232,93,46,0.55)",
                     padding: "1px 4px", borderRadius: 4,
                     display: "inline-block",
@@ -1737,13 +1737,13 @@ function GridSetBlock({
       {dueMins != null && height > 46 && (
         <div className="mono" style={{
           marginTop: "auto", fontSize: 8, letterSpacing: 1, fontWeight: 800,
-          color: "var(--ember)", whiteSpace: "nowrap",
+          color: "var(--ember-ink)", whiteSpace: "nowrap",
         }}>YOU'RE DUE HERE · {dueMins} MIN</div>
       )}
       {saved && (
         <span style={{
           position: "absolute", top: 3, right: 5,
-          fontSize: 10, color: "var(--ember)", fontWeight: 800, lineHeight: 1,
+          fontSize: 10, color: "var(--ember-ink)", fontWeight: 800, lineHeight: 1,
         }}>★</span>
       )}
       {!saved && matched && height > 30 && (
@@ -1931,7 +1931,7 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
               {s.short}
               {n > 0 && <span style={{
                 fontSize: 8, fontWeight: 800,
-                color: on ? "#fff" : "var(--ember)",
+                color: on ? "#fff" : "var(--ember-ink)",
               }}>★{n}</span>}
             </button>
           );
@@ -2090,7 +2090,7 @@ function ConflictResolver({ conflicts, onKeep, onKeepBoth, onSplit }) {
             <path d="M12 10 V14" strokeLinecap="round"/>
             <circle cx="12" cy="17" r="0.7" fill="var(--ember)"/>
           </svg>
-          <span className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--ember)", fontWeight: 700 }}>
+          <span className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--ember-ink)", fontWeight: 700 }}>
             CONFLICT {idx + 1}/{conflicts.length}
           </span>
         </div>
@@ -2482,7 +2482,7 @@ function ShareMenuItem({ icon, label, sub, onClick }) {
     }}
     onMouseEnter={(e) => e.currentTarget.style.background = "var(--paper-2)"}
     onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}>
-      <span style={{ color: "var(--ember)", display: "flex" }}>{ico}</span>
+      <span style={{ color: "var(--ember-ink)", display: "flex" }}>{ico}</span>
       <span style={{ flex: 1 }}>
         <span style={{ display: "block", fontSize: 13, fontWeight: 500 }}>{label}</span>
         <span className="mono" style={{ display: "block", fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", marginTop: 1, textTransform: "uppercase" }}>{sub}</span>

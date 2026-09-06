@@ -1701,7 +1701,7 @@ function ArtistScreen({ state, setState }) {
                 {lfm.url && (
                   <a href={lfm.url} target="_blank" rel="noopener noreferrer" style={{
                     fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.1,
-                    color: "var(--ember)", textDecoration: "none", marginLeft: 8,
+                    color: "var(--ember-ink)", textDecoration: "none", marginLeft: 8,
                   }}>LAST.FM ↗</a>
                 )}
               </div>
@@ -2103,7 +2103,7 @@ function ArtistScreen({ state, setState }) {
                   <a href={ev.url} target="_blank" rel="noopener noreferrer" style={{
                     flexShrink: 0,
                     fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.1,
-                    color: "var(--ember)", textDecoration: "none",
+                    color: "var(--ember-ink)", textDecoration: "none",
                     border: "1px solid var(--ember)", borderRadius: 999,
                     padding: "5px 9px", whiteSpace: "nowrap",
                   }}>TICKETS ↗</a>
@@ -2178,7 +2178,7 @@ function ArtistScreen({ state, setState }) {
                   <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 8 }}>
                     <div>
                       {isFest && (
-                        <div className="mono" style={{ fontSize: 8, letterSpacing: 1.4, color: "var(--ember)", fontWeight: 700, marginBottom: 3 }}>
+                        <div className="mono" style={{ fontSize: 8, letterSpacing: 1.4, color: "var(--ember-ink)", fontWeight: 700, marginBottom: 3 }}>
                           ★ {(FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.brand || "").toUpperCase()}
                         </div>
                       )}
@@ -2224,7 +2224,7 @@ function ArtistScreen({ state, setState }) {
                         <button onClick={() => setSlExpanded(e => ({ ...e, [idx]: !e[idx] }))} style={{
                           background: "transparent", border: "none", cursor: "pointer",
                           fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2,
-                          color: "var(--ember)", padding: "6px 0 2px", display: "block",
+                          color: "var(--ember-ink)", padding: "6px 0 2px", display: "block",
                         }}>
                           {isOpen ? "SHOW LESS ↑" : `+${songs.length - 5} MORE SONGS ↓`}
                         </button>

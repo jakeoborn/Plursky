@@ -238,7 +238,7 @@ function WellnessPill() {
     setTick(t => t + 1);
   };
   var restLabel = restMin < 60 ? `${restMin}m` : `${Math.floor(restMin / 60)}h${(restMin % 60).toString().padStart(2, "0")}`;
-  var restColorLight = restMin < 75 ? "var(--ink)" : restMin < 120 ? "#b8651b" : "#c14a4a";
+  var restColorLight = restMin < 75 ? "var(--ink)" : restMin < 120 ? "var(--warn)" : "var(--alert)";
   return React.createElement(React.Fragment, null, React.createElement("button", {
     onClick: () => setOpen(o => !o),
     style: {
@@ -251,8 +251,8 @@ function WellnessPill() {
       gap: 7,
       padding: "5px 10px 5px 7px",
       borderRadius: 999,
-      background: "rgba(247,237,224,0.88)",
-      border: `1px solid ${hyd < 40 || restMin > 120 ? "#c14a4a" : "var(--line-2)"}`,
+      background: "rgba(var(--glass),0.88)",
+      border: `1px solid ${hyd < 40 || restMin > 120 ? "var(--alert)" : "var(--line-2)"}`,
       backdropFilter: "blur(10px)",
       WebkitBackdropFilter: "blur(10px)",
       color: "var(--ink)",
@@ -269,7 +269,7 @@ function WellnessPill() {
     }
   }, "💧"), React.createElement("span", {
     style: {
-      color: hyd > 70 ? "var(--ink)" : hyd > 40 ? "#b8651b" : "#c14a4a",
+      color: hyd > 70 ? "var(--ink)" : hyd > 40 ? "var(--warn)" : "var(--alert)",
       fontWeight: 700
     }
   }, hyd, "%"), React.createElement("span", {
@@ -1610,7 +1610,7 @@ function ShareLocationSheet({
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "#c14a4a",
+      color: "var(--alert)",
       fontWeight: 700
     }
   }, "GPS DENIED · ENABLE LOCATION IN BROWSER")), React.createElement("div", {
@@ -2263,7 +2263,7 @@ function WeatherStrip() {
       letterSpacing: 1.2,
       fontWeight: 700,
       flexShrink: 0,
-      color: isAlert ? "var(--ember)" : "var(--muted)"
+      color: isAlert ? "var(--ember-ink)" : "var(--muted)"
     }
   }, (FESTIVAL_CONFIG.locationShort || FESTIVAL_CONFIG.brand || "").toUpperCase()), React.createElement("span", {
     style: {
@@ -2942,7 +2942,7 @@ function MapScreen({
       width: 38,
       height: 38,
       borderRadius: 12,
-      background: "rgba(247,237,224,0.92)",
+      background: "rgba(var(--glass),0.92)",
       backdropFilter: "blur(10px)",
       border: "1px solid var(--line-2)",
       color: "var(--ink)",
@@ -2970,8 +2970,8 @@ function MapScreen({
       minWidth: 46,
       padding: "6px 8px",
       borderRadius: 14,
-      background: gpsActive ? "var(--ember)" : "rgba(247,237,224,0.92)",
-      color: gpsActive ? "#fff" : gpsStatus === "denied" ? "#c14a4a" : "var(--ink)",
+      background: gpsActive ? "var(--ember)" : "rgba(var(--glass),0.92)",
+      color: gpsActive ? "#fff" : gpsStatus === "denied" ? "var(--alert)" : "var(--ink)",
       border: gpsActive ? "none" : "1px solid var(--line-2)",
       backdropFilter: "blur(10px)",
       WebkitBackdropFilter: "blur(10px)",
@@ -3014,7 +3014,7 @@ function MapScreen({
     style: {
       display: "flex",
       flexDirection: "column",
-      background: "rgba(247,237,224,0.92)",
+      background: "rgba(var(--glass),0.92)",
       border: "1px solid var(--line-2)",
       borderRadius: 14,
       overflow: "hidden",
@@ -3271,7 +3271,7 @@ function MapScreen({
       left: 10,
       top: 90,
       zIndex: 6,
-      background: "rgba(247,237,224,0.94)",
+      background: "rgba(var(--glass),0.94)",
       border: "1px solid var(--line-2)",
       borderRadius: 12,
       padding: 4,
@@ -3683,7 +3683,7 @@ function MapScreen({
     }, s.name), savedStages.has(s.id) && React.createElement("span", {
       "aria-label": "Saved",
       style: {
-        color: "var(--ember)",
+        color: "var(--ember-ink)",
         fontSize: 12
       }
     }, "♥"))), artistMatches.length > 0 && React.createElement("div", {
@@ -3744,7 +3744,7 @@ function MapScreen({
         }
       }, isSaved && React.createElement("span", {
         style: {
-          color: "var(--ember)",
+          color: "var(--ember-ink)",
           marginRight: 4
         }
       }, "★"), a.name), when && React.createElement("span", {
@@ -3929,7 +3929,7 @@ function MapScreen({
       }
     }, React.createElement("span", {
       style: {
-        color: "var(--ember)",
+        color: "var(--ember-ink)",
         fontSize: 11,
         lineHeight: 1
       }
@@ -4227,7 +4227,7 @@ function MapScreen({
     disabled: rallySent,
     style: {
       background: rallySent ? "rgba(255,255,255,0.25)" : "#fff",
-      color: rallySent ? "#fff" : "var(--ember)",
+      color: rallySent ? "#fff" : "var(--ember-ink)",
       border: "none",
       borderRadius: 999,
       padding: "5px 12px",
@@ -4660,7 +4660,7 @@ function MapScreen({
     style: {
       fontSize: 9,
       letterSpacing: 1,
-      color: meetups.length ? "var(--ember)" : "var(--muted)",
+      color: meetups.length ? "var(--ember-ink)" : "var(--muted)",
       fontWeight: 700
     }
   }, meetups.length ? `${meetups.length} UPCOMING` : "NONE")), React.createElement("button", {
@@ -4737,7 +4737,7 @@ function MapScreen({
     style: {
       fontSize: 9,
       letterSpacing: 1,
-      color: "var(--ember)",
+      color: "var(--ember-ink)",
       fontWeight: 700
     }
   }, "SURVEY MODE"))))), chatFriend && React.createElement(MessageDrawer, {
@@ -7638,7 +7638,7 @@ function TopDownMap({
       width: 44,
       height: 44,
       borderRadius: 44,
-      background: "rgba(247,237,224,0.92)",
+      background: "rgba(var(--glass),0.92)",
       border: "1px solid var(--line-2)",
       boxShadow: "0 3px 10px rgba(26,18,13,0.18)",
       display: "flex",
@@ -7664,7 +7664,7 @@ function TopDownMap({
       fontFamily: "Geist Mono, monospace",
       fontSize: 8,
       fontWeight: 800,
-      color: "#c14a4a",
+      color: "var(--alert)",
       letterSpacing: 0.5
     }
   }, "N"), React.createElement("svg", {
@@ -7677,7 +7677,7 @@ function TopDownMap({
     }
   }, React.createElement("path", {
     d: "M0,-9 L2.5,2 L0,0 L-2.5,2 Z",
-    fill: "#c14a4a"
+    fill: "var(--alert)"
   }), React.createElement("path", {
     d: "M0,9 L2.5,-2 L0,0 L-2.5,-2 Z",
     fill: "rgba(26,18,13,0.45)"
@@ -8258,7 +8258,7 @@ function BottomSheet({
       style: {
         fontSize: 9,
         letterSpacing: 1.4,
-        color: "var(--ember)",
+        color: "var(--ember-ink)",
         fontWeight: 700
       }
     }, "MEETING"), React.createElement("div", {
@@ -8777,7 +8777,7 @@ function StageLineupSheet({
     style: {
       flex: 1,
       background: stageSaved ? "rgba(232,93,46,0.12)" : "var(--paper-2)",
-      color: stageSaved ? "var(--ember)" : "var(--ink)",
+      color: stageSaved ? "var(--ember-ink)" : "var(--ink)",
       border: stageSaved ? "1px solid rgba(232,93,46,0.45)" : "1px solid var(--line-2)",
       borderRadius: 12,
       padding: "11px 8px",
@@ -8823,7 +8823,7 @@ function StageLineupSheet({
       flexShrink: 0,
       background: "rgba(193,74,74,0.1)",
       border: "1px solid rgba(193,74,74,0.35)",
-      color: "#c14a4a",
+      color: "var(--alert)",
       borderRadius: 999,
       padding: "7px 13px",
       fontSize: 10,
@@ -9389,7 +9389,7 @@ function MessageDrawer({
     style: {
       fontSize: 9,
       letterSpacing: 1.3,
-      color: "var(--ember)",
+      color: "var(--ember-ink)",
       fontWeight: 700
     }
   }, "⚠ OFFLINE · MESSAGES QUEUE & SEND WHEN YOU'RE BACK ONLINE")), React.createElement("div", {
@@ -9458,7 +9458,7 @@ function MessageDrawer({
         textAlign: "right",
         fontSize: 8,
         letterSpacing: 1.2,
-        color: "var(--ember)",
+        color: "var(--ember-ink)",
         marginRight: 4,
         marginBottom: 4
       }

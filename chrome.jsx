@@ -1440,6 +1440,129 @@ function BatterySaverCard() {
 }
 
 // ─────────────────────────────────────────────────────────────
+// Theme mode (v267). The palette has always auto-shifted with the sky, but
+// ONLY inside the festival window — outside it the app is light 24h a day,
+// which is most of the year. This adds a manual override so "dark mode"
+// stops being a three-day-a-year accident of the clock.
+//
+// Mirrors the battery-saver module deliberately: module-level state + a
+// listener set, so the pref survives remounts and any consumer can subscribe.
+// The class is applied here at eval time (before React mounts) so a pinned
+// mode does not flash the wrong palette on every cold boot; app.jsx owns the
+// 60s recompute that makes AUTO track the hour.
+const THEME_PREF_KEY = "theme_pref";
+const _TH = (window._TH = window._TH || {
+  mode: (() => {
+    try { return localStorage.getItem(THEME_PREF_KEY) || "auto"; }
+    catch { return "auto"; }
+  })(),
+  listeners: new Set(),   // (mode) => void
+});
+
+// Returns the <html> class for a given pref. "" is the light baseline.
+function resolveThemeClass(mode) {
+  if (mode === "light") return "";
+  if (mode === "dark")  return "theme-night";
+  // auto — unchanged from the original behaviour: sky-tracking, but only
+  // while the festival is actually running.
+  const cfg = (typeof window !== "undefined" && window.FESTIVAL_CONFIG) || null;
+  if (!cfg || typeof cfg.startMs !== "number" || typeof cfg.endMs !== "number") return "";
+  const now = Date.now();
+  if (now < cfg.startMs || now > cfg.endMs) return "";
+  const h = new Date().getHours();
+  return h >= 20 || h < 4  ? "theme-night"
+       : h >= 4  && h < 7  ? "theme-dawn"
+       : h >= 17 && h < 20 ? "theme-sunset"
+       : "";
+}
+
+function applyThemeClass() {
+  const next = resolveThemeClass(_TH.mode);
+  if (document.documentElement.className !== next) {
+    document.documentElement.className = next;
+  }
+  return next;
+}
+
+function setThemeMode(mode) {
+  if (!["auto", "light", "dark"].includes(mode)) return;
+  _TH.mode = mode;
+  try { localStorage.setItem(THEME_PREF_KEY, mode); } catch {}
+  applyThemeClass();
+  _TH.listeners.forEach(fn => { try { fn(mode); } catch {} });
+}
+
+if (!window._thInited) {
+  window._thInited = true;
+  try { applyThemeClass(); } catch {}
+}
+
+function useThemeMode() {
+  const [, force] = React.useReducer(x => x + 1, 0);
+  React.useEffect(() => {
+    _TH.listeners.add(force);
+    return () => _TH.listeners.delete(force);
+  }, []);
+  return { mode: _TH.mode, setMode: setThemeMode };
+}
+
+function ThemeCard() {
+  const { mode, setMode } = useThemeMode();
+  const segs = [
+    { id: "auto",  label: "AUTO" },
+    { id: "light", label: "LIGHT" },
+    { id: "dark",  label: "DARK" },
+  ];
+  const activeClass = resolveThemeClass(mode);
+  const nowLabel = activeClass === "theme-night"  ? "NIGHT"
+                 : activeClass === "theme-dawn"   ? "DAWN"
+                 : activeClass === "theme-sunset" ? "SUNSET"
+                 : "LIGHT";
+
+  return (
+    <div style={{
+      padding: 14, borderRadius: 14,
+      background: "var(--paper)", border: "1px solid var(--line)",
+      marginBottom: 12,
+    }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
+        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.5, color: "var(--muted)", fontWeight: 700 }}>
+          THEME
+        </div>
+        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>
+          {nowLabel}
+        </span>
+      </div>
+      <div className="serif" style={{ fontSize: 20, lineHeight: 1.1, marginBottom: 4 }}>
+        Paper by day, stars by night
+      </div>
+      <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5, marginBottom: 12 }}>
+        Auto follows the sky during the festival. Pin light or dark anytime.
+      </div>
+
+      <div style={{
+        display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 4,
+        background: "var(--paper-2)", borderRadius: 999, padding: 3,
+        border: "1px solid var(--line)",
+      }}>
+        {segs.map(s => {
+          const on = mode === s.id;
+          return (
+            <button key={s.id} onClick={() => setMode(s.id)} style={{
+              background: on ? "var(--ink)" : "transparent",
+              color: on ? "var(--paper)" : "var(--ink)",
+              border: "none", borderRadius: 999, padding: "7px 10px",
+              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
+              cursor: "pointer",
+            }}>{s.label}</button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
 // Status strip — sticky thin bar above every screen.
 // Shows local DAY · TIME plus offline and battery-saver indicators
 // so reorientation / connectivity / power context is glanceable
@@ -1564,6 +1687,7 @@ Object.assign(window, {
   isAttended, getAttendanceSource, detectCurrentArtist, recordAttendanceFromGps,
   FestivalChip, FestivalSwitcher,
   useBatterySaver, BatterySaverCard, BatterySaverToast, setBatterySaverMode,
+  useThemeMode, ThemeCard, setThemeMode, resolveThemeClass, applyThemeClass,
   useOnlineStatus, StatusStrip,
   plurskyHaptic,
 });

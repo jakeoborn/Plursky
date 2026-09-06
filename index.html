@@ -79,6 +79,14 @@
     --paper-2:#eee0cb;
     --dune:#d9bf94;
     --ember:#e85d2e;
+    --ember-ink:#e85d2e;   /* ember used as TEXT; overridden brighter in .theme-night */
+    --alert:#c14a4a;
+    --warn:#b8651b;
+    /* Floating "glass" chrome over the map, as an R,G,B triplet so each call
+       site keeps its own alpha: rgba(var(--glass), 0.92). Before v267 these
+       pills hardcoded the light paper, so in theme-night they stayed cream
+       while var(--ink) went cream too — 1.09:1, i.e. invisible. */
+    --glass:247,237,224;
     --flare:#f59a36;
     --horizon:#7b3d9a;
     --night:#1a1030;
@@ -103,7 +111,12 @@
   }
   /* ── Night-aware theme (festival hours) ── */
   .theme-sunset{--ink:#1a120d;--paper:#f5e6d0;--paper-2:#e8d4b8;--line:rgba(26,18,13,0.14);--line-2:rgba(26,18,13,0.24);--muted:rgba(26,18,13,0.68)}
-  .theme-night{--ink:#f0e6d8;--paper:#0d0a14;--paper-2:#1a1030;--line:rgba(240,230,216,0.1);--line-2:rgba(240,230,216,0.18);--muted:rgba(240,230,216,0.62);--dune:#3d2e5c}
+  /* Night legibility (v267): paper-2 lifted off near-black so cards read as
+     surfaces, muted/line alphas raised, and --ember-ink brightens ember TEXT
+     on dark. --ember itself is unchanged — filled buttons still want the
+     saturated original against white type. color-scheme:dark hands form
+     controls, scrollbars and the caret to the UA dark palette. */
+  .theme-night{color-scheme:dark;--ink:#f0e6d8;--paper:#0d0a14;--paper-2:#241a3e;--line:rgba(240,230,216,0.14);--line-2:rgba(240,230,216,0.24);--muted:rgba(240,230,216,0.78);--dune:#3d2e5c;--ember-ink:#f97e52;--alert:#f87171;--warn:#f59a36;--glass:36,26,62}
   .theme-night html,.theme-night body{background:#0d0a14;color:#f0e6d8}
   .theme-dawn{--ink:#1a120d;--paper:#f0e0f0;--paper-2:#e0d0e8;--line:rgba(26,18,13,0.12);--line-2:rgba(26,18,13,0.2);--muted:rgba(26,18,13,0.62);--horizon:#9b5dba}
   button { transition: opacity 0.1s ease; }
@@ -319,40 +332,40 @@
       window.__USE_NATIVE_PICKER__ = true;
     }
   </script>
-  <script src="build/ios-frame.js?v=v266"></script>
+  <script src="build/ios-frame.js?v=v267"></script>
   <!-- Multi-festival wave 1. Plain .js (no JSX), so they load as normal scripts
        and are parsed before Babel even starts on the chain below. Each is an
        IIFE that registers itself on window.PLURSKY_FESTIVALS; data.jsx reads
        that map, so these MUST stay above it. Mirrored in sw.js's precache. -->
-  <script src="data/festivals/ultra-miami-2026.js?v=v266"></script>
-  <script src="data/festivals/governors-ball-2026.js?v=v266"></script>
-  <script src="data/festivals/summerfest-2026.js?v=v266"></script>
-  <script src="data/festivals/lollapalooza-2026.js?v=v266"></script>
-  <script src="data/festivals/outside-lands-2026.js?v=v266"></script>
-  <script src="data/festivals/iii-points-2026.js?v=v266"></script>
-  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v266"></script>
-  <script src="data/festivals/crssd-fall-2026.js?v=v266"></script>
-  <script src="data/festivals/portola-2026.js?v=v266"></script>
-  <script src="build/data.js?v=v266"></script>
-  <script src="build/supabase.js?v=v266"></script>
-  <script src="build/chrome.js?v=v266"></script>
-  <script src="build/home.js?v=v266"></script>
-  <script src="build/map.js?v=v266"></script>
-  <script src="build/survey.js?v=v266"></script>
-  <script src="build/lineup.js?v=v266"></script>
-  <script src="build/artist.js?v=v266"></script>
-  <script src="build/photo-tag.js?v=v266"></script>
-  <script src="build/spotify-api.js?v=v266"></script>
-  <script src="build/recap-engine.js?v=v266"></script>
-  <script src="build/spotify.js?v=v266"></script>
-  <script src="build/app.js?v=v266"></script>
+  <script src="data/festivals/ultra-miami-2026.js?v=v267"></script>
+  <script src="data/festivals/governors-ball-2026.js?v=v267"></script>
+  <script src="data/festivals/summerfest-2026.js?v=v267"></script>
+  <script src="data/festivals/lollapalooza-2026.js?v=v267"></script>
+  <script src="data/festivals/outside-lands-2026.js?v=v267"></script>
+  <script src="data/festivals/iii-points-2026.js?v=v267"></script>
+  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v267"></script>
+  <script src="data/festivals/crssd-fall-2026.js?v=v267"></script>
+  <script src="data/festivals/portola-2026.js?v=v267"></script>
+  <script src="build/data.js?v=v267"></script>
+  <script src="build/supabase.js?v=v267"></script>
+  <script src="build/chrome.js?v=v267"></script>
+  <script src="build/home.js?v=v267"></script>
+  <script src="build/map.js?v=v267"></script>
+  <script src="build/survey.js?v=v267"></script>
+  <script src="build/lineup.js?v=v267"></script>
+  <script src="build/artist.js?v=v267"></script>
+  <script src="build/photo-tag.js?v=v267"></script>
+  <script src="build/spotify-api.js?v=v267"></script>
+  <script src="build/recap-engine.js?v=v267"></script>
+  <script src="build/spotify.js?v=v267"></script>
+  <script src="build/app.js?v=v267"></script>
 
   <script>
 
     // Build version stamp â€” bumped on every deploy that changes app behaviour.
     // If the running tab's stored version doesn't match, force a full reload
     // (bypassing browser HTTP cache that GH-Pages serves with max-age=600).
-    const APP_VERSION = 'v266';
+    const APP_VERSION = 'v267';
     try {
       const stored = localStorage.getItem('app_version');
       if (stored && stored !== APP_VERSION) {
@@ -373,11 +386,11 @@
     if ('serviceWorker' in navigator) {
       caches.keys().then(keys =>
         Promise.all(
-          keys.filter(k => k !== 'plursky-v266' && !k.startsWith('plursky-tiles-'))
+          keys.filter(k => k !== 'plursky-v267' && !k.startsWith('plursky-tiles-'))
               .map(k => caches.delete(k))
         )
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v266', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v267', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 

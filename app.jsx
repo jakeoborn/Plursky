@@ -73,7 +73,7 @@ function OnboardingModal({ onDone, setState, state }) {
   const STEPS = [
     {
       kicker: "WELCOME",
-      title: <>Welcome to <span style={{ fontStyle: "italic", color: "var(--ember)" }}>Plursky</span></>,
+      title: <>Welcome to <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>Plursky</span></>,
       body: `${ARTISTS.length} artists across ${STAGES.length} stages. Live map, walking ETAs, conflict detection, crew meetups, and set reminders — all offline. Built for ${FESTIVAL_CONFIG.name || "the festival"}.`,
       preview: (
         <>
@@ -89,7 +89,7 @@ function OnboardingModal({ onDone, setState, state }) {
               background: "linear-gradient(0deg, rgba(26,16,48,0.9) 0%, transparent 100%)",
               padding: "24px 16px 10px",
             }}>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.8, color: "var(--ember)", fontWeight: 800 }}>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.8, color: "var(--ember-ink)", fontWeight: 800 }}>
                 SEE WHAT PLURSKY LOOKS LIKE AT THE FESTIVAL
               </div>
             </div>
@@ -136,7 +136,7 @@ function OnboardingModal({ onDone, setState, state }) {
     },
     {
       kicker: "STEP 2 OF 3",
-      title: <>Match the <span style={{ fontStyle: "italic", color: "var(--ember)" }}>lineup</span> to your Spotify</>,
+      title: <>Match the <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>lineup</span> to your Spotify</>,
       body: `Connect Spotify and we'll mark every artist you already love across all ${ARTISTS.length} sets, plus surface deep-cut discoveries you don't know yet.`,
       cta: state.spotifyConnected
         ? { label: "✓ ALREADY CONNECTED — CONTINUE", onClick: next }
@@ -145,7 +145,7 @@ function OnboardingModal({ onDone, setState, state }) {
     },
     {
       kicker: "STEP 3 OF 3",
-      title: <>Reminders before each <span style={{ fontStyle: "italic", color: "var(--ember)" }}>set</span></>,
+      title: <>Reminders before each <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>set</span></>,
       body: notifSupported
         ? `Get a push 15 minutes before any saved set starts — including the sunrise sets at ${STAGES.find(s => s.id === FESTIVAL_CONFIG.mainStageId)?.name || "the main stage"}. We don't track you, no account needed.`
         : "Push notifications aren't supported in this browser. You can still set custom alarms from the Lineup page.",
@@ -339,7 +339,7 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
           }} aria-label="Clear">×</button>
         )}
         <button onClick={onClose} style={{
-          background: "transparent", border: "none", color: "var(--ember)",
+          background: "transparent", border: "none", color: "var(--ember-ink)",
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.1, fontWeight: 700,
           cursor: "pointer", whiteSpace: "nowrap",
         }}>CLOSE</button>
@@ -383,7 +383,7 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
                           {st?.short} · DAY {a.day} · {fmt12(a.start)}
                         </div>
                       </div>
-                      <span style={{ fontSize: 10, color: "var(--ember)" }}>★</span>
+                      <span style={{ fontSize: 10, color: "var(--ember-ink)" }}>★</span>
                     </button>
                   );
                 })}
@@ -514,22 +514,17 @@ function App() {
   React.useEffect(() => {
     try { sbOutboxInit?.(); } catch {}
   }, []);
-  // Night-aware theme — shifts palette with the sky during the festival.
+  // Night-aware theme — shifts palette with the sky during the festival, unless
+  // the user has pinned LIGHT or DARK. The resolver and the pref both live in
+  // chrome.jsx (see resolveThemeClass / useThemeMode); this effect only owns the
+  // recompute cadence, so AUTO still crosses 20:00 without a reload. Re-runs on
+  // themeMode so tapping the segmented control repaints immediately.
+  const { mode: themeMode } = useThemeMode();
   React.useEffect(() => {
-    const update = () => {
-      const now = Date.now();
-      if (now < FESTIVAL_CONFIG.startMs || now > FESTIVAL_CONFIG.endMs) {
-        document.documentElement.className = "";
-        return;
-      }
-      const h = new Date().getHours();
-      const theme = h >= 20 || h < 4 ? "theme-night" : h >= 4 && h < 7 ? "theme-dawn" : h >= 17 && h < 20 ? "theme-sunset" : "";
-      document.documentElement.className = theme;
-    };
-    update();
-    const id = setInterval(update, 60000);
+    applyThemeClass();
+    const id = setInterval(applyThemeClass, 60000);
     return () => clearInterval(id);
-  }, []);
+  }, [themeMode]);
   // Native Spotify OAuth handoff (v196). When the user finishes the
   // SafariViewController flow, the appUrlOpen listener in spotify.jsx
   // exchanges the code for a token and dispatches this event. Mirror it
@@ -897,7 +892,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v266",
+        version: "v267",
       }));
     } catch {}
   }
@@ -930,7 +925,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
-          PLURSKY · v266
+          PLURSKY · v267
         </div>
       </div>
     );
@@ -984,7 +979,7 @@ function SetStartingCinematic() {
       }}/>
       <div style={{ position: "relative", textAlign: "center", padding: "0 32px" }}>
         <div className="mono" style={{
-          fontSize: 10, letterSpacing: 3, color: stage?.color || "var(--ember)", fontWeight: 800, marginBottom: 12,
+          fontSize: 10, letterSpacing: 3, color: stage?.color || "var(--ember-ink)", fontWeight: 800, marginBottom: 12,
           animation: "vfx-pulse 1.5s ease-in-out infinite",
         }}>SET STARTING</div>
         <div className="serif" style={{

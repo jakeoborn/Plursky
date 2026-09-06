@@ -185,15 +185,15 @@ function WellnessPill() {
   };
   const restLabel = restMin < 60 ? `${restMin}m` : `${Math.floor(restMin / 60)}h${(restMin % 60).toString().padStart(2, "0")}`;
 
-  const restColorLight = restMin < 75 ? "var(--ink)" : restMin < 120 ? "#b8651b" : "#c14a4a";
+  const restColorLight = restMin < 75 ? "var(--ink)" : restMin < 120 ? "var(--warn)" : "var(--alert)";
   return (
     <>
       <button onClick={() => setOpen(o => !o)} style={{
         position: "absolute", top: 14, left: 10, zIndex: 4,
         display: "flex", alignItems: "center", gap: 7,
         padding: "5px 10px 5px 7px", borderRadius: 999,
-        background: "rgba(247,237,224,0.88)",
-        border: `1px solid ${hyd < 40 || restMin > 120 ? "#c14a4a" : "var(--line-2)"}`,
+        background: "rgba(var(--glass),0.88)",
+        border: `1px solid ${hyd < 40 || restMin > 120 ? "var(--alert)" : "var(--line-2)"}`,
         backdropFilter: "blur(10px)",
         WebkitBackdropFilter: "blur(10px)",
         color: "var(--ink)",
@@ -202,7 +202,7 @@ function WellnessPill() {
         boxShadow: hyd < 40 ? "0 0 0 4px rgba(193,74,74,0.16)" : "0 2px 8px rgba(26,18,13,0.06)",
       }}>
         <span style={{ fontSize: 12 }}>💧</span>
-        <span style={{ color: hyd > 70 ? "var(--ink)" : hyd > 40 ? "#b8651b" : "#c14a4a", fontWeight: 700 }}>{hyd}%</span>
+        <span style={{ color: hyd > 70 ? "var(--ink)" : hyd > 40 ? "var(--warn)" : "var(--alert)", fontWeight: 700 }}>{hyd}%</span>
         <span style={{ width: 1, height: 10, background: "var(--line-2)" }}/>
         <span style={{ color: restColorLight, fontWeight: 700 }}>{restLabel}</span>
       </button>
@@ -1183,7 +1183,7 @@ function ShareLocationSheet({
             background: "rgba(193,74,74,0.10)", border: "1px solid rgba(193,74,74,0.35)",
             marginBottom: 12,
           }}>
-            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "#c14a4a", fontWeight: 700 }}>
+            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--alert)", fontWeight: 700 }}>
               GPS DENIED · ENABLE LOCATION IN BROWSER
             </span>
           </div>
@@ -1631,7 +1631,7 @@ function WeatherStrip() {
       <span style={{ fontSize: 14, lineHeight: 1, flexShrink: 0 }}>{emoji}</span>
       <span className="mono" style={{
         fontSize: 9, letterSpacing: 1.2, fontWeight: 700, flexShrink: 0,
-        color: isAlert ? "var(--ember)" : "var(--muted)",
+        color: isAlert ? "var(--ember-ink)" : "var(--muted)",
       }}>{(FESTIVAL_CONFIG.locationShort || FESTIVAL_CONFIG.brand || "").toUpperCase()}</span>
       <span style={{
         flex: 1, minWidth: 0, fontSize: 13, fontWeight: 500, color: "var(--ink)",
@@ -2259,7 +2259,7 @@ function MapScreen({ state, setState }) {
           <button onClick={() => window._popNav?.()} aria-label="Back" style={{
             position: "absolute", top: 12, left: 10, zIndex: 5,
             width: 38, height: 38, borderRadius: 12,
-            background: "rgba(247,237,224,0.92)", backdropFilter: "blur(10px)",
+            background: "rgba(var(--glass),0.92)", backdropFilter: "blur(10px)",
             border: "1px solid var(--line-2)", color: "var(--ink)",
             cursor: "pointer", fontSize: 16,
             display: "flex", alignItems: "center", justifyContent: "center",
@@ -2274,8 +2274,8 @@ function MapScreen({ state, setState }) {
         }}>
           <button onClick={() => setGpsLive(g => !g)} aria-label="Toggle GPS" aria-pressed={gpsActive} style={{
             minWidth: 46, padding: "6px 8px", borderRadius: 14,
-            background: gpsActive ? "var(--ember)" : "rgba(247,237,224,0.92)",
-            color: gpsActive ? "#fff" : (gpsStatus === "denied" ? "#c14a4a" : "var(--ink)"),
+            background: gpsActive ? "var(--ember)" : "rgba(var(--glass),0.92)",
+            color: gpsActive ? "#fff" : (gpsStatus === "denied" ? "var(--alert)" : "var(--ink)"),
             border: gpsActive ? "none" : "1px solid var(--line-2)",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
@@ -2295,7 +2295,7 @@ function MapScreen({ state, setState }) {
           {/* Unified control capsule — layers + zoom in one glass pill */}
           <div style={{
             display: "flex", flexDirection: "column",
-            background: "rgba(247,237,224,0.92)",
+            background: "rgba(var(--glass),0.92)",
             border: "1px solid var(--line-2)",
             borderRadius: 14, overflow: "hidden",
             backdropFilter: "blur(10px)",
@@ -2444,7 +2444,7 @@ function MapScreen({ state, setState }) {
         {amenityKey && !meetMode && (
           <div style={{
             position: "absolute", left: 10, top: 90, zIndex: 6,
-            background: "rgba(247,237,224,0.94)",
+            background: "rgba(var(--glass),0.94)",
             border: "1px solid var(--line-2)", borderRadius: 12,
             padding: 4, minWidth: 124,
             backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
@@ -2660,7 +2660,7 @@ function MapScreen({ state, setState }) {
                       }}>
                         <span style={{ width: 8, height: 8, borderRadius: 8, background: s.color, boxShadow: `0 0 6px ${s.color}` }}/>
                         <span style={{ fontFamily: "Geist, sans-serif", fontSize: 13, flex: 1 }}>{s.name}</span>
-                        {savedStages.has(s.id) && <span aria-label="Saved" style={{ color: "var(--ember)", fontSize: 12 }}>♥</span>}
+                        {savedStages.has(s.id) && <span aria-label="Saved" style={{ color: "var(--ember-ink)", fontSize: 12 }}>♥</span>}
                       </button>
                     ))}
                     {artistMatches.length > 0 && (
@@ -2679,7 +2679,7 @@ function MapScreen({ state, setState }) {
                           <span style={{ width: 8, height: 8, borderRadius: 8, background: st?.color || "var(--muted)", flexShrink: 0 }}/>
                           <span style={{ display: "flex", flexDirection: "column", flex: 1, minWidth: 0, gap: 1 }}>
                             <span style={{ fontFamily: "Geist, sans-serif", fontSize: 13, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                              {isSaved && <span style={{ color: "var(--ember)", marginRight: 4 }}>★</span>}{a.name}
+                              {isSaved && <span style={{ color: "var(--ember-ink)", marginRight: 4 }}>★</span>}{a.name}
                             </span>
                             {when && <span className="mono" style={{ fontSize: 9, letterSpacing: 0.5, color: "var(--muted)" }}>{when}</span>}
                           </span>
@@ -2766,7 +2766,7 @@ function MapScreen({ state, setState }) {
                             color: "var(--ink)", cursor: "pointer",
                             fontSize: 10, letterSpacing: 1.1, fontWeight: 700, whiteSpace: "nowrap",
                           }}>
-                            <span style={{ color: "var(--ember)", fontSize: 11, lineHeight: 1 }}>♥</span>
+                            <span style={{ color: "var(--ember-ink)", fontSize: 11, lineHeight: 1 }}>♥</span>
                             <span>{s.name.toUpperCase()}</span>
                           </button>
                         ))}
@@ -2940,7 +2940,7 @@ function MapScreen({ state, setState }) {
                 if (ok) setRallySent(true);
               }} disabled={rallySent} style={{
                 background: rallySent ? "rgba(255,255,255,0.25)" : "#fff",
-                color: rallySent ? "#fff" : "var(--ember)",
+                color: rallySent ? "#fff" : "var(--ember-ink)",
                 border: "none", borderRadius: 999, padding: "5px 12px",
                 cursor: rallySent ? "default" : "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 800,
@@ -3130,7 +3130,7 @@ function MapScreen({ state, setState }) {
                 <span style={{ fontSize: 14, width: 18 }}>🗓</span>
                 <span style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500, flex: 1 }}>Meetups</span>
                 <span className="mono" style={{
-                  fontSize: 9, letterSpacing: 1, color: meetups.length ? "var(--ember)" : "var(--muted)", fontWeight: 700,
+                  fontSize: 9, letterSpacing: 1, color: meetups.length ? "var(--ember-ink)" : "var(--muted)", fontWeight: 700,
                 }}>{meetups.length ? `${meetups.length} UPCOMING` : "NONE"}</span>
               </button>
               <button onClick={() => { setRideshareOpen(true); setMoreOpen(false); }} style={{
@@ -3151,7 +3151,7 @@ function MapScreen({ state, setState }) {
                 }}>
                   <span style={{ fontSize: 14, width: 18 }}>📐</span>
                   <span style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500, flex: 1 }}>Crowd survey</span>
-                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--ember)", fontWeight: 700 }}>SURVEY MODE</span>
+                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--ember-ink)", fontWeight: 700 }}>SURVEY MODE</span>
                 </button>
               )}
             </div>
@@ -5630,7 +5630,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         <div style={{
           position: "absolute", top: 12, right: 12,
           width: 44, height: 44, borderRadius: 44,
-          background: "rgba(247,237,224,0.92)",
+          background: "rgba(var(--glass),0.92)",
           border: "1px solid var(--line-2)",
           boxShadow: "0 3px 10px rgba(26,18,13,0.18)",
           display: "flex", alignItems: "center", justifyContent: "center",
@@ -5645,10 +5645,10 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
               position: "absolute", top: 0, left: "50%",
               transform: "translateX(-50%)",
               fontFamily: "Geist Mono, monospace", fontSize: 8, fontWeight: 800,
-              color: "#c14a4a", letterSpacing: 0.5,
+              color: "var(--alert)", letterSpacing: 0.5,
             }}>N</div>
             <svg width="32" height="32" viewBox="-16 -16 32 32" style={{ position: "absolute", inset: 0 }}>
-              <path d="M0,-9 L2.5,2 L0,0 L-2.5,2 Z" fill="#c14a4a"/>
+              <path d="M0,-9 L2.5,2 L0,0 L-2.5,2 Z" fill="var(--alert)"/>
               <path d="M0,9 L2.5,-2 L0,0 L-2.5,-2 Z" fill="rgba(26,18,13,0.45)"/>
               <circle cx="0" cy="0" r="1.2" fill="var(--ink)"/>
             </svg>
@@ -5896,7 +5896,7 @@ function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, m
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><path d="M12 2 C8 2 5 5 5 9 c0 5 7 13 7 13 s7-8 7-13 c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5" fill="#fff"/></svg>
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--ember)", fontWeight: 700 }}>MEETING</div>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--ember-ink)", fontWeight: 700 }}>MEETING</div>
             <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>{title}</div>
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 2 }}>{eta == null ? "" : `ETA ~${eta} MIN \u00b7 `}{routingLabel}</div>
           </div>
@@ -6132,7 +6132,7 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
         <button onClick={() => onToggleSave?.(stage.id)} aria-pressed={!!stageSaved}
           aria-label={stageSaved ? "Saved — remove this stage" : "Save this stage"} className="mono" style={{
           flex: 1, background: stageSaved ? "rgba(232,93,46,0.12)" : "var(--paper-2)",
-          color: stageSaved ? "var(--ember)" : "var(--ink)",
+          color: stageSaved ? "var(--ember-ink)" : "var(--ink)",
           border: stageSaved ? "1px solid rgba(232,93,46,0.45)" : "1px solid var(--line-2)",
           borderRadius: 12, padding: "11px 8px", cursor: "pointer",
           fontSize: 11, letterSpacing: 1.2, fontWeight: 700,
@@ -6150,7 +6150,7 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
         {walk.known !== false && walk.lo > 25 && (
           <div className="mono" style={{
             flexShrink: 0, background: "rgba(193,74,74,0.1)", border: "1px solid rgba(193,74,74,0.35)",
-            color: "#c14a4a", borderRadius: 999, padding: "7px 13px",
+            color: "var(--alert)", borderRadius: 999, padding: "7px 13px",
             fontSize: 10, letterSpacing: 1.2, fontWeight: 700, whiteSpace: "nowrap",
             display: "inline-flex", alignItems: "center",
           }}>↗ FAR · {walk.lo} MIN</div>
@@ -6503,7 +6503,7 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
             padding: "5px 16px", background: "rgba(232,93,46,0.08)",
             borderBottom: "1px solid rgba(232,93,46,0.18)",
           }}>
-            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--ember)", fontWeight: 700 }}>
+            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--ember-ink)", fontWeight: 700 }}>
               ⚠ OFFLINE · MESSAGES QUEUE & SEND WHEN YOU'RE BACK ONLINE
             </span>
           </div>
@@ -6549,7 +6549,7 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
                   </div>
                 </div>
                 {mine && m.status === "queued" && i === thread.length - 1 && (
-                  <div className="mono" style={{ textAlign: "right", fontSize: 8, letterSpacing: 1.2, color: "var(--ember)", marginRight: 4, marginBottom: 4 }}>
+                  <div className="mono" style={{ textAlign: "right", fontSize: 8, letterSpacing: 1.2, color: "var(--ember-ink)", marginRight: 4, marginBottom: 4 }}>
                     QUEUED
                   </div>
                 )}
