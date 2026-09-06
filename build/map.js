@@ -2544,6 +2544,8 @@ function MapScreen({
   }, [meetupsOpen]);
   var [menuOpen, setMenuOpen] = React.useState(false);
   var [moreOpen, setMoreOpen] = React.useState(false);
+  var [surveyOpen, setSurveyOpen] = React.useState(false);
+  var surveyOn = React.useMemo(() => typeof surveyEnabled === "function" && surveyEnabled(), []);
   var [myStatusStage, setMyStatusStage] = React.useState(() => getMyStatus()?.stage || null);
   var [shareState, setShareState] = React.useState(() => {
     try {
@@ -4683,7 +4685,46 @@ function MapScreen({
       color: "var(--muted)",
       fontWeight: 700
     }
-  }, "UBER / LYFT"))))), chatFriend && React.createElement(MessageDrawer, {
+  }, "UBER / LYFT")), surveyOn && React.createElement("button", {
+    onClick: () => {
+      setSurveyOpen(true);
+      setMoreOpen(false);
+    },
+    style: {
+      width: "100%",
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      padding: "9px 11px",
+      background: "transparent",
+      border: "none",
+      borderTop: "1px solid var(--line)",
+      borderRadius: 8,
+      cursor: "pointer",
+      color: "var(--ink)",
+      textAlign: "left"
+    }
+  }, React.createElement("span", {
+    style: {
+      fontSize: 14,
+      width: 18
+    }
+  }, "📐"), React.createElement("span", {
+    style: {
+      fontFamily: "Geist",
+      fontSize: 13,
+      fontWeight: 500,
+      flex: 1
+    }
+  }, "Crowd survey"), React.createElement("span", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1,
+      color: "var(--ember)",
+      fontWeight: 700
+    }
+  }, "SURVEY MODE"))))), chatFriend && React.createElement(MessageDrawer, {
     friend: chatFriend,
     myPresId: myPresId,
     avatarStage: selectedStage,
@@ -4702,6 +4743,9 @@ function MapScreen({
     }
   }), rideshareOpen && React.createElement(RideshareSheet, {
     onClose: () => setRideshareOpen(false)
+  }), surveyOpen && React.createElement(SurveyPanel, {
+    onClose: () => setSurveyOpen(false),
+    nearestStageId: selectedStage
   }), pingOpen && React.createElement(PingSheet, {
     friends: friends,
     onClose: () => setPingOpen(false),

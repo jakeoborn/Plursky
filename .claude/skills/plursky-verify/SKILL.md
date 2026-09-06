@@ -76,5 +76,39 @@ Don't claim UI works without seeing it.
 # then Read /tmp/x.png
 ```
 
+### ⚠️ A screenshot can lie three ways. Assert, don't squint.
+
+Each of these produced a confident-looking PNG that was wrong about the app
+(2026-09-05, the crowd-survey panel — three wasted render cycles):
+
+1. **`--window-size` does NOT set the layout viewport.** Chrome laid out at
+   **500px** and the 390px screenshot simply cropped it, which reads exactly
+   like a component overflowing its container. Force it in CSS
+   (`html,body{width:390px}`) and **assert it**, don't assume.
+2. **A harness missing the app's CSS renders a different component.** Pulling
+   `:root{...}` with a non-greedy regex grabbed the wrong block, every
+   `var(--ember)` resolved to nothing, and filled buttons came out
+   transparent. Inline the WHOLE `<style>` from index.html, then assert a
+   variable actually resolved.
+3. **`body{display:flex}` (index.html line ~57) collapses a preview wrapper
+   to zero width** if its content is absolutely positioned — the page renders
+   blank, not broken-looking. Give the wrapper `flex:0 0 <width>px`.
+
+So end every visual check with numbers, then look at the picture:
+
+```js
+// append to the preview page, dump-dom it, and read the <pre>
+out.push("viewport=" + document.documentElement.clientWidth);   // must be the width you asked for
+out.push("scrollWidth=" + document.body.scrollWidth);           // must equal viewport — no h-overflow
+out.push("--ember=" + getComputedStyle(document.documentElement).getPropertyValue("--ember"));
+document.querySelectorAll("button").forEach(b =>
+  out.push("BTN [" + b.textContent.trim().slice(0,24) + "] bg=" + getComputedStyle(b).backgroundColor));
+```
+
+**Prefer rendering the REAL component over a mock.** Load `build/data.js` +
+the file under test, seed `localStorage`, and `createRoot().render()` it
+directly — a mock proves your CSS copy-paste was faithful, which is not the
+thing in doubt.
+
 Notes: Babel-standalone + CDNs need network. New `.jsx` must be in
 `index.html` (the probe derives order from it). Clean up `__pc.html`/`__probe.html`.
