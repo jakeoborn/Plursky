@@ -517,7 +517,8 @@ const FESTIVALS_REGISTRY = [
       //   north building 39.94101, -82.40523   way 1318886831
       //   pool           39.93861, -82.40113   way 1318886829
       //
-      // SO THE HONEST OPTIONS AT THE FLIP ARE:
+      // SO THE HONEST OPTIONS AT THE FLIP WERE — 2 IS THE ONE TAKEN, see
+      // the map block below:
       //   1. Ship gated-map posture (today). No anchors, MAP_AFFINE null,
       //      distance/walk-time readouts suppressed through the v257/v260
       //      gate, blue dot only on the real-map layer where it is true.
@@ -532,15 +533,29 @@ const FESTIVALS_REGISTRY = [
       // What is NOT an option is fitting the art. That is how the seven
       // deleted `prov` anchors got here in the first place.
       mainStageId: "prehistoric",
-      // lostlands-2026.svg = generated abstract ground plate, regenerated
-      // 2026-09-06 from the corrected stage coordinates (the old .jpg was an
-      // ImageMagick gradient authored against the WRONG layout). It traces
-      // shape only and reproduces no festival artwork — nocturnal-2026.svg
-      // precedent. Replace with the processed official 2026 patron map
-      // (acl-park.webp treatment) when it drops.
-      mapImage: "lostlands-2026.svg",
-      mapStyle: "image-overlay",
-      mapTheme: "forest",
+      // ── THE MAP: mapMode "real" (founder decision 2026-09-07) ──
+      // Option 2 from the block above, taken: a correct blue dot today beats
+      // waiting on 2026 art that is already known to be unusable.
+      //
+      // No mapImage, no mapStyle "image-overlay", no gpsAnchors. Real
+      // basemap centred on the surveyed venue, the live blue dot, and the
+      // OSM parcel outline — all of it true, none of it drawn by us. Same
+      // posture as iii-points-2026, crssd-fall-2026 and portola-2026.
+      //
+      // What this REPLACES is the honest part. lostlands-2026.svg was a
+      // generated abstract plate whose shape came from stage coordinates
+      // read off the festival art. The art is unregisterable (see above), so
+      // those coordinates never meant anything in world space and the plate
+      // inherited that. Drawing it under a blue dot would put the dot in a
+      // place that is not where the user is. The .svg file stays in the repo
+      // but is no longer referenced, so it also comes out of the sw.js LOCAL
+      // precache list — a dead entry in an ATOMIC addAll is a real hazard.
+      //
+      // The affine-vs-poster gate has no poster to check here. Not a waiver:
+      // there is genuinely nothing to register.
+      mapMode: "real",
+      mapPrintsStageNames: false,
+      mapArtIsGeoregistered: false,
       weatherEndpoint: "https://api.weather.gov/points/39.9403,-82.4039",
       // Flip-session marker: replace provisional set times/stages, then delete.
       setTimesProvisional: true,
@@ -1920,12 +1935,12 @@ const EDCO_AMENITIES = [
 // a pin at NaN. Its artists still appear in the lineup. Same call as
 // Nocturnal's Rave Cave.
 const LL_STAGES = [
-  { id: "prehistoric",  name: "Prehistoric Paradox", short: "PREHISTORIC", color: "#f97316", x: 75, y: 88, size: 2.2, desc: "Legend Valley main stage", vibe: "Main Energy", vibeNote: "The big one. Pyro, lasers, the whole valley answers.", peak: "17:00–00:00" },
-  { id: "wompy-woods",  name: "Wompy Woods",         short: "WOMPY",      color: "#84cc16", x: 78, y: 51, size: 1.6, desc: "Forest-draped second stage", vibe: "In The Trees", vibeNote: "Wobbles in the woods; fan-favorite for a reason.", peak: "14:00–23:00" },
-  { id: "crater",       name: "The Crater",          short: "CRATER",     color: "#a855f7", x: 32, y: 74, size: 1.5, desc: "360-degree immersive stage", vibe: "Surround Sound", vibeNote: "Bass in the round - the pre-party home.", peak: "14:00–23:00" },
-  { id: "subsidia",     name: "Subsidia Stage",      short: "SUBSIDIA",   color: "#22d3ee", x: 22, y: 33, size: 1.3, desc: "Excision-label showcase stage", vibe: "Label Night", vibeNote: "Subsidia Records takeover energy.", peak: "14:00–22:00" },
-  { id: "forest-stage", name: "Forest Stage",        short: "FOREST",     color: "#34d399", x: 23, y: 13, size: 1.1, desc: "Deep-in-the-trees stage", vibe: "Hidden Forest", vibeNote: "Small canopy, big wubs.", peak: "14:00–22:00" },
-  { id: "raptor-alley", name: "Raptor Alley",        short: "RAPTOR",     color: "#ef4444", x: 56, y: 12, size: 0.9, desc: "Late-night after-hours lane", vibe: "After Hours", vibeNote: "The valley does not sleep.", peak: "23:00–04:00" },
+  { id: "prehistoric",  name: "Prehistoric Paradox", short: "PREHISTORIC", color: "#f97316", size: 2.2, desc: "Legend Valley main stage", vibe: "Main Energy", vibeNote: "The big one. Pyro, lasers, the whole valley answers.", peak: "17:00–00:00" },
+  { id: "wompy-woods",  name: "Wompy Woods",         short: "WOMPY",      color: "#84cc16", size: 1.6, desc: "Forest-draped second stage", vibe: "In The Trees", vibeNote: "Wobbles in the woods; fan-favorite for a reason.", peak: "14:00–23:00" },
+  { id: "crater",       name: "The Crater",          short: "CRATER",     color: "#a855f7", size: 1.5, desc: "360-degree immersive stage", vibe: "Surround Sound", vibeNote: "Bass in the round - the pre-party home.", peak: "14:00–23:00" },
+  { id: "subsidia",     name: "Subsidia Stage",      short: "SUBSIDIA",   color: "#22d3ee", size: 1.3, desc: "Excision-label showcase stage", vibe: "Label Night", vibeNote: "Subsidia Records takeover energy.", peak: "14:00–22:00" },
+  { id: "forest-stage", name: "Forest Stage",        short: "FOREST",     color: "#34d399", size: 1.1, desc: "Deep-in-the-trees stage", vibe: "Hidden Forest", vibeNote: "Small canopy, big wubs.", peak: "14:00–22:00" },
+  { id: "raptor-alley", name: "Raptor Alley",        short: "RAPTOR",     color: "#ef4444", size: 0.9, desc: "Late-night after-hours lane", vibe: "After Hours", vibeNote: "The valley does not sleep.", peak: "23:00–04:00" },
   { id: "grove",        name: "The Grove",           short: "GROVE",      color: "#eab308", size: 0.8, desc: "Campground stage", vibe: "Campground", vibeNote: "Morning-to-late sets where the camps live.", peak: "10:00–22:00" },
 ];
 

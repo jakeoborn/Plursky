@@ -53,7 +53,6 @@ const LOCAL = [
   './lolla-2026.svg',
   './osl-2026.svg',
   './nocturnal-2026.svg',
-  './lostlands-2026.svg',
   './hard-summer-2026.webp',
   './escape-2025-map.webp',
   './acl-park.webp',
