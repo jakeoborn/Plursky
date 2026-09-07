@@ -992,18 +992,6 @@ function LineupScreen({
   React.useEffect(() => {
     setCollapsed(viewMode === "grid");
   }, [day, viewMode, weekendFilter]);
-  var [gridFit, setGridFit] = React.useState(() => {
-    try {
-      return localStorage.getItem('plursky_grid_fit') === '1';
-    } catch {
-      return false;
-    }
-  });
-  React.useEffect(() => {
-    try {
-      localStorage.setItem('plursky_grid_fit', gridFit ? '1' : '0');
-    } catch {}
-  }, [gridFit]);
   var gridSectionRefs = React.useRef({});
   var [, _tickT] = React.useReducer(x => x + 1, 0);
   React.useEffect(() => {
@@ -1333,23 +1321,7 @@ function LineupScreen({
       cursor: "pointer",
       whiteSpace: "nowrap"
     }
-  }, "◎ MAP"), viewMode === "grid" && React.createElement("button", {
-    onClick: () => setGridFit(f => !f),
-    "aria-pressed": gridFit,
-    className: "mono",
-    style: {
-      padding: "3px 9px",
-      borderRadius: 999,
-      border: "none",
-      background: gridFit ? "var(--ember)" : "transparent",
-      color: gridFit ? "#fff" : "var(--ink)",
-      fontSize: 9,
-      letterSpacing: 1,
-      fontWeight: 700,
-      cursor: "pointer",
-      whiteSpace: "nowrap"
-    }
-  }, "⛶ FIT")), React.createElement("button", {
+  }, "◎ MAP")), React.createElement("button", {
     onClick: () => setFilterSheetOpen(true),
     className: "mono",
     style: {
@@ -1707,8 +1679,7 @@ function LineupScreen({
       matchesActive: matchesActive,
       conflictById: conflictById,
       spotifyMatchedIds: spotifyMatchedIds,
-      highlightId: highlightId,
-      fit: gridFit
+      highlightId: highlightId
     })));
   })(), viewMode === "list" && dayArtists.length === 0 && q.trim() !== "" && React.createElement("div", {
     style: {
@@ -2378,6 +2349,9 @@ function GridSetBlock({
   narrow = false
 }) {
   var isHeadliner = a.tier === 3;
+  var _lineH = narrow ? 10.2 : isHeadliner ? 13.8 : 12.7;
+  var _chrome = narrow ? 8 : 20;
+  var nameLines = Math.max(1, Math.min(4, Math.floor((height - _chrome) / _lineH)));
   var fillAlpha = isHeadliner ? "38" : "22";
   var dimAlpha = isHeadliner ? "14" : "08";
   var _store = refStore;
@@ -2464,10 +2438,10 @@ function GridSetBlock({
       overflow: "hidden",
       textOverflow: "ellipsis",
       display: "-webkit-box",
-      WebkitLineClamp: narrow ? height > 46 ? 3 : height > 30 ? 2 : 1 : height > 60 ? 2 : 1,
+      WebkitLineClamp: nameLines,
       WebkitBoxOrient: "vertical",
       overflowWrap: "break-word",
-      paddingRight: saved ? narrow ? 9 : 12 : 0,
+      paddingRight: saved ? clash ? narrow ? 19 : 23 : narrow ? 9 : 12 : 0,
       fontFamily: isHeadliner ? "Instrument Serif, Georgia, serif" : "Geist, -apple-system, sans-serif"
     }
   }, a.name), !narrow && React.createElement("div", {
@@ -2499,7 +2473,19 @@ function GridSetBlock({
       fontWeight: 800,
       lineHeight: 1
     }
-  }, "★"), !saved && matched && height > 30 && React.createElement("span", {
+  }, "★"), clash && React.createElement("span", {
+    title: "Overlaps another saved set",
+    "aria-label": "clash",
+    style: {
+      position: "absolute",
+      top: 2.5,
+      right: narrow ? 13 : 16,
+      fontSize: 9,
+      color: "var(--ember-ink)",
+      fontWeight: 800,
+      lineHeight: 1
+    }
+  }, "⚠"), !saved && matched && height > 30 && React.createElement("span", {
     style: {
       position: "absolute",
       top: 4,
@@ -2549,13 +2535,12 @@ function TimelineGrid({
   matchesActive,
   conflictById,
   spotifyMatchedIds,
-  highlightId,
-  fit = false
+  highlightId
 }) {
   var GUTTER_W = 44;
+  var HEAD_H = 34;
   var TOTAL_H = GRID_TOTAL_H;
   var minToTop = _minToTop;
-  var focus = !fit;
   var scrollRef = React.useRef(null);
   var _blockRefs = React.useRef({});
   var HOURS = [];
@@ -2591,15 +2576,6 @@ function TimelineGrid({
       stageId: mine[0].a.stage
     };
   }, [allDayArtists, state.saved, nowMin]);
-  var initialStage = (() => {
-    if (due && cols.some(c => c.stage.id === due.stageId)) return due.stageId;
-    if (cols.some(c => c.stage.id === FESTIVAL_CONFIG.mainStageId)) return FESTIVAL_CONFIG.mainStageId;
-    return cols[0]?.stage.id;
-  })();
-  var [activeStage, setActiveStage] = React.useState(initialStage);
-  React.useEffect(() => {
-    setActiveStage(initialStage);
-  }, [day, cols.length]);
   var [boxW, setBoxW] = React.useState(375);
   React.useLayoutEffect(() => {
     var el = scrollRef.current;
@@ -2611,28 +2587,19 @@ function TimelineGrid({
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
-  var MIN_COL = 30;
-  var COL_W = focus ? Math.max(200, boxW - GUTTER_W) : Math.max(MIN_COL, Math.floor((boxW - GUTTER_W - 2) / Math.max(1, cols.length)));
+  var BAND = Math.round(Math.min(118, Math.max(92, boxW * 0.26)));
+  var COL_W = Math.max(BAND, Math.floor((boxW - GUTTER_W) / Math.max(1, cols.length)));
   var showEndTime = COL_W >= 120;
   var narrow = COL_W < 72;
   var scrollToStage = id => {
     var i = cols.findIndex(c => c.stage.id === id);
     var el = scrollRef.current;
     if (i < 0 || !el) return;
-    setActiveStage(id);
     el.scrollTo({
       left: i * COL_W,
       behavior: "smooth"
     });
   };
-  var onScroll = React.useCallback(() => {
-    if (!focus) return;
-    var el = scrollRef.current;
-    if (!el) return;
-    var i = Math.round(el.scrollLeft / COL_W);
-    var c = cols[Math.max(0, Math.min(cols.length - 1, i))];
-    if (c && c.stage.id !== activeStage) setActiveStage(c.stage.id);
-  }, [focus, COL_W, cols, activeStage]);
   var didInit = React.useRef(false);
   React.useLayoutEffect(() => {
     var el = scrollRef.current;
@@ -2640,13 +2607,13 @@ function TimelineGrid({
     didInit.current = true;
     var target = due ? toNightMin(ARTISTS.find(a => a.id === due.id)?.start || 0) : nowMin;
     if (target != null && target >= GRID_START_MIN && target <= GRID_END_MIN) {
-      el.scrollTop = Math.max(0, minToTop(target) - 100);
+      el.scrollTop = Math.max(0, HEAD_H + minToTop(target) - 100);
     }
-    if (focus && activeStage) {
-      var i = cols.findIndex(c => c.stage.id === activeStage);
+    if (due) {
+      var i = cols.findIndex(c => c.stage.id === due.stageId);
       if (i > 0) el.scrollLeft = i * COL_W;
     }
-  }, [cols.length, COL_W, focus, activeStage, due, nowMin, minToTop]);
+  }, [cols.length, COL_W, due, nowMin, minToTop]);
   var savedByStage = React.useMemo(() => {
     var m = {};
     for (var a of allDayArtists) if (state.saved.includes(a.id)) m[a.stage] = (m[a.stage] || 0) + 1;
@@ -2661,81 +2628,13 @@ function TimelineGrid({
         flexDirection: "column"
       }
     }, React.createElement("div", {
-      style: {
-        display: "flex",
-        gap: 6,
-        overflowX: "auto",
-        overflowY: "hidden",
-        padding: "6px 12px 7px",
-        borderBottom: "1px solid var(--line)",
-        flexShrink: 0,
-        WebkitOverflowScrolling: "touch",
-        scrollbarWidth: "none"
-      }
-    }, cols.map(({
-      stage: s
-    }, i) => {
-      var on = focus && s.id === activeStage;
-      var n = savedByStage[s.id] || 0;
-      return React.createElement("button", {
-        key: s.id,
-        onClick: () => scrollToStage(s.id),
-        className: "mono",
-        style: {
-          flexShrink: 0,
-          padding: "5px 9px",
-          borderRadius: 8,
-          border: `1px solid ${on ? s.color : "var(--line-2)"}`,
-          background: on ? s.color : "transparent",
-          color: on ? "#fff" : "var(--ink)",
-          fontSize: 9,
-          letterSpacing: 1,
-          fontWeight: 800,
-          cursor: "pointer",
-          display: "flex",
-          alignItems: "center",
-          gap: 5,
-          opacity: focus && !on ? 0.75 : 1
-        }
-      }, React.createElement("span", {
-        style: {
-          width: 6,
-          height: 6,
-          borderRadius: 6,
-          flexShrink: 0,
-          background: on ? "#fff" : s.color
-        }
-      }), s.short, n > 0 && React.createElement("span", {
-        style: {
-          fontSize: 8,
-          fontWeight: 800,
-          color: on ? "#fff" : "var(--ember-ink)"
-        }
-      }, "★", n));
-    })), focus && React.createElement("div", {
-      className: "mono",
-      style: {
-        flexShrink: 0,
-        padding: "5px 14px 6px",
-        fontSize: 8.5,
-        letterSpacing: 1.2,
-        color: "var(--muted)",
-        borderBottom: "1px solid var(--line)",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center"
-      }
-    }, React.createElement("span", null, (STAGES.find(s => s.id === activeStage)?.name || "").toUpperCase(), " · ", cols.findIndex(c => c.stage.id === activeStage) + 1, "/", cols.length), React.createElement("span", null, "SWIPE FOR STAGES →")), React.createElement("div", {
       ref: scrollRef,
-      onScroll: onScroll,
       "data-grid-scroll": true,
       style: {
         flex: 1,
         minHeight: 0,
         overflow: "auto",
         WebkitOverflowScrolling: "touch",
-        scrollSnapType: focus ? "x mandatory" : "none",
-        scrollPaddingLeft: GUTTER_W,
         overscrollBehavior: "contain"
       }
     }, React.createElement("div", {
@@ -2744,6 +2643,84 @@ function TimelineGrid({
         position: "relative"
       }
     }, React.createElement("div", {
+      style: {
+        display: "flex",
+        position: "sticky",
+        top: 0,
+        zIndex: 8,
+        height: HEAD_H
+      }
+    }, React.createElement("div", {
+      style: {
+        width: GUTTER_W,
+        flexShrink: 0,
+        position: "sticky",
+        left: 0,
+        zIndex: 2,
+        background: "var(--paper)",
+        borderRight: "1px solid var(--line)",
+        borderBottom: "1px solid var(--line-2)"
+      }
+    }), cols.map(({
+      stage: s
+    }) => {
+      var n = savedByStage[s.id] || 0;
+      return React.createElement("button", {
+        key: s.id,
+        onClick: () => {
+          try {
+            window.plurskyHaptic?.("LIGHT");
+          } catch {}
+          scrollToStage(s.id);
+        },
+        title: s.name,
+        className: "mono",
+        style: {
+          width: COL_W,
+          flexShrink: 0,
+          height: HEAD_H,
+          border: "none",
+          borderLeft: "1px solid var(--line)",
+          borderBottom: "1px solid var(--line-2)",
+          background: "var(--paper)",
+          color: "var(--ink)",
+          padding: "3px 5px 0",
+          cursor: "pointer",
+          position: "relative",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 4,
+          fontSize: 9,
+          letterSpacing: 1,
+          fontWeight: 800,
+          fontFamily: "inherit"
+        }
+      }, React.createElement("span", {
+        "aria-hidden": "true",
+        style: {
+          position: "absolute",
+          left: 0,
+          right: 0,
+          top: 0,
+          height: 3,
+          background: s.color
+        }
+      }), React.createElement("span", {
+        style: {
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap"
+        }
+      }, s.short), n > 0 && React.createElement("span", {
+        style: {
+          flexShrink: 0,
+          color: "var(--ember-ink)",
+          fontSize: 8.5,
+          fontWeight: 800
+        }
+      }, "★", n));
+    })), React.createElement("div", {
       style: {
         display: "flex",
         position: "relative"
@@ -2799,8 +2776,7 @@ function TimelineGrid({
           position: "relative",
           height: TOTAL_H,
           borderLeft: "1px solid var(--line)",
-          background: si % 2 === 0 ? "transparent" : "rgba(26,18,13,0.018)",
-          scrollSnapAlign: focus ? "start" : "none"
+          background: si % 2 === 0 ? "transparent" : "rgba(26,18,13,0.018)"
         }
       }, React.createElement(GridHourLines, {
         hours: HOURS,
