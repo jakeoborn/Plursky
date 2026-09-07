@@ -57,22 +57,49 @@
 // official page; "FIFI", "BOLO", "SHAKING", "DREYA V" and "FLABBERGAST"
 // are uppercase there. Both are verbatim. Do not title-case either group.
 //
+// ⛔ THE SEARCH THAT FAILS — AND DID FAIL HERE FIRST. The official 2026
+// patron map EXISTS, at hardsummer.com/info/festival-map/. It is NOT LINKED
+// FROM ANY NAV MENU: the Info dropdown lists Info & Hours, Bag Policy,
+// Anti-Theft, Acceptable Items, Lost & Found, Health & Wellness and
+// Accessibility, and stops. The first pass of this module walked the nav and
+// the homepage links, found nothing, and wrote "no map exists" into this
+// header — the same shape of mistake as the Pier 80 OSM lookup in
+// portola-2026.js: a search bug reported as a data gap.
+//   ✅ THE CHECK THAT WORKS: read /wp-sitemap.xml. Every page is enumerated
+//   there whether or not anything links to it. Do that BEFORE concluding a
+//   festival publishes no map, on this site and on every other one.
+//   THE MAP: hsmf_2026_de_festival_map_1080x1350_r04.png on the site's own
+//   CDN, uploaded 2026-07-27 — five days before doors, i.e. released for the
+//   edition, which under the map ruling (Jake: "each edition ships its own
+//   map once it's officially released; until release week, fall back to last
+//   year's map") is the map this festival should carry.
+//
 // ── WHAT IS NOT PUBLISHED (verified 2026-09-06, do not fabricate) ──
-// SITE MAP: absent. hardsummer.com has no map page in any nav; the only
-//   Google Maps embed on the site is driving directions on /travel/location/.
-//   Under the map ruling (Jake, 2026-09-06: "map of last year or the new map
-//   if it's been released") the fallback would be the 2025 patron map — that
-//   is not published on the live site either, in any year.
-// STAGE POSITIONS: absent, and therefore not here. See SPATIAL MODEL.
-// STAGE COLOURS: absent. The set-times stylesheet is monochrome
-//   (#000 / #fff / #7f7f7f); the only brand colour on it is the link red
-//   #E51D1D. See the STAGES block for what each colour below actually is.
-// AMENITIES: absent — no map, no legend, so none.
+// STAGE POSITIONS: not read yet — see SPATIAL MODEL for why this build
+//   ships without them rather than guessing at them from the map.
+// STAGE COLOURS: absent FROM THE WEB PAGES — the set-times stylesheet is
+//   monochrome (#000 / #fff / #7f7f7f) and the only brand colour on it is
+//   the link red #E51D1D. The patron map may well carry per-stage colour;
+//   that has not been checked. See the STAGES block for what the colours
+//   below actually are, and replace them if the map supplies real ones.
+// AMENITIES: none here. Unlike Portola, though, an official map exists, so
+//   "unpublished" is NOT established — nobody has opened it yet. Whether it
+//   carries an amenity legend, and whether it carries stage colours, are
+//   both open questions to answer FROM THE MAP, not asserted from here.
 //
 // ── SPATIAL MODEL ──
 // `mapMode: "real"` — real basemap over the surveyed district, live blue
 // dot, venue outline. No stage x/y, no gpsAnchors, MAP_AFFINE null, and the
 // v257/v260 gate therefore suppresses every distance and walk-time readout.
+//
+// ⚠ THIS IS AN INTERIM STATE, NOT THE END STATE. Every other festival that
+// ships `mapMode: "real"` does so because no official map exists (CRSSD,
+// Portola) — for those, real-basemap IS the answer. HARD Summer is the only
+// one where an official map exists and simply has not been registered yet.
+// It should move to `mapStyle: "image-overlay"` with the 2026 patron map and
+// seven registered stage x/y, the way ACL and EDC do it. Until then the
+// real basemap is the honest fallback: it shows a true place with a true
+// blue dot, and asserts nothing about where the stages are.
 //
 // ⚠ venue.footprint is THE WHOLE DISTRICT (297 acres — OSM's
 // "Los Angeles Stadium and Entertainment District at Hollywood Park",
