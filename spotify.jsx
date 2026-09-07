@@ -1144,8 +1144,13 @@ function _writeMoments(all) {
     }, 2500);
   } catch {}
 }
+// The count behind the Me-tab MEMORIES card. It has to be the ACTIVE
+// festival's count, because tapping the card opens the Memories screen and
+// that screen renders _activeMoments(). Measured 2026-09-07 on a seeded
+// library of 42 moments with 3 on the active festival: the card said 42 and
+// the screen it opened showed 3.
 function _countMoments() {
-  const all = _readMoments();
+  const all = _activeMoments(_readMoments());
   return Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
 }
 
@@ -3710,23 +3715,44 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
 // API) + lets the user purge moments per-night or wholesale. Each delete
 // nukes both the localStorage metadata AND the IndexedDB photo blob so
 // nothing leaks.
-async function _purgeNightMoments(night) {
+// Delete exactly what the surface LISTED, and nothing else.
+//
+// Both purges used to walk the whole moment store while StorageManager, the
+// only screen that offers them, renders _activeMoments() — one festival.
+// Measured 2026-09-07 against a seeded library of 42 moments, 3 of them on
+// the active festival: the night row read "1 TOTAL" and CLEAR removed 14;
+// the confirm read "Delete all 3 moments?" and DELETE ALL removed all 42,
+// silently taking every other festival's memories with it. A number the user
+// is shown before a destructive tap has to be the number that is acted on.
+//
+// Matching is by object IDENTITY, not by id: _activeMoments filters, it does
+// not clone, so the visible moments ARE the stored ones — and that holds even
+// for a legacy record that somehow lacks an id.
+async function _purgeVisibleMoments(match) {
   const all = _readMoments();
-  const list = all[night] || [];
-  for (const m of list) {
-    if (m.photoId) { try { await _deletePhoto(m.photoId); } catch {} }
+  const visible = _activeMoments(all);
+  const doomed = new Set();
+  for (const night of Object.keys(visible)) {
+    for (const m of visible[night] || []) if (match(m, night)) doomed.add(m);
   }
-  delete all[night];
+  if (!doomed.size) return 0;
+  for (const night of Object.keys(all)) {
+    const arr = Array.isArray(all[night]) ? all[night] : [];
+    for (const m of arr) {
+      if (!doomed.has(m) || !m.photoId) continue;
+      try { await _deletePhoto(m.photoId); } catch {}
+    }
+    const kept = arr.filter(m => !doomed.has(m));
+    if (kept.length) all[night] = kept; else delete all[night];
+  }
   _writeMoments(all);
+  return doomed.size;
+}
+async function _purgeNightMoments(night) {
+  return _purgeVisibleMoments((m, n) => String(n) === String(night));
 }
 async function _purgeAllMoments() {
-  const all = _readMoments();
-  for (const list of Object.values(all)) {
-    for (const m of list || []) {
-      if (m.photoId) { try { await _deletePhoto(m.photoId); } catch {} }
-    }
-  }
-  _writeMoments({});
+  return _purgeVisibleMoments(() => true);
 }
 
 function StorageManager({ all, onChange }) {
@@ -5261,11 +5287,28 @@ function MemoriesScreen({ state, setState }) {
   // Free users tapping it open the paywall overlay.
   const [autoOn, setAutoOn] = React.useState(() => _autoBackupOn());
   const _autoBusy = React.useRef(false);
+  // EVERY moment on the device, not the active festival's. The backup is
+  // per-account against one global byte cap and _backupMyWeekend() already
+  // walks the whole store — this counter was the only scoped part of it, so
+  // the row read "3/3 · ALL SAFE" with 39 unbacked moments on disk, the
+  // progress total was smaller than the upload it was measuring, and the
+  // auto-backup gate below stopped catching up the rest for good once the
+  // active festival was clean.
+  const everyMoment = React.useMemo(
+    () => Object.values(rawAll || {}).flatMap(a => Array.isArray(a) ? a : []),
+    [rawAll]);
   const backupStat = React.useMemo(() => {
     let total = 0, done = 0, bytes = 0;
-    for (const m of allMoments) { if (!m.photoId) continue; total++; if (m.backedUp) { done++; bytes += (m.backedUpBytes || 0); } }
+    for (const m of everyMoment) { if (!m.photoId) continue; total++; if (m.backedUp) { done++; bytes += (m.backedUpBytes || 0); } }
     return { total, done, bytes };
-  }, [allMoments]);
+  }, [everyMoment]);
+  // The header above this row reads "3 MOMENTS · ACL 2026" and this row now
+  // reads 42, because 42 is genuinely what the button uploads. Say which,
+  // rather than leaving the reader to reconcile two numbers on one screen.
+  const backupScopeHint = React.useMemo(() => {
+    const here = allMoments.filter(m => m.photoId).length;
+    return backupStat.total > here ? " · ALL FESTIVALS" : "";
+  }, [allMoments, backupStat.total]);
   const _afterBackup = (res) => {
     if (res?.error === "signin") window.plurskyToast?.("Sign in on the Me tab to back up");
     else if (res?.error) window.plurskyToast?.("Backup unavailable right now");
@@ -5287,7 +5330,7 @@ function MemoriesScreen({ state, setState }) {
   // against concurrent runs; no-ops when nothing is pending.
   React.useEffect(() => {
     if (!autoOn || !_isPlusSub() || !_onWifi() || _autoBusy.current) return;
-    if (!allMoments.some(m => m.photoId && !m.backedUp)) return;
+    if (!everyMoment.some(m => m.photoId && !m.backedUp)) return;
     let cancelled = false;
     (async () => {
       if (!(window.sbGetUser && await window.sbGetUser())) return;
@@ -5298,7 +5341,7 @@ function MemoriesScreen({ state, setState }) {
       if (!cancelled) { setAll(_readMoments()); if (res?.done) window.plurskyToast?.(`☁ Auto-backed up ${res.done}`); }
     })();
     return () => { cancelled = true; };
-  }, [allMoments, autoOn]);
+  }, [everyMoment, autoOn]);
 
   return (
     <Screen bg="var(--paper)">
@@ -5467,8 +5510,8 @@ function MemoriesScreen({ state, setState }) {
                 <div className="mono" style={{ fontSize: 9, letterSpacing: 1, marginTop: 2, fontWeight: 700,
                   color: backupStat.bytes >= _BACKUP_SOFT_CAP ? "var(--ember-ink)" : "var(--muted)" }}>
                   {backupBusy && backupProg ? `BACKING UP… ${backupProg.done}/${backupProg.total}`
-                    : backupStat.done >= backupStat.total ? `ALL SAFE · ${_fmtSize(backupStat.bytes)}`
-                    : `${backupStat.done}/${backupStat.total} · ${_fmtSize(backupStat.bytes)} · WI-FI`}
+                    : backupStat.done >= backupStat.total ? `ALL SAFE${backupScopeHint} · ${_fmtSize(backupStat.bytes)}`
+                    : `${backupStat.done}/${backupStat.total}${backupScopeHint} · ${_fmtSize(backupStat.bytes)} · WI-FI`}
                   {backupStat.bytes >= _BACKUP_SOFT_CAP ? ` · NEAR ${_fmtSize(_BACKUP_HARD_CAP)} LIMIT` : ""}
                 </div>
               </div>
