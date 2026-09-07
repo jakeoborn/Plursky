@@ -631,12 +631,6 @@ function LineupScreen({ state, setState }) {
   // is the first thing you read on a list. Scrolling up restores the header in
   // either mode.
   React.useEffect(() => { setCollapsed(viewMode === "grid"); }, [day, viewMode, weekendFilter]);
-  // v204: grid "Fit" toggle — squeeze every stage column onto one screen (no
-  // horizontal scroll). Off by default (94px scrollable grid stays the norm).
-  const [gridFit, setGridFit] = React.useState(() => {
-    try { return localStorage.getItem('plursky_grid_fit') === '1'; } catch { return false; }
-  });
-  React.useEffect(() => { try { localStorage.setItem('plursky_grid_fit', gridFit ? '1' : '0'); } catch {} }, [gridFit]);
   // v138: per-day section refs (kept for potential future use).
   const gridSectionRefs = React.useRef({});
 
@@ -959,15 +953,6 @@ function LineupScreen({ state, setState }) {
             fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
             whiteSpace: "nowrap",
           }}>◎ MAP</button>
-          {viewMode === "grid" && (
-            <button onClick={() => setGridFit(f => !f)} aria-pressed={gridFit} className="mono" style={{
-              padding: "3px 9px", borderRadius: 999, border: "none",
-              background: gridFit ? "var(--ember)" : "transparent",
-              color: gridFit ? "#fff" : "var(--ink)",
-              fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
-              whiteSpace: "nowrap",
-            }}>⛶ FIT</button>
-          )}
         </div>
         <button onClick={() => setFilterSheetOpen(true)} className="mono" style={{
           flexShrink: 0, padding: "5px 11px", borderRadius: 999,
@@ -1222,7 +1207,6 @@ function LineupScreen({ state, setState }) {
                   conflictById={conflictById}
                   spotifyMatchedIds={spotifyMatchedIds}
                   highlightId={highlightId}
-                  fit={gridFit}
                 />
               </div>
             </div>
@@ -1659,6 +1643,16 @@ function GridSetBlock({
   showEndTime, dueMins, narrow = false,
 }) {
   const isHeadliner = a.tier === 3;
+  // How many lines the name gets. This used to be a flat 2 above `narrow`,
+  // which was fine when the only wide column was the 200px+ FOCUS panel and
+  // wrong the moment every column became ~98px: it printed
+  // "MAX DEAN B2B LUKE…" inside a block with room for four lines. Budget it
+  // off the block's own height instead — line box ≈ font × 1.1, minus the
+  // padding and the time row — and cap at 4 so a long slot does not become a
+  // wall of text.
+  const _lineH   = narrow ? 10.2 : isHeadliner ? 13.8 : 12.7;
+  const _chrome  = narrow ? 8 : 20; // padding, plus the time line where it renders
+  const nameLines = Math.max(1, Math.min(4, Math.floor((height - _chrome) / _lineH)));
   const fillAlpha = isHeadliner ? "38" : "22";
   const dimAlpha  = isHeadliner ? "14" : "08";
   const _store = refStore;
@@ -1711,9 +1705,7 @@ function GridSetBlock({
         lineHeight: narrow ? 1.05 : 1.1, color: "var(--ink)",
         overflow: "hidden", textOverflow: "ellipsis",
         display: "-webkit-box",
-        WebkitLineClamp: narrow
-          ? (height > 46 ? 3 : height > 30 ? 2 : 1)
-          : (height > 60 ? 2 : 1),
+        WebkitLineClamp: nameLines,
         WebkitBoxOrient: "vertical",
         // overflowWrap, NOT wordBreak. `wordBreak: break-word` breaks at any
         // character even when a space break was available, which turned
@@ -1721,7 +1713,7 @@ function GridSetBlock({
         // tokens only when they would otherwise overflow, so short names wrap
         // at their spaces and only genuinely-too-long words get split.
         overflowWrap: "break-word",
-        paddingRight: saved ? (narrow ? 9 : 12) : 0,
+        paddingRight: saved ? (clash ? (narrow ? 19 : 23) : (narrow ? 9 : 12)) : 0,
         fontFamily: isHeadliner ? "Instrument Serif, Georgia, serif" : "Geist, -apple-system, sans-serif",
       }}>{a.name}</div>
       {/* Time label. The range only renders where it FITS — a 94px column
@@ -1745,6 +1737,16 @@ function GridSetBlock({
           position: "absolute", top: 3, right: 5,
           fontSize: 10, color: "var(--ember-ink)", fontWeight: 800, lineHeight: 1,
         }}>★</span>
+      )}
+      {/* The conflict mark. conflictById is built from SAVED sets only, so
+          a clash always carries a ★ too — the ⚠ sits just inside it. Same
+          ⚠ language the LIST rows use, and the reason this view shows every
+          stage at once: you cannot dodge a collision you cannot see. */}
+      {clash && (
+        <span title="Overlaps another saved set" aria-label="clash" style={{
+          position: "absolute", top: 2.5, right: narrow ? 13 : 16,
+          fontSize: 9, color: "var(--ember-ink)", fontWeight: 800, lineHeight: 1,
+        }}>⚠</span>
       )}
       {!saved && matched && height > 30 && (
         <span style={{
@@ -1771,12 +1773,25 @@ function GridHourLines({ hours, minToTop }) {
   ));
 }
 
-function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conflictById, spotifyMatchedIds, highlightId, fit = false }) {
+// The multi-stage timetable. Every stage that has sets today is a column on
+// one shared vertical timeline — the shape of the official festival grid, and
+// the whole point of the view: you cannot see a conflict you cannot see two
+// stages at once for.
+//
+// v271 replaced the one-stage-at-a-time pager (FOCUS) and the squeeze-it-all-
+// in overview (FIT) with this single mode. FOCUS meant memorising seven swiped
+// panels; FIT at 375px with 7 stages gave each column ~47px, which rendered
+// artist names as three characters and an ellipsis. Neither was a timetable.
+// There is deliberately ONE grid mode now — a third way to look at the same
+// sets was the problem, not the solution.
+function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conflictById, spotifyMatchedIds, highlightId }) {
   const GUTTER_W = 44;
+  // The stage header row lives INSIDE the scroll box so it can pin vertically
+  // and pan horizontally at the same time. That means it occupies real scroll
+  // height, and every scrollTop below has to add it back.
+  const HEAD_H = 34;
   const TOTAL_H = GRID_TOTAL_H;
   const minToTop = _minToTop;
-  // `fit` is the ALL-STAGES overview; default is one stage at a time.
-  const focus = !fit;
 
   const scrollRef = React.useRef(null);
   const _blockRefs = React.useRef({});
@@ -1795,6 +1810,8 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
     if (nowMin >= GRID_START_MIN && nowMin <= GRID_END_MIN) nowTop = minToTop(nowMin);
   }
 
+  // A stage with no sets today gets no column — an empty lane is dead width on
+  // a screen that has none to spare.
   const cols = STAGES
     .map(s => ({ stage: s, artists: allDayArtists.filter(a => a.stage === s.id) }))
     .filter(c => c.artists.length > 0);
@@ -1812,18 +1829,8 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
     return { id: mine[0].a.id, mins: Math.round(mine[0].start - nowMin), stageId: mine[0].a.stage };
   }, [allDayArtists, state.saved, nowMin]);
 
-  // Which stage panel is centred. Starts on the stage holding the next saved
-  // set, else the main stage, else the first with sets.
-  const initialStage = (() => {
-    if (due && cols.some(c => c.stage.id === due.stageId)) return due.stageId;
-    if (cols.some(c => c.stage.id === FESTIVAL_CONFIG.mainStageId)) return FESTIVAL_CONFIG.mainStageId;
-    return cols[0]?.stage.id;
-  })();
-  const [activeStage, setActiveStage] = React.useState(initialStage);
-  React.useEffect(() => { setActiveStage(initialStage); /* eslint-disable-next-line */ }, [day, cols.length]);
-
-  // Panel width in FOCUS mode is measured, not assumed — snap points and the
-  // scroll-to-stage jump both need the real number.
+  // Column width needs the real box width, not an assumption — the pan target
+  // for a header tap is computed from it.
   const [boxW, setBoxW] = React.useState(375);
   React.useLayoutEffect(() => {
     const el = scrollRef.current;
@@ -1836,40 +1843,30 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
     return () => ro.disconnect();
   }, []);
 
-  const MIN_COL = 30;
-  const COL_W = focus
-    ? Math.max(200, boxW - GUTTER_W)
-    : Math.max(MIN_COL, Math.floor((boxW - GUTTER_W - 2) / Math.max(1, cols.length)));
-  // Only the wide focus column has room for a full "7:15 PM – 8:00 PM".
+  // A timetable is only a timetable if a column is readable, so the band is a
+  // FLOOR and never a squeeze: ~97px at 375px, which puts the gutter plus
+  // three full stages on screen with the fourth peeking. That peek is the
+  // affordance — a half-column is the one universally understood "there is
+  // more this way". When a festival has few enough stages to fit, they spread
+  // to fill the width instead of leaving a gap on the right.
+  const BAND = Math.round(Math.min(118, Math.max(92, boxW * 0.26)));
+  const COL_W = Math.max(BAND, Math.floor((boxW - GUTTER_W) / Math.max(1, cols.length)));
+  // Only a wide column has room for a full "7:15 PM – 8:00 PM".
   const showEndTime = COL_W >= 120;
-  // FIT packs every stage into one screen, so at 375px with 7 stages a column
-  // is ~47px wide and only ~34px of that is inside the padding. "12:45 PM" at
-  // 8px mono needs ~38px, so the time was being cut mid-glyph, and names were
-  // rendering three characters and an ellipsis. Below this width the block
-  // stops trying: the time comes off entirely (the hour gutter already encodes
-  // it — that is the whole point of a timetable) and the name gets the space,
-  // at a smaller size over more lines.
+  // A column is never below this now, but a block SPLIT into overlap lanes
+  // still can be, and a lane that narrow drops the time label rather than
+  // clipping it mid-glyph (the hour gutter already carries the time — that is
+  // the whole point of a timetable).
   const narrow = COL_W < 72;
 
   const scrollToStage = (id) => {
     const i = cols.findIndex(c => c.stage.id === id);
     const el = scrollRef.current;
     if (i < 0 || !el) return;
-    setActiveStage(id);
+    // The gutter is sticky-left, so a column's resting place is exactly
+    // i * COL_W — that lands it flush against the gutter, not under it.
     el.scrollTo({ left: i * COL_W, behavior: "smooth" });
   };
-
-  // Track which panel the user has landed on so the strip stays truthful —
-  // "scrolled to stage 6 of 8 with nothing saying where you are" was the
-  // reported complaint.
-  const onScroll = React.useCallback(() => {
-    if (!focus) return;
-    const el = scrollRef.current;
-    if (!el) return;
-    const i = Math.round(el.scrollLeft / COL_W);
-    const c = cols[Math.max(0, Math.min(cols.length - 1, i))];
-    if (c && c.stage.id !== activeStage) setActiveStage(c.stage.id);
-  }, [focus, COL_W, cols, activeStage]);
 
   // Open on the current hour (or the next saved set) instead of at the top of
   // a 12-hour day.
@@ -1880,13 +1877,17 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
     didInit.current = true;
     const target = due ? toNightMin(ARTISTS.find(a => a.id === due.id)?.start || 0) : nowMin;
     if (target != null && target >= GRID_START_MIN && target <= GRID_END_MIN) {
-      el.scrollTop = Math.max(0, minToTop(target) - 100);
+      el.scrollTop = Math.max(0, HEAD_H + minToTop(target) - 100);
     }
-    if (focus && activeStage) {
-      const i = cols.findIndex(c => c.stage.id === activeStage);
+    // Horizontally we only pan away from the left edge when there is a reason
+    // to: a saved set coming up on a stage that is off screen. Opening
+    // mid-pan for no stated reason is more disorienting than opening at the
+    // first stage.
+    if (due) {
+      const i = cols.findIndex(c => c.stage.id === due.stageId);
       if (i > 0) el.scrollLeft = i * COL_W;
     }
-  }, [cols.length, COL_W, focus, activeStage, due, nowMin, minToTop]);
+  }, [cols.length, COL_W, due, nowMin, minToTop]);
 
   const savedByStage = React.useMemo(() => {
     const m = {};
@@ -1904,72 +1905,65 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
     // that silently encoded the header's height; the header is collapsible
     // now, so the number is gone and flex does the work.
     <div style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column" }}>
-      {/* Stage strip — always shows every stage, so position is never in
-          doubt. Tapping jumps; the active one is filled. */}
-      <div style={{
-        display: "flex", gap: 6, overflowX: "auto", overflowY: "hidden",
-        padding: "6px 12px 7px", borderBottom: "1px solid var(--line)",
-        flexShrink: 0, WebkitOverflowScrolling: "touch", scrollbarWidth: "none",
-      }}>
-        {cols.map(({ stage: s }, i) => {
-          const on = focus && s.id === activeStage;
-          const n = savedByStage[s.id] || 0;
-          return (
-            <button key={s.id} onClick={() => scrollToStage(s.id)} className="mono" style={{
-              flexShrink: 0, padding: "5px 9px", borderRadius: 8,
-              border: `1px solid ${on ? s.color : "var(--line-2)"}`,
-              background: on ? s.color : "transparent",
-              color: on ? "#fff" : "var(--ink)",
-              fontSize: 9, letterSpacing: 1, fontWeight: 800,
-              cursor: "pointer", display: "flex", alignItems: "center", gap: 5,
-              opacity: focus && !on ? 0.75 : 1,
-            }}>
-              <span style={{
-                width: 6, height: 6, borderRadius: 6, flexShrink: 0,
-                background: on ? "#fff" : s.color,
-              }}/>
-              {s.short}
-              {n > 0 && <span style={{
-                fontSize: 8, fontWeight: 800,
-                color: on ? "#fff" : "var(--ember-ink)",
-              }}>★{n}</span>}
-            </button>
-          );
-        })}
-      </div>
-
-      {focus && (
-        <div className="mono" style={{
-          flexShrink: 0, padding: "5px 14px 6px",
-          fontSize: 8.5, letterSpacing: 1.2, color: "var(--muted)",
-          borderBottom: "1px solid var(--line)",
-          display: "flex", justifyContent: "space-between", alignItems: "center",
-        }}>
-          <span>
-            {(STAGES.find(s => s.id === activeStage)?.name || "").toUpperCase()}
-            {" · "}
-            {cols.findIndex(c => c.stage.id === activeStage) + 1}/{cols.length}
-          </span>
-          <span>SWIPE FOR STAGES →</span>
-        </div>
-      )}
-
       <div
         ref={scrollRef}
-        onScroll={onScroll}
         data-grid-scroll
         style={{
           flex: 1, minHeight: 0, overflow: "auto",
           WebkitOverflowScrolling: "touch",
-          scrollSnapType: focus ? "x mandatory" : "none",
-          // The gutter is sticky-left, so snap has to stop short of it or
-          // every panel would land underneath the hour labels.
-          scrollPaddingLeft: GUTTER_W,
           overscrollBehavior: "contain",
         }}>
         <div style={{ minWidth: GUTTER_W + cols.length * COL_W, position: "relative" }}>
+          {/* Stage headers. Sticky to the TOP of the scroll box (they hold
+              while you read down the night) but NOT to the left (they pan
+              with their own columns). This IS the wayfinding that the old
+              "SNAPCHAT STAGE · 2/7 · SWIPE FOR STAGES" bar was standing in
+              for: you never have to be told which stage you are looking at,
+              because the label is attached to the column. */}
+          <div style={{ display: "flex", position: "sticky", top: 0, zIndex: 8, height: HEAD_H }}>
+            {/* Corner. Opaque, and pinned in both axes, so the hour labels
+                cannot slide out from under the headers. */}
+            <div style={{
+              width: GUTTER_W, flexShrink: 0, position: "sticky", left: 0, zIndex: 2,
+              background: "var(--paper)",
+              borderRight: "1px solid var(--line)",
+              borderBottom: "1px solid var(--line-2)",
+            }}/>
+            {cols.map(({ stage: s }) => {
+              const n = savedByStage[s.id] || 0;
+              return (
+                <button
+                  key={s.id}
+                  onClick={() => { try { window.plurskyHaptic?.("LIGHT"); } catch {} scrollToStage(s.id); }}
+                  title={s.name}
+                  className="mono"
+                  style={{
+                    width: COL_W, flexShrink: 0, height: HEAD_H,
+                    border: "none", borderLeft: "1px solid var(--line)",
+                    borderBottom: "1px solid var(--line-2)",
+                    background: "var(--paper)", color: "var(--ink)",
+                    padding: "3px 5px 0", cursor: "pointer", position: "relative",
+                    display: "flex", alignItems: "center", justifyContent: "center", gap: 4,
+                    fontSize: 9, letterSpacing: 1, fontWeight: 800,
+                    fontFamily: "inherit",
+                  }}>
+                  {/* The stage's colour, sitting directly on top of its own
+                      column — the same colour the blocks below are tinted in. */}
+                  <span aria-hidden="true" style={{
+                    position: "absolute", left: 0, right: 0, top: 0, height: 3,
+                    background: s.color,
+                  }}/>
+                  <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.short}</span>
+                  {n > 0 && (
+                    <span style={{ flexShrink: 0, color: "var(--ember-ink)", fontSize: 8.5, fontWeight: 800 }}>★{n}</span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
           <div style={{ display: "flex", position: "relative" }}>
-            {/* Time gutter — pinned left in both modes. */}
+            {/* Time gutter — pinned left. */}
             <div style={{
               width: GUTTER_W, flexShrink: 0, position: "sticky", left: 0,
               height: TOTAL_H, zIndex: 4, background: "var(--paper)",
@@ -2002,7 +1996,6 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
                   position: "relative", height: TOTAL_H,
                   borderLeft: "1px solid var(--line)",
                   background: si % 2 === 0 ? "transparent" : "rgba(26,18,13,0.018)",
-                  scrollSnapAlign: focus ? "start" : "none",
                 }}>
                   <GridHourLines hours={HOURS} minToTop={minToTop} />
                   {stageArtists.map(a => {
