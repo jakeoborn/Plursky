@@ -1144,8 +1144,13 @@ function _writeMoments(all) {
     }, 2500);
   } catch {}
 }
+// The count behind the Me-tab MEMORIES card. It has to be the ACTIVE
+// festival's count, because tapping the card opens the Memories screen and
+// that screen renders _activeMoments(). Measured 2026-09-07 on a seeded
+// library of 42 moments with 3 on the active festival: the card said 42 and
+// the screen it opened showed 3.
 function _countMoments() {
-  const all = _readMoments();
+  const all = _activeMoments(_readMoments());
   return Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
 }
 
@@ -1207,6 +1212,21 @@ async function _getPhoto(id) {
     r.onerror   = e => reject(e.target.error);
   });
 }
+// Every key in the blob store. Only ever used to find ORPHANED POSTER
+// FRAMES, which is why the caller filters to the `ps_` prefix before
+// deleting anything — a sweep that could reach a real media blob would be a
+// data-loss bug waiting for its first off-by-one.
+async function _allPhotoKeys() {
+  const db = await _openMemDB();
+  return new Promise((resolve) => {
+    try {
+      const tx = db.transaction("photos", "readonly");
+      const r = tx.objectStore("photos").getAllKeys();
+      r.onsuccess = () => resolve(Array.isArray(r.result) ? r.result : []);
+      r.onerror = () => resolve([]);
+    } catch { resolve([]); }
+  });
+}
 async function _deletePhoto(id) {
   const db = await _openMemDB();
   return new Promise((resolve, reject) => {
@@ -1263,6 +1283,65 @@ function _videoDuration(blob) {
   });
 }
 
+// A still frame from a video, as a small image blob.
+//
+// Thumbnails used to render the clip ITSELF, in a <video preload="metadata">
+// with a #t=0.1 fragment, and hope the browser painted that frame. iOS
+// routinely does not — that is the black rectangle. It is also why a night of
+// forty clips scrolled badly: forty live media elements, each holding a
+// decoder, in one list.
+//
+// Best-effort by design. A codec the browser cannot decode resolves null and
+// the caller keeps the old <video> tile, so the worst case is exactly today.
+const _POSTER_MAX_EDGE = 640;
+const _POSTER_TIMEOUT_MS = 8000;
+function _videoPosterBlob(blob) {
+  return new Promise((resolve) => {
+    let url = null, v = null, settled = false, timer = null;
+    const done = (out) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      // Detach the source explicitly. Leaving a blob URL attached to a
+      // detached <video> keeps the decoder alive on iOS, and a 40-clip
+      // backfill would then hold 40 of them.
+      try { if (v) { v.removeAttribute("src"); v.load(); } } catch {}
+      try { if (url) URL.revokeObjectURL(url); } catch {}
+      resolve(out);
+    };
+    timer = setTimeout(() => done(null), _POSTER_TIMEOUT_MS);
+    try {
+      url = URL.createObjectURL(blob);
+      v = document.createElement("video");
+      v.preload = "auto";
+      v.muted = true; v.setAttribute("muted", "");
+      v.playsInline = true; v.setAttribute("playsinline", "");
+      const draw = () => {
+        try {
+          const w0 = v.videoWidth, h0 = v.videoHeight;
+          if (!w0 || !h0) return done(null);
+          const scale = Math.min(1, _POSTER_MAX_EDGE / Math.max(w0, h0));
+          const c = document.createElement("canvas");
+          c.width = Math.round(w0 * scale);
+          c.height = Math.round(h0 * scale);
+          c.getContext("2d").drawImage(v, 0, 0, c.width, c.height);
+          c.toBlob(b => done(b || null), "image/jpeg", 0.75);
+        } catch { done(null); }
+      };
+      v.onloadedmetadata = () => {
+        // A hair in, not frame zero — the first frame of a phone clip is
+        // often the shutter still opening, or a black lead-in.
+        const t = Math.min(0.6, Math.max(0.05, (v.duration || 1) * 0.1));
+        const seek = () => { try { v.currentTime = t; } catch { draw(); } };
+        if (v.readyState >= 2) seek(); else v.onloadeddata = seek;
+      };
+      v.onseeked = draw;
+      v.onerror = () => done(null);
+      v.src = url;
+    } catch { done(null); }
+  });
+}
+
 async function _processMomentMedia(file) {
   if (/^image\//.test(file.type)) {
     return { blob: await _compressMomentImage(file), kind: "image" };
@@ -1273,7 +1352,10 @@ async function _processMomentMedia(file) {
     }
     // Store raw — modern iOS records H.265/HEVC which Safari plays natively.
     const duration = await _videoDuration(file);
-    return { blob: file, kind: "video", duration };
+    // The poster is generated ONCE, here, while the file is already in hand.
+    // Null is fine and expected for a codec this browser cannot decode.
+    const poster = await _videoPosterBlob(file);
+    return { blob: file, kind: "video", duration, poster };
   }
   throw new Error("Unsupported file type: " + file.type);
 }
@@ -1420,6 +1502,67 @@ function _fmtMomentTime(ts) {
 // any existing one — bounding decoded-image memory in long lists WITHOUT
 // unmounting the card (so in-progress edit state survives). Defaults true so
 // the many call sites that always want the photo are unchanged.
+// Poster keys are derived from the moment id and always carry this prefix.
+// The prefix is load-bearing: the orphan sweep below only ever considers
+// keys that start with it.
+const _POSTER_PREFIX = "ps_";
+function _posterKey(momentId) { return _POSTER_PREFIX + momentId; }
+
+// Writing `posterId` back onto a moment is a localStorage write, a global
+// event and a debounced cloud push. Backfilling forty clips one at a time
+// would fire forty of those DURING A SCROLL — the exact stall this whole
+// change exists to remove. So the patches coalesce into one write.
+const _posterTried = new Set();
+let _posterPatchQueue = new Map();
+let _posterPatchTimer = null;
+function _queuePosterPatch(momentId, posterId) {
+  _posterPatchQueue.set(momentId, posterId);
+  clearTimeout(_posterPatchTimer);
+  _posterPatchTimer = setTimeout(() => {
+    const q = _posterPatchQueue;
+    _posterPatchQueue = new Map();
+    try {
+      const all = _readMoments();
+      let changed = false;
+      for (const night of Object.keys(all)) {
+        const arr = Array.isArray(all[night]) ? all[night] : [];
+        all[night] = arr.map(m => {
+          const pid = m && q.get(m.id);
+          if (!pid || m.posterId === pid) return m;
+          changed = true;
+          return { ...m, posterId: pid };
+        });
+      }
+      if (changed) _writeMoments(all);
+    } catch {}
+  }, 1500);
+}
+
+// Poster blobs are derived data with no owner once their moment is gone, and
+// every delete path (single delete, night purge, clear-all) drops the moment
+// without knowing posters exist. Rather than teach each of them, sweep: any
+// `ps_` key with no live moment claiming it is garbage. Runs once per session.
+let _posterSweepDone = false;
+async function _sweepOrphanPosters() {
+  if (_posterSweepDone) return 0;
+  _posterSweepDone = true;
+  try {
+    const keys = (await _allPhotoKeys()).filter(k => typeof k === "string" && k.startsWith(_POSTER_PREFIX));
+    if (!keys.length) return 0;
+    const live = new Set();
+    const all = _readMoments();
+    for (const night of Object.keys(all)) {
+      for (const m of all[night] || []) if (m && m.id) live.add(_posterKey(m.id));
+    }
+    let freed = 0;
+    for (const k of keys) {
+      if (live.has(k)) continue;
+      try { await _deletePhoto(k); freed++; } catch {}
+    }
+    return freed;
+  } catch { return 0; }
+}
+
 function useMomentPhoto(photoId, enabled = true) {
   const [url, setUrl] = React.useState(null);
   React.useEffect(() => {
@@ -1448,6 +1591,68 @@ function useMomentPhoto(photoId, enabled = true) {
     };
   }, [photoId, enabled]);
   return url;
+}
+
+// Resolve (and if necessary create) a video's poster frame. Module-level and
+// promise-deduped, so ten tiles mounting the same clip decode it once, and a
+// tile that scrolls away mid-decode still finishes its write instead of
+// leaving the work to be redone.
+const _posterInflight = new Map();
+function _ensurePoster(moment) {
+  const id = moment && moment.id;
+  if (!id) return Promise.resolve(null);
+  if (_posterInflight.has(id)) return _posterInflight.get(id);
+  const key = _posterKey(id);
+  const job = (async () => {
+    let blob = await _getPhoto(key).catch(() => null);
+    if (blob) return blob;
+    // No stored poster: either a clip imported before posters existed, or one
+    // whose codec we could not decode last time. `_posterTried` makes the
+    // second case cost one attempt per session rather than one per scroll.
+    if (_posterTried.has(id)) return null;
+    const media = moment.photoId ? await _getPhoto(moment.photoId).catch(() => null) : null;
+    if (!media) { _posterTried.add(id); return null; }
+    blob = await _videoPosterBlob(media);
+    if (!blob) { _posterTried.add(id); return null; }
+    try { await _putPhoto(key, blob); _queuePosterPatch(id, key); } catch { return blob; }
+    return blob;
+  })();
+  _posterInflight.set(id, job);
+  job.catch(() => {}).then(() => _posterInflight.delete(id));
+  return job;
+}
+
+// What a THUMBNAIL should show for a moment. Images are unchanged. Videos
+// resolve to their poster frame, so a night of forty clips is forty <img>
+// tags instead of forty live decoders — and the tile actually has a picture
+// on it, which <video preload="metadata"> could never be relied on for.
+//
+// The clip itself is fetched ONLY when there is no poster to be had. That
+// ordering is the whole performance story: fall back, never pre-load.
+//
+// Posters deliberately do NOT go through useMomentPhoto — that hook's
+// restore-on-view would fire a cloud request per tile for a key that is
+// derived data and was never uploaded.
+function useMomentThumb(moment, enabled = true) {
+  const isVideo = moment && moment.kind === "video";
+  const id = (moment && moment.id) || null;
+  const [posterUrl, setPosterUrl] = React.useState(null);
+  const [noPoster, setNoPoster] = React.useState(false);
+  React.useEffect(() => {
+    if (!enabled || !isVideo || !id) { setPosterUrl(null); setNoPoster(false); return; }
+    let dead = false, objUrl = null;
+    _ensurePoster(moment).then(blob => {
+      if (dead) return;
+      if (!blob) { setNoPoster(true); return; }
+      objUrl = URL.createObjectURL(blob);
+      setPosterUrl(objUrl);
+    }).catch(() => { if (!dead) setNoPoster(true); });
+    return () => { dead = true; if (objUrl) URL.revokeObjectURL(objUrl); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [enabled, isVideo, id]);
+  const needMedia = !isVideo || (noPoster && !posterUrl);
+  const mediaUrl = useMomentPhoto(needMedia ? ((moment && moment.photoId) || null) : null, enabled);
+  return { url: posterUrl || mediaUrl, isPoster: !!posterUrl };
 }
 
 // Returns [ref, near] — attach ref to an element; `near` flips true while it
@@ -1529,7 +1734,7 @@ async function _backupMyWeekend(onProgress) {
 
 // Single memory thumbnail for the home strip — loads its photo blob lazily.
 function _HomeMemoryThumb({ moment, onClick }) {
-  const url = useMomentPhoto(moment.photoId);
+  const { url, isPoster } = useMomentThumb(moment);
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   return (
     <button onClick={onClick} style={{
@@ -1540,7 +1745,7 @@ function _HomeMemoryThumb({ moment, onClick }) {
       {url ? (
         // Video needs <video preload="metadata"> to paint a poster frame —
         // a blob URL inside <img> renders as a blank/black tile.
-        moment.kind === "video" ? (
+        moment.kind === "video" && !isPoster ? (
           // #t=0.1 forces iOS to decode + paint the first frame as a poster;
           // without it the tile stays black until the video is touched.
           <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
@@ -1854,6 +2059,12 @@ const _TAG_SOURCE_LABEL = {
   fallback:             { text: "FALLBACK · RETAG",  tone: "warn" },
   "song-recovered":     { text: "RECOVERED · SONG",  tone: "ok" },
   manual:               { text: "MANUAL",            tone: "ok" },
+  // Video sources had no entry, so MomentCard's tag chip rendered nothing at
+  // all for a clip tagged from its own metadata — the most trustworthy source
+  // there is, showing as blank.
+  "video-metadata":     { text: "AUTO · VIDEO TIME", tone: "ok" },
+  "video-night-only":   { text: "VIDEO NIGHT · PICK A SET", tone: "warn" },
+  "archive-recovered":  { text: "RECOVERED · ARCHIVE", tone: "ok" },
 };
 
 // Best-available capture time for a moment. handleBatchPick stores both
@@ -2683,7 +2894,7 @@ async function _shareMoment(moment, meta) {
 }
 
 function _LightboxThumb({ moment, active, onClick }) {
-  const url = useMomentPhoto(moment.photoId);
+  const { url, isPoster } = useMomentThumb(moment);
   return (
     <button onClick={onClick} aria-label="View moment" style={{
       flexShrink: 0, width: 44, height: 44, borderRadius: 8, padding: 0, cursor: "pointer",
@@ -2691,7 +2902,7 @@ function _LightboxThumb({ moment, active, onClick }) {
       opacity: active ? 1 : 0.5, overflow: "hidden", background: "#222",
       transition: "opacity 0.15s", position: "relative",
     }}>
-      {url && (moment.kind === "video"
+      {url && (moment.kind === "video" && !isPoster
         ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
         : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
       )}
@@ -3076,7 +3287,7 @@ function _pickHeroMoment(items) {
 // cards. Lives outside the header <button> (no nested buttons) as its own tap
 // target that opens the group's lightbox at the hero.
 function _GroupHeroThumb({ moment, accent, onClick }) {
-  const url = useMomentPhoto(moment?.photoId);
+  const { url, isPoster } = useMomentThumb(moment);
   if (!moment?.photoId) return null;
   return (
     <button onClick={onClick} aria-label="Open best shot" style={{
@@ -3084,7 +3295,7 @@ function _GroupHeroThumb({ moment, accent, onClick }) {
       overflow: "hidden", border: `1.5px solid ${accent || "var(--line-2)"}`,
       background: "#222", position: "relative",
     }}>
-      {url && (moment.kind === "video"
+      {url && (moment.kind === "video" && !isPoster
         ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
         : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
       )}
@@ -3510,23 +3721,157 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
 // API) + lets the user purge moments per-night or wholesale. Each delete
 // nukes both the localStorage metadata AND the IndexedDB photo blob so
 // nothing leaks.
-async function _purgeNightMoments(night) {
+// Delete exactly what the surface LISTED, and nothing else.
+//
+// Both purges used to walk the whole moment store while StorageManager, the
+// only screen that offers them, renders _activeMoments() — one festival.
+// Measured 2026-09-07 against a seeded library of 42 moments, 3 of them on
+// the active festival: the night row read "1 TOTAL" and CLEAR removed 14;
+// the confirm read "Delete all 3 moments?" and DELETE ALL removed all 42,
+// silently taking every other festival's memories with it. A number the user
+// is shown before a destructive tap has to be the number that is acted on.
+//
+// Matching is by object IDENTITY, not by id: _activeMoments filters, it does
+// not clone, so the visible moments ARE the stored ones — and that holds even
+// for a legacy record that somehow lacks an id.
+async function _purgeVisibleMoments(match) {
   const all = _readMoments();
-  const list = all[night] || [];
-  for (const m of list) {
-    if (m.photoId) { try { await _deletePhoto(m.photoId); } catch {} }
+  const visible = _activeMoments(all);
+  const doomed = new Set();
+  for (const night of Object.keys(visible)) {
+    for (const m of visible[night] || []) if (match(m, night)) doomed.add(m);
   }
-  delete all[night];
+  if (!doomed.size) return 0;
+  for (const night of Object.keys(all)) {
+    const arr = Array.isArray(all[night]) ? all[night] : [];
+    for (const m of arr) {
+      if (!doomed.has(m) || !m.photoId) continue;
+      try { await _deletePhoto(m.photoId); } catch {}
+    }
+    const kept = arr.filter(m => !doomed.has(m));
+    if (kept.length) all[night] = kept; else delete all[night];
+  }
   _writeMoments(all);
+  return doomed.size;
+}
+async function _purgeNightMoments(night) {
+  return _purgeVisibleMoments((m, n) => String(n) === String(night));
 }
 async function _purgeAllMoments() {
-  const all = _readMoments();
-  for (const list of Object.values(all)) {
-    for (const m of list || []) {
-      if (m.photoId) { try { await _deletePhoto(m.photoId); } catch {} }
+  return _purgeVisibleMoments(() => true);
+}
+
+// Post-import confirmation.
+//
+// An import used to end at a one-line banner — "12 TAGGED · 3 NEED RETAG" —
+// which reports the score and not the mapping. The only way to find out WHICH
+// clip landed on the wrong set was to scroll the wall afterwards and open
+// moments one at a time, by which point you no longer remember what you
+// imported. This shows the mapping while it is still fresh: every file, the
+// act and stage it was tagged to, how that call was made, and a tap to fix it.
+//
+// Deliberately no thumbnails. A 40-file import would mean 40 more media
+// decodes the instant the import finished, and the question this screen
+// answers — "is this the right set?" — is answered by the name, not the
+// picture.
+function ImportReview({ results, moments, onClose, onFix }) {
+  const byId = React.useMemo(() => {
+    const m = {};
+    for (const night of Object.keys(moments || {})) {
+      for (const mo of moments[night] || []) if (mo && mo.id) m[mo.id] = mo;
     }
-  }
-  _writeMoments({});
+    return m;
+  }, [moments]);
+
+  const rows = React.useMemo(() => {
+    const out = (results || []).filter(r => r.momentId).map(r => {
+      const mo = byId[r.momentId] || null;
+      const artist = r.artistId ? ARTISTS.find(a => a.id === r.artistId) : null;
+      // Guarded: an act with no published stage is real (Escape, III Points),
+      // and an unguarded dereference here took the whole Lineup screen down
+      // once already.
+      const stage = artist ? (STAGES.find(st => st.id === artist.stage) || UNPLACED_STAGE) : null;
+      const day = DAYS.find(d => d.n === r.night);
+      const sure = !!r.artistId && r.tagSource !== "fallback" && !(mo && (mo.needsRetag || mo.tagAmbiguous));
+      return { ...r, moment: mo, artist, stage, day, sure };
+    });
+    // Everything that needs a human first. The whole point of showing this
+    // now rather than later is the fixing, not the reading.
+    return out.sort((a, b) => (a.sure === b.sure) ? 0 : (a.sure ? 1 : -1));
+  }, [results, byId]);
+
+  const unsure = rows.filter(r => !r.sure).length;
+  if (!rows.length) return null;
+
+  return (
+    <div onClick={onClose} style={{
+      position: "fixed", inset: 0, zIndex: 270, background: "rgba(0,0,0,0.55)",
+      display: "flex", alignItems: "flex-end", justifyContent: "center",
+      animation: "fadeIn .18s",
+    }}>
+      <div onClick={e => e.stopPropagation()} style={{
+        width: "100%", maxWidth: 520, maxHeight: "86vh",
+        background: "var(--paper)", borderRadius: "18px 18px 0 0",
+        border: "1px solid var(--line)", borderBottom: "none",
+        display: "flex", flexDirection: "column", overflow: "hidden",
+      }}>
+        <div style={{ padding: "14px 18px 10px", borderBottom: "1px solid var(--line)", flexShrink: 0 }}>
+          <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, color: "var(--ink)" }}>
+            {unsure === 0 ? <>All {rows.length} <span style={{ fontStyle: "italic" }}>tagged</span></>
+                          : <>{unsure} need{unsure === 1 ? "s" : ""} a <span style={{ fontStyle: "italic" }}>set</span></>}
+          </div>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700, marginTop: 4 }}>
+            {rows.length} IMPORTED · TAP A ROW TO FIX ITS TAG
+          </div>
+        </div>
+
+        <div style={{ flex: 1, minHeight: 0, overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "6px 12px 8px" }}>
+          {rows.map(r => (
+            <button key={r.momentId} onClick={() => r.moment && onFix?.(r.moment)} style={{
+              display: "flex", alignItems: "center", gap: 10, width: "100%",
+              textAlign: "left", padding: "9px 10px", marginBottom: 4,
+              background: r.sure ? "transparent" : "rgba(232,93,46,0.07)",
+              border: r.sure ? "1px solid var(--line)" : "1px solid rgba(232,93,46,0.45)",
+              borderRadius: 10, cursor: "pointer", fontFamily: "inherit", color: "var(--ink)",
+            }}>
+              <span aria-hidden="true" style={{
+                flexShrink: 0, width: 4, alignSelf: "stretch", borderRadius: 3,
+                background: r.stage ? r.stage.color : "var(--line-2)",
+              }}/>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 14, lineHeight: 1.15, fontWeight: r.artist ? 700 : 500,
+                              color: r.artist ? "var(--ink)" : "var(--ember-ink)",
+                              overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  {r.artist ? r.artist.name : "No set matched"}
+                </div>
+                <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", fontWeight: 700, marginTop: 2,
+                                               overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  {r.stage ? `${r.stage.short} · ` : ""}{(r.day && r.day.label) || `NIGHT ${r.night}`}
+                  {" · "}{(_TAG_SOURCE_LABEL[r.tagSource] || {}).text || String(r.tagSource || "").toUpperCase()}
+                </div>
+                <div className="mono" style={{ fontSize: 8, letterSpacing: 0.6, color: "var(--muted)", marginTop: 2, opacity: 0.75,
+                                               overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  {r.name}
+                </div>
+              </div>
+              <span className="mono" style={{ flexShrink: 0, fontSize: 9, letterSpacing: 1.1, fontWeight: 800,
+                                              color: r.sure ? "var(--success)" : "var(--ember-ink)" }}>
+                {r.sure ? "✓" : "FIX →"}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        <div style={{ padding: "10px 14px calc(12px + env(safe-area-inset-bottom))", borderTop: "1px solid var(--line)", flexShrink: 0 }}>
+          <button onClick={onClose} className="mono" style={{
+            width: "100%", padding: "12px 0", borderRadius: 12, border: "none",
+            background: "var(--ink)", color: "var(--paper)", cursor: "pointer",
+            fontSize: 11, letterSpacing: 1.3, fontWeight: 800,
+          }}>{unsure === 0 ? "LOOKS RIGHT" : "DONE FOR NOW"}</button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function StorageManager({ all, onChange }) {
@@ -3891,7 +4236,7 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
 // a story of the night instead of a grid of files. The emotional
 // payoff surface for the who/what/where/when graph.
 function _MemoryStoryBeat({ moment, isLast, onOpen }) {
-  const url = useMomentPhoto(moment.photoId);
+  const { url, isPoster } = useMomentThumb(moment);
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   const stage = artist ? STAGES.find(s => s.id === artist.stage) : null;
   const estSong = useSetlistSong(artist, moment.takenAt);
@@ -3929,7 +4274,7 @@ function _MemoryStoryBeat({ moment, isLast, onOpen }) {
         )}
         {url && (
           <button onClick={onOpen} aria-label="Open moment" style={{ marginTop: 8, padding: 0, border: "none", background: "none", cursor: "pointer", display: "block", width: "100%", position: "relative" }}>
-            {moment.kind === "video" ? (
+            {moment.kind === "video" && !isPoster ? (
               <>
                 {/* preload="metadata" paints the first frame as a poster;
                     tapping opens the lightbox player (controls + autoplay).
@@ -3970,14 +4315,14 @@ function _MemoryStoryBeat({ moment, isLast, onOpen }) {
 // lightbox. Models the Apple Photos year-scrubber / a video timeline. Pointer
 // events cover mouse + touch; setPointerCapture keeps the drag smooth.
 function _ScrubPreview({ moment }) {
-  const url = useMomentPhoto(moment?.photoId);
+  const { url, isPoster } = useMomentThumb(moment);
   return (
     <div style={{
       width: 56, height: 56, borderRadius: 10, overflow: "hidden",
       border: "1.5px solid var(--ink)", background: "#000", flexShrink: 0,
       boxShadow: "0 4px 14px rgba(0,0,0,0.4)",
     }}>
-      {url && (moment.kind === "video"
+      {url && (moment.kind === "video" && !isPoster
         ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
         : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>)}
     </div>
@@ -4199,7 +4544,7 @@ function _LazyMount({ children, placeholder, minHeight = 120, rootMargin = "800p
 // first) — the view people expect from a "memories" tab (Apple/Google Photos,
 // Retro, Snapchat). Tap a tile → full-screen lightbox.
 function _GridTile({ moment, onClick, stackCount = 1 }) {
-  const url = useMomentPhoto(moment.photoId);
+  const { url, isPoster } = useMomentThumb(moment);
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   const stacked = stackCount > 1;
   return (
@@ -4215,7 +4560,7 @@ function _GridTile({ moment, onClick, stackCount = 1 }) {
         ? "2.5px 2.5px 0 -0.5px var(--paper-2), 2.5px 2.5px 0 0 var(--line), 5px 5px 0 -1px var(--paper-2), 5px 5px 0 -0.5px var(--line)"
         : "none",
     }}>
-      {url ? (moment.kind === "video"
+      {url ? (moment.kind === "video" && !isPoster
         ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
         : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
       ) : <div className="skel" style={{ width: "100%", height: "100%" }}/>}
@@ -4409,7 +4754,7 @@ function _momentTime(m) {
 // a ▶ marker on videos, and a "+N" badge when it fronts a declustered group.
 function _PhotoPin({ cluster, onTap }) {
   const m = cluster.face;
-  const url = useMomentPhoto(m.photoId, cluster.enabled !== false);
+  const { url, isPoster } = useMomentThumb(m, cluster.enabled !== false);
   const ring = (cluster.stage && cluster.stage.color) || "#9aa";
   const rot = ((_idHash(m.id) % 17) - 8); // -8..+8deg, stable per pin
   const extra = cluster.items.length - 1;
@@ -4428,7 +4773,7 @@ function _PhotoPin({ cluster, onTap }) {
         boxShadow: "0 3px 9px rgba(0,0,0,0.5)",
       }}>
         {url ? (
-          m.kind === "video"
+          m.kind === "video" && !isPoster
             ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
             : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
         ) : <div className="skel" style={{ width: "100%", height: "100%" }}/>}
@@ -4646,6 +4991,7 @@ function MemoriesScreen({ state, setState }) {
   const all = React.useMemo(() => _activeMoments(rawAll), [rawAll]);
   const [adding, setAdding] = React.useState(null); // night number being added to, or null
   const [batch, setBatch] = React.useState(null);   // null | { total, done, results: [{name, night, artistId, err?}] }
+  const [review, setReview] = React.useState(null); // null | results[] — the post-import confirm sheet
   const [lightbox, setLightbox] = React.useState(null); // null | { moments: [], index }
   const [reel, setReel] = React.useState(null); // null | { moments: [], label }
   const [backupBusy, setBackupBusy] = React.useState(false); // cloud-backup in progress
@@ -4667,6 +5013,11 @@ function MemoriesScreen({ state, setState }) {
     window.addEventListener("plursky-moments-change", refresh);
     return () => window.removeEventListener("plursky-moments-change", refresh);
   }, []);
+
+  // Poster frames outlive the moments they belong to — every delete path
+  // drops the moment without knowing posters exist. One sweep per session,
+  // scoped to the `ps_` prefix so it can never reach a real media blob.
+  React.useEffect(() => { _sweepOrphanPosters(); }, []);
 
   // v141: when a user taps a FRI/SAT/SUN row on the Me-tab History list,
   // it sets state.memoriesNight + state.tab="memories". This effect scrolls
@@ -4781,8 +5132,16 @@ function MemoriesScreen({ state, setState }) {
         const id = `m_${Date.now()}_${i}_${Math.random().toString(36).slice(2, 6)}`;
         const photoId = `p_${id}`;
         await _putPhoto(photoId, out.blob);
+        // Poster frame for videos. Derived, so it is never cloud-backed and
+        // never restored — a device that loses it regenerates it on view.
+        let posterId = null;
+        if (out.poster) {
+          posterId = _posterKey(id);
+          try { await _putPhoto(posterId, out.poster); } catch { posterId = null; }
+        }
         const moment = {
           id, night, text: "", artistId: matched.artistId, photoId,
+          posterId,
           kind: out.kind,
           duration: out.duration ?? null,
           createdAt: Date.now(),
@@ -4839,7 +5198,7 @@ function MemoriesScreen({ state, setState }) {
         if (recovered?.moment?.artistId && !moment.artistId) moment.artistId = recovered.moment.artistId;
         if (fp) existingFingerprints.add(fp);
         current[night] = [...(current[night] || []), moment];
-        results.push({ name: f.name, night, artistId: matched.artistId, fallback: !matched.night, tagSource, festivalId: moment.festivalId });
+        results.push({ name: f.name, momentId: id, night, artistId: matched.artistId, fallback: !matched.night, tagSource, festivalId: moment.festivalId });
         // Persist + refresh after EACH file so a mid-batch Safari crash/OOM
         // (common on large iOS selections that include videos / iCloud photos)
         // keeps what's already imported and the grid fills in live — instead
@@ -4877,6 +5236,12 @@ function MemoriesScreen({ state, setState }) {
       if (dupes && !failed) window.plurskyToast?.(`Already imported — ${dupes} duplicate${dupes === 1 ? "" : "s"} skipped`);
       else window.plurskyToast?.(`Couldn't import ${failed} file${failed === 1 ? "" : "s"} — try a few at a time${failed ? ` · ${results.find(r => r.err)?.err || "failed"}` : ""}`);
     }
+    // Show the mapping while the import is still fresh. A banner that only
+    // reports a score cannot tell you WHICH clip went to the wrong set, and
+    // by the time you scroll the wall to find out you no longer remember what
+    // you imported.
+    const landed = results.filter(r => r.momentId);
+    if (landed.length) setReview(landed);
     // Auto-dismiss summary banner after 6s if user doesn't tap it
     setTimeout(() => setBatch(b => (b && b.done === b.total ? null : b)), 6000);
   };
@@ -5048,11 +5413,28 @@ function MemoriesScreen({ state, setState }) {
   // Free users tapping it open the paywall overlay.
   const [autoOn, setAutoOn] = React.useState(() => _autoBackupOn());
   const _autoBusy = React.useRef(false);
+  // EVERY moment on the device, not the active festival's. The backup is
+  // per-account against one global byte cap and _backupMyWeekend() already
+  // walks the whole store — this counter was the only scoped part of it, so
+  // the row read "3/3 · ALL SAFE" with 39 unbacked moments on disk, the
+  // progress total was smaller than the upload it was measuring, and the
+  // auto-backup gate below stopped catching up the rest for good once the
+  // active festival was clean.
+  const everyMoment = React.useMemo(
+    () => Object.values(rawAll || {}).flatMap(a => Array.isArray(a) ? a : []),
+    [rawAll]);
   const backupStat = React.useMemo(() => {
     let total = 0, done = 0, bytes = 0;
-    for (const m of allMoments) { if (!m.photoId) continue; total++; if (m.backedUp) { done++; bytes += (m.backedUpBytes || 0); } }
+    for (const m of everyMoment) { if (!m.photoId) continue; total++; if (m.backedUp) { done++; bytes += (m.backedUpBytes || 0); } }
     return { total, done, bytes };
-  }, [allMoments]);
+  }, [everyMoment]);
+  // The header above this row reads "3 MOMENTS · ACL 2026" and this row now
+  // reads 42, because 42 is genuinely what the button uploads. Say which,
+  // rather than leaving the reader to reconcile two numbers on one screen.
+  const backupScopeHint = React.useMemo(() => {
+    const here = allMoments.filter(m => m.photoId).length;
+    return backupStat.total > here ? " · ALL FESTIVALS" : "";
+  }, [allMoments, backupStat.total]);
   const _afterBackup = (res) => {
     if (res?.error === "signin") window.plurskyToast?.("Sign in on the Me tab to back up");
     else if (res?.error) window.plurskyToast?.("Backup unavailable right now");
@@ -5074,7 +5456,7 @@ function MemoriesScreen({ state, setState }) {
   // against concurrent runs; no-ops when nothing is pending.
   React.useEffect(() => {
     if (!autoOn || !_isPlusSub() || !_onWifi() || _autoBusy.current) return;
-    if (!allMoments.some(m => m.photoId && !m.backedUp)) return;
+    if (!everyMoment.some(m => m.photoId && !m.backedUp)) return;
     let cancelled = false;
     (async () => {
       if (!(window.sbGetUser && await window.sbGetUser())) return;
@@ -5085,10 +5467,21 @@ function MemoriesScreen({ state, setState }) {
       if (!cancelled) { setAll(_readMoments()); if (res?.done) window.plurskyToast?.(`☁ Auto-backed up ${res.done}`); }
     })();
     return () => { cancelled = true; };
-  }, [allMoments, autoOn]);
+  }, [everyMoment, autoOn]);
 
   return (
     <Screen bg="var(--paper)">
+      {review && (
+        <ImportReview
+          results={review}
+          // rawAll, not the active-festival view: a photo whose timestamp
+          // resolves to a DIFFERENT festival is still a row in this list, and
+          // it has to be reachable to be fixed.
+          moments={rawAll}
+          onClose={() => setReview(null)}
+          onFix={(m) => { setReview(null); setLightbox({ moments: [m], index: 0 }); }}
+        />
+      )}
       {lightbox && (
         <MomentLightbox
           moments={lightbox.moments}
@@ -5166,7 +5559,7 @@ function MemoriesScreen({ state, setState }) {
           const dupes     = batch.results.filter(r => r.skipped === "duplicate").length;
           const allTagged = tagged > 0 && needRetag === 0 && failed === 0;
           return (
-            <div onClick={() => setBatch(null)} style={{
+            <div onClick={() => { if (batch.results.some(r => r.momentId)) setReview(batch.results.filter(r => r.momentId)); else setBatch(null); }} style={{
               marginTop: 8, padding: "9px 12px",
               background: allTagged ? "rgba(45,122,85,0.12)" : "rgba(232,93,46,0.10)",
               border: allTagged ? "1px solid rgba(45,122,85,0.4)" : "1px solid rgba(232,93,46,0.4)",
@@ -5183,7 +5576,9 @@ function MemoriesScreen({ state, setState }) {
                   iOS sometimes strips photo time when copying — tap an untagged moment to pick its set.
                 </div>
               )}
-              <div className="mono" style={{ marginTop: 4, fontSize: 9, color: "var(--muted)" }}>TAP TO DISMISS</div>
+              <div className="mono" style={{ marginTop: 4, fontSize: 9, color: "var(--muted)" }}>
+                {batch.results.some(r => r.momentId) ? "TAP TO REVIEW TAGS" : "TAP TO DISMISS"}
+              </div>
             </div>
           );
         })()}
@@ -5254,8 +5649,8 @@ function MemoriesScreen({ state, setState }) {
                 <div className="mono" style={{ fontSize: 9, letterSpacing: 1, marginTop: 2, fontWeight: 700,
                   color: backupStat.bytes >= _BACKUP_SOFT_CAP ? "var(--ember-ink)" : "var(--muted)" }}>
                   {backupBusy && backupProg ? `BACKING UP… ${backupProg.done}/${backupProg.total}`
-                    : backupStat.done >= backupStat.total ? `ALL SAFE · ${_fmtSize(backupStat.bytes)}`
-                    : `${backupStat.done}/${backupStat.total} · ${_fmtSize(backupStat.bytes)} · WI-FI`}
+                    : backupStat.done >= backupStat.total ? `ALL SAFE${backupScopeHint} · ${_fmtSize(backupStat.bytes)}`
+                    : `${backupStat.done}/${backupStat.total}${backupScopeHint} · ${_fmtSize(backupStat.bytes)} · WI-FI`}
                   {backupStat.bytes >= _BACKUP_SOFT_CAP ? ` · NEAR ${_fmtSize(_BACKUP_HARD_CAP)} LIMIT` : ""}
                 </div>
               </div>

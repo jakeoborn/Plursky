@@ -309,6 +309,92 @@ if (fdata.length) {
   console.log(`  ✓ ${SRC.length} source file(s) — every day/night counter reads its total from the active config`);
 }
 
+// ── Set-time honesty gate ────────────────────────────────────────────────
+// Born from a real defect found 2026-09-07, gated but 11 days from shipping.
+// Lost Lands 2026 SYNTHESISED a set time for every act from its tier — t3
+// 22:30-00:00, t2 20:00-21:30, else 17:00-18:30 — producing 201 concrete
+// clock times off 3 distinct pairs. Nothing in the app or the build said
+// they were invented; only an artist-bio string did. EDC Orlando carried the
+// same class with one uniform "12:00"-"13:00" pair across 109 acts.
+//
+// The founder's standing rule for the festival queue is "real set times are
+// load-bearing", and the flip checklists all say "replace the provisional
+// set times" — but a checklist is a manual check, and a recurring manual
+// check is a design bug. A flip PR that flips `available: true` and forgets
+// step 1 ships a fabricated schedule to users. This makes that state
+// unrepresentable instead of merely discouraged.
+//
+// The two honest states, and nothing between them:
+//   ALL BLANK  — the schedule is not published. Every act carries start ""
+//                and end "". Nocturnal / III Points / CRSSD / Escape.
+//   REAL       — every act has a time, and the times are DIVERSE.
+// The forbidden middle is the fabrication class: concrete times drawn from a
+// handful of templates, or a half-finished flip where some acts got real
+// times and the rest kept placeholders.
+//
+// The diversity floor is measured, not guessed. Distinct start/end pairs per
+// act, on the data as it stands:
+//   shipping festivals   0.182 (acl) .. 0.921 (outside-lands), 9 of 9
+//   real gated schedule  0.938 (portola)
+//   fabricated           0.015 (lost-lands) / 0.009 (edc-orlando)
+// 0.05 sits 3.6x below the lowest real schedule and 2.6x above the highest
+// fabricated one, so it separates the two classes from both directions
+// rather than being tuned to today's numbers.
+{
+  console.log(`▸ Set-time honesty gate — no fabricated schedules`);
+  const FLOOR = 0.05;
+  const vm = await import("node:vm");
+  const sctx = { window: {}, console: { log(){}, warn(){}, error(){} }, Date, Math, JSON,
+    Object, Array, String, Number, isNaN, parseInt, parseFloat, fetch: () => {},
+    localStorage: { getItem: () => null, setItem: () => {}, removeItem: () => {} } };
+  vm.createContext(sctx);
+  const smods = FESTIVAL_MODULES
+    .map(f => readFileSync(join(ROOT, "data", "festivals", f), "utf8")).join("\n");
+  vm.runInContext(smods + "\n" + readFileSync(join(ROOT, "data.jsx"), "utf8") +
+    "\n;__o={REG:FESTIVALS_REGISTRY,DS:_DATA_SETS};", sctx);
+  const { REG: SREG, DS: SDS } = sctx.__o;
+  let sbad = 0;
+  for (const f of SREG) {
+    const id = f.id || (f.config && f.config.id);
+    const acts = ((SDS[id] || {}).artists) || [];
+    if (!acts.length) { console.log(`  ok ${String(id).padEnd(26)} no acts yet`); continue; }
+    let blank = 0;
+    const pairs = new Set();
+    for (const a of acts) {
+      const st = a.start || "", en = a.end || "";
+      if (!st || !en) blank++;
+      pairs.add(st + "→" + en);
+    }
+    const ratio = pairs.size / acts.length;
+    const live  = f.available === true;
+    const label = String(id).padEnd(26);
+    if (blank === acts.length) {
+      // Schedule not published. Honest — but it is not a shippable state.
+      if (live) {
+        console.log(`  ✗ ${label} available:true with NO set times (${acts.length} acts all blank)`);
+        sbad++;
+      } else {
+        console.log(`  ok ${label} gated, schedule unpublished (${acts.length} acts, all blank)`);
+      }
+      continue;
+    }
+    if (blank > 0) {
+      console.log(`  ✗ ${label} ${blank}/${acts.length} acts blank, the rest timed — half-filled schedule`);
+      sbad++;
+      continue;
+    }
+    if (ratio < FLOOR) {
+      console.log(`  ✗ ${label} ${acts.length} acts share only ${pairs.size} distinct start/end pair(s) ` +
+                  `(${ratio.toFixed(3)} < ${FLOOR}) — times look synthesised, not scheduled`);
+      sbad++;
+      continue;
+    }
+    console.log(`  ok ${label} real schedule (${acts.length} acts, ${pairs.size} distinct times, ${ratio.toFixed(3)})`);
+  }
+  if (sbad) fail(`${sbad} festival(s) carry fabricated or half-filled set times — blank them, or fill them from the official schedule`);
+  console.log(`  ✓ ${SREG.length} festival(s) — every schedule is either published-and-real or honestly blank`);
+}
+
 // ── Unplaced-stage gate ──────────────────────────────────────────────────
 // A festival can ship artists whose STAGE IS NOT PUBLISHED YET. Escape
 // Halloween 2026 announces its lineup by day long before it says who plays
