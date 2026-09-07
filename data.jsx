@@ -1824,6 +1824,23 @@ const EDCO_AMENITIES = [
 // Forest Stage in the SOUTH-WEST when the official map has it NORTH-WEST, and
 // Prehistoric Paradox mid-valley when it is the SOUTH-EAST corner stage.
 //
+// ── THE MAP IS PUBLIC, AND HERE IS THE URL (verified 2026-09-07) ──
+// This art was originally founder-supplied, which made every future session
+// depend on it being re-supplied. It is not a private asset — both 2025 maps
+// are linked from lostlandsfestival.com/info/ and served at:
+//   festival  /wp-content/uploads/2025/09/LL25_Festival-Map-4x5-1.jpg
+//             HTTP 200, 2.4 MB, 2162 x 2703 px  (the "1486 x 1103" above is
+//             the STAGE FIELD sub-region of this image, not the whole plate)
+//   camping   /wp-content/uploads/2025/09/LL25Camping-Map-4x5updated.jpg
+// They are RELATIVE hrefs in the page source, which is why an asset scan that
+// only matches absolute "//host/..." URLs comes back empty and looks like
+// "no map exists". It is the georeferencing input #75 asked for, so that
+// blocker is gone — what remains is the ortho work, not the source hunt.
+// ⚠ Still NO 2026 map: /info/ says box office locations "will be shown on the
+// festival maps closer to the event". Nocturnal has no published patron map
+// in ANY year — its /guide/ points at the in-app one — so its #76 georeference
+// stays blocked where this one no longer is.
+//
 // ORIENTATION IS ESTABLISHED, not assumed. The companion 2025 CAMPING map
 // carries real road labels — I-70 along the top, Boundaries Rd along the
 // bottom, Licking Trails Rd west, Route 13 / Jacksontown Rd running north-
