@@ -472,22 +472,90 @@ const FESTIVALS_REGISTRY = [
       // nocturnal-wonderland-2026, iii-points-2026, crssd-fall-2026 and
       // portola-2026.
       //
-      // FLIP SESSION (official 2026 map drops ~1 week out, so ~Sep 11):
-      // georeference that map onto ortho imagery of Legend Valley the way #68
-      // did for EDC Orlando and add anchors then — src "poster" for art reads,
-      // "osm" for satellite-measured features, `derived` banned from the
-      // basis. Re-derive stage x/y FROM the anchors, never the reverse, and
-      // regenerate lostlands-2026.svg from the corrected coordinates.
+      // ⛔ THE FLIP SESSION MUST NOT TRY TO GEOREFERENCE THE FESTIVAL MAP.
+      // This block used to say "georeference that map onto ortho imagery the
+      // way #68 did for EDC Orlando". That was attempted 2026-09-07, ahead of
+      // the flip and deliberately not under flip-day pressure, and it does
+      // not work. Recording the negative result so nobody spends flip day
+      // rediscovering it.
+      //
+      // WHAT WAS MEASURED. The 2025 official festival map is public and was
+      // retrieved (2162x2703):
+      //   /wp-content/uploads/2025/09/LL25_Festival-Map-4x5-1.jpg
+      //   /wp-content/uploads/2025/09/LL25Camping-Map-4x5updated.jpg
+      // Ortho imagery of Legend Valley (ESRI World Imagery z17/z18) was
+      // mosaicked and overlaid with OSM. The OSM layer matches the imagery
+      // exactly — parcel way 694134820, the internal service-road network
+      // (ways 1306723092..1306723110), the pond, the tunnel, the buildings.
+      // The GROUND is georeferenced and solid. The ART is not.
+      //
+      // WHY THE ART CANNOT BE REGISTERED. #68 worked at EDC Orlando because
+      // the Tinker Field plate is a plan drawing with real ground features on
+      // it. This is not that. The Lost Lands plate is flat-colour illustration
+      // — decorative dinosaurs, radial ray graphics, a tree-ring border — with
+      // NO terrain, NO scale bar, NO north arrow, NO labelled road and NO
+      // water. It shares not one surveyable feature with the imagery, so
+      // there is no control point to fit an affine on.
+      //
+      // It is also not merely unlabelled, it is NON-CONFORMAL. The art puts
+      // the main stage (Prehistoric) at the east end of an oval field. Legend
+      // Valley's permanent amphitheatre bowl — the one unmistakable stage-
+      // shaped structure on the imagery — is in the WEST. No rotation makes
+      // the art's entrance axis, field shape and stage ring line up with this
+      // ground. It is an artistic arrangement, not a projection. Same finding
+      // as the EDC LV poster in PR #36: the poster is art, not a survey.
+      //
+      // The 2026 map will almost certainly be the same house style, so this
+      // applies to it too unless it visibly changes.
+      //
+      // REAL CONTROL POINTS, if a future on-site survey needs something to
+      // key against. All OSM, all confirmed against ortho, all edition-
+      // independent — the venue does not move:
+      //   pond           39.93716, -82.40300   way 1318886830, elongated N-S
+      //   tunnel (RTE13) 39.93978, -82.40814   way 1426291099, west edge
+      //   main building  39.93868, -82.40264   way 1318886836
+      //   north building 39.94101, -82.40523   way 1318886831
+      //   pool           39.93861, -82.40113   way 1318886829
+      //
+      // SO THE HONEST OPTIONS AT THE FLIP WERE — 2 IS THE ONE TAKEN, see
+      // the map block below:
+      //   1. Ship gated-map posture (today). No anchors, MAP_AFFINE null,
+      //      distance/walk-time readouts suppressed through the v257/v260
+      //      gate, blue dot only on the real-map layer where it is true.
+      //   2. Switch to mapMode "real" like iii-points / crssd / portola: no
+      //      art plate, real basemap, TRUE blue dot, venue footprint drawn.
+      //      This needs no 2026 map and no anchors, and it is the only route
+      //      to a correct blue dot at Legend Valley. FOUNDER CALL — it is a
+      //      visible change to how the festival's map screen looks.
+      //   3. Capture anchors on site with the survey tool (>=3, spread
+      //      <100 m rejected, attestation required) — only possible in
+      //      September, on the ground.
+      // What is NOT an option is fitting the art. That is how the seven
+      // deleted `prov` anchors got here in the first place.
       mainStageId: "prehistoric",
-      // lostlands-2026.svg = generated abstract ground plate, regenerated
-      // 2026-09-06 from the corrected stage coordinates (the old .jpg was an
-      // ImageMagick gradient authored against the WRONG layout). It traces
-      // shape only and reproduces no festival artwork — nocturnal-2026.svg
-      // precedent. Replace with the processed official 2026 patron map
-      // (acl-park.webp treatment) when it drops.
-      mapImage: "lostlands-2026.svg",
-      mapStyle: "image-overlay",
-      mapTheme: "forest",
+      // ── THE MAP: mapMode "real" (founder decision 2026-09-07) ──
+      // Option 2 from the block above, taken: a correct blue dot today beats
+      // waiting on 2026 art that is already known to be unusable.
+      //
+      // No mapImage, no mapStyle "image-overlay", no gpsAnchors. Real
+      // basemap centred on the surveyed venue, the live blue dot, and the
+      // OSM parcel outline — all of it true, none of it drawn by us. Same
+      // posture as iii-points-2026, crssd-fall-2026 and portola-2026.
+      //
+      // What this REPLACES is the honest part. lostlands-2026.svg was a
+      // generated abstract plate whose shape came from stage coordinates
+      // read off the festival art. The art is unregisterable (see above), so
+      // those coordinates never meant anything in world space and the plate
+      // inherited that. Drawing it under a blue dot would put the dot in a
+      // place that is not where the user is. The .svg file stays in the repo
+      // but is no longer referenced, so it also comes out of the sw.js LOCAL
+      // precache list — a dead entry in an ATOMIC addAll is a real hazard.
+      //
+      // The affine-vs-poster gate has no poster to check here. Not a waiver:
+      // there is genuinely nothing to register.
+      mapMode: "real",
+      mapPrintsStageNames: false,
+      mapArtIsGeoregistered: false,
       weatherEndpoint: "https://api.weather.gov/points/39.9403,-82.4039",
       // Flip-session marker: replace provisional set times/stages, then delete.
       setTimesProvisional: true,
@@ -1867,12 +1935,12 @@ const EDCO_AMENITIES = [
 // a pin at NaN. Its artists still appear in the lineup. Same call as
 // Nocturnal's Rave Cave.
 const LL_STAGES = [
-  { id: "prehistoric",  name: "Prehistoric Paradox", short: "PREHISTORIC", color: "#f97316", x: 75, y: 88, size: 2.2, desc: "Legend Valley main stage", vibe: "Main Energy", vibeNote: "The big one. Pyro, lasers, the whole valley answers.", peak: "17:00–00:00" },
-  { id: "wompy-woods",  name: "Wompy Woods",         short: "WOMPY",      color: "#84cc16", x: 78, y: 51, size: 1.6, desc: "Forest-draped second stage", vibe: "In The Trees", vibeNote: "Wobbles in the woods; fan-favorite for a reason.", peak: "14:00–23:00" },
-  { id: "crater",       name: "The Crater",          short: "CRATER",     color: "#a855f7", x: 32, y: 74, size: 1.5, desc: "360-degree immersive stage", vibe: "Surround Sound", vibeNote: "Bass in the round - the pre-party home.", peak: "14:00–23:00" },
-  { id: "subsidia",     name: "Subsidia Stage",      short: "SUBSIDIA",   color: "#22d3ee", x: 22, y: 33, size: 1.3, desc: "Excision-label showcase stage", vibe: "Label Night", vibeNote: "Subsidia Records takeover energy.", peak: "14:00–22:00" },
-  { id: "forest-stage", name: "Forest Stage",        short: "FOREST",     color: "#34d399", x: 23, y: 13, size: 1.1, desc: "Deep-in-the-trees stage", vibe: "Hidden Forest", vibeNote: "Small canopy, big wubs.", peak: "14:00–22:00" },
-  { id: "raptor-alley", name: "Raptor Alley",        short: "RAPTOR",     color: "#ef4444", x: 56, y: 12, size: 0.9, desc: "Late-night after-hours lane", vibe: "After Hours", vibeNote: "The valley does not sleep.", peak: "23:00–04:00" },
+  { id: "prehistoric",  name: "Prehistoric Paradox", short: "PREHISTORIC", color: "#f97316", size: 2.2, desc: "Legend Valley main stage", vibe: "Main Energy", vibeNote: "The big one. Pyro, lasers, the whole valley answers.", peak: "17:00–00:00" },
+  { id: "wompy-woods",  name: "Wompy Woods",         short: "WOMPY",      color: "#84cc16", size: 1.6, desc: "Forest-draped second stage", vibe: "In The Trees", vibeNote: "Wobbles in the woods; fan-favorite for a reason.", peak: "14:00–23:00" },
+  { id: "crater",       name: "The Crater",          short: "CRATER",     color: "#a855f7", size: 1.5, desc: "360-degree immersive stage", vibe: "Surround Sound", vibeNote: "Bass in the round - the pre-party home.", peak: "14:00–23:00" },
+  { id: "subsidia",     name: "Subsidia Stage",      short: "SUBSIDIA",   color: "#22d3ee", size: 1.3, desc: "Excision-label showcase stage", vibe: "Label Night", vibeNote: "Subsidia Records takeover energy.", peak: "14:00–22:00" },
+  { id: "forest-stage", name: "Forest Stage",        short: "FOREST",     color: "#34d399", size: 1.1, desc: "Deep-in-the-trees stage", vibe: "Hidden Forest", vibeNote: "Small canopy, big wubs.", peak: "14:00–22:00" },
+  { id: "raptor-alley", name: "Raptor Alley",        short: "RAPTOR",     color: "#ef4444", size: 0.9, desc: "Late-night after-hours lane", vibe: "After Hours", vibeNote: "The valley does not sleep.", peak: "23:00–04:00" },
   { id: "grove",        name: "The Grove",           short: "GROVE",      color: "#eab308", size: 0.8, desc: "Campground stage", vibe: "Campground", vibeNote: "Morning-to-late sets where the camps live.", peak: "10:00–22:00" },
 ];
 
