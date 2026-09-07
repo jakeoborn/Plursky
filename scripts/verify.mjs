@@ -207,6 +207,72 @@ if (fdata.length) {
   console.log(`  ✓ ${FESTIVAL_MODULES.length} module(s) fully registered`);
 }
 
+// ── Precache integrity gate ──────────────────────────────────────────────
+// sw.js installs its own-origin files with cache.addAll(), and addAll is
+// ATOMIC: it rejects as a unit. One entry that 404s and NOTHING in LOCAL gets
+// cached — the whole app stops working offline, not just the missing file.
+// The install handler only console.warn()s on that rejection, so there is no
+// symptom until someone is standing on a festival field with no signal, which
+// is the exact moment the app is supposed to earn its place.
+//
+// Born from acl-park.webp: ACL's ground plate has been the rendered mapImage
+// since the map was built, and was never added to LOCAL. Same for
+// edc-map-2026.jpg and edco-tinker-2026.jpg. Three festivals — ACL (Oct 9),
+// EDC and EDC Orlando (Nov 6-8) — had no offline map, and nothing said so.
+//
+// The Festival registration gate above already does this for the data MODULES.
+// This is the same idea for the ASSETS, in both directions:
+//   forward  every mapImage in the resolved registry appears in LOCAL
+//   reverse  every own-origin LOCAL entry exists on disk AND is tracked in git
+// The reverse half is the one that protects the atomic addAll — a path that is
+// merely present in someone's working tree is not present on the deploy.
+{
+  console.log(`▸ Precache integrity gate — LOCAL is atomic, so every entry must resolve`);
+  const swSrc = readFileSync(join(ROOT, "sw.js"), "utf8");
+  const localBlock = (swSrc.match(/const LOCAL = \[([\s\S]*?)\n\];/) || [, ""])[1];
+  if (!localBlock.trim()) fail("could not read the LOCAL array out of sw.js");
+  // Entries are './x' or `./x?v=${APP_VER}`. Take the path, drop the query.
+  const listed = new Set();
+  for (const m of localBlock.matchAll(/['"`]\.\/([^'"`?]*)(?:\?[^'"`]*)?['"`]/g)) listed.add(m[1]);
+
+  // reverse: everything listed must actually be deployable
+  const tracked = new Set(
+    execFileSync("git", ["ls-files"], { cwd: ROOT, encoding: "utf8" }).split("\n").filter(Boolean));
+  let pbad = 0;
+  for (const rel of [...listed].sort()) {
+    if (rel === "") continue;                       // './' is the directory index
+    const why = [];
+    if (!existsSync(join(ROOT, rel))) why.push("not on disk");
+    else if (!tracked.has(rel))      why.push("on disk but UNTRACKED — absent from a fresh checkout");
+    if (why.length) { console.log(`  ✗ ${rel.padEnd(38)} ${why.join(", ")}`); pbad++; }
+  }
+  if (pbad) fail(`${pbad} sw.js LOCAL entr(y/ies) will 404 — addAll is atomic, so this drops the ENTIRE offline cache`);
+
+  // forward: every ground plate the app renders must be listed
+  const vm = await import("node:vm");
+  const ctx = { window:{}, console, Date, Math, JSON, Object, Array, String, Number,
+    isNaN, parseInt, parseFloat, fetch:()=>{},
+    localStorage:{ getItem:()=>null, setItem:()=>{}, removeItem:()=>{} } };
+  vm.createContext(ctx);
+  const pmods = FESTIVAL_MODULES
+    .map(f => readFileSync(join(ROOT, "data", "festivals", f), "utf8")).join("\n");
+  vm.runInContext(pmods + "\n" + readFileSync(join(ROOT, "data.jsx"), "utf8") +
+    "\n;__o={REG:FESTIVALS_REGISTRY};", ctx);
+  const PREG = ctx.__o.REG || [];
+  let mbad = 0, mseen = 0;
+  for (const f of PREG) {
+    const cfg = f.config || f;
+    const id  = cfg.id || f.id || "?";
+    const img = cfg.mapImage;
+    if (!img) continue;                              // mapMode "real" — no plate, nothing to cache
+    mseen++;
+    if (!listed.has(img)) { console.log(`  ✗ ${id.padEnd(26)} renders ${img} — not in sw.js LOCAL`); mbad++; }
+    else console.log(`  ok ${id.padEnd(26)} ${img}`);
+  }
+  if (mbad) fail(`${mbad} festival(s) render a map plate that is not precached — no offline map on the field`);
+  console.log(`  ✓ ${listed.size} LOCAL entr(ies) resolve; ${mseen} map plate(s) precached`);
+}
+
 // ── Day-count gate ───────────────────────────────────────────────────────
 // Born from a real defect, shipped and live: home.jsx printed the night
 // counter as `NIGHT ${day} / 3` — a hardcoded denominator. It renders ONLY
