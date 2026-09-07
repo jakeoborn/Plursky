@@ -11441,14 +11441,28 @@ var RC_ENTITLEMENT = "plus";
 function _withTimeout(promise, ms, label) {
   return Promise.race([promise, new Promise((_, reject) => setTimeout(() => reject(new Error(label + " timed out after " + Math.round(ms / 1000) + "s")), ms))]);
 }
+function _rcPlugin() {
+  var P = window.Capacitor?.Plugins?.Purchases;
+  if (!P) throw new Error("RevenueCat plugin is not registered on the Capacitor bridge");
+  return P;
+}
+function _iapMsg(e) {
+  if (!e) return "unknown error";
+  if (typeof e === "string") return e;
+  if (e.message) return e.message;
+  if (e.errorMessage) return e.errorMessage;
+  try {
+    return JSON.stringify(e);
+  } catch {
+    return String(e);
+  }
+}
 var _rcInitialized = false;
 async function _initRevenueCat() {
   if (_rcInitialized || !RC_API_KEY) return;
   if (!window.Capacitor?.isNativePlatform?.()) return;
   try {
-    var {
-      Purchases
-    } = await import("@revenuecat/purchases-capacitor");
+    var Purchases = _rcPlugin();
     await _withTimeout(Purchases.configure({
       apiKey: RC_API_KEY
     }), 12000, "RevenueCat configure");
@@ -11460,7 +11474,7 @@ async function _initRevenueCat() {
     Purchases.addCustomerInfoUpdateListener(info => _syncEntitlements(info));
     if (typeof DEV !== "undefined") console.log("[plursky-iap] RevenueCat initialized");
   } catch (e) {
-    console.warn("[plursky-iap] init failed:", e);
+    console.warn("[plursky-iap] init failed:", _iapMsg(e));
   }
 }
 function _syncEntitlements(info) {
@@ -11502,9 +11516,7 @@ async function _purchasePlus(productId) {
     error: "RevenueCat not configured"
   };
   try {
-    var {
-      Purchases
-    } = await import("@revenuecat/purchases-capacitor");
+    var Purchases = _rcPlugin();
     var offerings = await _withTimeout(Purchases.getOfferings(), 15000, "StoreKit offerings lookup");
     var pkg = offerings?.current?.availablePackages?.find(p => p.product?.identifier === productId);
     if (!pkg) {
@@ -11530,10 +11542,10 @@ async function _purchasePlus(productId) {
         cancelled: true
       };
     }
-    console.error("[plursky-iap] purchase error:", e);
+    console.error("[plursky-iap] purchase error:", _iapMsg(e));
     return {
       success: false,
-      error: e.message
+      error: _iapMsg(e)
     };
   }
 }
@@ -11546,9 +11558,7 @@ async function _plusPriceStrings() {
   if (!_rcInitialized) await _initRevenueCat();
   if (!_rcInitialized) return null;
   try {
-    var {
-      Purchases
-    } = await import("@revenuecat/purchases-capacitor");
+    var Purchases = _rcPlugin();
     var offerings = await _withTimeout(Purchases.getOfferings(), 10000, "StoreKit price lookup");
     var out = {};
     for (var pkg of offerings?.current?.availablePackages || []) {
@@ -11558,7 +11568,7 @@ async function _plusPriceStrings() {
     }
     return Object.keys(out).length ? out : null;
   } catch (e) {
-    console.warn("[plursky-iap] price lookup failed, using fallback copy:", e?.message);
+    console.warn("[plursky-iap] price lookup failed, using fallback copy:", _iapMsg(e));
     return null;
   }
 }
@@ -11589,9 +11599,7 @@ async function _restorePurchases() {
     error: "RevenueCat not configured"
   };
   try {
-    var {
-      Purchases
-    } = await import("@revenuecat/purchases-capacitor");
+    var Purchases = _rcPlugin();
     var {
       customerInfo
     } = await _withTimeout(Purchases.restorePurchases(), 30000, "Restore purchases");
@@ -11602,10 +11610,10 @@ async function _restorePurchases() {
       restored
     };
   } catch (e) {
-    console.error("[plursky-iap] restore error:", e);
+    console.error("[plursky-iap] restore error:", _iapMsg(e));
     return {
       success: false,
-      error: e.message
+      error: _iapMsg(e)
     };
   }
 }
