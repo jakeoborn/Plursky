@@ -243,6 +243,85 @@ if (fdata.length) {
   console.log(`  ✓ ${SRC.length} source file(s) — every day/night counter reads its total from the active config`);
 }
 
+// ── Unplaced-stage gate ──────────────────────────────────────────────────
+// A festival can ship artists whose STAGE IS NOT PUBLISHED YET. Escape
+// Halloween 2026 announces its lineup by day long before it says who plays
+// where; III Points 2026 carries 218 acts with no stage at all. Those
+// artists have `stage: null`, so STAGES.find(...) returns undefined.
+//
+// Dereferencing that CRASHED THE WHOLE LINEUP SCREEN — "Cannot read
+// properties of undefined (reading 'color')" at the artist row, straight to
+// the error boundary. It went unseen because both festivals are gated and
+// the mount probe only ever renders the Today screen. III Points would have
+// taken it live at its Oct 16 flip.
+//
+// This checks the DEREFERENCE, not the lookup: most call sites already do
+// `stage?.name` or `stage ? stage.name : ...` and are fine. Only a bare
+// `stage.x` on a value that can be undefined is a crash. An earlier version
+// flagged every lookup and produced 38 hits, ~90% of them false — a gate
+// that cries wolf is a gate someone deletes.
+{
+  console.log(`▸ Unplaced-stage gate — artist stage lookups must survive stage: null`);
+  const SRC = readdirSync(ROOT).filter(f => f.endsWith(".jsx")).sort();
+  const DECL = /(?:const|let)\s+([A-Za-z_$][\w$]*)\s*=\s*\(?STAGES\.find\(\s*s\s*=>\s*s\.id\s*===\s*([A-Za-z_$][\w$]*)\.stage\s*\)(\s*\|\|[^;\n]*)?/g;
+  const FROM_STAGES = new Set(["stageFilter", "activeStage"]);
+  let ubad = 0, checked = 0;
+  for (const f of SRC) {
+    const src = readFileSync(join(ROOT, f), "utf8");
+    let m;
+    DECL.lastIndex = 0;
+    while ((m = DECL.exec(src)) !== null) {
+      const [, varName, keyVar, fallback] = m;
+      if (FROM_STAGES.has(keyVar)) continue;
+      checked++;
+      if (fallback) continue;                       // `|| UNPLACED_STAGE` — always defined
+      // Scan the rest of the enclosing block for a BARE dereference.
+      // Bound the scan to the DECLARATION'S OWN BLOCK by brace balance. A
+      // flat line-window or "until the name is redeclared" runs off the end
+      // of the function and picks up an unrelated `stage`/`st` hundreds of
+      // lines later — that produced two false positives on the first cut.
+      const after = src.slice(m.index + m[0].length);
+      let depth = 0, endIdx = after.length;
+      for (let i = 0; i < after.length; i++) {
+        const ch = after[i];
+        if (ch === "{" || ch === "(" || ch === "[") depth++;
+        else if (ch === "}" || ch === ")" || ch === "]") {
+          if (depth === 0) { endIdx = i; break; }
+          depth--;
+        }
+      }
+      const body = after.slice(0, endIdx);
+      const bare = new RegExp(`(?<![?.\\w$])${varName}\\.[A-Za-z_$]`, "g");
+      // A hit on a line that ALSO tests the variable (`stage ? stage.name : x`,
+      // `stage && stage.color`, `!stage`) is already guarded — skip it.
+      const guardOnLine = new RegExp(`(?:!\\s*${varName}\\b|\\b${varName}\\s*(?:\\?[^.]|&&|\\|\\|))`);
+      const hits = [];
+      let probe;
+      while ((probe = bare.exec(body)) !== null) {
+        // Look at the hit's line AND the three before it: JSX guards the
+        // dereference from a previous line (`{stage && (` ... `stage.color`).
+        let ls = body.lastIndexOf("\n", probe.index) + 1;
+        let le = body.indexOf("\n", probe.index); if (le < 0) le = body.length;
+        let ctx = ls;
+        for (let k = 0; k < 3 && ctx > 0; k++) ctx = body.lastIndexOf("\n", ctx - 2) + 1;
+        if (guardOnLine.test(body.slice(ctx, le))) continue;
+        hits.push(probe.index);
+      }
+      // Report EVERY unguarded hit in the block, not just the first — fixing
+      // one and re-running to discover the next is how a five-site fix turns
+      // into five round trips.
+      for (const hi of hits) {
+        const ln = src.slice(0, m.index + m[0].length + hi).split("\n").length;
+        const prop = body.slice(hi + varName.length + 1, hi + varName.length + 12).match(/^[A-Za-z_$]+/)[0];
+        console.log(`  ✗ ${f}:${ln}  bare ${varName}.${prop} — crashes when the stage is unpublished`);
+        ubad++;
+      }
+    }
+  }
+  if (ubad) fail(`${ubad} unguarded artist stage dereference(s) — use ?. or || UNPLACED_STAGE`);
+  console.log(`  ✓ ${checked} artist stage lookup(s) across ${SRC.length} source file(s) — every dereference is guarded`);
+}
+
 let REG_LIVE = [];
 // Live festivals that carry a stage LAYOUT GRID but too few anchors to enter
 // REG_LIVE. Hoisted for the same reason REG_LIVE is: the registry lives in a
