@@ -908,7 +908,9 @@ function PyroStarburst({ color }) {
 function ArtistScreen({ state, setState }) {
   const a = ARTISTS.find(ar => ar.id === state.artist);
   if (!a) return null;
-  const stage = STAGES.find(s => s.id === a.stage);
+  // stage is null when a lineup is published before stage assignments
+  // (Escape Halloween 2026, III Points 2026). See UNPLACED_STAGE in data.jsx.
+  const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
 
   // B2B detection — "A b2b B" → split, show per-artist info tabs
   const b2bParts  = a.name.split(/ b2b /i).map(s => s.trim());
@@ -1310,10 +1312,10 @@ function ArtistScreen({ state, setState }) {
             <button key={i} onClick={() => setActiveB2B(i)} style={{
               flex: 1, padding: "11px 8px",
               background: "transparent", border: "none",
-              borderBottom: `2px solid ${activeB2B === i ? stage.color : "transparent"}`,
+              borderBottom: `2px solid ${activeB2B === i ? (stage?.color || "#8a8580") : "transparent"}`,
               cursor: "pointer",
               fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2,
-              color: activeB2B === i ? stage.color : "var(--muted)",
+              color: activeB2B === i ? (stage?.color || "#8a8580") : "var(--muted)",
               fontWeight: activeB2B === i ? 700 : 400,
               transition: "color 0.15s, border-color 0.15s",
             }}>{part.toUpperCase()}</button>

@@ -2108,12 +2108,29 @@ const LL_AMENITIES = [
 // no warning, because the loop never asks for it. (Caught 2026-08-29 when
 // iii-points-2026 booted straight back to EDC.) Adding a festival module means
 // adding its id HERE as well as to index.html and sw.js.
+// ── Unplaced acts ─────────────────────────────────────────────────────────
+// A festival can ship artists whose STAGE IS NOT PUBLISHED YET: Escape
+// Halloween 2026 announces its lineup by day months before it says who plays
+// where, and III Points 2026 carries 218 acts with no stage at all. Those
+// artists have `stage: null`, so every STAGES.find() below can miss.
+//
+// It used to crash. `stage.color` at the artist row threw "Cannot read
+// properties of undefined (reading 'color')" and the whole Lineup screen fell
+// through to the error boundary. Nobody saw it because both affected
+// festivals are gated — III Points would have crashed the moment it flipped
+// on Oct 16.
+//
+// ⚠ color MUST be a real hex, not a CSS var: this file builds colours by
+// string concatenation (`${stage.color}1a`), which silently produces garbage
+// for `var(--x)1a`.
+const UNPLACED_STAGE = { id: null, name: "Stage TBA", short: "TBA", color: "#8a8580", size: 1 };
+
 const _WAVE1_IDS = [
   "ultra-miami-2026", "governors-ball-2026", "summerfest-2026",
   "lollapalooza-2026", "outside-lands-2026",
   "iii-points-2026", "nocturnal-wonderland-2026", "crssd-fall-2026",
   "portola-2026",
-  "hard-summer-2026", "arc-2026",
+  "hard-summer-2026", "arc-2026", "escape-halloween-2026",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {
