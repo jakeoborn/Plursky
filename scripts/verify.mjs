@@ -11,7 +11,7 @@
 //
 // Exits non-zero on the first failure.
 
-import { readFileSync, writeFileSync, unlinkSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, unlinkSync, existsSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync, spawn } from "node:child_process";
@@ -19,6 +19,8 @@ import { createServer } from "node:http";
 import { transformAsync } from "@babel/core";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+const FESTIVAL_MODULES = readdirSync(join(ROOT, "data", "festivals"))
+  .filter(f => f.endsWith(".js")).sort();
 const fail = m => { console.error(`\n✗ ${m}`); process.exit(1); };
 
 // ── 0. Tracked-symlink gate ────────────────────────────────────────────────
@@ -162,8 +164,7 @@ console.log(`  ✓ all ${jsx.length} parsed`);
 // The wave-1 festival data modules are plain .js, so the *.jsx glob above skips
 // them — but they are loaded by index.html and a syntax error in one would take
 // data.jsx's registry down with it. Same transform, same gate.
-const fdata = execFileSync("git", ["ls-files", "data/festivals/*.js"], { cwd: ROOT })
-  .toString().trim().split("\n").filter(Boolean);
+const fdata = FESTIVAL_MODULES.map(f => `data/festivals/${f}`);
 if (fdata.length) {
   console.log(`▸ Parse gate — festival data modules (${fdata.length})`);
   let fbad = 0;
@@ -178,7 +179,40 @@ if (fdata.length) {
   console.log(`  ✓ all ${fdata.length} parsed`);
 }
 
+// ── Festival registration gate ───────────────────────────────────────────
+// A module in data/festivals/ has to be named in THREE places or it is dead
+// weight: index.html's script tags (or the browser never loads it), sw.js's
+// LOCAL precache (or the festival vanishes offline), and _WAVE1_IDS in
+// data.jsx (or data.jsx never reads it into the registry). Miss one and the
+// failure is SILENT — that is the iii-points lesson, and CLAUDE.md's build
+// bar has carried "registered in ALL THREE" as a manual checklist item ever
+// since. A recurring manual check is a design bug, so it is a gate now.
+{
+  console.log(`▸ Festival registration gate — every module named in all three places`);
+  const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  const sw   = readFileSync(join(ROOT, "sw.js"), "utf8");
+  const djsx = readFileSync(join(ROOT, "data.jsx"), "utf8");
+  const waveBlock = (djsx.match(/const _WAVE1_IDS = \[([\s\S]*?)\];/) || [, ""])[1];
+  let rbad = 0;
+  for (const file of FESTIVAL_MODULES) {
+    const id = file.replace(/\.js$/, "");
+    const missing = [];
+    if (!html.includes(`data/festivals/${file}?v=`))          missing.push("index.html <script>");
+    if (!sw.includes(`./data/festivals/${file}?v=`))          missing.push("sw.js LOCAL precache");
+    if (!waveBlock.includes(`"${id}"`))                       missing.push("_WAVE1_IDS in data.jsx");
+    if (missing.length) { console.log(`  ✗ ${id.padEnd(26)} missing from ${missing.join(" + ")}`); rbad++; }
+    else console.log(`  ok ${id.padEnd(26)} index.html + sw.js + _WAVE1_IDS`);
+  }
+  if (rbad) fail(`${rbad} festival module(s) not registered in all three places`);
+  console.log(`  ✓ ${FESTIVAL_MODULES.length} module(s) fully registered`);
+}
+
 let REG_LIVE = [];
+// Live festivals that carry a stage LAYOUT GRID but too few anchors to enter
+// REG_LIVE. Hoisted for the same reason REG_LIVE is: the registry lives in a
+// vm sandbox further down. See the distance-readout gate for why they get
+// their own row instead of being skipped in silence.
+let REG_GRID_NO_AFFINE = [];
 // Mirrors MAP_REGISTRATION_TOL_M in map.jsx. The readout gate asserts the
 // two are equal, so this copy cannot silently drift from the shipped one.
 const REGISTRATION_TOL_M = 25;
@@ -223,9 +257,16 @@ const REGISTRATION_TOL_M = 25;
   // The wave-1 festivals register themselves on window.PLURSKY_FESTIVALS, so
   // their modules have to run before data.jsx here exactly as they do in the
   // browser — otherwise the gate silently checks four festivals instead of nine.
-  const mods = execFileSync("git", ["ls-files", "data/festivals/*.js"], { cwd: ROOT })
-    .toString().trim().split("\n").filter(Boolean)
-    .map(f => readFileSync(join(ROOT, f), "utf8")).join("\n");
+  // Read the DIRECTORY, not `git ls-files`. This used to be the git index, and
+  // that quietly excluded any module that was not yet staged — so a brand-new
+  // festival was invisible to EVERY gate below on the run that mattered most,
+  // the first one. Caught on hard-summer-2026 (2026-09-06): the footprint gate
+  // reported 13 festivals and looked clean while the 14th, the one just
+  // written, had never been loaded. Same silent-drop class as iii-points.
+  // gen-festival-pages.mjs already reads the directory; these two must agree
+  // on what "the festival modules" means, so they now do it the same way.
+  const modFiles = FESTIVAL_MODULES;
+  const mods = modFiles.map(f => readFileSync(join(ROOT, "data", "festivals", f), "utf8")).join("\n");
   vm.runInContext(mods + "\n" + readFileSync(join(ROOT,"data.jsx"),"utf8") +
     "\n;__o={REG:FESTIVALS_REGISTRY,DS:_DATA_SETS};", ctx);
   const { REG, DS } = ctx.__o;
@@ -544,6 +585,10 @@ const REGISTRATION_TOL_M = 25;
               Math.cos(la1*r)*Math.cos(la2*r)*Math.sin((lo2-lo1)*r/2)**2;
     return 2*R*Math.asin(Math.sqrt(h));
   };
+  REG_GRID_NO_AFFINE = REG
+    .filter(f => f.available && (f.config.gpsAnchors || []).length < 3 &&
+                 ((DS[f.config.id] || {}).stages || []).some(st => typeof st.x === "number"))
+    .map(f => ({ id: f.config.id, anchors: (f.config.gpsAnchors || []).length }));
   REG_LIVE = REG.filter(f => f.available && (f.config.gpsAnchors || []).length >= 3)
     .map(f => {
       const an = f.config.gpsAnchors, stages = (DS[f.config.id] || {}).stages || [];
@@ -865,7 +910,38 @@ const REGISTRATION_TOL_M = 25;
     else console.log(`  ok ${f.id.padEnd(22)} ${sourced ? "sourced — readouts quoted" : "unsourced — 4/4 readouts withheld from a live position"}`);
   }
   if (rdHard) fail(`${rdHard} festival(s) quote distances they cannot support — see above`);
+  // A LIVE festival with a stage grid but FEWER THAN 3 ANCHORS never enters
+  // REG_LIVE, so the loop above skips it in silence. hard-summer-2026 is the
+  // first such config: available, seven registered stage x/y read off the
+  // official patron map, zero gpsAnchors. It is structurally safe — with no
+  // affine there is nothing for the app to quote a distance FROM — but
+  // "structurally safe" and "not looked at" print identically when the row
+  // is simply absent, which is the blind spot the arming rulings closed on
+  // the footprint gate. So say it out loud.
+  // "Structurally safe" is a claim, so PROVE it rather than print it: run the
+  // same four probes from a LIVE position and require all four to withhold.
+  for (const f of REG_GRID_NO_AFFINE) {
+    const c = load(f.id);
+    const stage = (c.STAGES || []).find(st => typeof st.x === "number");
+    if (!stage) continue;
+    const d = Math.hypot(stage.x - 50, stage.y - 50);
+    const live = { x: 50, y: 50, live: true };
+    const quoted = [];
+    if (c.walkMinsLabel(c.computeWalkRange(live, stage, d, "22:00")) != null) quoted.push("walk");
+    if (c.distToMins(d, live) != null)                                        quoted.push("mins");
+    if (c.minsAwaySuffix(d, live) !== "")                                     quoted.push("away");
+    if (c.gridDistMeters(50, 50, stage.x, stage.y, live) != null)             quoted.push("metres");
+    if (quoted.length) {
+      rdHard++;
+      console.log(`  ✗  ${f.id.padEnd(22)} ${f.anchors} anchor(s) and NO affine, yet quotes ${quoted.join(", ")} from a live position`);
+    } else {
+      console.log(`  ok ${f.id.padEnd(22)} grid, ${f.anchors} anchor(s), no affine — 4/4 readouts withheld`);
+    }
+  }
+  if (rdHard) fail(`${rdHard} festival(s) quote distances they cannot support — see above`);
   console.log(`  ✓ ${rdChecked} live festival(s): every grid readout matches its registration provenance`);
+  if (REG_GRID_NO_AFFINE.length)
+    console.log(`  ✓ ${REG_GRID_NO_AFFINE.length} more carry a layout grid with no affine — checked, not assumed`);
 
   // ── The capture path must emit what the crowd-anchor gate accepts ──────
   // survey.jsx exists to produce crowdAnchors rows, and the gate above
