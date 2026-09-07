@@ -1216,7 +1216,7 @@ function F1TonightHero({
       color: "rgba(255,255,255,0.55)",
       fontWeight: 600
     }
-  }, phase === "pre" ? FESTIVAL_CONFIG.dates.toUpperCase() : `NIGHT ${day} / 3`)), phase === "pre" && React.createElement(React.Fragment, null, React.createElement("div", {
+  }, phase === "pre" ? FESTIVAL_CONFIG.dates.toUpperCase() : `NIGHT ${day} / ${DAYS.length}`)), phase === "pre" && React.createElement(React.Fragment, null, React.createElement("div", {
     style: {
       margin: "-2px -18px 16px"
     }

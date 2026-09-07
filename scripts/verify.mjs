@@ -207,6 +207,42 @@ if (fdata.length) {
   console.log(`  ✓ ${FESTIVAL_MODULES.length} module(s) fully registered`);
 }
 
+// ── Day-count gate ───────────────────────────────────────────────────────
+// Born from a real defect, shipped and live: home.jsx printed the night
+// counter as `NIGHT ${day} / 3` — a hardcoded denominator. It renders ONLY
+// during a festival, so for as long as every shipped festival was still in
+// the future nobody could see it. The moment ARC 2026 (Sep 4–7) went live
+// it read "NIGHT 3 / 3" on a four-night festival, and the same literal was
+// already wrong for Summerfest (9 days → "NIGHT 7 / 3") and Lollapalooza
+// (4 days), both available.
+//
+// Day counts are per-festival and switch with the active config, so ANY
+// numeric literal as the denominator of a day/night counter is a bug.
+// Read the count off DAYS (data.jsx re-derives it from the active config).
+{
+  console.log(`▸ Day-count gate — no hardcoded day/night denominators`);
+  const SRC = readdirSync(ROOT).filter(f => f.endsWith(".jsx")).sort();
+  // `NIGHT ${x} / 3`, `DAY ${x} of 3`, `${x} / 3 nights` and friends.
+  const PATTERNS = [
+    /(?:NIGHT|DAY)\s+\$\{[^}]+\}\s*(?:\/|of)\s*\d+/gi,
+    /\$\{[^}]+\}\s*(?:\/|of)\s*\d+\s*(?:nights?|days?)\b/gi,
+  ];
+  let dbad = 0;
+  for (const f of SRC) {
+    const lines = readFileSync(join(ROOT, f), "utf8").split("\n");
+    lines.forEach((ln, i) => {
+      if (ln.trim().startsWith("//")) return;          // the comment above cites the old form
+      for (const re of PATTERNS) {
+        re.lastIndex = 0;
+        const m = re.exec(ln);
+        if (m) { console.log(`  ✗ ${f}:${i + 1}  ${m[0].trim()}`); dbad++; return; }
+      }
+    });
+  }
+  if (dbad) fail(`${dbad} hardcoded day/night denominator(s) — read the count off DAYS.length`);
+  console.log(`  ✓ ${SRC.length} source file(s) — every day/night counter reads its total from the active config`);
+}
+
 let REG_LIVE = [];
 // Live festivals that carry a stage LAYOUT GRID but too few anchors to enter
 // REG_LIVE. Hoisted for the same reason REG_LIVE is: the registry lives in a
@@ -1099,8 +1135,13 @@ function read(){
               .map(function(k){return k+"="+typeof w[k];}),
             activeId:(function(){try{return w.FESTIVAL_CONFIG&&w.FESTIVAL_CONFIG.id;}catch(e){return "?";}})(),
             preCd:(function(){try{return w.preEventCountdown?JSON.stringify(w.preEventCountdown([])):"nofn";}catch(e){return "threw";}})(),
+            // Read the ACTIVE config's own start so the countdown can be
+            // checked against it rather than against an assumption that
+            // every shipped festival is still in the future. See below.
+            startMs:(function(){try{return w.FESTIVAL_START_MS||null;}catch(e){return null;}})(),
+            nowMs:Date.now(),
             errs:(w.__probeErrs||[]).concat(window.__e), waitedMs:Date.now()-t0};
-  }catch(err){ return {root:-1,chars:0,fns:[],winProps:[],activeId:"?",preCd:"?",errs:["probe: "+err.message],waitedMs:Date.now()-t0}; }
+  }catch(err){ return {root:-1,chars:0,fns:[],winProps:[],activeId:"?",preCd:"?",startMs:null,nowMs:0,errs:["probe: "+err.message],waitedMs:Date.now()-t0}; }
 }
 function emit(o){
   var p=document.createElement("pre"); p.id="R"; p.textContent=JSON.stringify(o);
@@ -1184,11 +1225,32 @@ if (badProps.length)
 
 // And the observable consequence, so the contract is checked by BEHAVIOUR and
 // not only by shape: the active festival must be the resolved one, and the
-// pre-event countdown must actually produce a countdown.
+// pre-event countdown must AGREE WITH THAT FESTIVAL'S OWN START TIME.
+//
+// ⚠ This assertion used to be "preCd must be non-null", full stop. That held
+// only because every festival in the repo was still in the future. ARC 2026
+// (Sep 4–7) is the first one that is LIVE while the suite runs, and
+// preEventCountdown correctly returns null once now >= FESTIVAL_START_MS —
+// so the old form failed a green tree and blamed bare-name resolution for it.
+// Checking it in BOTH directions is also the stronger test: a stale config
+// would show a countdown when the active festival has already started, and
+// the absence of one when it has not. Either way the mismatch is the signal,
+// never the null on its own.
 console.log(`  active festival: ${r.activeId}`);
 if (!r.activeId || r.activeId === "?") fail("no active festival resolved");
-if (r.preCd === "null" || r.preCd === "threw")
-  fail(`preEventCountdown returned ${r.preCd} — bare-name resolution is reading a stale config`);
+if (r.preCd === "threw") fail("preEventCountdown threw — bare-name resolution is reading a stale config");
+if (r.preCd === "nofn")  fail("preEventCountdown is not reachable by bare name");
+{
+  const started = r.startMs != null && r.nowMs >= r.startMs;
+  const counting = r.preCd !== "null";
+  const when = r.startMs == null ? "unknown start" : new Date(r.startMs).toISOString().slice(0, 16) + "Z";
+  if (started && counting)
+    fail(`${r.activeId} started ${when} yet preEventCountdown still counts down — stale config`);
+  if (!started && !counting)
+    fail(`${r.activeId} starts ${when}, still in the future, yet preEventCountdown returned null — stale config`);
+  console.log(`  countdown     : ${started ? `withheld — ${r.activeId} is live/past (started ${when})`
+                                            : `counting to ${when}`} — agrees with the active config`);
+}
 
 if (r.errs.length) fail(`${r.errs.length} console error(s) during boot`);
 
