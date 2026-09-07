@@ -11438,6 +11438,9 @@ var RC_PRODUCT_IDS = {
   monthly: "plursky_plus_monthly"
 };
 var RC_ENTITLEMENT = "plus";
+function _withTimeout(promise, ms, label) {
+  return Promise.race([promise, new Promise((_, reject) => setTimeout(() => reject(new Error(label + " timed out after " + Math.round(ms / 1000) + "s")), ms))]);
+}
 var _rcInitialized = false;
 async function _initRevenueCat() {
   if (_rcInitialized || !RC_API_KEY) return;
@@ -11446,13 +11449,13 @@ async function _initRevenueCat() {
     var {
       Purchases
     } = await import("@revenuecat/purchases-capacitor");
-    await Purchases.configure({
+    await _withTimeout(Purchases.configure({
       apiKey: RC_API_KEY
-    });
+    }), 12000, "RevenueCat configure");
     _rcInitialized = true;
     var {
       customerInfo
-    } = await Purchases.getCustomerInfo();
+    } = await _withTimeout(Purchases.getCustomerInfo(), 12000, "RevenueCat getCustomerInfo");
     _syncEntitlements(customerInfo);
     Purchases.addCustomerInfoUpdateListener(info => _syncEntitlements(info));
     if (typeof DEV !== "undefined") console.log("[plursky-iap] RevenueCat initialized");
@@ -11502,7 +11505,7 @@ async function _purchasePlus(productId) {
     var {
       Purchases
     } = await import("@revenuecat/purchases-capacitor");
-    var offerings = await Purchases.getOfferings();
+    var offerings = await _withTimeout(Purchases.getOfferings(), 15000, "StoreKit offerings lookup");
     var pkg = offerings?.current?.availablePackages?.find(p => p.product?.identifier === productId);
     if (!pkg) {
       console.warn("[plursky-iap] product not found:", productId);
@@ -11513,9 +11516,9 @@ async function _purchasePlus(productId) {
     }
     var {
       customerInfo
-    } = await Purchases.purchasePackage({
+    } = await _withTimeout(Purchases.purchasePackage({
       aPackage: pkg
-    });
+    }), 45000, "StoreKit purchase sheet");
     _syncEntitlements(customerInfo);
     return {
       success: !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT]
@@ -11546,7 +11549,7 @@ async function _plusPriceStrings() {
     var {
       Purchases
     } = await import("@revenuecat/purchases-capacitor");
-    var offerings = await Purchases.getOfferings();
+    var offerings = await _withTimeout(Purchases.getOfferings(), 10000, "StoreKit price lookup");
     var out = {};
     for (var pkg of offerings?.current?.availablePackages || []) {
       var id = pkg.product?.identifier,
@@ -11591,7 +11594,7 @@ async function _restorePurchases() {
     } = await import("@revenuecat/purchases-capacitor");
     var {
       customerInfo
-    } = await Purchases.restorePurchases();
+    } = await _withTimeout(Purchases.restorePurchases(), 30000, "Restore purchases");
     _syncEntitlements(customerInfo);
     var restored = !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT];
     return {
@@ -11627,6 +11630,7 @@ function PlusGate({
 }) {
   var [busy, setBusy] = React.useState(false);
   var [pending, setPending] = React.useState(null);
+  var [buyError, setBuyError] = React.useState(null);
   var prices = usePlusPrices();
   if (_isPlusSub()) return children;
   var canBuy = _iapAvailable();
@@ -11634,20 +11638,36 @@ function PlusGate({
     var target = productId || RC_PRODUCT_IDS.season;
     setBusy(true);
     setPending(target);
+    setBuyError(null);
     try {
-      var result = await _purchasePlus(target);
-      if (result.success) window.location.reload();
-    } catch {}
-    setBusy(false);
-    setPending(null);
+      var result = await _withTimeout(_purchasePlus(target), 50000, "Purchase");
+      if (result.success) {
+        window.location.reload();
+        return;
+      }
+      if (!result.cancelled && !result.unsupported) setBuyError(result.error || "Purchase could not be completed.");
+    } catch (e) {
+      setBuyError(e?.message || "Purchase could not be completed.");
+    } finally {
+      setBusy(false);
+      setPending(null);
+    }
   };
   var handleRestore = async () => {
     setBusy(true);
+    setBuyError(null);
     try {
       var result = await _restorePurchases();
-      if (result.restored) window.location.reload();else if (!result.restored && result.success) alert("No previous Plursky+ purchase found for this Apple ID.");
-    } catch {}
-    setBusy(false);
+      if (result.restored) {
+        window.location.reload();
+        return;
+      }
+      if (result.success) alert("No previous Plursky+ purchase found for this Apple ID.");else setBuyError(result.error || "Restore could not be completed.");
+    } catch (e) {
+      setBuyError(e?.message || "Restore could not be completed.");
+    } finally {
+      setBusy(false);
+    }
   };
   var _PLUS_PERKS = [["No watermarks", "Clean, brandable exports"], ["Cloud backup", "Your photos & videos, saved safely"], ["Unlimited shares", "No daily limit"], ["Premium templates", "Film Strip, Passport & more"], ["Custom accents", "Pick your festival color"]];
   return React.createElement("div", {
@@ -11747,7 +11767,19 @@ function PlusGate({
       fontSize: 9,
       color: "rgba(255,255,255,0.45)"
     }
-  }, sub))))), canBuy ? React.createElement(React.Fragment, null, React.createElement("button", {
+  }, sub))))), buyError && React.createElement("div", {
+    className: "mono",
+    role: "alert",
+    style: {
+      fontSize: 9,
+      letterSpacing: 0.6,
+      color: "#ff9d7a",
+      marginTop: 10,
+      maxWidth: 264,
+      textAlign: "center",
+      lineHeight: 1.6
+    }
+  }, buyError, " You are only charged when Apple confirms — nothing was charged for this attempt."), canBuy ? React.createElement(React.Fragment, null, React.createElement("button", {
     onClick: () => handlePurchase(RC_PRODUCT_IDS.season),
     disabled: busy,
     className: "mono",

@@ -7576,15 +7576,30 @@ const RC_PRODUCT_IDS = {
 };
 const RC_ENTITLEMENT = "plus";
 
+// Every RevenueCat await below is wrapped in this. The 2026-09-07 App Review
+// rejection (Guideline 2.1(b)) was exactly this shape: the reviewer tapped a
+// buy button, one of these promises never settled, and the paywall sat on
+// PROCESSING… forever — Apple read it as "the app froze at in-app purchase
+// screen and could not proceed". A pending promise must NEVER be a terminal
+// state: every wait below is bounded, and the paywall re-enables with an
+// error line instead of hanging.
+function _withTimeout(promise, ms, label) {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) => setTimeout(
+      () => reject(new Error(label + " timed out after " + Math.round(ms / 1000) + "s")), ms)),
+  ]);
+}
+
 let _rcInitialized = false;
 async function _initRevenueCat() {
   if (_rcInitialized || !RC_API_KEY) return;
   if (!window.Capacitor?.isNativePlatform?.()) return;
   try {
     const { Purchases } = await import("@revenuecat/purchases-capacitor");
-    await Purchases.configure({ apiKey: RC_API_KEY });
+    await _withTimeout(Purchases.configure({ apiKey: RC_API_KEY }), 12000, "RevenueCat configure");
     _rcInitialized = true;
-    const { customerInfo } = await Purchases.getCustomerInfo();
+    const { customerInfo } = await _withTimeout(Purchases.getCustomerInfo(), 12000, "RevenueCat getCustomerInfo");
     _syncEntitlements(customerInfo);
     // CustomerInfoUpdateListener = (customerInfo: CustomerInfo) => void — the
     // listener receives CustomerInfo DIRECTLY. Destructuring `.customerInfo`
@@ -7639,9 +7654,9 @@ async function _purchasePlus(productId) {
     // not to { offerings }. Destructuring `offerings` yielded undefined, so the
     // find() below always ran on undefined and every purchase bailed out at
     // "Product not available". Same signature in v9 and v13 — this was never a
-    // version difference, just wrong, and invisible because sandbox purchase
-    // testing is still blocked on the Paid Apps agreement.
-    const offerings = await Purchases.getOfferings();
+    // version difference, just wrong, and invisible until App Review hit it
+    // (the Paid Apps agreement is verified ACTIVE as of 2026-09-07).
+    const offerings = await _withTimeout(Purchases.getOfferings(), 15000, "StoreKit offerings lookup");
     const pkg = offerings?.current?.availablePackages?.find(p =>
       p.product?.identifier === productId
     );
@@ -7649,7 +7664,12 @@ async function _purchasePlus(productId) {
       console.warn("[plursky-iap] product not found:", productId);
       return { success: false, error: "Product not available" };
     }
-    const { customerInfo } = await Purchases.purchasePackage({ aPackage: pkg });
+    // 45s: a presented sheet settles in seconds (approve/cancel/FaceID), so
+    // a wait past that IS the 2.1(b) hang — sheet never presented. If we time
+    // out while a real purchase completes natively, the customer-info update
+    // listener still syncs the entitlement and Plus unlocks on its own.
+    const { customerInfo } = await _withTimeout(
+      Purchases.purchasePackage({ aPackage: pkg }), 45000, "StoreKit purchase sheet");
     _syncEntitlements(customerInfo);
     return { success: !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT] };
   } catch (e) {
@@ -7682,7 +7702,7 @@ async function _plusPriceStrings() {
   if (!_rcInitialized) return null;
   try {
     const { Purchases } = await import("@revenuecat/purchases-capacitor");
-    const offerings = await Purchases.getOfferings();
+    const offerings = await _withTimeout(Purchases.getOfferings(), 10000, "StoreKit price lookup");
     const out = {};
     for (const pkg of offerings?.current?.availablePackages || []) {
       const id = pkg.product?.identifier, price = pkg.product?.priceString;
@@ -7715,7 +7735,7 @@ async function _restorePurchases() {
   if (!_rcInitialized) return { success: false, error: "RevenueCat not configured" };
   try {
     const { Purchases } = await import("@revenuecat/purchases-capacitor");
-    const { customerInfo } = await Purchases.restorePurchases();
+    const { customerInfo } = await _withTimeout(Purchases.restorePurchases(), 30000, "Restore purchases");
     _syncEntitlements(customerInfo);
     const restored = !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT];
     return { success: true, restored };
@@ -7739,28 +7759,44 @@ function PlusGate({ children, feature }) {
   // only decides which one reads PROCESSING, so two buttons can't both claim
   // to be processing the same tap. Null during restore (disabled, not labelled).
   const [pending, setPending] = React.useState(null);
+  // Visible failure line — a hung purchase used to die silently on
+  // PROCESSING… (the 2.1(b) rejection). Now every failure path lands here,
+  // in words, with the buttons back live.
+  const [buyError, setBuyError] = React.useState(null);
   const prices = usePlusPrices();
   if (_isPlusSub()) return children;
   const canBuy = _iapAvailable();
 
   const handlePurchase = async (productId) => {
     const target = productId || RC_PRODUCT_IDS.season;
-    setBusy(true); setPending(target);
+    setBusy(true); setPending(target); setBuyError(null);
     try {
-      const result = await _purchasePlus(target);
-      if (result.success) window.location.reload();
-    } catch {}
-    setBusy(false); setPending(null);
+      // Master bound at the UI layer (50s > the 45s sheet bound inside):
+      // even a future unbounded await anywhere in _purchasePlus can never
+      // freeze this screen again.
+      const result = await _withTimeout(_purchasePlus(target), 50000, "Purchase");
+      if (result.success) { window.location.reload(); return; }
+      if (!result.cancelled && !result.unsupported)
+        setBuyError(result.error || "Purchase could not be completed.");
+    } catch (e) {
+      setBuyError(e?.message || "Purchase could not be completed.");
+    } finally {
+      setBusy(false); setPending(null);
+    }
   };
 
   const handleRestore = async () => {
-    setBusy(true);
+    setBusy(true); setBuyError(null);
     try {
       const result = await _restorePurchases();
-      if (result.restored) window.location.reload();
-      else if (!result.restored && result.success) alert("No previous Plursky+ purchase found for this Apple ID.");
-    } catch {}
-    setBusy(false);
+      if (result.restored) { window.location.reload(); return; }
+      if (result.success) alert("No previous Plursky+ purchase found for this Apple ID.");
+      else setBuyError(result.error || "Restore could not be completed.");
+    } catch (e) {
+      setBuyError(e?.message || "Restore could not be completed.");
+    } finally {
+      setBusy(false);
+    }
   };
 
   const _PLUS_PERKS = [
@@ -7815,6 +7851,15 @@ function PlusGate({ children, feature }) {
             </div>
           ))}
         </div>
+
+        {buyError && (
+          <div className="mono" role="alert" style={{
+            fontSize: 9, letterSpacing: 0.6, color: "#ff9d7a",
+            marginTop: 10, maxWidth: 264, textAlign: "center", lineHeight: 1.6,
+          }}>
+            {buyError} You are only charged when Apple confirms — nothing was charged for this attempt.
+          </div>
+        )}
 
         {canBuy ? (<>
           {/* PRIMARY — Season Pass. NON-CONSUMABLE, so this button must carry no
