@@ -1962,7 +1962,7 @@ function _writeMoments(all) {
   } catch {}
 }
 function _countMoments() {
-  var all = _readMoments();
+  var all = _activeMoments(_readMoments());
   return Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
 }
 function _activeMoments(all) {
@@ -5428,31 +5428,33 @@ function AddMomentForm({
     }
   }, busy ? "WORKING…" : "✓ SAVE MOMENT")));
 }
-async function _purgeNightMoments(night) {
+async function _purgeVisibleMoments(match) {
   var all = _readMoments();
-  var list = all[night] || [];
-  for (var m of list) {
-    if (m.photoId) {
+  var visible = _activeMoments(all);
+  var doomed = new Set();
+  for (var night of Object.keys(visible)) {
+    for (var m of visible[night] || []) if (match(m, night)) doomed.add(m);
+  }
+  if (!doomed.size) return 0;
+  for (var _night of Object.keys(all)) {
+    var arr = Array.isArray(all[_night]) ? all[_night] : [];
+    for (var _m2 of arr) {
+      if (!doomed.has(_m2) || !_m2.photoId) continue;
       try {
-        await _deletePhoto(m.photoId);
+        await _deletePhoto(_m2.photoId);
       } catch {}
     }
+    var kept = arr.filter(m => !doomed.has(m));
+    if (kept.length) all[_night] = kept;else delete all[_night];
   }
-  delete all[night];
   _writeMoments(all);
+  return doomed.size;
+}
+async function _purgeNightMoments(night) {
+  return _purgeVisibleMoments((m, n) => String(n) === String(night));
 }
 async function _purgeAllMoments() {
-  var all = _readMoments();
-  for (var list of Object.values(all)) {
-    for (var m of list || []) {
-      if (m.photoId) {
-        try {
-          await _deletePhoto(m.photoId);
-        } catch {}
-      }
-    }
-  }
-  _writeMoments({});
+  return _purgeVisibleMoments(() => true);
 }
 function StorageManager({
   all,
@@ -7930,11 +7932,12 @@ function MemoriesScreen({
   }, [all]);
   var [autoOn, setAutoOn] = React.useState(() => _autoBackupOn());
   var _autoBusy = React.useRef(false);
+  var everyMoment = React.useMemo(() => Object.values(rawAll || {}).flatMap(a => Array.isArray(a) ? a : []), [rawAll]);
   var backupStat = React.useMemo(() => {
     var total = 0,
       done = 0,
       bytes = 0;
-    for (var m of allMoments) {
+    for (var m of everyMoment) {
       if (!m.photoId) continue;
       total++;
       if (m.backedUp) {
@@ -7947,7 +7950,11 @@ function MemoriesScreen({
       done,
       bytes
     };
-  }, [allMoments]);
+  }, [everyMoment]);
+  var backupScopeHint = React.useMemo(() => {
+    var here = allMoments.filter(m => m.photoId).length;
+    return backupStat.total > here ? " · ALL FESTIVALS" : "";
+  }, [allMoments, backupStat.total]);
   var _afterBackup = res => {
     if (res?.error === "signin") window.plurskyToast?.("Sign in on the Me tab to back up");else if (res?.error) window.plurskyToast?.("Backup unavailable right now");else if (res?.capped) window.plurskyToast?.(`Backup limit reached (${_fmtSize(_BACKUP_HARD_CAP)}) · ${res.done} saved`);else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}`);
   };
@@ -7976,7 +7983,7 @@ function MemoriesScreen({
   };
   React.useEffect(() => {
     if (!autoOn || !_isPlusSub() || !_onWifi() || _autoBusy.current) return;
-    if (!allMoments.some(m => m.photoId && !m.backedUp)) return;
+    if (!everyMoment.some(m => m.photoId && !m.backedUp)) return;
     var cancelled = false;
     (async () => {
       if (!(window.sbGetUser && (await window.sbGetUser()))) return;
@@ -7992,7 +7999,7 @@ function MemoriesScreen({
     return () => {
       cancelled = true;
     };
-  }, [allMoments, autoOn]);
+  }, [everyMoment, autoOn]);
   return React.createElement(Screen, {
     bg: "var(--paper)"
   }, lightbox && React.createElement(MomentLightbox, {
@@ -8277,7 +8284,7 @@ function MemoriesScreen({
       fontWeight: 700,
       color: backupStat.bytes >= _BACKUP_SOFT_CAP ? "var(--ember-ink)" : "var(--muted)"
     }
-  }, backupBusy && backupProg ? `BACKING UP… ${backupProg.done}/${backupProg.total}` : backupStat.done >= backupStat.total ? `ALL SAFE · ${_fmtSize(backupStat.bytes)}` : `${backupStat.done}/${backupStat.total} · ${_fmtSize(backupStat.bytes)} · WI-FI`, backupStat.bytes >= _BACKUP_SOFT_CAP ? ` · NEAR ${_fmtSize(_BACKUP_HARD_CAP)} LIMIT` : ""))), React.createElement("span", {
+  }, backupBusy && backupProg ? `BACKING UP… ${backupProg.done}/${backupProg.total}` : backupStat.done >= backupStat.total ? `ALL SAFE${backupScopeHint} · ${_fmtSize(backupStat.bytes)}` : `${backupStat.done}/${backupStat.total}${backupScopeHint} · ${_fmtSize(backupStat.bytes)} · WI-FI`, backupStat.bytes >= _BACKUP_SOFT_CAP ? ` · NEAR ${_fmtSize(_BACKUP_HARD_CAP)} LIMIT` : ""))), React.createElement("span", {
     className: "mono",
     style: {
       flexShrink: 0,
