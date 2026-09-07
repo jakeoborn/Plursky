@@ -2879,6 +2879,18 @@ var _TAG_SOURCE_LABEL = {
   manual: {
     text: "MANUAL",
     tone: "ok"
+  },
+  "video-metadata": {
+    text: "AUTO · VIDEO TIME",
+    tone: "ok"
+  },
+  "video-night-only": {
+    text: "VIDEO NIGHT · PICK A SET",
+    tone: "warn"
+  },
+  "archive-recovered": {
+    text: "RECOVERED · ARCHIVE",
+    tone: "ok"
   }
 };
 function _momentCaptureMs(m) {
@@ -5454,6 +5466,201 @@ async function _purgeAllMoments() {
   }
   _writeMoments({});
 }
+function ImportReview({
+  results,
+  moments,
+  onClose,
+  onFix
+}) {
+  var byId = React.useMemo(() => {
+    var m = {};
+    for (var night of Object.keys(moments || {})) {
+      for (var mo of moments[night] || []) if (mo && mo.id) m[mo.id] = mo;
+    }
+    return m;
+  }, [moments]);
+  var rows = React.useMemo(() => {
+    var out = (results || []).filter(r => r.momentId).map(r => {
+      var mo = byId[r.momentId] || null;
+      var artist = r.artistId ? ARTISTS.find(a => a.id === r.artistId) : null;
+      var stage = artist ? STAGES.find(st => st.id === artist.stage) || UNPLACED_STAGE : null;
+      var day = DAYS.find(d => d.n === r.night);
+      var sure = !!r.artistId && r.tagSource !== "fallback" && !(mo && (mo.needsRetag || mo.tagAmbiguous));
+      return {
+        ...r,
+        moment: mo,
+        artist,
+        stage,
+        day,
+        sure
+      };
+    });
+    return out.sort((a, b) => a.sure === b.sure ? 0 : a.sure ? 1 : -1);
+  }, [results, byId]);
+  var unsure = rows.filter(r => !r.sure).length;
+  if (!rows.length) return null;
+  return React.createElement("div", {
+    onClick: onClose,
+    style: {
+      position: "fixed",
+      inset: 0,
+      zIndex: 270,
+      background: "rgba(0,0,0,0.55)",
+      display: "flex",
+      alignItems: "flex-end",
+      justifyContent: "center",
+      animation: "fadeIn .18s"
+    }
+  }, React.createElement("div", {
+    onClick: e => e.stopPropagation(),
+    style: {
+      width: "100%",
+      maxWidth: 520,
+      maxHeight: "86vh",
+      background: "var(--paper)",
+      borderRadius: "18px 18px 0 0",
+      border: "1px solid var(--line)",
+      borderBottom: "none",
+      display: "flex",
+      flexDirection: "column",
+      overflow: "hidden"
+    }
+  }, React.createElement("div", {
+    style: {
+      padding: "14px 18px 10px",
+      borderBottom: "1px solid var(--line)",
+      flexShrink: 0
+    }
+  }, React.createElement("div", {
+    className: "serif",
+    style: {
+      fontSize: 22,
+      lineHeight: 1.05,
+      color: "var(--ink)"
+    }
+  }, unsure === 0 ? React.createElement(React.Fragment, null, "All ", rows.length, " ", React.createElement("span", {
+    style: {
+      fontStyle: "italic"
+    }
+  }, "tagged")) : React.createElement(React.Fragment, null, unsure, " need", unsure === 1 ? "s" : "", " a ", React.createElement("span", {
+    style: {
+      fontStyle: "italic"
+    }
+  }, "set"))), React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1.2,
+      color: "var(--muted)",
+      fontWeight: 700,
+      marginTop: 4
+    }
+  }, rows.length, " IMPORTED · TAP A ROW TO FIX ITS TAG")), React.createElement("div", {
+    style: {
+      flex: 1,
+      minHeight: 0,
+      overflowY: "auto",
+      WebkitOverflowScrolling: "touch",
+      padding: "6px 12px 8px"
+    }
+  }, rows.map(r => React.createElement("button", {
+    key: r.momentId,
+    onClick: () => r.moment && onFix?.(r.moment),
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      width: "100%",
+      textAlign: "left",
+      padding: "9px 10px",
+      marginBottom: 4,
+      background: r.sure ? "transparent" : "rgba(232,93,46,0.07)",
+      border: r.sure ? "1px solid var(--line)" : "1px solid rgba(232,93,46,0.45)",
+      borderRadius: 10,
+      cursor: "pointer",
+      fontFamily: "inherit",
+      color: "var(--ink)"
+    }
+  }, React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      flexShrink: 0,
+      width: 4,
+      alignSelf: "stretch",
+      borderRadius: 3,
+      background: r.stage ? r.stage.color : "var(--line-2)"
+    }
+  }), React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 14,
+      lineHeight: 1.15,
+      fontWeight: r.artist ? 700 : 500,
+      color: r.artist ? "var(--ink)" : "var(--ember-ink)",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap"
+    }
+  }, r.artist ? r.artist.name : "No set matched"), React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 8.5,
+      letterSpacing: 1,
+      color: "var(--muted)",
+      fontWeight: 700,
+      marginTop: 2,
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap"
+    }
+  }, r.stage ? `${r.stage.short} · ` : "", r.day && r.day.label || `NIGHT ${r.night}`, " · ", (_TAG_SOURCE_LABEL[r.tagSource] || {}).text || String(r.tagSource || "").toUpperCase()), React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 8,
+      letterSpacing: 0.6,
+      color: "var(--muted)",
+      marginTop: 2,
+      opacity: 0.75,
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap"
+    }
+  }, r.name)), React.createElement("span", {
+    className: "mono",
+    style: {
+      flexShrink: 0,
+      fontSize: 9,
+      letterSpacing: 1.1,
+      fontWeight: 800,
+      color: r.sure ? "var(--success)" : "var(--ember-ink)"
+    }
+  }, r.sure ? "✓" : "FIX →")))), React.createElement("div", {
+    style: {
+      padding: "10px 14px calc(12px + env(safe-area-inset-bottom))",
+      borderTop: "1px solid var(--line)",
+      flexShrink: 0
+    }
+  }, React.createElement("button", {
+    onClick: onClose,
+    className: "mono",
+    style: {
+      width: "100%",
+      padding: "12px 0",
+      borderRadius: 12,
+      border: "none",
+      background: "var(--ink)",
+      color: "var(--paper)",
+      cursor: "pointer",
+      fontSize: 11,
+      letterSpacing: 1.3,
+      fontWeight: 800
+    }
+  }, unsure === 0 ? "LOOKS RIGHT" : "DONE FOR NOW"))));
+}
 function StorageManager({
   all,
   onChange
@@ -7571,6 +7778,7 @@ function MemoriesScreen({
   var all = React.useMemo(() => _activeMoments(rawAll), [rawAll]);
   var [adding, setAdding] = React.useState(null);
   var [batch, setBatch] = React.useState(null);
+  var [review, setReview] = React.useState(null);
   var [lightbox, setLightbox] = React.useState(null);
   var [reel, setReel] = React.useState(null);
   var [backupBusy, setBackupBusy] = React.useState(false);
@@ -7744,6 +7952,7 @@ function MemoriesScreen({
         current[night] = [...(current[night] || []), moment];
         results.push({
           name: f.name,
+          momentId: id,
           night,
           artistId: matched.artistId,
           fallback: !matched.night,
@@ -7787,6 +7996,8 @@ function MemoriesScreen({
       var dupes = results.filter(r => r.skipped === "duplicate").length;
       if (dupes && !failed) window.plurskyToast?.(`Already imported — ${dupes} duplicate${dupes === 1 ? "" : "s"} skipped`);else window.plurskyToast?.(`Couldn't import ${failed} file${failed === 1 ? "" : "s"} — try a few at a time${failed ? ` · ${results.find(r => r.err)?.err || "failed"}` : ""}`);
     }
+    var landed = results.filter(r => r.momentId);
+    if (landed.length) setReview(landed);
     setTimeout(() => setBatch(b => b && b.done === b.total ? null : b), 6000);
   };
   var handleDelete = async moment => {
@@ -7995,7 +8206,18 @@ function MemoriesScreen({
   }, [allMoments, autoOn]);
   return React.createElement(Screen, {
     bg: "var(--paper)"
-  }, lightbox && React.createElement(MomentLightbox, {
+  }, review && React.createElement(ImportReview, {
+    results: review,
+    moments: rawAll,
+    onClose: () => setReview(null),
+    onFix: m => {
+      setReview(null);
+      setLightbox({
+        moments: [m],
+        index: 0
+      });
+    }
+  }), lightbox && React.createElement(MomentLightbox, {
     moments: lightbox.moments,
     index: lightbox.index,
     onClose: () => setLightbox(null),
@@ -8117,7 +8339,9 @@ function MemoriesScreen({
     var dupes = batch.results.filter(r => r.skipped === "duplicate").length;
     var allTagged = tagged > 0 && needRetag === 0 && failed === 0;
     return React.createElement("div", {
-      onClick: () => setBatch(null),
+      onClick: () => {
+        if (batch.results.some(r => r.momentId)) setReview(batch.results.filter(r => r.momentId));else setBatch(null);
+      },
       style: {
         marginTop: 8,
         padding: "9px 12px",
@@ -8150,7 +8374,7 @@ function MemoriesScreen({
         fontSize: 9,
         color: "var(--muted)"
       }
-    }, "TAP TO DISMISS"));
+    }, batch.results.some(r => r.momentId) ? "TAP TO REVIEW TAGS" : "TAP TO DISMISS"));
   })(), allMoments.filter(m => m.photoId).length >= 3 && React.createElement("div", {
     style: {
       marginTop: 12,

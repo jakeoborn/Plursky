@@ -1854,6 +1854,12 @@ const _TAG_SOURCE_LABEL = {
   fallback:             { text: "FALLBACK · RETAG",  tone: "warn" },
   "song-recovered":     { text: "RECOVERED · SONG",  tone: "ok" },
   manual:               { text: "MANUAL",            tone: "ok" },
+  // Video sources had no entry, so MomentCard's tag chip rendered nothing at
+  // all for a clip tagged from its own metadata — the most trustworthy source
+  // there is, showing as blank.
+  "video-metadata":     { text: "AUTO · VIDEO TIME", tone: "ok" },
+  "video-night-only":   { text: "VIDEO NIGHT · PICK A SET", tone: "warn" },
+  "archive-recovered":  { text: "RECOVERED · ARCHIVE", tone: "ok" },
 };
 
 // Best-available capture time for a moment. handleBatchPick stores both
@@ -3529,6 +3535,119 @@ async function _purgeAllMoments() {
   _writeMoments({});
 }
 
+// Post-import confirmation.
+//
+// An import used to end at a one-line banner — "12 TAGGED · 3 NEED RETAG" —
+// which reports the score and not the mapping. The only way to find out WHICH
+// clip landed on the wrong set was to scroll the wall afterwards and open
+// moments one at a time, by which point you no longer remember what you
+// imported. This shows the mapping while it is still fresh: every file, the
+// act and stage it was tagged to, how that call was made, and a tap to fix it.
+//
+// Deliberately no thumbnails. A 40-file import would mean 40 more media
+// decodes the instant the import finished, and the question this screen
+// answers — "is this the right set?" — is answered by the name, not the
+// picture.
+function ImportReview({ results, moments, onClose, onFix }) {
+  const byId = React.useMemo(() => {
+    const m = {};
+    for (const night of Object.keys(moments || {})) {
+      for (const mo of moments[night] || []) if (mo && mo.id) m[mo.id] = mo;
+    }
+    return m;
+  }, [moments]);
+
+  const rows = React.useMemo(() => {
+    const out = (results || []).filter(r => r.momentId).map(r => {
+      const mo = byId[r.momentId] || null;
+      const artist = r.artistId ? ARTISTS.find(a => a.id === r.artistId) : null;
+      // Guarded: an act with no published stage is real (Escape, III Points),
+      // and an unguarded dereference here took the whole Lineup screen down
+      // once already.
+      const stage = artist ? (STAGES.find(st => st.id === artist.stage) || UNPLACED_STAGE) : null;
+      const day = DAYS.find(d => d.n === r.night);
+      const sure = !!r.artistId && r.tagSource !== "fallback" && !(mo && (mo.needsRetag || mo.tagAmbiguous));
+      return { ...r, moment: mo, artist, stage, day, sure };
+    });
+    // Everything that needs a human first. The whole point of showing this
+    // now rather than later is the fixing, not the reading.
+    return out.sort((a, b) => (a.sure === b.sure) ? 0 : (a.sure ? 1 : -1));
+  }, [results, byId]);
+
+  const unsure = rows.filter(r => !r.sure).length;
+  if (!rows.length) return null;
+
+  return (
+    <div onClick={onClose} style={{
+      position: "fixed", inset: 0, zIndex: 270, background: "rgba(0,0,0,0.55)",
+      display: "flex", alignItems: "flex-end", justifyContent: "center",
+      animation: "fadeIn .18s",
+    }}>
+      <div onClick={e => e.stopPropagation()} style={{
+        width: "100%", maxWidth: 520, maxHeight: "86vh",
+        background: "var(--paper)", borderRadius: "18px 18px 0 0",
+        border: "1px solid var(--line)", borderBottom: "none",
+        display: "flex", flexDirection: "column", overflow: "hidden",
+      }}>
+        <div style={{ padding: "14px 18px 10px", borderBottom: "1px solid var(--line)", flexShrink: 0 }}>
+          <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, color: "var(--ink)" }}>
+            {unsure === 0 ? <>All {rows.length} <span style={{ fontStyle: "italic" }}>tagged</span></>
+                          : <>{unsure} need{unsure === 1 ? "s" : ""} a <span style={{ fontStyle: "italic" }}>set</span></>}
+          </div>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700, marginTop: 4 }}>
+            {rows.length} IMPORTED · TAP A ROW TO FIX ITS TAG
+          </div>
+        </div>
+
+        <div style={{ flex: 1, minHeight: 0, overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "6px 12px 8px" }}>
+          {rows.map(r => (
+            <button key={r.momentId} onClick={() => r.moment && onFix?.(r.moment)} style={{
+              display: "flex", alignItems: "center", gap: 10, width: "100%",
+              textAlign: "left", padding: "9px 10px", marginBottom: 4,
+              background: r.sure ? "transparent" : "rgba(232,93,46,0.07)",
+              border: r.sure ? "1px solid var(--line)" : "1px solid rgba(232,93,46,0.45)",
+              borderRadius: 10, cursor: "pointer", fontFamily: "inherit", color: "var(--ink)",
+            }}>
+              <span aria-hidden="true" style={{
+                flexShrink: 0, width: 4, alignSelf: "stretch", borderRadius: 3,
+                background: r.stage ? r.stage.color : "var(--line-2)",
+              }}/>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 14, lineHeight: 1.15, fontWeight: r.artist ? 700 : 500,
+                              color: r.artist ? "var(--ink)" : "var(--ember-ink)",
+                              overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  {r.artist ? r.artist.name : "No set matched"}
+                </div>
+                <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", fontWeight: 700, marginTop: 2,
+                                               overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  {r.stage ? `${r.stage.short} · ` : ""}{(r.day && r.day.label) || `NIGHT ${r.night}`}
+                  {" · "}{(_TAG_SOURCE_LABEL[r.tagSource] || {}).text || String(r.tagSource || "").toUpperCase()}
+                </div>
+                <div className="mono" style={{ fontSize: 8, letterSpacing: 0.6, color: "var(--muted)", marginTop: 2, opacity: 0.75,
+                                               overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  {r.name}
+                </div>
+              </div>
+              <span className="mono" style={{ flexShrink: 0, fontSize: 9, letterSpacing: 1.1, fontWeight: 800,
+                                              color: r.sure ? "var(--success)" : "var(--ember-ink)" }}>
+                {r.sure ? "✓" : "FIX →"}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        <div style={{ padding: "10px 14px calc(12px + env(safe-area-inset-bottom))", borderTop: "1px solid var(--line)", flexShrink: 0 }}>
+          <button onClick={onClose} className="mono" style={{
+            width: "100%", padding: "12px 0", borderRadius: 12, border: "none",
+            background: "var(--ink)", color: "var(--paper)", cursor: "pointer",
+            fontSize: 11, letterSpacing: 1.3, fontWeight: 800,
+          }}>{unsure === 0 ? "LOOKS RIGHT" : "DONE FOR NOW"}</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function StorageManager({ all, onChange }) {
   const [usage, setUsage] = React.useState(null);
   const [busy, setBusy]   = React.useState(false);
@@ -4646,6 +4765,7 @@ function MemoriesScreen({ state, setState }) {
   const all = React.useMemo(() => _activeMoments(rawAll), [rawAll]);
   const [adding, setAdding] = React.useState(null); // night number being added to, or null
   const [batch, setBatch] = React.useState(null);   // null | { total, done, results: [{name, night, artistId, err?}] }
+  const [review, setReview] = React.useState(null); // null | results[] — the post-import confirm sheet
   const [lightbox, setLightbox] = React.useState(null); // null | { moments: [], index }
   const [reel, setReel] = React.useState(null); // null | { moments: [], label }
   const [backupBusy, setBackupBusy] = React.useState(false); // cloud-backup in progress
@@ -4839,7 +4959,7 @@ function MemoriesScreen({ state, setState }) {
         if (recovered?.moment?.artistId && !moment.artistId) moment.artistId = recovered.moment.artistId;
         if (fp) existingFingerprints.add(fp);
         current[night] = [...(current[night] || []), moment];
-        results.push({ name: f.name, night, artistId: matched.artistId, fallback: !matched.night, tagSource, festivalId: moment.festivalId });
+        results.push({ name: f.name, momentId: id, night, artistId: matched.artistId, fallback: !matched.night, tagSource, festivalId: moment.festivalId });
         // Persist + refresh after EACH file so a mid-batch Safari crash/OOM
         // (common on large iOS selections that include videos / iCloud photos)
         // keeps what's already imported and the grid fills in live — instead
@@ -4877,6 +4997,12 @@ function MemoriesScreen({ state, setState }) {
       if (dupes && !failed) window.plurskyToast?.(`Already imported — ${dupes} duplicate${dupes === 1 ? "" : "s"} skipped`);
       else window.plurskyToast?.(`Couldn't import ${failed} file${failed === 1 ? "" : "s"} — try a few at a time${failed ? ` · ${results.find(r => r.err)?.err || "failed"}` : ""}`);
     }
+    // Show the mapping while the import is still fresh. A banner that only
+    // reports a score cannot tell you WHICH clip went to the wrong set, and
+    // by the time you scroll the wall to find out you no longer remember what
+    // you imported.
+    const landed = results.filter(r => r.momentId);
+    if (landed.length) setReview(landed);
     // Auto-dismiss summary banner after 6s if user doesn't tap it
     setTimeout(() => setBatch(b => (b && b.done === b.total ? null : b)), 6000);
   };
@@ -5089,6 +5215,17 @@ function MemoriesScreen({ state, setState }) {
 
   return (
     <Screen bg="var(--paper)">
+      {review && (
+        <ImportReview
+          results={review}
+          // rawAll, not the active-festival view: a photo whose timestamp
+          // resolves to a DIFFERENT festival is still a row in this list, and
+          // it has to be reachable to be fixed.
+          moments={rawAll}
+          onClose={() => setReview(null)}
+          onFix={(m) => { setReview(null); setLightbox({ moments: [m], index: 0 }); }}
+        />
+      )}
       {lightbox && (
         <MomentLightbox
           moments={lightbox.moments}
@@ -5166,7 +5303,7 @@ function MemoriesScreen({ state, setState }) {
           const dupes     = batch.results.filter(r => r.skipped === "duplicate").length;
           const allTagged = tagged > 0 && needRetag === 0 && failed === 0;
           return (
-            <div onClick={() => setBatch(null)} style={{
+            <div onClick={() => { if (batch.results.some(r => r.momentId)) setReview(batch.results.filter(r => r.momentId)); else setBatch(null); }} style={{
               marginTop: 8, padding: "9px 12px",
               background: allTagged ? "rgba(45,122,85,0.12)" : "rgba(232,93,46,0.10)",
               border: allTagged ? "1px solid rgba(45,122,85,0.4)" : "1px solid rgba(232,93,46,0.4)",
@@ -5183,7 +5320,9 @@ function MemoriesScreen({ state, setState }) {
                   iOS sometimes strips photo time when copying — tap an untagged moment to pick its set.
                 </div>
               )}
-              <div className="mono" style={{ marginTop: 4, fontSize: 9, color: "var(--muted)" }}>TAP TO DISMISS</div>
+              <div className="mono" style={{ marginTop: 4, fontSize: 9, color: "var(--muted)" }}>
+                {batch.results.some(r => r.momentId) ? "TAP TO REVIEW TAGS" : "TAP TO DISMISS"}
+              </div>
             </div>
           );
         })()}
