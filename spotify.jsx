@@ -1212,6 +1212,21 @@ async function _getPhoto(id) {
     r.onerror   = e => reject(e.target.error);
   });
 }
+// Every key in the blob store. Only ever used to find ORPHANED POSTER
+// FRAMES, which is why the caller filters to the `ps_` prefix before
+// deleting anything — a sweep that could reach a real media blob would be a
+// data-loss bug waiting for its first off-by-one.
+async function _allPhotoKeys() {
+  const db = await _openMemDB();
+  return new Promise((resolve) => {
+    try {
+      const tx = db.transaction("photos", "readonly");
+      const r = tx.objectStore("photos").getAllKeys();
+      r.onsuccess = () => resolve(Array.isArray(r.result) ? r.result : []);
+      r.onerror = () => resolve([]);
+    } catch { resolve([]); }
+  });
+}
 async function _deletePhoto(id) {
   const db = await _openMemDB();
   return new Promise((resolve, reject) => {
@@ -1268,6 +1283,65 @@ function _videoDuration(blob) {
   });
 }
 
+// A still frame from a video, as a small image blob.
+//
+// Thumbnails used to render the clip ITSELF, in a <video preload="metadata">
+// with a #t=0.1 fragment, and hope the browser painted that frame. iOS
+// routinely does not — that is the black rectangle. It is also why a night of
+// forty clips scrolled badly: forty live media elements, each holding a
+// decoder, in one list.
+//
+// Best-effort by design. A codec the browser cannot decode resolves null and
+// the caller keeps the old <video> tile, so the worst case is exactly today.
+const _POSTER_MAX_EDGE = 640;
+const _POSTER_TIMEOUT_MS = 8000;
+function _videoPosterBlob(blob) {
+  return new Promise((resolve) => {
+    let url = null, v = null, settled = false, timer = null;
+    const done = (out) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      // Detach the source explicitly. Leaving a blob URL attached to a
+      // detached <video> keeps the decoder alive on iOS, and a 40-clip
+      // backfill would then hold 40 of them.
+      try { if (v) { v.removeAttribute("src"); v.load(); } } catch {}
+      try { if (url) URL.revokeObjectURL(url); } catch {}
+      resolve(out);
+    };
+    timer = setTimeout(() => done(null), _POSTER_TIMEOUT_MS);
+    try {
+      url = URL.createObjectURL(blob);
+      v = document.createElement("video");
+      v.preload = "auto";
+      v.muted = true; v.setAttribute("muted", "");
+      v.playsInline = true; v.setAttribute("playsinline", "");
+      const draw = () => {
+        try {
+          const w0 = v.videoWidth, h0 = v.videoHeight;
+          if (!w0 || !h0) return done(null);
+          const scale = Math.min(1, _POSTER_MAX_EDGE / Math.max(w0, h0));
+          const c = document.createElement("canvas");
+          c.width = Math.round(w0 * scale);
+          c.height = Math.round(h0 * scale);
+          c.getContext("2d").drawImage(v, 0, 0, c.width, c.height);
+          c.toBlob(b => done(b || null), "image/jpeg", 0.75);
+        } catch { done(null); }
+      };
+      v.onloadedmetadata = () => {
+        // A hair in, not frame zero — the first frame of a phone clip is
+        // often the shutter still opening, or a black lead-in.
+        const t = Math.min(0.6, Math.max(0.05, (v.duration || 1) * 0.1));
+        const seek = () => { try { v.currentTime = t; } catch { draw(); } };
+        if (v.readyState >= 2) seek(); else v.onloadeddata = seek;
+      };
+      v.onseeked = draw;
+      v.onerror = () => done(null);
+      v.src = url;
+    } catch { done(null); }
+  });
+}
+
 async function _processMomentMedia(file) {
   if (/^image\//.test(file.type)) {
     return { blob: await _compressMomentImage(file), kind: "image" };
@@ -1278,7 +1352,10 @@ async function _processMomentMedia(file) {
     }
     // Store raw — modern iOS records H.265/HEVC which Safari plays natively.
     const duration = await _videoDuration(file);
-    return { blob: file, kind: "video", duration };
+    // The poster is generated ONCE, here, while the file is already in hand.
+    // Null is fine and expected for a codec this browser cannot decode.
+    const poster = await _videoPosterBlob(file);
+    return { blob: file, kind: "video", duration, poster };
   }
   throw new Error("Unsupported file type: " + file.type);
 }
@@ -1425,6 +1502,67 @@ function _fmtMomentTime(ts) {
 // any existing one — bounding decoded-image memory in long lists WITHOUT
 // unmounting the card (so in-progress edit state survives). Defaults true so
 // the many call sites that always want the photo are unchanged.
+// Poster keys are derived from the moment id and always carry this prefix.
+// The prefix is load-bearing: the orphan sweep below only ever considers
+// keys that start with it.
+const _POSTER_PREFIX = "ps_";
+function _posterKey(momentId) { return _POSTER_PREFIX + momentId; }
+
+// Writing `posterId` back onto a moment is a localStorage write, a global
+// event and a debounced cloud push. Backfilling forty clips one at a time
+// would fire forty of those DURING A SCROLL — the exact stall this whole
+// change exists to remove. So the patches coalesce into one write.
+const _posterTried = new Set();
+let _posterPatchQueue = new Map();
+let _posterPatchTimer = null;
+function _queuePosterPatch(momentId, posterId) {
+  _posterPatchQueue.set(momentId, posterId);
+  clearTimeout(_posterPatchTimer);
+  _posterPatchTimer = setTimeout(() => {
+    const q = _posterPatchQueue;
+    _posterPatchQueue = new Map();
+    try {
+      const all = _readMoments();
+      let changed = false;
+      for (const night of Object.keys(all)) {
+        const arr = Array.isArray(all[night]) ? all[night] : [];
+        all[night] = arr.map(m => {
+          const pid = m && q.get(m.id);
+          if (!pid || m.posterId === pid) return m;
+          changed = true;
+          return { ...m, posterId: pid };
+        });
+      }
+      if (changed) _writeMoments(all);
+    } catch {}
+  }, 1500);
+}
+
+// Poster blobs are derived data with no owner once their moment is gone, and
+// every delete path (single delete, night purge, clear-all) drops the moment
+// without knowing posters exist. Rather than teach each of them, sweep: any
+// `ps_` key with no live moment claiming it is garbage. Runs once per session.
+let _posterSweepDone = false;
+async function _sweepOrphanPosters() {
+  if (_posterSweepDone) return 0;
+  _posterSweepDone = true;
+  try {
+    const keys = (await _allPhotoKeys()).filter(k => typeof k === "string" && k.startsWith(_POSTER_PREFIX));
+    if (!keys.length) return 0;
+    const live = new Set();
+    const all = _readMoments();
+    for (const night of Object.keys(all)) {
+      for (const m of all[night] || []) if (m && m.id) live.add(_posterKey(m.id));
+    }
+    let freed = 0;
+    for (const k of keys) {
+      if (live.has(k)) continue;
+      try { await _deletePhoto(k); freed++; } catch {}
+    }
+    return freed;
+  } catch { return 0; }
+}
+
 function useMomentPhoto(photoId, enabled = true) {
   const [url, setUrl] = React.useState(null);
   React.useEffect(() => {
@@ -1453,6 +1591,68 @@ function useMomentPhoto(photoId, enabled = true) {
     };
   }, [photoId, enabled]);
   return url;
+}
+
+// Resolve (and if necessary create) a video's poster frame. Module-level and
+// promise-deduped, so ten tiles mounting the same clip decode it once, and a
+// tile that scrolls away mid-decode still finishes its write instead of
+// leaving the work to be redone.
+const _posterInflight = new Map();
+function _ensurePoster(moment) {
+  const id = moment && moment.id;
+  if (!id) return Promise.resolve(null);
+  if (_posterInflight.has(id)) return _posterInflight.get(id);
+  const key = _posterKey(id);
+  const job = (async () => {
+    let blob = await _getPhoto(key).catch(() => null);
+    if (blob) return blob;
+    // No stored poster: either a clip imported before posters existed, or one
+    // whose codec we could not decode last time. `_posterTried` makes the
+    // second case cost one attempt per session rather than one per scroll.
+    if (_posterTried.has(id)) return null;
+    const media = moment.photoId ? await _getPhoto(moment.photoId).catch(() => null) : null;
+    if (!media) { _posterTried.add(id); return null; }
+    blob = await _videoPosterBlob(media);
+    if (!blob) { _posterTried.add(id); return null; }
+    try { await _putPhoto(key, blob); _queuePosterPatch(id, key); } catch { return blob; }
+    return blob;
+  })();
+  _posterInflight.set(id, job);
+  job.catch(() => {}).then(() => _posterInflight.delete(id));
+  return job;
+}
+
+// What a THUMBNAIL should show for a moment. Images are unchanged. Videos
+// resolve to their poster frame, so a night of forty clips is forty <img>
+// tags instead of forty live decoders — and the tile actually has a picture
+// on it, which <video preload="metadata"> could never be relied on for.
+//
+// The clip itself is fetched ONLY when there is no poster to be had. That
+// ordering is the whole performance story: fall back, never pre-load.
+//
+// Posters deliberately do NOT go through useMomentPhoto — that hook's
+// restore-on-view would fire a cloud request per tile for a key that is
+// derived data and was never uploaded.
+function useMomentThumb(moment, enabled = true) {
+  const isVideo = moment && moment.kind === "video";
+  const id = (moment && moment.id) || null;
+  const [posterUrl, setPosterUrl] = React.useState(null);
+  const [noPoster, setNoPoster] = React.useState(false);
+  React.useEffect(() => {
+    if (!enabled || !isVideo || !id) { setPosterUrl(null); setNoPoster(false); return; }
+    let dead = false, objUrl = null;
+    _ensurePoster(moment).then(blob => {
+      if (dead) return;
+      if (!blob) { setNoPoster(true); return; }
+      objUrl = URL.createObjectURL(blob);
+      setPosterUrl(objUrl);
+    }).catch(() => { if (!dead) setNoPoster(true); });
+    return () => { dead = true; if (objUrl) URL.revokeObjectURL(objUrl); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [enabled, isVideo, id]);
+  const needMedia = !isVideo || (noPoster && !posterUrl);
+  const mediaUrl = useMomentPhoto(needMedia ? ((moment && moment.photoId) || null) : null, enabled);
+  return { url: posterUrl || mediaUrl, isPoster: !!posterUrl };
 }
 
 // Returns [ref, near] — attach ref to an element; `near` flips true while it
@@ -1534,7 +1734,7 @@ async function _backupMyWeekend(onProgress) {
 
 // Single memory thumbnail for the home strip — loads its photo blob lazily.
 function _HomeMemoryThumb({ moment, onClick }) {
-  const url = useMomentPhoto(moment.photoId);
+  const { url, isPoster } = useMomentThumb(moment);
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   return (
     <button onClick={onClick} style={{
@@ -1545,7 +1745,7 @@ function _HomeMemoryThumb({ moment, onClick }) {
       {url ? (
         // Video needs <video preload="metadata"> to paint a poster frame —
         // a blob URL inside <img> renders as a blank/black tile.
-        moment.kind === "video" ? (
+        moment.kind === "video" && !isPoster ? (
           // #t=0.1 forces iOS to decode + paint the first frame as a poster;
           // without it the tile stays black until the video is touched.
           <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
@@ -2688,7 +2888,7 @@ async function _shareMoment(moment, meta) {
 }
 
 function _LightboxThumb({ moment, active, onClick }) {
-  const url = useMomentPhoto(moment.photoId);
+  const { url, isPoster } = useMomentThumb(moment);
   return (
     <button onClick={onClick} aria-label="View moment" style={{
       flexShrink: 0, width: 44, height: 44, borderRadius: 8, padding: 0, cursor: "pointer",
@@ -2696,7 +2896,7 @@ function _LightboxThumb({ moment, active, onClick }) {
       opacity: active ? 1 : 0.5, overflow: "hidden", background: "#222",
       transition: "opacity 0.15s", position: "relative",
     }}>
-      {url && (moment.kind === "video"
+      {url && (moment.kind === "video" && !isPoster
         ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
         : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
       )}
@@ -3081,7 +3281,7 @@ function _pickHeroMoment(items) {
 // cards. Lives outside the header <button> (no nested buttons) as its own tap
 // target that opens the group's lightbox at the hero.
 function _GroupHeroThumb({ moment, accent, onClick }) {
-  const url = useMomentPhoto(moment?.photoId);
+  const { url, isPoster } = useMomentThumb(moment);
   if (!moment?.photoId) return null;
   return (
     <button onClick={onClick} aria-label="Open best shot" style={{
@@ -3089,7 +3289,7 @@ function _GroupHeroThumb({ moment, accent, onClick }) {
       overflow: "hidden", border: `1.5px solid ${accent || "var(--line-2)"}`,
       background: "#222", position: "relative",
     }}>
-      {url && (moment.kind === "video"
+      {url && (moment.kind === "video" && !isPoster
         ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
         : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
       )}
@@ -3917,7 +4117,7 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
 // a story of the night instead of a grid of files. The emotional
 // payoff surface for the who/what/where/when graph.
 function _MemoryStoryBeat({ moment, isLast, onOpen }) {
-  const url = useMomentPhoto(moment.photoId);
+  const { url, isPoster } = useMomentThumb(moment);
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   const stage = artist ? STAGES.find(s => s.id === artist.stage) : null;
   const estSong = useSetlistSong(artist, moment.takenAt);
@@ -3955,7 +4155,7 @@ function _MemoryStoryBeat({ moment, isLast, onOpen }) {
         )}
         {url && (
           <button onClick={onOpen} aria-label="Open moment" style={{ marginTop: 8, padding: 0, border: "none", background: "none", cursor: "pointer", display: "block", width: "100%", position: "relative" }}>
-            {moment.kind === "video" ? (
+            {moment.kind === "video" && !isPoster ? (
               <>
                 {/* preload="metadata" paints the first frame as a poster;
                     tapping opens the lightbox player (controls + autoplay).
@@ -3996,14 +4196,14 @@ function _MemoryStoryBeat({ moment, isLast, onOpen }) {
 // lightbox. Models the Apple Photos year-scrubber / a video timeline. Pointer
 // events cover mouse + touch; setPointerCapture keeps the drag smooth.
 function _ScrubPreview({ moment }) {
-  const url = useMomentPhoto(moment?.photoId);
+  const { url, isPoster } = useMomentThumb(moment);
   return (
     <div style={{
       width: 56, height: 56, borderRadius: 10, overflow: "hidden",
       border: "1.5px solid var(--ink)", background: "#000", flexShrink: 0,
       boxShadow: "0 4px 14px rgba(0,0,0,0.4)",
     }}>
-      {url && (moment.kind === "video"
+      {url && (moment.kind === "video" && !isPoster
         ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
         : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>)}
     </div>
@@ -4225,7 +4425,7 @@ function _LazyMount({ children, placeholder, minHeight = 120, rootMargin = "800p
 // first) — the view people expect from a "memories" tab (Apple/Google Photos,
 // Retro, Snapchat). Tap a tile → full-screen lightbox.
 function _GridTile({ moment, onClick, stackCount = 1 }) {
-  const url = useMomentPhoto(moment.photoId);
+  const { url, isPoster } = useMomentThumb(moment);
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   const stacked = stackCount > 1;
   return (
@@ -4241,7 +4441,7 @@ function _GridTile({ moment, onClick, stackCount = 1 }) {
         ? "2.5px 2.5px 0 -0.5px var(--paper-2), 2.5px 2.5px 0 0 var(--line), 5px 5px 0 -1px var(--paper-2), 5px 5px 0 -0.5px var(--line)"
         : "none",
     }}>
-      {url ? (moment.kind === "video"
+      {url ? (moment.kind === "video" && !isPoster
         ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
         : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
       ) : <div className="skel" style={{ width: "100%", height: "100%" }}/>}
@@ -4435,7 +4635,7 @@ function _momentTime(m) {
 // a ▶ marker on videos, and a "+N" badge when it fronts a declustered group.
 function _PhotoPin({ cluster, onTap }) {
   const m = cluster.face;
-  const url = useMomentPhoto(m.photoId, cluster.enabled !== false);
+  const { url, isPoster } = useMomentThumb(m, cluster.enabled !== false);
   const ring = (cluster.stage && cluster.stage.color) || "#9aa";
   const rot = ((_idHash(m.id) % 17) - 8); // -8..+8deg, stable per pin
   const extra = cluster.items.length - 1;
@@ -4454,7 +4654,7 @@ function _PhotoPin({ cluster, onTap }) {
         boxShadow: "0 3px 9px rgba(0,0,0,0.5)",
       }}>
         {url ? (
-          m.kind === "video"
+          m.kind === "video" && !isPoster
             ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
             : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
         ) : <div className="skel" style={{ width: "100%", height: "100%" }}/>}
@@ -4694,6 +4894,11 @@ function MemoriesScreen({ state, setState }) {
     return () => window.removeEventListener("plursky-moments-change", refresh);
   }, []);
 
+  // Poster frames outlive the moments they belong to — every delete path
+  // drops the moment without knowing posters exist. One sweep per session,
+  // scoped to the `ps_` prefix so it can never reach a real media blob.
+  React.useEffect(() => { _sweepOrphanPosters(); }, []);
+
   // v141: when a user taps a FRI/SAT/SUN row on the Me-tab History list,
   // it sets state.memoriesNight + state.tab="memories". This effect scrolls
   // that night's section to the top of the ScrollBody so the user lands
@@ -4807,8 +5012,16 @@ function MemoriesScreen({ state, setState }) {
         const id = `m_${Date.now()}_${i}_${Math.random().toString(36).slice(2, 6)}`;
         const photoId = `p_${id}`;
         await _putPhoto(photoId, out.blob);
+        // Poster frame for videos. Derived, so it is never cloud-backed and
+        // never restored — a device that loses it regenerates it on view.
+        let posterId = null;
+        if (out.poster) {
+          posterId = _posterKey(id);
+          try { await _putPhoto(posterId, out.poster); } catch { posterId = null; }
+        }
         const moment = {
           id, night, text: "", artistId: matched.artistId, photoId,
+          posterId,
           kind: out.kind,
           duration: out.duration ?? null,
           createdAt: Date.now(),

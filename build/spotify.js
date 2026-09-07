@@ -2021,6 +2021,19 @@ async function _getPhoto(id) {
     r.onerror = e => reject(e.target.error);
   });
 }
+async function _allPhotoKeys() {
+  var db = await _openMemDB();
+  return new Promise(resolve => {
+    try {
+      var tx = db.transaction("photos", "readonly");
+      var r = tx.objectStore("photos").getAllKeys();
+      r.onsuccess = () => resolve(Array.isArray(r.result) ? r.result : []);
+      r.onerror = () => resolve([]);
+    } catch {
+      resolve([]);
+    }
+  });
+}
 async function _deletePhoto(id) {
   var db = await _openMemDB();
   return new Promise((resolve, reject) => {
@@ -2076,6 +2089,72 @@ function _videoDuration(blob) {
     }
   });
 }
+var _POSTER_MAX_EDGE = 640;
+var _POSTER_TIMEOUT_MS = 8000;
+function _videoPosterBlob(blob) {
+  return new Promise(resolve => {
+    var url = null,
+      v = null,
+      settled = false,
+      timer = null;
+    var done = out => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      try {
+        if (v) {
+          v.removeAttribute("src");
+          v.load();
+        }
+      } catch {}
+      try {
+        if (url) URL.revokeObjectURL(url);
+      } catch {}
+      resolve(out);
+    };
+    timer = setTimeout(() => done(null), _POSTER_TIMEOUT_MS);
+    try {
+      url = URL.createObjectURL(blob);
+      v = document.createElement("video");
+      v.preload = "auto";
+      v.muted = true;
+      v.setAttribute("muted", "");
+      v.playsInline = true;
+      v.setAttribute("playsinline", "");
+      var draw = () => {
+        try {
+          var w0 = v.videoWidth,
+            h0 = v.videoHeight;
+          if (!w0 || !h0) return done(null);
+          var scale = Math.min(1, _POSTER_MAX_EDGE / Math.max(w0, h0));
+          var c = document.createElement("canvas");
+          c.width = Math.round(w0 * scale);
+          c.height = Math.round(h0 * scale);
+          c.getContext("2d").drawImage(v, 0, 0, c.width, c.height);
+          c.toBlob(b => done(b || null), "image/jpeg", 0.75);
+        } catch {
+          done(null);
+        }
+      };
+      v.onloadedmetadata = () => {
+        var t = Math.min(0.6, Math.max(0.05, (v.duration || 1) * 0.1));
+        var seek = () => {
+          try {
+            v.currentTime = t;
+          } catch {
+            draw();
+          }
+        };
+        if (v.readyState >= 2) seek();else v.onloadeddata = seek;
+      };
+      v.onseeked = draw;
+      v.onerror = () => done(null);
+      v.src = url;
+    } catch {
+      done(null);
+    }
+  });
+}
 async function _processMomentMedia(file) {
   if (/^image\//.test(file.type)) {
     return {
@@ -2088,10 +2167,12 @@ async function _processMomentMedia(file) {
       throw new Error(`Video too large (${Math.round(file.size / 1048576)} MB > 200 MB cap)`);
     }
     var duration = await _videoDuration(file);
+    var poster = await _videoPosterBlob(file);
     return {
       blob: file,
       kind: "video",
-      duration
+      duration,
+      poster
     };
   }
   throw new Error("Unsupported file type: " + file.type);
@@ -2212,6 +2293,63 @@ function _fmtMomentTime(ts) {
   h = h % 12 || 12;
   return `${h}:${m.toString().padStart(2, "0")} ${ampm}`;
 }
+var _POSTER_PREFIX = "ps_";
+function _posterKey(momentId) {
+  return _POSTER_PREFIX + momentId;
+}
+var _posterTried = new Set();
+var _posterPatchQueue = new Map();
+var _posterPatchTimer = null;
+function _queuePosterPatch(momentId, posterId) {
+  _posterPatchQueue.set(momentId, posterId);
+  clearTimeout(_posterPatchTimer);
+  _posterPatchTimer = setTimeout(() => {
+    var q = _posterPatchQueue;
+    _posterPatchQueue = new Map();
+    try {
+      var all = _readMoments();
+      var changed = false;
+      for (var night of Object.keys(all)) {
+        var arr = Array.isArray(all[night]) ? all[night] : [];
+        all[night] = arr.map(m => {
+          var pid = m && q.get(m.id);
+          if (!pid || m.posterId === pid) return m;
+          changed = true;
+          return {
+            ...m,
+            posterId: pid
+          };
+        });
+      }
+      if (changed) _writeMoments(all);
+    } catch {}
+  }, 1500);
+}
+var _posterSweepDone = false;
+async function _sweepOrphanPosters() {
+  if (_posterSweepDone) return 0;
+  _posterSweepDone = true;
+  try {
+    var keys = (await _allPhotoKeys()).filter(k => typeof k === "string" && k.startsWith(_POSTER_PREFIX));
+    if (!keys.length) return 0;
+    var live = new Set();
+    var all = _readMoments();
+    for (var night of Object.keys(all)) {
+      for (var m of all[night] || []) if (m && m.id) live.add(_posterKey(m.id));
+    }
+    var freed = 0;
+    for (var k of keys) {
+      if (live.has(k)) continue;
+      try {
+        await _deletePhoto(k);
+        freed++;
+      } catch {}
+    }
+    return freed;
+  } catch {
+    return 0;
+  }
+}
 function useMomentPhoto(photoId, enabled = true) {
   var [url, setUrl] = React.useState(null);
   React.useEffect(() => {
@@ -2245,6 +2383,74 @@ function useMomentPhoto(photoId, enabled = true) {
     };
   }, [photoId, enabled]);
   return url;
+}
+var _posterInflight = new Map();
+function _ensurePoster(moment) {
+  var id = moment && moment.id;
+  if (!id) return Promise.resolve(null);
+  if (_posterInflight.has(id)) return _posterInflight.get(id);
+  var key = _posterKey(id);
+  var job = (async () => {
+    var blob = await _getPhoto(key).catch(() => null);
+    if (blob) return blob;
+    if (_posterTried.has(id)) return null;
+    var media = moment.photoId ? await _getPhoto(moment.photoId).catch(() => null) : null;
+    if (!media) {
+      _posterTried.add(id);
+      return null;
+    }
+    blob = await _videoPosterBlob(media);
+    if (!blob) {
+      _posterTried.add(id);
+      return null;
+    }
+    try {
+      await _putPhoto(key, blob);
+      _queuePosterPatch(id, key);
+    } catch {
+      return blob;
+    }
+    return blob;
+  })();
+  _posterInflight.set(id, job);
+  job.catch(() => {}).then(() => _posterInflight.delete(id));
+  return job;
+}
+function useMomentThumb(moment, enabled = true) {
+  var isVideo = moment && moment.kind === "video";
+  var id = moment && moment.id || null;
+  var [posterUrl, setPosterUrl] = React.useState(null);
+  var [noPoster, setNoPoster] = React.useState(false);
+  React.useEffect(() => {
+    if (!enabled || !isVideo || !id) {
+      setPosterUrl(null);
+      setNoPoster(false);
+      return;
+    }
+    var dead = false,
+      objUrl = null;
+    _ensurePoster(moment).then(blob => {
+      if (dead) return;
+      if (!blob) {
+        setNoPoster(true);
+        return;
+      }
+      objUrl = URL.createObjectURL(blob);
+      setPosterUrl(objUrl);
+    }).catch(() => {
+      if (!dead) setNoPoster(true);
+    });
+    return () => {
+      dead = true;
+      if (objUrl) URL.revokeObjectURL(objUrl);
+    };
+  }, [enabled, isVideo, id]);
+  var needMedia = !isVideo || noPoster && !posterUrl;
+  var mediaUrl = useMomentPhoto(needMedia ? moment && moment.photoId || null : null, enabled);
+  return {
+    url: posterUrl || mediaUrl,
+    isPoster: !!posterUrl
+  };
 }
 function useNearViewport(rootMargin = "600px 0px") {
   var ref = React.useRef(null);
@@ -2364,7 +2570,10 @@ function _HomeMemoryThumb({
   moment,
   onClick
 }) {
-  var url = useMomentPhoto(moment.photoId);
+  var {
+    url,
+    isPoster
+  } = useMomentThumb(moment);
   var artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   return React.createElement("button", {
     onClick: onClick,
@@ -2380,7 +2589,7 @@ function _HomeMemoryThumb({
       cursor: "pointer",
       padding: 0
     }
-  }, url ? moment.kind === "video" ? React.createElement("video", {
+  }, url ? moment.kind === "video" && !isPoster ? React.createElement("video", {
     src: url + "#t=0.1",
     muted: true,
     playsInline: true,
@@ -4123,7 +4332,10 @@ function _LightboxThumb({
   active,
   onClick
 }) {
-  var url = useMomentPhoto(moment.photoId);
+  var {
+    url,
+    isPoster
+  } = useMomentThumb(moment);
   return React.createElement("button", {
     onClick: onClick,
     "aria-label": "View moment",
@@ -4141,7 +4353,7 @@ function _LightboxThumb({
       transition: "opacity 0.15s",
       position: "relative"
     }
-  }, url && (moment.kind === "video" ? React.createElement("video", {
+  }, url && (moment.kind === "video" && !isPoster ? React.createElement("video", {
     src: url + "#t=0.1",
     muted: true,
     playsInline: true,
@@ -4708,7 +4920,10 @@ function _GroupHeroThumb({
   accent,
   onClick
 }) {
-  var url = useMomentPhoto(moment?.photoId);
+  var {
+    url,
+    isPoster
+  } = useMomentThumb(moment);
   if (!moment?.photoId) return null;
   return React.createElement("button", {
     onClick: onClick,
@@ -4725,7 +4940,7 @@ function _GroupHeroThumb({
       background: "#222",
       position: "relative"
     }
-  }, url && (moment.kind === "video" ? React.createElement("video", {
+  }, url && (moment.kind === "video" && !isPoster ? React.createElement("video", {
     src: url + "#t=0.1",
     muted: true,
     playsInline: true,
@@ -6194,7 +6409,10 @@ function _MemoryStoryBeat({
   isLast,
   onOpen
 }) {
-  var url = useMomentPhoto(moment.photoId);
+  var {
+    url,
+    isPoster
+  } = useMomentThumb(moment);
   var artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   var stage = artist ? STAGES.find(s => s.id === artist.stage) : null;
   var estSong = useSetlistSong(artist, moment.takenAt);
@@ -6299,7 +6517,7 @@ function _MemoryStoryBeat({
       width: "100%",
       position: "relative"
     }
-  }, moment.kind === "video" ? React.createElement(React.Fragment, null, React.createElement("video", {
+  }, moment.kind === "video" && !isPoster ? React.createElement(React.Fragment, null, React.createElement("video", {
     src: url + "#t=0.1",
     muted: true,
     playsInline: true,
@@ -6362,7 +6580,10 @@ function _MemoryStoryBeat({
 function _ScrubPreview({
   moment
 }) {
-  var url = useMomentPhoto(moment?.photoId);
+  var {
+    url,
+    isPoster
+  } = useMomentThumb(moment);
   return React.createElement("div", {
     style: {
       width: 56,
@@ -6374,7 +6595,7 @@ function _ScrubPreview({
       flexShrink: 0,
       boxShadow: "0 4px 14px rgba(0,0,0,0.4)"
     }
-  }, url && (moment.kind === "video" ? React.createElement("video", {
+  }, url && (moment.kind === "video" && !isPoster ? React.createElement("video", {
     src: url + "#t=0.1",
     muted: true,
     playsInline: true,
@@ -6760,7 +6981,10 @@ function _GridTile({
   onClick,
   stackCount = 1
 }) {
-  var url = useMomentPhoto(moment.photoId);
+  var {
+    url,
+    isPoster
+  } = useMomentThumb(moment);
   var artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   var stacked = stackCount > 1;
   return React.createElement("button", {
@@ -6778,7 +7002,7 @@ function _GridTile({
       cursor: "pointer",
       boxShadow: stacked ? "2.5px 2.5px 0 -0.5px var(--paper-2), 2.5px 2.5px 0 0 var(--line), 5px 5px 0 -1px var(--paper-2), 5px 5px 0 -0.5px var(--line)" : "none"
     }
-  }, url ? moment.kind === "video" ? React.createElement("video", {
+  }, url ? moment.kind === "video" && !isPoster ? React.createElement("video", {
     src: url + "#t=0.1",
     muted: true,
     playsInline: true,
@@ -7134,7 +7358,10 @@ function _PhotoPin({
   onTap
 }) {
   var m = cluster.face;
-  var url = useMomentPhoto(m.photoId, cluster.enabled !== false);
+  var {
+    url,
+    isPoster
+  } = useMomentThumb(m, cluster.enabled !== false);
   var ring = cluster.stage && cluster.stage.color || "#9aa";
   var rot = _idHash(m.id) % 17 - 8;
   var extra = cluster.items.length - 1;
@@ -7164,7 +7391,7 @@ function _PhotoPin({
       background: url ? "#000" : "var(--paper-2)",
       boxShadow: "0 3px 9px rgba(0,0,0,0.5)"
     }
-  }, url ? m.kind === "video" ? React.createElement("video", {
+  }, url ? m.kind === "video" && !isPoster ? React.createElement("video", {
     src: url + "#t=0.1",
     muted: true,
     playsInline: true,
@@ -7601,6 +7828,9 @@ function MemoriesScreen({
     return () => window.removeEventListener("plursky-moments-change", refresh);
   }, []);
   React.useEffect(() => {
+    _sweepOrphanPosters();
+  }, []);
+  React.useEffect(() => {
     if (!state.memoriesNight) return;
     var id = requestAnimationFrame(() => {
       var el = nightSectionRefs.current[state.memoriesNight];
@@ -7706,12 +7936,22 @@ function MemoriesScreen({
         var id = `m_${Date.now()}_${i}_${Math.random().toString(36).slice(2, 6)}`;
         var photoId = `p_${id}`;
         await _putPhoto(photoId, out.blob);
+        var posterId = null;
+        if (out.poster) {
+          posterId = _posterKey(id);
+          try {
+            await _putPhoto(posterId, out.poster);
+          } catch {
+            posterId = null;
+          }
+        }
         var moment = {
           id,
           night,
           text: "",
           artistId: matched.artistId,
           photoId,
+          posterId,
           kind: out.kind,
           duration: out.duration ?? null,
           createdAt: Date.now(),
