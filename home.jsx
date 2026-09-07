@@ -997,7 +997,14 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
           }}>
             {phase === "pre"
               ? FESTIVAL_CONFIG.dates.toUpperCase()
-              : `NIGHT ${day} / 3`}
+              // ⚠ This denominator was the literal 3 until v269. It is only
+              // ever rendered DURING a festival, and until ARC 2026 (Sep 4–7)
+              // no shipped festival had ever been live while anyone looked —
+              // so "NIGHT 7 / 3" sat in Summerfest (9 days) and "NIGHT 4 / 3"
+              // in Lollapalooza, both available, both wrong, unnoticed.
+              // DAYS is re-derived from the ACTIVE config (data.jsx), so it
+              // follows the festival switch. Never hardcode a day count.
+              : `NIGHT ${day} / ${DAYS.length}`}
           </div>
         </div>
 
