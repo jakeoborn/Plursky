@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v270';
+﻿const CACHE      = 'plursky-v277';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v270';
+const APP_VER    = 'v277';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -33,8 +33,20 @@ const LOCAL = [
   `./data/festivals/hard-summer-2026.js?v=${APP_VER}`,
   `./data/festivals/arc-2026.js?v=${APP_VER}`,
   `./data/festivals/escape-halloween-2026.js?v=${APP_VER}`,
-  // Generated ground plates (mapImage targets). Not every festival module has
-  // one: III Points, CRSSD and Portola ship mapMode "real" and no plate.
+  // Ground plates (mapImage targets). Not every festival module has one: ARC,
+  // III Points, CRSSD and Portola ship mapMode "real" and no plate.
+  //
+  // ⚠ THIS LIST IS ATOMIC. The install handler below uses cache.addAll(), which
+  // rejects as a unit — ONE entry that 404s and NOTHING here gets cached, so the
+  // whole app silently stops working offline. It only console.warn()s, so the
+  // symptom is invisible until someone is on a festival field with no signal.
+  // That is why the "precache integrity" gate in scripts/verify.mjs asserts, in
+  // both directions, that every mapImage is listed here and every own-origin
+  // entry here exists on disk and is tracked in git.
+  //
+  // Born from: acl-park.webp, edc-map-2026.jpg and edco-tinker-2026.jpg were all
+  // rendered by the app but never added here — ACL (Oct 9), EDC and EDC Orlando
+  // (Nov 6-8) each had no offline map, which is the point of the app on a field.
   './ultra-2026.svg',
   './govball-2026.svg',
   './summerfest-2026.svg',
@@ -44,6 +56,9 @@ const LOCAL = [
   './lostlands-2026.svg',
   './hard-summer-2026.webp',
   './escape-2025-map.webp',
+  './acl-park.webp',
+  './edc-map-2026.jpg',
+  './edco-tinker-2026.jpg',
   `./build/ios-frame.js?v=${APP_VER}`,
   `./build/data.js?v=${APP_VER}`,
   `./build/supabase.js?v=${APP_VER}`,
