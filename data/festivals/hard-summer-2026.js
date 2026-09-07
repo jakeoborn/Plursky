@@ -79,27 +79,33 @@
 //   ships without them rather than guessing at them from the map.
 // STAGE COLOURS: absent FROM THE WEB PAGES — the set-times stylesheet is
 //   monochrome (#000 / #fff / #7f7f7f) and the only brand colour on it is
-//   the link red #E51D1D. The patron map may well carry per-stage colour;
-//   that has not been checked. See the STAGES block for what the colours
-//   below actually are, and replace them if the map supplies real ones.
-// AMENITIES: none here. Unlike Portola, though, an official map exists, so
-//   "unpublished" is NOT established — nobody has opened it yet. Whether it
-//   carries an amenity legend, and whether it carries stage colours, are
-//   both open questions to answer FROM THE MAP, not asserted from here.
+//   the link red #E51D1D. The patron map DOES print the three lettered
+//   stages' names in their own colours (Green green, Pink pink, Purple
+//   purple), which corroborates the name-derived colours in STAGES; it
+//   assigns no colour to HARD, HARDER or either art car. See STAGES.
+// AMENITIES: PUBLISHED, and not yet transcribed. The patron map carries a
+//   24-entry legend (first aid, water, restrooms, ADA viewing, lockers,
+//   charge stations, box office, info, cash exchange, ID check, wifi, photo
+//   ops, merch, food, bars, VIP variants…) and places roughly a hundred
+//   icons on the site. This build ships AMENITIES empty because reading a
+//   hundred pins is its own pass, not because none exist — do not record
+//   this festival as having no amenity data.
 //
 // ── SPATIAL MODEL ──
-// `mapMode: "real"` — real basemap over the surveyed district, live blue
-// dot, venue outline. No stage x/y, no gpsAnchors, MAP_AFFINE null, and the
-// v257/v260 gate therefore suppresses every distance and walk-time readout.
+// `mapStyle: "image-overlay"` over the official 2026 patron map, with all
+// seven stages registered to it. LAYOUT ONLY: no gpsAnchors, MAP_AFFINE
+// null, and the v257/v260 gate therefore still suppresses every distance
+// and walk-time readout. A stage's position on this artwork is a position
+// on ARTWORK; it is not a measurement of the ground.
 //
-// ⚠ THIS IS AN INTERIM STATE, NOT THE END STATE. Every other festival that
-// ships `mapMode: "real"` does so because no official map exists (CRSSD,
-// Portola) — for those, real-basemap IS the answer. HARD Summer is the only
-// one where an official map exists and simply has not been registered yet.
-// It should move to `mapStyle: "image-overlay"` with the 2026 patron map and
-// seven registered stage x/y, the way ACL and EDC do it. Until then the
-// real basemap is the honest fallback: it shows a true place with a true
-// blue dot, and asserts nothing about where the stages are.
+// HOW THE SEVEN x/y WERE READ. Each pin is the STAGE STRUCTURE on the
+// artwork, not its text label — the labels sit out in the crowd areas and
+// are offset by up to 6 grid units, so registering to them would have put
+// every pin in the wrong place. Method: crop the panel, overlay a 1-unit
+// grid, zoom each stage to ~4x, read the structure's bounding box, take its
+// centre; then re-render all seven pins back onto the map and confirm each
+// one lands on its own structure. The last step is the one that matters —
+// it caught four pins sitting beside their stages rather than on them.
 //
 // ⚠ venue.footprint is THE WHOLE DISTRICT (297 acres — OSM's
 // "Los Angeles Stadium and Entertainment District at Hollywood Park",
@@ -142,22 +148,30 @@
   // structure, which the stage's own name states.
   const STAGES = [
     { id: "hard",     name: "HARD",            short: "HARD",    color: "#E51D1D", size: 1.6,
+      x: 14.2, y: 5.5,
       desc: "Main stage" },
     { id: "harder",   name: "HARDER",          short: "HARDER",  color: "#F97316", size: 1.5,
+      x: 35.9, y: 84.0,
       desc: "Second stage" },
     { id: "green",    name: "Green",           short: "GREEN",   color: "#3FA34D", size: 1.3,
+      x: 13.2, y: 37.0,
       desc: "" },
     { id: "purple",   name: "Purple",          short: "PURPLE",  color: "#8B5CF6", size: 1.3,
+      x: 42.9, y: 8.0,
       desc: "" },
     { id: "pink",     name: "Pink",            short: "PINK",    color: "#EC4899", size: 1.3,
+      x: 52.7, y: 8.0,
       desc: "" },
     { id: "icecream", name: "Ice Cream Truck", short: "TRUCK",   color: "#38BDF8", size: 0.9,
+      x: 41.9, y: 37.0,
       desc: "Art car" },
     { id: "beatbox",  name: "Beatbox Art Car", short: "BEATBOX", color: "#FACC15", size: 0.9,
+      x: 62.5, y: 57.0,
       desc: "Art car" },
   ];
 
-  // No map, no legend — see the header.
+  // Empty pending transcription, NOT because none are published — the
+  // official map has a 24-entry legend and ~100 placed icons. See header.
   const AMENITIES = [];
 
   // Real stage, real day, REAL SET TIMES off the official grid. `tier` is
@@ -358,9 +372,28 @@
     // Knock2 B2B Zedd (Sun). It is also the festival's own name.
     mainStageId: "hard",
     // ── THE MAP ──
-    // No mapImage, no gpsAnchors — no official map exists for 2026 or 2025.
-    mapMode: "real",
-    mapPrintsStageNames: false,
+    // hard-summer-2026.webp = the OFFICIAL 2026 patron map
+    // (hsmf_2026_de_festival_map_1080x1350_r04.png, HARD's own CDN, uploaded
+    // 2026-07-27), processed for the app exactly the way acl-park.webp was:
+    // the poster's title band and the 24-entry legend are cropped away and
+    // only the map panel is kept.
+    //
+    // ⚠ THE CROP IS LOAD-BEARING. Panel = source pixels x 128..953,
+    // y 212..1037 — 826 × 826, square on purpose, because the image-overlay
+    // branch draws at x=0 y=0 w=100 h=100 with preserveAspectRatio
+    // "xMidYMid slice". A non-square asset gets side-cropped and every stage
+    // x/y below silently shifts. Re-crop the source and you MUST re-register
+    // all seven stages. Same rule that bit acl-park.webp.
+    mapImage: "hard-summer-2026.webp",
+    mapStyle: "image-overlay",
+    mapTheme: "park",
+    // The artwork prints all seven stage names in display type, so the app
+    // must not draw its own labels on top of them.
+    mapPrintsStageNames: true,
+    // Stylised art, not a projection: no affine, no gpsAnchors, MAP_AFFINE
+    // stays null and the v257/v260 gate keeps suppressing distance readouts.
+    // Stage x/y are LAYOUT ONLY — read off this artwork, never converted to
+    // world coordinates. That is the EDC poster mistake and it stays unmade.
     mapArtIsGeoregistered: false,
     // Published policy: 18+ entry, 21+ alcohol/VIP, no re-entry, no camping,
     // cashless, rain or shine.

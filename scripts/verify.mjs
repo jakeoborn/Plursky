@@ -208,6 +208,11 @@ if (fdata.length) {
 }
 
 let REG_LIVE = [];
+// Live festivals that carry a stage LAYOUT GRID but too few anchors to enter
+// REG_LIVE. Hoisted for the same reason REG_LIVE is: the registry lives in a
+// vm sandbox further down. See the distance-readout gate for why they get
+// their own row instead of being skipped in silence.
+let REG_GRID_NO_AFFINE = [];
 // Mirrors MAP_REGISTRATION_TOL_M in map.jsx. The readout gate asserts the
 // two are equal, so this copy cannot silently drift from the shipped one.
 const REGISTRATION_TOL_M = 25;
@@ -580,6 +585,10 @@ const REGISTRATION_TOL_M = 25;
               Math.cos(la1*r)*Math.cos(la2*r)*Math.sin((lo2-lo1)*r/2)**2;
     return 2*R*Math.asin(Math.sqrt(h));
   };
+  REG_GRID_NO_AFFINE = REG
+    .filter(f => f.available && (f.config.gpsAnchors || []).length < 3 &&
+                 ((DS[f.config.id] || {}).stages || []).some(st => typeof st.x === "number"))
+    .map(f => ({ id: f.config.id, anchors: (f.config.gpsAnchors || []).length }));
   REG_LIVE = REG.filter(f => f.available && (f.config.gpsAnchors || []).length >= 3)
     .map(f => {
       const an = f.config.gpsAnchors, stages = (DS[f.config.id] || {}).stages || [];
@@ -901,7 +910,38 @@ const REGISTRATION_TOL_M = 25;
     else console.log(`  ok ${f.id.padEnd(22)} ${sourced ? "sourced — readouts quoted" : "unsourced — 4/4 readouts withheld from a live position"}`);
   }
   if (rdHard) fail(`${rdHard} festival(s) quote distances they cannot support — see above`);
+  // A LIVE festival with a stage grid but FEWER THAN 3 ANCHORS never enters
+  // REG_LIVE, so the loop above skips it in silence. hard-summer-2026 is the
+  // first such config: available, seven registered stage x/y read off the
+  // official patron map, zero gpsAnchors. It is structurally safe — with no
+  // affine there is nothing for the app to quote a distance FROM — but
+  // "structurally safe" and "not looked at" print identically when the row
+  // is simply absent, which is the blind spot the arming rulings closed on
+  // the footprint gate. So say it out loud.
+  // "Structurally safe" is a claim, so PROVE it rather than print it: run the
+  // same four probes from a LIVE position and require all four to withhold.
+  for (const f of REG_GRID_NO_AFFINE) {
+    const c = load(f.id);
+    const stage = (c.STAGES || []).find(st => typeof st.x === "number");
+    if (!stage) continue;
+    const d = Math.hypot(stage.x - 50, stage.y - 50);
+    const live = { x: 50, y: 50, live: true };
+    const quoted = [];
+    if (c.walkMinsLabel(c.computeWalkRange(live, stage, d, "22:00")) != null) quoted.push("walk");
+    if (c.distToMins(d, live) != null)                                        quoted.push("mins");
+    if (c.minsAwaySuffix(d, live) !== "")                                     quoted.push("away");
+    if (c.gridDistMeters(50, 50, stage.x, stage.y, live) != null)             quoted.push("metres");
+    if (quoted.length) {
+      rdHard++;
+      console.log(`  ✗  ${f.id.padEnd(22)} ${f.anchors} anchor(s) and NO affine, yet quotes ${quoted.join(", ")} from a live position`);
+    } else {
+      console.log(`  ok ${f.id.padEnd(22)} grid, ${f.anchors} anchor(s), no affine — 4/4 readouts withheld`);
+    }
+  }
+  if (rdHard) fail(`${rdHard} festival(s) quote distances they cannot support — see above`);
   console.log(`  ✓ ${rdChecked} live festival(s): every grid readout matches its registration provenance`);
+  if (REG_GRID_NO_AFFINE.length)
+    console.log(`  ✓ ${REG_GRID_NO_AFFINE.length} more carry a layout grid with no affine — checked, not assumed`);
 
   // ── The capture path must emit what the crowd-anchor gate accepts ──────
   // survey.jsx exists to produce crowdAnchors rows, and the gate above
