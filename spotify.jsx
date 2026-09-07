@@ -7591,12 +7591,48 @@ function _withTimeout(promise, ms, label) {
   ]);
 }
 
+// How we reach the RevenueCat plugin. This used to be
+// `await import("@revenuecat/purchases-capacitor")` — and it NEVER ONCE WORKED.
+// Plursky has no bundler (CLAUDE.md §5), so nothing rewrites that bare
+// specifier; WKWebView resolves it as a RELATIVE URL against
+// capacitor://localhost/, gets a 404, and the dynamic import rejects. Every IAP
+// entry point died in its own catch before a single call reached native, which
+// is why Apple could not complete a purchase (Guideline 2.1(b), 2026-09-07).
+// Measured on an iPad simulator that day: with the import, ZERO `Purchases`
+// calls crossed the Capacitor bridge; with the accessor below, configure,
+// getCustomerInfo and addCustomerInfoUpdateListener all landed and RevenueCat
+// returned live CustomerInfo.
+//
+// Capacitor publishes every native plugin on window.Capacitor.Plugins under the
+// jsName its CAP_PLUGIN macro declares — "Purchases", see
+// node_modules/@revenuecat/purchases-capacitor/ios/Plugin/PurchasesPlugin.m.
+// That needs no module resolution, so it is the only form that works here.
+// ⛔ Do not "modernise" this back into an import(). scripts/verify.mjs has a
+// gate that fails the build if a bare-specifier dynamic import reappears.
+function _rcPlugin() {
+  const P = window.Capacitor?.Plugins?.Purchases;
+  if (!P) throw new Error("RevenueCat plugin is not registered on the Capacitor bridge");
+  return P;
+}
+
+// An Error crossing the Capacitor console bridge serialises to `{}`. That is
+// literally what we shipped — "[plursky-iap] init failed: {}" — and it is why a
+// total IAP outage looked like noise in the log for every build since the
+// feature was wired. Log the MESSAGE, never the object.
+function _iapMsg(e) {
+  if (!e) return "unknown error";
+  if (typeof e === "string") return e;
+  if (e.message) return e.message;
+  if (e.errorMessage) return e.errorMessage;   // RevenueCat's own error shape
+  try { return JSON.stringify(e); } catch { return String(e); }
+}
+
 let _rcInitialized = false;
 async function _initRevenueCat() {
   if (_rcInitialized || !RC_API_KEY) return;
   if (!window.Capacitor?.isNativePlatform?.()) return;
   try {
-    const { Purchases } = await import("@revenuecat/purchases-capacitor");
+    const Purchases = _rcPlugin();
     await _withTimeout(Purchases.configure({ apiKey: RC_API_KEY }), 12000, "RevenueCat configure");
     _rcInitialized = true;
     const { customerInfo } = await _withTimeout(Purchases.getCustomerInfo(), 12000, "RevenueCat getCustomerInfo");
@@ -7608,7 +7644,7 @@ async function _initRevenueCat() {
     // syncing it. Also identical in v9 and v13.
     Purchases.addCustomerInfoUpdateListener((info) => _syncEntitlements(info));
     if (typeof DEV !== "undefined") console.log("[plursky-iap] RevenueCat initialized");
-  } catch (e) { console.warn("[plursky-iap] init failed:", e); }
+  } catch (e) { console.warn("[plursky-iap] init failed:", _iapMsg(e)); }
 }
 
 function _syncEntitlements(info) {
@@ -7649,7 +7685,7 @@ async function _purchasePlus(productId) {
   if (!_rcInitialized) await _initRevenueCat();
   if (!_rcInitialized) return { success: false, error: "RevenueCat not configured" };
   try {
-    const { Purchases } = await import("@revenuecat/purchases-capacitor");
+    const Purchases = _rcPlugin();
     // getOfferings() resolves to PurchasesOfferings ITSELF ({ all, current }),
     // not to { offerings }. Destructuring `offerings` yielded undefined, so the
     // find() below always ran on undefined and every purchase bailed out at
@@ -7676,8 +7712,8 @@ async function _purchasePlus(productId) {
     if (e?.code === "1" || e?.message?.includes("cancelled")) {
       return { success: false, cancelled: true };
     }
-    console.error("[plursky-iap] purchase error:", e);
-    return { success: false, error: e.message };
+    console.error("[plursky-iap] purchase error:", _iapMsg(e));
+    return { success: false, error: _iapMsg(e) };
   }
 }
 
@@ -7701,7 +7737,7 @@ async function _plusPriceStrings() {
   if (!_rcInitialized) await _initRevenueCat();
   if (!_rcInitialized) return null;
   try {
-    const { Purchases } = await import("@revenuecat/purchases-capacitor");
+    const Purchases = _rcPlugin();
     const offerings = await _withTimeout(Purchases.getOfferings(), 10000, "StoreKit price lookup");
     const out = {};
     for (const pkg of offerings?.current?.availablePackages || []) {
@@ -7710,7 +7746,7 @@ async function _plusPriceStrings() {
     }
     return Object.keys(out).length ? out : null;
   } catch (e) {
-    console.warn("[plursky-iap] price lookup failed, using fallback copy:", e?.message);
+    console.warn("[plursky-iap] price lookup failed, using fallback copy:", _iapMsg(e));
     return null;
   }
 }
@@ -7734,14 +7770,14 @@ async function _restorePurchases() {
   if (!_rcInitialized) await _initRevenueCat();
   if (!_rcInitialized) return { success: false, error: "RevenueCat not configured" };
   try {
-    const { Purchases } = await import("@revenuecat/purchases-capacitor");
+    const Purchases = _rcPlugin();
     const { customerInfo } = await _withTimeout(Purchases.restorePurchases(), 30000, "Restore purchases");
     _syncEntitlements(customerInfo);
     const restored = !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT];
     return { success: true, restored };
   } catch (e) {
-    console.error("[plursky-iap] restore error:", e);
-    return { success: false, error: e.message };
+    console.error("[plursky-iap] restore error:", _iapMsg(e));
+    return { success: false, error: _iapMsg(e) };
   }
 }
 

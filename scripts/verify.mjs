@@ -139,6 +139,65 @@ if (existsSync(podfile)) {
   console.log(`  ✓ ${names.length} compiled file(s) current, sw.js mirrors index.html`);
 }
 
+// ── 0d. Module-resolution gate ─────────────────────────────────────────────
+// There is NO BUNDLER (CLAUDE.md §5). A dynamic import() of a BARE SPECIFIER is
+// therefore resolved as a RELATIVE URL against the page origin — on device that
+// is capacitor://localhost/ — so it 404s and the promise rejects. It parses, it
+// compiles, it ships, and it fails only on a real device, inside a catch.
+//
+// Born from: `await import("@revenuecat/purchases-capacitor")` in spotify.jsx.
+// FOUR call sites, every one of them dead since the day IAP was wired, so
+// RevenueCat was never configured and no purchase ever reached StoreKit. It
+// cost an App Review rejection (Guideline 2.1(b), 2026-09-07) and it stayed
+// invisible because the catch logged the Error object, which the Capacitor
+// console bridge serialises to "{}".
+//
+// A native plugin is reached through window.Capacitor.Plugins.<jsName>, where
+// jsName is what the plugin's CAP_PLUGIN macro declares. See _rcPlugin().
+{
+  // Comments must be stripped before scanning: the fix in spotify.jsx QUOTES the
+  // banned pattern to explain why it is banned, and a naive text scan flagged
+  // the explanation. Strings are tracked so a // inside one is not a comment.
+  const stripComments = (src) => {
+    let out = "", i = 0, line = false, block = false, quote = null;
+    while (i < src.length) {
+      const c = src[i], d = src[i + 1];
+      if (line)        { if (c === "\n") { line = false; out += c; } else out += " "; i++; continue; }
+      if (block)       { if (c === "*" && d === "/") { block = false; out += "  "; i += 2; }
+                         else { out += c === "\n" ? c : " "; i++; } continue; }
+      if (quote)       { if (c === "\\") { out += c + (d ?? ""); i += 2; continue; }
+                         if (c === quote) quote = null;
+                         out += c; i++; continue; }
+      if (c === "/" && d === "/") { line = true; out += "  "; i += 2; continue; }
+      if (c === "/" && d === "*") { block = true; out += "  "; i += 2; continue; }
+      if (c === "'" || c === '"' || c === "`") quote = c;
+      out += c; i++;
+    }
+    return out;
+  };
+
+  const mods = execFileSync("git", ["ls-files", "*.jsx", "build/*.js", ":!ios/**"], { cwd: ROOT })
+    .toString().trim().split("\n").filter(Boolean);
+  console.log(`▸ Module-resolution gate — no bare-specifier import() across ${mods.length} files`);
+  const bare = [];
+  for (const rel of mods) {
+    stripComments(readFileSync(join(ROOT, rel), "utf8")).split("\n").forEach((line, i) => {
+      for (const m of line.matchAll(/\bimport\s*\(\s*(['"`])([^'"`]*)\1\s*\)/g)) {
+        const spec = m[2];
+        // Relative, root-absolute, or carrying its own scheme — all resolvable.
+        if (/^(\.{1,2}\/|\/|[a-z][a-z0-9+.-]*:)/i.test(spec)) continue;
+        bare.push(`${rel}:${i + 1}  import("${spec}")`);
+      }
+    });
+  }
+  if (bare.length) {
+    for (const b of bare) console.log(`  ✗ ${b}`);
+    fail(`${bare.length} bare-specifier dynamic import(s) — nothing resolves them at runtime. ` +
+         `Reach a native plugin via window.Capacitor.Plugins.<jsName> instead.`);
+  }
+  console.log(`  ✓ every dynamic import() is relative, root-absolute or schemed`);
+}
+
 // ── 1. Parse gate ──────────────────────────────────────────────────────────
 // Babel with the react preset — the same transform the browser applies to each
 // <script type="text/babel">. tsc's syntax pass does NOT cover JSX semantics
