@@ -772,7 +772,7 @@ function SpotifyScreen({
         marginTop: 2,
         textTransform: "uppercase"
       }
-    }, stg.name, " · DAY ", a.day, " · ", fmt12(a.start))), React.createElement("button", {
+    }, stg?.name || "Stage TBA", " · DAY ", a.day, " · ", fmt12(a.start))), React.createElement("button", {
       onClick: () => toggleSave(state, setState, realId),
       style: {
         width: 34,
@@ -846,7 +846,7 @@ function SpotifyScreen({
         marginTop: 2,
         textTransform: "uppercase"
       }
-    }, stg.name, " · DAY ", a.day, " · ", fmt12(a.start)), a._reason && React.createElement("div", {
+    }, stg?.name || "Stage TBA", " · DAY ", a.day, " · ", fmt12(a.start)), a._reason && React.createElement("div", {
       style: {
         fontSize: 10,
         fontStyle: "italic",

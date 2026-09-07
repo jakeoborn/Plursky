@@ -23,7 +23,7 @@ async function exportSavedSetsICS(savedIds) {
   if (!artists.length) return;
   var lines = ["BEGIN:VCALENDAR", "VERSION:2.0", `PRODID:-//Plursky//${FESTIVAL_CONFIG.name}//EN`, "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
   artists.forEach(a => {
-    var stage = STAGES.find(s => s.id === a.stage);
+    var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
     var startMs = _artistMs(a, a.start);
     var endMs = _artistMs(a, a.end);
     if (!startMs || !endMs) return;
@@ -446,7 +446,7 @@ function NightWizard({
   }, "SAVE SETS IN LINEUP FIRST")) : React.createElement(React.Fragment, null, items.map((item, idx) => {
     if (item.type === "set") {
       var a = item.artist;
-      var stage = STAGES.find(s => s.id === a.stage);
+      var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
       var clash = conflictIds.has(a.id);
       return React.createElement("div", {
         key: a.id,
@@ -597,7 +597,7 @@ function NightWizard({
           paddingBottom: 4
         }
       }, item.fits.map(f => {
-        var fs = STAGES.find(s => s.id === f.stage);
+        var fs = STAGES.find(s => s.id === f.stage) || UNPLACED_STAGE;
         return React.createElement("button", {
           key: f.id,
           onClick: () => add(f.id),
@@ -1050,7 +1050,7 @@ function LineupScreen({
       return true;
     }).filter(a => {
       if (!term) return true;
-      var st = STAGES.find(s => s.id === a.stage);
+      var st = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
       return a.name.toLowerCase().includes(term) || (a.genre || "").toLowerCase().includes(term) || (st?.name || "").toLowerCase().includes(term);
     }).sort((a, b) => {
       if (sortBy === "tier") {
@@ -1068,7 +1068,7 @@ function LineupScreen({
     if (!term) return 0;
     return ARTISTS.filter(a => {
       if (a.day === day) return false;
-      var st = STAGES.find(s => s.id === a.stage);
+      var st = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
       return a.name.toLowerCase().includes(term) || (a.genre || "").toLowerCase().includes(term) || (st?.name || "").toLowerCase().includes(term);
     }).length;
   }, [q, day]);
@@ -1816,7 +1816,7 @@ function LineupScreen({
       cursor: "pointer"
     }
   }, "BROWSE ALL SETS")), viewMode === "list" && dayArtists.map(a => {
-    var stage = STAGES.find(s => s.id === a.stage);
+    var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
     var saved = state.saved.includes(a.id);
     var clashWith = conflictById[a.id];
     var isHighlighted = highlightId === a.id;
@@ -2274,7 +2274,7 @@ function SavedSidebar({
       borderRadius: 8
     }
   }, "Tap any set in the grid to add") : saved.map(a => {
-    var stage = STAGES.find(s => s.id === a.stage);
+    var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
     var startMin = toNightMin(a.start);
     var endMin = toNightMin(a.end);
     var top = _minToTop(startMin);
@@ -2877,8 +2877,8 @@ function ConflictResolver({
   if (!conflicts.length) return null;
   var pair = conflicts[safeIdx];
   var [a, b] = pair;
-  var sA = STAGES.find(s => s.id === a.stage);
-  var sB = STAGES.find(s => s.id === b.stage);
+  var sA = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
+  var sB = STAGES.find(s => s.id === b.stage) || UNPLACED_STAGE;
   var overlapStart = a.start > b.start ? a.start : b.start;
   var overlapEnd = a.end < b.end ? a.end : b.end;
   var next = () => {
@@ -3128,7 +3128,7 @@ async function exportLineupICS(state) {
   var venue = FESTIVAL_CONFIG.locationShort;
   var dtstamp = _icsLocal(new Date());
   var events = saved.map(a => {
-    var stage = STAGES.find(s => s.id === a.stage);
+    var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
     var start = _icsLocal(_setTimeToLocalDate(a.day, a.start));
     var end = _icsLocal(_setTimeToLocalDate(a.day, a.end));
     var summary = _icsEscape(`${a.name} · ${stage.short}`);
@@ -3207,7 +3207,7 @@ function printLineupPDF(state) {
       <table>
         <colgroup><col class="ctime"><col><col class="cstage"></colgroup>
         ${list.map(a => {
-    var st = STAGES.find(s => s.id === a.stage);
+    var st = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
     return `<tr>
             <td class="time">${fmt12(a.start)}<span class="end">${fmt12(a.end)}</span></td>
             <td>
@@ -3303,7 +3303,7 @@ async function copyScheduleText(state) {
     var artists = ARTISTS.filter(a => a.day === day && ids.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
     if (!artists.length) return [];
     return [`${d.short} · ${d.name.toUpperCase()}`, ...artists.map(a => {
-      var stage = STAGES.find(s => s.id === a.stage);
+      var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
       return `  ${fmt12(a.start)}  ${a.name}  @  ${stage ? stage.name : a.stage}`;
     }), ""];
   });
@@ -3701,7 +3701,7 @@ async function shareLineupImage(state) {
       ctx.textAlign = "left";
       y += 70;
     }
-    var stage = STAGES.find(s => s.id === a.stage);
+    var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
     ctx.fillStyle = stage.color;
     ctx.fillRect(80, y, 6, 78);
     ctx.fillStyle = "#1a120d";

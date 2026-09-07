@@ -3558,7 +3558,7 @@ function PlanRow({
     tight,
     conflict
   } = entry;
-  var stage = STAGES.find(s => s.id === a.stage);
+  var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
   var leaveByLabel = leaveBy != null ? (() => {
     var m = (leaveBy % (24 * 60) + 24 * 60) % (24 * 60);
     var h = Math.floor(m / 60) % 24;
@@ -3587,7 +3587,7 @@ function PlanRow({
       color: tight ? "var(--ember-ink)" : "var(--muted)",
       fontWeight: tight ? 700 : 500
     }
-  }, walk, " MIN WALK · ", prev.stage === a.stage ? "SAME STAGE" : `${STAGES.find(s => s.id === prev.stage).short} → ${stage.short}`, leaveByLabel && ` · LEAVE BY ${leaveByLabel}`)), React.createElement("div", {
+  }, walk, " MIN WALK · ", prev.stage === a.stage ? "SAME STAGE" : `${STAGES.find(s => s.id === prev.stage)?.short || "TBA"} → ${stage?.short || "TBA"}`, leaveByLabel && ` · LEAVE BY ${leaveByLabel}`)), React.createElement("div", {
     onClick: () => setState({
       ...state,
       tab: "home",
@@ -3612,7 +3612,7 @@ function PlanRow({
     style: {
       fontSize: 10,
       letterSpacing: 1,
-      color: isLive ? stage.color : "var(--ink)",
+      color: isLive ? stage?.color || "#8a8580" : "var(--ink)",
       fontWeight: isLive ? 700 : 500
     }
   }, fmt12(a.start)), React.createElement("div", {

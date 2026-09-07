@@ -2449,7 +2449,9 @@ function TonightsPlan({ plan, state, setState }) {
 
 function PlanRow({ entry, state, setState }) {
   const { artist: a, prev, walk, minsUntil, isLive, isPast, leaveBy, tight, conflict } = entry;
-  const stage = STAGES.find(s => s.id === a.stage);
+  // stage is null when a lineup is published before stage assignments
+  // (Escape Halloween 2026, III Points 2026). See UNPLACED_STAGE in data.jsx.
+  const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
   const leaveByLabel = leaveBy != null ? (() => {
     const m = ((leaveBy % (24 * 60)) + (24 * 60)) % (24 * 60);
     const h = Math.floor(m / 60) % 24;
@@ -2471,7 +2473,7 @@ function PlanRow({ entry, state, setState }) {
             color: tight ? "var(--ember-ink)" : "var(--muted)",
             fontWeight: tight ? 700 : 500,
           }}>
-            {walk} MIN WALK · {prev.stage === a.stage ? "SAME STAGE" : `${STAGES.find(s=>s.id===prev.stage).short} → ${stage.short}`}
+            {walk} MIN WALK · {prev.stage === a.stage ? "SAME STAGE" : `${STAGES.find(s=>s.id===prev.stage)?.short || "TBA"} → ${stage?.short || "TBA"}`}
             {leaveByLabel && ` · LEAVE BY ${leaveByLabel}`}
           </span>
         </div>
@@ -2490,7 +2492,7 @@ function PlanRow({ entry, state, setState }) {
         <div style={{ width: 44 }}>
           <div className="mono" style={{
             fontSize: 10, letterSpacing: 1,
-            color: isLive ? stage.color : "var(--ink)",
+            color: isLive ? (stage?.color || "#8a8580") : "var(--ink)",
             fontWeight: isLive ? 700 : 500,
           }}>{fmt12(a.start)}</div>
           <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>

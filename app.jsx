@@ -407,7 +407,9 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
               {results.length} RESULT{results.length !== 1 ? "S" : ""}
             </div>
             {results.map((a, ri) => {
-              const stage = STAGES.find(s => s.id === a.stage);
+              // stage is null when a lineup is published before stage assignments
+              // (Escape Halloween 2026, III Points 2026). See UNPLACED_STAGE in data.jsx.
+              const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
               const leg = isLegendary(a);
               return (
                 <button key={a.id} onClick={() => { onSelectArtist(a.id); onClose(); }} style={{
@@ -417,7 +419,7 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
                   alignItems: "center", border: "none", borderBottom: "1px solid var(--line)",
                   animation: ri < 12 ? `springIn 0.3s ease-out ${ri * 30}ms both` : undefined,
                 }}>
-                  <div style={{ width: 4, alignSelf: "stretch", background: stage.color, borderRadius: 3, flexShrink: 0 }} />
+                  <div style={{ width: 4, alignSelf: "stretch", background: stage?.color || "#8a8580", borderRadius: 3, flexShrink: 0 }} />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: "flex", alignItems: "baseline", gap: 6, flexWrap: "wrap" }}>
                       <span className="serif" style={{ fontSize: 20, lineHeight: 1.05, letterSpacing: -0.2 }}>{a.name}</span>
@@ -892,7 +894,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v269",
+        version: "v270",
       }));
     } catch {}
   }
@@ -925,7 +927,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
-          PLURSKY · v269
+          PLURSKY · v270
         </div>
       </div>
     );

@@ -1108,7 +1108,7 @@ function ArtistScreen({
 }) {
   var a = ARTISTS.find(ar => ar.id === state.artist);
   if (!a) return null;
-  var stage = STAGES.find(s => s.id === a.stage);
+  var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
   var b2bParts = a.name.split(/ b2b /i).map(s => s.trim());
   var isB2B = b2bParts.length > 1;
   var [activeB2B, setActiveB2B] = React.useState(0);
@@ -1583,12 +1583,12 @@ function ArtistScreen({
       padding: "11px 8px",
       background: "transparent",
       border: "none",
-      borderBottom: `2px solid ${activeB2B === i ? stage.color : "transparent"}`,
+      borderBottom: `2px solid ${activeB2B === i ? stage?.color || "#8a8580" : "transparent"}`,
       cursor: "pointer",
       fontFamily: "Geist Mono, monospace",
       fontSize: 9,
       letterSpacing: 1.2,
-      color: activeB2B === i ? stage.color : "var(--muted)",
+      color: activeB2B === i ? stage?.color || "#8a8580" : "var(--muted)",
       fontWeight: activeB2B === i ? 700 : 400,
       transition: "color 0.15s, border-color 0.15s"
     }

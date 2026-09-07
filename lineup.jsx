@@ -38,7 +38,7 @@ async function exportSavedSetsICS(savedIds) {
     "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
 
   artists.forEach(a => {
-    const stage = STAGES.find(s => s.id === a.stage);
+    const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
     const startMs = _artistMs(a, a.start);
     const endMs   = _artistMs(a, a.end);
     if (!startMs || !endMs) return;
@@ -280,7 +280,7 @@ function NightWizard({ state, setState, onClose }) {
             {items.map((item, idx) => {
               if (item.type === "set") {
                 const a = item.artist;
-                const stage = STAGES.find(s => s.id === a.stage);
+                const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
                 const clash = conflictIds.has(a.id);
                 return (
                   <div key={a.id} style={{ display: "flex", gap: 10, marginBottom: 7, alignItems: "flex-start" }}>
@@ -336,7 +336,7 @@ function NightWizard({ state, setState, onClose }) {
                       {item.fits.length > 0 && (
                         <div style={{ display: "flex", gap: 6, flexWrap: "wrap", paddingBottom: 4 }}>
                           {item.fits.map(f => {
-                            const fs = STAGES.find(s => s.id === f.stage);
+                            const fs = (STAGES.find(s => s.id === f.stage) || UNPLACED_STAGE);
                             return (
                               <button key={f.id} onClick={() => add(f.id)} style={{
                                 background: `${fs.color}12`, border: `1px dashed ${fs.color}`,
@@ -715,7 +715,7 @@ function LineupScreen({ state, setState }) {
       })
       .filter(a => {
         if (!term) return true;
-        const st = STAGES.find(s => s.id === a.stage);
+        const st = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
         return a.name.toLowerCase().includes(term)
           || (a.genre || "").toLowerCase().includes(term)
           || (st?.name || "").toLowerCase().includes(term);
@@ -752,7 +752,7 @@ function LineupScreen({ state, setState }) {
     if (!term) return 0;
     return ARTISTS.filter(a => {
       if (a.day === day) return false;
-      const st = STAGES.find(s => s.id === a.stage);
+      const st = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
       return a.name.toLowerCase().includes(term)
         || (a.genre || "").toLowerCase().includes(term)
         || (st?.name || "").toLowerCase().includes(term);
@@ -1286,7 +1286,7 @@ function LineupScreen({ state, setState }) {
           </div>
         )}
         {viewMode === "list" && dayArtists.map(a => {
-          const stage = STAGES.find(s => s.id === a.stage);
+          const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
           const saved = state.saved.includes(a.id);
           const clashWith = conflictById[a.id];
           const isHighlighted = highlightId === a.id;
@@ -1591,7 +1591,7 @@ function SavedSidebar({ day, state, setState }) {
             Tap any set in the grid to add
           </div>
         ) : saved.map(a => {
-          const stage = STAGES.find(s => s.id === a.stage);
+          const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
           const startMin = toNightMin(a.start);
           const endMin   = toNightMin(a.end);
           const top      = _minToTop(startMin);
@@ -2065,8 +2065,8 @@ function ConflictResolver({ conflicts, onKeep, onKeepBoth, onSplit }) {
   if (!conflicts.length) return null;
   const pair = conflicts[safeIdx];
   const [a, b] = pair;
-  const sA = STAGES.find(s => s.id === a.stage);
-  const sB = STAGES.find(s => s.id === b.stage);
+  const sA = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
+  const sB = (STAGES.find(s => s.id === b.stage) || UNPLACED_STAGE);
   const overlapStart = a.start > b.start ? a.start : b.start;
   const overlapEnd = a.end < b.end ? a.end : b.end;
 
@@ -2215,7 +2215,7 @@ async function exportLineupICS(state) {
   const venue = FESTIVAL_CONFIG.locationShort;
   const dtstamp = _icsLocal(new Date());
   const events = saved.map(a => {
-    const stage = STAGES.find(s => s.id === a.stage);
+    const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
     const start = _icsLocal(_setTimeToLocalDate(a.day, a.start));
     const end   = _icsLocal(_setTimeToLocalDate(a.day, a.end));
     const summary = _icsEscape(`${a.name} · ${stage.short}`);
@@ -2299,7 +2299,7 @@ function printLineupPDF(state) {
       <table>
         <colgroup><col class="ctime"><col><col class="cstage"></colgroup>
         ${list.map(a => {
-          const st = STAGES.find(s => s.id === a.stage);
+          const st = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
           return `<tr>
             <td class="time">${fmt12(a.start)}<span class="end">${fmt12(a.end)}</span></td>
             <td>
@@ -2390,7 +2390,7 @@ async function copyScheduleText(state) {
     return [
       `${d.short} · ${d.name.toUpperCase()}`,
       ...artists.map(a => {
-        const stage = STAGES.find(s => s.id === a.stage);
+        const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
         return `  ${fmt12(a.start)}  ${a.name}  @  ${stage ? stage.name : a.stage}`;
       }),
       "",
@@ -2613,7 +2613,7 @@ async function shareLineupImage(state) {
       y += 70;
     }
 
-    const stage = STAGES.find(s => s.id === a.stage);
+    const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
 
     // Stage colour stripe
     ctx.fillStyle = stage.color;

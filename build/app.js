@@ -652,7 +652,7 @@ function SearchModal({
       color: "var(--muted)"
     }
   }, results.length, " RESULT", results.length !== 1 ? "S" : ""), results.map((a, ri) => {
-    var stage = STAGES.find(s => s.id === a.stage);
+    var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
     var leg = isLegendary(a);
     return React.createElement("button", {
       key: a.id,
@@ -678,7 +678,7 @@ function SearchModal({
       style: {
         width: 4,
         alignSelf: "stretch",
-        background: stage.color,
+        background: stage?.color || "#8a8580",
         borderRadius: 3,
         flexShrink: 0
       }
@@ -1288,7 +1288,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v269"
+        version: "v270"
       }));
     } catch {}
   }
@@ -1353,7 +1353,7 @@ class RootErrorBoundary extends React.Component {
         letterSpacing: 1.2,
         color: "rgba(26,18,13,0.45)"
       }
-    }, "PLURSKY · v269"));
+    }, "PLURSKY · v270"));
   }
 }
 function SetStartingCinematic() {
