@@ -472,12 +472,65 @@ const FESTIVALS_REGISTRY = [
       // nocturnal-wonderland-2026, iii-points-2026, crssd-fall-2026 and
       // portola-2026.
       //
-      // FLIP SESSION (official 2026 map drops ~1 week out, so ~Sep 11):
-      // georeference that map onto ortho imagery of Legend Valley the way #68
-      // did for EDC Orlando and add anchors then — src "poster" for art reads,
-      // "osm" for satellite-measured features, `derived` banned from the
-      // basis. Re-derive stage x/y FROM the anchors, never the reverse, and
-      // regenerate lostlands-2026.svg from the corrected coordinates.
+      // ⛔ THE FLIP SESSION MUST NOT TRY TO GEOREFERENCE THE FESTIVAL MAP.
+      // This block used to say "georeference that map onto ortho imagery the
+      // way #68 did for EDC Orlando". That was attempted 2026-09-07, ahead of
+      // the flip and deliberately not under flip-day pressure, and it does
+      // not work. Recording the negative result so nobody spends flip day
+      // rediscovering it.
+      //
+      // WHAT WAS MEASURED. The 2025 official festival map is public and was
+      // retrieved (2162x2703):
+      //   /wp-content/uploads/2025/09/LL25_Festival-Map-4x5-1.jpg
+      //   /wp-content/uploads/2025/09/LL25Camping-Map-4x5updated.jpg
+      // Ortho imagery of Legend Valley (ESRI World Imagery z17/z18) was
+      // mosaicked and overlaid with OSM. The OSM layer matches the imagery
+      // exactly — parcel way 694134820, the internal service-road network
+      // (ways 1306723092..1306723110), the pond, the tunnel, the buildings.
+      // The GROUND is georeferenced and solid. The ART is not.
+      //
+      // WHY THE ART CANNOT BE REGISTERED. #68 worked at EDC Orlando because
+      // the Tinker Field plate is a plan drawing with real ground features on
+      // it. This is not that. The Lost Lands plate is flat-colour illustration
+      // — decorative dinosaurs, radial ray graphics, a tree-ring border — with
+      // NO terrain, NO scale bar, NO north arrow, NO labelled road and NO
+      // water. It shares not one surveyable feature with the imagery, so
+      // there is no control point to fit an affine on.
+      //
+      // It is also not merely unlabelled, it is NON-CONFORMAL. The art puts
+      // the main stage (Prehistoric) at the east end of an oval field. Legend
+      // Valley's permanent amphitheatre bowl — the one unmistakable stage-
+      // shaped structure on the imagery — is in the WEST. No rotation makes
+      // the art's entrance axis, field shape and stage ring line up with this
+      // ground. It is an artistic arrangement, not a projection. Same finding
+      // as the EDC LV poster in PR #36: the poster is art, not a survey.
+      //
+      // The 2026 map will almost certainly be the same house style, so this
+      // applies to it too unless it visibly changes.
+      //
+      // REAL CONTROL POINTS, if a future on-site survey needs something to
+      // key against. All OSM, all confirmed against ortho, all edition-
+      // independent — the venue does not move:
+      //   pond           39.93716, -82.40300   way 1318886830, elongated N-S
+      //   tunnel (RTE13) 39.93978, -82.40814   way 1426291099, west edge
+      //   main building  39.93868, -82.40264   way 1318886836
+      //   north building 39.94101, -82.40523   way 1318886831
+      //   pool           39.93861, -82.40113   way 1318886829
+      //
+      // SO THE HONEST OPTIONS AT THE FLIP ARE:
+      //   1. Ship gated-map posture (today). No anchors, MAP_AFFINE null,
+      //      distance/walk-time readouts suppressed through the v257/v260
+      //      gate, blue dot only on the real-map layer where it is true.
+      //   2. Switch to mapMode "real" like iii-points / crssd / portola: no
+      //      art plate, real basemap, TRUE blue dot, venue footprint drawn.
+      //      This needs no 2026 map and no anchors, and it is the only route
+      //      to a correct blue dot at Legend Valley. FOUNDER CALL — it is a
+      //      visible change to how the festival's map screen looks.
+      //   3. Capture anchors on site with the survey tool (>=3, spread
+      //      <100 m rejected, attestation required) — only possible in
+      //      September, on the ground.
+      // What is NOT an option is fitting the art. That is how the seven
+      // deleted `prov` anchors got here in the first place.
       mainStageId: "prehistoric",
       // lostlands-2026.svg = generated abstract ground plate, regenerated
       // 2026-09-06 from the corrected stage coordinates (the old .jpg was an
