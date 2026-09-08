@@ -507,6 +507,9 @@ function App() {
     catch { return false; }
   });
   const [searchOpen, setSearchOpen] = React.useState(false);
+  // True while any full-screen overlay is mounted. The search FAB below hides
+  // rather than trying to out-stack it — see useDeclareModal in chrome.jsx.
+  const modalOpen = useModalOpen();
   React.useEffect(() => {
     window.plurskyOpenOnboarding = () => setShowOnboarding(true);
     return () => { delete window.plurskyOpenOnboarding; };
@@ -761,7 +764,7 @@ function App() {
           {body}
           {/* Search FAB — floats above TabBar, accessible from any screen.
               Labeled pill so first-time users actually notice it. */}
-          {!state.artist && !searchOpen && state.tab !== "map" && (
+          {!state.artist && !searchOpen && state.tab !== "map" && !modalOpen && (
             <button
               onClick={() => setSearchOpen(true)}
               aria-label="Search artists, stages, genres"
@@ -894,7 +897,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v281",
+        version: "v282",
       }));
     } catch {}
   }
@@ -927,7 +930,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
-          PLURSKY · v281
+          PLURSKY · v282
         </div>
       </div>
     );

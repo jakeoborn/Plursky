@@ -8013,6 +8013,7 @@ function MemoriesScreen({
   var [backupBusy, setBackupBusy] = React.useState(false);
   var [backupProg, setBackupProg] = React.useState(null);
   var [showPlus, setShowPlus] = React.useState(false);
+  useDeclareModal(showPlus);
   var batchInputRef = React.useRef(null);
   var nightSectionRefs = React.useRef({});
   var openLightbox = React.useCallback((moments, index) => setLightbox({
@@ -9483,6 +9484,7 @@ function MeScreen({
   var [festivalOpen, setFestivalOpen] = React.useState(true);
   var [socialOpen, setSocialOpen] = React.useState(true);
   var [plusOpen, setPlusOpen] = React.useState(false);
+  useDeclareModal(plusOpen);
   var plusActive = _isPlusSub();
   var [setsCaught, setSetsCaught] = React.useState(getAttendedCount);
   React.useEffect(() => {

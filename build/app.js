@@ -865,6 +865,7 @@ function App() {
     }
   });
   var [searchOpen, setSearchOpen] = React.useState(false);
+  var modalOpen = useModalOpen();
   React.useEffect(() => {
     window.plurskyOpenOnboarding = () => setShowOnboarding(true);
     return () => {
@@ -1131,7 +1132,7 @@ function App() {
       flex: 1,
       position: "relative"
     }
-  }, body, !state.artist && !searchOpen && state.tab !== "map" && React.createElement("button", {
+  }, body, !state.artist && !searchOpen && state.tab !== "map" && !modalOpen && React.createElement("button", {
     onClick: () => setSearchOpen(true),
     "aria-label": "Search artists, stages, genres",
     style: {
@@ -1288,7 +1289,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v281"
+        version: "v282"
       }));
     } catch {}
   }
@@ -1353,7 +1354,7 @@ class RootErrorBoundary extends React.Component {
         letterSpacing: 1.2,
         color: "rgba(26,18,13,0.45)"
       }
-    }, "PLURSKY · v281"));
+    }, "PLURSKY · v282"));
   }
 }
 function SetStartingCinematic() {
