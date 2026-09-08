@@ -31,6 +31,43 @@ the step it was given for, not the next one. When in doubt, ask.
 
 ---
 
+## 0b. Verify before you relay (HARD RULE — applies to EVERY agent)
+
+**Every factual claim about this repo — yours, another agent's, anyone's — gets
+verified against the CURRENT repo before it is acted on, merged, or relayed as
+fact.**
+
+Stale docs are not evidence. The code and data on `main` are. A doc, a backlog
+row, a queue entry, a previous session's summary and a plan from another agent
+are all *hypotheses* — each states something that was true when it was written,
+which is not the same as true now. Run the cheap falsifying check first; it is
+almost always one grep, one script, or one registry read.
+
+This is not pedantry, it is the failure this project keeps hitting:
+
+- A plan led with "ACL is live with 2025-estimated set times." `data.jsx` says
+  the opposite in the file — an OFFICIAL grid that already replaced the
+  2025-estimated one. Acting on it would have redone finished work (2026-09-08).
+- A flip spec still instructed a georeference that a merged PR had forbidden;
+  following it would have undone #97.
+- A cited anchor residual was off by an order of magnitude, and the conclusion
+  happened to survive for the *opposite* reason to the one given.
+
+When you relay a claim you have not checked, say so in the same sentence.
+"Instinct reports X" and "X is true" are different statements — do not silently
+convert one into the other.
+
+### Findings over failure
+
+**"No surveyable feature" is a finding, not a failure.** This generalises to all
+measurement work: a negative result that is measured and recorded is a
+deliverable, not a shortfall. Report what is true, including "this cannot be
+done and here is the evidence" — never pad a result to look like progress, and
+never invent data to fill a column. The set-time honesty and unplaced-stage
+gates exist because that padding has been shipped before.
+
+---
+
 ## 1. Who owns what
 
 | Agent | May do (after approval) | NEVER |

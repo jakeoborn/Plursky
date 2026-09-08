@@ -43,10 +43,59 @@ Deliver, before any code changes:
   against ortho imagery? If not, say so — that is a finding, and the answer is
   `mapMode: "real"` on OSM ground, exactly as Lost Lands landed.
 
+**The art verdict — the kill criterion.** The edition's festival art survives
+only if BOTH hold:
+  (a) at least one printed feature anchors to permanent ground structure that is
+      measurable on ortho imagery, and
+  (b) the art is conformal with the ground — relative distances between printed
+      features match ground truth within the affine tolerance (~1.5 grid units,
+      ~20 m).
+Fail either and the art is killed: ship `mapMode: "real"` on OSM ground, exactly
+as Lost Lands landed (#97) and as EDC LV's poster was ruled art-not-survey
+(`mapArtIsGeoregistered: false`). **"No surveyable feature" is a finding, not a
+failure** — record it and move on.
+
+⚠️ **A low residual is not a pass.** Anchors derived as offsets from a single
+point agree with each other by construction, so they can be perfectly
+self-consistent and still sit far off the venue. `docs/SPEC-anchor-flip-sessions.md`
+A4 is the rule: verify each basis anchor against satellite imagery independently.
+
 → `docs/qa/reports/JOB-1-<date>/`. Flip itself is a separate PR, Jake's word.
 
-## JOB-2 — The 25-festival data queue
+## JOB-2 — The festival data queue
 **Status: READY** · One festival per session, official sources only
+
+### Ordering (verified against the repo 2026-09-08 — re-verify before you start)
+
+19 registry entries: 9 live, 10 gated. Ordered by event date within the season,
+weighted by how much a miss costs. `noStage`/`noTime` are counted from
+`_DATA_SETS`, so they say what each sheet actually has to supply:
+
+| # | Festival | Dates | Acts | Needs |
+|---|---|---|---|---|
+| 1 | Lost Lands | Sep 18–20 | 201 | stage **and** time — the deadline (W-1) |
+| 2 | Nocturnal Wonderland | Sep 19–20 | 86 | **times only** — stages already assigned |
+| 3 | CRSSD Fall | Sep 26–27 | 52 | times only |
+| 4 | III Points | Oct 16–17 | 218 | stage and time — heaviest, start early Oct |
+| 5 | Escape Halloween | Oct 30–31 | 83 | stage and time, + the W-2 re-measure |
+| 6 | EDC Orlando | Nov 6–8 | 109 | gated on JOB-1 (W-3) |
+| 7 | 2027 rolls | — | — | off-season, after Nov 8 |
+
+⚠️ **Two entries that look like work and are not:**
+- **ACL 2026 needs nothing.** Its schedule is the OFFICIAL per-day grid,
+  transcribed from aclfestival.com posters and corroborated by two outlets
+  (`data.jsx`, "ACL 2026 lineup — OFFICIAL per-day schedule grid"). It already
+  replaced the 2025-estimated grid. What is still 2025 is the park **map**, and
+  that is correct: an edition falls back to last year's map until its own is
+  released. The only open ACL item is checking whether an official 2026 Zilker
+  map has since published.
+- **Portola already has all 64 set times.** It is not a twin session with CRSSD.
+
+The reasoning behind the order: an in-season flip that misses its weekend is
+worth zero, so date dominates. Argue with it if you disagree — this is a read of
+ROI, not gospel — but check the table above against the repo first, because the
+cheap falsifying check is one script run and it has already caught two wrong
+assumptions.
 
 For each: one clean sheet — `artist | day | stage | start | end | source URL`.
 
@@ -93,6 +142,27 @@ Re-run once the verdict lands, so the strings match what actually shipped.
 
 ### W-1 — Lost Lands set times (~Sep 12, festival Sep 18–20)
 **Status: WATCH** · This is the one with a deadline.
+**Nocturnal Wonderland (Sep 19–20) is APPROVED for the same week — 2026-09-08.**
+
+⚠️ **Two INDEPENDENT schedule sources. Never assume they drop together.** These
+are different festivals with different organisers publishing on their own
+timelines; an earlier draft of this file claimed a shared cadence, which was
+wrong. Each carries its own trigger, either can slip without the other, and
+neither one's silence tells you anything about the other. **Watch them
+separately and fill whichever lands first** — do not hold a completed sheet
+waiting for its neighbour.
+
+What makes the pairing affordable is the workload, not a shared source: Lost
+Lands is a full stage+time fill across 201 acts, Nocturnal is a **times-only**
+fill across 86 whose stages are already assigned (`noStage=0`). Different sizes,
+so they do not contend even if both land in the same week.
+
+⚠️ Times-only does not mean the gate relaxes. **Stage and time still land
+together, per row** — a row ships only when BOTH are real. For Nocturnal the
+stages are already in, so supplying the time completes the pair; for Lost Lands
+both arrive in the same sheet. A row with a time and no stage, or a stage and an
+invented time, is the exact defect the set-time honesty and unplaced-stage gates
+exist to catch. TBA and `stage: null` remain real answers.
 
 All 201 acts are already in the repo with `stage: null` and no times — that is
 correct and deliberate, not an omission. When the official app schedule drops,
