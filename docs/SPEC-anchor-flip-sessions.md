@@ -46,6 +46,17 @@ founder-reported pain class, arriving from the data side.
 > **A1–A4 remain the correct method** for any festival whose art DOES have a
 > surveyable feature — Scope B still uses them. Establishing whether it does is
 > the first question of any flip session, not an assumption.
+>
+> **A0 — the art verdict, and it runs FIRST.** The edition's art survives only if
+> BOTH hold: (a) at least one printed feature anchors to permanent ground
+> structure measurable on ortho imagery, and (b) the art is conformal with the
+> ground — relative distances between printed features match ground truth within
+> the affine tolerance (~1.5 grid units, ~20 m). Fail either and the art is
+> killed: ship `mapMode: "real"` on OSM ground, as `lost-lands-2026` did (#97)
+> and as EDC LV's poster was ruled art-not-survey
+> (`mapArtIsGeoregistered: false`). **"No surveyable feature" is a finding, not a
+> failure.** Adopted from Instinct's PLAN-2026-09-08, which stated the criterion
+> better than this spec did.
 
 The W-1 watch (`docs/qa/INSTINCT-QUEUE.md`) now fires only the **set-times and
 stage** fill for Lost Lands, not a map flip.
