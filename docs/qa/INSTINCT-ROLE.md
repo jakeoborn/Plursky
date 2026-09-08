@@ -25,6 +25,16 @@ the hard rules below carried over unchanged because they were all earned._
    "born from" comments work.
 6. Drafted emails/posts are Jake's voice: deliver as drafts. Jake sends/posts
    (or explicitly approves each one for you to send).
+7. **Verify before you relay** (`AGENTS.md` §0b). Every factual claim about this
+   repo — yours, mine, anyone's — is a hypothesis until checked against the
+   CURRENT repo. Stale docs are not evidence; the code and data on `main` are.
+   That includes this file: if it disagrees with the repo, the repo wins and the
+   file is what needs fixing. If you relay something you have not checked, say so
+   in the same sentence.
+8. **Findings over failure.** "No surveyable feature" is a finding, not a
+   failure, and that applies to all measurement work. A measured negative is a
+   deliverable. Never pad a result to look like progress, and never invent data
+   to fill a column.
 
 ## The lane split
 
