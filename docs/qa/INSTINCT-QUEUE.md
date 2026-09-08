@@ -142,10 +142,18 @@ Re-run once the verdict lands, so the strings match what actually shipped.
 
 ### W-1 — Lost Lands set times (~Sep 12, festival Sep 18–20)
 **Status: WATCH** · This is the one with a deadline.
-**Nocturnal Wonderland (Sep 19–20) rides this watch.** Same Insomniac source
-cadence, times drop together, and it needs times only against Lost Lands' full
-stage+time fill — so the two sheets are different sizes and do not contend.
-Founder decision 2026-09-08: attempt both that week.
+**Nocturnal Wonderland (Sep 19–20) rides this watch — APPROVED 2026-09-08.**
+Attempt it alongside Lost Lands the same week. Same Insomniac source cadence,
+times drop together, and the two sheets are different sizes so they do not
+contend: Lost Lands is a full stage+time fill across 201 acts, Nocturnal is a
+**times-only** fill across 86 whose stages are already assigned.
+
+⚠️ Times-only does not mean the gate relaxes. **Stage and time still land
+together, per row** — a row ships only when BOTH are real. For Nocturnal the
+stages are already in, so supplying the time completes the pair; for Lost Lands
+both arrive in the same sheet. A row with a time and no stage, or a stage and an
+invented time, is the exact defect the set-time honesty and unplaced-stage gates
+exist to catch. TBA and `stage: null` remain real answers.
 
 All 201 acts are already in the repo with `stage: null` and no times — that is
 correct and deliberate, not an omission. When the official app schedule drops,
