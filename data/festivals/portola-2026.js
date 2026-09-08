@@ -277,8 +277,18 @@
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};
   window.PLURSKY_FESTIVALS["portola-2026"] = {
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
-    // GATED: the site map is unpublished. Set times ARE real — this one is
-    // one artifact away from being flippable.
-    registry: { available: false, accent: "#2C4096", emoji: "🪩", region: "North America" },
+    // LIVE (flipped 2026-09-08). The site map is STILL unpublished — it was
+    // never the blocker it looks like. This festival is `mapMode: "real"`, so
+    // the Map tab draws OSM ground, not festival art, and an unreleased art
+    // plate changes nothing about what renders. The stages carry no lat/lng
+    // and therefore no pins, which is not a regression: arc-2026 has shipped
+    // LIVE in exactly that shape (mapMode real, 4 stages, 0 coordinates).
+    // Verified against main before flipping — 64 acts, 32/32 across the two
+    // days, every `stage` resolving to a real STAGES id, every start/end a
+    // well-formed HH:MM, no duplicate ids. Set times are the founder-facing
+    // promise and they are complete, so the gate had nothing left to protect.
+    // Stage pins land when the official map does; that is an enhancement now,
+    // not a gate.
+    registry: { available: true, accent: "#2C4096", emoji: "🪩", region: "North America" },
   };
 })();
