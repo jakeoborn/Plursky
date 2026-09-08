@@ -1,14 +1,15 @@
 # AGENTS.md — for AI agents working on Plursky
 
-If you are an AI agent (Clicky, Claude Code, a GitHub bot, etc.) about to touch
+If you are an AI agent (Instinct, Claude Code, a GitHub bot, etc.) about to touch
 this repo: **read this first, then `CLAUDE.md` and `RELEASE.md`.** They encode
 rules that cause real breakage if ignored.
 
-> **Clicky — current on-device QA brief: [`QA-v208.md`](QA-v208.md).** It has the
-> per-feature checklist for the latest release (the 4 Memories features + Shazam
-> + backup), how to run each (Simulator vs iPhone Mirroring), and the GitHub-issue
-> format for the handoff loop. Run it and file an issue per failure. Section 8
-> there covers the **archive + submit `1.9 (20)`** flow.
+> **Instinct — start here: [`docs/qa/INSTINCT-ROLE.md`](docs/qa/INSTINCT-ROLE.md)**
+> (standing brief, hard rules, what a simulator cannot prove) then
+> [`docs/qa/INSTINCT-QUEUE.md`](docs/qa/INSTINCT-QUEUE.md) (the job queue and its
+> status protocol). Instinct replaced Clicky on 2026-09-08; the older
+> `QA-v208.md` and `CLICKY-BRIEF-*.md` files are historical records of past
+> release QA, not current instructions.
 
 Plursky is a music-festival companion app: a **no-bundler static SPA** (plain
 `.jsx` files loaded as `<script type="text/babel">`) that ships to the web
@@ -35,17 +36,26 @@ the step it was given for, not the next one. When in doubt, ask.
 | Agent | May do (after approval) | NEVER |
 |---|---|---|
 | **Claude Code** (terminal) | Repo surgery: multi-file edits, version bumps, the verify gate, **commits/merges to `main`** | Act without the approval gate above |
-| **Clicky** (on-screen) | Visual QA on the live app, **on-device testing**, web-dashboard ops (App Store Connect, RevenueCat), Xcode triage. Code changes only via **branch + PR** | **Commit or push to `main`**; act without approval |
+| **Instinct** (on-screen) | Visual QA on the live app, **on-device testing**, official-source data research, design drafts, web-dashboard ops (App Store Connect, RevenueCat), Xcode triage. Code changes only via **branch + PR** | **Commit or push to `main`**; cache-bust or iOS version bumps; archive/upload; act without approval |
 | **Any other agent** | Branches / PRs / issues | Commit or push to `main` |
 
 `main` is the **live deploy** (push to main → plursky.com updates). Only Claude
 Code commits there, and only after both the approval gate (§0) and the verify
-gate (§2) pass. **Clicky has GitHub write access but must NOT push to `main`** —
+gate (§2) pass. **Instinct has GitHub write access but must NOT push to `main`** —
 it opens a branch + PR (or files an issue) and lets Claude Code run the gate and
-merge. Direct-to-main from Clicky bypasses the only validation Plursky has.
+merge. Direct-to-main bypasses the only validation Plursky has. Note that Instinct
+uses jakeoborn's shared credentials, so branch protection CANNOT tell it apart from
+Claude Code: this rule is instruction-level only, which is exactly why it is here.
 
-**The handoff loop:** Clicky sees a problem on screen → files a GitHub issue →
-Claude Code implements + verifies + ships → Clicky re-checks on the real device.
+**The handoff loop:** Instinct sees a problem on screen → **reports it privately
+to Jake or Claude Code** → Claude Code implements + verifies + ships → Instinct
+re-checks on the real device. Not a GitHub issue: issues on this repo are public,
+so they fall under the open-defect rule below exactly like a PR body does.
+
+**Open defects stay out of this repo.** It is public — it deploys plursky.com. A
+bug that is not yet fixed is reported to Jake or Claude Code directly, never
+described in a PR body, commit message, issue or doc here. Once it is fixed,
+describe it in full: that is what the "born from" comments are for.
 
 ---
 

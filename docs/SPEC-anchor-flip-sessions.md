@@ -33,12 +33,22 @@ founder-reported pain class, arriving from the data side.
 
 ---
 
-## Scope A — `lost-lands-2026` flip session (fires ~Sep 15, on the W-3 watch)
+## Scope A — `lost-lands-2026` flip session (fires ~Sep 15, on the W-1 watch)
 
-Trigger: official 2026 patron map publishes (the W-3 watch in
-`docs/qa/CLICKY-QUEUE.md` fires the session). Current state: all 7 anchors
-provisional (spread around the centroid; config comment says so), mapImage is
-a generated abstract placeholder, `setTimesProvisional: true`.
+> ⛔ **SUPERSEDED FOR LOST LANDS (#97, merged 2026-09-07). Do not run A1–A4 on
+> `lost-lands-2026`.** That PR established by measurement that the festival art
+> carries no surveyable feature and is non-conformal with the real ground, and
+> shipped the festival as `mapMode: "real"` — no `mapImage`, no `gpsAnchors`, and
+> stage `x/y` stripped. Running the steps below would put the blue dot back on
+> art that cannot hold it. `data.jsx` records the finding and five
+> ortho-confirmed OSM control points if they are ever needed.
+>
+> **A1–A4 remain the correct method** for any festival whose art DOES have a
+> surveyable feature — Scope B still uses them. Establishing whether it does is
+> the first question of any flip session, not an assumption.
+
+The W-1 watch (`docs/qa/INSTINCT-QUEUE.md`) now fires only the **set-times and
+stage** fill for Lost Lands, not a map flip.
 
 **A1. Replace the map asset.** Process the official 2026 patron map with the
 `acl-park.webp` treatment: square canvas, the map art framed to fill it.
@@ -83,10 +93,12 @@ moves, re-run A3.
 
 Same procedure as Scope A, with the festival's own facts: 5 anchors
 (`kinetic, circuit, neon, stereo, bacardi`), `edco-tinker-2026.jpg`
-placeholder, venue = Tinker Field. One extra: the venue centroid itself is
-provisional (Tinker Field Plaza, Nominatim) — re-derive `gps` from the
-official map's center while the session is open. Acceptance identical:
-warning to `ok`, ≤ 1.5, flip as its own PR.
+placeholder, venue = Tinker Field. One extra: **the venue centroid itself is
+provisional and unverified** — re-survey it from ortho imagery and OSM
+structure, do not carry the stored value forward, and do not treat any existing
+anchor as measured. Acceptance identical: warning to `ok`, ≤ 1.5, flip as its
+own PR. See JOB-1 in `docs/qa/INSTINCT-QUEUE.md`; Claude Code holds the
+specifics of what is wrong with the current registration.
 
 ## Scope C — EDC LV poster title-block crop (asset-only, any time after #27)
 
