@@ -87,10 +87,10 @@ Do not burn a session trying. Established 2026-09-07:
 - **Web**: `v281` on `main`. v282 in PR #101.
 - **iOS**: `MARKETING_VERSION 1.12`, build **25** in the repo. **1.12 was REJECTED
   under Guideline 2.1(b) on 2026-09-07**; build 25 is not uploaded yet.
-- Root cause of that rejection is fixed (#99): the RevenueCat plugin was never
-  loaded, because a bare-specifier dynamic `import()` cannot resolve without a
-  bundler. IAP had never worked in production. #100 and #101 fix the paywall
-  rendering that sat on top of it.
+- The cause of that rejection is identified and fixed on `main` (#99), with the
+  paywall rendering fixes on top of it (#100, #101). The mechanism of each is in
+  those merged PRs and in the "born from" comments at the call sites — that is
+  where fixed-defect detail belongs, not here. Build 25 carries all three.
 - **Festivals live**: EDC Las Vegas 2026, ACL 2026. Gated `available: false`:
   Lost Lands (Sep 18–20), EDC Orlando (Nov 6–8), Escape (late Oct), + others.
 - Open work: `docs/qa/INSTINCT-QUEUE.md`, then `TODO.md`.

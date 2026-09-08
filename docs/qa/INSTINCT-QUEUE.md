@@ -28,10 +28,11 @@ _Contract: read **INSTINCT-ROLE.md** first — its hard rules override everythin
 ## JOB-1 — EDC Orlando geo rebuild (Nov 6–8)
 **Status: READY** · Owner: Instinct measures, Claude Code builds
 
-The configured centroid is wrong: it is a 19 m memorial plaza in a residential
-block roughly 250 m off, and all five anchors are offsets from it, so every one
-inherits the error. Follow the Lost Lands pattern (#97): **measure first, report
-the ground truth, then build.**
+The current EDC Orlando venue registration is provisional and has NOT been
+re-surveyed for 2026. Treat every existing anchor as unverified — do not build on
+them, and do not assume the stored centroid is right. Follow the Lost Lands
+pattern (#97): **measure first, report the ground truth, then build.**
+Claude Code holds the specifics; ask before you start if you need them.
 
 Deliver, before any code changes:
 - Tinker Field / Camping World Stadium footprint from OSM — way ids, not a
@@ -48,8 +49,13 @@ Deliver, before any code changes:
 **Status: READY** · One festival per session, official sources only
 
 For each: one clean sheet — `artist | day | stage | start | end | source URL`.
-`festivaldust.com/festivals/<slug>/set-times` is the authoritative first stop and
-states explicitly when times are TBA.
+
+**The festival's own schedule — its official app or site — is the ONLY
+authoritative source.** Every row's `source URL` must point there.
+`festivaldust.com/festivals/<slug>/set-times` is useful for DISCOVERY and for
+cross-checking whether times have dropped at all, never as the source of record.
+If the two disagree, the official schedule wins and the discrepancy is worth
+reporting.
 
 Read the pre-flight section of INSTINCT-ROLE.md before you start. The short
 version: **TBA is a real answer, `stage: null` is a real answer, and inventing

@@ -47,8 +47,10 @@ merge. Direct-to-main bypasses the only validation Plursky has. Note that Instin
 uses jakeoborn's shared credentials, so branch protection CANNOT tell it apart from
 Claude Code: this rule is instruction-level only, which is exactly why it is here.
 
-**The handoff loop:** Instinct sees a problem on screen → files a GitHub issue →
-Claude Code implements + verifies + ships → Instinct re-checks on the real device.
+**The handoff loop:** Instinct sees a problem on screen → **reports it privately
+to Jake or Claude Code** → Claude Code implements + verifies + ships → Instinct
+re-checks on the real device. Not a GitHub issue: issues on this repo are public,
+so they fall under the open-defect rule below exactly like a PR body does.
 
 **Open defects stay out of this repo.** It is public — it deploys plursky.com. A
 bug that is not yet fixed is reported to Jake or Claude Code directly, never
