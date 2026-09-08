@@ -47,16 +47,41 @@ founder-reported pain class, arriving from the data side.
 > surveyable feature — Scope B still uses them. Establishing whether it does is
 > the first question of any flip session, not an assumption.
 >
-> **A0 — the art verdict, and it runs FIRST.** The edition's art survives only if
-> BOTH hold: (a) at least one printed feature anchors to permanent ground
-> structure measurable on ortho imagery, and (b) the art is conformal with the
-> ground — relative distances between printed features match ground truth within
-> the affine tolerance (~1.5 grid units, ~20 m). Fail either and the art is
-> killed: ship `mapMode: "real"` on OSM ground, as `lost-lands-2026` did (#97)
-> and as EDC LV's poster was ruled art-not-survey
-> (`mapArtIsGeoregistered: false`). **"No surveyable feature" is a finding, not a
-> failure.** Adopted from Instinct's PLAN-2026-09-08, which stated the criterion
-> better than this spec did.
+> **A0 — the art verdict, and it runs FIRST.**
+>
+> **Q1 — can the art be georegistered?** Both must hold:
+> (a) **at least THREE non-collinear** correspondences between printed features
+>     and permanent ground structure measurable on ortho imagery. Three is the
+>     floor because three points are what define an affine — one or two cannot
+>     constrain it at all, and three collinear points are degenerate. More is
+>     better; the extras become the independent check in A4.
+> (b) **conformality** — relative distances between printed features match ground
+>     truth within the affine tolerance (~1.5 grid units, ~20 m). Correspondences
+>     that fit individually but not together mean the art is stylised, not scaled.
+>
+> **Q1 YES** → georegister. A1–A4 apply and the art drives the blue dot.
+>
+> **Q1 NO** → the art is not a survey, and that is a finding, not a failure. It
+> does NOT automatically mean the art is removed. Ask Q2.
+>
+> **Q2 — is the art still worth showing as a diagram?** These are different
+> outcomes and the repo runs all three today:
+>
+> | outcome | config | live examples |
+> |---|---|---|
+> | georegistered | `mapArtIsGeoregistered: true` + anchors | — |
+> | **art retained as a diagram**, anchors measured SEPARATELY (survey/crowd, never off the poster) | `mapImage` + `mapArtIsGeoregistered: false` + `gpsAnchors` | `edc-lv-2026` (9 anchors) |
+> | **art retained as a diagram**, no registration at all | `mapImage` + `mapArtIsGeoregistered: false`, 0 anchors | `nocturnal-wonderland-2026`, `hard-summer-2026`, `escape-halloween-2026` |
+> | **art removed**, real basemap | `mapMode: "real"`, no `mapImage`, no `gpsAnchors`, stage `x/y` stripped | `lost-lands-2026` (#97), `iii-points-2026`, `crssd-fall-2026`, `portola-2026`, `arc-2026` |
+>
+> Retaining unregistered art is legitimate — a diagram that orients a human is
+> useful even when it cannot place a dot. Remove it only when it is misleading or
+> there is no usable art. What is NEVER allowed either way: deriving world
+> coordinates from poster coordinates.
+>
+> Criterion adopted from Instinct's PLAN-2026-09-08, which stated it better than
+> this spec did; the three-point floor and the retained-vs-removed split are
+> Codex's corrections on #104.
 
 The W-1 watch (`docs/qa/INSTINCT-QUEUE.md`) now fires only the **set-times and
 stage** fill for Lost Lands, not a map flip.

@@ -142,11 +142,20 @@ Re-run once the verdict lands, so the strings match what actually shipped.
 
 ### W-1 — Lost Lands set times (~Sep 12, festival Sep 18–20)
 **Status: WATCH** · This is the one with a deadline.
-**Nocturnal Wonderland (Sep 19–20) rides this watch — APPROVED 2026-09-08.**
-Attempt it alongside Lost Lands the same week. Same Insomniac source cadence,
-times drop together, and the two sheets are different sizes so they do not
-contend: Lost Lands is a full stage+time fill across 201 acts, Nocturnal is a
-**times-only** fill across 86 whose stages are already assigned.
+**Nocturnal Wonderland (Sep 19–20) is APPROVED for the same week — 2026-09-08.**
+
+⚠️ **Two INDEPENDENT schedule sources. Never assume they drop together.** These
+are different festivals with different organisers publishing on their own
+timelines; an earlier draft of this file claimed a shared cadence, which was
+wrong. Each carries its own trigger, either can slip without the other, and
+neither one's silence tells you anything about the other. **Watch them
+separately and fill whichever lands first** — do not hold a completed sheet
+waiting for its neighbour.
+
+What makes the pairing affordable is the workload, not a shared source: Lost
+Lands is a full stage+time fill across 201 acts, Nocturnal is a **times-only**
+fill across 86 whose stages are already assigned (`noStage=0`). Different sizes,
+so they do not contend even if both land in the same week.
 
 ⚠️ Times-only does not mean the gate relaxes. **Stage and time still land
 together, per row** — a row ships only when BOTH are real. For Nocturnal the
