@@ -8797,9 +8797,11 @@ function MemoriesScreen({
       zIndex: 260,
       background: "rgba(0,0,0,0.6)",
       display: "flex",
-      alignItems: "center",
+      alignItems: "flex-start",
       justifyContent: "center",
       padding: 20,
+      overflowY: "auto",
+      WebkitOverflowScrolling: "touch",
       animation: "fadeIn .2s"
     }
   }, React.createElement("div", {
@@ -8807,7 +8809,9 @@ function MemoriesScreen({
     style: {
       position: "relative",
       width: "100%",
-      maxWidth: 340
+      maxWidth: 340,
+      margin: "auto 0",
+      flexShrink: 0
     }
   }, React.createElement("button", {
     onClick: () => setShowPlus(false),
@@ -9755,9 +9759,11 @@ function MeScreen({
       zIndex: 260,
       background: "rgba(0,0,0,0.6)",
       display: "flex",
-      alignItems: "center",
+      alignItems: "flex-start",
       justifyContent: "center",
       padding: 20,
+      overflowY: "auto",
+      WebkitOverflowScrolling: "touch",
       animation: "fadeIn .2s"
     }
   }, React.createElement("div", {
@@ -9765,7 +9771,9 @@ function MeScreen({
     style: {
       position: "relative",
       width: "100%",
-      maxWidth: 340
+      maxWidth: 340,
+      margin: "auto 0",
+      flexShrink: 0
     }
   }, React.createElement("button", {
     onClick: () => setPlusOpen(false),
@@ -11682,23 +11690,25 @@ function PlusGate({
     style: {
       position: "relative",
       borderRadius: 14,
-      overflow: "hidden"
+      overflow: "hidden",
+      display: "grid"
     }
   }, React.createElement("div", {
     style: {
+      gridArea: "1 / 1",
       filter: "blur(3px)",
       pointerEvents: "none",
       opacity: 0.35
     }
   }, children), React.createElement("div", {
     style: {
-      position: "absolute",
-      inset: 0,
+      gridArea: "1 / 1",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
       gap: 0,
+      padding: "18px 0",
       background: "linear-gradient(180deg, rgba(26,18,13,0.85) 0%, rgba(109,40,217,0.55) 100%)",
       backdropFilter: "blur(6px)"
     }
