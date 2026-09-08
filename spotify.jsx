@@ -4997,6 +4997,7 @@ function MemoriesScreen({ state, setState }) {
   const [backupBusy, setBackupBusy] = React.useState(false); // cloud-backup in progress
   const [backupProg, setBackupProg] = React.useState(null);  // { done, total } while running
   const [showPlus, setShowPlus] = React.useState(false);     // paywall overlay (free taps backup)
+  useDeclareModal(showPlus);   // hides the search FAB, which paints over this — see chrome.jsx
   const batchInputRef = React.useRef(null);
   const nightSectionRefs = React.useRef({});
   const openLightbox = React.useCallback((moments, index) => setLightbox({ moments, index }), []);
@@ -6170,6 +6171,7 @@ function MeScreen({ state, setState }) {
   // trading cards needs a saved lineup. A reviewer could reach none of
   // them, so the IAPs read as missing. This row is the unconditional one.
   const [plusOpen, setPlusOpen] = React.useState(false);
+  useDeclareModal(plusOpen);   // hides the search FAB, which paints over this — see chrome.jsx
   const plusActive = _isPlusSub();
 
   // Stats — kept locally per the spec; intentionally cheap, not precious.

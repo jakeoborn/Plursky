@@ -356,6 +356,30 @@ var haptic = {
   medium: () => navigator.vibrate?.([30]),
   heavy: () => navigator.vibrate?.([50, 30, 50])
 };
+var _modalSubs = new Set();
+var _modalCount = 0;
+function useDeclareModal(open) {
+  React.useEffect(() => {
+    if (!open) return undefined;
+    _modalCount += 1;
+    _modalSubs.forEach(fn => fn(_modalCount));
+    return () => {
+      _modalCount = Math.max(0, _modalCount - 1);
+      _modalSubs.forEach(fn => fn(_modalCount));
+    };
+  }, [open]);
+}
+function useModalOpen() {
+  var [n, setN] = React.useState(_modalCount);
+  React.useEffect(() => {
+    _modalSubs.add(setN);
+    setN(_modalCount);
+    return () => {
+      _modalSubs.delete(setN);
+    };
+  }, []);
+  return n > 0;
+}
 function useStaggerFade(depKey) {
   var ref = React.useRef(null);
   React.useEffect(() => {

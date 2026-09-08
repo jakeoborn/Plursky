@@ -220,6 +220,48 @@ const haptic = {
   heavy:  () => navigator.vibrate?.([50, 30, 50]),
 };
 
+// ── Modal presence, so app chrome can get out of the way ─────
+// The search FAB is position:absolute zIndex:30 inside the screen wrapper; the
+// paywall overlays are position:fixed zIndex:260. By the cascade the overlay
+// should win, and MEASURED IN THE WEBVIEW IT DOES NOT: elementFromPoint at the
+// FAB's centre, with the paywall open, returns the FAB. Neither element has a
+// stacking-context ancestor (checked for transform, filter, backdrop-filter,
+// opacity, isolation, mix-blend-mode, perspective, will-change, contain and
+// positioned z-index), so raising 260 higher is not a fix you can trust — it is
+// the same bet that already lost. On 2026-09-07 the FAB covered the right third
+// of RESTORE PURCHASE, the required restore control for a non-consumable
+// (Guideline 3.1.1), on the device family that had just rejected 1.12.
+//
+// So: don't out-stack the modal, get out of its way. A modal declares itself
+// while it is mounted and the chrome hides. Correct whatever the stacking rules
+// turn out to be doing.
+const _modalSubs = new Set();
+let _modalCount = 0;
+
+// Call from any component that renders a full-screen overlay: useDeclareModal(isOpen).
+function useDeclareModal(open) {
+  React.useEffect(() => {
+    if (!open) return undefined;
+    _modalCount += 1;
+    _modalSubs.forEach(fn => fn(_modalCount));
+    return () => {
+      _modalCount = Math.max(0, _modalCount - 1);
+      _modalSubs.forEach(fn => fn(_modalCount));
+    };
+  }, [open]);
+}
+
+// Call from chrome that must yield to a modal: const covered = useModalOpen().
+function useModalOpen() {
+  const [n, setN] = React.useState(_modalCount);
+  React.useEffect(() => {
+    _modalSubs.add(setN);
+    setN(_modalCount);            // a modal may have opened before we subscribed
+    return () => { _modalSubs.delete(setN); };
+  }, []);
+  return n > 0;
+}
+
 // ── Stagger-fade entrance for scrollable cards ───────────────
 // Returns a ref to attach to a container. Children with
 // [data-animate] get an intersection-triggered fade-in.
