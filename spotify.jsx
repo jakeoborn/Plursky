@@ -5679,10 +5679,21 @@ function MemoriesScreen({ state, setState }) {
         {showPlus && (
           <div onClick={() => setShowPlus(false)} style={{
             position: "fixed", inset: 0, zIndex: 260, background: "rgba(0,0,0,0.6)",
-            display: "flex", alignItems: "center", justifyContent: "center", padding: 20,
+            // alignItems is flex-start + margin:"auto 0" on the card below, NOT
+            // alignItems:"center". Centred flex children whose content is TALLER
+            // than the container overflow in BOTH directions and the overflowing
+            // top is unreachable — you cannot scroll back to it. The card is ~600px
+            // and an iPhone-compat window on an iPad is 375x667, so on 2026-09-07
+            // this clipped RESTORE PURCHASE — the last control — in half. That is
+            // the required restore mechanism for a non-consumable (Guideline
+            // 3.1.1), on the exact device family that had just rejected 1.12.
+            // flex-start + auto margins centre it when it fits and scroll when it
+            // does not, which is the behaviour we actually wanted.
+            display: "flex", alignItems: "flex-start", justifyContent: "center", padding: 20,
+            overflowY: "auto", WebkitOverflowScrolling: "touch",
             animation: "fadeIn .2s",
           }}>
-            <div onClick={e => e.stopPropagation()} style={{ position: "relative", width: "100%", maxWidth: 340 }}>
+            <div onClick={e => e.stopPropagation()} style={{ position: "relative", width: "100%", maxWidth: 340, margin: "auto 0", flexShrink: 0 }}>
               <button onClick={() => setShowPlus(false)} aria-label="Close" style={{
                 position: "absolute", top: -14, right: -6, zIndex: 1,
                 width: 30, height: 30, borderRadius: 30, background: "#fff", border: "none",
@@ -6350,10 +6361,21 @@ function MeScreen({ state, setState }) {
         {plusOpen && (
           <div onClick={() => setPlusOpen(false)} style={{
             position: "fixed", inset: 0, zIndex: 260, background: "rgba(0,0,0,0.6)",
-            display: "flex", alignItems: "center", justifyContent: "center", padding: 20,
+            // alignItems is flex-start + margin:"auto 0" on the card below, NOT
+            // alignItems:"center". Centred flex children whose content is TALLER
+            // than the container overflow in BOTH directions and the overflowing
+            // top is unreachable — you cannot scroll back to it. The card is ~600px
+            // and an iPhone-compat window on an iPad is 375x667, so on 2026-09-07
+            // this clipped RESTORE PURCHASE — the last control — in half. That is
+            // the required restore mechanism for a non-consumable (Guideline
+            // 3.1.1), on the exact device family that had just rejected 1.12.
+            // flex-start + auto margins centre it when it fits and scroll when it
+            // does not, which is the behaviour we actually wanted.
+            display: "flex", alignItems: "flex-start", justifyContent: "center", padding: 20,
+            overflowY: "auto", WebkitOverflowScrolling: "touch",
             animation: "fadeIn .2s",
           }}>
-            <div onClick={e => e.stopPropagation()} style={{ position: "relative", width: "100%", maxWidth: 340 }}>
+            <div onClick={e => e.stopPropagation()} style={{ position: "relative", width: "100%", maxWidth: 340, margin: "auto 0", flexShrink: 0 }}>
               <button onClick={() => setPlusOpen(false)} aria-label="Close" style={{
                 position: "absolute", top: -14, right: -6, zIndex: 1,
                 width: 30, height: 30, borderRadius: 30, background: "#fff", border: "none",
@@ -7843,12 +7865,26 @@ function PlusGate({ children, feature }) {
     ["Custom accents", "Pick your festival color"],
   ];
 
+  // Both layers occupy the SAME grid cell, so this box is as tall as whichever
+  // is taller — the blurred feature preview or the paywall. It used to be the
+  // preview alone: children set the height, the paywall sat on top at
+  // position:absolute inset:0, and overflow:hidden cropped whatever did not
+  // fit. Every overlay caller passes <div style={{height:460}}/>, so any
+  // paywall taller than that magic number was centred and CHOPPED AT BOTH
+  // ENDS — on 2026-09-07 that cut RESTORE PURCHASE, the last control, in half.
+  // That is the required restore mechanism for a non-consumable (Guideline
+  // 3.1.1), and #98's new error line had just made the column taller still.
+  // Nothing about it was device-specific: a fixed 460 cannot hold content that
+  // grows. Do NOT "simplify" this back to one absolute layer — the two inline
+  // callers (hidden gems, trading-cards export) pass REAL children whose
+  // height must still drive the box, so neither layer can be the sole sizer.
+  // A grid cell takes the max, which is the only rule that serves both.
   return (
-    <div style={{ position: "relative", borderRadius: 14, overflow: "hidden" }}>
-      <div style={{ filter: "blur(3px)", pointerEvents: "none", opacity: 0.35 }}>{children}</div>
+    <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", display: "grid" }}>
+      <div style={{ gridArea: "1 / 1", filter: "blur(3px)", pointerEvents: "none", opacity: 0.35 }}>{children}</div>
       <div style={{
-        position: "absolute", inset: 0, display: "flex", flexDirection: "column",
-        alignItems: "center", justifyContent: "center", gap: 0,
+        gridArea: "1 / 1", display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center", gap: 0, padding: "18px 0",
         background: "linear-gradient(180deg, rgba(26,18,13,0.85) 0%, rgba(109,40,217,0.55) 100%)",
         backdropFilter: "blur(6px)",
       }}>
