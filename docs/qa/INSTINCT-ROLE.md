@@ -122,13 +122,20 @@ Do not burn a session trying. Established 2026-09-07:
 
 ## Current state snapshot (for orientation)
 
-- **Web**: `v281` on `main`. v282 in PR #101.
-- **iOS**: `MARKETING_VERSION 1.12`, build **25** in the repo. **1.12 was REJECTED
-  under Guideline 2.1(b) on 2026-09-07**; build 25 is not uploaded yet.
+- **Web**: `v283` on `main` (Portola flip #106 + JOB-1 docs #108). Open: #109
+  (generated-page freshness) and #110 (ACL Weekend 2 resolver, claims v284),
+  both in revision per review.
+- **iOS**: `MARKETING_VERSION 1.12`, build **25** uploaded and **Waiting for
+  Review since 2026-09-08 ~1:23am CT**. The Guideline 2.1(b) rejection of
+  2026-09-07 below was the previous submission on an older build.
 - The cause of that rejection is identified and fixed on `main` (#99), with the
   paywall rendering fixes on top of it (#100, #101). The mechanism of each is in
   those merged PRs and in the "born from" comments at the call sites — that is
   where fixed-defect detail belongs, not here. Build 25 carries all three.
-- **Festivals live**: EDC Las Vegas 2026, ACL 2026. Gated `available: false`:
-  Lost Lands (Sep 18–20), EDC Orlando (Nov 6–8), Escape (late Oct), + others.
+- **Festivals live**: EDC Las Vegas 2026, ACL 2026, Portola 2026 (flipped
+  2026-09-08, #106), plus completed 2026 editions still `available` (arc,
+  governors-ball, hard-summer, lollapalooza, outside-lands, summerfest,
+  ultra-miami). Gated `available: false`: Lost Lands (Sep 18–20), EDC Orlando
+  (Nov 6–8), Escape (late Oct), Nocturnal, III Points (Oct 16–17), CRSSD Fall,
+  + others.
 - Open work: `docs/qa/INSTINCT-QUEUE.md`, then `TODO.md`.
