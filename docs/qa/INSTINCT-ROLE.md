@@ -65,7 +65,7 @@ The ones that will catch you:
 - **crowd-anchor / distance-readout** — measure the structure, never the label;
   never derive world coordinates from poster art.
 
-## Flip-verdict checklist — every registry flip verdict names all three
+## Flip-verdict checklist — every registry flip verdict names all four
 A flip (`registry.available: false → true`) is judged on more than the diff.
 Every flip verdict states, explicitly:
 
@@ -84,6 +84,14 @@ Every flip verdict states, explicitly:
    never fetch the second. Name the colliding branches; they re-bump via
    `bump.mjs --next` (never hand-sed). (Worked example: qaMode re-bumped
    v283 → v284 after #106 took v283.)
+4. **Generated-page regeneration.** A flip changes what the crawlable
+   `/f/<id>/` pages and sitemap on plursky.com should say, and nothing re-runs
+   the generator on its own. After any registry flip, re-run
+   `node scripts/gen-festival-pages.mjs` and commit the result. (Worked
+   example: the Portola flip #106 never re-ran it, and /f/portola-2026/ kept
+   telling visitors and search engines "not switchable in the app yet" about a
+   festival that was live. Caught 2026-09-08; #109 adds a freshness gate so
+   this class of rot fails the build instead of reaching the public.)
 
 ## Standing measurement rules
 
@@ -114,13 +122,20 @@ Do not burn a session trying. Established 2026-09-07:
 
 ## Current state snapshot (for orientation)
 
-- **Web**: `v281` on `main`. v282 in PR #101.
-- **iOS**: `MARKETING_VERSION 1.12`, build **25** in the repo. **1.12 was REJECTED
-  under Guideline 2.1(b) on 2026-09-07**; build 25 is not uploaded yet.
+- **Web**: `v283` on `main` (Portola flip #106 + JOB-1 docs #108). Open: #109
+  (generated-page freshness) and #110 (ACL Weekend 2 resolver, claims v284),
+  both in revision per review.
+- **iOS**: `MARKETING_VERSION 1.12`, build **25** uploaded and **Waiting for
+  Review since 2026-09-08 ~1:23am CT**. The Guideline 2.1(b) rejection of
+  2026-09-07 below was the previous submission on an older build.
 - The cause of that rejection is identified and fixed on `main` (#99), with the
   paywall rendering fixes on top of it (#100, #101). The mechanism of each is in
   those merged PRs and in the "born from" comments at the call sites — that is
   where fixed-defect detail belongs, not here. Build 25 carries all three.
-- **Festivals live**: EDC Las Vegas 2026, ACL 2026. Gated `available: false`:
-  Lost Lands (Sep 18–20), EDC Orlando (Nov 6–8), Escape (late Oct), + others.
+- **Festivals live**: EDC Las Vegas 2026, ACL 2026, Portola 2026 (flipped
+  2026-09-08, #106), plus completed 2026 editions still `available` (arc,
+  governors-ball, hard-summer, lollapalooza, outside-lands, summerfest,
+  ultra-miami). Gated `available: false`: Lost Lands (Sep 18–20), EDC Orlando
+  (Nov 6–8), Escape (late Oct), Nocturnal, III Points (Oct 16–17), CRSSD Fall,
+  + others.
 - Open work: `docs/qa/INSTINCT-QUEUE.md`, then `TODO.md`.
