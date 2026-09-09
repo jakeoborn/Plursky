@@ -266,6 +266,38 @@ if (fdata.length) {
   console.log(`  ✓ ${FESTIVAL_MODULES.length} module(s) fully registered`);
 }
 
+// ── Generated-page freshness gate ────────────────────────────────────────
+// /f/<id>/index.html and sitemap.xml are GENERATED from the registry by
+// scripts/gen-festival-pages.mjs. They are the only real HTML a crawler ever
+// sees, because plursky.com is a client-rendered SPA whose #root is empty on
+// arrival — so when they go stale, the stale copy IS the public site.
+//
+// Born from PR #106: Portola flipped to available:true and shipped, nobody
+// re-ran the generator, and /f/portola-2026/ went on telling visitors and
+// crawlers "not switchable in the app yet — it goes live once the official
+// schedule is published" about a festival that was, by then, live. A public
+// and provably false claim, produced by a correct code change, caught by
+// nothing. The registration gate above proves a module is WIRED; this proves
+// what the world can READ was regenerated after it.
+//
+// Two ways these rot, and the gate has to catch both:
+//   change-driven  a registry edit (a flip, a lineup, a new festival)
+//   time-driven    nothing changes but the calendar — a festival ends and its
+//                  page should start saying so. This one has no commit to
+//                  hang a review on, which is exactly why a gate has to own it.
+{
+  console.log("▸ Generated-page freshness gate — /f/ and sitemap must match the registry");
+  try {
+    const out = execFileSync("node", ["scripts/gen-festival-pages.mjs", "--check"],
+                             { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    console.log("  " + out.trim().replace(/\n/g, "\n  "));
+  } catch (e) {
+    const detail = ((e.stderr || "") + (e.stdout || "")).trim();
+    if (detail) console.log("  " + detail.replace(/\n/g, "\n  "));
+    fail("generated festival pages are stale — run: node scripts/gen-festival-pages.mjs");
+  }
+}
+
 // ── Precache integrity gate ──────────────────────────────────────────────
 // sw.js installs its own-origin files with cache.addAll(), and addAll is
 // ATOMIC: it rejects as a unit. One entry that 404s and NOTHING in LOCAL gets

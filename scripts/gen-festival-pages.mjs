@@ -224,19 +224,45 @@ ${REG.filter(f => f.config.id !== id).map(f => `      <li><a href="/f/${f.config
 }
 
 // ── Emit ─────────────────────────────────────────────────────────────
-if (existsSync(OUT_DIR)) rmSync(OUT_DIR, { recursive: true, force: true });
-mkdirSync(OUT_DIR, { recursive: true });
+// --check writes NOTHING. It regenerates in memory and reports any committed
+// file that no longer matches, so verify.mjs can gate this the way it gates
+// the precompiled bundles. Born from PR #106: Portola flipped to
+// available:true, nobody re-ran this script, and /f/portola-2026/ kept telling
+// plursky.com visitors "not switchable in the app yet" — a public, crawlable,
+// FALSE claim about a live festival, with no gate to catch it.
+//
+// sitemap <lastmod> is stamped with TODAY, so it drifts every single day on
+// its own. Comparing it raw would make this gate cry wolf daily and train
+// everyone to ignore it, so lastmod is normalised out of the comparison. The
+// URL SET still gets compared, which is the part that carries meaning.
+const CHECK = process.argv.includes('--check');
+const drift = [];
+const norm = (t, f) => f === 'sitemap.xml'
+  ? t.replace(/<lastmod>[^<]*<\/lastmod>/g, '<lastmod>-</lastmod>')
+  : t;
+function emit(abs, content) {
+  const rel = path.relative(root, abs);
+  if (!CHECK) { writeFileSync(abs, content); return; }
+  const cur = existsSync(abs) ? readFileSync(abs, 'utf8') : null;
+  if (cur === null) drift.push(`${rel} (missing)`);
+  else if (norm(cur, rel) !== norm(content, rel)) drift.push(rel);
+}
+
+if (!CHECK) {
+  if (existsSync(OUT_DIR)) rmSync(OUT_DIR, { recursive: true, force: true });
+  mkdirSync(OUT_DIR, { recursive: true });
+}
 
 const rows = [];
 for (const entry of REG) {
   const id = entry.config.id;
   const dir = path.join(OUT_DIR, id);
-  mkdirSync(dir, { recursive: true });
-  writeFileSync(path.join(dir, 'index.html'), stub(entry));
+  if (!CHECK) mkdirSync(dir, { recursive: true });
+  emit(path.join(dir, 'index.html'), stub(entry));
   const n = new Set((DS[id]?.artists || []).map(a => a.name)).size;
   const d = eventDates(entry.config);
   rows.push({ id, artists: n, dates: d ? `${d.start}..${d.end}` : 'NO DATES' });
-  console.log(`[gen] f/${id}/index.html  artists=${n}  ${d ? d.start + '..' + d.end : 'NO DATES'}`);
+  if (!CHECK) console.log(`[gen] f/${id}/index.html  artists=${n}  ${d ? d.start + '..' + d.end : 'NO DATES'}`);
 }
 
 // sitemap — generated here so it can never drift from the pages above.
@@ -246,7 +272,7 @@ const urls = [
   { loc: `${ORIGIN}/terms.html`, pri: '0.3' },
   { loc: `${ORIGIN}/privacy.html`, pri: '0.3' },
 ];
-writeFileSync(path.join(root, 'sitemap.xml'),
+emit(path.join(root, 'sitemap.xml'),
 `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(u => `  <url>
@@ -256,7 +282,7 @@ ${urls.map(u => `  <url>
   </url>`).join('\n')}
 </urlset>
 `);
-console.log(`[gen] sitemap.xml  ${urls.length} urls`);
+if (!CHECK) console.log(`[gen] sitemap.xml  ${urls.length} urls`);
 // index.html carries the same festival list twice (static shell + <noscript>).
 // Regenerate both between their markers so adding a festival to the registry
 // can never leave the homepage listing a stale set.
@@ -271,7 +297,17 @@ for (const [marker, indent] of [['FESTIVAL-LIST', '        '], ['NOSCRIPT-LIST',
   if (!re.test(idx)) throw new Error(`index.html is missing the ${marker} markers`);
   idx = idx.replace(re, `$1\n${listHtml(indent)}\n${indent}$2`);
 }
-writeFileSync(INDEX, idx);
-console.log(`[gen] index.html festival lists refreshed (${REG.length} entries x2)`);
+emit(INDEX, idx);
+if (!CHECK) console.log(`[gen] index.html festival lists refreshed (${REG.length} entries x2)`);
 
-console.log(`[gen] done — ${rows.length} festival pages`);
+if (CHECK) {
+  if (drift.length) {
+    console.error(`[gen] STALE — ${drift.length} generated file(s) no longer match the registry:`);
+    for (const f of drift) console.error(`  ✗ ${f}`);
+    console.error('[gen] fix: node scripts/gen-festival-pages.mjs');
+    process.exit(1);
+  }
+  console.log(`[gen] ✓ ${rows.length} festival page(s) + sitemap + index lists are current`);
+} else {
+  console.log(`[gen] done — ${rows.length} festival pages`);
+}
