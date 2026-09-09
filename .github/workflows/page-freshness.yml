@@ -1,0 +1,55 @@
+# The TIME-driven half of the generated-page freshness gate.
+#
+# verify.mjs runs `gen-festival-pages.mjs --check` on every pull request, and
+# that catches CHANGE-driven rot: someone edits the registry or a lineup and
+# does not regenerate. It deliberately tolerates the calendar, because a
+# festival ending is nobody's commit and must not fail an unrelated PR.
+#
+# Which leaves the rot path that has no commit at all. A festival ends; its
+# page should start saying so; nothing in the repo changed, so no PR runs and
+# nothing notices. /f/arc-2026/ sat past its own end date exactly this way.
+# That path needs a clock, not a diff — so this job carries it, with the
+# strict check that does include the calendar.
+#
+# It reports rather than pushes. Regenerating writes real content to a public
+# site, and main is protected; the fix is a one-line local command and the
+# failing run says so. A scheduled job that silently rewrote plursky.com would
+# be a worse trade than a red tick nobody can miss.
+name: page freshness
+
+on:
+  schedule:
+    # 06:15 UTC daily. Not on the hour: GitHub queues scheduled workflows and
+    # the top of the hour is the most contended slot, which is where skipped
+    # runs come from.
+    - cron: '15 6 * * *'
+  # So it can be proved on demand instead of waiting a day to find out whether
+  # it works — and so a flip can be re-checked immediately after merging.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Node 22 for the same reason sanity.yml pins it — @babel/core@8's
+      # engines range. This script only needs node:fs and node:vm, but the
+      # two workflows agreeing on a runtime is worth more than the saving.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # --check-strict, NOT --check. The tolerant mode is the pull-request
+      # contract; this job exists precisely to fail on what that one forgives.
+      - name: Generated pages current, calendar included
+        run: node scripts/gen-festival-pages.mjs --check-strict
+
+      - name: How to fix
+        if: failure()
+        run: |
+          echo "A generated page no longer matches the registry or the calendar."
+          echo "Fix locally, then open a PR:"
+          echo "  node scripts/gen-festival-pages.mjs"

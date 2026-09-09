@@ -280,11 +280,20 @@ if (fdata.length) {
 // nothing. The registration gate above proves a module is WIRED; this proves
 // what the world can READ was regenerated after it.
 //
-// Two ways these rot, and the gate has to catch both:
-//   change-driven  a registry edit (a flip, a lineup, a new festival)
+// Two ways these rot, and they are NOT the same job:
+//   change-driven  a registry edit (a flip, a lineup, a new festival). The PR
+//                  author's to fix, so it blocks the PR. That is this gate.
 //   time-driven    nothing changes but the calendar — a festival ends and its
-//                  page should start saying so. This one has no commit to
-//                  hang a review on, which is exactly why a gate has to own it.
+//                  page should start saying so. No commit exists to hang that
+//                  on, and failing an unrelated PR for it teaches everyone to
+//                  ignore a red tick. Owned by .github/workflows/page-freshness.yml,
+//                  which runs the same script daily with --check-strict.
+//
+// So this gate deliberately runs the CALENDAR-TOLERANT --check: it renders each
+// stub on both sides of its end date and accepts either, which means a registry
+// edit still fails here while Sep 21 arriving does not. The first cut of this
+// gate did not make that distinction, and an unchanged tree that was green on
+// Sep 9 went red on Sep 20 when Lost Lands and Nocturnal ended.
 {
   console.log("▸ Generated-page freshness gate — /f/ and sitemap must match the registry");
   try {
