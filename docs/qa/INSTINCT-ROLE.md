@@ -93,6 +93,12 @@ Every flip verdict states, explicitly:
    festival that was live. Caught 2026-09-08; #109 adds a freshness gate so
    this class of rot fails the build instead of reaching the public.)
 
+**Verdict craft.** Grep finds logic; rendering finds affordances. A fix that
+lands next to an existing control has to account for that control - and
+ephemeral UI state never shows up in grep. (Worked example: #110 - the Lineup
+screen's WEEKEND 1 / WEEKEND 2 toggle is ephemeral React view state, invisible
+to every weekend-handling grep, and surfaced only by rendering the page.)
+
 ## Standing measurement rules
 
 - **Official sources only.** No invented data of any kind. One festival per session.
