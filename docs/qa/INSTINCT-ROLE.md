@@ -99,6 +99,20 @@ ephemeral UI state never shows up in grep. (Worked example: #110 - the Lineup
 screen's WEEKEND 1 / WEEKEND 2 toggle is ephemeral React view state, invisible
 to every weekend-handling grep, and surfaced only by rendering the page.)
 
+**Test what, not that.** When the bug is "nothing shows", the fix's test must
+assert WHAT shows, not THAT something shows - an empty-to-non-empty check
+cannot see a wrong entry. (Worked example: #110's W2 liveNow dump showed a
+W1-only act in the result set and passed review, because the check was whether
+the list was non-empty, not whether it was correct.)
+
+**Enumerate the callers.** When you change a shared helper, enumerate its
+callers and what each one passes - before claiming the fix is complete. A
+guarded function sitting beside an unguarded sibling reads as fixed and is
+not. (Worked example: #110's weekend resolver - the starting-soon scan was
+guarded while its sibling scheduleReminders was not, and the ICS export
+inferred the weekend from the persisted list while acting on a different,
+unsaved selection.)
+
 ## Standing measurement rules
 
 - **Official sources only.** No invented data of any kind. One festival per session.
