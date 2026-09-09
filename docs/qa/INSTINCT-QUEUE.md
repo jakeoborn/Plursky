@@ -1,8 +1,9 @@
 # INSTINCT QUEUE — Plursky standing job queue
 
-_Last refreshed by Claude Code: **2026-09-08**. Train at refresh: web **v281** on
-`main` (v282 in PR #101), iOS **1.12 (25)**, 1.12 REJECTED 2026-09-07 under
-Guideline 2.1(b) and not yet re-uploaded._
+_Last refreshed by Instinct: **2026-09-08** (post-#106). Train at refresh: web
+**v283** on `main` (Portola 2026 LIVE, flip merged 2:39pm CT), iOS **1.12 (25)**
+WAITING FOR REVIEW since 2026-09-08 1:23am CT (resubmitted after the 2.1(b)
+rejection; Plursky+ Monthly $4.99 / Annual $7.99 prices set same day)._
 _Contract: read **INSTINCT-ROLE.md** first — its hard rules override everything here._
 
 ## How this queue works
@@ -25,42 +26,37 @@ _Contract: read **INSTINCT-ROLE.md** first — its hard rules override everythin
 
 ---
 
-## JOB-1 — EDC Orlando geo rebuild (Nov 6–8)
-**Status: READY** · Owner: Instinct measures, Claude Code builds
+## JOB-1 — EDC Orlando 2026 (Nov 6–8): geo SHIPPED → two watches
+**Status: WATCH** · Geo rebuild shipped 2026-09-06 (spec issue #68, PR #73, v264).
+Verified against `main` 2026-09-08: `data.jsx` carries the measured centroid
+(28.53826, -81.40144), five `gpsAnchors`, the `EDCO_STAGES` x/y grid, and
+`onSiteRadiusMi: 0.6`. The old "provisional / not re-surveyed" premise in this
+entry was stale — do not re-measure what already shipped.
 
-The current EDC Orlando venue registration is provisional and has NOT been
-re-surveyed for 2026. Treat every existing anchor as unverified — do not build on
-them, and do not assume the stored centroid is right. Follow the Lost Lands
-pattern (#97): **measure first, report the ground truth, then build.**
-Claude Code holds the specifics; ask before you start if you need them.
+Anchor posture: all five stage anchors are `src: "poster"` — reads off map ART,
+not surveyed features. Stages are not permanent surveyable features; more OSM
+work CANNOT promote them. Distance readouts stay WITHHELD by design until one
+of the only two promoters lands: (a) the official 2026 map, re-fit by the same
+method, or (b) real GPS taken on the ground during the festival. A radius gate
+passing is not evidence a value is right — the old centroid was ~370 m off and
+the 0.6 radius cleared it anyway.
 
-Deliver, before any code changes:
-- Tinker Field / Camping World Stadium footprint from OSM — way ids, not a
-  screenshot of a pin.
-- 4–6 ortho-confirmed control points that are **edition-independent** (buildings,
-  ponds, roads, tunnels — permanent structure, never a stage banner or a label).
-- An explicit verdict on the 2026 festival art: is any feature on it surveyable
-  against ortho imagery? If not, say so — that is a finding, and the answer is
-  `mapMode: "real"` on OSM ground, exactly as Lost Lands landed.
+### WATCH-A — official 2026 map art
+When the real 2026 map publishes: re-derive an anchor ONLY for a stage the 2026
+layout actually moves (`data.jsx` says this at the gpsAnchors block), re-check
+the x/y grid alongside (the two are derived together), replace the provisional
+ImageMagick placeholder `edco-tinker-2026.jpg` with the processed official art,
+and THEN render JOB-1's third deliverable — the surveyability verdict. The
+verdict is gated on the art; that gate is the finding, not a delay.
 
-**The art verdict — the kill criterion.** The edition's festival art survives
-only if BOTH hold:
-  (a) at least one printed feature anchors to permanent ground structure that is
-      measurable on ortho imagery, and
-  (b) the art is conformal with the ground — relative distances between printed
-      features match ground truth within the affine tolerance (~1.5 grid units,
-      ~20 m).
-Fail either and the art is killed: ship `mapMode: "real"` on OSM ground, exactly
-as Lost Lands landed (#97) and as EDC LV's poster was ruled art-not-survey
-(`mapArtIsGeoregistered: false`). **"No surveyable feature" is a finding, not a
-failure** — record it and move on.
+### WATCH-B — Insomniac schedule (stage + set times)
+Insomniac drops per-artist stage + set times in the EDC app ~1–2 weeks out.
+Pull stage AND set time TOGETHER for all 109 acts — partial data never ships
+(`setTimesProvisional: true` and the parked `tba` stage at x:50 y:50 stay until
+then). Deliver one sheet: artist | day | stage | start | end | source URL.
 
-⚠️ **A low residual is not a pass.** Anchors derived as offsets from a single
-point agree with each other by construction, so they can be perfectly
-self-consistent and still sit far off the venue. `docs/SPEC-anchor-flip-sessions.md`
-A4 is the rule: verify each basis anchor against satellite imagery independently.
-
-→ `docs/qa/reports/JOB-1-<date>/`. Flip itself is a separate PR, Jake's word.
+Flip itself (`available: true`) is a separate PR, Jake's word, and goes through
+the three-item flip-verdict checklist in INSTINCT-ROLE.md.
 
 ## JOB-2 — The festival data queue
 **Status: READY** · One festival per session, official sources only
