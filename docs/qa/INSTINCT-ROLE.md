@@ -65,7 +65,7 @@ The ones that will catch you:
 - **crowd-anchor / distance-readout** — measure the structure, never the label;
   never derive world coordinates from poster art.
 
-## Flip-verdict checklist — every registry flip verdict names all three
+## Flip-verdict checklist — every registry flip verdict names all four
 A flip (`registry.available: false → true`) is judged on more than the diff.
 Every flip verdict states, explicitly:
 
@@ -84,6 +84,14 @@ Every flip verdict states, explicitly:
    never fetch the second. Name the colliding branches; they re-bump via
    `bump.mjs --next` (never hand-sed). (Worked example: qaMode re-bumped
    v283 → v284 after #106 took v283.)
+4. **Generated-page regeneration.** A flip changes what the crawlable
+   `/f/<id>/` pages and sitemap on plursky.com should say, and nothing re-runs
+   the generator on its own. After any registry flip, re-run
+   `node scripts/gen-festival-pages.mjs` and commit the result. (Worked
+   example: the Portola flip #106 never re-ran it, and /f/portola-2026/ kept
+   telling visitors and search engines "not switchable in the app yet" about a
+   festival that was live. Caught 2026-09-08; #109 adds a freshness gate so
+   this class of rot fails the build instead of reaching the public.)
 
 ## Standing measurement rules
 
