@@ -65,6 +65,26 @@ The ones that will catch you:
 - **crowd-anchor / distance-readout** — measure the structure, never the label;
   never derive world coordinates from poster art.
 
+## Flip-verdict checklist — every registry flip verdict names all three
+A flip (`registry.available: false → true`) is judged on more than the diff.
+Every flip verdict states, explicitly:
+
+1. **Stage-coordinate posture.** How many stages carry real lat/lng vs none.
+   Zero-coordinate stages are acceptable ONLY with a LIVE precedent in the same
+   shape (today: arc-2026 — `mapMode: "real"`, 4 stages, 0 coords). A gated
+   festival is never a precedent.
+2. **Default-festival displacement.** `_resolveDefaultFestivalId` lands fresh
+   installs on the soonest upcoming available event. Name which festival fresh
+   installs will land on after the flip, and what it displaces. (Worked example:
+   the Portola flip moved fresh installs from ACL Oct 2 to Portola Sep 26,
+   until Sep 27.)
+3. **Cache-bust collision / re-bump check.** A merged flip consumes a version
+   number. Any in-flight branch that bumped to the same version is now
+   colliding — shipped vs unshipped builds with one version, so cached clients
+   never fetch the second. Name the colliding branches; they re-bump via
+   `bump.mjs --next` (never hand-sed). (Worked example: qaMode re-bumped
+   v283 → v284 after #106 took v283.)
+
 ## Standing measurement rules
 
 - **Official sources only.** No invented data of any kind. One festival per session.
