@@ -105,7 +105,7 @@ function place(cfg, region) {
 const TODAY = new Date().toISOString().slice(0, 10);
 
 // ── Page template ────────────────────────────────────────────────────
-function stub(entry) {
+function stub(entry, isPastOverride) {
   const cfg = entry.config;
   const id = cfg.id;
   const url = `${ORIGIN}/f/${id}/`;
@@ -115,7 +115,9 @@ function stub(entry) {
   const names = [...new Set(artists.map(a => a.name).filter(Boolean))].sort((a, b) => a.localeCompare(b));
   const dates = eventDates(cfg);
   const { venue, addr } = place(cfg, entry.region);
-  const isPast = dates ? dates.end < TODAY : false;
+  const isPast = typeof isPastOverride === 'boolean'
+    ? isPastOverride
+    : (dates ? dates.end < TODAY : false);
   const where = cfg.location || '';
 
   const desc = names.length
@@ -224,19 +226,74 @@ ${REG.filter(f => f.config.id !== id).map(f => `      <li><a href="/f/${f.config
 }
 
 // ── Emit ─────────────────────────────────────────────────────────────
-if (existsSync(OUT_DIR)) rmSync(OUT_DIR, { recursive: true, force: true });
-mkdirSync(OUT_DIR, { recursive: true });
+// --check writes NOTHING. It regenerates in memory and reports any committed
+// file that no longer matches, so verify.mjs can gate this the way it gates
+// the precompiled bundles. Born from PR #106: Portola flipped to
+// available:true, nobody re-ran this script, and /f/portola-2026/ kept telling
+// plursky.com visitors "not switchable in the app yet" — a public, crawlable,
+// FALSE claim about a live festival, with no gate to catch it.
+//
+// sitemap <lastmod> is stamped with TODAY, so it drifts every single day on
+// its own. Comparing it raw would make this gate cry wolf daily and train
+// everyone to ignore it, so lastmod is normalised out of the comparison. The
+// URL SET still gets compared, which is the part that carries meaning.
+//
+// There are TWO modes, because there are two rot paths and only one of them
+// belongs to a pull request:
+//
+//   --check         CHANGE-driven. Someone edited the registry or a lineup and
+//                   did not regenerate. That is the PR author's to fix, so it
+//                   blocks the PR. Runs from verify.mjs.
+//   --check-strict  TIME-driven. Nothing changed but the calendar; a festival
+//                   ended and its page should start saying so. No commit
+//                   exists to hang that on, so it must NOT fail an unrelated
+//                   PR — it is owned by the scheduled workflow instead.
+//
+// The page text that moves on its own is the "This festival has ended." line
+// and the CTA verb, both derived from `dates.end < TODAY`. Rather than regex
+// them out of the comparison and risk masking a real edit to those strings,
+// --check renders the stub BOTH ways and accepts either. Every other
+// difference — a name, a date range, a lineup, an availability flip — still
+// fails, because only the isPast branch is allowed to vary.
+//
+// Without this, the tree that is green today goes red on 2026-09-21 with no
+// commit in between: Lost Lands and Nocturnal both end on Sep 20. Verified by
+// running this script against an unchanged tree with TODAY pinned forward.
+const CHECK_STRICT = process.argv.includes('--check-strict');
+const CHECK = CHECK_STRICT || process.argv.includes('--check');
+const drift = [];
+const norm = (t, f) => f === 'sitemap.xml'
+  ? t.replace(/<lastmod>[^<]*<\/lastmod>/g, '<lastmod>-</lastmod>')
+  : t;
+function emit(abs, content, alsoAccept) {
+  const rel = path.relative(root, abs);
+  if (!CHECK) { writeFileSync(abs, content); return; }
+  const cur = existsSync(abs) ? readFileSync(abs, 'utf8') : null;
+  if (cur === null) { drift.push(`${rel} (missing)`); return; }
+  const ok = norm(cur, rel) === norm(content, rel)
+    || (!CHECK_STRICT && alsoAccept != null && norm(cur, rel) === norm(alsoAccept, rel));
+  if (!ok) drift.push(rel);
+}
+
+if (!CHECK) {
+  if (existsSync(OUT_DIR)) rmSync(OUT_DIR, { recursive: true, force: true });
+  mkdirSync(OUT_DIR, { recursive: true });
+}
 
 const rows = [];
 for (const entry of REG) {
   const id = entry.config.id;
   const dir = path.join(OUT_DIR, id);
-  mkdirSync(dir, { recursive: true });
-  writeFileSync(path.join(dir, 'index.html'), stub(entry));
+  if (!CHECK) mkdirSync(dir, { recursive: true });
+  // The alternate is the same page on the other side of its end date — see
+  // the two-modes note above. Ignored by --check-strict.
+  emit(path.join(dir, 'index.html'), stub(entry),
+       CHECK && !CHECK_STRICT ? stub(entry, !(eventDates(entry.config)
+         ? eventDates(entry.config).end < TODAY : false)) : null);
   const n = new Set((DS[id]?.artists || []).map(a => a.name)).size;
   const d = eventDates(entry.config);
   rows.push({ id, artists: n, dates: d ? `${d.start}..${d.end}` : 'NO DATES' });
-  console.log(`[gen] f/${id}/index.html  artists=${n}  ${d ? d.start + '..' + d.end : 'NO DATES'}`);
+  if (!CHECK) console.log(`[gen] f/${id}/index.html  artists=${n}  ${d ? d.start + '..' + d.end : 'NO DATES'}`);
 }
 
 // sitemap — generated here so it can never drift from the pages above.
@@ -246,7 +303,7 @@ const urls = [
   { loc: `${ORIGIN}/terms.html`, pri: '0.3' },
   { loc: `${ORIGIN}/privacy.html`, pri: '0.3' },
 ];
-writeFileSync(path.join(root, 'sitemap.xml'),
+emit(path.join(root, 'sitemap.xml'),
 `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(u => `  <url>
@@ -256,7 +313,7 @@ ${urls.map(u => `  <url>
   </url>`).join('\n')}
 </urlset>
 `);
-console.log(`[gen] sitemap.xml  ${urls.length} urls`);
+if (!CHECK) console.log(`[gen] sitemap.xml  ${urls.length} urls`);
 // index.html carries the same festival list twice (static shell + <noscript>).
 // Regenerate both between their markers so adding a festival to the registry
 // can never leave the homepage listing a stale set.
@@ -271,7 +328,30 @@ for (const [marker, indent] of [['FESTIVAL-LIST', '        '], ['NOSCRIPT-LIST',
   if (!re.test(idx)) throw new Error(`index.html is missing the ${marker} markers`);
   idx = idx.replace(re, `$1\n${listHtml(indent)}\n${indent}$2`);
 }
-writeFileSync(INDEX, idx);
-console.log(`[gen] index.html festival lists refreshed (${REG.length} entries x2)`);
+emit(INDEX, idx);
+if (!CHECK) console.log(`[gen] index.html festival lists refreshed (${REG.length} entries x2)`);
 
-console.log(`[gen] done — ${rows.length} festival pages`);
+// A festival retired from the registry leaves its directory behind. The
+// non-check path wipes f/ and rebuilds, so it never noticed; check mode built
+// the expected files and looked at nothing else, so a page for a festival the
+// app no longer knows about stayed live and crawlable indefinitely.
+if (CHECK && existsSync(OUT_DIR)) {
+  const known = new Set(REG.map(e => e.config.id));
+  for (const name of readdirSync(OUT_DIR, { withFileTypes: true })) {
+    if (!name.isDirectory() || known.has(name.name)) continue;
+    drift.push(`f/${name.name}/ (obsolete — no longer in the registry)`);
+  }
+}
+
+if (CHECK) {
+  if (drift.length) {
+    console.error(`[gen] STALE — ${drift.length} generated file(s) no longer match the registry:`);
+    for (const f of drift) console.error(`  ✗ ${f}`);
+    console.error('[gen] fix: node scripts/gen-festival-pages.mjs');
+    process.exit(1);
+  }
+  console.log(`[gen] ✓ ${rows.length} festival page(s) + sitemap + index lists are current`
+    + (CHECK_STRICT ? ' (strict — the calendar is included)' : ' (registry content; the calendar is the scheduled job\'s)'));
+} else {
+  console.log(`[gen] done — ${rows.length} festival pages`);
+}
