@@ -1789,6 +1789,19 @@ const REGISTRATION_TOL_M = 25;
 
 if (process.argv.includes("--parse-only")) process.exit(0);
 
+// ── 1z. Mixed-import toast regression ─────────────────────────────────────
+{
+  console.log("▸ Mixed-import toast gate — landed and failed files stay honest");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-import-toast.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`mixed-import regression failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 2. Mount probe ─────────────────────────────────────────────────────────
 // Loads the REAL index.html in an iframe rather than reconstructing the script
 // order. An earlier version of this check derived load order by grepping

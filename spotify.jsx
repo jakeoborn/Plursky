@@ -5213,7 +5213,7 @@ function MemoriesScreen({ state, setState }) {
         if (recovered?.moment?.artistId && !moment.artistId) moment.artistId = recovered.moment.artistId;
         if (fp) existingFingerprints.add(fp);
         current[night] = [...(current[night] || []), moment];
-        results.push({ name: f.name, momentId: id, night, artistId: matched.artistId, fallback: !matched.night, tagSource, festivalId: moment.festivalId });
+        results.push({ name: f.name, fileIndex: i, momentId: id, night, artistId: matched.artistId, fallback: !matched.night, tagSource, festivalId: moment.festivalId });
         // Persist + refresh after EACH file so a mid-batch Safari crash/OOM
         // (common on large iOS selections that include videos / iCloud photos)
         // keeps what's already imported and the grid fills in live — instead
@@ -5223,7 +5223,12 @@ function MemoriesScreen({ state, setState }) {
         _writeMoments(current);
         setAll({ ...current });
       } catch (err) {
-        results.push({ name: f.name, night: null, artistId: null, err: err?.message || "failed" });
+        // A failure after the moment row lands (for example, a storage/UI
+        // refresh failure) must not count the same file as both imported and
+        // failed. The landed result is the durable outcome.
+        if (!results.some(r => r.fileIndex === i && r.momentId)) {
+          results.push({ name: f.name, fileIndex: i, night: null, artistId: null, err: err?.message || "failed" });
+        }
       }
       setBatch({ total: files.length, done: i + 1, results: results.slice() });
     }
@@ -5258,7 +5263,7 @@ function MemoriesScreen({ state, setState }) {
       if (dupes && !failed) window.plurskyToast?.(`Already imported — ${dupes} duplicate${dupes === 1 ? "" : "s"} skipped`);
       else window.plurskyToast?.(`Couldn't import ${failed} file${failed === 1 ? "" : "s"} — try a few at a time${failed ? ` · ${failedResults[0]?.err || "failed"}` : ""}`);
     } else if (failedResults.length) {
-      window.plurskyToast?.(`Imported ${landed.length} · ${failedResults.length} failed — tap to review`);
+      window.plurskyToast?.(`Imported ${landed.length} · ${failedResults.length} failed`);
     }
     // Show the mapping while the import is still fresh. A banner that only
     // reports a score cannot tell you WHICH clip went to the wrong set, and

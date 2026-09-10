@@ -24,6 +24,6 @@ try {
   });
   await page.waitForFunction(()=>JSON.parse(localStorage.getItem('plursky_moments_v1')||'{}')['1']?.length===1,{timeout:15000});
   const toast=await page.locator('[role=status]').textContent();
-  if(!/^Imported 1 · 1 failed/.test(toast||'')||/Couldn't import/.test(toast||''))throw new Error(`contradictory toast: ${toast}`);
-  console.log('✓ mixed batch landed 1 moment and reported "Imported 1 · 1 failed"'); await browser.close();
+  if((toast||'') !== 'Imported 1 · 1 failed'||/Couldn't import|tap to review/i.test(toast||''))throw new Error(`contradictory toast: ${toast}`);
+  console.log('✓ mixed batch landed 1 moment and reported the exact non-action toast "Imported 1 · 1 failed"'); await browser.close();
 } finally {server.kill('SIGTERM');}

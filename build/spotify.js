@@ -8107,7 +8107,7 @@ function MemoriesScreen({
     var allNights = Object.keys(window.FESTIVAL_CONFIG?.dayDates || {}).map(Number).sort((a, b) => a - b);
     var fallbackNight = window.NOW?.day && allNights.includes(window.NOW.day) ? window.NOW.day : allNights[allNights.length - 1] || 1;
     var skippedDupes = 0;
-    for (var i = 0; i < files.length; i++) {
+    var _loop5 = async function (i) {
       var f = files[i];
       try {
         var fp = await _fileFingerprint(f);
@@ -8124,7 +8124,7 @@ function MemoriesScreen({
             done: i + 1,
             results: results.slice()
           });
-          continue;
+          return 1;
         }
         var exif = await _parseExifMeta(f).catch(() => null);
         var baseMeta = _metaFromFile(f, exif);
@@ -8194,6 +8194,7 @@ function MemoriesScreen({
         current[night] = [...(current[night] || []), moment];
         results.push({
           name: f.name,
+          fileIndex: i,
           momentId: id,
           night,
           artistId: matched.artistId,
@@ -8206,18 +8207,24 @@ function MemoriesScreen({
           ...current
         });
       } catch (err) {
-        results.push({
-          name: f.name,
-          night: null,
-          artistId: null,
-          err: err?.message || "failed"
-        });
+        if (!results.some(r => r.fileIndex === i && r.momentId)) {
+          results.push({
+            name: f.name,
+            fileIndex: i,
+            night: null,
+            artistId: null,
+            err: err?.message || "failed"
+          });
+        }
       }
       setBatch({
         total: files.length,
         done: i + 1,
         results: results.slice()
       });
+    };
+    for (var i = 0; i < files.length; i++) {
+      if (await _loop5(i)) continue;
     }
     _writeMoments(current);
     setAll({
@@ -8243,7 +8250,7 @@ function MemoriesScreen({
       var dupes = duplicateResults.length;
       if (dupes && !failed) window.plurskyToast?.(`Already imported — ${dupes} duplicate${dupes === 1 ? "" : "s"} skipped`);else window.plurskyToast?.(`Couldn't import ${failed} file${failed === 1 ? "" : "s"} — try a few at a time${failed ? ` · ${failedResults[0]?.err || "failed"}` : ""}`);
     } else if (failedResults.length) {
-      window.plurskyToast?.(`Imported ${landed.length} · ${failedResults.length} failed — tap to review`);
+      window.plurskyToast?.(`Imported ${landed.length} · ${failedResults.length} failed`);
     }
     if (landed.length) setReview(landed);
     setTimeout(() => setBatch(b => b && b.done === b.total ? null : b), 6000);
@@ -10812,12 +10819,12 @@ function _recoverCurrentVideoMomentsFromArchive() {
         changed = true;
       }
     }
-    var _loop5 = function (move) {
+    var _loop6 = function (move) {
       all[move.from] = (all[move.from] || []).filter(m => m !== move.moment);
       all[move.to] = [...(all[move.to] || []), move.moment];
     };
     for (var move of moves) {
-      _loop5(move);
+      _loop6(move);
     }
     if (changed) _writeMoments(all);
   } catch {}
@@ -11115,7 +11122,7 @@ function _fmtHrsMin(mins) {
 function _aggregateSoundtrack(moments) {
   var songMap = {};
   var artists = window.ARTISTS || [];
-  var _loop6 = function (m) {
+  var _loop7 = function (m) {
       if (!m.artistId || !m.takenAt) return 0;
       var artist = artists.find(a => a.id === m.artistId);
       if (!artist) return 0;
@@ -11134,7 +11141,7 @@ function _aggregateSoundtrack(moments) {
     },
     _ret3;
   for (var m of Object.values(moments)) {
-    _ret3 = _loop6(m);
+    _ret3 = _loop7(m);
     if (_ret3 === 0) continue;
   }
   return Object.values(songMap).sort((a, b) => b.count - a.count);
