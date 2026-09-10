@@ -392,9 +392,9 @@ function SpotifyScreen({ state, setState }) {
                   <div style={{ width: `${pct}%`, height: "100%", background: stage.color, borderRadius: 3 }} />
                 </div>
                 {/* Guarded like lineup.jsx:1115. `desc` is optional on a
-                    stage — Dreamstate SoCal ships four stages with no
-                    published programming, so this dereference was one
-                    festival away from crashing the whole match panel. */}
+                    stage — a gated scaffold can ship stages before their
+                    programming is published, and this unguarded dereference
+                    would crash the whole match panel. */}
                 {stage.desc && (
                   <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>
                     {stage.desc.toUpperCase()}

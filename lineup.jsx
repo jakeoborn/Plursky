@@ -670,12 +670,6 @@ function LineupScreen({ state, setState }) {
     ].filter(Boolean);
     return (named.length === 1 && tierFilter === "all") ? named[0] : null;
   })();
-  // A gated festival publishes stage NAMES before it publishes which act is
-  // on which — Dreamstate SoCal ships four stages and zero assignments. That
-  // is a different empty than a live festival whose Void stage simply does
-  // not run tonight, and the two must not share a sentence.
-  const _noStagesAssignedYet = React.useMemo(
-    () => ARTISTS.length > 0 && ARTISTS.every(a => !a.stage), []);
 
 
   const matchesActive = (a) => {
@@ -1255,15 +1249,13 @@ function LineupScreen({ state, setState }) {
           </div>
         )}
         {/* The SAME defect the search branch above was fixed for, one layer
-            out and still live until Dreamstate SoCal made it reachable: a
-            TIER/STAGE/GENRE chip that matches nothing fell through to the
-            saved-list message and told the user "No sets saved yet — TAP ANY
-            [+] TO SAVE YOUR FIRST SET". Saving is not the problem and the
-            filter is not mentioned. Dreamstate ships four real stage names
-            with no act assigned to any of them yet, so tapping DREAM lands
-            here every time. Named causes beat one generic message — that was
-            the lesson the first fix wrote down, and it applies to the chips
-            too. */}
+            out: a TIER/STAGE/GENRE chip that matches nothing fell through to
+            the saved-list message and told the user "No sets saved yet — TAP
+            ANY [+] TO SAVE YOUR FIRST SET". Saving is not the problem and the
+            filter is not mentioned. Reachable on any festival — a stage that
+            does not run on the selected day, or a genre with no act that
+            day. Named causes beat one generic message — that was the lesson
+            the first fix wrote down, and it applies to the chips too. */}
         {viewMode === "list" && dayArtists.length === 0 && q.trim() === "" && _chipFilterActive && (
           <div style={{ padding: 40, textAlign: "center" }}>
             <div className="serif" style={{ fontSize: 22, color: "var(--muted)", fontStyle: "italic", marginBottom: 6 }}>
@@ -1272,11 +1264,7 @@ function LineupScreen({ state, setState }) {
                 : "Nothing matches those filters"}
             </div>
             <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
-              {!_emptyChipLabel
-                ? "TRY CLEARING ONE OF THEM"
-                : _noStagesAssignedYet
-                  ? "SET TIMES AND STAGES ARE NOT PUBLISHED YET"
-                  : "NOTHING THERE ON THIS DAY"}
+              {_emptyChipLabel ? "NOTHING THERE ON THIS DAY" : "TRY CLEARING ONE OF THEM"}
             </div>
             <button onClick={() => { setTierFilter("all"); setStageFilter("all"); setGenreFilter("all"); }} className="mono" style={{
               marginTop: 14, padding: "8px 16px", borderRadius: 999,

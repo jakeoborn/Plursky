@@ -1006,7 +1006,6 @@ function LineupScreen({
     var named = [stageFilter !== "all" ? (STAGES.find(s => s.id === stageFilter) || {}).name : null, genreFilter !== "all" ? genreFilter : null].filter(Boolean);
     return named.length === 1 && tierFilter === "all" ? named[0] : null;
   })();
-  var _noStagesAssignedYet = React.useMemo(() => ARTISTS.length > 0 && ARTISTS.every(a => !a.stage), []);
   var matchesActive = a => {
     if (weekendFilter !== "all" && a.weekend !== weekendFilter && a.weekend !== "both") return false;
     if (filter !== "all" && !state.saved.includes(a.id)) return false;
@@ -1742,7 +1741,7 @@ function LineupScreen({
       letterSpacing: 1.2,
       color: "var(--muted)"
     }
-  }, !_emptyChipLabel ? "TRY CLEARING ONE OF THEM" : _noStagesAssignedYet ? "SET TIMES AND STAGES ARE NOT PUBLISHED YET" : "NOTHING THERE ON THIS DAY"), React.createElement("button", {
+  }, _emptyChipLabel ? "NOTHING THERE ON THIS DAY" : "TRY CLEARING ONE OF THEM"), React.createElement("button", {
     onClick: () => {
       setTierFilter("all");
       setStageFilter("all");

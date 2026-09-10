@@ -64,11 +64,10 @@
 //   writes "Key4050". The act styles itself Key4050, so the site spelling
 //   ships. One space, flagged rather than silently picked.
 //
-// STAGES: the four asset filenames on socal.dreamstateusa.com/experience/
-//   stages/ — dssc_the_dream_stage, dssc_the_sequence_stage,
-//   dssc_the_vision_stage, dssc_the_void_stage — read 2026-09-09, corroborated
-//   in COUNT by the press release ("four stages"). See the caveat block on
-//   STAGES below before touching them.
+// STAGES: NONE SHIPPED. Four LEADS only — the asset filenames on
+//   socal.dreamstateusa.com/experience/stages/ (dssc_the_dream_stage,
+//   dssc_the_sequence_stage, dssc_the_vision_stage, dssc_the_void_stage),
+//   read 2026-09-09. See the leads block on STAGES below.
 // SOURCE dates: socal.dreamstateusa.com — "November 20+21, 2026"; the press
 //   release names them "Friday, November 20 and Saturday, November 21, 2026".
 // SOURCE venue + hours + age policy: socal.dreamstateusa.com/hours-and-info/,
@@ -87,8 +86,8 @@
 //
 // DAY SPLIT. One flat list covering both nights, no Fri/Sat tabs.
 // SET TIMES. Absent; Insomniac posts them in the days before the festival.
-// STAGE ASSIGNMENTS. Every act is stage: null. The stages exist, the mapping
-//   of acts onto them does not.
+// STAGE NAMES. Not published as text for 2026 — see the leads block below.
+// STAGE ASSIGNMENTS. Every act is stage: null.
 // STAGE POSITIONS. No 2026 site map, and the build does not exist to measure
 //   off satellite either, so no stage carries x/y — the CRSSD precedent.
 // SITE MAP. None.
@@ -113,9 +112,9 @@
 // not a surveyable feature today, and saying so is the honest answer.
 //
 // ── FLIP CHECKLIST (set times + site map, ~mid-Nov) ──
-//   1. CONFIRM the four stage names against the official grid — they are
-//      filename-derived, see the caveats — and resolve the Long Beach
-//      Amphitheater and Beatbox Art Car questions below.
+//   1. Build STAGES from the official 2026 grid or map — check the four
+//      filename leads against it, and resolve the Long Beach Amphitheater
+//      and Beatbox Art Car questions below.
 //   2. Real lat/lng per stage; derive x/y from them, never the reverse.
 //   3. day + start/end + stage per act; drop the `provisional` flag.
 //   4. Replace the single TBA bucket with the real Fri/Sat pair.
@@ -127,48 +126,38 @@
 (function () {
   "use strict";
 
-  // ── STAGES: FOUR NAMES, FILENAME-DERIVED, SHIPPED ON PURPOSE ──
+  // ── STAGES: EMPTY. FOUR LEADS FOR THE FLIP SESSION, NOT SHIPPED ──
+  //
+  // Flagged is not picked, so nothing ships until the official 2026 grid or
+  // map names the stages.
   //
   // socal.dreamstateusa.com/experience/stages/ renders each stage as an IMAGE
-  // with no text and an EMPTY alt attribute — the visible page is a header,
-  // one line of copy and four bare "/" separators. The only place the names
-  // survive is the asset filenames: dssc_the_dream_stage, the_sequence_stage,
-  // the_vision_stage, the_void_stage. Four files, four cards, and the press
-  // release independently says "four stages". That agreement is why these
-  // ship; a filename alone would not be enough.
+  // with no text and an EMPTY alt attribute. The names survive only as asset
+  // filenames, and those filenames date from July 2025:
+  //   dssc_the_dream_stage    → "The Dream"
+  //   dssc_the_sequence_stage → "The Sequence"
+  //   dssc_the_vision_stage   → "The Vision"
+  //   dssc_the_void_stage     → "The Void"
+  // The press release's "four stages" agrees in COUNT only. A filename is not
+  // a published stage name, and a 2025 asset is not evidence of the 2026
+  // edition.
   //
-  // ⚠ THREE things the flip must settle, all of them open right now:
-  //   1. The same press release says the four stages include "the new Long
-  //      Beach Amphitheater". That name is NOT in the filename set. Either
-  //      the amphitheater is the venue HOSTING one of these four, or it is a
-  //      fifth name and one of these four is retired. Unresolved.
-  //   2. It also announces "the addition of Beatbox's Art Car stage featuring
-  //      local trance artists" — a real, text-published, officially named
-  //      stage that is deliberately NOT below, because the official count is
-  //      four and adding it would make this array disagree with Insomniac.
-  //      (Nocturnal ships the same sponsor art car as "Beatbox Boombox", so
-  //      the pattern is established and the flip should expect a fifth row.)
-  //   3. The filenames carry no year. They are on the 2026 site, but an asset
-  //      can outlive its edition — confirm against the 2026 set-time grid.
+  // ⚠ Also open, and it conflicts with the four leads:
+  //   1. The 2026 press release says the four stages include "the new Long
+  //      Beach Amphitheater", a name NOT in the filename set.
+  //   2. It also announces "Beatbox's Art Car stage featuring local trance
+  //      artists" — text-published and officially named. It is left for the
+  //      flip, together with the rest of the grid. (Nocturnal ships the same
+  //      sponsor car as "Beatbox Boombox".)
   //
   // ⛔ Nocturnal's warning applies with full force: a search for this
   // festival's stage names will confidently return names from earlier
   // editions. The grid or the official map, or nothing.
   //
-  // No x/y on any of them — there is no 2026 site map and no build to measure
-  // off satellite, so no stage has a known position. The CRSSD precedent:
-  // stages appear in pills, filters and cards, and simply carry no map pin.
-  // No `desc` either — the genre each stage programs is not published, and
-  // guessing "main stage" or "psytrance" from the name is exactly the
-  // invention this scaffold exists to avoid. Uniform `size`, because ranking
-  // them would be a claim about which is the main stage; `mainStageId` stays
-  // null for the same reason.
-  const STAGES = [
-    { id: "dream",    name: "The Dream",    short: "DREAM",    color: "#818cf8", size: 1.2 },
-    { id: "sequence", name: "The Sequence", short: "SEQUENCE", color: "#22d3ee", size: 1.2 },
-    { id: "vision",   name: "The Vision",   short: "VISION",   color: "#f472b6", size: 1.2 },
-    { id: "void",     name: "The Void",     short: "VOID",     color: "#a78bfa", size: 1.2 },
-  ];
+  // When the flip adds stages: no x/y without a measured position (the CRSSD
+  // precedent), no `desc` unless programming is published, and mainStageId
+  // only if the grid says which stage is the main stage.
+  const STAGES = [];
 
   // No amenity map published.
   const AMENITIES = [];
@@ -333,8 +322,8 @@
   window.PLURSKY_FESTIVALS["dreamstate-socal-2026"] = {
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
     // GATED: the day split, the set times, every act's stage assignment and
-    // the official map are all unpublished. The four stage NAMES ship (see
-    // STAGES); nothing is placed on them.
+    // the official map are all unpublished, and so are the 2026 stage names
+    // (STAGES is empty; see the leads block).
     registry: { available: false, accent: "#6366f1", emoji: "🌀", region: "North America" },
   };
 })();
