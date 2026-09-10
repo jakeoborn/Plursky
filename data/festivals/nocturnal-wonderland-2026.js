@@ -2,9 +2,9 @@
 // NOCTURNAL WONDERLAND 2026 — Glen Helen Regional Park · San Bernardino, CA
 // Sep 19–20, 2026
 // ═══════════════════════════════════════════════════════════════════════
-// GATED SCAFFOLD. More is published here than for III Points — the stages ARE
-// named and every act carries a real day AND a real stage — but SET TIMES and
-// the SITE MAP are not out yet, and nothing below invents either.
+// LIVE 2026 BUILD. Every act carries its official day, stage, start, and end.
+// The 2026 site map is still unpublished; the existing honest map posture stays
+// in place, with no invented georeference or Rave Cave position.
 //
 // SOURCE lineup: nocturnalwonderland.com/lineup/ (official), accessed
 //   2026-09-06. The page carries TWO independent splits — by day and by stage
@@ -31,9 +31,11 @@
 // 2026 site uses none of them. That mistake was live in this session before
 // the official pages were read. Official pages only.
 //
-// ── WHAT IS NOT PUBLISHED (verified 2026-09-06, do not fabricate) ──
-// SET TIMES: absent. Insomniac drops them in the app roughly a week out
-//   (~Sep 12). Every act below has start/end "" and shares one tier.
+// SOURCE set times: nocturnalwonderland.com/lineup/set-times/day-1/ and
+//   /day-2/ (official), accessed 2026-09-10. The two pages print 86 complete
+//   stage/time rows: 42 Saturday and 44 Sunday. The source epochs encode the
+//   printed wall clock as UTC, so this transcription follows the visible labels
+//   (3PM–12AM PDT), not local conversion of those epoch integers.
 // STAGE POSITIONS: absent. No 2026 site map exists, and the festival build
 //   does not exist to measure off satellite either.
 //
@@ -148,111 +150,108 @@
   // No amenity map published — see the header.
   const AMENITIES = [];
 
-  // Every act has a REAL day and a REAL stage, and NO set time. `tier` drives
-  // lineup card weighting; with no times there is no basis to rank, so every
-  // act sits at the same tier rather than being silently ordered by a guess.
-  // `provisional: true` marks the whole set for the flip session.
-  const mk = (id, name, stage, day) => ({
-    id, name, genre: "\u2014", country: "\u2014",
-    stage, day, start: "", end: "", tier: 2,
+  // Every act has a REAL day, stage, start and end from the official schedule.
+  // `tier` is display weighting derived from the official start hour.
+  const mk = (id, name, stage, day, start, end) => ({
+    id, name, genre: "—", country: "—",
+    stage, day, start, end,
+    tier: +start.slice(0, 2) >= 22 ? 3 : +start.slice(0, 2) >= 20 ? 2 : 1,
     img: `linear-gradient(135deg, ${(STAGES.find(s => s.id === stage) || STAGES[0]).color}, #0a0a1a)`,
-    bio: `Playing Nocturnal Wonderland 2026 on the ${(STAGES.find(s => s.id === stage) || {}).name} stage. ` +
-         `Set time is not published yet \u2014 Insomniac drops the schedule in the days before the festival.`,
-    provisional: true,
+    bio: `Playing Nocturnal Wonderland 2026 on the ${(STAGES.find(s => s.id === stage) || {}).name} stage at ${start}.`,
   });
 
   const ARTISTS = [
     // ─────────── Mystic Wild ───────────
-    mk("nw-angrybaby",                                "Angrybaby",                                 "mysticwild", 2),
-    mk("nw-chyl",                                     "CHYL",                                      "mysticwild", 2),
-    mk("nw-deadmau5",                                 "deadmau5",                                  "mysticwild", 1),
-    mk("nw-deorro",                                   "Deorro",                                    "mysticwild", 1),
-    mk("nw-discovery-project",                        "Discovery Project",                         "mysticwild", 2),
-    mk("nw-flava-d",                                  "Flava D",                                   "mysticwild", 1),
-    mk("nw-gravagerz",                                "GRAVAGERZ",                                 "mysticwild", 1),
-    mk("nw-illenium",                                 "Illenium",                                  "mysticwild", 2),
-    mk("nw-james-hype",                               "James Hype",                                "mysticwild", 1),
-    mk("nw-jstjr",                                    "JSTJR",                                     "mysticwild", 1),
-    mk("nw-malaa",                                    "Malaa",                                     "mysticwild", 1),
-    mk("nw-mattilo",                                  "Mattilo",                                   "mysticwild", 2),
-    mk("nw-r3hab",                                    "R3HAB",                                     "mysticwild", 2),
-    mk("nw-sabai",                                    "SABAI",                                     "mysticwild", 1),
-    mk("nw-said-the-sky-sunset-set",                  "Said The Sky (Sunset Set)",                 "mysticwild", 2),
-    mk("nw-seven-lions",                              "Seven Lions",                               "mysticwild", 2),
-    mk("nw-shima",                                    "Shima",                                     "mysticwild", 1),
-    mk("nw-sidepiece",                                "SIDEPIECE",                                 "mysticwild", 2),
+    mk("nw-angrybaby", "Angrybaby", "mysticwild", 2, "16:45", "17:45"),
+    mk("nw-chyl", "CHYL", "mysticwild", 2, "17:45", "18:45"),
+    mk("nw-deadmau5", "deadmau5", "mysticwild", 1, "23:00", "00:00"),
+    mk("nw-deorro", "Deorro", "mysticwild", 1, "22:00", "23:00"),
+    mk("nw-jordan-savage", "Jordan Savage", "mysticwild", 2, "15:00", "15:45"),
+    mk("nw-flava-d", "Flava D", "mysticwild", 1, "16:00", "17:00"),
+    mk("nw-gravagerz", "GRAVAGERZ", "mysticwild", 1, "17:00", "18:00"),
+    mk("nw-illenium", "Illenium", "mysticwild", 2, "23:00", "00:00"),
+    mk("nw-james-hype", "James Hype", "mysticwild", 1, "21:00", "22:00"),
+    mk("nw-jstjr", "JSTJR", "mysticwild", 1, "20:00", "21:00"),
+    mk("nw-malaa", "Malaa", "mysticwild", 1, "19:00", "20:00"),
+    mk("nw-mattilo", "Mattilo", "mysticwild", 2, "15:45", "16:45"),
+    mk("nw-r3hab", "R3HAB", "mysticwild", 2, "19:50", "20:50"),
+    mk("nw-sabai", "SABAI", "mysticwild", 1, "18:00", "19:00"),
+    mk("nw-said-the-sky-sunset-set", "Said The Sky (Sunset Set)", "mysticwild", 2, "18:50", "19:50"),
+    mk("nw-seven-lions", "Seven Lions", "mysticwild", 2, "21:55", "22:55"),
+    mk("nw-shima", "Shima", "mysticwild", 1, "15:00", "16:00"),
+    mk("nw-sidepiece", "SIDEPIECE", "mysticwild", 2, "20:50", "21:50"),
     // ─────────── Dawn Mountain ───────────
-    mk("nw-barely-alive",                             "BARELY ALIVE",                              "dawnmountain", 2),
-    mk("nw-callen-b2b-sektor-8",                      "CALLEN B2B SEKTOR 8",                       "dawnmountain", 1),
-    mk("nw-eliminate",                                "Eliminate",                                 "dawnmountain", 2),
-    mk("nw-friction",                                 "Friction",                                  "dawnmountain", 2),
-    mk("nw-hedex",                                    "Hedex",                                     "dawnmountain", 2),
-    mk("nw-hybrid-minds",                             "Hybrid Minds",                              "dawnmountain", 1),
-    mk("nw-infekt-b2b-virtual-riot",                  "INFEKT B2B Virtual Riot",                   "dawnmountain", 1),
-    mk("nw-jkyl-and-hyde-b2b-nikita-the-wicked",      "Jkyl & Hyde B2B Nikita, the Wicked",        "dawnmountain", 1),
-    mk("nw-kompany-b2b-samplifire",                   "Kompany B2B Samplifire",                    "dawnmountain", 1),
-    mk("nw-layz",                                     "LAYZ",                                      "dawnmountain", 2),
-    mk("nw-nghtmre",                                  "NGHTMRE",                                   "dawnmountain", 1),
-    mk("nw-nightstalker-with-mc-dino",                "Nightstalker with MC Dino",                 "dawnmountain", 2),
-    mk("nw-riot",                                     "RIOT",                                      "dawnmountain", 2),
-    mk("nw-sippy",                                    "Sippy",                                     "dawnmountain", 1),
-    mk("nw-svdden-death",                             "Svdden Death",                              "dawnmountain", 1),
-    mk("nw-teddy-pain-t-pain-bass-set",               "Teddy Pain (T-Pain Bass Set)",              "dawnmountain", 2),
-    mk("nw-troyboi",                                  "TroyBoi",                                   "dawnmountain", 2),
-    mk("nw-wolfie",                                   "Wolfie",                                    "dawnmountain", 1),
+    mk("nw-barely-alive", "BARELY ALIVE", "dawnmountain", 2, "19:30", "20:30"),
+    mk("nw-callen-b2b-sektor-8", "CALLEN B2B SEKTOR 8", "dawnmountain", 1, "15:00", "16:00"),
+    mk("nw-eliminate", "Eliminate", "dawnmountain", 2, "18:30", "19:30"),
+    mk("nw-friction", "Friction", "dawnmountain", 2, "17:30", "18:30"),
+    mk("nw-hedex", "Hedex", "dawnmountain", 2, "21:30", "22:30"),
+    mk("nw-hybrid-minds", "Hybrid Minds", "dawnmountain", 1, "19:00", "20:00"),
+    mk("nw-infekt-b2b-virtual-riot", "INFEKT B2B Virtual Riot", "dawnmountain", 1, "21:00", "22:00"),
+    mk("nw-jkyl-and-hyde-b2b-nikita-the-wicked", "Jkyl & Hyde B2B Nikita, the Wicked", "dawnmountain", 1, "18:00", "19:00"),
+    mk("nw-kompany-b2b-samplifire", "Kompany B2B Samplifire", "dawnmountain", 1, "20:00", "21:00"),
+    mk("nw-layz", "LAYZ", "dawnmountain", 2, "20:30", "21:30"),
+    mk("nw-nghtmre", "NGHTMRE", "dawnmountain", 1, "22:00", "23:00"),
+    mk("nw-nightstalker-with-mc-dino", "Nightstalker with MC Dino", "dawnmountain", 2, "15:00", "16:30"),
+    mk("nw-riot", "RIOT", "dawnmountain", 2, "16:30", "17:30"),
+    mk("nw-sippy", "Sippy", "dawnmountain", 1, "17:00", "18:00"),
+    mk("nw-svdden-death", "Svdden Death", "dawnmountain", 1, "23:00", "00:00"),
+    mk("nw-teddy-pain-t-pain-bass-set", "Teddy Pain (T-Pain Bass Set)", "dawnmountain", 2, "23:30", "00:00"),
+    mk("nw-troyboi", "TroyBoi", "dawnmountain", 2, "22:30", "23:30"),
+    mk("nw-wolfie", "Wolfie", "dawnmountain", 1, "16:00", "17:00"),
     // ─────────── Aurora Plains ───────────
-    mk("nw-braydon-terzo",                            "Braydon Terzo",                             "auroraplains", 1),
-    mk("nw-dombresky",                                "Dombresky",                                 "auroraplains", 2),
-    mk("nw-ely-oaks",                                 "Ely Oaks",                                  "auroraplains", 2),
-    mk("nw-fleur-shore",                              "Fleur Shore",                               "auroraplains", 1),
-    mk("nw-gainz",                                    "GAINZ",                                     "auroraplains", 2),
-    mk("nw-green-velvet",                             "Green Velvet",                              "auroraplains", 1),
-    mk("nw-gudfella",                                 "GUDFELLA",                                  "auroraplains", 2),
-    mk("nw-inntraw",                                  "Inntraw",                                   "auroraplains", 2),
-    mk("nw-joshwa",                                   "Joshwa",                                    "auroraplains", 2),
-    mk("nw-juos",                                     "Juos",                                      "auroraplains", 2),
-    mk("nw-m-high",                                   "M-High",                                    "auroraplains", 1),
-    mk("nw-partiboi69",                               "Partiboi69",                                "auroraplains", 1),
-    mk("nw-patrick-topping",                          "Patrick Topping",                           "auroraplains", 1),
-    mk("nw-ragie-ban",                                "Ragie Ban",                                 "auroraplains", 1),
-    mk("nw-tini-gessler",                             "Tini Gessler",                              "auroraplains", 2),
-    mk("nw-trainer-red",                              "Trainer Red",                               "auroraplains", 1),
-    mk("nw-walker-and-royce",                         "Walker & Royce",                            "auroraplains", 2),
+    mk("nw-braydon-terzo", "Braydon Terzo", "auroraplains", 1, "16:00", "17:00"),
+    mk("nw-dombresky", "Dombresky", "auroraplains", 2, "23:00", "00:00"),
+    mk("nw-ely-oaks", "Ely Oaks", "auroraplains", 2, "21:00", "22:00"),
+    mk("nw-fleur-shore", "Fleur Shore", "auroraplains", 1, "18:00", "19:00"),
+    mk("nw-gainz", "GAINZ", "auroraplains", 2, "15:00", "16:00"),
+    mk("nw-green-velvet", "Green Velvet", "auroraplains", 1, "22:30", "00:00"),
+    mk("nw-gudfella", "GUDFELLA", "auroraplains", 2, "19:00", "20:00"),
+    mk("nw-inntraw", "Inntraw", "auroraplains", 2, "17:00", "18:00"),
+    mk("nw-joshwa", "Joshwa", "auroraplains", 2, "20:00", "21:00"),
+    mk("nw-juos", "Juos", "auroraplains", 2, "16:00", "17:00"),
+    mk("nw-m-high", "M-High", "auroraplains", 1, "17:00", "18:00"),
+    mk("nw-partiboi69", "Partiboi69", "auroraplains", 1, "21:15", "22:30"),
+    mk("nw-patrick-topping", "Patrick Topping", "auroraplains", 1, "20:00", "21:15"),
+    mk("nw-ragie-ban", "Ragie Ban", "auroraplains", 1, "19:00", "20:00"),
+    mk("nw-tini-gessler", "Tini Gessler", "auroraplains", 2, "18:00", "19:00"),
+    mk("nw-trainer-red", "Trainer Red", "auroraplains", 1, "15:00", "16:00"),
+    mk("nw-walker-and-royce", "Walker & Royce", "auroraplains", 2, "22:00", "23:00"),
     // ─────────── Rave Cave ───────────
-    mk("nw-b-side",                                   "B-Side",                                    "ravecave", 2),
-    mk("nw-basstripper",                              "Basstripper",                               "ravecave", 1),
-    mk("nw-dj-uncle-noah",                            "DJ Uncle Noah",                             "ravecave", 2),
-    mk("nw-ed-bailey",                                "Ed Bailey",                                 "ravecave", 1),
-    mk("nw-john-kelley",                              "John Kelley",                               "ravecave", 2),
-    mk("nw-oscar-da-grouch",                          "Oscar Da Grouch",                           "ravecave", 1),
-    mk("nw-oscure",                                   "Oscure",                                    "ravecave", 2),
-    mk("nw-reid-speed",                               "Reid Speed",                                "ravecave", 2),
-    mk("nw-simply-jeff-feat-sharyn-maceren-live",     "Simply Jeff feat. Sharyn Maceren (Live)",   "ravecave", 2),
-    mk("nw-stanton-warriors",                         "Stanton Warriors",                          "ravecave", 2),
-    mk("nw-star-eyes",                                "Star Eyes",                                 "ravecave", 2),
-    mk("nw-steve-leclair",                            "Steve Leclair",                             "ravecave", 1),
-    mk("nw-steve-loria",                              "Steve Loria",                               "ravecave", 1),
-    mk("nw-subsonic",                                 "Subsonic",                                  "ravecave", 2),
-    mk("nw-vitamin-d",                                "Vitamin D",                                 "ravecave", 2),
+    mk("nw-b-side", "B-Side", "ravecave", 2, "17:00", "18:00"),
+    mk("nw-basstripper", "Basstripper", "ravecave", 1, "22:45", "00:00"),
+    mk("nw-dj-uncle-noah", "DJ Uncle Noah", "ravecave", 2, "15:00", "16:00"),
+    mk("nw-ed-bailey", "Ed Bailey", "ravecave", 1, "18:00", "19:00"),
+    mk("nw-john-kelley", "John Kelley", "ravecave", 2, "19:00", "20:00"),
+    mk("nw-oscar-da-grouch", "Oscar Da Grouch", "ravecave", 1, "19:00", "20:00"),
+    mk("nw-oscure", "Oscure", "ravecave", 2, "16:00", "17:00"),
+    mk("nw-reid-speed", "Reid Speed", "ravecave", 1, "20:00", "21:30"),
+    mk("nw-simply-jeff-feat-sharyn-maceren-live", "Simply Jeff feat. Sharyn Maceren (Live)", "ravecave", 2, "21:00", "22:30"),
+    mk("nw-stanton-warriors", "Stanton Warriors", "ravecave", 2, "22:30", "00:00"),
+    mk("nw-star-eyes", "Star Eyes", "ravecave", 2, "20:00", "21:00"),
+    mk("nw-steve-leclair", "Steve Leclair", "ravecave", 1, "15:00", "16:30"),
+    mk("nw-steve-loria", "Steve Loria", "ravecave", 1, "16:30", "18:00"),
+    mk("nw-subsonic", "Subsonic", "ravecave", 1, "21:30", "22:45"),
+    mk("nw-vitamin-d", "Vitamin D", "ravecave", 2, "18:00", "19:00"),
     // ─────────── Beatbox Boombox ───────────
-    mk("nw-dack-janiels-b2b-mongrel",                 "Dack Janiels B2B Mongrel",                  "beatboxboombox", 1),
-    mk("nw-dances-b2b-techno-tupac",                  "Dances B2B Techno Tupac",                   "beatboxboombox", 1),
-    mk("nw-dmz-and-friends",                          "DMZ and Friends",                           "beatboxboombox", 1),
-    mk("nw-donald-glaude-b2b-thee-o",                 "Donald Glaude B2B Thee-O",                  "beatboxboombox", 2),
-    mk("nw-hekler",                                   "Hekler",                                    "beatboxboombox", 1),
-    mk("nw-kendo-b2b-slayy",                          "Kendo B2B SLAYY",                           "beatboxboombox", 2),
-    mk("nw-kittamami-b2b-tony-h",                     "Kittamami B2B Tony H",                      "beatboxboombox", 1),
-    mk("nw-kristin-lush",                             "Kristin Lush",                              "beatboxboombox", 2),
-    mk("nw-lenny-v",                                  "Lenny V",                                   "beatboxboombox", 2),
-    mk("nw-lily-ardalan",                             "Lily Ardalan",                              "beatboxboombox", 1),
-    mk("nw-mark-lewis",                               "Mark Lewis",                                "beatboxboombox", 2),
-    mk("nw-maximus-grooves",                          "Maximus Grooves",                           "beatboxboombox", 2),
-    mk("nw-neda",                                     "NEDA(:",                                    "beatboxboombox", 1),
-    mk("nw-nifty-nubez",                              "Nifty Nubez",                               "beatboxboombox", 2),
-    mk("nw-shay-de-castro",                           "Shay De Castro",                            "beatboxboombox", 2),
-    mk("nw-tankdubz",                                 "TankDubz",                                  "beatboxboombox", 2),
-    mk("nw-tha4saken",                                "THA4SAKEN",                                 "beatboxboombox", 1),
-    mk("nw-woof-logik",                               "Woof Logik",                                "beatboxboombox", 1),
+    mk("nw-dack-janiels-b2b-mongrel", "Dack Janiels B2B Mongrel", "beatboxboombox", 1, "22:00", "23:00"),
+    mk("nw-dances-b2b-techno-tupac", "Dances B2B Techno Tupac", "beatboxboombox", 1, "20:00", "21:00"),
+    mk("nw-dmz-and-friends", "DMZ and Friends", "beatboxboombox", 1, "19:00", "20:00"),
+    mk("nw-donald-glaude-b2b-thee-o", "Donald Glaude B2B Thee-O", "beatboxboombox", 2, "23:00", "00:00"),
+    mk("nw-hekler", "Hekler", "beatboxboombox", 1, "21:00", "22:00"),
+    mk("nw-kendo-b2b-slayy", "Kendo B2B SLAYY", "beatboxboombox", 2, "18:00", "19:00"),
+    mk("nw-kittamami-b2b-tony-h", "Kittamami B2B Tony H", "beatboxboombox", 1, "18:00", "19:00"),
+    mk("nw-kristin-lush", "Kristin Lush", "beatboxboombox", 2, "15:00", "16:00"),
+    mk("nw-lenny-v", "Lenny V", "beatboxboombox", 2, "20:00", "21:00"),
+    mk("nw-lily-ardalan", "Lily Ardalan", "beatboxboombox", 1, "16:00", "17:00"),
+    mk("nw-mark-lewis", "Mark Lewis", "beatboxboombox", 2, "21:00", "22:00"),
+    mk("nw-maximus-grooves", "Maximus Grooves", "beatboxboombox", 2, "19:00", "20:00"),
+    mk("nw-neda", "NEDA(:", "beatboxboombox", 1, "15:00", "16:00"),
+    mk("nw-nifty-nubez", "Nifty Nubez", "beatboxboombox", 2, "17:00", "18:00"),
+    mk("nw-shay-de-castro", "Shay De Castro", "beatboxboombox", 2, "22:00", "23:00"),
+    mk("nw-tankdubz", "TankDubz", "beatboxboombox", 2, "16:00", "17:00"),
+    mk("nw-tha4saken", "THA4SAKEN", "beatboxboombox", 1, "17:00", "18:00"),
+    mk("nw-woof-logik", "Woof Logik", "beatboxboombox", 1, "23:00", "00:00"),
   ];
 
   const CONFIG = {
@@ -361,7 +360,7 @@
     // and the blue dot stays on the real-map layer where it is actually true.
     mapArtIsGeoregistered: false,
     // Flip markers, read by humans rather than by code.
-    setTimesProvisional: true,
+    setTimesProvisional: false,
     // Published policy: 18+ to enter, 21+ for alcohol/VIP.
     policies: { minimumAge: 18, alcoholAge: 21 },
   };
@@ -369,7 +368,7 @@
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};
   window.PLURSKY_FESTIVALS["nocturnal-wonderland-2026"] = {
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
-    // GATED: set times and the site map are unpublished. Flip is its own PR.
-    registry: { available: false, accent: "#a855f7", emoji: "🌙", region: "North America" },
+    // Live with official set times. The map remains unregistered until 2026 art publishes.
+    registry: { available: true, accent: "#a855f7", emoji: "🌙", region: "North America" },
   };
 })();
