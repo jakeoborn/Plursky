@@ -484,6 +484,24 @@ if (fdata.length) {
   console.log(`  ✓ ${SRC.length} source file(s) — day loops follow the active festival; LIVE and "tonight" use real dates`);
 }
 
+// ── Artist background gate ───────────────────────────────────────────────
+// `artist.img` is consumed directly as CSS `background`, so raw URLs are
+// invalid shorthand and silently erase the intended art behind white text.
+{
+  console.log("▸ Artist background gate — img values must be CSS backgrounds, not raw URLs");
+  const offenders = [];
+  for (const f of FESTIVAL_MODULES) {
+    const src = readFileSync(join(ROOT, "data", "festivals", f), "utf8");
+    for (const m of src.matchAll(/\bimg\s*:\s*["'`](https?:\/\/[^"'`]+)["'`]/g))
+      offenders.push(`${f}: ${m[1]}`);
+  }
+  if (offenders.length) {
+    offenders.forEach(x => console.log(`  ✗ ${x}`));
+    fail(`${offenders.length} artist img value(s) are raw URLs — keep img CSS-safe and use photoUrl for image assets`);
+  }
+  console.log(`  ✓ ${FESTIVAL_MODULES.length} festival module(s) have CSS-safe img values`);
+}
+
 // ── Real-date gate ───────────────────────────────────────────────────────
 // Behaviour, not text: runs the REAL compiled data/lineup/home/map build in a
 // vm with the clock PINNED, on ACL 2026 (two weekends), and asks the three
