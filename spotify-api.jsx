@@ -1441,6 +1441,7 @@ async function fetchSpotifyTopArtists(onProgress) {
 // now return null. Falls back to iTunes Search (free, no auth, CORS-OK)
 // which still serves 30s previews for ~95% of mainstream artists.
 async function fetchPreviewUrl(artistName) {
+  artistName = typeof _lookupName === "function" ? _lookupName(artistName) : artistName;  // artist.jsx
   const cacheKey = "preview_urls_v1";
   try {
     const cached = JSON.parse(localStorage.getItem(cacheKey) || "{}");

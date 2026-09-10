@@ -1518,6 +1518,7 @@ async function fetchSpotifyTopArtists(onProgress) {
   }
 }
 async function fetchPreviewUrl(artistName) {
+  artistName = typeof _lookupName === "function" ? _lookupName(artistName) : artistName;
   var cacheKey = "preview_urls_v1";
   try {
     var cached = JSON.parse(localStorage.getItem(cacheKey) || "{}");
