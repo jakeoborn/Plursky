@@ -662,7 +662,7 @@ function SpotifyScreen({
       background: stage.color,
       borderRadius: 3
     }
-  })), React.createElement("div", {
+  })), stage.desc && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 9,

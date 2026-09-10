@@ -1001,6 +1001,12 @@ function LineupScreen({
   var [sortBy, setSortBy] = React.useState("time");
   var activeFilterCount = (tierFilter !== "all" ? 1 : 0) + (stageFilter !== "all" ? 1 : 0) + (genreFilter !== "all" ? 1 : 0) + (filter !== "all" ? 1 : 0) + (sortBy !== "time" ? 1 : 0);
   React.useEffect(() => setGenreFilter("all"), [day]);
+  var _chipFilterActive = tierFilter !== "all" || stageFilter !== "all" || genreFilter !== "all";
+  var _emptyChipLabel = (() => {
+    var named = [stageFilter !== "all" ? (STAGES.find(s => s.id === stageFilter) || {}).name : null, genreFilter !== "all" ? genreFilter : null].filter(Boolean);
+    return named.length === 1 && tierFilter === "all" ? named[0] : null;
+  })();
+  var _noStagesAssignedYet = React.useMemo(() => ARTISTS.length > 0 && ARTISTS.every(a => !a.stage), []);
   var matchesActive = a => {
     if (weekendFilter !== "all" && a.weekend !== weekendFilter && a.weekend !== "both") return false;
     if (filter !== "all" && !state.saved.includes(a.id)) return false;
@@ -1716,7 +1722,46 @@ function LineupScreen({
       fontWeight: 700,
       cursor: "pointer"
     }
-  }, "CLEAR SEARCH")), viewMode === "list" && dayArtists.length === 0 && q.trim() === "" && React.createElement("div", {
+  }, "CLEAR SEARCH")), viewMode === "list" && dayArtists.length === 0 && q.trim() === "" && _chipFilterActive && React.createElement("div", {
+    style: {
+      padding: 40,
+      textAlign: "center"
+    }
+  }, React.createElement("div", {
+    className: "serif",
+    style: {
+      fontSize: 22,
+      color: "var(--muted)",
+      fontStyle: "italic",
+      marginBottom: 6
+    }
+  }, _emptyChipLabel ? `Nothing on ${_emptyChipLabel} yet` : "Nothing matches those filters"), React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 10,
+      letterSpacing: 1.2,
+      color: "var(--muted)"
+    }
+  }, !_emptyChipLabel ? "TRY CLEARING ONE OF THEM" : _noStagesAssignedYet ? "SET TIMES AND STAGES ARE NOT PUBLISHED YET" : "NOTHING THERE ON THIS DAY"), React.createElement("button", {
+    onClick: () => {
+      setTierFilter("all");
+      setStageFilter("all");
+      setGenreFilter("all");
+    },
+    className: "mono",
+    style: {
+      marginTop: 14,
+      padding: "8px 16px",
+      borderRadius: 999,
+      background: "var(--ink)",
+      color: "var(--paper)",
+      border: "none",
+      fontSize: 10,
+      letterSpacing: 1.4,
+      fontWeight: 700,
+      cursor: "pointer"
+    }
+  }, "CLEAR FILTERS")), viewMode === "list" && dayArtists.length === 0 && q.trim() === "" && !_chipFilterActive && React.createElement("div", {
     style: {
       padding: 40,
       textAlign: "center"

@@ -2254,6 +2254,7 @@ const _WAVE1_IDS = [
   "iii-points-2026", "nocturnal-wonderland-2026", "crssd-fall-2026",
   "portola-2026",
   "hard-summer-2026", "arc-2026", "escape-halloween-2026",
+  "dreamstate-socal-2026",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {
