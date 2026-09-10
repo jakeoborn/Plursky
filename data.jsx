@@ -832,6 +832,103 @@ const FESTIVALS_REGISTRY = [
     emoji:     "🌵",
     region:    "North America",
   },
+  // ── Registry stubs from #113 (Tiers 2–3): dates + venue ONLY ──
+  // No lineup, no stages, no module. Every fact below was re-read on the
+  // festival's OWN site on 2026-09-10. ⚠ All three Insomniac lineup pages
+  // checked (EDC Mexico, BW SoCal, BW Gorge) carry a 2027 page TITLE over
+  // the 2026 LINEUP — a scraper that trusts the title ships last year's acts.
+  // Scaffold each one from its own lineup page only after that page says 2027.
+  {
+    // SOURCE mexico.edc.com (301 from mexico.electricdaisycarnival.com):
+    // title "EDC Mexico | 19-21 Febrero, 2027 | Mexico City", venue
+    // "AUTÓDROMO HERMANOS RODRÍGUEZ". #113 reported a first-wave 2027 lineup;
+    // /lineup/ is titled "EDC Mexico 2026" and lists Feb 20/21/22 — the 2026
+    // edition. No 2027 lineup is published.
+    config: {
+      id:        "edc-mexico-2027",
+      name:      "EDC Mexico 2027",
+      shortName: "EDC Mexico",
+      brand:     "EDC",
+      tagline:   "Three days at the Autódromo",
+      // ", Mexico" is load-bearing: gen-festival-pages' place() reads the tail
+      // as addressCountry, and would otherwise leave the JSON-LD countryless.
+      location:  "Autódromo Hermanos Rodríguez · Mexico City, Mexico",
+      locationShort: "Autódromo Hermanos Rodríguez",
+      dates:     "Feb 19–21, 2027",
+      year:      2027,
+    },
+    available: false,
+    accent:    "#f43f5e",
+    emoji:     "🌼",
+    region:    "Latin America",
+  },
+  {
+    // SOURCE countdownnye.com: "December 31 + January 1, 2027", "5 stages";
+    // lineup reads "Loading: 2026's lineup". /hours-and-info/: "NOS Events
+    // Center, 689 S E St., San Bernardino, CA 92408", 4:00pm – 2:00am, 18+.
+    // ⚠ That page still says "Thursday, December 31, 2025" — a stale year:
+    // Dec 31 is a Thursday in 2026, not 2025. The homepage year is used.
+    // The span crosses a year, so `dates` names both years.
+    config: {
+      id:        "countdown-nye-2026",
+      name:      "Countdown NYE 2026",
+      shortName: "Countdown",
+      brand:     "Countdown",
+      tagline:   "Five stages into the new year",
+      location:  "NOS Events Center · San Bernardino, CA",
+      locationShort: "NOS Events Center",
+      dates:     "Dec 31, 2026 – Jan 1, 2027",
+      year:      2026,
+    },
+    available: false,
+    accent:    "#60a5fa",
+    emoji:     "🎆",
+    region:    "North America",
+  },
+  {
+    // SOURCE socal.beyondwonderland.com: "March 26+27, 2027". /hours-and-info/:
+    // "NOS Events Center, 689 S. E St, San Bernardino, CA 92408", hours TBA,
+    // 18+. Artists not announced (/lineup/ is headed "2026 Lineup").
+    config: {
+      id:        "beyond-wonderland-socal-2027",
+      name:      "Beyond Wonderland SoCal 2027",
+      shortName: "Beyond SoCal",
+      brand:     "Beyond Wonderland",
+      tagline:   "Two days at NOS Events Center",
+      location:  "NOS Events Center · San Bernardino, CA",
+      locationShort: "NOS Events Center",
+      dates:     "Mar 26–27, 2027",
+      year:      2027,
+    },
+    available: false,
+    accent:    "#c084fc",
+    emoji:     "🐇",
+    region:    "North America",
+  },
+  {
+    // SOURCE Insomniac's press release: the festival days are "Saturday, June
+    // 26 and Sunday, June 27, 2027" — those two ship. pnw.beyondwonderland.com
+    // bills "June 25+26+27, 2027" because June 25 is camping arrival (camping
+    // passes cover the weekend); it is not a festival day, so it is not in
+    // `dates` (ruled 2026-09-10). /hours-and-info/ still
+    // carries 2026 hours; its venue line is "Gorge Amphitheatre, 754 Silica Rd
+    // NW, George, WA 98848". Artists not announced (/lineup/ is the 2026 list).
+    config: {
+      id:        "beyond-wonderland-gorge-2027",
+      name:      "Beyond Wonderland at The Gorge 2027",
+      shortName: "Beyond Gorge",
+      brand:     "Beyond Wonderland",
+      tagline:   "A camping weekend at The Gorge",
+      location:  "Gorge Amphitheatre · George, WA",
+      locationShort: "Gorge Amphitheatre",
+      dates:     "Jun 26–27, 2027",
+      year:      2027,
+    },
+    available: false,
+    accent:    "#2dd4bf",
+    emoji:     "🏔️",
+    region:    "North America",
+  },
 ];
 
 // Read the user's chosen festival from localStorage. Defaults to the

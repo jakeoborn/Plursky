@@ -62,15 +62,17 @@ const MONTHS = { Jan:1, Feb:2, Mar:3, Apr:4, May:5, Jun:6, Jul:7, Aug:8, Sep:9, 
 //   - the two preview entries have neither
 // schema.org also wants JSON-LD dates to match what the page visibly says,
 // and `dates` IS what the page says. dayDates is the fallback.
+//
+// A span that crosses a month or a year names both ends in full ("Dec 31,
+// 2026 – Jan 1, 2027", Countdown NYE). Without that branch it parsed as NO
+// DATES, so the page never emitted JSON-LD dates and never said "This
+// festival has ended" — the staleness #109 exists to prevent.
+const _ymd = (mon, d, y) => `${y}-${String(MONTHS[mon]).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
 function eventDates(cfg) {
   const m = /^([A-Z][a-z]{2}) (\d+)[–-](\d+)(?: & (\d+)[–-](\d+))?, (\d{4})$/.exec(cfg.dates || '');
-  if (m) {
-    const mo = String(MONTHS[m[1]]).padStart(2, '0'), y = m[6];
-    return {
-      start: `${y}-${mo}-${String(m[2]).padStart(2, '0')}`,
-      end:   `${y}-${mo}-${String(m[5] || m[3]).padStart(2, '0')}`,
-    };
-  }
+  if (m) return { start: _ymd(m[1], m[2], m[6]), end: _ymd(m[1], m[5] || m[3], m[6]) };
+  const x = /^([A-Z][a-z]{2}) (\d+), (\d{4}) [–-] ([A-Z][a-z]{2}) (\d+), (\d{4})$/.exec(cfg.dates || '');
+  if (x && MONTHS[x[1]] && MONTHS[x[4]]) return { start: _ymd(x[1], x[2], x[3]), end: _ymd(x[4], x[5], x[6]) };
   const dd = cfg.dayDates && Object.values(cfg.dayDates);
   if (dd && dd.length) {
     const f = (d) => `${d.y}-${String(d.m + 1).padStart(2, '0')}-${String(d.d).padStart(2, '0')}`;
