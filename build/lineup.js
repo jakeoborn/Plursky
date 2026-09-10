@@ -13,13 +13,13 @@ function _msToIcsDate(ms) {
   return `${d.getUTCFullYear()}${pad(d.getUTCMonth() + 1)}${pad(d.getUTCDate())}T${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}00Z`;
 }
 function _artistMs(artist, hhmm) {
-  var day = FESTIVAL_CONFIG.dayDates[artist.day];
+  var day = artistDayDate(artist);
   if (!day) return null;
   var [h, m] = hhmm.split(":").map(Number);
   return day.midnightUtc + (h < 8 ? 86400000 : 0) + h * 3600000 + m * 60000;
 }
 async function exportSavedSetsICS(savedIds) {
-  var artists = ARTISTS.filter(a => savedIds.includes(a.id)).sort((a, b) => a.day - b.day || (a.start < b.start ? -1 : 1));
+  var artists = activeLineup(savedIds).filter(a => savedIds.includes(a.id)).sort((a, b) => a.day - b.day || (a.start < b.start ? -1 : 1));
   if (!artists.length) return;
   var lines = ["BEGIN:VCALENDAR", "VERSION:2.0", `PRODID:-//Plursky//${FESTIVAL_CONFIG.name}//EN`, "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
   artists.forEach(a => {
@@ -93,7 +93,7 @@ function NightWizard({
   var [activeDay, setActiveDay] = React.useState(() => {
     var best = DAYS.map(d => ({
       n: d.n,
-      count: ARTISTS.filter(a => a.day === d.n && state.saved.includes(a.id)).length
+      count: activeLineup().filter(a => a.day === d.n && state.saved.includes(a.id)).length
     })).reduce((b, d) => d.count > b.count ? d : b, {
       n: 1,
       count: 0
@@ -102,7 +102,7 @@ function NightWizard({
   });
   var [local, setLocal] = React.useState(() => new Set(state.saved));
   var dayStats = DAYS.map(d => {
-    var sets = ARTISTS.filter(a => a.day === d.n && local.has(a.id));
+    var sets = activeLineup().filter(a => a.day === d.n && local.has(a.id));
     var clashes = 0;
     for (var i = 0; i < sets.length; i++) for (var j = i + 1; j < sets.length; j++) if (overlaps(sets[i], sets[j])) clashes++;
     return {
@@ -111,7 +111,7 @@ function NightWizard({
       clashes
     };
   });
-  var sorted = ARTISTS.filter(a => a.day === activeDay && local.has(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+  var sorted = activeLineup().filter(a => a.day === activeDay && local.has(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
   var conflictIds = new Set();
   for (var i = 0; i < sorted.length; i++) for (var j = i + 1; j < sorted.length; j++) if (overlaps(sorted[i], sorted[j])) {
     conflictIds.add(sorted[i].id);
@@ -128,7 +128,7 @@ function NightWizard({
         gE = toNightMin(sorted[_i + 1].start);
       if (gE > gS + 5) {
         var gapMin = gE - gS;
-        var fits = ARTISTS.filter(a => a.day === activeDay && !local.has(a.id) && toNightMin(a.start) >= gS && toNightMin(a.start) < gE - 14).sort((a, b) => b.tier - a.tier).slice(0, 3);
+        var fits = activeLineup().filter(a => a.day === activeDay && !local.has(a.id) && toNightMin(a.start) >= gS && toNightMin(a.start) < gE - 14).sort((a, b) => b.tier - a.tier).slice(0, 3);
         items.push({
           type: "gap",
           gapMin,
@@ -156,7 +156,7 @@ function NightWizard({
     onClose();
   };
   var autoFill = () => {
-    var candidates = ARTISTS.filter(a => a.day === activeDay).sort((a, b) => b.tier - a.tier || toNightMin(a.start) - toNightMin(b.start));
+    var candidates = activeLineup().filter(a => a.day === activeDay).sort((a, b) => b.tier - a.tier || toNightMin(a.start) - toNightMin(b.start));
     var picked = [];
     var _loop2 = function (a) {
       if (picked.length >= 8) return 1;
@@ -167,7 +167,7 @@ function NightWizard({
     }
     setLocal(prev => {
       var merged = new Set(prev);
-      ARTISTS.filter(a => a.day === activeDay).forEach(a => merged.delete(a.id));
+      activeLineup().filter(a => a.day === activeDay).forEach(a => merged.delete(a.id));
       picked.forEach(a => merged.add(a.id));
       return merged;
     });
@@ -270,7 +270,7 @@ function NightWizard({
       var ids = Array.from(local);
       var lines = [1, 2, 3].flatMap(day => {
         var d = FESTIVAL_CONFIG.dayDates[day];
-        var dayArtists = ARTISTS.filter(a => a.day === day && ids.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+        var dayArtists = activeLineup().filter(a => a.day === day && ids.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
         if (!dayArtists.length) return [];
         return [`${d.short} · ${d.name.toUpperCase()}`, ...dayArtists.map(a => `  ${fmt12(a.start)}  ${a.name}`), ""];
       });
@@ -661,6 +661,7 @@ function LineupFilterSheet({
   day,
   dayGenres,
   savedIds = [],
+  weekendFilter = "all",
   initial,
   onApply,
   onReset
@@ -673,7 +674,7 @@ function LineupFilterSheet({
   var savedCount = savedIds.length;
   var savedSet = React.useMemo(() => new Set(savedIds), [savedIds]);
   var matchCount = React.useMemo(() => {
-    return ARTISTS.filter(a => a.day === day).filter(a => f.filter === "all" || savedSet.has(a.id)).filter(a => f.stageFilter === "all" || a.stage === f.stageFilter).filter(a => f.genreFilter === "all" || a.genre === f.genreFilter).filter(a => {
+    return lineupFor(weekendFilter).filter(a => a.day === day).filter(a => f.filter === "all" || savedSet.has(a.id)).filter(a => f.stageFilter === "all" || a.stage === f.stageFilter).filter(a => f.genreFilter === "all" || a.genre === f.genreFilter).filter(a => {
       if (f.tierFilter === "all") return true;
       if (f.tierFilter === "head") return a.tier === 3;
       if (f.tierFilter === "prime") return a.tier === 2;
@@ -925,7 +926,7 @@ function LineupScreen({
   var [wizardOpen, setWizardOpen] = React.useState(false);
   var [genreFilter, setGenreFilter] = React.useState("all");
   var hasWeekends = ARTISTS.some(a => a.weekend && a.weekend !== "both");
-  var [weekendFilter, setWeekendFilter] = React.useState(() => hasWeekends ? "W1" : "all");
+  var [weekendFilter, setWeekendFilter] = React.useState(() => hasWeekends ? _weekendShiftMs(FESTIVAL_CONFIG) ? "W2" : "W1" : "all");
   var [q, setQ] = React.useState("");
   React.useEffect(() => {
     if (!highlightId) return;
@@ -1026,7 +1027,7 @@ function LineupScreen({
   }, []);
   var dayGenres = React.useMemo(() => {
     var freq = {};
-    ARTISTS.filter(a => a.day === day).forEach(a => {
+    lineupFor(weekendFilter).filter(a => a.day === day).forEach(a => {
       if (a.genre) freq[a.genre] = (freq[a.genre] || 0) + 1;
     });
     return Object.entries(freq).filter(([, n]) => n >= 2).sort((a, b) => b[1] - a[1]).map(([g]) => g);
@@ -1034,7 +1035,7 @@ function LineupScreen({
   var savedSetIds = React.useMemo(() => new Set(state.saved), [state.saved]);
   var dayArtists = React.useMemo(() => {
     var term = q.trim().toLowerCase();
-    return ARTISTS.filter(a => a.day === day).filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both").filter(a => filter === "all" || savedSetIds.has(a.id)).filter(a => stageFilter === "all" || a.stage === stageFilter).filter(a => genreFilter === "all" || a.genre === genreFilter).filter(a => {
+    return lineupFor(weekendFilter).filter(a => a.day === day).filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both").filter(a => filter === "all" || savedSetIds.has(a.id)).filter(a => stageFilter === "all" || a.stage === stageFilter).filter(a => genreFilter === "all" || a.genre === genreFilter).filter(a => {
       if (tierFilter === "all") return true;
       if (tierFilter === "head") return a.tier === 3;
       if (tierFilter === "prime") return a.tier === 2;
@@ -1059,14 +1060,14 @@ function LineupScreen({
   var _otherDayHits = React.useMemo(() => {
     var term = q.trim().toLowerCase();
     if (!term) return 0;
-    return ARTISTS.filter(a => {
+    return lineupFor(weekendFilter).filter(a => {
       if (a.day === day) return false;
       var st = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
       return a.name.toLowerCase().includes(term) || (a.genre || "").toLowerCase().includes(term) || (st?.name || "").toLowerCase().includes(term);
     }).length;
   }, [q, day]);
   var dayStats = React.useMemo(() => DAYS.map(d => {
-    var savedThisDay = ARTISTS.filter(x => x.day === d.n && savedSetIds.has(x.id));
+    var savedThisDay = lineupFor(weekendFilter).filter(x => x.day === d.n && savedSetIds.has(x.id));
     var clashes = 0;
     for (var i = 0; i < savedThisDay.length; i++) for (var j = i + 1; j < savedThisDay.length; j++) if (overlaps(savedThisDay[i], savedThisDay[j])) clashes++;
     return {
@@ -1076,7 +1077,7 @@ function LineupScreen({
     };
   }), [savedSetIds]);
   var totalSaved = React.useMemo(() => dayStats.reduce((s, d) => s + d.count, 0), [dayStats]);
-  var savedToday = React.useMemo(() => ARTISTS.filter(a => a.day === day && savedSetIds.has(a.id)), [day, savedSetIds]);
+  var savedToday = React.useMemo(() => lineupFor(weekendFilter).filter(a => a.day === day && savedSetIds.has(a.id)), [day, savedSetIds]);
   var CONFLICT_ACK_KEY = "plursky_conflicts_kept_both_v1";
   var _pairKey = (idA, idB) => [idA, idB].sort().join("|");
   var [ackedPairs, setAckedPairs] = React.useState(() => {
@@ -1588,7 +1589,7 @@ function LineupScreen({
       padding: "0 16px 90px"
     }
   }, savedToday.length === 0 && (() => {
-    var dayHeads = ARTISTS.filter(a => a.day === day && a.tier === 3);
+    var dayHeads = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
     if (dayHeads.length === 0) return null;
     var dayLabel = DAYS.find(d => d.n === day)?.label || `Day ${day}`;
     var headIds = dayHeads.map(h => h.id);
@@ -1658,7 +1659,7 @@ function LineupScreen({
     }, "SAVE →"));
   })(), viewMode === "grid" && !(filter === "saved" && state.saved.length === 0) && (() => {
     var dayMeta = DAYS.find(x => x.n === day);
-    var dayArt = ARTISTS.filter(a => a.day === day).filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both");
+    var dayArt = lineupFor(weekendFilter).filter(a => a.day === day).filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both");
     return React.createElement("div", {
       ref: el => {
         gridSectionRefs.current[day] = el;
@@ -2119,6 +2120,7 @@ function LineupScreen({
     day: day,
     dayGenres: dayGenres,
     savedIds: state.saved || [],
+    weekendFilter: weekendFilter,
     initial: {
       filter,
       tierFilter,
@@ -3320,7 +3322,7 @@ async function copyScheduleText(state) {
   };
   var lines = [1, 2, 3].flatMap(day => {
     var d = FESTIVAL_CONFIG.dayDates[day];
-    var artists = ARTISTS.filter(a => a.day === day && ids.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+    var artists = activeLineup().filter(a => a.day === day && ids.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
     if (!artists.length) return [];
     return [`${d.short} · ${d.name.toUpperCase()}`, ...artists.map(a => {
       var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;

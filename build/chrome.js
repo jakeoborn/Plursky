@@ -117,7 +117,7 @@ function TabBar({
   var _liveMainColor = React.useMemo(() => {
     try {
       var stages = window.STAGES || [];
-      var artists = window.ARTISTS || [];
+      var artists = typeof activeLineup === "function" ? activeLineup() : window.ARTISTS || [];
       var main = window.FESTIVAL_CONFIG?.mainStageId;
       if (!main || !window.NOW?.time || !window.NOW?.day) return null;
       var nowMin = window.toNightMin(window.NOW.time);
@@ -931,7 +931,7 @@ function detectCurrentArtist(lat, lng, opts = {}) {
   var [nh, nm] = (now.time || "00:00").split(":").map(Number);
   var adjustH = nh < 6 ? nh + 24 : nh;
   var nowMin = adjustH * 60 + nm;
-  var playing = (window.ARTISTS || []).find(a => {
+  var playing = activeLineup().find(a => {
     if (a.day !== now.day) return false;
     if (a.stage !== best.stageId) return false;
     var [sh, sm] = a.start.split(":").map(Number);
@@ -955,7 +955,7 @@ function recordAttendanceFromGps(lat, lng) {
   return added ? hit : null;
 }
 function _artistStartMs(artist) {
-  var dayConfig = FESTIVAL_CONFIG.dayDates[artist.day];
+  var dayConfig = artistDayDate(artist);
   if (!dayConfig) return null;
   var [h, m] = artist.start.split(":").map(Number);
   var adjustH = h < 6 ? h + 24 : h;
@@ -983,8 +983,9 @@ function scheduleReminders(state, showLocal) {
   var now = Date.now();
   var leadMin = getReminderLeadMin();
   var pending = [];
+  var lineup = activeLineup(state.saved);
   state.saved.forEach(id => {
-    var a = ARTISTS.find(x => x.id === id);
+    var a = lineup.find(x => x.id === id);
     if (!a) return;
     var startMs = _artistStartMs(a);
     if (!startMs) return;
@@ -1563,7 +1564,7 @@ function _bsHasFestivalContext() {
     if (cfg && typeof cfg.startMs === "number" && typeof cfg.endMs === "number") {
       if (now >= cfg.startMs && now <= cfg.endMs) return true;
     }
-    var artists = typeof window !== "undefined" && window.ARTISTS || null;
+    var artists = typeof activeLineup === "function" ? activeLineup() : null;
     var dayDates = cfg && cfg.dayDates;
     if (!artists || !dayDates) return false;
     var raw = "[]";
@@ -1577,7 +1578,7 @@ function _bsHasFestivalContext() {
       var _loop = function (id) {
           var a = artists.find(x => x.id === id);
           if (!a || !a.start) return 0;
-          var dm = dayDates[a.day];
+          var dm = artistDayDate(a, now) || dayDates[a.day];
           if (!dm || typeof dm.midnightUtc !== "number") return 0;
           var [h, m] = String(a.start).split(":").map(Number);
           var isOvernight = h < 12;

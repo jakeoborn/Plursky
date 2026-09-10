@@ -16,7 +16,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync, spawn } from "node:child_process";
 import { createServer } from "node:http";
-import { transformAsync } from "@babel/core";
+import { transformAsync, parseSync, traverse } from "@babel/core";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const FESTIVAL_MODULES = readdirSync(join(ROOT, "data", "festivals"))
@@ -572,6 +572,133 @@ if (fdata.length) {
   }
   if (ubad) fail(`${ubad} unguarded artist stage dereference(s) — use ?. or || UNPLACED_STAGE`);
   console.log(`  ✓ ${checked} artist stage lookup(s) across ${SRC.length} source file(s) — every dereference is guarded`);
+}
+
+// ── Weekend-filter gate ────────────────────────────────────────────────────
+// A two-weekend festival pairs its W1 and W2 acts into the SAME day+stage+slot
+// — ACL 2026 has 40 such collisions across 137 acts. Every read that searches
+// the lineup by day/start/end therefore finds the W1 act first, because it is
+// earlier in the array, and a Weekend 2 attendee is shown Weekend 1's festival.
+//
+// This gate exists because the FIX kept leaking. Guarding each consumer took
+// three review rounds and still missed sites: now/next, starting-soon and the
+// ICS export; then the reminder scheduler; then GPS auto-attendance and the
+// set-starting cinematic; and an AST scan afterwards found 42 such reads in
+// all, against six that had been named. A guard you must REMEMBER at 42 call
+// sites is not a fix, it is a standing invitation. activeLineup() (data.jsx)
+// is the filtered source; this makes reaching around it fail the build, so the
+// next read path inherits the filter instead of waiting to be found.
+//
+// Identity reads are deliberately NOT covered: 76 more sites look an artist up
+// by id — a saved id, an attended id, moment.artistId — to name a memory or a
+// recap card, and those must see BOTH weekends or a Weekend 1 attendee's
+// memories go blank the moment the clock rolls into Weekend 2.
+//
+// To exempt a genuinely weekend-blind read, put `// weekend-exempt: <why>` on
+// the line above it. The reason is the point — it is printed on every run.
+{
+  console.log(`▸ Weekend-filter gate — schedule reads take the filtered lineup`);
+  const SRC = readdirSync(ROOT).filter(f => f.endsWith(".jsx")).sort();
+  const ARR = new Set(["find","filter","some","every","forEach","map","sort","reduce","findIndex","flatMap","findLast"]);
+  const TIME = new Set(["day","start","end"]);
+  const isArtists = n => {
+    if (!n) return false;
+    if (n.type === "Identifier") return n.name === "ARTISTS";
+    if ((n.type === "MemberExpression" || n.type === "OptionalMemberExpression") && !n.computed)
+      return n.property.name === "ARTISTS";
+    if (n.type === "ArrayExpression" && n.elements.length === 1 && n.elements[0]?.type === "SpreadElement")
+      return isArtists(n.elements[0].argument);
+    if (n.type === "LogicalExpression") return isArtists(n.left) || isArtists(n.right);
+    if (n.type === "ConditionalExpression") return isArtists(n.consequent) || isArtists(n.alternate);
+    return false;
+  };
+  const timeProps = path => {                       // does this callback read the clock?
+    const seen = new Set();
+    path.traverse({
+      MemberExpression(q) { if (!q.node.computed && q.node.property?.name) seen.add(q.node.property.name); },
+      OptionalMemberExpression(q) { if (!q.node.computed && q.node.property?.name) seen.add(q.node.property.name); },
+    });
+    return [...seen].filter(x => TIME.has(x));
+  };
+  const hasFilteredCall = n => {                     // does this expression go through the resolver?
+    let found = false;
+    const walk = x => {
+      if (!x || typeof x !== "object" || found) return;
+      if (x.type === "CallExpression" && x.callee?.type === "Identifier"
+          && ["activeLineup","lineupFor"].includes(x.callee.name)) { found = true; return; }
+      for (const k of Object.keys(x)) {
+        const v = x[k];
+        if (Array.isArray(v)) v.forEach(walk);
+        else if (v && typeof v.type === "string") walk(v);
+      }
+    };
+    walk(n);
+    return found;
+  };
+  let raw = [], filtered = 0, exempt = [];
+  for (const f of SRC) {
+    const src = readFileSync(join(ROOT, f), "utf8");
+    const lines = src.split("\n");
+    const exemptOn = ln => {                        // `// weekend-exempt: why` above it
+      for (let i = ln - 2; i >= 0 && i >= ln - 4; i--) {
+        const m = /^\s*\/\/\s*weekend-exempt:\s*(.+)$/.exec(lines[i] || "");
+        if (m) return m[1].trim();
+        if ((lines[i] || "").trim() && !/^\s*\/\//.test(lines[i])) break;
+      }
+      return null;
+    };
+    const ast = parseSync(src, { filename: f, presets: [["@babel/preset-react", {}]],
+                                 babelrc: false, configFile: false, ast: true, code: false });
+    traverse(ast, {
+      CallExpression(p) {
+        const c = p.node.callee;
+        if ((c.type !== "MemberExpression" && c.type !== "OptionalMemberExpression") || c.computed) return;
+        if (!ARR.has(c.property.name)) return;
+        const obj = c.object;
+        const viaFilter = obj.type === "CallExpression" && obj.callee.type === "Identifier"
+          && (obj.callee.name === "activeLineup" || obj.callee.name === "lineupFor");
+        const viaFilterSpread = obj.type === "ArrayExpression" && obj.elements[0]?.type === "SpreadElement"
+          && obj.elements[0].argument.type === "CallExpression"
+          && ["activeLineup","lineupFor"].includes(obj.elements[0].argument.callee?.name);
+        if (viaFilter || viaFilterSpread) { if (p.node.arguments[0] && timeProps(p.get("arguments.0")).length) filtered++; return; }
+        if (!isArtists(obj)) return;
+        if (!p.node.arguments[0]) return;
+        const t = timeProps(p.get("arguments.0"));
+        if (!t.length) return;                      // identity read — not this gate's business
+        const ln = p.node.loc.start.line;
+        const why = exemptOn(ln);
+        if (why) exempt.push(`${f}:${ln}  ${why}`);
+        else raw.push(`${f}:${ln}  ARTISTS.${c.property.name}(… a.${t.join("/a.")} …)`);
+      },
+      // Binding the lineup to a local first is the same read with a name on
+      // it — two of the leaks this gate was built for took exactly that shape.
+      VariableDeclarator(p) {
+        if (p.node.id.type !== "Identifier" || !isArtists(p.node.init)) return;
+        if (hasFilteredCall(p.node.init)) return;
+        const b = p.scope.getBinding(p.node.id.name);
+        if (!b) return;
+        for (const ref of b.referencePaths) {
+          const call = ref.parentPath?.parentPath;
+          let t = [];
+          if (call?.isCallExpression?.() && call.node.callee?.property
+              && ARR.has(call.node.callee.property.name) && call.node.arguments[0])
+            t = timeProps(call.get("arguments.0"));
+          else if (ref.parentPath?.isForOfStatement?.())
+            t = timeProps(ref.parentPath.get("body"));
+          if (!t.length) continue;
+          const ln = ref.node.loc.start.line;
+          const why = exemptOn(ln) || exemptOn(p.node.loc.start.line);
+          if (why) exempt.push(`${f}:${ln}  ${why}`);
+          else raw.push(`${f}:${ln}  ${p.node.id.name} = ARTISTS … (… a.${t.join("/a.")} …)`);
+        }
+      },
+    });
+  }
+  for (const r of raw) console.log(`  ✗ ${r}`);
+  for (const e of exempt) console.log(`  · ${e}`);
+  if (raw.length) fail(`${raw.length} schedule read(s) search ARTISTS directly — use activeLineup() `
+    + `(or lineupFor(weekendFilter) where the user picks the weekend), or mark it \`// weekend-exempt: <why>\``);
+  console.log(`  ✓ ${filtered} schedule read(s) take the filtered lineup; ${exempt.length} exempted, each with a reason`);
 }
 
 let REG_LIVE = [];

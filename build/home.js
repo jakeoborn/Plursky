@@ -217,7 +217,7 @@ function TonightCard({
       return idx + 1;
     })();
     var target = `${pdtH.toString().padStart(2, "0")}:${utcM.toString().padStart(2, "0")}`;
-    return ARTISTS.find(a => a.day === sunriseDay && a.stage === (FESTIVAL_CONFIG.mainStageId || "kinetic") && toNightMin(a.start) <= toNightMin(target) && toNightMin(a.end) > toNightMin(target));
+    return activeLineup().find(a => a.day === sunriseDay && a.stage === (FESTIVAL_CONFIG.mainStageId || "kinetic") && toNightMin(a.start) <= toNightMin(target) && toNightMin(a.end) > toNightMin(target));
   })();
   var card = (label, value, sub, accent) => React.createElement("div", {
     style: {
@@ -842,13 +842,13 @@ function stageWalkMinutes(fromId, toId) {
 function liveAcrossStages() {
   var now = toNightMin(NOW.time);
   return STAGES.map(s => {
-    var live = ARTISTS.find(a => {
+    var live = activeLineup().find(a => {
       if (a.stage !== s.id || a.day !== NOW.day) return false;
       var start = toNightMin(a.start),
         end = toNightMin(a.end);
       return now >= start && now < end;
     });
-    var upcoming = !live ? ARTISTS.filter(a => a.stage === s.id && a.day === NOW.day && toNightMin(a.start) > now).sort((a, b) => toNightMin(a.start) - toNightMin(b.start))[0] || null : null;
+    var upcoming = !live ? activeLineup().filter(a => a.stage === s.id && a.day === NOW.day && toNightMin(a.start) > now).sort((a, b) => toNightMin(a.start) - toNightMin(b.start))[0] || null : null;
     var minsUntil = upcoming ? toNightMin(upcoming.start) - now : null;
     return {
       stage: s,
@@ -889,7 +889,7 @@ function buildTonightsPlan(state) {
 function computeAlerts(savedIds, day, timeStr) {
   if (!savedIds?.length) return [];
   var nowMin = toNightMin(timeStr);
-  var todaySaved = ARTISTS.filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+  var todaySaved = activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
   var out = [];
   var _loop = function (a) {
     var s = toNightMin(a.start);
@@ -1107,16 +1107,16 @@ function F1TonightHero({
   var live = (() => {
     if (isPreEvent || isPostEvent) return null;
     var nowMin = toNightMin(NOW.time);
-    var allLive = ARTISTS.filter(a => {
+    var allLive = activeLineup().filter(a => {
       if (a.day !== day) return false;
       return nowMin >= toNightMin(a.start) && nowMin < toNightMin(a.end);
     });
     return allLive.find(a => a.stage === FESTIVAL_CONFIG.mainStageId) || [...allLive].sort((a, b) => (b.tier || 0) - (a.tier || 0))[0] || null;
   })();
   var headliner = (() => {
-    var savedTonight = ARTISTS.filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => (b.tier || 0) - (a.tier || 0) || toNightMin(b.end) - toNightMin(b.start) - (toNightMin(a.end) - toNightMin(a.start)));
+    var savedTonight = activeLineup().filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => (b.tier || 0) - (a.tier || 0) || toNightMin(b.end) - toNightMin(b.start) - (toNightMin(a.end) - toNightMin(a.start)));
     if (savedTonight.length) return savedTonight[0];
-    return [...ARTISTS].filter(a => a.day === day).sort((a, b) => (b.tier || 0) - (a.tier || 0))[0] || null;
+    return [...activeLineup()].filter(a => a.day === day).sort((a, b) => (b.tier || 0) - (a.tier || 0))[0] || null;
   })();
   var spotlight = (() => {
     if (!isPreEvent) return null;
@@ -1140,7 +1140,7 @@ function F1TonightHero({
     return Math.max(0, Math.min(1, (now - from) / span));
   })();
   var firstSetMs = dayMeta && !isPreEvent && !isPostEvent ? (() => {
-    var todays = ARTISTS.filter(a => a.day === day).sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
+    var todays = activeLineup().filter(a => a.day === day).sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
     var first = todays[0];
     if (!first) return null;
     return festivalNightDate(day, first.start).getTime();
@@ -1554,8 +1554,8 @@ function LastNightRecap({
     var dur = Math.max(20, toNightMin(a.end) - toNightMin(a.start));
     return (a.tier || 1) * 100 + dur;
   };
-  var yoursLastNight = ARTISTS.filter(a => a.day === prevDay && savedIds.includes(a.id)).sort((a, b) => score(b) - score(a));
-  var podiumSource = yoursLastNight.length ? yoursLastNight : ARTISTS.filter(a => a.day === prevDay).sort((a, b) => score(b) - score(a));
+  var yoursLastNight = activeLineup().filter(a => a.day === prevDay && savedIds.includes(a.id)).sort((a, b) => score(b) - score(a));
+  var podiumSource = yoursLastNight.length ? yoursLastNight : activeLineup().filter(a => a.day === prevDay).sort((a, b) => score(b) - score(a));
   var top3 = podiumSource.slice(0, 3);
   if (!top3.length) return null;
   var setsCaught = yoursLastNight.length;
@@ -1787,7 +1787,7 @@ function UpcomingTeaser({
     var meta = FESTIVAL_CONFIG.dayDates[day];
     var dayStartMs = festivalNightDate(day, "18:00").getTime();
     var countdownLabel = dayStartMs > now ? fmtCountdown(dayStartMs - now) : null;
-    var todays = ARTISTS.filter(a => a.day === day);
+    var todays = activeLineup().filter(a => a.day === day);
     var saved = todays.filter(a => savedIds.includes(a.id)).sort((a, b) => (b.tier || 0) - (a.tier || 0));
     var topPicks = todays.filter(a => !savedIds.includes(a.id)).sort((a, b) => (b.tier || 0) - (a.tier || 0));
     var highlights = [...saved, ...topPicks].slice(0, 4);
@@ -2936,7 +2936,7 @@ function HomeScreen({
     var byDay = [1, 2, 3].map(day => ({
       day,
       meta: FESTIVAL_CONFIG.dayDates[day],
-      artists: ARTISTS.filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start))
+      artists: activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start))
     })).filter(d => d.artists.length);
     if (!byDay.length) return React.createElement("button", {
       onClick: () => setState({
@@ -3891,7 +3891,7 @@ function DontMissStrip({
   setState
 }) {
   var moments = React.useMemo(() => {
-    return ARTISTS.filter(a => a.day === day && (typeof isLegendary === "function" ? isLegendary(a) : false)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start)).slice(0, 6);
+    return activeLineup().filter(a => a.day === day && (typeof isLegendary === "function" ? isLegendary(a) : false)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start)).slice(0, 6);
   }, [day]);
   if (!moments.length) return null;
   var dayMeta = FESTIVAL_CONFIG.dayDates[day];

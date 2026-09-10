@@ -1067,13 +1067,103 @@ function resolvedStageAnchors(cfg) {
 function resolvedStageAnchor(cfg, stageId) {
   return resolvedStageAnchors(cfg).find(a => a.stageId === stageId) || null;
 }
+function _weekendMajorityIsW2(saved) {
+  if (!Array.isArray(saved) || !saved.length) return false;
+  var all = typeof window !== "undefined" && window.ARTISTS || [];
+  var want = new Set(saved);
+  var w1 = 0,
+    w2 = 0;
+  for (var a of all) {
+    if (!want.has(a.id)) continue;
+    if (a.weekend === "W2") w2++;else if (a.weekend === "W1") w1++;
+  }
+  return w2 > w1;
+}
+var _wkMemo = null;
+function _weekendShiftMs(cfg, nowMs, savedIds) {
+  var w = cfg && cfg.weekendStartMs;
+  if (!w || typeof w.W1 !== "number" || typeof w.W2 !== "number") return 0;
+  var shift = w.W2 - w.W1;
+  if (!(shift > 0)) return 0;
+  var now = typeof nowMs === "number" ? nowMs : Date.now();
+  if (now >= w.W2) return shift;
+  try {
+    if (Array.isArray(savedIds)) return _weekendMajorityIsW2(savedIds) ? shift : 0;
+    var raw = localStorage.getItem(`${cfg.id}_saved_v1`) || "[]";
+    if (_wkMemo && _wkMemo.fid === cfg.id && _wkMemo.raw === raw) return _wkMemo.shift;
+    var out = _weekendMajorityIsW2(JSON.parse(raw)) ? shift : 0;
+    _wkMemo = {
+      fid: cfg.id,
+      raw,
+      shift: out
+    };
+    return out;
+  } catch {}
+  return 0;
+}
+function activeWeekend(cfg, nowMs, savedIds) {
+  var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
+  if (!c || !c.weekendStartMs) return null;
+  return _weekendShiftMs(c, nowMs, savedIds) ? "W2" : "W1";
+}
+var _lineupMemo = null;
+function lineupFor(weekend) {
+  var all = typeof window !== "undefined" && window.ARTISTS || ARTISTS || [];
+  if (!weekend || weekend === "all") return all;
+  if (_lineupMemo && _lineupMemo.src === all && _lineupMemo.wk === weekend) return _lineupMemo.list;
+  var list = all.filter(a => !a.weekend || a.weekend === "both" || a.weekend === weekend);
+  _lineupMemo = {
+    src: all,
+    wk: weekend,
+    list
+  };
+  return list;
+}
+function activeLineup(savedIds) {
+  return lineupFor(activeWeekend(null, undefined, savedIds));
+}
+function _shiftDayDate(d, shift) {
+  if (!d || !shift) return d;
+  var at = new Date(d.midnightUtc + shift);
+  return {
+    ...d,
+    midnightUtc: d.midnightUtc + shift,
+    m: at.getUTCMonth(),
+    d: at.getUTCDate()
+  };
+}
+function dayDateFor(day, nowMs, savedIds) {
+  var cfg = typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
+  var d = cfg && cfg.dayDates && cfg.dayDates[day];
+  if (!d) return null;
+  return _shiftDayDate(d, _weekendShiftMs(cfg, nowMs, savedIds));
+}
+function artistDayDate(a, nowMs, savedIds) {
+  if (!a) return null;
+  var cfg = typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
+  var d = cfg && cfg.dayDates && cfg.dayDates[a.day];
+  if (!d) return null;
+  if (a.weekend === "W1") return d;
+  if (a.weekend === "W2") {
+    var w = cfg && cfg.weekendStartMs;
+    var shift = w && typeof w.W1 === "number" && typeof w.W2 === "number" ? w.W2 - w.W1 : 0;
+    return _shiftDayDate(d, shift > 0 ? shift : 0);
+  }
+  return dayDateFor(a.day, nowMs, savedIds);
+}
 function _daysFor(cfg) {
   var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  return Object.entries(cfg.dayDates || {}).map(([n, d]) => ({
-    n: +n,
-    label: d.short,
-    date: `${months[d.m]} ${d.d}`
-  }));
+  var shift = _weekendShiftMs(cfg);
+  return Object.entries(cfg.dayDates || {}).map(([n, d]) => {
+    var at = shift ? new Date(d.midnightUtc + shift) : null;
+    var mm = at ? at.getUTCMonth() : d.m;
+    var dd = at ? at.getUTCDate() : d.d;
+    return {
+      n: +n,
+      label: d.short,
+      date: `${months[mm]} ${dd}`
+    };
+  });
 }
 var DAYS = _daysFor(FESTIVAL_CONFIG);
 var _nowCache = null;
@@ -1087,17 +1177,17 @@ function _computeNow() {
   var timeStr = `${String(hh).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
   function absMs(day, hhmm) {
     var [h, m] = hhmm.split(":").map(Number);
-    var base = FESTIVAL_CONFIG.dayDates[day]?.midnightUtc;
+    var base = dayDateFor(day, utcNow)?.midnightUtc;
     if (!base) return Infinity;
     return base + (h < 8 ? 86400000 : 0) + h * 3600000 + m * 60000;
   }
-  var liveNow = ARTISTS.filter(a => {
+  var liveNow = activeLineup().filter(a => {
     var s = absMs(a.day, a.start),
       e = absMs(a.day, a.end);
     return utcNow >= s && utcNow < e;
   });
   var currentArtist = liveNow.find(a => a.stage === FESTIVAL_CONFIG.mainStageId) || [...liveNow].sort((a, b) => (b.tier || 0) - (a.tier || 0))[0] || null;
-  var nextArtist = ARTISTS.filter(a => absMs(a.day, a.start) > utcNow).sort((a, b) => absMs(a.day, a.start) - absMs(b.day, b.start))[0] || null;
+  var nextArtist = activeLineup().filter(a => absMs(a.day, a.start) > utcNow).sort((a, b) => absMs(a.day, a.start) - absMs(b.day, b.start))[0] || null;
   var day = currentArtist?.day || nextArtist?.day || 1;
   var elapsedMin = currentArtist ? Math.max(0, Math.floor((utcNow - absMs(currentArtist.day, currentArtist.start)) / 60000)) : 0;
   _nowCache = {
@@ -1648,7 +1738,6 @@ Object.assign(window, {
   AVATAR_START,
   FRIENDS,
   ARTISTS: _active.artists,
-  DAYS: _daysFor(_active.config),
   NOW,
   ALERTS,
   ESSENTIALS,
@@ -1659,5 +1748,8 @@ Object.assign(window, {
   _resolveDefaultFestivalId,
   resolvedStageAnchors,
   resolvedStageAnchor,
+  dayDateFor,
+  _weekendShiftMs,
   _DATA_SETS
 });
+window.DAYS = _daysFor(_active.config);

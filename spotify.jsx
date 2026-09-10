@@ -2379,7 +2379,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
     const hhmm = (m.takenAt?.split(" ")[1] || "").slice(0, 5);
     const t = hhmm ? toNightMin(hhmm) : null;
     const night = m.night || NOW.day;
-    const all = ARTISTS.filter(a => a.day === night);
+    const all = activeLineup().filter(a => a.day === night);
     const playing = t != null ? all.filter(a => toNightMin(a.start) <= t && t < toNightMin(a.end)) : [];
     return (playing.length ? playing : all).slice().sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
   }, [m, retagQuery]);
@@ -2959,7 +2959,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
   const [showAll, setShowAll] = React.useState(false);
   // Recompute on every render so a night-change inside the editor swaps in
   // the new night's lineup without needing a parent re-key.
-  const nightArtists = ARTISTS.filter(a => a.day === moment.night);
+  const nightArtists = activeLineup().filter(a => a.day === moment.night);
   const savedNightArtists = nightArtists.filter(a => (savedArtistIds || []).includes(a.id));
   const pickerArtists = showAll
     ? nightArtists
@@ -9322,7 +9322,7 @@ function NowPlayingBar() {
 
     if (debugLive) {
       const stages = window.STAGES || [];
-      const artists = window.ARTISTS || [];
+      const artists = (typeof activeLineup === "function") ? activeLineup() : (window.ARTISTS || []);
       const debugStage = stages[0];
       const debugArtist = artists.find(a => a.stage === debugStage?.id && a.day === 1) || artists[0];
       if (debugStage) {

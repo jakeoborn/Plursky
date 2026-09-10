@@ -220,7 +220,7 @@ function TonightCard({ state, setState }) {
       return idx + 1;
     })();
     const target = `${pdtH.toString().padStart(2, "0")}:${utcM.toString().padStart(2, "0")}`;
-    return ARTISTS.find(a =>
+    return activeLineup().find(a =>
       a.day === sunriseDay && a.stage === (FESTIVAL_CONFIG.mainStageId || "kinetic")
       && toNightMin(a.start) <= toNightMin(target) && toNightMin(a.end) > toNightMin(target)
     );
@@ -653,13 +653,13 @@ function stageWalkMinutes(fromId, toId) {
 function liveAcrossStages() {
   const now = toNightMin(NOW.time);
   return STAGES.map(s => {
-    const live = ARTISTS.find(a => {
+    const live = activeLineup().find(a => {
       if (a.stage !== s.id || a.day !== NOW.day) return false;
       const start = toNightMin(a.start), end = toNightMin(a.end);
       return now >= start && now < end;
     });
     // When stage is dark, find the next artist starting on this stage today
-    const upcoming = !live ? ARTISTS
+    const upcoming = !live ? activeLineup()
       .filter(a => a.stage === s.id && a.day === NOW.day && toNightMin(a.start) > now)
       .sort((a, b) => toNightMin(a.start) - toNightMin(b.start))[0] || null
       : null;
@@ -700,7 +700,7 @@ function buildTonightsPlan(state) {
 function computeAlerts(savedIds, day, timeStr) {
   if (!savedIds?.length) return [];
   const nowMin = toNightMin(timeStr);
-  const todaySaved = ARTISTS
+  const todaySaved = activeLineup(savedIds)
     .filter(a => a.day === day && savedIds.includes(a.id))
     .sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
   const out = [];
@@ -739,6 +739,9 @@ function PostFestivalRecap({ state, setState }) {
   const byDay = [1, 2, 3].map(day => ({
     day,
     meta: FESTIVAL_CONFIG.dayDates[day],
+    // weekend-exempt: this is HISTORY. The resolver is clock-first, so from
+    // the moment Weekend 2 begins it answers W2 for good — filtering here
+    // would blank a Weekend 1 attendee's recap of the festival they attended.
     artists: ARTISTS.filter(a => a.day === day && savedIds.includes(a.id))
       .sort((a, b) => toNightMin(a.start) - toNightMin(b.start)),
   })).filter(d => d.artists.length);
@@ -873,7 +876,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
   const live = (() => {
     if (isPreEvent || isPostEvent) return null;
     const nowMin = toNightMin(NOW.time);
-    const allLive = ARTISTS.filter(a => {
+    const allLive = activeLineup().filter(a => {
       if (a.day !== day) return false;
       return nowMin >= toNightMin(a.start) && nowMin < toNightMin(a.end);
     });
@@ -884,12 +887,12 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
 
   // Headliner pick: highest-tier saved set tonight, else highest-tier scheduled artist of the day.
   const headliner = (() => {
-    const savedTonight = ARTISTS
+    const savedTonight = activeLineup()
       .filter(a => a.day === day && savedIds.includes(a.id))
       .sort((a, b) => (b.tier || 0) - (a.tier || 0)
         || (toNightMin(b.end) - toNightMin(b.start)) - (toNightMin(a.end) - toNightMin(a.start)));
     if (savedTonight.length) return savedTonight[0];
-    return [...ARTISTS]
+    return [...activeLineup()]
       .filter(a => a.day === day)
       .sort((a, b) => (b.tier || 0) - (a.tier || 0))[0] || null;
   })();
@@ -934,7 +937,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
   // Tonight-but-pre-doors: first set of day hasn't started yet
   const firstSetMs = dayMeta && !isPreEvent && !isPostEvent
     ? (() => {
-        const todays = ARTISTS.filter(a => a.day === day)
+        const todays = activeLineup().filter(a => a.day === day)
           .sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
         const first = todays[0];
         if (!first) return null;
@@ -1194,7 +1197,7 @@ function LastNightRecap({ state, setState }) {
     return (a.tier || 1) * 100 + dur;
   };
 
-  const yoursLastNight = ARTISTS
+  const yoursLastNight = activeLineup()
     .filter(a => a.day === prevDay && savedIds.includes(a.id))
     .sort((a, b) => score(b) - score(a));
 
@@ -1202,7 +1205,7 @@ function LastNightRecap({ state, setState }) {
   // tab isn't an empty void.
   const podiumSource = yoursLastNight.length
     ? yoursLastNight
-    : ARTISTS.filter(a => a.day === prevDay).sort((a, b) => score(b) - score(a));
+    : activeLineup().filter(a => a.day === prevDay).sort((a, b) => score(b) - score(a));
 
   const top3 = podiumSource.slice(0, 3);
   if (!top3.length) return null;
@@ -1357,7 +1360,7 @@ function UpcomingTeaser({ state, setState }) {
         const dayStartMs = festivalNightDate(day, "18:00").getTime();
         const countdownLabel = dayStartMs > now ? fmtCountdown(dayStartMs - now) : null;
         // Pick up to 4 highlights: saved sets first, then top-tier non-saved.
-        const todays = ARTISTS.filter(a => a.day === day);
+        const todays = activeLineup().filter(a => a.day === day);
         const saved  = todays.filter(a => savedIds.includes(a.id))
           .sort((a, b) => (b.tier || 0) - (a.tier || 0));
         const topPicks = todays
@@ -2099,7 +2102,7 @@ function HomeScreen({ state, setState }) {
           const byDay = [1, 2, 3].map(day => ({
             day,
             meta: FESTIVAL_CONFIG.dayDates[day],
-            artists: ARTISTS.filter(a => a.day === day && savedIds.includes(a.id))
+            artists: activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id))
               .sort((a, b) => toNightMin(a.start) - toNightMin(b.start)),
           })).filter(d => d.artists.length);
           if (!byDay.length) return (
@@ -2617,7 +2620,7 @@ function AlertsDrawer({ alerts, onClose, onOpenMap, onOpenLineup }) {
 // vets see the same callouts whether they're browsing or skimming home.
 function DontMissStrip({ day, state, setState }) {
   const moments = React.useMemo(() => {
-    return ARTISTS
+    return activeLineup()
       .filter(a => a.day === day && (typeof isLegendary === "function" ? isLegendary(a) : false))
       .sort((a, b) => toNightMin(a.start) - toNightMin(b.start))
       .slice(0, 6);

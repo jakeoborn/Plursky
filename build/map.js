@@ -2859,7 +2859,7 @@ function MapScreen({
     var t = Date.now();
     if (t < FESTIVAL_START_MS || t > FESTIVAL_END_MS) return null;
     var mins = toNightMin(NOW.time);
-    return ARTISTS.find(a => a.stage === stage.id && a.day === NOW.day && mins >= toNightMin(a.start) && mins < toNightMin(a.end)) || null;
+    return activeLineup().find(a => a.stage === stage.id && a.day === NOW.day && mins >= toNightMin(a.start) && mins < toNightMin(a.end)) || null;
   }, [stage && stage.id, NOW.day, NOW.time]);
   var dx = stage ? stage.x - avatar.x : 0;
   var dy = stage ? stage.y - avatar.y : 0;
@@ -6353,10 +6353,10 @@ function RealMap({
   }, "USE FESTIVAL MAP"))));
 }
 function _crowdDensity(stageId, nowMin) {
-  var playing = ARTISTS.find(a => a.stage === stageId && toNightMin(a.start) <= nowMin && toNightMin(a.end) > nowMin);
+  var playing = activeLineup().find(a => a.stage === stageId && toNightMin(a.start) <= nowMin && toNightMin(a.end) > nowMin);
   if (playing) return 0.25 + playing.tier / 3 * 0.75;
   var recent = null;
-  ARTISTS.forEach(a => {
+  activeLineup().forEach(a => {
     if (a.stage !== stageId) return;
     var endMin = toNightMin(a.end);
     if (endMin > nowMin || endMin < nowMin - 20) return;
@@ -7125,7 +7125,7 @@ function TopDownMap({
     var pinR = 2.1 + (s.size - 1) * 0.5;
     var savedHere = savedByStage[s.id];
     var nowMin = NOW.time ? toNightMin(NOW.time) : 0;
-    var liveArtist = typeof ARTISTS !== "undefined" ? ARTISTS.find(a => a.stage === s.id && a.day === NOW.day && nowMin >= toNightMin(a.start) && nowMin < toNightMin(a.end)) : null;
+    var liveArtist = typeof ARTISTS !== "undefined" ? activeLineup().find(a => a.stage === s.id && a.day === NOW.day && nowMin >= toNightMin(a.start) && nowMin < toNightMin(a.end)) : null;
     var energyR = liveArtist ? liveArtist.tier === 3 ? 12 : liveArtist.tier === 2 ? 9 : 6 : 0;
     return React.createElement("g", {
       key: s.id,
@@ -8549,8 +8549,8 @@ function StageLineupSheet({
     var h = parseInt(t.split(":")[0]);
     return h < 8 ? h + 24 : h;
   };
-  var sets = ARTISTS.filter(a => a.stage === stage.id && a.day === day).sort((a, b) => toSlot(a.start) - toSlot(b.start));
-  var totalAcrossDays = ARTISTS.filter(a => a.stage === stage.id).length;
+  var sets = activeLineup().filter(a => a.stage === stage.id && a.day === day).sort((a, b) => toSlot(a.start) - toSlot(b.start));
+  var totalAcrossDays = activeLineup().filter(a => a.stage === stage.id).length;
   var heroInk = _inkOn(stage.color);
   React.useEffect(() => {
     var onKey = e => {
@@ -8894,7 +8894,7 @@ function StageLineupSheet({
     }
   }, DAYS.map(d => {
     var on = d.n === day;
-    var count = ARTISTS.filter(a => a.stage === stage.id && a.day === d.n).length;
+    var count = activeLineup().filter(a => a.stage === stage.id && a.day === d.n).length;
     return React.createElement("button", {
       key: d.n,
       onClick: () => {

@@ -73,7 +73,7 @@ function TabBar({ active, onChange }) {
   const _liveMainColor = React.useMemo(() => {
     try {
       const stages = window.STAGES || [];
-      const artists = window.ARTISTS || [];
+      const artists = (typeof activeLineup === "function") ? activeLineup() : (window.ARTISTS || []);
       const main = window.FESTIVAL_CONFIG?.mainStageId;
       if (!main || !window.NOW?.time || !window.NOW?.day) return null;
       const nowMin = window.toNightMin(window.NOW.time);
@@ -765,7 +765,7 @@ function detectCurrentArtist(lat, lng, opts = {}) {
   const [nh, nm] = (now.time || "00:00").split(":").map(Number);
   const adjustH = nh < 6 ? nh + 24 : nh;
   const nowMin  = adjustH * 60 + nm;
-  const playing = (window.ARTISTS || []).find(a => {
+  const playing = activeLineup().find(a => {
     if (a.day !== now.day) return false;
     if (a.stage !== best.stageId) return false;
     const [sh, sm] = a.start.split(":").map(Number);
@@ -791,7 +791,9 @@ function recordAttendanceFromGps(lat, lng) {
 // Convert an artist's set start to a real UTC timestamp (respects
 // post-midnight sets: hours < 6 are treated as the following calendar day).
 function _artistStartMs(artist) {
-  const dayConfig = FESTIVAL_CONFIG.dayDates[artist.day];
+  // artistDayDate stamps the weekend THIS act plays (see data.jsx). Reading
+  // dayDates directly fires every W2 reminder a week early.
+  const dayConfig = artistDayDate(artist);
   if (!dayConfig) return null;
   const [h, m] = artist.start.split(":").map(Number);
   const adjustH = h < 6 ? h + 24 : h;
@@ -832,8 +834,13 @@ function scheduleReminders(state, showLocal) {
   const leadMin = getReminderLeadMin();
   const pending = [];
 
+  // activeLineup, not ARTISTS: a saved W1-only act is not in the lineup the
+  // user is on, so it simply does not resolve and no notification is built.
+  // A push for a set nobody is playing was the failure this closes.
+  const lineup = activeLineup(state.saved);
+
   state.saved.forEach(id => {
-    const a = ARTISTS.find(x => x.id === id);
+    const a = lineup.find(x => x.id === id);
     if (!a) return;
     const startMs = _artistStartMs(a);
     if (!startMs) return;
@@ -1248,7 +1255,7 @@ function _bsHasFestivalContext() {
     if (cfg && typeof cfg.startMs === "number" && typeof cfg.endMs === "number") {
       if (now >= cfg.startMs && now <= cfg.endMs) return true;
     }
-    const artists = (typeof window !== "undefined" && window.ARTISTS) || null;
+    const artists = (typeof activeLineup === "function") ? activeLineup() : null;
     const dayDates = cfg && cfg.dayDates;
     if (!artists || !dayDates) return false;
     let raw = "[]";
@@ -1262,7 +1269,7 @@ function _bsHasFestivalContext() {
       for (const id of saved) {
         const a = artists.find(x => x.id === id);
         if (!a || !a.start) continue;
-        const dm = dayDates[a.day];
+        const dm = artistDayDate(a, now) || dayDates[a.day];
         if (!dm || typeof dm.midnightUtc !== "number") continue;
         const [h, m] = String(a.start).split(":").map(Number);
         const isOvernight = h < 12;

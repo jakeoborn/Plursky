@@ -2172,7 +2172,7 @@ function MapScreen({ state, setState }) {
     const t = Date.now();
     if (t < FESTIVAL_START_MS || t > FESTIVAL_END_MS) return null;
     const mins = toNightMin(NOW.time);
-    return ARTISTS.find(a => a.stage === stage.id && a.day === NOW.day
+    return activeLineup().find(a => a.stage === stage.id && a.day === NOW.day
       && mins >= toNightMin(a.start) && mins < toNightMin(a.end)) || null;
   }, [stage && stage.id, NOW.day, NOW.time]);
   const dx = stage ? stage.x - avatar.x : 0;
@@ -4806,7 +4806,7 @@ function RealMap({
 // Estimated crowd density 0–1 at a stage for a given nowMin.
 // Tiers: headliner=3, prime=2, opener=1. Crowd fades out over 20 min after a set ends.
 function _crowdDensity(stageId, nowMin) {
-  const playing = ARTISTS.find(a =>
+  const playing = activeLineup().find(a =>
     a.stage === stageId &&
     toNightMin(a.start) <= nowMin &&
     toNightMin(a.end)   >  nowMin
@@ -4815,7 +4815,7 @@ function _crowdDensity(stageId, nowMin) {
 
   // Find the most recently ended set at this stage (within 20 min)
   let recent = null;
-  ARTISTS.forEach(a => {
+  activeLineup().forEach(a => {
     if (a.stage !== stageId) return;
     const endMin = toNightMin(a.end);
     if (endMin > nowMin || endMin < nowMin - 20) return;
@@ -5270,7 +5270,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           const pinR = 2.1 + (s.size - 1) * 0.5;
           const savedHere = savedByStage[s.id];
           const nowMin = NOW.time ? toNightMin(NOW.time) : 0;
-          const liveArtist = typeof ARTISTS !== "undefined" ? ARTISTS.find(a =>
+          const liveArtist = typeof ARTISTS !== "undefined" ? activeLineup().find(a =>
             a.stage === s.id && a.day === NOW.day &&
             nowMin >= toNightMin(a.start) && nowMin < toNightMin(a.end)
           ) : null;
@@ -6023,10 +6023,10 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
   const [day, setDay] = React.useState(NOW.day);
   const [expanded, setExpanded] = React.useState(false);
   const toSlot = t => { const h = parseInt(t.split(":")[0]); return h < 8 ? h + 24 : h; };
-  const sets = ARTISTS
+  const sets = activeLineup()
     .filter(a => a.stage === stage.id && a.day === day)
     .sort((a, b) => toSlot(a.start) - toSlot(b.start));
-  const totalAcrossDays = ARTISTS.filter(a => a.stage === stage.id).length;
+  const totalAcrossDays = activeLineup().filter(a => a.stage === stage.id).length;
   const heroInk = _inkOn(stage.color);
   // Esc closes the place card (keyboard / a11y parity with the × button).
   React.useEffect(() => {
@@ -6200,7 +6200,7 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
       <div style={{ display: "flex", gap: 4, marginBottom: 10 }}>
         {DAYS.map(d => {
           const on = d.n === day;
-          const count = ARTISTS.filter(a => a.stage === stage.id && a.day === d.n).length;
+          const count = activeLineup().filter(a => a.stage === stage.id && a.day === d.n).length;
           return (
             <button key={d.n} onClick={() => { setDay(d.n); setExpanded(true); }} style={{
               flex: 1, padding: "7px 6px", borderRadius: 8,
