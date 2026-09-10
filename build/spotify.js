@@ -8223,9 +8223,14 @@ function MemoriesScreen({
     setAll({
       ...current
     });
-    var okCount = results.filter(r => !r.err && !r.skipped).length;
+    var settledResults = results.map(r => Object.freeze({
+      ...r
+    }));
+    var landed = settledResults.filter(r => r.momentId);
+    var failedResults = settledResults.filter(r => r.err);
+    var duplicateResults = settledResults.filter(r => r.skipped === "duplicate");
     var activeFid = window.FESTIVAL_CONFIG?.id || null;
-    var elsewhere = results.filter(r => !r.err && !r.skipped && r.festivalId && r.festivalId !== activeFid);
+    var elsewhere = landed.filter(r => r.festivalId && r.festivalId !== activeFid);
     if (elsewhere.length) {
       var byFest = {};
       for (var r of elsewhere) byFest[r.festivalId] = (byFest[r.festivalId] || 0) + 1;
@@ -8233,12 +8238,13 @@ function MemoriesScreen({
       var parts = Object.keys(byFest).map(id => `${byFest[id]} to ${label(id)}`);
       window.plurskyToast?.(`Filed by capture date — ${parts.join(", ")}. Switch festivals to see them.`);
     }
-    if (okCount === 0) {
-      var failed = results.filter(r => r.err).length;
-      var dupes = results.filter(r => r.skipped === "duplicate").length;
-      if (dupes && !failed) window.plurskyToast?.(`Already imported — ${dupes} duplicate${dupes === 1 ? "" : "s"} skipped`);else window.plurskyToast?.(`Couldn't import ${failed} file${failed === 1 ? "" : "s"} — try a few at a time${failed ? ` · ${results.find(r => r.err)?.err || "failed"}` : ""}`);
+    if (landed.length === 0) {
+      var failed = failedResults.length;
+      var dupes = duplicateResults.length;
+      if (dupes && !failed) window.plurskyToast?.(`Already imported — ${dupes} duplicate${dupes === 1 ? "" : "s"} skipped`);else window.plurskyToast?.(`Couldn't import ${failed} file${failed === 1 ? "" : "s"} — try a few at a time${failed ? ` · ${failedResults[0]?.err || "failed"}` : ""}`);
+    } else if (failedResults.length) {
+      window.plurskyToast?.(`Imported ${landed.length} · ${failedResults.length} failed — tap to review`);
     }
-    var landed = results.filter(r => r.momentId);
     if (landed.length) setReview(landed);
     setTimeout(() => setBatch(b => b && b.done === b.total ? null : b), 6000);
   };
