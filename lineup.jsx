@@ -99,7 +99,7 @@ async function exportSavedSetsICS(savedIds) {
 // storage until Save, and the no-arg activeLineup() this used to call resolved
 // from storage and dropped every other-weekend pick (round 5).
 function _nightShareText(ids) {
-  const lines = [1, 2, 3].flatMap(day => {
+  const lines = festivalDayNums().flatMap(day => {
     const d = FESTIVAL_CONFIG.dayDates[day];
     const dayArtists = activeLineup(ids).filter(a => a.day === day && ids.includes(a.id))
       .sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
@@ -1341,13 +1341,8 @@ function LineupScreen({ state, setState }) {
           const clashWith = conflictById[a.id];
           const isHighlighted = highlightId === a.id;
           // FotMob-style LIVE pill — green pulsing dot + LIVE caps when
-          // the set is currently playing. Uses existing toNightMin so a
-          // set that runs past midnight still reads correctly.
-          const isLive = (() => {
-            if (a.day !== NOW.day || !NOW.time) return false;
-            const nm = toNightMin(NOW.time), sm = toNightMin(a.start), em = toNightMin(a.end);
-            return sm <= nm && nm < em;
-          })();
+          // the set is currently playing (real date AND time, see isSetLive).
+          const isLive = isSetLive(a);
           return (
             <div key={a.id}
               data-animate
@@ -1470,7 +1465,7 @@ function LineupScreen({ state, setState }) {
         })}
       </ScrollBody>
 
-      {viewMode === "grid" && NOW.day === day && NOW.time && (
+      {viewMode === "grid" && NOW.night === day && NOW.time && (
         <button onClick={() => {
           const el = document.querySelector("[data-grid-scroll]");
           const nowMin = toNightMin(NOW.time);
@@ -1649,11 +1644,7 @@ function SavedSidebar({ day, state, setState }) {
           const endMin   = toNightMin(a.end);
           const top      = _minToTop(startMin);
           const blockH   = Math.max(34, _minToTop(endMin) - top);
-          const isLive = (() => {
-            if (a.day !== NOW.day || !NOW.time) return false;
-            const nm = toNightMin(NOW.time);
-            return startMin <= nm && nm < endMin;
-          })();
+          const isLive = isSetLive(a);
           return (
             <button
               key={a.id}
@@ -1874,7 +1865,7 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
   }
 
   let nowTop = null, nowMin = null;
-  if (NOW.day === day && NOW.time) {
+  if (NOW.night === day && NOW.time) {
     nowMin = toNightMin(NOW.time);
     if (nowMin >= GRID_START_MIN && nowMin <= GRID_END_MIN) nowTop = minToTop(nowMin);
   }
@@ -2216,6 +2207,7 @@ function TierStars({ tier }) {
   const colors = { 3: "#f59a36", 2: "var(--muted)", 1: "rgba(26,18,13,0.25)" };
   return (
     <span style={{ display: "inline-flex", gap: 1.5, alignItems: "center" }}>
+      {/* not-days: three tier stars */}
       {[1, 2, 3].map(i => (
         <svg key={i} width="9" height="9" viewBox="0 0 24 24"
           fill={i <= tier ? colors[tier] : "rgba(26,18,13,0.12)"}>
@@ -2444,7 +2436,7 @@ function printLineupPDF(state) {
 async function copyScheduleText(state) {
   const ids = state.saved;
   if (!ids.length) return { ok: false, reason: "empty" };
-  const lines = [1, 2, 3].flatMap(day => {
+  const lines = festivalDayNums().flatMap(day => {
     const d = FESTIVAL_CONFIG.dayDates[day];
     const artists = activeLineup().filter(a => a.day === day && ids.includes(a.id))
       .sort((a, b) => toNightMin(a.start) - toNightMin(b.start));

@@ -966,8 +966,11 @@ function HistoryRecordsSection({ state, setState }) {
       count: savedThisDay.length,
       totalMin,
       topStage,
-      isPast: typeof window.NOW !== "undefined" && window.NOW.day > n,
-      isLive: typeof window.NOW !== "undefined" && window.NOW.day === n,
+      // Night n runs 08:00 on its date to 08:00 the next morning (toNightMin's
+      // convention). Read off the real date: NOW.day falls back to the NEXT
+      // set's day, so it called night 1 live before the festival and nothing
+      // past after it.
+      ..._nightWindowFlags(n),
     };
   });
 

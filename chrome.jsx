@@ -75,10 +75,8 @@ function TabBar({ active, onChange }) {
       const stages = window.STAGES || [];
       const artists = (typeof activeLineup === "function") ? activeLineup() : (window.ARTISTS || []);
       const main = window.FESTIVAL_CONFIG?.mainStageId;
-      if (!main || !window.NOW?.time || !window.NOW?.day) return null;
-      const nowMin = window.toNightMin(window.NOW.time);
-      const live = artists.find(a => a.stage === main && a.day === window.NOW.day &&
-        nowMin >= window.toNightMin(a.start) && nowMin < window.toNightMin(a.end));
+      if (!main || typeof window.isSetLive !== "function") return null;
+      const live = artists.find(a => a.stage === main && window.isSetLive(a));
       if (!live) return null;
       return stages.find(s => s.id === main)?.color || null;
     } catch { return null; }
@@ -761,19 +759,9 @@ function detectCurrentArtist(lat, lng, opts = {}) {
     if (!best || d < best.d) best = { ...a, d };
   }
   if (!best) return null;
-  // Artist at that stage whose set window contains NOW.time
-  const [nh, nm] = (now.time || "00:00").split(":").map(Number);
-  const adjustH = nh < 6 ? nh + 24 : nh;
-  const nowMin  = adjustH * 60 + nm;
-  const playing = activeLineup().find(a => {
-    if (a.day !== now.day) return false;
-    if (a.stage !== best.stageId) return false;
-    const [sh, sm] = a.start.split(":").map(Number);
-    const [eh, em] = a.end.split(":").map(Number);
-    const start = (sh < 6 ? sh + 24 : sh) * 60 + sm;
-    const end   = (eh < 6 ? eh + 24 : eh) * 60 + em;
-    return nowMin >= start && nowMin < end;
-  });
+  // Artist on stage at that anchor right now, by real date (isSetLive). The
+  // old clock-of-day match against now.day auto-attended a set a week early.
+  const playing = activeLineup().find(a => a.stage === best.stageId && isSetLive(a));
   if (!playing) return null;
   return { artistId: playing.id, stageId: best.stageId, night: now.day, distM: Math.round(best.d) };
 }

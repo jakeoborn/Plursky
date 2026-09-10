@@ -940,7 +940,7 @@ function App() {
     var validArtist = dlArtist && ARTISTS.find(a => a.id === dlArtist) ? dlArtist : null;
     var validTab = ["home", "map", "lineup", "spotify", "me", "memories"].includes(dlTab) ? dlTab : null;
     var validStage = dlStage && STAGES.find(s => s.id === dlStage || s.short.toLowerCase() === dlStage.toLowerCase()) ? dlStage : null;
-    var validDay = dlDay && [1, 2, 3].includes(+dlDay) ? +dlDay : null;
+    var validDay = dlDay && festivalDayNums().includes(+dlDay) ? +dlDay : null;
     var validFriendIds = dlLineup ? dlLineup.split(",").map(s => s.trim()).filter(id => ARTISTS.find(a => a.id === id)) : [];
     var validFrom = (dlFrom || "").slice(0, 24).replace(/[^a-zA-Z0-9 _.-]/g, "") || null;
     var validCrew = (dlCrew || "").trim().toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 12) || null;
@@ -1289,7 +1289,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v290"
+        version: "v291"
       }));
     } catch {}
   }
@@ -1354,7 +1354,7 @@ class RootErrorBoundary extends React.Component {
         letterSpacing: 1.2,
         color: "rgba(26,18,13,0.45)"
       }
-    }, "PLURSKY · v290"));
+    }, "PLURSKY · v291"));
   }
 }
 function SetStartingCinematic() {
@@ -1364,11 +1364,11 @@ function SetStartingCinematic() {
     var check = () => {
       try {
         var saved = JSON.parse(localStorage.getItem(`${FESTIVAL_CONFIG.id}_saved_v1`) || "[]");
-        if (!saved.length || !NOW.time || !NOW.day) return;
+        if (!saved.length || !NOW.time || NOW.night == null) return;
         var nowMin = toNightMin(NOW.time);
         var _loop = function (_id) {
             var a = activeLineup().find(x => x.id === _id);
-            if (!a || a.day !== NOW.day) return 0;
+            if (!a || a.day !== NOW.night) return 0;
             var startMin = toNightMin(a.start);
             var diff = startMin - nowMin;
             if (diff > 0 && diff <= 3 && !shownRef.current.has(a.id)) {

@@ -1183,7 +1183,7 @@ var _nowCache = null;
 var _nowCacheAt = 0;
 function _computeNow() {
   var utcNow = Date.now();
-  if (_nowCache && utcNow - _nowCacheAt < 30000) return _nowCache;
+  if (_nowCache && utcNow >= _nowCacheAt && utcNow - _nowCacheAt < 30000) return _nowCache;
   var localMs = utcNow + FESTIVAL_CONFIG.utcOffsetHours * 3600000;
   var hh = Math.floor(localMs / 3600000) % 24;
   var mm = Math.floor(localMs / 60000) % 60;
@@ -1203,12 +1203,16 @@ function _computeNow() {
   var nextArtist = activeLineup().filter(a => absMs(a.day, a.start) > utcNow).sort((a, b) => absMs(a.day, a.start) - absMs(b.day, b.start))[0] || null;
   var day = currentArtist?.day || nextArtist?.day || 1;
   var elapsedMin = currentArtist ? Math.max(0, Math.floor((utcNow - absMs(currentArtist.day, currentArtist.start)) / 60000)) : 0;
+  var cfgNow = typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
+  var nightNum = Object.keys(cfgNow.dayDates || {}).map(Number).find(n => _nightWindowFlags(n, utcNow).isLive);
   _nowCache = {
     day,
+    night: nightNum == null ? null : nightNum,
     time: timeStr,
     currentArtistId: currentArtist?.id || null,
     nextArtistId: nextArtist?.id || null,
-    elapsedMin
+    elapsedMin,
+    liveIds: liveNow.map(a => a.id)
   };
   _nowCacheAt = utcNow;
   return _nowCache;
@@ -1218,6 +1222,25 @@ var NOW = new Proxy({}, {
     return _computeNow()[prop];
   }
 });
+function isSetLive(a) {
+  return !!a && NOW.liveIds.includes(a.id);
+}
+function _nightWindowFlags(n, nowMs = Date.now()) {
+  var d = dayDateFor(n, nowMs);
+  if (!d || typeof d.midnightUtc !== "number") return {
+    isPast: false,
+    isLive: false
+  };
+  var open = d.midnightUtc + 8 * 3600000,
+    close = open + 86400000;
+  return {
+    isPast: nowMs >= close,
+    isLive: nowMs >= open && nowMs < close
+  };
+}
+function festivalDayNums() {
+  return [...(window.DAYS || DAYS)].map(d => d.n).sort((x, y) => x - y);
+}
 var ALERTS = [];
 var ESSENTIALS = [{
   id: "e1",

@@ -786,11 +786,12 @@ function FestivalSkyBand({
   }))));
 }
 function useTick(intervalMs) {
-  var [, setT] = React.useState(0);
+  var [t, setT] = React.useState(0);
   React.useEffect(() => {
     var id = setInterval(() => setT(t => t + 1), intervalMs);
     return () => clearInterval(id);
   }, [intervalMs]);
+  return t;
 }
 var _WALK_MIN = {
   "basspod,bionic": 13,
@@ -840,15 +841,11 @@ function stageWalkMinutes(fromId, toId) {
   return Math.max(2, Math.round(Math.hypot(a.x - b.x, a.y - b.y) * 0.4));
 }
 function liveAcrossStages() {
+  var night = NOW.night;
   var now = toNightMin(NOW.time);
   return STAGES.map(s => {
-    var live = activeLineup().find(a => {
-      if (a.stage !== s.id || a.day !== NOW.day) return false;
-      var start = toNightMin(a.start),
-        end = toNightMin(a.end);
-      return now >= start && now < end;
-    });
-    var upcoming = !live ? activeLineup().filter(a => a.stage === s.id && a.day === NOW.day && toNightMin(a.start) > now).sort((a, b) => toNightMin(a.start) - toNightMin(b.start))[0] || null : null;
+    var live = activeLineup().find(a => a.stage === s.id && isSetLive(a));
+    var upcoming = !live && night != null ? activeLineup().filter(a => a.stage === s.id && a.day === night && toNightMin(a.start) > now).sort((a, b) => toNightMin(a.start) - toNightMin(b.start))[0] || null : null;
     var minsUntil = upcoming ? toNightMin(upcoming.start) - now : null;
     return {
       stage: s,
@@ -859,15 +856,18 @@ function liveAcrossStages() {
   });
 }
 function buildTonightsPlan(state) {
+  var night = NOW.night;
+  if (night == null) return [];
   var nowMin = toNightMin(NOW.time);
-  var sets = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(a => a && a.day === NOW.day).sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
+  var lineup = activeLineup(state.saved);
+  var sets = state.saved.map(id => lineup.find(a => a.id === id)).filter(a => a && a.day === night).sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
   return sets.map((a, i) => {
     var prev = sets[i - 1];
     var walk = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
     var startMin = toNightMin(a.start);
     var endMin = toNightMin(a.end);
     var minsUntil = startMin - nowMin;
-    var isLive = nowMin >= startMin && nowMin < endMin;
+    var isLive = isSetLive(a);
     var isPast = nowMin >= endMin;
     var leaveBy = walk > 0 ? startMin - walk : null;
     var prevEnd = prev ? toNightMin(prev.end) : null;
@@ -930,7 +930,7 @@ function PostFestivalRecap({
   setState
 }) {
   var savedIds = state.saved || [];
-  var byDay = [1, 2, 3].map(day => ({
+  var byDay = festivalDayNums().map(day => ({
     day,
     meta: FESTIVAL_CONFIG.dayDates[day],
     artists: ARTISTS.filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start))
@@ -1107,10 +1107,7 @@ function F1TonightHero({
   var live = (() => {
     if (isPreEvent || isPostEvent) return null;
     var nowMin = toNightMin(NOW.time);
-    var allLive = activeLineup().filter(a => {
-      if (a.day !== day) return false;
-      return nowMin >= toNightMin(a.start) && nowMin < toNightMin(a.end);
-    });
+    var allLive = activeLineup().filter(a => isSetLive(a));
     return allLive.find(a => a.stage === FESTIVAL_CONFIG.mainStageId) || [...allLive].sort((a, b) => (b.tier || 0) - (a.tier || 0))[0] || null;
   })();
   var headliner = (() => {
@@ -1754,9 +1751,10 @@ function UpcomingTeaser({
   var isPreEvent = now < FESTIVAL_START_MS;
   var savedIds = state.saved || [];
   var upcomingDays = (() => {
-    if (isPreEvent) return [1, 2, 3];
+    var days = festivalDayNums();
+    if (isPreEvent) return days;
     var next = NOW.day + 1;
-    return next <= 3 ? [next] : [];
+    return days.includes(next) ? [next] : [];
   })();
   if (!upcomingDays.length) {
     return React.createElement("div", {
@@ -2005,7 +2003,7 @@ function HomeScreen({
   var upNextMin = next ? Math.max(0, toNightMin(next.start) - toNightMin(NOW.time)) : 0;
   var tonight = buildTonightsPlan(state);
   var liveStrip = liveAcrossStages();
-  var _dynAlerts = !countdown && state.saved?.length ? computeAlerts(state.saved, NOW.day, NOW.time) : [];
+  var _dynAlerts = !countdown && state.saved?.length ? computeAlerts(state.saved, NOW.night, NOW.time) : [];
   var alerts = _dynAlerts.length ? _dynAlerts : state.alerts || ALERTS;
   var unread = alerts.filter(a => a.unread).length;
   var [heroParallax, setHeroParallax] = React.useState(0);
@@ -2791,7 +2789,7 @@ function HomeScreen({
   })), countdown && (() => {
     var headliners = ARTISTS.filter(a => a.tier >= 2).sort((a, b) => b.tier - a.tier || a.day - b.day || toNightMin(a.start) - toNightMin(b.start)).slice(0, 9);
     if (!headliners.length) return null;
-    var dayGroups = [1, 2, 3].map(d => ({
+    var dayGroups = festivalDayNums().map(d => ({
       day: d,
       meta: FESTIVAL_CONFIG.dayDates[d],
       artists: headliners.filter(a => a.day === d).slice(0, 3)
@@ -2933,7 +2931,7 @@ function HomeScreen({
     state: state
   })), countdown && (() => {
     var savedIds = state.saved || [];
-    var byDay = [1, 2, 3].map(day => ({
+    var byDay = festivalDayNums().map(day => ({
       day,
       meta: FESTIVAL_CONFIG.dayDates[day],
       artists: activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start))
@@ -4384,7 +4382,7 @@ function FriendLineupBanner({
       paddingTop: 10,
       borderTop: "1px solid var(--line)"
     }
-  }, [1, 2, 3].map(day => {
+  }, festivalDayNums().map(day => {
     var dayArtists = friendIds.map(id => ARTISTS.find(a => a.id === id)).filter(a => a && a.day === day).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
     if (!dayArtists.length) return null;
     var meta = FESTIVAL_CONFIG.dayDates[day];

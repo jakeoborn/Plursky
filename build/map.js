@@ -763,9 +763,34 @@ function gridDistMeters(ax, ay, bx, by, avatar) {
   var m = distMiles(a.lat, a.lng, b.lat, b.lng) * 1609.34;
   return isFinite(m) ? Math.round(m) : null;
 }
-function findNextSavedSet(savedIds) {
+function savedStarsByStage(savedIds) {
+  var night = NOW.night;
+  if (night == null || !savedIds || !savedIds.length) return {};
   var nowMin = toNightMin(NOW.time);
-  var todays = savedIds.map(id => ARTISTS.find(a => a.id === id)).filter(a => a && a.day === NOW.day).map(a => ({
+  var lineup = activeLineup(savedIds);
+  var out = {};
+  savedIds.forEach(id => {
+    var a = lineup.find(x => x.id === id);
+    if (!a || a.day !== night) return;
+    var startMin = toNightMin(a.start),
+      endMin = toNightMin(a.end);
+    if (endMin <= nowMin) return;
+    var minsUntil = startMin - nowMin;
+    var cur = out[a.stage];
+    if (!cur || minsUntil < cur.minsUntil) out[a.stage] = {
+      artist: a,
+      minsUntil,
+      isLive: isSetLive(a)
+    };
+  });
+  return out;
+}
+function findNextSavedSet(savedIds) {
+  var night = NOW.night;
+  if (night == null) return null;
+  var nowMin = toNightMin(NOW.time);
+  var lineup = activeLineup(savedIds);
+  var todays = savedIds.map(id => lineup.find(a => a.id === id)).filter(a => a && a.day === night).map(a => ({
     a,
     sM: toNightMin(a.start),
     eM: toNightMin(a.end)
@@ -2291,7 +2316,7 @@ function SunriseStrip({
   avatar,
   onSelect
 }) {
-  var sun = FESTIVAL_CONFIG.sunTimes?.[NOW.day];
+  var sun = NOW.night != null ? FESTIVAL_CONFIG.sunTimes?.[NOW.night] : null;
   if (!sun) return null;
   var nowMin = toNightMin(NOW.time);
   var riseMin = toNightMin(sun.rise);
@@ -2856,11 +2881,8 @@ function MapScreen({
   var stage = selectedStage ? STAGES.find(s => s.id === selectedStage) : null;
   var nowAtStage = React.useMemo(() => {
     if (!stage) return null;
-    var t = Date.now();
-    if (t < FESTIVAL_START_MS || t > FESTIVAL_END_MS) return null;
-    var mins = toNightMin(NOW.time);
-    return activeLineup().find(a => a.stage === stage.id && a.day === NOW.day && mins >= toNightMin(a.start) && mins < toNightMin(a.end)) || null;
-  }, [stage && stage.id, NOW.day, NOW.time]);
+    return activeLineup().find(a => a.stage === stage.id && isSetLive(a)) || null;
+  }, [stage && stage.id, NOW.night, NOW.time]);
   var dx = stage ? stage.x - avatar.x : 0;
   var dy = stage ? stage.y - avatar.y : 0;
   var dist = Math.sqrt(dx * dx + dy * dy);
@@ -6085,27 +6107,12 @@ function RealMap({
       meetMarkerRef.current.setLngLat([lng, lat]);
     }
   }, [loaded, meetTarget?.x, meetTarget?.y]);
+  var starTick = useTick(60000);
   React.useEffect(() => {
     if (!loaded || !mapRef.current || !window.maplibregl) return;
     var live = savedStarMarkersRef.current;
     var seen = new Set();
-    var now = window.NOW || {};
-    var nowMin = typeof toNightMin === "function" && now.time ? toNightMin(now.time) : 0;
-    var byStage = {};
-    saved.forEach(id => {
-      var a = window.ARTISTS?.find(x => x.id === id);
-      if (!a || a.day !== now.day) return;
-      var sM = toNightMin(a.start),
-        eM = toNightMin(a.end);
-      if (eM <= nowMin) return;
-      var cur = byStage[a.stage];
-      if (!cur || sM - nowMin < cur.minsUntil) {
-        byStage[a.stage] = {
-          artist: a,
-          minsUntil: sM - nowMin
-        };
-      }
-    });
+    var byStage = savedStarsByStage(saved);
     Object.keys(byStage).forEach(stageId => {
       var s = stages.find(st => st.id === stageId);
       if (!s) return;
@@ -6134,7 +6141,7 @@ function RealMap({
         delete live[stageId];
       }
     });
-  }, [loaded, saved, stages]);
+  }, [loaded, saved, stages, starTick]);
   React.useEffect(() => {
     if (!loaded || !mapRef.current) return;
     var map = mapRef.current;
@@ -6353,11 +6360,12 @@ function RealMap({
   }, "USE FESTIVAL MAP"))));
 }
 function _crowdDensity(stageId, nowMin) {
-  var playing = activeLineup().find(a => a.stage === stageId && toNightMin(a.start) <= nowMin && toNightMin(a.end) > nowMin);
+  var night = NOW.night;
+  var playing = activeLineup().find(a => a.stage === stageId && a.day === night && toNightMin(a.start) <= nowMin && toNightMin(a.end) > nowMin);
   if (playing) return 0.25 + playing.tier / 3 * 0.75;
   var recent = null;
   activeLineup().forEach(a => {
-    if (a.stage !== stageId) return;
+    if (a.stage !== stageId || a.day !== night) return;
     var endMin = toNightMin(a.end);
     if (endMin > nowMin || endMin < nowMin - 20) return;
     if (!recent || endMin > toNightMin(recent.end)) recent = a;
@@ -6443,27 +6451,8 @@ function TopDownMap({
   var counterRot = compass ? ` rotate(${compassHeading}deg)` : "";
   var sel = stages.find(s => s.id === selected);
   var artPrintsStageNames = FESTIVAL_CONFIG.mapPrintsStageNames ?? FESTIVAL_CONFIG.mapTheme === "park";
-  var savedByStage = React.useMemo(() => {
-    var nowMin = toNightMin(NOW.time);
-    var map = {};
-    saved.forEach(id => {
-      var a = ARTISTS.find(x => x.id === id);
-      if (!a || a.day !== NOW.day) return;
-      var startMin = toNightMin(a.start);
-      var endMin = toNightMin(a.end);
-      if (endMin <= nowMin) return;
-      var minsUntil = startMin - nowMin;
-      var existing = map[a.stage];
-      if (!existing || minsUntil < existing.minsUntil) {
-        map[a.stage] = {
-          artist: a,
-          minsUntil,
-          isLive: nowMin >= startMin
-        };
-      }
-    });
-    return map;
-  }, [saved]);
+  var starTick = useTick(60000);
+  var savedByStage = React.useMemo(() => savedStarsByStage(saved), [saved, starTick]);
   var stars = React.useMemo(() => {
     var s = 0xdeadbeef;
     var rng = () => {
@@ -7124,8 +7113,7 @@ function TopDownMap({
     var isPark = FESTIVAL_CONFIG.mapTheme === "park";
     var pinR = 2.1 + (s.size - 1) * 0.5;
     var savedHere = savedByStage[s.id];
-    var nowMin = NOW.time ? toNightMin(NOW.time) : 0;
-    var liveArtist = typeof ARTISTS !== "undefined" ? activeLineup().find(a => a.stage === s.id && a.day === NOW.day && nowMin >= toNightMin(a.start) && nowMin < toNightMin(a.end)) : null;
+    var liveArtist = typeof ARTISTS !== "undefined" ? activeLineup().find(a => a.stage === s.id && isSetLive(a)) : null;
     var energyR = liveArtist ? liveArtist.tier === 3 ? 12 : liveArtist.tier === 2 ? 9 : 6 : 0;
     return React.createElement("g", {
       key: s.id,
@@ -8672,7 +8660,7 @@ function StageLineupSheet({
   }, {
     label: "SETS",
     value: `${sets.length}`,
-    unit: day === NOW.day ? "today" : "set day",
+    unit: day === NOW.night ? "today" : "set day",
     note: `${totalAcrossDays} · ${DAYS.length} NIGHTS`
   }].map(c => React.createElement("div", {
     key: c.label,
@@ -8934,7 +8922,7 @@ function StageLineupSheet({
         opacity: 0.7
       }
     }, "sets")));
-  })), day === NOW.day && nowAtStage && React.createElement("div", {
+  })), day === NOW.night && nowAtStage && React.createElement("div", {
     onClick: () => onOpenArtist(nowAtStage.id),
     style: {
       display: "flex",
@@ -9004,7 +8992,7 @@ function StageLineupSheet({
       color: "var(--muted)"
     }
   }, "No sets scheduled — stage dark tonight")), sets.map(s => {
-    var live = s.id === NOW.currentArtistId && day === NOW.day;
+    var live = isSetLive(s);
     var isSaved = state?.saved?.includes(s.id);
     var toggleSaveSet = e => {
       e.stopPropagation();
