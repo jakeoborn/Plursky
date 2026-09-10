@@ -94,6 +94,22 @@ async function exportSavedSetsICS(savedIds) {
   setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 500);
 }
 
+// The Build My Night text share. Resolves the weekend from the ids it is
+// sharing, the way exportSavedSetsICS does: the selection is not written to
+// storage until Save, and the no-arg activeLineup() this used to call resolved
+// from storage and dropped every other-weekend pick (round 5).
+function _nightShareText(ids) {
+  const lines = [1, 2, 3].flatMap(day => {
+    const d = FESTIVAL_CONFIG.dayDates[day];
+    const dayArtists = activeLineup(ids).filter(a => a.day === day && ids.includes(a.id))
+      .sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+    if (!dayArtists.length) return [];
+    return [`${d.short} · ${d.name.toUpperCase()}`,
+      ...dayArtists.map(a => `  ${fmt12(a.start)}  ${a.name}`), ""];
+  });
+  return [`My ${FESTIVAL_CONFIG.name} lineup (${ids.length} sets):`, "", ...lines].join("\n").trim();
+}
+
 // ── Build My Night wizard ─────────────────────────────────────
 function NightWizard({ state, setState, onClose }) {
   const [activeDay, setActiveDay] = React.useState(() => {
@@ -105,9 +121,14 @@ function NightWizard({ state, setState, onClose }) {
   });
 
   const [local, setLocal] = React.useState(() => new Set(state.saved));
+  // Every read below acts on `local`, the in-progress selection, so the
+  // weekend is resolved from `local` too. The ICS export already did; the
+  // counts, the list, the gap fits and Auto-fill resolved from storage and
+  // hid other-weekend picks until Save (round 5, same defect as the share).
+  const localIds = Array.from(local);
 
   const dayStats = DAYS.map(d => {
-    const sets = activeLineup().filter(a => a.day === d.n && local.has(a.id));
+    const sets = activeLineup(localIds).filter(a => a.day === d.n && local.has(a.id));
     let clashes = 0;
     for (let i = 0; i < sets.length; i++)
       for (let j = i + 1; j < sets.length; j++)
@@ -115,7 +136,7 @@ function NightWizard({ state, setState, onClose }) {
     return { ...d, count: sets.length, clashes };
   });
 
-  const sorted = activeLineup()
+  const sorted = activeLineup(localIds)
     .filter(a => a.day === activeDay && local.has(a.id))
     .sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
 
@@ -132,7 +153,7 @@ function NightWizard({ state, setState, onClose }) {
       const gS = toNightMin(sorted[i].end), gE = toNightMin(sorted[i + 1].start);
       if (gE > gS + 5) {
         const gapMin = gE - gS;
-        const fits = activeLineup().filter(a =>
+        const fits = activeLineup(localIds).filter(a =>
           a.day === activeDay && !local.has(a.id) &&
           toNightMin(a.start) >= gS && toNightMin(a.start) < gE - 14
         ).sort((a, b) => b.tier - a.tier).slice(0, 3);
@@ -150,7 +171,7 @@ function NightWizard({ state, setState, onClose }) {
   };
 
   const autoFill = () => {
-    const candidates = activeLineup().filter(a => a.day === activeDay)
+    const candidates = activeLineup(localIds).filter(a => a.day === activeDay)
       .sort((a, b) => (b.tier - a.tier) || (toNightMin(a.start) - toNightMin(b.start)));
     const picked = [];
     for (const a of candidates) {
@@ -160,7 +181,7 @@ function NightWizard({ state, setState, onClose }) {
     setLocal(prev => {
       const merged = new Set(prev);
       // Remove existing day sets then add optimal picks
-      activeLineup().filter(a => a.day === activeDay).forEach(a => merged.delete(a.id));
+      activeLineup(localIds).filter(a => a.day === activeDay).forEach(a => merged.delete(a.id));
       picked.forEach(a => merged.add(a.id));
       return merged;
     });
@@ -207,16 +228,7 @@ function NightWizard({ state, setState, onClose }) {
             </button>
             <button
               onClick={() => {
-                const ids = Array.from(local);
-                const lines = [1, 2, 3].flatMap(day => {
-                  const d = FESTIVAL_CONFIG.dayDates[day];
-                  const dayArtists = activeLineup().filter(a => a.day === day && ids.includes(a.id))
-                    .sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
-                  if (!dayArtists.length) return [];
-                  return [`${d.short} · ${d.name.toUpperCase()}`,
-                    ...dayArtists.map(a => `  ${fmt12(a.start)}  ${a.name}`), ""];
-                });
-                const text = [`My ${FESTIVAL_CONFIG.name} lineup (${ids.length} sets):`, "", ...lines].join("\n").trim();
+                const text = _nightShareText(Array.from(local));
                 if (navigator.share) { navigator.share({ title: `My ${FESTIVAL_CONFIG.shortName || "festival"} lineup`, text }).catch(() => {}); }
                 else { try { navigator.clipboard.writeText(text); } catch {} }
               }}
@@ -411,7 +423,7 @@ function LineupFilterSheet({
         if (f.tierFilter === "legend") return isLegendary(a);
         return true;
       }).length;
-  }, [f, day, savedSet]);
+  }, [f, day, savedSet, weekendFilter]);
 
   const chip = (on, accent, delay) => ({
     flexShrink: 0, padding: "6px 12px", borderRadius: 999,
@@ -712,7 +724,7 @@ function LineupScreen({ state, setState }) {
       .filter(([, n]) => n >= 2)
       .sort((a, b) => b[1] - a[1])
       .map(([g]) => g);
-  }, [day]);
+  }, [day, weekendFilter]);
 
   // Memoized so the 6-filter chain + sort only recomputes when an input
   // actually changes — was rebuilding over all 400+ artists on every render
@@ -778,10 +790,12 @@ function LineupScreen({ state, setState }) {
         || (a.genre || "").toLowerCase().includes(term)
         || (st?.name || "").toLowerCase().includes(term);
     }).length;
-  }, [q, day]);
+  }, [q, day, weekendFilter]);
 
-  // Per-day saved counts + conflict counts — memoized on saved only (was an
-  // O(n²)-per-day overlap loop on every render, report-card #8).
+  // Per-day saved counts + conflict counts — memoized on saved and on the
+  // weekend being shown (was an O(n²)-per-day overlap loop on every render,
+  // report-card #8; without weekendFilter the chips kept the first weekend's
+  // counts after the toggle flipped, round 5).
   const dayStats = React.useMemo(() => DAYS.map(d => {
     const savedThisDay = lineupFor(weekendFilter).filter(x => x.day === d.n && savedSetIds.has(x.id));
     let clashes = 0;
@@ -789,13 +803,13 @@ function LineupScreen({ state, setState }) {
       for (let j = i + 1; j < savedThisDay.length; j++)
         if (overlaps(savedThisDay[i], savedThisDay[j])) clashes++;
     return { ...d, count: savedThisDay.length, clashes };
-  }), [savedSetIds]);
+  }), [savedSetIds, weekendFilter]);
   const totalSaved = React.useMemo(() => dayStats.reduce((s, d) => s + d.count, 0), [dayStats]);
 
   // conflicts: 2+ saved sets overlap in time
   const savedToday = React.useMemo(
     () => lineupFor(weekendFilter).filter(a => a.day === day && savedSetIds.has(a.id)),
-    [day, savedSetIds]
+    [day, savedSetIds, weekendFilter]
   );
   // v141: pairs the user has explicitly "kept both" on — we still show them
   // as conflicts in the per-card ⚠ chip (information stays available) but

@@ -1600,6 +1600,30 @@ function activeLineup(savedIds) {
   return lineupFor(activeWeekend(null, undefined, savedIds));
 }
 
+// The weekend a MOMENT belongs to, read off its own capture time — the
+// moment's datum, the way artistDayDate reads the act's. The session resolver
+// is clock-first, so from Oct 9 it answers W2 for good, and a Weekend 1 photo
+// retagged after that was offered Weekend 2's acts only (round 5). takenAt is
+// a wall-clock "YYYY-MM-DD HH:MM[:SS]"; the cut is the midpoint between the two
+// weekend starts, days from either, so a few hours of zone slack cannot flip
+// it. Null for a single-weekend festival or an unreadable date.
+function momentWeekend(takenAt, cfg) {
+  const c = cfg || (typeof window !== "undefined" && window.FESTIVAL_CONFIG) || FESTIVAL_CONFIG;
+  const w = c && c.weekendStartMs;
+  if (!w || typeof w.W1 !== "number" || typeof w.W2 !== "number" || !(w.W2 > w.W1)) return null;
+  const m = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/.exec(String(takenAt || ""));
+  if (!m) return null;
+  const ms = Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5]) - (c.utcOffsetHours || 0) * 3600000;
+  return ms >= (w.W1 + w.W2) / 2 ? "W2" : "W1";
+}
+
+// The lineup a moment's retag picker offers: the weekend it was captured in,
+// or the session's when the moment carries no readable capture time.
+function momentLineup(m) {
+  const wk = momentWeekend(m && m.takenAt);
+  return wk ? lineupFor(wk) : activeLineup();
+}
+
 // The one place day -> date is resolved. Returns the dayDates entry shifted
 // onto the user's actual weekend, with m/d re-derived from the shifted
 // instant so LABELS move with the timestamps instead of drifting apart.
@@ -2555,4 +2579,24 @@ Object.assign(window, {
 // assign lands, so computing DAYS there searched the PREVIOUS festival's
 // lineup, matched none of the saved ACL ids, and permanently exported Weekend
 // 1 labels while every later resolver call correctly answered Weekend 2.
-window.DAYS = _daysFor(_active.config);
+//
+// And it stays LIVE, the way NOW is (round 5). Deriving it once froze the
+// labels at activation: pre-event the weekend comes from the saved-acts
+// majority, so saving a few Weekend 2 acts flipped every resolver to W2 while
+// DAYS kept printing Oct 2/3/4. The proxy re-derives on read, memoised on the
+// shift, so an access costs one cheap storage read and hands back the SAME
+// array until the weekend actually changes. No call site changes.
+let _daysMemo = null;                                  // { fid, shift, days }
+function _liveDays() {
+  const cfg = window.FESTIVAL_CONFIG || _active.config;
+  const shift = _weekendShiftMs(cfg);
+  if (!_daysMemo || _daysMemo.fid !== cfg.id || _daysMemo.shift !== shift)
+    _daysMemo = { fid: cfg.id, shift, days: _daysFor(cfg) };
+  return _daysMemo.days;
+}
+window.DAYS = new Proxy([], {
+  get: (_, k) => { const d = _liveDays(), v = d[k]; return typeof v === "function" ? v.bind(d) : v; },
+  has: (_, k) => k in _liveDays(),
+  ownKeys: () => Reflect.ownKeys(_liveDays()),
+  getOwnPropertyDescriptor: (_, k) => Reflect.getOwnPropertyDescriptor(_liveDays(), k),
+});

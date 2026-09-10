@@ -620,12 +620,22 @@ if (fdata.length) {
     });
     return [...seen].filter(x => TIME.has(x));
   };
+  // The resolvers a schedule read may go through. momentLineup (round 5): a
+  // moment's retag picker reads the weekend the moment was CAPTURED in.
+  const RESOLVERS = ["activeLineup", "lineupFor", "momentLineup"];
+  // A memo whose body calls a resolver with a component value must list that
+  // value in its deps, or it keeps serving the weekend it was first computed
+  // for — flip the WEEKEND toggle and the counts, genres and conflict list stay
+  // put. Round 5 found five such memos by review; this makes a sixth a failure.
+  const isMemoCall = c => (c.type === "Identifier" && (c.name === "useMemo" || c.name === "useCallback"))
+    || (c.type === "MemberExpression" && !c.computed && c.object?.name === "React"
+        && (c.property?.name === "useMemo" || c.property?.name === "useCallback"));
   const hasFilteredCall = n => {                     // does this expression go through the resolver?
     let found = false;
     const walk = x => {
       if (!x || typeof x !== "object" || found) return;
       if (x.type === "CallExpression" && x.callee?.type === "Identifier"
-          && ["activeLineup","lineupFor"].includes(x.callee.name)) { found = true; return; }
+          && RESOLVERS.includes(x.callee.name)) { found = true; return; }
       for (const k of Object.keys(x)) {
         const v = x[k];
         if (Array.isArray(v)) v.forEach(walk);
@@ -635,7 +645,7 @@ if (fdata.length) {
     walk(n);
     return found;
   };
-  let raw = [], filtered = 0, exempt = [];
+  let raw = [], filtered = 0, exempt = [], staleMemo = [], memosChecked = 0;
   for (const f of SRC) {
     const src = readFileSync(join(ROOT, f), "utf8");
     const lines = src.split("\n");
@@ -652,14 +662,37 @@ if (fdata.length) {
     traverse(ast, {
       CallExpression(p) {
         const c = p.node.callee;
+        if (isMemoCall(c) && p.node.arguments[0] && p.node.arguments[1]?.type === "ArrayExpression") {
+          const fn = p.get("arguments.0");
+          const deps = new Set(p.node.arguments[1].elements.filter(e => e?.type === "Identifier").map(e => e.name));
+          const need = new Set();
+          fn.traverse({
+            CallExpression(q) {
+              const k = q.node.callee;
+              if (k.type !== "Identifier" || !RESOLVERS.includes(k.name)) return;
+              for (const a of q.node.arguments) {
+                if (a.type !== "Identifier") continue;
+                const b = q.scope.getBinding(a.name);
+                // Module-level values are not deps, and a value bound INSIDE
+                // the memo is recomputed with it anyway.
+                if (!b || b.scope.path.isProgram() || b.path.findParent(x => x.node === fn.node)) continue;
+                need.add(a.name);
+              }
+            },
+          });
+          if (need.size) memosChecked++;
+          for (const x of need) if (!deps.has(x))
+            staleMemo.push(`${f}:${p.node.loc.start.line}  memo calls a weekend resolver with \`${x}\` but its deps omit it`);
+          return;
+        }
         if ((c.type !== "MemberExpression" && c.type !== "OptionalMemberExpression") || c.computed) return;
         if (!ARR.has(c.property.name)) return;
         const obj = c.object;
         const viaFilter = obj.type === "CallExpression" && obj.callee.type === "Identifier"
-          && (obj.callee.name === "activeLineup" || obj.callee.name === "lineupFor");
+          && RESOLVERS.includes(obj.callee.name);
         const viaFilterSpread = obj.type === "ArrayExpression" && obj.elements[0]?.type === "SpreadElement"
           && obj.elements[0].argument.type === "CallExpression"
-          && ["activeLineup","lineupFor"].includes(obj.elements[0].argument.callee?.name);
+          && RESOLVERS.includes(obj.elements[0].argument.callee?.name);
         if (viaFilter || viaFilterSpread) { if (p.node.arguments[0] && timeProps(p.get("arguments.0")).length) filtered++; return; }
         if (!isArtists(obj)) return;
         if (!p.node.arguments[0]) return;
@@ -695,10 +728,14 @@ if (fdata.length) {
     });
   }
   for (const r of raw) console.log(`  ✗ ${r}`);
+  for (const s of staleMemo) console.log(`  ✗ ${s}`);
   for (const e of exempt) console.log(`  · ${e}`);
   if (raw.length) fail(`${raw.length} schedule read(s) search ARTISTS directly — use activeLineup() `
     + `(or lineupFor(weekendFilter) where the user picks the weekend), or mark it \`// weekend-exempt: <why>\``);
+  if (staleMemo.length) fail(`${staleMemo.length} memo(s) call a weekend resolver with a value missing from `
+    + `their deps — add it, or the memo keeps the weekend it was first computed for`);
   console.log(`  ✓ ${filtered} schedule read(s) take the filtered lineup; ${exempt.length} exempted, each with a reason`);
+  console.log(`  ✓ ${memosChecked} memo(s) call a weekend resolver, and every one lists its weekend input in deps`);
 }
 
 let REG_LIVE = [];

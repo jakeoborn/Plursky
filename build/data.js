@@ -1122,6 +1122,19 @@ function lineupFor(weekend) {
 function activeLineup(savedIds) {
   return lineupFor(activeWeekend(null, undefined, savedIds));
 }
+function momentWeekend(takenAt, cfg) {
+  var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
+  var w = c && c.weekendStartMs;
+  if (!w || typeof w.W1 !== "number" || typeof w.W2 !== "number" || !(w.W2 > w.W1)) return null;
+  var m = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/.exec(String(takenAt || ""));
+  if (!m) return null;
+  var ms = Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5]) - (c.utcOffsetHours || 0) * 3600000;
+  return ms >= (w.W1 + w.W2) / 2 ? "W2" : "W1";
+}
+function momentLineup(m) {
+  var wk = momentWeekend(m && m.takenAt);
+  return wk ? lineupFor(wk) : activeLineup();
+}
 function _shiftDayDate(d, shift) {
   if (!d || !shift) return d;
   var at = new Date(d.midnightUtc + shift);
@@ -1752,4 +1765,24 @@ Object.assign(window, {
   _weekendShiftMs,
   _DATA_SETS
 });
-window.DAYS = _daysFor(_active.config);
+var _daysMemo = null;
+function _liveDays() {
+  var cfg = window.FESTIVAL_CONFIG || _active.config;
+  var shift = _weekendShiftMs(cfg);
+  if (!_daysMemo || _daysMemo.fid !== cfg.id || _daysMemo.shift !== shift) _daysMemo = {
+    fid: cfg.id,
+    shift,
+    days: _daysFor(cfg)
+  };
+  return _daysMemo.days;
+}
+window.DAYS = new Proxy([], {
+  get: (_, k) => {
+    var d = _liveDays(),
+      v = d[k];
+    return typeof v === "function" ? v.bind(d) : v;
+  },
+  has: (_, k) => k in _liveDays(),
+  ownKeys: () => Reflect.ownKeys(_liveDays()),
+  getOwnPropertyDescriptor: (_, k) => Reflect.getOwnPropertyDescriptor(_liveDays(), k)
+});

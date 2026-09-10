@@ -85,6 +85,15 @@ async function exportSavedSetsICS(savedIds) {
     URL.revokeObjectURL(url);
   }, 500);
 }
+function _nightShareText(ids) {
+  var lines = [1, 2, 3].flatMap(day => {
+    var d = FESTIVAL_CONFIG.dayDates[day];
+    var dayArtists = activeLineup(ids).filter(a => a.day === day && ids.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+    if (!dayArtists.length) return [];
+    return [`${d.short} · ${d.name.toUpperCase()}`, ...dayArtists.map(a => `  ${fmt12(a.start)}  ${a.name}`), ""];
+  });
+  return [`My ${FESTIVAL_CONFIG.name} lineup (${ids.length} sets):`, "", ...lines].join("\n").trim();
+}
 function NightWizard({
   state,
   setState,
@@ -101,8 +110,9 @@ function NightWizard({
     return best.n;
   });
   var [local, setLocal] = React.useState(() => new Set(state.saved));
+  var localIds = Array.from(local);
   var dayStats = DAYS.map(d => {
-    var sets = activeLineup().filter(a => a.day === d.n && local.has(a.id));
+    var sets = activeLineup(localIds).filter(a => a.day === d.n && local.has(a.id));
     var clashes = 0;
     for (var i = 0; i < sets.length; i++) for (var j = i + 1; j < sets.length; j++) if (overlaps(sets[i], sets[j])) clashes++;
     return {
@@ -111,7 +121,7 @@ function NightWizard({
       clashes
     };
   });
-  var sorted = activeLineup().filter(a => a.day === activeDay && local.has(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+  var sorted = activeLineup(localIds).filter(a => a.day === activeDay && local.has(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
   var conflictIds = new Set();
   for (var i = 0; i < sorted.length; i++) for (var j = i + 1; j < sorted.length; j++) if (overlaps(sorted[i], sorted[j])) {
     conflictIds.add(sorted[i].id);
@@ -128,7 +138,7 @@ function NightWizard({
         gE = toNightMin(sorted[_i + 1].start);
       if (gE > gS + 5) {
         var gapMin = gE - gS;
-        var fits = activeLineup().filter(a => a.day === activeDay && !local.has(a.id) && toNightMin(a.start) >= gS && toNightMin(a.start) < gE - 14).sort((a, b) => b.tier - a.tier).slice(0, 3);
+        var fits = activeLineup(localIds).filter(a => a.day === activeDay && !local.has(a.id) && toNightMin(a.start) >= gS && toNightMin(a.start) < gE - 14).sort((a, b) => b.tier - a.tier).slice(0, 3);
         items.push({
           type: "gap",
           gapMin,
@@ -156,7 +166,7 @@ function NightWizard({
     onClose();
   };
   var autoFill = () => {
-    var candidates = activeLineup().filter(a => a.day === activeDay).sort((a, b) => b.tier - a.tier || toNightMin(a.start) - toNightMin(b.start));
+    var candidates = activeLineup(localIds).filter(a => a.day === activeDay).sort((a, b) => b.tier - a.tier || toNightMin(a.start) - toNightMin(b.start));
     var picked = [];
     var _loop2 = function (a) {
       if (picked.length >= 8) return 1;
@@ -167,7 +177,7 @@ function NightWizard({
     }
     setLocal(prev => {
       var merged = new Set(prev);
-      activeLineup().filter(a => a.day === activeDay).forEach(a => merged.delete(a.id));
+      activeLineup(localIds).filter(a => a.day === activeDay).forEach(a => merged.delete(a.id));
       picked.forEach(a => merged.add(a.id));
       return merged;
     });
@@ -267,14 +277,7 @@ function NightWizard({
     stroke: "none"
   }))), React.createElement("button", {
     onClick: () => {
-      var ids = Array.from(local);
-      var lines = [1, 2, 3].flatMap(day => {
-        var d = FESTIVAL_CONFIG.dayDates[day];
-        var dayArtists = activeLineup().filter(a => a.day === day && ids.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
-        if (!dayArtists.length) return [];
-        return [`${d.short} · ${d.name.toUpperCase()}`, ...dayArtists.map(a => `  ${fmt12(a.start)}  ${a.name}`), ""];
-      });
-      var text = [`My ${FESTIVAL_CONFIG.name} lineup (${ids.length} sets):`, "", ...lines].join("\n").trim();
+      var text = _nightShareText(Array.from(local));
       if (navigator.share) {
         navigator.share({
           title: `My ${FESTIVAL_CONFIG.shortName || "festival"} lineup`,
@@ -682,7 +685,7 @@ function LineupFilterSheet({
       if (f.tierFilter === "legend") return isLegendary(a);
       return true;
     }).length;
-  }, [f, day, savedSet]);
+  }, [f, day, savedSet, weekendFilter]);
   var chip = (on, accent, delay) => ({
     flexShrink: 0,
     padding: "6px 12px",
@@ -1031,7 +1034,7 @@ function LineupScreen({
       if (a.genre) freq[a.genre] = (freq[a.genre] || 0) + 1;
     });
     return Object.entries(freq).filter(([, n]) => n >= 2).sort((a, b) => b[1] - a[1]).map(([g]) => g);
-  }, [day]);
+  }, [day, weekendFilter]);
   var savedSetIds = React.useMemo(() => new Set(state.saved), [state.saved]);
   var dayArtists = React.useMemo(() => {
     var term = q.trim().toLowerCase();
@@ -1065,7 +1068,7 @@ function LineupScreen({
       var st = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
       return a.name.toLowerCase().includes(term) || (a.genre || "").toLowerCase().includes(term) || (st?.name || "").toLowerCase().includes(term);
     }).length;
-  }, [q, day]);
+  }, [q, day, weekendFilter]);
   var dayStats = React.useMemo(() => DAYS.map(d => {
     var savedThisDay = lineupFor(weekendFilter).filter(x => x.day === d.n && savedSetIds.has(x.id));
     var clashes = 0;
@@ -1075,9 +1078,9 @@ function LineupScreen({
       count: savedThisDay.length,
       clashes
     };
-  }), [savedSetIds]);
+  }), [savedSetIds, weekendFilter]);
   var totalSaved = React.useMemo(() => dayStats.reduce((s, d) => s + d.count, 0), [dayStats]);
-  var savedToday = React.useMemo(() => lineupFor(weekendFilter).filter(a => a.day === day && savedSetIds.has(a.id)), [day, savedSetIds]);
+  var savedToday = React.useMemo(() => lineupFor(weekendFilter).filter(a => a.day === day && savedSetIds.has(a.id)), [day, savedSetIds, weekendFilter]);
   var CONFLICT_ACK_KEY = "plursky_conflicts_kept_both_v1";
   var _pairKey = (idA, idB) => [idA, idB].sort().join("|");
   var [ackedPairs, setAckedPairs] = React.useState(() => {

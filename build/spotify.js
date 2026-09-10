@@ -3423,7 +3423,7 @@ function MomentLightbox({
     var hhmm = (m.takenAt?.split(" ")[1] || "").slice(0, 5);
     var t = hhmm ? toNightMin(hhmm) : null;
     var night = m.night || NOW.day;
-    var all = activeLineup().filter(a => a.day === night);
+    var all = momentLineup(m).filter(a => a.day === night);
     var playing = t != null ? all.filter(a => toNightMin(a.start) <= t && t < toNightMin(a.end)) : [];
     return (playing.length ? playing : all).slice().sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
   }, [m, retagQuery]);
@@ -4445,7 +4445,7 @@ function MomentCard({
   var suggestedArtist = suggestion ? ARTISTS.find(a => a.id === suggestion.artistId) : null;
   var suggestedStage = suggestedArtist ? STAGES.find(s => s.id === suggestedArtist.stage) : null;
   var [showAll, setShowAll] = React.useState(false);
-  var nightArtists = activeLineup().filter(a => a.day === moment.night);
+  var nightArtists = momentLineup(moment).filter(a => a.day === moment.night);
   var savedNightArtists = nightArtists.filter(a => (savedArtistIds || []).includes(a.id));
   var pickerArtists = showAll ? nightArtists : savedNightArtists.length ? savedNightArtists : nightArtists;
   var setArtist = id => {
