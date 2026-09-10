@@ -638,6 +638,70 @@ var FESTIVALS_REGISTRY = [{
   accent: "#ec4899",
   emoji: "🌵",
   region: "North America"
+}, {
+  config: {
+    id: "edc-mexico-2027",
+    name: "EDC Mexico 2027",
+    shortName: "EDC Mexico",
+    brand: "EDC",
+    tagline: "Three days at the Autódromo",
+    location: "Autódromo Hermanos Rodríguez · Mexico City, Mexico",
+    locationShort: "Autódromo Hermanos Rodríguez",
+    dates: "Feb 19–21, 2027",
+    year: 2027
+  },
+  available: false,
+  accent: "#f43f5e",
+  emoji: "🌼",
+  region: "Latin America"
+}, {
+  config: {
+    id: "countdown-nye-2026",
+    name: "Countdown NYE 2026",
+    shortName: "Countdown",
+    brand: "Countdown",
+    tagline: "Five stages into the new year",
+    location: "NOS Events Center · San Bernardino, CA",
+    locationShort: "NOS Events Center",
+    dates: "Dec 31, 2026 – Jan 1, 2027",
+    year: 2026
+  },
+  available: false,
+  accent: "#60a5fa",
+  emoji: "🎆",
+  region: "North America"
+}, {
+  config: {
+    id: "beyond-wonderland-socal-2027",
+    name: "Beyond Wonderland SoCal 2027",
+    shortName: "Beyond SoCal",
+    brand: "Beyond Wonderland",
+    tagline: "Two days at NOS Events Center",
+    location: "NOS Events Center · San Bernardino, CA",
+    locationShort: "NOS Events Center",
+    dates: "Mar 26–27, 2027",
+    year: 2027
+  },
+  available: false,
+  accent: "#c084fc",
+  emoji: "🐇",
+  region: "North America"
+}, {
+  config: {
+    id: "beyond-wonderland-gorge-2027",
+    name: "Beyond Wonderland at The Gorge 2027",
+    shortName: "Beyond Gorge",
+    brand: "Beyond Wonderland",
+    tagline: "A camping weekend at The Gorge",
+    location: "Gorge Amphitheatre · George, WA",
+    locationShort: "Gorge Amphitheatre",
+    dates: "Jun 26–27, 2027",
+    year: 2027
+  },
+  available: false,
+  accent: "#2dd4bf",
+  emoji: "🏔️",
+  region: "North America"
 }];
 var _FESTIVAL_STALE_MS = 7 * 24 * 60 * 60 * 1000;
 function _resolveDefaultFestivalId(now) {
