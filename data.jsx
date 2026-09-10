@@ -2251,6 +2251,17 @@ const LL_STAGES = [
 // seven - the stages are real, the ASSIGNMENT was not. The flip session
 // (~Sep 12, when the official schedule drops in the Lost Lands app) fills
 // stage and set time together from the official source, NOT from press.
+//
+// The flip fills this block from a sheet transcribed off the OFFICIAL schedule:
+//   node scripts/import-set-times.mjs lost-lands-2026 <sheet.tsv> --source <official-url>
+// id → [stageId, start, end], festival-local "HH:MM" (before 08:00 = after
+// midnight). Every row is validated before a byte is written. An act absent
+// here keeps stage null and blank times: TBA is a real answer, and a partial
+// import ships only what the source shows.
+const LL_SCHEDULE = {
+  // SCHEDULE:BEGIN lost-lands-2026
+  // SCHEDULE:END
+};
 const _llMk = (id, name, genre, tier, day) => {
   // ⚠ NO SET TIMES ON PURPOSE. These used to be SYNTHESISED from tier
   // (t3 22:30-00:00, t2 20:00-21:30, else 17:00-18:30), which produced 201
@@ -2262,10 +2273,13 @@ const _llMk = (id, name, genre, tier, day) => {
   // house form for a gated festival whose schedule has not dropped — the
   // Nocturnal / III Points / CRSSD / Escape precedent. The flip session
   // fills these from the official schedule; scripts/verify.mjs now refuses
-  // to let a festival ship with fabricated ones.
-  return { id, name, genre, country: "—", stage: null, day, start: "", end: "", tier,
+  // to let a festival ship with fabricated ones. LL_SCHEDULE above is the only
+  // way a time gets in.
+  const s = LL_SCHEDULE[id];
+  return { id, name, genre, country: "—", stage: s ? s[0] : null, day, start: s ? s[1] : "", end: s ? s[2] : "", tier,
     img: "linear-gradient(135deg, #84cc16, #0a1a0c)",
-    bio: "Playing Lost Lands 2026. Stage and set time drop in the Lost Lands app about a week out." };
+    bio: s ? "Playing Lost Lands 2026."
+           : "Playing Lost Lands 2026. Stage and set time drop in the Lost Lands app about a week out." };
 };
 
 const LL_ARTISTS = [
