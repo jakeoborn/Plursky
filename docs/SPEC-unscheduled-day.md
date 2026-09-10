@@ -72,8 +72,8 @@ written down rather than left to that accident.
 Photo auto-tagging and recap attribute a captured moment to an act by matching
 the moment's night. `photo-tag.jsx:736,763` short-circuit on `a.day !== night`
 before the stage/time check. If `null` matched "any day" here, **every
-day-unknown act becomes a candidate for every photo**, and auto-tag — which
-[[the memories loop]] rests on — starts guessing. `spotify.jsx:2382,2410,2962`
+day-unknown act becomes a candidate for every photo**, and auto-tag — which the
+per-artist Memories rewatch loop rests on — starts guessing. `spotify.jsx:2382,2410,2962`
 and `chrome.jsx` reminders are the same class.
 
 ### D. Sorts — null is silently wrong, not loudly wrong
@@ -102,7 +102,7 @@ polarity inverts and "any day" would exclude everywhere) · `lineup.jsx:2549`
 "clash" with each other) · `lineup.jsx:2642,2652` (day-change detection while
 walking a sorted list) · `home.jsx:224` (sunrise set on the main stage) ·
 `spotify.jsx:2285` (already `slot.day == null` — the only site in the tree
-that handles null today) · `spotify.jsx:9327,9370` (debug//proximity paths).
+that handles null today) · `spotify.jsx:9327,9370` (debug / proximity paths).
 
 `lineup.jsx:2549` is the one to look hard at: conflict detection compares two
 acts' days to each other. Under a null model, two day-unknown acts have blank
