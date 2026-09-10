@@ -226,9 +226,10 @@
     mk("esc-yanamaste-d2", "Yanamaste", 2),
     mk("esc-zedd-d2", "Zedd", 2),
 
-    // ─────────── Lineup-card only; day/stage/time unpublished (21 acts) ───────────
+    // ─────────── Lineup-card only; day/stage/time unpublished (20 acts) ───────────
     mkUnscheduled("esc-unscheduled-all-rise", "All Rise"),
-    mkUnscheduled("esc-unscheduled-b2", "B2"),
+    // The card prints B2B as a small collaboration marker; standalone "B2"
+    // was an OCR/parser fragment, not an artist billing.
     mkUnscheduled("esc-unscheduled-coe", "$coe"),
     mkUnscheduled("esc-unscheduled-comadoses", "Comadoses"),
     mkUnscheduled("esc-unscheduled-death-simulator", "Death Simulator"),

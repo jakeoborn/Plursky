@@ -1723,7 +1723,11 @@
       id, name, genre: "—", country: "—",
       stage, day, start, end,
       tier: +start.slice(0, 2) >= 22 ? 3 : +start.slice(0, 2) >= 20 ? 2 : 1,
-      img: first?.heroImageUrl || `linear-gradient(135deg, ${(STAGES.find(s => s.id === stage) || STAGES[0]).color}, #0a0a1a)`,
+      // `img` is a CSS background shorthand throughout the current UI, not an
+      // image URL. Keep it render-safe; retain the official photo separately
+      // for a future UI that deliberately wraps it in url(...).
+      img: `linear-gradient(135deg, ${(STAGES.find(s => s.id === stage) || STAGES[0]).color}, #0a0a1a)`,
+      photoUrl: first?.heroImageUrl || "",
       thumbImg: first?.thumbImageUrl || "",
       bio: first?.bio || `Playing Nocturnal Wonderland 2026 on the ${(STAGES.find(s => s.id === stage) || {}).name} stage at ${start}.`,
       socials: first?.socialLinks || {},

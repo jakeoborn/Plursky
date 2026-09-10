@@ -484,6 +484,24 @@ if (fdata.length) {
   console.log(`  ✓ ${SRC.length} source file(s) — day loops follow the active festival; LIVE and "tonight" use real dates`);
 }
 
+// ── Artist background gate ───────────────────────────────────────────────
+// `artist.img` is consumed directly as CSS `background`, so raw URLs are
+// invalid shorthand and silently erase the intended art behind white text.
+{
+  console.log("▸ Artist background gate — img values must be CSS backgrounds, not raw URLs");
+  const offenders = [];
+  for (const f of FESTIVAL_MODULES) {
+    const src = readFileSync(join(ROOT, "data", "festivals", f), "utf8");
+    for (const m of src.matchAll(/\bimg\s*:\s*["'`](https?:\/\/[^"'`]+)["'`]/g))
+      offenders.push(`${f}: ${m[1]}`);
+  }
+  if (offenders.length) {
+    offenders.forEach(x => console.log(`  ✗ ${x}`));
+    fail(`${offenders.length} artist img value(s) are raw URLs — keep img CSS-safe and use photoUrl for image assets`);
+  }
+  console.log(`  ✓ ${FESTIVAL_MODULES.length} festival module(s) have CSS-safe img values`);
+}
+
 // ── Real-date gate ───────────────────────────────────────────────────────
 // Behaviour, not text: runs the REAL compiled data/lineup/home/map build in a
 // vm with the clock PINNED, on ACL 2026 (two weekends), and asks the three
@@ -1770,6 +1788,19 @@ const REGISTRATION_TOL_M = 25;
 }
 
 if (process.argv.includes("--parse-only")) process.exit(0);
+
+// ── 1z. Mixed-import toast regression ─────────────────────────────────────
+{
+  console.log("▸ Mixed-import toast gate — landed and failed files stay honest");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-import-toast.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`mixed-import regression failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
 
 // ── 2. Mount probe ─────────────────────────────────────────────────────────
 // Loads the REAL index.html in an iframe rather than reconstructing the script
