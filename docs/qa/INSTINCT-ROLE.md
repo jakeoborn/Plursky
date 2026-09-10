@@ -65,6 +65,16 @@ The ones that will catch you:
 - **crowd-anchor / distance-readout** — measure the structure, never the label;
   never derive world coordinates from poster art.
 
+**When a gate's scope narrows, its comment is part of the diff.** A gate whose
+comment overstates what it catches is the same defect as a page that overstates
+a festival: a false claim a reader has no reason to doubt, and the next person
+trusts the comment instead of re-reading the code. The worked example is the
+generated-page freshness gate (#109), whose comment said it caught both the
+change-driven and the time-driven rot path. After the two were split — the
+pull-request gate keeping change-driven, a scheduled workflow taking
+time-driven — the comment was still claiming both, and nothing would have
+failed because of it.
+
 ## Standing measurement rules
 
 - **Official sources only.** No invented data of any kind. One festival per session.
