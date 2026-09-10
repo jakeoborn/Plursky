@@ -1500,17 +1500,28 @@ var lastChars=-1, stable=0;
 })();
 </script>`);
 
-console.log("▸ Mount probe — real index.html, headless Chrome");
+// The hard wall-clock cap on Chrome. It is BOUNDED, not a hang: #107 reported
+// this probe "hangs indefinitely", but on 2026-09-10 six full runs on main
+// settled in ~1 s (7–16 s end to end), and a probe forced never to settle
+// (infinite virtual-time budget) was killed on the cap and failed red with no
+// orphaned Chrome. What CAN look like a hang is the silence while waiting
+// out the cap, and a failure line that did not say it was a timeout. So the
+// cap is announced up front, a timeout is named as one, and
+// VERIFY_PROBE_TIMEOUT_MS lets that path be exercised in seconds.
+const PROBE_TIMEOUT_MS = Number(process.env.VERIFY_PROBE_TIMEOUT_MS) || 90000;
+console.log(`▸ Mount probe — real index.html, headless Chrome (capped at ${PROBE_TIMEOUT_MS / 1000}s)`);
 // spawn, NOT execFileSync. The static server above runs in THIS process, so a
 // synchronous child blocks the event loop and the server can never answer
 // Chrome — every request hangs, virtual time never advances, and --dump-dom
 // waits out its timeout. It looks exactly like a broken app.
+const probeT0 = Date.now();
+let probeTimedOut = false;
 const dom = await new Promise((resolve) => {
   const child = spawn(CHROME, ["--headless=new","--disable-gpu","--no-sandbox",
     "--virtual-time-budget=14000","--dump-dom",`http://127.0.0.1:${PORT}/__verify_probe.html`],
     { stdio: ["ignore","pipe","ignore"] });
   let out = "";
-  const kill = setTimeout(() => child.kill("SIGKILL"), 90000);
+  const kill = setTimeout(() => { probeTimedOut = true; child.kill("SIGKILL"); }, PROBE_TIMEOUT_MS);
   child.stdout.on("data", d => { out += d; });
   child.on("close", () => { clearTimeout(kill); resolve(out); });
   child.on("error", () => { clearTimeout(kill); resolve(""); });
@@ -1519,7 +1530,11 @@ try { unlinkSync(PROBE); } catch {}
 server.close();
 
 const m = dom.match(/<pre id="R">([\s\S]*?)<\/pre>/);
-if (!m) fail("probe produced no result — Chrome may have died or the page never settled");
+if (!m && probeTimedOut)
+  fail(`probe TIMED OUT — Chrome was killed after ${Math.round((Date.now() - probeT0) / 1000)}s ` +
+       `without dumping the DOM (virtual time never drained). Re-run once; a slow machine ` +
+       `does not reproduce, a real stall does`);
+if (!m) fail("probe produced no result — Chrome exited without a result (crashed, or failed to launch)");
 const r = JSON.parse(m[1].replace(/&quot;/g,'"').replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">"));
 
 console.log(`  root children : ${r.root}`);
