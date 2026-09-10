@@ -145,7 +145,7 @@ function OnboardingModal({
         color: "#fff",
         fontWeight: 800
       }
-    }, ARTISTS.filter(a => a.stage === s.id).length)), React.createElement("div", {
+    }, activeLineup().filter(a => a.stage === s.id).length)), React.createElement("div", {
       className: "mono",
       style: {
         fontSize: 8,
@@ -375,7 +375,7 @@ function SearchModal({
     "day 3": 3
   };
   var dayFilter = DAY_MAP[query];
-  var results = query.length === 0 ? [] : ARTISTS.filter(a => {
+  var results = query.length === 0 ? [] : activeLineup().filter(a => {
     if (dayFilter) return a.day === dayFilter;
     var stage = STAGES.find(s => s.id === a.stage);
     return a.name.toLowerCase().includes(query) || a.genre.toLowerCase().includes(query) || (stage?.name || "").toLowerCase().includes(query) || (stage?.short || "").toLowerCase().includes(query) || (stage?.vibe || "").toLowerCase().includes(query) || ["legend", "legendary", "sunrise", "b2b"].includes(query) && isLegendary(a);
@@ -1289,7 +1289,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v287"
+        version: "v288"
       }));
     } catch {}
   }
@@ -1354,7 +1354,7 @@ class RootErrorBoundary extends React.Component {
         letterSpacing: 1.2,
         color: "rgba(26,18,13,0.45)"
       }
-    }, "PLURSKY · v287"));
+    }, "PLURSKY · v288"));
   }
 }
 function SetStartingCinematic() {
@@ -1367,7 +1367,7 @@ function SetStartingCinematic() {
         if (!saved.length || !NOW.time || !NOW.day) return;
         var nowMin = toNightMin(NOW.time);
         var _loop = function (_id) {
-            var a = ARTISTS.find(x => x.id === _id);
+            var a = activeLineup().find(x => x.id === _id);
             if (!a || a.day !== NOW.day) return 0;
             var startMin = toNightMin(a.start);
             var diff = startMin - nowMin;

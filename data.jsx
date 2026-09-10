@@ -1490,10 +1490,189 @@ function resolvedStageAnchor(cfg, stageId) {
   return resolvedStageAnchors(cfg).find(a => a.stageId === stageId) || null;
 }
 
+// ── Two-weekend festivals: WHICH weekend is this user's? ─────────────────
+// ACL runs Oct 2-4 AND Oct 9-11, but `dayDates` describes WEEKEND ONE only.
+// Every day -> timestamp conversion in the app read that table directly and
+// never consulted the act's `weekend` field, so on Oct 9-11 every computed
+// set window landed ~7 days in the PAST: `liveNow` matched nothing, the Today
+// screen's now-playing died for the whole festival, and an ICS export put the
+// user's entire weekend in their calendar a week early.
+//
+// The tell that this was a bug and not a decision: preEventCountdown()
+// already inferred the user's weekend and counted down correctly to Oct 9,
+// while every other surface rendered W1. Two halves of the app disagreeing.
+//
+// Founder ruling 2026-09-08 — clock first, saved-acts as the pre-event
+// fallback:
+//   · Once W2 has begun the clock decides. It cannot be wrong while you are
+//     standing in Zilker Park.
+//   · Before then the clock has nothing to say, so fall back to the same
+//     saved-acts majority preEventCountdown already uses. That also covers
+//     the gap week between the two weekends, where the clock is silent but a
+//     W2 attendee has usually already saved a W2-heavy lineup.
+//   · Anything else is W1, which is the historical behaviour.
+// No new UI and no copy, by design.
+//
+// The shift is DERIVED (W2 - W1), never hardcoded to 7 days, so a festival
+// whose weekends sit a fortnight apart works without touching this.
+// savedIds: pass the list you are actually acting on. The persisted list is
+// only the FALLBACK, and the two are not always the same — the lineup modal
+// hands the ICS export its in-progress `local` set, which is not written to
+// storage until Save. Inferring the weekend from storage while exporting that
+// set reads one list and acts on another.
+function _weekendMajorityIsW2(saved) {
+  if (!Array.isArray(saved) || !saved.length) return false;
+  const all = (typeof window !== "undefined" && window.ARTISTS) || [];
+  const want = new Set(saved);                         // O(n), not O(n·m)
+  let w1 = 0, w2 = 0;
+  for (const a of all) {
+    if (!want.has(a.id)) continue;
+    if (a.weekend === "W2") w2++; else if (a.weekend === "W1") w1++;
+  }
+  return w2 > w1;
+}
+
+// Memoised on the RAW storage string. absMs calls this from inside a sort
+// comparator, so the parse-plus-scan below was running O(n log n) times per
+// NOW recompute — 137 ACL acts against every saved id, a thousand times over.
+// Reading the string is cheap; parsing and scanning it is not.
+let _wkMemo = null;                                    // { fid, raw, shift }
+function _weekendShiftMs(cfg, nowMs, savedIds) {
+  const w = cfg && cfg.weekendStartMs;
+  if (!w || typeof w.W1 !== "number" || typeof w.W2 !== "number") return 0;
+  const shift = w.W2 - w.W1;
+  if (!(shift > 0)) return 0;
+  const now = typeof nowMs === "number" ? nowMs : Date.now();
+  if (now >= w.W2) return shift;                       // clock wins outright
+  try {                                                // else: what did they save?
+    if (Array.isArray(savedIds)) return _weekendMajorityIsW2(savedIds) ? shift : 0;
+    const raw = localStorage.getItem(`${cfg.id}_saved_v1`) || "[]";
+    if (_wkMemo && _wkMemo.fid === cfg.id && _wkMemo.raw === raw) return _wkMemo.shift;
+    const out = _weekendMajorityIsW2(JSON.parse(raw)) ? shift : 0;
+    _wkMemo = { fid: cfg.id, raw, shift: out };
+    return out;
+  } catch {}
+  return 0;
+}
+
+// Which weekend is active, as a label. Null when the festival has only one.
+function activeWeekend(cfg, nowMs, savedIds) {
+  const c = cfg || (typeof window !== "undefined" && window.FESTIVAL_CONFIG) || FESTIVAL_CONFIG;
+  if (!c || !c.weekendStartMs) return null;
+  return _weekendShiftMs(c, nowMs, savedIds) ? "W2" : "W1";
+}
+
+// ── THE ACTIVE LINEUP — one filtered source, not a guard per consumer ──
+//
+// Three review rounds each surfaced another unfiltered read path (now/next,
+// starting-soon and the ICS export; then the reminder scheduler; then GPS
+// auto-attendance and the set-starting cinematic) because a per-act guard
+// had to be REMEMBERED at every call site. An AST scan of the .jsx settled
+// how far that goes: 42 reads search the lineup by day/start/end. Six had
+// been named. Enumeration was never going to converge — so the read paths
+// take a filtered source instead of carrying a filter.
+//
+// ARTISTS itself stays whole, deliberately. 76 further reads look an artist
+// up BY ID — a saved id, an attended id, moment.artistId — to put a name on
+// a memory or a recap card. The resolver above is clock-first by founder
+// ruling, so from Oct 9 onward it answers "W2" for good; filtering the global
+// would leave a Weekend 1 attendee's memories permanently nameless. Identity
+// reads the whole lineup. The SCHEDULE reads this.
+//
+// Single-weekend festivals get the SAME ARRAY BACK — identical reference, not
+// merely equal — so the other 18 festivals cannot be affected by any of it.
+let _lineupMemo = null;                                // { src, wk, list }
+function lineupFor(weekend) {
+  const all = (typeof window !== "undefined" && window.ARTISTS) || ARTISTS || [];
+  if (!weekend || weekend === "all") return all;
+  if (_lineupMemo && _lineupMemo.src === all && _lineupMemo.wk === weekend) return _lineupMemo.list;
+  const list = all.filter(a => !a.weekend || a.weekend === "both" || a.weekend === weekend);
+  _lineupMemo = { src: all, wk: weekend, list };
+  return list;
+}
+
+// The lineup for the weekend the user is actually on. savedIds: pass the list
+// you are acting on when it is not the persisted one — the lineup modal hands
+// Build My Night and the ICS export an in-progress selection that is not
+// written to storage until Save, and inferring from storage while acting on
+// that selection reads one list and acts on another.
+function activeLineup(savedIds) {
+  return lineupFor(activeWeekend(null, undefined, savedIds));
+}
+
+// The weekend a MOMENT belongs to, read off its own capture time — the
+// moment's datum, the way artistDayDate reads the act's. The session resolver
+// is clock-first, so from Oct 9 it answers W2 for good, and a Weekend 1 photo
+// retagged after that was offered Weekend 2's acts only (round 5). takenAt is
+// a wall-clock "YYYY-MM-DD HH:MM[:SS]"; the cut is the midpoint between the two
+// weekend starts, days from either, so a few hours of zone slack cannot flip
+// it. Null for a single-weekend festival or an unreadable date.
+function momentWeekend(takenAt, cfg) {
+  const c = cfg || (typeof window !== "undefined" && window.FESTIVAL_CONFIG) || FESTIVAL_CONFIG;
+  const w = c && c.weekendStartMs;
+  if (!w || typeof w.W1 !== "number" || typeof w.W2 !== "number" || !(w.W2 > w.W1)) return null;
+  const m = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/.exec(String(takenAt || ""));
+  if (!m) return null;
+  const ms = Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5]) - (c.utcOffsetHours || 0) * 3600000;
+  return ms >= (w.W1 + w.W2) / 2 ? "W2" : "W1";
+}
+
+// The lineup a moment's retag picker offers: the weekend it was captured in,
+// or the session's when the moment carries no readable capture time.
+function momentLineup(m) {
+  const wk = momentWeekend(m && m.takenAt);
+  return wk ? lineupFor(wk) : activeLineup();
+}
+
+// The one place day -> date is resolved. Returns the dayDates entry shifted
+// onto the user's actual weekend, with m/d re-derived from the shifted
+// instant so LABELS move with the timestamps instead of drifting apart.
+// Reads window.FESTIVAL_CONFIG at CALL time so it follows a festival switch.
+function _shiftDayDate(d, shift) {
+  if (!d || !shift) return d;
+  const at = new Date(d.midnightUtc + shift);
+  return { ...d, midnightUtc: d.midnightUtc + shift, m: at.getUTCMonth(), d: at.getUTCDate() };
+}
+
+function dayDateFor(day, nowMs, savedIds) {
+  const cfg = (typeof window !== "undefined" && window.FESTIVAL_CONFIG) || FESTIVAL_CONFIG;
+  const d = cfg && cfg.dayDates && cfg.dayDates[day];
+  if (!d) return null;
+  return _shiftDayDate(d, _weekendShiftMs(cfg, nowMs, savedIds));
+}
+
+// Dates for the weekend a given ACT actually plays.
+//
+// dayDateFor answers for the SESSION; this answers for the act, and an act
+// that carries a weekend tag needs nothing inferred — a W1-only set is on
+// Weekend 1's dates and a W2-only set is on Weekend 2's, whatever the session
+// resolved to. That is what closes the calendar-export hole: threading a
+// saved-id list through date resolution so the inference could be steered was
+// plumbing around a question the datum already answers. Untagged and
+// both-weekend acts have no answer of their own, so they take the session's.
+function artistDayDate(a, nowMs, savedIds) {
+  if (!a) return null;
+  const cfg = (typeof window !== "undefined" && window.FESTIVAL_CONFIG) || FESTIVAL_CONFIG;
+  const d = cfg && cfg.dayDates && cfg.dayDates[a.day];
+  if (!d) return null;
+  if (a.weekend === "W1") return d;                    // the base dates ARE W1
+  if (a.weekend === "W2") {
+    const w = cfg && cfg.weekendStartMs;
+    const shift = (w && typeof w.W1 === "number" && typeof w.W2 === "number") ? w.W2 - w.W1 : 0;
+    return _shiftDayDate(d, shift > 0 ? shift : 0);
+  }
+  return dayDateFor(a.day, nowMs, savedIds);
+}
+
 function _daysFor(cfg) {
   const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  return Object.entries(cfg.dayDates || {}).map(([n, d]) =>
-    ({ n: +n, label: d.short, date: `${months[d.m]} ${d.d}` }));
+  const shift = _weekendShiftMs(cfg);
+  return Object.entries(cfg.dayDates || {}).map(([n, d]) => {
+    const at = shift ? new Date(d.midnightUtc + shift) : null;
+    const mm = at ? at.getUTCMonth() : d.m;
+    const dd = at ? at.getUTCDate()  : d.d;
+    return { n: +n, label: d.short, date: `${months[mm]} ${dd}` };
+  });
 }
 const DAYS = _daysFor(FESTIVAL_CONFIG);
 
@@ -1516,13 +1695,15 @@ function _computeNow() {
   // Mirrors toNightMin: times before 08:00 belong to the next calendar day.
   function absMs(day, hhmm) {
     const [h, m] = hhmm.split(":").map(Number);
-    const base = FESTIVAL_CONFIG.dayDates[day]?.midnightUtc;
+    // dayDateFor, not dayDates — on a two-weekend festival this is the whole
+    // difference between "now playing" working and returning nothing all weekend.
+    const base = dayDateFor(day, utcNow)?.midnightUtc;
     if (!base) return Infinity;
     return base + (h < 8 ? 86400000 : 0) + h * 3600000 + m * 60000;
   }
 
   // Find artists currently on stage
-  const liveNow = ARTISTS.filter(a => {
+  const liveNow = activeLineup().filter(a => {
     const s = absMs(a.day, a.start), e = absMs(a.day, a.end);
     return utcNow >= s && utcNow < e;
   });
@@ -1533,7 +1714,7 @@ function _computeNow() {
     || null;
 
   // Next upcoming
-  const nextArtist = ARTISTS
+  const nextArtist = activeLineup()
     .filter(a => absMs(a.day, a.start) > utcNow)
     .sort((a, b) => absMs(a.day, a.start) - absMs(b.day, b.start))[0]
     || null;
@@ -2381,13 +2562,41 @@ const _active = _DATA_SETS[_activeId] || _DATA_SETS["edc-lv-2026"];
 Object.assign(window, {
   FESTIVAL: _active.config, FESTIVAL_CONFIG: _active.config,
   STAGES: _active.stages, AMENITIES: _active.amenities, AVATAR_START, FRIENDS, ARTISTS: _active.artists,
-  // DAYS must follow the ACTIVE festival (Forest runs 4 days Thu–Sun;
-  // EDC/ACL run 3 Fri–Sun). The top-level DAYS const was derived from the
-  // EDC config at eval time and showed EDC dates on ACL — re-derive here.
-  DAYS: _daysFor(_active.config),
   NOW, ALERTS, ESSENTIALS, fmt12,
   FESTIVALS_REGISTRY, getActiveFestivalId, setActiveFestivalAndReload,
   _resolveDefaultFestivalId,
-  resolvedStageAnchors, resolvedStageAnchor,
+  resolvedStageAnchors, resolvedStageAnchor, dayDateFor, _weekendShiftMs,
   _DATA_SETS,
+});
+// DAYS must follow the ACTIVE festival (Forest runs 4 days Thu–Sun; EDC/ACL
+// run 3 Fri–Sun). The top-level const was derived from the EDC config at eval
+// time and showed EDC dates on ACL, so it is re-derived from the active one.
+//
+// It is derived AFTER the Object.assign above, not inside it, and that
+// ordering is load-bearing: _daysFor asks _weekendShiftMs which weekend the
+// user is on, and the saved-acts half of that answer looks the saved IDs up in
+// window.ARTISTS. Every value inside an object literal is evaluated BEFORE the
+// assign lands, so computing DAYS there searched the PREVIOUS festival's
+// lineup, matched none of the saved ACL ids, and permanently exported Weekend
+// 1 labels while every later resolver call correctly answered Weekend 2.
+//
+// And it stays LIVE, the way NOW is (round 5). Deriving it once froze the
+// labels at activation: pre-event the weekend comes from the saved-acts
+// majority, so saving a few Weekend 2 acts flipped every resolver to W2 while
+// DAYS kept printing Oct 2/3/4. The proxy re-derives on read, memoised on the
+// shift, so an access costs one cheap storage read and hands back the SAME
+// array until the weekend actually changes. No call site changes.
+let _daysMemo = null;                                  // { fid, shift, days }
+function _liveDays() {
+  const cfg = window.FESTIVAL_CONFIG || _active.config;
+  const shift = _weekendShiftMs(cfg);
+  if (!_daysMemo || _daysMemo.fid !== cfg.id || _daysMemo.shift !== shift)
+    _daysMemo = { fid: cfg.id, shift, days: _daysFor(cfg) };
+  return _daysMemo.days;
+}
+window.DAYS = new Proxy([], {
+  get: (_, k) => { const d = _liveDays(), v = d[k]; return typeof v === "function" ? v.bind(d) : v; },
+  has: (_, k) => k in _liveDays(),
+  ownKeys: () => Reflect.ownKeys(_liveDays()),
+  getOwnPropertyDescriptor: (_, k) => Reflect.getOwnPropertyDescriptor(_liveDays(), k),
 });

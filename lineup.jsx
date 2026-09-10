@@ -22,14 +22,19 @@ function _msToIcsDate(ms) {
 }
 
 function _artistMs(artist, hhmm) {
-  const day = FESTIVAL_CONFIG.dayDates[artist.day];
+  // Feeds exportSavedSetsICS. Weekend-blind here meant a W2 attendee's entire
+  // calendar export landed on Weekend 1. artistDayDate (data.jsx) stamps the
+  // weekend THIS act plays, so a Build My Night selection that has not been
+  // saved yet still exports on the right dates — the earlier fix filtered the
+  // acts by the selection but still dated them from persisted storage.
+  const day = artistDayDate(artist);
   if (!day) return null;
   const [h, m] = hhmm.split(":").map(Number);
   return day.midnightUtc + (h < 8 ? 86400000 : 0) + h * 3600000 + m * 60000;
 }
 
 async function exportSavedSetsICS(savedIds) {
-  const artists = ARTISTS.filter(a => savedIds.includes(a.id))
+  const artists = activeLineup(savedIds).filter(a => savedIds.includes(a.id))
     .sort((a, b) => (a.day - b.day) || (a.start < b.start ? -1 : 1));
   if (!artists.length) return;
 
@@ -89,20 +94,41 @@ async function exportSavedSetsICS(savedIds) {
   setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 500);
 }
 
+// The Build My Night text share. Resolves the weekend from the ids it is
+// sharing, the way exportSavedSetsICS does: the selection is not written to
+// storage until Save, and the no-arg activeLineup() this used to call resolved
+// from storage and dropped every other-weekend pick (round 5).
+function _nightShareText(ids) {
+  const lines = [1, 2, 3].flatMap(day => {
+    const d = FESTIVAL_CONFIG.dayDates[day];
+    const dayArtists = activeLineup(ids).filter(a => a.day === day && ids.includes(a.id))
+      .sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+    if (!dayArtists.length) return [];
+    return [`${d.short} · ${d.name.toUpperCase()}`,
+      ...dayArtists.map(a => `  ${fmt12(a.start)}  ${a.name}`), ""];
+  });
+  return [`My ${FESTIVAL_CONFIG.name} lineup (${ids.length} sets):`, "", ...lines].join("\n").trim();
+}
+
 // ── Build My Night wizard ─────────────────────────────────────
 function NightWizard({ state, setState, onClose }) {
   const [activeDay, setActiveDay] = React.useState(() => {
     const best = DAYS.map(d => ({
       n: d.n,
-      count: ARTISTS.filter(a => a.day === d.n && state.saved.includes(a.id)).length,
+      count: activeLineup().filter(a => a.day === d.n && state.saved.includes(a.id)).length,
     })).reduce((b, d) => d.count > b.count ? d : b, { n: 1, count: 0 });
     return best.n;
   });
 
   const [local, setLocal] = React.useState(() => new Set(state.saved));
+  // Every read below acts on `local`, the in-progress selection, so the
+  // weekend is resolved from `local` too. The ICS export already did; the
+  // counts, the list, the gap fits and Auto-fill resolved from storage and
+  // hid other-weekend picks until Save (round 5, same defect as the share).
+  const localIds = Array.from(local);
 
   const dayStats = DAYS.map(d => {
-    const sets = ARTISTS.filter(a => a.day === d.n && local.has(a.id));
+    const sets = activeLineup(localIds).filter(a => a.day === d.n && local.has(a.id));
     let clashes = 0;
     for (let i = 0; i < sets.length; i++)
       for (let j = i + 1; j < sets.length; j++)
@@ -110,7 +136,7 @@ function NightWizard({ state, setState, onClose }) {
     return { ...d, count: sets.length, clashes };
   });
 
-  const sorted = ARTISTS
+  const sorted = activeLineup(localIds)
     .filter(a => a.day === activeDay && local.has(a.id))
     .sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
 
@@ -127,7 +153,7 @@ function NightWizard({ state, setState, onClose }) {
       const gS = toNightMin(sorted[i].end), gE = toNightMin(sorted[i + 1].start);
       if (gE > gS + 5) {
         const gapMin = gE - gS;
-        const fits = ARTISTS.filter(a =>
+        const fits = activeLineup(localIds).filter(a =>
           a.day === activeDay && !local.has(a.id) &&
           toNightMin(a.start) >= gS && toNightMin(a.start) < gE - 14
         ).sort((a, b) => b.tier - a.tier).slice(0, 3);
@@ -145,7 +171,7 @@ function NightWizard({ state, setState, onClose }) {
   };
 
   const autoFill = () => {
-    const candidates = ARTISTS.filter(a => a.day === activeDay)
+    const candidates = activeLineup(localIds).filter(a => a.day === activeDay)
       .sort((a, b) => (b.tier - a.tier) || (toNightMin(a.start) - toNightMin(b.start)));
     const picked = [];
     for (const a of candidates) {
@@ -155,7 +181,7 @@ function NightWizard({ state, setState, onClose }) {
     setLocal(prev => {
       const merged = new Set(prev);
       // Remove existing day sets then add optimal picks
-      ARTISTS.filter(a => a.day === activeDay).forEach(a => merged.delete(a.id));
+      activeLineup(localIds).filter(a => a.day === activeDay).forEach(a => merged.delete(a.id));
       picked.forEach(a => merged.add(a.id));
       return merged;
     });
@@ -202,16 +228,7 @@ function NightWizard({ state, setState, onClose }) {
             </button>
             <button
               onClick={() => {
-                const ids = Array.from(local);
-                const lines = [1, 2, 3].flatMap(day => {
-                  const d = FESTIVAL_CONFIG.dayDates[day];
-                  const dayArtists = ARTISTS.filter(a => a.day === day && ids.includes(a.id))
-                    .sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
-                  if (!dayArtists.length) return [];
-                  return [`${d.short} · ${d.name.toUpperCase()}`,
-                    ...dayArtists.map(a => `  ${fmt12(a.start)}  ${a.name}`), ""];
-                });
-                const text = [`My ${FESTIVAL_CONFIG.name} lineup (${ids.length} sets):`, "", ...lines].join("\n").trim();
+                const text = _nightShareText(Array.from(local));
                 if (navigator.share) { navigator.share({ title: `My ${FESTIVAL_CONFIG.shortName || "festival"} lineup`, text }).catch(() => {}); }
                 else { try { navigator.clipboard.writeText(text); } catch {} }
               }}
@@ -381,7 +398,7 @@ function NightWizard({ state, setState, onClose }) {
 // primary CTA so users see how many sets they'll land on before
 // they tap Apply.
 function LineupFilterSheet({
-  onClose, day, dayGenres, savedIds = [],
+  onClose, day, dayGenres, savedIds = [], weekendFilter = "all",
   initial,           // { filter, tierFilter, stageFilter, genreFilter, sortBy }
   onApply, onReset,
 }) {
@@ -393,7 +410,7 @@ function LineupFilterSheet({
   // Live preview count — apply the staged filters against ARTISTS for the
   // current day. Mirrors LineupScreen's dayArtists filter chain.
   const matchCount = React.useMemo(() => {
-    return ARTISTS
+    return lineupFor(weekendFilter)
       .filter(a => a.day === day)
       .filter(a => f.filter === "all" || savedSet.has(a.id))
       .filter(a => f.stageFilter === "all" || a.stage === f.stageFilter)
@@ -406,7 +423,7 @@ function LineupFilterSheet({
         if (f.tierFilter === "legend") return isLegendary(a);
         return true;
       }).length;
-  }, [f, day, savedSet]);
+  }, [f, day, savedSet, weekendFilter]);
 
   const chip = (on, accent, delay) => ({
     flexShrink: 0, padding: "6px 12px", borderRadius: 999,
@@ -554,10 +571,19 @@ function LineupScreen({ state, setState }) {
   const [genreFilter, setGenreFilter] = React.useState("all");
   const hasWeekends = ARTISTS.some(a => a.weekend && a.weekend !== "both");
   // Two-weekend festivals: pick a weekend (no "Both" — it stacked W1/W2 acts in
-  // the same slot and read as clutter). Default to W1. Single-weekend festivals
-  // stay "all" so their (untagged) sets aren't filtered out, and the selector
-  // below is hidden anyway via hasWeekends.
-  const [weekendFilter, setWeekendFilter] = React.useState(() => hasWeekends ? "W1" : "all"); // W1 | W2 (| "all" only when no weekends)
+  // the same slot and read as clutter). Single-weekend festivals stay "all" so
+  // their (untagged) sets aren't filtered out, and the selector below is hidden
+  // anyway via hasWeekends.
+  //
+  // The DEFAULT comes from the same resolver the clock and now-playing use
+  // (dayDateFor / _weekendShiftMs in data.jsx), not a hardcoded "W1". Once the
+  // rest of the app learned which weekend the user is actually on, leaving this
+  // pinned to W1 would have opened a fresh seam in place of the old one: on
+  // Saturday of Weekend 2, "now playing" would name a W2 act while this list
+  // still opened on Weekend 1. The user can still switch freely — this only
+  // decides which one is showing when the screen opens.
+  const [weekendFilter, setWeekendFilter] = React.useState(
+    () => hasWeekends ? (_weekendShiftMs(FESTIVAL_CONFIG) ? "W2" : "W1") : "all"); // W1 | W2 (| "all" only when no weekends)
   const [q, setQ] = React.useState(""); // artist/stage/genre search
 
   // After the screen renders, scroll the highlighted card/block into view and
@@ -691,14 +717,14 @@ function LineupScreen({ state, setState }) {
 
   const dayGenres = React.useMemo(() => {
     const freq = {};
-    ARTISTS.filter(a => a.day === day).forEach(a => {
+    lineupFor(weekendFilter).filter(a => a.day === day).forEach(a => {
       if (a.genre) freq[a.genre] = (freq[a.genre] || 0) + 1;
     });
     return Object.entries(freq)
       .filter(([, n]) => n >= 2)
       .sort((a, b) => b[1] - a[1])
       .map(([g]) => g);
-  }, [day]);
+  }, [day, weekendFilter]);
 
   // Memoized so the 6-filter chain + sort only recomputes when an input
   // actually changes — was rebuilding over all 400+ artists on every render
@@ -706,7 +732,7 @@ function LineupScreen({ state, setState }) {
   const savedSetIds = React.useMemo(() => new Set(state.saved), [state.saved]);
   const dayArtists = React.useMemo(() => {
     const term = q.trim().toLowerCase();
-    return ARTISTS
+    return lineupFor(weekendFilter)
       .filter(a => a.day === day)
       .filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both")
       .filter(a => filter === "all" || savedSetIds.has(a.id))
@@ -757,31 +783,33 @@ function LineupScreen({ state, setState }) {
   const _otherDayHits = React.useMemo(() => {
     const term = q.trim().toLowerCase();
     if (!term) return 0;
-    return ARTISTS.filter(a => {
+    return lineupFor(weekendFilter).filter(a => {
       if (a.day === day) return false;
       const st = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
       return a.name.toLowerCase().includes(term)
         || (a.genre || "").toLowerCase().includes(term)
         || (st?.name || "").toLowerCase().includes(term);
     }).length;
-  }, [q, day]);
+  }, [q, day, weekendFilter]);
 
-  // Per-day saved counts + conflict counts — memoized on saved only (was an
-  // O(n²)-per-day overlap loop on every render, report-card #8).
+  // Per-day saved counts + conflict counts — memoized on saved and on the
+  // weekend being shown (was an O(n²)-per-day overlap loop on every render,
+  // report-card #8; without weekendFilter the chips kept the first weekend's
+  // counts after the toggle flipped, round 5).
   const dayStats = React.useMemo(() => DAYS.map(d => {
-    const savedThisDay = ARTISTS.filter(x => x.day === d.n && savedSetIds.has(x.id));
+    const savedThisDay = lineupFor(weekendFilter).filter(x => x.day === d.n && savedSetIds.has(x.id));
     let clashes = 0;
     for (let i = 0; i < savedThisDay.length; i++)
       for (let j = i + 1; j < savedThisDay.length; j++)
         if (overlaps(savedThisDay[i], savedThisDay[j])) clashes++;
     return { ...d, count: savedThisDay.length, clashes };
-  }), [savedSetIds]);
+  }), [savedSetIds, weekendFilter]);
   const totalSaved = React.useMemo(() => dayStats.reduce((s, d) => s + d.count, 0), [dayStats]);
 
   // conflicts: 2+ saved sets overlap in time
   const savedToday = React.useMemo(
-    () => ARTISTS.filter(a => a.day === day && savedSetIds.has(a.id)),
-    [day, savedSetIds]
+    () => lineupFor(weekendFilter).filter(a => a.day === day && savedSetIds.has(a.id)),
+    [day, savedSetIds, weekendFilter]
   );
   // v141: pairs the user has explicitly "kept both" on — we still show them
   // as conflicts in the per-card ⚠ chip (information stays available) but
@@ -1153,7 +1181,7 @@ function LineupScreen({ state, setState }) {
             selected day, a single ember card batch-saves every tier-3
             headliner. Disappears once the day has any save. */}
         {savedToday.length === 0 && (() => {
-          const dayHeads = ARTISTS.filter(a => a.day === day && a.tier === 3);
+          const dayHeads = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
           if (dayHeads.length === 0) return null;
           const dayLabel = DAYS.find(d => d.n === day)?.label || `Day ${day}`;
           const headIds = dayHeads.map(h => h.id);
@@ -1198,7 +1226,7 @@ function LineupScreen({ state, setState }) {
           // sets (not dimming) — otherwise W1/W2 acts sharing a stage+slot
           // (e.g. Skrillex W1 vs Kings of Leon W2 on amex) would stack and
           // collide. "Both" sets always show.
-          const dayArt  = ARTISTS
+          const dayArt  = lineupFor(weekendFilter)
             .filter(a => a.day === day)
             .filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both");
           return (
@@ -1469,6 +1497,7 @@ function LineupScreen({ state, setState }) {
           day={day}
           dayGenres={dayGenres}
           savedIds={state.saved || []}
+          weekendFilter={weekendFilter}
           initial={{ filter, tierFilter, stageFilter, genreFilter, sortBy }}
           onClose={() => setFilterSheetOpen(false)}
           onApply={(f) => {
@@ -1543,6 +1572,8 @@ function layoutLanes(sets) {
 // Grid time bounds derived from actual artist data so daytime festivals
 // (ACL 11:00–22:00) and nighttime (EDC 19:00–05:30) both work correctly.
 const _gridBounds = (() => {
+  // weekend-exempt: earliest/latest set times, which both weekends share. It
+  // also runs at module scope, before the active lineup exists.
   const all = typeof ARTISTS !== "undefined" ? ARTISTS : [];
   if (!all.length) return { start: 19 * 60, end: (24 + 5) * 60 + 30 };
   let lo = Infinity, hi = -Infinity;
@@ -2415,7 +2446,7 @@ async function copyScheduleText(state) {
   if (!ids.length) return { ok: false, reason: "empty" };
   const lines = [1, 2, 3].flatMap(day => {
     const d = FESTIVAL_CONFIG.dayDates[day];
-    const artists = ARTISTS.filter(a => a.day === day && ids.includes(a.id))
+    const artists = activeLineup().filter(a => a.day === day && ids.includes(a.id))
       .sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
     if (!artists.length) return [];
     return [

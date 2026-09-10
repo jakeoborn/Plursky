@@ -110,7 +110,7 @@ function OnboardingModal({ onDone, setState, state }) {
                   margin: "0 auto 6px", display: "flex", alignItems: "center", justifyContent: "center",
                   boxShadow: `0 0 12px ${s.color}44`,
                 }}>
-                  <span style={{ fontSize: 10, color: "#fff", fontWeight: 800 }}>{ARTISTS.filter(a => a.stage === s.id).length}</span>
+                  <span style={{ fontSize: 10, color: "#fff", fontWeight: 800 }}>{activeLineup().filter(a => a.stage === s.id).length}</span>
                 </div>
                 <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--ink)", fontWeight: 700 }}>{s.short}</div>
               </div>
@@ -268,7 +268,7 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
   const DAY_MAP = { fri: 1, friday: 1, "day 1": 1, sat: 2, saturday: 2, "day 2": 2, sun: 3, sunday: 3, "day 3": 3 };
   const dayFilter = DAY_MAP[query];
 
-  const results = query.length === 0 ? [] : ARTISTS.filter(a => {
+  const results = query.length === 0 ? [] : activeLineup().filter(a => {
     if (dayFilter) return a.day === dayFilter;
     const stage = STAGES.find(s => s.id === a.stage);
     return (
@@ -897,7 +897,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v287",
+        version: "v288",
       }));
     } catch {}
   }
@@ -930,7 +930,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
-          PLURSKY · v287
+          PLURSKY · v288
         </div>
       </div>
     );
@@ -947,7 +947,7 @@ function SetStartingCinematic() {
         if (!saved.length || !NOW.time || !NOW.day) return;
         const nowMin = toNightMin(NOW.time);
         for (const id of saved) {
-          const a = ARTISTS.find(x => x.id === id);
+          const a = activeLineup().find(x => x.id === id);
           if (!a || a.day !== NOW.day) continue;
           const startMin = toNightMin(a.start);
           const diff = startMin - nowMin;
