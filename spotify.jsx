@@ -391,9 +391,15 @@ function SpotifyScreen({ state, setState }) {
                 <div style={{ height: 3, background: "var(--line)", borderRadius: 3, overflow: "hidden", marginBottom: 6 }}>
                   <div style={{ width: `${pct}%`, height: "100%", background: stage.color, borderRadius: 3 }} />
                 </div>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>
-                  {stage.desc.toUpperCase()}
-                </div>
+                {/* Guarded like lineup.jsx:1115. `desc` is optional on a
+                    stage — a gated scaffold can ship stages before their
+                    programming is published, and this unguarded dereference
+                    would crash the whole match panel. */}
+                {stage.desc && (
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>
+                    {stage.desc.toUpperCase()}
+                  </div>
+                )}
               </div>
             ))}
           </div>

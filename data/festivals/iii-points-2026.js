@@ -30,7 +30,11 @@
 // Fri/Sat tabs. The guide FAQ states it directly: "Maps showing stage
 // locations, food, bathrooms, etc. WILL BE AVAILABLE PRIOR TO THE EVENT" and
 // "DURING THE DAYS LEADING UP TO THE FESTIVAL, set times will be posted."
-// So every artist below carries stage: null, day: null, start/end "".
+// So every artist below carries stage: null and start/end "". (Day is a
+// single TBA bucket rather than null — this comment used to claim
+// `day: null`, which the code has never done and which the config block
+// below explains at length. Corrected 2026-09-09 while reading it as the
+// precedent for Dreamstate SoCal, and believing it for a while first.)
 //
 // ── SPATIAL MODEL ──
 // There is none, deliberately, and that is the point. Every other festival in

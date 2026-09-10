@@ -658,6 +658,19 @@ function LineupScreen({ state, setState }) {
                           + (filter !== "all" ? 1 : 0)
                           + (sortBy !== "time" ? 1 : 0);
   React.useEffect(() => setGenreFilter("all"), [day]);
+  // Which of the three content chips are narrowing the list right now, and
+  // — when exactly one is — what to call it in an empty state. `filter`
+  // (ALL/MINE) is deliberately NOT in here: "you have not saved anything" is
+  // a different sentence and the branch below already says it.
+  const _chipFilterActive = tierFilter !== "all" || stageFilter !== "all" || genreFilter !== "all";
+  const _emptyChipLabel = (() => {
+    const named = [
+      stageFilter !== "all" ? (STAGES.find(s => s.id === stageFilter) || {}).name : null,
+      genreFilter !== "all" ? genreFilter : null,
+    ].filter(Boolean);
+    return (named.length === 1 && tierFilter === "all") ? named[0] : null;
+  })();
+
 
   const matchesActive = (a) => {
     if (weekendFilter !== "all" && a.weekend !== weekendFilter && a.weekend !== "both") return false;
@@ -1235,7 +1248,32 @@ function LineupScreen({ state, setState }) {
             }}>CLEAR SEARCH</button>
           </div>
         )}
-        {viewMode === "list" && dayArtists.length === 0 && q.trim() === "" && (
+        {/* The SAME defect the search branch above was fixed for, one layer
+            out: a TIER/STAGE/GENRE chip that matches nothing fell through to
+            the saved-list message and told the user "No sets saved yet — TAP
+            ANY [+] TO SAVE YOUR FIRST SET". Saving is not the problem and the
+            filter is not mentioned. Reachable on any festival — a stage that
+            does not run on the selected day, or a genre with no act that
+            day. Named causes beat one generic message — that was the lesson
+            the first fix wrote down, and it applies to the chips too. */}
+        {viewMode === "list" && dayArtists.length === 0 && q.trim() === "" && _chipFilterActive && (
+          <div style={{ padding: 40, textAlign: "center" }}>
+            <div className="serif" style={{ fontSize: 22, color: "var(--muted)", fontStyle: "italic", marginBottom: 6 }}>
+              {_emptyChipLabel
+                ? `Nothing on ${_emptyChipLabel} yet`
+                : "Nothing matches those filters"}
+            </div>
+            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
+              {_emptyChipLabel ? "NOTHING THERE ON THIS DAY" : "TRY CLEARING ONE OF THEM"}
+            </div>
+            <button onClick={() => { setTierFilter("all"); setStageFilter("all"); setGenreFilter("all"); }} className="mono" style={{
+              marginTop: 14, padding: "8px 16px", borderRadius: 999,
+              background: "var(--ink)", color: "var(--paper)", border: "none",
+              fontSize: 10, letterSpacing: 1.4, fontWeight: 700, cursor: "pointer",
+            }}>CLEAR FILTERS</button>
+          </div>
+        )}
+        {viewMode === "list" && dayArtists.length === 0 && q.trim() === "" && !_chipFilterActive && (
           <div style={{ padding: 40, textAlign: "center" }}>
             <div className="serif" style={{ fontSize: 22, color: "var(--muted)", fontStyle: "italic", marginBottom: 6 }}>
               {state.saved.length === 0 ? "No sets saved yet" : "Nothing saved for this day"}
