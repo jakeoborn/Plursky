@@ -5229,14 +5229,21 @@ function MemoriesScreen({ state, setState }) {
     }
     _writeMoments(current);
     setAll({ ...current });
+    // Freeze one settled snapshot before any toast/review rendering. A file can
+    // land, then a later UI/storage bookkeeping step can throw; in that case
+    // the persisted moment is the result that matters and must never be
+    // contradicted by a zero-success toast assembled from a later error row.
+    const settledResults = results.map(r => Object.freeze({ ...r }));
+    const landed = settledResults.filter(r => r.momentId);
+    const failedResults = settledResults.filter(r => r.err);
+    const duplicateResults = settledResults.filter(r => r.skipped === "duplicate");
     // Never fail silently: if nothing landed, say why out loud.
-    const okCount = results.filter(r => !r.err && !r.skipped).length;
     // ...and never file silently either. A cross-festival import is now
     // stamped correctly, which means it is CORRECTLY not visible on this
     // festival's page — indistinguishable from "the import failed" unless we
     // say where the files went. (v235)
     const activeFid = window.FESTIVAL_CONFIG?.id || null;
-    const elsewhere = results.filter(r => !r.err && !r.skipped && r.festivalId && r.festivalId !== activeFid);
+    const elsewhere = landed.filter(r => r.festivalId && r.festivalId !== activeFid);
     if (elsewhere.length) {
       const byFest = {};
       for (const r of elsewhere) byFest[r.festivalId] = (byFest[r.festivalId] || 0) + 1;
@@ -5245,17 +5252,18 @@ function MemoriesScreen({ state, setState }) {
       const parts = Object.keys(byFest).map(id => `${byFest[id]} to ${label(id)}`);
       window.plurskyToast?.(`Filed by capture date — ${parts.join(", ")}. Switch festivals to see them.`);
     }
-    if (okCount === 0) {
-      const failed = results.filter(r => r.err).length;
-      const dupes  = results.filter(r => r.skipped === "duplicate").length;
+    if (landed.length === 0) {
+      const failed = failedResults.length;
+      const dupes  = duplicateResults.length;
       if (dupes && !failed) window.plurskyToast?.(`Already imported — ${dupes} duplicate${dupes === 1 ? "" : "s"} skipped`);
-      else window.plurskyToast?.(`Couldn't import ${failed} file${failed === 1 ? "" : "s"} — try a few at a time${failed ? ` · ${results.find(r => r.err)?.err || "failed"}` : ""}`);
+      else window.plurskyToast?.(`Couldn't import ${failed} file${failed === 1 ? "" : "s"} — try a few at a time${failed ? ` · ${failedResults[0]?.err || "failed"}` : ""}`);
+    } else if (failedResults.length) {
+      window.plurskyToast?.(`Imported ${landed.length} · ${failedResults.length} failed — tap to review`);
     }
     // Show the mapping while the import is still fresh. A banner that only
     // reports a score cannot tell you WHICH clip went to the wrong set, and
     // by the time you scroll the wall to find out you no longer remember what
     // you imported.
-    const landed = results.filter(r => r.momentId);
     if (landed.length) setReview(landed);
     // Auto-dismiss summary banner after 6s if user doesn't tap it
     setTimeout(() => setBatch(b => (b && b.done === b.total ? null : b)), 6000);
