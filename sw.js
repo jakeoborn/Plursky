@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v285';
+﻿const CACHE      = 'plursky-v286';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v285';
+const APP_VER    = 'v286';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -34,6 +34,7 @@ const LOCAL = [
   `./data/festivals/arc-2026.js?v=${APP_VER}`,
   `./data/festivals/escape-halloween-2026.js?v=${APP_VER}`,
   `./data/festivals/dreamstate-socal-2026.js?v=${APP_VER}`,
+  `./data/festivals/decadence-colorado-2026.js?v=${APP_VER}`,
   // Ground plates (mapImage targets). Not every festival module has one: ARC,
   // III Points, CRSSD and Portola ship mapMode "real" and no plate.
   //
