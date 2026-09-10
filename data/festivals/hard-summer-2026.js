@@ -282,7 +282,10 @@
     // Ice Cream Truck
     mk("hs2-adult-hits",                        "Adult Hits",                                    "icecream",  2, "14:00", "15:00"),
     mk("hs2-bahar-khadem",                      "Bahar Khadem",                                  "icecream",  2, "15:00", "16:00"),
-    mk("hs2-samwise",                           "Samwise",                                       "icecream",  2, "16:00", "17:30"),
+    // Official lineup card bills "Samwise (TX)"; the official set-time page
+    // prints "Samwise". Preserve schedule billing and carry the card alias.
+    { ...mk("hs2-samwise", "Samwise", "icecream", 2, "16:00", "17:30"),
+      officialLineupAliases: ["Samwise (TX)"] },
     mk("hs2-bianca-oblivion-b2b-star-eyes",     "Bianca Oblivion B2B Star Eyes",                 "icecream",  2, "17:30", "19:00"),
     mk("hs2-mez-monty-b2b-shane-thomas",        "Mez Monty B2B Shane Thomas",                    "icecream",  2, "19:00", "20:30"),
     mk("hs2-oscar-osorio",                      "Oscar Osorio",                                  "icecream",  2, "20:30", "22:00"),
@@ -305,6 +308,12 @@
     locationShort: "Hollywood Park",
     dates:     "Aug 1–2, 2026",
     year:      2026,
+    officialStages: ["HARD", "HARDER", "Green", "Purple", "Pink", "Ice Cream Truck", "Beatbox Art Car"],
+    officialEvent: {
+      website: "https://www.hardsummer.com/",
+      tickets: "https://www.hardsummer.com/tickets/",
+      observedAt: "2026-09-10",
+    },
     // Official /info/: both days "starts at 2PM · ends at 10PM". California
     // is PDT (UTC-7) in August. The grid agrees exactly — every stage's
     // first set starts 14:00 and every last set ends 22:00, both days — so
