@@ -1,7 +1,12 @@
 var SETLISTS_PROXY_URL = "https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/proxy-setlist";
+var _LOOKUP_SET_NOTE = /^(?:.*\bsets?\b.*|live|detox|in the round|.*\bclassics\b.*)$/i;
 function _lookupName(s) {
-  var t = String(s || "").replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+/g, " ").trim();
-  return t || String(s || "");
+  var raw = String(s || "");
+  var t = raw.replace(/\s*\(([^)]*)\)\s*/g, (m, inner) => _LOOKUP_SET_NOTE.test(inner.trim()) ? " " : m).replace(/\s+/g, " ").trim();
+  return t || raw;
+}
+function _b2bParts(name) {
+  return String(name || "").split(/\s+b2b\s+(?![^()]*\))/i).map(s => s.trim()).filter(Boolean);
 }
 var _SL_TTL = 24 * 3600000;
 async function fetchSetlists(artistName) {
@@ -1119,7 +1124,7 @@ function ArtistScreen({
   var a = ARTISTS.find(ar => ar.id === state.artist);
   if (!a) return null;
   var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
-  var b2bParts = a.name.split(/ b2b /i).map(s => s.trim());
+  var b2bParts = _b2bParts(a.name);
   var isB2B = b2bParts.length > 1;
   var [activeB2B, setActiveB2B] = React.useState(0);
   React.useEffect(() => {

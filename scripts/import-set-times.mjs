@@ -28,7 +28,7 @@
 // Acts the sheet does not mention keep stage null and blank times. TBA is a
 // real answer: they are listed, not failed. --check validates and writes nothing.
 
-import { readFileSync, writeFileSync, readdirSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, renameSync, statSync, chmodSync, unlinkSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import vm from "node:vm";
@@ -186,6 +186,18 @@ const lines = [...sched].sort(([, a], [, b]) => (a.day - b.day) || (order.get(a.
 const block = [`${ind}// SCHEDULE:BEGIN ${fid}`,
   `${ind}// source: ${source} · imported ${new Date().toISOString().slice(0, 10)} · ${sched.size} of ${ds.artists.length} acts`,
   ...lines, `${m[2]}// SCHEDULE:END`].join("\n");
-writeFileSync(target, src.slice(0, m.index) + block + src.slice(m.index + m[0].length));
+// Atomic: write a SIBLING temp file (same directory, so the same filesystem),
+// then rename it over the target. A crash, a full disk or a kill mid-write
+// leaves the original data.jsx untouched instead of truncated — rename within
+// one directory is atomic on POSIX. The target's mode carries over.
+const tmp = path.join(path.dirname(target), `.${path.basename(target)}.import-${process.pid}.tmp`);
+try {
+  writeFileSync(tmp, src.slice(0, m.index) + block + src.slice(m.index + m[0].length));
+  chmodSync(tmp, statSync(target).mode & 0o7777);
+  renameSync(tmp, target);
+} catch (e) {
+  try { unlinkSync(tmp); } catch {}
+  die(`write failed — ${path.relative(root, target)} left untouched: ${e.message}`);
+}
 console.log(`  ✓ wrote ${sched.size} row(s) into ${path.relative(root, target)}`);
 console.log(`  next: node scripts/compile.mjs && node scripts/gen-festival-pages.mjs && git add -A && node scripts/verify.mjs`);

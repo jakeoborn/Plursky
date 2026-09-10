@@ -12,11 +12,28 @@ const SETLISTS_PROXY_URL = "https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/p
 // An act name as printed can carry a set note — "Excision (Detox)", "Wooli
 // (Sunset Set)". Every outbound lookup wants the ARTIST, so each fetch helper
 // normalises its own input here and no caller can forget to (a second caller
-// once sent "Excision (Detox)" to setlist.fm after the first was fixed). Same
-// strip spotify-api.jsx applies before its own search.
+// once sent "Excision (Detox)" to setlist.fm after the first was fixed).
+//
+// Only a SET NOTE is stripped, never a parenthetical as such: many are part of
+// who the act is — "Sunday (1994)", "KAUFMANN (DE)", "Small (danny g luvs u B2B
+// Bori)", "DOG BLOOD (SKRILLEX + BOYS NOIZE)". A note says so: it contains the
+// word "set" ("Sunset Set", "DJ set", "2 Hour Set"), or is one of the few the
+// lineups print without it (Live, Detox, In The Round, "… Classics"). Built
+// from all 26 parentheticals across the registry, 2026-09-10; the regression
+// table lives in scripts/verify.mjs. spotify-api.jsx's searches use this too.
+const _LOOKUP_SET_NOTE = /^(?:.*\bsets?\b.*|live|detox|in the round|.*\bclassics\b.*)$/i;
 function _lookupName(s) {
-  const t = String(s || "").replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+/g, " ").trim();
-  return t || String(s || "");
+  const raw = String(s || "");
+  const t = raw.replace(/\s*\(([^)]*)\)\s*/g, (m, inner) => (_LOOKUP_SET_NOTE.test(inner.trim()) ? " " : m))
+    .replace(/\s+/g, " ").trim();
+  return t || raw;
+}
+
+// "A b2b B" → one tab per artist — but never split INSIDE a parenthetical:
+// "Small (danny g luvs u B2B Bori)" is one act, and the naive split made a
+// "Small (danny g luvs u" tab that was then looked up verbatim (#123 review).
+function _b2bParts(name) {
+  return String(name || "").split(/\s+b2b\s+(?![^()]*\))/i).map(s => s.trim()).filter(Boolean);
 }
 const _SL_TTL = 24 * 3600000; // cache 24 h
 // v2 cache key — invalidates the empty `[]` arrays stale clients wrote
@@ -929,7 +946,7 @@ function ArtistScreen({ state, setState }) {
   const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
 
   // B2B detection — "A b2b B" → split, show per-artist info tabs
-  const b2bParts  = a.name.split(/ b2b /i).map(s => s.trim());
+  const b2bParts  = _b2bParts(a.name);
   const isB2B     = b2bParts.length > 1;
   const [activeB2B, setActiveB2B] = React.useState(0);
   React.useEffect(() => { setActiveB2B(0); }, [a.id]);

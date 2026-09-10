@@ -3280,7 +3280,7 @@ function _lineupArtistsFromShazam(shazamArtist) {
   for (var a of all) {
     var an = String(a.name || "").toLowerCase();
     if (!an) continue;
-    if (an === norm || an.includes(norm) || norm.includes(an.split(/ b2b /i)[0])) {
+    if (an === norm || an.includes(norm) || norm.includes(_b2bParts(an)[0] || an)) {
       if (seen.has(a.id)) continue;
       seen.add(a.id);
       out.push(a);
@@ -3320,7 +3320,7 @@ function _lineupArtistFromShazam(shazamArtist) {
   var norm = shazamArtist.toLowerCase().trim();
   return ARTISTS.find(a => {
     var an = a.name.toLowerCase();
-    return an === norm || an.includes(norm) || norm.includes(an.split(/ b2b /i)[0]);
+    return an === norm || an.includes(norm) || norm.includes(_b2bParts(an)[0] || an);
   }) || null;
 }
 function _FavStar({
