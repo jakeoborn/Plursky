@@ -2533,6 +2533,7 @@ function MapScreen({
   var [amenityKey, setAmenityKey] = React.useState(false);
   var [amenityFilter, setAmenityFilter] = React.useState(null);
   var REAL_MAP_ONLY = FESTIVAL_CONFIG.mapMode === "real";
+  var mapPostureLabel = REAL_MAP_ONLY ? "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY";
   var [useRealMap, setUseRealMap] = React.useState(() => {
     if (REAL_MAP_ONLY) return true;
     try {
@@ -2953,7 +2954,30 @@ function MapScreen({
       overflow: "hidden",
       background: "var(--paper-2)"
     }
-  }, React.createElement(WellnessPill, null), state._navStack?.length > 0 && React.createElement("button", {
+  }, React.createElement(WellnessPill, null), React.createElement("div", {
+    style: {
+      position: "absolute",
+      top: 68,
+      left: 10,
+      zIndex: 4,
+      padding: "5px 9px",
+      borderRadius: 999,
+      background: "rgba(var(--glass),0.92)",
+      color: "var(--ink)",
+      border: "1px solid var(--line-2)",
+      backdropFilter: "blur(10px)",
+      WebkitBackdropFilter: "blur(10px)",
+      boxShadow: "0 4px 12px rgba(0,0,0,0.10)",
+      pointerEvents: "none"
+    }
+  }, React.createElement("span", {
+    className: "mono",
+    style: {
+      fontSize: 8,
+      letterSpacing: 1.05,
+      fontWeight: 800
+    }
+  }, mapPostureLabel)), state._navStack?.length > 0 && React.createElement("button", {
     onClick: () => window._popNav?.(),
     "aria-label": "Back",
     style: {
