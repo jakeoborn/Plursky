@@ -1592,14 +1592,14 @@ function LineupScreen({
       padding: "0 16px 90px"
     }
   }, savedToday.length === 0 && (() => {
-    var dayHeads = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
-    if (dayHeads.length === 0) return null;
+    var dayTopPicks = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
+    if (dayTopPicks.length === 0) return null;
     var dayLabel = DAYS.find(d => d.n === day)?.label || `Day ${day}`;
-    var headIds = dayHeads.map(h => h.id);
+    var topPickIds = dayTopPicks.map(a => a.id);
     return React.createElement("button", {
       onClick: () => setState(s => ({
         ...s,
-        saved: [...new Set([...s.saved, ...headIds])]
+        saved: [...new Set([...s.saved, ...topPickIds])]
       })),
       style: {
         width: viewMode === "grid" ? "calc(100% - 32px)" : "100%",
@@ -1642,7 +1642,7 @@ function LineupScreen({
         lineHeight: 1.05,
         color: "#fff"
       }
-    }, "Save all headliners for ", dayLabel), React.createElement("div", {
+    }, "Save all top picks for ", dayLabel), React.createElement("div", {
       className: "mono",
       style: {
         fontSize: 10,
@@ -1651,7 +1651,7 @@ function LineupScreen({
         opacity: 0.9,
         fontWeight: 700
       }
-    }, "+", dayHeads.length, " SETS · TAP TO ADD")), React.createElement("span", {
+    }, "+", dayTopPicks.length, " SETS · TAP TO ADD")), React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 10,

@@ -1179,15 +1179,15 @@ function LineupScreen({ state, setState }) {
       }>
         {/* "Save the Day" empty-state CTA — when no sets are saved for the
             selected day, a single ember card batch-saves every tier-3
-            headliner. Disappears once the day has any save. */}
+            top pick. Disappears once the day has any save. */}
         {savedToday.length === 0 && (() => {
-          const dayHeads = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
-          if (dayHeads.length === 0) return null;
+          const dayTopPicks = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
+          if (dayTopPicks.length === 0) return null;
           const dayLabel = DAYS.find(d => d.n === day)?.label || `Day ${day}`;
-          const headIds = dayHeads.map(h => h.id);
+          const topPickIds = dayTopPicks.map(a => a.id);
           return (
             <button
-              onClick={() => setState(s => ({ ...s, saved: [...new Set([...s.saved, ...headIds])] }))}
+              onClick={() => setState(s => ({ ...s, saved: [...new Set([...s.saved, ...topPickIds])] }))}
               style={{
                 width: viewMode === "grid" ? "calc(100% - 32px)" : "100%",
                 display: "flex", alignItems: "center", gap: 12,
@@ -1206,10 +1206,10 @@ function LineupScreen({ state, setState }) {
               }}>✦</span>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div className="serif" style={{ fontSize: 18, lineHeight: 1.05, color: "#fff" }}>
-                  Save all headliners for {dayLabel}
+                  Save all top picks for {dayLabel}
                 </div>
                 <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, marginTop: 3, opacity: 0.9, fontWeight: 700 }}>
-                  +{dayHeads.length} SETS · TAP TO ADD
+                  +{dayTopPicks.length} SETS · TAP TO ADD
                 </div>
               </div>
               <span className="mono" style={{ fontSize: 10, letterSpacing: 1.3, fontWeight: 800, flexShrink: 0 }}>

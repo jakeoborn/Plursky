@@ -1851,6 +1851,11 @@ function MapScreen({ state, setState }) {
   // SVG ground plate for a venue whose layout nobody has published would be
   // the poster-space-as-world-space defect PR #36 removed from EDC LV.
   const REAL_MAP_ONLY = FESTIVAL_CONFIG.mapMode === "real";
+  const mapPostureLabel = REAL_MAP_ONLY
+    ? "VENUE MAP · STAGES PENDING"
+    : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3
+      ? "OFFICIAL MAP"
+      : "LAYOUT ONLY";
   const [useRealMap, setUseRealMap] = React.useState(() => {
     if (REAL_MAP_ONLY) return true;
     try { return localStorage.getItem("plursky_use_realmap") === "1"; } catch { return false; }
@@ -2276,6 +2281,19 @@ function MapScreen({ state, setState }) {
           (Apple Maps / Snap Map pattern). */}
       <div style={{ flex: 1, position: "relative", overflow: "hidden", background: "var(--paper-2)" }}>
         <WellnessPill />
+
+        <div style={{
+          position: "absolute", top: 68, left: 10, zIndex: 4,
+          padding: "5px 9px", borderRadius: 999,
+          background: "rgba(var(--glass),0.92)", color: "var(--ink)",
+          border: "1px solid var(--line-2)", backdropFilter: "blur(10px)",
+          WebkitBackdropFilter: "blur(10px)", boxShadow: "0 4px 12px rgba(0,0,0,0.10)",
+          pointerEvents: "none",
+        }}>
+          <span className="mono" style={{ fontSize: 8, letterSpacing: 1.05, fontWeight: 800 }}>
+            {mapPostureLabel}
+          </span>
+        </div>
 
         {state._navStack?.length > 0 && (
           <button onClick={() => window._popNav?.()} aria-label="Back" style={{
@@ -3626,6 +3644,16 @@ function RealMap({
     const bootTimer = setTimeout(() => {
       if (!loadedRef.current && !fatalRef.current) _fatal("Real map timed out");
     }, 12000);
+    // `load` waits for every source needed by the current viewport. A slow or
+    // missing peripheral tile can hold it past 12s even after the basemap is
+    // visibly useful. Treat the first rendered tile/source payload as ready,
+    // and keep load/idle as the definitive fallbacks.
+    const markMapUsable = () => {
+      if (cancelled || loadedRef.current) return;
+      loadedRef.current = true;
+      clearTimeout(bootTimer);
+      setLoaded(true);
+    };
     _mapLog("[plursky-map] RealMap useEffect — calling _loadMapLibre()");
     _loadMapLibre().then((maplibregl) => {
       _mapLog("[plursky-map] _loadMapLibre resolved — MapLibre loaded");
@@ -3652,6 +3680,10 @@ function RealMap({
       });
       map.addControl(new maplibregl.AttributionControl({ compact: true }), "bottom-right");
       mapRef.current = map;
+      map.on("sourcedata", (e) => {
+        if (e?.dataType === "source" && e?.tile) markMapUsable();
+      });
+      map.once("idle", markMapUsable);
 
       // Flexible polygon generator around (lat,lng) with optional
       // alternating inner/outer radii (for star/flower/gear shapes) and
@@ -4420,8 +4452,7 @@ function RealMap({
           .addTo(map);
 
         setupOverlayLayers();
-        loadedRef.current = true;
-        setLoaded(true);
+        markMapUsable();
       });
 
       // Every time a NEW style finishes loading (after setStyle), re-add the
