@@ -1,6 +1,16 @@
 var SETLISTS_PROXY_URL = "https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/proxy-setlist";
+var _LOOKUP_SET_NOTE = /^(?:.*\bsets?\b.*|live|detox|in the round|.*\bclassics\b.*)$/i;
+function _lookupName(s) {
+  var raw = String(s || "");
+  var t = raw.replace(/\s*\(([^)]*)\)\s*/g, (m, inner) => _LOOKUP_SET_NOTE.test(inner.trim()) ? " " : m).replace(/\s+/g, " ").trim();
+  return t || raw;
+}
+function _b2bParts(name) {
+  return String(name || "").split(/\s+b2b\s+(?![^()]*\))/i).map(s => s.trim()).filter(Boolean);
+}
 var _SL_TTL = 24 * 3600000;
 async function fetchSetlists(artistName) {
+  artistName = _lookupName(artistName);
   var cacheKey = `setlist_${artistName.toLowerCase().replace(/\W+/g, "_")}_v3`;
   try {
     var c = JSON.parse(localStorage.getItem(cacheKey) || "null");
@@ -60,6 +70,7 @@ function _parseDuration(iso) {
   return parseInt(m[1] || 0) * 60 + parseInt(m[2] || 0) + parseInt(m[3] || 0) / 60;
 }
 async function fetchYouTubeSet(artistName) {
+  artistName = _lookupName(artistName);
   if (!YOUTUBE_KEY) return null;
   var cacheKey = `yt_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
   try {
@@ -128,6 +139,7 @@ async function fetchYouTubeSet(artistName) {
 }
 var _MC_TTL = 24 * 3600000;
 async function fetchMixcloud(artistName) {
+  artistName = _lookupName(artistName);
   var cacheKey = `mc_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
   try {
     var c = JSON.parse(localStorage.getItem(cacheKey) || "null");
@@ -201,6 +213,7 @@ function _validateGenreMatch(lineupGenre, ...externalFields) {
 }
 var _TADB_TTL = 7 * 24 * 3600000;
 async function fetchAudioDB(artistName, lineupGenre) {
+  artistName = _lookupName(artistName);
   var cacheKey = `tadb_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
   try {
     var c = JSON.parse(localStorage.getItem(cacheKey) || "null");
@@ -245,6 +258,7 @@ async function fetchAudioDB(artistName, lineupGenre) {
 var LASTFM_KEY = "aae1625166e1c4fa3197ef44774c4ead";
 var _LFM_TTL = 24 * 3600000;
 async function fetchLastfm(artistName, lineupGenre) {
+  artistName = _lookupName(artistName);
   if (!LASTFM_KEY) return null;
   var cacheKey = `lfm_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
   try {
@@ -305,6 +319,7 @@ function _fmtCount(n) {
 var TICKETMASTER_KEY = "GKAPS1SP4GIKOCNfR5iTDyzqR0G2yuxE";
 var _TM_TTL = 6 * 3600000;
 async function fetchTicketmaster(artistName) {
+  artistName = _lookupName(artistName);
   if (!TICKETMASTER_KEY) return null;
   var cacheKey = `tm_${artistName.toLowerCase().replace(/\W+/g, "_")}_v1`;
   try {
@@ -1109,13 +1124,14 @@ function ArtistScreen({
   var a = ARTISTS.find(ar => ar.id === state.artist);
   if (!a) return null;
   var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
-  var b2bParts = a.name.split(/ b2b /i).map(s => s.trim());
+  var b2bParts = _b2bParts(a.name);
   var isB2B = b2bParts.length > 1;
   var [activeB2B, setActiveB2B] = React.useState(0);
   React.useEffect(() => {
     setActiveB2B(0);
   }, [a.id]);
   var activeName = isB2B ? b2bParts[activeB2B] : a.name;
+  var lookupName = _lookupName(activeName);
   var artistImages = React.useMemo(() => {
     try {
       return JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
@@ -1180,21 +1196,21 @@ function ArtistScreen({
     setSlError(false);
     setYtError(false);
     setTmError(false);
-    fetchLastfm(activeName, a.genre).then(setLfm);
-    fetchSetlists(activeName).then(setSetlists).catch(() => {
+    fetchLastfm(lookupName, a.genre).then(setLfm);
+    fetchSetlists(lookupName).then(setSetlists).catch(() => {
       setSetlists([]);
       setSlError(true);
     });
-    fetchYouTubeSet(activeName).then(setYtVideo).catch(() => {
+    fetchYouTubeSet(lookupName).then(setYtVideo).catch(() => {
       setYtVideo(null);
       setYtError(true);
     });
-    fetchTicketmaster(activeName).then(setTmEvents).catch(() => {
+    fetchTicketmaster(lookupName).then(setTmEvents).catch(() => {
       setTmEvents([]);
       setTmError(true);
     });
-    fetchMixcloud(activeName).then(setMcTracks);
-    fetchAudioDB(activeName, a.genre).then(setTadb);
+    fetchMixcloud(lookupName).then(setMcTracks);
+    fetchAudioDB(lookupName, a.genre).then(setTadb);
     if (window._getTracklistForArtist) window._getTracklistForArtist(a.name).then(setEdcTracklist);
   }, [a.id, activeB2B]);
   React.useEffect(() => {
@@ -1236,7 +1252,7 @@ function ArtistScreen({
     var ctrl = new AbortController();
     getValidToken().then(token => {
       if (!token) return;
-      fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(activeName)}&type=artist&limit=3`, {
+      fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(lookupName)}&type=artist&limit=3`, {
         headers: {
           Authorization: "Bearer " + token
         },
@@ -1328,7 +1344,7 @@ function ArtistScreen({
     if (preview === "loading" || preview === "none") return;
     if (!preview) {
       setPreview("loading");
-      var result = await fetchPreviewUrl(activeName);
+      var result = await fetchPreviewUrl(lookupName);
       if (!result) {
         setPreview("none");
         return;
@@ -1882,23 +1898,23 @@ function ArtistScreen({
   }, [{
     label: "SPOTIFY",
     accent: "#1DB954",
-    url: spotifyStats?.spotifyId ? `https://open.spotify.com/artist/${spotifyStats.spotifyId}` : `https://open.spotify.com/search/${encodeURIComponent(activeName)}/artists`
+    url: spotifyStats?.spotifyId ? `https://open.spotify.com/artist/${spotifyStats.spotifyId}` : `https://open.spotify.com/search/${encodeURIComponent(lookupName)}/artists`
   }, {
     label: "SOUNDCLOUD",
     accent: "#ff5500",
-    url: `https://soundcloud.com/search?q=${encodeURIComponent(activeName)}`
+    url: `https://soundcloud.com/search?q=${encodeURIComponent(lookupName)}`
   }, {
     label: "RA",
     accent: "#000",
-    url: `https://ra.co/search?query=${encodeURIComponent(activeName)}`
+    url: `https://ra.co/search?query=${encodeURIComponent(lookupName)}`
   }, {
     label: "INSTAGRAM",
     accent: "#E1306C",
-    url: `https://www.instagram.com/explore/tags/${encodeURIComponent(activeName.replace(/\s+/g, "").toLowerCase())}`
+    url: `https://www.instagram.com/explore/tags/${encodeURIComponent(lookupName.replace(/\s+/g, "").toLowerCase())}`
   }, {
     label: "𝕏",
     accent: "#000",
-    url: `https://x.com/search?q=${encodeURIComponent(activeName)}`
+    url: `https://x.com/search?q=${encodeURIComponent(lookupName)}`
   }].map(({
     label,
     url,
@@ -2318,7 +2334,7 @@ function ArtistScreen({
   })), React.createElement("div", {
     id: "artist-section-livestream"
   }), (() => {
-    var ytSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(activeName + " live set " + (FESTIVAL_CONFIG.brand || FESTIVAL_CONFIG.shortName))}`;
+    var ytSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(lookupName + " live set " + (FESTIVAL_CONFIG.brand || FESTIVAL_CONFIG.shortName))}`;
     return React.createElement("div", {
       style: {
         marginBottom: 18
@@ -2499,7 +2515,7 @@ function ArtistScreen({
       onClick: () => {
         setYtError(false);
         setYtVideo(undefined);
-        fetchYouTubeSet(activeName).then(setYtVideo).catch(() => {
+        fetchYouTubeSet(lookupName).then(setYtVideo).catch(() => {
           setYtVideo(null);
           setYtError(true);
         });
@@ -2589,7 +2605,7 @@ function ArtistScreen({
       }
     }, "↗")));
   })(), (() => {
-    var mcSearchUrl = `https://www.mixcloud.com/search/?q=${encodeURIComponent(activeName + " " + (FESTIVAL_CONFIG.brand || "festival"))}`;
+    var mcSearchUrl = `https://www.mixcloud.com/search/?q=${encodeURIComponent(lookupName + " " + (FESTIVAL_CONFIG.brand || "festival"))}`;
     return React.createElement("div", {
       style: {
         marginBottom: 18
@@ -2934,7 +2950,7 @@ function ArtistScreen({
     onClick: () => {
       setTmError(false);
       setTmEvents(undefined);
-      fetchTicketmaster(activeName).then(setTmEvents).catch(() => {
+      fetchTicketmaster(lookupName).then(setTmEvents).catch(() => {
         setTmEvents([]);
         setTmError(true);
       });
@@ -3131,7 +3147,7 @@ function ArtistScreen({
     onClick: () => {
       setSlError(false);
       setSetlists(undefined);
-      fetchSetlists(activeName).then(setSetlists).catch(() => {
+      fetchSetlists(lookupName).then(setSetlists).catch(() => {
         setSetlists([]);
         setSlError(true);
       });

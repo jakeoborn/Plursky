@@ -2251,6 +2251,17 @@ const LL_STAGES = [
 // seven - the stages are real, the ASSIGNMENT was not. The flip session
 // (~Sep 12, when the official schedule drops in the Lost Lands app) fills
 // stage and set time together from the official source, NOT from press.
+//
+// The flip fills this block from a sheet transcribed off the OFFICIAL schedule:
+//   node scripts/import-set-times.mjs lost-lands-2026 <sheet.tsv> --source <official-url>
+// id → [stageId, start, end], festival-local "HH:MM" (before 08:00 = after
+// midnight). Every row is validated before a byte is written. An act absent
+// here keeps stage null and blank times: TBA is a real answer, and a partial
+// import ships only what the source shows.
+const LL_SCHEDULE = {
+  // SCHEDULE:BEGIN lost-lands-2026
+  // SCHEDULE:END
+};
 const _llMk = (id, name, genre, tier, day) => {
   // ⚠ NO SET TIMES ON PURPOSE. These used to be SYNTHESISED from tier
   // (t3 22:30-00:00, t2 20:00-21:30, else 17:00-18:30), which produced 201
@@ -2262,10 +2273,13 @@ const _llMk = (id, name, genre, tier, day) => {
   // house form for a gated festival whose schedule has not dropped — the
   // Nocturnal / III Points / CRSSD / Escape precedent. The flip session
   // fills these from the official schedule; scripts/verify.mjs now refuses
-  // to let a festival ship with fabricated ones.
-  return { id, name, genre, country: "—", stage: null, day, start: "", end: "", tier,
+  // to let a festival ship with fabricated ones. LL_SCHEDULE above is the only
+  // way a time gets in.
+  const s = LL_SCHEDULE[id];
+  return { id, name, genre, country: "—", stage: s ? s[0] : null, day, start: s ? s[1] : "", end: s ? s[2] : "", tier,
     img: "linear-gradient(135deg, #84cc16, #0a1a0c)",
-    bio: "Playing Lost Lands 2026. Stage and set time drop in the Lost Lands app about a week out." };
+    bio: s ? "Playing Lost Lands 2026."
+           : "Playing Lost Lands 2026. Stage and set time drop in the Lost Lands app about a week out." };
 };
 
 const LL_ARTISTS = [
@@ -2294,12 +2308,13 @@ const LL_ARTISTS = [
   _llMk("llh3", "Dirt Monkey", "Dubstep", 2, 2),
   _llMk("llh4", "Funtcase", "Dubstep", 2, 2),
   _llMk("llh5", "Machaki", "Bass", 2, 2),
-  _llMk("llh6", "MEGA B2B2B2B2B PRE-PARTY", "Bass", 3, 2),
+  _llMk("llh6", "MEGA B2B2B2B PRE-PARTY", "Bass", 3, 2),
   _llMk("llh7", "Mindset", "Bass", 2, 2),
   _llMk("llh8", "Phrva", "Bass", 2, 2),
   _llMk("llh9", "Rsun", "Bass", 2, 2),
   _llMk("llh10", "RZRKT", "Bass", 2, 2),
   _llMk("llh11", "Super Future", "Space Bass", 2, 2),
+  _llMk("llh12", "Zen Selekta", "Bass", 2, 2),
   // ── FRIDAY (day 3) ──
   _llMk("llf1", "$J", "Bass", 1, 3),
   _llMk("llf2", "Austeria", "Bass", 1, 3),
@@ -2318,6 +2333,7 @@ const LL_ARTISTS = [
   _llMk("llf15", "Dr. Ushuu", "Bass", 1, 3),
   _llMk("llf16", "Drinkurwater", "Bass", 1, 3),
   _llMk("llf17", "Dubscribe", "Bass", 1, 3),
+  _llMk("llf60", "Excision (2 Hour Set)", "Dubstep", 3, 3),
   _llMk("llf18", "Future Exit", "Bass", 1, 3),
   _llMk("llf19", "HOL!", "Dubstep", 2, 3),
   _llMk("llf20", "Infekt B2B Samplifire", "Riddim", 2, 3),
@@ -2356,13 +2372,13 @@ const LL_ARTISTS = [
   _llMk("llf53", "Vampa", "Dubstep", 2, 3),
   _llMk("llf54", "VKTM", "Bass", 1, 3),
   _llMk("llf55", "Wiley", "Space Bass", 2, 3),
-  _llMk("llf56", "Wooli", "Dubstep / Melodic Bass", 3, 3),
+  _llMk("llf56", "Wooli (Sunset Set)", "Dubstep / Melodic Bass", 3, 3),
   _llMk("llf57", "Xotix", "Bass", 1, 3),
   _llMk("llf58", "YOOKIE", "Dubstep / Hybrid", 2, 3),
   _llMk("llf59", "Zero", "Bass", 1, 3),
   // ── SATURDAY (day 4) ──
   _llMk("lls1", "2DY4", "Bass", 1, 4),
-  _llMk("lls2", "AEON:MODE", "Bass", 1, 4),
+  _llMk("lls2", "AEON:MODE B2B Blossom", "Bass", 1, 4),
   _llMk("lls3", "All The Reason", "Bass", 1, 4),
   _llMk("lls4", "Au5", "Melodic Dubstep", 2, 4),
   _llMk("lls5", "Audiofreq", "Bass", 1, 4),
@@ -2372,7 +2388,6 @@ const LL_ARTISTS = [
   _llMk("lls9", "Brainrack", "Bass", 1, 4),
   _llMk("lls10", "Capochino", "Bass", 1, 4),
   _llMk("lls11", "Chozen", "Bass", 1, 4),
-  _llMk("lls12", "Craze", "Bass", 1, 4),
   _llMk("lls13", "Craze B2B Dieselboy", "Bass", 1, 4),
   _llMk("lls14", "Crumb Pit", "Riddim", 2, 4),
   _llMk("lls15", "Cyclops", "Bass", 1, 4),
@@ -2400,7 +2415,7 @@ const LL_ARTISTS = [
   _llMk("lls37", "Leotrix", "Future Riddim", 2, 4),
   _llMk("lls38", "Lil Texas", "Bass", 1, 4),
   _llMk("lls39", "Lowcation", "Bass", 1, 4),
-  _llMk("lls40", "Mefjus", "Drum & Bass", 2, 4),
+  _llMk("lls40", "Mefjus + Daxta MC", "Drum & Bass", 2, 4),
   _llMk("lls41", "Mozey", "Drum & Bass", 2, 4),
   _llMk("lls42", "Myrias", "Bass", 1, 4),
   _llMk("lls43", "Mythm", "Bass", 1, 4),
@@ -2409,7 +2424,7 @@ const LL_ARTISTS = [
   _llMk("lls46", "Phaseone", "Metalstep", 2, 4),
   _llMk("lls47", "Prosecute", "Dubstep", 2, 4),
   _llMk("lls48", "Saint Miller", "Bass", 2, 4),
-  _llMk("lls49", "Seven Lions", "Melodic Bass", 3, 4),
+  _llMk("lls49", "Seven Lions (Sunset Set)", "Melodic Bass", 3, 4),
   _llMk("lls50", "Slander", "Melodic Bass", 3, 4),
   _llMk("lls51", "Space Wizard", "Bass", 1, 4),
   _llMk("lls52", "Stoned Level", "Bass", 1, 4),
@@ -2423,8 +2438,7 @@ const LL_ARTISTS = [
   _llMk("lls60", "Zingara", "Bass", 1, 4),
   _llMk("lls61", "Zomboy", "Dubstep", 3, 4),
   // ── SUNDAY (day 5) ──
-  _llMk("llu1", "Adventure Club", "Melodic Dubstep", 2, 5),
-  _llMk("llu2", "Alleycvt B2B Crankdat", "Bass", 1, 5),
+  _llMk("llu1", "Adventure Club (Throwback Set)", "Melodic Dubstep", 2, 5),
   _llMk("llu3", "Arlo", "Bass", 2, 5),
   _llMk("llu4", "Armnhmr", "Melodic Bass", 2, 5),
   _llMk("llu5", "Atliens", "Bass", 2, 5),
@@ -2432,11 +2446,12 @@ const LL_ARTISTS = [
   _llMk("llu7", "Boogie T", "Bass", 1, 5),
   _llMk("llu8", "Champagne Drip", "Space Bass", 2, 5),
   _llMk("llu9", "Codd Dubz", "Bass", 1, 5),
+  _llMk("llu2", "Crankdat B2B Alleycvt", "Bass", 1, 5),
   _llMk("llu10", "Crystal Skies", "Melodic Dubstep", 2, 5),
   _llMk("llu11", "Distant Matter", "Bass", 1, 5),
   _llMk("llu12", "Dream Takers", "Bass", 1, 5),
-  _llMk("llu13", "Eptic", "Dubstep", 3, 5),
-  _llMk("llu14", "Excision", "Dubstep", 3, 5),
+  _llMk("llu13", "Eptic B2B LYNY", "Dubstep", 3, 5),
+  _llMk("llu14", "Excision (Detox)", "Dubstep", 3, 5),
   _llMk("llu15", "Excision B2B Space Laces", "Dubstep", 3, 5),
   _llMk("llu16", "FINNUH", "Bass", 1, 5),
   _llMk("llu17", "Ghastly", "Bass", 2, 5),

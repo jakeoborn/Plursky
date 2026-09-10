@@ -596,6 +596,68 @@ if (fdata.length) {
 //
 // To exempt a genuinely weekend-blind read, put `// weekend-exempt: <why>` on
 // the line above it. The reason is the point — it is printed on every run.
+// ── Lookup-name gate ──────────────────────────────────────────────────────
+// artist.jsx's _lookupName strips a printed SET NOTE before an act is looked up
+// on setlist.fm / Spotify / YouTube, and must never strip IDENTITY: "Sunday
+// (1994)", "KAUFMANN (DE)", "Small (danny g luvs u B2B Bori)". Its first cut
+// stripped every parenthetical (#123 review). _b2bParts must not split inside
+// a parenthetical either ("Small (danny g luvs u B2B Bori)" is ONE act). This
+// evaluates the REAL functions against fixed tables, then reports what the rule
+// does to every parenthetical in the registry, so a new identity is seen.
+{
+  console.log(`▸ Lookup-name gate — set notes stripped, identities kept`);
+  const vmod = (await import("node:vm")).default;
+  const art = readFileSync(join(ROOT, "artist.jsx"), "utf8");
+  const pick = (re, what) => { const m = re.exec(art); if (!m) fail(`could not find ${what} in artist.jsx`); return m[0]; };
+  const code = pick(/const _LOOKUP_SET_NOTE = [^\n]+\nfunction _lookupName\(s\) \{[\s\S]*?\n\}/, "_LOOKUP_SET_NOTE + _lookupName")
+    + "\n" + pick(/function _b2bParts\(name\) \{[\s\S]*?\n\}/, "_b2bParts");
+  const lc = {}; vmod.createContext(lc);
+  vmod.runInContext(code.replace("const _LOOKUP_SET_NOTE", "var _LOOKUP_SET_NOTE") + "\n;this.f = _lookupName; this.b = _b2bParts;", lc);
+  const TABLE = [
+    ["Excision (Detox)", "Excision"], ["Excision (2 Hour Set)", "Excision"], ["Wooli (Sunset Set)", "Wooli"],
+    ["4 Strings (Classics Set)", "4 Strings"], ["Above & Beyond (Anjunabeats Classics)", "Above & Beyond"],
+    ["Porter Robinson (DJ Set)", "Porter Robinson"], ["GROOVE ARMADA (dj set)", "GROOVE ARMADA"],
+    ["res_ (live)", "res_"], ["VTSS (In The Round)", "VTSS"], ["Teddy Pain (T-Pain Bass Set)", "Teddy Pain"],
+    ["Sunday (1994)", "Sunday (1994)"], ["KAUFMANN (DE)", "KAUFMANN (DE)"],
+    ["Small (danny g luvs u B2B Bori)", "Small (danny g luvs u B2B Bori)"],
+    ["DOG BLOOD (SKRILLEX + BOYS NOIZE)", "DOG BLOOD (SKRILLEX + BOYS NOIZE)"],
+    ["Skull Machine (Black Tiger Sex Machine x Kai Wachi)", "Skull Machine (Black Tiger Sex Machine x Kai Wachi)"],
+    ["Levity", "Levity"], ["", ""],
+  ];
+  const SPLIT = [
+    ["Small (danny g luvs u B2B Bori)", ["Small (danny g luvs u B2B Bori)"]],
+    ["Calcium B2B Mad Dubz", ["Calcium", "Mad Dubz"]], ["Sullivan King B2B Ray Volpe", ["Sullivan King", "Ray Volpe"]],
+    ["Crankdat B2B Alleycvt", ["Crankdat", "Alleycvt"]], ["Levity", ["Levity"]],
+  ];
+  // Every B2B split in the app goes through _b2bParts. A bare split(/ b2b /i)
+  // cuts "Small (danny g luvs u B2B Bori)" in two; seven of them existed when
+  // this gate was written (#123 review round 2).
+  const naive = [];
+  for (const fn of readdirSync(ROOT).filter(x => x.endsWith(".jsx")).sort())
+    readFileSync(join(ROOT, fn), "utf8").split("\n").forEach((l, i) => {
+      if (/\.split\(\s*\/[^/]*b2b/i.test(l) && !l.includes("(?![^()]*\\))")) naive.push(`${fn}:${i + 1}`);
+    });
+  for (const n of naive) console.log(`  ✗ naive B2B split at ${n} — use _b2bParts(name)`);
+  if (naive.length) fail(`${naive.length} B2B split(s) bypass _b2bParts and can cut a parenthetical`);
+  const wrong = TABLE.filter(([i, o]) => lc.f(i) !== o);
+  const wrongSplit = SPLIT.filter(([i, o]) => JSON.stringify(lc.b(i)) !== JSON.stringify(o));
+  for (const [i, o] of wrong) console.log(`  ✗ _lookupName(${JSON.stringify(i)}) = ${JSON.stringify(lc.f(i))}, expected ${JSON.stringify(o)}`);
+  for (const [i, o] of wrongSplit) console.log(`  ✗ _b2bParts(${JSON.stringify(i)}) = ${JSON.stringify(lc.b(i))}, expected ${JSON.stringify(o)}`);
+  if (wrong.length || wrongSplit.length)
+    fail(`${wrong.length + wrongSplit.length} lookup-name case(s) wrong — a set note survived, an identity was stripped, or a B2B split cut a parenthetical`);
+  const nctx = { window: {}, console, Date, Math, JSON, Object, Array, String, Number, isNaN, parseInt, parseFloat,
+    fetch: () => {}, localStorage: { getItem: () => null, setItem() {}, removeItem() {} } };
+  vmod.createContext(nctx);
+  const nmods = readdirSync(join(ROOT, "data", "festivals")).filter(x => x.endsWith(".js")).sort()
+    .map(x => readFileSync(join(ROOT, "data", "festivals", x), "utf8")).join("\n");
+  vmod.runInContext(nmods + "\n" + readFileSync(join(ROOT, "data.jsx"), "utf8") + "\n;__o=_DATA_SETS;", nctx);
+  const kept = new Set(), stripped = new Set();
+  for (const ds of Object.values(nctx.__o)) for (const a of ds.artists || [])
+    for (const p of a.name.matchAll(/\(([^)]*)\)/g)) (lc.f(a.name).includes(p[0]) ? kept : stripped).add(p[1].trim());
+  console.log(`  ✓ ${TABLE.length} name + ${SPLIT.length} split cases hold; registry: ${stripped.size} set note(s) stripped, ${kept.size} identity parenthetical(s) kept`);
+  console.log(`    kept: ${[...kept].sort().join(" · ")}`);
+}
+
 {
   console.log(`▸ Weekend-filter gate — schedule reads take the filtered lineup`);
   const SRC = readdirSync(ROOT).filter(f => f.endsWith(".jsx")).sort();

@@ -8,10 +8,38 @@
 // server-side (key stored as SETLISTFM_KEY secret) and returns the JSON
 // with proper CORS headers.
 const SETLISTS_PROXY_URL = "https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/proxy-setlist";
+
+// An act name as printed can carry a set note — "Excision (Detox)", "Wooli
+// (Sunset Set)". Every outbound lookup wants the ARTIST, so each fetch helper
+// normalises its own input here and no caller can forget to (a second caller
+// once sent "Excision (Detox)" to setlist.fm after the first was fixed).
+//
+// Only a SET NOTE is stripped, never a parenthetical as such: many are part of
+// who the act is — "Sunday (1994)", "KAUFMANN (DE)", "Small (danny g luvs u B2B
+// Bori)", "DOG BLOOD (SKRILLEX + BOYS NOIZE)". A note says so: it contains the
+// word "set" ("Sunset Set", "DJ set", "2 Hour Set"), or is one of the few the
+// lineups print without it (Live, Detox, In The Round, "… Classics"). Built
+// from all 26 parentheticals across the registry, 2026-09-10; the regression
+// table lives in scripts/verify.mjs. spotify-api.jsx's searches use this too.
+const _LOOKUP_SET_NOTE = /^(?:.*\bsets?\b.*|live|detox|in the round|.*\bclassics\b.*)$/i;
+function _lookupName(s) {
+  const raw = String(s || "");
+  const t = raw.replace(/\s*\(([^)]*)\)\s*/g, (m, inner) => (_LOOKUP_SET_NOTE.test(inner.trim()) ? " " : m))
+    .replace(/\s+/g, " ").trim();
+  return t || raw;
+}
+
+// "A b2b B" → one tab per artist — but never split INSIDE a parenthetical:
+// "Small (danny g luvs u B2B Bori)" is one act, and the naive split made a
+// "Small (danny g luvs u" tab that was then looked up verbatim (#123 review).
+function _b2bParts(name) {
+  return String(name || "").split(/\s+b2b\s+(?![^()]*\))/i).map(s => s.trim()).filter(Boolean);
+}
 const _SL_TTL = 24 * 3600000; // cache 24 h
 // v2 cache key — invalidates the empty `[]` arrays stale clients wrote
 // while the direct fetch was CORS-failing.
 async function fetchSetlists(artistName) {
+  artistName = _lookupName(artistName);
   // v3: setlist.fm only has documented song lists for a small minority of
   // DJ/EDM gigs (it's a fan-submitted database — rock acts get transcribed,
   // dance acts mostly don't). Previously we filtered to "must have songs"
@@ -87,6 +115,7 @@ function _parseDuration(iso) {
 }
 
 async function fetchYouTubeSet(artistName) {
+  artistName = _lookupName(artistName);
   if (!YOUTUBE_KEY) return null;
   const cacheKey = `yt_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
   try {
@@ -148,6 +177,7 @@ async function fetchYouTubeSet(artistName) {
 const _MC_TTL = 24 * 3600000;
 
 async function fetchMixcloud(artistName) {
+  artistName = _lookupName(artistName);
   const cacheKey = `mc_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
   try {
     const c = JSON.parse(localStorage.getItem(cacheKey) || "null");
@@ -238,6 +268,7 @@ function _validateGenreMatch(lineupGenre, ...externalFields) {
 const _TADB_TTL = 7 * 24 * 3600000; // cache 7 days (biography rarely changes)
 
 async function fetchAudioDB(artistName, lineupGenre) {
+  artistName = _lookupName(artistName);
   const cacheKey = `tadb_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
   try {
     const c = JSON.parse(localStorage.getItem(cacheKey) || "null");
@@ -277,6 +308,7 @@ const LASTFM_KEY = "aae1625166e1c4fa3197ef44774c4ead";
 const _LFM_TTL = 24 * 3600000;
 
 async function fetchLastfm(artistName, lineupGenre) {
+  artistName = _lookupName(artistName);
   if (!LASTFM_KEY) return null;
   const cacheKey = `lfm_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
   try {
@@ -343,6 +375,7 @@ const TICKETMASTER_KEY = "GKAPS1SP4GIKOCNfR5iTDyzqR0G2yuxE";
 const _TM_TTL = 6 * 3600000; // cache 6 h (events change more often)
 
 async function fetchTicketmaster(artistName) {
+  artistName = _lookupName(artistName);
   if (!TICKETMASTER_KEY) return null;
   const cacheKey = `tm_${artistName.toLowerCase().replace(/\W+/g, "_")}_v1`;
   try {
@@ -913,11 +946,17 @@ function ArtistScreen({ state, setState }) {
   const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
 
   // B2B detection — "A b2b B" → split, show per-artist info tabs
-  const b2bParts  = a.name.split(/ b2b /i).map(s => s.trim());
+  const b2bParts  = _b2bParts(a.name);
   const isB2B     = b2bParts.length > 1;
   const [activeB2B, setActiveB2B] = React.useState(0);
   React.useEffect(() => { setActiveB2B(0); }, [a.id]);
   const activeName = isB2B ? b2bParts[activeB2B] : a.name;
+  // What the page LOOKS UP: the act name minus a printed set note, so
+  // "Excision (Detox)" and "Wooli (Sunset Set)" query setlist.fm, Spotify,
+  // YouTube and the rest as the artist — the same strip spotify-api.jsx applies
+  // before its own search. Display and the shared name-keyed caches keep
+  // activeName, so the note still shows and other screens still hit the cache.
+  const lookupName = _lookupName(activeName);
 
   const artistImages = React.useMemo(() => {
     try { return JSON.parse(localStorage.getItem("artist_images_v1") || "{}"); } catch { return {}; }
@@ -1003,12 +1042,12 @@ function ArtistScreen({ state, setState }) {
     setLfm(undefined); setSetlists(undefined); setYtVideo(undefined); setTmEvents(undefined);
     setMcTracks(undefined); setTadb(undefined); setEdcTracklist(undefined);
     setSlError(false); setYtError(false); setTmError(false);
-    fetchLastfm(activeName, a.genre).then(setLfm);
-    fetchSetlists(activeName).then(setSetlists).catch(() => { setSetlists([]); setSlError(true); });
-    fetchYouTubeSet(activeName).then(setYtVideo).catch(() => { setYtVideo(null); setYtError(true); });
-    fetchTicketmaster(activeName).then(setTmEvents).catch(() => { setTmEvents([]); setTmError(true); });
-    fetchMixcloud(activeName).then(setMcTracks);
-    fetchAudioDB(activeName, a.genre).then(setTadb);
+    fetchLastfm(lookupName, a.genre).then(setLfm);
+    fetchSetlists(lookupName).then(setSetlists).catch(() => { setSetlists([]); setSlError(true); });
+    fetchYouTubeSet(lookupName).then(setYtVideo).catch(() => { setYtVideo(null); setYtError(true); });
+    fetchTicketmaster(lookupName).then(setTmEvents).catch(() => { setTmEvents([]); setTmError(true); });
+    fetchMixcloud(lookupName).then(setMcTracks);
+    fetchAudioDB(lookupName, a.genre).then(setTadb);
     if (window._getTracklistForArtist) window._getTracklistForArtist(a.name).then(setEdcTracklist);
   }, [a.id, activeB2B]);
 
@@ -1060,7 +1099,7 @@ function ArtistScreen({ state, setState }) {
     const ctrl = new AbortController();
     getValidToken().then(token => {
     if (!token) return;
-    fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(activeName)}&type=artist&limit=3`, {
+    fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(lookupName)}&type=artist&limit=3`, {
       headers: { Authorization: "Bearer " + token }, signal: ctrl.signal,
     }).then(r => r.ok ? r.json() : null).then(async d => {
       const ln = activeName.toLowerCase();
@@ -1157,7 +1196,7 @@ function ArtistScreen({ state, setState }) {
     // First tap — fetch the preview URL
     if (!preview) {
       setPreview("loading");
-      const result = await fetchPreviewUrl(activeName);
+      const result = await fetchPreviewUrl(lookupName);
       if (!result) { setPreview("none"); return; }
       setPreview(result);
       audioRef.current = new Audio(result.url);
@@ -1485,11 +1524,11 @@ function ArtistScreen({ state, setState }) {
           {[
             { label: "SPOTIFY", accent: "#1DB954", url: spotifyStats?.spotifyId
                 ? `https://open.spotify.com/artist/${spotifyStats.spotifyId}`
-                : `https://open.spotify.com/search/${encodeURIComponent(activeName)}/artists` },
-            { label: "SOUNDCLOUD", accent: "#ff5500", url: `https://soundcloud.com/search?q=${encodeURIComponent(activeName)}` },
-            { label: "RA", accent: "#000", url: `https://ra.co/search?query=${encodeURIComponent(activeName)}` },
-            { label: "INSTAGRAM", accent: "#E1306C", url: `https://www.instagram.com/explore/tags/${encodeURIComponent(activeName.replace(/\s+/g,"").toLowerCase())}` },
-            { label: "𝕏", accent: "#000", url: `https://x.com/search?q=${encodeURIComponent(activeName)}` },
+                : `https://open.spotify.com/search/${encodeURIComponent(lookupName)}/artists` },
+            { label: "SOUNDCLOUD", accent: "#ff5500", url: `https://soundcloud.com/search?q=${encodeURIComponent(lookupName)}` },
+            { label: "RA", accent: "#000", url: `https://ra.co/search?query=${encodeURIComponent(lookupName)}` },
+            { label: "INSTAGRAM", accent: "#E1306C", url: `https://www.instagram.com/explore/tags/${encodeURIComponent(lookupName.replace(/\s+/g,"").toLowerCase())}` },
+            { label: "𝕏", accent: "#000", url: `https://x.com/search?q=${encodeURIComponent(lookupName)}` },
           ].map(({ label, url, accent }) => (
             <a key={label} href={url} target="_blank" rel="noopener noreferrer" style={{
               fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.2, fontWeight: 700,
@@ -1725,7 +1764,7 @@ function ArtistScreen({ state, setState }) {
         {/* ── YouTube live set ─────────────────────────────── */}
         <div id="artist-section-livestream" />
         {(() => {
-          const ytSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(activeName + " live set " + (FESTIVAL_CONFIG.brand || FESTIVAL_CONFIG.shortName))}`;
+          const ytSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(lookupName + " live set " + (FESTIVAL_CONFIG.brand || FESTIVAL_CONFIG.shortName))}`;
           return (
             <div style={{ marginBottom: 18 }}>
               <div className="mono" style={{
@@ -1838,7 +1877,7 @@ function ArtistScreen({ state, setState }) {
                     {ytError ? "COULDN'T LOAD VIDEO" : "NO LIVE SET FOUND"}
                   </div>
                   {ytError && (
-                    <button onClick={() => { setYtError(false); setYtVideo(undefined); fetchYouTubeSet(activeName).then(setYtVideo).catch(() => { setYtVideo(null); setYtError(true); }); }} className="mono" style={{
+                    <button onClick={() => { setYtError(false); setYtVideo(undefined); fetchYouTubeSet(lookupName).then(setYtVideo).catch(() => { setYtVideo(null); setYtError(true); }); }} className="mono" style={{
                       marginTop: 8, padding: "6px 14px", borderRadius: 999,
                       background: "var(--paper-2)", border: "1px solid var(--line-2)",
                       color: "var(--ink)", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
@@ -1884,7 +1923,7 @@ function ArtistScreen({ state, setState }) {
 
         {/* ── Mixcloud sets ────────────────────────────────── */}
         {(() => {
-          const mcSearchUrl = `https://www.mixcloud.com/search/?q=${encodeURIComponent(activeName + " " + (FESTIVAL_CONFIG.brand || "festival"))}`;
+          const mcSearchUrl = `https://www.mixcloud.com/search/?q=${encodeURIComponent(lookupName + " " + (FESTIVAL_CONFIG.brand || "festival"))}`;
           return (
             <div style={{ marginBottom: 18 }}>
               <div className="mono" style={{
@@ -2057,7 +2096,7 @@ function ArtistScreen({ state, setState }) {
                   {tmError ? "COULDN'T LOAD SHOWS" : "NO UPCOMING SHOWS FOUND"}
                 </div>
                 {tmError && (
-                  <button onClick={() => { setTmError(false); setTmEvents(undefined); fetchTicketmaster(activeName).then(setTmEvents).catch(() => { setTmEvents([]); setTmError(true); }); }} className="mono" style={{
+                  <button onClick={() => { setTmError(false); setTmEvents(undefined); fetchTicketmaster(lookupName).then(setTmEvents).catch(() => { setTmEvents([]); setTmError(true); }); }} className="mono" style={{
                     marginTop: 8, padding: "6px 14px", borderRadius: 999,
                     background: "var(--paper-2)", border: "1px solid var(--line-2)",
                     color: "var(--ink)", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
@@ -2153,7 +2192,7 @@ function ArtistScreen({ state, setState }) {
                   {slError ? "COULDN'T LOAD SETLISTS" : "NO DOCUMENTED SETLISTS"}
                 </div>
                 {slError && (
-                  <button onClick={() => { setSlError(false); setSetlists(undefined); fetchSetlists(activeName).then(setSetlists).catch(() => { setSetlists([]); setSlError(true); }); }} className="mono" style={{
+                  <button onClick={() => { setSlError(false); setSetlists(undefined); fetchSetlists(lookupName).then(setSetlists).catch(() => { setSetlists([]); setSlError(true); }); }} className="mono" style={{
                     marginTop: 8, padding: "6px 14px", borderRadius: 999,
                     background: "var(--paper-2)", border: "1px solid var(--line-2)",
                     color: "var(--ink)", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,

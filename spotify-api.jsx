@@ -964,7 +964,7 @@ async function createEdcPlaylist(state, opts = {}) {
     // Strip lineup-only suffixes like "(DJ Set)", "(VIP)", "(Live)" — Spotify's
     // canonical artist name doesn't include them, so the exact-name match below
     // would fail otherwise.
-    const clean = searchName.replace(/\s*\([^)]*\)\s*/g, "").trim() || searchName;
+    const clean = (typeof _lookupName === "function" ? _lookupName(searchName) : searchName) || searchName;  // set notes only — artist.jsx
     try {
       const tr = await fetchWithRetry(
         `https://api.spotify.com/v1/search?q=${encodeURIComponent(`artist:"${clean}"`)}&type=track&limit=10`,
@@ -996,7 +996,7 @@ async function createEdcPlaylist(state, opts = {}) {
   };
 
   const search = async (artist) => {
-    const parts = artist.name.split(/ b2b /i).map(s => s.trim());
+    const parts = _b2bParts(artist.name).map(s => s.trim());
     const limit = trackLimit(artist.tier);
     let total = 0;
     for (const part of parts) {
@@ -1132,7 +1132,7 @@ async function createHypePlaylist() {
   let missed = 0;
   const searchHypeOne = async (searchName) => {
     // Same track-search path as createEdcPlaylist — see comment there.
-    const clean = searchName.replace(/\s*\([^)]*\)\s*/g, "").trim() || searchName;
+    const clean = (typeof _lookupName === "function" ? _lookupName(searchName) : searchName) || searchName;  // set notes only — artist.jsx
     try {
       const tr = await fetch(
         `https://api.spotify.com/v1/search?q=${encodeURIComponent(`artist:"${clean}"`)}&type=track&limit=10`,
@@ -1160,7 +1160,7 @@ async function createHypePlaylist() {
     } catch { return false; }
   };
   const search = async (artist) => {
-    const parts = artist.name.split(/ b2b /i).map(s => s.trim());
+    const parts = _b2bParts(artist.name).map(s => s.trim());
     let ok = false;
     for (const part of parts) ok = await searchHypeOne(part) || ok;
     if (!ok) missed++;
@@ -1190,7 +1190,7 @@ async function fetchFollowedEdcArtists(savedIds) {
     savedIds
       .map(id => ARTISTS.find(a => a.id === id))
       .filter(Boolean)
-      .flatMap(a => a.name.split(/ b2b /i).map(s => s.trim().toLowerCase()))
+      .flatMap(a => _b2bParts(a.name).map(s => s.trim().toLowerCase()))
   );
   const followedLower = [];
   let after = null;
@@ -1211,7 +1211,7 @@ async function fetchFollowedEdcArtists(savedIds) {
   const seen = new Set();
   ARTISTS.forEach(a => {
     if (seen.has(a.id)) return;
-    const parts = a.name.split(/ b2b /i).map(s => s.trim().toLowerCase());
+    const parts = _b2bParts(a.name).map(s => s.trim().toLowerCase());
     const follows = parts.some(p => followedLower.some(f => f === p || f.includes(p) || p.includes(f)));
     if (follows && !savedIds.includes(a.id)) { seen.add(a.id); result.push(a); }
   });
@@ -1441,6 +1441,7 @@ async function fetchSpotifyTopArtists(onProgress) {
 // now return null. Falls back to iTunes Search (free, no auth, CORS-OK)
 // which still serves 30s previews for ~95% of mainstream artists.
 async function fetchPreviewUrl(artistName) {
+  artistName = typeof _lookupName === "function" ? _lookupName(artistName) : artistName;  // artist.jsx
   const cacheKey = "preview_urls_v1";
   try {
     const cached = JSON.parse(localStorage.getItem(cacheKey) || "{}");
@@ -1508,7 +1509,7 @@ function matchLineupArtists(spotifyArtists) {
 
   ARTISTS.forEach(a => {
     if (seen.has(a.id)) return;
-    const parts = a.name.split(/ b2b /i).map(s => s.trim().toLowerCase());
+    const parts = _b2bParts(a.name).map(s => s.trim().toLowerCase());
     const matches = parts.some(part => names.some(n => part.includes(n) || n.includes(part)));
     if (!matches) return;
     seen.add(a.id);

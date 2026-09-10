@@ -989,7 +989,7 @@ async function createEdcPlaylist(state, opts = {}) {
     return null;
   };
   var searchOne = async (searchName, limit) => {
-    var clean = searchName.replace(/\s*\([^)]*\)\s*/g, "").trim() || searchName;
+    var clean = (typeof _lookupName === "function" ? _lookupName(searchName) : searchName) || searchName;
     try {
       var tr = await fetchWithRetry(`https://api.spotify.com/v1/search?q=${encodeURIComponent(`artist:"${clean}"`)}&type=track&limit=10`, {
         headers: {
@@ -1028,7 +1028,7 @@ async function createEdcPlaylist(state, opts = {}) {
     }
   };
   var search = async artist => {
-    var parts = artist.name.split(/ b2b /i).map(s => s.trim());
+    var parts = _b2bParts(artist.name).map(s => s.trim());
     var limit = trackLimit(artist.tier);
     var total = 0;
     for (var part of parts) {
@@ -1186,7 +1186,7 @@ async function createHypePlaylist() {
   var uris = [];
   var missed = 0;
   var searchHypeOne = async searchName => {
-    var clean = searchName.replace(/\s*\([^)]*\)\s*/g, "").trim() || searchName;
+    var clean = (typeof _lookupName === "function" ? _lookupName(searchName) : searchName) || searchName;
     try {
       var tr = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(`artist:"${clean}"`)}&type=track&limit=10`, {
         headers: {
@@ -1224,7 +1224,7 @@ async function createHypePlaylist() {
     }
   };
   var search = async artist => {
-    var parts = artist.name.split(/ b2b /i).map(s => s.trim());
+    var parts = _b2bParts(artist.name).map(s => s.trim());
     var ok = false;
     for (var part of parts) ok = (await searchHypeOne(part)) || ok;
     if (!ok) missed++;
@@ -1256,7 +1256,7 @@ async function createHypePlaylist() {
 async function fetchFollowedEdcArtists(savedIds) {
   var token = await getValidToken();
   if (!token) return [];
-  var savedNames = new Set(savedIds.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).flatMap(a => a.name.split(/ b2b /i).map(s => s.trim().toLowerCase())));
+  var savedNames = new Set(savedIds.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).flatMap(a => _b2bParts(a.name).map(s => s.trim().toLowerCase())));
   var followedLower = [];
   var after = null;
   for (var page = 0; page < 4; page++) {
@@ -1282,7 +1282,7 @@ async function fetchFollowedEdcArtists(savedIds) {
   var seen = new Set();
   ARTISTS.forEach(a => {
     if (seen.has(a.id)) return;
-    var parts = a.name.split(/ b2b /i).map(s => s.trim().toLowerCase());
+    var parts = _b2bParts(a.name).map(s => s.trim().toLowerCase());
     var follows = parts.some(p => followedLower.some(f => f === p || f.includes(p) || p.includes(f)));
     if (follows && !savedIds.includes(a.id)) {
       seen.add(a.id);
@@ -1518,6 +1518,7 @@ async function fetchSpotifyTopArtists(onProgress) {
   }
 }
 async function fetchPreviewUrl(artistName) {
+  artistName = typeof _lookupName === "function" ? _lookupName(artistName) : artistName;
   var cacheKey = "preview_urls_v1";
   try {
     var cached = JSON.parse(localStorage.getItem(cacheKey) || "{}");
@@ -1577,7 +1578,7 @@ function matchLineupArtists(spotifyArtists) {
   var seen = new Set();
   ARTISTS.forEach(a => {
     if (seen.has(a.id)) return;
-    var parts = a.name.split(/ b2b /i).map(s => s.trim().toLowerCase());
+    var parts = _b2bParts(a.name).map(s => s.trim().toLowerCase());
     var matches = parts.some(part => names.some(n => part.includes(n) || n.includes(part)));
     if (!matches) return;
     seen.add(a.id);
