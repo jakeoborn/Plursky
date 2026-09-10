@@ -259,6 +259,12 @@
     locationShort: "Queen Mary Waterfront",
     dates:     "Nov 20–21, 2026",
     year:      2026,
+    officialEvent: {
+      id: 527404, url: "https://socal.dreamstateusa.com/",
+      website: "https://socal.dreamstateusa.com/",
+      tickets: "https://dreamstate.frontgatetickets.com/",
+      observedAt: "2026-09-10",
+    },
     // Los Angeles is PST (UTC-8) on these dates — DST ended Nov 1, 2026.
     // Hours ARE published, so these are the real ones rather than the
     // generous bounds a festival with unpublished hours has to use:

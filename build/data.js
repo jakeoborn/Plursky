@@ -8,6 +8,11 @@ var FESTIVAL_CONFIG = {
   locationShort: "Las Vegas Motor Speedway",
   dates: "May 15–17, 2026",
   year: 2026,
+  officialEvent: {
+    website: "https://lasvegas.edc.com/",
+    observedAt: "2026-09-10",
+    frozenAgainstRollover: true
+  },
   startMs: Date.UTC(2026, 4, 16, 0, 0, 0),
   endMs: Date.UTC(2026, 4, 18, 12, 0, 0),
   tz: "America/Los_Angeles",
@@ -424,6 +429,14 @@ var FESTIVALS_REGISTRY = [{
     locationShort: "Tinker Field",
     dates: "Nov 6–8, 2026",
     year: 2026,
+    officialStages: ["Kinetic Field", "Circuit Grounds", "Neon Garden", "Stereo Bloom", "CASA BACARDÍ"],
+    officialEvent: {
+      id: 523210,
+      url: "https://orlando.electricdaisycarnival.com/",
+      website: "https://orlando.edc.com/",
+      tickets: "https://edcorlando.frontgatetickets.com/",
+      observedAt: "2026-09-10"
+    },
     startMs: Date.UTC(2026, 10, 6, 21, 0, 0),
     endMs: Date.UTC(2026, 10, 9, 5, 0, 0),
     tz: "America/New_York",
@@ -648,7 +661,13 @@ var FESTIVALS_REGISTRY = [{
     location: "Autódromo Hermanos Rodríguez · Mexico City, Mexico",
     locationShort: "Autódromo Hermanos Rodríguez",
     dates: "Feb 19–21, 2027",
-    year: 2027
+    year: 2027,
+    officialEvent: {
+      id: 548875,
+      url: "https://mexico.electricdaisycarnival.com/",
+      website: "https://mexico.edc.com/",
+      observedAt: "2026-09-10"
+    }
   },
   available: false,
   accent: "#f43f5e",
@@ -664,7 +683,14 @@ var FESTIVALS_REGISTRY = [{
     location: "NOS Events Center · San Bernardino, CA",
     locationShort: "NOS Events Center",
     dates: "Dec 31, 2026 – Jan 1, 2027",
-    year: 2026
+    year: 2026,
+    officialEvent: {
+      id: 554480,
+      url: "https://countdownnye.com/",
+      website: "https://countdownnye.com/",
+      tickets: "https://countdownnye.frontgatetickets.com/",
+      observedAt: "2026-09-10"
+    }
   },
   available: false,
   accent: "#60a5fa",
@@ -680,7 +706,14 @@ var FESTIVALS_REGISTRY = [{
     location: "NOS Events Center · San Bernardino, CA",
     locationShort: "NOS Events Center",
     dates: "Mar 26–27, 2027",
-    year: 2027
+    year: 2027,
+    officialEvent: {
+      id: 550731,
+      url: "https://www.insomniac.com/events/beyond-wonderland-southern-california-2027-2027-03-26-san-bernardino-ca/",
+      website: "https://socal.beyondwonderland.com/",
+      tickets: "https://beyondsocal.frontgatetickets.com/",
+      observedAt: "2026-09-10"
+    }
   },
   available: false,
   accent: "#c084fc",
@@ -696,7 +729,15 @@ var FESTIVALS_REGISTRY = [{
     location: "Gorge Amphitheatre · George, WA",
     locationShort: "Gorge Amphitheatre",
     dates: "Jun 26–27, 2027",
-    year: 2027
+    year: 2027,
+    officialStages: ["Queen's Valley", "Mad Hatter's Castle", "Caterpillar's Garden"],
+    officialEvent: {
+      id: 566426,
+      url: "https://www.insomniac.com/events/beyond-wonderland-at-the-gorge-2027-2027-06-26-george-wa/",
+      website: "https://pnw.beyondwonderland.com/",
+      tickets: "https://beyondpnw.frontgatetickets.com/",
+      observedAt: "2026-09-10"
+    }
   },
   available: false,
   accent: "#2dd4bf",
@@ -1520,7 +1561,7 @@ var _edcoMk = (id, name, genre, day) => {
     bio: "Playing EDC Orlando 2026. Day is official (orlando.edc.com day filters); set time + stage are placeholders until the official schedule drops in the Insomniac app (~1-2 weeks out)."
   };
 };
-var EDCO_ARTISTS = [_edcoMk("ecf1", "AAT", "Electronic", 1), _edcoMk("ecf2", "Adventure Club (Sunset Set)", "Electronic", 1), _edcoMk("ecf3", "Afrojack", "Electronic", 1), _edcoMk("ecf4", "Alesso (Sunset Set)", "Electronic", 1), _edcoMk("ecf5", "Azzecca", "House", 1), _edcoMk("ecf6", "Benda B2B Vastive", "Electronic", 1), _edcoMk("ecf7", "Big Florida", "Bass", 1), _edcoMk("ecf8", "Bou B2B Kanine", "Electronic", 1), _edcoMk("ecf9", "Brunello (Sunset Set)", "House", 1), _edcoMk("ecf10", "Bullet Tooth B2B Sidney Charles", "Techno", 1), _edcoMk("ecf11", "Chris Lorenzo", "House", 1), _edcoMk("ecf12", "David Guetta", "Electronic", 1), _edcoMk("ecf13", "HAYLA", "Electronic", 1), _edcoMk("ecf14", "IDEMI", "Electronic", 1), _edcoMk("ecf15", "Inbal", "Electronic", 1), _edcoMk("ecf16", "Interplanetary Criminal", "Electronic", 1), _edcoMk("ecf17", "JOA", "Electronic", 1), _edcoMk("ecf18", "Josh Baker", "House", 1), _edcoMk("ecf19", "Joshwa", "House", 1), _edcoMk("ecf20", "Kompany", "Bass", 1), _edcoMk("ecf21", "KREAM", "Electronic", 1), _edcoMk("ecf22", "Level Up", "Bass", 1), _edcoMk("ecf23", "Levity", "Bass", 1), _edcoMk("ecf24", "MALUGI (Sunset Set)", "Electronic", 1), _edcoMk("ecf25", "Matthias", "Electronic", 1), _edcoMk("ecf26", "Mau P", "Electronic", 1), _edcoMk("ecf27", "MPH", "Electronic", 1), _edcoMk("ecf28", "Omar+", "House", 1), _edcoMk("ecf29", "Pegassi", "Electronic", 1), _edcoMk("ecf30", "Prospa B2B Josh Baker", "House", 1), _edcoMk("ecf31", "Prospa", "Electronic", 1), _edcoMk("ecf32", "RAJE", "Electronic", 1), _edcoMk("ecf33", "Sloth", "Electronic", 1), _edcoMk("ecf34", "Whethan", "Electronic", 1), _edcoMk("ecf35", "Wooli", "Bass", 1), _edcoMk("ecf36", "Zack Martino", "Electronic", 1), _edcoMk("ecs1", "Aaron Hibell", "Electronic", 2), _edcoMk("ecs2", "ACRAZE B2B CID", "Electronic", 2), _edcoMk("ecs3", "Alan Walker (Sunset Set)", "Electronic", 2), _edcoMk("ecs4", "Alison Wonderland", "Bass", 2), _edcoMk("ecs5", "ALLEYCVT", "Bass", 2), _edcoMk("ecs6", "Alves", "Electronic", 2), _edcoMk("ecs7", "AVELLO", "Electronic", 2), _edcoMk("ecs8", "AYYBO", "Electronic", 2), _edcoMk("ecs9", "ChaseWest", "Electronic", 2), _edcoMk("ecs10", "Dennis Cruz", "House", 2), _edcoMk("ecs11", "Devault (Sunset Set)", "Electronic", 2), _edcoMk("ecs12", "Discip", "Electronic", 2), _edcoMk("ecs13", "Disco Lines", "Electronic", 2), _edcoMk("ecs14", "Fallon", "Electronic", 2), _edcoMk("ecs15", "Franky Rizardo", "House", 2), _edcoMk("ecs16", "Fury with MC Dino", "Electronic", 2), _edcoMk("ecs17", "Gabss", "Electronic", 2), _edcoMk("ecs18", "Greg 99", "Electronic", 2), _edcoMk("ecs19", "Jkyl & Hyde", "Bass", 2), _edcoMk("ecs20", "Kaskade", "Electronic", 2), _edcoMk("ecs21", "KinAhau", "House", 2), _edcoMk("ecs22", "LAYZ", "Bass", 2), _edcoMk("ecs23", "MADVKTM", "Electronic", 2), _edcoMk("ecs24", "Mai Iachetti", "Electronic", 2), _edcoMk("ecs25", "Max Dean, Luke Dean", "Electronic", 2), _edcoMk("ecs26", "Me n ü", "Electronic", 2), _edcoMk("ecs27", "Miguelle & Tons", "Electronic", 2), _edcoMk("ecs28", "Monoky", "Electronic", 2), _edcoMk("ecs29", "Nico Moreno", "Techno", 2), _edcoMk("ecs30", "Ray Volpe", "Bass", 2), _edcoMk("ecs31", "Roddy Lima", "Electronic", 2), _edcoMk("ecs32", "Rossi. (Sunset Set)", "House", 2), _edcoMk("ecs33", "Skull Machine (Black Tiger Sex Machine x Kai Wachi)", "Electronic", 2), _edcoMk("ecs34", "Steve Aoki", "Electronic", 2), _edcoMk("ecs35", "Subsonic", "Electronic", 2), _edcoMk("ecs36", "Twinsick", "Electronic", 2), _edcoMk("ecu1", "A Little Sound", "Electronic", 3), _edcoMk("ecu2", "Adrián Mills", "Techno", 3), _edcoMk("ecu3", "Alok", "Electronic", 3), _edcoMk("ecu4", "AR/CO", "Electronic", 3), _edcoMk("ecu5", "ATLiens", "Bass", 3), _edcoMk("ecu6", "Boogie T", "Bass", 3), _edcoMk("ecu7", "Boys Noize B2B Brutalismus 3000", "Techno", 3), _edcoMk("ecu8", "Chef Boyarbeatz", "Electronic", 3), _edcoMk("ecu9", "CØNTRA", "Electronic", 3), _edcoMk("ecu10", "Deorro B2B DJ Diesel", "Electronic", 3), _edcoMk("ecu11", "Discovery Project", "Electronic", 3), _edcoMk("ecu12", "ESSE", "Electronic", 3), _edcoMk("ecu13", "Hardwell", "Electronic", 3), _edcoMk("ecu14", "Holy Priest", "Electronic", 3), _edcoMk("ecu15", "I Hate Models", "Techno", 3), _edcoMk("ecu16", "Ian Asher", "Electronic", 3), _edcoMk("ecu17", "Jessica Audiffred", "Bass", 3), _edcoMk("ecu18", "Kaivon", "Bass", 3), _edcoMk("ecu19", "KI/KI", "Techno", 3), _edcoMk("ecu20", "Klangkuenstler", "Techno", 3), _edcoMk("ecu21", "Know Good", "Electronic", 3), _edcoMk("ecu22", "M81!", "Electronic", 3), _edcoMk("ecu23", "Maddix", "Electronic", 3), _edcoMk("ecu24", "Marlon Hoffstadt (Sunset Set)", "Techno", 3), _edcoMk("ecu25", "Martin Garrix", "Electronic", 3), _edcoMk("ecu26", "Meduza", "Electronic", 3), _edcoMk("ecu27", "Of The Trees (Sunset Set)", "Bass", 3), _edcoMk("ecu28", "phrva", "Electronic", 3), _edcoMk("ecu29", "Ravenscoon", "Electronic", 3), _edcoMk("ecu30", "San Holo (Wholesome Riddim Set)", "Electronic", 3), _edcoMk("ecu31", "SHDW", "Techno", 3), _edcoMk("ecu32", "Sippy", "Bass", 3), _edcoMk("ecu33", "SLANDER (Sunset Set)", "Bass", 3), _edcoMk("ecu34", "Taiki Nulight", "Electronic", 3), _edcoMk("ecu35", "TroyBoi", "Electronic", 3), _edcoMk("ecu36", "Ultrathem", "Electronic", 3), _edcoMk("ecu37", "And the most important headliner of all You", "Electronic", 3)];
+var EDCO_ARTISTS = [_edcoMk("ecf1", "AAT", "Electronic", 1), _edcoMk("ecf2", "Adventure Club (Sunset Set)", "Electronic", 1), _edcoMk("ecf3", "Afrojack", "Electronic", 1), _edcoMk("ecf4", "Alesso (Sunset Set)", "Electronic", 1), _edcoMk("ecf5", "Azzecca", "House", 1), _edcoMk("ecf6", "Benda B2B Vastive", "Electronic", 1), _edcoMk("ecf7", "Big Florida", "Bass", 1), _edcoMk("ecf8", "Bou B2B Kanine", "Electronic", 1), _edcoMk("ecf9", "Brunello (Sunset Set)", "House", 1), _edcoMk("ecf10", "Bullet Tooth B2B Sidney Charles", "Techno", 1), _edcoMk("ecf11", "Chris Lorenzo", "House", 1), _edcoMk("ecf12", "David Guetta", "Electronic", 1), _edcoMk("ecf13", "HAYLA", "Electronic", 1), _edcoMk("ecf14", "IDEMI", "Electronic", 1), _edcoMk("ecf15", "Inbal", "Electronic", 1), _edcoMk("ecf16", "Interplanetary Criminal", "Electronic", 1), _edcoMk("ecf17", "JOA", "Electronic", 1), _edcoMk("ecf18", "Josh Baker", "House", 1), _edcoMk("ecf19", "Joshwa", "House", 1), _edcoMk("ecf20", "Kompany", "Bass", 1), _edcoMk("ecf21", "KREAM", "Electronic", 1), _edcoMk("ecf22", "Level Up", "Bass", 1), _edcoMk("ecf23", "Levity", "Bass", 1), _edcoMk("ecf24", "MALUGI (Sunset Set)", "Electronic", 1), _edcoMk("ecf25", "Matthias", "Electronic", 1), _edcoMk("ecf26", "Mau P", "Electronic", 1), _edcoMk("ecf27", "MPH", "Electronic", 1), _edcoMk("ecf28", "Omar+", "House", 1), _edcoMk("ecf29", "Pegassi", "Electronic", 1), _edcoMk("ecf30", "Prospa B2B Josh Baker", "House", 1), _edcoMk("ecf31", "Prospa", "Electronic", 1), _edcoMk("ecf32", "RAJE", "Electronic", 1), _edcoMk("ecf33", "Sloth", "Electronic", 1), _edcoMk("ecf34", "Whethan", "Electronic", 1), _edcoMk("ecf35", "Wooli", "Bass", 1), _edcoMk("ecf36", "Zack Martino", "Electronic", 1), _edcoMk("ecs1", "Aaron Hibell", "Electronic", 2), _edcoMk("ecs2", "ACRAZE B2B CID", "Electronic", 2), _edcoMk("ecs3", "Alan Walker (Sunset Set)", "Electronic", 2), _edcoMk("ecs4", "Alison Wonderland", "Bass", 2), _edcoMk("ecs5", "ALLEYCVT", "Bass", 2), _edcoMk("ecs6", "Alves", "Electronic", 2), _edcoMk("ecs7", "AVELLO", "Electronic", 2), _edcoMk("ecs8", "AYYBO", "Electronic", 2), _edcoMk("ecs9", "ChaseWest", "Electronic", 2), _edcoMk("ecs10", "Dennis Cruz", "House", 2), _edcoMk("ecs11", "Devault (Sunset Set)", "Electronic", 2), _edcoMk("ecs12", "Discip", "Electronic", 2), _edcoMk("ecs13", "Disco Lines", "Electronic", 2), _edcoMk("ecs14", "Fallon", "Electronic", 2), _edcoMk("ecs15", "Franky Rizardo", "House", 2), _edcoMk("ecs16", "Fury with MC Dino", "Electronic", 2), _edcoMk("ecs17", "Gabss", "Electronic", 2), _edcoMk("ecs18", "Greg 99", "Electronic", 2), _edcoMk("ecs19", "Jkyl & Hyde", "Bass", 2), _edcoMk("ecs20", "Kaskade", "Electronic", 2), _edcoMk("ecs21", "KinAhau", "House", 2), _edcoMk("ecs22", "LAYZ", "Bass", 2), _edcoMk("ecs23", "MADVKTM", "Electronic", 2), _edcoMk("ecs24", "Mai Iachetti", "Electronic", 2), _edcoMk("ecs25", "Max Dean, Luke Dean", "Electronic", 2), _edcoMk("ecs26", "Me n ü", "Electronic", 2), _edcoMk("ecs27", "Miguelle & Tons", "Electronic", 2), _edcoMk("ecs28", "Monoky", "Electronic", 2), _edcoMk("ecs29", "Nico Moreno", "Techno", 2), _edcoMk("ecs30", "Ray Volpe", "Bass", 2), _edcoMk("ecs31", "Roddy Lima", "Electronic", 2), _edcoMk("ecs32", "Rossi. (Sunset Set)", "House", 2), _edcoMk("ecs33", "Skull Machine (Black Tiger Sex Machine x Kai Wachi)", "Electronic", 2), _edcoMk("ecs34", "Steve Aoki", "Electronic", 2), _edcoMk("ecs35", "Subsonic", "Electronic", 2), _edcoMk("ecs36", "Twinsick", "Electronic", 2), _edcoMk("ecu1", "A Little Sound", "Electronic", 3), _edcoMk("ecu2", "Adrián Mills", "Techno", 3), _edcoMk("ecu3", "Alok", "Electronic", 3), _edcoMk("ecu4", "AR/CO", "Electronic", 3), _edcoMk("ecu5", "ATLiens", "Bass", 3), _edcoMk("ecu6", "Boogie T", "Bass", 3), _edcoMk("ecu7", "Boys Noize B2B Brutalismus 3000", "Techno", 3), _edcoMk("ecu8", "Chef Boyarbeatz", "Electronic", 3), _edcoMk("ecu9", "CØNTRA", "Electronic", 3), _edcoMk("ecu10", "Deorro B2B DJ Diesel", "Electronic", 3), _edcoMk("ecu11", "Discovery Project", "Electronic", 3), _edcoMk("ecu12", "ESSE", "Electronic", 3), _edcoMk("ecu13", "Hardwell", "Electronic", 3), _edcoMk("ecu14", "Holy Priest", "Electronic", 3), _edcoMk("ecu15", "I Hate Models", "Techno", 3), _edcoMk("ecu16", "Ian Asher", "Electronic", 3), _edcoMk("ecu17", "Jessica Audiffred", "Bass", 3), _edcoMk("ecu18", "Kaivon", "Bass", 3), _edcoMk("ecu19", "KI/KI", "Techno", 3), _edcoMk("ecu20", "Klangkuenstler", "Techno", 3), _edcoMk("ecu21", "Know Good", "Electronic", 3), _edcoMk("ecu22", "M81!", "Electronic", 3), _edcoMk("ecu23", "Maddix", "Electronic", 3), _edcoMk("ecu24", "Marlon Hoffstadt (Sunset Set)", "Techno", 3), _edcoMk("ecu25", "Martin Garrix", "Electronic", 3), _edcoMk("ecu26", "Meduza", "Electronic", 3), _edcoMk("ecu27", "Of The Trees (Sunset Set)", "Bass", 3), _edcoMk("ecu28", "phrva", "Electronic", 3), _edcoMk("ecu29", "Ravenscoon", "Electronic", 3), _edcoMk("ecu30", "San Holo (Wholesome Riddim Set)", "Electronic", 3), _edcoMk("ecu31", "SHDW", "Techno", 3), _edcoMk("ecu32", "Sippy", "Bass", 3), _edcoMk("ecu33", "SLANDER (Sunset Set)", "Bass", 3), _edcoMk("ecu34", "Taiki Nulight", "Electronic", 3), _edcoMk("ecu35", "TroyBoi", "Electronic", 3), _edcoMk("ecu36", "Ultrathem", "Electronic", 3)];
 var EDCO_AMENITIES = [{
   id: "eoa1",
   type: "water",

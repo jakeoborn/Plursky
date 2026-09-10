@@ -80,6 +80,11 @@ const FESTIVAL_CONFIG = {
   locationShort:"Las Vegas Motor Speedway",
   dates:        "May 15–17, 2026",
   year:         2026,
+  officialEvent: {
+    // Historical record frozen: the official site has rolled to the separate 2027 cycle.
+    website: "https://lasvegas.edc.com/", observedAt: "2026-09-10",
+    frozenAgainstRollover: true,
+  },
 
   // ── Timing (all instants in UTC ms) ──
   startMs: Date.UTC(2026, 4, 16, 0, 0, 0),  // May 15 17:00 PDT (gates open day 1)
@@ -604,6 +609,14 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Tinker Field",
       dates:     "Nov 6–8, 2026",
       year:      2026,
+      // Five published stages; "Schedule TBA" below is an app placeholder, not a sixth stage.
+      officialStages: ["Kinetic Field", "Circuit Grounds", "Neon Garden", "Stereo Bloom", "CASA BACARDÍ"],
+      officialEvent: {
+        id: 523210, url: "https://orlando.electricdaisycarnival.com/",
+        website: "https://orlando.edc.com/",
+        tickets: "https://edcorlando.frontgatetickets.com/",
+        observedAt: "2026-09-10",
+      },
       // NOTE: Nov 6-8 is AFTER US DST ends (Nov 1) — Orlando is EST (UTC-5).
       startMs: Date.UTC(2026, 10, 6, 21, 0, 0), // Nov 6 16:00 EST gates
       endMs:   Date.UTC(2026, 10, 9, 5, 0, 0),  // Nov 9 00:00 EST Sunday close
@@ -856,6 +869,7 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Autódromo Hermanos Rodríguez",
       dates:     "Feb 19–21, 2027",
       year:      2027,
+      officialEvent: { id: 548875, url: "https://mexico.electricdaisycarnival.com/", website: "https://mexico.edc.com/", observedAt: "2026-09-10" },
     },
     available: false,
     accent:    "#f43f5e",
@@ -879,6 +893,7 @@ const FESTIVALS_REGISTRY = [
       locationShort: "NOS Events Center",
       dates:     "Dec 31, 2026 – Jan 1, 2027",
       year:      2026,
+      officialEvent: { id: 554480, url: "https://countdownnye.com/", website: "https://countdownnye.com/", tickets: "https://countdownnye.frontgatetickets.com/", observedAt: "2026-09-10" },
     },
     available: false,
     accent:    "#60a5fa",
@@ -899,6 +914,7 @@ const FESTIVALS_REGISTRY = [
       locationShort: "NOS Events Center",
       dates:     "Mar 26–27, 2027",
       year:      2027,
+      officialEvent: { id: 550731, url: "https://www.insomniac.com/events/beyond-wonderland-southern-california-2027-2027-03-26-san-bernardino-ca/", website: "https://socal.beyondwonderland.com/", tickets: "https://beyondsocal.frontgatetickets.com/", observedAt: "2026-09-10" },
     },
     available: false,
     accent:    "#c084fc",
@@ -923,6 +939,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Gorge Amphitheatre",
       dates:     "Jun 26–27, 2027",
       year:      2027,
+      officialStages: ["Queen's Valley", "Mad Hatter's Castle", "Caterpillar's Garden"],
+      officialEvent: { id: 566426, url: "https://www.insomniac.com/events/beyond-wonderland-at-the-gorge-2027-2027-06-26-george-wa/", website: "https://pnw.beyondwonderland.com/", tickets: "https://beyondpnw.frontgatetickets.com/", observedAt: "2026-09-10" },
     },
     available: false,
     accent:    "#2dd4bf",
@@ -2182,7 +2200,6 @@ const EDCO_ARTISTS = [
   _edcoMk("ecu34", "Taiki Nulight",                            "Electronic", 3),
   _edcoMk("ecu35", "TroyBoi",                                  "Electronic", 3),
   _edcoMk("ecu36", "Ultrathem",                                "Electronic", 3),
-  _edcoMk("ecu37", "And the most important headliner of all You", "Electronic", 3),
 ];
 
 const EDCO_AMENITIES = [

@@ -128,6 +128,17 @@
     provisional: true,
   });
 
+  // Official 2026 lineup-card acts that are not present in either published
+  // day list. Captured 2026-09-10. They stay fully unscheduled: no day, stage,
+  // time, or billing rank is inferred before the set-times page publishes.
+  const mkUnscheduled = (id, name) => ({
+    id, name, genre: "—", country: "—", stage: null, day: null,
+    start: "", end: "", tier: 2,
+    img: "linear-gradient(135deg, #F4511E, #1a0a14)",
+    bio: "On the official Escape Halloween 2026 lineup card. Day, stage and set time have not been published.",
+    provisional: true, unscheduled: true,
+  });
+
   const ARTISTS = [
     // ─────────── Friday, October 30 (42 acts) ───────────
     mk("esc-a-little-sound-d1", "A Little Sound", 1),
@@ -214,6 +225,29 @@
     mk("esc-vnssa-b2b-qqqq-d2", "VNSSA B2B ????", 2),
     mk("esc-yanamaste-d2", "Yanamaste", 2),
     mk("esc-zedd-d2", "Zedd", 2),
+
+    // ─────────── Lineup-card only; day/stage/time unpublished (21 acts) ───────────
+    mkUnscheduled("esc-unscheduled-all-rise", "All Rise"),
+    mkUnscheduled("esc-unscheduled-b2", "B2"),
+    mkUnscheduled("esc-unscheduled-coe", "$coe"),
+    mkUnscheduled("esc-unscheduled-comadoses", "Comadoses"),
+    mkUnscheduled("esc-unscheduled-death-simulator", "Death Simulator"),
+    mkUnscheduled("esc-unscheduled-desa-deca", "Desa Deca"),
+    mkUnscheduled("esc-unscheduled-hiwater", "HIWATER"),
+    mkUnscheduled("esc-unscheduled-honeypacq", "HoneyPacq"),
+    mkUnscheduled("esc-unscheduled-hua", "HUA"),
+    mkUnscheduled("esc-unscheduled-kimmo", "Kimmo"),
+    mkUnscheduled("esc-unscheduled-landopolo", "Landopolo"),
+    mkUnscheduled("esc-unscheduled-marie-nyx", "Marie Nyx"),
+    mkUnscheduled("esc-unscheduled-mark-lizaola", "Mark Lizaola"),
+    mkUnscheduled("esc-unscheduled-monic", "Monic"),
+    mkUnscheduled("esc-unscheduled-nina-j", "Nina J"),
+    mkUnscheduled("esc-unscheduled-richard-vission", "Richard Vission"),
+    mkUnscheduled("esc-unscheduled-roroll", "RoRoll"),
+    mkUnscheduled("esc-unscheduled-seung", "SEUNG"),
+    mkUnscheduled("esc-unscheduled-shaking", "SHAKING"),
+    mkUnscheduled("esc-unscheduled-spency-be", "Spency Be"),
+    mkUnscheduled("esc-unscheduled-tykni", "TYKNI"),
   ];
 
   const CONFIG = {
@@ -226,6 +260,13 @@
     locationShort: "NOS Events Center",
     dates:     "Oct 30–31, 2026",
     year:      2026,
+    officialStages: ["The Big Top", "Feeding Grounds", "The Warehouse", "Sewer District", "The Cage"],
+    officialEvent: {
+      id: 521015, url: "https://escapehalloween.com/",
+      website: "https://escapehalloween.com/",
+      tickets: "https://escapehalloween.frontgatetickets.com/",
+      observedAt: "2026-09-10",
+    },
     // Official: "Festival Hours 4PM-2AM". Both nights run 16:00 into 02:00
     // the following morning, so endMs lands on Nov 1.
     startMs: Date.UTC(2026, 9, 30, 23, 0, 0),  // Oct 30 16:00 PDT, gates
