@@ -5218,6 +5218,12 @@ function RealMap({
     var bootTimer = setTimeout(() => {
       if (!loadedRef.current && !fatalRef.current) _fatal("Real map timed out");
     }, 12000);
+    var markMapUsable = () => {
+      if (cancelled || loadedRef.current) return;
+      loadedRef.current = true;
+      clearTimeout(bootTimer);
+      setLoaded(true);
+    };
     _mapLog("[plursky-map] RealMap useEffect — calling _loadMapLibre()");
     _loadMapLibre().then(maplibregl => {
       _mapLog("[plursky-map] _loadMapLibre resolved — MapLibre loaded");
@@ -5240,6 +5246,10 @@ function RealMap({
         compact: true
       }), "bottom-right");
       mapRef.current = map;
+      map.on("sourcedata", e => {
+        if (e?.dataType === "source" && e?.tile) markMapUsable();
+      });
+      map.once("idle", markMapUsable);
       var _shapePolygon = (lat, lng, opts) => {
         var EARTH = 6378137;
         var out = [];
@@ -5942,8 +5952,7 @@ function RealMap({
           element: avWrap
         }).setLngLat([avLatLng.lng, avLatLng.lat]).addTo(map);
         setupOverlayLayers();
-        loadedRef.current = true;
-        setLoaded(true);
+        markMapUsable();
       });
       map.on("styledata", () => {
         if (cancelled || !mapRef.current) return;

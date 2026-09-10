@@ -3626,6 +3626,16 @@ function RealMap({
     const bootTimer = setTimeout(() => {
       if (!loadedRef.current && !fatalRef.current) _fatal("Real map timed out");
     }, 12000);
+    // `load` waits for every source needed by the current viewport. A slow or
+    // missing peripheral tile can hold it past 12s even after the basemap is
+    // visibly useful. Treat the first rendered tile/source payload as ready,
+    // and keep load/idle as the definitive fallbacks.
+    const markMapUsable = () => {
+      if (cancelled || loadedRef.current) return;
+      loadedRef.current = true;
+      clearTimeout(bootTimer);
+      setLoaded(true);
+    };
     _mapLog("[plursky-map] RealMap useEffect — calling _loadMapLibre()");
     _loadMapLibre().then((maplibregl) => {
       _mapLog("[plursky-map] _loadMapLibre resolved — MapLibre loaded");
@@ -3653,7 +3663,10 @@ function RealMap({
       map.addControl(new maplibregl.AttributionControl({ compact: true }), "bottom-right");
       mapRef.current = map;
 
-      // Flexible polygon generator around (lat,lng) with optional
+      map.on("sourcedata", (e) => {
+        if (e?.dataType === "source" && e?.tile) markMapUsable();
+      });
+      map.once("idle", markMapUsable);      // Flexible polygon generator around (lat,lng) with optional
       // alternating inner/outer radii (for star/flower/gear shapes) and
       // non-uniform XY scaling (for rectangles + ovals). Equirectangular
       // at local lat for longitude correction — accurate at festival scale.
@@ -4420,8 +4433,7 @@ function RealMap({
           .addTo(map);
 
         setupOverlayLayers();
-        loadedRef.current = true;
-        setLoaded(true);
+        markMapUsable();
       });
 
       // Every time a NEW style finishes loading (after setStyle), re-add the
