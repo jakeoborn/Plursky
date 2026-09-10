@@ -1070,7 +1070,7 @@ async function createEdcPlaylist(state, opts = {}) {
   }
 
   // 4) Update description with per-day track counts for easy navigation
-  const dayLabels = [1, 2, 3].map(d => {
+  const dayLabels = festivalDayNums().map(d => {
     const n = (urisByDay[d] || []).length;
     return n > 0 ? `${FESTIVAL_CONFIG.dayDates[d].short} ${n}` : null;
   }).filter(Boolean);

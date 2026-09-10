@@ -119,9 +119,8 @@ function TabBar({
       var stages = window.STAGES || [];
       var artists = typeof activeLineup === "function" ? activeLineup() : window.ARTISTS || [];
       var main = window.FESTIVAL_CONFIG?.mainStageId;
-      if (!main || !window.NOW?.time || !window.NOW?.day) return null;
-      var nowMin = window.toNightMin(window.NOW.time);
-      var live = artists.find(a => a.stage === main && a.day === window.NOW.day && nowMin >= window.toNightMin(a.start) && nowMin < window.toNightMin(a.end));
+      if (!main || typeof window.isSetLive !== "function") return null;
+      var live = artists.find(a => a.stage === main && window.isSetLive(a));
       if (!live) return null;
       return stages.find(s => s.id === main)?.color || null;
     } catch {
@@ -928,18 +927,7 @@ function detectCurrentArtist(lat, lng, opts = {}) {
     };
   }
   if (!best) return null;
-  var [nh, nm] = (now.time || "00:00").split(":").map(Number);
-  var adjustH = nh < 6 ? nh + 24 : nh;
-  var nowMin = adjustH * 60 + nm;
-  var playing = activeLineup().find(a => {
-    if (a.day !== now.day) return false;
-    if (a.stage !== best.stageId) return false;
-    var [sh, sm] = a.start.split(":").map(Number);
-    var [eh, em] = a.end.split(":").map(Number);
-    var start = (sh < 6 ? sh + 24 : sh) * 60 + sm;
-    var end = (eh < 6 ? eh + 24 : eh) * 60 + em;
-    return nowMin >= start && nowMin < end;
-  });
+  var playing = activeLineup().find(a => a.stage === best.stageId && isSetLive(a));
   if (!playing) return null;
   return {
     artistId: playing.id,

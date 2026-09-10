@@ -1109,7 +1109,7 @@ async function createEdcPlaylist(state, opts = {}) {
       message: "Couldn't write tracks"
     };
   }
-  var dayLabels = [1, 2, 3].map(d => {
+  var dayLabels = festivalDayNums().map(d => {
     var n = (urisByDay[d] || []).length;
     return n > 0 ? `${FESTIVAL_CONFIG.dayDates[d].short} ${n}` : null;
   }).filter(Boolean);

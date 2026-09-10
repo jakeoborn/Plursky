@@ -1723,8 +1723,7 @@ function HistoryRecordsSection({
       count: savedThisDay.length,
       totalMin,
       topStage,
-      isPast: typeof window.NOW !== "undefined" && window.NOW.day > n,
-      isLive: typeof window.NOW !== "undefined" && window.NOW.day === n
+      ..._nightWindowFlags(n)
     };
   });
   var records = (() => {

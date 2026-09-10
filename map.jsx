@@ -642,14 +642,40 @@ function gridDistMeters(ax, ay, bx, by, avatar) {
   return isFinite(m) ? Math.round(m) : null;
 }
 
+// The saved-set ★ per stage for both maps (RealMap markers, TopDownMap SVG):
+// the nearest saved set on each stage that is live or still to come TONIGHT.
+// Empty outside a real festival night (NOW.night), which is what stops stars
+// appearing a week early or between two weekends; inside the night the
+// clock-of-day comparison is exact. Reads the weekend-filtered lineup.
+function savedStarsByStage(savedIds) {
+  const night = NOW.night;
+  if (night == null || !savedIds || !savedIds.length) return {};
+  const nowMin = toNightMin(NOW.time);
+  const lineup = activeLineup(savedIds);
+  const out = {};
+  savedIds.forEach(id => {
+    const a = lineup.find(x => x.id === id);
+    if (!a || a.day !== night) return;
+    const startMin = toNightMin(a.start), endMin = toNightMin(a.end);
+    if (endMin <= nowMin) return; // already over
+    const minsUntil = startMin - nowMin;
+    const cur = out[a.stage];
+    if (!cur || minsUntil < cur.minsUntil) out[a.stage] = { artist: a, minsUntil, isLive: isSetLive(a) };
+  });
+  return out;
+}
+
 // Find the user's next saved set today: live now, or starting soon. Returns
 // null if nothing saved on the current festival day. Used by NextSetStrip
 // to power the top-of-map heads-up banner.
 function findNextSavedSet(savedIds) {
+  const night = NOW.night;                 // real festival night, else null
+  if (night == null) return null;
   const nowMin = toNightMin(NOW.time);
+  const lineup = activeLineup(savedIds);
   const todays = savedIds
-    .map(id => ARTISTS.find(a => a.id === id))
-    .filter(a => a && a.day === NOW.day)
+    .map(id => lineup.find(a => a.id === id))
+    .filter(a => a && a.day === night)
     .map(a => ({ a, sM: toNightMin(a.start), eM: toNightMin(a.end) }))
     .filter(x => x.eM > nowMin)
     .sort((x, y) => x.sM - y.sM);
@@ -1648,7 +1674,7 @@ function WeatherStrip() {
 // sunrise to 30 min after. EDC's sunrise sets at KIN are the festival's
 // signature moment; this strip flags it so a vet doesn't sleep through.
 function SunriseStrip({ avatar, onSelect }) {
-  const sun = FESTIVAL_CONFIG.sunTimes?.[NOW.day];
+  const sun = NOW.night != null ? FESTIVAL_CONFIG.sunTimes?.[NOW.night] : null;
   if (!sun) return null;
   const nowMin = toNightMin(NOW.time);
   const riseMin = toNightMin(sun.rise);
@@ -2169,12 +2195,8 @@ function MapScreen({ state, setState }) {
   // festival is actually running.
   const nowAtStage = React.useMemo(() => {
     if (!stage) return null;
-    const t = Date.now();
-    if (t < FESTIVAL_START_MS || t > FESTIVAL_END_MS) return null;
-    const mins = toNightMin(NOW.time);
-    return activeLineup().find(a => a.stage === stage.id && a.day === NOW.day
-      && mins >= toNightMin(a.start) && mins < toNightMin(a.end)) || null;
-  }, [stage && stage.id, NOW.day, NOW.time]);
+    return activeLineup().find(a => a.stage === stage.id && isSetLive(a)) || null;
+  }, [stage && stage.id, NOW.night, NOW.time]);
   const dx = stage ? stage.x - avatar.x : 0;
   const dy = stage ? stage.y - avatar.y : 0;
   const dist = Math.sqrt(dx*dx + dy*dy);
@@ -4591,25 +4613,15 @@ function RealMap({
   }, [loaded, meetTarget?.x, meetTarget?.y]);
 
   // Saved-set gold ★ markers — small star DOM pin floating above each
-  // stage pillar whose lineup has an upcoming saved set today. Mirrors
-  // the SVG TopDownMap's savedByStage logic.
+  // stage pillar whose lineup has an upcoming saved set tonight. Same
+  // selection as the SVG TopDownMap (savedStarsByStage); the minute tick
+  // re-runs it as sets end, since nothing else in the deps changes.
+  const starTick = useTick(60000);
   React.useEffect(() => {
     if (!loaded || !mapRef.current || !window.maplibregl) return;
     const live = savedStarMarkersRef.current;
     const seen = new Set();
-    const now = window.NOW || {};
-    const nowMin = (typeof toNightMin === "function" && now.time) ? toNightMin(now.time) : 0;
-    const byStage = {};
-    saved.forEach(id => {
-      const a = window.ARTISTS?.find(x => x.id === id);
-      if (!a || a.day !== now.day) return;
-      const sM = toNightMin(a.start), eM = toNightMin(a.end);
-      if (eM <= nowMin) return; // already over
-      const cur = byStage[a.stage];
-      if (!cur || sM - nowMin < cur.minsUntil) {
-        byStage[a.stage] = { artist: a, minsUntil: sM - nowMin };
-      }
-    });
+    const byStage = savedStarsByStage(saved);
     Object.keys(byStage).forEach(stageId => {
       const s = stages.find(st => st.id === stageId);
       if (!s) return;
@@ -4636,7 +4648,7 @@ function RealMap({
         delete live[stageId];
       }
     });
-  }, [loaded, saved, stages]);
+  }, [loaded, saved, stages, starTick]);
 
   // Crowd heatmap visibility + data refresh. Toggles the layer on/off based
   // on the showHeat prop; re-computes density on a 60s tick so the heat
@@ -4805,9 +4817,12 @@ function RealMap({
 // ---- CROWD HEATMAP ----
 // Estimated crowd density 0–1 at a stage for a given nowMin.
 // Tiers: headliner=3, prime=2, opener=1. Crowd fades out over 20 min after a set ends.
+// Tonight's sets only (NOW.night): with no day check this blended every
+// day's sets at the matching clock time, and ran before the festival too.
 function _crowdDensity(stageId, nowMin) {
+  const night = NOW.night;
   const playing = activeLineup().find(a =>
-    a.stage === stageId &&
+    a.stage === stageId && a.day === night &&
     toNightMin(a.start) <= nowMin &&
     toNightMin(a.end)   >  nowMin
   );
@@ -4816,7 +4831,7 @@ function _crowdDensity(stageId, nowMin) {
   // Find the most recently ended set at this stage (within 20 min)
   let recent = null;
   activeLineup().forEach(a => {
-    if (a.stage !== stageId) return;
+    if (a.stage !== stageId || a.day !== night) return;
     const endMin = toNightMin(a.end);
     if (endMin > nowMin || endMin < nowMin - 20) return;
     if (!recent || endMin > toNightMin(recent.end)) recent = a;
@@ -4862,25 +4877,11 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
   const artPrintsStageNames = FESTIVAL_CONFIG.mapPrintsStageNames
     ?? (FESTIVAL_CONFIG.mapTheme === "park");
 
-  // Stages where the user has an upcoming saved set today — used to draw a
+  // Stages where the user has an upcoming saved set tonight — used to draw a
   // gold ★ overlay so users can spot at a glance "where am I going next?"
-  const savedByStage = React.useMemo(() => {
-    const nowMin = toNightMin(NOW.time);
-    const map = {};
-    saved.forEach(id => {
-      const a = ARTISTS.find(x => x.id === id);
-      if (!a || a.day !== NOW.day) return;
-      const startMin = toNightMin(a.start);
-      const endMin = toNightMin(a.end);
-      if (endMin <= nowMin) return; // already over
-      const minsUntil = startMin - nowMin;
-      const existing = map[a.stage];
-      if (!existing || minsUntil < existing.minsUntil) {
-        map[a.stage] = { artist: a, minsUntil, isLive: nowMin >= startMin };
-      }
-    });
-    return map;
-  }, [saved]);
+  // The minute tick re-selects as sets end; `saved` alone never changes then.
+  const starTick = useTick(60000);
+  const savedByStage = React.useMemo(() => savedStarsByStage(saved), [saved, starTick]);
 
   // Pre-computed starfield — deterministic LCG so it doesn't flicker on re-render
   const stars = React.useMemo(() => {
@@ -5269,11 +5270,8 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           const isPark = FESTIVAL_CONFIG.mapTheme === "park";
           const pinR = 2.1 + (s.size - 1) * 0.5;
           const savedHere = savedByStage[s.id];
-          const nowMin = NOW.time ? toNightMin(NOW.time) : 0;
-          const liveArtist = typeof ARTISTS !== "undefined" ? activeLineup().find(a =>
-            a.stage === s.id && a.day === NOW.day &&
-            nowMin >= toNightMin(a.start) && nowMin < toNightMin(a.end)
-          ) : null;
+          const liveArtist = typeof ARTISTS !== "undefined"
+            ? activeLineup().find(a => a.stage === s.id && isSetLive(a)) : null;
           const energyR = liveArtist ? (liveArtist.tier === 3 ? 12 : liveArtist.tier === 2 ? 9 : 6) : 0;
           return (
             <g key={s.id} role="button" tabIndex={0} aria-label={`${s.name} stage`}
@@ -6095,7 +6093,7 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
           distM == null
             ? { label: "DISTANCE", value: "—", unit: "", note: "UNSURVEYED" }
             : { label: "DISTANCE", value: `${distM}`, unit: "m", note: null },
-          { label: "SETS", value: `${sets.length}`, unit: day === NOW.day ? "today" : "set day", note: `${totalAcrossDays} · ${DAYS.length} NIGHTS` },
+          { label: "SETS", value: `${sets.length}`, unit: day === NOW.night ? "today" : "set day", note: `${totalAcrossDays} · ${DAYS.length} NIGHTS` },
         ].map(c => (
           <div key={c.label} style={{
             background: "var(--paper-2)", border: "1px solid var(--line)",
@@ -6217,7 +6215,7 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
       </div>
 
       {/* Now playing marker (only if today) */}
-      {day === NOW.day && nowAtStage && (
+      {day === NOW.night && nowAtStage && (
         <div onClick={() => onOpenArtist(nowAtStage.id)} style={{
           display: "flex", alignItems: "center", gap: 10,
           padding: "8px 10px", marginBottom: 8,
@@ -6249,7 +6247,7 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
           </div>
         )}
         {sets.map(s => {
-          const live = s.id === NOW.currentArtistId && day === NOW.day;
+          const live = isSetLive(s);
           const isSaved = state?.saved?.includes(s.id);
           const toggleSaveSet = (e) => {
             e.stopPropagation();

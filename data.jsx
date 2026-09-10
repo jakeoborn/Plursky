@@ -1682,8 +1682,9 @@ let _nowCache = null;
 let _nowCacheAt = 0;
 function _computeNow() {
   const utcNow = Date.now();
-  // 30-second cache — fast for repeated accesses in a single render pass
-  if (_nowCache && utcNow - _nowCacheAt < 30000) return _nowCache;
+  // 30-second cache — fast for repeated accesses in a single render pass.
+  // A clock that moved BACKWARDS (device clock fix, a pinned test clock) misses.
+  if (_nowCache && utcNow >= _nowCacheAt && utcNow - _nowCacheAt < 30000) return _nowCache;
 
   // Current time in festival tz (PDT = UTC-7)
   const localMs = utcNow + FESTIVAL_CONFIG.utcOffsetHours * 3600000;
@@ -1724,11 +1725,49 @@ function _computeNow() {
     ? Math.max(0, Math.floor((utcNow - absMs(currentArtist.day, currentArtist.start)) / 60000))
     : 0;
 
-  _nowCache = { day, time: timeStr, currentArtistId: currentArtist?.id || null, nextArtistId: nextArtist?.id || null, elapsedMin };
+  // night: the festival day whose REAL night (08:00 → 08:00 next morning) is
+  // running now, else null. `day` above is not that: it falls back to the
+  // NEXT set's day, so before the festival, after it and between two weekends
+  // it still names a day. Anything that means "tonight" compares against
+  // night; clock-of-day math (toNightMin(NOW.time)) is only valid inside it.
+  const cfgNow = (typeof window !== "undefined" && window.FESTIVAL_CONFIG) || FESTIVAL_CONFIG;
+  const nightNum = Object.keys(cfgNow.dayDates || {}).map(Number)
+    .find(n => _nightWindowFlags(n, utcNow).isLive);
+  _nowCache = { day, night: nightNum == null ? null : nightNum, time: timeStr,
+    currentArtistId: currentArtist?.id || null, nextArtistId: nextArtist?.id || null, elapsedMin,
+    liveIds: liveNow.map(a => a.id) };
   _nowCacheAt = utcNow;
   return _nowCache;
 }
 const NOW = new Proxy({}, { get(_, prop) { return _computeNow()[prop]; } });
+
+// Is this set on stage RIGHT NOW? Answers from liveNow, which compares real
+// dates. The LIVE pills used to compare `a.day === NOW.day` plus the time of
+// day, and NOW.day falls back to the NEXT set's day, so every day before the
+// festival (and every day between two weekends) lit Day 1's pills at the
+// matching clock time. Never rebuild this from NOW.time; the verify
+// live-set gate fails any `isLive` computed from the clock.
+function isSetLive(a) {
+  return !!a && NOW.liveIds.includes(a.id);
+}
+
+// Night-level flags for festival day n, from the real date. A night runs
+// 08:00 on its date to 08:00 the next morning, toNightMin's convention, and
+// dayDateFor follows the user's weekend on a two-weekend festival.
+function _nightWindowFlags(n, nowMs = Date.now()) {
+  const d = dayDateFor(n, nowMs);
+  if (!d || typeof d.midnightUtc !== "number") return { isPast: false, isLive: false };
+  const open = d.midnightUtc + 8 * 3600000, close = open + 86400000;
+  return { isPast: nowMs >= close, isLive: nowMs >= open && nowMs < close };
+}
+
+// The active festival's day numbers, in order: [1, 2, 3] for EDC, [1..4] for
+// Forest and Lollapalooza. Loops over "every day" read this, never a literal.
+// window.DAYS, not the bare name: in this file `DAYS` is the load-time const,
+// and window.DAYS is the live proxy that follows the active festival.
+function festivalDayNums() {
+  return [...(window.DAYS || DAYS)].map(d => d.n).sort((x, y) => x - y);
+}
 
 // Live notifications feed (populated at runtime from saved sets / crew / safety alerts)
 const ALERTS = [];

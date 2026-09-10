@@ -409,6 +409,184 @@ if (fdata.length) {
   console.log(`  ✓ ${SRC.length} source file(s) — every day/night counter reads its total from the active config`);
 }
 
+// ── Day-list and live-set gate ───────────────────────────────────────────
+// Two siblings of the day-count defect, both live on main at v289:
+//  • Loops over "every day" written as [1, 2, 3] dropped day 4 of Forest and
+//    Lollapalooza from the Build My Night share, the copied schedule, the
+//    recap and the teasers. Read festivalDayNums() (data.jsx) instead.
+//  • LIVE flags computed from the clock (`a.day === NOW.day` plus the time of
+//    day) lit Day 1's pills on every day before the festival and between two
+//    weekends, because NOW.day falls back to the NEXT set's day. isSetLive(a)
+//    answers from real dates.
+//  • "Tonight" read off NOW.day (#124 review): the live strip, Tonight's Plan
+//    (DONE a week early), the map stars, the set-starting cinematic and the
+//    grid now-line all compared `a.day === NOW.day`. NOW.day is the NEXT
+//    set's day, not tonight. NOW.night (data.jsx) is the real festival night
+//    or null, and clock-of-day math is only valid inside it.
+// A literal [1, 2, 3] that is not a day list takes `not-days: <why>` on the
+// same line or the line above; a NOW.day comparison that truly means "the
+// default day", `inferred-day-ok: <why>`. The Real-date gate below proves
+// the behaviour at pinned instants; this one stops the pattern at the source.
+{
+  console.log(`▸ Day-list and live-set gate — no literal day lists, no clock-built LIVE flags, no "tonight" from NOW.day`);
+  const SRC = readdirSync(ROOT).filter(f => f.endsWith(".jsx")).sort();
+  const DAY_LIST = /\[\s*1\s*,\s*2\s*,\s*3\s*\]\s*\.\s*(?:map|flatMap|forEach|filter|includes|some|every)\s*\(/;
+  // `live` as well as `isLive`: the live strip's selector was `const live =`.
+  const LIVE_DEF = /\b(?:isLive|live)\s*[:=](?!=)/;
+  const CLOCK = /NOW\??\.time|\bnowMin\b|toNightMin\s*\(/;
+  // Real-date evidence: the statement, or the 15 lines above it, reads
+  // NOW.night or isSetLive — the enclosing selection is scoped to tonight.
+  const REAL = /NOW\??\.night|isSetLive\s*\(/;
+  // NOW.day and its `now.day` alias, compared either way round.
+  const INFERRED = /\b(?:NOW|now)\??\.day\s*[!=]==|[!=]==\s*(?:window\.)?(?:NOW|now)\??\.day\b/;
+  const bad = [];
+  let lists = 0, lives = 0, inferred = 0;
+  for (const f of SRC) {
+    const lines = readFileSync(join(ROOT, f), "utf8").split("\n");
+    lines.forEach((ln, i) => {
+      if (ln.trim().startsWith("//")) return;
+      if (DAY_LIST.test(ln)) {
+        if (/not-days:/.test(ln) || /not-days:/.test(lines[i - 1] || "")) return;
+        bad.push(`${f}:${i + 1}  literal day list — use festivalDayNums()`); lists++;
+      }
+      if (INFERRED.test(ln) && !/inferred-day-ok:/.test(ln) && !/inferred-day-ok:/.test(lines[i - 1] || "")) {
+        bad.push(`${f}:${i + 1}  "tonight" compared against NOW.day (the NEXT set's day) — use NOW.night`); inferred++;
+      }
+      if (LIVE_DEF.test(ln)) {
+        // The definition runs to its statement end; an IIFE spans a few lines.
+        let stmt = ln.slice(ln.search(LIVE_DEF));
+        for (let j = i + 1; j < Math.min(lines.length, i + 6) && !/[;,]\s*$|\}\)\(\);?\s*$/.test(stmt.trimEnd()); j++) stmt += "\n" + lines[j];
+        const above = lines.slice(Math.max(0, i - 15), i).join("\n");
+        if (CLOCK.test(stmt) && !REAL.test(stmt) && !REAL.test(above)) { bad.push(`${f}:${i + 1}  LIVE flag built from the clock — use isSetLive(a)`); lives++; }
+      }
+    });
+  }
+  // A hook that selects the map stars must re-run as sets end. Its other
+  // deps (saved, stages) do not change then, so the deps must name a tick
+  // (#124 review: both star hooks memoised on [saved] / [loaded, saved, stages]).
+  let stale = 0;
+  for (const f of SRC) {
+    const lines = readFileSync(join(ROOT, f), "utf8").split("\n");
+    lines.forEach((ln, i) => {
+      if (!/savedStarsByStage\s*\(/.test(ln) || /^\s*(?:\/\/|function\s)/.test(ln)) return;
+      const hookAbove = lines.slice(Math.max(0, i - 4), i + 1).join("\n");
+      if (!/React\.use(?:Memo|Effect)\s*\(/.test(hookAbove)) return;       // a plain call, not a hook body
+      let deps = null;
+      for (let j = i; j < Math.min(lines.length, i + 60) && deps == null; j++) {
+        const m = /\}?\s*,\s*(\[[^\]]*\])\s*\)\s*;?\s*$/.exec(lines[j]);
+        if (m) deps = m[1];
+      }
+      if (!deps || !/tick/i.test(deps)) { bad.push(`${f}:${i + 1}  star selection memoised on ${deps || "(no deps found)"} — add a minute tick (useTick)`); stale++; }
+    });
+  }
+  for (const b of bad) console.log(`  ✗ ${b}`);
+  if (bad.length) fail(`${lists} literal day list(s), ${lives} clock-built LIVE flag(s), ${inferred} NOW.day "tonight" comparison(s), ${stale} star hook(s) without a tick`);
+  console.log(`  ✓ ${SRC.length} source file(s) — day loops follow the active festival; LIVE and "tonight" use real dates`);
+}
+
+// ── Real-date gate ───────────────────────────────────────────────────────
+// Behaviour, not text: runs the REAL compiled data/lineup/home/map build in a
+// vm with the clock PINNED, on ACL 2026 (two weekends), and asks the three
+// paths the #124 review named what they show at seven instants. Before the
+// festival, between the weekends and after it, nothing is live, nothing is
+// "up next", Tonight's Plan is empty (it used to mark a future set DONE) and
+// no map star is drawn. On a real night the saved set is live everywhere,
+// and after it ends it is DONE and its star is gone.
+{
+  console.log(`▸ Real-date gate — nothing live, next or done outside a real festival night`);
+  const vmR = (await import("node:vm")).default;
+  const FID = "acl-2026";
+  const mods = execFileSync("git", ["ls-files", "data/festivals/*.js"], { cwd: ROOT })
+    .toString().trim().split("\n").filter(Boolean).map(f => readFileSync(join(ROOT, f), "utf8")).join("\n");
+  const BUILD = ["data", "lineup", "home", "map"].map(n => [n, readFileSync(join(ROOT, `build/${n}.js`), "utf8")]);
+  const boot = (nowMs, saved) => {
+    const store = { active_festival_id: FID, active_festival_explicit: "1", [`${FID}_saved_v1`]: JSON.stringify(saved || []) };
+    const noop = () => {};
+    const RealDate = Date;
+    class PinnedDate extends RealDate {
+      constructor(...a) { super(...(a.length ? a : [nowMs])); }
+      static now() { return nowMs; }
+    }
+    const el = () => ({ style: {}, setAttribute: noop, appendChild: noop, addEventListener: noop, classList: { add: noop, remove: noop } });
+    const ctx = {
+      console: { log: noop, warn: noop, error: noop }, Date: PinnedDate, Math, JSON, Object, Array, Promise,
+      String, Number, Boolean, Set, Map, WeakMap, Symbol, Proxy, Reflect, RegExp, Error, isNaN, parseInt, parseFloat, isFinite,
+      setTimeout: noop, clearTimeout: noop, setInterval: noop, clearInterval: noop, requestAnimationFrame: noop,
+      fetch: () => new Promise(noop), URLSearchParams, URL, location: { search: "", hash: "", pathname: "/", href: "http://x/" },
+      localStorage: { getItem: k => (k in store ? store[k] : null),
+                      setItem: (k, v) => { store[k] = String(v); }, removeItem: k => { delete store[k]; } },
+      sessionStorage: { getItem: () => null, setItem: noop, removeItem: noop },
+      navigator: { userAgent: "node", geolocation: {}, vibrate: noop },
+      document: { addEventListener: noop, removeEventListener: noop, documentElement: { style: {} }, body: el(),
+                  createElement: el, getElementById: () => null, querySelector: () => null, querySelectorAll: () => [],
+                  head: { appendChild: noop } },
+      React: new Proxy(function () {}, { get: () => () => null, apply: () => null }),
+      ReactDOM: { createRoot: () => ({ render: noop }) },
+    };
+    ctx.window = ctx; ctx.globalThis = ctx; ctx.self = ctx;
+    ctx.addEventListener = noop; ctx.removeEventListener = noop;
+    ctx.matchMedia = () => ({ matches: false, addEventListener: noop, addListener: noop });
+    vmR.createContext(ctx);
+    vmR.runInContext(mods, ctx);
+    for (const [n, src] of BUILD) {
+      try { vmR.runInContext(src, ctx, { filename: `build/${n}.js` }); }
+      catch (e) { fail(`Real-date gate: build/${n}.js did not load in the vm — ${e.message}`); }
+    }
+    return ctx;
+  };
+  const c0 = boot(Date.now(), []);
+  if (c0.FESTIVAL_CONFIG?.id !== FID) fail(`Real-date gate: booted ${c0.FESTIVAL_CONFIG?.id}, wanted ${FID}`);
+  for (const fn of ["liveAcrossStages", "buildTonightsPlan", "savedStarsByStage", "isSetLive", "toNightMin"])
+    if (typeof c0[fn] !== "function") fail(`Real-date gate: ${fn} is not a global function`);
+  const cfg = c0.FESTIVAL_CONFIG;
+  // One act on Day 1, on both weekends, playing an evening slot.
+  const act = c0.ARTISTS
+    .filter(a => a.day === 1 && (!a.weekend || a.weekend === "both") && a.stage && /^(1[2-9]|2[01]):/.test(a.start))
+    .sort((a, b) => (b.tier || 0) - (a.tier || 0) || a.id.localeCompare(b.id))[0];
+  if (!act) fail("Real-date gate: no both-weekend Day 1 evening act in ACL to pin against");
+  const hm = s => { const [h, m] = s.split(":").map(Number); return (h < 8 ? 24 + h : h) * 3600000 + m * 60000; };
+  const d1 = cfg.dayDates[1].midnightUtc, shift = cfg.weekendStartMs.W2 - cfg.weekendStartMs.W1;
+  const inSet = d1 + hm(act.start) + 5 * 60000, afterSet = d1 + hm(act.end) + 30 * 60000;
+  const DAY = 86400000;
+  const CASES = [
+    ["a week before, during the set's clock time", inSet - 7 * DAY, "quiet"],
+    ["a week before, after the set's clock end",   afterSet - 7 * DAY, "quiet"],
+    ["Weekend 1 night, during the set",            inSet, "live"],
+    ["Weekend 1 night, after the set",             afterSet, "done"],
+    ["between the weekends, the set's clock time", inSet + 4 * DAY, "quiet"],
+    ["Weekend 2 night, during the set",            inSet + shift, "live"],
+    ["a week after, the set's clock time",         inSet + shift + 7 * DAY, "quiet"],
+  ];
+  const bad = [];
+  for (const [label, t, want] of CASES) {
+    const c = boot(t, [act.id]);
+    const strip = c.liveAcrossStages();
+    const liveN = strip.filter(x => x.artist).length, nextN = strip.filter(x => x.upcoming).length;
+    const plan = c.buildTonightsPlan({ saved: [act.id] });
+    const row = plan.find(p => p.artist.id === act.id);
+    const stars = c.savedStarsByStage([act.id]);
+    const got = `strip live=${liveN} next=${nextN} · plan=${plan.length}${row ? (row.isLive ? " LIVE" : row.isPast ? " DONE" : " upcoming") : ""} · stars=${Object.keys(stars).length}`;
+    const why = [];
+    if (want === "quiet") {
+      if (liveN) why.push(`${liveN} stage(s) live`);
+      if (nextN) why.push(`${nextN} stage(s) "up next"`);
+      if (plan.length) why.push(`Tonight's Plan has ${plan.length} set(s)${row?.isPast ? " marked DONE" : ""}`);
+      if (Object.keys(stars).length) why.push(`${Object.keys(stars).length} map star(s)`);
+    } else if (want === "live") {
+      if (!strip.some(x => x.artist?.id === act.id)) why.push("the live strip does not show the set");
+      if (!row || !row.isLive || row.isPast) why.push("Tonight's Plan does not show the set LIVE");
+      if (!stars[act.stage]?.isLive) why.push("no live map star on its stage");
+    } else {
+      if (!row || !row.isPast || row.isLive) why.push("Tonight's Plan does not show the set DONE");
+      if (stars[act.stage]?.artist?.id === act.id) why.push("its map star is still drawn");
+    }
+    console.log(`  ${why.length ? "✗" : "ok"} ${label.padEnd(44)} ${got}`);
+    if (why.length) bad.push(`${label}: ${why.join("; ")}`);
+  }
+  if (bad.length) fail(`Real-date gate: ${bad.length} instant(s) wrong —\n    ${bad.join("\n    ")}`);
+  console.log(`  ✓ ${CASES.length} pinned instants on ${FID} (${act.name}, Day 1 ${act.start}) — live strip, Tonight's Plan and map stars follow real dates`);
+}
+
 // ── Set-time honesty gate ────────────────────────────────────────────────
 // Born from a real defect found 2026-09-07, gated but 11 days from shipping.
 // Lost Lands 2026 SYNTHESISED a set time for every act from its tier — t3

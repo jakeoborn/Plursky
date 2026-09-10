@@ -604,7 +604,7 @@ function App() {
     const validArtist = dlArtist && ARTISTS.find(a => a.id === dlArtist) ? dlArtist : null;
     const validTab    = ["home","map","lineup","spotify","me","memories"].includes(dlTab) ? dlTab : null;
     const validStage  = dlStage && STAGES.find(s => s.id === dlStage || s.short.toLowerCase() === dlStage.toLowerCase()) ? dlStage : null;
-    const validDay    = dlDay && [1,2,3].includes(+dlDay) ? +dlDay : null;
+    const validDay    = dlDay && festivalDayNums().includes(+dlDay) ? +dlDay : null;
     // Decode shared lineup: comma-joined IDs validated against the local lineup so
     // a stale or malicious URL can't inject phantom artists.
     const validFriendIds = dlLineup
@@ -897,7 +897,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v290",
+        version: "v291",
       }));
     } catch {}
   }
@@ -930,7 +930,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
-          PLURSKY · v290
+          PLURSKY · v291
         </div>
       </div>
     );
@@ -944,11 +944,13 @@ function SetStartingCinematic() {
     const check = () => {
       try {
         const saved = JSON.parse(localStorage.getItem(`${FESTIVAL_CONFIG.id}_saved_v1`) || "[]");
-        if (!saved.length || !NOW.time || !NOW.day) return;
+        // Only on a real festival night: NOW.day names a day before the
+        // festival too, and fired this a week early at the matching clock time.
+        if (!saved.length || !NOW.time || NOW.night == null) return;
         const nowMin = toNightMin(NOW.time);
         for (const id of saved) {
           const a = activeLineup().find(x => x.id === id);
-          if (!a || a.day !== NOW.day) continue;
+          if (!a || a.day !== NOW.night) continue;
           const startMin = toNightMin(a.start);
           const diff = startMin - nowMin;
           if (diff > 0 && diff <= 3 && !shownRef.current.has(a.id)) {

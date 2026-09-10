@@ -86,7 +86,7 @@ async function exportSavedSetsICS(savedIds) {
   }, 500);
 }
 function _nightShareText(ids) {
-  var lines = [1, 2, 3].flatMap(day => {
+  var lines = festivalDayNums().flatMap(day => {
     var d = FESTIVAL_CONFIG.dayDates[day];
     var dayArtists = activeLineup(ids).filter(a => a.day === day && ids.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
     if (!dayArtists.length) return [];
@@ -1839,13 +1839,7 @@ function LineupScreen({
     var saved = state.saved.includes(a.id);
     var clashWith = conflictById[a.id];
     var isHighlighted = highlightId === a.id;
-    var isLive = (() => {
-      if (a.day !== NOW.day || !NOW.time) return false;
-      var nm = toNightMin(NOW.time),
-        sm = toNightMin(a.start),
-        em = toNightMin(a.end);
-      return sm <= nm && nm < em;
-    })();
+    var isLive = isSetLive(a);
     return React.createElement("div", {
       key: a.id,
       "data-animate": true,
@@ -2078,7 +2072,7 @@ function LineupScreen({
         justifyContent: "center"
       }
     }, saved ? "✓" : "+"));
-  })), viewMode === "grid" && NOW.day === day && NOW.time && React.createElement("button", {
+  })), viewMode === "grid" && NOW.night === day && NOW.time && React.createElement("button", {
     onClick: () => {
       var el = document.querySelector("[data-grid-scroll]");
       var nowMin = toNightMin(NOW.time);
@@ -2299,11 +2293,7 @@ function SavedSidebar({
     var endMin = toNightMin(a.end);
     var top = _minToTop(startMin);
     var blockH = Math.max(34, _minToTop(endMin) - top);
-    var isLive = (() => {
-      if (a.day !== NOW.day || !NOW.time) return false;
-      var nm = toNightMin(NOW.time);
-      return startMin <= nm && nm < endMin;
-    })();
+    var isLive = isSetLive(a);
     return React.createElement("button", {
       key: a.id,
       onClick: () => setState(s => ({
@@ -2604,7 +2594,7 @@ function TimelineGrid({
   }
   var nowTop = null,
     nowMin = null;
-  if (NOW.day === day && NOW.time) {
+  if (NOW.night === day && NOW.time) {
     nowMin = toNightMin(NOW.time);
     if (nowMin >= GRID_START_MIN && nowMin <= GRID_END_MIN) nowTop = minToTop(nowMin);
   }
@@ -3323,7 +3313,7 @@ async function copyScheduleText(state) {
     ok: false,
     reason: "empty"
   };
-  var lines = [1, 2, 3].flatMap(day => {
+  var lines = festivalDayNums().flatMap(day => {
     var d = FESTIVAL_CONFIG.dayDates[day];
     var artists = activeLineup().filter(a => a.day === day && ids.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
     if (!artists.length) return [];

@@ -614,13 +614,15 @@ function FestivalSkyBand({ accent, progress, preDawn }) {
   );
 }
 
-// Bumps every 30s so countdown stays accurate without spamming renders
+// Bumps every 30s so countdown stays accurate without spamming renders.
+// Returns the counter so a memo/effect can list it as a dependency.
 function useTick(intervalMs) {
-  const [, setT] = React.useState(0);
+  const [t, setT] = React.useState(0);
   React.useEffect(() => {
     const id = setInterval(() => setT(t => t + 1), intervalMs);
     return () => clearInterval(id);
   }, [intervalMs]);
+  return t;
 }
 
 // Walk-time lookup keyed by alphabetically-sorted stage-id pair.
@@ -649,18 +651,17 @@ function stageWalkMinutes(fromId, toId) {
   return Math.max(2, Math.round(Math.hypot(a.x - b.x, a.y - b.y) * 0.4));
 }
 
-// What's playing at every stage right now (uses current NOW.time)
+// What's playing at every stage right now. Live comes from real dates
+// (isSetLive); "up next" exists only inside a real festival night (NOW.night),
+// so before the festival, after it and between weekends every stage is dark.
 function liveAcrossStages() {
+  const night = NOW.night;
   const now = toNightMin(NOW.time);
   return STAGES.map(s => {
-    const live = activeLineup().find(a => {
-      if (a.stage !== s.id || a.day !== NOW.day) return false;
-      const start = toNightMin(a.start), end = toNightMin(a.end);
-      return now >= start && now < end;
-    });
-    // When stage is dark, find the next artist starting on this stage today
-    const upcoming = !live ? activeLineup()
-      .filter(a => a.stage === s.id && a.day === NOW.day && toNightMin(a.start) > now)
+    const live = activeLineup().find(a => a.stage === s.id && isSetLive(a));
+    // When stage is dark, find the next artist starting on this stage tonight
+    const upcoming = !live && night != null ? activeLineup()
+      .filter(a => a.stage === s.id && a.day === night && toNightMin(a.start) > now)
       .sort((a, b) => toNightMin(a.start) - toNightMin(b.start))[0] || null
       : null;
     const minsUntil = upcoming ? toNightMin(upcoming.start) - now : null;
@@ -670,11 +671,17 @@ function liveAcrossStages() {
 
 // Build Tonight's Plan: saved sets sorted by start, with prev-stage walk
 // times and "leave by" warnings when transitions would make you late.
+// Only on a REAL festival night (NOW.night): with NOW.day, a clock later
+// than a set's end marked it DONE a week before it played. Inside the night,
+// clock-of-day math is exact (toNightMin folds the small hours in).
 function buildTonightsPlan(state) {
+  const night = NOW.night;
+  if (night == null) return [];
   const nowMin = toNightMin(NOW.time);
+  const lineup = activeLineup(state.saved);
   const sets = state.saved
-    .map(id => ARTISTS.find(a => a.id === id))
-    .filter(a => a && a.day === NOW.day)
+    .map(id => lineup.find(a => a.id === id))
+    .filter(a => a && a.day === night)
     .sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
 
   return sets.map((a, i) => {
@@ -683,7 +690,7 @@ function buildTonightsPlan(state) {
     const startMin  = toNightMin(a.start);
     const endMin    = toNightMin(a.end);
     const minsUntil = startMin - nowMin;
-    const isLive    = nowMin >= startMin && nowMin < endMin;
+    const isLive    = isSetLive(a);
     const isPast    = nowMin >= endMin;
     const leaveBy   = walk > 0 ? startMin - walk : null;
     // Tight transition flag — only meaningful if previous set actually overlaps walk window
@@ -736,7 +743,7 @@ function computeAlerts(savedIds, day, timeStr) {
 
 function PostFestivalRecap({ state, setState }) {
   const savedIds = state.saved || [];
-  const byDay = [1, 2, 3].map(day => ({
+  const byDay = festivalDayNums().map(day => ({
     day,
     meta: FESTIVAL_CONFIG.dayDates[day],
     // weekend-exempt: this is HISTORY. The resolver is clock-first, so from
@@ -876,10 +883,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
   const live = (() => {
     if (isPreEvent || isPostEvent) return null;
     const nowMin = toNightMin(NOW.time);
-    const allLive = activeLineup().filter(a => {
-      if (a.day !== day) return false;
-      return nowMin >= toNightMin(a.start) && nowMin < toNightMin(a.end);
-    });
+    const allLive = activeLineup().filter(a => isSetLive(a));
     return allLive.find(a => a.stage === FESTIVAL_CONFIG.mainStageId)
       || [...allLive].sort((a, b) => (b.tier || 0) - (a.tier || 0))[0]
       || null;
@@ -1330,9 +1334,10 @@ function UpcomingTeaser({ state, setState }) {
 
   // Which days to surface
   const upcomingDays = (() => {
-    if (isPreEvent) return [1, 2, 3];
+    const days = festivalDayNums();
+    if (isPreEvent) return days;
     const next = NOW.day + 1;
-    return next <= 3 ? [next] : [];
+    return days.includes(next) ? [next] : [];
   })();
 
   if (!upcomingDays.length) {
@@ -1539,7 +1544,7 @@ function HomeScreen({ state, setState }) {
 
   // Computed alerts from saved sets — replaces static demo ALERTS during festival
   const _dynAlerts = !countdown && state.saved?.length
-    ? computeAlerts(state.saved, NOW.day, NOW.time)
+    ? computeAlerts(state.saved, NOW.night, NOW.time)
     : [];
   const alerts = _dynAlerts.length ? _dynAlerts : (state.alerts || ALERTS);
   const unread = alerts.filter(a => a.unread).length;
@@ -2005,7 +2010,7 @@ function HomeScreen({ state, setState }) {
             .sort((a, b) => (b.tier - a.tier) || a.day - b.day || toNightMin(a.start) - toNightMin(b.start))
             .slice(0, 9);
           if (!headliners.length) return null;
-          const dayGroups = [1, 2, 3].map(d => ({
+          const dayGroups = festivalDayNums().map(d => ({
             day: d, meta: FESTIVAL_CONFIG.dayDates[d],
             artists: headliners.filter(a => a.day === d).slice(0, 3),
           })).filter(g => g.artists.length);
@@ -2099,7 +2104,7 @@ function HomeScreen({ state, setState }) {
         {/* Pre-festival lineup preview — visible only during countdown */}
         {countdown && (() => {
           const savedIds = state.saved || [];
-          const byDay = [1, 2, 3].map(day => ({
+          const byDay = festivalDayNums().map(day => ({
             day,
             meta: FESTIVAL_CONFIG.dayDates[day],
             artists: activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id))
@@ -2950,7 +2955,7 @@ function FriendLineupBanner({ state, setState }) {
       </div>
       {expanded && (
         <div style={{ marginTop: 12, paddingTop: 10, borderTop: "1px solid var(--line)" }}>
-          {[1, 2, 3].map(day => {
+          {festivalDayNums().map(day => {
             const dayArtists = friendIds
               .map(id => ARTISTS.find(a => a.id === id))
               .filter(a => a && a.day === day)
