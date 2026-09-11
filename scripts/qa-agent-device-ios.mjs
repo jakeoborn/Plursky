@@ -95,6 +95,10 @@ function snapshotText(snapshot) {
 function findNode(snapshot, matcher) {
   return (snapshot.nodes || []).find(n => matcher.test([n.label, n.name, n.value, n.text].filter(Boolean).join(" ")));
 }
+function interactionRef(ref) {
+  if (!ref) throw new Error("interaction target has no accessibility ref");
+  return ref.startsWith("@") ? ref : `@${ref}`;
+}
 async function saveSnapshot(name, interactiveOnly = false) {
   // agent-device 0.21.0 can acquire a valid iOS hierarchy without viewport
   // evidence, then fail its regular presentation with
@@ -113,7 +117,7 @@ async function press(matcher, label) {
   if (!node?.ref) throw new Error(`could not find ${label} in interactive accessibility snapshot`);
   const nodeText = [node.label, node.name, node.value, node.text].filter(Boolean).join(" ");
   if (FORBIDDEN_CONFIRM.test(nodeText.trim())) throw new Error(`safety stop: refusing purchase-confirm control ${JSON.stringify(nodeText)}`);
-  await client.interactions.press({ ref: node.ref });
+  await client.interactions.press({ ref: interactionRef(node.ref) });
 }
 async function screenshot(name) {
   const requested = join(out, name);
@@ -329,7 +333,7 @@ try {
       return /LOST LANDS|NOCTURNAL|EDC LV|FESTIVAL/i.test(t) && n.ref;
     });
     if (!festivalChip?.ref) throw Object.assign(new Error("festival chip absent on Today"), { finalState: "FAIL_UI_REGRESSION" });
-    await client.interactions.press({ ref: festivalChip.ref });
+    await client.interactions.press({ ref: interactionRef(festivalChip.ref) });
     await waitForSnapshot(/Electric Daisy Carnival.*Las Vegas|EDC LV/i, { name: "snapshot-festival-switcher.txt", interactiveOnly: true });
     await press(/Electric Daisy Carnival.*Las Vegas|EDC LV/i, "edc-lv");
 
@@ -350,12 +354,12 @@ try {
     if (!realMap?.ref) throw Object.assign(new Error("Real map control absent"), { finalState: "FAIL_UI_REGRESSION" });
     // aria-pressed is not consistently surfaced in the merged iOS tree. A
     // fresh install is off by contract, so one press enables it.
-    await client.interactions.press({ ref: realMap.ref });
+    await client.interactions.press({ ref: interactionRef(realMap.ref) });
 
     const style = await waitForSnapshot(/STYLIZED/i, { timeoutMs: 25_000, name: "snapshot-real-map-styles.txt", interactiveOnly: true });
     const stylized = findNode(style.snap, /^STYLIZED$/i) || findNode(style.snap, /STYLIZED/i);
     if (!stylized?.ref) throw Object.assign(new Error("Stylized map control absent"), { finalState: "FAIL_UI_REGRESSION" });
-    await client.interactions.press({ ref: stylized.ref });
+    await client.interactions.press({ ref: interactionRef(stylized.ref) });
 
     // MapLibre's DOM stage pills are accessibility-visible. Pillar geometry is
     // WebGL and must be judged from the stabilized screenshot, not this tree.
