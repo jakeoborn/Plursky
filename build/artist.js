@@ -610,7 +610,10 @@ function _YourMomentThumb({
   onClick,
   style: overrideStyle
 }) {
-  var url = useMomentPhoto(moment.photoId);
+  var thumb = useMomentThumb(moment),
+    {
+      url
+    } = thumb;
   return React.createElement("button", {
     onClick: onClick,
     "aria-label": "Open moment",
@@ -627,17 +630,9 @@ function _YourMomentThumb({
       position: "relative",
       ...overrideStyle
     }
-  }, url ? moment.kind === "video" ? React.createElement(React.Fragment, null, React.createElement("video", {
-    src: url + "#t=0.1",
-    muted: true,
-    playsInline: true,
-    preload: "metadata",
-    style: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      display: "block"
-    }
+  }, url || thumb.noPoster ? moment.kind === "video" ? React.createElement(React.Fragment, null, React.createElement(_ThumbMedia, {
+    moment: moment,
+    thumb: thumb
   }), React.createElement("span", {
     "aria-hidden": "true",
     style: {

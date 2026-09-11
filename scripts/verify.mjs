@@ -1817,6 +1817,31 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-c. Video thumbnails ────────────────────────────────────────────────
+// A library tile shows a stored poster <img>, never a live <video>. The old
+// "poster" was <video preload="metadata" src="...#t=0.1">: one decoder per
+// tile, and a black box on iOS. Players (lightbox, reel, tap-to-play, the add
+// form's preview) mount on user action and never carry either marker.
+{
+  console.log("▸ Video-thumbnail gate — no live <video> used as a poster");
+  const bad = [];
+  for (const f of readdirSync(ROOT).filter(n => n.endsWith(".jsx"))) {
+    const src = readFileSync(join(ROOT, f), "utf8");
+    const lines = src.split("\n");
+    lines.forEach((line, i) => {
+      const t = line.trim();
+      if (t.startsWith("//") || t.startsWith("*") || t.startsWith("/*")) return;
+      if (/#t=\d/.test(line)) bad.push(`${f}:${i + 1} #t= poster fragment`);
+      const at = line.indexOf("<video");
+      if (at < 0) return;
+      const rest = src.slice(src.indexOf(line) + at).split("/>")[0];
+      if (/preload=["']metadata["']/.test(rest)) bad.push(`${f}:${i + 1} <video preload="metadata">`);
+    });
+  }
+  if (bad.length) fail(`live <video> thumbnails are back (${bad.length}): ${bad.join(" · ")}`);
+  console.log(`  ✓ 0 poster-style <video> elements across the app's .jsx files`);
+}
+
 // ── 2. Mount probe ─────────────────────────────────────────────────────────
 // Loads the REAL index.html in an iframe rather than reconstructing the script
 // order. An earlier version of this check derived load order by grepping

@@ -600,7 +600,8 @@ function ShareArtistButton({ artist }) {
 // resolved at render-time, not parse-time): _readMoments, useMomentPhoto,
 // and the existing { tab: "memories", memoriesNight: n } setState pattern.
 function _YourMomentThumb({ moment, accent, onClick, style: overrideStyle }) {
-  const url = useMomentPhoto(moment.photoId);
+  // Videos resolve to their poster frame (never a live <video>); photos as before.
+  const thumb = useMomentThumb(moment), { url } = thumb;
   return (
     <button onClick={onClick} aria-label="Open moment" style={{
       width: 76, height: 76, flexShrink: 0,
@@ -610,12 +611,10 @@ function _YourMomentThumb({ moment, accent, onClick, style: overrideStyle }) {
       padding: 0, cursor: "pointer", position: "relative",
       ...overrideStyle,
     }}>
-      {url ? (
+      {(url || thumb.noPoster) ? (
         moment.kind === "video" ? (
           <>
-            <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{
-              width: "100%", height: "100%", objectFit: "cover", display: "block",
-            }}/>
+            <_ThumbMedia moment={moment} thumb={thumb}/>
             <span aria-hidden="true" style={{
               position: "absolute", inset: 0, display: "flex",
               alignItems: "center", justifyContent: "center",

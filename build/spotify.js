@@ -2094,6 +2094,22 @@ function _videoDuration(blob) {
 }
 var _POSTER_MAX_EDGE = 640;
 var _POSTER_TIMEOUT_MS = 8000;
+var _BLACK_MAX_LUMA = 40;
+function _frameIsBlack(v) {
+  try {
+    var c = document.createElement("canvas");
+    c.width = c.height = 24;
+    var g = c.getContext("2d");
+    g.drawImage(v, 0, 0, 24, 24);
+    var d = g.getImageData(0, 0, 24, 24).data;
+    for (var i = 0; i < d.length; i += 4) {
+      if (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2] > _BLACK_MAX_LUMA) return false;
+    }
+    return true;
+  } catch {
+    return false;
+  }
+}
 function _videoPosterBlob(blob) {
   return new Promise(resolve => {
     var url = null,
@@ -2139,18 +2155,25 @@ function _videoPosterBlob(blob) {
           done(null);
         }
       };
+      var times = [],
+        at = 0;
+      var seek = () => {
+        try {
+          v.currentTime = times[at];
+        } catch {
+          draw();
+        }
+      };
       v.onloadedmetadata = () => {
-        var t = Math.min(0.6, Math.max(0.05, (v.duration || 1) * 0.1));
-        var seek = () => {
-          try {
-            v.currentTime = t;
-          } catch {
-            draw();
-          }
-        };
+        var dur = Number.isFinite(v.duration) && v.duration > 0 ? v.duration : 4;
+        times = [Math.min(0.6, Math.max(0.05, dur * 0.1)), dur * 0.25, dur * 0.5, dur * 0.75].filter((t, i, a) => t < dur && (i === 0 || t > a[i - 1] + 0.05));
         if (v.readyState >= 2) seek();else v.onloadeddata = seek;
       };
-      v.onseeked = draw;
+      v.onseeked = () => {
+        if (!_frameIsBlack(v)) return draw();
+        if (++at < times.length) return seek();
+        done(null);
+      };
       v.onerror = () => done(null);
       v.src = url;
     } catch {
@@ -2448,12 +2471,141 @@ function useMomentThumb(moment, enabled = true) {
       if (objUrl) URL.revokeObjectURL(objUrl);
     };
   }, [enabled, isVideo, id]);
-  var needMedia = !isVideo || noPoster && !posterUrl;
-  var mediaUrl = useMomentPhoto(needMedia ? moment && moment.photoId || null : null, enabled);
+  var mediaUrl = useMomentPhoto(!isVideo ? moment && moment.photoId || null : null, enabled);
   return {
     url: posterUrl || mediaUrl,
-    isPoster: !!posterUrl
+    isPoster: !!posterUrl,
+    noPoster: isVideo && noPoster && !posterUrl
   };
+}
+function _ThumbMedia({
+  moment,
+  thumb,
+  showLength = true
+}) {
+  var fill = {
+    width: "100%",
+    height: "100%",
+    display: "block"
+  };
+  if (thumb && thumb.url) return React.createElement("img", {
+    src: thumb.url,
+    alt: "",
+    style: {
+      ...fill,
+      objectFit: "cover"
+    }
+  });
+  if (moment && moment.kind === "video" && thumb && thumb.noPoster) {
+    return React.createElement("div", {
+      "aria-label": "Video",
+      style: {
+        ...fill,
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "center",
+        paddingBottom: 6,
+        boxSizing: "border-box",
+        background: "linear-gradient(160deg, #2a2a30, #121216)",
+        color: "rgba(255,255,255,0.72)"
+      }
+    }, showLength && React.createElement("span", {
+      className: "mono",
+      style: {
+        fontSize: 9,
+        letterSpacing: 0.8,
+        fontWeight: 700
+      }
+    }, moment.duration ? _fmtClock(moment.duration) : "VIDEO"));
+  }
+  return React.createElement("div", {
+    className: "skel",
+    style: fill
+  });
+}
+function _TapToPlayVideo({
+  moment,
+  height = 300,
+  style
+}) {
+  var [playing, setPlaying] = React.useState(false);
+  var [ref, onScreen] = useNearViewport("0px");
+  React.useEffect(() => {
+    if (!onScreen) setPlaying(false);
+  }, [onScreen]);
+  var thumb = useMomentThumb(moment, !playing);
+  var src = useMomentPhoto(playing ? moment.photoId : null);
+  return React.createElement("div", {
+    ref: ref,
+    style: {
+      position: "relative",
+      width: "100%",
+      height,
+      borderRadius: 10,
+      overflow: "hidden",
+      background: "#000",
+      ...style
+    }
+  }, playing && src ? React.createElement("video", {
+    src: src,
+    controls: true,
+    autoPlay: true,
+    playsInline: true,
+    onEnded: () => setPlaying(false),
+    style: {
+      width: "100%",
+      height: "100%",
+      objectFit: "contain",
+      display: "block"
+    }
+  }) : React.createElement("button", {
+    onClick: () => setPlaying(true),
+    "aria-label": "Play video",
+    style: {
+      width: "100%",
+      height: "100%",
+      padding: 0,
+      border: "none",
+      background: "none",
+      cursor: "pointer",
+      position: "relative",
+      display: "block"
+    }
+  }, React.createElement(_ThumbMedia, {
+    moment: moment,
+    thumb: thumb,
+    showLength: false
+  }), React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      inset: 0,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      pointerEvents: "none"
+    }
+  }, React.createElement("span", {
+    style: {
+      width: 52,
+      height: 52,
+      borderRadius: 52,
+      background: "rgba(0,0,0,0.5)",
+      color: "#fff",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontSize: 19,
+      paddingLeft: 3
+    }
+  }, "▶")), React.createElement(_VideoBadge, {
+    seconds: moment.duration,
+    style: {
+      position: "absolute",
+      bottom: 8,
+      right: 8
+    }
+  })));
 }
 function useNearViewport(rootMargin = "600px 0px") {
   var ref = React.useRef(null);
@@ -2573,10 +2725,10 @@ function _HomeMemoryThumb({
   moment,
   onClick
 }) {
-  var {
-    url,
-    isPoster
-  } = useMomentThumb(moment);
+  var thumb = useMomentThumb(moment),
+    {
+      url
+    } = thumb;
   var artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   return React.createElement("button", {
     onClick: onClick,
@@ -2592,31 +2744,10 @@ function _HomeMemoryThumb({
       cursor: "pointer",
       padding: 0
     }
-  }, url ? moment.kind === "video" && !isPoster ? React.createElement("video", {
-    src: url + "#t=0.1",
-    muted: true,
-    playsInline: true,
-    preload: "metadata",
-    style: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      pointerEvents: "none"
-    }
-  }) : React.createElement("img", {
-    src: url,
-    alt: "",
-    style: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover"
-    }
-  }) : React.createElement("div", {
-    className: "skel",
-    style: {
-      width: "100%",
-      height: "100%"
-    }
+  }, React.createElement(_ThumbMedia, {
+    moment: moment,
+    thumb: thumb,
+    showLength: false
   }), moment.kind === "video" && React.createElement(_VideoBadge, {
     seconds: moment.duration,
     style: {
@@ -4347,10 +4478,10 @@ function _LightboxThumb({
   active,
   onClick
 }) {
-  var {
-    url,
-    isPoster
-  } = useMomentThumb(moment);
+  var thumb = useMomentThumb(moment),
+    {
+      url
+    } = thumb;
   return React.createElement("button", {
     onClick: onClick,
     "aria-label": "View moment",
@@ -4368,26 +4499,11 @@ function _LightboxThumb({
       transition: "opacity 0.15s",
       position: "relative"
     }
-  }, url && (moment.kind === "video" && !isPoster ? React.createElement("video", {
-    src: url + "#t=0.1",
-    muted: true,
-    playsInline: true,
-    preload: "metadata",
-    style: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      pointerEvents: "none"
-    }
-  }) : React.createElement("img", {
-    src: url,
-    alt: "",
-    style: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover"
-    }
-  })), moment.kind === "video" && React.createElement("span", {
+  }, React.createElement(_ThumbMedia, {
+    moment: moment,
+    thumb: thumb,
+    showLength: false
+  }), moment.kind === "video" && React.createElement("span", {
     style: {
       position: "absolute",
       inset: 0,
@@ -4413,7 +4529,7 @@ function MomentCard({
   onOpenLightbox
 }) {
   var [cardRef, near] = useNearViewport();
-  var photoUrl = useMomentPhoto(moment.photoId, near);
+  var photoUrl = useMomentPhoto(moment.photoId, near && moment.kind !== "video");
   var artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   var stage = artist ? STAGES.find(s => s.id === artist.stage) : null;
   var nowPlaying = useSetlistSong(artist, moment.takenAt);
@@ -4483,19 +4599,12 @@ function MomentCard({
       padding: 12,
       marginBottom: 10
     }
-  }, moment.photoId && (photoUrl ? moment.kind === "video" ? React.createElement("video", {
-    src: photoUrl,
-    controls: true,
-    playsInline: true,
-    preload: "metadata",
+  }, moment.photoId && (moment.kind === "video" ? React.createElement(_TapToPlayVideo, {
+    moment: moment,
     style: {
-      width: "100%",
-      borderRadius: 10,
-      display: "block",
-      marginBottom: moment.text ? 10 : 8,
-      background: "#000"
+      marginBottom: moment.text ? 10 : 8
     }
-  }) : React.createElement("img", {
+  }) : photoUrl ? React.createElement("img", {
     src: photoUrl,
     alt: "",
     onClick: () => onOpenLightbox?.(groupMoments || [moment], idx || 0),
@@ -4935,10 +5044,10 @@ function _GroupHeroThumb({
   accent,
   onClick
 }) {
-  var {
-    url,
-    isPoster
-  } = useMomentThumb(moment);
+  var thumb = useMomentThumb(moment),
+    {
+      url
+    } = thumb;
   if (!moment?.photoId) return null;
   return React.createElement("button", {
     onClick: onClick,
@@ -4955,26 +5064,11 @@ function _GroupHeroThumb({
       background: "#222",
       position: "relative"
     }
-  }, url && (moment.kind === "video" && !isPoster ? React.createElement("video", {
-    src: url + "#t=0.1",
-    muted: true,
-    playsInline: true,
-    preload: "metadata",
-    style: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      pointerEvents: "none"
-    }
-  }) : React.createElement("img", {
-    src: url,
-    alt: "",
-    style: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover"
-    }
-  })), moment.kind === "video" && React.createElement("span", {
+  }, React.createElement(_ThumbMedia, {
+    moment: moment,
+    thumb: thumb,
+    showLength: false
+  }), moment.kind === "video" && React.createElement("span", {
     style: {
       position: "absolute",
       inset: 0,
@@ -6619,10 +6713,10 @@ function _MemoryStoryBeat({
   isLast,
   onOpen
 }) {
-  var {
-    url,
-    isPoster
-  } = useMomentThumb(moment);
+  var thumb = useMomentThumb(moment),
+    {
+      url
+    } = thumb;
   var artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   var stage = artist ? STAGES.find(s => s.id === artist.stage) : null;
   var estSong = useSetlistSong(artist, moment.takenAt);
@@ -6714,7 +6808,7 @@ function _MemoryStoryBeat({
       color: "var(--muted)",
       marginTop: 2
     }
-  }, stage.name.toUpperCase()), url && React.createElement("button", {
+  }, stage.name.toUpperCase()), (url || thumb.noPoster) && React.createElement("button", {
     onClick: onOpen,
     "aria-label": "Open moment",
     style: {
@@ -6727,21 +6821,19 @@ function _MemoryStoryBeat({
       width: "100%",
       position: "relative"
     }
-  }, moment.kind === "video" && !isPoster ? React.createElement(React.Fragment, null, React.createElement("video", {
-    src: url + "#t=0.1",
-    muted: true,
-    playsInline: true,
-    preload: "metadata",
+  }, moment.kind === "video" ? React.createElement(React.Fragment, null, React.createElement("div", {
     style: {
       width: "100%",
+      height: 300,
       borderRadius: 12,
-      display: "block",
-      maxHeight: 340,
-      objectFit: "cover",
-      background: "#000",
-      pointerEvents: "none"
+      overflow: "hidden",
+      background: "#000"
     }
-  }), React.createElement("span", {
+  }, React.createElement(_ThumbMedia, {
+    moment: moment,
+    thumb: thumb,
+    showLength: false
+  })), React.createElement("span", {
     style: {
       position: "absolute",
       inset: 0,
@@ -6790,10 +6882,10 @@ function _MemoryStoryBeat({
 function _ScrubPreview({
   moment
 }) {
-  var {
-    url,
-    isPoster
-  } = useMomentThumb(moment);
+  var thumb = useMomentThumb(moment),
+    {
+      url
+    } = thumb;
   return React.createElement("div", {
     style: {
       width: 56,
@@ -6805,25 +6897,11 @@ function _ScrubPreview({
       flexShrink: 0,
       boxShadow: "0 4px 14px rgba(0,0,0,0.4)"
     }
-  }, url && (moment.kind === "video" && !isPoster ? React.createElement("video", {
-    src: url + "#t=0.1",
-    muted: true,
-    playsInline: true,
-    preload: "metadata",
-    style: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover"
-    }
-  }) : React.createElement("img", {
-    src: url,
-    alt: "",
-    style: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover"
-    }
-  })));
+  }, React.createElement(_ThumbMedia, {
+    moment: moment,
+    thumb: thumb,
+    showLength: false
+  }));
 }
 function NightScrubber({
   moments,
@@ -7191,10 +7269,10 @@ function _GridTile({
   onClick,
   stackCount = 1
 }) {
-  var {
-    url,
-    isPoster
-  } = useMomentThumb(moment);
+  var thumb = useMomentThumb(moment),
+    {
+      url
+    } = thumb;
   var artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   var stacked = stackCount > 1;
   return React.createElement("button", {
@@ -7212,31 +7290,10 @@ function _GridTile({
       cursor: "pointer",
       boxShadow: stacked ? "2.5px 2.5px 0 -0.5px var(--paper-2), 2.5px 2.5px 0 0 var(--line), 5px 5px 0 -1px var(--paper-2), 5px 5px 0 -0.5px var(--line)" : "none"
     }
-  }, url ? moment.kind === "video" && !isPoster ? React.createElement("video", {
-    src: url + "#t=0.1",
-    muted: true,
-    playsInline: true,
-    preload: "metadata",
-    style: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      pointerEvents: "none"
-    }
-  }) : React.createElement("img", {
-    src: url,
-    alt: "",
-    style: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover"
-    }
-  }) : React.createElement("div", {
-    className: "skel",
-    style: {
-      width: "100%",
-      height: "100%"
-    }
+  }, React.createElement(_ThumbMedia, {
+    moment: moment,
+    thumb: thumb,
+    showLength: false
   }), moment.kind === "video" && React.createElement(_VideoBadge, {
     seconds: moment.duration,
     style: {
@@ -7568,10 +7625,10 @@ function _PhotoPin({
   onTap
 }) {
   var m = cluster.face;
-  var {
-    url,
-    isPoster
-  } = useMomentThumb(m, cluster.enabled !== false);
+  var thumb = useMomentThumb(m, cluster.enabled !== false),
+    {
+      url
+    } = thumb;
   var ring = cluster.stage && cluster.stage.color || "#9aa";
   var rot = _idHash(m.id) % 17 - 8;
   var extra = cluster.items.length - 1;
@@ -7601,31 +7658,10 @@ function _PhotoPin({
       background: url ? "#000" : "var(--paper-2)",
       boxShadow: "0 3px 9px rgba(0,0,0,0.5)"
     }
-  }, url ? m.kind === "video" && !isPoster ? React.createElement("video", {
-    src: url + "#t=0.1",
-    muted: true,
-    playsInline: true,
-    preload: "metadata",
-    style: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      pointerEvents: "none"
-    }
-  }) : React.createElement("img", {
-    src: url,
-    alt: "",
-    style: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover"
-    }
-  }) : React.createElement("div", {
-    className: "skel",
-    style: {
-      width: "100%",
-      height: "100%"
-    }
+  }, React.createElement(_ThumbMedia, {
+    moment: m,
+    thumb: thumb,
+    showLength: false
   })), m.kind === "video" && React.createElement("span", {
     className: "mono",
     style: {
