@@ -1833,6 +1833,8 @@
 
   const CONFIG = {
     id:        "nocturnal-wonderland-2026",
+    // From the SOURCE note above: nocturnalwonderland.com/lineup/set-times/day-1/ + /day-2/, accessed 2026-09-10. Feeds /f/<id>/schedule.json.
+    scheduleSource: { url: "https://nocturnalwonderland.com/lineup/set-times/day-1/", observedAt: "2026-09-10", official: true },
     name:      "Nocturnal Wonderland 2026",
     shortName: "Nocturnal",
     brand:     "Nocturnal Wonderland",

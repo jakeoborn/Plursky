@@ -300,6 +300,8 @@
 
   const CONFIG = {
     id:        "hard-summer-2026",
+    // From the SOURCE note above: hardsummer.com/lineup/set-times/day-1/ + /day-2/, read 2026-09-06. Feeds /f/<id>/schedule.json.
+    scheduleSource: { url: "https://hardsummer.com/lineup/set-times/day-1/", observedAt: "2026-09-06", official: true },
     name:      "HARD Summer 2026",
     shortName: "HARD Summer",
     brand:     "HARD",

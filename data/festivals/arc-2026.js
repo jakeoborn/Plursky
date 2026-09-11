@@ -219,6 +219,8 @@
 
   const CONFIG = {
     id:        "arc-2026",
+    // From the SOURCE note above: arcmusicfestival.com/set-times, read 2026-09-06. Feeds /f/<id>/schedule.json.
+    scheduleSource: { url: "https://arcmusicfestival.com/set-times", observedAt: "2026-09-06", official: true },
     name:      "ARC Music Festival 2026",
     shortName: "ARC",
     brand:     "ARC",

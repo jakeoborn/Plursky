@@ -214,6 +214,8 @@
 
   const CONFIG = {
     id:        "portola-2026",
+    // From the SOURCE note above: portolamusicfestival.com/set-times, read 2026-09-06. Feeds /f/<id>/schedule.json.
+    scheduleSource: { url: "https://portolamusicfestival.com/set-times", observedAt: "2026-09-06", official: true },
     name:      "Portola 2026",
     shortName: "Portola",
     brand:     "Portola",

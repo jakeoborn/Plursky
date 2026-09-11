@@ -251,6 +251,8 @@
 
   const CONFIG = {
     id: "outside-lands-2026",
+    // From the SOURCE note above: InMusic per-day listings, captured 2026-08-28 — the header's SECONDARY SOURCE. Feeds /f/<id>/schedule.json.
+    scheduleSource: { url: "https://inmusicblog.com/", observedAt: "2026-08-28", official: false },
     name: "Outside Lands 2026",
     shortName: "Outside Lands",
     brand: "Outside Lands",
