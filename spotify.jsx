@@ -226,6 +226,9 @@ function SpotifyScreen({ state, setState }) {
           )}
         </div>
 
+        {/* ── Board playlist — preview, then create ─────── */}
+        <BoardPlaylistCard state={state} spotifyArtists={spotifyArtists} connected={connected} />
+
         {/* ── Followed artists nudge ────────────────────── */}
         {connected && <FollowedNudge state={state} setState={setState} />}
 
@@ -6788,7 +6791,131 @@ function FollowedNudge({ state, setState }) {
   );
 }
 
-function BuildPlaylistButton({ state, soundtrack }) {
+// ── Board playlist: preview, then create ──────────────────────
+// Nothing is written until the user has seen the plan (planBoardPlaylist,
+// spotify-api.jsx): every saved set is in, and each discovery pick shows why
+// it is there and can be dropped. CREATE writes exactly the plan on screen.
+// Spotify only for now; Apple Music follows once its certificate is in.
+function BoardPlaylistCard({ state, spotifyArtists, connected }) {
+  // Coming back from Spotify OAuth mid-create: reopen so the resume can run.
+  const [open, setOpen] = React.useState(() => { try { return localStorage.getItem("plursky_pending_build") === "board"; } catch { return false; } });
+  const [dropped, setDropped] = React.useState(() => new Set());
+  const [showDiag, setShowDiag] = React.useState(false);
+  const [lastResult, setLastResult] = React.useState(null);
+  const CFG = FESTIVAL_CONFIG;
+  const affinity = React.useMemo(() => (spotifyArtists || []).map(a => a.name), [spotifyArtists]);
+  const plan = React.useMemo(() => planBoardPlaylist({
+    artists: ARTISTS, savedIds: state.saved, stages: STAGES,
+    affinityNames: affinity, affinityLabel: "your Spotify",
+    dayLabel: d => CFG.dayDates?.[d]?.short || `Day ${d}`,
+  }), [state.saved.join(","), affinity, CFG.id]);
+  const kept = React.useMemo(() => {
+    const picks = plan.picks.filter(p => !dropped.has(p.artist.id));
+    const keep = new Set(picks.map(p => p.artist.id));
+    return { ...plan, picks, order: plan.order.filter(o => o.role === "seed" || keep.has(o.artist.id)) };
+  }, [plan, dropped]);
+  React.useEffect(() => { window.__plurskyBoardPlaylist = { plan: kept, result: lastResult }; }, [kept, lastResult]);
+  if (!plan.seeds.length) return null;
+
+  const toggle = id => setDropped(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
+  const tracks = kept.order.reduce((n, o) => n + o.trackLimit * Math.max(1, _b2bParts(o.artist.name).length), 0);
+  const card = {
+    borderRadius: 20, padding: 20, marginBottom: 14,
+    background: "var(--paper-2)", border: "1px solid var(--line)", color: "var(--ink)",
+  };
+  const mono = { fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", textTransform: "uppercase" };
+
+  if (!open) {
+    return (
+      <button onClick={() => { window.plurskyHaptic?.("LIGHT"); setOpen(true); }}
+        style={{ ...card, display: "block", width: "100%", textAlign: "left", cursor: "pointer", fontFamily: "inherit" }}>
+        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
+          <div className="serif" style={{ fontSize: 22, letterSpacing: -0.3 }}>Board playlist</div>
+          <div style={{ ...mono, color: "var(--ink)" }}>Preview →</div>
+        </div>
+        <div style={{ ...mono, marginTop: 4 }}>
+          {plan.seeds.length} saved set{plan.seeds.length === 1 ? "" : "s"}{plan.picks.length ? ` + ${plan.picks.length} pick${plan.picks.length === 1 ? "" : "s"}` : ""} · nothing is built until you say so
+        </div>
+      </button>
+    );
+  }
+
+  const names = plan.seeds.map(s => s.artist.name);
+  const d = plan.diagnostics, e = d.excluded;
+  return (
+    <div style={card}>
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
+        <div className="serif" style={{ fontSize: 22, letterSpacing: -0.3 }}>Board playlist</div>
+        <button onClick={() => setOpen(false)} aria-label="Close preview"
+          style={{ background: "transparent", border: "none", color: "var(--muted)", fontSize: 18, cursor: "pointer", padding: 4 }}>×</button>
+      </div>
+      <div style={{ ...mono, marginTop: 2, marginBottom: 14 }}>
+        {kept.seeds.length} saved · {kept.picks.length} pick{kept.picks.length === 1 ? "" : "s"} · ≈{tracks} tracks · in set order
+      </div>
+
+      <div style={{ ...mono, color: "var(--ink)", marginBottom: 4 }}>Your saved sets · always in</div>
+      <div style={{ fontSize: 13, lineHeight: 1.45, marginBottom: 16 }}>
+        {names.slice(0, 6).join(" · ")}{names.length > 6 ? ` · +${names.length - 6} more` : ""}
+      </div>
+
+      <div style={{ ...mono, color: "var(--ink)", marginBottom: 2 }}>Picks from the same lineup</div>
+      {plan.picks.length === 0 ? (
+        <div style={{ fontSize: 12, lineHeight: 1.5, color: "var(--muted)", padding: "6px 0 12px" }}>
+          Nothing on the lineup ties to your board yet. {connected ? "Save a few more sets and picks will show up here." : "Save a few more sets, or connect Spotify so picks can come from what you listen to."}
+        </div>
+      ) : plan.picks.map(p => {
+        const a = p.artist, off = dropped.has(a.id);
+        const stg = STAGES.find(s => s.id === a.stage);
+        const when = a.day != null && a.start ? `${CFG.dayDates?.[a.day]?.short || `Day ${a.day}`} · ${fmt12(a.start)}` : "Set time TBA";
+        return (
+          <div key={a.id} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 0", borderBottom: "1px solid var(--line)", opacity: off ? 0.45 : 1 }}>
+            <ArtistSwatch artist={a} size={40} />
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div className="serif" style={{ fontSize: 16, lineHeight: 1.15, textDecoration: off ? "line-through" : "none" }}>{a.name}</div>
+              <div style={{ ...mono, fontSize: 8, marginTop: 2 }}>{stg?.short || stg?.name || "Stage TBA"} · {when}</div>
+              <div style={{ fontSize: 11, fontStyle: "italic", color: "var(--horizon)", marginTop: 3, lineHeight: 1.3 }}>{p.reason}</div>
+            </div>
+            <button onClick={() => toggle(a.id)} aria-label={off ? `Add ${a.name} back` : `Drop ${a.name}`}
+              style={{
+                width: 34, height: 34, borderRadius: 34, flexShrink: 0,
+                background: off ? "transparent" : "var(--ember)", color: off ? "var(--ink)" : "#fff",
+                border: off ? "1px solid var(--line-2)" : "none",
+                cursor: "pointer", fontSize: 16, display: "flex", alignItems: "center", justifyContent: "center",
+              }}>{off ? "+" : "✓"}</button>
+          </div>
+        );
+      })}
+
+      <div style={{ marginTop: 16, display: "flex", gap: 8, flexWrap: "wrap" }}>
+        {/* Keyed on the plan so toggling a pick resets a finished build. */}
+        <BuildPlaylistButton key={kept.order.map(o => o.artist.id).join(",")}
+          state={state} plan={kept} label="CREATE IN SPOTIFY" onResult={setLastResult} />
+      </div>
+
+      <button onClick={() => setShowDiag(v => !v)}
+        style={{ ...mono, fontSize: 8, background: "transparent", border: "none", padding: "14px 0 0", cursor: "pointer" }}>
+        Diagnostics {showDiag ? "▴" : "▾"}
+      </button>
+      {showDiag && (
+        <div style={{ ...mono, fontSize: 8, lineHeight: 1.7, textTransform: "none", letterSpacing: 0.4, marginTop: 6 }}>
+          <div>lineup {d.lineup} · saved {d.saved} · seeds {d.seeds}{d.dupSaved.length ? ` · ${d.dupSaved.length} repeat-day save(s) merged` : ""}{d.unknownSaved.length ? ` · ${d.unknownSaved.length} saved id(s) not on this lineup` : ""}</div>
+          <div>candidates {d.candidates} · cap {plan.cap} · left out by the cap {d.capped} · dropped by you {plan.picks.length - kept.picks.length}</div>
+          <div>skipped: saved {e.saved} · same act {e.sameAct} · no reason {e.noSignal}</div>
+          <div>picks by reason: {Object.entries(d.byKind).map(([k, n]) => `${k} ${n}`).join(" · ") || "none"} · listening names {d.affinityNames}</div>
+          {lastResult && (lastResult.ok
+            ? <div>written {lastResult.added} track(s){lastResult.missed ? ` · not found on Spotify: ${(lastResult.missedNames || []).join(", ")}` : " · every act found"}</div>
+            : <div>last build: {lastResult.reason}{lastResult.status ? ` (${lastResult.status})` : ""}</div>)}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function BuildPlaylistButton({ state, soundtrack, plan, label: idleLabel, onResult }) {
+  // plan: a previewed board plan (BoardPlaylistCard), written exactly as shown.
+  // Its OAuth resume flag is its own, so a plain build never resumes as a
+  // board build or the other way round.
+  const pendingKind = plan ? "board" : "1";
   const [status, setStatus] = React.useState("idle"); // idle | working | done | err
   const [result, setResult] = React.useState(null);
   const [buildProgress, setBuildProgress] = React.useState("");
@@ -6797,8 +6924,9 @@ function BuildPlaylistButton({ state, soundtrack }) {
     setStatus("working");
     setBuildProgress("");
     try {
-      const r = await createSetsPlaylist(state, { soundtrack, onProgress: (msg) => setBuildProgress(msg) });
+      const r = await createSetsPlaylist(state, { soundtrack, plan, onProgress: (msg) => setBuildProgress(msg) });
       setResult(r);
+      onResult?.(r);
       if (r.ok) {
         setStatus("done");
       } else {
@@ -6822,7 +6950,7 @@ function BuildPlaylistButton({ state, soundtrack }) {
   React.useEffect(() => {
     let pending = null;
     try { pending = localStorage.getItem("plursky_pending_build"); } catch {}
-    if (pending && state.spotifyConnected && _hasPlaylistWriteScope()) {
+    if (pending === pendingKind && state.spotifyConnected && _hasPlaylistWriteScope()) {
       try { localStorage.removeItem("plursky_pending_build"); } catch {}
       run();
     }
@@ -6832,7 +6960,7 @@ function BuildPlaylistButton({ state, soundtrack }) {
     if (status === "working") return;
     if (status === "err" && (result?.reason === "reconnect" || result?.reason === "not_connected")) {
       // Mark intent so we auto-resume after the OAuth round-trip.
-      try { localStorage.setItem("plursky_pending_build", "1"); } catch {}
+      try { localStorage.setItem("plursky_pending_build", pendingKind); } catch {}
       startSpotifyAuth(); return;
     }
     if (status === "err" && result?.reason === "no_target_playlist") {
@@ -6853,7 +6981,7 @@ function BuildPlaylistButton({ state, soundtrack }) {
     const sm = result?.songsMatched || 0;
     label = soundtrack && sm > 0
       ? `✓ ${sm} OF YOUR SONGS + ${result?.added - sm} MORE — OPEN ↗`
-      : `✓ ${result?.added} TRACKS · FRI→SAT→SUN — OPEN ↗`;
+      : `✓ ${result?.added} TRACKS · IN SET ORDER — OPEN ↗`;
     bg = "#1DB954"; color = "#000"; border = "none";
   } else if (status === "err") {
     if (result?.reason === "reconnect" || result?.reason === "not_connected") label = "↻ TAP TO GRANT SPOTIFY ACCESS";
@@ -6866,7 +6994,7 @@ function BuildPlaylistButton({ state, soundtrack }) {
     } else label = "✕ TRY AGAIN";
     bg = "rgba(248,113,113,0.18)"; color = "#fecaca"; border = "1px solid #f87171";
   } else {
-    label = soundtrack ? "🎵 SOUNDTRACK → SPOTIFY" : "BUILD MY PLAYLIST";
+    label = idleLabel || (soundtrack ? "🎵 SOUNDTRACK → SPOTIFY" : "BUILD MY PLAYLIST");
   }
 
   return (
