@@ -312,7 +312,11 @@ function SpotifyScreen({
       color: "rgba(247,237,224,0.92)",
       fontWeight: 700
     }
-  }, "Spotify or Apple Music"), " — import your taste from one, export to either. No Spotify needed for the Apple Music playlist.")), connected && React.createElement(FollowedNudge, {
+  }, "Spotify or Apple Music"), " — import your taste from one, export to either. No Spotify needed for the Apple Music playlist.")), React.createElement(BoardPlaylistCard, {
+    state: state,
+    spotifyArtists: spotifyArtists,
+    connected: connected
+  }), connected && React.createElement(FollowedNudge, {
     state: state,
     setState: setState
   }), APPLE_DEV_TOKEN && React.createElement("div", {
@@ -10555,10 +10559,271 @@ function FollowedNudge({
     }, "+ SAVE"));
   })));
 }
+function BoardPlaylistCard({
+  state,
+  spotifyArtists,
+  connected
+}) {
+  var [open, setOpen] = React.useState(() => {
+    try {
+      return localStorage.getItem("plursky_pending_build") === "board";
+    } catch {
+      return false;
+    }
+  });
+  var [dropped, setDropped] = React.useState(() => new Set());
+  var [showDiag, setShowDiag] = React.useState(false);
+  var [lastResult, setLastResult] = React.useState(null);
+  var CFG = FESTIVAL_CONFIG;
+  var affinity = React.useMemo(() => (spotifyArtists || []).map(a => a.name), [spotifyArtists]);
+  var plan = React.useMemo(() => planBoardPlaylist({
+    artists: ARTISTS,
+    savedIds: state.saved,
+    stages: STAGES,
+    affinityNames: affinity,
+    affinityLabel: "your Spotify",
+    dayLabel: d => CFG.dayDates?.[d]?.short || `Day ${d}`
+  }), [state.saved.join(","), affinity, CFG.id]);
+  var kept = React.useMemo(() => {
+    var picks = plan.picks.filter(p => !dropped.has(p.artist.id));
+    var keep = new Set(picks.map(p => p.artist.id));
+    return {
+      ...plan,
+      picks,
+      order: plan.order.filter(o => o.role === "seed" || keep.has(o.artist.id))
+    };
+  }, [plan, dropped]);
+  React.useEffect(() => {
+    window.__plurskyBoardPlaylist = {
+      plan: kept,
+      result: lastResult
+    };
+  }, [kept, lastResult]);
+  if (!plan.seeds.length) return null;
+  var toggle = id => setDropped(prev => {
+    var n = new Set(prev);
+    n.has(id) ? n.delete(id) : n.add(id);
+    return n;
+  });
+  var tracks = kept.order.reduce((n, o) => n + o.trackLimit * Math.max(1, _b2bParts(o.artist.name).length), 0);
+  var card = {
+    borderRadius: 20,
+    padding: 20,
+    marginBottom: 14,
+    background: "var(--paper-2)",
+    border: "1px solid var(--line)",
+    color: "var(--ink)"
+  };
+  var mono = {
+    fontFamily: "Geist Mono, monospace",
+    fontSize: 9,
+    letterSpacing: 1.2,
+    color: "var(--muted)",
+    textTransform: "uppercase"
+  };
+  if (!open) {
+    return React.createElement("button", {
+      onClick: () => {
+        window.plurskyHaptic?.("LIGHT");
+        setOpen(true);
+      },
+      style: {
+        ...card,
+        display: "block",
+        width: "100%",
+        textAlign: "left",
+        cursor: "pointer",
+        fontFamily: "inherit"
+      }
+    }, React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "baseline",
+        justifyContent: "space-between",
+        gap: 12
+      }
+    }, React.createElement("div", {
+      className: "serif",
+      style: {
+        fontSize: 22,
+        letterSpacing: -0.3
+      }
+    }, "Board playlist"), React.createElement("div", {
+      style: {
+        ...mono,
+        color: "var(--ink)"
+      }
+    }, "Preview →")), React.createElement("div", {
+      style: {
+        ...mono,
+        marginTop: 4
+      }
+    }, plan.seeds.length, " saved set", plan.seeds.length === 1 ? "" : "s", plan.picks.length ? ` + ${plan.picks.length} pick${plan.picks.length === 1 ? "" : "s"}` : "", " · nothing is built until you say so"));
+  }
+  var names = plan.seeds.map(s => s.artist.name);
+  var d = plan.diagnostics,
+    e = d.excluded;
+  return React.createElement("div", {
+    style: card
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "baseline",
+      justifyContent: "space-between",
+      gap: 12
+    }
+  }, React.createElement("div", {
+    className: "serif",
+    style: {
+      fontSize: 22,
+      letterSpacing: -0.3
+    }
+  }, "Board playlist"), React.createElement("button", {
+    onClick: () => setOpen(false),
+    "aria-label": "Close preview",
+    style: {
+      background: "transparent",
+      border: "none",
+      color: "var(--muted)",
+      fontSize: 18,
+      cursor: "pointer",
+      padding: 4
+    }
+  }, "×")), React.createElement("div", {
+    style: {
+      ...mono,
+      marginTop: 2,
+      marginBottom: 14
+    }
+  }, kept.seeds.length, " saved · ", kept.picks.length, " pick", kept.picks.length === 1 ? "" : "s", " · ≈", tracks, " tracks · in set order"), React.createElement("div", {
+    style: {
+      ...mono,
+      color: "var(--ink)",
+      marginBottom: 4
+    }
+  }, "Your saved sets · always in"), React.createElement("div", {
+    style: {
+      fontSize: 13,
+      lineHeight: 1.45,
+      marginBottom: 16
+    }
+  }, names.slice(0, 6).join(" · "), names.length > 6 ? ` · +${names.length - 6} more` : ""), React.createElement("div", {
+    style: {
+      ...mono,
+      color: "var(--ink)",
+      marginBottom: 2
+    }
+  }, "Picks from the same lineup"), plan.picks.length === 0 ? React.createElement("div", {
+    style: {
+      fontSize: 12,
+      lineHeight: 1.5,
+      color: "var(--muted)",
+      padding: "6px 0 12px"
+    }
+  }, "Nothing on the lineup ties to your board yet. ", connected ? "Save a few more sets and picks will show up here." : "Save a few more sets, or connect Spotify so picks can come from what you listen to.") : plan.picks.map(p => {
+    var a = p.artist,
+      off = dropped.has(a.id);
+    var stg = STAGES.find(s => s.id === a.stage);
+    var when = a.day != null && a.start ? `${CFG.dayDates?.[a.day]?.short || `Day ${a.day}`} · ${fmt12(a.start)}` : "Set time TBA";
+    return React.createElement("div", {
+      key: a.id,
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        padding: "10px 0",
+        borderBottom: "1px solid var(--line)",
+        opacity: off ? 0.45 : 1
+      }
+    }, React.createElement(ArtistSwatch, {
+      artist: a,
+      size: 40
+    }), React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, React.createElement("div", {
+      className: "serif",
+      style: {
+        fontSize: 16,
+        lineHeight: 1.15,
+        textDecoration: off ? "line-through" : "none"
+      }
+    }, a.name), React.createElement("div", {
+      style: {
+        ...mono,
+        fontSize: 8,
+        marginTop: 2
+      }
+    }, stg?.short || stg?.name || "Stage TBA", " · ", when), React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontStyle: "italic",
+        color: "var(--horizon)",
+        marginTop: 3,
+        lineHeight: 1.3
+      }
+    }, p.reason)), React.createElement("button", {
+      onClick: () => toggle(a.id),
+      "aria-label": off ? `Add ${a.name} back` : `Drop ${a.name}`,
+      style: {
+        width: 34,
+        height: 34,
+        borderRadius: 34,
+        flexShrink: 0,
+        background: off ? "transparent" : "var(--ember)",
+        color: off ? "var(--ink)" : "#fff",
+        border: off ? "1px solid var(--line-2)" : "none",
+        cursor: "pointer",
+        fontSize: 16,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+      }
+    }, off ? "+" : "✓"));
+  }), React.createElement("div", {
+    style: {
+      marginTop: 16,
+      display: "flex",
+      gap: 8,
+      flexWrap: "wrap"
+    }
+  }, React.createElement(BuildPlaylistButton, {
+    key: kept.order.map(o => o.artist.id).join(","),
+    state: state,
+    plan: kept,
+    label: "CREATE IN SPOTIFY",
+    onResult: setLastResult
+  })), React.createElement("button", {
+    onClick: () => setShowDiag(v => !v),
+    style: {
+      ...mono,
+      fontSize: 8,
+      background: "transparent",
+      border: "none",
+      padding: "14px 0 0",
+      cursor: "pointer"
+    }
+  }, "Diagnostics ", showDiag ? "▴" : "▾"), showDiag && React.createElement("div", {
+    style: {
+      ...mono,
+      fontSize: 8,
+      lineHeight: 1.7,
+      textTransform: "none",
+      letterSpacing: 0.4,
+      marginTop: 6
+    }
+  }, React.createElement("div", null, "lineup ", d.lineup, " · saved ", d.saved, " · seeds ", d.seeds, d.dupSaved.length ? ` · ${d.dupSaved.length} repeat-day save(s) merged` : "", d.unknownSaved.length ? ` · ${d.unknownSaved.length} saved id(s) not on this lineup` : ""), React.createElement("div", null, "candidates ", d.candidates, " · cap ", plan.cap, " · left out by the cap ", d.capped, " · dropped by you ", plan.picks.length - kept.picks.length), React.createElement("div", null, "skipped: saved ", e.saved, " · same act ", e.sameAct, " · no reason ", e.noSignal), React.createElement("div", null, "picks by reason: ", Object.entries(d.byKind).map(([k, n]) => `${k} ${n}`).join(" · ") || "none", " · listening names ", d.affinityNames), lastResult && (lastResult.ok ? React.createElement("div", null, "written ", lastResult.added, " track(s)", lastResult.missed ? ` · not found on Spotify: ${(lastResult.missedNames || []).join(", ")}` : " · every act found") : React.createElement("div", null, "last build: ", lastResult.reason, lastResult.status ? ` (${lastResult.status})` : ""))));
+}
 function BuildPlaylistButton({
   state,
-  soundtrack
+  soundtrack,
+  plan,
+  label: idleLabel,
+  onResult
 }) {
+  var pendingKind = plan ? "board" : "1";
   var [status, setStatus] = React.useState("idle");
   var [result, setResult] = React.useState(null);
   var [buildProgress, setBuildProgress] = React.useState("");
@@ -10568,9 +10833,11 @@ function BuildPlaylistButton({
     try {
       var r = await createSetsPlaylist(state, {
         soundtrack,
+        plan,
         onProgress: msg => setBuildProgress(msg)
       });
       setResult(r);
+      onResult?.(r);
       if (r.ok) {
         setStatus("done");
       } else {
@@ -10594,7 +10861,7 @@ function BuildPlaylistButton({
     try {
       pending = localStorage.getItem("plursky_pending_build");
     } catch {}
-    if (pending && state.spotifyConnected && _hasPlaylistWriteScope()) {
+    if (pending === pendingKind && state.spotifyConnected && _hasPlaylistWriteScope()) {
       try {
         localStorage.removeItem("plursky_pending_build");
       } catch {}
@@ -10605,7 +10872,7 @@ function BuildPlaylistButton({
     if (status === "working") return;
     if (status === "err" && (result?.reason === "reconnect" || result?.reason === "not_connected")) {
       try {
-        localStorage.setItem("plursky_pending_build", "1");
+        localStorage.setItem("plursky_pending_build", pendingKind);
       } catch {}
       startSpotifyAuth();
       return;
@@ -10629,7 +10896,7 @@ function BuildPlaylistButton({
     label = buildProgress ? `BUILDING · ${buildProgress}` : "BUILDING…";
   } else if (status === "done") {
     var sm = result?.songsMatched || 0;
-    label = soundtrack && sm > 0 ? `✓ ${sm} OF YOUR SONGS + ${result?.added - sm} MORE — OPEN ↗` : `✓ ${result?.added} TRACKS · FRI→SAT→SUN — OPEN ↗`;
+    label = soundtrack && sm > 0 ? `✓ ${sm} OF YOUR SONGS + ${result?.added - sm} MORE — OPEN ↗` : `✓ ${result?.added} TRACKS · IN SET ORDER — OPEN ↗`;
     bg = "#1DB954";
     color = "#000";
     border = "none";
@@ -10642,7 +10909,7 @@ function BuildPlaylistButton({
     color = "#fecaca";
     border = "1px solid #f87171";
   } else {
-    label = soundtrack ? "🎵 SOUNDTRACK → SPOTIFY" : "BUILD MY PLAYLIST";
+    label = idleLabel || (soundtrack ? "🎵 SOUNDTRACK → SPOTIFY" : "BUILD MY PLAYLIST");
   }
   return React.createElement("button", {
     onClick: onClick,
