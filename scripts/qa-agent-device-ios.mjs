@@ -295,14 +295,14 @@ try {
 
     // The festival switcher lives on Home, not Map. Home has no standalone
     // "TODAY" heading, so wait for the interactive chip this flow needs.
-    await waitForSnapshot(/NOCTURNAL|EDC LV/i, { name: "snapshot-home-entry.txt", interactiveOnly: true });
+    await waitForSnapshot(/LOST LANDS|NOCTURNAL|EDC LV/i, { name: "snapshot-home-entry.txt", interactiveOnly: true });
 
     // Select EDC LV from the real festival switcher. The switch reloads the
     // WebView, so refs after this press are deliberately discarded.
     const entry = await saveSnapshot("snapshot-before-festival-switch.txt", true);
     const festivalChip = (entry.snap.nodes || []).find(n => {
       const t = [n.label, n.name, n.value, n.text].filter(Boolean).join(" ");
-      return /NOCTURNAL|EDC LV|FESTIVAL/i.test(t) && n.ref;
+      return /LOST LANDS|NOCTURNAL|EDC LV|FESTIVAL/i.test(t) && n.ref;
     });
     if (!festivalChip?.ref) throw Object.assign(new Error("festival chip absent on Today"), { finalState: "FAIL_UI_REGRESSION" });
     await client.interactions.press({ ref: festivalChip.ref });
