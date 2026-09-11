@@ -2411,6 +2411,46 @@ function useMomentPhoto(photoId, enabled = true) {
   return url;
 }
 var _posterInflight = new Map();
+var _posterQueue = [];
+var _posterBusy = false,
+  _lastScrollAt = 0;
+try {
+  window.addEventListener("scroll", () => {
+    _lastScrollAt = Date.now();
+  }, {
+    capture: true,
+    passive: true
+  });
+} catch {}
+function _posterIdle(fn) {
+  return new Promise((resolve, reject) => {
+    _posterQueue.push({
+      fn,
+      resolve,
+      reject
+    });
+    _posterPump();
+  });
+}
+function _posterPump() {
+  if (_posterBusy || !_posterQueue.length) return;
+  _posterBusy = true;
+  var later = () => typeof requestIdleCallback === "function" ? requestIdleCallback(go, {
+    timeout: 3000
+  }) : setTimeout(go, 250);
+  function go() {
+    if (Date.now() - _lastScrollAt < 400) {
+      later();
+      return;
+    }
+    var job = _posterQueue.shift();
+    Promise.resolve().then(job.fn).then(job.resolve, job.reject).finally(() => {
+      _posterBusy = false;
+      _posterPump();
+    });
+  }
+  later();
+}
 function _ensurePoster(moment) {
   var id = moment && moment.id;
   if (!id) return Promise.resolve(null);
@@ -2420,12 +2460,10 @@ function _ensurePoster(moment) {
     var blob = await _getPhoto(key).catch(() => null);
     if (blob) return blob;
     if (_posterTried.has(id)) return null;
-    var media = moment.photoId ? await _getPhoto(moment.photoId).catch(() => null) : null;
-    if (!media) {
-      _posterTried.add(id);
-      return null;
-    }
-    blob = await _videoPosterBlob(media);
+    blob = await _posterIdle(async () => {
+      var media = moment.photoId ? await _getPhoto(moment.photoId).catch(() => null) : null;
+      return media ? _videoPosterBlob(media) : null;
+    });
     if (!blob) {
       _posterTried.add(id);
       return null;
@@ -2488,9 +2526,12 @@ function _ThumbMedia({
     height: "100%",
     display: "block"
   };
+  var label = _momentMediaLabel(moment);
   if (thumb && thumb.url) return React.createElement("img", {
     src: thumb.url,
-    alt: "",
+    alt: label,
+    loading: "lazy",
+    decoding: "async",
     style: {
       ...fill,
       objectFit: "cover"
@@ -2498,7 +2539,8 @@ function _ThumbMedia({
   });
   if (moment && moment.kind === "video" && thumb && thumb.noPoster) {
     return React.createElement("div", {
-      "aria-label": "Video",
+      role: "img",
+      "aria-label": label,
       style: {
         ...fill,
         display: "flex",
@@ -2523,9 +2565,35 @@ function _ThumbMedia({
     style: fill
   });
 }
+function _momentMediaLabel(m) {
+  if (!m) return "";
+  var fid = m.festivalId || window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id;
+  var a = m.artistId ? _artistsForFestival(fid).find(x => x.id === m.artistId) : null;
+  var reg = (window.FESTIVALS_REGISTRY || []).find(e => e.config && e.config.id === fid);
+  var d = reg && reg.config.dayDates && reg.config.dayDates[m.night];
+  return [m.kind === "video" ? "Video" : "Photo", m.kind === "video" && m.duration ? _fmtClock(m.duration) : null, a ? a.name : "Untagged", d ? d.name : m.night ? `Night ${m.night}` : null].filter(Boolean).join(", ");
+}
+var _stopLivePlayer = null;
+function useSolePlayer(live, stop) {
+  var stopRef = React.useRef(stop);
+  stopRef.current = stop;
+  React.useEffect(() => {
+    if (!live) return;
+    var mine = () => stopRef.current();
+    if (_stopLivePlayer) {
+      try {
+        _stopLivePlayer();
+      } catch {}
+    }
+    _stopLivePlayer = mine;
+    return () => {
+      if (_stopLivePlayer === mine) _stopLivePlayer = null;
+    };
+  }, [live]);
+}
 function _TapToPlayVideo({
   moment,
-  height = 300,
+  height = "min(300px, 40vh)",
   style
 }) {
   var [playing, setPlaying] = React.useState(false);
@@ -2533,6 +2601,7 @@ function _TapToPlayVideo({
   React.useEffect(() => {
     if (!onScreen) setPlaying(false);
   }, [onScreen]);
+  useSolePlayer(playing, () => setPlaying(false));
   var thumb = useMomentThumb(moment, !playing);
   var src = useMomentPhoto(playing ? moment.photoId : null);
   return React.createElement("div", {
@@ -2560,7 +2629,7 @@ function _TapToPlayVideo({
     }
   }) : React.createElement("button", {
     onClick: () => setPlaying(true),
-    "aria-label": "Play video",
+    "aria-label": `Play ${_momentMediaLabel(moment).replace(/^Video/, "video")}`,
     style: {
       width: "100%",
       height: "100%",
@@ -4115,6 +4184,11 @@ function _LightboxVideo({
   React.useEffect(() => {
     if (ref.current) ref.current.muted = muted;
   }, [muted]);
+  useSolePlayer(playing, () => {
+    try {
+      ref.current && ref.current.pause();
+    } catch {}
+  });
   var toggle = () => {
     var v = ref.current;
     if (!v) return;
@@ -6350,6 +6424,7 @@ function MemoryReel({
     document.addEventListener("visibilitychange", onVis);
     return () => document.removeEventListener("visibilitychange", onVis);
   }, []);
+  useSolePlayer(!ended && !pausedUI, () => setPaused(true));
   var holdRef = React.useRef({
     t: null,
     held: false
@@ -6864,7 +6939,9 @@ function _MemoryStoryBeat({
     }
   })) : React.createElement("img", {
     src: url,
-    alt: "",
+    alt: _momentMediaLabel(moment),
+    loading: "lazy",
+    decoding: "async",
     style: {
       width: "100%",
       borderRadius: 12,

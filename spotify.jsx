@@ -1640,6 +1640,32 @@ function useMomentPhoto(photoId, enabled = true) {
 // tile that scrolls away mid-decode still finishes its write instead of
 // leaving the work to be redone.
 const _posterInflight = new Map();
+
+// Poster EXTRACTION never runs inside a scroll. Reading a stored poster (the
+// common case) is immediate; a clip with none — imported before posters
+// existed — queues here: one clip at a time, each started from an idle
+// callback and pushed back while the page is still scrolling. Before this the
+// backfill ran on tile mount, so scrolling an old library read and decoded
+// clips mid-fling.
+const _posterQueue = [];
+let _posterBusy = false, _lastScrollAt = 0;
+try { window.addEventListener("scroll", () => { _lastScrollAt = Date.now(); }, { capture: true, passive: true }); } catch {}
+function _posterIdle(fn) {
+  return new Promise((resolve, reject) => { _posterQueue.push({ fn, resolve, reject }); _posterPump(); });
+}
+function _posterPump() {
+  if (_posterBusy || !_posterQueue.length) return;
+  _posterBusy = true;
+  const later = () => (typeof requestIdleCallback === "function" ? requestIdleCallback(go, { timeout: 3000 }) : setTimeout(go, 250));
+  function go() {
+    if (Date.now() - _lastScrollAt < 400) { later(); return; }
+    const job = _posterQueue.shift();
+    Promise.resolve().then(job.fn).then(job.resolve, job.reject)
+      .finally(() => { _posterBusy = false; _posterPump(); });
+  }
+  later();
+}
+
 function _ensurePoster(moment) {
   const id = moment && moment.id;
   if (!id) return Promise.resolve(null);
@@ -1652,9 +1678,11 @@ function _ensurePoster(moment) {
     // whose codec we could not decode last time. `_posterTried` makes the
     // second case cost one attempt per session rather than one per scroll.
     if (_posterTried.has(id)) return null;
-    const media = moment.photoId ? await _getPhoto(moment.photoId).catch(() => null) : null;
-    if (!media) { _posterTried.add(id); return null; }
-    blob = await _videoPosterBlob(media);
+    // Reading the whole clip and decoding a frame waits for _posterIdle.
+    blob = await _posterIdle(async () => {
+      const media = moment.photoId ? await _getPhoto(moment.photoId).catch(() => null) : null;
+      return media ? _videoPosterBlob(media) : null;
+    });
     if (!blob) { _posterTried.add(id); return null; }
     try { await _putPhoto(key, blob); _queuePosterPatch(id, key); } catch { return blob; }
     return blob;
@@ -1706,10 +1734,11 @@ function useMomentThumb(moment, enabled = true) {
 // where the tile already carries a _VideoBadge.
 function _ThumbMedia({ moment, thumb, showLength = true }) {
   const fill = { width: "100%", height: "100%", display: "block" };
-  if (thumb && thumb.url) return <img src={thumb.url} alt="" style={{ ...fill, objectFit: "cover" }}/>;
+  const label = _momentMediaLabel(moment);
+  if (thumb && thumb.url) return <img src={thumb.url} alt={label} loading="lazy" decoding="async" style={{ ...fill, objectFit: "cover" }}/>;
   if (moment && moment.kind === "video" && thumb && thumb.noPoster) {
     return (
-      <div aria-label="Video" style={{
+      <div role="img" aria-label={label} style={{
         ...fill, display: "flex", alignItems: "flex-end", justifyContent: "center", paddingBottom: 6, boxSizing: "border-box",
         background: "linear-gradient(160deg, #2a2a30, #121216)", color: "rgba(255,255,255,0.72)",
       }}>
@@ -1724,13 +1753,44 @@ function _ThumbMedia({ moment, thumb, showLength = true }) {
   return <div className="skel" style={fill}/>;
 }
 
+// What a screen reader hears for a moment's media: "Video, 0:48, Rezz,
+// Saturday" — kind, length, the set it is tagged to (or Untagged), and the
+// night. Resolved against the MOMENT's festival, not the active one.
+function _momentMediaLabel(m) {
+  if (!m) return "";
+  const fid = m.festivalId || (window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id);
+  const a = m.artistId ? _artistsForFestival(fid).find(x => x.id === m.artistId) : null;
+  const reg = (window.FESTIVALS_REGISTRY || []).find(e => e.config && e.config.id === fid);
+  const d = reg && reg.config.dayDates && reg.config.dayDates[m.night];
+  return [m.kind === "video" ? "Video" : "Photo", m.kind === "video" && m.duration ? _fmtClock(m.duration) : null,
+          a ? a.name : "Untagged", d ? d.name : (m.night ? `Night ${m.night}` : null)].filter(Boolean).join(", ");
+}
+
+// One clip plays at a time, app-wide: a player going live stops whichever one
+// was playing (feed card, lightbox or reel). Two feed cards could each be
+// playing before this, two decoders and two soundtracks at once.
+let _stopLivePlayer = null;
+function useSolePlayer(live, stop) {
+  const stopRef = React.useRef(stop);
+  stopRef.current = stop;
+  React.useEffect(() => {
+    if (!live) return;
+    const mine = () => stopRef.current();
+    if (_stopLivePlayer) { try { _stopLivePlayer(); } catch {} }
+    _stopLivePlayer = mine;
+    return () => { if (_stopLivePlayer === mine) _stopLivePlayer = null; };
+  }, [live]);
+}
+
 // A feed card's video: its poster until tapped, then a real player. The player
 // is torn down when the clip ends or the card leaves the screen, and the clip's
-// blob is only read once playback is asked for.
-function _TapToPlayVideo({ moment, height = 300, style }) {
+// blob is only read once playback is asked for. The box is capped at 40% of the
+// viewport so one portrait clip cannot fill a 375×667 screen.
+function _TapToPlayVideo({ moment, height = "min(300px, 40vh)", style }) {
   const [playing, setPlaying] = React.useState(false);
   const [ref, onScreen] = useNearViewport("0px");
   React.useEffect(() => { if (!onScreen) setPlaying(false); }, [onScreen]);
+  useSolePlayer(playing, () => setPlaying(false));
   const thumb = useMomentThumb(moment, !playing);
   const src = useMomentPhoto(playing ? moment.photoId : null);
   return (
@@ -1739,7 +1799,7 @@ function _TapToPlayVideo({ moment, height = 300, style }) {
         <video src={src} controls autoPlay playsInline onEnded={() => setPlaying(false)}
           style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}/>
       ) : (
-        <button onClick={() => setPlaying(true)} aria-label="Play video" style={{
+        <button onClick={() => setPlaying(true)} aria-label={`Play ${_momentMediaLabel(moment).replace(/^Video/, "video")}`} style={{
           width: "100%", height: "100%", padding: 0, border: "none", background: "none", cursor: "pointer", position: "relative", display: "block",
         }}>
           <_ThumbMedia moment={moment} thumb={thumb} showLength={false}/>
@@ -2799,6 +2859,7 @@ function _LightboxVideo({ src }) {
   const [flash, setFlash] = React.useState(false);
 
   React.useEffect(() => { if (ref.current) ref.current.muted = muted; }, [muted]);
+  useSolePlayer(playing, () => { try { ref.current && ref.current.pause(); } catch {} });
 
   const toggle = () => {
     const v = ref.current; if (!v) return;
@@ -4196,6 +4257,10 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
     return () => document.removeEventListener("visibilitychange", onVis);
   }, []);
 
+  // The reel is a player too: while it runs, a feed card or lightbox clip
+  // playing underneath stops, and a clip started elsewhere pauses the reel.
+  useSolePlayer(!ended && !pausedUI, () => setPaused(true));
+
   // Hold-to-pause vs tap-to-navigate.
   const holdRef = React.useRef({ t: null, held: false });
   const onDown = () => { holdRef.current.held = false; holdRef.current.t = setTimeout(() => { holdRef.current.held = true; setPaused(true); }, 180); };
@@ -4380,7 +4445,7 @@ function _MemoryStoryBeat({ moment, isLast, onOpen }) {
                 <_VideoBadge seconds={moment.duration} style={{ position: "absolute", bottom: 8, right: 8 }}/>
               </>
             ) : (
-              <img src={url} alt="" style={{ width: "100%", borderRadius: 12, display: "block", maxHeight: 340, objectFit: "cover" }}/>
+              <img src={url} alt={_momentMediaLabel(moment)} loading="lazy" decoding="async" style={{ width: "100%", borderRadius: 12, display: "block", maxHeight: 340, objectFit: "cover" }}/>
             )}
             {moment.favorite && <_FavBadge style={{ top: 8, left: 8 }}/>}
           </button>
