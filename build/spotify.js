@@ -3307,6 +3307,22 @@ var _TAG_SOURCE_LABEL = {
   unknown: {
     text: "MARKED UNKNOWN",
     tone: "info"
+  },
+  "live-gps-schedule": {
+    text: "LIVE · GPS + SCHEDULE",
+    tone: "ok"
+  },
+  "live-schedule-only": {
+    text: "LIVE · SCHEDULE ONLY",
+    tone: "ok"
+  },
+  "live-manual": {
+    text: "LIVE · YOU PICKED",
+    tone: "ok"
+  },
+  "live-manual-or-unresolved": {
+    text: "LIVE · PICK A SET",
+    tone: "warn"
   }
 };
 function _momentCaptureMs(m) {
@@ -4720,7 +4736,37 @@ function MomentCard({
       lineHeight: 1.3,
       color: "var(--ink)"
     }
-  }, moment.text), React.createElement("div", {
+  }, moment.text), moment.kind === "checkin" && (() => {
+    var st = stage || (moment.stageId ? STAGES.find(s => s.id === moment.stageId) : null);
+    var sc = moment.songCapture;
+    var none = {
+      offline: "Song match unavailable",
+      "mic-denied": "No song · microphone off"
+    }[moment.shazamOutcome] || "No song match";
+    return React.createElement("div", {
+      "data-checkin-card": true,
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        gap: 3
+      }
+    }, React.createElement("div", {
+      className: "mono",
+      style: {
+        fontSize: 9,
+        letterSpacing: 1.2,
+        fontWeight: 700,
+        color: st ? st.color : "var(--muted)"
+      }
+    }, "✓ CHECKED IN", st ? ` · ${st.name.toUpperCase()}` : ""), React.createElement("div", {
+      style: {
+        fontSize: 13,
+        color: "var(--ink)",
+        opacity: sc ? 1 : 0.55,
+        overflowWrap: "anywhere"
+      }
+    }, sc ? `♫ ${sc.title || sc.song}${sc.title && sc.artist ? ` — ${sc.artist}` : ""}` : none));
+  })(), React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -4872,7 +4918,7 @@ function MomentCard({
       opacity: 0.55,
       padding: "3px 4px"
     }
-  }, "×"))), (tagInfo || moment.hasGps === false && moment.autoTagged) && React.createElement("div", {
+  }, "×"))), (tagInfo || moment.hasGps === false && moment.autoTagged && moment.kind !== "checkin") && React.createElement("div", {
     className: "mono",
     title: moment.takenAt ? `Photo time: ${moment.takenAt}` : undefined,
     style: {
@@ -4883,7 +4929,7 @@ function MomentCard({
       color: tagInfo?.tone === "warn" ? "var(--ember-ink)" : "var(--muted)",
       opacity: tagInfo?.tone === "warn" ? 1 : 0.85
     }
-  }, tagInfo ? `${tagInfo.text}${moment.takenAt ? ` · ${moment.takenAt.slice(11)}` : ""}` : "", moment.hasGps === false && moment.autoTagged ? `${tagInfo ? "  ·  " : ""}📡 NO GPS` : ""), nowPlaying && React.createElement("div", {
+  }, tagInfo ? `${tagInfo.text}${moment.takenAt ? ` · ${moment.takenAt.slice(11)}` : ""}` : "", moment.hasGps === false && moment.autoTagged && moment.kind !== "checkin" ? `${tagInfo ? "  ·  " : ""}📡 NO GPS` : ""), nowPlaying && React.createElement("div", {
     style: {
       marginTop: 5,
       animation: "song-fade-in 0.5s ease-out"
@@ -9001,6 +9047,7 @@ function MemoriesScreen({
   var totalCount = Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
   var [view, setView] = React.useState(() => {
     try {
+      if (state.memoriesView === "night" || state.memoriesView === "grid") return state.memoriesView;
       var v = localStorage.getItem("plursky_memories_view_v1");
       if (["grid", "night"].includes(v)) return v;
       if (["story", "map", "artist", "stage"].includes(v)) return "night";
@@ -9014,6 +9061,12 @@ function MemoriesScreen({
       localStorage.setItem("plursky_memories_view_v1", view);
     } catch {}
   }, [view]);
+  React.useEffect(() => {
+    if (state.memoriesView) setState(s => ({
+      ...s,
+      memoriesView: null
+    }));
+  }, []);
   var allMoments = React.useMemo(() => {
     var out = [];
     for (var n of Object.keys(all)) {
@@ -15290,6 +15343,683 @@ function RecapScreen({
     onClose: () => setWrappedOpen(false)
   }));
 }
+var LIVE_CHECKIN_TRIAL_KEY = "plursky_live_checkin_trial_v1";
+var _CHECKIN_GPS = {
+  maxAgeMs: 10000,
+  maxAccM: 100,
+  maxDistM: 200,
+  minMarginM: 35
+};
+function _liveCheckinTrialAllowed(channel, stored) {
+  if (channel !== "debug" && channel !== "testflight") return false;
+  return stored !== "0";
+}
+var _liveTrialPromise = null;
+function _liveCheckinTrialOn() {
+  if (!_liveTrialPromise) _liveTrialPromise = (async () => {
+    try {
+      if (!window.Capacitor?.isNativePlatform?.() || !window.ShazamPlugin) return false;
+      var r = await window.ShazamPlugin.buildChannel();
+      var stored = null;
+      try {
+        stored = localStorage.getItem(LIVE_CHECKIN_TRIAL_KEY);
+      } catch {}
+      return _liveCheckinTrialAllowed(r && r.channel, stored);
+    } catch {
+      return false;
+    }
+  })();
+  return _liveTrialPromise;
+}
+function _checkinShift(cfg) {
+  var w = cfg && cfg.weekendStartMs;
+  return w && typeof w.W1 === "number" && typeof w.W2 === "number" && w.W2 > w.W1 ? w.W2 - w.W1 : 0;
+}
+function _checkinActWindows(cfg, a) {
+  var base = cfg && cfg.dayDates && a && a.start && a.end ? cfg.dayDates[a.day] : null;
+  if (!base) return [];
+  var shift = _checkinShift(cfg);
+  var days = a.weekend === "W2" ? [_shiftDayDate(base, shift)] : a.weekend === "W1" || !shift ? [base] : [base, _shiftDayDate(base, shift)];
+  var out = [];
+  for (var d of days) {
+    var s = _wallMs(d, a.start, cfg.tz),
+      e = _wallMs(d, a.end, cfg.tz);
+    if (s != null && e != null && e > s) out.push([s, e]);
+  }
+  return out;
+}
+function _checkinNight(cfg, ms) {
+  if (!cfg || !cfg.dayDates) return null;
+  var shift = _checkinShift(cfg);
+  for (var n of Object.keys(cfg.dayDates).map(Number)) {
+    var base = cfg.dayDates[n];
+    for (var d of shift ? [base, _shiftDayDate(base, shift)] : [base]) {
+      if (d && ms >= d.midnightUtc + 11 * 3600000 && ms < d.midnightUtc + 30 * 3600000) return n;
+    }
+  }
+  return null;
+}
+function _checkinActive(cfg, artists, ms) {
+  return (artists || []).filter(a => _checkinActWindows(cfg, a).some(([s, e]) => ms >= s && ms < e));
+}
+function _checkinGps(anchors, fix, atMs, rules = _CHECKIN_GPS) {
+  if (!fix || !Number.isFinite(fix.lat) || !Number.isFinite(fix.lng)) return {
+    status: fix && fix.denied ? "denied" : "none"
+  };
+  var accM = Number.isFinite(fix.accuracy) ? fix.accuracy : null;
+  if (!anchors || !anchors.length) return {
+    status: "no-anchors",
+    accM
+  };
+  var d = anchors.map(a => ({
+    stageId: a.stageId,
+    dist: _haversineMeters(fix.lat, fix.lng, a.lat, a.lng)
+  })).sort((x, y) => x.dist - y.dist);
+  var out = {
+    accM,
+    distM: d[0].dist,
+    marginM: d.length > 1 ? d[1].dist - d[0].dist : null
+  };
+  if (typeof fix.timestamp === "number" && atMs - fix.timestamp > rules.maxAgeMs) return {
+    ...out,
+    status: "stale"
+  };
+  if (accM == null || accM > rules.maxAccM) return {
+    ...out,
+    status: "coarse"
+  };
+  if (d[0].dist > rules.maxDistM) return {
+    ...out,
+    status: "outside"
+  };
+  if (out.marginM != null && out.marginM < rules.minMarginM) return {
+    ...out,
+    status: "ambiguous"
+  };
+  return {
+    ...out,
+    status: "trusted",
+    stageId: d[0].stageId
+  };
+}
+function resolveLiveCheckin({
+  cfg,
+  artists,
+  anchors,
+  atMs,
+  fix
+}) {
+  var active = _checkinActive(cfg, artists, atMs);
+  var gps = _checkinGps(anchors, fix, atMs);
+  var stageId = gps.status === "trusted" ? gps.stageId : null;
+  var artistId = null,
+    basis = "choose",
+    reason = null;
+  if (stageId) {
+    var here = active.filter(a => a.stage === stageId);
+    if (here.length === 1) {
+      artistId = here[0].id;
+      basis = "gps-schedule";
+    } else reason = here.length ? "several-at-stage" : "no-set-at-stage";
+  } else if (active.length === 1) {
+    artistId = active[0].id;
+    basis = "schedule-only";
+  } else reason = active.length ? "several-active" : "no-active-set";
+  var night = active.length ? active[0].day : _checkinNight(cfg, atMs);
+  return {
+    night,
+    active,
+    gps,
+    stageId,
+    artistId,
+    basis,
+    reason
+  };
+}
+function _checkinChoices(cfg, artists, atMs, night, firstStage) {
+  var byStage = new Map();
+  for (var a of artists || []) {
+    if (a.day !== night || !a.stage) continue;
+    var w = _checkinActWindows(cfg, a).map(([s, e]) => ({
+      s,
+      e,
+      gap: atMs < s ? s - atMs : atMs >= e ? atMs - e : 0
+    })).sort((x, y) => x.gap - y.gap)[0];
+    if (!w || w.gap > 18 * 3600000) continue;
+    if (!byStage.has(a.stage)) byStage.set(a.stage, []);
+    byStage.get(a.stage).push({
+      act: a,
+      s: w.s,
+      e: w.e,
+      now: w.gap === 0
+    });
+  }
+  var groups = [];
+  var _loop8 = function (rows) {
+    rows.sort((x, y) => x.s - y.s);
+    var i = rows.findIndex(r => r.now);
+    var pick = i >= 0 ? rows.slice(Math.max(0, i - 1), i + 2) : (() => {
+      var next = rows.findIndex(r => r.s > atMs);
+      return next < 0 ? rows.slice(-1) : rows.slice(Math.max(0, next - 1), next + 1);
+    })();
+    groups.push({
+      stageId,
+      live: pick.some(r => r.now),
+      rows: pick
+    });
+  };
+  for (var [stageId, rows] of byStage) {
+    _loop8(rows);
+  }
+  return groups.sort((x, y) => (y.stageId === firstStage) - (x.stageId === firstStage) || y.live - x.live);
+}
+function _checkinTakenAt(cfg, ms) {
+  if (cfg && cfg.tz && typeof Intl !== "undefined") {
+    try {
+      var p = {};
+      for (var x of new Intl.DateTimeFormat("en-CA", {
+        timeZone: cfg.tz,
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hourCycle: "h23"
+      }).formatToParts(new Date(ms))) p[x.type] = x.value;
+      return `${p.year}-${p.month}-${p.day} ${p.hour}:${p.minute}:${p.second}`;
+    } catch {}
+  }
+  return new Date(ms + (cfg && cfg.utcOffsetHours || 0) * 3600000).toISOString().replace("T", " ").slice(0, 19);
+}
+function _checkinMoment({
+  cfg,
+  res,
+  sel,
+  song,
+  startedAt,
+  now,
+  rand
+}) {
+  var t = now == null ? Date.now() : now;
+  var artistId = sel && sel.artistId || null;
+  var act = artistId ? res.active.find(a => a.id === artistId) || null : null;
+  var matched = !!(song && song.outcome === "matched" && song.title);
+  var round = v => v == null || !Number.isFinite(v) ? null : Math.round(v);
+  var tagSource = !artistId ? "live-manual-or-unresolved" : sel.source === "manual" ? "live-manual" : sel.source === "schedule-only" ? "live-schedule-only" : "live-gps-schedule";
+  return {
+    id: `live_${t}_${(rand || Math.random)().toString(36).slice(2, 8)}`,
+    festivalId: cfg.id,
+    night: sel && sel.night || act && act.day || res.night,
+    artistId,
+    text: "",
+    kind: "checkin",
+    createdAt: t,
+    takenAt: _checkinTakenAt(cfg, startedAt),
+    takenAtSource: "live-checkin",
+    importedAt: new Date(t).toISOString(),
+    tagSource,
+    autoTagged: !!artistId && sel.source !== "manual",
+    needsRetag: !artistId,
+    stageId: sel && sel.stageId || null,
+    proposedArtistId: res.artistId || null,
+    proposedStageId: res.stageId || null,
+    locationSource: res.gps.status === "trusted" ? "gps-live" : "none",
+    gpsStatus: res.gps.status,
+    gpsAccM: round(res.gps.accM),
+    gpsDistanceM: round(res.gps.distM),
+    gpsStageMarginM: round(res.gps.marginM),
+    songCapture: matched ? {
+      title: song.title,
+      artist: song.artist || "",
+      appleMusicID: song.appleMusicID || "",
+      artworkURL: song.artworkURL || "",
+      source: "live-shazam",
+      song: song.artist ? `${song.artist} — ${song.title}` : song.title
+    } : null,
+    shazamOutcome: matched ? "matched" : song && song.outcome || "no-match",
+    matchDurationMs: song && Number.isFinite(song.ms) ? song.ms : null,
+    photoId: null,
+    nativePath: null,
+    hasGps: false
+  };
+}
+async function _listenOnce() {
+  var t0 = Date.now();
+  if (!window.Capacitor?.isNativePlatform?.() || !window.ShazamPlugin) return {
+    outcome: "unavailable",
+    ms: 0
+  };
+  var timer;
+  try {
+    var guard = new Promise(res => {
+      timer = setTimeout(() => res({
+        timedOut: true
+      }), 14000);
+    });
+    var r = await Promise.race([window.ShazamPlugin.identify(), guard]);
+    var ms = Date.now() - t0;
+    if (r && r.timedOut) {
+      try {
+        await window.ShazamPlugin.cancel();
+      } catch {}
+      return {
+        outcome: "timeout",
+        ms
+      };
+    }
+    var reason = r && r.debug && r.debug.reason;
+    if (r && r.matched && r.title) return {
+      outcome: "matched",
+      title: r.title,
+      artist: r.artist || "",
+      appleMusicID: r.appleMusicID || "",
+      artworkURL: r.artworkURL || "",
+      ms
+    };
+    if (r && r.cancelled) return {
+      outcome: "cancelled",
+      reason,
+      ms
+    };
+    if (reason === "mic-denied") return {
+      outcome: "mic-denied",
+      ms
+    };
+    return {
+      outcome: navigator.onLine === false ? "offline" : "no-match",
+      ms
+    };
+  } catch (e) {
+    return {
+      outcome: e && e.code === "BUSY" ? "busy" : "error",
+      ms: Date.now() - t0
+    };
+  } finally {
+    clearTimeout(timer);
+  }
+}
+function _checkinFix() {
+  return new Promise(res => {
+    if (!navigator.geolocation) return res(null);
+    navigator.geolocation.getCurrentPosition(p => res({
+      lat: p.coords.latitude,
+      lng: p.coords.longitude,
+      accuracy: p.coords.accuracy,
+      timestamp: p.timestamp
+    }), e => res(e && e.code === 1 ? {
+      denied: true
+    } : null), {
+      enableHighAccuracy: true,
+      maximumAge: 10000,
+      timeout: 8000
+    });
+  });
+}
+function useLiveCheckin() {
+  var [st, setSt] = React.useState({
+    phase: "idle"
+  });
+  var attempt = React.useRef(0);
+  var cancel = React.useCallback(() => {
+    attempt.current++;
+    try {
+      window.ShazamPlugin?.cancel?.().catch?.(() => {});
+    } catch {}
+    setSt({
+      phase: "idle"
+    });
+  }, []);
+  var start = async () => {
+    var id = ++attempt.current;
+    var cfg = window.FESTIVAL_CONFIG || {};
+    var startedAt = Date.now();
+    setSt({
+      phase: "locating",
+      startedAt
+    });
+    var fix = await _checkinFix();
+    if (attempt.current !== id) return;
+    setSt({
+      phase: "listening",
+      startedAt,
+      listenAt: Date.now()
+    });
+    var song = await _listenOnce();
+    if (attempt.current !== id) return;
+    if (song.outcome === "cancelled" || song.outcome === "busy") {
+      setSt({
+        phase: "idle"
+      });
+      if (song.reason === "backgrounded" || song.reason === "interrupted") window.plurskyToast?.("Check-in stopped — the mic turns off when you leave the app");
+      return;
+    }
+    var artists = ((window._DATA_SETS || {})[cfg.id] || {}).artists || window.ARTISTS || [];
+    var anchors = typeof resolvedStageAnchors === "function" ? resolvedStageAnchors(cfg) : [];
+    var res = resolveLiveCheckin({
+      cfg,
+      artists,
+      anchors,
+      atMs: startedAt,
+      fix
+    });
+    var act = res.artistId ? res.active.find(a => a.id === res.artistId) : null;
+    var sel = {
+      artistId: res.artistId,
+      stageId: res.stageId || act && act.stage || null,
+      source: res.basis,
+      night: res.night
+    };
+    setSt({
+      phase: "review",
+      startedAt,
+      res,
+      song,
+      sel,
+      cfg,
+      artists
+    });
+  };
+  var pick = sel => setSt(s => s.phase === "review" ? {
+    ...s,
+    sel
+  } : s);
+  var save = () => {
+    if (st.phase !== "review") return null;
+    var m = _checkinMoment({
+      cfg: st.cfg,
+      res: st.res,
+      sel: st.sel,
+      song: st.song,
+      startedAt: st.startedAt
+    });
+    if (!m.night) return null;
+    var all = _readMoments();
+    all[m.night] = [...(all[m.night] || []), m];
+    _writeMoments(all);
+    try {
+      localStorage.setItem("plursky_live_checkin_seen_v1", "1");
+    } catch {}
+    window.plurskyHaptic?.("MEDIUM");
+    setSt({
+      phase: "saved",
+      night: m.night
+    });
+    return m;
+  };
+  React.useEffect(() => {
+    if (st.phase !== "locating" && st.phase !== "listening") return;
+    var onHide = () => {
+      if (document.hidden) cancel();
+    };
+    document.addEventListener("visibilitychange", onHide);
+    return () => document.removeEventListener("visibilitychange", onHide);
+  }, [st.phase, cancel]);
+  React.useEffect(() => {
+    if (st.phase !== "saved") return;
+    var t = setTimeout(() => setSt({
+      phase: "idle"
+    }), 5000);
+    return () => clearTimeout(t);
+  }, [st.phase]);
+  return {
+    st,
+    start,
+    cancel,
+    pick,
+    save
+  };
+}
+var _CHECKIN_GPS_NOTE = {
+  denied: "Location is off, so the stage isn't known.",
+  none: "No GPS fix, so the stage isn't known.",
+  stale: "The GPS fix was too old to place you at a stage.",
+  coarse: "GPS was too rough to place you at a stage.",
+  outside: "You're not close enough to a stage to place you.",
+  ambiguous: "Two stages are too close to call.",
+  "no-anchors": "This festival has no stage positions yet."
+};
+var _CHECKIN_SONG_TEXT = {
+  "no-match": "No song match",
+  offline: "Song match unavailable",
+  "mic-denied": "Microphone is off — no song",
+  timeout: "No song match",
+  error: "No song match",
+  unavailable: "Song match needs the iPhone app"
+};
+function LiveCheckinSheet({
+  st,
+  onPick,
+  onSave,
+  onCancel
+}) {
+  var {
+    cfg,
+    res,
+    song,
+    sel
+  } = st;
+  var [choosing, setChoosing] = React.useState(res.basis === "choose" && res.active.length > 1);
+  var stages = ((window._DATA_SETS || {})[cfg.id] || {}).stages || window.STAGES || [];
+  var stageOf = id => stages.find(s => s.id === id) || null;
+  var act = sel.artistId ? st.artists.find(a => a.id === sel.artistId) : null;
+  var stage = stageOf(sel.stageId || act && act.stage);
+  var f12 = t => typeof fmt12 === "function" ? fmt12(t) : t;
+  var tz = cfg.tz;
+  var clock = new Date(st.startedAt).toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    ...(tz ? {
+      timeZone: tz
+    } : {})
+  });
+  var mustChoose = res.basis === "choose" && res.active.length > 1 && sel.source !== "manual";
+  var basisText = sel.source === "manual" ? "You chose the set" : res.basis === "gps-schedule" ? "GPS + schedule" : res.basis === "schedule-only" ? "Schedule only" : "Choose set";
+  var gpsNote = res.gps.status === "trusted" ? null : _CHECKIN_GPS_NOTE[res.gps.status];
+  var mono = {
+    fontFamily: "'Geist Mono', monospace",
+    letterSpacing: 1.2,
+    fontWeight: 700
+  };
+  var btn = (label, onClick, primary, disabled) => React.createElement("button", {
+    key: label,
+    onClick: onClick,
+    disabled: disabled,
+    "data-checkin-action": label,
+    style: {
+      ...mono,
+      fontSize: 10,
+      minHeight: 40,
+      padding: "0 14px",
+      borderRadius: 999,
+      flexShrink: 0,
+      cursor: disabled ? "default" : "pointer",
+      opacity: disabled ? 0.4 : 1,
+      border: primary ? "none" : "1px solid var(--line-2)",
+      background: primary ? "var(--ink)" : "transparent",
+      color: primary ? "var(--paper)" : "var(--ink)"
+    }
+  }, label);
+  var line = (label, value, extra) => React.createElement("div", {
+    style: {
+      padding: "9px 0",
+      borderTop: "1px solid var(--line)"
+    },
+    ...extra
+  }, React.createElement("div", {
+    style: {
+      ...mono,
+      fontSize: 8,
+      color: "var(--muted)"
+    }
+  }, label), React.createElement("div", {
+    style: {
+      fontSize: 14,
+      color: "var(--ink)",
+      marginTop: 2,
+      lineHeight: 1.35,
+      overflowWrap: "anywhere"
+    }
+  }, value));
+  var groups = choosing ? _checkinChoices(cfg, st.artists, st.startedAt, res.night, res.stageId) : [];
+  var choose = a => {
+    onPick({
+      artistId: a ? a.id : null,
+      stageId: a ? a.stage : res.stageId || null,
+      source: "manual",
+      night: a ? a.day : res.night
+    });
+    setChoosing(false);
+  };
+  return ReactDOM.createPortal(React.createElement("div", {
+    onClick: onCancel,
+    style: {
+      position: "fixed",
+      inset: 0,
+      zIndex: 9000,
+      background: "rgba(0,0,0,0.45)",
+      display: "flex",
+      alignItems: "flex-end",
+      justifyContent: "center"
+    }
+  }, React.createElement("div", {
+    role: "dialog",
+    "aria-modal": "true",
+    "aria-label": "Check in to this set",
+    "data-checkin-basis": res.basis,
+    onClick: e => e.stopPropagation(),
+    style: {
+      width: "100%",
+      maxWidth: 480,
+      maxHeight: "86vh",
+      boxSizing: "border-box",
+      display: "flex",
+      flexDirection: "column",
+      background: "var(--paper)",
+      borderRadius: "18px 18px 0 0"
+    }
+  }, React.createElement("div", {
+    style: {
+      overflowY: "auto",
+      padding: "16px 18px 8px"
+    }
+  }, React.createElement("div", {
+    style: {
+      ...mono,
+      fontSize: 9,
+      color: "var(--ember-ink)"
+    }
+  }, "CHECK IN · ", (cfg.shortName || cfg.brand || cfg.name || "").toUpperCase()), React.createElement("div", {
+    style: {
+      fontFamily: "'Instrument Serif', serif",
+      fontSize: 22,
+      color: "var(--ink)",
+      marginTop: 3,
+      lineHeight: 1.15
+    }
+  }, act ? act.name : stage ? stage.name : "Which set are you at?"), React.createElement("div", {
+    "data-checkin-confidence": true,
+    style: {
+      fontSize: 12,
+      color: "var(--ink)",
+      opacity: 0.6,
+      marginTop: 4,
+      lineHeight: 1.4
+    }
+  }, basisText, gpsNote ? ` · ${gpsNote}` : ""), line("SET", act ? `${act.name} · ${stageOf(act.stage)?.name || "Stage TBA"} · ${f12(act.start)}–${f12(act.end)}` : stage ? `${stage.name} · No scheduled set found` : mustChoose ? "Pick the set you're at" : "No set chosen", {
+    "data-checkin-set": sel.artistId || ""
+  }), line("SONG", song.outcome === "matched" ? `♫ ${song.title}${song.artist ? ` — ${song.artist}` : ""}` : _CHECKIN_SONG_TEXT[song.outcome] || "No song match", {
+    "data-checkin-song": song.outcome
+  }), line("TIME", clock), choosing && React.createElement("div", {
+    "data-checkin-choices": true
+  }, groups.map(g => React.createElement("div", {
+    key: g.stageId,
+    style: {
+      marginTop: 12
+    }
+  }, React.createElement("div", {
+    style: {
+      ...mono,
+      fontSize: 9,
+      color: stageOf(g.stageId)?.color || "var(--muted)"
+    }
+  }, (stageOf(g.stageId)?.name || g.stageId).toUpperCase()), g.rows.map(r => React.createElement("button", {
+    key: r.act.id,
+    "data-checkin-choice": r.act.id,
+    onClick: () => choose(r.act),
+    style: {
+      display: "flex",
+      width: "100%",
+      alignItems: "baseline",
+      gap: 8,
+      textAlign: "left",
+      cursor: "pointer",
+      padding: "9px 0",
+      border: "none",
+      borderTop: "1px solid var(--line)",
+      background: "transparent",
+      color: "var(--ink)"
+    }
+  }, React.createElement("span", {
+    style: {
+      flex: 1,
+      minWidth: 0,
+      fontSize: 14,
+      fontWeight: r.act.id === sel.artistId ? 700 : 500,
+      overflowWrap: "anywhere"
+    }
+  }, r.act.name), React.createElement("span", {
+    style: {
+      ...mono,
+      fontSize: 8,
+      flexShrink: 0,
+      color: r.now ? "var(--ember-ink)" : "var(--muted)"
+    }
+  }, r.now ? "ON NOW · " : "", f12(r.act.start), "–", f12(r.act.end)))))), !groups.length && React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "var(--ink)",
+      opacity: 0.6,
+      marginTop: 10
+    }
+  }, "No sets are scheduled around now."), React.createElement("button", {
+    "data-checkin-choice": "",
+    onClick: () => choose(null),
+    style: {
+      ...mono,
+      fontSize: 9,
+      marginTop: 12,
+      padding: "10px 0",
+      width: "100%",
+      textAlign: "left",
+      cursor: "pointer",
+      border: "none",
+      borderTop: "1px solid var(--line)",
+      background: "transparent",
+      color: "var(--muted)"
+    }
+  }, "NOT SURE · SAVE WITHOUT A SET"))), React.createElement("div", {
+    style: {
+      padding: "10px 18px calc(14px + env(safe-area-inset-bottom))",
+      borderTop: "1px solid var(--line)"
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "var(--ink)",
+      opacity: 0.55,
+      marginBottom: 8,
+      lineHeight: 1.4
+    }
+  }, "Saves the song, set, stage, time and location confidence. Never the audio."), React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      justifyContent: "flex-end",
+      flexWrap: "wrap"
+    }
+  }, btn("CANCEL", onCancel), !choosing && btn("CHANGE SET", () => setChoosing(true)), btn("SAVE CHECK-IN", onSave, true, mustChoose || !res.night))))), document.body);
+}
 function NowPlayingBar() {
   var [liveState, setLiveState] = React.useState({
     stage: null,
@@ -15300,6 +16030,24 @@ function NowPlayingBar() {
   });
   var [captured, setCaptured] = React.useState(false);
   var CFG = window.FESTIVAL_CONFIG || {};
+  var [trial, setTrial] = React.useState(false);
+  React.useEffect(() => {
+    var on = true;
+    _liveCheckinTrialOn().then(v => {
+      if (on) setTrial(!!v);
+    });
+    return () => {
+      on = false;
+    };
+  }, []);
+  var [, setTick] = React.useState(0);
+  React.useEffect(() => {
+    if (!trial) return;
+    var t = setInterval(() => setTick(n => n + 1), 60000);
+    return () => clearInterval(t);
+  }, [trial]);
+  var trialLive = trial && _checkinNight(CFG, Date.now()) != null;
+  var checkin = useLiveCheckin();
   var debugLive = React.useMemo(() => {
     try {
       return localStorage.getItem("plursky-debug-live") === "true";
@@ -15460,6 +16208,15 @@ function NowPlayingBar() {
         try {
           var result = await Promise.race([window.ShazamPlugin.identify(), timeout]);
           clearInterval(progressId);
+          if (result?.debug?.reason === "mic-denied") {
+            setListenProgress(0);
+            setLiveState(s => ({
+              ...s,
+              listening: false
+            }));
+            window.plurskyToast?.("Microphone is off for Plursky — turn it on in Settings to identify songs");
+            return;
+          }
           if (result?.title) {
             setLiveState(s => ({
               ...s,
@@ -15549,9 +16306,14 @@ function NowPlayingBar() {
     window.plurskyHaptic?.("MEDIUM");
     setTimeout(() => setCaptured(false), 2000);
   };
-  if (!isFestivalLive || !liveState.stage) return null;
+  if (!trialLive && (!isFestivalLive || !liveState.stage)) return null;
   var displaySong = liveState.song || estimatedSong;
   var stageColor = liveState.stage?.color || "var(--horizon)";
+  var cs = checkin.st;
+  var checkinSeen = false;
+  try {
+    checkinSeen = localStorage.getItem("plursky_live_checkin_seen_v1") === "1";
+  } catch {}
   return React.createElement("div", {
     style: {
       position: "fixed",
@@ -15642,7 +16404,7 @@ function NowPlayingBar() {
       fontWeight: 700,
       color: stageColor
     }
-  }, "LIVE · ", liveState.stage?.name?.toUpperCase(), liveState.usersHere > 1 ? ` · ${liveState.usersHere} HERE` : "")), liveState.artist && React.createElement("div", {
+  }, "LIVE · ", (liveState.stage?.name || CFG.shortName || CFG.brand || "").toUpperCase(), liveState.usersHere > 1 ? ` · ${liveState.usersHere} HERE` : "")), liveState.artist && React.createElement("div", {
     className: "serif",
     style: {
       fontSize: 14,
@@ -15671,7 +16433,62 @@ function NowPlayingBar() {
       color: stageColor,
       fontSize: 9
     }
-  }, "♫"), displaySong.song)), React.createElement("button", {
+  }, "♫"), displaySong.song)), trialLive ? cs.phase === "locating" || cs.phase === "listening" ? React.createElement("button", {
+    onClick: checkin.cancel,
+    "data-checkin-phase": cs.phase,
+    style: {
+      height: 36,
+      borderRadius: 36,
+      cursor: "pointer",
+      padding: "0 14px",
+      border: "1px solid rgba(255,255,255,0.35)",
+      background: "transparent",
+      color: "#fff",
+      fontWeight: 700,
+      fontSize: 9,
+      letterSpacing: 1.2,
+      fontFamily: "Geist Mono, monospace"
+    }
+  }, "CANCEL") : cs.phase === "saved" ? React.createElement("button", {
+    "data-checkin-phase": "saved",
+    onClick: () => window._pushNav?.({
+      tab: "memories",
+      memoriesNight: cs.night,
+      memoriesView: "night",
+      artist: null
+    }),
+    style: {
+      height: 36,
+      borderRadius: 36,
+      border: "none",
+      cursor: "pointer",
+      padding: "0 14px",
+      background: "var(--success)",
+      color: "#fff",
+      fontWeight: 700,
+      fontSize: 9,
+      letterSpacing: 1.2,
+      fontFamily: "Geist Mono, monospace"
+    }
+  }, "✓ SAVED · VIEW") : React.createElement("button", {
+    "data-checkin-phase": "idle",
+    onClick: checkin.start,
+    disabled: cs.phase === "review",
+    style: {
+      minHeight: 36,
+      borderRadius: 36,
+      border: "none",
+      cursor: "pointer",
+      padding: "0 14px",
+      background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
+      color: "#fff",
+      fontWeight: 700,
+      fontSize: 9,
+      letterSpacing: 1.2,
+      fontFamily: "Geist Mono, monospace",
+      flexShrink: 0
+    }
+  }, "CHECK IN TO THIS SET") : React.createElement(React.Fragment, null, React.createElement("button", {
     onClick: handleShazam,
     disabled: liveState.listening,
     style: {
@@ -15709,7 +16526,55 @@ function NowPlayingBar() {
       transition: "all 0.3s",
       fontFamily: "Geist Mono, monospace"
     }
-  }, captured ? "✓ SAVED" : "CAPTURE")));
+  }, captured ? "✓ SAVED" : "CAPTURE"))), trialLive && (cs.phase === "locating" || cs.phase === "listening") && React.createElement(_CheckinStatus, {
+    st: cs
+  }), trialLive && cs.phase === "idle" && !checkinSeen && React.createElement("div", {
+    "data-checkin-firstuse": true,
+    style: {
+      fontSize: 10,
+      lineHeight: 1.4,
+      color: "rgba(255,255,255,0.6)",
+      marginTop: 8
+    }
+  }, "Listens for up to 12 seconds to identify the track. Saves the song, set, stage, time, and location confidence — never the audio."), trialLive && cs.phase === "review" && React.createElement(LiveCheckinSheet, {
+    st: cs,
+    onPick: checkin.pick,
+    onCancel: checkin.cancel,
+    onSave: checkin.save
+  }));
+}
+function _CheckinStatus({
+  st
+}) {
+  var [, setN] = React.useState(0);
+  React.useEffect(() => {
+    var t = setInterval(() => setN(n => n + 1), 1000);
+    return () => clearInterval(t);
+  }, []);
+  var left = st.phase === "listening" ? Math.max(0, 12 - Math.floor((Date.now() - (st.listenAt || Date.now())) / 1000)) : null;
+  return React.createElement("div", {
+    "data-checkin-status": st.phase,
+    role: "status",
+    className: "mono",
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 6,
+      marginTop: 8,
+      fontSize: 9,
+      letterSpacing: 1.2,
+      fontWeight: 700,
+      color: "#fff"
+    }
+  }, React.createElement("span", {
+    style: {
+      width: 8,
+      height: 8,
+      borderRadius: 8,
+      background: st.phase === "listening" ? "#ef4444" : "rgba(255,255,255,0.5)",
+      animation: "pulse 1s infinite"
+    }
+  }), st.phase === "listening" ? `🎙 LISTENING · UP TO ${left}S` : "FINDING YOUR STAGE…");
 }
 Object.assign(window, {
   NowPlayingBar,

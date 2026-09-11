@@ -313,7 +313,7 @@ async function _resolveMomentSong(m) {
   };
   if (m?.songCapture?.song) return {
     title: m.songCapture.song,
-    confidence: m.songCapture.source === "shazam" ? "exact" : "estimated"
+    confidence: m.songCapture.source === "shazam" || m.songCapture.source === "live-shazam" ? "exact" : "estimated"
   };
   var artist = m?.artistId ? (window.ARTISTS || []).find(a => a.id === m.artistId) : null;
   if (!artist || !m?.takenAt) return null;
