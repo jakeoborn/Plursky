@@ -383,17 +383,10 @@ const FESTIVALS_REGISTRY = [
   },
   {
     // ── Lost Lands 2026 — Legend Valley, Thornville OH ──
-    // ⛔ GATE (same pattern as Forest): lineup + day assignments are REAL
-    // (official daily poster, aug 2026) but SET TIMES + STAGES are NOT
-    // published yet (checked 2026-08-22; official app schedule historically
-    // drops ~1 week out). All start/end, stage assignments, stage x/y,
-    // gpsAnchors, and the map image are PROVISIONAL. Flip `available: true`
-    // only after the official schedule + 2026 patron map land.
-    // NOT re-derived on 2026-08-27 (the work order leaves LL provisional).
-    // For the flip session: `forest-stage` is 39.9 grid units off the
-    // prehistoric/wompy-woods/crater affine, `raptor-alley` 14.9, `grove`
-    // 12.3, `subsidia` 9.3. Re-measure the trio on satellite, then re-derive
-    // the rest from it rather than by eye.
+    // Flip 2026-09-11: stage + set time per act come from the Lost Lands app
+    // schedule (app v10.0.0, as captured 2026-09-10); the SCHEDULE block
+    // below records the source. The map needs no flip work — it is mapMode
+    // "real" with no anchors (decided 2026-09-07, see the map block below).
     config: {
       id:        "lost-lands-2026",
       name:      "Lost Lands 2026",
@@ -405,7 +398,7 @@ const FESTIVALS_REGISTRY = [
       dates:     "Sep 18–20, 2026",
       year:      2026,
       startMs: Date.UTC(2026, 8, 16, 16, 0, 0), // Sep 16 noon EDT (early-entry Wed opens)
-      endMs:   Date.UTC(2026, 8, 21, 6, 0, 0),  // Sep 21 02:00 EDT (Sunday close)
+      endMs:   Date.UTC(2026, 8, 21, 7, 0, 0),  // Sep 21 03:00 EDT (last Sunday-night sets end)
       tz:      "America/New_York",
       tzAbbr:  "EDT",
       utcOffsetHours: -4,
@@ -562,10 +555,8 @@ const FESTIVALS_REGISTRY = [
       mapPrintsStageNames: false,
       mapArtIsGeoregistered: false,
       weatherEndpoint: "https://api.weather.gov/points/39.9403,-82.4039",
-      // Flip-session marker: replace provisional set times/stages, then delete.
-      setTimesProvisional: true,
     },
-    available: false,
+    available: true,
     accent:    "#84cc16",
     emoji:     "🦖",
     region:    "North America",
@@ -2278,10 +2269,9 @@ const LL_STAGES = [
   { id: "grove",        name: "The Grove",           short: "GROVE",      color: "#eab308", size: 0.8, desc: "Campground stage", vibe: "Campground", vibeNote: "Morning-to-late sets where the camps live.", peak: "10:00–22:00" },
 ];
 
-// Tier from curated headliner list (schedule-independent); genres are best-
-// known for the obvious names and default to "Bass" for the rest - Lost
-// Lands is a bass festival, so the default is honest. Both get corrected at
-// the flip session when the official schedule lands.
+// Tier from curated headliner list (schedule-independent). Genres were best-
+// known guesses defaulting to "Bass" until the flip (2026-09-11), which took
+// each scheduled act's genre from the official app schedule.
 //
 // ⚠ NO STAGE ASSIGNMENTS ON PURPOSE, for the same reason as the set times
 // below. All 201 acts used to carry a concrete stage - 80 subsidia, 69
@@ -2316,21 +2306,221 @@ const LL_STAGES = [
 // import ships only what the source shows.
 const LL_SCHEDULE = {
   // SCHEDULE:BEGIN lost-lands-2026
+  // source: https://github.com/johnta2000/johnta2000.github.io/blob/01315c1f03c0a01c9a8294132ac8cb6480a49ac3/convex/lostLandsSetTimes.ts · imported 2026-09-11 · 206 of 210 acts
+  "llw19": ["crater", "13:00", "14:00"],  // Fresh Meat: NEGAT1VE5PACE
+  "llw13": ["crater", "14:00", "15:00"],  // Mile32
+  "llw4": ["crater", "15:00", "16:00"],  // Chassi
+  "llw11": ["crater", "16:00", "17:00"],  // Izzy Vadim
+  "llw15": ["crater", "17:00", "18:00"],  // Muerte
+  "llw6": ["crater", "18:00", "19:00"],  // Emorfik B2B Usaybflow
+  "llw2": ["crater", "19:00", "20:00"],  // Calcium B2B Mad Dubz
+  "llw17": ["crater", "20:00", "21:00"],  // Riot Ten
+  "llw1": ["crater", "21:00", "22:00"],  // Barely Alive
+  "llw20": ["grove", "13:00", "14:00"],  // Fresh Meat: Hevnfall
+  "llw14": ["grove", "14:00", "15:00"],  // MPORT
+  "llw7": ["grove", "15:00", "15:50"],  // Gardella
+  "llw10": ["grove", "15:50", "16:40"],  // Hydraulix
+  "llw9": ["grove", "16:40", "17:30"],  // Hershe
+  "llw12": ["grove", "17:30", "18:20"],  // Jaenga
+  "llw16": ["grove", "18:20", "19:10"],  // Nikita, The Wicked
+  "llw18": ["grove", "19:10", "20:00"],  // Smoakland
+  "llw8": ["grove", "20:00", "20:50"],  // Hairitage
+  "llw5": ["grove", "20:50", "21:40"],  // Distinct Motive
+  "llw3": ["grove", "21:40", "22:30"],  // Caspa
+  "llh13": ["crater", "13:00", "14:00"],  // Fresh Meat: Keeb
+  "llh2": ["crater", "14:00", "15:00"],  // Deadcrow
+  "llh14": ["crater", "15:00", "16:00"],  // Otsukare
+  "llh5": ["crater", "16:00", "17:00"],  // Machaki
+  "llh10": ["crater", "17:00", "18:00"],  // RZRKT
+  "llh4": ["crater", "18:00", "19:00"],  // Funtcase
+  "llh7": ["grove", "13:00", "14:00"],  // Mindset
+  "llh12": ["grove", "14:00", "15:00"],  // Zen Selekta
+  "llh9": ["grove", "15:00", "16:00"],  // Rsun
+  "llh8": ["grove", "16:00", "17:00"],  // Phrva
+  "llh11": ["grove", "17:00", "18:00"],  // Super Future
+  "llh3": ["grove", "18:00", "19:00"],  // Dirt Monkey
+  "llf52": ["prehistoric", "14:00", "15:00"],  // TYNAN
+  "llf43": ["prehistoric", "15:00", "16:00"],  // Seth David
+  "llf24": ["prehistoric", "16:00", "17:00"],  // Jkyl & Hyde
+  "llf39": ["prehistoric", "17:00", "18:00"],  // Ravenscoon
+  "llf20": ["prehistoric", "18:00", "19:00"],  // Infekt B2B Samplifire
+  "llf19": ["prehistoric", "19:00", "20:00"],  // HOL!
+  "llf48": ["prehistoric", "20:00", "21:00"],  // Sullivan King B2B Ray Volpe
+  "llf28": ["prehistoric", "21:00", "22:00"],  // Levity
+  "llf60": ["prehistoric", "22:10", "00:00"],  // Excision (2 Hour Set)
+  "llf35": ["wompy-woods", "14:30", "15:30"],  // Paper Skies
+  "llf54": ["wompy-woods", "15:30", "16:30"],  // VKTM
+  "llf6": ["wompy-woods", "16:30", "17:30"],  // Benda
+  "llf16": ["wompy-woods", "17:30", "18:30"],  // Drinkurwater
+  "llf11": ["wompy-woods", "18:30", "19:30"],  // Dion Timmer
+  "llf56": ["wompy-woods", "19:30", "20:30"],  // Wooli (Sunset Set)
+  "llf29": ["wompy-woods", "20:30", "21:30"],  // Liquid Stranger
+  "llf32": ["wompy-woods", "21:30", "22:45"],  // Nghtmre
+  "llf49": ["wompy-woods", "22:45", "00:00"],  // The Resistance
+  "llf46": ["wompy-woods", "00:15", "01:10"],  // Sippy
+  "llf58": ["wompy-woods", "01:10", "02:05"],  // YOOKIE
+  "llf42": ["wompy-woods", "02:05", "03:00"],  // Riot
+  "llf34": ["wompy-woods", "03:00", "04:00"],  // Oliverse
+  "llf61": ["crater", "14:00", "15:15"],  // Shank Aaron
+  "llf10": ["crater", "15:15", "16:25"],  // Crizzly
+  "llf3": ["crater", "16:25", "17:30"],  // Badklaat
+  "llf62": ["crater", "17:30", "18:35"],  // The Frim
+  "llf5": ["crater", "18:35", "19:40"],  // Bear Grillz
+  "llf13": ["crater", "19:40", "20:45"],  // Doctor P
+  "llf7": ["crater", "20:45", "21:50"],  // Borgore
+  "llf12": ["crater", "21:50", "22:55"],  // Dirtysnatcha
+  "llf50": ["crater", "22:55", "00:00"],  // The Widdler
+  "llf27": ["subsidia", "15:00", "16:00"],  // Lazrus
+  "llf37": ["subsidia", "16:00", "17:00"],  // Poni
+  "llf1": ["subsidia", "17:00", "18:00"],  // $J
+  "llf18": ["subsidia", "18:00", "19:00"],  // Future Exit
+  "llf17": ["subsidia", "19:00", "20:00"],  // Dubscribe
+  "llf25": ["subsidia", "20:00", "21:00"],  // Kliptic
+  "llf33": ["subsidia", "21:00", "22:00"],  // Nimda
+  "llf53": ["subsidia", "22:00", "23:00"],  // Vampa
+  "llf22": ["subsidia", "23:00", "00:00"],  // Izadi
+  "llf59": ["subsidia", "00:00", "01:00"],  // Zero
+  "llf26": ["subsidia", "01:00", "02:00"],  // Klo
+  "llf9": ["subsidia", "02:00", "03:00"],  // Casey Club
+  "llf31": ["subsidia", "03:00", "04:00"],  // Neumonic
+  "llf15": ["forest-stage", "16:00", "17:00"],  // Dr. Ushuu
+  "llf2": ["forest-stage", "17:00", "18:00"],  // Austeria
+  "llf38": ["forest-stage", "18:00", "19:00"],  // Probcause
+  "llf8": ["forest-stage", "19:00", "20:00"],  // Canabliss
+  "llf21": ["forest-stage", "20:00", "21:00"],  // Ivy Lab
+  "llf23": ["forest-stage", "21:00", "22:00"],  // Jantsen
+  "llf57": ["forest-stage", "22:00", "23:00"],  // Xotix
+  "llf44": ["forest-stage", "23:00", "00:00"],  // Shlump
+  "llf41": ["forest-stage", "00:00", "01:00"],  // Richard Finger
+  "llf30": ["forest-stage", "01:00", "02:00"],  // Lumasi
+  "llf55": ["forest-stage", "02:00", "03:00"],  // Wiley
+  "llf51": ["forest-stage", "03:00", "04:00"],  // Twopercent
+  "llf63": ["raptor-alley", "00:00", "01:00"],  // Funtcase B2B Doctor P (DnB Set)
+  "llf45": ["raptor-alley", "01:00", "02:00"],  // Sigma
+  "llf47": ["raptor-alley", "02:00", "03:00"],  // Subsonic
+  "llf4": ["raptor-alley", "03:00", "04:00"],  // Basstripper
+  "lls44": ["prehistoric", "14:00", "15:00"],  // Neotek
+  "lls10": ["prehistoric", "15:00", "16:00"],  // Capochino
+  "lls28": ["prehistoric", "16:00", "16:55"],  // Heyz
+  "lls20": ["prehistoric", "16:55", "17:50"],  // Effin
+  "lls33": ["prehistoric", "17:50", "18:50"],  // Jessica Audiffred
+  "lls22": ["prehistoric", "18:50", "19:50"],  // Flux Pavilion
+  "lls61": ["prehistoric", "19:50", "20:50"],  // Zomboy
+  "lls35": ["prehistoric", "20:50", "21:50"],  // Kai Wachi
+  "lls50": ["prehistoric", "21:50", "22:50"],  // Slander
+  "lls30": ["prehistoric", "22:50", "00:00"],  // Illenium
+  "lls3": ["wompy-woods", "14:30", "15:30"],  // All The Reason
+  "lls29": ["wompy-woods", "15:30", "16:30"],  // HVDES
+  "lls7": ["wompy-woods", "16:30", "17:30"],  // Big Florida
+  "lls46": ["wompy-woods", "17:30", "18:30"],  // Phaseone
+  "lls24": ["wompy-woods", "18:30", "19:30"],  // GHENGAR
+  "lls49": ["wompy-woods", "19:30", "20:30"],  // Seven Lions (Sunset Set)
+  "lls60": ["wompy-woods", "20:30", "21:30"],  // Zingara
+  "lls23": ["wompy-woods", "21:30", "22:45"],  // Ganja White Night
+  "lls53": ["wompy-woods", "22:45", "00:00"],  // Subtronics B2B Level Up
+  "lls32": ["wompy-woods", "00:15", "01:10"],  // Ivory
+  "lls51": ["wompy-woods", "01:10", "02:05"],  // Space Wizard
+  "lls54": ["wompy-woods", "02:05", "03:00"],  // Tisoki
+  "lls9": ["wompy-woods", "03:00", "04:00"],  // Brainrack
+  "lls1": ["crater", "14:00", "15:15"],  // 2DY4
+  "lls57": ["crater", "15:15", "16:25"],  // Whales
+  "lls52": ["crater", "16:25", "17:30"],  // Stoned Level
+  "lls47": ["crater", "17:30", "18:35"],  // Prosecute
+  "lls15": ["crater", "18:35", "19:40"],  // Cyclops
+  "lls36": ["crater", "19:40", "20:45"],  // Layz
+  "lls58": ["crater", "20:45", "21:50"],  // Whethan
+  "lls19": ["crater", "21:50", "22:55"],  // Dr. Fresch
+  "lls21": ["crater", "22:55", "00:00"],  // Flosstradamus
+  "lls42": ["subsidia", "15:00", "16:00"],  // Myrias
+  "lls26": ["subsidia", "16:00", "17:00"],  // Green Matter
+  "lls48": ["subsidia", "17:00", "18:00"],  // Saint Miller
+  "lls45": ["subsidia", "18:00", "19:00"],  // Noetika
+  "lls11": ["subsidia", "19:00", "20:00"],  // Chozen
+  "lls56": ["subsidia", "20:00", "21:00"],  // Truth
+  "lls55": ["subsidia", "21:00", "22:00"],  // Tokyo Machine
+  "lls37": ["subsidia", "22:00", "23:00"],  // Leotrix
+  "lls4": ["subsidia", "23:00", "00:00"],  // Au5
+  "lls43": ["subsidia", "00:00", "01:00"],  // Mythm
+  "lls59": ["subsidia", "01:00", "02:00"],  // Wraz
+  "lls34": ["subsidia", "02:00", "03:00"],  // Josh Teed
+  "lls39": ["subsidia", "03:00", "04:00"],  // Lowcation
+  "lls14": ["forest-stage", "16:00", "17:00"],  // Crumb Pit
+  "lls6": ["forest-stage", "17:00", "18:00"],  // Bella Renee
+  "lls41": ["forest-stage", "18:00", "19:00"],  // Mozey
+  "lls17": ["forest-stage", "19:00", "20:00"],  // Delta Heavy
+  "lls27": ["forest-stage", "20:00", "21:00"],  // Hedex
+  "lls8": ["forest-stage", "21:00", "22:00"],  // Bou
+  "lls40": ["forest-stage", "22:00", "23:00"],  // Mefjus + Daxta MC
+  "lls2": ["forest-stage", "23:00", "00:00"],  // AEON:MODE B2B Blossom
+  "llf40": ["forest-stage", "00:00", "01:00"],  // Reaper
+  "lls18": ["forest-stage", "01:00", "02:00"],  // Dirtyphonics
+  "lls13": ["forest-stage", "02:00", "03:00"],  // Craze B2B Dieselboy
+  "lls31": ["forest-stage", "03:00", "04:00"],  // Imanu
+  "lls38": ["raptor-alley", "00:00", "01:00"],  // Lil Texas
+  "lls25": ["raptor-alley", "01:00", "02:00"],  // Gladde Paling
+  "lls16": ["raptor-alley", "02:00", "03:00"],  // Darksiderz B2B Madgrrl
+  "lls5": ["raptor-alley", "03:00", "04:00"],  // Audiofreq
+  "llu44": ["prehistoric", "14:00", "14:55"],  // Usaybflow
+  "llu27": ["prehistoric", "14:55", "15:50"],  // Mad Dubz
+  "llu6": ["prehistoric", "15:50", "16:45"],  // Avello
+  "llu18": ["prehistoric", "16:45", "17:40"],  // Grabbitz
+  "llu24": ["prehistoric", "17:40", "18:35"],  // Kompany
+  "llu5": ["prehistoric", "19:30", "20:30"],  // Atliens (Sunset Set)
+  "llu2": ["prehistoric", "20:30", "21:30"],  // Crankdat B2B Alleycvt
+  "llu15": ["prehistoric", "21:40", "22:47"],  // Excision B2B Space Laces
+  "llu12": ["wompy-woods", "15:00", "16:00"],  // Dream Takers
+  "llu49": ["wompy-woods", "16:00", "17:00"],  // Wonkywilla
+  "llu23": ["wompy-woods", "17:00", "18:00"],  // Know Good
+  "llu13": ["wompy-woods", "18:00", "19:00"],  // Eptic B2B LYNY
+  "llu14": ["wompy-woods", "19:00", "19:50"],  // Excision (Detox Set)
+  "llu1": ["wompy-woods", "19:50", "20:50"],  // Adventure Club (Throwback Set)
+  "llu45": ["wompy-woods", "20:50", "21:45"],  // Virtual Riot
+  "llu7": ["wompy-woods", "21:45", "23:00"],  // Boogie T
+  "llu4": ["wompy-woods", "23:15", "00:10"],  // Armnhmr
+  "llu19": ["wompy-woods", "00:10", "01:05"],  // Haliene
+  "llu10": ["wompy-woods", "01:05", "02:00"],  // Crystal Skies
+  "llu50": ["wompy-woods", "02:00", "03:00"],  // Yetep
+  "llu32": ["crater", "14:00", "15:15"],  // Pretty Sweet
+  "llu26": ["crater", "15:15", "16:25"],  // Luci
+  "llu9": ["crater", "16:25", "17:30"],  // Codd Dubz
+  "llu43": ["crater", "17:30", "18:35"],  // Trivecta
+  "llu38": ["crater", "18:35", "19:40"],  // Sodown
+  "llu48": ["crater", "19:40", "20:45"],  // William Black
+  "llu25": ["crater", "20:45", "21:50"],  // Krewella
+  "llu8": ["crater", "21:50", "23:00"],  // Champagne Drip
+  "llu16": ["subsidia", "16:00", "17:00"],  // FINNUH
+  "llu40": ["subsidia", "17:00", "18:00"],  // SQISHI
+  "llu34": ["subsidia", "18:00", "19:00"],  // ROI*
+  "llu21": ["subsidia", "19:00", "20:00"],  // Hurtbox
+  "llu20": ["subsidia", "20:00", "21:00"],  // Hostage Situation
+  "llu28": ["subsidia", "21:00", "22:00"],  // Modal Nodes
+  "llu46": ["subsidia", "22:00", "23:00"],  // Warlord
+  "llu51": ["subsidia", "23:00", "00:00"],  // YVM3
+  "llu36": ["subsidia", "00:00", "01:00"],  // Sisto
+  "llu29": ["subsidia", "01:00", "02:00"],  // OG NIXIN
+  "llu30": ["subsidia", "02:00", "03:00"],  // Onara
+  "llu35": ["forest-stage", "16:00", "17:00"],  // Ryns
+  "llu11": ["forest-stage", "17:00", "18:00"],  // Distant Matter
+  "llu3": ["forest-stage", "18:00", "19:00"],  // Arlo
+  "llu52": ["forest-stage", "19:00", "20:00"],  // Zoey808
+  "llu42": ["forest-stage", "20:00", "21:00"],  // Taiki Nulight
+  "llu37": ["forest-stage", "21:00", "22:00"],  // Skilah
+  "llu31": ["forest-stage", "22:00", "23:00"],  // Passport
+  "llu47": ["forest-stage", "23:00", "00:00"],  // Wax Motif
+  "llu41": ["forest-stage", "00:00", "01:00"],  // Stumpi
+  "llu53": ["forest-stage", "01:00", "02:00"],  // Black Tiger Sex Machine (Unmasked)
+  "llu17": ["forest-stage", "02:00", "03:00"],  // Ghastly
+  "llu39": ["raptor-alley", "23:00", "00:00"],  // Sportmode
+  "llu33": ["raptor-alley", "00:00", "01:00"],  // Remk
+  "llu22": ["raptor-alley", "01:00", "02:00"],  // Killmatter
   // SCHEDULE:END
 };
 const _llMk = (id, name, genre, tier, day) => {
-  // ⚠ NO SET TIMES ON PURPOSE. These used to be SYNTHESISED from tier
-  // (t3 22:30-00:00, t2 20:00-21:30, else 17:00-18:30), which produced 201
-  // concrete clock times that varied just enough to read as a real schedule
-  // — 3 distinct start/end pairs across 201 acts. Lost Lands has published
-  // no set times (lostlandsfestival.com/lineup + /info, checked 2026-09-07:
-  // daily lineups only, and "Box office locations will be shown on the
-  // festival maps closer to the event"). Blank + one shared tier is the
-  // house form for a gated festival whose schedule has not dropped — the
-  // Nocturnal / III Points / CRSSD / Escape precedent. The flip session
-  // fills these from the official schedule; scripts/verify.mjs now refuses
-  // to let a festival ship with fabricated ones. LL_SCHEDULE above is the only
-  // way a time gets in.
+  // ⚠ NEVER SYNTHESISE A TIME HERE. Pre-flip these were derived from tier,
+  // which produced 3 distinct start/end pairs across 201 acts that read as a
+  // real schedule. LL_SCHEDULE above (written by scripts/import-set-times.mjs
+  // from the app schedule) is the only way a time gets in, and verify.mjs
+  // refuses a live festival where any act is left blank.
   const s = LL_SCHEDULE[id];
   return { id, name, genre, country: "—", stage: s ? s[0] : null, day, start: s ? s[1] : "", end: s ? s[2] : "", tier,
     img: "linear-gradient(135deg, #84cc16, #0a1a0c)",
@@ -2341,13 +2531,13 @@ const _llMk = (id, name, genre, tier, day) => {
 const LL_ARTISTS = [
   // ── WEDNESDAY (day 1 - early entry pre-party) ──
   _llMk("llw1", "Barely Alive", "Dubstep", 2, 1),
-  _llMk("llw2", "Calcium B2B Mad Dubz", "Bass", 2, 1),
+  _llMk("llw2", "Calcium B2B Mad Dubz", "Dubstep", 2, 1),
   _llMk("llw3", "Caspa", "Dubstep", 2, 1),
   _llMk("llw4", "Chassi", "Bass", 2, 1),
-  _llMk("llw5", "Distinct Motive", "Deep Dubstep", 2, 1),
-  _llMk("llw6", "Emorfik B2B Usaybflow", "Bass", 2, 1),
+  _llMk("llw5", "Distinct Motive", "Dubstep", 2, 1),
+  _llMk("llw6", "Emorfik B2B Usaybflow", "Dubstep", 2, 1),
   _llMk("llw7", "Gardella", "Bass", 2, 1),
-  _llMk("llw8", "Hairitage", "Bass", 2, 1),
+  _llMk("llw8", "Hairitage", "Dubstep", 2, 1),
   _llMk("llw9", "Hershe", "Bass", 2, 1),
   _llMk("llw10", "Hydraulix", "Bass", 2, 1),
   _llMk("llw11", "Izzy Vadim", "Bass", 2, 1),
@@ -2358,26 +2548,33 @@ const LL_ARTISTS = [
   _llMk("llw16", "Nikita, The Wicked", "Bass", 2, 1),
   _llMk("llw17", "Riot Ten", "Dubstep", 2, 1),
   _llMk("llw18", "Smoakland", "Bass", 2, 1),
+  // Added at the flip: in the official app schedule, not on the lineup poster.
+  _llMk("llw19", "Fresh Meat: NEGAT1VE5PACE", "Bass", 1, 1),
+  _llMk("llw20", "Fresh Meat: Hevnfall", "Bass", 1, 1),
   // ── THURSDAY (day 2 - early entry) ──
-  _llMk("llh1", "Alienpark", "Bass", 2, 2),
-  _llMk("llh2", "Deadcrow", "Bass", 2, 2),
+  // Dropped at the flip: Alienpark and MEGA B2B2B2B PRE-PARTY (llh1, llh6) are
+  // on the poster but in no slot of the app schedule, and verify.mjs refuses a
+  // live festival with some acts timed and some blank.
+  _llMk("llh2", "Deadcrow", "Wave", 2, 2),
   _llMk("llh3", "Dirt Monkey", "Dubstep", 2, 2),
   _llMk("llh4", "Funtcase", "Dubstep", 2, 2),
   _llMk("llh5", "Machaki", "Bass", 2, 2),
-  _llMk("llh6", "MEGA B2B2B2B PRE-PARTY", "Bass", 3, 2),
   _llMk("llh7", "Mindset", "Bass", 2, 2),
   _llMk("llh8", "Phrva", "Bass", 2, 2),
   _llMk("llh9", "Rsun", "Bass", 2, 2),
   _llMk("llh10", "RZRKT", "Bass", 2, 2),
-  _llMk("llh11", "Super Future", "Space Bass", 2, 2),
+  _llMk("llh11", "Super Future", "Bass", 2, 2),
   _llMk("llh12", "Zen Selekta", "Bass", 2, 2),
+  // Added at the flip: in the official app schedule, not on the lineup poster.
+  _llMk("llh13", "Fresh Meat: Keeb", "Bass", 1, 2),
+  _llMk("llh14", "Otsukare", "Bass", 1, 2),
   // ── FRIDAY (day 3) ──
   _llMk("llf1", "$J", "Bass", 1, 3),
-  _llMk("llf2", "Austeria", "Bass", 1, 3),
-  _llMk("llf3", "Badklaat", "Bass", 1, 3),
-  _llMk("llf4", "Basstripper", "Bass", 1, 3),
+  _llMk("llf2", "Austeria", "Dubstep", 1, 3),
+  _llMk("llf3", "Badklaat", "Dubstep", 1, 3),
+  _llMk("llf4", "Basstripper", "Drum & Bass", 1, 3),
   _llMk("llf5", "Bear Grillz", "Dubstep", 2, 3),
-  _llMk("llf6", "Benda", "Bass", 1, 3),
+  _llMk("llf6", "Benda", "Dubstep", 1, 3),
   _llMk("llf7", "Borgore", "Dubstep", 2, 3),
   _llMk("llf8", "Canabliss", "Bass", 1, 3),
   _llMk("llf9", "Casey Club", "Bass", 1, 3),
@@ -2385,141 +2582,148 @@ const LL_ARTISTS = [
   _llMk("llf11", "Dion Timmer", "Dubstep", 2, 3),
   _llMk("llf12", "Dirtysnatcha", "Bass", 1, 3),
   _llMk("llf13", "Doctor P", "Dubstep", 2, 3),
-  _llMk("llf14", "Dodge & Fuski", "Dubstep", 2, 3),
+  // Dropped at the flip: Dodge & Fuski (llf14) and Pegboard Nerds (llf36), same
+  // reason as the Thursday pair above.
   _llMk("llf15", "Dr. Ushuu", "Bass", 1, 3),
-  _llMk("llf16", "Drinkurwater", "Bass", 1, 3),
+  _llMk("llf16", "Drinkurwater", "Dubstep", 1, 3),
   _llMk("llf17", "Dubscribe", "Bass", 1, 3),
   _llMk("llf60", "Excision (2 Hour Set)", "Dubstep", 3, 3),
   _llMk("llf18", "Future Exit", "Bass", 1, 3),
   _llMk("llf19", "HOL!", "Dubstep", 2, 3),
-  _llMk("llf20", "Infekt B2B Samplifire", "Riddim", 2, 3),
-  _llMk("llf21", "Ivy Lab", "Drum & Bass", 2, 3),
+  _llMk("llf20", "Infekt B2B Samplifire", "Dubstep", 2, 3),
+  _llMk("llf21", "Ivy Lab", "Bass", 2, 3),
   _llMk("llf22", "Izadi", "Bass", 1, 3),
   _llMk("llf23", "Jantsen", "Dubstep", 2, 3),
-  _llMk("llf24", "Jkyl & Hyde", "Bass", 1, 3),
-  _llMk("llf25", "Kliptic", "Dubstep", 2, 3),
-  _llMk("llf26", "Klo", "Dubstep", 2, 3),
-  _llMk("llf27", "Lazrus", "Dubstep", 2, 3),
-  _llMk("llf28", "Levity", "Dubstep", 2, 3),
-  _llMk("llf29", "Liquid Stranger", "Space Bass", 2, 3),
+  _llMk("llf24", "Jkyl & Hyde", "Dubstep", 1, 3),
+  _llMk("llf25", "Kliptic", "Bass", 2, 3),
+  _llMk("llf26", "Klo", "Bass", 2, 3),
+  _llMk("llf27", "Lazrus", "Bass", 2, 3),
+  _llMk("llf28", "Levity", "Bass", 2, 3),
+  _llMk("llf29", "Liquid Stranger", "Bass", 2, 3),
   _llMk("llf30", "Lumasi", "Bass", 1, 3),
   _llMk("llf31", "Neumonic", "Bass", 2, 3),
-  _llMk("llf32", "Nghtmre", "Trap / Future Bass", 3, 3),
+  _llMk("llf32", "Nghtmre", "Bass", 3, 3),
   _llMk("llf33", "Nimda", "Bass", 1, 3),
-  _llMk("llf34", "Oliverse", "Bass", 1, 3),
-  _llMk("llf35", "Paper Skies", "Melodic Bass", 2, 3),
-  _llMk("llf36", "Pegboard Nerds", "Electro / Dubstep", 2, 3),
+  _llMk("llf34", "Oliverse", "Dubstep", 1, 3),
+  _llMk("llf35", "Paper Skies", "Bass", 2, 3),
   _llMk("llf37", "Poni", "Bass", 1, 3),
   _llMk("llf38", "Probcause", "Bass", 1, 3),
-  _llMk("llf39", "Ravenscoon", "Dubstep", 2, 3),
-  _llMk("llf40", "Reaper", "Dubstep", 2, 3),
+  _llMk("llf39", "Ravenscoon", "Bass", 2, 3),
   _llMk("llf41", "Richard Finger", "Bass", 1, 3),
-  _llMk("llf42", "Riot", "Drum & Bass", 2, 3),
+  _llMk("llf42", "Riot", "Dubstep", 2, 3),
   _llMk("llf43", "Seth David", "Bass", 1, 3),
-  _llMk("llf44", "Shlump", "Space Bass", 2, 3),
+  _llMk("llf44", "Shlump", "Bass", 2, 3),
   _llMk("llf45", "Sigma", "Drum & Bass", 2, 3),
   _llMk("llf46", "Sippy", "Dubstep", 2, 3),
-  _llMk("llf47", "Subsonic", "Bass", 1, 3),
-  _llMk("llf48", "Sullivan King B2B Ray Volpe", "Rocktronic / Riddim", 3, 3),
+  _llMk("llf47", "Subsonic", "Drum & Bass", 1, 3),
+  _llMk("llf48", "Sullivan King B2B Ray Volpe", "Dubstep", 3, 3),
   _llMk("llf49", "The Resistance", "Dubstep", 2, 3),
   _llMk("llf50", "The Widdler", "Dubstep", 2, 3),
   _llMk("llf51", "Twopercent", "Bass", 1, 3),
-  _llMk("llf52", "TYNAN", "Bass", 1, 3),
+  _llMk("llf52", "TYNAN", "Dubstep", 1, 3),
   _llMk("llf53", "Vampa", "Dubstep", 2, 3),
   _llMk("llf54", "VKTM", "Bass", 1, 3),
-  _llMk("llf55", "Wiley", "Space Bass", 2, 3),
-  _llMk("llf56", "Wooli (Sunset Set)", "Dubstep / Melodic Bass", 3, 3),
+  _llMk("llf55", "Wiley", "Bass", 2, 3),
+  _llMk("llf56", "Wooli (Sunset Set)", "Dubstep", 3, 3),
   _llMk("llf57", "Xotix", "Bass", 1, 3),
-  _llMk("llf58", "YOOKIE", "Dubstep / Hybrid", 2, 3),
+  _llMk("llf58", "YOOKIE", "Dubstep", 2, 3),
   _llMk("llf59", "Zero", "Bass", 1, 3),
+  // Added at the flip: in the official app schedule, not on the lineup poster.
+  _llMk("llf61", "Shank Aaron", "Bass", 1, 3),
+  _llMk("llf62", "The Frim", "Bass", 1, 3),
+  _llMk("llf63", "Funtcase B2B Doctor P (DnB Set)", "Dubstep", 2, 3),
   // ── SATURDAY (day 4) ──
-  _llMk("lls1", "2DY4", "Bass", 1, 4),
-  _llMk("lls2", "AEON:MODE B2B Blossom", "Bass", 1, 4),
+  _llMk("lls1", "2DY4", "Dubstep", 1, 4),
+  _llMk("lls2", "AEON:MODE B2B Blossom", "Drum & Bass", 1, 4),
   _llMk("lls3", "All The Reason", "Bass", 1, 4),
-  _llMk("lls4", "Au5", "Melodic Dubstep", 2, 4),
-  _llMk("lls5", "Audiofreq", "Bass", 1, 4),
+  _llMk("lls4", "Au5", "Melodic Bass", 2, 4),
+  _llMk("lls5", "Audiofreq", "Hard Dance", 1, 4),
   _llMk("lls6", "Bella Renee", "Bass", 1, 4),
   _llMk("lls7", "Big Florida", "Bass", 1, 4),
   _llMk("lls8", "Bou", "Drum & Bass", 2, 4),
   _llMk("lls9", "Brainrack", "Bass", 1, 4),
   _llMk("lls10", "Capochino", "Bass", 1, 4),
   _llMk("lls11", "Chozen", "Bass", 1, 4),
-  _llMk("lls13", "Craze B2B Dieselboy", "Bass", 1, 4),
-  _llMk("lls14", "Crumb Pit", "Riddim", 2, 4),
-  _llMk("lls15", "Cyclops", "Bass", 1, 4),
-  _llMk("lls16", "Darksiderz B2B Madgrrl", "Bass", 1, 4),
+  _llMk("lls13", "Craze B2B Dieselboy", "Trap", 1, 4),
+  _llMk("lls14", "Crumb Pit", "Bass", 2, 4),
+  _llMk("lls15", "Cyclops", "Dubstep", 1, 4),
+  _llMk("lls16", "Darksiderz B2B Madgrrl", "Hard Dance", 1, 4),
   _llMk("lls17", "Delta Heavy", "Drum & Bass", 2, 4),
-  _llMk("lls18", "Dirtyphonics", "Drum & Bass", 2, 4),
+  _llMk("lls18", "Dirtyphonics", "Dubstep", 2, 4),
   _llMk("lls19", "Dr. Fresch", "Bass House", 3, 4),
-  _llMk("lls20", "Effin", "Bass", 1, 4),
+  _llMk("lls20", "Effin", "Dubstep", 1, 4),
   _llMk("lls21", "Flosstradamus", "Trap", 3, 4),
   _llMk("lls22", "Flux Pavilion", "Dubstep", 3, 4),
   _llMk("lls23", "Ganja White Night", "Dubstep", 3, 4),
   _llMk("lls24", "GHENGAR", "Dubstep", 2, 4),
   _llMk("lls25", "Gladde Paling", "Bass", 1, 4),
   _llMk("lls26", "Green Matter", "Bass", 1, 4),
-  _llMk("lls27", "Hedex", "D&B / Jump-Up", 2, 4),
-  _llMk("lls28", "Heyz", "Dubstep / House", 2, 4),
+  _llMk("lls27", "Hedex", "Drum & Bass", 2, 4),
+  _llMk("lls28", "Heyz", "Dubstep", 2, 4),
   _llMk("lls29", "HVDES", "Bass", 1, 4),
   _llMk("lls30", "Illenium", "Melodic Bass", 3, 4),
   _llMk("lls31", "Imanu", "Drum & Bass", 2, 4),
-  _llMk("lls32", "Ivory", "Dubstep", 2, 4),
+  _llMk("lls32", "Ivory", "Bass", 2, 4),
   _llMk("lls33", "Jessica Audiffred", "Dubstep", 3, 4),
   _llMk("lls34", "Josh Teed", "Bass", 1, 4),
   _llMk("lls35", "Kai Wachi", "Dubstep", 3, 4),
   _llMk("lls36", "Layz", "Dubstep", 2, 4),
-  _llMk("lls37", "Leotrix", "Future Riddim", 2, 4),
-  _llMk("lls38", "Lil Texas", "Bass", 1, 4),
+  _llMk("lls37", "Leotrix", "Bass", 2, 4),
+  _llMk("lls38", "Lil Texas", "Hard Dance", 1, 4),
   _llMk("lls39", "Lowcation", "Bass", 1, 4),
   _llMk("lls40", "Mefjus + Daxta MC", "Drum & Bass", 2, 4),
-  _llMk("lls41", "Mozey", "Drum & Bass", 2, 4),
+  _llMk("lls41", "Mozey", "Bass", 2, 4),
   _llMk("lls42", "Myrias", "Bass", 1, 4),
   _llMk("lls43", "Mythm", "Bass", 1, 4),
   _llMk("lls44", "Neotek", "Bass", 1, 4),
   _llMk("lls45", "Noetika", "Bass", 1, 4),
-  _llMk("lls46", "Phaseone", "Metalstep", 2, 4),
-  _llMk("lls47", "Prosecute", "Dubstep", 2, 4),
+  _llMk("lls46", "Phaseone", "Dubstep", 2, 4),
+  _llMk("lls47", "Prosecute", "Bass", 2, 4),
   _llMk("lls48", "Saint Miller", "Bass", 2, 4),
   _llMk("lls49", "Seven Lions (Sunset Set)", "Melodic Bass", 3, 4),
   _llMk("lls50", "Slander", "Melodic Bass", 3, 4),
-  _llMk("lls51", "Space Wizard", "Bass", 1, 4),
+  _llMk("lls51", "Space Wizard", "Dubstep", 1, 4),
   _llMk("lls52", "Stoned Level", "Bass", 1, 4),
-  _llMk("lls53", "Subtronics B2B Level Up", "Riddim / Dubstep", 3, 4),
+  _llMk("lls53", "Subtronics B2B Level Up", "Dubstep", 3, 4),
   _llMk("lls54", "Tisoki", "Dubstep", 2, 4),
-  _llMk("lls55", "Tokyo Machine", "Electro House", 3, 4),
-  _llMk("lls56", "Truth", "Deep Dubstep", 2, 4),
-  _llMk("lls57", "Whales", "Bass", 1, 4),
-  _llMk("lls58", "Whethan", "Future Bass", 3, 4),
+  _llMk("lls55", "Tokyo Machine", "Bass", 3, 4),
+  _llMk("lls56", "Truth", "Dubstep", 2, 4),
+  _llMk("lls57", "Whales", "Dubstep", 1, 4),
+  _llMk("lls58", "Whethan", "Bass", 3, 4),
   _llMk("lls59", "Wraz", "Bass", 1, 4),
   _llMk("lls60", "Zingara", "Bass", 1, 4),
   _llMk("lls61", "Zomboy", "Dubstep", 3, 4),
+  // Moved at the flip: the poster had Reaper on Friday, the official app has
+  // him on Saturday night (Forest, 00:00). The id keeps its Friday prefix so
+  // any existing save still resolves.
+  _llMk("llf40", "Reaper", "Drum & Bass", 2, 4),
   // ── SUNDAY (day 5) ──
-  _llMk("llu1", "Adventure Club (Throwback Set)", "Melodic Dubstep", 2, 5),
+  _llMk("llu1", "Adventure Club (Throwback Set)", "Melodic Bass", 2, 5),
   _llMk("llu3", "Arlo", "Bass", 2, 5),
   _llMk("llu4", "Armnhmr", "Melodic Bass", 2, 5),
-  _llMk("llu5", "Atliens", "Bass", 2, 5),
-  _llMk("llu6", "Avello", "Bass", 1, 5),
-  _llMk("llu7", "Boogie T", "Bass", 1, 5),
-  _llMk("llu8", "Champagne Drip", "Space Bass", 2, 5),
-  _llMk("llu9", "Codd Dubz", "Bass", 1, 5),
-  _llMk("llu2", "Crankdat B2B Alleycvt", "Bass", 1, 5),
-  _llMk("llu10", "Crystal Skies", "Melodic Dubstep", 2, 5),
+  _llMk("llu5", "Atliens (Sunset Set)", "Dubstep", 2, 5),
+  _llMk("llu6", "Avello", "Dubstep", 1, 5),
+  _llMk("llu7", "Boogie T", "Dubstep", 1, 5),
+  _llMk("llu8", "Champagne Drip", "Bass", 2, 5),
+  _llMk("llu9", "Codd Dubz", "Dubstep", 1, 5),
+  _llMk("llu2", "Crankdat B2B Alleycvt", "Dubstep", 1, 5),
+  _llMk("llu10", "Crystal Skies", "Melodic Bass", 2, 5),
   _llMk("llu11", "Distant Matter", "Bass", 1, 5),
   _llMk("llu12", "Dream Takers", "Bass", 1, 5),
   _llMk("llu13", "Eptic B2B LYNY", "Dubstep", 3, 5),
-  _llMk("llu14", "Excision (Detox)", "Dubstep", 3, 5),
+  _llMk("llu14", "Excision (Detox Set)", "Dubstep", 3, 5),
   _llMk("llu15", "Excision B2B Space Laces", "Dubstep", 3, 5),
   _llMk("llu16", "FINNUH", "Bass", 1, 5),
-  _llMk("llu17", "Ghastly", "Bass", 2, 5),
-  _llMk("llu18", "Grabbitz", "Electronic / Rock", 3, 5),
+  _llMk("llu17", "Ghastly", "Bass House", 2, 5),
+  _llMk("llu18", "Grabbitz", "Bass", 3, 5),
   _llMk("llu19", "Haliene", "Melodic Bass", 2, 5),
   _llMk("llu20", "Hostage Situation", "Bass", 2, 5),
-  _llMk("llu21", "Hurtbox", "Riddim", 2, 5),
+  _llMk("llu21", "Hurtbox", "Bass", 2, 5),
   _llMk("llu22", "Killmatter", "Bass", 1, 5),
   _llMk("llu23", "Know Good", "Bass", 1, 5),
   _llMk("llu24", "Kompany", "Dubstep", 3, 5),
-  _llMk("llu25", "Krewella", "Electro / Bass", 3, 5),
-  _llMk("llu26", "Luci", "Pop / Electronic", 2, 5),
+  _llMk("llu25", "Krewella", "Bass", 3, 5),
+  _llMk("llu26", "Luci", "Bass", 2, 5),
   _llMk("llu27", "Mad Dubz", "Bass", 1, 5),
   _llMk("llu28", "Modal Nodes", "Bass", 1, 5),
   _llMk("llu29", "OG NIXIN", "Bass", 1, 5),
@@ -2529,23 +2733,25 @@ const LL_ARTISTS = [
   _llMk("llu33", "Remk", "Bass", 1, 5),
   _llMk("llu34", "ROI*", "Bass", 1, 5),
   _llMk("llu35", "Ryns", "Bass", 1, 5),
-  _llMk("llu36", "Sisto", "House", 2, 5),
+  _llMk("llu36", "Sisto", "Bass", 2, 5),
   _llMk("llu37", "Skilah", "Bass", 1, 5),
   _llMk("llu38", "Sodown", "Bass", 1, 5),
-  _llMk("llu39", "Sportmode", "House", 2, 5),
+  _llMk("llu39", "Sportmode", "Bass", 2, 5),
   _llMk("llu40", "SQISHI", "Bass", 1, 5),
-  _llMk("llu41", "Stumpi", "Bass", 1, 5),
-  _llMk("llu42", "Taiki Nulight", "Bass House", 2, 5),
+  _llMk("llu41", "Stumpi", "Bass House", 1, 5),
+  _llMk("llu42", "Taiki Nulight", "UK Bass", 2, 5),
   _llMk("llu43", "Trivecta", "Melodic Bass", 2, 5),
-  _llMk("llu44", "Usaybflow", "Riddim", 2, 5),
+  _llMk("llu44", "Usaybflow", "Bass", 2, 5),
   _llMk("llu45", "Virtual Riot", "Dubstep", 3, 5),
   _llMk("llu46", "Warlord", "Bass", 1, 5),
   _llMk("llu47", "Wax Motif", "Bass House", 2, 5),
   _llMk("llu48", "William Black", "Melodic Bass", 2, 5),
-  _llMk("llu49", "Wonkywilla", "Dubstep", 2, 5),
+  _llMk("llu49", "Wonkywilla", "Bass", 2, 5),
   _llMk("llu50", "Yetep", "Melodic Bass", 2, 5),
   _llMk("llu51", "YVM3", "Dubstep", 2, 5),
   _llMk("llu52", "Zoey808", "Bass", 1, 5),
+  // Added at the flip: in the official app schedule, not on the lineup poster.
+  _llMk("llu53", "Black Tiger Sex Machine (Unmasked)", "Bass", 2, 5),
 ];
 
 const LL_AMENITIES = [
