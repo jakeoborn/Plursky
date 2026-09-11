@@ -1901,8 +1901,20 @@ if (process.argv.includes("--parse-only")) process.exit(0);
       if (/preload=["']metadata["']/.test(rest)) bad.push(`${f}:${i + 1} <video preload="metadata">`);
     });
   }
+  // Poster extraction reads and decodes a whole clip, so in the library it runs
+  // only through the idle queue, never on tile mount (the import path makes
+  // posters before any tile exists and is the one other caller). Thumbnails
+  // stay lazy + async-decoded.
+  const sp = readFileSync(join(ROOT, "spotify.jsx"), "utf8");
+  const ens = (sp.match(/function _ensurePoster\([\s\S]*?\n}\n/) || [""])[0];
+  if (!ens) bad.push("spotify.jsx: _ensurePoster not found");
+  else if (!/_posterIdle\(async \(\) => \{[^}]*_videoPosterBlob\(/.test(ens) || (ens.match(/_videoPosterBlob\(/g) || []).length !== 1)
+    bad.push("spotify.jsx: _ensurePoster decodes a clip outside _posterIdle (a scroll would decode)");
+  const thumbImg = (sp.match(/function _ThumbMedia\([\s\S]*?<img [^>]*>/) || [""])[0];
+  if (!/loading="lazy"/.test(thumbImg) || !/decoding="async"/.test(thumbImg))
+    bad.push("spotify.jsx: _ThumbMedia <img> lost loading=\"lazy\" / decoding=\"async\"");
   if (bad.length) fail(`live <video> thumbnails are back (${bad.length}): ${bad.join(" · ")}`);
-  console.log(`  ✓ 0 poster-style <video> elements across the app's .jsx files`);
+  console.log(`  ✓ 0 poster-style <video> elements across the app's .jsx files; posters extract only via the idle queue; thumbnails lazy + async`);
 }
 
 // ── 2. Mount probe ─────────────────────────────────────────────────────────
