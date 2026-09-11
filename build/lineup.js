@@ -1123,6 +1123,324 @@ function LineupScreen({
       conflictById: _byId
     };
   }, [savedToday, ackedPairs]);
+  var gridLead = viewMode === "grid" && !(filter === "saved" && state.saved.length === 0);
+  React.useEffect(() => {
+    var g = viewMode === "grid";
+    setState(s => !!s.lineupGrid === g ? s : {
+      ...s,
+      lineupGrid: g
+    });
+  }, [viewMode]);
+  var searchRow = React.createElement("div", {
+    style: {
+      padding: gridLead ? "10px 12px 0" : "8px 16px 4px"
+    }
+  }, React.createElement("div", {
+    style: {
+      position: "relative",
+      display: "flex",
+      alignItems: "center"
+    }
+  }, React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      left: 12,
+      fontSize: 13,
+      color: "var(--muted)",
+      pointerEvents: "none"
+    }
+  }, "⌕"), React.createElement("input", {
+    value: q,
+    onChange: e => setQ(e.target.value),
+    placeholder: "Search artists, stages, genres…",
+    "aria-label": "Search the lineup",
+    style: {
+      width: "100%",
+      boxSizing: "border-box",
+      padding: "9px 34px 9px 32px",
+      borderRadius: 12,
+      border: "1px solid var(--line-2)",
+      background: "var(--paper-2)",
+      color: "var(--ink)",
+      fontSize: 14,
+      outline: "none",
+      fontFamily: "inherit"
+    }
+  }), q && React.createElement("button", {
+    onClick: () => setQ(""),
+    "aria-label": "Clear search",
+    style: {
+      position: "absolute",
+      right: 6,
+      width: 28,
+      height: 28,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      borderRadius: 999,
+      border: "none",
+      background: "transparent",
+      color: "var(--muted)",
+      fontSize: 16,
+      cursor: "pointer"
+    }
+  }, "×")));
+  var actionsRow = React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: gridLead ? "space-between" : "flex-end",
+      padding: gridLead ? "8px 12px 10px" : "10px 20px",
+      gap: 8
+    }
+  }, gridLead && React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 10,
+      letterSpacing: 1.2,
+      color: "var(--muted)"
+    }
+  }, dayArtists.length, " SETS"), React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 8
+    }
+  }, totalSaved >= 2 && React.createElement("button", {
+    onClick: () => setWizardOpen(true),
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 5,
+      background: dayStats.some(d => d.clashes > 0) ? "var(--ember)" : "var(--ink)",
+      color: "var(--paper)",
+      border: "none",
+      borderRadius: 999,
+      padding: "5px 12px",
+      cursor: "pointer",
+      fontFamily: "Geist Mono, monospace",
+      fontSize: 9,
+      letterSpacing: 1.2,
+      fontWeight: 700
+    }
+  }, dayStats.some(d => d.clashes > 0) ? "⚠" : "✦", " MY NIGHT"), state.saved.length > 0 && React.createElement(ShareLineupButton, {
+    state: state
+  }), React.createElement("button", {
+    onClick: () => {
+      var savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
+      var savedGenres = new Set(savedArtists.map(a => a.genre));
+      var unsaved = ARTISTS.filter(a => !state.saved.includes(a.id));
+      var pool = savedGenres.size ? unsaved.filter(a => savedGenres.has(a.genre)) : unsaved;
+      if (!(pool.length ? pool : unsaved).length) return;
+      var pick = (pool.length ? pool : unsaved)[Math.floor(Math.random() * (pool.length || unsaved.length))];
+      setState({
+        ...state,
+        artist: pick.id
+      });
+    },
+    className: "mono",
+    title: "Discover a random artist that matches your taste",
+    style: {
+      padding: "5px 10px",
+      borderRadius: 999,
+      background: "var(--horizon)",
+      color: "#fff",
+      border: "none",
+      fontSize: 9,
+      letterSpacing: 1.2,
+      fontWeight: 700,
+      cursor: "pointer",
+      whiteSpace: "nowrap"
+    }
+  }, "✦ SURPRISE"), !gridLead && React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 10,
+      letterSpacing: 1.2,
+      color: "var(--muted)"
+    }
+  }, dayArtists.length, " SETS")));
+  var conflictCard = conflicts.length > 0 && filter !== "all" ? React.createElement(ConflictResolver, {
+    conflicts: conflicts,
+    onKeep: (keepId, dropId) => {
+      setState({
+        ...state,
+        saved: state.saved.filter(id => id !== dropId)
+      });
+    },
+    onKeepBoth: pair => ackPair(pair[0].id, pair[1].id),
+    onSplit: pair => setState({
+      ...state,
+      tab: "map",
+      focusStage: pair[0].stage
+    })
+  }) : null;
+  var vibeCard = stageFilter !== "all" ? (() => {
+    var stage = STAGES.find(s => s.id === stageFilter);
+    if (!stage?.vibe) return null;
+    return React.createElement("div", {
+      style: {
+        margin: gridLead ? "0 12px 10px" : "0 16px 10px",
+        padding: "10px 12px",
+        borderRadius: 12,
+        borderLeft: `3px solid ${stage.color}`,
+        background: `${stage.color}12`
+      }
+    }, React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        marginBottom: stage.vibeNote ? 5 : 0
+      }
+    }, React.createElement("span", {
+      className: "mono",
+      style: {
+        fontSize: 9,
+        letterSpacing: 1.2,
+        fontWeight: 800,
+        color: stage.color,
+        textTransform: "uppercase"
+      }
+    }, stage.vibe), stage.peak && React.createElement("span", {
+      className: "mono",
+      style: {
+        fontSize: 8,
+        letterSpacing: 1,
+        color: "var(--muted)",
+        fontWeight: 600
+      }
+    }, "· PEAKS ", stage.peak), stage.desc && React.createElement("span", {
+      className: "mono",
+      style: {
+        fontSize: 8,
+        letterSpacing: 0.9,
+        color: "var(--muted)",
+        marginLeft: "auto"
+      }
+    }, stage.desc.toUpperCase())), stage.vibeNote && React.createElement("div", {
+      style: {
+        fontSize: 12,
+        lineHeight: 1.4,
+        color: "var(--ink)",
+        fontStyle: "italic"
+      }
+    }, stage.vibeNote));
+  })() : null;
+  var saveDayCard = savedToday.length === 0 ? (() => {
+    var dayTopPicks = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
+    if (dayTopPicks.length === 0) return null;
+    var dayLabel = DAYS.find(d => d.n === day)?.label || `Day ${day}`;
+    var topPickIds = dayTopPicks.map(a => a.id);
+    var save = () => setState(s => ({
+      ...s,
+      saved: [...new Set([...s.saved, ...topPickIds])]
+    }));
+    if (gridLead) return React.createElement("button", {
+      "data-save-day": true,
+      onClick: save,
+      style: {
+        width: "calc(100% - 24px)",
+        margin: "0 12px 10px",
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        minHeight: 44,
+        background: "transparent",
+        color: "var(--ember-ink)",
+        border: "1px solid var(--ember)",
+        borderRadius: 12,
+        padding: "8px 12px",
+        cursor: "pointer",
+        textAlign: "left",
+        fontFamily: "inherit"
+      }
+    }, React.createElement("span", {
+      "aria-hidden": "true",
+      style: {
+        fontSize: 14,
+        flexShrink: 0
+      }
+    }, "✦"), React.createElement("span", {
+      style: {
+        flex: 1,
+        minWidth: 0,
+        fontSize: 13,
+        fontWeight: 600,
+        color: "var(--ink)"
+      }
+    }, "Save all top picks for ", dayLabel), React.createElement("span", {
+      className: "mono",
+      style: {
+        fontSize: 9,
+        letterSpacing: 1.2,
+        fontWeight: 800,
+        flexShrink: 0
+      }
+    }, "+", dayTopPicks.length, " · SAVE"));
+    return React.createElement("button", {
+      onClick: save,
+      style: {
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        background: "var(--ember)",
+        color: "#fff",
+        border: "none",
+        borderRadius: 14,
+        padding: "13px 16px",
+        margin: "12px 0 14px",
+        cursor: "pointer",
+        textAlign: "left",
+        boxShadow: "0 4px 16px rgba(232,93,46,0.30)",
+        fontFamily: "inherit"
+      }
+    }, React.createElement("span", {
+      style: {
+        flexShrink: 0,
+        width: 38,
+        height: 38,
+        borderRadius: 999,
+        background: "rgba(255,255,255,0.18)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: 18,
+        lineHeight: 1
+      }
+    }, "✦"), React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, React.createElement("div", {
+      className: "serif",
+      style: {
+        fontSize: 18,
+        lineHeight: 1.05,
+        color: "#fff"
+      }
+    }, "Save all top picks for ", dayLabel), React.createElement("div", {
+      className: "mono",
+      style: {
+        fontSize: 10,
+        letterSpacing: 1.2,
+        marginTop: 3,
+        opacity: 0.9,
+        fontWeight: 700
+      }
+    }, "+", dayTopPicks.length, " SETS · TAP TO ADD")), React.createElement("span", {
+      className: "mono",
+      style: {
+        fontSize: 10,
+        letterSpacing: 1.3,
+        fontWeight: 800,
+        flexShrink: 0
+      }
+    }, "SAVE →"));
+  })() : null;
   return React.createElement(Screen, {
     bg: "var(--paper)"
   }, React.createElement("div", {
@@ -1407,197 +1725,11 @@ function LineupScreen({
       fontWeight: 700,
       whiteSpace: "nowrap"
     }
-  }, "SORT: ", sortBy.toUpperCase())), React.createElement("div", {
-    style: {
-      padding: "8px 16px 4px"
-    }
-  }, React.createElement("div", {
-    style: {
-      position: "relative",
-      display: "flex",
-      alignItems: "center"
-    }
-  }, React.createElement("span", {
-    "aria-hidden": "true",
-    style: {
-      position: "absolute",
-      left: 12,
-      fontSize: 13,
-      color: "var(--muted)",
-      pointerEvents: "none"
-    }
-  }, "⌕"), React.createElement("input", {
-    value: q,
-    onChange: e => setQ(e.target.value),
-    placeholder: "Search artists, stages, genres…",
-    "aria-label": "Search the lineup",
-    style: {
-      width: "100%",
-      boxSizing: "border-box",
-      padding: "9px 34px 9px 32px",
-      borderRadius: 12,
-      border: "1px solid var(--line-2)",
-      background: "var(--paper-2)",
-      color: "var(--ink)",
-      fontSize: 14,
-      outline: "none",
-      fontFamily: "inherit"
-    }
-  }), q && React.createElement("button", {
-    onClick: () => setQ(""),
-    "aria-label": "Clear search",
-    style: {
-      position: "absolute",
-      right: 6,
-      width: 28,
-      height: 28,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      borderRadius: 999,
-      border: "none",
-      background: "transparent",
-      color: "var(--muted)",
-      fontSize: 16,
-      cursor: "pointer"
-    }
-  }, "×"))), React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-end",
-      padding: "10px 20px",
-      gap: 8
-    }
-  }, React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 8
-    }
-  }, totalSaved >= 2 && React.createElement("button", {
-    onClick: () => setWizardOpen(true),
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 5,
-      background: dayStats.some(d => d.clashes > 0) ? "var(--ember)" : "var(--ink)",
-      color: "var(--paper)",
-      border: "none",
-      borderRadius: 999,
-      padding: "5px 12px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700
-    }
-  }, dayStats.some(d => d.clashes > 0) ? "⚠" : "✦", " MY NIGHT"), state.saved.length > 0 && React.createElement(ShareLineupButton, {
-    state: state
-  }), React.createElement("button", {
-    onClick: () => {
-      var savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
-      var savedGenres = new Set(savedArtists.map(a => a.genre));
-      var unsaved = ARTISTS.filter(a => !state.saved.includes(a.id));
-      var pool = savedGenres.size ? unsaved.filter(a => savedGenres.has(a.genre)) : unsaved;
-      if (!(pool.length ? pool : unsaved).length) return;
-      var pick = (pool.length ? pool : unsaved)[Math.floor(Math.random() * (pool.length || unsaved.length))];
-      setState({
-        ...state,
-        artist: pick.id
-      });
-    },
-    className: "mono",
-    title: "Discover a random artist that matches your taste",
-    style: {
-      padding: "5px 10px",
-      borderRadius: 999,
-      background: "var(--horizon)",
-      color: "#fff",
-      border: "none",
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      cursor: "pointer",
-      whiteSpace: "nowrap"
-    }
-  }, "✦ SURPRISE"), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 10,
-      letterSpacing: 1.2,
-      color: "var(--muted)"
-    }
-  }, dayArtists.length, " SETS"))), wizardOpen && React.createElement(NightWizard, {
+  }, "SORT: ", sortBy.toUpperCase())), !gridLead && searchRow, !gridLead && actionsRow, wizardOpen && React.createElement(NightWizard, {
     state: state,
     setState: setState,
     onClose: () => setWizardOpen(false)
-  }), conflicts.length > 0 && filter !== "all" && React.createElement(ConflictResolver, {
-    conflicts: conflicts,
-    onKeep: (keepId, dropId) => {
-      setState({
-        ...state,
-        saved: state.saved.filter(id => id !== dropId)
-      });
-    },
-    onKeepBoth: pair => ackPair(pair[0].id, pair[1].id),
-    onSplit: pair => setState({
-      ...state,
-      tab: "map",
-      focusStage: pair[0].stage
-    })
-  }), stageFilter !== "all" && (() => {
-    var stage = STAGES.find(s => s.id === stageFilter);
-    if (!stage?.vibe) return null;
-    return React.createElement("div", {
-      style: {
-        margin: "0 16px 10px",
-        padding: "10px 12px",
-        borderRadius: 12,
-        borderLeft: `3px solid ${stage.color}`,
-        background: `${stage.color}12`
-      }
-    }, React.createElement("div", {
-      style: {
-        display: "flex",
-        alignItems: "center",
-        gap: 8,
-        marginBottom: stage.vibeNote ? 5 : 0
-      }
-    }, React.createElement("span", {
-      className: "mono",
-      style: {
-        fontSize: 9,
-        letterSpacing: 1.2,
-        fontWeight: 800,
-        color: stage.color,
-        textTransform: "uppercase"
-      }
-    }, stage.vibe), stage.peak && React.createElement("span", {
-      className: "mono",
-      style: {
-        fontSize: 8,
-        letterSpacing: 1,
-        color: "var(--muted)",
-        fontWeight: 600
-      }
-    }, "· PEAKS ", stage.peak), stage.desc && React.createElement("span", {
-      className: "mono",
-      style: {
-        fontSize: 8,
-        letterSpacing: 0.9,
-        color: "var(--muted)",
-        marginLeft: "auto"
-      }
-    }, stage.desc.toUpperCase())), stage.vibeNote && React.createElement("div", {
-      style: {
-        fontSize: 12,
-        lineHeight: 1.4,
-        color: "var(--ink)",
-        fontStyle: "italic"
-      }
-    }, stage.vibeNote));
-  })(), React.createElement(ScrollBody, {
+  }), !gridLead && conflictCard, !gridLead && vibeCard, React.createElement(ScrollBody, {
     "data-lineup-scroll": true,
     ref: useStaggerFade(`${day}-${viewMode}-${filter}-${stageFilter}-${tierFilter}-${genreFilter}-${sortBy}-${weekendFilter}`),
     style: viewMode === "grid" ? {
@@ -1608,76 +1740,7 @@ function LineupScreen({
     } : {
       padding: "0 16px 90px"
     }
-  }, savedToday.length === 0 && (() => {
-    var dayTopPicks = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
-    if (dayTopPicks.length === 0) return null;
-    var dayLabel = DAYS.find(d => d.n === day)?.label || `Day ${day}`;
-    var topPickIds = dayTopPicks.map(a => a.id);
-    return React.createElement("button", {
-      onClick: () => setState(s => ({
-        ...s,
-        saved: [...new Set([...s.saved, ...topPickIds])]
-      })),
-      style: {
-        width: viewMode === "grid" ? "calc(100% - 32px)" : "100%",
-        display: "flex",
-        alignItems: "center",
-        gap: 12,
-        background: "var(--ember)",
-        color: "#fff",
-        border: "none",
-        borderRadius: 14,
-        padding: "13px 16px",
-        margin: viewMode === "grid" ? "12px 16px 14px" : "12px 0 14px",
-        cursor: "pointer",
-        textAlign: "left",
-        boxShadow: "0 4px 16px rgba(232,93,46,0.30)",
-        fontFamily: "inherit"
-      }
-    }, React.createElement("span", {
-      style: {
-        flexShrink: 0,
-        width: 38,
-        height: 38,
-        borderRadius: 999,
-        background: "rgba(255,255,255,0.18)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontSize: 18,
-        lineHeight: 1
-      }
-    }, "✦"), React.createElement("div", {
-      style: {
-        flex: 1,
-        minWidth: 0
-      }
-    }, React.createElement("div", {
-      className: "serif",
-      style: {
-        fontSize: 18,
-        lineHeight: 1.05,
-        color: "#fff"
-      }
-    }, "Save all top picks for ", dayLabel), React.createElement("div", {
-      className: "mono",
-      style: {
-        fontSize: 10,
-        letterSpacing: 1.2,
-        marginTop: 3,
-        opacity: 0.9,
-        fontWeight: 700
-      }
-    }, "+", dayTopPicks.length, " SETS · TAP TO ADD")), React.createElement("span", {
-      className: "mono",
-      style: {
-        fontSize: 10,
-        letterSpacing: 1.3,
-        fontWeight: 800,
-        flexShrink: 0
-      }
-    }, "SAVE →"));
-  })(), viewMode === "grid" && !(filter === "saved" && state.saved.length === 0) && (() => {
+  }, !gridLead && saveDayCard, gridLead && (() => {
     var dayMeta = DAYS.find(x => x.n === day);
     var dayArt = lineupFor(weekendFilter).filter(a => a.day === day).filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both");
     return React.createElement("div", {
@@ -1698,6 +1761,7 @@ function LineupScreen({
         minHeight: 0
       }
     }, React.createElement(TimelineGrid, {
+      lead: React.createElement(React.Fragment, null, searchRow, actionsRow, conflictCard, vibeCard, saveDayCard),
       day: day,
       allDayArtists: dayArt,
       state: state,
@@ -2094,7 +2158,8 @@ function LineupScreen({
       var el = document.querySelector("[data-grid-scroll]");
       var nowMin = toNightMin(NOW.time);
       if (el && nowMin >= GRID_START_MIN && nowMin <= GRID_END_MIN) {
-        var top = (nowMin - GRID_START_MIN) * GRID_PX_PER_MIN - 120;
+        var lead = el.querySelector("[data-grid-lead]");
+        var top = (lead ? lead.offsetHeight : 0) + (nowMin - GRID_START_MIN) * GRID_PX_PER_MIN - 120;
         el.scrollTo({
           top: Math.max(0, top),
           behavior: "smooth"
@@ -2103,7 +2168,7 @@ function LineupScreen({
     },
     style: {
       position: "absolute",
-      bottom: 80,
+      bottom: 16,
       right: 16,
       zIndex: 8,
       background: "var(--ember)",
@@ -2911,6 +2976,7 @@ function GridHourLines({
   }));
 }
 function TimelineGrid({
+  lead,
   day,
   allDayArtists,
   state,
@@ -2925,6 +2991,7 @@ function TimelineGrid({
   var TOTAL_H = GRID_TOTAL_H;
   var minToTop = _minToTop;
   var scrollRef = React.useRef(null);
+  var leadRef = React.useRef(null);
   var _blockRefs = React.useRef({});
   var HOURS = [];
   for (var h = Math.floor(GRID_START_MIN / 60); h <= Math.floor(GRID_END_MIN / 60); h++) {
@@ -2990,7 +3057,7 @@ function TimelineGrid({
     didInit.current = true;
     var target = due ? toNightMin(ARTISTS.find(a => a.id === due.id)?.start || 0) : nowMin;
     if (target != null && target >= GRID_START_MIN && target <= GRID_END_MIN) {
-      el.scrollTop = Math.max(0, HEAD_H + minToTop(target) - 100);
+      el.scrollTop = Math.max(0, (leadRef.current ? leadRef.current.offsetHeight : 0) + HEAD_H + minToTop(target) - 100);
     }
     if (due) {
       var i = cols.findIndex(c => c.stage.id === due.stageId);
@@ -3002,7 +3069,7 @@ function TimelineGrid({
     for (var a of allDayArtists) if (state.saved.includes(a.id)) m[a.stage] = (m[a.stage] || 0) + 1;
     return m;
   }, [allDayArtists, state.saved]);
-  if (!cols.length) return null;
+  if (!cols.length && !lead) return null;
   return (React.createElement("div", {
       style: {
         flex: 1,
@@ -3025,7 +3092,16 @@ function TimelineGrid({
         minWidth: GUTTER_W + cols.length * COL_W,
         position: "relative"
       }
-    }, React.createElement("div", {
+    }, lead && React.createElement("div", {
+      ref: leadRef,
+      "data-grid-lead": true,
+      style: {
+        position: "sticky",
+        left: 0,
+        width: boxW,
+        background: "var(--paper)"
+      }
+    }, lead), cols.length > 0 ? React.createElement(React.Fragment, null, React.createElement("div", {
       style: {
         display: "flex",
         position: "sticky",
@@ -3050,6 +3126,7 @@ function TimelineGrid({
       var n = savedByStage[s.id] || 0;
       return React.createElement("button", {
         key: s.id,
+        "data-stage-head": s.id,
         onClick: () => {
           try {
             window.plurskyHaptic?.("LIGHT");
@@ -3074,8 +3151,8 @@ function TimelineGrid({
           alignItems: "center",
           justifyContent: "center",
           gap: 4,
-          fontSize: 9,
-          letterSpacing: 1,
+          fontSize: 10,
+          letterSpacing: 1.1,
           fontWeight: 800,
           fontFamily: "inherit"
         }
@@ -3212,7 +3289,19 @@ function TimelineGrid({
         zIndex: 3,
         pointerEvents: "none"
       }
-    })))))
+    }))) : React.createElement("div", {
+      className: "mono",
+      style: {
+        position: "sticky",
+        left: 0,
+        width: boxW,
+        padding: "28px 16px",
+        textAlign: "center",
+        fontSize: 10,
+        letterSpacing: 1.2,
+        color: "var(--muted)"
+      }
+    }, "NO SETS ON THIS DAY"))))
   );
 }
 function ConflictResolver({
