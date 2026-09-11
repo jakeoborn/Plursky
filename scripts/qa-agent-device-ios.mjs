@@ -143,7 +143,11 @@ async function finishOnboardingIfPresent() {
 
   const nameInput = findNode(first.snap, /What should we call you/i);
   if (!nameInput?.ref) throw Object.assign(new Error("onboarding name input has no interactive ref"), { finalState: "FAIL_UI_REGRESSION" });
-  await client.interactions.fill({ ref: nameInput.ref, text: "QA User", verify: true });
+  // Raw snapshots expose bare element IDs; client interactions use the wire
+  // ref form (`@e…`). Press happened to normalize bare refs, but fill's
+  // positional grammar requires the marker explicitly.
+  const nameRef = nameInput.ref.startsWith("@") ? nameInput.ref : `@${nameInput.ref}`;
+  await client.interactions.fill({ ref: nameRef, text: "QA User", verify: true });
   await press(/CONTINUE AS QA USER|CONTINUE/i, "onboarding-continue");
   await waitForSnapshot(/CONNECT SPOTIFY/i, { name: "snapshot-onboarding-spotify.txt", interactiveOnly: true });
   await press(/^SKIP$/i, "onboarding-skip-spotify");
