@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v308';
+﻿const CACHE      = 'plursky-v309';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v308';
+const APP_VER    = 'v309';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -95,8 +95,13 @@ const CDN_HOSTS = ['cdn.jsdelivr.net', 'unpkg.com', 'fonts.googleapis.com', 'fon
 const TILE_HOSTS = ['tiles.openfreemap.org', 'server.arcgisonline.com'];
 
 // Never intercept live API calls â€” let them fail naturally when offline.
+// An offline-pack download (map.jsx, marked plursky-pack=1) passes through
+// too: the pack keeps its own copy in IndexedDB, and letting this worker also
+// file its tiles in TILE_CACHE and MapLibre in the app cache would change the
+// active festival's cache for another festival's download.
 function isPassThrough(url) {
-  return url.includes('accounts.spotify.com') ||
+  return url.includes('plursky-pack=1')         ||
+         url.includes('accounts.spotify.com') ||
          url.includes('api.spotify.com')       ||
          url.includes('api.music.apple.com')   ||
          url.includes('anthropic.com')          ||
