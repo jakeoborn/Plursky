@@ -811,6 +811,8 @@ function LineupScreen({ state, setState }) {
   // v141: pairs the user has explicitly "kept both" on — we still show them
   // as conflicts in the per-card ⚠ chip (information stays available) but
   // skip them in the top-level ConflictResolver card so it stops nagging.
+  const [syncOpen, setSyncOpen] = React.useState(false);
+  const hasFeed = FESTIVALS_REGISTRY.some(e => e.available && e.config.id === FESTIVAL_CONFIG.id);
   const CONFLICT_ACK_KEY = "plursky_conflicts_kept_both_v1";
   const _pairKey = (idA, idB) => [idA, idB].sort().join("|");
   const [ackedPairs, setAckedPairs] = React.useState(() => {
@@ -876,6 +878,13 @@ function LineupScreen({ state, setState }) {
         <div style={{ flex: 1 }}>
           <TopBar title={<span>Lineup</span>} sub={`${FESTIVAL_CONFIG.brand.toUpperCase()} · ${FESTIVAL_CONFIG.dates.toUpperCase()}`} tight />
         </div>
+        {hasFeed && (
+          <button data-sched-check onClick={() => setSyncOpen(true)} aria-label="Check for schedule changes" style={{
+            minHeight: 32, padding: "0 11px", borderRadius: 999, flexShrink: 0, cursor: "pointer",
+            background: "transparent", border: "1px solid var(--line-2)", color: "var(--ink)",
+            fontFamily: "'Geist Mono', monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+          }}>↻ UPDATES</button>
+        )}
       </div>
 
       {/* Day tabs — now with per-day saved + conflict badges baked in so a
@@ -1510,7 +1519,167 @@ function LineupScreen({ state, setState }) {
           }}
         />
       )}
+      {syncOpen && <ScheduleReviewSheet saved={state.saved || []} onClose={() => setSyncOpen(false)} />}
     </Screen>
+  );
+}
+
+// ── Schedule Sync: check the published schedule, review, confirm ──────────
+// Nothing about the lineup, the plan or reminders changes before APPLY
+// UPDATE. Rows read against the lineup as it stands now; applying stores the
+// overlay (data.jsx applyScheduleReview) and reloads, which is how reminders
+// and every other read pick the new schedule up.
+function _schedSlotText(slot, cfg) {
+  if (!slot) return "";
+  const d = cfg.dayDates && cfg.dayDates[slot.day];
+  const st = slot.stage && STAGES.find(s => s.id === slot.stage);
+  const wk = slot.weekend && slot.weekend !== "both" ? `${slot.weekend} · ` : "";
+  return `${wk}${d ? d.short : `DAY ${slot.day}`} · ${slot.start ? fmt12(slot.start) : "time TBA"} · ${st ? st.name : "stage TBA"}`;
+}
+function _schedObserved(src) {
+  const m = /^(\d{4})-(\d{2})(?:-(\d{2}))?/.exec((src && src.observedAt) || "");
+  if (!m) return "";
+  const mon = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+m[2] - 1];
+  return m[3] ? `${mon} ${+m[3]}` : `${mon} ${m[1]}`;
+}
+function ScheduleReviewSheet({ saved, onClose }) {
+  const cfg = FESTIVAL_CONFIG, fid = cfg.id;
+  const { perm } = useNotifications();
+  const [st, setSt] = React.useState({ phase: "checking" });
+  const [showAll, setShowAll] = React.useState(false);
+  const check = React.useCallback(() => {
+    setSt({ phase: "checking" });
+    fetchScheduleFeed(fid).then(feed => {
+      const r = scheduleReview(fid, feed, { saved, remindersOn: perm === "granted", leadMin: getReminderLeadMin() });
+      setSt(r.error ? { phase: "error" } : { phase: r.upToDate ? "current" : "ready", r });
+    }, () => setSt({ phase: "error" }));
+  }, [fid, perm]);
+  React.useEffect(() => { check(); }, [check]);
+  const apply = () => {
+    const next = applyScheduleReview(st.r, saved);
+    try { localStorage.setItem(`${fid}_saved_v1`, JSON.stringify(next)); } catch {}
+    window.location.reload();
+  };
+
+  const r = st.r;
+  const mono = { fontFamily: "'Geist Mono', monospace", letterSpacing: 1.2, fontWeight: 700 };
+  const btn = (label, onClick, primary) => (
+    <button key={label} onClick={onClick} style={{
+      ...mono, fontSize: 10, minHeight: 40, padding: "0 16px", borderRadius: 999, flexShrink: 0, cursor: "pointer",
+      border: primary ? "none" : "1px solid var(--line-2)",
+      background: primary ? "var(--ink)" : "transparent", color: primary ? "var(--paper)" : "var(--ink)",
+    }}>{label}</button>
+  );
+  const tz = cfg.tz;
+  const clock = ms => new Date(ms).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", ...(tz ? { timeZone: tz } : {}) });
+  const KIND = { day: "DAY", stage: "STAGE", start: "TIME", end: "END", weekend: "WEEKEND", cancelled: "CANCELLED", added: "NEW" };
+  const row = (c, notes = []) => (
+    <div key={c.id} data-sched-change={c.id} data-sched-kinds={c.kinds.join(",")} style={{ padding: "10px 0", borderTop: "1px solid var(--line)" }}>
+      <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+        <div style={{ flex: 1, minWidth: 0, fontSize: 14, fontWeight: 600, color: "var(--ink)", overflowWrap: "anywhere" }}>{c.name}</div>
+        <div style={{ ...mono, fontSize: 8, flexShrink: 0, color: c.after ? "var(--muted)" : "var(--ember-ink)" }}>{c.kinds.map(k => KIND[k]).join(" · ")}</div>
+      </div>
+      {c.before && <div style={{ fontSize: 12, color: "var(--ink)", opacity: 0.5, marginTop: 2, textDecoration: c.after ? "line-through" : "none" }}>{_schedSlotText(c.before, cfg)}</div>}
+      {c.after && <div style={{ fontSize: 12, color: "var(--ink)", marginTop: 2 }}>{c.before ? "→ " : ""}{_schedSlotText(c.after, cfg)}</div>}
+      {notes.map((n, i) => <div key={i} data-sched-note style={{ fontSize: 11, color: "var(--ember-ink)", marginTop: 3, lineHeight: 1.35 }}>{n}</div>)}
+    </div>
+  );
+  const head = (label, n) => (
+    <div style={{ ...mono, fontSize: 9, color: "var(--muted)", marginTop: 16, marginBottom: 2 }}>{label}{n != null ? ` · ${n}` : ""}</div>
+  );
+  const notesFor = c => {
+    const out = [];
+    if (!c.after) out.push("Cancelled, so it comes out of your plan.");
+    for (const [a, b] of r.clashes) if (a.id === c.id || b.id === c.id) out.push(`Now clashes with ${(a.id === c.id ? b : a).name}.`);
+    const rem = r.reminders.find(x => x.id === c.id);
+    if (rem) out.push(rem.to == null ? "Its reminder is cancelled." : rem.from == null ? `New reminder at ${clock(rem.to)}.` : `Reminder moves to ${clock(rem.to)}.`);
+    return out;
+  };
+  const src = r && r.source, observed = _schedObserved(src);
+  let host = "";
+  try { host = src && src.url ? new URL(src.url).hostname.replace(/^www\./, "") : ""; } catch {}
+  const basis = src ? [src.official ? "Official schedule" : `Source: ${host || "community"}`, observed && `observed ${observed}`].filter(Boolean).join(" · ") : "";
+  const others = r && !r.upToDate ? r.shown.changes.filter(c => !saved.includes(c.id)) : [];
+  const counts = r && r.shown.counts;
+  const moved = r ? r.shown.changes.filter(c => c.before && c.after).length : 0;
+
+  let title, body, actions;
+  if (st.phase === "checking") {
+    title = "Checking the published schedule…";
+    actions = [btn("CLOSE", onClose)];
+  } else if (st.phase === "error") {
+    title = "Couldn't reach the schedule";
+    body = <div style={{ fontSize: 13, color: "var(--ink)", opacity: 0.7, marginTop: 6, lineHeight: 1.45 }}>Check your connection and try again. Your lineup hasn't changed.</div>;
+    actions = [btn("CLOSE", onClose), btn("RETRY", check, true)];
+  } else if (st.phase === "current") {
+    title = "You have the latest schedule";
+    actions = [btn("DONE", onClose, true)];
+  } else {
+    const n = r.shown.changes.length;
+    title = `${n} change${n === 1 ? "" : "s"} to the ${cfg.shortName || cfg.brand} schedule`;
+    body = (
+      <>
+        <div data-sched-counts style={{ fontSize: 12, color: "var(--ink)", opacity: 0.7, marginTop: 4 }}>
+          {[moved && `${moved} moved`, counts.cancelled && `${counts.cancelled} cancelled`, counts.added && `${counts.added} added`].filter(Boolean).join(" · ")}
+        </div>
+        <div data-sched-section="plan">
+          {head("YOUR PLAN", r.savedChanges.length)}
+          {r.savedChanges.length ? r.savedChanges.map(c => row(c, notesFor(c)))
+            : <div style={{ fontSize: 12, color: "var(--ink)", opacity: 0.6, padding: "8px 0", borderTop: "1px solid var(--line)" }}>None of your saved sets change.</div>}
+        </div>
+        {r.clashes.length > 0 && (
+          <div data-sched-section="clashes">
+            {head("NEW CLASHES", r.clashes.length)}
+            {r.clashes.map(([a, b]) => (
+              <div key={a.id + b.id} data-sched-clash={`${a.id}|${b.id}`} style={{ padding: "9px 0", borderTop: "1px solid var(--line)", fontSize: 13, color: "var(--ink)", lineHeight: 1.4 }}>
+                <b>{a.name}</b> and <b>{b.name}</b> overlap
+                <div style={{ fontSize: 11, opacity: 0.55 }}>
+                  {(cfg.dayDates && cfg.dayDates[a.day] ? cfg.dayDates[a.day].short : `DAY ${a.day}`)} · {fmt12(a.start)}–{fmt12(a.end)} and {fmt12(b.start)}–{fmt12(b.end)}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        {others.length > 0 && (
+          <div data-sched-section="other">
+            {head("OTHER CHANGES", others.length)}
+            {(showAll ? others : others.slice(0, 6)).map(c => row(c))}
+            {!showAll && others.length > 6 && (
+              <button onClick={() => setShowAll(true)} style={{ ...mono, fontSize: 9, background: "none", border: "none", color: "var(--ember-ink)", padding: "8px 0", cursor: "pointer" }}>SHOW ALL {others.length}</button>
+            )}
+          </div>
+        )}
+      </>
+    );
+    actions = [btn("NOT NOW", onClose), btn("APPLY UPDATE", apply, true)];
+  }
+
+  return ReactDOM.createPortal(
+    <div onClick={onClose} style={{
+      position: "fixed", inset: 0, zIndex: 9000, background: "rgba(0,0,0,0.45)",
+      display: "flex", alignItems: "flex-end", justifyContent: "center",
+    }}>
+      <div role="dialog" aria-modal="true" aria-label="Schedule update" data-sched-phase={st.phase} onClick={e => e.stopPropagation()} style={{
+        width: "100%", maxWidth: 480, maxHeight: "86vh", boxSizing: "border-box", display: "flex", flexDirection: "column",
+        background: "var(--paper)", borderRadius: "18px 18px 0 0",
+      }}>
+        <div style={{ overflowY: "auto", padding: "16px 18px 8px" }}>
+          <div style={{ ...mono, fontSize: 9, color: "var(--ember-ink)" }}>SCHEDULE UPDATE</div>
+          <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 22, color: "var(--ink)", marginTop: 3, lineHeight: 1.15 }}>{title}</div>
+          {basis && <div data-sched-basis style={{ fontSize: 11, color: "var(--ink)", opacity: 0.5, marginTop: 4 }}>{basis}</div>}
+          {body}
+        </div>
+        <div style={{ padding: "10px 18px calc(14px + env(safe-area-inset-bottom))", borderTop: "1px solid var(--line)" }}>
+          {st.phase === "ready" && (
+            <div style={{ fontSize: 11, color: "var(--ink)", opacity: 0.55, marginBottom: 8, lineHeight: 1.4 }}>
+              Nothing changes until you apply. Your saved sets and reminders then follow the new times.
+            </div>
+          )}
+          <div style={{ display: "flex", gap: 8, justifyContent: "flex-end" }}>{actions}</div>
+        </div>
+      </div>
+    </div>,
+    document.body
   );
 }
 

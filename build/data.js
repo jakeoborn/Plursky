@@ -1404,6 +1404,174 @@ function applyScheduleDiff(acts, diff) {
   }
   return out;
 }
+var _SCHED_OVERLAY_KEY = "plursky_schedule_overlay_v1";
+function _scheduleFeedUrl(fid) {
+  var own = typeof location !== "undefined" && /^https?:$/.test(location.protocol);
+  return (own ? "" : "https://plursky.com/") + `f/${fid}/schedule.json`;
+}
+async function fetchScheduleFeed(fid) {
+  var r = await fetch(_scheduleFeedUrl(fid), {
+    cache: "no-store"
+  });
+  if (!r.ok) throw new Error(`${r.status}`);
+  return r.json();
+}
+function _schedFingerprint(acts) {
+  var s = JSON.stringify(acts);
+  var h = 0x811c9dc5;
+  for (var i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return (h >>> 0).toString(16).padStart(8, "0") + ":" + s.length;
+}
+function _schedOverlays() {
+  try {
+    var o = JSON.parse(localStorage.getItem(_SCHED_OVERLAY_KEY) || "{}");
+    return o && typeof o === "object" ? o : {};
+  } catch {
+    return {};
+  }
+}
+function _schedOverlaysWrite(o) {
+  try {
+    if (Object.keys(o).length) localStorage.setItem(_SCHED_OVERLAY_KEY, JSON.stringify(o));else localStorage.removeItem(_SCHED_OVERLAY_KEY);
+  } catch {}
+}
+function _schedFill(a, artists) {
+  if (a.genre != null) return a;
+  var low = (artists || []).reduce((m, x) => m == null || x.tier > m.tier ? x : m, null) || {};
+  return {
+    genre: "",
+    country: "—",
+    tier: low.tier ?? 3,
+    img: low.img || "linear-gradient(135deg, #3a3a3a, #111)",
+    bio: "",
+    ...a
+  };
+}
+function _applyScheduleOverlays(sets) {
+  var all = _schedOverlays();
+  var dirty = false;
+  var _loop2 = function () {
+    var ds = sets[fid],
+      ov = all[fid];
+    if (!ds || !ov || !ov.diff || ov.base !== _schedFingerprint(_scheduleActs(ds.artists))) {
+      delete all[fid];
+      dirty = true;
+      return 1;
+    }
+    try {
+      var bundled = ds.artists;
+      ds.artists = applyScheduleDiff(bundled, ov.diff).map(a => _schedFill(a, bundled));
+      ds.bundledArtists = bundled;
+    } catch {
+      delete all[fid];
+      dirty = true;
+    }
+  };
+  for (var fid of Object.keys(all)) {
+    if (_loop2()) continue;
+  }
+  if (dirty) _schedOverlaysWrite(all);
+}
+function _schedNightMin(t) {
+  var [h, m] = t.split(":").map(Number);
+  return (h < 8 ? h + 24 : h) * 60 + m;
+}
+function _schedClash(a, b) {
+  if (a.day !== b.day || !a.start || !a.end || !b.start || !b.end) return false;
+  var wa = a.weekend,
+    wb = b.weekend;
+  if (wa && wb && wa !== "both" && wb !== "both" && wa !== wb) return false;
+  return _schedNightMin(a.start) < _schedNightMin(b.end) && _schedNightMin(b.start) < _schedNightMin(a.end);
+}
+function _schedStartMs(cfg, slot, now, saved) {
+  if (!slot || !slot.start || !cfg || !cfg.dayDates) return null;
+  var d = slot.weekend === "W1" || slot.weekend === "W2" ? _cfgActDayDate(cfg, slot) : _shiftDayDate(cfg.dayDates[slot.day], _weekendShiftMs(cfg, now, saved));
+  return _wallMs(d, slot.start, cfg.tz);
+}
+function scheduleReview(fid, feed, opts = {}) {
+  var ds = _DATA_SETS[fid];
+  if (!ds || !feed || feed.festivalId !== fid || !Array.isArray(feed.acts)) return {
+    error: "bad-feed"
+  };
+  var cfg = ds.config;
+  var stageIds = new Set((ds.stages || []).map(s => s.id));
+  var acts = feed.acts.map(a => a && a.stage != null && !stageIds.has(a.stage) ? {
+    ...a,
+    stage: null
+  } : a);
+  var now = opts.now ?? Date.now();
+  var saved = opts.saved || [];
+  var shown = diffSchedule(_scheduleActs(ds.artists), acts, cfg);
+  var stored = diffSchedule(_scheduleActs(ds.bundledArtists || ds.artists), acts, cfg);
+  var base = {
+    fid,
+    feedHash: feed.scheduleHash || _schedFingerprint(acts),
+    source: feed.source || null,
+    shown,
+    stored
+  };
+  if (!shown.changes.length) return {
+    ...base,
+    upToDate: true,
+    savedChanges: [],
+    clashes: [],
+    reminders: [],
+    dropSaved: []
+  };
+  var mine = new Set(saved);
+  var after = applyScheduleDiff(ds.artists, shown);
+  var pairs = list => {
+    var s = list.filter(a => mine.has(a.id)),
+      out = new Set();
+    for (var i = 0; i < s.length; i++) for (var j = i + 1; j < s.length; j++) if (_schedClash(s[i], s[j])) out.add([s[i].id, s[j].id].sort().join("|"));
+    return out;
+  };
+  var had = pairs(ds.artists),
+    byId = new Map(after.map(a => [a.id, a]));
+  var clashes = [...pairs(after)].filter(k => !had.has(k)).map(k => k.split("|").map(id => byId.get(id)));
+  var savedChanges = shown.changes.filter(c => mine.has(c.id));
+  var lead = (opts.leadMin ?? 15) * 60000;
+  var reminders = !opts.remindersOn ? [] : savedChanges.map(c => {
+    var t0 = _schedStartMs(cfg, c.before, now, saved),
+      t1 = _schedStartMs(cfg, c.after, now, saved);
+    var from = t0 != null && t0 > now ? t0 - lead : null,
+      to = t1 != null && t1 > now ? t1 - lead : null;
+    return from === to ? null : {
+      id: c.id,
+      name: c.name,
+      from,
+      to
+    };
+  }).filter(Boolean);
+  return {
+    ...base,
+    upToDate: false,
+    savedChanges,
+    clashes,
+    reminders,
+    dropSaved: savedChanges.filter(c => !c.after).map(c => c.id)
+  };
+}
+function applyScheduleReview(review, saved) {
+  var ds = review && _DATA_SETS[review.fid];
+  if (!ds) return saved || [];
+  var all = _schedOverlays();
+  if (review.stored.changes.length) {
+    all[review.fid] = {
+      base: _schedFingerprint(_scheduleActs(ds.bundledArtists || ds.artists)),
+      feedHash: review.feedHash,
+      source: review.source,
+      appliedAt: Date.now(),
+      diff: review.stored
+    };
+  } else delete all[review.fid];
+  _schedOverlaysWrite(all);
+  var drop = new Set(review.dropSaved || []);
+  return (saved || []).filter(id => !drop.has(id));
+}
 function _daysFor(cfg) {
   var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var shift = _weekendShiftMs(cfg);
@@ -2213,6 +2381,7 @@ for (var _id3 of _WAVE1_IDS) {
     config: _f2.config
   };
 }
+_applyScheduleOverlays(_DATA_SETS);
 var _activeId = getActiveFestivalId();
 var _active = _DATA_SETS[_activeId] || _DATA_SETS["edc-lv-2026"];
 Object.assign(window, {

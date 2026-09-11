@@ -1078,6 +1078,8 @@ function LineupScreen({
   }), [savedSetIds, weekendFilter]);
   var totalSaved = React.useMemo(() => dayStats.reduce((s, d) => s + d.count, 0), [dayStats]);
   var savedToday = React.useMemo(() => lineupFor(weekendFilter).filter(a => a.day === day && savedSetIds.has(a.id)), [day, savedSetIds, weekendFilter]);
+  var [syncOpen, setSyncOpen] = React.useState(false);
+  var hasFeed = FESTIVALS_REGISTRY.some(e => e.available && e.config.id === FESTIVAL_CONFIG.id);
   var CONFLICT_ACK_KEY = "plursky_conflicts_kept_both_v1";
   var _pairKey = (idA, idB) => [idA, idB].sort().join("|");
   var [ackedPairs, setAckedPairs] = React.useState(() => {
@@ -1165,7 +1167,25 @@ function LineupScreen({
     title: React.createElement("span", null, "Lineup"),
     sub: `${FESTIVAL_CONFIG.brand.toUpperCase()} · ${FESTIVAL_CONFIG.dates.toUpperCase()}`,
     tight: true
-  }))), React.createElement("div", {
+  })), hasFeed && React.createElement("button", {
+    "data-sched-check": true,
+    onClick: () => setSyncOpen(true),
+    "aria-label": "Check for schedule changes",
+    style: {
+      minHeight: 32,
+      padding: "0 11px",
+      borderRadius: 999,
+      flexShrink: 0,
+      cursor: "pointer",
+      background: "transparent",
+      border: "1px solid var(--line-2)",
+      color: "var(--ink)",
+      fontFamily: "'Geist Mono', monospace",
+      fontSize: 9,
+      letterSpacing: 1.2,
+      fontWeight: 700
+    }
+  }, "↻ UPDATES")), React.createElement("div", {
     style: {
       display: "flex",
       gap: 6,
@@ -2139,7 +2159,334 @@ function LineupScreen({
       setSortBy("time");
       setFilterSheetOpen(false);
     }
+  }), syncOpen && React.createElement(ScheduleReviewSheet, {
+    saved: state.saved || [],
+    onClose: () => setSyncOpen(false)
   }));
+}
+function _schedSlotText(slot, cfg) {
+  if (!slot) return "";
+  var d = cfg.dayDates && cfg.dayDates[slot.day];
+  var st = slot.stage && STAGES.find(s => s.id === slot.stage);
+  var wk = slot.weekend && slot.weekend !== "both" ? `${slot.weekend} · ` : "";
+  return `${wk}${d ? d.short : `DAY ${slot.day}`} · ${slot.start ? fmt12(slot.start) : "time TBA"} · ${st ? st.name : "stage TBA"}`;
+}
+function _schedObserved(src) {
+  var m = /^(\d{4})-(\d{2})(?:-(\d{2}))?/.exec(src && src.observedAt || "");
+  if (!m) return "";
+  var mon = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][+m[2] - 1];
+  return m[3] ? `${mon} ${+m[3]}` : `${mon} ${m[1]}`;
+}
+function ScheduleReviewSheet({
+  saved,
+  onClose
+}) {
+  var cfg = FESTIVAL_CONFIG,
+    fid = cfg.id;
+  var {
+    perm
+  } = useNotifications();
+  var [st, setSt] = React.useState({
+    phase: "checking"
+  });
+  var [showAll, setShowAll] = React.useState(false);
+  var check = React.useCallback(() => {
+    setSt({
+      phase: "checking"
+    });
+    fetchScheduleFeed(fid).then(feed => {
+      var r = scheduleReview(fid, feed, {
+        saved,
+        remindersOn: perm === "granted",
+        leadMin: getReminderLeadMin()
+      });
+      setSt(r.error ? {
+        phase: "error"
+      } : {
+        phase: r.upToDate ? "current" : "ready",
+        r
+      });
+    }, () => setSt({
+      phase: "error"
+    }));
+  }, [fid, perm]);
+  React.useEffect(() => {
+    check();
+  }, [check]);
+  var apply = () => {
+    var next = applyScheduleReview(st.r, saved);
+    try {
+      localStorage.setItem(`${fid}_saved_v1`, JSON.stringify(next));
+    } catch {}
+    window.location.reload();
+  };
+  var r = st.r;
+  var mono = {
+    fontFamily: "'Geist Mono', monospace",
+    letterSpacing: 1.2,
+    fontWeight: 700
+  };
+  var btn = (label, onClick, primary) => React.createElement("button", {
+    key: label,
+    onClick: onClick,
+    style: {
+      ...mono,
+      fontSize: 10,
+      minHeight: 40,
+      padding: "0 16px",
+      borderRadius: 999,
+      flexShrink: 0,
+      cursor: "pointer",
+      border: primary ? "none" : "1px solid var(--line-2)",
+      background: primary ? "var(--ink)" : "transparent",
+      color: primary ? "var(--paper)" : "var(--ink)"
+    }
+  }, label);
+  var tz = cfg.tz;
+  var clock = ms => new Date(ms).toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    ...(tz ? {
+      timeZone: tz
+    } : {})
+  });
+  var KIND = {
+    day: "DAY",
+    stage: "STAGE",
+    start: "TIME",
+    end: "END",
+    weekend: "WEEKEND",
+    cancelled: "CANCELLED",
+    added: "NEW"
+  };
+  var row = (c, notes = []) => React.createElement("div", {
+    key: c.id,
+    "data-sched-change": c.id,
+    "data-sched-kinds": c.kinds.join(","),
+    style: {
+      padding: "10px 0",
+      borderTop: "1px solid var(--line)"
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "baseline",
+      gap: 8
+    }
+  }, React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0,
+      fontSize: 14,
+      fontWeight: 600,
+      color: "var(--ink)",
+      overflowWrap: "anywhere"
+    }
+  }, c.name), React.createElement("div", {
+    style: {
+      ...mono,
+      fontSize: 8,
+      flexShrink: 0,
+      color: c.after ? "var(--muted)" : "var(--ember-ink)"
+    }
+  }, c.kinds.map(k => KIND[k]).join(" · "))), c.before && React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "var(--ink)",
+      opacity: 0.5,
+      marginTop: 2,
+      textDecoration: c.after ? "line-through" : "none"
+    }
+  }, _schedSlotText(c.before, cfg)), c.after && React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "var(--ink)",
+      marginTop: 2
+    }
+  }, c.before ? "→ " : "", _schedSlotText(c.after, cfg)), notes.map((n, i) => React.createElement("div", {
+    key: i,
+    "data-sched-note": true,
+    style: {
+      fontSize: 11,
+      color: "var(--ember-ink)",
+      marginTop: 3,
+      lineHeight: 1.35
+    }
+  }, n)));
+  var head = (label, n) => React.createElement("div", {
+    style: {
+      ...mono,
+      fontSize: 9,
+      color: "var(--muted)",
+      marginTop: 16,
+      marginBottom: 2
+    }
+  }, label, n != null ? ` · ${n}` : "");
+  var notesFor = c => {
+    var out = [];
+    if (!c.after) out.push("Cancelled, so it comes out of your plan.");
+    for (var [a, b] of r.clashes) if (a.id === c.id || b.id === c.id) out.push(`Now clashes with ${(a.id === c.id ? b : a).name}.`);
+    var rem = r.reminders.find(x => x.id === c.id);
+    if (rem) out.push(rem.to == null ? "Its reminder is cancelled." : rem.from == null ? `New reminder at ${clock(rem.to)}.` : `Reminder moves to ${clock(rem.to)}.`);
+    return out;
+  };
+  var src = r && r.source,
+    observed = _schedObserved(src);
+  var host = "";
+  try {
+    host = src && src.url ? new URL(src.url).hostname.replace(/^www\./, "") : "";
+  } catch {}
+  var basis = src ? [src.official ? "Official schedule" : `Source: ${host || "community"}`, observed && `observed ${observed}`].filter(Boolean).join(" · ") : "";
+  var others = r && !r.upToDate ? r.shown.changes.filter(c => !saved.includes(c.id)) : [];
+  var counts = r && r.shown.counts;
+  var moved = r ? r.shown.changes.filter(c => c.before && c.after).length : 0;
+  var title, body, actions;
+  if (st.phase === "checking") {
+    title = "Checking the published schedule…";
+    actions = [btn("CLOSE", onClose)];
+  } else if (st.phase === "error") {
+    title = "Couldn't reach the schedule";
+    body = React.createElement("div", {
+      style: {
+        fontSize: 13,
+        color: "var(--ink)",
+        opacity: 0.7,
+        marginTop: 6,
+        lineHeight: 1.45
+      }
+    }, "Check your connection and try again. Your lineup hasn't changed.");
+    actions = [btn("CLOSE", onClose), btn("RETRY", check, true)];
+  } else if (st.phase === "current") {
+    title = "You have the latest schedule";
+    actions = [btn("DONE", onClose, true)];
+  } else {
+    var n = r.shown.changes.length;
+    title = `${n} change${n === 1 ? "" : "s"} to the ${cfg.shortName || cfg.brand} schedule`;
+    body = React.createElement(React.Fragment, null, React.createElement("div", {
+      "data-sched-counts": true,
+      style: {
+        fontSize: 12,
+        color: "var(--ink)",
+        opacity: 0.7,
+        marginTop: 4
+      }
+    }, [moved && `${moved} moved`, counts.cancelled && `${counts.cancelled} cancelled`, counts.added && `${counts.added} added`].filter(Boolean).join(" · ")), React.createElement("div", {
+      "data-sched-section": "plan"
+    }, head("YOUR PLAN", r.savedChanges.length), r.savedChanges.length ? r.savedChanges.map(c => row(c, notesFor(c))) : React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "var(--ink)",
+        opacity: 0.6,
+        padding: "8px 0",
+        borderTop: "1px solid var(--line)"
+      }
+    }, "None of your saved sets change.")), r.clashes.length > 0 && React.createElement("div", {
+      "data-sched-section": "clashes"
+    }, head("NEW CLASHES", r.clashes.length), r.clashes.map(([a, b]) => React.createElement("div", {
+      key: a.id + b.id,
+      "data-sched-clash": `${a.id}|${b.id}`,
+      style: {
+        padding: "9px 0",
+        borderTop: "1px solid var(--line)",
+        fontSize: 13,
+        color: "var(--ink)",
+        lineHeight: 1.4
+      }
+    }, React.createElement("b", null, a.name), " and ", React.createElement("b", null, b.name), " overlap", React.createElement("div", {
+      style: {
+        fontSize: 11,
+        opacity: 0.55
+      }
+    }, cfg.dayDates && cfg.dayDates[a.day] ? cfg.dayDates[a.day].short : `DAY ${a.day}`, " · ", fmt12(a.start), "–", fmt12(a.end), " and ", fmt12(b.start), "–", fmt12(b.end))))), others.length > 0 && React.createElement("div", {
+      "data-sched-section": "other"
+    }, head("OTHER CHANGES", others.length), (showAll ? others : others.slice(0, 6)).map(c => row(c)), !showAll && others.length > 6 && React.createElement("button", {
+      onClick: () => setShowAll(true),
+      style: {
+        ...mono,
+        fontSize: 9,
+        background: "none",
+        border: "none",
+        color: "var(--ember-ink)",
+        padding: "8px 0",
+        cursor: "pointer"
+      }
+    }, "SHOW ALL ", others.length)));
+    actions = [btn("NOT NOW", onClose), btn("APPLY UPDATE", apply, true)];
+  }
+  return ReactDOM.createPortal(React.createElement("div", {
+    onClick: onClose,
+    style: {
+      position: "fixed",
+      inset: 0,
+      zIndex: 9000,
+      background: "rgba(0,0,0,0.45)",
+      display: "flex",
+      alignItems: "flex-end",
+      justifyContent: "center"
+    }
+  }, React.createElement("div", {
+    role: "dialog",
+    "aria-modal": "true",
+    "aria-label": "Schedule update",
+    "data-sched-phase": st.phase,
+    onClick: e => e.stopPropagation(),
+    style: {
+      width: "100%",
+      maxWidth: 480,
+      maxHeight: "86vh",
+      boxSizing: "border-box",
+      display: "flex",
+      flexDirection: "column",
+      background: "var(--paper)",
+      borderRadius: "18px 18px 0 0"
+    }
+  }, React.createElement("div", {
+    style: {
+      overflowY: "auto",
+      padding: "16px 18px 8px"
+    }
+  }, React.createElement("div", {
+    style: {
+      ...mono,
+      fontSize: 9,
+      color: "var(--ember-ink)"
+    }
+  }, "SCHEDULE UPDATE"), React.createElement("div", {
+    style: {
+      fontFamily: "'Instrument Serif', serif",
+      fontSize: 22,
+      color: "var(--ink)",
+      marginTop: 3,
+      lineHeight: 1.15
+    }
+  }, title), basis && React.createElement("div", {
+    "data-sched-basis": true,
+    style: {
+      fontSize: 11,
+      color: "var(--ink)",
+      opacity: 0.5,
+      marginTop: 4
+    }
+  }, basis), body), React.createElement("div", {
+    style: {
+      padding: "10px 18px calc(14px + env(safe-area-inset-bottom))",
+      borderTop: "1px solid var(--line)"
+    }
+  }, st.phase === "ready" && React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "var(--ink)",
+      opacity: 0.55,
+      marginBottom: 8,
+      lineHeight: 1.4
+    }
+  }, "Nothing changes until you apply. Your saved sets and reminders then follow the new times."), React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      justifyContent: "flex-end"
+    }
+  }, actions)))), document.body);
 }
 function toNightMin(hhmm) {
   var [h, m] = hhmm.split(":").map(Number);
