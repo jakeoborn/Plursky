@@ -3303,6 +3303,10 @@ var _TAG_SOURCE_LABEL = {
   "archive-recovered": {
     text: "RECOVERED · ARCHIVE",
     tone: "ok"
+  },
+  unknown: {
+    text: "MARKED UNKNOWN",
+    tone: "info"
   }
 };
 function _momentCaptureMs(m) {
@@ -5854,11 +5858,345 @@ async function _purgeNightMoments(night) {
 async function _purgeAllMoments() {
   return _purgeVisibleMoments(() => true);
 }
+var _REVIEW_WARN = new Set(Object.keys(_TAG_SOURCE_LABEL).filter(k => _TAG_SOURCE_LABEL[k].tone === "warn"));
+function _momentNeedsReview(m) {
+  if (!m || m.tagSource === "unknown") return false;
+  if (m.needsRetag || m.tagAmbiguous || _REVIEW_WARN.has(m.tagSource)) return true;
+  return !m.artistId && !m.stageId && m.tagSource !== "off_stage";
+}
+function _momentFestival(m) {
+  var fid = m && m.festivalId || window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id;
+  var ds = (window._DATA_SETS || {})[fid] || {};
+  return {
+    fid,
+    cfg: ds.config || window.FESTIVAL_CONFIG,
+    artists: ds.artists || window.ARTISTS || [],
+    stages: ds.stages || window.STAGES || []
+  };
+}
+function _reviewLineup(m, night) {
+  var {
+    cfg,
+    artists
+  } = _momentFestival(m);
+  var wk = typeof momentWeekend === "function" ? momentWeekend(m && m.takenAt, cfg) : null;
+  var n = String(night != null ? night : m && m.night);
+  return artists.filter(a => String(a.day) === n && (!wk || !a.weekend || a.weekend === "both" || a.weekend === wk));
+}
+function _retagPatch(choice) {
+  var base = {
+    tagSource: "manual",
+    autoTagged: false,
+    needsRetag: false,
+    tagAmbiguous: false
+  };
+  if (!choice) return null;
+  if (choice.unknown) return {
+    ...base,
+    tagSource: "unknown",
+    artistId: null,
+    stageId: null
+  };
+  if (choice.artistId) return {
+    ...base,
+    artistId: choice.artistId,
+    stageId: null
+  };
+  if (choice.stageId) return {
+    ...base,
+    artistId: null,
+    stageId: choice.stageId
+  };
+  return null;
+}
+function _patchMoments(all, ids, patch) {
+  var want = new Set(ids || []),
+    next = {};
+  for (var n of Object.keys(all || {})) next[n] = (all[n] || []).map(m => m && want.has(m.id) ? {
+    ...m,
+    ...patch
+  } : m);
+  return next;
+}
+function _moveMoment(all, id, night, patch) {
+  var next = {};
+  var hit = null;
+  for (var n of Object.keys(all || {})) {
+    next[n] = (all[n] || []).filter(m => {
+      if (m && m.id === id) {
+        hit = m;
+        return false;
+      }
+      return true;
+    });
+  }
+  if (!hit) return all;
+  var to = String(night);
+  next[to] = [...(next[to] || []), {
+    ...hit,
+    ...(patch || {}),
+    night: typeof hit.night === "number" ? Number(night) : night
+  }];
+  return next;
+}
+function _ReviewThumb({
+  moment
+}) {
+  var thumb = useMomentThumb(moment);
+  return React.createElement("div", {
+    style: {
+      width: 44,
+      height: 44,
+      borderRadius: 8,
+      overflow: "hidden",
+      flexShrink: 0,
+      background: "var(--paper-2)",
+      position: "relative"
+    }
+  }, React.createElement(_ThumbMedia, {
+    moment: moment,
+    thumb: thumb,
+    showLength: false
+  }), moment.kind === "video" && React.createElement(_VideoBadge, {
+    seconds: moment.duration,
+    style: {
+      position: "absolute",
+      bottom: 2,
+      right: 2,
+      fontSize: 7,
+      padding: "1px 4px"
+    }
+  }));
+}
+function _ReviewPicker({
+  moments,
+  onClose,
+  onApply
+}) {
+  var first = moments[0];
+  var {
+    fid,
+    cfg,
+    stages
+  } = _momentFestival(first);
+  var [night, setNight] = React.useState(first.night);
+  var [q, setQ] = React.useState("");
+  var saved = React.useMemo(() => {
+    try {
+      return new Set(JSON.parse(localStorage.getItem(`${fid}_saved_v1`) || "[]"));
+    } catch {
+      return new Set();
+    }
+  }, [fid]);
+  var term = q.trim().toLowerCase();
+  var sets = _reviewLineup(first, night).filter(a => !term || a.name.toLowerCase().includes(term)).sort((a, b) => saved.has(b.id) - saved.has(a.id) || (typeof toNightMin === "function" && a.start && b.start ? toNightMin(a.start) - toNightMin(b.start) : 0));
+  var nights = Object.entries(cfg && cfg.dayDates || {}).map(([n, d]) => ({
+    n: Number(n),
+    label: d.short || `DAY ${n}`
+  }));
+  var stageOf = id => stages.find(s => s.id === id);
+  var chip = on => ({
+    padding: "6px 10px",
+    borderRadius: 999,
+    cursor: "pointer",
+    whiteSpace: "nowrap",
+    fontFamily: "Geist Mono, monospace",
+    fontSize: 9,
+    letterSpacing: 1,
+    fontWeight: 700,
+    background: on ? "var(--ink)" : "var(--paper)",
+    color: on ? "var(--paper)" : "var(--ink)",
+    border: on ? "none" : "1px solid var(--line-2)"
+  });
+  var n = moments.length;
+  return React.createElement("div", {
+    onClick: onClose,
+    style: {
+      position: "fixed",
+      inset: 0,
+      zIndex: 280,
+      background: "rgba(0,0,0,0.35)",
+      display: "flex",
+      alignItems: "flex-end",
+      justifyContent: "center"
+    }
+  }, React.createElement("div", {
+    role: "dialog",
+    "aria-modal": "true",
+    "aria-label": "Pick a set",
+    "data-review-picker": true,
+    onClick: e => e.stopPropagation(),
+    style: {
+      width: "100%",
+      maxWidth: 520,
+      maxHeight: "78vh",
+      display: "flex",
+      flexDirection: "column",
+      background: "var(--paper)",
+      borderRadius: "18px 18px 0 0",
+      borderTop: "1px solid var(--line)"
+    }
+  }, React.createElement("div", {
+    style: {
+      padding: "14px 16px 8px",
+      flexShrink: 0
+    }
+  }, React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1.3,
+      color: "var(--muted)",
+      fontWeight: 700
+    }
+  }, n === 1 ? "TAG THIS MOMENT" : `TAG ${n} MOMENTS`), React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 6,
+      marginTop: 8,
+      overflowX: "auto"
+    }
+  }, nights.map(d => React.createElement("button", {
+    key: d.n,
+    onClick: () => setNight(d.n),
+    style: chip(String(d.n) === String(night))
+  }, d.label))), React.createElement("input", {
+    value: q,
+    onChange: e => setQ(e.target.value),
+    placeholder: "Search this night's sets",
+    "aria-label": "Search sets",
+    style: {
+      width: "100%",
+      boxSizing: "border-box",
+      marginTop: 8,
+      padding: "9px 11px",
+      borderRadius: 10,
+      border: "1px solid var(--line-2)",
+      background: "var(--paper)",
+      color: "var(--ink)",
+      fontSize: 14,
+      outline: "none"
+    }
+  })), React.createElement("div", {
+    style: {
+      flex: 1,
+      minHeight: 0,
+      overflowY: "auto",
+      padding: "0 16px"
+    }
+  }, sets.map(a => {
+    var st = stageOf(a.stage);
+    return React.createElement("button", {
+      key: a.id,
+      "data-pick-artist": a.id,
+      onClick: () => onApply({
+        artistId: a.id
+      }, night),
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        width: "100%",
+        textAlign: "left",
+        padding: "10px 2px",
+        background: "none",
+        border: "none",
+        borderTop: "1px solid var(--line)",
+        cursor: "pointer",
+        color: "var(--ink)",
+        fontFamily: "inherit"
+      }
+    }, React.createElement("span", {
+      "aria-hidden": "true",
+      style: {
+        width: 4,
+        alignSelf: "stretch",
+        borderRadius: 3,
+        background: st ? st.color : "var(--line-2)"
+      }
+    }), React.createElement("span", {
+      style: {
+        flex: 1,
+        minWidth: 0,
+        fontSize: 14,
+        fontWeight: 600,
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap"
+      }
+    }, saved.has(a.id) ? "★ " : "", a.name), React.createElement("span", {
+      className: "mono",
+      style: {
+        fontSize: 9,
+        letterSpacing: 0.8,
+        color: "var(--muted)",
+        flexShrink: 0
+      }
+    }, [st && st.short, a.start && fmt12(a.start)].filter(Boolean).join(" · ")));
+  }), !sets.length && React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1,
+      color: "var(--muted)",
+      padding: "12px 0"
+    }
+  }, "NO SETS MATCH"), React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1.2,
+      color: "var(--muted)",
+      fontWeight: 700,
+      margin: "12px 0 6px"
+    }
+  }, "OR JUST THE STAGE"), React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 6,
+      flexWrap: "wrap",
+      paddingBottom: 12
+    }
+  }, stages.map(s => React.createElement("button", {
+    key: s.id,
+    "data-pick-stage": s.id,
+    onClick: () => onApply({
+      stageId: s.id
+    }, night),
+    style: chip(false)
+  }, s.short || s.name)))), React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      padding: "10px 16px calc(12px + env(safe-area-inset-bottom))",
+      borderTop: "1px solid var(--line)",
+      flexShrink: 0
+    }
+  }, React.createElement("button", {
+    onClick: onClose,
+    style: {
+      ...chip(false),
+      flex: 1,
+      padding: "11px 0"
+    }
+  }, "CANCEL"), React.createElement("button", {
+    "data-pick-unknown": true,
+    onClick: () => onApply({
+      unknown: true
+    }, night),
+    style: {
+      ...chip(false),
+      flex: 2,
+      padding: "11px 0"
+    }
+  }, "UNKNOWN / NOT SURE"))));
+}
 function ImportReview({
   results,
   moments,
   onClose,
-  onFix
+  onPatch,
+  onMove
 }) {
   var byId = React.useMemo(() => {
     var m = {};
@@ -5867,26 +6205,87 @@ function ImportReview({
     }
     return m;
   }, [moments]);
-  var rows = React.useMemo(() => {
-    var out = (results || []).filter(r => r.momentId).map(r => {
-      var mo = byId[r.momentId] || null;
-      var artist = r.artistId ? ARTISTS.find(a => a.id === r.artistId) : null;
-      var stage = artist ? STAGES.find(st => st.id === artist.stage) || UNPLACED_STAGE : null;
-      var day = DAYS.find(d => d.n === r.night);
-      var sure = !!r.artistId && r.tagSource !== "fallback" && !(mo && (mo.needsRetag || mo.tagAmbiguous));
-      return {
-        ...r,
-        moment: mo,
-        artist,
-        stage,
-        day,
-        sure
-      };
-    });
-    return out.sort((a, b) => a.sure === b.sure ? 0 : a.sure ? 1 : -1);
-  }, [results, byId]);
-  var unsure = rows.filter(r => !r.sure).length;
+  var [sel, setSel] = React.useState(() => new Set());
+  var [picking, setPicking] = React.useState(null);
+  var rows = React.useMemo(() => (results || []).filter(r => r.momentId && byId[r.momentId]).map(r => {
+    var m = byId[r.momentId];
+    var {
+      fid,
+      cfg,
+      artists,
+      stages
+    } = _momentFestival(m);
+    var artist = m.artistId ? artists.find(a => a.id === m.artistId) || null : null;
+    var stageId = artist ? artist.stage : m.stageId || null;
+    var stage = stageId ? stages.find(s => s.id === stageId) || UNPLACED_STAGE : null;
+    var day = cfg && cfg.dayDates && cfg.dayDates[m.night];
+    var reg = FESTIVALS_REGISTRY.find(e => e.config.id === fid);
+    return {
+      id: m.id,
+      m,
+      name: r.name || "",
+      fid,
+      artist,
+      stage,
+      day,
+      fest: reg ? reg.config.shortName || reg.config.name : fid,
+      review: _momentNeedsReview(m)
+    };
+  }), [results, byId]);
+  var groups = React.useMemo(() => {
+    var out = new Map();
+    for (var r of rows) {
+      var k = `${r.fid}|${r.m.night}`;
+      if (!out.has(k)) out.set(k, {
+        key: k,
+        fest: r.fest,
+        day: r.day,
+        night: r.m.night,
+        stages: new Map()
+      });
+      var g = out.get(k),
+        sk = r.stage ? r.stage.id : "";
+      if (!g.stages.has(sk)) g.stages.set(sk, {
+        stage: r.stage,
+        rows: []
+      });
+      g.stages.get(sk).rows.push(r);
+    }
+    return [...out.values()].sort((a, b) => Number(a.night) - Number(b.night));
+  }, [rows]);
   if (!rows.length) return null;
+  var need = rows.filter(r => r.review).length;
+  var toggle = id => setSel(s => {
+    var n = new Set(s);
+    n.has(id) ? n.delete(id) : n.add(id);
+    return n;
+  });
+  var pickMoments = (picking || []).map(id => byId[id]).filter(Boolean);
+  var oneFestival = new Set([...sel].map(id => byId[id] && _momentFestival(byId[id]).fid)).size <= 1;
+  var apply = (choice, night) => {
+    var patch = _retagPatch(choice);
+    if (!patch) return;
+    var ids = picking || [];
+    var moving = choice.artistId ? ids.filter(id => byId[id] && String(byId[id].night) !== String(night)) : [];
+    var staying = ids.filter(id => !moving.includes(id));
+    if (staying.length) onPatch?.(staying, patch);
+    for (var id of moving) onMove?.(id, night, patch);
+    try {
+      window.plurskyHaptic?.("LIGHT");
+    } catch {}
+    setPicking(null);
+    setSel(new Set());
+  };
+  var basis = m => {
+    var src = (_TAG_SOURCE_LABEL[m.tagSource] || {}).text;
+    var t = typeof m.takenAt === "string" && m.takenAt.length >= 16 ? m.takenAt.slice(11, 16) : null;
+    return [src, t && `shot ${t}`, m.locationSource === "gps" ? "GPS" : null].filter(Boolean).join(" · ");
+  };
+  var mono = {
+    fontFamily: "Geist Mono, monospace",
+    letterSpacing: 1.1,
+    fontWeight: 700
+  };
   return React.createElement("div", {
     onClick: onClose,
     style: {
@@ -5900,6 +6299,10 @@ function ImportReview({
       animation: "fadeIn .18s"
     }
   }, React.createElement("div", {
+    role: "dialog",
+    "aria-modal": "true",
+    "aria-label": "Review imported moments",
+    "data-import-review": true,
     onClick: e => e.stopPropagation(),
     style: {
       width: "100%",
@@ -5926,113 +6329,205 @@ function ImportReview({
       lineHeight: 1.05,
       color: "var(--ink)"
     }
-  }, unsure === 0 ? React.createElement(React.Fragment, null, "All ", rows.length, " ", React.createElement("span", {
+  }, need === 0 ? React.createElement(React.Fragment, null, "All ", rows.length, " ", React.createElement("span", {
     style: {
       fontStyle: "italic"
     }
-  }, "tagged")) : React.createElement(React.Fragment, null, unsure, " need", unsure === 1 ? "s" : "", " a ", React.createElement("span", {
+  }, "tagged")) : React.createElement(React.Fragment, null, need, " need", need === 1 ? "s" : "", " a ", React.createElement("span", {
     style: {
       fontStyle: "italic"
     }
   }, "set"))), React.createElement("div", {
-    className: "mono",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
-      fontWeight: 700,
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
       marginTop: 4
     }
-  }, rows.length, " IMPORTED · TAP A ROW TO FIX ITS TAG")), React.createElement("div", {
+  }, React.createElement("div", {
+    "data-review-counts": true,
+    style: {
+      ...mono,
+      fontSize: 9,
+      color: "var(--muted)",
+      flex: 1
+    }
+  }, [(results || []).some(r => r.name) && `${rows.length} IMPORTED`, need ? `${need} NEED REVIEW` : "ALL ANSWERED"].filter(Boolean).join(" · ")), need > 0 && React.createElement("button", {
+    onClick: () => setSel(new Set(rows.filter(r => r.review).map(r => r.id))),
+    style: {
+      ...mono,
+      fontSize: 9,
+      background: "none",
+      border: "none",
+      color: "var(--ember-ink)",
+      cursor: "pointer",
+      padding: 0
+    }
+  }, "SELECT THESE"))), React.createElement("div", {
     style: {
       flex: 1,
       minHeight: 0,
       overflowY: "auto",
       WebkitOverflowScrolling: "touch",
-      padding: "6px 12px 8px"
+      padding: "4px 12px 8px"
     }
-  }, rows.map(r => React.createElement("button", {
-    key: r.momentId,
-    onClick: () => r.moment && onFix?.(r.moment),
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 10,
-      width: "100%",
-      textAlign: "left",
-      padding: "9px 10px",
-      marginBottom: 4,
-      background: r.sure ? "transparent" : "rgba(232,93,46,0.07)",
-      border: r.sure ? "1px solid var(--line)" : "1px solid rgba(232,93,46,0.45)",
-      borderRadius: 10,
-      cursor: "pointer",
-      fontFamily: "inherit",
-      color: "var(--ink)"
-    }
-  }, React.createElement("span", {
-    "aria-hidden": "true",
-    style: {
-      flexShrink: 0,
-      width: 4,
-      alignSelf: "stretch",
-      borderRadius: 3,
-      background: r.stage ? r.stage.color : "var(--line-2)"
-    }
-  }), React.createElement("div", {
-    style: {
-      flex: 1,
-      minWidth: 0
-    }
+  }, groups.map(g => React.createElement("div", {
+    key: g.key,
+    "data-review-group": g.key
   }, React.createElement("div", {
     style: {
-      fontSize: 14,
-      lineHeight: 1.15,
-      fontWeight: r.artist ? 700 : 500,
-      color: r.artist ? "var(--ink)" : "var(--ember-ink)",
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      whiteSpace: "nowrap"
-    }
-  }, r.artist ? r.artist.name : "No set matched"), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 8.5,
-      letterSpacing: 1,
-      color: "var(--muted)",
-      fontWeight: 700,
-      marginTop: 2,
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      whiteSpace: "nowrap"
-    }
-  }, r.stage ? `${r.stage.short} · ` : "", r.day && r.day.label || `NIGHT ${r.night}`, " · ", (_TAG_SOURCE_LABEL[r.tagSource] || {}).text || String(r.tagSource || "").toUpperCase()), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 8,
-      letterSpacing: 0.6,
-      color: "var(--muted)",
-      marginTop: 2,
-      opacity: 0.75,
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      whiteSpace: "nowrap"
-    }
-  }, r.name)), React.createElement("span", {
-    className: "mono",
-    style: {
-      flexShrink: 0,
+      ...mono,
       fontSize: 9,
-      letterSpacing: 1.1,
-      fontWeight: 800,
-      color: r.sure ? "var(--success)" : "var(--ember-ink)"
+      color: "var(--muted)",
+      margin: "12px 2px 4px"
     }
-  }, r.sure ? "✓" : "FIX →")))), React.createElement("div", {
+  }, [g.fest && g.fest.toUpperCase(), g.day ? (g.day.name || g.day.short || "").toUpperCase() : `NIGHT ${g.night}`].filter(Boolean).join(" · ")), [...g.stages.values()].map(sg => React.createElement("div", {
+    key: sg.stage ? sg.stage.id : "none"
+  }, React.createElement("div", {
+    style: {
+      ...mono,
+      fontSize: 8,
+      color: sg.stage ? sg.stage.color : "var(--muted)",
+      margin: "6px 4px 3px"
+    }
+  }, sg.stage ? (sg.stage.name || sg.stage.short).toUpperCase() : "NO STAGE YET"), sg.rows.map(r => {
+    var on = sel.has(r.id);
+    return React.createElement("div", {
+      key: r.id,
+      "data-review-row": r.id,
+      "data-review-state": r.review ? "review" : "ok",
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 9,
+        padding: "7px 8px",
+        marginBottom: 4,
+        borderRadius: 10,
+        background: r.review ? "rgba(232,93,46,0.07)" : "transparent",
+        border: r.review ? "1px solid rgba(232,93,46,0.45)" : "1px solid var(--line)"
+      }
+    }, React.createElement("button", {
+      onClick: () => toggle(r.id),
+      role: "checkbox",
+      "aria-checked": on,
+      "aria-label": `Select ${_momentMediaLabel(r.m)}`,
+      style: {
+        width: 24,
+        height: 24,
+        borderRadius: 6,
+        flexShrink: 0,
+        cursor: "pointer",
+        padding: 0,
+        border: on ? "none" : "1.5px solid var(--line-2)",
+        background: on ? "var(--ink)" : "transparent",
+        color: "var(--paper)",
+        fontSize: 13,
+        lineHeight: "24px"
+      }
+    }, on ? "✓" : ""), React.createElement(_ReviewThumb, {
+      moment: r.m
+    }), React.createElement("button", {
+      onClick: () => setPicking([r.id]),
+      "aria-label": `Change the tag for ${_momentMediaLabel(r.m)}`,
+      style: {
+        flex: 1,
+        minWidth: 0,
+        textAlign: "left",
+        background: "none",
+        border: "none",
+        padding: 0,
+        cursor: "pointer",
+        color: "var(--ink)",
+        fontFamily: "inherit"
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 14,
+        lineHeight: 1.15,
+        fontWeight: r.artist ? 700 : 500,
+        color: r.artist ? "var(--ink)" : r.review ? "var(--ember-ink)" : "var(--muted)",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap"
+      }
+    }, r.artist ? r.artist.name : r.m.tagSource === "unknown" ? "Unknown" : r.stage ? "Set not picked" : "No set matched"), React.createElement("div", {
+      style: {
+        ...mono,
+        fontSize: 8.5,
+        letterSpacing: 0.9,
+        color: "var(--muted)",
+        marginTop: 2,
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap"
+      }
+    }, [r.fest, r.day ? r.day.short : `NIGHT ${r.m.night}`, r.stage && r.stage.short].filter(Boolean).join(" · ")), React.createElement("div", {
+      "data-review-basis": true,
+      style: {
+        fontSize: 10.5,
+        color: "var(--muted)",
+        marginTop: 2,
+        opacity: 0.85,
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap"
+      }
+    }, basis(r.m))), React.createElement("span", {
+      style: {
+        ...mono,
+        flexShrink: 0,
+        fontSize: 9,
+        color: r.review ? "var(--ember-ink)" : "var(--success)"
+      }
+    }, r.review ? "FIX" : "✓"));
+  })))))), React.createElement("div", {
     style: {
       padding: "10px 14px calc(12px + env(safe-area-inset-bottom))",
       borderTop: "1px solid var(--line)",
       flexShrink: 0
     }
-  }, React.createElement("button", {
+  }, sel.size > 0 ? React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      alignItems: "center"
+    }
+  }, React.createElement("div", {
+    style: {
+      ...mono,
+      fontSize: 9,
+      color: "var(--muted)",
+      flex: 1
+    }
+  }, oneFestival ? `${sel.size} SELECTED` : "SELECT ONE FESTIVAL'S MOMENTS"), React.createElement("button", {
+    onClick: () => setSel(new Set()),
+    style: {
+      ...mono,
+      fontSize: 10,
+      padding: "11px 14px",
+      borderRadius: 12,
+      border: "1px solid var(--line-2)",
+      background: "transparent",
+      color: "var(--ink)",
+      cursor: "pointer"
+    }
+  }, "CLEAR"), React.createElement("button", {
+    "data-review-batch": true,
+    disabled: !oneFestival,
+    onClick: () => setPicking([...sel]),
+    style: {
+      ...mono,
+      fontSize: 10,
+      padding: "11px 16px",
+      borderRadius: 12,
+      border: "none",
+      background: "var(--ink)",
+      color: "var(--paper)",
+      cursor: oneFestival ? "pointer" : "default",
+      opacity: oneFestival ? 1 : 0.4
+    }
+  }, "TAG ", sel.size)) : React.createElement("button", {
+    "data-review-done": true,
     onClick: onClose,
     className: "mono",
     style: {
@@ -6047,7 +6542,11 @@ function ImportReview({
       letterSpacing: 1.3,
       fontWeight: 800
     }
-  }, unsure === 0 ? "LOOKS RIGHT" : "DONE FOR NOW"))));
+  }, need === 0 ? `LOOKS RIGHT · ${rows.length} SAVED` : `DONE · ${need} LEFT TO REVIEW LATER`))), pickMoments.length > 0 && React.createElement(_ReviewPicker, {
+    moments: pickMoments,
+    onClose: () => setPicking(null),
+    onApply: apply
+  }));
 }
 function StorageManager({
   all,
@@ -8121,6 +8620,7 @@ function MemoriesScreen({
 }) {
   var [rawAll, setAll] = React.useState(_readMoments);
   var all = React.useMemo(() => _activeMoments(rawAll), [rawAll]);
+  var reviewIds = React.useMemo(() => Object.values(all).flat().filter(_momentNeedsReview).map(m => m.id), [all]);
   var [adding, setAdding] = React.useState(null);
   var [batch, setBatch] = React.useState(null);
   var [review, setReview] = React.useState(null);
@@ -8488,6 +8988,16 @@ function MemoriesScreen({
       } catch {}
     }
   };
+  var handlePatchMany = (ids, patch) => {
+    var next = _patchMoments(_readMoments(), ids, patch);
+    _writeMoments(next);
+    setAll(next);
+  };
+  var handleMoveNight = (id, night, patch) => {
+    var next = _moveMoment(_readMoments(), id, night, patch);
+    _writeMoments(next);
+    setAll(next);
+  };
   var totalCount = Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
   var [view, setView] = React.useState(() => {
     try {
@@ -8587,13 +9097,8 @@ function MemoriesScreen({
     results: review,
     moments: rawAll,
     onClose: () => setReview(null),
-    onFix: m => {
-      setReview(null);
-      setLightbox({
-        moments: [m],
-        index: 0
-      });
-    }
+    onPatch: handlePatchMany,
+    onMove: handleMoveNight
   }), lightbox && React.createElement(MomentLightbox, {
     moments: lightbox.moments,
     index: lightbox.index,
@@ -8709,7 +9214,28 @@ function MemoriesScreen({
       letterSpacing: 1.2,
       fontWeight: 700
     }
-  }, batch && batch.done < batch.total ? `${batch.done}/${batch.total}` : "PICK")), batch && batch.done === batch.total && (() => {
+  }, batch && batch.done < batch.total ? `${batch.done}/${batch.total}` : "PICK")), !batch && reviewIds.length > 0 && React.createElement("button", {
+    "data-review-later": true,
+    onClick: () => setReview(reviewIds.map(id => ({
+      momentId: id
+    }))),
+    className: "mono",
+    style: {
+      display: "block",
+      width: "100%",
+      textAlign: "left",
+      marginTop: 8,
+      padding: "9px 12px",
+      borderRadius: 10,
+      cursor: "pointer",
+      background: "rgba(232,93,46,0.10)",
+      border: "1px solid rgba(232,93,46,0.4)",
+      color: "var(--ember-ink)",
+      fontSize: 10,
+      letterSpacing: 1.2,
+      fontWeight: 700
+    }
+  }, "⚑ ", reviewIds.length, " MOMENT", reviewIds.length === 1 ? "" : "S", " NEED A SET · REVIEW →"), batch && batch.done === batch.total && (() => {
     var tagged = batch.results.filter(r => !r.err && !r.skipped && r.artistId).length;
     var needRetag = batch.results.filter(r => !r.err && !r.skipped && !r.artistId).length;
     var failed = batch.results.filter(r => r.err).length;
@@ -11086,6 +11612,7 @@ function _recoverCurrentVideoMomentsFromArchive() {
         if (m.festivalId && m.festivalId !== cur) continue;
         var parsed = _momentTakenAtToDateParts(m.takenAt);
         var parsedNight = parsed ? _photoFestivalNight(parsed) : null;
+        if (m.tagSource === "unknown") continue;
         var needsRecovery = parsedNight == null || !m.artistId || m.tagSource === "fallback" || m.needsRetag;
         if (!needsRecovery) continue;
         var archived = _findArchivedVideoMomentForFingerprint(m._fingerprint);

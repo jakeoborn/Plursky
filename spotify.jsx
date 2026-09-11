@@ -2214,6 +2214,9 @@ const _TAG_SOURCE_LABEL = {
   "video-metadata":     { text: "AUTO · VIDEO TIME", tone: "ok" },
   "video-night-only":   { text: "VIDEO NIGHT · PICK A SET", tone: "warn" },
   "archive-recovered":  { text: "RECOVERED · ARCHIVE", tone: "ok" },
+  // The user said they don't know. A choice, not a gap: it leaves the review
+  // list and the archive-recovery pass never re-guesses it.
+  unknown:              { text: "MARKED UNKNOWN",    tone: "info" },
 };
 
 // Best-available capture time for a moment. handleBatchPick stores both
@@ -3919,7 +3922,150 @@ async function _purgeAllMoments() {
 // decodes the instant the import finished, and the question this screen
 // answers — "is this the right set?" — is answered by the name, not the
 // picture.
-function ImportReview({ results, moments, onClose, onFix }) {
+// ── Post-import review ─────────────────────────────────────────────────────
+// Every row reads the STORED moment, never the import result, so what it
+// shows is what recap, trading cards, song-ID, sync and the wall will read.
+// The pure helpers come first so scripts/test-import-review.mjs can call them.
+const _REVIEW_WARN = new Set(Object.keys(_TAG_SOURCE_LABEL).filter(k => _TAG_SOURCE_LABEL[k].tone === "warn"));
+// Needs a human: flagged by import (no usable time, overlapping sets), a
+// source that asks for a pick, or nothing assigned at all. "Between sets"
+// (GPS said so) and an explicit Unknown are answers, not gaps.
+function _momentNeedsReview(m) {
+  if (!m || m.tagSource === "unknown") return false;
+  if (m.needsRetag || m.tagAmbiguous || _REVIEW_WARN.has(m.tagSource)) return true;
+  return !m.artistId && !m.stageId && m.tagSource !== "off_stage";
+}
+// The moment's OWN festival — a clip filed to another festival by its capture
+// date is still reviewable here, and must be retagged from that lineup.
+function _momentFestival(m) {
+  const fid = (m && m.festivalId) || (window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id);
+  const ds = (window._DATA_SETS || {})[fid] || {};
+  return { fid, cfg: ds.config || window.FESTIVAL_CONFIG, artists: ds.artists || window.ARTISTS || [], stages: ds.stages || window.STAGES || [] };
+}
+// The sets a moment can be tagged to on a night: its festival's lineup, on
+// the weekend it was captured.
+function _reviewLineup(m, night) {
+  const { cfg, artists } = _momentFestival(m);
+  const wk = typeof momentWeekend === "function" ? momentWeekend(m && m.takenAt, cfg) : null;
+  const n = String(night != null ? night : m && m.night);
+  return artists.filter(a => String(a.day) === n && (!wk || !a.weekend || a.weekend === "both" || a.weekend === wk));
+}
+// One patch per choice, so the sheet, the batch bar and a card retag all mean
+// the same thing. A set carries its own stage; a stage alone is "stage known,
+// set unknown"; Unknown clears both and says so.
+function _retagPatch(choice) {
+  const base = { tagSource: "manual", autoTagged: false, needsRetag: false, tagAmbiguous: false };
+  if (!choice) return null;
+  if (choice.unknown) return { ...base, tagSource: "unknown", artistId: null, stageId: null };
+  if (choice.artistId) return { ...base, artistId: choice.artistId, stageId: null };
+  if (choice.stageId) return { ...base, artistId: null, stageId: choice.stageId };
+  return null;
+}
+// Applies a patch to exactly the listed moments. Night buckets, order, every
+// other moment (another festival's included) and the count are unchanged.
+function _patchMoments(all, ids, patch) {
+  const want = new Set(ids || []), next = {};
+  for (const n of Object.keys(all || {})) next[n] = (all[n] || []).map(m => (m && want.has(m.id) ? { ...m, ...patch } : m));
+  return next;
+}
+// The store is keyed by night, so a night change is remove-then-insert (the
+// handleRecoverNight shape). One moment in, one moment out: never a copy.
+function _moveMoment(all, id, night, patch) {
+  const next = {};
+  let hit = null;
+  for (const n of Object.keys(all || {})) {
+    next[n] = (all[n] || []).filter(m => { if (m && m.id === id) { hit = m; return false; } return true; });
+  }
+  if (!hit) return all;
+  const to = String(night);
+  next[to] = [...(next[to] || []), { ...hit, ...(patch || {}), night: typeof hit.night === "number" ? Number(night) : night }];
+  return next;
+}
+
+function _ReviewThumb({ moment }) {
+  const thumb = useMomentThumb(moment);
+  return (
+    <div style={{ width: 44, height: 44, borderRadius: 8, overflow: "hidden", flexShrink: 0, background: "var(--paper-2)", position: "relative" }}>
+      <_ThumbMedia moment={moment} thumb={thumb} showLength={false}/>
+      {moment.kind === "video" && <_VideoBadge seconds={moment.duration} style={{ position: "absolute", bottom: 2, right: 2, fontSize: 7, padding: "1px 4px" }}/>}
+    </div>
+  );
+}
+
+// The compact retag control: the moment's festival nights, that night's sets
+// (saved ones starred), a search, the stages for "stage known, set unknown",
+// and an explicit Unknown. Nothing is pre-selected on weak confidence.
+function _ReviewPicker({ moments, onClose, onApply }) {
+  const first = moments[0];
+  const { fid, cfg, stages } = _momentFestival(first);
+  const [night, setNight] = React.useState(first.night);
+  const [q, setQ] = React.useState("");
+  const saved = React.useMemo(() => { try { return new Set(JSON.parse(localStorage.getItem(`${fid}_saved_v1`) || "[]")); } catch { return new Set(); } }, [fid]);
+  const term = q.trim().toLowerCase();
+  const sets = _reviewLineup(first, night)
+    .filter(a => !term || a.name.toLowerCase().includes(term))
+    .sort((a, b) => (saved.has(b.id) - saved.has(a.id)) || (typeof toNightMin === "function" && a.start && b.start ? toNightMin(a.start) - toNightMin(b.start) : 0));
+  const nights = Object.entries((cfg && cfg.dayDates) || {}).map(([n, d]) => ({ n: Number(n), label: d.short || `DAY ${n}` }));
+  const stageOf = id => stages.find(s => s.id === id);
+  const chip = on => ({
+    padding: "6px 10px", borderRadius: 999, cursor: "pointer", whiteSpace: "nowrap",
+    fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1, fontWeight: 700,
+    background: on ? "var(--ink)" : "var(--paper)", color: on ? "var(--paper)" : "var(--ink)",
+    border: on ? "none" : "1px solid var(--line-2)",
+  });
+  const n = moments.length;
+  return (
+    <div onClick={onClose} style={{ position: "fixed", inset: 0, zIndex: 280, background: "rgba(0,0,0,0.35)", display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
+      <div role="dialog" aria-modal="true" aria-label="Pick a set" data-review-picker onClick={e => e.stopPropagation()} style={{
+        width: "100%", maxWidth: 520, maxHeight: "78vh", display: "flex", flexDirection: "column",
+        background: "var(--paper)", borderRadius: "18px 18px 0 0", borderTop: "1px solid var(--line)",
+      }}>
+        <div style={{ padding: "14px 16px 8px", flexShrink: 0 }}>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>
+            {n === 1 ? "TAG THIS MOMENT" : `TAG ${n} MOMENTS`}
+          </div>
+          <div style={{ display: "flex", gap: 6, marginTop: 8, overflowX: "auto" }}>
+            {nights.map(d => <button key={d.n} onClick={() => setNight(d.n)} style={chip(String(d.n) === String(night))}>{d.label}</button>)}
+          </div>
+          <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search this night's sets" aria-label="Search sets" style={{
+            width: "100%", boxSizing: "border-box", marginTop: 8, padding: "9px 11px", borderRadius: 10,
+            border: "1px solid var(--line-2)", background: "var(--paper)", color: "var(--ink)", fontSize: 14, outline: "none",
+          }}/>
+        </div>
+        <div style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "0 16px" }}>
+          {sets.map(a => {
+            const st = stageOf(a.stage);
+            return (
+              <button key={a.id} data-pick-artist={a.id} onClick={() => onApply({ artistId: a.id }, night)} style={{
+                display: "flex", alignItems: "center", gap: 8, width: "100%", textAlign: "left", padding: "10px 2px",
+                background: "none", border: "none", borderTop: "1px solid var(--line)", cursor: "pointer", color: "var(--ink)", fontFamily: "inherit",
+              }}>
+                <span aria-hidden="true" style={{ width: 4, alignSelf: "stretch", borderRadius: 3, background: st ? st.color : "var(--line-2)" }}/>
+                <span style={{ flex: 1, minWidth: 0, fontSize: 14, fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  {saved.has(a.id) ? "★ " : ""}{a.name}
+                </span>
+                <span className="mono" style={{ fontSize: 9, letterSpacing: 0.8, color: "var(--muted)", flexShrink: 0 }}>
+                  {[st && st.short, a.start && fmt12(a.start)].filter(Boolean).join(" · ")}
+                </span>
+              </button>
+            );
+          })}
+          {!sets.length && <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", padding: "12px 0" }}>NO SETS MATCH</div>}
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700, margin: "12px 0 6px" }}>OR JUST THE STAGE</div>
+          <div style={{ display: "flex", gap: 6, flexWrap: "wrap", paddingBottom: 12 }}>
+            {stages.map(s => <button key={s.id} data-pick-stage={s.id} onClick={() => onApply({ stageId: s.id }, night)} style={chip(false)}>{s.short || s.name}</button>)}
+          </div>
+        </div>
+        <div style={{ display: "flex", gap: 8, padding: "10px 16px calc(12px + env(safe-area-inset-bottom))", borderTop: "1px solid var(--line)", flexShrink: 0 }}>
+          <button onClick={onClose} style={{ ...chip(false), flex: 1, padding: "11px 0" }}>CANCEL</button>
+          <button data-pick-unknown onClick={() => onApply({ unknown: true }, night)} style={{ ...chip(false), flex: 2, padding: "11px 0" }}>UNKNOWN / NOT SURE</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ImportReview({ results, moments, onClose, onPatch, onMove }) {
   const byId = React.useMemo(() => {
     const m = {};
     for (const night of Object.keys(moments || {})) {
@@ -3927,26 +4073,59 @@ function ImportReview({ results, moments, onClose, onFix }) {
     }
     return m;
   }, [moments]);
+  const [sel, setSel] = React.useState(() => new Set());
+  const [picking, setPicking] = React.useState(null);   // moment ids the picker is tagging
 
-  const rows = React.useMemo(() => {
-    const out = (results || []).filter(r => r.momentId).map(r => {
-      const mo = byId[r.momentId] || null;
-      const artist = r.artistId ? ARTISTS.find(a => a.id === r.artistId) : null;
-      // Guarded: an act with no published stage is real (Escape, III Points),
-      // and an unguarded dereference here took the whole Lineup screen down
-      // once already.
-      const stage = artist ? (STAGES.find(st => st.id === artist.stage) || UNPLACED_STAGE) : null;
-      const day = DAYS.find(d => d.n === r.night);
-      const sure = !!r.artistId && r.tagSource !== "fallback" && !(mo && (mo.needsRetag || mo.tagAmbiguous));
-      return { ...r, moment: mo, artist, stage, day, sure };
-    });
-    // Everything that needs a human first. The whole point of showing this
-    // now rather than later is the fixing, not the reading.
-    return out.sort((a, b) => (a.sure === b.sure) ? 0 : (a.sure ? 1 : -1));
-  }, [results, byId]);
+  const rows = React.useMemo(() => (results || []).filter(r => r.momentId && byId[r.momentId]).map(r => {
+    const m = byId[r.momentId];
+    const { fid, cfg, artists, stages } = _momentFestival(m);
+    const artist = m.artistId ? artists.find(a => a.id === m.artistId) || null : null;
+    const stageId = artist ? artist.stage : m.stageId || null;
+    // Guarded: an act with no published stage is real (Escape, III Points).
+    const stage = stageId ? (stages.find(s => s.id === stageId) || UNPLACED_STAGE) : null;
+    const day = cfg && cfg.dayDates && cfg.dayDates[m.night];
+    const reg = FESTIVALS_REGISTRY.find(e => e.config.id === fid);
+    return { id: m.id, m, name: r.name || "", fid, artist, stage, day,
+             fest: reg ? (reg.config.shortName || reg.config.name) : fid, review: _momentNeedsReview(m) };
+  }), [results, byId]);
 
-  const unsure = rows.filter(r => !r.sure).length;
+  // Night first, then stage: the order a festival happened in.
+  const groups = React.useMemo(() => {
+    const out = new Map();
+    for (const r of rows) {
+      const k = `${r.fid}|${r.m.night}`;
+      if (!out.has(k)) out.set(k, { key: k, fest: r.fest, day: r.day, night: r.m.night, stages: new Map() });
+      const g = out.get(k), sk = r.stage ? r.stage.id : "";
+      if (!g.stages.has(sk)) g.stages.set(sk, { stage: r.stage, rows: [] });
+      g.stages.get(sk).rows.push(r);
+    }
+    return [...out.values()].sort((a, b) => Number(a.night) - Number(b.night));
+  }, [rows]);
+
   if (!rows.length) return null;
+  const need = rows.filter(r => r.review).length;
+  const toggle = id => setSel(s => { const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n; });
+  const pickMoments = (picking || []).map(id => byId[id]).filter(Boolean);
+  const oneFestival = new Set([...sel].map(id => byId[id] && _momentFestival(byId[id]).fid)).size <= 1;
+  const apply = (choice, night) => {
+    const patch = _retagPatch(choice);
+    if (!patch) return;
+    const ids = picking || [];
+    // A set on another night moves the moment to that night; everything else
+    // is one write for the whole selection.
+    const moving = choice.artistId ? ids.filter(id => byId[id] && String(byId[id].night) !== String(night)) : [];
+    const staying = ids.filter(id => !moving.includes(id));
+    if (staying.length) onPatch?.(staying, patch);
+    for (const id of moving) onMove?.(id, night, patch);
+    try { window.plurskyHaptic?.("LIGHT"); } catch {}
+    setPicking(null); setSel(new Set());
+  };
+  const basis = m => {
+    const src = (_TAG_SOURCE_LABEL[m.tagSource] || {}).text;
+    const t = typeof m.takenAt === "string" && m.takenAt.length >= 16 ? m.takenAt.slice(11, 16) : null;
+    return [src, t && `shot ${t}`, m.locationSource === "gps" ? "GPS" : null].filter(Boolean).join(" · ");
+  };
+  const mono = { fontFamily: "Geist Mono, monospace", letterSpacing: 1.1, fontWeight: 700 };
 
   return (
     <div onClick={onClose} style={{
@@ -3954,7 +4133,7 @@ function ImportReview({ results, moments, onClose, onFix }) {
       display: "flex", alignItems: "flex-end", justifyContent: "center",
       animation: "fadeIn .18s",
     }}>
-      <div onClick={e => e.stopPropagation()} style={{
+      <div role="dialog" aria-modal="true" aria-label="Review imported moments" data-import-review onClick={e => e.stopPropagation()} style={{
         width: "100%", maxWidth: 520, maxHeight: "86vh",
         background: "var(--paper)", borderRadius: "18px 18px 0 0",
         border: "1px solid var(--line)", borderBottom: "none",
@@ -3962,59 +4141,92 @@ function ImportReview({ results, moments, onClose, onFix }) {
       }}>
         <div style={{ padding: "14px 18px 10px", borderBottom: "1px solid var(--line)", flexShrink: 0 }}>
           <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, color: "var(--ink)" }}>
-            {unsure === 0 ? <>All {rows.length} <span style={{ fontStyle: "italic" }}>tagged</span></>
-                          : <>{unsure} need{unsure === 1 ? "s" : ""} a <span style={{ fontStyle: "italic" }}>set</span></>}
+            {need === 0 ? <>All {rows.length} <span style={{ fontStyle: "italic" }}>tagged</span></>
+                        : <>{need} need{need === 1 ? "s" : ""} a <span style={{ fontStyle: "italic" }}>set</span></>}
           </div>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700, marginTop: 4 }}>
-            {rows.length} IMPORTED · TAP A ROW TO FIX ITS TAG
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4 }}>
+            <div data-review-counts style={{ ...mono, fontSize: 9, color: "var(--muted)", flex: 1 }}>
+              {/* Import results carry file names; the review-later list does not, and calling it "imported" there would not be true. */}
+              {[(results || []).some(r => r.name) && `${rows.length} IMPORTED`, need ? `${need} NEED REVIEW` : "ALL ANSWERED"].filter(Boolean).join(" · ")}
+            </div>
+            {need > 0 && (
+              <button onClick={() => setSel(new Set(rows.filter(r => r.review).map(r => r.id)))} style={{ ...mono, fontSize: 9, background: "none", border: "none", color: "var(--ember-ink)", cursor: "pointer", padding: 0 }}>
+                SELECT THESE
+              </button>
+            )}
           </div>
         </div>
 
-        <div style={{ flex: 1, minHeight: 0, overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "6px 12px 8px" }}>
-          {rows.map(r => (
-            <button key={r.momentId} onClick={() => r.moment && onFix?.(r.moment)} style={{
-              display: "flex", alignItems: "center", gap: 10, width: "100%",
-              textAlign: "left", padding: "9px 10px", marginBottom: 4,
-              background: r.sure ? "transparent" : "rgba(232,93,46,0.07)",
-              border: r.sure ? "1px solid var(--line)" : "1px solid rgba(232,93,46,0.45)",
-              borderRadius: 10, cursor: "pointer", fontFamily: "inherit", color: "var(--ink)",
-            }}>
-              <span aria-hidden="true" style={{
-                flexShrink: 0, width: 4, alignSelf: "stretch", borderRadius: 3,
-                background: r.stage ? r.stage.color : "var(--line-2)",
-              }}/>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 14, lineHeight: 1.15, fontWeight: r.artist ? 700 : 500,
-                              color: r.artist ? "var(--ink)" : "var(--ember-ink)",
-                              overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                  {r.artist ? r.artist.name : "No set matched"}
-                </div>
-                <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", fontWeight: 700, marginTop: 2,
-                                               overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                  {r.stage ? `${r.stage.short} · ` : ""}{(r.day && r.day.label) || `NIGHT ${r.night}`}
-                  {" · "}{(_TAG_SOURCE_LABEL[r.tagSource] || {}).text || String(r.tagSource || "").toUpperCase()}
-                </div>
-                <div className="mono" style={{ fontSize: 8, letterSpacing: 0.6, color: "var(--muted)", marginTop: 2, opacity: 0.75,
-                                               overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                  {r.name}
-                </div>
+        <div style={{ flex: 1, minHeight: 0, overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "4px 12px 8px" }}>
+          {groups.map(g => (
+            <div key={g.key} data-review-group={g.key}>
+              <div style={{ ...mono, fontSize: 9, color: "var(--muted)", margin: "12px 2px 4px" }}>
+                {[g.fest && g.fest.toUpperCase(), g.day ? (g.day.name || g.day.short || "").toUpperCase() : `NIGHT ${g.night}`].filter(Boolean).join(" · ")}
               </div>
-              <span className="mono" style={{ flexShrink: 0, fontSize: 9, letterSpacing: 1.1, fontWeight: 800,
-                                              color: r.sure ? "var(--success)" : "var(--ember-ink)" }}>
-                {r.sure ? "✓" : "FIX →"}
-              </span>
-            </button>
+              {[...g.stages.values()].map(sg => (
+                <div key={sg.stage ? sg.stage.id : "none"}>
+                  <div style={{ ...mono, fontSize: 8, color: sg.stage ? sg.stage.color : "var(--muted)", margin: "6px 4px 3px" }}>
+                    {sg.stage ? (sg.stage.name || sg.stage.short).toUpperCase() : "NO STAGE YET"}
+                  </div>
+                  {sg.rows.map(r => {
+                    const on = sel.has(r.id);
+                    return (
+                      <div key={r.id} data-review-row={r.id} data-review-state={r.review ? "review" : "ok"} style={{
+                        display: "flex", alignItems: "center", gap: 9, padding: "7px 8px", marginBottom: 4, borderRadius: 10,
+                        background: r.review ? "rgba(232,93,46,0.07)" : "transparent",
+                        border: r.review ? "1px solid rgba(232,93,46,0.45)" : "1px solid var(--line)",
+                      }}>
+                        <button onClick={() => toggle(r.id)} role="checkbox" aria-checked={on} aria-label={`Select ${_momentMediaLabel(r.m)}`} style={{
+                          width: 24, height: 24, borderRadius: 6, flexShrink: 0, cursor: "pointer", padding: 0,
+                          border: on ? "none" : "1.5px solid var(--line-2)", background: on ? "var(--ink)" : "transparent",
+                          color: "var(--paper)", fontSize: 13, lineHeight: "24px",
+                        }}>{on ? "✓" : ""}</button>
+                        <_ReviewThumb moment={r.m}/>
+                        <button onClick={() => setPicking([r.id])} aria-label={`Change the tag for ${_momentMediaLabel(r.m)}`} style={{
+                          flex: 1, minWidth: 0, textAlign: "left", background: "none", border: "none", padding: 0,
+                          cursor: "pointer", color: "var(--ink)", fontFamily: "inherit",
+                        }}>
+                          <div style={{ fontSize: 14, lineHeight: 1.15, fontWeight: r.artist ? 700 : 500,
+                                        color: r.artist ? "var(--ink)" : r.review ? "var(--ember-ink)" : "var(--muted)",
+                                        overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                            {r.artist ? r.artist.name : r.m.tagSource === "unknown" ? "Unknown" : r.stage ? "Set not picked" : "No set matched"}
+                          </div>
+                          <div style={{ ...mono, fontSize: 8.5, letterSpacing: 0.9, color: "var(--muted)", marginTop: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                            {[r.fest, r.day ? r.day.short : `NIGHT ${r.m.night}`, r.stage && r.stage.short].filter(Boolean).join(" · ")}
+                          </div>
+                          <div data-review-basis style={{ fontSize: 10.5, color: "var(--muted)", marginTop: 2, opacity: 0.85, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                            {basis(r.m)}
+                          </div>
+                        </button>
+                        <span style={{ ...mono, flexShrink: 0, fontSize: 9, color: r.review ? "var(--ember-ink)" : "var(--success)" }}>{r.review ? "FIX" : "✓"}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
           ))}
         </div>
 
         <div style={{ padding: "10px 14px calc(12px + env(safe-area-inset-bottom))", borderTop: "1px solid var(--line)", flexShrink: 0 }}>
-          <button onClick={onClose} className="mono" style={{
-            width: "100%", padding: "12px 0", borderRadius: 12, border: "none",
-            background: "var(--ink)", color: "var(--paper)", cursor: "pointer",
-            fontSize: 11, letterSpacing: 1.3, fontWeight: 800,
-          }}>{unsure === 0 ? "LOOKS RIGHT" : "DONE FOR NOW"}</button>
+          {sel.size > 0 ? (
+            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <div style={{ ...mono, fontSize: 9, color: "var(--muted)", flex: 1 }}>
+                {oneFestival ? `${sel.size} SELECTED` : "SELECT ONE FESTIVAL'S MOMENTS"}
+              </div>
+              <button onClick={() => setSel(new Set())} style={{ ...mono, fontSize: 10, padding: "11px 14px", borderRadius: 12, border: "1px solid var(--line-2)", background: "transparent", color: "var(--ink)", cursor: "pointer" }}>CLEAR</button>
+              <button data-review-batch disabled={!oneFestival} onClick={() => setPicking([...sel])} style={{ ...mono, fontSize: 10, padding: "11px 16px", borderRadius: 12, border: "none", background: "var(--ink)", color: "var(--paper)", cursor: oneFestival ? "pointer" : "default", opacity: oneFestival ? 1 : 0.4 }}>TAG {sel.size}</button>
+            </div>
+          ) : (
+            <button data-review-done onClick={onClose} className="mono" style={{
+              width: "100%", padding: "12px 0", borderRadius: 12, border: "none",
+              background: "var(--ink)", color: "var(--paper)", cursor: "pointer",
+              fontSize: 11, letterSpacing: 1.3, fontWeight: 800,
+            }}>{need === 0 ? `LOOKS RIGHT · ${rows.length} SAVED` : `DONE · ${need} LEFT TO REVIEW LATER`}</button>
+          )}
         </div>
       </div>
+      {pickMoments.length > 0 && <_ReviewPicker moments={pickMoments} onClose={() => setPicking(null)} onApply={apply}/>}
     </div>
   );
 }
@@ -5126,6 +5338,9 @@ function MemoriesScreen({ state, setState }) {
   // keyed by night across festivals). Writes still go to the full store via
   // _readMoments()/_writeMoments in the handlers, preserving other festivals.
   const all = React.useMemo(() => _activeMoments(rawAll), [rawAll]);
+  // Unresolved moments stay reviewable after the import sheet is dismissed:
+  // the import card offers them again until each has an answer.
+  const reviewIds = React.useMemo(() => Object.values(all).flat().filter(_momentNeedsReview).map(m => m.id), [all]);
   const [adding, setAdding] = React.useState(null); // night number being added to, or null
   const [batch, setBatch] = React.useState(null);   // null | { total, done, results: [{name, night, artistId, err?}] }
   const [review, setReview] = React.useState(null); // null | results[] — the post-import confirm sheet
@@ -5519,6 +5734,20 @@ function MemoriesScreen({ state, setState }) {
     }
   };
 
+  // Import review: one write for a whole selection, and a night change as a
+  // remove-then-insert. Both go through _writeMoments, so cloud sync, recap,
+  // trading cards, song-ID and the wall all read the retag.
+  const handlePatchMany = (ids, patch) => {
+    const next = _patchMoments(_readMoments(), ids, patch);
+    _writeMoments(next);
+    setAll(next);
+  };
+  const handleMoveNight = (id, night, patch) => {
+    const next = _moveMoment(_readMoments(), id, night, patch);
+    _writeMoments(next);
+    setAll(next);
+  };
+
   const totalCount = Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
 
   // Three lenses on the same data. Default is "night" (preserves the
@@ -5630,7 +5859,8 @@ function MemoriesScreen({ state, setState }) {
           // it has to be reachable to be fixed.
           moments={rawAll}
           onClose={() => setReview(null)}
-          onFix={(m) => { setReview(null); setLightbox({ moments: [m], index: 0 }); }}
+          onPatch={handlePatchMany}
+          onMove={handleMoveNight}
         />
       )}
       {lightbox && (
@@ -5703,6 +5933,15 @@ function MemoriesScreen({ state, setState }) {
             fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
           }}>{batch && batch.done < batch.total ? `${batch.done}/${batch.total}` : "PICK"}</span>
         </button>
+        {!batch && reviewIds.length > 0 && (
+          <button data-review-later onClick={() => setReview(reviewIds.map(id => ({ momentId: id })))} className="mono" style={{
+            display: "block", width: "100%", textAlign: "left", marginTop: 8, padding: "9px 12px", borderRadius: 10, cursor: "pointer",
+            background: "rgba(232,93,46,0.10)", border: "1px solid rgba(232,93,46,0.4)", color: "var(--ember-ink)",
+            fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
+          }}>
+            ⚑ {reviewIds.length} MOMENT{reviewIds.length === 1 ? "" : "S"} NEED A SET · REVIEW →
+          </button>
+        )}
         {batch && batch.done === batch.total && (() => {
           const tagged    = batch.results.filter(r => !r.err && !r.skipped && r.artistId).length;
           const needRetag = batch.results.filter(r => !r.err && !r.skipped && !r.artistId).length;
@@ -7195,6 +7434,7 @@ function _recoverCurrentVideoMomentsFromArchive() {
         if (m.festivalId && m.festivalId !== cur) continue;
         const parsed = _momentTakenAtToDateParts(m.takenAt);
         const parsedNight = parsed ? _photoFestivalNight(parsed) : null;
+        if (m.tagSource === "unknown") continue;      // the user's answer, not a gap
         const needsRecovery = parsedNight == null || !m.artistId || m.tagSource === "fallback" || m.needsRetag;
         if (!needsRecovery) continue;
         const archived = _findArchivedVideoMomentForFingerprint(m._fingerprint);

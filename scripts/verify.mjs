@@ -1917,6 +1917,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   console.log(`  ✓ 0 poster-style <video> elements across the app's .jsx files; posters extract only via the idle queue; thumbnails lazy + async`);
 }
 
+// ── 1z-c2. Post-import review ─────────────────────────────────────────────
+// Who needs review, what each retag writes, that a write touches exactly the
+// moments it names (never another festival's), that the lineup offered is the
+// moment's own festival/night/weekend, and that an explicit Unknown survives
+// the archive-recovery pass.
+{
+  console.log("▸ Import-review gate — needs-review rule, exact writes, own-festival lineup, Unknown stays");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-import-review.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`import review failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 2. Mount probe ─────────────────────────────────────────────────────────
 // Loads the REAL index.html in an iframe rather than reconstructing the script
 // order. An earlier version of this check derived load order by grepping
