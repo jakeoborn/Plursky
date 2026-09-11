@@ -8405,6 +8405,46 @@ function FestivalArchiveList({ archive }) {
   );
 }
 
+// Tilt for the Recap trading cards ONLY (Jake, 2026-09-11: "tilt on trading
+// cards only"). The card leans toward the finger or cursor, up to 12° on each
+// axis, with a soft sheen that follows the point, and springs back on release.
+// It uses the default touch-action, so a swipe still scrolls the card row: the
+// browser cancels the pointer and the card settles. Flat under reduced motion.
+function TiltCard({ style, children }) {
+  const ref = React.useRef(null);
+  const [t, setT] = React.useState(null);   // { rx, ry, gx, gy } while pressed/hovered
+  const reduce = React.useMemo(() => { try { return !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches; } catch { return false; } }, []);
+  const lean = (e) => {
+    if (reduce) return;
+    const r = ref.current?.getBoundingClientRect();
+    if (!r || !r.width) return;
+    const px = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+    const py = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
+    setT({ rx: (0.5 - py) * 24, ry: (px - 0.5) * 24, gx: px * 100, gy: py * 100 });
+  };
+  const settle = () => setT(null);
+  return (
+    <div style={{ perspective: 520, flexShrink: 0 }}>
+      <div ref={ref} data-tilt-card=""
+        onPointerMove={lean} onPointerDown={lean}
+        onPointerLeave={settle} onPointerUp={settle} onPointerCancel={settle}
+        style={{
+          ...style, position: "relative", overflow: "hidden",
+          transform: t ? `rotateX(${t.rx.toFixed(2)}deg) rotateY(${t.ry.toFixed(2)}deg) scale(1.04)` : "none",
+          transition: t ? "transform 70ms linear" : "transform 480ms cubic-bezier(.2,1.5,.4,1)",
+          willChange: "transform",
+        }}>
+        {children}
+        <div aria-hidden="true" style={{
+          position: "absolute", top: 0, right: 0, bottom: 0, left: 0, pointerEvents: "none", borderRadius: "inherit",
+          background: t ? `radial-gradient(circle at ${t.gx}% ${t.gy}%, rgba(255,255,255,0.5), rgba(255,255,255,0) 58%)` : "none",
+          mixBlendMode: "soft-light", opacity: t ? 1 : 0, transition: "opacity 220ms",
+        }} />
+      </div>
+    </div>
+  );
+}
+
 function RecapScreen({ state, setState }) {
   const recap = React.useMemo(() => _computeRecap(state), [state]);
   // v226 (#6): cross-festival annual aggregate — null-safe so a recap
@@ -9188,7 +9228,7 @@ function RecapScreen({ state, setState }) {
                 return artists.map((a, i) => {
                   const stage = STAGES.find(s => s.id === a.stage);
                   return (
-                    <div key={a.id} style={{
+                    <TiltCard key={a.id} style={{
                       width: 90, height: 130, flexShrink: 0, borderRadius: 10,
                       background: `linear-gradient(155deg, ${stage?.color || "#6D28D9"}22 0%, ${stage?.color || "#6D28D9"}44 100%)`,
                       border: `1.5px solid ${stage?.color || "#6D28D9"}55`,
@@ -9209,7 +9249,7 @@ function RecapScreen({ state, setState }) {
                       <div className="mono" style={{ fontSize: 8, letterSpacing: 1, color: stage?.color, fontWeight: 700, textAlign: "right" }}>
                         #{String(i + 1).padStart(3, "0")}
                       </div>
-                    </div>
+                    </TiltCard>
                   );
                 });
               })()}

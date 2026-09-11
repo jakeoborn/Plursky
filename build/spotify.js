@@ -12578,6 +12578,71 @@ function FestivalArchiveList({
     }
   }, "TAP TO VIEW · COMING SOON"));
 }
+function TiltCard({
+  style,
+  children
+}) {
+  var ref = React.useRef(null);
+  var [t, setT] = React.useState(null);
+  var reduce = React.useMemo(() => {
+    try {
+      return !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    } catch {
+      return false;
+    }
+  }, []);
+  var lean = e => {
+    if (reduce) return;
+    var r = ref.current?.getBoundingClientRect();
+    if (!r || !r.width) return;
+    var px = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+    var py = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
+    setT({
+      rx: (0.5 - py) * 24,
+      ry: (px - 0.5) * 24,
+      gx: px * 100,
+      gy: py * 100
+    });
+  };
+  var settle = () => setT(null);
+  return React.createElement("div", {
+    style: {
+      perspective: 520,
+      flexShrink: 0
+    }
+  }, React.createElement("div", {
+    ref: ref,
+    "data-tilt-card": "",
+    onPointerMove: lean,
+    onPointerDown: lean,
+    onPointerLeave: settle,
+    onPointerUp: settle,
+    onPointerCancel: settle,
+    style: {
+      ...style,
+      position: "relative",
+      overflow: "hidden",
+      transform: t ? `rotateX(${t.rx.toFixed(2)}deg) rotateY(${t.ry.toFixed(2)}deg) scale(1.04)` : "none",
+      transition: t ? "transform 70ms linear" : "transform 480ms cubic-bezier(.2,1.5,.4,1)",
+      willChange: "transform"
+    }
+  }, children, React.createElement("div", {
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+      pointerEvents: "none",
+      borderRadius: "inherit",
+      background: t ? `radial-gradient(circle at ${t.gx}% ${t.gy}%, rgba(255,255,255,0.5), rgba(255,255,255,0) 58%)` : "none",
+      mixBlendMode: "soft-light",
+      opacity: t ? 1 : 0,
+      transition: "opacity 220ms"
+    }
+  })));
+}
 function RecapScreen({
   state,
   setState
@@ -14030,7 +14095,7 @@ function RecapScreen({
     var artists = Object.values(attended).flat().map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).slice(0, 6);
     return artists.map((a, i) => {
       var stage = STAGES.find(s => s.id === a.stage);
-      return React.createElement("div", {
+      return React.createElement(TiltCard, {
         key: a.id,
         style: {
           width: 90,
