@@ -29,6 +29,12 @@ commits, pushes, PRs, issues). Surface the plan and wait for an explicit
 "yes / go / do it" from the user for *that specific step*. One approval covers
 the step it was given for, not the next one. When in doubt, ask.
 
+**Standing exception — merges (founder rule, 2026-09-10).** A PR whose full
+verify gate is green on its exact head commit, and which has had its review, is
+merged by Claude Code without waiting for a further go-ahead. That covers the
+merge only. If the head moves, the gate and the review run again on the new
+head. iOS submission, prices and anything audience-facing still wait for Jake.
+
 ---
 
 ## 0b. Verify before you relay (HARD RULE — applies to EVERY agent)
@@ -77,9 +83,9 @@ gates exist because that padding has been shipped before.
 | **Any other agent** | Branches / PRs / issues | Commit or push to `main` |
 
 `main` is the **live deploy** (push to main → plursky.com updates). Only Claude
-Code commits there, and only after both the approval gate (§0) and the verify
-gate (§2) pass. **Instinct has GitHub write access but must NOT push to `main`** —
-it opens a branch + PR (or files an issue) and lets Claude Code run the gate and
+Code commits there, and only after both the approval gate (§0, including its
+standing merge exception) and the verify gate (§2) pass. **Instinct has GitHub
+write access but must NOT push to `main`** — it opens a branch + PR (or files an issue) and lets Claude Code run the gate and
 merge. Direct-to-main bypasses the only validation Plursky has. Note that Instinct
 uses jakeoborn's shared credentials, so branch protection CANNOT tell it apart from
 Claude Code: this rule is instruction-level only, which is exactly why it is here.
@@ -179,6 +185,8 @@ Docs-only, so no `vNNN` bump (§2 rule 3).
 lands `available: false`. A watch fires the flip session only when the
 **official set times publish**, and each flip is **its own PR** for founder /
 Claude Code review — never agent-merged, never folded into an unrelated PR.
+The §0 merge exception does not cover flips: a flip is audience-facing, so a
+green gate is necessary but the founder's word is still required.
 
 A gated entry whose event date has **passed** never flips. Retire it or roll it
 to next year — do not leave it sitting `available: false` forever, and check
