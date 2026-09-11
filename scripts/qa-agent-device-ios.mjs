@@ -131,6 +131,19 @@ async function waitForSnapshot(matcher, { timeoutMs = 20_000, name = "snapshot-w
   }
   throw Object.assign(new Error(`timed out waiting for ${matcher}`), { finalState: "FAIL_UI_REGRESSION" });
 }
+async function finishOnboardingIfPresent() {
+  const first = await saveSnapshot("snapshot-home-or-onboarding.txt", true);
+  if (!/What should we call you/i.test(first.body)) return;
+
+  const nameInput = findNode(first.snap, /What should we call you/i);
+  if (!nameInput?.ref) throw Object.assign(new Error("onboarding name input has no interactive ref"), { finalState: "FAIL_UI_REGRESSION" });
+  await client.interactions.fill({ ref: nameInput.ref, text: "QA User", verify: true });
+  await press(/CONTINUE AS QA USER|CONTINUE/i, "onboarding-continue");
+  await waitForSnapshot(/CONNECT SPOTIFY/i, { name: "snapshot-onboarding-spotify.txt", interactiveOnly: true });
+  await press(/^SKIP$/i, "onboarding-skip-spotify");
+  await waitForSnapshot(/ENABLE NOTIFICATIONS|MAYBE LATER|GOT IT/i, { name: "snapshot-onboarding-notifications.txt", interactiveOnly: true });
+  await press(/MAYBE LATER|GOT IT/i, "onboarding-skip-notifications");
+}
 async function waitForResult(ms = 20_000) {
   const deadline = Date.now() + ms;
   while (Date.now() < deadline) {
@@ -292,6 +305,7 @@ try {
       app: bundleId, platform: "ios", udid, relaunch: true,
       launchArgs: ["-plurskyInitialTab", "home"],
     });
+    await finishOnboardingIfPresent();
 
     // The festival switcher lives on Home, not Map. Home has no standalone
     // "TODAY" heading, so wait for the interactive chip this flow needs.
@@ -358,4 +372,4 @@ try {
   process.exitCode = 1;
 } finally {
   if (client) { try { await client.sessions.close(); } catch {} }
-}
+          }
