@@ -132,7 +132,13 @@ async function waitForSnapshot(matcher, { timeoutMs = 20_000, name = "snapshot-w
   throw Object.assign(new Error(`timed out waiting for ${matcher}`), { finalState: "FAIL_UI_REGRESSION" });
 }
 async function finishOnboardingIfPresent() {
-  const first = await saveSnapshot("snapshot-home-or-onboarding.txt", true);
+  // apps.open resolves when the native launch succeeds, before the WebView is
+  // necessarily ready. Wait for either stable Home content or onboarding so a
+  // blank/partial first hierarchy cannot make us skip the fresh-install path.
+  const first = await waitForSnapshot(
+    /What should we call you|LOST LANDS|NOCTURNAL|EDC LV/i,
+    { name: "snapshot-home-or-onboarding.txt", interactiveOnly: true },
+  );
   if (!/What should we call you/i.test(first.body)) return;
 
   const nameInput = findNode(first.snap, /What should we call you/i);
