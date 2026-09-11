@@ -1862,6 +1862,24 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b4. Schedule Sync review + overlay ─────────────────────────────────
+// Every committed feed reviews as current; a mutated feed names exactly the
+// changed saved sets, new clashes, moved reminders and cancelled saves; the
+// confirmed overlay IS the feed after a relaunch, replaces rather than
+// stacks, and is dropped when the bundle moves; native reminders cancel the
+// persisted slate after a relaunch.
+{
+  console.log("▸ Schedule-review gate — impact exact, overlay replaces not stacks, reminders cancel after relaunch");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-schedule-review.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`schedule review failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c. Video thumbnails ────────────────────────────────────────────────
 // A library tile shows a stored poster <img>, never a live <video>. The old
 // "poster" was <video preload="metadata" src="...#t=0.1">: one decoder per

@@ -847,7 +847,13 @@ function scheduleReminders(state, showLocal) {
     // Native: cancel the previous slate, then schedule fresh. We cancel by
     // explicit id list so we don't blow away third-party Capacitor plugins'
     // notifications (none exist today, but cheap insurance).
-    const prevIds = Array.from(_SCHEDULED.values()).filter(v => typeof v === "number");
+    // _SCHEDULED is empty after a relaunch, so the persisted slate counts as
+    // "previous" too — otherwise a set unsaved, cancelled by a schedule
+    // update, or moved to TBA across a relaunch kept its old alert, and the
+    // OS fired it for a set nobody was playing.
+    let persisted = [];
+    try { persisted = JSON.parse(localStorage.getItem(_REMINDERS_KEY) || "[]").map(p => p && p.notifId); } catch {}
+    const prevIds = [...Array.from(_SCHEDULED.values()), ...persisted].filter(v => typeof v === "number");
     const allIds  = new Set([...prevIds, ...pending.map(p => p.notifId)]);
     _SCHEDULED.clear();
     ln.cancel({ notifications: [...allIds].map(id => ({ id })) }).catch(() => {});

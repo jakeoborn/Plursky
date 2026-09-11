@@ -3612,8 +3612,7 @@ function _packStatus(m, { now = Date.now(), liveHash = null } = {}) {
   return "ready";
 }
 function _packFeedUrl(fid) {
-  const own = typeof location !== "undefined" && /^https?:$/.test(location.protocol);
-  return (own ? "" : "https://plursky.com/") + `f/${fid}/schedule.json`;
+  return _scheduleFeedUrl(fid);                        // data.jsx — one feed URL
 }
 
 let _packDbP = null;

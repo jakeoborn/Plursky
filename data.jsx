@@ -1822,6 +1822,144 @@ function applyScheduleDiff(acts, diff) {
   return out;
 }
 
+// ── Schedule Sync: overlay + impact review ─────────────────────────────────
+// A feed's changes reach the lineup only after the user confirms them on the
+// review sheet (lineup.jsx ScheduleReviewSheet). What is STORED is the diff
+// from the BUNDLED schedule to the feed, keyed by a fingerprint of that
+// bundle: a new app version ships new data, the fingerprint moves, and the
+// overlay is dropped rather than replayed onto a schedule it was not computed
+// against. It is applied once at boot, before the window export, so every
+// read (lineup, reminders, now/next, .ics, auto-tag) sees ONE lineup — nothing
+// is patched live, which is why confirming reloads.
+const _SCHED_OVERLAY_KEY = "plursky_schedule_overlay_v1";
+function _scheduleFeedUrl(fid) {
+  const own = typeof location !== "undefined" && /^https?:$/.test(location.protocol);
+  return (own ? "" : "https://plursky.com/") + `f/${fid}/schedule.json`;
+}
+async function fetchScheduleFeed(fid) {
+  const r = await fetch(_scheduleFeedUrl(fid), { cache: "no-store" });
+  if (!r.ok) throw new Error(`${r.status}`);
+  return r.json();
+}
+function _schedFingerprint(acts) {
+  const s = JSON.stringify(acts);
+  let h = 0x811c9dc5;                                  // FNV-1a
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); }
+  return (h >>> 0).toString(16).padStart(8, "0") + ":" + s.length;
+}
+function _schedOverlays() {
+  try { const o = JSON.parse(localStorage.getItem(_SCHED_OVERLAY_KEY) || "{}"); return o && typeof o === "object" ? o : {}; }
+  catch { return {}; }
+}
+function _schedOverlaysWrite(o) {
+  try {
+    if (Object.keys(o).length) localStorage.setItem(_SCHED_OVERLAY_KEY, JSON.stringify(o));
+    else localStorage.removeItem(_SCHED_OVERLAY_KEY);
+  } catch {}
+}
+// An act the feed ADDS carries schedule fields only, and the lineup reads
+// genre / tier / img / bio unguarded (search calls a.genre.toLowerCase()), so
+// it takes the festival's plainest values instead of undefined.
+function _schedFill(a, artists) {
+  if (a.genre != null) return a;
+  const low = (artists || []).reduce((m, x) => (m == null || x.tier > m.tier ? x : m), null) || {};
+  return { genre: "", country: "—", tier: low.tier ?? 3, img: low.img || "linear-gradient(135deg, #3a3a3a, #111)", bio: "", ...a };
+}
+function _applyScheduleOverlays(sets) {
+  const all = _schedOverlays();
+  let dirty = false;
+  for (const fid of Object.keys(all)) {
+    const ds = sets[fid], ov = all[fid];
+    if (!ds || !ov || !ov.diff || ov.base !== _schedFingerprint(_scheduleActs(ds.artists))) {
+      delete all[fid]; dirty = true; continue;
+    }
+    try {
+      const bundled = ds.artists;
+      ds.artists = applyScheduleDiff(bundled, ov.diff).map(a => _schedFill(a, bundled));
+      ds.bundledArtists = bundled;
+    } catch { delete all[fid]; dirty = true; }
+  }
+  if (dirty) _schedOverlaysWrite(all);
+}
+
+// Same night, a weekend both play, and the times cross — the lineup's
+// overlaps() rule, which only ever sees one day of one weekend's lineup.
+function _schedNightMin(t) { const [h, m] = t.split(":").map(Number); return (h < 8 ? h + 24 : h) * 60 + m; }
+function _schedClash(a, b) {
+  if (a.day !== b.day || !a.start || !a.end || !b.start || !b.end) return false;
+  const wa = a.weekend, wb = b.weekend;
+  if (wa && wb && wa !== "both" && wb !== "both" && wa !== wb) return false;
+  return _schedNightMin(a.start) < _schedNightMin(b.end) && _schedNightMin(b.start) < _schedNightMin(a.end);
+}
+// The instant a slot starts for THIS user: a weekend-tagged act plays its own
+// weekend's dates; an untagged one takes the weekend the session resolved to.
+function _schedStartMs(cfg, slot, now, saved) {
+  if (!slot || !slot.start || !cfg || !cfg.dayDates) return null;
+  const d = slot.weekend === "W1" || slot.weekend === "W2" ? _cfgActDayDate(cfg, slot)
+          : _shiftDayDate(cfg.dayDates[slot.day], _weekendShiftMs(cfg, now, saved));
+  return _wallMs(d, slot.start, cfg.tz);
+}
+
+// What confirming a feed would do. Rows are described against the lineup the
+// user sees NOW (an earlier overlay included); `stored` is always bundle →
+// feed, so a second update replaces the first instead of stacking on it.
+//   savedChanges — changed acts in the user's plan (cancelled ones included)
+//   clashes      — saved pairs that overlap after and did not before
+//   reminders    — saved acts whose reminder time moves, appears or goes
+//   dropSaved    — cancelled saved ids; confirming takes them out of the plan
+// A feed stage the bundle has never heard of reads as unassigned: the old
+// app has no name, colour or map pin for it.
+function scheduleReview(fid, feed, opts = {}) {
+  const ds = _DATA_SETS[fid];
+  if (!ds || !feed || feed.festivalId !== fid || !Array.isArray(feed.acts)) return { error: "bad-feed" };
+  const cfg = ds.config;
+  const stageIds = new Set((ds.stages || []).map(s => s.id));
+  const acts = feed.acts.map(a => (a && a.stage != null && !stageIds.has(a.stage) ? { ...a, stage: null } : a));
+  const now = opts.now ?? Date.now();
+  const saved = opts.saved || [];
+  const shown = diffSchedule(_scheduleActs(ds.artists), acts, cfg);
+  const stored = diffSchedule(_scheduleActs(ds.bundledArtists || ds.artists), acts, cfg);
+  const base = { fid, feedHash: feed.scheduleHash || _schedFingerprint(acts), source: feed.source || null, shown, stored };
+  if (!shown.changes.length) return { ...base, upToDate: true, savedChanges: [], clashes: [], reminders: [], dropSaved: [] };
+
+  const mine = new Set(saved);
+  const after = applyScheduleDiff(ds.artists, shown);
+  const pairs = list => {
+    const s = list.filter(a => mine.has(a.id)), out = new Set();
+    for (let i = 0; i < s.length; i++)
+      for (let j = i + 1; j < s.length; j++)
+        if (_schedClash(s[i], s[j])) out.add([s[i].id, s[j].id].sort().join("|"));
+    return out;
+  };
+  const had = pairs(ds.artists), byId = new Map(after.map(a => [a.id, a]));
+  const clashes = [...pairs(after)].filter(k => !had.has(k)).map(k => k.split("|").map(id => byId.get(id)));
+  const savedChanges = shown.changes.filter(c => mine.has(c.id));
+  const lead = (opts.leadMin ?? 15) * 60000;
+  const reminders = !opts.remindersOn ? [] : savedChanges.map(c => {
+    const t0 = _schedStartMs(cfg, c.before, now, saved), t1 = _schedStartMs(cfg, c.after, now, saved);
+    const from = t0 != null && t0 > now ? t0 - lead : null, to = t1 != null && t1 > now ? t1 - lead : null;
+    return from === to ? null : { id: c.id, name: c.name, from, to };
+  }).filter(Boolean);
+  return { ...base, upToDate: false, savedChanges, clashes, reminders,
+           dropSaved: savedChanges.filter(c => !c.after).map(c => c.id) };
+}
+
+// Confirm: store bundle → feed (or clear the overlay when the feed is back to
+// the bundle) and hand back the saved list minus cancelled acts. The caller
+// writes that list and reloads; the reload is how reminders get rebuilt.
+function applyScheduleReview(review, saved) {
+  const ds = review && _DATA_SETS[review.fid];
+  if (!ds) return saved || [];
+  const all = _schedOverlays();
+  if (review.stored.changes.length) {
+    all[review.fid] = { base: _schedFingerprint(_scheduleActs(ds.bundledArtists || ds.artists)),
+                        feedHash: review.feedHash, source: review.source, appliedAt: Date.now(), diff: review.stored };
+  } else delete all[review.fid];
+  _schedOverlaysWrite(all);
+  const drop = new Set(review.dropSaved || []);
+  return (saved || []).filter(id => !drop.has(id));
+}
+
 function _daysFor(cfg) {
   const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   const shift = _weekendShiftMs(cfg);
@@ -2982,6 +3120,8 @@ for (const _id of _WAVE1_IDS) {
   const _f = _WAVE1[_id];
   if (_f) _DATA_SETS[_id] = { stages: _f.stages, artists: _f.artists, amenities: _f.amenities, config: _f.config };
 }
+// Confirmed schedule updates, BEFORE anything reads a lineup (see scheduleReview).
+_applyScheduleOverlays(_DATA_SETS);
 const _activeId = getActiveFestivalId();
 const _active = _DATA_SETS[_activeId] || _DATA_SETS["edc-lv-2026"];
 

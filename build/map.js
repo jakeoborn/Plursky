@@ -5267,8 +5267,7 @@ function _packStatus(m, {
   return "ready";
 }
 function _packFeedUrl(fid) {
-  var own = typeof location !== "undefined" && /^https?:$/.test(location.protocol);
-  return (own ? "" : "https://plursky.com/") + `f/${fid}/schedule.json`;
+  return _scheduleFeedUrl(fid);
 }
 var _packDbP = null;
 function _packDb() {

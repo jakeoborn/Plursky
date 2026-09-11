@@ -988,7 +988,11 @@ function scheduleReminders(state, showLocal) {
     });
   });
   if (ln) {
-    var prevIds = Array.from(_SCHEDULED.values()).filter(v => typeof v === "number");
+    var persisted = [];
+    try {
+      persisted = JSON.parse(localStorage.getItem(_REMINDERS_KEY) || "[]").map(p => p && p.notifId);
+    } catch {}
+    var prevIds = [...Array.from(_SCHEDULED.values()), ...persisted].filter(v => typeof v === "number");
     var allIds = new Set([...prevIds, ...pending.map(p => p.notifId)]);
     _SCHEDULED.clear();
     ln.cancel({
