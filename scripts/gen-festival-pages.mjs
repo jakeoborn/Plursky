@@ -42,10 +42,10 @@ const festivalModules = readdirSync(path.join(root, 'data', 'festivals'))
 vm.runInContext(
   festivalModules + '\n' +
   readFileSync(path.join(root, 'data.jsx'), 'utf8') +
-  '\n;__out = { REG: FESTIVALS_REGISTRY, DS: _DATA_SETS };',
+  '\n;__out = { REG: FESTIVALS_REGISTRY, DS: _DATA_SETS, scheduleActs: _scheduleActs };',
   ctx,
 );
-const { REG, DS } = ctx.__out;
+const { REG, DS, scheduleActs } = ctx.__out;
 
 // ── Helpers ──────────────────────────────────────────────────────────
 const esc = (s) => String(s ?? '')
@@ -295,11 +295,8 @@ if (!CHECK) {
 // TBA ("" times) and stage: null are valid states and pass through as-is.
 function scheduleFeed(entry) {
   const cfg = entry.config;
-  const acts = (DS[cfg.id]?.artists || []).map(a => {
-    const o = { id: a.id, name: a.name, day: a.day, stage: a.stage ?? null, start: a.start || '', end: a.end || '' };
-    if (a.weekend != null) o.weekend = a.weekend;   // ACL: "both" / W1 / W2
-    return o;
-  });
+  // data.jsx's _scheduleActs — the app diffs against this exact shape.
+  const acts = scheduleActs(DS[cfg.id]?.artists);
   const hash = createHash('sha256').update(JSON.stringify(acts)).digest('hex').slice(0, 16);
   return `{\n  "festivalId": ${JSON.stringify(cfg.id)},\n  "source": ${JSON.stringify(cfg.scheduleSource || null)},\n` +
          `  "scheduleHash": "${hash}",\n  "acts": [\n${acts.map(o => '    ' + JSON.stringify(o)).join(',\n')}\n  ]\n}\n`;

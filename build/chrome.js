@@ -943,11 +943,7 @@ function recordAttendanceFromGps(lat, lng) {
   return added ? hit : null;
 }
 function _artistStartMs(artist) {
-  var dayConfig = artistDayDate(artist);
-  if (!dayConfig) return null;
-  var [h, m] = artist.start.split(":").map(Number);
-  var adjustH = h < 6 ? h + 24 : h;
-  return dayConfig.midnightUtc + adjustH * 3600000 + m * 60000;
+  return _wallMs(artistDayDate(artist), artist && artist.start, FESTIVAL_CONFIG && FESTIVAL_CONFIG.tz);
 }
 var _REMINDERS_KEY = "reminders_v1";
 var _REMINDER_LEAD_KEY = "plursky_reminder_lead_min";

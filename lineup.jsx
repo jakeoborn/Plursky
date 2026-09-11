@@ -27,10 +27,7 @@ function _artistMs(artist, hhmm) {
   // weekend THIS act plays, so a Build My Night selection that has not been
   // saved yet still exports on the right dates — the earlier fix filtered the
   // acts by the selection but still dated them from persisted storage.
-  const day = artistDayDate(artist);
-  if (!day) return null;
-  const [h, m] = hhmm.split(":").map(Number);
-  return day.midnightUtc + (h < 8 ? 86400000 : 0) + h * 3600000 + m * 60000;
+  return _wallMs(artistDayDate(artist), hhmm, FESTIVAL_CONFIG && FESTIVAL_CONFIG.tz);
 }
 
 async function exportSavedSetsICS(savedIds) {

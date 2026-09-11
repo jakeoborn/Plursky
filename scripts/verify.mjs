@@ -1828,6 +1828,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b2. Schedule Sync diff engine ──────────────────────────────────────
+// diffSchedule reports each change kind exactly, TBA and null stages are
+// values, DST nights resolve to the real instant, every live festival's
+// bundled schedule diffs to zero against its committed feed, and replaying a
+// diff is idempotent.
+{
+  console.log("▸ Schedule-diff gate — change kinds exact, DST-safe, bundle = feed, replay idempotent");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-schedule-diff.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`schedule diff engine failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c. Video thumbnails ────────────────────────────────────────────────
 // A library tile shows a stored poster <img>, never a live <video>. The old
 // "poster" was <video preload="metadata" src="...#t=0.1">: one decoder per
