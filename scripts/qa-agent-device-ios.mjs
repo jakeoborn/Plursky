@@ -3,10 +3,11 @@
  * Local, non-transactional native IAP smoke test.
  *
  *   node scripts/qa-agent-device-ios.mjs --flow iap-sheet
+ *   node scripts/qa-agent-device-ios.mjs --flow map-3d-edc-lv
  *
- * Builds a fresh Simulator app, drives Plursky through agent-device, and
- * proves that the Season Pass button reaches a native purchase surface. It
- * never presses a Buy, Subscribe, Confirm, or side-button purchase control.
+ * Builds a fresh Simulator app and drives one native QA flow through
+ * agent-device. The IAP flow never presses a Buy, Subscribe, Confirm, or
+ * side-button purchase control.
  */
 import { execFile } from "node:child_process";
 import { mkdir, readFile, rename, rm, stat, writeFile } from "node:fs/promises";
@@ -21,7 +22,7 @@ const opts = { flow: "", device: "", artifacts: "", noBuild: false };
 
 function usage(reason = "") {
   if (reason) console.error(`Error: ${reason}\n`);
-  console.error("Usage: node scripts/qa-agent-device-ios.mjs --flow iap-sheet [--device NAME] [--artifacts ABSOLUTE_PATH] [--no-build]");
+  console.error("Usage: node scripts/qa-agent-device-ios.mjs --flow <iap-sheet|map-3d-edc-lv> [--device NAME] [--artifacts ABSOLUTE_PATH] [--no-build]");
   process.exit(2);
 }
 for (let i = 0; i < argv.length; i++) {
@@ -33,12 +34,12 @@ for (let i = 0; i < argv.length; i++) {
   } else if (flag === "--no-build") opts.noBuild = true;
   else usage(`unknown flag ${flag}`);
 }
-if (opts.flow !== "iap-sheet") usage("--flow must be iap-sheet");
+if (!new Set(["iap-sheet", "map-3d-edc-lv"]).has(opts.flow)) usage("--flow must be iap-sheet or map-3d-edc-lv");
 if (opts.artifacts && !opts.artifacts.startsWith("/")) usage("--artifacts must be an absolute path");
 
 const iso = new Date().toISOString().replaceAll(":", "-");
 let sha = "unknown";
-let out = opts.artifacts || join(ROOT, "artifacts", "agent-device", "iap-sheet", iso);
+let out = opts.artifacts || join(ROOT, "artifacts", "agent-device", opts.flow, iso);
 const result = { schemaVersion: 1, flow: opts.flow, startedAt: new Date().toISOString(), finalState: "FAIL_HARNESS", steps: [], artifacts: {}, purchaseConfirmationActivated: false };
 let simulatorWasBooted = false;
 let udid = "";
@@ -113,6 +114,20 @@ async function screenshot(name) {
   const captured = await client.capture.screenshot({ path: requested });
   const path = captured.path || requested;
   result.artifacts[name] = path;
+}
+async function waitForSnapshot(matcher, { timeoutMs = 20_000, name = "snapshot-wait.txt", interactiveOnly = false } = {}) {
+  const deadline = Date.now() + timeoutMs;
+  let last;
+  while (Date.now() < deadline) {
+    last = await saveSnapshot(name, interactiveOnly);
+    if (matcher.test(last.body)) return last;
+    await new Promise(r => setTimeout(r, 750));
+  }
+  throw Object.assign(new Error(`timed out waiting for ${matcher}`), { finalState: "FAIL_UI_REGRESSION" });
+}
+async function openNativeUrl(url) {
+  await run("xcrun", ["simctl", "openurl", udid, url]);
+  await new Promise(r => setTimeout(r, 750));
 }
 async function waitForResult(ms = 20_000) {
   const deadline = Date.now() + ms;
@@ -198,9 +213,10 @@ try {
     await run("xcrun", ["simctl", "uninstall", udid, bundleId], { allowFailure: true });
     await run("xcrun", ["simctl", "install", udid, app]);
   });
-  await step("drive-iap-sheet", async () => {
-    const { createAgentDeviceClient } = await import("agent-device");
-    client = createAgentDeviceClient({ session: `plursky-iap-${process.pid}`, lockPolicy: "reject", lockPlatform: "ios" });
+  const { createAgentDeviceClient } = await import("agent-device");
+  client = createAgentDeviceClient({ session: `plursky-${opts.flow}-${process.pid}`, lockPolicy: "reject", lockPlatform: "ios" });
+
+  if (opts.flow === "iap-sheet") await step("drive-iap-sheet", async () => {
     await client.apps.open({ app: bundleId, platform: "ios", udid });
     let first = await saveSnapshot("snapshot-launch.txt");
     if (!/\bME\b/i.test(first.body)) throw Object.assign(new Error("ME tab absent after launch"), { finalState: "FAIL_UI_REGRESSION" });
@@ -222,13 +238,66 @@ try {
     throw Object.assign(new Error(observed.kind === "error" ? "visible purchase error" : "native purchase sheet did not appear within 20s"), { finalState: "FAIL_UI_REGRESSION" });
   });
 
+  if (opts.flow === "map-3d-edc-lv") await step("drive-map-3d-edc-lv", async () => {
+    await client.apps.open({ app: bundleId, platform: "ios", udid });
+
+    // The festival switcher lives on Today, not Map. The native URL handler
+    // is a supported app path and dismisses onboarding without a product-only
+    // test hook.
+    await openNativeUrl("plursky://qa?tab=home");
+    await waitForSnapshot(/\bTODAY\b/i, { name: "snapshot-home-entry.txt", interactiveOnly: true });
+
+    // Select EDC LV from the real festival switcher. The switch reloads the
+    // WebView, so refs after this press are deliberately discarded.
+    const entry = await saveSnapshot("snapshot-before-festival-switch.txt", true);
+    const festivalChip = (entry.snap.nodes || []).find(n => {
+      const t = [n.label, n.name, n.value, n.text].filter(Boolean).join(" ");
+      return /NOCTURNAL|EDC LV|FESTIVAL/i.test(t) && n.ref;
+    });
+    if (!festivalChip?.ref) throw Object.assign(new Error("festival chip absent on Today"), { finalState: "FAIL_UI_REGRESSION" });
+    await client.interactions.press({ ref: festivalChip.ref });
+    await waitForSnapshot(/Electric Daisy Carnival.*Las Vegas|EDC LV/i, { name: "snapshot-festival-switcher.txt", interactiveOnly: true });
+    await press(/Electric Daisy Carnival.*Las Vegas|EDC LV/i, "edc-lv");
+
+    // EDC LV is post-festival, so its normal tab bar replaces Map with
+    // Memories. Re-enter Map through the same supported native URL handler.
+    await new Promise(r => setTimeout(r, 1800));
+    await openNativeUrl("plursky://qa?tab=map");
+    await waitForSnapshot(/Map layers/i, { name: "snapshot-edc-map-entry.txt", interactiveOnly: true });
+
+    await press(/Map layers/i, "map-layers");
+    const layers = await waitForSnapshot(/Real map.*BETA/i, { name: "snapshot-map-layers.txt", interactiveOnly: true });
+    const realMap = findNode(layers.snap, /Real map.*BETA/i);
+    const realText = [realMap?.label, realMap?.name, realMap?.value, realMap?.text].filter(Boolean).join(" ");
+    if (!realMap?.ref) throw Object.assign(new Error("Real map control absent"), { finalState: "FAIL_UI_REGRESSION" });
+    // aria-pressed is not consistently surfaced in the merged iOS tree. A
+    // fresh install is off by contract, so one press enables it.
+    await client.interactions.press({ ref: realMap.ref });
+
+    const style = await waitForSnapshot(/STYLIZED/i, { timeoutMs: 25_000, name: "snapshot-real-map-styles.txt", interactiveOnly: true });
+    const stylized = findNode(style.snap, /^STYLIZED$/i) || findNode(style.snap, /STYLIZED/i);
+    if (!stylized?.ref) throw Object.assign(new Error("Stylized map control absent"), { finalState: "FAIL_UI_REGRESSION" });
+    await client.interactions.press({ ref: stylized.ref });
+
+    // MapLibre's DOM stage pills are accessibility-visible. Pillar geometry is
+    // WebGL and must be judged from the stabilized screenshot, not this tree.
+    const settled = await waitForSnapshot(/KINETIC FIELD|CIRCUIT GROUNDS|COSMIC MEADOW/i, { timeoutMs: 25_000, name: "snapshot-map-3d-settled.txt" });
+    const stageNames = ["KINETIC FIELD", "CIRCUIT GROUNDS", "COSMIC MEADOW", "BASS POD", "NEON GARDEN"];
+    const visibleStages = stageNames.filter(name => settled.body.toUpperCase().includes(name));
+    if (visibleStages.length < 3) throw Object.assign(new Error(`only ${visibleStages.length} expected stage pills found`), { finalState: "FAIL_UI_REGRESSION" });
+    if (/MAP ERROR|REAL MAP UNAVAILABLE|FESTIVAL MAP SHOWN/i.test(settled.body)) throw Object.assign(new Error("visible map error"), { finalState: "FAIL_UI_REGRESSION" });
+    result.map3d = { festival: "edc-lv-2026", style: "stylized", expectedPitchDegrees: 55, visibleStages, visualReviewRequired: true };
+    await new Promise(r => setTimeout(r, 1500));
+    await screenshot("map-3d-edc-lv.png");
+  });
+
   const dirtyEnd = (await run("git", ["status", "--porcelain"])).stdout.trim();
   if (dirtyEnd) throw new Error(`post-run working tree differs:\n${dirtyEnd}`);
   if (result.purchaseConfirmationActivated) throw new Error("purchase confirmation safety invariant failed");
-  await finish("PASS_SHEET_PRESENTED");
+  await finish(opts.flow === "iap-sheet" ? "PASS_SHEET_PRESENTED" : "PASS_MAP_3D_CAPTURED");
   for (const path of Object.values(result.artifacts)) { const s = await stat(path); if (!s.size) throw new Error(`empty artifact: ${path}`); }
   JSON.parse(await readFile(join(out, "result.json"), "utf8"));
-  console.log(`PASS_SHEET_PRESENTED — ${out}`);
+  console.log(`${result.finalState} — ${out}`);
 } catch (error) {
   await finish(error.finalState || "FAIL_HARNESS", error.message);
   console.error(`${result.finalState}: ${error.message}\nArtifacts: ${out}`);
