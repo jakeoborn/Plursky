@@ -4,7 +4,7 @@
 //
 // Pure logic, no React components: Apple Music (MusicKit) connect/fetch,
 // Spotify PKCE auth + token refresh + profile, playlist creation
-// (createEdcPlaylist / createHypePlaylist), Spotify data fetching
+// (createSetsPlaylist / createHypePlaylist), Spotify data fetching
 // (top artists / followed / preview URLs), and lineup matching + genre
 // analysis + discovery scoring.
 //
@@ -869,10 +869,16 @@ async function _createPlurskyPlaylist(token, profileId) {
   }
 }
 
-// #12 Build my playlist — push the user's saved EDC sets into their existing
+// #12 Build my playlist — push the user's saved sets (any festival) into their
 // "Plursky" Spotify playlist (created manually, see _findPlurskyPlaylist).
 // Skips artists Spotify can't find.
-async function createEdcPlaylist(state, opts = {}) {
+//
+// Every build runs off a planBoardPlaylist plan: its `order` is the play
+// order and each entry's trackLimit its depth. A plain build plans with no
+// discovery (maxDiscovery 0, so just the seeds); the board playlist passes
+// the plan the user previewed as opts.plan, picks included, so what gets
+// written is exactly what was shown.
+async function createSetsPlaylist(state, opts = {}) {
   const source = opts.source === "attended" ? "attended" : "saved";
   const token   = await getValidToken();
   const profile = await ensureSpotifyProfile();
@@ -885,19 +891,12 @@ async function createEdcPlaylist(state, opts = {}) {
   const sourceIds = source === "attended"
     ? Object.values(window.getAllAttended?.() || {}).flat()
     : state.saved;
-  const saved = sourceIds
-    .map(id => ARTISTS.find(a => a.id === id))
-    .filter(Boolean);
-  if (saved.length === 0) return { ok: false, reason: "empty" };
-
-  // Sort by night (day 1→2→3) then by set start time with after-midnight wrap
-  const timeKey = hhmm => { const h = parseInt(hhmm); return h < 6 ? h + 24 : h; };
-  const sorted = [...saved].sort((a, b) =>
-    a.day !== b.day ? a.day - b.day : timeKey(a.start) - timeKey(b.start)
-  );
-
-  // Track depth: headliners (tier 3) = 5, prime time (tier 2) = 4, openers (tier 1) = 3
-  const trackLimit = tier => tier === 3 ? 5 : tier === 2 ? 4 : 3;
+  // Night by night, set by set; headliners 5 tracks, prime time 4, openers 3,
+  // discovery picks 2 (see planBoardPlaylist).
+  const plan = opts.plan || planBoardPlaylist({ artists: ARTISTS, savedIds: sourceIds, maxDiscovery: 0 });
+  const entries = plan.order;
+  const seedCount = plan.seeds.length, pickCount = plan.picks.length;
+  if (seedCount === 0) return { ok: false, reason: "empty" };
   const dateStr = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" });
 
   // 1) Find the user's manually-created "Plursky" playlist
@@ -934,11 +933,14 @@ async function createEdcPlaylist(state, opts = {}) {
   }
   try { localStorage.setItem("plursky_target_playlist_id", playlist.id); } catch {}
 
-  // 2) Top tracks per saved artist, kept in day buckets for FRI→SAT→SUN ordering.
-  //    B2B names split so each artist contributes independently.
+  // 2) Top tracks per plan entry, one bucket per entry so the playlist keeps
+  //    the plan's order. B2B names split so each artist contributes
+  //    independently. (Day buckets keyed { 1, 2, 3 } used to drop every
+  //    track from a day-4 set and from an unscheduled act.)
   const seenUris = new Set();
-  const urisByDay = { 1: [], 2: [], 3: [] };
+  const urisByEntry = entries.map(() => []);
   let missed = 0;
+  const missedNames = [];
 
   // Shared 429 retry — Spotify throttles bursty token traffic. Without retry,
   // a single rate-limited search drops the artist (counted as missed) and a
@@ -995,24 +997,23 @@ async function createEdcPlaylist(state, opts = {}) {
     } catch { return []; }
   };
 
-  const search = async (artist) => {
-    const parts = _b2bParts(artist.name).map(s => s.trim());
-    const limit = trackLimit(artist.tier);
+  const search = async (entry, idx) => {
+    const parts = _b2bParts(entry.artist.name).map(s => s.trim());
     let total = 0;
     for (const part of parts) {
-      const uris = await searchOne(part, limit);
-      uris.forEach(u => (urisByDay[artist.day] || []).push(u));
+      const uris = await searchOne(part, entry.trackLimit);
+      urisByEntry[idx].push(...uris);
       total += uris.length;
     }
-    if (total === 0) missed++;
+    if (total === 0) { missed++; missedNames.push(entry.artist.name); }
   };
 
   // 4-wide concurrency keeps us under Spotify's burst limit for token-auth
   // search calls. Higher widths trigger 429s that the retry helper has to
   // unwind — slower overall than a slightly narrower fan-out.
-  for (let i = 0; i < sorted.length; i += 4) {
-    try { opts.onProgress?.(`${Math.min(i + 4, sorted.length)}/${sorted.length} ARTISTS`); } catch {}
-    await Promise.all(sorted.slice(i, i + 4).map(search));
+  for (let i = 0; i < entries.length; i += 4) {
+    try { opts.onProgress?.(`${Math.min(i + 4, entries.length)}/${entries.length} ARTISTS`); } catch {}
+    await Promise.all(entries.slice(i, i + 4).map((e, j) => search(e, i + j)));
   }
 
   // Soundtrack mode: lead with the exact tracks Shazam confirmed in your
@@ -1036,12 +1037,7 @@ async function createEdcPlaylist(state, opts = {}) {
   // 3) Replace existing tracks: PUT clears+sets the first batch, POST appends rest.
   //    PUT with { uris: [] } clears entirely — runs even if we have zero matched
   //    tracks, so a rebuild with no matches still empties the playlist.
-  const allUris = [
-    ...soundtrackUris,
-    ...(urisByDay[1] || []),
-    ...(urisByDay[2] || []),
-    ...(urisByDay[3] || []),
-  ];
+  const allUris = [...soundtrackUris, ...urisByEntry.flat()];
   const batches = [];
   for (let i = 0; i < allUris.length; i += 100) batches.push(allUris.slice(i, i + 100));
   if (batches.length === 0) batches.push([]);
@@ -1071,7 +1067,7 @@ async function createEdcPlaylist(state, opts = {}) {
 
   // 4) Update description with per-day track counts for easy navigation
   const dayLabels = festivalDayNums().map(d => {
-    const n = (urisByDay[d] || []).length;
+    const n = entries.reduce((s, e, i) => s + (e.artist.day === d ? urisByEntry[i].length : 0), 0);
     return n > 0 ? `${FESTIVAL_CONFIG.dayDates[d].short} ${n}` : null;
   }).filter(Boolean);
   if (dayLabels.length > 0) {
@@ -1079,7 +1075,7 @@ async function createEdcPlaylist(state, opts = {}) {
       method: "PUT",
       headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
       body: JSON.stringify({
-        description: `${sorted.length} sets · ${dayLabels.join(" · ")} tracks · headliners 5 songs · built with Plursky · ${dateStr}`,
+        description: `${seedCount} sets${pickCount ? ` + ${pickCount} picks` : ""} · ${dayLabels.join(" · ")} tracks · headliners 5 songs · built with Plursky · ${dateStr}`,
       }),
     }).catch(() => {});
   }
@@ -1087,13 +1083,19 @@ async function createEdcPlaylist(state, opts = {}) {
   return {
     ok:    true,
     added: addedCount,
-    total: sorted.length,
+    total: seedCount,
+    picks: pickCount,
     missed,
+    missedNames,
     songsMatched,
+    // Per-entry outcome, in play order — the board preview's diagnostics read it.
+    entries: entries.map((e, i) => ({ id: e.artist.id, name: e.artist.name, role: e.role, tracks: urisByEntry[i].length })),
     url:   playlist.external_urls?.spotify || `https://open.spotify.com/playlist/${playlist.id}`,
     id:    playlist.id,
   };
 }
+// Pre-rename name, kept so nothing outside this file breaks.
+const createEdcPlaylist = createSetsPlaylist;
 
 // Pre-game hype playlist — full lineup, 1 top track per artist, headliners first.
 // Distinct from createEdcPlaylist (saved sets, 2 tracks each = post-festival recap).
@@ -1594,11 +1596,182 @@ function getDiscoveries(spotifyArtists, matched, savedIds, max = 8) {
   return meaningful.sort((a, b) => b.score - a.score).slice(0, max).map(s => s.artist);
 }
 
+// ── Board playlist planner ─────────────────────────────────────
+// Pure: no network, no storage, no active-festival globals. Everything comes
+// in as arguments so scripts/test-board-playlist.mjs can run it in a vm
+// against fixtures and against every lineup in _DATA_SETS.
+//
+// The user's saved sets are GUARANTEED seeds: every one is in the plan. On
+// top of them go a capped number of discovery picks, drawn only from UNSAVED
+// acts on the same lineup, and each pick carries the one reason it was
+// chosen. An act with no real reason is never picked. getDiscoveries learned
+// the same lesson: "a headliner you haven't heard" assumed an unfamiliarity
+// that wasn't there.
+//
+// Reasons, strongest first:
+//   listen   one of the act's names is in the user's own listening (affinityNames)
+//   b2b      the act is a B2B billing that includes a saved artist
+//   adjacent same stage, same night, starting within 30 min of a saved set's end
+//            (or ending within 30 min of its start)
+//   gap      plays entirely inside a 45 min+ hole between two saved sets that night
+//   stage    on a stage where the user saved 2+ sets
+// Unscheduled acts (no day or time) can only earn listen or b2b.
+const BOARD_ADJACENT_MIN = 30;
+const BOARD_GAP_MIN = 45;
+const BOARD_PICK_TRACKS = 2;
+const _boardSeedTracks = tier => tier === 3 ? 5 : tier === 2 ? 4 : 3;
+
+function _boardNightMin(hhmm) {
+  if (typeof hhmm !== "string" || !/^\d{1,2}:\d{2}$/.test(hhmm)) return null;
+  const [h, m] = hhmm.split(":").map(Number);
+  return (h < 8 ? h + 24 : h) * 60 + m;   // before 08:00 is the same night (toNightMin)
+}
+function _boardClock(min) {
+  const h = Math.floor(min / 60) % 24, m = min % 60;
+  return `${h % 12 || 12}${m ? ":" + String(m).padStart(2, "0") : ""}${h < 12 ? "am" : "pm"}`;
+}
+function _boardParts(name) {
+  const parts = typeof _b2bParts === "function" ? _b2bParts(name) : [String(name || "")];
+  return parts.map(s => s.trim().toLowerCase()).filter(Boolean);
+}
+
+function planBoardPlaylist({
+  artists = [], savedIds = [], affinityNames = [], affinityLabel = "your listening",
+  stages = [], dayLabel = d => `Day ${d}`, maxDiscovery = 8,
+} = {}) {
+  const byId = new Map(artists.map(a => [a.id, a]));
+  const stageShort = id => { const s = stages.find(x => x.id === id); return s?.short || s?.name || id; };
+  const scheduled = a => a.day != null && _boardNightMin(a.start) != null && _boardNightMin(a.end) != null;
+  // A W1 set and a W2 set are different nights even when day and clock match.
+  const sameWeekend = (a, b) => !a.weekend || !b.weekend || a.weekend === "both" || b.weekend === "both" || a.weekend === b.weekend;
+  const sameNight = (a, b) => a.day === b.day && sameWeekend(a, b);
+  const span = a => {
+    const s = _boardNightMin(a.start); let e = _boardNightMin(a.end);
+    if (e <= s) e += 24 * 60;
+    return [s, e];
+  };
+
+  // 1) Seeds — every saved set that still exists on this lineup. Two saved
+  //    sets by the same act (a repeat day) are one seed: the tracks would be
+  //    the same songs twice.
+  const unknownSaved = [], dupSaved = [];
+  const seeds = [], seedNames = new Set();
+  for (const id of [...new Set(savedIds)]) {
+    const a = byId.get(id);
+    if (!a) { unknownSaved.push(id); continue; }
+    const key = a.name.trim().toLowerCase();
+    if (seedNames.has(key)) { dupSaved.push(id); continue; }
+    seedNames.add(key);
+    seeds.push({ artist: a, role: "seed", kind: "saved", reason: "Saved", trackLimit: _boardSeedTracks(a.tier) });
+  }
+  const savedIdSet = new Set(savedIds);
+  const seedPart = new Map();                       // part → the seed that carries it
+  for (const s of seeds) for (const p of _boardParts(s.artist.name)) if (!seedPart.has(p)) seedPart.set(p, s.artist);
+  const affinity = new Set(affinityNames.map(n => String(n || "").trim().toLowerCase()).filter(Boolean));
+
+  const stageCounts = {};
+  for (const s of seeds) if (s.artist.stage) stageCounts[s.artist.stage] = (stageCounts[s.artist.stage] || 0) + 1;
+
+  // Holes between consecutive saved sets on each night. On a two-weekend
+  // festival a day is two nights, W1 and W2, and a "both"/unset set is on
+  // each of them; a W1 set and a W2 set never bracket a hole together.
+  const gaps = [];
+  const seedSets = seeds.map(s => s.artist).filter(scheduled);
+  for (const day of [...new Set(seedSets.map(a => a.day))]) {
+    const onDay = seedSets.filter(a => a.day === day);
+    const split = onDay.some(a => a.weekend === "W1" || a.weekend === "W2");
+    for (const wk of split ? ["W1", "W2"] : [null]) {
+      const spans = onDay.filter(a => !wk || !a.weekend || a.weekend === "both" || a.weekend === wk)
+        .map(span).sort((x, y) => x[0] - y[0]);
+      let reach = null;
+      for (const [s, e] of spans) {
+        if (reach != null && s - reach >= BOARD_GAP_MIN) gaps.push({ day, weekend: wk, from: reach, to: s });
+        reach = reach == null ? e : Math.max(reach, e);
+      }
+    }
+  }
+
+  // 2) Candidates — unsaved acts on this lineup, each scored by its single
+  //    strongest reason (score is only an ordering key, never shown).
+  const excluded = { saved: 0, sameAct: 0, noSignal: 0, dupName: 0 };
+  const best = new Map();                           // act name → best candidate
+  for (const a of artists) {
+    if (savedIdSet.has(a.id)) { excluded.saved++; continue; }
+    const parts = _boardParts(a.name);
+    if (!parts.length || seedNames.has(a.name.trim().toLowerCase()) || parts.every(p => seedPart.has(p))) { excluded.sameAct++; continue; }
+    const tier = a.tier || 1;
+    let pick = null;
+    const offer = (kind, score, reason) => { if (!pick || score > pick.score) pick = { kind, score, reason }; };
+
+    const heard = parts.find(p => affinity.has(p));
+    if (heard) offer("listen", 1000 + tier, `In ${affinityLabel}`);
+
+    const partner = parts.map(p => seedPart.get(p)).find(Boolean);
+    if (partner) offer("b2b", 800 + tier, `B2B with ${partner.name}, who you saved`);
+
+    if (scheduled(a)) {
+      const [as, ae] = span(a);
+      for (const s of seeds) {
+        const o = s.artist;
+        if (!scheduled(o) || o.stage !== a.stage || !sameNight(a, o)) continue;
+        const [os, oe] = span(o);
+        if (as >= oe && as - oe <= BOARD_ADJACENT_MIN) offer("adjacent", 600 + tier - (as - oe) / 100, `Right after ${o.name} on ${stageShort(a.stage)}`);
+        else if (ae <= os && os - ae <= BOARD_ADJACENT_MIN) offer("adjacent", 600 + tier - (os - ae) / 100, `Right before ${o.name} on ${stageShort(a.stage)}`);
+      }
+      const hole = gaps.find(g => g.day === a.day && (!g.weekend || !a.weekend || a.weekend === "both" || a.weekend === g.weekend) && as >= g.from && ae <= g.to);
+      if (hole) offer("gap", 400 + tier * 10, `Fills your ${_boardClock(hole.from)}–${_boardClock(hole.to)} gap on ${dayLabel(a.day)}`);
+      if ((stageCounts[a.stage] || 0) >= 2) offer("stage", 200 + tier * 10 + stageCounts[a.stage], `On ${stageShort(a.stage)}, where you saved ${stageCounts[a.stage]} sets`);
+    }
+    if (!pick) { excluded.noSignal++; continue; }
+
+    const key = a.name.trim().toLowerCase();
+    const prev = best.get(key);
+    if (prev) excluded.dupName++;
+    if (!prev || pick.score > prev.score) best.set(key, { artist: a, role: "pick", ...pick, trackLimit: BOARD_PICK_TRACKS });
+  }
+
+  // 3) Cap — discovery stays a garnish on the user's own board: at most half
+  //    as many picks as seeds (min 2), and never more than maxDiscovery.
+  const cap = seeds.length ? Math.min(maxDiscovery, Math.max(2, Math.ceil(seeds.length / 2))) : 0;
+  const ranked = [...best.values()].sort((x, y) =>
+    y.score - x.score || (y.artist.tier || 0) - (x.artist.tier || 0) ||
+    (x.artist.day ?? 99) - (y.artist.day ?? 99) || (_boardNightMin(x.artist.start) ?? 9999) - (_boardNightMin(y.artist.start) ?? 9999) ||
+    String(x.artist.id).localeCompare(String(y.artist.id)));
+  const picks = ranked.slice(0, cap);
+
+  // 4) Play order — the weekend as it happens: night by night, set by set,
+  //    unscheduled acts last, a seed ahead of a pick at the same minute.
+  const order = [...seeds, ...picks].sort((x, y) => {
+    const xa = x.artist, ya = y.artist;
+    const xd = xa.day ?? 99, yd = ya.day ?? 99;
+    if (xd !== yd) return xd - yd;
+    const xw = xa.weekend === "W2" ? 1 : 0, yw = ya.weekend === "W2" ? 1 : 0;
+    if (xw !== yw) return xw - yw;
+    const xs = _boardNightMin(xa.start) ?? 9999, ys = _boardNightMin(ya.start) ?? 9999;
+    if (xs !== ys) return xs - ys;
+    if (x.role !== y.role) return x.role === "seed" ? -1 : 1;
+    return String(xa.id).localeCompare(String(ya.id));
+  });
+
+  const byKind = {};
+  for (const p of picks) byKind[p.kind] = (byKind[p.kind] || 0) + 1;
+  return {
+    seeds, picks, order, cap,
+    candidates: ranked,                             // every reasoned act, best first; picks = the top `cap`
+    diagnostics: {
+      lineup: artists.length, saved: savedIdSet.size, seeds: seeds.length,
+      unknownSaved, dupSaved, gaps: gaps.length,
+      candidates: best.size, capped: Math.max(0, best.size - picks.length),
+      excluded, byKind, affinityNames: affinity.size,
+    },
+  };
+}
+
 // Window exports — same set spotify.jsx exported for this cluster before
 // the split, so existing call sites are unaffected.
 Object.assign(window, {
   startSpotifyAuth, ensureSpotifyProfile, getSpotifyProfileSync,
-  createEdcPlaylist, fetchPreviewUrl,
+  createSetsPlaylist, createEdcPlaylist, fetchPreviewUrl,
   connectAppleMusic, disconnectAppleMusic, createAppleMusicPlaylist, _appleMusicConfigured, _ensureMusicKitConfigured,
-  _collectMomentSongs,
+  _collectMomentSongs, planBoardPlaylist,
 });

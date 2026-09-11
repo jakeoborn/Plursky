@@ -880,7 +880,7 @@ async function _createPlurskyPlaylist(token, profileId) {
     };
   }
 }
-async function createEdcPlaylist(state, opts = {}) {
+async function createSetsPlaylist(state, opts = {}) {
   var source = opts.source === "attended" ? "attended" : "saved";
   var token = await getValidToken();
   var profile = await ensureSpotifyProfile();
@@ -895,17 +895,18 @@ async function createEdcPlaylist(state, opts = {}) {
     message: "Need to reconnect for playlist permission"
   };
   var sourceIds = source === "attended" ? Object.values(window.getAllAttended?.() || {}).flat() : state.saved;
-  var saved = sourceIds.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean);
-  if (saved.length === 0) return {
+  var plan = opts.plan || planBoardPlaylist({
+    artists: ARTISTS,
+    savedIds: sourceIds,
+    maxDiscovery: 0
+  });
+  var entries = plan.order;
+  var seedCount = plan.seeds.length,
+    pickCount = plan.picks.length;
+  if (seedCount === 0) return {
     ok: false,
     reason: "empty"
   };
-  var timeKey = hhmm => {
-    var h = parseInt(hhmm);
-    return h < 6 ? h + 24 : h;
-  };
-  var sorted = [...saved].sort((a, b) => a.day !== b.day ? a.day - b.day : timeKey(a.start) - timeKey(b.start));
-  var trackLimit = tier => tier === 3 ? 5 : tier === 2 ? 4 : 3;
   var dateStr = new Date().toLocaleDateString("en-US", {
     month: "short",
     day: "numeric"
@@ -965,12 +966,9 @@ async function createEdcPlaylist(state, opts = {}) {
     localStorage.setItem("plursky_target_playlist_id", playlist.id);
   } catch {}
   var seenUris = new Set();
-  var urisByDay = {
-    1: [],
-    2: [],
-    3: []
-  };
+  var urisByEntry = entries.map(() => []);
   var missed = 0;
+  var missedNames = [];
   var fetchWithRetry = async (url, init) => {
     var _loop4 = async function () {
         var r = await fetch(url, init);
@@ -1027,22 +1025,27 @@ async function createEdcPlaylist(state, opts = {}) {
       return [];
     }
   };
-  var search = async artist => {
-    var parts = _b2bParts(artist.name).map(s => s.trim());
-    var limit = trackLimit(artist.tier);
+  var search = async (entry, idx) => {
+    var parts = _b2bParts(entry.artist.name).map(s => s.trim());
     var total = 0;
     for (var part of parts) {
-      var uris = await searchOne(part, limit);
-      uris.forEach(u => (urisByDay[artist.day] || []).push(u));
+      var uris = await searchOne(part, entry.trackLimit);
+      urisByEntry[idx].push(...uris);
       total += uris.length;
     }
-    if (total === 0) missed++;
+    if (total === 0) {
+      missed++;
+      missedNames.push(entry.artist.name);
+    }
   };
-  for (var i = 0; i < sorted.length; i += 4) {
+  var _loop5 = async function (i) {
     try {
-      opts.onProgress?.(`${Math.min(i + 4, sorted.length)}/${sorted.length} ARTISTS`);
+      opts.onProgress?.(`${Math.min(i + 4, entries.length)}/${entries.length} ARTISTS`);
     } catch {}
-    await Promise.all(sorted.slice(i, i + 4).map(search));
+    await Promise.all(entries.slice(i, i + 4).map((e, j) => search(e, i + j)));
+  };
+  for (var i = 0; i < entries.length; i += 4) {
+    await _loop5(i);
   }
   var soundtrackUris = [];
   var songsMatched = 0;
@@ -1066,7 +1069,7 @@ async function createEdcPlaylist(state, opts = {}) {
       }
     }
   }
-  var allUris = [...soundtrackUris, ...(urisByDay[1] || []), ...(urisByDay[2] || []), ...(urisByDay[3] || [])];
+  var allUris = [...soundtrackUris, ...urisByEntry.flat()];
   var batches = [];
   for (var _i3 = 0; _i3 < allUris.length; _i3 += 100) batches.push(allUris.slice(_i3, _i3 + 100));
   if (batches.length === 0) batches.push([]);
@@ -1110,7 +1113,7 @@ async function createEdcPlaylist(state, opts = {}) {
     };
   }
   var dayLabels = festivalDayNums().map(d => {
-    var n = (urisByDay[d] || []).length;
+    var n = entries.reduce((s, e, i) => s + (e.artist.day === d ? urisByEntry[i].length : 0), 0);
     return n > 0 ? `${FESTIVAL_CONFIG.dayDates[d].short} ${n}` : null;
   }).filter(Boolean);
   if (dayLabels.length > 0) {
@@ -1121,20 +1124,29 @@ async function createEdcPlaylist(state, opts = {}) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        description: `${sorted.length} sets · ${dayLabels.join(" · ")} tracks · headliners 5 songs · built with Plursky · ${dateStr}`
+        description: `${seedCount} sets${pickCount ? ` + ${pickCount} picks` : ""} · ${dayLabels.join(" · ")} tracks · headliners 5 songs · built with Plursky · ${dateStr}`
       })
     }).catch(() => {});
   }
   return {
     ok: true,
     added: addedCount,
-    total: sorted.length,
+    total: seedCount,
+    picks: pickCount,
     missed,
+    missedNames,
     songsMatched,
+    entries: entries.map((e, i) => ({
+      id: e.artist.id,
+      name: e.artist.name,
+      role: e.role,
+      tracks: urisByEntry[i].length
+    })),
     url: playlist.external_urls?.spotify || `https://open.spotify.com/playlist/${playlist.id}`,
     id: playlist.id
   };
 }
+var createEdcPlaylist = createSetsPlaylist;
 async function createHypePlaylist() {
   var token = await getValidToken();
   var profile = await ensureSpotifyProfile();
@@ -1418,7 +1430,7 @@ async function fetchSpotifyTopArtists(onProgress) {
     var _playlistCount = 0;
     var _playlistScanOk = _missingScopeRecord ? false : false;
     var fetchPlaylistsWithRetry = async url => {
-      var _loop5 = async function () {
+      var _loop6 = async function () {
           var r = await fetch(url, {
             headers: {
               Authorization: "Bearer " + token
@@ -1433,7 +1445,7 @@ async function fetchSpotifyTopArtists(onProgress) {
         },
         _ret4;
       for (var attempt = 0; attempt < 3; attempt++) {
-        _ret4 = await _loop5();
+        _ret4 = await _loop6();
         if (_ret4) return _ret4.v;
       }
       return null;
@@ -1654,10 +1666,209 @@ function getDiscoveries(spotifyArtists, matched, savedIds, max = 8) {
   var meaningful = scored.filter(s => s.artist._reason);
   return meaningful.sort((a, b) => b.score - a.score).slice(0, max).map(s => s.artist);
 }
+var BOARD_ADJACENT_MIN = 30;
+var BOARD_GAP_MIN = 45;
+var BOARD_PICK_TRACKS = 2;
+var _boardSeedTracks = tier => tier === 3 ? 5 : tier === 2 ? 4 : 3;
+function _boardNightMin(hhmm) {
+  if (typeof hhmm !== "string" || !/^\d{1,2}:\d{2}$/.test(hhmm)) return null;
+  var [h, m] = hhmm.split(":").map(Number);
+  return (h < 8 ? h + 24 : h) * 60 + m;
+}
+function _boardClock(min) {
+  var h = Math.floor(min / 60) % 24,
+    m = min % 60;
+  return `${h % 12 || 12}${m ? ":" + String(m).padStart(2, "0") : ""}${h < 12 ? "am" : "pm"}`;
+}
+function _boardParts(name) {
+  var parts = typeof _b2bParts === "function" ? _b2bParts(name) : [String(name || "")];
+  return parts.map(s => s.trim().toLowerCase()).filter(Boolean);
+}
+function planBoardPlaylist({
+  artists = [],
+  savedIds = [],
+  affinityNames = [],
+  affinityLabel = "your listening",
+  stages = [],
+  dayLabel = d => `Day ${d}`,
+  maxDiscovery = 8
+} = {}) {
+  var byId = new Map(artists.map(a => [a.id, a]));
+  var stageShort = id => {
+    var s = stages.find(x => x.id === id);
+    return s?.short || s?.name || id;
+  };
+  var scheduled = a => a.day != null && _boardNightMin(a.start) != null && _boardNightMin(a.end) != null;
+  var sameWeekend = (a, b) => !a.weekend || !b.weekend || a.weekend === "both" || b.weekend === "both" || a.weekend === b.weekend;
+  var sameNight = (a, b) => a.day === b.day && sameWeekend(a, b);
+  var span = a => {
+    var s = _boardNightMin(a.start);
+    var e = _boardNightMin(a.end);
+    if (e <= s) e += 24 * 60;
+    return [s, e];
+  };
+  var unknownSaved = [],
+    dupSaved = [];
+  var seeds = [],
+    seedNames = new Set();
+  for (var id of [...new Set(savedIds)]) {
+    var a = byId.get(id);
+    if (!a) {
+      unknownSaved.push(id);
+      continue;
+    }
+    var key = a.name.trim().toLowerCase();
+    if (seedNames.has(key)) {
+      dupSaved.push(id);
+      continue;
+    }
+    seedNames.add(key);
+    seeds.push({
+      artist: a,
+      role: "seed",
+      kind: "saved",
+      reason: "Saved",
+      trackLimit: _boardSeedTracks(a.tier)
+    });
+  }
+  var savedIdSet = new Set(savedIds);
+  var seedPart = new Map();
+  for (var s of seeds) for (var p of _boardParts(s.artist.name)) if (!seedPart.has(p)) seedPart.set(p, s.artist);
+  var affinity = new Set(affinityNames.map(n => String(n || "").trim().toLowerCase()).filter(Boolean));
+  var stageCounts = {};
+  for (var _s2 of seeds) if (_s2.artist.stage) stageCounts[_s2.artist.stage] = (stageCounts[_s2.artist.stage] || 0) + 1;
+  var gaps = [];
+  var seedSets = seeds.map(s => s.artist).filter(scheduled);
+  var _loop7 = function (day) {
+    var onDay = seedSets.filter(a => a.day === day);
+    var split = onDay.some(a => a.weekend === "W1" || a.weekend === "W2");
+    var _loop9 = function (wk) {
+      var spans = onDay.filter(a => !wk || !a.weekend || a.weekend === "both" || a.weekend === wk).map(span).sort((x, y) => x[0] - y[0]);
+      var reach = null;
+      for (var [_s3, e] of spans) {
+        if (reach != null && _s3 - reach >= BOARD_GAP_MIN) gaps.push({
+          day,
+          weekend: wk,
+          from: reach,
+          to: _s3
+        });
+        reach = reach == null ? e : Math.max(reach, e);
+      }
+    };
+    for (var wk of split ? ["W1", "W2"] : [null]) {
+      _loop9(wk);
+    }
+  };
+  for (var day of [...new Set(seedSets.map(a => a.day))]) {
+    _loop7(day);
+  }
+  var excluded = {
+    saved: 0,
+    sameAct: 0,
+    noSignal: 0,
+    dupName: 0
+  };
+  var best = new Map();
+  var _loop8 = function (_a) {
+      if (savedIdSet.has(_a.id)) {
+        excluded.saved++;
+        return 0;
+      }
+      var parts = _boardParts(_a.name);
+      if (!parts.length || seedNames.has(_a.name.trim().toLowerCase()) || parts.every(p => seedPart.has(p))) {
+        excluded.sameAct++;
+        return 0;
+      }
+      var tier = _a.tier || 1;
+      var pick = null;
+      var offer = (kind, score, reason) => {
+        if (!pick || score > pick.score) pick = {
+          kind,
+          score,
+          reason
+        };
+      };
+      var heard = parts.find(p => affinity.has(p));
+      if (heard) offer("listen", 1000 + tier, `In ${affinityLabel}`);
+      var partner = parts.map(p => seedPart.get(p)).find(Boolean);
+      if (partner) offer("b2b", 800 + tier, `B2B with ${partner.name}, who you saved`);
+      if (scheduled(_a)) {
+        var [as, ae] = span(_a);
+        for (var _s4 of seeds) {
+          var o = _s4.artist;
+          if (!scheduled(o) || o.stage !== _a.stage || !sameNight(_a, o)) continue;
+          var [os, oe] = span(o);
+          if (as >= oe && as - oe <= BOARD_ADJACENT_MIN) offer("adjacent", 600 + tier - (as - oe) / 100, `Right after ${o.name} on ${stageShort(_a.stage)}`);else if (ae <= os && os - ae <= BOARD_ADJACENT_MIN) offer("adjacent", 600 + tier - (os - ae) / 100, `Right before ${o.name} on ${stageShort(_a.stage)}`);
+        }
+        var hole = gaps.find(g => g.day === _a.day && (!g.weekend || !_a.weekend || _a.weekend === "both" || _a.weekend === g.weekend) && as >= g.from && ae <= g.to);
+        if (hole) offer("gap", 400 + tier * 10, `Fills your ${_boardClock(hole.from)}–${_boardClock(hole.to)} gap on ${dayLabel(_a.day)}`);
+        if ((stageCounts[_a.stage] || 0) >= 2) offer("stage", 200 + tier * 10 + stageCounts[_a.stage], `On ${stageShort(_a.stage)}, where you saved ${stageCounts[_a.stage]} sets`);
+      }
+      if (!pick) {
+        excluded.noSignal++;
+        return 0;
+      }
+      var key = _a.name.trim().toLowerCase();
+      var prev = best.get(key);
+      if (prev) excluded.dupName++;
+      if (!prev || pick.score > prev.score) best.set(key, {
+        artist: _a,
+        role: "pick",
+        ...pick,
+        trackLimit: BOARD_PICK_TRACKS
+      });
+    },
+    _ret5;
+  for (var _a of artists) {
+    _ret5 = _loop8(_a);
+    if (_ret5 === 0) continue;
+  }
+  var cap = seeds.length ? Math.min(maxDiscovery, Math.max(2, Math.ceil(seeds.length / 2))) : 0;
+  var ranked = [...best.values()].sort((x, y) => y.score - x.score || (y.artist.tier || 0) - (x.artist.tier || 0) || (x.artist.day ?? 99) - (y.artist.day ?? 99) || (_boardNightMin(x.artist.start) ?? 9999) - (_boardNightMin(y.artist.start) ?? 9999) || String(x.artist.id).localeCompare(String(y.artist.id)));
+  var picks = ranked.slice(0, cap);
+  var order = [...seeds, ...picks].sort((x, y) => {
+    var xa = x.artist,
+      ya = y.artist;
+    var xd = xa.day ?? 99,
+      yd = ya.day ?? 99;
+    if (xd !== yd) return xd - yd;
+    var xw = xa.weekend === "W2" ? 1 : 0,
+      yw = ya.weekend === "W2" ? 1 : 0;
+    if (xw !== yw) return xw - yw;
+    var xs = _boardNightMin(xa.start) ?? 9999,
+      ys = _boardNightMin(ya.start) ?? 9999;
+    if (xs !== ys) return xs - ys;
+    if (x.role !== y.role) return x.role === "seed" ? -1 : 1;
+    return String(xa.id).localeCompare(String(ya.id));
+  });
+  var byKind = {};
+  for (var _p of picks) byKind[_p.kind] = (byKind[_p.kind] || 0) + 1;
+  return {
+    seeds,
+    picks,
+    order,
+    cap,
+    candidates: ranked,
+    diagnostics: {
+      lineup: artists.length,
+      saved: savedIdSet.size,
+      seeds: seeds.length,
+      unknownSaved,
+      dupSaved,
+      gaps: gaps.length,
+      candidates: best.size,
+      capped: Math.max(0, best.size - picks.length),
+      excluded,
+      byKind,
+      affinityNames: affinity.size
+    }
+  };
+}
 Object.assign(window, {
   startSpotifyAuth,
   ensureSpotifyProfile,
   getSpotifyProfileSync,
+  createSetsPlaylist,
   createEdcPlaylist,
   fetchPreviewUrl,
   connectAppleMusic,
@@ -1665,5 +1876,6 @@ Object.assign(window, {
   createAppleMusicPlaylist,
   _appleMusicConfigured,
   _ensureMusicKitConfigured,
-  _collectMomentSongs
+  _collectMomentSongs,
+  planBoardPlaylist
 });

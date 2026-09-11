@@ -6797,7 +6797,7 @@ function BuildPlaylistButton({ state, soundtrack }) {
     setStatus("working");
     setBuildProgress("");
     try {
-      const r = await createEdcPlaylist(state, { soundtrack, onProgress: (msg) => setBuildProgress(msg) });
+      const r = await createSetsPlaylist(state, { soundtrack, onProgress: (msg) => setBuildProgress(msg) });
       setResult(r);
       if (r.ok) {
         setStatus("done");
@@ -8338,7 +8338,7 @@ function RecapScreen({ state, setState }) {
   const buildAttendedPlaylist = async () => {
     setPlaylistState({ status: "building" });
     try {
-      const result = await createEdcPlaylist(state, { source: "attended" });
+      const result = await createSetsPlaylist(state, { source: "attended" });
       if (result.ok) {
         setPlaylistState({ status: "done", url: result.url, added: result.added });
       } else {
