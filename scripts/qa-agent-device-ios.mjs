@@ -284,11 +284,13 @@ try {
   if (opts.flow === "map-3d-edc-lv") await step("drive-map-3d-edc-lv", async () => {
     await client.apps.open({ app: bundleId, platform: "ios", udid });
 
-    // The festival switcher lives on Today, not Map. The native URL handler
+    // The festival switcher lives on Home, not Map. The native URL handler
     // is a supported app path and dismisses onboarding without a product-only
-    // test hook.
+    // test hook. Home has no standalone "TODAY" heading: that word exists only
+    // as the tab label and is not guaranteed to appear in an interactive-only
+    // iOS snapshot. Wait for the festival chip that this flow actually needs.
     await openNativeUrl("plursky://qa?tab=home");
-    await waitForSnapshot(/\bTODAY\b/i, { name: "snapshot-home-entry.txt", interactiveOnly: true });
+    await waitForSnapshot(/NOCTURNAL|EDC LV/i, { name: "snapshot-home-entry.txt", interactiveOnly: true });
 
     // Select EDC LV from the real festival switcher. The switch reloads the
     // WebView, so refs after this press are deliberately discarded.
