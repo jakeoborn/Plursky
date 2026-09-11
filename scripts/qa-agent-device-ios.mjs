@@ -131,10 +131,6 @@ async function waitForSnapshot(matcher, { timeoutMs = 20_000, name = "snapshot-w
   }
   throw Object.assign(new Error(`timed out waiting for ${matcher}`), { finalState: "FAIL_UI_REGRESSION" });
 }
-async function openNativeUrl(url) {
-  await run("xcrun", ["simctl", "openurl", udid, url]);
-  await new Promise(r => setTimeout(r, 750));
-}
 async function waitForResult(ms = 20_000) {
   const deadline = Date.now() + ms;
   while (Date.now() < deadline) {
@@ -288,14 +284,17 @@ try {
   });
 
   if (opts.flow === "map-3d-edc-lv") await step("drive-map-3d-edc-lv", async () => {
-    await client.apps.open({ app: bundleId, platform: "ios", udid });
+    // Use the app's existing DEBUG-only launch-argument bridge for deterministic
+    // foregrounding and initial routing. `simctl openurl` is not a launch
+    // primitive: iOS may leave the custom-scheme confirmation on SpringBoard,
+    // so a successful command can still leave Plursky in the background.
+    await client.apps.open({
+      app: bundleId, platform: "ios", udid, relaunch: true,
+      launchArgs: ["-plurskyInitialTab", "home"],
+    });
 
-    // The festival switcher lives on Home, not Map. The native URL handler
-    // is a supported app path and dismisses onboarding without a product-only
-    // test hook. Home has no standalone "TODAY" heading: that word exists only
-    // as the tab label and is not guaranteed to appear in an interactive-only
-    // iOS snapshot. Wait for the festival chip that this flow actually needs.
-    await openNativeUrl("plursky://qa?tab=home");
+    // The festival switcher lives on Home, not Map. Home has no standalone
+    // "TODAY" heading, so wait for the interactive chip this flow needs.
     await waitForSnapshot(/NOCTURNAL|EDC LV/i, { name: "snapshot-home-entry.txt", interactiveOnly: true });
 
     // Select EDC LV from the real festival switcher. The switch reloads the
@@ -311,9 +310,13 @@ try {
     await press(/Electric Daisy Carnival.*Las Vegas|EDC LV/i, "edc-lv");
 
     // EDC LV is post-festival, so its normal tab bar replaces Map with
-    // Memories. Re-enter Map through the same supported native URL handler.
+    // Memories. Relaunch into Map through the same DEBUG-only argument bridge;
+    // refs from before the festival reload are deliberately discarded.
     await new Promise(r => setTimeout(r, 1800));
-    await openNativeUrl("plursky://qa?tab=map");
+    await client.apps.open({
+      app: bundleId, platform: "ios", udid, relaunch: true,
+      launchArgs: ["-plurskyInitialTab", "map"],
+    });
     await waitForSnapshot(/Map layers/i, { name: "snapshot-edc-map-entry.txt", interactiveOnly: true });
 
     await press(/Map layers/i, "map-layers");
