@@ -15,6 +15,7 @@
 // evaluated in a VM with a window shim rather than imported.
 
 import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync, readdirSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
@@ -282,6 +283,28 @@ if (!CHECK) {
   mkdirSync(OUT_DIR, { recursive: true });
 }
 
+// ── Schedule feed ────────────────────────────────────────────────────
+// /f/<id>/schedule.json for every LIVE festival: the schedule exactly as this
+// build ships it, plus where it came from. The app has no runtime schedule
+// fetch, so iOS only learns of a change through an App Store build; this file
+// is what a client reads to see one without a build (#115 Schedule Sync).
+// Derived here so it can never disagree with the bundle, and gated by --check
+// like the pages. No app version and no date inside — only the schedule and
+// its source — so the same schedule always produces the same bytes, and
+// `scheduleHash` lets a client tell "nothing changed" without diffing.
+// TBA ("" times) and stage: null are valid states and pass through as-is.
+function scheduleFeed(entry) {
+  const cfg = entry.config;
+  const acts = (DS[cfg.id]?.artists || []).map(a => {
+    const o = { id: a.id, name: a.name, day: a.day, stage: a.stage ?? null, start: a.start || '', end: a.end || '' };
+    if (a.weekend != null) o.weekend = a.weekend;   // ACL: "both" / W1 / W2
+    return o;
+  });
+  const hash = createHash('sha256').update(JSON.stringify(acts)).digest('hex').slice(0, 16);
+  return `{\n  "festivalId": ${JSON.stringify(cfg.id)},\n  "source": ${JSON.stringify(cfg.scheduleSource || null)},\n` +
+         `  "scheduleHash": "${hash}",\n  "acts": [\n${acts.map(o => '    ' + JSON.stringify(o)).join(',\n')}\n  ]\n}\n`;
+}
+
 const rows = [];
 for (const entry of REG) {
   const id = entry.config.id;
@@ -292,6 +315,7 @@ for (const entry of REG) {
   emit(path.join(dir, 'index.html'), stub(entry),
        CHECK && !CHECK_STRICT ? stub(entry, !(eventDates(entry.config)
          ? eventDates(entry.config).end < TODAY : false)) : null);
+  if (entry.available) emit(path.join(dir, 'schedule.json'), scheduleFeed(entry));
   const n = new Set((DS[id]?.artists || []).map(a => a.name)).size;
   const d = eventDates(entry.config);
   rows.push({ id, artists: n, dates: d ? `${d.start}..${d.end}` : 'NO DATES' });

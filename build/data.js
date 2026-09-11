@@ -1,5 +1,10 @@
 var FESTIVAL_CONFIG = {
   id: "edc-lv-2026",
+  scheduleSource: {
+    url: "https://festivaldust.com/",
+    observedAt: "2026-05",
+    official: false
+  },
   name: "EDC Las Vegas 2026",
   shortName: "EDC LV 2026",
   brand: "EDC",
@@ -322,6 +327,11 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "lost-lands-2026",
+    scheduleSource: {
+      url: "https://github.com/johnta2000/johnta2000.github.io/blob/01315c1f03c0a01c9a8294132ac8cb6480a49ac3/convex/lostLandsSetTimes.ts",
+      observedAt: "2026-09-10",
+      official: false
+    },
     name: "Lost Lands 2026",
     shortName: "Lost Lands",
     brand: "Lost Lands",
@@ -541,6 +551,11 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "acl-2026",
+    scheduleSource: {
+      url: "https://aclfestival.com/schedule",
+      observedAt: "2026-09-04",
+      official: true
+    },
     name: "Austin City Limits 2026",
     shortName: "ACL 2026",
     brand: "ACL",

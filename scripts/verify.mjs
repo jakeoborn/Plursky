@@ -649,7 +649,7 @@ if (fdata.length) {
   vm.runInContext(smods + "\n" + readFileSync(join(ROOT, "data.jsx"), "utf8") +
     "\n;__o={REG:FESTIVALS_REGISTRY,DS:_DATA_SETS};", sctx);
   const { REG: SREG, DS: SDS } = sctx.__o;
-  let sbad = 0;
+  let sbad = 0, ssbad = 0;
   for (const f of SREG) {
     const id = f.id || (f.config && f.config.id);
     const acts = ((SDS[id] || {}).artists) || [];
@@ -685,9 +685,20 @@ if (fdata.length) {
       sbad++;
       continue;
     }
-    console.log(`  ok ${label} real schedule (${acts.length} acts, ${pairs.size} distinct times, ${ratio.toFixed(3)})`);
+    // A live schedule names where it came from, because /f/<id>/schedule.json
+    // carries that to users (#115 Schedule Sync). Copied from the module's own
+    // SOURCE note; `official: false` marks a secondary or third-party capture.
+    const ss = (f.config || f).scheduleSource;
+    if (live && !(ss && /^https:\/\//.test(ss.url || "") && /^\d{4}-\d{2}(-\d{2})?$/.test(ss.observedAt || "")
+                  && typeof ss.official === "boolean")) {
+      console.log(`  ✗ ${label} live schedule with no scheduleSource { url, observedAt, official }`);
+      ssbad++;
+      continue;
+    }
+    console.log(`  ok ${label} real schedule (${acts.length} acts, ${pairs.size} distinct times, ${ratio.toFixed(3)})${ss ? (ss.official ? "" : " · secondary source") : ""}`);
   }
   if (sbad) fail(`${sbad} festival(s) carry fabricated or half-filled set times — blank them, or fill them from the official schedule`);
+  if (ssbad) fail(`${ssbad} live festival(s) have no scheduleSource — add { url, observedAt, official } from the module's SOURCE note`);
   console.log(`  ✓ ${SREG.length} festival(s) — every schedule is either published-and-real or honestly blank`);
 }
 

@@ -143,6 +143,8 @@
 
   const CONFIG = {
     id: "governors-ball-2026",
+    // From the SOURCE note above: governorsballmusicfestival.com/schedule graphics, accessed 2026-08-28. Feeds /f/<id>/schedule.json.
+    scheduleSource: { url: "https://governorsballmusicfestival.com/schedule", observedAt: "2026-08-28", official: true },
     name: "Governors Ball 2026",
     shortName: "Gov Ball",
     brand: "Governors Ball",

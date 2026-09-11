@@ -72,6 +72,10 @@
 const FESTIVAL_CONFIG = {
   // ── Identity ──
   id:           "edc-lv-2026",
+  // Where the set times came from (the ARTISTS header): the festivaldust.com
+  // lineup release, May 2026. A third-party aggregator, and the day was never
+  // recorded, so month precision and official: false. Feeds /f/<id>/schedule.json.
+  scheduleSource: { url: "https://festivaldust.com/", observedAt: "2026-05", official: false },
   name:         "EDC Las Vegas 2026",
   shortName:    "EDC LV 2026",
   brand:        "EDC",
@@ -389,6 +393,9 @@ const FESTIVALS_REGISTRY = [
     // "real" with no anchors (decided 2026-09-07, see the map block below).
     config: {
       id:        "lost-lands-2026",
+      // The SCHEDULE block's source: a public capture of the official Lost
+      // Lands app (v10.0.0, captured 2026-09-10) — third-party, so official: false.
+      scheduleSource: { url: "https://github.com/johnta2000/johnta2000.github.io/blob/01315c1f03c0a01c9a8294132ac8cb6480a49ac3/convex/lostLandsSetTimes.ts", observedAt: "2026-09-10", official: false },
       name:      "Lost Lands 2026",
       shortName: "Lost Lands",
       brand:     "Lost Lands",
@@ -717,6 +724,9 @@ const FESTIVALS_REGISTRY = [
   {
     config: {
       id:        "acl-2026",
+      // The ACL_ARTISTS header: official posters on aclfestival.com/schedule,
+      // transcribed Sep 3–4 2026.
+      scheduleSource: { url: "https://aclfestival.com/schedule", observedAt: "2026-09-04", official: true },
       name:      "Austin City Limits 2026",
       shortName: "ACL 2026",
       brand:     "ACL",
