@@ -1,5 +1,6 @@
 import Capacitor
 import ShazamKit
+import UIKit
 
 @objc(ShazamPlugin)
 public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
@@ -7,13 +8,49 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
     public let jsName = "ShazamPlugin"
     public let pluginMethods: [CAPPluginMethod] = [
         CAPPluginMethod(name: "identify", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "cancel", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "buildChannel", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "identifyFile", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "identifyBase64", returnType: CAPPluginReturnPromise)
     ]
 
+    // File/base64 recognition state.
     private var session: SHSession?
-    private var audioEngine: AVAudioEngine?
     private var savedCall: CAPPluginCall?
+
+    // Live-mic recognition state. Touched on the main queue only, so a match,
+    // the 12 s timeout, Cancel and an interruption can race without two of
+    // them resolving the same call or one attempt's timer stopping the next.
+    private var liveCall: CAPPluginCall?
+    private var liveSession: SHSession?
+    private var audioEngine: AVAudioEngine?
+    private var liveTimeout: DispatchWorkItem?
+    private var liveObservers: [NSObjectProtocol] = []
+
+    // Release builds log nothing: no song, no artist, no location.
+    private func logDebug(_ message: @autoclosure () -> String) {
+        #if DEBUG
+        print("⚡️[Shazam] \(message())")
+        #endif
+    }
+
+    private func noMatch(_ reason: String, _ extra: [String: Any] = [:]) -> [String: Any] {
+        var debug = extra
+        debug["reason"] = reason
+        return ["matched": false, "title": "", "artist": "", "debug": debug]
+    }
+
+    // Which build is running, for gating TestFlight-only trials. A debug
+    // build says "debug"; a TestFlight install carries a sandbox receipt; an
+    // App Store install does not. JS treats anything it can't read as off.
+    @objc func buildChannel(_ call: CAPPluginCall) {
+        #if DEBUG
+        call.resolve(["channel": "debug"])
+        #else
+        let sandbox = Bundle.main.appStoreReceiptURL?.lastPathComponent == "sandboxReceipt"
+        call.resolve(["channel": sandbox ? "testflight" : "appstore"])
+        #endif
+    }
 
     // Identify a song from a recorded video/audio FILE rather than the live
     // mic. This is the retroactive-Shazam path: the audio you already
@@ -46,7 +83,7 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
     }
 
     private func resolveNoMatch(_ debug: [String: Any] = [:]) {
-        print("⚡️[Shazam] NO MATCH (file path) · debug=\(debug)")
+        logDebug("NO MATCH (file path) · \(debug["reason"] ?? "")")
         DispatchQueue.main.async {
             self.savedCall?.resolve(["matched": false, "title": "", "artist": "", "debug": debug])
             self.savedCall = nil
@@ -143,13 +180,68 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
         }
     }
 
-    @objc func identify(_ call: CAPPluginCall) {
-        print("⚡️[Shazam] START live mic")
-        savedCall = call
+    // MARK: - Live mic
+    //
+    // Foreground only, user-initiated, at most 12 seconds. Buffers go straight
+    // from the input tap into ShazamKit's matcher; nothing is written to disk
+    // or kept after the attempt. Every exit — match, no match, timeout,
+    // Cancel, the app resigning active, an audio interruption, a start
+    // failure — goes through finishLive, which stops the engine, removes the
+    // tap, deactivates the session and resolves the call exactly once.
 
-        session = SHSession()
-        session?.delegate = self
-        audioEngine = AVAudioEngine()
+    @objc func identify(_ call: CAPPluginCall) {
+        DispatchQueue.main.async { self.startLive(call) }
+    }
+
+    // Stops a live attempt now. The pending identify() resolves with
+    // cancelled: true; this call resolves with whether one was running.
+    @objc func cancel(_ call: CAPPluginCall) {
+        DispatchQueue.main.async {
+            let wasRunning = self.liveCall != nil
+            self.finishLive(self.cancelled("cancelled"))
+            call.resolve(["cancelled": wasRunning])
+        }
+    }
+
+    private func cancelled(_ reason: String) -> [String: Any] {
+        var payload = noMatch(reason)
+        payload["cancelled"] = true
+        return payload
+    }
+
+    private func startLive(_ call: CAPPluginCall) {
+        // One live attempt at a time. A second call used to replace the saved
+        // call, leaving the first promise unresolved and the first timer armed.
+        if liveCall != nil {
+            call.reject("A live recognition is already running", "BUSY")
+            return
+        }
+        liveCall = call
+        let audio = AVAudioSession.sharedInstance()
+        switch audio.recordPermission {
+        case .denied:
+            finishLive(noMatch("mic-denied"))
+        case .undetermined:
+            // The permission alert resigns the app, so observers go on only
+            // after the answer, in beginListening.
+            audio.requestRecordPermission { granted in
+                DispatchQueue.main.async {
+                    guard self.liveCall === call else { return }
+                    if granted { self.beginListening() } else { self.finishLive(self.noMatch("mic-denied")) }
+                }
+            }
+        default:
+            beginListening()
+        }
+    }
+
+    private func beginListening() {
+        guard let call = liveCall else { return }
+        let matcher = SHSession()
+        matcher.delegate = self
+        liveSession = matcher
+        let engine = AVAudioEngine()
+        audioEngine = engine
 
         do {
             // Configure + ACTIVATE the audio session BEFORE querying the input
@@ -162,66 +254,110 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
             try audioSession.setCategory(.record, mode: .measurement, options: [.duckOthers])
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
 
-            let inputNode = audioEngine!.inputNode
+            let inputNode = engine.inputNode
             let recordingFormat = inputNode.outputFormat(forBus: 0)
+            // A zero format (no input route) makes installTap raise an
+            // Objective-C exception Swift cannot catch.
+            guard recordingFormat.sampleRate > 0, recordingFormat.channelCount > 0 else {
+                failLive(call, code: "NO_INPUT"); return
+            }
             // Pass the tap's real AVAudioTime (`when`) instead of nil. nil stamps
             // every buffer at "now", collapsing the stream timeline so the matcher
             // only ever sees a sliver — the same nil-timestamp bug already fixed on
             // the file path. The running `when` keeps a coherent continuous stream.
             inputNode.removeTap(onBus: 0)
-            inputNode.installTap(onBus: 0, bufferSize: 2048, format: recordingFormat) { [weak self] buffer, when in
-                self?.session?.matchStreamingBuffer(buffer, at: when)
+            inputNode.installTap(onBus: 0, bufferSize: 2048, format: recordingFormat) { [weak matcher] buffer, when in
+                matcher?.matchStreamingBuffer(buffer, at: when)
             }
-            audioEngine!.prepare()
-            try audioEngine!.start()
-
-            // Auto-stop after 12 seconds if no match
-            DispatchQueue.main.asyncAfter(deadline: .now() + 12) { [weak self] in
-                self?.stopListening()
-                if let call = self?.savedCall {
-                    print("⚡️[Shazam] MIC-TIMEOUT · sampleRate=\(recordingFormat.sampleRate)")
-                    call.resolve(["matched": false, "title": "", "artist": "",
-                                  "debug": ["reason": "mic-timeout", "sampleRate": recordingFormat.sampleRate]])
-                    self?.savedCall = nil
-                }
-            }
+            engine.prepare()
+            try engine.start()
         } catch {
-            print("⚡️[Shazam] MIC-ERROR · \(error.localizedDescription)")
-            call.reject("Failed to start audio: \(error.localizedDescription)")
+            logDebug("MIC-ERROR · \(error.localizedDescription)")
+            failLive(call, code: "AUDIO_START")
+            return
         }
+
+        // Leaving the app — backgrounding, a call, Control Center — stops the
+        // mic immediately. No background audio mode exists to keep it alive.
+        let center = NotificationCenter.default
+        liveObservers = [
+            center.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: .main) { [weak self] _ in
+                guard let self = self else { return }
+                self.finishLive(self.cancelled("backgrounded"))
+            },
+            center.addObserver(forName: AVAudioSession.interruptionNotification, object: nil, queue: .main) { [weak self] _ in
+                guard let self = self else { return }
+                self.finishLive(self.cancelled("interrupted"))
+            },
+        ]
+
+        // A work item, not a bare asyncAfter, so a finished attempt's timer is
+        // cancelled and can never stop the attempt after it.
+        let timeout = DispatchWorkItem { [weak self] in
+            guard let self = self else { return }
+            self.logDebug("MIC-TIMEOUT")
+            self.finishLive(self.noMatch("mic-timeout"))
+        }
+        liveTimeout = timeout
+        DispatchQueue.main.asyncAfter(deadline: .now() + 12, execute: timeout)
+        logDebug("START live mic")
     }
 
-    private func stopListening() {
-        audioEngine?.inputNode.removeTap(onBus: 0)
-        audioEngine?.stop()
-        try? AVAudioSession.sharedInstance().setActive(false)
+    private func failLive(_ call: CAPPluginCall, code: String) {
+        guard liveCall === call else { return }
+        teardownLive()
+        call.reject("Failed to start audio", code)
+    }
+
+    private func finishLive(_ payload: [String: Any]) {
+        guard let call = liveCall else { return }
+        teardownLive()
+        call.resolve(payload)
+    }
+
+    private func teardownLive() {
+        liveCall = nil
+        liveTimeout?.cancel()
+        liveTimeout = nil
+        for o in liveObservers { NotificationCenter.default.removeObserver(o) }
+        liveObservers = []
+        if let engine = audioEngine {
+            engine.inputNode.removeTap(onBus: 0)
+            engine.stop()
+        }
+        audioEngine = nil
+        liveSession?.delegate = nil
+        liveSession = nil
+        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
     }
 
     // MARK: - SHSessionDelegate
 
     public func session(_ session: SHSession, didFind match: SHMatch) {
-        stopListening()
-        guard let item = match.mediaItems.first else {
-            print("⚡️[Shazam] DID-NOT-FIND · empty-match")
-            savedCall?.resolve(["matched": false, "title": "", "artist": "", "debug": ["reason": "empty-match"]])
-            savedCall = nil
-            return
+        var payload: [String: Any] = noMatch("empty-match")
+        if let item = match.mediaItems.first {
+            payload = [
+                "matched": true,
+                "title": item.title ?? "",
+                "artist": item.artist ?? "",
+                "appleMusicID": item.appleMusicID ?? "",
+                "artworkURL": item.artworkURL?.absoluteString ?? "",
+            ]
         }
-        print("⚡️[Shazam] MATCH · \(item.artist ?? "?") — \(item.title ?? "?")")
-        savedCall?.resolve([
-            "matched": true,
-            "title": item.title ?? "",
-            "artist": item.artist ?? "",
-            "appleMusicID": item.appleMusicID ?? "",
-            "artworkURL": item.artworkURL?.absoluteString ?? "",
-        ])
-        savedCall = nil
+        logDebug("MATCH · \(match.mediaItems.first?.artist ?? "?") — \(match.mediaItems.first?.title ?? "?")")
+        DispatchQueue.main.async { self.deliver(payload, from: session) }
     }
 
     public func session(_ session: SHSession, didNotFindMatchFor signature: SHSignature, error: (any Error)?) {
-        stopListening()
-        print("⚡️[Shazam] DID-NOT-FIND · \(error?.localizedDescription ?? "no-error")")
-        savedCall?.resolve(["matched": false, "title": "", "artist": "", "debug": ["reason": "did-not-find", "error": error?.localizedDescription ?? ""]])
+        logDebug("DID-NOT-FIND · \(error?.localizedDescription ?? "no-error")")
+        let payload = noMatch("did-not-find", ["error": error?.localizedDescription ?? ""])
+        DispatchQueue.main.async { self.deliver(payload, from: session) }
+    }
+
+    private func deliver(_ payload: [String: Any], from session: SHSession) {
+        if session === liveSession { finishLive(payload); return }
+        guard session === self.session else { return }
+        savedCall?.resolve(payload)
         savedCall = nil
     }
 }

@@ -2217,6 +2217,11 @@ const _TAG_SOURCE_LABEL = {
   // The user said they don't know. A choice, not a gap: it leaves the review
   // list and the archive-recovery pass never re-guesses it.
   unknown:              { text: "MARKED UNKNOWN",    tone: "info" },
+  // Live Set Check-in: how the set was reached.
+  "live-gps-schedule":  { text: "LIVE · GPS + SCHEDULE", tone: "ok" },
+  "live-schedule-only": { text: "LIVE · SCHEDULE ONLY",  tone: "ok" },
+  "live-manual":        { text: "LIVE · YOU PICKED",     tone: "ok" },
+  "live-manual-or-unresolved": { text: "LIVE · PICK A SET", tone: "warn" },
 };
 
 // Best-available capture time for a moment. handleBatchPick stores both
@@ -3159,6 +3164,22 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
           {moment.text}
         </div>
       )}
+      {/* A Live Set Check-in has no photo: the card is the stage + the song. */}
+      {moment.kind === "checkin" && (() => {
+        const st = stage || (moment.stageId ? STAGES.find(s => s.id === moment.stageId) : null);
+        const sc = moment.songCapture;
+        const none = { offline: "Song match unavailable", "mic-denied": "No song · microphone off" }[moment.shazamOutcome] || "No song match";
+        return (
+          <div data-checkin-card style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, color: st ? st.color : "var(--muted)" }}>
+              ✓ CHECKED IN{st ? ` · ${st.name.toUpperCase()}` : ""}
+            </div>
+            <div style={{ fontSize: 13, color: "var(--ink)", opacity: sc ? 1 : 0.55, overflowWrap: "anywhere" }}>
+              {sc ? `♫ ${sc.title || sc.song}${sc.title && sc.artist ? ` — ${sc.artist}` : ""}` : none}
+            </div>
+          </div>
+        );
+      })()}
       {/* PRIMARY row — the artist/tag chip + capture time read first. Edit and
           delete are demoted to a muted, right-aligned cluster so the card has
           a clear hierarchy instead of one crammed wrapping line. */}
@@ -3249,7 +3270,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
       </div>
       {/* SECONDARY — tag provenance + GPS note, muted and small so it sits
           clearly below the primary line. */}
-      {(tagInfo || (moment.hasGps === false && moment.autoTagged)) && (
+      {(tagInfo || (moment.hasGps === false && moment.autoTagged && moment.kind !== "checkin")) && (
         <div className="mono" title={moment.takenAt ? `Photo time: ${moment.takenAt}` : undefined}
           style={{
             marginTop: 6, fontSize: 8.5, letterSpacing: 1, fontWeight: 600,
@@ -3257,7 +3278,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
             opacity: tagInfo?.tone === "warn" ? 1 : 0.85,
           }}>
           {tagInfo ? `${tagInfo.text}${moment.takenAt ? ` · ${moment.takenAt.slice(11)}` : ""}` : ""}
-          {moment.hasGps === false && moment.autoTagged ? `${tagInfo ? "  ·  " : ""}📡 NO GPS` : ""}
+          {moment.hasGps === false && moment.autoTagged && moment.kind !== "checkin" ? `${tagInfo ? "  ·  " : ""}📡 NO GPS` : ""}
         </div>
       )}
       {nowPlaying && (
@@ -5760,6 +5781,9 @@ function MemoriesScreen({ state, setState }) {
   // unnecessary friction.
   const [view, setView] = React.useState(() => {
     try {
+      // A navigation can ask for a lens: a Live Set Check-in has no photo, so
+      // the WALL can't show it and its VIEW link opens TIMELINE.
+      if (state.memoriesView === "night" || state.memoriesView === "grid") return state.memoriesView;
       const v = localStorage.getItem("plursky_memories_view_v1");
       // v206: lenses simplified to GRID · STORY · NIGHT (the old 5-tab bar read
       // as cluttered). A persisted artist/stage selection falls back to NIGHT —
@@ -5780,6 +5804,8 @@ function MemoriesScreen({ state, setState }) {
   React.useEffect(() => {
     try { localStorage.setItem("plursky_memories_view_v1", view); } catch {}
   }, [view]);
+  // The requested lens applies to this visit only.
+  React.useEffect(() => { if (state.memoriesView) setState(s => ({ ...s, memoriesView: null })); }, []);
   // Flatten moments once for the artist/stage views.
   const allMoments = React.useMemo(() => {
     const out = [];
@@ -9881,10 +9907,415 @@ function RecapScreen({ state, setState }) {
 }
 
 /* ─── NowPlayingBar ──────────────────────────────────────────────── */
+// ── Live Set Check-in (TestFlight trial) ──────────────────────────────────
+// One tap: a fresh GPS fix, then up to 12 s of foreground listening through
+// the existing native ShazamPlugin.identify(), then a review of what will be
+// saved. Nothing is written before SAVE, and what is written is metadata
+// only: no audio, no raw coordinates.
+//
+// Who played is decided by the clock + a trusted stage, or by the user.
+// Shazam names the RECORD, and in a DJ set that is usually someone else's
+// track, so its artist is never mapped onto the festival lineup.
+const LIVE_CHECKIN_TRIAL_KEY = "plursky_live_checkin_trial_v1";
+const _CHECKIN_GPS = { maxAgeMs: 10000, maxAccM: 100, maxDistM: 200, minMarginM: 35 };
+
+// On only in a native build that reports a debug or TestFlight channel. The
+// App Store build, the web, and any native build older than the channel
+// method stay off whatever the stored key says; inside the trial "0" opts out.
+function _liveCheckinTrialAllowed(channel, stored) {
+  if (channel !== "debug" && channel !== "testflight") return false;
+  return stored !== "0";
+}
+let _liveTrialPromise = null;
+function _liveCheckinTrialOn() {
+  if (!_liveTrialPromise) _liveTrialPromise = (async () => {
+    try {
+      if (!window.Capacitor?.isNativePlatform?.() || !window.ShazamPlugin) return false;
+      const r = await window.ShazamPlugin.buildChannel();
+      let stored = null;
+      try { stored = localStorage.getItem(LIVE_CHECKIN_TRIAL_KEY); } catch {}
+      return _liveCheckinTrialAllowed(r && r.channel, stored);
+    } catch { return false; }            // an older build rejects the unknown method
+  })();
+  return _liveTrialPromise;
+}
+
+function _checkinShift(cfg) {
+  const w = cfg && cfg.weekendStartMs;
+  return w && typeof w.W1 === "number" && typeof w.W2 === "number" && w.W2 > w.W1 ? w.W2 - w.W1 : 0;
+}
+// Every [startMs, endMs) an act occupies on the festival's own clock. A
+// weekend-tagged act plays its own weekend; an untagged act on a two-weekend
+// festival plays both, so it gets a window on each and the clock alone says
+// which one a check-in is in. _wallMs owns the after-midnight and DST rules.
+function _checkinActWindows(cfg, a) {
+  const base = cfg && cfg.dayDates && a && a.start && a.end ? cfg.dayDates[a.day] : null;
+  if (!base) return [];
+  const shift = _checkinShift(cfg);
+  const days = a.weekend === "W2" ? [_shiftDayDate(base, shift)]
+             : a.weekend === "W1" || !shift ? [base]
+             : [base, _shiftDayDate(base, shift)];
+  const out = [];
+  for (const d of days) {
+    const s = _wallMs(d, a.start, cfg.tz), e = _wallMs(d, a.end, cfg.tz);
+    if (s != null && e != null && e > s) out.push([s, e]);
+  }
+  return out;
+}
+// The festival night an instant belongs to: 11:00 on day N to 06:00 the next
+// morning (photo-tag's window, so daytime festivals count), on either weekend.
+function _checkinNight(cfg, ms) {
+  if (!cfg || !cfg.dayDates) return null;
+  const shift = _checkinShift(cfg);
+  for (const n of Object.keys(cfg.dayDates).map(Number)) {
+    const base = cfg.dayDates[n];
+    for (const d of shift ? [base, _shiftDayDate(base, shift)] : [base]) {
+      if (d && ms >= d.midnightUtc + 11 * 3600000 && ms < d.midnightUtc + 30 * 3600000) return n;
+    }
+  }
+  return null;
+}
+function _checkinActive(cfg, artists, ms) {
+  return (artists || []).filter(a => _checkinActWindows(cfg, a).some(([s, e]) => ms >= s && ms < e));
+}
+
+// One GPS fix → a trusted stage, or the reason there isn't one. Stale,
+// coarse, outside the venue, or too close to call between two stages all
+// give no stage. The measurements come back either way, for the trial sheet.
+function _checkinGps(anchors, fix, atMs, rules = _CHECKIN_GPS) {
+  if (!fix || !Number.isFinite(fix.lat) || !Number.isFinite(fix.lng)) return { status: fix && fix.denied ? "denied" : "none" };
+  const accM = Number.isFinite(fix.accuracy) ? fix.accuracy : null;
+  if (!anchors || !anchors.length) return { status: "no-anchors", accM };
+  const d = anchors.map(a => ({ stageId: a.stageId, dist: _haversineMeters(fix.lat, fix.lng, a.lat, a.lng) }))
+    .sort((x, y) => x.dist - y.dist);
+  const out = { accM, distM: d[0].dist, marginM: d.length > 1 ? d[1].dist - d[0].dist : null };
+  if (typeof fix.timestamp === "number" && atMs - fix.timestamp > rules.maxAgeMs) return { ...out, status: "stale" };
+  if (accM == null || accM > rules.maxAccM) return { ...out, status: "coarse" };
+  if (d[0].dist > rules.maxDistM) return { ...out, status: "outside" };
+  if (out.marginM != null && out.marginM < rules.minMarginM) return { ...out, status: "ambiguous" };
+  return { ...out, status: "trusted", stageId: d[0].stageId };
+}
+
+// The whole proposal, pure: which night, which sets are on, which stage the
+// fix trusts, and — only when exactly one set fits — which set. basis says
+// how it was reached: "gps-schedule", "schedule-only" (no trusted stage, but
+// one set on festival-wide) or "choose" (the user has to pick).
+function resolveLiveCheckin({ cfg, artists, anchors, atMs, fix }) {
+  const active = _checkinActive(cfg, artists, atMs);
+  const gps = _checkinGps(anchors, fix, atMs);
+  const stageId = gps.status === "trusted" ? gps.stageId : null;
+  let artistId = null, basis = "choose", reason = null;
+  if (stageId) {
+    const here = active.filter(a => a.stage === stageId);
+    if (here.length === 1) { artistId = here[0].id; basis = "gps-schedule"; }
+    else reason = here.length ? "several-at-stage" : "no-set-at-stage";
+  } else if (active.length === 1) {
+    artistId = active[0].id; basis = "schedule-only";
+  } else reason = active.length ? "several-active" : "no-active-set";
+  const night = active.length ? active[0].day : _checkinNight(cfg, atMs);
+  return { night, active, gps, stageId, artistId, basis, reason };
+}
+
+// CHANGE SET: on the resolved night, each stage's set at the tap plus the one
+// just before and just after it — never the whole lineup. The trusted stage
+// comes first, then stages with a set on now.
+function _checkinChoices(cfg, artists, atMs, night, firstStage) {
+  const byStage = new Map();
+  for (const a of artists || []) {
+    if (a.day !== night || !a.stage) continue;
+    const w = _checkinActWindows(cfg, a)
+      .map(([s, e]) => ({ s, e, gap: atMs < s ? s - atMs : atMs >= e ? atMs - e : 0 }))
+      .sort((x, y) => x.gap - y.gap)[0];
+    if (!w || w.gap > 18 * 3600000) continue;        // the other weekend's slot
+    if (!byStage.has(a.stage)) byStage.set(a.stage, []);
+    byStage.get(a.stage).push({ act: a, s: w.s, e: w.e, now: w.gap === 0 });
+  }
+  const groups = [];
+  for (const [stageId, rows] of byStage) {
+    rows.sort((x, y) => x.s - y.s);
+    let i = rows.findIndex(r => r.now);
+    const pick = i >= 0 ? rows.slice(Math.max(0, i - 1), i + 2)
+      : (() => { const next = rows.findIndex(r => r.s > atMs); return next < 0 ? rows.slice(-1) : rows.slice(Math.max(0, next - 1), next + 1); })();
+    groups.push({ stageId, live: pick.some(r => r.now), rows: pick });
+  }
+  return groups.sort((x, y) => (y.stageId === firstStage) - (x.stageId === firstStage) || y.live - x.live);
+}
+
+// Festival-local wall clock, "YYYY-MM-DD HH:MM:SS" — the shape every other
+// moment's takenAt has, and what momentWeekend reads.
+function _checkinTakenAt(cfg, ms) {
+  if (cfg && cfg.tz && typeof Intl !== "undefined") {
+    try {
+      const p = {};
+      for (const x of new Intl.DateTimeFormat("en-CA", { timeZone: cfg.tz, year: "numeric", month: "2-digit", day: "2-digit",
+        hour: "2-digit", minute: "2-digit", second: "2-digit", hourCycle: "h23" }).formatToParts(new Date(ms))) p[x.type] = x.value;
+      return `${p.year}-${p.month}-${p.day} ${p.hour}:${p.minute}:${p.second}`;
+    } catch {}
+  }
+  return new Date(ms + ((cfg && cfg.utcOffsetHours) || 0) * 3600000).toISOString().replace("T", " ").slice(0, 19);
+}
+
+// The saved moment. sel is what the review showed when SAVE was tapped:
+// { artistId, stageId, source } with source "gps-schedule" | "schedule-only"
+// | "manual". song is _listenOnce's result; only its song fields are kept.
+function _checkinMoment({ cfg, res, sel, song, startedAt, now, rand }) {
+  const t = now == null ? Date.now() : now;
+  const artistId = (sel && sel.artistId) || null;
+  const act = artistId ? (res.active.find(a => a.id === artistId) || null) : null;
+  const matched = !!(song && song.outcome === "matched" && song.title);
+  const round = v => (v == null || !Number.isFinite(v) ? null : Math.round(v));
+  const tagSource = !artistId ? "live-manual-or-unresolved"
+    : sel.source === "manual" ? "live-manual"
+    : sel.source === "schedule-only" ? "live-schedule-only" : "live-gps-schedule";
+  return {
+    id: `live_${t}_${((rand || Math.random)()).toString(36).slice(2, 8)}`,
+    festivalId: cfg.id,
+    night: (sel && sel.night) || (act && act.day) || res.night,
+    artistId,
+    text: "",
+    kind: "checkin",
+    createdAt: t,
+    takenAt: _checkinTakenAt(cfg, startedAt),
+    takenAtSource: "live-checkin",
+    importedAt: new Date(t).toISOString(),
+    tagSource,
+    autoTagged: !!artistId && sel.source !== "manual",
+    needsRetag: !artistId,
+    stageId: (sel && sel.stageId) || null,
+    // What the resolver offered, so the trial can count corrections.
+    proposedArtistId: res.artistId || null,
+    proposedStageId: res.stageId || null,
+    locationSource: res.gps.status === "trusted" ? "gps-live" : "none",
+    gpsStatus: res.gps.status,
+    gpsAccM: round(res.gps.accM),
+    gpsDistanceM: round(res.gps.distM),
+    gpsStageMarginM: round(res.gps.marginM),
+    songCapture: matched ? {
+      title: song.title, artist: song.artist || "",
+      appleMusicID: song.appleMusicID || "", artworkURL: song.artworkURL || "",
+      source: "live-shazam",
+      song: song.artist ? `${song.artist} — ${song.title}` : song.title,   // recap reads .song
+    } : null,
+    shazamOutcome: matched ? "matched" : (song && song.outcome) || "no-match",
+    matchDurationMs: song && Number.isFinite(song.ms) ? song.ms : null,
+    photoId: null,
+    nativePath: null,
+    hasGps: false,
+  };
+}
+
+// One native listen, normalised. The 14 s guard outlasts the native 12 s
+// window, and cancels native on the way out so the mic can't outlive it.
+async function _listenOnce() {
+  const t0 = Date.now();
+  if (!window.Capacitor?.isNativePlatform?.() || !window.ShazamPlugin) return { outcome: "unavailable", ms: 0 };
+  let timer;
+  try {
+    const guard = new Promise(res => { timer = setTimeout(() => res({ timedOut: true }), 14000); });
+    const r = await Promise.race([window.ShazamPlugin.identify(), guard]);
+    const ms = Date.now() - t0;
+    if (r && r.timedOut) { try { await window.ShazamPlugin.cancel(); } catch {} return { outcome: "timeout", ms }; }
+    const reason = r && r.debug && r.debug.reason;
+    if (r && r.matched && r.title) return { outcome: "matched", title: r.title, artist: r.artist || "", appleMusicID: r.appleMusicID || "", artworkURL: r.artworkURL || "", ms };
+    if (r && r.cancelled) return { outcome: "cancelled", reason, ms };
+    if (reason === "mic-denied") return { outcome: "mic-denied", ms };
+    return { outcome: navigator.onLine === false ? "offline" : "no-match", ms };
+  } catch (e) {
+    return { outcome: e && e.code === "BUSY" ? "busy" : "error", ms: Date.now() - t0 };
+  } finally { clearTimeout(timer); }
+}
+
+function _checkinFix() {
+  return new Promise(res => {
+    if (!navigator.geolocation) return res(null);
+    navigator.geolocation.getCurrentPosition(
+      p => res({ lat: p.coords.latitude, lng: p.coords.longitude, accuracy: p.coords.accuracy, timestamp: p.timestamp }),
+      e => res(e && e.code === 1 ? { denied: true } : null),
+      { enableHighAccuracy: true, maximumAge: 10000, timeout: 8000 });
+  });
+}
+
+// idle → locating → listening → review → saved. Cancel, or the page going to
+// the background before review, drops the attempt and saves nothing.
+function useLiveCheckin() {
+  const [st, setSt] = React.useState({ phase: "idle" });
+  const attempt = React.useRef(0);
+  const cancel = React.useCallback(() => {
+    attempt.current++;
+    try { window.ShazamPlugin?.cancel?.().catch?.(() => {}); } catch {}
+    setSt({ phase: "idle" });
+  }, []);
+  const start = async () => {
+    const id = ++attempt.current;
+    const cfg = window.FESTIVAL_CONFIG || {};
+    const startedAt = Date.now();
+    setSt({ phase: "locating", startedAt });
+    const fix = await _checkinFix();
+    if (attempt.current !== id) return;
+    setSt({ phase: "listening", startedAt, listenAt: Date.now() });
+    const song = await _listenOnce();
+    if (attempt.current !== id) return;
+    if (song.outcome === "cancelled" || song.outcome === "busy") {
+      setSt({ phase: "idle" });
+      if (song.reason === "backgrounded" || song.reason === "interrupted") window.plurskyToast?.("Check-in stopped — the mic turns off when you leave the app");
+      return;
+    }
+    const artists = ((window._DATA_SETS || {})[cfg.id] || {}).artists || window.ARTISTS || [];
+    const anchors = typeof resolvedStageAnchors === "function" ? resolvedStageAnchors(cfg) : [];
+    const res = resolveLiveCheckin({ cfg, artists, anchors, atMs: startedAt, fix });
+    const act = res.artistId ? res.active.find(a => a.id === res.artistId) : null;
+    const sel = { artistId: res.artistId, stageId: res.stageId || (act && act.stage) || null, source: res.basis, night: res.night };
+    setSt({ phase: "review", startedAt, res, song, sel, cfg, artists });
+  };
+  const pick = (sel) => setSt(s => (s.phase === "review" ? { ...s, sel } : s));
+  const save = () => {
+    if (st.phase !== "review") return null;
+    const m = _checkinMoment({ cfg: st.cfg, res: st.res, sel: st.sel, song: st.song, startedAt: st.startedAt });
+    if (!m.night) return null;
+    const all = _readMoments();
+    all[m.night] = [...(all[m.night] || []), m];
+    _writeMoments(all);
+    try { localStorage.setItem("plursky_live_checkin_seen_v1", "1"); } catch {}
+    window.plurskyHaptic?.("MEDIUM");
+    setSt({ phase: "saved", night: m.night });
+    return m;
+  };
+  // Leaving the app while locating or listening ends the attempt (native
+  // stops the mic on its own too; this covers the locating step).
+  React.useEffect(() => {
+    if (st.phase !== "locating" && st.phase !== "listening") return;
+    const onHide = () => { if (document.hidden) cancel(); };
+    document.addEventListener("visibilitychange", onHide);
+    return () => document.removeEventListener("visibilitychange", onHide);
+  }, [st.phase, cancel]);
+  React.useEffect(() => {
+    if (st.phase !== "saved") return;
+    const t = setTimeout(() => setSt({ phase: "idle" }), 5000);
+    return () => clearTimeout(t);
+  }, [st.phase]);
+  return { st, start, cancel, pick, save };
+}
+
+const _CHECKIN_GPS_NOTE = {
+  denied: "Location is off, so the stage isn't known.",
+  none: "No GPS fix, so the stage isn't known.",
+  stale: "The GPS fix was too old to place you at a stage.",
+  coarse: "GPS was too rough to place you at a stage.",
+  outside: "You're not close enough to a stage to place you.",
+  ambiguous: "Two stages are too close to call.",
+  "no-anchors": "This festival has no stage positions yet.",
+};
+const _CHECKIN_SONG_TEXT = {
+  "no-match": "No song match", offline: "Song match unavailable", "mic-denied": "Microphone is off — no song",
+  timeout: "No song match", error: "No song match", unavailable: "Song match needs the iPhone app",
+};
+
+function LiveCheckinSheet({ st, onPick, onSave, onCancel }) {
+  const { cfg, res, song, sel } = st;
+  const [choosing, setChoosing] = React.useState(res.basis === "choose" && res.active.length > 1);
+  const stages = ((window._DATA_SETS || {})[cfg.id] || {}).stages || window.STAGES || [];
+  const stageOf = id => stages.find(s => s.id === id) || null;
+  const act = sel.artistId ? st.artists.find(a => a.id === sel.artistId) : null;
+  const stage = stageOf(sel.stageId || (act && act.stage));
+  const f12 = t => (typeof fmt12 === "function" ? fmt12(t) : t);
+  const tz = cfg.tz;
+  const clock = new Date(st.startedAt).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", ...(tz ? { timeZone: tz } : {}) });
+  const mustChoose = res.basis === "choose" && res.active.length > 1 && sel.source !== "manual";
+  const basisText = sel.source === "manual" ? "You chose the set"
+    : res.basis === "gps-schedule" ? "GPS + schedule"
+    : res.basis === "schedule-only" ? "Schedule only" : "Choose set";
+  const gpsNote = res.gps.status === "trusted" ? null : _CHECKIN_GPS_NOTE[res.gps.status];
+  const mono = { fontFamily: "'Geist Mono', monospace", letterSpacing: 1.2, fontWeight: 700 };
+  const btn = (label, onClick, primary, disabled) => (
+    <button key={label} onClick={onClick} disabled={disabled} data-checkin-action={label} style={{
+      ...mono, fontSize: 10, minHeight: 40, padding: "0 14px", borderRadius: 999, flexShrink: 0,
+      cursor: disabled ? "default" : "pointer", opacity: disabled ? 0.4 : 1,
+      border: primary ? "none" : "1px solid var(--line-2)",
+      background: primary ? "var(--ink)" : "transparent", color: primary ? "var(--paper)" : "var(--ink)",
+    }}>{label}</button>
+  );
+  const line = (label, value, extra) => (
+    <div style={{ padding: "9px 0", borderTop: "1px solid var(--line)" }} {...extra}>
+      <div style={{ ...mono, fontSize: 8, color: "var(--muted)" }}>{label}</div>
+      <div style={{ fontSize: 14, color: "var(--ink)", marginTop: 2, lineHeight: 1.35, overflowWrap: "anywhere" }}>{value}</div>
+    </div>
+  );
+  const groups = choosing ? _checkinChoices(cfg, st.artists, st.startedAt, res.night, res.stageId) : [];
+  const choose = (a) => { onPick({ artistId: a ? a.id : null, stageId: a ? a.stage : (res.stageId || null), source: "manual", night: a ? a.day : res.night }); setChoosing(false); };
+
+  return ReactDOM.createPortal(
+    <div onClick={onCancel} style={{ position: "fixed", inset: 0, zIndex: 9000, background: "rgba(0,0,0,0.45)", display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
+      <div role="dialog" aria-modal="true" aria-label="Check in to this set" data-checkin-basis={res.basis} onClick={e => e.stopPropagation()} style={{
+        width: "100%", maxWidth: 480, maxHeight: "86vh", boxSizing: "border-box", display: "flex", flexDirection: "column",
+        background: "var(--paper)", borderRadius: "18px 18px 0 0",
+      }}>
+        <div style={{ overflowY: "auto", padding: "16px 18px 8px" }}>
+          <div style={{ ...mono, fontSize: 9, color: "var(--ember-ink)" }}>CHECK IN · {(cfg.shortName || cfg.brand || cfg.name || "").toUpperCase()}</div>
+          <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 22, color: "var(--ink)", marginTop: 3, lineHeight: 1.15 }}>
+            {act ? act.name : stage ? stage.name : "Which set are you at?"}
+          </div>
+          <div data-checkin-confidence style={{ fontSize: 12, color: "var(--ink)", opacity: 0.6, marginTop: 4, lineHeight: 1.4 }}>
+            {basisText}{gpsNote ? ` · ${gpsNote}` : ""}
+          </div>
+          {line("SET", act
+            ? `${act.name} · ${stageOf(act.stage)?.name || "Stage TBA"} · ${f12(act.start)}–${f12(act.end)}`
+            : stage ? `${stage.name} · No scheduled set found` : mustChoose ? "Pick the set you're at" : "No set chosen", { "data-checkin-set": sel.artistId || "" })}
+          {line("SONG", song.outcome === "matched" ? `♫ ${song.title}${song.artist ? ` — ${song.artist}` : ""}` : (_CHECKIN_SONG_TEXT[song.outcome] || "No song match"), { "data-checkin-song": song.outcome })}
+          {line("TIME", clock)}
+          {choosing && (
+            <div data-checkin-choices>
+              {groups.map(g => (
+                <div key={g.stageId} style={{ marginTop: 12 }}>
+                  <div style={{ ...mono, fontSize: 9, color: stageOf(g.stageId)?.color || "var(--muted)" }}>{(stageOf(g.stageId)?.name || g.stageId).toUpperCase()}</div>
+                  {g.rows.map(r => (
+                    <button key={r.act.id} data-checkin-choice={r.act.id} onClick={() => choose(r.act)} style={{
+                      display: "flex", width: "100%", alignItems: "baseline", gap: 8, textAlign: "left", cursor: "pointer",
+                      padding: "9px 0", border: "none", borderTop: "1px solid var(--line)", background: "transparent", color: "var(--ink)",
+                    }}>
+                      <span style={{ flex: 1, minWidth: 0, fontSize: 14, fontWeight: r.act.id === sel.artistId ? 700 : 500, overflowWrap: "anywhere" }}>{r.act.name}</span>
+                      <span style={{ ...mono, fontSize: 8, flexShrink: 0, color: r.now ? "var(--ember-ink)" : "var(--muted)" }}>{r.now ? "ON NOW · " : ""}{f12(r.act.start)}–{f12(r.act.end)}</span>
+                    </button>
+                  ))}
+                </div>
+              ))}
+              {!groups.length && <div style={{ fontSize: 12, color: "var(--ink)", opacity: 0.6, marginTop: 10 }}>No sets are scheduled around now.</div>}
+              <button data-checkin-choice="" onClick={() => choose(null)} style={{
+                ...mono, fontSize: 9, marginTop: 12, padding: "10px 0", width: "100%", textAlign: "left", cursor: "pointer",
+                border: "none", borderTop: "1px solid var(--line)", background: "transparent", color: "var(--muted)",
+              }}>NOT SURE · SAVE WITHOUT A SET</button>
+            </div>
+          )}
+        </div>
+        <div style={{ padding: "10px 18px calc(14px + env(safe-area-inset-bottom))", borderTop: "1px solid var(--line)" }}>
+          <div style={{ fontSize: 11, color: "var(--ink)", opacity: 0.55, marginBottom: 8, lineHeight: 1.4 }}>
+            Saves the song, set, stage, time and location confidence. Never the audio.
+          </div>
+          <div style={{ display: "flex", gap: 8, justifyContent: "flex-end", flexWrap: "wrap" }}>
+            {btn("CANCEL", onCancel)}
+            {!choosing && btn("CHANGE SET", () => setChoosing(true))}
+            {btn("SAVE CHECK-IN", onSave, true, mustChoose || !res.night)}
+          </div>
+        </div>
+      </div>
+    </div>,
+    document.body
+  );
+}
+
 function NowPlayingBar() {
   const [liveState, setLiveState] = React.useState({ stage: null, artist: null, song: null, listening: false, usersHere: 0 });
   const [captured, setCaptured] = React.useState(false);
   const CFG = window.FESTIVAL_CONFIG || {};
+  const [trial, setTrial] = React.useState(false);
+  React.useEffect(() => { let on = true; _liveCheckinTrialOn().then(v => { if (on) setTrial(!!v); }); return () => { on = false; }; }, []);
+  const [, setTick] = React.useState(0);
+  React.useEffect(() => {
+    if (!trial) return;
+    const t = setInterval(() => setTick(n => n + 1), 60000);
+    return () => clearInterval(t);
+  }, [trial]);
+  const trialLive = trial && _checkinNight(CFG, Date.now()) != null;
+  const checkin = useLiveCheckin();
 
   const debugLive = React.useMemo(() => {
     try { return localStorage.getItem("plursky-debug-live") === "true"; } catch { return false; }
@@ -10028,6 +10459,14 @@ function NowPlayingBar() {
         try {
           const result = await Promise.race([window.ShazamPlugin.identify(), timeout]);
           clearInterval(progressId);
+          // Native now reports a denied microphone instead of listening to
+          // silence for 12 s and calling it a no-match.
+          if (result?.debug?.reason === "mic-denied") {
+            setListenProgress(0);
+            setLiveState(s => ({ ...s, listening: false }));
+            window.plurskyToast?.("Microphone is off for Plursky — turn it on in Settings to identify songs");
+            return;
+          }
           if (result?.title) {
             setLiveState(s => ({ ...s, song: { song: `${result.artist} — ${result.title}`, source: "shazam", confidence: "exact" }, listening: false }));
             setListenProgress(100);
@@ -10098,10 +10537,16 @@ function NowPlayingBar() {
     setTimeout(() => setCaptured(false), 2000);
   };
 
-  if (!isFestivalLive || !liveState.stage) return null;
+  // Outside the trial this is the bar as it always was: live hours AND a
+  // stage from GPS. In the trial it also shows with no stage, because a
+  // check-in still works on the schedule alone.
+  if (!trialLive && (!isFestivalLive || !liveState.stage)) return null;
 
   const displaySong = liveState.song || estimatedSong;
   const stageColor = liveState.stage?.color || "var(--horizon)";
+  const cs = checkin.st;
+  let checkinSeen = false;
+  try { checkinSeen = localStorage.getItem("plursky_live_checkin_seen_v1") === "1"; } catch {}
 
   return (
     <div style={{
@@ -10153,7 +10598,7 @@ function NowPlayingBar() {
             }} />
             <span className="mono" style={{
               fontSize: 8, letterSpacing: 1.4, fontWeight: 700, color: stageColor,
-            }}>LIVE · {liveState.stage?.name?.toUpperCase()}{liveState.usersHere > 1 ? ` · ${liveState.usersHere} HERE` : ""}</span>
+            }}>LIVE · {(liveState.stage?.name || CFG.shortName || CFG.brand || "").toUpperCase()}{liveState.usersHere > 1 ? ` · ${liveState.usersHere} HERE` : ""}</span>
           </div>
 
           {liveState.artist && (
@@ -10175,6 +10620,26 @@ function NowPlayingBar() {
           )}
         </div>
 
+        {trialLive ? (
+          cs.phase === "locating" || cs.phase === "listening" ? (
+            <button onClick={checkin.cancel} data-checkin-phase={cs.phase} style={{
+              height: 36, borderRadius: 36, cursor: "pointer", padding: "0 14px",
+              border: "1px solid rgba(255,255,255,0.35)", background: "transparent",
+              color: "#fff", fontWeight: 700, fontSize: 9, letterSpacing: 1.2, fontFamily: "Geist Mono, monospace",
+            }}>CANCEL</button>
+          ) : cs.phase === "saved" ? (
+            <button data-checkin-phase="saved" onClick={() => window._pushNav?.({ tab: "memories", memoriesNight: cs.night, memoriesView: "night", artist: null })} style={{
+              height: 36, borderRadius: 36, border: "none", cursor: "pointer", padding: "0 14px",
+              background: "var(--success)", color: "#fff", fontWeight: 700, fontSize: 9, letterSpacing: 1.2, fontFamily: "Geist Mono, monospace",
+            }}>✓ SAVED · VIEW</button>
+          ) : (
+            <button data-checkin-phase="idle" onClick={checkin.start} disabled={cs.phase === "review"} style={{
+              minHeight: 36, borderRadius: 36, border: "none", cursor: "pointer", padding: "0 14px",
+              background: "linear-gradient(135deg, #6D28D9, #e85d2e)", color: "#fff",
+              fontWeight: 700, fontSize: 9, letterSpacing: 1.2, fontFamily: "Geist Mono, monospace", flexShrink: 0,
+            }}>CHECK IN TO THIS SET</button>
+          )
+        ) : (<>
         {/* What's Playing button */}
         <button onClick={handleShazam} disabled={liveState.listening} style={{
           width: 36, height: 36, borderRadius: 36, border: "none", cursor: "pointer",
@@ -10199,7 +10664,34 @@ function NowPlayingBar() {
         }}>
           {captured ? "✓ SAVED" : "CAPTURE"}
         </button>
+        </>)}
       </div>
+      {trialLive && (cs.phase === "locating" || cs.phase === "listening") && <_CheckinStatus st={cs}/>}
+      {trialLive && cs.phase === "idle" && !checkinSeen && (
+        <div data-checkin-firstuse style={{ fontSize: 10, lineHeight: 1.4, color: "rgba(255,255,255,0.6)", marginTop: 8 }}>
+          Listens for up to 12 seconds to identify the track. Saves the song, set, stage, time, and location confidence — never the audio.
+        </div>
+      )}
+      {trialLive && cs.phase === "review" && (
+        <LiveCheckinSheet st={cs} onPick={checkin.pick} onCancel={checkin.cancel} onSave={checkin.save}/>
+      )}
+    </div>
+  );
+}
+
+// The visible mic indicator while a check-in is running: what it's doing and
+// how long listening can still take.
+function _CheckinStatus({ st }) {
+  const [, setN] = React.useState(0);
+  React.useEffect(() => { const t = setInterval(() => setN(n => n + 1), 1000); return () => clearInterval(t); }, []);
+  const left = st.phase === "listening" ? Math.max(0, 12 - Math.floor((Date.now() - (st.listenAt || Date.now())) / 1000)) : null;
+  return (
+    <div data-checkin-status={st.phase} role="status" className="mono" style={{
+      display: "flex", alignItems: "center", gap: 6, marginTop: 8,
+      fontSize: 9, letterSpacing: 1.2, fontWeight: 700, color: "#fff",
+    }}>
+      <span style={{ width: 8, height: 8, borderRadius: 8, background: st.phase === "listening" ? "#ef4444" : "rgba(255,255,255,0.5)", animation: "pulse 1s infinite" }}/>
+      {st.phase === "listening" ? `🎙 LISTENING · UP TO ${left}S` : "FINDING YOUR STAGE…"}
     </div>
   );
 }

@@ -358,7 +358,8 @@ async function _shareFestivalYearCard(yd) {
 // it synchronously. Returns { title, confidence } or null.
 async function _resolveMomentSong(m) {
   if (m?.confirmedSong && m?.confirmedTitle) return { title: m.confirmedTitle, confidence: "exact" };
-  if (m?.songCapture?.song) return { title: m.songCapture.song, confidence: m.songCapture.source === "shazam" ? "exact" : "estimated" };
+  // "live-shazam" is a Live Set Check-in's native ShazamKit match: as exact as "shazam".
+  if (m?.songCapture?.song) return { title: m.songCapture.song, confidence: m.songCapture.source === "shazam" || m.songCapture.source === "live-shazam" ? "exact" : "estimated" };
   const artist = m?.artistId ? (window.ARTISTS || []).find(a => a.id === m.artistId) : null;
   if (!artist || !m?.takenAt) return null;
   if (typeof _getTracklistForArtist !== "function" || typeof _matchSongAtTime !== "function") return null;

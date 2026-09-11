@@ -1934,6 +1934,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-c3. Live Set Check-in (TestFlight trial) ───────────────────────────
+// The timestamp + GPS + schedule resolver on real festival data, the saved
+// moment's shape (metadata only, no coordinates, Shazam never names the
+// performer), the trial gate, and the native plugin's cancel/re-entry/
+// background guarantees.
+{
+  console.log("▸ Live check-in gate — resolver, GPS thresholds, moment privacy, trial gate, native mic lifecycle");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-live-set-checkin.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`live check-in failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 2. Mount probe ─────────────────────────────────────────────────────────
 // Loads the REAL index.html in an iframe rather than reconstructing the script
 // order. An earlier version of this check derived load order by grepping
