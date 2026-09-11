@@ -1,6 +1,6 @@
 # INSTINCT × PLURSKY — Standing Role Brief
 
-_Last updated: 2026-09-08. Owner: Jake. Maintained by Claude Code._
+_Last updated: 2026-09-11. Owner: Jake. Maintained by Claude Code._
 _Instinct: pull latest `main` before each work session; this file is your standing brief._
 _Supersedes the Clicky brief (same path, renamed 2026-09-08). Clicky is retired;
 the hard rules below carried over unchanged because they were all earned._
@@ -8,7 +8,10 @@ the hard rules below carried over unchanged because they were all earned._
 ## Hard rules — these override everything below
 
 1. **AGENTS.md §0 approval gate**: NO patch, post, send, PR, or state-changing
-   action by any agent until Jake explicitly approves THAT step.
+   action by any agent until Jake explicitly approves THAT step. The one
+   standing exception is merges: Claude Code merges a PR once its full verify
+   gate is green on the exact head and it has had its review (founder rule,
+   2026-09-10; see AGENTS.md §0). A new head needs a new gate and a new review.
 2. **Git**: branch + PR only. NEVER push `main`. NO cache-bust (`vNNN`) bumps,
    NO iOS version/build bumps, NO Xcode archive or upload — those are held by
    Jake and Claude Code. Claude Code owns the verify gate and all merges.
