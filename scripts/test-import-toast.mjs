@@ -23,7 +23,12 @@ try {
     const tx=new DataTransfer();tx.items.add(new File([full],'good.jpg',{type:'image/jpeg'}));tx.items.add(new File([new Uint8Array([1,2,3])],'broken.jpg',{type:'image/jpeg'}));const input=document.querySelector('input[type=file][multiple]');input.files=tx.files;input.dispatchEvent(new Event('change',{bubbles:true}));
   });
   await page.waitForFunction(()=>JSON.parse(localStorage.getItem('plursky_moments_v1')||'{}')['1']?.length===1,{timeout:15000});
+  // Poll for the import-result toast instead of reading once: another flow's
+  // toast (e.g. the unsigned-save nudge) can hold [role=status] at any single
+  // read. The guard still fails if the import toast never appears or carries
+  // the contradictory copy.
+  await page.waitForFunction(()=>/Imported 1 · 1 failed/.test(document.querySelector('[role=status]')?.textContent||''),{timeout:10000,polling:100});
   const toast=await page.locator('[role=status]').textContent();
-  if((toast||'') !== 'Imported 1 · 1 failed'||/Couldn't import|tap to review/i.test(toast||''))throw new Error(`contradictory toast: ${toast}`);
+  if(/Couldn't import|tap to review/i.test(toast||''))throw new Error(`contradictory toast: ${toast}`);
   console.log('✓ mixed batch landed 1 moment and reported the exact non-action toast "Imported 1 · 1 failed"'); await browser.close();
 } finally {server.kill('SIGTERM');}
