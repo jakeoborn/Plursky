@@ -1903,6 +1903,8 @@ function MapScreen({ state, setState }) {
     if (!meetupsOpen) setMeetups(upcomingMeetups());
   }, [meetupsOpen]);
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [packsOpen, setPacksOpen] = React.useState(false);
+  React.useEffect(() => { _refreshPacksInBackground().catch(() => {}); }, []);
   const [moreOpen, setMoreOpen] = React.useState(false);
   const [surveyOpen, setSurveyOpen] = React.useState(false);
   // Founder tool (survey.jsx). Read once — the flag only changes via a
@@ -2452,9 +2454,21 @@ function MapScreen({ state, setState }) {
                   </span>
                 </div>
               ))}
+              <button onClick={() => { setMenuOpen(false); setPacksOpen(true); }} style={{
+                display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%",
+                padding: "8px 10px", borderRadius: 8, cursor: "pointer",
+                background: "transparent", border: "none", borderTop: "1px solid var(--line)",
+                marginTop: 3, textAlign: "left",
+              }}>
+                <span style={{ fontSize: 13, color: "var(--ink)", fontWeight: 500 }}>⬇  Offline map</span>
+                <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, color: "var(--ember-ink)" }}>
+                  {_packMirror()[FESTIVAL_CONFIG.id] ? "SAVED" : "›"}
+                </span>
+              </button>
             </div>
           </>
         )}
+        {packsOpen && <OfflinePacksSheet onClose={() => setPacksOpen(false)} />}
 
         {/* GPS denied toast — small floating pill, top-center */}
         {gpsLive && gpsStatus === "denied" && (
@@ -3448,25 +3462,551 @@ function _ensureRealMapStyles() {
 }
 
 // ─── MapLibre lazy loader ───────────────────────────────────────
-// Loaded only when the user toggles the "Real map (BETA)" experiment.
-// Adds ~330KB of JS to the page, so we keep it off the initial bundle.
+// Loaded only when the real map mounts. Adds ~330KB of JS to the page, so we
+// keep it off the initial bundle. When unpkg is unreachable (a festival field,
+// or the native app, which has no service worker to have cached it) it falls
+// back to the copy an offline pack saved. A failure is not memoised, so the
+// next mount retries instead of inheriting a dead promise.
 let _mapLibrePromise = null;
+function _injectMapLibre(jsSrc, cssHref) {
+  return new Promise((resolve, reject) => {
+    const css = document.createElement("link");
+    css.rel = "stylesheet";
+    css.href = cssHref;
+    document.head.appendChild(css);
+    const s = document.createElement("script");
+    s.src = jsSrc;
+    s.onload = () => window.maplibregl ? resolve(window.maplibregl) : reject(new Error("maplibregl missing"));
+    s.onerror = () => { s.remove(); css.remove(); reject(new Error("script load failed")); };
+    document.head.appendChild(s);
+  });
+}
 function _loadMapLibre() {
   if (typeof window === "undefined") return Promise.reject(new Error("no window"));
   if (window.maplibregl) return Promise.resolve(window.maplibregl);
   if (_mapLibrePromise) return _mapLibrePromise;
-  _mapLibrePromise = new Promise((resolve, reject) => {
-    const css = document.createElement("link");
-    css.rel = "stylesheet";
-    css.href = "https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css";
-    document.head.appendChild(css);
-    const s = document.createElement("script");
-    s.src = "https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js";
-    s.onload = () => window.maplibregl ? resolve(window.maplibregl) : reject(new Error("maplibregl missing"));
-    s.onerror = () => reject(new Error("script load failed"));
-    document.head.appendChild(s);
-  });
+  _mapLibrePromise = _injectMapLibre(PACK_LIB.js, PACK_LIB.css)
+    .catch(e => _packLibUrls().then(u => { if (!u) throw e; return _injectMapLibre(u.js, u.css); }))
+    .catch(e => { _mapLibrePromise = null; throw e; });
   return _mapLibrePromise;
+}
+
+// ─── Offline festival packs (street map) ────────────────────────
+// A pack is one festival's street map saved on the device: OpenFreeMap vector
+// tiles z10–14 over the venue, the style's fonts and icons, the style itself
+// pinned to the tile release it was saved from, and the festival's published
+// schedule feed (f/<id>/schedule.json). Street only — founder decision D1
+// (2026-09-11): satellite imagery is not ours to redistribute, so it stays
+// online-only. Plus feature (#115): Free keeps the offline shell it has.
+//
+// WHY IndexedDB, NOT THE CACHE API. index.html deletes every cache but the
+// app's and plursky-tiles-* on each boot, sw.js activate deletes the rest of
+// plursky-*, and the native app has no service worker at all. IndexedDB is
+// where the photos already live, on web and iOS alike. MapLibre reads the pack
+// through a "pack://" protocol, so neither fetch nor a service worker is in
+// the path on a field with no signal.
+//
+// ATOMIC. Files are written under a NEW packId; the manifest — the only thing
+// that makes a pack exist — is written last, and only then are the previous
+// packId's files deleted. A download that dies part-way leaves the saved copy
+// exactly as it was, and _packsReconcile sweeps the orphaned files.
+const PACK_DB = "plursky_packs";
+const PACK_MIRROR_KEY = "plursky_packs_v1";
+const PACK_REFRESH_KEY = "plursky_packs_checked_at";
+const PACK_Z_MIN = 10, PACK_Z_MAX = 14;
+// Latin, Latin Extended, general punctuation (– ’ …): what US venue and street
+// names are drawn from. A range not saved renders those glyphs blank.
+const PACK_GLYPH_RANGES = ["0-255", "256-511", "8192-8447"];
+const PACK_STALE_MS = 30 * 86400000;
+const PACK_LIB = {
+  js: "https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js",
+  css: "https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css",
+};
+
+// Render-time copy of the manifests ("is there a pack?" without awaiting).
+// IndexedDB is the truth; _packsReconcile rewrites this from it.
+function _packMirror() {
+  try { return JSON.parse(localStorage.getItem(PACK_MIRROR_KEY) || "{}") || {}; } catch { return {}; }
+}
+function _packMirrorWrite(all) { try { localStorage.setItem(PACK_MIRROR_KEY, JSON.stringify(all)); } catch {} }
+
+function _packEntry(fid) {
+  const reg = typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : [];
+  return reg.find(e => e && e.config && e.config.id === fid) || null;
+}
+// { start, end } in UTC ms; Infinity end when the festival has no dates yet.
+function _packWindow(cfg) {
+  const mids = Object.values((cfg && cfg.dayDates) || {}).map(d => d.midnightUtc).filter(Number.isFinite);
+  const start = Number.isFinite(cfg && cfg.startMs) ? cfg.startMs : (mids.length ? Math.min(...mids) : Infinity);
+  const end = Number.isFinite(cfg && cfg.endMs) ? cfg.endMs : (mids.length ? Math.max(...mids) + 32 * 3600000 : Infinity);
+  return { start, end };
+}
+
+// The saved area: the venue footprint, unioned with the on-site radius around
+// the gps point, padded ~400 m so the walk in and RealMap's ±400 m pan bounds
+// are covered. Null when the festival has no location to save.
+function _packBBox(cfg) {
+  const g = cfg && cfg.gps;
+  if (!g || !Number.isFinite(g.lat) || !Number.isFinite(g.lng)) return null;
+  const PAD = 0.004;
+  const mi = Math.max(g.onSiteRadiusMi || 0, 0.25);
+  const dLat = mi * 1.609 / 111.32 + PAD, dLng = dLat / Math.cos(g.lat * Math.PI / 180);
+  const b = { s: g.lat - dLat, n: g.lat + dLat, w: g.lng - dLng, e: g.lng + dLng };
+  const fp = (cfg.venue && cfg.venue.footprint) || cfg.footprint;
+  if (Array.isArray(fp)) for (const [la, lo] of fp) {
+    b.s = Math.min(b.s, la - PAD); b.n = Math.max(b.n, la + PAD);
+    b.w = Math.min(b.w, lo - PAD); b.e = Math.max(b.e, lo + PAD);
+  }
+  const fb = cfg.venue && cfg.venue.festivalBounds;          // RealMap's setMaxBounds box
+  if (fb) {
+    b.s = Math.min(b.s, fb.south - PAD); b.n = Math.max(b.n, fb.north + PAD);
+    b.w = Math.min(b.w, fb.west - PAD); b.e = Math.max(b.e, fb.east + PAD);
+  }
+  return b;
+}
+function _packTileXY(lat, lng, z) {
+  const n = 2 ** z, r = lat * Math.PI / 180;
+  return [Math.floor((lng + 180) / 360 * n), Math.floor((1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2 * n)];
+}
+function _packTiles(b, z0, z1) {
+  const out = [];
+  for (let z = z0; z <= z1; z++) {
+    const [x0, y0] = _packTileXY(b.n, b.w, z), [x1, y1] = _packTileXY(b.s, b.e, z);
+    for (let x = x0; x <= x1; x++) for (let y = y0; y <= y1; y++) out.push([z, x, y]);
+  }
+  return out;
+}
+
+// The saved style: every remote URL rewritten to pack://<packId>/…, the vector
+// source inlined (the TileJSON it pointed at is release-versioned, and offline
+// there is nothing to resolve it against). Layers are untouched.
+function _packStyle(style, packId, vec) {
+  const s = JSON.parse(JSON.stringify(style));
+  const P = `pack://${packId}/`;
+  for (const [name, src] of Object.entries(s.sources || {})) {
+    if (src.type === "vector") {
+      s.sources[name] = { type: "vector", tiles: [P + "t/{z}/{x}/{y}"], minzoom: 0, maxzoom: vec.maxzoom, attribution: vec.attribution || "" };
+    } else if (src.type === "raster" && Array.isArray(src.tiles)) {
+      s.sources[name] = { ...src, tiles: [P + `r/${name}/{z}/{x}/{y}`] };
+    }
+  }
+  if (s.glyphs) s.glyphs = P + "g/{fontstack}/{range}";
+  if (typeof s.sprite === "string") s.sprite = P + "s/sprite";
+  return s;
+}
+// "pack://<packId>/<path>" → the IndexedDB key "<packId>|<path>". Glyph
+// fontstacks arrive URL-encoded.
+function _packKey(url) {
+  const m = /^pack:\/\/([^/]+)\/(.+)$/.exec(url || "");
+  if (!m) return null;
+  let path = m[2];
+  try { path = decodeURIComponent(path); } catch {}
+  return m[1] + "|" + path;
+}
+// none · ready · stale (the published schedule moved since it was saved) ·
+// over (the festival has ended — nothing to refresh, only space to free).
+function _packStatus(m, { now = Date.now(), liveHash = null } = {}) {
+  if (!m) return "none";
+  if (Number.isFinite(m.endMs) && now > m.endMs) return "over";
+  if (liveHash && m.scheduleHash && liveHash !== m.scheduleHash) return "stale";
+  return "ready";
+}
+function _packFeedUrl(fid) {
+  const own = typeof location !== "undefined" && /^https?:$/.test(location.protocol);
+  return (own ? "" : "https://plursky.com/") + `f/${fid}/schedule.json`;
+}
+
+let _packDbP = null;
+function _packDb() {
+  if (_packDbP) return _packDbP;
+  _packDbP = new Promise((resolve, reject) => {
+    const req = indexedDB.open(PACK_DB, 1);
+    req.onupgradeneeded = e => {
+      const db = e.target.result;
+      if (!db.objectStoreNames.contains("files")) db.createObjectStore("files");       // "<packId>|<path>" → ArrayBuffer
+      if (!db.objectStoreNames.contains("packs")) db.createObjectStore("packs", { keyPath: "fid" });
+    };
+    req.onsuccess = e => resolve(e.target.result);
+    req.onerror = e => { _packDbP = null; reject(e.target.error); };
+  });
+  return _packDbP;
+}
+// One transaction; resolves with the result of the request fn returns (if any)
+// once the transaction has COMMITTED, not when the request succeeded.
+function _packTx(store, mode, fn) {
+  return _packDb().then(db => new Promise((resolve, reject) => {
+    const tx = db.transaction(store, mode);
+    let out;
+    const r = fn(tx.objectStore(store));
+    if (r && "onsuccess" in r) r.onsuccess = () => { out = r.result; };
+    tx.oncomplete = () => resolve(out);
+    tx.onerror = tx.onabort = () => reject(tx.error || new Error("pack storage failed"));
+  }));
+}
+function _packGet(key) { return _packTx("files", "readonly", s => s.get(key)).catch(() => null); }
+function _packDropPrefix(prefix) {
+  return _packTx("files", "readwrite", s => { s.delete(IDBKeyRange.bound(prefix, prefix + "\uffff")); });
+}
+function _packManifests() { return _packTx("packs", "readonly", s => s.getAll()).then(a => a || []); }
+
+const _packJobs = {};            // fid → { running, packId, done, total, bytes, error }
+const _packSubs = new Set();
+function _packEmit() { _packSubs.forEach(f => { try { f(); } catch {} }); }
+
+// Rebuild the mirror from IndexedDB and sweep files no manifest owns (a
+// download killed by the app closing). The shared MapLibre copy goes with the
+// last pack.
+async function _packsReconcile() {
+  const ms = await _packManifests();
+  const all = {};
+  ms.forEach(m => { all[m.fid] = m; });
+  _packMirrorWrite(all);
+  const keep = new Set(ms.map(m => m.packId));
+  Object.values(_packJobs).forEach(j => { if (j.running) keep.add(j.packId); });
+  const keys = await _packTx("files", "readonly", s => s.getAllKeys());
+  const dead = new Set((keys || []).map(k => String(k).split("|")[0]).filter(p => p !== "lib" && !keep.has(p)));
+  for (const p of dead) await _packDropPrefix(p + "|");
+  if (!ms.length && !Object.values(_packJobs).some(j => j.running)) await _packDropPrefix("lib|");
+  return all;
+}
+
+let _packLibP = null;
+function _packLibUrls() {
+  if (_packLibP) return _packLibP;
+  _packLibP = Promise.all([_packGet("lib|js"), _packGet("lib|css")]).then(([js, css]) => {
+    if (!js || !css) { _packLibP = null; return null; }
+    return {
+      js: URL.createObjectURL(new Blob([js], { type: "text/javascript" })),
+      css: URL.createObjectURL(new Blob([css], { type: "text/css" })),
+    };
+  }).catch(() => { _packLibP = null; return null; });
+  return _packLibP;
+}
+
+let _packBlank = null;
+function _packBlankPng() {
+  if (!_packBlank) _packBlank = Uint8Array.from(atob("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="), c => c.charCodeAt(0));
+  return _packBlank.slice().buffer;
+}
+let _packHits = 0;
+async function _packProtocol(params) {
+  const key = _packKey(params.url);
+  const buf = key ? await _packGet(key) : null;
+  if (!buf) {
+    // Outside the saved area or zoom range. An empty vector tile or glyph
+    // range draws nothing, which is the truth; a raster needs a real image.
+    if (/\|r\//.test(key || "")) return { data: _packBlankPng() };
+    if (/\|[tg]\//.test(key || "")) return { data: new ArrayBuffer(0) };
+    throw new Error("not in the offline pack: " + params.url);
+  }
+  _packHits++;
+  if (typeof window !== "undefined") window.__plurskyPackHits = _packHits;
+  if (params.type === "json") return { data: JSON.parse(new TextDecoder().decode(buf)) };
+  if (params.type === "string") return { data: new TextDecoder().decode(buf) };
+  return { data: buf };
+}
+let _packProtocolOn = false;
+function _ensurePackProtocol(maplibregl) {
+  if (_packProtocolOn || !maplibregl || typeof maplibregl.addProtocol !== "function") return;
+  maplibregl.addProtocol("pack", _packProtocol);
+  _packProtocolOn = true;
+}
+async function _packStyleFor(fid) {
+  const m = _packMirror()[fid];
+  if (!m) return null;
+  const buf = await _packGet(m.packId + "|style");
+  return buf ? JSON.parse(new TextDecoder().decode(buf)) : null;
+}
+
+// The plursky-pack=1 marker makes sw.js pass the request straight through
+// (every pack host serves identical bytes with it — checked 2026-09-11).
+async function _packFetch(url, as) {
+  const marked = url + (url.includes("?") ? "&" : "?") + "plursky-pack=1";
+  const r = await fetch(marked, { cache: "no-store", credentials: "omit" });
+  if (!r.ok) {
+    // The sheet shows this message; a full tile URL is one unbreakable line
+    // that ran under the row's buttons. The host says who failed; the URL
+    // goes to the console.
+    console.warn("[plursky-pack]", r.status, url);
+    let host = "the map server";
+    try { host = new URL(url, typeof location !== "undefined" ? location.href : undefined).host || host; } catch {}
+    throw new Error(`${r.status} from ${host}`);
+  }
+  return as === "json" ? r.json() : r.arrayBuffer();
+}
+
+// Save (or re-save) one festival's pack. Resolves with the new manifest;
+// rejects with the saved copy untouched.
+async function downloadFestivalPack(fid) {
+  if (_packJobs[fid] && _packJobs[fid].running) throw new Error("already saving");
+  const entry = _packEntry(fid);
+  const cfg = entry && entry.config;
+  const bbox = cfg && _packBBox(cfg);
+  const packId = `${fid}.${Date.now().toString(36)}`;
+  const job = _packJobs[fid] = { running: true, packId, done: 0, total: 0, bytes: 0, error: null };
+  _packEmit();
+  try {
+    if (!bbox) throw new Error("this festival has no venue location yet");
+    try { navigator.storage && navigator.storage.persist && navigator.storage.persist(); } catch {}
+    const style = await _packFetch(REAL_MAP_STYLES.stylized.url, "json");
+    const vecNames = Object.keys(style.sources || {}).filter(k => style.sources[k].type === "vector");
+    if (vecNames.length !== 1) throw new Error(`map style has ${vecNames.length} vector sources`);
+    const tj = await _packFetch(style.sources[vecNames[0]].url, "json");
+    const tpl = tj.tiles && tj.tiles[0];
+    if (!tpl) throw new Error("map tile index has no tiles");
+    const vmax = Math.min(PACK_Z_MAX, Number.isFinite(tj.maxzoom) ? tj.maxzoom : PACK_Z_MAX);
+    const sub = (t, z, x, y) => t.replace("{z}", z).replace("{x}", x).replace("{y}", y);
+
+    const files = [];                                     // [key path, url]
+    for (const [z, x, y] of _packTiles(bbox, PACK_Z_MIN, vmax)) files.push([`t/${z}/${x}/${y}`, sub(tpl, z, x, y)]);
+    for (const [name, src] of Object.entries(style.sources)) {
+      if (src.type !== "raster" || !Array.isArray(src.tiles)) continue;
+      const z = Math.min(Number.isFinite(src.maxzoom) ? src.maxzoom : PACK_Z_MIN, PACK_Z_MIN);
+      for (const [, x, y] of _packTiles(bbox, z, z)) files.push([`r/${name}/${z}/${x}/${y}`, sub(src.tiles[0], z, x, y)]);
+    }
+    const stacks = new Set();
+    for (const l of style.layers || []) {
+      const f = l.layout && l.layout["text-font"];
+      if (Array.isArray(f) && f.every(x => typeof x === "string")) stacks.add(f.join(","));
+    }
+    if (style.glyphs) for (const st of stacks) for (const range of PACK_GLYPH_RANGES) {
+      files.push([`g/${st}/${range}`, style.glyphs.replace("{fontstack}", encodeURIComponent(st)).replace("{range}", range)]);
+    }
+    if (typeof style.sprite === "string") for (const v of ["", "@2x"]) for (const ext of [".json", ".png"]) {
+      files.push([`s/sprite${v}${ext}`, style.sprite + v + ext]);
+    }
+    if (entry.available) files.push(["feed", _packFeedUrl(fid)]);
+    const needLib = !(await _packGet("lib|js")) || !(await _packGet("lib|css"));
+    const shared = needLib ? [["lib|js", PACK_LIB.js], ["lib|css", PACK_LIB.css]] : [];
+
+    job.total = files.length + shared.length;
+    _packEmit();
+    let failed = null, i = 0, feedBuf = null;
+    const all = files.map(([p, u]) => [packId + "|" + p, u]).concat(shared);
+    const worker = async () => {
+      while (!failed && i < all.length) {
+        const [key, url] = all[i++];
+        try {
+          const buf = await _packFetch(url);
+          await _packTx("files", "readwrite", s => { s.put(buf, key); });
+          if (key === packId + "|feed") feedBuf = buf;
+          job.done++; job.bytes += buf.byteLength;
+          _packEmit();
+        } catch (e) { failed = failed || e; }
+      }
+    };
+    await Promise.all(Array.from({ length: Math.min(6, all.length) }, worker));
+    if (failed) throw failed;
+
+    const saved = _packStyle(style, packId, { maxzoom: vmax, attribution: tj.attribution });
+    await _packTx("files", "readwrite", s => { s.put(new TextEncoder().encode(JSON.stringify(saved)).buffer, packId + "|style"); });
+    let feed = null;
+    try { feed = feedBuf ? JSON.parse(new TextDecoder().decode(feedBuf)) : null; } catch {}
+    const prev = (await _packManifests()).find(m => m.fid === fid);
+    const manifest = {
+      fid, packId, name: cfg.name || fid, savedAt: Date.now(),
+      bytes: job.bytes, files: files.length, tileVersion: (/\/([^/]+)\/\{z\}/.exec(tpl) || [])[1] || null,
+      zoom: [PACK_Z_MIN, vmax], scheduleHash: (feed && feed.scheduleHash) || null,
+      scheduleSource: (feed && feed.source) || null,
+      appVersion: typeof APP_VERSION !== "undefined" ? APP_VERSION : null,
+      endMs: _packWindow(cfg).end,
+    };
+    await _packTx("packs", "readwrite", s => { s.put(manifest); });   // ← the pack now exists
+    if (prev && prev.packId !== packId) await _packDropPrefix(prev.packId + "|");
+    job.running = false;
+    await _packsReconcile();
+    _packEmit();
+    return manifest;
+  } catch (e) {
+    job.running = false;
+    job.error = (e && e.message) || "download failed";
+    try { await _packDropPrefix(packId + "|"); } catch {}
+    _packEmit();
+    throw e;
+  }
+}
+
+async function deleteFestivalPack(fid) {
+  const m = (await _packManifests()).find(x => x.fid === fid);
+  await _packTx("packs", "readwrite", s => { s.delete(fid); });
+  if (m) await _packDropPrefix(m.packId + "|");
+  if (_packJobs[fid]) delete _packJobs[fid];
+  await _packsReconcile();
+  _packEmit();
+}
+
+async function _packLiveHash(fid) {
+  try {
+    const r = await fetch(_packFeedUrl(fid), { cache: "no-store" });
+    if (!r.ok) return null;
+    return (await r.json()).scheduleHash || null;
+  } catch { return null; }
+}
+// Plus: re-save packs whose published schedule moved, or that are a month old,
+// at most every 12 h and only online. Sequential so it never competes with
+// the map for the connection. A failed re-save leaves the saved copy.
+async function _refreshPacksInBackground() {
+  if (typeof _isPlusSub !== "function" || !_isPlusSub()) return;
+  if (typeof navigator !== "undefined" && navigator.onLine === false) return;
+  try {
+    if (Date.now() - (+localStorage.getItem(PACK_REFRESH_KEY) || 0) < 12 * 3600000) return;
+    localStorage.setItem(PACK_REFRESH_KEY, String(Date.now()));
+  } catch { return; }
+  for (const m of Object.values(_packMirror())) {
+    if (_packStatus(m) === "over") continue;
+    const live = await _packLiveHash(m.fid);
+    if ((live && live !== m.scheduleHash) || Date.now() - m.savedAt > PACK_STALE_MS) {
+      try { await downloadFestivalPack(m.fid); } catch {}
+    }
+  }
+}
+
+function _packFmtBytes(b) {
+  return b >= 1048576 ? `${(b / 1048576).toFixed(1)} MB` : `${Math.max(1, Math.round((b || 0) / 1024))} KB`;
+}
+function _packFmtWhen(ms) {
+  try { return new Date(ms).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }); } catch { return ""; }
+}
+
+// The Offline map sheet, opened from the map's layers menu. Modeled on the
+// offline-areas list in Google Maps: one row per festival, what is saved and
+// when, one action per row. The active festival first, then upcoming ones by
+// start; an ended festival shows only while its pack still takes space.
+function OfflinePacksSheet({ onClose }) {
+  const [packs, setPacks] = React.useState(_packMirror);
+  const [, tick] = React.useReducer(x => x + 1, 0);
+  const [live, setLive] = React.useState({});
+  const [plusOpen, setPlusOpen] = React.useState(false);
+  const online = typeof navigator === "undefined" || navigator.onLine !== false;
+  React.useEffect(() => {
+    let alive = true;
+    const f = () => { if (alive) { setPacks(_packMirror()); tick(); } };
+    _packSubs.add(f);
+    _packsReconcile().then(f, () => {});
+    return () => { alive = false; _packSubs.delete(f); };
+  }, []);
+  const savedIds = Object.keys(packs).sort().join(",");
+  React.useEffect(() => {
+    if (!online || !savedIds) return;
+    let alive = true;
+    savedIds.split(",").forEach(fid => _packLiveHash(fid).then(h => { if (alive && h) setLive(l => ({ ...l, [fid]: h })); }));
+    return () => { alive = false; };
+  }, [savedIds, online]);
+
+  const plus = typeof _isPlusSub === "function" && _isPlusSub();
+  const now = Date.now();
+  const activeId = FESTIVAL_CONFIG.id;
+  const order = (a, b) => {
+    if ((a.config.id === activeId) !== (b.config.id === activeId)) return a.config.id === activeId ? -1 : 1;
+    const sa = _packWindow(a.config).start, sb = _packWindow(b.config).start;
+    return sa === sb ? 0 : sa < sb ? -1 : 1;
+  };
+  const rows = (typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : [])
+    .filter(e => e && e.config && _packBBox(e.config) && (packs[e.config.id] || _packWindow(e.config).end > now))
+    .sort(order);
+  const used = Object.values(packs).reduce((n, m) => n + (m.bytes || 0), 0);
+  const save = fid => {
+    if (!plus) { setPlusOpen(true); return; }
+    downloadFestivalPack(fid).catch(() => {});
+  };
+  const del = fid => { deleteFestivalPack(fid).catch(() => {}); };
+  const mono = { fontFamily: "'Geist Mono', monospace", letterSpacing: 1.2, fontWeight: 700 };
+  const btn = (label, onClick, primary, disabled) => (
+    <button key={label} onClick={onClick} disabled={disabled} style={{
+      ...mono, fontSize: 10, minHeight: 36, padding: "0 13px", borderRadius: 999, flexShrink: 0,
+      border: primary ? "none" : "1px solid var(--line-2)",
+      background: primary ? "var(--ink)" : "transparent",
+      color: primary ? "var(--paper)" : "var(--ink)",
+      opacity: disabled ? 0.4 : 1, cursor: disabled ? "default" : "pointer",
+    }}>{label}</button>
+  );
+
+  return ReactDOM.createPortal(
+    <div onClick={onClose} style={{
+      position: "fixed", inset: 0, zIndex: 9000, background: "rgba(0,0,0,0.45)",
+      display: "flex", alignItems: "flex-end", justifyContent: "center",
+    }}>
+      <div role="dialog" aria-modal="true" aria-label="Offline map" onClick={e => e.stopPropagation()} style={{
+        width: "100%", maxWidth: 480, maxHeight: "82vh", overflowY: "auto", boxSizing: "border-box",
+        background: "var(--paper)", borderRadius: "18px 18px 0 0",
+        padding: "16px 18px calc(18px + env(safe-area-inset-bottom))",
+      }}>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ ...mono, fontSize: 9, color: "var(--ember-ink)" }}>OFFLINE MAP</div>
+            <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 22, color: "var(--ink)", marginTop: 3 }}>
+              Save a festival's street map
+            </div>
+            <div style={{ fontSize: 12, color: "var(--ink)", opacity: 0.62, marginTop: 4, lineHeight: 1.4 }}>
+              The street map, its labels and the published schedule, kept on this phone for when there is no signal. Satellite still needs a connection.
+            </div>
+          </div>
+          <button onClick={onClose} aria-label="Close" style={{
+            width: 36, height: 36, borderRadius: 36, flexShrink: 0, cursor: "pointer",
+            border: "1px solid var(--line-2)", background: "transparent", color: "var(--ink)", fontSize: 18,
+          }}>×</button>
+        </div>
+
+        <div style={{ marginTop: 10 }}>
+          {rows.map(e => {
+            const c = e.config, m = packs[c.id], job = _packJobs[c.id];
+            const status = _packStatus(m, { now, liveHash: live[c.id] });
+            const what = e.available ? "Street map + schedule" : "Street map";
+            let line, actions;
+            if (job && job.running) {
+              line = `Saving… ${job.total ? Math.round(job.done / job.total * 100) : 0}%`;
+              actions = null;
+            } else if (job && job.error) {
+              line = m ? `Couldn't update (${job.error}). Your copy from ${_packFmtWhen(m.savedAt)} is unchanged.`
+                       : `Couldn't save (${job.error}).`;
+              actions = [btn("RETRY", () => save(c.id), true, !online), m && btn("DELETE", () => del(c.id), false)];
+            } else if (status === "over") {
+              line = `Festival over · ${_packFmtBytes(m.bytes)}`;
+              actions = btn("DELETE", () => del(c.id), false);
+            } else if (status === "stale") {
+              line = `Schedule changed since ${_packFmtWhen(m.savedAt)}`;
+              actions = [btn("UPDATE", () => save(c.id), true, !online), btn("DELETE", () => del(c.id), false)];
+            } else if (status === "ready") {
+              line = `Saved ${_packFmtWhen(m.savedAt)} · ${_packFmtBytes(m.bytes)}`;
+              actions = btn("DELETE", () => del(c.id), false);
+            } else {
+              line = plus ? what : `${what} · Plursky+`;
+              actions = btn("SAVE", () => save(c.id), true, !online);
+            }
+            const shown = job && job.running ? "saving" : job && job.error ? "error" : status;
+            const pct = job && job.running && job.total ? job.done / job.total : null;
+            return (
+              <div key={c.id} data-pack-row={c.id} style={{ padding: "12px 0", borderTop: "1px solid var(--line)" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: 14, fontWeight: 600, color: "var(--ink)" }}>
+                      {c.shortName || c.name}
+                      {c.id === activeId && <span style={{ ...mono, fontSize: 8, color: "var(--ember-ink)", marginLeft: 6 }}>ACTIVE</span>}
+                    </div>
+                    <div data-pack-status={shown} style={{ fontSize: 12, color: "var(--ink)", opacity: 0.62, marginTop: 2, lineHeight: 1.35, overflowWrap: "anywhere" }}>{line}</div>
+                  </div>
+                  <div style={{ display: "flex", gap: 6 }}>{actions}</div>
+                </div>
+                {pct !== null && (
+                  <div role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(pct * 100)}
+                    style={{ height: 3, borderRadius: 3, background: "var(--line)", marginTop: 8, overflow: "hidden" }}>
+                    <div style={{ width: `${pct * 100}%`, height: "100%", background: "var(--ember)" }}/>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        <div style={{ fontSize: 11, color: "var(--ink)", opacity: 0.55, marginTop: 8, borderTop: "1px solid var(--line)", paddingTop: 10 }}>
+          {Object.keys(packs).length ? `${Object.keys(packs).length} saved · ${_packFmtBytes(used)} on this phone` : "Nothing saved yet."}
+          {!online && " You're offline, so saving waits for a connection."}
+        </div>
+      </div>
+      {plusOpen && <PlusSheet feature="offline festival maps" onClose={() => setPlusOpen(false)} />}
+    </div>,
+    document.body
+  );
 }
 
 // Inverse of gpsToMap. Given a 100-space (x, y) inside the LVMS infield,
@@ -3594,11 +4134,31 @@ function RealMap({
   const fatalRef = React.useRef(false);
   const loadedRef = React.useRef(false);
   const tileErrRef = React.useRef(0);
-  const _fatal = React.useCallback((why) => {
+  const _fatalNow = React.useCallback((why) => {
     if (fatalRef.current) return; fatalRef.current = true;
     console.warn("[plursky-map] fatal — falling back to SVG map:", why);
     try { onFatal?.(typeof why === "string" ? why : null); } catch {}
   }, [onFatal]);
+  // Pack mode: the map draws from this festival's saved offline pack. Entered
+  // at mount when offline, or when the network fails mid-boot (a festival's
+  // one bar of LTE reports onLine=true and then times out) — once per mount.
+  // If the pack cannot render either, the normal fallback runs.
+  const [packMode, setPackMode] = React.useState(false);
+  const packModeRef = React.useRef(false);
+  const _fatal = React.useCallback((why) => {
+    if (fatalRef.current) return;
+    if (mapRef.current && !packModeRef.current && _packMirror()[FESTIVAL_CONFIG.id]) {
+      packModeRef.current = true; setPackMode(true);
+      tileErrRef.current = 0; setErr(null);
+      _packStyleFor(FESTIVAL_CONFIG.id).then(st => {
+        if (!st || !mapRef.current) { _fatalNow(why); return; }
+        mapRef.current.setStyle(st);
+        setTimeout(() => { if (!loadedRef.current) _fatalNow(why); }, 8000);
+      }, () => _fatalNow(why));
+      return;
+    }
+    _fatalNow(why);
+  }, [_fatalNow]);
   const [styleKey, setStyleKey] = React.useState(() => {
     try { return localStorage.getItem("plursky_real_map_style") || "satellite"; } catch { return "satellite"; }
   });
@@ -3636,11 +4196,14 @@ function RealMap({
     let cancelled = false;
     // Guards (2026-08-22): at a festival the network can be dead — don't strand
     // the user on a map that needs remote tiles. Bail to the SVG map fast.
-    if (typeof navigator !== "undefined" && navigator.onLine === false) {
+    // A saved offline pack for this festival is the exception: open on it.
+    const offline = typeof navigator !== "undefined" && navigator.onLine === false;
+    if (offline && !_packMirror()[FESTIVAL_CONFIG.id]) {
       console.warn("[plursky-map] offline at mount — skipping RealMap");
       _fatal("No network connection");
       return () => {};
     }
+    if (offline) { packModeRef.current = true; setPackMode(true); }
     const bootTimer = setTimeout(() => {
       if (!loadedRef.current && !fatalRef.current) _fatal("Real map timed out");
     }, 12000);
@@ -3655,17 +4218,20 @@ function RealMap({
       setLoaded(true);
     };
     _mapLog("[plursky-map] RealMap useEffect — calling _loadMapLibre()");
-    _loadMapLibre().then((maplibregl) => {
+    _loadMapLibre().then(async (maplibregl) => {
       _mapLog("[plursky-map] _loadMapLibre resolved — MapLibre loaded");
+      _ensurePackProtocol(maplibregl);
+      const packStyle = packModeRef.current ? await _packStyleFor(FESTIVAL_CONFIG.id).catch(() => null) : null;
       if (cancelled || !containerRef.current) {
         console.warn("[plursky-map] aborted post-load: cancelled=" + cancelled + " hasContainer=" + !!containerRef.current);
         return;
       }
+      if (packModeRef.current && !packStyle) { _fatalNow("No network connection"); return; }
       const center = FESTIVAL_CONFIG.gps;
       const initialStyle = REAL_MAP_STYLES[styleKey] || REAL_MAP_STYLES.stylized;
       const map = new maplibregl.Map({
         container: containerRef.current,
-        style: initialStyle.style || initialStyle.url,
+        style: packStyle || initialStyle.style || initialStyle.url,
         center: [center.lng, center.lat],
         // Tight default zoom — the festival fills the view by default
         // (Snapchat-style "this map is for the fairgrounds, not Vegas").
@@ -4735,6 +5301,7 @@ function RealMap({
       _styleKeyInitRef.current = "__seeded__"; // first run, skip
       return;
     }
+    if (packModeRef.current) return;          // the saved pack is street-only
     const cfg = REAL_MAP_STYLES[styleKey];
     if (!cfg) return;
     try {
@@ -4777,6 +5344,15 @@ function RealMap({
           MapScreen's top-right icon column (GPS + Layers) so they don't stack. */}
       {/* Style toggle — always visible (was gated on `loaded`, which never
           flipped true for some users → toggle was hidden). */}
+      {packMode ? (
+        <div role="status" className="mono" style={{
+          position: "absolute", top: 108, right: 10, zIndex: 4,
+          background: "rgba(6,4,18,0.78)", color: "#fff",
+          border: "1px solid rgba(255,255,255,0.18)", borderRadius: 999,
+          padding: "6px 11px", fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
+          backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
+        }}>OFFLINE · SAVED STREET MAP</div>
+      ) : (
       <div style={{
         position: "absolute", top: 108, right: 10, zIndex: 4,
         display: "flex", background: "rgba(6,4,18,0.78)",
@@ -4799,6 +5375,7 @@ function RealMap({
           );
         })}
       </div>
+      )}
 
       {/* (Removed the LOADING MAP overlay — basemap tiles + stage layers
           render progressively as MapLibre fetches them; a full-screen

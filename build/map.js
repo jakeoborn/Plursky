@@ -2585,6 +2585,10 @@ function MapScreen({
     if (!meetupsOpen) setMeetups(upcomingMeetups());
   }, [meetupsOpen]);
   var [menuOpen, setMenuOpen] = React.useState(false);
+  var [packsOpen, setPacksOpen] = React.useState(false);
+  React.useEffect(() => {
+    _refreshPacksInBackground().catch(() => {});
+  }, []);
   var [moreOpen, setMoreOpen] = React.useState(false);
   var [surveyOpen, setSurveyOpen] = React.useState(false);
   var surveyOn = React.useMemo(() => typeof surveyEnabled === "function" && surveyEnabled(), []);
@@ -3285,7 +3289,42 @@ function MapScreen({
       background: "#fff",
       transition: "left 0.18s"
     }
-  })))))), gpsLive && gpsStatus === "denied" && React.createElement("div", {
+  })))), React.createElement("button", {
+    onClick: () => {
+      setMenuOpen(false);
+      setPacksOpen(true);
+    },
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      width: "100%",
+      padding: "8px 10px",
+      borderRadius: 8,
+      cursor: "pointer",
+      background: "transparent",
+      border: "none",
+      borderTop: "1px solid var(--line)",
+      marginTop: 3,
+      textAlign: "left"
+    }
+  }, React.createElement("span", {
+    style: {
+      fontSize: 13,
+      color: "var(--ink)",
+      fontWeight: 500
+    }
+  }, "⬇  Offline map"), React.createElement("span", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1.2,
+      fontWeight: 700,
+      color: "var(--ember-ink)"
+    }
+  }, _packMirror()[FESTIVAL_CONFIG.id] ? "SAVED" : "›")))), packsOpen && React.createElement(OfflinePacksSheet, {
+    onClose: () => setPacksOpen(false)
+  }), gpsLive && gpsStatus === "denied" && React.createElement("div", {
     style: {
       position: "absolute",
       top: 12,
@@ -5077,22 +5116,753 @@ function _ensureRealMapStyles() {
   document.head.appendChild(el);
 }
 var _mapLibrePromise = null;
+function _injectMapLibre(jsSrc, cssHref) {
+  return new Promise((resolve, reject) => {
+    var css = document.createElement("link");
+    css.rel = "stylesheet";
+    css.href = cssHref;
+    document.head.appendChild(css);
+    var s = document.createElement("script");
+    s.src = jsSrc;
+    s.onload = () => window.maplibregl ? resolve(window.maplibregl) : reject(new Error("maplibregl missing"));
+    s.onerror = () => {
+      s.remove();
+      css.remove();
+      reject(new Error("script load failed"));
+    };
+    document.head.appendChild(s);
+  });
+}
 function _loadMapLibre() {
   if (typeof window === "undefined") return Promise.reject(new Error("no window"));
   if (window.maplibregl) return Promise.resolve(window.maplibregl);
   if (_mapLibrePromise) return _mapLibrePromise;
-  _mapLibrePromise = new Promise((resolve, reject) => {
-    var css = document.createElement("link");
-    css.rel = "stylesheet";
-    css.href = "https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css";
-    document.head.appendChild(css);
-    var s = document.createElement("script");
-    s.src = "https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js";
-    s.onload = () => window.maplibregl ? resolve(window.maplibregl) : reject(new Error("maplibregl missing"));
-    s.onerror = () => reject(new Error("script load failed"));
-    document.head.appendChild(s);
+  _mapLibrePromise = _injectMapLibre(PACK_LIB.js, PACK_LIB.css).catch(e => _packLibUrls().then(u => {
+    if (!u) throw e;
+    return _injectMapLibre(u.js, u.css);
+  })).catch(e => {
+    _mapLibrePromise = null;
+    throw e;
   });
   return _mapLibrePromise;
+}
+var PACK_DB = "plursky_packs";
+var PACK_MIRROR_KEY = "plursky_packs_v1";
+var PACK_REFRESH_KEY = "plursky_packs_checked_at";
+var PACK_Z_MIN = 10,
+  PACK_Z_MAX = 14;
+var PACK_GLYPH_RANGES = ["0-255", "256-511", "8192-8447"];
+var PACK_STALE_MS = 30 * 86400000;
+var PACK_LIB = {
+  js: "https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js",
+  css: "https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"
+};
+function _packMirror() {
+  try {
+    return JSON.parse(localStorage.getItem(PACK_MIRROR_KEY) || "{}") || {};
+  } catch {
+    return {};
+  }
+}
+function _packMirrorWrite(all) {
+  try {
+    localStorage.setItem(PACK_MIRROR_KEY, JSON.stringify(all));
+  } catch {}
+}
+function _packEntry(fid) {
+  var reg = typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : [];
+  return reg.find(e => e && e.config && e.config.id === fid) || null;
+}
+function _packWindow(cfg) {
+  var mids = Object.values(cfg && cfg.dayDates || {}).map(d => d.midnightUtc).filter(Number.isFinite);
+  var start = Number.isFinite(cfg && cfg.startMs) ? cfg.startMs : mids.length ? Math.min(...mids) : Infinity;
+  var end = Number.isFinite(cfg && cfg.endMs) ? cfg.endMs : mids.length ? Math.max(...mids) + 32 * 3600000 : Infinity;
+  return {
+    start,
+    end
+  };
+}
+function _packBBox(cfg) {
+  var g = cfg && cfg.gps;
+  if (!g || !Number.isFinite(g.lat) || !Number.isFinite(g.lng)) return null;
+  var PAD = 0.004;
+  var mi = Math.max(g.onSiteRadiusMi || 0, 0.25);
+  var dLat = mi * 1.609 / 111.32 + PAD,
+    dLng = dLat / Math.cos(g.lat * Math.PI / 180);
+  var b = {
+    s: g.lat - dLat,
+    n: g.lat + dLat,
+    w: g.lng - dLng,
+    e: g.lng + dLng
+  };
+  var fp = cfg.venue && cfg.venue.footprint || cfg.footprint;
+  if (Array.isArray(fp)) for (var [la, lo] of fp) {
+    b.s = Math.min(b.s, la - PAD);
+    b.n = Math.max(b.n, la + PAD);
+    b.w = Math.min(b.w, lo - PAD);
+    b.e = Math.max(b.e, lo + PAD);
+  }
+  var fb = cfg.venue && cfg.venue.festivalBounds;
+  if (fb) {
+    b.s = Math.min(b.s, fb.south - PAD);
+    b.n = Math.max(b.n, fb.north + PAD);
+    b.w = Math.min(b.w, fb.west - PAD);
+    b.e = Math.max(b.e, fb.east + PAD);
+  }
+  return b;
+}
+function _packTileXY(lat, lng, z) {
+  var n = 2 ** z,
+    r = lat * Math.PI / 180;
+  return [Math.floor((lng + 180) / 360 * n), Math.floor((1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2 * n)];
+}
+function _packTiles(b, z0, z1) {
+  var out = [];
+  for (var z = z0; z <= z1; z++) {
+    var [x0, y0] = _packTileXY(b.n, b.w, z),
+      [x1, y1] = _packTileXY(b.s, b.e, z);
+    for (var x = x0; x <= x1; x++) for (var y = y0; y <= y1; y++) out.push([z, x, y]);
+  }
+  return out;
+}
+function _packStyle(style, packId, vec) {
+  var s = JSON.parse(JSON.stringify(style));
+  var P = `pack://${packId}/`;
+  for (var [name, src] of Object.entries(s.sources || {})) {
+    if (src.type === "vector") {
+      s.sources[name] = {
+        type: "vector",
+        tiles: [P + "t/{z}/{x}/{y}"],
+        minzoom: 0,
+        maxzoom: vec.maxzoom,
+        attribution: vec.attribution || ""
+      };
+    } else if (src.type === "raster" && Array.isArray(src.tiles)) {
+      s.sources[name] = {
+        ...src,
+        tiles: [P + `r/${name}/{z}/{x}/{y}`]
+      };
+    }
+  }
+  if (s.glyphs) s.glyphs = P + "g/{fontstack}/{range}";
+  if (typeof s.sprite === "string") s.sprite = P + "s/sprite";
+  return s;
+}
+function _packKey(url) {
+  var m = /^pack:\/\/([^/]+)\/(.+)$/.exec(url || "");
+  if (!m) return null;
+  var path = m[2];
+  try {
+    path = decodeURIComponent(path);
+  } catch {}
+  return m[1] + "|" + path;
+}
+function _packStatus(m, {
+  now = Date.now(),
+  liveHash = null
+} = {}) {
+  if (!m) return "none";
+  if (Number.isFinite(m.endMs) && now > m.endMs) return "over";
+  if (liveHash && m.scheduleHash && liveHash !== m.scheduleHash) return "stale";
+  return "ready";
+}
+function _packFeedUrl(fid) {
+  var own = typeof location !== "undefined" && /^https?:$/.test(location.protocol);
+  return (own ? "" : "https://plursky.com/") + `f/${fid}/schedule.json`;
+}
+var _packDbP = null;
+function _packDb() {
+  if (_packDbP) return _packDbP;
+  _packDbP = new Promise((resolve, reject) => {
+    var req = indexedDB.open(PACK_DB, 1);
+    req.onupgradeneeded = e => {
+      var db = e.target.result;
+      if (!db.objectStoreNames.contains("files")) db.createObjectStore("files");
+      if (!db.objectStoreNames.contains("packs")) db.createObjectStore("packs", {
+        keyPath: "fid"
+      });
+    };
+    req.onsuccess = e => resolve(e.target.result);
+    req.onerror = e => {
+      _packDbP = null;
+      reject(e.target.error);
+    };
+  });
+  return _packDbP;
+}
+function _packTx(store, mode, fn) {
+  return _packDb().then(db => new Promise((resolve, reject) => {
+    var tx = db.transaction(store, mode);
+    var out;
+    var r = fn(tx.objectStore(store));
+    if (r && "onsuccess" in r) r.onsuccess = () => {
+      out = r.result;
+    };
+    tx.oncomplete = () => resolve(out);
+    tx.onerror = tx.onabort = () => reject(tx.error || new Error("pack storage failed"));
+  }));
+}
+function _packGet(key) {
+  return _packTx("files", "readonly", s => s.get(key)).catch(() => null);
+}
+function _packDropPrefix(prefix) {
+  return _packTx("files", "readwrite", s => {
+    s.delete(IDBKeyRange.bound(prefix, prefix + "\uffff"));
+  });
+}
+function _packManifests() {
+  return _packTx("packs", "readonly", s => s.getAll()).then(a => a || []);
+}
+var _packJobs = {};
+var _packSubs = new Set();
+function _packEmit() {
+  _packSubs.forEach(f => {
+    try {
+      f();
+    } catch {}
+  });
+}
+async function _packsReconcile() {
+  var ms = await _packManifests();
+  var all = {};
+  ms.forEach(m => {
+    all[m.fid] = m;
+  });
+  _packMirrorWrite(all);
+  var keep = new Set(ms.map(m => m.packId));
+  Object.values(_packJobs).forEach(j => {
+    if (j.running) keep.add(j.packId);
+  });
+  var keys = await _packTx("files", "readonly", s => s.getAllKeys());
+  var dead = new Set((keys || []).map(k => String(k).split("|")[0]).filter(p => p !== "lib" && !keep.has(p)));
+  for (var p of dead) await _packDropPrefix(p + "|");
+  if (!ms.length && !Object.values(_packJobs).some(j => j.running)) await _packDropPrefix("lib|");
+  return all;
+}
+var _packLibP = null;
+function _packLibUrls() {
+  if (_packLibP) return _packLibP;
+  _packLibP = Promise.all([_packGet("lib|js"), _packGet("lib|css")]).then(([js, css]) => {
+    if (!js || !css) {
+      _packLibP = null;
+      return null;
+    }
+    return {
+      js: URL.createObjectURL(new Blob([js], {
+        type: "text/javascript"
+      })),
+      css: URL.createObjectURL(new Blob([css], {
+        type: "text/css"
+      }))
+    };
+  }).catch(() => {
+    _packLibP = null;
+    return null;
+  });
+  return _packLibP;
+}
+var _packBlank = null;
+function _packBlankPng() {
+  if (!_packBlank) _packBlank = Uint8Array.from(atob("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="), c => c.charCodeAt(0));
+  return _packBlank.slice().buffer;
+}
+var _packHits = 0;
+async function _packProtocol(params) {
+  var key = _packKey(params.url);
+  var buf = key ? await _packGet(key) : null;
+  if (!buf) {
+    if (/\|r\//.test(key || "")) return {
+      data: _packBlankPng()
+    };
+    if (/\|[tg]\//.test(key || "")) return {
+      data: new ArrayBuffer(0)
+    };
+    throw new Error("not in the offline pack: " + params.url);
+  }
+  _packHits++;
+  if (typeof window !== "undefined") window.__plurskyPackHits = _packHits;
+  if (params.type === "json") return {
+    data: JSON.parse(new TextDecoder().decode(buf))
+  };
+  if (params.type === "string") return {
+    data: new TextDecoder().decode(buf)
+  };
+  return {
+    data: buf
+  };
+}
+var _packProtocolOn = false;
+function _ensurePackProtocol(maplibregl) {
+  if (_packProtocolOn || !maplibregl || typeof maplibregl.addProtocol !== "function") return;
+  maplibregl.addProtocol("pack", _packProtocol);
+  _packProtocolOn = true;
+}
+async function _packStyleFor(fid) {
+  var m = _packMirror()[fid];
+  if (!m) return null;
+  var buf = await _packGet(m.packId + "|style");
+  return buf ? JSON.parse(new TextDecoder().decode(buf)) : null;
+}
+async function _packFetch(url, as) {
+  var marked = url + (url.includes("?") ? "&" : "?") + "plursky-pack=1";
+  var r = await fetch(marked, {
+    cache: "no-store",
+    credentials: "omit"
+  });
+  if (!r.ok) {
+    console.warn("[plursky-pack]", r.status, url);
+    var host = "the map server";
+    try {
+      host = new URL(url, typeof location !== "undefined" ? location.href : undefined).host || host;
+    } catch {}
+    throw new Error(`${r.status} from ${host}`);
+  }
+  return as === "json" ? r.json() : r.arrayBuffer();
+}
+async function downloadFestivalPack(fid) {
+  if (_packJobs[fid] && _packJobs[fid].running) throw new Error("already saving");
+  var entry = _packEntry(fid);
+  var cfg = entry && entry.config;
+  var bbox = cfg && _packBBox(cfg);
+  var packId = `${fid}.${Date.now().toString(36)}`;
+  var job = _packJobs[fid] = {
+    running: true,
+    packId,
+    done: 0,
+    total: 0,
+    bytes: 0,
+    error: null
+  };
+  _packEmit();
+  try {
+    if (!bbox) throw new Error("this festival has no venue location yet");
+    try {
+      navigator.storage && navigator.storage.persist && navigator.storage.persist();
+    } catch {}
+    var style = await _packFetch(REAL_MAP_STYLES.stylized.url, "json");
+    var vecNames = Object.keys(style.sources || {}).filter(k => style.sources[k].type === "vector");
+    if (vecNames.length !== 1) throw new Error(`map style has ${vecNames.length} vector sources`);
+    var tj = await _packFetch(style.sources[vecNames[0]].url, "json");
+    var tpl = tj.tiles && tj.tiles[0];
+    if (!tpl) throw new Error("map tile index has no tiles");
+    var vmax = Math.min(PACK_Z_MAX, Number.isFinite(tj.maxzoom) ? tj.maxzoom : PACK_Z_MAX);
+    var sub = (t, z, x, y) => t.replace("{z}", z).replace("{x}", x).replace("{y}", y);
+    var files = [];
+    for (var [z, x, y] of _packTiles(bbox, PACK_Z_MIN, vmax)) files.push([`t/${z}/${x}/${y}`, sub(tpl, z, x, y)]);
+    for (var [name, src] of Object.entries(style.sources)) {
+      if (src.type !== "raster" || !Array.isArray(src.tiles)) continue;
+      var _z = Math.min(Number.isFinite(src.maxzoom) ? src.maxzoom : PACK_Z_MIN, PACK_Z_MIN);
+      for (var [, _x, _y] of _packTiles(bbox, _z, _z)) files.push([`r/${name}/${_z}/${_x}/${_y}`, sub(src.tiles[0], _z, _x, _y)]);
+    }
+    var stacks = new Set();
+    for (var l of style.layers || []) {
+      var f = l.layout && l.layout["text-font"];
+      if (Array.isArray(f) && f.every(x => typeof x === "string")) stacks.add(f.join(","));
+    }
+    if (style.glyphs) for (var st of stacks) for (var range of PACK_GLYPH_RANGES) {
+      files.push([`g/${st}/${range}`, style.glyphs.replace("{fontstack}", encodeURIComponent(st)).replace("{range}", range)]);
+    }
+    if (typeof style.sprite === "string") for (var v of ["", "@2x"]) for (var ext of [".json", ".png"]) {
+      files.push([`s/sprite${v}${ext}`, style.sprite + v + ext]);
+    }
+    if (entry.available) files.push(["feed", _packFeedUrl(fid)]);
+    var needLib = !(await _packGet("lib|js")) || !(await _packGet("lib|css"));
+    var shared = needLib ? [["lib|js", PACK_LIB.js], ["lib|css", PACK_LIB.css]] : [];
+    job.total = files.length + shared.length;
+    _packEmit();
+    var failed = null,
+      i = 0,
+      feedBuf = null;
+    var all = files.map(([p, u]) => [packId + "|" + p, u]).concat(shared);
+    var worker = async () => {
+      var _loop2 = async function () {
+        var [key, url] = all[i++];
+        try {
+          var buf = await _packFetch(url);
+          await _packTx("files", "readwrite", s => {
+            s.put(buf, key);
+          });
+          if (key === packId + "|feed") feedBuf = buf;
+          job.done++;
+          job.bytes += buf.byteLength;
+          _packEmit();
+        } catch (e) {
+          failed = failed || e;
+        }
+      };
+      while (!failed && i < all.length) {
+        await _loop2();
+      }
+    };
+    await Promise.all(Array.from({
+      length: Math.min(6, all.length)
+    }, worker));
+    if (failed) throw failed;
+    var saved = _packStyle(style, packId, {
+      maxzoom: vmax,
+      attribution: tj.attribution
+    });
+    await _packTx("files", "readwrite", s => {
+      s.put(new TextEncoder().encode(JSON.stringify(saved)).buffer, packId + "|style");
+    });
+    var feed = null;
+    try {
+      feed = feedBuf ? JSON.parse(new TextDecoder().decode(feedBuf)) : null;
+    } catch {}
+    var prev = (await _packManifests()).find(m => m.fid === fid);
+    var manifest = {
+      fid,
+      packId,
+      name: cfg.name || fid,
+      savedAt: Date.now(),
+      bytes: job.bytes,
+      files: files.length,
+      tileVersion: (/\/([^/]+)\/\{z\}/.exec(tpl) || [])[1] || null,
+      zoom: [PACK_Z_MIN, vmax],
+      scheduleHash: feed && feed.scheduleHash || null,
+      scheduleSource: feed && feed.source || null,
+      appVersion: typeof APP_VERSION !== "undefined" ? APP_VERSION : null,
+      endMs: _packWindow(cfg).end
+    };
+    await _packTx("packs", "readwrite", s => {
+      s.put(manifest);
+    });
+    if (prev && prev.packId !== packId) await _packDropPrefix(prev.packId + "|");
+    job.running = false;
+    await _packsReconcile();
+    _packEmit();
+    return manifest;
+  } catch (e) {
+    job.running = false;
+    job.error = e && e.message || "download failed";
+    try {
+      await _packDropPrefix(packId + "|");
+    } catch {}
+    _packEmit();
+    throw e;
+  }
+}
+async function deleteFestivalPack(fid) {
+  var m = (await _packManifests()).find(x => x.fid === fid);
+  await _packTx("packs", "readwrite", s => {
+    s.delete(fid);
+  });
+  if (m) await _packDropPrefix(m.packId + "|");
+  if (_packJobs[fid]) delete _packJobs[fid];
+  await _packsReconcile();
+  _packEmit();
+}
+async function _packLiveHash(fid) {
+  try {
+    var r = await fetch(_packFeedUrl(fid), {
+      cache: "no-store"
+    });
+    if (!r.ok) return null;
+    return (await r.json()).scheduleHash || null;
+  } catch {
+    return null;
+  }
+}
+async function _refreshPacksInBackground() {
+  if (typeof _isPlusSub !== "function" || !_isPlusSub()) return;
+  if (typeof navigator !== "undefined" && navigator.onLine === false) return;
+  try {
+    if (Date.now() - (+localStorage.getItem(PACK_REFRESH_KEY) || 0) < 12 * 3600000) return;
+    localStorage.setItem(PACK_REFRESH_KEY, String(Date.now()));
+  } catch {
+    return;
+  }
+  for (var m of Object.values(_packMirror())) {
+    if (_packStatus(m) === "over") continue;
+    var live = await _packLiveHash(m.fid);
+    if (live && live !== m.scheduleHash || Date.now() - m.savedAt > PACK_STALE_MS) {
+      try {
+        await downloadFestivalPack(m.fid);
+      } catch {}
+    }
+  }
+}
+function _packFmtBytes(b) {
+  return b >= 1048576 ? `${(b / 1048576).toFixed(1)} MB` : `${Math.max(1, Math.round((b || 0) / 1024))} KB`;
+}
+function _packFmtWhen(ms) {
+  try {
+    return new Date(ms).toLocaleString(undefined, {
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit"
+    });
+  } catch {
+    return "";
+  }
+}
+function OfflinePacksSheet({
+  onClose
+}) {
+  var [packs, setPacks] = React.useState(_packMirror);
+  var [, tick] = React.useReducer(x => x + 1, 0);
+  var [live, setLive] = React.useState({});
+  var [plusOpen, setPlusOpen] = React.useState(false);
+  var online = typeof navigator === "undefined" || navigator.onLine !== false;
+  React.useEffect(() => {
+    var alive = true;
+    var f = () => {
+      if (alive) {
+        setPacks(_packMirror());
+        tick();
+      }
+    };
+    _packSubs.add(f);
+    _packsReconcile().then(f, () => {});
+    return () => {
+      alive = false;
+      _packSubs.delete(f);
+    };
+  }, []);
+  var savedIds = Object.keys(packs).sort().join(",");
+  React.useEffect(() => {
+    if (!online || !savedIds) return;
+    var alive = true;
+    savedIds.split(",").forEach(fid => _packLiveHash(fid).then(h => {
+      if (alive && h) setLive(l => ({
+        ...l,
+        [fid]: h
+      }));
+    }));
+    return () => {
+      alive = false;
+    };
+  }, [savedIds, online]);
+  var plus = typeof _isPlusSub === "function" && _isPlusSub();
+  var now = Date.now();
+  var activeId = FESTIVAL_CONFIG.id;
+  var order = (a, b) => {
+    if (a.config.id === activeId !== (b.config.id === activeId)) return a.config.id === activeId ? -1 : 1;
+    var sa = _packWindow(a.config).start,
+      sb = _packWindow(b.config).start;
+    return sa === sb ? 0 : sa < sb ? -1 : 1;
+  };
+  var rows = (typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : []).filter(e => e && e.config && _packBBox(e.config) && (packs[e.config.id] || _packWindow(e.config).end > now)).sort(order);
+  var used = Object.values(packs).reduce((n, m) => n + (m.bytes || 0), 0);
+  var save = fid => {
+    if (!plus) {
+      setPlusOpen(true);
+      return;
+    }
+    downloadFestivalPack(fid).catch(() => {});
+  };
+  var del = fid => {
+    deleteFestivalPack(fid).catch(() => {});
+  };
+  var mono = {
+    fontFamily: "'Geist Mono', monospace",
+    letterSpacing: 1.2,
+    fontWeight: 700
+  };
+  var btn = (label, onClick, primary, disabled) => React.createElement("button", {
+    key: label,
+    onClick: onClick,
+    disabled: disabled,
+    style: {
+      ...mono,
+      fontSize: 10,
+      minHeight: 36,
+      padding: "0 13px",
+      borderRadius: 999,
+      flexShrink: 0,
+      border: primary ? "none" : "1px solid var(--line-2)",
+      background: primary ? "var(--ink)" : "transparent",
+      color: primary ? "var(--paper)" : "var(--ink)",
+      opacity: disabled ? 0.4 : 1,
+      cursor: disabled ? "default" : "pointer"
+    }
+  }, label);
+  return ReactDOM.createPortal(React.createElement("div", {
+    onClick: onClose,
+    style: {
+      position: "fixed",
+      inset: 0,
+      zIndex: 9000,
+      background: "rgba(0,0,0,0.45)",
+      display: "flex",
+      alignItems: "flex-end",
+      justifyContent: "center"
+    }
+  }, React.createElement("div", {
+    role: "dialog",
+    "aria-modal": "true",
+    "aria-label": "Offline map",
+    onClick: e => e.stopPropagation(),
+    style: {
+      width: "100%",
+      maxWidth: 480,
+      maxHeight: "82vh",
+      overflowY: "auto",
+      boxSizing: "border-box",
+      background: "var(--paper)",
+      borderRadius: "18px 18px 0 0",
+      padding: "16px 18px calc(18px + env(safe-area-inset-bottom))"
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "flex-start",
+      gap: 12
+    }
+  }, React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    style: {
+      ...mono,
+      fontSize: 9,
+      color: "var(--ember-ink)"
+    }
+  }, "OFFLINE MAP"), React.createElement("div", {
+    style: {
+      fontFamily: "'Instrument Serif', serif",
+      fontSize: 22,
+      color: "var(--ink)",
+      marginTop: 3
+    }
+  }, "Save a festival's street map"), React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "var(--ink)",
+      opacity: 0.62,
+      marginTop: 4,
+      lineHeight: 1.4
+    }
+  }, "The street map, its labels and the published schedule, kept on this phone for when there is no signal. Satellite still needs a connection.")), React.createElement("button", {
+    onClick: onClose,
+    "aria-label": "Close",
+    style: {
+      width: 36,
+      height: 36,
+      borderRadius: 36,
+      flexShrink: 0,
+      cursor: "pointer",
+      border: "1px solid var(--line-2)",
+      background: "transparent",
+      color: "var(--ink)",
+      fontSize: 18
+    }
+  }, "×")), React.createElement("div", {
+    style: {
+      marginTop: 10
+    }
+  }, rows.map(e => {
+    var c = e.config,
+      m = packs[c.id],
+      job = _packJobs[c.id];
+    var status = _packStatus(m, {
+      now,
+      liveHash: live[c.id]
+    });
+    var what = e.available ? "Street map + schedule" : "Street map";
+    var line, actions;
+    if (job && job.running) {
+      line = `Saving… ${job.total ? Math.round(job.done / job.total * 100) : 0}%`;
+      actions = null;
+    } else if (job && job.error) {
+      line = m ? `Couldn't update (${job.error}). Your copy from ${_packFmtWhen(m.savedAt)} is unchanged.` : `Couldn't save (${job.error}).`;
+      actions = [btn("RETRY", () => save(c.id), true, !online), m && btn("DELETE", () => del(c.id), false)];
+    } else if (status === "over") {
+      line = `Festival over · ${_packFmtBytes(m.bytes)}`;
+      actions = btn("DELETE", () => del(c.id), false);
+    } else if (status === "stale") {
+      line = `Schedule changed since ${_packFmtWhen(m.savedAt)}`;
+      actions = [btn("UPDATE", () => save(c.id), true, !online), btn("DELETE", () => del(c.id), false)];
+    } else if (status === "ready") {
+      line = `Saved ${_packFmtWhen(m.savedAt)} · ${_packFmtBytes(m.bytes)}`;
+      actions = btn("DELETE", () => del(c.id), false);
+    } else {
+      line = plus ? what : `${what} · Plursky+`;
+      actions = btn("SAVE", () => save(c.id), true, !online);
+    }
+    var shown = job && job.running ? "saving" : job && job.error ? "error" : status;
+    var pct = job && job.running && job.total ? job.done / job.total : null;
+    return React.createElement("div", {
+      key: c.id,
+      "data-pack-row": c.id,
+      style: {
+        padding: "12px 0",
+        borderTop: "1px solid var(--line)"
+      }
+    }, React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10
+      }
+    }, React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 14,
+        fontWeight: 600,
+        color: "var(--ink)"
+      }
+    }, c.shortName || c.name, c.id === activeId && React.createElement("span", {
+      style: {
+        ...mono,
+        fontSize: 8,
+        color: "var(--ember-ink)",
+        marginLeft: 6
+      }
+    }, "ACTIVE")), React.createElement("div", {
+      "data-pack-status": shown,
+      style: {
+        fontSize: 12,
+        color: "var(--ink)",
+        opacity: 0.62,
+        marginTop: 2,
+        lineHeight: 1.35,
+        overflowWrap: "anywhere"
+      }
+    }, line)), React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 6
+      }
+    }, actions)), pct !== null && React.createElement("div", {
+      role: "progressbar",
+      "aria-valuemin": 0,
+      "aria-valuemax": 100,
+      "aria-valuenow": Math.round(pct * 100),
+      style: {
+        height: 3,
+        borderRadius: 3,
+        background: "var(--line)",
+        marginTop: 8,
+        overflow: "hidden"
+      }
+    }, React.createElement("div", {
+      style: {
+        width: `${pct * 100}%`,
+        height: "100%",
+        background: "var(--ember)"
+      }
+    })));
+  })), React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "var(--ink)",
+      opacity: 0.55,
+      marginTop: 8,
+      borderTop: "1px solid var(--line)",
+      paddingTop: 10
+    }
+  }, Object.keys(packs).length ? `${Object.keys(packs).length} saved · ${_packFmtBytes(used)} on this phone` : "Nothing saved yet.", !online && " You're offline, so saving waits for a connection.")), plusOpen && React.createElement(PlusSheet, {
+    feature: "offline festival maps",
+    onClose: () => setPlusOpen(false)
+  })), document.body);
 }
 function mapToGps(x, y) {
   if (!MAP_AFFINE) return {
@@ -5189,7 +5959,7 @@ function RealMap({
   var fatalRef = React.useRef(false);
   var loadedRef = React.useRef(false);
   var tileErrRef = React.useRef(0);
-  var _fatal = React.useCallback(why => {
+  var _fatalNow = React.useCallback(why => {
     if (fatalRef.current) return;
     fatalRef.current = true;
     console.warn("[plursky-map] fatal — falling back to SVG map:", why);
@@ -5197,6 +5967,29 @@ function RealMap({
       onFatal?.(typeof why === "string" ? why : null);
     } catch {}
   }, [onFatal]);
+  var [packMode, setPackMode] = React.useState(false);
+  var packModeRef = React.useRef(false);
+  var _fatal = React.useCallback(why => {
+    if (fatalRef.current) return;
+    if (mapRef.current && !packModeRef.current && _packMirror()[FESTIVAL_CONFIG.id]) {
+      packModeRef.current = true;
+      setPackMode(true);
+      tileErrRef.current = 0;
+      setErr(null);
+      _packStyleFor(FESTIVAL_CONFIG.id).then(st => {
+        if (!st || !mapRef.current) {
+          _fatalNow(why);
+          return;
+        }
+        mapRef.current.setStyle(st);
+        setTimeout(() => {
+          if (!loadedRef.current) _fatalNow(why);
+        }, 8000);
+      }, () => _fatalNow(why));
+      return;
+    }
+    _fatalNow(why);
+  }, [_fatalNow]);
   var [styleKey, setStyleKey] = React.useState(() => {
     try {
       return localStorage.getItem("plursky_real_map_style") || "satellite";
@@ -5234,10 +6027,15 @@ function RealMap({
   React.useEffect(() => {
     _ensureRealMapStyles();
     var cancelled = false;
-    if (typeof navigator !== "undefined" && navigator.onLine === false) {
+    var offline = typeof navigator !== "undefined" && navigator.onLine === false;
+    if (offline && !_packMirror()[FESTIVAL_CONFIG.id]) {
       console.warn("[plursky-map] offline at mount — skipping RealMap");
       _fatal("No network connection");
       return () => {};
+    }
+    if (offline) {
+      packModeRef.current = true;
+      setPackMode(true);
     }
     var bootTimer = setTimeout(() => {
       if (!loadedRef.current && !fatalRef.current) _fatal("Real map timed out");
@@ -5249,17 +6047,23 @@ function RealMap({
       setLoaded(true);
     };
     _mapLog("[plursky-map] RealMap useEffect — calling _loadMapLibre()");
-    _loadMapLibre().then(maplibregl => {
+    _loadMapLibre().then(async maplibregl => {
       _mapLog("[plursky-map] _loadMapLibre resolved — MapLibre loaded");
+      _ensurePackProtocol(maplibregl);
+      var packStyle = packModeRef.current ? await _packStyleFor(FESTIVAL_CONFIG.id).catch(() => null) : null;
       if (cancelled || !containerRef.current) {
         console.warn("[plursky-map] aborted post-load: cancelled=" + cancelled + " hasContainer=" + !!containerRef.current);
+        return;
+      }
+      if (packModeRef.current && !packStyle) {
+        _fatalNow("No network connection");
         return;
       }
       var center = FESTIVAL_CONFIG.gps;
       var initialStyle = REAL_MAP_STYLES[styleKey] || REAL_MAP_STYLES.stylized;
       var map = new maplibregl.Map({
         container: containerRef.current,
-        style: initialStyle.style || initialStyle.url,
+        style: packStyle || initialStyle.style || initialStyle.url,
         center: [center.lng, center.lat],
         zoom: 16.2,
         pitch: 55,
@@ -6231,6 +7035,7 @@ function RealMap({
       _styleKeyInitRef.current = "__seeded__";
       return;
     }
+    if (packModeRef.current) return;
     var cfg = REAL_MAP_STYLES[styleKey];
     if (!cfg) return;
     try {
@@ -6284,7 +7089,26 @@ function RealMap({
       position: "absolute",
       inset: 0
     }
-  }), React.createElement("div", {
+  }), packMode ? React.createElement("div", {
+    role: "status",
+    className: "mono",
+    style: {
+      position: "absolute",
+      top: 108,
+      right: 10,
+      zIndex: 4,
+      background: "rgba(6,4,18,0.78)",
+      color: "#fff",
+      border: "1px solid rgba(255,255,255,0.18)",
+      borderRadius: 999,
+      padding: "6px 11px",
+      fontSize: 9,
+      letterSpacing: 1.3,
+      fontWeight: 700,
+      backdropFilter: "blur(8px)",
+      WebkitBackdropFilter: "blur(8px)"
+    }
+  }, "OFFLINE · SAVED STREET MAP") : React.createElement("div", {
     style: {
       position: "absolute",
       top: 108,
@@ -8429,13 +9253,13 @@ function YourStagePhotosStrip({
   var mine = React.useMemo(() => {
     var out = [];
     for (var n of Object.keys(moments)) {
-      var _loop2 = function (m) {
+      var _loop3 = function (m) {
         if (!m.artistId) return 1;
         var a = ARTISTS.find(x => x.id === m.artistId);
         if (a?.stage === stageId) out.push(m);
       };
       for (var m of moments[n] || []) {
-        if (_loop2(m)) continue;
+        if (_loop3(m)) continue;
       }
     }
     return out.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));

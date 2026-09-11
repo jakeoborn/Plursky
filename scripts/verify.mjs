@@ -1845,6 +1845,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b3. Offline festival packs ─────────────────────────────────────────
+// The saved area covers the radius, footprint and pan bounds; the style
+// rewrite leaves nothing remote; the downloader and the pack:// protocol agree
+// on every key; status none/ready/stale/over. (The network half is
+// scripts/e2e-offline-packs.mjs, run by hand — it needs OpenFreeMap + unpkg.)
+{
+  console.log("▸ Offline-pack gate — area, style rewrite, key agreement, status");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-offline-packs.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`offline packs failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c. Video thumbnails ────────────────────────────────────────────────
 // A library tile shows a stored poster <img>, never a live <video>. The old
 // "poster" was <video preload="metadata" src="...#t=0.1">: one decoder per
