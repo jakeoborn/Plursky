@@ -143,11 +143,11 @@ async function finishOnboardingIfPresent() {
 
   const nameInput = findNode(first.snap, /What should we call you/i);
   if (!nameInput?.ref) throw Object.assign(new Error("onboarding name input has no interactive ref"), { finalState: "FAIL_UI_REGRESSION" });
-  // Raw snapshots expose bare element IDs; client interactions use the wire
-  // ref form (`@e…`). Press happened to normalize bare refs, but fill's
-  // positional grammar requires the marker explicitly.
-  const nameRef = nameInput.ref.startsWith("@") ? nameInput.ref : `@${nameInput.ref}`;
-  await client.interactions.fill({ ref: nameRef, text: "QA User", verify: true });
+  // The name input owns autoFocus, and the fresh-install snapshot confirms it
+  // is focused with the keyboard open. Filling by ref is unsafe here because
+  // iOS reports its pre-keyboard frame as off-screen; type targets the focused
+  // field directly and avoids an invented coordinate or product-only seed.
+  await client.interactions.type({ text: "QA User" });
   await press(/CONTINUE AS QA USER|CONTINUE/i, "onboarding-continue");
   await waitForSnapshot(/CONNECT SPOTIFY/i, { name: "snapshot-onboarding-spotify.txt", interactiveOnly: true });
   await press(/^SKIP$/i, "onboarding-skip-spotify");
