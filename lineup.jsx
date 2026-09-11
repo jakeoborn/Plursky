@@ -851,6 +851,210 @@ function LineupScreen({ state, setState }) {
     return { conflicts: _conflicts, conflictById: _byId };
   }, [savedToday, ackedPairs]);
 
+  // ── The utility stack (#116) ─────────────────────────────────────────────
+  // Search, actions, conflict and stage-vibe cards, and Save-the-Day. LIST
+  // renders them above the list as before. GRID hands them to TimelineGrid as
+  // its `lead`, inside the grid's ONE scroller, so they scroll away with the
+  // timetable and come back at the top — no separate show/hide state that
+  // can disagree with the scroll position, and no second vertical scroller.
+  // Same condition the grid itself renders under.
+  const gridLead = viewMode === "grid" && !(filter === "saved" && state.saved.length === 0);
+  // The floating global Search pill hides in GRID (app.jsx): the grid's own
+  // search is one short upward scroll away, and the pill sat on set cards.
+  React.useEffect(() => {
+    const g = viewMode === "grid";
+    setState(s => (!!s.lineupGrid === g ? s : { ...s, lineupGrid: g }));
+  }, [viewMode]);
+
+  const searchRow = (
+    <div style={{ padding: gridLead ? "10px 12px 0" : "8px 16px 4px" }}>
+      <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
+        <span aria-hidden="true" style={{
+          position: "absolute", left: 12, fontSize: 13, color: "var(--muted)",
+          pointerEvents: "none",
+        }}>⌕</span>
+        <input
+          value={q}
+          onChange={e => setQ(e.target.value)}
+          placeholder="Search artists, stages, genres…"
+          aria-label="Search the lineup"
+          style={{
+            width: "100%", boxSizing: "border-box",
+            padding: "9px 34px 9px 32px", borderRadius: 12,
+            border: "1px solid var(--line-2)", background: "var(--paper-2)",
+            color: "var(--ink)", fontSize: 14, outline: "none",
+            fontFamily: "inherit",
+          }}
+        />
+        {q && (
+          <button
+            onClick={() => setQ("")}
+            aria-label="Clear search"
+            style={{
+              position: "absolute", right: 6, width: 28, height: 28,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              borderRadius: 999, border: "none", background: "transparent",
+              color: "var(--muted)", fontSize: 16, cursor: "pointer",
+            }}
+          >×</button>
+        )}
+      </div>
+    </div>
+  );
+
+  // MY NIGHT / SHARE / SURPRISE / SETS COUNT. In GRID the count leads on the
+  // left so the row reads as one zone with the search above it.
+  const actionsRow = (
+    <div style={{
+      display: "flex", alignItems: "center", justifyContent: gridLead ? "space-between" : "flex-end",
+      padding: gridLead ? "8px 12px 10px" : "10px 20px", gap: 8,
+    }}>
+      {gridLead && (
+        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>{dayArtists.length} SETS</div>
+      )}
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        {totalSaved >= 2 && (
+          <button onClick={() => setWizardOpen(true)} style={{
+            display: "flex", alignItems: "center", gap: 5,
+            background: dayStats.some(d => d.clashes > 0) ? "var(--ember)" : "var(--ink)",
+            color: "var(--paper)", border: "none",
+            borderRadius: 999, padding: "5px 12px", cursor: "pointer",
+            fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+          }}>
+            {dayStats.some(d => d.clashes > 0) ? "⚠" : "✦"} MY NIGHT
+          </button>
+        )}
+        {state.saved.length > 0 && (
+          <ShareLineupButton state={state} />
+        )}
+        <button onClick={() => {
+          const savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
+          const savedGenres = new Set(savedArtists.map(a => a.genre));
+          const unsaved = ARTISTS.filter(a => !state.saved.includes(a.id));
+          const pool = savedGenres.size
+            ? unsaved.filter(a => savedGenres.has(a.genre))
+            : unsaved;
+          if (!(pool.length ? pool : unsaved).length) return;
+          const pick = (pool.length ? pool : unsaved)[Math.floor(Math.random() * (pool.length || unsaved.length))];
+          setState({ ...state, artist: pick.id });
+        }} className="mono" title="Discover a random artist that matches your taste" style={{
+          padding: "5px 10px", borderRadius: 999,
+          background: "var(--horizon)", color: "#fff", border: "none",
+          fontSize: 9, letterSpacing: 1.2, fontWeight: 700, cursor: "pointer",
+          whiteSpace: "nowrap",
+        }}>✦ SURPRISE</button>
+        {!gridLead && (
+          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
+            {dayArtists.length} SETS
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
+  const conflictCard = conflicts.length > 0 && filter !== "all" ? (
+    <ConflictResolver
+      conflicts={conflicts}
+      onKeep={(keepId, dropId) => {
+        setState({ ...state, saved: state.saved.filter(id => id !== dropId) });
+      }}
+      onKeepBoth={(pair) => ackPair(pair[0].id, pair[1].id)}
+      onSplit={(pair) => setState({ ...state, tab: "map", focusStage: pair[0].stage })}
+    />
+  ) : null;
+
+  const vibeCard = stageFilter !== "all" ? (() => {
+    const stage = STAGES.find(s => s.id === stageFilter);
+    if (!stage?.vibe) return null;
+    return (
+      <div style={{
+        margin: gridLead ? "0 12px 10px" : "0 16px 10px",
+        padding: "10px 12px",
+        borderRadius: 12,
+        borderLeft: `3px solid ${stage.color}`,
+        background: `${stage.color}12`,
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: stage.vibeNote ? 5 : 0 }}>
+          <span className="mono" style={{
+            fontSize: 9, letterSpacing: 1.2, fontWeight: 800,
+            color: stage.color, textTransform: "uppercase",
+          }}>{stage.vibe}</span>
+          {stage.peak && (
+            <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--muted)", fontWeight: 600 }}>
+              · PEAKS {stage.peak}
+            </span>
+          )}
+          {stage.desc && (
+            <span className="mono" style={{ fontSize: 8, letterSpacing: 0.9, color: "var(--muted)", marginLeft: "auto" }}>
+              {stage.desc.toUpperCase()}
+            </span>
+          )}
+        </div>
+        {stage.vibeNote && (
+          <div style={{ fontSize: 12, lineHeight: 1.4, color: "var(--ink)", fontStyle: "italic" }}>
+            {stage.vibeNote}
+          </div>
+        )}
+      </div>
+    );
+  })() : null;
+
+  // "Save the Day" — when nothing is saved for the selected day, one tap
+  // saves every tier-3 top pick. Disappears once the day has any save. In
+  // GRID it is an optional assist above the timetable, not the screen's
+  // hero: one slim outlined row that scrolls away with the rest.
+  const saveDayCard = savedToday.length === 0 ? (() => {
+    const dayTopPicks = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
+    if (dayTopPicks.length === 0) return null;
+    const dayLabel = DAYS.find(d => d.n === day)?.label || `Day ${day}`;
+    const topPickIds = dayTopPicks.map(a => a.id);
+    const save = () => setState(s => ({ ...s, saved: [...new Set([...s.saved, ...topPickIds])] }));
+    if (gridLead) return (
+      <button data-save-day onClick={save} style={{
+        width: "calc(100% - 24px)", margin: "0 12px 10px",
+        display: "flex", alignItems: "center", gap: 10, minHeight: 44,
+        background: "transparent", color: "var(--ember-ink)", border: "1px solid var(--ember)",
+        borderRadius: 12, padding: "8px 12px", cursor: "pointer", textAlign: "left", fontFamily: "inherit",
+      }}>
+        <span aria-hidden="true" style={{ fontSize: 14, flexShrink: 0 }}>✦</span>
+        <span style={{ flex: 1, minWidth: 0, fontSize: 13, fontWeight: 600, color: "var(--ink)" }}>Save all top picks for {dayLabel}</span>
+        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 800, flexShrink: 0 }}>+{dayTopPicks.length} · SAVE</span>
+      </button>
+    );
+    return (
+      <button
+        onClick={save}
+        style={{
+          width: "100%",
+          display: "flex", alignItems: "center", gap: 12,
+          background: "var(--ember)", color: "#fff", border: "none",
+          borderRadius: 14, padding: "13px 16px",
+          margin: "12px 0 14px",
+          cursor: "pointer", textAlign: "left",
+          boxShadow: "0 4px 16px rgba(232,93,46,0.30)",
+          fontFamily: "inherit",
+        }}>
+        <span style={{
+          flexShrink: 0, width: 38, height: 38, borderRadius: 999,
+          background: "rgba(255,255,255,0.18)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          fontSize: 18, lineHeight: 1,
+        }}>✦</span>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div className="serif" style={{ fontSize: 18, lineHeight: 1.05, color: "#fff" }}>
+            Save all top picks for {dayLabel}
+          </div>
+          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, marginTop: 3, opacity: 0.9, fontWeight: 700 }}>
+            +{dayTopPicks.length} SETS · TAP TO ADD
+          </div>
+        </div>
+        <span className="mono" style={{ fontSize: 10, letterSpacing: 1.3, fontWeight: 800, flexShrink: 0 }}>
+          SAVE →
+        </span>
+      </button>
+    );
+  })() : null;
+
   return (
     <Screen bg="var(--paper)">
       {/* Title + dates. Folds on scroll down, returns on scroll up. Height
@@ -1043,136 +1247,18 @@ function LineupScreen({ state, setState }) {
         )}
       </div>
 
-      {/* Search row (#3) — sticky under the toolbar; matches artist, stage, or
-          genre. Works in both LIST and GRID. Empty out → full lineup returns. */}
-      <div style={{ padding: "8px 16px 4px" }}>
-        <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
-          <span aria-hidden="true" style={{
-            position: "absolute", left: 12, fontSize: 13, color: "var(--muted)",
-            pointerEvents: "none",
-          }}>⌕</span>
-          <input
-            value={q}
-            onChange={e => setQ(e.target.value)}
-            placeholder="Search artists, stages, genres…"
-            aria-label="Search the lineup"
-            style={{
-              width: "100%", boxSizing: "border-box",
-              padding: "9px 34px 9px 32px", borderRadius: 12,
-              border: "1px solid var(--line-2)", background: "var(--paper-2)",
-              color: "var(--ink)", fontSize: 14, outline: "none",
-              fontFamily: "inherit",
-            }}
-          />
-          {q && (
-            <button
-              onClick={() => setQ("")}
-              aria-label="Clear search"
-              style={{
-                position: "absolute", right: 6, width: 28, height: 28,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                borderRadius: 999, border: "none", background: "transparent",
-                color: "var(--muted)", fontSize: 16, cursor: "pointer",
-              }}
-            >×</button>
-          )}
-        </div>
-      </div>
-
-      {/* Actions row — MY NIGHT / SHARE / SURPRISE / SETS COUNT.
-          The All/Mine toggle that used to live here moved into the
-          bottom-sheet "Show" section so all filtering is in one place. */}
-      <div style={{
-        display: "flex", alignItems: "center", justifyContent: "flex-end",
-        padding: "10px 20px", gap: 8,
-      }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          {totalSaved >= 2 && (
-            <button onClick={() => setWizardOpen(true)} style={{
-              display: "flex", alignItems: "center", gap: 5,
-              background: dayStats.some(d => d.clashes > 0) ? "var(--ember)" : "var(--ink)",
-              color: "var(--paper)", border: "none",
-              borderRadius: 999, padding: "5px 12px", cursor: "pointer",
-              fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-            }}>
-              {dayStats.some(d => d.clashes > 0) ? "⚠" : "✦"} MY NIGHT
-            </button>
-          )}
-          {state.saved.length > 0 && (
-            <ShareLineupButton state={state} />
-          )}
-          <button onClick={() => {
-            const savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
-            const savedGenres = new Set(savedArtists.map(a => a.genre));
-            const unsaved = ARTISTS.filter(a => !state.saved.includes(a.id));
-            const pool = savedGenres.size
-              ? unsaved.filter(a => savedGenres.has(a.genre))
-              : unsaved;
-            if (!(pool.length ? pool : unsaved).length) return;
-            const pick = (pool.length ? pool : unsaved)[Math.floor(Math.random() * (pool.length || unsaved.length))];
-            setState({ ...state, artist: pick.id });
-          }} className="mono" title="Discover a random artist that matches your taste" style={{
-            padding: "5px 10px", borderRadius: 999,
-            background: "var(--horizon)", color: "#fff", border: "none",
-            fontSize: 9, letterSpacing: 1.2, fontWeight: 700, cursor: "pointer",
-            whiteSpace: "nowrap",
-          }}>✦ SURPRISE</button>
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
-            {dayArtists.length} SETS
-          </div>
-        </div>
-      </div>
+      {/* LIST: the utility stack sits here, above the list. GRID: the same
+          elements ride INSIDE the grid's one scroller (TimelineGrid `lead`),
+          so they scroll away and leave the timetable (#116). */}
+      {!gridLead && searchRow}
+      {!gridLead && actionsRow}
 
       {wizardOpen && (
         <NightWizard state={state} setState={setState} onClose={() => setWizardOpen(false)} />
       )}
 
-      {conflicts.length > 0 && filter !== "all" && (
-        <ConflictResolver
-          conflicts={conflicts}
-          onKeep={(keepId, dropId) => {
-            setState({ ...state, saved: state.saved.filter(id => id !== dropId) });
-          }}
-          onKeepBoth={(pair) => ackPair(pair[0].id, pair[1].id)}
-          onSplit={(pair) => setState({ ...state, tab: "map", focusStage: pair[0].stage })}
-        />
-      )}
-
-      {stageFilter !== "all" && (() => {
-        const stage = STAGES.find(s => s.id === stageFilter);
-        if (!stage?.vibe) return null;
-        return (
-          <div style={{
-            margin: "0 16px 10px",
-            padding: "10px 12px",
-            borderRadius: 12,
-            borderLeft: `3px solid ${stage.color}`,
-            background: `${stage.color}12`,
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: stage.vibeNote ? 5 : 0 }}>
-              <span className="mono" style={{
-                fontSize: 9, letterSpacing: 1.2, fontWeight: 800,
-                color: stage.color, textTransform: "uppercase",
-              }}>{stage.vibe}</span>
-              {stage.peak && (
-                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--muted)", fontWeight: 600 }}>
-                  · PEAKS {stage.peak}
-                </span>
-              )}
-              {stage.desc && (
-                <span className="mono" style={{ fontSize: 8, letterSpacing: 0.9, color: "var(--muted)", marginLeft: "auto" }}>
-                  {stage.desc.toUpperCase()}
-                </span>
-              )}
-            </div>
-            {stage.vibeNote && (
-              <div style={{ fontSize: 12, lineHeight: 1.4, color: "var(--ink)", fontStyle: "italic" }}>
-                {stage.vibeNote}
-              </div>
-            )}
-          </div>
-        );
-      })()}
+      {!gridLead && conflictCard}
+      {!gridLead && vibeCard}
 
       {/* In GRID mode this stops being a scroll container: the grid owns the
           only scrolling element on the screen. Two nested scroll regions was
@@ -1183,48 +1269,8 @@ function LineupScreen({ state, setState }) {
           ? { overflowY: "hidden", display: "flex", flexDirection: "column", padding: 0 }
           : { padding: "0 16px 90px" }
       }>
-        {/* "Save the Day" empty-state CTA — when no sets are saved for the
-            selected day, a single ember card batch-saves every tier-3
-            top pick. Disappears once the day has any save. */}
-        {savedToday.length === 0 && (() => {
-          const dayTopPicks = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
-          if (dayTopPicks.length === 0) return null;
-          const dayLabel = DAYS.find(d => d.n === day)?.label || `Day ${day}`;
-          const topPickIds = dayTopPicks.map(a => a.id);
-          return (
-            <button
-              onClick={() => setState(s => ({ ...s, saved: [...new Set([...s.saved, ...topPickIds])] }))}
-              style={{
-                width: viewMode === "grid" ? "calc(100% - 32px)" : "100%",
-                display: "flex", alignItems: "center", gap: 12,
-                background: "var(--ember)", color: "#fff", border: "none",
-                borderRadius: 14, padding: "13px 16px",
-                margin: viewMode === "grid" ? "12px 16px 14px" : "12px 0 14px",
-                cursor: "pointer", textAlign: "left",
-                boxShadow: "0 4px 16px rgba(232,93,46,0.30)",
-                fontFamily: "inherit",
-              }}>
-              <span style={{
-                flexShrink: 0, width: 38, height: 38, borderRadius: 999,
-                background: "rgba(255,255,255,0.18)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: 18, lineHeight: 1,
-              }}>✦</span>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div className="serif" style={{ fontSize: 18, lineHeight: 1.05, color: "#fff" }}>
-                  Save all top picks for {dayLabel}
-                </div>
-                <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, marginTop: 3, opacity: 0.9, fontWeight: 700 }}>
-                  +{dayTopPicks.length} SETS · TAP TO ADD
-                </div>
-              </div>
-              <span className="mono" style={{ fontSize: 10, letterSpacing: 1.3, fontWeight: 800, flexShrink: 0 }}>
-                SAVE →
-              </span>
-            </button>
-          );
-        })()}
-        {viewMode === "grid" && !(filter === "saved" && state.saved.length === 0) && (() => {
+        {!gridLead && saveDayCard}
+        {gridLead && (() => {
           // v165: grid now shows only the selected day (like list mode) so
           // navigation is clean — no more scrolling through all 3 days.
           const dayMeta = DAYS.find(x => x.n === day);
@@ -1246,6 +1292,7 @@ function LineupScreen({ state, setState }) {
                   the full width so more stages are visible at once. */}
               <div style={{ display: "flex", flexDirection: "column", flex: 1, minHeight: 0 }}>
                 <TimelineGrid
+                  lead={<>{searchRow}{actionsRow}{conflictCard}{vibeCard}{saveDayCard}</>}
                   day={day}
                   allDayArtists={dayArt}
                   state={state}
@@ -1476,11 +1523,14 @@ function LineupScreen({ state, setState }) {
           const el = document.querySelector("[data-grid-scroll]");
           const nowMin = toNightMin(NOW.time);
           if (el && nowMin >= GRID_START_MIN && nowMin <= GRID_END_MIN) {
-            const top = (nowMin - GRID_START_MIN) * GRID_PX_PER_MIN - 120;
+            // The utility stack rides above the timetable in the same scroller.
+            const lead = el.querySelector("[data-grid-lead]");
+            const top = (lead ? lead.offsetHeight : 0) + (nowMin - GRID_START_MIN) * GRID_PX_PER_MIN - 120;
             el.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
           }
         }} style={{
-          position: "absolute", bottom: 80, right: 16, zIndex: 8,
+          // bottom:80 cleared the floating Search pill, which GRID no longer shows.
+          position: "absolute", bottom: 16, right: 16, zIndex: 8,
           background: "var(--ember)", color: "#fff", border: "none",
           borderRadius: 999, padding: "8px 14px",
           boxShadow: "0 4px 16px rgba(232,93,46,0.4)",
@@ -2010,7 +2060,7 @@ function GridHourLines({ hours, minToTop }) {
 // artist names as three characters and an ellipsis. Neither was a timetable.
 // There is deliberately ONE grid mode now — a third way to look at the same
 // sets was the problem, not the solution.
-function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conflictById, spotifyMatchedIds, highlightId }) {
+function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive, conflictById, spotifyMatchedIds, highlightId }) {
   const GUTTER_W = 44;
   // The stage header row lives INSIDE the scroll box so it can pin vertically
   // and pan horizontally at the same time. That means it occupies real scroll
@@ -2020,6 +2070,7 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
   const minToTop = _minToTop;
 
   const scrollRef = React.useRef(null);
+  const leadRef = React.useRef(null);
   const _blockRefs = React.useRef({});
 
   const HOURS = [];
@@ -2103,7 +2154,7 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
     didInit.current = true;
     const target = due ? toNightMin(ARTISTS.find(a => a.id === due.id)?.start || 0) : nowMin;
     if (target != null && target >= GRID_START_MIN && target <= GRID_END_MIN) {
-      el.scrollTop = Math.max(0, HEAD_H + minToTop(target) - 100);
+      el.scrollTop = Math.max(0, (leadRef.current ? leadRef.current.offsetHeight : 0) + HEAD_H + minToTop(target) - 100);
     }
     // Horizontally we only pan away from the left edge when there is a reason
     // to: a saved set coming up on a stage that is off screen. Opening
@@ -2121,7 +2172,9 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
     return m;
   }, [allDayArtists, state.saved]);
 
-  if (!cols.length) return null;
+  // With a lead (the utility stack) the scroller still renders on a day with
+  // no columns, so the search field can never unmount under the user's thumb.
+  if (!cols.length && !lead) return null;
 
   return (
     // Fills the space the header leaves. There is exactly ONE scrolling
@@ -2140,6 +2193,18 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
           overscrollBehavior: "contain",
         }}>
         <div style={{ minWidth: GUTTER_W + cols.length * COL_W, position: "relative" }}>
+          {/* The utility stack (#116). In normal flow above the stage headers,
+              so a vertical scroll carries it away and the headers then pin;
+              sticky-LEFT at the box's width so a horizontal pan leaves it in
+              place. It lives inside this full-width div on purpose: a sticky
+              element cannot leave its parent, and only this parent spans
+              every column. */}
+          {lead && (
+            <div ref={leadRef} data-grid-lead style={{ position: "sticky", left: 0, width: boxW, background: "var(--paper)" }}>
+              {lead}
+            </div>
+          )}
+          {cols.length > 0 ? (<>
           {/* Stage headers. Sticky to the TOP of the scroll box (they hold
               while you read down the night) but NOT to the left (they pan
               with their own columns). This IS the wayfinding that the old
@@ -2160,6 +2225,7 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
               return (
                 <button
                   key={s.id}
+                  data-stage-head={s.id}
                   onClick={() => { try { window.plurskyHaptic?.("LIGHT"); } catch {} scrollToStage(s.id); }}
                   title={s.name}
                   className="mono"
@@ -2170,7 +2236,7 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
                     background: "var(--paper)", color: "var(--ink)",
                     padding: "3px 5px 0", cursor: "pointer", position: "relative",
                     display: "flex", alignItems: "center", justifyContent: "center", gap: 4,
-                    fontSize: 9, letterSpacing: 1, fontWeight: 800,
+                    fontSize: 10, letterSpacing: 1.1, fontWeight: 800,
                     fontFamily: "inherit",
                   }}>
                   {/* The stage's colour, sitting directly on top of its own
@@ -2263,6 +2329,11 @@ function TimelineGrid({ day, allDayArtists, state, setState, matchesActive, conf
               }}/>
             )}
           </div>
+          </>) : (
+            <div className="mono" style={{ position: "sticky", left: 0, width: boxW, padding: "28px 16px", textAlign: "center", fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
+              NO SETS ON THIS DAY
+            </div>
+          )}
         </div>
       </div>
     </div>

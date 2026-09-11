@@ -1132,7 +1132,7 @@ function App() {
       flex: 1,
       position: "relative"
     }
-  }, body, !state.artist && !searchOpen && state.tab !== "map" && !modalOpen && React.createElement("button", {
+  }, body, !state.artist && !searchOpen && state.tab !== "map" && !modalOpen && !(state.tab === "lineup" && state.lineupGrid) && React.createElement("button", {
     onClick: () => setSearchOpen(true),
     "aria-label": "Search artists, stages, genres",
     style: {
@@ -1289,7 +1289,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v314"
+        version: "v315"
       }));
     } catch {}
   }
@@ -1354,7 +1354,7 @@ class RootErrorBoundary extends React.Component {
         letterSpacing: 1.2,
         color: "rgba(26,18,13,0.45)"
       }
-    }, "PLURSKY · v314"));
+    }, "PLURSKY · v315"));
   }
 }
 function SetStartingCinematic() {
@@ -1481,4 +1481,10 @@ function SetStartingCinematic() {
     }
   }, "TAP TO DISMISS")));
 }
+document.documentElement.classList.add("app-live");
+document.addEventListener("focusout", () => {
+  setTimeout(() => {
+    if (window.scrollY || document.documentElement.scrollTop) window.scrollTo(0, 0);
+  }, 60);
+});
 ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(RootErrorBoundary, null, React.createElement(App, null), React.createElement(CelebrationOverlay, null), React.createElement(SetStartingCinematic, null)));
