@@ -96,7 +96,13 @@ function findNode(snapshot, matcher) {
   return (snapshot.nodes || []).find(n => matcher.test([n.label, n.name, n.value, n.text].filter(Boolean).join(" ")));
 }
 async function saveSnapshot(name, interactiveOnly = false) {
-  const snap = await client.capture.snapshot({ interactiveOnly });
+  // agent-device 0.21.0 can acquire a valid iOS hierarchy without viewport
+  // evidence, then fail its regular presentation with
+  // "regular iOS snapshot presentation requires a valid viewport". Raw is
+  // the documented diagnostic projection for that acquisition: it bypasses
+  // the viewport fold, preserves node refs, and ignores interactiveOnly. The
+  // harness still filters candidates itself by requiring refs before presses.
+  const snap = await client.capture.snapshot({ interactiveOnly, raw: true });
   const body = snapshotText(snap);
   const path = join(out, name); await writeFile(path, body + "\n"); result.artifacts[name] = path;
   return { snap, body };
