@@ -1303,10 +1303,28 @@ function _videoDuration(blob) {
 // forty clips scrolled badly: forty live media elements, each holding a
 // decoder, in one list.
 //
-// Best-effort by design. A codec the browser cannot decode resolves null and
-// the caller keeps the old <video> tile, so the worst case is exactly today.
+// Best-effort by design. A codec the browser cannot decode, or a clip that is
+// black at every sampled point, resolves null and the tile shows the quiet
+// placeholder (_ThumbMedia), never a live <video>.
 const _POSTER_MAX_EDGE = 640;
 const _POSTER_TIMEOUT_MS = 8000;
+// A frame is a black void when NOTHING in it is brighter than this: a shutter
+// lead-in, a pocket, a lens cap. A dark night-set clip still has stage lights
+// in it and passes, so only a frame with no highlights at all is skipped.
+const _BLACK_MAX_LUMA = 40;
+function _frameIsBlack(v) {
+  try {
+    const c = document.createElement("canvas");
+    c.width = c.height = 24;
+    const g = c.getContext("2d");
+    g.drawImage(v, 0, 0, 24, 24);
+    const d = g.getImageData(0, 0, 24, 24).data;
+    for (let i = 0; i < d.length; i += 4) {
+      if (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2] > _BLACK_MAX_LUMA) return false;
+    }
+    return true;
+  } catch { return false; }
+}
 function _videoPosterBlob(blob) {
   return new Promise((resolve) => {
     let url = null, v = null, settled = false, timer = null;
@@ -1340,14 +1358,26 @@ function _videoPosterBlob(blob) {
           c.toBlob(b => done(b || null), "image/jpeg", 0.75);
         } catch { done(null); }
       };
+      // A hair in, not frame zero — the first frame of a phone clip is often
+      // the shutter still opening. If that frame is still black, walk further
+      // in; if every candidate is black, resolve null and the tile shows the
+      // placeholder rather than a black poster.
+      let times = [], at = 0;
+      const seek = () => { try { v.currentTime = times[at]; } catch { draw(); } };
       v.onloadedmetadata = () => {
-        // A hair in, not frame zero — the first frame of a phone clip is
-        // often the shutter still opening, or a black lead-in.
-        const t = Math.min(0.6, Math.max(0.05, (v.duration || 1) * 0.1));
-        const seek = () => { try { v.currentTime = t; } catch { draw(); } };
+        // WebM from MediaRecorder (and some Android clips) reports Infinity
+        // until fully read; sample a 4s window then, and seeks past the real
+        // end clamp to the last frame.
+        const dur = Number.isFinite(v.duration) && v.duration > 0 ? v.duration : 4;
+        times = [Math.min(0.6, Math.max(0.05, dur * 0.1)), dur * 0.25, dur * 0.5, dur * 0.75]
+          .filter((t, i, a) => t < dur && (i === 0 || t > a[i - 1] + 0.05));
         if (v.readyState >= 2) seek(); else v.onloadeddata = seek;
       };
-      v.onseeked = draw;
+      v.onseeked = () => {
+        if (!_frameIsBlack(v)) return draw();
+        if (++at < times.length) return seek();
+        done(null);
+      };
       v.onerror = () => done(null);
       v.src = url;
     } catch { done(null); }
@@ -1639,8 +1669,8 @@ function _ensurePoster(moment) {
 // tags instead of forty live decoders — and the tile actually has a picture
 // on it, which <video preload="metadata"> could never be relied on for.
 //
-// The clip itself is fetched ONLY when there is no poster to be had. That
-// ordering is the whole performance story: fall back, never pre-load.
+// The clip itself is NEVER fetched for a thumbnail. No poster means the
+// placeholder; the clip is read only when the user asks to play it.
 //
 // Posters deliberately do NOT go through useMomentPhoto — that hook's
 // restore-on-view would fire a cloud request per tile for a key that is
@@ -1662,9 +1692,68 @@ function useMomentThumb(moment, enabled = true) {
     return () => { dead = true; if (objUrl) URL.revokeObjectURL(objUrl); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled, isVideo, id]);
-  const needMedia = !isVideo || (noPoster && !posterUrl);
-  const mediaUrl = useMomentPhoto(needMedia ? ((moment && moment.photoId) || null) : null, enabled);
-  return { url: posterUrl || mediaUrl, isPoster: !!posterUrl };
+  // A video WITHOUT a poster never falls back to loading the clip: that put a
+  // live <video> in every such tile and painted a black box on iOS. It reports
+  // noPoster instead and _ThumbMedia draws the placeholder.
+  const mediaUrl = useMomentPhoto(!isVideo ? ((moment && moment.photoId) || null) : null, enabled);
+  return { url: posterUrl || mediaUrl, isPoster: !!posterUrl, noPoster: isVideo && noPoster && !posterUrl };
+}
+
+// The one way a thumbnail shows a moment's media. Videos show their poster
+// frame as an <img>; when no poster could be made they show a quiet placeholder
+// with the clip length. A thumbnail NEVER mounts a <video> (verify.mjs "video
+// thumbnail" gate), so an idle library holds zero decoders. `showLength` is off
+// where the tile already carries a _VideoBadge.
+function _ThumbMedia({ moment, thumb, showLength = true }) {
+  const fill = { width: "100%", height: "100%", display: "block" };
+  if (thumb && thumb.url) return <img src={thumb.url} alt="" style={{ ...fill, objectFit: "cover" }}/>;
+  if (moment && moment.kind === "video" && thumb && thumb.noPoster) {
+    return (
+      <div aria-label="Video" style={{
+        ...fill, display: "flex", alignItems: "flex-end", justifyContent: "center", paddingBottom: 6, boxSizing: "border-box",
+        background: "linear-gradient(160deg, #2a2a30, #121216)", color: "rgba(255,255,255,0.72)",
+      }}>
+        {showLength && (
+          <span className="mono" style={{ fontSize: 9, letterSpacing: 0.8, fontWeight: 700 }}>
+            {moment.duration ? _fmtClock(moment.duration) : "VIDEO"}
+          </span>
+        )}
+      </div>
+    );
+  }
+  return <div className="skel" style={fill}/>;
+}
+
+// A feed card's video: its poster until tapped, then a real player. The player
+// is torn down when the clip ends or the card leaves the screen, and the clip's
+// blob is only read once playback is asked for.
+function _TapToPlayVideo({ moment, height = 300, style }) {
+  const [playing, setPlaying] = React.useState(false);
+  const [ref, onScreen] = useNearViewport("0px");
+  React.useEffect(() => { if (!onScreen) setPlaying(false); }, [onScreen]);
+  const thumb = useMomentThumb(moment, !playing);
+  const src = useMomentPhoto(playing ? moment.photoId : null);
+  return (
+    <div ref={ref} style={{ position: "relative", width: "100%", height, borderRadius: 10, overflow: "hidden", background: "#000", ...style }}>
+      {playing && src ? (
+        <video src={src} controls autoPlay playsInline onEnded={() => setPlaying(false)}
+          style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}/>
+      ) : (
+        <button onClick={() => setPlaying(true)} aria-label="Play video" style={{
+          width: "100%", height: "100%", padding: 0, border: "none", background: "none", cursor: "pointer", position: "relative", display: "block",
+        }}>
+          <_ThumbMedia moment={moment} thumb={thumb} showLength={false}/>
+          <span aria-hidden="true" style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
+            <span style={{
+              width: 52, height: 52, borderRadius: 52, background: "rgba(0,0,0,0.5)", color: "#fff",
+              display: "flex", alignItems: "center", justifyContent: "center", fontSize: 19, paddingLeft: 3,
+            }}>▶</span>
+          </span>
+          <_VideoBadge seconds={moment.duration} style={{ position: "absolute", bottom: 8, right: 8 }}/>
+        </button>
+      )}
+    </div>
+  );
 }
 
 // Returns [ref, near] — attach ref to an element; `near` flips true while it
@@ -1746,7 +1835,7 @@ async function _backupMyWeekend(onProgress) {
 
 // Single memory thumbnail for the home strip — loads its photo blob lazily.
 function _HomeMemoryThumb({ moment, onClick }) {
-  const { url, isPoster } = useMomentThumb(moment);
+  const thumb = useMomentThumb(moment), { url } = thumb;
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   return (
     <button onClick={onClick} style={{
@@ -1754,19 +1843,7 @@ function _HomeMemoryThumb({ moment, onClick }) {
       border: "1px solid var(--line)", overflow: "hidden", position: "relative",
       background: url ? "#000" : "var(--paper-2)", cursor: "pointer", padding: 0,
     }}>
-      {url ? (
-        // Video needs <video preload="metadata"> to paint a poster frame —
-        // a blob URL inside <img> renders as a blank/black tile.
-        moment.kind === "video" && !isPoster ? (
-          // #t=0.1 forces iOS to decode + paint the first frame as a poster;
-          // without it the tile stays black until the video is touched.
-          <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
-        ) : (
-          <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
-        )
-      ) : (
-        <div className="skel" style={{ width: "100%", height: "100%" }}/>
-      )}
+      <_ThumbMedia moment={moment} thumb={thumb} showLength={false}/>
       {moment.kind === "video" && (
         <_VideoBadge seconds={moment.duration} style={{ position: "absolute", top: 6, right: 6 }}/>
       )}
@@ -2909,7 +2986,7 @@ async function _shareMoment(moment, meta) {
 }
 
 function _LightboxThumb({ moment, active, onClick }) {
-  const { url, isPoster } = useMomentThumb(moment);
+  const thumb = useMomentThumb(moment), { url } = thumb;
   return (
     <button onClick={onClick} aria-label="View moment" style={{
       flexShrink: 0, width: 44, height: 44, borderRadius: 8, padding: 0, cursor: "pointer",
@@ -2917,10 +2994,7 @@ function _LightboxThumb({ moment, active, onClick }) {
       opacity: active ? 1 : 0.5, overflow: "hidden", background: "#222",
       transition: "opacity 0.15s", position: "relative",
     }}>
-      {url && (moment.kind === "video" && !isPoster
-        ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
-        : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
-      )}
+      <_ThumbMedia moment={moment} thumb={thumb} showLength={false}/>
       {moment.kind === "video" && (
         <span style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: 10, textShadow: "0 1px 2px rgba(0,0,0,0.6)", pointerEvents: "none" }}>▶</span>
       )}
@@ -2933,7 +3007,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
   // mounted (edit state intact), but off-screen cards in long night/group
   // lists don't each hold a decoded image + live blob URL.
   const [cardRef, near] = useNearViewport();
-  const photoUrl = useMomentPhoto(moment.photoId, near);
+  const photoUrl = useMomentPhoto(moment.photoId, near && moment.kind !== "video");
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
   const nowPlaying = useSetlistSong(artist, moment.takenAt);
@@ -2993,14 +3067,10 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
       borderRadius: 14, padding: 12, marginBottom: 10,
     }}>
       {moment.photoId && (
-        photoUrl ? (
-          moment.kind === "video" ? (
-            <video src={photoUrl} controls playsInline preload="metadata" style={{
-              width: "100%", borderRadius: 10, display: "block",
-              marginBottom: moment.text ? 10 : 8,
-              background: "#000",
-            }}/>
-          ) : (
+        moment.kind === "video" ? (
+          // Poster until tapped; the player exists only while playing.
+          <_TapToPlayVideo moment={moment} style={{ marginBottom: moment.text ? 10 : 8 }}/>
+        ) : photoUrl ? ((
             <img src={photoUrl} alt="" onClick={() => onOpenLightbox?.(groupMoments || [moment], idx || 0)} style={{
               width: "100%", borderRadius: 10, display: "block",
               marginBottom: moment.text ? 10 : 8,
@@ -3304,7 +3374,7 @@ function _pickHeroMoment(items) {
 // cards. Lives outside the header <button> (no nested buttons) as its own tap
 // target that opens the group's lightbox at the hero.
 function _GroupHeroThumb({ moment, accent, onClick }) {
-  const { url, isPoster } = useMomentThumb(moment);
+  const thumb = useMomentThumb(moment), { url } = thumb;
   if (!moment?.photoId) return null;
   return (
     <button onClick={onClick} aria-label="Open best shot" style={{
@@ -3312,10 +3382,7 @@ function _GroupHeroThumb({ moment, accent, onClick }) {
       overflow: "hidden", border: `1.5px solid ${accent || "var(--line-2)"}`,
       background: "#222", position: "relative",
     }}>
-      {url && (moment.kind === "video" && !isPoster
-        ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
-        : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
-      )}
+      <_ThumbMedia moment={moment} thumb={thumb} showLength={false}/>
       {moment.kind === "video" && (
         <span style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: 11, textShadow: "0 1px 2px rgba(0,0,0,0.6)", pointerEvents: "none" }}>▶</span>
       )}
@@ -4253,7 +4320,7 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
 // a story of the night instead of a grid of files. The emotional
 // payoff surface for the who/what/where/when graph.
 function _MemoryStoryBeat({ moment, isLast, onOpen }) {
-  const { url, isPoster } = useMomentThumb(moment);
+  const thumb = useMomentThumb(moment), { url } = thumb;
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   const stage = artist ? STAGES.find(s => s.id === artist.stage) : null;
   const estSong = useSetlistSong(artist, moment.takenAt);
@@ -4289,19 +4356,16 @@ function _MemoryStoryBeat({ moment, isLast, onOpen }) {
         {stage && (
           <div className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2 }}>{stage.name.toUpperCase()}</div>
         )}
-        {url && (
+        {(url || thumb.noPoster) && (
           <button onClick={onOpen} aria-label="Open moment" style={{ marginTop: 8, padding: 0, border: "none", background: "none", cursor: "pointer", display: "block", width: "100%", position: "relative" }}>
-            {moment.kind === "video" && !isPoster ? (
+            {moment.kind === "video" ? (
               <>
-                {/* preload="metadata" paints the first frame as a poster;
-                    tapping opens the lightbox player (controls + autoplay).
-                    Before the fix this rendered inside an <img>, so video
-                    moments showed as a broken tile in the default Story view. */}
-                <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{
-                  width: "100%", borderRadius: 12, display: "block",
-                  maxHeight: 340, objectFit: "cover", background: "#000",
-                  pointerEvents: "none",
-                }}/>
+                {/* Poster frame, or the placeholder when none could be made.
+                    One fixed height so a run of clips reads as even cards;
+                    tapping opens the lightbox player (controls + autoplay). */}
+                <div style={{ width: "100%", height: 300, borderRadius: 12, overflow: "hidden", background: "#000" }}>
+                  <_ThumbMedia moment={moment} thumb={thumb} showLength={false}/>
+                </div>
                 <span style={{
                   position: "absolute", inset: 0, display: "flex",
                   alignItems: "center", justifyContent: "center", pointerEvents: "none",
@@ -4332,16 +4396,14 @@ function _MemoryStoryBeat({ moment, isLast, onOpen }) {
 // lightbox. Models the Apple Photos year-scrubber / a video timeline. Pointer
 // events cover mouse + touch; setPointerCapture keeps the drag smooth.
 function _ScrubPreview({ moment }) {
-  const { url, isPoster } = useMomentThumb(moment);
+  const thumb = useMomentThumb(moment), { url } = thumb;
   return (
     <div style={{
       width: 56, height: 56, borderRadius: 10, overflow: "hidden",
       border: "1.5px solid var(--ink)", background: "#000", flexShrink: 0,
       boxShadow: "0 4px 14px rgba(0,0,0,0.4)",
     }}>
-      {url && (moment.kind === "video" && !isPoster
-        ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
-        : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>)}
+      <_ThumbMedia moment={moment} thumb={thumb} showLength={false}/>
     </div>
   );
 }
@@ -4561,7 +4623,7 @@ function _LazyMount({ children, placeholder, minHeight = 120, rootMargin = "800p
 // first) — the view people expect from a "memories" tab (Apple/Google Photos,
 // Retro, Snapchat). Tap a tile → full-screen lightbox.
 function _GridTile({ moment, onClick, stackCount = 1 }) {
-  const { url, isPoster } = useMomentThumb(moment);
+  const thumb = useMomentThumb(moment), { url } = thumb;
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   const stacked = stackCount > 1;
   return (
@@ -4577,10 +4639,7 @@ function _GridTile({ moment, onClick, stackCount = 1 }) {
         ? "2.5px 2.5px 0 -0.5px var(--paper-2), 2.5px 2.5px 0 0 var(--line), 5px 5px 0 -1px var(--paper-2), 5px 5px 0 -0.5px var(--line)"
         : "none",
     }}>
-      {url ? (moment.kind === "video" && !isPoster
-        ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
-        : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
-      ) : <div className="skel" style={{ width: "100%", height: "100%" }}/>}
+      <_ThumbMedia moment={moment} thumb={thumb} showLength={false}/>
       {moment.kind === "video" && <_VideoBadge seconds={moment.duration} style={{ position: "absolute", top: 5, right: 5 }}/>}
       {stacked && (
         <span className="mono" aria-label={`Burst of ${stackCount}`} style={{
@@ -4771,7 +4830,7 @@ function _momentTime(m) {
 // a ▶ marker on videos, and a "+N" badge when it fronts a declustered group.
 function _PhotoPin({ cluster, onTap }) {
   const m = cluster.face;
-  const { url, isPoster } = useMomentThumb(m, cluster.enabled !== false);
+  const thumb = useMomentThumb(m, cluster.enabled !== false), { url } = thumb;
   const ring = (cluster.stage && cluster.stage.color) || "#9aa";
   const rot = ((_idHash(m.id) % 17) - 8); // -8..+8deg, stable per pin
   const extra = cluster.items.length - 1;
@@ -4789,11 +4848,7 @@ function _PhotoPin({ cluster, onTap }) {
         border: `2px solid ${ring}`, background: url ? "#000" : "var(--paper-2)",
         boxShadow: "0 3px 9px rgba(0,0,0,0.5)",
       }}>
-        {url ? (
-          m.kind === "video" && !isPoster
-            ? <video src={url + "#t=0.1"} muted playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}/>
-            : <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
-        ) : <div className="skel" style={{ width: "100%", height: "100%" }}/>}
+        <_ThumbMedia moment={m} thumb={thumb} showLength={false}/>
       </div>
       {m.kind === "video" && (
         <span className="mono" style={{
