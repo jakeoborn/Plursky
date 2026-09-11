@@ -8054,6 +8054,7 @@ function PlusGate({ children, feature }) {
     ["Share in full quality", "1080p, no watermarks, unlimited exports"],
     ["Make every recap yours", "Premium video styles, music + custom colors"],
     ["Unlock every discovery", "All Hidden Gems + full trading-card exports"],
+    ["Find your way offline", "Festival street maps saved on your phone"],
     ["Get festivals first", "Early access + your multi-festival archive"],
   ];
 

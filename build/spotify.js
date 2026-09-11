@@ -11974,7 +11974,7 @@ function PlusGate({
       setBusy(false);
     }
   };
-  var _PLUS_PERKS = [["Keep every memory safe", "Cloud backup + restore across devices"], ["Share in full quality", "1080p, no watermarks, unlimited exports"], ["Make every recap yours", "Premium video styles, music + custom colors"], ["Unlock every discovery", "All Hidden Gems + full trading-card exports"], ["Get festivals first", "Early access + your multi-festival archive"]];
+  var _PLUS_PERKS = [["Keep every memory safe", "Cloud backup + restore across devices"], ["Share in full quality", "1080p, no watermarks, unlimited exports"], ["Make every recap yours", "Premium video styles, music + custom colors"], ["Unlock every discovery", "All Hidden Gems + full trading-card exports"], ["Find your way offline", "Festival street maps saved on your phone"], ["Get festivals first", "Early access + your multi-festival archive"]];
   return React.createElement("div", {
     style: {
       position: "relative",
