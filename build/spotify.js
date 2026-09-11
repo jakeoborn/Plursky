@@ -8806,55 +8806,10 @@ function MemoriesScreen({
     style: {
       color: autoOn ? "var(--success)" : "var(--muted)"
     }
-  }, autoOn ? "ON" : "OFF")), showPlus && React.createElement("div", {
-    onClick: () => setShowPlus(false),
-    style: {
-      position: "fixed",
-      inset: 0,
-      zIndex: 260,
-      background: "rgba(0,0,0,0.6)",
-      display: "flex",
-      alignItems: "flex-start",
-      justifyContent: "center",
-      padding: 20,
-      overflowY: "auto",
-      WebkitOverflowScrolling: "touch",
-      animation: "fadeIn .2s"
-    }
-  }, React.createElement("div", {
-    onClick: e => e.stopPropagation(),
-    style: {
-      position: "relative",
-      width: "100%",
-      maxWidth: 340,
-      margin: "auto 0",
-      flexShrink: 0
-    }
-  }, React.createElement("button", {
-    onClick: () => setShowPlus(false),
-    "aria-label": "Close",
-    style: {
-      position: "absolute",
-      top: -14,
-      right: -6,
-      zIndex: 1,
-      width: 30,
-      height: 30,
-      borderRadius: 30,
-      background: "#fff",
-      border: "none",
-      color: "#1a120d",
-      fontSize: 16,
-      fontWeight: 700,
-      cursor: "pointer"
-    }
-  }, "×"), React.createElement(PlusGate, {
-    feature: "cloud backup"
-  }, React.createElement("div", {
-    style: {
-      height: 460
-    }
-  })))), totalCount === 0 && React.createElement("div", {
+  }, autoOn ? "ON" : "OFF")), showPlus && React.createElement(PlusSheet, {
+    feature: "cloud backup",
+    onClose: () => setShowPlus(false)
+  }), totalCount === 0 && React.createElement("div", {
     style: {
       marginTop: 20,
       padding: "32px 22px",
@@ -9769,55 +9724,10 @@ function MeScreen({
       fontSize: 18,
       opacity: 0.85
     }
-  }, "→")), plusOpen && React.createElement("div", {
-    onClick: () => setPlusOpen(false),
-    style: {
-      position: "fixed",
-      inset: 0,
-      zIndex: 260,
-      background: "rgba(0,0,0,0.6)",
-      display: "flex",
-      alignItems: "flex-start",
-      justifyContent: "center",
-      padding: 20,
-      overflowY: "auto",
-      WebkitOverflowScrolling: "touch",
-      animation: "fadeIn .2s"
-    }
-  }, React.createElement("div", {
-    onClick: e => e.stopPropagation(),
-    style: {
-      position: "relative",
-      width: "100%",
-      maxWidth: 340,
-      margin: "auto 0",
-      flexShrink: 0
-    }
-  }, React.createElement("button", {
-    onClick: () => setPlusOpen(false),
-    "aria-label": "Close",
-    style: {
-      position: "absolute",
-      top: -14,
-      right: -6,
-      zIndex: 1,
-      width: 30,
-      height: 30,
-      borderRadius: 30,
-      background: "#fff",
-      border: "none",
-      color: "#1a120d",
-      fontSize: 16,
-      fontWeight: 700,
-      cursor: "pointer"
-    }
-  }, "×"), React.createElement(PlusGate, {
-    feature: "everything in Plursky+"
-  }, React.createElement("div", {
-    style: {
-      height: 460
-    }
-  })))), React.createElement("div", {
+  }, "→")), plusOpen && React.createElement(PlusSheet, {
+    feature: "everything in Plursky+",
+    onClose: () => setPlusOpen(false)
+  }), React.createElement("div", {
     "data-animate": true,
     style: {
       display: "grid",
@@ -11418,6 +11328,7 @@ function WrappedStory({
   onClose
 }) {
   var [idx, setIdx] = React.useState(0);
+  var [plusOpen, setPlusOpen] = React.useState(false);
   var CFG = window.FESTIVAL_CONFIG || {};
   var heroUrl = useMomentPhoto(recap.heroPhotoMoment?.photoId);
   var cards = React.useMemo(() => {
@@ -11537,7 +11448,7 @@ function WrappedStory({
   };
   var handleExport = async () => {
     if (!_isPlusSub()) {
-      alert("Upgrade to Plursky+ to export your Wrapped cards.");
+      setPlusOpen(true);
       return;
     }
     try {
@@ -11553,7 +11464,10 @@ function WrappedStory({
       display: "flex",
       flexDirection: "column"
     }
-  }, React.createElement("div", {
+  }, plusOpen && React.createElement(PlusSheet, {
+    feature: "Wrapped export",
+    onClose: () => setPlusOpen(false)
+  }), React.createElement("div", {
     style: {
       display: "flex",
       gap: 3,
@@ -11921,6 +11835,64 @@ function _setPlusSub(v) {
 try {
   _initRevenueCat();
 } catch {}
+function PlusSheet({
+  feature,
+  onClose
+}) {
+  var stop = e => e.stopPropagation();
+  return ReactDOM.createPortal(React.createElement("div", {
+    onClick: e => {
+      stop(e);
+      onClose();
+    },
+    style: {
+      position: "fixed",
+      inset: 0,
+      zIndex: 10000,
+      background: "rgba(0,0,0,0.6)",
+      display: "flex",
+      alignItems: "flex-start",
+      justifyContent: "center",
+      padding: 20,
+      overflowY: "auto",
+      WebkitOverflowScrolling: "touch",
+      animation: "fadeIn .2s"
+    }
+  }, React.createElement("div", {
+    onClick: stop,
+    style: {
+      position: "relative",
+      width: "100%",
+      maxWidth: 340,
+      margin: "auto 0",
+      flexShrink: 0
+    }
+  }, React.createElement("button", {
+    onClick: onClose,
+    "aria-label": "Close",
+    style: {
+      position: "absolute",
+      top: -14,
+      right: -6,
+      zIndex: 1,
+      width: 30,
+      height: 30,
+      borderRadius: 30,
+      background: "#fff",
+      border: "none",
+      color: "#1a120d",
+      fontSize: 16,
+      fontWeight: 700,
+      cursor: "pointer"
+    }
+  }, "×"), React.createElement(PlusGate, {
+    feature: feature
+  }, React.createElement("div", {
+    style: {
+      height: 460
+    }
+  })))), document.body);
+}
 function PlusGate({
   children,
   feature
@@ -11966,7 +11938,7 @@ function PlusGate({
       setBusy(false);
     }
   };
-  var _PLUS_PERKS = [["No watermarks", "Clean, brandable exports"], ["Cloud backup", "Your photos & videos, saved safely"], ["Unlimited shares", "No daily limit"], ["Premium templates", "Film Strip, Passport & more"], ["Custom accents", "Pick your festival color"]];
+  var _PLUS_PERKS = [["Keep every memory safe", "Cloud backup + restore across devices"], ["Share in full quality", "1080p, no watermarks, unlimited exports"], ["Make every recap yours", "Premium video styles, music + custom colors"], ["Unlock every discovery", "All Hidden Gems + full trading-card exports"], ["Get festivals first", "Early access + your multi-festival archive"]];
   return React.createElement("div", {
     style: {
       position: "relative",
@@ -13426,6 +13398,7 @@ function RecapScreen({
     }
   }, "🎬 GIF"))), recap.momentsCount >= 3 && (() => {
     var [vidTemplate, setVidTemplate] = React.useState("highlight");
+    var [vidPlusOpen, setVidPlusOpen] = React.useState(false);
     var [vidFormat, setVidFormat] = React.useState("story");
     var [vidState, setVidState] = React.useState("idle");
     var [trackQuery, setTrackQuery] = React.useState("");
@@ -13509,12 +13482,12 @@ function RecapScreen({
       var locked = t !== "highlight" && !_isPlusSub();
       return React.createElement("button", {
         key: t,
-        onClick: () => locked ? null : setVidTemplate(t),
+        onClick: () => locked ? setVidPlusOpen(true) : setVidTemplate(t),
         className: "mono",
         style: {
           padding: "5px 10px",
           borderRadius: 999,
-          cursor: locked ? "default" : "pointer",
+          cursor: "pointer",
           border: "none",
           background: vidTemplate === t ? "#6D28D9" : "rgba(247,237,224,0.1)",
           color: vidTemplate === t ? "#fff" : locked ? "rgba(247,237,224,0.25)" : "rgba(247,237,224,0.5)",
@@ -13524,7 +13497,10 @@ function RecapScreen({
           opacity: locked ? 0.6 : 1
         }
       }, t === "highlight" ? "HIGHLIGHT REEL" : t === "diary" ? "🔒 FESTIVAL DIARY" : "🔒 DAY IN THE LIFE", locked ? "" : "");
-    })), React.createElement("div", {
+    })), vidPlusOpen && React.createElement(PlusSheet, {
+      feature: "premium video styles",
+      onClose: () => setVidPlusOpen(false)
+    }), React.createElement("div", {
       className: "mono",
       style: {
         fontSize: 9,

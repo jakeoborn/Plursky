@@ -1349,6 +1349,7 @@ function FestivalSwitcher({
   onClose
 }) {
   var activeId = FESTIVAL_CONFIG.id;
+  var [plusOpen, setPlusOpen] = React.useState(false);
   var onPick = (id, entry) => {
     if (id === activeId) {
       onClose();
@@ -1360,6 +1361,10 @@ function FestivalSwitcher({
     }
     if (entry.previewOnly && window._isPlusSub?.()) {
       setActiveFestivalAndReload(id);
+      return;
+    }
+    if (entry.previewOnly) {
+      setPlusOpen(true);
       return;
     }
     onClose();
@@ -1380,7 +1385,10 @@ function FestivalSwitcher({
       alignItems: "flex-end",
       animation: "fadeIn .2s"
     }
-  }, React.createElement("div", {
+  }, plusOpen && React.createElement(PlusSheet, {
+    feature: "early festival access",
+    onClose: () => setPlusOpen(false)
+  }), React.createElement("div", {
     onClick: e => e.stopPropagation(),
     style: {
       background: "var(--paper)",
@@ -1507,7 +1515,7 @@ function FestivalSwitcher({
         background: "#6D28D9",
         color: "#fff"
       }
-    }, "PLUS EARLY"), !isActive && !f.available && !f.previewOnly && React.createElement("div", {
+    }, "EARLY ACCESS"), !isActive && !f.available && !f.previewOnly && React.createElement("div", {
       className: "mono",
       style: {
         fontSize: 9,
