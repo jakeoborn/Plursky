@@ -10566,7 +10566,7 @@ function BuildPlaylistButton({
     setStatus("working");
     setBuildProgress("");
     try {
-      var r = await createEdcPlaylist(state, {
+      var r = await createSetsPlaylist(state, {
         soundtrack,
         onProgress: msg => setBuildProgress(msg)
       });
@@ -12381,7 +12381,7 @@ function RecapScreen({
       status: "building"
     });
     try {
-      var result = await createEdcPlaylist(state, {
+      var result = await createSetsPlaylist(state, {
         source: "attended"
       });
       if (result.ok) {

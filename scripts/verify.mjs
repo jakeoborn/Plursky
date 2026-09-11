@@ -1802,6 +1802,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b. Board playlist planner ──────────────────────────────────────────
+// Saved sets are guaranteed seeds; discovery picks are capped, unsaved and
+// carry a reason that is TRUE of the lineup. Fixtures + every _DATA_SETS lineup.
+{
+  console.log("▸ Board playlist gate — seeds guaranteed, picks capped and truly reasoned");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-board-playlist.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`board playlist planner failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 2. Mount probe ─────────────────────────────────────────────────────────
 // Loads the REAL index.html in an iframe rather than reconstructing the script
 // order. An earlier version of this check derived load order by grepping
