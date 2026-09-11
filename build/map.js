@@ -5262,7 +5262,7 @@ function RealMap({
         style: initialStyle.style || initialStyle.url,
         center: [center.lng, center.lat],
         zoom: 16.2,
-        pitch: 18,
+        pitch: 55,
         bearing: 0,
         attributionControl: false
       });
@@ -5529,7 +5529,17 @@ function RealMap({
               map.setPaintProperty(id, "fill-color", "#1a120d");
               map.setPaintProperty(id, "fill-opacity", 0.22);
             }
-            if (/(building|parking|housenum)/i.test(id) && (lyr.type === "fill" || lyr.type === "fill-extrusion")) {
+            if (lyr.type === "fill-extrusion" && /building/i.test(id)) {
+              try {
+                map.setLayoutProperty(id, "visibility", "visible");
+              } catch {}
+              try {
+                map.setPaintProperty(id, "fill-extrusion-color", "#3a2a4d");
+              } catch {}
+              try {
+                map.setPaintProperty(id, "fill-extrusion-opacity", 0.72);
+              } catch {}
+            } else if (/(building|parking|housenum)/i.test(id) && lyr.type === "fill") {
               try {
                 map.setLayoutProperty(id, "visibility", "none");
               } catch {}
