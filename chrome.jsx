@@ -776,16 +776,13 @@ function recordAttendanceFromGps(lat, lng) {
   return added ? hit : null;
 }
 
-// Convert an artist's set start to a real UTC timestamp (respects
-// post-midnight sets: hours < 6 are treated as the following calendar day).
+// Convert an artist's set start to a real UTC timestamp.
 function _artistStartMs(artist) {
   // artistDayDate stamps the weekend THIS act plays (see data.jsx). Reading
-  // dayDates directly fires every W2 reminder a week early.
-  const dayConfig = artistDayDate(artist);
-  if (!dayConfig) return null;
-  const [h, m] = artist.start.split(":").map(Number);
-  const adjustH = h < 6 ? h + 24 : h;
-  return dayConfig.midnightUtc + adjustH * 3600000 + m * 60000;
+  // dayDates directly fires every W2 reminder a week early. _wallMs owns the
+  // post-midnight rule: this used "before 06:00" where every other surface
+  // uses 08:00, so a 06:00-07:59 closing set was reminded a day early.
+  return _wallMs(artistDayDate(artist), artist && artist.start, FESTIVAL_CONFIG && FESTIVAL_CONFIG.tz);
 }
 
 const _REMINDERS_KEY = "reminders_v1";

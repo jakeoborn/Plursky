@@ -2091,8 +2091,8 @@ function _matchSongAtTime(artist, trackData, photoTakenAt) {
   const CFG = window.FESTIVAL_CONFIG || {};
   const dm = CFG.dayDates?.[artist.day];
   if (!dm) return null;
-  const [sh, sm] = artist.start.split(":").map(Number);
-  const setStartMs = dm.midnightUtc + (sh < 8 ? sh + 24 : sh) * 3600000 + sm * 60000;
+  const setStartMs = _wallMs(dm, artist.start, CFG.tz);
+  if (setStartMs == null) return null;
   const photoMs = Date.parse(photoTakenAt.replace(" ", "T"));
   if (isNaN(photoMs)) return null;
   const elapsedMs = photoMs - setStartMs;

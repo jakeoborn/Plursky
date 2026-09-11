@@ -1219,6 +1219,191 @@ function artistDayDate(a, nowMs, savedIds) {
   }
   return dayDateFor(a.day, nowMs, savedIds);
 }
+var _tzFmt = {};
+var _tzNightShifts = {};
+function _utcOffsetMs(tz, ms) {
+  var f = _tzFmt[tz] || (_tzFmt[tz] = new Intl.DateTimeFormat("en-US", {
+    timeZone: tz,
+    hourCycle: "h23",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  }));
+  var p = {};
+  for (var x of f.formatToParts(new Date(ms))) p[x.type] = x.value;
+  return Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute, +p.second) - ms;
+}
+function _wallMs(dayDate, hhmm, tz) {
+  var t = /^(\d{1,2}):(\d{2})$/.exec(hhmm || "");
+  if (!dayDate || !t) return null;
+  var h = +t[1],
+    m = +t[2];
+  var naive = dayDate.midnightUtc + ((h < 8 ? h + 24 : h) * 60 + m) * 60000;
+  if (!tz || typeof Intl === "undefined") return naive;
+  try {
+    var key = tz + "|" + dayDate.midnightUtc;
+    if (!(key in _tzNightShifts)) {
+      var _o = _utcOffsetMs(tz, dayDate.midnightUtc);
+      _tzNightShifts[key] = _utcOffsetMs(tz, dayDate.midnightUtc + 32 * 3600000) === _o ? null : _o;
+    }
+    var o0 = _tzNightShifts[key];
+    if (o0 === null) return naive;
+    var ms = naive;
+    for (var i = 0; i < 2; i++) ms = naive + o0 - _utcOffsetMs(tz, ms);
+    return ms;
+  } catch {
+    return naive;
+  }
+}
+function _cfgActDayDate(cfg, a) {
+  var d = cfg && cfg.dayDates && a && cfg.dayDates[a.day];
+  if (!d || a.weekend !== "W2") return d || null;
+  var w = cfg.weekendStartMs;
+  var shift = w && typeof w.W1 === "number" && typeof w.W2 === "number" ? w.W2 - w.W1 : 0;
+  return shift > 0 ? _shiftDayDate(d, shift) : d;
+}
+function _scheduleActs(artists) {
+  return (artists || []).map(a => {
+    var o = {
+      id: a.id,
+      name: a.name,
+      day: a.day,
+      stage: a.stage ?? null,
+      start: a.start || "",
+      end: a.end || ""
+    };
+    if (a.weekend != null) o.weekend = a.weekend;
+    return o;
+  });
+}
+var _SCHED_KINDS = ["day", "stage", "start", "end", "weekend"];
+function _schedSlot(a) {
+  var t = v => typeof v === "string" && /^\d:\d\d$/.test(v) ? "0" + v : v || "";
+  return {
+    day: a.day,
+    stage: a.stage ?? null,
+    start: t(a.start),
+    end: t(a.end),
+    weekend: a.weekend ?? null
+  };
+}
+function _schedIndex(acts, side) {
+  var m = new Map();
+  for (var a of acts || []) {
+    if (!a || a.id == null) continue;
+    if (m.has(a.id)) throw new Error(`diffSchedule: act ${a.id} appears twice in the ${side} schedule`);
+    m.set(a.id, a);
+  }
+  return m;
+}
+function diffSchedule(oldActs, newActs, cfg) {
+  var before = _schedIndex(oldActs, "old"),
+    after = _schedIndex(newActs, "new");
+  var counts = {
+    day: 0,
+    stage: 0,
+    start: 0,
+    end: 0,
+    weekend: 0,
+    cancelled: 0,
+    added: 0
+  };
+  var changes = [];
+  var at = s => _wallMs(_cfgActDayDate(cfg, s), s.start, cfg && cfg.tz);
+  var unchanged = 0;
+  var _loop = function () {
+      var b = _schedSlot(o),
+        n = after.get(id);
+      if (!n) {
+        changes.push({
+          id,
+          name: o.name,
+          kinds: ["cancelled"],
+          before: b,
+          after: null,
+          startDeltaMin: null
+        });
+        counts.cancelled++;
+        return 0;
+      }
+      var f = _schedSlot(n);
+      var kinds = _SCHED_KINDS.filter(k => b[k] !== f[k]);
+      if (!kinds.length) {
+        unchanged++;
+        return 0;
+      }
+      kinds.forEach(k => counts[k]++);
+      var s0 = at(b),
+        s1 = at(f);
+      changes.push({
+        id,
+        name: n.name,
+        kinds,
+        before: b,
+        after: f,
+        startDeltaMin: s0 != null && s1 != null ? Math.round((s1 - s0) / 60000) : null
+      });
+    },
+    _ret;
+  for (var [id, o] of before) {
+    _ret = _loop();
+    if (_ret === 0) continue;
+  }
+  for (var [_id2, n] of after) {
+    if (before.has(_id2)) continue;
+    changes.push({
+      id: _id2,
+      name: n.name,
+      kinds: ["added"],
+      before: null,
+      after: _schedSlot(n),
+      startDeltaMin: null
+    });
+    counts.added++;
+  }
+  return {
+    changes,
+    counts,
+    unchanged
+  };
+}
+function _schedMerge(a, c) {
+  var o = {
+    ...a,
+    name: c.name ?? a.name,
+    day: c.after.day,
+    stage: c.after.stage,
+    start: c.after.start,
+    end: c.after.end
+  };
+  if (c.after.weekend != null) o.weekend = c.after.weekend;else delete o.weekend;
+  return o;
+}
+function applyScheduleDiff(acts, diff) {
+  var byId = new Map((diff && diff.changes || []).map(c => [c.id, c]));
+  var out = [],
+    seen = new Set();
+  for (var a of acts || []) {
+    var c = byId.get(a.id);
+    if (!c) {
+      out.push(a);
+      continue;
+    }
+    if (!c.after) continue;
+    seen.add(a.id);
+    out.push(_schedMerge(a, c));
+  }
+  for (var _c of byId.values()) {
+    if (_c.after && !seen.has(_c.id) && _c.kinds.includes("added")) out.push(_schedMerge({
+      id: _c.id,
+      name: _c.name
+    }, _c));
+  }
+  return out;
+}
 function _daysFor(cfg) {
   var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var shift = _weekendShiftMs(cfg);
@@ -1244,10 +1429,10 @@ function _computeNow() {
   var mm = Math.floor(localMs / 60000) % 60;
   var timeStr = `${String(hh).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
   function absMs(day, hhmm) {
-    var [h, m] = hhmm.split(":").map(Number);
-    var base = dayDateFor(day, utcNow)?.midnightUtc;
+    var base = dayDateFor(day, utcNow);
     if (!base) return Infinity;
-    return base + (h < 8 ? 86400000 : 0) + h * 3600000 + m * 60000;
+    var ms = _wallMs(base, hhmm, FESTIVAL_CONFIG.tz);
+    return ms == null ? NaN : ms;
   }
   var liveNow = activeLineup().filter(a => {
     var s = absMs(a.day, a.start),
@@ -2019,9 +2204,9 @@ var _DATA_SETS = {
     config: _regConfig("edc-orlando-2026")
   }
 };
-for (var _id2 of _WAVE1_IDS) {
-  var _f2 = _WAVE1[_id2];
-  if (_f2) _DATA_SETS[_id2] = {
+for (var _id3 of _WAVE1_IDS) {
+  var _f2 = _WAVE1[_id3];
+  if (_f2) _DATA_SETS[_id3] = {
     stages: _f2.stages,
     artists: _f2.artists,
     amenities: _f2.amenities,

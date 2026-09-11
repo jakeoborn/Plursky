@@ -13,10 +13,7 @@ function _msToIcsDate(ms) {
   return `${d.getUTCFullYear()}${pad(d.getUTCMonth() + 1)}${pad(d.getUTCDate())}T${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}00Z`;
 }
 function _artistMs(artist, hhmm) {
-  var day = artistDayDate(artist);
-  if (!day) return null;
-  var [h, m] = hhmm.split(":").map(Number);
-  return day.midnightUtc + (h < 8 ? 86400000 : 0) + h * 3600000 + m * 60000;
+  return _wallMs(artistDayDate(artist), hhmm, FESTIVAL_CONFIG && FESTIVAL_CONFIG.tz);
 }
 async function exportSavedSetsICS(savedIds) {
   var artists = activeLineup(savedIds).filter(a => savedIds.includes(a.id)).sort((a, b) => a.day - b.day || (a.start < b.start ? -1 : 1));

@@ -1683,6 +1683,145 @@ function artistDayDate(a, nowMs, savedIds) {
   return dayDateFor(a.day, nowMs, savedIds);
 }
 
+// ── Festival wall-clock → UTC instant ──────────────────────────────────────
+// THE conversion from "HH:MM on festival day n" to an absolute time. Before
+// 08:00 is still the same festival night (toNightMin's rule), so it lands on
+// the next calendar day. The tz step matters on a DST night: Escape's
+// Oct 31 → Nov 1 falls back at 02:00, and midnightUtc + hours put every later
+// set an hour late. A night with no transition (every live festival today)
+// returns that plain sum. Null for a blank (TBA) time or an unknown day.
+const _tzFmt = {};
+const _tzNightShifts = {};
+function _utcOffsetMs(tz, ms) {
+  const f = _tzFmt[tz] || (_tzFmt[tz] = new Intl.DateTimeFormat("en-US", {
+    timeZone: tz, hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", second: "2-digit" }));
+  const p = {};
+  for (const x of f.formatToParts(new Date(ms))) p[x.type] = x.value;
+  return Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute, +p.second) - ms;
+}
+function _wallMs(dayDate, hhmm, tz) {
+  const t = /^(\d{1,2}):(\d{2})$/.exec(hhmm || "");
+  if (!dayDate || !t) return null;
+  const h = +t[1], m = +t[2];
+  const naive = dayDate.midnightUtc + ((h < 8 ? h + 24 : h) * 60 + m) * 60000;
+  if (!tz || typeof Intl === "undefined") return naive;
+  try {
+    const key = tz + "|" + dayDate.midnightUtc;
+    if (!(key in _tzNightShifts)) {
+      const o0 = _utcOffsetMs(tz, dayDate.midnightUtc);
+      _tzNightShifts[key] = _utcOffsetMs(tz, dayDate.midnightUtc + 32 * 3600000) === o0 ? null : o0;
+    }
+    const o0 = _tzNightShifts[key];
+    if (o0 === null) return naive;
+    let ms = naive;
+    for (let i = 0; i < 2; i++) ms = naive + o0 - _utcOffsetMs(tz, ms);
+    return ms;
+  } catch { return naive; }
+}
+
+// artistDayDate for ANY festival's config, not just the active one: the base
+// dates, shifted a week for a W2-only act. The schedule diff reads feeds of
+// festivals that are not active, so it cannot go through window.FESTIVAL_CONFIG.
+function _cfgActDayDate(cfg, a) {
+  const d = cfg && cfg.dayDates && a && cfg.dayDates[a.day];
+  if (!d || a.weekend !== "W2") return d || null;
+  const w = cfg.weekendStartMs;
+  const shift = w && typeof w.W1 === "number" && typeof w.W2 === "number" ? w.W2 - w.W1 : 0;
+  return shift > 0 ? _shiftDayDate(d, shift) : d;
+}
+
+// ── Schedule Sync: the feed shape, the diff, the replay ────────────────────
+// The schedule as f/<id>/schedule.json publishes it and as the diff reads it.
+// gen-festival-pages calls this same function, so the feed and the app's own
+// copy can never be shaped differently.
+function _scheduleActs(artists) {
+  return (artists || []).map(a => {
+    const o = { id: a.id, name: a.name, day: a.day, stage: a.stage ?? null, start: a.start || "", end: a.end || "" };
+    if (a.weekend != null) o.weekend = a.weekend;   // ACL: "both" / W1 / W2
+    return o;
+  });
+}
+
+const _SCHED_KINDS = ["day", "stage", "start", "end", "weekend"];
+function _schedSlot(a) {
+  const t = v => (typeof v === "string" && /^\d:\d\d$/.test(v) ? "0" + v : (v || ""));
+  return { day: a.day, stage: a.stage ?? null, start: t(a.start), end: t(a.end), weekend: a.weekend ?? null };
+}
+function _schedIndex(acts, side) {
+  const m = new Map();
+  for (const a of acts || []) {
+    if (!a || a.id == null) continue;
+    if (m.has(a.id)) throw new Error(`diffSchedule: act ${a.id} appears twice in the ${side} schedule`);
+    m.set(a.id, a);
+  }
+  return m;
+}
+
+// What changed between two copies of one festival's schedule. Pure — no
+// storage, no clock — so the overlay and scripts/test-schedule-diff.mjs call
+// it the same way. One row per changed act carrying EVERY kind that applies,
+// so "moved stage and time" is one line, not two:
+//   day · stage · start · end · weekend · cancelled · added
+// A blank start/end is TBA and a null stage is unassigned. Both are values:
+// TBA → 21:00 is a start change, and so is 21:00 → TBA. The same clock time
+// on another day is a day change only. startDeltaMin is real elapsed minutes
+// via _wallMs (post-midnight and DST aware); null if either side is TBA.
+// A rename alone is not a change; the row carries the new name.
+function diffSchedule(oldActs, newActs, cfg) {
+  const before = _schedIndex(oldActs, "old"), after = _schedIndex(newActs, "new");
+  const counts = { day: 0, stage: 0, start: 0, end: 0, weekend: 0, cancelled: 0, added: 0 };
+  const changes = [];
+  const at = s => _wallMs(_cfgActDayDate(cfg, s), s.start, cfg && cfg.tz);
+  let unchanged = 0;
+  for (const [id, o] of before) {
+    const b = _schedSlot(o), n = after.get(id);
+    if (!n) {
+      changes.push({ id, name: o.name, kinds: ["cancelled"], before: b, after: null, startDeltaMin: null });
+      counts.cancelled++;
+      continue;
+    }
+    const f = _schedSlot(n);
+    const kinds = _SCHED_KINDS.filter(k => b[k] !== f[k]);
+    if (!kinds.length) { unchanged++; continue; }
+    kinds.forEach(k => counts[k]++);
+    const s0 = at(b), s1 = at(f);
+    changes.push({ id, name: n.name, kinds, before: b, after: f,
+      startDeltaMin: s0 != null && s1 != null ? Math.round((s1 - s0) / 60000) : null });
+  }
+  for (const [id, n] of after) {
+    if (before.has(id)) continue;
+    changes.push({ id, name: n.name, kinds: ["added"], before: null, after: _schedSlot(n), startDeltaMin: null });
+    counts.added++;
+  }
+  return { changes, counts, unchanged };
+}
+
+// Replays a diff onto a schedule (bare feed acts or full artist objects —
+// fields the diff does not own are kept). Idempotent: an added act already
+// present is replaced, not appended, and a cancelled one stays gone, so the
+// same feed fetched twice cannot stack its changes.
+function _schedMerge(a, c) {
+  const o = { ...a, name: c.name ?? a.name, day: c.after.day, stage: c.after.stage, start: c.after.start, end: c.after.end };
+  if (c.after.weekend != null) o.weekend = c.after.weekend; else delete o.weekend;
+  return o;
+}
+function applyScheduleDiff(acts, diff) {
+  const byId = new Map(((diff && diff.changes) || []).map(c => [c.id, c]));
+  const out = [], seen = new Set();
+  for (const a of acts || []) {
+    const c = byId.get(a.id);
+    if (!c) { out.push(a); continue; }
+    if (!c.after) continue;                       // cancelled
+    seen.add(a.id);
+    out.push(_schedMerge(a, c));
+  }
+  for (const c of byId.values()) {
+    if (c.after && !seen.has(c.id) && c.kinds.includes("added")) out.push(_schedMerge({ id: c.id, name: c.name }, c));
+  }
+  return out;
+}
+
 function _daysFor(cfg) {
   const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   const shift = _weekendShiftMs(cfg);
@@ -1711,15 +1850,15 @@ function _computeNow() {
   const mm = Math.floor(localMs / 60000) % 60;
   const timeStr = `${String(hh).padStart(2,"0")}:${String(mm).padStart(2,"0")}`;
 
-  // Convert HH:MM to absolute UTC ms for a given festival day.
-  // Mirrors toNightMin: times before 08:00 belong to the next calendar day.
+  // Convert HH:MM to absolute UTC ms for a given festival day (_wallMs owns
+  // the before-08:00 rule and the DST night).
   function absMs(day, hhmm) {
-    const [h, m] = hhmm.split(":").map(Number);
     // dayDateFor, not dayDates — on a two-weekend festival this is the whole
     // difference between "now playing" working and returning nothing all weekend.
-    const base = dayDateFor(day, utcNow)?.midnightUtc;
+    const base = dayDateFor(day, utcNow);
     if (!base) return Infinity;
-    return base + (h < 8 ? 86400000 : 0) + h * 3600000 + m * 60000;
+    const ms = _wallMs(base, hhmm, FESTIVAL_CONFIG.tz);
+    return ms == null ? NaN : ms;
   }
 
   // Find artists currently on stage
