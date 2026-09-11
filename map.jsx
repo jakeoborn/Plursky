@@ -3671,10 +3671,12 @@ function RealMap({
         // (Snapchat-style "this map is for the fairgrounds, not Vegas").
         // setMaxBounds below pins panning to ±400m of the festival.
         zoom: 16.2,
-        // Slight isometric pitch — Snapchat Map vibe. Each stage's iconic
-        // 3D shape (lotus, pyramid, dome, gear, etc.) reads as a stylized
-        // building, with the name pill floating above it.
-        pitch: 18,
+        // A real 3D view by default: at 55° the extruded buildings (Stylized
+        // style) and each stage's iconic shape (lotus, pyramid, dome,
+        // gear, etc.) read as solid structures, with the name pill floating
+        // above. MapLibre's default maxPitch is 60; a selected stage flies
+        // in at 58.
+        pitch: 55,
         bearing: 0,
         attributionControl: false,
       });
@@ -3770,9 +3772,9 @@ function RealMap({
       const SUB_LANDMARKS = FESTIVAL_CONFIG.landmarks || [];
 
       // Stage heights tuned for Snapchat-style isometric overlay — building
-      // scale (12-32m), NOT the prior 80-220m skyscrapers. At pitch ~22°
-      // these read as distinctive stylized buildings without dominating
-      // the festival ground or blocking the stages behind them.
+      // scale (12-32m), NOT the prior 80-220m skyscrapers. At the 55°
+      // default pitch these read as distinctive stylized buildings beside
+      // the real extruded ones, without blocking the stages behind them.
       const STAGE_3D_DESIGN = {
         kinetic: { sides: 16, radius: 40, height: 32, rot:  0, altInner: 0.42 }, // 8-petal lotus, mainstage
         quantum: { sides:  3, radius: 30, height: 22, rot: 30 },                  // trance pyramid
@@ -3888,10 +3890,20 @@ function RealMap({
               map.setPaintProperty(id, "fill-color", "#1a120d");
               map.setPaintProperty(id, "fill-opacity", 0.22);
             }
-            // Buildings + parking — HIDE entirely. Jake wants just the
-            // speedway oval + stages on top, not OSM building polygons
-            // (grandstand structures + parking lots) cluttering the view.
-            if (/(building|parking|housenum)/i.test(id) && (lyr.type === "fill" || lyr.type === "fill-extrusion")) {
+            // 3D buildings — SHOWN (Jake, 2026-09-11: "unhide the
+            // building-3d layer"). Liberty's extrusion layer gives the
+            // venue real massing at the 55° default pitch, tinted into the
+            // night palette so the stage pillars and pills stay the
+            // brightest things on the map.
+            if (lyr.type === "fill-extrusion" && /building/i.test(id)) {
+              try { map.setLayoutProperty(id, "visibility", "visible"); } catch {}
+              try { map.setPaintProperty(id, "fill-extrusion-color", "#3a2a4d"); } catch {}
+              try { map.setPaintProperty(id, "fill-extrusion-opacity", 0.72); } catch {}
+            }
+            // Flat building footprints + parking — still hidden: under the
+            // extrusions they only double-draw, and parking lots clutter
+            // the festival ground.
+            else if (/(building|parking|housenum)/i.test(id) && lyr.type === "fill") {
               try { map.setLayoutProperty(id, "visibility", "none"); } catch {}
             }
             // Roads — ember on motorways, flare on secondary, muted on side
