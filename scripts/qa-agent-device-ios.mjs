@@ -213,8 +213,51 @@ try {
     await run("xcrun", ["simctl", "uninstall", udid, bundleId], { allowFailure: true });
     await run("xcrun", ["simctl", "install", udid, app]);
   });
-  const { createAgentDeviceClient } = await import("agent-device");
-  client = createAgentDeviceClient({ session: `plursky-${opts.flow}-${process.pid}`, lockPolicy: "reject", lockPlatform: "ios" });
+  const { createAgentDeviceClient, normalizeAgentDeviceError } = await import("agent-device");
+  let clientAttempt = 0;
+  const freshClient = () => createAgentDeviceClient({
+    session: `plursky-${opts.flow}-${process.pid}-${++clientAttempt}`,
+    lockPolicy: "reject",
+    lockPlatform: "ios",
+  });
+  client = freshClient();
+
+  await step("prepare-ios-runner", async () => {
+    const attempts = [];
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      const started = Date.now();
+      try {
+        const prepared = await client.command.prepare({
+          action: "ios-runner", platform: "ios", udid, timeoutMs: 120_000,
+        });
+        attempts.push({ attempt, status: "PASS", elapsedMs: Date.now() - started, prepared });
+        result.iosRunnerPreparation = {
+          attempts: attempt,
+          durationMs: prepared.durationMs,
+          cache: prepared.cache,
+          artifact: prepared.artifact,
+          timing: prepared.timing,
+        };
+        await writeFile(join(out, "agent-device-prepare-ios-runner.json"), JSON.stringify({ attempts }, null, 2) + "\n");
+        result.artifacts.iosRunnerPreparation = join(out, "agent-device-prepare-ios-runner.json");
+        return;
+      } catch (error) {
+        const normalized = normalizeAgentDeviceError(error);
+        attempts.push({ attempt, status: "FAIL", elapsedMs: Date.now() - started, error: normalized });
+        await writeFile(join(out, "agent-device-prepare-ios-runner.json"), JSON.stringify({ attempts }, null, 2) + "\n");
+        result.artifacts.iosRunnerPreparation = join(out, "agent-device-prepare-ios-runner.json");
+        const prepareTimeout = normalized.message === "Daemon request timed out";
+        if (!prepareTimeout || attempt === 2) throw error;
+
+        // Retry only the explicit, side-effect-free runner preparation. Never
+        // retry app interactions: a timed-out press may already have landed.
+        try { await client.sessions.close(); } catch {}
+        client = null;
+        await new Promise(r => setTimeout(r, 2_000));
+        client = freshClient();
+      }
+    }
+  });
 
   if (opts.flow === "iap-sheet") await step("drive-iap-sheet", async () => {
     await client.apps.open({ app: bundleId, platform: "ios", udid });
