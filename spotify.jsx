@@ -5707,33 +5707,7 @@ function MemoriesScreen({ state, setState }) {
         )}
 
         {/* Paywall overlay — shown when a free user taps cloud backup. */}
-        {showPlus && (
-          <div onClick={() => setShowPlus(false)} style={{
-            position: "fixed", inset: 0, zIndex: 260, background: "rgba(0,0,0,0.6)",
-            // alignItems is flex-start + margin:"auto 0" on the card below, NOT
-            // alignItems:"center". Centred flex children whose content is TALLER
-            // than the container overflow in BOTH directions and the overflowing
-            // top is unreachable — you cannot scroll back to it. The card is ~600px
-            // and an iPhone-compat window on an iPad is 375x667, so on 2026-09-07
-            // this clipped RESTORE PURCHASE — the last control — in half. That is
-            // the required restore mechanism for a non-consumable (Guideline
-            // 3.1.1), on the exact device family that had just rejected 1.12.
-            // flex-start + auto margins centre it when it fits and scroll when it
-            // does not, which is the behaviour we actually wanted.
-            display: "flex", alignItems: "flex-start", justifyContent: "center", padding: 20,
-            overflowY: "auto", WebkitOverflowScrolling: "touch",
-            animation: "fadeIn .2s",
-          }}>
-            <div onClick={e => e.stopPropagation()} style={{ position: "relative", width: "100%", maxWidth: 340, margin: "auto 0", flexShrink: 0 }}>
-              <button onClick={() => setShowPlus(false)} aria-label="Close" style={{
-                position: "absolute", top: -14, right: -6, zIndex: 1,
-                width: 30, height: 30, borderRadius: 30, background: "#fff", border: "none",
-                color: "#1a120d", fontSize: 16, fontWeight: 700, cursor: "pointer",
-              }}>×</button>
-              <PlusGate feature="cloud backup"><div style={{ height: 460 }} /></PlusGate>
-            </div>
-          </div>
-        )}
+        {showPlus && <PlusSheet feature="cloud backup" onClose={() => setShowPlus(false)} />}
 
         {/* Inviting empty state — first run, no moments yet. */}
         {totalCount === 0 && (
@@ -6389,34 +6363,7 @@ function MeScreen({ state, setState }) {
           </button>
         )}
 
-        {/* Paywall overlay — same shape as the cloud-backup one in Memories. */}
-        {plusOpen && (
-          <div onClick={() => setPlusOpen(false)} style={{
-            position: "fixed", inset: 0, zIndex: 260, background: "rgba(0,0,0,0.6)",
-            // alignItems is flex-start + margin:"auto 0" on the card below, NOT
-            // alignItems:"center". Centred flex children whose content is TALLER
-            // than the container overflow in BOTH directions and the overflowing
-            // top is unreachable — you cannot scroll back to it. The card is ~600px
-            // and an iPhone-compat window on an iPad is 375x667, so on 2026-09-07
-            // this clipped RESTORE PURCHASE — the last control — in half. That is
-            // the required restore mechanism for a non-consumable (Guideline
-            // 3.1.1), on the exact device family that had just rejected 1.12.
-            // flex-start + auto margins centre it when it fits and scroll when it
-            // does not, which is the behaviour we actually wanted.
-            display: "flex", alignItems: "flex-start", justifyContent: "center", padding: 20,
-            overflowY: "auto", WebkitOverflowScrolling: "touch",
-            animation: "fadeIn .2s",
-          }}>
-            <div onClick={e => e.stopPropagation()} style={{ position: "relative", width: "100%", maxWidth: 340, margin: "auto 0", flexShrink: 0 }}>
-              <button onClick={() => setPlusOpen(false)} aria-label="Close" style={{
-                position: "absolute", top: -14, right: -6, zIndex: 1,
-                width: 30, height: 30, borderRadius: 30, background: "#fff", border: "none",
-                color: "#1a120d", fontSize: 16, fontWeight: 700, cursor: "pointer",
-              }}>×</button>
-              <PlusGate feature="everything in Plursky+"><div style={{ height: 460 }} /></PlusGate>
-            </div>
-          </div>
-        )}
+        {plusOpen && <PlusSheet feature="everything in Plursky+" onClose={() => setPlusOpen(false)} />}
 
         {/* ── 3. 4-card grid (komoot-modeled) ──────────────────────
             Quick jumps to Saved, Memories (stub), Crew (stub),
@@ -7509,6 +7456,7 @@ function _aggregateSoundtrack(moments) {
 // ── Festival Wrapped — Spotify-style swipeable story ─────────────
 function WrappedStory({ recap, onClose }) {
   const [idx, setIdx] = React.useState(0);
+  const [plusOpen, setPlusOpen] = React.useState(false);
   const CFG = window.FESTIVAL_CONFIG || {};
   const heroUrl = useMomentPhoto(recap.heroPhotoMoment?.photoId);
 
@@ -7611,7 +7559,7 @@ function WrappedStory({ recap, onClose }) {
   };
 
   const handleExport = async () => {
-    if (!_isPlusSub()) { alert("Upgrade to Plursky+ to export your Wrapped cards."); return; }
+    if (!_isPlusSub()) { setPlusOpen(true); return; }
     try { await _shareRecapCard(recap); } catch {}
   };
 
@@ -7620,6 +7568,7 @@ function WrappedStory({ recap, onClose }) {
       position: "fixed", inset: 0, zIndex: 9999,
       background: "#000", display: "flex", flexDirection: "column",
     }}>
+      {plusOpen && <PlusSheet feature="Wrapped export" onClose={() => setPlusOpen(false)} />}
       <div style={{
         display: "flex", gap: 3, padding: "12px 16px 0",
         position: "absolute", top: 0, left: 0, right: 0, zIndex: 2,
@@ -7966,6 +7915,37 @@ function _setPlusSub(v) { try { localStorage.setItem(PLUS_KEY, v ? "1" : "0"); }
 // Initialize RevenueCat on first load (non-blocking)
 try { _initRevenueCat(); } catch {}
 
+// The paywall as a sheet, opened at the point of intent (#115): a locked chip,
+// a locked export, a locked early-access festival. Portalled to <body> so no
+// caller's transform (the tilt cards), overflow or z-index (Wrapped is 9999)
+// can clip or bury it. Clicks stop here — a portal still bubbles React events
+// through its owner, and the switcher's backdrop would close on them.
+// alignItems flex-start + margin "auto 0" on the card, NOT centre: a centred
+// child taller than the window overflows BOTH ways and its top is
+// unreachable. On 2026-09-07 that cut RESTORE PURCHASE (Guideline 3.1.1) in
+// half in an iPhone-compat window on iPad; this scrolls instead.
+function PlusSheet({ feature, onClose }) {
+  const stop = e => e.stopPropagation();
+  return ReactDOM.createPortal(
+    <div onClick={e => { stop(e); onClose(); }} style={{
+      position: "fixed", inset: 0, zIndex: 10000, background: "rgba(0,0,0,0.6)",
+      display: "flex", alignItems: "flex-start", justifyContent: "center", padding: 20,
+      overflowY: "auto", WebkitOverflowScrolling: "touch",
+      animation: "fadeIn .2s",
+    }}>
+      <div onClick={stop} style={{ position: "relative", width: "100%", maxWidth: 340, margin: "auto 0", flexShrink: 0 }}>
+        <button onClick={onClose} aria-label="Close" style={{
+          position: "absolute", top: -14, right: -6, zIndex: 1,
+          width: 30, height: 30, borderRadius: 30, background: "#fff", border: "none",
+          color: "#1a120d", fontSize: 16, fontWeight: 700, cursor: "pointer",
+        }}>×</button>
+        <PlusGate feature={feature}><div style={{ height: 460 }} /></PlusGate>
+      </div>
+    </div>,
+    document.body
+  );
+}
+
 function PlusGate({ children, feature }) {
   // Hook first: an early `return children` above a useState is a conditional
   // hook call, which React only tolerates while the condition never flips.
@@ -8015,11 +7995,11 @@ function PlusGate({ children, feature }) {
   };
 
   const _PLUS_PERKS = [
-    ["No watermarks", "Clean, brandable exports"],
-    ["Cloud backup", "Your photos & videos, saved safely"],
-    ["Unlimited shares", "No daily limit"],
-    ["Premium templates", "Film Strip, Passport & more"],
-    ["Custom accents", "Pick your festival color"],
+    ["Keep every memory safe", "Cloud backup + restore across devices"],
+    ["Share in full quality", "1080p, no watermarks, unlimited exports"],
+    ["Make every recap yours", "Premium video styles, music + custom colors"],
+    ["Unlock every discovery", "All Hidden Gems + full trading-card exports"],
+    ["Get festivals first", "Early access + your multi-festival archive"],
   ];
 
   // Both layers occupy the SAME grid cell, so this box is as tall as whichever
@@ -8892,6 +8872,7 @@ function RecapScreen({ state, setState }) {
         {/* RECAP VIDEO */}
         {recap.momentsCount >= 3 && (() => {
           const [vidTemplate, setVidTemplate] = React.useState("highlight");
+          const [vidPlusOpen, setVidPlusOpen] = React.useState(false);
           const [vidFormat, setVidFormat] = React.useState("story");
           const [vidState, setVidState] = React.useState("idle");
           const [trackQuery, setTrackQuery] = React.useState("");
@@ -8940,8 +8921,8 @@ function RecapScreen({ state, setState }) {
                 {["highlight", "diary", "ditl"].map(t => {
                   const locked = t !== "highlight" && !_isPlusSub();
                   return (
-                    <button key={t} onClick={() => locked ? null : setVidTemplate(t)} className="mono" style={{
-                      padding: "5px 10px", borderRadius: 999, cursor: locked ? "default" : "pointer", border: "none",
+                    <button key={t} onClick={() => locked ? setVidPlusOpen(true) : setVidTemplate(t)} className="mono" style={{
+                      padding: "5px 10px", borderRadius: 999, cursor: "pointer", border: "none",
                       background: vidTemplate === t ? "#6D28D9" : "rgba(247,237,224,0.1)",
                       color: vidTemplate === t ? "#fff" : locked ? "rgba(247,237,224,0.25)" : "rgba(247,237,224,0.5)",
                       fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
@@ -8950,6 +8931,7 @@ function RecapScreen({ state, setState }) {
                   );
                 })}
               </div>
+              {vidPlusOpen && <PlusSheet feature="premium video styles" onClose={() => setVidPlusOpen(false)} />}
               <div className="mono" style={{ fontSize: 9, color: "rgba(247,237,224,0.35)", marginTop: 8, letterSpacing: 1 }}>
                 {vidTemplate === "highlight" ? "Fast cuts synced to the beat — your best moments, drop by drop." : vidTemplate === "diary" ? "Slow, cinematic. Your weekend told as a story." : "Morning to sunrise — one continuous timeline."}
               </div>

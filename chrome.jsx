@@ -1114,10 +1114,14 @@ function FestivalChip({ compact = false, accent = "var(--ink)" }) {
 
 function FestivalSwitcher({ onClose }) {
   const activeId = FESTIVAL_CONFIG.id;
+  const [plusOpen, setPlusOpen] = React.useState(false);
   const onPick = (id, entry) => {
     if (id === activeId) { onClose(); return; }
     if (entry.available) { setActiveFestivalAndReload(id); return; }
     if (entry.previewOnly && window._isPlusSub?.()) { setActiveFestivalAndReload(id); return; }
+    // A locked early-access row sells the offer instead of closing on the
+    // user (#115). Only previewOnly rows are enabled, so this is the one path.
+    if (entry.previewOnly) { setPlusOpen(true); return; }
     onClose();
   };
   const byRegion = {};
@@ -1131,6 +1135,7 @@ function FestivalSwitcher({ onClose }) {
       display: "flex", alignItems: "flex-end",
       animation: "fadeIn .2s",
     }}>
+      {plusOpen && <PlusSheet feature="early festival access" onClose={() => setPlusOpen(false)} />}
       <div onClick={e => e.stopPropagation()} style={{
         background: "var(--paper)", color: "var(--ink)",
         borderTopLeftRadius: 22, borderTopRightRadius: 22,
@@ -1187,7 +1192,7 @@ function FestivalSwitcher({ onClose }) {
                     )}
                     {!isActive && !f.available && f.previewOnly && (
                       <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, padding: "3px 7px", borderRadius: 999, background: "#6D28D9", color: "#fff" }}>
-                        PLUS EARLY
+                        EARLY ACCESS
                       </div>
                     )}
                     {!isActive && !f.available && !f.previewOnly && (
