@@ -8385,6 +8385,61 @@ function FestivalArchiveList({ archive }) {
   );
 }
 
+// Magnifying rail for the Recap trading cards ONLY (Jake's ruling, 2026-09-11).
+// As the row scrolls, the card nearest the centre lifts and grows slightly and
+// its neighbours step down, so the selected card reads better before export.
+// The scale is a transform on each slot, so layout and tap targets never move,
+// and it is capped at MAG_MAX / MAG_MIN. Spacers let the first and last cards
+// reach the centre. Transforms are written in a rAF, not through state, so
+// scrolling never re-renders the recap. Under reduced motion it is a plain
+// snap-scrolling row. The bottom tab bar is deliberately NOT a dock.
+const MAG_MAX = 1.08, MAG_MIN = 0.92;
+function MagnifyRail({ cardWidth = 90, gap = 8, children }) {
+  const railRef = React.useRef(null);
+  const reduce = React.useMemo(() => { try { return !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches; } catch { return false; } }, []);
+  const count = React.Children.count(children);
+  React.useEffect(() => {
+    const rail = railRef.current;
+    if (!rail || reduce) return;
+    let raf = 0;
+    const paint = () => {
+      raf = 0;
+      const mid = rail.scrollLeft + rail.clientWidth / 2;
+      for (const slot of rail.querySelectorAll("[data-mag-slot]")) {
+        const d = Math.min(1, Math.abs(slot.offsetLeft + slot.offsetWidth / 2 - mid) / (slot.offsetWidth + gap));
+        const k = 1 - d;   // 1 = centred, 0 = one card or more away
+        slot.style.transform = `translateY(${(-4 * k).toFixed(2)}px) scale(${(MAG_MIN + (MAG_MAX - MAG_MIN) * k).toFixed(3)})`;
+      }
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(paint); };
+    paint();
+    rail.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      rail.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [reduce, count, gap]);
+  const centre = (e) => { try { e.currentTarget.scrollIntoView({ inline: "center", block: "nearest", behavior: reduce ? "auto" : "smooth" }); } catch {} };
+  const spacer = <div aria-hidden="true" style={{ flex: `0 0 calc(50% - ${cardWidth / 2 + gap}px)` }} />;
+  return (
+    <div ref={railRef} className="no-scrollbar" style={{
+      position: "relative", display: "flex", gap, overflowX: "auto", marginBottom: 10, padding: "12px 0",
+      scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch",
+    }}>
+      {spacer}
+      {React.Children.map(children, (c) => (
+        <div data-mag-slot="" tabIndex={0} onFocus={centre} style={{
+          flexShrink: 0, scrollSnapAlign: "center",
+          transformOrigin: "50% 60%", willChange: reduce ? undefined : "transform",
+        }}>{c}</div>
+      ))}
+      {spacer}
+    </div>
+  );
+}
+
 // Tilt for the Recap trading cards ONLY (Jake, 2026-09-11: "tilt on trading
 // cards only"). The card leans toward the finger or cursor, up to 12° on each
 // axis, with a soft sheen that follows the point, and springs back on release.
@@ -9203,7 +9258,7 @@ function RecapScreen({ state, setState }) {
             <div style={{ fontSize: 12, color: "var(--muted)", lineHeight: 1.5, marginBottom: 12 }}>
               {recap.setsCount} cards earned — one for every set you caught. Export as shareable collectibles.
             </div>
-            <div className="no-scrollbar" style={{ display: "flex", gap: 8, overflowX: "auto", marginBottom: 10, padding: "2px 0" }}>
+            <MagnifyRail>
               {(() => {
                 const attended = window.getAllAttended?.() || {};
                 const artists = Object.values(attended).flat().map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).slice(0, 6);
@@ -9235,7 +9290,7 @@ function RecapScreen({ state, setState }) {
                   );
                 });
               })()}
-            </div>
+            </MagnifyRail>
             <PlusGate feature="trading cards export">
               <button onClick={async () => {
                 try { await window._shareFestivalPassport?.(state); } catch {}

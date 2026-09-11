@@ -12550,6 +12550,89 @@ function FestivalArchiveList({
     }
   }, "TAP TO VIEW · COMING SOON"));
 }
+var MAG_MAX = 1.08,
+  MAG_MIN = 0.92;
+function MagnifyRail({
+  cardWidth = 90,
+  gap = 8,
+  children
+}) {
+  var railRef = React.useRef(null);
+  var reduce = React.useMemo(() => {
+    try {
+      return !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    } catch {
+      return false;
+    }
+  }, []);
+  var count = React.Children.count(children);
+  React.useEffect(() => {
+    var rail = railRef.current;
+    if (!rail || reduce) return;
+    var raf = 0;
+    var paint = () => {
+      raf = 0;
+      var mid = rail.scrollLeft + rail.clientWidth / 2;
+      for (var slot of rail.querySelectorAll("[data-mag-slot]")) {
+        var d = Math.min(1, Math.abs(slot.offsetLeft + slot.offsetWidth / 2 - mid) / (slot.offsetWidth + gap));
+        var k = 1 - d;
+        slot.style.transform = `translateY(${(-4 * k).toFixed(2)}px) scale(${(MAG_MIN + (MAG_MAX - MAG_MIN) * k).toFixed(3)})`;
+      }
+    };
+    var onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(paint);
+    };
+    paint();
+    rail.addEventListener("scroll", onScroll, {
+      passive: true
+    });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      rail.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [reduce, count, gap]);
+  var centre = e => {
+    try {
+      e.currentTarget.scrollIntoView({
+        inline: "center",
+        block: "nearest",
+        behavior: reduce ? "auto" : "smooth"
+      });
+    } catch {}
+  };
+  var spacer = React.createElement("div", {
+    "aria-hidden": "true",
+    style: {
+      flex: `0 0 calc(50% - ${cardWidth / 2 + gap}px)`
+    }
+  });
+  return React.createElement("div", {
+    ref: railRef,
+    className: "no-scrollbar",
+    style: {
+      position: "relative",
+      display: "flex",
+      gap,
+      overflowX: "auto",
+      marginBottom: 10,
+      padding: "12px 0",
+      scrollSnapType: "x mandatory",
+      WebkitOverflowScrolling: "touch"
+    }
+  }, spacer, React.Children.map(children, c => React.createElement("div", {
+    "data-mag-slot": "",
+    tabIndex: 0,
+    onFocus: centre,
+    style: {
+      flexShrink: 0,
+      scrollSnapAlign: "center",
+      transformOrigin: "50% 60%",
+      willChange: reduce ? undefined : "transform"
+    }
+  }, c)), spacer);
+}
 function TiltCard({
   style,
   children
@@ -14057,16 +14140,7 @@ function RecapScreen({
       lineHeight: 1.5,
       marginBottom: 12
     }
-  }, recap.setsCount, " cards earned — one for every set you caught. Export as shareable collectibles."), React.createElement("div", {
-    className: "no-scrollbar",
-    style: {
-      display: "flex",
-      gap: 8,
-      overflowX: "auto",
-      marginBottom: 10,
-      padding: "2px 0"
-    }
-  }, (() => {
+  }, recap.setsCount, " cards earned — one for every set you caught. Export as shareable collectibles."), React.createElement(MagnifyRail, null, (() => {
     var attended = window.getAllAttended?.() || {};
     var artists = Object.values(attended).flat().map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).slice(0, 6);
     return artists.map((a, i) => {
