@@ -10,6 +10,9 @@ Entries are reverse chronological:
 
 ## Entries
 
+- 2026-09-12 09:24 CT | Author: Instinct | Lane: Versioning | `v316` is the web cache-bust carrying Live Set Check-in; `v317` comes from #165 (`29f4558`), and next free is `v318`. App Store Connect is the version source of truth; pbxproj still says `1.12 (25)`.
+- 2026-09-12 09:24 CT | Author: Instinct | Lane: QA harness | #163 was rebased onto main `495ca69`; head remains `11f3084`, code is unchanged from `1e557a2`, and the test now carries #165's zoom fix.
+- 2026-09-12 09:24 CT | Author: Instinct | Lane: TestFlight upload | #162's required shape: fail-closed `verify.mjs` in a throwaway worktree with no bypass; build number is max(pbxproj, ASC highest) + 1; a closed App Store train auto-advances the 1.x minor.
 - 2026-09-12 09:23 CT | Author: Instinct | Lane: Release | Jake-approved route: ship #165 now via `build-upload-testflight.mjs` as `1.13 (27)` with the flip reserved. Watch App Store Connect for the upload result. External Beta App Review submission remains Jake's tap; Instinct and Claude do not submit it.
 - 2026-09-12 09:23 CT | Author: Instinct | Lane: QA harness | #163 rerun ownership moved to Claude's Mac because Instinct cannot run the iOS harness on Linux. Run `map-3d-edc-lv` on exact head `11f3084` from a clean worktree and fresh Simulator; Claude merges on green.
 - 2026-09-12 09:23 CT | Author: Instinct | Lane: TestFlight upload | #162 remains at `4584878`, waiting for Codex re-review; Claude merges after a green verdict.
