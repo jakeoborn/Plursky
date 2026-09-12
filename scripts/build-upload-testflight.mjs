@@ -129,9 +129,21 @@ function jwt() {
   return `${input}.${sig}`;
 }
 async function asc(pathAndQuery) {
-  const res = await fetch(`https://api.appstoreconnect.apple.com${pathAndQuery}`, {
-    headers: { Authorization: `Bearer ${jwt()}` },
-  });
+  // Apple's API closes idle HTTP/2 sessions (GOAWAY) mid-poll; a dropped socket
+  // is retried, an HTTP error answer is not.
+  let res;
+  for (let attempt = 1; ; attempt++) {
+    try {
+      res = await fetch(`https://api.appstoreconnect.apple.com${pathAndQuery}`, {
+        headers: { Authorization: `Bearer ${jwt()}` },
+      });
+      break;
+    } catch (e) {
+      if (attempt >= 5) die(`ASC unreachable after ${attempt} tries: ${e.cause?.message || e.message}`);
+      say(`ASC network error (${e.cause?.code || e.message}), retrying…`);
+      await new Promise((r) => setTimeout(r, attempt * 3000));
+    }
+  }
   if (!res.ok) die(`ASC ${res.status} on ${pathAndQuery.split("?")[0]}: ${(await res.text()).slice(0, 300)}`);
   return res.json();
 }
