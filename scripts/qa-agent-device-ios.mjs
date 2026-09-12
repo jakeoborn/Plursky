@@ -170,11 +170,20 @@ async function finishOnboardingIfPresent() {
 
   const nameInput = findNode(first.snap, /What should we call you/i);
   if (!nameInput?.ref) throw Object.assign(new Error("onboarding name input has no interactive ref"), { finalState: "FAIL_UI_REGRESSION" });
-  // The name input owns autoFocus, and the fresh-install snapshot confirms it
-  // is focused with the keyboard open. Filling by ref is unsafe here because
-  // iOS reports its pre-keyboard frame as off-screen; type targets the focused
-  // field directly and avoids an invented coordinate or product-only seed.
-  await client.interactions.type({ text: "QA User" });
+  // The name input owns autoFocus. When WKWebView honours it the keyboard is
+  // already open, and iOS then reports the field's pre-keyboard frame as
+  // off-screen, so type targets the focused field instead of a ref. WKWebView
+  // does not always honour autoFocus without a user tap, though (fresh boot,
+  // 2026-09-12: "No focused text input was available for typing."). In that
+  // case the keyboard is closed and the frame is real, so tap the field from a
+  // fresh snapshot and type once more.
+  try {
+    await client.interactions.type({ text: "QA User" });
+  } catch (error) {
+    if (!/No focused text input/i.test(normalizeAgentDeviceError(error).message || error.message)) throw error;
+    await press(/What should we call you/i, "onboarding-name");
+    await client.interactions.type({ text: "QA User" });
+  }
   await press(/CONTINUE AS QA USER|CONTINUE/i, "onboarding-continue");
   await waitForSnapshot(/CONNECT SPOTIFY/i, { name: "snapshot-onboarding-spotify.txt", interactiveOnly: true });
   await press(/^SKIP$/i, "onboarding-skip-spotify");
