@@ -184,6 +184,11 @@ async function finishOnboardingIfPresent() {
     await press(/What should we call you/i, "onboarding-name");
     await client.interactions.type({ text: "QA User" });
   }
+  // With the keyboard up, the CONTINUE press lands under it and onboarding
+  // never advances (2026-09-12 run: "CONTINUE AS QA USER" still on screen,
+  // timed out waiting for CONNECT SPOTIFY). WKWebView's form bar has a Done
+  // key, which is the only dismissal agent-device will tap on iOS.
+  result.keyboardDismiss = await client.command.keyboard({ action: "dismiss" });
   await press(/CONTINUE AS QA USER|CONTINUE/i, "onboarding-continue");
   await waitForSnapshot(/CONNECT SPOTIFY/i, { name: "snapshot-onboarding-spotify.txt", interactiveOnly: true });
   await press(/^SKIP$/i, "onboarding-skip-spotify");
