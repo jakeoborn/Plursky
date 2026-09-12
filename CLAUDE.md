@@ -3,6 +3,10 @@
 Read this first. These are the rules that cause real breakage if ignored.
 Full ship flow: **[RELEASE.md](RELEASE.md)**. Open work: **[TODO.md](TODO.md)**.
 
+Read AGENT_LOG.md at session start; append a dated entry before ending a session. Narrowly-scoped handoffs, decisions, and open loops only.
+
+Prefer decisions that improve UX, DX, and AX together; when they conflict, UX wins, then DX, then AX - and never break anything.
+
 ## 1. iOS version train is `1.x`, NOT `1.0.x`
 Apple compares versions numerically, so `1.0.7 < 1.6` and gets REJECTED
 (err 90062/90478). Last approved & LIVE = **`1.7 (18)`**. The next build
