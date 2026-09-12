@@ -202,7 +202,9 @@ const CLOSED = new Set([
 
 // ── 1. fresh checkout ───────────────────────────────────────────────────────
 if (REF.startsWith("origin/")) run("git-fetch", "git", ["fetch", "origin", REF.slice(7)], REPO);
-const sha = out("git", ["rev-parse", "--short", REF], REPO);
+let sha;
+try { sha = out("git", ["rev-parse", "--short", "--verify", `${REF}^{commit}`], REPO); }
+catch { die(`--ref ${REF} does not resolve to a commit`); }
 const WT = path.join(os.tmpdir(), `plursky-tf-${stamp}`);
 run("git-worktree", "git", ["worktree", "add", "--detach", WT, REF], REPO);
 const cleanup = () => {
