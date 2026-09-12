@@ -45,6 +45,7 @@ let simulatorWasBooted = false;
 let udid = "";
 let bundleId = "";
 let client;
+let normalizeAgentDeviceError, isNodeVisible; // bound once agent-device is imported
 
 async function atomicJson() {
   await mkdir(out, { recursive: true });
@@ -92,8 +93,9 @@ function atLeast(actual, wanted) {
 function snapshotText(snapshot) {
   return (snapshot.nodes || []).map(n => [n.label, n.name, n.value, n.text, n.role].filter(Boolean).join(" ")).join("\n");
 }
+function nodeLabel(n) { return [n.label, n.name, n.value, n.text].filter(Boolean).join(" "); }
 function findNode(snapshot, matcher) {
-  return (snapshot.nodes || []).find(n => matcher.test([n.label, n.name, n.value, n.text].filter(Boolean).join(" ")));
+  return (snapshot.nodes || []).find(n => matcher.test(nodeLabel(n)));
 }
 function interactionRef(ref) {
   if (!ref) throw new Error("interaction target has no accessibility ref");
@@ -111,13 +113,34 @@ async function saveSnapshot(name, interactiveOnly = false) {
   const path = join(out, name); await writeFile(path, body + "\n"); result.artifacts[name] = path;
   return { snap, body };
 }
-async function press(matcher, label) {
-  const { snap } = await saveSnapshot(`before-${label}.txt`, true);
-  const node = findNode(snap, matcher);
-  if (!node?.ref) throw new Error(`could not find ${label} in interactive accessibility snapshot`);
-  const nodeText = [node.label, node.name, node.value, node.text].filter(Boolean).join(" ");
-  if (FORBIDDEN_CONFIRM.test(nodeText.trim())) throw new Error(`safety stop: refusing purchase-confirm control ${JSON.stringify(nodeText)}`);
-  await client.interactions.press({ ref: interactionRef(node.ref) });
+// Refs are snapshot-scoped, so every attempt takes a fresh snapshot and presses
+// a ref minted by it. An on-screen match wins over an off-screen one. If
+// agent-device still refuses the target as off-screen (it checks before any
+// tap, so nothing landed), scroll one short step the way it reports and start
+// over from a new snapshot; a refused ref is never retried without one. `matchers`
+// may be a list, tried in order (first matcher with any hit wins).
+async function press(matchers, label, { missing = "", maxScrolls = 6 } = {}) {
+  for (let attempt = 0; ; attempt++) {
+    const { snap } = await saveSnapshot(`before-${label}${attempt ? `-scroll${attempt}` : ""}.txt`, true);
+    const candidates = (snap.nodes || []).filter(n => n.ref);
+    const matches = [].concat(matchers).map(m => candidates.filter(n => m.test(nodeLabel(n)))).find(ms => ms.length) || [];
+    if (!matches.length) {
+      const e = new Error(missing || `could not find ${label} in interactive accessibility snapshot`);
+      throw missing ? Object.assign(e, { finalState: "FAIL_UI_REGRESSION" }) : e;
+    }
+    const node = matches.find(n => isNodeVisible(n)) || matches[0];
+    const text = nodeLabel(node);
+    if (FORBIDDEN_CONFIRM.test(text.trim())) throw new Error(`safety stop: refusing purchase-confirm control ${JSON.stringify(text)}`);
+    try {
+      await client.interactions.press({ ref: interactionRef(node.ref) });
+      return;
+    } catch (error) {
+      const details = normalizeAgentDeviceError(error).details || {};
+      if (details.reason !== "offscreen_ref" || attempt >= maxScrolls) throw error;
+      await client.interactions.scroll({ direction: details.scrollDirection || "down", pixels: 160 });
+      await new Promise(r => setTimeout(r, 400));
+    }
+  }
 }
 async function screenshot(name) {
   const requested = join(out, name);
@@ -242,7 +265,9 @@ try {
     await run("xcrun", ["simctl", "uninstall", udid, bundleId], { allowFailure: true });
     await run("xcrun", ["simctl", "install", udid, app]);
   });
-  const { createAgentDeviceClient, normalizeAgentDeviceError } = await import("agent-device");
+  const { createAgentDeviceClient } = await import("agent-device");
+  ({ normalizeAgentDeviceError } = await import("agent-device"));
+  ({ isNodeVisible } = await import("agent-device/selectors"));
   let clientAttempt = 0;
   const freshClient = () => createAgentDeviceClient({
     session: `plursky-${opts.flow}-${process.pid}-${++clientAttempt}`,
@@ -327,13 +352,7 @@ try {
 
     // Select EDC LV from the real festival switcher. The switch reloads the
     // WebView, so refs after this press are deliberately discarded.
-    const entry = await saveSnapshot("snapshot-before-festival-switch.txt", true);
-    const festivalChip = (entry.snap.nodes || []).find(n => {
-      const t = [n.label, n.name, n.value, n.text].filter(Boolean).join(" ");
-      return /LOST LANDS|NOCTURNAL|EDC LV|FESTIVAL/i.test(t) && n.ref;
-    });
-    if (!festivalChip?.ref) throw Object.assign(new Error("festival chip absent on Today"), { finalState: "FAIL_UI_REGRESSION" });
-    await client.interactions.press({ ref: interactionRef(festivalChip.ref) });
+    await press(/LOST LANDS|NOCTURNAL|EDC LV|FESTIVAL/i, "festival-chip", { missing: "festival chip absent on Today" });
     await waitForSnapshot(/Electric Daisy Carnival.*Las Vegas|EDC LV/i, { name: "snapshot-festival-switcher.txt", interactiveOnly: true });
     await press(/Electric Daisy Carnival.*Las Vegas|EDC LV/i, "edc-lv");
 
@@ -348,18 +367,13 @@ try {
     await waitForSnapshot(/Map layers/i, { name: "snapshot-edc-map-entry.txt", interactiveOnly: true });
 
     await press(/Map layers/i, "map-layers");
-    const layers = await waitForSnapshot(/Real map.*BETA/i, { name: "snapshot-map-layers.txt", interactiveOnly: true });
-    const realMap = findNode(layers.snap, /Real map.*BETA/i);
-    const realText = [realMap?.label, realMap?.name, realMap?.value, realMap?.text].filter(Boolean).join(" ");
-    if (!realMap?.ref) throw Object.assign(new Error("Real map control absent"), { finalState: "FAIL_UI_REGRESSION" });
+    await waitForSnapshot(/Real map.*BETA/i, { name: "snapshot-map-layers.txt", interactiveOnly: true });
     // aria-pressed is not consistently surfaced in the merged iOS tree. A
     // fresh install is off by contract, so one press enables it.
-    await client.interactions.press({ ref: interactionRef(realMap.ref) });
+    await press(/Real map.*BETA/i, "real-map", { missing: "Real map control absent" });
 
-    const style = await waitForSnapshot(/STYLIZED/i, { timeoutMs: 25_000, name: "snapshot-real-map-styles.txt", interactiveOnly: true });
-    const stylized = findNode(style.snap, /^STYLIZED$/i) || findNode(style.snap, /STYLIZED/i);
-    if (!stylized?.ref) throw Object.assign(new Error("Stylized map control absent"), { finalState: "FAIL_UI_REGRESSION" });
-    await client.interactions.press({ ref: interactionRef(stylized.ref) });
+    await waitForSnapshot(/STYLIZED/i, { timeoutMs: 25_000, name: "snapshot-real-map-styles.txt", interactiveOnly: true });
+    await press([/^STYLIZED$/i, /STYLIZED/i], "stylized", { missing: "Stylized map control absent" });
 
     // MapLibre's DOM stage pills are accessibility-visible. Pillar geometry is
     // WebGL and must be judged from the stabilized screenshot, not this tree.
