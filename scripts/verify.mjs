@@ -450,8 +450,12 @@ if (fdata.length) {
   const SRC = readdirSync(ROOT).filter(f => f.endsWith(".jsx")).sort();
   const DAY_LIST = /\[\s*1\s*,\s*2\s*,\s*3\s*\]\s*\.\s*(?:map|flatMap|forEach|filter|includes|some|every)\s*\(/;
   // `live` as well as `isLive`: the live strip's selector was `const live =`.
-  const LIVE_DEF = /\b(?:isLive|live)\s*[:=](?!=)/;
-  const CLOCK = /NOW\??\.time|\bnowMin\b|toNightMin\s*\(/;
+  // is…Live too: NowPlayingBar's isFestivalLive was a fixed 19:00-05:30 window
+  // over the base dayDates, so the bar never showed at a daytime set or on
+  // ACL Weekend 2. A fixed hour off midnightUtc, and the device's getHours(),
+  // are the same clock-built test in other clothes.
+  const LIVE_DEF = /\b(?:is\w*Live|live)\s*[:=](?!=)/;
+  const CLOCK = /NOW\??\.time|\bnowMin\b|toNightMin\s*\(|midnightUtc\s*\+[^;\n]*3600000|\.getHours\s*\(/;
   // Real-date evidence: the statement, or the 15 lines above it, reads
   // NOW.night or isSetLive — the enclosing selection is scoped to tonight.
   const REAL = /NOW\??\.night|isSetLive\s*\(/;
@@ -473,7 +477,16 @@ if (fdata.length) {
       if (LIVE_DEF.test(ln)) {
         // The definition runs to its statement end; an IIFE spans a few lines.
         let stmt = ln.slice(ln.search(LIVE_DEF));
-        for (let j = i + 1; j < Math.min(lines.length, i + 6) && !/[;,]\s*$|\}\)\(\);?\s*$/.test(stmt.trimEnd()); j++) stmt += "\n" + lines[j];
+        if (/=>\s*\{\s*$/.test(stmt.trimEnd())) {
+          // A hook or IIFE body (`useMemo(() => {`): read to its close, `}, [deps])`
+          // or `})()`. Its first `;` is inside the body, not the statement end.
+          for (let j = i + 1; j < Math.min(lines.length, i + 40); j++) {
+            stmt += "\n" + lines[j];
+            if (/^\s*\}\s*(?:,\s*\[[^\]]*\]\s*)?\)/.test(lines[j])) break;
+          }
+        } else {
+          for (let j = i + 1; j < Math.min(lines.length, i + 6) && !/[;,]\s*$|\}\)\(\);?\s*$/.test(stmt.trimEnd()); j++) stmt += "\n" + lines[j];
+        }
         const above = lines.slice(Math.max(0, i - 15), i).join("\n");
         if (CLOCK.test(stmt) && !REAL.test(stmt) && !REAL.test(above)) { bad.push(`${f}:${i + 1}  LIVE flag built from the clock — use isSetLive(a)`); lives++; }
       }
