@@ -36,6 +36,7 @@ import crypto from "node:crypto";
 import { execFileSync, spawnSync } from "node:child_process";
 
 const APP_ID = "6768888507";
+const ASC_API = "https://api.appstoreconnect.apple.com";
 const TEAM_ID = "X54Q9P743S";
 const SCHEME = "App";
 const REPO = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
@@ -108,9 +109,15 @@ function loadCreds() {
   const file = path.join(os.homedir(), ".appstoreconnect/plursky.env");
   const fromFile = {};
   if (fs.existsSync(file)) {
+    // dotenv rules: split on the first "=", a quoted value is taken verbatim up
+    // to its closing quote, and an unquoted value ends at a " #" comment.
     for (const line of fs.readFileSync(file, "utf8").split("\n")) {
-      const m = line.match(/^\s*([A-Z_]+)\s*=\s*"?([^"#\s]+)"?/);
-      if (m) fromFile[m[1]] = m[2];
+      const m = line.match(/^\s*(?:export\s+)?([A-Z_][A-Z0-9_]*)\s*=(.*)$/);
+      if (!m) continue;
+      let v = m[2].trim();
+      const q = v[0], end = (q === '"' || q === "'") ? v.indexOf(q, 1) : -1;
+      v = end > 0 ? v.slice(1, end) : v.replace(/\s+#.*$/, "");
+      if (v) fromFile[m[1]] = v;
     }
   }
   const get = (k) => process.env[k] || fromFile[k] || null;
@@ -154,24 +161,40 @@ function jwt() {
   }).toString("base64url");
   return `${input}.${sig}`;
 }
+// Retry-After is seconds or an HTTP date. Clamped to 1–60 s so a bad header can
+// neither spin nor stall the run.
+function retryAfterMs(header) {
+  if (!header) return null;
+  const secs = Number(header);
+  const ms = Number.isFinite(secs) ? secs * 1000 : Date.parse(header) - Date.now();
+  return Number.isFinite(ms) ? Math.min(Math.max(ms, 1000), 60_000) : null;
+}
 async function asc(pathAndQuery) {
-  // Apple's API closes idle HTTP/2 sessions (GOAWAY) mid-poll; a dropped socket
-  // is retried, an HTTP error answer is not.
-  let res;
+  // Apple's API closes idle HTTP/2 sessions (GOAWAY) mid-poll, and answers 429
+  // or a 5xx under load. All three are transient and retried with backoff
+  // (a 429's Retry-After wins); any other HTTP error answer is final.
+  const where = pathAndQuery.split("?")[0];
   for (let attempt = 1; ; attempt++) {
+    let res;
     try {
-      res = await fetch(`https://api.appstoreconnect.apple.com${pathAndQuery}`, {
+      res = await fetch(`${ASC_API}${pathAndQuery}`, {
         headers: { Authorization: `Bearer ${jwt()}` },
       });
-      break;
     } catch (e) {
       if (attempt >= 5) die(`ASC unreachable after ${attempt} tries: ${e.cause?.message || e.message}`);
       say(`ASC network error (${e.cause?.code || e.message}), retrying…`);
       await new Promise((r) => setTimeout(r, attempt * 3000));
+      continue;
     }
+    if (res.ok) return res.json();
+    const body = (await res.text()).slice(0, 300);
+    if ((res.status !== 429 && res.status < 500) || attempt >= 5) {
+      die(`ASC ${res.status} on ${where}${attempt > 1 ? ` after ${attempt} tries` : ""}: ${body}`);
+    }
+    const wait = retryAfterMs(res.headers.get("retry-after")) ?? attempt * 3000;
+    say(`ASC ${res.status} on ${where}, retrying in ${Math.round(wait / 1000)}s…`);
+    await new Promise((r) => setTimeout(r, wait));
   }
-  if (!res.ok) die(`ASC ${res.status} on ${pathAndQuery.split("?")[0]}: ${(await res.text()).slice(0, 300)}`);
-  return res.json();
 }
 async function ascAll(pathAndQuery) {
   const rows = [];
@@ -179,7 +202,10 @@ async function ascAll(pathAndQuery) {
   while (next) {
     const j = await asc(next);
     rows.push(...j.data);
-    next = j.links?.next ? j.links.next.replace("https://api.appstoreconnect.apple.com", "") : null;
+    // links.next is absolute today; resolving it against the API root keeps a
+    // relative one working too, and asc() only ever talks to ASC_API.
+    const u = j.links?.next ? new URL(j.links.next, ASC_API) : null;
+    next = u ? u.pathname + u.search : null;
   }
   return rows;
 }
