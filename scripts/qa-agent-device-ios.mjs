@@ -156,16 +156,39 @@ async function waitForSnapshot(matcher, { timeoutMs = 20_000, name = "snapshot-w
     if (matcher.test(last.body)) return last;
     await new Promise(r => setTimeout(r, 750));
   }
-  throw Object.assign(new Error(`timed out waiting for ${matcher}`), { finalState: "FAIL_UI_REGRESSION" });
+  throw Object.assign(new Error(`timed out waiting for ${matcher}`), { finalState: "FAIL_UI_REGRESSION", last });
 }
-async function finishOnboardingIfPresent() {
+// The WebView is on screen but iOS exposes none of its content: the hierarchy
+// stops at WKWebView > WKContentView > AXRemoteElement with only scroll bars
+// under it. Seen on about half of the fresh-boot runs on 2026-09-12 (runs 1
+// and 5), with the same runner cache as the runs that worked, and with the
+// keyboard up, so the page itself had rendered. A populated tree carries the
+// page title ("Plursky · Festival Companion") and never shows AXRemoteElement.
+function emptyWebTree(snapshot) {
+  return !!snapshot && /\bAXRemoteElement\b/.test(snapshot.body) && !/Festival Companion/i.test(snapshot.body);
+}
+async function finishOnboardingIfPresent(relaunch) {
   // apps.open resolves when the native launch succeeds, before the WebView is
   // necessarily ready. Wait for either stable Home content or onboarding so a
   // blank/partial first hierarchy cannot make us skip the fresh-install path.
-  const first = await waitForSnapshot(
-    /What should we call you|LOST LANDS|NOCTURNAL|EDC LV/i,
-    { name: "snapshot-home-or-onboarding.txt", interactiveOnly: true },
-  );
+  const entry = /What should we call you|LOST LANDS|NOCTURNAL|EDC LV/i;
+  let first;
+  try {
+    first = await waitForSnapshot(entry, { name: "snapshot-home-or-onboarding.txt", interactiveOnly: true });
+  } catch (error) {
+    // An empty WebView tree is not a UI regression. Relaunch once; if the tree
+    // is still empty, report it as its own state so it never reads as an app bug.
+    if (!emptyWebTree(error.last)) throw error;
+    result.axBridgeRelaunch = { at: new Date().toISOString() };
+    await relaunch();
+    try {
+      first = await waitForSnapshot(entry, { name: "snapshot-home-or-onboarding-relaunch.txt", interactiveOnly: true });
+    } catch (retryError) {
+      if (!emptyWebTree(retryError.last)) throw retryError;
+      throw Object.assign(new Error("WebView accessibility tree still empty after one relaunch (AXRemoteElement with no web content)"), { finalState: "BLOCKED_AX_BRIDGE" });
+    }
+    result.axBridgeRelaunch.recovered = true;
+  }
   if (!/What should we call you/i.test(first.body)) return;
 
   const nameInput = findNode(first.snap, /What should we call you/i);
@@ -354,11 +377,12 @@ try {
     // foregrounding and initial routing. `simctl openurl` is not a launch
     // primitive: iOS may leave the custom-scheme confirmation on SpringBoard,
     // so a successful command can still leave Plursky in the background.
-    await client.apps.open({
+    const openHome = () => client.apps.open({
       app: bundleId, platform: "ios", udid, relaunch: true,
       launchArgs: ["-plurskyInitialTab", "home"],
     });
-    await finishOnboardingIfPresent();
+    await openHome();
+    await finishOnboardingIfPresent(openHome);
 
     // The festival switcher lives on Home, not Map. Home has no standalone
     // "TODAY" heading, so wait for the interactive chip this flow needs.
