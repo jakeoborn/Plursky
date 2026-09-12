@@ -214,7 +214,17 @@ async function finishOnboardingIfPresent(relaunch) {
   // never advances (2026-09-12 run: "CONTINUE AS QA USER" still on screen,
   // timed out waiting for CONNECT SPOTIFY). WKWebView's form bar has a Done
   // key, which is the only dismissal agent-device will tap on iOS.
-  result.keyboardDismiss = await client.command.keyboard({ action: "dismiss" });
+  // agent-device does not always find that key, though: run 7 (2026-09-12)
+  // failed with "the keyboard exposes no dismiss key" while the snapshot held
+  // WKFormAccessoryView > Done. Done only ends editing, so pressing it from a
+  // fresh snapshot is as safe as agent-device's own dismissal.
+  try {
+    result.keyboardDismiss = await client.command.keyboard({ action: "dismiss" });
+  } catch (error) {
+    if (!/no dismiss key/i.test(normalizeAgentDeviceError(error).message || error.message)) throw error;
+    await press(/^Done(?: Done)?$/, "keyboard-done");
+    result.keyboardDismiss = { mechanism: "harness-pressed-form-bar-done" };
+  }
   await press(/CONTINUE AS QA USER|CONTINUE/i, "onboarding-continue");
   await waitForSnapshot(/CONNECT SPOTIFY/i, { name: "snapshot-onboarding-spotify.txt", interactiveOnly: true });
   await press(/^SKIP$/i, "onboarding-skip-spotify");
@@ -427,7 +437,8 @@ try {
     // MapLibre's DOM stage pills are accessibility-visible. Pillar geometry is
     // WebGL and must be judged from the stabilized screenshot, not this tree.
     const settled = await waitForSnapshot(/KINETIC FIELD|CIRCUIT GROUNDS|COSMIC MEADOW/i, { timeoutMs: 25_000, name: "snapshot-map-3d-settled.txt" });
-    const stageNames = ["KINETIC FIELD", "CIRCUIT GROUNDS", "COSMIC MEADOW", "BASS POD", "NEON GARDEN"];
+    // Pills render stage.name.toUpperCase() (map.jsx), so "Basspod" → "BASSPOD".
+    const stageNames = ["KINETIC FIELD", "CIRCUIT GROUNDS", "COSMIC MEADOW", "BASSPOD", "NEON GARDEN"];
     const visibleStages = stageNames.filter(name => settled.body.toUpperCase().includes(name));
     if (visibleStages.length < 3) throw Object.assign(new Error(`only ${visibleStages.length} expected stage pills found`), { finalState: "FAIL_UI_REGRESSION" });
     if (/MAP ERROR|REAL MAP UNAVAILABLE|FESTIVAL MAP SHOWN/i.test(settled.body)) throw Object.assign(new Error("visible map error"), { finalState: "FAIL_UI_REGRESSION" });
