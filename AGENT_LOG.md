@@ -57,10 +57,10 @@ Status values: `fully actioned`, `in flight`, `not started`, `gap`.
 - 2026-09-12 08:02 CT | Author: Instinct | Live Set Check-in spec | Status: in flight | Shipped in #161 and included in TestFlight `1.13 (26)`; real-iPhone 20-moment trial remains pending.
 - 2026-09-12 08:02 CT | Author: Instinct | One-command TestFlight uploader | Status: in flight | #162 is open; Codex P1 requires full verify inside the throwaway worktree before archive/upload.
 - 2026-09-12 08:02 CT | Author: Instinct | Harness scroll/fresh-ref fix | Status: in flight | #163 is open and syntax-clean; awaiting Mac device-harness verification.
-- 2026-09-12 08:02 CT | Author: Instinct | Nocturnal Wonderland set-times ingest | Status: gap | Official 86-row sheet delivered; no repo ingest. Awaiting Jake's yes.
+- 2026-09-12 08:02 CT | Author: Instinct | Nocturnal Wonderland set-times ingest | Status: fully actioned | Official 86-row set-time sheet merged in #125 as `cf53b9a`; all 86 acts carry official day, stage, start, and end, and the festival is live.
 - 2026-09-12 08:02 CT | Author: Instinct | Lost Lands ingest prep | Status: in flight | Import path is prepared; direct-official 2026 artist/stage/time rows are not yet accessible and remain under watch.
 - 2026-09-12 08:02 CT | Author: Instinct | Retention messaging copy | Status: in flight | Monthly + Annual direction approved; copy drafting remains open.
-- 2026-09-12 08:02 CT | Author: Instinct | EDC Orlando geo rebuild | Status: not started | Queued after current festival and QA work; due before the Nov 6-8 flip.
+- 2026-09-12 08:02 CT | Author: Instinct | EDC Orlando geo rebuild | Status: fully actioned | Shipped Sep 6 in #73 as `0d695f7`: measured centroid, five poster-class anchors, and derived stage grid. Official 2026 map and stage/time schedule remain separate watches.
 - 2026-09-12 08:02 CT | Author: Instinct | Q1-Q4 build + ACL waiver correction | Status: gap | Handoff exists; current implementation/verification state must be reconciled before action.
 - 2026-09-12 08:02 CT | Author: Instinct | ROI plan (Claude #103 brief) | Status: gap | Brief is known; current actioned items and remaining commitments must be reconciled before execution claims.
 
@@ -78,7 +78,7 @@ Either agent may propose; the other responds in a later dated entry. Actions wit
 Either agent may propose; the other responds in a later dated entry. Actions within standing autonomy get done and logged. Big product moves and money are flagged for Jake first.
 
 - 2026-09-12 08:02 CT | Author: Instinct | Live Set Check-in | Run the real-iPhone trial now that `1.13 (26)` is in TestFlight; keep the 85% accuracy over 20 known moments and median under 10 seconds gate.
-- 2026-09-12 08:02 CT | Author: Instinct | Festival ingests | Nocturnal's official sheet is ready but not approved for ingest; Lost Lands remains source-blocked pending direct-official rows.
-- 2026-09-12 08:02 CT | Author: Instinct | EDC Orlando | Geo rebuild remains a top open direction before the Nov 6-8 flip.
+- 2026-09-12 08:02 CT | Author: Instinct | Festival ingests | Nocturnal's official 86-row schedule is live via #125; Lost Lands remains source-blocked pending direct-official stage/time rows.
+- 2026-09-12 08:02 CT | Author: Instinct | EDC Orlando | Geo rebuild shipped via #73. Remaining flip dependencies are the official 2026 map and complete per-artist stage/set-time schedule; poster-class anchors keep distance readouts withheld.
 - 2026-09-12 08:02 CT | Author: Instinct | Cleaner UI | Cleaner-UI design pass remains open; log the concrete proposal before broad visual changes.
 - 2026-09-12 08:02 CT | Author: Instinct | Onboarding/paywall + sharing | Open direction: mention the paywall in onboarding and add a playlist share toggle; flag material scope/monetization changes for Jake before implementation.
