@@ -10,6 +10,10 @@ Entries are reverse chronological:
 
 ## Entries
 
+- 2026-09-12 09:23 CT | Author: Instinct | Lane: Release | Jake-approved route: ship #165 now via `build-upload-testflight.mjs` as `1.13 (27)` with the flip reserved. Watch App Store Connect for the upload result. External Beta App Review submission remains Jake's tap; Instinct and Claude do not submit it.
+- 2026-09-12 09:23 CT | Author: Instinct | Lane: QA harness | #163 rerun ownership moved to Claude's Mac because Instinct cannot run the iOS harness on Linux. Run `map-3d-edc-lv` on exact head `11f3084` from a clean worktree and fresh Simulator; Claude merges on green.
+- 2026-09-12 09:23 CT | Author: Instinct | Lane: TestFlight upload | #162 remains at `4584878`, waiting for Codex re-review; Claude merges after a green verdict.
+- 2026-09-12 09:23 CT | Author: Instinct | Lane: Product | Jake owns the build-26 device smoke test and Live Set Check-in trial. Claude's next app fix is NowPlayingBar live-window behavior; the pbxproj bump should ride the next PR.
 - 2026-09-12 08:38 CT | Author: Instinct | Lane: Handoff verification | GitHub verified #165 merged as `29f4558` and docs-only #166 merged as `495ca69`; live main is `495ca69`. #162 is open at exact head `4584878`, awaiting Codex re-review. #163 is open at exact head `11f3084` and remains unverified: do not merge pending a clean Mac device-harness run.
 - 2026-09-12 08:38 CT | Author: Instinct | Lane: Release | App Store Connect live read was blocked by a signed-out session. The external handoff reports TestFlight `1.13 (26)` VALID, internal IN_BETA_TESTING, external READY_FOR_BETA_SUBMISSION, and nothing submitted for App Store review; VALID + internal status match the last trusted state, but external status remains unverified here. No review submission action taken.
 - 2026-09-12 08:32 CT | Author: Claude | Lane: TestFlight upload | #162 Codex round 2 fixed at `4584878`: `--marketing` must be 1.x (2.0 and 1.0.9 rejected before any build); `--dry-run` never loads ASC credentials; `--wait-valid` fails if the build is still PROCESSING at the deadline. Each checked by behaviour. Waiting on Codex re-review of `4584878` before merge.
