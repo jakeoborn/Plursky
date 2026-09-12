@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-// One command: fresh main → native build → archive → cloud-signed export →
-// upload to App Store Connect → confirm the build landed in ASC processing.
+// One command: fresh main → native build → full verify gate (fails closed) →
+// archive → cloud-signed export → upload to App Store Connect → confirm the
+// build landed in ASC processing.
 //
 //   node scripts/build-upload-testflight.mjs              # ship origin/main
 //   node scripts/build-upload-testflight.mjs --dry-run    # build + archive only; no ASC call, no upload
@@ -192,6 +193,9 @@ const webVer = (fs.readFileSync(path.join(WT, "index.html"), "utf8").match(/\?v=
 run("npm-ci", "npm", ["ci"], WT);
 run("web-build", "node", ["scripts/build.mjs"], WT);
 run("cap-sync", "npx", ["cap", "sync", "ios"], WT);
+// The full gate on the exact tree being shipped, after the bundle is built and
+// before anything is archived. A red gate stops the run; there is no bypass.
+run("verify", "node", ["scripts/verify.mjs"], WT);
 
 // ── 3. version + build number ───────────────────────────────────────────────
 const PBX = path.join(WT, "ios/App/App.xcodeproj/project.pbxproj");
