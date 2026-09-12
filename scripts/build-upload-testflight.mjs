@@ -41,17 +41,32 @@ const SCHEME = "App";
 const REPO = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 
 // ── args ────────────────────────────────────────────────────────────────────
-const argv = process.argv.slice(2);
-const flag = (n) => argv.includes(n);
-const opt = (n, d) => { const i = argv.indexOf(n); return i >= 0 && argv[i + 1] ? argv[i + 1] : d; };
-const DRY = flag("--dry-run");
-const REF = opt("--ref", "origin/main");
-const FORCE_MKT = opt("--marketing", null);
-const WAIT_MIN = Number(opt("--wait", "30"));
-const WAIT_VALID = flag("--wait-valid");
-const KEEP = flag("--keep");
+// Strict: a typo like --dryrun, or an option missing its value, must stop the
+// run before any work. Silently ignoring it could upload what the caller meant
+// to dry-run, or build a ref they didn't name.
+const FLAGS = new Set(["--dry-run", "--wait-valid", "--keep"]);
+const OPTS = new Set(["--ref", "--marketing", "--wait"]);
+const args = {};
+for (let i = 2; i < process.argv.length; i++) {
+  const a = process.argv[i];
+  const bad = (m) => { console.error(`✗ ${m} (see the header of ${path.basename(process.argv[1])})`); process.exit(1); };
+  if (FLAGS.has(a)) args[a] = true;
+  else if (OPTS.has(a)) {
+    const v = process.argv[i + 1];
+    if (v === undefined || v.startsWith("--")) bad(`${a} needs a value`);
+    args[a] = v; i++;
+  } else bad(`unknown argument ${a}`);
+}
+const DRY = !!args["--dry-run"];
+const REF = args["--ref"] || "origin/main";
+const FORCE_MKT = args["--marketing"] || null;
+const WAIT_MIN = Number(args["--wait"] || "30");
+const WAIT_VALID = !!args["--wait-valid"];
+const KEEP = !!args["--keep"];
+if (!(WAIT_MIN > 0)) { console.error(`✗ --wait ${args["--wait"]} is not a positive number of minutes`); process.exit(1); }
 // CLAUDE.md §1: the train is 1.x, compared numerically; never 1.0.x or a new major.
-if (FORCE_MKT && !/^1\.[1-9]\d*$/.test(FORCE_MKT)) {
+const TRAIN = /^1\.[1-9]\d*$/;
+if (FORCE_MKT && !TRAIN.test(FORCE_MKT)) {
   console.error(`✗ --marketing ${FORCE_MKT} is not on the 1.x train (expected 1.<minor>, e.g. 1.14)`);
   process.exit(1);
 }
@@ -235,6 +250,9 @@ if (creds && !DRY) {
 } else {
   say("dry run: no ASC lookup — version/build are provisional");
 }
+// Whatever the source (--marketing, the ref's pbxproj, or the ASC bump), the
+// version that ships must be on the 1.x train.
+if (!TRAIN.test(marketing)) die(`marketing version ${marketing} is not on the 1.x train (expected 1.<minor>)`);
 
 pbx = pbx
   .replace(/MARKETING_VERSION = [\d.]+;/g, `MARKETING_VERSION = ${marketing};`)
