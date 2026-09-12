@@ -63,7 +63,11 @@ const FORCE_MKT = args["--marketing"] || null;
 const WAIT_MIN = Number(args["--wait"] || "30");
 const WAIT_VALID = !!args["--wait-valid"];
 const KEEP = !!args["--keep"];
-if (!(WAIT_MIN > 0)) { console.error(`✗ --wait ${args["--wait"]} is not a positive number of minutes`); process.exit(1); }
+// Finite and bounded: `Infinity` or `1e309` would make the poll deadline infinite.
+if (!(Number.isFinite(WAIT_MIN) && WAIT_MIN > 0 && WAIT_MIN <= 1440)) {
+  console.error(`✗ --wait ${args["--wait"]} must be a number of minutes between 0 and 1440`);
+  process.exit(1);
+}
 // CLAUDE.md §1: the train is 1.x, compared numerically; never 1.0.x or a new major.
 const TRAIN = /^1\.[1-9]\d*$/;
 if (FORCE_MKT && !TRAIN.test(FORCE_MKT)) {
