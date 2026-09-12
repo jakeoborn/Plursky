@@ -50,6 +50,11 @@ const FORCE_MKT = opt("--marketing", null);
 const WAIT_MIN = Number(opt("--wait", "30"));
 const WAIT_VALID = flag("--wait-valid");
 const KEEP = flag("--keep");
+// CLAUDE.md §1: the train is 1.x, compared numerically; never 1.0.x or a new major.
+if (FORCE_MKT && !/^1\.[1-9]\d*$/.test(FORCE_MKT)) {
+  console.error(`✗ --marketing ${FORCE_MKT} is not on the 1.x train (expected 1.<minor>, e.g. 1.14)`);
+  process.exit(1);
+}
 
 const stamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
 const LOG_DIR = path.join(os.homedir(), "Library/Logs/plursky-testflight", stamp);
@@ -103,7 +108,8 @@ function loadCreds() {
   return { keyId, issuer, keyPath };
 }
 
-const creds = loadCreds();
+// A dry run makes no ASC call and no upload, so it never needs (or checks) the key.
+const creds = DRY ? null : loadCreds();
 if (!creds && !DRY) {
   die(
     "App Store Connect credentials missing. Create ~/.appstoreconnect/plursky.env with:\n" +
@@ -292,6 +298,7 @@ while (Date.now() < deadline) {
   await new Promise((r) => setTimeout(r, 30_000));
 }
 if (!state) die(`uploaded, but ${marketing} (${build}) did not appear in ASC within ${WAIT_MIN} min — check TestFlight`);
+if (WAIT_VALID && state === "PROCESSING") die(`${marketing} (${build}) is still PROCESSING after ${WAIT_MIN} min — --wait-valid never saw VALID`);
 if (state === "INVALID" || state === "FAILED") die(`ASC marked ${marketing} (${build}) ${state} — check the email from App Store Connect`);
 
 console.log(`\n✓ Plursky ${marketing} (${build}) is in App Store Connect — ${state}`);
