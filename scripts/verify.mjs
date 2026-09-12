@@ -78,6 +78,24 @@ if (existsSync(podfile)) {
   console.log("  ✓ all pod paths repo-relative");
 } else console.log("  – no Podfile");
 
+// ── 0b2. iOS focus-zoom floor ──────────────────────────────────────────────
+// iOS zooms the WebView when a focused field's font is under 16px, and the
+// zoom stays after the keyboard closes. Most text fields set 10–14px inline,
+// and on a fresh install the onboarding sheet came back cropped with SKIP
+// off-screen (map-3d-edc-lv, iPhone 17, 2026-09-12). One index.html rule
+// floors every field at 16px on iOS; this keeps it from being dropped.
+console.log("▸ iOS focus-zoom floor — form fields stay ≥16px on iOS");
+{
+  const css = readFileSync(join(ROOT, "index.html"), "utf8");
+  const rule = /@supports\s*\(\s*-webkit-touch-callout\s*:\s*none\s*\)\s*\{\s*input\s*,\s*textarea\s*,\s*select\s*\{\s*font-size\s*:\s*(\d+)px\s*!important/;
+  const m = css.match(rule);
+  if (!m || Number(m[1]) < 16) {
+    fail("index.html lost the iOS input font-size floor (@supports -webkit-touch-callout → input,textarea,select{font-size:16px!important}); " +
+      "without it iOS zooms on focus and fresh-install onboarding renders cropped");
+  }
+  console.log(`  ✓ input,textarea,select floored at ${m[1]}px on iOS`);
+}
+
 // ── 0c. Precompile gates (v253) ────────────────────────────────────────────
 // The app no longer transpiles in the browser. Three ways that can rot:
 // index.html slipping back to text/babel, build/ going stale against the

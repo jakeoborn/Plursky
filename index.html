@@ -59,6 +59,12 @@
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   .no-scrollbar::-webkit-scrollbar{display:none}
   .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+  /* iOS zooms the page when a focused field's font is under 16px, and the zoom
+     outlives the keyboard: on an iPhone 17 the onboarding sheet came back
+     cropped on the right with SKIP pushed off-screen. Most text fields set
+     10–14px inline, so the floor lives here; only !important beats an inline
+     style. -webkit-touch-callout exists only on iOS, so desktop is unchanged. */
+  @supports (-webkit-touch-callout: none){input,textarea,select{font-size:16px!important}}
   html,body{width:100%;min-height:100%;background:#f7ede0;font-family:'Geist',system-ui,sans-serif;color:#1a120d;overflow-x:hidden}
   body{display:flex;align-items:stretch;justify-content:stretch;padding:0;min-height:100vh;min-height:100dvh}
   /* #116: once the app mounts it is one fixed shell that scrolls inside
@@ -358,45 +364,45 @@
       window.__USE_NATIVE_PICKER__ = true;
     }
   </script>
-  <script src="build/ios-frame.js?v=v316"></script>
+  <script src="build/ios-frame.js?v=v317"></script>
   <!-- Multi-festival wave 1. Plain .js (no JSX), so they load as normal scripts
        and are parsed before Babel even starts on the chain below. Each is an
        IIFE that registers itself on window.PLURSKY_FESTIVALS; data.jsx reads
        that map, so these MUST stay above it. Mirrored in sw.js's precache. -->
-  <script src="data/festivals/ultra-miami-2026.js?v=v316"></script>
-  <script src="data/festivals/governors-ball-2026.js?v=v316"></script>
-  <script src="data/festivals/summerfest-2026.js?v=v316"></script>
-  <script src="data/festivals/lollapalooza-2026.js?v=v316"></script>
-  <script src="data/festivals/outside-lands-2026.js?v=v316"></script>
-  <script src="data/festivals/iii-points-2026.js?v=v316"></script>
-  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v316"></script>
-  <script src="data/festivals/crssd-fall-2026.js?v=v316"></script>
-  <script src="data/festivals/portola-2026.js?v=v316"></script>
-  <script src="data/festivals/hard-summer-2026.js?v=v316"></script>
-  <script src="data/festivals/arc-2026.js?v=v316"></script>
-  <script src="data/festivals/escape-halloween-2026.js?v=v316"></script>
-  <script src="data/festivals/dreamstate-socal-2026.js?v=v316"></script>
-  <script src="data/festivals/decadence-colorado-2026.js?v=v316"></script>
-  <script src="build/data.js?v=v316"></script>
-  <script src="build/supabase.js?v=v316"></script>
-  <script src="build/chrome.js?v=v316"></script>
-  <script src="build/home.js?v=v316"></script>
-  <script src="build/map.js?v=v316"></script>
-  <script src="build/survey.js?v=v316"></script>
-  <script src="build/lineup.js?v=v316"></script>
-  <script src="build/artist.js?v=v316"></script>
-  <script src="build/photo-tag.js?v=v316"></script>
-  <script src="build/spotify-api.js?v=v316"></script>
-  <script src="build/recap-engine.js?v=v316"></script>
-  <script src="build/spotify.js?v=v316"></script>
-  <script src="build/app.js?v=v316"></script>
+  <script src="data/festivals/ultra-miami-2026.js?v=v317"></script>
+  <script src="data/festivals/governors-ball-2026.js?v=v317"></script>
+  <script src="data/festivals/summerfest-2026.js?v=v317"></script>
+  <script src="data/festivals/lollapalooza-2026.js?v=v317"></script>
+  <script src="data/festivals/outside-lands-2026.js?v=v317"></script>
+  <script src="data/festivals/iii-points-2026.js?v=v317"></script>
+  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v317"></script>
+  <script src="data/festivals/crssd-fall-2026.js?v=v317"></script>
+  <script src="data/festivals/portola-2026.js?v=v317"></script>
+  <script src="data/festivals/hard-summer-2026.js?v=v317"></script>
+  <script src="data/festivals/arc-2026.js?v=v317"></script>
+  <script src="data/festivals/escape-halloween-2026.js?v=v317"></script>
+  <script src="data/festivals/dreamstate-socal-2026.js?v=v317"></script>
+  <script src="data/festivals/decadence-colorado-2026.js?v=v317"></script>
+  <script src="build/data.js?v=v317"></script>
+  <script src="build/supabase.js?v=v317"></script>
+  <script src="build/chrome.js?v=v317"></script>
+  <script src="build/home.js?v=v317"></script>
+  <script src="build/map.js?v=v317"></script>
+  <script src="build/survey.js?v=v317"></script>
+  <script src="build/lineup.js?v=v317"></script>
+  <script src="build/artist.js?v=v317"></script>
+  <script src="build/photo-tag.js?v=v317"></script>
+  <script src="build/spotify-api.js?v=v317"></script>
+  <script src="build/recap-engine.js?v=v317"></script>
+  <script src="build/spotify.js?v=v317"></script>
+  <script src="build/app.js?v=v317"></script>
 
   <script>
 
     // Build version stamp â€” bumped on every deploy that changes app behaviour.
     // If the running tab's stored version doesn't match, force a full reload
     // (bypassing browser HTTP cache that GH-Pages serves with max-age=600).
-    const APP_VERSION = 'v316';
+    const APP_VERSION = 'v317';
     try {
       const stored = localStorage.getItem('app_version');
       if (stored && stored !== APP_VERSION) {
@@ -417,11 +423,11 @@
     if ('serviceWorker' in navigator) {
       caches.keys().then(keys =>
         Promise.all(
-          keys.filter(k => k !== 'plursky-v316' && !k.startsWith('plursky-tiles-'))
+          keys.filter(k => k !== 'plursky-v317' && !k.startsWith('plursky-tiles-'))
               .map(k => caches.delete(k))
         )
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v316', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v317', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 
