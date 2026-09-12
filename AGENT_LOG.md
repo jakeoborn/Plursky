@@ -10,6 +10,43 @@ Entries are reverse chronological:
 
 ## Entries
 
+- 2026-09-12 08:02 CT | Author: Instinct | Lane: Family brain | Standing owner: Instinct keeps this log current after every material merge, review ruling, QA result, and upload/TestFlight state; read it at the start of each run and act on or surface Claude entries addressed to Instinct.
+- 2026-09-12 07:50 CT | Author: Instinct | Lane: Family brain | PR #164 merged as `f8130c4`; the shared log and UX/DX/AX tiebreaker are live on main after exact-head verification and the required check passed.
+- 2026-09-12 07:46 CT | Author: Instinct | Lane: QA harness | PR #163 exact head `1e557a2` fixes off-screen refs by scrolling, resnapshotting, and using a fresh ref; syntax passed. Awaiting the Mac run of `node scripts/qa-agent-device-ios.mjs --flow map-3d-edc-lv` before merge.
+- 2026-09-12 07:45 CT | Author: Instinct | Lane: Release | TestFlight `1.13 (26)`, source main `9640866` / web `v316`, is VALID and IN_BETA_TESTING in App Store Connect.
 - 2026-09-12 07:44 CT | Author: Instinct | Lane: QA harness | Open loop: add scroll-into-view, then take a fresh snapshot and use its fresh ref before pressing an off-screen target.
 - 2026-09-12 07:44 CT | Author: Instinct | Lane: TestFlight upload | PR #162 is blocked on a Codex P1: the verify gate must run in the throwaway worktree before archive.
 - 2026-09-12 07:44 CT | Author: Instinct | Lane: Release | Main is `9640866` (`v316`). TestFlight upload work is in flight through `scripts/build-upload-testflight.mjs`.
+
+## Spec Tracker
+
+Status values: `fully actioned`, `in flight`, `not started`, `gap`.
+
+- 2026-09-12 08:02 CT | Author: Instinct | Live Set Check-in spec | Status: in flight | Shipped in #161 and included in TestFlight `1.13 (26)`; real-iPhone 20-moment trial remains pending.
+- 2026-09-12 08:02 CT | Author: Instinct | One-command TestFlight uploader | Status: in flight | #162 is open; Codex P1 requires full verify inside the throwaway worktree before archive/upload.
+- 2026-09-12 08:02 CT | Author: Instinct | Harness scroll/fresh-ref fix | Status: in flight | #163 is open and syntax-clean; awaiting Mac device-harness verification.
+- 2026-09-12 08:02 CT | Author: Instinct | Nocturnal Wonderland set-times ingest | Status: gap | Official 86-row sheet delivered; no repo ingest. Awaiting Jake's yes.
+- 2026-09-12 08:02 CT | Author: Instinct | Lost Lands ingest prep | Status: in flight | Import path is prepared; direct-official 2026 artist/stage/time rows are not yet accessible and remain under watch.
+- 2026-09-12 08:02 CT | Author: Instinct | Retention messaging copy | Status: in flight | Monthly + Annual direction approved; copy drafting remains open.
+- 2026-09-12 08:02 CT | Author: Instinct | EDC Orlando geo rebuild | Status: not started | Queued after current festival and QA work; due before the Nov 6-8 flip.
+- 2026-09-12 08:02 CT | Author: Instinct | Q1-Q4 build + ACL waiver correction | Status: gap | Handoff exists; current implementation/verification state must be reconciled before action.
+- 2026-09-12 08:02 CT | Author: Instinct | ROI plan (Claude #103 brief) | Status: gap | Brief is known; current actioned items and remaining commitments must be reconciled before execution claims.
+
+## Revenue
+
+Either agent may propose; the other responds in a later dated entry. Actions within standing autonomy get done and logged. Big product moves and money are flagged for Jake first.
+
+- 2026-09-12 08:02 CT | Author: Instinct | State | Goal: $500 Plursky revenue by 2026-10-31.
+- 2026-09-12 08:02 CT | Author: Instinct | Retention | Monthly + Annual messaging direction is approved; copy drafting is open.
+- 2026-09-12 08:02 CT | Author: Instinct | Localization | Re-run monthly-sub localization after the App Store `1.12` review verdict.
+- 2026-09-12 08:02 CT | Author: Instinct | IAP/paywall | Offline Festival Packs and related paid copy/progression have shipped in recent lanes; confirm current storefront/device state before calling the revenue funnel complete.
+
+## Product
+
+Either agent may propose; the other responds in a later dated entry. Actions within standing autonomy get done and logged. Big product moves and money are flagged for Jake first.
+
+- 2026-09-12 08:02 CT | Author: Instinct | Live Set Check-in | Run the real-iPhone trial now that `1.13 (26)` is in TestFlight; keep the 85% accuracy over 20 known moments and median under 10 seconds gate.
+- 2026-09-12 08:02 CT | Author: Instinct | Festival ingests | Nocturnal's official sheet is ready but not approved for ingest; Lost Lands remains source-blocked pending direct-official rows.
+- 2026-09-12 08:02 CT | Author: Instinct | EDC Orlando | Geo rebuild remains a top open direction before the Nov 6-8 flip.
+- 2026-09-12 08:02 CT | Author: Instinct | Cleaner UI | Cleaner-UI design pass remains open; log the concrete proposal before broad visual changes.
+- 2026-09-12 08:02 CT | Author: Instinct | Onboarding/paywall + sharing | Open direction: mention the paywall in onboarding and add a playlist share toggle; flag material scope/monetization changes for Jake before implementation.
