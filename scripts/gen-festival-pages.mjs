@@ -35,6 +35,9 @@ vm.createContext(ctx);
 // window.PLURSKY_FESTIVALS. Run them first, the same order index.html uses, or
 // the registry data.jsx builds here is missing five festivals and their /f/
 // pages silently stop being generated.
+// Each stub renders the festival's real schedule inline (day then stage,
+// from the same _scheduleActs data schedule.json ships) and links the App
+// Store install path, so "<festival> set times" queries land on substance.
 const festivalModules = readdirSync(path.join(root, 'data', 'festivals'))
   .filter(f => f.endsWith('.js')).sort()
   .map(f => readFileSync(path.join(root, 'data', 'festivals', f), 'utf8'))
@@ -105,6 +108,76 @@ function place(cfg, region) {
   return { venue, addr };
 }
 
+const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+// dayDates months are 0-indexed (m:8 = September). Date label for a schedule
+// day; days outside the registry's public `dates` span are early-entry (Lost
+// Lands days 1-2 are Sep 16-17 pre-party days while the public dates are
+// Sep 18-20) and say so, because the page must never claim a festival day
+// the public dates don't.
+function dayLabel(dd, d, dates) {
+  const e = (dd || {})[d];
+  if (!e) return `Day ${d}`;
+  let label = `${e.name}, ${MONTH_NAMES[e.m]} ${e.d}`;
+  const ymd = `${e.y}-${String(e.m + 1).padStart(2, '0')}-${String(e.d).padStart(2, '0')}`;
+  if (dates && (ymd < dates.start || ymd > dates.end)) label += ' (early entry)';
+  return { label, ymd };
+}
+
+// The schedule grid: the same acts schedule.json ships, grouped day then
+// stage, rendered INLINE at build time (never client-fetched) because these
+// stubs are the only HTML a crawler sees. Source honesty mirrors the data:
+// an unofficial scheduleSource says so on the page rather than letting the
+// page overclaim.
+function scheduleGrid(entry, dates) {
+  const cfg = entry.config;
+  const stages = DS[cfg.id]?.stages || [];
+  const acts = scheduleActs(DS[cfg.id]?.artists).filter(a => a.start && a.start !== '');
+  if (!acts.length) return '';
+  const stageIx = (sid) => { const i = stages.findIndex(t => t.id === sid); return i === -1 ? stages.length : i; };
+  const stageName = (sid) => stages.find(t => t.id === sid)?.name
+    || String(sid || 'Other').replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  const days = [...new Set(acts.map(a => a.day))].sort((a, b) => a - b);
+  const blocks = days.map(d => {
+    const { label, ymd } = dayLabel(cfg.dayDates, d, dates);
+    const dayActs = acts.filter(a => a.day === d);
+    const stageIds = [...new Set(dayActs.map(a => a.stage))].sort((x, y) => stageIx(x) - stageIx(y));
+    return `    <h3>${esc(label)}</h3>\n` + stageIds.map(st => {
+      const sets = dayActs.filter(a => a.stage === st)
+        .sort((a, b) => String(a.start).localeCompare(String(b.start)));
+      return `    <h4>${esc(stageName(st))}</h4>\n    <ul class="sets">\n` +
+        sets.map(a => `      <li><time${ymd ? ` datetime="${ymd}T${esc(a.start)}"` : ''}>${esc(a.start)}${a.end ? ' – ' + esc(a.end) : ''}</time> <span>${esc(a.name)}</span></li>`).join('\n') +
+        `\n    </ul>`;
+    }).join('\n');
+  }).join('\n');
+  const src = cfg.scheduleSource;
+  const srcNote = src && src.official === true
+    ? `Official set times${src.observedAt ? `, confirmed ${esc(src.observedAt)}` : ''}.`
+    : 'Set times gathered from community sources. Plursky swaps in the official schedule the moment it drops.';
+  return `
+  <section aria-labelledby="schedule-h">
+    <h2 id="schedule-h">${esc(cfg.name)} schedule &amp; set times</h2>
+    <p class="note">${srcNote}${cfg.tzAbbr ? ` All times local (${esc(cfg.tzAbbr)}).` : ''}</p>
+${blocks}
+  </section>`;
+}
+
+// "Stages & map" — real per-festival stage content (name + description), so
+// "<festival> map" queries land on substance, not a placeholder.
+function stagesSection(entry) {
+  const cfg = entry.config;
+  const stages = DS[cfg.id]?.stages || [];
+  if (!stages.length) return '';
+  return `
+  <section aria-labelledby="stages-h">
+    <h2 id="stages-h">${esc(cfg.name)} stages &amp; map</h2>
+    <p>The Plursky app carries a live map of ${esc(cfg.locationShort || cfg.name)} with every stage, water station and amenity.</p>
+    <ul class="stagelist">
+${stages.map(st => `      <li><strong>${esc(st.name)}</strong>${st.desc ? ` · ${esc(st.desc)}` : ''}</li>`).join('\n')}
+    </ul>
+  </section>`;
+}
+
 const TODAY = new Date().toISOString().slice(0, 10);
 
 // ── Page template ────────────────────────────────────────────────────
@@ -122,10 +195,14 @@ function stub(entry, isPastOverride) {
     ? isPastOverride
     : (dates ? dates.end < TODAY : false);
   const where = cfg.location || '';
+  const hasTimes = scheduleActs(DS[id]?.artists).some(a => a.start && a.start !== '');
+  const titleTail = hasTimes ? 'Set Times, Lineup &amp; Map' : 'Lineup, Map &amp; Schedule';
 
-  const desc = names.length
-    ? `${cfg.name} lineup — ${names.length} artists at ${venue}, ${cfg.dates}. Build your schedule, map the stages and share your weekend with Plursky.`
-    : `${cfg.name} at ${venue}, ${cfg.dates}. Build your schedule, map the stages and share your weekend with Plursky.`;
+  const desc = hasTimes
+    ? `${cfg.name} set times and lineup — ${names.length} artists at ${venue}, ${cfg.dates}. Full schedule by day and stage. Plan your weekend with Plursky.`
+    : names.length
+      ? `${cfg.name} lineup — ${names.length} artists at ${venue}, ${cfg.dates}. Build your schedule, map the stages and share your weekend with Plursky.`
+      : `${cfg.name} at ${venue}, ${cfg.dates}. Build your schedule, map the stages and share your weekend with Plursky.`;
 
   const ld = {
     '@context': 'https://schema.org',
@@ -163,17 +240,18 @@ ${cfg.setTimesProvisional ? `    <p class="note">Stage assignments and set times
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${esc(cfg.name)} — Lineup, Map &amp; Schedule · Plursky</title>
+<title>${esc(cfg.name)} — ${titleTail} · Plursky</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${url}">
+<meta name="apple-itunes-app" content="app-id=6768888507">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Plursky">
-<meta property="og:title" content="${esc(cfg.name)} — Lineup, Map &amp; Schedule">
+<meta property="og:title" content="${esc(cfg.name)} — ${titleTail}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${url}">
 <meta property="og:image" content="${ORIGIN}/og-card.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="${esc(cfg.name)} — Lineup, Map &amp; Schedule">
+<meta name="twitter:title" content="${esc(cfg.name)} — ${titleTail}">
 <meta name="twitter:description" content="${esc(desc)}">
 <meta name="twitter:image" content="${ORIGIN}/og-card.png">
 <link rel="icon" type="image/png" href="/apple-touch-icon.png">
@@ -192,6 +270,14 @@ ${cfg.setTimesProvisional ? `    <p class="note">Stage assignments and set times
   ul.lineup { list-style:none; padding:0; margin:12px 0 0;
               display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:2px 16px; }
   ul.lineup li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  h3 { font-size:16px; margin:24px 0 4px; }
+  h4 { font-size:13px; margin:16px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
+  ul.sets { list-style:none; padding:0; margin:4px 0 0; }
+  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; }
+  ul.sets li time { color:var(--muted); font-variant-numeric:tabular-nums; min-width:96px; flex:none; }
+  ul.stagelist { list-style:none; padding:0; margin:8px 0 0; }
+  ul.stagelist li { padding:6px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  a.cta-secondary { margin-left:14px; font-weight:600; }
   nav.other { margin-top:40px; }
   nav.other a { color:var(--ink); }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
@@ -207,9 +293,14 @@ ${JSON.stringify(ld, null, 2)}
   <p class="meta">${esc(cfg.dates)}${where ? ' · ' + esc(where) : ''}${isPast ? ' · This festival has ended.' : ''}</p>
   <p>${esc(cfg.tagline || '')}</p>
 
-  <a class="cta" href="/?f=${esc(id)}">${entry.available ? (isPast ? 'Relive it in Plursky' : 'Plan your weekend in Plursky') : 'Open Plursky'}</a>
+  <p>
+    <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
+    <a class="cta-secondary" href="/?f=${esc(id)}">${entry.available ? (isPast ? 'Relive it in the browser' : 'Open in your browser') : 'Open Plursky in the browser'}</a>
+  </p>
   <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.</p>
-${entry.available ? '' : `  <p class="note">${esc(cfg.name)} is not switchable in the app yet — it goes live once the official schedule is published. The link above opens Plursky on the current festival.</p>`}
+${entry.available ? '' : `  <p class="note">${esc(cfg.name)} is not switchable in the app yet — it goes live once the official schedule is published. The links above open Plursky on the current festival.</p>`}
+${scheduleGrid(entry, dates)}
+${stagesSection(entry)}
 ${lineupSection}
 
   <nav class="other" aria-labelledby="other-h">
@@ -320,18 +411,22 @@ for (const entry of REG) {
 }
 
 // sitemap — generated here so it can never drift from the pages above.
+const lastmodOf = (f) => {
+  const o = f.config.scheduleSource?.observedAt;
+  return o && /^\d{4}-\d{2}-\d{2}$/.test(o) ? o : TODAY;
+};
 const urls = [
-  { loc: `${ORIGIN}/`, pri: '1.0' },
-  ...REG.map(f => ({ loc: `${ORIGIN}/f/${f.config.id}/`, pri: '0.8' })),
-  { loc: `${ORIGIN}/terms.html`, pri: '0.3' },
-  { loc: `${ORIGIN}/privacy.html`, pri: '0.3' },
+  { loc: `${ORIGIN}/`, pri: '1.0', lastmod: TODAY },
+  ...REG.map(f => ({ loc: `${ORIGIN}/f/${f.config.id}/`, pri: '0.8', lastmod: lastmodOf(f) })),
+  { loc: `${ORIGIN}/terms.html`, pri: '0.3', lastmod: TODAY },
+  { loc: `${ORIGIN}/privacy.html`, pri: '0.3', lastmod: TODAY },
 ];
 emit(path.join(root, 'sitemap.xml'),
 `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(u => `  <url>
     <loc>${u.loc}</loc>
-    <lastmod>${TODAY}</lastmod>
+    <lastmod>${u.lastmod}</lastmod>
     <priority>${u.pri}</priority>
   </url>`).join('\n')}
 </urlset>
