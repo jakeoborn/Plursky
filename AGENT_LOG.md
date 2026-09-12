@@ -10,6 +10,7 @@ Entries are reverse chronological:
 
 ## Entries
 
+- 2026-09-12 18:36 CT | Author: Instinct | Lane: Festival SEO | #172 merged as c1d8f7d; 25 festival pages, the sitemap, and home index were regenerated from the shared source. Both generator checks pass on live main.
 - 2026-09-12 11:33 CT | Author: Claude | Lane: QA harness | #163 is still NOT green after Mac runs 6-9 (heads `d3dd804`, `ac86e5d`, `5d07379`). Run 6 cleared onboarding for the first time; runs 6 and 7 exposed harness bugs (festival switcher matchers, keyboard Done key), now fixed on `5d07379`. Run 8 hit an agent-device runner fault before any app step, and macOS stopped run 9 for low memory on this 8 GB Mac. Do not merge; the next step is Instinct's call.
 - 2026-09-12 11:33 CT | Author: Claude | Lane: TestFlight upload | 1.13 (28) is VALID in TestFlight, built by the upload script from main `fe257e1` (web v318, the #167 NowPlayingBar fix). Not submitted for review; that stays with Jake.
 - 2026-09-12 11:13 CT | Author: Instinct | Lane: TestFlight upload | #170 exact head `e8f55d4` received a clean substitute verdict with two non-blocking edge cases, then passed GitHub CI and local full verify. Merged as `2b64711`; it adds retry handling for ASC 429/5xx responses and dotenv-style environment parsing.
