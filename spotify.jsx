@@ -10308,12 +10308,13 @@ function NowPlayingBar() {
   const CFG = window.FESTIVAL_CONFIG || {};
   const [trial, setTrial] = React.useState(false);
   React.useEffect(() => { let on = true; _liveCheckinTrialOn().then(v => { if (on) setTrial(!!v); }); return () => { on = false; }; }, []);
-  const [, setTick] = React.useState(0);
+  // Every live test below reads the clock at render, so the bar ticks for
+  // everyone, not only the trial: sets start and end without a GPS fix.
+  const [tick, setTick] = React.useState(0);
   React.useEffect(() => {
-    if (!trial) return;
     const t = setInterval(() => setTick(n => n + 1), 60000);
     return () => clearInterval(t);
-  }, [trial]);
+  }, []);
   const trialLive = trial && _checkinNight(CFG, Date.now()) != null;
   const checkin = useLiveCheckin();
 
@@ -10321,18 +10322,12 @@ function NowPlayingBar() {
     try { return localStorage.getItem("plursky-debug-live") === "true"; } catch { return false; }
   }, []);
 
-  // Check if we're during festival hours (or debug override)
-  const isFestivalLive = React.useMemo(() => {
-    if (debugLive) return true;
-    if (!CFG.dayDates) return false;
-    const now = Date.now();
-    for (const dd of Object.values(CFG.dayDates)) {
-      const openMs = dd.midnightUtc + 19 * 3600000; // 7pm
-      const closeMs = dd.midnightUtc + (5.5 + 24) * 3600000; // 5:30am next day
-      if (now >= openMs && now <= closeMs) return true;
-    }
-    return false;
-  }, [debugLive]);
+  // Live = a set is on somewhere at this festival, from NOW.liveIds: real
+  // dates, the festival's zone, the user's weekend. This was a fixed
+  // 19:00-05:30 window over the base dayDates, memoised once at mount, so the
+  // bar never showed at a daytime set (ACL runs from noon), never on ACL
+  // Weekend 2 (the base dates are Weekend 1), and froze at mount time.
+  const isFestivalLive = debugLive || NOW.liveIds.length > 0;
 
   // GPS watch for current stage (debug: simulate first stage + first artist on night 1)
   React.useEffect(() => {
@@ -10365,36 +10360,8 @@ function NowPlayingBar() {
       if (!nearest || nearest.dist > 200) { setLiveState(s => ({ ...s, stage: null, artist: null })); return; }
 
       const stageObj = (window.STAGES || []).find(s => s.id === nearest.stageId);
-      const now = new Date();
-      const hh = now.getHours();
-      const mm = now.getMinutes();
-      const adjustedMin = (hh < 6 ? hh + 24 : hh) * 60 + mm;
-
-      // Find current night
-      let currentNight = null;
-      if (CFG.dayDates) {
-        const nowMs = Date.now();
-        for (const [day, dd] of Object.entries(CFG.dayDates)) {
-          const openMs = dd.midnightUtc + 19 * 3600000;
-          const closeMs = dd.midnightUtc + (5.5 + 24) * 3600000;
-          if (nowMs >= openMs && nowMs <= closeMs) { currentNight = parseInt(day); break; }
-        }
-      }
-
-      // Find artist playing now at this stage
-      let currentArtist = null;
-      if (currentNight) {
-        for (const a of (window.ARTISTS || [])) {
-          if (a.day !== currentNight || a.stage !== nearest.stageId) continue;
-          const [sh, sm] = a.start.split(":").map(Number);
-          const [eh, em] = a.end.split(":").map(Number);
-          const startMin = (sh < 6 ? sh + 24 : sh) * 60 + sm;
-          const endMin = (eh < 6 ? eh + 24 : eh) * 60 + em;
-          if (adjustedMin >= startMin && adjustedMin < endMin) { currentArtist = a; break; }
-        }
-      }
-
-      setLiveState(s => ({ ...s, stage: stageObj, artist: currentArtist }));
+      // The fix only names the stage; the effect below names the set.
+      setLiveState(s => (s.stage?.id === stageObj?.id ? s : { ...s, stage: stageObj }));
       if (stageObj?.id && window.joinStagePresence) window.joinStagePresence(stageObj.id);
     }, null, { enableHighAccuracy: true, maximumAge: 10000 });
 
@@ -10403,6 +10370,18 @@ function NowPlayingBar() {
       if (window.leaveStagePresence) window.leaveStagePresence();
     };
   }, [isFestivalLive, debugLive]);
+
+  // The set on at that stage, re-read every tick as well as on a new fix: a
+  // user standing still gets no fix when one set ends and the next begins.
+  // Same test as detectCurrentArtist: the weekend's lineup and isSetLive. The
+  // old match read the DEVICE clock against base dates, off-zone and blind to
+  // Weekend 2.
+  React.useEffect(() => {
+    if (debugLive) return;
+    const sid = liveState.stage?.id;
+    const a = sid ? activeLineup().find(x => x.stage === sid && isSetLive(x)) || null : null;
+    setLiveState(s => (s.artist?.id === a?.id ? s : { ...s, artist: a }));
+  }, [tick, liveState.stage?.id, debugLive]);
 
   // Listen for presence count updates
   React.useEffect(() => {

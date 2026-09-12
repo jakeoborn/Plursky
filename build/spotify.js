@@ -16040,12 +16040,11 @@ function NowPlayingBar() {
       on = false;
     };
   }, []);
-  var [, setTick] = React.useState(0);
+  var [tick, setTick] = React.useState(0);
   React.useEffect(() => {
-    if (!trial) return;
     var t = setInterval(() => setTick(n => n + 1), 60000);
     return () => clearInterval(t);
-  }, [trial]);
+  }, []);
   var trialLive = trial && _checkinNight(CFG, Date.now()) != null;
   var checkin = useLiveCheckin();
   var debugLive = React.useMemo(() => {
@@ -16055,17 +16054,7 @@ function NowPlayingBar() {
       return false;
     }
   }, []);
-  var isFestivalLive = React.useMemo(() => {
-    if (debugLive) return true;
-    if (!CFG.dayDates) return false;
-    var now = Date.now();
-    for (var dd of Object.values(CFG.dayDates)) {
-      var openMs = dd.midnightUtc + 19 * 3600000;
-      var closeMs = dd.midnightUtc + (5.5 + 24) * 3600000;
-      if (now >= openMs && now <= closeMs) return true;
-    }
-    return false;
-  }, [debugLive]);
+  var isFestivalLive = debugLive || NOW.liveIds.length > 0;
   React.useEffect(() => {
     if (!isFestivalLive) return;
     if (debugLive) {
@@ -16107,41 +16096,10 @@ function NowPlayingBar() {
         return;
       }
       var stageObj = (window.STAGES || []).find(s => s.id === nearest.stageId);
-      var now = new Date();
-      var hh = now.getHours();
-      var mm = now.getMinutes();
-      var adjustedMin = (hh < 6 ? hh + 24 : hh) * 60 + mm;
-      var currentNight = null;
-      if (CFG.dayDates) {
-        var nowMs = Date.now();
-        for (var [day, dd] of Object.entries(CFG.dayDates)) {
-          var openMs = dd.midnightUtc + 19 * 3600000;
-          var closeMs = dd.midnightUtc + (5.5 + 24) * 3600000;
-          if (nowMs >= openMs && nowMs <= closeMs) {
-            currentNight = parseInt(day);
-            break;
-          }
-        }
-      }
-      var currentArtist = null;
-      if (currentNight) {
-        for (var a of window.ARTISTS || []) {
-          if (a.day !== currentNight || a.stage !== nearest.stageId) continue;
-          var [sh, sm] = a.start.split(":").map(Number);
-          var [eh, em] = a.end.split(":").map(Number);
-          var startMin = (sh < 6 ? sh + 24 : sh) * 60 + sm;
-          var endMin = (eh < 6 ? eh + 24 : eh) * 60 + em;
-          if (adjustedMin >= startMin && adjustedMin < endMin) {
-            currentArtist = a;
-            break;
-          }
-        }
-      }
-      setLiveState(s => ({
+      setLiveState(s => s.stage?.id === stageObj?.id ? s : {
         ...s,
-        stage: stageObj,
-        artist: currentArtist
-      }));
+        stage: stageObj
+      });
       if (stageObj?.id && window.joinStagePresence) window.joinStagePresence(stageObj.id);
     }, null, {
       enableHighAccuracy: true,
@@ -16152,6 +16110,15 @@ function NowPlayingBar() {
       if (window.leaveStagePresence) window.leaveStagePresence();
     };
   }, [isFestivalLive, debugLive]);
+  React.useEffect(() => {
+    if (debugLive) return;
+    var sid = liveState.stage?.id;
+    var a = sid ? activeLineup().find(x => x.stage === sid && isSetLive(x)) || null : null;
+    setLiveState(s => s.artist?.id === a?.id ? s : {
+      ...s,
+      artist: a
+    });
+  }, [tick, liveState.stage?.id, debugLive]);
   React.useEffect(() => {
     var onPresence = e => {
       if (e.detail?.stageId === liveState.stage?.id) {
