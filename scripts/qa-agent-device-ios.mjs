@@ -131,6 +131,9 @@ async function press(matchers, label, { missing = "", maxScrolls = 6 } = {}) {
     const node = matches.find(n => isNodeVisible(n)) || matches[0];
     const text = nodeLabel(node);
     if (FORBIDDEN_CONFIRM.test(text.trim())) throw new Error(`safety stop: refusing purchase-confirm control ${JSON.stringify(text)}`);
+    // Record what was pressed. Run 6 (2026-09-12) pressed the page-title node
+    // for "festival-chip" and nothing in the artifacts said so.
+    (result.presses ||= []).push({ label, text, ref: node.ref, visible: isNodeVisible(node), attempt });
     try {
       await client.interactions.press({ ref: interactionRef(node.ref) });
       return;
@@ -390,9 +393,17 @@ try {
 
     // Select EDC LV from the real festival switcher. The switch reloads the
     // WebView, so refs after this press are deliberately discarded.
-    await press(/LOST LANDS|NOCTURNAL|EDC LV|FESTIVAL/i, "festival-chip", { missing: "festival chip absent on Today" });
-    await waitForSnapshot(/Electric Daisy Carnival.*Las Vegas|EDC LV/i, { name: "snapshot-festival-switcher.txt", interactiveOnly: true });
-    await press(/Electric Daisy Carnival.*Las Vegas|EDC LV/i, "edc-lv");
+    // The chip reads the active festival's shortName in capitals. Match that
+    // text from the start of the label, case-sensitive: a loose /FESTIVAL/i
+    // matched the page title "Plursky · Festival Companion" first (run 6), and
+    // the tap landed on nothing. The chip precedes the "LOST LANDS 2026" hero
+    // heading in document order, so the first hit is the chip.
+    await press(/^(?:LOST LANDS|NOCTURNAL|EDC LV)\b/, "festival-chip", { missing: "festival chip absent on Today" });
+    // The sheet's heading is "Where are you raving?", and each row shows the
+    // festival's config.name ("EDC Las Vegas 2026" in data.jsx), never the
+    // "EDC LV" shortName or "Electric Daisy Carnival".
+    await waitForSnapshot(/Where are you raving/i, { name: "snapshot-festival-switcher.txt", interactiveOnly: true });
+    await press(/EDC Las Vegas/i, "edc-lv");
 
     // EDC LV is post-festival, so its normal tab bar replaces Map with
     // Memories. Relaunch into Map through the same DEBUG-only argument bridge;
