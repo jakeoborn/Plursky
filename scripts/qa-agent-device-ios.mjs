@@ -45,6 +45,7 @@ let simulatorWasBooted = false;
 let udid = "";
 let bundleId = "";
 let client;
+let normalizeAgentDeviceError, isNodeVisible; // bound once agent-device is imported
 
 async function atomicJson() {
   await mkdir(out, { recursive: true });
@@ -92,8 +93,9 @@ function atLeast(actual, wanted) {
 function snapshotText(snapshot) {
   return (snapshot.nodes || []).map(n => [n.label, n.name, n.value, n.text, n.role].filter(Boolean).join(" ")).join("\n");
 }
+function nodeLabel(n) { return [n.label, n.name, n.value, n.text].filter(Boolean).join(" "); }
 function findNode(snapshot, matcher) {
-  return (snapshot.nodes || []).find(n => matcher.test([n.label, n.name, n.value, n.text].filter(Boolean).join(" ")));
+  return (snapshot.nodes || []).find(n => matcher.test(nodeLabel(n)));
 }
 function interactionRef(ref) {
   if (!ref) throw new Error("interaction target has no accessibility ref");
@@ -111,13 +113,37 @@ async function saveSnapshot(name, interactiveOnly = false) {
   const path = join(out, name); await writeFile(path, body + "\n"); result.artifacts[name] = path;
   return { snap, body };
 }
-async function press(matcher, label) {
-  const { snap } = await saveSnapshot(`before-${label}.txt`, true);
-  const node = findNode(snap, matcher);
-  if (!node?.ref) throw new Error(`could not find ${label} in interactive accessibility snapshot`);
-  const nodeText = [node.label, node.name, node.value, node.text].filter(Boolean).join(" ");
-  if (FORBIDDEN_CONFIRM.test(nodeText.trim())) throw new Error(`safety stop: refusing purchase-confirm control ${JSON.stringify(nodeText)}`);
-  await client.interactions.press({ ref: interactionRef(node.ref) });
+// Refs are snapshot-scoped, so every attempt takes a fresh snapshot and presses
+// a ref minted by it. An on-screen match wins over an off-screen one. If
+// agent-device still refuses the target as off-screen (it checks before any
+// tap, so nothing landed), scroll one short step the way it reports and start
+// over from a new snapshot; a refused ref is never retried without one. `matchers`
+// may be a list, tried in order (first matcher with any hit wins).
+async function press(matchers, label, { missing = "", maxScrolls = 6 } = {}) {
+  for (let attempt = 0; ; attempt++) {
+    const { snap } = await saveSnapshot(`before-${label}${attempt ? `-scroll${attempt}` : ""}.txt`, true);
+    const candidates = (snap.nodes || []).filter(n => n.ref);
+    const matches = [].concat(matchers).map(m => candidates.filter(n => m.test(nodeLabel(n)))).find(ms => ms.length) || [];
+    if (!matches.length) {
+      const e = new Error(missing || `could not find ${label} in interactive accessibility snapshot`);
+      throw missing ? Object.assign(e, { finalState: "FAIL_UI_REGRESSION" }) : e;
+    }
+    const node = matches.find(n => isNodeVisible(n)) || matches[0];
+    const text = nodeLabel(node);
+    if (FORBIDDEN_CONFIRM.test(text.trim())) throw new Error(`safety stop: refusing purchase-confirm control ${JSON.stringify(text)}`);
+    // Record what was pressed. Run 6 (2026-09-12) pressed the page-title node
+    // for "festival-chip" and nothing in the artifacts said so.
+    (result.presses ||= []).push({ label, text, ref: node.ref, visible: isNodeVisible(node), attempt });
+    try {
+      await client.interactions.press({ ref: interactionRef(node.ref) });
+      return;
+    } catch (error) {
+      const details = normalizeAgentDeviceError(error).details || {};
+      if (details.reason !== "offscreen_ref" || attempt >= maxScrolls) throw error;
+      await client.interactions.scroll({ direction: details.scrollDirection || "down", pixels: 160 });
+      await new Promise(r => setTimeout(r, 400));
+    }
+  }
 }
 async function screenshot(name) {
   const requested = join(out, name);
@@ -133,25 +159,72 @@ async function waitForSnapshot(matcher, { timeoutMs = 20_000, name = "snapshot-w
     if (matcher.test(last.body)) return last;
     await new Promise(r => setTimeout(r, 750));
   }
-  throw Object.assign(new Error(`timed out waiting for ${matcher}`), { finalState: "FAIL_UI_REGRESSION" });
+  throw Object.assign(new Error(`timed out waiting for ${matcher}`), { finalState: "FAIL_UI_REGRESSION", last });
 }
-async function finishOnboardingIfPresent() {
+// The WebView is on screen but iOS exposes none of its content: the hierarchy
+// stops at WKWebView > WKContentView > AXRemoteElement with only scroll bars
+// under it. Seen on about half of the fresh-boot runs on 2026-09-12 (runs 1
+// and 5), with the same runner cache as the runs that worked, and with the
+// keyboard up, so the page itself had rendered. A populated tree carries the
+// page title ("Plursky · Festival Companion") and never shows AXRemoteElement.
+function emptyWebTree(snapshot) {
+  return !!snapshot && /\bAXRemoteElement\b/.test(snapshot.body) && !/Festival Companion/i.test(snapshot.body);
+}
+async function finishOnboardingIfPresent(relaunch) {
   // apps.open resolves when the native launch succeeds, before the WebView is
   // necessarily ready. Wait for either stable Home content or onboarding so a
   // blank/partial first hierarchy cannot make us skip the fresh-install path.
-  const first = await waitForSnapshot(
-    /What should we call you|LOST LANDS|NOCTURNAL|EDC LV/i,
-    { name: "snapshot-home-or-onboarding.txt", interactiveOnly: true },
-  );
+  const entry = /What should we call you|LOST LANDS|NOCTURNAL|EDC LV/i;
+  let first;
+  try {
+    first = await waitForSnapshot(entry, { name: "snapshot-home-or-onboarding.txt", interactiveOnly: true });
+  } catch (error) {
+    // An empty WebView tree is not a UI regression. Relaunch once; if the tree
+    // is still empty, report it as its own state so it never reads as an app bug.
+    if (!emptyWebTree(error.last)) throw error;
+    result.axBridgeRelaunch = { at: new Date().toISOString() };
+    await relaunch();
+    try {
+      first = await waitForSnapshot(entry, { name: "snapshot-home-or-onboarding-relaunch.txt", interactiveOnly: true });
+    } catch (retryError) {
+      if (!emptyWebTree(retryError.last)) throw retryError;
+      throw Object.assign(new Error("WebView accessibility tree still empty after one relaunch (AXRemoteElement with no web content)"), { finalState: "BLOCKED_AX_BRIDGE" });
+    }
+    result.axBridgeRelaunch.recovered = true;
+  }
   if (!/What should we call you/i.test(first.body)) return;
 
   const nameInput = findNode(first.snap, /What should we call you/i);
   if (!nameInput?.ref) throw Object.assign(new Error("onboarding name input has no interactive ref"), { finalState: "FAIL_UI_REGRESSION" });
-  // The name input owns autoFocus, and the fresh-install snapshot confirms it
-  // is focused with the keyboard open. Filling by ref is unsafe here because
-  // iOS reports its pre-keyboard frame as off-screen; type targets the focused
-  // field directly and avoids an invented coordinate or product-only seed.
-  await client.interactions.type({ text: "QA User" });
+  // The name input owns autoFocus. When WKWebView honours it the keyboard is
+  // already open, and iOS then reports the field's pre-keyboard frame as
+  // off-screen, so type targets the focused field instead of a ref. WKWebView
+  // does not always honour autoFocus without a user tap, though (fresh boot,
+  // 2026-09-12: "No focused text input was available for typing."). In that
+  // case the keyboard is closed and the frame is real, so tap the field from a
+  // fresh snapshot and type once more.
+  try {
+    await client.interactions.type({ text: "QA User" });
+  } catch (error) {
+    if (!/No focused text input/i.test(normalizeAgentDeviceError(error).message || error.message)) throw error;
+    await press(/What should we call you/i, "onboarding-name");
+    await client.interactions.type({ text: "QA User" });
+  }
+  // With the keyboard up, the CONTINUE press lands under it and onboarding
+  // never advances (2026-09-12 run: "CONTINUE AS QA USER" still on screen,
+  // timed out waiting for CONNECT SPOTIFY). WKWebView's form bar has a Done
+  // key, which is the only dismissal agent-device will tap on iOS.
+  // agent-device does not always find that key, though: run 7 (2026-09-12)
+  // failed with "the keyboard exposes no dismiss key" while the snapshot held
+  // WKFormAccessoryView > Done. Done only ends editing, so pressing it from a
+  // fresh snapshot is as safe as agent-device's own dismissal.
+  try {
+    result.keyboardDismiss = await client.command.keyboard({ action: "dismiss" });
+  } catch (error) {
+    if (!/no dismiss key/i.test(normalizeAgentDeviceError(error).message || error.message)) throw error;
+    await press(/^Done(?: Done)?$/, "keyboard-done");
+    result.keyboardDismiss = { mechanism: "harness-pressed-form-bar-done" };
+  }
   await press(/CONTINUE AS QA USER|CONTINUE/i, "onboarding-continue");
   await waitForSnapshot(/CONNECT SPOTIFY/i, { name: "snapshot-onboarding-spotify.txt", interactiveOnly: true });
   await press(/^SKIP$/i, "onboarding-skip-spotify");
@@ -242,7 +315,9 @@ try {
     await run("xcrun", ["simctl", "uninstall", udid, bundleId], { allowFailure: true });
     await run("xcrun", ["simctl", "install", udid, app]);
   });
-  const { createAgentDeviceClient, normalizeAgentDeviceError } = await import("agent-device");
+  const { createAgentDeviceClient } = await import("agent-device");
+  ({ normalizeAgentDeviceError } = await import("agent-device"));
+  ({ isNodeVisible } = await import("agent-device/selectors"));
   let clientAttempt = 0;
   const freshClient = () => createAgentDeviceClient({
     session: `plursky-${opts.flow}-${process.pid}-${++clientAttempt}`,
@@ -315,11 +390,12 @@ try {
     // foregrounding and initial routing. `simctl openurl` is not a launch
     // primitive: iOS may leave the custom-scheme confirmation on SpringBoard,
     // so a successful command can still leave Plursky in the background.
-    await client.apps.open({
+    const openHome = () => client.apps.open({
       app: bundleId, platform: "ios", udid, relaunch: true,
       launchArgs: ["-plurskyInitialTab", "home"],
     });
-    await finishOnboardingIfPresent();
+    await openHome();
+    await finishOnboardingIfPresent(openHome);
 
     // The festival switcher lives on Home, not Map. Home has no standalone
     // "TODAY" heading, so wait for the interactive chip this flow needs.
@@ -327,15 +403,17 @@ try {
 
     // Select EDC LV from the real festival switcher. The switch reloads the
     // WebView, so refs after this press are deliberately discarded.
-    const entry = await saveSnapshot("snapshot-before-festival-switch.txt", true);
-    const festivalChip = (entry.snap.nodes || []).find(n => {
-      const t = [n.label, n.name, n.value, n.text].filter(Boolean).join(" ");
-      return /LOST LANDS|NOCTURNAL|EDC LV|FESTIVAL/i.test(t) && n.ref;
-    });
-    if (!festivalChip?.ref) throw Object.assign(new Error("festival chip absent on Today"), { finalState: "FAIL_UI_REGRESSION" });
-    await client.interactions.press({ ref: interactionRef(festivalChip.ref) });
-    await waitForSnapshot(/Electric Daisy Carnival.*Las Vegas|EDC LV/i, { name: "snapshot-festival-switcher.txt", interactiveOnly: true });
-    await press(/Electric Daisy Carnival.*Las Vegas|EDC LV/i, "edc-lv");
+    // The chip reads the active festival's shortName in capitals. Match that
+    // text from the start of the label, case-sensitive: a loose /FESTIVAL/i
+    // matched the page title "Plursky · Festival Companion" first (run 6), and
+    // the tap landed on nothing. The chip precedes the "LOST LANDS 2026" hero
+    // heading in document order, so the first hit is the chip.
+    await press(/^(?:LOST LANDS|NOCTURNAL|EDC LV)\b/, "festival-chip", { missing: "festival chip absent on Today" });
+    // The sheet's heading is "Where are you raving?", and each row shows the
+    // festival's config.name ("EDC Las Vegas 2026" in data.jsx), never the
+    // "EDC LV" shortName or "Electric Daisy Carnival".
+    await waitForSnapshot(/Where are you raving/i, { name: "snapshot-festival-switcher.txt", interactiveOnly: true });
+    await press(/EDC Las Vegas/i, "edc-lv");
 
     // EDC LV is post-festival, so its normal tab bar replaces Map with
     // Memories. Relaunch into Map through the same DEBUG-only argument bridge;
@@ -348,23 +426,19 @@ try {
     await waitForSnapshot(/Map layers/i, { name: "snapshot-edc-map-entry.txt", interactiveOnly: true });
 
     await press(/Map layers/i, "map-layers");
-    const layers = await waitForSnapshot(/Real map.*BETA/i, { name: "snapshot-map-layers.txt", interactiveOnly: true });
-    const realMap = findNode(layers.snap, /Real map.*BETA/i);
-    const realText = [realMap?.label, realMap?.name, realMap?.value, realMap?.text].filter(Boolean).join(" ");
-    if (!realMap?.ref) throw Object.assign(new Error("Real map control absent"), { finalState: "FAIL_UI_REGRESSION" });
+    await waitForSnapshot(/Real map.*BETA/i, { name: "snapshot-map-layers.txt", interactiveOnly: true });
     // aria-pressed is not consistently surfaced in the merged iOS tree. A
     // fresh install is off by contract, so one press enables it.
-    await client.interactions.press({ ref: interactionRef(realMap.ref) });
+    await press(/Real map.*BETA/i, "real-map", { missing: "Real map control absent" });
 
-    const style = await waitForSnapshot(/STYLIZED/i, { timeoutMs: 25_000, name: "snapshot-real-map-styles.txt", interactiveOnly: true });
-    const stylized = findNode(style.snap, /^STYLIZED$/i) || findNode(style.snap, /STYLIZED/i);
-    if (!stylized?.ref) throw Object.assign(new Error("Stylized map control absent"), { finalState: "FAIL_UI_REGRESSION" });
-    await client.interactions.press({ ref: interactionRef(stylized.ref) });
+    await waitForSnapshot(/STYLIZED/i, { timeoutMs: 25_000, name: "snapshot-real-map-styles.txt", interactiveOnly: true });
+    await press([/^STYLIZED$/i, /STYLIZED/i], "stylized", { missing: "Stylized map control absent" });
 
     // MapLibre's DOM stage pills are accessibility-visible. Pillar geometry is
     // WebGL and must be judged from the stabilized screenshot, not this tree.
     const settled = await waitForSnapshot(/KINETIC FIELD|CIRCUIT GROUNDS|COSMIC MEADOW/i, { timeoutMs: 25_000, name: "snapshot-map-3d-settled.txt" });
-    const stageNames = ["KINETIC FIELD", "CIRCUIT GROUNDS", "COSMIC MEADOW", "BASS POD", "NEON GARDEN"];
+    // Pills render stage.name.toUpperCase() (map.jsx), so "Basspod" → "BASSPOD".
+    const stageNames = ["KINETIC FIELD", "CIRCUIT GROUNDS", "COSMIC MEADOW", "BASSPOD", "NEON GARDEN"];
     const visibleStages = stageNames.filter(name => settled.body.toUpperCase().includes(name));
     if (visibleStages.length < 3) throw Object.assign(new Error(`only ${visibleStages.length} expected stage pills found`), { finalState: "FAIL_UI_REGRESSION" });
     if (/MAP ERROR|REAL MAP UNAVAILABLE|FESTIVAL MAP SHOWN/i.test(settled.body)) throw Object.assign(new Error("visible map error"), { finalState: "FAIL_UI_REGRESSION" });
