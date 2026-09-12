@@ -86,9 +86,22 @@ node scripts/build.mjs && npx cap sync ios
 npx cap open ios              # → Any iOS Device → Product ▸ Archive → Distribute ▸ App Store Connect ▸ Upload
 ```
 
-Pure-CLI archive+upload (alternative to the GUI) lives in chat history /
-`ios/App/ExportOptions.plist` if created. GUI is recommended (handles
-signing/auth/provisioning).
+**Headless, one command (TestFlight upload):**
+
+```bash
+node scripts/build-upload-testflight.mjs            # fresh origin/main → archive → upload → waits for ASC
+node scripts/build-upload-testflight.mjs --dry-run  # everything up to the archive; no ASC, no upload
+```
+
+It builds in a throwaway worktree, so the local checkout doesn't matter. It
+takes the version and build from App Store Connect, not from the pbxproj:
+build = highest ever uploaded + 1, and a closed train moves to the next 1.x
+minor. It exits 0 only once the build is visible in ASC processing. It needs
+`~/.appstoreconnect/plursky.env` (`ASC_KEY_ID`, `ASC_ISSUER_ID`) and the
+matching `.p8` in `~/.appstoreconnect/private_keys/` or `~/private_keys/`. The
+key must have cloud signing, which is granted only when the key is created.
+None of this goes in the repo. Uploading to TestFlight is not submitting for
+review; submission stays a Jake step.
 
 Pre-submit on device: HEIC auto-tag · video poster not black · ACL map ·
 Apple Music build playlist · Shazam a video · PHPicker (no photo-perm prompt).
