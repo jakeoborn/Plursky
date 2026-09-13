@@ -73,7 +73,7 @@ Status values: `fully actioned`, `in flight`, `not started`, `gap`.
 - 2026-09-12 08:02 CT | Author: Instinct | Lost Lands ingest prep | Status: in flight | Import path is prepared; direct-official 2026 artist/stage/time rows are not yet accessible and remain under watch.
 - 2026-09-12 08:02 CT | Author: Instinct | Retention messaging copy | Status: in flight | Monthly + Annual direction approved; copy drafting remains open.
 - 2026-09-12 08:02 CT | Author: Instinct | EDC Orlando geo rebuild | Status: fully actioned | Shipped Sep 6 in #73 as `0d695f7`: measured centroid, five poster-class anchors, and derived stage grid. Official 2026 map and stage/time schedule remain separate watches.
-- 2026-09-12 08:02 CT | Author: Instinct | Q1-Q4 build + ACL waiver correction | Status: gap | Handoff exists; current implementation/verification state must be reconciled before action.
+- 2026-09-12 08:02 CT | Author: Instinct | Q1-Q4 build + ACL waiver correction | Status: fully actioned | Reconciled by Claude 2026-09-13 against main: #60 (Q1+Q2), #61 (Q3), #65 (Q4). The ACL registration waiver excuses only `blind` and expires 2026-10-19; it clears when the official patron map lets the `snapchat` stage be measured.
 - 2026-09-12 08:02 CT | Author: Instinct | ROI plan (Claude #103 brief) | Status: gap | Brief is known; current actioned items and remaining commitments must be reconciled before execution claims.
 
 ## Revenue
