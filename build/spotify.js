@@ -13166,82 +13166,54 @@ function FestivalArchiveList({
 }) {
   if (!archive?.length) return null;
   var sorted = [...archive].sort((a, b) => (b.archivedAt || "").localeCompare(a.archivedAt || ""));
-  return React.createElement("div", {
+  return React.createElement("section", {
     style: {
-      marginTop: 8,
-      borderTop: "1px solid var(--line)",
-      paddingTop: 20
+      marginTop: 24
     }
-  }, React.createElement("div", {
-    className: "mono",
+  }, React.createElement("h3", {
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      color: "var(--muted)",
-      fontWeight: 700,
-      marginBottom: 10
+      margin: "0 0 4px",
+      fontSize: 11,
+      lineHeight: "14px",
+      fontWeight: 600,
+      letterSpacing: "0.04em",
+      textTransform: "uppercase",
+      color: "var(--text-2)"
     }
-  }, "FESTIVAL ARCHIVE · ", archive.length, " ", archive.length === 1 ? "PAST FESTIVAL" : "PAST FESTIVALS"), React.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "column",
-      gap: 8
-    }
-  }, sorted.map(f => React.createElement("div", {
-    key: f.id,
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 12,
-      padding: "12px 14px",
-      borderRadius: 14,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)"
-    }
-  }, React.createElement("div", {
-    style: {
-      width: 44,
-      height: 44,
-      borderRadius: 12,
-      background: "linear-gradient(135deg, var(--ember), var(--horizon))",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      color: "#fff",
-      fontWeight: 800,
-      fontSize: 16,
-      flexShrink: 0
-    }
-  }, (f.brand || f.name || "?").slice(0, 2).toUpperCase()), React.createElement("div", {
-    style: {
-      flex: 1,
-      minWidth: 0
-    }
-  }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 17,
-      lineHeight: 1.1,
-      color: "var(--ink)"
-    }
-  }, f.name || f.id), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.1,
-      color: "var(--muted)",
-      marginTop: 3
-    }
-  }, f.dates ? `${f.dates.toUpperCase()} · ` : "", f.totalAttended, " CAUGHT · ", f.totalMoments, " MEMORIES"))))), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.1,
-      color: "var(--muted)",
-      marginTop: 10,
-      textAlign: "center"
-    }
-  }, "TAP TO VIEW · COMING SOON"));
+  }, "Past festivals · ", archive.length), sorted.map(f => {
+    var entry = (window.FESTIVALS_REGISTRY || []).find(e => e.config.id === f.id) || null;
+    return React.createElement("div", {
+      key: f.id,
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        minHeight: 72,
+        padding: "8px 0",
+        borderBottom: "1px solid var(--line)"
+      }
+    }, React.createElement(FestivalThumb, {
+      entry: entry
+    }), React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 17,
+        lineHeight: "22px",
+        fontWeight: 600
+      }
+    }, f.name || f.id), React.createElement("div", {
+      style: {
+        fontSize: 13,
+        lineHeight: "18px",
+        color: "var(--text-2)",
+        fontVariantNumeric: "tabular-nums"
+      }
+    }, [f.dates, `${f.totalAttended || 0} caught`, `${f.totalMoments || 0} memories`].filter(Boolean).join(" · "))));
+  }));
 }
 var MAG_MAX = 1.08,
   MAG_MIN = 0.92;

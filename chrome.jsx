@@ -1194,9 +1194,48 @@ function FestivalChip({ compact = false, accent = "var(--ink)" }) {
   );
 }
 
+// Real festival art only: raster official maps. SVG plates and the one raster
+// placeholder (edco-tinker-2026.jpg) are generated, so those festivals show
+// their emoji on a plain surface instead.
+const _GENERATED_ART = new Set(["edco-tinker-2026.jpg"]);
+function _festivalArt(cfg) {
+  const img = cfg && cfg.mapImage;
+  return img && /\.(webp|jpe?g|png)$/i.test(img) && !_GENERATED_ART.has(img) ? img : null;
+}
+function FestivalThumb({ entry, size = 56 }) {
+  const art = entry ? _festivalArt(entry.config) : null;
+  return (
+    <div aria-hidden="true" style={{
+      width: size, height: size, borderRadius: 14, overflow: "hidden", flexShrink: 0,
+      background: "var(--paper-3)", display: "flex", alignItems: "center", justifyContent: "center",
+      fontSize: Math.round(size * 0.46),
+    }}>
+      {art ? <img src={`./${art}`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : ((entry && entry.emoji) || "🎪")}
+    </div>
+  );
+}
+// Saved sets and same-day clashes for any festival, from its own saved key.
+function _festivalPlanStatus(id) {
+  let ids = [];
+  try { ids = JSON.parse(localStorage.getItem(`${id}_saved_v1`) || "[]"); } catch {}
+  if (!Array.isArray(ids) || !ids.length) return { saved: 0, conflicts: 0 };
+  const set = new Set(ids);
+  const arts = ((window._DATA_SETS || {})[id]?.artists || []).filter(a => set.has(a.id));
+  let conflicts = 0;
+  for (let i = 0; i < arts.length; i++)
+    for (let j = i + 1; j < arts.length; j++)
+      if (arts[i].day === arts[j].day && typeof overlaps === "function" && overlaps(arts[i], arts[j])) conflicts++;
+  return { saved: arts.length, conflicts };
+}
+
+// Plans: every festival as one grouped list, ordered by date. Now, then
+// upcoming by month; past festivals fold into a Memories group that still
+// expands to switchable rows. QA harnesses match the "Where are you
+// raving?" heading and the config.name row labels, so keep both.
 function FestivalSwitcher({ onClose }) {
   const activeId = FESTIVAL_CONFIG.id;
   const [plusOpen, setPlusOpen] = React.useState(false);
+  const [pastOpen, setPastOpen] = React.useState(false);
   const onPick = (id, entry) => {
     if (id === activeId) { onClose(); return; }
     if (entry.available) { setActiveFestivalAndReload(id); return; }
@@ -1206,95 +1245,90 @@ function FestivalSwitcher({ onClose }) {
     if (entry.previewOnly) { setPlusOpen(true); return; }
     onClose();
   };
-  const byRegion = {};
-  FESTIVALS_REGISTRY.forEach(f => {
-    (byRegion[f.region] = byRegion[f.region] || []).push(f);
-  });
-  return (
-    <div onClick={onClose} style={{
-      position: "absolute", inset: 0, zIndex: 60,
-      background: "rgba(13,8,4,0.55)", backdropFilter: "blur(6px)",
-      display: "flex", alignItems: "flex-end",
-      animation: "fadeIn .2s",
-    }}>
-      {plusOpen && <PlusSheet feature="early festival access" onClose={() => setPlusOpen(false)} />}
-      <div onClick={e => e.stopPropagation()} style={{
-        background: "var(--paper)", color: "var(--ink)",
-        borderTopLeftRadius: 22, borderTopRightRadius: 22,
-        width: "100%", padding: "14px 20px 24px",
-        boxShadow: "0 -10px 40px rgba(0,0,0,0.4)",
-        maxHeight: "85%", overflowY: "auto",
-      }}>
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: 12 }}>
-          <div style={{ width: 36, height: 4, borderRadius: 4, background: "var(--line-2)" }}/>
-        </div>
-        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--muted)", marginBottom: 4 }}>
-          PICK A FESTIVAL
-        </div>
-        <div className="serif" style={{ fontSize: 24, lineHeight: 1.05, marginBottom: 18 }}>
-          Where are you raving?
-        </div>
+  if (plusOpen) return <PlusSheet feature="early festival access" onClose={() => setPlusOpen(false)} />;
 
-        {Object.entries(byRegion).map(([region, fests]) => (
-          <div key={region} style={{ marginBottom: 18 }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.5, color: "var(--muted)", marginBottom: 8, fontWeight: 600 }}>
-              {region.toUpperCase()}
+  const now = Date.now();
+  const all = FESTIVALS_REGISTRY.slice().sort((a, b) => (a.config.startMs || 0) - (b.config.startMs || 0));
+  const live = all.filter(f => (f.config.startMs || 0) <= now && now <= (f.config.endMs || 0));
+  const past = all.filter(f => (f.config.endMs || 0) < now).reverse();
+  const months = [];
+  all.filter(f => (f.config.startMs || 0) > now).forEach(f => {
+    let label = "Upcoming";
+    try { label = new Date(f.config.startMs).toLocaleDateString(undefined, { month: "long", year: "numeric", timeZone: f.config.tz || undefined }); } catch {}
+    let g = months.find(x => x.label === label);
+    if (!g) { g = { label, fests: [] }; months.push(g); }
+    g.fests.push(f);
+  });
+  let archive = [];
+  try { archive = JSON.parse(localStorage.getItem("plursky_festival_archive_v1") || "[]"); } catch {}
+  const caught = archive.reduce((n, a) => n + (a.totalAttended || 0), 0);
+
+  const eyebrow = { margin: "0 0 4px", fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)" };
+  const rowStyle = (dim) => ({
+    width: "100%", display: "flex", alignItems: "center", gap: 12, minHeight: 72, padding: "8px 0",
+    background: "transparent", border: "none", borderBottom: "1px solid var(--line)",
+    color: "var(--ink)", textAlign: "left", fontFamily: "inherit", opacity: dim ? 0.55 : 1,
+  });
+  const chevron = <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6 L15 12 L9 18"/></svg>;
+  const row = (f) => {
+    const isActive = f.config.id === activeId;
+    const locked = !f.available && !f.previewOnly && !isActive;
+    const st = _festivalPlanStatus(f.config.id);
+    const parts = [];
+    if (st.saved) parts.push(<span key="s">{st.saved} saved</span>);
+    if (st.conflicts) parts.push(<span key="c" style={{ color: "var(--warn)", fontWeight: 600 }}>⚠ {st.conflicts} {st.conflicts === 1 ? "conflict" : "conflicts"}</span>);
+    if (isActive) parts.push(<span key="a" style={{ color: "var(--signal)", fontWeight: 600 }}>✓ Active</span>);
+    else if (!f.available) parts.push(<span key="l">{f.previewOnly ? "Early access" : "Soon"}</span>);
+    else if (st.saved && !st.conflicts) parts.push(<span key="r" style={{ color: "var(--signal)", fontWeight: 600 }}>✓ Ready</span>);
+    return (
+      <button key={f.config.id} onClick={() => onPick(f.config.id, f)} disabled={locked}
+        aria-current={isActive ? "true" : undefined}
+        style={{ ...rowStyle(locked), cursor: locked ? "default" : "pointer" }}>
+        <FestivalThumb entry={f} />
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>{f.config.name}</div>
+          <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{f.config.location} · {f.config.dates}</div>
+          {parts.length > 0 && (
+            <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+              {parts.map((x, i) => <React.Fragment key={i}>{i ? " · " : ""}{x}</React.Fragment>)}
             </div>
-            <div style={{ display: "grid", gap: 8 }}>
-              {fests.map(f => {
-                const isActive = f.config.id === activeId;
-                const dimmed = !f.available;
-                return (
-                  <button key={f.config.id} onClick={() => onPick(f.config.id, f)}
-                    disabled={!f.available && !f.previewOnly && !isActive}
-                    style={{
-                      display: "flex", alignItems: "center", gap: 12,
-                      padding: "12px 14px", borderRadius: 14,
-                      background: isActive ? f.accent : "var(--paper-2)",
-                      color: isActive ? "#fff" : "var(--ink)",
-                      border: `1px solid ${isActive ? f.accent : "var(--line-2)"}`,
-                      cursor: f.available ? "pointer" : "default",
-                      opacity: dimmed && !isActive ? 0.55 : 1,
-                      textAlign: "left", fontFamily: "inherit",
-                      transition: "transform .12s",
-                    }}>
-                    <span style={{ fontSize: 22 }}>{f.emoji}</span>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div className="serif" style={{ fontSize: 18, lineHeight: 1.05, fontWeight: 400 }}>
-                        {f.config.name}
-                      </div>
-                      <div className="mono" style={{ fontSize: 10, letterSpacing: 1, marginTop: 3, opacity: 0.85 }}>
-                        {f.config.location.toUpperCase()} · {f.config.dates.toUpperCase()}
-                      </div>
-                    </div>
-                    {isActive && (
-                      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, padding: "3px 7px", borderRadius: 999, background: "rgba(255,255,255,0.25)" }}>
-                        ACTIVE
-                      </div>
-                    )}
-                    {!isActive && !f.available && f.previewOnly && (
-                      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, padding: "3px 7px", borderRadius: 999, background: "#6D28D9", color: "#fff" }}>
-                        EARLY ACCESS
-                      </div>
-                    )}
-                    {!isActive && !f.available && !f.previewOnly && (
-                      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, padding: "3px 7px", borderRadius: 999, background: "var(--paper)", color: "var(--muted)", border: "1px solid var(--line-2)" }}>
-                        SOON
-                      </div>
-                    )}
-                  </button>
-                );
-              })}
+          )}
+        </div>
+        {!locked && chevron}
+      </button>
+    );
+  };
+  const group = (label, kids) => (
+    <section key={label} style={{ marginTop: 16 }}>
+      <h3 style={eyebrow}>{label}</h3>
+      {kids}
+    </section>
+  );
+  return (
+    <FieldSheet title="Where are you raving?" onClose={onClose}>
+      {live.length > 0 && group("Now", live.map(row))}
+      {months.map(g => group(g.label, g.fests.map(row)))}
+      {(past.length > 0 || archive.length > 0) && group("Past", <>
+        <button onClick={() => setPastOpen(o => !o)} aria-expanded={pastOpen} style={{ ...rowStyle(false), cursor: "pointer" }}>
+          <FestivalThumb entry={past[0] || null} />
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>Memories</div>
+            <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
+              {Math.max(past.length, archive.length)} past {Math.max(past.length, archive.length) === 1 ? "festival" : "festivals"}{caught ? ` · ${caught} sets caught` : ""}
             </div>
           </div>
-        ))}
-
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 6, textAlign: "center", lineHeight: 1.5 }}>
-          More festivals coming through 2026.<br/>
-          Switching reloads the app with the new festival's data.
-        </div>
-      </div>
-    </div>
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: pastOpen ? "rotate(90deg)" : "none", transition: "transform 180ms ease" }}><path d="M9 6 L15 12 L9 18"/></svg>
+        </button>
+        {pastOpen && <>
+          {past.map(row)}
+          <button onClick={() => { onClose(); (window._pushNav || (() => {}))({ tab: "recap", artist: null }); }} style={{ ...fieldIconBtn, width: "auto", padding: "0 4px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 }}>Open recap</button>
+        </>}
+      </>)}
+      <p style={{ margin: "16px 0", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+        Switching reloads the app with that festival's lineup and map.
+      </p>
+      <FieldButton onClick={() => { onClose(); (window._pushNav || (() => {}))({ tab: "lineup", artist: null }); }}>Build plan</FieldButton>
+    </FieldSheet>
   );
 }
 

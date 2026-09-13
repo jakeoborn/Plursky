@@ -8733,41 +8733,29 @@ function FestivalYearCard({ yearData }) {
 function FestivalArchiveList({ archive }) {
   if (!archive?.length) return null;
   const sorted = [...archive].sort((a, b) => (b.archivedAt || "").localeCompare(a.archivedAt || ""));
+  // Field Mode rows: real festival art (or its emoji), name, and the recap
+  // status in words. The old "TAP TO VIEW · COMING SOON" promised a tap that
+  // does nothing, so it is gone.
   return (
-    <div style={{ marginTop: 8, borderTop: "1px solid var(--line)", paddingTop: 20 }}>
-      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", fontWeight: 700, marginBottom: 10 }}>
-        FESTIVAL ARCHIVE · {archive.length} {archive.length === 1 ? "PAST FESTIVAL" : "PAST FESTIVALS"}
-      </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        {sorted.map(f => (
-          <div key={f.id} style={{
-            display: "flex", alignItems: "center", gap: 12,
-            padding: "12px 14px", borderRadius: 14,
-            background: "var(--paper-2)", border: "1px solid var(--line)",
-          }}>
-            <div style={{
-              width: 44, height: 44, borderRadius: 12,
-              background: "linear-gradient(135deg, var(--ember), var(--horizon))",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              color: "#fff", fontWeight: 800, fontSize: 16, flexShrink: 0,
-            }}>
-              {(f.brand || f.name || "?").slice(0, 2).toUpperCase()}
-            </div>
+    <section style={{ marginTop: 24 }}>
+      <h3 style={{ margin: "0 0 4px", fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)" }}>
+        Past festivals · {archive.length}
+      </h3>
+      {sorted.map(f => {
+        const entry = (window.FESTIVALS_REGISTRY || []).find(e => e.config.id === f.id) || null;
+        return (
+          <div key={f.id} style={{ display: "flex", alignItems: "center", gap: 12, minHeight: 72, padding: "8px 0", borderBottom: "1px solid var(--line)" }}>
+            <FestivalThumb entry={entry} />
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="serif" style={{ fontSize: 17, lineHeight: 1.1, color: "var(--ink)" }}>
-                {f.name || f.id}
-              </div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", marginTop: 3 }}>
-                {f.dates ? `${f.dates.toUpperCase()} · ` : ""}{f.totalAttended} CAUGHT · {f.totalMoments} MEMORIES
+              <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>{f.name || f.id}</div>
+              <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
+                {[f.dates, `${f.totalAttended || 0} caught`, `${f.totalMoments || 0} memories`].filter(Boolean).join(" · ")}
               </div>
             </div>
           </div>
-        ))}
-      </div>
-      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", marginTop: 10, textAlign: "center" }}>
-        TAP TO VIEW · COMING SOON
-      </div>
-    </div>
+        );
+      })}
+    </section>
   );
 }
 
