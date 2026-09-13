@@ -4422,6 +4422,20 @@ function StorageManager({ all, onChange }) {
 // left=prev, press-and-hold=pause. Ends on a recap card with Share + Replay.
 // No background music track (we can't license one) — video beats play their
 // own audio, photo beats are silent.
+// Up next: a flat queue of the next moments' real thumbnails.
+function _ReelNextThumb({ moment, onPick }) {
+  const url = useMomentPhoto(moment.kind === "video" ? null : moment.photoId);
+  const a = moment.artistId ? ARTISTS.find(x => x.id === moment.artistId) : null;
+  return (
+    <button onClick={onPick} aria-label={`Play ${a?.name || "next moment"}`} style={{
+      width: 56, height: 56, borderRadius: 14, overflow: "hidden", padding: 0, flexShrink: 0,
+      border: "none", background: "var(--paper-2)", color: "var(--text-2)", fontSize: 18, cursor: "pointer",
+    }}>
+      {url ? <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : (moment.kind === "video" ? "▶" : "")}
+    </button>
+  );
+}
+
 function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtist, onMakeVideo }) {
   const [idx, setIdx] = React.useState(0);
   const [ended, setEnded] = React.useState(false);
@@ -4514,7 +4528,9 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
 
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 250, background: "#000", overflow: "hidden", animation: "fadeIn .2s" }}>
-      <style>{`@keyframes plurskyKB{from{transform:scale(1.001) translate(0,0)}to{transform:scale(1.12) translate(-1.5%,-2%)}}@keyframes reelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}`}</style>
+      {/* Field Mode motion: a 220 ms crossfade/scale in, nothing ambient. The
+          global prefers-reduced-motion rule makes it instant. */}
+      <style>{`@keyframes reelMedia{from{opacity:0;transform:scale(1.02)}to{opacity:1;transform:none}}@keyframes reelIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}`}</style>
 
       {!ended ? (
         <>
@@ -4526,17 +4542,15 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
               // lightbox. The song that was playing still shows as a caption.
               <video ref={vidRef} key={m.id} src={url} autoPlay playsInline muted
                 onEnded={() => advanceRef.current()}
-                style={{ width: "100%", height: "100%", objectFit: "contain" }}/>
+                style={{ width: "100%", height: "100%", objectFit: "contain", animation: "reelMedia 220ms ease-out" }}/>
             ) : (
               <img key={m.id} src={url} alt="" style={{
                 width: "100%", height: "100%", objectFit: "cover",
-                animation: `plurskyKB ${PHOTO_MS + 400}ms linear forwards`,
-                animationPlayState: pausedUI ? "paused" : "running",
+                animation: "reelMedia 220ms ease-out",
               }}/>
             ))}
-            {/* Legibility scrims */}
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 160, background: "linear-gradient(180deg, rgba(0,0,0,0.6), transparent)", pointerEvents: "none" }}/>
-            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 280, background: "linear-gradient(0deg, rgba(0,0,0,0.75), transparent)", pointerEvents: "none" }}/>
+            {/* One quiet top scrim for progress and close; the sheet carries the words. */}
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 120, background: "linear-gradient(180deg, rgba(0,0,0,0.45), transparent)", pointerEvents: "none" }}/>
           </div>
 
           {/* Tap zones */}
@@ -4546,21 +4560,53 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
           {/* Progress segments */}
           <div style={{ position: "absolute", top: "calc(10px + env(safe-area-inset-top, 0px))", left: 12, right: 12, display: "flex", gap: 4, zIndex: 6 }}>
             {moments.map((_, i) => (
-              <div key={i} style={{ flex: 1, height: 3, borderRadius: 3, background: "rgba(255,255,255,0.3)", overflow: "hidden" }}>
-                <div style={{ height: "100%", background: "#fff", width: i < idx ? "100%" : i === idx ? `${prog * 100}%` : "0%", transition: i === idx ? "none" : "width .2s" }}/>
+              <div key={i} style={{ flex: 1, height: 2, borderRadius: 2, background: "rgba(255,255,255,0.28)", overflow: "hidden" }}>
+                {/* Signal green marks the current beat only; finished beats are white. */}
+                <div style={{ height: "100%", background: i === idx ? "var(--signal)" : "rgba(255,255,255,0.9)", width: i < idx ? "100%" : i === idx ? `${prog * 100}%` : "0%", transition: i === idx ? "none" : "width .2s" }}/>
               </div>
             ))}
           </div>
 
           {/* Close + pause hint */}
-          <button onClick={onClose} aria-label="Close" style={{ position: "absolute", top: "calc(24px + env(safe-area-inset-top, 0px))", right: 14, zIndex: 7, width: 34, height: 34, borderRadius: 34, background: "rgba(0,0,0,0.4)", border: "none", color: "#fff", fontSize: 16, cursor: "pointer" }}>✕</button>
+          <button onClick={onClose} aria-label="Close" style={{ ...fieldIconBtn, position: "absolute", top: "calc(18px + env(safe-area-inset-top, 0px))", right: 8, zIndex: 7, color: "#fff" }}>
+            <span style={{ width: 36, height: 36, borderRadius: 18, background: "var(--chrome)", display: "flex", alignItems: "center", justifyContent: "center" }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg></span>
+          </button>
 
-          {/* Caption */}
-          <div key={`cap-${idx}`} style={{ position: "absolute", left: 20, right: 20, bottom: "calc(34px + env(safe-area-inset-bottom, 0px))", zIndex: 6, animation: "reelIn .4s ease-out", pointerEvents: "none" }}>
-            {fmtTime && <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "rgba(255,255,255,0.75)", fontWeight: 700, marginBottom: 6 }}>{fmtTime}</div>}
-            <div className="serif" style={{ fontSize: 34, lineHeight: 1, color: "#fff" }}>{artist?.name || "A moment"}</div>
-            {song && <div className="mono" style={{ fontSize: 11, letterSpacing: 0.8, color: stage?.color || "#e85d2e", fontWeight: 700, marginTop: 8 }}>♫ {song}{m.confirmedSong ? " · SHAZAMED" : ""}</div>}
-            {stage && <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.6)", fontWeight: 600, marginTop: 4 }}>{stage.name.toUpperCase()}</div>}
+          {/* Bottom sheet: artist, identified song, stage and night, a visible
+              pause, and a flat Up next queue. One grabber, one radius. */}
+          <div key={`sheet-${idx}`} style={{
+            position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 6,
+            background: "var(--paper-3)", color: "var(--ink)", borderRadius: "14px 14px 0 0",
+            padding: "8px 20px calc(16px + env(safe-area-inset-bottom, 0px))",
+            animation: "reelIn 200ms ease-out",
+          }}>
+            <div aria-hidden="true" style={{ display: "flex", justifyContent: "center", marginBottom: 8 }}>
+              <div style={{ width: 36, height: 5, borderRadius: 3, background: "var(--line-2)" }} />
+            </div>
+            <div style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
+              {[stage?.name, nightLabel, fmtTime].filter(Boolean).join(" · ")}
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4 }}>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 22, lineHeight: "28px", fontWeight: 700, overflowWrap: "anywhere" }}>{artist?.name || "A moment"}</div>
+                {song && <div style={{ marginTop: 2, fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>♫ {song}{m.confirmedSong ? " · Shazamed" : ""}</div>}
+              </div>
+              <button onClick={() => setPaused(!pausedUI)} aria-label={pausedUI ? "Play" : "Pause"} style={fieldIconBtn}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  {pausedUI ? <path d="M8 5 L19 12 L8 19 Z"/> : <><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></>}
+                </svg>
+              </button>
+            </div>
+            {idx + 1 < moments.length && (
+              <div style={{ marginTop: 12 }}>
+                <div style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)", marginBottom: 6 }}>Up next</div>
+                <div style={{ display: "flex", gap: 8 }}>
+                  {moments.slice(idx + 1, idx + 4).map((u, k) => (
+                    <_ReelNextThumb key={u.id} moment={u} onPick={() => setIdx(idx + 1 + k)} />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {pausedUI && (
@@ -4570,22 +4616,21 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
           )}
         </>
       ) : (
-        /* Recap card */
-        <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 30, textAlign: "center", background: "radial-gradient(120% 80% at 50% 0%, rgba(232,93,46,0.25), #0d0a08 60%)" }}>
-          <button onClick={onClose} aria-label="Close" style={{ position: "absolute", top: "calc(24px + env(safe-area-inset-top, 0px))", right: 14, width: 34, height: 34, borderRadius: 34, background: "rgba(255,255,255,0.12)", border: "none", color: "#fff", fontSize: 16, cursor: "pointer" }}>✕</button>
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 2, color: "rgba(255,255,255,0.6)", fontWeight: 700, marginBottom: 14 }}>THAT WAS</div>
-          <div className="serif" style={{ fontSize: 44, lineHeight: 1.05, color: "#fff", marginBottom: 10 }}>
-            Your <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>{nightLabel || "night"}</span>
+        /* End of the reel: one sentence and one share action. */
+        <div style={{
+          position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "flex-end",
+          padding: "0 20px calc(24px + env(safe-area-inset-bottom, 0px))",
+          background: "var(--paper)", color: "var(--ink)", animation: "reelIn 220ms ease-out",
+        }}>
+          <button onClick={onClose} aria-label="Close" style={{ ...fieldIconBtn, position: "absolute", top: "calc(18px + env(safe-area-inset-top, 0px))", right: 8 }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg></button>
+          <div style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)" }}>That was</div>
+          <h2 style={{ margin: "4px 0 0", fontSize: 34, lineHeight: "41px", fontWeight: 700 }}>Your {nightLabel || "night"}</h2>
+          <div style={{ marginTop: 6, fontSize: 15, lineHeight: "21px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
+            {moments.length} {moments.length === 1 ? "moment" : "moments"}{tagged ? ` · ${tagged} tagged` : ""}{vids ? ` · ${vids} ${vids === 1 ? "video" : "videos"}` : ""}
           </div>
-          <div className="mono" style={{ fontSize: 11, letterSpacing: 1.3, color: "rgba(255,255,255,0.7)", fontWeight: 600 }}>
-            {moments.length} {moments.length === 1 ? "MOMENT" : "MOMENTS"}{tagged ? ` · ${tagged} TAGGED` : ""}{vids ? ` · ${vids} VIDEO${vids === 1 ? "" : "S"}` : ""}
-          </div>
-          <div style={{ display: "flex", gap: 10, marginTop: 30 }}>
-            <button onClick={() => { setEnded(false); setIdx(0); }} className="mono" style={{ padding: "12px 20px", borderRadius: 999, background: "rgba(255,255,255,0.14)", border: "1px solid rgba(255,255,255,0.3)", color: "#fff", fontSize: 11, letterSpacing: 1.3, fontWeight: 700, cursor: "pointer" }}>↺ REPLAY</button>
-            {/* Share the whole night as a multi-moment collage (matches the
-                night-view 📸 SHARE), not a single hero photo. Falls back to a
-                single-moment story card if this reel isn't tied to a night. */}
-            <button onClick={async () => {
+          {/* Share the whole night as a multi-moment collage; falls back to a
+              single-moment story card if this reel isn't tied to a night. */}
+          <FieldButton onClick={async () => {
               if (night != null && window._shareNightCollage) {
                 await window._shareNightCollage(night, moments).catch(() => {});
                 return;
@@ -4595,15 +4640,11 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
               const a = hero.artistId ? ARTISTS.find(x => x.id === hero.artistId) : null;
               const s = a ? STAGES.find(x => x.id === a.stage) : null;
               await _shareMoment(hero, { artistName: a?.name, songLabel: hero.confirmedSong || null, stageColor: s?.color, subLabel: nightLabel, festival }).catch(() => {});
-            }} className="mono" style={{ padding: "12px 20px", borderRadius: 999, background: "#fff", border: "none", color: "#0d0a08", fontSize: 11, letterSpacing: 1.3, fontWeight: 800, cursor: "pointer" }}>↗ SHARE</button>
-          </div>
-          {/* Cross-link to the exportable MP4 — instant in-app play and the
-              beat-synced recap video are complementary, not duplicates. Only
-              shown when there are ≥3 moments, since RecapScreen gates the
-              RECAP VIDEO card on momentsCount >= 3 — below that this would
-              dead-end on a screen with no exporter. */}
+            }} style={{ marginTop: 24 }}>Share the night</FieldButton>
+          <FieldButton kind="secondary" onClick={() => { setEnded(false); setIdx(0); }} style={{ marginTop: 8 }}>Replay</FieldButton>
+          {/* Only with ≥3 moments: RecapScreen gates the recap video on that. */}
           {onMakeVideo && moments.length >= 3 && (
-            <button onClick={() => { onClose(); onMakeVideo(); }} className="mono" style={{ marginTop: 14, padding: "10px 18px", borderRadius: 999, background: "transparent", border: "1px solid rgba(255,255,255,0.25)", color: "rgba(255,255,255,0.85)", fontSize: 10, letterSpacing: 1.3, fontWeight: 700, cursor: "pointer" }}>🎬 CREATE RECAP VIDEO</button>
+            <button onClick={() => { onClose(); onMakeVideo(); }} style={{ ...fieldIconBtn, width: "100%", marginTop: 4, color: "var(--text-2)", fontSize: 15, fontWeight: 500 }}>Create recap video</button>
           )}
         </div>
       )}
@@ -4749,7 +4790,7 @@ function NightScrubber({ moments, onSeek }) {
             pointerEvents: "none",
           }}>
             <_ScrubPreview moment={timed[active].m} />
-            <span className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--ink)", fontWeight: 700 }}>
+            <span className="mono" style={{ fontSize: 12, letterSpacing: 1, color: "var(--ink)", fontWeight: 700 }}>
               {_clock12(timed[active].t)}
             </span>
           </div>
@@ -4779,7 +4820,7 @@ function NightScrubber({ moments, onSeek }) {
               position: "absolute", left: `${fracOf(i) * 100}%`, top: on ? 4 : 8,
               transform: "translateX(-50%)",
               width: on ? 4 : 3, height: on ? 18 : 10, borderRadius: 3,
-              background: fav ? "#f5c451" : (on ? "var(--ink)" : "var(--ember)"),
+              background: fav ? "#f5c451" : (on ? "var(--ink)" : "var(--signal)"),
               opacity: on ? 1 : 0.7, transition: "all .08s ease",
             }}/>
           );
@@ -4814,54 +4855,45 @@ function MemoryStory({ allMoments, state, setState, onOpenLightbox, onPlayReel }
 
   if (allMoments.length === 0) {
     return (
-      <div style={{ padding: "28px 14px", textAlign: "center", marginTop: 18, border: "1px dashed var(--line-2)", borderRadius: 14, background: "var(--paper-2)" }}>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>
-          NO MOMENTS YET — IMPORT FROM CAMERA ROLL ABOVE
-        </div>
-      </div>
+      <p style={{ margin: "24px 0 0", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>
+        No moments yet. Import from your camera roll above.
+      </p>
     );
   }
 
   const dayMeta = DAYS.find(d => d.n === night);
+  const nightName = dayMeta ? dayMeta.label.charAt(0) + dayMeta.label.slice(1).toLowerCase() : `Night ${night}`;
   return (
-    <div style={{ marginTop: 14 }}>
+    <div style={{ marginTop: 16 }}>
       {nights.length > 1 && (
-        <div style={{ display: "flex", gap: 6, marginBottom: 16 }}>
+        <div role="tablist" aria-label="Night" style={{ display: "flex", gap: 8, marginBottom: 16 }}>
           {nights.map(n => {
             const dm = DAYS.find(d => d.n === n);
             const on = n === night;
             return (
-              <button key={n} onClick={() => setNight(n)} className="mono" style={{
-                flex: 1, padding: "8px 0", borderRadius: 8,
-                background: on ? "var(--ink)" : "var(--paper-2)",
-                color: on ? "var(--paper)" : "var(--muted)",
-                border: on ? "none" : "1px solid var(--line)",
-                fontSize: 9, letterSpacing: 1.2, fontWeight: 700, cursor: "pointer",
+              <button key={n} role="tab" aria-selected={on} onClick={() => setNight(n)} style={{
+                flex: 1, minHeight: 44, borderRadius: 14, cursor: "pointer",
+                background: on ? "var(--paper-3)" : "transparent",
+                border: on ? "1.5px solid var(--signal)" : "1px solid var(--line)",
+                color: on ? "var(--ink)" : "var(--text-2)",
+                fontSize: 13, lineHeight: "18px", fontWeight: 600, letterSpacing: "0.04em",
               }}>{dm?.label || `DAY ${n}`}</button>
             );
           })}
         </div>
       )}
       <div style={{ marginBottom: 16 }}>
-        <div className="serif" style={{ fontSize: 26, lineHeight: 1, color: "var(--ink)" }}>
-          {dayMeta ? dayMeta.label.charAt(0) + dayMeta.label.slice(1).toLowerCase() : `Night ${night}`} <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>night</span>
-        </div>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginTop: 4, fontWeight: 700 }}>
-          {beats.length} {beats.length === 1 ? "MOMENT" : "MOMENTS"} · YOUR STORY
+        <h2 style={{ margin: 0, fontSize: 28, lineHeight: "34px", fontWeight: 700 }}>{nightName} night</h2>
+        <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
+          {beats.length} {beats.length === 1 ? "moment" : "moments"} · your story
         </div>
       </div>
       <NightScrubber moments={beats} onSeek={(i) => onOpenLightbox(beats, i)} />
       {beats.length >= 2 && onPlayReel && (
-        <button onClick={() => onPlayReel(beats, dayMeta ? (dayMeta.label.charAt(0) + dayMeta.label.slice(1).toLowerCase()) + " night" : `Night ${night}`, night)} style={{
-          display: "flex", alignItems: "center", justifyContent: "center", gap: 9,
-          width: "100%", marginBottom: 18, padding: "13px 16px", borderRadius: 14,
-          background: "linear-gradient(135deg, var(--ember), #7b3d9a)", border: "none",
-          color: "#fff", cursor: "pointer",
-        }}>
-          <span style={{ fontSize: 15 }}>▶</span>
-          <span className="mono" style={{ fontSize: 12, letterSpacing: 1.4, fontWeight: 800 }}>PLAY</span>
-          <span className="mono" style={{ fontSize: 9, letterSpacing: 1, fontWeight: 600, opacity: 0.8 }}>· {beats.length} BEATS</span>
-        </button>
+        <FieldButton onClick={() => onPlayReel(beats, `${nightName} night`, night)} style={{ marginBottom: 20 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5 L19 12 L8 19 Z"/></svg>
+          Play · {beats.length} moments
+        </FieldButton>
       )}
       {beats.map((m, i) => (
         <_MemoryStoryBeat
@@ -8024,21 +8056,17 @@ function WrappedStory({ recap, onClose }) {
 }
 
 function RecapCard({ accent = "var(--ink)", paper = "var(--paper)", children, mono, kicker }) {
+  // Field Mode: one flat surface for every recap block. The per-card paper
+  // and accent colours (purple nights, neon washes) are ignored on purpose:
+  // real media supplies colour, the card doesn't.
   return (
     <div style={{
-      borderRadius: 22, padding: "26px 22px",
-      background: paper, color: accent,
-      marginBottom: 14,
-      minHeight: 200,
-      border: "1px solid var(--line)",
-      display: "flex", flexDirection: "column", justifyContent: "space-between",
-      boxShadow: "0 6px 22px rgba(26,18,13,0.06)",
+      borderRadius: 14, padding: 20, marginBottom: 12,
+      background: "var(--paper-2)", color: "var(--ink)",
+      display: "flex", flexDirection: "column",
     }}>
       {kicker && (
-        <div className="mono" style={{
-          fontSize: 9, letterSpacing: 1.5, fontWeight: 700,
-          color: mono || "var(--muted)", marginBottom: 14,
-        }}>{kicker}</div>
+        <div style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)", marginBottom: 12 }}>{kicker}</div>
       )}
       <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
         {children}
@@ -9049,7 +9077,7 @@ function RecapScreen({ state, setState }) {
         <div style={{ padding: "8px 20px", display: "flex", alignItems: "center", gap: 10 }}>
           <button onClick={back} aria-label="Back" style={{
             background: "transparent", border: "none", padding: 0, cursor: "pointer",
-            fontSize: 22, color: "var(--ink)", lineHeight: 1, width: 30, height: 30,
+            fontSize: 22, color: "var(--ink)", lineHeight: 1, width: 44, height: 44,
             display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
           }}>←</button>
           <TopBar title={<span>Recap</span>} sub={CFG.shortName?.toUpperCase()} tight />
@@ -9077,7 +9105,7 @@ function RecapScreen({ state, setState }) {
       <div style={{ padding: "8px 20px", display: "flex", alignItems: "center", gap: 10, background: "var(--paper)" }}>
         <button onClick={back} aria-label="Back" style={{
           background: "transparent", border: "none", padding: 0, cursor: "pointer",
-          fontSize: 22, color: "var(--ink)", lineHeight: 1, width: 30, height: 30,
+          fontSize: 22, color: "var(--ink)", lineHeight: 1, width: 44, height: 44,
           display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
         }}>←</button>
         <TopBar title={<span>Recap</span>} sub={(CFG.shortName || "Festival").toUpperCase() + " · YOUR WEEKEND"} tight />
