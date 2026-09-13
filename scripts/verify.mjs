@@ -104,17 +104,23 @@ console.log("▸ iOS focus-zoom floor — form fields stay ≥16px on iOS");
 // loads later, so Home's pre-festival SHARE ran the menu with no state and
 // every option threw "Cannot read properties of undefined (reading 'saved')"
 // (found 2026-09-12). One top-level name, one file.
+// Names come from Babel's program-scope bindings, not a line regex, so a
+// later declarator (`const A = 1, B = 2`), a destructured name, a
+// `function*`, and a `var` hoisted out of a top-level block all count.
 console.log("▸ Duplicate-global gate — no top-level name declared in two .jsx files");
 {
-  const decl = /^(?:async\s+)?function\s+([A-Za-z_$][\w$]*)|^(?:const|let|var|class)\s+([A-Za-z_$][\w$]*)/;
   const seen = new Map();
   for (const f of readdirSync(ROOT).filter(f => f.endsWith(".jsx")).sort()) {
-    readFileSync(join(ROOT, f), "utf8").split("\n").forEach((line, i) => {
-      const m = line.match(decl);
-      if (!m) return;
-      const name = m[1] || m[2];
-      if (!seen.has(name)) seen.set(name, []);
-      seen.get(name).push(`${f}:${i + 1}`);
+    const ast = parseSync(readFileSync(join(ROOT, f), "utf8"), { filename: f,
+      presets: [["@babel/preset-react", {}]], babelrc: false, configFile: false, ast: true, code: false });
+    traverse(ast, {
+      Program(p) {
+        for (const [name, b] of Object.entries(p.scope.bindings)) {
+          if (!seen.has(name)) seen.set(name, []);
+          seen.get(name).push(`${f}:${b.identifier.loc.start.line}`);
+        }
+        p.stop();
+      },
     });
   }
   const dups = [...seen].filter(([, at]) => new Set(at.map(a => a.split(":")[0])).size > 1);
