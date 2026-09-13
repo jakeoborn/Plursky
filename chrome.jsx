@@ -1637,11 +1637,12 @@ const _TH = (window._TH = window._TH || {
   listeners: new Set(),   // (mode) => void
 });
 
-// Returns the <html> class for a given pref. Field Mode is one black
-// utility shell at every hour, so the pref no longer changes the look; it is
-// still read so a stored "light"/"dark" value stays harmless.
+// Returns the <html> class for a given pref. Field Mode is one shell at every
+// hour, so the pref no longer changes the look; it is still read so a stored
+// "light"/"dark" value stays harmless. theme-light swaps only the colour
+// tokens; type, spacing and components come from theme-field.
 function resolveThemeClass(mode) {
-  return "theme-field";
+  return "theme-field theme-light";
 }
 
 function applyThemeClass() {

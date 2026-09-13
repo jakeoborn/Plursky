@@ -2178,7 +2178,7 @@ var _TH = window._TH = window._TH || {
   listeners: new Set()
 };
 function resolveThemeClass(mode) {
-  return "theme-field";
+  return "theme-field theme-light";
 }
 function applyThemeClass() {
   var next = resolveThemeClass(_TH.mode);

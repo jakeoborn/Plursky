@@ -2694,6 +2694,7 @@ function FieldHomeHero({
     color: on ? "var(--on-signal)" : "var(--ink)"
   });
   return (React.createElement("header", {
+      className: photo ? "on-media" : undefined,
       style: {
         position: "relative",
         overflow: "hidden",

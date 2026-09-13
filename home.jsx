@@ -1953,7 +1953,7 @@ function FieldHomeHero({ photo, status, live, deviceOffline, title, sub, offline
   return (
     // Without a real photo the hero collapses to a plain header rather than
     // holding an empty 46% block.
-    <header style={{
+    <header className={photo ? "on-media" : undefined} style={{
       position: "relative", overflow: "hidden",
       ...(photo ? { height: "46vh", minHeight: 300, maxHeight: 440, background: "var(--paper-2)" } : {}),
     }}>

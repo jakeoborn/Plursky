@@ -160,6 +160,35 @@
     --r-sm:14px; --r-md:14px;
   }
   html.theme-field,.theme-field body{background:#080808;color:rgba(255,255,255,0.96)}
+  /* ── Light + Minimal (checkpoint) ──
+     The same Field Mode system (type, spacing, radius, components) with the
+     colour tokens swapped: an off-white canvas, white raised surfaces and dark
+     type. There's one accent, Plursky purple (#6D28D9, the purple already in
+     the totem/song keyframes). It means only active / selected / primary
+     action / live. Real media is the colour field. No gradients except the
+     neutral legibility scrim on a photo. */
+  .theme-field.theme-light{color-scheme:light;
+    --paper:#F5F5F7; --paper-2:#FFFFFF; --paper-3:#EBEBF0;
+    --ink:#111118; --text-2:rgba(17,17,24,0.62); --text-3:rgba(17,17,24,0.42);
+    --muted:rgba(17,17,24,0.62);
+    --line:rgba(17,17,24,0.10); --line-2:rgba(17,17,24,0.18);
+    --signal:#6D28D9; --on-signal:#FFFFFF;
+    --ember:#6D28D9; --ember-ink:#6D28D9; --on-ember:#FFFFFF;
+    --alert:#D92D20; --warn:#B54708; --success:#6D28D9;
+    --dune:#EBEBF0; --flare:#6D28D9; --horizon:#EBEBF0; --night:#111118; --dusk:#FFFFFF; --sky:rgba(17,17,24,0.62);
+    --glass:255,255,255;
+    --scrim:rgba(17,17,24,0.40); --chrome:rgba(255,255,255,0.94);
+    --hero-scrim:linear-gradient(180deg,rgba(0,0,0,0.30) 0%,rgba(0,0,0,0) 24%,rgba(0,0,0,0) 44%,rgba(0,0,0,0.64) 100%);
+  }
+  html.theme-field.theme-light,.theme-field.theme-light body{background:#F5F5F7;color:#111118}
+  /* Type and chrome sitting ON a photo keep light-on-dark whatever the theme:
+     the scope flips the same tokens back, so components need no second style. */
+  .theme-field .on-media{color-scheme:dark;color:#FFFFFF;
+    --ink:#FFFFFF; --text-2:rgba(255,255,255,0.80); --text-3:rgba(255,255,255,0.56);
+    --line:rgba(255,255,255,0.20); --line-2:rgba(255,255,255,0.30);
+    --chrome:rgba(17,17,24,0.40); --paper:#111118;
+    --signal:#CDBDFF; --on-signal:#111118;
+  }
   /* System font only. Inline styles name 'Geist' or 'Instrument Serif' ~580
      times and only !important beats an inline style, so the swap lives here
      until each surface is restyled. Display serif becomes bold, upright sans. */
