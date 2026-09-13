@@ -820,15 +820,31 @@ function _festivalWindow(c) {
     endMs: day(ev.end) + 86400000 - 1
   };
 }
+function _festivalEventDays(c) {
+  var base = (c && c.dayDates ? Object.values(c.dayDates) : []).map(d => typeof d.midnightUtc === "number" ? d.midnightUtc : Date.UTC(d.y, d.m, d.d)).filter(x => typeof x === "number" && !isNaN(x));
+  var out = new Set(base),
+    wk = c && c.weekendStartMs;
+  if (wk && typeof wk.W1 === "number") {
+    var _loop = function () {
+      var shift = wk[k] - wk.W1;
+      if (shift > 0) base.forEach(x => out.add(x + shift));
+    };
+    for (var k of Object.keys(wk)) {
+      _loop();
+    }
+  }
+  return [...out].sort((a, b) => a - b);
+}
 function _festivalPhase(f, now) {
   var c = f && f.config,
     w = _festivalWindow(c);
   if (!w) return "tba";
   if (now > w.endMs) return "ended";
   if (now < w.startMs) return "upcoming";
-  var wk = c && c.weekendStartMs;
-  if (wk && typeof wk.W1 === "number" && typeof wk.W2 === "number" && wk.W2 > wk.W1) {
-    if (now > wk.W1 + (w.endMs - wk.W2) && now < wk.W2) return "upcoming";
+  var days = _festivalEventDays(c),
+    H = 3600000;
+  for (var i = 1; i < days.length; i++) {
+    if (days[i] - days[i - 1] > 36 * H && now >= days[i - 1] + 30 * H && now < days[i]) return "upcoming";
   }
   return "live";
 }
@@ -1399,7 +1415,7 @@ function diffSchedule(oldActs, newActs, cfg) {
   var changes = [];
   var at = s => _wallMs(_cfgActDayDate(cfg, s), s.start, cfg && cfg.tz);
   var unchanged = 0;
-  var _loop = function () {
+  var _loop2 = function () {
       var b = _schedSlot(o),
         n = after.get(id);
       if (!n) {
@@ -1434,7 +1450,7 @@ function diffSchedule(oldActs, newActs, cfg) {
     },
     _ret;
   for (var [id, o] of before) {
-    _ret = _loop();
+    _ret = _loop2();
     if (_ret === 0) continue;
   }
   for (var [_id2, n] of after) {
@@ -1538,7 +1554,7 @@ function _schedFill(a, artists) {
 function _applyScheduleOverlays(sets) {
   var all = _schedOverlays();
   var dirty = false;
-  var _loop2 = function () {
+  var _loop3 = function () {
     var ds = sets[fid],
       ov = all[fid];
     if (!ds || !ov || !ov.diff || ov.base !== _schedFingerprint(_scheduleActs(ds.artists))) {
@@ -1556,7 +1572,7 @@ function _applyScheduleOverlays(sets) {
     }
   };
   for (var fid of Object.keys(all)) {
-    if (_loop2()) continue;
+    if (_loop3()) continue;
   }
   if (dirty) _schedOverlaysWrite(all);
 }

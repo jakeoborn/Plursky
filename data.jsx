@@ -1036,17 +1036,35 @@ function _festivalWindow(c) {
 // Festival switcher order (Jake 2026-09-13): live first, then upcoming
 // (soonest first), then dates TBA (registry order), then ended last (most
 // recently ended first).
+// The local midnights a festival actually runs on: its dayDates, plus a copy
+// of them per later weekend when weekendStartMs says the days repeat (ACL's
+// dayDates describe weekend one only). Sorted; [] without dayDates.
+function _festivalEventDays(c) {
+  const base = (c && c.dayDates ? Object.values(c.dayDates) : [])
+    .map(d => (typeof d.midnightUtc === "number" ? d.midnightUtc : Date.UTC(d.y, d.m, d.d)))
+    .filter(x => typeof x === "number" && !isNaN(x));
+  const out = new Set(base), wk = c && c.weekendStartMs;
+  if (wk && typeof wk.W1 === "number") {
+    for (const k of Object.keys(wk)) {
+      const shift = wk[k] - wk.W1;
+      if (shift > 0) base.forEach(x => out.add(x + shift));
+    }
+  }
+  return [...out].sort((a, b) => a - b);
+}
+
 function _festivalPhase(f, now) {
   const c = f && f.config, w = _festivalWindow(c);
   if (!w) return "tba";
   if (now > w.endMs) return "ended";
   if (now < w.startMs) return "upcoming";
-  // A multi-weekend festival (ACL) is live only inside a weekend: its
-  // startMs..endMs envelope also spans the quiet week between them (Codex P2
-  // on #183). Each weekend runs as long as the last one, W2..endMs.
-  const wk = c && c.weekendStartMs;
-  if (wk && typeof wk.W1 === "number" && typeof wk.W2 === "number" && wk.W2 > wk.W1) {
-    if (now > wk.W1 + (w.endMs - wk.W2) && now < wk.W2) return "upcoming";
+  // Inside the startMs..endMs envelope, a festival that runs in blocks (ACL's
+  // two weekends, Summerfest's three Thu–Sat runs) is live only on its event
+  // days; the gap between blocks is upcoming (two Codex P2s on #183). A day
+  // counts until 06:00 the next morning, for sets past midnight.
+  const days = _festivalEventDays(c), H = 3600000;
+  for (let i = 1; i < days.length; i++) {
+    if (days[i] - days[i - 1] > 36 * H && now >= days[i - 1] + 30 * H && now < days[i]) return "upcoming";
   }
   return "live";
 }

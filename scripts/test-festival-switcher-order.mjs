@@ -75,6 +75,20 @@ check(_festivalPhase(b, NOW + D + 1) === "ended", "end+1 = ended");
   check(at(10, 20) === "live", "ACL Oct 10 (W2) = live");
   check(at(12, 12) === "ended", "ACL Oct 12 after close = ended");
 }
+// Codex's second P2: the gap rule must come from the event days, not just
+// ACL's weekendStartMs. Summerfest is three Thu–Sat blocks inside a
+// Jun 18 – Jul 5 envelope, with no weekend field at all.
+{
+  const sf = REG.find(f => f.config.id === "summerfest-2026");
+  const at = (m, d, h) => _festivalPhase(sf, Date.UTC(2026, m, d, h));
+  check(!!sf && !sf.config.weekendStartMs, "summerfest-2026 has no weekendStartMs");
+  check(at(5, 19, 20) === "live", "Summerfest Jun 19 = live");
+  check(at(5, 22, 20) === "upcoming", `Summerfest Jun 22 (gap) = upcoming, got ${at(5, 22, 20)}`);
+  check(at(5, 26, 20) === "live", "Summerfest Jun 26 = live");
+  check(at(5, 29, 20) === "upcoming", `Summerfest Jun 29 (gap) = upcoming, got ${at(5, 29, 20)}`);
+  check(at(6, 3, 20) === "live", "Summerfest Jul 3 = live");
+  check(at(6, 6, 12) === "ended", "Summerfest Jul 6 = ended");
+}
 
 // ── 3. Real registry ────────────────────────────────────────────────────────
 const rank = { live: 0, upcoming: 1, tba: 2, ended: 3 };
