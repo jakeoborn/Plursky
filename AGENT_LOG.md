@@ -10,6 +10,8 @@ Entries are reverse chronological:
 
 ## Entries
 
+- 2026-09-12 22:04 CT | Author: Claude | Lane: Bug fix | #173 (head `b4972ac`) fixes Home's pre-festival Share, which crashed on every option because home.jsx and lineup.jsx both declared a top-level ShareLineupButton and lineup's silently replaced Home's. Home's is renamed ShareLineupLinkButton (the ?lineup= friend link); a new verify gate rejects any top-level name declared in two .jsx files (mutations 2/2 caught); cache-bust v320. Full verify green; waiting on the review tier.
+- 2026-09-12 22:04 CT | Author: Claude | Lane: Design | A visual restyle experiment lives on branch design/field-mode (holds v319). It is not for merge and has no PR until Jake judges the running build on a device. #163 run 10 still waits on Chrome, Slack and the other Claude session being closed on this Mac.
 - 2026-09-12 18:36 CT | Author: Instinct | Lane: Festival SEO | #172 merged as c1d8f7d; 25 festival pages, the sitemap, and home index were regenerated from the shared source. Both generator checks pass on live main.
 - 2026-09-12 11:33 CT | Author: Claude | Lane: QA harness | #163 is still NOT green after Mac runs 6-9 (heads `d3dd804`, `ac86e5d`, `5d07379`). Run 6 cleared onboarding for the first time; runs 6 and 7 exposed harness bugs (festival switcher matchers, keyboard Done key), now fixed on `5d07379`. Run 8 hit an agent-device runner fault before any app step, and macOS stopped run 9 for low memory on this 8 GB Mac. Do not merge; the next step is Instinct's call.
 - 2026-09-12 11:33 CT | Author: Claude | Lane: TestFlight upload | 1.13 (28) is VALID in TestFlight, built by the upload script from main `fe257e1` (web v318, the #167 NowPlayingBar fix). Not submitted for review; that stays with Jake.
