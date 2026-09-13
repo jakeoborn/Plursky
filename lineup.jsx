@@ -409,7 +409,7 @@ function LineupFilterSheet({
   const matchCount = React.useMemo(() => {
     return lineupFor(weekendFilter)
       .filter(a => a.day === day)
-      .filter(a => f.filter === "all" || savedSet.has(a.id))
+      .filter(a => f.filter === "all" || (f.filter === "saved" ? savedSet.has(a.id) : isSetLive(a)))
       .filter(a => f.stageFilter === "all" || a.stage === f.stageFilter)
       .filter(a => f.genreFilter === "all" || a.genre === f.genreFilter)
       .filter(a => {
@@ -422,132 +422,66 @@ function LineupFilterSheet({
       }).length;
   }, [f, day, savedSet, weekendFilter]);
 
-  const chip = (on, accent, delay) => ({
-    flexShrink: 0, padding: "6px 12px", borderRadius: 999,
-    background: on ? (accent || "var(--ink)") : "var(--paper-2)",
-    color: on ? "#fff" : "var(--ink)",
-    border: on ? "none" : "1px solid var(--line-2)",
-    fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.1,
-    fontWeight: on ? 700 : 500, cursor: "pointer", whiteSpace: "nowrap",
-    animation: delay != null ? `springIn 0.3s ease-out ${delay}ms both` : undefined,
+  // Field Mode: 44pt chips, 18pt radius, selection = signal outline + weight.
+  const chip = (on) => ({
+    flexShrink: 0, minHeight: 44, padding: "0 16px", borderRadius: 18,
+    background: on ? "var(--paper-2)" : "transparent",
+    color: on ? "var(--ink)" : "var(--text-2)",
+    border: on ? "1.5px solid var(--signal)" : "1px solid var(--line-2)",
+    fontSize: 15, lineHeight: "20px", fontWeight: on ? 600 : 500,
+    cursor: "pointer", whiteSpace: "nowrap",
+    display: "inline-flex", alignItems: "center", gap: 6,
   });
-  const sectionLabel = {
-    fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700,
-    fontFamily: "Geist Mono, monospace", marginBottom: 6, marginTop: 4,
-  };
-
+  const sectionLabel = { ..._fieldEyebrow, color: "var(--text-2)", margin: "20px 0 8px" };
+  const row = { display: "flex", gap: 8, flexWrap: "wrap" };
+  const opt = (key, id, label, extra) => (
+    <button key={id} aria-pressed={f[key] === id} onClick={() => set(key, id)} style={chip(f[key] === id)}>{extra}{label}</button>
+  );
   return (
-    <div onClick={onClose} style={{
-      position: "fixed", inset: 0, background: "rgba(13,10,8,0.55)",
-      zIndex: 60, display: "flex", alignItems: "flex-end", justifyContent: "center",
-    }}>
-      <div onClick={e => e.stopPropagation()} style={{
-        width: "100%", maxWidth: 460,
-        background: "var(--paper)", color: "var(--ink)",
-        borderRadius: "16px 16px 0 0",
-        padding: "16px 18px 18px",
-        boxShadow: "0 -8px 32px rgba(0,0,0,0.35)",
-        maxHeight: "90vh", display: "flex", flexDirection: "column",
-      }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
-          <span className="mono" style={{ fontSize: 10, letterSpacing: 1.5, fontWeight: 800 }}>FILTERS</span>
-          <button onClick={onClose} aria-label="Close filters" style={{
-            background: "transparent", border: "none", color: "var(--muted)",
-            fontSize: 18, cursor: "pointer", lineHeight: 1,
-          }}>×</button>
-        </div>
-
-        <div style={{ overflowY: "auto", flex: 1, paddingRight: 2 }}>
-          {/* SHOW — all vs only mine */}
-          <div style={sectionLabel}>SHOW</div>
-          <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
-            {[
-              { id: "all",   label: "ALL" },
-              { id: "saved", label: `MINE${savedCount ? ` · ${savedCount}` : ""}`, accent: "var(--ember)" },
-            ].map((o, i) => (
-              <button key={o.id} onClick={() => set("filter", o.id)}
-                style={chip(f.filter === o.id, o.accent, i * 25)}>{o.label}</button>
-            ))}
-          </div>
-
-          {/* TIER */}
-          <div style={sectionLabel}>TIER</div>
-          <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
-            {[
-              { id: "all",    label: "ALL TIERS" },
-              { id: "legend", label: "★ LEGENDARY",   accent: "#fbbf24" },
-              { id: "head",   label: "HEADLINERS",    accent: "var(--ember)" },
-              { id: "prime",  label: "PRIME TIME",    accent: "var(--horizon)" },
-              { id: "open",   label: "OPENERS",       accent: "var(--success)" },
-            ].map((t, i) => (
-              <button key={t.id} onClick={() => set("tierFilter", t.id)}
-                style={chip(f.tierFilter === t.id, t.accent, 50 + i * 25)}>{t.label}</button>
-            ))}
-          </div>
-
-          {/* STAGE */}
-          <div style={sectionLabel}>STAGE</div>
-          <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
-            <button onClick={() => set("stageFilter", "all")}
-              style={chip(f.stageFilter === "all", undefined, 175)}>ALL STAGES</button>
-            {STAGES.map((s, i) => (
-              <button key={s.id} onClick={() => set("stageFilter", s.id)}
-                style={chip(f.stageFilter === s.id, s.color, 200 + i * 25)}>{s.short || s.name}</button>
-            ))}
-          </div>
-
-          {/* GENRE — only if there's enough variety on the day */}
-          {dayGenres.length > 0 && (
-            <>
-              <div style={sectionLabel}>GENRE</div>
-              <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
-                <button onClick={() => set("genreFilter", "all")}
-                  style={chip(f.genreFilter === "all", undefined, 425)}>ALL GENRES</button>
-                {dayGenres.map((g, i) => (
-                  <button key={g} onClick={() => set("genreFilter", g)}
-                    style={chip(f.genreFilter === g, "var(--horizon)", 450 + i * 25)}>{g.toUpperCase()}</button>
-                ))}
-              </div>
-            </>
-          )}
-
-          {/* SORT */}
-          <div style={sectionLabel}>SORT BY</div>
-          <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
-            {[
-              { id: "time",  label: "TIME" },
-              { id: "tier",  label: "TIER" },
-              { id: "stage", label: "STAGE" },
-            ].map((o, i) => (
-              <button key={o.id} onClick={() => set("sortBy", o.id)}
-                style={chip(f.sortBy === o.id, undefined, 600 + i * 25)}>{o.label}</button>
-            ))}
-          </div>
-        </div>
-
-        {/* CTAs */}
-        <div style={{
-          display: "flex", gap: 8, paddingTop: 12,
-          borderTop: "1px solid var(--line)",
-          marginTop: 6,
-        }}>
-          <button onClick={() => onReset()} className="mono" style={{
-            padding: "11px 16px", borderRadius: 999,
-            background: "transparent", color: "var(--muted)",
-            border: "1px solid var(--line-2)", cursor: "pointer",
-            fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-          }}>RESET</button>
-          <button onClick={() => onApply(f)} className="mono" style={{
-            flex: 1, padding: "11px 14px", borderRadius: 999,
-            background: "var(--ember)", color: "#fff",
-            border: "none", cursor: "pointer",
-            fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
-          }}>APPLY · {matchCount} {matchCount === 1 ? "SET" : "SETS"}</button>
-        </div>
+    <FieldSheet title="Filters" onClose={onClose}>
+      <div style={{ ...sectionLabel, marginTop: 4 }}>Show</div>
+      <div style={row}>
+        {opt("filter", "all", "All")}
+        {opt("filter", "saved", `Saved${savedCount ? ` · ${savedCount}` : ""}`)}
+        {opt("filter", "now", "Now")}
       </div>
-    </div>
+      <div style={sectionLabel}>Tier</div>
+      <div style={row}>
+        {opt("tierFilter", "all", "All tiers")}
+        {opt("tierFilter", "legend", "Legendary")}
+        {opt("tierFilter", "head", "Headliners")}
+        {opt("tierFilter", "prime", "Prime time")}
+        {opt("tierFilter", "open", "Openers")}
+      </div>
+      <div style={sectionLabel}>Stage</div>
+      <div style={row}>
+        {opt("stageFilter", "all", "All stages")}
+        {STAGES.map(s => opt("stageFilter", s.id, s.short || s.name,
+          <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: 4, background: s.color }} />))}
+      </div>
+      {dayGenres.length > 0 && (
+        <>
+          <div style={sectionLabel}>Genre</div>
+          <div style={row}>
+            {opt("genreFilter", "all", "All genres")}
+            {dayGenres.map(g => opt("genreFilter", g, g))}
+          </div>
+        </>
+      )}
+      <div style={sectionLabel}>Sort by</div>
+      <div style={row}>
+        {opt("sortBy", "time", "Time")}
+        {opt("sortBy", "tier", "Tier")}
+        {opt("sortBy", "stage", "Stage")}
+      </div>
+      <div style={{ display: "flex", gap: 8, marginTop: 24 }}>
+        <FieldButton kind="secondary" onClick={() => onReset()} style={{ width: "auto", flex: "0 0 auto" }}>Reset</FieldButton>
+        <FieldButton onClick={() => onApply(f)} style={{ flex: 1 }}>Show {matchCount} {matchCount === 1 ? "set" : "sets"}</FieldButton>
+      </div>
+    </FieldSheet>
   );
 }
+
 
 function LineupScreen({ state, setState }) {
   // Highlight-on-arrival: ArtistScreen "SCHEDULE" hands off `lineupHighlight`.
@@ -697,7 +631,8 @@ function LineupScreen({ state, setState }) {
 
   const matchesActive = (a) => {
     if (weekendFilter !== "all" && a.weekend !== weekendFilter && a.weekend !== "both") return false;
-    if (filter !== "all" && !state.saved.includes(a.id)) return false;
+    if (filter === "saved" && !state.saved.includes(a.id)) return false;
+    if (filter === "now" && !isSetLive(a)) return false;
     if (stageFilter !== "all" && a.stage !== stageFilter) return false;
     if (genreFilter !== "all" && a.genre !== genreFilter) return false;
     if (tierFilter === "head"   && a.tier !== 3) return false;
@@ -726,13 +661,15 @@ function LineupScreen({ state, setState }) {
   // Memoized so the 6-filter chain + sort only recomputes when an input
   // actually changes — was rebuilding over all 400+ artists on every render
   // (perf jank on older phones, report-card #8). Search (#3) folds in here.
+  // "Now" rows change with the clock, so that filter re-derives on each 30 s tick.
+  const _nowBucket = filter === "now" ? Math.floor(Date.now() / 30000) : 0;
   const savedSetIds = React.useMemo(() => new Set(state.saved), [state.saved]);
   const dayArtists = React.useMemo(() => {
     const term = q.trim().toLowerCase();
     return lineupFor(weekendFilter)
       .filter(a => a.day === day)
       .filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both")
-      .filter(a => filter === "all" || savedSetIds.has(a.id))
+      .filter(a => filter === "all" || (filter === "saved" ? savedSetIds.has(a.id) : isSetLive(a)))
       .filter(a => stageFilter === "all" || a.stage === stageFilter)
       .filter(a => genreFilter === "all" || a.genre === genreFilter)
       .filter(a => {
@@ -771,7 +708,7 @@ function LineupScreen({ state, setState }) {
         }
         return toNightMin(a.start) - toNightMin(b.start);
       });
-  }, [day, weekendFilter, filter, stageFilter, genreFilter, tierFilter, sortBy, q, savedSetIds]);
+  }, [day, weekendFilter, filter, stageFilter, genreFilter, tierFilter, sortBy, q, savedSetIds, _nowBucket]);
 
   // When a search empties the current day, the overwhelmingly common reason is
   // that the artist plays a DIFFERENT day — so say so rather than leaving the
@@ -866,66 +803,66 @@ function LineupScreen({ state, setState }) {
     setState(s => (!!s.lineupGrid === g ? s : { ...s, lineupGrid: g }));
   }, [viewMode]);
 
+  const online = useOnlineStatus();
+  // Tier, stage, genre and sort live in the Filters sheet; its button counts them.
+  const otherFilterCount = (tierFilter !== "all" ? 1 : 0) + (stageFilter !== "all" ? 1 : 0)
+                         + (genreFilter !== "all" ? 1 : 0) + (sortBy !== "time" ? 1 : 0);
+  const textBtn = { ...fieldIconBtn, width: "auto", padding: "0 8px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 };
+  // LIST shows "Jump to now" only while the NOW rule is scrolled out of view.
+  const [nowOff, setNowOff] = React.useState(false);
+  React.useEffect(() => {
+    if (viewMode !== "list") return undefined;
+    const root = document.querySelector("[data-lineup-scroll]");
+    const rule = document.querySelector("[data-now-rule]");
+    if (!root || !rule || typeof IntersectionObserver !== "function") { setNowOff(false); return undefined; }
+    const io = new IntersectionObserver(([e]) => setNowOff(!e.isIntersecting), { root });
+    io.observe(rule);
+    return () => io.disconnect();
+  }, [viewMode, day, dayArtists, filter, sortBy]);
+
   const searchRow = (
-    <div style={{ padding: gridLead ? "10px 12px 0" : "8px 16px 4px" }}>
+    <div style={{ padding: gridLead ? "12px 12px 0" : "12px 20px 4px" }}>
       <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
-        <span aria-hidden="true" style={{
-          position: "absolute", left: 12, fontSize: 13, color: "var(--muted)",
-          pointerEvents: "none",
-        }}>⌕</span>
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" strokeWidth="2" strokeLinecap="round"
+          style={{ position: "absolute", left: 14, pointerEvents: "none" }}><circle cx="11" cy="11" r="7"/><path d="M21 21 L16.65 16.65"/></svg>
         <input
           value={q}
           onChange={e => setQ(e.target.value)}
           placeholder="Search artists, stages, genres…"
           aria-label="Search the lineup"
           style={{
-            width: "100%", boxSizing: "border-box",
-            padding: "9px 34px 9px 32px", borderRadius: 12,
-            border: "1px solid var(--line-2)", background: "var(--paper-2)",
-            color: "var(--ink)", fontSize: 14, outline: "none",
-            fontFamily: "inherit",
+            width: "100%", boxSizing: "border-box", height: 44,
+            padding: "0 44px 0 40px", borderRadius: 14,
+            border: "none", background: "var(--paper-2)",
+            color: "var(--ink)", fontSize: 15, outline: "none", fontFamily: "inherit",
           }}
         />
         {q && (
-          <button
-            onClick={() => setQ("")}
-            aria-label="Clear search"
-            style={{
-              position: "absolute", right: 6, width: 28, height: 28,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              borderRadius: 999, border: "none", background: "transparent",
-              color: "var(--muted)", fontSize: 16, cursor: "pointer",
-            }}
-          >×</button>
+          <button onClick={() => setQ("")} aria-label="Clear search" style={{ ...fieldIconBtn, position: "absolute", right: 0, color: "var(--text-2)" }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg>
+          </button>
         )}
       </div>
     </div>
   );
 
-  // MY NIGHT / SHARE / SURPRISE / SETS COUNT. In GRID the count leads on the
-  // left so the row reads as one zone with the search above it.
+  // Set count, then quiet text actions: My night, Share, Calendar, Surprise me.
   const actionsRow = (
     <div style={{
-      display: "flex", alignItems: "center", justifyContent: gridLead ? "space-between" : "flex-end",
-      padding: gridLead ? "8px 12px 10px" : "10px 20px", gap: 8,
+      display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap",
+      padding: gridLead ? "4px 4px 8px 12px" : "4px 12px 4px 20px", gap: 4,
     }}>
-      {gridLead && (
-        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>{dayArtists.length} SETS</div>
-      )}
-      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        {totalSaved >= 2 && (
-          <button onClick={() => setWizardOpen(true)} style={{
-            display: "flex", alignItems: "center", gap: 5,
-            background: dayStats.some(d => d.clashes > 0) ? "var(--ember)" : "var(--ink)",
-            color: "var(--paper)", border: "none",
-            borderRadius: 999, padding: "5px 12px", cursor: "pointer",
-            fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-          }}>
-            {dayStats.some(d => d.clashes > 0) ? "⚠" : "✦"} MY NIGHT
-          </button>
-        )}
+      <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
+        {dayArtists.length} {dayArtists.length === 1 ? "set" : "sets"}
+      </div>
+      <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}>
+        {totalSaved >= 2 && (() => {
+          const clash = dayStats.some(d => d.clashes > 0);
+          return <button onClick={() => setWizardOpen(true)} style={{ ...textBtn, color: clash ? "var(--warn)" : "var(--ink)", fontWeight: 600 }}>{clash ? "⚠ My night" : "My night"}</button>;
+        })()}
+        {state.saved.length > 0 && <ShareLineupButton state={state} />}
         {state.saved.length > 0 && (
-          <ShareLineupButton state={state} />
+          <button onClick={() => { window.plurskyHaptic?.("LIGHT"); exportSavedSetsICS(state.saved); }} style={textBtn}>Calendar</button>
         )}
         <button onClick={() => {
           const savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
@@ -937,22 +874,12 @@ function LineupScreen({ state, setState }) {
           if (!(pool.length ? pool : unsaved).length) return;
           const pick = (pool.length ? pool : unsaved)[Math.floor(Math.random() * (pool.length || unsaved.length))];
           setState({ ...state, artist: pick.id });
-        }} className="mono" title="Discover a random artist that matches your taste" style={{
-          padding: "5px 10px", borderRadius: 999,
-          background: "var(--horizon)", color: "#fff", border: "none",
-          fontSize: 9, letterSpacing: 1.2, fontWeight: 700, cursor: "pointer",
-          whiteSpace: "nowrap",
-        }}>✦ SURPRISE</button>
-        {!gridLead && (
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
-            {dayArtists.length} SETS
-          </div>
-        )}
+        }} title="Discover a random artist that matches your taste" style={textBtn}>Surprise me</button>
       </div>
     </div>
   );
 
-  const conflictCard = conflicts.length > 0 && filter !== "all" ? (
+  const conflictCard = conflicts.length > 0 && filter === "saved" ? (
     <ConflictResolver
       conflicts={conflicts}
       onKeep={(keepId, dropId) => {
@@ -967,104 +894,51 @@ function LineupScreen({ state, setState }) {
     const stage = STAGES.find(s => s.id === stageFilter);
     if (!stage?.vibe) return null;
     return (
-      <div style={{
-        margin: gridLead ? "0 12px 10px" : "0 16px 10px",
-        padding: "10px 12px",
-        borderRadius: 12,
-        borderLeft: `3px solid ${stage.color}`,
-        background: `${stage.color}12`,
-      }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: stage.vibeNote ? 5 : 0 }}>
-          <span className="mono" style={{
-            fontSize: 9, letterSpacing: 1.2, fontWeight: 800,
-            color: stage.color, textTransform: "uppercase",
-          }}>{stage.vibe}</span>
-          {stage.peak && (
-            <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--muted)", fontWeight: 600 }}>
-              · PEAKS {stage.peak}
-            </span>
-          )}
-          {stage.desc && (
-            <span className="mono" style={{ fontSize: 8, letterSpacing: 0.9, color: "var(--muted)", marginLeft: "auto" }}>
-              {stage.desc.toUpperCase()}
-            </span>
-          )}
+      <div style={{ margin: gridLead ? "0 12px 12px" : "4px 20px 12px", padding: "12px 14px", borderRadius: 14, background: "var(--paper-2)" }}>
+        <div style={{ ..._fieldEyebrow, color: "var(--text-2)" }}>
+          <span aria-hidden="true" style={{ width: 7, height: 7, borderRadius: 4, background: stage.color }} />
+          {stage.name} · {stage.vibe}{stage.peak ? ` · peaks ${stage.peak}` : ""}
         </div>
-        {stage.vibeNote && (
-          <div style={{ fontSize: 12, lineHeight: 1.4, color: "var(--ink)", fontStyle: "italic" }}>
-            {stage.vibeNote}
-          </div>
-        )}
+        {stage.desc && <div style={{ marginTop: 4, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{stage.desc}</div>}
+        {stage.vibeNote && <div style={{ marginTop: 4, fontSize: 15, lineHeight: "21px" }}>{stage.vibeNote}</div>}
       </div>
     );
   })() : null;
 
-  // "Save the Day" — when nothing is saved for the selected day, one tap
-  // saves every tier-3 top pick. Disappears once the day has any save. In
-  // GRID it is an optional assist above the timetable, not the screen's
-  // hero: one slim outlined row that scrolls away with the rest.
+  // "Save the Day": nothing saved for this day yet → one tap saves its
+  // headliners. A quiet row in both modes, gone once the day has a save.
   const saveDayCard = savedToday.length === 0 ? (() => {
     const dayTopPicks = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
     if (dayTopPicks.length === 0) return null;
-    const dayLabel = DAYS.find(d => d.n === day)?.label || `Day ${day}`;
+    const dayLabel = FESTIVAL_CONFIG.dayDates?.[day]?.name || DAYS.find(d => d.n === day)?.label || `Day ${day}`;
     const topPickIds = dayTopPicks.map(a => a.id);
     const save = () => setState(s => ({ ...s, saved: [...new Set([...s.saved, ...topPickIds])] }));
-    if (gridLead) return (
-      <button data-save-day onClick={save} style={{
-        width: "calc(100% - 24px)", margin: "0 12px 10px",
-        display: "flex", alignItems: "center", gap: 10, minHeight: 44,
-        background: "transparent", color: "var(--ember-ink)", border: "1px solid var(--ember)",
-        borderRadius: 12, padding: "8px 12px", cursor: "pointer", textAlign: "left", fontFamily: "inherit",
-      }}>
-        <span aria-hidden="true" style={{ fontSize: 14, flexShrink: 0 }}>✦</span>
-        <span style={{ flex: 1, minWidth: 0, fontSize: 13, fontWeight: 600, color: "var(--ink)" }}>Save all top picks for {dayLabel}</span>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 800, flexShrink: 0 }}>+{dayTopPicks.length} · SAVE</span>
-      </button>
-    );
     return (
-      <button
-        onClick={save}
-        style={{
-          width: "100%",
-          display: "flex", alignItems: "center", gap: 12,
-          background: "var(--ember)", color: "#fff", border: "none",
-          borderRadius: 14, padding: "13px 16px",
-          margin: "12px 0 14px",
-          cursor: "pointer", textAlign: "left",
-          boxShadow: "0 4px 16px rgba(232,93,46,0.30)",
-          fontFamily: "inherit",
-        }}>
-        <span style={{
-          flexShrink: 0, width: 38, height: 38, borderRadius: 999,
-          background: "rgba(255,255,255,0.18)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: 18, lineHeight: 1,
-        }}>✦</span>
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div className="serif" style={{ fontSize: 18, lineHeight: 1.05, color: "#fff" }}>
-            Save all top picks for {dayLabel}
-          </div>
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, marginTop: 3, opacity: 0.9, fontWeight: 700 }}>
-            +{dayTopPicks.length} SETS · TAP TO ADD
-          </div>
-        </div>
-        <span className="mono" style={{ fontSize: 10, letterSpacing: 1.3, fontWeight: 800, flexShrink: 0 }}>
-          SAVE →
+      <button data-save-day onClick={save} style={{
+        width: gridLead ? "calc(100% - 24px)" : "100%", margin: gridLead ? "0 12px 12px" : "12px 0",
+        display: "flex", alignItems: "center", gap: 12, minHeight: 56,
+        background: "var(--paper-2)", color: "var(--ink)", border: "none",
+        borderRadius: 14, padding: "10px 16px", cursor: "pointer", textAlign: "left", fontFamily: "inherit",
+      }}>
+        <span style={{ flex: 1, minWidth: 0 }}>
+          <span style={{ display: "block", fontSize: 15, lineHeight: "21px", fontWeight: 600 }}>Save all top picks for {dayLabel}</span>
+          <span style={{ display: "block", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{dayTopPicks.length} headliner{dayTopPicks.length === 1 ? "" : "s"}</span>
         </span>
+        <span style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600, flexShrink: 0 }}>Save</span>
       </button>
     );
   })() : null;
 
   return (
     <Screen bg="var(--paper)">
-      {/* Title + dates. Folds on scroll down, returns on scroll up. Height
-          and opacity, never display:none, so the list below never jumps.
+      {/* Title. Folds on scroll down, returns on scroll up: height and
+          opacity, never display:none, so the list below never jumps.
           minHeight:0 because a column flex item's default min-height:auto
           would floor this at its content height. */}
       <div data-lineup-header data-collapsed={collapsed ? "1" : "0"} style={{
-        padding: collapsed ? "0 20px" : "8px 20px 8px",
-        display: "flex", alignItems: "center", gap: 8,
-        maxHeight: collapsed ? 0 : 90, minHeight: 0,
+        padding: collapsed ? "0 8px 0 20px" : "4px 8px 4px 20px",
+        display: "flex", alignItems: "center", gap: 4,
+        maxHeight: collapsed ? 0 : 96, minHeight: 0,
         opacity: collapsed ? 0 : 1,
         overflow: "hidden", flexShrink: 0,
         transform: collapsed ? "translateY(-6px)" : "translateY(0)",
@@ -1072,180 +946,119 @@ function LineupScreen({ state, setState }) {
         pointerEvents: collapsed ? "none" : "auto",
       }}>
         {state._navStack?.length > 0 && (
-          <button onClick={() => window._popNav?.()} aria-label="Go back" style={{
-            width: 32, height: 32, borderRadius: 8,
-            background: "var(--paper-2)", border: "1px solid var(--line)",
-            color: "var(--ink)", cursor: "pointer", fontSize: 16, flexShrink: 0,
-            display: "flex", alignItems: "center", justifyContent: "center",
-          }}>←</button>
+          <button onClick={() => window._popNav?.()} aria-label="Go back" style={{ ...fieldIconBtn, marginLeft: -12 }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6 L9 12 L15 18"/></svg>
+          </button>
         )}
-        <div style={{ flex: 1 }}>
-          <TopBar title={<span>Lineup</span>} sub={`${FESTIVAL_CONFIG.brand.toUpperCase()} · ${FESTIVAL_CONFIG.dates.toUpperCase()}`} tight />
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ ..._fieldEyebrow, color: "var(--text-2)" }}>{FESTIVAL_CONFIG.brand} · {FESTIVAL_CONFIG.dates}</div>
+          <h1 style={{ margin: "2px 0 0", fontSize: 28, lineHeight: "34px", fontWeight: 700, letterSpacing: "-0.01em" }}>Lineup</h1>
         </div>
         {hasFeed && (
-          <button data-sched-check onClick={() => setSyncOpen(true)} aria-label="Check for schedule changes" style={{
-            minHeight: 32, padding: "0 11px", borderRadius: 999, flexShrink: 0, cursor: "pointer",
-            background: "transparent", border: "1px solid var(--line-2)", color: "var(--ink)",
-            fontFamily: "'Geist Mono', monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-          }}>↻ UPDATES</button>
+          <button data-sched-check onClick={() => setSyncOpen(true)} aria-label="Check for schedule changes" style={textBtn}>Updates</button>
         )}
+        <button onClick={() => setViewMode(viewMode === "grid" ? "list" : "grid")}
+          aria-label={viewMode === "grid" ? "Show as list" : "Show as stage grid"} style={fieldIconBtn}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            {viewMode === "grid"
+              ? <path d="M8 6 H20 M8 12 H20 M8 18 H20 M4 6 H4.5 M4 12 H4.5 M4 18 H4.5"/>
+              : <path d="M4 4 H10 V10 H4 Z M14 4 H20 V10 H14 Z M4 14 H10 V20 H4 Z M14 14 H20 V20 H14 Z"/>}
+          </svg>
+        </button>
+        <button onClick={() => setState({ ...state, tab: "map", focusStage: stageFilter !== "all" ? stageFilter : undefined })} aria-label="Open map" style={fieldIconBtn}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M9 4 L3 6 V20 L9 18 L15 20 L21 18 V4 L15 6 Z M9 4 V18 M15 6 V20"/></svg>
+        </button>
       </div>
 
-      {/* Day tabs — now with per-day saved + conflict badges baked in so a
-          vet can see at a glance which night needs schedule attention. */}
-      <div style={{
-        display: "flex", gap: 6, flexShrink: 0,
-        padding: collapsed ? "4px 16px 5px" : "4px 16px 10px",
-        borderBottom: "1px solid var(--line)",
+      {/* Day selector: stays on screen while the list scrolls. Per-day saved
+          and clash counts ride on each day, in words for assistive tech. */}
+      <div role="tablist" aria-label="Festival day" style={{
+        display: "flex", gap: 8, flexShrink: 0,
+        padding: collapsed ? "4px 20px 8px" : "4px 20px 12px",
         transition: "padding 220ms ease",
       }}>
         {dayStats.map(d => {
           const on = d.n === day;
           return (
-            <button key={d.n} onClick={() => {
-              setDay(d.n);
-              setState(s => ({ ...s, lineupDay: d.n }));
-            }} style={{
-              flex: 1,
-              padding: collapsed ? "4px 8px" : "10px 8px",
-              borderRadius: 12,
-              transition: "padding 220ms ease",
-              background: on ? "var(--ink)" : "transparent",
-              color: on ? "var(--paper)" : "var(--ink)",
-              border: on ? "none" : "1px solid var(--line-2)",
-              cursor: "pointer",
-              display: "flex", flexDirection: "column", alignItems: "center", gap: 2,
-              position: "relative",
-            }}>
-              {collapsed ? (
-                <span className="mono" style={{
-                  fontSize: 10, letterSpacing: 1.2, fontWeight: 800,
-                  display: "flex", alignItems: "baseline", gap: 5,
-                }}>
-                  {d.label} {d.date.split(" ")[1]}
-                  {d.count > 0 && (
-                    <span style={{ fontSize: 8, color: on ? "rgba(247,237,224,0.75)" : "var(--ember)" }}>
-                      ★{d.count}{d.clashes > 0 ? `·${d.clashes}⚠` : ""}
-                    </span>
-                  )}
+            <button key={d.n} role="tab" aria-selected={on}
+              aria-label={`${d.label} ${d.date}${d.count ? `, ${d.count} saved` : ""}${d.clashes ? `, ${d.clashes} clash${d.clashes === 1 ? "" : "es"}` : ""}`}
+              onClick={() => { setDay(d.n); setState(s => ({ ...s, lineupDay: d.n })); }}
+              style={{
+                flex: 1, minWidth: 0, minHeight: collapsed ? 44 : 64,
+                padding: "6px 2px", borderRadius: 14,
+                background: on ? "var(--paper-3)" : "transparent",
+                border: on ? "1.5px solid var(--signal)" : "1px solid var(--line)",
+                color: "var(--ink)", cursor: "pointer",
+                display: "flex", flexDirection: collapsed ? "row" : "column",
+                alignItems: "center", justifyContent: "center", gap: collapsed ? 6 : 1,
+              }}>
+              <span style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", color: on ? "var(--ink)" : "var(--text-2)" }}>{d.label}</span>
+              <span style={{ fontSize: collapsed ? 15 : 20, lineHeight: collapsed ? "20px" : "25px", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{d.date.split(" ")[1]}</span>
+              {!collapsed && d.count > 0 && (
+                <span aria-hidden="true" style={{ fontSize: 12, lineHeight: "16px", color: d.clashes ? "var(--warn)" : "var(--text-2)", whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}>
+                  {d.clashes ? `${d.count} · ⚠` : `${d.count} saved`}
                 </span>
-              ) : (
-                <>
-                  <span className="mono" style={{ fontSize: 10, letterSpacing: 1.6, opacity: on ? 0.7 : 0.5 }}>{d.label}</span>
-                  <span className="serif" style={{ fontSize: 18 }}>{d.date.split(" ")[1]}</span>
-                  {d.count > 0 && (
-                    <span className="mono" style={{
-                      fontSize: 8, letterSpacing: 1, fontWeight: 700,
-                      color: on ? "rgba(247,237,224,0.7)" : "var(--muted)",
-                      marginTop: 1,
-                    }}>
-                      {d.count} SAVED{d.clashes > 0 ? ` · ${d.clashes}⚠` : ""}
-                    </span>
-                  )}
-                </>
               )}
             </button>
           );
         })}
       </div>
 
-      {/* Weekend toggle — only shows for multi-weekend festivals like ACL */}
+      {/* Weekend toggle, only for multi-weekend festivals like ACL. */}
       {hasWeekends && (
-        <div style={{
-          display: "flex", gap: 4, padding: "8px 16px 6px",
-          borderBottom: "1px solid var(--line)",
-        }}>
-          {[
-            { value: "W1",  label: "WEEKEND 1" },
-            { value: "W2",  label: "WEEKEND 2" },
-          ].map(w => {
+        <div role="tablist" aria-label="Weekend" style={{ display: "flex", gap: 8, padding: "0 20px 12px" }}>
+          {[{ value: "W1", label: "Weekend 1" }, { value: "W2", label: "Weekend 2" }].map(w => {
             const on = weekendFilter === w.value;
             return (
-              <button key={w.value} onClick={() => setWeekendFilter(w.value)} className="mono" style={{
-                flex: 1, padding: "7px 6px", borderRadius: 8,
-                background: on ? "var(--ink)" : "transparent",
-                color: on ? "var(--paper)" : "var(--muted)",
-                border: on ? "none" : "1px solid var(--line-2)",
-                fontSize: 9, letterSpacing: 1.2, fontWeight: 700, cursor: "pointer",
+              <button key={w.value} role="tab" aria-selected={on} onClick={() => setWeekendFilter(w.value)} style={{
+                flex: 1, minHeight: 44, borderRadius: 14, cursor: "pointer",
+                background: on ? "var(--paper-3)" : "transparent",
+                border: on ? "1.5px solid var(--signal)" : "1px solid var(--line)",
+                color: on ? "var(--ink)" : "var(--text-2)",
+                fontSize: 15, lineHeight: "20px", fontWeight: 600,
               }}>{w.label}</button>
             );
           })}
         </div>
       )}
 
-      {/* Compact toolbar: view mode segment + single FILTERS trigger.
-          All filter/sort dimensions live inside the bottom sheet now —
-          no more in-page expanding drawer + active-chip strip. The
-          badge count on the trigger replaces the strip's signaling. */}
-      <div className="no-scrollbar" style={{
-        display: "flex", alignItems: "center", gap: 6, padding: "10px 16px 8px",
-        overflowX: "auto", scrollbarWidth: "none",
-        borderBottom: "1px solid var(--line)",
-      }}>
-        <div style={{
-          flexShrink: 0, display: "inline-flex",
-          border: "1px solid var(--line-2)", borderRadius: 999, padding: 2, gap: 2,
-        }}>
-          {[["list","☰ LIST"],["grid","⊞ GRID"]].map(([k,l]) => {
-            const on = viewMode === k;
+      {/* All stages / Saved / Now, one thumb away. Tier, stage, genre and
+          sort live in the Filters sheet. */}
+      <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "0 20px 12px", borderBottom: "1px solid var(--line)" }}>
+        <div role="radiogroup" aria-label="Show" style={{ flex: 1, minWidth: 0, display: "flex", background: "var(--paper-2)", borderRadius: 14 }}>
+          {[{ id: "all", label: "All stages" }, { id: "saved", label: "Saved" }, { id: "now", label: "Now" }].map(o => {
+            const on = o.id === "all" ? (filter === "all" && stageFilter === "all") : filter === o.id;
             return (
-              <button key={k} onClick={() => setViewMode(k)} className="mono" style={{
-                padding: "3px 9px", borderRadius: 999, border: "none",
-                background: on ? "var(--ink)" : "transparent",
-                color: on ? "var(--paper)" : "var(--ink)",
-                fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
-                whiteSpace: "nowrap",
-              }}>{l}</button>
+              <button key={o.id} role="radio" aria-checked={on}
+                onClick={() => { setFilter(o.id); if (o.id === "all") setStageFilter("all"); }}
+                style={{
+                  flex: o.id === "all" ? 1.4 : 1, minWidth: 0, minHeight: 44,
+                  borderRadius: 14, border: "none", cursor: "pointer",
+                  background: on ? "var(--paper-3)" : "transparent",
+                  boxShadow: on ? "inset 0 0 0 1.5px var(--signal)" : "none",
+                  color: on ? "var(--ink)" : "var(--text-2)",
+                  fontSize: 15, lineHeight: "20px", fontWeight: 600, whiteSpace: "nowrap",
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+                }}>
+                {o.id === "now" && <span aria-hidden="true" style={{ width: 7, height: 7, borderRadius: 4, background: NOW.night === day ? "var(--signal)" : "var(--text-3)" }} />}
+                {o.label}
+              </button>
             );
           })}
-          <button onClick={() => setState({ ...state, tab: "map", focusStage: stageFilter !== "all" ? stageFilter : undefined })} className="mono" style={{
-            padding: "3px 9px", borderRadius: 999, border: "none",
-            background: "transparent", color: "var(--ink)",
-            fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
-            whiteSpace: "nowrap",
-          }}>◎ MAP</button>
         </div>
-        <button onClick={() => setFilterSheetOpen(true)} className="mono" style={{
-          flexShrink: 0, padding: "5px 11px", borderRadius: 999,
-          background: activeFilterCount > 0 ? "var(--ember)" : "transparent",
-          color: activeFilterCount > 0 ? "#fff" : "var(--ink)",
-          border: activeFilterCount > 0 ? "none" : "1px solid var(--line-2)",
-          fontSize: 10, letterSpacing: 1.1, cursor: "pointer",
-          fontWeight: 700, whiteSpace: "nowrap",
-          display: "inline-flex", alignItems: "center", gap: 6,
+        <button onClick={() => setFilterSheetOpen(true)} aria-label={`Filters${otherFilterCount ? `, ${otherFilterCount} on` : ""}`} style={{
+          ...fieldIconBtn, width: "auto", minWidth: 44, padding: "0 12px", gap: 6,
+          background: "var(--paper-2)", fontSize: 15, fontWeight: 600,
         }}>
-          <span>FILTERS</span>
-          {activeFilterCount > 0 && (
-            <span style={{
-              background: "rgba(255,255,255,0.28)",
-              borderRadius: 999, padding: "1px 7px",
-              fontSize: 9, fontWeight: 800,
-            }}>{activeFilterCount}</span>
-          )}
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M4 7 H20 M7 12 H17 M10 17 H14"/></svg>
+          {otherFilterCount > 0 && <span style={{ fontVariantNumeric: "tabular-nums" }}>{otherFilterCount}</span>}
         </button>
-        {/* Pre-festival utility: saved sets → .ics into Calendar. The same
-            export already lives in the NightWizard header; this surfaces it
-            from the main schedule (Partiful/Eventbrite add-to-calendar
-            pattern — affordance on the schedule itself). */}
-        {state.saved.length > 0 && (
-          <button onClick={() => { window.plurskyHaptic?.("LIGHT"); exportSavedSetsICS(state.saved); }} className="mono" style={{
-            flexShrink: 0, padding: "5px 11px", borderRadius: 999,
-            background: "transparent", color: "var(--ink)",
-            border: "1px solid var(--line-2)",
-            fontSize: 10, letterSpacing: 1.1, cursor: "pointer",
-            fontWeight: 700, whiteSpace: "nowrap",
-          }}>📅 CALENDAR</button>
-        )}
-        {sortBy !== "time" && (
-          <span className="mono" style={{
-            flexShrink: 0, padding: "5px 9px", borderRadius: 999,
-            background: "var(--paper-2)", color: "var(--muted)",
-            border: "1px solid var(--line-2)",
-            fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
-            whiteSpace: "nowrap",
-          }}>SORT: {sortBy.toUpperCase()}</span>
-        )}
       </div>
+      {!online && (
+        <div role="status" style={{ padding: "8px 20px", fontSize: 13, lineHeight: "18px", color: "var(--text-2)", borderBottom: "1px solid var(--line)" }}>
+          Offline · showing the schedule saved on this phone
+        </div>
+      )}
 
       {/* LIST: the utility stack sits here, above the list. GRID: the same
           elements ride INSIDE the grid's one scroller (TimelineGrid `lead`),
@@ -1267,7 +1080,7 @@ function LineupScreen({ state, setState }) {
       <ScrollBody data-lineup-scroll ref={useStaggerFade(`${day}-${viewMode}-${filter}-${stageFilter}-${tierFilter}-${genreFilter}-${sortBy}-${weekendFilter}`)} style={
         viewMode === "grid"
           ? { overflowY: "hidden", display: "flex", flexDirection: "column", padding: 0 }
-          : { padding: "0 16px 90px" }
+          : { padding: "0 20px 96px" }
       }>
         {!gridLead && saveDayCard}
         {gridLead && (() => {
@@ -1306,240 +1119,143 @@ function LineupScreen({ state, setState }) {
             </div>
           );
         })()}
-        {/* Zero rows has two completely different causes and they used to share
-            one message: a search that matched nothing told you "No sets saved
-            yet — TAP ANY [+] TO SAVE YOUR FIRST SET", which answers a question
-            nobody asked and hides the fact that the query is what emptied the
-            list. Search loses to nothing else here, because when a query is
-            active it is always the thing the user is looking at. */}
-        {viewMode === "list" && dayArtists.length === 0 && q.trim() !== "" && (
-          <div style={{ padding: 40, textAlign: "center" }}>
-            <div className="serif" style={{ fontSize: 22, color: "var(--muted)", fontStyle: "italic", marginBottom: 6 }}>
-              No matches for “{q.trim()}”
-            </div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
-              {_otherDayHits > 0
-                ? `${_otherDayHits} MATCH${_otherDayHits === 1 ? "" : "ES"} ON ANOTHER DAY`
-                : "NO ARTIST, STAGE OR GENRE BY THAT NAME"}
-            </div>
-            <button onClick={() => setQ("")} className="mono" style={{
-              marginTop: 14, padding: "8px 16px", borderRadius: 999,
-              background: "var(--ink)", color: "var(--paper)", border: "none",
-              fontSize: 10, letterSpacing: 1.4, fontWeight: 700, cursor: "pointer",
-            }}>CLEAR SEARCH</button>
-          </div>
-        )}
-        {/* The SAME defect the search branch above was fixed for, one layer
-            out: a TIER/STAGE/GENRE chip that matches nothing fell through to
-            the saved-list message and told the user "No sets saved yet — TAP
-            ANY [+] TO SAVE YOUR FIRST SET". Saving is not the problem and the
-            filter is not mentioned. Reachable on any festival — a stage that
-            does not run on the selected day, or a genre with no act that
-            day. Named causes beat one generic message — that was the lesson
-            the first fix wrote down, and it applies to the chips too. */}
-        {viewMode === "list" && dayArtists.length === 0 && q.trim() === "" && _chipFilterActive && (
-          <div style={{ padding: 40, textAlign: "center" }}>
-            <div className="serif" style={{ fontSize: 22, color: "var(--muted)", fontStyle: "italic", marginBottom: 6 }}>
-              {_emptyChipLabel
-                ? `Nothing on ${_emptyChipLabel} yet`
-                : "Nothing matches those filters"}
-            </div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
-              {_emptyChipLabel ? "NOTHING THERE ON THIS DAY" : "TRY CLEARING ONE OF THEM"}
-            </div>
-            <button onClick={() => { setTierFilter("all"); setStageFilter("all"); setGenreFilter("all"); }} className="mono" style={{
-              marginTop: 14, padding: "8px 16px", borderRadius: 999,
-              background: "var(--ink)", color: "var(--paper)", border: "none",
-              fontSize: 10, letterSpacing: 1.4, fontWeight: 700, cursor: "pointer",
-            }}>CLEAR FILTERS</button>
-          </div>
-        )}
-        {viewMode === "list" && dayArtists.length === 0 && q.trim() === "" && !_chipFilterActive && (
-          <div style={{ padding: 40, textAlign: "center" }}>
-            <div className="serif" style={{ fontSize: 22, color: "var(--muted)", fontStyle: "italic", marginBottom: 6 }}>
-              {state.saved.length === 0 ? "No sets saved yet" : "Nothing saved for this day"}
-            </div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
-              {state.saved.length === 0
-                ? "TAP ANY [+] TO SAVE YOUR FIRST SET"
-                : 'SWITCH TO "ALL" TO BROWSE'}
-            </div>
-            {state.saved.length === 0 && filter !== "all" && (
-              <button onClick={() => setFilter("all")} className="mono" style={{
-                marginTop: 14, padding: "8px 16px", borderRadius: 999,
-                background: "var(--ink)", color: "var(--paper)", border: "none",
-                fontSize: 10, letterSpacing: 1.4, fontWeight: 700, cursor: "pointer",
-              }}>BROWSE ALL SETS</button>
-            )}
-          </div>
-        )}
-        {viewMode === "grid" && filter === "saved" && state.saved.length === 0 && (
-          <div style={{ padding: 40, textAlign: "center" }}>
-            <div className="serif" style={{ fontSize: 22, color: "var(--muted)", fontStyle: "italic", marginBottom: 6 }}>
-              No sets saved yet
-            </div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
-              SWITCH TO ALL — TAP ANY SET TO SAVE
-            </div>
-            <button onClick={() => setFilter("all")} className="mono" style={{
-              marginTop: 14, padding: "8px 16px", borderRadius: 999,
-              background: "var(--ink)", color: "var(--paper)", border: "none",
-              fontSize: 10, letterSpacing: 1.4, fontWeight: 700, cursor: "pointer",
-            }}>BROWSE ALL SETS</button>
-          </div>
-        )}
-        {viewMode === "list" && dayArtists.map(a => {
-          const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
-          const saved = state.saved.includes(a.id);
-          const clashWith = conflictById[a.id];
-          const isHighlighted = highlightId === a.id;
-          // FotMob-style LIVE pill — green pulsing dot + LIVE caps when
-          // the set is currently playing (real date AND time, see isSetLive).
-          const isLive = isSetLive(a);
+        {/* Zero rows has different causes; each gets its own sentence and one
+            action: search, then the Filters chips, then Now, then saved. */}
+        {viewMode === "list" && dayArtists.length === 0 && (() => {
+          const term = q.trim();
+          const empty = term
+            ? { title: `No matches for “${term}”`,
+                sub: _otherDayHits > 0 ? `${_otherDayHits} match${_otherDayHits === 1 ? "" : "es"} on another day.` : "No artist, stage or genre by that name.",
+                action: "Clear search", onAction: () => setQ("") }
+            : _chipFilterActive
+            ? { title: _emptyChipLabel ? `Nothing on ${_emptyChipLabel} yet` : "Nothing matches those filters",
+                sub: _emptyChipLabel ? "Nothing there on this day." : "Try clearing one of them.",
+                action: "Clear filters", onAction: () => { setTierFilter("all"); setStageFilter("all"); setGenreFilter("all"); } }
+            : filter === "now"
+            ? { title: "Nothing is on right now",
+                sub: NOW.night === day ? "Between sets on this day." : "This day isn't live right now.",
+                action: "Show all sets", onAction: () => setFilter("all") }
+            : { title: state.saved.length === 0 ? "No sets saved yet" : "Nothing saved for this day",
+                sub: state.saved.length === 0 ? "Tap the save button on any set to add it." : "Switch to All stages to browse.",
+                action: filter !== "all" ? "Show all sets" : null, onAction: () => setFilter("all") };
           return (
-            <div key={a.id}
-              data-animate
-              data-lineup-highlight={isHighlighted ? "true" : undefined}
-              style={{
-                display: "flex", gap: 10, padding: "12px 8px",
-                margin: "0 -8px",
-                borderBottom: "1px solid var(--line)",
-                alignItems: "center",
-                borderRadius: isHighlighted ? 10 : 0,
-                animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined,
-              }}>
-              <div style={{ width: 46, flexShrink: 0 }}>
-                <div className="mono" style={{ fontSize: 13, letterSpacing: 0.5, fontWeight: 500 }}>{fmt12(a.start)}</div>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>{fmt12(a.end)}</div>
-                {isLive && (
-                  <div className="mono" style={{
-                    marginTop: 4, fontSize: 8, letterSpacing: 1, fontWeight: 800,
-                    color: "var(--success)", background: "rgba(45,122,85,0.14)",
-                    border: "0.5px solid rgba(45,122,85,0.55)",
-                    padding: "1px 5px", borderRadius: 4,
-                    display: "inline-flex", alignItems: "center", gap: 4,
-                  }}>
-                    <span style={{
-                      width: 5, height: 5, borderRadius: 5,
-                      background: "var(--success)",
-                      animation: "pulse 1.4s infinite",
-                    }}/>LIVE
-                  </div>
-                )}
-                {clashWith && (
-                  <div className="mono" title={`Overlaps with ${clashWith.join(", ")}`} style={{
-                    marginTop: 4, fontSize: 8, letterSpacing: 0.8, fontWeight: 800,
-                    color: "var(--ember-ink)", background: "rgba(232,93,46,0.12)",
-                    border: "0.5px solid rgba(232,93,46,0.55)",
-                    padding: "1px 4px", borderRadius: 4,
-                    display: "inline-block",
-                  }}>⚠ CLASH</div>
-                )}
-              </div>
-              <div style={{ width: 4, alignSelf: "stretch", background: stage.color, borderRadius: 3 }} />
-              <div style={{ flex: 1, minWidth: 0, cursor: "pointer" }}
-                   onClick={() => setState({ ...state, artist: a.id })}>
-                <div style={{ display: "flex", alignItems: "baseline", gap: 7, flexWrap: "wrap" }}>
-                  <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, letterSpacing: -0.3 }}>{a.name}</div>
-                  <TierStars tier={a.tier} />
-                  {isLegendary(a) && (
-                    <span className="mono" style={{
-                      fontSize: 8, letterSpacing: 1.2, fontWeight: 800,
-                      color: "#fbbf24", background: "rgba(251,191,36,0.14)",
-                      padding: "1px 6px", borderRadius: 999,
-                      border: "0.5px solid rgba(251,191,36,0.6)",
-                    }}>★ DON'T MISS</span>
-                  )}
-                  {spotifyMatchedIds.has(a.id) && (
-                    <span className="mono" style={{
-                      fontSize: 8, letterSpacing: 1.2, fontWeight: 700,
-                      color: "#1DB954", background: "rgba(29,185,84,0.12)",
-                      padding: "1px 6px", borderRadius: 999,
-                      border: "0.5px solid rgba(29,185,84,0.5)",
-                    }}>♫</span>
-                  )}
-                  {(() => { const n = window.sbGetCrewCount?.(a.id) || 0; return n > 0 ? (
-                    <span className="mono" style={{
-                      fontSize: 8, letterSpacing: 1, fontWeight: 700,
-                      color: "var(--horizon)", background: "rgba(123,61,154,0.12)",
-                      padding: "1px 6px", borderRadius: 999,
-                      border: "0.5px solid rgba(123,61,154,0.5)",
-                    }}>👥 {n}</span>
-                  ) : null; })()}
-                  {hasWeekends && a.weekend && a.weekend !== "both" && (
-                    <span className="mono" style={{
-                      fontSize: 8, letterSpacing: 1.2, fontWeight: 700,
-                      color: a.weekend === "W1" ? "#2563eb" : "#9333ea",
-                      background: a.weekend === "W1" ? "rgba(37,99,235,0.1)" : "rgba(147,51,234,0.1)",
-                      padding: "1px 6px", borderRadius: 999,
-                      border: `0.5px solid ${a.weekend === "W1" ? "rgba(37,99,235,0.4)" : "rgba(147,51,234,0.4)"}`,
-                    }}>{a.weekend}</span>
-                  )}
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 3 }}>
-                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: stage.color, fontWeight: 600, textTransform: "uppercase" }}>
-                    {stage.name}
-                  </span>
-                  <span style={{ fontSize: 9, color: "var(--muted)" }}>·</span>
-                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", textTransform: "uppercase" }}>
-                    {a.genre}
-                  </span>
-                </div>
-                {stage.vibe && (
-                  <div style={{ marginTop: 4, display: "flex", alignItems: "center", gap: 5 }}>
-                    <span className="mono" style={{
-                      fontSize: 8, letterSpacing: 1.1, fontWeight: 700,
-                      color: stage.color,
-                      padding: "1px 6px", borderRadius: 999,
-                      background: `${stage.color}1a`,
-                      border: `0.5px solid ${stage.color}55`,
-                      textTransform: "uppercase",
-                    }}>{stage.vibe}</span>
-                    {stage.peak && (
-                      <span className="mono" style={{ fontSize: 8, letterSpacing: 0.9, color: "var(--muted)" }}>
-                        PEAKS {stage.peak}
-                      </span>
-                    )}
-                  </div>
-                )}
-              </div>
-              <button onClick={() => toggleSave(state, setState, a.id)}
-                aria-label={saved ? `Unsave ${a.name}` : `Save ${a.name}`} aria-pressed={saved} style={{
-                width: 44, height: 44, borderRadius: 44, flexShrink: 0,
-                background: saved ? "var(--ember)" : "transparent",
-                border: saved ? "none" : "1px solid var(--line-2)",
-                color: saved ? "#fff" : "var(--ink)",
-                cursor: "pointer",
-                fontSize: 18, fontWeight: 300,
-                display: "flex", alignItems: "center", justifyContent: "center",
-              }}>{saved ? "✓" : "+"}</button>
+            <div style={{ padding: "40px 0" }}>
+              <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>{empty.title}</div>
+              <div style={{ marginTop: 4, fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>{empty.sub}</div>
+              {empty.action && <FieldButton kind="secondary" onClick={empty.onAction} style={{ marginTop: 16 }}>{empty.action}</FieldButton>}
             </div>
           );
-        })}
+        })()}
+        {viewMode === "grid" && filter === "saved" && state.saved.length === 0 && (
+          <div style={{ padding: "40px 20px" }}>
+            <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>No sets saved yet</div>
+            <div style={{ marginTop: 4, fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>Switch to All stages and tap any set to save it.</div>
+            <FieldButton kind="secondary" onClick={() => setFilter("all")} style={{ marginTop: 16 }}>Show all sets</FieldButton>
+          </div>
+        )}
+        {viewMode === "list" && (() => {
+          // One NOW rule, before the first set that hasn't started: only on the
+          // night that is actually running, and only in time order.
+          const nowMin = NOW.night === day && NOW.time && sortBy === "time" ? toNightMin(NOW.time) : null;
+          const rows = dayArtists.map(a => {
+            const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
+            const saved = state.saved.includes(a.id);
+            const clashWith = conflictById[a.id];
+            const isHighlighted = highlightId === a.id;
+            const isLive = isSetLive(a);
+            const crew = window.sbGetCrewCount?.(a.id) || 0;
+            const flags = [
+              isLegendary(a) && "Don't miss",
+              hasWeekends && a.weekend && a.weekend !== "both" && (a.weekend === "W1" ? "Weekend 1" : "Weekend 2"),
+              spotifyMatchedIds.has(a.id) && "In your music",
+              crew > 0 && `${crew} crew`,
+            ].filter(Boolean);
+            return (
+              <div key={a.id}
+                data-animate
+                data-lineup-highlight={isHighlighted ? "true" : undefined}
+                style={{
+                  display: "flex", alignItems: "flex-start", gap: 12, minHeight: 64,
+                  padding: "12px 8px", margin: "0 -8px",
+                  borderBottom: "1px solid var(--line)",
+                  borderRadius: isHighlighted ? 14 : 0,
+                  animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined,
+                }}>
+                <div style={{ width: 76, flexShrink: 0, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
+                  <div style={{ fontSize: 15, lineHeight: "21px", fontWeight: 600 }}>{fmt12(a.start)}</div>
+                  <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{fmt12(a.end)}</div>
+                </div>
+                <button onClick={() => setState({ ...state, artist: a.id })} style={{
+                  flex: 1, minWidth: 0, minHeight: 44, padding: 0, background: "transparent", border: "none",
+                  color: "var(--ink)", textAlign: "left", cursor: "pointer",
+                  display: "flex", flexDirection: "column", alignItems: "flex-start",
+                }}>
+                  {isLive && (
+                    <span style={{ ..._fieldEyebrow, color: "var(--signal)", marginBottom: 2 }}>
+                      <span aria-hidden="true" style={{ width: 7, height: 7, borderRadius: 4, background: "var(--signal)" }} />Live
+                    </span>
+                  )}
+                  <span style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{a.name}</span>
+                  {/* Inline dot, so a long stage name wraps as text, not dot-then-line. */}
+                  <span style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+                    <span aria-hidden="true" style={{ display: "inline-block", width: 7, height: 7, borderRadius: 4, background: stage.color, marginRight: 6, verticalAlign: "1px" }} />
+                    {stage.name}{a.genre ? ` · ${a.genre}` : ""}
+                  </span>
+                  {flags.length > 0 && <span style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{flags.join(" · ")}</span>}
+                  {clashWith && <span style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: "var(--warn)" }}>⚠ Clashes with {clashWith.join(", ")}</span>}
+                </button>
+                <button onClick={() => toggleSave(state, setState, a.id)}
+                  aria-label={saved ? `Unsave ${a.name}` : `Save ${a.name}`} aria-pressed={saved}
+                  style={{ ...fieldIconBtn, color: saved ? "var(--signal)" : "var(--text-2)" }}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill={saved ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                  </svg>
+                </button>
+              </div>
+            );
+          });
+          if (nowMin != null && dayArtists.length) {
+            const i = dayArtists.findIndex(a => toNightMin(a.start) > nowMin);
+            rows.splice(i === -1 ? rows.length : i, 0, (
+              <div key="__now" data-now-rule style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 0" }}>
+                <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: 4, background: "var(--signal)", flexShrink: 0 }} />
+                <span style={{ ..._fieldEyebrow, color: "var(--signal)", fontVariantNumeric: "tabular-nums" }}>Now · {fmt12(NOW.time)}</span>
+                <span aria-hidden="true" style={{ flex: 1, height: 1, background: "var(--signal)" }} />
+              </div>
+            ));
+          }
+          return rows;
+        })()}
       </ScrollBody>
 
-      {viewMode === "grid" && NOW.night === day && NOW.time && (
+      {/* Jump to now: only on the running night. LIST shows it only while
+          the NOW rule is out of view; GRID keeps it (its now-line is drawn
+          inside the timetable). */}
+      {NOW.night === day && NOW.time && (viewMode === "grid" || (nowOff && filter !== "now" && sortBy === "time")) && (
         <button onClick={() => {
-          const el = document.querySelector("[data-grid-scroll]");
-          const nowMin = toNightMin(NOW.time);
-          if (el && nowMin >= GRID_START_MIN && nowMin <= GRID_END_MIN) {
-            // The utility stack rides above the timetable in the same scroller.
-            const lead = el.querySelector("[data-grid-lead]");
-            const top = (lead ? lead.offsetHeight : 0) + (nowMin - GRID_START_MIN) * GRID_PX_PER_MIN - 120;
-            el.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+          if (viewMode === "grid") {
+            const el = document.querySelector("[data-grid-scroll]");
+            const nowMin = toNightMin(NOW.time);
+            if (el && nowMin >= GRID_START_MIN && nowMin <= GRID_END_MIN) {
+              // The utility stack rides above the timetable in the same scroller.
+              const lead = el.querySelector("[data-grid-lead]");
+              const top = (lead ? lead.offsetHeight : 0) + (nowMin - GRID_START_MIN) * GRID_PX_PER_MIN - 120;
+              el.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+            }
+          } else {
+            const r = document.querySelector("[data-now-rule]");
+            if (r) try { r.scrollIntoView({ behavior: "smooth", block: "center" }); } catch {}
           }
-        }} style={{
-          // bottom:80 cleared the floating Search pill, which GRID no longer shows.
-          position: "absolute", bottom: 16, right: 16, zIndex: 8,
-          background: "var(--ember)", color: "#fff", border: "none",
-          borderRadius: 999, padding: "8px 14px",
-          boxShadow: "0 4px 16px rgba(232,93,46,0.4)",
-          fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.4, fontWeight: 800,
-          cursor: "pointer", display: "flex", alignItems: "center", gap: 5,
-          animation: "springIn 0.3s ease-out",
+        }} aria-label="Jump to now" style={{
+          position: "absolute", right: 16, bottom: viewMode === "grid" ? 16 : 76, zIndex: 8,
+          minHeight: 44, padding: "0 16px 0 14px", borderRadius: 22,
+          background: "var(--chrome)", border: "1px solid var(--line-2)", color: "var(--ink)",
+          backdropFilter: "blur(20px) saturate(160%)", WebkitBackdropFilter: "blur(20px) saturate(160%)",
+          fontSize: 15, lineHeight: "20px", fontWeight: 600,
+          cursor: "pointer", display: "flex", alignItems: "center", gap: 8,
         }}>
-          <span style={{ width: 6, height: 6, borderRadius: 6, background: "#fff", animation: "pulse 1.6s infinite" }}/>
-          NOW
+          <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: 4, background: "var(--signal)" }}/>
+          Now
         </button>
       )}
 
@@ -2364,77 +2080,29 @@ function ConflictResolver({ conflicts, onKeep, onKeepBoth, onSplit }) {
     setIdx(i => (i + 1 < conflicts.length ? i + 1 : i));
   };
 
+  const crBtn = { ...fieldIconBtn, width: "auto", padding: "0 10px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 };
   return (
-    <div style={{
-      margin: "0 16px 14px",
-      padding: 14,
-      borderRadius: 16,
-      background: "var(--ink)",
-      color: "var(--paper)",
-      position: "relative", overflow: "hidden",
-    }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ember)" strokeWidth="2">
-            <polygon points="12,3 22,20 2,20" strokeLinejoin="round"/>
-            <path d="M12 10 V14" strokeLinecap="round"/>
-            <circle cx="12" cy="17" r="0.7" fill="var(--ember)"/>
-          </svg>
-          <span className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--ember-ink)", fontWeight: 700 }}>
-            CONFLICT {idx + 1}/{conflicts.length}
-          </span>
-        </div>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(247,237,224,0.55)" }}>
-          OVERLAP {overlapStart}–{overlapEnd}
-        </span>
+    <div role="group" aria-label="Schedule clash" style={{ margin: "4px 20px 12px", padding: "12px 14px 4px", borderRadius: 14, background: "var(--paper-2)" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+        <span style={{ ..._fieldEyebrow, color: "var(--warn)" }}>⚠ Clash {safeIdx + 1} of {conflicts.length}</span>
+        <span style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>Overlap {fmt12(overlapStart)}–{fmt12(overlapEnd)}</span>
       </div>
-
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 10 }}>
-        {[a, b].map((art, i) => {
-          const stg = i === 0 ? sA : sB;
-          return (
-            <div key={art.id} style={{
-              background: "rgba(247,237,224,0.06)", borderRadius: 12, padding: "9px 10px",
-              borderLeft: `3px solid ${stg.color}`,
-            }}>
-              <div className="serif" style={{ fontSize: 18, lineHeight: 1.05 }}>{art.name}</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(247,237,224,0.55)", marginTop: 3 }}>
-                {stg.name.toUpperCase()} · {fmt12(art.start)}–{fmt12(art.end)}
-              </div>
-              <button onClick={() => onKeep(art.id, i === 0 ? b.id : a.id)} style={{
-                marginTop: 8, width: "100%",
-                background: stg.color, color: "#fff", border: "none",
-                borderRadius: 8, padding: "6px 8px",
-                fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                cursor: "pointer",
-              }}>KEEP THIS</button>
+      {[a, b].map((art, i) => {
+        const stg = i === 0 ? sA : sB;
+        return (
+          <div key={art.id} style={{ display: "flex", alignItems: "center", gap: 12, minHeight: 56, borderBottom: "1px solid var(--line)" }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{art.name}</div>
+              <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>{stg.name} · {fmt12(art.start)}–{fmt12(art.end)}</div>
             </div>
-          );
-        })}
-      </div>
-
-      <div style={{ display: "flex", gap: 6 }}>
-        <button onClick={() => onKeepBoth?.(pair)} style={{
-          flex: 1, background: "rgba(247,237,224,0.08)",
-          border: "1px solid rgba(247,237,224,0.3)",
-          color: "var(--paper)", borderRadius: 10, padding: "8px 10px",
-          fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-          cursor: "pointer",
-        }}>KEEP BOTH ↺</button>
-        <button onClick={() => onSplit(pair)} style={{
-          flex: 1, background: "transparent", border: "1px solid rgba(247,237,224,0.3)",
-          color: "var(--paper)", borderRadius: 10, padding: "8px 10px",
-          fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 600,
-          cursor: "pointer",
-        }}>SPLIT NIGHT →</button>
-        {conflicts.length > 1 && (
-          <button onClick={next} style={{
-            background: "transparent", border: "1px solid rgba(247,237,224,0.3)",
-            color: "rgba(247,237,224,0.65)", borderRadius: 10, padding: "8px 12px",
-            fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 600,
-            cursor: "pointer",
-          }}>NEXT</button>
-        )}
+            <button onClick={() => onKeep(art.id, i === 0 ? b.id : a.id)} style={{ ...crBtn, color: "var(--ink)", fontWeight: 600 }}>Keep this</button>
+          </div>
+        );
+      })}
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        <button onClick={() => onKeepBoth?.(pair)} style={crBtn}>Keep both</button>
+        <button onClick={() => onSplit(pair)} style={crBtn}>Split the night</button>
+        {conflicts.length > 1 && <button onClick={next} style={crBtn}>Next clash</button>}
       </div>
     </div>
   );

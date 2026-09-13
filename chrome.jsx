@@ -34,11 +34,12 @@ function TopBar({ title, right, sub, tight }) {
       gap: 12,
     }}>
       <div>
-        {sub && <div className="mono" style={{
-          fontSize: 10, letterSpacing: 1.6, textTransform: "uppercase",
-          color: "var(--muted)", marginBottom: 4,
+        {/* Field Mode: 11/14 status eyebrow over a 28/34 bold screen title. */}
+        {sub && <div style={{
+          fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em",
+          textTransform: "uppercase", color: "var(--text-2)", marginBottom: 4,
         }}>{sub}</div>}
-        <div className="serif" style={{ fontSize: 34, lineHeight: 0.95, letterSpacing: -0.5 }}>
+        <div style={{ fontSize: 28, lineHeight: "34px", fontWeight: 700, letterSpacing: "-0.01em" }}>
           {title}
         </div>
       </div>
@@ -1718,15 +1719,16 @@ function StatusStrip() {
   const mm = String(now.getMinutes()).padStart(2, "0");
 
   return (
-    <div className="mono" style={{
+    // Field Mode: quiet 12pt status in tabular figures, on the shell colour.
+    <div style={{
       flexShrink: 0,
-      height: 22,
+      height: 24,
       display: "flex", alignItems: "center", justifyContent: "space-between",
-      padding: "0 16px",
-      background: "var(--paper-2)",
+      padding: "0 20px",
+      background: "var(--paper)",
       borderBottom: "1px solid var(--line)",
-      fontSize: 10, letterSpacing: 1.4, fontWeight: 600,
-      color: "var(--muted)",
+      fontSize: 12, lineHeight: "16px", fontWeight: 500, fontVariantNumeric: "tabular-nums",
+      color: "var(--text-2)",
     }}>
       <span>{day} · {hh}:{mm}</span>
       <span style={{ display: "flex", alignItems: "center", gap: 10 }}>

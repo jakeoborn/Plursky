@@ -48,20 +48,21 @@ function TopBar({
       gap: 12
     }
   }, React.createElement("div", null, sub && React.createElement("div", {
-    className: "mono",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.6,
+      fontSize: 11,
+      lineHeight: "14px",
+      fontWeight: 600,
+      letterSpacing: "0.04em",
       textTransform: "uppercase",
-      color: "var(--muted)",
+      color: "var(--text-2)",
       marginBottom: 4
     }
   }, sub), React.createElement("div", {
-    className: "serif",
     style: {
-      fontSize: 34,
-      lineHeight: 0.95,
-      letterSpacing: -0.5
+      fontSize: 28,
+      lineHeight: "34px",
+      fontWeight: 700,
+      letterSpacing: "-0.01em"
     }
   }, title)), right);
 }
@@ -2217,83 +2218,84 @@ function StatusStrip() {
   var day = _STATUS_DAYS[now.getDay()];
   var hh = String(now.getHours()).padStart(2, "0");
   var mm = String(now.getMinutes()).padStart(2, "0");
-  return React.createElement("div", {
-    className: "mono",
-    style: {
-      flexShrink: 0,
-      height: 22,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      padding: "0 16px",
-      background: "var(--paper-2)",
-      borderBottom: "1px solid var(--line)",
-      fontSize: 10,
-      letterSpacing: 1.4,
-      fontWeight: 600,
-      color: "var(--muted)"
-    }
-  }, React.createElement("span", null, day, " · ", hh, ":", mm), React.createElement("span", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 10
-    }
-  }, bsActive && React.createElement("span", {
-    style: {
-      display: "inline-flex",
-      alignItems: "center",
-      gap: 4,
-      color: "var(--flare)"
-    }
-  }, React.createElement("svg", {
-    width: "9",
-    height: "12",
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, React.createElement("rect", {
-    x: "6",
-    y: "4",
-    width: "12",
-    height: "17",
-    rx: "1.5"
-  }), React.createElement("path", {
-    d: "M10 1 L14 1"
-  }), React.createElement("path", {
-    d: "M11 9 L13 9 L11 13 L14 13 L10 18"
-  })), "SAVER"), !online && React.createElement("span", {
-    style: {
-      display: "inline-flex",
-      alignItems: "center",
-      gap: 4,
-      color: "#c14a37"
-    }
-  }, React.createElement("svg", {
-    width: "11",
-    height: "11",
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, React.createElement("path", {
-    d: "M4 4 L20 20"
-  }), React.createElement("path", {
-    d: "M2 9 Q6 5 10 5.4 M22 9 Q18 5 14 5.4"
-  }), React.createElement("path", {
-    d: "M6 13 Q12 8 18 13",
-    opacity: "0.55"
-  }), React.createElement("circle", {
-    cx: "12",
-    cy: "19",
-    r: "0.9",
-    fill: "currentColor"
-  })), "OFFLINE")));
+  return (React.createElement("div", {
+      style: {
+        flexShrink: 0,
+        height: 24,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "0 20px",
+        background: "var(--paper)",
+        borderBottom: "1px solid var(--line)",
+        fontSize: 12,
+        lineHeight: "16px",
+        fontWeight: 500,
+        fontVariantNumeric: "tabular-nums",
+        color: "var(--text-2)"
+      }
+    }, React.createElement("span", null, day, " · ", hh, ":", mm), React.createElement("span", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10
+      }
+    }, bsActive && React.createElement("span", {
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 4,
+        color: "var(--flare)"
+      }
+    }, React.createElement("svg", {
+      width: "9",
+      height: "12",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }, React.createElement("rect", {
+      x: "6",
+      y: "4",
+      width: "12",
+      height: "17",
+      rx: "1.5"
+    }), React.createElement("path", {
+      d: "M10 1 L14 1"
+    }), React.createElement("path", {
+      d: "M11 9 L13 9 L11 13 L14 13 L10 18"
+    })), "SAVER"), !online && React.createElement("span", {
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 4,
+        color: "#c14a37"
+      }
+    }, React.createElement("svg", {
+      width: "11",
+      height: "11",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }, React.createElement("path", {
+      d: "M4 4 L20 20"
+    }), React.createElement("path", {
+      d: "M2 9 Q6 5 10 5.4 M22 9 Q18 5 14 5.4"
+    }), React.createElement("path", {
+      d: "M6 13 Q12 8 18 13",
+      opacity: "0.55"
+    }), React.createElement("circle", {
+      cx: "12",
+      cy: "19",
+      r: "0.9",
+      fill: "currentColor"
+    })), "OFFLINE")))
+  );
 }
 function plurskyHaptic(style = "LIGHT") {
   try {
