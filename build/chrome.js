@@ -1717,7 +1717,11 @@ function FestivalSwitcher({
         lineHeight: "18px",
         color: "var(--text-2)"
       }
-    }, f.config.location, " · ", f.config.dates), parts.length > 0 && React.createElement("div", {
+    }, f.config.location, " · ", React.createElement("span", {
+      style: {
+        whiteSpace: "nowrap"
+      }
+    }, f.config.dates)), parts.length > 0 && React.createElement("div", {
       style: {
         marginTop: 2,
         fontSize: 13,

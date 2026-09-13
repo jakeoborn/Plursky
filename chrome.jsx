@@ -1299,7 +1299,7 @@ function FestivalSwitcher({ onClose }) {
         <FestivalThumb entry={f} />
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>{f.config.name}</div>
-          <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{f.config.location} · {f.config.dates}</div>
+          <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{f.config.location} · <span style={{ whiteSpace: "nowrap" }}>{f.config.dates}</span></div>
           {parts.length > 0 && (
             <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
               {parts.map((x, i) => <React.Fragment key={i}>{i ? " · " : ""}{x}</React.Fragment>)}
