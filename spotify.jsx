@@ -5967,37 +5967,23 @@ function MemoriesScreen({ state, setState }) {
           onChange={handleBatchPick}
           style={{ display: "none" }}
         />
+        {/* Field Mode: flat rows in words; no gradient washes or pills. */}
         <button onClick={handlePickClick}
           disabled={!!batch && batch.done < batch.total}
-          style={{
-            display: "flex", alignItems: "center", justifyContent: "space-between",
-            width: "100%", marginTop: 12, padding: "12px 14px",
-            background: "linear-gradient(135deg, rgba(232,93,46,0.12), rgba(123,61,154,0.10))",
-            border: "1px solid rgba(232,93,46,0.4)",
-            borderRadius: 14, color: "var(--ink)", cursor: "pointer",
-          }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <span style={{ fontSize: 17 }}>✨</span>
-            <div style={{ textAlign: "left" }}>
-              <div className="serif" style={{ fontSize: 16, lineHeight: 1.1 }}>Import from camera roll</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2, fontWeight: 700 }}>
-                AUTO-TAGS BY TIME + LOCATION
-              </div>
-            </div>
-          </div>
-          <span className="mono" style={{
-            background: "var(--ember)", color: "#fff",
-            padding: "5px 11px", borderRadius: 999,
-            fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-          }}>{batch && batch.done < batch.total ? `${batch.done}/${batch.total}` : "PICK"}</span>
+          style={{ display: "flex", alignItems: "center", gap: 12, width: "100%", minHeight: 64, marginTop: 12, padding: "10px 16px", background: "var(--paper-2)", border: "none", borderRadius: 14, color: "var(--ink)", textAlign: "left", fontFamily: "inherit", cursor: "pointer" }}>
+          <span aria-hidden="true" style={{ fontSize: 20 }}>✨</span>
+          <span style={{ flex: 1, minWidth: 0 }}>
+            <span style={{ display: "block", fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>Import from camera roll</span>
+            <span style={{ display: "block", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>Auto-tags by time and location</span>
+          </span>
+          <span style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{batch && batch.done < batch.total ? `${batch.done}/${batch.total}` : "Pick"}</span>
         </button>
         {!batch && reviewIds.length > 0 && (
-          <button data-review-later onClick={() => setReview(reviewIds.map(id => ({ momentId: id })))} className="mono" style={{
-            display: "block", width: "100%", textAlign: "left", marginTop: 8, padding: "9px 12px", borderRadius: 10, cursor: "pointer",
-            background: "rgba(232,93,46,0.10)", border: "1px solid rgba(232,93,46,0.4)", color: "var(--ember-ink)",
-            fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
+          <button data-review-later onClick={() => setReview(reviewIds.map(id => ({ momentId: id })))} style={{
+            display: "block", width: "100%", textAlign: "left", marginTop: 8, minHeight: 44, padding: "0 16px", borderRadius: 14, cursor: "pointer",
+            background: "var(--paper-2)", border: "none", color: "var(--warn)", fontSize: 15, lineHeight: "20px", fontWeight: 600, fontFamily: "inherit",
           }}>
-            ⚑ {reviewIds.length} MOMENT{reviewIds.length === 1 ? "" : "S"} NEED A SET · REVIEW →
+            ⚑ {reviewIds.length} {reviewIds.length === 1 ? "moment needs" : "moments need"} a set · Review
           </button>
         )}
         {batch && batch.done === batch.total && (() => {
@@ -6007,44 +5993,33 @@ function MemoriesScreen({ state, setState }) {
           const dupes     = batch.results.filter(r => r.skipped === "duplicate").length;
           const allTagged = tagged > 0 && needRetag === 0 && failed === 0;
           return (
-            <div onClick={() => { if (batch.results.some(r => r.momentId)) setReview(batch.results.filter(r => r.momentId)); else setBatch(null); }} style={{
-              marginTop: 8, padding: "9px 12px",
-              background: allTagged ? "rgba(45,122,85,0.12)" : "rgba(232,93,46,0.10)",
-              border: allTagged ? "1px solid rgba(45,122,85,0.4)" : "1px solid rgba(232,93,46,0.4)",
-              borderRadius: 10, cursor: "pointer",
+            <button onClick={() => { if (batch.results.some(r => r.momentId)) setReview(batch.results.filter(r => r.momentId)); else setBatch(null); }} style={{
+              display: "block", width: "100%", textAlign: "left", marginTop: 8, padding: "10px 16px", minHeight: 44,
+              background: "var(--paper-2)", border: "none", borderRadius: 14, cursor: "pointer", color: "var(--ink)", fontFamily: "inherit",
             }}>
-              <div className="mono" style={{
-                fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-                color: allTagged ? "var(--success)" : "var(--ember-ink)",
-              }}>
-                ✓ {tagged} TAGGED{needRetag > 0 ? ` · ${needRetag} NEED RETAG` : ""}{dupes > 0 ? ` · ${dupes} SKIPPED (DUPLICATE)` : ""}{failed > 0 ? ` · ${failed} FAILED` : ""}
+              <div style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600, color: allTagged ? "var(--signal)" : "var(--warn)" }}>
+                ✓ {tagged} tagged{needRetag > 0 ? ` · ${needRetag} need a set` : ""}{dupes > 0 ? ` · ${dupes} skipped (duplicate)` : ""}{failed > 0 ? ` · ${failed} failed` : ""}
               </div>
               {needRetag > 0 && (
-                <div className="mono" style={{ marginTop: 4, fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 600 }}>
+                <div style={{ marginTop: 4, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
                   iOS sometimes strips photo time when copying — tap an untagged moment to pick its set.
                 </div>
               )}
-              <div className="mono" style={{ marginTop: 4, fontSize: 9, color: "var(--muted)" }}>
-                {batch.results.some(r => r.momentId) ? "TAP TO REVIEW TAGS" : "TAP TO DISMISS"}
+              <div style={{ marginTop: 4, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+                {batch.results.some(r => r.momentId) ? "Tap to review tags" : "Tap to dismiss"}
               </div>
-            </div>
+            </button>
           );
         })()}
 
         {/* ✨ Create recap hero — the payoff CTA. Plays an auto-advancing reel
             of the whole weekend; the recap-video export lives one tap deeper. */}
         {allMoments.filter(m => m.photoId).length >= 3 && (
-          <div style={{
-            marginTop: 12, padding: "14px 16px", borderRadius: 16,
-            background: "linear-gradient(135deg, var(--ember), #7b3d9a)",
-            display: "flex", alignItems: "center", gap: 12,
-          }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, width: "100%", minHeight: 64, marginTop: 12, padding: "10px 16px", background: "var(--paper-2)", border: "none", borderRadius: 14, color: "var(--ink)", textAlign: "left", fontFamily: "inherit" }}>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="serif" style={{ fontSize: 19, lineHeight: 1.05, color: "#fff" }}>
-                Relive your <span style={{ fontStyle: "italic" }}>weekend</span>
-              </div>
-              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "rgba(255,255,255,0.8)", fontWeight: 700, marginTop: 3 }}>
-                {allMoments.filter(m => m.photoId).length} MOMENTS · AUTO-PLAY REEL
+              <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>Relive your weekend</div>
+              <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
+                {allMoments.filter(m => m.photoId).length} moments · auto-play reel
               </div>
             </div>
             <button onClick={() => {
@@ -6054,11 +6029,10 @@ function MemoriesScreen({ state, setState }) {
                 return (a.createdAt || 0) - (b.createdAt || 0);
               });
               playReel(ms, FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name, null);
-            }} className="mono" style={{
-              flexShrink: 0, background: "#fff", color: "var(--ember)", border: "none",
-              borderRadius: 999, padding: "9px 16px", cursor: "pointer",
-              fontSize: 10, letterSpacing: 1.2, fontWeight: 800,
-            }}>▶ PLAY</button>
+            }} style={{
+              flexShrink: 0, minHeight: 44, padding: "0 16px", borderRadius: 14, border: "none", cursor: "pointer",
+              background: "var(--signal)", color: "var(--on-signal)", fontSize: 15, lineHeight: "20px", fontWeight: 600, fontFamily: "inherit",
+            }}>▶ Play</button>
           </div>
         )}
 
@@ -6067,13 +6041,10 @@ function MemoriesScreen({ state, setState }) {
             calm relive view, not a control panel. */}
         {totalCount > 0 && (
           <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 8 }}>
-            <button onClick={() => setManage(m => !m)} className="mono" style={{
-              background: manage ? "var(--ink)" : "transparent",
-              color: manage ? "var(--paper)" : "var(--muted)",
-              border: "1px solid var(--line)", borderRadius: 999,
-              padding: "5px 12px", cursor: "pointer",
-              fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
-            }}>{manage ? "✓ DONE MANAGING" : "⚙ MANAGE"}</button>
+            <button onClick={() => setManage(m => !m)} aria-pressed={manage} style={{
+              ...fieldIconBtn, width: "auto", padding: "0 8px", color: manage ? "var(--ink)" : "var(--text-2)",
+              fontSize: 15, fontWeight: 500,
+            }}>{manage ? "Done" : "Manage"}</button>
           </div>
         )}
 
@@ -6094,8 +6065,8 @@ function MemoriesScreen({ state, setState }) {
                 <div className="serif" style={{ fontSize: 15, lineHeight: 1.1 }}>
                   {backupBusy ? "Backing up…" : (backupStat.done >= backupStat.total ? "Memories backed up" : "Back up my weekend")}
                 </div>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1, marginTop: 2, fontWeight: 700,
-                  color: backupStat.bytes >= _BACKUP_SOFT_CAP ? "var(--ember-ink)" : "var(--muted)" }}>
+                <div style={{ fontSize: 13, lineHeight: "18px", marginTop: 2, fontVariantNumeric: "tabular-nums",
+                  color: backupStat.bytes >= _BACKUP_SOFT_CAP ? "var(--warn)" : "var(--text-2)" }}>
                   {backupBusy && backupProg ? `BACKING UP… ${backupProg.done}/${backupProg.total}`
                     : backupStat.done >= backupStat.total ? `ALL SAFE${backupScopeHint} · ${_fmtSize(backupStat.bytes)}`
                     : `${backupStat.done}/${backupStat.total}${backupScopeHint} · ${_fmtSize(backupStat.bytes)} · WI-FI`}
@@ -6103,23 +6074,22 @@ function MemoriesScreen({ state, setState }) {
                 </div>
               </div>
             </div>
-            <span className="mono" style={{
-              flexShrink: 0, color: "#fff", padding: "5px 11px", borderRadius: 999,
-              fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-              background: _isPlusSub() ? "var(--ember)" : "linear-gradient(135deg,#6D28D9,#e85d2e)",
-            }}>{_isPlusSub() ? (backupStat.done >= backupStat.total ? "✓" : "BACK UP") : "PLUS"}</span>
+            <span style={{ flexShrink: 0, fontSize: 15, lineHeight: "20px", fontWeight: 600, color: _isPlusSub() ? "var(--ink)" : "var(--text-2)" }}>
+              {_isPlusSub() ? (backupStat.done >= backupStat.total ? "✓" : "Back up") : "Plursky+"}
+            </span>
           </button>
         )}
 
         {/* P2: auto-backup toggle (Plus). Default on; wifi-only. Behind MANAGE. */}
         {manage && backupStat.total > 0 && _isPlusSub() && (
-          <button onClick={() => { const v = !autoOn; _setAutoBackup(v); setAutoOn(v); }} className="mono" aria-pressed={autoOn} style={{
-            display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
-            width: "100%", marginTop: 6, padding: "7px 12px", borderRadius: 10,
-            background: "transparent", border: "1px solid var(--line)",
-            color: "var(--muted)", cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+          <button onClick={() => { const v = !autoOn; _setAutoBackup(v); setAutoOn(v); }} aria-pressed={autoOn} style={{
+            display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8,
+            width: "100%", marginTop: 8, minHeight: 44, padding: "0 16px", borderRadius: 14,
+            background: "var(--paper-2)", border: "none", color: "var(--ink)", cursor: "pointer",
+            fontSize: 15, lineHeight: "20px", fontFamily: "inherit",
           }}>
-            AUTO-BACKUP ON WI-FI · <span style={{ color: autoOn ? "var(--success)" : "var(--muted)" }}>{autoOn ? "ON" : "OFF"}</span>
+            <span>Auto-backup on Wi-Fi</span>
+            <span style={{ fontWeight: 600, color: autoOn ? "var(--signal)" : "var(--text-2)" }}>{autoOn ? "On" : "Off"}</span>
           </button>
         )}
 
@@ -6128,15 +6098,12 @@ function MemoriesScreen({ state, setState }) {
 
         {/* Inviting empty state — first run, no moments yet. */}
         {totalCount === 0 && (
-          <div style={{ marginTop: 20, padding: "32px 22px", textAlign: "center", borderRadius: 18, background: "var(--paper-2)", border: "1px solid var(--line)" }}>
-            <div style={{ fontSize: 34, marginBottom: 10 }}>📸</div>
-            <div className="serif" style={{ fontSize: 22, lineHeight: 1.1, color: "var(--ink)", marginBottom: 8 }}>
-              Your weekend, <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>remembered</span>
-            </div>
-            <div style={{ fontSize: 13, lineHeight: 1.5, color: "var(--muted)", maxWidth: 280, margin: "0 auto" }}>
+          <div style={{ marginTop: 24 }}>
+            <div style={{ fontSize: 20, lineHeight: "25px", fontWeight: 600 }}>Your weekend, remembered</div>
+            <p style={{ margin: "6px 0 16px", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>
               Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap.
-            </div>
-            <button onClick={handlePickClick} className="mono" style={{ marginTop: 16, padding: "11px 20px", borderRadius: 999, background: "var(--ember)", color: "#fff", border: "none", cursor: "pointer", fontSize: 11, letterSpacing: 1.2, fontWeight: 700 }}>✨ IMPORT FROM CAMERA ROLL</button>
+            </p>
+            <FieldButton onClick={handlePickClick}>Import from camera roll</FieldButton>
           </div>
         )}
 
@@ -6145,23 +6112,21 @@ function MemoriesScreen({ state, setState }) {
             "manage" view (+ ADD MOMENT + retag, grouped by night→artist with
             the hero + song timeline). Per-artist / per-stage are reached by
             tapping a group, not a top-level tab. */}
-        {totalCount > 0 && <div style={{
-          display: "flex", gap: 4, marginTop: 14, marginBottom: 8,
-          padding: 3, background: "var(--paper-2)", borderRadius: 10,
-          border: "1px solid var(--line)",
+        {totalCount > 0 && <div role="tablist" aria-label="View" style={{
+          display: "flex", marginTop: 16, marginBottom: 8, background: "var(--paper-2)", borderRadius: 14,
         }}>
           {[
-            { id: "grid",   label: "WALL" },
-            { id: "night",  label: "TIMELINE" },
+            { id: "grid",   label: "Wall" },
+            { id: "night",  label: "Timeline" },
           ].map(v => {
             const on = view === v.id;
             return (
-              <button key={v.id} onClick={() => setView(v.id)} className="mono" style={{
-                flex: 1, padding: "8px 0", borderRadius: 8,
-                background: on ? "var(--ink)"   : "transparent",
-                color:      on ? "var(--paper)" : "var(--muted)",
-                border: "none", cursor: "pointer",
-                fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
+              <button key={v.id} role="tab" aria-selected={on} onClick={() => setView(v.id)} style={{
+                flex: 1, minHeight: 44, borderRadius: 14, border: "none", cursor: "pointer",
+                background: on ? "var(--paper-3)" : "transparent",
+                boxShadow: on ? "inset 0 0 0 1.5px var(--signal)" : "none",
+                color: on ? "var(--ink)" : "var(--text-2)",
+                fontSize: 15, lineHeight: "20px", fontWeight: 600, fontFamily: "inherit",
               }}>{v.label}</button>
             );
           })}
