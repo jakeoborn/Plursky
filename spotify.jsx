@@ -1901,7 +1901,7 @@ function _HomeMemoryThumb({ moment, onClick }) {
     <button onClick={onClick} style={{
       flexShrink: 0, width: 96, height: 128, borderRadius: 14,
       border: "1px solid var(--line)", overflow: "hidden", position: "relative",
-      background: url ? "#000" : "var(--paper-2)", cursor: "pointer", padding: 0,
+      background: url ? "var(--night)" : "var(--paper-2)", cursor: "pointer", padding: 0,
     }}>
       <_ThumbMedia moment={moment} thumb={thumb} showLength={false}/>
       {moment.kind === "video" && (

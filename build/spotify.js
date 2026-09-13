@@ -2809,7 +2809,7 @@ function _HomeMemoryThumb({
       border: "1px solid var(--line)",
       overflow: "hidden",
       position: "relative",
-      background: url ? "#000" : "var(--paper-2)",
+      background: url ? "var(--night)" : "var(--paper-2)",
       cursor: "pointer",
       padding: 0
     }

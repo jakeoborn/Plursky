@@ -2820,7 +2820,7 @@ function FieldHomeHero({
     }, React.createElement("div", {
       style: {
         ..._fieldEyebrow,
-        color: live ? "var(--signal)" : "var(--text-2)"
+        color: live ? "var(--now)" : "var(--text-2)"
       }
     }, live && React.createElement("span", {
       "aria-hidden": "true",
@@ -2828,7 +2828,7 @@ function FieldHomeHero({
         width: 8,
         height: 8,
         borderRadius: 4,
-        background: "var(--signal)"
+        background: "var(--now)"
       }
     }), status, deviceOffline ? " · No signal" : ""), React.createElement("h1", {
       style: {
@@ -2895,7 +2895,7 @@ function FieldNowNext({
   }, React.createElement("div", {
     style: {
       ..._fieldEyebrow,
-      color: live ? "var(--signal)" : "var(--text-2)"
+      color: live ? "var(--now)" : "var(--text-2)"
     }
   }, live && React.createElement("span", {
     "aria-hidden": "true",
@@ -2903,7 +2903,7 @@ function FieldNowNext({
       width: 8,
       height: 8,
       borderRadius: 4,
-      background: "var(--signal)"
+      background: "var(--now)"
     }
   }), live ? "Now" : "Next", " · ", when), React.createElement("button", {
     onClick: () => setState({
@@ -2941,7 +2941,7 @@ function FieldNowNext({
       width: 3,
       alignSelf: "stretch",
       borderRadius: 2,
-      background: "var(--signal)"
+      background: "var(--now)"
     }
   }), React.createElement("div", {
     style: {

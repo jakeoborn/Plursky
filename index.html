@@ -64,7 +64,7 @@
      10–14px inline, so the floor lives here; only !important beats an inline
      style. -webkit-touch-callout exists only on iOS, so desktop is unchanged. */
   @supports (-webkit-touch-callout: none){input,textarea,select{font-size:16px!important}}
-  html,body{width:100%;min-height:100%;background:#080808;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;color:rgba(255,255,255,0.96);overflow-x:hidden}
+  html,body{width:100%;min-height:100%;background:#0C1024;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;color:rgba(255,255,255,0.96);overflow-x:hidden}
   body{display:flex;align-items:stretch;justify-content:stretch;padding:0;min-height:100vh;min-height:100dvh}
   /* #116: once the app mounts it is one fixed shell that scrolls inside
      itself, so the DOCUMENT must not scroll: 100vh is Safari's LARGE
@@ -79,7 +79,7 @@
   .boot-shell p{margin:0 0 12px;font-size:15px;line-height:21px}
   .boot-shell ul{list-style:none;padding:0;margin:0}
   .boot-shell li{padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.12)}
-  .boot-shell a{color:#8CFF5A}
+  .boot-shell a{color:#FF7A3D}
   .boot-foot{margin-top:32px;font-size:13px;color:rgba(255,255,255,0.62)}
   :root{--top-pad:env(safe-area-inset-top,0px)}
   .serif{font-weight:700}
@@ -139,27 +139,32 @@
      black shell instead of the old paper/ember palette. */
   :root{
     --font-ui:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;
-    --paper-3:#1C1C1E; --text-2:rgba(255,255,255,0.62); --text-3:rgba(255,255,255,0.42);
-    --signal:#8CFF5A; --on-signal:#080808; --on-ember:#fff;
-    --scrim:rgba(0,0,0,0.6); --chrome:rgba(8,8,8,0.78);
-    --hero-scrim:linear-gradient(180deg,rgba(8,8,8,0) 38%,rgba(8,8,8,0.85) 100%);
+    --paper-3:#292854; --text-2:#BBB8D0; --text-3:#817E9C;
+    --signal:#FF7A3D; --on-signal:#0C1024; --on-ember:#0C1024;
+    --now:#FFC857; --on-now:#0C1024; --canvas-raised:#151A38;
+    --scrim:rgba(6,8,20,0.6); --chrome:rgba(12,16,36,0.82);
+    /* Dusk sky moment for the hero: the photo stays clear up top, violet dusk
+       gathers toward the bottom, and a low sunset band warms the horizon
+       (about a quarter of the field). Text sits on the dark bottom. */
+    --hero-scrim:linear-gradient(180deg,rgba(12,16,36,0.35) 0%,rgba(12,16,36,0) 20%,rgba(12,16,36,0) 34%,rgba(80,109,255,0.16) 50%,rgba(134,88,216,0.40) 68%,rgba(12,16,36,0.93) 100%),radial-gradient(130% 42% at 50% 82%,rgba(255,122,61,0.40) 0%,rgba(255,200,87,0.12) 42%,rgba(255,122,61,0) 72%);
   }
   .theme-field{color-scheme:dark;
-    --paper:#080808; --paper-2:#141414; --paper-3:#1C1C1E;
-    --ink:rgba(255,255,255,0.96); --text-2:rgba(255,255,255,0.62); --text-3:rgba(255,255,255,0.42);
-    --muted:rgba(255,255,255,0.62);
-    --line:rgba(255,255,255,0.12); --line-2:rgba(255,255,255,0.20);
-    --signal:#8CFF5A; --on-signal:#080808;
-    --ember:#8CFF5A; --ember-ink:rgba(255,255,255,0.96); --on-ember:#080808;
-    --alert:#FF453A; --warn:#FF9F0A; --success:#8CFF5A;
-    --dune:#1C1C1E; --flare:#8CFF5A; --horizon:#1C1C1E; --night:#080808; --dusk:#141414; --sky:rgba(255,255,255,0.62);
-    --glass:20,20,20;
+    --paper:#0C1024; --paper-2:#1D2145; --paper-3:#292854;
+    --ink:#F8F5FF; --text-2:#BBB8D0; --text-3:#817E9C;
+    --muted:#BBB8D0;
+    --line:rgba(255,255,255,0.14); --line-2:rgba(255,255,255,0.22);
+    --signal:#FF7A3D; --on-signal:#0C1024;
+    --now:#FFC857; --on-now:#0C1024;
+    --ember:#FF7A3D; --ember-ink:#F8F5FF; --on-ember:#0C1024;
+    --alert:#F24B55; --warn:#F24B55; --success:#FF7A3D;
+    --dune:#292854; --flare:#FF7A3D; --horizon:#292854; --night:#0C1024; --dusk:#151A38; --sky:#BBB8D0;
+    --glass:21,26,56;
     --fs-label-s:11px; --fs-label:11px; --fs-label-l:12px;
     --fs-body-s:13px; --fs-body:15px; --fs-body-l:17px;
     --fs-title-s:17px; --fs-title:20px; --fs-title-l:28px;
     --r-sm:14px; --r-md:14px;
   }
-  html.theme-field,.theme-field body{background:#080808;color:rgba(255,255,255,0.96)}
+  html.theme-field,.theme-field body{background:#0C1024;color:#F8F5FF}
   /* System font only. Inline styles name 'Geist' or 'Instrument Serif' ~580
      times and only !important beats an inline style, so the swap lives here
      until each surface is restyled. Display serif becomes bold, upright sans. */

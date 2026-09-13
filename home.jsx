@@ -1988,8 +1988,8 @@ function FieldHomeHero({ photo, status, live, deviceOffline, title, sub, offline
       <div style={photo
         ? { position: "absolute", left: 0, right: 0, bottom: 0, padding: "0 20px 20px" }
         : { padding: "calc(var(--top-pad, 0px) + 60px) 20px 0" }}>
-        <div style={{ ..._fieldEyebrow, color: live ? "var(--signal)" : "var(--text-2)" }}>
-          {live && <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: 4, background: "var(--signal)" }} />}
+        <div style={{ ..._fieldEyebrow, color: live ? "var(--now)" : "var(--text-2)" }}>
+          {live && <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: 4, background: "var(--now)" }} />}
           {status}{deviceOffline ? " · No signal" : ""}
         </div>
         <h1 style={{
@@ -2032,8 +2032,8 @@ function FieldNowNext({ state, setState, onOpenNight }) {
     : (FESTIVAL_CONFIG.dayDates?.[set.day]?.name || `Day ${set.day}`);
   return (
     <section style={{ padding: "0 20px" }}>
-      <div style={{ ..._fieldEyebrow, color: live ? "var(--signal)" : "var(--text-2)" }}>
-        {live && <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: 4, background: "var(--signal)" }} />}
+      <div style={{ ..._fieldEyebrow, color: live ? "var(--now)" : "var(--text-2)" }}>
+        {live && <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: 4, background: "var(--now)" }} />}
         {live ? "Now" : "Next"} · {when}
       </div>
       <button onClick={() => setState({ ...state, artist: set.id })} style={{
@@ -2045,7 +2045,7 @@ function FieldNowNext({ state, setState, onOpenNight }) {
         <div style={{ width: 76, flexShrink: 0, fontSize: 15, lineHeight: "21px", fontWeight: 600, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
           {fmt12(set.start)}
         </div>
-        {live && <div aria-hidden="true" style={{ width: 3, alignSelf: "stretch", borderRadius: 2, background: "var(--signal)" }} />}
+        {live && <div aria-hidden="true" style={{ width: 3, alignSelf: "stretch", borderRadius: 2, background: "var(--now)" }} />}
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{set.name}</div>
           {stage && <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{stage.name}</div>}
