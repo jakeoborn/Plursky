@@ -13391,6 +13391,180 @@ function TiltCard({
     }
   })));
 }
+function HeroCards({
+  state
+}) {
+  var artists = React.useMemo(() => {
+    var attended = window.getAllAttended?.() || {};
+    var seen = new Set();
+    return Object.values(attended).flat().map(id => ARTISTS.find(a => a.id === id)).filter(a => a && !seen.has(a.id) && seen.add(a.id));
+  }, []);
+  var [page, setPage] = React.useState(0);
+  var [cards, setCards] = React.useState({});
+  var urls = React.useRef([]);
+  React.useEffect(() => () => urls.current.forEach(u => {
+    try {
+      URL.revokeObjectURL(u);
+    } catch {}
+  }), []);
+  React.useEffect(() => {
+    var live = true;
+    var want = [page, page + 1, page - 1].filter(i => i >= 0 && i < artists.length).map(i => artists[i]).filter(a => !cards[a.id]);
+    (async () => {
+      var _loop8 = async function (a) {
+          var canvas = await _renderHeroCard(a).catch(() => null);
+          if (!live || !canvas) return 0;
+          var blob = await new Promise(r => canvas.toBlob(r, "image/png"));
+          if (!live || !blob) return 0;
+          var url = URL.createObjectURL(blob);
+          urls.current.push(url);
+          setCards(prev => ({
+            ...prev,
+            [a.id]: {
+              url,
+              canvas
+            }
+          }));
+        },
+        _ret4;
+      for (var a of want) {
+        _ret4 = await _loop8(a);
+        if (_ret4 === 0) continue;
+      }
+    })();
+    return () => {
+      live = false;
+    };
+  }, [page, artists]);
+  if (!artists.length) return null;
+  var cur = artists[Math.min(page, artists.length - 1)];
+  var ready = cards[cur.id];
+  var fname = a => `plursky-${window.FESTIVAL_CONFIG?.id || "festival"}-${a.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}.png`;
+  var onScroll = e => {
+    var el = e.currentTarget;
+    var p = Math.round(el.scrollLeft / Math.max(1, el.clientWidth));
+    if (p !== page) setPage(Math.max(0, Math.min(artists.length - 1, p)));
+  };
+  return React.createElement("section", {
+    "aria-label": "Your set cards"
+  }, React.createElement("h2", {
+    style: {
+      margin: 0,
+      fontSize: 20,
+      lineHeight: "25px",
+      fontWeight: 600
+    }
+  }, "Your set cards"), React.createElement("p", {
+    style: {
+      margin: "4px 0 12px",
+      fontSize: 15,
+      lineHeight: "21px",
+      color: "var(--text-2)"
+    }
+  }, artists.length, " ", artists.length === 1 ? "card" : "cards", ", one for every set you caught."), React.createElement("div", {
+    onScroll: onScroll,
+    className: "no-scrollbar",
+    role: "group",
+    "aria-roledescription": "carousel",
+    "aria-label": "Set cards",
+    style: {
+      display: "flex",
+      overflowX: "auto",
+      scrollSnapType: "x mandatory",
+      borderRadius: 16
+    }
+  }, artists.map((a, i) => React.createElement("div", {
+    key: a.id,
+    role: "group",
+    "aria-roledescription": "slide",
+    "aria-label": `${i + 1} of ${artists.length}: ${a.name}`,
+    style: {
+      flex: "0 0 100%",
+      maxWidth: "100%",
+      aspectRatio: "4 / 5",
+      scrollSnapAlign: "center",
+      borderRadius: 16,
+      overflow: "hidden",
+      background: "var(--paper-3)"
+    }
+  }, cards[a.id] && React.createElement("img", {
+    src: cards[a.id].url,
+    alt: `${a.name} set card`,
+    "data-hero-preview": a.id,
+    style: {
+      width: "100%",
+      height: "100%",
+      display: "block"
+    }
+  })))), artists.length > 1 && (artists.length <= 12 ? React.createElement("div", {
+    "aria-hidden": "true",
+    style: {
+      display: "flex",
+      justifyContent: "center",
+      gap: 6,
+      padding: "12px 0 0"
+    }
+  }, artists.map((a, i) => React.createElement("span", {
+    key: a.id,
+    style: {
+      width: 6,
+      height: 6,
+      borderRadius: 3,
+      background: i === page ? "var(--signal)" : "var(--line-2)"
+    }
+  }))) : React.createElement("div", {
+    style: {
+      textAlign: "center",
+      padding: "12px 0 0",
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)",
+      fontVariantNumeric: "tabular-nums"
+    }
+  }, page + 1, " of ", artists.length)), React.createElement("div", {
+    style: {
+      marginTop: 16
+    }
+  }, React.createElement(PlusGate, {
+    feature: "trading cards export"
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 8
+    }
+  }, React.createElement(FieldButton, {
+    disabled: !ready,
+    onClick: async () => {
+      if (ready) await _shareCanvasAsImage(ready.canvas, {
+        filename: fname(cur),
+        title: cur.name
+      });
+    }
+  }, "Share card"), React.createElement(FieldButton, {
+    kind: "secondary",
+    disabled: !ready,
+    onClick: async () => {
+      if (ready) await _saveCanvasImage(ready.canvas, {
+        filename: fname(cur),
+        title: cur.name
+      });
+    }
+  }, "Save"), React.createElement("button", {
+    onClick: async () => {
+      try {
+        await window._shareFestivalPassport?.(state);
+      } catch {}
+    },
+    style: {
+      ...fieldIconBtn,
+      width: "100%",
+      color: "var(--text-2)",
+      fontSize: 15,
+      fontWeight: 500
+    }
+  }, "Export full collection")))));
+}
 function RecapScreen({
   state,
   setState
@@ -14812,102 +14986,13 @@ function RecapScreen({
       color: "var(--muted)",
       lineHeight: 1.5
     }
-  }, crewStats.total, " messages sent in crew chat", crewStats.topChatter ? ` · ${crewStats.topChatter[0]} was the most active` : "", ".")), recap.setsCount > 0 && React.createElement(RecapCard, {
-    kicker: "FESTIVAL TRADING CARDS",
-    paper: "var(--paper)"
-  }, React.createElement("div", {
-    className: "serif",
+  }, crewStats.total, " messages sent in crew chat", crewStats.topChatter ? ` · ${crewStats.topChatter[0]} was the most active` : "", ".")), recap.setsCount > 0 && React.createElement("div", {
     style: {
-      fontSize: 22,
-      lineHeight: 1.1,
-      marginBottom: 6
+      margin: "8px 0 24px"
     }
-  }, "Collect your ", React.createElement("em", {
-    style: {
-      color: "var(--horizon)"
-    }
-  }, "set cards")), React.createElement("div", {
-    style: {
-      fontSize: 12,
-      color: "var(--muted)",
-      lineHeight: 1.5,
-      marginBottom: 12
-    }
-  }, recap.setsCount, " cards earned — one for every set you caught. Export as shareable collectibles."), React.createElement(MagnifyRail, null, (() => {
-    var attended = window.getAllAttended?.() || {};
-    var artists = Object.values(attended).flat().map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).slice(0, 6);
-    return artists.map((a, i) => {
-      var stage = STAGES.find(s => s.id === a.stage);
-      return React.createElement(TiltCard, {
-        key: a.id,
-        style: {
-          width: 90,
-          height: 130,
-          flexShrink: 0,
-          borderRadius: 10,
-          background: `linear-gradient(155deg, ${stage?.color || "#6D28D9"}22 0%, ${stage?.color || "#6D28D9"}44 100%)`,
-          border: `1.5px solid ${stage?.color || "#6D28D9"}55`,
-          padding: "10px 8px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between"
-        }
-      }, React.createElement("div", {
-        className: "mono",
-        style: {
-          fontSize: 8,
-          letterSpacing: 1.2,
-          color: stage?.color || "var(--muted)",
-          fontWeight: 700
-        }
-      }, stage?.short || ""), React.createElement("div", null, React.createElement("div", {
-        style: {
-          fontSize: 10,
-          fontWeight: 700,
-          lineHeight: 1.2,
-          color: "var(--ink)"
-        }
-      }, a.name.length > 14 ? a.name.slice(0, 13) + "…" : a.name), React.createElement("div", {
-        className: "mono",
-        style: {
-          fontSize: 8,
-          color: "var(--muted)",
-          marginTop: 3,
-          letterSpacing: 0.8
-        }
-      }, FESTIVAL_CONFIG.dayDates?.[a.day]?.short || "", " · ", window.fmt12?.(a.start) || a.start)), React.createElement("div", {
-        className: "mono",
-        style: {
-          fontSize: 8,
-          letterSpacing: 1,
-          color: stage?.color,
-          fontWeight: 700,
-          textAlign: "right"
-        }
-      }, "#", String(i + 1).padStart(3, "0")));
-    });
-  })()), React.createElement(PlusGate, {
-    feature: "trading cards export"
-  }, React.createElement("button", {
-    onClick: async () => {
-      try {
-        await window._shareFestivalPassport?.(state);
-      } catch {}
-    },
-    className: "mono",
-    style: {
-      width: "100%",
-      padding: "12px",
-      borderRadius: 10,
-      border: "none",
-      cursor: "pointer",
-      background: "var(--ink)",
-      color: "var(--paper)",
-      fontSize: 10,
-      letterSpacing: 1.4,
-      fontWeight: 700
-    }
-  }, "EXPORT FULL COLLECTION"))), recap.momentsCount > 0 && recap.setsCount > 0 && React.createElement(RecapCard, {
+  }, React.createElement(HeroCards, {
+    state: state
+  })), recap.momentsCount > 0 && recap.setsCount > 0 && React.createElement(RecapCard, {
     kicker: "SETLIST MEMORIES",
     paper: "var(--paper)"
   }, React.createElement("div", {
@@ -15495,7 +15580,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   }
   var groups = [];
-  var _loop8 = function (rows) {
+  var _loop9 = function (rows) {
     rows.sort((x, y) => x.s - y.s);
     var i = rows.findIndex(r => r.now);
     var pick = i >= 0 ? rows.slice(Math.max(0, i - 1), i + 2) : (() => {
@@ -15509,7 +15594,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   };
   for (var [stageId, rows] of byStage) {
-    _loop8(rows);
+    _loop9(rows);
   }
   return groups.sort((x, y) => (y.stageId === firstStage) - (x.stageId === firstStage) || y.live - x.live);
 }

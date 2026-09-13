@@ -430,8 +430,9 @@ function FieldButton({ children, onClick, kind = "primary", style, ...rest }) {
       display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
       background: primary ? "var(--signal)" : "var(--paper-3)",
       color: primary ? "var(--on-signal)" : "var(--ink)",
-      border: "none", borderRadius: 14, cursor: "pointer",
+      border: "none", borderRadius: 14, cursor: rest.disabled ? "default" : "pointer",
       fontSize: 17, lineHeight: "22px", fontWeight: 600,
+      opacity: rest.disabled ? 0.45 : 1,
       ...style,
     }}>{children}</button>
   );

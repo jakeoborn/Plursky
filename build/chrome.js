@@ -590,10 +590,11 @@ function FieldButton({
       color: primary ? "var(--on-signal)" : "var(--ink)",
       border: "none",
       borderRadius: 14,
-      cursor: "pointer",
+      cursor: rest.disabled ? "default" : "pointer",
       fontSize: 17,
       lineHeight: "22px",
       fontWeight: 600,
+      opacity: rest.disabled ? 0.45 : 1,
       ...style
     }
   }, children);
