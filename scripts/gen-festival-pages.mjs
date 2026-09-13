@@ -31,17 +31,17 @@ const OUT_DIR = path.join(root, 'f');
 // Each stub renders the festival's real schedule inline (day then stage,
 // from the same _scheduleActs data schedule.json ships) and links the App
 // Store install path, so "<festival> set times" queries land on substance.
-const { REG, DS, scheduleActs } = loadRegistry(root);
+const { REG, DS, scheduleActs, eventDates } = loadRegistry(root);
 
 // ── Helpers ──────────────────────────────────────────────────────────
 const esc = (s) => String(s ?? '')
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
-const MONTHS = { Jan:1, Feb:2, Mar:3, Apr:4, May:5, Jun:6, Jul:7, Aug:8, Sep:9, Oct:10, Nov:11, Dec:12 };
-
-// Parse the registry's VISIBLE `dates` string ("Sep 18–20, 2026",
-// "Oct 2–4 & 9–11, 2026"). Deliberately not startMs/endMs or dayDates:
+// eventDates(cfg) parses the registry's VISIBLE `dates` string. It lives in
+// data.jsx as _festivalEventDates (the festival switcher orders by it too) and
+// arrives here through loadRegistry. Pages deliberately read `dates`, not
+// startMs/endMs or dayDates:
 //   - endMs is the close time, which lands a day past the last festival day
 //   - Lost Lands' dayDates starts on early-entry Sep 16 while the public
 //     dates are Sep 18–20
@@ -49,24 +49,6 @@ const MONTHS = { Jan:1, Feb:2, Mar:3, Apr:4, May:5, Jun:6, Jul:7, Aug:8, Sep:9, 
 //   - the two preview entries have neither
 // schema.org also wants JSON-LD dates to match what the page visibly says,
 // and `dates` IS what the page says. dayDates is the fallback.
-//
-// A span that crosses a month or a year names both ends in full ("Dec 31,
-// 2026 – Jan 1, 2027", Countdown NYE). Without that branch it parsed as NO
-// DATES, so the page never emitted JSON-LD dates and never said "This
-// festival has ended" — the staleness #109 exists to prevent.
-const _ymd = (mon, d, y) => `${y}-${String(MONTHS[mon]).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-function eventDates(cfg) {
-  const m = /^([A-Z][a-z]{2}) (\d+)[–-](\d+)(?: & (\d+)[–-](\d+))?, (\d{4})$/.exec(cfg.dates || '');
-  if (m) return { start: _ymd(m[1], m[2], m[6]), end: _ymd(m[1], m[5] || m[3], m[6]) };
-  const x = /^([A-Z][a-z]{2}) (\d+), (\d{4}) [–-] ([A-Z][a-z]{2}) (\d+), (\d{4})$/.exec(cfg.dates || '');
-  if (x && MONTHS[x[1]] && MONTHS[x[4]]) return { start: _ymd(x[1], x[2], x[3]), end: _ymd(x[4], x[5], x[6]) };
-  const dd = cfg.dayDates && Object.values(cfg.dayDates);
-  if (dd && dd.length) {
-    const f = (d) => `${d.y}-${String(d.m + 1).padStart(2, '0')}-${String(d.d).padStart(2, '0')}`;
-    return { start: f(dd[0]), end: f(dd[dd.length - 1]) };
-  }
-  return null;
-}
 
 const US_STATES = new Set(['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','Nevada','Texas','California','Florida','Michigan','Ohio']);
 

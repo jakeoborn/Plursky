@@ -999,6 +999,102 @@ function _resolveDefaultFestivalId(now) {
   return dated.slice().sort((a, b) => b.config.endMs - a.config.endMs)[0].config.id;
 }
 
+// The registry's VISIBLE `dates` string → { start, end } as "YYYY-MM-DD", or
+// null. One parser for the /f/ pages (gen-festival-pages.mjs, which explains
+// why pages read `dates` and not startMs/endMs) and the festival switcher.
+// Handles "Sep 18–20, 2026" and "Oct 2–4 & 9–11, 2026". A span that crosses a
+// month or a year names both ends in full ("Dec 31, 2026 – Jan 1, 2027",
+// Countdown NYE); without that branch it parsed as NO DATES (#109). Anything
+// else falls back to dayDates.
+function _festivalEventDates(cfg) {
+  const MONTHS = { Jan:1, Feb:2, Mar:3, Apr:4, May:5, Jun:6, Jul:7, Aug:8, Sep:9, Oct:10, Nov:11, Dec:12 };
+  const ymd = (mon, d, y) => `${y}-${String(MONTHS[mon]).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+  const m = /^([A-Z][a-z]{2}) (\d+)[–-](\d+)(?: & (\d+)[–-](\d+))?, (\d{4})$/.exec(cfg.dates || "");
+  if (m) return { start: ymd(m[1], m[2], m[6]), end: ymd(m[1], m[5] || m[3], m[6]) };
+  const x = /^([A-Z][a-z]{2}) (\d+), (\d{4}) [–-] ([A-Z][a-z]{2}) (\d+), (\d{4})$/.exec(cfg.dates || "");
+  if (x && MONTHS[x[1]] && MONTHS[x[4]]) return { start: ymd(x[1], x[2], x[3]), end: ymd(x[4], x[5], x[6]) };
+  const dd = cfg.dayDates && Object.values(cfg.dayDates);
+  if (dd && dd.length) {
+    const f = (d) => `${d.y}-${String(d.m + 1).padStart(2, "0")}-${String(d.d).padStart(2, "0")}`;
+    return { start: f(dd[0]), end: f(dd[dd.length - 1]) };
+  }
+  return null;
+}
+
+// A festival's window for ordering: its real startMs/endMs when it has both,
+// else whole UTC days from its printed `dates` (a 2027 stub announces dates
+// long before gate times exist). null = dates TBA, never sorted as epoch 0.
+function _festivalWindow(c) {
+  if (!c) return null;
+  if (typeof c.startMs === "number" && typeof c.endMs === "number") return { startMs: c.startMs, endMs: c.endMs };
+  const ev = _festivalEventDates(c);
+  if (!ev) return null;
+  const day = s => Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10));
+  return { startMs: day(ev.start), endMs: day(ev.end) + 86400000 - 1 };
+}
+
+// Festival switcher order (Jake 2026-09-13): live first, then upcoming
+// (soonest first), then dates TBA (registry order), then ended last (most
+// recently ended first).
+// The local midnights a festival actually runs on: its dayDates, plus a copy
+// of them per later weekend when weekendStartMs says the days repeat (ACL's
+// dayDates describe weekend one only). Sorted; [] without dayDates.
+function _festivalEventDays(c) {
+  const base = (c && c.dayDates ? Object.values(c.dayDates) : [])
+    .map(d => (typeof d.midnightUtc === "number" ? d.midnightUtc : Date.UTC(d.y, d.m, d.d)))
+    .filter(x => typeof x === "number" && !isNaN(x));
+  const out = new Set(base), wk = c && c.weekendStartMs;
+  if (wk && typeof wk.W1 === "number") {
+    for (const k of Object.keys(wk)) {
+      const shift = wk[k] - wk.W1;
+      if (shift > 0) base.forEach(x => out.add(x + shift));
+    }
+  }
+  return [...out].sort((a, b) => a - b);
+}
+
+function _festivalPhase(f, now) {
+  const c = f && f.config, w = _festivalWindow(c);
+  if (!w) return "tba";
+  if (now > w.endMs) return "ended";
+  if (now < w.startMs) return "upcoming";
+  // Only an entry with real gate times can be live. A dates-only stub
+  // (Coachella 2027: "Apr 9–18", two weekends, no dayDates) is unbuilt, and
+  // its printed span can't say which days it runs (Codex's third P2 on #183).
+  if (!(typeof c.startMs === "number" && typeof c.endMs === "number")) return "upcoming";
+  // Inside the startMs..endMs envelope, a festival that runs in blocks (ACL's
+  // two weekends, Summerfest's three Thu–Sat runs) is live only on its event
+  // days; the gap between blocks is upcoming (two Codex P2s on #183). A day
+  // counts until 06:00 the next morning, for sets past midnight.
+  const days = _festivalEventDays(c), H = 3600000;
+  for (let i = 1; i < days.length; i++) {
+    if (days[i] - days[i - 1] > 36 * H && now >= days[i - 1] + 30 * H && now < days[i]) return "upcoming";
+  }
+  return "live";
+}
+
+// Within a phase, order by the PRINTED date the row shows, not the window:
+// Decadence's doors (Dec 30 17:00 MST) are Dec 31 00:00Z, the same instant as
+// Countdown NYE's printed-only Dec 31, so an instant-only key listed Dec 31
+// above Dec 30. The real instant only breaks a same-day tie.
+function _sortFestivalsForSwitcher(list, now) {
+  const rank = { live: 0, upcoming: 1, tba: 2, ended: 3 };
+  const iso = ms => new Date(ms).toISOString().slice(0, 10);
+  const cmp = (x, y) => (x < y ? -1 : x > y ? 1 : 0);
+  return list
+    .map((f, i) => {
+      const c = f && f.config, w = _festivalWindow(c), ev = c && _festivalEventDates(c);
+      return { f, i, p: _festivalPhase(f, now), w,
+        s: ev ? ev.start : w && iso(w.startMs), e: ev ? ev.end : w && iso(w.endMs) };
+    })
+    .sort((a, b) => rank[a.p] - rank[b.p]
+      || (a.p === "ended" ? cmp(b.e, a.e) || b.w.endMs - a.w.endMs
+        : a.p === "tba"   ? 0
+        : cmp(a.s, b.s) || a.w.startMs - b.w.startMs)
+      || a.i - b.i)
+    .map(x => x.f);
+}
+
 function getActiveFestivalId() {
   const now = Date.now();
   try {

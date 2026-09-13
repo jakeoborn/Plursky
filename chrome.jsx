@@ -1127,10 +1127,10 @@ function FestivalSwitcher({ onClose }) {
     if (entry.previewOnly) { setPlusOpen(true); return; }
     onClose();
   };
-  const byRegion = {};
-  FESTIVALS_REGISTRY.forEach(f => {
-    (byRegion[f.region] = byRegion[f.region] || []).push(f);
-  });
+  // One list in phase order (live, upcoming, TBA, ended) instead of region
+  // buckets, which scattered the live festival mid-sheet. See data.jsx.
+  const now = Date.now();
+  const ordered = _sortFestivalsForSwitcher(FESTIVALS_REGISTRY, now);
   return (
     <div onClick={onClose} style={{
       position: "absolute", inset: 0, zIndex: 60,
@@ -1156,14 +1156,10 @@ function FestivalSwitcher({ onClose }) {
           Where are you raving?
         </div>
 
-        {Object.entries(byRegion).map(([region, fests]) => (
-          <div key={region} style={{ marginBottom: 18 }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.5, color: "var(--muted)", marginBottom: 8, fontWeight: 600 }}>
-              {region.toUpperCase()}
-            </div>
-            <div style={{ display: "grid", gap: 8 }}>
-              {fests.map(f => {
+            <div style={{ display: "grid", gap: 8, marginBottom: 18 }}>
+              {ordered.map(f => {
                 const isActive = f.config.id === activeId;
+                const ended = _festivalPhase(f, now) === "ended";
                 const dimmed = !f.available;
                 return (
                   <button key={f.config.id} onClick={() => onPick(f.config.id, f)}
@@ -1193,12 +1189,17 @@ function FestivalSwitcher({ onClose }) {
                         ACTIVE
                       </div>
                     )}
-                    {!isActive && !f.available && f.previewOnly && (
+                    {!isActive && ended && (
+                      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, padding: "3px 7px", borderRadius: 999, background: "var(--paper)", color: "var(--muted)", border: "1px solid var(--line-2)" }}>
+                        ENDED
+                      </div>
+                    )}
+                    {!isActive && !ended && !f.available && f.previewOnly && (
                       <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, padding: "3px 7px", borderRadius: 999, background: "#6D28D9", color: "#fff" }}>
                         EARLY ACCESS
                       </div>
                     )}
-                    {!isActive && !f.available && !f.previewOnly && (
+                    {!isActive && !ended && !f.available && !f.previewOnly && (
                       <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, padding: "3px 7px", borderRadius: 999, background: "var(--paper)", color: "var(--muted)", border: "1px solid var(--line-2)" }}>
                         SOON
                       </div>
@@ -1207,8 +1208,6 @@ function FestivalSwitcher({ onClose }) {
                 );
               })}
             </div>
-          </div>
-        ))}
 
         <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 6, textAlign: "center", lineHeight: 1.5 }}>
           More festivals coming through 2026.<br/>

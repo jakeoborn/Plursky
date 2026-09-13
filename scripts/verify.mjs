@@ -397,6 +397,22 @@ if (fdata.length) {
   }
 }
 
+// ── Festival switcher order gate ─────────────────────────────────────────
+// The switcher lists live → upcoming → TBA → ended (Jake 2026-09-13). The
+// test runs data.jsx's _sortFestivalsForSwitcher on fixtures and the registry.
+{
+  console.log("▸ Festival switcher order gate — live, upcoming, TBA, ended");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-switcher-order.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    console.log("  " + out.trim());
+  } catch (e) {
+    const detail = ((e.stderr || "") + (e.stdout || "")).trim();
+    if (detail) console.log("  " + detail.replace(/\n/g, "\n  "));
+    fail("the festival switcher order failed its test — see above");
+  }
+}
+
 // ── Precache integrity gate ──────────────────────────────────────────────
 // sw.js installs its own-origin files with cache.addAll(), and addAll is
 // ATOMIC: it rejects as a unit. One entry that 404s and NOTHING in LOCAL gets

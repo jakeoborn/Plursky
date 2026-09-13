@@ -1369,10 +1369,8 @@ function FestivalSwitcher({
     }
     onClose();
   };
-  var byRegion = {};
-  FESTIVALS_REGISTRY.forEach(f => {
-    (byRegion[f.region] = byRegion[f.region] || []).push(f);
-  });
+  var now = Date.now();
+  var ordered = _sortFestivalsForSwitcher(FESTIVALS_REGISTRY, now);
   return React.createElement("div", {
     onClick: onClose,
     style: {
@@ -1429,27 +1427,15 @@ function FestivalSwitcher({
       lineHeight: 1.05,
       marginBottom: 18
     }
-  }, "Where are you raving?"), Object.entries(byRegion).map(([region, fests]) => React.createElement("div", {
-    key: region,
-    style: {
-      marginBottom: 18
-    }
-  }, React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.5,
-      color: "var(--muted)",
-      marginBottom: 8,
-      fontWeight: 600
-    }
-  }, region.toUpperCase()), React.createElement("div", {
+  }, "Where are you raving?"), React.createElement("div", {
     style: {
       display: "grid",
-      gap: 8
+      gap: 8,
+      marginBottom: 18
     }
-  }, fests.map(f => {
+  }, ordered.map(f => {
     var isActive = f.config.id === activeId;
+    var ended = _festivalPhase(f, now) === "ended";
     var dimmed = !f.available;
     return React.createElement("button", {
       key: f.config.id,
@@ -1504,7 +1490,19 @@ function FestivalSwitcher({
         borderRadius: 999,
         background: "rgba(255,255,255,0.25)"
       }
-    }, "ACTIVE"), !isActive && !f.available && f.previewOnly && React.createElement("div", {
+    }, "ACTIVE"), !isActive && ended && React.createElement("div", {
+      className: "mono",
+      style: {
+        fontSize: 9,
+        letterSpacing: 1.2,
+        fontWeight: 700,
+        padding: "3px 7px",
+        borderRadius: 999,
+        background: "var(--paper)",
+        color: "var(--muted)",
+        border: "1px solid var(--line-2)"
+      }
+    }, "ENDED"), !isActive && !ended && !f.available && f.previewOnly && React.createElement("div", {
       className: "mono",
       style: {
         fontSize: 9,
@@ -1515,7 +1513,7 @@ function FestivalSwitcher({
         background: "#6D28D9",
         color: "#fff"
       }
-    }, "EARLY ACCESS"), !isActive && !f.available && !f.previewOnly && React.createElement("div", {
+    }, "EARLY ACCESS"), !isActive && !ended && !f.available && !f.previewOnly && React.createElement("div", {
       className: "mono",
       style: {
         fontSize: 9,
@@ -1528,7 +1526,7 @@ function FestivalSwitcher({
         border: "1px solid var(--line-2)"
       }
     }, "SOON"));
-  })))), React.createElement("div", {
+  })), React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 9,
