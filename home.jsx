@@ -1571,441 +1571,211 @@ function HomeScreen({ state, setState }) {
     }
   };
 
+  // ── Field Mode Home ──
+  // Answers "what matters now?" in one glance: a real-media hero, one
+  // Now/Next row, one primary action, then flat rows. Every section the old
+  // Home carried is still one tap away, in the essentials row or a sheet.
+  const [sheet, setSheet] = React.useState(null);
+  const savedIds = state.saved || [];
+  const online = useOnlineStatus();
+  const isLive = !countdown && !isPostFestival;
+  const heroMomentId = useHeroMomentId();
+  const heroMomentPhoto = useMomentPhoto(heroMomentId, !!heroMomentId);
+  const heroArtist = (() => {
+    const lineup = activeLineup(savedIds);
+    const liveSaved = lineup.find(a => savedIds.includes(a.id) && isSetLive(a));
+    if (liveSaved) return liveSaved;
+    const liveMain = lineup.find(a => a.stage === FESTIVAL_CONFIG.mainStageId && isSetLive(a));
+    if (liveMain) return liveMain;
+    const byTier = (a, b) => (b.tier || 0) - (a.tier || 0);
+    return lineup.filter(a => savedIds.includes(a.id)).sort(byTier)[0]
+      || [...lineup].sort(byTier)[0] || null;
+  })();
+  const heroArtistPhoto = useArtistPhoto(heroArtist?.name || "");
+  // Real photos only: the user's best moment, else the featured artist's
+  // photo. With neither, the hero stays plain rather than faking art.
+  const heroPhoto = heroMomentPhoto || heroArtistPhoto || null;
+  const dayName = FESTIVAL_CONFIG.dayDates?.[NOW.day]?.name || `Day ${NOW.day}`;
+  const heroStatus = isPostFestival ? "That's a wrap"
+    : countdown ? (countdown.days > 0
+        ? `In ${countdown.days} day${countdown.days === 1 ? "" : "s"}`
+        : `In ${countdown.hours} hr ${countdown.mins} min`)
+    : `Live · ${dayName}`;
+
+  const ip = useInstallPrompt();
+  let userName = "";
+  try { userName = localStorage.getItem("user_name") || ""; } catch {}
+  const showSetup = !setupBannerDismissed && !userName && !state.spotifyConnected;
+  const showInstall = !showSetup && ip.canInstall;
+  const showNotif = !showSetup && !showInstall && savedIds.length > 0 && notifPerm === "default" && !notifNudgeDismissed;
+  const showWeather = !showSetup && !showInstall && !showNotif && weatherAlert && !weatherAlertDismissed;
+  const dismissNotif = () => {
+    setNotifNudgeDismissed(true);
+    try { localStorage.setItem("notif_nudge_dismissed", "1"); } catch {}
+  };
+  // At most one notice at a time: offline > setup > install > reminders > weather.
+  const notice = offline ? (
+    <FieldNotice eyebrow="Offline mode" text="Lineup and map stay available on this phone." />
+  ) : showSetup ? (
+    <FieldNotice text="Personalize Plursky — name, Spotify, reminders."
+      action="Set up" onAction={() => window.plurskyOpenOnboarding?.()}
+      onDismiss={() => {
+        try { localStorage.setItem("setup_banner_dismissed", "1"); } catch {}
+        setSetupBannerDismissed(true);
+      }} />
+  ) : showInstall ? (
+    <div style={{ padding: "0 20px" }}><InstallBanner /></div>
+  ) : showNotif ? (
+    <FieldNotice text="Get notified 15 min before each saved set."
+      action="Enable" onAction={async () => { await enableNotifs(); dismissNotif(); }}
+      onDismiss={dismissNotif} />
+  ) : showWeather ? (
+    <FieldNotice eyebrow="NWS weather alert" warn text={weatherAlert.shortForecast}
+      action="Details" onAction={() => setSheet("tonight")}
+      onDismiss={() => setWeatherAlertDismissed(true)} />
+  ) : null;
+
+  const icon = (d) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d={d}/></svg>
+  );
+  const essentials = [
+    { id: "map", label: "Map", icon: icon("M9 4 L3 6 V20 L9 18 L15 20 L21 18 V4 L15 6 Z M9 4 V18 M15 6 V20"),
+      onClick: () => setState({ ...state, tab: "map" }) },
+    !isPostFestival && { id: "tonight", label: "Sun & weather", icon: icon("M12 3 V5 M12 19 V21 M3 12 H5 M19 12 H21 M5.6 5.6 L7 7 M17 17 L18.4 18.4 M5.6 18.4 L7 17 M17 7 L18.4 5.6 M12 8 A4 4 0 1 0 12 16 A4 4 0 1 0 12 8"),
+      onClick: () => setSheet("tonight") },
+    !isPostFestival && { id: "dontmiss", label: "Don't miss", icon: icon("M12 3 L14.6 8.6 L20.5 9.3 L16.1 13.4 L17.3 19.3 L12 16.3 L6.7 19.3 L7.9 13.4 L3.5 9.3 L9.4 8.6 Z"),
+      onClick: () => setSheet("dontmiss") },
+    countdown && { id: "headliners", label: "Headliners", icon: icon("M4 18 H20 M6 18 L7 8 L10.5 11 L12 5 L13.5 11 L17 8 L18 18"),
+      onClick: () => setSheet("headliners") },
+    isLive && NOW.day > 1 && { id: "lastnight", label: "Last night", icon: icon("M3 12 A9 9 0 1 0 6 5.3 M3 4 V9 H8 M12 7 V12 L15 14"),
+      onClick: () => setSheet("lastnight") },
+    isLive && NOW.day < 3 && { id: "upcoming", label: "Coming up", icon: icon("M4 6 H20 V20 H4 Z M4 10 H20 M8 3 V7 M16 3 V7"),
+      onClick: () => setSheet("upcoming") },
+    { id: "basics", label: "Basics", icon: icon("M12 3 A9 9 0 1 0 12 21 A9 9 0 1 0 12 3 M12 11 V16 M12 8 V8.5"),
+      onClick: () => setFirstTimerOpen(true) },
+    { id: "alerts", label: "Alerts", sub: unread ? `${unread} new` : null, icon: icon("M6 9 C6 5.5 8.5 3 12 3 C15.5 3 18 5.5 18 9 L18 13 L20 16 L4 16 L6 13 Z M10 19 Q12 21 14 19"),
+      onClick: () => setAlertsOpen(true) },
+  ].filter(Boolean);
+
+  const savedRow = (() => {
+    if (isPostFestival) return null;
+    const rows = activeLineup(savedIds)
+      .filter(a => savedIds.includes(a.id) && (!isLive || a.day === NOW.night))
+      .sort((a, b) => (a.day - b.day) || (toNightMin(a.start) - toNightMin(b.start)));
+    if (!rows.length) return null;
+    return (
+      <section>
+        <FieldSectionHeader title={isLive ? "Saved tonight" : "Your saved sets"}
+          action={<ShareLineupButton state={state} />} />
+        <FieldMediaRow>
+          {rows.map(a => <SavedTile key={a.id} a={a} onOpen={() => setState({ ...state, artist: a.id })} />)}
+        </FieldMediaRow>
+      </section>
+    );
+  })();
+
+  const sheetView = (() => {
+    switch (sheet) {
+      case "night": return isLive
+        ? { title: "My night", body: <><LiveAcrossStrip strip={liveStrip} setState={setState} state={state} /><TonightsPlan plan={tonight} setState={setState} state={state} /></> }
+        : { title: "My saved sets", body: <SavedByDay state={state} setState={setState} /> };
+      case "tonight":    return { title: "Sun & weather", body: <TonightCard state={state} setState={setState} /> };
+      case "dontmiss":   return { title: "Don't miss",    body: <DontMissStrip day={countdown ? 1 : NOW.day} state={state} setState={setState} /> };
+      case "headliners": return { title: "Headliners",    body: <HeadlinerHighlights state={state} setState={setState} /> };
+      case "lastnight":  return { title: "Last night",    body: <LastNightRecap state={state} setState={setState} /> };
+      case "upcoming":   return { title: "Coming up",     body: <UpcomingTeaser state={state} setState={setState} /> };
+      default: return null;
+    }
+  })();
+
   return (
     <Screen bg="var(--paper)">
-      <ScrollBody ref={scrollRef} onScroll={handleHomeScroll} style={{ padding: "0 0 70px" }} onTouchStart={handlePullStart} onTouchMove={handlePullMove}>
+      <ScrollBody ref={scrollRef} style={{ padding: "0 0 96px" }} onTouchStart={handlePullStart} onTouchMove={handlePullMove}>
       {pullRefresh && (
-        <div style={{
-          display: "flex", justifyContent: "center", padding: "12px 0",
-        }}>
+        <div style={{ display: "flex", justifyContent: "center", padding: "12px 0" }}>
           <div style={{
             width: 20, height: 20, borderRadius: "50%",
-            border: "2px solid var(--line)", borderTopColor: "var(--ember)",
+            border: "2px solid var(--line)", borderTopColor: "var(--signal)",
             animation: "spin 0.8s linear infinite",
           }}/>
         </div>
       )}
-      {/* Masthead — scrolls with content (was previously pinned, now flows
-          naturally so the home tab stops feeling like a fixed-header app) */}
-      <div style={{
-        padding: "8px 20px 14px",
-        background: "linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%)",
-        borderBottom: "1px solid var(--line)",
-      }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <Wordmark size={16} />
-            <FestivalChip compact />
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <button onClick={() => setOffline(o => !o)} title="Offline mode" style={{
-              display: "flex", alignItems: "center", gap: 4,
-              background: offline ? "var(--ink)" : "transparent",
-              color: offline ? "var(--paper)" : "var(--muted)",
-              border: offline ? "none" : "1px solid var(--line-2)",
-              borderRadius: 999, padding: "3px 8px",
-              fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 600,
-              cursor: "pointer",
-            }}>
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                {offline
-                  ? <><path d="M4 4 L20 20"/><path d="M2 8 Q6 4 10 4.5 M22 8 Q18 4 14 4.5"/><path d="M6 12 Q12 7 18 12" opacity="0.5"/></>
-                  : <><path d="M2 8 Q12 -2 22 8"/><path d="M5 12 Q12 5 19 12"/><path d="M8 16 Q12 12 16 16"/><circle cx="12" cy="19.5" r="0.8" fill="currentColor"/></>
-                }
-              </svg>
-              {offline ? "OFF" : (!countdown && !isPostFestival ? "LIVE" : "ON")}
-            </button>
-            <button onClick={() => setAlertsOpen(true)} aria-label="Alerts" style={{
-              position: "relative", background: "transparent", border: "none",
-              padding: 4, cursor: "pointer", color: "var(--ink)",
-            }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M6 9 C6 5.5 8.5 3 12 3 C15.5 3 18 5.5 18 9 L18 13 L20 16 L4 16 L6 13 Z"/>
-                <path d="M10 19 Q12 21 14 19"/>
-              </svg>
-              {unread > 0 && (
-                <span style={{
-                  position: "absolute", top: 2, right: 2,
-                  width: 8, height: 8, borderRadius: 8,
-                  background: "var(--ember)", border: "1.5px solid var(--paper)",
-                }}/>
-              )}
-            </button>
-            {!countdown && !isPostFestival && (
-              <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
-                DAY {NOW.day} · {NOW.time}
-              </div>
-            )}
-          </div>
-        </div>
-        {countdown ? (
-          <>
-            <div className="serif" style={{ fontSize: 36, lineHeight: 0.95, letterSpacing: -0.5 }}>
-              {(() => {
-                const words = (FESTIVAL_CONFIG.tagline || "Under the electric sky").split(/\s/);
-                const last = words.pop();
-                return <>{words.join(" ")} <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>{last}</span> in</>;
-              })()}
-            </div>
-            <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginTop: 10 }}>
-              <CountdownPart n={countdown.days}  label="DAYS" />
-              <CountdownPart n={countdown.hours} label="HRS" />
-              <CountdownPart n={countdown.mins}  label="MIN" />
-            </div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "var(--muted)", marginTop: 8 }}>
-              {FESTIVAL_CONFIG.locationShort.toUpperCase()} · {FESTIVAL_CONFIG.dates.toUpperCase()}
-            </div>
-          </>
-        ) : isPostFestival ? (
-          <>
-            <div className="serif" style={{ fontSize: 36, lineHeight: 0.95, letterSpacing: -0.5 }}>
-              {FESTIVAL_CONFIG.brand} <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>{FESTIVAL_CONFIG.year}</span> — that's a wrap.
-            </div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "var(--muted)", marginTop: 6, marginBottom: 14 }}>
-              {FESTIVAL_CONFIG.locationShort.toUpperCase()} · {FESTIVAL_CONFIG.dates.toUpperCase()}
-            </div>
-            {/* v151: post-festival recap hero CTA — the Home tab was a dead
-                slate after the festival ended. Now it teases the Recap
-                with the attended-set count, so a user opening the app
-                Tuesday morning has somewhere to go that isn't "ME tab,
-                scroll down". */}
-            {(() => {
-              const attendedCount = (typeof window.getAttendedCount === "function" ? window.getAttendedCount() : 0);
-              if (attendedCount === 0) return null;
-              return (
-                <button
-                  onClick={() => setState(s => ({ ...s, tab: "recap" }))}
-                  style={{
-                    display: "flex", alignItems: "center", gap: 12,
-                    width: "100%", marginTop: 6, padding: "13px 14px",
-                    background: "linear-gradient(135deg, var(--ink) 0%, var(--horizon) 90%, var(--ember) 130%)",
-                    border: "none", borderRadius: 16,
-                    color: "var(--paper)", cursor: "pointer", textAlign: "left",
-                    boxShadow: "0 4px 18px rgba(123,61,154,0.28)",
-                  }}>
-                  <span style={{ fontSize: 24, lineHeight: 1, flexShrink: 0 }}>✦</span>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>
-                      Your <span style={{ fontStyle: "italic", color: "var(--flare)" }}>weekend</span>, recapped
-                    </div>
-                    <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "rgba(247,237,224,0.7)", marginTop: 4, fontWeight: 700 }}>
-                      {attendedCount} SET{attendedCount === 1 ? "" : "S"} CAUGHT · TAP TO SEE THE FULL RECAP
-                    </div>
-                  </div>
-                  <span style={{ fontSize: 18, opacity: 0.75 }}>→</span>
-                </button>
-              );
-            })()}
-          </>
-        ) : (
-          <>
-            <div className="serif" style={{ fontSize: 36, lineHeight: 0.95, letterSpacing: -0.5 }}>
-              {FESTIVAL_CONFIG.dayDates[NOW.day]?.name || "Day " + NOW.day} at <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>{FESTIVAL_CONFIG.brand}</span>
-            </div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "var(--muted)", marginTop: 6 }}>
-              {FESTIVAL_CONFIG.locationShort.toUpperCase()} · {FESTIVAL_CONFIG.dates.toUpperCase()}
-            </div>
-          </>
+      <FieldHomeHero
+        photo={heroPhoto}
+        status={heroStatus}
+        live={isLive}
+        deviceOffline={!online}
+        title={FESTIVAL_CONFIG.name}
+        sub={`${FESTIVAL_CONFIG.locationShort} · ${FESTIVAL_CONFIG.dates}`}
+        offline={offline}
+        onToggleOffline={() => setOffline(o => !o)}
+        unread={unread}
+        onAlerts={() => setAlertsOpen(true)}
+      />
+
+      <div style={{ display: "flex", flexDirection: "column", gap: 32, paddingTop: 20 }}>
+        {isPostFestival
+          ? <div style={{ padding: "0 20px" }}><PostFestivalRecap state={state} setState={setState} /></div>
+          : <FieldNowNext state={state} setState={setState} onOpenNight={() => setSheet("night")} />}
+
+        {notice}
+
+        {state.friendLineup?.length > 0 && (
+          <div style={{ padding: "0 20px" }}><FriendLineupBanner state={state} setState={setState} /></div>
+        )}
+
+        {savedRow}
+
+        <section>
+          <FieldSectionHeader title="Festival essentials" />
+          <FieldMediaRow>
+            {essentials.map(({ id, ...e }) => <EssentialTile key={id} {...e} />)}
+          </FieldMediaRow>
+        </section>
+
+        {/* Recent memories: the rewatch loop's front door. Post-festival,
+            PostFestivalRecap above leads with its own memories. */}
+        {!isPostFestival && window.HomeMemoriesStrip && (
+          <div style={{ padding: "0 20px" }}>{React.createElement(window.HomeMemoriesStrip, { state, setState })}</div>
         )}
       </div>
+      </ScrollBody>
 
-      {/* Banner queue: at most one of {install, notif, weather} renders at a
-          time. Priority order = install > notif > weather. The install prompt
-          is the most actionable (and only shows when canInstall=true), so it
-          wins. Without this gate, three nudges could stack on first launch. */}
-      {(() => {
-        const ip = useInstallPrompt();
-        // Setup nudge — replaces the old blocking onboarding modal. Shows
-        // when the user hasn't picked a name AND hasn't connected Spotify
-        // (signal that they're truly new), and is dismissable.
-        let userName = "";
-        try { userName = localStorage.getItem("user_name") || ""; } catch {}
-        const showSetup = !setupBannerDismissed && !userName && !state.spotifyConnected;
-        const showInstall = !showSetup && ip.canInstall;
-        const showNotif   = !showSetup && !showInstall && state.saved.length > 0 && notifPerm === "default" && !notifNudgeDismissed;
-        const showWeather = !showSetup && !showInstall && !showNotif && weatherAlert && !weatherAlertDismissed;
-        if (showSetup) return (
-          <div style={{ padding: "8px 16px 0" }}>
-            <div style={{
-              display: "flex", alignItems: "center", gap: 10,
-              background: "linear-gradient(135deg, rgba(232,93,46,0.12), rgba(123,61,154,0.10))",
-              border: "1px solid rgba(232,93,46,0.4)",
-              borderRadius: 14, padding: "12px 12px",
-            }}>
-              <span style={{ fontSize: 18, flexShrink: 0 }}>✦</span>
-              <div style={{ flex: 1, minWidth: 0, fontSize: 13, color: "var(--ink)", lineHeight: 1.4 }}>
-                Personalize Plursky — name, Spotify, reminders.
-              </div>
-              <button onClick={() => window.plurskyOpenOnboarding?.()} style={{
-                background: "var(--ink)", color: "var(--paper)", border: "none",
-                borderRadius: 999, padding: "5px 11px", cursor: "pointer",
-                fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                flexShrink: 0,
-              }}>SET UP</button>
-              <button onClick={() => {
-                try { localStorage.setItem("setup_banner_dismissed", "1"); } catch {}
-                setSetupBannerDismissed(true);
-              }} aria-label="Dismiss" style={{
-                background: "transparent", border: "none", color: "var(--muted)",
-                fontSize: 18, cursor: "pointer", flexShrink: 0, lineHeight: 1,
-              }}>×</button>
-            </div>
-          </div>
-        );
-        if (showInstall) return <InstallBanner />;
-        if (showNotif) return (
-          <div style={{ padding: "8px 16px 0" }}>
-            <div style={{
-              display: "flex", alignItems: "center", gap: 10,
-              background: "rgba(123,61,154,0.1)", border: "1px solid rgba(123,61,154,0.35)",
-              borderRadius: 14, padding: "12px 12px",
-            }}>
-              <span style={{ fontSize: 18, flexShrink: 0 }}>🔔</span>
-              <div style={{ flex: 1, minWidth: 0, fontSize: 13, color: "var(--ink)", lineHeight: 1.4 }}>
-                Get notified 15 min before each saved set
-              </div>
-              <button onClick={async () => {
-                await enableNotifs();
-                setNotifNudgeDismissed(true);
-                try { localStorage.setItem("notif_nudge_dismissed", "1"); } catch {}
-              }} style={{
-                background: "var(--horizon)", color: "#fff", border: "none",
-                borderRadius: 999, padding: "5px 11px", cursor: "pointer",
-                fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                flexShrink: 0,
-              }}>ENABLE</button>
-              <button onClick={() => {
-                setNotifNudgeDismissed(true);
-                try { localStorage.setItem("notif_nudge_dismissed", "1"); } catch {}
-              }} aria-label="Dismiss" style={{
-                background: "transparent", border: "none", color: "var(--muted)",
-                fontSize: 18, cursor: "pointer", flexShrink: 0, lineHeight: 1,
-              }}>×</button>
-            </div>
-          </div>
-        );
-        if (showWeather) return (
-          <div style={{ padding: "8px 16px 0" }}>
-            <div style={{
-              display: "flex", alignItems: "flex-start", gap: 10,
-              background: "rgba(251,191,36,0.12)", border: "1px solid rgba(251,191,36,0.4)",
-              borderRadius: 14, padding: "12px 14px",
-            }}>
-              <span style={{ fontSize: 18, flexShrink: 0 }}>⚠️</span>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "#fbbf24", fontWeight: 700, marginBottom: 3 }}>
-                  NWS WEATHER ALERT
-                </div>
-                <div style={{ fontSize: 13, color: "var(--ink)", lineHeight: 1.4 }}>
-                  {weatherAlert.shortForecast} — check the weather card below for details.
-                </div>
-              </div>
-              <button onClick={() => setWeatherAlertDismissed(true)} aria-label="Dismiss" style={{
-                background: "transparent", border: "none", cursor: "pointer",
-                color: "var(--muted)", fontSize: 18, lineHeight: 1, padding: "0 2px", flexShrink: 0,
-              }}>×</button>
-            </div>
-          </div>
-        );
-        return null;
-      })()}
-
-      {/* First-timer guide is still available, but tucked behind a small
-          link rather than a hero CTA — the app's default voice is for vets,
-          not newcomers. The link sits next to the countdown so it's
-          discoverable without dominating the screen. */}
-      {countdown && !ftDismissed && (
-        <div style={{ padding: "10px 20px 0" }}>
-          <button onClick={() => setFirstTimerOpen(true)} style={{
-            background: "transparent", border: "1px solid var(--line-2)",
-            borderRadius: 999, padding: "5px 10px",
-            color: "var(--muted)", cursor: "pointer",
-            fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.3, fontWeight: 600,
-          }}>
-            FIRST {FESTIVAL_CONFIG.brand || "TIME"}? READ THE BASICS →
-          </button>
-        </div>
-      )}
-
-      {/* Day-strip segmented control — hidden pre-festival (meaningless months
-          out) AND post-festival (no "today" once it's wrapped — that toggle
-          was the main "doesn't make sense" offender). */}
-      {!countdown && !isPostFestival && (
-      <div style={{ padding: "10px 16px 4px" }}>
-        <DayStrip
-          value={homeSubTab}
-          onChange={setHomeSubTab}
-          hasYesterday={NOW.day > 1}
-          hasUpcoming={NOW.day < 3}
+      {/* Alerts drawer */}
+      {alertsOpen && (
+        <AlertsDrawer alerts={alerts} onClose={() => {
+          setAlertsOpen(false);
+          setState({ ...state, alerts: alerts.map(a => ({ ...a, unread: false })) });
+        }} onOpenMap={() => { setAlertsOpen(false); setState({ ...state, tab: "map" }); }}
+          onOpenLineup={() => { setAlertsOpen(false); setState({ ...state, tab: "lineup" }); }}
         />
-      </div>
       )}
 
-      <div ref={useStaggerFade()} style={{ padding: "16px 16px 24px" }}>
-        {/* ── YESTERDAY tab ───────────────────────────────────── */}
-        {homeSubTab === "yesterday" && (
-          <LastNightRecap state={state} setState={setState} />
-        )}
+      {/* First-timer guide drawer — bundles gate hours, bag policy, lingo,
+          survival tips, and a recommended day-1 plan in one scrollable sheet. */}
+      {firstTimerOpen && (
+        <FirstTimerGuide onClose={() => {
+          setFirstTimerOpen(false);
+          setFtDismissed(true);
+          try { localStorage.setItem("ft_guide_seen", "1"); } catch {}
+        }}
+        onOpenMap={() => { setFirstTimerOpen(false); setState({ ...state, tab: "map" }); }}
+        onOpenLineup={() => { setFirstTimerOpen(false); setState({ ...state, tab: "lineup" }); }}
+        />
+      )}
+      {sheetView && (
+        <FieldSheet title={sheetView.title} onClose={() => setSheet(null)}>
+          {sheetView.body}
+        </FieldSheet>
+      )}
+    </Screen>
+  );
+}
 
-        {/* ── UPCOMING tab ────────────────────────────────────── */}
-        {homeSubTab === "upcoming" && (
-          <UpcomingTeaser state={state} setState={setState} />
-        )}
-
-        {/* ── TODAY tab ───────────────────────────────────────── */}
-        {/* Post-festival forces this branch (the day-strip is hidden, so
-            homeSubTab could otherwise be stuck on yesterday/upcoming). */}
-        {(homeSubTab === "today" || isPostFestival) && <>
-
-        {/* Post-festival recap — on TODAY when the festival has wrapped. */}
-        {isPostFestival && <PostFestivalRecap state={state} setState={setState} />}
-
-        {/* F1-style hero card — pre/during phases (post handled above). */}
-        {!isPostFestival && <div data-animate><F1TonightHero state={state} setState={setState} parallax={heroParallax} /></div>}
-
-        {/* Live festival sections — hidden pre-event and post-festival */}
-        {!countdown && !isPostFestival && (
-          <>
-            {/* NOW PLAYING hero card — hidden during stage changeovers */}
-            {current && <div style={{
-              background: currentPhoto ? "#000" : current.img,
-              borderRadius: 22,
-              padding: 18,
-              color: "#fff",
-              position: "relative",
-              overflow: "hidden",
-              marginBottom: 14,
-            }}>
-              {/* Real artist photo as background */}
-              {currentPhoto && (
-                <div style={{
-                  position: "absolute", inset: 0,
-                  backgroundImage: `url(${currentPhoto})`,
-                  backgroundSize: "cover", backgroundPosition: "center 15%",
-                  opacity: 0.55,
-                }}/>
-              )}
-              {/* Grain / vignette */}
-              <div style={{
-                position: "absolute", inset: 0,
-                background: currentPhoto
-                  ? "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.6) 100%)"
-                  : "radial-gradient(120% 120% at 30% 20%, rgba(255,255,255,0.18), transparent 60%), linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.35) 100%)",
-                pointerEvents: "none",
-              }} />
-              <div style={{ position: "relative" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 14 }}>
-                  <span style={{
-                    width: 7, height: 7, borderRadius: 7, background: "#fff",
-                    boxShadow: "0 0 0 4px rgba(255,255,255,0.25)",
-                    animation: "pulse 1.6s ease-in-out infinite",
-                  }} />
-                  <span className="mono" style={{ fontSize: 10, letterSpacing: 2, fontWeight: 600 }}>
-                    NOW PLAYING · {stageOf(current.stage)?.name?.toUpperCase() || ""}
-                  </span>
-                </div>
-
-                <div className="serif" style={{ fontSize: 34, lineHeight: 0.96, letterSpacing: -0.5, marginBottom: 4 }}>
-                  {current.name}
-                </div>
-                <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, opacity: 0.85, marginBottom: 22 }}>
-                  {current.genre.toUpperCase()} · {fmt12(current.start)}–{fmt12(current.end)}
-                </div>
-
-                {/* Progress */}
-                <div style={{ height: 3, background: "rgba(255,255,255,0.25)", borderRadius: 3, overflow: "hidden" }}>
-                  <div style={{ width: `${progress * 100}%`, height: "100%", background: "#fff" }} />
-                </div>
-                <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
-                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, opacity: 0.8 }}>
-                    {NOW.elapsedMin} MIN IN
-                  </span>
-                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, opacity: 0.8 }}>
-                    {minsLeft} MIN LEFT
-                  </span>
-                </div>
-
-                {/* Actions */}
-                <div style={{ display: "flex", gap: 8, marginTop: 16 }}>
-                  <button onClick={() => setState({ ...state, tab: "map", focusStage: current.stage })}
-                    style={homeBtn("solid")}>
-                    Navigate to stage
-                  </button>
-                  <button onClick={() => setState({ ...state, tab: "home", artist: current.id })}
-                    style={homeBtn("ghost")}>
-                    Details
-                  </button>
-                  {(() => {
-                    const isSaved = (state.saved || []).includes(current.id);
-                    return (
-                      <button
-                        onClick={() => {
-                          try { navigator.vibrate([30]); } catch {}
-                          const saved = state.saved || [];
-                          setState({ ...state, saved: isSaved
-                            ? saved.filter(id => id !== current.id)
-                            : [...saved, current.id] });
-                        }}
-                        title={isSaved ? "Unsave set" : "Save set"}
-                        aria-label={isSaved ? "Unsave set" : "Save set"}
-                        aria-pressed={isSaved}
-                        style={{
-                          marginLeft: "auto", background: "transparent",
-                          border: "1.5px solid rgba(255,255,255,0.4)",
-                          borderRadius: 999, width: 36, height: 36,
-                          display: "flex", alignItems: "center", justifyContent: "center",
-                          cursor: "pointer", color: isSaved ? "#fff" : "rgba(255,255,255,0.6)",
-                          flexShrink: 0,
-                        }}>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill={isSaved ? "#fff" : "none"} stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-                        </svg>
-                      </button>
-                    );
-                  })()}
-                </div>
-              </div>
-            </div>}
-
-            {/* UP NEXT strip */}
-            {next && <div style={{
-              background: "var(--paper-2)",
-              border: "1px solid var(--line)",
-              borderRadius: 16,
-              padding: 14,
-              marginBottom: 18,
-              display: "flex", alignItems: "center", gap: 12,
-            }}>
-              <ArtistSwatch artist={next} size={48} />
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--muted)" }}>
-                  UP NEXT · {upNextMin > 0 ? `IN ${upNextMin} MIN` : "STARTING"}
-                </div>
-                <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, marginTop: 2 }}>
-                  {next.name}
-                </div>
-                <div className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
-                  {stageOf(next.stage)?.name?.toUpperCase() || ""} · {fmt12(next.start)}
-                </div>
-              </div>
-              <button onClick={() => setState({ ...state, tab: "home", artist: next.id })} style={{
-                background: "var(--ink)", color: "var(--paper)", border: "none",
-                borderRadius: 999, padding: "8px 12px", cursor: "pointer",
-                fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 500,
-              }}>OPEN</button>
-            </div>}
-
-            {/* LIVE ACROSS STAGES — what's on right now at every stage */}
-            <LiveAcrossStrip strip={liveStrip} setState={setState} state={state} />
-
-            {/* TONIGHT'S PLAN — chronological saved sets with walking ETAs + leave-by */}
-            <TonightsPlan plan={tonight} setState={setState} state={state} />
-          </>
-        )}
-
-        {/* Pre-festival hype: headliner countdown cards rotating by day.
-            Shows top-tier artists grouped by night with days-until countdown. */}
-        {countdown && (() => {
+// Pre-festival headliners by night (moved verbatim out of the old Home body;
+// Field Home opens it from the essentials row).
+function HeadlinerHighlights({ state, setState }) {
           const headliners = ARTISTS.filter(a => a.tier >= 2)
             .sort((a, b) => (b.tier - a.tier) || a.day - b.day || toNightMin(a.start) - toNightMin(b.start))
             .slice(0, 9);
@@ -2072,209 +1842,282 @@ function HomeScreen({ state, setState }) {
               </div>
             </div>
           );
-        })()}
+}
 
-        {/* Your Memories strip — the rewatch loop's front door, shown DURING
-            the festival. Post-festival, PostFestivalRecap (rendered above)
-            leads with its own memories strip, so gate this one off then to
-            avoid the duplicate recap + memories cards on the Today screen. */}
-        {!isPostFestival && window.HomeMemoriesStrip && React.createElement(window.HomeMemoriesStrip, { state, setState })}
-
-        {/* Tonight: sunrise/sunset · weather · last-shuttle countdown */}
-        <div data-animate>{!isPostFestival && <TonightCard state={state} setState={setState} />}</div>
-
-        {/* Don't-miss strip — auto-detected legendary moments (sunrise sets
-            + B2B collabs) for the relevant day. Vets came for THESE, so they
-            sit prominently between the night card and the artist gossip. */}
-        <div data-animate>{!isPostFestival && <DontMissStrip day={countdown ? 1 : NOW.day} state={state} setState={setState} />}</div>
-
-        {/* Friend's shared lineup — appears when ?lineup= deep link was opened. */}
-        {state.friendLineup?.length > 0 && (
-          <FriendLineupBanner state={state} setState={setState} />
-        )}
-
-        {/* Reminders card — surfaces 15-min push opt-in on home when user has
-            saved sets so it's discoverable, not buried on the Music tab. */}
-        {state.saved?.length > 0 && typeof NotificationsCard === "function" && (
-          <div style={{ marginTop: 18 }}>
-            <NotificationsCard state={state} />
-          </div>
-        )}
-
-        {/* Pre-festival lineup preview — visible only during countdown */}
-        {countdown && (() => {
-          const savedIds = state.saved || [];
-          const byDay = festivalDayNums().map(day => ({
-            day,
-            meta: FESTIVAL_CONFIG.dayDates[day],
-            artists: activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id))
-              .sort((a, b) => toNightMin(a.start) - toNightMin(b.start)),
-          })).filter(d => d.artists.length);
-          if (!byDay.length) return (
-            <button onClick={() => setState({ ...state, tab: "lineup" })} style={{
-              width: "100%", background: "var(--paper-2)", border: "1px dashed var(--line)",
-              borderRadius: 18, padding: "28px 20px", marginTop: 18, textAlign: "center",
-              cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
-            }}>
-              <div style={{ fontSize: 28, opacity: 0.4 }}>+</div>
-              <div className="serif" style={{ fontSize: 18, color: "var(--ink)", fontStyle: "italic" }}>
-                Build your lineup
-              </div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)" }}>
-                TAP TO BROWSE {ARTISTS.length} ARTISTS
-              </div>
-            </button>
-          );
-          return (
-            <div style={{ marginTop: 22 }}>
-              <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
-                <div className="serif" style={{ fontSize: 22 }}>
-                  Your <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>lineup</span>
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)" }}>
-                    {savedIds.length} SETS
-                  </span>
-                  <ShareLineupButton savedIds={savedIds} />
-                </div>
-              </div>
-              <div style={{
-                background: "var(--paper-2)", border: "1px solid var(--line)",
-                borderRadius: 18, padding: "14px 16px 6px",
-              }}>
-                {byDay.map(({ day, meta, artists }) => {
-                  // Pre-compute conflicts + transitions so each row knows its
-                  // relationship to the previous saved set. Mirrors the live
-                  // PlanRow logic but for the pre-festival preview.
-                  const rows = artists.map((a, i) => {
-                    const prev = artists[i - 1];
-                    const walk = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
-                    const prevEnd = prev ? toNightMin(prev.end) : null;
-                    const startMin = toNightMin(a.start);
-                    const tight = prev && walk > 0 && (startMin - prevEnd) < walk;
-                    const conflict = prev && overlaps(prev, a);
-                    return { a, prev, walk, tight, conflict };
-                  });
-                  const conflictCount = rows.filter(r => r.conflict).length;
-                  return (
-                  <div key={day} style={{ marginBottom: 10 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-                      <div className="mono" style={{
-                        fontSize: 9, letterSpacing: 1.8, color: "var(--ember-ink)",
-                        fontWeight: 700,
-                      }}>
-                        {meta.short} · {meta.name.toUpperCase()}
-                      </div>
-                      {conflictCount > 0 && (
-                        <span className="mono" style={{
-                          fontSize: 8, letterSpacing: 1.2, color: "var(--ember-ink)",
-                          padding: "1px 5px", borderRadius: 3, fontWeight: 700,
-                          border: "1px solid var(--ember)",
-                        }}>{conflictCount} CLASH</span>
-                      )}
-                    </div>
-                    {rows.map(({ a, prev, walk, tight, conflict }) => {
-                      const stage = STAGES.find(s => s.id === a.stage);
-                      return (
-                        <div key={a.id}>
-                          {prev && walk > 0 && (
-                            <div style={{
-                              display: "flex", alignItems: "center", gap: 8,
-                              padding: "2px 0 2px 46px",
-                            }}>
-                              <div style={{ width: 1, height: 14, background: tight ? "var(--ember)" : "var(--line-2)" }}/>
-                              <span className="mono" style={{
-                                fontSize: 8, letterSpacing: 1.1,
-                                color: tight ? "var(--ember-ink)" : "var(--muted)",
-                                fontWeight: tight ? 700 : 500,
-                              }}>
-                                {walk} MIN WALK · {prev.stage === a.stage ? "SAME STAGE" : `${STAGES.find(s=>s.id===prev.stage)?.short} → ${stage?.short}`}
-                              </span>
-                            </div>
-                          )}
-                          <button
-                            onClick={() => setState({ ...state, artist: a.id })}
-                            style={{
-                              display: "flex", alignItems: "center", gap: 10, width: "100%",
-                              background: conflict ? "rgba(232,93,46,0.06)" : "transparent",
-                              border: "none", borderBottom: "1px solid var(--line-2)",
-                              padding: "8px 6px", cursor: "pointer", textAlign: "left",
-                            }}>
-                            <ArtistSwatch artist={a} size={36} />
-                            <div style={{ flex: 1, minWidth: 0 }}>
-                              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                                <div className="serif" style={{ fontSize: 16, lineHeight: 1.1, color: "var(--ink)" }}>
-                                  {a.name}
-                                </div>
-                                {conflict && (
-                                  <span className="mono" style={{
-                                    fontSize: 8, letterSpacing: 1.2, color: "var(--ember-ink)",
-                                    padding: "1px 4px", borderRadius: 3, fontWeight: 700,
-                                    border: "1px solid var(--ember)",
-                                  }}>CLASH</span>
-                                )}
-                              </div>
-                              <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 1 }}>
-                                {stage ? stage.short : ""} · {fmt12(a.start)}–{fmt12(a.end)}
-                              </div>
-                            </div>
-                          </button>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })()}
-
-        </>}{/* end TODAY tab */}
+// Saved sets by day as flat, time-led rows with walk gaps. A clash is a small
+// warning with its word, never a neon card. Opened as "My saved sets".
+function SavedByDay({ state, setState }) {
+  const savedIds = state.saved || [];
+  const byDay = festivalDayNums().map(day => ({
+    day, meta: FESTIVAL_CONFIG.dayDates[day],
+    artists: activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id))
+      .sort((a, b) => toNightMin(a.start) - toNightMin(b.start)),
+  })).filter(d => d.artists.length);
+  if (!byDay.length) return (
+    <div>
+      <p style={{ margin: "0 0 16px", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>No saved sets yet.</p>
+      <FieldButton onClick={() => setState({ ...state, tab: "lineup" })}>Browse lineup</FieldButton>
+    </div>
+  );
+  return (
+    <div>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", minHeight: 44 }}>
+        <span style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+          {savedIds.length} saved {savedIds.length === 1 ? "set" : "sets"}
+        </span>
+        <ShareLineupButton state={state} />
       </div>
-      </ScrollBody>
+      {byDay.map(({ day, meta, artists }) => (
+        <section key={day} style={{ marginTop: 24 }}>
+          <h3 style={{ ..._fieldEyebrow, margin: "0 0 4px", color: "var(--text-2)" }}>{meta?.name || `Day ${day}`}</h3>
+          {artists.map((a, i) => {
+            const prev = artists[i - 1];
+            const walk = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
+            const tight = prev && walk > 0 && (toNightMin(a.start) - toNightMin(prev.end)) < walk;
+            const conflict = prev && overlaps(prev, a);
+            const stage = STAGES.find(s => s.id === a.stage);
+            const prevStage = prev ? STAGES.find(s => s.id === prev.stage) : null;
+            return (
+              <div key={a.id}>
+                {prev && walk > 0 && (
+                  <div style={{ padding: "4px 0 4px 88px", fontSize: 13, lineHeight: "18px", color: tight ? "var(--warn)" : "var(--text-3)" }}>
+                    {tight ? "Tight · " : ""}{walk} min walk · {prev.stage === a.stage ? "same stage" : `${prevStage?.short || ""} → ${stage?.short || ""}`}
+                  </div>
+                )}
+                <button onClick={() => setState({ ...state, artist: a.id })} style={{
+                  width: "100%", minHeight: 64, padding: "12px 0",
+                  display: "flex", alignItems: "flex-start", gap: 12,
+                  background: "transparent", border: "none", borderBottom: "1px solid var(--line)",
+                  color: "var(--ink)", textAlign: "left", cursor: "pointer",
+                }}>
+                  <div style={{ width: 76, flexShrink: 0, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
+                    <div style={{ fontSize: 15, lineHeight: "21px", fontWeight: 600 }}>{fmt12(a.start)}</div>
+                    <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{fmt12(a.end)}</div>
+                  </div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{a.name}</div>
+                    {stage && <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{stage.name}</div>}
+                    {conflict && <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: "var(--warn)" }}>⚠ Clashes with {prev.name}</div>}
+                  </div>
+                </button>
+              </div>
+            );
+          })}
+        </section>
+      ))}
+    </div>
+  );
+}
 
-      {/* Offline banner */}
-      {offline && (
-        <div style={{
-          position: "absolute", top: 0, left: 0, right: 0,
-          background: "var(--ink)", color: "var(--paper)",
-          padding: "6px 20px",
-          display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
-          zIndex: 8,
-        }}>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M4 4 L20 20"/><circle cx="12" cy="18" r="1" fill="currentColor"/>
-          </svg>
-          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 600 }}>
-            OFFLINE · LAST SYNC 10:41 PM · LINEUP & MAP AVAILABLE
-          </span>
+// ── Field Home pieces ──
+
+function _pickHeroMomentId() {
+  try {
+    if (typeof _readMoments !== "function" || typeof _activeMoments !== "function") return null;
+    const all = _activeMoments(_readMoments());
+    const flat = [];
+    Object.values(all || {}).forEach(arr => { if (Array.isArray(arr)) flat.push(...arr); });
+    const photos = flat.filter(m => m && m.photoId && m.kind !== "video");
+    if (!photos.length) return null;
+    const score = typeof _heroScore === "function" ? _heroScore : () => 0;
+    photos.sort((a, b) => (score(b) - score(a)) || ((b.createdAt || 0) - (a.createdAt || 0)));
+    return photos[0].photoId;
+  } catch { return null; }
+}
+
+// The user's best photo moment for the active festival (videos excluded:
+// the hero is a still), refreshed when moments change.
+function useHeroMomentId() {
+  const [id, setId] = React.useState(_pickHeroMomentId);
+  React.useEffect(() => {
+    const refresh = () => setId(_pickHeroMomentId());
+    window.addEventListener("plursky-moments-change", refresh);
+    return () => window.removeEventListener("plursky-moments-change", refresh);
+  }, []);
+  return id;
+}
+
+const _fieldEyebrow = {
+  fontSize: 11, lineHeight: "14px", fontWeight: 600,
+  letterSpacing: "0.04em", textTransform: "uppercase",
+  display: "flex", alignItems: "center", gap: 6,
+};
+
+function FieldHomeHero({ photo, status, live, deviceOffline, title, sub, offline, onToggleOffline, unread, onAlerts }) {
+  const disc = (on) => ({
+    width: 36, height: 36, borderRadius: 18, position: "relative",
+    display: "flex", alignItems: "center", justifyContent: "center",
+    background: on ? "var(--signal)" : "var(--chrome)",
+    color: on ? "var(--on-signal)" : "var(--ink)",
+  });
+  return (
+    // Without a real photo the hero collapses to a plain header rather than
+    // holding an empty 46% block.
+    <header style={{
+      position: "relative", overflow: "hidden",
+      ...(photo ? { height: "46vh", minHeight: 300, maxHeight: 440, background: "var(--paper-2)" } : {}),
+    }}>
+      {photo && <img src={photo} alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />}
+      {photo && <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "var(--hero-scrim)" }} />}
+      <div style={{
+        position: "absolute", top: 0, left: 0, right: 0,
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        padding: "0 8px 0 16px", paddingTop: "var(--top-pad, 0px)",
+      }}>
+        <FestivalChip compact />
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <button onClick={onToggleOffline} aria-label="Offline mode" aria-pressed={offline} style={fieldIconBtn}>
+            <span style={disc(offline)}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                {offline
+                  ? <><path d="M4 4 L20 20"/><path d="M8.5 16 Q12 13 15.5 16"/><circle cx="12" cy="19.5" r="0.8" fill="currentColor"/></>
+                  : <><path d="M2 8.5 Q12 -1 22 8.5"/><path d="M5 12 Q12 5.5 19 12"/><path d="M8.5 15.5 Q12 12.5 15.5 15.5"/><circle cx="12" cy="19.5" r="0.8" fill="currentColor"/></>}
+              </svg>
+            </span>
+          </button>
+          <button onClick={onAlerts} aria-label={unread ? `Alerts, ${unread} new` : "Alerts"} style={fieldIconBtn}>
+            <span style={disc(false)}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 9 C6 5.5 8.5 3 12 3 C15.5 3 18 5.5 18 9 L18 13 L20 16 L4 16 L6 13 Z"/><path d="M10 19 Q12 21 14 19"/>
+              </svg>
+              {unread > 0 && <span aria-hidden="true" style={{ position: "absolute", top: 6, right: 7, width: 8, height: 8, borderRadius: 4, background: "var(--ink)", border: "1.5px solid var(--paper)" }} />}
+            </span>
+          </button>
         </div>
-      )}
+      </div>
+      <div style={photo
+        ? { position: "absolute", left: 0, right: 0, bottom: 0, padding: "0 20px 20px" }
+        : { padding: "calc(var(--top-pad, 0px) + 60px) 20px 0" }}>
+        <div style={{ ..._fieldEyebrow, color: live ? "var(--signal)" : "var(--text-2)" }}>
+          {live && <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: 4, background: "var(--signal)" }} />}
+          {status}{deviceOffline ? " · No signal" : ""}
+        </div>
+        <h1 style={{
+          margin: "6px 0 0", fontSize: 34, lineHeight: "41px", fontWeight: 700, letterSpacing: "-0.01em",
+          display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden",
+        }}>{title}</h1>
+        <div style={{ marginTop: 4, fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>{sub}</div>
+      </div>
+    </header>
+  );
+}
 
-      {/* Alerts drawer */}
-      {alertsOpen && (
-        <AlertsDrawer alerts={alerts} onClose={() => {
-          setAlertsOpen(false);
-          setState({ ...state, alerts: alerts.map(a => ({ ...a, unread: false })) });
-        }} onOpenMap={() => { setAlertsOpen(false); setState({ ...state, tab: "map" }); }}
-          onOpenLineup={() => { setAlertsOpen(false); setState({ ...state, tab: "lineup" }); }}
-        />
-      )}
+// The current saved set if one is live, else the next one. No saved sets
+// means one plain sentence and one action, never invented event data.
+function FieldNowNext({ state, setState, onOpenNight }) {
+  const savedIds = state.saved || [];
+  const saved = activeLineup(savedIds).filter(a => savedIds.includes(a.id));
+  const now = Date.now();
+  const live = saved.find(a => isSetLive(a)) || null;
+  const next = live ? null : (saved
+    .map(a => ({ a, t: festivalNightDate(a.day, a.start).getTime() }))
+    .filter(x => x.t > now)
+    .sort((x, y) => x.t - y.t)[0] || {}).a || null;
+  const set = live || next;
+  if (!set) {
+    return (
+      <section style={{ padding: "0 20px" }}>
+        <p style={{ margin: "0 0 16px", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>
+          {saved.length ? "Your saved sets are all done." : "Save a few sets and your night shows up here."}
+        </p>
+        <FieldButton onClick={() => setState({ ...state, tab: "lineup" })}>Browse lineup</FieldButton>
+      </section>
+    );
+  }
+  const stage = STAGES.find(s => s.id === set.stage);
+  const mins = Math.round((festivalNightDate(set.day, set.start).getTime() - now) / 60000);
+  const when = live ? `until ${fmt12(set.end)}`
+    : mins < 60 ? `in ${Math.max(1, mins)} min`
+    : mins < 12 * 60 ? `in ${Math.floor(mins / 60)} hr ${mins % 60} min`
+    : (FESTIVAL_CONFIG.dayDates?.[set.day]?.name || `Day ${set.day}`);
+  return (
+    <section style={{ padding: "0 20px" }}>
+      <div style={{ ..._fieldEyebrow, color: live ? "var(--signal)" : "var(--text-2)" }}>
+        {live && <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: 4, background: "var(--signal)" }} />}
+        {live ? "Now" : "Next"} · {when}
+      </div>
+      <button onClick={() => setState({ ...state, artist: set.id })} style={{
+        width: "100%", minHeight: 64, marginTop: 4, padding: "12px 0",
+        display: "flex", alignItems: "center", gap: 12,
+        background: "transparent", border: "none", borderBottom: "1px solid var(--line)",
+        color: "var(--ink)", textAlign: "left", cursor: "pointer",
+      }}>
+        <div style={{ width: 76, flexShrink: 0, fontSize: 15, lineHeight: "21px", fontWeight: 600, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
+          {fmt12(set.start)}
+        </div>
+        {live && <div aria-hidden="true" style={{ width: 3, alignSelf: "stretch", borderRadius: 2, background: "var(--signal)" }} />}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{set.name}</div>
+          {stage && <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{stage.name}</div>}
+        </div>
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6 L15 12 L9 18"/></svg>
+      </button>
+      <FieldButton onClick={onOpenNight} style={{ marginTop: 16 }}>Open my night</FieldButton>
+    </section>
+  );
+}
 
-      {/* First-timer guide drawer — bundles gate hours, bag policy, lingo,
-          survival tips, and a recommended day-1 plan in one scrollable sheet. */}
-      {firstTimerOpen && (
-        <FirstTimerGuide onClose={() => {
-          setFirstTimerOpen(false);
-          setFtDismissed(true);
-          try { localStorage.setItem("ft_guide_seen", "1"); } catch {}
-        }}
-        onOpenMap={() => { setFirstTimerOpen(false); setState({ ...state, tab: "map" }); }}
-        onOpenLineup={() => { setFirstTimerOpen(false); setState({ ...state, tab: "lineup" }); }}
-        />
+// Saved set tile: the artist's real photo when one is cached, else a plain
+// surface with an initial. Never a generated gradient.
+function SavedTile({ a, onOpen }) {
+  const photo = useArtistPhoto(a.name);
+  const day = (FESTIVAL_CONFIG.dayDates?.[a.day]?.name || `Day ${a.day}`).slice(0, 3);
+  return (
+    <button onClick={onOpen} style={{
+      width: 132, flexShrink: 0, scrollSnapAlign: "start", padding: 0,
+      display: "flex", flexDirection: "column", alignItems: "stretch", justifyContent: "flex-start",
+      background: "transparent", border: "none", textAlign: "left",
+      color: "var(--ink)", cursor: "pointer",
+    }}>
+      <div style={{
+        width: 132, height: 132, borderRadius: 16, overflow: "hidden",
+        background: "var(--paper-2)", display: "flex", alignItems: "center", justifyContent: "center",
+      }}>
+        {photo
+          ? <img src={photo} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          : <span aria-hidden="true" style={{ fontSize: 34, fontWeight: 700, color: "var(--text-3)" }}>{(a.name || "?").trim().charAt(0).toUpperCase()}</span>}
+      </div>
+      <div style={{ marginTop: 8, fontSize: 15, lineHeight: "21px", fontWeight: 600, overflowWrap: "anywhere" }}>{a.name}</div>
+      <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>{day} · {fmt12(a.start)}</div>
+    </button>
+  );
+}
+
+function EssentialTile({ label, sub, icon, onClick }) {
+  return (
+    <button onClick={onClick} style={{
+      width: 112, minHeight: 96, flexShrink: 0, scrollSnapAlign: "start",
+      display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 12,
+      padding: 14, background: "var(--paper-2)", border: "none", borderRadius: 14,
+      color: "var(--ink)", textAlign: "left", cursor: "pointer",
+    }}>
+      <span aria-hidden="true" style={{ display: "flex" }}>{icon}</span>
+      <span style={{ fontSize: 15, lineHeight: "21px", fontWeight: 600 }}>
+        {label}
+        {sub && <span style={{ display: "block", fontSize: 13, lineHeight: "18px", fontWeight: 400, color: "var(--text-2)" }}>{sub}</span>}
+      </span>
+    </button>
+  );
+}
+
+// One flat notice row. A warning carries its label in text, not colour alone.
+function FieldNotice({ eyebrow, text, action, onAction, onDismiss, warn }) {
+  return (
+    <div role="status" style={{
+      margin: "0 20px", display: "flex", alignItems: "center", gap: 4,
+      background: "var(--paper-2)", borderRadius: 14, padding: "10px 4px 10px 16px",
+    }}>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        {eyebrow && <div style={{ ..._fieldEyebrow, color: warn ? "var(--warn)" : "var(--text-2)", marginBottom: 2 }}>{eyebrow}</div>}
+        <div style={{ fontSize: 15, lineHeight: "21px" }}>{text}</div>
+      </div>
+      {action && <button onClick={onAction} style={{ ...fieldIconBtn, width: "auto", padding: "0 12px", fontSize: 15, fontWeight: 600 }}>{action}</button>}
+      {onDismiss && (
+        <button onClick={onDismiss} aria-label="Dismiss" style={{ ...fieldIconBtn, color: "var(--text-2)" }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg>
+        </button>
       )}
-    </Screen>
+    </div>
   );
 }
 
@@ -2850,44 +2693,6 @@ function _buildShareUrl(savedIds) {
   return `${base}?lineup=${savedIds.join(",")}`;
 }
 
-function ShareLineupButton({ savedIds }) {
-  const [flash, setFlash] = React.useState(null); // 'shared' | 'copied'
-  if (!savedIds?.length) return null;
-
-  const onShare = async () => {
-    const url = _buildShareUrl(savedIds);
-    const text = `My ${FESTIVAL_CONFIG.brand} lineup — ${savedIds.length} sets saved on Plursky`;
-    // navigator.share lights up the OS share sheet on iOS/Android — clipboard
-    // is the desktop / unsupported-browser fallback.
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: `My ${FESTIVAL_CONFIG.brand} lineup`, text, url });
-        setFlash("shared"); setTimeout(() => setFlash(null), 1800);
-        return;
-      } catch (e) {
-        if (e?.name === "AbortError") return; // user cancelled the share sheet
-      }
-    }
-    try {
-      await navigator.clipboard.writeText(url);
-      setFlash("copied"); setTimeout(() => setFlash(null), 1800);
-    } catch {
-      prompt("Copy your lineup link:", url);
-    }
-  };
-
-  return (
-    <button onClick={onShare} className="mono" style={{
-      background: flash ? "var(--success)" : "var(--ink)",
-      color: "var(--paper)", border: "none", borderRadius: 999,
-      padding: "5px 10px", cursor: "pointer",
-      fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
-      transition: "background 0.2s",
-    }}>
-      {flash === "shared" ? "✓ SHARED" : flash === "copied" ? "✓ COPIED" : "↗ SHARE"}
-    </button>
-  );
-}
 
 function FriendLineupBanner({ state, setState }) {
   const friendIds = state.friendLineup || [];
@@ -3012,4 +2817,4 @@ function FriendLineupBanner({ state, setState }) {
   );
 }
 
-Object.assign(window, { HomeScreen, FriendLineupBanner, ShareLineupButton });
+Object.assign(window, { HomeScreen, FriendLineupBanner });

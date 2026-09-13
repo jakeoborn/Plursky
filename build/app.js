@@ -1125,9 +1125,9 @@ function App() {
       inset: 0,
       display: "flex",
       flexDirection: "column",
-      paddingTop: "var(--top-pad, 54px)"
+      paddingTop: state.tab === "home" && !state.artist ? 0 : "var(--top-pad, 54px)"
     }
-  }, React.createElement(StatusStrip, null), React.createElement("div", {
+  }, !(state.tab === "home" && !state.artist) && React.createElement(StatusStrip, null), React.createElement("div", {
     style: {
       flex: 1,
       position: "relative"
@@ -1140,29 +1140,29 @@ function App() {
       bottom: 16,
       right: 16,
       zIndex: 30,
-      height: 42,
-      borderRadius: 999,
-      padding: "0 16px 0 12px",
-      background: "var(--ink)",
-      color: "var(--paper)",
-      border: "none",
+      height: 48,
+      borderRadius: 24,
+      padding: "0 18px 0 14px",
+      background: "var(--chrome)",
+      color: "var(--ink)",
+      backdropFilter: "blur(20px) saturate(160%)",
+      WebkitBackdropFilter: "blur(20px) saturate(160%)",
+      border: "1px solid var(--line-2)",
       cursor: "pointer",
       display: "flex",
       alignItems: "center",
-      gap: 7,
-      boxShadow: "0 4px 16px rgba(0,0,0,0.28)",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.4,
-      fontWeight: 700
+      gap: 8,
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 600
     }
   }, React.createElement("svg", {
-    width: "16",
-    height: "16",
+    width: "18",
+    height: "18",
     viewBox: "0 0 24 24",
     fill: "none",
     stroke: "currentColor",
-    strokeWidth: "2.2",
+    strokeWidth: "2",
     strokeLinecap: "round"
   }, React.createElement("circle", {
     cx: "11",
@@ -1170,7 +1170,7 @@ function App() {
     r: "7"
   }), React.createElement("path", {
     d: "M21 21 L16.65 16.65"
-  })), "SEARCH"), React.createElement(ToastHost, null)), !state.artist && (() => {
+  })), "Search"), React.createElement(ToastHost, null)), !state.artist && (() => {
     var postFest = (() => {
       try {
         return Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity);

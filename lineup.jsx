@@ -2717,23 +2717,24 @@ function ShareLineupButton({ state }) {
 
   return (
     <div style={{ position: "relative" }}>
-      <button onClick={() => setOpen(o => !o)} disabled={busy} style={{
-        display: "flex", alignItems: "center", gap: 5,
-        padding: "5px 10px", borderRadius: 999,
-        background: done ? "var(--success)" : "var(--ink)",
-        color: "var(--paper)", border: "none",
-        fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
-        cursor: busy ? "wait" : "pointer", textTransform: "uppercase",
+      {/* Field Mode: a quiet 44pt text action; the result reads in words. */}
+      <button onClick={() => setOpen(o => !o)} disabled={busy} aria-haspopup="menu" aria-expanded={open} style={{
+        display: "flex", alignItems: "center", gap: 6,
+        minHeight: 44, padding: "0 4px", borderRadius: 14,
+        background: "transparent", border: "none",
+        color: done ? "var(--signal)" : "var(--text-2)",
+        fontSize: 15, lineHeight: "20px", fontWeight: 500,
+        cursor: busy ? "wait" : "pointer",
         opacity: busy ? 0.65 : 1,
       }}>
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 4 V14"/><path d="M7 9 L12 4 L17 9"/><path d="M5 14 V20 H19 V14"/>
         </svg>
-        {done === "image" ? "SAVED"
-          : done === "cal" ? "ADDED"
-          : done === "pdf" ? "PRINTED"
-          : done === "txt" ? "COPIED"
-          : busy ? "…" : "SHARE"}
+        {done === "image" ? "Saved"
+          : done === "cal" ? "Added"
+          : done === "pdf" ? "Printed"
+          : done === "txt" ? "Copied"
+          : busy ? "…" : "Share"}
       </button>
 
       {open && (
@@ -2976,4 +2977,4 @@ async function shareLineupImage(state) {
   });
 }
 
-Object.assign(window, { LineupScreen, NightWizard, toggleSave, toNightMin, overlaps, shareLineupImage });
+Object.assign(window, { LineupScreen, NightWizard, toggleSave, toNightMin, overlaps, shareLineupImage, ShareLineupButton });

@@ -73,7 +73,7 @@ function TabBar({ active, onChange }) {
   // is live: festival colour may skin media, never controls.
   return (
     <div style={{
-      background: "rgba(8,8,8,0.78)",
+      background: "var(--chrome)",
       backdropFilter: "blur(20px) saturate(160%)",
       WebkitBackdropFilter: "blur(20px) saturate(160%)",
       borderTop: "1px solid var(--line)",
@@ -371,17 +371,19 @@ function useArtistPhoto(name) {
 // falls back to gradient + initials.
 function ArtistSwatch({ artist, size = 44 }) {
   const photo = useArtistPhoto(artist.name);
-  const initials = artist.name.split(/\s+/).map(w => w[0]).slice(0, 2).join("");
+  // Letters and digits only: "Wooli (Sunset Set)" is "WS", not "W(".
+  const initials = artist.name.split(/\s+/).map(w => (w.match(/[A-Za-z0-9]/) || [""])[0]).filter(Boolean).slice(0, 2).join("").toUpperCase();
   return (
     <div style={{
       width: size, height: size, borderRadius: size,
-      background: artist.img,
-      color: "#fff",
+      // Field Mode: a real photo, or a plain surface with initials. Never the
+      // generated gradient in artist.img.
+      background: "var(--paper-3)",
+      color: "var(--text-2)",
       display: "flex", alignItems: "center", justifyContent: "center",
-      fontFamily: "Instrument Serif, serif",
-      fontSize: size * 0.42,
+      fontSize: Math.max(12, size * 0.36), fontWeight: 600,
       flexShrink: 0,
-      boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.2)",
+      boxShadow: "inset 0 0 0 1px var(--line)",
       overflow: "hidden", position: "relative",
     }}>
       {photo
@@ -403,6 +405,94 @@ function Wordmark({ size = 18, color = "var(--ink)" }) {
         width={size} height={size}
         style={{ borderRadius: size * 0.22, display: "block", flexShrink: 0 }} />
       <span className="mono" style={{ fontSize: size * 0.72, letterSpacing: 3, fontWeight: 500 }}>PLURSKY</span>
+    </div>
+  );
+}
+
+// ── Field Mode shared components ──────────────────────────────
+// Every restyled surface builds from these, so the rules live in one place:
+// one sheet radius (14) with one grabber, a 52pt primary button, 44pt icon
+// targets, a 20/25 section title and a flat horizontal row.
+const fieldIconBtn = {
+  width: 44, height: 44, flexShrink: 0, padding: 0,
+  display: "flex", alignItems: "center", justifyContent: "center",
+  background: "transparent", border: "none", borderRadius: 14,
+  color: "var(--ink)", cursor: "pointer",
+};
+
+// The one dominant action on a screen is kind="primary" (signal green).
+function FieldButton({ children, onClick, kind = "primary", style, ...rest }) {
+  const primary = kind === "primary";
+  return (
+    <button onClick={onClick} {...rest} style={{
+      width: "100%", minHeight: 52, padding: "0 20px",
+      display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+      background: primary ? "var(--signal)" : "var(--paper-3)",
+      color: primary ? "var(--on-signal)" : "var(--ink)",
+      border: "none", borderRadius: 14, cursor: "pointer",
+      fontSize: 17, lineHeight: "22px", fontWeight: 600,
+      ...style,
+    }}>{children}</button>
+  );
+}
+
+function FieldSectionHeader({ title, action, onAction }) {
+  return (
+    <div style={{
+      display: "flex", alignItems: "center", justifyContent: "space-between",
+      padding: "0 20px", minHeight: 44,
+    }}>
+      <h2 style={{ margin: 0, fontSize: 20, lineHeight: "25px", fontWeight: 600 }}>{title}</h2>
+      {action && (typeof action === "string"
+        ? <button onClick={onAction} style={{ ...fieldIconBtn, width: "auto", padding: "0 4px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 }}>{action}</button>
+        : action)}
+    </div>
+  );
+}
+
+// Flat horizontal row that bleeds to the screen edge with a 20pt inset.
+function FieldMediaRow({ children }) {
+  return (
+    <div className="no-scrollbar" style={{
+      display: "flex", gap: 12, overflowX: "auto", scrollbarWidth: "none",
+      padding: "4px 20px 0", scrollPaddingInline: 20, scrollSnapType: "x proximity",
+    }}>
+      {children}
+    </div>
+  );
+}
+
+// One bottom sheet: one grabber, one radius, a title and a 44pt close.
+function FieldSheet({ title, onClose, children }) {
+  useDeclareModal(true);
+  React.useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+  return (
+    <div onClick={onClose} style={{
+      position: "fixed", inset: 0, zIndex: 80, background: "var(--scrim)",
+      display: "flex", alignItems: "flex-end",
+    }}>
+      <div role="dialog" aria-modal="true" aria-label={title} onClick={e => e.stopPropagation()} style={{
+        width: "100%", maxHeight: "88%", display: "flex", flexDirection: "column",
+        background: "var(--paper-3)", borderRadius: "14px 14px 0 0",
+        paddingBottom: "env(safe-area-inset-bottom, 0px)",
+      }}>
+        <div aria-hidden="true" style={{ display: "flex", justifyContent: "center", paddingTop: 8 }}>
+          <div style={{ width: 36, height: 5, borderRadius: 3, background: "var(--line-2)" }}/>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "4px 8px 4px 20px" }}>
+          <h2 style={{ margin: 0, fontSize: 20, lineHeight: "25px", fontWeight: 600 }}>{title}</h2>
+          <button onClick={onClose} aria-label="Close" style={fieldIconBtn}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg>
+          </button>
+        </div>
+        <div style={{ overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "4px 20px 24px" }}>
+          {children}
+        </div>
+      </div>
     </div>
   );
 }
@@ -1073,25 +1163,29 @@ function FestivalChip({ compact = false, accent = "var(--ink)" }) {
   const entry = FESTIVALS_REGISTRY.find(f => f.config.id === FESTIVAL_CONFIG.id);
   return (
     <>
+      {/* Field Mode: a 44pt target around an 18pt-radius status pill. The
+          label stays the upper-case shortName (QA harnesses match on it). */}
       <div
         onClick={canSwitch ? () => setOpen(true) : undefined}
         style={{
-          display: "inline-flex", alignItems: "center", gap: 5,
-          background: "var(--paper-2)", border: "1px solid var(--line-2)",
-          color: accent,
-          borderRadius: 999, padding: compact ? "3px 8px 3px 7px" : "4px 10px 4px 8px",
-          fontFamily: "Geist Mono, monospace",
-          fontSize: compact ? 9 : 9.5, letterSpacing: 1.2, fontWeight: 700,
-          cursor: canSwitch ? "pointer" : "default", whiteSpace: "nowrap",
-          userSelect: "none",
+          display: "inline-flex", alignItems: "center", minHeight: 44,
+          color: accent, cursor: canSwitch ? "pointer" : "default",
+          whiteSpace: "nowrap", userSelect: "none",
         }}>
-        <span style={{ fontSize: compact ? 11 : 12 }}>{entry?.emoji || "🎪"}</span>
-        <span>{FESTIVAL_CONFIG.shortName.toUpperCase()}</span>
-        {canSwitch && (
-          <svg width={compact ? 8 : 9} height={compact ? 8 : 9} viewBox="0 0 12 12" fill="none">
-            <path d="M3 4.5 L6 7.5 L9 4.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        )}
+        <span style={{
+          display: "inline-flex", alignItems: "center", gap: 6, height: 32,
+          padding: "0 12px 0 10px", borderRadius: 18,
+          background: "var(--chrome)", border: "1px solid var(--line)",
+          fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em",
+        }}>
+          <span style={{ fontSize: 14 }}>{entry?.emoji || "🎪"}</span>
+          <span>{FESTIVAL_CONFIG.shortName.toUpperCase()}</span>
+          {canSwitch && (
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+              <path d="M3 4.5 L6 7.5 L9 4.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          )}
+        </span>
       </div>
       {open && <FestivalSwitcher onClose={() => setOpen(false)} />}
     </>

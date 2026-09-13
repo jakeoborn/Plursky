@@ -758,8 +758,10 @@ function App() {
 
   return (
     <IOSDevice dark={statusBarStyle === "light"}>
-      <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", paddingTop: "var(--top-pad, 54px)" }}>
-        <StatusStrip />
+      {/* Field Mode Home runs its hero under the safe area and carries its
+          own live/offline status, so it skips the top inset and the strip. */}
+      <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", paddingTop: state.tab === "home" && !state.artist ? 0 : "var(--top-pad, 54px)" }}>
+        {!(state.tab === "home" && !state.artist) && <StatusStrip />}
         <div style={{ flex: 1, position: "relative" }}>
           {body}
           {/* Search FAB — floats above TabBar, accessible from any screen.
@@ -771,19 +773,20 @@ function App() {
               onClick={() => setSearchOpen(true)}
               aria-label="Search artists, stages, genres"
               style={{
+                // Field Mode: quiet translucent chrome, not a bright pill.
                 position: "absolute", bottom: 16, right: 16, zIndex: 30,
-                height: 42, borderRadius: 999, padding: "0 16px 0 12px",
-                background: "var(--ink)", color: "var(--paper)",
-                border: "none", cursor: "pointer",
-                display: "flex", alignItems: "center", gap: 7,
-                boxShadow: "0 4px 16px rgba(0,0,0,0.28)",
-                fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
+                height: 48, borderRadius: 24, padding: "0 18px 0 14px",
+                background: "var(--chrome)", color: "var(--ink)",
+                backdropFilter: "blur(20px) saturate(160%)", WebkitBackdropFilter: "blur(20px) saturate(160%)",
+                border: "1px solid var(--line-2)", cursor: "pointer",
+                display: "flex", alignItems: "center", gap: 8,
+                fontSize: 15, lineHeight: "20px", fontWeight: 600,
               }}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <circle cx="11" cy="11" r="7"/><path d="M21 21 L16.65 16.65"/>
               </svg>
-              SEARCH
+              Search
             </button>
           )}
           <ToastHost />

@@ -3802,30 +3802,31 @@ function ShareLineupButton({
   }, React.createElement("button", {
     onClick: () => setOpen(o => !o),
     disabled: busy,
+    "aria-haspopup": "menu",
+    "aria-expanded": open,
     style: {
       display: "flex",
       alignItems: "center",
-      gap: 5,
-      padding: "5px 10px",
-      borderRadius: 999,
-      background: done ? "var(--success)" : "var(--ink)",
-      color: "var(--paper)",
+      gap: 6,
+      minHeight: 44,
+      padding: "0 4px",
+      borderRadius: 14,
+      background: "transparent",
       border: "none",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 600,
+      color: done ? "var(--signal)" : "var(--text-2)",
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 500,
       cursor: busy ? "wait" : "pointer",
-      textTransform: "uppercase",
       opacity: busy ? 0.65 : 1
     }
   }, React.createElement("svg", {
-    width: "11",
-    height: "11",
+    width: "16",
+    height: "16",
     viewBox: "0 0 24 24",
     fill: "none",
     stroke: "currentColor",
-    strokeWidth: "2.2",
+    strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round"
   }, React.createElement("path", {
@@ -3834,7 +3835,7 @@ function ShareLineupButton({
     d: "M7 9 L12 4 L17 9"
   }), React.createElement("path", {
     d: "M5 14 V20 H19 V14"
-  })), done === "image" ? "SAVED" : done === "cal" ? "ADDED" : done === "pdf" ? "PRINTED" : done === "txt" ? "COPIED" : busy ? "…" : "SHARE"), open && React.createElement(React.Fragment, null, React.createElement("div", {
+  })), done === "image" ? "Saved" : done === "cal" ? "Added" : done === "pdf" ? "Printed" : done === "txt" ? "Copied" : busy ? "…" : "Share"), open && React.createElement(React.Fragment, null, React.createElement("div", {
     onClick: () => setOpen(false),
     style: {
       position: "fixed",
@@ -4239,5 +4240,6 @@ Object.assign(window, {
   toggleSave,
   toNightMin,
   overlaps,
-  shareLineupImage
+  shareLineupImage,
+  ShareLineupButton
 });

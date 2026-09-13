@@ -111,7 +111,7 @@ function TabBar({
   }];
   return React.createElement("div", {
     style: {
-      background: "rgba(8,8,8,0.78)",
+      background: "var(--chrome)",
       backdropFilter: "blur(20px) saturate(160%)",
       WebkitBackdropFilter: "blur(20px) saturate(160%)",
       borderTop: "1px solid var(--line)",
@@ -491,21 +491,21 @@ function ArtistSwatch({
   size = 44
 }) {
   var photo = useArtistPhoto(artist.name);
-  var initials = artist.name.split(/\s+/).map(w => w[0]).slice(0, 2).join("");
+  var initials = artist.name.split(/\s+/).map(w => (w.match(/[A-Za-z0-9]/) || [""])[0]).filter(Boolean).slice(0, 2).join("").toUpperCase();
   return React.createElement("div", {
     style: {
       width: size,
       height: size,
       borderRadius: size,
-      background: artist.img,
-      color: "#fff",
+      background: "var(--paper-3)",
+      color: "var(--text-2)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      fontFamily: "Instrument Serif, serif",
-      fontSize: size * 0.42,
+      fontSize: Math.max(12, size * 0.36),
+      fontWeight: 600,
       flexShrink: 0,
-      boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.2)",
+      boxShadow: "inset 0 0 0 1px var(--line)",
       overflow: "hidden",
       position: "relative"
     }
@@ -551,6 +551,186 @@ function Wordmark({
       fontWeight: 500
     }
   }, "PLURSKY"));
+}
+var fieldIconBtn = {
+  width: 44,
+  height: 44,
+  flexShrink: 0,
+  padding: 0,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  background: "transparent",
+  border: "none",
+  borderRadius: 14,
+  color: "var(--ink)",
+  cursor: "pointer"
+};
+function FieldButton({
+  children,
+  onClick,
+  kind = "primary",
+  style,
+  ...rest
+}) {
+  var primary = kind === "primary";
+  return React.createElement("button", {
+    onClick: onClick,
+    ...rest,
+    style: {
+      width: "100%",
+      minHeight: 52,
+      padding: "0 20px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: 8,
+      background: primary ? "var(--signal)" : "var(--paper-3)",
+      color: primary ? "var(--on-signal)" : "var(--ink)",
+      border: "none",
+      borderRadius: 14,
+      cursor: "pointer",
+      fontSize: 17,
+      lineHeight: "22px",
+      fontWeight: 600,
+      ...style
+    }
+  }, children);
+}
+function FieldSectionHeader({
+  title,
+  action,
+  onAction
+}) {
+  return React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      padding: "0 20px",
+      minHeight: 44
+    }
+  }, React.createElement("h2", {
+    style: {
+      margin: 0,
+      fontSize: 20,
+      lineHeight: "25px",
+      fontWeight: 600
+    }
+  }, title), action && (typeof action === "string" ? React.createElement("button", {
+    onClick: onAction,
+    style: {
+      ...fieldIconBtn,
+      width: "auto",
+      padding: "0 4px",
+      color: "var(--text-2)",
+      fontSize: 15,
+      fontWeight: 500
+    }
+  }, action) : action));
+}
+function FieldMediaRow({
+  children
+}) {
+  return React.createElement("div", {
+    className: "no-scrollbar",
+    style: {
+      display: "flex",
+      gap: 12,
+      overflowX: "auto",
+      scrollbarWidth: "none",
+      padding: "4px 20px 0",
+      scrollPaddingInline: 20,
+      scrollSnapType: "x proximity"
+    }
+  }, children);
+}
+function FieldSheet({
+  title,
+  onClose,
+  children
+}) {
+  useDeclareModal(true);
+  React.useEffect(() => {
+    var onKey = e => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+  return React.createElement("div", {
+    onClick: onClose,
+    style: {
+      position: "fixed",
+      inset: 0,
+      zIndex: 80,
+      background: "var(--scrim)",
+      display: "flex",
+      alignItems: "flex-end"
+    }
+  }, React.createElement("div", {
+    role: "dialog",
+    "aria-modal": "true",
+    "aria-label": title,
+    onClick: e => e.stopPropagation(),
+    style: {
+      width: "100%",
+      maxHeight: "88%",
+      display: "flex",
+      flexDirection: "column",
+      background: "var(--paper-3)",
+      borderRadius: "14px 14px 0 0",
+      paddingBottom: "env(safe-area-inset-bottom, 0px)"
+    }
+  }, React.createElement("div", {
+    "aria-hidden": "true",
+    style: {
+      display: "flex",
+      justifyContent: "center",
+      paddingTop: 8
+    }
+  }, React.createElement("div", {
+    style: {
+      width: 36,
+      height: 5,
+      borderRadius: 3,
+      background: "var(--line-2)"
+    }
+  })), React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      padding: "4px 8px 4px 20px"
+    }
+  }, React.createElement("h2", {
+    style: {
+      margin: 0,
+      fontSize: 20,
+      lineHeight: "25px",
+      fontWeight: 600
+    }
+  }, title), React.createElement("button", {
+    onClick: onClose,
+    "aria-label": "Close",
+    style: fieldIconBtn
+  }, React.createElement("svg", {
+    width: "18",
+    height: "18",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round"
+  }, React.createElement("path", {
+    d: "M6 6 L18 18 M18 6 L6 18"
+  })))), React.createElement("div", {
+    style: {
+      overflowY: "auto",
+      WebkitOverflowScrolling: "touch",
+      padding: "4px 20px 24px"
+    }
+  }, children)));
 }
 function useInstallPrompt() {
   var [deferred, setDeferred] = React.useState(null);
@@ -1282,27 +1462,34 @@ function FestivalChip({
     style: {
       display: "inline-flex",
       alignItems: "center",
-      gap: 5,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
+      minHeight: 44,
       color: accent,
-      borderRadius: 999,
-      padding: compact ? "3px 8px 3px 7px" : "4px 10px 4px 8px",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: compact ? 9 : 9.5,
-      letterSpacing: 1.2,
-      fontWeight: 700,
       cursor: canSwitch ? "pointer" : "default",
       whiteSpace: "nowrap",
       userSelect: "none"
     }
   }, React.createElement("span", {
     style: {
-      fontSize: compact ? 11 : 12
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 6,
+      height: 32,
+      padding: "0 12px 0 10px",
+      borderRadius: 18,
+      background: "var(--chrome)",
+      border: "1px solid var(--line)",
+      fontSize: 11,
+      lineHeight: "14px",
+      fontWeight: 600,
+      letterSpacing: "0.04em"
+    }
+  }, React.createElement("span", {
+    style: {
+      fontSize: 14
     }
   }, entry?.emoji || "🎪"), React.createElement("span", null, FESTIVAL_CONFIG.shortName.toUpperCase()), canSwitch && React.createElement("svg", {
-    width: compact ? 8 : 9,
-    height: compact ? 8 : 9,
+    width: "10",
+    height: "10",
     viewBox: "0 0 12 12",
     fill: "none"
   }, React.createElement("path", {
@@ -1311,7 +1498,7 @@ function FestivalChip({
     strokeWidth: "1.6",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }))), open && React.createElement(FestivalSwitcher, {
+  })))), open && React.createElement(FestivalSwitcher, {
     onClose: () => setOpen(false)
   }));
 }
