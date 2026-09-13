@@ -12483,6 +12483,19 @@ function usePlusPrices() {
   }, []);
   return prices;
 }
+function useLivePlusPrices() {
+  var [live, setLive] = React.useState(null);
+  React.useEffect(() => {
+    var dead = false;
+    _plusPriceStrings().then(p => {
+      if (!dead && p) setLive(p);
+    });
+    return () => {
+      dead = true;
+    };
+  }, []);
+  return live;
+}
 async function _restorePurchases() {
   if (!window.Capacitor?.isNativePlatform?.()) return {
     success: false,
@@ -12532,6 +12545,14 @@ function PlusSheet({
   onClose
 }) {
   var stop = e => e.stopPropagation();
+  var previewArtist = React.useMemo(() => {
+    try {
+      var a = Object.values(window.getAllAttended?.() || {}).flat().map(id => ARTISTS.find(x => x.id === id)).find(Boolean);
+      if (a) return a;
+    } catch {}
+    var pool = (typeof activeLineup === "function" ? activeLineup() : ARTISTS) || [];
+    return [...pool].sort((a, b) => (b.tier || 0) - (a.tier || 0))[0] || null;
+  }, []);
   return ReactDOM.createPortal(React.createElement("div", {
     onClick: e => {
       stop(e);
@@ -12541,58 +12562,144 @@ function PlusSheet({
       position: "fixed",
       inset: 0,
       zIndex: 10000,
-      background: "rgba(0,0,0,0.6)",
+      background: "var(--scrim)",
       display: "flex",
-      alignItems: "flex-start",
-      justifyContent: "center",
-      padding: 20,
+      flexDirection: "column",
       overflowY: "auto",
       WebkitOverflowScrolling: "touch",
       animation: "fadeIn .2s"
     }
   }, React.createElement("div", {
+    role: "dialog",
+    "aria-modal": "true",
+    "aria-label": "Plursky+",
     onClick: stop,
     style: {
-      position: "relative",
+      marginTop: "auto",
       width: "100%",
-      maxWidth: 340,
-      margin: "auto 0",
-      flexShrink: 0
+      flexShrink: 0,
+      position: "relative",
+      background: "var(--paper-3)",
+      color: "var(--ink)",
+      borderRadius: "14px 14px 0 0",
+      padding: "8px 20px calc(24px + env(safe-area-inset-bottom, 0px))"
     }
-  }, React.createElement("button", {
+  }, React.createElement("div", {
+    "aria-hidden": "true",
+    style: {
+      display: "flex",
+      justifyContent: "center"
+    }
+  }, React.createElement("div", {
+    style: {
+      width: 36,
+      height: 5,
+      borderRadius: 3,
+      background: "var(--line-2)"
+    }
+  })), React.createElement("button", {
     onClick: onClose,
     "aria-label": "Close",
     style: {
+      ...fieldIconBtn,
       position: "absolute",
-      top: -14,
-      right: -6,
-      zIndex: 1,
-      width: 30,
-      height: 30,
-      borderRadius: 30,
-      background: "#fff",
-      border: "none",
-      color: "#1a120d",
-      fontSize: 16,
-      fontWeight: 700,
-      cursor: "pointer"
+      top: 8,
+      right: 8
     }
-  }, "×"), React.createElement(PlusGate, {
-    feature: feature
-  }, React.createElement("div", {
+  }, React.createElement("svg", {
+    width: "18",
+    height: "18",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round"
+  }, React.createElement("path", {
+    d: "M6 6 L18 18 M18 6 L6 18"
+  }))), previewArtist && React.createElement(LockedCardPreview, {
+    artist: previewArtist
+  }), React.createElement(PlusGate, {
+    feature: feature,
+    layout: "sheet"
+  }))), document.body);
+}
+function LockedCardPreview({
+  artist
+}) {
+  var [url, setUrl] = React.useState(null);
+  React.useEffect(() => {
+    var live = true,
+      u = null;
+    (async () => {
+      var c = null;
+      try {
+        c = await _renderHeroCard(artist);
+      } catch {}
+      if (!live || !c) return;
+      var b = await new Promise(r => c.toBlob(r, "image/png"));
+      if (!live || !b) return;
+      u = URL.createObjectURL(b);
+      setUrl(u);
+    })();
+    return () => {
+      live = false;
+      if (u) try {
+        URL.revokeObjectURL(u);
+      } catch {}
+    };
+  }, [artist && artist.id]);
+  return React.createElement("div", {
     style: {
-      height: 460
+      position: "relative",
+      width: "100%",
+      height: 220,
+      borderRadius: 16,
+      overflow: "hidden",
+      background: "var(--paper-2)",
+      margin: "36px 0 20px"
     }
-  })))), document.body);
+  }, url && React.createElement("img", {
+    src: url,
+    alt: "",
+    "aria-hidden": "true",
+    style: {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      objectPosition: "center 78%"
+    }
+  }), React.createElement("div", {
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      inset: 0,
+      background: "var(--paper)",
+      opacity: 0.35
+    }
+  }), React.createElement("div", {
+    style: {
+      position: "absolute",
+      left: 14,
+      top: 12,
+      fontSize: 11,
+      lineHeight: "14px",
+      fontWeight: 600,
+      letterSpacing: "0.04em",
+      textTransform: "uppercase",
+      color: "var(--ink)"
+    }
+  }, "🔒 Your card, locked"));
 }
 function PlusGate({
   children,
-  feature
+  feature,
+  layout = "inline"
 }) {
   var [busy, setBusy] = React.useState(false);
   var [pending, setPending] = React.useState(null);
   var [buyError, setBuyError] = React.useState(null);
-  var prices = usePlusPrices();
+  var live = useLivePlusPrices();
+  var [plan, setPlan] = React.useState(RC_PRODUCT_IDS.season);
   if (_isPlusSub()) return children;
   var canBuy = _iapAvailable();
   var handlePurchase = async productId => {
@@ -12630,7 +12737,275 @@ function PlusGate({
       setBusy(false);
     }
   };
-  var _PLUS_PERKS = [["Keep every memory safe", "Cloud backup + restore across devices"], ["Share in full quality", "1080p, no watermarks, unlimited exports"], ["Make every recap yours", "Premium video styles, music + custom colors"], ["Unlock every discovery", "All Hidden Gems + full trading-card exports"], ["Find your way offline", "Festival street maps saved on your phone"], ["Get festivals first", "Early access + your multi-festival archive"]];
+  var _PLUS_BENEFITS = [["Full-quality exports", "1080p, no watermark, unlimited shares"], ["Cloud backup", "Your photos and clips, restored on any device"], ["Every card and recap", "Set-card exports, premium recap styles and all Hidden Gems"]];
+  var isNative = !!window.Capacitor?.isNativePlatform?.();
+  var priceOf = id => live && live[id] || null;
+  var PLANS = [{
+    id: RC_PRODUCT_IDS.season,
+    name: "Season Pass",
+    sub: "One time · no subscription",
+    unit: "",
+    legal: p => `Season Pass · ${p ? p + " " : ""}one-time purchase. No subscription, nothing auto-renews.`,
+    cta: "Get the Season Pass"
+  }, {
+    id: RC_PRODUCT_IDS.monthly,
+    name: "Monthly",
+    sub: "Renews monthly",
+    unit: " / month",
+    legal: p => `Plursky+ · ${p ? p + "/month" : "monthly"}, auto-renews until cancelled. Payment is charged to your Apple ID; manage or cancel anytime in Settings.`,
+    cta: "Start Monthly"
+  }];
+  var selected = PLANS.find(p => p.id === plan) || PLANS[0];
+  var waitingForPrice = isNative && !priceOf(selected.id);
+  var sheet = layout === "sheet";
+  var quiet = {
+    minHeight: 44,
+    display: "inline-flex",
+    alignItems: "center",
+    padding: "0 8px",
+    color: "var(--text-2)",
+    fontSize: 15,
+    background: "transparent",
+    border: "none",
+    cursor: "pointer",
+    fontFamily: "inherit"
+  };
+  var content = React.createElement("div", {
+    style: {
+      width: "100%",
+      padding: sheet ? 0 : "20px 16px",
+      color: "var(--ink)",
+      textAlign: "left"
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 11,
+      lineHeight: "14px",
+      fontWeight: 600,
+      letterSpacing: "0.04em",
+      textTransform: "uppercase",
+      color: "var(--text-2)"
+    }
+  }, "Plursky+", feature ? ` · unlocks ${feature}` : ""), React.createElement("h2", {
+    style: {
+      margin: "6px 0 0",
+      fontSize: sheet ? 28 : 22,
+      lineHeight: sheet ? "34px" : "28px",
+      fontWeight: 700
+    }
+  }, "Keep the full weekend."), React.createElement("div", {
+    style: {
+      marginTop: 12
+    }
+  }, _PLUS_BENEFITS.map(([title, sub]) => React.createElement("div", {
+    key: title,
+    style: {
+      display: "flex",
+      gap: 12,
+      padding: "8px 0"
+    }
+  }, React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      fontSize: 15,
+      lineHeight: "21px",
+      fontWeight: 700
+    }
+  }, "✓"), React.createElement("div", null, React.createElement("div", {
+    style: {
+      fontSize: 15,
+      lineHeight: "21px",
+      fontWeight: 600
+    }
+  }, title), React.createElement("div", {
+    style: {
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, sub))))), buyError && React.createElement("div", {
+    role: "alert",
+    style: {
+      marginTop: 12,
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--warn)"
+    }
+  }, buyError, " You are only charged when Apple confirms — nothing was charged for this attempt."), canBuy ? React.createElement(React.Fragment, null, React.createElement("div", {
+    role: "radiogroup",
+    "aria-label": "Choose a plan",
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 8,
+      marginTop: 16
+    }
+  }, PLANS.map(p => {
+    var on = p.id === plan,
+      price = priceOf(p.id);
+    return React.createElement("button", {
+      key: p.id,
+      role: "radio",
+      "aria-checked": on,
+      onClick: () => setPlan(p.id),
+      disabled: busy,
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        minHeight: 64,
+        padding: "12px 14px",
+        borderRadius: 14,
+        background: "var(--paper-2)",
+        color: "var(--ink)",
+        textAlign: "left",
+        border: on ? "1.5px solid var(--signal)" : "1px solid var(--line-2)",
+        cursor: busy ? "wait" : "pointer",
+        fontFamily: "inherit"
+      }
+    }, React.createElement("span", {
+      "aria-hidden": "true",
+      style: {
+        width: 22,
+        height: 22,
+        borderRadius: 11,
+        flexShrink: 0,
+        border: on ? "none" : "1.5px solid var(--line-2)",
+        background: on ? "var(--signal)" : "transparent",
+        color: "var(--on-signal)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: 13,
+        fontWeight: 800
+      }
+    }, on ? "✓" : ""), React.createElement("span", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, React.createElement("span", {
+      style: {
+        display: "block",
+        fontSize: 17,
+        lineHeight: "22px",
+        fontWeight: 600
+      }
+    }, p.name), React.createElement("span", {
+      style: {
+        display: "block",
+        fontSize: 13,
+        lineHeight: "18px",
+        color: "var(--text-2)"
+      }
+    }, p.sub)), React.createElement("span", {
+      style: {
+        fontSize: 17,
+        lineHeight: "22px",
+        fontWeight: 600,
+        fontVariantNumeric: "tabular-nums",
+        whiteSpace: "nowrap"
+      }
+    }, price ? `${price}${p.unit}` : React.createElement("span", {
+      style: {
+        fontSize: 13,
+        fontWeight: 500,
+        color: "var(--text-2)"
+      }
+    }, isNative ? "Loading…" : "App Store price")));
+  })), React.createElement(FieldButton, {
+    onClick: () => handlePurchase(selected.id),
+    disabled: busy || waitingForPrice,
+    style: {
+      marginTop: 16
+    }
+  }, pending ? "Processing…" : waitingForPrice ? "Loading App Store price…" : selected.cta), PLANS.map(p => React.createElement("p", {
+    key: p.id,
+    style: {
+      margin: "10px 0 0",
+      fontSize: 12,
+      lineHeight: "17px",
+      color: "var(--text-2)"
+    }
+  }, p.legal(priceOf(p.id)))), React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      flexWrap: "wrap",
+      marginTop: 8
+    }
+  }, React.createElement("button", {
+    onClick: handleRestore,
+    disabled: busy,
+    style: quiet
+  }, "Restore purchases"), React.createElement("a", {
+    href: "./terms.html",
+    target: "_blank",
+    rel: "noopener",
+    style: {
+      ...quiet,
+      textDecoration: "underline"
+    }
+  }, "Terms"), React.createElement("a", {
+    href: "./privacy.html",
+    target: "_blank",
+    rel: "noopener",
+    style: {
+      ...quiet,
+      textDecoration: "underline"
+    }
+  }, "Privacy"))) : React.createElement("div", {
+    style: {
+      marginTop: 16
+    }
+  }, React.createElement("p", {
+    style: {
+      margin: "0 0 12px",
+      fontSize: 15,
+      lineHeight: "21px",
+      color: "var(--text-2)"
+    }
+  }, "Plursky+ is available in the iOS app."), React.createElement("a", {
+    href: _appStoreUrl(),
+    target: "_blank",
+    rel: "noopener",
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      minHeight: 52,
+      borderRadius: 14,
+      background: "var(--signal)",
+      color: "var(--on-signal)",
+      fontSize: 17,
+      fontWeight: 600,
+      textDecoration: "none"
+    }
+  }, "Get the app"), React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "center",
+      marginTop: 8
+    }
+  }, React.createElement("a", {
+    href: "./terms.html",
+    target: "_blank",
+    rel: "noopener",
+    style: {
+      ...quiet,
+      textDecoration: "underline"
+    }
+  }, "Terms"), React.createElement("a", {
+    href: "./privacy.html",
+    target: "_blank",
+    rel: "noopener",
+    style: {
+      ...quiet,
+      textDecoration: "underline"
+    }
+  }, "Privacy"))));
+  if (sheet) return content;
   return React.createElement("div", {
     style: {
       position: "relative",
@@ -12639,250 +13014,22 @@ function PlusGate({
       display: "grid"
     }
   }, React.createElement("div", {
+    "aria-hidden": "true",
     style: {
       gridArea: "1 / 1",
       filter: "blur(3px)",
       pointerEvents: "none",
-      opacity: 0.35
+      opacity: 0.3
     }
   }, children), React.createElement("div", {
     style: {
       gridArea: "1 / 1",
       display: "flex",
       flexDirection: "column",
-      alignItems: "center",
       justifyContent: "center",
-      gap: 0,
-      padding: "18px 0",
-      background: "linear-gradient(180deg, rgba(26,18,13,0.85) 0%, rgba(109,40,217,0.55) 100%)",
-      backdropFilter: "blur(6px)"
+      background: "var(--paper-3)"
     }
-  }, React.createElement("div", {
-    style: {
-      width: 38,
-      height: 38,
-      borderRadius: "50%",
-      marginBottom: 10,
-      background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      boxShadow: "0 0 24px rgba(109,40,217,0.5)"
-    }
-  }, React.createElement("span", {
-    style: {
-      fontSize: 18
-    }
-  }, "+")), React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 24,
-      color: "#fff",
-      letterSpacing: -0.5
-    }
-  }, "Plursky+"), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      color: "rgba(255,255,255,0.5)",
-      marginTop: 4,
-      marginBottom: 14
-    }
-  }, "UNLOCK ", (feature || "THIS FEATURE").toUpperCase()), React.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "column",
-      gap: 7,
-      width: "80%",
-      maxWidth: 240,
-      marginBottom: 16
-    }
-  }, _PLUS_PERKS.map(([title, sub], i) => React.createElement("div", {
-    key: i,
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 8
-    }
-  }, React.createElement("div", {
-    style: {
-      width: 18,
-      height: 18,
-      borderRadius: "50%",
-      flexShrink: 0,
-      background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontSize: 10,
-      color: "#fff",
-      fontWeight: 700
-    }
-  }, "✓"), React.createElement("div", null, React.createElement("div", {
-    style: {
-      fontSize: 10,
-      color: "#fff",
-      fontWeight: 600
-    }
-  }, title), React.createElement("div", {
-    style: {
-      fontSize: 9,
-      color: "rgba(255,255,255,0.45)"
-    }
-  }, sub))))), buyError && React.createElement("div", {
-    className: "mono",
-    role: "alert",
-    style: {
-      fontSize: 9,
-      letterSpacing: 0.6,
-      color: "#ff9d7a",
-      marginTop: 10,
-      maxWidth: 264,
-      textAlign: "center",
-      lineHeight: 1.6
-    }
-  }, buyError, " You are only charged when Apple confirms — nothing was charged for this attempt."), canBuy ? React.createElement(React.Fragment, null, React.createElement("button", {
-    onClick: () => handlePurchase(RC_PRODUCT_IDS.season),
-    disabled: busy,
-    className: "mono",
-    style: {
-      padding: "11px 28px",
-      borderRadius: 12,
-      border: "none",
-      background: busy ? "rgba(109,40,217,0.5)" : "linear-gradient(135deg, #6D28D9, #e85d2e)",
-      color: "#fff",
-      fontSize: 10,
-      letterSpacing: 1.4,
-      fontWeight: 700,
-      cursor: busy ? "wait" : "pointer",
-      boxShadow: "0 4px 20px rgba(109,40,217,0.45), 0 0 40px rgba(232,93,46,0.2)"
-    }
-  }, pending === RC_PRODUCT_IDS.season ? "PROCESSING…" : `${prices[RC_PRODUCT_IDS.season]} SEASON PASS`), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 8,
-      letterSpacing: 0.5,
-      color: "rgba(255,255,255,0.4)",
-      marginTop: 6,
-      lineHeight: 1.5,
-      maxWidth: 264,
-      textAlign: "center"
-    }
-  }, "Season Pass · ", prices[RC_PRODUCT_IDS.season], " one-time purchase. No subscription, nothing auto-renews."), React.createElement("button", {
-    onClick: () => handlePurchase(RC_PRODUCT_IDS.monthly),
-    disabled: busy,
-    className: "mono",
-    style: {
-      marginTop: 12,
-      padding: "9px 24px",
-      borderRadius: 12,
-      border: "1px solid rgba(255,255,255,0.22)",
-      background: "transparent",
-      color: busy ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.85)",
-      fontSize: 9,
-      letterSpacing: 1.4,
-      fontWeight: 700,
-      cursor: busy ? "wait" : "pointer"
-    }
-  }, pending === RC_PRODUCT_IDS.monthly ? "PROCESSING…" : `${prices[RC_PRODUCT_IDS.monthly]} / MONTH`), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 8,
-      letterSpacing: 0.5,
-      color: "rgba(255,255,255,0.4)",
-      marginTop: 6,
-      lineHeight: 1.5,
-      maxWidth: 264,
-      textAlign: "center"
-    }
-  }, "Plursky+ · ", prices[RC_PRODUCT_IDS.monthly], "/month, auto-renews until cancelled. Payment is charged to your Apple ID; manage or cancel anytime in Settings."), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 8,
-      letterSpacing: 0.5,
-      color: "rgba(255,255,255,0.4)",
-      marginTop: 6,
-      textAlign: "center"
-    }
-  }, React.createElement("a", {
-    href: "./terms.html",
-    target: "_blank",
-    rel: "noopener",
-    style: {
-      color: "rgba(255,255,255,0.6)"
-    }
-  }, "Terms"), "   ·   ", React.createElement("a", {
-    href: "./privacy.html",
-    target: "_blank",
-    rel: "noopener",
-    style: {
-      color: "rgba(255,255,255,0.6)"
-    }
-  }, "Privacy")), React.createElement("button", {
-    onClick: handleRestore,
-    disabled: busy,
-    className: "mono",
-    style: {
-      marginTop: 10,
-      padding: "4px 12px",
-      borderRadius: 6,
-      border: "1px solid rgba(255,255,255,0.15)",
-      background: "transparent",
-      color: "rgba(255,255,255,0.4)",
-      fontSize: 8,
-      letterSpacing: 1,
-      cursor: "pointer"
-    }
-  }, "RESTORE PURCHASE")) : React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 0.6,
-      color: "rgba(255,255,255,0.55)",
-      marginTop: 2,
-      lineHeight: 1.6,
-      maxWidth: 264,
-      textAlign: "center"
-    }
-  }, "Plursky+ is available in the iOS app.", React.createElement("div", {
-    style: {
-      marginTop: 8
-    }
-  }, React.createElement("a", {
-    href: _appStoreUrl(),
-    target: "_blank",
-    rel: "noopener",
-    style: {
-      display: "inline-block",
-      padding: "8px 20px",
-      borderRadius: 10,
-      background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
-      color: "#fff",
-      fontSize: 10,
-      letterSpacing: 1.4,
-      fontWeight: 700,
-      textDecoration: "none"
-    }
-  }, "GET THE APP")), React.createElement("div", {
-    style: {
-      marginTop: 10
-    }
-  }, React.createElement("a", {
-    href: "./terms.html",
-    target: "_blank",
-    rel: "noopener",
-    style: {
-      color: "rgba(255,255,255,0.5)"
-    }
-  }, "Terms"), "   ·   ", React.createElement("a", {
-    href: "./privacy.html",
-    target: "_blank",
-    rel: "noopener",
-    style: {
-      color: "rgba(255,255,255,0.5)"
-    }
-  }, "Privacy")))));
+  }, content));
 }
 var DAILY_SHARE_LIMIT = 5;
 function _getShareCount() {

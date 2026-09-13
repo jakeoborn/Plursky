@@ -8277,6 +8277,18 @@ function usePlusPrices() {
   return prices;
 }
 
+// Field Mode paywall: the store's own price strings ONLY. null until StoreKit
+// answers (and always off-native), so the UI never shows a hardcoded price.
+function useLivePlusPrices() {
+  const [live, setLive] = React.useState(null);
+  React.useEffect(() => {
+    let dead = false;
+    _plusPriceStrings().then(p => { if (!dead && p) setLive(p); });
+    return () => { dead = true; };
+  }, []);
+  return live;
+}
+
 async function _restorePurchases() {
   if (!window.Capacitor?.isNativePlatform?.()) return { success: false, error: "Web mode" };
   if (!_rcInitialized) await _initRevenueCat();
@@ -8310,27 +8322,72 @@ try { _initRevenueCat(); } catch {}
 // half in an iPhone-compat window on iPad; this scrolls instead.
 function PlusSheet({ feature, onClose }) {
   const stop = e => e.stopPropagation();
+  // The locked output is the user's own: their first caught set's hero card,
+  // else the festival's top act. Muted, not hidden.
+  const previewArtist = React.useMemo(() => {
+    try {
+      const a = Object.values(window.getAllAttended?.() || {}).flat().map(id => ARTISTS.find(x => x.id === id)).find(Boolean);
+      if (a) return a;
+    } catch {}
+    const pool = (typeof activeLineup === "function" ? activeLineup() : ARTISTS) || [];
+    return [...pool].sort((a, b) => (b.tier || 0) - (a.tier || 0))[0] || null;
+  }, []);
   return ReactDOM.createPortal(
     <div onClick={e => { stop(e); onClose(); }} style={{
-      position: "fixed", inset: 0, zIndex: 10000, background: "rgba(0,0,0,0.6)",
-      display: "flex", alignItems: "flex-start", justifyContent: "center", padding: 20,
-      overflowY: "auto", WebkitOverflowScrolling: "touch",
+      position: "fixed", inset: 0, zIndex: 10000, background: "var(--scrim)",
+      display: "flex", flexDirection: "column", overflowY: "auto", WebkitOverflowScrolling: "touch",
       animation: "fadeIn .2s",
     }}>
-      <div onClick={stop} style={{ position: "relative", width: "100%", maxWidth: 340, margin: "auto 0", flexShrink: 0 }}>
-        <button onClick={onClose} aria-label="Close" style={{
-          position: "absolute", top: -14, right: -6, zIndex: 1,
-          width: 30, height: 30, borderRadius: 30, background: "#fff", border: "none",
-          color: "#1a120d", fontSize: 16, fontWeight: 700, cursor: "pointer",
-        }}>×</button>
-        <PlusGate feature={feature}><div style={{ height: 460 }} /></PlusGate>
+      {/* margin-top:auto seats a short sheet at the bottom and lets a tall one
+          scroll from its top. Never centred: a centred sheet taller than the
+          window clipped RESTORE (Guideline 3.1.1) on 2026-09-07. */}
+      <div role="dialog" aria-modal="true" aria-label="Plursky+" onClick={stop} style={{
+        marginTop: "auto", width: "100%", flexShrink: 0, position: "relative",
+        background: "var(--paper-3)", color: "var(--ink)", borderRadius: "14px 14px 0 0",
+        padding: "8px 20px calc(24px + env(safe-area-inset-bottom, 0px))",
+      }}>
+        <div aria-hidden="true" style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ width: 36, height: 5, borderRadius: 3, background: "var(--line-2)" }} />
+        </div>
+        <button onClick={onClose} aria-label="Close" style={{ ...fieldIconBtn, position: "absolute", top: 8, right: 8 }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg>
+        </button>
+        {previewArtist && <LockedCardPreview artist={previewArtist} />}
+        <PlusGate feature={feature} layout="sheet" />
       </div>
     </div>,
     document.body
   );
 }
 
-function PlusGate({ children, feature }) {
+function LockedCardPreview({ artist }) {
+  const [url, setUrl] = React.useState(null);
+  React.useEffect(() => {
+    let live = true, u = null;
+    (async () => {
+      let c = null;
+      try { c = await _renderHeroCard(artist); } catch {}
+      if (!live || !c) return;
+      const b = await new Promise(r => c.toBlob(r, "image/png"));
+      if (!live || !b) return;
+      u = URL.createObjectURL(b);
+      setUrl(u);
+    })();
+    return () => { live = false; if (u) try { URL.revokeObjectURL(u); } catch {} };
+  }, [artist && artist.id]);
+  return (
+    <div style={{ position: "relative", width: "100%", height: 220, borderRadius: 16, overflow: "hidden", background: "var(--paper-2)", margin: "36px 0 20px" }}>
+      {url && <img src={url} alt="" aria-hidden="true" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 78%" }} />}
+      <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "var(--paper)", opacity: 0.35 }} />
+      {/* Top-left, clear of the card's own name and metadata at the bottom. */}
+      <div style={{ position: "absolute", left: 14, top: 12, fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--ink)" }}>
+        🔒 Your card, locked
+      </div>
+    </div>
+  );
+}
+
+function PlusGate({ children, feature, layout = "inline" }) {
   // Hook first: an early `return children` above a useState is a conditional
   // hook call, which React only tolerates while the condition never flips.
   const [busy, setBusy] = React.useState(false);
@@ -8342,7 +8399,8 @@ function PlusGate({ children, feature }) {
   // PROCESSING… (the 2.1(b) rejection). Now every failure path lands here,
   // in words, with the buttons back live.
   const [buyError, setBuyError] = React.useState(null);
-  const prices = usePlusPrices();
+  const live = useLivePlusPrices();
+  const [plan, setPlan] = React.useState(RC_PRODUCT_IDS.season);
   if (_isPlusSub()) return children;
   const canBuy = _iapAvailable();
 
@@ -8378,13 +8436,12 @@ function PlusGate({ children, feature }) {
     }
   };
 
-  const _PLUS_PERKS = [
-    ["Keep every memory safe", "Cloud backup + restore across devices"],
-    ["Share in full quality", "1080p, no watermarks, unlimited exports"],
-    ["Make every recap yours", "Premium video styles, music + custom colors"],
-    ["Unlock every discovery", "All Hidden Gems + full trading-card exports"],
-    ["Find your way offline", "Festival street maps saved on your phone"],
-    ["Get festivals first", "Early access + your multi-festival archive"],
+  // Three benefits, each a shipped capability (checked against the gates that
+  // enforce them): export quality + share allowance, backup, card/recap access.
+  const _PLUS_BENEFITS = [
+    ["Full-quality exports", "1080p, no watermark, unlimited shares"],
+    ["Cloud backup", "Your photos and clips, restored on any device"],
+    ["Every card and recap", "Set-card exports, premium recap styles and all Hidden Gems"],
   ];
 
   // Both layers occupy the SAME grid cell, so this box is as tall as whichever
@@ -8401,144 +8458,107 @@ function PlusGate({ children, feature }) {
   // callers (hidden gems, trading-cards export) pass REAL children whose
   // height must still drive the box, so neither layer can be the sole sizer.
   // A grid cell takes the max, which is the only rule that serves both.
+  const isNative = !!window.Capacitor?.isNativePlatform?.();
+  const priceOf = (id) => (live && live[id]) || null;
+  // Guideline 3.1.2 disclosures, verbatim with only the store price swapped in.
+  const PLANS = [
+    { id: RC_PRODUCT_IDS.season, name: "Season Pass", sub: "One time · no subscription", unit: "",
+      legal: (p) => `Season Pass · ${p ? p + " " : ""}one-time purchase. No subscription, nothing auto-renews.`, cta: "Get the Season Pass" },
+    { id: RC_PRODUCT_IDS.monthly, name: "Monthly", sub: "Renews monthly", unit: " / month",
+      legal: (p) => `Plursky+ · ${p ? p + "/month" : "monthly"}, auto-renews until cancelled. Payment is charged to your Apple ID; manage or cancel anytime in Settings.`, cta: "Start Monthly" },
+  ];
+  const selected = PLANS.find(p => p.id === plan) || PLANS[0];
+  // On the phone, purchase waits for the App Store's price so nobody is ever
+  // charged without having seen it on this screen.
+  const waitingForPrice = isNative && !priceOf(selected.id);
+  const sheet = layout === "sheet";
+  const quiet = { minHeight: 44, display: "inline-flex", alignItems: "center", padding: "0 8px", color: "var(--text-2)", fontSize: 15, background: "transparent", border: "none", cursor: "pointer", fontFamily: "inherit" };
+  const content = (
+    <div style={{ width: "100%", padding: sheet ? 0 : "20px 16px", color: "var(--ink)", textAlign: "left" }}>
+      <div style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)" }}>
+        Plursky+{feature ? ` · unlocks ${feature}` : ""}
+      </div>
+      <h2 style={{ margin: "6px 0 0", fontSize: sheet ? 28 : 22, lineHeight: sheet ? "34px" : "28px", fontWeight: 700 }}>Keep the full weekend.</h2>
+      <div style={{ marginTop: 12 }}>
+        {_PLUS_BENEFITS.map(([title, sub]) => (
+          <div key={title} style={{ display: "flex", gap: 12, padding: "8px 0" }}>
+            <span aria-hidden="true" style={{ fontSize: 15, lineHeight: "21px", fontWeight: 700 }}>✓</span>
+            <div>
+              <div style={{ fontSize: 15, lineHeight: "21px", fontWeight: 600 }}>{title}</div>
+              <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{sub}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+      {buyError && (
+        <div role="alert" style={{ marginTop: 12, fontSize: 13, lineHeight: "18px", color: "var(--warn)" }}>
+          {buyError} You are only charged when Apple confirms — nothing was charged for this attempt.
+        </div>
+      )}
+      {canBuy ? (<>
+        <div role="radiogroup" aria-label="Choose a plan" style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 16 }}>
+          {PLANS.map(p => {
+            const on = p.id === plan, price = priceOf(p.id);
+            return (
+              <button key={p.id} role="radio" aria-checked={on} onClick={() => setPlan(p.id)} disabled={busy} style={{
+                display: "flex", alignItems: "center", gap: 12, minHeight: 64, padding: "12px 14px",
+                borderRadius: 14, background: "var(--paper-2)", color: "var(--ink)", textAlign: "left",
+                border: on ? "1.5px solid var(--signal)" : "1px solid var(--line-2)",
+                cursor: busy ? "wait" : "pointer", fontFamily: "inherit",
+              }}>
+                <span aria-hidden="true" style={{
+                  width: 22, height: 22, borderRadius: 11, flexShrink: 0,
+                  border: on ? "none" : "1.5px solid var(--line-2)", background: on ? "var(--signal)" : "transparent",
+                  color: "var(--on-signal)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800,
+                }}>{on ? "✓" : ""}</span>
+                <span style={{ flex: 1, minWidth: 0 }}>
+                  <span style={{ display: "block", fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>{p.name}</span>
+                  <span style={{ display: "block", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{p.sub}</span>
+                </span>
+                <span style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
+                  {price ? `${price}${p.unit}` : <span style={{ fontSize: 13, fontWeight: 500, color: "var(--text-2)" }}>{isNative ? "Loading…" : "App Store price"}</span>}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+        <FieldButton onClick={() => handlePurchase(selected.id)} disabled={busy || waitingForPrice} style={{ marginTop: 16 }}>
+          {pending ? "Processing…" : waitingForPrice ? "Loading App Store price…" : selected.cta}
+        </FieldButton>
+        {PLANS.map(p => (
+          <p key={p.id} style={{ margin: "10px 0 0", fontSize: 12, lineHeight: "17px", color: "var(--text-2)" }}>{p.legal(priceOf(p.id))}</p>
+        ))}
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap", marginTop: 8 }}>
+          <button onClick={handleRestore} disabled={busy} style={quiet}>Restore purchases</button>
+          <a href="./terms.html" target="_blank" rel="noopener" style={{ ...quiet, textDecoration: "underline" }}>Terms</a>
+          <a href="./privacy.html" target="_blank" rel="noopener" style={{ ...quiet, textDecoration: "underline" }}>Privacy</a>
+        </div>
+      </>) : (
+        /* Web build: no StoreKit, so there is nothing to charge. Don't show a
+           price next to a button that cannot take money — point at the app
+           instead. RESTORE is hidden too; `_restorePurchases` already
+           returns "Web mode" off-native, so it could only ever fail here. */
+        <div style={{ marginTop: 16 }}>
+          <p style={{ margin: "0 0 12px", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>Plursky+ is available in the iOS app.</p>
+          <a href={_appStoreUrl()} target="_blank" rel="noopener" style={{
+            display: "flex", alignItems: "center", justifyContent: "center", minHeight: 52, borderRadius: 14,
+            background: "var(--signal)", color: "var(--on-signal)", fontSize: 17, fontWeight: 600, textDecoration: "none",
+          }}>Get the app</a>
+          <div style={{ display: "flex", justifyContent: "center", marginTop: 8 }}>
+            <a href="./terms.html" target="_blank" rel="noopener" style={{ ...quiet, textDecoration: "underline" }}>Terms</a>
+            <a href="./privacy.html" target="_blank" rel="noopener" style={{ ...quiet, textDecoration: "underline" }}>Privacy</a>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+  // The sheet supplies its own chrome and the locked preview.
+  if (sheet) return content;
   return (
     <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", display: "grid" }}>
-      <div style={{ gridArea: "1 / 1", filter: "blur(3px)", pointerEvents: "none", opacity: 0.35 }}>{children}</div>
-      <div style={{
-        gridArea: "1 / 1", display: "flex", flexDirection: "column",
-        alignItems: "center", justifyContent: "center", gap: 0, padding: "18px 0",
-        background: "linear-gradient(180deg, rgba(26,18,13,0.85) 0%, rgba(109,40,217,0.55) 100%)",
-        backdropFilter: "blur(6px)",
-      }}>
-        <div style={{
-          width: 38, height: 38, borderRadius: "50%", marginBottom: 10,
-          background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 0 24px rgba(109,40,217,0.5)",
-        }}>
-          <span style={{ fontSize: 18 }}>+</span>
-        </div>
-        <div className="serif" style={{ fontSize: 24, color: "#fff", letterSpacing: -0.5 }}>Plursky+</div>
-        <div className="mono" style={{
-          fontSize: 9, letterSpacing: 1.4, color: "rgba(255,255,255,0.5)",
-          marginTop: 4, marginBottom: 14,
-        }}>
-          UNLOCK {(feature || "THIS FEATURE").toUpperCase()}
-        </div>
-
-        <div style={{
-          display: "flex", flexDirection: "column", gap: 7, width: "80%", maxWidth: 240,
-          marginBottom: 16,
-        }}>
-          {_PLUS_PERKS.map(([title, sub], i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <div style={{
-                width: 18, height: 18, borderRadius: "50%", flexShrink: 0,
-                background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: 10, color: "#fff", fontWeight: 700,
-              }}>&#10003;</div>
-              <div>
-                <div style={{ fontSize: 10, color: "#fff", fontWeight: 600 }}>{title}</div>
-                <div style={{ fontSize: 9, color: "rgba(255,255,255,0.45)" }}>{sub}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {buyError && (
-          <div className="mono" role="alert" style={{
-            fontSize: 9, letterSpacing: 0.6, color: "#ff9d7a",
-            marginTop: 10, maxWidth: 264, textAlign: "center", lineHeight: 1.6,
-          }}>
-            {buyError} You are only charged when Apple confirms — nothing was charged for this attempt.
-          </div>
-        )}
-
-        {canBuy ? (<>
-          {/* PRIMARY — Season Pass. NON-CONSUMABLE, so this button must carry no
-              auto-renew language at all: renewal copy on a one-time purchase is a
-              Guideline 3.1.2 rejection. It also never expires, which is why the
-              line below says "one-time purchase" and not "for the 2026 season".
-              Button words + the line below are PROVISIONAL — founder copy. */}
-          <button onClick={() => handlePurchase(RC_PRODUCT_IDS.season)} disabled={busy} className="mono" style={{
-            padding: "11px 28px", borderRadius: 12, border: "none",
-            background: busy ? "rgba(109,40,217,0.5)" : "linear-gradient(135deg, #6D28D9, #e85d2e)",
-            color: "#fff", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
-            cursor: busy ? "wait" : "pointer",
-            boxShadow: "0 4px 20px rgba(109,40,217,0.45), 0 0 40px rgba(232,93,46,0.2)",
-          }}>
-            {pending === RC_PRODUCT_IDS.season ? "PROCESSING…" : `${prices[RC_PRODUCT_IDS.season]} SEASON PASS`}
-          </button>
-          <div className="mono" style={{
-            fontSize: 8, letterSpacing: 0.5, color: "rgba(255,255,255,0.4)",
-            marginTop: 6, lineHeight: 1.5, maxWidth: 264, textAlign: "center",
-          }}>
-            Season Pass · {prices[RC_PRODUCT_IDS.season]} one-time purchase. No subscription, nothing auto-renews.
-          </div>
-
-          {/* SECONDARY — Monthly. AUTO-RENEWABLE, so it keeps the full Guideline
-              3.1.2 disclosure verbatim (name, price, term, auto-renew, where it's
-              charged, how to cancel) with only the price swapped. */}
-          <button onClick={() => handlePurchase(RC_PRODUCT_IDS.monthly)} disabled={busy} className="mono" style={{
-            marginTop: 12, padding: "9px 24px", borderRadius: 12,
-            border: "1px solid rgba(255,255,255,0.22)", background: "transparent",
-            color: busy ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.85)",
-            fontSize: 9, letterSpacing: 1.4, fontWeight: 700,
-            cursor: busy ? "wait" : "pointer",
-          }}>
-            {pending === RC_PRODUCT_IDS.monthly ? "PROCESSING…" : `${prices[RC_PRODUCT_IDS.monthly]} / MONTH`}
-          </button>
-          <div className="mono" style={{
-            fontSize: 8, letterSpacing: 0.5, color: "rgba(255,255,255,0.4)",
-            marginTop: 6, lineHeight: 1.5, maxWidth: 264, textAlign: "center",
-          }}>
-            Plursky+ · {prices[RC_PRODUCT_IDS.monthly]}/month, auto-renews until cancelled. Payment is charged to
-            your Apple ID; manage or cancel anytime in Settings.
-          </div>
-
-          {/* Applies to both products — shown once. */}
-          <div className="mono" style={{
-            fontSize: 8, letterSpacing: 0.5, color: "rgba(255,255,255,0.4)",
-            marginTop: 6, textAlign: "center",
-          }}>
-            <a href="./terms.html" target="_blank" rel="noopener" style={{ color: "rgba(255,255,255,0.6)" }}>Terms</a>
-            {"   ·   "}
-            <a href="./privacy.html" target="_blank" rel="noopener" style={{ color: "rgba(255,255,255,0.6)" }}>Privacy</a>
-          </div>
-          <button onClick={handleRestore} disabled={busy} className="mono" style={{
-            marginTop: 10, padding: "4px 12px", borderRadius: 6,
-            border: "1px solid rgba(255,255,255,0.15)", background: "transparent",
-            color: "rgba(255,255,255,0.4)", fontSize: 8, letterSpacing: 1,
-            cursor: "pointer",
-          }}>
-            RESTORE PURCHASE
-          </button>
-        </>) : (
-          /* Web build: no StoreKit, so there is nothing to charge. Don't show a
-             price next to a button that cannot take money — point at the app
-             instead. RESTORE is hidden too; `_restorePurchases` already
-             returns "Web mode" off-native, so it could only ever fail here. */
-          <div className="mono" style={{
-            fontSize: 9, letterSpacing: 0.6, color: "rgba(255,255,255,0.55)",
-            marginTop: 2, lineHeight: 1.6, maxWidth: 264, textAlign: "center",
-          }}>
-            Plursky+ is available in the iOS app.
-            <div style={{ marginTop: 8 }}>
-              <a href={_appStoreUrl()} target="_blank" rel="noopener" style={{
-                display: "inline-block", padding: "8px 20px", borderRadius: 10,
-                background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
-                color: "#fff", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
-                textDecoration: "none",
-              }}>GET THE APP</a>
-            </div>
-            <div style={{ marginTop: 10 }}>
-              <a href="./terms.html" target="_blank" rel="noopener" style={{ color: "rgba(255,255,255,0.5)" }}>Terms</a>
-              {"   ·   "}
-              <a href="./privacy.html" target="_blank" rel="noopener" style={{ color: "rgba(255,255,255,0.5)" }}>Privacy</a>
-            </div>
-          </div>
-        )}
+      <div aria-hidden="true" style={{ gridArea: "1 / 1", filter: "blur(3px)", pointerEvents: "none", opacity: 0.3 }}>{children}</div>
+      <div style={{ gridArea: "1 / 1", display: "flex", flexDirection: "column", justifyContent: "center", background: "var(--paper-3)" }}>
+        {content}
       </div>
     </div>
   );
