@@ -2135,7 +2135,7 @@ function HomeScreen({ state, setState }) {
                   <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)" }}>
                     {savedIds.length} SETS
                   </span>
-                  <ShareLineupButton savedIds={savedIds} />
+                  <ShareLineupLinkButton savedIds={savedIds} />
                 </div>
               </div>
               <div style={{
@@ -2850,7 +2850,9 @@ function _buildShareUrl(savedIds) {
   return `${base}?lineup=${savedIds.join(",")}`;
 }
 
-function ShareLineupButton({ savedIds }) {
+// Named for what it does: lineup.jsx owns ShareLineupButton (the export menu),
+// and a second global of the same name was silently replaced by it.
+function ShareLineupLinkButton({ savedIds }) {
   const [flash, setFlash] = React.useState(null); // 'shared' | 'copied'
   if (!savedIds?.length) return null;
 
@@ -3012,4 +3014,4 @@ function FriendLineupBanner({ state, setState }) {
   );
 }
 
-Object.assign(window, { HomeScreen, FriendLineupBanner, ShareLineupButton });
+Object.assign(window, { HomeScreen, FriendLineupBanner, ShareLineupLinkButton });

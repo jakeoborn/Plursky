@@ -3009,7 +3009,7 @@ function HomeScreen({
         letterSpacing: 1.3,
         color: "var(--muted)"
       }
-    }, savedIds.length, " SETS"), React.createElement(ShareLineupButton, {
+    }, savedIds.length, " SETS"), React.createElement(ShareLineupLinkButton, {
       savedIds: savedIds
     }))), React.createElement("div", {
       style: {
@@ -4197,7 +4197,7 @@ function _buildShareUrl(savedIds) {
   var base = `${window.location.origin}${window.location.pathname}`;
   return `${base}?lineup=${savedIds.join(",")}`;
 }
-function ShareLineupButton({
+function ShareLineupLinkButton({
   savedIds
 }) {
   var [flash, setFlash] = React.useState(null);
@@ -4464,5 +4464,5 @@ function FriendLineupBanner({
 Object.assign(window, {
   HomeScreen,
   FriendLineupBanner,
-  ShareLineupButton
+  ShareLineupLinkButton
 });

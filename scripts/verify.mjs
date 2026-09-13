@@ -96,6 +96,35 @@ console.log("▸ iOS focus-zoom floor — form fields stay ≥16px on iOS");
   console.log(`  ✓ input,textarea,select floored at ${m[1]}px on iOS`);
 }
 
+// ── 0b3. Duplicate-global gate ────────────────────────────────────────────
+// Every .jsx loads as a classic script, so a top-level declaration is a
+// GLOBAL and a later file's copy silently replaces an earlier one. home.jsx
+// declared ShareLineupButton({ savedIds }), the friend-link share, and
+// lineup.jsx declared ShareLineupButton({ state }), the export menu. lineup
+// loads later, so Home's pre-festival SHARE ran the menu with no state and
+// every option threw "Cannot read properties of undefined (reading 'saved')"
+// (found 2026-09-12). One top-level name, one file.
+console.log("▸ Duplicate-global gate — no top-level name declared in two .jsx files");
+{
+  const decl = /^(?:async\s+)?function\s+([A-Za-z_$][\w$]*)|^(?:const|let|var|class)\s+([A-Za-z_$][\w$]*)/;
+  const seen = new Map();
+  for (const f of readdirSync(ROOT).filter(f => f.endsWith(".jsx")).sort()) {
+    readFileSync(join(ROOT, f), "utf8").split("\n").forEach((line, i) => {
+      const m = line.match(decl);
+      if (!m) return;
+      const name = m[1] || m[2];
+      if (!seen.has(name)) seen.set(name, []);
+      seen.get(name).push(`${f}:${i + 1}`);
+    });
+  }
+  const dups = [...seen].filter(([, at]) => new Set(at.map(a => a.split(":")[0])).size > 1);
+  if (dups.length) {
+    for (const [n, at] of dups) console.log(`  ✗  ${n} — ${at.join(", ")}`);
+    fail(`${dups.length} top-level name(s) declared in more than one .jsx file; the later script silently replaces the earlier one. Rename one.`);
+  }
+  console.log(`  ✓ ${seen.size} top-level names, each declared in one file`);
+}
+
 // ── 0c. Precompile gates (v253) ────────────────────────────────────────────
 // The app no longer transpiles in the browser. Three ways that can rot:
 // index.html slipping back to text/babel, build/ going stale against the
