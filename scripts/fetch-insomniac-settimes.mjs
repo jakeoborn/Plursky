@@ -99,13 +99,14 @@ if (isMain) {
     }
     const by = {};
     for (const s of sets) by[s.stage] = (by[s.stage] || 0) + 1;
-    console.log(`▸ day ${p.day}: ${sets.length} set(s) · ${Object.entries(by).map(([k, v]) => `${k} ${v}`).join(" · ")}`);
+    // Progress goes to stderr: without --out, stdout IS the sheet.
+    console.error(`▸ day ${p.day}: ${sets.length} set(s) · ${Object.entries(by).map(([k, v]) => `${k} ${v}`).join(" · ")}`);
   }
   if (problems.length) { problems.forEach(x => console.error(`  ✗ ${x}`)); die(`${problems.length} problem(s) — no sheet written`); }
 
   const tsv = ["day\tstage\tstart\tend\tartist\tsource",
     ...rows.map(r => [r.day, r.stage, r.start, r.end, r.artist, r.source].join("\t"))].join("\n") + "\n";
   const out = flag("--out");
-  if (out) { writeFileSync(out, tsv); console.log(`  ✓ ${rows.length} row(s) → ${out}`); }
+  if (out) { writeFileSync(out, tsv); console.error(`  ✓ ${rows.length} row(s) → ${out}`); }
   else process.stdout.write(tsv);
 }
