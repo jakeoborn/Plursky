@@ -1248,14 +1248,24 @@ function FestivalSwitcher({ onClose }) {
   };
   if (plusOpen) return <PlusSheet feature="early festival access" onClose={() => setPlusOpen(false)} />;
 
+  // Phase order from data.jsx: live, upcoming by printed date, dates TBA,
+  // ended most recent first. "Now" is an event day, not the startMs..endMs
+  // envelope, so ACL between weekends and Summerfest between blocks read as
+  // upcoming, and a stub with no dates lands in TBA instead of Past.
   const now = Date.now();
-  const all = FESTIVALS_REGISTRY.slice().sort((a, b) => (a.config.startMs || 0) - (b.config.startMs || 0));
-  const live = all.filter(f => (f.config.startMs || 0) <= now && now <= (f.config.endMs || 0));
-  const past = all.filter(f => (f.config.endMs || 0) < now).reverse();
+  const ordered = _sortFestivalsForSwitcher(FESTIVALS_REGISTRY, now);
+  const phase = f => _festivalPhase(f, now);
+  const live = ordered.filter(f => phase(f) === "live");
+  const tba = ordered.filter(f => phase(f) === "tba");
+  const past = ordered.filter(f => phase(f) === "ended");
   const months = [];
-  all.filter(f => (f.config.startMs || 0) > now).forEach(f => {
+  ordered.filter(f => phase(f) === "upcoming").forEach(f => {
+    // Month of the printed start date: Decadence opens Dec 30 local, which is
+    // already Dec 31 in UTC, and must still file under December.
+    const ev = _festivalEventDates(f.config);
+    const ymd = ev ? ev.start : f.config.startMs ? new Date(f.config.startMs).toISOString().slice(0, 10) : null;
     let label = "Upcoming";
-    try { label = new Date(f.config.startMs).toLocaleDateString(undefined, { month: "long", year: "numeric", timeZone: f.config.tz || undefined }); } catch {}
+    if (ymd) { try { label = new Date(Date.UTC(+ymd.slice(0, 4), +ymd.slice(5, 7) - 1, 15)).toLocaleDateString(undefined, { month: "long", year: "numeric", timeZone: "UTC" }); } catch {} }
     let g = months.find(x => x.label === label);
     if (!g) { g = { label, fests: [] }; months.push(g); }
     g.fests.push(f);
@@ -1279,6 +1289,7 @@ function FestivalSwitcher({ onClose }) {
     if (st.saved) parts.push(<span key="s">{st.saved} saved</span>);
     if (st.conflicts) parts.push(<span key="c" style={{ color: "var(--warn)", fontWeight: 600 }}>⚠ {st.conflicts} {st.conflicts === 1 ? "conflict" : "conflicts"}</span>);
     if (isActive) parts.push(<span key="a" style={{ color: "var(--signal)", fontWeight: 600 }}>✓ Active</span>);
+    else if (phase(f) === "ended") parts.push(<span key="e">Ended</span>);
     else if (!f.available) parts.push(<span key="l">{f.previewOnly ? "Early access" : "Soon"}</span>);
     else if (st.saved && !st.conflicts) parts.push(<span key="r" style={{ color: "var(--signal)", fontWeight: 600 }}>✓ Ready</span>);
     return (
@@ -1309,6 +1320,7 @@ function FestivalSwitcher({ onClose }) {
     <FieldSheet title="Where are you raving?" onClose={onClose}>
       {live.length > 0 && group("Now", live.map(row))}
       {months.map(g => group(g.label, g.fests.map(row)))}
+      {tba.length > 0 && group("Dates TBA", tba.map(row))}
       {(past.length > 0 || archive.length > 0) && group("Past", <>
         <button onClick={() => setPastOpen(o => !o)} aria-expanded={pastOpen} style={{ ...rowStyle(false), cursor: "pointer" }}>
           <FestivalThumb entry={past[0] || null} />

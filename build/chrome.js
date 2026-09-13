@@ -1586,19 +1586,25 @@ function FestivalSwitcher({
     onClose: () => setPlusOpen(false)
   });
   var now = Date.now();
-  var all = FESTIVALS_REGISTRY.slice().sort((a, b) => (a.config.startMs || 0) - (b.config.startMs || 0));
-  var live = all.filter(f => (f.config.startMs || 0) <= now && now <= (f.config.endMs || 0));
-  var past = all.filter(f => (f.config.endMs || 0) < now).reverse();
+  var ordered = _sortFestivalsForSwitcher(FESTIVALS_REGISTRY, now);
+  var phase = f => _festivalPhase(f, now);
+  var live = ordered.filter(f => phase(f) === "live");
+  var tba = ordered.filter(f => phase(f) === "tba");
+  var past = ordered.filter(f => phase(f) === "ended");
   var months = [];
-  all.filter(f => (f.config.startMs || 0) > now).forEach(f => {
+  ordered.filter(f => phase(f) === "upcoming").forEach(f => {
+    var ev = _festivalEventDates(f.config);
+    var ymd = ev ? ev.start : f.config.startMs ? new Date(f.config.startMs).toISOString().slice(0, 10) : null;
     var label = "Upcoming";
-    try {
-      label = new Date(f.config.startMs).toLocaleDateString(undefined, {
-        month: "long",
-        year: "numeric",
-        timeZone: f.config.tz || undefined
-      });
-    } catch {}
+    if (ymd) {
+      try {
+        label = new Date(Date.UTC(+ymd.slice(0, 4), +ymd.slice(5, 7) - 1, 15)).toLocaleDateString(undefined, {
+          month: "long",
+          year: "numeric",
+          timeZone: "UTC"
+        });
+      } catch {}
+    }
     var g = months.find(x => x.label === label);
     if (!g) {
       g = {
@@ -1672,7 +1678,9 @@ function FestivalSwitcher({
         color: "var(--signal)",
         fontWeight: 600
       }
-    }, "✓ Active"));else if (!f.available) parts.push(React.createElement("span", {
+    }, "✓ Active"));else if (phase(f) === "ended") parts.push(React.createElement("span", {
+      key: "e"
+    }, "Ended"));else if (!f.available) parts.push(React.createElement("span", {
       key: "l"
     }, f.previewOnly ? "Early access" : "Soon"));else if (st.saved && !st.conflicts) parts.push(React.createElement("span", {
       key: "r",
@@ -1731,7 +1739,7 @@ function FestivalSwitcher({
   return React.createElement(FieldSheet, {
     title: "Where are you raving?",
     onClose: onClose
-  }, live.length > 0 && group("Now", live.map(row)), months.map(g => group(g.label, g.fests.map(row))), (past.length > 0 || archive.length > 0) && group("Past", React.createElement(React.Fragment, null, React.createElement("button", {
+  }, live.length > 0 && group("Now", live.map(row)), months.map(g => group(g.label, g.fests.map(row))), tba.length > 0 && group("Dates TBA", tba.map(row)), (past.length > 0 || archive.length > 0) && group("Past", React.createElement(React.Fragment, null, React.createElement("button", {
     onClick: () => setPastOpen(o => !o),
     "aria-expanded": pastOpen,
     style: {

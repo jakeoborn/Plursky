@@ -770,6 +770,108 @@ function _resolveDefaultFestivalId(now) {
   if (upcoming.length) return upcoming[0].config.id;
   return dated.slice().sort((a, b) => b.config.endMs - a.config.endMs)[0].config.id;
 }
+function _festivalEventDates(cfg) {
+  var MONTHS = {
+    Jan: 1,
+    Feb: 2,
+    Mar: 3,
+    Apr: 4,
+    May: 5,
+    Jun: 6,
+    Jul: 7,
+    Aug: 8,
+    Sep: 9,
+    Oct: 10,
+    Nov: 11,
+    Dec: 12
+  };
+  var ymd = (mon, d, y) => `${y}-${String(MONTHS[mon]).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+  var m = /^([A-Z][a-z]{2}) (\d+)[–-](\d+)(?: & (\d+)[–-](\d+))?, (\d{4})$/.exec(cfg.dates || "");
+  if (m) return {
+    start: ymd(m[1], m[2], m[6]),
+    end: ymd(m[1], m[5] || m[3], m[6])
+  };
+  var x = /^([A-Z][a-z]{2}) (\d+), (\d{4}) [–-] ([A-Z][a-z]{2}) (\d+), (\d{4})$/.exec(cfg.dates || "");
+  if (x && MONTHS[x[1]] && MONTHS[x[4]]) return {
+    start: ymd(x[1], x[2], x[3]),
+    end: ymd(x[4], x[5], x[6])
+  };
+  var dd = cfg.dayDates && Object.values(cfg.dayDates);
+  if (dd && dd.length) {
+    var f = d => `${d.y}-${String(d.m + 1).padStart(2, "0")}-${String(d.d).padStart(2, "0")}`;
+    return {
+      start: f(dd[0]),
+      end: f(dd[dd.length - 1])
+    };
+  }
+  return null;
+}
+function _festivalWindow(c) {
+  if (!c) return null;
+  if (typeof c.startMs === "number" && typeof c.endMs === "number") return {
+    startMs: c.startMs,
+    endMs: c.endMs
+  };
+  var ev = _festivalEventDates(c);
+  if (!ev) return null;
+  var day = s => Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10));
+  return {
+    startMs: day(ev.start),
+    endMs: day(ev.end) + 86400000 - 1
+  };
+}
+function _festivalEventDays(c) {
+  var base = (c && c.dayDates ? Object.values(c.dayDates) : []).map(d => typeof d.midnightUtc === "number" ? d.midnightUtc : Date.UTC(d.y, d.m, d.d)).filter(x => typeof x === "number" && !isNaN(x));
+  var out = new Set(base),
+    wk = c && c.weekendStartMs;
+  if (wk && typeof wk.W1 === "number") {
+    var _loop = function () {
+      var shift = wk[k] - wk.W1;
+      if (shift > 0) base.forEach(x => out.add(x + shift));
+    };
+    for (var k of Object.keys(wk)) {
+      _loop();
+    }
+  }
+  return [...out].sort((a, b) => a - b);
+}
+function _festivalPhase(f, now) {
+  var c = f && f.config,
+    w = _festivalWindow(c);
+  if (!w) return "tba";
+  if (now > w.endMs) return "ended";
+  if (now < w.startMs) return "upcoming";
+  if (!(typeof c.startMs === "number" && typeof c.endMs === "number")) return "upcoming";
+  var days = _festivalEventDays(c),
+    H = 3600000;
+  for (var i = 1; i < days.length; i++) {
+    if (days[i] - days[i - 1] > 36 * H && now >= days[i - 1] + 30 * H && now < days[i]) return "upcoming";
+  }
+  return "live";
+}
+function _sortFestivalsForSwitcher(list, now) {
+  var rank = {
+    live: 0,
+    upcoming: 1,
+    tba: 2,
+    ended: 3
+  };
+  var iso = ms => new Date(ms).toISOString().slice(0, 10);
+  var cmp = (x, y) => x < y ? -1 : x > y ? 1 : 0;
+  return list.map((f, i) => {
+    var c = f && f.config,
+      w = _festivalWindow(c),
+      ev = c && _festivalEventDates(c);
+    return {
+      f,
+      i,
+      p: _festivalPhase(f, now),
+      w,
+      s: ev ? ev.start : w && iso(w.startMs),
+      e: ev ? ev.end : w && iso(w.endMs)
+    };
+  }).sort((a, b) => rank[a.p] - rank[b.p] || (a.p === "ended" ? cmp(b.e, a.e) || b.w.endMs - a.w.endMs : a.p === "tba" ? 0 : cmp(a.s, b.s) || a.w.startMs - b.w.startMs) || a.i - b.i).map(x => x.f);
+}
 function getActiveFestivalId() {
   var now = Date.now();
   try {
@@ -1314,7 +1416,7 @@ function diffSchedule(oldActs, newActs, cfg) {
   var changes = [];
   var at = s => _wallMs(_cfgActDayDate(cfg, s), s.start, cfg && cfg.tz);
   var unchanged = 0;
-  var _loop = function () {
+  var _loop2 = function () {
       var b = _schedSlot(o),
         n = after.get(id);
       if (!n) {
@@ -1349,7 +1451,7 @@ function diffSchedule(oldActs, newActs, cfg) {
     },
     _ret;
   for (var [id, o] of before) {
-    _ret = _loop();
+    _ret = _loop2();
     if (_ret === 0) continue;
   }
   for (var [_id2, n] of after) {
@@ -1453,7 +1555,7 @@ function _schedFill(a, artists) {
 function _applyScheduleOverlays(sets) {
   var all = _schedOverlays();
   var dirty = false;
-  var _loop2 = function () {
+  var _loop3 = function () {
     var ds = sets[fid],
       ov = all[fid];
     if (!ds || !ov || !ov.diff || ov.base !== _schedFingerprint(_scheduleActs(ds.artists))) {
@@ -1471,7 +1573,7 @@ function _applyScheduleOverlays(sets) {
     }
   };
   for (var fid of Object.keys(all)) {
-    if (_loop2()) continue;
+    if (_loop3()) continue;
   }
   if (dirty) _schedOverlaysWrite(all);
 }
@@ -1913,19 +2015,21 @@ var EDCO_STAGES = [{
   vibeNote: "Every artist sits here until the official schedule assigns stages + times.",
   peak: "—"
 }];
+var EDCO_SCHEDULE = {};
 var _edcoMk = (id, name, genre, day) => {
+  var s = EDCO_SCHEDULE[id];
   return {
     id,
     name,
     genre,
     country: "—",
-    stage: "tba",
+    stage: s ? s[0] : "tba",
     day,
-    start: "",
-    end: "",
+    start: s ? s[1] : "",
+    end: s ? s[2] : "",
     tier: 1,
     img: `linear-gradient(135deg, #22c55e, #04170c)`,
-    bio: "Playing EDC Orlando 2026. Day is official (orlando.edc.com day filters); set time + stage are placeholders until the official schedule drops in the Insomniac app (~1-2 weeks out)."
+    bio: s ? "Playing EDC Orlando 2026." : "Playing EDC Orlando 2026. Day is official (orlando.edc.com day filters); set time + stage are placeholders until the official schedule drops in the Insomniac app (~1-2 weeks out)."
   };
 };
 var EDCO_ARTISTS = [_edcoMk("ecf1", "AAT", "Electronic", 1), _edcoMk("ecf2", "Adventure Club (Sunset Set)", "Electronic", 1), _edcoMk("ecf3", "Afrojack", "Electronic", 1), _edcoMk("ecf4", "Alesso (Sunset Set)", "Electronic", 1), _edcoMk("ecf5", "Azzecca", "House", 1), _edcoMk("ecf6", "Benda B2B Vastive", "Electronic", 1), _edcoMk("ecf7", "Big Florida", "Bass", 1), _edcoMk("ecf8", "Bou B2B Kanine", "Electronic", 1), _edcoMk("ecf9", "Brunello (Sunset Set)", "House", 1), _edcoMk("ecf10", "Bullet Tooth B2B Sidney Charles", "Techno", 1), _edcoMk("ecf11", "Chris Lorenzo", "House", 1), _edcoMk("ecf12", "David Guetta", "Electronic", 1), _edcoMk("ecf13", "HAYLA", "Electronic", 1), _edcoMk("ecf14", "IDEMI", "Electronic", 1), _edcoMk("ecf15", "Inbal", "Electronic", 1), _edcoMk("ecf16", "Interplanetary Criminal", "Electronic", 1), _edcoMk("ecf17", "JOA", "Electronic", 1), _edcoMk("ecf18", "Josh Baker", "House", 1), _edcoMk("ecf19", "Joshwa", "House", 1), _edcoMk("ecf20", "Kompany", "Bass", 1), _edcoMk("ecf21", "KREAM", "Electronic", 1), _edcoMk("ecf22", "Level Up", "Bass", 1), _edcoMk("ecf23", "Levity", "Bass", 1), _edcoMk("ecf24", "MALUGI (Sunset Set)", "Electronic", 1), _edcoMk("ecf25", "Matthias", "Electronic", 1), _edcoMk("ecf26", "Mau P", "Electronic", 1), _edcoMk("ecf27", "MPH", "Electronic", 1), _edcoMk("ecf28", "Omar+", "House", 1), _edcoMk("ecf29", "Pegassi", "Electronic", 1), _edcoMk("ecf30", "Prospa B2B Josh Baker", "House", 1), _edcoMk("ecf31", "Prospa", "Electronic", 1), _edcoMk("ecf32", "RAJE", "Electronic", 1), _edcoMk("ecf33", "Sloth", "Electronic", 1), _edcoMk("ecf34", "Whethan", "Electronic", 1), _edcoMk("ecf35", "Wooli", "Bass", 1), _edcoMk("ecf36", "Zack Martino", "Electronic", 1), _edcoMk("ecs1", "Aaron Hibell", "Electronic", 2), _edcoMk("ecs2", "ACRAZE B2B CID", "Electronic", 2), _edcoMk("ecs3", "Alan Walker (Sunset Set)", "Electronic", 2), _edcoMk("ecs4", "Alison Wonderland", "Bass", 2), _edcoMk("ecs5", "ALLEYCVT", "Bass", 2), _edcoMk("ecs6", "Alves", "Electronic", 2), _edcoMk("ecs7", "AVELLO", "Electronic", 2), _edcoMk("ecs8", "AYYBO", "Electronic", 2), _edcoMk("ecs9", "ChaseWest", "Electronic", 2), _edcoMk("ecs10", "Dennis Cruz", "House", 2), _edcoMk("ecs11", "Devault (Sunset Set)", "Electronic", 2), _edcoMk("ecs12", "Discip", "Electronic", 2), _edcoMk("ecs13", "Disco Lines", "Electronic", 2), _edcoMk("ecs14", "Fallon", "Electronic", 2), _edcoMk("ecs15", "Franky Rizardo", "House", 2), _edcoMk("ecs16", "Fury with MC Dino", "Electronic", 2), _edcoMk("ecs17", "Gabss", "Electronic", 2), _edcoMk("ecs18", "Greg 99", "Electronic", 2), _edcoMk("ecs19", "Jkyl & Hyde", "Bass", 2), _edcoMk("ecs20", "Kaskade", "Electronic", 2), _edcoMk("ecs21", "KinAhau", "House", 2), _edcoMk("ecs22", "LAYZ", "Bass", 2), _edcoMk("ecs23", "MADVKTM", "Electronic", 2), _edcoMk("ecs24", "Mai Iachetti", "Electronic", 2), _edcoMk("ecs25", "Max Dean, Luke Dean", "Electronic", 2), _edcoMk("ecs26", "Me n ü", "Electronic", 2), _edcoMk("ecs27", "Miguelle & Tons", "Electronic", 2), _edcoMk("ecs28", "Monoky", "Electronic", 2), _edcoMk("ecs29", "Nico Moreno", "Techno", 2), _edcoMk("ecs30", "Ray Volpe", "Bass", 2), _edcoMk("ecs31", "Roddy Lima", "Electronic", 2), _edcoMk("ecs32", "Rossi. (Sunset Set)", "House", 2), _edcoMk("ecs33", "Skull Machine (Black Tiger Sex Machine x Kai Wachi)", "Electronic", 2), _edcoMk("ecs34", "Steve Aoki", "Electronic", 2), _edcoMk("ecs35", "Subsonic", "Electronic", 2), _edcoMk("ecs36", "Twinsick", "Electronic", 2), _edcoMk("ecu1", "A Little Sound", "Electronic", 3), _edcoMk("ecu2", "Adrián Mills", "Techno", 3), _edcoMk("ecu3", "Alok", "Electronic", 3), _edcoMk("ecu4", "AR/CO", "Electronic", 3), _edcoMk("ecu5", "ATLiens", "Bass", 3), _edcoMk("ecu6", "Boogie T", "Bass", 3), _edcoMk("ecu7", "Boys Noize B2B Brutalismus 3000", "Techno", 3), _edcoMk("ecu8", "Chef Boyarbeatz", "Electronic", 3), _edcoMk("ecu9", "CØNTRA", "Electronic", 3), _edcoMk("ecu10", "Deorro B2B DJ Diesel", "Electronic", 3), _edcoMk("ecu11", "Discovery Project", "Electronic", 3), _edcoMk("ecu12", "ESSE", "Electronic", 3), _edcoMk("ecu13", "Hardwell", "Electronic", 3), _edcoMk("ecu14", "Holy Priest", "Electronic", 3), _edcoMk("ecu15", "I Hate Models", "Techno", 3), _edcoMk("ecu16", "Ian Asher", "Electronic", 3), _edcoMk("ecu17", "Jessica Audiffred", "Bass", 3), _edcoMk("ecu18", "Kaivon", "Bass", 3), _edcoMk("ecu19", "KI/KI", "Techno", 3), _edcoMk("ecu20", "Klangkuenstler", "Techno", 3), _edcoMk("ecu21", "Know Good", "Electronic", 3), _edcoMk("ecu22", "M81!", "Electronic", 3), _edcoMk("ecu23", "Maddix", "Electronic", 3), _edcoMk("ecu24", "Marlon Hoffstadt (Sunset Set)", "Techno", 3), _edcoMk("ecu25", "Martin Garrix", "Electronic", 3), _edcoMk("ecu26", "Meduza", "Electronic", 3), _edcoMk("ecu27", "Of The Trees (Sunset Set)", "Bass", 3), _edcoMk("ecu28", "phrva", "Electronic", 3), _edcoMk("ecu29", "Ravenscoon", "Electronic", 3), _edcoMk("ecu30", "San Holo (Wholesome Riddim Set)", "Electronic", 3), _edcoMk("ecu31", "SHDW", "Techno", 3), _edcoMk("ecu32", "Sippy", "Bass", 3), _edcoMk("ecu33", "SLANDER (Sunset Set)", "Bass", 3), _edcoMk("ecu34", "Taiki Nulight", "Electronic", 3), _edcoMk("ecu35", "TroyBoi", "Electronic", 3), _edcoMk("ecu36", "Ultrathem", "Electronic", 3)];

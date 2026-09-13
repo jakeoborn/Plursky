@@ -96,6 +96,41 @@ console.log("▸ iOS focus-zoom floor — form fields stay ≥16px on iOS");
   console.log(`  ✓ input,textarea,select floored at ${m[1]}px on iOS`);
 }
 
+// ── 0b3. Duplicate-global gate ────────────────────────────────────────────
+// Every .jsx loads as a classic script, so a top-level declaration is a
+// GLOBAL and a later file's copy silently replaces an earlier one. home.jsx
+// declared ShareLineupButton({ savedIds }), the friend-link share, and
+// lineup.jsx declared ShareLineupButton({ state }), the export menu. lineup
+// loads later, so Home's pre-festival SHARE ran the menu with no state and
+// every option threw "Cannot read properties of undefined (reading 'saved')"
+// (found 2026-09-12). One top-level name, one file.
+// Names come from Babel's program-scope bindings, not a line regex, so a
+// later declarator (`const A = 1, B = 2`), a destructured name, a
+// `function*`, and a `var` hoisted out of a top-level block all count.
+console.log("▸ Duplicate-global gate — no top-level name declared in two .jsx files");
+{
+  const seen = new Map();
+  for (const f of readdirSync(ROOT).filter(f => f.endsWith(".jsx")).sort()) {
+    const ast = parseSync(readFileSync(join(ROOT, f), "utf8"), { filename: f,
+      presets: [["@babel/preset-react", {}]], babelrc: false, configFile: false, ast: true, code: false });
+    traverse(ast, {
+      Program(p) {
+        for (const [name, b] of Object.entries(p.scope.bindings)) {
+          if (!seen.has(name)) seen.set(name, []);
+          seen.get(name).push(`${f}:${b.identifier.loc.start.line}`);
+        }
+        p.stop();
+      },
+    });
+  }
+  const dups = [...seen].filter(([, at]) => new Set(at.map(a => a.split(":")[0])).size > 1);
+  if (dups.length) {
+    for (const [n, at] of dups) console.log(`  ✗  ${n} — ${at.join(", ")}`);
+    fail(`${dups.length} top-level name(s) declared in more than one .jsx file; the later script silently replaces the earlier one. Rename one.`);
+  }
+  console.log(`  ✓ ${seen.size} top-level names, each declared in one file`);
+}
+
 // ── 0c. Precompile gates (v253) ────────────────────────────────────────────
 // The app no longer transpiles in the browser. Three ways that can rot:
 // index.html slipping back to text/babel, build/ going stale against the
@@ -322,6 +357,59 @@ if (fdata.length) {
     const detail = ((e.stderr || "") + (e.stdout || "")).trim();
     if (detail) console.log("  " + detail.replace(/\n/g, "\n  "));
     fail("generated festival pages are stale — run: node scripts/gen-festival-pages.mjs");
+  }
+}
+
+// ── Festival-status freshness gate ───────────────────────────────────────
+// docs/qa/INSTINCT-QUEUE.md is the tracker both agents plan from. Its live and
+// gated counts were typed by hand and read "9 live" while the registry had 12
+// (found 2026-09-12). The table between the festival-status markers is now
+// generated from FESTIVALS_REGISTRY + _DATA_SETS, and a flip, a new entry or a
+// lineup change that does not regenerate it fails here.
+{
+  console.log("▸ Festival-status gate — the queue's live/gated table must match the registry");
+  try {
+    const out = execFileSync("node", ["scripts/festival-status.mjs", "--check"],
+                             { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    console.log("  " + out.trim());
+  } catch (e) {
+    const detail = ((e.stderr || "") + (e.stdout || "")).trim();
+    if (detail) console.log("  " + detail.replace(/\n/g, "\n  "));
+    fail("the festival status table is stale — run: node scripts/festival-status.mjs");
+  }
+}
+
+// ── Set-time importer gate ───────────────────────────────────────────────
+// Every gated festival flips through import-set-times.mjs. It must write into
+// the festival's own module, take days from the sheet for a lineup that
+// publishes none, place null-day acts, and refuse a sheet it cannot place.
+// The test runs against the real modules in a throwaway copy.
+{
+  console.log("▸ Set-time importer gate — module target, sheet days, refusals");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-import-set-times.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    console.log("  " + out.trim());
+  } catch (e) {
+    const detail = ((e.stderr || "") + (e.stdout || "")).trim();
+    if (detail) console.log("  " + detail.replace(/\n/g, "\n  "));
+    fail("the set-time importer failed its test — see above");
+  }
+}
+
+// ── Festival switcher order gate ─────────────────────────────────────────
+// The switcher lists live → upcoming → TBA → ended (Jake 2026-09-13). The
+// test runs data.jsx's _sortFestivalsForSwitcher on fixtures and the registry.
+{
+  console.log("▸ Festival switcher order gate — live, upcoming, TBA, ended");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-switcher-order.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    console.log("  " + out.trim());
+  } catch (e) {
+    const detail = ((e.stderr || "") + (e.stdout || "")).trim();
+    if (detail) console.log("  " + detail.replace(/\n/g, "\n  "));
+    fail("the festival switcher order failed its test — see above");
   }
 }
 
@@ -1873,6 +1961,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`schedule diff engine failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b2a. Official set-times fetcher ────────────────────────────────────
+// fetch-insomniac-settimes.mjs turns the official /lineup/set-times/day-N/
+// pages into the importer's sheet. Its parser must drop the Full Schedule
+// repeats, keep B2B billings whole, decode accents, and read the epochs as
+// the printed wall clock (UTC), or a flip imports wrong times.
+{
+  console.log("▸ Set-times fetcher gate — official page markup → sheet rows");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-insomniac-settimes.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write("  " + out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`set-times fetcher parser failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 

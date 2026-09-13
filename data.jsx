@@ -585,7 +585,7 @@ const FESTIVALS_REGISTRY = [
     // the June preview stub, which carried "Nov 13–15, 2026" — the
     // official dates per the Insomniac press release (2026-06-23) and
     // orlando.edc.com are NOV 6–8, 2026. Day-by-day lineup is REAL
-    // (109 acts, official site day filters); set times, per-artist stage
+    // (108 acts, official site day filters); set times, per-artist stage
     // assignments, and the official 2026 map are NOT published yet
     // (checked 2026-08-22; Insomniac drops them in the EDC app ~1-2
     // weeks out). Flip `available: true` ONLY after the flip session
@@ -997,6 +997,102 @@ function _resolveDefaultFestivalId(now) {
   // Nothing ahead: the most RECENTLY ended, which is the one whose photos are
   // still on the phone. Registry order would have picked an arbitrary entry.
   return dated.slice().sort((a, b) => b.config.endMs - a.config.endMs)[0].config.id;
+}
+
+// The registry's VISIBLE `dates` string → { start, end } as "YYYY-MM-DD", or
+// null. One parser for the /f/ pages (gen-festival-pages.mjs, which explains
+// why pages read `dates` and not startMs/endMs) and the festival switcher.
+// Handles "Sep 18–20, 2026" and "Oct 2–4 & 9–11, 2026". A span that crosses a
+// month or a year names both ends in full ("Dec 31, 2026 – Jan 1, 2027",
+// Countdown NYE); without that branch it parsed as NO DATES (#109). Anything
+// else falls back to dayDates.
+function _festivalEventDates(cfg) {
+  const MONTHS = { Jan:1, Feb:2, Mar:3, Apr:4, May:5, Jun:6, Jul:7, Aug:8, Sep:9, Oct:10, Nov:11, Dec:12 };
+  const ymd = (mon, d, y) => `${y}-${String(MONTHS[mon]).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+  const m = /^([A-Z][a-z]{2}) (\d+)[–-](\d+)(?: & (\d+)[–-](\d+))?, (\d{4})$/.exec(cfg.dates || "");
+  if (m) return { start: ymd(m[1], m[2], m[6]), end: ymd(m[1], m[5] || m[3], m[6]) };
+  const x = /^([A-Z][a-z]{2}) (\d+), (\d{4}) [–-] ([A-Z][a-z]{2}) (\d+), (\d{4})$/.exec(cfg.dates || "");
+  if (x && MONTHS[x[1]] && MONTHS[x[4]]) return { start: ymd(x[1], x[2], x[3]), end: ymd(x[4], x[5], x[6]) };
+  const dd = cfg.dayDates && Object.values(cfg.dayDates);
+  if (dd && dd.length) {
+    const f = (d) => `${d.y}-${String(d.m + 1).padStart(2, "0")}-${String(d.d).padStart(2, "0")}`;
+    return { start: f(dd[0]), end: f(dd[dd.length - 1]) };
+  }
+  return null;
+}
+
+// A festival's window for ordering: its real startMs/endMs when it has both,
+// else whole UTC days from its printed `dates` (a 2027 stub announces dates
+// long before gate times exist). null = dates TBA, never sorted as epoch 0.
+function _festivalWindow(c) {
+  if (!c) return null;
+  if (typeof c.startMs === "number" && typeof c.endMs === "number") return { startMs: c.startMs, endMs: c.endMs };
+  const ev = _festivalEventDates(c);
+  if (!ev) return null;
+  const day = s => Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10));
+  return { startMs: day(ev.start), endMs: day(ev.end) + 86400000 - 1 };
+}
+
+// Festival switcher order (Jake 2026-09-13): live first, then upcoming
+// (soonest first), then dates TBA (registry order), then ended last (most
+// recently ended first).
+// The local midnights a festival actually runs on: its dayDates, plus a copy
+// of them per later weekend when weekendStartMs says the days repeat (ACL's
+// dayDates describe weekend one only). Sorted; [] without dayDates.
+function _festivalEventDays(c) {
+  const base = (c && c.dayDates ? Object.values(c.dayDates) : [])
+    .map(d => (typeof d.midnightUtc === "number" ? d.midnightUtc : Date.UTC(d.y, d.m, d.d)))
+    .filter(x => typeof x === "number" && !isNaN(x));
+  const out = new Set(base), wk = c && c.weekendStartMs;
+  if (wk && typeof wk.W1 === "number") {
+    for (const k of Object.keys(wk)) {
+      const shift = wk[k] - wk.W1;
+      if (shift > 0) base.forEach(x => out.add(x + shift));
+    }
+  }
+  return [...out].sort((a, b) => a - b);
+}
+
+function _festivalPhase(f, now) {
+  const c = f && f.config, w = _festivalWindow(c);
+  if (!w) return "tba";
+  if (now > w.endMs) return "ended";
+  if (now < w.startMs) return "upcoming";
+  // Only an entry with real gate times can be live. A dates-only stub
+  // (Coachella 2027: "Apr 9–18", two weekends, no dayDates) is unbuilt, and
+  // its printed span can't say which days it runs (Codex's third P2 on #183).
+  if (!(typeof c.startMs === "number" && typeof c.endMs === "number")) return "upcoming";
+  // Inside the startMs..endMs envelope, a festival that runs in blocks (ACL's
+  // two weekends, Summerfest's three Thu–Sat runs) is live only on its event
+  // days; the gap between blocks is upcoming (two Codex P2s on #183). A day
+  // counts until 06:00 the next morning, for sets past midnight.
+  const days = _festivalEventDays(c), H = 3600000;
+  for (let i = 1; i < days.length; i++) {
+    if (days[i] - days[i - 1] > 36 * H && now >= days[i - 1] + 30 * H && now < days[i]) return "upcoming";
+  }
+  return "live";
+}
+
+// Within a phase, order by the PRINTED date the row shows, not the window:
+// Decadence's doors (Dec 30 17:00 MST) are Dec 31 00:00Z, the same instant as
+// Countdown NYE's printed-only Dec 31, so an instant-only key listed Dec 31
+// above Dec 30. The real instant only breaks a same-day tie.
+function _sortFestivalsForSwitcher(list, now) {
+  const rank = { live: 0, upcoming: 1, tba: 2, ended: 3 };
+  const iso = ms => new Date(ms).toISOString().slice(0, 10);
+  const cmp = (x, y) => (x < y ? -1 : x > y ? 1 : 0);
+  return list
+    .map((f, i) => {
+      const c = f && f.config, w = _festivalWindow(c), ev = c && _festivalEventDates(c);
+      return { f, i, p: _festivalPhase(f, now), w,
+        s: ev ? ev.start : w && iso(w.startMs), e: ev ? ev.end : w && iso(w.endMs) };
+    })
+    .sort((a, b) => rank[a.p] - rank[b.p]
+      || (a.p === "ended" ? cmp(b.e, a.e) || b.w.endMs - a.w.endMs
+        : a.p === "tba"   ? 0
+        : cmp(a.s, b.s) || a.w.startMs - b.w.startMs)
+      || a.i - b.i)
+    .map(x => x.f);
 }
 
 function getActiveFestivalId() {
@@ -2325,7 +2421,7 @@ const ACL_AMENITIES = [
 
 // ══════════════════════ EDC ORLANDO 2026 (revival scaffold 2026-08-22) ══════
 // Lineup + DAY SPLITS are REAL (official orlando.edc.com/lineup day
-// filters, 109 acts; audited vs Insomniac press release 2026-06-23).
+// filters, 108 acts; audited vs Insomniac press release 2026-06-23).
 // Set times + per-artist stage assignments + official 2026 map are NOT
 // published — every artist sits on stage "tba" with placeholder
 // 12:00-13:00 times until the flip session. Stage names verified from
@@ -2356,17 +2452,29 @@ const EDCO_STAGES = [
   { id: "tba",    name: "Schedule TBA",    short: "TBA",      color: "#9ca3af", x: 50, y: 50, size: 0.1, desc: "PROVISIONAL: stage assignments drop with the official schedule", vibe: "Unscheduled", vibeNote: "Every artist sits here until the official schedule assigns stages + times.", peak: "—" },
 ];
 
+// The flip fills this block from the OFFICIAL schedule:
+//   node scripts/fetch-insomniac-settimes.mjs https://orlando.edc.com/lineup/set-times --days 3 --out sheet.tsv
+//   node scripts/import-set-times.mjs edc-orlando-2026 sheet.tsv --source <official-url>
+// id → [stageId, start, end]. Empty until then: every act stays on "tba".
+const EDCO_SCHEDULE = {
+  // SCHEDULE:BEGIN edc-orlando-2026
+  // SCHEDULE:END
+};
 const _edcoMk = (id, name, genre, day) => {
   // ⚠ NO SET TIMES ON PURPOSE — see _llMk. Every act used to carry the same
   // placeholder "12:00"-"13:00", which is honest in intent but still renders
   // as a schedule. Blank is the form the UI already understands.
-  return { id, name, genre, country: "—", stage: "tba", day, start: "", end: "", tier: 1,
+  // EDCO_SCHEDULE above is the only way a time gets in.
+  const s = EDCO_SCHEDULE[id];
+  return { id, name, genre, country: "—", stage: s ? s[0] : "tba", day, start: s ? s[1] : "", end: s ? s[2] : "", tier: 1,
     img: `linear-gradient(135deg, #22c55e, #04170c)`,
-    bio: "Playing EDC Orlando 2026. Day is official (orlando.edc.com day filters); set time + stage are placeholders until the official schedule drops in the Insomniac app (~1-2 weeks out)." };
+    bio: s ? "Playing EDC Orlando 2026."
+           : "Playing EDC Orlando 2026. Day is official (orlando.edc.com day filters); set time + stage are placeholders until the official schedule drops in the Insomniac app (~1-2 weeks out)." };
 };
 
 // Official day-by-day lineup (orlando.edc.com/lineup day filters, audited
-// 2026-08-22: Fri 36 / Sat 36 / Sun 37 = 109 acts). id prefix:
+// 2026-08-22; re-diffed 2026-09-13 against the page's day <li> elements:
+// Fri 36 / Sat 36 / Sun 36 = 108 acts, name-for-name). id prefix:
 // ecf Fri Nov 6 / ecs Sat Nov 7 / ecu Sun Nov 8. Genre tags agent-assigned
 // for the press-release groupings, default "Electronic" otherwise.
 const EDCO_ARTISTS = [

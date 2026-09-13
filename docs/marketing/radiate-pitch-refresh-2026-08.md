@@ -3,7 +3,7 @@
 Status: REFRESHED DRAFT. The June version sits HOLDING in Jake's Mail drafts (recipient: the Radiate community contact — address kept out of this public repo; it's on the draft itself). Nothing sends until the founder reviews this copy and presses send himself. Gate for sending (founder's original): Lost Lands + EDC Orlando shipped → both scaffolds now merged and gated (#10 Lost Lands, #12 EDC Orlando); "shipped" = PRs merged + flipped live when official schedules drop.
 
 ## What changed vs the June draft
-- Festival claims are stronger + CORRECTED: lineup view now covers EDC LV, ACL 2026, Lost Lands 2026 (201 acts, Sep 18–20; early entry Sep 16–17), EDC Orlando 2026 (109 acts, **Nov 6–8** — June copy said Nov 13–15).
+- Festival claims are stronger + CORRECTED: lineup view now covers EDC LV, ACL 2026, Lost Lands 2026 (201 acts, Sep 18–20; early entry Sep 16–17), EDC Orlando 2026 (108 acts, **Nov 6–8** — June copy said Nov 13–15).
 - Watermark legibility: recap exports now carry a phone-legible `PLURSKY.COM` on all 8 export surfaces (PR #13).
 - Privacy page current for Shazam, Moments, backup, Plursky+ (PR #9).
 - Monetization rail: Plursky+ pricing confirmed by founder (2026-08-22): $14.99 festival-season pass (primary), $4.99/mo (secondary).
