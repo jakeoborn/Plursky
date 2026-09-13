@@ -51,7 +51,7 @@ verdict is gated on the art; that gate is the finding, not a delay.
 
 ### WATCH-B — Insomniac schedule (stage + set times)
 Insomniac drops per-artist stage + set times in the EDC app ~1–2 weeks out.
-Pull stage AND set time TOGETHER for all 109 acts — partial data never ships
+Pull stage AND set time TOGETHER for all 108 acts — partial data never ships
 (`setTimesProvisional: true` and the parked `tba` stage at x:50 y:50 stay until
 then). Deliver one sheet: artist | day | stage | start | end | source URL.
 
