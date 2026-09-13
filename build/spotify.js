@@ -2548,8 +2548,8 @@ function _ThumbMedia({
         justifyContent: "center",
         paddingBottom: 6,
         boxSizing: "border-box",
-        background: "linear-gradient(160deg, #2a2a30, #121216)",
-        color: "rgba(255,255,255,0.72)"
+        background: "var(--paper-3)",
+        color: "var(--text-2)"
       }
     }, showLength && React.createElement("span", {
       className: "mono",
@@ -2809,7 +2809,7 @@ function _HomeMemoryThumb({
       border: "1px solid var(--line)",
       overflow: "hidden",
       position: "relative",
-      background: url ? "#000" : "var(--paper-2)",
+      background: url ? "var(--paper)" : "var(--paper-2)",
       cursor: "pointer",
       padding: 0
     }
@@ -2830,21 +2830,21 @@ function _HomeMemoryThumb({
       bottom: 0,
       left: 0,
       right: 0,
-      background: "linear-gradient(0deg, rgba(0,0,0,0.8), transparent)",
-      padding: "16px 8px 7px"
+      background: "var(--media-scrim)",
+      padding: "20px 8px 8px"
     }
   }, React.createElement("div", {
-    className: "mono",
     style: {
-      fontSize: 8,
-      letterSpacing: 0.6,
-      color: "#fff",
-      fontWeight: 700,
+      fontSize: 12,
+      lineHeight: "16px",
+      color: "var(--media-ink)",
+      fontWeight: 600,
+      textAlign: "left",
       whiteSpace: "nowrap",
       overflow: "hidden",
       textOverflow: "ellipsis"
     }
-  }, artist ? artist.name.toUpperCase() : "NIGHT " + moment.night)));
+  }, artist ? artist.name : `Night ${moment.night}`)));
 }
 function _readRecapSeen() {
   try {
@@ -2940,7 +2940,8 @@ function HomeMemoriesStrip({
   var morningAfter = (() => {
     try {
       var h = parseInt((window.NOW?.time || "").split(":")[0], 10);
-      return h >= 4 && h <= 15;
+      var tonight = window.NOW?.night || window.NOW?.day || 0;
+      return h >= 4 && h <= 15 && !!recapReady && recapReady.night < tonight;
     } catch {
       return false;
     }
@@ -2962,10 +2963,10 @@ function HomeMemoriesStrip({
     artist: null
   });
   var canRecap = reelData && reelData.moments.length >= 2;
-  return React.createElement("div", {
+  return React.createElement("section", {
     "data-animate": true,
     style: {
-      marginTop: 22
+      margin: "0 -20px"
     }
   }, reel && React.createElement(MemoryReel, {
     moments: reel.moments,
@@ -2983,72 +2984,117 @@ function HomeMemoriesStrip({
       tab: "recap",
       artist: null
     })
+  }), React.createElement(FieldSectionHeader, {
+    title: "Your memories",
+    action: React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center"
+      }
+    }, canRecap && !recapReady && React.createElement("button", {
+      onClick: () => playRecap(reelData),
+      style: {
+        ...fieldIconBtn,
+        width: "auto",
+        gap: 6,
+        padding: "0 10px",
+        color: "var(--signal-ink)",
+        fontSize: 15,
+        fontWeight: 600
+      }
+    }, React.createElement("svg", {
+      "aria-hidden": "true",
+      width: "12",
+      height: "12",
+      viewBox: "0 0 24 24",
+      fill: "currentColor"
+    }, React.createElement("path", {
+      d: "M6 4 L20 12 L6 20 Z"
+    })), "Play"), React.createElement("button", {
+      onClick: () => go(NOW.day),
+      style: {
+        ...fieldIconBtn,
+        width: "auto",
+        padding: "0 4px",
+        color: "var(--text-2)",
+        fontSize: 15,
+        fontWeight: 500
+      }
+    }, "See all"))
   }), recapReady && (() => {
     var clips = (highlightReel || recapReady).moments;
     var vids = clips.filter(m => m.kind === "video").length;
-    return React.createElement("button", {
+    return React.createElement("div", {
+      style: {
+        padding: "4px 20px 12px"
+      }
+    }, React.createElement("button", {
       onClick: playHighlights,
       style: {
         width: "100%",
         display: "flex",
         alignItems: "center",
         gap: 12,
-        padding: "13px 14px",
-        marginBottom: 14,
-        borderRadius: 16,
+        padding: "12px 0 12px 12px",
+        borderRadius: 14,
         cursor: "pointer",
         border: "none",
         textAlign: "left",
-        background: "linear-gradient(135deg, var(--ember), #7b3d9a)",
-        boxShadow: "0 6px 20px rgba(232,93,46,0.28)"
+        background: "var(--paper-2)",
+        color: "var(--ink)"
       }
     }, React.createElement("span", {
+      "aria-hidden": "true",
       style: {
-        width: 42,
-        height: 42,
+        width: 44,
+        height: 44,
         flexShrink: 0,
-        borderRadius: 999,
-        background: "rgba(255,255,255,0.18)",
+        borderRadius: 22,
+        background: "var(--signal)",
+        color: "var(--on-signal)",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
-        fontSize: 18,
-        color: "#fff"
+        justifyContent: "center"
       }
-    }, "▶"), React.createElement("span", {
+    }, React.createElement("svg", {
+      width: "16",
+      height: "16",
+      viewBox: "0 0 24 24",
+      fill: "currentColor"
+    }, React.createElement("path", {
+      d: "M8 5 L19 12 L8 19 Z"
+    }))), React.createElement("span", {
       style: {
         flex: 1,
         minWidth: 0
       }
     }, React.createElement("span", {
-      className: "mono",
       style: {
         display: "block",
-        fontSize: 8.5,
-        letterSpacing: 1.4,
-        fontWeight: 800,
-        color: "rgba(255,255,255,0.8)"
+        fontSize: 11,
+        lineHeight: "14px",
+        fontWeight: 600,
+        letterSpacing: "0.04em",
+        textTransform: "uppercase",
+        color: "var(--text-2)"
       }
-    }, morningAfter ? "LAST NIGHT IN 15s" : "RECAP READY"), React.createElement("span", {
-      className: "serif",
+    }, morningAfter ? "Last night in 15s" : "Recap ready"), React.createElement("span", {
       style: {
         display: "block",
-        fontSize: 18,
-        lineHeight: 1.1,
-        color: "#fff",
-        marginTop: 1
+        fontSize: 17,
+        lineHeight: "22px",
+        fontWeight: 600,
+        marginTop: 2
       }
     }, morningAfter ? `Your ${recapReady.label}, recapped` : `Your ${recapReady.label}`), React.createElement("span", {
-      className: "mono",
       style: {
         display: "block",
-        fontSize: 9,
-        letterSpacing: 0.6,
-        color: "rgba(255,255,255,0.78)",
-        marginTop: 3,
-        fontWeight: 600
+        fontSize: 13,
+        lineHeight: "18px",
+        color: "var(--text-2)",
+        marginTop: 2
       }
-    }, clips.length, " BEST ", clips.length === 1 ? "CLIP" : "CLIPS", vids ? ` · ${vids} VIDEO${vids === 1 ? "" : "S"}` : "", " · TAP TO PLAY")), React.createElement("span", {
+    }, clips.length, " best ", clips.length === 1 ? "clip" : "clips", vids ? ` · ${vids} ${vids === 1 ? "video" : "videos"}` : "")), React.createElement("span", {
       onClick: e => {
         e.stopPropagation();
         dismissRecap();
@@ -3056,85 +3102,26 @@ function HomeMemoriesStrip({
       role: "button",
       "aria-label": "Dismiss",
       style: {
+        width: 44,
+        height: 44,
         flexShrink: 0,
-        width: 26,
-        height: 26,
-        borderRadius: 999,
-        background: "rgba(0,0,0,0.18)",
-        color: "#fff",
-        fontSize: 12,
+        color: "var(--text-2)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center"
       }
-    }, "✕"));
-  })(), React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "baseline",
-      justifyContent: "space-between",
-      marginBottom: 10
-    }
-  }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 22
-    }
-  }, "Your ", React.createElement("span", {
-    style: {
-      fontStyle: "italic",
-      color: "var(--ember-ink)"
-    }
-  }, "memories")), React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 10
-    }
-  }, canRecap && React.createElement("button", {
-    onClick: () => playRecap(reelData),
-    className: "mono",
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 5,
-      background: "linear-gradient(135deg, var(--ember), #7b3d9a)",
-      border: "none",
-      borderRadius: 999,
-      padding: "5px 11px",
-      color: "#fff",
-      cursor: "pointer",
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 800
-    }
-  }, React.createElement("span", {
-    style: {
-      fontSize: 10
-    }
-  }, "▶"), " PLAY"), React.createElement("button", {
-    onClick: () => go(NOW.day),
-    className: "mono",
-    style: {
-      background: "transparent",
-      border: "none",
-      cursor: "pointer",
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      fontWeight: 700
-    }
-  }, "SEE ALL →"))), React.createElement("div", {
-    className: "no-scrollbar",
-    style: {
-      display: "flex",
-      gap: 8,
-      overflowX: "auto",
-      scrollbarWidth: "none",
-      marginRight: -16,
-      paddingRight: 16
-    }
-  }, recent.map(m => React.createElement(_HomeMemoryThumb, {
+    }, React.createElement("svg", {
+      width: "16",
+      height: "16",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round"
+    }, React.createElement("path", {
+      d: "M6 6 L18 18 M18 6 L6 18"
+    })))));
+  })(), React.createElement(FieldMediaRow, null, recent.map(m => React.createElement(_HomeMemoryThumb, {
     key: m.id,
     moment: m,
     onClick: () => go(m.night || NOW.day)
@@ -4170,19 +4157,19 @@ function _VideoBadge({
       display: "inline-flex",
       alignItems: "center",
       gap: 3,
-      background: "rgba(0,0,0,0.6)",
-      color: "#fff",
-      fontSize: 8,
-      letterSpacing: 0.5,
-      fontWeight: 700,
-      padding: "2px 6px",
+      background: "var(--media-badge)",
+      color: "var(--media-ink)",
+      fontSize: 11,
+      lineHeight: "14px",
+      fontWeight: 600,
+      padding: "2px 7px",
       borderRadius: 999,
       pointerEvents: "none",
       ...style
     }
   }, React.createElement("span", {
     style: {
-      fontSize: 7
+      fontSize: 8
     }
   }, "▶"), seconds ? _fmtClock(seconds) : "VIDEO");
 }

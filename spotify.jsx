@@ -1740,7 +1740,7 @@ function _ThumbMedia({ moment, thumb, showLength = true }) {
     return (
       <div role="img" aria-label={label} style={{
         ...fill, display: "flex", alignItems: "flex-end", justifyContent: "center", paddingBottom: 6, boxSizing: "border-box",
-        background: "linear-gradient(160deg, #2a2a30, #121216)", color: "rgba(255,255,255,0.72)",
+        background: "var(--paper-3)", color: "var(--text-2)",
       }}>
         {showLength && (
           <span className="mono" style={{ fontSize: 9, letterSpacing: 0.8, fontWeight: 700 }}>
@@ -1901,7 +1901,7 @@ function _HomeMemoryThumb({ moment, onClick }) {
     <button onClick={onClick} style={{
       flexShrink: 0, width: 96, height: 128, borderRadius: 14,
       border: "1px solid var(--line)", overflow: "hidden", position: "relative",
-      background: url ? "#000" : "var(--paper-2)", cursor: "pointer", padding: 0,
+      background: url ? "var(--paper)" : "var(--paper-2)", cursor: "pointer", padding: 0,
     }}>
       <_ThumbMedia moment={moment} thumb={thumb} showLength={false}/>
       {moment.kind === "video" && (
@@ -1909,11 +1909,11 @@ function _HomeMemoryThumb({ moment, onClick }) {
       )}
       <div style={{
         position: "absolute", bottom: 0, left: 0, right: 0,
-        background: "linear-gradient(0deg, rgba(0,0,0,0.8), transparent)",
-        padding: "16px 8px 7px",
+        background: "var(--media-scrim)",
+        padding: "20px 8px 8px",
       }}>
-        <div className="mono" style={{ fontSize: 8, letterSpacing: 0.6, color: "#fff", fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-          {artist ? artist.name.toUpperCase() : "NIGHT " + moment.night}
+        <div style={{ fontSize: 12, lineHeight: "16px", color: "var(--media-ink)", fontWeight: 600, textAlign: "left", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+          {artist ? artist.name : `Night ${moment.night}`}
         </div>
       </div>
     </button>
@@ -2004,7 +2004,11 @@ function HomeMemoriesStrip({ state, setState }) {
     return { ...recapReady, moments: best };
   }, [recapReady]);
   const morningAfter = (() => {
-    try { const h = parseInt((window.NOW?.time || "").split(":")[0], 10); return h >= 4 && h <= 15; } catch { return false; }
+    try {
+      const h = parseInt((window.NOW?.time || "").split(":")[0], 10);
+      const tonight = window.NOW?.night || window.NOW?.day || 0;
+      return h >= 4 && h <= 15 && !!recapReady && recapReady.night < tonight;
+    } catch { return false; }
   })();
   const playHighlights = () => {
     if (!recapReady || !highlightReel) return;
@@ -2018,8 +2022,10 @@ function HomeMemoriesStrip({ state, setState }) {
   const go = (night) => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "memories", memoriesNight: night, artist: null });
   const canRecap = reelData && reelData.moments.length >= 2;
 
+  // Field Mode: one section header, one flat media row, and at most one
+  // recap row on a raised surface. The accent is only the play control.
   return (
-    <div data-animate style={{ marginTop: 22 }}>
+    <section data-animate style={{ margin: "0 -20px" }}>
       {reel && (
         <MemoryReel
           moments={reel.moments}
@@ -2031,65 +2037,61 @@ function HomeMemoriesStrip({ state, setState }) {
           onMakeVideo={() => setState({ ...state, tab: "recap", artist: null })}
         />
       )}
+      <FieldSectionHeader title="Your memories" action={
+        <div style={{ display: "flex", alignItems: "center" }}>
+          {canRecap && !recapReady && (
+            <button onClick={() => playRecap(reelData)} style={{ ...fieldIconBtn, width: "auto", gap: 6, padding: "0 10px", color: "var(--signal-ink)", fontSize: 15, fontWeight: 600 }}>
+              <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4 L20 12 L6 20 Z"/></svg>
+              Play
+            </button>
+          )}
+          <button onClick={() => go(NOW.day)} style={{ ...fieldIconBtn, width: "auto", padding: "0 4px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 }}>See all</button>
+        </div>
+      } />
       {recapReady && (() => {
         const clips = (highlightReel || recapReady).moments;
         const vids = clips.filter(m => m.kind === "video").length;
         return (
-          <button onClick={playHighlights} style={{
-            width: "100%", display: "flex", alignItems: "center", gap: 12,
-            padding: "13px 14px", marginBottom: 14, borderRadius: 16, cursor: "pointer",
-            border: "none", textAlign: "left",
-            background: "linear-gradient(135deg, var(--ember), #7b3d9a)",
-            boxShadow: "0 6px 20px rgba(232,93,46,0.28)",
-          }}>
-            <span style={{
-              width: 42, height: 42, flexShrink: 0, borderRadius: 999,
-              background: "rgba(255,255,255,0.18)", display: "flex",
-              alignItems: "center", justifyContent: "center", fontSize: 18, color: "#fff",
-            }}>▶</span>
-            <span style={{ flex: 1, minWidth: 0 }}>
-              <span className="mono" style={{ display: "block", fontSize: 8.5, letterSpacing: 1.4, fontWeight: 800, color: "rgba(255,255,255,0.8)" }}>{morningAfter ? "LAST NIGHT IN 15s" : "RECAP READY"}</span>
-              <span className="serif" style={{ display: "block", fontSize: 18, lineHeight: 1.1, color: "#fff", marginTop: 1 }}>{morningAfter ? `Your ${recapReady.label}, recapped` : `Your ${recapReady.label}`}</span>
-              <span className="mono" style={{ display: "block", fontSize: 9, letterSpacing: 0.6, color: "rgba(255,255,255,0.78)", marginTop: 3, fontWeight: 600 }}>
-                {clips.length} BEST {clips.length === 1 ? "CLIP" : "CLIPS"}{vids ? ` · ${vids} VIDEO${vids === 1 ? "" : "S"}` : ""} · TAP TO PLAY
+          <div style={{ padding: "4px 20px 12px" }}>
+            <button onClick={playHighlights} style={{
+              width: "100%", display: "flex", alignItems: "center", gap: 12,
+              padding: "12px 0 12px 12px", borderRadius: 14, cursor: "pointer",
+              border: "none", textAlign: "left", background: "var(--paper-2)", color: "var(--ink)",
+            }}>
+              <span aria-hidden="true" style={{
+                width: 44, height: 44, flexShrink: 0, borderRadius: 22,
+                background: "var(--signal)", color: "var(--on-signal)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5 L19 12 L8 19 Z"/></svg>
               </span>
-            </span>
-            <span onClick={(e) => { e.stopPropagation(); dismissRecap(); }} role="button" aria-label="Dismiss" style={{
-              flexShrink: 0, width: 26, height: 26, borderRadius: 999,
-              background: "rgba(0,0,0,0.18)", color: "#fff", fontSize: 12,
-              display: "flex", alignItems: "center", justifyContent: "center",
-            }}>✕</span>
-          </button>
+              <span style={{ flex: 1, minWidth: 0 }}>
+                <span style={{ display: "block", fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)" }}>
+                  {morningAfter ? "Last night in 15s" : "Recap ready"}
+                </span>
+                <span style={{ display: "block", fontSize: 17, lineHeight: "22px", fontWeight: 600, marginTop: 2 }}>
+                  {morningAfter ? `Your ${recapReady.label}, recapped` : `Your ${recapReady.label}`}
+                </span>
+                <span style={{ display: "block", fontSize: 13, lineHeight: "18px", color: "var(--text-2)", marginTop: 2 }}>
+                  {clips.length} best {clips.length === 1 ? "clip" : "clips"}{vids ? ` · ${vids} ${vids === 1 ? "video" : "videos"}` : ""}
+                </span>
+              </span>
+              <span onClick={(e) => { e.stopPropagation(); dismissRecap(); }} role="button" aria-label="Dismiss" style={{
+                width: 44, height: 44, flexShrink: 0, color: "var(--text-2)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg>
+              </span>
+            </button>
+          </div>
         );
       })()}
-      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
-        <div className="serif" style={{ fontSize: 22 }}>
-          Your <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>memories</span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          {canRecap && (
-            <button onClick={() => playRecap(reelData)} className="mono" style={{
-              display: "flex", alignItems: "center", gap: 5,
-              background: "linear-gradient(135deg, var(--ember), #7b3d9a)",
-              border: "none", borderRadius: 999, padding: "5px 11px",
-              color: "#fff", cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 800,
-            }}><span style={{ fontSize: 10 }}>▶</span> PLAY</button>
-          )}
-          <button onClick={() => go(NOW.day)} className="mono" style={{
-            background: "transparent", border: "none", cursor: "pointer",
-            fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700,
-          }}>SEE ALL →</button>
-        </div>
-      </div>
-      <div className="no-scrollbar" style={{
-        display: "flex", gap: 8, overflowX: "auto", scrollbarWidth: "none",
-        marginRight: -16, paddingRight: 16,
-      }}>
+      <FieldMediaRow>
         {recent.map(m => (
           <_HomeMemoryThumb key={m.id} moment={m} onClick={() => go(m.night || NOW.day)} />
         ))}
-      </div>
-    </div>
+      </FieldMediaRow>
+    </section>
   );
 }
 
@@ -2841,12 +2843,12 @@ function _VideoBadge({ seconds, style }) {
   return (
     <span className="mono" style={{
       display: "inline-flex", alignItems: "center", gap: 3,
-      background: "rgba(0,0,0,0.6)", color: "#fff",
-      fontSize: 8, letterSpacing: 0.5, fontWeight: 700,
-      padding: "2px 6px", borderRadius: 999, pointerEvents: "none",
+      background: "var(--media-badge)", color: "var(--media-ink)",
+      fontSize: 11, lineHeight: "14px", fontWeight: 600,
+      padding: "2px 7px", borderRadius: 999, pointerEvents: "none",
       ...style,
     }}>
-      <span style={{ fontSize: 7 }}>▶</span>{seconds ? _fmtClock(seconds) : "VIDEO"}
+      <span style={{ fontSize: 8 }}>▶</span>{seconds ? _fmtClock(seconds) : "VIDEO"}
     </span>
   );
 }

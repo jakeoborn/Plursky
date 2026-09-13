@@ -967,7 +967,7 @@ function ToastHost() {
       fontSize: 10,
       letterSpacing: 1.2,
       fontWeight: 600,
-      boxShadow: "0 6px 20px rgba(0,0,0,0.25)",
+      boxShadow: "var(--shadow-pop)",
       animation: "fadeIn .15s",
       display: "flex",
       alignItems: "center",
@@ -1017,9 +1017,11 @@ function App() {
   React.useEffect(() => {
     window.plurskyOpenOnboarding = () => setShowOnboarding(true);
     window.plurskyOpenPersonalize = () => setPersonalizeOpen(true);
+    window.plurskyOpenSearch = () => setSearchOpen(true);
     return () => {
       delete window.plurskyOpenOnboarding;
       delete window.plurskyOpenPersonalize;
+      delete window.plurskyOpenSearch;
     };
   }, []);
   React.useEffect(() => {
@@ -1282,7 +1284,7 @@ function App() {
       flex: 1,
       position: "relative"
     }
-  }, body, !state.artist && !searchOpen && state.tab !== "map" && !modalOpen && !(state.tab === "lineup" && state.lineupGrid) && React.createElement("button", {
+  }, body, !state.artist && !searchOpen && state.tab !== "map" && state.tab !== "home" && !modalOpen && !(state.tab === "lineup" && state.lineupGrid) && React.createElement("button", {
     onClick: () => setSearchOpen(true),
     "aria-label": "Search artists, stages, genres",
     style: {

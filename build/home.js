@@ -2279,13 +2279,14 @@ function HomeScreen({
     offline: offline,
     onToggleOffline: () => setOffline(o => !o),
     unread: unread,
-    onAlerts: () => setAlertsOpen(true)
+    onAlerts: () => setAlertsOpen(true),
+    onSearch: () => window.plurskyOpenSearch?.()
   }), React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
       gap: 32,
-      paddingTop: 20
+      paddingTop: 24
     }
   }, isPostFestival ? React.createElement("div", {
     style: {
@@ -2680,7 +2681,8 @@ function FieldHomeHero({
   offline,
   onToggleOffline,
   unread,
-  onAlerts
+  onAlerts,
+  onSearch
 }) {
   var disc = on => ({
     width: 36,
@@ -2741,7 +2743,27 @@ function FieldHomeHero({
         display: "flex",
         alignItems: "center"
       }
-    }, React.createElement("button", {
+    }, onSearch && React.createElement("button", {
+      onClick: onSearch,
+      "aria-label": "Search artists, stages, genres",
+      style: fieldIconBtn
+    }, React.createElement("span", {
+      style: disc(false)
+    }, React.createElement("svg", {
+      width: "18",
+      height: "18",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round"
+    }, React.createElement("circle", {
+      cx: "11",
+      cy: "11",
+      r: "6.5"
+    }), React.createElement("path", {
+      d: "M20 20 L15.9 15.9"
+    })))), React.createElement("button", {
       onClick: onToggleOffline,
       "aria-label": "Offline mode",
       "aria-pressed": offline,
@@ -2820,7 +2842,7 @@ function FieldHomeHero({
     }, React.createElement("div", {
       style: {
         ..._fieldEyebrow,
-        color: live ? "var(--signal)" : "var(--text-2)"
+        color: live ? "var(--signal-ink)" : "var(--text-2)"
       }
     }, live && React.createElement("span", {
       "aria-hidden": "true",
@@ -2828,7 +2850,7 @@ function FieldHomeHero({
         width: 8,
         height: 8,
         borderRadius: 4,
-        background: "var(--signal)"
+        background: "var(--signal-ink)"
       }
     }), status, deviceOffline ? " · No signal" : ""), React.createElement("h1", {
       style: {
@@ -2895,7 +2917,7 @@ function FieldNowNext({
   }, React.createElement("div", {
     style: {
       ..._fieldEyebrow,
-      color: live ? "var(--signal)" : "var(--text-2)"
+      color: live ? "var(--signal-ink)" : "var(--text-2)"
     }
   }, live && React.createElement("span", {
     "aria-hidden": "true",
@@ -2903,7 +2925,7 @@ function FieldNowNext({
       width: 8,
       height: 8,
       borderRadius: 4,
-      background: "var(--signal)"
+      background: "var(--signal-ink)"
     }
   }), live ? "Now" : "Next", " · ", when), React.createElement("button", {
     onClick: () => setState({
@@ -2941,7 +2963,7 @@ function FieldNowNext({
       width: 3,
       alignSelf: "stretch",
       borderRadius: 2,
-      background: "var(--signal)"
+      background: "var(--signal-ink)"
     }
   }), React.createElement("div", {
     style: {
@@ -3008,7 +3030,7 @@ function SavedTile({
     style: {
       width: 132,
       height: 132,
-      borderRadius: 16,
+      borderRadius: 14,
       overflow: "hidden",
       background: "var(--paper-2)",
       display: "flex",
@@ -3120,10 +3142,26 @@ function FieldNotice({
   }, eyebrow && React.createElement("div", {
     style: {
       ..._fieldEyebrow,
-      color: warn ? "var(--warn)" : "var(--text-2)",
+      color: warn ? "var(--ink)" : "var(--text-2)",
       marginBottom: 2
     }
-  }, eyebrow), React.createElement("div", {
+  }, warn && React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "13",
+    height: "13",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2.2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("path", {
+    d: "M12 3.5 L21.5 20 H2.5 Z"
+  }), React.createElement("path", {
+    d: "M12 10 V14"
+  }), React.createElement("path", {
+    d: "M12 17 V17.2"
+  })), eyebrow), React.createElement("div", {
     style: {
       fontSize: 15,
       lineHeight: "21px"

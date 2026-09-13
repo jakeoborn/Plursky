@@ -49,7 +49,11 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Plursky">
-<meta name="theme-color" content="#080808">
+<meta name="theme-color" content="#0A0A0C">
+<!-- Inside the iOS app or an installed PWA, the crawler shell in <body> would flash its text
+     for a beat before React mounts. There it stays an empty canvas-coloured screen; browsers
+     and crawlers still get the text. -->
+<script>try{if(window.Capacitor||navigator.standalone||matchMedia("(display-mode: standalone)").matches)document.documentElement.classList.add("boot-quiet")}catch(e){}</script>
 <link rel="manifest" href="./manifest.json">
 <link rel="icon" type="image/png" href="./apple-touch-icon.png">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
@@ -64,7 +68,7 @@
      10–14px inline, so the floor lives here; only !important beats an inline
      style. -webkit-touch-callout exists only on iOS, so desktop is unchanged. */
   @supports (-webkit-touch-callout: none){input,textarea,select{font-size:16px!important}}
-  html,body{width:100%;min-height:100%;background:#080808;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;color:rgba(255,255,255,0.96);overflow-x:hidden}
+  html,body{width:100%;min-height:100%;background:var(--paper);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;color:var(--ink);overflow-x:hidden}
   body{display:flex;align-items:stretch;justify-content:stretch;padding:0;min-height:100vh;min-height:100dvh}
   /* #116: once the app mounts it is one fixed shell that scrolls inside
      itself, so the DOCUMENT must not scroll: 100vh is Safari's LARGE
@@ -73,14 +77,15 @@
   html.app-live,html.app-live body{height:100%;min-height:0;overflow:hidden}
   .stage{display:flex;align-items:stretch;justify-content:stretch;width:100%}
   /* Static pre-boot / no-JS shell (see #root in <body>). */
-  .boot-shell{max-width:680px;margin:0 auto;padding:40px 20px 64px;color:rgba(255,255,255,0.96)}
+  .boot-shell{max-width:680px;margin:0 auto;padding:40px 20px 64px;color:var(--ink)}
   .boot-shell h1{font-weight:700;font-size:34px;line-height:41px;letter-spacing:-0.02em;margin:0 0 12px}
-  .boot-shell h2{font-size:11px;line-height:14px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin:32px 0 8px;color:rgba(255,255,255,0.62)}
+  .boot-shell h2{font-size:11px;line-height:14px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin:32px 0 8px;color:var(--text-2)}
   .boot-shell p{margin:0 0 12px;font-size:15px;line-height:21px}
   .boot-shell ul{list-style:none;padding:0;margin:0}
-  .boot-shell li{padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.12)}
-  .boot-shell a{color:#8CFF5A}
-  .boot-foot{margin-top:32px;font-size:13px;color:rgba(255,255,255,0.62)}
+  .boot-shell li{padding:14px 0;border-bottom:1px solid var(--line)}
+  .boot-shell a{color:var(--signal-ink)}
+  .boot-quiet .boot-shell{visibility:hidden}
+  .boot-foot{margin-top:32px;font-size:13px;color:var(--text-2)}
   :root{--top-pad:env(safe-area-inset-top,0px)}
   .serif{font-weight:700}
   .mono{font-variant-numeric:tabular-nums}
@@ -133,33 +138,42 @@
   .theme-night html,.theme-night body{background:#0d0a14;color:#f0e6d8}
   .theme-dawn{--ink:#1a120d;--paper:#f0e0f0;--paper-2:#e0d0e8;--line:rgba(26,18,13,0.12);--line-2:rgba(26,18,13,0.2);--muted:rgba(26,18,13,0.62);--horizon:#9b5dba}
   /* ── Field Mode ──
-     Black is utility; real media supplies the colour. --signal is the ONE
-     accent and means only now / active / selected / primary action. The
-     legacy tokens are remapped so surfaces not yet restyled still sit in the
-     black shell instead of the old paper/ember palette. */
+     Dark is the brand: festival media is shot at night and carries the
+     colour. Every colour on a restyled surface comes from these tokens, and
+     components never write a hex or a white. There's one accent, Plursky
+     purple. --signal fills (the primary button, a selected toggle).
+     --signal-ink is the same hue lifted for text and thin marks on dark (NOW,
+     the live rail, the active tab), because #6D28D9 itself is only 2.6:1 on
+     the canvas. --media-* is type and chrome that sits ON a photo, which
+     stays white. The legacy tokens are remapped so surfaces not yet restyled
+     still sit in the dark shell instead of the old paper/ember palette. */
   :root{
     --font-ui:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;
-    --paper-3:#1C1C1E; --text-2:rgba(255,255,255,0.62); --text-3:rgba(255,255,255,0.42);
-    --signal:#8CFF5A; --on-signal:#080808; --on-ember:#fff;
-    --scrim:rgba(0,0,0,0.6); --chrome:rgba(8,8,8,0.78);
-    --hero-scrim:linear-gradient(180deg,rgba(8,8,8,0) 38%,rgba(8,8,8,0.85) 100%);
+    --paper-3:#212126; --text-2:#A1A1AA; --text-3:#6B6B74;
+    --signal:#6D28D9; --signal-ink:#B79CFF; --on-signal:#FFFFFF; --on-ember:#FFFFFF;
+    --scrim:rgba(0,0,0,0.6); --chrome:rgba(10,10,12,0.72);
+    --hero-scrim:linear-gradient(180deg,rgba(10,10,12,0.5) 0%,rgba(10,10,12,0) 22%,rgba(10,10,12,0) 44%,rgba(10,10,12,0.72) 80%,var(--paper) 100%);
+    --media-ink:#FFFFFF; --media-ink-2:rgba(255,255,255,0.8);
+    --media-scrim:linear-gradient(0deg,rgba(0,0,0,0.78),rgba(0,0,0,0));
+    --media-badge:rgba(0,0,0,0.6);
+    --shadow-pop:0 10px 30px rgba(0,0,0,0.45);
   }
   .theme-field{color-scheme:dark;
-    --paper:#080808; --paper-2:#141414; --paper-3:#1C1C1E;
-    --ink:rgba(255,255,255,0.96); --text-2:rgba(255,255,255,0.62); --text-3:rgba(255,255,255,0.42);
-    --muted:rgba(255,255,255,0.62);
-    --line:rgba(255,255,255,0.12); --line-2:rgba(255,255,255,0.20);
-    --signal:#8CFF5A; --on-signal:#080808;
-    --ember:#8CFF5A; --ember-ink:rgba(255,255,255,0.96); --on-ember:#080808;
-    --alert:#FF453A; --warn:#FF9F0A; --success:#8CFF5A;
-    --dune:#1C1C1E; --flare:#8CFF5A; --horizon:#1C1C1E; --night:#080808; --dusk:#141414; --sky:rgba(255,255,255,0.62);
-    --glass:20,20,20;
+    --paper:#0A0A0C; --paper-2:#16161A; --paper-3:#212126;
+    --ink:#F5F5F7; --text-2:#A1A1AA; --text-3:#6B6B74;
+    --muted:#A1A1AA;
+    --line:rgba(255,255,255,0.08); --line-2:rgba(255,255,255,0.14);
+    --signal:#6D28D9; --signal-ink:#B79CFF; --on-signal:#FFFFFF;
+    --ember:#6D28D9; --ember-ink:#B79CFF; --on-ember:#FFFFFF;
+    --alert:#FF453A; --warn:#FF9F0A; --success:#B79CFF;
+    --dune:#212126; --flare:#B79CFF; --horizon:#212126; --night:#0A0A0C; --dusk:#16161A; --sky:#A1A1AA;
+    --glass:22,22,26;
     --fs-label-s:11px; --fs-label:11px; --fs-label-l:12px;
     --fs-body-s:13px; --fs-body:15px; --fs-body-l:17px;
     --fs-title-s:17px; --fs-title:20px; --fs-title-l:28px;
     --r-sm:14px; --r-md:14px;
   }
-  html.theme-field,.theme-field body{background:#080808;color:rgba(255,255,255,0.96)}
+  html.theme-field,.theme-field body{background:var(--paper);color:var(--ink)}
   /* System font only. Inline styles name 'Geist' or 'Instrument Serif' ~580
      times and only !important beats an inline style, so the swap lives here
      until each surface is restyled. Display serif becomes bold, upright sans. */
@@ -167,7 +181,7 @@
   .theme-field .serif,.theme-field [style*="Instrument Serif"]{font-family:var(--font-ui)!important;font-style:normal!important;font-weight:700!important;letter-spacing:-0.02em}
   .theme-field .mono,.theme-field [style*="Geist"]{font-family:var(--font-ui)!important}
   .theme-field .mono,.theme-field [style*="Geist Mono"]{font-variant-numeric:tabular-nums}
-  /* A filled accent is signal green now, so its type goes dark. */
+  /* A filled accent takes its own on-colour. */
   .theme-field [style*="background: var(--ember)"],.theme-field [style*="background-color: var(--ember)"]{color:var(--on-ember)!important}
   button { transition: opacity 0.1s ease; }
   @keyframes totem-pulse{0%,100%{box-shadow:0 0 0 0 rgba(109,40,217,0.4);transform:scale(1)}50%{box-shadow:0 0 12px 4px rgba(109,40,217,0.25);transform:scale(1.06)}}

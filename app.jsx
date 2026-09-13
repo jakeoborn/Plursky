@@ -481,7 +481,7 @@ function ToastHost() {
         background: "var(--ink)", color: "var(--paper)",
         padding: hasAction ? "7px 7px 7px 16px" : "9px 16px", borderRadius: 999,
         fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
-        boxShadow: "0 6px 20px rgba(0,0,0,0.25)",
+        boxShadow: "var(--shadow-pop)",
         animation: "fadeIn .15s", display: "flex", alignItems: "center", gap: 12, maxWidth: "100%",
         pointerEvents: hasAction ? "auto" : "none",
       }}>
@@ -517,7 +517,8 @@ function App() {
   React.useEffect(() => {
     window.plurskyOpenOnboarding = () => setShowOnboarding(true);
     window.plurskyOpenPersonalize = () => setPersonalizeOpen(true);
-    return () => { delete window.plurskyOpenOnboarding; delete window.plurskyOpenPersonalize; };
+    window.plurskyOpenSearch = () => setSearchOpen(true);
+    return () => { delete window.plurskyOpenOnboarding; delete window.plurskyOpenPersonalize; delete window.plurskyOpenSearch; };
   }, []);
   // Drain the outbox (queued crew messages from offline moments) on mount,
   // on reconnect, and every 30s. Idempotent — safe to call once at startup.
@@ -772,8 +773,10 @@ function App() {
           {/* Search FAB — floats above TabBar, accessible from any screen.
               Labeled pill so first-time users actually notice it. */}
           {/* Not on the lineup GRID: its own search is one upward scroll away,
-              and the pill covered set cards there (#116). */}
-          {!state.artist && !searchOpen && state.tab !== "map" && !modalOpen && !(state.tab === "lineup" && state.lineupGrid) && (
+              and the pill covered set cards there (#116). Not on Home either:
+              search is a button in the hero's top bar there, because the pill
+              sat over the Saved tonight row's Share action. */}
+          {!state.artist && !searchOpen && state.tab !== "map" && state.tab !== "home" && !modalOpen && !(state.tab === "lineup" && state.lineupGrid) && (
             <button
               onClick={() => setSearchOpen(true)}
               aria-label="Search artists, stages, genres"

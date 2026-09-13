@@ -140,7 +140,7 @@ function TabBar({
         justifyContent: "center",
         gap: 3,
         padding: "4px 12px",
-        color: on ? "var(--signal)" : "var(--text-2)",
+        color: on ? "var(--signal-ink)" : "var(--text-2)",
         minWidth: 64,
         minHeight: 49,
         transition: "color 0.15s ease"
@@ -615,9 +615,10 @@ function FieldSectionHeader({
   }, React.createElement("h2", {
     style: {
       margin: 0,
-      fontSize: 20,
-      lineHeight: "25px",
-      fontWeight: 600
+      fontSize: 22,
+      lineHeight: "28px",
+      fontWeight: 700,
+      letterSpacing: "-0.01em"
     }
   }, title), action && (typeof action === "string" ? React.createElement("button", {
     onClick: onAction,
@@ -1458,7 +1459,6 @@ function FestivalChip({
 }) {
   var [open, setOpen] = React.useState(false);
   var canSwitch = FESTIVALS_REGISTRY.filter(f => f.available).length > 1;
-  var entry = FESTIVALS_REGISTRY.find(f => f.config.id === FESTIVAL_CONFIG.id);
   return React.createElement(React.Fragment, null, React.createElement("div", {
     onClick: canSwitch ? () => setOpen(true) : undefined,
     style: {
@@ -1476,7 +1476,7 @@ function FestivalChip({
       alignItems: "center",
       gap: 6,
       height: 32,
-      padding: "0 12px 0 10px",
+      padding: "0 12px",
       borderRadius: 18,
       background: "var(--chrome)",
       border: "1px solid var(--line)",
@@ -1485,11 +1485,7 @@ function FestivalChip({
       fontWeight: 600,
       letterSpacing: "0.04em"
     }
-  }, React.createElement("span", {
-    style: {
-      fontSize: 14
-    }
-  }, entry?.emoji || "🎪"), React.createElement("span", null, FESTIVAL_CONFIG.shortName.toUpperCase()), canSwitch && React.createElement("svg", {
+  }, React.createElement("span", null, FESTIVAL_CONFIG.shortName.toUpperCase()), canSwitch && React.createElement("svg", {
     width: "10",
     height: "10",
     viewBox: "0 0 12 12",

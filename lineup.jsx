@@ -2390,7 +2390,7 @@ function ShareLineupButton({ state }) {
         display: "flex", alignItems: "center", gap: 6,
         minHeight: 44, padding: "0 4px", borderRadius: 14,
         background: "transparent", border: "none",
-        color: done ? "var(--signal)" : "var(--text-2)",
+        color: done ? "var(--signal-ink)" : "var(--text-2)",
         fontSize: 15, lineHeight: "20px", fontWeight: 500,
         cursor: busy ? "wait" : "pointer",
         opacity: busy ? 0.65 : 1,
@@ -2412,9 +2412,9 @@ function ShareLineupButton({ state }) {
           }}/>
           <div style={{
             position: "absolute", right: 0, top: "calc(100% + 6px)", zIndex: 61,
-            background: "var(--paper)", border: "1px solid var(--line-2)",
-            borderRadius: 12, padding: 5, minWidth: 200,
-            boxShadow: "0 10px 30px rgba(0,0,0,0.18)",
+            background: "var(--paper-2)", border: "1px solid var(--line-2)",
+            borderRadius: 14, padding: 5, minWidth: 200,
+            boxShadow: "var(--shadow-pop)",
           }}>
             <ShareMenuItem icon="img"  label="Image for stories" sub="1080×1920 PNG" onClick={wrap("image", shareLineupImage)} />
             <ShareMenuItem icon="cal"  label="Add to calendar"   sub=".ics with 15-min reminders" onClick={wrap("cal", exportLineupICS)} />

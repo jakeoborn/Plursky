@@ -69,7 +69,7 @@ function TabBar({ active, onChange }) {
     { id: "map",     label: "Map",    icon: MapIcon },
     { id: "me",      label: "Me",     icon: MeIcon },
   ];
-  // Field Mode: the bar is quiet black chrome. Signal green marks only the
+  // Field Mode: the bar is quiet dark chrome. The accent marks only the
   // selected tab. Stage colour no longer tints the bar while the main stage
   // is live: festival colour may skin media, never controls.
   return (
@@ -93,7 +93,7 @@ function TabBar({ active, onChange }) {
               background: "transparent", border: "none", cursor: "pointer",
               display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 3,
               padding: "4px 12px",
-              color: on ? "var(--signal)" : "var(--text-2)",
+              color: on ? "var(--signal-ink)" : "var(--text-2)",
               minWidth: 64, minHeight: 49,
               transition: "color 0.15s ease",
             }}>
@@ -413,7 +413,7 @@ function Wordmark({ size = 18, color = "var(--ink)" }) {
 // ── Field Mode shared components ──────────────────────────────
 // Every restyled surface builds from these, so the rules live in one place:
 // one sheet radius (14) with one grabber, a 52pt primary button, 44pt icon
-// targets, a 20/25 section title and a flat horizontal row.
+// targets, a 22/28 section title and a flat horizontal row.
 const fieldIconBtn = {
   width: 44, height: 44, flexShrink: 0, padding: 0,
   display: "flex", alignItems: "center", justifyContent: "center",
@@ -421,7 +421,7 @@ const fieldIconBtn = {
   color: "var(--ink)", cursor: "pointer",
 };
 
-// The one dominant action on a screen is kind="primary" (signal green).
+// The one dominant action on a screen is kind="primary" (the purple fill).
 function FieldButton({ children, onClick, kind = "primary", style, ...rest }) {
   const primary = kind === "primary";
   return (
@@ -445,7 +445,7 @@ function FieldSectionHeader({ title, action, onAction }) {
       display: "flex", alignItems: "center", justifyContent: "space-between",
       padding: "0 20px", minHeight: 44,
     }}>
-      <h2 style={{ margin: 0, fontSize: 20, lineHeight: "25px", fontWeight: 600 }}>{title}</h2>
+      <h2 style={{ margin: 0, fontSize: 22, lineHeight: "28px", fontWeight: 700, letterSpacing: "-0.01em" }}>{title}</h2>
       {action && (typeof action === "string"
         ? <button onClick={onAction} style={{ ...fieldIconBtn, width: "auto", padding: "0 4px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 }}>{action}</button>
         : action)}
@@ -1163,11 +1163,11 @@ function NotificationsCard({ state }) {
 function FestivalChip({ compact = false, accent = "var(--ink)" }) {
   const [open, setOpen] = React.useState(false);
   const canSwitch = FESTIVALS_REGISTRY.filter(f => f.available).length > 1;
-  const entry = FESTIVALS_REGISTRY.find(f => f.config.id === FESTIVAL_CONFIG.id);
   return (
     <>
       {/* Field Mode: a 44pt target around an 18pt-radius status pill. The
-          label stays the upper-case shortName (QA harnesses match on it). */}
+          label stays the upper-case shortName (QA harnesses match on it). No
+          emoji: colour in chrome belongs to the one accent. */}
       <div
         onClick={canSwitch ? () => setOpen(true) : undefined}
         style={{
@@ -1177,11 +1177,10 @@ function FestivalChip({ compact = false, accent = "var(--ink)" }) {
         }}>
         <span style={{
           display: "inline-flex", alignItems: "center", gap: 6, height: 32,
-          padding: "0 12px 0 10px", borderRadius: 18,
+          padding: "0 12px", borderRadius: 18,
           background: "var(--chrome)", border: "1px solid var(--line)",
           fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em",
         }}>
-          <span style={{ fontSize: 14 }}>{entry?.emoji || "🎪"}</span>
           <span>{FESTIVAL_CONFIG.shortName.toUpperCase()}</span>
           {canSwitch && (
             <svg width="10" height="10" viewBox="0 0 12 12" fill="none">

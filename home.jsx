@@ -1712,9 +1712,10 @@ function HomeScreen({ state, setState }) {
         onToggleOffline={() => setOffline(o => !o)}
         unread={unread}
         onAlerts={() => setAlertsOpen(true)}
+        onSearch={() => window.plurskyOpenSearch?.()}
       />
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 32, paddingTop: 20 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 32, paddingTop: 24 }}>
         {isPostFestival
           ? <div style={{ padding: "0 20px" }}><PostFestivalRecap state={state} setState={setState} /></div>
           : <FieldNowNext state={state} setState={setState} onOpenNight={() => setSheet("night")} />}
@@ -1943,7 +1944,7 @@ const _fieldEyebrow = {
   display: "flex", alignItems: "center", gap: 6,
 };
 
-function FieldHomeHero({ photo, status, live, deviceOffline, title, sub, offline, onToggleOffline, unread, onAlerts }) {
+function FieldHomeHero({ photo, status, live, deviceOffline, title, sub, offline, onToggleOffline, unread, onAlerts, onSearch }) {
   const disc = (on) => ({
     width: 36, height: 36, borderRadius: 18, position: "relative",
     display: "flex", alignItems: "center", justifyContent: "center",
@@ -1966,6 +1967,17 @@ function FieldHomeHero({ photo, status, live, deviceOffline, title, sub, offline
       }}>
         <FestivalChip compact />
         <div style={{ display: "flex", alignItems: "center" }}>
+          {/* Search lives up here on Home, so no floating pill sits over a
+              row's action (it covered Saved tonight's Share). */}
+          {onSearch && (
+            <button onClick={onSearch} aria-label="Search artists, stages, genres" style={fieldIconBtn}>
+              <span style={disc(false)}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <circle cx="11" cy="11" r="6.5"/><path d="M20 20 L15.9 15.9"/>
+                </svg>
+              </span>
+            </button>
+          )}
           <button onClick={onToggleOffline} aria-label="Offline mode" aria-pressed={offline} style={fieldIconBtn}>
             <span style={disc(offline)}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -1988,8 +2000,8 @@ function FieldHomeHero({ photo, status, live, deviceOffline, title, sub, offline
       <div style={photo
         ? { position: "absolute", left: 0, right: 0, bottom: 0, padding: "0 20px 20px" }
         : { padding: "calc(var(--top-pad, 0px) + 60px) 20px 0" }}>
-        <div style={{ ..._fieldEyebrow, color: live ? "var(--signal)" : "var(--text-2)" }}>
-          {live && <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: 4, background: "var(--signal)" }} />}
+        <div style={{ ..._fieldEyebrow, color: live ? "var(--signal-ink)" : "var(--text-2)" }}>
+          {live && <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: 4, background: "var(--signal-ink)" }} />}
           {status}{deviceOffline ? " · No signal" : ""}
         </div>
         <h1 style={{
@@ -2032,8 +2044,8 @@ function FieldNowNext({ state, setState, onOpenNight }) {
     : (FESTIVAL_CONFIG.dayDates?.[set.day]?.name || `Day ${set.day}`);
   return (
     <section style={{ padding: "0 20px" }}>
-      <div style={{ ..._fieldEyebrow, color: live ? "var(--signal)" : "var(--text-2)" }}>
-        {live && <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: 4, background: "var(--signal)" }} />}
+      <div style={{ ..._fieldEyebrow, color: live ? "var(--signal-ink)" : "var(--text-2)" }}>
+        {live && <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: 4, background: "var(--signal-ink)" }} />}
         {live ? "Now" : "Next"} · {when}
       </div>
       <button onClick={() => setState({ ...state, artist: set.id })} style={{
@@ -2045,7 +2057,7 @@ function FieldNowNext({ state, setState, onOpenNight }) {
         <div style={{ width: 76, flexShrink: 0, fontSize: 15, lineHeight: "21px", fontWeight: 600, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
           {fmt12(set.start)}
         </div>
-        {live && <div aria-hidden="true" style={{ width: 3, alignSelf: "stretch", borderRadius: 2, background: "var(--signal)" }} />}
+        {live && <div aria-hidden="true" style={{ width: 3, alignSelf: "stretch", borderRadius: 2, background: "var(--signal-ink)" }} />}
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{set.name}</div>
           {stage && <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{stage.name}</div>}
@@ -2070,7 +2082,7 @@ function SavedTile({ a, onOpen }) {
       color: "var(--ink)", cursor: "pointer",
     }}>
       <div style={{
-        width: 132, height: 132, borderRadius: 16, overflow: "hidden",
+        width: 132, height: 132, borderRadius: 14, overflow: "hidden",
         background: "var(--paper-2)", display: "flex", alignItems: "center", justifyContent: "center",
       }}>
         {photo
@@ -2108,7 +2120,13 @@ function FieldNotice({ eyebrow, text, action, onAction, onDismiss, warn }) {
       background: "var(--paper-2)", borderRadius: 14, padding: "10px 4px 10px 16px",
     }}>
       <div style={{ flex: 1, minWidth: 0 }}>
-        {eyebrow && <div style={{ ..._fieldEyebrow, color: warn ? "var(--warn)" : "var(--text-2)", marginBottom: 2 }}>{eyebrow}</div>}
+        {/* A warning is set in full-strength ink with a glyph: no second hue. */}
+        {eyebrow && (
+          <div style={{ ..._fieldEyebrow, color: warn ? "var(--ink)" : "var(--text-2)", marginBottom: 2 }}>
+            {warn && <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3.5 L21.5 20 H2.5 Z"/><path d="M12 10 V14"/><path d="M12 17 V17.2"/></svg>}
+            {eyebrow}
+          </div>
+        )}
         <div style={{ fontSize: 15, lineHeight: "21px" }}>{text}</div>
       </div>
       {action && <button onClick={onAction} style={{ ...fieldIconBtn, width: "auto", padding: "0 12px", fontSize: 15, fontWeight: 600 }}>{action}</button>}

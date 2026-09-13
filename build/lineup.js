@@ -3449,7 +3449,7 @@ function ShareLineupButton({
       borderRadius: 14,
       background: "transparent",
       border: "none",
-      color: done ? "var(--signal)" : "var(--text-2)",
+      color: done ? "var(--signal-ink)" : "var(--text-2)",
       fontSize: 15,
       lineHeight: "20px",
       fontWeight: 500,
@@ -3485,12 +3485,12 @@ function ShareLineupButton({
       right: 0,
       top: "calc(100% + 6px)",
       zIndex: 61,
-      background: "var(--paper)",
+      background: "var(--paper-2)",
       border: "1px solid var(--line-2)",
-      borderRadius: 12,
+      borderRadius: 14,
       padding: 5,
       minWidth: 200,
-      boxShadow: "0 10px 30px rgba(0,0,0,0.18)"
+      boxShadow: "var(--shadow-pop)"
     }
   }, React.createElement(ShareMenuItem, {
     icon: "img",
