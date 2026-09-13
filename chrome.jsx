@@ -1222,10 +1222,13 @@ function _festivalPlanStatus(id) {
   if (!Array.isArray(ids) || !ids.length) return { saved: 0, conflicts: 0 };
   const set = new Set(ids);
   const arts = ((window._DATA_SETS || {})[id]?.artists || []).filter(a => set.has(a.id));
+  // _DATA_SETS holds every weekend of a festival, so a W1 set and a W2 set on
+  // the same day number are a week apart, never a clash ("both" plays both).
+  const sameWeekend = (a, b) => !a.weekend || !b.weekend || a.weekend === "both" || b.weekend === "both" || a.weekend === b.weekend;
   let conflicts = 0;
   for (let i = 0; i < arts.length; i++)
     for (let j = i + 1; j < arts.length; j++)
-      if (arts[i].day === arts[j].day && typeof overlaps === "function" && overlaps(arts[i], arts[j])) conflicts++;
+      if (arts[i].day === arts[j].day && sameWeekend(arts[i], arts[j]) && typeof overlaps === "function" && overlaps(arts[i], arts[j])) conflicts++;
   return { saved: arts.length, conflicts };
 }
 
@@ -1271,7 +1274,11 @@ function FestivalSwitcher({ onClose }) {
     g.fests.push(f);
   });
   let archive = [];
-  try { archive = JSON.parse(localStorage.getItem("plursky_festival_archive_v1") || "[]"); } catch {}
+  // archiveFestival() stores an object keyed by festival id; read its values.
+  try {
+    const raw = JSON.parse(localStorage.getItem("plursky_festival_archive_v1") || "{}");
+    archive = (Array.isArray(raw) ? raw : Object.values(raw || {})).filter(a => a && typeof a === "object");
+  } catch {}
   const caught = archive.reduce((n, a) => n + (a.totalAttended || 0), 0);
 
   const eyebrow = { margin: "0 0 4px", fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)" };

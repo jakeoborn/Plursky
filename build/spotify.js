@@ -10109,6 +10109,13 @@ function MeScreen({
       ensureSpotifyProfile().then(setProfile);
     }
   }, [state.spotifyConnected]);
+  React.useEffect(() => {
+    var onName = e => {
+      if (e.detail) setLocalName(e.detail);
+    };
+    window.addEventListener("plursky:display-name", onName);
+    return () => window.removeEventListener("plursky:display-name", onName);
+  }, []);
   var rawName = profile?.name || localName || "";
   var displayName = rawName || "—";
   var initial = rawName ? (rawName.match(/[A-Za-z0-9]/) || ["?"])[0].toUpperCase() : "?";

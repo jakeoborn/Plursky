@@ -409,6 +409,9 @@ function PersonalizeSheet({
         localStorage.setItem("plursky_display_name", name.trim());
       }
     } catch {}
+    if (name.trim()) window.dispatchEvent(new CustomEvent("plursky:display-name", {
+      detail: name.trim()
+    }));
     onClose();
   };
   var title = {

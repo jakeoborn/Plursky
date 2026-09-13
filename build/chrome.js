@@ -1549,8 +1549,9 @@ function _festivalPlanStatus(id) {
   };
   var set = new Set(ids);
   var arts = ((window._DATA_SETS || {})[id]?.artists || []).filter(a => set.has(a.id));
+  var sameWeekend = (a, b) => !a.weekend || !b.weekend || a.weekend === "both" || b.weekend === "both" || a.weekend === b.weekend;
   var conflicts = 0;
-  for (var i = 0; i < arts.length; i++) for (var j = i + 1; j < arts.length; j++) if (arts[i].day === arts[j].day && typeof overlaps === "function" && overlaps(arts[i], arts[j])) conflicts++;
+  for (var i = 0; i < arts.length; i++) for (var j = i + 1; j < arts.length; j++) if (arts[i].day === arts[j].day && sameWeekend(arts[i], arts[j]) && typeof overlaps === "function" && overlaps(arts[i], arts[j])) conflicts++;
   return {
     saved: arts.length,
     conflicts
@@ -1617,7 +1618,8 @@ function FestivalSwitcher({
   });
   var archive = [];
   try {
-    archive = JSON.parse(localStorage.getItem("plursky_festival_archive_v1") || "[]");
+    var raw = JSON.parse(localStorage.getItem("plursky_festival_archive_v1") || "{}");
+    archive = (Array.isArray(raw) ? raw : Object.values(raw || {})).filter(a => a && typeof a === "object");
   } catch {}
   var caught = archive.reduce((n, a) => n + (a.totalAttended || 0), 0);
   var eyebrow = {

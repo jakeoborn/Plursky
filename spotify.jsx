@@ -6503,6 +6503,12 @@ function MeScreen({ state, setState }) {
       ensureSpotifyProfile().then(setProfile);
     }
   }, [state.spotifyConnected]);
+  // Personalize saves the name while Me stays mounted, so follow its event.
+  React.useEffect(() => {
+    const onName = e => { if (e.detail) setLocalName(e.detail); };
+    window.addEventListener("plursky:display-name", onName);
+    return () => window.removeEventListener("plursky:display-name", onName);
+  }, []);
 
   // Resolve display name from Spotify profile → display_name → user_name
   // (matches Runbuds-style identity: serif name + ping chip + tagline).

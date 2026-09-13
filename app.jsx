@@ -210,6 +210,8 @@ function PersonalizeSheet({ state, onClose }) {
         localStorage.setItem("plursky_display_name", name.trim());
       }
     } catch {}
+    // Screens that are already mounted (Me) hold the name in state; tell them.
+    if (name.trim()) window.dispatchEvent(new CustomEvent("plursky:display-name", { detail: name.trim() }));
     onClose();
   };
   const title = { fontSize: 17, lineHeight: "22px", fontWeight: 600 };
