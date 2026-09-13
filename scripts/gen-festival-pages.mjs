@@ -18,37 +18,20 @@ import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync, readdirSync
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import vm from 'node:vm';
+import { loadRegistry } from './lib/load-registry.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://plursky.com';
 const OUT_DIR = path.join(root, 'f');
 
 // ── Load the registry out of data.jsx ────────────────────────────────
-const ctx = {
-  window: {}, console, Date, Math, JSON, Object, Array, String, Number,
-  isNaN, parseInt, parseFloat, fetch: () => {},
-  localStorage: { getItem: () => null, setItem: () => {}, removeItem: () => {} },
-};
-vm.createContext(ctx);
-// Wave-1 festivals live in data/festivals/*.js and register themselves on
-// window.PLURSKY_FESTIVALS. Run them first, the same order index.html uses, or
-// the registry data.jsx builds here is missing five festivals and their /f/
-// pages silently stop being generated.
+// scripts/lib/load-registry.mjs runs data/festivals/*.js before data.jsx, the
+// same order index.html uses; without the modules the registry is missing
+// festivals and their /f/ pages silently stop being generated.
 // Each stub renders the festival's real schedule inline (day then stage,
 // from the same _scheduleActs data schedule.json ships) and links the App
 // Store install path, so "<festival> set times" queries land on substance.
-const festivalModules = readdirSync(path.join(root, 'data', 'festivals'))
-  .filter(f => f.endsWith('.js')).sort()
-  .map(f => readFileSync(path.join(root, 'data', 'festivals', f), 'utf8'))
-  .join('\n');
-vm.runInContext(
-  festivalModules + '\n' +
-  readFileSync(path.join(root, 'data.jsx'), 'utf8') +
-  '\n;__out = { REG: FESTIVALS_REGISTRY, DS: _DATA_SETS, scheduleActs: _scheduleActs };',
-  ctx,
-);
-const { REG, DS, scheduleActs } = ctx.__out;
+const { REG, DS, scheduleActs } = loadRegistry(root);
 
 // ── Helpers ──────────────────────────────────────────────────────────
 const esc = (s) => String(s ?? '')
