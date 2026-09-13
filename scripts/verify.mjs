@@ -1930,6 +1930,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b2a. Official set-times fetcher ────────────────────────────────────
+// fetch-insomniac-settimes.mjs turns the official /lineup/set-times/day-N/
+// pages into the importer's sheet. Its parser must drop the Full Schedule
+// repeats, keep B2B billings whole, decode accents, and read the epochs as
+// the printed wall clock (UTC), or a flip imports wrong times.
+{
+  console.log("▸ Set-times fetcher gate — official page markup → sheet rows");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-insomniac-settimes.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write("  " + out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`set-times fetcher parser failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b3. Offline festival packs ─────────────────────────────────────────
 // The saved area covers the radius, footprint and pan bounds; the style
 // rewrite leaves nothing remote; the downloader and the pack:// protocol agree
