@@ -379,6 +379,24 @@ if (fdata.length) {
   }
 }
 
+// ── Set-time importer gate ───────────────────────────────────────────────
+// Every gated festival flips through import-set-times.mjs. It must write into
+// the festival's own module, take days from the sheet for a lineup that
+// publishes none, place null-day acts, and refuse a sheet it cannot place.
+// The test runs against the real modules in a throwaway copy.
+{
+  console.log("▸ Set-time importer gate — module target, sheet days, refusals");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-import-set-times.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    console.log("  " + out.trim());
+  } catch (e) {
+    const detail = ((e.stderr || "") + (e.stdout || "")).trim();
+    if (detail) console.log("  " + detail.replace(/\n/g, "\n  "));
+    fail("the set-time importer failed its test — see above");
+  }
+}
+
 // ── Precache integrity gate ──────────────────────────────────────────────
 // sw.js installs its own-origin files with cache.addAll(), and addAll is
 // ATOMIC: it rejects as a unit. One entry that 404s and NOTHING in LOCAL gets
