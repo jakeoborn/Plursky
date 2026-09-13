@@ -1037,11 +1037,18 @@ function _festivalWindow(c) {
 // (soonest first), then dates TBA (registry order), then ended last (most
 // recently ended first).
 function _festivalPhase(f, now) {
-  const w = _festivalWindow(f && f.config);
+  const c = f && f.config, w = _festivalWindow(c);
   if (!w) return "tba";
   if (now > w.endMs) return "ended";
-  if (now >= w.startMs) return "live";
-  return "upcoming";
+  if (now < w.startMs) return "upcoming";
+  // A multi-weekend festival (ACL) is live only inside a weekend: its
+  // startMs..endMs envelope also spans the quiet week between them (Codex P2
+  // on #183). Each weekend runs as long as the last one, W2..endMs.
+  const wk = c && c.weekendStartMs;
+  if (wk && typeof wk.W1 === "number" && typeof wk.W2 === "number" && wk.W2 > wk.W1) {
+    if (now > wk.W1 + (w.endMs - wk.W2) && now < wk.W2) return "upcoming";
+  }
+  return "live";
 }
 
 // Within a phase, order by the PRINTED date the row shows, not the window:

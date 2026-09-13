@@ -821,11 +821,16 @@ function _festivalWindow(c) {
   };
 }
 function _festivalPhase(f, now) {
-  var w = _festivalWindow(f && f.config);
+  var c = f && f.config,
+    w = _festivalWindow(c);
   if (!w) return "tba";
   if (now > w.endMs) return "ended";
-  if (now >= w.startMs) return "live";
-  return "upcoming";
+  if (now < w.startMs) return "upcoming";
+  var wk = c && c.weekendStartMs;
+  if (wk && typeof wk.W1 === "number" && typeof wk.W2 === "number" && wk.W2 > wk.W1) {
+    if (now > wk.W1 + (w.endMs - wk.W2) && now < wk.W2) return "upcoming";
+  }
+  return "live";
 }
 function _sortFestivalsForSwitcher(list, now) {
   var rank = {

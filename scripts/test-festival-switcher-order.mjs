@@ -64,6 +64,18 @@ check(_festivalPhase(b, NOW) === "live", "start instant = live");
 check(_festivalPhase(b, NOW + D) === "live", "end instant = live");
 check(_festivalPhase(b, NOW + D + 1) === "ended", "end+1 = ended");
 
+// Multi-weekend festivals are live only inside a weekend (Codex P2 on #183):
+// ACL's startMs..endMs envelope spans Oct 2–12, but Oct 5–8 is a quiet week.
+{
+  const acl = REG.find(f => f.config.id === "acl-2026");
+  const at = (d, h) => _festivalPhase(acl, Date.UTC(2026, 9, d, h));
+  check(!!(acl && acl.config.weekendStartMs), "acl-2026 carries weekendStartMs");
+  check(at(3, 20) === "live", "ACL Oct 3 (W1) = live");
+  check(at(6, 20) === "upcoming", `ACL Oct 6 (between weekends) = upcoming, got ${at(6, 20)}`);
+  check(at(10, 20) === "live", "ACL Oct 10 (W2) = live");
+  check(at(12, 12) === "ended", "ACL Oct 12 after close = ended");
+}
+
 // ── 3. Real registry ────────────────────────────────────────────────────────
 const rank = { live: 0, upcoming: 1, tba: 2, ended: 3 };
 const real = _sortFestivalsForSwitcher(REG, NOW);
