@@ -585,7 +585,7 @@ const FESTIVALS_REGISTRY = [
     // the June preview stub, which carried "Nov 13–15, 2026" — the
     // official dates per the Insomniac press release (2026-06-23) and
     // orlando.edc.com are NOV 6–8, 2026. Day-by-day lineup is REAL
-    // (109 acts, official site day filters); set times, per-artist stage
+    // (108 acts, official site day filters); set times, per-artist stage
     // assignments, and the official 2026 map are NOT published yet
     // (checked 2026-08-22; Insomniac drops them in the EDC app ~1-2
     // weeks out). Flip `available: true` ONLY after the flip session
@@ -2325,7 +2325,7 @@ const ACL_AMENITIES = [
 
 // ══════════════════════ EDC ORLANDO 2026 (revival scaffold 2026-08-22) ══════
 // Lineup + DAY SPLITS are REAL (official orlando.edc.com/lineup day
-// filters, 109 acts; audited vs Insomniac press release 2026-06-23).
+// filters, 108 acts; audited vs Insomniac press release 2026-06-23).
 // Set times + per-artist stage assignments + official 2026 map are NOT
 // published — every artist sits on stage "tba" with placeholder
 // 12:00-13:00 times until the flip session. Stage names verified from
@@ -2377,7 +2377,8 @@ const _edcoMk = (id, name, genre, day) => {
 };
 
 // Official day-by-day lineup (orlando.edc.com/lineup day filters, audited
-// 2026-08-22: Fri 36 / Sat 36 / Sun 37 = 109 acts). id prefix:
+// 2026-08-22; re-diffed 2026-09-13 against the page's day <li> elements:
+// Fri 36 / Sat 36 / Sun 36 = 108 acts, name-for-name). id prefix:
 // ecf Fri Nov 6 / ecs Sat Nov 7 / ecu Sun Nov 8. Genre tags agent-assigned
 // for the press-release groupings, default "Electronic" otherwise.
 const EDCO_ARTISTS = [
