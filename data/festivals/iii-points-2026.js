@@ -91,7 +91,23 @@
   // elsewhere; with no set times there is no basis to rank, so all acts sit
   // at the same tier rather than being silently ordered by a guess.
   // `provisional: true` marks the whole set for the flip session.
-  const mk = (id, name) => ({
+  // The flip fills this block from the OFFICIAL schedule, after STAGES and
+  // real Fri/Sat dayDates come from the same source:
+  //   node scripts/fetch-insomniac-settimes.mjs https://www.iiipoints.com/lineup/set-times --days 2 --out sheet.tsv
+  //   node scripts/import-set-times.mjs iii-points-2026 sheet.tsv --days-from-sheet --source <official-url>
+  // id → [stageId, start, end, day]. Empty until then: every act unplaced.
+  const SCHEDULE = {
+    // SCHEDULE:BEGIN iii-points-2026
+    // SCHEDULE:END
+  };
+  const scheduled = act => {
+    const s = SCHEDULE[act.id];
+    if (!s) return act;
+    const { provisional, ...rest } = act;
+    return { ...rest, stage: s[0], start: s[1], end: s[2], day: s[3] ?? act.day, bio: "Playing III Points 2026." };
+  };
+
+  const mk = (id, name) => scheduled({
     id, name, genre: "—", country: "—",
     stage: null, day: 1, start: "", end: "", tier: 2,
     img: "linear-gradient(135deg, #22d3ee, #1a0a28)",

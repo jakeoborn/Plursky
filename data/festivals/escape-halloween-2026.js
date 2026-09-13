@@ -119,7 +119,23 @@
   // `tier` drives lineup card weighting; with no times there is no basis to
   // rank, so every act sits at the same tier. `provisional: true` marks the
   // whole set for the flip session.
-  const mk = (id, name, day) => ({
+  // The flip fills this block from the OFFICIAL schedule:
+  //   node scripts/fetch-insomniac-settimes.mjs https://escapehalloween.com/lineup/set-times --days 2 --out sheet.tsv
+  //   node scripts/import-set-times.mjs escape-halloween-2026 sheet.tsv --source <official-url>
+  // id → [stageId, start, end, day?]. The importer writes `day` only for the
+  // lineup-card acts below, whose day is null until the schedule places them.
+  const SCHEDULE = {
+    // SCHEDULE:BEGIN escape-halloween-2026
+    // SCHEDULE:END
+  };
+  const scheduled = act => {
+    const s = SCHEDULE[act.id];
+    if (!s) return act;
+    const { provisional, unscheduled, ...rest } = act;
+    return { ...rest, stage: s[0], start: s[1], end: s[2], day: s[3] ?? act.day, bio: "Playing Escape Halloween 2026." };
+  };
+
+  const mk = (id, name, day) => scheduled({
     id, name, genre: "—", country: "—",
     stage: null, day, start: "", end: "", tier: 2,
     img: "linear-gradient(135deg, #F4511E, #1a0a14)",
@@ -131,7 +147,7 @@
   // Official 2026 lineup-card acts that are not present in either published
   // day list. Captured 2026-09-10. They stay fully unscheduled: no day, stage,
   // time, or billing rank is inferred before the set-times page publishes.
-  const mkUnscheduled = (id, name) => ({
+  const mkUnscheduled = (id, name) => scheduled({
     id, name, genre: "—", country: "—", stage: null, day: null,
     start: "", end: "", tier: 2,
     img: "linear-gradient(135deg, #F4511E, #1a0a14)",

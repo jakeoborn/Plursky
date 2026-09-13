@@ -129,7 +129,23 @@
   // drives lineup card weighting; with no times there is no basis to rank, so
   // every act sits at the same tier rather than being silently ordered by a
   // guess. `provisional: true` marks the whole set for the flip session.
-  const mk = (id, name, stage) => ({
+  // The flip fills this block from the OFFICIAL schedule, after the config
+  // gets real Sat/Sun dayDates (flip checklist step 1):
+  //   node scripts/import-set-times.mjs crssd-fall-2026 <sheet.tsv> --days-from-sheet --source <official-url>
+  // id → [stageId, start, end, day]. Empty until then, so every act stays as
+  // below: real stage, no day, no time.
+  const SCHEDULE = {
+    // SCHEDULE:BEGIN crssd-fall-2026
+    // SCHEDULE:END
+  };
+  const scheduled = act => {
+    const s = SCHEDULE[act.id];
+    if (!s) return act;
+    const { provisional, ...rest } = act;
+    return { ...rest, stage: s[0], start: s[1], end: s[2], day: s[3] ?? act.day, bio: "Playing CRSSD Fest Fall 2026." };
+  };
+
+  const mk = (id, name, stage) => scheduled({
     id, name, genre: "—", country: "—",
     stage, day: 1, start: "", end: "", tier: 2,
     img: `linear-gradient(135deg, ${(STAGES.find(s => s.id === stage) || STAGES[0]).color}, #0a1420)`,

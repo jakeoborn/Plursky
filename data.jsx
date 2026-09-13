@@ -2356,13 +2356,24 @@ const EDCO_STAGES = [
   { id: "tba",    name: "Schedule TBA",    short: "TBA",      color: "#9ca3af", x: 50, y: 50, size: 0.1, desc: "PROVISIONAL: stage assignments drop with the official schedule", vibe: "Unscheduled", vibeNote: "Every artist sits here until the official schedule assigns stages + times.", peak: "—" },
 ];
 
+// The flip fills this block from the OFFICIAL schedule:
+//   node scripts/fetch-insomniac-settimes.mjs https://orlando.edc.com/lineup/set-times --days 3 --out sheet.tsv
+//   node scripts/import-set-times.mjs edc-orlando-2026 sheet.tsv --source <official-url>
+// id → [stageId, start, end]. Empty until then: every act stays on "tba".
+const EDCO_SCHEDULE = {
+  // SCHEDULE:BEGIN edc-orlando-2026
+  // SCHEDULE:END
+};
 const _edcoMk = (id, name, genre, day) => {
   // ⚠ NO SET TIMES ON PURPOSE — see _llMk. Every act used to carry the same
   // placeholder "12:00"-"13:00", which is honest in intent but still renders
   // as a schedule. Blank is the form the UI already understands.
-  return { id, name, genre, country: "—", stage: "tba", day, start: "", end: "", tier: 1,
+  // EDCO_SCHEDULE above is the only way a time gets in.
+  const s = EDCO_SCHEDULE[id];
+  return { id, name, genre, country: "—", stage: s ? s[0] : "tba", day, start: s ? s[1] : "", end: s ? s[2] : "", tier: 1,
     img: `linear-gradient(135deg, #22c55e, #04170c)`,
-    bio: "Playing EDC Orlando 2026. Day is official (orlando.edc.com day filters); set time + stage are placeholders until the official schedule drops in the Insomniac app (~1-2 weeks out)." };
+    bio: s ? "Playing EDC Orlando 2026."
+           : "Playing EDC Orlando 2026. Day is official (orlando.edc.com day filters); set time + stage are placeholders until the official schedule drops in the Insomniac app (~1-2 weeks out)." };
 };
 
 // Official day-by-day lineup (orlando.edc.com/lineup day filters, audited
