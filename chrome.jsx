@@ -430,7 +430,8 @@ function FieldButton({ children, onClick, kind = "primary", style, ...rest }) {
       display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
       background: primary ? "var(--signal)" : "var(--paper-3)",
       color: primary ? "var(--on-signal)" : "var(--ink)",
-      border: "none", borderRadius: 14, cursor: rest.disabled ? "default" : "pointer",
+      // Secondary is outlined so it reads as a button on a raised sheet too.
+      border: primary ? "none" : "1px solid var(--line-2)", borderRadius: 14, cursor: rest.disabled ? "default" : "pointer",
       fontSize: 17, lineHeight: "22px", fontWeight: 600,
       opacity: rest.disabled ? 0.45 : 1,
       ...style,

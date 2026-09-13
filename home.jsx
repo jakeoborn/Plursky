@@ -1618,7 +1618,7 @@ function HomeScreen({ state, setState }) {
     <FieldNotice eyebrow="Offline mode" text="Lineup and map stay available on this phone." />
   ) : showSetup ? (
     <FieldNotice text="Personalize Plursky — name, Spotify, reminders."
-      action="Set up" onAction={() => window.plurskyOpenOnboarding?.()}
+      action="Set up" onAction={() => window.plurskyOpenPersonalize?.()}
       onDismiss={() => {
         try { localStorage.setItem("setup_banner_dismissed", "1"); } catch {}
         setSetupBannerDismissed(true);

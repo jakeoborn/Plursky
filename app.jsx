@@ -42,197 +42,198 @@ function VfxParticleField({ count = 14, scale = 1 }) {
   );
 }
 
-function OnboardingModal({ onDone, setState, state }) {
-  const [step, setStep] = React.useState(0);
-  const [name, setName] = React.useState(() => {
-    try { return localStorage.getItem("user_name") || ""; } catch { return ""; }
-  });
-  const { supported: notifSupported, perm: notifPerm, enable: enableNotifs } = useNotifications();
+// ── Field Mode onboarding ─────────────────────────────────────────
+// Three pages that show the product with the festival's REAL lineup (no
+// invented stats or placeholder art), then the festival list. No permission
+// prompts here: name, Spotify and reminders are asked when the user opens
+// Personalize (Home's setup notice, Me), each with one sentence of why.
+function _onbHeadliners(n) {
+  const lineup = (typeof activeLineup === "function" ? activeLineup() : ARTISTS) || [];
+  return [...lineup]
+    .sort((a, b) => (b.tier || 0) - (a.tier || 0) || (a.day - b.day) || (toNightMin(a.start) - toNightMin(b.start)))
+    .slice(0, n);
+}
 
-  const finish = () => {
+function OnbSchedulePreview() {
+  const rows = _onbHeadliners(4)
+    .sort((a, b) => (a.day - b.day) || (toNightMin(a.start) - toNightMin(b.start)))
+    .slice(0, 3);
+  return (
+    <div style={{ background: "var(--paper-2)", borderRadius: 16, padding: "4px 16px" }}>
+      {rows.map((a, i) => {
+        const st = STAGES.find(s => s.id === a.stage);
+        return (
+          <div key={a.id} style={{ display: "flex", alignItems: "center", gap: 12, minHeight: 64, borderBottom: i < rows.length - 1 ? "1px solid var(--line)" : "none" }}>
+            <div style={{ width: 76, flexShrink: 0, fontSize: 15, lineHeight: "21px", fontWeight: 600, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>{fmt12(a.start)}</div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{a.name}</div>
+              <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{FESTIVAL_CONFIG.dayDates?.[a.day]?.name || ""}{st ? ` · ${st.name}` : ""}</div>
+            </div>
+            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill={i === 0 ? "var(--signal)" : "none"} stroke={i === 0 ? "var(--signal)" : "var(--text-2)"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// The real hero-card renderer, so onboarding shows exactly what a user keeps.
+function OnbCardPreview({ artists, count = 1 }) {
+  const [urls, setUrls] = React.useState([]);
+  React.useEffect(() => {
+    let live = true; const made = [];
+    (async () => {
+      for (const a of artists.slice(0, count)) {
+        let c = null;
+        try { c = typeof _renderHeroCard === "function" ? await _renderHeroCard(a) : null; } catch {}
+        if (!live || !c) continue;
+        const blob = await new Promise(r => c.toBlob(r, "image/png"));
+        if (!live || !blob) continue;
+        const u = URL.createObjectURL(blob);
+        made.push(u);
+        setUrls(prev => [...prev, u]);
+      }
+    })();
+    return () => { live = false; made.forEach(u => { try { URL.revokeObjectURL(u); } catch {} }); };
+  }, []);
+  return (
+    <div style={{ display: "flex", justifyContent: "center", gap: 8 }}>
+      {artists.slice(0, count).map((a, i) => (
+        <div key={a.id} style={{ width: count === 1 ? "72%" : "31%", aspectRatio: "4 / 5", borderRadius: 14, overflow: "hidden", background: "var(--paper-2)" }}>
+          {urls[i] && <img src={urls[i]} alt={`${a.name} set card`} style={{ width: "100%", height: "100%", display: "block" }} />}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function OnboardingModal({ onDone, setState, state }) {
+  // 0-2 are the story, 3 is the festival list. Clamped: a double tap must
+  // never run past the last page (the old wizard blanked that way).
+  const [page, setPage] = React.useState(0);
+  const [q, setQ] = React.useState("");
+  const heads = React.useMemo(() => _onbHeadliners(3), []);
+  const finish = (festId) => {
+    try { localStorage.setItem("onboarded", ONBOARD_VERSION); } catch {}
+    if (festId && festId !== FESTIVAL_CONFIG.id) { setActiveFestivalAndReload(festId); return; }
+    onDone();
+  };
+  const PAGES = [
+    { title: "Plan the night.", body: "Save the sets you want and see what’s on now, next and at every stage.", preview: <OnbSchedulePreview /> },
+    { title: "Know what you caught.", body: "Your photos and clips land on the artist, stage and time they happened.", preview: <OnbCardPreview artists={heads} count={1} /> },
+    { title: "Keep the weekend.", body: "Every set you catch becomes a card for your recap.", preview: <OnbCardPreview artists={heads} count={3} /> },
+  ];
+  const story = page < 3;
+  const cur = PAGES[Math.min(page, 2)];
+  const term = q.trim().toLowerCase();
+  const now = Date.now();
+  const list = FESTIVALS_REGISTRY
+    .filter(f => (f.config.endMs || 0) >= now)
+    .sort((a, b) => (a.config.startMs || 0) - (b.config.startMs || 0))
+    .filter(f => !term || `${f.config.name} ${f.config.location}`.toLowerCase().includes(term));
+  const inputStyle = {
+    width: "100%", height: 44, borderRadius: 14, border: "none", background: "var(--paper-2)",
+    color: "var(--ink)", padding: "0 16px", fontSize: 16, outline: "none", fontFamily: "inherit",
+  };
+  return (
+    <div role="dialog" aria-modal="true" aria-label="Welcome to Plursky" style={{
+      position: "absolute", inset: 0, zIndex: 100, background: "var(--paper)", color: "var(--ink)",
+      display: "flex", flexDirection: "column",
+      paddingTop: "var(--top-pad, 0px)", paddingBottom: "env(safe-area-inset-bottom, 0px)",
+      animation: "fadeIn .25s",
+    }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", minHeight: 52, padding: "0 8px 0 20px" }}>
+        <span style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>{story ? `${page + 1} of 3` : "Almost there"}</span>
+        {story && <button onClick={() => setPage(3)} style={{ ...fieldIconBtn, width: "auto", padding: "0 12px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 }}>Skip</button>}
+      </div>
+      {story ? (
+        <>
+          <div key={page} style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "8px 20px 0", display: "flex", flexDirection: "column", justifyContent: "center", animation: "fadeIn .2s" }}>
+            {cur.preview}
+          </div>
+          <div style={{ padding: "24px 20px 16px" }}>
+            <h1 style={{ margin: 0, fontSize: 34, lineHeight: "41px", fontWeight: 700, letterSpacing: "-0.01em" }}>{cur.title}</h1>
+            <p style={{ margin: "8px 0 24px", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>{cur.body}</p>
+            <FieldButton onClick={() => setPage(p => Math.min(p + 1, 3))}>{page < 2 ? "Continue" : "Choose your festival"}</FieldButton>
+          </div>
+        </>
+      ) : (
+        <>
+          <div style={{ padding: "0 20px 8px" }}>
+            <h1 style={{ margin: "0 0 12px", fontSize: 28, lineHeight: "34px", fontWeight: 700 }}>Where are you raving?</h1>
+            <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search festivals" aria-label="Search festivals" style={inputStyle} />
+          </div>
+          <div style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "0 20px" }}>
+            {list.map(f => {
+              const isActive = f.config.id === FESTIVAL_CONFIG.id;
+              const locked = !f.available;
+              return (
+                <button key={f.config.id} disabled={locked} onClick={() => finish(f.config.id)} style={{
+                  width: "100%", display: "flex", alignItems: "center", gap: 12, minHeight: 72, padding: "8px 0",
+                  background: "transparent", border: "none", borderBottom: "1px solid var(--line)",
+                  color: "var(--ink)", textAlign: "left", fontFamily: "inherit",
+                  cursor: locked ? "default" : "pointer", opacity: locked ? 0.55 : 1,
+                }}>
+                  <FestivalThumb entry={f} />
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>{f.config.name}</div>
+                    <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{f.config.location} · {f.config.dates}</div>
+                    {(isActive || locked) && (
+                      <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: isActive ? "var(--signal)" : "var(--text-2)" }}>
+                        {isActive ? "✓ Selected" : f.previewOnly ? "Early access" : "Soon"}
+                      </div>
+                    )}
+                  </div>
+                </button>
+              );
+            })}
+            {!list.length && <p style={{ padding: "24px 0", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>No festival by that name yet.</p>}
+          </div>
+          <div style={{ padding: "12px 20px 16px" }}>
+            <FieldButton onClick={() => finish(null)}>Continue with {FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name}</FieldButton>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+// Personalize: name, Spotify and reminders, each asked with one sentence of
+// why, only when the user opens it. Closing saves the name.
+function PersonalizeSheet({ state, onClose }) {
+  const [name, setName] = React.useState(() => { try { return localStorage.getItem("user_name") || ""; } catch { return ""; } });
+  const { supported: notifSupported, perm: notifPerm, enable: enableNotifs } = useNotifications();
+  const save = () => {
     try {
-      localStorage.setItem("onboarded", ONBOARD_VERSION);
       if (name.trim()) {
         localStorage.setItem("user_name", name.trim());
         localStorage.setItem("plursky_display_name", name.trim());
       }
     } catch {}
-    onDone();
+    onClose();
   };
-  // Clamped, and the clamp is load-bearing. `next` used to be `s => s + 1`
-  // with no ceiling, and `cur = STEPS[step]` right below has no fallback,
-  // so any input that landed two `next` calls in one React batch — a fast
-  // double-tap on CONTINUE, a touch that emits a duplicate click — ran off
-  // the end of STEPS and threw on `cur.kicker`. The modal blanked with no
-  // way forward and `onboarded` was never written, so it came back on every
-  // launch. Caught 2026-09-06 driving onboarding headlessly. STEPS is
-  // declared below this line, which is fine: `next` only reads it at click
-  // time, never at eval time.
-  const next = () => setStep(s => Math.min(s + 1, STEPS.length - 1));
-
-  const STEPS = [
-    {
-      kicker: "WELCOME",
-      title: <>Welcome to <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>Plursky</span></>,
-      body: `${ARTISTS.length} artists across ${STAGES.length} stages. Live map, walking ETAs, conflict detection, crew meetups, and set reminders — all offline. Built for ${FESTIVAL_CONFIG.name || "the festival"}.`,
-      preview: (
-        <>
-          {/* VFX hero showcase — 3-second animated preview of the festival atmosphere */}
-          <div style={{
-            margin: "12px -22px 0", borderRadius: 14, overflow: "hidden",
-            height: 120, position: "relative",
-            background: "linear-gradient(160deg, #1a1030 0%, #2a1a3d 50%, #1a120d 100%)",
-          }}>
-            <VfxParticleField count={14} />
-            <div style={{
-              position: "absolute", bottom: 0, left: 0, right: 0,
-              background: "linear-gradient(0deg, rgba(26,16,48,0.9) 0%, transparent 100%)",
-              padding: "24px 16px 10px",
-            }}>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.8, color: "var(--ember-ink)", fontWeight: 800 }}>
-                SEE WHAT PLURSKY LOOKS LIKE AT THE FESTIVAL
-              </div>
-            </div>
-          </div>
-          {/* Stage chips */}
-          <div style={{
-            display: "flex", gap: 6, overflowX: "auto", margin: "10px -22px 0", padding: "0 22px",
-            scrollbarWidth: "none",
-          }}>
-            {STAGES.slice(0, 5).map(s => (
-              <div key={s.id} style={{
-                flexShrink: 0, width: 80, padding: "8px 6px",
-                background: `${s.color}14`, border: `1px solid ${s.color}44`,
-                borderRadius: 10, textAlign: "center",
-              }}>
-                <div style={{
-                  width: 28, height: 28, borderRadius: 28, background: s.color,
-                  margin: "0 auto 6px", display: "flex", alignItems: "center", justifyContent: "center",
-                  boxShadow: `0 0 12px ${s.color}44`,
-                }}>
-                  <span style={{ fontSize: 10, color: "#fff", fontWeight: 800 }}>{activeLineup().filter(a => a.stage === s.id).length}</span>
-                </div>
-                <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--ink)", fontWeight: 700 }}>{s.short}</div>
-              </div>
-            ))}
-          </div>
-        </>
-      ),
-      input: (
-        <input
-          type="text"
-          placeholder="What should we call you?"
-          value={name}
-          onChange={e => setName(e.target.value)}
-          autoFocus
-          style={{
-            width: "100%", padding: "12px 14px", marginTop: 12,
-            background: "var(--paper-2)", border: "1px solid var(--line-2)",
-            borderRadius: 12, fontFamily: "Geist, sans-serif", fontSize: 14,
-            color: "var(--ink)", outline: "none",
-          }}/>
-      ),
-      cta: { label: name.trim() ? `CONTINUE AS ${name.trim().toUpperCase()}` : "CONTINUE", onClick: next },
-    },
-    {
-      kicker: "STEP 2 OF 3",
-      title: <>Match the <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>lineup</span> to your Spotify</>,
-      body: `Connect Spotify and we'll mark every artist you already love across all ${ARTISTS.length} sets, plus surface deep-cut discoveries you don't know yet.`,
-      cta: state.spotifyConnected
-        ? { label: "✓ ALREADY CONNECTED — CONTINUE", onClick: next }
-        : { label: "CONNECT SPOTIFY", onClick: () => startSpotifyAuth() },
-      skip: { label: "SKIP", onClick: next },
-    },
-    {
-      kicker: "STEP 3 OF 3",
-      title: <>Reminders before each <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>set</span></>,
-      body: notifSupported
-        ? `Get a push 15 minutes before any saved set starts — including the sunrise sets at ${STAGES.find(s => s.id === FESTIVAL_CONFIG.mainStageId)?.name || "the main stage"}. We don't track you, no account needed.`
-        : "Push notifications aren't supported in this browser. You can still set custom alarms from the Lineup page.",
-      cta: !notifSupported
-        ? { label: "GOT IT", onClick: finish }
-        : notifPerm === "granted"
-          ? { label: "✓ ENABLED — FINISH", onClick: finish }
-          : { label: "ENABLE NOTIFICATIONS", onClick: async () => { await enableNotifs(); finish(); } },
-      skip: notifSupported && notifPerm !== "granted" ? { label: "MAYBE LATER", onClick: finish } : null,
-    },
-  ];
-
-  const cur = STEPS[step];
-
+  const title = { fontSize: 17, lineHeight: "22px", fontWeight: 600 };
+  const why = { margin: "2px 0 12px", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" };
+  const rule = <div style={{ height: 1, background: "var(--line)", margin: "20px 0" }} />;
+  const done = (text) => <div style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600, color: "var(--signal)" }}>✓ {text}</div>;
   return (
-    <div style={{
-      position: "absolute", inset: 0, zIndex: 100,
-      // OPAQUE, not a scrim. This was rgba(13,8,4,0.55) + backdropFilter
-      // blur(6px), which meant the first thing a new user ever saw was the
-      // map screen smeared behind frosted glass — festival art rendered as
-      // an artifact of not having dismissed a sheet yet. A blur does not
-      // hide the map, it advertises it badly. Same gradient as the step-1
-      // hero, so the backdrop and the hero read as one surface.
-      background: "linear-gradient(160deg, #1a1030 0%, #2a1a3d 50%, #1a120d 100%)",
-      display: "flex", alignItems: "flex-end", animation: "fadeIn .25s",
-      overflow: "hidden",
-    }}>
-      {/* Same particle field as the hero, sparser and larger for full-bleed. */}
-      <VfxParticleField count={18} scale={1.6} />
-      <div style={{
-        background: "var(--paper)", color: "var(--ink)",
-        borderTopLeftRadius: 26, borderTopRightRadius: 26,
-        width: "100%", padding: "16px 22px 26px",
-        boxShadow: "0 -16px 50px rgba(0,0,0,0.4)",
-        // The particle field is absolutely positioned, so a STATIC sheet
-        // would paint underneath it — positioned elements win the paint
-        // order regardless of source order. Make the sheet positioned too.
-        position: "relative", zIndex: 1,
-      }}>
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: 10 }}>
-          <div style={{ width: 38, height: 4, borderRadius: 4, background: "var(--line-2)" }}/>
-        </div>
-
-        {/* Step indicator */}
-        <div style={{ display: "flex", gap: 4, marginBottom: 18 }}>
-          {STEPS.map((_, i) => (
-            <div key={i} style={{
-              flex: 1, height: 3, borderRadius: 3,
-              background: i <= step ? "var(--ember)" : "var(--line)",
-              transition: "background .2s",
-            }}/>
-          ))}
-        </div>
-
-        <div key={step} style={{ animation: "slideUp 0.25s ease-out" }}>
-        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--muted)", marginBottom: 6, fontWeight: 600 }}>
-          {cur.kicker}
-        </div>
-        <div className="serif" style={{ fontSize: 32, lineHeight: 1.05, letterSpacing: -0.4, marginBottom: 12 }}>
-          {cur.title}
-        </div>
-        <div style={{ fontSize: 14, color: "var(--muted)", lineHeight: 1.5, marginBottom: 18 }}>
-          {cur.body}
-        </div>
-
-        {cur.preview}
-        {cur.input}
-
-        <div style={{ display: "grid", gap: 8, marginTop: 18 }}>
-          <button onClick={cur.cta.onClick} style={{
-            background: "var(--ink)", color: "var(--paper)", border: "none",
-            borderRadius: 999, padding: "13px 18px",
-            fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
-            cursor: "pointer",
-          }}>{cur.cta.label}</button>
-          {cur.skip && (
-            <button onClick={cur.skip.onClick} style={{
-              background: "transparent", color: "var(--muted)", border: "none",
-              padding: "8px 12px",
-              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
-              cursor: "pointer",
-            }}>{cur.skip.label}</button>
-          )}
-        </div>
-        </div>{/* close step animation wrapper */}
-      </div>
-    </div>
+    <FieldSheet title="Personalize Plursky" onClose={save}>
+      <label htmlFor="plursky-name" style={{ display: "block", ...title }}>Your name</label>
+      <p style={why}>Shown on your Me tab.</p>
+      <input id="plursky-name" value={name} onChange={e => setName(e.target.value)} placeholder="What should we call you?" autoComplete="nickname" style={{
+        width: "100%", height: 44, borderRadius: 14, border: "none", background: "var(--paper-2)",
+        color: "var(--ink)", padding: "0 16px", fontSize: 16, outline: "none", fontFamily: "inherit",
+      }} />
+      {rule}
+      <div style={title}>Spotify</div>
+      <p style={why}>Marks the artists you already love across the lineup.</p>
+      {state.spotifyConnected ? done("Connected") : <FieldButton kind="secondary" onClick={() => startSpotifyAuth()}>Connect Spotify</FieldButton>}
+      {rule}
+      <div style={title}>Set reminders</div>
+      <p style={why}>{notifSupported ? "A heads-up 15 minutes before each saved set starts." : "This browser can’t send notifications. You can still set alarms from the Lineup."}</p>
+      {notifSupported && (notifPerm === "granted" ? done("On") : <FieldButton kind="secondary" onClick={() => enableNotifs()}>Turn on reminders</FieldButton>)}
+      <FieldButton onClick={save} style={{ marginTop: 24 }}>Done</FieldButton>
+    </FieldSheet>
   );
 }
 
@@ -507,12 +508,14 @@ function App() {
     catch { return false; }
   });
   const [searchOpen, setSearchOpen] = React.useState(false);
+  const [personalizeOpen, setPersonalizeOpen] = React.useState(false);
   // True while any full-screen overlay is mounted. The search FAB below hides
   // rather than trying to out-stack it — see useDeclareModal in chrome.jsx.
   const modalOpen = useModalOpen();
   React.useEffect(() => {
     window.plurskyOpenOnboarding = () => setShowOnboarding(true);
-    return () => { delete window.plurskyOpenOnboarding; };
+    window.plurskyOpenPersonalize = () => setPersonalizeOpen(true);
+    return () => { delete window.plurskyOpenOnboarding; delete window.plurskyOpenPersonalize; };
   }, []);
   // Drain the outbox (queued crew messages from offline moments) on mount,
   // on reconnect, and every 30s. Idempotent — safe to call once at startup.
@@ -818,6 +821,7 @@ function App() {
           onDone={() => setShowOnboarding(false)}
         />
       )}
+      {personalizeOpen && <PersonalizeSheet state={state} onClose={() => setPersonalizeOpen(false)} />}
       {window.NowPlayingBar && React.createElement(window.NowPlayingBar)}
       <BatterySaverToast />
     </IOSDevice>

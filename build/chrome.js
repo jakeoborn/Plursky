@@ -588,7 +588,7 @@ function FieldButton({
       gap: 8,
       background: primary ? "var(--signal)" : "var(--paper-3)",
       color: primary ? "var(--on-signal)" : "var(--ink)",
-      border: "none",
+      border: primary ? "none" : "1px solid var(--line-2)",
       borderRadius: 14,
       cursor: rest.disabled ? "default" : "pointer",
       fontSize: 17,

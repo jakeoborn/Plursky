@@ -2077,7 +2077,7 @@ function HomeScreen({
   }) : showSetup ? React.createElement(FieldNotice, {
     text: "Personalize Plursky — name, Spotify, reminders.",
     action: "Set up",
-    onAction: () => window.plurskyOpenOnboarding?.(),
+    onAction: () => window.plurskyOpenPersonalize?.(),
     onDismiss: () => {
       try {
         localStorage.setItem("setup_banner_dismissed", "1");

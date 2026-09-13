@@ -10874,20 +10874,19 @@ function MeScreen({
       marginTop: 14
     }
   }, React.createElement("button", {
-    onClick: () => window.plurskyOpenOnboarding?.(),
+    onClick: () => window.plurskyOpenPersonalize?.(),
     style: {
       background: "transparent",
       border: "1px solid var(--line-2)",
-      borderRadius: 999,
-      padding: "8px 14px",
+      borderRadius: 14,
+      minHeight: 44,
+      padding: "0 16px",
       cursor: "pointer",
-      color: "var(--muted)",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 600
+      color: "var(--ink)",
+      fontSize: 15,
+      fontWeight: 500
     }
-  }, "↻ RE-RUN SETUP WIZARD")))), _mePostFest ? React.createElement(Collapsible, {
+  }, "Personalize Plursky")))), _mePostFest ? React.createElement(Collapsible, {
     title: "🛟 SAFETY & CARE"
   }, React.createElement(SafetyCards, null)) : React.createElement(React.Fragment, null, React.createElement("div", {
     className: "serif",
