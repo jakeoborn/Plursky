@@ -770,6 +770,86 @@ function _resolveDefaultFestivalId(now) {
   if (upcoming.length) return upcoming[0].config.id;
   return dated.slice().sort((a, b) => b.config.endMs - a.config.endMs)[0].config.id;
 }
+function _festivalEventDates(cfg) {
+  var MONTHS = {
+    Jan: 1,
+    Feb: 2,
+    Mar: 3,
+    Apr: 4,
+    May: 5,
+    Jun: 6,
+    Jul: 7,
+    Aug: 8,
+    Sep: 9,
+    Oct: 10,
+    Nov: 11,
+    Dec: 12
+  };
+  var ymd = (mon, d, y) => `${y}-${String(MONTHS[mon]).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+  var m = /^([A-Z][a-z]{2}) (\d+)[–-](\d+)(?: & (\d+)[–-](\d+))?, (\d{4})$/.exec(cfg.dates || "");
+  if (m) return {
+    start: ymd(m[1], m[2], m[6]),
+    end: ymd(m[1], m[5] || m[3], m[6])
+  };
+  var x = /^([A-Z][a-z]{2}) (\d+), (\d{4}) [–-] ([A-Z][a-z]{2}) (\d+), (\d{4})$/.exec(cfg.dates || "");
+  if (x && MONTHS[x[1]] && MONTHS[x[4]]) return {
+    start: ymd(x[1], x[2], x[3]),
+    end: ymd(x[4], x[5], x[6])
+  };
+  var dd = cfg.dayDates && Object.values(cfg.dayDates);
+  if (dd && dd.length) {
+    var f = d => `${d.y}-${String(d.m + 1).padStart(2, "0")}-${String(d.d).padStart(2, "0")}`;
+    return {
+      start: f(dd[0]),
+      end: f(dd[dd.length - 1])
+    };
+  }
+  return null;
+}
+function _festivalWindow(c) {
+  if (!c) return null;
+  if (typeof c.startMs === "number" && typeof c.endMs === "number") return {
+    startMs: c.startMs,
+    endMs: c.endMs
+  };
+  var ev = _festivalEventDates(c);
+  if (!ev) return null;
+  var day = s => Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10));
+  return {
+    startMs: day(ev.start),
+    endMs: day(ev.end) + 86400000 - 1
+  };
+}
+function _festivalPhase(f, now) {
+  var w = _festivalWindow(f && f.config);
+  if (!w) return "tba";
+  if (now > w.endMs) return "ended";
+  if (now >= w.startMs) return "live";
+  return "upcoming";
+}
+function _sortFestivalsForSwitcher(list, now) {
+  var rank = {
+    live: 0,
+    upcoming: 1,
+    tba: 2,
+    ended: 3
+  };
+  var iso = ms => new Date(ms).toISOString().slice(0, 10);
+  var cmp = (x, y) => x < y ? -1 : x > y ? 1 : 0;
+  return list.map((f, i) => {
+    var c = f && f.config,
+      w = _festivalWindow(c),
+      ev = c && _festivalEventDates(c);
+    return {
+      f,
+      i,
+      p: _festivalPhase(f, now),
+      w,
+      s: ev ? ev.start : w && iso(w.startMs),
+      e: ev ? ev.end : w && iso(w.endMs)
+    };
+  }).sort((a, b) => rank[a.p] - rank[b.p] || (a.p === "ended" ? cmp(b.e, a.e) || b.w.endMs - a.w.endMs : a.p === "tba" ? 0 : cmp(a.s, b.s) || a.w.startMs - b.w.startMs) || a.i - b.i).map(x => x.f);
+}
 function getActiveFestivalId() {
   var now = Date.now();
   try {

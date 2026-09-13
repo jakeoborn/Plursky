@@ -25,7 +25,7 @@ export function loadRegistry(root) {
   vm.runInContext(
     festivalModules + '\n' +
     readFileSync(path.join(root, 'data.jsx'), 'utf8') +
-    '\n;__out = { REG: FESTIVALS_REGISTRY, DS: _DATA_SETS, scheduleActs: _scheduleActs };',
+    '\n;__out = { REG: FESTIVALS_REGISTRY, DS: _DATA_SETS, scheduleActs: _scheduleActs, eventDates: _festivalEventDates };',
     ctx,
   );
   return ctx.__out;
