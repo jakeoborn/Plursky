@@ -1058,6 +1058,10 @@ function _festivalPhase(f, now) {
   if (!w) return "tba";
   if (now > w.endMs) return "ended";
   if (now < w.startMs) return "upcoming";
+  // Only an entry with real gate times can be live. A dates-only stub
+  // (Coachella 2027: "Apr 9–18", two weekends, no dayDates) is unbuilt, and
+  // its printed span can't say which days it runs (Codex's third P2 on #183).
+  if (!(typeof c.startMs === "number" && typeof c.endMs === "number")) return "upcoming";
   // Inside the startMs..endMs envelope, a festival that runs in blocks (ACL's
   // two weekends, Summerfest's three Thu–Sat runs) is live only on its event
   // days; the gap between blocks is upcoming (two Codex P2s on #183). A day

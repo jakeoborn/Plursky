@@ -43,7 +43,9 @@ const input = [
 check(ids(_sortFestivalsForSwitcher(input, NOW)) ===
   "live-a,live-b,up-near,up-printed,up-far,tba-a,tba-b,tba-halfdated,ended-recent,ended-old,ended-printed",
   `fixture order: ${ids(_sortFestivalsForSwitcher(input, NOW))}`);
-check(_festivalPhase({ config: { id: "p", dates: "Sep 12–14, 2026" } }, NOW) === "live", "printed dates spanning now = live");
+// Codex's third P2: a dates-only stub has no gate times, so it is unbuilt and
+// never "live". Inside its printed range it stays upcoming.
+check(_festivalPhase({ config: { id: "p", dates: "Sep 12–14, 2026" } }, NOW) === "upcoming", "a dates-only entry spanning now = upcoming, never live");
 // A real gate instant vs a printed-only day: Decadence (Dec 30 17:00 MST =
 // Dec 31 00:00Z) must still list above Countdown NYE (printed Dec 31). The
 // row shows the printed date, so that is the order the eye checks.
@@ -88,6 +90,20 @@ check(_festivalPhase(b, NOW + D + 1) === "ended", "end+1 = ended");
   check(at(5, 29, 20) === "upcoming", `Summerfest Jun 29 (gap) = upcoming, got ${at(5, 29, 20)}`);
   check(at(6, 3, 20) === "live", "Summerfest Jul 3 = live");
   check(at(6, 6, 12) === "ended", "Summerfest Jul 6 = ended");
+}
+// Coachella 2027 is a dates-only stub ("Apr 9–18, 2027", "Two weekends") with no
+// dayDates, weekendStartMs or gate times. It must not top the switcher on
+// Apr 12–15 (Codex's third P2 on #183).
+{
+  const co = REG.find(f => f.config.id === "coachella-2027");
+  const at = (d, h) => _festivalPhase(co, Date.UTC(2027, 3, d, h));
+  check(at(13, 20) === "upcoming", `Coachella 2027 Apr 13 = upcoming, got ${at(13, 20)}`);
+  check(at(20, 20) === "ended", "Coachella 2027 Apr 20 = ended");
+}
+{
+  const bad = REG.filter(f => _festivalPhase(f, Date.UTC(2027, 3, 13, 20)) === "live" &&
+    !(typeof f.config.startMs === "number" && typeof f.config.endMs === "number"));
+  check(!bad.length, `only entries with gate times can be live: ${ids(bad)}`);
 }
 
 // ── 3. Real registry ────────────────────────────────────────────────────────

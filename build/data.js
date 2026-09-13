@@ -841,6 +841,7 @@ function _festivalPhase(f, now) {
   if (!w) return "tba";
   if (now > w.endMs) return "ended";
   if (now < w.startMs) return "upcoming";
+  if (!(typeof c.startMs === "number" && typeof c.endMs === "number")) return "upcoming";
   var days = _festivalEventDays(c),
     H = 3600000;
   for (var i = 1; i < days.length; i++) {
