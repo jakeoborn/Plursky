@@ -68,29 +68,18 @@ function TabBar({ active, onChange }) {
     { id: "map",     label: "Map",    icon: MapIcon },
     { id: "me",      label: "Me",     icon: MeIcon },
   ];
-  const [_tick, _setTick] = React.useState(0);
-  React.useEffect(() => { const id = setInterval(() => _setTick(t => t + 1), 30000); return () => clearInterval(id); }, []);
-  const _liveMainColor = React.useMemo(() => {
-    try {
-      const stages = window.STAGES || [];
-      const artists = (typeof activeLineup === "function") ? activeLineup() : (window.ARTISTS || []);
-      const main = window.FESTIVAL_CONFIG?.mainStageId;
-      if (!main || typeof window.isSetLive !== "function") return null;
-      const live = artists.find(a => a.stage === main && window.isSetLive(a));
-      if (!live) return null;
-      return stages.find(s => s.id === main)?.color || null;
-    } catch { return null; }
-  }, [_tick]);
-
+  // Field Mode: the bar is quiet black chrome. Signal green marks only the
+  // selected tab. Stage colour no longer tints the bar while the main stage
+  // is live: festival colour may skin media, never controls.
   return (
     <div style={{
-      background: "var(--paper-2)",
-      borderTop: _liveMainColor ? `2px solid ${_liveMainColor}` : "1px solid var(--line)",
-      boxShadow: _liveMainColor ? `0 -2px 12px ${_liveMainColor}22` : undefined,
+      background: "rgba(8,8,8,0.78)",
+      backdropFilter: "blur(20px) saturate(160%)",
+      WebkitBackdropFilter: "blur(20px) saturate(160%)",
+      borderTop: "1px solid var(--line)",
       padding: "6px 10px 10px",
       display: "flex",
       justifyContent: "space-around",
-      transition: "border-color 1s ease, box-shadow 1s ease",
     }}>
       {tabs.map(t => {
         const Icon = t.icon;
@@ -101,23 +90,17 @@ function TabBar({ active, onChange }) {
             aria-current={on ? "page" : undefined}
             style={{
               background: "transparent", border: "none", cursor: "pointer",
-              display: "flex", flexDirection: "column", alignItems: "center", gap: 2,
+              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 3,
               padding: "4px 12px",
-              color: on ? "var(--ink)" : "var(--muted)",
-              minWidth: 54,
+              color: on ? "var(--signal)" : "var(--text-2)",
+              minWidth: 64, minHeight: 49,
               transition: "color 0.15s ease",
-              position: "relative",
             }}>
-            {on && <div style={{
-              position: "absolute", top: -6, left: "50%", transform: "translateX(-50%)",
-              width: 20, height: 2.5, borderRadius: 2,
-              background: "var(--ember)",
-            }}/>}
             <Icon on={on} />
-            <span className="mono" style={{
-              fontSize: 9, letterSpacing: 1, textTransform: "uppercase",
-              fontWeight: on ? 700 : 400,
-              transition: "font-weight 0.15s, color 0.15s",
+            <span style={{
+              fontSize: 12, lineHeight: "14px",
+              fontWeight: on ? 600 : 500,
+              transition: "color 0.15s",
             }}>
               {t.label}
             </span>
@@ -1504,21 +1487,11 @@ const _TH = (window._TH = window._TH || {
   listeners: new Set(),   // (mode) => void
 });
 
-// Returns the <html> class for a given pref. "" is the light baseline.
+// Returns the <html> class for a given pref. Field Mode is one black
+// utility shell at every hour, so the pref no longer changes the look; it is
+// still read so a stored "light"/"dark" value stays harmless.
 function resolveThemeClass(mode) {
-  if (mode === "light") return "";
-  if (mode === "dark")  return "theme-night";
-  // auto — unchanged from the original behaviour: sky-tracking, but only
-  // while the festival is actually running.
-  const cfg = (typeof window !== "undefined" && window.FESTIVAL_CONFIG) || null;
-  if (!cfg || typeof cfg.startMs !== "number" || typeof cfg.endMs !== "number") return "";
-  const now = Date.now();
-  if (now < cfg.startMs || now > cfg.endMs) return "";
-  const h = new Date().getHours();
-  return h >= 20 || h < 4  ? "theme-night"
-       : h >= 4  && h < 7  ? "theme-dawn"
-       : h >= 17 && h < 20 ? "theme-sunset"
-       : "";
+  return "theme-field";
 }
 
 function applyThemeClass() {

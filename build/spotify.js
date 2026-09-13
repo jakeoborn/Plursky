@@ -10869,7 +10869,7 @@ function MeScreen({
     }
   }, React.createElement(NotificationsCard, {
     state: state
-  }), React.createElement(ThemeCard, null), React.createElement(BatterySaverCard, null), React.createElement(PackListCard, null), React.createElement("div", {
+  }), React.createElement(BatterySaverCard, null), React.createElement(PackListCard, null), React.createElement("div", {
     style: {
       marginTop: 14
     }

@@ -6960,7 +6960,6 @@ function MeScreen({ state, setState }) {
           {settingsOpen && (
             <div style={{ marginTop: 10 }}>
               <NotificationsCard state={state} />
-              <ThemeCard />
               <BatterySaverCard />
               <PackListCard />
               <div style={{ marginTop: 14 }}>

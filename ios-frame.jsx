@@ -191,7 +191,7 @@ function IOSDevice({ children, dark = false }) {
   return (
     <div style={{
       position: 'fixed', inset: 0, overflow: 'hidden',
-      background: dark ? '#000' : '#f7ede0',
+      background: dark ? '#000' : 'var(--paper)',
       fontFamily: '-apple-system, system-ui, sans-serif',
       WebkitFontSmoothing: 'antialiased',
     }}>

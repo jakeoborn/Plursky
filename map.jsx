@@ -2657,7 +2657,7 @@ function MapScreen({ state, setState }) {
                     else { setMeetMode(true); }
                   }} style={{
                     background: meetMode ? "var(--ember)" : "var(--ink)",
-                    color: "#fff", border: "none", borderRadius: 999, padding: "4px 10px",
+                    color: meetMode ? "var(--on-ember)" : "var(--paper)", border: "none", borderRadius: 999, padding: "4px 10px",
                     fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
                     cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0,
                   }}>{meetMode ? "× CANCEL" : "MEET UP"}</button>
@@ -2837,7 +2837,7 @@ function MapScreen({ state, setState }) {
                       else { setMeetMode(true); }
                     }} style={{
                       background: meetMode ? "var(--ember)" : "var(--ink)",
-                      color: "#fff", border: "none", borderRadius: 999, padding: "6px 11px",
+                      color: meetMode ? "var(--on-ember)" : "var(--paper)", border: "none", borderRadius: 999, padding: "6px 11px",
                       fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
                       cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0,
                     }}>{meetMode ? "× CANCEL" : "MEET UP"}</button>

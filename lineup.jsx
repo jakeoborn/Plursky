@@ -2441,13 +2441,14 @@ function ConflictResolver({ conflicts, onKeep, onKeepBoth, onSplit }) {
 }
 
 function TierStars({ tier }) {
-  const colors = { 3: "#f59a36", 2: "var(--muted)", 1: "rgba(26,18,13,0.25)" };
+  // Tokens, not literal ink: literal dark fills vanish on the black shell.
+  const colors = { 3: "#f59a36", 2: "var(--muted)", 1: "var(--text-3)" };
   return (
     <span style={{ display: "inline-flex", gap: 1.5, alignItems: "center" }}>
       {/* not-days: three tier stars */}
       {[1, 2, 3].map(i => (
         <svg key={i} width="9" height="9" viewBox="0 0 24 24"
-          fill={i <= tier ? colors[tier] : "rgba(26,18,13,0.12)"}>
+          fill={i <= tier ? colors[tier] : "var(--line-2)"}>
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
         </svg>
       ))}

@@ -3604,7 +3604,7 @@ function MapScreen({
       },
       style: {
         background: meetMode ? "var(--ember)" : "var(--ink)",
-        color: "#fff",
+        color: meetMode ? "var(--on-ember)" : "var(--paper)",
         border: "none",
         borderRadius: 999,
         padding: "4px 10px",
@@ -4037,7 +4037,7 @@ function MapScreen({
       },
       style: {
         background: meetMode ? "var(--ember)" : "var(--ink)",
-        color: "#fff",
+        color: meetMode ? "var(--on-ember)" : "var(--paper)",
         border: "none",
         borderRadius: 999,
         padding: "6px 11px",

@@ -847,7 +847,7 @@ function DayStrip({ value, onChange, hasYesterday, hasUpcoming }) {
             style={{
               flex: 1, padding: "8px 6px",
               background: active ? "var(--ember)" : "transparent",
-              color: active ? "#fff" : (t.enabled ? "var(--muted)" : "rgba(26,18,13,0.25)"),
+              color: active ? "var(--on-ember)" : (t.enabled ? "var(--muted)" : "var(--text-3)"),
               border: "none", borderRadius: 999,
               cursor: t.enabled ? "pointer" : "default",
               fontFamily: "Geist Mono, monospace",

@@ -109,33 +109,15 @@ function TabBar({
     label: "Me",
     icon: MeIcon
   }];
-  var [_tick, _setTick] = React.useState(0);
-  React.useEffect(() => {
-    var id = setInterval(() => _setTick(t => t + 1), 30000);
-    return () => clearInterval(id);
-  }, []);
-  var _liveMainColor = React.useMemo(() => {
-    try {
-      var stages = window.STAGES || [];
-      var artists = typeof activeLineup === "function" ? activeLineup() : window.ARTISTS || [];
-      var main = window.FESTIVAL_CONFIG?.mainStageId;
-      if (!main || typeof window.isSetLive !== "function") return null;
-      var live = artists.find(a => a.stage === main && window.isSetLive(a));
-      if (!live) return null;
-      return stages.find(s => s.id === main)?.color || null;
-    } catch {
-      return null;
-    }
-  }, [_tick]);
   return React.createElement("div", {
     style: {
-      background: "var(--paper-2)",
-      borderTop: _liveMainColor ? `2px solid ${_liveMainColor}` : "1px solid var(--line)",
-      boxShadow: _liveMainColor ? `0 -2px 12px ${_liveMainColor}22` : undefined,
+      background: "rgba(8,8,8,0.78)",
+      backdropFilter: "blur(20px) saturate(160%)",
+      WebkitBackdropFilter: "blur(20px) saturate(160%)",
+      borderTop: "1px solid var(--line)",
       padding: "6px 10px 10px",
       display: "flex",
-      justifyContent: "space-around",
-      transition: "border-color 1s ease, box-shadow 1s ease"
+      justifyContent: "space-around"
     }
   }, tabs.map(t => {
     var Icon = t.icon;
@@ -154,34 +136,22 @@ function TabBar({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: 2,
+        justifyContent: "center",
+        gap: 3,
         padding: "4px 12px",
-        color: on ? "var(--ink)" : "var(--muted)",
-        minWidth: 54,
-        transition: "color 0.15s ease",
-        position: "relative"
+        color: on ? "var(--signal)" : "var(--text-2)",
+        minWidth: 64,
+        minHeight: 49,
+        transition: "color 0.15s ease"
       }
-    }, on && React.createElement("div", {
-      style: {
-        position: "absolute",
-        top: -6,
-        left: "50%",
-        transform: "translateX(-50%)",
-        width: 20,
-        height: 2.5,
-        borderRadius: 2,
-        background: "var(--ember)"
-      }
-    }), React.createElement(Icon, {
+    }, React.createElement(Icon, {
       on: on
     }), React.createElement("span", {
-      className: "mono",
       style: {
-        fontSize: 9,
-        letterSpacing: 1,
-        textTransform: "uppercase",
-        fontWeight: on ? 700 : 400,
-        transition: "font-weight 0.15s, color 0.15s"
+        fontSize: 12,
+        lineHeight: "14px",
+        fontWeight: on ? 600 : 500,
+        transition: "color 0.15s"
       }
     }, t.label));
   }));
@@ -1897,14 +1867,7 @@ var _TH = window._TH = window._TH || {
   listeners: new Set()
 };
 function resolveThemeClass(mode) {
-  if (mode === "light") return "";
-  if (mode === "dark") return "theme-night";
-  var cfg = typeof window !== "undefined" && window.FESTIVAL_CONFIG || null;
-  if (!cfg || typeof cfg.startMs !== "number" || typeof cfg.endMs !== "number") return "";
-  var now = Date.now();
-  if (now < cfg.startMs || now > cfg.endMs) return "";
-  var h = new Date().getHours();
-  return h >= 20 || h < 4 ? "theme-night" : h >= 4 && h < 7 ? "theme-dawn" : h >= 17 && h < 20 ? "theme-sunset" : "";
+  return "theme-field";
 }
 function applyThemeClass() {
   var next = resolveThemeClass(_TH.mode);
