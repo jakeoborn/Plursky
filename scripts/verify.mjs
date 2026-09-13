@@ -354,6 +354,25 @@ if (fdata.length) {
   }
 }
 
+// ── Festival-status freshness gate ───────────────────────────────────────
+// docs/qa/INSTINCT-QUEUE.md is the tracker both agents plan from. Its live and
+// gated counts were typed by hand and read "9 live" while the registry had 12
+// (found 2026-09-12). The table between the festival-status markers is now
+// generated from FESTIVALS_REGISTRY + _DATA_SETS, and a flip, a new entry or a
+// lineup change that does not regenerate it fails here.
+{
+  console.log("▸ Festival-status gate — the queue's live/gated table must match the registry");
+  try {
+    const out = execFileSync("node", ["scripts/festival-status.mjs", "--check"],
+                             { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    console.log("  " + out.trim());
+  } catch (e) {
+    const detail = ((e.stderr || "") + (e.stdout || "")).trim();
+    if (detail) console.log("  " + detail.replace(/\n/g, "\n  "));
+    fail("the festival status table is stale — run: node scripts/festival-status.mjs");
+  }
+}
+
 // ── Precache integrity gate ──────────────────────────────────────────────
 // sw.js installs its own-origin files with cache.addAll(), and addAll is
 // ATOMIC: it rejects as a unit. One entry that 404s and NOTHING in LOCAL gets
