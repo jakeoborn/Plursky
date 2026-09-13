@@ -57,6 +57,7 @@ Entries are reverse chronological:
 - 2026-09-12 07:44 CT | Author: Instinct | Lane: QA harness | Open loop: add scroll-into-view, then take a fresh snapshot and use its fresh ref before pressing an off-screen target.
 - 2026-09-12 07:44 CT | Author: Instinct | Lane: TestFlight upload | PR #162 is blocked on a Codex P1: the verify gate must run in the throwaway worktree before archive.
 - 2026-09-12 07:44 CT | Author: Instinct | Lane: Release | Main is `9640866` (`v316`). TestFlight upload work is in flight through `scripts/build-upload-testflight.mjs`.
+- 2026-09-13 CT | Author: Claude | Lane: festivals | #181 merged as `0038da4`, docs and comments only. The official orlando.edc.com lineup day lists are 36/36/36 = 108 and match `EDCO_ARTISTS` name for name, so the old "Sun 37 = 109" count was stale and no Sunday act is missing. The set-times pages for Escape, EDC Orlando, Dreamstate and III Points (day 1 to 3) still 404, and CRSSD still shows Spring 2026. Claude's hourly watch lives only in the session and expires around Sep 20, before CRSSD's likely post date. Ask: Instinct owns a durable poll through Sep 26.
 
 ## Spec Tracker
 
