@@ -3132,9 +3132,32 @@ function HomeMemoriesStrip({
   }))));
 }
 var _setlistCache = {};
-async function _getSupabaseTracklist(artistName) {
+var _tracklistKey = (artistName, festId) => `${festId || window.FESTIVAL_CONFIG?.id || "edc-lv-2026"}:${String(artistName || "").toLowerCase().replace(/\W+/g, "_")}`;
+function _songFestivalCfg(festId) {
+  var cur = window.FESTIVAL_CONFIG || {};
+  if (!festId || cur.id === festId) return cur;
+  var ds = (window._DATA_SETS || {})[festId];
+  return ds && ds.config || cur;
+}
+function _festWallClockMs(takenAt, cfg) {
+  if (typeof takenAt === "number") return takenAt;
+  var t = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})(?::(\d{2}))?/.exec(takenAt || "");
+  if (!t) return NaN;
+  var naive = Date.UTC(+t[1], +t[2] - 1, +t[3], +t[4], +t[5], +(t[6] || 0));
+  if (cfg && cfg.tz && typeof _utcOffsetMs === "function") {
+    try {
+      var ms = naive;
+      for (var i = 0; i < 2; i++) ms = naive - _utcOffsetMs(cfg.tz, ms);
+      return ms;
+    } catch {}
+  }
+  if (cfg && typeof cfg.utcOffsetHours === "number") return naive - cfg.utcOffsetHours * 3600000;
+  return Date.parse(String(takenAt).replace(" ", "T"));
+}
+var _songConfidenceLabel = c => c === "exact" ? "EXACT" : c === "likely" ? "LIKELY" : "~EST";
+async function _getSupabaseTracklist(artistName, festId) {
   try {
-    var festId = window.FESTIVAL_CONFIG?.id || "edc-lv-2026";
+    festId = festId || window.FESTIVAL_CONFIG?.id || "edc-lv-2026";
     var url = `https://pzoijbqsbbwyuyjinjtj.supabase.co/rest/v1/tracklists?artist_name=eq.${encodeURIComponent(artistName)}&festival_id=eq.${encodeURIComponent(festId)}&select=tracks,source,source_url`;
     var res = await fetch(url, {
       headers: {
@@ -3154,11 +3177,11 @@ async function _getSupabaseTracklist(artistName) {
     return null;
   }
 }
-async function _getSetlistFmData(artistName) {
+async function _getSetlistFmData(artistName, festId) {
   try {
     var setlists = await window.fetchSetlists?.(artistName);
     if (!setlists?.length) return null;
-    var festBrand = (window.FESTIVAL_CONFIG?.brand || "").toLowerCase();
+    var festBrand = (_songFestivalCfg(festId).brand || "").toLowerCase();
     var festSetlist = setlists.find(sl => {
       var v = (sl.venue?.name || "").toLowerCase();
       return v.includes(festBrand) || v.includes("electric daisy") || v.includes("motor speedway") || v.includes("zilker") || v.includes("austin city");
@@ -3175,15 +3198,16 @@ async function _getSetlistFmData(artistName) {
     return null;
   }
 }
-async function _getTracklistForArtist(artistName) {
-  var key = artistName.toLowerCase().replace(/\W+/g, "_");
+async function _getTracklistForArtist(artistName, festId) {
+  var fid = festId || window.FESTIVAL_CONFIG?.id || "edc-lv-2026";
+  var key = _tracklistKey(artistName, fid);
   if (_setlistCache[key]) return _setlistCache[key];
-  var tl = await _getSupabaseTracklist(artistName);
+  var tl = await _getSupabaseTracklist(artistName, fid);
   if (tl) {
     _setlistCache[key] = tl;
     return tl;
   }
-  var sl = await _getSetlistFmData(artistName);
+  var sl = await _getSetlistFmData(artistName, fid);
   if (sl) {
     _setlistCache[key] = sl;
     return sl;
@@ -3191,14 +3215,14 @@ async function _getTracklistForArtist(artistName) {
   _setlistCache[key] = null;
   return null;
 }
-function _matchSongAtTime(artist, trackData, photoTakenAt) {
-  if (!photoTakenAt || !artist) return null;
-  var CFG = window.FESTIVAL_CONFIG || {};
+function _matchSongAtTime(artist, trackData, photoTakenAt, festId) {
+  if (!photoTakenAt || !artist || !trackData) return null;
+  var CFG = _songFestivalCfg(festId);
   var dm = CFG.dayDates?.[artist.day];
   if (!dm) return null;
   var setStartMs = _wallMs(dm, artist.start, CFG.tz);
   if (setStartMs == null) return null;
-  var photoMs = Date.parse(photoTakenAt.replace(" ", "T"));
+  var photoMs = _festWallClockMs(photoTakenAt, CFG);
   if (isNaN(photoMs)) return null;
   var elapsedMs = photoMs - setStartMs;
   if (elapsedMs < 0) return null;
@@ -3211,13 +3235,13 @@ function _matchSongAtTime(artist, trackData, photoTakenAt) {
     return {
       song: display,
       source: "1001tracklists",
-      confidence: "exact",
+      confidence: "likely",
       url: trackData.url
     };
   }
   if (trackData.source === "setlist.fm" && trackData.songs?.length) {
-    var [eh, em] = artist.end.split(":").map(Number);
-    var setEndMs = dm.midnightUtc + (eh < 8 ? eh + 24 : eh) * 3600000 + em * 60000;
+    var setEndMs = _wallMs(dm, artist.end, CFG.tz);
+    if (setEndMs == null) return null;
     var setDuration = setEndMs - setStartMs;
     if (setDuration <= 0 || elapsedMs > setDuration) return null;
     var idx = Math.min(Math.floor(elapsedMs / setDuration * trackData.songs.length), trackData.songs.length - 1);
@@ -3229,20 +3253,20 @@ function _matchSongAtTime(artist, trackData, photoTakenAt) {
   }
   return null;
 }
-function useSetlistSong(artist, takenAt) {
+function useSetlistSong(artist, takenAt, festId) {
   var [result, setResult] = React.useState(null);
   React.useEffect(() => {
     if (!artist || !takenAt) return;
     var cancelled = false;
-    _getTracklistForArtist(artist.name).then(data => {
+    _getTracklistForArtist(artist.name, festId).then(data => {
       if (cancelled || !data) return;
-      var r = _matchSongAtTime(artist, data, takenAt);
+      var r = _matchSongAtTime(artist, data, takenAt, festId);
       if (r) setResult(r);
     });
     return () => {
       cancelled = true;
     };
-  }, [artist?.id, takenAt]);
+  }, [artist?.id, takenAt, festId]);
   return result;
 }
 var _DATE_UNVERIFIED_WINDOW_MS = 2 * 60 * 1000;
@@ -4618,7 +4642,7 @@ function MomentCard({
   var photoUrl = useMomentPhoto(moment.photoId, near && moment.kind !== "video");
   var artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   var stage = artist ? STAGES.find(s => s.id === artist.stage) : null;
-  var nowPlaying = useSetlistSong(artist, moment.takenAt);
+  var nowPlaying = useSetlistSong(artist, moment.takenAt, moment.festivalId);
   var [editing, setEditing] = React.useState(false);
   var tagInfo = (() => {
     var base = _TAG_SOURCE_LABEL[moment.tagSource] || null;
@@ -4966,14 +4990,13 @@ function MomentCard({
       whiteSpace: "nowrap"
     }
   }, nowPlaying.song?.toUpperCase()), nowPlaying.source === "1001tracklists" && artist && (() => {
-    var CFG = window.FESTIVAL_CONFIG || {};
+    var CFG = _songFestivalCfg(moment.festivalId);
     var dm = CFG.dayDates?.[artist.day];
     if (!dm) return null;
-    var [sh, sm] = artist.start.split(":").map(Number);
-    var [eh, em] = artist.end.split(":").map(Number);
-    var setStartMs = dm.midnightUtc + (sh < 6 ? sh + 24 : sh) * 3600000 + sm * 60000;
-    var setEndMs = dm.midnightUtc + (eh < 6 ? eh + 24 : eh) * 3600000 + em * 60000;
-    var photoMs = Date.parse(moment.takenAt?.replace(" ", "T"));
+    var setStartMs = _wallMs(dm, artist.start, CFG.tz);
+    var setEndMs = _wallMs(dm, artist.end, CFG.tz);
+    if (setStartMs == null || setEndMs == null) return null;
+    var photoMs = _festWallClockMs(moment.takenAt, CFG);
     if (isNaN(photoMs)) return null;
     var elapsed = photoMs - setStartMs;
     var duration = setEndMs - setStartMs;
@@ -5019,7 +5042,7 @@ function MomentCard({
       color: nowPlaying.confidence === "exact" ? "var(--success)" : "var(--ember-ink)",
       fontWeight: 700
     }
-  }, nowPlaying.confidence === "exact" ? "EXACT" : "~EST"))), editing && onUpdate && React.createElement("div", {
+  }, _songConfidenceLabel(nowPlaying.confidence)))), editing && onUpdate && React.createElement("div", {
     style: {
       marginTop: 10,
       paddingTop: 10,
@@ -5335,13 +5358,14 @@ function SetSongTimeline({
 }) {
   var [data, setData] = React.useState(undefined);
   var [open, setOpen] = React.useState(false);
+  var festId = (moments || []).find(m => m && m.festivalId)?.festivalId || null;
   React.useEffect(() => {
     if (!artist?.name) {
       setData(null);
       return;
     }
     var cancelled = false;
-    _getTracklistForArtist(artist.name).then(d => {
+    _getTracklistForArtist(artist.name, festId).then(d => {
       if (!cancelled) setData(d || null);
     }).catch(() => {
       if (!cancelled) setData(null);
@@ -5349,21 +5373,21 @@ function SetSongTimeline({
     return () => {
       cancelled = true;
     };
-  }, [artist?.id]);
+  }, [artist?.id, festId]);
   var filmed = React.useMemo(() => {
     if (!data) return [];
     return (moments || []).filter(m => m.photoId && (m.takenAt || m.confirmedSong)).map(m => {
       var match = m.confirmedSong ? {
         song: m.confirmedSong,
         confidence: "exact"
-      } : _matchSongAtTime(artist, data, m.takenAt);
+      } : _matchSongAtTime(artist, data, m.takenAt, m.festivalId || festId);
       return match?.song ? {
         m,
         song: match.song,
         confidence: match.confidence
       } : null;
     }).filter(Boolean).sort((a, b) => (a.m.takenAt || "").localeCompare(b.m.takenAt || ""));
-  }, [data, moments, artist?.id]);
+  }, [data, moments, artist?.id, festId]);
   var stage = artist ? (window.STAGES || []).find(s => s.id === artist.stage) : null;
   var accent = "var(--signal-ink)";
   if (data === undefined || !filmed.length) return null;
@@ -5459,7 +5483,7 @@ function SetSongTimeline({
       fontWeight: 700,
       marginTop: 2
     }
-  }, m.takenAt ? m.takenAt.slice(11) : "", confidence === "exact" ? " · EXACT" : " · ~EST", m.kind === "video" ? " · VIDEO" : "")), React.createElement("span", {
+  }, m.takenAt ? m.takenAt.slice(11) : "", " · " + _songConfidenceLabel(confidence), m.kind === "video" ? " · VIDEO" : "")), React.createElement("span", {
     className: "mono",
     style: {
       fontSize: 9,
@@ -12081,14 +12105,17 @@ function _fmtHrsMin(mins) {
 }
 function _aggregateSoundtrack(moments) {
   var songMap = {};
-  var artists = window.ARTISTS || [];
   var _loop7 = function (m) {
       if (!m.artistId || !m.takenAt) return 0;
+      var {
+        fid,
+        artists
+      } = _momentFestival(m);
       var artist = artists.find(a => a.id === m.artistId);
       if (!artist) return 0;
-      var cached = _setlistCache[artist.name.toLowerCase().replace(/\W+/g, "_")];
+      var cached = _setlistCache[_tracklistKey(artist.name, fid)];
       if (!cached || cached.source !== "1001tracklists") return 0;
-      var match = _matchSongAtTime(artist, cached, m.takenAt);
+      var match = _matchSongAtTime(artist, cached, m.takenAt, fid);
       if (!match) return 0;
       var key = match.song.toLowerCase();
       if (!songMap[key]) songMap[key] = {
@@ -16595,8 +16622,7 @@ function NowPlayingBar() {
   }, [liveState.artist?.name]);
   var estimatedSong = React.useMemo(() => {
     if (!liveState.artist) return null;
-    var key = liveState.artist.name.toLowerCase().replace(/\W+/g, "_");
-    var cached = _setlistCache[key];
+    var cached = _setlistCache[_tracklistKey(liveState.artist.name)];
     if (!cached) return null;
     if (debugLive && cached.source === "1001tracklists" && cached.tracks?.length) {
       var t = cached.tracks[Math.floor(cached.tracks.length / 3)];
@@ -16604,7 +16630,7 @@ function NowPlayingBar() {
       return {
         song: display,
         source: "1001tracklists",
-        confidence: "exact (debug)",
+        confidence: "likely (debug)",
         url: cached.url
       };
     }
@@ -16615,8 +16641,7 @@ function NowPlayingBar() {
         confidence: "estimated (debug)"
       };
     }
-    var now = new Date().toISOString().replace("T", " ").slice(0, 19);
-    return _matchSongAtTime(liveState.artist, cached, now);
+    return _matchSongAtTime(liveState.artist, cached, Date.now());
   }, [liveState.artist, debugLive, tracklistReady]);
   var [listenProgress, setListenProgress] = React.useState(0);
   var handleShazam = async () => {
@@ -16716,7 +16741,7 @@ function NowPlayingBar() {
       id: momentId,
       night,
       artistId: liveState.artist?.id || null,
-      takenAt: new Date().toISOString().replace("T", " ").slice(0, 19),
+      takenAt: _checkinTakenAt(window.FESTIVAL_CONFIG, Date.now()),
       tagSource: "live_capture",
       createdAt: Date.now(),
       songCapture: song ? {

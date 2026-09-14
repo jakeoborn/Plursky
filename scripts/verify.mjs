@@ -1945,6 +1945,19 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-a1. Song estimates: the moment's own festival, never EXACT ─────────
+{
+  console.log("▸ Song estimate gate — own festival, per-festival cache, zone-proof, tracklist cue is LIKELY");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-song-confidence.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`song estimate regression failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b. Board playlist planner ──────────────────────────────────────────
 // Saved sets are guaranteed seeds; discovery picks are capped, unsaved and
 // carry a reason that is TRUE of the lineup. Fixtures + every _DATA_SETS lineup.
