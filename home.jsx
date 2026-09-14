@@ -240,7 +240,7 @@ function TonightCard({ state, setState }) {
       background: "var(--night)",
       borderRadius: 16,
       padding: "14px 16px 16px",
-      color: "var(--paper)",
+      color: "var(--ink)",
       position: "relative",
       overflow: "hidden",
     }}>
@@ -339,7 +339,7 @@ function TonightCard({ state, setState }) {
               marginTop: 14, width: "100%",
               background: shuttleUrgent ? "var(--ember)" : "rgba(var(--ink-rgb),0.08)",
               border: shuttleUrgent ? "none" : "1px solid rgba(var(--ink-rgb),0.2)",
-              color: "var(--paper)",
+              color: shuttleUrgent ? "var(--on-signal)" : "var(--ink)",
               borderRadius: 10, padding: "10px 12px", cursor: "pointer",
               display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
@@ -358,7 +358,7 @@ function TonightCard({ state, setState }) {
             style={{
               marginTop: 14, width: "100%",
               background: "rgba(var(--ink-rgb),0.06)", border: "1px solid rgba(var(--ink-rgb),0.18)",
-              color: "var(--paper)", borderRadius: 10, padding: "9px 12px", cursor: "pointer",
+              color: "var(--ink)", borderRadius: 10, padding: "9px 12px", cursor: "pointer",
               display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
               textAlign: "left",
@@ -1244,7 +1244,7 @@ function LastNightRecap({ state, setState }) {
         </div>
         <div style={{
           height: heights[place],
-          background: stage?.color || "var(--paper-2)",
+          background: place === 1 ? "var(--signal)" : "var(--paper-3)",
           borderRadius: 10,
           padding: "8px 10px",
           color: "var(--ink)",
@@ -1421,7 +1421,7 @@ function UpcomingTeaser({ state, setState }) {
                       padding: "8px 0", cursor: "pointer", textAlign: "left",
                     }}>
                     <div style={{
-                      width: 3, alignSelf: "stretch", background: stage?.color,
+                      width: 3, alignSelf: "stretch", background: "var(--line-2)",
                       borderRadius: 3, minHeight: 30,
                     }}/>
                     <div style={{ flex: 1, minWidth: 0 }}>
@@ -1430,7 +1430,7 @@ function UpcomingTeaser({ state, setState }) {
                           {a.name}
                         </div>
                         {isSaved && (
-                          <svg width="10" height="10" viewBox="0 0 24 24" fill={stage?.color} stroke="none">
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="var(--signal-ink)" stroke="none">
                             <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
                           </svg>
                         )}
@@ -2168,10 +2168,10 @@ function LiveAcrossStrip({ strip, state, setState }) {
                 flexShrink: 0, width: 136, textAlign: "left",
                 padding: "9px 11px", borderRadius: 13,
                 background: isSaved
-                  ? `${stage.color}18`
+                  ? "rgba(var(--signal-rgb),0.12)"
                   : artist ? "var(--paper-2)" : "transparent",
-                border: `1px solid ${isSaved ? stage.color + "55" : artist ? "var(--line)" : "var(--line-2)"}`,
-                borderLeft: `3px solid ${stage.color}`,
+                border: `1px solid ${isSaved ? "rgba(var(--signal-rgb),0.4)" : artist ? "var(--line)" : "var(--line-2)"}`,
+                borderLeft: `3px solid ${isSaved ? "var(--signal)" : "var(--line-2)"}`,
                 cursor: "pointer",
                 opacity: (artist || upcoming) ? 1 : 0.45,
               }}>
@@ -2181,18 +2181,18 @@ function LiveAcrossStrip({ strip, state, setState }) {
                 <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
                   {artist && (
                     <span style={{
-                      width: 6, height: 6, borderRadius: 6, background: stage.color,
-                      boxShadow: `0 0 0 3px ${stage.color}33`,
+                      width: 6, height: 6, borderRadius: 6, background: "var(--signal)",
+                      boxShadow: "0 0 0 3px rgba(var(--signal-rgb),0.2)",
                       animation: "pulse 1.6s ease-in-out infinite",
                       flexShrink: 0,
                     }}/>
                   )}
-                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: stage.color, fontWeight: 700 }}>
+                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--text-2)", fontWeight: 700 }}>
                     {stage.short}
                   </span>
                 </div>
                 {isSaved && (
-                  <svg width="9" height="9" viewBox="0 0 24 24" fill={stage.color} stroke="none">
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="var(--signal-ink)" stroke="none">
                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
                   </svg>
                 )}
@@ -2216,7 +2216,7 @@ function LiveAcrossStrip({ strip, state, setState }) {
                 <>
                   <div style={{
                     fontSize: 10, lineHeight: 1.15, marginTop: 4,
-                    color: nextSaved ? stage.color : "var(--muted)",
+                    color: nextSaved ? "var(--signal-ink)" : "var(--muted)",
                     whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
                     fontStyle: "italic",
                   }}>
@@ -2361,20 +2361,20 @@ function PlanRow({ entry, state, setState }) {
         <div style={{ width: 44 }}>
           <div className="mono" style={{
             fontSize: 10, letterSpacing: 1,
-            color: isLive ? (stage?.color || "var(--text-2)") : "var(--ink)",
+            color: isLive ? "var(--signal-ink)" : "var(--ink)",
             fontWeight: isLive ? 700 : 500,
           }}>{fmt12(a.start)}</div>
           <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>
             {isLive ? "LIVE" : isPast ? "DONE" : minsUntil < 60 ? `${minsUntil}m` : `${Math.floor(minsUntil/60)}h${(minsUntil%60).toString().padStart(2,"0")}`}
           </div>
         </div>
-        <div style={{ width: 3, alignSelf: "stretch", background: stage.color, borderRadius: 3 }}/>
+        <div style={{ width: 3, alignSelf: "stretch", background: isLive ? "var(--signal)" : "var(--line-2)", borderRadius: 3 }}/>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
             <div className="serif" style={{ fontSize: 20, lineHeight: 1.1, textDecoration: isPast ? "line-through" : "none" }}>{a.name}</div>
             {isLive && (
               <span className="mono" style={{
-                fontSize: 8, letterSpacing: 1.3, color: "var(--ink)", background: stage.color,
+                fontSize: 8, letterSpacing: 1.3, color: "var(--on-signal)", background: "var(--signal)",
                 padding: "1px 5px", borderRadius: 3, fontWeight: 700,
               }}>LIVE</span>
             )}
@@ -2806,7 +2806,7 @@ function FriendLineupBanner({ state, setState }) {
                       }}>
                       <span style={{
                         width: 8, height: 8, borderRadius: 999,
-                        background: isOverlap ? "var(--success)" : stage?.color || "var(--muted)",
+                        background: isOverlap ? "var(--success)" : "var(--text-3)",
                         flexShrink: 0,
                       }}/>
                       <div style={{ flex: 1, minWidth: 0 }}>

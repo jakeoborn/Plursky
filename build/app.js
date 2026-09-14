@@ -368,7 +368,7 @@ function OnboardingModal({
         fontSize: 13,
         lineHeight: "18px",
         fontWeight: 600,
-        color: isActive ? "var(--signal)" : "var(--text-2)"
+        color: isActive ? "var(--signal-ink)" : "var(--text-2)"
       }
     }, isActive ? "✓ Selected" : f.previewOnly ? "Early access" : "Soon")));
   }), !list.length && React.createElement("p", {
@@ -437,7 +437,7 @@ function PersonalizeSheet({
       fontSize: 15,
       lineHeight: "20px",
       fontWeight: 600,
-      color: "var(--signal)"
+      color: "var(--signal-ink)"
     }
   }, "✓ ", text);
   return React.createElement(FieldSheet, {
@@ -824,7 +824,7 @@ function SearchModal({
       style: {
         width: 4,
         alignSelf: "stretch",
-        background: stage?.color || "var(--paper-3)",
+        background: "var(--line-2)",
         borderRadius: 3,
         flexShrink: 0
       }
@@ -875,7 +875,7 @@ function SearchModal({
       style: {
         fontSize: 9,
         letterSpacing: 1,
-        color: stage.color,
+        color: "var(--text-2)",
         fontWeight: 600,
         textTransform: "uppercase"
       }
@@ -1540,7 +1540,7 @@ function SetStartingCinematic() {
       position: "absolute",
       inset: 0,
       opacity: 0.15,
-      background: `radial-gradient(ellipse at 50% 40%, ${stage?.color || "var(--ember)"}, transparent 70%)`,
+      background: `radial-gradient(ellipse at 50% 40%, var(--signal), transparent 70%)`,
       animation: "vfx-pulse 2s ease-in-out infinite"
     }
   }), React.createElement("div", {
@@ -1554,7 +1554,7 @@ function SetStartingCinematic() {
     style: {
       fontSize: 10,
       letterSpacing: 3,
-      color: stage?.color || "var(--ember-ink)",
+      color: "var(--signal-ink)",
       fontWeight: 800,
       marginBottom: 12,
       animation: "vfx-pulse 1.5s ease-in-out infinite"
@@ -1566,14 +1566,14 @@ function SetStartingCinematic() {
       lineHeight: 0.95,
       letterSpacing: -1,
       marginBottom: 8,
-      textShadow: `0 0 40px ${stage?.color || "var(--ember)"}55`
+      textShadow: "0 0 40px rgba(var(--signal-rgb),0.33)"
     }
   }, a.name), React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 10,
       letterSpacing: 1.4,
-      color: stage?.color || "var(--ink)",
+      color: "var(--text-2)",
       marginBottom: 24
     }
   }, stage?.name?.toUpperCase() || "", " · ", fmt12(a.start)), React.createElement("div", {
@@ -1584,7 +1584,7 @@ function SetStartingCinematic() {
       letterSpacing: 2,
       fontVariantNumeric: "tabular-nums",
       color: "var(--ink)",
-      textShadow: `0 0 30px ${stage?.color || "var(--ember)"}`
+      textShadow: "0 0 30px rgba(var(--signal-rgb),0.8)"
     }
   }, minsLeft, " MIN"), React.createElement("div", {
     className: "mono",

@@ -836,7 +836,7 @@ function InstallBanner() {
     height: "13",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "var(--paper)",
+    stroke: "var(--ink)",
     strokeWidth: "1.8",
     strokeLinecap: "round",
     strokeLinejoin: "round"
@@ -852,7 +852,7 @@ function InstallBanner() {
     rx: "1.5"
   }))), " then ", React.createElement("strong", {
     style: {
-      color: "var(--paper)"
+      color: "var(--ink)"
     }
   }, "Add to Home Screen"), " for offline + full-screen.") : React.createElement(React.Fragment, null, "Add to home screen for offline lineup + full-screen map."))), !ip.isIOS && React.createElement("button", {
     onClick: ip.install,
@@ -1692,7 +1692,7 @@ function FestivalSwitcher({
     }, f.previewOnly ? "Early access" : "Soon"));else if (st.saved && !st.conflicts) parts.push(React.createElement("span", {
       key: "r",
       style: {
-        color: "var(--signal)",
+        color: "var(--signal-ink)",
         fontWeight: 600
       }
     }, "✓ Ready"));

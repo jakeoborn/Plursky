@@ -256,7 +256,7 @@ function TonightCard({
       background: "var(--night)",
       borderRadius: 16,
       padding: "14px 16px 16px",
-      color: "var(--paper)",
+      color: "var(--ink)",
       position: "relative",
       overflow: "hidden"
     }
@@ -437,7 +437,7 @@ function TonightCard({
       width: "100%",
       background: shuttleUrgent ? "var(--ember)" : "rgba(var(--ink-rgb),0.08)",
       border: shuttleUrgent ? "none" : "1px solid rgba(var(--ink-rgb),0.2)",
-      color: "var(--paper)",
+      color: shuttleUrgent ? "var(--on-signal)" : "var(--ink)",
       borderRadius: 10,
       padding: "10px 12px",
       cursor: "pointer",
@@ -466,7 +466,7 @@ function TonightCard({
       width: "100%",
       background: "rgba(var(--ink-rgb),0.06)",
       border: "1px solid rgba(var(--ink-rgb),0.18)",
-      color: "var(--paper)",
+      color: "var(--ink)",
       borderRadius: 10,
       padding: "9px 12px",
       cursor: "pointer",
@@ -1608,7 +1608,7 @@ function LastNightRecap({
     }, place === 1 ? "1ST · HEADLINER" : place === 2 ? "2ND" : "3RD"), React.createElement("div", {
       style: {
         height: heights[place],
-        background: stage?.color || "var(--paper-2)",
+        background: place === 1 ? "var(--signal)" : "var(--paper-3)",
         borderRadius: 10,
         padding: "8px 10px",
         color: "var(--ink)",
@@ -1869,7 +1869,7 @@ function UpcomingTeaser({
         style: {
           width: 3,
           alignSelf: "stretch",
-          background: stage?.color,
+          background: "var(--line-2)",
           borderRadius: 3,
           minHeight: 30
         }
@@ -1895,7 +1895,7 @@ function UpcomingTeaser({
         width: "10",
         height: "10",
         viewBox: "0 0 24 24",
-        fill: stage?.color,
+        fill: "var(--signal-ink)",
         stroke: "none"
       }, React.createElement("path", {
         d: "M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"
@@ -3270,9 +3270,9 @@ function LiveAcrossStrip({
         textAlign: "left",
         padding: "9px 11px",
         borderRadius: 13,
-        background: isSaved ? `${stage.color}18` : artist ? "var(--paper-2)" : "transparent",
-        border: `1px solid ${isSaved ? stage.color + "55" : artist ? "var(--line)" : "var(--line-2)"}`,
-        borderLeft: `3px solid ${stage.color}`,
+        background: isSaved ? "rgba(var(--signal-rgb),0.12)" : artist ? "var(--paper-2)" : "transparent",
+        border: `1px solid ${isSaved ? "rgba(var(--signal-rgb),0.4)" : artist ? "var(--line)" : "var(--line-2)"}`,
+        borderLeft: `3px solid ${isSaved ? "var(--signal)" : "var(--line-2)"}`,
         cursor: "pointer",
         opacity: artist || upcoming ? 1 : 0.45
       }
@@ -3294,8 +3294,8 @@ function LiveAcrossStrip({
         width: 6,
         height: 6,
         borderRadius: 6,
-        background: stage.color,
-        boxShadow: `0 0 0 3px ${stage.color}33`,
+        background: "var(--signal)",
+        boxShadow: "0 0 0 3px rgba(var(--signal-rgb),0.2)",
         animation: "pulse 1.6s ease-in-out infinite",
         flexShrink: 0
       }
@@ -3304,14 +3304,14 @@ function LiveAcrossStrip({
       style: {
         fontSize: 9,
         letterSpacing: 1.2,
-        color: stage.color,
+        color: "var(--text-2)",
         fontWeight: 700
       }
     }, stage.short)), isSaved && React.createElement("svg", {
       width: "9",
       height: "9",
       viewBox: "0 0 24 24",
-      fill: stage.color,
+      fill: "var(--signal-ink)",
       stroke: "none"
     }, React.createElement("path", {
       d: "M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"
@@ -3339,7 +3339,7 @@ function LiveAcrossStrip({
         fontSize: 10,
         lineHeight: 1.15,
         marginTop: 4,
-        color: nextSaved ? stage.color : "var(--muted)",
+        color: nextSaved ? "var(--signal-ink)" : "var(--muted)",
         whiteSpace: "nowrap",
         overflow: "hidden",
         textOverflow: "ellipsis",
@@ -3557,7 +3557,7 @@ function PlanRow({
     style: {
       fontSize: 10,
       letterSpacing: 1,
-      color: isLive ? stage?.color || "var(--text-2)" : "var(--ink)",
+      color: isLive ? "var(--signal-ink)" : "var(--ink)",
       fontWeight: isLive ? 700 : 500
     }
   }, fmt12(a.start)), React.createElement("div", {
@@ -3571,7 +3571,7 @@ function PlanRow({
     style: {
       width: 3,
       alignSelf: "stretch",
-      background: stage.color,
+      background: isLive ? "var(--signal)" : "var(--line-2)",
       borderRadius: 3
     }
   }), React.createElement("div", {
@@ -3597,8 +3597,8 @@ function PlanRow({
     style: {
       fontSize: 8,
       letterSpacing: 1.3,
-      color: "var(--ink)",
-      background: stage.color,
+      color: "var(--on-signal)",
+      background: "var(--signal)",
       padding: "1px 5px",
       borderRadius: 3,
       fontWeight: 700
@@ -4326,7 +4326,7 @@ function FriendLineupBanner({
           width: 8,
           height: 8,
           borderRadius: 999,
-          background: isOverlap ? "var(--success)" : stage?.color || "var(--muted)",
+          background: isOverlap ? "var(--success)" : "var(--text-3)",
           flexShrink: 0
         }
       }), React.createElement("div", {

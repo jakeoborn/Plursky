@@ -2740,7 +2740,7 @@ function ArtistScreen({
     }, React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "var(--paper)",
+        color: "var(--ink)",
         lineHeight: 1.3,
         fontWeight: 500,
         overflow: "hidden",

@@ -179,7 +179,7 @@ function OnboardingModal({ onDone, setState, state }) {
                     <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>{f.config.name}</div>
                     <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{f.config.location} · {f.config.dates}</div>
                     {(isActive || locked) && (
-                      <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: isActive ? "var(--signal)" : "var(--text-2)" }}>
+                      <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: isActive ? "var(--signal-ink)" : "var(--text-2)" }}>
                         {isActive ? "✓ Selected" : f.previewOnly ? "Early access" : "Soon"}
                       </div>
                     )}
@@ -217,7 +217,7 @@ function PersonalizeSheet({ state, onClose }) {
   const title = { fontSize: 17, lineHeight: "22px", fontWeight: 600 };
   const why = { margin: "2px 0 12px", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" };
   const rule = <div style={{ height: 1, background: "var(--line)", margin: "20px 0" }} />;
-  const done = (text) => <div style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600, color: "var(--signal)" }}>✓ {text}</div>;
+  const done = (text) => <div style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600, color: "var(--signal-ink)" }}>✓ {text}</div>;
   return (
     <FieldSheet title="Personalize Plursky" onClose={save}>
       <label htmlFor="plursky-name" style={{ display: "block", ...title }}>Your name</label>
@@ -422,7 +422,7 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
                   alignItems: "center", border: "none", borderBottom: "1px solid var(--line)",
                   animation: ri < 12 ? `springIn 0.3s ease-out ${ri * 30}ms both` : undefined,
                 }}>
-                  <div style={{ width: 4, alignSelf: "stretch", background: stage?.color || "var(--paper-3)", borderRadius: 3, flexShrink: 0 }} />
+                  <div style={{ width: 4, alignSelf: "stretch", background: "var(--line-2)", borderRadius: 3, flexShrink: 0 }} />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: "flex", alignItems: "baseline", gap: 6, flexWrap: "wrap" }}>
                       <span className="serif" style={{ fontSize: 20, lineHeight: 1.05, letterSpacing: -0.2 }}>{a.name}</span>
@@ -430,7 +430,7 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
                     </div>
                     <div style={{ display: "flex", gap: 5, marginTop: 2, alignItems: "center" }}>
                       <span style={{ width: 6, height: 6, borderRadius: 6, background: "var(--text-3)", flexShrink: 0 }}/>
-                      <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: stage.color, fontWeight: 600, textTransform: "uppercase" }}>{stage.short}</span>
+                      <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--text-2)", fontWeight: 600, textTransform: "uppercase" }}>{stage.short}</span>
                       <span style={{ color: "var(--muted)" }}>·</span>
                       <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>{DAY_LABEL[a.day]} {fmt12(a.start)}–{fmt12(a.end)}</span>
                       <span style={{ color: "var(--muted)" }}>·</span>
@@ -974,25 +974,25 @@ function SetStartingCinematic() {
     }} onClick={() => setShow(null)}>
       <div style={{
         position: "absolute", inset: 0, opacity: 0.15,
-        background: `radial-gradient(ellipse at 50% 40%, ${stage?.color || "var(--ember)"}, transparent 70%)`,
+        background: `radial-gradient(ellipse at 50% 40%, var(--signal), transparent 70%)`,
         animation: "vfx-pulse 2s ease-in-out infinite",
       }}/>
       <div style={{ position: "relative", textAlign: "center", padding: "0 32px" }}>
         <div className="mono" style={{
-          fontSize: 10, letterSpacing: 3, color: stage?.color || "var(--ember-ink)", fontWeight: 800, marginBottom: 12,
+          fontSize: 10, letterSpacing: 3, color: "var(--signal-ink)", fontWeight: 800, marginBottom: 12,
           animation: "vfx-pulse 1.5s ease-in-out infinite",
         }}>SET STARTING</div>
         <div className="serif" style={{
           fontSize: 42, lineHeight: 0.95, letterSpacing: -1, marginBottom: 8,
-          textShadow: `0 0 40px ${stage?.color || "var(--ember)"}55`,
+          textShadow: "0 0 40px rgba(var(--signal-rgb),0.33)",
         }}>{a.name}</div>
-        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: stage?.color || "var(--ink)", marginBottom: 24 }}>
+        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "var(--text-2)", marginBottom: 24 }}>
           {stage?.name?.toUpperCase() || ""} · {fmt12(a.start)}
         </div>
         <div style={{
           fontFamily: "Geist Mono, monospace", fontSize: 52, fontWeight: 200,
           letterSpacing: 2, fontVariantNumeric: "tabular-nums",
-          color: "var(--ink)", textShadow: `0 0 30px ${stage?.color || "var(--ember)"}`,
+          color: "var(--ink)", textShadow: "0 0 30px rgba(var(--signal-rgb),0.8)",
         }}>{minsLeft} MIN</div>
         <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "rgba(var(--ink-rgb),0.4)", marginTop: 20 }}>
           TAP TO DISMISS

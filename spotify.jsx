@@ -128,8 +128,8 @@ function SpotifyScreen({ state, setState }) {
         {/* ── Connect card ───────────────────────────────── */}
         <div style={{
           borderRadius: 20, padding: 20,
-          background: connected ? "var(--signal)" : "var(--ink)",
-          color: "var(--paper)", marginBottom: 20,
+          background: "var(--paper-2)",
+          color: "var(--ink)", marginBottom: 20,
           position: "relative", overflow: "hidden",
         }}>
           <svg width="36" height="36" viewBox="0 0 24 24" style={{ position: "absolute", top: 16, right: 16 }}>
@@ -183,7 +183,7 @@ function SpotifyScreen({ state, setState }) {
             {connected && matched.length > 0 && (
               <button onClick={handleSaveAll} style={{
                 background: saveFlash ? "var(--signal)" : "var(--spotify)",
-                color: "var(--ink)", border: "none",
+                color: saveFlash ? "var(--on-signal)" : "var(--paper)", border: "none",
                 borderRadius: 999, padding: "10px 16px", cursor: "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
                 transition: "background 0.3s",
@@ -206,7 +206,7 @@ function SpotifyScreen({ state, setState }) {
               onClick={() => { if (!connected) window.plurskyHaptic?.("MEDIUM"); connected ? disconnectSpotify(setState, state) : startSpotifyAuth(); }}
               style={{
                 background: connected ? "rgba(var(--spotify-rgb),0.2)" : "rgba(var(--ink-rgb),0.12)",
-                color: "var(--paper)",
+                color: "var(--ink)",
                 border: connected ? "1px solid rgba(var(--spotify-rgb),0.5)" : "1px solid rgba(var(--ink-rgb),0.28)",
                 borderRadius: 999, padding: "10px 16px", cursor: "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 500,
@@ -326,7 +326,7 @@ function SpotifyScreen({ state, setState }) {
             <div style={{ height: 6, background: "var(--line)", borderRadius: 6, overflow: "hidden", marginBottom: 8 }}>
               <div style={{
                 width: `${Math.round(matched.length / ARTISTS.length * 100)}%`, height: "100%",
-                background: "linear-gradient(90deg, var(--ember), var(--horizon))",
+                background: "var(--signal)",
                 borderRadius: 6, transition: "width 0.8s ease",
               }} />
             </div>
@@ -383,7 +383,7 @@ function SpotifyScreen({ state, setState }) {
               <div key={stage.id} style={{
                 padding: "12px 14px", borderRadius: 12, marginBottom: 8,
                 background: "var(--paper-2)",
-                borderLeft: `3px solid ${stage.color}`,
+                borderLeft: "3px solid var(--line-2)",
               }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
                   <div className="serif" style={{ fontSize: 18, lineHeight: 1 }}>{stage.name}</div>
@@ -392,7 +392,7 @@ function SpotifyScreen({ state, setState }) {
                   </div>
                 </div>
                 <div style={{ height: 3, background: "var(--line)", borderRadius: 3, overflow: "hidden", marginBottom: 6 }}>
-                  <div style={{ width: `${pct}%`, height: "100%", background: stage.color, borderRadius: 3 }} />
+                  <div style={{ width: `${pct}%`, height: "100%", background: "var(--signal)", borderRadius: 3 }} />
                 </div>
                 {/* Guarded like lineup.jsx:1115. `desc` is optional on a
                     stage — a gated scaffold can ship stages before their
@@ -890,8 +890,8 @@ function BadgesSection({ state }) {
   });
   const iconCircle = (on) => ({
     width: 36, height: 36, borderRadius: 999,
-    background: on ? "linear-gradient(135deg, var(--ember), var(--horizon))" : "var(--paper-2)",
-    color: on ? "var(--ink)" : "var(--muted)",
+    background: on ? "var(--signal)" : "var(--paper-2)",
+    color: on ? "var(--on-signal)" : "var(--muted)",
     display: "flex", alignItems: "center", justifyContent: "center",
     fontFamily: "Instrument Serif, serif", fontSize: 18, flexShrink: 0,
     border: on ? "none" : "1px solid var(--line-2)",
@@ -1110,7 +1110,7 @@ function HistoryRecordsSection({ state, setState }) {
               display: "flex", alignItems: "center", gap: 10,
               padding: "10px 12px", borderRadius: 12,
               background: "var(--paper-2)",
-              borderLeft: `3px solid ${r.accent}`,
+              borderLeft: "3px solid var(--line-2)",
             }}>
               <div className="mono" style={{
                 fontSize: 9, letterSpacing: 1.2, fontWeight: 700, color: "var(--muted)",
@@ -2303,9 +2303,9 @@ function BulkRetagRow({ moments, savedNightArtists, onUpdate }) {
                 onClick={() => isConfirming ? apply(a.id) : setConfirmId(a.id)}
                 className="mono" style={{
                   padding: "5px 10px", borderRadius: 999,
-                  background: isConfirming ? "var(--ember)" : (stage ? `${stage.color}18` : "var(--paper)"),
-                  color:      isConfirming ? "var(--ink)" : (stage ? stage.color : "var(--ink)"),
-                  border:     isConfirming ? "none" : (stage ? `1px solid ${stage.color}40` : "1px solid var(--line-2)"),
+                  background: isConfirming ? "var(--signal)" : "var(--paper-2)",
+                  color:      isConfirming ? "var(--on-signal)" : "var(--ink)",
+                  border:     isConfirming ? "none" : "1px solid var(--line-2)",
                   fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
                   whiteSpace: "nowrap",
                 }}>
@@ -3189,9 +3189,9 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
         <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap", flex: 1, minWidth: 0 }}>
           {artist ? (
             <button onClick={() => onArtistClick(artist.id)} className="mono" style={{
-              background: stage ? `${stage.color}18` : "var(--paper)",
-              color:      stage ? stage.color       : "var(--muted)",
-              border:     stage ? `1px solid ${stage.color}40` : "1px solid var(--line-2)",
+              background: "var(--paper-2)",
+              color:      stage ? "var(--ink)" : "var(--muted)",
+              border:     "1px solid var(--line-2)",
               borderRadius: 999, padding: "3px 9px",
               fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
             }}>♬ {artist.name.toUpperCase()}</button>
@@ -3291,15 +3291,15 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
             <div style={{
               width: 22, height: 22, borderRadius: 22, flexShrink: 0,
               display: "flex", alignItems: "center", justifyContent: "center",
-              background: `${stage?.color || "var(--horizon)"}22`,
+              background: "rgba(var(--signal-rgb),0.14)",
               animation: "song-ripple 1.5s ease-out",
             }}>
-              <span style={{ fontSize: 10, color: stage?.color || "var(--horizon)" }}>♫</span>
+              <span style={{ fontSize: 10, color: "var(--signal-ink)" }}>♫</span>
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div className="mono" style={{
                 fontSize: 8, letterSpacing: 0.8, fontWeight: 700,
-                color: stage?.color || "var(--horizon)",
+                color: "var(--signal-ink)",
                 overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
               }}>
                 {nowPlaying.song?.toUpperCase()}
@@ -3332,7 +3332,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
                     }}>
                       <div style={{
                         width: `${pct * 100}%`, height: "100%", borderRadius: 2,
-                        background: stage?.color || "var(--horizon)",
+                        background: "var(--signal)",
                       }} />
                     </div>
                   </div>
@@ -3585,11 +3585,11 @@ function SetSongTimeline({ artist, moments, onOpenMoment }) {
   }, [data, moments, artist?.id]);
 
   const stage = artist ? (window.STAGES || []).find(s => s.id === artist.stage) : null;
-  const accent = stage?.color || "var(--horizon)";
+  const accent = "var(--signal-ink)";
   if (data === undefined || !filmed.length) return null;
 
   return (
-    <div style={{ margin: "2px 0 8px", padding: "8px 10px", background: "var(--paper-2)", border: `1px solid ${accent}33`, borderRadius: 12 }}>
+    <div style={{ margin: "2px 0 8px", padding: "8px 10px", background: "var(--paper-2)", border: "1px solid rgba(var(--signal-rgb),0.2)", borderRadius: 12 }}>
       <button onClick={() => setOpen(o => !o)} aria-expanded={open} className="mono" style={{
         display: "flex", alignItems: "center", gap: 8, width: "100%",
         background: "transparent", border: "none", cursor: "pointer", padding: 0,
@@ -4188,7 +4188,7 @@ function ImportReview({ results, moments, onClose, onPatch, onMove }) {
               </div>
               {[...g.stages.values()].map(sg => (
                 <div key={sg.stage ? sg.stage.id : "none"}>
-                  <div style={{ ...mono, fontSize: 8, color: sg.stage ? sg.stage.color : "var(--muted)", margin: "6px 4px 3px" }}>
+                  <div style={{ ...mono, fontSize: 8, color: "var(--text-2)", margin: "6px 4px 3px" }}>
                     {sg.stage ? (sg.stage.name || sg.stage.short).toUpperCase() : "NO STAGE YET"}
                   </div>
                   {sg.rows.map(r => {
@@ -4666,7 +4666,7 @@ function _MemoryStoryBeat({ moment, isLast, onOpen }) {
   const stage = artist ? STAGES.find(s => s.id === artist.stage) : null;
   const estSong = useSetlistSong(artist, moment.takenAt);
   const song = moment.confirmedSong || estSong?.song;
-  const accent = stage?.color || "var(--muted)";
+  const accent = "var(--text-2)";
   const time = (() => {
     if (!moment.takenAt) return null;
     try {
@@ -4678,7 +4678,7 @@ function _MemoryStoryBeat({ moment, isLast, onOpen }) {
     <div style={{ display: "flex", gap: 12, position: "relative" }}>
       {/* Timeline rail */}
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0, width: 14 }}>
-        <div style={{ width: 11, height: 11, borderRadius: 11, background: accent, marginTop: 5, boxShadow: `0 0 0 3px ${accent}22` }}/>
+        <div style={{ width: 11, height: 11, borderRadius: 11, background: "var(--text-3)", marginTop: 5 }}/>
         {!isLast && <div style={{ flex: 1, width: 2, background: "var(--line)", marginTop: 2 }}/>}
       </div>
       {/* Beat */}
@@ -5999,7 +5999,7 @@ function MemoriesScreen({ state, setState }) {
               display: "block", width: "100%", textAlign: "left", marginTop: 8, padding: "10px 16px", minHeight: 44,
               background: "var(--paper-2)", border: "none", borderRadius: 14, cursor: "pointer", color: "var(--ink)", fontFamily: "inherit",
             }}>
-              <div style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600, color: allTagged ? "var(--signal)" : "var(--warn)" }}>
+              <div style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600, color: allTagged ? "var(--signal-ink)" : "var(--warn)" }}>
                 ✓ {tagged} tagged{needRetag > 0 ? ` · ${needRetag} need a set` : ""}{dupes > 0 ? ` · ${dupes} skipped (duplicate)` : ""}{failed > 0 ? ` · ${failed} failed` : ""}
               </div>
               {needRetag > 0 && (
@@ -6091,7 +6091,7 @@ function MemoriesScreen({ state, setState }) {
             fontSize: 15, lineHeight: "20px", fontFamily: "inherit",
           }}>
             <span>Auto-backup on Wi-Fi</span>
-            <span style={{ fontWeight: 600, color: autoOn ? "var(--signal)" : "var(--text-2)" }}>{autoOn ? "On" : "Off"}</span>
+            <span style={{ fontWeight: 600, color: autoOn ? "var(--signal-ink)" : "var(--text-2)" }}>{autoOn ? "On" : "Off"}</span>
           </button>
         )}
 
@@ -6264,7 +6264,7 @@ function MemoriesScreen({ state, setState }) {
                     {spineIds.map(aId => {
                       const artist = ARTISTS.find(x => x.id === aId);
                       const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
-                      const accent = stage?.color || "var(--muted)";
+                      const accent = "var(--text-2)";
                       const groupMoments = byArtist.get(aId) || [];
                       const hero = groupMoments.length ? _pickHeroMoment(groupMoments) : null;
                       const orderedMoments = hero ? [hero, ...groupMoments.filter(m => m.id !== hero.id)] : groupMoments;
@@ -6280,7 +6280,7 @@ function MemoriesScreen({ state, setState }) {
                                 background: "transparent", border: "none",
                                 textAlign: "left", cursor: "pointer",
                               }}>
-                              <span style={{ width: 4, alignSelf: "stretch", background: accent, borderRadius: 3 }}/>
+                              <span style={{ width: 4, alignSelf: "stretch", background: "var(--line-2)", borderRadius: 3 }}/>
                               <div style={{ flex: 1, minWidth: 0 }}>
                                 <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: accent }}>
                                   {[(stage?.short || stage?.name || "").toUpperCase(), setTime].filter(Boolean).join(" · ")}
@@ -6448,7 +6448,7 @@ function AttendanceReview({ night, savedNightArtists }) {
                   display: "flex", alignItems: "center", justifyContent: "center",
                   color: "var(--ink)", fontSize: 10, fontWeight: 700,
                 }}>{on ? "✓" : ""}</span>
-                <div style={{ width: 3, alignSelf: "stretch", background: stage?.color || "var(--line-2)", borderRadius: 3 }}/>
+                <div style={{ width: 3, alignSelf: "stretch", background: "var(--line-2)", borderRadius: 3 }}/>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div className="serif" style={{ fontSize: 14, lineHeight: 1.1 }}>{a.name}</div>
                   <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2, fontWeight: 600 }}>
@@ -7099,7 +7099,7 @@ function FollowedNudge({ state, setState }) {
                 background: "rgba(var(--shade-rgb),0.2)", borderRadius: 10, padding: "8px 12px",
               }}>
                 <div>
-                  <div style={{ fontSize: 13, fontWeight: 600, color: "var(--paper)" }}>{a.name}</div>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: "var(--ink)" }}>{a.name}</div>
                   <div className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2 }}>
                     {st?.short} · DAY {a.day} · {fmt12(a.start)}
                   </div>
@@ -9747,7 +9747,7 @@ function RecapScreen({ state, setState }) {
                     }}>
                       <div style={{
                         width: 28, height: 28, borderRadius: "50%", flexShrink: 0,
-                        background: stage?.color || "var(--signal)",
+                        background: "var(--signal)",
                         display: "flex", alignItems: "center", justifyContent: "center",
                         fontSize: 12, color: "var(--ink)", fontWeight: 700,
                       }}>{i + 1}</div>
@@ -9936,7 +9936,7 @@ function RecapScreen({ state, setState }) {
             ) : (
               <button onClick={buildAttendedPlaylist} disabled={playlistState.status === "building"} style={{
                 background: playlistState.status === "building" ? "var(--paper-2)" : "var(--spotify)",
-                color: playlistState.status === "building" ? "var(--muted)" : "var(--ink)",
+                color: playlistState.status === "building" ? "var(--muted)" : "var(--paper)",
                 border: "none", borderRadius: 999, padding: "11px 18px",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
                 cursor: playlistState.status === "building" ? "default" : "pointer",
@@ -9974,7 +9974,7 @@ function RecapScreen({ state, setState }) {
                       background: "var(--paper)", border: "1px solid var(--line)",
                       cursor: "pointer", textAlign: "left",
                     }}>
-                    <div style={{ width: 3, alignSelf: "stretch", background: stage?.color || "var(--line-2)", borderRadius: 2, flexShrink: 0 }}/>
+                    <div style={{ width: 3, alignSelf: "stretch", background: "var(--line-2)", borderRadius: 2, flexShrink: 0 }}/>
                     <span style={{ fontSize: 13, color: "var(--ink)", fontWeight: 500, flex: 1 }}>{a.name}</span>
                     <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", fontWeight: 600 }}>
                       {stage?.short || ""}
@@ -10641,7 +10641,7 @@ function NowPlayingBar() {
   if (!trialLive && (!isFestivalLive || !liveState.stage)) return null;
 
   const displaySong = liveState.song || estimatedSong;
-  const stageColor = liveState.stage?.color || "var(--horizon)";
+  const stageColor = "var(--signal-ink)";
   const cs = checkin.st;
   let checkinSeen = false;
   try { checkinSeen = localStorage.getItem("plursky_live_checkin_seen_v1") === "1"; } catch {}
@@ -10652,7 +10652,7 @@ function NowPlayingBar() {
       borderRadius: 16, overflow: "hidden",
       background: "rgba(var(--shade-rgb),0.92)",
       backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
-      boxShadow: `0 8px 32px rgba(var(--shade-rgb),0.4), inset 0 0 0 1px rgba(var(--ink-rgb),0.08), 0 0 20px ${stageColor}33`,
+      boxShadow: `0 8px 32px rgba(var(--shade-rgb),0.4), inset 0 0 0 1px rgba(var(--ink-rgb),0.08), 0 0 20px rgba(var(--signal-rgb),0.2)`,
       padding: "10px 14px",
       animation: "song-fade-in 0.4s ease-out",
     }}>
@@ -10671,10 +10671,10 @@ function NowPlayingBar() {
           }}>
             <div style={{
               width: `${pct * 100}%`, height: "100%",
-              background: `linear-gradient(90deg, ${stageColor}, ${stageColor}cc)`,
+              background: "var(--signal)",
               borderRadius: "0 3px 3px 0",
               transition: "width 30s linear",
-              boxShadow: `0 0 8px ${stageColor}`,
+              boxShadow: "0 0 8px rgba(var(--signal-rgb),0.6)",
             }}/>
             {minsLeft > 0 && minsLeft <= 10 && (
               <div className="mono" style={{
@@ -10741,7 +10741,7 @@ function NowPlayingBar() {
         {/* What's Playing button */}
         <button onClick={handleShazam} disabled={liveState.listening} style={{
           width: 36, height: 36, borderRadius: 36, border: "none", cursor: "pointer",
-          background: liveState.listening ? `${stageColor}44` : `${stageColor}22`,
+          background: liveState.listening ? "rgba(var(--signal-rgb),0.27)" : "rgba(var(--signal-rgb),0.13)",
           color: stageColor, fontSize: 16,
           display: "flex", alignItems: "center", justifyContent: "center",
           animation: liveState.listening ? "pulse 1s infinite" : "none",

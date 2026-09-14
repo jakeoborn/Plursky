@@ -1993,7 +1993,7 @@ function ArtistScreen({ state, setState }) {
                       {/* Info */}
                       <div style={{ flex: 1, minWidth: 0, padding: "10px 14px 10px 0" }}>
                         <div style={{
-                          fontSize: 12, color: "var(--paper)", lineHeight: 1.3, fontWeight: 500,
+                          fontSize: 12, color: "var(--ink)", lineHeight: 1.3, fontWeight: 500,
                           overflow: "hidden", textOverflow: "ellipsis",
                           display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
                         }}>{track.name}</div>

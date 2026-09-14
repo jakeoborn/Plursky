@@ -1190,7 +1190,7 @@ function LineupScreen({ state, setState }) {
                   display: "flex", flexDirection: "column", alignItems: "flex-start",
                 }}>
                   {isLive && (
-                    <span style={{ ..._fieldEyebrow, color: "var(--signal)", marginBottom: 2 }}>
+                    <span style={{ ..._fieldEyebrow, color: "var(--signal-ink)", marginBottom: 2 }}>
                       <span aria-hidden="true" style={{ width: 7, height: 7, borderRadius: 4, background: "var(--signal)" }} />Live
                     </span>
                   )}
@@ -1205,7 +1205,7 @@ function LineupScreen({ state, setState }) {
                 </button>
                 <button onClick={() => toggleSave(state, setState, a.id)}
                   aria-label={saved ? `Unsave ${a.name}` : `Save ${a.name}`} aria-pressed={saved}
-                  style={{ ...fieldIconBtn, color: saved ? "var(--signal)" : "var(--text-2)" }}>
+                  style={{ ...fieldIconBtn, color: saved ? "var(--signal-ink)" : "var(--text-2)" }}>
                   <svg width="22" height="22" viewBox="0 0 24 24" fill={saved ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
                   </svg>
@@ -1218,7 +1218,7 @@ function LineupScreen({ state, setState }) {
             rows.splice(i === -1 ? rows.length : i, 0, (
               <div key="__now" data-now-rule style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 0" }}>
                 <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: 4, background: "var(--signal)", flexShrink: 0 }} />
-                <span style={{ ..._fieldEyebrow, color: "var(--signal)", fontVariantNumeric: "tabular-nums" }}>Now · {fmt12(NOW.time)}</span>
+                <span style={{ ..._fieldEyebrow, color: "var(--signal-ink)", fontVariantNumeric: "tabular-nums" }}>Now · {fmt12(NOW.time)}</span>
                 <span aria-hidden="true" style={{ flex: 1, height: 1, background: "var(--signal)" }} />
               </div>
             ));

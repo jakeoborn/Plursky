@@ -1008,7 +1008,7 @@ function PingSheet({
     onClick: copyCode,
     style: {
       background: "transparent",
-      color: "var(--paper)",
+      color: "var(--ink)",
       border: "1px solid rgba(var(--ink-rgb),0.35)",
       borderRadius: 8,
       padding: "7px 14px",

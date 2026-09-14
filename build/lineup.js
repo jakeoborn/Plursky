@@ -1727,7 +1727,7 @@ function LineupScreen({
       }, isLive && React.createElement("span", {
         style: {
           ..._fieldEyebrow,
-          color: "var(--signal)",
+          color: "var(--signal-ink)",
           marginBottom: 2
         }
       }, React.createElement("span", {
@@ -1784,7 +1784,7 @@ function LineupScreen({
         "aria-pressed": saved,
         style: {
           ...fieldIconBtn,
-          color: saved ? "var(--signal)" : "var(--text-2)"
+          color: saved ? "var(--signal-ink)" : "var(--text-2)"
         }
       }, React.createElement("svg", {
         width: "22",
@@ -1822,7 +1822,7 @@ function LineupScreen({
       }), React.createElement("span", {
         style: {
           ..._fieldEyebrow,
-          color: "var(--signal)",
+          color: "var(--signal-ink)",
           fontVariantNumeric: "tabular-nums"
         }
       }, "Now · ", fmt12(NOW.time)), React.createElement("span", {

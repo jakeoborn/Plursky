@@ -576,9 +576,9 @@ function InstallBanner() {
         <div style={{ fontSize: 12, lineHeight: 1.35, marginTop: 2, color: "rgba(var(--ink-rgb),0.85)" }}>
           {ip.isIOS
             ? <>Tap <span style={{ display: "inline-flex", verticalAlign: "middle", padding: "0 2px" }}>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--paper)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 3 L12 16"/><path d="M7 8 L12 3 L17 8"/><rect x="5" y="13" width="14" height="8" rx="1.5"/>
-                </svg></span> then <strong style={{ color: "var(--paper)" }}>Add to Home Screen</strong> for offline + full-screen.</>
+                </svg></span> then <strong style={{ color: "var(--ink)" }}>Add to Home Screen</strong> for offline + full-screen.</>
             : <>Add to home screen for offline lineup + full-screen map.</>}
         </div>
       </div>
@@ -1301,7 +1301,7 @@ function FestivalSwitcher({ onClose }) {
     if (isActive) parts.push(<span key="a" style={{ color: "var(--signal-ink)", fontWeight: 600 }}>✓ Active</span>);
     else if (phase(f) === "ended") parts.push(<span key="e">Ended</span>);
     else if (!f.available) parts.push(<span key="l">{f.previewOnly ? "Early access" : "Soon"}</span>);
-    else if (st.saved && !st.conflicts) parts.push(<span key="r" style={{ color: "var(--signal)", fontWeight: 600 }}>✓ Ready</span>);
+    else if (st.saved && !st.conflicts) parts.push(<span key="r" style={{ color: "var(--signal-ink)", fontWeight: 600 }}>✓ Ready</span>);
     return (
       <button key={f.config.id} onClick={() => onPick(f.config.id, f)} disabled={locked}
         aria-current={isActive ? "true" : undefined}

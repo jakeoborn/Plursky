@@ -150,8 +150,8 @@ function SpotifyScreen({
     style: {
       borderRadius: 20,
       padding: 20,
-      background: connected ? "var(--signal)" : "var(--ink)",
-      color: "var(--paper)",
+      background: "var(--paper-2)",
+      color: "var(--ink)",
       marginBottom: 20,
       position: "relative",
       overflow: "hidden"
@@ -258,7 +258,7 @@ function SpotifyScreen({
     onClick: handleSaveAll,
     style: {
       background: saveFlash ? "var(--signal)" : "var(--spotify)",
-      color: "var(--ink)",
+      color: saveFlash ? "var(--on-signal)" : "var(--paper)",
       border: "none",
       borderRadius: 999,
       padding: "10px 16px",
@@ -286,7 +286,7 @@ function SpotifyScreen({
     },
     style: {
       background: connected ? "rgba(var(--spotify-rgb),0.2)" : "rgba(var(--ink-rgb),0.12)",
-      color: "var(--paper)",
+      color: "var(--ink)",
       border: connected ? "1px solid rgba(var(--spotify-rgb),0.5)" : "1px solid rgba(var(--ink-rgb),0.28)",
       borderRadius: 999,
       padding: "10px 16px",
@@ -515,7 +515,7 @@ function SpotifyScreen({
     style: {
       width: `${Math.round(matched.length / ARTISTS.length * 100)}%`,
       height: "100%",
-      background: "linear-gradient(90deg, var(--ember), var(--horizon))",
+      background: "var(--signal)",
       borderRadius: 6,
       transition: "width 0.8s ease"
     }
@@ -628,7 +628,7 @@ function SpotifyScreen({
       borderRadius: 12,
       marginBottom: 8,
       background: "var(--paper-2)",
-      borderLeft: `3px solid ${stage.color}`
+      borderLeft: "3px solid var(--line-2)"
     }
   }, React.createElement("div", {
     style: {
@@ -663,7 +663,7 @@ function SpotifyScreen({
     style: {
       width: `${pct}%`,
       height: "100%",
-      background: stage.color,
+      background: "var(--signal)",
       borderRadius: 3
     }
   })), stage.desc && React.createElement("div", {
@@ -1607,8 +1607,8 @@ function BadgesSection({
     width: 36,
     height: 36,
     borderRadius: 999,
-    background: on ? "linear-gradient(135deg, var(--ember), var(--horizon))" : "var(--paper-2)",
-    color: on ? "var(--ink)" : "var(--muted)",
+    background: on ? "var(--signal)" : "var(--paper-2)",
+    color: on ? "var(--on-signal)" : "var(--muted)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -1920,7 +1920,7 @@ function HistoryRecordsSection({
       padding: "10px 12px",
       borderRadius: 12,
       background: "var(--paper-2)",
-      borderLeft: `3px solid ${r.accent}`
+      borderLeft: "3px solid var(--line-2)"
     }
   }, React.createElement("div", {
     className: "mono",
@@ -3399,9 +3399,9 @@ function BulkRetagRow({
       style: {
         padding: "5px 10px",
         borderRadius: 999,
-        background: isConfirming ? "var(--ember)" : stage ? `${stage.color}18` : "var(--paper)",
-        color: isConfirming ? "var(--ink)" : stage ? stage.color : "var(--ink)",
-        border: isConfirming ? "none" : stage ? `1px solid ${stage.color}40` : "1px solid var(--line-2)",
+        background: isConfirming ? "var(--signal)" : "var(--paper-2)",
+        color: isConfirming ? "var(--on-signal)" : "var(--ink)",
+        border: isConfirming ? "none" : "1px solid var(--line-2)",
         fontSize: 9,
         letterSpacing: 1,
         fontWeight: 700,
@@ -4774,9 +4774,9 @@ function MomentCard({
     onClick: () => onArtistClick(artist.id),
     className: "mono",
     style: {
-      background: stage ? `${stage.color}18` : "var(--paper)",
-      color: stage ? stage.color : "var(--muted)",
-      border: stage ? `1px solid ${stage.color}40` : "1px solid var(--line-2)",
+      background: "var(--paper-2)",
+      color: stage ? "var(--ink)" : "var(--muted)",
+      border: "1px solid var(--line-2)",
       borderRadius: 999,
       padding: "3px 9px",
       fontSize: 9,
@@ -4937,13 +4937,13 @@ function MomentCard({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      background: `${stage?.color || "var(--horizon)"}22`,
+      background: "rgba(var(--signal-rgb),0.14)",
       animation: "song-ripple 1.5s ease-out"
     }
   }, React.createElement("span", {
     style: {
       fontSize: 10,
-      color: stage?.color || "var(--horizon)"
+      color: "var(--signal-ink)"
     }
   }, "♫")), React.createElement("div", {
     style: {
@@ -4956,7 +4956,7 @@ function MomentCard({
       fontSize: 8,
       letterSpacing: 0.8,
       fontWeight: 700,
-      color: stage?.color || "var(--horizon)",
+      color: "var(--signal-ink)",
       overflow: "hidden",
       textOverflow: "ellipsis",
       whiteSpace: "nowrap"
@@ -5000,7 +5000,7 @@ function MomentCard({
         width: `${pct * 100}%`,
         height: "100%",
         borderRadius: 2,
-        background: stage?.color || "var(--horizon)"
+        background: "var(--signal)"
       }
     })));
   })()), React.createElement("span", {
@@ -5361,14 +5361,14 @@ function SetSongTimeline({
     }).filter(Boolean).sort((a, b) => (a.m.takenAt || "").localeCompare(b.m.takenAt || ""));
   }, [data, moments, artist?.id]);
   var stage = artist ? (window.STAGES || []).find(s => s.id === artist.stage) : null;
-  var accent = stage?.color || "var(--horizon)";
+  var accent = "var(--signal-ink)";
   if (data === undefined || !filmed.length) return null;
   return React.createElement("div", {
     style: {
       margin: "2px 0 8px",
       padding: "8px 10px",
       background: "var(--paper-2)",
-      border: `1px solid ${accent}33`,
+      border: "1px solid rgba(var(--signal-rgb),0.2)",
       borderRadius: 12
     }
   }, React.createElement("button", {
@@ -6421,7 +6421,7 @@ function ImportReview({
     style: {
       ...mono,
       fontSize: 8,
-      color: sg.stage ? sg.stage.color : "var(--muted)",
+      color: "var(--text-2)",
       margin: "6px 4px 3px"
     }
   }, sg.stage ? (sg.stage.name || sg.stage.short).toUpperCase() : "NO STAGE YET"), sg.rows.map(r => {
@@ -7400,7 +7400,7 @@ function _MemoryStoryBeat({
   var stage = artist ? STAGES.find(s => s.id === artist.stage) : null;
   var estSong = useSetlistSong(artist, moment.takenAt);
   var song = moment.confirmedSong || estSong?.song;
-  var accent = stage?.color || "var(--muted)";
+  var accent = "var(--text-2)";
   var time = (() => {
     if (!moment.takenAt) return null;
     try {
@@ -7430,9 +7430,8 @@ function _MemoryStoryBeat({
       width: 11,
       height: 11,
       borderRadius: 11,
-      background: accent,
-      marginTop: 5,
-      boxShadow: `0 0 0 3px ${accent}22`
+      background: "var(--text-3)",
+      marginTop: 5
     }
   }), !isLast && React.createElement("div", {
     style: {
@@ -9338,7 +9337,7 @@ function MemoriesScreen({
         fontSize: 15,
         lineHeight: "20px",
         fontWeight: 600,
-        color: allTagged ? "var(--signal)" : "var(--warn)"
+        color: allTagged ? "var(--signal-ink)" : "var(--warn)"
       }
     }, "✓ ", tagged, " tagged", needRetag > 0 ? ` · ${needRetag} need a set` : "", dupes > 0 ? ` · ${dupes} skipped (duplicate)` : "", failed > 0 ? ` · ${failed} failed` : ""), needRetag > 0 && React.createElement("div", {
       style: {
@@ -9513,7 +9512,7 @@ function MemoriesScreen({
   }, React.createElement("span", null, "Auto-backup on Wi-Fi"), React.createElement("span", {
     style: {
       fontWeight: 600,
-      color: autoOn ? "var(--signal)" : "var(--text-2)"
+      color: autoOn ? "var(--signal-ink)" : "var(--text-2)"
     }
   }, autoOn ? "On" : "Off")), showPlus && React.createElement(PlusSheet, {
     feature: "cloud backup",
@@ -9709,7 +9708,7 @@ function MemoriesScreen({
       }, "SETS YOU WATCHED"), spineIds.map(aId => {
         var artist = ARTISTS.find(x => x.id === aId);
         var stage = artist ? STAGES.find(s => s.id === artist.stage) : null;
-        var accent = stage?.color || "var(--muted)";
+        var accent = "var(--text-2)";
         var groupMoments = byArtist.get(aId) || [];
         var hero = groupMoments.length ? _pickHeroMoment(groupMoments) : null;
         var orderedMoments = hero ? [hero, ...groupMoments.filter(m => m.id !== hero.id)] : groupMoments;
@@ -9746,7 +9745,7 @@ function MemoriesScreen({
           style: {
             width: 4,
             alignSelf: "stretch",
-            background: accent,
+            background: "var(--line-2)",
             borderRadius: 3
           }
         }), React.createElement("div", {
@@ -10003,7 +10002,7 @@ function AttendanceReview({
       style: {
         width: 3,
         alignSelf: "stretch",
-        background: stage?.color || "var(--line-2)",
+        background: "var(--line-2)",
         borderRadius: 3
       }
     }), React.createElement("div", {
@@ -11138,7 +11137,7 @@ function FollowedNudge({
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "var(--paper)"
+        color: "var(--ink)"
       }
     }, a.name), React.createElement("div", {
       className: "mono",
@@ -15178,7 +15177,7 @@ function RecapScreen({
           height: 28,
           borderRadius: "50%",
           flexShrink: 0,
-          background: stage?.color || "var(--signal)",
+          background: "var(--signal)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -15559,7 +15558,7 @@ function RecapScreen({
     disabled: playlistState.status === "building",
     style: {
       background: playlistState.status === "building" ? "var(--paper-2)" : "var(--spotify)",
-      color: playlistState.status === "building" ? "var(--muted)" : "var(--ink)",
+      color: playlistState.status === "building" ? "var(--muted)" : "var(--paper)",
       border: "none",
       borderRadius: 999,
       padding: "11px 18px",
@@ -15627,7 +15626,7 @@ function RecapScreen({
       style: {
         width: 3,
         alignSelf: "stretch",
-        background: stage?.color || "var(--line-2)",
+        background: "var(--line-2)",
         borderRadius: 2,
         flexShrink: 0
       }
@@ -16642,7 +16641,7 @@ function NowPlayingBar() {
   };
   if (!trialLive && (!isFestivalLive || !liveState.stage)) return null;
   var displaySong = liveState.song || estimatedSong;
-  var stageColor = liveState.stage?.color || "var(--horizon)";
+  var stageColor = "var(--signal-ink)";
   var cs = checkin.st;
   var checkinSeen = false;
   try {
@@ -16660,7 +16659,7 @@ function NowPlayingBar() {
       background: "rgba(var(--shade-rgb),0.92)",
       backdropFilter: "blur(20px)",
       WebkitBackdropFilter: "blur(20px)",
-      boxShadow: `0 8px 32px rgba(var(--shade-rgb),0.4), inset 0 0 0 1px rgba(var(--ink-rgb),0.08), 0 0 20px ${stageColor}33`,
+      boxShadow: `0 8px 32px rgba(var(--shade-rgb),0.4), inset 0 0 0 1px rgba(var(--ink-rgb),0.08), 0 0 20px rgba(var(--signal-rgb),0.2)`,
       padding: "10px 14px",
       animation: "song-fade-in 0.4s ease-out"
     }
@@ -16686,10 +16685,10 @@ function NowPlayingBar() {
       style: {
         width: `${pct * 100}%`,
         height: "100%",
-        background: `linear-gradient(90deg, ${stageColor}, ${stageColor}cc)`,
+        background: "var(--signal)",
         borderRadius: "0 3px 3px 0",
         transition: "width 30s linear",
-        boxShadow: `0 0 8px ${stageColor}`
+        boxShadow: "0 0 8px rgba(var(--signal-rgb),0.6)"
       }
     }), minsLeft > 0 && minsLeft <= 10 && React.createElement("div", {
       className: "mono",
@@ -16831,7 +16830,7 @@ function NowPlayingBar() {
       borderRadius: 36,
       border: "none",
       cursor: "pointer",
-      background: liveState.listening ? `${stageColor}44` : `${stageColor}22`,
+      background: liveState.listening ? "rgba(var(--signal-rgb),0.27)" : "rgba(var(--signal-rgb),0.13)",
       color: stageColor,
       fontSize: 16,
       display: "flex",

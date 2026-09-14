@@ -820,7 +820,7 @@ function PingSheet({ onClose, onDropPin, friends }) {
               cursor: "pointer",
             }}>SHARE</button>
             <button onClick={copyCode} style={{
-              background: "transparent", color: "var(--paper)",
+              background: "transparent", color: "var(--ink)",
               border: "1px solid rgba(var(--ink-rgb),0.35)",
               borderRadius: 8, padding: "7px 14px",
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
