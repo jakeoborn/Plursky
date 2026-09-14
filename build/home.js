@@ -229,7 +229,7 @@ function TonightCard({
     style: {
       fontSize: 9,
       letterSpacing: 1.4,
-      color: "rgba(247,237,224,0.55)",
+      color: "rgba(var(--ink-rgb),0.55)",
       fontWeight: 600
     }
   }, label), React.createElement("div", {
@@ -246,7 +246,7 @@ function TonightCard({
     style: {
       fontSize: 9,
       letterSpacing: 1.1,
-      color: "rgba(247,237,224,0.6)",
+      color: "rgba(var(--ink-rgb),0.6)",
       marginTop: 4
     }
   }, sub));
@@ -264,7 +264,7 @@ function TonightCard({
     style: {
       position: "absolute",
       inset: 0,
-      background: "radial-gradient(120% 60% at 80% 0%, rgba(245,154,54,0.18), transparent 55%), radial-gradient(80% 50% at 10% 110%, rgba(167,139,250,0.18), transparent 60%)",
+      background: "radial-gradient(120% 60% at 80% 0%, rgba(var(--signal-rgb),0.18), transparent 55%), radial-gradient(80% 50% at 10% 110%, rgba(var(--signal-rgb),0.18), transparent 60%)",
       pointerEvents: "none"
     }
   }), React.createElement("div", {
@@ -283,22 +283,22 @@ function TonightCard({
     style: {
       fontSize: 10,
       letterSpacing: 1.6,
-      color: "rgba(247,237,224,0.6)"
+      color: "rgba(var(--ink-rgb),0.6)"
     }
   }, isPreEvent ? "OPENING NIGHT" : `TONIGHT · DAY ${day}`), period && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "rgba(247,237,224,0.5)",
+      color: "rgba(var(--ink-rgb),0.5)",
       display: "flex",
       alignItems: "center",
       gap: 5
     }
   }, "NWS · ", period.name.toUpperCase(), cacheAgeLabel && React.createElement("span", {
     style: {
-      background: "rgba(247,237,224,0.1)",
-      border: "1px solid rgba(247,237,224,0.18)",
+      background: "rgba(var(--ink-rgb),0.1)",
+      border: "1px solid rgba(var(--ink-rgb),0.18)",
       borderRadius: 4,
       padding: "1px 5px",
       fontSize: 8,
@@ -316,8 +316,8 @@ function TonightCard({
       minWidth: 80,
       padding: "8px 10px",
       borderRadius: 10,
-      background: "rgba(247,237,224,0.06)",
-      border: "1px solid rgba(247,237,224,0.1)"
+      background: "rgba(var(--ink-rgb),0.06)",
+      border: "1px solid rgba(var(--ink-rgb),0.1)"
     }
   }, React.createElement("div", {
     className: "skel-dark",
@@ -360,8 +360,8 @@ function TonightCard({
         marginTop: 14,
         padding: "10px 12px",
         borderRadius: 10,
-        background: "rgba(247,237,224,0.05)",
-        border: "1px solid rgba(247,237,224,0.1)"
+        background: "rgba(var(--ink-rgb),0.05)",
+        border: "1px solid rgba(var(--ink-rgb),0.1)"
       }
     }, React.createElement("div", {
       style: {
@@ -375,7 +375,7 @@ function TonightCard({
       style: {
         fontSize: 9,
         letterSpacing: 1.4,
-        color: "rgba(247,237,224,0.55)",
+        color: "rgba(var(--ink-rgb),0.55)",
         fontWeight: 600
       }
     }, "NEXT 12H"), React.createElement("span", {
@@ -383,7 +383,7 @@ function TonightCard({
       style: {
         fontSize: 9,
         letterSpacing: 1,
-        color: "rgba(247,237,224,0.5)"
+        color: "rgba(var(--ink-rgb),0.5)"
       }
     }, min, "° → ", max, "°")), React.createElement("svg", {
       viewBox: `0 0 ${W} ${H}`,
@@ -396,7 +396,7 @@ function TonightCard({
     }, React.createElement("polyline", {
       points: points,
       fill: "none",
-      stroke: "#a8d4ff",
+      stroke: "var(--signal-ink)",
       strokeWidth: "1.5",
       strokeLinecap: "round",
       strokeLinejoin: "round"
@@ -405,7 +405,7 @@ function TonightCard({
       cx: i / (next12.length - 1) * W,
       cy: H - (h.temperature - min) / range * (H - 8) - 4,
       r: "1.5",
-      fill: "#a8d4ff"
+      fill: "var(--signal-ink)"
     }))), React.createElement("div", {
       style: {
         display: "flex",
@@ -417,14 +417,14 @@ function TonightCard({
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "rgba(247,237,224,0.4)"
+        color: "rgba(var(--ink-rgb),0.4)"
       }
     }, fmtH(firstHour)), React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "rgba(247,237,224,0.4)"
+        color: "rgba(var(--ink-rgb),0.4)"
       }
     }, fmtH(lastHour))));
   })(), inShuttleWindow && React.createElement("button", {
@@ -435,8 +435,8 @@ function TonightCard({
     style: {
       marginTop: 14,
       width: "100%",
-      background: shuttleUrgent ? "var(--ember)" : "rgba(247,237,224,0.08)",
-      border: shuttleUrgent ? "none" : "1px solid rgba(247,237,224,0.2)",
+      background: shuttleUrgent ? "var(--ember)" : "rgba(var(--ink-rgb),0.08)",
+      border: shuttleUrgent ? "none" : "1px solid rgba(var(--ink-rgb),0.2)",
       color: "var(--paper)",
       borderRadius: 10,
       padding: "10px 12px",
@@ -453,7 +453,7 @@ function TonightCard({
     }
   }, React.createElement("span", null, "🚌  LAST SHUTTLE TO STRIP"), React.createElement("span", {
     style: {
-      color: shuttleUrgent ? "#fff" : "var(--flare)"
+      color: shuttleUrgent ? "var(--ink)" : "var(--flare)"
     }
   }, shuttleMins > 0 ? `${shuttleMins} MIN` : "DEPARTED")), !inShuttleWindow && sunriseArtistId && !isPreEvent && React.createElement("button", {
     onClick: () => setState({
@@ -464,8 +464,8 @@ function TonightCard({
     style: {
       marginTop: 14,
       width: "100%",
-      background: "rgba(247,237,224,0.06)",
-      border: "1px solid rgba(247,237,224,0.18)",
+      background: "rgba(var(--ink-rgb),0.06)",
+      border: "1px solid rgba(var(--ink-rgb),0.18)",
       color: "var(--paper)",
       borderRadius: 10,
       padding: "9px 12px",
@@ -482,7 +482,7 @@ function TonightCard({
     }
   }, React.createElement("span", null, "🌅  SUNRISE SET · ", sunriseArtistId.name.toUpperCase()), React.createElement("span", {
     style: {
-      color: "#fbbf24"
+      color: "var(--signal-ink)"
     }
   }, sunriseSet))));
 }
@@ -674,7 +674,7 @@ function FestivalSkyBand({
     cx: (sf * W).toFixed(1),
     cy: sy,
     r: i % 3 === 0 ? 1.1 : 0.8,
-    fill: "#fff",
+    fill: "var(--ink)",
     opacity: starOpacity * (i % 2 ? 0.7 : 1),
     style: {
       transition: ease
@@ -682,7 +682,7 @@ function FestivalSkyBand({
   })), gates != null && React.createElement(React.Fragment, null, React.createElement("path", {
     d: path,
     fill: "none",
-    stroke: "#fff",
+    stroke: "var(--ink)",
     strokeOpacity: "0.13",
     strokeWidth: "1",
     strokeDasharray: "2 5"
@@ -781,7 +781,7 @@ function FestivalSkyBand({
     opacity: preDawn ? 0.7 : 0.25 + 0.55 * progress
   }), !preDawn && React.createElement("circle", {
     r: "6.5",
-    fill: "#fff3d6",
+    fill: "var(--ink)",
     opacity: 0.55 + 0.45 * progress
   }))));
 }
@@ -1147,11 +1147,11 @@ function F1TonightHero({
   var phase = isPreEvent ? "pre" : live ? "live" : beforeFirstSet ? "doors" : "between";
   return React.createElement("div", {
     style: {
-      background: "linear-gradient(160deg, #1a120d 0%, #2a1a1f 60%, #1a120d 100%)",
+      background: "linear-gradient(160deg, var(--paper) 0%, var(--paper) 60%, var(--paper) 100%)",
       borderRadius: 16,
       padding: 0,
       marginBottom: 18,
-      color: "#fff",
+      color: "var(--ink)",
       position: "relative",
       overflow: "hidden",
       border: `1px solid ${accent}55`
@@ -1210,7 +1210,7 @@ function F1TonightHero({
     style: {
       fontSize: 9,
       letterSpacing: 1.4,
-      color: "rgba(255,255,255,0.55)",
+      color: "rgba(var(--ink-rgb),0.55)",
       fontWeight: 600
     }
   }, phase === "pre" ? FESTIVAL_CONFIG.dates.toUpperCase() : `NIGHT ${day} / ${DAYS.length}`)), phase === "pre" && React.createElement(React.Fragment, null, React.createElement("div", {
@@ -1239,7 +1239,7 @@ function F1TonightHero({
   }, FESTIVAL_CONFIG.brand)), React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "rgba(255,255,255,0.7)",
+      color: "rgba(var(--ink-rgb),0.7)",
       lineHeight: 1.4,
       marginBottom: spotlight ? 16 : 0
     }
@@ -1257,11 +1257,11 @@ function F1TonightHero({
         width: "100%",
         padding: "10px 12px",
         borderRadius: 12,
-        background: `rgba(255,255,255,0.06)`,
+        background: `rgba(var(--ink-rgb),0.06)`,
         border: `1px solid ${sStage?.color || accent}33`,
         cursor: "pointer",
         textAlign: "left",
-        color: "#fff"
+        color: "var(--ink)"
       }
     }, React.createElement(ArtistSwatch, {
       artist: spotlight,
@@ -1295,12 +1295,12 @@ function F1TonightHero({
       style: {
         fontSize: 9,
         letterSpacing: 0.8,
-        color: "rgba(255,255,255,0.55)",
+        color: "rgba(var(--ink-rgb),0.55)",
         marginTop: 3
       }
     }, sStage?.name?.toUpperCase() || "", " · DAY ", spotlight.day, " · ", fmt12(spotlight.start))), React.createElement("div", {
       style: {
-        color: "rgba(255,255,255,0.4)",
+        color: "rgba(var(--ink-rgb),0.4)",
         fontSize: 16,
         flexShrink: 0
       }
@@ -1326,7 +1326,7 @@ function F1TonightHero({
     style: {
       fontSize: 9,
       letterSpacing: 1.6,
-      color: "rgba(255,255,255,0.75)",
+      color: "rgba(var(--ink-rgb),0.75)",
       fontWeight: 600
     }
   }, "NOW · ", featured.genre.toUpperCase())), React.createElement("div", {
@@ -1342,7 +1342,7 @@ function F1TonightHero({
     style: {
       fontSize: 10,
       letterSpacing: 1.4,
-      color: "rgba(255,255,255,0.7)",
+      color: "rgba(var(--ink-rgb),0.7)",
       marginBottom: 14
     }
   }, fmt12(featured.start), " – ", fmt12(featured.end)), React.createElement("div", {
@@ -1385,8 +1385,8 @@ function F1TonightHero({
       marginBottom: 14,
       padding: "8px 12px",
       borderRadius: 10,
-      background: "rgba(255,255,255,0.06)",
-      border: "1px solid rgba(255,255,255,0.12)"
+      background: "rgba(var(--ink-rgb),0.06)",
+      border: "1px solid rgba(var(--ink-rgb),0.12)"
     }
   }, React.createElement("div", {
     className: "mono",
@@ -1401,7 +1401,7 @@ function F1TonightHero({
       fontFamily: "Geist Mono, monospace",
       fontSize: 20,
       fontWeight: 600,
-      color: "#fff",
+      color: "var(--ink)",
       letterSpacing: 0.5,
       fontVariantNumeric: "tabular-nums",
       marginLeft: "auto"
@@ -1417,13 +1417,13 @@ function F1TonightHero({
       alignItems: "center",
       gap: 12,
       width: "100%",
-      background: "rgba(255,255,255,0.06)",
-      border: "1px solid rgba(255,255,255,0.14)",
+      background: "rgba(var(--ink-rgb),0.06)",
+      border: "1px solid rgba(var(--ink-rgb),0.14)",
       borderRadius: 12,
       padding: "10px 12px",
       cursor: "pointer",
       textAlign: "left",
-      color: "#fff"
+      color: "var(--ink)"
     }
   }, React.createElement("div", {
     style: {
@@ -1458,7 +1458,7 @@ function F1TonightHero({
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "rgba(255,255,255,0.6)",
+      color: "rgba(var(--ink-rgb),0.6)",
       marginTop: 2
     }
   }, stage?.short || "", " · ", fmt12(featured.start))))), phase === "between" && React.createElement(React.Fragment, null, React.createElement("div", {
@@ -1477,7 +1477,7 @@ function F1TonightHero({
   }, "changeover")), React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "rgba(255,255,255,0.7)",
+      color: "rgba(var(--ink-rgb),0.7)",
       lineHeight: 1.4,
       marginBottom: 12
     }
@@ -1492,13 +1492,13 @@ function F1TonightHero({
       alignItems: "center",
       gap: 12,
       width: "100%",
-      background: "rgba(255,255,255,0.06)",
-      border: "1px solid rgba(255,255,255,0.14)",
+      background: "rgba(var(--ink-rgb),0.06)",
+      border: "1px solid rgba(var(--ink-rgb),0.14)",
       borderRadius: 12,
       padding: "10px 12px",
       cursor: "pointer",
       textAlign: "left",
-      color: "#fff"
+      color: "var(--ink)"
     }
   }, React.createElement("div", {
     style: {
@@ -1533,7 +1533,7 @@ function F1TonightHero({
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "rgba(255,255,255,0.6)",
+      color: "rgba(var(--ink-rgb),0.6)",
       marginTop: 2
     }
   }, stage?.short || "", " · ", fmt12(featured.start)))))));
@@ -1611,7 +1611,7 @@ function LastNightRecap({
         background: stage?.color || "var(--paper-2)",
         borderRadius: 10,
         padding: "8px 10px",
-        color: "#fff",
+        color: "var(--ink)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-end"
@@ -1630,7 +1630,7 @@ function LastNightRecap({
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "rgba(255,255,255,0.85)",
+        color: "rgba(var(--ink-rgb),0.85)",
         marginTop: 2
       }
     }, stage?.short || "", " · ", fmt12(artist.start))));
@@ -3441,9 +3441,9 @@ function TonightsPlan({
       justifyContent: "space-between",
       padding: "6px 10px",
       marginBottom: 10,
-      background: "rgba(232,93,46,0.07)",
+      background: "rgba(var(--signal-rgb),0.07)",
       borderRadius: 8,
-      border: "1px solid rgba(232,93,46,0.2)"
+      border: "1px solid rgba(var(--signal-rgb),0.2)"
     }
   }, React.createElement("span", {
     className: "mono",
@@ -3456,7 +3456,7 @@ function TonightsPlan({
     onClick: () => setResolverOpen(r => !r),
     style: {
       background: resolverOpen ? "transparent" : "var(--ember)",
-      color: resolverOpen ? "var(--ember-ink)" : "#fff",
+      color: resolverOpen ? "var(--ember-ink)" : "var(--ink)",
       border: resolverOpen ? "1px solid var(--ember)" : "none",
       borderRadius: 6,
       padding: "4px 10px",
@@ -3546,7 +3546,7 @@ function PlanRow({
       borderBottom: "1px solid var(--line)",
       cursor: "pointer",
       opacity: isPast ? 0.45 : 1,
-      background: conflict ? "rgba(232,93,46,0.04)" : "transparent"
+      background: conflict ? "rgba(var(--signal-rgb),0.04)" : "transparent"
     }
   }, React.createElement("div", {
     style: {
@@ -3557,7 +3557,7 @@ function PlanRow({
     style: {
       fontSize: 10,
       letterSpacing: 1,
-      color: isLive ? stage?.color || "#8a8580" : "var(--ink)",
+      color: isLive ? stage?.color || "var(--text-2)" : "var(--ink)",
       fontWeight: isLive ? 700 : 500
     }
   }, fmt12(a.start)), React.createElement("div", {
@@ -3597,7 +3597,7 @@ function PlanRow({
     style: {
       fontSize: 8,
       letterSpacing: 1.3,
-      color: "#fff",
+      color: "var(--ink)",
       background: stage.color,
       padding: "1px 5px",
       borderRadius: 3,
@@ -3678,13 +3678,13 @@ function homeBtn(kind) {
   };
   if (kind === "solid") return {
     ...base,
-    background: "#fff",
-    color: "var(--ink)"
+    background: "var(--ink)",
+    color: "var(--paper)"
   };
   if (kind === "ghost") return {
     ...base,
-    background: "rgba(255,255,255,0.15)",
-    color: "#fff",
+    background: "rgba(var(--ink-rgb),0.15)",
+    color: "var(--ink)",
     backdropFilter: "blur(6px)"
   };
   return base;
@@ -3718,7 +3718,7 @@ function AlertsDrawer({
     style: {
       position: "absolute",
       inset: 0,
-      background: "rgba(0,0,0,0.35)"
+      background: "rgba(var(--shade-rgb),0.35)"
     }
   }), React.createElement("div", {
     style: {
@@ -3730,7 +3730,7 @@ function AlertsDrawer({
       maxHeight: "78%",
       display: "flex",
       flexDirection: "column",
-      boxShadow: "0 -10px 30px rgba(0,0,0,0.35)",
+      boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.35)",
       position: "relative",
       animation: "sheetUp 0.3s var(--ease-smooth)"
     }
@@ -3859,7 +3859,7 @@ function DontMissStrip({
   }, "Don't ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "#fbbf24"
+      color: "var(--signal-ink)"
     }
   }, "miss")), React.createElement("span", {
     className: "mono",
@@ -3894,8 +3894,8 @@ function DontMissStrip({
         padding: "10px 11px",
         textAlign: "left",
         borderRadius: 14,
-        border: "1px solid rgba(251,191,36,0.45)",
-        background: "linear-gradient(135deg, rgba(251,191,36,0.10) 0%, rgba(232,93,46,0.06) 100%)",
+        border: "1px solid rgba(var(--signal-rgb),0.45)",
+        background: "linear-gradient(135deg, rgba(var(--signal-rgb),0.10) 0%, rgba(var(--signal-rgb),0.06) 100%)",
         cursor: "pointer"
       }
     }, React.createElement("div", {
@@ -3903,7 +3903,7 @@ function DontMissStrip({
       style: {
         fontSize: 8,
         letterSpacing: 1.4,
-        color: "#b8651b",
+        color: "var(--signal-ink)",
         fontWeight: 800
       }
     }, isSunrise ? "🌅 SUNRISE SET" : "★ B2B COLLAB"), React.createElement("div", {
@@ -3973,7 +3973,7 @@ function FirstTimerGuide({
     style: {
       position: "absolute",
       inset: 0,
-      background: "rgba(0,0,0,0.4)"
+      background: "rgba(var(--shade-rgb),0.4)"
     }
   }), React.createElement("div", {
     style: {
@@ -3985,7 +3985,7 @@ function FirstTimerGuide({
       maxHeight: "85%",
       display: "flex",
       flexDirection: "column",
-      boxShadow: "0 -10px 30px rgba(0,0,0,0.4)",
+      boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.4)",
       position: "relative"
     }
   }, React.createElement("div", {
@@ -4178,8 +4178,8 @@ function FriendLineupBanner({
       marginTop: 18,
       padding: "16px 16px 14px",
       borderRadius: 18,
-      background: "linear-gradient(135deg, rgba(123,61,154,0.12), rgba(232,93,46,0.08))",
-      border: "1px solid rgba(123,61,154,0.3)"
+      background: "linear-gradient(135deg, rgba(var(--signal-rgb),0.12), rgba(var(--signal-rgb),0.08))",
+      border: "1px solid rgba(var(--signal-rgb),0.3)"
     }
   }, React.createElement("div", {
     style: {
@@ -4253,7 +4253,7 @@ function FriendLineupBanner({
     className: "mono",
     style: {
       background: "var(--ember)",
-      color: "#fff",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 999,
       padding: "8px 14px",

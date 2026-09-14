@@ -573,7 +573,7 @@ function InstallBanner() {
         <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--flare)", fontWeight: 700 }}>
           INSTALL PLURSKY
         </div>
-        <div style={{ fontSize: 12, lineHeight: 1.35, marginTop: 2, color: "rgba(247,237,224,0.85)" }}>
+        <div style={{ fontSize: 12, lineHeight: 1.35, marginTop: 2, color: "rgba(var(--ink-rgb),0.85)" }}>
           {ip.isIOS
             ? <>Tap <span style={{ display: "inline-flex", verticalAlign: "middle", padding: "0 2px" }}>
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--paper)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -584,7 +584,7 @@ function InstallBanner() {
       </div>
       {!ip.isIOS && (
         <button onClick={ip.install} style={{
-          background: "var(--ember)", color: "#fff", border: "none",
+          background: "var(--ember)", color: "var(--ink)", border: "none",
           borderRadius: 999, padding: "7px 12px", cursor: "pointer",
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           flexShrink: 0,
@@ -592,7 +592,7 @@ function InstallBanner() {
       )}
       <button onClick={ip.dismiss} aria-label="Dismiss" style={{
         background: "transparent", border: "none", cursor: "pointer",
-        color: "rgba(247,237,224,0.55)", padding: 4, flexShrink: 0,
+        color: "rgba(var(--ink-rgb),0.55)", padding: 4, flexShrink: 0,
         fontSize: 18, lineHeight: 1,
       }}>×</button>
     </div>
@@ -1061,7 +1061,7 @@ function NotificationsCard({ state }) {
   }
 
   const label = perm === "granted" ? "ENABLED" : perm === "denied" ? "BLOCKED" : "OFF";
-  const labelColor = perm === "granted" ? "var(--success)" : perm === "denied" ? "#f87171" : "var(--muted)";
+  const labelColor = perm === "granted" ? "var(--success)" : perm === "denied" ? "var(--alert)" : "var(--muted)";
 
   return (
     <div style={{
@@ -1136,7 +1136,7 @@ function NotificationsCard({ state }) {
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
         {perm !== "granted" && perm !== "denied" && (
           <button onClick={onEnable} style={{
-            background: "var(--ember)", color: "#fff", border: "none",
+            background: "var(--ember)", color: "var(--ink)", border: "none",
             borderRadius: 999, padding: "8px 14px", cursor: "pointer",
             fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           }}>ENABLE</button>
@@ -1170,6 +1170,10 @@ function FestivalChip({ compact = false, accent = "var(--ink)" }) {
           emoji: colour in chrome belongs to the one accent. */}
       <div
         onClick={canSwitch ? () => setOpen(true) : undefined}
+        role={canSwitch ? "button" : undefined}
+        tabIndex={canSwitch ? 0 : undefined}
+        aria-label={canSwitch ? `${FESTIVAL_CONFIG.shortName.toUpperCase()}, switch festival` : undefined}
+        onKeyDown={canSwitch ? (e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpen(true); } }) : undefined}
         style={{
           display: "inline-flex", alignItems: "center", minHeight: 44,
           color: accent, cursor: canSwitch ? "pointer" : "default",
@@ -1294,7 +1298,7 @@ function FestivalSwitcher({ onClose }) {
     const parts = [];
     if (st.saved) parts.push(<span key="s">{st.saved} saved</span>);
     if (st.conflicts) parts.push(<span key="c" style={{ color: "var(--warn)", fontWeight: 600 }}>⚠ {st.conflicts} {st.conflicts === 1 ? "conflict" : "conflicts"}</span>);
-    if (isActive) parts.push(<span key="a" style={{ color: "var(--signal)", fontWeight: 600 }}>✓ Active</span>);
+    if (isActive) parts.push(<span key="a" style={{ color: "var(--signal-ink)", fontWeight: 600 }}>✓ Active</span>);
     else if (phase(f) === "ended") parts.push(<span key="e">Ended</span>);
     else if (!f.available) parts.push(<span key="l">{f.previewOnly ? "Early access" : "Soon"}</span>);
     else if (st.saved && !st.conflicts) parts.push(<span key="r" style={{ color: "var(--signal)", fontWeight: 600 }}>✓ Ready</span>);
@@ -1517,20 +1521,20 @@ function BatterySaverToast() {
       padding: "10px 14px", borderRadius: 14,
       background: "var(--ink)", color: "var(--paper)",
       display: "flex", alignItems: "center", gap: 10,
-      boxShadow: "0 8px 24px rgba(0,0,0,0.35)",
+      boxShadow: "0 8px 24px rgba(var(--shade-rgb),0.35)",
     }}>
       <span style={{ fontSize: 16 }}>🔋</span>
       <div style={{ flex: 1, minWidth: 0 }}>
         <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--flare)", fontWeight: 700 }}>
           BATTERY SAVER ON
         </div>
-        <div style={{ fontSize: 13, lineHeight: 1.35, marginTop: 2, color: "rgba(247,237,224,0.85)" }}>
+        <div style={{ fontSize: 13, lineHeight: 1.35, marginTop: 2, color: "rgba(var(--ink-rgb),0.85)" }}>
           {reason}
         </div>
       </div>
       <button onClick={() => setDismissed(true)} aria-label="Dismiss" style={{
         background: "transparent", border: "none", cursor: "pointer",
-        color: "rgba(247,237,224,0.6)", fontSize: 18, lineHeight: 1, padding: 4,
+        color: "rgba(var(--ink-rgb),0.6)", fontSize: 18, lineHeight: 1, padding: 4,
       }}>×</button>
     </div>
   );
@@ -1548,7 +1552,7 @@ function BatterySaverCard() {
   const battColor = battPct == null ? "var(--muted)"
     : battPct > 50 ? "var(--success)"
     : battPct > 20 ? "var(--flare)"
-    : "#f87171";
+    : "var(--alert)";
 
   return (
     <div style={{
@@ -1797,7 +1801,7 @@ function StatusStrip() {
           </span>
         )}
         {!online && (
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, color: "#c14a37" }}>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, color: "var(--alert)" }}>
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M4 4 L20 20"/>
               <path d="M2 9 Q6 5 10 5.4 M22 9 Q18 5 14 5.4"/>

@@ -130,8 +130,8 @@ function SpotifyScreen({
       gap: 10,
       padding: "10px 12px",
       marginBottom: 14,
-      background: "rgba(232,93,46,0.10)",
-      border: "1px solid rgba(232,93,46,0.35)",
+      background: "rgba(var(--signal-rgb),0.10)",
+      border: "1px solid rgba(var(--signal-rgb),0.35)",
       borderRadius: 12
     }
   }, React.createElement("span", {
@@ -150,7 +150,7 @@ function SpotifyScreen({
     style: {
       borderRadius: 20,
       padding: 20,
-      background: connected ? "#1a3d2b" : "var(--ink)",
+      background: connected ? "var(--signal)" : "var(--ink)",
       color: "var(--paper)",
       marginBottom: 20,
       position: "relative",
@@ -169,22 +169,22 @@ function SpotifyScreen({
     cx: "12",
     cy: "12",
     r: "11",
-    fill: "#1DB954"
+    fill: "var(--spotify)"
   }), React.createElement("path", {
     d: "M6 10 Q12 8 18 11",
-    stroke: "#000",
+    stroke: "var(--paper)",
     strokeWidth: "1.6",
     strokeLinecap: "round",
     fill: "none"
   }), React.createElement("path", {
     d: "M7 13 Q12 11.5 17 14",
-    stroke: "#000",
+    stroke: "var(--paper)",
     strokeWidth: "1.4",
     strokeLinecap: "round",
     fill: "none"
   }), React.createElement("path", {
     d: "M8 15.8 Q12 14.5 16 16.5",
-    stroke: "#000",
+    stroke: "var(--paper)",
     strokeWidth: "1.2",
     strokeLinecap: "round",
     fill: "none"
@@ -233,18 +233,18 @@ function SpotifyScreen({
       fontSize: 13,
       lineHeight: 1.5,
       marginBottom: 14,
-      background: "rgba(245,154,54,0.18)",
-      border: "1px solid rgba(245,154,54,0.4)",
+      background: "rgba(var(--signal-rgb),0.18)",
+      border: "1px solid rgba(var(--signal-rgb),0.4)",
       borderRadius: 8,
       padding: "8px 10px",
-      color: "#fde68a",
+      color: "var(--signal-ink)",
       cursor: "pointer",
       fontFamily: "inherit"
     }
   }, missingFollowScope ? "↻ Reconnect Spotify — your current session can't see followed artists. Layton Giordani, Sofi Tukker and others you follow won't be matched until you reconnect." : noScopeRecord && !playlistScanFailed ? "↻ Reconnect Spotify to unlock full playlist scanning — artists in private playlists may be missing." : "↻ Your playlists weren't scanned. Tap to reconnect Spotify with full access — this fixes missing artists like those in private playlists."), tokenBad && React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#f87171",
+      color: "var(--alert)",
       marginBottom: 10,
       letterSpacing: 0.8
     }
@@ -257,8 +257,8 @@ function SpotifyScreen({
   }, connected && matched.length > 0 && React.createElement("button", {
     onClick: handleSaveAll,
     style: {
-      background: saveFlash ? "#2d7a55" : "#1DB954",
-      color: "#fff",
+      background: saveFlash ? "var(--signal)" : "var(--spotify)",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 999,
       padding: "10px 16px",
@@ -285,9 +285,9 @@ function SpotifyScreen({
       connected ? disconnectSpotify(setState, state) : startSpotifyAuth();
     },
     style: {
-      background: connected ? "rgba(29,185,84,0.2)" : "rgba(247,237,224,0.12)",
+      background: connected ? "rgba(var(--spotify-rgb),0.2)" : "rgba(var(--ink-rgb),0.12)",
       color: "var(--paper)",
-      border: connected ? "1px solid rgba(29,185,84,0.5)" : "1px solid rgba(247,237,224,0.28)",
+      border: connected ? "1px solid rgba(var(--spotify-rgb),0.5)" : "1px solid rgba(var(--ink-rgb),0.28)",
       borderRadius: 999,
       padding: "10px 16px",
       cursor: "pointer",
@@ -305,11 +305,11 @@ function SpotifyScreen({
       fontSize: 9,
       letterSpacing: 0.5,
       lineHeight: 1.5,
-      color: "rgba(247,237,224,0.55)"
+      color: "rgba(var(--ink-rgb),0.55)"
     }
   }, "💡 Your saved sets build a playlist on ", React.createElement("span", {
     style: {
-      color: "rgba(247,237,224,0.92)",
+      color: "rgba(var(--ink-rgb),0.92)",
       fontWeight: 700
     }
   }, "Spotify or Apple Music"), " — import your taste from one, export to either. No Spotify needed for the Apple Music playlist.")), React.createElement(BoardPlaylistCard, {
@@ -323,8 +323,8 @@ function SpotifyScreen({
     style: {
       borderRadius: 20,
       padding: 20,
-      background: amConnected ? "#3a1a1a" : "var(--paper-2)",
-      border: `1px solid ${amConnected ? "rgba(252,60,60,0.25)" : "var(--line)"}`,
+      background: amConnected ? "var(--paper)" : "var(--paper-2)",
+      border: `1px solid ${amConnected ? "rgba(var(--alert-rgb),0.25)" : "var(--line)"}`,
       color: amConnected ? "var(--paper)" : "var(--ink)",
       marginBottom: 14,
       position: "relative",
@@ -343,10 +343,10 @@ function SpotifyScreen({
     width: "24",
     height: "24",
     rx: "6",
-    fill: "#fc3c44"
+    fill: "var(--alert)"
   }), React.createElement("path", {
     d: "M16.5 7.5 L10 9 L10 15",
-    stroke: "#fff",
+    stroke: "var(--ink)",
     strokeWidth: "1.5",
     strokeLinecap: "round",
     strokeLinejoin: "round",
@@ -355,12 +355,12 @@ function SpotifyScreen({
     cx: "8.5",
     cy: "15",
     r: "1.5",
-    fill: "#fff"
+    fill: "var(--ink)"
   }), React.createElement("circle", {
     cx: "15",
     cy: "13",
     r: "1.5",
-    fill: "#fff"
+    fill: "var(--ink)"
   })), React.createElement("div", {
     className: "mono",
     style: {
@@ -397,15 +397,15 @@ function SpotifyScreen({
   }, "Scan your Apple Music library to find which artists you already know and love."), amError && React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#f87171",
+      color: "var(--alert)",
       marginBottom: 8
     }
   }, amError), React.createElement("button", {
     onClick: handleAmConnect,
     disabled: amLoading,
     style: {
-      background: "#fc3c44",
-      color: "#fff",
+      background: "var(--alert)",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 999,
       padding: "10px 18px",
@@ -430,8 +430,8 @@ function SpotifyScreen({
       });
     },
     style: {
-      background: "#fc3c44",
-      color: "#fff",
+      background: "var(--alert)",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 999,
       padding: "10px 16px",
@@ -444,9 +444,9 @@ function SpotifyScreen({
   }, "SAVE ALL ", amMatched.length, " ARTISTS"), React.createElement("button", {
     onClick: handleAmDisconnect,
     style: {
-      background: "rgba(247,237,224,0.12)",
+      background: "rgba(var(--ink-rgb),0.12)",
       color: "var(--paper)",
-      border: "1px solid rgba(247,237,224,0.28)",
+      border: "1px solid rgba(var(--ink-rgb),0.28)",
       borderRadius: 999,
       padding: "10px 16px",
       cursor: "pointer",
@@ -648,7 +648,7 @@ function SpotifyScreen({
     style: {
       fontSize: 10,
       letterSpacing: 1.2,
-      color: stage.color,
+      color: "var(--signal-ink)",
       fontWeight: 700
     }
   }, pct, "% MATCH")), React.createElement("div", {
@@ -783,7 +783,7 @@ function SpotifyScreen({
         height: 34,
         borderRadius: 34,
         background: isSaved ? "var(--ember)" : "transparent",
-        color: isSaved ? "#fff" : "var(--ink)",
+        color: isSaved ? "var(--ink)" : "var(--ink)",
         border: isSaved ? "none" : "1px solid var(--line-2)",
         cursor: "pointer",
         fontSize: 18,
@@ -865,7 +865,7 @@ function SpotifyScreen({
         height: 34,
         borderRadius: 34,
         background: isSaved ? "var(--ember)" : "transparent",
-        color: isSaved ? "#fff" : "var(--ink)",
+        color: isSaved ? "var(--ink)" : "var(--ink)",
         border: isSaved ? "none" : "1px solid var(--line-2)",
         cursor: "pointer",
         fontSize: 18,
@@ -971,7 +971,7 @@ var SAFETY_LINKS = [{
   id: "dancesafe",
   title: "DanceSafe",
   sub: "Drug-checking, harm-reduction info, peer support. Independent nonprofit.",
-  color: "#34d399",
+  color: "var(--signal-ink)",
   icon: "info",
   href: "https://dancesafe.org"
 }, {
@@ -985,7 +985,7 @@ var SAFETY_LINKS = [{
   id: "medical",
   title: "Medical · 24/7",
   sub: "3 medic tents on-site · roamers in the crowd. Tap → map.",
-  color: "#f87171",
+  color: "var(--alert)",
   icon: "med",
   onClick: (state, setState) => setState({
     ...state,
@@ -1289,7 +1289,7 @@ function PackListCard() {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "#fff",
+      color: "var(--ink)",
       fontSize: 12,
       fontWeight: 700,
       flexShrink: 0,
@@ -1382,7 +1382,7 @@ function PackListCard() {
     onClick: addItem,
     style: {
       background: draft.trim() ? "var(--ember)" : "var(--paper-2)",
-      color: draft.trim() ? "#fff" : "var(--muted)",
+      color: draft.trim() ? "var(--ink)" : "var(--muted)",
       border: "none",
       borderRadius: 10,
       padding: "9px 14px",
@@ -1608,7 +1608,7 @@ function BadgesSection({
     height: 36,
     borderRadius: 999,
     background: on ? "linear-gradient(135deg, var(--ember), var(--horizon))" : "var(--paper-2)",
-    color: on ? "#fff" : "var(--muted)",
+    color: on ? "var(--ink)" : "var(--muted)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -1849,10 +1849,10 @@ function HistoryRecordsSection({
       letterSpacing: 1.2,
       fontWeight: 800,
       color: "var(--success)",
-      background: "rgba(45,122,85,0.14)",
+      background: "rgba(var(--signal-rgb),0.14)",
       padding: "1px 6px",
       borderRadius: 999,
-      border: "0.5px solid rgba(45,122,85,0.55)"
+      border: "0.5px solid rgba(var(--signal-rgb),0.55)"
     }
   }, "● LIVE")), React.createElement("div", {
     className: "mono",
@@ -1867,7 +1867,7 @@ function HistoryRecordsSection({
     }
   }, React.createElement("span", null, n.count, " ", n.count === 1 ? "SET" : "SETS"), n.totalMin > 0 && React.createElement("span", null, "· ", Math.floor(n.totalMin / 60) ? `${Math.floor(n.totalMin / 60)}H ` : "", n.totalMin % 60, "M"), n.topStage && React.createElement("span", {
     style: {
-      color: n.topStage.color,
+      color: "var(--signal-ink)",
       fontWeight: 700
     }
   }, "· ", n.topStage.short || n.topStage.name.split(" ")[0].toUpperCase()))), React.createElement("div", {
@@ -2612,7 +2612,7 @@ function _TapToPlayVideo({
       height,
       borderRadius: 10,
       overflow: "hidden",
-      background: "#000",
+      background: "var(--paper)",
       ...style
     }
   }, playing && src ? React.createElement("video", {
@@ -2659,8 +2659,8 @@ function _TapToPlayVideo({
       width: 52,
       height: 52,
       borderRadius: 52,
-      background: "rgba(0,0,0,0.5)",
-      color: "#fff",
+      background: "rgba(var(--shade-rgb),0.5)",
+      color: "var(--ink)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -2966,7 +2966,7 @@ function HomeMemoriesStrip({
   return React.createElement("section", {
     "data-animate": true,
     style: {
-      margin: "0 -20px"
+      margin: "0 -20px 24px"
     }
   }, reel && React.createElement(MemoryReel, {
     moments: reel.moments,
@@ -3400,7 +3400,7 @@ function BulkRetagRow({
         padding: "5px 10px",
         borderRadius: 999,
         background: isConfirming ? "var(--ember)" : stage ? `${stage.color}18` : "var(--paper)",
-        color: isConfirming ? "#fff" : stage ? stage.color : "var(--ink)",
+        color: isConfirming ? "var(--ink)" : stage ? stage.color : "var(--ink)",
         border: isConfirming ? "none" : stage ? `1px solid ${stage.color}40` : "1px solid var(--line-2)",
         fontSize: 9,
         letterSpacing: 1,
@@ -3556,13 +3556,13 @@ function _FavStar({
       border: "none",
       cursor: "pointer",
       lineHeight: 1,
-      background: dark ? "rgba(255,255,255,0.14)" : "transparent",
+      background: dark ? "rgba(var(--ink-rgb),0.14)" : "transparent",
       width: dark ? 36 : "auto",
       height: dark ? 36 : "auto",
       borderRadius: dark ? 36 : 999,
       padding: dark ? 0 : "3px 5px",
       fontSize: dark ? 17 : 13,
-      color: favorite ? "#f5c451" : dark ? "rgba(255,255,255,0.7)" : "var(--muted)",
+      color: favorite ? "var(--signal-ink)" : dark ? "rgba(var(--ink-rgb),0.7)" : "var(--muted)",
       transition: "color .15s ease, transform .15s ease",
       transform: favorite ? "scale(1.06)" : "scale(1)"
     }
@@ -3583,9 +3583,9 @@ function _FavBadge({
       borderRadius: 20,
       fontSize: 11,
       lineHeight: 1,
-      background: "rgba(0,0,0,0.5)",
-      color: "#f5c451",
-      textShadow: "0 1px 2px rgba(0,0,0,0.5)",
+      background: "rgba(var(--shade-rgb),0.5)",
+      color: "var(--signal-ink)",
+      textShadow: "0 1px 2px rgba(var(--shade-rgb),0.5)",
       pointerEvents: "none",
       ...style
     }
@@ -3706,7 +3706,7 @@ function MomentLightbox({
       position: "fixed",
       inset: 0,
       zIndex: 200,
-      background: "#000",
+      background: "var(--paper)",
       display: "flex",
       flexDirection: "column",
       animation: "fadeIn .2s",
@@ -3728,8 +3728,8 @@ function MomentLightbox({
       height: 36,
       borderRadius: 36,
       border: "none",
-      background: "rgba(255,255,255,0.14)",
-      color: "#fff",
+      background: "rgba(var(--ink-rgb),0.14)",
+      color: "var(--ink)",
       fontSize: 18,
       cursor: "pointer",
       display: "flex",
@@ -3747,7 +3747,7 @@ function MomentLightbox({
     style: {
       fontSize: 10,
       letterSpacing: 1.4,
-      color: "rgba(255,255,255,0.7)",
+      color: "rgba(var(--ink-rgb),0.7)",
       fontWeight: 700
     }
   }, index + 1, " / ", moments.length), onUpdate && React.createElement(_FavStar, {
@@ -3797,12 +3797,12 @@ function MomentLightbox({
       height: 40,
       borderRadius: 40,
       zIndex: 3,
-      background: "rgba(255,255,255,0.16)",
+      background: "rgba(var(--ink-rgb),0.16)",
       backdropFilter: "blur(6px)",
       WebkitBackdropFilter: "blur(6px)",
       border: "none",
       cursor: "pointer",
-      color: "#fff",
+      color: "var(--ink)",
       fontSize: 22,
       lineHeight: 1,
       paddingBottom: 3,
@@ -3822,12 +3822,12 @@ function MomentLightbox({
       height: 40,
       borderRadius: 40,
       zIndex: 3,
-      background: "rgba(255,255,255,0.16)",
+      background: "rgba(var(--ink-rgb),0.16)",
       backdropFilter: "blur(6px)",
       WebkitBackdropFilter: "blur(6px)",
       border: "none",
       cursor: "pointer",
-      color: "#fff",
+      color: "var(--ink)",
       fontSize: 22,
       lineHeight: 1,
       paddingBottom: 3,
@@ -3858,7 +3858,7 @@ function MomentLightbox({
     style: {
       fontSize: 26,
       lineHeight: 1,
-      color: "#fff",
+      color: "var(--ink)",
       marginBottom: 6
     }
   }, artist.name)) : React.createElement("div", {
@@ -3866,7 +3866,7 @@ function MomentLightbox({
     style: {
       fontSize: 22,
       lineHeight: 1,
-      color: "rgba(255,255,255,0.6)",
+      color: "rgba(var(--ink-rgb),0.6)",
       fontStyle: "italic",
       marginBottom: 6
     }
@@ -3875,13 +3875,13 @@ function MomentLightbox({
     style: {
       fontSize: 11,
       letterSpacing: 0.8,
-      color: stage?.color || "var(--ember-ink)",
+      color: "var(--signal-ink)",
       fontWeight: 700,
       marginBottom: 4
     }
   }, "♫ ", song.song, m.confirmedSong && React.createElement("span", {
     style: {
-      color: "rgba(255,255,255,0.45)",
+      color: "rgba(var(--ink-rgb),0.45)",
       marginLeft: 6
     }
   }, "· SHAZAMED")), React.createElement("div", {
@@ -3889,7 +3889,7 @@ function MomentLightbox({
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "rgba(255,255,255,0.5)",
+      color: "rgba(var(--ink-rgb),0.5)",
       fontWeight: 600
     }
   }, [stage?.name?.toUpperCase(), prettyTime, m.location?.label?.toUpperCase()].filter(Boolean).join(" · ")), m.kind === "video" && !m.confirmedSong && React.createElement("button", {
@@ -3902,9 +3902,9 @@ function MomentLightbox({
       borderRadius: 14,
       width: "100%",
       background: idState === "fail" ? "linear-gradient(135deg, rgba(232,93,46,0.28), rgba(245,154,54,0.16))" : "linear-gradient(135deg, rgba(109,40,217,0.85), rgba(232,93,46,0.78))",
-      border: "1px solid rgba(255,255,255,0.22)",
-      color: "#fff",
-      boxShadow: "0 10px 28px rgba(0,0,0,0.28)",
+      border: "1px solid rgba(var(--ink-rgb),0.22)",
+      color: "var(--ink)",
+      boxShadow: "0 10px 28px rgba(var(--shade-rgb),0.28)",
       fontSize: 10,
       letterSpacing: 1.3,
       fontWeight: 800,
@@ -3940,7 +3940,7 @@ function MomentLightbox({
       marginTop: 3,
       fontSize: 8,
       letterSpacing: 1,
-      color: "rgba(255,255,255,0.72)",
+      color: "rgba(var(--ink-rgb),0.72)",
       fontWeight: 700
     }
   }, "PROVES THE SONG FROM THE CLIP'S AUDIO"))), React.createElement("span", {
@@ -3955,7 +3955,7 @@ function MomentLightbox({
       background: "transparent",
       border: "none",
       padding: 0,
-      color: "rgba(255,255,255,0.6)",
+      color: "rgba(var(--ink-rgb),0.6)",
       fontSize: 9,
       letterSpacing: 1.1,
       fontWeight: 700,
@@ -3993,8 +3993,8 @@ function MomentLightbox({
         gap: 8,
         padding: "8px 10px",
         borderRadius: 10,
-        background: on ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.06)",
-        border: `1px solid ${on ? "#fff" : "rgba(255,255,255,0.14)"}`,
+        background: on ? "rgba(var(--ink-rgb),0.18)" : "rgba(var(--ink-rgb),0.06)",
+        border: `1px solid ${on ? "var(--ink)" : "rgba(var(--ink-rgb),0.14)"}`,
         cursor: "pointer",
         textAlign: "left"
       }
@@ -4003,14 +4003,14 @@ function MomentLightbox({
         width: 8,
         height: 8,
         borderRadius: 8,
-        background: st?.color || "#888",
+        background: st?.color || "var(--paper-3)",
         flexShrink: 0
       }
     }), React.createElement("span", {
       style: {
         flex: 1,
         minWidth: 0,
-        color: "#fff",
+        color: "var(--ink)",
         fontSize: 13,
         fontWeight: 600,
         whiteSpace: "nowrap",
@@ -4022,7 +4022,7 @@ function MomentLightbox({
       style: {
         fontSize: 8,
         letterSpacing: 0.6,
-        color: "rgba(255,255,255,0.5)",
+        color: "rgba(var(--ink-rgb),0.5)",
         flexShrink: 0
       }
     }, st?.short || "", " · ", window.fmt12?.(a.start) || a.start));
@@ -4044,26 +4044,27 @@ function MomentLightbox({
       setSharing(false);
     },
     disabled: sharing,
-    className: "mono",
     style: {
       marginTop: 14,
-      padding: "10px 14px",
-      borderRadius: 999,
+      minHeight: 48,
+      padding: "0 16px",
+      borderRadius: 14,
       width: "100%",
-      background: "#fff",
-      color: "#0d0a08",
+      background: "var(--signal)",
+      color: "var(--on-signal)",
       border: "none",
-      fontSize: 11,
-      letterSpacing: 1.3,
-      fontWeight: 800,
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 600,
       cursor: "pointer",
+      fontFamily: "inherit",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       gap: 7,
       opacity: sharing ? 0.6 : 1
     }
-  }, sharing ? "PREPARING…" : "↗  SHARE THIS MOMENT"), mismatch && React.createElement("button", {
+  }, sharing ? "Preparing…" : "Share this moment"), mismatch && React.createElement("button", {
     onClick: () => {
       onUpdate?.(m, {
         artistId: mismatch.id,
@@ -4077,9 +4078,9 @@ function MomentLightbox({
       padding: "10px 12px",
       borderRadius: 10,
       width: "100%",
-      background: "rgba(245,154,54,0.15)",
-      border: "1px solid rgba(245,154,54,0.45)",
-      color: "#fde68a",
+      background: "rgba(var(--signal-rgb),0.15)",
+      border: "1px solid rgba(var(--signal-rgb),0.45)",
+      color: "var(--signal-ink)",
       cursor: "pointer",
       textAlign: "left"
     }
@@ -4106,9 +4107,9 @@ function MomentLightbox({
       padding: "10px 12px",
       borderRadius: 10,
       width: "100%",
-      background: "rgba(56,189,248,0.15)",
-      border: "1px solid rgba(56,189,248,0.45)",
-      color: "#bae6fd",
+      background: "rgba(var(--signal-rgb),0.15)",
+      border: "1px solid rgba(var(--signal-rgb),0.45)",
+      color: "var(--ink)",
       cursor: "pointer",
       textAlign: "left"
     }
@@ -4253,11 +4254,11 @@ function _LightboxVideo({
       width: 66,
       height: 66,
       borderRadius: 66,
-      background: "rgba(0,0,0,0.5)",
+      background: "rgba(var(--shade-rgb),0.5)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "#fff",
+      color: "var(--ink)",
       fontSize: 26,
       paddingLeft: playing ? 0 : 4,
       transition: "opacity .2s",
@@ -4282,9 +4283,9 @@ function _LightboxVideo({
       width: 38,
       height: 38,
       borderRadius: 38,
-      background: "rgba(0,0,0,0.5)",
+      background: "rgba(var(--shade-rgb),0.5)",
       border: "none",
-      color: "#fff",
+      color: "var(--ink)",
       fontSize: 15,
       cursor: "pointer",
       display: "flex",
@@ -4308,7 +4309,7 @@ function _LightboxVideo({
     style: {
       height: 5,
       borderRadius: 5,
-      background: "rgba(255,255,255,0.28)",
+      background: "rgba(var(--ink-rgb),0.28)",
       position: "relative",
       cursor: "pointer"
     }
@@ -4319,7 +4320,7 @@ function _LightboxVideo({
       top: 0,
       bottom: 0,
       width: `${pct}%`,
-      background: "#fff",
+      background: "var(--ink)",
       borderRadius: 5
     }
   }), React.createElement("div", {
@@ -4331,8 +4332,8 @@ function _LightboxVideo({
       width: 12,
       height: 12,
       borderRadius: 12,
-      background: "#fff",
-      boxShadow: "0 1px 3px rgba(0,0,0,0.5)"
+      background: "var(--ink)",
+      boxShadow: "0 1px 3px rgba(var(--shade-rgb),0.5)"
     }
   })), React.createElement("div", {
     className: "mono",
@@ -4342,7 +4343,7 @@ function _LightboxVideo({
       marginTop: 5,
       fontSize: 8,
       letterSpacing: 1,
-      color: "rgba(255,255,255,0.7)",
+      color: "rgba(var(--ink-rgb),0.7)",
       fontWeight: 700
     }
   }, React.createElement("span", null, _fmtClock(cur)), React.createElement("span", null, _fmtClock(dur)))));
@@ -4573,10 +4574,10 @@ function _LightboxThumb({
       borderRadius: 8,
       padding: 0,
       cursor: "pointer",
-      border: active ? "2px solid #fff" : "2px solid transparent",
+      border: active ? "2px solid var(--ink)" : "2px solid transparent",
       opacity: active ? 1 : 0.5,
       overflow: "hidden",
-      background: "#222",
+      background: "var(--paper)",
       transition: "opacity 0.15s",
       position: "relative"
     }
@@ -4591,9 +4592,9 @@ function _LightboxThumb({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "#fff",
+      color: "var(--ink)",
       fontSize: 10,
-      textShadow: "0 1px 2px rgba(0,0,0,0.6)",
+      textShadow: "0 1px 2px rgba(var(--shade-rgb),0.6)",
       pointerEvents: "none"
     }
   }, "▶"));
@@ -4803,9 +4804,9 @@ function MomentCard({
     onClick: () => setEditing(true),
     className: "mono",
     style: {
-      background: "rgba(232,93,46,0.12)",
+      background: "rgba(var(--signal-rgb),0.12)",
       color: "var(--ember-ink)",
-      border: "1px dashed rgba(232,93,46,0.5)",
+      border: "1px dashed rgba(var(--signal-rgb),0.5)",
       borderRadius: 999,
       padding: "3px 9px",
       fontSize: 9,
@@ -4818,9 +4819,9 @@ function MomentCard({
     className: "mono",
     title: "More than one set overlapped this time — tap to confirm or fix the tag",
     style: {
-      background: "rgba(232,93,46,0.12)",
+      background: "rgba(var(--signal-rgb),0.12)",
       color: "var(--ember-ink)",
-      border: "1px dashed rgba(232,93,46,0.5)",
+      border: "1px dashed rgba(var(--signal-rgb),0.5)",
       borderRadius: 999,
       padding: "3px 9px",
       fontSize: 9,
@@ -4833,9 +4834,9 @@ function MomentCard({
     className: "mono",
     title: "The capture time matched the file's own timestamp, so it was probably rewritten when the file was shared. This night is a guess.",
     style: {
-      background: "rgba(56,189,248,0.12)",
-      color: "#7dd3fc",
-      border: "1px dashed rgba(56,189,248,0.5)",
+      background: "rgba(var(--signal-rgb),0.12)",
+      color: "var(--signal-ink)",
+      border: "1px dashed rgba(var(--signal-rgb),0.5)",
       borderRadius: 999,
       padding: "3px 9px",
       fontSize: 9,
@@ -4992,7 +4993,7 @@ function MomentCard({
         width: 30,
         height: 3,
         borderRadius: 2,
-        background: "rgba(255,255,255,0.1)"
+        background: "rgba(var(--ink-rgb),0.1)"
       }
     }, React.createElement("div", {
       style: {
@@ -5010,7 +5011,7 @@ function MomentCard({
       padding: "2px 5px",
       borderRadius: 4,
       flexShrink: 0,
-      background: nowPlaying.confidence === "exact" ? "rgba(45,122,85,0.15)" : "rgba(232,93,46,0.1)",
+      background: nowPlaying.confidence === "exact" ? "rgba(var(--signal-rgb),0.15)" : "rgba(var(--signal-rgb),0.1)",
       color: nowPlaying.confidence === "exact" ? "var(--success)" : "var(--ember-ink)",
       fontWeight: 700
     }
@@ -5172,7 +5173,7 @@ function _GroupHeroThumb({
       cursor: "pointer",
       overflow: "hidden",
       border: `1.5px solid ${accent || "var(--line-2)"}`,
-      background: "#222",
+      background: "var(--paper)",
       position: "relative"
     }
   }, React.createElement(_ThumbMedia, {
@@ -5186,9 +5187,9 @@ function _GroupHeroThumb({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "#fff",
+      color: "var(--ink)",
       fontSize: 11,
-      textShadow: "0 1px 2px rgba(0,0,0,0.6)",
+      textShadow: "0 1px 2px rgba(var(--shade-rgb),0.6)",
       pointerEvents: "none"
     }
   }, "▶"));
@@ -5296,7 +5297,7 @@ function PeakMomentCard({
     style: {
       flexShrink: 0,
       background: a,
-      color: "#fff",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 999,
       padding: "7px 13px",
@@ -5700,7 +5701,7 @@ function AddMomentForm({
       width: "100%",
       borderRadius: 10,
       display: "block",
-      background: "#000"
+      background: "var(--paper)"
     }
   }) : React.createElement("img", {
     src: previewUrl,
@@ -5720,8 +5721,8 @@ function AddMomentForm({
       width: 28,
       height: 28,
       borderRadius: 999,
-      background: "rgba(0,0,0,0.55)",
-      color: "#fff",
+      background: "rgba(var(--shade-rgb),0.55)",
+      color: "var(--ink)",
       border: "none",
       cursor: "pointer",
       fontSize: 14,
@@ -5820,7 +5821,7 @@ function AddMomentForm({
     style: {
       fontSize: 10,
       letterSpacing: 1,
-      color: "#c14a4a",
+      color: "var(--alert)",
       marginBottom: 10,
       fontWeight: 700
     }
@@ -5854,7 +5855,7 @@ function AddMomentForm({
       padding: "12px",
       borderRadius: 10,
       background: busy ? "var(--muted)" : "var(--ember)",
-      color: "#fff",
+      color: "var(--ink)",
       border: "none",
       fontSize: 10,
       letterSpacing: 1.2,
@@ -6048,7 +6049,7 @@ function _ReviewPicker({
       position: "fixed",
       inset: 0,
       zIndex: 280,
-      background: "rgba(0,0,0,0.35)",
+      background: "rgba(var(--shade-rgb),0.35)",
       display: "flex",
       alignItems: "flex-end",
       justifyContent: "center"
@@ -6325,7 +6326,7 @@ function ImportReview({
       position: "fixed",
       inset: 0,
       zIndex: 270,
-      background: "rgba(0,0,0,0.55)",
+      background: "rgba(var(--shade-rgb),0.55)",
       display: "flex",
       alignItems: "flex-end",
       justifyContent: "center",
@@ -6436,8 +6437,8 @@ function ImportReview({
         padding: "7px 8px",
         marginBottom: 4,
         borderRadius: 10,
-        background: r.review ? "rgba(232,93,46,0.07)" : "transparent",
-        border: r.review ? "1px solid rgba(232,93,46,0.45)" : "1px solid var(--line)"
+        background: r.review ? "rgba(var(--signal-rgb),0.07)" : "transparent",
+        border: r.review ? "1px solid rgba(var(--signal-rgb),0.45)" : "1px solid var(--line)"
       }
     }, React.createElement("button", {
       onClick: () => toggle(r.id),
@@ -6691,8 +6692,8 @@ function StorageManager({
       fontWeight: 700,
       marginBottom: 10,
       color: "var(--ember-ink)",
-      background: "rgba(232,93,46,0.10)",
-      border: "1px solid rgba(232,93,46,0.3)",
+      background: "rgba(var(--signal-rgb),0.10)",
+      border: "1px solid rgba(var(--signal-rgb),0.3)",
       borderRadius: 8,
       padding: "6px 10px"
     }
@@ -6717,8 +6718,8 @@ function StorageManager({
         justifyContent: "space-between",
         padding: "8px 10px",
         borderRadius: 8,
-        background: isConfirm ? "rgba(232,93,46,0.10)" : "var(--paper)",
-        border: isConfirm ? "1px solid rgba(232,93,46,0.5)" : "1px solid var(--line)"
+        background: isConfirm ? "rgba(var(--signal-rgb),0.10)" : "var(--paper)",
+        border: isConfirm ? "1px solid rgba(var(--signal-rgb),0.5)" : "1px solid var(--line)"
       }
     }, React.createElement("div", {
       style: {
@@ -6775,7 +6776,7 @@ function StorageManager({
         padding: "4px 9px",
         borderRadius: 999,
         background: "var(--ember)",
-        color: "#fff",
+        color: "var(--ink)",
         border: "none",
         cursor: "pointer",
         fontSize: 9,
@@ -6808,8 +6809,8 @@ function StorageManager({
     style: {
       padding: "10px 12px",
       borderRadius: 8,
-      background: "rgba(232,93,46,0.10)",
-      border: "1px solid rgba(232,93,46,0.5)",
+      background: "rgba(var(--signal-rgb),0.10)",
+      border: "1px solid rgba(var(--signal-rgb),0.5)",
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
@@ -6849,7 +6850,7 @@ function StorageManager({
       padding: "5px 10px",
       borderRadius: 999,
       background: "var(--ember)",
-      color: "#fff",
+      color: "var(--ink)",
       border: "none",
       cursor: "pointer",
       fontSize: 9,
@@ -7027,7 +7028,7 @@ function MemoryReel({
       position: "fixed",
       inset: 0,
       zIndex: 250,
-      background: "#000",
+      background: "var(--paper)",
       overflow: "hidden",
       animation: "fadeIn .2s"
     }
@@ -7038,7 +7039,7 @@ function MemoryReel({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      background: "#000"
+      background: "var(--paper)"
     }
   }, url && (m.kind === "video" ? React.createElement("video", {
     ref: vidRef,
@@ -7071,7 +7072,7 @@ function MemoryReel({
       left: 0,
       right: 0,
       height: 120,
-      background: "linear-gradient(180deg, rgba(0,0,0,0.45), transparent)",
+      background: "linear-gradient(180deg, rgba(var(--shade-rgb),0.45), transparent)",
       pointerEvents: "none"
     }
   })), React.createElement("div", {
@@ -7112,13 +7113,13 @@ function MemoryReel({
       flex: 1,
       height: 2,
       borderRadius: 2,
-      background: "rgba(255,255,255,0.28)",
+      background: "rgba(var(--ink-rgb),0.28)",
       overflow: "hidden"
     }
   }, React.createElement("div", {
     style: {
       height: "100%",
-      background: i === idx ? "var(--signal)" : "rgba(255,255,255,0.9)",
+      background: i === idx ? "var(--signal)" : "rgba(var(--ink-rgb),0.9)",
       width: i < idx ? "100%" : i === idx ? `${prog * 100}%` : "0%",
       transition: i === idx ? "none" : "width .2s"
     }
@@ -7131,7 +7132,7 @@ function MemoryReel({
       top: "calc(18px + env(safe-area-inset-top, 0px))",
       right: 8,
       zIndex: 7,
-      color: "#fff"
+      color: "var(--ink)"
     }
   }, React.createElement("span", {
     style: {
@@ -7279,11 +7280,11 @@ function MemoryReel({
       width: 64,
       height: 64,
       borderRadius: 64,
-      background: "rgba(0,0,0,0.45)",
+      background: "rgba(var(--shade-rgb),0.45)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "#fff",
+      color: "var(--ink)",
       fontSize: 24
     }
   }, "❚❚"))) : React.createElement("div", {
@@ -7505,7 +7506,7 @@ function _MemoryStoryBeat({
       height: 300,
       borderRadius: 12,
       overflow: "hidden",
-      background: "#000"
+      background: "var(--paper)"
     }
   }, React.createElement(_ThumbMedia, {
     moment: moment,
@@ -7525,8 +7526,8 @@ function _MemoryStoryBeat({
       width: 52,
       height: 52,
       borderRadius: 52,
-      background: "rgba(0,0,0,0.5)",
-      color: "#fff",
+      background: "rgba(var(--shade-rgb),0.5)",
+      color: "var(--ink)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -7573,9 +7574,9 @@ function _ScrubPreview({
       borderRadius: 10,
       overflow: "hidden",
       border: "1.5px solid var(--ink)",
-      background: "#000",
+      background: "var(--paper)",
       flexShrink: 0,
-      boxShadow: "0 4px 14px rgba(0,0,0,0.4)"
+      boxShadow: "0 4px 14px rgba(var(--shade-rgb),0.4)"
     }
   }, React.createElement(_ThumbMedia, {
     moment: moment,
@@ -7732,7 +7733,7 @@ function NightScrubber({
         width: on ? 4 : 3,
         height: on ? 18 : 10,
         borderRadius: 3,
-        background: fav ? "#f5c451" : on ? "var(--ink)" : "var(--signal)",
+        background: fav ? "var(--signal)" : on ? "var(--ink)" : "var(--signal)",
         opacity: on ? 1 : 0.7,
         transition: "all .08s ease"
       }
@@ -7932,7 +7933,7 @@ function _GridTile({
       borderRadius: 10,
       overflow: "hidden",
       border: "1px solid var(--line)",
-      background: url ? "#000" : "var(--paper-2)",
+      background: url ? "var(--paper)" : "var(--paper-2)",
       padding: 0,
       cursor: "pointer",
       boxShadow: stacked ? "2.5px 2.5px 0 -0.5px var(--paper-2), 2.5px 2.5px 0 0 var(--line), 5px 5px 0 -1px var(--paper-2), 5px 5px 0 -0.5px var(--line)" : "none"
@@ -7958,8 +7959,8 @@ function _GridTile({
       display: "inline-flex",
       alignItems: "center",
       gap: 3,
-      background: "rgba(0,0,0,0.6)",
-      color: "#fff",
+      background: "rgba(var(--shade-rgb),0.6)",
+      color: "var(--ink)",
       fontSize: 8,
       letterSpacing: 0.5,
       fontWeight: 700,
@@ -7982,7 +7983,7 @@ function _GridTile({
       left: 0,
       right: 0,
       bottom: 0,
-      background: "linear-gradient(0deg, rgba(0,0,0,0.8), transparent)",
+      background: "linear-gradient(0deg, rgba(var(--shade-rgb),0.8), transparent)",
       padding: "16px 6px 5px"
     }
   }, React.createElement("div", {
@@ -7990,7 +7991,7 @@ function _GridTile({
     style: {
       fontSize: 7.5,
       letterSpacing: 0.5,
-      color: artist ? "#fff" : "rgba(255,255,255,0.7)",
+      color: artist ? "var(--ink)" : "rgba(var(--ink-rgb),0.7)",
       fontWeight: 700,
       whiteSpace: "nowrap",
       overflow: "hidden",
@@ -8138,7 +8139,7 @@ function MemoriesMapLens({
       borderRadius: 16,
       overflow: "hidden",
       border: "1px solid var(--line)",
-      background: "#0a0f0b"
+      background: "var(--paper)"
     }
   }, React.createElement("svg", {
     viewBox: "0 0 100 100",
@@ -8186,7 +8187,7 @@ function MemoriesMapLens({
       r: r,
       fill: s.color,
       opacity: "0.92",
-      stroke: "#fff",
+      stroke: "var(--ink)",
       strokeWidth: "0.5"
     }), React.createElement("text", {
       x: s.x,
@@ -8195,7 +8196,7 @@ function MemoriesMapLens({
       dominantBaseline: "central",
       fontSize: Math.max(2.4, r * 0.9),
       fontWeight: "800",
-      fill: "#fff",
+      fill: "var(--ink)",
       fontFamily: "ui-monospace, monospace",
       style: {
         pointerEvents: "none"
@@ -8302,8 +8303,8 @@ function _PhotoPin({
       borderRadius: 10,
       overflow: "hidden",
       border: `2px solid ${ring}`,
-      background: url ? "#000" : "var(--paper-2)",
-      boxShadow: "0 3px 9px rgba(0,0,0,0.5)"
+      background: url ? "var(--paper)" : "var(--paper-2)",
+      boxShadow: "0 3px 9px rgba(var(--shade-rgb),0.5)"
     }
   }, React.createElement(_ThumbMedia, {
     moment: m,
@@ -8317,8 +8318,8 @@ function _PhotoPin({
       left: 3,
       display: "inline-flex",
       alignItems: "center",
-      background: "rgba(0,0,0,0.62)",
-      color: "#fff",
+      background: "rgba(var(--shade-rgb),0.62)",
+      color: "var(--ink)",
       fontSize: 7,
       fontWeight: 800,
       padding: "1px 4px",
@@ -8338,12 +8339,12 @@ function _PhotoPin({
       alignItems: "center",
       justifyContent: "center",
       background: ring,
-      color: "#fff",
+      color: "var(--ink)",
       fontSize: 9,
       fontWeight: 800,
       borderRadius: 999,
-      border: "1.5px solid #fff",
-      boxShadow: "0 1px 3px rgba(0,0,0,0.4)",
+      border: "1.5px solid var(--ink)",
+      boxShadow: "0 1px 3px rgba(var(--shade-rgb),0.4)",
       pointerEvents: "none"
     }
   }, "+", extra));
@@ -8468,7 +8469,7 @@ function MemoriesPhotoMapLens({
       borderRadius: 16,
       overflow: "hidden",
       border: "1px solid var(--line)",
-      background: "#0a0f0b"
+      background: "var(--paper)"
     }
   }, React.createElement("svg", {
     viewBox: "0 0 100 100",
@@ -8624,7 +8625,7 @@ function _NightShareMenu({
     className: "mono",
     style: {
       background: "var(--ember)",
-      color: "#fff",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 999,
       padding: "4px 10px",
@@ -8650,7 +8651,7 @@ function _NightShareMenu({
       background: "var(--paper)",
       border: "1px solid var(--line)",
       borderRadius: 10,
-      boxShadow: "0 6px 20px rgba(0,0,0,0.18)",
+      boxShadow: "0 6px 20px rgba(var(--shade-rgb),0.18)",
       overflow: "hidden",
       minWidth: 140
     }
@@ -9978,8 +9979,8 @@ function AttendanceReview({
         gap: 10,
         padding: "8px 10px",
         borderRadius: 8,
-        background: on ? "rgba(45,122,85,0.10)" : "var(--paper)",
-        border: on ? "1px solid rgba(45,122,85,0.4)" : "1px solid var(--line)",
+        background: on ? "rgba(var(--signal-rgb),0.10)" : "var(--paper)",
+        border: on ? "1px solid rgba(var(--signal-rgb),0.4)" : "1px solid var(--line)",
         cursor: "pointer",
         textAlign: "left"
       }
@@ -9994,7 +9995,7 @@ function AttendanceReview({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        color: "#fff",
+        color: "var(--ink)",
         fontSize: 10,
         fontWeight: 700
       }
@@ -10034,7 +10035,7 @@ function AttendanceReview({
         fontWeight: 700,
         padding: "2px 6px",
         borderRadius: 999,
-        background: "rgba(45,122,85,0.14)"
+        background: "rgba(var(--signal-rgb),0.14)"
       }
     }, "📍 GPS"));
   })));
@@ -10184,9 +10185,8 @@ function MeScreen({
       width: 78,
       height: 78,
       borderRadius: 999,
-      background: profile?.image ? "transparent" : pingColor,
-      border: "3px solid #fff",
-      boxShadow: "0 2px 8px rgba(26,18,13,0.18)",
+      background: profile?.image ? "transparent" : "var(--paper-3)",
+      border: "1px solid var(--line-2)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -10205,10 +10205,9 @@ function MeScreen({
   }) : React.createElement("span", {
     className: "serif",
     style: {
-      fontSize: 36,
-      color: "#fff",
-      lineHeight: 1,
-      textShadow: "0 1px 2px rgba(26,18,13,0.25)"
+      fontSize: 34,
+      color: "var(--ink)",
+      lineHeight: 1
     }
   }, initial)), React.createElement("div", {
     className: "serif",
@@ -10318,11 +10317,11 @@ function MeScreen({
       height: 30,
       borderRadius: "50%",
       flexShrink: 0,
-      background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
+      background: "var(--signal)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "#fff",
+      color: "var(--on-signal)",
       fontSize: 16,
       fontWeight: 700,
       lineHeight: 1
@@ -10365,21 +10364,30 @@ function MeScreen({
       width: "100%",
       padding: "14px 16px",
       marginBottom: 14,
-      background: "linear-gradient(135deg, #6D28D9 0%, #e85d2e 100%)",
-      border: "none",
-      borderRadius: 16,
-      color: "#fff",
+      background: "var(--paper-2)",
+      border: "1px solid var(--line-2)",
+      borderRadius: 14,
+      minHeight: 64,
+      color: "var(--ink)",
       cursor: "pointer",
       textAlign: "left",
-      fontFamily: "inherit",
-      boxShadow: "0 4px 18px rgba(109,40,217,0.30)"
+      fontFamily: "inherit"
     }
   }, React.createElement("span", {
+    "aria-hidden": "true",
     style: {
-      fontSize: 24,
-      lineHeight: 1,
+      width: 36,
+      height: 36,
+      borderRadius: 18,
       flexShrink: 0,
-      fontWeight: 700
+      background: "var(--signal)",
+      color: "var(--on-signal)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontSize: 20,
+      fontWeight: 700,
+      lineHeight: 1
     }
   }, "+"), React.createElement("div", {
     style: {
@@ -10387,30 +10395,34 @@ function MeScreen({
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "serif",
     style: {
-      fontSize: 20,
-      lineHeight: 1.05
+      fontSize: 17,
+      lineHeight: "22px",
+      fontWeight: 600
     }
-  }, "Plursky", React.createElement("span", {
+  }, "Plursky+"), React.createElement("div", {
     style: {
-      fontStyle: "italic"
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)",
+      marginTop: 2
     }
-  }, "+")), React.createElement("div", {
-    className: "mono",
+  }, "No watermarks, cloud backup and more")), React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "14",
+    height: "14",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "var(--text-3)",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "rgba(255,255,255,0.72)",
-      marginTop: 4,
-      fontWeight: 700
+      flexShrink: 0
     }
-  }, "NO WATERMARKS · CLOUD BACKUP · MORE")), React.createElement("span", {
-    style: {
-      fontSize: 18,
-      opacity: 0.85
-    }
-  }, "→")), plusOpen && React.createElement(PlusSheet, {
+  }, React.createElement("path", {
+    d: "M9 18 L15 12 L9 6"
+  }))), plusOpen && React.createElement(PlusSheet, {
     feature: "everything in Plursky+",
     onClose: () => setPlusOpen(false)
   }), React.createElement("div", {
@@ -10515,13 +10527,12 @@ function MeScreen({
       width: "100%",
       padding: "14px 16px",
       marginBottom: 14,
-      background: "linear-gradient(135deg, var(--ink) 0%, var(--horizon) 100%)",
-      border: "none",
-      borderRadius: 16,
-      color: "var(--paper)",
+      background: "var(--paper-2)",
+      border: "1px solid var(--line-2)",
+      borderRadius: 14,
+      color: "var(--ink)",
       cursor: "pointer",
-      textAlign: "left",
-      boxShadow: "0 4px 18px rgba(123,61,154,0.30)"
+      textAlign: "left"
     }
   }, React.createElement("span", {
     style: {
@@ -10550,7 +10561,7 @@ function MeScreen({
     style: {
       fontSize: 9,
       letterSpacing: 1.3,
-      color: "rgba(247,237,224,0.65)",
+      color: "rgba(var(--ink-rgb),0.65)",
       marginTop: 4,
       fontWeight: 700
     }
@@ -10631,7 +10642,7 @@ function MeScreen({
   }), React.createElement("div", {
     id: "plursky-badges-anchor"
   }), React.createElement(Collapsible, {
-    title: "🏅 BADGES"
+    title: "BADGES"
   }, React.createElement(BadgesSection, {
     state: state
   })), React.createElement("div", {
@@ -10650,8 +10661,8 @@ function MeScreen({
       width: "100%",
       padding: "13px 14px",
       marginBottom: 14,
-      background: state.spotifyConnected ? "linear-gradient(135deg, rgba(29,185,84,0.12), rgba(123,61,154,0.10))" : "var(--paper-2)",
-      border: state.spotifyConnected ? "1px solid rgba(29,185,84,0.4)" : "1px solid var(--line-2)",
+      background: "var(--paper-2)",
+      border: "1px solid var(--line-2)",
       borderRadius: 14,
       cursor: "pointer",
       textAlign: "left"
@@ -10662,7 +10673,7 @@ function MeScreen({
       height: 38,
       borderRadius: 38,
       flexShrink: 0,
-      background: state.spotifyConnected ? "linear-gradient(135deg, #1DB954, var(--horizon))" : "linear-gradient(135deg, var(--ember), var(--horizon))",
+      background: state.spotifyConnected ? "var(--spotify)" : "var(--paper-3)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center"
@@ -10672,7 +10683,7 @@ function MeScreen({
     height: "20",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "#fff",
+    stroke: "var(--ink)",
     strokeWidth: "1.8",
     strokeLinecap: "round",
     strokeLinejoin: "round"
@@ -10881,7 +10892,7 @@ function MeScreen({
       fontWeight: 500
     }
   }, "Personalize Plursky")))), _mePostFest ? React.createElement(Collapsible, {
-    title: "🛟 SAFETY & CARE"
+    title: "SAFETY & CARE"
   }, React.createElement(SafetyCards, null)) : React.createElement(React.Fragment, null, React.createElement("div", {
     className: "serif",
     style: {
@@ -10941,7 +10952,7 @@ function MeScreen({
       style: {
         position: "absolute",
         inset: 0,
-        background: "linear-gradient(180deg,transparent 40%,rgba(0,0,0,0.65))"
+        background: "linear-gradient(180deg,transparent 40%,rgba(var(--shade-rgb),0.65))"
       }
     }), React.createElement("div", {
       style: {
@@ -10949,7 +10960,7 @@ function MeScreen({
         bottom: 6,
         left: 6,
         right: 6,
-        color: "#fff",
+        color: "var(--ink)",
         textAlign: "left"
       },
       className: "mono"
@@ -11052,8 +11063,8 @@ function FollowedNudge({
   };
   return React.createElement("div", {
     style: {
-      background: "rgba(29,185,84,0.1)",
-      border: "1px solid rgba(29,185,84,0.25)",
+      background: "rgba(var(--spotify-rgb),0.1)",
+      border: "1px solid rgba(var(--spotify-rgb),0.25)",
       borderRadius: 16,
       padding: "14px 16px",
       marginBottom: 14
@@ -11070,7 +11081,7 @@ function FollowedNudge({
     style: {
       fontSize: 9,
       letterSpacing: 1.4,
-      color: "#1DB954",
+      color: "var(--spotify)",
       fontWeight: 700
     }
   }, "YOU FOLLOW ", followed.length, " ", (FESTIVAL_CONFIG.brand || "").toUpperCase(), " ACT", followed.length > 1 ? "S" : "", " NOT IN YOUR LINEUP")), React.createElement("div", {
@@ -11081,8 +11092,8 @@ function FollowedNudge({
   }, React.createElement("button", {
     onClick: handleSaveAll,
     style: {
-      background: "#1DB954",
-      color: "#000",
+      background: "var(--spotify)",
+      color: "var(--paper)",
       border: "none",
       borderRadius: 999,
       padding: "5px 10px",
@@ -11096,8 +11107,8 @@ function FollowedNudge({
     onClick: () => setExpanded(e => !e),
     style: {
       background: "transparent",
-      color: "rgba(247,237,224,0.6)",
-      border: "1px solid rgba(247,237,224,0.2)",
+      color: "rgba(var(--ink-rgb),0.6)",
+      border: "1px solid rgba(var(--ink-rgb),0.2)",
       borderRadius: 999,
       padding: "5px 10px",
       cursor: "pointer",
@@ -11119,7 +11130,7 @@ function FollowedNudge({
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        background: "rgba(0,0,0,0.2)",
+        background: "rgba(var(--shade-rgb),0.2)",
         borderRadius: 10,
         padding: "8px 12px"
       }
@@ -11141,8 +11152,8 @@ function FollowedNudge({
       onClick: () => handleSave(a),
       style: {
         background: "transparent",
-        color: st?.color || "#1DB954",
-        border: `1px solid ${st?.color || "#1DB954"}`,
+        color: st?.color || "var(--spotify)",
+        border: `1px solid ${st?.color || "var(--spotify)"}`,
         borderRadius: 999,
         padding: "5px 10px",
         cursor: "pointer",
@@ -11368,7 +11379,7 @@ function BoardPlaylistCard({
         borderRadius: 34,
         flexShrink: 0,
         background: off ? "transparent" : "var(--ember)",
-        color: off ? "var(--ink)" : "#fff",
+        color: off ? "var(--ink)" : "var(--ink)",
         border: off ? "1px solid var(--line-2)" : "none",
         cursor: "pointer",
         fontSize: 16,
@@ -11484,25 +11495,25 @@ function BuildPlaylistButton({
     run();
   };
   var label,
-    bg = "rgba(29,185,84,0.14)",
-    color = "#1DB954",
-    border = "1px solid #1DB954";
+    bg = "rgba(var(--spotify-rgb),0.14)",
+    color = "var(--spotify)",
+    border = "1px solid var(--spotify)";
   if (status === "working") {
     label = buildProgress ? `BUILDING · ${buildProgress}` : "BUILDING…";
   } else if (status === "done") {
     var sm = result?.songsMatched || 0;
     label = soundtrack && sm > 0 ? `✓ ${sm} OF YOUR SONGS + ${result?.added - sm} MORE — OPEN ↗` : `✓ ${result?.added} TRACKS · IN SET ORDER — OPEN ↗`;
-    bg = "#1DB954";
-    color = "#000";
+    bg = "var(--spotify)";
+    color = "var(--paper)";
     border = "none";
   } else if (status === "err") {
     if (result?.reason === "reconnect" || result?.reason === "not_connected") label = "↻ TAP TO GRANT SPOTIFY ACCESS";else if (result?.reason === "no_target_playlist") label = "↗ CREATE 'PLURSKY' PLAYLIST IN SPOTIFY";else if (result?.reason === "rate_limited") label = "⏱ SPOTIFY BUSY · WAIT 30S, TAP AGAIN";else if (result?.reason === "empty") label = "SAVE SETS FIRST";else if (result?.reason === "create_fail") {
       var msg = (result?.message || "").slice(0, 28);
       label = msg ? `✕ ${result?.status} · ${msg}` : `✕ FAILED · ${result?.status || "?"}`;
     } else label = "✕ TRY AGAIN";
-    bg = "rgba(248,113,113,0.18)";
-    color = "#fecaca";
-    border = "1px solid #f87171";
+    bg = "rgba(var(--alert-rgb),0.16)";
+    color = "var(--ink)";
+    border = "1px solid var(--alert)";
   } else {
     label = idleLabel || (soundtrack ? "🎵 SOUNDTRACK → SPOTIFY" : "BUILD MY PLAYLIST");
   }
@@ -11563,23 +11574,23 @@ function AppleMusicPlaylistButton({
     run();
   };
   var label,
-    bg = "rgba(250,45,90,0.14)",
-    color = "#fa2d5a",
-    border = "1px solid #fa2d5a";
+    bg = "rgba(var(--apple-music-rgb),0.14)",
+    color = "var(--apple-music)",
+    border = "1px solid var(--apple-music)";
   if (status === "working") {
     label = prog ? `BUILDING · ${prog}` : "BUILDING…";
   } else if (status === "done") {
     var sm = result?.songsMatched || 0;
     var open = result?.url ? " — OPEN ↗" : "";
     label = soundtrack && sm > 0 ? `✓ ${sm} OF YOUR SONGS + ${result?.added - sm} MORE${open}` : `✓ ${result?.added} TRACKS IN APPLE MUSIC${open}`;
-    bg = "#fa2d5a";
-    color = "#fff";
+    bg = "var(--apple-music)";
+    color = "var(--ink)";
     border = "none";
   } else if (status === "err") {
     if (result?.reason === "not_connected") label = "↻ TAP TO CONNECT APPLE MUSIC";else if (result?.reason === "empty") label = "SAVE SETS FIRST";else if (result?.reason === "no_tracks") label = "✕ NO TRACKS FOUND";else label = `✕ ${result?.status || ""} TRY AGAIN`;
-    bg = "rgba(248,113,113,0.18)";
-    color = "#fecaca";
-    border = "1px solid #f87171";
+    bg = "rgba(var(--alert-rgb),0.16)";
+    color = "var(--ink)";
+    border = "1px solid var(--alert)";
   } else {
     label = soundtrack ? "🎵 SOUNDTRACK → APPLE MUSIC" : "BUILD APPLE MUSIC PLAYLIST";
   }
@@ -12098,11 +12109,11 @@ function WrappedStory({
           fontSize: 9,
           letterSpacing: 0.8,
           padding: "6px 0",
-          borderBottom: i < 4 ? "1px solid rgba(255,255,255,0.1)" : "none",
+          borderBottom: i < 4 ? "1px solid rgba(var(--ink-rgb),0.1)" : "none",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          color: "rgba(255,255,255,0.9)"
+          color: "rgba(var(--ink-rgb),0.9)"
         }
       }, React.createElement("span", {
         style: {
@@ -12110,7 +12121,7 @@ function WrappedStory({
         }
       }, `${i + 1}. ${s.song}`), React.createElement("span", {
         style: {
-          color: "rgba(255,255,255,0.4)",
+          color: "rgba(var(--ink-rgb),0.4)",
           fontSize: 8
         }
       }, `${s.count} photo${s.count > 1 ? "s" : ""}`))))
@@ -12146,7 +12157,7 @@ function WrappedStory({
       position: "fixed",
       inset: 0,
       zIndex: 9999,
-      background: "#000",
+      background: "var(--paper)",
       display: "flex",
       flexDirection: "column"
     }
@@ -12170,7 +12181,7 @@ function WrappedStory({
       flex: 1,
       height: 3,
       borderRadius: 2,
-      background: i <= idx ? "#fff" : "rgba(255,255,255,0.25)",
+      background: i <= idx ? "var(--ink)" : "rgba(var(--ink-rgb),0.25)",
       transition: "background 0.3s"
     }
   }))), React.createElement("button", {
@@ -12185,8 +12196,8 @@ function WrappedStory({
       height: 36,
       borderRadius: 36,
       border: "none",
-      background: "rgba(255,255,255,0.15)",
-      color: "#fff",
+      background: "rgba(var(--ink-rgb),0.15)",
+      color: "var(--ink)",
       fontSize: 18,
       cursor: "pointer",
       backdropFilter: "blur(4px)",
@@ -12213,7 +12224,7 @@ function WrappedStory({
     style: {
       fontSize: 10,
       letterSpacing: 2,
-      color: "rgba(255,255,255,0.5)",
+      color: "rgba(var(--ink-rgb),0.5)",
       fontWeight: 700,
       marginBottom: 24
     }
@@ -12222,7 +12233,7 @@ function WrappedStory({
     style: {
       fontSize: card.headline?.props?.children?.toString?.()?.length > 15 ? 38 : 64,
       lineHeight: 0.95,
-      color: "#fff",
+      color: "var(--ink)",
       textAlign: "center",
       letterSpacing: -1,
       marginBottom: 16
@@ -12230,7 +12241,7 @@ function WrappedStory({
   }, card.headline), React.createElement("div", {
     style: {
       fontSize: 14,
-      color: "rgba(255,255,255,0.6)",
+      color: "rgba(var(--ink-rgb),0.6)",
       textAlign: "center",
       lineHeight: 1.5,
       maxWidth: 280
@@ -12253,13 +12264,13 @@ function WrappedStory({
       padding: "12px 32px",
       borderRadius: 999,
       border: "none",
-      background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
-      color: "#fff",
+      background: "linear-gradient(135deg, var(--signal), var(--signal))",
+      color: "var(--ink)",
       fontSize: 10,
       letterSpacing: 1.4,
       fontWeight: 700,
       cursor: "pointer",
-      boxShadow: "0 4px 20px rgba(109,40,217,0.4)"
+      boxShadow: "0 4px 20px rgba(var(--signal-rgb),0.4)"
     }
   }, "CLOSE WRAPPED") : React.createElement("button", {
     onClick: handleExport,
@@ -12267,9 +12278,9 @@ function WrappedStory({
     style: {
       padding: "10px 20px",
       borderRadius: 999,
-      border: "1px solid rgba(255,255,255,0.2)",
-      background: "rgba(255,255,255,0.08)",
-      color: "rgba(255,255,255,0.7)",
+      border: "1px solid rgba(var(--ink-rgb),0.2)",
+      background: "rgba(var(--ink-rgb),0.08)",
+      color: "rgba(var(--ink-rgb),0.7)",
       fontSize: 9,
       letterSpacing: 1.4,
       fontWeight: 700,
@@ -13059,7 +13070,7 @@ function _showShareLimitToast() {
   if (el) return;
   el = document.createElement("div");
   el.id = "plursky-share-limit";
-  el.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:9999;padding:14px 20px;text-align:center;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:1.2px;font-weight:700;color:#fff;background:#e85d2e;";
+  el.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:9999;padding:14px 20px;text-align:center;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:1.2px;font-weight:700;color:var(--on-signal);background:var(--signal);";
   el.textContent = "📸 DAILY SHARE LIMIT REACHED · UPGRADE TO PLURSKY+ FOR UNLIMITED";
   document.body.appendChild(el);
   setTimeout(() => el.remove(), 4000);
@@ -13176,20 +13187,20 @@ function FestivalYearCard({
     style: {
       fontSize: 28,
       lineHeight: 1.05,
-      color: "#f7ede0",
+      color: "var(--ink)",
       letterSpacing: -0.3
     }
   }, yd.totalFestivals, " festivals. One", " ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "#a78bfa"
+      color: "var(--signal-ink)"
     }
   }, "year"), "."), React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 10,
       letterSpacing: 1.2,
-      color: "rgba(247,237,224,0.6)",
+      color: "rgba(var(--ink-rgb),0.6)",
       marginTop: 8
     }
   }, yd.totalSets, " SETS · ", yd.totalMoments, " MEMORIES", yd.totalMin > 0 ? ` · ${_fmtHrsMin(yd.totalMin).toUpperCase()} ON DANCEFLOORS` : ""), React.createElement("div", {
@@ -13207,8 +13218,8 @@ function FestivalYearCard({
       gap: 10,
       padding: "9px 12px",
       borderRadius: 12,
-      background: "rgba(247,237,224,0.06)",
-      border: "1px solid rgba(247,237,224,0.1)"
+      background: "rgba(var(--ink-rgb),0.06)",
+      border: "1px solid rgba(var(--ink-rgb),0.1)"
     }
   }, React.createElement("div", {
     style: {
@@ -13216,11 +13227,11 @@ function FestivalYearCard({
       height: 34,
       borderRadius: 10,
       flexShrink: 0,
-      background: "linear-gradient(135deg, var(--ember), #6D28D9)",
+      background: "linear-gradient(135deg, var(--ember), var(--signal))",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "#fff",
+      color: "var(--ink)",
       fontWeight: 800,
       fontSize: 12
     }
@@ -13234,7 +13245,7 @@ function FestivalYearCard({
     style: {
       fontSize: 15,
       lineHeight: 1.1,
-      color: "#f7ede0",
+      color: "var(--ink)",
       whiteSpace: "nowrap",
       overflow: "hidden",
       textOverflow: "ellipsis"
@@ -13244,7 +13255,7 @@ function FestivalYearCard({
     style: {
       fontSize: 8,
       letterSpacing: 1,
-      color: "rgba(247,237,224,0.45)",
+      color: "rgba(var(--ink-rgb),0.45)",
       marginTop: 2
     }
   }, f.sets, " SETS · ", f.moments, " MEMORIES", f.archived ? "" : " · LIVE"))))), yd.topArtists.length > 0 && React.createElement("div", {
@@ -13256,7 +13267,7 @@ function FestivalYearCard({
     style: {
       fontSize: 9,
       letterSpacing: 1.3,
-      color: "rgba(247,237,224,0.4)",
+      color: "rgba(var(--ink-rgb),0.4)",
       fontWeight: 700,
       marginBottom: 6
     }
@@ -13272,9 +13283,9 @@ function FestivalYearCard({
     style: {
       padding: "4px 10px",
       borderRadius: 999,
-      background: "rgba(167,139,250,0.15)",
-      border: "1px solid rgba(167,139,250,0.3)",
-      color: "#e9e2f7",
+      background: "rgba(var(--signal-rgb),0.15)",
+      border: "1px solid rgba(var(--signal-rgb),0.3)",
+      color: "var(--ink)",
       fontSize: 9,
       letterSpacing: 1,
       fontWeight: 700
@@ -13287,8 +13298,8 @@ function FestivalYearCard({
       width: "100%",
       marginTop: 14,
       padding: "13px",
-      background: sharing ? "rgba(109,40,217,0.4)" : "linear-gradient(135deg, #6D28D9, #e85d2e)",
-      color: "#fff",
+      background: sharing ? "rgba(var(--signal-rgb),0.4)" : "linear-gradient(135deg, var(--signal), var(--signal))",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 12,
       cursor: sharing ? "wait" : "pointer",
@@ -13493,7 +13504,7 @@ function TiltCard({
       left: 0,
       pointerEvents: "none",
       borderRadius: "inherit",
-      background: t ? `radial-gradient(circle at ${t.gx}% ${t.gy}%, rgba(255,255,255,0.5), rgba(255,255,255,0) 58%)` : "none",
+      background: t ? `radial-gradient(circle at ${t.gx}% ${t.gy}%, rgba(var(--ink-rgb),0.5), rgba(var(--ink-rgb),0) 58%)` : "none",
       mixBlendMode: "soft-light",
       opacity: t ? 1 : 0,
       transition: "opacity 220ms"
@@ -13879,9 +13890,8 @@ function RecapScreen({
       borderRadius: 22,
       padding: "26px 22px",
       marginBottom: 14,
-      background: heroPhotoUrl ? `linear-gradient(155deg, rgba(26,18,13,0.85) 0%, rgba(123,61,154,0.72) 60%, rgba(232,93,46,0.65) 130%), url(${heroPhotoUrl}) center/cover` : "linear-gradient(155deg, var(--ink) 0%, var(--horizon) 60%, var(--ember) 130%)",
-      color: "var(--paper)",
-      boxShadow: "0 10px 30px rgba(26,18,13,0.18)",
+      background: heroPhotoUrl ? `linear-gradient(155deg, rgba(var(--shade-rgb),0.72) 0%, rgba(var(--shade-rgb),0.45) 55%, rgba(var(--signal-rgb),0.35) 130%), url(${heroPhotoUrl}) center/cover` : "linear-gradient(155deg, var(--paper-3) 0%, var(--paper-2) 60%, rgba(var(--signal-rgb),0.5) 130%)",
+      color: "var(--media-ink)",
       position: "relative",
       overflow: "hidden"
     }
@@ -13896,9 +13906,9 @@ function RecapScreen({
       right: 16,
       padding: "7px 12px",
       borderRadius: 999,
-      background: "rgba(247,237,224,0.18)",
-      color: "#f7ede0",
-      border: "1px solid rgba(247,237,224,0.35)",
+      background: "rgba(var(--ink-rgb),0.18)",
+      color: "var(--ink)",
+      border: "1px solid rgba(var(--ink-rgb),0.35)",
       cursor: "pointer",
       fontFamily: "Geist Mono, monospace",
       fontSize: 10,
@@ -13917,7 +13927,7 @@ function RecapScreen({
     style: {
       fontSize: 9,
       letterSpacing: 1.6,
-      color: "rgba(247,237,224,0.75)",
+      color: "rgba(var(--ink-rgb),0.75)",
       fontWeight: 700,
       marginBottom: 10
     }
@@ -13952,7 +13962,7 @@ function RecapScreen({
       fontSize: 9,
       letterSpacing: 1.3,
       fontWeight: 700,
-      color: "rgba(247,237,224,0.7)",
+      color: "rgba(var(--ink-rgb),0.7)",
       marginTop: 3
     }
   }, "SETS CAUGHT")), React.createElement("div", null, React.createElement("div", {
@@ -13967,7 +13977,7 @@ function RecapScreen({
       fontSize: 9,
       letterSpacing: 1.3,
       fontWeight: 700,
-      color: "rgba(247,237,224,0.7)",
+      color: "rgba(var(--ink-rgb),0.7)",
       marginTop: 3
     }
   }, "ON DANCEFLOORS")), React.createElement("div", null, React.createElement("div", {
@@ -13982,7 +13992,7 @@ function RecapScreen({
       fontSize: 9,
       letterSpacing: 1.3,
       fontWeight: 700,
-      color: "rgba(247,237,224,0.7)",
+      color: "rgba(var(--ink-rgb),0.7)",
       marginTop: 3
     }
   }, "NIGHTS")), React.createElement("div", null, React.createElement("div", {
@@ -13997,7 +14007,7 @@ function RecapScreen({
       fontSize: 9,
       letterSpacing: 1.3,
       fontWeight: 700,
-      color: "rgba(247,237,224,0.7)",
+      color: "rgba(var(--ink-rgb),0.7)",
       marginTop: 3
     }
   }, "HEADLINERS")))), recap.setsCount > 0 && React.createElement("button", {
@@ -14009,12 +14019,11 @@ function RecapScreen({
       borderRadius: 16,
       border: "none",
       cursor: "pointer",
-      background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
-      color: "#fff",
+      background: "var(--signal)",
+      color: "var(--on-signal)",
       display: "flex",
       alignItems: "center",
-      justifyContent: "space-between",
-      boxShadow: "0 4px 20px rgba(109,40,217,0.35)"
+      justifyContent: "space-between"
     }
   }, React.createElement("div", {
     style: {
@@ -14031,7 +14040,7 @@ function RecapScreen({
     style: {
       fontSize: 8,
       letterSpacing: 1.4,
-      color: "rgba(255,255,255,0.6)",
+      color: "rgba(var(--ink-rgb),0.6)",
       marginTop: 3,
       fontWeight: 700
     }
@@ -14043,9 +14052,7 @@ function RecapScreen({
     var soundtrack = _aggregateSoundtrack(_readMoments());
     if (!soundtrack.length) return null;
     return React.createElement(RecapCard, {
-      kicker: "YOUR SOUNDTRACK",
-      paper: "#1DB95418",
-      mono: "#1DB954"
+      kicker: "YOUR SOUNDTRACK"
     }, React.createElement("div", {
       className: "serif",
       style: {
@@ -14056,7 +14063,7 @@ function RecapScreen({
       }
     }, React.createElement("span", {
       style: {
-        color: "#1DB954"
+        color: "var(--spotify)"
       }
     }, soundtrack.length), " songs were playing when you took photos"), React.createElement("div", {
       style: {
@@ -14099,7 +14106,7 @@ function RecapScreen({
       style: {
         fontSize: 8,
         letterSpacing: 0.8,
-        color: "#1DB954",
+        color: "var(--spotify)",
         fontWeight: 700,
         flexShrink: 0,
         marginLeft: 8
@@ -14116,8 +14123,8 @@ function RecapScreen({
         borderRadius: 20,
         border: "none",
         cursor: "pointer",
-        background: "#1DB954",
-        color: "#fff",
+        background: "var(--spotify)",
+        color: "var(--paper)",
         fontWeight: 700,
         fontSize: 10,
         letterSpacing: 1,
@@ -14132,9 +14139,7 @@ function RecapScreen({
       }
     }, "♫"), " FIND ON SPOTIFY"));
   })(), recap.topStage && React.createElement(RecapCard, {
-    kicker: "YOUR HEADQUARTERS",
-    paper: `${recap.topStage.color}18`,
-    mono: recap.topStage.color
+    kicker: "YOUR HEADQUARTERS"
   }, React.createElement("div", {
     className: "serif",
     style: {
@@ -14146,7 +14151,7 @@ function RecapScreen({
   }, "You lived at ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: recap.topStage.color
+      color: "var(--signal-ink)"
     }
   }, recap.topStage.name)), React.createElement("div", {
     className: "mono",
@@ -14171,7 +14176,7 @@ function RecapScreen({
       fontStyle: "italic",
       color: "var(--ember-ink)"
     }
-  }, recap.busiestNightLabel), " was your peak —", " ", recap.busiestNightCount, " sets in one night.")), recap.topGenre && React.createElement(RecapCard, {
+  }, recap.busiestNightLabel), " was your peak —", " ", recap.busiestNightCount, " ", recap.busiestNightCount === 1 ? "set" : "sets", " in one night.")), recap.topGenre && React.createElement(RecapCard, {
     kicker: "THE SOUND OF YOUR WEEKEND",
     paper: "var(--paper)"
   }, React.createElement("div", {
@@ -14424,7 +14429,7 @@ function RecapScreen({
       padding: "8px 14px",
       borderRadius: 999,
       background: "var(--ember)",
-      color: "#fff",
+      color: "var(--ink)",
       border: "none",
       fontFamily: "Geist Mono, monospace",
       fontSize: 10,
@@ -14446,8 +14451,8 @@ function RecapScreen({
     style: {
       padding: "8px 14px",
       borderRadius: 999,
-      background: "#6D28D9",
-      color: "#fff",
+      background: "var(--signal)",
+      color: "var(--ink)",
       border: "none",
       fontFamily: "Geist Mono, monospace",
       fontSize: 10,
@@ -14523,13 +14528,13 @@ function RecapScreen({
       style: {
         fontSize: 28,
         lineHeight: 1.05,
-        color: "#f7ede0",
+        color: "var(--ink)",
         letterSpacing: -0.3
       }
     }, "Turn your memories into a", " ", React.createElement("span", {
       style: {
         fontStyle: "italic",
-        color: "#a78bfa"
+        color: "var(--signal-ink)"
       }
     }, "video"), "."), React.createElement("div", {
       style: {
@@ -14548,8 +14553,8 @@ function RecapScreen({
           borderRadius: 999,
           cursor: "pointer",
           border: "none",
-          background: vidTemplate === t ? "#6D28D9" : "rgba(247,237,224,0.1)",
-          color: vidTemplate === t ? "#fff" : locked ? "rgba(247,237,224,0.25)" : "rgba(247,237,224,0.5)",
+          background: vidTemplate === t ? "var(--signal)" : "rgba(var(--ink-rgb),0.1)",
+          color: vidTemplate === t ? "var(--ink)" : locked ? "rgba(var(--ink-rgb),0.25)" : "rgba(var(--ink-rgb),0.5)",
           fontSize: 9,
           letterSpacing: 1.2,
           fontWeight: 700,
@@ -14563,7 +14568,7 @@ function RecapScreen({
       className: "mono",
       style: {
         fontSize: 9,
-        color: "rgba(247,237,224,0.35)",
+        color: "rgba(var(--ink-rgb),0.35)",
         marginTop: 8,
         letterSpacing: 1
       }
@@ -14582,9 +14587,9 @@ function RecapScreen({
         padding: "5px 10px",
         borderRadius: 999,
         cursor: "pointer",
-        border: vidFormat === f ? "1px solid #a78bfa" : "1px solid rgba(247,237,224,0.15)",
-        background: vidFormat === f ? "rgba(109,40,217,0.35)" : "transparent",
-        color: vidFormat === f ? "#fff" : "rgba(247,237,224,0.5)",
+        border: vidFormat === f ? "1px solid var(--signal)" : "1px solid rgba(var(--ink-rgb),0.15)",
+        background: vidFormat === f ? "rgba(var(--signal-rgb),0.35)" : "transparent",
+        color: vidFormat === f ? "var(--ink)" : "rgba(var(--ink-rgb),0.5)",
         fontSize: 9,
         letterSpacing: 1.2,
         fontWeight: 700
@@ -14593,7 +14598,7 @@ function RecapScreen({
       className: "mono",
       style: {
         fontSize: 8,
-        color: "rgba(247,237,224,0.3)",
+        color: "rgba(var(--ink-rgb),0.3)",
         letterSpacing: 1
       }
     }, vidFormat === "story" ? "FOR IG STORIES · TIKTOK" : "FOR THE FEED")), React.createElement("div", {
@@ -14605,7 +14610,7 @@ function RecapScreen({
       style: {
         fontSize: 9,
         letterSpacing: 1.2,
-        color: "rgba(247,237,224,0.4)",
+        color: "rgba(var(--ink-rgb),0.4)",
         marginBottom: 6
       }
     }, "🎵 ", selectedTrack ? "SOUNDTRACK" : _isPlusSub() ? "PICK A SONG (OPTIONAL)" : "🔒 CUSTOM SOUNDTRACK · PLURSKY+"), !_isPlusSub() && !selectedTrack ? React.createElement("div", {
@@ -14613,9 +14618,9 @@ function RecapScreen({
       style: {
         padding: "8px 12px",
         borderRadius: 10,
-        background: "rgba(247,237,224,0.04)",
-        border: "1px solid rgba(247,237,224,0.08)",
-        color: "rgba(247,237,224,0.2)",
+        background: "rgba(var(--ink-rgb),0.04)",
+        border: "1px solid rgba(var(--ink-rgb),0.08)",
+        color: "rgba(var(--ink-rgb),0.2)",
         fontSize: 10,
         textAlign: "center"
       }
@@ -14626,7 +14631,7 @@ function RecapScreen({
         gap: 10,
         padding: "8px 10px",
         borderRadius: 10,
-        background: "rgba(109,40,217,0.2)"
+        background: "rgba(var(--signal-rgb),0.2)"
       }
     }, selectedTrack.album?.images?.[0]?.url && React.createElement("img", {
       src: selectedTrack.album.images[0].url,
@@ -14644,7 +14649,7 @@ function RecapScreen({
     }, React.createElement("div", {
       style: {
         fontSize: 13,
-        color: "#f7ede0",
+        color: "var(--ink)",
         whiteSpace: "nowrap",
         overflow: "hidden",
         textOverflow: "ellipsis"
@@ -14653,7 +14658,7 @@ function RecapScreen({
       className: "mono",
       style: {
         fontSize: 9,
-        color: "rgba(247,237,224,0.5)"
+        color: "rgba(var(--ink-rgb),0.5)"
       }
     }, selectedTrack.artists?.[0]?.name)), React.createElement("button", {
       onClick: () => {
@@ -14668,7 +14673,7 @@ function RecapScreen({
       style: {
         background: "none",
         border: "none",
-        color: "rgba(247,237,224,0.4)",
+        color: "rgba(var(--ink-rgb),0.4)",
         cursor: "pointer",
         fontSize: 14,
         padding: "4px"
@@ -14685,9 +14690,9 @@ function RecapScreen({
         width: "100%",
         padding: "8px 12px",
         borderRadius: 10,
-        background: "rgba(247,237,224,0.08)",
-        border: "1px solid rgba(247,237,224,0.1)",
-        color: "#f7ede0",
+        background: "rgba(var(--ink-rgb),0.08)",
+        border: "1px solid rgba(var(--ink-rgb),0.1)",
+        color: "var(--ink)",
         fontFamily: "Geist Mono, monospace",
         fontSize: 10,
         outline: "none"
@@ -14713,7 +14718,7 @@ function RecapScreen({
         gap: 8,
         padding: "6px 8px",
         borderRadius: 8,
-        background: "rgba(247,237,224,0.05)",
+        background: "rgba(var(--ink-rgb),0.05)",
         border: "none",
         cursor: "pointer",
         textAlign: "left",
@@ -14735,7 +14740,7 @@ function RecapScreen({
     }, React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#f7ede0",
+        color: "var(--ink)",
         whiteSpace: "nowrap",
         overflow: "hidden",
         textOverflow: "ellipsis"
@@ -14744,19 +14749,19 @@ function RecapScreen({
       className: "mono",
       style: {
         fontSize: 8,
-        color: "rgba(247,237,224,0.4)"
+        color: "rgba(var(--ink-rgb),0.4)"
       }
     }, tr.artists?.[0]?.name)), React.createElement("div", {
       className: "mono",
       style: {
         fontSize: 8,
-        color: "#a78bfa"
+        color: "var(--signal-ink)"
       }
     }, "▶")))), searching && React.createElement("div", {
       className: "mono",
       style: {
         fontSize: 9,
-        color: "rgba(247,237,224,0.3)",
+        color: "rgba(var(--ink-rgb),0.3)",
         marginTop: 4
       }
     }, "Searching…"))), React.createElement("button", {
@@ -14805,8 +14810,8 @@ function RecapScreen({
         width: "100%",
         marginTop: 14,
         padding: "13px",
-        background: vidState === "rendering" ? "rgba(109,40,217,0.4)" : "linear-gradient(135deg, #6D28D9, #e85d2e)",
-        color: "#fff",
+        background: vidState === "rendering" ? "rgba(var(--signal-rgb),0.4)" : "linear-gradient(135deg, var(--signal), var(--signal))",
+        color: "var(--ink)",
         border: "none",
         borderRadius: 12,
         cursor: vidState === "rendering" ? "wait" : "pointer",
@@ -14873,7 +14878,7 @@ function RecapScreen({
         width: `${Math.max(8, Math.round(count / maxCount * 100))}%`,
         height: "100%",
         borderRadius: 9,
-        background: i === 0 ? "var(--ember)" : i === 1 ? "#6D28D9" : "var(--line-2)",
+        background: i === 0 ? "var(--ember)" : i === 1 ? "var(--signal)" : "var(--line-2)",
         transition: "width .3s"
       }
     })), React.createElement("div", {
@@ -14972,12 +14977,12 @@ function RecapScreen({
       style: {
         fontSize: 22,
         lineHeight: 1.1,
-        color: "#f7ede0",
+        color: "var(--ink)",
         marginBottom: 12
       }
     }, "Artists you'd ", React.createElement("em", {
       style: {
-        color: "#a78bfa"
+        color: "var(--signal-ink)"
       }
     }, "love")), React.createElement("div", {
       style: {
@@ -14996,8 +15001,8 @@ function RecapScreen({
           gap: 10,
           padding: "10px 12px",
           borderRadius: 10,
-          background: "rgba(255,255,255,0.06)",
-          border: "1px solid rgba(255,255,255,0.08)"
+          background: "rgba(var(--ink-rgb),0.06)",
+          border: "1px solid rgba(var(--ink-rgb),0.08)"
         }
       }, React.createElement("div", {
         style: {
@@ -15005,12 +15010,12 @@ function RecapScreen({
           height: 28,
           borderRadius: "50%",
           flexShrink: 0,
-          background: stage?.color || "#6D28D9",
+          background: stage?.color || "var(--signal)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           fontSize: 12,
-          color: "#fff",
+          color: "var(--ink)",
           fontWeight: 700
         }
       }, i + 1), React.createElement("div", {
@@ -15022,7 +15027,7 @@ function RecapScreen({
         style: {
           fontSize: 13,
           fontWeight: 600,
-          color: "#f7ede0",
+          color: "var(--ink)",
           whiteSpace: "nowrap",
           overflow: "hidden",
           textOverflow: "ellipsis"
@@ -15032,7 +15037,7 @@ function RecapScreen({
         style: {
           fontSize: 8,
           letterSpacing: 1,
-          color: "rgba(255,255,255,0.4)",
+          color: "rgba(var(--ink-rgb),0.4)",
           marginTop: 2
         }
       }, a._reason || stage?.name || "", " · ", FESTIVAL_CONFIG.dayDates?.[a.day]?.short || "", " ", window.fmt12?.(a.start) || a.start)), React.createElement("button", {
@@ -15051,9 +15056,9 @@ function RecapScreen({
           padding: "5px 10px",
           borderRadius: 999,
           flexShrink: 0,
-          background: isSaved ? "rgba(45,122,85,0.3)" : "rgba(167,139,250,0.2)",
-          border: isSaved ? "1px solid rgba(45,122,85,0.5)" : "1px solid rgba(167,139,250,0.4)",
-          color: isSaved ? "#2d7a55" : "#a78bfa",
+          background: isSaved ? "rgba(var(--signal-rgb),0.3)" : "rgba(var(--signal-rgb),0.2)",
+          border: isSaved ? "1px solid rgba(var(--signal-rgb),0.5)" : "1px solid rgba(var(--signal-rgb),0.4)",
+          color: isSaved ? "var(--signal-ink)" : "var(--signal-ink)",
           fontSize: 8,
           letterSpacing: 1.2,
           fontWeight: 700,
@@ -15071,7 +15076,7 @@ function RecapScreen({
       className: "mono",
       style: {
         fontSize: 10,
-        color: "rgba(255,255,255,0.5)",
+        color: "rgba(var(--ink-rgb),0.5)",
         letterSpacing: 1.2
       }
     }, "+", discoveries.length - freeLimit, " MORE PICKS WAITING")))));
@@ -15139,13 +15144,13 @@ function RecapScreen({
     style: {
       fontSize: 24,
       lineHeight: 1.1,
-      color: "#f7ede0",
+      color: "var(--ink)",
       letterSpacing: -0.3
     }
   }, "Your weekend, ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "#a78bfa"
+      color: "var(--signal-ink)"
     }
   }, "elevated"), "."), React.createElement("div", {
     style: {
@@ -15166,8 +15171,8 @@ function RecapScreen({
     className: "mono",
     style: {
       padding: "12px",
-      background: "linear-gradient(90deg, #e85d2e, #6D28D9, #2d7a55, #f59a36)",
-      color: "#fff",
+      background: "linear-gradient(90deg, var(--signal), var(--signal), var(--signal), var(--signal))",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 10,
       cursor: "pointer",
@@ -15180,9 +15185,9 @@ function RecapScreen({
     className: "mono",
     style: {
       padding: "12px",
-      background: "rgba(247,237,224,0.08)",
-      color: "#f7ede0",
-      border: "1px solid rgba(247,237,224,0.15)",
+      background: "rgba(var(--ink-rgb),0.08)",
+      color: "var(--ink)",
+      border: "1px solid rgba(var(--ink-rgb),0.15)",
       borderRadius: 10,
       cursor: "pointer",
       fontSize: 10,
@@ -15201,9 +15206,9 @@ function RecapScreen({
     className: "mono",
     style: {
       padding: "12px",
-      background: "rgba(247,237,224,0.08)",
-      color: "#f7ede0",
-      border: "1px solid rgba(247,237,224,0.15)",
+      background: "rgba(var(--ink-rgb),0.08)",
+      color: "var(--ink)",
+      border: "1px solid rgba(var(--ink-rgb),0.15)",
       borderRadius: 10,
       cursor: "pointer",
       fontSize: 10,
@@ -15214,7 +15219,7 @@ function RecapScreen({
     className: "mono",
     style: {
       fontSize: 9,
-      color: "rgba(247,237,224,0.3)",
+      color: "rgba(var(--ink-rgb),0.3)",
       marginTop: 10,
       textAlign: "center",
       letterSpacing: 1.2
@@ -15357,8 +15362,8 @@ function RecapScreen({
     style: {
       padding: "10px 12px",
       borderRadius: 10,
-      background: "rgba(45,122,85,0.12)",
-      border: "1px solid rgba(45,122,85,0.4)"
+      background: "rgba(var(--signal-rgb),0.12)",
+      border: "1px solid rgba(var(--signal-rgb),0.4)"
     }
   }, React.createElement("div", {
     className: "mono",
@@ -15385,8 +15390,8 @@ function RecapScreen({
     onClick: buildAttendedPlaylist,
     disabled: playlistState.status === "building",
     style: {
-      background: playlistState.status === "building" ? "var(--paper-2)" : "#1DB954",
-      color: playlistState.status === "building" ? "var(--muted)" : "#fff",
+      background: playlistState.status === "building" ? "var(--paper-2)" : "var(--spotify)",
+      color: playlistState.status === "building" ? "var(--muted)" : "var(--ink)",
       border: "none",
       borderRadius: 999,
       padding: "11px 18px",
@@ -15402,7 +15407,7 @@ function RecapScreen({
     style: {
       fontSize: 10,
       letterSpacing: 1,
-      color: "#c14a4a",
+      color: "var(--alert)",
       marginTop: 8,
       fontWeight: 600
     }
@@ -16071,7 +16076,7 @@ function LiveCheckinSheet({
       position: "fixed",
       inset: 0,
       zIndex: 9000,
-      background: "rgba(0,0,0,0.45)",
+      background: "rgba(var(--shade-rgb),0.45)",
       display: "flex",
       alignItems: "flex-end",
       justifyContent: "center"
@@ -16484,10 +16489,10 @@ function NowPlayingBar() {
       zIndex: 900,
       borderRadius: 16,
       overflow: "hidden",
-      background: "rgba(10,6,24,0.92)",
+      background: "rgba(var(--shade-rgb),0.92)",
       backdropFilter: "blur(20px)",
       WebkitBackdropFilter: "blur(20px)",
-      boxShadow: `0 8px 32px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.08), 0 0 20px ${stageColor}33`,
+      boxShadow: `0 8px 32px rgba(var(--shade-rgb),0.4), inset 0 0 0 1px rgba(var(--ink-rgb),0.08), 0 0 20px ${stageColor}33`,
       padding: "10px 14px",
       animation: "song-fade-in 0.4s ease-out"
     }
@@ -16528,7 +16533,7 @@ function NowPlayingBar() {
         letterSpacing: 1,
         color: stageColor,
         fontWeight: 800,
-        textShadow: "0 1px 4px rgba(0,0,0,0.8)"
+        textShadow: "0 1px 4px rgba(var(--shade-rgb),0.8)"
       }
     }, minsLeft, "M LEFT"));
   })(), React.createElement("div", {
@@ -16554,7 +16559,7 @@ function NowPlayingBar() {
       width: 6,
       height: 6,
       borderRadius: 6,
-      background: "#ef4444",
+      background: "var(--alert)",
       animation: "pulse 2s infinite"
     }
   }), React.createElement("span", {
@@ -16569,7 +16574,7 @@ function NowPlayingBar() {
     className: "serif",
     style: {
       fontSize: 14,
-      color: "#fff",
+      color: "var(--ink)",
       lineHeight: 1.2,
       overflow: "hidden",
       textOverflow: "ellipsis",
@@ -16580,7 +16585,7 @@ function NowPlayingBar() {
     style: {
       fontSize: 8,
       letterSpacing: 0.6,
-      color: "rgba(255,255,255,0.5)",
+      color: "rgba(var(--ink-rgb),0.5)",
       marginTop: 2,
       overflow: "hidden",
       textOverflow: "ellipsis",
@@ -16602,9 +16607,9 @@ function NowPlayingBar() {
       borderRadius: 36,
       cursor: "pointer",
       padding: "0 14px",
-      border: "1px solid rgba(255,255,255,0.35)",
+      border: "1px solid rgba(var(--ink-rgb),0.35)",
       background: "transparent",
-      color: "#fff",
+      color: "var(--ink)",
       fontWeight: 700,
       fontSize: 9,
       letterSpacing: 1.2,
@@ -16625,7 +16630,7 @@ function NowPlayingBar() {
       cursor: "pointer",
       padding: "0 14px",
       background: "var(--success)",
-      color: "#fff",
+      color: "var(--ink)",
       fontWeight: 700,
       fontSize: 9,
       letterSpacing: 1.2,
@@ -16641,8 +16646,8 @@ function NowPlayingBar() {
       border: "none",
       cursor: "pointer",
       padding: "0 14px",
-      background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
-      color: "#fff",
+      background: "linear-gradient(135deg, var(--signal), var(--signal))",
+      color: "var(--ink)",
       fontWeight: 700,
       fontSize: 9,
       letterSpacing: 1.2,
@@ -16676,8 +16681,8 @@ function NowPlayingBar() {
       border: "none",
       cursor: "pointer",
       padding: "0 14px",
-      background: captured ? "var(--success)" : "linear-gradient(135deg, #6D28D9, #e85d2e)",
-      color: "#fff",
+      background: captured ? "var(--success)" : "linear-gradient(135deg, var(--signal), var(--signal))",
+      color: "var(--ink)",
       fontWeight: 700,
       fontSize: 9,
       letterSpacing: 1.2,
@@ -16694,7 +16699,7 @@ function NowPlayingBar() {
     style: {
       fontSize: 10,
       lineHeight: 1.4,
-      color: "rgba(255,255,255,0.6)",
+      color: "rgba(var(--ink-rgb),0.6)",
       marginTop: 8
     }
   }, "Listens for up to 12 seconds to identify the track. Saves the song, set, stage, time, and location confidence — never the audio."), trialLive && cs.phase === "review" && React.createElement(LiveCheckinSheet, {
@@ -16725,14 +16730,14 @@ function _CheckinStatus({
       fontSize: 9,
       letterSpacing: 1.2,
       fontWeight: 700,
-      color: "#fff"
+      color: "var(--ink)"
     }
   }, React.createElement("span", {
     style: {
       width: 8,
       height: 8,
       borderRadius: 8,
-      background: st.phase === "listening" ? "#ef4444" : "rgba(255,255,255,0.5)",
+      background: st.phase === "listening" ? "var(--alert)" : "rgba(var(--ink-rgb),0.5)",
       animation: "pulse 1s infinite"
     }
   }), st.phase === "listening" ? `🎙 LISTENING · UP TO ${left}S` : "FINDING YOUR STAGE…");

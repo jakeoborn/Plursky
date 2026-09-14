@@ -327,7 +327,7 @@ function NightWizard({
     title: "Auto-fill best non-clashing sets for this day",
     style: {
       background: "var(--horizon)",
-      color: "#fff",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 999,
       padding: "8px 13px",
@@ -341,7 +341,7 @@ function NightWizard({
     onClick: handleSave,
     style: {
       background: "var(--ember)",
-      color: "#fff",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 999,
       padding: "8px 16px",
@@ -378,7 +378,7 @@ function NightWizard({
       style: {
         fontSize: 9,
         letterSpacing: 1.2,
-        color: on ? "rgba(247,237,224,0.55)" : "var(--muted)"
+        color: on ? "rgba(var(--ink-rgb),0.55)" : "var(--muted)"
       }
     }, d.short), React.createElement("div", {
       className: "mono",
@@ -401,7 +401,7 @@ function NightWizard({
       className: "mono",
       style: {
         fontSize: 8,
-        color: on ? "rgba(247,237,224,0.4)" : "var(--muted)",
+        color: on ? "rgba(var(--ink-rgb),0.4)" : "var(--muted)",
         letterSpacing: 0.8,
         marginTop: 1
       }
@@ -472,7 +472,7 @@ function NightWizard({
           flex: 1,
           background: clash ? "var(--ink)" : "var(--paper-2)",
           border: `1px solid ${clash ? "var(--ember)" : "var(--line)"}`,
-          borderLeft: `4px solid ${stage.color}`,
+          borderLeft: "4px solid var(--line-2)",
           borderRadius: 12,
           padding: "9px 12px"
         }
@@ -502,7 +502,7 @@ function NightWizard({
         style: {
           fontSize: 9,
           letterSpacing: 0.9,
-          color: clash ? "rgba(247,237,224,0.5)" : "var(--muted)",
+          color: clash ? "rgba(var(--ink-rgb),0.5)" : "var(--muted)",
           marginTop: 3
         }
       }, stage.short, " · ", fmt12(a.start), "–", fmt12(a.end))), React.createElement("div", {
@@ -523,8 +523,8 @@ function NightWizard({
       }, "⚠ CLASH"), React.createElement("button", {
         onClick: () => drop(a.id),
         style: {
-          background: "rgba(232,93,46,0.12)",
-          border: "1px solid rgba(232,93,46,0.25)",
+          background: "rgba(var(--signal-rgb),0.12)",
+          border: "1px solid rgba(var(--signal-rgb),0.25)",
           borderRadius: 999,
           padding: "3px 9px",
           cursor: "pointer",
@@ -602,8 +602,8 @@ function NightWizard({
           key: f.id,
           onClick: () => add(f.id),
           style: {
-            background: `${fs.color}12`,
-            border: `1px dashed ${fs.color}`,
+            background: "transparent",
+            border: "1px dashed var(--line-2)",
             borderRadius: 999,
             padding: "4px 10px",
             cursor: "pointer",
@@ -734,15 +734,7 @@ function LineupFilterSheet({
     style: sectionLabel
   }, "Stage"), React.createElement("div", {
     style: row
-  }, opt("stageFilter", "all", "All stages"), STAGES.map(s => opt("stageFilter", s.id, s.short || s.name, React.createElement("span", {
-    "aria-hidden": "true",
-    style: {
-      width: 8,
-      height: 8,
-      borderRadius: 4,
-      background: s.color
-    }
-  })))), dayGenres.length > 0 && React.createElement(React.Fragment, null, React.createElement("div", {
+  }, opt("stageFilter", "all", "All stages"), STAGES.map(s => opt("stageFilter", s.id, s.short || s.name))), dayGenres.length > 0 && React.createElement(React.Fragment, null, React.createElement("div", {
     style: sectionLabel
   }, "Genre"), React.createElement("div", {
     style: row
@@ -1180,7 +1172,7 @@ function LineupScreen({
         width: 7,
         height: 7,
         borderRadius: 4,
-        background: stage.color
+        background: "var(--text-3)"
       }
     }), stage.name, " · ", stage.vibe, stage.peak ? ` · peaks ${stage.peak}` : ""), stage.desc && React.createElement("div", {
       style: {
@@ -1767,7 +1759,7 @@ function LineupScreen({
           width: 7,
           height: 7,
           borderRadius: 4,
-          background: stage.color,
+          background: "var(--text-3)",
           marginRight: 6,
           verticalAlign: "1px"
         }
@@ -1869,8 +1861,9 @@ function LineupScreen({
     "aria-label": "Jump to now",
     style: {
       position: "absolute",
-      right: 16,
-      bottom: viewMode === "grid" ? 16 : 76,
+      left: "50%",
+      transform: "translateX(-50%)",
+      bottom: 16,
       zIndex: 8,
       minHeight: 44,
       padding: "0 16px 0 14px",
@@ -2185,7 +2178,7 @@ function ScheduleReviewSheet({
       position: "fixed",
       inset: 0,
       zIndex: 9000,
-      background: "rgba(0,0,0,0.45)",
+      background: "rgba(var(--shade-rgb),0.45)",
       display: "flex",
       alignItems: "flex-end",
       justifyContent: "center"
@@ -2420,9 +2413,9 @@ function SavedSidebar({
         alignItems: "stretch",
         gap: 5,
         padding: "4px 4px 4px 5px",
-        background: stage ? `${stage.color}1a` : "var(--paper-2)",
-        border: isLive ? "1px solid var(--success)" : `1px solid ${stage?.color || "var(--line-2)"}40`,
-        borderLeft: `3px solid ${stage?.color || "var(--line-2)"}`,
+        background: "var(--paper-2)",
+        border: isLive ? "1px solid var(--success)" : "1px solid var(--line)",
+        borderLeft: `3px solid ${isLive ? "var(--signal)" : "var(--line-2)"}`,
         borderRadius: 6,
         cursor: "pointer",
         textAlign: "left",
@@ -2463,7 +2456,7 @@ function SavedSidebar({
         width: 18,
         height: 18,
         borderRadius: 999,
-        background: "rgba(0,0,0,0.06)",
+        background: "rgba(var(--shade-rgb),0.06)",
         color: "var(--muted)",
         border: "none",
         cursor: "pointer",
@@ -2501,8 +2494,7 @@ function GridSetBlock({
   var _lineH = narrow ? 10.2 : isHeadliner ? 13.8 : 12.7;
   var _chrome = narrow ? 8 : 20;
   var nameLines = Math.max(1, Math.min(4, Math.floor((height - _chrome) / _lineH)));
-  var fillAlpha = isHeadliner ? "38" : "22";
-  var dimAlpha = isHeadliner ? "14" : "08";
+  var _saved = (state.saved || []).includes(a.id);
   var _store = refStore;
   var _resetHold = e => {
     var el = e.currentTarget,
@@ -2564,15 +2556,15 @@ function GridSetBlock({
       left,
       width,
       height,
-      background: `${stage.color}${active || isHighlighted ? fillAlpha : dimAlpha}`,
-      borderLeft: `3px solid ${active || isHighlighted ? stage.color : stage.color + "44"}`,
+      background: isHeadliner ? "var(--paper-3)" : "var(--paper-2)",
+      borderLeft: `3px solid ${_saved ? "var(--signal)" : "var(--line-2)"}`,
       borderRadius: 6,
       padding: narrow ? "3px 3px 3px 4px" : "4px 6px 4px 7px",
       cursor: "pointer",
       overflow: "hidden",
       opacity: active || isHighlighted ? 1 : 0.32,
       transition: "opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-left 0.2s ease, transform 0.12s ease",
-      boxShadow: dueMins != null ? `0 0 0 2px var(--ember), 0 2px 12px ${stage.color}55` : clash && active ? "inset 0 0 0 1.5px var(--ember)" : isHeadliner && (active || isHighlighted) ? `0 2px 8px ${stage.color}33` : "none",
+      boxShadow: dueMins != null ? "0 0 0 2px var(--signal)" : clash && active ? "inset 0 0 0 1.5px var(--ember)" : "none",
       zIndex: isHighlighted ? 6 : dueMins != null ? 5 : undefined,
       animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined,
       display: "flex",
@@ -2640,7 +2632,7 @@ function GridSetBlock({
       top: 4,
       right: 5,
       fontSize: 9,
-      color: "#1DB954",
+      color: "var(--spotify)",
       fontWeight: 800,
       lineHeight: 1
     }
@@ -2653,7 +2645,7 @@ function GridSetBlock({
       bottom: 0,
       height: 3,
       width: "0%",
-      background: stage.color,
+      background: "var(--signal)",
       borderRadius: "0 0 6px 6px",
       pointerEvents: "none",
       zIndex: 3
@@ -2858,16 +2850,6 @@ function TimelineGrid({
           fontFamily: "inherit"
         }
       }, React.createElement("span", {
-        "aria-hidden": "true",
-        style: {
-          position: "absolute",
-          left: 0,
-          right: 0,
-          top: 0,
-          height: 3,
-          background: s.color
-        }
-      }), React.createElement("span", {
         style: {
           overflow: "hidden",
           textOverflow: "ellipsis",
@@ -2918,7 +2900,7 @@ function TimelineGrid({
         zIndex: 6,
         fontSize: 8,
         letterSpacing: 0.6,
-        color: "#fff",
+        color: "var(--ink)",
         fontWeight: 800,
         background: "var(--ember)",
         padding: "1px 4px",
@@ -2937,7 +2919,7 @@ function TimelineGrid({
           position: "relative",
           height: TOTAL_H,
           borderLeft: "1px solid var(--line)",
-          background: si % 2 === 0 ? "transparent" : "rgba(26,18,13,0.018)"
+          background: si % 2 === 0 ? "transparent" : "rgba(var(--shade-rgb),0.018)"
         }
       }, React.createElement(GridHourLines, {
         hours: HOURS,
@@ -2986,7 +2968,7 @@ function TimelineGrid({
         top: nowTop,
         height: 0,
         borderTop: "2px solid var(--ember)",
-        boxShadow: "0 0 8px rgba(232,93,46,0.55)",
+        boxShadow: "0 0 8px rgba(var(--signal-rgb),0.55)",
         zIndex: 3,
         pointerEvents: "none"
       }

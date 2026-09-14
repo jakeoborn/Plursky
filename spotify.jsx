@@ -114,8 +114,8 @@ function SpotifyScreen({ state, setState }) {
           <div style={{
             display: "flex", alignItems: "flex-start", gap: 10,
             padding: "10px 12px", marginBottom: 14,
-            background: "rgba(232,93,46,0.10)",
-            border: "1px solid rgba(232,93,46,0.35)",
+            background: "rgba(var(--signal-rgb),0.10)",
+            border: "1px solid rgba(var(--signal-rgb),0.35)",
             borderRadius: 12,
           }}>
             <span aria-hidden style={{ fontSize: 14, flexShrink: 0 }}>ℹ️</span>
@@ -128,15 +128,15 @@ function SpotifyScreen({ state, setState }) {
         {/* ── Connect card ───────────────────────────────── */}
         <div style={{
           borderRadius: 20, padding: 20,
-          background: connected ? "#1a3d2b" : "var(--ink)",
+          background: connected ? "var(--signal)" : "var(--ink)",
           color: "var(--paper)", marginBottom: 20,
           position: "relative", overflow: "hidden",
         }}>
           <svg width="36" height="36" viewBox="0 0 24 24" style={{ position: "absolute", top: 16, right: 16 }}>
-            <circle cx="12" cy="12" r="11" fill="#1DB954"/>
-            <path d="M6 10 Q12 8 18 11" stroke="#000" strokeWidth="1.6" strokeLinecap="round" fill="none"/>
-            <path d="M7 13 Q12 11.5 17 14" stroke="#000" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
-            <path d="M8 15.8 Q12 14.5 16 16.5" stroke="#000" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
+            <circle cx="12" cy="12" r="11" fill="var(--spotify)"/>
+            <path d="M6 10 Q12 8 18 11" stroke="var(--paper)" strokeWidth="1.6" strokeLinecap="round" fill="none"/>
+            <path d="M7 13 Q12 11.5 17 14" stroke="var(--paper)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
+            <path d="M8 15.8 Q12 14.5 16 16.5" stroke="var(--paper)" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
           </svg>
 
           <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, opacity: 0.65, marginBottom: 8 }}>
@@ -161,8 +161,8 @@ function SpotifyScreen({ state, setState }) {
               style={{
                 display: "block", width: "100%", textAlign: "left",
                 fontSize: 13, lineHeight: 1.5, marginBottom: 14,
-                background: "rgba(245,154,54,0.18)", border: "1px solid rgba(245,154,54,0.4)",
-                borderRadius: 8, padding: "8px 10px", color: "#fde68a",
+                background: "rgba(var(--signal-rgb),0.18)", border: "1px solid rgba(var(--signal-rgb),0.4)",
+                borderRadius: 8, padding: "8px 10px", color: "var(--signal-ink)",
                 cursor: "pointer", fontFamily: "inherit",
               }}>
               {missingFollowScope
@@ -174,7 +174,7 @@ function SpotifyScreen({ state, setState }) {
           )}
 
           {tokenBad && (
-            <div style={{ fontSize: 13, color: "#f87171", marginBottom: 10, letterSpacing: 0.8 }}>
+            <div style={{ fontSize: 13, color: "var(--alert)", marginBottom: 10, letterSpacing: 0.8 }}>
               Session expired — please reconnect.
             </div>
           )}
@@ -182,8 +182,8 @@ function SpotifyScreen({ state, setState }) {
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             {connected && matched.length > 0 && (
               <button onClick={handleSaveAll} style={{
-                background: saveFlash ? "#2d7a55" : "#1DB954",
-                color: "#fff", border: "none",
+                background: saveFlash ? "var(--signal)" : "var(--spotify)",
+                color: "var(--ink)", border: "none",
                 borderRadius: 999, padding: "10px 16px", cursor: "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
                 transition: "background 0.3s",
@@ -205,9 +205,9 @@ function SpotifyScreen({ state, setState }) {
             <button
               onClick={() => { if (!connected) window.plurskyHaptic?.("MEDIUM"); connected ? disconnectSpotify(setState, state) : startSpotifyAuth(); }}
               style={{
-                background: connected ? "rgba(29,185,84,0.2)" : "rgba(247,237,224,0.12)",
+                background: connected ? "rgba(var(--spotify-rgb),0.2)" : "rgba(var(--ink-rgb),0.12)",
                 color: "var(--paper)",
-                border: connected ? "1px solid rgba(29,185,84,0.5)" : "1px solid rgba(247,237,224,0.28)",
+                border: connected ? "1px solid rgba(var(--spotify-rgb),0.5)" : "1px solid rgba(var(--ink-rgb),0.28)",
                 borderRadius: 999, padding: "10px 16px", cursor: "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 500,
                 transition: "all 0.3s var(--ease-spring)",
@@ -220,8 +220,8 @@ function SpotifyScreen({ state, setState }) {
               export to whichever service you have. Lets non-Spotify users
               (or anyone hitting Spotify's 5-user cap) still get a playlist. */}
           {APPLE_DEV_TOKEN && state.saved.length > 0 && (
-            <div className="mono" style={{ marginTop: 10, fontSize: 9, letterSpacing: 0.5, lineHeight: 1.5, color: "rgba(247,237,224,0.55)" }}>
-              💡 Your saved sets build a playlist on <span style={{ color: "rgba(247,237,224,0.92)", fontWeight: 700 }}>Spotify or Apple Music</span> — import your taste from one, export to either. No Spotify needed for the Apple Music playlist.
+            <div className="mono" style={{ marginTop: 10, fontSize: 9, letterSpacing: 0.5, lineHeight: 1.5, color: "rgba(var(--ink-rgb),0.55)" }}>
+              💡 Your saved sets build a playlist on <span style={{ color: "rgba(var(--ink-rgb),0.92)", fontWeight: 700 }}>Spotify or Apple Music</span> — import your taste from one, export to either. No Spotify needed for the Apple Music playlist.
             </div>
           )}
         </div>
@@ -238,17 +238,17 @@ function SpotifyScreen({ state, setState }) {
             end user without offering them any action. */}
         {APPLE_DEV_TOKEN && <div style={{
           borderRadius: 20, padding: 20,
-          background: amConnected ? "#3a1a1a" : "var(--paper-2)",
-          border: `1px solid ${amConnected ? "rgba(252,60,60,0.25)" : "var(--line)"}`,
+          background: amConnected ? "var(--paper)" : "var(--paper-2)",
+          border: `1px solid ${amConnected ? "rgba(var(--alert-rgb),0.25)" : "var(--line)"}`,
           color: amConnected ? "var(--paper)" : "var(--ink)",
           marginBottom: 14, position: "relative", overflow: "hidden",
         }}>
           {/* Apple Music logo */}
           <svg width="36" height="36" viewBox="0 0 24 24" style={{ position: "absolute", top: 16, right: 16 }}>
-            <rect width="24" height="24" rx="6" fill="#fc3c44"/>
-            <path d="M16.5 7.5 L10 9 L10 15" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-            <circle cx="8.5" cy="15" r="1.5" fill="#fff"/>
-            <circle cx="15" cy="13" r="1.5" fill="#fff"/>
+            <rect width="24" height="24" rx="6" fill="var(--alert)"/>
+            <path d="M16.5 7.5 L10 9 L10 15" stroke="var(--ink)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+            <circle cx="8.5" cy="15" r="1.5" fill="var(--ink)"/>
+            <circle cx="15" cy="13" r="1.5" fill="var(--ink)"/>
           </svg>
 
           <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, opacity: amConnected ? 0.65 : 0.5, marginBottom: 8 }}>
@@ -266,10 +266,10 @@ function SpotifyScreen({ state, setState }) {
                 Scan your Apple Music library to find which artists you already know and love.
               </div>
               {amError && (
-                <div style={{ fontSize: 13, color: "#f87171", marginBottom: 8 }}>{amError}</div>
+                <div style={{ fontSize: 13, color: "var(--alert)", marginBottom: 8 }}>{amError}</div>
               )}
               <button onClick={handleAmConnect} disabled={amLoading} style={{
-                background: "#fc3c44", color: "#fff", border: "none",
+                background: "var(--alert)", color: "var(--ink)", border: "none",
                 borderRadius: 999, padding: "10px 18px", cursor: "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
               }}>
@@ -285,7 +285,7 @@ function SpotifyScreen({ state, setState }) {
                   const newSaved = [...new Set([...state.saved, ...amMatched.map(a => a.id)])];
                   setState({ ...state, saved: newSaved });
                 }} style={{
-                  background: "#fc3c44", color: "#fff", border: "none",
+                  background: "var(--alert)", color: "var(--ink)", border: "none",
                   borderRadius: 999, padding: "10px 16px", cursor: "pointer",
                   fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
                 }}>
@@ -293,8 +293,8 @@ function SpotifyScreen({ state, setState }) {
                 </button>
               )}
               <button onClick={handleAmDisconnect} style={{
-                background: "rgba(247,237,224,0.12)", color: "var(--paper)",
-                border: "1px solid rgba(247,237,224,0.28)",
+                background: "rgba(var(--ink-rgb),0.12)", color: "var(--paper)",
+                border: "1px solid rgba(var(--ink-rgb),0.28)",
                 borderRadius: 999, padding: "10px 16px", cursor: "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2,
               }}>DISCONNECT</button>
@@ -387,7 +387,7 @@ function SpotifyScreen({ state, setState }) {
               }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
                   <div className="serif" style={{ fontSize: 18, lineHeight: 1 }}>{stage.name}</div>
-                  <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: stage.color, fontWeight: 700 }}>
+                  <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--signal-ink)", fontWeight: 700 }}>
                     {pct}% MATCH
                   </div>
                 </div>
@@ -451,7 +451,7 @@ function SpotifyScreen({ state, setState }) {
               <button onClick={() => toggleSave(state, setState, realId)} style={{
                 width: 34, height: 34, borderRadius: 34,
                 background: isSaved ? "var(--ember)" : "transparent",
-                color: isSaved ? "#fff" : "var(--ink)",
+                color: isSaved ? "var(--ink)" : "var(--ink)",
                 border: isSaved ? "none" : "1px solid var(--line-2)",
                 cursor: "pointer", fontSize: 18, fontWeight: 300,
                 display: "flex", alignItems: "center", justifyContent: "center",
@@ -493,7 +493,7 @@ function SpotifyScreen({ state, setState }) {
                   <button onClick={() => toggleSave(state, setState, a.id)} style={{
                     width: 34, height: 34, borderRadius: 34,
                     background: isSaved ? "var(--ember)" : "transparent",
-                    color: isSaved ? "#fff" : "var(--ink)",
+                    color: isSaved ? "var(--ink)" : "var(--ink)",
                     border: isSaved ? "none" : "1px solid var(--line-2)",
                     cursor: "pointer", fontSize: 18, fontWeight: 300,
                     display: "flex", alignItems: "center", justifyContent: "center",
@@ -579,7 +579,7 @@ const SAFETY_LINKS = [
     id: "dancesafe",
     title: "DanceSafe",
     sub: "Drug-checking, harm-reduction info, peer support. Independent nonprofit.",
-    color: "#34d399",
+    color: "var(--signal-ink)",
     icon: "info",
     href: "https://dancesafe.org",
   },
@@ -595,7 +595,7 @@ const SAFETY_LINKS = [
     id: "medical",
     title: "Medical · 24/7",
     sub: "3 medic tents on-site · roamers in the crowd. Tap → map.",
-    color: "#f87171",
+    color: "var(--alert)",
     icon: "med",
     onClick: (state, setState) => setState({ ...state, tab: "map" }),
   },
@@ -720,7 +720,7 @@ function PackListCard() {
           background: checked[it.id] ? "var(--ember)" : "transparent",
           border: `1.5px solid ${checked[it.id] ? "var(--ember)" : "var(--line-2)"}`,
           display: "flex", alignItems: "center", justifyContent: "center",
-          color: "#fff", fontSize: 12, fontWeight: 700,
+          color: "var(--ink)", fontSize: 12, fontWeight: 700,
           flexShrink: 0, transition: "all .15s",
         }}>{checked[it.id] ? "✓" : ""}</span>
         <span style={{ fontSize: 14, opacity: 0.7, width: 22, textAlign: "center" }}>{it.emoji}</span>
@@ -766,7 +766,7 @@ function PackListCard() {
         />
         <button onClick={addItem} style={{
           background: draft.trim() ? "var(--ember)" : "var(--paper-2)",
-          color: draft.trim() ? "#fff" : "var(--muted)",
+          color: draft.trim() ? "var(--ink)" : "var(--muted)",
           border: "none", borderRadius: 10, padding: "9px 14px",
           cursor: draft.trim() ? "pointer" : "default",
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1, fontWeight: 700,
@@ -891,7 +891,7 @@ function BadgesSection({ state }) {
   const iconCircle = (on) => ({
     width: 36, height: 36, borderRadius: 999,
     background: on ? "linear-gradient(135deg, var(--ember), var(--horizon))" : "var(--paper-2)",
-    color: on ? "#fff" : "var(--muted)",
+    color: on ? "var(--ink)" : "var(--muted)",
     display: "flex", alignItems: "center", justifyContent: "center",
     fontFamily: "Instrument Serif, serif", fontSize: 18, flexShrink: 0,
     border: on ? "none" : "1px solid var(--line-2)",
@@ -1066,9 +1066,9 @@ function HistoryRecordsSection({ state, setState }) {
                   {n.isLive && (
                     <span className="mono" style={{
                       marginLeft: 8, fontSize: 8, letterSpacing: 1.2, fontWeight: 800,
-                      color: "var(--success)", background: "rgba(45,122,85,0.14)",
+                      color: "var(--success)", background: "rgba(var(--signal-rgb),0.14)",
                       padding: "1px 6px", borderRadius: 999,
-                      border: "0.5px solid rgba(45,122,85,0.55)",
+                      border: "0.5px solid rgba(var(--signal-rgb),0.55)",
                     }}>● LIVE</span>
                   )}
                 </div>
@@ -1080,7 +1080,7 @@ function HistoryRecordsSection({ state, setState }) {
                   {n.totalMin > 0 && (
                     <span>· {Math.floor(n.totalMin / 60) ? `${Math.floor(n.totalMin / 60)}H ` : ""}{n.totalMin % 60}M</span>
                   )}
-                  {n.topStage && <span style={{ color: n.topStage.color, fontWeight: 700 }}>· {n.topStage.short || n.topStage.name.split(" ")[0].toUpperCase()}</span>}
+                  {n.topStage && <span style={{ color: "var(--signal-ink)", fontWeight: 700 }}>· {n.topStage.short || n.topStage.name.split(" ")[0].toUpperCase()}</span>}
                 </div>
               </div>
               <div className="mono" style={{
@@ -1794,7 +1794,7 @@ function _TapToPlayVideo({ moment, height = "min(300px, 40vh)", style }) {
   const thumb = useMomentThumb(moment, !playing);
   const src = useMomentPhoto(playing ? moment.photoId : null);
   return (
-    <div ref={ref} style={{ position: "relative", width: "100%", height, borderRadius: 10, overflow: "hidden", background: "#000", ...style }}>
+    <div ref={ref} style={{ position: "relative", width: "100%", height, borderRadius: 10, overflow: "hidden", background: "var(--paper)", ...style }}>
       {playing && src ? (
         <video src={src} controls autoPlay playsInline onEnded={() => setPlaying(false)}
           style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}/>
@@ -1805,7 +1805,7 @@ function _TapToPlayVideo({ moment, height = "min(300px, 40vh)", style }) {
           <_ThumbMedia moment={moment} thumb={thumb} showLength={false}/>
           <span aria-hidden="true" style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
             <span style={{
-              width: 52, height: 52, borderRadius: 52, background: "rgba(0,0,0,0.5)", color: "#fff",
+              width: 52, height: 52, borderRadius: 52, background: "rgba(var(--shade-rgb),0.5)", color: "var(--ink)",
               display: "flex", alignItems: "center", justifyContent: "center", fontSize: 19, paddingLeft: 3,
             }}>▶</span>
           </span>
@@ -2025,7 +2025,7 @@ function HomeMemoriesStrip({ state, setState }) {
   // Field Mode: one section header, one flat media row, and at most one
   // recap row on a raised surface. The accent is only the play control.
   return (
-    <section data-animate style={{ margin: "0 -20px" }}>
+    <section data-animate style={{ margin: "0 -20px 24px" }}>
       {reel && (
         <MemoryReel
           moments={reel.moments}
@@ -2304,7 +2304,7 @@ function BulkRetagRow({ moments, savedNightArtists, onUpdate }) {
                 className="mono" style={{
                   padding: "5px 10px", borderRadius: 999,
                   background: isConfirming ? "var(--ember)" : (stage ? `${stage.color}18` : "var(--paper)"),
-                  color:      isConfirming ? "#fff" : (stage ? stage.color : "var(--ink)"),
+                  color:      isConfirming ? "var(--ink)" : (stage ? stage.color : "var(--ink)"),
                   border:     isConfirming ? "none" : (stage ? `1px solid ${stage.color}40` : "1px solid var(--line-2)"),
                   fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
                   whiteSpace: "nowrap",
@@ -2478,11 +2478,11 @@ function _FavStar({ favorite, onToggle, tone }) {
       style={{
         display: "flex", alignItems: "center", justifyContent: "center",
         border: "none", cursor: "pointer", lineHeight: 1,
-        background: dark ? "rgba(255,255,255,0.14)" : "transparent",
+        background: dark ? "rgba(var(--ink-rgb),0.14)" : "transparent",
         width: dark ? 36 : "auto", height: dark ? 36 : "auto",
         borderRadius: dark ? 36 : 999, padding: dark ? 0 : "3px 5px",
         fontSize: dark ? 17 : 13,
-        color: favorite ? "#f5c451" : (dark ? "rgba(255,255,255,0.7)" : "var(--muted)"),
+        color: favorite ? "var(--signal-ink)" : (dark ? "rgba(var(--ink-rgb),0.7)" : "var(--muted)"),
         transition: "color .15s ease, transform .15s ease",
         transform: favorite ? "scale(1.06)" : "scale(1)",
       }}
@@ -2494,8 +2494,8 @@ function _FavBadge({ style }) {
     <span aria-hidden="true" style={{
       position: "absolute", display: "flex", alignItems: "center", justifyContent: "center",
       width: 20, height: 20, borderRadius: 20, fontSize: 11, lineHeight: 1,
-      background: "rgba(0,0,0,0.5)", color: "#f5c451",
-      textShadow: "0 1px 2px rgba(0,0,0,0.5)", pointerEvents: "none",
+      background: "rgba(var(--shade-rgb),0.5)", color: "var(--signal-ink)",
+      textShadow: "0 1px 2px rgba(var(--shade-rgb),0.5)", pointerEvents: "none",
       ...style,
     }}>★</span>
   );
@@ -2614,7 +2614,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
 
   return (
     <div style={{
-      position: "fixed", inset: 0, zIndex: 200, background: "#000",
+      position: "fixed", inset: 0, zIndex: 200, background: "var(--paper)",
       display: "flex", flexDirection: "column", animation: "fadeIn .2s",
       paddingTop: "env(safe-area-inset-top, 0px)",
     }}>
@@ -2622,11 +2622,11 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px", flexShrink: 0 }}>
         <button onClick={onClose} aria-label="Close" style={{
           width: 36, height: 36, borderRadius: 36, border: "none",
-          background: "rgba(255,255,255,0.14)", color: "#fff", fontSize: 18, cursor: "pointer",
+          background: "rgba(var(--ink-rgb),0.14)", color: "var(--ink)", fontSize: 18, cursor: "pointer",
           display: "flex", alignItems: "center", justifyContent: "center",
         }}>✕</button>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <span className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "rgba(255,255,255,0.7)", fontWeight: 700 }}>
+          <span className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "rgba(var(--ink-rgb),0.7)", fontWeight: 700 }}>
             {index + 1} / {moments.length}
           </span>
           {onUpdate && (
@@ -2654,9 +2654,9 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           <button onClick={() => onIndexChange(index - 1)} aria-label="Previous" style={{
             position: "absolute", left: 10, top: "50%", transform: "translateY(-50%)",
             width: 40, height: 40, borderRadius: 40, zIndex: 3,
-            background: "rgba(255,255,255,0.16)", backdropFilter: "blur(6px)",
+            background: "rgba(var(--ink-rgb),0.16)", backdropFilter: "blur(6px)",
             WebkitBackdropFilter: "blur(6px)", border: "none", cursor: "pointer",
-            color: "#fff", fontSize: 22, lineHeight: 1, paddingBottom: 3,
+            color: "var(--ink)", fontSize: 22, lineHeight: 1, paddingBottom: 3,
             display: "flex", alignItems: "center", justifyContent: "center",
           }}>‹</button>
         )}
@@ -2664,9 +2664,9 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           <button onClick={() => onIndexChange(index + 1)} aria-label="Next" style={{
             position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)",
             width: 40, height: 40, borderRadius: 40, zIndex: 3,
-            background: "rgba(255,255,255,0.16)", backdropFilter: "blur(6px)",
+            background: "rgba(var(--ink-rgb),0.16)", backdropFilter: "blur(6px)",
             WebkitBackdropFilter: "blur(6px)", border: "none", cursor: "pointer",
-            color: "#fff", fontSize: 22, lineHeight: 1, paddingBottom: 3,
+            color: "var(--ink)", fontSize: 22, lineHeight: 1, paddingBottom: 3,
             display: "flex", alignItems: "center", justifyContent: "center",
           }}>›</button>
         )}
@@ -2678,22 +2678,22 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           <button onClick={() => { onArtistClick?.(artist.id); onClose(); }} style={{
             background: "transparent", border: "none", padding: 0, textAlign: "left", cursor: "pointer", display: "block",
           }}>
-            <div className="serif" style={{ fontSize: 26, lineHeight: 1, color: "#fff", marginBottom: 6 }}>
+            <div className="serif" style={{ fontSize: 26, lineHeight: 1, color: "var(--ink)", marginBottom: 6 }}>
               {artist.name}
             </div>
           </button>
         ) : (
-          <div className="serif" style={{ fontSize: 22, lineHeight: 1, color: "rgba(255,255,255,0.6)", fontStyle: "italic", marginBottom: 6 }}>
+          <div className="serif" style={{ fontSize: 22, lineHeight: 1, color: "rgba(var(--ink-rgb),0.6)", fontStyle: "italic", marginBottom: 6 }}>
             Untagged moment
           </div>
         )}
         {song?.song && (
-          <div className="mono" style={{ fontSize: 11, letterSpacing: 0.8, color: stage?.color || "var(--ember-ink)", fontWeight: 700, marginBottom: 4 }}>
+          <div className="mono" style={{ fontSize: 11, letterSpacing: 0.8, color: "var(--signal-ink)", fontWeight: 700, marginBottom: 4 }}>
             ♫ {song.song}
-            {m.confirmedSong && <span style={{ color: "rgba(255,255,255,0.45)", marginLeft: 6 }}>· SHAZAMED</span>}
+            {m.confirmedSong && <span style={{ color: "rgba(var(--ink-rgb),0.45)", marginLeft: 6 }}>· SHAZAMED</span>}
           </div>
         )}
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.5)", fontWeight: 600 }}>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(var(--ink-rgb),0.5)", fontWeight: 600 }}>
           {[stage?.name?.toUpperCase(), prettyTime, m.location?.label?.toUpperCase()].filter(Boolean).join(" · ")}
         </div>
 
@@ -2706,8 +2706,8 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
             background: idState === "fail"
               ? "linear-gradient(135deg, rgba(232,93,46,0.28), rgba(245,154,54,0.16))"
               : "linear-gradient(135deg, rgba(109,40,217,0.85), rgba(232,93,46,0.78))",
-            border: "1px solid rgba(255,255,255,0.22)", color: "#fff",
-            boxShadow: "0 10px 28px rgba(0,0,0,0.28)",
+            border: "1px solid rgba(var(--ink-rgb),0.22)", color: "var(--ink)",
+            boxShadow: "0 10px 28px rgba(var(--shade-rgb),0.28)",
             fontSize: 10, letterSpacing: 1.3, fontWeight: 800, cursor: "pointer",
             display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
             opacity: (idState !== "idle" && idState !== "fail") ? 0.85 : 1,
@@ -2722,7 +2722,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
                    : idState === "fail"      ? "NO MATCH — TRY A LOUDER CLIP"
                    : "IDENTIFIED"}
                 </span>
-                <span style={{ display: "block", marginTop: 3, fontSize: 8, letterSpacing: 1, color: "rgba(255,255,255,0.72)", fontWeight: 700 }}>
+                <span style={{ display: "block", marginTop: 3, fontSize: 8, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.72)", fontWeight: 700 }}>
                   PROVES THE SONG FROM THE CLIP'S AUDIO
                 </span>
               </span>
@@ -2736,7 +2736,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
             Fix it inline to whoever was actually playing at this time. */}
         <button onClick={() => setRetagging(r => !r)} className="mono" style={{
           marginTop: 9, background: "transparent", border: "none", padding: 0,
-          color: "rgba(255,255,255,0.6)", fontSize: 9, letterSpacing: 1.1, fontWeight: 700, cursor: "pointer",
+          color: "rgba(var(--ink-rgb),0.6)", fontSize: 9, letterSpacing: 1.1, fontWeight: 700, cursor: "pointer",
         }}>{retagging ? "✕ CANCEL" : (artist ? "✎ WRONG ACT? FIX IT" : "✎ TAG THIS MOMENT")}</button>
         {retagging && (
           <div className="no-scrollbar" style={{ marginTop: 8, maxHeight: 176, overflowY: "auto", display: "flex", flexDirection: "column", gap: 6 }}>
@@ -2746,12 +2746,12 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
               return (
                 <button key={a.id} onClick={() => { onUpdate?.(m, { artistId: a.id, tagSource: "manual", autoTagged: false }); setRetagging(false); try { window.plurskyHaptic?.("LIGHT"); } catch {} }} style={{
                   display: "flex", alignItems: "center", gap: 8, padding: "8px 10px", borderRadius: 10,
-                  background: on ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.06)",
-                  border: `1px solid ${on ? "#fff" : "rgba(255,255,255,0.14)"}`, cursor: "pointer", textAlign: "left",
+                  background: on ? "rgba(var(--ink-rgb),0.18)" : "rgba(var(--ink-rgb),0.06)",
+                  border: `1px solid ${on ? "var(--ink)" : "rgba(var(--ink-rgb),0.14)"}`, cursor: "pointer", textAlign: "left",
                 }}>
-                  <span style={{ width: 8, height: 8, borderRadius: 8, background: st?.color || "#888", flexShrink: 0 }}/>
-                  <span style={{ flex: 1, minWidth: 0, color: "#fff", fontSize: 13, fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</span>
-                  <span className="mono" style={{ fontSize: 8, letterSpacing: 0.6, color: "rgba(255,255,255,0.5)", flexShrink: 0 }}>{st?.short || ""} · {window.fmt12?.(a.start) || a.start}</span>
+                  <span style={{ width: 8, height: 8, borderRadius: 8, background: st?.color || "var(--paper-3)", flexShrink: 0 }}/>
+                  <span style={{ flex: 1, minWidth: 0, color: "var(--ink)", fontSize: 13, fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</span>
+                  <span className="mono" style={{ fontSize: 8, letterSpacing: 0.6, color: "rgba(var(--ink-rgb),0.5)", flexShrink: 0 }}>{st?.short || ""} · {window.fmt12?.(a.start) || a.start}</span>
                 </button>
               );
             })}
@@ -2773,20 +2773,20 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
             festival: FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name,
           }).catch(() => {});
           setSharing(false);
-        }} disabled={sharing} className="mono" style={{
-          marginTop: 14, padding: "10px 14px", borderRadius: 999, width: "100%",
-          background: "#fff", color: "#0d0a08", border: "none",
-          fontSize: 11, letterSpacing: 1.3, fontWeight: 800, cursor: "pointer",
+        }} disabled={sharing} style={{
+          marginTop: 14, minHeight: 48, padding: "0 16px", borderRadius: 14, width: "100%",
+          background: "var(--signal)", color: "var(--on-signal)", border: "none",
+          fontSize: 15, lineHeight: "20px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit",
           display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
           opacity: sharing ? 0.6 : 1,
-        }}>{sharing ? "PREPARING…" : "↗  SHARE THIS MOMENT"}</button>
+        }}>{sharing ? "Preparing…" : "Share this moment"}</button>
 
         {/* Audio disagrees with the auto-tag → offer the correction */}
         {mismatch && (
           <button onClick={() => { onUpdate?.(m, { artistId: mismatch.id, tagSource: "video-shazam", autoTagged: false }); setMismatch(null); }} style={{
             marginTop: 8, padding: "10px 12px", borderRadius: 10, width: "100%",
-            background: "rgba(245,154,54,0.15)", border: "1px solid rgba(245,154,54,0.45)",
-            color: "#fde68a", cursor: "pointer", textAlign: "left",
+            background: "rgba(var(--signal-rgb),0.15)", border: "1px solid rgba(var(--signal-rgb),0.45)",
+            color: "var(--signal-ink)", cursor: "pointer", textAlign: "left",
           }}>
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, marginBottom: 2 }}>
               AUDIO SAYS {mismatch.name.toUpperCase()}
@@ -2804,8 +2804,8 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
         {recovery && (
           <button onClick={() => { onRecoverNight?.(m, recovery); setRecovery(null); }} style={{
             marginTop: 8, padding: "10px 12px", borderRadius: 10, width: "100%",
-            background: "rgba(56,189,248,0.15)", border: "1px solid rgba(56,189,248,0.45)",
-            color: "#bae6fd", cursor: "pointer", textAlign: "left",
+            background: "rgba(var(--signal-rgb),0.15)", border: "1px solid rgba(var(--signal-rgb),0.45)",
+            color: "var(--ink)", cursor: "pointer", textAlign: "left",
           }}>
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, marginBottom: 2 }}>
               RECOVER FROM SONG · NIGHT {recovery.night}
@@ -2900,9 +2900,9 @@ function _LightboxVideo({ src }) {
         <div style={{
           position: "absolute", pointerEvents: "none",
           width: 66, height: 66, borderRadius: 66,
-          background: "rgba(0,0,0,0.5)", display: "flex",
+          background: "rgba(var(--shade-rgb),0.5)", display: "flex",
           alignItems: "center", justifyContent: "center",
-          color: "#fff", fontSize: 26, paddingLeft: playing ? 0 : 4,
+          color: "var(--ink)", fontSize: 26, paddingLeft: playing ? 0 : 4,
           transition: "opacity .2s", opacity: 1,
         }}>{playing ? "❚❚" : "▶"}</div>
       )}
@@ -2910,18 +2910,18 @@ function _LightboxVideo({ src }) {
       <button onClick={(e) => { stop(e); setMuted(mm => { const nx = !mm; try { localStorage.setItem("plursky_lb_muted_v1", nx ? "1" : "0"); } catch {} return nx; }); }}
         aria-label={muted ? "Unmute" : "Mute"} style={{
           position: "absolute", top: 12, right: 12, width: 38, height: 38, borderRadius: 38,
-          background: "rgba(0,0,0,0.5)", border: "none", color: "#fff", fontSize: 15, cursor: "pointer",
+          background: "rgba(var(--shade-rgb),0.5)", border: "none", color: "var(--ink)", fontSize: 15, cursor: "pointer",
           display: "flex", alignItems: "center", justifyContent: "center",
         }}>{muted ? "🔇" : "🔊"}</button>
       {/* Scrubber */}
       <div onClick={stop} onTouchStart={stop} onTouchEnd={stop} style={{ position: "absolute", left: 14, right: 14, bottom: 12 }}>
         <div onClick={seek} onTouchMove={seek} onTouchStart={seek} style={{
-          height: 5, borderRadius: 5, background: "rgba(255,255,255,0.28)", position: "relative", cursor: "pointer",
+          height: 5, borderRadius: 5, background: "rgba(var(--ink-rgb),0.28)", position: "relative", cursor: "pointer",
         }}>
-          <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${pct}%`, background: "#fff", borderRadius: 5 }}/>
-          <div style={{ position: "absolute", left: `${pct}%`, top: "50%", transform: "translate(-50%,-50%)", width: 12, height: 12, borderRadius: 12, background: "#fff", boxShadow: "0 1px 3px rgba(0,0,0,0.5)" }}/>
+          <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${pct}%`, background: "var(--ink)", borderRadius: 5 }}/>
+          <div style={{ position: "absolute", left: `${pct}%`, top: "50%", transform: "translate(-50%,-50%)", width: 12, height: 12, borderRadius: 12, background: "var(--ink)", boxShadow: "0 1px 3px rgba(var(--shade-rgb),0.5)" }}/>
         </div>
-        <div className="mono" style={{ display: "flex", justifyContent: "space-between", marginTop: 5, fontSize: 8, letterSpacing: 1, color: "rgba(255,255,255,0.7)", fontWeight: 700 }}>
+        <div className="mono" style={{ display: "flex", justifyContent: "space-between", marginTop: 5, fontSize: 8, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.7)", fontWeight: 700 }}>
           <span>{_fmtClock(cur)}</span><span>{_fmtClock(dur)}</span>
         </div>
       </div>
@@ -3061,13 +3061,13 @@ function _LightboxThumb({ moment, active, onClick }) {
   return (
     <button onClick={onClick} aria-label="View moment" style={{
       flexShrink: 0, width: 44, height: 44, borderRadius: 8, padding: 0, cursor: "pointer",
-      border: active ? "2px solid #fff" : "2px solid transparent",
-      opacity: active ? 1 : 0.5, overflow: "hidden", background: "#222",
+      border: active ? "2px solid var(--ink)" : "2px solid transparent",
+      opacity: active ? 1 : 0.5, overflow: "hidden", background: "var(--paper)",
       transition: "opacity 0.15s", position: "relative",
     }}>
       <_ThumbMedia moment={moment} thumb={thumb} showLength={false}/>
       {moment.kind === "video" && (
-        <span style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: 10, textShadow: "0 1px 2px rgba(0,0,0,0.6)", pointerEvents: "none" }}>▶</span>
+        <span style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--ink)", fontSize: 10, textShadow: "0 1px 2px rgba(var(--shade-rgb),0.6)", pointerEvents: "none" }}>▶</span>
       )}
     </button>
   );
@@ -3208,8 +3208,8 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
             </button>
           ) : (
             <button onClick={() => setEditing(true)} className="mono" style={{
-              background: "rgba(232,93,46,0.12)", color: "var(--ember-ink)",
-              border: "1px dashed rgba(232,93,46,0.5)",
+              background: "rgba(var(--signal-rgb),0.12)", color: "var(--ember-ink)",
+              border: "1px dashed rgba(var(--signal-rgb),0.5)",
               borderRadius: 999, padding: "3px 9px",
               fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
             }}>+ TAG A SET</button>
@@ -3218,8 +3218,8 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
               prominently rather than letting a possibly-wrong tag look sure. */}
           {artist && moment.tagAmbiguous && onUpdate && !editing && (
             <button onClick={() => setEditing(true)} className="mono" title="More than one set overlapped this time — tap to confirm or fix the tag" style={{
-              background: "rgba(232,93,46,0.12)", color: "var(--ember-ink)",
-              border: "1px dashed rgba(232,93,46,0.5)",
+              background: "rgba(var(--signal-rgb),0.12)", color: "var(--ember-ink)",
+              border: "1px dashed rgba(var(--signal-rgb),0.5)",
               borderRadius: 999, padding: "3px 9px",
               fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
               whiteSpace: "nowrap",
@@ -3230,8 +3230,8 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
               so the flag cannot depend on the remedy. */}
           {moment.dateUnverified && !editing && (
             <span className="mono" title="The capture time matched the file's own timestamp, so it was probably rewritten when the file was shared. This night is a guess." style={{
-              background: "rgba(56,189,248,0.12)", color: "#7dd3fc",
-              border: "1px dashed rgba(56,189,248,0.5)",
+              background: "rgba(var(--signal-rgb),0.12)", color: "var(--signal-ink)",
+              border: "1px dashed rgba(var(--signal-rgb),0.5)",
               borderRadius: 999, padding: "3px 9px",
               fontSize: 9, letterSpacing: 1, fontWeight: 700, whiteSpace: "nowrap",
             }}>◷ DATE UNVERIFIED</span>
@@ -3328,7 +3328,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
                     <span>{mins}min into {totalMins}min set</span>
                     <div style={{
                       width: 30, height: 3, borderRadius: 2,
-                      background: "rgba(255,255,255,0.1)",
+                      background: "rgba(var(--ink-rgb),0.1)",
                     }}>
                       <div style={{
                         width: `${pct * 100}%`, height: "100%", borderRadius: 2,
@@ -3341,7 +3341,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
             </div>
             <span className="mono" style={{
               fontSize: 8, letterSpacing: 0.8, padding: "2px 5px", borderRadius: 4, flexShrink: 0,
-              background: nowPlaying.confidence === "exact" ? "rgba(45,122,85,0.15)" : "rgba(232,93,46,0.1)",
+              background: nowPlaying.confidence === "exact" ? "rgba(var(--signal-rgb),0.15)" : "rgba(var(--signal-rgb),0.1)",
               color: nowPlaying.confidence === "exact" ? "var(--success)" : "var(--ember-ink)",
               fontWeight: 700,
             }}>{nowPlaying.confidence === "exact" ? "EXACT" : "~EST"}</span>
@@ -3467,11 +3467,11 @@ function _GroupHeroThumb({ moment, accent, onClick }) {
     <button onClick={onClick} aria-label="Open best shot" style={{
       flexShrink: 0, width: 46, height: 46, borderRadius: 10, padding: 0, cursor: "pointer",
       overflow: "hidden", border: `1.5px solid ${accent || "var(--line-2)"}`,
-      background: "#222", position: "relative",
+      background: "var(--paper)", position: "relative",
     }}>
       <_ThumbMedia moment={moment} thumb={thumb} showLength={false}/>
       {moment.kind === "video" && (
-        <span style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: 11, textShadow: "0 1px 2px rgba(0,0,0,0.6)", pointerEvents: "none" }}>▶</span>
+        <span style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--ink)", fontSize: 11, textShadow: "0 1px 2px rgba(var(--shade-rgb),0.6)", pointerEvents: "none" }}>▶</span>
       )}
     </button>
   );
@@ -3534,7 +3534,7 @@ function PeakMomentCard({ peak, accent, onOpenLightbox, onPlayReel }) {
         </div>
         {onPlayReel && (
           <button onClick={() => { try { window.plurskyHaptic?.("MEDIUM"); } catch {} onPlayReel(items); }} className="mono" style={{
-            flexShrink: 0, background: a, color: "#fff", border: "none",
+            flexShrink: 0, background: a, color: "var(--ink)", border: "none",
             borderRadius: 999, padding: "7px 13px", cursor: "pointer",
             fontSize: 9, letterSpacing: 1.2, fontWeight: 800,
             display: "flex", alignItems: "center", gap: 5,
@@ -3797,14 +3797,14 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
         <div style={{ position: "relative", marginBottom: 10 }}>
           {mediaKind === "video" ? (
             <video src={previewUrl} controls playsInline
-              style={{ width: "100%", borderRadius: 10, display: "block", background: "#000" }}/>
+              style={{ width: "100%", borderRadius: 10, display: "block", background: "var(--paper)" }}/>
           ) : (
             <img src={previewUrl} alt="" style={{ width: "100%", borderRadius: 10, display: "block" }}/>
           )}
           <button onClick={clearPhoto} aria-label="Remove media" style={{
             position: "absolute", top: 8, right: 8,
             width: 28, height: 28, borderRadius: 999,
-            background: "rgba(0,0,0,0.55)", color: "#fff",
+            background: "rgba(var(--shade-rgb),0.55)", color: "var(--ink)",
             border: "none", cursor: "pointer", fontSize: 14, fontWeight: 700,
             display: "flex", alignItems: "center", justifyContent: "center",
             backdropFilter: "blur(6px)",
@@ -3863,7 +3863,7 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
       )}
 
       {err && (
-        <div className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "#c14a4a", marginBottom: 10, fontWeight: 700 }}>
+        <div className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "var(--alert)", marginBottom: 10, fontWeight: 700 }}>
           {err}
         </div>
       )}
@@ -3877,7 +3877,7 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
         <button onClick={handleSave} disabled={busy} className="mono" style={{
           flex: 2, padding: "12px", borderRadius: 10,
           background: busy ? "var(--muted)" : "var(--ember)",
-          color: "#fff", border: "none",
+          color: "var(--ink)", border: "none",
           fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           cursor: busy ? "default" : "pointer",
         }}>{busy ? "WORKING…" : "✓ SAVE MOMENT"}</button>
@@ -4038,7 +4038,7 @@ function _ReviewPicker({ moments, onClose, onApply }) {
   });
   const n = moments.length;
   return (
-    <div onClick={onClose} style={{ position: "fixed", inset: 0, zIndex: 280, background: "rgba(0,0,0,0.35)", display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
+    <div onClick={onClose} style={{ position: "fixed", inset: 0, zIndex: 280, background: "rgba(var(--shade-rgb),0.35)", display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
       <div role="dialog" aria-modal="true" aria-label="Pick a set" data-review-picker onClick={e => e.stopPropagation()} style={{
         width: "100%", maxWidth: 520, maxHeight: "78vh", display: "flex", flexDirection: "column",
         background: "var(--paper)", borderRadius: "18px 18px 0 0", borderTop: "1px solid var(--line)",
@@ -4152,7 +4152,7 @@ function ImportReview({ results, moments, onClose, onPatch, onMove }) {
 
   return (
     <div onClick={onClose} style={{
-      position: "fixed", inset: 0, zIndex: 270, background: "rgba(0,0,0,0.55)",
+      position: "fixed", inset: 0, zIndex: 270, background: "rgba(var(--shade-rgb),0.55)",
       display: "flex", alignItems: "flex-end", justifyContent: "center",
       animation: "fadeIn .18s",
     }}>
@@ -4196,8 +4196,8 @@ function ImportReview({ results, moments, onClose, onPatch, onMove }) {
                     return (
                       <div key={r.id} data-review-row={r.id} data-review-state={r.review ? "review" : "ok"} style={{
                         display: "flex", alignItems: "center", gap: 9, padding: "7px 8px", marginBottom: 4, borderRadius: 10,
-                        background: r.review ? "rgba(232,93,46,0.07)" : "transparent",
-                        border: r.review ? "1px solid rgba(232,93,46,0.45)" : "1px solid var(--line)",
+                        background: r.review ? "rgba(var(--signal-rgb),0.07)" : "transparent",
+                        border: r.review ? "1px solid rgba(var(--signal-rgb),0.45)" : "1px solid var(--line)",
                       }}>
                         <button onClick={() => toggle(r.id)} role="checkbox" aria-checked={on} aria-label={`Select ${_momentMediaLabel(r.m)}`} style={{
                           width: 24, height: 24, borderRadius: 6, flexShrink: 0, cursor: "pointer", padding: 0,
@@ -4325,8 +4325,8 @@ function StorageManager({ all, onChange }) {
           {usedPct > 80 && (
             <div className="mono" style={{
               fontSize: 9, letterSpacing: 1.2, fontWeight: 700, marginBottom: 10,
-              color: "var(--ember-ink)", background: "rgba(232,93,46,0.10)",
-              border: "1px solid rgba(232,93,46,0.3)", borderRadius: 8,
+              color: "var(--ember-ink)", background: "rgba(var(--signal-rgb),0.10)",
+              border: "1px solid rgba(var(--signal-rgb),0.3)", borderRadius: 8,
               padding: "6px 10px",
             }}>
               ⚠ STORAGE {usedPct}% FULL · PURGE OLD NIGHTS TO FREE SPACE
@@ -4345,8 +4345,8 @@ function StorageManager({ all, onChange }) {
             <div key={d.n} style={{
               display: "flex", alignItems: "center", justifyContent: "space-between",
               padding: "8px 10px", borderRadius: 8,
-              background: isConfirm ? "rgba(232,93,46,0.10)" : "var(--paper)",
-              border: isConfirm ? "1px solid rgba(232,93,46,0.5)" : "1px solid var(--line)",
+              background: isConfirm ? "rgba(var(--signal-rgb),0.10)" : "var(--paper)",
+              border: isConfirm ? "1px solid rgba(var(--signal-rgb),0.5)" : "1px solid var(--line)",
             }}>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 13, color: "var(--ink)" }}>
@@ -4367,7 +4367,7 @@ function StorageManager({ all, onChange }) {
                     color: "var(--ink)", cursor: "pointer", fontSize: 9, letterSpacing: 1, fontWeight: 700,
                   }}>CANCEL</button>
                   <button onClick={() => handlePurge(d.n)} disabled={busy} className="mono" style={{
-                    padding: "4px 9px", borderRadius: 999, background: "var(--ember)", color: "#fff", border: "none",
+                    padding: "4px 9px", borderRadius: 999, background: "var(--ember)", color: "var(--ink)", border: "none",
                     cursor: "pointer", fontSize: 9, letterSpacing: 1, fontWeight: 700,
                   }}>{busy ? "..." : "DELETE"}</button>
                 </div>
@@ -4386,7 +4386,7 @@ function StorageManager({ all, onChange }) {
           {confirming === "all" ? (
             <div style={{
               padding: "10px 12px", borderRadius: 8,
-              background: "rgba(232,93,46,0.10)", border: "1px solid rgba(232,93,46,0.5)",
+              background: "rgba(var(--signal-rgb),0.10)", border: "1px solid rgba(var(--signal-rgb),0.5)",
               display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8,
             }}>
               <span style={{ fontSize: 13, color: "var(--ink)" }}>
@@ -4398,7 +4398,7 @@ function StorageManager({ all, onChange }) {
                   color: "var(--ink)", cursor: "pointer", fontSize: 9, letterSpacing: 1, fontWeight: 700,
                 }}>NO</button>
                 <button onClick={() => handlePurge("all")} disabled={busy} className="mono" style={{
-                  padding: "5px 10px", borderRadius: 999, background: "var(--ember)", color: "#fff", border: "none",
+                  padding: "5px 10px", borderRadius: 999, background: "var(--ember)", color: "var(--ink)", border: "none",
                   cursor: "pointer", fontSize: 9, letterSpacing: 1, fontWeight: 700,
                 }}>{busy ? "..." : "DELETE ALL"}</button>
               </div>
@@ -4529,7 +4529,7 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
   const vids = moments.filter(x => x.kind === "video").length;
 
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 250, background: "#000", overflow: "hidden", animation: "fadeIn .2s" }}>
+    <div style={{ position: "fixed", inset: 0, zIndex: 250, background: "var(--paper)", overflow: "hidden", animation: "fadeIn .2s" }}>
       {/* Field Mode motion: a 220 ms crossfade/scale in, nothing ambient. The
           global prefers-reduced-motion rule makes it instant. */}
       <style>{`@keyframes reelMedia{from{opacity:0;transform:scale(1.02)}to{opacity:1;transform:none}}@keyframes reelIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}`}</style>
@@ -4537,7 +4537,7 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
       {!ended ? (
         <>
           {/* Media */}
-          <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "#000" }}>
+          <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "var(--paper)" }}>
             {url && (m.kind === "video" ? (
               // Muted so iOS reliably autoplays each beat (autoplay-with-sound
               // is blocked without a fresh gesture); full audio lives in the
@@ -4552,7 +4552,7 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
               }}/>
             ))}
             {/* One quiet top scrim for progress and close; the sheet carries the words. */}
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 120, background: "linear-gradient(180deg, rgba(0,0,0,0.45), transparent)", pointerEvents: "none" }}/>
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 120, background: "linear-gradient(180deg, rgba(var(--shade-rgb),0.45), transparent)", pointerEvents: "none" }}/>
           </div>
 
           {/* Tap zones */}
@@ -4562,15 +4562,15 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
           {/* Progress segments */}
           <div style={{ position: "absolute", top: "calc(10px + env(safe-area-inset-top, 0px))", left: 12, right: 12, display: "flex", gap: 4, zIndex: 6 }}>
             {moments.map((_, i) => (
-              <div key={i} style={{ flex: 1, height: 2, borderRadius: 2, background: "rgba(255,255,255,0.28)", overflow: "hidden" }}>
+              <div key={i} style={{ flex: 1, height: 2, borderRadius: 2, background: "rgba(var(--ink-rgb),0.28)", overflow: "hidden" }}>
                 {/* Signal green marks the current beat only; finished beats are white. */}
-                <div style={{ height: "100%", background: i === idx ? "var(--signal)" : "rgba(255,255,255,0.9)", width: i < idx ? "100%" : i === idx ? `${prog * 100}%` : "0%", transition: i === idx ? "none" : "width .2s" }}/>
+                <div style={{ height: "100%", background: i === idx ? "var(--signal)" : "rgba(var(--ink-rgb),0.9)", width: i < idx ? "100%" : i === idx ? `${prog * 100}%` : "0%", transition: i === idx ? "none" : "width .2s" }}/>
               </div>
             ))}
           </div>
 
           {/* Close + pause hint */}
-          <button onClick={onClose} aria-label="Close" style={{ ...fieldIconBtn, position: "absolute", top: "calc(18px + env(safe-area-inset-top, 0px))", right: 8, zIndex: 7, color: "#fff" }}>
+          <button onClick={onClose} aria-label="Close" style={{ ...fieldIconBtn, position: "absolute", top: "calc(18px + env(safe-area-inset-top, 0px))", right: 8, zIndex: 7, color: "var(--ink)" }}>
             <span style={{ width: 36, height: 36, borderRadius: 18, background: "var(--chrome)", display: "flex", alignItems: "center", justifyContent: "center" }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg></span>
           </button>
 
@@ -4613,7 +4613,7 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
 
           {pausedUI && (
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none", zIndex: 5 }}>
-              <div style={{ width: 64, height: 64, borderRadius: 64, background: "rgba(0,0,0,0.45)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: 24 }}>❚❚</div>
+              <div style={{ width: 64, height: 64, borderRadius: 64, background: "rgba(var(--shade-rgb),0.45)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--ink)", fontSize: 24 }}>❚❚</div>
             </div>
           )}
         </>
@@ -4704,7 +4704,7 @@ function _MemoryStoryBeat({ moment, isLast, onOpen }) {
                 {/* Poster frame, or the placeholder when none could be made.
                     One fixed height so a run of clips reads as even cards;
                     tapping opens the lightbox player (controls + autoplay). */}
-                <div style={{ width: "100%", height: 300, borderRadius: 12, overflow: "hidden", background: "#000" }}>
+                <div style={{ width: "100%", height: 300, borderRadius: 12, overflow: "hidden", background: "var(--paper)" }}>
                   <_ThumbMedia moment={moment} thumb={thumb} showLength={false}/>
                 </div>
                 <span style={{
@@ -4713,7 +4713,7 @@ function _MemoryStoryBeat({ moment, isLast, onOpen }) {
                 }}>
                   <span style={{
                     width: 52, height: 52, borderRadius: 52,
-                    background: "rgba(0,0,0,0.5)", color: "#fff",
+                    background: "rgba(var(--shade-rgb),0.5)", color: "var(--ink)",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     fontSize: 19, paddingLeft: 3,
                   }}>▶</span>
@@ -4741,8 +4741,8 @@ function _ScrubPreview({ moment }) {
   return (
     <div style={{
       width: 56, height: 56, borderRadius: 10, overflow: "hidden",
-      border: "1.5px solid var(--ink)", background: "#000", flexShrink: 0,
-      boxShadow: "0 4px 14px rgba(0,0,0,0.4)",
+      border: "1.5px solid var(--ink)", background: "var(--paper)", flexShrink: 0,
+      boxShadow: "0 4px 14px rgba(var(--shade-rgb),0.4)",
     }}>
       <_ThumbMedia moment={moment} thumb={thumb} showLength={false}/>
     </div>
@@ -4822,7 +4822,7 @@ function NightScrubber({ moments, onSeek }) {
               position: "absolute", left: `${fracOf(i) * 100}%`, top: on ? 4 : 8,
               transform: "translateX(-50%)",
               width: on ? 4 : 3, height: on ? 18 : 10, borderRadius: 3,
-              background: fav ? "#f5c451" : (on ? "var(--ink)" : "var(--signal)"),
+              background: fav ? "var(--signal)" : (on ? "var(--ink)" : "var(--signal)"),
               opacity: on ? 1 : 0.7, transition: "all .08s ease",
             }}/>
           );
@@ -4962,7 +4962,7 @@ function _GridTile({ moment, onClick, stackCount = 1 }) {
     <button onClick={onClick} style={{
       position: "relative", width: "100%", height: "100%", aspectRatio: "1 / 1",
       borderRadius: 10, overflow: "hidden",
-      border: "1px solid var(--line)", background: url ? "#000" : "var(--paper-2)",
+      border: "1px solid var(--line)", background: url ? "var(--paper)" : "var(--paper-2)",
       padding: 0, cursor: "pointer",
       // Burst stack: fake two cards peeking out bottom-right (Apple Photos
       // stack tile). Shadow stays within the 6px grid gap so it doesn't
@@ -4977,14 +4977,14 @@ function _GridTile({ moment, onClick, stackCount = 1 }) {
         <span className="mono" aria-label={`Burst of ${stackCount}`} style={{
           position: "absolute", top: 5, right: 5,
           display: "inline-flex", alignItems: "center", gap: 3,
-          background: "rgba(0,0,0,0.6)", color: "#fff",
+          background: "rgba(var(--shade-rgb),0.6)", color: "var(--ink)",
           fontSize: 8, letterSpacing: 0.5, fontWeight: 700,
           padding: "2px 6px", borderRadius: 999, pointerEvents: "none",
         }}><span style={{ fontSize: 9 }}>⧉</span>{stackCount}</span>
       )}
       {moment.favorite && <_FavBadge style={{ top: 5, left: 5 }}/>}
-      <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, background: "linear-gradient(0deg, rgba(0,0,0,0.8), transparent)", padding: "16px 6px 5px" }}>
-        <div className="mono" style={{ fontSize: 7.5, letterSpacing: 0.5, color: artist ? "#fff" : "rgba(255,255,255,0.7)", fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+      <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, background: "linear-gradient(0deg, rgba(var(--shade-rgb),0.8), transparent)", padding: "16px 6px 5px" }}>
+        <div className="mono" style={{ fontSize: 7.5, letterSpacing: 0.5, color: artist ? "var(--ink)" : "rgba(var(--ink-rgb),0.7)", fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
           {artist ? artist.name.toUpperCase() : "+ TAP TO TAG"}
         </div>
       </div>
@@ -5092,7 +5092,7 @@ function MemoriesMapLens({ moments, onPinTap }) {
       <div style={{
         position: "relative", width: "100%", aspectRatio: "1 / 1",
         borderRadius: 16, overflow: "hidden", border: "1px solid var(--line)",
-        background: "#0a0f0b",
+        background: "var(--paper)",
       }}>
         <svg viewBox="0 0 100 100" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"
           style={{ position: "absolute", inset: 0, display: "block" }}>
@@ -5104,9 +5104,9 @@ function MemoriesMapLens({ moments, onPinTap }) {
             return (
               <g key={p.id} onClick={() => onPinTap?.(p)} style={{ cursor: "pointer" }}>
                 <circle cx={s.x} cy={s.y} r={r + 1.6} fill={s.color} opacity="0.22"/>
-                <circle cx={s.x} cy={s.y} r={r} fill={s.color} opacity="0.92" stroke="#fff" strokeWidth="0.5"/>
+                <circle cx={s.x} cy={s.y} r={r} fill={s.color} opacity="0.92" stroke="var(--ink)" strokeWidth="0.5"/>
                 <text x={s.x} y={s.y} textAnchor="middle" dominantBaseline="central"
-                  fontSize={Math.max(2.4, r * 0.9)} fontWeight="800" fill="#fff"
+                  fontSize={Math.max(2.4, r * 0.9)} fontWeight="800" fill="var(--ink)"
                   fontFamily="ui-monospace, monospace" style={{ pointerEvents: "none" }}>{c}</text>
               </g>
             );
@@ -5177,15 +5177,15 @@ function _PhotoPin({ cluster, onTap }) {
     }}>
       <div style={{
         width: "100%", height: "100%", borderRadius: 10, overflow: "hidden",
-        border: `2px solid ${ring}`, background: url ? "#000" : "var(--paper-2)",
-        boxShadow: "0 3px 9px rgba(0,0,0,0.5)",
+        border: `2px solid ${ring}`, background: url ? "var(--paper)" : "var(--paper-2)",
+        boxShadow: "0 3px 9px rgba(var(--shade-rgb),0.5)",
       }}>
         <_ThumbMedia moment={m} thumb={thumb} showLength={false}/>
       </div>
       {m.kind === "video" && (
         <span className="mono" style={{
           position: "absolute", bottom: 3, left: 3, display: "inline-flex", alignItems: "center",
-          background: "rgba(0,0,0,0.62)", color: "#fff", fontSize: 7, fontWeight: 800,
+          background: "rgba(var(--shade-rgb),0.62)", color: "var(--ink)", fontSize: 7, fontWeight: 800,
           padding: "1px 4px", borderRadius: 999, pointerEvents: "none",
         }}>▶</span>
       )}
@@ -5193,8 +5193,8 @@ function _PhotoPin({ cluster, onTap }) {
         <span className="mono" style={{
           position: "absolute", top: -7, right: -7, minWidth: 17, height: 17, padding: "0 3px",
           display: "inline-flex", alignItems: "center", justifyContent: "center",
-          background: ring, color: "#fff", fontSize: 9, fontWeight: 800,
-          borderRadius: 999, border: "1.5px solid #fff", boxShadow: "0 1px 3px rgba(0,0,0,0.4)",
+          background: ring, color: "var(--ink)", fontSize: 9, fontWeight: 800,
+          borderRadius: 999, border: "1.5px solid var(--ink)", boxShadow: "0 1px 3px rgba(var(--shade-rgb),0.4)",
           pointerEvents: "none",
         }}>+{extra}</span>
       )}
@@ -5272,7 +5272,7 @@ function MemoriesPhotoMapLens({ moments, onPinTap }) {
       <div style={{
         position: "relative", width: "100%", aspectRatio: "1 / 1",
         borderRadius: 16, overflow: "hidden", border: "1px solid var(--line)",
-        background: "#0a0f0b",
+        background: "var(--paper)",
       }}>
         <svg viewBox="0 0 100 100" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"
           style={{ position: "absolute", inset: 0, display: "block" }}>
@@ -5351,7 +5351,7 @@ function _NightShareMenu({ night, moments }) {
   return (
     <div style={{ position: "relative", marginLeft: "auto" }}>
       <button onClick={() => setOpen(o => !o)} className="mono" style={{
-        background: "var(--ember)", color: "#fff", border: "none",
+        background: "var(--ember)", color: "var(--ink)", border: "none",
         borderRadius: 999, padding: "4px 10px", cursor: "pointer",
         fontSize: 9, letterSpacing: 1.2, fontWeight: 700, whiteSpace: "nowrap",
       }}>📸 SHARE ▾</button>
@@ -5361,7 +5361,7 @@ function _NightShareMenu({ night, moments }) {
           <div style={{
             position: "absolute", right: 0, top: "calc(100% + 4px)", zIndex: 5,
             background: "var(--paper)", border: "1px solid var(--line)", borderRadius: 10,
-            boxShadow: "0 6px 20px rgba(0,0,0,0.18)", overflow: "hidden", minWidth: 140,
+            boxShadow: "0 6px 20px rgba(var(--shade-rgb),0.18)", overflow: "hidden", minWidth: 140,
           }}>
             {[["📸 Collage", undefined], ["🎬 Animated GIF", "gif"], ["🎞 Night video", "video"]].map(([lbl, mode], i) => (
               <button key={lbl}
@@ -6437,8 +6437,8 @@ function AttendanceReview({ night, savedNightArtists }) {
               <button key={a.id} onClick={() => toggle(a.id)} style={{
                 display: "flex", alignItems: "center", gap: 10,
                 padding: "8px 10px", borderRadius: 8,
-                background: on ? "rgba(45,122,85,0.10)" : "var(--paper)",
-                border: on ? "1px solid rgba(45,122,85,0.4)" : "1px solid var(--line)",
+                background: on ? "rgba(var(--signal-rgb),0.10)" : "var(--paper)",
+                border: on ? "1px solid rgba(var(--signal-rgb),0.4)" : "1px solid var(--line)",
                 cursor: "pointer", textAlign: "left",
               }}>
                 <span style={{
@@ -6446,7 +6446,7 @@ function AttendanceReview({ night, savedNightArtists }) {
                   background: on ? "var(--success)" : "transparent",
                   border: on ? "none" : "1.5px solid var(--line-2)",
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  color: "#fff", fontSize: 10, fontWeight: 700,
+                  color: "var(--ink)", fontSize: 10, fontWeight: 700,
                 }}>{on ? "✓" : ""}</span>
                 <div style={{ width: 3, alignSelf: "stretch", background: stage?.color || "var(--line-2)", borderRadius: 3 }}/>
                 <div style={{ flex: 1, minWidth: 0 }}>
@@ -6459,7 +6459,7 @@ function AttendanceReview({ night, savedNightArtists }) {
                   <span className="mono" style={{
                     fontSize: 8, letterSpacing: 1, color: "var(--success)", fontWeight: 700,
                     padding: "2px 6px", borderRadius: 999,
-                    background: "rgba(45,122,85,0.14)",
+                    background: "rgba(var(--signal-rgb),0.14)",
                   }}>📍 GPS</span>
                 )}
               </button>
@@ -6612,9 +6612,8 @@ function MeScreen({ state, setState }) {
             onClick={profile ? undefined : promptName}
             style={{
               width: 78, height: 78, borderRadius: 999,
-              background: profile?.image ? "transparent" : pingColor,
-              border: "3px solid #fff",
-              boxShadow: "0 2px 8px rgba(26,18,13,0.18)",
+              background: profile?.image ? "transparent" : "var(--paper-3)",
+              border: "1px solid var(--line-2)",
               display: "flex", alignItems: "center", justifyContent: "center",
               overflow: "hidden",
               cursor: profile ? "default" : "pointer",
@@ -6626,10 +6625,7 @@ function MeScreen({ state, setState }) {
                 width: "100%", height: "100%", objectFit: "cover",
               }}/>
             ) : (
-              <span className="serif" style={{
-                fontSize: 36, color: "#fff", lineHeight: 1,
-                textShadow: "0 1px 2px rgba(26,18,13,0.25)",
-              }}>{initial}</span>
+              <span className="serif" style={{ fontSize: 34, color: "var(--ink)", lineHeight: 1 }}>{initial}</span>
             )}
           </div>
           <div
@@ -6716,9 +6712,9 @@ function MeScreen({ state, setState }) {
           }}>
             <span style={{
               width: 30, height: 30, borderRadius: "50%", flexShrink: 0,
-              background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
+              background: "var(--signal)",
               display: "flex", alignItems: "center", justifyContent: "center",
-              color: "#fff", fontSize: 16, fontWeight: 700, lineHeight: 1,
+              color: "var(--on-signal)", fontSize: 16, fontWeight: 700, lineHeight: 1,
             }}>+</span>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>Plursky+</div>
@@ -6734,22 +6730,26 @@ function MeScreen({ state, setState }) {
             style={{
               display: "flex", alignItems: "center", gap: 12,
               width: "100%", padding: "14px 16px", marginBottom: 14,
-              background: "linear-gradient(135deg, #6D28D9 0%, #e85d2e 100%)",
-              border: "none", borderRadius: 16,
-              color: "#fff", cursor: "pointer", textAlign: "left",
+              background: "var(--paper-2)",
+              border: "1px solid var(--line-2)", borderRadius: 14, minHeight: 64,
+              color: "var(--ink)", cursor: "pointer", textAlign: "left",
               fontFamily: "inherit",
-              boxShadow: "0 4px 18px rgba(109,40,217,0.30)",
             }}>
-            <span style={{ fontSize: 24, lineHeight: 1, flexShrink: 0, fontWeight: 700 }}>+</span>
+            <span aria-hidden="true" style={{
+              width: 36, height: 36, borderRadius: 18, flexShrink: 0,
+              background: "var(--signal)", color: "var(--on-signal)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: 20, fontWeight: 700, lineHeight: 1,
+            }}>+</span>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>
-                Plursky<span style={{ fontStyle: "italic" }}>+</span>
-              </div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "rgba(255,255,255,0.72)", marginTop: 4, fontWeight: 700 }}>
-                NO WATERMARKS · CLOUD BACKUP · MORE
+              <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>Plursky+</div>
+              <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", marginTop: 2 }}>
+                No watermarks, cloud backup and more
               </div>
             </div>
-            <span style={{ fontSize: 18, opacity: 0.85 }}>→</span>
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+              <path d="M9 18 L15 12 L9 6"/>
+            </svg>
           </button>
         )}
 
@@ -6809,17 +6809,16 @@ function MeScreen({ state, setState }) {
           <button onClick={() => setState(s => ({ ...s, tab: "recap" }))} style={{
             display: "flex", alignItems: "center", gap: 12,
             width: "100%", padding: "14px 16px", marginBottom: 14,
-            background: "linear-gradient(135deg, var(--ink) 0%, var(--horizon) 100%)",
-            border: "none", borderRadius: 16,
-            color: "var(--paper)", cursor: "pointer", textAlign: "left",
-            boxShadow: "0 4px 18px rgba(123,61,154,0.30)",
+            background: "var(--paper-2)",
+            border: "1px solid var(--line-2)", borderRadius: 14,
+            color: "var(--ink)", cursor: "pointer", textAlign: "left",
           }}>
             <span style={{ fontSize: 24, lineHeight: 1, flexShrink: 0 }}>✦</span>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>
                 Your <span style={{ fontStyle: "italic", color: "var(--flare)" }}>{_cfg.brand || "festival"}</span> weekend
               </div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "rgba(247,237,224,0.65)", marginTop: 4, fontWeight: 700 }}>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "rgba(var(--ink-rgb),0.65)", marginTop: 4, fontWeight: 700 }}>
                 THE RECAP · {getAttendedCount?.() || 0} SETS CAUGHT · TAP TO SEE
               </div>
             </div>
@@ -6858,29 +6857,23 @@ function MeScreen({ state, setState }) {
               <div id="plursky-badges-anchor"/>
               {/* v227: always collapsed by default — 13 rows of badges per
                   festival is a wall; the grid card already shows the count */}
-              <Collapsible title="🏅 BADGES"><BadgesSection state={state} /></Collapsible>
+              <Collapsible title="BADGES"><BadgesSection state={state} /></Collapsible>
               <div style={{ marginTop: 14 }}/>
               <button
                 onClick={() => setState({ ...state, tab: "spotify" })}
                 style={{
                   display: "flex", alignItems: "center", gap: 12,
                   width: "100%", padding: "13px 14px", marginBottom: 14,
-                  background: state.spotifyConnected
-                    ? "linear-gradient(135deg, rgba(29,185,84,0.12), rgba(123,61,154,0.10))"
-                    : "var(--paper-2)",
-                  border: state.spotifyConnected
-                    ? "1px solid rgba(29,185,84,0.4)"
-                    : "1px solid var(--line-2)",
+                  background: "var(--paper-2)",
+                  border: "1px solid var(--line-2)",
                   borderRadius: 14, cursor: "pointer", textAlign: "left",
                 }}>
                 <div style={{
                   width: 38, height: 38, borderRadius: 38, flexShrink: 0,
-                  background: state.spotifyConnected
-                    ? "linear-gradient(135deg, #1DB954, var(--horizon))"
-                    : "linear-gradient(135deg, var(--ember), var(--horizon))",
+                  background: state.spotifyConnected ? "var(--spotify)" : "var(--paper-3)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                 }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="7" cy="17" r="2.5"/><circle cx="17" cy="15" r="2.5"/>
                     <path d="M9.5 17 L9.5 5 L19.5 3 L19.5 15"/>
                   </svg>
@@ -6983,7 +6976,7 @@ function MeScreen({ state, setState }) {
         {/* Safety & Wellness — harm-reduction one tap away. Collapses
             post-festival (on-site teams aren't relevant once it's over). */}
         {_mePostFest ? (
-          <Collapsible title="🛟 SAFETY & CARE"><SafetyCards /></Collapsible>
+          <Collapsible title="SAFETY & CARE"><SafetyCards /></Collapsible>
         ) : (<>
           <div className="serif" style={{ fontSize: 22, marginTop: 20, marginBottom: 3 }}>
             Safety & <span style={{ fontStyle: "italic" }}>care</span>
@@ -7014,8 +7007,8 @@ function MeScreen({ state, setState }) {
                     aspectRatio: "1/1", borderRadius: 10, background: a.img,
                     position: "relative", overflow: "hidden", border: "none", padding: 0, cursor: "pointer",
                   }}>
-                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg,transparent 40%,rgba(0,0,0,0.65))" }}/>
-                    <div style={{ position: "absolute", bottom: 6, left: 6, right: 6, color: "#fff", textAlign: "left" }} className="mono">
+                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg,transparent 40%,rgba(var(--shade-rgb),0.65))" }}/>
+                    <div style={{ position: "absolute", bottom: 6, left: 6, right: 6, color: "var(--ink)", textAlign: "left" }} className="mono">
                       <div style={{ fontSize: 10, letterSpacing: 0.4, fontWeight: 700, lineHeight: 1.1, marginBottom: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</div>
                       <div style={{ fontSize: 8, letterSpacing: 1, opacity: 0.8 }}>
                         {FESTIVAL_CONFIG.dayDates[a.day]?.short || ""} · {fmt12(a.start)}
@@ -7073,24 +7066,24 @@ function FollowedNudge({ state, setState }) {
 
   return (
     <div style={{
-      background: "rgba(29,185,84,0.1)", border: "1px solid rgba(29,185,84,0.25)",
+      background: "rgba(var(--spotify-rgb),0.1)", border: "1px solid rgba(var(--spotify-rgb),0.25)",
       borderRadius: 16, padding: "14px 16px", marginBottom: 14,
     }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
         <div>
-          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "#1DB954", fontWeight: 700 }}>
+          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--spotify)", fontWeight: 700 }}>
             YOU FOLLOW {followed.length} {(FESTIVAL_CONFIG.brand || "").toUpperCase()} ACT{followed.length > 1 ? "S" : ""} NOT IN YOUR LINEUP
           </span>
         </div>
         <div style={{ display: "flex", gap: 6 }}>
           <button onClick={handleSaveAll} style={{
-            background: "#1DB954", color: "#000", border: "none",
+            background: "var(--spotify)", color: "var(--paper)", border: "none",
             borderRadius: 999, padding: "5px 10px", cursor: "pointer",
             fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1, fontWeight: 700,
           }}>SAVE ALL</button>
           <button onClick={() => setExpanded(e => !e)} style={{
-            background: "transparent", color: "rgba(247,237,224,0.6)",
-            border: "1px solid rgba(247,237,224,0.2)",
+            background: "transparent", color: "rgba(var(--ink-rgb),0.6)",
+            border: "1px solid rgba(var(--ink-rgb),0.2)",
             borderRadius: 999, padding: "5px 10px", cursor: "pointer",
             fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1,
           }}>{expanded ? "HIDE" : "VIEW"}</button>
@@ -7103,7 +7096,7 @@ function FollowedNudge({ state, setState }) {
             return (
               <div key={a.id} style={{
                 display: "flex", alignItems: "center", justifyContent: "space-between",
-                background: "rgba(0,0,0,0.2)", borderRadius: 10, padding: "8px 12px",
+                background: "rgba(var(--shade-rgb),0.2)", borderRadius: 10, padding: "8px 12px",
               }}>
                 <div>
                   <div style={{ fontSize: 13, fontWeight: 600, color: "var(--paper)" }}>{a.name}</div>
@@ -7112,8 +7105,8 @@ function FollowedNudge({ state, setState }) {
                   </div>
                 </div>
                 <button onClick={() => handleSave(a)} style={{
-                  background: "transparent", color: st?.color || "#1DB954",
-                  border: `1px solid ${st?.color || "#1DB954"}`,
+                  background: "transparent", color: st?.color || "var(--spotify)",
+                  border: `1px solid ${st?.color || "var(--spotify)"}`,
                   borderRadius: 999, padding: "5px 10px", cursor: "pointer",
                   fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1, fontWeight: 700,
                 }}>+ SAVE</button>
@@ -7213,7 +7206,7 @@ function BoardPlaylistCard({ state, spotifyArtists, connected }) {
             <button onClick={() => toggle(a.id)} aria-label={off ? `Add ${a.name} back` : `Drop ${a.name}`}
               style={{
                 width: 34, height: 34, borderRadius: 34, flexShrink: 0,
-                background: off ? "transparent" : "var(--ember)", color: off ? "var(--ink)" : "#fff",
+                background: off ? "transparent" : "var(--ember)", color: off ? "var(--ink)" : "var(--ink)",
                 border: off ? "1px solid var(--line-2)" : "none",
                 cursor: "pointer", fontSize: 16, display: "flex", alignItems: "center", justifyContent: "center",
               }}>{off ? "+" : "✓"}</button>
@@ -7309,7 +7302,7 @@ function BuildPlaylistButton({ state, soundtrack, plan, label: idleLabel, onResu
     run();
   };
 
-  let label, bg = "rgba(29,185,84,0.14)", color = "#1DB954", border = "1px solid #1DB954";
+  let label, bg = "rgba(var(--spotify-rgb),0.14)", color = "var(--spotify)", border = "1px solid var(--spotify)";
   if (status === "working") {
     label = buildProgress ? `BUILDING · ${buildProgress}` : "BUILDING…";
   } else if (status === "done") {
@@ -7317,7 +7310,7 @@ function BuildPlaylistButton({ state, soundtrack, plan, label: idleLabel, onResu
     label = soundtrack && sm > 0
       ? `✓ ${sm} OF YOUR SONGS + ${result?.added - sm} MORE — OPEN ↗`
       : `✓ ${result?.added} TRACKS · IN SET ORDER — OPEN ↗`;
-    bg = "#1DB954"; color = "#000"; border = "none";
+    bg = "var(--spotify)"; color = "var(--paper)"; border = "none";
   } else if (status === "err") {
     if (result?.reason === "reconnect" || result?.reason === "not_connected") label = "↻ TAP TO GRANT SPOTIFY ACCESS";
     else if (result?.reason === "no_target_playlist") label = "↗ CREATE 'PLURSKY' PLAYLIST IN SPOTIFY";
@@ -7327,7 +7320,7 @@ function BuildPlaylistButton({ state, soundtrack, plan, label: idleLabel, onResu
       const msg = (result?.message || "").slice(0, 28);
       label = msg ? `✕ ${result?.status} · ${msg}` : `✕ FAILED · ${result?.status || "?"}`;
     } else label = "✕ TRY AGAIN";
-    bg = "rgba(248,113,113,0.18)"; color = "#fecaca"; border = "1px solid #f87171";
+    bg = "rgba(var(--alert-rgb),0.16)"; color = "var(--ink)"; border = "1px solid var(--alert)";
   } else {
     label = idleLabel || (soundtrack ? "🎵 SOUNDTRACK → SPOTIFY" : "BUILD MY PLAYLIST");
   }
@@ -7373,7 +7366,7 @@ function AppleMusicPlaylistButton({ state, soundtrack }) {
     window.plurskyHaptic?.("MEDIUM"); run();
   };
 
-  let label, bg = "rgba(250,45,90,0.14)", color = "#fa2d5a", border = "1px solid #fa2d5a";
+  let label, bg = "rgba(var(--apple-music-rgb),0.14)", color = "var(--apple-music)", border = "1px solid var(--apple-music)";
   if (status === "working") {
     label = prog ? `BUILDING · ${prog}` : "BUILDING…";
   } else if (status === "done") {
@@ -7382,13 +7375,13 @@ function AppleMusicPlaylistButton({ state, soundtrack }) {
     label = soundtrack && sm > 0
       ? `✓ ${sm} OF YOUR SONGS + ${result?.added - sm} MORE${open}`
       : `✓ ${result?.added} TRACKS IN APPLE MUSIC${open}`;
-    bg = "#fa2d5a"; color = "#fff"; border = "none";
+    bg = "var(--apple-music)"; color = "var(--ink)"; border = "none";
   } else if (status === "err") {
     if (result?.reason === "not_connected") label = "↻ TAP TO CONNECT APPLE MUSIC";
     else if (result?.reason === "empty") label = "SAVE SETS FIRST";
     else if (result?.reason === "no_tracks") label = "✕ NO TRACKS FOUND";
     else label = `✕ ${result?.status || ""} TRY AGAIN`;
-    bg = "rgba(248,113,113,0.18)"; color = "#fecaca"; border = "1px solid #f87171";
+    bg = "rgba(var(--alert-rgb),0.16)"; color = "var(--ink)"; border = "1px solid var(--alert)";
   } else {
     label = soundtrack ? "🎵 SOUNDTRACK → APPLE MUSIC" : "BUILD APPLE MUSIC PLAYLIST";
   }
@@ -7916,13 +7909,13 @@ function WrappedStory({ recap, onClose }) {
           className: "mono",
           style: {
             fontSize: 9, letterSpacing: 0.8, padding: "6px 0",
-            borderBottom: i < 4 ? "1px solid rgba(255,255,255,0.1)" : "none",
+            borderBottom: i < 4 ? "1px solid rgba(var(--ink-rgb),0.1)" : "none",
             display: "flex", justifyContent: "space-between", alignItems: "center",
-            color: "rgba(255,255,255,0.9)",
+            color: "rgba(var(--ink-rgb),0.9)",
           },
         },
           React.createElement("span", { style: { fontWeight: 700 } }, `${i + 1}. ${s.song}`),
-          React.createElement("span", { style: { color: "rgba(255,255,255,0.4)", fontSize: 8 } }, `${s.count} photo${s.count > 1 ? "s" : ""}`)
+          React.createElement("span", { style: { color: "rgba(var(--ink-rgb),0.4)", fontSize: 8 } }, `${s.count} photo${s.count > 1 ? "s" : ""}`)
         ))
       ),
     });
@@ -7955,7 +7948,7 @@ function WrappedStory({ recap, onClose }) {
   return (
     <div style={{
       position: "fixed", inset: 0, zIndex: 9999,
-      background: "#000", display: "flex", flexDirection: "column",
+      background: "var(--paper)", display: "flex", flexDirection: "column",
     }}>
       {plusOpen && <PlusSheet feature="Wrapped export" onClose={() => setPlusOpen(false)} />}
       <div style={{
@@ -7965,7 +7958,7 @@ function WrappedStory({ recap, onClose }) {
         {cards.map((_, i) => (
           <div key={i} style={{
             flex: 1, height: 3, borderRadius: 2,
-            background: i <= idx ? "#fff" : "rgba(255,255,255,0.25)",
+            background: i <= idx ? "var(--ink)" : "rgba(var(--ink-rgb),0.25)",
             transition: "background 0.3s",
           }} />
         ))}
@@ -7974,7 +7967,7 @@ function WrappedStory({ recap, onClose }) {
       <button onClick={onClose} aria-label="Close" style={{
         position: "absolute", top: 22, right: 16, zIndex: 3,
         width: 36, height: 36, borderRadius: 36, border: "none",
-        background: "rgba(255,255,255,0.15)", color: "#fff",
+        background: "rgba(var(--ink-rgb),0.15)", color: "var(--ink)",
         fontSize: 18, cursor: "pointer", backdropFilter: "blur(4px)",
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>✕</button>
@@ -7988,16 +7981,16 @@ function WrappedStory({ recap, onClose }) {
         cursor: "pointer", userSelect: "none",
       }}>
         <div className="mono" style={{
-          fontSize: 10, letterSpacing: 2, color: "rgba(255,255,255,0.5)",
+          fontSize: 10, letterSpacing: 2, color: "rgba(var(--ink-rgb),0.5)",
           fontWeight: 700, marginBottom: 24,
         }}>{card.kicker}</div>
         <div className="serif" style={{
           fontSize: card.headline?.props?.children?.toString?.()?.length > 15 ? 38 : 64,
-          lineHeight: 0.95, color: "#fff", textAlign: "center",
+          lineHeight: 0.95, color: "var(--ink)", textAlign: "center",
           letterSpacing: -1, marginBottom: 16,
         }}>{card.headline}</div>
         <div style={{
-          fontSize: 14, color: "rgba(255,255,255,0.6)", textAlign: "center",
+          fontSize: 14, color: "rgba(var(--ink-rgb),0.6)", textAlign: "center",
           lineHeight: 1.5, maxWidth: 280,
         }}>{card.sub}</div>
           {card.custom && card.custom}
@@ -8011,15 +8004,15 @@ function WrappedStory({ recap, onClose }) {
         {card.final ? (
           <button onClick={onClose} className="mono" style={{
             padding: "12px 32px", borderRadius: 999, border: "none",
-            background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
-            color: "#fff", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
-            cursor: "pointer", boxShadow: "0 4px 20px rgba(109,40,217,0.4)",
+            background: "linear-gradient(135deg, var(--signal), var(--signal))",
+            color: "var(--ink)", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
+            cursor: "pointer", boxShadow: "0 4px 20px rgba(var(--signal-rgb),0.4)",
           }}>CLOSE WRAPPED</button>
         ) : (
           <button onClick={handleExport} className="mono" style={{
             padding: "10px 20px", borderRadius: 999,
-            border: "1px solid rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.08)",
-            color: "rgba(255,255,255,0.7)", fontSize: 9, letterSpacing: 1.4, fontWeight: 700,
+            border: "1px solid rgba(var(--ink-rgb),0.2)", background: "rgba(var(--ink-rgb),0.08)",
+            color: "rgba(var(--ink-rgb),0.7)", fontSize: 9, letterSpacing: 1.4, fontWeight: 700,
             cursor: "pointer", backdropFilter: "blur(4px)",
           }}>↗ SHARE CARD{!_isPlusSub() ? " · PLUS" : ""}</button>
         )}
@@ -8589,7 +8582,7 @@ function _showShareLimitToast() {
   if (el) return;
   el = document.createElement("div");
   el.id = "plursky-share-limit";
-  el.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:9999;padding:14px 20px;text-align:center;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:1.2px;font-weight:700;color:#fff;background:#e85d2e;";
+  el.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:9999;padding:14px 20px;text-align:center;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:1.2px;font-weight:700;color:var(--on-signal);background:var(--signal);";
   el.textContent = "📸 DAILY SHARE LIMIT REACHED · UPGRADE TO PLURSKY+ FOR UNLIMITED";
   document.body.appendChild(el);
   setTimeout(() => el.remove(), 4000);
@@ -8680,11 +8673,11 @@ function FestivalYearCard({ yearData }) {
   };
   return (
     <RecapCard kicker={`YOUR FESTIVAL YEAR · ${yd.year}`} paper="#0a0618" accent="#fff" mono="rgba(247,237,224,0.5)">
-      <div className="serif" style={{ fontSize: 28, lineHeight: 1.05, color: "#f7ede0", letterSpacing: -0.3 }}>
+      <div className="serif" style={{ fontSize: 28, lineHeight: 1.05, color: "var(--ink)", letterSpacing: -0.3 }}>
         {yd.totalFestivals} festivals. One{" "}
-        <span style={{ fontStyle: "italic", color: "#a78bfa" }}>year</span>.
+        <span style={{ fontStyle: "italic", color: "var(--signal-ink)" }}>year</span>.
       </div>
-      <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "rgba(247,237,224,0.6)", marginTop: 8 }}>
+      <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "rgba(var(--ink-rgb),0.6)", marginTop: 8 }}>
         {yd.totalSets} SETS · {yd.totalMoments} MEMORIES{yd.totalMin > 0 ? ` · ${_fmtHrsMin(yd.totalMin).toUpperCase()} ON DANCEFLOORS` : ""}
       </div>
 
@@ -8694,21 +8687,21 @@ function FestivalYearCard({ yearData }) {
           <div key={f.id} style={{
             display: "flex", alignItems: "center", gap: 10,
             padding: "9px 12px", borderRadius: 12,
-            background: "rgba(247,237,224,0.06)", border: "1px solid rgba(247,237,224,0.1)",
+            background: "rgba(var(--ink-rgb),0.06)", border: "1px solid rgba(var(--ink-rgb),0.1)",
           }}>
             <div style={{
               width: 34, height: 34, borderRadius: 10, flexShrink: 0,
-              background: "linear-gradient(135deg, var(--ember), #6D28D9)",
+              background: "linear-gradient(135deg, var(--ember), var(--signal))",
               display: "flex", alignItems: "center", justifyContent: "center",
-              color: "#fff", fontWeight: 800, fontSize: 12,
+              color: "var(--ink)", fontWeight: 800, fontSize: 12,
             }}>
               {(f.brand || f.name || "?").slice(0, 2).toUpperCase()}
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="serif" style={{ fontSize: 15, lineHeight: 1.1, color: "#f7ede0", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+              <div className="serif" style={{ fontSize: 15, lineHeight: 1.1, color: "var(--ink)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                 {f.name}
               </div>
-              <div className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(247,237,224,0.45)", marginTop: 2 }}>
+              <div className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.45)", marginTop: 2 }}>
                 {f.sets} SETS · {f.moments} MEMORIES{f.archived ? "" : " · LIVE"}
               </div>
             </div>
@@ -8719,15 +8712,15 @@ function FestivalYearCard({ yearData }) {
       {/* Top artists across all festivals */}
       {yd.topArtists.length > 0 && (
         <div style={{ marginTop: 12 }}>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "rgba(247,237,224,0.4)", fontWeight: 700, marginBottom: 6 }}>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "rgba(var(--ink-rgb),0.4)", fontWeight: 700, marginBottom: 6 }}>
             YOUR ARTISTS OF THE YEAR
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
             {yd.topArtists.slice(0, 3).map(a => (
               <span key={a.name} className="mono" style={{
                 padding: "4px 10px", borderRadius: 999,
-                background: "rgba(167,139,250,0.15)", border: "1px solid rgba(167,139,250,0.3)",
-                color: "#e9e2f7", fontSize: 9, letterSpacing: 1, fontWeight: 700,
+                background: "rgba(var(--signal-rgb),0.15)", border: "1px solid rgba(var(--signal-rgb),0.3)",
+                color: "var(--ink)", fontSize: 9, letterSpacing: 1, fontWeight: 700,
               }}>★ {a.name.toUpperCase()}{a.count > 1 ? ` ×${a.count}` : ""}</span>
             ))}
           </div>
@@ -8740,8 +8733,8 @@ function FestivalYearCard({ yearData }) {
         className="mono"
         style={{
           width: "100%", marginTop: 14, padding: "13px",
-          background: sharing ? "rgba(109,40,217,0.4)" : "linear-gradient(135deg, #6D28D9, #e85d2e)",
-          color: "#fff", border: "none", borderRadius: 12,
+          background: sharing ? "rgba(var(--signal-rgb),0.4)" : "linear-gradient(135deg, var(--signal), var(--signal))",
+          color: "var(--ink)", border: "none", borderRadius: 12,
           cursor: sharing ? "wait" : "pointer",
           fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>{sharing ? "⏳ RENDERING…" : "📤 SHARE YOUR YEAR"}</button>
@@ -8866,7 +8859,7 @@ function TiltCard({ style, children }) {
         {children}
         <div aria-hidden="true" style={{
           position: "absolute", top: 0, right: 0, bottom: 0, left: 0, pointerEvents: "none", borderRadius: "inherit",
-          background: t ? `radial-gradient(circle at ${t.gx}% ${t.gy}%, rgba(255,255,255,0.5), rgba(255,255,255,0) 58%)` : "none",
+          background: t ? `radial-gradient(circle at ${t.gx}% ${t.gy}%, rgba(var(--ink-rgb),0.5), rgba(var(--ink-rgb),0) 58%)` : "none",
           mixBlendMode: "soft-light", opacity: t ? 1 : 0, transition: "opacity 220ms",
         }} />
       </div>
@@ -9088,10 +9081,10 @@ function RecapScreen({ state, setState }) {
         <div style={{
           borderRadius: 22, padding: "26px 22px", marginBottom: 14,
           background: heroPhotoUrl
-            ? `linear-gradient(155deg, rgba(26,18,13,0.85) 0%, rgba(123,61,154,0.72) 60%, rgba(232,93,46,0.65) 130%), url(${heroPhotoUrl}) center/cover`
-            : "linear-gradient(155deg, var(--ink) 0%, var(--horizon) 60%, var(--ember) 130%)",
-          color: "var(--paper)",
-          boxShadow: "0 10px 30px rgba(26,18,13,0.18)",
+            ? `linear-gradient(155deg, rgba(var(--shade-rgb),0.72) 0%, rgba(var(--shade-rgb),0.45) 55%, rgba(var(--signal-rgb),0.35) 130%), url(${heroPhotoUrl}) center/cover`
+            : "linear-gradient(155deg, var(--paper-3) 0%, var(--paper-2) 60%, rgba(var(--signal-rgb),0.5) 130%)",
+          // Type on the user's photo: media ink, over a dark scrim.
+          color: "var(--media-ink)",
           position: "relative",
           overflow: "hidden",
         }}>
@@ -9101,13 +9094,13 @@ function RecapScreen({ state, setState }) {
             style={{
               position: "absolute", top: 16, right: 16,
               padding: "7px 12px", borderRadius: 999,
-              background: "rgba(247,237,224,0.18)", color: "#f7ede0",
-              border: "1px solid rgba(247,237,224,0.35)", cursor: "pointer",
+              background: "rgba(var(--ink-rgb),0.18)", color: "var(--ink)",
+              border: "1px solid rgba(var(--ink-rgb),0.35)", cursor: "pointer",
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
               backdropFilter: "blur(8px)",
             }}>↗ SHARE</button>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "rgba(247,237,224,0.75)", fontWeight: 700, marginBottom: 10 }}>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "rgba(var(--ink-rgb),0.75)", fontWeight: 700, marginBottom: 10 }}>
               YOUR {(CFG.shortName || "FESTIVAL").toUpperCase()} · {CFG.year || ""}
             </div>
           </div>
@@ -9117,19 +9110,19 @@ function RecapScreen({ state, setState }) {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
             <div>
               <div className="serif" style={{ fontSize: 36, lineHeight: 1 }}>{recap.setsCount}</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "rgba(247,237,224,0.7)", marginTop: 3 }}>SETS CAUGHT</div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "rgba(var(--ink-rgb),0.7)", marginTop: 3 }}>SETS CAUGHT</div>
             </div>
             <div>
               <div className="serif" style={{ fontSize: 36, lineHeight: 1 }}>{_fmtHrsMin(recap.totalMin)}</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "rgba(247,237,224,0.7)", marginTop: 3 }}>ON DANCEFLOORS</div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "rgba(var(--ink-rgb),0.7)", marginTop: 3 }}>ON DANCEFLOORS</div>
             </div>
             <div>
               <div className="serif" style={{ fontSize: 36, lineHeight: 1 }}>{recap.nights}</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "rgba(247,237,224,0.7)", marginTop: 3 }}>NIGHTS</div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "rgba(var(--ink-rgb),0.7)", marginTop: 3 }}>NIGHTS</div>
             </div>
             <div>
               <div className="serif" style={{ fontSize: 36, lineHeight: 1 }}>{recap.headlinersCaught}</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "rgba(247,237,224,0.7)", marginTop: 3 }}>HEADLINERS</div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "rgba(var(--ink-rgb),0.7)", marginTop: 3 }}>HEADLINERS</div>
             </div>
           </div>
         </div>
@@ -9139,15 +9132,14 @@ function RecapScreen({ state, setState }) {
           <button onClick={() => setWrappedOpen(true)} style={{
             width: "100%", padding: "16px 20px", marginBottom: 14,
             borderRadius: 16, border: "none", cursor: "pointer",
-            background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
-            color: "#fff", display: "flex", alignItems: "center", justifyContent: "space-between",
-            boxShadow: "0 4px 20px rgba(109,40,217,0.35)",
+            background: "var(--signal)",
+            color: "var(--on-signal)", display: "flex", alignItems: "center", justifyContent: "space-between",
           }}>
             <div style={{ textAlign: "left" }}>
               <div className="serif" style={{ fontSize: 20, lineHeight: 1.1 }}>
                 Your <em>Wrapped</em>
               </div>
-              <div className="mono" style={{ fontSize: 8, letterSpacing: 1.4, color: "rgba(255,255,255,0.6)", marginTop: 3, fontWeight: 700 }}>
+              <div className="mono" style={{ fontSize: 8, letterSpacing: 1.4, color: "rgba(var(--ink-rgb),0.6)", marginTop: 3, fontWeight: 700 }}>
                 SWIPE THROUGH YOUR FESTIVAL STORY
               </div>
             </div>
@@ -9160,9 +9152,9 @@ function RecapScreen({ state, setState }) {
           const soundtrack = _aggregateSoundtrack(_readMoments());
           if (!soundtrack.length) return null;
           return (
-            <RecapCard kicker="YOUR SOUNDTRACK" paper="#1DB95418" mono="#1DB954">
+            <RecapCard kicker="YOUR SOUNDTRACK">
               <div className="serif" style={{ fontSize: 28, lineHeight: 1.1, letterSpacing: -0.4, marginBottom: 10 }}>
-                <span style={{ color: "#1DB954" }}>{soundtrack.length}</span> songs were playing when you took photos
+                <span style={{ color: "var(--spotify)" }}>{soundtrack.length}</span> songs were playing when you took photos
               </div>
               <div style={{ marginTop: 8 }}>
                 {soundtrack.slice(0, 5).map((s, i) => (
@@ -9183,7 +9175,7 @@ function RecapScreen({ state, setState }) {
                       </div>
                     </div>
                     <div className="mono" style={{
-                      fontSize: 8, letterSpacing: 0.8, color: "#1DB954", fontWeight: 700, flexShrink: 0, marginLeft: 8,
+                      fontSize: 8, letterSpacing: 0.8, color: "var(--spotify)", fontWeight: 700, flexShrink: 0, marginLeft: 8,
                     }}>
                       {s.count} {s.count === 1 ? "PHOTO" : "PHOTOS"}
                     </div>
@@ -9197,7 +9189,7 @@ function RecapScreen({ state, setState }) {
                 }} style={{
                   marginTop: 12, width: "100%", padding: "10px 16px",
                   borderRadius: 20, border: "none", cursor: "pointer",
-                  background: "#1DB954", color: "#fff", fontWeight: 700,
+                  background: "var(--spotify)", color: "var(--paper)", fontWeight: 700,
                   fontSize: 10, letterSpacing: 1,
                   display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
                 }}>
@@ -9210,13 +9202,9 @@ function RecapScreen({ state, setState }) {
 
         {/* TOP STAGE */}
         {recap.topStage && (
-          <RecapCard
-            kicker="YOUR HEADQUARTERS"
-            paper={`${recap.topStage.color}18`}
-            mono={recap.topStage.color}
-          >
+          <RecapCard kicker="YOUR HEADQUARTERS">
             <div className="serif" style={{ fontSize: 32, lineHeight: 1, letterSpacing: -0.4, marginBottom: 8 }}>
-              You lived at <span style={{ fontStyle: "italic", color: recap.topStage.color }}>{recap.topStage.name}</span>
+              You lived at <span style={{ fontStyle: "italic", color: "var(--signal-ink)" }}>{recap.topStage.name}</span>
             </div>
             <div className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "var(--muted)", marginTop: 6, fontWeight: 600 }}>
               {_fmtHrsMin(recap.topStageMin)} of your weekend was right here
@@ -9229,7 +9217,7 @@ function RecapScreen({ state, setState }) {
           <RecapCard kicker="BUSIEST NIGHT">
             <div className="serif" style={{ fontSize: 32, lineHeight: 1.0, letterSpacing: -0.4 }}>
               <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>{recap.busiestNightLabel}</span> was your peak —
-              {" "}{recap.busiestNightCount} sets in one night.
+              {" "}{recap.busiestNightCount} {recap.busiestNightCount === 1 ? "set" : "sets"} in one night.
             </div>
           </RecapCard>
         )}
@@ -9379,7 +9367,7 @@ function RecapScreen({ state, setState }) {
                 }}
                 style={{
                   padding: "8px 14px", borderRadius: 999,
-                  background: "var(--ember)", color: "#fff", border: "none",
+                  background: "var(--ember)", color: "var(--ink)", border: "none",
                   fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
                   cursor: "pointer",
                 }}>📸 SHARE WEEKEND</button>
@@ -9396,7 +9384,7 @@ function RecapScreen({ state, setState }) {
                 }}
                 style={{
                   padding: "8px 14px", borderRadius: 999,
-                  background: "#6D28D9", color: "#fff", border: "none",
+                  background: "var(--signal)", color: "var(--ink)", border: "none",
                   fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
                   cursor: "pointer",
                 }}>🎬 GIF</button>
@@ -9448,9 +9436,9 @@ function RecapScreen({ state, setState }) {
 
           return (
             <RecapCard kicker="RECAP VIDEO" paper="#1a120d" accent="#fff">
-              <div className="serif" style={{ fontSize: 28, lineHeight: 1.05, color: "#f7ede0", letterSpacing: -0.3 }}>
+              <div className="serif" style={{ fontSize: 28, lineHeight: 1.05, color: "var(--ink)", letterSpacing: -0.3 }}>
                 Turn your memories into a{" "}
-                <span style={{ fontStyle: "italic", color: "#a78bfa" }}>video</span>.
+                <span style={{ fontStyle: "italic", color: "var(--signal-ink)" }}>video</span>.
               </div>
               <div style={{ display: "flex", gap: 6, marginTop: 12 }}>
                 {["highlight", "diary", "ditl"].map(t => {
@@ -9458,8 +9446,8 @@ function RecapScreen({ state, setState }) {
                   return (
                     <button key={t} onClick={() => locked ? setVidPlusOpen(true) : setVidTemplate(t)} className="mono" style={{
                       padding: "5px 10px", borderRadius: 999, cursor: "pointer", border: "none",
-                      background: vidTemplate === t ? "#6D28D9" : "rgba(247,237,224,0.1)",
-                      color: vidTemplate === t ? "#fff" : locked ? "rgba(247,237,224,0.25)" : "rgba(247,237,224,0.5)",
+                      background: vidTemplate === t ? "var(--signal)" : "rgba(var(--ink-rgb),0.1)",
+                      color: vidTemplate === t ? "var(--ink)" : locked ? "rgba(var(--ink-rgb),0.25)" : "rgba(var(--ink-rgb),0.5)",
                       fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
                       opacity: locked ? 0.6 : 1,
                     }}>{t === "highlight" ? "HIGHLIGHT REEL" : t === "diary" ? "🔒 FESTIVAL DIARY" : "🔒 DAY IN THE LIFE"}{locked ? "" : ""}</button>
@@ -9467,7 +9455,7 @@ function RecapScreen({ state, setState }) {
                 })}
               </div>
               {vidPlusOpen && <PlusSheet feature="premium video styles" onClose={() => setVidPlusOpen(false)} />}
-              <div className="mono" style={{ fontSize: 9, color: "rgba(247,237,224,0.35)", marginTop: 8, letterSpacing: 1 }}>
+              <div className="mono" style={{ fontSize: 9, color: "rgba(var(--ink-rgb),0.35)", marginTop: 8, letterSpacing: 1 }}>
                 {vidTemplate === "highlight" ? "Fast cuts synced to the beat — your best moments, drop by drop." : vidTemplate === "diary" ? "Slow, cinematic. Your weekend told as a story." : "Morning to sunrise — one continuous timeline."}
               </div>
 
@@ -9478,37 +9466,37 @@ function RecapScreen({ state, setState }) {
                 {[["story", "📱 STORY 9:16"], ["feed", "FEED 4:5"]].map(([f, label]) => (
                   <button key={f} onClick={() => setVidFormat(f)} className="mono" style={{
                     padding: "5px 10px", borderRadius: 999, cursor: "pointer",
-                    border: vidFormat === f ? "1px solid #a78bfa" : "1px solid rgba(247,237,224,0.15)",
-                    background: vidFormat === f ? "rgba(109,40,217,0.35)" : "transparent",
-                    color: vidFormat === f ? "#fff" : "rgba(247,237,224,0.5)",
+                    border: vidFormat === f ? "1px solid var(--signal)" : "1px solid rgba(var(--ink-rgb),0.15)",
+                    background: vidFormat === f ? "rgba(var(--signal-rgb),0.35)" : "transparent",
+                    color: vidFormat === f ? "var(--ink)" : "rgba(var(--ink-rgb),0.5)",
                     fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
                   }}>{label}</button>
                 ))}
-                <span className="mono" style={{ fontSize: 8, color: "rgba(247,237,224,0.3)", letterSpacing: 1 }}>
+                <span className="mono" style={{ fontSize: 8, color: "rgba(var(--ink-rgb),0.3)", letterSpacing: 1 }}>
                   {vidFormat === "story" ? "FOR IG STORIES · TIKTOK" : "FOR THE FEED"}
                 </span>
               </div>
 
               {/* Track picker — Plus-only custom music */}
               <div style={{ marginTop: 14 }}>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(247,237,224,0.4)", marginBottom: 6 }}>
+                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(var(--ink-rgb),0.4)", marginBottom: 6 }}>
                   🎵 {selectedTrack ? "SOUNDTRACK" : _isPlusSub() ? "PICK A SONG (OPTIONAL)" : "🔒 CUSTOM SOUNDTRACK · PLURSKY+"}
                 </div>
                 {!_isPlusSub() && !selectedTrack ? (
-                  <div className="mono" style={{ padding: "8px 12px", borderRadius: 10, background: "rgba(247,237,224,0.04)", border: "1px solid rgba(247,237,224,0.08)", color: "rgba(247,237,224,0.2)", fontSize: 10, textAlign: "center" }}>
+                  <div className="mono" style={{ padding: "8px 12px", borderRadius: 10, background: "rgba(var(--ink-rgb),0.04)", border: "1px solid rgba(var(--ink-rgb),0.08)", color: "rgba(var(--ink-rgb),0.2)", fontSize: 10, textAlign: "center" }}>
                     Upgrade to Plursky+ to pick your own soundtrack
                   </div>
                 ) : selectedTrack ? (
-                  <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 10px", borderRadius: 10, background: "rgba(109,40,217,0.2)" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 10px", borderRadius: 10, background: "rgba(var(--signal-rgb),0.2)" }}>
                     {selectedTrack.album?.images?.[0]?.url && (
                       <img src={selectedTrack.album.images[0].url} alt="" style={{ width: 32, height: 32, borderRadius: 6 }} />
                     )}
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 13, color: "#f7ede0", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{selectedTrack.name}</div>
-                      <div className="mono" style={{ fontSize: 9, color: "rgba(247,237,224,0.5)" }}>{selectedTrack.artists?.[0]?.name}</div>
+                      <div style={{ fontSize: 13, color: "var(--ink)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{selectedTrack.name}</div>
+                      <div className="mono" style={{ fontSize: 9, color: "rgba(var(--ink-rgb),0.5)" }}>{selectedTrack.artists?.[0]?.name}</div>
                     </div>
                     <button onClick={() => { setSelectedTrack(null); if (previewAudio) { previewAudio.pause(); setPreviewAudio(null); } }} aria-label="Remove song" className="mono" style={{
-                      background: "none", border: "none", color: "rgba(247,237,224,0.4)", cursor: "pointer", fontSize: 14, padding: "4px",
+                      background: "none", border: "none", color: "rgba(var(--ink-rgb),0.4)", cursor: "pointer", fontSize: 14, padding: "4px",
                     }}>×</button>
                   </div>
                 ) : (
@@ -9519,8 +9507,8 @@ function RecapScreen({ state, setState }) {
                       placeholder="Search for a song…"
                       style={{
                         width: "100%", padding: "8px 12px", borderRadius: 10,
-                        background: "rgba(247,237,224,0.08)", border: "1px solid rgba(247,237,224,0.1)",
-                        color: "#f7ede0", fontFamily: "Geist Mono, monospace", fontSize: 10,
+                        background: "rgba(var(--ink-rgb),0.08)", border: "1px solid rgba(var(--ink-rgb),0.1)",
+                        color: "var(--ink)", fontFamily: "Geist Mono, monospace", fontSize: 10,
                         outline: "none",
                       }}
                     />
@@ -9529,19 +9517,19 @@ function RecapScreen({ state, setState }) {
                         {trackResults.map((tr, i) => (
                           <button key={i} onClick={() => { setSelectedTrack(tr); setTrackResults([]); setTrackQuery(""); togglePreview(tr.preview_url); }} style={{
                             display: "flex", alignItems: "center", gap: 8, padding: "6px 8px", borderRadius: 8,
-                            background: "rgba(247,237,224,0.05)", border: "none", cursor: "pointer", textAlign: "left", width: "100%",
+                            background: "rgba(var(--ink-rgb),0.05)", border: "none", cursor: "pointer", textAlign: "left", width: "100%",
                           }}>
                             {tr.album?.images?.[0]?.url && <img src={tr.album.images[0].url} alt="" style={{ width: 28, height: 28, borderRadius: 4 }} />}
                             <div style={{ flex: 1, minWidth: 0 }}>
-                              <div style={{ fontSize: 12, color: "#f7ede0", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{tr.name}</div>
-                              <div className="mono" style={{ fontSize: 8, color: "rgba(247,237,224,0.4)" }}>{tr.artists?.[0]?.name}</div>
+                              <div style={{ fontSize: 12, color: "var(--ink)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{tr.name}</div>
+                              <div className="mono" style={{ fontSize: 8, color: "rgba(var(--ink-rgb),0.4)" }}>{tr.artists?.[0]?.name}</div>
                             </div>
-                            <div className="mono" style={{ fontSize: 8, color: "#a78bfa" }}>▶</div>
+                            <div className="mono" style={{ fontSize: 8, color: "var(--signal-ink)" }}>▶</div>
                           </button>
                         ))}
                       </div>
                     )}
-                    {searching && <div className="mono" style={{ fontSize: 9, color: "rgba(247,237,224,0.3)", marginTop: 4 }}>Searching…</div>}
+                    {searching && <div className="mono" style={{ fontSize: 9, color: "rgba(var(--ink-rgb),0.3)", marginTop: 4 }}>Searching…</div>}
                   </>
                 )}
               </div>
@@ -9580,8 +9568,8 @@ function RecapScreen({ state, setState }) {
                 className="mono"
                 style={{
                   width: "100%", marginTop: 14, padding: "13px",
-                  background: vidState === "rendering" ? "rgba(109,40,217,0.4)" : "linear-gradient(135deg, #6D28D9, #e85d2e)",
-                  color: "#fff", border: "none", borderRadius: 12, cursor: vidState === "rendering" ? "wait" : "pointer",
+                  background: vidState === "rendering" ? "rgba(var(--signal-rgb),0.4)" : "linear-gradient(135deg, var(--signal), var(--signal))",
+                  color: "var(--ink)", border: "none", borderRadius: 12, cursor: vidState === "rendering" ? "wait" : "pointer",
                   fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
                 }}>{vidState === "rendering" ? "⏳ RENDERING…" : "🎬 CREATE RECAP VIDEO"}</button>
             </RecapCard>
@@ -9605,7 +9593,7 @@ function RecapScreen({ state, setState }) {
                     <div style={{ flex: 1, height: 18, borderRadius: 9, background: "var(--paper-2)", overflow: "hidden" }}>
                       <div style={{
                         width: `${Math.max(8, Math.round(count / maxCount * 100))}%`, height: "100%",
-                        borderRadius: 9, background: i === 0 ? "var(--ember)" : i === 1 ? "#6D28D9" : "var(--line-2)",
+                        borderRadius: 9, background: i === 0 ? "var(--ember)" : i === 1 ? "var(--signal)" : "var(--line-2)",
                         transition: "width .3s",
                       }} />
                     </div>
@@ -9659,8 +9647,8 @@ function RecapScreen({ state, setState }) {
           const visible = showAll ? discoveries : discoveries.slice(0, freeLimit);
           return (
             <RecapCard kicker="HIDDEN GEMS — AI PICKS FOR YOU" paper="var(--night)" accent="#fff">
-              <div className="serif" style={{ fontSize: 22, lineHeight: 1.1, color: "#f7ede0", marginBottom: 12 }}>
-                Artists you'd <em style={{ color: "#a78bfa" }}>love</em>
+              <div className="serif" style={{ fontSize: 22, lineHeight: 1.1, color: "var(--ink)", marginBottom: 12 }}>
+                Artists you'd <em style={{ color: "var(--signal-ink)" }}>love</em>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 {visible.map((a, i) => {
@@ -9670,17 +9658,17 @@ function RecapScreen({ state, setState }) {
                     <div key={a.id} style={{
                       display: "flex", alignItems: "center", gap: 10,
                       padding: "10px 12px", borderRadius: 10,
-                      background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)",
+                      background: "rgba(var(--ink-rgb),0.06)", border: "1px solid rgba(var(--ink-rgb),0.08)",
                     }}>
                       <div style={{
                         width: 28, height: 28, borderRadius: "50%", flexShrink: 0,
-                        background: stage?.color || "#6D28D9",
+                        background: stage?.color || "var(--signal)",
                         display: "flex", alignItems: "center", justifyContent: "center",
-                        fontSize: 12, color: "#fff", fontWeight: 700,
+                        fontSize: 12, color: "var(--ink)", fontWeight: 700,
                       }}>{i + 1}</div>
                       <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ fontSize: 13, fontWeight: 600, color: "#f7ede0", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</div>
-                        <div className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(255,255,255,0.4)", marginTop: 2 }}>
+                        <div style={{ fontSize: 13, fontWeight: 600, color: "var(--ink)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</div>
+                        <div className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.4)", marginTop: 2 }}>
                           {a._reason || (stage?.name || "")} · {FESTIVAL_CONFIG.dayDates?.[a.day]?.short || ""} {window.fmt12?.(a.start) || a.start}
                         </div>
                       </div>
@@ -9690,9 +9678,9 @@ function RecapScreen({ state, setState }) {
                         try { window.plurskyHaptic?.("LIGHT"); } catch {}
                       }} className="mono" style={{
                         padding: "5px 10px", borderRadius: 999, flexShrink: 0,
-                        background: isSaved ? "rgba(45,122,85,0.3)" : "rgba(167,139,250,0.2)",
-                        border: isSaved ? "1px solid rgba(45,122,85,0.5)" : "1px solid rgba(167,139,250,0.4)",
-                        color: isSaved ? "#2d7a55" : "#a78bfa",
+                        background: isSaved ? "rgba(var(--signal-rgb),0.3)" : "rgba(var(--signal-rgb),0.2)",
+                        border: isSaved ? "1px solid rgba(var(--signal-rgb),0.5)" : "1px solid rgba(var(--signal-rgb),0.4)",
+                        color: isSaved ? "var(--signal-ink)" : "var(--signal-ink)",
                         fontSize: 8, letterSpacing: 1.2, fontWeight: 700, cursor: "pointer",
                       }}>{isSaved ? "✓ SAVED" : "+ SAVE"}</button>
                     </div>
@@ -9701,7 +9689,7 @@ function RecapScreen({ state, setState }) {
                 {!showAll && discoveries.length > freeLimit && (
                   <PlusGate feature="all hidden gems">
                     <div style={{ padding: 20, textAlign: "center" }}>
-                      <div className="mono" style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", letterSpacing: 1.2 }}>
+                      <div className="mono" style={{ fontSize: 10, color: "rgba(var(--ink-rgb),0.5)", letterSpacing: 1.2 }}>
                         +{discoveries.length - freeLimit} MORE PICKS WAITING
                       </div>
                     </div>
@@ -9754,33 +9742,33 @@ function RecapScreen({ state, setState }) {
         {/* PLURSKY+ WOW FEATURES */}
         {recap.momentsCount > 0 && (
           <RecapCard kicker="PLURSKY+ EXCLUSIVES" paper="#1a120d" accent="#fff">
-            <div className="serif" style={{ fontSize: 24, lineHeight: 1.1, color: "#f7ede0", letterSpacing: -0.3 }}>
-              Your weekend, <span style={{ fontStyle: "italic", color: "#a78bfa" }}>elevated</span>.
+            <div className="serif" style={{ fontSize: 24, lineHeight: 1.1, color: "var(--ink)", letterSpacing: -0.3 }}>
+              Your weekend, <span style={{ fontStyle: "italic", color: "var(--signal-ink)" }}>elevated</span>.
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 14 }}>
               <button onClick={async () => {
                 const all = []; try { const raw = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}"); for (const n of Object.keys(raw)) for (const m of (raw[n] || [])) all.push(m); } catch {}
                 await window._shareFestivalDNA?.(all);
               }} className="mono" style={{
-                padding: "12px", background: "linear-gradient(90deg, #e85d2e, #6D28D9, #2d7a55, #f59a36)", color: "#fff",
+                padding: "12px", background: "linear-gradient(90deg, var(--signal), var(--signal), var(--signal), var(--signal))", color: "var(--ink)",
                 border: "none", borderRadius: 10, cursor: "pointer", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
               }}>🧬 FESTIVAL DNA — YOUR UNIQUE COLOR BARCODE</button>
               <button onClick={() => window._shareFestivalPassport?.(state)} className="mono" style={{
-                padding: "12px", background: "rgba(247,237,224,0.08)", color: "#f7ede0",
-                border: "1px solid rgba(247,237,224,0.15)", borderRadius: 10, cursor: "pointer",
+                padding: "12px", background: "rgba(var(--ink-rgb),0.08)", color: "var(--ink)",
+                border: "1px solid rgba(var(--ink-rgb),0.15)", borderRadius: 10, cursor: "pointer",
                 fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
               }}>🛂 FESTIVAL PASSPORT — STAGE STAMPS</button>
               <button onClick={async () => {
                 const all = []; try { const raw = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}"); for (const n of Object.keys(raw)) for (const m of (raw[n] || [])) all.push(m); } catch {}
                 await window._shareFilmStrip?.(all);
               }} className="mono" style={{
-                padding: "12px", background: "rgba(247,237,224,0.08)", color: "#f7ede0",
-                border: "1px solid rgba(247,237,224,0.15)", borderRadius: 10, cursor: "pointer",
+                padding: "12px", background: "rgba(var(--ink-rgb),0.08)", color: "var(--ink)",
+                border: "1px solid rgba(var(--ink-rgb),0.15)", borderRadius: 10, cursor: "pointer",
                 fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
               }}>🎞️ FILM STRIP — RETRO PHOTO REEL</button>
             </div>
             {!_isPlusSub() && (
-              <div className="mono" style={{ fontSize: 9, color: "rgba(247,237,224,0.3)", marginTop: 10, textAlign: "center", letterSpacing: 1.2 }}>
+              <div className="mono" style={{ fontSize: 9, color: "rgba(var(--ink-rgb),0.3)", marginTop: 10, textAlign: "center", letterSpacing: 1.2 }}>
                 FREE PREVIEW WITH WATERMARK · UPGRADE TO REMOVE
               </div>
             )}
@@ -9848,7 +9836,7 @@ function RecapScreen({ state, setState }) {
             {playlistState.status === "done" ? (
               <div style={{
                 padding: "10px 12px", borderRadius: 10,
-                background: "rgba(45,122,85,0.12)", border: "1px solid rgba(45,122,85,0.4)",
+                background: "rgba(var(--signal-rgb),0.12)", border: "1px solid rgba(var(--signal-rgb),0.4)",
               }}>
                 <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--success)", fontWeight: 700, marginBottom: 6 }}>
                   ✓ {playlistState.added} TRACKS ADDED
@@ -9862,8 +9850,8 @@ function RecapScreen({ state, setState }) {
               </div>
             ) : (
               <button onClick={buildAttendedPlaylist} disabled={playlistState.status === "building"} style={{
-                background: playlistState.status === "building" ? "var(--paper-2)" : "#1DB954",
-                color: playlistState.status === "building" ? "var(--muted)" : "#fff",
+                background: playlistState.status === "building" ? "var(--paper-2)" : "var(--spotify)",
+                color: playlistState.status === "building" ? "var(--muted)" : "var(--ink)",
                 border: "none", borderRadius: 999, padding: "11px 18px",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
                 cursor: playlistState.status === "building" ? "default" : "pointer",
@@ -9873,7 +9861,7 @@ function RecapScreen({ state, setState }) {
               </button>
             )}
             {playlistState.status === "error" && (
-              <div className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "#c14a4a", marginTop: 8, fontWeight: 600 }}>
+              <div className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "var(--alert)", marginTop: 8, fontWeight: 600 }}>
                 {playlistState.msg}
               </div>
             )}
@@ -10290,7 +10278,7 @@ function LiveCheckinSheet({ st, onPick, onSave, onCancel }) {
   const choose = (a) => { onPick({ artistId: a ? a.id : null, stageId: a ? a.stage : (res.stageId || null), source: "manual", night: a ? a.day : res.night }); setChoosing(false); };
 
   return ReactDOM.createPortal(
-    <div onClick={onCancel} style={{ position: "fixed", inset: 0, zIndex: 9000, background: "rgba(0,0,0,0.45)", display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
+    <div onClick={onCancel} style={{ position: "fixed", inset: 0, zIndex: 9000, background: "rgba(var(--shade-rgb),0.45)", display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
       <div role="dialog" aria-modal="true" aria-label="Check in to this set" data-checkin-basis={res.basis} onClick={e => e.stopPropagation()} style={{
         width: "100%", maxWidth: 480, maxHeight: "86vh", boxSizing: "border-box", display: "flex", flexDirection: "column",
         background: "var(--paper)", borderRadius: "18px 18px 0 0",
@@ -10577,9 +10565,9 @@ function NowPlayingBar() {
     <div style={{
       position: "fixed", bottom: 64, left: 8, right: 8, zIndex: 900,
       borderRadius: 16, overflow: "hidden",
-      background: "rgba(10,6,24,0.92)",
+      background: "rgba(var(--shade-rgb),0.92)",
       backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
-      boxShadow: `0 8px 32px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.08), 0 0 20px ${stageColor}33`,
+      boxShadow: `0 8px 32px rgba(var(--shade-rgb),0.4), inset 0 0 0 1px rgba(var(--ink-rgb),0.08), 0 0 20px ${stageColor}33`,
       padding: "10px 14px",
       animation: "song-fade-in 0.4s ease-out",
     }}>
@@ -10606,7 +10594,7 @@ function NowPlayingBar() {
             {minsLeft > 0 && minsLeft <= 10 && (
               <div className="mono" style={{
                 position: "absolute", right: 6, top: 5, fontSize: 8, letterSpacing: 1,
-                color: stageColor, fontWeight: 800, textShadow: "0 1px 4px rgba(0,0,0,0.8)",
+                color: stageColor, fontWeight: 800, textShadow: "0 1px 4px rgba(var(--shade-rgb),0.8)",
               }}>{minsLeft}M LEFT</div>
             )}
           </div>
@@ -10618,7 +10606,7 @@ function NowPlayingBar() {
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 3 }}>
             <div style={{
-              width: 6, height: 6, borderRadius: 6, background: "#ef4444",
+              width: 6, height: 6, borderRadius: 6, background: "var(--alert)",
               animation: "pulse 2s infinite",
             }} />
             <span className="mono" style={{
@@ -10628,14 +10616,14 @@ function NowPlayingBar() {
 
           {liveState.artist && (
             <div className="serif" style={{
-              fontSize: 14, color: "#fff", lineHeight: 1.2,
+              fontSize: 14, color: "var(--ink)", lineHeight: 1.2,
               overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
             }}>{liveState.artist.name}</div>
           )}
 
           {displaySong && (
             <div className="mono" style={{
-              fontSize: 8, letterSpacing: 0.6, color: "rgba(255,255,255,0.5)",
+              fontSize: 8, letterSpacing: 0.6, color: "rgba(var(--ink-rgb),0.5)",
               marginTop: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
               display: "flex", alignItems: "center", gap: 4,
             }}>
@@ -10649,18 +10637,18 @@ function NowPlayingBar() {
           cs.phase === "locating" || cs.phase === "listening" ? (
             <button onClick={checkin.cancel} data-checkin-phase={cs.phase} style={{
               height: 36, borderRadius: 36, cursor: "pointer", padding: "0 14px",
-              border: "1px solid rgba(255,255,255,0.35)", background: "transparent",
-              color: "#fff", fontWeight: 700, fontSize: 9, letterSpacing: 1.2, fontFamily: "Geist Mono, monospace",
+              border: "1px solid rgba(var(--ink-rgb),0.35)", background: "transparent",
+              color: "var(--ink)", fontWeight: 700, fontSize: 9, letterSpacing: 1.2, fontFamily: "Geist Mono, monospace",
             }}>CANCEL</button>
           ) : cs.phase === "saved" ? (
             <button data-checkin-phase="saved" onClick={() => window._pushNav?.({ tab: "memories", memoriesNight: cs.night, memoriesView: "night", artist: null })} style={{
               height: 36, borderRadius: 36, border: "none", cursor: "pointer", padding: "0 14px",
-              background: "var(--success)", color: "#fff", fontWeight: 700, fontSize: 9, letterSpacing: 1.2, fontFamily: "Geist Mono, monospace",
+              background: "var(--success)", color: "var(--ink)", fontWeight: 700, fontSize: 9, letterSpacing: 1.2, fontFamily: "Geist Mono, monospace",
             }}>✓ SAVED · VIEW</button>
           ) : (
             <button data-checkin-phase="idle" onClick={checkin.start} disabled={cs.phase === "review"} style={{
               minHeight: 36, borderRadius: 36, border: "none", cursor: "pointer", padding: "0 14px",
-              background: "linear-gradient(135deg, #6D28D9, #e85d2e)", color: "#fff",
+              background: "linear-gradient(135deg, var(--signal), var(--signal))", color: "var(--ink)",
               fontWeight: 700, fontSize: 9, letterSpacing: 1.2, fontFamily: "Geist Mono, monospace", flexShrink: 0,
             }}>CHECK IN TO THIS SET</button>
           )
@@ -10681,8 +10669,8 @@ function NowPlayingBar() {
         <button onClick={handleCapture} style={{
           height: 36, borderRadius: 36, border: "none", cursor: "pointer",
           padding: "0 14px",
-          background: captured ? "var(--success)" : "linear-gradient(135deg, #6D28D9, #e85d2e)",
-          color: "#fff", fontWeight: 700, fontSize: 9, letterSpacing: 1.2,
+          background: captured ? "var(--success)" : "linear-gradient(135deg, var(--signal), var(--signal))",
+          color: "var(--ink)", fontWeight: 700, fontSize: 9, letterSpacing: 1.2,
           display: "flex", alignItems: "center", gap: 5,
           transition: "all 0.3s",
           fontFamily: "Geist Mono, monospace",
@@ -10693,7 +10681,7 @@ function NowPlayingBar() {
       </div>
       {trialLive && (cs.phase === "locating" || cs.phase === "listening") && <_CheckinStatus st={cs}/>}
       {trialLive && cs.phase === "idle" && !checkinSeen && (
-        <div data-checkin-firstuse style={{ fontSize: 10, lineHeight: 1.4, color: "rgba(255,255,255,0.6)", marginTop: 8 }}>
+        <div data-checkin-firstuse style={{ fontSize: 10, lineHeight: 1.4, color: "rgba(var(--ink-rgb),0.6)", marginTop: 8 }}>
           Listens for up to 12 seconds to identify the track. Saves the song, set, stage, time, and location confidence — never the audio.
         </div>
       )}
@@ -10713,9 +10701,9 @@ function _CheckinStatus({ st }) {
   return (
     <div data-checkin-status={st.phase} role="status" className="mono" style={{
       display: "flex", alignItems: "center", gap: 6, marginTop: 8,
-      fontSize: 9, letterSpacing: 1.2, fontWeight: 700, color: "#fff",
+      fontSize: 9, letterSpacing: 1.2, fontWeight: 700, color: "var(--ink)",
     }}>
-      <span style={{ width: 8, height: 8, borderRadius: 8, background: st.phase === "listening" ? "#ef4444" : "rgba(255,255,255,0.5)", animation: "pulse 1s infinite" }}/>
+      <span style={{ width: 8, height: 8, borderRadius: 8, background: st.phase === "listening" ? "var(--alert)" : "rgba(var(--ink-rgb),0.5)", animation: "pulse 1s infinite" }}/>
       {st.phase === "listening" ? `🎙 LISTENING · UP TO ${left}S` : "FINDING YOUR STAGE…"}
     </div>
   );

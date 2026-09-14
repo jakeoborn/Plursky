@@ -404,7 +404,7 @@ function SpiderWeb({
   var truncate = (str, max) => str.length > max ? str.slice(0, max) + "…" : str;
   return React.createElement("div", {
     style: {
-      background: "var(--ink)",
+      background: "var(--paper-2)",
       borderRadius: 16,
       padding: "12px 12px 8px",
       marginBottom: 18
@@ -422,7 +422,7 @@ function SpiderWeb({
     style: {
       fontSize: 9,
       letterSpacing: 1.5,
-      color: "rgba(247,237,224,0.45)",
+      color: "rgba(var(--ink-rgb),0.45)",
       fontWeight: 700
     }
   }, "SIMILAR ARTISTS"), edcCount > 0 && React.createElement("span", {
@@ -430,7 +430,7 @@ function SpiderWeb({
     style: {
       fontSize: 8,
       letterSpacing: 1,
-      color: currentStage.color,
+      color: "var(--signal-ink)",
       fontWeight: 700
     }
   }, edcCount, " ALSO AT ", (FESTIVAL_CONFIG.brand || FESTIVAL_CONFIG.shortName || "").toUpperCase(), " — TAP TO EXPLORE")), React.createElement("svg", {
@@ -448,11 +448,11 @@ function SpiderWeb({
     r: "50%"
   }, React.createElement("stop", {
     offset: "0%",
-    stopColor: n.edcStage.color,
+    stopColor: "var(--text-3)",
     stopOpacity: "0.28"
   }), React.createElement("stop", {
     offset: "100%",
-    stopColor: n.edcStage.color,
+    stopColor: "var(--text-3)",
     stopOpacity: "0"
   })))), nodes.map((n, i) => React.createElement("line", {
     key: `l${i}`,
@@ -460,7 +460,7 @@ function SpiderWeb({
     y1: cy,
     x2: n.x,
     y2: n.y,
-    stroke: n.edcStage ? n.edcStage.color : "rgba(247,237,224,0.07)",
+    stroke: n.edcStage ? "var(--line-2)" : "rgba(var(--ink-rgb),0.07)",
     strokeWidth: n.edcStage ? 1.4 : 0.8,
     opacity: n.edcStage ? 0.5 : 1,
     strokeDasharray: n.edcStage ? undefined : "2.5 4"
@@ -474,13 +474,13 @@ function SpiderWeb({
     cx: cx,
     cy: cy,
     r: 28,
-    fill: currentStage.color
+    fill: "var(--signal)"
   }), React.createElement("circle", {
     cx: cx,
     cy: cy,
     r: 33,
     fill: "none",
-    stroke: currentStage.color,
+    stroke: "var(--signal)",
     strokeWidth: 1,
     opacity: 0.3
   }), React.createElement("text", {
@@ -488,7 +488,7 @@ function SpiderWeb({
     y: cy,
     textAnchor: "middle",
     dominantBaseline: "middle",
-    fill: "#fff",
+    fill: "var(--ink)",
     fontSize: currentArtist.name.length > 10 ? 7 : 8.5,
     fontFamily: "Geist Mono, monospace",
     fontWeight: "700"
@@ -511,22 +511,22 @@ function SpiderWeb({
       cx: n.x,
       cy: n.y,
       r: r,
-      fill: n.edcStage ? n.edcStage.color : "rgba(247,237,224,0.07)",
-      stroke: n.edcStage ? "none" : "rgba(247,237,224,0.22)",
+      fill: n.edcStage ? "var(--paper-3)" : "rgba(var(--ink-rgb),0.07)",
+      stroke: n.edcStage ? "none" : "rgba(var(--ink-rgb),0.22)",
       strokeWidth: 1
     }), n.edcStage && React.createElement("circle", {
       cx: n.x,
       cy: n.y,
       r: r + 6,
       fill: "none",
-      stroke: n.edcStage.color,
+      stroke: "var(--line-2)",
       strokeWidth: 0.9,
       opacity: 0.35
     }), React.createElement("text", {
       x: n.x,
       y: labelY,
       textAnchor: "middle",
-      fill: n.edcStage ? "rgba(247,237,224,0.9)" : "rgba(247,237,224,0.32)",
+      fill: n.edcStage ? "rgba(var(--ink-rgb),0.9)" : "rgba(var(--ink-rgb),0.32)",
       fontSize: 7.5,
       fontFamily: "Geist Mono, monospace",
       fontWeight: n.edcStage ? "600" : "400"
@@ -534,7 +534,7 @@ function SpiderWeb({
       x: n.x,
       y: labelY + 11,
       textAnchor: "middle",
-      fill: n.edcStage.color,
+      fill: "var(--text-2)",
       fontSize: 7,
       fontFamily: "Geist Mono, monospace",
       fontWeight: "700"
@@ -566,10 +566,10 @@ function ShareArtistButton({
       width: 32,
       height: 32,
       borderRadius: 32,
-      background: copied ? "rgba(45,122,85,0.85)" : "rgba(255,255,255,0.15)",
+      background: copied ? "rgba(var(--signal-rgb),0.85)" : "rgba(var(--ink-rgb),0.15)",
       backdropFilter: "blur(8px)",
-      border: "1px solid rgba(255,255,255,0.3)",
-      color: "#fff",
+      border: "1px solid rgba(var(--ink-rgb),0.3)",
+      color: "var(--ink)",
       cursor: "pointer",
       fontSize: 14,
       display: "flex",
@@ -624,7 +624,7 @@ function _YourMomentThumb({
       borderRadius: 10,
       overflow: "hidden",
       background: "var(--paper-2)",
-      border: `1px solid ${accent}22`,
+      border: `1px solid rgba(var(--signal-rgb),0.13)`,
       padding: 0,
       cursor: "pointer",
       position: "relative",
@@ -641,9 +641,9 @@ function _YourMomentThumb({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "#fff",
+      color: "var(--ink)",
       fontSize: 18,
-      textShadow: "0 1px 4px rgba(0,0,0,0.7)",
+      textShadow: "0 1px 4px rgba(var(--shade-rgb),0.7)",
       pointerEvents: "none"
     }
   }, "▶")) : React.createElement("img", {
@@ -738,8 +738,8 @@ function YourPhotosStrip({
         borderRadius: 16,
         padding: "16px",
         background: "var(--night)",
-        color: "#fff",
-        border: "1px dashed rgba(255,255,255,0.12)"
+        color: "var(--ink)",
+        border: "1px dashed rgba(var(--ink-rgb),0.12)"
       }
     }, React.createElement("div", {
       style: {
@@ -753,7 +753,7 @@ function YourPhotosStrip({
         width: 6,
         height: 6,
         borderRadius: "50%",
-        background: "rgba(255,255,255,0.25)"
+        background: "rgba(var(--ink-rgb),0.25)"
       }
     }), React.createElement("span", {
       className: "mono",
@@ -761,13 +761,13 @@ function YourPhotosStrip({
         fontSize: 9,
         letterSpacing: 1.6,
         fontWeight: 700,
-        color: "rgba(255,255,255,0.4)"
+        color: "rgba(var(--ink-rgb),0.4)"
       }
     }, "YOUR MOMENTS")), React.createElement("div", {
       style: {
         fontSize: 13,
         lineHeight: 1.5,
-        color: "rgba(255,255,255,0.7)"
+        color: "rgba(var(--ink-rgb),0.7)"
       }
     }, "You haven't filmed anything at ", artistObj?.name || "this set", " yet."), (when || stage) && React.createElement("button", {
       onClick: () => onOpenMap?.(artistObj),
@@ -777,9 +777,9 @@ function YourPhotosStrip({
         padding: "8px 12px",
         borderRadius: 8,
         width: "100%",
-        background: `${accent}18`,
-        border: `1px solid ${accent}40`,
-        color: accent,
+        background: `rgba(var(--signal-rgb),0.09)`,
+        border: `1px solid rgba(var(--signal-rgb),0.25)`,
+        color: "var(--signal-ink)",
         cursor: "pointer",
         fontSize: 9,
         letterSpacing: 1.2,
@@ -797,8 +797,8 @@ function YourPhotosStrip({
       borderRadius: 16,
       overflow: "hidden",
       background: "var(--night)",
-      color: "#fff",
-      boxShadow: `0 0 24px ${accent}22, inset 0 1px 0 rgba(255,255,255,0.06)`
+      color: "var(--ink)",
+      boxShadow: `0 0 24px rgba(var(--signal-rgb),0.13), inset 0 1px 0 rgba(var(--ink-rgb),0.06)`
     }
   }, React.createElement("div", {
     style: {
@@ -831,18 +831,18 @@ function YourPhotosStrip({
       fontSize: 9,
       letterSpacing: 1.6,
       fontWeight: 700,
-      color: accent
+      color: "var(--signal-ink)"
     }
   }, "YOUR MOMENTS")), React.createElement("button", {
     onClick: () => onOpen(night),
     className: "mono",
     style: {
-      background: "rgba(255,255,255,0.08)",
-      border: "1px solid rgba(255,255,255,0.1)",
+      background: "rgba(var(--ink-rgb),0.08)",
+      border: "1px solid rgba(var(--ink-rgb),0.1)",
       borderRadius: 999,
       padding: "4px 10px",
       cursor: "pointer",
-      color: "rgba(255,255,255,0.5)",
+      color: "rgba(var(--ink-rgb),0.5)",
       fontSize: 8,
       letterSpacing: 1.2,
       fontWeight: 700
@@ -858,12 +858,12 @@ function YourPhotosStrip({
     className: "serif",
     style: {
       fontSize: 20,
-      color: "#fff"
+      color: "var(--ink)"
     }
   }, mine.length), React.createElement("span", {
     style: {
       fontSize: 10,
-      color: "rgba(255,255,255,0.45)"
+      color: "rgba(var(--ink-rgb),0.45)"
     }
   }, mine.length === 1 ? "memory" : "memories", vids > 0 ? ` · ${vids} video${vids > 1 ? "s" : ""}` : ""))), React.createElement("div", {
     className: "no-scrollbar",
@@ -884,8 +884,8 @@ function YourPhotosStrip({
       width: 82,
       height: 110,
       borderRadius: 8,
-      border: `1px solid rgba(255,255,255,0.08)`,
-      boxShadow: i === 0 ? `0 0 12px ${accent}33` : undefined
+      border: `1px solid rgba(var(--ink-rgb),0.08)`,
+      boxShadow: i === 0 ? `0 0 12px rgba(var(--signal-rgb),0.2)` : undefined
     }
   })), more > 0 && React.createElement("button", {
     onClick: () => onOpen(night),
@@ -896,9 +896,9 @@ function YourPhotosStrip({
       height: 110,
       flexShrink: 0,
       borderRadius: 8,
-      background: "rgba(255,255,255,0.04)",
-      border: "1px solid rgba(255,255,255,0.08)",
-      color: accent,
+      background: "rgba(var(--ink-rgb),0.04)",
+      border: "1px solid rgba(var(--ink-rgb),0.08)",
+      color: "var(--signal-ink)",
       cursor: "pointer",
       fontSize: 13,
       fontWeight: 700,
@@ -919,9 +919,9 @@ function YourPhotosStrip({
       flex: 1,
       padding: "8px 0",
       borderRadius: 8,
-      background: `${accent}18`,
-      border: `1px solid ${accent}40`,
-      color: accent,
+      background: `rgba(var(--signal-rgb),0.09)`,
+      border: `1px solid rgba(var(--signal-rgb),0.25)`,
+      color: "var(--signal-ink)",
       cursor: "pointer",
       fontSize: 9,
       letterSpacing: 1.2,
@@ -934,9 +934,9 @@ function YourPhotosStrip({
       flex: 1,
       padding: "8px 0",
       borderRadius: 8,
-      background: "rgba(109,40,217,0.15)",
-      border: "1px solid rgba(109,40,217,0.35)",
-      color: "#a78bfa",
+      background: "rgba(var(--signal-rgb),0.15)",
+      border: "1px solid rgba(var(--signal-rgb),0.35)",
+      color: "var(--signal-ink)",
       cursor: "pointer",
       fontSize: 9,
       letterSpacing: 1.2,
@@ -952,20 +952,21 @@ function YourPhotosStrip({
       artist: artistObj,
       moments: mine
     }),
-    className: "mono",
     style: {
       width: "100%",
-      padding: "10px 0",
-      borderRadius: 8,
-      background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
+      minHeight: 44,
+      padding: "0 16px",
+      borderRadius: 14,
+      background: "var(--signal)",
       border: "none",
-      color: "#fff",
+      color: "var(--on-signal)",
       cursor: "pointer",
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 600,
+      fontFamily: "inherit"
     }
-  }, "🎞 MY ", String(artistObj.name || "").toUpperCase(), " SET")), lightbox && typeof MomentLightbox === "function" && React.createElement(MomentLightbox, {
+  }, "My ", artistObj.name, " set")), lightbox && typeof MomentLightbox === "function" && React.createElement(MomentLightbox, {
     moments: lightbox.moments,
     index: lightbox.index,
     onClose: () => setLightbox(null),
@@ -1012,14 +1013,14 @@ function ArtistAtmosphere({
     style: {
       position: "absolute",
       inset: "-30%",
-      background: `radial-gradient(ellipse at 30% 80%, ${stageColor}35, transparent 60%)`,
+      background: `radial-gradient(ellipse at 30% 80%, rgba(var(--signal-rgb),0.21), transparent 60%)`,
       animation: `vfx-wash ${intense ? 3 : 5}s ease-in-out infinite`
     }
   }), React.createElement("div", {
     style: {
       position: "absolute",
       inset: "-30%",
-      background: `radial-gradient(ellipse at 70% 20%, ${stageColor}25, transparent 55%)`,
+      background: `radial-gradient(ellipse at 70% 20%, rgba(var(--signal-rgb),0.15), transparent 55%)`,
       animation: `vfx-wash ${intense ? 4 : 6}s ease-in-out 2s infinite`
     }
   }), React.createElement("div", {
@@ -1029,7 +1030,7 @@ function ArtistAtmosphere({
       left: 0,
       right: 0,
       height: "45%",
-      background: `linear-gradient(0deg, ${stageColor}28, transparent)`
+      background: `linear-gradient(0deg, rgba(var(--signal-rgb),0.16), transparent)`
     }
   }), intense && React.createElement("div", {
     style: {
@@ -1037,7 +1038,7 @@ function ArtistAtmosphere({
       top: 0,
       width: "50%",
       height: "100%",
-      background: `radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.06), transparent 70%)`,
+      background: `radial-gradient(ellipse at 50% 30%, rgba(var(--ink-rgb),0.06), transparent 70%)`,
       animation: "vfx-scan 10s ease-in-out infinite",
       filter: "blur(30px)"
     }
@@ -1069,7 +1070,7 @@ function PyroStarburst({
       x: Math.cos(angle) * dist,
       y: Math.sin(angle) * dist - 25,
       size: 2 + i % 4 * 1.2,
-      color: i % 4 === 0 ? "#fbbf24" : i % 4 === 1 ? color : i % 4 === 2 ? "#fff" : "#f59a36",
+      color: i % 4 === 0 ? "var(--signal-ink)" : i % 4 === 1 ? color : i % 4 === 2 ? "var(--ink)" : "var(--signal-ink)",
       delay: i % 7 * 25
     };
   }), [color]);
@@ -1105,10 +1106,10 @@ function PyroStarburst({
       width: 6,
       height: 6,
       borderRadius: "50%",
-      background: "#fff",
+      background: "var(--ink)",
       marginLeft: -3,
       marginTop: -3,
-      boxShadow: `0 0 30px 10px rgba(255,255,255,0.6), 0 0 60px 20px ${color}55`
+      boxShadow: `0 0 30px 10px rgba(var(--ink-rgb),0.6), 0 0 60px 20px rgba(var(--signal-rgb),0.33)`
     }
   }));
 }
@@ -1375,14 +1376,14 @@ function ArtistScreen({
       height: 300,
       position: "relative",
       overflow: "hidden",
-      color: "#fff"
+      color: "var(--ink)"
     }
   }, React.createElement("div", {
     style: {
       position: "absolute",
       inset: 0,
       top: -30,
-      background: heroPhoto ? "var(--ink)" : `linear-gradient(160deg, var(--ink) 0%, ${stage?.color || "#2a1a3d"}44 40%, var(--ink) 100%)`,
+      background: heroPhoto ? "var(--ink)" : `linear-gradient(160deg, var(--ink) 0%, rgba(var(--signal-rgb),0.27) 40%, var(--ink) 100%)`,
       backgroundImage: heroPhoto ? `url(${heroPhoto})` : undefined,
       backgroundSize: "cover",
       backgroundPosition: "center 20%",
@@ -1391,7 +1392,7 @@ function ArtistScreen({
     }
   }), heroPhoto && React.createElement(ArtistAtmosphere, {
     genre: a.genre,
-    stageColor: stage?.color || "var(--ember)",
+    stageColor: "var(--signal)",
     tier: a.tier
   }), !heroPhoto && React.createElement("div", {
     style: {
@@ -1410,17 +1411,17 @@ function ArtistScreen({
       width: 180,
       height: 180,
       borderRadius: "50%",
-      background: `radial-gradient(circle, ${stage?.color || "var(--ember)"}30, transparent 70%)`,
+      background: `radial-gradient(circle, rgba(var(--signal-rgb),0.19), transparent 70%)`,
       animation: "vfx-pulse 4s ease-in-out infinite"
     }
   })), a.tier === 3 && heroPhoto && React.createElement(PyroStarburst, {
-    color: stage?.color || "var(--ember)"
+    color: "var(--signal)"
   }), React.createElement("div", {
     style: {
       position: "absolute",
       inset: 0,
       zIndex: 2,
-      background: heroPhoto ? `linear-gradient(180deg, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.06) 26%, ${stage?.color || "rgba(26,18,13,1)"}22 52%, rgba(26,18,13,0.72) 76%, rgba(26,18,13,0.96) 100%)` : `linear-gradient(180deg, transparent 0%, ${stage?.color || "rgba(26,18,13,1)"}15 50%, rgba(26,18,13,0.95) 100%)`
+      background: heroPhoto ? `linear-gradient(180deg, rgba(var(--shade-rgb),0.38) 0%, rgba(var(--shade-rgb),0.06) 26%, rgba(var(--signal-rgb),0.13) 52%, rgba(var(--shade-rgb),0.72) 76%, rgba(var(--shade-rgb),0.96) 100%)` : `linear-gradient(180deg, transparent 0%, rgba(var(--signal-rgb),0.08) 50%, rgba(var(--shade-rgb),0.95) 100%)`
     }
   }), React.createElement("button", {
     onClick: () => window._popNav ? window._popNav() : setState({
@@ -1436,10 +1437,10 @@ function ArtistScreen({
       width: 38,
       height: 38,
       borderRadius: 38,
-      background: "rgba(255,255,255,0.18)",
+      background: "rgba(var(--ink-rgb),0.18)",
       backdropFilter: "blur(8px)",
-      border: "1px solid rgba(255,255,255,0.3)",
-      color: "#fff",
+      border: "1px solid rgba(var(--ink-rgb),0.3)",
+      color: "var(--ink)",
       cursor: "pointer",
       fontSize: 18,
       display: "flex",
@@ -1462,10 +1463,10 @@ function ArtistScreen({
       display: "inline-flex",
       alignItems: "center",
       gap: 5,
-      background: playing ? "var(--ember)" : "rgba(255,255,255,0.18)",
+      background: playing ? "var(--ember)" : "rgba(var(--ink-rgb),0.18)",
       backdropFilter: "blur(8px)",
-      border: "1px solid rgba(255,255,255,0.3)",
-      color: "#fff",
+      border: "1px solid rgba(var(--ink-rgb),0.3)",
+      color: "var(--ink)",
       cursor: "pointer",
       borderRadius: 999,
       padding: "5px 10px",
@@ -1480,8 +1481,8 @@ function ArtistScreen({
       width: 8,
       height: 8,
       borderRadius: "50%",
-      border: "1.5px solid rgba(255,255,255,0.4)",
-      borderTopColor: "#fff",
+      border: "1.5px solid rgba(var(--ink-rgb),0.4)",
+      borderTopColor: "var(--ink)",
       animation: "spin 0.75s linear infinite",
       display: "inline-block"
     }
@@ -1489,7 +1490,7 @@ function ArtistScreen({
     width: "9",
     height: "9",
     viewBox: "0 0 24 24",
-    fill: "#fff"
+    fill: "var(--ink)"
   }, React.createElement("rect", {
     x: "6",
     y: "4",
@@ -1506,16 +1507,16 @@ function ArtistScreen({
     width: "9",
     height: "9",
     viewBox: "0 0 24 24",
-    fill: "#fff"
+    fill: "var(--ink)"
   }, React.createElement("path", {
     d: "M8 5 L19 12 L8 19 Z"
   })), "PREVIEW"), React.createElement(Pill, {
     tone: "outline",
     style: {
-      background: "rgba(255,255,255,0.15)",
-      color: "#fff",
+      background: "rgba(var(--ink-rgb),0.15)",
+      color: "var(--ink)",
       backdropFilter: "blur(8px)",
-      borderColor: "rgba(255,255,255,0.3)"
+      borderColor: "rgba(var(--ink-rgb),0.3)"
     }
   }, "DAY ", a.day, " · ", fmt12(a.start)), React.createElement(ShareArtistButton, {
     artist: a
@@ -1530,8 +1531,8 @@ function ArtistScreen({
       fontSize: 7.5,
       letterSpacing: 1,
       fontWeight: 700,
-      color: "rgba(255,255,255,0.55)",
-      textShadow: "0 1px 4px rgba(0,0,0,0.6)"
+      color: "rgba(var(--ink-rgb),0.55)",
+      textShadow: "0 1px 4px rgba(var(--shade-rgb),0.6)"
     }
   }, "PHOTO · ", heroPhotoSrc), React.createElement("div", {
     style: {
@@ -1561,15 +1562,15 @@ function ArtistScreen({
       width: 4,
       height: 4,
       borderRadius: 4,
-      background: stage.color,
-      boxShadow: `0 0 6px ${stage.color}`
+      background: "var(--signal)",
+      boxShadow: `0 0 6px var(--signal)`
     }
   }), stage && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: stage.color,
+      color: "var(--signal-ink)",
       fontWeight: 700
     }
   }, stage.name.toUpperCase())), React.createElement("div", {
@@ -1578,7 +1579,7 @@ function ArtistScreen({
       fontSize: isB2B ? 34 : 52,
       lineHeight: 0.88,
       letterSpacing: -1.5,
-      textShadow: "0 2px 20px rgba(0,0,0,0.5)"
+      textShadow: "0 2px 20px rgba(var(--shade-rgb),0.5)"
     }
   }, a.name))), isB2B && React.createElement("div", {
     style: {
@@ -1594,12 +1595,12 @@ function ArtistScreen({
       padding: "11px 8px",
       background: "transparent",
       border: "none",
-      borderBottom: `2px solid ${activeB2B === i ? stage?.color || "#8a8580" : "transparent"}`,
+      borderBottom: `2px solid ${activeB2B === i ? "var(--signal)" : "transparent"}`,
       cursor: "pointer",
       fontFamily: "Geist Mono, monospace",
       fontSize: 9,
       letterSpacing: 1.2,
-      color: activeB2B === i ? stage?.color || "#8a8580" : "var(--muted)",
+      color: activeB2B === i ? "var(--signal-ink)" : "var(--muted)",
       fontWeight: activeB2B === i ? 700 : 400,
       transition: "color 0.15s, border-color 0.15s"
     }
@@ -1786,7 +1787,7 @@ function ArtistScreen({
     style: {
       width: 6,
       alignSelf: "stretch",
-      background: stage.color,
+      background: "var(--signal)",
       borderRadius: 3
     }
   }), React.createElement("div", {
@@ -1812,7 +1813,7 @@ function ArtistScreen({
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: stage.color,
+      color: "var(--signal-ink)",
       marginTop: 5
     }
   }, "● ", saveCount, " FANS GOING")), React.createElement("div", {
@@ -1865,7 +1866,7 @@ function ArtistScreen({
   }, "SCHEDULE"))), React.createElement(YourPhotosStrip, {
     artistId: a.id,
     night: a.day,
-    accent: stage.color,
+    accent: "var(--signal)",
     artistObj: a,
     onOpen: n => (window._pushNav || (x => setState({
       ...state,
@@ -1891,44 +1892,40 @@ function ArtistScreen({
       flexWrap: "wrap"
     }
   }, [{
-    label: "SPOTIFY",
-    accent: "#1DB954",
+    label: "Spotify",
     url: spotifyStats?.spotifyId ? `https://open.spotify.com/artist/${spotifyStats.spotifyId}` : `https://open.spotify.com/search/${encodeURIComponent(lookupName)}/artists`
   }, {
-    label: "SOUNDCLOUD",
-    accent: "#ff5500",
+    label: "SoundCloud",
     url: `https://soundcloud.com/search?q=${encodeURIComponent(lookupName)}`
   }, {
     label: "RA",
-    accent: "#000",
     url: `https://ra.co/search?query=${encodeURIComponent(lookupName)}`
   }, {
-    label: "INSTAGRAM",
-    accent: "#E1306C",
+    label: "Instagram",
     url: `https://www.instagram.com/explore/tags/${encodeURIComponent(lookupName.replace(/\s+/g, "").toLowerCase())}`
   }, {
     label: "𝕏",
-    accent: "#000",
     url: `https://x.com/search?q=${encodeURIComponent(lookupName)}`
   }].map(({
     label,
-    url,
-    accent
+    url
   }) => React.createElement("a", {
     key: label,
     href: url,
     target: "_blank",
     rel: "noopener noreferrer",
     style: {
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 8,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      padding: "5px 10px",
+      display: "inline-flex",
+      alignItems: "center",
+      minHeight: 36,
+      fontSize: 13,
+      lineHeight: "18px",
+      fontWeight: 600,
+      padding: "0 12px",
       borderRadius: 999,
-      background: `${accent}10`,
-      border: `1px solid ${accent}30`,
-      color: accent,
+      background: "var(--paper-2)",
+      border: "1px solid var(--line-2)",
+      color: "var(--ink)",
       textDecoration: "none",
       transition: "background 0.15s"
     }
@@ -1949,9 +1946,9 @@ function ArtistScreen({
         marginBottom: 18,
         borderRadius: 16,
         overflow: "hidden",
-        background: "var(--ink)",
-        color: "#fff",
-        boxShadow: `0 0 24px ${stage.color}22`
+        background: "var(--paper-2)",
+        color: "var(--ink)",
+        boxShadow: `0 0 24px rgba(var(--signal-rgb),0.13)`
       }
     }, React.createElement("div", {
       style: {
@@ -1979,14 +1976,14 @@ function ArtistScreen({
         fontSize: 9,
         letterSpacing: 1.6,
         fontWeight: 700,
-        color: stage.color
+        color: "var(--signal-ink)"
       }
     }, "WHAT THEY PLAYED AT ", (FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.brand || "EDC").toUpperCase())), React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "rgba(255,255,255,0.35)"
+        color: "rgba(var(--ink-rgb),0.35)"
       }
     }, tracks.length, " TRACKS"))), React.createElement("div", {
       style: {
@@ -1999,13 +1996,13 @@ function ArtistScreen({
         alignItems: "baseline",
         gap: 10,
         padding: "5px 0",
-        borderTop: i === 0 ? `1px solid rgba(255,255,255,0.06)` : "none"
+        borderTop: i === 0 ? `1px solid rgba(var(--ink-rgb),0.06)` : "none"
       }
     }, React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 8,
-        color: "rgba(255,255,255,0.25)",
+        color: "rgba(var(--ink-rgb),0.25)",
         width: 38,
         textAlign: "right",
         flexShrink: 0
@@ -2018,7 +2015,7 @@ function ArtistScreen({
     }, React.createElement("div", {
       style: {
         fontSize: 13,
-        color: "#fff",
+        color: "var(--ink)",
         lineHeight: 1.3,
         overflow: "hidden",
         textOverflow: "ellipsis",
@@ -2029,7 +2026,7 @@ function ArtistScreen({
       style: {
         fontSize: 8,
         letterSpacing: 0.8,
-        color: "rgba(255,255,255,0.4)",
+        color: "rgba(var(--ink-rgb),0.4)",
         marginTop: 1
       }
     }, t.artist)))), tracks.length > 8 && React.createElement("button", {
@@ -2041,7 +2038,7 @@ function ArtistScreen({
         fontFamily: "Geist Mono, monospace",
         fontSize: 9,
         letterSpacing: 1.2,
-        color: stage.color,
+        color: "var(--signal-ink)",
         padding: "8px 0 2px",
         display: "block"
       }
@@ -2052,11 +2049,11 @@ function ArtistScreen({
       style: {
         display: "block",
         padding: "10px 16px",
-        borderTop: "1px solid rgba(255,255,255,0.06)",
+        borderTop: "1px solid rgba(var(--ink-rgb),0.06)",
         fontFamily: "Geist Mono, monospace",
         fontSize: 8,
         letterSpacing: 1.2,
-        color: "rgba(255,255,255,0.35)",
+        color: "rgba(var(--ink-rgb),0.35)",
         textDecoration: "none",
         textAlign: "center"
       }
@@ -2107,7 +2104,7 @@ function ArtistScreen({
     style: {
       height: "100%",
       width: `${spotifyStats.popularity}%`,
-      background: `linear-gradient(90deg, ${stage.color}88, ${stage.color})`,
+      background: `linear-gradient(90deg, rgba(var(--signal-rgb),0.53), var(--signal))`,
       borderRadius: 5,
       transition: "width 0.8s ease"
     }
@@ -2144,10 +2141,10 @@ function ArtistScreen({
       fontSize: 9,
       letterSpacing: 1,
       padding: "4px 10px",
-      background: `${stage.color}18`,
-      border: `1px solid ${stage.color}38`,
+      background: `rgba(var(--signal-rgb),0.09)`,
+      border: `1px solid rgba(var(--signal-rgb),0.22)`,
       borderRadius: 999,
-      color: stage.color,
+      color: "var(--signal-ink)",
       fontWeight: 600
     }
   }, g.toUpperCase())))), LASTFM_KEY && lfm === undefined && React.createElement("div", {
@@ -2384,8 +2381,8 @@ function ArtistScreen({
         overflow: "hidden",
         aspectRatio: "16/9",
         cursor: "pointer",
-        background: "var(--ink)",
-        boxShadow: "0 8px 32px rgba(0,0,0,0.25)"
+        background: "var(--paper-2)",
+        boxShadow: "0 8px 32px rgba(var(--shade-rgb),0.25)"
       }
     }, ytVideo.thumbnail && React.createElement("img", {
       src: ytVideo.thumbnail,
@@ -2400,7 +2397,7 @@ function ArtistScreen({
       style: {
         position: "absolute",
         inset: 0,
-        background: "linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.75) 100%)",
+        background: "linear-gradient(180deg, rgba(var(--shade-rgb),0.05) 0%, rgba(var(--shade-rgb),0.15) 50%, rgba(var(--shade-rgb),0.75) 100%)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center"
@@ -2410,18 +2407,18 @@ function ArtistScreen({
         width: 62,
         height: 62,
         borderRadius: 62,
-        background: "rgba(255,0,0,0.92)",
+        background: "rgba(var(--alert-rgb),0.92)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        boxShadow: "0 6px 28px rgba(255,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)",
+        boxShadow: "0 6px 28px rgba(var(--alert-rgb),0.4), 0 2px 8px rgba(var(--shade-rgb),0.3)",
         transition: "transform 0.15s"
       }
     }, React.createElement("svg", {
       width: "22",
       height: "22",
       viewBox: "0 0 24 24",
-      fill: "#fff"
+      fill: "var(--ink)"
     }, React.createElement("path", {
       d: "M8 5 L19 12 L8 19 Z"
     })))), React.createElement("div", {
@@ -2435,7 +2432,7 @@ function ArtistScreen({
     }, React.createElement("div", {
       style: {
         fontSize: 13,
-        color: "#fff",
+        color: "var(--ink)",
         lineHeight: 1.3,
         fontWeight: 500
       }
@@ -2451,21 +2448,21 @@ function ArtistScreen({
       style: {
         fontSize: 8,
         letterSpacing: 1.1,
-        color: "rgba(255,255,255,0.5)"
+        color: "rgba(var(--ink-rgb),0.5)"
       }
     }, "TAP TO PLAY"), ytVideo.durationMin > 0 && React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 8,
         letterSpacing: 0.8,
-        color: "rgba(255,255,255,0.5)"
+        color: "rgba(var(--ink-rgb),0.5)"
       }
     }, ytVideo.durationMin >= 60 ? `${Math.floor(ytVideo.durationMin / 60)}H ${ytVideo.durationMin % 60}M` : `${ytVideo.durationMin} MIN`), ytVideo.views > 0 && React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 8,
         letterSpacing: 0.8,
-        color: "rgba(255,255,255,0.5)",
+        color: "rgba(var(--ink-rgb),0.5)",
         marginLeft: "auto"
       }
     }, ytVideo.views >= 1e6 ? `${(ytVideo.views / 1e6).toFixed(1)}M` : ytVideo.views >= 1e3 ? `${(ytVideo.views / 1e3).toFixed(0)}K` : ytVideo.views, " VIEWS")))), YOUTUBE_KEY && ytVideo && ytPlaying && React.createElement("div", {
@@ -2473,7 +2470,7 @@ function ArtistScreen({
         borderRadius: 14,
         overflow: "hidden",
         aspectRatio: "16/9",
-        background: "#000"
+        background: "var(--paper)"
       }
     }, React.createElement("iframe", {
       src: `https://www.youtube.com/embed/${ytVideo.videoId}?autoplay=1`,
@@ -2565,7 +2562,7 @@ function ArtistScreen({
         width: 36,
         height: 36,
         borderRadius: 36,
-        background: "#ff0000",
+        background: "var(--alert)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -2575,7 +2572,7 @@ function ArtistScreen({
       width: "14",
       height: "14",
       viewBox: "0 0 24 24",
-      fill: "#fff"
+      fill: "var(--ink)"
     }, React.createElement("path", {
       d: "M8 5 L19 12 L8 19 Z"
     }))), React.createElement("div", null, React.createElement("div", {
@@ -2645,7 +2642,7 @@ function ArtistScreen({
         display: "flex",
         gap: 12,
         alignItems: "center",
-        background: "var(--ink)",
+        background: "var(--paper-2)",
         borderRadius: 14,
         overflow: "hidden"
       }
@@ -2686,7 +2683,7 @@ function ArtistScreen({
         display: "flex",
         gap: 12,
         alignItems: "center",
-        background: "var(--ink)",
+        background: "var(--paper-2)",
         borderRadius: 14,
         overflow: "hidden",
         cursor: "pointer"
@@ -2697,7 +2694,7 @@ function ArtistScreen({
         height: 72,
         flexShrink: 0,
         position: "relative",
-        background: "rgba(247,237,224,0.06)"
+        background: "rgba(var(--ink-rgb),0.06)"
       }
     }, track.thumbnail && React.createElement("img", {
       src: track.thumbnail,
@@ -2715,14 +2712,14 @@ function ArtistScreen({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "rgba(0,0,0,0.35)"
+        background: "rgba(var(--shade-rgb),0.35)"
       }
     }, React.createElement("div", {
       style: {
         width: 28,
         height: 28,
         borderRadius: 28,
-        background: "#ff5500",
+        background: "var(--signal)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center"
@@ -2731,7 +2728,7 @@ function ArtistScreen({
       width: "10",
       height: "10",
       viewBox: "0 0 24 24",
-      fill: "#fff"
+      fill: "var(--ink)"
     }, React.createElement("path", {
       d: "M8 5 L19 12 L8 19 Z"
     }))))), React.createElement("div", {
@@ -2764,7 +2761,7 @@ function ArtistScreen({
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "#ff5500",
+        color: "var(--signal-ink)",
         fontWeight: 700
       }
     }, track.user.toUpperCase()), track.duration > 0 && React.createElement("span", {
@@ -2772,20 +2769,20 @@ function ArtistScreen({
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "rgba(247,237,224,0.4)"
+        color: "rgba(var(--ink-rgb),0.4)"
       }
     }, _mcDur(track.duration)), track.plays > 0 && React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "rgba(247,237,224,0.35)"
+        color: "rgba(var(--ink-rgb),0.35)"
       }
     }, _mcFmt(track.plays), " PLAYS")))), mcPlaying === track.key && React.createElement("div", {
       style: {
         borderRadius: 14,
         overflow: "hidden",
-        background: "var(--ink)"
+        background: "var(--paper-2)"
       }
     }, React.createElement("iframe", {
       src: `https://www.mixcloud.com/widget/iframe/?feed=${encodeURIComponent(track.key)}&mini=0&hide_cover=0&light=0&autoplay=1`,
@@ -2806,7 +2803,7 @@ function ArtistScreen({
         fontFamily: "Geist Mono, monospace",
         fontSize: 9,
         letterSpacing: 1.2,
-        color: "rgba(247,237,224,0.4)",
+        color: "rgba(var(--ink-rgb),0.4)",
         cursor: "pointer"
       }
     }, "▲ CLOSE")))), Array.isArray(mcTracks) && mcTracks.length === 0 && React.createElement("a", {
@@ -2828,7 +2825,7 @@ function ArtistScreen({
         width: 36,
         height: 36,
         borderRadius: 36,
-        background: "#ff5500",
+        background: "var(--signal)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -2838,7 +2835,7 @@ function ArtistScreen({
       width: "14",
       height: "14",
       viewBox: "0 0 24 24",
-      fill: "#fff"
+      fill: "var(--ink)"
     }, React.createElement("path", {
       d: "M8 5 L19 12 L8 19 Z"
     }))), React.createElement("div", null, React.createElement("div", {
@@ -2989,14 +2986,14 @@ function ArtistScreen({
     style: {
       fontSize: 8,
       letterSpacing: 1.1,
-      color: "rgba(255,255,255,0.75)"
+      color: "rgba(var(--ink-rgb),0.75)"
     }
   }, ev.date ? _tmDate(ev.date).split(" ")[0].toUpperCase() : ""), React.createElement("div", {
     className: "serif",
     style: {
       fontSize: 20,
       lineHeight: 1,
-      color: "#fff",
+      color: "var(--ink)",
       letterSpacing: -0.5
     }
   }, ev.date ? _tmDate(ev.date).split(" ")[1].replace(",", "") : "—"), React.createElement("div", {
@@ -3004,7 +3001,7 @@ function ArtistScreen({
     style: {
       fontSize: 8,
       letterSpacing: 0.8,
-      color: "rgba(255,255,255,0.7)"
+      color: "rgba(var(--ink-rgb),0.7)"
     }
   }, ev.date ? ev.date.split("-")[0] : "")), React.createElement("div", {
     style: {
@@ -3175,7 +3172,7 @@ function ArtistScreen({
         borderRadius: 12,
         padding: "12px 14px",
         marginBottom: 10,
-        border: `1px solid ${isFest ? "rgba(232,93,46,0.4)" : "var(--line)"}`
+        border: `1px solid ${isFest ? "rgba(var(--signal-rgb),0.4)" : "var(--line)"}`
       }
     }, React.createElement("div", {
       style: {
@@ -3259,7 +3256,7 @@ function ArtistScreen({
       }, si + 1), React.createElement("span", {
         style: {
           fontSize: 13,
-          color: isBanger ? stage.color : "var(--ink)",
+          color: isBanger ? "var(--signal-ink)" : "var(--ink)",
           fontWeight: isBanger ? 600 : 400,
           flex: 1
         }
@@ -3268,7 +3265,7 @@ function ArtistScreen({
         style: {
           fontSize: 8,
           letterSpacing: 1,
-          color: stage.color,
+          color: "var(--signal-ink)",
           fontWeight: 700
         }
       }, "BANGER"), song.tape && React.createElement("span", {
@@ -3358,7 +3355,7 @@ function ArtistScreen({
       height: 44,
       borderRadius: 44,
       border: "none",
-      background: !connected ? "rgba(247,237,224,0.1)" : playing ? "var(--ember)" : "#1DB954",
+      background: !connected ? "rgba(var(--ink-rgb),0.1)" : playing ? "var(--ember)" : "#1DB954",
       cursor: connected && preview !== "none" ? "pointer" : "default",
       display: "flex",
       alignItems: "center",
@@ -3371,15 +3368,15 @@ function ArtistScreen({
       width: 16,
       height: 16,
       borderRadius: "50%",
-      border: "2px solid rgba(255,255,255,0.35)",
-      borderTopColor: "#fff",
+      border: "2px solid rgba(var(--ink-rgb),0.35)",
+      borderTopColor: "var(--ink)",
       animation: "spin 0.75s linear infinite"
     }
   }) : playing ? React.createElement("svg", {
     width: "14",
     height: "14",
     viewBox: "0 0 24 24",
-    fill: "#fff"
+    fill: "var(--ink)"
   }, React.createElement("rect", {
     x: "5",
     y: "4",
@@ -3396,7 +3393,7 @@ function ArtistScreen({
     width: "16",
     height: "16",
     viewBox: "0 0 24 24",
-    fill: "#fff"
+    fill: "var(--ink)"
   }, React.createElement("path", {
     d: "M8 5 L19 12 L8 19 Z"
   }))), React.createElement("div", {
@@ -3415,7 +3412,7 @@ function ArtistScreen({
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "rgba(247,237,224,0.5)",
+      color: "rgba(var(--ink-rgb),0.5)",
       marginTop: 3
     }
   }, !connected ? "CONNECT SPOTIFY TO PREVIEW" : preview === "none" ? "NO PREVIEW AVAILABLE" : preview === "loading" ? "LOADING…" : playing ? "PLAYING · VIA SPOTIFY" : "TAP TO PLAY · 30 SEC")), React.createElement("div", {
@@ -3431,7 +3428,7 @@ function ArtistScreen({
     style: {
       width: 2.5,
       height: h,
-      background: playing ? i % 2 === 0 ? "var(--ember)" : "#f59a36" : connected ? "#1DB954" : "rgba(247,237,224,0.2)",
+      background: playing ? i % 2 === 0 ? "var(--ember)" : "#f59a36" : connected ? "#1DB954" : "rgba(var(--ink-rgb),0.2)",
       borderRadius: 2,
       transition: "height 0.12s ease, background 0.3s"
     }
@@ -3439,7 +3436,7 @@ function ArtistScreen({
     style: {
       flexShrink: 0,
       padding: "12px 20px calc(10px + env(safe-area-inset-bottom)) 20px",
-      background: saveFlash ? saved ? "rgba(45,122,85,0.08)" : "var(--paper)" : "var(--paper)",
+      background: saveFlash ? saved ? "rgba(var(--signal-rgb),0.08)" : "var(--paper)" : "var(--paper)",
       borderTop: "1px solid var(--line)",
       display: "flex",
       gap: 8,
@@ -3451,14 +3448,14 @@ function ArtistScreen({
       flex: 1,
       padding: "14px",
       borderRadius: 14,
-      background: saved ? "var(--ink)" : "var(--ember)",
-      color: saved ? "var(--paper)" : "#fff",
-      border: "none",
+      minHeight: 52,
+      background: saved ? "var(--paper-2)" : "var(--signal)",
+      color: saved ? "var(--ink)" : "var(--on-signal)",
+      border: saved ? "1px solid var(--line-2)" : "none",
       cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.4,
-      fontWeight: 500,
+      fontSize: 17,
+      lineHeight: "22px",
+      fontWeight: 600,
       transition: "background 0.2s ease, transform 0.35s var(--ease-spring)",
       transform: saveFlash ? "scale(1.03)" : "scale(1)"
     }
@@ -3468,7 +3465,7 @@ function ArtistScreen({
       display: "inline-block",
       marginRight: 4
     }
-  }, "✓"), saved ? saveFlash ? "SAVED!" : "✓ SAVED TO LINEUP" : "+ ADD TO LINEUP"), React.createElement("button", {
+  }, "✓"), saved ? saveFlash ? "Saved" : "✓ Saved to lineup" : "Add to lineup"), React.createElement("button", {
     onClick: () => (window._pushNav || (n => setState({
       ...state,
       ...n
@@ -3484,9 +3481,28 @@ function ArtistScreen({
       background: "transparent",
       border: "1px solid var(--line-2)",
       cursor: "pointer",
-      fontSize: 16
+      color: "var(--ink)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
     }
-  }, "📸")));
+  }, React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "20",
+    height: "20",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.8",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("path", {
+    d: "M4 8h3l2-3h6l2 3h3v11H4z"
+  }), React.createElement("circle", {
+    cx: "12",
+    cy: "13",
+    r: "3.5"
+  })))));
 }
 Object.assign(window, {
   ArtistScreen

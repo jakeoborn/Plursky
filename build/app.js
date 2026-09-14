@@ -725,8 +725,7 @@ function SearchModal({
         width: 6,
         height: 6,
         borderRadius: 6,
-        background: st?.color,
-        boxShadow: `0 0 5px ${st?.color}66`,
+        background: "var(--text-3)",
         flexShrink: 0
       }
     }), React.createElement("div", {
@@ -825,7 +824,7 @@ function SearchModal({
       style: {
         width: 4,
         alignSelf: "stretch",
-        background: stage?.color || "#8a8580",
+        background: stage?.color || "var(--paper-3)",
         borderRadius: 3,
         flexShrink: 0
       }
@@ -853,7 +852,7 @@ function SearchModal({
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "#fbbf24",
+        color: "var(--signal-ink)",
         fontWeight: 800
       }
     }, "★ DON'T MISS")), React.createElement("div", {
@@ -868,8 +867,7 @@ function SearchModal({
         width: 6,
         height: 6,
         borderRadius: 6,
-        background: stage.color,
-        boxShadow: `0 0 5px ${stage.color}66`,
+        background: "var(--text-3)",
         flexShrink: 0
       }
     }), React.createElement("span", {
@@ -1284,45 +1282,7 @@ function App() {
       flex: 1,
       position: "relative"
     }
-  }, body, !state.artist && !searchOpen && state.tab !== "map" && state.tab !== "home" && !modalOpen && !(state.tab === "lineup" && state.lineupGrid) && React.createElement("button", {
-    onClick: () => setSearchOpen(true),
-    "aria-label": "Search artists, stages, genres",
-    style: {
-      position: "absolute",
-      bottom: 16,
-      right: 16,
-      zIndex: 30,
-      height: 48,
-      borderRadius: 24,
-      padding: "0 18px 0 14px",
-      background: "var(--chrome)",
-      color: "var(--ink)",
-      backdropFilter: "blur(20px) saturate(160%)",
-      WebkitBackdropFilter: "blur(20px) saturate(160%)",
-      border: "1px solid var(--line-2)",
-      cursor: "pointer",
-      display: "flex",
-      alignItems: "center",
-      gap: 8,
-      fontSize: 15,
-      lineHeight: "20px",
-      fontWeight: 600
-    }
-  }, React.createElement("svg", {
-    width: "18",
-    height: "18",
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round"
-  }, React.createElement("circle", {
-    cx: "11",
-    cy: "11",
-    r: "7"
-  }), React.createElement("path", {
-    d: "M21 21 L16.65 16.65"
-  })), "Search"), React.createElement(ToastHost, null)), !state.artist && (() => {
+  }, body, React.createElement(ToastHost, null)), !state.artist && (() => {
     var postFest = (() => {
       try {
         return Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity);
@@ -1468,8 +1428,8 @@ class RootErrorBoundary extends React.Component {
         alignItems: "center",
         justifyContent: "center",
         padding: "40px 24px",
-        background: "#f7ede0",
-        color: "#1a120d",
+        background: "var(--ink)",
+        color: "var(--paper)",
         fontFamily: "Geist, system-ui, sans-serif",
         textAlign: "center"
       }
@@ -1482,7 +1442,7 @@ class RootErrorBoundary extends React.Component {
     }, "Something glitched."), React.createElement("div", {
       style: {
         fontSize: 14,
-        color: "rgba(26,18,13,0.65)",
+        color: "rgba(var(--shade-rgb),0.65)",
         marginBottom: 22,
         maxWidth: 340,
         lineHeight: 1.5
@@ -1490,8 +1450,8 @@ class RootErrorBoundary extends React.Component {
     }, "Plursky hit an unexpected error. Your saved lineup is safe — reloading should fix it."), React.createElement("button", {
       onClick: this.reload,
       style: {
-        background: "#1a120d",
-        color: "#f7ede0",
+        background: "var(--paper)",
+        color: "var(--ink)",
         border: "none",
         borderRadius: 12,
         padding: "12px 22px",
@@ -1507,7 +1467,7 @@ class RootErrorBoundary extends React.Component {
         fontFamily: "Geist Mono, monospace",
         fontSize: 10,
         letterSpacing: 1.2,
-        color: "rgba(26,18,13,0.45)"
+        color: "rgba(var(--shade-rgb),0.45)"
       }
     }, "PLURSKY · v323"));
   }
@@ -1565,8 +1525,8 @@ function SetStartingCinematic() {
       position: "fixed",
       inset: 0,
       zIndex: 9998,
-      background: "rgba(13,8,4,0.92)",
-      color: "#fff",
+      background: "rgba(var(--shade-rgb),0.92)",
+      color: "var(--ink)",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -1613,7 +1573,7 @@ function SetStartingCinematic() {
     style: {
       fontSize: 10,
       letterSpacing: 1.4,
-      color: stage?.color || "#fff",
+      color: stage?.color || "var(--ink)",
       marginBottom: 24
     }
   }, stage?.name?.toUpperCase() || "", " · ", fmt12(a.start)), React.createElement("div", {
@@ -1623,7 +1583,7 @@ function SetStartingCinematic() {
       fontWeight: 200,
       letterSpacing: 2,
       fontVariantNumeric: "tabular-nums",
-      color: "#fff",
+      color: "var(--ink)",
       textShadow: `0 0 30px ${stage?.color || "var(--ember)"}`
     }
   }, minsLeft, " MIN"), React.createElement("div", {
@@ -1631,7 +1591,7 @@ function SetStartingCinematic() {
     style: {
       fontSize: 9,
       letterSpacing: 1.6,
-      color: "rgba(255,255,255,0.4)",
+      color: "rgba(var(--ink-rgb),0.4)",
       marginTop: 20
     }
   }, "TAP TO DISMISS")));

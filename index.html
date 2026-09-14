@@ -168,6 +168,8 @@
     --alert:#FF453A; --warn:#FF9F0A; --success:#B79CFF;
     --dune:#212126; --flare:#B79CFF; --horizon:#212126; --night:#0A0A0C; --dusk:#16161A; --sky:#A1A1AA;
     --glass:22,22,26;
+    --ink-rgb:245,245,247; --shade-rgb:0,0,0; --signal-rgb:109,40,217; --alert-rgb:255,69,58;
+    --spotify:#1DB954; --spotify-rgb:29,185,84; --apple-music:#FA2D5A; --apple-music-rgb:250,45,90;
     --fs-label-s:11px; --fs-label:11px; --fs-label-l:12px;
     --fs-body-s:13px; --fs-body:15px; --fs-body-l:17px;
     --fs-title-s:17px; --fs-title:20px; --fs-title-l:28px;
@@ -183,6 +185,14 @@
   .theme-field .mono,.theme-field [style*="Geist Mono"]{font-variant-numeric:tabular-nums}
   /* A filled accent takes its own on-colour. */
   .theme-field [style*="background: var(--ember)"],.theme-field [style*="background-color: var(--ember)"]{color:var(--on-ember)!important}
+  /* Dark rollout: the legacy labels read as Field eyebrows. Mono caps keep
+     their case but lose the 1.2-1.4px tracking, nothing reads below 11px,
+     and the old serif italics stand upright. SVG text sizes are attributes,
+     not styles, so map labels are untouched by the floor. */
+  .theme-field .mono,.theme-field [style*="Geist Mono"]{letter-spacing:0.04em!important}
+  .theme-field [style*="font-size: 8px"],.theme-field [style*="font-size: 8.5px"],.theme-field [style*="font-size: 9px"],.theme-field [style*="font-size: 9.5px"],.theme-field [style*="font-size: 10px"],.theme-field [style*="font-size: 10.5px"]{font-size:11px!important}
+  .theme-field .serif *,.theme-field [style*="font-style: italic"]{font-style:normal!important}
+  .theme-field svg text{font-family:var(--font-ui)}
   button { transition: opacity 0.1s ease; }
   @keyframes totem-pulse{0%,100%{box-shadow:0 0 0 0 rgba(109,40,217,0.4);transform:scale(1)}50%{box-shadow:0 0 12px 4px rgba(109,40,217,0.25);transform:scale(1.06)}}
   @keyframes song-ripple {

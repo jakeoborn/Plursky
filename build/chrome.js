@@ -823,7 +823,7 @@ function InstallBanner() {
       fontSize: 12,
       lineHeight: 1.35,
       marginTop: 2,
-      color: "rgba(247,237,224,0.85)"
+      color: "rgba(var(--ink-rgb),0.85)"
     }
   }, ip.isIOS ? React.createElement(React.Fragment, null, "Tap ", React.createElement("span", {
     style: {
@@ -858,7 +858,7 @@ function InstallBanner() {
     onClick: ip.install,
     style: {
       background: "var(--ember)",
-      color: "#fff",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 999,
       padding: "7px 12px",
@@ -876,7 +876,7 @@ function InstallBanner() {
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      color: "rgba(247,237,224,0.55)",
+      color: "rgba(var(--ink-rgb),0.55)",
       padding: 4,
       flexShrink: 0,
       fontSize: 18,
@@ -1297,7 +1297,7 @@ function NotificationsCard({
     }, window.Capacitor?.isNativePlatform?.() ? "Notifications aren't wired in this build yet — set-time reminders will land in a future update." : "Your browser doesn't support web notifications. Install Plursky to your home screen for the full experience."));
   }
   var label = perm === "granted" ? "ENABLED" : perm === "denied" ? "BLOCKED" : "OFF";
-  var labelColor = perm === "granted" ? "var(--success)" : perm === "denied" ? "#f87171" : "var(--muted)";
+  var labelColor = perm === "granted" ? "var(--success)" : perm === "denied" ? "var(--alert)" : "var(--muted)";
   return React.createElement("div", {
     style: {
       padding: 14,
@@ -1427,7 +1427,7 @@ function NotificationsCard({
     onClick: onEnable,
     style: {
       background: "var(--ember)",
-      color: "#fff",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 999,
       padding: "8px 14px",
@@ -1461,6 +1461,15 @@ function FestivalChip({
   var canSwitch = FESTIVALS_REGISTRY.filter(f => f.available).length > 1;
   return React.createElement(React.Fragment, null, React.createElement("div", {
     onClick: canSwitch ? () => setOpen(true) : undefined,
+    role: canSwitch ? "button" : undefined,
+    tabIndex: canSwitch ? 0 : undefined,
+    "aria-label": canSwitch ? `${FESTIVAL_CONFIG.shortName.toUpperCase()}, switch festival` : undefined,
+    onKeyDown: canSwitch ? e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        setOpen(true);
+      }
+    } : undefined,
     style: {
       display: "inline-flex",
       alignItems: "center",
@@ -1673,7 +1682,7 @@ function FestivalSwitcher({
     if (isActive) parts.push(React.createElement("span", {
       key: "a",
       style: {
-        color: "var(--signal)",
+        color: "var(--signal-ink)",
         fontWeight: 600
       }
     }, "✓ Active"));else if (phase(f) === "ended") parts.push(React.createElement("span", {
@@ -1985,7 +1994,7 @@ function BatterySaverToast() {
       display: "flex",
       alignItems: "center",
       gap: 10,
-      boxShadow: "0 8px 24px rgba(0,0,0,0.35)"
+      boxShadow: "0 8px 24px rgba(var(--shade-rgb),0.35)"
     }
   }, React.createElement("span", {
     style: {
@@ -2009,7 +2018,7 @@ function BatterySaverToast() {
       fontSize: 13,
       lineHeight: 1.35,
       marginTop: 2,
-      color: "rgba(247,237,224,0.85)"
+      color: "rgba(var(--ink-rgb),0.85)"
     }
   }, reason)), React.createElement("button", {
     onClick: () => setDismissed(true),
@@ -2018,7 +2027,7 @@ function BatterySaverToast() {
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      color: "rgba(247,237,224,0.6)",
+      color: "rgba(var(--ink-rgb),0.6)",
       fontSize: 18,
       lineHeight: 1,
       padding: 4
@@ -2043,7 +2052,7 @@ function BatterySaverCard() {
     label: "ON"
   }];
   var battPct = battery ? Math.round(battery.level * 100) : null;
-  var battColor = battPct == null ? "var(--muted)" : battPct > 50 ? "var(--success)" : battPct > 20 ? "var(--flare)" : "#f87171";
+  var battColor = battPct == null ? "var(--muted)" : battPct > 50 ? "var(--success)" : battPct > 20 ? "var(--flare)" : "var(--alert)";
   return React.createElement("div", {
     style: {
       padding: 14,
@@ -2390,7 +2399,7 @@ function StatusStrip() {
         display: "inline-flex",
         alignItems: "center",
         gap: 4,
-        color: "#c14a37"
+        color: "var(--alert)"
       }
     }, React.createElement("svg", {
       width: "11",

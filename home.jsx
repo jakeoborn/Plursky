@@ -228,9 +228,9 @@ function TonightCard({ state, setState }) {
 
   const card = (label, value, sub, accent) => (
     <div style={{ flex: 1, minWidth: 0 }}>
-      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "rgba(247,237,224,0.55)", fontWeight: 600 }}>{label}</div>
+      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "rgba(var(--ink-rgb),0.55)", fontWeight: 600 }}>{label}</div>
       <div style={{ fontFamily: "Geist Mono, monospace", fontSize: 18, fontWeight: 600, color: accent || "var(--paper)", marginTop: 3, lineHeight: 1 }}>{value}</div>
-      {sub && <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "rgba(247,237,224,0.6)", marginTop: 4 }}>{sub}</div>}
+      {sub && <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "rgba(var(--ink-rgb),0.6)", marginTop: 4 }}>{sub}</div>}
     </div>
   );
 
@@ -247,20 +247,20 @@ function TonightCard({ state, setState }) {
       {/* Aurora glow */}
       <div style={{
         position: "absolute", inset: 0,
-        background: "radial-gradient(120% 60% at 80% 0%, rgba(245,154,54,0.18), transparent 55%), radial-gradient(80% 50% at 10% 110%, rgba(167,139,250,0.18), transparent 60%)",
+        background: "radial-gradient(120% 60% at 80% 0%, rgba(var(--signal-rgb),0.18), transparent 55%), radial-gradient(80% 50% at 10% 110%, rgba(var(--signal-rgb),0.18), transparent 60%)",
         pointerEvents: "none",
       }}/>
       <div style={{ position: "relative" }}>
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 12 }}>
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "rgba(247,237,224,0.6)" }}>
+          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "rgba(var(--ink-rgb),0.6)" }}>
             {isPreEvent ? "OPENING NIGHT" : `TONIGHT · DAY ${day}`}
           </div>
           {period && (
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(247,237,224,0.5)", display: "flex", alignItems: "center", gap: 5 }}>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(var(--ink-rgb),0.5)", display: "flex", alignItems: "center", gap: 5 }}>
               NWS · {period.name.toUpperCase()}
               {cacheAgeLabel && (
                 <span style={{
-                  background: "rgba(247,237,224,0.1)", border: "1px solid rgba(247,237,224,0.18)",
+                  background: "rgba(var(--ink-rgb),0.1)", border: "1px solid rgba(var(--ink-rgb),0.18)",
                   borderRadius: 4, padding: "1px 5px", fontSize: 8, letterSpacing: 1,
                 }}>
                   CACHED · {cacheAgeLabel}
@@ -284,7 +284,7 @@ function TonightCard({ state, setState }) {
             `${period.windSpeed} ${period.windDirection}`,
             "#a8d4ff"
           ) : (
-            <div style={{ flex: 1, minWidth: 80, padding: "8px 10px", borderRadius: 10, background: "rgba(247,237,224,0.06)", border: "1px solid rgba(247,237,224,0.1)" }}>
+            <div style={{ flex: 1, minWidth: 80, padding: "8px 10px", borderRadius: 10, background: "rgba(var(--ink-rgb),0.06)", border: "1px solid rgba(var(--ink-rgb),0.1)" }}>
               <div className="skel-dark" style={{ width: "60%", height: 8, marginBottom: 6 }}/>
               <div className="skel-dark" style={{ width: "80%", height: 14, marginBottom: 4 }}/>
               <div className="skel-dark" style={{ width: "50%", height: 8 }}/>
@@ -309,24 +309,24 @@ function TonightCard({ state, setState }) {
           const fmtH = (h) => h === 0 ? "12a" : h < 12 ? `${h}a` : h === 12 ? "12p" : `${h - 12}p`;
           const lastHour = new Date(next12[next12.length - 1].startTime).getHours();
           return (
-            <div style={{ marginTop: 14, padding: "10px 12px", borderRadius: 10, background: "rgba(247,237,224,0.05)", border: "1px solid rgba(247,237,224,0.1)" }}>
+            <div style={{ marginTop: 14, padding: "10px 12px", borderRadius: 10, background: "rgba(var(--ink-rgb),0.05)", border: "1px solid rgba(var(--ink-rgb),0.1)" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
-                <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "rgba(247,237,224,0.55)", fontWeight: 600 }}>
+                <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "rgba(var(--ink-rgb),0.55)", fontWeight: 600 }}>
                   NEXT 12H
                 </span>
-                <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "rgba(247,237,224,0.5)" }}>
+                <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.5)" }}>
                   {min}° → {max}°
                 </span>
               </div>
               <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" style={{ width: "100%", height: H, display: "block" }}>
-                <polyline points={points} fill="none" stroke="#a8d4ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <polyline points={points} fill="none" stroke="var(--signal-ink)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 {next12.map((h, i) => i % 3 === 0 && (
-                  <circle key={i} cx={(i / (next12.length - 1)) * W} cy={H - ((h.temperature - min) / range) * (H - 8) - 4} r="1.5" fill="#a8d4ff"/>
+                  <circle key={i} cx={(i / (next12.length - 1)) * W} cy={H - ((h.temperature - min) / range) * (H - 8) - 4} r="1.5" fill="var(--signal-ink)"/>
                 ))}
               </svg>
               <div style={{ display: "flex", justifyContent: "space-between", marginTop: 4 }}>
-                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(247,237,224,0.4)" }}>{fmtH(firstHour)}</span>
-                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(247,237,224,0.4)" }}>{fmtH(lastHour)}</span>
+                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.4)" }}>{fmtH(firstHour)}</span>
+                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.4)" }}>{fmtH(lastHour)}</span>
               </div>
             </div>
           );
@@ -337,8 +337,8 @@ function TonightCard({ state, setState }) {
             onClick={() => setState({ ...state, tab: "map" })}
             style={{
               marginTop: 14, width: "100%",
-              background: shuttleUrgent ? "var(--ember)" : "rgba(247,237,224,0.08)",
-              border: shuttleUrgent ? "none" : "1px solid rgba(247,237,224,0.2)",
+              background: shuttleUrgent ? "var(--ember)" : "rgba(var(--ink-rgb),0.08)",
+              border: shuttleUrgent ? "none" : "1px solid rgba(var(--ink-rgb),0.2)",
               color: "var(--paper)",
               borderRadius: 10, padding: "10px 12px", cursor: "pointer",
               display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
@@ -346,7 +346,7 @@ function TonightCard({ state, setState }) {
               textAlign: "left",
             }}>
             <span>🚌  LAST SHUTTLE TO STRIP</span>
-            <span style={{ color: shuttleUrgent ? "#fff" : "var(--flare)" }}>
+            <span style={{ color: shuttleUrgent ? "var(--ink)" : "var(--flare)" }}>
               {shuttleMins > 0 ? `${shuttleMins} MIN` : "DEPARTED"}
             </span>
           </button>
@@ -357,14 +357,14 @@ function TonightCard({ state, setState }) {
             onClick={() => setState({ ...state, tab: "home", artist: sunriseArtistId.id })}
             style={{
               marginTop: 14, width: "100%",
-              background: "rgba(247,237,224,0.06)", border: "1px solid rgba(247,237,224,0.18)",
+              background: "rgba(var(--ink-rgb),0.06)", border: "1px solid rgba(var(--ink-rgb),0.18)",
               color: "var(--paper)", borderRadius: 10, padding: "9px 12px", cursor: "pointer",
               display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
               textAlign: "left",
             }}>
             <span>🌅  SUNRISE SET · {sunriseArtistId.name.toUpperCase()}</span>
-            <span style={{ color: "#fbbf24" }}>{sunriseSet}</span>
+            <span style={{ color: "var(--signal-ink)" }}>{sunriseSet}</span>
           </button>
         )}
       </div>
@@ -560,14 +560,14 @@ function FestivalSkyBand({ accent, progress, preDawn }) {
 
       {_SKY_STARS.map(([sf, sy], i) => (
         <circle key={i} cx={(sf * W).toFixed(1)} cy={sy} r={i % 3 === 0 ? 1.1 : 0.8}
-                fill="#fff" opacity={starOpacity * (i % 2 ? 0.7 : 1)}
+                fill="var(--ink)" opacity={starOpacity * (i % 2 ? 0.7 : 1)}
                 style={{ transition: ease }} />
       ))}
 
       {/* The day's full sun path + where the sun will be at gates. */}
       {gates != null && (
         <>
-          <path d={path} fill="none" stroke="#fff" strokeOpacity="0.13"
+          <path d={path} fill="none" stroke="var(--ink)" strokeOpacity="0.13"
                 strokeWidth="1" strokeDasharray="2 5" />
           <circle cx={arcX(gates)} cy={arcY(gates)} r="9" fill="none"
                   stroke={sky} strokeOpacity="0.5" strokeWidth="1"
@@ -606,7 +606,7 @@ function FestivalSkyBand({ accent, progress, preDawn }) {
         <g style={{ transition: ease }} transform={`translate(${px.toFixed(1)},${py.toFixed(1)})`}>
           <circle r={preDawn ? 26 : 18} fill={`url(#${idSun})`}
                   opacity={preDawn ? 0.7 : 0.25 + 0.55 * progress} />
-          {!preDawn && <circle r="6.5" fill="#fff3d6" opacity={0.55 + 0.45 * progress} />}
+          {!preDawn && <circle r="6.5" fill="var(--ink)" opacity={0.55 + 0.45 * progress} />}
         </g>
       )}
     </svg>
@@ -960,9 +960,9 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
       // #f0e6d8, which turned this card cream while its text stayed
       // hardcoded #fff — unreadable, and only during the festival's own
       // 20:00–04:00 window, which is when this card matters most.
-      background: "linear-gradient(160deg, #1a120d 0%, #2a1a1f 60%, #1a120d 100%)",
+      background: "linear-gradient(160deg, var(--paper) 0%, var(--paper) 60%, var(--paper) 100%)",
       borderRadius: 16, padding: 0, marginBottom: 18,
-      color: "#fff", position: "relative", overflow: "hidden",
+      color: "var(--ink)", position: "relative", overflow: "hidden",
       border: `1px solid ${accent}55`,
     }}>
       {/* Accent stripe along the top edge — F1 brand-bar feel */}
@@ -1000,7 +1000,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                 : `TONIGHT · ${dayMeta?.name?.toUpperCase() || "DAY " + day}`}
           </div>
           <div className="mono" style={{
-            fontSize: 9, letterSpacing: 1.4, color: "rgba(255,255,255,0.55)", fontWeight: 600,
+            fontSize: 9, letterSpacing: 1.4, color: "rgba(var(--ink-rgb),0.55)", fontWeight: 600,
           }}>
             {phase === "pre"
               ? FESTIVAL_CONFIG.dates.toUpperCase()
@@ -1027,7 +1027,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
             <div style={{ fontSize: 28, lineHeight: 0.96, letterSpacing: -0.5, marginBottom: 6, fontWeight: 600 }}>
               {FESTIVAL_CONFIG.dayDates[1]?.short} · <span className="serif" style={{ fontStyle: "italic", fontWeight: 400, color: accent }}>{FESTIVAL_CONFIG.brand}</span>
             </div>
-            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 1.4, marginBottom: spotlight ? 16 : 0 }}>
+            <div style={{ fontSize: 13, color: "rgba(var(--ink-rgb),0.7)", lineHeight: 1.4, marginBottom: spotlight ? 16 : 0 }}>
               {preCd && preCd.days === 0
                 ? `gates in ${preCd.hours}h ${preCd.mins}m${preDawn ? " — sleep." : "."}`
                 : `${FESTIVAL_CONFIG.locationShort} · gates open ${FESTIVAL_CONFIG.dayDates[1]?.name || "Friday"}.`}
@@ -1038,9 +1038,9 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                 <button onClick={() => setState({ ...state, artist: spotlight.id })} style={{
                   display: "flex", alignItems: "center", gap: 12, width: "100%",
                   padding: "10px 12px", borderRadius: 12,
-                  background: `rgba(255,255,255,0.06)`,
+                  background: `rgba(var(--ink-rgb),0.06)`,
                   border: `1px solid ${sStage?.color || accent}33`,
-                  cursor: "pointer", textAlign: "left", color: "#fff",
+                  cursor: "pointer", textAlign: "left", color: "var(--ink)",
                 }}>
                   <ArtistSwatch artist={spotlight} size={44} />
                   <div style={{ flex: 1, minWidth: 0 }}>
@@ -1053,13 +1053,13 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                       whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
                     }}>{spotlight.name}</div>
                     <div className="mono" style={{
-                      fontSize: 9, letterSpacing: 0.8, color: "rgba(255,255,255,0.55)", marginTop: 3,
+                      fontSize: 9, letterSpacing: 0.8, color: "rgba(var(--ink-rgb),0.55)", marginTop: 3,
                     }}>
                       {sStage?.name?.toUpperCase() || ""} · DAY {spotlight.day} · {fmt12(spotlight.start)}
                     </div>
                   </div>
                   <div style={{
-                    color: "rgba(255,255,255,0.4)", fontSize: 16, flexShrink: 0,
+                    color: "rgba(var(--ink-rgb),0.4)", fontSize: 16, flexShrink: 0,
                   }}>→</div>
                 </button>
               );
@@ -1076,14 +1076,14 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                 boxShadow: `0 0 0 4px ${accent}33`,
                 animation: "pulse 1.6s ease-in-out infinite",
               }}/>
-              <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "rgba(255,255,255,0.75)", fontWeight: 600 }}>
+              <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "rgba(var(--ink-rgb),0.75)", fontWeight: 600 }}>
                 NOW · {featured.genre.toUpperCase()}
               </span>
             </div>
             <div className="serif" style={{ fontSize: 34, lineHeight: 0.95, letterSpacing: -0.4, marginBottom: 6 }}>
               {featured.name}
             </div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "rgba(255,255,255,0.7)", marginBottom: 14 }}>
+            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "rgba(var(--ink-rgb),0.7)", marginBottom: 14 }}>
               {fmt12(featured.start)} – {fmt12(featured.end)}
             </div>
             <div style={{ display: "flex", gap: 8 }}>
@@ -1105,14 +1105,14 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
             <div style={{
               display: "flex", alignItems: "baseline", gap: 10, marginBottom: 14,
               padding: "8px 12px", borderRadius: 10,
-              background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
+              background: "rgba(var(--ink-rgb),0.06)", border: "1px solid rgba(var(--ink-rgb),0.12)",
             }}>
               <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: accent, fontWeight: 800 }}>
                 DOORS IN
               </div>
               <div style={{
                 fontFamily: "Geist Mono, monospace", fontSize: 20, fontWeight: 600,
-                color: "#fff", letterSpacing: 0.5, fontVariantNumeric: "tabular-nums",
+                color: "var(--ink)", letterSpacing: 0.5, fontVariantNumeric: "tabular-nums",
                 marginLeft: "auto",
               }}>
                 {doorsLabel || "SOON"}
@@ -1123,9 +1123,9 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                 onClick={() => setState({ ...state, tab: "home", artist: featured.id })}
                 style={{
                   display: "flex", alignItems: "center", gap: 12, width: "100%",
-                  background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)",
+                  background: "rgba(var(--ink-rgb),0.06)", border: "1px solid rgba(var(--ink-rgb),0.14)",
                   borderRadius: 12, padding: "10px 12px", cursor: "pointer",
-                  textAlign: "left", color: "#fff",
+                  textAlign: "left", color: "var(--ink)",
                 }}>
                 <div style={{ width: 3, alignSelf: "stretch", background: accent, borderRadius: 3, minHeight: 36 }}/>
                 <div style={{ flex: 1, minWidth: 0 }}>
@@ -1135,7 +1135,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                   <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, marginTop: 2 }}>
                     {featured.name}
                   </div>
-                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.6)", marginTop: 2 }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(var(--ink-rgb),0.6)", marginTop: 2 }}>
                     {stage?.short || ""} · {fmt12(featured.start)}
                   </div>
                 </div>
@@ -1150,7 +1150,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
             <div className="serif" style={{ fontSize: 28, lineHeight: 0.96, letterSpacing: -0.4, marginBottom: 6 }}>
               Stage <span style={{ fontStyle: "italic", color: accent }}>changeover</span>
             </div>
-            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 1.4, marginBottom: 12 }}>
+            <div style={{ fontSize: 13, color: "rgba(var(--ink-rgb),0.7)", lineHeight: 1.4, marginBottom: 12 }}>
               Decks are quiet between sets — your next pick is queued below.
             </div>
             {featured && (
@@ -1158,9 +1158,9 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                 onClick={() => setState({ ...state, tab: "home", artist: featured.id })}
                 style={{
                   display: "flex", alignItems: "center", gap: 12, width: "100%",
-                  background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)",
+                  background: "rgba(var(--ink-rgb),0.06)", border: "1px solid rgba(var(--ink-rgb),0.14)",
                   borderRadius: 12, padding: "10px 12px", cursor: "pointer",
-                  textAlign: "left", color: "#fff",
+                  textAlign: "left", color: "var(--ink)",
                 }}>
                 <div style={{ width: 3, alignSelf: "stretch", background: accent, borderRadius: 3, minHeight: 36 }}/>
                 <div style={{ flex: 1, minWidth: 0 }}>
@@ -1170,7 +1170,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                   <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, marginTop: 2 }}>
                     {featured.name}
                   </div>
-                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.6)", marginTop: 2 }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(var(--ink-rgb),0.6)", marginTop: 2 }}>
                     {stage?.short || ""} · {fmt12(featured.start)}
                   </div>
                 </div>
@@ -1247,7 +1247,7 @@ function LastNightRecap({ state, setState }) {
           background: stage?.color || "var(--paper-2)",
           borderRadius: 10,
           padding: "8px 10px",
-          color: "#fff",
+          color: "var(--ink)",
           display: "flex", flexDirection: "column", justifyContent: "flex-end",
         }}>
           <div className="serif" style={{
@@ -1257,7 +1257,7 @@ function LastNightRecap({ state, setState }) {
             {artist.name}
           </div>
           <div className="mono" style={{
-            fontSize: 8, letterSpacing: 1, color: "rgba(255,255,255,0.85)", marginTop: 2,
+            fontSize: 8, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.85)", marginTop: 2,
           }}>
             {stage?.short || ""} · {fmt12(artist.start)}
           </div>
@@ -2278,8 +2278,8 @@ function TonightsPlan({ plan, state, setState }) {
             <div style={{
               display: "flex", alignItems: "center", justifyContent: "space-between",
               padding: "6px 10px", marginBottom: 10,
-              background: "rgba(232,93,46,0.07)", borderRadius: 8,
-              border: "1px solid rgba(232,93,46,0.2)",
+              background: "rgba(var(--signal-rgb),0.07)", borderRadius: 8,
+              border: "1px solid rgba(var(--signal-rgb),0.2)",
             }}>
               <span className="mono" style={{ fontSize: 10, letterSpacing: 1.3, color: "var(--ember-ink)" }}>
                 ⚠ {tightCount} TIGHT TRANSITION{tightCount > 1 ? "S" : ""} · CHECK LEAVE-BY TIMES
@@ -2287,7 +2287,7 @@ function TonightsPlan({ plan, state, setState }) {
               {conflicts.length > 0 && (
                 <button onClick={() => setResolverOpen(r => !r)} style={{
                   background: resolverOpen ? "transparent" : "var(--ember)",
-                  color: resolverOpen ? "var(--ember-ink)" : "#fff",
+                  color: resolverOpen ? "var(--ember-ink)" : "var(--ink)",
                   border: resolverOpen ? "1px solid var(--ember)" : "none",
                   borderRadius: 6, padding: "4px 10px", cursor: "pointer",
                   fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
@@ -2356,12 +2356,12 @@ function PlanRow({ entry, state, setState }) {
           borderBottom: "1px solid var(--line)",
           cursor: "pointer",
           opacity: isPast ? 0.45 : 1,
-          background: conflict ? "rgba(232,93,46,0.04)" : "transparent",
+          background: conflict ? "rgba(var(--signal-rgb),0.04)" : "transparent",
         }}>
         <div style={{ width: 44 }}>
           <div className="mono" style={{
             fontSize: 10, letterSpacing: 1,
-            color: isLive ? (stage?.color || "#8a8580") : "var(--ink)",
+            color: isLive ? (stage?.color || "var(--text-2)") : "var(--ink)",
             fontWeight: isLive ? 700 : 500,
           }}>{fmt12(a.start)}</div>
           <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>
@@ -2374,7 +2374,7 @@ function PlanRow({ entry, state, setState }) {
             <div className="serif" style={{ fontSize: 20, lineHeight: 1.1, textDecoration: isPast ? "line-through" : "none" }}>{a.name}</div>
             {isLive && (
               <span className="mono" style={{
-                fontSize: 8, letterSpacing: 1.3, color: "#fff", background: stage.color,
+                fontSize: 8, letterSpacing: 1.3, color: "var(--ink)", background: stage.color,
                 padding: "1px 5px", borderRadius: 3, fontWeight: 700,
               }}>LIVE</span>
             )}
@@ -2426,8 +2426,8 @@ function homeBtn(kind) {
     fontSize: 10, letterSpacing: 1.2, fontWeight: 500,
     textTransform: "uppercase",
   };
-  if (kind === "solid")  return { ...base, background: "#fff", color: "var(--ink)" };
-  if (kind === "ghost")  return { ...base, background: "rgba(255,255,255,0.15)", color: "#fff", backdropFilter: "blur(6px)" };
+  if (kind === "solid")  return { ...base, background: "var(--ink)", color: "var(--paper)" };
+  if (kind === "ghost")  return { ...base, background: "rgba(var(--ink-rgb),0.15)", color: "var(--ink)", backdropFilter: "blur(6px)" };
   return base;
 }
 
@@ -2438,12 +2438,12 @@ function AlertsDrawer({ alerts, onClose, onOpenMap, onOpenLineup }) {
   };
   return (
     <div style={{ position: "absolute", inset: 0, zIndex: 9, display: "flex", flexDirection: "column" }}>
-      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.35)" }}/>
+      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(var(--shade-rgb),0.35)" }}/>
       <div style={{
         marginTop: "auto", background: "var(--paper)", color: "var(--ink)",
         borderTopLeftRadius: 22, borderTopRightRadius: 22,
         maxHeight: "78%", display: "flex", flexDirection: "column",
-        boxShadow: "0 -10px 30px rgba(0,0,0,0.35)", position: "relative",
+        boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.35)", position: "relative",
         animation: "sheetUp 0.3s var(--ease-smooth)",
       }}>
         <div style={{ padding: "14px 18px 10px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid var(--line)" }}>
@@ -2497,7 +2497,7 @@ function DontMissStrip({ day, state, setState }) {
     <div style={{ marginTop: 22 }}>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
         <div className="serif" style={{ fontSize: 22 }}>
-          Don't <span style={{ fontStyle: "italic", color: "#fbbf24" }}>miss</span>
+          Don't <span style={{ fontStyle: "italic", color: "var(--signal-ink)" }}>miss</span>
         </div>
         <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)" }}>
           {dayMeta?.name?.toUpperCase() || `DAY ${day}`} · LEGENDARY
@@ -2513,11 +2513,11 @@ function DontMissStrip({ day, state, setState }) {
           return (
             <button key={a.id} onClick={() => setState({ ...state, tab: "home", artist: a.id })} style={{
               flexShrink: 0, width: 168, padding: "10px 11px", textAlign: "left",
-              borderRadius: 14, border: "1px solid rgba(251,191,36,0.45)",
-              background: "linear-gradient(135deg, rgba(251,191,36,0.10) 0%, rgba(232,93,46,0.06) 100%)",
+              borderRadius: 14, border: "1px solid rgba(var(--signal-rgb),0.45)",
+              background: "linear-gradient(135deg, rgba(var(--signal-rgb),0.10) 0%, rgba(var(--signal-rgb),0.06) 100%)",
               cursor: "pointer",
             }}>
-              <div className="mono" style={{ fontSize: 8, letterSpacing: 1.4, color: "#b8651b", fontWeight: 800 }}>
+              <div className="mono" style={{ fontSize: 8, letterSpacing: 1.4, color: "var(--signal-ink)", fontWeight: 800 }}>
                 {isSunrise ? "🌅 SUNRISE SET" : "★ B2B COLLAB"}
               </div>
               <div className="serif" style={{
@@ -2606,12 +2606,12 @@ function FirstTimerGuide({ onClose, onOpenMap, onOpenLineup }) {
   const [openIdx, setOpenIdx] = React.useState(0); // first section open by default
   return (
     <div style={{ position: "absolute", inset: 0, zIndex: 9, display: "flex", flexDirection: "column" }}>
-      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.4)" }}/>
+      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(var(--shade-rgb),0.4)" }}/>
       <div style={{
         marginTop: "auto", background: "var(--paper)", color: "var(--ink)",
         borderTopLeftRadius: 22, borderTopRightRadius: 22,
         maxHeight: "85%", display: "flex", flexDirection: "column",
-        boxShadow: "0 -10px 30px rgba(0,0,0,0.4)", position: "relative",
+        boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.4)", position: "relative",
       }}>
         <div style={{
           padding: "14px 18px 12px",
@@ -2737,8 +2737,8 @@ function FriendLineupBanner({ state, setState }) {
     <div style={{
       marginTop: 18, padding: "16px 16px 14px",
       borderRadius: 18,
-      background: "linear-gradient(135deg, rgba(123,61,154,0.12), rgba(232,93,46,0.08))",
-      border: "1px solid rgba(123,61,154,0.3)",
+      background: "linear-gradient(135deg, rgba(var(--signal-rgb),0.12), rgba(var(--signal-rgb),0.08))",
+      border: "1px solid rgba(var(--signal-rgb),0.3)",
     }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
         <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--horizon)", fontWeight: 700 }}>
@@ -2764,7 +2764,7 @@ function FriendLineupBanner({ state, setState }) {
         }}>{expanded ? "HIDE SETS" : "VIEW SETS"}</button>
         {fresh.length > 0 && (
           <button onClick={addOverlap} className="mono" style={{
-            background: "var(--ember)", color: "#fff", border: "none",
+            background: "var(--ember)", color: "var(--ink)", border: "none",
             borderRadius: 999, padding: "8px 14px", cursor: "pointer",
             fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           }}>+ ADD {fresh.length} NEW</button>

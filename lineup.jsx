@@ -243,12 +243,12 @@ function NightWizard({ state, setState, onClose }) {
             </button>
           </>)}
           <button onClick={autoFill} title="Auto-fill best non-clashing sets for this day" style={{
-            background: "var(--horizon)", color: "#fff", border: "none",
+            background: "var(--horizon)", color: "var(--ink)", border: "none",
             borderRadius: 999, padding: "8px 13px", cursor: "pointer",
             fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           }}>✦ AUTO</button>
           <button onClick={handleSave} style={{
-            background: "var(--ember)", color: "#fff", border: "none",
+            background: "var(--ember)", color: "var(--ink)", border: "none",
             borderRadius: 999, padding: "8px 16px", cursor: "pointer",
             fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           }}>SAVE ✓</button>
@@ -266,12 +266,12 @@ function NightWizard({ state, setState, onClose }) {
               border: on ? "none" : "1px solid var(--line)",
               transition: "all .15s",
             }}>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: on ? "rgba(247,237,224,0.55)" : "var(--muted)" }}>{d.short}</div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: on ? "rgba(var(--ink-rgb),0.55)" : "var(--muted)" }}>{d.short}</div>
               <div className="mono" style={{ fontSize: 20, fontWeight: 700, letterSpacing: -0.5, color: on ? "var(--paper)" : "var(--ink)", lineHeight: 1.15 }}>{d.count}</div>
               {d.clashes > 0
                 ? <div className="mono" style={{ fontSize: 8, color: "var(--ember-ink)", letterSpacing: 0.8, marginTop: 1 }}>⚠ {d.clashes} CLASH</div>
                 : d.count > 0
-                  ? <div className="mono" style={{ fontSize: 8, color: on ? "rgba(247,237,224,0.4)" : "var(--muted)", letterSpacing: 0.8, marginTop: 1 }}>● CLEAN</div>
+                  ? <div className="mono" style={{ fontSize: 8, color: on ? "rgba(var(--ink-rgb),0.4)" : "var(--muted)", letterSpacing: 0.8, marginTop: 1 }}>● CLEAN</div>
                   : <div style={{ height: 12 }} />
               }
             </button>
@@ -307,7 +307,7 @@ function NightWizard({ state, setState, onClose }) {
                       flex: 1,
                       background: clash ? "var(--ink)" : "var(--paper-2)",
                       border: `1px solid ${clash ? "var(--ember)" : "var(--line)"}`,
-                      borderLeft: `4px solid ${stage.color}`,
+                      borderLeft: "4px solid var(--line-2)",
                       borderRadius: 12, padding: "9px 12px",
                     }}>
                       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
@@ -315,14 +315,14 @@ function NightWizard({ state, setState, onClose }) {
                           <div style={{ fontSize: 14, fontWeight: 600, color: clash ? "var(--paper)" : "var(--ink)", lineHeight: 1.2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                             {a.name}
                           </div>
-                          <div className="mono" style={{ fontSize: 9, letterSpacing: 0.9, color: clash ? "rgba(247,237,224,0.5)" : "var(--muted)", marginTop: 3 }}>
+                          <div className="mono" style={{ fontSize: 9, letterSpacing: 0.9, color: clash ? "rgba(var(--ink-rgb),0.5)" : "var(--muted)", marginTop: 3 }}>
                             {stage.short} · {fmt12(a.start)}–{fmt12(a.end)}
                           </div>
                         </div>
                         <div style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0 }}>
                           {clash && <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--ember-ink)", fontWeight: 700 }}>⚠ CLASH</span>}
                           <button onClick={() => drop(a.id)} style={{
-                            background: "rgba(232,93,46,0.12)", border: "1px solid rgba(232,93,46,0.25)",
+                            background: "rgba(var(--signal-rgb),0.12)", border: "1px solid rgba(var(--signal-rgb),0.25)",
                             borderRadius: 999, padding: "3px 9px", cursor: "pointer",
                             fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1, color: "var(--ember-ink)",
                           }}>DROP</button>
@@ -353,7 +353,7 @@ function NightWizard({ state, setState, onClose }) {
                             const fs = (STAGES.find(s => s.id === f.stage) || UNPLACED_STAGE);
                             return (
                               <button key={f.id} onClick={() => add(f.id)} style={{
-                                background: `${fs.color}12`, border: `1px dashed ${fs.color}`,
+                                background: "transparent", border: "1px dashed var(--line-2)",
                                 borderRadius: 999, padding: "4px 10px", cursor: "pointer",
                                 fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 0.8,
                                 color: "var(--ink)",
@@ -456,8 +456,7 @@ function LineupFilterSheet({
       <div style={sectionLabel}>Stage</div>
       <div style={row}>
         {opt("stageFilter", "all", "All stages")}
-        {STAGES.map(s => opt("stageFilter", s.id, s.short || s.name,
-          <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: 4, background: s.color }} />))}
+        {STAGES.map(s => opt("stageFilter", s.id, s.short || s.name))}
       </div>
       {dayGenres.length > 0 && (
         <>
@@ -896,7 +895,7 @@ function LineupScreen({ state, setState }) {
     return (
       <div style={{ margin: gridLead ? "0 12px 12px" : "4px 20px 12px", padding: "12px 14px", borderRadius: 14, background: "var(--paper-2)" }}>
         <div style={{ ..._fieldEyebrow, color: "var(--text-2)" }}>
-          <span aria-hidden="true" style={{ width: 7, height: 7, borderRadius: 4, background: stage.color }} />
+          <span aria-hidden="true" style={{ width: 7, height: 7, borderRadius: 4, background: "var(--text-3)" }} />
           {stage.name} · {stage.vibe}{stage.peak ? ` · peaks ${stage.peak}` : ""}
         </div>
         {stage.desc && <div style={{ marginTop: 4, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{stage.desc}</div>}
@@ -1198,7 +1197,7 @@ function LineupScreen({ state, setState }) {
                   <span style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{a.name}</span>
                   {/* Inline dot, so a long stage name wraps as text, not dot-then-line. */}
                   <span style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
-                    <span aria-hidden="true" style={{ display: "inline-block", width: 7, height: 7, borderRadius: 4, background: stage.color, marginRight: 6, verticalAlign: "1px" }} />
+                    <span aria-hidden="true" style={{ display: "inline-block", width: 7, height: 7, borderRadius: 4, background: "var(--text-3)", marginRight: 6, verticalAlign: "1px" }} />
                     {stage.name}{a.genre ? ` · ${a.genre}` : ""}
                   </span>
                   {flags.length > 0 && <span style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{flags.join(" · ")}</span>}
@@ -1247,7 +1246,10 @@ function LineupScreen({ state, setState }) {
             if (r) try { r.scrollIntoView({ behavior: "smooth", block: "center" }); } catch {}
           }
         }} aria-label="Jump to now" style={{
-          position: "absolute", right: 16, bottom: viewMode === "grid" ? 16 : 76, zIndex: 8,
+          // Bottom-centre: the right edge is the bookmark column, and a pill
+          // there sat on a live row's Save. It shows only while the NOW rule
+          // is scrolled away, so it never parks over a row for long.
+          position: "absolute", left: "50%", transform: "translateX(-50%)", bottom: 16, zIndex: 8,
           minHeight: 44, padding: "0 16px 0 14px", borderRadius: 22,
           background: "var(--chrome)", border: "1px solid var(--line-2)", color: "var(--ink)",
           backdropFilter: "blur(20px) saturate(160%)", WebkitBackdropFilter: "blur(20px) saturate(160%)",
@@ -1422,7 +1424,7 @@ function ScheduleReviewSheet({ saved, onClose }) {
 
   return ReactDOM.createPortal(
     <div onClick={onClose} style={{
-      position: "fixed", inset: 0, zIndex: 9000, background: "rgba(0,0,0,0.45)",
+      position: "fixed", inset: 0, zIndex: 9000, background: "rgba(var(--shade-rgb),0.45)",
       display: "flex", alignItems: "flex-end", justifyContent: "center",
     }}>
       <div role="dialog" aria-modal="true" aria-label="Schedule update" data-sched-phase={st.phase} onClick={e => e.stopPropagation()} style={{
@@ -1586,9 +1588,9 @@ function SavedSidebar({ day, state, setState }) {
                 top, left: 4, right: 4, height: blockH,
                 display: "flex", alignItems: "stretch", gap: 5,
                 padding: "4px 4px 4px 5px",
-                background: stage ? `${stage.color}1a` : "var(--paper-2)",
-                border: isLive ? "1px solid var(--success)" : `1px solid ${stage?.color || "var(--line-2)"}40`,
-                borderLeft: `3px solid ${stage?.color || "var(--line-2)"}`,
+                background: "var(--paper-2)",
+                border: isLive ? "1px solid var(--success)" : "1px solid var(--line)",
+                borderLeft: `3px solid ${isLive ? "var(--signal)" : "var(--line-2)"}`,
                 borderRadius: 6,
                 cursor: "pointer", textAlign: "left",
                 overflow: "hidden",
@@ -1612,7 +1614,7 @@ function SavedSidebar({ day, state, setState }) {
                 onClick={(e) => unsave(a.id, e)}
                 style={{
                   flexShrink: 0, width: 18, height: 18, borderRadius: 999,
-                  background: "rgba(0,0,0,0.06)", color: "var(--muted)",
+                  background: "rgba(var(--shade-rgb),0.06)", color: "var(--muted)",
                   border: "none", cursor: "pointer",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   fontSize: 10, fontWeight: 700, lineHeight: 1,
@@ -1645,8 +1647,8 @@ function GridSetBlock({
   const _lineH   = narrow ? 10.2 : isHeadliner ? 13.8 : 12.7;
   const _chrome  = narrow ? 8 : 20; // padding, plus the time line where it renders
   const nameLines = Math.max(1, Math.min(4, Math.floor((height - _chrome) / _lineH)));
-  const fillAlpha = isHeadliner ? "38" : "22";
-  const dimAlpha  = isHeadliner ? "14" : "08";
+  // One accent: the rail marks what you saved; the stage is its column header.
+  const _saved = (state.saved || []).includes(a.id);
   const _store = refStore;
   const _resetHold = (e) => {
     const el = e.currentTarget, fill = el.querySelector("[data-lpfill]");
@@ -1675,18 +1677,18 @@ function GridSetBlock({
       onPointerCancel={_resetHold}
       style={{
         position: "absolute", top, left, width, height,
-        background: `${stage.color}${active || isHighlighted ? fillAlpha : dimAlpha}`,
-        borderLeft: `3px solid ${active || isHighlighted ? stage.color : stage.color + "44"}`,
+        background: isHeadliner ? "var(--paper-3)" : "var(--paper-2)",
+        borderLeft: `3px solid ${_saved ? "var(--signal)" : "var(--line-2)"}`,
         borderRadius: 6,
         padding: narrow ? "3px 3px 3px 4px" : "4px 6px 4px 7px",
         cursor: "pointer", overflow: "hidden",
         opacity: active || isHighlighted ? 1 : 0.32,
         transition: "opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-left 0.2s ease, transform 0.12s ease",
         boxShadow: dueMins != null
-          ? `0 0 0 2px var(--ember), 0 2px 12px ${stage.color}55`
+          ? "0 0 0 2px var(--signal)"
           : clash && active
             ? "inset 0 0 0 1.5px var(--ember)"
-            : (isHeadliner && (active || isHighlighted) ? `0 2px 8px ${stage.color}33` : "none"),
+            : "none",
         zIndex: isHighlighted ? 6 : dueMins != null ? 5 : undefined,
         animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined,
         display: "flex", flexDirection: "column",
@@ -1743,12 +1745,12 @@ function GridSetBlock({
       {!saved && matched && height > 30 && (
         <span style={{
           position: "absolute", top: 4, right: 5,
-          fontSize: 9, color: "#1DB954", fontWeight: 800, lineHeight: 1,
+          fontSize: 9, color: "var(--spotify)", fontWeight: 800, lineHeight: 1,
         }}>♫</span>
       )}
       <div data-lpfill aria-hidden="true" style={{
         position: "absolute", left: 0, bottom: 0, height: 3, width: "0%",
-        background: stage.color, borderRadius: "0 0 6px 6px",
+        background: "var(--signal)", borderRadius: "0 0 6px 6px",
         pointerEvents: "none", zIndex: 3,
       }}/>
     </div>
@@ -1955,12 +1957,6 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
                     fontSize: 10, letterSpacing: 1.1, fontWeight: 800,
                     fontFamily: "inherit",
                   }}>
-                  {/* The stage's colour, sitting directly on top of its own
-                      column — the same colour the blocks below are tinted in. */}
-                  <span aria-hidden="true" style={{
-                    position: "absolute", left: 0, right: 0, top: 0, height: 3,
-                    background: s.color,
-                  }}/>
                   <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.short}</span>
                   {n > 0 && (
                     <span style={{ flexShrink: 0, color: "var(--ember-ink)", fontSize: 8.5, fontWeight: 800 }}>★{n}</span>
@@ -1990,7 +1986,7 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
               {nowTop != null && (
                 <span className="mono" style={{
                   position: "absolute", left: 2, top: nowTop - 7, zIndex: 6,
-                  fontSize: 8, letterSpacing: 0.6, color: "#fff", fontWeight: 800,
+                  fontSize: 8, letterSpacing: 0.6, color: "var(--ink)", fontWeight: 800,
                   background: "var(--ember)", padding: "1px 4px", borderRadius: 3,
                 }}>NOW</span>
               )}
@@ -2003,7 +1999,7 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
                   width: COL_W, flexShrink: 0,
                   position: "relative", height: TOTAL_H,
                   borderLeft: "1px solid var(--line)",
-                  background: si % 2 === 0 ? "transparent" : "rgba(26,18,13,0.018)",
+                  background: si % 2 === 0 ? "transparent" : "rgba(var(--shade-rgb),0.018)",
                 }}>
                   <GridHourLines hours={HOURS} minToTop={minToTop} />
                   {stageArtists.map(a => {
@@ -2040,7 +2036,7 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
               <div style={{
                 position: "absolute", left: GUTTER_W, right: 0, top: nowTop, height: 0,
                 borderTop: "2px solid var(--ember)",
-                boxShadow: "0 0 8px rgba(232,93,46,0.55)",
+                boxShadow: "0 0 8px rgba(var(--signal-rgb),0.55)",
                 zIndex: 3, pointerEvents: "none",
               }}/>
             )}

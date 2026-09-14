@@ -379,7 +379,7 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
                       borderBottom: "1px solid var(--line)", background: "transparent",
                       cursor: "pointer", textAlign: "left", alignItems: "center",
                     }}>
-                      <span style={{ width: 6, height: 6, borderRadius: 6, background: st?.color, boxShadow: `0 0 5px ${st?.color}66`, flexShrink: 0 }}/>
+                      <span style={{ width: 6, height: 6, borderRadius: 6, background: "var(--text-3)", flexShrink: 0 }}/>
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div className="serif" style={{ fontSize: 16, lineHeight: 1.1, color: "var(--ink)" }}>{a.name}</div>
                         <div className="mono" style={{ fontSize: 9, letterSpacing: 0.8, color: "var(--muted)", marginTop: 2 }}>
@@ -422,14 +422,14 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
                   alignItems: "center", border: "none", borderBottom: "1px solid var(--line)",
                   animation: ri < 12 ? `springIn 0.3s ease-out ${ri * 30}ms both` : undefined,
                 }}>
-                  <div style={{ width: 4, alignSelf: "stretch", background: stage?.color || "#8a8580", borderRadius: 3, flexShrink: 0 }} />
+                  <div style={{ width: 4, alignSelf: "stretch", background: stage?.color || "var(--paper-3)", borderRadius: 3, flexShrink: 0 }} />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: "flex", alignItems: "baseline", gap: 6, flexWrap: "wrap" }}>
                       <span className="serif" style={{ fontSize: 20, lineHeight: 1.05, letterSpacing: -0.2 }}>{a.name}</span>
-                      {leg && <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "#fbbf24", fontWeight: 800 }}>★ DON'T MISS</span>}
+                      {leg && <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--signal-ink)", fontWeight: 800 }}>★ DON'T MISS</span>}
                     </div>
                     <div style={{ display: "flex", gap: 5, marginTop: 2, alignItems: "center" }}>
-                      <span style={{ width: 6, height: 6, borderRadius: 6, background: stage.color, boxShadow: `0 0 5px ${stage.color}66`, flexShrink: 0 }}/>
+                      <span style={{ width: 6, height: 6, borderRadius: 6, background: "var(--text-3)", flexShrink: 0 }}/>
                       <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: stage.color, fontWeight: 600, textTransform: "uppercase" }}>{stage.short}</span>
                       <span style={{ color: "var(--muted)" }}>·</span>
                       <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>{DAY_LABEL[a.day]} {fmt12(a.start)}–{fmt12(a.end)}</span>
@@ -772,31 +772,10 @@ function App() {
           {body}
           {/* Search FAB — floats above TabBar, accessible from any screen.
               Labeled pill so first-time users actually notice it. */}
-          {/* Not on the lineup GRID: its own search is one upward scroll away,
-              and the pill covered set cards there (#116). Not on Home either:
-              search is a button in the hero's top bar there, because the pill
-              sat over the Saved tonight row's Share action. */}
-          {!state.artist && !searchOpen && state.tab !== "map" && state.tab !== "home" && !modalOpen && !(state.tab === "lineup" && state.lineupGrid) && (
-            <button
-              onClick={() => setSearchOpen(true)}
-              aria-label="Search artists, stages, genres"
-              style={{
-                // Field Mode: quiet translucent chrome, not a bright pill.
-                position: "absolute", bottom: 16, right: 16, zIndex: 30,
-                height: 48, borderRadius: 24, padding: "0 18px 0 14px",
-                background: "var(--chrome)", color: "var(--ink)",
-                backdropFilter: "blur(20px) saturate(160%)", WebkitBackdropFilter: "blur(20px) saturate(160%)",
-                border: "1px solid var(--line-2)", cursor: "pointer",
-                display: "flex", alignItems: "center", gap: 8,
-                fontSize: 15, lineHeight: "20px", fontWeight: 600,
-              }}
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                <circle cx="11" cy="11" r="7"/><path d="M21 21 L16.65 16.65"/>
-              </svg>
-              Search
-            </button>
-          )}
+          {/* No floating Search pill on any tab. It covered a control wherever
+              it sat: Share on Home, the bookmark column on Lineup (#116), the
+              Festival row on Me. Search lives in the page instead: the hero's
+              top bar on Today, the search field on Lineup, the sheet on Map. */}
           <ToastHost />
         </div>
         {!state.artist && (() => {
@@ -929,21 +908,21 @@ class RootErrorBoundary extends React.Component {
       <div style={{
         minHeight: "100vh", display: "flex", flexDirection: "column",
         alignItems: "center", justifyContent: "center", padding: "40px 24px",
-        background: "#f7ede0", color: "#1a120d", fontFamily: "Geist, system-ui, sans-serif",
+        background: "var(--ink)", color: "var(--paper)", fontFamily: "Geist, system-ui, sans-serif",
         textAlign: "center",
       }}>
         <div style={{ fontFamily: "Instrument Serif, serif", fontSize: 36, marginBottom: 6 }}>
           Something glitched.
         </div>
-        <div style={{ fontSize: 14, color: "rgba(26,18,13,0.65)", marginBottom: 22, maxWidth: 340, lineHeight: 1.5 }}>
+        <div style={{ fontSize: 14, color: "rgba(var(--shade-rgb),0.65)", marginBottom: 22, maxWidth: 340, lineHeight: 1.5 }}>
           Plursky hit an unexpected error. Your saved lineup is safe — reloading should fix it.
         </div>
         <button onClick={this.reload} style={{
-          background: "#1a120d", color: "#f7ede0", border: "none",
+          background: "var(--paper)", color: "var(--ink)", border: "none",
           borderRadius: 12, padding: "12px 22px", cursor: "pointer",
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
-        <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
+        <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(var(--shade-rgb),0.45)" }}>
           PLURSKY · v323
         </div>
       </div>
@@ -988,7 +967,7 @@ function SetStartingCinematic() {
   return (
     <div style={{
       position: "fixed", inset: 0, zIndex: 9998,
-      background: "rgba(13,8,4,0.92)", color: "#fff",
+      background: "rgba(var(--shade-rgb),0.92)", color: "var(--ink)",
       display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
       animation: "fadeIn 0.5s ease-out",
       backdropFilter: "blur(12px)",
@@ -1007,15 +986,15 @@ function SetStartingCinematic() {
           fontSize: 42, lineHeight: 0.95, letterSpacing: -1, marginBottom: 8,
           textShadow: `0 0 40px ${stage?.color || "var(--ember)"}55`,
         }}>{a.name}</div>
-        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: stage?.color || "#fff", marginBottom: 24 }}>
+        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: stage?.color || "var(--ink)", marginBottom: 24 }}>
           {stage?.name?.toUpperCase() || ""} · {fmt12(a.start)}
         </div>
         <div style={{
           fontFamily: "Geist Mono, monospace", fontSize: 52, fontWeight: 200,
           letterSpacing: 2, fontVariantNumeric: "tabular-nums",
-          color: "#fff", textShadow: `0 0 30px ${stage?.color || "var(--ember)"}`,
+          color: "var(--ink)", textShadow: `0 0 30px ${stage?.color || "var(--ember)"}`,
         }}>{minsLeft} MIN</div>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "rgba(255,255,255,0.4)", marginTop: 20 }}>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "rgba(var(--ink-rgb),0.4)", marginTop: 20 }}>
           TAP TO DISMISS
         </div>
       </div>
