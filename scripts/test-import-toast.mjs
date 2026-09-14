@@ -18,7 +18,7 @@ try {
   const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
   const ctx=await browser.newContext({timezoneId:'America/Los_Angeles'});
   await ctx.addInitScript(()=>{localStorage.setItem('onboarded','v1');localStorage.setItem('user_name','Test');localStorage.setItem('active_festival_id','edc-lv-2026');localStorage.setItem('active_festival_explicit','1');localStorage.setItem('edc-lv-2026_saved_v1',JSON.stringify(['n4']));localStorage.removeItem('plursky_moments_v1');indexedDB.deleteDatabase('plursky_memories');});
-  const page=await ctx.newPage(); await page.goto(URL,{waitUntil:'domcontentloaded'}); await page.waitForFunction(()=>Array.isArray(window.ARTISTS)&&window.ARTISTS.length>0,{timeout:20000}); await sleep(800);
+  const page=await ctx.newPage(); await page.goto(URL,{waitUntil:'domcontentloaded'}); await page.waitForFunction(()=>Array.isArray(window.ARTISTS)&&window.ARTISTS.length>0,null,{timeout:30000}); await sleep(800);
   await page.locator('button').filter({hasText:/MEMORIES/}).first().click();
   await page.locator('input[type=file][multiple]').waitFor({state:'attached'});
   await page.evaluate(async()=>{
@@ -26,13 +26,16 @@ try {
     const b=new Uint8Array(await blob.arrayBuffer()),t=new Uint8Array(64),d=new DataView(t.buffer);d.setUint8(0,73);d.setUint8(1,73);d.setUint16(2,42,true);d.setUint32(4,8,true);d.setUint16(8,1,true);d.setUint16(10,0x8769,true);d.setUint16(12,4,true);d.setUint32(14,1,true);d.setUint32(18,26,true);d.setUint16(26,1,true);d.setUint16(28,0x9003,true);d.setUint16(30,2,true);d.setUint32(32,20,true);d.setUint32(36,44,true);const s='2026:05:15 23:35:00\0';for(let i=0;i<20;i++)t[44+i]=s.charCodeAt(i)||0;const a=new Uint8Array(74);new DataView(a.buffer).setUint16(0,0xffe1);new DataView(a.buffer).setUint16(2,72);a.set([69,120,105,102,0,0],4);a.set(t,10);const full=new Uint8Array(2+a.length+b.length-2);full.set(b.slice(0,2));full.set(a,2);full.set(b.slice(2),2+a.length);
     const tx=new DataTransfer();tx.items.add(new File([full],'good.jpg',{type:'image/jpeg'}));tx.items.add(new File([new Uint8Array([1,2,3])],'broken.jpg',{type:'image/jpeg'}));const input=document.querySelector('input[type=file][multiple]');input.files=tx.files;input.dispatchEvent(new Event('change',{bubbles:true}));
   });
-  await page.waitForFunction(()=>JSON.parse(localStorage.getItem('plursky_moments_v1')||'{}')['1']?.length===1,{timeout:15000});
-  // Poll for the import-result toast instead of reading once: another flow's
-  // toast (e.g. the unsigned-save nudge) can hold [role=status] at any single
-  // read. The guard still fails if the import toast never appears or carries
-  // the contradictory copy.
-  await page.waitForFunction(()=>/Imported 1 · 1 failed/.test(document.querySelector('[role=status]')?.textContent||''),{timeout:10000,polling:100});
-  const toast=await page.locator('[role=status]').textContent();
+  await page.waitForFunction(()=>JSON.parse(localStorage.getItem('plursky_moments_v1')||'{}')['1']?.length===1,null,{timeout:30000});
+  // Poll EVERY [role=status] for the import-result toast. The app renders
+  // several status regions (app, home, lineup, map, check-in), so reading only
+  // the first one could miss the toast whenever another region came earlier in
+  // the DOM. The guard still fails if the import toast never appears or carries
+  // the contradictory copy. Options are waitForFunction's THIRD argument: in
+  // the second slot they are the page-function arg and every wait fell back to
+  // the 30 s default.
+  await page.waitForFunction(()=>[...document.querySelectorAll('[role=status]')].some(s=>/Imported 1 · 1 failed/.test(s.textContent||'')),null,{timeout:30000,polling:100});
+  const toast=await page.locator('[role=status]').filter({hasText:/Imported 1 · 1 failed/}).first().textContent();
   if(/Couldn't import|tap to review/i.test(toast||''))throw new Error(`contradictory toast: ${toast}`);
   console.log('✓ mixed batch landed 1 moment and reported the exact non-action toast "Imported 1 · 1 failed"'); await browser.close();
 } finally {server.kill('SIGTERM');}
