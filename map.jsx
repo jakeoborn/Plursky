@@ -7078,7 +7078,7 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
         }}>
           <div style={{
             width: 42, height: 42, borderRadius: 42, background: friend.avatarTone,
-            color: "var(--ink)", display: "flex", alignItems: "center", justifyContent: "center",
+            color: "var(--paper)", display: "flex", alignItems: "center", justifyContent: "center",
             fontFamily: "Instrument Serif, serif", fontSize: 20, position: "relative", flexShrink: 0,
           }}>
             {friend.name[0]}

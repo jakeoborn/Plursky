@@ -979,9 +979,14 @@ function AccountCard({ state, setState }) {
 // Falls back to a festival-wide demo channel if no crew is set yet.
 
 const PRESENCE_FALLBACK = `presence-${FESTIVAL_CONFIG?.id || "festival"}`;
+// Crew identity hues, the one place a friend's colour comes from: their map
+// pin, chat avatar and (for you) the PING chip on Me. Six hues far apart on
+// the wheel and bright on the dark canvas. The dark theme folded every accent
+// token into purple, so this stays a literal set, not tokens. No red: that
+// reads as the alert colour.
 const PRESENCE_COLORS = [
-  "#e85d2e","#7b3d9a","#f59a36","#6f8fb8",
-  "#2d7a55","#e85d8f","#34b4e8","#a855f7",
+  "#FFD60A","#30D158","#64D2FF",
+  "#B79CFF","#FF6FB5","#FF9F0A",
 ];
 
 // Reuse the existing crew/group code (CrewCard already manages it under

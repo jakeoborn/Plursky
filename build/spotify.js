@@ -10115,10 +10115,7 @@ function MeScreen({
     setLocalName(next);
   };
   var pingCode = typeof window.getMyPingCode === "function" ? window.getMyPingCode() : "PLUR";
-  var PING_PALETTE = ["var(--ember)", "var(--flare)", "var(--horizon)", "var(--sky)", "var(--success)"];
-  var pingHash = 0;
-  for (var i = 0; i < pingCode.length; i++) pingHash = pingHash * 31 + pingCode.charCodeAt(i) >>> 0;
-  var pingColor = PING_PALETTE[pingHash % PING_PALETTE.length];
+  var pingColor = typeof _presColor === "function" && typeof _myPresId === "function" ? _presColor(_myPresId()) : "var(--signal-ink)";
   var [crewCount, setCrewCount] = React.useState(() => {
     try {
       var snap = window.sbGetPresSnap?.() || {};
@@ -14207,7 +14204,7 @@ function RecapScreen({
     style: {
       fontSize: 8,
       letterSpacing: 1.4,
-      color: "rgba(var(--ink-rgb),0.6)",
+      color: "var(--on-signal)",
       marginTop: 3,
       fontWeight: 700
     }
