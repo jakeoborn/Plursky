@@ -72,6 +72,7 @@ const LOCAL = [
   `./build/photo-tag.js?v=${APP_VER}`,
   `./build/spotify-api.js?v=${APP_VER}`,
   `./build/recap-engine.js?v=${APP_VER}`,
+  `./build/set-reconstruction.js?v=${APP_VER}`,
   `./build/spotify.js?v=${APP_VER}`,
   `./build/app.js?v=${APP_VER}`,
 ];

@@ -1017,6 +1017,11 @@ document.documentElement.classList.add("app-live");
 document.addEventListener("focusout", () => {
   setTimeout(() => { if (window.scrollY || document.documentElement.scrollTop) window.scrollTo(0, 0); }, 60);
 });
+// PROTOTYPE (branch proto/set-reconstruction): ?proto=reconstruct mounts the
+// Set Reconstruction screen instead of the app.
+const _protoReconstruct = new URLSearchParams(location.search).get("proto") === "reconstruct" && typeof SetReconstruction === "function";
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <RootErrorBoundary><App /><CelebrationOverlay /><SetStartingCinematic /></RootErrorBoundary>
+  _protoReconstruct
+    ? <RootErrorBoundary><SetReconstruction /></RootErrorBoundary>
+    : <RootErrorBoundary><App /><CelebrationOverlay /><SetStartingCinematic /></RootErrorBoundary>
 );

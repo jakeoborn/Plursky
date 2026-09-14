@@ -1615,4 +1615,5 @@ document.addEventListener("focusout", () => {
     if (window.scrollY || document.documentElement.scrollTop) window.scrollTo(0, 0);
   }, 60);
 });
-ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(RootErrorBoundary, null, React.createElement(App, null), React.createElement(CelebrationOverlay, null), React.createElement(SetStartingCinematic, null)));
+var _protoReconstruct = new URLSearchParams(location.search).get("proto") === "reconstruct" && typeof SetReconstruction === "function";
+ReactDOM.createRoot(document.getElementById("root")).render(_protoReconstruct ? React.createElement(RootErrorBoundary, null, React.createElement(SetReconstruction, null)) : React.createElement(RootErrorBoundary, null, React.createElement(App, null), React.createElement(CelebrationOverlay, null), React.createElement(SetStartingCinematic, null)));
