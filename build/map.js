@@ -10142,7 +10142,7 @@ function MessageDrawer({
       height: 42,
       borderRadius: 42,
       background: friend.avatarTone,
-      color: "var(--ink)",
+      color: "var(--paper)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",

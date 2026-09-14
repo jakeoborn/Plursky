@@ -6527,13 +6527,10 @@ function MeScreen({ state, setState }) {
   // Ping code (e.g. SAGE) — exported on window by map.jsx
   const pingCode = (typeof window.getMyPingCode === "function" ? window.getMyPingCode() : "PLUR");
 
-  // Deterministic ping color from code → palette token. Stays in the
-  // desert-dawn family (ember/flare/horizon/sky/success). Avatar circle
-  // + ping chip dot pull from this so identity reads consistent.
-  const PING_PALETTE = ["var(--ember)", "var(--flare)", "var(--horizon)", "var(--sky)", "var(--success)"];
-  let pingHash = 0;
-  for (let i = 0; i < pingCode.length; i++) pingHash = (pingHash * 31 + pingCode.charCodeAt(i)) >>> 0;
-  const pingColor = PING_PALETTE[pingHash % PING_PALETTE.length];
+  // Your crew colour: the same hue friends see on your map pin (supabase.jsx
+  // _presColor), so the chip here and your dot on their map match.
+  const pingColor = typeof _presColor === "function" && typeof _myPresId === "function"
+    ? _presColor(_myPresId()) : "var(--signal-ink)";
 
   // Live crew count from Supabase Realtime presence (0 if not connected)
   const [crewCount, setCrewCount] = React.useState(() => {
@@ -9224,7 +9221,7 @@ function RecapScreen({ state, setState }) {
               <div className="serif" style={{ fontSize: 20, lineHeight: 1.1 }}>
                 Your <em>Wrapped</em>
               </div>
-              <div className="mono" style={{ fontSize: 8, letterSpacing: 1.4, color: "rgba(var(--ink-rgb),0.6)", marginTop: 3, fontWeight: 700 }}>
+              <div className="mono" style={{ fontSize: 8, letterSpacing: 1.4, color: "var(--on-signal)", marginTop: 3, fontWeight: 700 }}>
                 SWIPE THROUGH YOUR FESTIVAL STORY
               </div>
             </div>

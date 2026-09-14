@@ -1017,7 +1017,7 @@ function AccountCard({
   }, "TRY AGAIN")))));
 }
 var PRESENCE_FALLBACK = `presence-${FESTIVAL_CONFIG?.id || "festival"}`;
-var PRESENCE_COLORS = ["#e85d2e", "#7b3d9a", "#f59a36", "#6f8fb8", "#2d7a55", "#e85d8f", "#34b4e8", "#a855f7"];
+var PRESENCE_COLORS = ["#FFD60A", "#30D158", "#64D2FF", "#B79CFF", "#FF6FB5", "#FF9F0A"];
 function _presChannelName() {
   var code = null;
   try {
