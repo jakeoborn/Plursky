@@ -462,19 +462,32 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
 // Used by save/unsave heart-tap and other quick confirmations.
 function ToastHost() {
   const [msg, setMsg] = React.useState(null);
+  // Deferred toasts (nudges, not results) wait here while another toast is on
+  // screen instead of replacing it. Every toast used to replace the current
+  // one at once, and the one-time cloud nudge landed ~80 ms after an import
+  // result ("Imported 1 · 1 failed"), wiping it before anyone could read it.
+  const queue = React.useRef([]), showing = React.useRef(false);
   React.useEffect(() => {
-    // window.plurskyToast(text, opts?) — opts: { actionLabel, onAction, duration }.
+    // window.plurskyToast(text, opts?) — opts: { actionLabel, onAction, duration, defer }.
     // Text-only calls keep the old 1600ms quick-confirm behaviour; passing an
-    // action turns it into an actionable toast (e.g. a 3s UNDO).
+    // action turns it into an actionable toast (e.g. a 3s UNDO). `defer`
+    // queues the toast behind whatever is showing.
     window.plurskyToast = (text, opts = {}) => {
-      setMsg(null);
-      requestAnimationFrame(() => setMsg({ text, id: Date.now(), ...opts }));
+      if (opts.defer && showing.current) { queue.current.push({ text, ...opts }); return; }
+      showing.current = true;
+      // A fresh id re-keys the pill, which restarts its fade-in.
+      setMsg({ text, id: Date.now() + Math.random(), ...opts });
       try { navigator.vibrate?.(15); } catch {}
     };
     return () => { delete window.plurskyToast; };
   }, []);
   React.useEffect(() => {
-    if (!msg) return;
+    if (!msg) {
+      const next = queue.current.shift();
+      if (next) { showing.current = true; setMsg({ ...next, id: Date.now() + Math.random() }); }
+      else showing.current = false;
+      return;
+    }
     const t = setTimeout(() => setMsg(null), msg.duration || 1600);
     return () => clearTimeout(t);
   }, [msg?.id]);
@@ -485,7 +498,7 @@ function ToastHost() {
       position: "absolute", left: 0, right: 0, bottom: 80, zIndex: 95,
       display: "flex", justifyContent: "center", pointerEvents: "none", padding: "0 16px",
     }}>
-      <div className="mono" role="status" aria-live="polite" style={{
+      <div key={msg.id} className="mono" role="status" aria-live="polite" style={{
         background: "var(--ink)", color: "var(--paper)",
         padding: hasAction ? "7px 7px 7px 16px" : "9px 16px", borderRadius: 999,
         fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
@@ -749,7 +762,8 @@ function App() {
           const seen = (() => { try { return localStorage.getItem("cloud_nudge_seen") === "1"; } catch { return false; } })();
           if (!seen && typeof window.plurskyToast === "function") {
             try { localStorage.setItem("cloud_nudge_seen", "1"); } catch {}
-            window.plurskyToast("Saved. Sign in on Me tab to back up.");
+            // A nudge, not a result: it waits for any toast already showing.
+            window.plurskyToast("Saved. Sign in on Me tab to back up.", { defer: true });
           }
         }
       } catch {}
@@ -898,7 +912,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v326",
+        version: "v327",
       }));
     } catch {}
   }
@@ -931,7 +945,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(var(--shade-rgb),0.45)" }}>
-          PLURSKY · v326
+          PLURSKY · v327
         </div>
       </div>
     );

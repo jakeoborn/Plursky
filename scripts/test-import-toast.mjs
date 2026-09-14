@@ -18,6 +18,11 @@ try {
   const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
   const ctx=await browser.newContext({timezoneId:'America/Los_Angeles'});
   await ctx.addInitScript(()=>{localStorage.setItem('onboarded','v1');localStorage.setItem('user_name','Test');localStorage.setItem('active_festival_id','edc-lv-2026');localStorage.setItem('active_festival_explicit','1');localStorage.setItem('edc-lv-2026_saved_v1',JSON.stringify(['n4']));localStorage.removeItem('plursky_moments_v1');indexedDB.deleteDatabase('plursky_memories');});
+  // Every text any [role=status] region shows, with ms since load. The toast
+  // wait below still timed out on GitHub CI after #193 while passing locally,
+  // so a timeout now prints this log: did the toast flash, get replaced by
+  // another message, or never render?
+  await ctx.addInitScript(()=>{window.__statusLog=[];const t0=performance.now();new MutationObserver(()=>{for(const s of document.querySelectorAll('[role=status]')){const x=(s.textContent||'').trim();if(x&&s.__last!==x){s.__last=x;window.__statusLog.push(`${Math.round(performance.now()-t0)}ms ${x.slice(0,140)}`);}}}).observe(document,{subtree:true,childList:true,characterData:true});});
   const page=await ctx.newPage(); await page.goto(URL,{waitUntil:'domcontentloaded'}); await page.waitForFunction(()=>Array.isArray(window.ARTISTS)&&window.ARTISTS.length>0,null,{timeout:30000}); await sleep(800);
   await page.locator('button').filter({hasText:/MEMORIES/}).first().click();
   await page.locator('input[type=file][multiple]').waitFor({state:'attached'});
@@ -34,8 +39,20 @@ try {
   // the contradictory copy. Options are waitForFunction's THIRD argument: in
   // the second slot they are the page-function arg and every wait fell back to
   // the 30 s default.
-  await page.waitForFunction(()=>[...document.querySelectorAll('[role=status]')].some(s=>/Imported 1 · 1 failed/.test(s.textContent||'')),null,{timeout:30000,polling:100});
+  try {
+    await page.waitForFunction(()=>[...document.querySelectorAll('[role=status]')].some(s=>/Imported 1 · 1 failed/.test(s.textContent||'')),null,{timeout:30000,polling:100});
+  } catch (e) {
+    const d=await page.evaluate(()=>({log:window.__statusLog||[],now:[...document.querySelectorAll('[role=status]')].map(s=>(s.textContent||'').trim().slice(0,140))})).catch(()=>null);
+    console.error(`status-region log (ms since load):\n  ${(d?.log||[]).join('\n  ')||'(no status text at all)'}\nregions at timeout: ${JSON.stringify(d?.now)}`);
+    throw e;
+  }
   const toast=await page.locator('[role=status]').filter({hasText:/Imported 1 · 1 failed/}).first().textContent();
   if(/Couldn't import|tap to review/i.test(toast||''))throw new Error(`contradictory toast: ${toast}`);
-  console.log('✓ mixed batch landed 1 moment and reported the exact non-action toast "Imported 1 · 1 failed"'); await browser.close();
+  // Rendered is not enough: a result toast has to stay long enough to read.
+  // The one-time cloud nudge used to replace it ~80 ms later, which is also
+  // why this gate flaked on CI (a 100 ms poll caught the flash only by luck).
+  await sleep(800);
+  const still=await page.evaluate(()=>[...document.querySelectorAll('[role=status]')].some(s=>/Imported 1 · 1 failed/.test(s.textContent||'')));
+  if(!still){const log=await page.evaluate(()=>window.__statusLog||[]);throw new Error(`import toast was replaced within 800 ms:\n  ${log.join('\n  ')}`);}
+  console.log('✓ mixed batch landed 1 moment; the exact non-action toast "Imported 1 · 1 failed" stayed readable'); await browser.close();
 } finally {server.kill('SIGTERM');}
