@@ -245,6 +245,7 @@ async function _parseVideoMeta(file) {
     date: null,
     lat: null,
     lng: null,
+    acc: null,
     timestampSource: null,
     locationSource: null,
     rawUtcMs: null
@@ -292,7 +293,27 @@ async function _parseVideoMeta(file) {
       }
       return s;
     };
-    var visit = (start, end, depth) => {
+    var applyMdta = ({
+      keys,
+      vals
+    }) => {
+      for (var i of Object.keys(vals)) {
+        var name = keys[i],
+          v = vals[i];
+        if (out.lat == null && name === "com.apple.quicktime.location.ISO6709") {
+          var p = parseIso6709(v);
+          if (p) {
+            out.lat = p.lat;
+            out.lng = p.lng;
+            out.locationSource = "video-mdta";
+          }
+        } else if (name === "com.apple.quicktime.location.accuracy.horizontal") {
+          var a = parseFloat(v);
+          if (isFinite(a) && a >= 0) out.acc = a;
+        }
+      }
+    };
+    var visit = (start, end, depth, parentType, scope) => {
       if (depth > 6) return;
       var pos = start;
       while (pos + 8 <= end && pos + 8 <= n) {
@@ -333,8 +354,28 @@ async function _parseVideoMeta(file) {
             out.locationSource = "video-xyz";
           }
         }
+        if (scope && _type === "keys" && boxEnd - payload >= 8) {
+          var count = moov.getUint32(payload + 4);
+          var k = payload + 8;
+          for (var i = 1; i <= count && k + 8 <= boxEnd; i++) {
+            var ks = moov.getUint32(k);
+            if (ks < 8) break;
+            scope.keys[i] = readAscii(k + 8, ks - 8);
+            k += ks;
+          }
+        }
+        if (scope && parentType === "ilst" && boxEnd - payload >= 16 && typeAt(moov, payload + 4) === "data") {
+          var ds = moov.getUint32(payload);
+          scope.vals[moov.getUint32(pos + 4)] = readAscii(payload + 16, Math.min(ds, boxEnd - payload) - 16);
+        }
         if (["trak", "mdia", "minf", "stbl", "udta", "meta", "ilst", "moov"].includes(_type)) {
-          visit(_type === "meta" ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1);
+          var isoMeta = _type === "meta" && !(payload + 8 <= boxEnd && typeAt(moov, payload + 4) === "hdlr");
+          var inner = _type === "meta" ? {
+            keys: {},
+            vals: {}
+          } : scope;
+          visit(isoMeta ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1, _type, inner);
+          if (_type === "meta") applyMdta(inner);
         }
         pos += _boxSize;
       }

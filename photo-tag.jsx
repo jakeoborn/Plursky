@@ -273,7 +273,7 @@ async function _parseExifMeta(file) {
 // mvhd time is UTC; we convert to festival-LOCAL wall-clock to match how EXIF
 // DateTimeOriginal is treated downstream (see _photoEpochUtc).
 async function _parseVideoMeta(file) {
-  const out = { date: null, lat: null, lng: null, timestampSource: null, locationSource: null, rawUtcMs: null };
+  const out = { date: null, lat: null, lng: null, acc: null, timestampSource: null, locationSource: null, rawUtcMs: null };
   if (!file) return out;
   try {
     const size = file.size;
@@ -309,7 +309,25 @@ async function _parseVideoMeta(file) {
       }
       return s;
     };
-    const visit = (start, end, depth) => {
+    // One `meta` container's QuickTime items, resolved once its walk is done.
+    // Scoped per container because a track-level `meta` (lens, focal length)
+    // numbers its own keys from 1 too.
+    const applyMdta = ({ keys, vals }) => {
+      for (const i of Object.keys(vals)) {
+        const name = keys[i], v = vals[i];
+        if (out.lat == null && name === "com.apple.quicktime.location.ISO6709") {
+          const p = parseIso6709(v);
+          if (p) { out.lat = p.lat; out.lng = p.lng; out.locationSource = "video-mdta"; }
+        } else if (name === "com.apple.quicktime.location.accuracy.horizontal") {
+          // The claimed error radius, in metres. The tagger blinds a fix
+          // coarser than 200 m for stage decisions; a clip filmed on a 1.3 km
+          // fix must not pick a stage by it.
+          const a = parseFloat(v);
+          if (isFinite(a) && a >= 0) out.acc = a;
+        }
+      }
+    };
+    const visit = (start, end, depth, parentType, scope) => {
       if (depth > 6) return;
       let pos = start;
       while (pos + 8 <= end && pos + 8 <= n) {
@@ -340,8 +358,35 @@ async function _parseVideoMeta(file) {
           const p = parseIso6709(readAscii(payload, boxEnd - payload));
           if (p) { out.lat = p.lat; out.lng = p.lng; out.locationSource = "video-xyz"; }
         }
+        // Current iPhones write NO ©xyz. Location and its accuracy live in
+        // QuickTime metadata: `keys` names each item ("mdta" namespace) and
+        // `ilst` holds the values, each child typed by its 1-based key index.
+        // Without this every modern iPhone clip imported with no GPS at all,
+        // so stage matching fell back to time alone and flagged every clip
+        // ambiguous across the whole night's lineup.
+        if (scope && type === "keys" && boxEnd - payload >= 8) {
+          const count = moov.getUint32(payload + 4);
+          let k = payload + 8;
+          for (let i = 1; i <= count && k + 8 <= boxEnd; i++) {
+            const ks = moov.getUint32(k);
+            if (ks < 8) break;
+            scope.keys[i] = readAscii(k + 8, ks - 8);
+            k += ks;
+          }
+        }
+        if (scope && parentType === "ilst" && boxEnd - payload >= 16 && typeAt(moov, payload + 4) === "data") {
+          const ds = moov.getUint32(payload);
+          scope.vals[moov.getUint32(pos + 4)] = readAscii(payload + 16, Math.min(ds, boxEnd - payload) - 16);
+        }
         if (["trak", "mdia", "minf", "stbl", "udta", "meta", "ilst", "moov"].includes(type)) {
-          visit(type === "meta" ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1);
+          // ISO `meta` is a full box (4 bytes of version/flags before its
+          // children); QuickTime's moov-level `meta` is not, and starts
+          // straight at its `hdlr`. Skipping 4 there misaligned the walk and
+          // `keys`/`ilst` were never reached.
+          const isoMeta = type === "meta" && !(payload + 8 <= boxEnd && typeAt(moov, payload + 4) === "hdlr");
+          const inner = type === "meta" ? { keys: {}, vals: {} } : scope;
+          visit(isoMeta ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1, type, inner);
+          if (type === "meta") applyMdta(inner);
         }
         pos += boxSize;
       }

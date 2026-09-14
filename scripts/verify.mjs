@@ -1932,6 +1932,19 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-a. iPhone video GPS (QuickTime mdta) ───────────────────────────────
+{
+  console.log("▸ Video GPS gate — iPhone mdta location + accuracy reach the tagger");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-video-mdta.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`video mdta GPS regression failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b. Board playlist planner ──────────────────────────────────────────
 // Saved sets are guaranteed seeds; discovery picks are capped, unsaved and
 // carry a reason that is TRUE of the lineup. Fixtures + every _DATA_SETS lineup.
