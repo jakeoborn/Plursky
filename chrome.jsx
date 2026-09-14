@@ -34,11 +34,12 @@ function TopBar({ title, right, sub, tight }) {
       gap: 12,
     }}>
       <div>
-        {sub && <div className="mono" style={{
-          fontSize: 10, letterSpacing: 1.6, textTransform: "uppercase",
-          color: "var(--muted)", marginBottom: 4,
+        {/* Field Mode: 11/14 status eyebrow over a 28/34 bold screen title. */}
+        {sub && <div style={{
+          fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em",
+          textTransform: "uppercase", color: "var(--text-2)", marginBottom: 4,
         }}>{sub}</div>}
-        <div className="serif" style={{ fontSize: 34, lineHeight: 0.95, letterSpacing: -0.5 }}>
+        <div style={{ fontSize: 28, lineHeight: "34px", fontWeight: 700, letterSpacing: "-0.01em" }}>
           {title}
         </div>
       </div>
@@ -68,29 +69,18 @@ function TabBar({ active, onChange }) {
     { id: "map",     label: "Map",    icon: MapIcon },
     { id: "me",      label: "Me",     icon: MeIcon },
   ];
-  const [_tick, _setTick] = React.useState(0);
-  React.useEffect(() => { const id = setInterval(() => _setTick(t => t + 1), 30000); return () => clearInterval(id); }, []);
-  const _liveMainColor = React.useMemo(() => {
-    try {
-      const stages = window.STAGES || [];
-      const artists = (typeof activeLineup === "function") ? activeLineup() : (window.ARTISTS || []);
-      const main = window.FESTIVAL_CONFIG?.mainStageId;
-      if (!main || typeof window.isSetLive !== "function") return null;
-      const live = artists.find(a => a.stage === main && window.isSetLive(a));
-      if (!live) return null;
-      return stages.find(s => s.id === main)?.color || null;
-    } catch { return null; }
-  }, [_tick]);
-
+  // Field Mode: the bar is quiet dark chrome. The accent marks only the
+  // selected tab. Stage colour no longer tints the bar while the main stage
+  // is live: festival colour may skin media, never controls.
   return (
     <div style={{
-      background: "var(--paper-2)",
-      borderTop: _liveMainColor ? `2px solid ${_liveMainColor}` : "1px solid var(--line)",
-      boxShadow: _liveMainColor ? `0 -2px 12px ${_liveMainColor}22` : undefined,
+      background: "var(--chrome)",
+      backdropFilter: "blur(20px) saturate(160%)",
+      WebkitBackdropFilter: "blur(20px) saturate(160%)",
+      borderTop: "1px solid var(--line)",
       padding: "6px 10px 10px",
       display: "flex",
       justifyContent: "space-around",
-      transition: "border-color 1s ease, box-shadow 1s ease",
     }}>
       {tabs.map(t => {
         const Icon = t.icon;
@@ -101,23 +91,17 @@ function TabBar({ active, onChange }) {
             aria-current={on ? "page" : undefined}
             style={{
               background: "transparent", border: "none", cursor: "pointer",
-              display: "flex", flexDirection: "column", alignItems: "center", gap: 2,
+              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 3,
               padding: "4px 12px",
-              color: on ? "var(--ink)" : "var(--muted)",
-              minWidth: 54,
+              color: on ? "var(--signal-ink)" : "var(--text-2)",
+              minWidth: 64, minHeight: 49,
               transition: "color 0.15s ease",
-              position: "relative",
             }}>
-            {on && <div style={{
-              position: "absolute", top: -6, left: "50%", transform: "translateX(-50%)",
-              width: 20, height: 2.5, borderRadius: 2,
-              background: "var(--ember)",
-            }}/>}
             <Icon on={on} />
-            <span className="mono" style={{
-              fontSize: 9, letterSpacing: 1, textTransform: "uppercase",
-              fontWeight: on ? 700 : 400,
-              transition: "font-weight 0.15s, color 0.15s",
+            <span style={{
+              fontSize: 12, lineHeight: "14px",
+              fontWeight: on ? 600 : 500,
+              transition: "color 0.15s",
             }}>
               {t.label}
             </span>
@@ -388,17 +372,19 @@ function useArtistPhoto(name) {
 // falls back to gradient + initials.
 function ArtistSwatch({ artist, size = 44 }) {
   const photo = useArtistPhoto(artist.name);
-  const initials = artist.name.split(/\s+/).map(w => w[0]).slice(0, 2).join("");
+  // Letters and digits only: "Wooli (Sunset Set)" is "WS", not "W(".
+  const initials = artist.name.split(/\s+/).map(w => (w.match(/[A-Za-z0-9]/) || [""])[0]).filter(Boolean).slice(0, 2).join("").toUpperCase();
   return (
     <div style={{
       width: size, height: size, borderRadius: size,
-      background: artist.img,
-      color: "#fff",
+      // Field Mode: a real photo, or a plain surface with initials. Never the
+      // generated gradient in artist.img.
+      background: "var(--paper-3)",
+      color: "var(--text-2)",
       display: "flex", alignItems: "center", justifyContent: "center",
-      fontFamily: "Instrument Serif, serif",
-      fontSize: size * 0.42,
+      fontSize: Math.max(12, size * 0.36), fontWeight: 600,
       flexShrink: 0,
-      boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.2)",
+      boxShadow: "inset 0 0 0 1px var(--line)",
       overflow: "hidden", position: "relative",
     }}>
       {photo
@@ -420,6 +406,96 @@ function Wordmark({ size = 18, color = "var(--ink)" }) {
         width={size} height={size}
         style={{ borderRadius: size * 0.22, display: "block", flexShrink: 0 }} />
       <span className="mono" style={{ fontSize: size * 0.72, letterSpacing: 3, fontWeight: 500 }}>PLURSKY</span>
+    </div>
+  );
+}
+
+// ── Field Mode shared components ──────────────────────────────
+// Every restyled surface builds from these, so the rules live in one place:
+// one sheet radius (14) with one grabber, a 52pt primary button, 44pt icon
+// targets, a 22/28 section title and a flat horizontal row.
+const fieldIconBtn = {
+  width: 44, height: 44, flexShrink: 0, padding: 0,
+  display: "flex", alignItems: "center", justifyContent: "center",
+  background: "transparent", border: "none", borderRadius: 14,
+  color: "var(--ink)", cursor: "pointer",
+};
+
+// The one dominant action on a screen is kind="primary" (the purple fill).
+function FieldButton({ children, onClick, kind = "primary", style, ...rest }) {
+  const primary = kind === "primary";
+  return (
+    <button onClick={onClick} {...rest} style={{
+      width: "100%", minHeight: 52, padding: "0 20px",
+      display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+      background: primary ? "var(--signal)" : "var(--paper-3)",
+      color: primary ? "var(--on-signal)" : "var(--ink)",
+      // Secondary is outlined so it reads as a button on a raised sheet too.
+      border: primary ? "none" : "1px solid var(--line-2)", borderRadius: 14, cursor: rest.disabled ? "default" : "pointer",
+      fontSize: 17, lineHeight: "22px", fontWeight: 600,
+      opacity: rest.disabled ? 0.45 : 1,
+      ...style,
+    }}>{children}</button>
+  );
+}
+
+function FieldSectionHeader({ title, action, onAction }) {
+  return (
+    <div style={{
+      display: "flex", alignItems: "center", justifyContent: "space-between",
+      padding: "0 20px", minHeight: 44,
+    }}>
+      <h2 style={{ margin: 0, fontSize: 22, lineHeight: "28px", fontWeight: 700, letterSpacing: "-0.01em" }}>{title}</h2>
+      {action && (typeof action === "string"
+        ? <button onClick={onAction} style={{ ...fieldIconBtn, width: "auto", padding: "0 4px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 }}>{action}</button>
+        : action)}
+    </div>
+  );
+}
+
+// Flat horizontal row that bleeds to the screen edge with a 20pt inset.
+function FieldMediaRow({ children }) {
+  return (
+    <div className="no-scrollbar" style={{
+      display: "flex", gap: 12, overflowX: "auto", scrollbarWidth: "none",
+      padding: "4px 20px 0", scrollPaddingInline: 20, scrollSnapType: "x proximity",
+    }}>
+      {children}
+    </div>
+  );
+}
+
+// One bottom sheet: one grabber, one radius, a title and a 44pt close.
+function FieldSheet({ title, onClose, children }) {
+  useDeclareModal(true);
+  React.useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+  return (
+    <div onClick={onClose} style={{
+      position: "fixed", inset: 0, zIndex: 80, background: "var(--scrim)",
+      display: "flex", alignItems: "flex-end",
+    }}>
+      <div role="dialog" aria-modal="true" aria-label={title} onClick={e => e.stopPropagation()} style={{
+        width: "100%", maxHeight: "88%", display: "flex", flexDirection: "column",
+        background: "var(--paper-3)", borderRadius: "14px 14px 0 0",
+        paddingBottom: "env(safe-area-inset-bottom, 0px)",
+      }}>
+        <div aria-hidden="true" style={{ display: "flex", justifyContent: "center", paddingTop: 8 }}>
+          <div style={{ width: 36, height: 5, borderRadius: 3, background: "var(--line-2)" }}/>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "4px 8px 4px 20px" }}>
+          <h2 style={{ margin: 0, fontSize: 20, lineHeight: "25px", fontWeight: 600 }}>{title}</h2>
+          <button onClick={onClose} aria-label="Close" style={fieldIconBtn}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg>
+          </button>
+        </div>
+        <div style={{ overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "4px 20px 24px" }}>
+          {children}
+        </div>
+      </div>
     </div>
   );
 }
@@ -497,18 +573,18 @@ function InstallBanner() {
         <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--flare)", fontWeight: 700 }}>
           INSTALL PLURSKY
         </div>
-        <div style={{ fontSize: 12, lineHeight: 1.35, marginTop: 2, color: "rgba(247,237,224,0.85)" }}>
+        <div style={{ fontSize: 12, lineHeight: 1.35, marginTop: 2, color: "rgba(var(--ink-rgb),0.85)" }}>
           {ip.isIOS
             ? <>Tap <span style={{ display: "inline-flex", verticalAlign: "middle", padding: "0 2px" }}>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--paper)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 3 L12 16"/><path d="M7 8 L12 3 L17 8"/><rect x="5" y="13" width="14" height="8" rx="1.5"/>
-                </svg></span> then <strong style={{ color: "var(--paper)" }}>Add to Home Screen</strong> for offline + full-screen.</>
+                </svg></span> then <strong style={{ color: "var(--ink)" }}>Add to Home Screen</strong> for offline + full-screen.</>
             : <>Add to home screen for offline lineup + full-screen map.</>}
         </div>
       </div>
       {!ip.isIOS && (
         <button onClick={ip.install} style={{
-          background: "var(--ember)", color: "#fff", border: "none",
+          background: "var(--ember)", color: "var(--ink)", border: "none",
           borderRadius: 999, padding: "7px 12px", cursor: "pointer",
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           flexShrink: 0,
@@ -516,7 +592,7 @@ function InstallBanner() {
       )}
       <button onClick={ip.dismiss} aria-label="Dismiss" style={{
         background: "transparent", border: "none", cursor: "pointer",
-        color: "rgba(247,237,224,0.55)", padding: 4, flexShrink: 0,
+        color: "rgba(var(--ink-rgb),0.55)", padding: 4, flexShrink: 0,
         fontSize: 18, lineHeight: 1,
       }}>×</button>
     </div>
@@ -985,7 +1061,7 @@ function NotificationsCard({ state }) {
   }
 
   const label = perm === "granted" ? "ENABLED" : perm === "denied" ? "BLOCKED" : "OFF";
-  const labelColor = perm === "granted" ? "var(--success)" : perm === "denied" ? "#f87171" : "var(--muted)";
+  const labelColor = perm === "granted" ? "var(--success)" : perm === "denied" ? "var(--alert)" : "var(--muted)";
 
   return (
     <div style={{
@@ -1060,7 +1136,7 @@ function NotificationsCard({ state }) {
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
         {perm !== "granted" && perm !== "denied" && (
           <button onClick={onEnable} style={{
-            background: "var(--ember)", color: "#fff", border: "none",
+            background: "var(--ember)", color: "var(--ink)", border: "none",
             borderRadius: 999, padding: "8px 14px", cursor: "pointer",
             fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           }}>ENABLE</button>
@@ -1087,37 +1163,86 @@ function NotificationsCard({ state }) {
 function FestivalChip({ compact = false, accent = "var(--ink)" }) {
   const [open, setOpen] = React.useState(false);
   const canSwitch = FESTIVALS_REGISTRY.filter(f => f.available).length > 1;
-  const entry = FESTIVALS_REGISTRY.find(f => f.config.id === FESTIVAL_CONFIG.id);
   return (
     <>
+      {/* Field Mode: a 44pt target around an 18pt-radius status pill. The
+          label stays the upper-case shortName (QA harnesses match on it). No
+          emoji: colour in chrome belongs to the one accent. */}
       <div
         onClick={canSwitch ? () => setOpen(true) : undefined}
+        role={canSwitch ? "button" : undefined}
+        tabIndex={canSwitch ? 0 : undefined}
+        aria-label={canSwitch ? `${FESTIVAL_CONFIG.shortName.toUpperCase()}, switch festival` : undefined}
+        onKeyDown={canSwitch ? (e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpen(true); } }) : undefined}
         style={{
-          display: "inline-flex", alignItems: "center", gap: 5,
-          background: "var(--paper-2)", border: "1px solid var(--line-2)",
-          color: accent,
-          borderRadius: 999, padding: compact ? "3px 8px 3px 7px" : "4px 10px 4px 8px",
-          fontFamily: "Geist Mono, monospace",
-          fontSize: compact ? 9 : 9.5, letterSpacing: 1.2, fontWeight: 700,
-          cursor: canSwitch ? "pointer" : "default", whiteSpace: "nowrap",
-          userSelect: "none",
+          display: "inline-flex", alignItems: "center", minHeight: 44,
+          color: accent, cursor: canSwitch ? "pointer" : "default",
+          whiteSpace: "nowrap", userSelect: "none",
         }}>
-        <span style={{ fontSize: compact ? 11 : 12 }}>{entry?.emoji || "🎪"}</span>
-        <span>{FESTIVAL_CONFIG.shortName.toUpperCase()}</span>
-        {canSwitch && (
-          <svg width={compact ? 8 : 9} height={compact ? 8 : 9} viewBox="0 0 12 12" fill="none">
-            <path d="M3 4.5 L6 7.5 L9 4.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        )}
+        <span style={{
+          display: "inline-flex", alignItems: "center", gap: 6, height: 32,
+          padding: "0 12px", borderRadius: 18,
+          background: "var(--chrome)", border: "1px solid var(--line)",
+          fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em",
+        }}>
+          <span>{FESTIVAL_CONFIG.shortName.toUpperCase()}</span>
+          {canSwitch && (
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+              <path d="M3 4.5 L6 7.5 L9 4.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          )}
+        </span>
       </div>
       {open && <FestivalSwitcher onClose={() => setOpen(false)} />}
     </>
   );
 }
 
+// Real festival art only: raster official maps. SVG plates and the one raster
+// placeholder (edco-tinker-2026.jpg) are generated, so those festivals show
+// their emoji on a plain surface instead.
+const _GENERATED_ART = new Set(["edco-tinker-2026.jpg"]);
+function _festivalArt(cfg) {
+  const img = cfg && cfg.mapImage;
+  return img && /\.(webp|jpe?g|png)$/i.test(img) && !_GENERATED_ART.has(img) ? img : null;
+}
+function FestivalThumb({ entry, size = 56 }) {
+  const art = entry ? _festivalArt(entry.config) : null;
+  return (
+    <div aria-hidden="true" style={{
+      width: size, height: size, borderRadius: 14, overflow: "hidden", flexShrink: 0,
+      background: "var(--paper-3)", display: "flex", alignItems: "center", justifyContent: "center",
+      fontSize: Math.round(size * 0.46),
+    }}>
+      {art ? <img src={`./${art}`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : ((entry && entry.emoji) || "🎪")}
+    </div>
+  );
+}
+// Saved sets and same-day clashes for any festival, from its own saved key.
+function _festivalPlanStatus(id) {
+  let ids = [];
+  try { ids = JSON.parse(localStorage.getItem(`${id}_saved_v1`) || "[]"); } catch {}
+  if (!Array.isArray(ids) || !ids.length) return { saved: 0, conflicts: 0 };
+  const set = new Set(ids);
+  const arts = ((window._DATA_SETS || {})[id]?.artists || []).filter(a => set.has(a.id));
+  // _DATA_SETS holds every weekend of a festival, so a W1 set and a W2 set on
+  // the same day number are a week apart, never a clash ("both" plays both).
+  const sameWeekend = (a, b) => !a.weekend || !b.weekend || a.weekend === "both" || b.weekend === "both" || a.weekend === b.weekend;
+  let conflicts = 0;
+  for (let i = 0; i < arts.length; i++)
+    for (let j = i + 1; j < arts.length; j++)
+      if (arts[i].day === arts[j].day && sameWeekend(arts[i], arts[j]) && typeof overlaps === "function" && overlaps(arts[i], arts[j])) conflicts++;
+  return { saved: arts.length, conflicts };
+}
+
+// Plans: every festival as one grouped list, ordered by date. Now, then
+// upcoming by month; past festivals fold into a Memories group that still
+// expands to switchable rows. QA harnesses match the "Where are you
+// raving?" heading and the config.name row labels, so keep both.
 function FestivalSwitcher({ onClose }) {
   const activeId = FESTIVAL_CONFIG.id;
   const [plusOpen, setPlusOpen] = React.useState(false);
+  const [pastOpen, setPastOpen] = React.useState(false);
   const onPick = (id, entry) => {
     if (id === activeId) { onClose(); return; }
     if (entry.available) { setActiveFestivalAndReload(id); return; }
@@ -1127,94 +1252,106 @@ function FestivalSwitcher({ onClose }) {
     if (entry.previewOnly) { setPlusOpen(true); return; }
     onClose();
   };
-  // One list in phase order (live, upcoming, TBA, ended) instead of region
-  // buckets, which scattered the live festival mid-sheet. See data.jsx.
+  if (plusOpen) return <PlusSheet feature="early festival access" onClose={() => setPlusOpen(false)} />;
+
+  // Phase order from data.jsx: live, upcoming by printed date, dates TBA,
+  // ended most recent first. "Now" is an event day, not the startMs..endMs
+  // envelope, so ACL between weekends and Summerfest between blocks read as
+  // upcoming, and a stub with no dates lands in TBA instead of Past.
   const now = Date.now();
   const ordered = _sortFestivalsForSwitcher(FESTIVALS_REGISTRY, now);
-  return (
-    <div onClick={onClose} style={{
-      position: "absolute", inset: 0, zIndex: 60,
-      background: "rgba(13,8,4,0.55)", backdropFilter: "blur(6px)",
-      display: "flex", alignItems: "flex-end",
-      animation: "fadeIn .2s",
-    }}>
-      {plusOpen && <PlusSheet feature="early festival access" onClose={() => setPlusOpen(false)} />}
-      <div onClick={e => e.stopPropagation()} style={{
-        background: "var(--paper)", color: "var(--ink)",
-        borderTopLeftRadius: 22, borderTopRightRadius: 22,
-        width: "100%", padding: "14px 20px 24px",
-        boxShadow: "0 -10px 40px rgba(0,0,0,0.4)",
-        maxHeight: "85%", overflowY: "auto",
-      }}>
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: 12 }}>
-          <div style={{ width: 36, height: 4, borderRadius: 4, background: "var(--line-2)" }}/>
-        </div>
-        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--muted)", marginBottom: 4 }}>
-          PICK A FESTIVAL
-        </div>
-        <div className="serif" style={{ fontSize: 24, lineHeight: 1.05, marginBottom: 18 }}>
-          Where are you raving?
-        </div>
+  const phase = f => _festivalPhase(f, now);
+  const live = ordered.filter(f => phase(f) === "live");
+  const tba = ordered.filter(f => phase(f) === "tba");
+  const past = ordered.filter(f => phase(f) === "ended");
+  const months = [];
+  ordered.filter(f => phase(f) === "upcoming").forEach(f => {
+    // Month of the printed start date: Decadence opens Dec 30 local, which is
+    // already Dec 31 in UTC, and must still file under December.
+    const ev = _festivalEventDates(f.config);
+    const ymd = ev ? ev.start : f.config.startMs ? new Date(f.config.startMs).toISOString().slice(0, 10) : null;
+    let label = "Upcoming";
+    if (ymd) { try { label = new Date(Date.UTC(+ymd.slice(0, 4), +ymd.slice(5, 7) - 1, 15)).toLocaleDateString(undefined, { month: "long", year: "numeric", timeZone: "UTC" }); } catch {} }
+    let g = months.find(x => x.label === label);
+    if (!g) { g = { label, fests: [] }; months.push(g); }
+    g.fests.push(f);
+  });
+  let archive = [];
+  // archiveFestival() stores an object keyed by festival id; read its values.
+  try {
+    const raw = JSON.parse(localStorage.getItem("plursky_festival_archive_v1") || "{}");
+    archive = (Array.isArray(raw) ? raw : Object.values(raw || {})).filter(a => a && typeof a === "object");
+  } catch {}
+  const caught = archive.reduce((n, a) => n + (a.totalAttended || 0), 0);
 
-            <div style={{ display: "grid", gap: 8, marginBottom: 18 }}>
-              {ordered.map(f => {
-                const isActive = f.config.id === activeId;
-                const ended = _festivalPhase(f, now) === "ended";
-                const dimmed = !f.available;
-                return (
-                  <button key={f.config.id} onClick={() => onPick(f.config.id, f)}
-                    disabled={!f.available && !f.previewOnly && !isActive}
-                    style={{
-                      display: "flex", alignItems: "center", gap: 12,
-                      padding: "12px 14px", borderRadius: 14,
-                      background: isActive ? f.accent : "var(--paper-2)",
-                      color: isActive ? "#fff" : "var(--ink)",
-                      border: `1px solid ${isActive ? f.accent : "var(--line-2)"}`,
-                      cursor: f.available ? "pointer" : "default",
-                      opacity: dimmed && !isActive ? 0.55 : 1,
-                      textAlign: "left", fontFamily: "inherit",
-                      transition: "transform .12s",
-                    }}>
-                    <span style={{ fontSize: 22 }}>{f.emoji}</span>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div className="serif" style={{ fontSize: 18, lineHeight: 1.05, fontWeight: 400 }}>
-                        {f.config.name}
-                      </div>
-                      <div className="mono" style={{ fontSize: 10, letterSpacing: 1, marginTop: 3, opacity: 0.85 }}>
-                        {f.config.location.toUpperCase()} · {f.config.dates.toUpperCase()}
-                      </div>
-                    </div>
-                    {isActive && (
-                      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, padding: "3px 7px", borderRadius: 999, background: "rgba(255,255,255,0.25)" }}>
-                        ACTIVE
-                      </div>
-                    )}
-                    {!isActive && ended && (
-                      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, padding: "3px 7px", borderRadius: 999, background: "var(--paper)", color: "var(--muted)", border: "1px solid var(--line-2)" }}>
-                        ENDED
-                      </div>
-                    )}
-                    {!isActive && !ended && !f.available && f.previewOnly && (
-                      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, padding: "3px 7px", borderRadius: 999, background: "#6D28D9", color: "#fff" }}>
-                        EARLY ACCESS
-                      </div>
-                    )}
-                    {!isActive && !ended && !f.available && !f.previewOnly && (
-                      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, padding: "3px 7px", borderRadius: 999, background: "var(--paper)", color: "var(--muted)", border: "1px solid var(--line-2)" }}>
-                        SOON
-                      </div>
-                    )}
-                  </button>
-                );
-              })}
+  const eyebrow = { margin: "0 0 4px", fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)" };
+  const rowStyle = (dim) => ({
+    width: "100%", display: "flex", alignItems: "center", gap: 12, minHeight: 72, padding: "8px 0",
+    background: "transparent", border: "none", borderBottom: "1px solid var(--line)",
+    color: "var(--ink)", textAlign: "left", fontFamily: "inherit", opacity: dim ? 0.55 : 1,
+  });
+  const chevron = <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6 L15 12 L9 18"/></svg>;
+  const row = (f) => {
+    const isActive = f.config.id === activeId;
+    const locked = !f.available && !f.previewOnly && !isActive;
+    const st = _festivalPlanStatus(f.config.id);
+    const parts = [];
+    if (st.saved) parts.push(<span key="s">{st.saved} saved</span>);
+    if (st.conflicts) parts.push(<span key="c" style={{ color: "var(--warn)", fontWeight: 600 }}>⚠ {st.conflicts} {st.conflicts === 1 ? "conflict" : "conflicts"}</span>);
+    if (isActive) parts.push(<span key="a" style={{ color: "var(--signal-ink)", fontWeight: 600 }}>✓ Active</span>);
+    else if (phase(f) === "ended") parts.push(<span key="e">Ended</span>);
+    else if (!f.available) parts.push(<span key="l">{f.previewOnly ? "Early access" : "Soon"}</span>);
+    else if (st.saved && !st.conflicts) parts.push(<span key="r" style={{ color: "var(--signal-ink)", fontWeight: 600 }}>✓ Ready</span>);
+    return (
+      <button key={f.config.id} onClick={() => onPick(f.config.id, f)} disabled={locked}
+        aria-current={isActive ? "true" : undefined}
+        style={{ ...rowStyle(locked), cursor: locked ? "default" : "pointer" }}>
+        <FestivalThumb entry={f} />
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>{f.config.name}</div>
+          <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{f.config.location} · <span style={{ whiteSpace: "nowrap" }}>{f.config.dates}</span></div>
+          {parts.length > 0 && (
+            <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+              {parts.map((x, i) => <React.Fragment key={i}>{i ? " · " : ""}{x}</React.Fragment>)}
             </div>
-
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 6, textAlign: "center", lineHeight: 1.5 }}>
-          More festivals coming through 2026.<br/>
-          Switching reloads the app with the new festival's data.
+          )}
         </div>
-      </div>
-    </div>
+        {!locked && chevron}
+      </button>
+    );
+  };
+  const group = (label, kids) => (
+    <section key={label} style={{ marginTop: 16 }}>
+      <h3 style={eyebrow}>{label}</h3>
+      {kids}
+    </section>
+  );
+  return (
+    <FieldSheet title="Where are you raving?" onClose={onClose}>
+      {live.length > 0 && group("Now", live.map(row))}
+      {months.map(g => group(g.label, g.fests.map(row)))}
+      {tba.length > 0 && group("Dates TBA", tba.map(row))}
+      {(past.length > 0 || archive.length > 0) && group("Past", <>
+        <button onClick={() => setPastOpen(o => !o)} aria-expanded={pastOpen} style={{ ...rowStyle(false), cursor: "pointer" }}>
+          <FestivalThumb entry={past[0] || null} />
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>Memories</div>
+            <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
+              {Math.max(past.length, archive.length)} past {Math.max(past.length, archive.length) === 1 ? "festival" : "festivals"}{caught ? ` · ${caught} sets caught` : ""}
+            </div>
+          </div>
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: pastOpen ? "rotate(90deg)" : "none", transition: "transform 180ms ease" }}><path d="M9 6 L15 12 L9 18"/></svg>
+        </button>
+        {pastOpen && <>
+          {past.map(row)}
+          <button onClick={() => { onClose(); (window._pushNav || (() => {}))({ tab: "recap", artist: null }); }} style={{ ...fieldIconBtn, width: "auto", padding: "0 4px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 }}>Open recap</button>
+        </>}
+      </>)}
+      <p style={{ margin: "16px 0", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+        Switching reloads the app with that festival's lineup and map.
+      </p>
+      <FieldButton onClick={() => { onClose(); (window._pushNav || (() => {}))({ tab: "lineup", artist: null }); }}>Build plan</FieldButton>
+    </FieldSheet>
   );
 }
 
@@ -1384,20 +1521,20 @@ function BatterySaverToast() {
       padding: "10px 14px", borderRadius: 14,
       background: "var(--ink)", color: "var(--paper)",
       display: "flex", alignItems: "center", gap: 10,
-      boxShadow: "0 8px 24px rgba(0,0,0,0.35)",
+      boxShadow: "0 8px 24px rgba(var(--shade-rgb),0.35)",
     }}>
       <span style={{ fontSize: 16 }}>🔋</span>
       <div style={{ flex: 1, minWidth: 0 }}>
         <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--flare)", fontWeight: 700 }}>
           BATTERY SAVER ON
         </div>
-        <div style={{ fontSize: 13, lineHeight: 1.35, marginTop: 2, color: "rgba(247,237,224,0.85)" }}>
+        <div style={{ fontSize: 13, lineHeight: 1.35, marginTop: 2, color: "rgba(var(--ink-rgb),0.85)" }}>
           {reason}
         </div>
       </div>
       <button onClick={() => setDismissed(true)} aria-label="Dismiss" style={{
         background: "transparent", border: "none", cursor: "pointer",
-        color: "rgba(247,237,224,0.6)", fontSize: 18, lineHeight: 1, padding: 4,
+        color: "rgba(var(--ink-rgb),0.6)", fontSize: 18, lineHeight: 1, padding: 4,
       }}>×</button>
     </div>
   );
@@ -1415,7 +1552,7 @@ function BatterySaverCard() {
   const battColor = battPct == null ? "var(--muted)"
     : battPct > 50 ? "var(--success)"
     : battPct > 20 ? "var(--flare)"
-    : "#f87171";
+    : "var(--alert)";
 
   return (
     <div style={{
@@ -1503,21 +1640,11 @@ const _TH = (window._TH = window._TH || {
   listeners: new Set(),   // (mode) => void
 });
 
-// Returns the <html> class for a given pref. "" is the light baseline.
+// Returns the <html> class for a given pref. Field Mode is one black
+// utility shell at every hour, so the pref no longer changes the look; it is
+// still read so a stored "light"/"dark" value stays harmless.
 function resolveThemeClass(mode) {
-  if (mode === "light") return "";
-  if (mode === "dark")  return "theme-night";
-  // auto — unchanged from the original behaviour: sky-tracking, but only
-  // while the festival is actually running.
-  const cfg = (typeof window !== "undefined" && window.FESTIVAL_CONFIG) || null;
-  if (!cfg || typeof cfg.startMs !== "number" || typeof cfg.endMs !== "number") return "";
-  const now = Date.now();
-  if (now < cfg.startMs || now > cfg.endMs) return "";
-  const h = new Date().getHours();
-  return h >= 20 || h < 4  ? "theme-night"
-       : h >= 4  && h < 7  ? "theme-dawn"
-       : h >= 17 && h < 20 ? "theme-sunset"
-       : "";
+  return "theme-field";
 }
 
 function applyThemeClass() {
@@ -1650,15 +1777,16 @@ function StatusStrip() {
   const mm = String(now.getMinutes()).padStart(2, "0");
 
   return (
-    <div className="mono" style={{
+    // Field Mode: quiet 12pt status in tabular figures, on the shell colour.
+    <div style={{
       flexShrink: 0,
-      height: 22,
+      height: 24,
       display: "flex", alignItems: "center", justifyContent: "space-between",
-      padding: "0 16px",
-      background: "var(--paper-2)",
+      padding: "0 20px",
+      background: "var(--paper)",
       borderBottom: "1px solid var(--line)",
-      fontSize: 10, letterSpacing: 1.4, fontWeight: 600,
-      color: "var(--muted)",
+      fontSize: 12, lineHeight: "16px", fontWeight: 500, fontVariantNumeric: "tabular-nums",
+      color: "var(--text-2)",
     }}>
       <span>{day} · {hh}:{mm}</span>
       <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -1673,7 +1801,7 @@ function StatusStrip() {
           </span>
         )}
         {!online && (
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, color: "#c14a37" }}>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, color: "var(--alert)" }}>
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M4 4 L20 20"/>
               <path d="M2 9 Q6 5 10 5.4 M22 9 Q18 5 14 5.4"/>

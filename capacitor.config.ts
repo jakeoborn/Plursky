@@ -13,6 +13,9 @@ const config: CapacitorConfig = {
     // ScrollBody fought the WebView's outer scroll, making the app feel
     // unscrollable on iPhone.
     contentInset: 'never',
+    // The WKWebView paints this before the first HTML frame. It matches the
+    // canvas token (--paper) and the launch screen, so there is no white flash.
+    backgroundColor: '#0A0A0C',
   },
 };
 

@@ -819,7 +819,7 @@ function AccountCard({ state, setState }) {
                 width: 32, height: 32, borderRadius: 32, flexShrink: 0, overflow: "hidden",
                 background: "linear-gradient(135deg, var(--ember), var(--horizon))",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                color: "#fff", fontFamily: "Instrument Serif, serif", fontSize: 15,
+                color: "var(--ink)", fontFamily: "Instrument Serif, serif", fontSize: 15,
               }}>
                 {avatar
                   ? <img src={avatar} alt={displayName} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -876,8 +876,8 @@ function AccountCard({ state, setState }) {
               )}
               {deletePhase !== "idle" && (
                 <div style={{
-                  padding: "10px 12px", background: "rgba(232,93,46,0.08)",
-                  border: "1px solid rgba(232,93,46,0.35)", borderRadius: 10,
+                  padding: "10px 12px", background: "rgba(var(--signal-rgb),0.08)",
+                  border: "1px solid rgba(var(--signal-rgb),0.35)", borderRadius: 10,
                 }}>
                   <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ember-ink)", marginBottom: 4 }}>
                     DELETE ACCOUNT?
@@ -890,7 +890,7 @@ function AccountCard({ state, setState }) {
                       onClick={handleDelete}
                       disabled={deletePhase === "working"}
                       style={{
-                        flex: 1, background: "var(--ember)", color: "#fff",
+                        flex: 1, background: "var(--ember)", color: "var(--ink)",
                         border: "none", borderRadius: 10, padding: "9px 12px",
                         cursor: deletePhase === "working" ? "default" : "pointer",
                         fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
@@ -908,7 +908,7 @@ function AccountCard({ state, setState }) {
                       }}>CANCEL</button>
                   </div>
                   {deleteErr && (
-                    <div style={{ fontSize: 11, color: "#f87171", marginTop: 6 }}>{deleteErr}</div>
+                    <div style={{ fontSize: 11, color: "var(--alert)", marginTop: 6 }}>{deleteErr}</div>
                   )}
                 </div>
               )}
@@ -922,8 +922,8 @@ function AccountCard({ state, setState }) {
           {/* Sign in with Apple — sole sign-in method. */}
           <button onClick={handleApple} disabled={appleBusy} style={{
             width: "100%", marginBottom: appleErr ? 6 : 0,
-            background: appleBusy ? "#444" : "#000",
-            color: "#fff",
+            background: appleBusy ? "var(--paper-3)" : "var(--paper)",
+            color: "var(--ink)",
             border: "none", borderRadius: 10, padding: "11px 14px",
             cursor: appleBusy ? "default" : "pointer",
             display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
@@ -932,13 +932,13 @@ function AccountCard({ state, setState }) {
             {appleBusy ? (
               <span style={{
                 width: 14, height: 14, borderRadius: 14,
-                border: "2px solid rgba(255,255,255,0.35)",
-                borderTopColor: "#fff",
+                border: "2px solid rgba(var(--ink-rgb),0.35)",
+                borderTopColor: "var(--ink)",
                 animation: "spin 0.8s linear infinite",
                 display: "inline-block",
               }}/>
             ) : (
-              <svg width="16" height="16" viewBox="0 0 814 1000" fill="white">
+              <svg width="16" height="16" viewBox="0 0 814 1000" fill="var(--ink)">
                 <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663.1 0 541.8c0-207.5 133.4-317.1 264.5-317.1 70.4 0 128.9 45.5 173 45.5 42.9 0 109.9-48.1 190.5-48.1C500.1 222.2 620.9 240.3 788.1 340.9zM530.4 220.5c-20.1-29.7-47.1-66.8-97.3-66.8-12.1 0-24.2 2.3-35.7 5.1-7.1 1.8-14.1 3.9-21.3 3.9-1.9 0-3.8-.1-5.7-.3 11.4-57.7 56.4-143.4 122.3-180.5 27.9-15.7 59-26.2 91.9-26.2 2.9 0 5.8.1 8.7.3-1 56.1-23.8 117.3-63 164.5z"/>
               </svg>
             )}
@@ -946,10 +946,10 @@ function AccountCard({ state, setState }) {
           </button>
           {appleErr && (
             <div style={{
-              background: "rgba(248,113,113,0.10)",
-              border: "1px solid rgba(248,113,113,0.45)",
+              background: "rgba(var(--alert-rgb),0.10)",
+              border: "1px solid rgba(var(--alert-rgb),0.45)",
               borderRadius: 10, padding: "10px 12px", marginTop: 10,
-              fontSize: 12, color: "#c14a4a", lineHeight: 1.45,
+              fontSize: 12, color: "var(--alert)", lineHeight: 1.45,
             }}>
               <div style={{ marginBottom: 6, fontWeight: 600 }}>
                 Couldn't sign in with Apple
@@ -1288,7 +1288,7 @@ function FriendsCard({ state, setState }) {
             width: 38, height: 38, borderRadius: 38, flexShrink: 0,
             background: sharing ? _presColor(_presMyId || "x") : "var(--paper-2)",
             border: sharing ? "none" : "1px solid var(--line-2)",
-            color: sharing ? "#fff" : "var(--muted)",
+            color: sharing ? "var(--ink)" : "var(--muted)",
             display: "flex", alignItems: "center", justifyContent: "center",
             fontFamily: "Instrument Serif, serif", fontSize: 18, position: "relative",
           }}>
@@ -1307,7 +1307,7 @@ function FriendsCard({ state, setState }) {
             </div>
             <div className="mono" style={{
               fontSize: 9, letterSpacing: 1.2, marginTop: 3, textTransform: "uppercase",
-              color: sharing ? "rgba(247,237,224,0.55)" : "var(--muted)",
+              color: sharing ? "rgba(var(--ink-rgb),0.55)" : "var(--muted)",
             }}>
               {sharing
                 ? (STAGES?.find(s => s.id === stageId)?.name || stageId) + " · LIVE"
@@ -1315,8 +1315,8 @@ function FriendsCard({ state, setState }) {
             </div>
           </div>
           <button onClick={handleToggle} style={{
-            background: sharing ? "rgba(247,237,224,0.15)" : "var(--ember)",
-            color: "#fff", border: "none", borderRadius: 999,
+            background: sharing ? "rgba(var(--ink-rgb),0.15)" : "var(--ember)",
+            color: "var(--ink)", border: "none", borderRadius: 999,
             padding: "7px 12px", cursor: "pointer",
             fontFamily: "Geist Mono, monospace",
             fontSize: 9, letterSpacing: 1.2, fontWeight: 700, flexShrink: 0,
@@ -1345,7 +1345,7 @@ function FriendsCard({ state, setState }) {
             />
             <button onClick={() => saveName(nameInput)} style={{
               background: nameInput.trim() ? "var(--ember)" : "var(--paper-2)",
-              color: nameInput.trim() ? "#fff" : "var(--muted)",
+              color: nameInput.trim() ? "var(--ink)" : "var(--muted)",
               border: "none", borderRadius: 10, padding: "8px 12px",
               cursor: nameInput.trim() ? "pointer" : "default",
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.1, fontWeight: 700,
@@ -1357,14 +1357,14 @@ function FriendsCard({ state, setState }) {
           <div style={{ marginTop: 10 }}>
             <div className="mono" style={{
               fontSize: 8.5, letterSpacing: 1.2,
-              color: "rgba(247,237,224,0.45)", marginBottom: 6,
+              color: "rgba(var(--ink-rgb),0.45)", marginBottom: 6,
             }}>CURRENT STAGE</div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
               {STAGES?.map(s => (
                 <button key={s.id} onClick={() => handleStage(s.id)} style={{
-                  background: stageId === s.id ? s.color : "rgba(247,237,224,0.08)",
-                  color: stageId === s.id ? "#fff" : "rgba(247,237,224,0.65)",
-                  border: `1px solid ${stageId === s.id ? s.color : "rgba(247,237,224,0.18)"}`,
+                  background: stageId === s.id ? s.color : "rgba(var(--ink-rgb),0.08)",
+                  color: stageId === s.id ? "var(--ink)" : "rgba(var(--ink-rgb),0.65)",
+                  border: `1px solid ${stageId === s.id ? s.color : "rgba(var(--ink-rgb),0.18)"})"}`,
                   borderRadius: 999, padding: "4px 9px", cursor: "pointer",
                   fontFamily: "Geist Mono, monospace",
                   fontSize: 8, letterSpacing: 1, fontWeight: 600,
@@ -1426,8 +1426,8 @@ function _FriendRows({ friends, state, setState }) {
           }}>
             <div style={{
               width: 38, height: 38, borderRadius: 38,
-              background: f.color || "#888",
-              color: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
+              background: f.color || "var(--paper-3)",
+              color: "var(--ink)", display: "flex", alignItems: "center", justifyContent: "center",
               fontFamily: "Instrument Serif, serif", fontSize: 18, position: "relative",
               flexShrink: 0,
             }}>
@@ -1985,7 +1985,7 @@ function ReportSheet({ message, code, reporterPid, reporterName, onClose, onSubm
         <button onClick={submit} disabled={busy} style={{
           flex: 1, padding: "9px 10px", borderRadius: 999,
           background: busy ? "var(--paper)" : "var(--ember)",
-          color: busy ? "var(--muted)" : "#fff",
+          color: busy ? "var(--muted)" : "var(--ink)",
           border: "none", cursor: busy ? "default" : "pointer",
           fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
         }}>{busy ? "SENDING…" : "SUBMIT REPORT"}</button>
@@ -2273,8 +2273,8 @@ function CrewChat({ code, myPid, myName }) {
       {(!online || queueSize > 0) && (
         <div className="mono" style={{
           marginBottom: 6, padding: "7px 10px", borderRadius: 10,
-          background: !online ? "rgba(232,93,46,0.10)" : "var(--paper-2)",
-          border: !online ? "1px solid rgba(232,93,46,0.35)" : "1px solid var(--line)",
+          background: !online ? "rgba(var(--signal-rgb),0.10)" : "var(--paper-2)",
+          border: !online ? "1px solid rgba(var(--signal-rgb),0.35)" : "1px solid var(--line)",
           color: !online ? "var(--ember-ink)" : "var(--muted)",
           fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
           display: "flex", alignItems: "center", gap: 6,
@@ -2306,11 +2306,11 @@ function CrewChat({ code, myPid, myName }) {
           const _promoCard = (!window._isPlusSub?.() && _msgIdx > 0 && _msgIdx % 15 === 0) ? React.createElement("div", {
             key: `promo-${_msgIdx}`, style: {
               padding: "10px 14px", borderRadius: 12, marginBottom: 6, textAlign: "center",
-              background: "linear-gradient(135deg, rgba(109,40,217,0.08), rgba(232,93,46,0.08))",
-              border: "1px solid rgba(109,40,217,0.12)",
+              background: "linear-gradient(135deg, rgba(var(--signal-rgb),0.08), rgba(var(--signal-rgb),0.08))",
+              border: "1px solid rgba(var(--signal-rgb),0.12)",
             },
           },
-            React.createElement("div", { className: "mono", style: { fontSize: 9, letterSpacing: 1.2, color: "#6D28D9", fontWeight: 700 } }, "✨ PLURSKY+ · CREW SHOWDOWN · FESTIVAL DNA · NO WATERMARKS"),
+            React.createElement("div", { className: "mono", style: { fontSize: 9, letterSpacing: 1.2, color: "var(--signal-ink)", fontWeight: 700 } }, "✨ PLURSKY+ · CREW SHOWDOWN · FESTIVAL DNA · NO WATERMARKS"),
             // Price must match a product that is actually in the RevenueCat offering.
             // "$4.99 / festival" matched none: festival is $2.99 AND deferred (never
             // created in ASC), and $4.99 is the MONTHLY price. Mirror the paywall's
@@ -2369,7 +2369,7 @@ function CrewChat({ code, myPid, myName }) {
                         <div style={{
                           position: "absolute", left: 0, top: 0, bottom: 0,
                           width: `${pct}%`,
-                          background: onMine ? "rgba(232,93,46,0.16)" : "rgba(123,61,154,0.12)",
+                          background: onMine ? "rgba(var(--signal-rgb),0.16)" : "rgba(var(--signal-rgb),0.12)",
                           transition: "width 0.3s",
                         }}/>
                         <span style={{
@@ -2454,7 +2454,7 @@ function CrewChat({ code, myPid, myName }) {
                 <div style={{
                   marginTop: 6, padding: 6, borderRadius: 12,
                   background: "var(--paper)", border: "1px solid var(--line)",
-                  boxShadow: "0 4px 14px rgba(0,0,0,0.05)",
+                  boxShadow: "0 4px 14px rgba(var(--shade-rgb),0.05)",
                   display: "flex", flexDirection: "column", gap: 2,
                   minWidth: 200, maxWidth: "85%",
                 }}>
@@ -2506,7 +2506,7 @@ function CrewChat({ code, myPid, myName }) {
       {reportSent && (
         <div style={{
           padding: "8px 12px", marginBottom: 8, borderRadius: 10,
-          background: "rgba(45,122,85,0.12)", color: "var(--success)",
+          background: "rgba(var(--signal-rgb),0.12)", color: "var(--success)",
           fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2,
           textAlign: "center", fontWeight: 700,
         }}>
@@ -2545,7 +2545,7 @@ function CrewChat({ code, myPid, myName }) {
                 <button key={s.id} onClick={() => togglePollStage(s.id)} style={{
                   padding: "6px 4px", borderRadius: 8,
                   background: on ? s.color : "var(--paper)",
-                  color: on ? "#fff" : "var(--ink)",
+                  color: on ? "var(--ink)" : "var(--ink)",
                   border: on ? "none" : "1px solid var(--line-2)",
                   fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 0.8,
                   fontWeight: on ? 700 : 500, cursor: "pointer",
@@ -2565,7 +2565,7 @@ function CrewChat({ code, myPid, myName }) {
               onClick={sendPoll} style={{
               flex: 1, padding: "8px 10px", borderRadius: 999,
               background: pollQ.trim() && pollStageIds.length >= 2 && pollStageIds.length <= 6 ? "var(--ember)" : "var(--paper)",
-              color: pollQ.trim() && pollStageIds.length >= 2 && pollStageIds.length <= 6 ? "#fff" : "var(--muted)",
+              color: pollQ.trim() && pollStageIds.length >= 2 && pollStageIds.length <= 6 ? "var(--ink)" : "var(--muted)",
               border: pollQ.trim() && pollStageIds.length >= 2 && pollStageIds.length <= 6 ? "none" : "1px solid var(--line-2)",
               cursor: pollQ.trim() && pollStageIds.length >= 2 && pollStageIds.length <= 6 ? "pointer" : "default",
               fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
@@ -2598,7 +2598,7 @@ function CrewChat({ code, myPid, myName }) {
         <button onClick={send} disabled={!input.trim() || busy} style={{
           padding: "9px 14px",
           background: input.trim() && !busy ? "var(--ember)" : "var(--paper-2)",
-          color:      input.trim() && !busy ? "#fff"        : "var(--muted)",
+          color:      input.trim() && !busy ? "var(--ink)"        : "var(--muted)",
           border: "none", borderRadius: 10,
           cursor: input.trim() && !busy ? "pointer" : "default",
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.1, fontWeight: 700,
@@ -2744,7 +2744,7 @@ function CrewCard({ state }) {
               <button onClick={() => joinCrew(codeInput)} style={{
                 padding: "9px 14px",
                 background: codeInput.length >= 4 ? "var(--ember)" : "var(--paper-2)",
-                color: codeInput.length >= 4 ? "#fff" : "var(--muted)",
+                color: codeInput.length >= 4 ? "var(--ink)" : "var(--muted)",
                 border: "none", borderRadius: 10, cursor: "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.1, fontWeight: 700,
               }}>JOIN</button>
@@ -2767,16 +2767,16 @@ function CrewCard({ state }) {
           }}>
             <button onClick={() => totemInputRef.current?.click()} aria-label={totemUrl ? "Change crew totem photo" : "Set crew totem photo"} className={totemUrl ? "totem-alive" : ""} style={{
               width: 44, height: 44, borderRadius: 44, flexShrink: 0,
-              border: totemUrl ? "2px solid rgba(247,237,224,0.5)" : "2px dashed rgba(247,237,224,0.3)",
-              background: totemUrl ? `url(${totemUrl}) center/cover` : "rgba(247,237,224,0.08)",
+              border: totemUrl ? "2px solid rgba(var(--ink-rgb),0.5)" : "2px dashed rgba(var(--ink-rgb),0.3)",
+              background: totemUrl ? `url(${totemUrl}) center/cover` : "rgba(var(--ink-rgb),0.08)",
               cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
-              color: "rgba(247,237,224,0.4)", fontSize: 16, padding: 0,
+              color: "rgba(var(--ink-rgb),0.4)", fontSize: 16, padding: 0,
               animation: totemUrl ? "totem-pulse 3s ease-in-out infinite" : "none",
             }}>{totemUrl ? "" : "📷"}</button>
             <input ref={totemInputRef} type="file" accept="image/*" style={{ display: "none" }}
               onChange={e => { pickTotem(e.target.files?.[0]); e.target.value = ""; }} />
             <div style={{ flex: 1 }}>
-              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "rgba(247,237,224,0.45)", marginBottom: 3 }}>{totemUrl ? "YOUR TOTEM · TAP TO CHANGE" : "TAP 📷 TO SET YOUR TOTEM"}</div>
+              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "rgba(var(--ink-rgb),0.45)", marginBottom: 3 }}>{totemUrl ? "YOUR TOTEM · TAP TO CHANGE" : "TAP 📷 TO SET YOUR TOTEM"}</div>
               <div className="mono" style={{ fontSize: 28, letterSpacing: 8, fontWeight: 700, lineHeight: 1 }}>{code}</div>
             </div>
             <button onClick={async () => {
@@ -2789,15 +2789,15 @@ function CrewCard({ state }) {
               try { await navigator.clipboard.writeText(url); } catch {}
               setCopied(true); setTimeout(() => setCopied(false), 1500);
             }} style={{
-              background: copied ? "rgba(45,122,85,0.3)" : "rgba(247,237,224,0.12)",
+              background: copied ? "rgba(var(--signal-rgb),0.3)" : "rgba(var(--ink-rgb),0.12)",
               border: "none", borderRadius: 8, padding: "7px 11px", cursor: "pointer",
               color: copied ? "var(--success)" : "var(--paper)",
               fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2,
               transition: "all .15s",
             }}>{copied ? "✓" : "↗ SHARE"}</button>
             <button onClick={() => { if (leaveRef.current) leaveRef.current(); setJoined(false); setMembers(new Map()); }} style={{
-              background: "rgba(247,237,224,0.08)", border: "none", borderRadius: 8,
-              padding: "7px 11px", cursor: "pointer", color: "rgba(247,237,224,0.5)",
+              background: "rgba(var(--ink-rgb),0.08)", border: "none", borderRadius: 8,
+              padding: "7px 11px", cursor: "pointer", color: "rgba(var(--ink-rgb),0.5)",
               fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2,
             }}>LEAVE</button>
           </div>
@@ -2831,7 +2831,7 @@ function CrewCard({ state }) {
                     }}>
                       <div style={{
                         width: 36, height: 36, borderRadius: 36, background: _presColor(pid),
-                        color: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
+                        color: "var(--ink)", display: "flex", alignItems: "center", justifyContent: "center",
                         fontFamily: "Instrument Serif, serif", fontSize: 17, flexShrink: 0,
                       }}>{(m.name || "?")[0].toUpperCase()}</div>
                       <div style={{ flex: 1, minWidth: 0 }}>
@@ -2862,7 +2862,7 @@ function CrewCard({ state }) {
                               <span style={{ width: 6, height: 6, borderRadius: 6, background: st?.color || "var(--muted)", flexShrink: 0 }}/>
                               <span style={{ flex: 1, minWidth: 0, fontSize: 13, color: "var(--ink)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</span>
                               {shared && (
-                                <span className="mono" style={{ fontSize: 7.5, letterSpacing: 1, fontWeight: 800, color: "var(--horizon)", background: "rgba(123,61,154,0.12)", padding: "1px 5px", borderRadius: 999 }}>BOTH</span>
+                                <span className="mono" style={{ fontSize: 7.5, letterSpacing: 1, fontWeight: 800, color: "var(--horizon)", background: "rgba(var(--signal-rgb),0.12)", padding: "1px 5px", borderRadius: 999 }}>BOTH</span>
                               )}
                               <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--muted)", flexShrink: 0 }}>
                                 {(st?.short || "").toUpperCase()} · {window.fmt12 ? window.fmt12(a.start) : a.start}
@@ -2897,13 +2897,13 @@ function CrewCard({ state }) {
               <div style={{ display: "flex", gap: 8, marginTop: 10 }}>
                 <button onClick={() => _crewShare()} style={{
                   flex: 1, padding: "11px",
-                  background: "#6D28D9", color: "#fff",
+                  background: "var(--signal)", color: "var(--ink)",
                   border: "none", borderRadius: 10, cursor: "pointer",
                   fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
                 }}>📸 SHARE OUR WEEKEND</button>
                 <button onClick={() => _crewShare("gif")} style={{
                   padding: "11px 14px",
-                  background: "#6D28D9", color: "#fff",
+                  background: "var(--signal)", color: "var(--ink)",
                   border: "none", borderRadius: 10, cursor: "pointer",
                   fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
                 }}>🎬 GIF</button>
@@ -2914,8 +2914,8 @@ function CrewCard({ state }) {
             <div style={{ display: "flex", flexDirection: "column", gap: 6, marginTop: 6 }}>
               {others.map(([pid, m]) => (
                 <button key={pid} onClick={() => window._shareCrewComparison?.(myName, state, m.name || "Friend", m.artistIds || [])} className="mono" style={{
-                  padding: "8px 11px", background: "rgba(109,40,217,0.08)", color: "var(--ink)",
-                  border: "1px solid rgba(109,40,217,0.15)", borderRadius: 10, cursor: "pointer",
+                  padding: "8px 11px", background: "rgba(var(--signal-rgb),0.08)", color: "var(--ink)",
+                  border: "1px solid rgba(var(--signal-rgb),0.15)", borderRadius: 10, cursor: "pointer",
                   fontSize: 9, letterSpacing: 1.2, fontWeight: 700, textAlign: "left",
                 }}>⚔️ SHOWDOWN VS {(m.name || "FRIEND").toUpperCase()}</button>
               ))}

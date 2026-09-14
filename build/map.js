@@ -261,7 +261,7 @@ function WellnessPill() {
       letterSpacing: 0.8,
       fontWeight: 600,
       cursor: "pointer",
-      boxShadow: hyd < 40 ? "0 0 0 4px rgba(193,74,74,0.16)" : "0 2px 8px rgba(26,18,13,0.06)"
+      boxShadow: hyd < 40 ? "0 0 0 4px rgba(var(--alert-rgb),0.16)" : "0 2px 8px rgba(var(--shade-rgb),0.06)"
     }
   }, React.createElement("span", {
     style: {
@@ -294,7 +294,7 @@ function WellnessPill() {
     style: {
       position: "absolute",
       inset: 0,
-      background: "rgba(0,0,0,0.4)"
+      background: "rgba(var(--shade-rgb),0.4)"
     }
   }), React.createElement("div", {
     style: {
@@ -306,7 +306,7 @@ function WellnessPill() {
       color: "var(--ink)",
       borderRadius: 16,
       padding: 16,
-      boxShadow: "0 14px 40px rgba(0,0,0,0.4)"
+      boxShadow: "0 14px 40px rgba(var(--shade-rgb),0.4)"
     }
   }, React.createElement("div", {
     className: "mono",
@@ -375,8 +375,8 @@ function WellnessPill() {
     style: {
       marginTop: 8,
       width: "100%",
-      background: "#38bdf8",
-      color: "#fff",
+      background: "var(--signal)",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 10,
       padding: "10px 12px",
@@ -570,34 +570,34 @@ function formatLastSeen(ts) {
   if (!ts) return {
     label: "",
     freshness: "cold",
-    color: "rgba(255,255,255,0.45)"
+    color: "rgba(var(--ink-rgb),0.45)"
   };
   var mins = Math.max(0, Math.round((Date.now() - ts) / 60000));
   if (mins < 1) return {
     label: "NOW",
     freshness: "fresh",
-    color: "#2d7a55"
+    color: "var(--signal-ink)"
   };
   if (mins < 5) return {
     label: `${mins}m`,
     freshness: "fresh",
-    color: "#2d7a55"
+    color: "var(--signal-ink)"
   };
   if (mins < 15) return {
     label: `${mins}m`,
     freshness: "stale",
-    color: "#f59a36"
+    color: "var(--signal-ink)"
   };
   if (mins < 60) return {
     label: `${mins}m`,
     freshness: "cold",
-    color: "rgba(255,255,255,0.55)"
+    color: "rgba(var(--ink-rgb),0.55)"
   };
   var hrs = Math.floor(mins / 60);
   return {
     label: `${hrs}h+`,
     freshness: "cold",
-    color: "rgba(255,255,255,0.45)"
+    color: "rgba(var(--ink-rgb),0.45)"
   };
 }
 function useGeolocation(enabled) {
@@ -908,7 +908,7 @@ function PingSheet({
     style: {
       position: "fixed",
       inset: 0,
-      background: "rgba(13,10,8,0.55)",
+      background: "rgba(var(--shade-rgb),0.55)",
       zIndex: 60,
       display: "flex",
       alignItems: "flex-end",
@@ -923,7 +923,7 @@ function PingSheet({
       color: "var(--ink)",
       borderRadius: "16px 16px 0 0",
       padding: "16px 18px 22px",
-      boxShadow: "0 -8px 32px rgba(0,0,0,0.35)"
+      boxShadow: "0 -8px 32px rgba(var(--shade-rgb),0.35)"
     }
   }, React.createElement("div", {
     style: {
@@ -994,7 +994,7 @@ function PingSheet({
     onClick: shareCode,
     style: {
       background: "var(--ember)",
-      color: "#fff",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 8,
       padding: "7px 14px",
@@ -1008,8 +1008,8 @@ function PingSheet({
     onClick: copyCode,
     style: {
       background: "transparent",
-      color: "var(--paper)",
-      border: "1px solid rgba(247,237,224,0.35)",
+      color: "var(--ink)",
+      border: "1px solid rgba(var(--ink-rgb),0.35)",
       borderRadius: 8,
       padding: "7px 14px",
       fontFamily: "Geist Mono, monospace",
@@ -1132,7 +1132,7 @@ function IAmAtSheet({
     style: {
       position: "fixed",
       inset: 0,
-      background: "rgba(13,10,8,0.55)",
+      background: "rgba(var(--shade-rgb),0.55)",
       zIndex: 60,
       display: "flex",
       alignItems: "flex-end",
@@ -1147,7 +1147,7 @@ function IAmAtSheet({
       color: "var(--ink)",
       borderRadius: "16px 16px 0 0",
       padding: "16px 18px 28px",
-      boxShadow: "0 -8px 32px rgba(0,0,0,0.35)"
+      boxShadow: "0 -8px 32px rgba(var(--shade-rgb),0.35)"
     }
   }, React.createElement("div", {
     style: {
@@ -1190,7 +1190,7 @@ function IAmAtSheet({
         padding: "8px 6px",
         borderRadius: 10,
         background: on ? s.color : "var(--paper-2)",
-        color: on ? "#fff" : "var(--ink)",
+        color: on ? "var(--ink)" : "var(--ink)",
         border: on ? "none" : "1px solid var(--line-2)",
         cursor: "pointer",
         display: "flex",
@@ -1203,7 +1203,7 @@ function IAmAtSheet({
         width: 8,
         height: 8,
         borderRadius: 8,
-        background: on ? "rgba(255,255,255,0.7)" : s.color
+        background: on ? "rgba(var(--ink-rgb),0.7)" : s.color
       }
     }), React.createElement("span", {
       className: "mono",
@@ -1267,7 +1267,7 @@ function IAmAtSheet({
       padding: "10px 12px",
       borderRadius: 999,
       background: stage ? "var(--ember)" : "var(--paper-2)",
-      color: stage ? "#fff" : "var(--muted)",
+      color: stage ? "var(--ink)" : "var(--muted)",
       border: "none",
       cursor: stage ? "pointer" : "default",
       fontFamily: "Geist Mono, monospace",
@@ -1435,7 +1435,7 @@ function ShareLocationSheet({
     style: {
       position: "fixed",
       inset: 0,
-      background: "rgba(13,10,8,0.55)",
+      background: "rgba(var(--shade-rgb),0.55)",
       zIndex: 60,
       display: "flex",
       alignItems: "flex-end",
@@ -1450,7 +1450,7 @@ function ShareLocationSheet({
       color: "var(--ink)",
       borderRadius: "16px 16px 0 0",
       padding: "16px 18px 28px",
-      boxShadow: "0 -8px 32px rgba(0,0,0,0.35)",
+      boxShadow: "0 -8px 32px rgba(var(--shade-rgb),0.35)",
       maxHeight: "90vh",
       overflowY: "auto"
     }
@@ -1491,7 +1491,7 @@ function ShareLocationSheet({
   }, crewCode ? React.createElement(React.Fragment, null, "● ", crewCount || 0, " IN CREW · ", crewCode) : React.createElement(React.Fragment, null, "NO CREW YET — JOIN ONE FIRST")), React.createElement("div", {
     style: {
       background: active ? "var(--ember)" : "var(--paper-2)",
-      color: active ? "#fff" : "var(--ink)",
+      color: active ? "var(--ink)" : "var(--ink)",
       border: active ? "none" : "1px solid var(--line-2)",
       borderRadius: 14,
       padding: "14px 16px",
@@ -1505,7 +1505,7 @@ function ShareLocationSheet({
       width: 12,
       height: 12,
       borderRadius: 12,
-      background: active ? "rgba(255,255,255,0.92)" : "var(--line-2)",
+      background: active ? "rgba(var(--ink-rgb),0.92)" : "var(--line-2)",
       animation: active ? "pulse 1.6s infinite" : "none"
     }
   }), React.createElement("span", {
@@ -1626,8 +1626,8 @@ function ShareLocationSheet({
     style: {
       padding: "8px 11px",
       borderRadius: 999,
-      background: "rgba(193,74,74,0.10)",
-      border: "1px solid rgba(193,74,74,0.35)",
+      background: "rgba(var(--alert-rgb),0.10)",
+      border: "1px solid rgba(var(--alert-rgb),0.35)",
       marginBottom: 12
     }
   }, React.createElement("span", {
@@ -1783,7 +1783,7 @@ function MeetupsSheet({
     style: {
       position: "fixed",
       inset: 0,
-      background: "rgba(13,10,8,0.55)",
+      background: "rgba(var(--shade-rgb),0.55)",
       zIndex: 60,
       display: "flex",
       alignItems: "flex-end",
@@ -1798,7 +1798,7 @@ function MeetupsSheet({
       color: "var(--ink)",
       borderRadius: "16px 16px 0 0",
       padding: "16px 18px 28px",
-      boxShadow: "0 -8px 32px rgba(0,0,0,0.35)",
+      boxShadow: "0 -8px 32px rgba(var(--shade-rgb),0.35)",
       maxHeight: "90vh",
       overflowY: "auto"
     }
@@ -1929,7 +1929,7 @@ function MeetupsSheet({
       padding: "12px 16px",
       borderRadius: 999,
       background: "var(--ember)",
-      color: "#fff",
+      color: "var(--ink)",
       border: "none",
       cursor: "pointer",
       fontFamily: "Geist Mono, monospace",
@@ -1972,7 +1972,7 @@ function MeetupsSheet({
         padding: "6px 4px",
         borderRadius: 8,
         background: on ? s.color : "var(--paper-2)",
-        color: on ? "#fff" : "var(--ink)",
+        color: on ? "var(--ink)" : "var(--ink)",
         border: on ? "none" : "1px solid var(--line-2)",
         fontFamily: "Geist Mono, monospace",
         fontSize: 8,
@@ -2037,7 +2037,7 @@ function MeetupsSheet({
       padding: "10px 12px",
       borderRadius: 999,
       background: "var(--ember)",
-      color: "#fff",
+      color: "var(--ink)",
       border: "none",
       cursor: "pointer",
       fontFamily: "Geist Mono, monospace",
@@ -2152,7 +2152,7 @@ function NotifyPill({
       alignItems: "center",
       gap: 4,
       background: enabled ? "var(--ember)" : "var(--paper)",
-      color: enabled ? "#fff" : "var(--muted)",
+      color: enabled ? "var(--ink)" : "var(--muted)",
       border: enabled ? "none" : "1px solid var(--line-2)",
       borderRadius: 999,
       padding: "3px 8px",
@@ -2272,8 +2272,8 @@ function WeatherStrip() {
       padding: "5px 11px",
       marginTop: 6,
       borderRadius: 999,
-      background: isAlert ? "rgba(232,93,46,0.10)" : "var(--paper-2)",
-      border: `1px solid ${isAlert ? "rgba(232,93,46,0.45)" : "var(--line)"}`
+      background: isAlert ? "rgba(var(--signal-rgb),0.10)" : "var(--paper-2)",
+      border: `1px solid ${isAlert ? "rgba(var(--signal-rgb),0.45)" : "var(--line)"}`
     }
   }, React.createElement("span", {
     style: {
@@ -2337,13 +2337,13 @@ function SunriseStrip({
       gap: 8,
       padding: "5px 11px",
       marginTop: 6,
-      background: "linear-gradient(90deg, #f59a36 0%, #e85d2e 60%, #a78bfa 100%)",
-      color: "#fff",
+      background: "linear-gradient(90deg, var(--signal) 0%, var(--signal) 60%, var(--signal) 100%)",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 999,
       cursor: "pointer",
       textAlign: "left",
-      boxShadow: "0 3px 10px rgba(245,154,54,0.30)"
+      boxShadow: "0 3px 10px rgba(var(--signal-rgb),0.30)"
     }
   }, React.createElement("span", {
     style: {
@@ -2404,12 +2404,12 @@ function NextSetStrip({
       padding: "6px 10px",
       marginTop: 6,
       background: next.isLive ? "var(--ember)" : "var(--ink)",
-      color: next.isLive ? "#fff" : "var(--paper)",
+      color: next.isLive ? "var(--ink)" : "var(--paper)",
       border: "none",
       borderRadius: 12,
       cursor: "pointer",
       textAlign: "left",
-      boxShadow: next.isLive ? "0 3px 10px rgba(232,93,46,0.30)" : "0 2px 6px rgba(26,18,13,0.15)"
+      boxShadow: next.isLive ? "0 3px 10px rgba(var(--signal-rgb),0.30)" : "0 2px 6px rgba(var(--shade-rgb),0.15)"
     }
   }, React.createElement("div", {
     style: {
@@ -2470,7 +2470,7 @@ function NextSetStrip({
       letterSpacing: 0.9,
       fontWeight: 600,
       opacity: willBeLate ? 1 : 0.7,
-      color: willBeLate ? "#fbbf24" : "inherit",
+      color: willBeLate ? "var(--signal-ink)" : "inherit",
       marginTop: 1
     }
   }, walkLabel ? `${walkLabel}M` : "\u2014", willBeLate ? " \u26a0" : "")));
@@ -2774,7 +2774,7 @@ function MapScreen({
       return {
         id,
         name: e.name || "?",
-        color: e.color || "#888",
+        color: e.color || "var(--text-2)",
         x,
         y,
         gps: e.gps || null,
@@ -2971,7 +2971,7 @@ function MapScreen({
       border: "1px solid var(--line-2)",
       backdropFilter: "blur(10px)",
       WebkitBackdropFilter: "blur(10px)",
-      boxShadow: "0 4px 12px rgba(0,0,0,0.10)",
+      boxShadow: "0 4px 12px rgba(var(--shade-rgb),0.10)",
       pointerEvents: "none"
     }
   }, React.createElement("span", {
@@ -3021,7 +3021,7 @@ function MapScreen({
       padding: "6px 8px",
       borderRadius: 14,
       background: gpsActive ? "var(--ember)" : "rgba(var(--glass),0.92)",
-      color: gpsActive ? "#fff" : gpsStatus === "denied" ? "var(--alert)" : "var(--ink)",
+      color: "var(--ink)",
       border: gpsActive ? "none" : "1px solid var(--line-2)",
       backdropFilter: "blur(10px)",
       WebkitBackdropFilter: "blur(10px)",
@@ -3030,7 +3030,7 @@ function MapScreen({
       flexDirection: "column",
       alignItems: "center",
       gap: 2,
-      boxShadow: "0 4px 12px rgba(0,0,0,0.10)"
+      boxShadow: "0 4px 12px rgba(var(--shade-rgb),0.10)"
     }
   }, React.createElement("svg", {
     width: "16",
@@ -3070,7 +3070,7 @@ function MapScreen({
       overflow: "hidden",
       backdropFilter: "blur(10px)",
       WebkitBackdropFilter: "blur(10px)",
-      boxShadow: "0 4px 12px rgba(0,0,0,0.10)"
+      boxShadow: "0 4px 12px rgba(var(--shade-rgb),0.10)"
     }
   }, React.createElement("button", {
     onClick: () => setMenuOpen(o => !o),
@@ -3181,7 +3181,7 @@ function MapScreen({
       borderRadius: 12,
       padding: 5,
       minWidth: 220,
-      boxShadow: "0 10px 28px rgba(26,18,13,0.20)"
+      boxShadow: "0 10px 28px rgba(var(--shade-rgb),0.20)"
     }
   }, [{
     id: "notify",
@@ -3286,7 +3286,7 @@ function MapScreen({
       width: 14,
       height: 14,
       borderRadius: 14,
-      background: "#fff",
+      background: "var(--ink)",
       transition: "left 0.18s"
     }
   })))), React.createElement("button", {
@@ -3324,17 +3324,17 @@ function MapScreen({
     }
   }, _packMirror()[FESTIVAL_CONFIG.id] ? "SAVED" : "›")))), packsOpen && React.createElement(OfflinePacksSheet, {
     onClose: () => setPacksOpen(false)
-  }), gpsLive && gpsStatus === "denied" && React.createElement("div", {
+  }), gpsLive && gpsStatus === "denied" && !amenityKey && React.createElement("div", {
     style: {
       position: "absolute",
-      top: 12,
-      left: "50%",
-      transform: "translateX(-50%)",
+      top: 112,
+      left: 10,
       zIndex: 4,
       padding: "4px 10px",
       borderRadius: 999,
-      background: "rgba(193,74,74,0.95)",
-      color: "#fff",
+      background: "rgba(var(--glass),0.92)",
+      color: "var(--ink)",
+      border: "1px solid var(--line-2)",
       backdropFilter: "blur(8px)",
       maxWidth: "calc(100% - 120px)"
     },
@@ -3363,7 +3363,7 @@ function MapScreen({
       minWidth: 124,
       backdropFilter: "blur(10px)",
       WebkitBackdropFilter: "blur(10px)",
-      boxShadow: "0 6px 20px rgba(26,18,13,0.22)"
+      boxShadow: "0 6px 20px rgba(var(--shade-rgb),0.22)"
     }
   }, AMENITY_KEY.map(a => {
     var on = amenityFilter === a.type;
@@ -3400,15 +3400,15 @@ function MapScreen({
         borderRadius: 13,
         flexShrink: 0,
         background: a.color,
-        border: "1.5px solid #fff",
-        boxShadow: "0 1px 3px rgba(0,0,0,0.3)",
+        border: "1.5px solid var(--ink)",
+        boxShadow: "0 1px 3px rgba(var(--shade-rgb),0.3)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         fontFamily: "Geist Mono, monospace",
         fontSize: 8,
         fontWeight: 900,
-        color: "#fff",
+        color: "var(--ink)",
         lineHeight: 1
       }
     }, a.letter), React.createElement("span", {
@@ -3435,9 +3435,9 @@ function MapScreen({
       borderRadius: 999,
       cursor: "pointer",
       border: "none",
-      background: "rgba(45,122,85,0.96)",
-      color: "#fff",
-      boxShadow: "0 2px 10px rgba(0,0,0,0.35)",
+      background: "rgba(var(--signal-rgb),0.96)",
+      color: "var(--ink)",
+      boxShadow: "0 2px 10px rgba(var(--shade-rgb),0.35)",
       backdropFilter: "blur(8px)"
     }
   }, React.createElement("span", {
@@ -3445,7 +3445,7 @@ function MapScreen({
       width: 7,
       height: 7,
       borderRadius: 7,
-      background: "#fff",
+      background: "var(--ink)",
       animation: "pulse 1.6s infinite"
     }
   }), React.createElement("span", {
@@ -3464,10 +3464,10 @@ function MapScreen({
       zIndex: 4,
       padding: "5px 12px",
       borderRadius: 999,
-      background: "rgba(245,154,54,0.95)",
-      color: "#fff",
+      background: "rgba(var(--signal-rgb),0.95)",
+      color: "var(--ink)",
       backdropFilter: "blur(8px)",
-      boxShadow: "0 2px 10px rgba(0,0,0,0.15)"
+      boxShadow: "0 2px 10px rgba(var(--shade-rgb),0.15)"
     },
     title: `${liveAvatar.mi.toFixed(1)} mi from venue · showing demo`
   }, React.createElement("span", {
@@ -3493,7 +3493,7 @@ function MapScreen({
         background: "var(--paper)",
         border: "1px solid var(--line-2)",
         borderRadius: 16,
-        boxShadow: "0 -6px 24px rgba(0,0,0,0.18)",
+        boxShadow: "0 -6px 24px rgba(var(--shade-rgb),0.18)",
         maxHeight: sheetMaxH,
         overflow: "hidden",
         display: "flex",
@@ -3604,7 +3604,7 @@ function MapScreen({
       },
       style: {
         background: meetMode ? "var(--ember)" : "var(--ink)",
-        color: "#fff",
+        color: meetMode ? "var(--on-ember)" : "var(--paper)",
         border: "none",
         borderRadius: 999,
         padding: "4px 10px",
@@ -3638,7 +3638,7 @@ function MapScreen({
           height: 22,
           borderRadius: 22,
           background: f.avatarTone,
-          border: "1.5px solid #fff",
+          border: "1.5px solid var(--ink)",
           padding: 0,
           cursor: "pointer"
         }
@@ -3904,27 +3904,27 @@ function MapScreen({
       type: "water",
       label: "Water",
       emoji: "💧",
-      color: "#38bdf8"
+      color: "var(--signal-ink)"
     }, {
       type: "med",
       label: "Medic",
       emoji: "✚",
-      color: "#f87171"
+      color: "var(--alert)"
     }, {
       type: "toilet",
       label: "Toilet",
       emoji: "🚻",
-      color: "#94a3b8"
+      color: "var(--signal-ink)"
     }, {
       type: "charge",
       label: "Charge",
       emoji: "⚡",
-      color: "#facc15"
+      color: "var(--signal-ink)"
     }, {
       type: "locker",
       label: "Locker",
       emoji: "🔒",
-      color: "#a78bfa"
+      color: "var(--signal-ink)"
     }].map(c => React.createElement("button", {
       key: c.type,
       onClick: () => {
@@ -4037,7 +4037,7 @@ function MapScreen({
       },
       style: {
         background: meetMode ? "var(--ember)" : "var(--ink)",
-        color: "#fff",
+        color: meetMode ? "var(--on-ember)" : "var(--paper)",
         border: "none",
         borderRadius: 999,
         padding: "6px 11px",
@@ -4100,7 +4100,7 @@ function MapScreen({
           borderRadius: 999,
           background: active ? f.color : "var(--paper-2)",
           border: `1px solid ${active ? f.color : "var(--line-2)"}`,
-          color: active ? "#fff" : "var(--ink)",
+          color: active ? "var(--ink)" : "var(--ink)",
           cursor: "pointer",
           fontFamily: "Geist Mono, monospace",
           fontSize: 9,
@@ -4113,7 +4113,7 @@ function MapScreen({
           height: 14,
           borderRadius: 14,
           background: f.avatarTone,
-          border: "1.2px solid #fff",
+          border: "1.2px solid var(--ink)",
           flexShrink: 0
         }
       }), f.name.toUpperCase(), "·", d, "M", unreadCount(f.id) > 0 && !meetMode && React.createElement("span", {
@@ -4125,7 +4125,7 @@ function MapScreen({
           height: 14,
           padding: "0 4px",
           background: "var(--ember)",
-          color: "#fff",
+          color: "var(--ink)",
           borderRadius: 14,
           fontSize: 8,
           fontWeight: 700,
@@ -4247,8 +4247,8 @@ function MapScreen({
       zIndex: 4,
       padding: "4px 10px",
       borderRadius: 999,
-      background: "rgba(245,154,54,0.95)",
-      color: "#fff",
+      background: "rgba(var(--signal-rgb),0.95)",
+      color: "var(--ink)",
       backdropFilter: "blur(8px)",
       maxWidth: "88%",
       textAlign: "center"
@@ -4269,15 +4269,15 @@ function MapScreen({
       top: 0,
       left: 0,
       right: 0,
-      background: meetTarget ? "var(--ember)" : "rgba(26,18,13,0.92)",
-      color: "#fff",
+      background: meetTarget ? "var(--ember)" : "rgba(var(--shade-rgb),0.92)",
+      color: "var(--ink)",
       padding: "10px 14px",
       paddingTop: "calc(10px + env(safe-area-inset-top, 0px))",
       fontFamily: "Geist Mono, monospace",
       fontSize: 10,
       letterSpacing: 1.3,
       fontWeight: 700,
-      boxShadow: "0 4px 16px rgba(0,0,0,0.35)",
+      boxShadow: "0 4px 16px rgba(var(--shade-rgb),0.35)",
       zIndex: 8,
       display: "flex",
       alignItems: "center",
@@ -4296,7 +4296,7 @@ function MapScreen({
       width: 7,
       height: 7,
       borderRadius: 7,
-      background: "#fff",
+      background: "var(--ink)",
       animation: "pulse 1.4s infinite"
     }
   }), meetTarget.isAmenity ? `→ ${meetTarget.label.toUpperCase()}` : `${meetTarget.label.toUpperCase()} · ${meetGroup.length > 1 ? `GROUP (${meetGroup.length + 1})` : "BOTH"} WALKING`) : meetGroup.length ? "TAP THE MAP TO DROP A PIN" : "MEET MODE — TAP MAP TO DROP A PIN"), meetTarget && isSharing && React.createElement("button", {
@@ -4311,8 +4311,8 @@ function MapScreen({
     },
     disabled: rallySent,
     style: {
-      background: rallySent ? "rgba(255,255,255,0.25)" : "#fff",
-      color: rallySent ? "#fff" : "var(--ember-ink)",
+      background: rallySent ? "rgba(var(--ink-rgb),0.25)" : "var(--ink)",
+      color: rallySent ? "var(--ink)" : "var(--ember-ink)",
       border: "none",
       borderRadius: 999,
       padding: "5px 12px",
@@ -4325,11 +4325,11 @@ function MapScreen({
   }, rallySent ? "✓ CREW PINGED" : "📣 RALLY CREW"), React.createElement("button", {
     onClick: clearMeet,
     style: {
-      background: "rgba(255,255,255,0.2)",
+      background: "rgba(var(--ink-rgb),0.2)",
       border: "none",
       borderRadius: 999,
       padding: "5px 12px",
-      color: "#fff",
+      color: "var(--ink)",
       cursor: "pointer",
       fontFamily: "Geist Mono, monospace",
       fontSize: 9,
@@ -4343,11 +4343,11 @@ function MapScreen({
       left: 0,
       right: 0,
       zIndex: 9,
-      background: "linear-gradient(135deg, #7b3d9a, var(--ember))",
-      color: "#fff",
+      background: "linear-gradient(135deg, var(--signal), var(--ember))",
+      color: "var(--ink)",
       padding: "10px 14px",
       paddingTop: "calc(10px + env(safe-area-inset-top, 0px))",
-      boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
+      boxShadow: "0 4px 16px rgba(var(--shade-rgb),0.4)",
       display: "flex",
       alignItems: "center",
       gap: 10,
@@ -4395,7 +4395,7 @@ function MapScreen({
     },
     className: "mono",
     style: {
-      background: "#fff",
+      background: "var(--ink)",
       color: "var(--ember)",
       border: "none",
       borderRadius: 999,
@@ -4413,8 +4413,8 @@ function MapScreen({
     },
     "aria-label": "Dismiss",
     style: {
-      background: "rgba(0,0,0,0.2)",
-      color: "#fff",
+      background: "rgba(var(--shade-rgb),0.2)",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 999,
       width: 26,
@@ -4444,11 +4444,11 @@ function MapScreen({
         left: 0,
         right: 0,
         zIndex: 8,
-        background: "linear-gradient(135deg, #2d7a55, #1a120d)",
-        color: "#fff",
+        background: "linear-gradient(135deg, var(--signal), var(--paper))",
+        color: "var(--ink)",
         padding: "10px 14px",
         paddingTop: "calc(10px + env(safe-area-inset-top, 0px))",
-        boxShadow: "0 4px 16px rgba(0,0,0,0.35)",
+        boxShadow: "0 4px 16px rgba(var(--shade-rgb),0.35)",
         display: "flex",
         alignItems: "center",
         gap: 10,
@@ -4465,15 +4465,15 @@ function MapScreen({
         width: 22,
         height: 22,
         borderRadius: 22,
-        background: m.color || "#888",
-        border: "2px solid #1a120d",
+        background: m.color || "var(--paper-3)",
+        border: "2px solid var(--paper)",
         marginLeft: i ? -7 : 0,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         fontSize: 9,
         fontWeight: 800,
-        color: "#fff",
+        color: "var(--ink)",
         fontFamily: "Geist Mono, monospace"
       }
     }, (m.name || "?")[0].toUpperCase()))), React.createElement("span", {
@@ -4504,8 +4504,8 @@ function MapScreen({
       onClick: headOver,
       className: "mono",
       style: {
-        background: "#fff",
-        color: "#2d7a55",
+        background: "var(--ink)",
+        color: "var(--signal-ink)",
         border: "none",
         borderRadius: 999,
         padding: "6px 13px",
@@ -4519,8 +4519,8 @@ function MapScreen({
       onClick: () => setClusterDismissed(sig),
       "aria-label": "Dismiss",
       style: {
-        background: "rgba(0,0,0,0.2)",
-        color: "#fff",
+        background: "rgba(var(--shade-rgb),0.2)",
+        color: "var(--ink)",
         border: "none",
         borderRadius: 999,
         width: 26,
@@ -4588,7 +4588,7 @@ function MapScreen({
       border: "1px solid var(--line-2)",
       borderRadius: 14,
       padding: 5,
-      boxShadow: "0 10px 28px rgba(26,18,13,0.20)"
+      boxShadow: "0 10px 28px rgba(var(--shade-rgb),0.20)"
     }
   }, React.createElement("button", {
     onClick: () => {
@@ -4639,7 +4639,7 @@ function MapScreen({
       alignItems: "center",
       gap: 10,
       padding: "9px 11px",
-      background: isSharing ? "rgba(45,122,85,0.10)" : "transparent",
+      background: isSharing ? "rgba(var(--signal-rgb),0.10)" : "transparent",
       border: "none",
       borderRadius: 8,
       cursor: "pointer",
@@ -5683,7 +5683,7 @@ function OfflinePacksSheet({
       position: "fixed",
       inset: 0,
       zIndex: 9000,
-      background: "rgba(0,0,0,0.45)",
+      background: "rgba(var(--shade-rgb),0.45)",
       display: "flex",
       alignItems: "flex-end",
       justifyContent: "center"
@@ -6098,52 +6098,52 @@ function RealMap({
       };
       var AMENITY_DESIGN = {
         water: {
-          color: "#38bdf8",
+          color: "var(--signal-ink)",
           height: 14,
           radius: 5,
           sides: 8
         },
         food: {
-          color: "#fb923c",
+          color: "var(--signal-ink)",
           height: 16,
           radius: 6,
           sides: 4,
           rot: 45
         },
         med: {
-          color: "#ef4444",
+          color: "var(--alert)",
           height: 18,
           radius: 6,
           sides: 4
         },
         toilet: {
-          color: "#64748b",
+          color: "var(--signal-ink)",
           height: 12,
           radius: 5,
           sides: 6
         },
         art: {
-          color: "#f59a36",
+          color: "var(--signal-ink)",
           height: 22,
           radius: 7,
           sides: 12,
           altInner: 0.5
         },
         info: {
-          color: "#16a34a",
+          color: "var(--signal-ink)",
           height: 14,
           radius: 5,
           sides: 24
         },
         charge: {
-          color: "#facc15",
+          color: "var(--signal-ink)",
           height: 16,
           radius: 5,
           sides: 4,
           rot: 22.5
         },
         locker: {
-          color: "#a78bfa",
+          color: "var(--signal-ink)",
           height: 13,
           radius: 5,
           sides: 4
@@ -6311,7 +6311,7 @@ function RealMap({
         return {
           type: "Feature",
           properties: {
-            color: "#3a2a55",
+            color: "var(--signal-ink)",
             height: 22
           },
           geometry: {
@@ -7080,7 +7080,7 @@ function RealMap({
       position: "absolute",
       inset: 0,
       overflow: "hidden",
-      background: "#060412"
+      background: "var(--paper)"
     }
   }, React.createElement("div", {
     ref: containerRef,
@@ -7096,9 +7096,9 @@ function RealMap({
       top: 108,
       right: 10,
       zIndex: 4,
-      background: "rgba(6,4,18,0.78)",
-      color: "#fff",
-      border: "1px solid rgba(255,255,255,0.18)",
+      background: "rgba(var(--shade-rgb),0.78)",
+      color: "var(--ink)",
+      border: "1px solid rgba(var(--ink-rgb),0.18)",
       borderRadius: 999,
       padding: "6px 11px",
       fontSize: 9,
@@ -7114,8 +7114,8 @@ function RealMap({
       right: 10,
       zIndex: 4,
       display: "flex",
-      background: "rgba(6,4,18,0.78)",
-      border: "1px solid rgba(255,255,255,0.18)",
+      background: "rgba(var(--shade-rgb),0.78)",
+      border: "1px solid rgba(var(--ink-rgb),0.18)",
       borderRadius: 999,
       padding: 3,
       gap: 2,
@@ -7129,7 +7129,7 @@ function RealMap({
       onClick: () => pickStyle(k),
       style: {
         background: on ? "var(--ember)" : "transparent",
-        color: "#fff",
+        color: "var(--ink)",
         border: "none",
         padding: "5px 11px",
         borderRadius: 999,
@@ -7149,7 +7149,7 @@ function RealMap({
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      color: "#f87171",
+      color: "var(--alert)",
       fontFamily: "'Geist Mono',monospace",
       fontSize: 10,
       letterSpacing: 1.3,
@@ -7159,26 +7159,26 @@ function RealMap({
     }
   }, React.createElement("div", null, "MAP ERROR"), React.createElement("div", {
     style: {
-      color: "rgba(255,255,255,0.6)",
+      color: "rgba(var(--ink-rgb),0.6)",
       fontSize: 9,
       maxWidth: 240
     }
   }, err), FESTIVAL_CONFIG.mapMode === "real" ? React.createElement(React.Fragment, null, React.createElement("div", {
     style: {
-      color: "rgba(255,255,255,0.75)",
+      color: "rgba(var(--ink-rgb),0.75)",
       fontSize: 10,
       marginTop: 10,
       letterSpacing: 1.1
     }
   }, FESTIVAL_CONFIG.venue?.name || FESTIVAL_CONFIG.locationShort), React.createElement("div", {
     style: {
-      color: "rgba(255,255,255,0.5)",
+      color: "rgba(var(--ink-rgb),0.5)",
       fontSize: 9,
       maxWidth: 240
     }
   }, FESTIVAL_CONFIG.venue?.address || FESTIVAL_CONFIG.location), React.createElement("div", {
     style: {
-      color: "rgba(255,255,255,0.4)",
+      color: "rgba(var(--ink-rgb),0.4)",
       fontSize: 8,
       marginTop: 6,
       maxWidth: 250
@@ -7195,7 +7195,7 @@ function RealMap({
       borderRadius: 999,
       border: "none",
       background: "var(--ember)",
-      color: "#fff",
+      color: "var(--ink)",
       cursor: "pointer",
       fontFamily: "'Geist Mono',monospace",
       fontSize: 9,
@@ -7204,7 +7204,7 @@ function RealMap({
     }
   }, "RETRY")) : React.createElement(React.Fragment, null, React.createElement("div", {
     style: {
-      color: "rgba(255,255,255,0.45)",
+      color: "rgba(var(--ink-rgb),0.45)",
       fontSize: 8,
       marginTop: 4
     }
@@ -7216,7 +7216,7 @@ function RealMap({
       borderRadius: 999,
       border: "none",
       background: "var(--ember)",
-      color: "#fff",
+      color: "var(--ink)",
       cursor: "pointer",
       fontFamily: "'Geist Mono',monospace",
       fontSize: 9,
@@ -7244,42 +7244,42 @@ function _crowdDensity(stageId, nowMin) {
 }
 var AMENITY_KEY = [{
   type: "med",
-  color: "#ef4444",
+  color: "var(--alert)",
   letter: "+",
   label: "First aid"
 }, {
   type: "water",
-  color: "#38bdf8",
+  color: "var(--signal-ink)",
   letter: "",
   label: "Water"
 }, {
   type: "toilet",
-  color: "#64748b",
+  color: "var(--signal-ink)",
   letter: "",
   label: "Restrooms"
 }, {
   type: "food",
-  color: "#fb923c",
+  color: "var(--signal-ink)",
   letter: "",
   label: "Food"
 }, {
   type: "charge",
-  color: "#facc15",
+  color: "var(--signal-ink)",
   letter: "⚡",
   label: "Charging"
 }, {
   type: "locker",
-  color: "#a78bfa",
+  color: "var(--signal-ink)",
   letter: "L",
   label: "Lockers"
 }, {
   type: "info",
-  color: "#16a34a",
+  color: "var(--signal-ink)",
   letter: "i",
   label: "Info / lost"
 }, {
   type: "art",
-  color: "#f59a36",
+  color: "var(--signal-ink)",
   letter: "",
   label: "Art"
 }];
@@ -7443,7 +7443,7 @@ function TopDownMap({
       position: "absolute",
       inset: 0,
       overflow: "hidden",
-      background: "#060412",
+      background: "var(--paper)",
       touchAction: "none"
     },
     onTouchStart: onTouchStart,
@@ -7676,7 +7676,7 @@ function TopDownMap({
     y: "0",
     width: "100",
     height: "100",
-    fill: "#0a0f0b"
+    fill: "var(--paper)"
   }), React.createElement("image", {
     href: FESTIVAL_CONFIG.mapImage,
     x: "0",
@@ -7748,7 +7748,7 @@ function TopDownMap({
     cx: st.x,
     cy: st.y,
     r: st.r,
-    fill: "#fff",
+    fill: "var(--ink)",
     opacity: st.op
   }))), React.createElement("path", {
     d: "M 42 14 L 58 14 A 36 36 0 0 1 58 86 Q 54 88 50 90 Q 46 88 42 86 A 36 36 0 0 1 42 14 Z",
@@ -7923,17 +7923,17 @@ function TopDownMap({
     cx: g.x,
     cy: g.y,
     r: "1.5",
-    fill: "#22c55e",
+    fill: "var(--signal-ink)",
     stroke: "rgba(255,255,255,0.95)",
     strokeWidth: "0.35"
   }), React.createElement("circle", {
     cx: g.x,
     cy: g.y,
     r: "0.5",
-    fill: "#fff"
+    fill: "var(--ink)"
   })))), !meetMode && showAmenities && (typeof AMENITIES !== "undefined" ? AMENITIES : []).filter(a => !amenityFilter || a.type === amenityFilter).map(a => {
     var cfg = AMENITY_STYLE[a.type] || {
-      color: "#000",
+      color: "var(--paper)",
       letter: ""
     };
     return React.createElement("g", {
@@ -7944,14 +7944,14 @@ function TopDownMap({
       r: "1.4",
       fill: cfg.color,
       opacity: "0.92",
-      stroke: "#fff",
+      stroke: "var(--ink)",
       strokeWidth: "0.22"
     }), cfg.letter && React.createElement("text", {
       x: a.x,
       y: a.y + 0.65,
       textAnchor: "middle",
       fontSize: "1.8",
-      fill: "#fff",
+      fill: "var(--ink)",
       fontFamily: "Geist Mono, monospace",
       fontWeight: "900"
     }, cfg.letter));
@@ -8070,13 +8070,13 @@ function TopDownMap({
       cy: s.y,
       r: pinR,
       fill: s.color,
-      stroke: "#fff",
+      stroke: "var(--ink)",
       strokeWidth: on ? 0.7 : 0.5
     }), React.createElement("circle", {
       cx: s.x,
       cy: s.y,
       r: pinR * 0.34,
-      fill: "#fff"
+      fill: "var(--ink)"
     })) : React.createElement(StageIcon, {
       id: s.id,
       cx: s.x,
@@ -8089,14 +8089,14 @@ function TopDownMap({
     }, React.createElement("circle", {
       r: "1.9",
       fill: "rgba(13,8,4,0.85)",
-      stroke: "#fbbf24",
+      stroke: "var(--signal-ink)",
       strokeWidth: "0.25"
     }), React.createElement("text", {
       y: "0.85",
       textAnchor: "middle",
       fontSize: "2.4",
       fontWeight: "900",
-      fill: "#fbbf24",
+      fill: "var(--signal-ink)",
       fontFamily: "Geist Mono, monospace"
     }, "★")));
   }), friends.map(f => {
@@ -8153,7 +8153,7 @@ function TopDownMap({
     cy: meetTarget.y,
     r: "3",
     fill: "none",
-    stroke: "#e85d2e",
+    stroke: "var(--signal-ink)",
     strokeWidth: "0.6",
     opacity: "0.8"
   }, React.createElement("animate", {
@@ -8170,8 +8170,8 @@ function TopDownMap({
     cx: meetTarget.x,
     cy: meetTarget.y,
     r: "1.6",
-    fill: "#e85d2e",
-    stroke: "#fff",
+    fill: "var(--signal-ink)",
+    stroke: "var(--ink)",
     strokeWidth: "0.5"
   })), selected && !meetMode && (() => {
     var target = stages.find(s => s.id === selected);
@@ -8210,13 +8210,13 @@ function TopDownMap({
     d: `M${avatar.x},${avatar.y}
                     L${avatar.x + Math.cos(heading - 0.38) * 6.5},${avatar.y + Math.sin(heading - 0.38) * 6.5}
                     L${avatar.x + Math.cos(heading + 0.38) * 6.5},${avatar.y + Math.sin(heading + 0.38) * 6.5} Z`,
-    fill: "#f59a36",
+    fill: "var(--signal-ink)",
     opacity: "0.3"
   }), React.createElement("circle", {
     cx: avatar.x,
     cy: avatar.y,
     r: "3.2",
-    fill: "#f59a36",
+    fill: "var(--signal-ink)",
     opacity: "0.22"
   }, React.createElement("animate", {
     attributeName: "r",
@@ -8227,14 +8227,14 @@ function TopDownMap({
     cx: avatar.x,
     cy: avatar.y,
     r: "1.8",
-    fill: "#f59a36",
+    fill: "var(--signal-ink)",
     stroke: "rgba(255,255,255,0.95)",
     strokeWidth: "0.6"
   }), React.createElement("circle", {
     cx: avatar.x,
     cy: avatar.y,
     r: "0.7",
-    fill: "#fff"
+    fill: "var(--ink)"
   })))), React.createElement("div", {
     style: {
       position: "absolute",
@@ -8255,7 +8255,7 @@ function TopDownMap({
       fontSize: 8,
       letterSpacing: 2.2,
       fontWeight: 700,
-      color: "rgba(232,93,46,0.85)"
+      color: "rgba(var(--signal-rgb),0.85)"
     }
   }, FESTIVAL_CONFIG.placeLabel), (FESTIVAL_CONFIG.gates || []).map((g, i) => React.createElement("div", {
     key: i,
@@ -8268,8 +8268,8 @@ function TopDownMap({
       fontSize: 8,
       letterSpacing: 1.4,
       fontWeight: 700,
-      color: "rgba(80,230,160,0.92)",
-      textShadow: "0 0 8px rgba(80,230,160,0.5)",
+      color: "rgba(var(--signal-rgb),0.92)",
+      textShadow: "0 0 8px rgba(var(--signal-rgb),0.5)",
       whiteSpace: "nowrap",
       pointerEvents: "none"
     }
@@ -8285,7 +8285,7 @@ function TopDownMap({
       letterSpacing: lm.ls,
       fontWeight: 700,
       color: lm.color,
-      textShadow: "0 1px 6px rgba(0,0,0,0.8)",
+      textShadow: "0 1px 6px rgba(var(--shade-rgb),0.8)",
       whiteSpace: "nowrap",
       pointerEvents: "none"
     }
@@ -8351,9 +8351,9 @@ function TopDownMap({
         ...tx,
         pointerEvents: "auto",
         cursor: "pointer",
-        background: on ? s.color : "rgba(6,4,18,0.82)",
-        color: on ? "#fff" : "rgba(255,255,255,0.88)",
-        border: `1px solid ${on ? s.color : "rgba(255,255,255,0.18)"}`,
+        background: on ? s.color : "rgba(var(--shade-rgb),0.82)",
+        color: on ? "var(--ink)" : "rgba(var(--ink-rgb),0.88)",
+        border: `1px solid ${on ? s.color : "rgba(var(--ink-rgb),0.18)"})"}`,
         padding: on ? "4px 10px" : "3px 9px",
         borderRadius: 999,
         fontFamily: "Geist Mono, monospace",
@@ -8373,7 +8373,7 @@ function TopDownMap({
         width: 6,
         height: 6,
         borderRadius: 6,
-        background: on ? "#fff" : s.color,
+        background: on ? "var(--ink)" : s.color,
         marginRight: 6,
         verticalAlign: "1px",
         animation: liveArtist && !on ? "pulse 1.6s infinite" : "none"
@@ -8387,7 +8387,7 @@ function TopDownMap({
       top: `${mapY(f.y)}%`,
       transform: `translate(-50%, 14px)${counterRot}`,
       background: f.color,
-      color: "#fff",
+      color: "var(--ink)",
       padding: "2px 7px",
       borderRadius: 999,
       fontFamily: "Geist Mono, monospace",
@@ -8421,12 +8421,12 @@ function TopDownMap({
         height: 32,
         borderRadius: 999,
         background: f.color,
-        border: "2px solid rgba(255,255,255,0.95)",
-        boxShadow: `0 4px 14px ${f.color}aa, 0 0 0 1px rgba(0,0,0,0.45)`,
+        border: "2px solid rgba(var(--ink-rgb),0.95)",
+        boxShadow: `0 4px 14px ${f.color}aa, 0 0 0 1px rgba(var(--shade-rgb),0.45)`,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        color: "#fff",
+        color: "var(--ink)",
         fontFamily: "Instrument Serif, serif",
         fontSize: 18,
         fontWeight: 400,
@@ -8437,9 +8437,9 @@ function TopDownMap({
         display: "flex",
         alignItems: "center",
         gap: 4,
-        background: "rgba(6,4,18,0.85)",
-        color: "#fff",
-        border: "1px solid rgba(255,255,255,0.18)",
+        background: "rgba(var(--shade-rgb),0.85)",
+        color: "var(--ink)",
+        border: "1px solid rgba(var(--ink-rgb),0.18)",
         padding: "2px 7px",
         borderRadius: 999,
         fontFamily: "Geist Mono, monospace",
@@ -8463,7 +8463,7 @@ function TopDownMap({
       }
     }, "· ", (atStage.short || atStage.name).toUpperCase()), seen.label && seen.freshness !== "fresh" && React.createElement("span", {
       style: {
-        color: "rgba(255,255,255,0.7)",
+        color: "rgba(var(--ink-rgb),0.7)",
         fontWeight: 500
       }
     }, "· ", seen.label)));
@@ -8473,8 +8473,8 @@ function TopDownMap({
       left: `${avatar.x}%`,
       top: `${mapY(avatar.y)}%`,
       transform: `translate(-50%, -22px)${counterRot}`,
-      background: "rgba(245,154,54,0.95)",
-      color: "#fff",
+      background: "rgba(var(--signal-rgb),0.95)",
+      color: "var(--ink)",
       padding: "2px 8px",
       borderRadius: 999,
       fontFamily: "Geist Mono, monospace",
@@ -8482,7 +8482,7 @@ function TopDownMap({
       letterSpacing: 1.3,
       fontWeight: 700,
       pointerEvents: "none",
-      boxShadow: "0 3px 10px rgba(245,154,54,0.45)"
+      boxShadow: "0 3px 10px rgba(var(--signal-rgb),0.45)"
     }
   }, "YOU"))), compass && React.createElement("div", {
     style: {
@@ -8494,7 +8494,7 @@ function TopDownMap({
       borderRadius: 44,
       background: "rgba(var(--glass),0.92)",
       border: "1px solid var(--line-2)",
-      boxShadow: "0 3px 10px rgba(26,18,13,0.18)",
+      boxShadow: "0 3px 10px rgba(var(--shade-rgb),0.18)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -8552,7 +8552,7 @@ function RideshareSheet({
         position: "absolute",
         inset: 0,
         zIndex: 12,
-        background: "rgba(0,0,0,0.45)",
+        background: "rgba(var(--shade-rgb),0.45)",
         backdropFilter: "blur(4px)",
         display: "flex",
         alignItems: "flex-end",
@@ -8632,7 +8632,7 @@ function RideshareSheet({
       position: "absolute",
       inset: 0,
       zIndex: 12,
-      background: "rgba(0,0,0,0.45)",
+      background: "rgba(var(--shade-rgb),0.45)",
       display: "flex",
       alignItems: "flex-end",
       animation: "fadeIn .2s"
@@ -8646,7 +8646,7 @@ function RideshareSheet({
       borderTopRightRadius: 22,
       width: "100%",
       padding: "14px 20px 24px",
-      boxShadow: "0 -10px 40px rgba(0,0,0,0.4)"
+      boxShadow: "0 -10px 40px rgba(var(--shade-rgb),0.4)"
     }
   }, React.createElement("div", {
     style: {
@@ -8691,8 +8691,8 @@ function RideshareSheet({
   }, React.createElement("button", {
     onClick: () => open(uberUrl),
     style: {
-      background: "#000",
-      color: "#fff",
+      background: "var(--paper)",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 12,
       padding: "14px 16px",
@@ -8705,8 +8705,8 @@ function RideshareSheet({
   }, "OPEN UBER"), React.createElement("button", {
     onClick: () => open(lyftUrl),
     style: {
-      background: "#FF00BF",
-      color: "#fff",
+      background: "var(--signal)",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 12,
       padding: "14px 16px",
@@ -8754,9 +8754,9 @@ function GroundPeek({
       height: 120,
       borderRadius: 12,
       overflow: "hidden",
-      background: "#0a0414",
-      border: "1px solid rgba(247,237,224,0.2)",
-      boxShadow: "0 8px 24px rgba(0,0,0,0.5)",
+      background: "var(--paper)",
+      border: "1px solid rgba(var(--ink-rgb),0.2)",
+      boxShadow: "0 8px 24px rgba(var(--shade-rgb),0.5)",
       zIndex: 4
     }
   }, React.createElement("svg", {
@@ -8808,7 +8808,7 @@ function GroundPeek({
     y: "30",
     width: "80",
     height: "40",
-    fill: "#0a0414",
+    fill: "var(--paper)",
     stroke: stage.color,
     strokeWidth: "1.5"
   }), React.createElement("rect", {
@@ -8823,7 +8823,7 @@ function GroundPeek({
     y: "24",
     width: "88",
     height: "4",
-    fill: "#0a0414",
+    fill: "var(--paper)",
     stroke: stage.color,
     strokeWidth: "0.8"
   }), [-2, -1, 0, 1, 2].map(i => React.createElement("g", {
@@ -8844,7 +8844,7 @@ function GroundPeek({
     strokeLinecap: "round"
   }))), React.createElement("path", {
     d: "M20,80 Q100,65 180,80 L180,95 L20,95 Z",
-    fill: "#000",
+    fill: "var(--paper)",
     opacity: "0.8"
   }), React.createElement("rect", {
     x: "65",
@@ -8874,9 +8874,9 @@ function GroundPeek({
       width: 20,
       height: 20,
       borderRadius: 20,
-      background: "rgba(10,4,20,0.85)",
-      border: "1px solid rgba(247,237,224,0.3)",
-      color: "#fff",
+      background: "rgba(var(--shade-rgb),0.85)",
+      border: "1px solid rgba(var(--ink-rgb),0.3)",
+      color: "var(--ink)",
       cursor: "pointer",
       display: "flex",
       alignItems: "center",
@@ -8892,8 +8892,8 @@ function GroundPeek({
       fontFamily: "Geist Mono, monospace",
       fontSize: 8,
       letterSpacing: 1.2,
-      color: "rgba(247,237,224,0.7)",
-      background: "rgba(10,4,20,0.6)",
+      color: "rgba(var(--ink-rgb),0.7)",
+      background: "rgba(var(--shade-rgb),0.6)",
       padding: "2px 5px",
       borderRadius: 4
     }
@@ -8934,7 +8934,7 @@ function StageNavBar({
       padding: "12px 14px calc(12px + env(safe-area-inset-bottom, 0px))",
       borderTopLeftRadius: 22,
       borderTopRightRadius: 22,
-      boxShadow: "0 -10px 30px rgba(0,0,0,0.4)",
+      boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.4)",
       display: "flex",
       alignItems: "center",
       gap: 11,
@@ -9067,7 +9067,7 @@ function BottomSheet({
         padding: "14px 16px 12px",
         borderTopLeftRadius: 22,
         borderTopRightRadius: 22,
-        boxShadow: "0 -10px 30px rgba(0,0,0,0.4)"
+        boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.4)"
       }
     }, React.createElement("div", {
       style: {
@@ -9082,7 +9082,7 @@ function BottomSheet({
         height: 38,
         borderRadius: 38,
         background: "var(--ember)",
-        color: "#fff",
+        color: "var(--ink)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -9093,7 +9093,7 @@ function BottomSheet({
       height: "18",
       viewBox: "0 0 24 24",
       fill: "none",
-      stroke: "#fff",
+      stroke: "var(--ink)",
       strokeWidth: "2"
     }, React.createElement("path", {
       d: "M12 2 C8 2 5 5 5 9 c0 5 7 13 7 13 s7-8 7-13 c0-4-3-7-7-7z"
@@ -9101,7 +9101,7 @@ function BottomSheet({
       cx: "12",
       cy: "9",
       r: "2.5",
-      fill: "#fff"
+      fill: "var(--ink)"
     }))), React.createElement("div", {
       style: {
         flex: 1,
@@ -9308,7 +9308,7 @@ function YourStagePhotosStrip({
     title: "Share a photo collage of your nights at this stage",
     style: {
       background: accent,
-      color: "#fff",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 999,
       padding: "5px 11px",
@@ -9323,8 +9323,8 @@ function YourStagePhotosStrip({
     className: "mono",
     title: "Share an animated GIF of your nights at this stage",
     style: {
-      background: "#6D28D9",
-      color: "#fff",
+      background: "var(--signal)",
+      color: "var(--ink)",
       border: "none",
       borderRadius: 999,
       padding: "5px 11px",
@@ -9420,7 +9420,7 @@ function StageLineupSheet({
       padding: "0 0 10px",
       borderTopLeftRadius: 22,
       borderTopRightRadius: 22,
-      boxShadow: "0 -10px 30px rgba(0,0,0,0.4)",
+      boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.4)",
       maxHeight: expanded ? "72vh" : "auto",
       display: "flex",
       flexDirection: "column",
@@ -9447,7 +9447,7 @@ function StageLineupSheet({
       width: 36,
       height: 4,
       borderRadius: 4,
-      background: heroInk === "#fff" ? "rgba(255,255,255,0.55)" : "rgba(26,18,13,0.45)"
+      background: heroInk === "var(--ink)" ? "rgba(var(--ink-rgb),0.55)" : "rgba(var(--shade-rgb),0.45)"
     }
   })), React.createElement("div", {
     style: {
@@ -9480,8 +9480,8 @@ function StageLineupSheet({
     onClick: onClose,
     "aria-label": "Close",
     style: {
-      background: heroInk === "#fff" ? "rgba(255,255,255,0.22)" : "rgba(26,18,13,0.14)",
-      border: `1px solid ${heroInk === "#fff" ? "rgba(255,255,255,0.35)" : "rgba(26,18,13,0.25)"}`,
+      background: heroInk === "var(--ink)" ? "rgba(var(--ink-rgb),0.22)" : "rgba(var(--shade-rgb),0.14)",
+      border: `1px solid ${heroInk === "var(--ink)" ? "rgba(var(--ink-rgb),0.35)" : "rgba(var(--shade-rgb),0.25)"}`,
       color: heroInk,
       borderRadius: 999,
       width: 30,
@@ -9614,7 +9614,7 @@ function StageLineupSheet({
     style: {
       flex: 1,
       background: peek ? stage.color : "var(--paper-2)",
-      color: peek ? "#fff" : "var(--ink)",
+      color: peek ? "var(--ink)" : "var(--ink)",
       border: peek ? "none" : "1px solid var(--line-2)",
       borderRadius: 12,
       padding: "11px 8px",
@@ -9630,9 +9630,9 @@ function StageLineupSheet({
     className: "mono",
     style: {
       flex: 1,
-      background: stageSaved ? "rgba(232,93,46,0.12)" : "var(--paper-2)",
+      background: stageSaved ? "rgba(var(--signal-rgb),0.12)" : "var(--paper-2)",
       color: stageSaved ? "var(--ember-ink)" : "var(--ink)",
-      border: stageSaved ? "1px solid rgba(232,93,46,0.45)" : "1px solid var(--line-2)",
+      border: stageSaved ? "1px solid rgba(var(--signal-rgb),0.45)" : "1px solid var(--line-2)",
       borderRadius: 12,
       padding: "11px 8px",
       cursor: "pointer",
@@ -9675,8 +9675,8 @@ function StageLineupSheet({
     className: "mono",
     style: {
       flexShrink: 0,
-      background: "rgba(193,74,74,0.1)",
-      border: "1px solid rgba(193,74,74,0.35)",
+      background: "rgba(var(--alert-rgb),0.1)",
+      border: "1px solid rgba(var(--alert-rgb),0.35)",
       color: "var(--alert)",
       borderRadius: 999,
       padding: "7px 13px",
@@ -9760,7 +9760,7 @@ function StageLineupSheet({
         padding: "7px 6px",
         borderRadius: 8,
         background: on ? stage.color : "var(--paper-2)",
-        color: on ? "#fff" : "var(--ink)",
+        color: on ? "var(--ink)" : "var(--ink)",
         border: "none",
         cursor: "pointer",
         display: "flex",
@@ -9797,7 +9797,7 @@ function StageLineupSheet({
       padding: "8px 10px",
       marginBottom: 8,
       background: stage.color,
-      color: "#fff",
+      color: "var(--ink)",
       borderRadius: 12,
       cursor: "pointer"
     }
@@ -9806,8 +9806,8 @@ function StageLineupSheet({
       width: 7,
       height: 7,
       borderRadius: 7,
-      background: "#fff",
-      boxShadow: "0 0 0 4px rgba(255,255,255,0.3)",
+      background: "var(--ink)",
+      boxShadow: "0 0 0 4px rgba(var(--ink-rgb),0.3)",
       animation: "pulse 1.6s infinite",
       flexShrink: 0
     }
@@ -9927,7 +9927,7 @@ function StageLineupSheet({
         fontSize: 8,
         letterSpacing: 1.3,
         fontWeight: 700,
-        color: "#fff",
+        color: "var(--ink)",
         background: stage.color,
         padding: "2px 6px",
         borderRadius: 4
@@ -9939,7 +9939,7 @@ function StageLineupSheet({
       style: {
         background: isSaved ? "var(--ember)" : "transparent",
         border: `1px solid ${isSaved ? "var(--ember)" : "var(--line-2)"}`,
-        color: isSaved ? "#fff" : "var(--muted)",
+        color: isSaved ? "var(--ink)" : "var(--muted)",
         borderRadius: 999,
         width: 28,
         height: 28,
@@ -10110,7 +10110,7 @@ function MessageDrawer({
     style: {
       position: "absolute",
       inset: 0,
-      background: "rgba(0,0,0,0.45)",
+      background: "rgba(var(--shade-rgb),0.45)",
       animation: "fadeIn .2s"
     }
   }), React.createElement("div", {
@@ -10126,7 +10126,7 @@ function MessageDrawer({
       height: "82%",
       display: "flex",
       flexDirection: "column",
-      boxShadow: "0 -14px 36px rgba(0,0,0,0.45)"
+      boxShadow: "0 -14px 36px rgba(var(--shade-rgb),0.45)"
     }
   }, React.createElement("div", {
     style: {
@@ -10142,7 +10142,7 @@ function MessageDrawer({
       height: 42,
       borderRadius: 42,
       background: friend.avatarTone,
-      color: "#fff",
+      color: "var(--ink)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -10235,8 +10235,8 @@ function MessageDrawer({
   }, "×")), !navigator.onLine && React.createElement("div", {
     style: {
       padding: "5px 16px",
-      background: "rgba(232,93,46,0.08)",
-      borderBottom: "1px solid rgba(232,93,46,0.18)"
+      background: "rgba(var(--signal-rgb),0.08)",
+      borderBottom: "1px solid rgba(var(--signal-rgb),0.18)"
     }
   }, React.createElement("span", {
     className: "mono",
@@ -10300,7 +10300,7 @@ function MessageDrawer({
         padding: "8px 12px",
         borderRadius: 18,
         background: mine ? "var(--ember)" : "var(--paper-2)",
-        color: mine ? "#fff" : "var(--ink)",
+        color: mine ? "var(--ink)" : "var(--ink)",
         fontSize: 14,
         lineHeight: 1.35,
         borderBottomRightRadius: mine ? 6 : 18,
@@ -10370,7 +10370,7 @@ function MessageDrawer({
         padding: "6px 11px",
         borderRadius: 999,
         background: qr.smart ? "var(--ember)" : "var(--paper-2)",
-        color: qr.smart ? "#fff" : "var(--ink)",
+        color: qr.smart ? "var(--ink)" : "var(--ink)",
         border: qr.smart ? "none" : "1px solid var(--line-2)",
         fontSize: 10,
         letterSpacing: 1.1,
@@ -10421,7 +10421,7 @@ function MessageDrawer({
       height: 38,
       borderRadius: 38,
       background: draft.trim() ? "var(--ember)" : "var(--line-2)",
-      color: "#fff",
+      color: "var(--ink)",
       border: "none",
       cursor: draft.trim() ? "pointer" : "default",
       display: "flex",

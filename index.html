@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="theme-field">
 <head>
   
 <script   src='https://app.kobbe.io/tracker.js'   data-token='33f47a54.tZZ9DcUGXIBBO9MWJbVwmnfxZTBF8f9G'   defer ></script>
@@ -49,13 +49,15 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Plursky">
-<meta name="theme-color" content="#f0c040">
+<meta name="theme-color" content="#0A0A0C">
+<!-- Inside the iOS app or an installed PWA, the crawler shell in <body> would flash its text
+     for a beat before React mounts. There it stays an empty canvas-coloured screen; browsers
+     and crawlers still get the text. -->
+<script>try{if(window.Capacitor||navigator.standalone||matchMedia("(display-mode: standalone)").matches)document.documentElement.classList.add("boot-quiet")}catch(e){}</script>
 <link rel="manifest" href="./manifest.json">
 <link rel="icon" type="image/png" href="./apple-touch-icon.png">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Field Mode: platform system font only, so no web fonts are loaded. -->
 <style>
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   .no-scrollbar::-webkit-scrollbar{display:none}
@@ -66,7 +68,7 @@
      10–14px inline, so the floor lives here; only !important beats an inline
      style. -webkit-touch-callout exists only on iOS, so desktop is unchanged. */
   @supports (-webkit-touch-callout: none){input,textarea,select{font-size:16px!important}}
-  html,body{width:100%;min-height:100%;background:#f7ede0;font-family:'Geist',system-ui,sans-serif;color:#1a120d;overflow-x:hidden}
+  html,body{width:100%;min-height:100%;background:var(--paper);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;color:var(--ink);overflow-x:hidden}
   body{display:flex;align-items:stretch;justify-content:stretch;padding:0;min-height:100vh;min-height:100dvh}
   /* #116: once the app mounts it is one fixed shell that scrolls inside
      itself, so the DOCUMENT must not scroll: 100vh is Safari's LARGE
@@ -75,17 +77,18 @@
   html.app-live,html.app-live body{height:100%;min-height:0;overflow:hidden}
   .stage{display:flex;align-items:stretch;justify-content:stretch;width:100%}
   /* Static pre-boot / no-JS shell (see #root in <body>). */
-  .boot-shell{max-width:680px;margin:0 auto;padding:40px 22px 64px;color:#1a120d}
-  .boot-shell h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(28px,6vw,42px);line-height:1.15;margin:0 0 12px}
-  .boot-shell h2{font-size:15px;letter-spacing:.06em;text-transform:uppercase;margin:28px 0 8px;color:rgba(26,18,13,0.62)}
-  .boot-shell p{margin:0 0 12px;line-height:1.6}
+  .boot-shell{max-width:680px;margin:0 auto;padding:40px 20px 64px;color:var(--ink)}
+  .boot-shell h1{font-weight:700;font-size:34px;line-height:41px;letter-spacing:-0.02em;margin:0 0 12px}
+  .boot-shell h2{font-size:11px;line-height:14px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin:32px 0 8px;color:var(--text-2)}
+  .boot-shell p{margin:0 0 12px;font-size:15px;line-height:21px}
   .boot-shell ul{list-style:none;padding:0;margin:0}
-  .boot-shell li{padding:7px 0;border-bottom:1px solid rgba(26,18,13,0.12)}
-  .boot-shell a{color:#e85d2e}
-  .boot-foot{margin-top:26px;font-size:14px}
+  .boot-shell li{padding:14px 0;border-bottom:1px solid var(--line)}
+  .boot-shell a{color:var(--signal-ink)}
+  .boot-quiet .boot-shell{visibility:hidden}
+  .boot-foot{margin-top:32px;font-size:13px;color:var(--text-2)}
   :root{--top-pad:env(safe-area-inset-top,0px)}
-  .serif{font-family:'Instrument Serif',serif;font-weight:400}
-  .mono{font-family:'Geist Mono',monospace}
+  .serif{font-weight:700}
+  .mono{font-variant-numeric:tabular-nums}
 
   /* --- Plursky inside-screen palette --- */
   :root{
@@ -134,6 +137,62 @@
   .theme-night{color-scheme:dark;--ink:#f0e6d8;--paper:#0d0a14;--paper-2:#241a3e;--line:rgba(240,230,216,0.14);--line-2:rgba(240,230,216,0.24);--muted:rgba(240,230,216,0.78);--dune:#3d2e5c;--ember-ink:#f97e52;--alert:#f87171;--warn:#f59a36;--glass:36,26,62}
   .theme-night html,.theme-night body{background:#0d0a14;color:#f0e6d8}
   .theme-dawn{--ink:#1a120d;--paper:#f0e0f0;--paper-2:#e0d0e8;--line:rgba(26,18,13,0.12);--line-2:rgba(26,18,13,0.2);--muted:rgba(26,18,13,0.62);--horizon:#9b5dba}
+  /* ── Field Mode ──
+     Dark is the brand: festival media is shot at night and carries the
+     colour. Every colour on a restyled surface comes from these tokens, and
+     components never write a hex or a white. There's one accent, Plursky
+     purple. --signal fills (the primary button, a selected toggle).
+     --signal-ink is the same hue lifted for text and thin marks on dark (NOW,
+     the live rail, the active tab), because #6D28D9 itself is only 2.6:1 on
+     the canvas. --media-* is type and chrome that sits ON a photo, which
+     stays white. The legacy tokens are remapped so surfaces not yet restyled
+     still sit in the dark shell instead of the old paper/ember palette. */
+  :root{
+    --font-ui:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;
+    --paper-3:#212126; --text-2:#A1A1AA; --text-3:#6B6B74;
+    --signal:#6D28D9; --signal-ink:#B79CFF; --on-signal:#FFFFFF; --on-ember:#FFFFFF;
+    --scrim:rgba(0,0,0,0.6); --chrome:rgba(10,10,12,0.72);
+    --hero-scrim:linear-gradient(180deg,rgba(10,10,12,0.5) 0%,rgba(10,10,12,0) 22%,rgba(10,10,12,0) 44%,rgba(10,10,12,0.72) 80%,var(--paper) 100%);
+    --media-ink:#FFFFFF; --media-ink-2:rgba(255,255,255,0.8);
+    --media-scrim:linear-gradient(0deg,rgba(0,0,0,0.78),rgba(0,0,0,0));
+    --media-badge:rgba(0,0,0,0.6);
+    --shadow-pop:0 10px 30px rgba(0,0,0,0.45);
+  }
+  .theme-field{color-scheme:dark;
+    --paper:#0A0A0C; --paper-2:#16161A; --paper-3:#212126;
+    --ink:#F5F5F7; --text-2:#A1A1AA; --text-3:#6B6B74;
+    --muted:#A1A1AA;
+    --line:rgba(255,255,255,0.08); --line-2:rgba(255,255,255,0.14);
+    --signal:#6D28D9; --signal-ink:#B79CFF; --on-signal:#FFFFFF;
+    --ember:#6D28D9; --ember-ink:#B79CFF; --on-ember:#FFFFFF;
+    --alert:#FF453A; --warn:#FF9F0A; --success:#B79CFF;
+    --dune:#212126; --flare:#B79CFF; --horizon:#B79CFF; --night:#0A0A0C; --dusk:#16161A; --sky:#A1A1AA;
+    --glass:22,22,26;
+    --ink-rgb:245,245,247; --shade-rgb:0,0,0; --signal-rgb:109,40,217; --alert-rgb:255,69,58;
+    --spotify:#1DB954; --spotify-rgb:29,185,84; --apple-music:#FA2D5A; --apple-music-rgb:250,45,90;
+    --fs-label-s:11px; --fs-label:11px; --fs-label-l:12px;
+    --fs-body-s:13px; --fs-body:15px; --fs-body-l:17px;
+    --fs-title-s:17px; --fs-title:20px; --fs-title-l:28px;
+    --r-sm:14px; --r-md:14px;
+  }
+  html.theme-field,.theme-field body{background:var(--paper);color:var(--ink)}
+  /* System font only. Inline styles name 'Geist' or 'Instrument Serif' ~580
+     times and only !important beats an inline style, so the swap lives here
+     until each surface is restyled. Display serif becomes bold, upright sans. */
+  html.theme-field,.theme-field body,.theme-field button,.theme-field input,.theme-field textarea{font-family:var(--font-ui)}
+  .theme-field .serif,.theme-field [style*="Instrument Serif"]{font-family:var(--font-ui)!important;font-style:normal!important;font-weight:700!important;letter-spacing:-0.02em}
+  .theme-field .mono,.theme-field [style*="Geist"]{font-family:var(--font-ui)!important}
+  .theme-field .mono,.theme-field [style*="Geist Mono"]{font-variant-numeric:tabular-nums}
+  /* A filled accent takes its own on-colour. */
+  .theme-field [style*="background: var(--ember)"],.theme-field [style*="background-color: var(--ember)"]{color:var(--on-ember)!important}
+  /* Dark rollout: the legacy labels read as Field eyebrows. Mono caps keep
+     their case but lose the 1.2-1.4px tracking, nothing reads below 11px,
+     and the old serif italics stand upright. SVG text sizes are attributes,
+     not styles, so map labels are untouched by the floor. */
+  .theme-field .mono,.theme-field [style*="Geist Mono"]{letter-spacing:0.04em!important}
+  .theme-field [style*="font-size: 8px"],.theme-field [style*="font-size: 8.5px"],.theme-field [style*="font-size: 9px"],.theme-field [style*="font-size: 9.5px"],.theme-field [style*="font-size: 10px"],.theme-field [style*="font-size: 10.5px"]{font-size:11px!important}
+  .theme-field .serif *,.theme-field [style*="font-style: italic"]{font-style:normal!important}
+  .theme-field svg text{font-family:var(--font-ui)}
   button { transition: opacity 0.1s ease; }
   @keyframes totem-pulse{0%,100%{box-shadow:0 0 0 0 rgba(109,40,217,0.4);transform:scale(1)}50%{box-shadow:0 0 12px 4px rgba(109,40,217,0.25);transform:scale(1.06)}}
   @keyframes song-ripple {
@@ -365,45 +424,45 @@
       window.__USE_NATIVE_PICKER__ = true;
     }
   </script>
-  <script src="build/ios-frame.js?v=v322"></script>
+  <script src="build/ios-frame.js?v=v323"></script>
   <!-- Multi-festival wave 1. Plain .js (no JSX), so they load as normal scripts
        and are parsed before Babel even starts on the chain below. Each is an
        IIFE that registers itself on window.PLURSKY_FESTIVALS; data.jsx reads
        that map, so these MUST stay above it. Mirrored in sw.js's precache. -->
-  <script src="data/festivals/ultra-miami-2026.js?v=v322"></script>
-  <script src="data/festivals/governors-ball-2026.js?v=v322"></script>
-  <script src="data/festivals/summerfest-2026.js?v=v322"></script>
-  <script src="data/festivals/lollapalooza-2026.js?v=v322"></script>
-  <script src="data/festivals/outside-lands-2026.js?v=v322"></script>
-  <script src="data/festivals/iii-points-2026.js?v=v322"></script>
-  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v322"></script>
-  <script src="data/festivals/crssd-fall-2026.js?v=v322"></script>
-  <script src="data/festivals/portola-2026.js?v=v322"></script>
-  <script src="data/festivals/hard-summer-2026.js?v=v322"></script>
-  <script src="data/festivals/arc-2026.js?v=v322"></script>
-  <script src="data/festivals/escape-halloween-2026.js?v=v322"></script>
-  <script src="data/festivals/dreamstate-socal-2026.js?v=v322"></script>
-  <script src="data/festivals/decadence-colorado-2026.js?v=v322"></script>
-  <script src="build/data.js?v=v322"></script>
-  <script src="build/supabase.js?v=v322"></script>
-  <script src="build/chrome.js?v=v322"></script>
-  <script src="build/home.js?v=v322"></script>
-  <script src="build/map.js?v=v322"></script>
-  <script src="build/survey.js?v=v322"></script>
-  <script src="build/lineup.js?v=v322"></script>
-  <script src="build/artist.js?v=v322"></script>
-  <script src="build/photo-tag.js?v=v322"></script>
-  <script src="build/spotify-api.js?v=v322"></script>
-  <script src="build/recap-engine.js?v=v322"></script>
-  <script src="build/spotify.js?v=v322"></script>
-  <script src="build/app.js?v=v322"></script>
+  <script src="data/festivals/ultra-miami-2026.js?v=v323"></script>
+  <script src="data/festivals/governors-ball-2026.js?v=v323"></script>
+  <script src="data/festivals/summerfest-2026.js?v=v323"></script>
+  <script src="data/festivals/lollapalooza-2026.js?v=v323"></script>
+  <script src="data/festivals/outside-lands-2026.js?v=v323"></script>
+  <script src="data/festivals/iii-points-2026.js?v=v323"></script>
+  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v323"></script>
+  <script src="data/festivals/crssd-fall-2026.js?v=v323"></script>
+  <script src="data/festivals/portola-2026.js?v=v323"></script>
+  <script src="data/festivals/hard-summer-2026.js?v=v323"></script>
+  <script src="data/festivals/arc-2026.js?v=v323"></script>
+  <script src="data/festivals/escape-halloween-2026.js?v=v323"></script>
+  <script src="data/festivals/dreamstate-socal-2026.js?v=v323"></script>
+  <script src="data/festivals/decadence-colorado-2026.js?v=v323"></script>
+  <script src="build/data.js?v=v323"></script>
+  <script src="build/supabase.js?v=v323"></script>
+  <script src="build/chrome.js?v=v323"></script>
+  <script src="build/home.js?v=v323"></script>
+  <script src="build/map.js?v=v323"></script>
+  <script src="build/survey.js?v=v323"></script>
+  <script src="build/lineup.js?v=v323"></script>
+  <script src="build/artist.js?v=v323"></script>
+  <script src="build/photo-tag.js?v=v323"></script>
+  <script src="build/spotify-api.js?v=v323"></script>
+  <script src="build/recap-engine.js?v=v323"></script>
+  <script src="build/spotify.js?v=v323"></script>
+  <script src="build/app.js?v=v323"></script>
 
   <script>
 
     // Build version stamp â€” bumped on every deploy that changes app behaviour.
     // If the running tab's stored version doesn't match, force a full reload
     // (bypassing browser HTTP cache that GH-Pages serves with max-age=600).
-    const APP_VERSION = 'v322';
+    const APP_VERSION = 'v323';
     try {
       const stored = localStorage.getItem('app_version');
       if (stored && stored !== APP_VERSION) {
@@ -424,11 +483,11 @@
     if ('serviceWorker' in navigator) {
       caches.keys().then(keys =>
         Promise.all(
-          keys.filter(k => k !== 'plursky-v322' && !k.startsWith('plursky-tiles-'))
+          keys.filter(k => k !== 'plursky-v323' && !k.startsWith('plursky-tiles-'))
               .map(k => caches.delete(k))
         )
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v322', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v323', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 
