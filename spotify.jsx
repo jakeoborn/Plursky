@@ -3548,31 +3548,30 @@ function PeakMomentCard({ peak, accent, onOpenLightbox, onPlayReel }) {
   const { items, startMs, endMs } = peak;
   const a = accent || "var(--ember)";
   return (
-    <div style={{
+    // The night's first module. Its action is a quiet secondary: the page's
+    // one purple action is the Memories hero above (2026-09-14 follow-up).
+    <div data-peak style={{
       marginTop: 10, marginBottom: 6, borderRadius: 14, padding: 12,
-      background: `linear-gradient(135deg, ${a}1f, var(--paper-2))`,
-      border: `1px solid ${a}40`,
+      background: "var(--paper-2)",
     }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
-        <span style={{ fontSize: 15 }}>🔥</span>
+      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.4, fontWeight: 800, color: a }}>
-            YOUR PEAK · 20 MIN
+          <div style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)" }}>
+            Your peak · 20 min
           </div>
-          <div className="serif" style={{ fontSize: 17, color: "var(--ink)", lineHeight: 1.1, marginTop: 1 }}>
+          <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, color: "var(--ink)", marginTop: 2 }}>
             {items.length} moments in 20 minutes
           </div>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", fontWeight: 600, marginTop: 2 }}>
+          <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
             {_clock12(startMs)} – {_clock12(endMs)}
           </div>
         </div>
         {onPlayReel && (
-          <button onClick={() => { try { window.plurskyHaptic?.("MEDIUM"); } catch {} onPlayReel(items); }} className="mono" style={{
-            flexShrink: 0, background: a, color: "var(--ink)", border: "none",
-            borderRadius: 999, padding: "7px 13px", cursor: "pointer",
-            fontSize: 9, letterSpacing: 1.2, fontWeight: 800,
-            display: "flex", alignItems: "center", gap: 5,
-          }}>▶ RELIVE</button>
+          <button onClick={() => { try { window.plurskyHaptic?.("MEDIUM"); } catch {} onPlayReel(items); }} style={{
+            flexShrink: 0, minHeight: 44, padding: "0 14px", borderRadius: 14, cursor: "pointer",
+            background: "var(--paper-3)", border: "1px solid var(--line-2)", color: "var(--ink)",
+            fontSize: 15, lineHeight: "20px", fontWeight: 600, fontFamily: "inherit",
+          }}>Play peak</button>
         )}
       </div>
       <div className="no-scrollbar" style={{ display: "flex", gap: 5, overflowX: "auto", marginTop: 10 }}>
@@ -5361,24 +5360,44 @@ function MemoriesMapTab({ moments, onPinTap }) {
 // v219: per-night inline map ("where this night happened"), collapsed by
 // default so TIMELINE stays calm. Reuses the MAP-tab lens scoped to one night —
 // this is where the old top-level MAP lens now lives.
-function _NightMap({ moments, onPinTap }) {
-  const [open, setOpen] = React.useState(false);
-  if (!moments || !moments.length) return null;
+// Memories night sections (2026-09-14 design follow-up, #6): collapsed by
+// default, and the one the user opened last in this session opens again on
+// the other nights and the next visit. Session only: a module variable.
+let _memLastSection = null;
+function _MemSection({ id, title, count, children }) {
+  const [open, setOpen] = React.useState(() => _memLastSection === id);
   return (
-    <div style={{ marginTop: 8 }}>
-      <button onClick={() => setOpen(o => !o)} className="mono" style={{
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        width: "100%", padding: "9px 12px", borderRadius: 10,
-        background: "var(--paper-2)", border: "1px solid var(--line)",
-        color: "var(--muted)", cursor: "pointer",
-        fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
+    <div data-mem-section={id} style={{ marginTop: 8 }}>
+      <button onClick={() => setOpen(o => { const n = !o; if (n) _memLastSection = id; return n; })} aria-expanded={open} style={{
+        display: "flex", alignItems: "center", gap: 8, width: "100%", minHeight: 44, padding: "0 12px",
+        borderRadius: 14, background: "var(--paper-2)", border: "none", color: "var(--ink)", cursor: "pointer",
+        fontSize: 15, lineHeight: "20px", fontWeight: 600, fontFamily: "inherit", textAlign: "left",
       }}>
-        <span>📍 WHERE THIS NIGHT HAPPENED</span>
-        <span>{open ? "▾" : "▸"}</span>
+        <span style={{ flex: 1, minWidth: 0 }}>{title}</span>
+        {count != null && <span style={{ fontSize: 13, lineHeight: "18px", fontWeight: 500, color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>{count}</span>}
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: open ? "rotate(90deg)" : "none", transition: "transform 180ms ease" }}><path d="M9 6 L15 12 L9 18"/></svg>
       </button>
-      {open && <div style={{ marginTop: 8 }}><MemoriesMapTab moments={moments} onPinTap={onPinTap} /></div>}
+      {open && <div style={{ marginTop: 4 }}>{children}</div>}
     </div>
   );
+}
+function _NightMap({ moments, onPinTap }) {
+  if (!moments || !moments.length) return null;
+  return (
+    <_MemSection id="map" title="Where this night happened">
+      <div style={{ marginTop: 4 }}><MemoriesMapTab moments={moments} onPinTap={onPinTap} /></div>
+    </_MemSection>
+  );
+}
+// Which ONE action leads Memories. Importing shows progress; no moments →
+// Import; anything to review → Review (amber); a weekend with 3+ photos →
+// Relive; otherwise Import. Never three equal full-width cards.
+function _memHeroState({ totalCount, photoCount, batch, reviewCount }) {
+  if (batch && batch.done < batch.total) return "importing";
+  if (totalCount === 0) return "empty";
+  const batchNeeds = !!batch && batch.done === batch.total && batch.results.some(r => !r.err && !r.skipped && !r.artistId);
+  if (batchNeeds || reviewCount > 0) return "review";
+  return photoCount >= 3 ? "relive" : "import";
 }
 
 // v219: one share affordance per night instead of two buttons (📸 SHARE +
@@ -5387,11 +5406,11 @@ function _NightShareMenu({ night, moments }) {
   const [open, setOpen] = React.useState(false);
   return (
     <div style={{ position: "relative", marginLeft: "auto" }}>
-      <button onClick={() => setOpen(o => !o)} className="mono" style={{
-        background: "var(--ember)", color: "var(--ink)", border: "none",
-        borderRadius: 999, padding: "4px 10px", cursor: "pointer",
-        fontSize: 9, letterSpacing: 1.2, fontWeight: 700, whiteSpace: "nowrap",
-      }}>📸 SHARE ▾</button>
+      {/* One quiet trailing action on the day header (2026-09-14 follow-up). */}
+      <button onClick={() => setOpen(o => !o)} aria-haspopup="menu" aria-expanded={open} style={{
+        ...fieldIconBtn, width: "auto", padding: "0 8px", color: "var(--text-2)",
+        fontSize: 15, lineHeight: "20px", fontWeight: 500, fontFamily: "inherit",
+      }}>Share</button>
       {open && (
         <>
           <div onClick={() => setOpen(false)} style={{ position: "fixed", inset: 0, zIndex: 4 }} />
@@ -5400,7 +5419,7 @@ function _NightShareMenu({ night, moments }) {
             background: "var(--paper)", border: "1px solid var(--line)", borderRadius: 10,
             boxShadow: "0 6px 20px rgba(var(--shade-rgb),0.18)", overflow: "hidden", minWidth: 140,
           }}>
-            {[["📸 Collage", undefined], ["🎬 Animated GIF", "gif"], ["🎞 Night video", "video"]].map(([lbl, mode], i) => (
+            {[["Collage", undefined], ["Animated GIF", "gif"], ["Night video", "video"]].map(([lbl, mode], i) => (
               <button key={lbl}
                 onClick={() => {
                   setOpen(false);
@@ -5988,11 +6007,25 @@ function MemoriesScreen({ state, setState }) {
       )}
       {/* Memories is a root bottom-nav tab — no back arrow (that read as a
           sub-screen). The tab bar is the way out. */}
-      <div style={{ padding: "8px 20px" }}>
+      {/* TopBar carries the 20pt inset itself; a second one here pushed the
+          title 40pt in from the hero below it. */}
+      <div style={{ padding: "8px 0" }}>
         <TopBar
           title={<span>Memories</span>}
-          sub={`${totalCount} ${totalCount === 1 ? "MOMENT" : "MOMENTS"} · ${FESTIVAL_CONFIG.shortName.toUpperCase()}`}
+          sub={`${FESTIVAL_CONFIG.name} · ${totalCount} ${totalCount === 1 ? "moment" : "moments"}`}
           tight
+          right={(() => {
+            // Everything that is not the hero's one action lives here.
+            const hs = _memHeroState({ totalCount, photoCount: allMoments.filter(m => m.photoId).length, batch, reviewCount: reviewIds.length });
+            return (
+              <FieldOverflowMenu label="Memories actions" items={[
+                totalCount > 0 && hs !== "import" && hs !== "importing" && { label: "Import more", onSelect: handlePickClick },
+                reviewIds.length > 0 && hs !== "review" && { label: `Review ${reviewIds.length}`, onSelect: () => setReview(reviewIds.map(id => ({ momentId: id }))) },
+                totalCount > 0 && { label: "Make recap video", onSelect: () => setState(s => ({ ...s, tab: "recap", artist: null })) },
+                totalCount > 0 && { label: manage ? "Done managing" : "Manage", onSelect: () => setManage(m => !m) },
+              ]} />
+            );
+          })()}
         />
       </div>
       <ScrollBody style={{ padding: "0 20px 94px" }}>
@@ -6006,86 +6039,96 @@ function MemoriesScreen({ state, setState }) {
           onChange={handleBatchPick}
           style={{ display: "none" }}
         />
-        {/* Field Mode: flat rows in words; no gradient washes or pills. */}
-        <button onClick={handlePickClick}
-          disabled={!!batch && batch.done < batch.total}
-          style={{ display: "flex", alignItems: "center", gap: 12, width: "100%", minHeight: 64, marginTop: 12, padding: "10px 16px", background: "var(--paper-2)", border: "none", borderRadius: 14, color: "var(--ink)", textAlign: "left", fontFamily: "inherit", cursor: "pointer" }}>
-          <span aria-hidden="true" style={{ fontSize: 20 }}>✨</span>
-          <span style={{ flex: 1, minWidth: 0 }}>
-            <span style={{ display: "block", fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>Import from camera roll</span>
-            <span style={{ display: "block", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>Auto-tags by time and location</span>
-          </span>
-          <span style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{batch && batch.done < batch.total ? `${batch.done}/${batch.total}` : "Pick"}</span>
-        </button>
-        {!batch && reviewIds.length > 0 && (
-          <button data-review-later onClick={() => setReview(reviewIds.map(id => ({ momentId: id })))} style={{
-            display: "block", width: "100%", textAlign: "left", marginTop: 8, minHeight: 44, padding: "0 16px", borderRadius: 14, cursor: "pointer",
-            background: "var(--paper-2)", border: "none", color: "var(--warn)", fontSize: 15, lineHeight: "20px", fontWeight: 600, fontFamily: "inherit",
-          }}>
-            ⚑ {reviewIds.length} {reviewIds.length === 1 ? "moment needs" : "moments need"} a set · Review
-          </button>
-        )}
-        {batch && batch.done === batch.total && (() => {
-          const tagged    = batch.results.filter(r => !r.err && !r.skipped && r.artistId).length;
-          const needRetag = batch.results.filter(r => !r.err && !r.skipped && !r.artistId).length;
-          const failed    = batch.results.filter(r => r.err).length;
-          const dupes     = batch.results.filter(r => r.skipped === "duplicate").length;
-          const allTagged = tagged > 0 && needRetag === 0 && failed === 0;
-          return (
-            <button onClick={() => { if (batch.results.some(r => r.momentId)) setReview(batch.results.filter(r => r.momentId)); else setBatch(null); }} style={{
-              display: "block", width: "100%", textAlign: "left", marginTop: 8, padding: "10px 16px", minHeight: 44,
-              background: "var(--paper-2)", border: "none", borderRadius: 14, cursor: "pointer", color: "var(--ink)", fontFamily: "inherit",
-            }}>
-              <div style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600, color: allTagged ? "var(--signal-ink)" : "var(--warn)" }}>
-                ✓ {tagged} tagged{needRetag > 0 ? ` · ${needRetag} need a set` : ""}{dupes > 0 ? ` · ${dupes} skipped (duplicate)` : ""}{failed > 0 ? ` · ${failed} failed` : ""}
+        {/* ONE state-driven hero (2026-09-14 design follow-up, #6). Import,
+            Review and Relive used to stack as three equal cards; now exactly
+            one leads and the rest sit in the header's overflow or stay quiet.
+            MANAGE (cloud backup, attendance, ADD MOMENT) moved to that menu. */}
+        {(() => {
+          const photos = allMoments.filter(m => m.photoId);
+          const hs = _memHeroState({ totalCount, photoCount: photos.length, batch, reviewCount: reviewIds.length });
+          const done = !!batch && batch.done === batch.total;
+          const n = k => done ? batch.results.filter(k).length : 0;
+          const tagged = n(r => !r.err && !r.skipped && r.artistId), needSet = n(r => !r.err && !r.skipped && !r.artistId);
+          const failed = n(r => r.err), dupes = n(r => r.skipped === "duplicate");
+          const batchReview = done ? batch.results.filter(r => r.momentId) : [];
+          const status = done ? [tagged ? `${tagged} tagged` : null, needSet ? `${needSet} need a set` : null,
+            dupes ? `${dupes} skipped (duplicate)` : null, failed ? `${failed} failed` : null].filter(Boolean).join(" · ") : "";
+          const quiet = { ...fieldIconBtn, width: "auto", padding: "0 4px", color: "var(--text-2)", fontSize: 15, fontWeight: 500, fontFamily: "inherit" };
+          if (hs === "importing") return (
+            <div role="status" data-mem-hero="importing" style={{ marginTop: 12, padding: "12px 16px", borderRadius: 14, background: "var(--paper-2)" }}>
+              <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>Importing {batch.done} of {batch.total}</div>
+              <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>Auto-tagging by time and location</div>
+            </div>
+          );
+          if (hs === "empty") return (
+            <div data-mem-hero="empty" style={{ marginTop: 12 }}>
+              <div style={{ fontSize: 20, lineHeight: "25px", fontWeight: 600 }}>Your weekend, remembered</div>
+              <p style={{ margin: "6px 0 16px", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>
+                Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap.
+              </p>
+              <FieldButton onClick={handlePickClick}>Import from camera roll</FieldButton>
+            </div>
+          );
+          if (hs === "review") {
+            const fromBatch = done && needSet > 0;
+            const count = fromBatch ? batchReview.length : reviewIds.length;
+            return (
+              <div data-mem-hero="review" style={{ marginTop: 12 }}>
+                <button data-review-later onClick={() => setReview(fromBatch ? batchReview : reviewIds.map(id => ({ momentId: id })))} style={{
+                  display: "flex", flexDirection: "column", justifyContent: "center", width: "100%", minHeight: 64,
+                  padding: "10px 16px", borderRadius: 14, border: "none", cursor: "pointer",
+                  background: "var(--warn)", color: "var(--paper)", textAlign: "left", fontFamily: "inherit",
+                }}>
+                  <span style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>Review {count} {count === 1 ? "moment" : "moments"}</span>
+                  <span style={{ fontSize: 13, lineHeight: "18px", fontWeight: 500, fontVariantNumeric: "tabular-nums" }}>
+                    {status || (count === 1 ? "It needs a set" : "Each needs a set")}
+                  </span>
+                </button>
+                <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 4 }}>
+                  <button onClick={handlePickClick} style={quiet}>Import more</button>
+                </div>
               </div>
-              {needRetag > 0 && (
-                <div style={{ marginTop: 4, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
-                  iOS sometimes strips photo time when copying — tap an untagged moment to pick its set.
+            );
+          }
+          if (hs === "relive") return (
+            <div data-mem-hero="relive" style={{ marginTop: 12 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, width: "100%", minHeight: 64, padding: "10px 16px", background: "var(--paper-2)", borderRadius: 14 }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>Relive your weekend</div>
+                  <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
+                    {photos.length} moments · auto-play reel
+                  </div>
+                </div>
+                <button onClick={() => {
+                  const ms = photos.slice().sort((a, b) => {
+                    const ta = a.takenAt || "", tb = b.takenAt || "";
+                    if (ta && tb) return ta.localeCompare(tb);
+                    return (a.createdAt || 0) - (b.createdAt || 0);
+                  });
+                  playReel(ms, FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name, null);
+                }} style={{
+                  flexShrink: 0, minHeight: 44, padding: "0 16px", borderRadius: 14, border: "none", cursor: "pointer",
+                  background: "var(--signal)", color: "var(--on-signal)", fontSize: 15, lineHeight: "20px", fontWeight: 600, fontFamily: "inherit",
+                }}>Play</button>
+              </div>
+              {done && status && (
+                <div role="status" style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+                  <span style={{ flex: 1, minWidth: 0 }}>Import: {status}</span>
+                  {batchReview.length > 0 && <button onClick={() => setReview(batchReview)} style={quiet}>Review</button>}
+                  <button onClick={() => setBatch(null)} style={quiet}>Done</button>
                 </div>
               )}
-              <div style={{ marginTop: 4, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
-                {batch.results.some(r => r.momentId) ? "Tap to review tags" : "Tap to dismiss"}
-              </div>
-            </button>
+            </div>
           );
-        })()}
-
-        {/* ✨ Create recap hero — the payoff CTA. Plays an auto-advancing reel
-            of the whole weekend; the recap-video export lives one tap deeper. */}
-        {allMoments.filter(m => m.photoId).length >= 3 && (
-          <div style={{ display: "flex", alignItems: "center", gap: 12, width: "100%", minHeight: 64, marginTop: 12, padding: "10px 16px", background: "var(--paper-2)", border: "none", borderRadius: 14, color: "var(--ink)", textAlign: "left", fontFamily: "inherit" }}>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>Relive your weekend</div>
-              <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
-                {allMoments.filter(m => m.photoId).length} moments · auto-play reel
+          return (
+            <div data-mem-hero="import" style={{ marginTop: 12 }}>
+              <FieldButton onClick={handlePickClick}>Import from camera roll</FieldButton>
+              <div style={{ marginTop: 6, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+                {done && status ? `Import: ${status}` : "Auto-tags by time and location"}
               </div>
             </div>
-            <button onClick={() => {
-              const ms = allMoments.filter(m => m.photoId).slice().sort((a, b) => {
-                const ta = a.takenAt || "", tb = b.takenAt || "";
-                if (ta && tb) return ta.localeCompare(tb);
-                return (a.createdAt || 0) - (b.createdAt || 0);
-              });
-              playReel(ms, FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name, null);
-            }} style={{
-              flexShrink: 0, minHeight: 44, padding: "0 16px", borderRadius: 14, border: "none", cursor: "pointer",
-              background: "var(--signal)", color: "var(--on-signal)", fontSize: 15, lineHeight: "20px", fontWeight: 600, fontFamily: "inherit",
-            }}>▶ Play</button>
-          </div>
-        )}
-
-        {/* MANAGE reveals the data surfaces (cloud backup + per-night
-            attendance check-off + ADD MOMENT). Default-off keeps the screen a
-            calm relive view, not a control panel. */}
-        {totalCount > 0 && (
-          <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 8 }}>
-            <button onClick={() => setManage(m => !m)} aria-pressed={manage} style={{
-              ...fieldIconBtn, width: "auto", padding: "0 8px", color: manage ? "var(--ink)" : "var(--text-2)",
-              fontSize: 15, fontWeight: 500,
-            }}>{manage ? "Done" : "Manage"}</button>
-          </div>
-        )}
+          );
+        })()}
 
         {/* Cloud backup (Plursky+) — manual, wifi-only. Free taps open the
             paywall; Plus runs the upload and shows X/Y backed up. Behind MANAGE. */}
@@ -6135,16 +6178,7 @@ function MemoriesScreen({ state, setState }) {
         {/* Paywall overlay — shown when a free user taps cloud backup. */}
         {showPlus && <PlusSheet feature="cloud backup" onClose={() => setShowPlus(false)} />}
 
-        {/* Inviting empty state — first run, no moments yet. */}
-        {totalCount === 0 && (
-          <div style={{ marginTop: 24 }}>
-            <div style={{ fontSize: 20, lineHeight: "25px", fontWeight: 600 }}>Your weekend, remembered</div>
-            <p style={{ margin: "6px 0 16px", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>
-              Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap.
-            </p>
-            <FieldButton onClick={handlePickClick}>Import from camera roll</FieldButton>
-          </div>
-        )}
+        {/* The first-run empty state is the "empty" hero above. */}
 
         {/* View selector (v206) — three clear lenses instead of five. GRID is
             the scannable photo wall, STORY is the auto-play reel, NIGHT is the
@@ -6172,16 +6206,18 @@ function MemoriesScreen({ state, setState }) {
         </div>}
         {view === "grid" && (<>
           {/* Search — filter the grid by artist, song, or stage. */}
+          {/* Same field as the Lineup search: 44pt, 15pt text (a smaller input
+              zooms the page on iOS focus), one surface, no pill. */}
           <input
             value={memQuery}
             onChange={e => setMemQuery(e.target.value)}
             placeholder="Search artist, song, or stage…"
-            className="mono"
+            aria-label="Search your moments"
             style={{
               width: "100%", boxSizing: "border-box", marginBottom: 8,
-              padding: "9px 12px", borderRadius: 999,
-              background: "var(--paper-2)", border: "1px solid var(--line)",
-              color: "var(--ink)", fontSize: 11, letterSpacing: 0.5, outline: "none",
+              height: 44, padding: "0 14px", borderRadius: 14,
+              background: "var(--paper-2)", border: "none",
+              color: "var(--ink)", fontSize: 15, outline: "none", fontFamily: "inherit",
             }}
           />
           <MemoryGrid
@@ -6218,25 +6254,21 @@ function MemoriesScreen({ state, setState }) {
               ref={el => { nightSectionRefs.current[d.n] = el; }}
               style={{ marginBottom: 22, scrollMarginTop: 12 }}
             >
+              {/* Day header: day, date and count in words, and one quiet
+                  trailing Share (2026-09-14 design follow-up). */}
               <div style={{
-                display: "flex", alignItems: "baseline", gap: 10,
-                paddingTop: 14, paddingBottom: 8, marginBottom: 4,
+                display: "flex", alignItems: "center", gap: 8,
+                paddingTop: 12, paddingBottom: 4, marginBottom: 4,
                 borderBottom: "1px solid var(--line)",
               }}>
-                <div className="serif" style={{ fontSize: 24, color: "var(--ink)" }}>
-                  {d.label}
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 20, lineHeight: "25px", fontWeight: 600, color: "var(--ink)" }}>{d.label}</div>
+                  <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
+                    {[dateInfo ? `${["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][dateInfo.m]} ${dateInfo.d}` : `Day ${d.n}`,
+                      moments.length ? `${moments.length} ${moments.length === 1 ? "moment" : "moments"}` : null].filter(Boolean).join(" · ")}
+                  </div>
                 </div>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", fontWeight: 700 }}>
-                  · {dateInfo ? `${["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"][dateInfo.m]} ${dateInfo.d}` : `DAY ${d.n}`}
-                </div>
-                {moments.length > 0 && (
-                  <>
-                    <_NightShareMenu night={d.n} moments={moments} />
-                    <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700 }}>
-                      {moments.length} MOMENT{moments.length === 1 ? "" : "S"}
-                    </div>
-                  </>
-                )}
+                {moments.length > 0 && <_NightShareMenu night={d.n} moments={moments} />}
               </div>
 
               {moments.length > 0 && (
@@ -6292,12 +6324,7 @@ function MemoriesScreen({ state, setState }) {
                   });
                 if (!spineIds.length && !untagged.length) return null;
                 return (
-                  <>
-                    {spineIds.length > 0 && (
-                      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", fontWeight: 700, marginTop: 14, marginBottom: 2 }}>
-                        SETS YOU WATCHED
-                      </div>
-                    )}
+                  <_MemSection id="sets" title={spineIds.length ? "Sets you watched" : "Other moments"} count={spineIds.length || untagged.length}>
                     {spineIds.map(aId => {
                       const artist = ARTISTS.find(x => x.id === aId);
                       const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
@@ -6396,7 +6423,7 @@ function MemoriesScreen({ state, setState }) {
                         ))}
                       </div>
                     )}
-                  </>
+                  </_MemSection>
                 );
               })()}
 

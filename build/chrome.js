@@ -735,6 +735,104 @@ function FieldSheet({
     }
   }, children)));
 }
+function FieldOverflowMenu({
+  label = "More actions",
+  items,
+  align = "right"
+}) {
+  var [open, setOpen] = React.useState(false);
+  var ref = React.useRef(null);
+  React.useEffect(() => {
+    if (!open) return undefined;
+    var onDoc = e => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    var onKey = e => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("pointerdown", onDoc);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onDoc);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+  var shown = (items || []).filter(Boolean);
+  if (!shown.length) return null;
+  return React.createElement("div", {
+    ref: ref,
+    style: {
+      position: "relative",
+      flexShrink: 0
+    }
+  }, React.createElement("button", {
+    onClick: () => setOpen(o => !o),
+    "aria-haspopup": "menu",
+    "aria-expanded": open,
+    "aria-label": label,
+    style: {
+      ...fieldIconBtn,
+      color: "var(--text-2)"
+    }
+  }, React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "20",
+    height: "20",
+    viewBox: "0 0 24 24",
+    fill: "currentColor"
+  }, React.createElement("circle", {
+    cx: "5",
+    cy: "12",
+    r: "1.8"
+  }), React.createElement("circle", {
+    cx: "12",
+    cy: "12",
+    r: "1.8"
+  }), React.createElement("circle", {
+    cx: "19",
+    cy: "12",
+    r: "1.8"
+  }))), open && React.createElement("div", {
+    role: "menu",
+    style: {
+      position: "absolute",
+      top: "100%",
+      [align]: 0,
+      zIndex: 30,
+      minWidth: 200,
+      padding: 6,
+      background: "var(--paper-3)",
+      border: "1px solid var(--line-2)",
+      borderRadius: 14,
+      boxShadow: "var(--shadow-pop)"
+    }
+  }, shown.map(it => React.createElement("button", {
+    key: it.label,
+    role: "menuitem",
+    onClick: () => {
+      setOpen(false);
+      it.onSelect();
+    },
+    style: {
+      display: "flex",
+      alignItems: "center",
+      width: "100%",
+      minHeight: 44,
+      padding: "0 12px",
+      background: "transparent",
+      border: "none",
+      borderRadius: 10,
+      cursor: "pointer",
+      color: it.warn ? "var(--warn)" : "var(--ink)",
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 500,
+      textAlign: "left",
+      fontFamily: "inherit",
+      whiteSpace: "nowrap"
+    }
+  }, it.label))));
+}
 function useInstallPrompt() {
   var [deferred, setDeferred] = React.useState(null);
   var [dismissed, setDismissed] = React.useState(() => typeof localStorage !== "undefined" && localStorage.getItem("install_dismissed") === "1");
@@ -1453,48 +1551,112 @@ function NotificationsCard({
     }
   }, "SEND A TEST")));
 }
-function FestivalChip({
-  compact = false,
-  accent = "var(--ink)"
+function _recentFestivals(limit = 5) {
+  var cur = window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id;
+  var byId = {};
+  for (var e of window.FESTIVALS_REGISTRY || []) if (e && e.config && e.available) byId[e.config.id] = e;
+  var ev = {};
+  var note = (id, t, moments) => {
+    if (!id || id === cur || !byId[id]) return;
+    var e = ev[id] || (ev[id] = {
+      t: 0,
+      moments: 0
+    });
+    if (t > e.t) e.t = t;
+    e.moments += moments || 0;
+  };
+  var when = m => {
+    var t = m && m.takenAt ? Date.parse(String(m.takenAt).replace(" ", "T")) : NaN;
+    return isNaN(t) ? m && m.createdAt || 0 : t;
+  };
+  try {
+    var all = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
+    for (var arr of Object.values(all || {})) for (var m of Array.isArray(arr) ? arr : []) if (m && m.festivalId) note(m.festivalId, when(m), 1);
+  } catch {}
+  try {
+    var raw = JSON.parse(localStorage.getItem("plursky_festival_archive_v1") || "{}");
+    for (var [k, a] of Object.entries(raw || {})) {
+      if (!a || typeof a !== "object") continue;
+      var id = a.festivalId || a.id || k;
+      note(id, a.archivedAt || byId[id] && byId[id].config.endMs || 0, 0);
+    }
+  } catch {}
+  var now = Date.now();
+  for (var _id of Object.keys(byId)) {
+    var cfg = byId[_id].config;
+    if (!cfg.startMs || cfg.startMs > now) continue;
+    try {
+      var s = JSON.parse(localStorage.getItem(`${_id}_saved_v1`) || "[]");
+      if (Array.isArray(s) && s.length) note(_id, cfg.startMs, 0);
+    } catch {}
+  }
+  return Object.entries(ev).sort((a, b) => b[1].t - a[1].t).slice(0, limit).map(([id, e]) => ({
+    entry: byId[id],
+    moments: e.moments
+  }));
+}
+function RecentFestivalsMenu({
+  onAll
 }) {
-  var [open, setOpen] = React.useState(false);
-  var canSwitch = FESTIVALS_REGISTRY.filter(f => f.available).length > 1;
-  return React.createElement(React.Fragment, null, React.createElement("div", {
-    onClick: canSwitch ? () => setOpen(true) : undefined,
-    role: canSwitch ? "button" : undefined,
-    tabIndex: canSwitch ? 0 : undefined,
-    "aria-label": canSwitch ? `${FESTIVAL_CONFIG.shortName.toUpperCase()}, switch festival` : undefined,
-    onKeyDown: canSwitch ? e => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        setOpen(true);
-      }
-    } : undefined,
-    style: {
-      display: "inline-flex",
-      alignItems: "center",
-      minHeight: 44,
-      color: accent,
-      cursor: canSwitch ? "pointer" : "default",
-      whiteSpace: "nowrap",
-      userSelect: "none"
+  var [menu, setMenu] = React.useState(null);
+  var btnRef = React.useRef(null),
+    boxRef = React.useRef(null);
+  var has = React.useMemo(() => _recentFestivals(1).length > 0, []);
+  React.useEffect(() => {
+    if (!menu) return undefined;
+    var onDoc = e => {
+      if (!boxRef.current?.contains(e.target) && !btnRef.current?.contains(e.target)) setMenu(null);
+    };
+    var onKey = e => {
+      if (e.key === "Escape") setMenu(null);
+    };
+    document.addEventListener("pointerdown", onDoc);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onDoc);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [menu]);
+  if (!has) return null;
+  var toggle = () => {
+    if (menu) {
+      setMenu(null);
+      return;
     }
-  }, React.createElement("span", {
+    var r = btnRef.current.getBoundingClientRect(),
+      W = Math.min(300, window.innerWidth - 32);
+    setMenu({
+      top: r.bottom + 4,
+      left: Math.max(16, Math.min(r.right - W, window.innerWidth - 16 - W)),
+      width: W,
+      items: _recentFestivals(5)
+    });
+  };
+  var line = {
+    display: "block",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis"
+  };
+  return React.createElement(React.Fragment, null, React.createElement("button", {
+    ref: btnRef,
+    onClick: toggle,
+    "aria-haspopup": "menu",
+    "aria-expanded": !!menu,
+    "data-recent-festivals": true,
     style: {
-      display: "inline-flex",
-      alignItems: "center",
-      gap: 6,
-      height: 32,
-      padding: "0 12px",
-      borderRadius: 18,
-      background: "var(--chrome)",
-      border: "1px solid var(--line)",
-      fontSize: 11,
-      lineHeight: "14px",
+      ...fieldIconBtn,
+      width: "auto",
+      padding: "0 8px",
+      gap: 4,
+      color: "var(--text-2)",
+      fontSize: 13,
+      lineHeight: "18px",
       fontWeight: 600,
-      letterSpacing: "0.04em"
+      fontFamily: "inherit"
     }
-  }, React.createElement("span", null, FESTIVAL_CONFIG.shortName.toUpperCase()), canSwitch && React.createElement("svg", {
+  }, "Recent", React.createElement("svg", {
+    "aria-hidden": "true",
     width: "10",
     height: "10",
     viewBox: "0 0 12 12",
@@ -1505,35 +1667,218 @@ function FestivalChip({
     strokeWidth: "1.6",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  })))), open && React.createElement(FestivalSwitcher, {
-    onClose: () => setOpen(false)
-  }));
+  }))), menu && React.createElement("div", {
+    ref: boxRef,
+    role: "menu",
+    "aria-label": "Recent festivals",
+    style: {
+      position: "fixed",
+      top: menu.top,
+      left: menu.left,
+      width: menu.width,
+      zIndex: 90,
+      padding: 6,
+      background: "var(--paper-3)",
+      border: "1px solid var(--line-2)",
+      borderRadius: 14,
+      boxShadow: "var(--shadow-pop)"
+    }
+  }, menu.items.map(({
+    entry,
+    moments
+  }) => React.createElement("button", {
+    key: entry.config.id,
+    role: "menuitem",
+    onClick: () => {
+      setMenu(null);
+      setActiveFestivalAndReload(entry.config.id);
+    },
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      width: "100%",
+      minHeight: 56,
+      padding: "6px 8px",
+      background: "transparent",
+      border: "none",
+      borderRadius: 10,
+      color: "var(--ink)",
+      textAlign: "left",
+      fontFamily: "inherit",
+      cursor: "pointer"
+    }
+  }, React.createElement(FestivalThumb, {
+    entry: entry,
+    size: 36
+  }), React.createElement("span", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("span", {
+    style: {
+      ...line,
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 600
+    }
+  }, entry.config.name), React.createElement("span", {
+    style: {
+      ...line,
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)",
+      fontVariantNumeric: "tabular-nums"
+    }
+  }, [moments ? `${moments} ${moments === 1 ? "moment" : "moments"}` : null, entry.config.dates].filter(Boolean).join(" · ")), React.createElement("span", {
+    style: {
+      ...line,
+      fontSize: 12,
+      lineHeight: "16px",
+      color: "var(--text-3)"
+    }
+  }, entry.config.location)))), React.createElement("button", {
+    role: "menuitem",
+    onClick: () => {
+      setMenu(null);
+      onAll();
+    },
+    style: {
+      display: "flex",
+      alignItems: "center",
+      width: "100%",
+      minHeight: 44,
+      padding: "0 8px",
+      marginTop: 2,
+      background: "transparent",
+      border: "none",
+      borderTop: "1px solid var(--line)",
+      borderRadius: 0,
+      color: "var(--text-2)",
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 500,
+      fontFamily: "inherit",
+      textAlign: "left",
+      cursor: "pointer"
+    }
+  }, "All festivals")));
+}
+function FestivalChip({
+  compact = false,
+  accent = "var(--ink)"
+}) {
+  var [open, setOpen] = React.useState(false);
+  var canSwitch = FESTIVALS_REGISTRY.filter(f => f.available).length > 1;
+  return (React.createElement("span", {
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 2,
+        minWidth: 0
+      }
+    }, React.createElement("div", {
+      onClick: canSwitch ? () => setOpen(true) : undefined,
+      role: canSwitch ? "button" : undefined,
+      tabIndex: canSwitch ? 0 : undefined,
+      "aria-label": canSwitch ? `${FESTIVAL_CONFIG.shortName.toUpperCase()}, switch festival` : undefined,
+      onKeyDown: canSwitch ? e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          setOpen(true);
+        }
+      } : undefined,
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        minHeight: 44,
+        color: accent,
+        cursor: canSwitch ? "pointer" : "default",
+        whiteSpace: "nowrap",
+        userSelect: "none"
+      }
+    }, React.createElement("span", {
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 6,
+        height: 32,
+        padding: "0 12px",
+        borderRadius: 18,
+        background: "var(--chrome)",
+        border: "1px solid var(--line)",
+        fontSize: 11,
+        lineHeight: "14px",
+        fontWeight: 600,
+        letterSpacing: "0.04em"
+      }
+    }, React.createElement("span", null, FESTIVAL_CONFIG.shortName.toUpperCase()), canSwitch && React.createElement("svg", {
+      width: "10",
+      height: "10",
+      viewBox: "0 0 12 12",
+      fill: "none"
+    }, React.createElement("path", {
+      d: "M3 4.5 L6 7.5 L9 4.5",
+      stroke: "currentColor",
+      strokeWidth: "1.6",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    })))), React.createElement(RecentFestivalsMenu, {
+      onAll: () => setOpen(true)
+    }), open && React.createElement(FestivalSwitcher, {
+      onClose: () => setOpen(false)
+    }))
+  );
 }
 var _GENERATED_ART = new Set(["edco-tinker-2026.jpg"]);
+var _FESTIVAL_ART_LICENSED = {};
 function _festivalArt(cfg) {
-  var img = cfg && cfg.mapImage;
-  return img && /\.(webp|jpe?g|png)$/i.test(img) && !_GENERATED_ART.has(img) ? img : null;
+  var rec = cfg && _FESTIVAL_ART_LICENSED[cfg.id];
+  return rec && rec.src && rec.credit && rec.license && rec.sourceUrl ? rec.src : null;
+}
+function _festivalMonogram(cfg) {
+  var name = String(cfg && (cfg.shortName || cfg.name) || "").replace(/\b(19|20)\d{2}\b/g, "").trim();
+  var words = name.split(/[\s\-·/]+/).filter(Boolean);
+  if (!words.length) return "·";
+  if (/^[A-Z0-9]{2,4}$/.test(words[0])) return words[0];
+  return (words.length > 1 ? words.slice(0, 3).map(w => w[0]).join("") : words[0].slice(0, 2)).toUpperCase();
+}
+function _festivalFallbackBg(cfg) {
+  var id = String(cfg && cfg.id || "");
+  var h = 0;
+  for (var i = 0; i < id.length; i++) h = h * 31 + id.charCodeAt(i) >>> 0;
+  var angle = 100 + h % 160,
+    alpha = (0.2 + (h >>> 8) % 5 * 0.06).toFixed(2);
+  return `linear-gradient(${angle}deg, rgba(var(--signal-rgb),${alpha}), var(--paper-2) 80%)`;
 }
 function FestivalThumb({
   entry,
   size = 56
 }) {
-  var art = entry ? _festivalArt(entry.config) : null;
+  var cfg = entry ? entry.config : null;
+  var art = cfg ? _festivalArt(cfg) : null;
+  var mono = _festivalMonogram(cfg);
   return React.createElement("div", {
     "aria-hidden": "true",
+    "data-festival-thumb": art ? "image" : "monogram",
     style: {
       width: size,
       height: size,
-      borderRadius: 14,
+      borderRadius: Math.round(size * 0.25),
       overflow: "hidden",
       flexShrink: 0,
-      background: "var(--paper-3)",
+      position: "relative",
+      background: art ? "var(--paper-3)" : _festivalFallbackBg(cfg),
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      fontSize: Math.round(size * 0.46)
+      color: "var(--ink)",
+      fontWeight: 700,
+      letterSpacing: "0.02em",
+      fontSize: Math.round(size * (mono.length > 3 ? 0.24 : mono.length > 2 ? 0.28 : 0.34))
     }
-  }, art ? React.createElement("img", {
+  }, art ? React.createElement(React.Fragment, null, React.createElement("img", {
     src: `./${art}`,
     alt: "",
     style: {
@@ -1541,7 +1886,13 @@ function FestivalThumb({
       height: "100%",
       objectFit: "cover"
     }
-  }) : entry && entry.emoji || "🎪");
+  }), React.createElement("span", {
+    style: {
+      position: "absolute",
+      inset: 0,
+      background: "var(--media-scrim)"
+    }
+  })) : mono);
 }
 function _festivalPlanStatus(id) {
   var ids = [];
@@ -1706,7 +2057,8 @@ function FestivalSwitcher({
         cursor: locked ? "default" : "pointer"
       }
     }, React.createElement(FestivalThumb, {
-      entry: f
+      entry: f,
+      size: 48
     }), React.createElement("div", {
       style: {
         flex: 1,
@@ -1758,7 +2110,8 @@ function FestivalSwitcher({
       cursor: "pointer"
     }
   }, React.createElement(FestivalThumb, {
-    entry: past[0] || null
+    entry: past[0] || null,
+    size: 48
   }), React.createElement("div", {
     style: {
       flex: 1,

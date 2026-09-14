@@ -1012,6 +1012,17 @@ function LineupScreen({
     io.observe(rule);
     return () => io.disconnect();
   }, [viewMode, day, dayArtists, filter, sortBy]);
+  var densityKey = `${FESTIVAL_CONFIG.id}:${day}`;
+  var [gridDensity, setGridDensityRaw] = React.useState(() => _gridDensityMem[densityKey] || "fit");
+  React.useEffect(() => {
+    setGridDensityRaw(_gridDensityMem[densityKey] || "fit");
+  }, [densityKey]);
+  var toggleGridDensity = () => {
+    var next = gridDensity === "fit" ? "readable" : "fit";
+    _gridDensityMem[densityKey] = next;
+    setGridDensityRaw(next);
+  };
+  var searchInputRef = React.useRef(null);
   var searchRow = React.createElement("div", {
     style: {
       padding: gridLead ? "12px 12px 0" : "12px 20px 4px"
@@ -1043,6 +1054,7 @@ function LineupScreen({
   }), React.createElement("path", {
     d: "M21 21 L16.65 16.65"
   })), React.createElement("input", {
+    ref: searchInputRef,
     value: q,
     onChange: e => setQ(e.target.value),
     placeholder: "Search artists, stages, genres…",
@@ -1080,62 +1092,102 @@ function LineupScreen({
   }, React.createElement("path", {
     d: "M6 6 L18 18 M18 6 L6 18"
   })))));
+  var surpriseMe = () => {
+    var savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
+    var savedGenres = new Set(savedArtists.map(a => a.genre));
+    var unsaved = ARTISTS.filter(a => !state.saved.includes(a.id));
+    var pool = savedGenres.size ? unsaved.filter(a => savedGenres.has(a.genre)) : unsaved;
+    if (!(pool.length ? pool : unsaved).length) return;
+    var pick = (pool.length ? pool : unsaved)[Math.floor(Math.random() * (pool.length || unsaved.length))];
+    setState({
+      ...state,
+      artist: pick.id
+    });
+  };
+  var shareRun = (fn, okText) => async () => {
+    var r = await fn(state);
+    if (r?.ok) window.plurskyToast?.(okText);else if (r?.reason === "popup_blocked") window.plurskyToast?.("Allow pop-ups for plursky.com, then try again");
+  };
+  var clashAny = dayStats.some(d => d.clashes > 0);
   var actionsRow = React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
-      justifyContent: "space-between",
-      flexWrap: "wrap",
-      padding: gridLead ? "4px 4px 8px 12px" : "4px 12px 4px 20px",
-      gap: 4
+      gap: 4,
+      padding: gridLead ? "4px 4px 8px 12px" : "4px 8px 4px 20px"
     }
   }, React.createElement("div", {
     style: {
+      flex: 1,
+      minWidth: 0,
       fontSize: 13,
       lineHeight: "18px",
       color: "var(--text-2)",
       fontVariantNumeric: "tabular-nums"
     }
-  }, dayArtists.length, " ", dayArtists.length === 1 ? "set" : "sets"), React.createElement("div", {
+  }, dayArtists.length, " ", dayArtists.length === 1 ? "set" : "sets"), !gridLead && collapsed && !q && React.createElement("button", {
+    onClick: () => {
+      setCollapsed(false);
+      setTimeout(() => searchInputRef.current?.focus(), 240);
+    },
+    "aria-label": "Search the lineup",
     style: {
-      display: "flex",
-      alignItems: "center",
-      flexWrap: "wrap"
+      ...fieldIconBtn,
+      color: "var(--text-2)"
     }
-  }, totalSaved >= 2 && (() => {
-    var clash = dayStats.some(d => d.clashes > 0);
-    return React.createElement("button", {
-      onClick: () => setWizardOpen(true),
-      style: {
-        ...textBtn,
-        color: clash ? "var(--warn)" : "var(--ink)",
-        fontWeight: 600
+  }, React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "18",
+    height: "18",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round"
+  }, React.createElement("circle", {
+    cx: "11",
+    cy: "11",
+    r: "7"
+  }), React.createElement("path", {
+    d: "M21 21 L16.65 16.65"
+  }))), totalSaved >= 2 && React.createElement("button", {
+    onClick: () => setWizardOpen(true),
+    style: {
+      ...textBtn,
+      color: clashAny ? "var(--warn)" : "var(--ink)",
+      fontWeight: 600
+    }
+  }, clashAny ? "⚠ My night" : "My night"), gridLead && React.createElement("button", {
+    "data-grid-density-toggle": true,
+    onClick: toggleGridDensity,
+    "aria-label": `Grid density, ${gridDensity === "fit" ? "Fit all" : "Readable"}`,
+    style: {
+      ...textBtn,
+      color: "var(--ink)",
+      fontWeight: 600
+    }
+  }, gridDensity === "fit" ? "Fit all" : "Readable"), React.createElement(FieldOverflowMenu, {
+    label: "More lineup actions",
+    items: [state.saved.length > 0 && {
+      label: "Share image for stories",
+      onSelect: shareRun(shareLineupImage, "Saved")
+    }, state.saved.length > 0 && {
+      label: "Copy as text",
+      onSelect: shareRun(copyScheduleText, "Copied")
+    }, state.saved.length > 0 && {
+      label: "Print schedule",
+      onSelect: shareRun(async s => printLineupPDF(s), "Printed")
+    }, state.saved.length > 0 && {
+      label: "Add to calendar",
+      onSelect: () => {
+        window.plurskyHaptic?.("LIGHT");
+        exportSavedSetsICS(state.saved);
       }
-    }, clash ? "⚠ My night" : "My night");
-  })(), state.saved.length > 0 && React.createElement(ShareLineupButton, {
-    state: state
-  }), state.saved.length > 0 && React.createElement("button", {
-    onClick: () => {
-      window.plurskyHaptic?.("LIGHT");
-      exportSavedSetsICS(state.saved);
-    },
-    style: textBtn
-  }, "Calendar"), React.createElement("button", {
-    onClick: () => {
-      var savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
-      var savedGenres = new Set(savedArtists.map(a => a.genre));
-      var unsaved = ARTISTS.filter(a => !state.saved.includes(a.id));
-      var pool = savedGenres.size ? unsaved.filter(a => savedGenres.has(a.genre)) : unsaved;
-      if (!(pool.length ? pool : unsaved).length) return;
-      var pick = (pool.length ? pool : unsaved)[Math.floor(Math.random() * (pool.length || unsaved.length))];
-      setState({
-        ...state,
-        artist: pick.id
-      });
-    },
-    title: "Discover a random artist that matches your taste",
-    style: textBtn
-  }, "Surprise me")));
+    }, {
+      label: "Surprise me",
+      onSelect: surpriseMe
+    }]
+  }));
   var conflictCard = conflicts.length > 0 && filter === "saved" ? React.createElement(ConflictResolver, {
     conflicts: conflicts,
     onKeep: (keepId, dropId) => {
@@ -1344,15 +1396,22 @@ function LineupScreen({
   })))), React.createElement("div", {
     role: "tablist",
     "aria-label": "Festival day",
+    className: "no-scrollbar",
     style: {
       display: "flex",
       gap: 8,
       flexShrink: 0,
       padding: collapsed ? "4px 20px 8px" : "4px 20px 12px",
-      transition: "padding 220ms ease"
+      transition: "padding 220ms ease",
+      ...(dayStats.length > 4 ? {
+        overflowX: "auto",
+        scrollbarWidth: "none",
+        scrollPaddingInline: 20
+      } : {})
     }
   }, dayStats.map(d => {
     var on = d.n === day;
+    var many = dayStats.length > 4;
     return React.createElement("button", {
       key: d.n,
       role: "tab",
@@ -1366,10 +1425,10 @@ function LineupScreen({
         }));
       },
       style: {
-        flex: 1,
-        minWidth: 0,
-        minHeight: collapsed ? 44 : 64,
-        padding: "6px 2px",
+        flex: many ? "0 0 auto" : 1,
+        minWidth: many ? 60 : 0,
+        minHeight: collapsed ? 44 : 56,
+        padding: many ? "6px 8px" : "6px 2px",
         borderRadius: 14,
         background: on ? "var(--paper-3)" : "transparent",
         border: on ? "1.5px solid var(--signal)" : "1px solid var(--line)",
@@ -1396,16 +1455,16 @@ function LineupScreen({
         fontWeight: 600,
         fontVariantNumeric: "tabular-nums"
       }
-    }, d.date.split(" ")[1]), !collapsed && d.count > 0 && React.createElement("span", {
+    }, d.date.split(" ")[1]), !collapsed && d.clashes > 0 && React.createElement("span", {
       "aria-hidden": "true",
       style: {
         fontSize: 12,
         lineHeight: "16px",
-        color: d.clashes ? "var(--warn)" : "var(--text-2)",
+        color: "var(--warn)",
         whiteSpace: "nowrap",
         fontVariantNumeric: "tabular-nums"
       }
-    }, d.clashes ? `${d.count} · ⚠` : `${d.count} saved`));
+    }, "⚠ ", d.clashes, " ", d.clashes === 1 ? "clash" : "clashes"));
   })), hasWeekends && React.createElement("div", {
     role: "tablist",
     "aria-label": "Weekend",
@@ -1541,7 +1600,7 @@ function LineupScreen({
       color: "var(--text-2)",
       borderBottom: "1px solid var(--line)"
     }
-  }, "Offline · showing the schedule saved on this phone"), !gridLead && searchRow, !gridLead && actionsRow, wizardOpen && React.createElement(NightWizard, {
+  }, "Offline · showing the schedule saved on this phone"), !gridLead && !(collapsed && !q) && searchRow, !gridLead && actionsRow, wizardOpen && React.createElement(NightWizard, {
     state: state,
     setState: setState,
     onClose: () => setWizardOpen(false)
@@ -1585,7 +1644,9 @@ function LineupScreen({
       matchesActive: matchesActive,
       conflictById: conflictById,
       spotifyMatchedIds: spotifyMatchedIds,
-      highlightId: highlightId
+      highlightId: highlightId,
+      density: gridDensity,
+      onToggleDensity: toggleGridDensity
     })));
   })(), viewMode === "list" && dayArtists.length === 0 && (() => {
     var term = q.trim();
@@ -1663,32 +1724,38 @@ function LineupScreen({
     }
   }, "Show all sets")), viewMode === "list" && (() => {
     var nowMin = NOW.night === day && NOW.time && sortBy === "time" ? toNightMin(NOW.time) : null;
-    var rows = dayArtists.map(a => {
+    var byTime = sortBy === "time";
+    var rows = dayArtists.map((a, idx) => {
       var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
       var saved = state.saved.includes(a.id);
       var clashWith = conflictById[a.id];
       var isHighlighted = highlightId === a.id;
       var isLive = isSetLive(a);
       var crew = window.sbGetCrewCount?.(a.id) || 0;
-      var flags = [isLegendary(a) && "Don't miss", hasWeekends && a.weekend && a.weekend !== "both" && (a.weekend === "W1" ? "Weekend 1" : "Weekend 2"), spotifyMatchedIds.has(a.id) && "In your music", crew > 0 && `${crew} crew`].filter(Boolean);
+      var mustSee = isLegendary(a);
+      var flags = [hasWeekends && a.weekend && a.weekend !== "both" && (a.weekend === "W1" ? "Weekend 1" : "Weekend 2"), spotifyMatchedIds.has(a.id) && "In your music", crew > 0 && `${crew} crew`].filter(Boolean);
+      var hourOf = x => Math.floor(toNightMin(x.start) / 60);
+      var newHour = byTime && idx > 0 && hourOf(a) !== hourOf(dayArtists[idx - 1]);
       return React.createElement("div", {
         key: a.id,
         "data-animate": true,
         "data-lineup-highlight": isHighlighted ? "true" : undefined,
+        "data-hour-start": newHour ? "1" : undefined,
         style: {
           display: "flex",
           alignItems: "flex-start",
           gap: 12,
-          minHeight: 64,
-          padding: "12px 8px",
-          margin: "0 -8px",
-          borderBottom: "1px solid var(--line)",
+          minHeight: 56,
+          padding: "10px 8px",
+          margin: newHour ? "12px -8px 0" : "0 -8px",
+          borderTop: newHour ? "1px solid var(--line)" : "none",
+          borderBottom: byTime ? "none" : "1px solid var(--line)",
           borderRadius: isHighlighted ? 14 : 0,
           animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined
         }
       }, React.createElement("div", {
         style: {
-          width: 76,
+          width: 64,
           flexShrink: 0,
           fontVariantNumeric: "tabular-nums",
           whiteSpace: "nowrap"
@@ -1701,9 +1768,9 @@ function LineupScreen({
         }
       }, fmt12(a.start)), React.createElement("div", {
         style: {
-          fontSize: 13,
-          lineHeight: "18px",
-          color: "var(--text-2)"
+          fontSize: 12,
+          lineHeight: "16px",
+          color: "var(--text-3)"
         }
       }, fmt12(a.end))), React.createElement("button", {
         onClick: () => setState({
@@ -1752,18 +1819,21 @@ function LineupScreen({
           lineHeight: "18px",
           color: "var(--text-2)"
         }
-      }, React.createElement("span", {
-        "aria-hidden": "true",
+      }, mustSee && React.createElement("span", {
         style: {
           display: "inline-block",
-          width: 7,
-          height: 7,
-          borderRadius: 4,
-          background: "var(--text-3)",
           marginRight: 6,
+          padding: "0 6px",
+          borderRadius: 6,
+          background: "rgba(var(--signal-rgb),0.2)",
+          color: "var(--signal-ink)",
+          fontSize: 11,
+          lineHeight: "16px",
+          fontWeight: 600,
+          letterSpacing: "0.02em",
           verticalAlign: "1px"
         }
-      }), stage.name, a.genre ? ` · ${a.genre}` : ""), flags.length > 0 && React.createElement("span", {
+      }, "Don't miss"), stage.name, a.genre ? ` · ${a.genre}` : ""), flags.length > 0 && React.createElement("span", {
         style: {
           marginTop: 2,
           fontSize: 13,
@@ -2488,11 +2558,13 @@ function GridSetBlock({
   refStore,
   showEndTime,
   dueMins,
-  narrow = false
+  narrow = false,
+  hideTime = false,
+  overview = false
 }) {
   var isHeadliner = a.tier === 3;
-  var _lineH = narrow ? 10.2 : isHeadliner ? 13.8 : 12.7;
-  var _chrome = narrow ? 8 : 20;
+  var _lineH = overview ? 9.5 : narrow ? 10.2 : isHeadliner ? 13.8 : 12.7;
+  var _chrome = narrow || hideTime ? 8 : 20;
   var nameLines = Math.max(1, Math.min(4, Math.floor((height - _chrome) / _lineH)));
   var _saved = (state.saved || []).includes(a.id);
   var _store = refStore;
@@ -2511,6 +2583,19 @@ function GridSetBlock({
   };
   return React.createElement("div", {
     "data-lineup-highlight": isHighlighted ? "true" : undefined,
+    "data-grid-set": a.id,
+    role: "button",
+    tabIndex: 0,
+    "aria-label": `${a.name}, ${stage?.name || ""}, ${fmt12(a.start)} to ${fmt12(a.end)}${saved ? ", saved" : ""}${clash ? ", clashes with another saved set" : ""}`,
+    onKeyDown: e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        setState({
+          ...state,
+          artist: a.id
+        });
+      }
+    },
     onClick: () => {
       if (_store.fired) {
         _store.fired = false;
@@ -2582,10 +2667,22 @@ function GridSetBlock({
       WebkitLineClamp: nameLines,
       WebkitBoxOrient: "vertical",
       overflowWrap: "break-word",
-      paddingRight: saved ? clash ? narrow ? 19 : 23 : narrow ? 9 : 12 : 0,
-      fontFamily: isHeadliner ? "Instrument Serif, Georgia, serif" : "Geist, -apple-system, sans-serif"
+      paddingRight: saved && !overview ? clash ? narrow ? 19 : 23 : narrow ? 9 : 12 : 0,
+      fontFamily: isHeadliner ? "Instrument Serif, Georgia, serif" : "Geist, -apple-system, sans-serif",
+      ...(overview ? {
+        display: "block",
+        writingMode: "vertical-rl",
+        whiteSpace: "nowrap",
+        fontSize: 10,
+        lineHeight: "12px",
+        letterSpacing: 0,
+        maxHeight: "100%",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        paddingBottom: saved || clash ? 12 : 0
+      } : {})
     }
-  }, a.name), !narrow && React.createElement("div", {
+  }, a.name), !narrow && !hideTime && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 8,
@@ -2607,8 +2704,9 @@ function GridSetBlock({
   }, "YOU'RE DUE HERE · ", dueMins, " MIN"), saved && React.createElement("span", {
     style: {
       position: "absolute",
-      top: 3,
-      right: 5,
+      top: overview ? "auto" : 3,
+      bottom: overview ? 3 : "auto",
+      right: overview ? 3 : 5,
       fontSize: 10,
       color: "var(--ember-ink)",
       fontWeight: 800,
@@ -2619,8 +2717,9 @@ function GridSetBlock({
     "aria-label": "clash",
     style: {
       position: "absolute",
-      top: 2.5,
-      right: narrow ? 13 : 16,
+      top: overview ? "auto" : 2.5,
+      bottom: overview ? 3 : "auto",
+      right: overview ? 12 : narrow ? 13 : 16,
       fontSize: 9,
       color: "var(--ember-ink)",
       fontWeight: 800,
@@ -2668,6 +2767,12 @@ function GridHourLines({
     }
   }));
 }
+var _gridDensityMem = {};
+function _gridLabelFit(label, width, pxPerChar) {
+  var s = String(label || "");
+  var n = Math.max(2, Math.floor((width - 6) / pxPerChar));
+  return s.length <= n ? s : s.slice(0, n);
+}
 function TimelineGrid({
   lead,
   day,
@@ -2677,9 +2782,12 @@ function TimelineGrid({
   matchesActive,
   conflictById,
   spotifyMatchedIds,
-  highlightId
+  highlightId,
+  density = "fit",
+  onToggleDensity
 }) {
-  var GUTTER_W = 44;
+  var fit = density !== "readable";
+  var GUTTER_W = fit ? 40 : 44;
   var HEAD_H = 34;
   var TOTAL_H = GRID_TOTAL_H;
   var minToTop = _minToTop;
@@ -2731,8 +2839,9 @@ function TimelineGrid({
     return () => ro.disconnect();
   }, []);
   var BAND = Math.round(Math.min(118, Math.max(92, boxW * 0.26)));
-  var COL_W = Math.max(BAND, Math.floor((boxW - GUTTER_W) / Math.max(1, cols.length)));
-  var showEndTime = COL_W >= 120;
+  var COL_W = fit ? Math.max(1, Math.floor((boxW - GUTTER_W) / Math.max(1, cols.length))) : Math.max(BAND, Math.floor((boxW - GUTTER_W) / Math.max(1, cols.length)));
+  var overview = fit && COL_W < 56;
+  var showEndTime = !fit && COL_W >= 120;
   var narrow = COL_W < 72;
   var scrollToStage = id => {
     var i = cols.findIndex(c => c.stage.id === id);
@@ -2752,11 +2861,11 @@ function TimelineGrid({
     if (target != null && target >= GRID_START_MIN && target <= GRID_END_MIN) {
       el.scrollTop = Math.max(0, (leadRef.current ? leadRef.current.offsetHeight : 0) + HEAD_H + minToTop(target) - 100);
     }
-    if (due) {
+    if (due && !fit) {
       var i = cols.findIndex(c => c.stage.id === due.stageId);
       if (i > 0) el.scrollLeft = i * COL_W;
     }
-  }, [cols.length, COL_W, due, nowMin, minToTop]);
+  }, [cols.length, COL_W, due, nowMin, minToTop, fit]);
   var savedByStage = React.useMemo(() => {
     var m = {};
     for (var a of allDayArtists) if (state.saved.includes(a.id)) m[a.stage] = (m[a.stage] || 0) + 1;
@@ -2773,10 +2882,13 @@ function TimelineGrid({
     }, React.createElement("div", {
       ref: scrollRef,
       "data-grid-scroll": true,
+      "data-grid-density": fit ? "fit" : "readable",
+      onDoubleClick: onToggleDensity,
       style: {
         flex: 1,
         minHeight: 0,
-        overflow: "auto",
+        overflowY: "auto",
+        overflowX: fit ? "hidden" : "auto",
         WebkitOverflowScrolling: "touch",
         overscrollBehavior: "contain"
       }
@@ -2824,9 +2936,10 @@ function TimelineGrid({
           try {
             window.plurskyHaptic?.("LIGHT");
           } catch {}
-          scrollToStage(s.id);
+          if (fit) window.plurskyToast?.(s.name);else scrollToStage(s.id);
         },
         title: s.name,
+        "aria-label": `${s.name}${n > 0 ? `, ${n} saved` : ""}`,
         className: "mono",
         style: {
           width: COL_W,
@@ -2837,25 +2950,27 @@ function TimelineGrid({
           borderBottom: "1px solid var(--line-2)",
           background: "var(--paper)",
           color: "var(--ink)",
-          padding: "3px 5px 0",
+          padding: fit ? "3px 1px 0" : "3px 5px 0",
           cursor: "pointer",
           position: "relative",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          gap: 4,
-          fontSize: 10,
-          letterSpacing: 1.1,
+          gap: fit ? 2 : 4,
+          fontSize: overview ? 8.5 : fit ? 9 : 10,
+          letterSpacing: overview ? 0 : fit ? 0.3 : 1.1,
           fontWeight: 800,
-          fontFamily: "inherit"
+          fontFamily: "inherit",
+          overflow: "hidden"
         }
       }, React.createElement("span", {
+        "aria-hidden": "true",
         style: {
           overflow: "hidden",
-          textOverflow: "ellipsis",
+          textOverflow: fit ? "clip" : "ellipsis",
           whiteSpace: "nowrap"
         }
-      }, s.short), n > 0 && React.createElement("span", {
+      }, fit ? _gridLabelFit(s.short || s.name, COL_W, 7.2) : s.short), n > 0 && !overview && React.createElement("span", {
         style: {
           flexShrink: 0,
           color: "var(--ember-ink)",
@@ -2885,7 +3000,8 @@ function TimelineGrid({
       style: {
         position: "absolute",
         top: minToTop(h.mins) - 6,
-        right: 6,
+        right: fit ? 3 : 6,
+        whiteSpace: "nowrap",
         fontSize: 9,
         letterSpacing: 0.3,
         color: "var(--muted)",
@@ -2957,6 +3073,8 @@ function TimelineGrid({
           }),
           showEndTime: showEndTime && lay.lanes === 1,
           narrow: narrow || laneW < 72,
+          hideTime: fit,
+          overview: overview || fit && laneW < 40,
           dueMins: due && due.id === a.id ? due.mins : null
         });
       }));

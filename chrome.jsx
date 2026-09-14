@@ -500,6 +500,47 @@ function FieldSheet({ title, onClose, children }) {
   );
 }
 
+// One overflow ("More") menu: a 44pt trigger and a small anchored list of text
+// actions. Secondary actions live here so each screen keeps one primary.
+// items: [{ label, onSelect, warn? }]; falsy items are skipped.
+function FieldOverflowMenu({ label = "More actions", items, align = "right" }) {
+  const [open, setOpen] = React.useState(false);
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    if (!open) return undefined;
+    const onDoc = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    const onKey = (e) => { if (e.key === "Escape") setOpen(false); };
+    document.addEventListener("pointerdown", onDoc);
+    window.addEventListener("keydown", onKey);
+    return () => { document.removeEventListener("pointerdown", onDoc); window.removeEventListener("keydown", onKey); };
+  }, [open]);
+  const shown = (items || []).filter(Boolean);
+  if (!shown.length) return null;
+  return (
+    <div ref={ref} style={{ position: "relative", flexShrink: 0 }}>
+      <button onClick={() => setOpen(o => !o)} aria-haspopup="menu" aria-expanded={open} aria-label={label}
+        style={{ ...fieldIconBtn, color: "var(--text-2)" }}>
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg>
+      </button>
+      {open && (
+        <div role="menu" style={{
+          position: "absolute", top: "100%", [align]: 0, zIndex: 30, minWidth: 200, padding: 6,
+          background: "var(--paper-3)", border: "1px solid var(--line-2)", borderRadius: 14, boxShadow: "var(--shadow-pop)",
+        }}>
+          {shown.map(it => (
+            <button key={it.label} role="menuitem" onClick={() => { setOpen(false); it.onSelect(); }} style={{
+              display: "flex", alignItems: "center", width: "100%", minHeight: 44, padding: "0 12px",
+              background: "transparent", border: "none", borderRadius: 10, cursor: "pointer",
+              color: it.warn ? "var(--warn)" : "var(--ink)", fontSize: 15, lineHeight: "20px", fontWeight: 500,
+              textAlign: "left", fontFamily: "inherit", whiteSpace: "nowrap",
+            }}>{it.label}</button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── PWA install prompt ────────────────────────────────────────
 // Android (Chrome/Edge): captures beforeinstallprompt and exposes prompt().
 // iOS (Safari): no native install prompt — show "Add to Home Screen" hint.
@@ -1160,11 +1201,117 @@ function NotificationsCard({ state }) {
 // festival in FESTIVALS_REGISTRY. Selectable festivals reload the
 // page with their config; "coming soon" festivals are visible as
 // a roadmap preview but not selectable.
+// Festivals you have real evidence for, most recently attended first: moments
+// (imports and check-ins carry festivalId), archived recaps, and saves once a
+// festival has started. Browsing alone never counts. The active festival is
+// left out, since it is the chip itself. (2026-09-14 design follow-up, #4.)
+function _recentFestivals(limit = 5) {
+  const cur = window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id;
+  const byId = {};
+  for (const e of (window.FESTIVALS_REGISTRY || [])) if (e && e.config && e.available) byId[e.config.id] = e;
+  const ev = {};
+  const note = (id, t, moments) => {
+    if (!id || id === cur || !byId[id]) return;
+    const e = ev[id] || (ev[id] = { t: 0, moments: 0 });
+    if (t > e.t) e.t = t;
+    e.moments += moments || 0;
+  };
+  const when = m => {
+    const t = m && m.takenAt ? Date.parse(String(m.takenAt).replace(" ", "T")) : NaN;
+    return isNaN(t) ? (m && m.createdAt) || 0 : t;
+  };
+  try {
+    const all = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
+    for (const arr of Object.values(all || {})) for (const m of (Array.isArray(arr) ? arr : [])) if (m && m.festivalId) note(m.festivalId, when(m), 1);
+  } catch {}
+  try {
+    const raw = JSON.parse(localStorage.getItem("plursky_festival_archive_v1") || "{}");
+    for (const [k, a] of Object.entries(raw || {})) {
+      if (!a || typeof a !== "object") continue;
+      const id = a.festivalId || a.id || k;
+      note(id, a.archivedAt || (byId[id] && byId[id].config.endMs) || 0, 0);
+    }
+  } catch {}
+  const now = Date.now();
+  for (const id of Object.keys(byId)) {
+    const cfg = byId[id].config;
+    if (!cfg.startMs || cfg.startMs > now) continue;
+    try { const s = JSON.parse(localStorage.getItem(`${id}_saved_v1`) || "[]"); if (Array.isArray(s) && s.length) note(id, cfg.startMs, 0); } catch {}
+  }
+  return Object.entries(ev).sort((a, b) => b[1].t - a[1].t).slice(0, limit)
+    .map(([id, e]) => ({ entry: byId[id], moments: e.moments }));
+}
+
+// "Recent", to the right of the festival chip: one tap switches. Hidden when
+// there is no evidence, never a dead dropdown. The menu is position:fixed from
+// the button's rect so a hero with overflow:hidden cannot clip it.
+function RecentFestivalsMenu({ onAll }) {
+  const [menu, setMenu] = React.useState(null); // null | { top, left, items }
+  const btnRef = React.useRef(null), boxRef = React.useRef(null);
+  const has = React.useMemo(() => _recentFestivals(1).length > 0, []);
+  React.useEffect(() => {
+    if (!menu) return undefined;
+    const onDoc = (e) => { if (!boxRef.current?.contains(e.target) && !btnRef.current?.contains(e.target)) setMenu(null); };
+    const onKey = (e) => { if (e.key === "Escape") setMenu(null); };
+    document.addEventListener("pointerdown", onDoc);
+    window.addEventListener("keydown", onKey);
+    return () => { document.removeEventListener("pointerdown", onDoc); window.removeEventListener("keydown", onKey); };
+  }, [menu]);
+  if (!has) return null;
+  const toggle = () => {
+    if (menu) { setMenu(null); return; }
+    const r = btnRef.current.getBoundingClientRect(), W = Math.min(300, window.innerWidth - 32);
+    setMenu({ top: r.bottom + 4, left: Math.max(16, Math.min(r.right - W, window.innerWidth - 16 - W)), width: W, items: _recentFestivals(5) });
+  };
+  const line = { display: "block", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" };
+  return (
+    <>
+      <button ref={btnRef} onClick={toggle} aria-haspopup="menu" aria-expanded={!!menu} data-recent-festivals style={{
+        ...fieldIconBtn, width: "auto", padding: "0 8px", gap: 4, color: "var(--text-2)",
+        fontSize: 13, lineHeight: "18px", fontWeight: 600, fontFamily: "inherit",
+      }}>
+        Recent
+        <svg aria-hidden="true" width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 4.5 L6 7.5 L9 4.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+      </button>
+      {menu && (
+        <div ref={boxRef} role="menu" aria-label="Recent festivals" style={{
+          position: "fixed", top: menu.top, left: menu.left, width: menu.width, zIndex: 90, padding: 6,
+          background: "var(--paper-3)", border: "1px solid var(--line-2)", borderRadius: 14, boxShadow: "var(--shadow-pop)",
+        }}>
+          {menu.items.map(({ entry, moments }) => (
+            <button key={entry.config.id} role="menuitem" onClick={() => { setMenu(null); setActiveFestivalAndReload(entry.config.id); }} style={{
+              display: "flex", alignItems: "center", gap: 10, width: "100%", minHeight: 56, padding: "6px 8px",
+              background: "transparent", border: "none", borderRadius: 10, color: "var(--ink)",
+              textAlign: "left", fontFamily: "inherit", cursor: "pointer",
+            }}>
+              <FestivalThumb entry={entry} size={36} />
+              <span style={{ flex: 1, minWidth: 0 }}>
+                <span style={{ ...line, fontSize: 15, lineHeight: "20px", fontWeight: 600 }}>{entry.config.name}</span>
+                <span style={{ ...line, fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
+                  {[moments ? `${moments} ${moments === 1 ? "moment" : "moments"}` : null, entry.config.dates].filter(Boolean).join(" · ")}
+                </span>
+                <span style={{ ...line, fontSize: 12, lineHeight: "16px", color: "var(--text-3)" }}>{entry.config.location}</span>
+              </span>
+            </button>
+          ))}
+          <button role="menuitem" onClick={() => { setMenu(null); onAll(); }} style={{
+            display: "flex", alignItems: "center", width: "100%", minHeight: 44, padding: "0 8px", marginTop: 2,
+            background: "transparent", border: "none", borderTop: "1px solid var(--line)", borderRadius: 0,
+            color: "var(--text-2)", fontSize: 15, lineHeight: "20px", fontWeight: 500, fontFamily: "inherit", textAlign: "left", cursor: "pointer",
+          }}>All festivals</button>
+        </div>
+      )}
+    </>
+  );
+}
+
 function FestivalChip({ compact = false, accent = "var(--ink)" }) {
   const [open, setOpen] = React.useState(false);
   const canSwitch = FESTIVALS_REGISTRY.filter(f => f.available).length > 1;
   return (
-    <>
+    // The chip and Recent stay one unit, so a space-between header can't
+    // float Recent off on its own.
+    <span style={{ display: "inline-flex", alignItems: "center", gap: 2, minWidth: 0 }}>
       {/* Field Mode: a 44pt target around an 18pt-radius status pill. The
           label stays the upper-case shortName (QA harnesses match on it). No
           emoji: colour in chrome belongs to the one accent. */}
@@ -1193,8 +1340,9 @@ function FestivalChip({ compact = false, accent = "var(--ink)" }) {
           )}
         </span>
       </div>
+      <RecentFestivalsMenu onAll={() => setOpen(true)} />
       {open && <FestivalSwitcher onClose={() => setOpen(false)} />}
-    </>
+    </span>
   );
 }
 
@@ -1202,19 +1350,50 @@ function FestivalChip({ compact = false, accent = "var(--ink)" }) {
 // placeholder (edco-tinker-2026.jpg) are generated, so those festivals show
 // their emoji on a plain surface instead.
 const _GENERATED_ART = new Set(["edco-tinker-2026.jpg"]);
+// 2026-09-14 design follow-up: a festival's thumbnail is a REAL image only
+// when this manifest records its app-use license. Official maps and posters
+// are the promoter's art (not cleared for product use), and a loaded list
+// never mixes photos with emoji. Until an entry lands, every festival gets the
+// same deliberate fallback: a tinted surface plus a text monogram.
+// Shape: { [festivalId]: { src, credit, license, sourceUrl } }; all four required.
+const _FESTIVAL_ART_LICENSED = {};
 function _festivalArt(cfg) {
-  const img = cfg && cfg.mapImage;
-  return img && /\.(webp|jpe?g|png)$/i.test(img) && !_GENERATED_ART.has(img) ? img : null;
+  const rec = cfg && _FESTIVAL_ART_LICENSED[cfg.id];
+  return rec && rec.src && rec.credit && rec.license && rec.sourceUrl ? rec.src : null;
+}
+// Two to four letters that name the festival: "EDC", "ACL", "III", "LL".
+function _festivalMonogram(cfg) {
+  const name = String((cfg && (cfg.shortName || cfg.name)) || "").replace(/\b(19|20)\d{2}\b/g, "").trim();
+  const words = name.split(/[\s\-·/]+/).filter(Boolean);
+  if (!words.length) return "·";
+  if (/^[A-Z0-9]{2,4}$/.test(words[0])) return words[0];
+  return (words.length > 1 ? words.slice(0, 3).map(w => w[0]).join("") : words[0].slice(0, 2)).toUpperCase();
+}
+// A stable per-festival angle and depth so rows differ without new colours:
+// the one accent at low alpha over the surface token.
+function _festivalFallbackBg(cfg) {
+  const id = String((cfg && cfg.id) || "");
+  let h = 0;
+  for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) >>> 0;
+  const angle = 100 + (h % 160), alpha = (0.2 + ((h >>> 8) % 5) * 0.06).toFixed(2);
+  return `linear-gradient(${angle}deg, rgba(var(--signal-rgb),${alpha}), var(--paper-2) 80%)`;
 }
 function FestivalThumb({ entry, size = 56 }) {
-  const art = entry ? _festivalArt(entry.config) : null;
+  const cfg = entry ? entry.config : null;
+  const art = cfg ? _festivalArt(cfg) : null;
+  const mono = _festivalMonogram(cfg);
   return (
-    <div aria-hidden="true" style={{
-      width: size, height: size, borderRadius: 14, overflow: "hidden", flexShrink: 0,
-      background: "var(--paper-3)", display: "flex", alignItems: "center", justifyContent: "center",
-      fontSize: Math.round(size * 0.46),
+    <div aria-hidden="true" data-festival-thumb={art ? "image" : "monogram"} style={{
+      width: size, height: size, borderRadius: Math.round(size * 0.25), overflow: "hidden", flexShrink: 0, position: "relative",
+      background: art ? "var(--paper-3)" : _festivalFallbackBg(cfg),
+      display: "flex", alignItems: "center", justifyContent: "center",
+      color: "var(--ink)", fontWeight: 700, letterSpacing: "0.02em",
+      fontSize: Math.round(size * (mono.length > 3 ? 0.24 : mono.length > 2 ? 0.28 : 0.34)),
     }}>
-      {art ? <img src={`./${art}`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : ((entry && entry.emoji) || "🎪")}
+      {art ? (<>
+        <img src={`./${art}`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        <span style={{ position: "absolute", inset: 0, background: "var(--media-scrim)" }} />
+      </>) : mono}
     </div>
   );
 }
@@ -1306,7 +1485,7 @@ function FestivalSwitcher({ onClose }) {
       <button key={f.config.id} onClick={() => onPick(f.config.id, f)} disabled={locked}
         aria-current={isActive ? "true" : undefined}
         style={{ ...rowStyle(locked), cursor: locked ? "default" : "pointer" }}>
-        <FestivalThumb entry={f} />
+        <FestivalThumb entry={f} size={48} />
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>{f.config.name}</div>
           <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{f.config.location} · <span style={{ whiteSpace: "nowrap" }}>{f.config.dates}</span></div>
@@ -1333,7 +1512,7 @@ function FestivalSwitcher({ onClose }) {
       {tba.length > 0 && group("Dates TBA", tba.map(row))}
       {(past.length > 0 || archive.length > 0) && group("Past", <>
         <button onClick={() => setPastOpen(o => !o)} aria-expanded={pastOpen} style={{ ...rowStyle(false), cursor: "pointer" }}>
-          <FestivalThumb entry={past[0] || null} />
+          <FestivalThumb entry={past[0] || null} size={48} />
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>Memories</div>
             <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>

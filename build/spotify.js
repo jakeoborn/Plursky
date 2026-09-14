@@ -5264,92 +5264,86 @@ function PeakMomentCard({
     endMs
   } = peak;
   var a = accent || "var(--ember)";
-  return React.createElement("div", {
-    style: {
-      marginTop: 10,
-      marginBottom: 6,
-      borderRadius: 14,
-      padding: 12,
-      background: `linear-gradient(135deg, ${a}1f, var(--paper-2))`,
-      border: `1px solid ${a}40`
-    }
-  }, React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 9
-    }
-  }, React.createElement("span", {
-    style: {
-      fontSize: 15
-    }
-  }, "🔥"), React.createElement("div", {
-    style: {
-      flex: 1,
-      minWidth: 0
-    }
-  }, React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 8.5,
-      letterSpacing: 1.4,
-      fontWeight: 800,
-      color: a
-    }
-  }, "YOUR PEAK · 20 MIN"), React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 17,
-      color: "var(--ink)",
-      lineHeight: 1.1,
-      marginTop: 1
-    }
-  }, items.length, " moments in 20 minutes"), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1,
-      color: "var(--muted)",
-      fontWeight: 600,
-      marginTop: 2
-    }
-  }, _clock12(startMs), " – ", _clock12(endMs))), onPlayReel && React.createElement("button", {
-    onClick: () => {
-      try {
-        window.plurskyHaptic?.("MEDIUM");
-      } catch {}
-      onPlayReel(items);
-    },
-    className: "mono",
-    style: {
-      flexShrink: 0,
-      background: a,
-      color: "var(--ink)",
-      border: "none",
-      borderRadius: 999,
-      padding: "7px 13px",
-      cursor: "pointer",
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 800,
-      display: "flex",
-      alignItems: "center",
-      gap: 5
-    }
-  }, "▶ RELIVE")), React.createElement("div", {
-    className: "no-scrollbar",
-    style: {
-      display: "flex",
-      gap: 5,
-      overflowX: "auto",
-      marginTop: 10
-    }
-  }, items.map((m, i) => React.createElement(_GroupHeroThumb, {
-    key: m.id,
-    moment: m,
-    accent: a,
-    onClick: () => onOpenLightbox?.(items, i)
-  }))));
+  return (React.createElement("div", {
+      "data-peak": true,
+      style: {
+        marginTop: 10,
+        marginBottom: 6,
+        borderRadius: 14,
+        padding: 12,
+        background: "var(--paper-2)"
+      }
+    }, React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 12
+      }
+    }, React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 11,
+        lineHeight: "14px",
+        fontWeight: 600,
+        letterSpacing: "0.04em",
+        textTransform: "uppercase",
+        color: "var(--text-2)"
+      }
+    }, "Your peak · 20 min"), React.createElement("div", {
+      style: {
+        fontSize: 17,
+        lineHeight: "22px",
+        fontWeight: 600,
+        color: "var(--ink)",
+        marginTop: 2
+      }
+    }, items.length, " moments in 20 minutes"), React.createElement("div", {
+      style: {
+        fontSize: 13,
+        lineHeight: "18px",
+        color: "var(--text-2)",
+        fontVariantNumeric: "tabular-nums"
+      }
+    }, _clock12(startMs), " – ", _clock12(endMs))), onPlayReel && React.createElement("button", {
+      onClick: () => {
+        try {
+          window.plurskyHaptic?.("MEDIUM");
+        } catch {}
+        onPlayReel(items);
+      },
+      style: {
+        flexShrink: 0,
+        minHeight: 44,
+        padding: "0 14px",
+        borderRadius: 14,
+        cursor: "pointer",
+        background: "var(--paper-3)",
+        border: "1px solid var(--line-2)",
+        color: "var(--ink)",
+        fontSize: 15,
+        lineHeight: "20px",
+        fontWeight: 600,
+        fontFamily: "inherit"
+      }
+    }, "Play peak")), React.createElement("div", {
+      className: "no-scrollbar",
+      style: {
+        display: "flex",
+        gap: 5,
+        overflowX: "auto",
+        marginTop: 10
+      }
+    }, items.map((m, i) => React.createElement(_GroupHeroThumb, {
+      key: m.id,
+      moment: m,
+      accent: a,
+      onClick: () => onOpenLightbox?.(items, i)
+    }))))
+  );
 }
 function SetSongTimeline({
   artist,
@@ -8600,42 +8594,107 @@ function MemoriesMapTab({
     onPinTap: onPinTap
   }));
 }
-function _NightMap({
-  moments,
-  onPinTap
+var _memLastSection = null;
+function _MemSection({
+  id,
+  title,
+  count,
+  children
 }) {
-  var [open, setOpen] = React.useState(false);
-  if (!moments || !moments.length) return null;
+  var [open, setOpen] = React.useState(() => _memLastSection === id);
   return React.createElement("div", {
+    "data-mem-section": id,
     style: {
       marginTop: 8
     }
   }, React.createElement("button", {
-    onClick: () => setOpen(o => !o),
-    className: "mono",
+    onClick: () => setOpen(o => {
+      var n = !o;
+      if (n) _memLastSection = id;
+      return n;
+    }),
+    "aria-expanded": open,
     style: {
       display: "flex",
       alignItems: "center",
-      justifyContent: "space-between",
+      gap: 8,
       width: "100%",
-      padding: "9px 12px",
-      borderRadius: 10,
+      minHeight: 44,
+      padding: "0 12px",
+      borderRadius: 14,
       background: "var(--paper-2)",
-      border: "1px solid var(--line)",
-      color: "var(--muted)",
+      border: "none",
+      color: "var(--ink)",
       cursor: "pointer",
-      fontSize: 9,
-      letterSpacing: 1.3,
-      fontWeight: 700
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 600,
+      fontFamily: "inherit",
+      textAlign: "left"
     }
-  }, React.createElement("span", null, "📍 WHERE THIS NIGHT HAPPENED"), React.createElement("span", null, open ? "▾" : "▸")), open && React.createElement("div", {
+  }, React.createElement("span", {
     style: {
-      marginTop: 8
+      flex: 1,
+      minWidth: 0
+    }
+  }, title), count != null && React.createElement("span", {
+    style: {
+      fontSize: 13,
+      lineHeight: "18px",
+      fontWeight: 500,
+      color: "var(--text-2)",
+      fontVariantNumeric: "tabular-nums"
+    }
+  }, count), React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "var(--text-3)",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    style: {
+      transform: open ? "rotate(90deg)" : "none",
+      transition: "transform 180ms ease"
+    }
+  }, React.createElement("path", {
+    d: "M9 6 L15 12 L9 18"
+  }))), open && React.createElement("div", {
+    style: {
+      marginTop: 4
+    }
+  }, children));
+}
+function _NightMap({
+  moments,
+  onPinTap
+}) {
+  if (!moments || !moments.length) return null;
+  return React.createElement(_MemSection, {
+    id: "map",
+    title: "Where this night happened"
+  }, React.createElement("div", {
+    style: {
+      marginTop: 4
     }
   }, React.createElement(MemoriesMapTab, {
     moments: moments,
     onPinTap: onPinTap
   })));
+}
+function _memHeroState({
+  totalCount,
+  photoCount,
+  batch,
+  reviewCount
+}) {
+  if (batch && batch.done < batch.total) return "importing";
+  if (totalCount === 0) return "empty";
+  var batchNeeds = !!batch && batch.done === batch.total && batch.results.some(r => !r.err && !r.skipped && !r.artistId);
+  if (batchNeeds || reviewCount > 0) return "review";
+  return photoCount >= 3 ? "relive" : "import";
 }
 function _NightShareMenu({
   night,
@@ -8649,20 +8708,19 @@ function _NightShareMenu({
     }
   }, React.createElement("button", {
     onClick: () => setOpen(o => !o),
-    className: "mono",
+    "aria-haspopup": "menu",
+    "aria-expanded": open,
     style: {
-      background: "var(--ember)",
-      color: "var(--ink)",
-      border: "none",
-      borderRadius: 999,
-      padding: "4px 10px",
-      cursor: "pointer",
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      whiteSpace: "nowrap"
+      ...fieldIconBtn,
+      width: "auto",
+      padding: "0 8px",
+      color: "var(--text-2)",
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 500,
+      fontFamily: "inherit"
     }
-  }, "📸 SHARE ▾"), open && React.createElement(React.Fragment, null, React.createElement("div", {
+  }, "Share"), open && React.createElement(React.Fragment, null, React.createElement("div", {
     onClick: () => setOpen(false),
     style: {
       position: "fixed",
@@ -8682,7 +8740,7 @@ function _NightShareMenu({
       overflow: "hidden",
       minWidth: 140
     }
-  }, [["📸 Collage", undefined], ["🎬 Animated GIF", "gif"], ["🎞 Night video", "video"]].map(([lbl, mode], i) => React.createElement("button", {
+  }, [["Collage", undefined], ["Animated GIF", "gif"], ["Night video", "video"]].map(([lbl, mode], i) => React.createElement("button", {
     key: lbl,
     onClick: () => {
       setOpen(false);
@@ -9245,12 +9303,42 @@ function MemoriesScreen({
     }))
   }), React.createElement("div", {
     style: {
-      padding: "8px 20px"
+      padding: "8px 0"
     }
   }, React.createElement(TopBar, {
     title: React.createElement("span", null, "Memories"),
-    sub: `${totalCount} ${totalCount === 1 ? "MOMENT" : "MOMENTS"} · ${FESTIVAL_CONFIG.shortName.toUpperCase()}`,
-    tight: true
+    sub: `${FESTIVAL_CONFIG.name} · ${totalCount} ${totalCount === 1 ? "moment" : "moments"}`,
+    tight: true,
+    right: (() => {
+      var hs = _memHeroState({
+        totalCount,
+        photoCount: allMoments.filter(m => m.photoId).length,
+        batch,
+        reviewCount: reviewIds.length
+      });
+      return React.createElement(FieldOverflowMenu, {
+        label: "Memories actions",
+        items: [totalCount > 0 && hs !== "import" && hs !== "importing" && {
+          label: "Import more",
+          onSelect: handlePickClick
+        }, reviewIds.length > 0 && hs !== "review" && {
+          label: `Review ${reviewIds.length}`,
+          onSelect: () => setReview(reviewIds.map(id => ({
+            momentId: id
+          })))
+        }, totalCount > 0 && {
+          label: "Make recap video",
+          onSelect: () => setState(s => ({
+            ...s,
+            tab: "recap",
+            artist: null
+          }))
+        }, totalCount > 0 && {
+          label: manage ? "Done managing" : "Manage",
+          onSelect: () => setManage(m => !m)
+        }]
+      });
+    })()
   })), React.createElement(ScrollBody, {
     style: {
       padding: "0 20px 94px"
@@ -9264,200 +9352,224 @@ function MemoriesScreen({
     style: {
       display: "none"
     }
-  }), React.createElement("button", {
-    onClick: handlePickClick,
-    disabled: !!batch && batch.done < batch.total,
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 12,
-      width: "100%",
-      minHeight: 64,
-      marginTop: 12,
-      padding: "10px 16px",
-      background: "var(--paper-2)",
-      border: "none",
-      borderRadius: 14,
-      color: "var(--ink)",
-      textAlign: "left",
-      fontFamily: "inherit",
-      cursor: "pointer"
-    }
-  }, React.createElement("span", {
-    "aria-hidden": "true",
-    style: {
-      fontSize: 20
-    }
-  }, "✨"), React.createElement("span", {
-    style: {
-      flex: 1,
-      minWidth: 0
-    }
-  }, React.createElement("span", {
-    style: {
-      display: "block",
-      fontSize: 17,
-      lineHeight: "22px",
-      fontWeight: 600
-    }
-  }, "Import from camera roll"), React.createElement("span", {
-    style: {
-      display: "block",
-      fontSize: 13,
-      lineHeight: "18px",
-      color: "var(--text-2)"
-    }
-  }, "Auto-tags by time and location")), React.createElement("span", {
-    style: {
+  }), (() => {
+    var photos = allMoments.filter(m => m.photoId);
+    var hs = _memHeroState({
+      totalCount,
+      photoCount: photos.length,
+      batch,
+      reviewCount: reviewIds.length
+    });
+    var done = !!batch && batch.done === batch.total;
+    var n = k => done ? batch.results.filter(k).length : 0;
+    var tagged = n(r => !r.err && !r.skipped && r.artistId),
+      needSet = n(r => !r.err && !r.skipped && !r.artistId);
+    var failed = n(r => r.err),
+      dupes = n(r => r.skipped === "duplicate");
+    var batchReview = done ? batch.results.filter(r => r.momentId) : [];
+    var status = done ? [tagged ? `${tagged} tagged` : null, needSet ? `${needSet} need a set` : null, dupes ? `${dupes} skipped (duplicate)` : null, failed ? `${failed} failed` : null].filter(Boolean).join(" · ") : "";
+    var quiet = {
+      ...fieldIconBtn,
+      width: "auto",
+      padding: "0 4px",
+      color: "var(--text-2)",
       fontSize: 15,
-      lineHeight: "20px",
-      fontWeight: 600,
-      fontVariantNumeric: "tabular-nums"
-    }
-  }, batch && batch.done < batch.total ? `${batch.done}/${batch.total}` : "Pick")), !batch && reviewIds.length > 0 && React.createElement("button", {
-    "data-review-later": true,
-    onClick: () => setReview(reviewIds.map(id => ({
-      momentId: id
-    }))),
-    style: {
-      display: "block",
-      width: "100%",
-      textAlign: "left",
-      marginTop: 8,
-      minHeight: 44,
-      padding: "0 16px",
-      borderRadius: 14,
-      cursor: "pointer",
-      background: "var(--paper-2)",
-      border: "none",
-      color: "var(--warn)",
-      fontSize: 15,
-      lineHeight: "20px",
-      fontWeight: 600,
+      fontWeight: 500,
       fontFamily: "inherit"
-    }
-  }, "⚑ ", reviewIds.length, " ", reviewIds.length === 1 ? "moment needs" : "moments need", " a set · Review"), batch && batch.done === batch.total && (() => {
-    var tagged = batch.results.filter(r => !r.err && !r.skipped && r.artistId).length;
-    var needRetag = batch.results.filter(r => !r.err && !r.skipped && !r.artistId).length;
-    var failed = batch.results.filter(r => r.err).length;
-    var dupes = batch.results.filter(r => r.skipped === "duplicate").length;
-    var allTagged = tagged > 0 && needRetag === 0 && failed === 0;
-    return React.createElement("button", {
-      onClick: () => {
-        if (batch.results.some(r => r.momentId)) setReview(batch.results.filter(r => r.momentId));else setBatch(null);
-      },
+    };
+    if (hs === "importing") return React.createElement("div", {
+      role: "status",
+      "data-mem-hero": "importing",
       style: {
-        display: "block",
-        width: "100%",
-        textAlign: "left",
-        marginTop: 8,
-        padding: "10px 16px",
-        minHeight: 44,
-        background: "var(--paper-2)",
-        border: "none",
+        marginTop: 12,
+        padding: "12px 16px",
         borderRadius: 14,
-        cursor: "pointer",
-        color: "var(--ink)",
-        fontFamily: "inherit"
+        background: "var(--paper-2)"
       }
     }, React.createElement("div", {
       style: {
+        fontSize: 17,
+        lineHeight: "22px",
+        fontWeight: 600,
+        fontVariantNumeric: "tabular-nums"
+      }
+    }, "Importing ", batch.done, " of ", batch.total), React.createElement("div", {
+      style: {
+        fontSize: 13,
+        lineHeight: "18px",
+        color: "var(--text-2)"
+      }
+    }, "Auto-tagging by time and location"));
+    if (hs === "empty") return React.createElement("div", {
+      "data-mem-hero": "empty",
+      style: {
+        marginTop: 12
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 20,
+        lineHeight: "25px",
+        fontWeight: 600
+      }
+    }, "Your weekend, remembered"), React.createElement("p", {
+      style: {
+        margin: "6px 0 16px",
+        fontSize: 15,
+        lineHeight: "21px",
+        color: "var(--text-2)"
+      }
+    }, "Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap."), React.createElement(FieldButton, {
+      onClick: handlePickClick
+    }, "Import from camera roll"));
+    if (hs === "review") {
+      var fromBatch = done && needSet > 0;
+      var count = fromBatch ? batchReview.length : reviewIds.length;
+      return React.createElement("div", {
+        "data-mem-hero": "review",
+        style: {
+          marginTop: 12
+        }
+      }, React.createElement("button", {
+        "data-review-later": true,
+        onClick: () => setReview(fromBatch ? batchReview : reviewIds.map(id => ({
+          momentId: id
+        }))),
+        style: {
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          width: "100%",
+          minHeight: 64,
+          padding: "10px 16px",
+          borderRadius: 14,
+          border: "none",
+          cursor: "pointer",
+          background: "var(--warn)",
+          color: "var(--paper)",
+          textAlign: "left",
+          fontFamily: "inherit"
+        }
+      }, React.createElement("span", {
+        style: {
+          fontSize: 17,
+          lineHeight: "22px",
+          fontWeight: 600
+        }
+      }, "Review ", count, " ", count === 1 ? "moment" : "moments"), React.createElement("span", {
+        style: {
+          fontSize: 13,
+          lineHeight: "18px",
+          fontWeight: 500,
+          fontVariantNumeric: "tabular-nums"
+        }
+      }, status || (count === 1 ? "It needs a set" : "Each needs a set"))), React.createElement("div", {
+        style: {
+          display: "flex",
+          justifyContent: "flex-end",
+          marginTop: 4
+        }
+      }, React.createElement("button", {
+        onClick: handlePickClick,
+        style: quiet
+      }, "Import more")));
+    }
+    if (hs === "relive") return React.createElement("div", {
+      "data-mem-hero": "relive",
+      style: {
+        marginTop: 12
+      }
+    }, React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        width: "100%",
+        minHeight: 64,
+        padding: "10px 16px",
+        background: "var(--paper-2)",
+        borderRadius: 14
+      }
+    }, React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 17,
+        lineHeight: "22px",
+        fontWeight: 600
+      }
+    }, "Relive your weekend"), React.createElement("div", {
+      style: {
+        fontSize: 13,
+        lineHeight: "18px",
+        color: "var(--text-2)",
+        fontVariantNumeric: "tabular-nums"
+      }
+    }, photos.length, " moments · auto-play reel")), React.createElement("button", {
+      onClick: () => {
+        var ms = photos.slice().sort((a, b) => {
+          var ta = a.takenAt || "",
+            tb = b.takenAt || "";
+          if (ta && tb) return ta.localeCompare(tb);
+          return (a.createdAt || 0) - (b.createdAt || 0);
+        });
+        playReel(ms, FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name, null);
+      },
+      style: {
+        flexShrink: 0,
+        minHeight: 44,
+        padding: "0 16px",
+        borderRadius: 14,
+        border: "none",
+        cursor: "pointer",
+        background: "var(--signal)",
+        color: "var(--on-signal)",
         fontSize: 15,
         lineHeight: "20px",
         fontWeight: 600,
-        color: allTagged ? "var(--signal-ink)" : "var(--warn)"
+        fontFamily: "inherit"
       }
-    }, "✓ ", tagged, " tagged", needRetag > 0 ? ` · ${needRetag} need a set` : "", dupes > 0 ? ` · ${dupes} skipped (duplicate)` : "", failed > 0 ? ` · ${failed} failed` : ""), needRetag > 0 && React.createElement("div", {
+    }, "Play")), done && status && React.createElement("div", {
+      role: "status",
       style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
         marginTop: 4,
         fontSize: 13,
         lineHeight: "18px",
         color: "var(--text-2)"
       }
-    }, "iOS sometimes strips photo time when copying — tap an untagged moment to pick its set."), React.createElement("div", {
+    }, React.createElement("span", {
       style: {
-        marginTop: 4,
+        flex: 1,
+        minWidth: 0
+      }
+    }, "Import: ", status), batchReview.length > 0 && React.createElement("button", {
+      onClick: () => setReview(batchReview),
+      style: quiet
+    }, "Review"), React.createElement("button", {
+      onClick: () => setBatch(null),
+      style: quiet
+    }, "Done")));
+    return React.createElement("div", {
+      "data-mem-hero": "import",
+      style: {
+        marginTop: 12
+      }
+    }, React.createElement(FieldButton, {
+      onClick: handlePickClick
+    }, "Import from camera roll"), React.createElement("div", {
+      style: {
+        marginTop: 6,
         fontSize: 13,
         lineHeight: "18px",
         color: "var(--text-2)"
       }
-    }, batch.results.some(r => r.momentId) ? "Tap to review tags" : "Tap to dismiss"));
-  })(), allMoments.filter(m => m.photoId).length >= 3 && React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 12,
-      width: "100%",
-      minHeight: 64,
-      marginTop: 12,
-      padding: "10px 16px",
-      background: "var(--paper-2)",
-      border: "none",
-      borderRadius: 14,
-      color: "var(--ink)",
-      textAlign: "left",
-      fontFamily: "inherit"
-    }
-  }, React.createElement("div", {
-    style: {
-      flex: 1,
-      minWidth: 0
-    }
-  }, React.createElement("div", {
-    style: {
-      fontSize: 17,
-      lineHeight: "22px",
-      fontWeight: 600
-    }
-  }, "Relive your weekend"), React.createElement("div", {
-    style: {
-      fontSize: 13,
-      lineHeight: "18px",
-      color: "var(--text-2)",
-      fontVariantNumeric: "tabular-nums"
-    }
-  }, allMoments.filter(m => m.photoId).length, " moments · auto-play reel")), React.createElement("button", {
-    onClick: () => {
-      var ms = allMoments.filter(m => m.photoId).slice().sort((a, b) => {
-        var ta = a.takenAt || "",
-          tb = b.takenAt || "";
-        if (ta && tb) return ta.localeCompare(tb);
-        return (a.createdAt || 0) - (b.createdAt || 0);
-      });
-      playReel(ms, FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name, null);
-    },
-    style: {
-      flexShrink: 0,
-      minHeight: 44,
-      padding: "0 16px",
-      borderRadius: 14,
-      border: "none",
-      cursor: "pointer",
-      background: "var(--signal)",
-      color: "var(--on-signal)",
-      fontSize: 15,
-      lineHeight: "20px",
-      fontWeight: 600,
-      fontFamily: "inherit"
-    }
-  }, "▶ Play")), totalCount > 0 && React.createElement("div", {
-    style: {
-      display: "flex",
-      justifyContent: "flex-end",
-      marginTop: 8
-    }
-  }, React.createElement("button", {
-    onClick: () => setManage(m => !m),
-    "aria-pressed": manage,
-    style: {
-      ...fieldIconBtn,
-      width: "auto",
-      padding: "0 8px",
-      color: manage ? "var(--ink)" : "var(--text-2)",
-      fontSize: 15,
-      fontWeight: 500
-    }
-  }, manage ? "Done" : "Manage")), manage && backupStat.total > 0 && React.createElement("button", {
+    }, done && status ? `Import: ${status}` : "Auto-tags by time and location"));
+  })(), manage && backupStat.total > 0 && React.createElement("button", {
     onClick: handleBackup,
     disabled: backupBusy,
     "aria-label": _isPlusSub() ? "Back up your memories to the cloud" : "Back up to cloud — Plursky Plus",
@@ -9545,26 +9657,7 @@ function MemoriesScreen({
   }, autoOn ? "On" : "Off")), showPlus && React.createElement(PlusSheet, {
     feature: "cloud backup",
     onClose: () => setShowPlus(false)
-  }), totalCount === 0 && React.createElement("div", {
-    style: {
-      marginTop: 24
-    }
-  }, React.createElement("div", {
-    style: {
-      fontSize: 20,
-      lineHeight: "25px",
-      fontWeight: 600
-    }
-  }, "Your weekend, remembered"), React.createElement("p", {
-    style: {
-      margin: "6px 0 16px",
-      fontSize: 15,
-      lineHeight: "21px",
-      color: "var(--text-2)"
-    }
-  }, "Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap."), React.createElement(FieldButton, {
-    onClick: handlePickClick
-  }, "Import from camera roll")), totalCount > 0 && React.createElement("div", {
+  }), totalCount > 0 && React.createElement("div", {
     role: "tablist",
     "aria-label": "View",
     style: {
@@ -9606,19 +9699,20 @@ function MemoriesScreen({
     value: memQuery,
     onChange: e => setMemQuery(e.target.value),
     placeholder: "Search artist, song, or stage…",
-    className: "mono",
+    "aria-label": "Search your moments",
     style: {
       width: "100%",
       boxSizing: "border-box",
       marginBottom: 8,
-      padding: "9px 12px",
-      borderRadius: 999,
+      height: 44,
+      padding: "0 14px",
+      borderRadius: 14,
       background: "var(--paper-2)",
-      border: "1px solid var(--line)",
+      border: "none",
       color: "var(--ink)",
-      fontSize: 11,
-      letterSpacing: 0.5,
-      outline: "none"
+      fontSize: 15,
+      outline: "none",
+      fontFamily: "inherit"
     }
   }), React.createElement(MemoryGrid, {
     allMoments: (() => {
@@ -9647,39 +9741,36 @@ function MemoriesScreen({
     }, React.createElement("div", {
       style: {
         display: "flex",
-        alignItems: "baseline",
-        gap: 10,
-        paddingTop: 14,
-        paddingBottom: 8,
+        alignItems: "center",
+        gap: 8,
+        paddingTop: 12,
+        paddingBottom: 4,
         marginBottom: 4,
         borderBottom: "1px solid var(--line)"
       }
     }, React.createElement("div", {
-      className: "serif",
       style: {
-        fontSize: 24,
+        flex: 1,
+        minWidth: 0
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 20,
+        lineHeight: "25px",
+        fontWeight: 600,
         color: "var(--ink)"
       }
     }, d.label), React.createElement("div", {
-      className: "mono",
       style: {
-        fontSize: 9,
-        letterSpacing: 1.4,
-        color: "var(--muted)",
-        fontWeight: 700
+        fontSize: 13,
+        lineHeight: "18px",
+        color: "var(--text-2)",
+        fontVariantNumeric: "tabular-nums"
       }
-    }, "· ", dateInfo ? `${["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"][dateInfo.m]} ${dateInfo.d}` : `DAY ${d.n}`), moments.length > 0 && React.createElement(React.Fragment, null, React.createElement(_NightShareMenu, {
+    }, [dateInfo ? `${["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][dateInfo.m]} ${dateInfo.d}` : `Day ${d.n}`, moments.length ? `${moments.length} ${moments.length === 1 ? "moment" : "moments"}` : null].filter(Boolean).join(" · "))), moments.length > 0 && React.createElement(_NightShareMenu, {
       night: d.n,
       moments: moments
-    }), React.createElement("div", {
-      className: "mono",
-      style: {
-        fontSize: 9,
-        letterSpacing: 1.2,
-        color: "var(--muted)",
-        fontWeight: 700
-      }
-    }, moments.length, " MOMENT", moments.length === 1 ? "" : "S"))), moments.length > 0 && React.createElement(PeakMomentCard, {
+    })), moments.length > 0 && React.createElement(PeakMomentCard, {
       peak: _peakWindow(moments),
       accent: "var(--ember)",
       onOpenLightbox: openLightbox,
@@ -9723,17 +9814,11 @@ function MemoriesScreen({
         return aMin - bMin;
       });
       if (!spineIds.length && !untagged.length) return null;
-      return React.createElement(React.Fragment, null, spineIds.length > 0 && React.createElement("div", {
-        className: "mono",
-        style: {
-          fontSize: 9,
-          letterSpacing: 1.4,
-          color: "var(--muted)",
-          fontWeight: 700,
-          marginTop: 14,
-          marginBottom: 2
-        }
-      }, "SETS YOU WATCHED"), spineIds.map(aId => {
+      return React.createElement(_MemSection, {
+        id: "sets",
+        title: spineIds.length ? "Sets you watched" : "Other moments",
+        count: spineIds.length || untagged.length
+      }, spineIds.map(aId => {
         var artist = ARTISTS.find(x => x.id === aId);
         var stage = artist ? STAGES.find(s => s.id === artist.stage) : null;
         var accent = "var(--text-2)";
