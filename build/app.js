@@ -931,14 +931,23 @@ function SearchModal({
 }
 function ToastHost() {
   var [msg, setMsg] = React.useState(null);
+  var queue = React.useRef([]),
+    showing = React.useRef(false);
   React.useEffect(() => {
     window.plurskyToast = (text, opts = {}) => {
-      setMsg(null);
-      requestAnimationFrame(() => setMsg({
+      if (opts.defer && showing.current) {
+        queue.current.push({
+          text,
+          ...opts
+        });
+        return;
+      }
+      showing.current = true;
+      setMsg({
         text,
-        id: Date.now(),
+        id: Date.now() + Math.random(),
         ...opts
-      }));
+      });
       try {
         navigator.vibrate?.(15);
       } catch {}
@@ -948,7 +957,17 @@ function ToastHost() {
     };
   }, []);
   React.useEffect(() => {
-    if (!msg) return;
+    if (!msg) {
+      var next = queue.current.shift();
+      if (next) {
+        showing.current = true;
+        setMsg({
+          ...next,
+          id: Date.now() + Math.random()
+        });
+      } else showing.current = false;
+      return;
+    }
     var t = setTimeout(() => setMsg(null), msg.duration || 1600);
     return () => clearTimeout(t);
   }, [msg?.id]);
@@ -967,6 +986,7 @@ function ToastHost() {
       padding: "0 16px"
     }
   }, React.createElement("div", {
+    key: msg.id,
     className: "mono",
     role: "status",
     "aria-live": "polite",
@@ -1243,7 +1263,9 @@ function App() {
             try {
               localStorage.setItem("cloud_nudge_seen", "1");
             } catch {}
-            window.plurskyToast("Saved. Sign in on Me tab to back up.");
+            window.plurskyToast("Saved. Sign in on Me tab to back up.", {
+              defer: true
+            });
           }
         }
       } catch {}
@@ -1417,7 +1439,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v326"
+        version: "v327"
       }));
     } catch {}
   }
@@ -1482,7 +1504,7 @@ class RootErrorBoundary extends React.Component {
         letterSpacing: 1.2,
         color: "rgba(var(--shade-rgb),0.45)"
       }
-    }, "PLURSKY · v326"));
+    }, "PLURSKY · v327"));
   }
 }
 function SetStartingCinematic() {
