@@ -203,7 +203,8 @@ function OnboardingModal({
     preview: React.createElement(OnbCardPreview, {
       artists: heads,
       count: 3
-    })
+    }),
+    plus: "keeps the full weekend in 1080p — no watermark, cloud backup, offline maps."
   }];
   var story = page < 3;
   var cur = PAGES[Math.min(page, 2)];
@@ -289,12 +290,24 @@ function OnboardingModal({
     }
   }, cur.title), React.createElement("p", {
     style: {
-      margin: "8px 0 24px",
+      margin: cur.plus ? "8px 0 12px" : "8px 0 24px",
       fontSize: 15,
       lineHeight: "21px",
       color: "var(--text-2)"
     }
-  }, cur.body), React.createElement(FieldButton, {
+  }, cur.body), cur.plus && React.createElement("p", {
+    style: {
+      margin: "0 0 24px",
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, React.createElement("span", {
+    style: {
+      color: "var(--signal-ink)",
+      fontWeight: 600
+    }
+  }, "Plursky+"), " ", cur.plus), React.createElement(FieldButton, {
     onClick: () => setPage(p => Math.min(p + 1, 3))
   }, page < 2 ? "Continue" : "Choose your festival"))) : React.createElement(React.Fragment, null, React.createElement("div", {
     style: {
@@ -1404,7 +1417,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v324"
+        version: "v325"
       }));
     } catch {}
   }
@@ -1469,7 +1482,7 @@ class RootErrorBoundary extends React.Component {
         letterSpacing: 1.2,
         color: "rgba(var(--shade-rgb),0.45)"
       }
-    }, "PLURSKY · v324"));
+    }, "PLURSKY · v325"));
   }
 }
 function SetStartingCinematic() {

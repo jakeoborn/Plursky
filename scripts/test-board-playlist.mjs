@@ -195,6 +195,7 @@ if (!ADAPTER_ONLY) {
     c.ARTISTS.push({ id: "zz-unsched", name: "Zz Unscheduled", stage: null, day: null, start: "", end: "", tier: 1 });
     const saved = [top(days[0]).id, top(days[days.length - 1]).id, "zz-unsched"];
     let writes = [];
+    const details = [];
     c.getValidToken = async () => "tok";
     c.ensureSpotifyProfile = async () => ({ id: "me" });
     c.fetch = async (url, init = {}) => {
@@ -206,6 +207,7 @@ if (!ADAPTER_ONLY) {
         return res({ tracks: { items: [1, 2, 3, 4, 5, 6].map(n => ({ uri: `spotify:track:${name}#${n}`, artists: [{ id: `id-${name}`, name }] })) } });
       }
       if (u.pathname === "/v1/playlists/pl/tracks") { writes.push(...JSON.parse(init.body).uris); return res({}); }
+      if (u.pathname === "/v1/playlists/pl" && init.method === "PUT") { details.push(JSON.parse(init.body)); return res({}); }
       return res({});
     };
     const build = c.createSetsPlaylist || c.createEdcPlaylist;
@@ -217,6 +219,17 @@ if (!ADAPTER_ONLY) {
       const a = c.ARTISTS.find(x => x.id === id);
       check(`adapter: plain build writes ${id} (day ${a.day ?? "unscheduled"})`, Number.isFinite(firstAt(a)), `${a.name} has no tracks in the playlist`);
     }
+    // Visibility: private by default, public only on the user's switch, and
+    // the switch alone re-applies it to the playlist already built.
+    const vis = () => details.filter(d => "public" in d).map(d => d.public);
+    check("visibility: a default build keeps the playlist private", vis().at(-1) === false && r.public === false, JSON.stringify({ sent: vis(), got: r.public }));
+    c._setPlaylistPublicPref?.(true);
+    const rp = await build({ saved }, {});
+    check("visibility: the switch makes the next build public", vis().at(-1) === true && rp?.public === true, JSON.stringify({ sent: vis(), got: rp?.public }));
+    const ap = await c._applyPlaylistVisibility?.(false);
+    check("visibility: switching off re-applies private to the built playlist", ap?.ok === true && vis().at(-1) === false, JSON.stringify({ ap, sent: vis() }));
+    c._setPlaylistPublicPref?.(false);
+    said.push("visibility: private by default, public on the switch, the switch re-applies to the built playlist");
     if (!ADAPTER_ONLY) {
       const pool = c.ARTISTS.filter(a => !saved.includes(a.id) && a.day != null && a.start);
       const p = c.planBoardPlaylist({ artists: c.ARTISTS, savedIds: saved, affinityNames: pool.filter((_, i) => i % 11 === 3).map(a => a.name), stages: c.STAGES });

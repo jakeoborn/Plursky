@@ -248,7 +248,11 @@ function SpotifyScreen({
       marginBottom: 10,
       letterSpacing: 0.8
     }
-  }, "Session expired — please reconnect."), React.createElement("div", {
+  }, "Session expired — please reconnect."), connected && (state.saved.length > 0 || (window._collectMomentSongs?.() || []).length > 0) && React.createElement("div", {
+    style: {
+      marginBottom: 8
+    }
+  }, React.createElement(PlaylistVisibilityToggle, null)), React.createElement("div", {
     style: {
       display: "flex",
       gap: 8,
@@ -11386,7 +11390,11 @@ function BoardPlaylistCard({
     }, off ? "+" : "✓"));
   }), React.createElement("div", {
     style: {
-      marginTop: 16,
+      marginTop: 12
+    }
+  }, React.createElement(PlaylistVisibilityToggle, null)), React.createElement("div", {
+    style: {
+      marginTop: 8,
       display: "flex",
       gap: 8,
       flexWrap: "wrap"
@@ -11417,6 +11425,88 @@ function BoardPlaylistCard({
       marginTop: 6
     }
   }, React.createElement("div", null, "lineup ", d.lineup, " · saved ", d.saved, " · seeds ", d.seeds, d.dupSaved.length ? ` · ${d.dupSaved.length} repeat-day save(s) merged` : "", d.unknownSaved.length ? ` · ${d.unknownSaved.length} saved id(s) not on this lineup` : ""), React.createElement("div", null, "candidates ", d.candidates, " · cap ", plan.cap, " · left out by the cap ", d.capped, " · dropped by you ", plan.picks.length - kept.picks.length), React.createElement("div", null, "skipped: saved ", e.saved, " · same act ", e.sameAct, " · no reason ", e.noSignal), React.createElement("div", null, "picks by reason: ", Object.entries(d.byKind).map(([k, n]) => `${k} ${n}`).join(" · ") || "none", " · listening names ", d.affinityNames), lastResult && (lastResult.ok ? React.createElement("div", null, "written ", lastResult.added, " track(s)", lastResult.missed ? ` · not found on Spotify: ${(lastResult.missedNames || []).join(", ")}` : " · every act found") : React.createElement("div", null, "last build: ", lastResult.reason, lastResult.status ? ` (${lastResult.status})` : ""))));
+}
+function PlaylistVisibilityToggle() {
+  var [on, setOn] = React.useState(() => _playlistPublicPref());
+  var [note, setNote] = React.useState("");
+  var flip = async () => {
+    var next = !on;
+    setOn(next);
+    setNote("");
+    _setPlaylistPublicPref(next);
+    var r = await _applyPlaylistVisibility(next);
+    if (!r.ok && r.reason !== "no_playlist") setNote("Spotify didn't update. It applies on your next build.");
+  };
+  return React.createElement("div", null, React.createElement("button", {
+    type: "button",
+    role: "switch",
+    "aria-checked": on,
+    onClick: flip,
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      width: "100%",
+      minHeight: 44,
+      padding: "8px 0",
+      background: "transparent",
+      border: "none",
+      color: "var(--ink)",
+      textAlign: "left",
+      fontFamily: "inherit",
+      cursor: "pointer"
+    }
+  }, React.createElement("span", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("span", {
+    style: {
+      display: "block",
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 500
+    }
+  }, "Public playlist"), React.createElement("span", {
+    style: {
+      display: "block",
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, on ? "Anyone can find and play it on Spotify." : "Private. Only you see it on Spotify.")), React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      position: "relative",
+      width: 44,
+      height: 26,
+      borderRadius: 26,
+      flexShrink: 0,
+      background: on ? "var(--signal)" : "var(--paper-3)",
+      border: "1px solid var(--line-2)",
+      transition: "background .2s"
+    }
+  }, React.createElement("span", {
+    style: {
+      position: "absolute",
+      top: 2,
+      left: on ? 20 : 2,
+      width: 20,
+      height: 20,
+      borderRadius: 20,
+      background: on ? "var(--on-signal)" : "var(--text-2)",
+      transition: "left .2s"
+    }
+  }))), note && React.createElement("div", {
+    role: "status",
+    style: {
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)",
+      paddingBottom: 4
+    }
+  }, note));
 }
 function BuildPlaylistButton({
   state,
@@ -15522,7 +15612,11 @@ function RecapScreen({
       lineHeight: 1.5,
       marginBottom: 14
     }
-  }, "Build a Spotify playlist of every set you actually caught — top tracks from each, in chronological set order."), playlistState.status === "done" ? React.createElement("div", {
+  }, "Build a Spotify playlist of every set you actually caught — top tracks from each, in chronological set order."), React.createElement("div", {
+    style: {
+      marginBottom: 12
+    }
+  }, React.createElement(PlaylistVisibilityToggle, null)), playlistState.status === "done" ? React.createElement("div", {
     style: {
       padding: "10px 12px",
       borderRadius: 10,
