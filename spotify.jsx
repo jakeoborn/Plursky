@@ -179,6 +179,9 @@ function SpotifyScreen({ state, setState }) {
             </div>
           )}
 
+          {connected && (state.saved.length > 0 || (window._collectMomentSongs?.() || []).length > 0) && (
+            <div style={{ marginBottom: 8 }}><PlaylistVisibilityToggle /></div>
+          )}
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             {connected && matched.length > 0 && (
               <button onClick={handleSaveAll} style={{
@@ -7211,7 +7214,8 @@ function BoardPlaylistCard({ state, spotifyArtists, connected }) {
         );
       })}
 
-      <div style={{ marginTop: 16, display: "flex", gap: 8, flexWrap: "wrap" }}>
+      <div style={{ marginTop: 12 }}><PlaylistVisibilityToggle /></div>
+      <div style={{ marginTop: 8, display: "flex", gap: 8, flexWrap: "wrap" }}>
         {/* Keyed on the plan so toggling a pick resets a finished build. */}
         <BuildPlaylistButton key={kept.order.map(o => o.artist.id).join(",")}
           state={state} plan={kept} label="CREATE IN SPOTIFY" onResult={setLastResult} />
@@ -7232,6 +7236,48 @@ function BoardPlaylistCard({ state, spotifyArtists, connected }) {
             : <div>last build: {lastResult.reason}{lastResult.status ? ` (${lastResult.status})` : ""}</div>)}
         </div>
       )}
+    </div>
+  );
+}
+
+// "Public playlist": off by default, so a built playlist stays private on
+// Spotify until the user chooses otherwise. Flipping it re-applies to the
+// playlist already built; if that write fails the next build applies it.
+function PlaylistVisibilityToggle() {
+  const [on, setOn] = React.useState(() => _playlistPublicPref());
+  const [note, setNote] = React.useState("");
+  const flip = async () => {
+    const next = !on;
+    setOn(next); setNote("");
+    _setPlaylistPublicPref(next);
+    const r = await _applyPlaylistVisibility(next);
+    if (!r.ok && r.reason !== "no_playlist") setNote("Spotify didn't update. It applies on your next build.");
+  };
+  return (
+    <div>
+      <button type="button" role="switch" aria-checked={on} onClick={flip} style={{
+        display: "flex", alignItems: "center", gap: 12, width: "100%", minHeight: 44, padding: "8px 0",
+        background: "transparent", border: "none", color: "var(--ink)", textAlign: "left",
+        fontFamily: "inherit", cursor: "pointer",
+      }}>
+        <span style={{ flex: 1, minWidth: 0 }}>
+          <span style={{ display: "block", fontSize: 15, lineHeight: "20px", fontWeight: 500 }}>Public playlist</span>
+          <span style={{ display: "block", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+            {on ? "Anyone can find and play it on Spotify." : "Private. Only you see it on Spotify."}
+          </span>
+        </span>
+        <span aria-hidden="true" style={{
+          position: "relative", width: 44, height: 26, borderRadius: 26, flexShrink: 0,
+          background: on ? "var(--signal)" : "var(--paper-3)", border: "1px solid var(--line-2)",
+          transition: "background .2s",
+        }}>
+          <span style={{
+            position: "absolute", top: 2, left: on ? 20 : 2, width: 20, height: 20, borderRadius: 20,
+            background: on ? "var(--on-signal)" : "var(--text-2)", transition: "left .2s",
+          }} />
+        </span>
+      </button>
+      {note && <div role="status" style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", paddingBottom: 4 }}>{note}</div>}
     </div>
   );
 }
@@ -9915,6 +9961,7 @@ function RecapScreen({ state, setState }) {
             <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5, marginBottom: 14 }}>
               Build a Spotify playlist of every set you actually caught — top tracks from each, in chronological set order.
             </div>
+            <div style={{ marginBottom: 12 }}><PlaylistVisibilityToggle /></div>
             {playlistState.status === "done" ? (
               <div style={{
                 padding: "10px 12px", borderRadius: 10,

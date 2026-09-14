@@ -880,6 +880,54 @@ async function _createPlurskyPlaylist(token, profileId) {
     };
   }
 }
+function _playlistPublicPref() {
+  try {
+    return localStorage.getItem("plursky_playlist_public") === "1";
+  } catch {
+    return false;
+  }
+}
+function _setPlaylistPublicPref(on) {
+  try {
+    localStorage.setItem("plursky_playlist_public", on ? "1" : "0");
+  } catch {}
+}
+async function _applyPlaylistVisibility(isPublic) {
+  var id = null;
+  try {
+    id = localStorage.getItem("plursky_target_playlist_id");
+  } catch {}
+  if (!id) return {
+    ok: false,
+    reason: "no_playlist"
+  };
+  var token = await getValidToken();
+  if (!token) return {
+    ok: false,
+    reason: "not_connected"
+  };
+  try {
+    var r = await fetch(`https://api.spotify.com/v1/playlists/${id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        public: !!isPublic
+      })
+    });
+    return {
+      ok: r.ok,
+      status: r.status
+    };
+  } catch {
+    return {
+      ok: false,
+      reason: "fetch_failed"
+    };
+  }
+}
 async function createSetsPlaylist(state, opts = {}) {
   var source = opts.source === "attended" ? "attended" : "saved";
   var token = await getValidToken();
@@ -1116,18 +1164,20 @@ async function createSetsPlaylist(state, opts = {}) {
     var n = entries.reduce((s, e, i) => s + (e.artist.day === d ? urisByEntry[i].length : 0), 0);
     return n > 0 ? `${FESTIVAL_CONFIG.dayDates[d].short} ${n}` : null;
   }).filter(Boolean);
-  if (dayLabels.length > 0) {
-    await fetch(`https://api.spotify.com/v1/playlists/${playlist.id}`, {
-      method: "PUT",
-      headers: {
-        Authorization: "Bearer " + token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
+  var isPublic = _playlistPublicPref();
+  var detailsRes = await fetch(`https://api.spotify.com/v1/playlists/${playlist.id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      public: isPublic,
+      ...(dayLabels.length > 0 ? {
         description: `${seedCount} sets${pickCount ? ` + ${pickCount} picks` : ""} · ${dayLabels.join(" · ")} tracks · headliners 5 songs · built with Plursky · ${dateStr}`
-      })
-    }).catch(() => {});
-  }
+      } : {})
+    })
+  }).catch(() => null);
   return {
     ok: true,
     added: addedCount,
@@ -1143,7 +1193,8 @@ async function createSetsPlaylist(state, opts = {}) {
       tracks: urisByEntry[i].length
     })),
     url: playlist.external_urls?.spotify || `https://open.spotify.com/playlist/${playlist.id}`,
-    id: playlist.id
+    id: playlist.id,
+    public: detailsRes?.ok ? isPublic : null
   };
 }
 var createEdcPlaylist = createSetsPlaylist;

@@ -121,7 +121,8 @@ function OnboardingModal({ onDone, setState, state }) {
   const PAGES = [
     { title: "Plan the night.", body: "Save the sets you want and see what’s on now, next and at every stage.", preview: <OnbSchedulePreview /> },
     { title: "Know what you caught.", body: "Your photos and clips land on the artist, stage and time they happened.", preview: <OnbCardPreview artists={heads} count={1} /> },
-    { title: "Keep the weekend.", body: "Every set you catch becomes a card for your recap.", preview: <OnbCardPreview artists={heads} count={3} /> },
+    { title: "Keep the weekend.", body: "Every set you catch becomes a card for your recap.", preview: <OnbCardPreview artists={heads} count={3} />,
+      plus: "keeps the full weekend in 1080p — no watermark, cloud backup, offline maps." },
   ];
   const story = page < 3;
   const cur = PAGES[Math.min(page, 2)];
@@ -153,7 +154,14 @@ function OnboardingModal({ onDone, setState, state }) {
           </div>
           <div style={{ padding: "24px 20px 16px" }}>
             <h1 style={{ margin: 0, fontSize: 34, lineHeight: "41px", fontWeight: 700, letterSpacing: "-0.01em" }}>{cur.title}</h1>
-            <p style={{ margin: "8px 0 24px", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>{cur.body}</p>
+            <p style={{ margin: cur.plus ? "8px 0 12px" : "8px 0 24px", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>{cur.body}</p>
+            {/* One line, no price and no button: the free app is complete, this
+                only says what Plursky+ adds. */}
+            {cur.plus && (
+              <p style={{ margin: "0 0 24px", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+                <span style={{ color: "var(--signal-ink)", fontWeight: 600 }}>Plursky+</span> {cur.plus}
+              </p>
+            )}
             <FieldButton onClick={() => setPage(p => Math.min(p + 1, 3))}>{page < 2 ? "Continue" : "Choose your festival"}</FieldButton>
           </div>
         </>
@@ -890,7 +898,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v324",
+        version: "v325",
       }));
     } catch {}
   }
@@ -923,7 +931,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(var(--shade-rgb),0.45)" }}>
-          PLURSKY · v324
+          PLURSKY · v325
         </div>
       </div>
     );

@@ -869,6 +869,36 @@ async function _createPlurskyPlaylist(token, profileId) {
   }
 }
 
+// Playlist visibility on Spotify. Private unless the user switched "Public
+// playlist" on; every build re-applies it, so switching off also takes an
+// already-public "Plursky" playlist back to private.
+function _playlistPublicPref() {
+  try { return localStorage.getItem("plursky_playlist_public") === "1"; } catch { return false; }
+}
+function _setPlaylistPublicPref(on) {
+  try { localStorage.setItem("plursky_playlist_public", on ? "1" : "0"); } catch {}
+}
+// The switch applies at once to the playlist the last build wrote to, so the
+// user never has to rebuild just to change who can see it.
+// Returns { ok, status } | { ok: false, reason }
+async function _applyPlaylistVisibility(isPublic) {
+  let id = null;
+  try { id = localStorage.getItem("plursky_target_playlist_id"); } catch {}
+  if (!id) return { ok: false, reason: "no_playlist" };
+  const token = await getValidToken();
+  if (!token) return { ok: false, reason: "not_connected" };
+  try {
+    const r = await fetch(`https://api.spotify.com/v1/playlists/${id}`, {
+      method: "PUT",
+      headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
+      body: JSON.stringify({ public: !!isPublic }),
+    });
+    return { ok: r.ok, status: r.status };
+  } catch {
+    return { ok: false, reason: "fetch_failed" };
+  }
+}
+
 // #12 Build my playlist — push the user's saved sets (any festival) into their
 // "Plursky" Spotify playlist (created manually, see _findPlurskyPlaylist).
 // Skips artists Spotify can't find.
@@ -1070,15 +1100,18 @@ async function createSetsPlaylist(state, opts = {}) {
     const n = entries.reduce((s, e, i) => s + (e.artist.day === d ? urisByEntry[i].length : 0), 0);
     return n > 0 ? `${FESTIVAL_CONFIG.dayDates[d].short} ${n}` : null;
   }).filter(Boolean);
-  if (dayLabels.length > 0) {
-    await fetch(`https://api.spotify.com/v1/playlists/${playlist.id}`, {
-      method: "PUT",
-      headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
-      body: JSON.stringify({
+  //    Visibility rides the same PUT on every build (_playlistPublicPref).
+  const isPublic = _playlistPublicPref();
+  const detailsRes = await fetch(`https://api.spotify.com/v1/playlists/${playlist.id}`, {
+    method: "PUT",
+    headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      public: isPublic,
+      ...(dayLabels.length > 0 ? {
         description: `${seedCount} sets${pickCount ? ` + ${pickCount} picks` : ""} · ${dayLabels.join(" · ")} tracks · headliners 5 songs · built with Plursky · ${dateStr}`,
-      }),
-    }).catch(() => {});
-  }
+      } : {}),
+    }),
+  }).catch(() => null);
 
   return {
     ok:    true,
@@ -1092,6 +1125,8 @@ async function createSetsPlaylist(state, opts = {}) {
     entries: entries.map((e, i) => ({ id: e.artist.id, name: e.artist.name, role: e.role, tracks: urisByEntry[i].length })),
     url:   playlist.external_urls?.spotify || `https://open.spotify.com/playlist/${playlist.id}`,
     id:    playlist.id,
+    // null when Spotify refused the details write: visibility unknown.
+    public: detailsRes?.ok ? isPublic : null,
   };
 }
 // Pre-rename name, kept so nothing outside this file breaks.
