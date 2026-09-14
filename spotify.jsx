@@ -8316,6 +8316,10 @@ try { _initRevenueCat(); } catch {}
 // half in an iPhone-compat window on iPad; this scrolls instead.
 function PlusSheet({ feature, onClose }) {
   const stop = e => e.stopPropagation();
+  // Benefits first, then a plain StoreKit screen. The step lives here so the
+  // payoff shows only on the first screen and the second one stays plain.
+  const [step, setStep] = React.useState("benefits");
+  const payoff = React.useMemo(() => _payoffMoments(), []);
   // The locked output is the user's own: their first caught set's hero card,
   // else the festival's top act. Muted, not hidden.
   const previewArtist = React.useMemo(() => {
@@ -8346,11 +8350,84 @@ function PlusSheet({ feature, onClose }) {
         <button onClick={onClose} aria-label="Close" style={{ ...fieldIconBtn, position: "absolute", top: 8, right: 8 }}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg>
         </button>
-        {previewArtist && <LockedCardPreview artist={previewArtist} />}
-        <PlusGate feature={feature} layout="sheet" />
+        {step === "plans" && (
+          <button onClick={() => setStep("benefits")} aria-label="Back" style={{ ...fieldIconBtn, position: "absolute", top: 8, left: 8 }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18 L9 12 L15 6"/></svg>
+          </button>
+        )}
+        {step === "benefits"
+          ? (payoff.moments.length
+              ? <RecapPayoff moments={payoff.moments} total={payoff.total} />
+              : previewArtist && <LockedCardPreview artist={previewArtist} />)
+          : <div style={{ height: 40 }} />}
+        <PlusGate feature={feature} layout="sheet" step={step} onStep={setStep} />
       </div>
     </div>,
     document.body
+  );
+}
+
+// The user's own photos for the paywall payoff: the active festival's (the
+// same scoping as the Memories screen), newest first, photos only (a video
+// blob is not an <img>). Capped at six: a taste of the recap, not the recap.
+function _payoffMoments() {
+  try {
+    const all = Object.values(_activeMoments(_readMoments()) || {}).flat()
+      .filter(m => m && m.photoId && m.kind !== "video");
+    const moments = [...all].sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)).slice(0, 6);
+    return { moments, total: all.length };
+  } catch { return { moments: [], total: 0 }; }
+}
+
+function _PayoffFrame({ moment, on }) {
+  const url = useMomentPhoto(moment.photoId);
+  if (!url) return null;
+  return (
+    <img src={url} alt="" aria-hidden="true" style={{
+      position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover",
+      opacity: on ? 1 : 0, transform: on ? "scale(1.04)" : "scale(1)",
+      transition: "opacity 0.6s ease, transform 2.4s ease-out",
+    }} />
+  );
+}
+
+// What Plursky+ keeps, shown before any price: the user's own night, playing.
+// Crossfades through the moments; with reduced motion it holds on the newest.
+function RecapPayoff({ moments, total }) {
+  const [i, setI] = React.useState(0);
+  React.useEffect(() => {
+    if (moments.length < 2) return;
+    let reduce = false;
+    try { reduce = matchMedia("(prefers-reduced-motion: reduce)").matches; } catch {}
+    if (reduce) return;
+    const t = setInterval(() => setI(n => (n + 1) % moments.length), 2400);
+    return () => clearInterval(t);
+  }, [moments.length]);
+  const cfg = window.FESTIVAL_CONFIG || {};
+  let sets = 0;
+  try { sets = getAttendedCount?.() || 0; } catch {}
+  const line = `${total} moment${total === 1 ? "" : "s"}${sets ? ` · ${sets} set${sets === 1 ? "" : "s"} caught` : ""}`;
+  return (
+    <div role="img" aria-label={`Your ${cfg.shortName || "festival"} recap: ${line}`} style={{
+      position: "relative", width: "100%", height: 260, borderRadius: 16, overflow: "hidden",
+      background: "var(--paper-2)", margin: "40px 0 20px",
+    }}>
+      {moments.map((m, k) => <_PayoffFrame key={m.id || k} moment={m} on={k === i} />)}
+      <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "var(--media-scrim)" }} />
+      {moments.length > 1 && (
+        <div aria-hidden="true" style={{ position: "absolute", top: 12, left: 12, right: 12, display: "flex", gap: 4 }}>
+          {moments.map((m, k) => (
+            <span key={k} style={{ flex: 1, height: 3, borderRadius: 2, background: "var(--media-ink)", opacity: k === i ? 1 : 0.35, transition: "opacity 0.3s" }} />
+          ))}
+        </div>
+      )}
+      <div style={{ position: "absolute", left: 16, right: 16, bottom: 14 }}>
+        <div style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--media-ink-2)" }}>
+          Your {cfg.shortName || "festival"} recap
+        </div>
+        <div style={{ marginTop: 4, fontSize: 22, lineHeight: "28px", fontWeight: 700, color: "var(--media-ink)" }}>{line}</div>
+      </div>
+    </div>
   );
 }
 
@@ -8381,7 +8458,7 @@ function LockedCardPreview({ artist }) {
   );
 }
 
-function PlusGate({ children, feature, layout = "inline" }) {
+function PlusGate({ children, feature, layout = "inline", step = "plans", onStep }) {
   // Hook first: an early `return children` above a useState is a conditional
   // hook call, which React only tolerates while the condition never flips.
   const [busy, setBusy] = React.useState(false);
@@ -8466,14 +8543,19 @@ function PlusGate({ children, feature, layout = "inline" }) {
   // charged without having seen it on this screen.
   const waitingForPrice = isNative && !priceOf(selected.id);
   const sheet = layout === "sheet";
+  // Two screens only where a purchase can happen: the sheet, on StoreKit.
+  // The inline gates and the web build keep everything on one screen.
+  const twoStep = sheet && canBuy && typeof onStep === "function";
+  const showBenefits = !twoStep || step === "benefits";
+  const showPlans = !twoStep || step === "plans";
   const quiet = { minHeight: 44, display: "inline-flex", alignItems: "center", padding: "0 8px", color: "var(--text-2)", fontSize: 15, background: "transparent", border: "none", cursor: "pointer", fontFamily: "inherit" };
   const content = (
     <div style={{ width: "100%", padding: sheet ? 0 : "20px 16px", color: "var(--ink)", textAlign: "left" }}>
       <div style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)" }}>
         Plursky+{feature ? ` · unlocks ${feature}` : ""}
       </div>
-      <h2 style={{ margin: "6px 0 0", fontSize: sheet ? 28 : 22, lineHeight: sheet ? "34px" : "28px", fontWeight: 700 }}>Keep the full weekend.</h2>
-      <div style={{ marginTop: 12 }}>
+      <h2 style={{ margin: "6px 0 0", fontSize: sheet ? 28 : 22, lineHeight: sheet ? "34px" : "28px", fontWeight: 700 }}>{showBenefits ? "Keep the full weekend." : "Choose a plan"}</h2>
+      {showBenefits && <div style={{ marginTop: 12 }}>
         {_PLUS_BENEFITS.map(([title, sub]) => (
           <div key={title} style={{ display: "flex", gap: 12, padding: "8px 0" }}>
             <span aria-hidden="true" style={{ fontSize: 15, lineHeight: "21px", fontWeight: 700 }}>✓</span>
@@ -8483,13 +8565,16 @@ function PlusGate({ children, feature, layout = "inline" }) {
             </div>
           </div>
         ))}
-      </div>
-      {buyError && (
+      </div>}
+      {twoStep && step === "benefits" && (
+        <FieldButton onClick={() => onStep("plans")} style={{ marginTop: 20 }}>See plans</FieldButton>
+      )}
+      {showPlans && buyError && (
         <div role="alert" style={{ marginTop: 12, fontSize: 13, lineHeight: "18px", color: "var(--warn)" }}>
           {buyError} You are only charged when Apple confirms — nothing was charged for this attempt.
         </div>
       )}
-      {canBuy ? (<>
+      {!showPlans ? null : canBuy ? (<>
         <div role="radiogroup" aria-label="Choose a plan" style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 16 }}>
           {PLANS.map(p => {
             const on = p.id === plan, price = priceOf(p.id);

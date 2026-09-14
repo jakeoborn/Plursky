@@ -12547,6 +12547,8 @@ function PlusSheet({
   onClose
 }) {
   var stop = e => e.stopPropagation();
+  var [step, setStep] = React.useState("benefits");
+  var payoff = React.useMemo(() => _payoffMoments(), []);
   var previewArtist = React.useMemo(() => {
     try {
       var a = Object.values(window.getAllAttended?.() || {}).flat().map(id => ARTISTS.find(x => x.id === id)).find(Boolean);
@@ -12618,12 +12620,168 @@ function PlusSheet({
     strokeLinecap: "round"
   }, React.createElement("path", {
     d: "M6 6 L18 18 M18 6 L6 18"
-  }))), previewArtist && React.createElement(LockedCardPreview, {
+  }))), step === "plans" && React.createElement("button", {
+    onClick: () => setStep("benefits"),
+    "aria-label": "Back",
+    style: {
+      ...fieldIconBtn,
+      position: "absolute",
+      top: 8,
+      left: 8
+    }
+  }, React.createElement("svg", {
+    width: "18",
+    height: "18",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("path", {
+    d: "M15 18 L9 12 L15 6"
+  }))), step === "benefits" ? payoff.moments.length ? React.createElement(RecapPayoff, {
+    moments: payoff.moments,
+    total: payoff.total
+  }) : previewArtist && React.createElement(LockedCardPreview, {
     artist: previewArtist
+  }) : React.createElement("div", {
+    style: {
+      height: 40
+    }
   }), React.createElement(PlusGate, {
     feature: feature,
-    layout: "sheet"
+    layout: "sheet",
+    step: step,
+    onStep: setStep
   }))), document.body);
+}
+function _payoffMoments() {
+  try {
+    var all = Object.values(_activeMoments(_readMoments()) || {}).flat().filter(m => m && m.photoId && m.kind !== "video");
+    var moments = [...all].sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)).slice(0, 6);
+    return {
+      moments,
+      total: all.length
+    };
+  } catch {
+    return {
+      moments: [],
+      total: 0
+    };
+  }
+}
+function _PayoffFrame({
+  moment,
+  on
+}) {
+  var url = useMomentPhoto(moment.photoId);
+  if (!url) return null;
+  return React.createElement("img", {
+    src: url,
+    alt: "",
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      inset: 0,
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      opacity: on ? 1 : 0,
+      transform: on ? "scale(1.04)" : "scale(1)",
+      transition: "opacity 0.6s ease, transform 2.4s ease-out"
+    }
+  });
+}
+function RecapPayoff({
+  moments,
+  total
+}) {
+  var [i, setI] = React.useState(0);
+  React.useEffect(() => {
+    if (moments.length < 2) return;
+    var reduce = false;
+    try {
+      reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    } catch {}
+    if (reduce) return;
+    var t = setInterval(() => setI(n => (n + 1) % moments.length), 2400);
+    return () => clearInterval(t);
+  }, [moments.length]);
+  var cfg = window.FESTIVAL_CONFIG || {};
+  var sets = 0;
+  try {
+    sets = getAttendedCount?.() || 0;
+  } catch {}
+  var line = `${total} moment${total === 1 ? "" : "s"}${sets ? ` · ${sets} set${sets === 1 ? "" : "s"} caught` : ""}`;
+  return React.createElement("div", {
+    role: "img",
+    "aria-label": `Your ${cfg.shortName || "festival"} recap: ${line}`,
+    style: {
+      position: "relative",
+      width: "100%",
+      height: 260,
+      borderRadius: 16,
+      overflow: "hidden",
+      background: "var(--paper-2)",
+      margin: "40px 0 20px"
+    }
+  }, moments.map((m, k) => React.createElement(_PayoffFrame, {
+    key: m.id || k,
+    moment: m,
+    on: k === i
+  })), React.createElement("div", {
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      inset: 0,
+      background: "var(--media-scrim)"
+    }
+  }), moments.length > 1 && React.createElement("div", {
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      top: 12,
+      left: 12,
+      right: 12,
+      display: "flex",
+      gap: 4
+    }
+  }, moments.map((m, k) => React.createElement("span", {
+    key: k,
+    style: {
+      flex: 1,
+      height: 3,
+      borderRadius: 2,
+      background: "var(--media-ink)",
+      opacity: k === i ? 1 : 0.35,
+      transition: "opacity 0.3s"
+    }
+  }))), React.createElement("div", {
+    style: {
+      position: "absolute",
+      left: 16,
+      right: 16,
+      bottom: 14
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 11,
+      lineHeight: "14px",
+      fontWeight: 600,
+      letterSpacing: "0.04em",
+      textTransform: "uppercase",
+      color: "var(--media-ink-2)"
+    }
+  }, "Your ", cfg.shortName || "festival", " recap"), React.createElement("div", {
+    style: {
+      marginTop: 4,
+      fontSize: 22,
+      lineHeight: "28px",
+      fontWeight: 700,
+      color: "var(--media-ink)"
+    }
+  }, line)));
 }
 function LockedCardPreview({
   artist
@@ -12695,7 +12853,9 @@ function LockedCardPreview({
 function PlusGate({
   children,
   feature,
-  layout = "inline"
+  layout = "inline",
+  step = "plans",
+  onStep
 }) {
   var [busy, setBusy] = React.useState(false);
   var [pending, setPending] = React.useState(null);
@@ -12760,6 +12920,9 @@ function PlusGate({
   var selected = PLANS.find(p => p.id === plan) || PLANS[0];
   var waitingForPrice = isNative && !priceOf(selected.id);
   var sheet = layout === "sheet";
+  var twoStep = sheet && canBuy && typeof onStep === "function";
+  var showBenefits = !twoStep || step === "benefits";
+  var showPlans = !twoStep || step === "plans";
   var quiet = {
     minHeight: 44,
     display: "inline-flex",
@@ -12795,7 +12958,7 @@ function PlusGate({
       lineHeight: sheet ? "34px" : "28px",
       fontWeight: 700
     }
-  }, "Keep the full weekend."), React.createElement("div", {
+  }, showBenefits ? "Keep the full weekend." : "Choose a plan"), showBenefits && React.createElement("div", {
     style: {
       marginTop: 12
     }
@@ -12825,7 +12988,12 @@ function PlusGate({
       lineHeight: "18px",
       color: "var(--text-2)"
     }
-  }, sub))))), buyError && React.createElement("div", {
+  }, sub))))), twoStep && step === "benefits" && React.createElement(FieldButton, {
+    onClick: () => onStep("plans"),
+    style: {
+      marginTop: 20
+    }
+  }, "See plans"), showPlans && buyError && React.createElement("div", {
     role: "alert",
     style: {
       marginTop: 12,
@@ -12833,7 +13001,7 @@ function PlusGate({
       lineHeight: "18px",
       color: "var(--warn)"
     }
-  }, buyError, " You are only charged when Apple confirms — nothing was charged for this attempt."), canBuy ? React.createElement(React.Fragment, null, React.createElement("div", {
+  }, buyError, " You are only charged when Apple confirms — nothing was charged for this attempt."), !showPlans ? null : canBuy ? React.createElement(React.Fragment, null, React.createElement("div", {
     role: "radiogroup",
     "aria-label": "Choose a plan",
     style: {
