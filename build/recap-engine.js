@@ -480,13 +480,17 @@ async function _resolveMomentSong(m) {
     title: m.songCapture.song,
     confidence: m.songCapture.source === "shazam" || m.songCapture.source === "live-shazam" ? "exact" : "estimated"
   };
-  var artist = m?.artistId ? (window.ARTISTS || []).find(a => a.id === m.artistId) : null;
+  var fest = typeof _momentFestival === "function" ? _momentFestival(m) : {
+    fid: null,
+    artists: window.ARTISTS || []
+  };
+  var artist = m?.artistId ? fest.artists.find(a => a.id === m.artistId) : null;
   if (!artist || !m?.takenAt) return null;
   if (typeof _getTracklistForArtist !== "function" || typeof _matchSongAtTime !== "function") return null;
   try {
-    var data = await _getTracklistForArtist(artist.name);
+    var data = await _getTracklistForArtist(artist.name, fest.fid);
     if (!data) return null;
-    var r = _matchSongAtTime(artist, data, m.takenAt);
+    var r = _matchSongAtTime(artist, data, m.takenAt, fest.fid);
     if (r?.song) return {
       title: r.song,
       confidence: r.confidence || "estimated"
@@ -846,7 +850,7 @@ function _renderVideoFrame(ctx, W, H, t, timeline, chrome, tmpl) {
       if (song.confidence !== "exact") {
         ctx.fillStyle = "rgba(255,255,255,0.45)";
         ctx.font = "700 12px 'Geist Mono', monospace";
-        ctx.fillText("SETLIST ESTIMATE", 60, H - safe - 88);
+        ctx.fillText(song.confidence === "likely" ? "LIKELY · TRACKLIST" : "SETLIST ESTIMATE", 60, H - safe - 88);
       }
     }
     if (stage) {

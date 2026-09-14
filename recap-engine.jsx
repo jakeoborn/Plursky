@@ -497,13 +497,16 @@ async function _resolveMomentSong(m) {
   if (m?.confirmedSong && m?.confirmedTitle) return { title: m.confirmedTitle, confidence: "exact" };
   // "live-shazam" is a Live Set Check-in's native ShazamKit match: as exact as "shazam".
   if (m?.songCapture?.song) return { title: m.songCapture.song, confidence: m.songCapture.source === "shazam" || m.songCapture.source === "live-shazam" ? "exact" : "estimated" };
-  const artist = m?.artistId ? (window.ARTISTS || []).find(a => a.id === m.artistId) : null;
+  // The moment's OWN festival: a past weekend's recap must not read the active
+  // lineup or the active festival's tracklists.
+  const fest = typeof _momentFestival === "function" ? _momentFestival(m) : { fid: null, artists: window.ARTISTS || [] };
+  const artist = m?.artistId ? fest.artists.find(a => a.id === m.artistId) : null;
   if (!artist || !m?.takenAt) return null;
   if (typeof _getTracklistForArtist !== "function" || typeof _matchSongAtTime !== "function") return null;
   try {
-    const data = await _getTracklistForArtist(artist.name);
+    const data = await _getTracklistForArtist(artist.name, fest.fid);
     if (!data) return null;
-    const r = _matchSongAtTime(artist, data, m.takenAt);
+    const r = _matchSongAtTime(artist, data, m.takenAt, fest.fid);
     if (r?.song) return { title: r.song, confidence: r.confidence || "estimated" };
   } catch {}
   return null;
@@ -815,7 +818,7 @@ function _renderVideoFrame(ctx, W, H, t, timeline, chrome, tmpl) {
       if (song.confidence !== "exact") {
         ctx.fillStyle = "rgba(255,255,255,0.45)";
         ctx.font = "700 12px 'Geist Mono', monospace";
-        ctx.fillText("SETLIST ESTIMATE", 60, H - safe - 88);
+        ctx.fillText(song.confidence === "likely" ? "LIKELY · TRACKLIST" : "SETLIST ESTIMATE", 60, H - safe - 88);
       }
     }
     if (stage) {

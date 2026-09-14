@@ -2104,11 +2104,40 @@ function HomeMemoriesStrip({ state, setState }) {
 // ── Setlist-to-photo song matching ──────────────────────────────
 // Two sources: 1001tracklists (has timestamps, best for DJs) and
 // setlist.fm (has API, best for live acts). Try 1001tl first.
+// Everything resolves against the MOMENT's festival, not the active one: an
+// EDC moment viewed while ACL is active reads EDC's tracklists, day dates and
+// time zone. The cache is keyed by festival too, so an artist who played two
+// festivals gets each festival's set.
 const _setlistCache = {};
+const _tracklistKey = (artistName, festId) =>
+  `${festId || window.FESTIVAL_CONFIG?.id || "edc-lv-2026"}:${String(artistName || "").toLowerCase().replace(/\W+/g, "_")}`;
+function _songFestivalCfg(festId) {
+  const cur = window.FESTIVAL_CONFIG || {};
+  if (!festId || cur.id === festId) return cur;
+  const ds = (window._DATA_SETS || {})[festId];
+  return (ds && ds.config) || cur;
+}
+// A takenAt string is the festival's wall clock ("YYYY-MM-DD HH:MM[:SS]"), so
+// its instant comes from the festival's zone, not the viewer's. A number is
+// already an instant.
+function _festWallClockMs(takenAt, cfg) {
+  if (typeof takenAt === "number") return takenAt;
+  const t = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})(?::(\d{2}))?/.exec(takenAt || "");
+  if (!t) return NaN;
+  const naive = Date.UTC(+t[1], +t[2] - 1, +t[3], +t[4], +t[5], +(t[6] || 0));
+  if (cfg && cfg.tz && typeof _utcOffsetMs === "function") {
+    try { let ms = naive; for (let i = 0; i < 2; i++) ms = naive - _utcOffsetMs(cfg.tz, ms); return ms; } catch {}
+  }
+  if (cfg && typeof cfg.utcOffsetHours === "number") return naive - cfg.utcOffsetHours * 3600000;
+  return Date.parse(String(takenAt).replace(" ", "T"));
+}
+// What a song estimate says about itself. Only an audio match or the user's
+// own pick is EXACT; a tracklist cue against the scheduled start is LIKELY.
+const _songConfidenceLabel = c => c === "exact" ? "EXACT" : c === "likely" ? "LIKELY" : "~EST";
 
-async function _getSupabaseTracklist(artistName) {
+async function _getSupabaseTracklist(artistName, festId) {
   try {
-    const festId = window.FESTIVAL_CONFIG?.id || "edc-lv-2026";
+    festId = festId || window.FESTIVAL_CONFIG?.id || "edc-lv-2026";
     const url = `https://pzoijbqsbbwyuyjinjtj.supabase.co/rest/v1/tracklists?artist_name=eq.${encodeURIComponent(artistName)}&festival_id=eq.${encodeURIComponent(festId)}&select=tracks,source,source_url`;
     const res = await fetch(url, {
       headers: {
@@ -2123,11 +2152,11 @@ async function _getSupabaseTracklist(artistName) {
   } catch { return null; }
 }
 
-async function _getSetlistFmData(artistName) {
+async function _getSetlistFmData(artistName, festId) {
   try {
     const setlists = await window.fetchSetlists?.(artistName);
     if (!setlists?.length) return null;
-    const festBrand = (window.FESTIVAL_CONFIG?.brand || "").toLowerCase();
+    const festBrand = (_songFestivalCfg(festId).brand || "").toLowerCase();
     const festSetlist = setlists.find(sl => {
       const v = (sl.venue?.name || "").toLowerCase();
       return v.includes(festBrand) || v.includes("electric daisy") || v.includes("motor speedway") ||
@@ -2140,25 +2169,26 @@ async function _getSetlistFmData(artistName) {
   } catch { return null; }
 }
 
-async function _getTracklistForArtist(artistName) {
-  const key = artistName.toLowerCase().replace(/\W+/g, "_");
+async function _getTracklistForArtist(artistName, festId) {
+  const fid = festId || window.FESTIVAL_CONFIG?.id || "edc-lv-2026";
+  const key = _tracklistKey(artistName, fid);
   if (_setlistCache[key]) return _setlistCache[key];
-  const tl = await _getSupabaseTracklist(artistName);
+  const tl = await _getSupabaseTracklist(artistName, fid);
   if (tl) { _setlistCache[key] = tl; return tl; }
-  const sl = await _getSetlistFmData(artistName);
+  const sl = await _getSetlistFmData(artistName, fid);
   if (sl) { _setlistCache[key] = sl; return sl; }
   _setlistCache[key] = null;
   return null;
 }
 
-function _matchSongAtTime(artist, trackData, photoTakenAt) {
-  if (!photoTakenAt || !artist) return null;
-  const CFG = window.FESTIVAL_CONFIG || {};
+function _matchSongAtTime(artist, trackData, photoTakenAt, festId) {
+  if (!photoTakenAt || !artist || !trackData) return null;
+  const CFG = _songFestivalCfg(festId);
   const dm = CFG.dayDates?.[artist.day];
   if (!dm) return null;
   const setStartMs = _wallMs(dm, artist.start, CFG.tz);
   if (setStartMs == null) return null;
-  const photoMs = Date.parse(photoTakenAt.replace(" ", "T"));
+  const photoMs = _festWallClockMs(photoTakenAt, CFG);
   if (isNaN(photoMs)) return null;
   const elapsedMs = photoMs - setStartMs;
   if (elapsedMs < 0) return null;
@@ -2170,12 +2200,14 @@ function _matchSongAtTime(artist, trackData, photoTakenAt) {
       else break;
     }
     const display = matched.artist ? `${matched.artist} — ${matched.title}` : matched.title;
-    return { song: display, source: "1001tracklists", confidence: "exact", url: trackData.url };
+    // A cue position measured from the SCHEDULED start: sets run late, so this
+    // is a good guess, never a confirmed song.
+    return { song: display, source: "1001tracklists", confidence: "likely", url: trackData.url };
   }
 
   if (trackData.source === "setlist.fm" && trackData.songs?.length) {
-    const [eh, em] = artist.end.split(":").map(Number);
-    const setEndMs = dm.midnightUtc + (eh < 8 ? eh + 24 : eh) * 3600000 + em * 60000;
+    const setEndMs = _wallMs(dm, artist.end, CFG.tz);
+    if (setEndMs == null) return null;
     const setDuration = setEndMs - setStartMs;
     if (setDuration <= 0 || elapsedMs > setDuration) return null;
     const idx = Math.min(Math.floor((elapsedMs / setDuration) * trackData.songs.length), trackData.songs.length - 1);
@@ -2184,18 +2216,18 @@ function _matchSongAtTime(artist, trackData, photoTakenAt) {
   return null;
 }
 
-function useSetlistSong(artist, takenAt) {
+function useSetlistSong(artist, takenAt, festId) {
   const [result, setResult] = React.useState(null);
   React.useEffect(() => {
     if (!artist || !takenAt) return;
     let cancelled = false;
-    _getTracklistForArtist(artist.name).then(data => {
+    _getTracklistForArtist(artist.name, festId).then(data => {
       if (cancelled || !data) return;
-      const r = _matchSongAtTime(artist, data, takenAt);
+      const r = _matchSongAtTime(artist, data, takenAt, festId);
       if (r) setResult(r);
     });
     return () => { cancelled = true; };
-  }, [artist?.id, takenAt]);
+  }, [artist?.id, takenAt, festId]);
   return result;
 }
 
@@ -3084,7 +3116,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
   const photoUrl = useMomentPhoto(moment.photoId, near && moment.kind !== "video");
   const artist = moment.artistId ? ARTISTS.find(a => a.id === moment.artistId) : null;
   const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
-  const nowPlaying = useSetlistSong(artist, moment.takenAt);
+  const nowPlaying = useSetlistSong(artist, moment.takenAt, moment.festivalId);
   const [editing, setEditing] = React.useState(false);
   const tagInfo = (() => {
     const base = _TAG_SOURCE_LABEL[moment.tagSource] || null;
@@ -3308,14 +3340,13 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
                 {nowPlaying.song?.toUpperCase()}
               </div>
               {nowPlaying.source === "1001tracklists" && artist && (() => {
-                const CFG = window.FESTIVAL_CONFIG || {};
+                const CFG = _songFestivalCfg(moment.festivalId);
                 const dm = CFG.dayDates?.[artist.day];
                 if (!dm) return null;
-                const [sh, sm] = artist.start.split(":").map(Number);
-                const [eh, em] = artist.end.split(":").map(Number);
-                const setStartMs = dm.midnightUtc + (sh < 6 ? sh + 24 : sh) * 3600000 + sm * 60000;
-                const setEndMs = dm.midnightUtc + (eh < 6 ? eh + 24 : eh) * 3600000 + em * 60000;
-                const photoMs = Date.parse(moment.takenAt?.replace(" ", "T"));
+                const setStartMs = _wallMs(dm, artist.start, CFG.tz);
+                const setEndMs = _wallMs(dm, artist.end, CFG.tz);
+                if (setStartMs == null || setEndMs == null) return null;
+                const photoMs = _festWallClockMs(moment.takenAt, CFG);
                 if (isNaN(photoMs)) return null;
                 const elapsed = photoMs - setStartMs;
                 const duration = setEndMs - setStartMs;
@@ -3347,7 +3378,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
               background: nowPlaying.confidence === "exact" ? "rgba(var(--signal-rgb),0.15)" : "rgba(var(--signal-rgb),0.1)",
               color: nowPlaying.confidence === "exact" ? "var(--success)" : "var(--ember-ink)",
               fontWeight: 700,
-            }}>{nowPlaying.confidence === "exact" ? "EXACT" : "~EST"}</span>
+            }}>{_songConfidenceLabel(nowPlaying.confidence)}</span>
           </div>
         </div>
       )}
@@ -3564,14 +3595,17 @@ function PeakMomentCard({ peak, accent, onOpenLightbox, onPlayReel }) {
 function SetSongTimeline({ artist, moments, onOpenMoment }) {
   const [data, setData] = React.useState(undefined); // undefined=loading · null=none
   const [open, setOpen] = React.useState(false);
+  // The set's festival comes from its moments, so an archived weekend reads
+  // its own tracklists.
+  const festId = (moments || []).find(m => m && m.festivalId)?.festivalId || null;
   React.useEffect(() => {
     if (!artist?.name) { setData(null); return; }
     let cancelled = false;
-    _getTracklistForArtist(artist.name)
+    _getTracklistForArtist(artist.name, festId)
       .then(d => { if (!cancelled) setData(d || null); })
       .catch(() => { if (!cancelled) setData(null); });
     return () => { cancelled = true; };
-  }, [artist?.id]);
+  }, [artist?.id, festId]);
 
   const filmed = React.useMemo(() => {
     if (!data) return [];
@@ -3580,12 +3614,12 @@ function SetSongTimeline({ artist, moments, onOpenMoment }) {
       .map(m => {
         const match = m.confirmedSong
           ? { song: m.confirmedSong, confidence: "exact" }
-          : _matchSongAtTime(artist, data, m.takenAt);
+          : _matchSongAtTime(artist, data, m.takenAt, m.festivalId || festId);
         return match?.song ? { m, song: match.song, confidence: match.confidence } : null;
       })
       .filter(Boolean)
       .sort((a, b) => (a.m.takenAt || "").localeCompare(b.m.takenAt || ""));
-  }, [data, moments, artist?.id]);
+  }, [data, moments, artist?.id, festId]);
 
   const stage = artist ? (window.STAGES || []).find(s => s.id === artist.stage) : null;
   const accent = "var(--signal-ink)";
@@ -3616,7 +3650,7 @@ function SetSongTimeline({ artist, moments, onOpenMoment }) {
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div className="mono" style={{ fontSize: 11, fontWeight: 700, color: "var(--ink)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>♫ {song}</div>
                 <div className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--muted)", fontWeight: 700, marginTop: 2 }}>
-                  {m.takenAt ? m.takenAt.slice(11) : ""}{confidence === "exact" ? " · EXACT" : " · ~EST"}{m.kind === "video" ? " · VIDEO" : ""}
+                  {m.takenAt ? m.takenAt.slice(11) : ""}{" · " + _songConfidenceLabel(confidence)}{m.kind === "video" ? " · VIDEO" : ""}
                 </div>
               </div>
               <span className="mono" style={{ fontSize: 9, color: accent, fontWeight: 700, flexShrink: 0 }}>OPEN ›</span>
@@ -7861,14 +7895,14 @@ function _fmtHrsMin(mins) {
 
 function _aggregateSoundtrack(moments) {
   const songMap = {};
-  const artists = window.ARTISTS || [];
   for (const m of Object.values(moments)) {
     if (!m.artistId || !m.takenAt) continue;
+    const { fid, artists } = _momentFestival(m);
     const artist = artists.find(a => a.id === m.artistId);
     if (!artist) continue;
-    const cached = _setlistCache[artist.name.toLowerCase().replace(/\W+/g, "_")];
+    const cached = _setlistCache[_tracklistKey(artist.name, fid)];
     if (!cached || cached.source !== "1001tracklists") continue;
-    const match = _matchSongAtTime(artist, cached, m.takenAt);
+    const match = _matchSongAtTime(artist, cached, m.takenAt, fid);
     if (!match) continue;
     const key = match.song.toLowerCase();
     if (!songMap[key]) songMap[key] = { song: match.song, count: 0, artists: new Set() };
@@ -10567,19 +10601,19 @@ function NowPlayingBar() {
   // Estimated song from tracklist position (debug: pick track from mid-set)
   const estimatedSong = React.useMemo(() => {
     if (!liveState.artist) return null;
-    const key = liveState.artist.name.toLowerCase().replace(/\W+/g, "_");
-    const cached = _setlistCache[key];
+    const cached = _setlistCache[_tracklistKey(liveState.artist.name)];
     if (!cached) return null;
     if (debugLive && cached.source === "1001tracklists" && cached.tracks?.length) {
       const t = cached.tracks[Math.floor(cached.tracks.length / 3)];
       const display = t.artist ? `${t.artist} — ${t.title}` : t.title;
-      return { song: display, source: "1001tracklists", confidence: "exact (debug)", url: cached.url };
+      return { song: display, source: "1001tracklists", confidence: "likely (debug)", url: cached.url };
     }
     if (debugLive && cached.source === "setlist.fm" && cached.songs?.length) {
       return { song: cached.songs[Math.floor(cached.songs.length / 3)], source: "setlist.fm", confidence: "estimated (debug)" };
     }
-    const now = new Date().toISOString().replace("T", " ").slice(0, 19);
-    return _matchSongAtTime(liveState.artist, cached, now);
+    // Now as an instant. A UTC ISO string read back as local wall time was off
+    // by the zone offset everywhere except UTC.
+    return _matchSongAtTime(liveState.artist, cached, Date.now());
   }, [liveState.artist, debugLive, tracklistReady]);
 
   const [listenProgress, setListenProgress] = React.useState(0);
@@ -10664,7 +10698,8 @@ function NowPlayingBar() {
       id: momentId,
       night,
       artistId: liveState.artist?.id || null,
-      takenAt: new Date().toISOString().replace("T", " ").slice(0, 19),
+      // The festival's wall clock, like every other takenAt (was a UTC string).
+      takenAt: _checkinTakenAt(window.FESTIVAL_CONFIG, Date.now()),
       tagSource: "live_capture",
       createdAt: Date.now(),
       songCapture: song ? { song: song.song, source: song.source || "live" } : null,
