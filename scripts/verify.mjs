@@ -96,6 +96,35 @@ console.log("▸ iOS focus-zoom floor — form fields stay ≥16px on iOS");
   console.log(`  ✓ input,textarea,select floored at ${m[1]}px on iOS`);
 }
 
+// ── 0b2a. AGENT_LOG order ─────────────────────────────────────────────────
+// Agents read the top of AGENT_LOG at session start, and the file says its
+// entries are reverse chronological. Entries appended at the bottom hid the
+// newest blocker below two days of older ones (Codex, #200). An entry with
+// no time counts as 00:00 that day; equal timestamps keep file order.
+console.log("▸ AGENT_LOG order — Entries stay newest first");
+{
+  const log = readFileSync(join(ROOT, "AGENT_LOG.md"), "utf8").split("\n");
+  const start = log.indexOf("## Entries");
+  if (start < 0) fail("AGENT_LOG.md has no '## Entries' section");
+  let prev = null, n = 0;
+  for (let i = start + 1; i < log.length && !log[i].startsWith("## "); i++) {
+    if (!log[i].trim()) continue;
+    // Any other row in Entries must be a well-formed entry: a row the regex
+    // can't read would otherwise drop out of the order check unseen.
+    // The whole row, not a prefix: a real date, a real time, and the
+    // Author/Lane routing fields the log's readers rely on.
+    const m = /^- (\d{4}-\d{2}-\d{2})(?: (\d{2}:\d{2}))? CT \| Author: (?:Claude|Instinct) \| Lane: [^|]*\S[^|]* \| \S/.exec(log[i]);
+    const [y, mo, d] = m ? m[1].split("-").map(Number) : [];
+    const realDate = m && mo >= 1 && mo <= 12 && d >= 1 && d <= new Date(Date.UTC(y, mo, 0)).getUTCDate();
+    const realTime = m && (!m[2] || (+m[2].slice(0, 2) <= 23 && +m[2].slice(3) <= 59));
+    if (!m || !realDate || !realTime) fail(`AGENT_LOG.md line ${i + 1} is not a well-formed entry ("- YYYY-MM-DD HH:MM CT | Author: Claude or Instinct | Lane: … | …", a real date and time): ${log[i].slice(0, 80)}`);
+    const key = `${m[1]} ${m[2] || "00:00"}`;
+    if (prev && key > prev) fail(`AGENT_LOG.md line ${i + 1} (${key}) is newer than the entry above it (${prev}); entries are reverse chronological, so new entries go at the TOP of '## Entries'`);
+    prev = key; n++;
+  }
+  console.log(`  ✓ ${n} entries, newest first`);
+}
+
 // ── 0b3. Duplicate-global gate ────────────────────────────────────────────
 // Every .jsx loads as a classic script, so a top-level declaration is a
 // GLOBAL and a later file's copy silently replaces an earlier one. home.jsx
