@@ -2168,10 +2168,16 @@ function _setlistIsEdition(sl, cfg) {
   // Physical venue aliases only: a brand or display name ("HARD", "Austin
   // City Limits") also names unrelated rooms (HARD Rock Live, ACL Live at
   // The Moody Theater).
+  const word = (hay, n) => new RegExp(`(^|\\W)${n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|\\W)`).test(hay);
   const venue = (sl.venue?.name || "").toLowerCase();
-  return [cfg.locationShort, cfg.venue?.name]
+  const named = [cfg.locationShort, cfg.venue?.name]
     .map(s => String(s || "").trim().toLowerCase()).filter(s => s.length >= 3)
-    .some(n => new RegExp(`(^|\\W)${n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|\\W)`).test(venue));
+    .some(n => word(venue, n));
+  // Venue names repeat across cities (Grant Park is in Chicago and Atlanta),
+  // so the setlist's city must appear in the festival's own location/address.
+  const city = String(sl.venue?.city?.name || "").trim().toLowerCase();
+  const where = `${cfg.location || ""} ${cfg.venue?.address || ""}`.toLowerCase();
+  return named && city.length >= 3 && word(where, city);
 }
 
 async function _getSetlistFmData(artistName, festId) {

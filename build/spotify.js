@@ -3180,8 +3180,12 @@ async function _getSupabaseTracklist(artistName, festId) {
 function _setlistIsEdition(sl, cfg) {
   var d = /^(\d{2})-(\d{2})-(\d{4})$/.exec(sl?.eventDate || "");
   if (!d || !Object.values(cfg.dayDates || {}).some(x => x.y === +d[3] && x.m === +d[2] - 1 && x.d === +d[1])) return false;
+  var word = (hay, n) => new RegExp(`(^|\\W)${n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|\\W)`).test(hay);
   var venue = (sl.venue?.name || "").toLowerCase();
-  return [cfg.locationShort, cfg.venue?.name].map(s => String(s || "").trim().toLowerCase()).filter(s => s.length >= 3).some(n => new RegExp(`(^|\\W)${n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|\\W)`).test(venue));
+  var named = [cfg.locationShort, cfg.venue?.name].map(s => String(s || "").trim().toLowerCase()).filter(s => s.length >= 3).some(n => word(venue, n));
+  var city = String(sl.venue?.city?.name || "").trim().toLowerCase();
+  var where = `${cfg.location || ""} ${cfg.venue?.address || ""}`.toLowerCase();
+  return named && city.length >= 3 && word(where, city);
 }
 async function _getSetlistFmData(artistName, festId) {
   try {

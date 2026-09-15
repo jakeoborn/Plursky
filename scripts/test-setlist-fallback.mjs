@@ -69,6 +69,11 @@ try {
     out.aclMoody=songs(await _getSetlistFmData('Case Six',ACL));
     rows=[row('Austin City Limits Live at The Moody Theater','Austin','10-10-2026',['Moody2'])];
     out.aclMoody2=songs(await _getSetlistFmData('Case Six',ACL));
+    // 8. A same-named venue in another city on a festival date is not the festival.
+    rows=[row('Grant Park','Atlanta','31-07-2026',['ATL'])];
+    out.otherCity=songs(await _getSetlistFmData('Case Seven',LOLLA));
+    rows=[row('Grant Park','','31-07-2026',['NoCity'])];
+    out.noCity=songs(await _getSetlistFmData('Case Seven',LOLLA));
     // Data gap report: a festival with day dates but no physical venue alias
     // (locationShort / venue.name) can never match, so it gets no setlist estimate.
     out.noAlias=Object.entries(window._DATA_SETS).filter(([,d])=>d&&d.config&&d.config.dayDates&&!(String(d.config.locationShort||'').trim().length>=3||String(d.config.venue?.name||'').trim().length>=3)).map(([id])=>id);
@@ -88,7 +93,9 @@ try {
   if(r.aclW1!=='W1a')problems.push(`an ACL weekend-one setlist (Zilker Park, Oct 3) did not resolve: ${r.aclW1}`);
   if(r.aclGap!==null)problems.push(`a setlist in ACL's gap week (Oct 6) was used: ${r.aclGap}`);
   if(r.aclMoody!==null||r.aclMoody2!==null)problems.push(`a room named after the brand (ACL Live at The Moody Theater) matched ACL: ${r.aclMoody} / ${r.aclMoody2}`);
+  if(r.otherCity!==null)problems.push(`a Grant Park setlist in Atlanta on a Lolla date matched ${LOLLA}: ${r.otherCity}`);
+  if(r.noCity!==null)problems.push(`a setlist with no city matched ${LOLLA}: ${r.noCity}`);
   if(r.noAlias.length)console.log(`  note: no physical venue alias, so no setlist estimate: ${r.noAlias.join(', ')}`);
   if(problems.length){console.error('✗ setlist.fm fallback:\n  '+problems.join('\n  '));process.exit(1);}
-  console.log('✓ setlist.fm fallback fails closed: a setlist counts only on the festival\'s own dates at its own venue, no first-row default, cached per festival, ACL weekend one only, physical venues only');
+  console.log('✓ setlist.fm fallback fails closed: a setlist counts only on the festival\'s own dates at its own venue, no first-row default, cached per festival, ACL weekend one only, physical venues in the festival city');
 } finally {server.kill('SIGTERM');}
