@@ -111,8 +111,13 @@ console.log("▸ AGENT_LOG order — Entries stay newest first");
     if (!log[i].trim()) continue;
     // Any other row in Entries must be a well-formed entry: a row the regex
     // can't read would otherwise drop out of the order check unseen.
-    const m = /^- (\d{4}-\d{2}-\d{2})(?: (\d{2}:\d{2}))? CT \| /.exec(log[i]);
-    if (!m) fail(`AGENT_LOG.md line ${i + 1} is not a well-formed entry ("- YYYY-MM-DD HH:MM CT | Author: … | Lane: … | …"): ${log[i].slice(0, 80)}`);
+    // The whole row, not a prefix: a real date, a real time, and the
+    // Author/Lane routing fields the log's readers rely on.
+    const m = /^- (\d{4}-\d{2}-\d{2})(?: (\d{2}:\d{2}))? CT \| Author: (?:Claude|Instinct) \| Lane: [^|]*\S[^|]* \| \S/.exec(log[i]);
+    const [y, mo, d] = m ? m[1].split("-").map(Number) : [];
+    const realDate = m && mo >= 1 && mo <= 12 && d >= 1 && d <= new Date(Date.UTC(y, mo, 0)).getUTCDate();
+    const realTime = m && (!m[2] || (+m[2].slice(0, 2) <= 23 && +m[2].slice(3) <= 59));
+    if (!m || !realDate || !realTime) fail(`AGENT_LOG.md line ${i + 1} is not a well-formed entry ("- YYYY-MM-DD HH:MM CT | Author: Claude or Instinct | Lane: … | …", a real date and time): ${log[i].slice(0, 80)}`);
     const key = `${m[1]} ${m[2] || "00:00"}`;
     if (prev && key > prev) fail(`AGENT_LOG.md line ${i + 1} (${key}) is newer than the entry above it (${prev}); entries are reverse chronological, so new entries go at the TOP of '## Entries'`);
     prev = key; n++;
