@@ -2162,6 +2162,15 @@ async function _getSupabaseTracklist(artistName, festId) {
 // weekend, so a weekend-two setlist could feed a weekend-one photo and a
 // weekend-two photo would be timed against weekend one. Until the weekend is
 // threaded through all three, weekend two fails closed: no estimate.
+function _festivalLocalities(cfg) {
+  const out = new Set();
+  const loc = String(cfg.location || "");
+  if (loc.includes("·")) out.add(loc.split("·").pop().split(",")[0].trim().toLowerCase());
+  String(cfg.venue?.address || "").split(",").slice(1)
+    .map(x => x.trim().toLowerCase()).filter(x => x && !/\d/.test(x)).forEach(x => out.add(x));
+  out.delete("");
+  return out;
+}
 function _setlistIsEdition(sl, cfg) {
   const d = /^(\d{2})-(\d{2})-(\d{4})$/.exec(sl?.eventDate || "");
   if (!d || !Object.values(cfg.dayDates || {}).some(x => x.y === +d[3] && x.m === +d[2] - 1 && x.d === +d[1])) return false;
@@ -2174,10 +2183,11 @@ function _setlistIsEdition(sl, cfg) {
     .map(s => String(s || "").trim().toLowerCase()).filter(s => s.length >= 3)
     .some(n => word(venue, n));
   // Venue names repeat across cities (Grant Park is in Chicago and Atlanta),
-  // so the setlist's city must appear in the festival's own location/address.
+  // so the setlist's city must EQUAL one of the festival's locality fields:
+  // the city after "·" in location, or an address segment after the street.
+  // Never a substring of the venue part ("Hollywood" in Hollywood Park).
   const city = String(sl.venue?.city?.name || "").trim().toLowerCase();
-  const where = `${cfg.location || ""} ${cfg.venue?.address || ""}`.toLowerCase();
-  return named && city.length >= 3 && word(where, city);
+  return named && city.length >= 3 && _festivalLocalities(cfg).has(city);
 }
 
 async function _getSetlistFmData(artistName, festId) {

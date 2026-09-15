@@ -3177,6 +3177,14 @@ async function _getSupabaseTracklist(artistName, festId) {
     return null;
   }
 }
+function _festivalLocalities(cfg) {
+  var out = new Set();
+  var loc = String(cfg.location || "");
+  if (loc.includes("·")) out.add(loc.split("·").pop().split(",")[0].trim().toLowerCase());
+  String(cfg.venue?.address || "").split(",").slice(1).map(x => x.trim().toLowerCase()).filter(x => x && !/\d/.test(x)).forEach(x => out.add(x));
+  out.delete("");
+  return out;
+}
 function _setlistIsEdition(sl, cfg) {
   var d = /^(\d{2})-(\d{2})-(\d{4})$/.exec(sl?.eventDate || "");
   if (!d || !Object.values(cfg.dayDates || {}).some(x => x.y === +d[3] && x.m === +d[2] - 1 && x.d === +d[1])) return false;
@@ -3184,8 +3192,7 @@ function _setlistIsEdition(sl, cfg) {
   var venue = (sl.venue?.name || "").toLowerCase();
   var named = [cfg.locationShort, cfg.venue?.name].map(s => String(s || "").trim().toLowerCase()).filter(s => s.length >= 3).some(n => word(venue, n));
   var city = String(sl.venue?.city?.name || "").trim().toLowerCase();
-  var where = `${cfg.location || ""} ${cfg.venue?.address || ""}`.toLowerCase();
-  return named && city.length >= 3 && word(where, city);
+  return named && city.length >= 3 && _festivalLocalities(cfg).has(city);
 }
 async function _getSetlistFmData(artistName, festId) {
   try {

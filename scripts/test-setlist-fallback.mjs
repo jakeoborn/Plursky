@@ -13,7 +13,7 @@ import { createServer } from 'node:net';
 import { existsSync } from 'node:fs';
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const reservePort=()=>new Promise((resolve,reject)=>{const s=createServer();s.once('error',reject);s.listen(0,'127.0.0.1',()=>{const a=s.address();s.close(e=>e?reject(e):resolve(a.port));});});
-const ACTIVE='acl-2026', EDC='edc-lv-2026', LOLLA='lollapalooza-2026', NOCT='nocturnal-wonderland-2026';
+const ACTIVE='acl-2026', EDC='edc-lv-2026', LOLLA='lollapalooza-2026', NOCT='nocturnal-wonderland-2026', HARD='hard-summer-2026';
 const PORT=await reservePort();
 const server=spawn('python3',['-m','http.server',String(PORT),'--bind','127.0.0.1'],{cwd:process.cwd(),stdio:'ignore'});
 try {
@@ -27,7 +27,7 @@ try {
   const page=await ctx.newPage();
   await page.goto(`http://127.0.0.1:${PORT}/index.html`,{waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>typeof _getTracklistForArtist==='function'&&typeof _getSetlistFmData==='function'&&window._DATA_SETS&&Array.isArray(window.ARTISTS)&&window.ARTISTS.length>0,null,{timeout:30000});
-  const r=await page.evaluate(async({EDC,LOLLA,NOCT,ACL})=>{
+  const r=await page.evaluate(async({EDC,LOLLA,NOCT,ACL,HARD})=>{
     const row=(venue,city,date,songs)=>({eventDate:date,venue:{name:venue,city:{name:city}},sets:{set:[{song:songs.map(name=>({name}))}]}});
     const EDC_ROW=row('Las Vegas Motor Speedway','Las Vegas','16-05-2026',['E1','E2']);
     const CLUB_ROW=row('Brooklyn Mirage','Brooklyn','01-08-2026',['C1','C2']);
@@ -36,7 +36,7 @@ try {
     let rows=[];
     window.fetchSetlists=async()=>rows;
     const songs=d=>d?(d.songs||[]).join(','):null;
-    const out={setup:[EDC,LOLLA,NOCT].filter(f=>!window._DATA_SETS[f]).map(f=>`${f} not in _DATA_SETS`)};
+    const out={setup:[EDC,LOLLA,NOCT,HARD].filter(f=>!window._DATA_SETS[f]).map(f=>`${f} not in _DATA_SETS`)};
     // 1. Only an EDC / Motor Speedway row: Lollapalooza and Nocturnal get nothing.
     rows=[EDC_ROW];
     out.edcOnlyLolla=songs(await _getTracklistForArtist('Case One',LOLLA));
@@ -74,11 +74,19 @@ try {
     out.otherCity=songs(await _getSetlistFmData('Case Seven',LOLLA));
     rows=[row('Grant Park','','31-07-2026',['NoCity'])];
     out.noCity=songs(await _getSetlistFmData('Case Seven',LOLLA));
+    // 9. The city is compared with locality fields only, never the venue part
+    // of location: HARD is "Hollywood Park · Inglewood, CA", so a Hollywood Park
+    // setlist in the city of Hollywood is not HARD, and one in Inglewood is.
+    rows=[row('Hollywood Park','Hollywood','01-08-2026',['HWD'])];
+    out.hardWrongCity=songs(await _getSetlistFmData('Case Eight',HARD));
+    rows=[row('Hollywood Park','Inglewood','01-08-2026',['ING'])];
+    out.hardRightCity=songs(await _getSetlistFmData('Case Eight',HARD));
     // Data gap report: a festival with day dates but no physical venue alias
     // (locationShort / venue.name) can never match, so it gets no setlist estimate.
     out.noAlias=Object.entries(window._DATA_SETS).filter(([,d])=>d&&d.config&&d.config.dayDates&&!(String(d.config.locationShort||'').trim().length>=3||String(d.config.venue?.name||'').trim().length>=3)).map(([id])=>id);
+    out.noLocality=Object.entries(window._DATA_SETS).filter(([,d])=>d&&d.config&&d.config.dayDates&&typeof _festivalLocalities==='function'&&_festivalLocalities(d.config).size===0).map(([id])=>id);
     return out;
-  },{EDC,LOLLA,NOCT,ACL:ACTIVE});
+  },{EDC,LOLLA,NOCT,ACL:ACTIVE,HARD});
   await browser.close();
   const problems=[...r.setup];
   if(r.edcOnlyLolla!==null)problems.push(`an EDC / Motor Speedway setlist was used for ${LOLLA}: ${r.edcOnlyLolla}`);
@@ -95,7 +103,10 @@ try {
   if(r.aclMoody!==null||r.aclMoody2!==null)problems.push(`a room named after the brand (ACL Live at The Moody Theater) matched ACL: ${r.aclMoody} / ${r.aclMoody2}`);
   if(r.otherCity!==null)problems.push(`a Grant Park setlist in Atlanta on a Lolla date matched ${LOLLA}: ${r.otherCity}`);
   if(r.noCity!==null)problems.push(`a setlist with no city matched ${LOLLA}: ${r.noCity}`);
+  if(r.hardWrongCity!==null)problems.push(`a Hollywood Park setlist in the city of Hollywood matched ${HARD} (Inglewood): ${r.hardWrongCity}`);
+  if(r.hardRightCity!=='ING')problems.push(`a Hollywood Park setlist in Inglewood did not resolve for ${HARD}: ${r.hardRightCity}`);
+  if(r.noLocality&&r.noLocality.length)console.log(`  note: no locality city in location/address, so no setlist estimate: ${r.noLocality.join(', ')}`);
   if(r.noAlias.length)console.log(`  note: no physical venue alias, so no setlist estimate: ${r.noAlias.join(', ')}`);
   if(problems.length){console.error('✗ setlist.fm fallback:\n  '+problems.join('\n  '));process.exit(1);}
-  console.log('✓ setlist.fm fallback fails closed: a setlist counts only on the festival\'s own dates at its own venue, no first-row default, cached per festival, ACL weekend one only, physical venues in the festival city');
+  console.log('✓ setlist.fm fallback fails closed: a setlist counts only on the festival\'s own dates at its own venue, no first-row default, cached per festival, ACL weekend one only, physical venue in the festival locality');
 } finally {server.kill('SIGTERM');}
