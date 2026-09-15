@@ -3191,7 +3191,7 @@ function _setlistIsEdition(sl, cfg) {
   var d = /^(\d{2})-(\d{2})-(\d{4})$/.exec(sl?.eventDate || "");
   if (!d || !_festivalCalendarDays(cfg).has(`${d[3]}-${d[2]}-${d[1]}`)) return false;
   var venue = (sl.venue?.name || "").toLowerCase();
-  return [cfg.brand, cfg.locationShort, cfg.venue?.name, String(cfg.name || "").replace(/\s*\d{4}\s*$/, "")].map(s => String(s || "").trim().toLowerCase()).filter(s => s.length >= 3).some(n => new RegExp(`(^|\\W)${n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|\\W)`).test(venue));
+  return [cfg.locationShort, cfg.venue?.name].map(s => String(s || "").trim().toLowerCase()).filter(s => s.length >= 3).some(n => new RegExp(`(^|\\W)${n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|\\W)`).test(venue));
 }
 async function _getSetlistFmData(artistName, festId) {
   try {

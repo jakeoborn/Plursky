@@ -2172,8 +2172,11 @@ function _festivalCalendarDays(cfg) {
 function _setlistIsEdition(sl, cfg) {
   const d = /^(\d{2})-(\d{2})-(\d{4})$/.exec(sl?.eventDate || "");
   if (!d || !_festivalCalendarDays(cfg).has(`${d[3]}-${d[2]}-${d[1]}`)) return false;
+  // Physical venue aliases only: a brand or display name ("HARD", "Austin
+  // City Limits") also names unrelated rooms (HARD Rock Live, ACL Live at
+  // The Moody Theater).
   const venue = (sl.venue?.name || "").toLowerCase();
-  return [cfg.brand, cfg.locationShort, cfg.venue?.name, String(cfg.name || "").replace(/\s*\d{4}\s*$/, "")]
+  return [cfg.locationShort, cfg.venue?.name]
     .map(s => String(s || "").trim().toLowerCase()).filter(s => s.length >= 3)
     .some(n => new RegExp(`(^|\\W)${n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|\\W)`).test(venue));
 }
