@@ -1958,6 +1958,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-a2. setlist.fm fallback fails closed ───────────────────────────────
+// A setlist counts only on the requested festival's own day dates at a venue
+// its own metadata names; no other festival's venue, no first-row default.
+{
+  console.log("▸ setlist.fm fallback gate — requested edition only, no setlists[0] default");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-setlist-fallback.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`setlist.fm fallback regression failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b. Board playlist planner ──────────────────────────────────────────
 // Saved sets are guaranteed seeds; discovery picks are capped, unsaved and
 // carry a reason that is TRUE of the lineup. Fixtures + every _DATA_SETS lineup.
