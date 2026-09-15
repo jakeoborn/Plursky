@@ -2152,17 +2152,31 @@ async function _getSupabaseTracklist(artistName, festId) {
   } catch { return null; }
 }
 
+// setlist.fm has no festival field, so a row counts for a festival only when
+// it is affirmatively that edition: played on one of the festival's own day
+// dates, at a venue the festival's own metadata names. Another festival's
+// venue never matches and there is no first-row default: no song estimate
+// beats a song from an unrelated show.
+function _setlistIsEdition(sl, cfg) {
+  const d = /^(\d{2})-(\d{2})-(\d{4})$/.exec(sl?.eventDate || "");
+  if (!d) return false;
+  const onDay = Object.values(cfg.dayDates || {}).some(x => x.y === +d[3] && x.m === +d[2] - 1 && x.d === +d[1]);
+  if (!onDay) return false;
+  const venue = (sl.venue?.name || "").toLowerCase();
+  return [cfg.brand, cfg.locationShort, cfg.venue?.name, String(cfg.name || "").replace(/\s*\d{4}\s*$/, "")]
+    .map(s => String(s || "").trim().toLowerCase()).filter(s => s.length >= 3)
+    .some(n => new RegExp(`(^|\\W)${n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|\\W)`).test(venue));
+}
+
 async function _getSetlistFmData(artistName, festId) {
   try {
+    const cfg = _songFestivalCfg(festId);
+    // An id with no loaded config falls back to the active festival; never match against that.
+    if (!cfg || (festId && cfg.id !== festId)) return null;
     const setlists = await window.fetchSetlists?.(artistName);
     if (!setlists?.length) return null;
-    const festBrand = (_songFestivalCfg(festId).brand || "").toLowerCase();
-    const festSetlist = setlists.find(sl => {
-      const v = (sl.venue?.name || "").toLowerCase();
-      return v.includes(festBrand) || v.includes("electric daisy") || v.includes("motor speedway") ||
-        v.includes("zilker") || v.includes("austin city");
-    });
-    const target = festSetlist || setlists[0];
+    const target = setlists.find(sl => _setlistIsEdition(sl, cfg));
+    if (!target) return null;
     const songs = (target.sets?.set || []).flatMap(s => (s.song || []).map(song => song.name)).filter(Boolean);
     if (!songs.length) return null;
     return { source: "setlist.fm", songs, venue: target.venue?.name };

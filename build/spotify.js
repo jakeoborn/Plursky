@@ -3177,16 +3177,22 @@ async function _getSupabaseTracklist(artistName, festId) {
     return null;
   }
 }
+function _setlistIsEdition(sl, cfg) {
+  var d = /^(\d{2})-(\d{2})-(\d{4})$/.exec(sl?.eventDate || "");
+  if (!d) return false;
+  var onDay = Object.values(cfg.dayDates || {}).some(x => x.y === +d[3] && x.m === +d[2] - 1 && x.d === +d[1]);
+  if (!onDay) return false;
+  var venue = (sl.venue?.name || "").toLowerCase();
+  return [cfg.brand, cfg.locationShort, cfg.venue?.name, String(cfg.name || "").replace(/\s*\d{4}\s*$/, "")].map(s => String(s || "").trim().toLowerCase()).filter(s => s.length >= 3).some(n => new RegExp(`(^|\\W)${n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|\\W)`).test(venue));
+}
 async function _getSetlistFmData(artistName, festId) {
   try {
+    var cfg = _songFestivalCfg(festId);
+    if (!cfg || festId && cfg.id !== festId) return null;
     var setlists = await window.fetchSetlists?.(artistName);
     if (!setlists?.length) return null;
-    var festBrand = (_songFestivalCfg(festId).brand || "").toLowerCase();
-    var festSetlist = setlists.find(sl => {
-      var v = (sl.venue?.name || "").toLowerCase();
-      return v.includes(festBrand) || v.includes("electric daisy") || v.includes("motor speedway") || v.includes("zilker") || v.includes("austin city");
-    });
-    var target = festSetlist || setlists[0];
+    var target = setlists.find(sl => _setlistIsEdition(sl, cfg));
+    if (!target) return null;
     var songs = (target.sets?.set || []).flatMap(s => (s.song || []).map(song => song.name)).filter(Boolean);
     if (!songs.length) return null;
     return {
