@@ -27,7 +27,7 @@ try {
   const page=await ctx.newPage();
   await page.goto(`http://127.0.0.1:${PORT}/index.html`,{waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>typeof _getTracklistForArtist==='function'&&typeof _getSetlistFmData==='function'&&window._DATA_SETS&&Array.isArray(window.ARTISTS)&&window.ARTISTS.length>0,null,{timeout:30000});
-  const r=await page.evaluate(async({EDC,LOLLA,NOCT})=>{
+  const r=await page.evaluate(async({EDC,LOLLA,NOCT,ACL})=>{
     const row=(venue,city,date,songs)=>({eventDate:date,venue:{name:venue,city:{name:city}},sets:{set:[{song:songs.map(name=>({name}))}]}});
     const EDC_ROW=row('Las Vegas Motor Speedway','Las Vegas','16-05-2026',['E1','E2']);
     const CLUB_ROW=row('Brooklyn Mirage','Brooklyn','01-08-2026',['C1','C2']);
@@ -52,8 +52,16 @@ try {
     out.lollaAgain=songs(await _getTracklistForArtist('Case Three',LOLLA));
     // 5. A festival id with no loaded config never borrows the active festival's metadata.
     out.unknown=songs(await _getSetlistFmData('Case Four','no-such-festival-2026'));
+    // 6. ACL runs two weekends; its dayDates are weekend one only. Weekend two
+    // (from weekendStartMs) counts, the gap week between them does not.
+    rows=[row('Zilker Park','Austin','10-10-2026',['W2a','W2b'])];
+    out.aclW2=songs(await _getSetlistFmData('Case Five',ACL));
+    rows=[row('Zilker Park','Austin','03-10-2026',['W1a'])];
+    out.aclW1=songs(await _getSetlistFmData('Case Five',ACL));
+    rows=[row('Zilker Park','Austin','06-10-2026',['Gap'])];
+    out.aclGap=songs(await _getSetlistFmData('Case Five',ACL));
     return out;
-  },{EDC,LOLLA,NOCT});
+  },{EDC,LOLLA,NOCT,ACL:ACTIVE});
   await browser.close();
   const problems=[...r.setup];
   if(r.edcOnlyLolla!==null)problems.push(`an EDC / Motor Speedway setlist was used for ${LOLLA}: ${r.edcOnlyLolla}`);
@@ -63,6 +71,9 @@ try {
   if(r.edc!=='E1,E2')problems.push(`the affirmative ${EDC} setlist did not resolve for the same artist: ${r.edc}`);
   if(r.lollaAgain!=='L1,L2')problems.push(`the cache mixed festivals for one artist: ${LOLLA} now reads ${r.lollaAgain}`);
   if(r.unknown!==null)problems.push(`an unknown festival id matched a setlist: ${r.unknown}`);
+  if(r.aclW2!=='W2a,W2b')problems.push(`an ACL weekend-two setlist (Zilker Park, Oct 10) did not resolve: ${r.aclW2}`);
+  if(r.aclW1!=='W1a')problems.push(`an ACL weekend-one setlist (Zilker Park, Oct 3) did not resolve: ${r.aclW1}`);
+  if(r.aclGap!==null)problems.push(`a setlist in ACL's gap week (Oct 6) was used: ${r.aclGap}`);
   if(problems.length){console.error('✗ setlist.fm fallback:\n  '+problems.join('\n  '));process.exit(1);}
-  console.log('✓ setlist.fm fallback fails closed: a setlist counts only on the festival\'s own dates at its own venue, no first-row default, cached per festival');
+  console.log('✓ setlist.fm fallback fails closed: a setlist counts only on the festival\'s own dates at its own venue, no first-row default, cached per festival, both ACL weekends');
 } finally {server.kill('SIGTERM');}
