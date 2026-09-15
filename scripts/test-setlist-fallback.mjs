@@ -52,10 +52,13 @@ try {
     out.lollaAgain=songs(await _getTracklistForArtist('Case Three',LOLLA));
     // 5. A festival id with no loaded config never borrows the active festival's metadata.
     out.unknown=songs(await _getSetlistFmData('Case Four','no-such-festival-2026'));
-    // 6. ACL runs two weekends; its dayDates are weekend one only. Weekend two
-    // (from weekendStartMs) counts, the gap week between them does not.
+    // 6. ACL runs two weekends; its dayDates are weekend one only. The lookup,
+    // cache and timing carry no weekend, so weekend two fails closed, and with
+    // both weekends listed (weekend two first) weekend one's setlist is chosen.
     rows=[row('Zilker Park','Austin','10-10-2026',['W2a','W2b'])];
     out.aclW2=songs(await _getSetlistFmData('Case Five',ACL));
+    rows=[row('Zilker Park','Austin','10-10-2026',['W2a']),row('Zilker Park','Austin','03-10-2026',['W1a','W1b'])];
+    out.aclBoth=songs(await _getSetlistFmData('Case Five',ACL));
     rows=[row('Zilker Park','Austin','03-10-2026',['W1a'])];
     out.aclW1=songs(await _getSetlistFmData('Case Five',ACL));
     rows=[row('Zilker Park','Austin','06-10-2026',['Gap'])];
@@ -80,11 +83,12 @@ try {
   if(r.edc!=='E1,E2')problems.push(`the affirmative ${EDC} setlist did not resolve for the same artist: ${r.edc}`);
   if(r.lollaAgain!=='L1,L2')problems.push(`the cache mixed festivals for one artist: ${LOLLA} now reads ${r.lollaAgain}`);
   if(r.unknown!==null)problems.push(`an unknown festival id matched a setlist: ${r.unknown}`);
-  if(r.aclW2!=='W2a,W2b')problems.push(`an ACL weekend-two setlist (Zilker Park, Oct 10) did not resolve: ${r.aclW2}`);
+  if(r.aclW2!==null)problems.push(`an ACL weekend-two setlist (Oct 10) was used, but the cache and timing carry no weekend: ${r.aclW2}`);
+  if(r.aclBoth!=='W1a,W1b')problems.push(`with both ACL weekends listed, weekend one's setlist was not the one chosen: ${r.aclBoth}`);
   if(r.aclW1!=='W1a')problems.push(`an ACL weekend-one setlist (Zilker Park, Oct 3) did not resolve: ${r.aclW1}`);
   if(r.aclGap!==null)problems.push(`a setlist in ACL's gap week (Oct 6) was used: ${r.aclGap}`);
   if(r.aclMoody!==null||r.aclMoody2!==null)problems.push(`a room named after the brand (ACL Live at The Moody Theater) matched ACL: ${r.aclMoody} / ${r.aclMoody2}`);
   if(r.noAlias.length)console.log(`  note: no physical venue alias, so no setlist estimate: ${r.noAlias.join(', ')}`);
   if(problems.length){console.error('✗ setlist.fm fallback:\n  '+problems.join('\n  '));process.exit(1);}
-  console.log('✓ setlist.fm fallback fails closed: a setlist counts only on the festival\'s own dates at its own venue, no first-row default, cached per festival, both ACL weekends, physical venues only');
+  console.log('✓ setlist.fm fallback fails closed: a setlist counts only on the festival\'s own dates at its own venue, no first-row default, cached per festival, ACL weekend one only, physical venues only');
 } finally {server.kill('SIGTERM');}

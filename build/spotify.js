@@ -3177,19 +3177,9 @@ async function _getSupabaseTracklist(artistName, festId) {
     return null;
   }
 }
-function _festivalCalendarDays(cfg) {
-  var base = Object.values(cfg.dayDates || {}).map(x => Date.UTC(x.y, x.m, x.d)).filter(n => !isNaN(n));
-  var wk = cfg.weekendStartMs,
-    shifts = [0];
-  if (wk && typeof wk.W1 === "number") for (var k of Object.keys(wk)) {
-    var days = Math.round((wk[k] - wk.W1) / 86400000);
-    if (days > 0) shifts.push(days * 86400000);
-  }
-  return new Set(base.flatMap(b => shifts.map(s => new Date(b + s).toISOString().slice(0, 10))));
-}
 function _setlistIsEdition(sl, cfg) {
   var d = /^(\d{2})-(\d{2})-(\d{4})$/.exec(sl?.eventDate || "");
-  if (!d || !_festivalCalendarDays(cfg).has(`${d[3]}-${d[2]}-${d[1]}`)) return false;
+  if (!d || !Object.values(cfg.dayDates || {}).some(x => x.y === +d[3] && x.m === +d[2] - 1 && x.d === +d[1])) return false;
   var venue = (sl.venue?.name || "").toLowerCase();
   return [cfg.locationShort, cfg.venue?.name].map(s => String(s || "").trim().toLowerCase()).filter(s => s.length >= 3).some(n => new RegExp(`(^|\\W)${n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|\\W)`).test(venue));
 }

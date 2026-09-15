@@ -2157,21 +2157,14 @@ async function _getSupabaseTracklist(artistName, festId) {
 // dates, at a venue the festival's own metadata names. Another festival's
 // venue never matches and there is no first-row default: no song estimate
 // beats a song from an unrelated show.
-// The festival's calendar days: its dayDates, plus a copy per later weekend
-// when weekendStartMs says the days repeat (ACL's dayDates are weekend one
-// only), as whole-day shifts so no time zone is involved.
-function _festivalCalendarDays(cfg) {
-  const base = Object.values(cfg.dayDates || {}).map(x => Date.UTC(x.y, x.m, x.d)).filter(n => !isNaN(n));
-  const wk = cfg.weekendStartMs, shifts = [0];
-  if (wk && typeof wk.W1 === "number") for (const k of Object.keys(wk)) {
-    const days = Math.round((wk[k] - wk.W1) / 86400000);
-    if (days > 0) shifts.push(days * 86400000);
-  }
-  return new Set(base.flatMap(b => shifts.map(s => new Date(b + s).toISOString().slice(0, 10))));
-}
+// Dates are the festival's own dayDates only. A multi-weekend festival (ACL)
+// lists weekend one there; the lookup, its cache and the song timing carry no
+// weekend, so a weekend-two setlist could feed a weekend-one photo and a
+// weekend-two photo would be timed against weekend one. Until the weekend is
+// threaded through all three, weekend two fails closed: no estimate.
 function _setlistIsEdition(sl, cfg) {
   const d = /^(\d{2})-(\d{2})-(\d{4})$/.exec(sl?.eventDate || "");
-  if (!d || !_festivalCalendarDays(cfg).has(`${d[3]}-${d[2]}-${d[1]}`)) return false;
+  if (!d || !Object.values(cfg.dayDates || {}).some(x => x.y === +d[3] && x.m === +d[2] - 1 && x.d === +d[1])) return false;
   // Physical venue aliases only: a brand or display name ("HARD", "Austin
   // City Limits") also names unrelated rooms (HARD Rock Live, ACL Live at
   // The Moody Theater).
