@@ -9027,7 +9027,7 @@ function MemoriesScreen({
       window.plurskyToast?.(`Imported ${landed.length} · ${failedResults.length} failed`);
     }
     if (landed.length) setReview(landed);
-    setTimeout(() => setBatch(b => b && b.done === b.total ? null : b), 6000);
+    setTimeout(() => setBatch(b => b && b.done === b.total && !b.results.some(r => r.err) ? null : b), 6000);
   };
   var handleDelete = async moment => {
     if (!window.confirm("Delete this moment?")) return;
@@ -9400,6 +9400,44 @@ function MemoriesScreen({
         color: "var(--text-2)"
       }
     }, "Auto-tagging by time and location"));
+    if (hs === "empty" && done && failed > 0) return React.createElement("div", {
+      "data-mem-hero": "error",
+      style: {
+        marginTop: 12
+      }
+    }, React.createElement("div", {
+      role: "alert",
+      style: {
+        padding: "12px 16px",
+        borderRadius: 14,
+        background: "var(--paper-2)",
+        marginBottom: 12
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 17,
+        lineHeight: "22px",
+        fontWeight: 600,
+        fontVariantNumeric: "tabular-nums"
+      }
+    }, failed === 1 ? "1 file couldn't be imported" : `${failed} files couldn't be imported`), React.createElement("div", {
+      style: {
+        fontSize: 13,
+        lineHeight: "18px",
+        color: "var(--text-2)"
+      }
+    }, "Nothing was saved. Pick them again, or try other photos.")), React.createElement(FieldButton, {
+      onClick: handlePickClick
+    }, "Import from camera roll"), React.createElement("div", {
+      style: {
+        display: "flex",
+        justifyContent: "flex-end",
+        marginTop: 4
+      }
+    }, React.createElement("button", {
+      onClick: () => setBatch(null),
+      style: quiet
+    }, "Dismiss")));
     if (hs === "empty") return React.createElement("div", {
       "data-mem-hero": "empty",
       style: {

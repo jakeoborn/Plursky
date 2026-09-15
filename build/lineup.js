@@ -2768,10 +2768,36 @@ function GridHourLines({
   }));
 }
 var _gridDensityMem = {};
-function _gridLabelFit(label, width, pxPerChar) {
+var _gridLabelFont = null;
+function _gridLabelFit(label, width) {
   var s = String(label || "");
-  var n = Math.max(2, Math.floor((width - 6) / pxPerChar));
-  return s.length <= n ? s : s.slice(0, n);
+  try {
+    if (!_gridLabelFont) {
+      var probe = document.createElement("span");
+      probe.className = "mono";
+      probe.style.cssText = "position:absolute;visibility:hidden;font-weight:800;font-size:9px";
+      document.body.appendChild(probe);
+      var cs = getComputedStyle(probe);
+      _gridLabelFont = {
+        font: `800 ${cs.fontSize} ${cs.fontFamily}`,
+        track: parseFloat(cs.letterSpacing) || 0,
+        ctx: document.createElement("canvas").getContext("2d")
+      };
+      probe.remove();
+    }
+    var {
+      font,
+      track,
+      ctx
+    } = _gridLabelFont;
+    ctx.font = font;
+    var room = width - 4;
+    var n = s.length;
+    while (n > 2 && ctx.measureText(s.slice(0, n)).width + track * n > room) n--;
+    return s.slice(0, n);
+  } catch {
+    return s.slice(0, 3);
+  }
 }
 function TimelineGrid({
   lead,
@@ -2787,7 +2813,7 @@ function TimelineGrid({
   onToggleDensity
 }) {
   var fit = density !== "readable";
-  var GUTTER_W = fit ? 40 : 44;
+  var GUTTER_W = 44;
   var HEAD_H = 34;
   var TOTAL_H = GRID_TOTAL_H;
   var minToTop = _minToTop;
@@ -2970,7 +2996,7 @@ function TimelineGrid({
           textOverflow: fit ? "clip" : "ellipsis",
           whiteSpace: "nowrap"
         }
-      }, fit ? _gridLabelFit(s.short || s.name, COL_W, 7.2) : s.short), n > 0 && !overview && React.createElement("span", {
+      }, fit ? _gridLabelFit(s.short || s.name, COL_W) : s.short), n > 0 && !overview && React.createElement("span", {
         style: {
           flexShrink: 0,
           color: "var(--ember-ink)",

@@ -5719,8 +5719,9 @@ function MemoriesScreen({ state, setState }) {
     // by the time you scroll the wall to find out you no longer remember what
     // you imported.
     if (landed.length) setReview(landed);
-    // Auto-dismiss summary banner after 6s if user doesn't tap it
-    setTimeout(() => setBatch(b => (b && b.done === b.total ? null : b)), 6000);
+    // Auto-dismiss summary banner after 6s if user doesn't tap it. A failed
+    // file stays on screen until the user dismisses it.
+    setTimeout(() => setBatch(b => (b && b.done === b.total && !b.results.some(r => r.err) ? null : b)), 6000);
   };
 
   const handleDelete = async (moment) => {
@@ -6058,6 +6059,22 @@ function MemoriesScreen({ state, setState }) {
             <div role="status" data-mem-hero="importing" style={{ marginTop: 12, padding: "12px 16px", borderRadius: 14, background: "var(--paper-2)" }}>
               <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>Importing {batch.done} of {batch.total}</div>
               <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>Auto-tagging by time and location</div>
+            </div>
+          );
+          // Every file failed: nothing was saved, so "empty" would hide the
+          // failure. Say what happened and keep Import as the one action.
+          if (hs === "empty" && done && failed > 0) return (
+            <div data-mem-hero="error" style={{ marginTop: 12 }}>
+              <div role="alert" style={{ padding: "12px 16px", borderRadius: 14, background: "var(--paper-2)", marginBottom: 12 }}>
+                <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>
+                  {failed === 1 ? "1 file couldn't be imported" : `${failed} files couldn't be imported`}
+                </div>
+                <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>Nothing was saved. Pick them again, or try other photos.</div>
+              </div>
+              <FieldButton onClick={handlePickClick}>Import from camera roll</FieldButton>
+              <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 4 }}>
+                <button onClick={() => setBatch(null)} style={quiet}>Dismiss</button>
+              </div>
             </div>
           );
           if (hs === "empty") return (

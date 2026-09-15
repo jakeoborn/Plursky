@@ -1855,18 +1855,39 @@ const _gridDensityMem = {};
 
 // A label that fits its column: the whole thing when it does, else its first
 // letters. The full name stays in the title, the accessible label and a tap.
-function _gridLabelFit(label, width, pxPerChar) {
+// The longest prefix of a stage label that fits its Fit-all column, measured
+// in the font the header really renders in. Mono labels have an 11px floor
+// and tracking in CSS, so a guessed width per character clipped 6 of 10
+// Summerfest headers at 320px. Never fewer than 2 letters.
+let _gridLabelFont = null;
+function _gridLabelFit(label, width) {
   const s = String(label || "");
-  const n = Math.max(2, Math.floor((width - 6) / pxPerChar));
-  return s.length <= n ? s : s.slice(0, n);
+  try {
+    if (!_gridLabelFont) {
+      const probe = document.createElement("span");
+      probe.className = "mono";
+      probe.style.cssText = "position:absolute;visibility:hidden;font-weight:800;font-size:9px";
+      document.body.appendChild(probe);
+      const cs = getComputedStyle(probe);
+      _gridLabelFont = { font: `800 ${cs.fontSize} ${cs.fontFamily}`, track: parseFloat(cs.letterSpacing) || 0, ctx: document.createElement("canvas").getContext("2d") };
+      probe.remove();
+    }
+    const { font, track, ctx } = _gridLabelFont;
+    ctx.font = font;
+    const room = width - 4;
+    let n = s.length;
+    while (n > 2 && ctx.measureText(s.slice(0, n)).width + track * n > room) n--;
+    return s.slice(0, n);
+  } catch { return s.slice(0, 3); }
 }
 
 function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive, conflictById, spotifyMatchedIds, highlightId, density = "fit", onToggleDensity }) {
   // FIT ALL is the default: every stage across one screen, no sideways scroll.
   // READABLE keeps the wider columns and pans.
   const fit = density !== "readable";
-  // 40 in Fit all still holds "10 PM" on one line (36 clipped it to "0 PM").
-  const GUTTER_W = fit ? 40 : 44;
+  // Hour labels render at the 11px mono floor: "12 PM" is 38px, so the gutter
+  // is 44 in both modes (40 cut the leading digit off 10, 11 and 12).
+  const GUTTER_W = 44;
   // The stage header row lives INSIDE the scroll box so it can pin vertically
   // and pan horizontally at the same time. That means it occupies real scroll
   // height, and every scrollTop below has to add it back.
@@ -2057,7 +2078,7 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
                     fontSize: overview ? 8.5 : fit ? 9 : 10, letterSpacing: overview ? 0 : fit ? 0.3 : 1.1, fontWeight: 800,
                     fontFamily: "inherit", overflow: "hidden",
                   }}>
-                  <span aria-hidden="true" style={{ overflow: "hidden", textOverflow: fit ? "clip" : "ellipsis", whiteSpace: "nowrap" }}>{fit ? _gridLabelFit(s.short || s.name, COL_W, 7.2) : s.short}</span>
+                  <span aria-hidden="true" style={{ overflow: "hidden", textOverflow: fit ? "clip" : "ellipsis", whiteSpace: "nowrap" }}>{fit ? _gridLabelFit(s.short || s.name, COL_W) : s.short}</span>
                   {n > 0 && !overview && (
                     <span style={{ flexShrink: 0, color: "var(--ember-ink)", fontSize: 8.5, fontWeight: 800 }}>★{n}</span>
                   )}
