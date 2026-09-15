@@ -108,8 +108,11 @@ console.log("▸ AGENT_LOG order — Entries stay newest first");
   if (start < 0) fail("AGENT_LOG.md has no '## Entries' section");
   let prev = null, n = 0;
   for (let i = start + 1; i < log.length && !log[i].startsWith("## "); i++) {
-    const m = /^- (\d{4}-\d{2}-\d{2})(?: (\d{2}:\d{2}))? CT\b/.exec(log[i]);
-    if (!m) continue;
+    if (!log[i].trim()) continue;
+    // Any other row in Entries must be a well-formed entry: a row the regex
+    // can't read would otherwise drop out of the order check unseen.
+    const m = /^- (\d{4}-\d{2}-\d{2})(?: (\d{2}:\d{2}))? CT \| /.exec(log[i]);
+    if (!m) fail(`AGENT_LOG.md line ${i + 1} is not a well-formed entry ("- YYYY-MM-DD HH:MM CT | Author: … | Lane: … | …"): ${log[i].slice(0, 80)}`);
     const key = `${m[1]} ${m[2] || "00:00"}`;
     if (prev && key > prev) fail(`AGENT_LOG.md line ${i + 1} (${key}) is newer than the entry above it (${prev}); entries are reverse chronological, so new entries go at the TOP of '## Entries'`);
     prev = key; n++;
