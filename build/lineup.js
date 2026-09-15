@@ -2794,7 +2794,7 @@ function _gridLabelFit(label, width) {
     var room = width - 4;
     var n = s.length;
     while (n > 2 && ctx.measureText(s.slice(0, n)).width + track * n > room) n--;
-    return s.slice(0, n);
+    return n < s.length ? s.slice(0, n).replace(/[^\p{L}\p{N}]+$/u, "") || s.slice(0, 1) : s;
   } catch {
     return s.slice(0, 3);
   }

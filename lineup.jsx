@@ -1877,7 +1877,8 @@ function _gridLabelFit(label, width) {
     const room = width - 4;
     let n = s.length;
     while (n > 2 && ctx.measureText(s.slice(0, n)).width + track * n > room) n--;
-    return s.slice(0, n);
+    // A cut that ends on punctuation ("T-" from T-Mobile) drops it.
+    return n < s.length ? (s.slice(0, n).replace(/[^\p{L}\p{N}]+$/u, "") || s.slice(0, 1)) : s;
   } catch { return s.slice(0, 3); }
 }
 
