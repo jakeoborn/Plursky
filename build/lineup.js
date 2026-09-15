@@ -1663,33 +1663,81 @@ function LineupScreen({
     }
   }, "Show all sets")), viewMode === "list" && (() => {
     var nowMin = NOW.night === day && NOW.time && sortBy === "time" ? toNightMin(NOW.time) : null;
+    var moments = _momentsByArtist();
+    var prevSaved = null;
     var rows = dayArtists.map(a => {
       var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
       var saved = state.saved.includes(a.id);
+      var from = saved ? prevSaved : null;
+      if (saved) prevSaved = a;
+      var walk = from && typeof stageWalkMinutes === "function" ? stageWalkMinutes(from.stage, a.stage) : 0;
+      var gap = from ? toNightMin(a.start) - toNightMin(from.end) : 0;
+      var mine = moments[a.id] || [];
       var clashWith = conflictById[a.id];
       var isHighlighted = highlightId === a.id;
       var isLive = isSetLive(a);
       var crew = window.sbGetCrewCount?.(a.id) || 0;
-      var flags = [isLegendary(a) && "Don't miss", hasWeekends && a.weekend && a.weekend !== "both" && (a.weekend === "W1" ? "Weekend 1" : "Weekend 2"), spotifyMatchedIds.has(a.id) && "In your music", crew > 0 && `${crew} crew`].filter(Boolean);
-      return React.createElement("div", {
-        key: a.id,
+      var mustSee = isLegendary(a);
+      var walkRow = from && gap >= 0 && (walk > 0 || gap > 0) && (() => {
+        var tight = walk > 0 && gap < walk;
+        var fromStage = STAGES.find(s => s.id === from.stage);
+        var text = from.stage === a.stage ? `Stay at ${stage.name} · ${gap} min break` : `${tight ? "Tight · " : ""}${walk} min walk from ${fromStage?.name || "your last set"}${tight ? gap === 0 ? ", back to back" : `, ${gap} min gap` : gap > walk ? ` · ${gap - walk} min spare` : ""}`;
+        return React.createElement("div", {
+          "data-walk-row": true,
+          style: {
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            padding: "6px 0 6px 81px",
+            fontSize: 13,
+            lineHeight: "18px",
+            color: tight ? "var(--warn)" : "var(--text-2)"
+          }
+        }, React.createElement("svg", {
+          "aria-hidden": "true",
+          width: "16",
+          height: "16",
+          viewBox: "0 0 24 24",
+          fill: "none",
+          stroke: "currentColor",
+          strokeWidth: "1.8",
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
+          style: {
+            flexShrink: 0
+          }
+        }, React.createElement("circle", {
+          cx: "13",
+          cy: "4",
+          r: "2"
+        }), React.createElement("path", {
+          d: "M9 21l2-7 3 3v4M6 12l3-4 4 1 3 4 2 1"
+        })), React.createElement("span", null, text));
+      })();
+      var flags = [hasWeekends && a.weekend && a.weekend !== "both" && (a.weekend === "W1" ? "Weekend 1" : "Weekend 2"), spotifyMatchedIds.has(a.id) && "In your music", crew > 0 && `${crew} crew`].filter(Boolean);
+      return React.createElement(React.Fragment, {
+        key: a.id
+      }, walkRow, React.createElement("div", {
         "data-animate": true,
         "data-lineup-highlight": isHighlighted ? "true" : undefined,
+        "data-saved-row": saved ? "1" : undefined,
         style: {
           display: "flex",
-          alignItems: "flex-start",
+          alignItems: "stretch",
           gap: 12,
           minHeight: 64,
-          padding: "12px 8px",
-          margin: "0 -8px",
-          borderBottom: "1px solid var(--line)",
-          borderRadius: isHighlighted ? 14 : 0,
+          padding: "12px 10px",
+          margin: saved ? "0 -10px 4px" : "0 -10px",
+          background: saved ? _stageTint(stage.color, 12) : "transparent",
+          borderBottom: saved ? "none" : "1px solid var(--line)",
+          borderRadius: saved || isHighlighted ? 14 : 0,
           animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined
         }
       }, React.createElement("div", {
         style: {
           width: 76,
           flexShrink: 0,
+          alignSelf: "flex-start",
           fontVariantNumeric: "tabular-nums",
           whiteSpace: "nowrap"
         }
@@ -1705,7 +1753,16 @@ function LineupScreen({
           lineHeight: "18px",
           color: "var(--text-2)"
         }
-      }, fmt12(a.end))), React.createElement("button", {
+      }, fmt12(a.end))), React.createElement("span", {
+        "aria-hidden": "true",
+        "data-stage-rail": true,
+        style: {
+          width: 3,
+          flexShrink: 0,
+          borderRadius: 2,
+          background: stage.color || "var(--line-2)"
+        }
+      }), React.createElement("button", {
         onClick: () => setState({
           ...state,
           artist: a.id
@@ -1753,38 +1810,77 @@ function LineupScreen({
           color: "var(--text-2)"
         }
       }, React.createElement("span", {
-        "aria-hidden": "true",
         style: {
-          display: "inline-block",
-          width: 7,
-          height: 7,
-          borderRadius: 4,
-          background: "var(--text-3)",
-          marginRight: 6,
-          verticalAlign: "1px"
+          color: _stageInk(stage.color),
+          fontWeight: 600
         }
-      }), stage.name, a.genre ? ` · ${a.genre}` : ""), flags.length > 0 && React.createElement("span", {
+      }, stage.name), a.genre ? ` · ${a.genre}` : ""), (mustSee || clashWith || mine.length > 0) && React.createElement("span", {
         style: {
-          marginTop: 2,
+          marginTop: 6,
+          alignSelf: "stretch",
+          minWidth: 0,
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 6,
+          alignItems: "center"
+        }
+      }, mustSee && React.createElement("span", {
+        style: _rowChip("rgba(var(--signal-rgb),0.2)", "var(--signal-ink)")
+      }, "Don't miss"), clashWith && React.createElement("span", {
+        "data-clash-badge": true,
+        "aria-label": `Clashes with ${clashWith.join(", ")}`,
+        style: {
+          ..._rowChip("color-mix(in oklab, var(--warn) 18%, transparent)", "var(--warn)"),
+          maxWidth: "100%",
+          minWidth: 0
+        }
+      }, React.createElement("svg", {
+        "aria-hidden": "true",
+        width: "12",
+        height: "12",
+        viewBox: "0 0 24 24",
+        fill: "none",
+        stroke: "currentColor",
+        strokeWidth: "2.4",
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        style: {
+          flexShrink: 0
+        }
+      }, React.createElement("path", {
+        d: "M12 3l10 18H2z"
+      }), React.createElement("path", {
+        d: "M12 10v5M12 18v.5"
+      })), React.createElement("span", {
+        style: {
+          minWidth: 0,
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap"
+        }
+      }, "Clash · ", clashWith.join(", "))), mine.length > 0 && React.createElement("span", {
+        "data-moment-chip": true,
+        style: {
+          ..._rowChip("var(--paper-3)", "var(--ink)"),
+          paddingLeft: 3
+        }
+      }, React.createElement(RowMomentThumb, {
+        photoId: mine[0].photoId
+      }), mine.length, " ", mine.length === 1 ? "moment" : "moments")), flags.length > 0 && React.createElement("span", {
+        style: {
+          marginTop: 4,
           fontSize: 13,
           lineHeight: "18px",
           color: "var(--text-2)"
         }
-      }, flags.join(" · ")), clashWith && React.createElement("span", {
-        style: {
-          marginTop: 2,
-          fontSize: 13,
-          lineHeight: "18px",
-          fontWeight: 600,
-          color: "var(--warn)"
-        }
-      }, "⚠ Clashes with ", clashWith.join(", "))), React.createElement("button", {
+      }, flags.join(" · "))), React.createElement("button", {
         onClick: () => toggleSave(state, setState, a.id),
         "aria-label": saved ? `Unsave ${a.name}` : `Save ${a.name}`,
         "aria-pressed": saved,
         style: {
           ...fieldIconBtn,
-          color: saved ? "var(--signal-ink)" : "var(--text-2)"
+          alignSelf: "flex-start",
+          color: saved ? _stageInk(stage.color) : "var(--text-2)"
         }
       }, React.createElement("svg", {
         width: "22",
@@ -1797,7 +1893,7 @@ function LineupScreen({
         strokeLinejoin: "round"
       }, React.createElement("path", {
         d: "M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"
-      }))));
+      })))));
     });
     if (nowMin != null && dayArtists.length) {
       var i = dayArtists.findIndex(a => toNightMin(a.start) > nowMin);
@@ -2324,12 +2420,61 @@ var _gridBounds = (() => {
 })();
 var GRID_START_MIN = _gridBounds.start;
 var GRID_END_MIN = _gridBounds.end;
-var GRID_PX_PER_MIN = 1.8;
+var GRID_PX_PER_MIN = 2.2;
 var GRID_TOTAL_H = (GRID_END_MIN - GRID_START_MIN) * GRID_PX_PER_MIN;
 var GRID_HEADER_H = 30;
 function _minToTop(m) {
   return (Math.max(GRID_START_MIN, Math.min(GRID_END_MIN, m)) - GRID_START_MIN) * GRID_PX_PER_MIN;
 }
+function _stageInk(c) {
+  return c ? `color-mix(in oklab, ${c} 70%, var(--ink))` : "var(--text-2)";
+}
+function _stageTint(c, pct) {
+  return c ? `color-mix(in oklab, ${c} ${pct}%, var(--paper-2))` : "var(--paper-2)";
+}
+function _rangeShort(a) {
+  var s = fmt12(a.start),
+    e = fmt12(a.end);
+  return s.slice(-2) === e.slice(-2) ? `${s.slice(0, -3)}–${e}` : `${s}–${e}`;
+}
+function _momentsByArtist() {
+  var out = {};
+  try {
+    var all = typeof _activeMoments === "function" && typeof _readMoments === "function" ? _activeMoments(_readMoments()) : {};
+    for (var night of Object.keys(all)) for (var m of all[night] || []) if (m && m.artistId) (out[m.artistId] = out[m.artistId] || []).push(m);
+  } catch {}
+  return out;
+}
+function RowMomentThumb({
+  photoId
+}) {
+  var url = typeof useMomentPhoto === "function" ? useMomentPhoto(photoId) : null;
+  return React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      width: 22,
+      height: 22,
+      borderRadius: 6,
+      flexShrink: 0,
+      display: "inline-block",
+      background: url ? `center / cover no-repeat url("${url}")` : "var(--paper-2)",
+      border: "1px solid var(--line-2)"
+    }
+  });
+}
+var _rowChip = (bg, fg) => ({
+  display: "inline-flex",
+  alignItems: "center",
+  gap: 6,
+  minHeight: 22,
+  padding: "0 8px",
+  borderRadius: 7,
+  background: bg,
+  color: fg,
+  fontSize: 12,
+  lineHeight: "16px",
+  fontWeight: 600
+});
 function SavedSidebar({
   day,
   state,
@@ -2491,8 +2636,8 @@ function GridSetBlock({
   narrow = false
 }) {
   var isHeadliner = a.tier === 3;
-  var _lineH = narrow ? 10.2 : isHeadliner ? 13.8 : 12.7;
-  var _chrome = narrow ? 8 : 20;
+  var _lineH = narrow ? 12.7 : isHeadliner ? 15.5 : 15;
+  var _chrome = narrow ? 8 : 26;
   var nameLines = Math.max(1, Math.min(4, Math.floor((height - _chrome) / _lineH)));
   var _saved = (state.saved || []).includes(a.id);
   var _store = refStore;
@@ -2556,15 +2701,15 @@ function GridSetBlock({
       left,
       width,
       height,
-      background: isHeadliner ? "var(--paper-3)" : "var(--paper-2)",
-      borderLeft: `3px solid ${_saved ? "var(--signal)" : "var(--line-2)"}`,
-      borderRadius: 6,
-      padding: narrow ? "3px 3px 3px 4px" : "4px 6px 4px 7px",
+      background: _saved ? _stageTint(stage?.color, 34) : _stageTint(stage?.color, isHeadliner ? 20 : 13),
+      borderLeft: `3px solid ${stage?.color || "var(--line-2)"}`,
+      borderRadius: 8,
+      padding: narrow ? "3px 3px 3px 5px" : "5px 7px 5px 8px",
       cursor: "pointer",
       overflow: "hidden",
       opacity: active || isHighlighted ? 1 : 0.32,
       transition: "opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-left 0.2s ease, transform 0.12s ease",
-      boxShadow: dueMins != null ? "0 0 0 2px var(--signal)" : clash && active ? "inset 0 0 0 1.5px var(--ember)" : "none",
+      boxShadow: dueMins != null ? "0 0 0 2px var(--signal)" : clash && active ? "inset 0 0 0 1.5px var(--warn)" : "none",
       zIndex: isHighlighted ? 6 : dueMins != null ? 5 : undefined,
       animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined,
       display: "flex",
@@ -2572,9 +2717,9 @@ function GridSetBlock({
     }
   }, React.createElement("div", {
     style: {
-      fontSize: narrow ? 9.5 : isHeadliner ? 12.5 : 11.5,
-      fontWeight: isHeadliner ? 800 : 700,
-      lineHeight: narrow ? 1.05 : 1.1,
+      fontSize: narrow ? 11 : isHeadliner ? 14 : 13,
+      fontWeight: isHeadliner ? 700 : 600,
+      lineHeight: 1.15,
       color: "var(--ink)",
       overflow: "hidden",
       textOverflow: "ellipsis",
@@ -2586,15 +2731,17 @@ function GridSetBlock({
       fontFamily: isHeadliner ? "Instrument Serif, Georgia, serif" : "Geist, -apple-system, sans-serif"
     }
   }, a.name), !narrow && React.createElement("div", {
-    className: "mono",
     style: {
-      fontSize: 8,
-      letterSpacing: 0.3,
-      color: "var(--muted)",
+      fontSize: 11,
+      lineHeight: "14px",
+      color: "var(--text-2)",
+      fontVariantNumeric: "tabular-nums",
       marginTop: 2,
-      whiteSpace: "nowrap"
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis"
     }
-  }, fmt12(a.start), showEndTime && height > 38 ? ` – ${fmt12(a.end)}` : ""), dueMins != null && height > 46 && React.createElement("div", {
+  }, showEndTime && height > 38 ? _rangeShort(a) : fmt12(a.start)), dueMins != null && height > 46 && React.createElement("div", {
     className: "mono",
     style: {
       marginTop: "auto",
@@ -2609,8 +2756,8 @@ function GridSetBlock({
       position: "absolute",
       top: 3,
       right: 5,
-      fontSize: 10,
-      color: "var(--ember-ink)",
+      fontSize: 11,
+      color: "var(--ink)",
       fontWeight: 800,
       lineHeight: 1
     }
@@ -2621,8 +2768,8 @@ function GridSetBlock({
       position: "absolute",
       top: 2.5,
       right: narrow ? 13 : 16,
-      fontSize: 9,
-      color: "var(--ember-ink)",
+      fontSize: 10,
+      color: "var(--warn)",
       fontWeight: 800,
       lineHeight: 1
     }
@@ -2680,7 +2827,7 @@ function TimelineGrid({
   highlightId
 }) {
   var GUTTER_W = 44;
-  var HEAD_H = 34;
+  var HEAD_H = 48;
   var TOTAL_H = GRID_TOTAL_H;
   var minToTop = _minToTop;
   var scrollRef = React.useRef(null);
@@ -2730,7 +2877,7 @@ function TimelineGrid({
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
-  var BAND = Math.round(Math.min(118, Math.max(92, boxW * 0.26)));
+  var BAND = Math.round(Math.min(156, Math.max(128, boxW * 0.36)));
   var COL_W = Math.max(BAND, Math.floor((boxW - GUTTER_W) / Math.max(1, cols.length)));
   var showEndTime = COL_W >= 120;
   var narrow = COL_W < 72;
@@ -2827,7 +2974,6 @@ function TimelineGrid({
           scrollToStage(s.id);
         },
         title: s.name,
-        className: "mono",
         style: {
           width: COL_W,
           flexShrink: 0,
@@ -2837,30 +2983,44 @@ function TimelineGrid({
           borderBottom: "1px solid var(--line-2)",
           background: "var(--paper)",
           color: "var(--ink)",
-          padding: "3px 5px 0",
+          padding: "0 8px",
           cursor: "pointer",
           position: "relative",
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
-          gap: 4,
-          fontSize: 10,
-          letterSpacing: 1.1,
-          fontWeight: 800,
+          gap: 6,
+          textAlign: "left",
+          fontSize: 12,
+          lineHeight: "15px",
+          fontWeight: 600,
           fontFamily: "inherit"
         }
       }, React.createElement("span", {
+        "aria-hidden": "true",
         style: {
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          whiteSpace: "nowrap"
+          width: 8,
+          height: 8,
+          borderRadius: 4,
+          flexShrink: 0,
+          background: s.color || "var(--text-3)"
         }
-      }, s.short), n > 0 && React.createElement("span", {
+      }), React.createElement("span", {
+        style: {
+          flex: 1,
+          minWidth: 0,
+          overflow: "hidden",
+          color: _stageInk(s.color),
+          display: "-webkit-box",
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: "vertical",
+          overflowWrap: "break-word"
+        }
+      }, s.name), n > 0 && React.createElement("span", {
         style: {
           flexShrink: 0,
-          color: "var(--ember-ink)",
-          fontSize: 8.5,
-          fontWeight: 800
+          color: "var(--text-2)",
+          fontSize: 11,
+          fontWeight: 700
         }
       }, "★", n));
     })), React.createElement("div", {
@@ -2881,15 +3041,15 @@ function TimelineGrid({
       }
     }, HOURS.map(h => React.createElement("div", {
       key: h.label,
-      className: "mono",
       style: {
         position: "absolute",
-        top: minToTop(h.mins) - 6,
+        top: Math.max(2, minToTop(h.mins) - 8),
         right: 6,
-        fontSize: 9,
-        letterSpacing: 0.3,
-        color: "var(--muted)",
-        fontWeight: 700
+        fontSize: 11,
+        lineHeight: "14px",
+        whiteSpace: "nowrap",
+        color: "var(--text-3)",
+        fontWeight: 600
       }
     }, h.label)), nowTop != null && React.createElement("span", {
       className: "mono",

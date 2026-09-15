@@ -1156,34 +1156,71 @@ function LineupScreen({ state, setState }) {
           // One NOW rule, before the first set that hasn't started: only on the
           // night that is actually running, and only in time order.
           const nowMin = NOW.night === day && NOW.time && sortBy === "time" ? toNightMin(NOW.time) : null;
+          // Walk rows ride between saved sets in the order this list shows
+          // them, so the list reads as your night: each saved set after the
+          // first says how far it is from the saved set above it.
+          const moments = _momentsByArtist();
+          let prevSaved = null;
           const rows = dayArtists.map(a => {
             const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
             const saved = state.saved.includes(a.id);
+            const from = saved ? prevSaved : null;
+            if (saved) prevSaved = a;
+            const walk = from && typeof stageWalkMinutes === "function" ? stageWalkMinutes(from.stage, a.stage) : 0;
+            const gap = from ? toNightMin(a.start) - toNightMin(from.end) : 0;
+            const mine = moments[a.id] || [];
             const clashWith = conflictById[a.id];
             const isHighlighted = highlightId === a.id;
             const isLive = isSetLive(a);
             const crew = window.sbGetCrewCount?.(a.id) || 0;
+            const mustSee = isLegendary(a);
+            // An overlap is the clash pill's job, so it gets no walk row.
+            const walkRow = from && gap >= 0 && (walk > 0 || gap > 0) && (() => {
+              const tight = walk > 0 && gap < walk;
+              const fromStage = STAGES.find(s => s.id === from.stage);
+              const text = from.stage === a.stage
+                ? `Stay at ${stage.name} · ${gap} min break`
+                : `${tight ? "Tight · " : ""}${walk} min walk from ${fromStage?.name || "your last set"}${tight ? (gap === 0 ? ", back to back" : `, ${gap} min gap`) : gap > walk ? ` · ${gap - walk} min spare` : ""}`;
+              return (
+                <div data-walk-row style={{
+                  display: "flex", alignItems: "center", gap: 10, padding: "6px 0 6px 81px",
+                  fontSize: 13, lineHeight: "18px", color: tight ? "var(--warn)" : "var(--text-2)",
+                }}>
+                  <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                    <circle cx="13" cy="4" r="2"/><path d="M9 21l2-7 3 3v4M6 12l3-4 4 1 3 4 2 1"/>
+                  </svg>
+                  <span>{text}</span>
+                </div>
+              );
+            })();
             const flags = [
-              isLegendary(a) && "Don't miss",
               hasWeekends && a.weekend && a.weekend !== "both" && (a.weekend === "W1" ? "Weekend 1" : "Weekend 2"),
               spotifyMatchedIds.has(a.id) && "In your music",
               crew > 0 && `${crew} crew`,
             ].filter(Boolean);
             return (
-              <div key={a.id}
+              <React.Fragment key={a.id}>
+              {walkRow}
+              <div
                 data-animate
                 data-lineup-highlight={isHighlighted ? "true" : undefined}
+                data-saved-row={saved ? "1" : undefined}
                 style={{
-                  display: "flex", alignItems: "flex-start", gap: 12, minHeight: 64,
-                  padding: "12px 8px", margin: "0 -8px",
-                  borderBottom: "1px solid var(--line)",
-                  borderRadius: isHighlighted ? 14 : 0,
+                  display: "flex", alignItems: "stretch", gap: 12, minHeight: 64,
+                  padding: "12px 10px", margin: saved ? "0 -10px 4px" : "0 -10px",
+                  // A saved set is lifted by its own stage colour, faintly: the
+                  // list reads as your night without a second accent colour.
+                  background: saved ? _stageTint(stage.color, 12) : "transparent",
+                  borderBottom: saved ? "none" : "1px solid var(--line)",
+                  borderRadius: saved || isHighlighted ? 14 : 0,
                   animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined,
                 }}>
-                <div style={{ width: 76, flexShrink: 0, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
+                <div style={{ width: 76, flexShrink: 0, alignSelf: "flex-start", fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
                   <div style={{ fontSize: 15, lineHeight: "21px", fontWeight: 600 }}>{fmt12(a.start)}</div>
                   <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{fmt12(a.end)}</div>
                 </div>
+                {/* The stage rail: the one place each row carries its stage colour. */}
+                <span aria-hidden="true" data-stage-rail style={{ width: 3, flexShrink: 0, borderRadius: 2, background: stage.color || "var(--line-2)" }} />
                 <button onClick={() => setState({ ...state, artist: a.id })} style={{
                   flex: 1, minWidth: 0, minHeight: 44, padding: 0, background: "transparent", border: "none",
                   color: "var(--ink)", textAlign: "left", cursor: "pointer",
@@ -1197,20 +1234,36 @@ function LineupScreen({ state, setState }) {
                   <span style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{a.name}</span>
                   {/* Inline dot, so a long stage name wraps as text, not dot-then-line. */}
                   <span style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
-                    <span aria-hidden="true" style={{ display: "inline-block", width: 7, height: 7, borderRadius: 4, background: "var(--text-3)", marginRight: 6, verticalAlign: "1px" }} />
-                    {stage.name}{a.genre ? ` · ${a.genre}` : ""}
+                    <span style={{ color: _stageInk(stage.color), fontWeight: 600 }}>{stage.name}</span>{a.genre ? ` · ${a.genre}` : ""}
                   </span>
-                  {flags.length > 0 && <span style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{flags.join(" · ")}</span>}
-                  {clashWith && <span style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: "var(--warn)" }}>⚠ Clashes with {clashWith.join(", ")}</span>}
+                  {(mustSee || clashWith || mine.length > 0) && (
+                    <span style={{ marginTop: 6, alignSelf: "stretch", minWidth: 0, display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center" }}>
+                      {mustSee && <span style={_rowChip("rgba(var(--signal-rgb),0.2)", "var(--signal-ink)")}>Don't miss</span>}
+                      {clashWith && (
+                        <span data-clash-badge aria-label={`Clashes with ${clashWith.join(", ")}`} style={{ ..._rowChip("color-mix(in oklab, var(--warn) 18%, transparent)", "var(--warn)"), maxWidth: "100%", minWidth: 0 }}>
+                          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.5"/></svg>
+                          <span style={{ minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>Clash · {clashWith.join(", ")}</span>
+                        </span>
+                      )}
+                      {mine.length > 0 && (
+                        <span data-moment-chip style={{ ..._rowChip("var(--paper-3)", "var(--ink)"), paddingLeft: 3 }}>
+                          <RowMomentThumb photoId={mine[0].photoId} />
+                          {mine.length} {mine.length === 1 ? "moment" : "moments"}
+                        </span>
+                      )}
+                    </span>
+                  )}
+                  {flags.length > 0 && <span style={{ marginTop: 4, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{flags.join(" · ")}</span>}
                 </button>
                 <button onClick={() => toggleSave(state, setState, a.id)}
                   aria-label={saved ? `Unsave ${a.name}` : `Save ${a.name}`} aria-pressed={saved}
-                  style={{ ...fieldIconBtn, color: saved ? "var(--signal-ink)" : "var(--text-2)" }}>
+                  style={{ ...fieldIconBtn, alignSelf: "flex-start", color: saved ? _stageInk(stage.color) : "var(--text-2)" }}>
                   <svg width="22" height="22" viewBox="0 0 24 24" fill={saved ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
                   </svg>
                 </button>
               </div>
+              </React.Fragment>
             );
           });
           if (nowMin != null && dayArtists.length) {
@@ -1518,12 +1571,47 @@ const _gridBounds = (() => {
 })();
 const GRID_START_MIN = _gridBounds.start;
 const GRID_END_MIN   = _gridBounds.end;
-const GRID_PX_PER_MIN = 1.8;
+// 2.2 px a minute: a 30-minute set holds its name and its time.
+const GRID_PX_PER_MIN = 2.2;
 const GRID_TOTAL_H = (GRID_END_MIN - GRID_START_MIN) * GRID_PX_PER_MIN;
 const GRID_HEADER_H = 30;
 function _minToTop(m) {
   return (Math.max(GRID_START_MIN, Math.min(GRID_END_MIN, m)) - GRID_START_MIN) * GRID_PX_PER_MIN;
 }
+
+// Stage colour on the dark field (2026-09-15 list + grid pass). The data
+// colours were picked for a light ground: mixed toward the ink they read as
+// text on dark, mixed into the card surface they tint without shouting.
+function _stageInk(c) { return c ? `color-mix(in oklab, ${c} 70%, var(--ink))` : "var(--text-2)"; }
+function _stageTint(c, pct) { return c ? `color-mix(in oklab, ${c} ${pct}%, var(--paper-2))` : "var(--paper-2)"; }
+// "10:00–11:30 PM" when both ends share a meridiem: a range that fits a lane.
+function _rangeShort(a) {
+  const s = fmt12(a.start), e = fmt12(a.end);
+  return s.slice(-2) === e.slice(-2) ? `${s.slice(0, -3)}–${e}` : `${s}–${e}`;
+}
+// Moments tagged to each act at the ACTIVE festival: artistId → moments.
+function _momentsByArtist() {
+  const out = {};
+  try {
+    const all = typeof _activeMoments === "function" && typeof _readMoments === "function" ? _activeMoments(_readMoments()) : {};
+    for (const night of Object.keys(all)) for (const m of all[night] || []) if (m && m.artistId) (out[m.artistId] = out[m.artistId] || []).push(m);
+  } catch {}
+  return out;
+}
+function RowMomentThumb({ photoId }) {
+  const url = typeof useMomentPhoto === "function" ? useMomentPhoto(photoId) : null;
+  return (
+    <span aria-hidden="true" style={{
+      width: 22, height: 22, borderRadius: 6, flexShrink: 0, display: "inline-block",
+      background: url ? `center / cover no-repeat url("${url}")` : "var(--paper-2)",
+      border: "1px solid var(--line-2)",
+    }} />
+  );
+}
+const _rowChip = (bg, fg) => ({
+  display: "inline-flex", alignItems: "center", gap: 6, minHeight: 22, padding: "0 8px", borderRadius: 7,
+  background: bg, color: fg, fontSize: 12, lineHeight: "16px", fontWeight: 600,
+});
 
 // v139: time-aligned saved-sets sidebar. Each entry positions absolutely
 // at the corresponding time row so the column reads like a personal vertical
@@ -1644,8 +1732,8 @@ function GridSetBlock({
   // off the block's own height instead — line box ≈ font × 1.1, minus the
   // padding and the time row — and cap at 4 so a long slot does not become a
   // wall of text.
-  const _lineH   = narrow ? 10.2 : isHeadliner ? 13.8 : 12.7;
-  const _chrome  = narrow ? 8 : 20; // padding, plus the time line where it renders
+  const _lineH   = narrow ? 12.7 : isHeadliner ? 15.5 : 15;
+  const _chrome  = narrow ? 8 : 26; // padding, plus the time line where it renders
   const nameLines = Math.max(1, Math.min(4, Math.floor((height - _chrome) / _lineH)));
   // One accent: the rail marks what you saved; the stage is its column header.
   const _saved = (state.saved || []).includes(a.id);
@@ -1677,26 +1765,28 @@ function GridSetBlock({
       onPointerCancel={_resetHold}
       style={{
         position: "absolute", top, left, width, height,
-        background: isHeadliner ? "var(--paper-3)" : "var(--paper-2)",
-        borderLeft: `3px solid ${_saved ? "var(--signal)" : "var(--line-2)"}`,
-        borderRadius: 6,
-        padding: narrow ? "3px 3px 3px 4px" : "4px 6px 4px 7px",
+        // The card wears its stage: a faint tint, deeper once saved, and the
+        // stage colour on the left edge (2026-09-15 list + grid pass).
+        background: _saved ? _stageTint(stage?.color, 34) : _stageTint(stage?.color, isHeadliner ? 20 : 13),
+        borderLeft: `3px solid ${stage?.color || "var(--line-2)"}`,
+        borderRadius: 8,
+        padding: narrow ? "3px 3px 3px 5px" : "5px 7px 5px 8px",
         cursor: "pointer", overflow: "hidden",
         opacity: active || isHighlighted ? 1 : 0.32,
         transition: "opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-left 0.2s ease, transform 0.12s ease",
         boxShadow: dueMins != null
           ? "0 0 0 2px var(--signal)"
           : clash && active
-            ? "inset 0 0 0 1.5px var(--ember)"
+            ? "inset 0 0 0 1.5px var(--warn)"
             : "none",
         zIndex: isHighlighted ? 6 : dueMins != null ? 5 : undefined,
         animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined,
         display: "flex", flexDirection: "column",
       }}>
       <div style={{
-        fontSize: narrow ? 9.5 : isHeadliner ? 12.5 : 11.5,
-        fontWeight: isHeadliner ? 800 : 700,
-        lineHeight: narrow ? 1.05 : 1.1, color: "var(--ink)",
+        fontSize: narrow ? 11 : isHeadliner ? 14 : 13,
+        fontWeight: isHeadliner ? 700 : 600,
+        lineHeight: 1.15, color: "var(--ink)",
         overflow: "hidden", textOverflow: "ellipsis",
         display: "-webkit-box",
         WebkitLineClamp: nameLines,
@@ -1715,10 +1805,10 @@ function GridSetBlock({
           start time alone rather than a truncated lie. Below `narrow` even the
           start does not fit, and the hour gutter already carries it. */}
       {!narrow && (
-        <div className="mono" style={{
-          fontSize: 8, letterSpacing: 0.3, color: "var(--muted)",
-          marginTop: 2, whiteSpace: "nowrap",
-        }}>{fmt12(a.start)}{showEndTime && height > 38 ? ` – ${fmt12(a.end)}` : ""}</div>
+        <div style={{
+          fontSize: 11, lineHeight: "14px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums",
+          marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+        }}>{showEndTime && height > 38 ? _rangeShort(a) : fmt12(a.start)}</div>
       )}
       {dueMins != null && height > 46 && (
         <div className="mono" style={{
@@ -1729,7 +1819,7 @@ function GridSetBlock({
       {saved && (
         <span style={{
           position: "absolute", top: 3, right: 5,
-          fontSize: 10, color: "var(--ember-ink)", fontWeight: 800, lineHeight: 1,
+          fontSize: 11, color: "var(--ink)", fontWeight: 800, lineHeight: 1,
         }}>★</span>
       )}
       {/* The conflict mark. conflictById is built from SAVED sets only, so
@@ -1739,7 +1829,7 @@ function GridSetBlock({
       {clash && (
         <span title="Overlaps another saved set" aria-label="clash" style={{
           position: "absolute", top: 2.5, right: narrow ? 13 : 16,
-          fontSize: 9, color: "var(--ember-ink)", fontWeight: 800, lineHeight: 1,
+          fontSize: 10, color: "var(--warn)", fontWeight: 800, lineHeight: 1,
         }}>⚠</span>
       )}
       {!saved && matched && height > 30 && (
@@ -1783,7 +1873,7 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
   // The stage header row lives INSIDE the scroll box so it can pin vertically
   // and pan horizontally at the same time. That means it occupies real scroll
   // height, and every scrollTop below has to add it back.
-  const HEAD_H = 34;
+  const HEAD_H = 48;
   const TOTAL_H = GRID_TOTAL_H;
   const minToTop = _minToTop;
 
@@ -1844,7 +1934,9 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
   // affordance — a half-column is the one universally understood "there is
   // more this way". When a festival has few enough stages to fit, they spread
   // to fill the width instead of leaving a gap on the right.
-  const BAND = Math.round(Math.min(118, Math.max(92, boxW * 0.26)));
+  // 2026-09-15: the band is 128–156px (≈141 at 393), two and a half stages
+  // on screen, so a name reads horizontally at 13px instead of as a code.
+  const BAND = Math.round(Math.min(156, Math.max(128, boxW * 0.36)));
   const COL_W = Math.max(BAND, Math.floor((boxW - GUTTER_W) / Math.max(1, cols.length)));
   // Only a wide column has room for a full "7:15 PM – 8:00 PM".
   const showEndTime = COL_W >= 120;
@@ -1946,20 +2038,25 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
                   data-stage-head={s.id}
                   onClick={() => { try { window.plurskyHaptic?.("LIGHT"); } catch {} scrollToStage(s.id); }}
                   title={s.name}
-                  className="mono"
                   style={{
                     width: COL_W, flexShrink: 0, height: HEAD_H,
                     border: "none", borderLeft: "1px solid var(--line)",
                     borderBottom: "1px solid var(--line-2)",
                     background: "var(--paper)", color: "var(--ink)",
-                    padding: "3px 5px 0", cursor: "pointer", position: "relative",
-                    display: "flex", alignItems: "center", justifyContent: "center", gap: 4,
-                    fontSize: 10, letterSpacing: 1.1, fontWeight: 800,
+                    padding: "0 8px", cursor: "pointer", position: "relative",
+                    display: "flex", alignItems: "center", gap: 6, textAlign: "left",
+                    fontSize: 12, lineHeight: "15px", fontWeight: 600,
                     fontFamily: "inherit",
                   }}>
-                  <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.short}</span>
+                  {/* The full stage name, never a code: "KIN" is the grid
+                      asking you to decode it. Two lines, in the stage colour. */}
+                  <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: 4, flexShrink: 0, background: s.color || "var(--text-3)" }} />
+                  <span style={{
+                    flex: 1, minWidth: 0, overflow: "hidden", color: _stageInk(s.color),
+                    display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflowWrap: "break-word",
+                  }}>{s.name}</span>
                   {n > 0 && (
-                    <span style={{ flexShrink: 0, color: "var(--ember-ink)", fontSize: 8.5, fontWeight: 800 }}>★{n}</span>
+                    <span style={{ flexShrink: 0, color: "var(--text-2)", fontSize: 11, fontWeight: 700 }}>★{n}</span>
                   )}
                 </button>
               );
@@ -1974,10 +2071,12 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
               borderRight: "1px solid var(--line)",
             }}>
               {HOURS.map(h => (
-                <div key={h.label} className="mono" style={{
-                  position: "absolute", top: minToTop(h.mins) - 6, right: 6,
-                  fontSize: 9, letterSpacing: 0.3,
-                  color: "var(--muted)", fontWeight: 700,
+                <div key={h.label} style={{
+                  // The first hour sits on the top edge: clamp it inside the gutter
+                  // so the sticky stage header does not cover it.
+                  position: "absolute", top: Math.max(2, minToTop(h.mins) - 8), right: 6,
+                  fontSize: 11, lineHeight: "14px", whiteSpace: "nowrap",
+                  color: "var(--text-3)", fontWeight: 600,
                 }}>{h.label}</div>
               ))}
               {/* NOW docks to the gutter and stays there. It used to be
