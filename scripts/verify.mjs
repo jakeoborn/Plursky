@@ -96,6 +96,27 @@ console.log("▸ iOS focus-zoom floor — form fields stay ≥16px on iOS");
   console.log(`  ✓ input,textarea,select floored at ${m[1]}px on iOS`);
 }
 
+// ── 0b2a. AGENT_LOG order ─────────────────────────────────────────────────
+// Agents read the top of AGENT_LOG at session start, and the file says its
+// entries are reverse chronological. Entries appended at the bottom hid the
+// newest blocker below two days of older ones (Codex, #200). An entry with
+// no time counts as 00:00 that day; equal timestamps keep file order.
+console.log("▸ AGENT_LOG order — Entries stay newest first");
+{
+  const log = readFileSync(join(ROOT, "AGENT_LOG.md"), "utf8").split("\n");
+  const start = log.indexOf("## Entries");
+  if (start < 0) fail("AGENT_LOG.md has no '## Entries' section");
+  let prev = null, n = 0;
+  for (let i = start + 1; i < log.length && !log[i].startsWith("## "); i++) {
+    const m = /^- (\d{4}-\d{2}-\d{2})(?: (\d{2}:\d{2}))? CT\b/.exec(log[i]);
+    if (!m) continue;
+    const key = `${m[1]} ${m[2] || "00:00"}`;
+    if (prev && key > prev) fail(`AGENT_LOG.md line ${i + 1} (${key}) is newer than the entry above it (${prev}); entries are reverse chronological, so new entries go at the TOP of '## Entries'`);
+    prev = key; n++;
+  }
+  console.log(`  ✓ ${n} entries, newest first`);
+}
+
 // ── 0b3. Duplicate-global gate ────────────────────────────────────────────
 // Every .jsx loads as a classic script, so a top-level declaration is a
 // GLOBAL and a later file's copy silently replaces an earlier one. home.jsx
