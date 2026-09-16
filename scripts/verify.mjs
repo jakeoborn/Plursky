@@ -2284,6 +2284,26 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b5. Sitemap content fingerprint ────────────────────────────────────
+// sitemap <lastmod> is a fingerprint of each page's own indexable content, so
+// a rendered field missing from that fingerprint freezes the date while the
+// page moves — telling a crawler "nothing changed here" about a page that did.
+// Mutants prove each render-driving field class moves exactly its own url,
+// unrendered fields move none, and the generator's render path cannot grow a
+// field the fingerprint does not see. This is a regression gate on the hash,
+// NOT a second freshness gate: the clock stays --check-strict's alone.
+{
+  console.log("▸ Sitemap-fingerprint gate — rendered fields move one url, unrendered move none, coverage complete");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-sitemap-fingerprint.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`sitemap fingerprint failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c. Video thumbnails ────────────────────────────────────────────────
 // A library tile shows a stored poster <img>, never a live <video>. The old
 // "poster" was <video preload="metadata" src="...#t=0.1">: one decoder per

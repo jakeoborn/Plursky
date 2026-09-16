@@ -19,6 +19,7 @@ import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
+import { fp, festivalFingerprint } from './lib/sitemap-fingerprint.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://plursky.com';
@@ -449,26 +450,12 @@ if (!CHECK) console.log(`[gen] index.html festival lists refreshed (${REG.length
 // today — right by the rules, and a real trap when testing by hand.
 const LEDGER = path.join(root, 'sitemap-lastmod.json');
 const SITEMAP = path.join(root, 'sitemap.xml');
-const fp = (v) => createHash('sha256').update(JSON.stringify(v)).digest('hex').slice(0, 16);
 const fileFp = (rel) => fp(existsSync(path.join(root, rel)) ? readFileSync(path.join(root, rel), 'utf8') : null);
-const festivalFp = (entry) => {
-  const cfg = entry.config;
-  const ds = DS[cfg.id] || {};
-  const d = eventDates(cfg);
-  return fp({
-    name: cfg.name, dates: cfg.dates, location: cfg.location || '', tagline: cfg.tagline || '',
-    available: !!entry.available, scheduleTBA: !!entry.scheduleTBA,
-    setTimesProvisional: !!cfg.setTimesProvisional,
-    // The "This festival has ended." line and the CTA verb move with the
-    // calendar alone. That IS a change a crawler sees, so it belongs in the
-    // fingerprint — and it is precisely why this is strict-only.
-    isPast: d ? d.end < TODAY : false,
-    artists: [...new Set((ds.artists || []).map(a => a.name).filter(Boolean))].sort((a, b) => a.localeCompare(b)),
-    stages: (ds.stages || []).map(s => [s.id, s.name, s.desc || '']),
-    acts: scheduleActs(ds.artists),
-    source: cfg.scheduleSource || null,
-  });
-};
+// Which source fields are hashed, which are deliberately not, and why, all
+// live in scripts/lib/sitemap-fingerprint.mjs — shared with
+// scripts/test-sitemap-fingerprint.mjs so the generator and its regression
+// mutants hash through one function rather than two copies of a rule.
+const festivalFp = (entry) => festivalFingerprint(entry, { DS, scheduleActs, eventDates, TODAY });
 
 // First run has no ledger. Seeding from the sitemap already committed keeps
 // every published date that is still true, rather than announcing that all 28
