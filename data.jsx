@@ -3260,7 +3260,10 @@ function isScheduleTBA(id) {
 // can see this. EDC Orlando is gated today and un-gates at the Nov 6-8 flip.
 //
 // A festival earns a table by measuring its own geometry against an official
-// patron map — #97, and the founder call of 2026-09-15.
+// patron map — #97. That fleet-wide bar is a trust policy, not a founder
+// ruling: the founder ruling behind it is ACL-specific (no distance claims
+// until ACL's geometry is verified), and applying the same bar to every
+// festival is ours. Don't re-attribute it.
 const WALK_TABLE_FESTIVAL_ID = "edc-lv-2026";
 
 const _DATA_SETS = {

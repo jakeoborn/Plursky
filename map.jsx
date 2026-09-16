@@ -379,9 +379,12 @@ function _gpsFromAffine(affine, cfg, x, y) {
 // non-live ("demo") position. That exemption was wrong, not merely lenient: a
 // planning view has no GPS by definition, so the demo branch was the branch a
 // real attendee actually reads when they build their night days before the
-// gates open. Founder contract: readouts are OFF until that festival's
-// geometry is verified against official patron-map or ground evidence, in
-// EVERY state. No demo exception.
+// gates open. The rule: readouts are OFF until that festival's geometry is
+// verified against official patron-map or ground evidence, in EVERY state.
+// No demo exception. This fleet-wide form is a trust policy, not a founder
+// ruling — the founder ruling it implements is the ACL-specific constraint
+// (no distance claims until ACL's geometry is verified); the widening to
+// every festival and every avatar state is ours. Don't re-attribute it.
 //
 // _geomVerifiedMemo is also the seam the verify gate uses to prove the
 // positive direction: with no verified festival in the fleet today, flipping
