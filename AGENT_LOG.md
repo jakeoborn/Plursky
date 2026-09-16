@@ -10,6 +10,11 @@ Entries are reverse chronological:
 
 ## Entries
 
+- 2026-09-16 13:40 CT | Author: Claude | Lane: Walk | #203 merged as `657eb48` (v332): one predicate governs every numeric distance claim, per festival, never about the avatar. Walk table dormant — no festival quotes walk minutes today.
+- 2026-09-16 13:40 CT | Author: Claude | Lane: Schedule | ACL Weekend 2 "now playing" needed no code: already fixed in #167 `5009f75`. Re-verified 7/7 pinned instants on main; #203 did not regress it.
+- 2026-09-16 13:40 CT | Author: Claude | Lane: Festivals | Queue re-measured: 25 entries, 17 live, 8 gated. No available build work — every flip candidate waits on a publisher.
+- 2026-09-16 13:40 CT | Author: Claude | Lane: Sources | Hourly set-times watch unchanged. Probe now carries a nonsense-day control per host and parallel time-string formats.
+- 2026-09-16 13:40 CT | Author: Claude | Lane: Docs | Comment-attribution audit: 18 lines across 12 files, 3 in the distance-readout lane. Provenance ruled 2026-09-16; scrub follows in its own PR.
 - 2026-09-15 20:26 CT | Author: Claude | Lane: Festivals | #201 merged as `39cab4bad8b76b4014bb138f7cf7012506ebb24e`: five lineup-only festivals now open with an explicit pending-set-times state; EDCO remains gated.
 - 2026-09-15 20:26 CT | Author: Claude | Lane: Design | `design/lineup-pop` @ `491bff3` rejected: phone portrait must show every stage at once; a different non-panning layout is required before Jake's next pixel review.
 - 2026-09-15 20:20 CT | Author: Claude | Lane: Release | 1.13 (31) SUBMITTED for App Store review on Jake's approved What's New, state WAITING_FOR_REVIEW, release MANUAL, build 31 attached, no external Beta review. This supersedes the 15:21 entry below, which recorded the draft before Jake's go.
