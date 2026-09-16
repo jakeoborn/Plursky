@@ -689,6 +689,18 @@ const FESTIVALS_REGISTRY = [
       weatherEndpoint: "https://api.weather.gov/points/28.54,-81.41",
       setTimesProvisional: true,
     },
+    // STAYS GATED, and not for schedule reasons. The 2026-09-15 call opens a
+    // festival whose set times are unpublished, and EDC Orlando qualifies on
+    // that axis — but opening it makes it LIVE, and a live festival has to
+    // clear the map-registration gate. EDCO has no sourced registration by
+    // design: no OSM polygon matches the fence, so it carries no footprint and
+    // waits on the official 2026 map (the same map the hourly watch probes).
+    // Verify says it plainly: "unsourced, blind with no waiver".
+    //
+    // A waiver here would be a judgement about map accuracy with no evidence
+    // behind it, which is the founder's call and not a drive-by in this PR.
+    // Flip this to `available: true, scheduleTBA: true` the day the official
+    // map lands — the schedule side is already ready for it.
     available: false,
     accent:    "#22c55e",
     emoji:     "🌴",
@@ -976,7 +988,14 @@ const _FESTIVAL_STALE_MS = 7 * 24 * 60 * 60 * 1000;
 // are skipped rather than sorted as 0 — treating a missing date as the epoch
 // would rank an unannounced festival ahead of every real one.
 function _resolveDefaultFestivalId(now) {
-  const avail = FESTIVALS_REGISTRY.filter(f => f && f.available && f.config && f.config.id);
+  const open = FESTIVALS_REGISTRY.filter(f => f && f.available && f.config && f.config.id);
+  // A festival whose set times are not published yet is OPENABLE (founder
+  // call 2026-09-15: show the lineup, don't hold the festival back) but must
+  // never WIN the default. Dropping a first-time user onto a lineup with no
+  // times, ahead of a festival that has a real schedule, would make the app
+  // worse for a change that was only ever about access. Prefer a published
+  // schedule; fall back to the pending ones only if that is all there is.
+  const avail = open.some(f => !f.scheduleTBA) ? open.filter(f => !f.scheduleTBA) : open;
   if (!avail.length) return FESTIVALS_REGISTRY[0].config.id;
   const dated = avail.filter(f =>
     typeof f.config.startMs === "number" && typeof f.config.endMs === "number");
@@ -3218,6 +3237,17 @@ for (const _id of _WAVE1_IDS) {
 }
 
 const _regConfig = (id) => FESTIVALS_REGISTRY.find(f => f.config.id === id).config;
+
+// The registry entry for a festival, and the one question the UI asks of it:
+// is this festival open with its set times still unpublished? `scheduleTBA`
+// lives on the REGISTRY entry, not on FESTIVAL_CONFIG, so every screen that
+// wants it would otherwise repeat the same .find() — which is how app.jsx,
+// data.jsx and spotify.jsx each grew their own copy.
+const _regEntry = (id) => FESTIVALS_REGISTRY.find(f => f && f.config && f.config.id === id) || null;
+function isScheduleTBA(id) {
+  const e = _regEntry(id || (typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.id : null));
+  return !!(e && e.available && e.scheduleTBA);
+}
 const _DATA_SETS = {
   "edc-lv-2026":          { stages: STAGES,     artists: ARTISTS,     amenities: AMENITIES,     config: FESTIVAL_CONFIG },
   "acl-2026":             { stages: ACL_STAGES, artists: ACL_ARTISTS, amenities: ACL_AMENITIES, config: _regConfig("acl-2026") },
@@ -3237,7 +3267,7 @@ Object.assign(window, {
   FESTIVAL: _active.config, FESTIVAL_CONFIG: _active.config,
   STAGES: _active.stages, AMENITIES: _active.amenities, AVATAR_START, FRIENDS, ARTISTS: _active.artists,
   NOW, ALERTS, ESSENTIALS, fmt12,
-  FESTIVALS_REGISTRY, getActiveFestivalId, setActiveFestivalAndReload,
+  FESTIVALS_REGISTRY, getActiveFestivalId, setActiveFestivalAndReload, isScheduleTBA,
   _resolveDefaultFestivalId,
   resolvedStageAnchors, resolvedStageAnchor, dayDateFor, _weekendShiftMs,
   _DATA_SETS,

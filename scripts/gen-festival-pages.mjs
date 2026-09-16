@@ -263,7 +263,11 @@ ${JSON.stringify(ld, null, 2)}
     <a class="cta-secondary" href="/?f=${esc(id)}">${entry.available ? (isPast ? 'Relive it in the browser' : 'Open in your browser') : 'Open Plursky in the browser'}</a>
   </p>
   <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.</p>
-${entry.available ? '' : `  <p class="note">${esc(cfg.name)} is not switchable in the app yet — it goes live once the official schedule is published. The links above open Plursky on the current festival.</p>`}
+${entry.available
+  ? (entry.scheduleTBA
+      ? `  <p class="note">${esc(cfg.name)} is open in the app — the full lineup is in. Set times appear as soon as the festival publishes them.</p>`
+      : '')
+  : `  <p class="note">${esc(cfg.name)} is not switchable in the app yet — it goes live once the official schedule is published. The links above open Plursky on the current festival.</p>`}
 ${scheduleGrid(entry, dates)}
 ${stagesSection(entry)}
 ${lineupSection}
@@ -368,6 +372,15 @@ for (const entry of REG) {
   emit(path.join(dir, 'index.html'), stub(entry),
        CHECK && !CHECK_STRICT ? stub(entry, !(eventDates(entry.config)
          ? eventDates(entry.config).end < TODAY : false)) : null);
+  // Every open festival ships a feed, INCLUDING one whose set times are still
+  // pending. A blank feed is not a fabricated one: `source` is null and each
+  // act carries start "" / end "", which is a first-class state throughout —
+  // _scheduleActs preserves it, diffSchedule has fixtures for TBA in both
+  // directions, and test-schedule-diff requires the file for every available
+  // festival. It is also the MECHANISM that spots the times arriving: the app
+  // compares its bundled fingerprint against this feed, so suppressing it
+  // would blind schedule-change detection for exactly the five festivals
+  // whose schedules are about to drop.
   if (entry.available) emit(path.join(dir, 'schedule.json'), scheduleFeed(entry));
   const n = new Set((DS[id]?.artists || []).map(a => a.name)).size;
   const d = eventDates(entry.config);
