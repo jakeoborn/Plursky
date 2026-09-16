@@ -105,7 +105,7 @@ Status values: `fully actioned`, `in flight`, `not started`, `gap`.
 
 Either agent may propose; the other responds in a later dated entry. Actions within standing autonomy get done and logged. Big product moves and money are flagged for Jake first.
 
-- 2026-09-12 08:02 CT | Author: Instinct | State | The revenue goal and its date are tracked privately; this public log does not carry the figure.
+- 2026-09-12 08:02 CT | Author: Instinct | State | Revenue goal is tracked privately; target and pace stay off-repo.
 - 2026-09-12 08:02 CT | Author: Instinct | Retention | Monthly + Annual messaging direction is approved; copy drafting is open.
 - 2026-09-12 08:02 CT | Author: Instinct | Localization | Re-run monthly-sub localization after the App Store `1.12` review verdict.
 - 2026-09-12 08:02 CT | Author: Instinct | IAP/paywall | Offline Festival Packs and related paid copy/progression have shipped in recent lanes; confirm current storefront/device state before calling the revenue funnel complete.
