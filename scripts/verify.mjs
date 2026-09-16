@@ -1924,24 +1924,134 @@ const REGISTRATION_TOL_M = 25;
   // one thing while the screen says another." So the rule is now enforced at
   // the source: a stage-to-stage minute count comes from a MEASURED table or
   // it does not exist. Coordinate arithmetic inside that function is banned.
+  console.log("▸ Walk-readout gate — stage minutes come from a measured table or not at all");
   {
-    const src = readFileSync(join(ROOT, "home.jsx"), "utf8");
-    const fn = /function stageWalkMinutes\s*\([^)]*\)\s*\{([\s\S]*?)\n\}/.exec(src);
-    if (!fn) fail("home.jsx: stageWalkMinutes() not found — the walk-readout gate cannot check what it cannot see");
-    const body = fn[1];
-    const COORD = /Math\.hypot|\.x\s*-|\.y\s*-|Math\.sqrt/;
-    if (COORD.test(body)) {
-      fail("home.jsx stageWalkMinutes() derives minutes from stage COORDINATES. " +
-           "Those x/y are art, not a survey (#97). Return null for an unmeasured pair " +
-           "instead — blind is the honest state until the geometry is verified.");
+    // ⚠ These read the COMPILED build, not the .jsx sources, and that is
+    // deliberate. compile.mjs transforms with `comments: false`, so the build
+    // carries code and no prose. Grepping the source instead made this gate
+    // fail on its OWN comment — the paragraph in map.jsx that records why the
+    // `dist * 0.4` fallback must never come back quotes the expression, and a
+    // gate that greps prose cannot tell an explanation from a regression. The
+    // only way to go green would have been to DELETE the documentation, which
+    // is precisely backwards. The build is also what actually ships, and the
+    // precompile gate above already guarantees it is not stale.
+    const hbuild = readFileSync(join(ROOT, "build/home.js"), "utf8");
+    const COORD = /Math\.hypot|Math\.sqrt/;
+    // Whole-file, not just the one function: the bug this gate exists for was
+    // a SECOND readout growing in a different place, so checking only
+    // stageWalkMinutes would repeat the mistake that let it through twice.
+    // home.jsx has no legitimate coordinate arithmetic at all (measured: zero
+    // occurrences), so the broad net costs nothing and catches the next one.
+    if (COORD.test(hbuild)) {
+      fail("home.jsx derives a distance from stage COORDINATES (Math.hypot/Math.sqrt). " +
+           "Those x/y are art, not a survey (#97) — home.jsx has no honest use for them. " +
+           "A stage-to-stage minute comes from a MEASURED table or it does not exist.");
     }
-    // Absence of coordinates is not presence of honesty: it must actually
-    // return null on a table miss, not 0 (0 reads as "same stage, no walk").
-    if (!/return\s+_WALK_MIN\[key\]\s*!=\s*null\s*\?\s*_WALK_MIN\[key\]\s*:\s*null/.test(body)) {
-      fail("home.jsx stageWalkMinutes() must return null for a pair the measured table does not hold");
+    const fn = /function stageWalkMinutes\s*\([^)]*\)\s*\{([\s\S]*?)\n\}/.exec(hbuild);
+    if (!fn) fail("build/home.js: stageWalkMinutes() not found — the walk-readout gate cannot check what it cannot see");
+    if (!/WALK_TABLE_FESTIVAL_ID/.test(fn[1])) {
+      fail("home.jsx stageWalkMinutes() does not check WHICH festival is asking. " +
+           "The table is keyed by BARE stage id and EDC Orlando reuses four of them, " +
+           "so an unguarded lookup quotes Las Vegas minutes in Tinker Field.");
     }
-    console.log("▸ Walk-readout gate — stage minutes come from a measured table or not at all");
-    console.log("  ✓ home.jsx stageWalkMinutes(): no coordinate arithmetic, unmeasured pairs return null");
+    // The route line in TopDownMap had its OWN copy of the fabrication and
+    // this gate could not see it, because the gate only ever read one
+    // function in one file. `dist * 0.4` is that fallback's signature.
+    const mbuild = readFileSync(join(ROOT, "build/map.js"), "utf8");
+    if (/dist\s*\*\s*0\.4/.test(mbuild)) {
+      fail("map.jsx converts a GRID DISTANCE straight into minutes (`dist * 0.4`). " +
+           "That constant was measured at EDC Las Vegas and the coordinates are art (#97). " +
+           "Send the readout through computeWalkRange()/walkMinsLabel() like every other one.");
+    }
+
+    // ── Behaviour, not source text ──────────────────────────────────────
+    // The static half above is why the first two attempts at this gate
+    // passed a build that still fabricated: a regex over one function body
+    // cannot see a table keyed by BARE stage id being read on a festival it
+    // never measured. EDC Orlando reuses kinetic/circuit/neon/stereo, which
+    // is 6 colliding pairs of Las Vegas Motor Speedway minutes waiting to
+    // land in Tinker Field.
+    //
+    // It also cannot be checked through the live registry: getActiveFestivalId
+    // requires `.available`, so a gated festival can NEVER be made active and
+    // every live-festival probe skips the one festival that actually collides.
+    // So walk _DATA_SETS, which holds gated festivals too, and pass the id in.
+    const vmw = await import("node:vm");
+    const loadW = (fid) => {
+      const store = { active_festival_id: fid, active_festival_explicit: "1" };
+      const noop = () => {};
+      const ctx = {
+        console: { log: noop, warn: noop, error: noop }, Date, Math, JSON, Object, Array,
+        String, Number, Boolean, Set, Map, isNaN, parseInt, parseFloat, isFinite,
+        setTimeout: noop, clearTimeout: noop, setInterval: noop, clearInterval: noop,
+        fetch: () => new Promise(noop), URLSearchParams, location: { search: "" },
+        localStorage: { getItem: k => (k in store ? store[k] : null),
+                        setItem: (k, v) => { store[k] = String(v); }, removeItem: k => { delete store[k]; } },
+        navigator: { userAgent: "node", geolocation: {} },
+        document: { addEventListener: noop, removeEventListener: noop, documentElement: { style: {} },
+                    createElement: () => ({ style: {}, setAttribute: noop }), getElementById: () => null,
+                    querySelector: () => null, head: { appendChild: noop } },
+        React: new Proxy(function () {}, { get: () => () => null, apply: () => null }),
+        ReactDOM: { createRoot: () => ({ render: noop }) },
+      };
+      ctx.window = ctx; ctx.globalThis = ctx; ctx.self = ctx;
+      ctx.window.addEventListener = noop; ctx.window.removeEventListener = noop;
+      ctx.window.matchMedia = () => ({ matches: false, addEventListener: noop, addListener: noop });
+      vmw.createContext(ctx);
+      const wmods = execFileSync("git", ["ls-files", "data/festivals/*.js"], { cwd: ROOT })
+        .toString().trim().split("\n").filter(Boolean)
+        .map(f => readFileSync(join(ROOT, f), "utf8")).join("\n");
+      vmw.runInContext(wmods, ctx);
+      // index.html order: data → … → home → map.
+      vmw.runInContext(readFileSync(join(ROOT, "build/data.js"), "utf8"), ctx);
+      vmw.runInContext(readFileSync(join(ROOT, "build/home.js"), "utf8"), ctx);
+      vmw.runInContext(readFileSync(join(ROOT, "build/map.js"), "utf8"), ctx);
+      return ctx;
+    };
+
+    const wc = loadW("edc-lv-2026");
+    const TABLE_FID = wc.WALK_TABLE_FESTIVAL_ID;
+    if (!TABLE_FID) fail("data.jsx must export WALK_TABLE_FESTIVAL_ID — the walk tables are one festival's measurements and nothing says which");
+    if (typeof wc.stageWalkMinutes !== "function") fail("home.jsx stageWalkMinutes() is not reachable from the compiled build — this gate would silently check nothing");
+    const WDS = wc._DATA_SETS || {};
+    if (!Object.keys(WDS).length) fail("_DATA_SETS is empty in the vm — the walk gate cannot enumerate festivals");
+
+    let wBad = 0, wFests = 0, wPairs = 0;
+    for (const [fid, ds] of Object.entries(WDS)) {
+      const ids = (ds.stages || []).map(s => s.id);
+      if (ids.length < 2) continue;
+      wFests++;
+      const bad = [];
+      let measured = 0;
+      for (let i = 0; i < ids.length; i++) {
+        for (let j = i + 1; j < ids.length; j++) {
+          wPairs++;
+          const m = wc.stageWalkMinutes(ids[i], ids[j], fid);
+          if (fid === TABLE_FID) {
+            // Positive control. A gate that only ever asserts silence passes
+            // just as happily when the whole feature goes blank.
+            if (m == null) bad.push(`${ids[i]}~${ids[j]} lost its measured minute`);
+            else measured++;
+          } else if (m != null && m !== 0) {
+            bad.push(`${ids[i]}~${ids[j]}=${m}min`);
+          }
+        }
+      }
+      if (bad.length) {
+        wBad++;
+        console.log(`  ✗  ${fid.padEnd(26)} ${bad.slice(0, 6).join(", ")}${bad.length > 6 ? ` +${bad.length - 6} more` : ""}`);
+      } else if (fid === TABLE_FID) {
+        console.log(`  ok ${fid.padEnd(26)} ${measured} measured pair(s) still quoted`);
+      } else {
+        console.log(`  ok ${fid.padEnd(26)} ${ids.length} stages, no minutes — geometry unmeasured`);
+      }
+    }
+    if (wBad) {
+      fail(`${wBad} festival(s) quote walk minutes measured at a DIFFERENT festival — see above. ` +
+           `The tables are keyed by bare stage id; pass the festival id and return null off ${TABLE_FID}.`);
+    }
+    console.log(`  ✓ ${wFests} festival(s), ${wPairs} stage pair(s) — minutes only on ${TABLE_FID}, gated festivals included`);
+    console.log("  ✓ compiled build: no coordinate arithmetic in home.js, no `dist * 0.4` in map.js");
   }
 
   // ── The capture path must emit what the crowd-anchor gate accepts ──────

@@ -12042,7 +12042,8 @@ function _computeRecap(state) {
   var walkSequence = caughtArtists.slice().sort((a, b) => _artistEpochM(a) - _artistEpochM(b));
   var walkingMinutesLo = 0,
     walkingMinutesHi = 0;
-  var WP = window.WALK_PAIRS || {};
+  var _walkTableOk = !!(CFG && CFG.id === window.WALK_TABLE_FESTIVAL_ID);
+  var WP = _walkTableOk ? window.WALK_PAIRS || {} : {};
   var PK = window._pairKey || ((a, b) => a < b ? `${a},${b}` : `${b},${a}`);
   for (var i = 1; i < walkSequence.length; i++) {
     var prev = walkSequence[i - 1].stage;

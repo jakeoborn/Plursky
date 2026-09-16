@@ -515,7 +515,10 @@ function useGeolocation(enabled) {
 // pinch-points. The 1-3 AM crowd window adds ~50-60% as people leak between
 // mainstage drops. Avatar→stage falls back to a piecewise distance curve
 // when the avatar isn't anchored to a known stage.
-// All 36 stage pairs; keys alphabetically sorted so _pairKey always hits.
+// All 36 EDC LAS VEGAS stage pairs; keys alphabetically sorted so _pairKey
+// hits. ⛔ Bare stage ids: EDC Orlando reuses kinetic/circuit/neon/stereo, so
+// every read of this table must first check FESTIVAL_CONFIG.id against
+// WALK_TABLE_FESTIVAL_ID. "_pairKey always hits" was never true off EDC LV.
 const WALK_PAIRS = {
   "basspod,bionic":  [10, 16],
   "basspod,circuit": [ 6, 10],
@@ -586,7 +589,11 @@ function computeWalkRange(avatar, targetStage, dist, nowTime) {
   const fromStage = _nearestStageId(avatarX, avatarY);
   if (fromStage && targetStage && fromStage !== targetStage.id) {
     const k = _pairKey(fromStage, targetStage.id);
-    if (WALK_PAIRS[k]) [lo, hi] = WALK_PAIRS[k];
+    // EDC Las Vegas measurements, keyed by bare stage id — and four of those
+    // ids are also EDC Orlando stages. readoutHonest() below would NOT catch
+    // that on a festival whose registration is sourced, so the festival has
+    // to match before the table may be read.
+    if (FESTIVAL_CONFIG.id === WALK_TABLE_FESTIVAL_ID && WALK_PAIRS[k]) [lo, hi] = WALK_PAIRS[k];
   }
   if (lo == null) [lo, hi] = _distToBand(dist);
 
@@ -5988,20 +5995,27 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           const mid1y = avatar.y + (target.y - avatar.y) * 0.33;
           const mid2x = avatar.x + (target.x - avatar.x) * 0.66;
           const mid2y = avatar.y + (target.y - avatar.y) * 0.66 + (Math.random() > 0.5 ? 2 : -2);
-          const walkMins = typeof _pairKey === "function" && typeof WALK_PAIRS !== "undefined"
-            ? (WALK_PAIRS[_pairKey(_nearestStageId(avatar.x, avatar.y) || "", selected)] || [0, 0])
-            : [0, 0];
-          const etaMin = Math.round((walkMins[0] + walkMins[1]) / 2) || Math.round(dist * 0.4);
+          // ⛔ This line used to compute its OWN eta: read WALK_PAIRS directly,
+          // fall through to `dist * 0.4`, and paint the result. That fallback
+          // is art-coordinate arithmetic (#97) scaled by a constant measured at
+          // EDC Las Vegas, and it never asked readoutHonest() — so every
+          // festival whose pairs miss the table, which is all of them but EDC
+          // LV, drew an invented number over the route line. walkMinsLabel's
+          // "EVERY walk readout funnels through here" was simply false.
+          // It funnels now: a label, or no label at all.
+          const etaLabel = walkMinsLabel(computeWalkRange(avatar, target, dist, NOW.time));
           return (
             <g>
               <path d={`M${avatar.x},${avatar.y} C${mid1x},${mid1y} ${mid2x},${mid2y} ${target.x},${target.y}`}
                 fill="none" stroke={target.color} strokeWidth="0.6" strokeDasharray="2 2" opacity="0.6">
                 <animate attributeName="stroke-dashoffset" values="0;-8" dur="1.5s" repeatCount="indefinite"/>
               </path>
-              <text x={(avatar.x + target.x) / 2} y={(avatar.y + target.y) / 2 - 2}
-                textAnchor="middle" fontSize="3" fontFamily="Geist Mono, monospace" fontWeight="700"
-                fill={target.color} opacity="0.85"
-              >{etaMin} MIN</text>
+              {etaLabel && (
+                <text x={(avatar.x + target.x) / 2} y={(avatar.y + target.y) / 2 - 2}
+                  textAnchor="middle" fontSize="3" fontFamily="Geist Mono, monospace" fontWeight="700"
+                  fill={target.color} opacity="0.85"
+                >{etaLabel} MIN</text>
+              )}
             </g>
           );
         })()}

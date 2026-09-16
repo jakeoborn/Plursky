@@ -3248,6 +3248,21 @@ function isScheduleTBA(id) {
   const e = _regEntry(id || (typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.id : null));
   return !!(e && e.available && e.scheduleTBA);
 }
+// The ONE festival whose stage-to-stage walk minutes are hand-measured
+// (map.jsx WALK_PAIRS, home.jsx _WALK_MIN). Both tables are keyed by BARE
+// stage id — "kinetic", "circuit", "neon", "stereo" — and EDC Orlando reuses
+// four of exactly those ids for stages 2,000 miles away, so an unguarded
+// lookup hands Las Vegas Motor Speedway minutes to a phone in Tinker Field.
+//
+// It lives here, on the lookup, and not in a live-festival check, because
+// getActiveFestivalId() requires `.available`: a GATED festival can never
+// become the active one, so nothing that reasons about the active festival
+// can see this. EDC Orlando is gated today and un-gates at the Nov 6-8 flip.
+//
+// A festival earns a table by measuring its own geometry against an official
+// patron map — #97, and the founder call of 2026-09-15.
+const WALK_TABLE_FESTIVAL_ID = "edc-lv-2026";
+
 const _DATA_SETS = {
   "edc-lv-2026":          { stages: STAGES,     artists: ARTISTS,     amenities: AMENITIES,     config: FESTIVAL_CONFIG },
   "acl-2026":             { stages: ACL_STAGES, artists: ACL_ARTISTS, amenities: ACL_AMENITIES, config: _regConfig("acl-2026") },
@@ -3270,7 +3285,7 @@ Object.assign(window, {
   FESTIVALS_REGISTRY, getActiveFestivalId, setActiveFestivalAndReload, isScheduleTBA,
   _resolveDefaultFestivalId,
   resolvedStageAnchors, resolvedStageAnchor, dayDateFor, _weekendShiftMs,
-  _DATA_SETS,
+  _DATA_SETS, WALK_TABLE_FESTIVAL_ID,
 });
 // DAYS must follow the ACTIVE festival (Forest runs 4 days Thu–Sun; EDC/ACL
 // run 3 Fri–Sun). The top-level const was derived from the EDC config at eval

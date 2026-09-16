@@ -626,8 +626,14 @@ function useTick(intervalMs) {
 }
 
 // Walk-time lookup keyed by alphabetically-sorted stage-id pair.
-// Midpoints of the lo/hi bands from map.jsx WALK_PAIRS. Fallback for
-// any unlisted pair: ~0.4 min per SVG unit.
+// Midpoints of the lo/hi bands from map.jsx WALK_PAIRS.
+//
+// ⛔ These are EDC LAS VEGAS measurements and they describe no other festival.
+// The keys are BARE stage ids, and four of them — kinetic, circuit, neon,
+// stereo — are also EDC Orlando stage names, so this table will happily
+// answer for a festival it has never seen. stageWalkMinutes() below checks
+// WHICH festival is asking. There is no fallback for an unlisted pair; the
+// old "~0.4 min per SVG unit" fallthrough was the fabrication #203 removed.
 const _WALK_MIN = {
   "basspod,bionic":  13, "basspod,circuit": 8,  "basspod,cosmic":  11,
   "basspod,kinetic": 8,  "basspod,neon":    12, "basspod,quantum": 12,
@@ -659,12 +665,22 @@ const _WALK_MIN = {
 // different door, no check.
 //
 // So: 0 for the same stage (true whatever the geometry), the measured number
-// when one exists, and null otherwise. null means WE DO NOT KNOW, and every
+// when EDC Las Vegas is the festival asking, and null otherwise — a number
+// existing in the table is NOT the same as it describing your festival.
+// null means WE DO NOT KNOW, and every
 // call site renders the transition without a number instead of inventing one.
 // A festival earns its readouts back when its geometry is verified against an
 // official patron map — blind is the honest state until then.
-function stageWalkMinutes(fromId, toId) {
+function stageWalkMinutes(fromId, toId, festivalId) {
   if (fromId === toId) return 0;
+  // WHICH festival is asking decides whether the table may be read at all.
+  // festivalId is an explicit parameter rather than just FESTIVAL_CONFIG.id
+  // because a gated festival can never be the active one, so a check that
+  // could only ask through the active-festival switch would be structurally
+  // blind to EDC Orlando — the one festival whose ids actually collide.
+  const fid = festivalId ||
+    (typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG ? FESTIVAL_CONFIG.id : null);
+  if (fid !== WALK_TABLE_FESTIVAL_ID) return null;
   const key = fromId < toId ? `${fromId},${toId}` : `${toId},${fromId}`;
   return _WALK_MIN[key] != null ? _WALK_MIN[key] : null;
 }

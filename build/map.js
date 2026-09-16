@@ -726,7 +726,7 @@ function computeWalkRange(avatar, targetStage, dist, nowTime) {
   var fromStage = _nearestStageId(avatarX, avatarY);
   if (fromStage && targetStage && fromStage !== targetStage.id) {
     var k = _pairKey(fromStage, targetStage.id);
-    if (WALK_PAIRS[k]) [lo, hi] = WALK_PAIRS[k];
+    if (FESTIVAL_CONFIG.id === WALK_TABLE_FESTIVAL_ID && WALK_PAIRS[k]) [lo, hi] = WALK_PAIRS[k];
   }
   if (lo == null) [lo, hi] = _distToBand(dist);
   var hour = nowTime ? parseInt(String(nowTime).split(":")[0], 10) : -1;
@@ -8182,8 +8182,7 @@ function TopDownMap({
     var mid1y = avatar.y + (target.y - avatar.y) * 0.33;
     var mid2x = avatar.x + (target.x - avatar.x) * 0.66;
     var mid2y = avatar.y + (target.y - avatar.y) * 0.66 + (Math.random() > 0.5 ? 2 : -2);
-    var walkMins = typeof _pairKey === "function" && typeof WALK_PAIRS !== "undefined" ? WALK_PAIRS[_pairKey(_nearestStageId(avatar.x, avatar.y) || "", selected)] || [0, 0] : [0, 0];
-    var etaMin = Math.round((walkMins[0] + walkMins[1]) / 2) || Math.round(dist * 0.4);
+    var etaLabel = walkMinsLabel(computeWalkRange(avatar, target, dist, NOW.time));
     return React.createElement("g", null, React.createElement("path", {
       d: `M${avatar.x},${avatar.y} C${mid1x},${mid1y} ${mid2x},${mid2y} ${target.x},${target.y}`,
       fill: "none",
@@ -8196,7 +8195,7 @@ function TopDownMap({
       values: "0;-8",
       dur: "1.5s",
       repeatCount: "indefinite"
-    })), React.createElement("text", {
+    })), etaLabel && React.createElement("text", {
       x: (avatar.x + target.x) / 2,
       y: (avatar.y + target.y) / 2 - 2,
       textAnchor: "middle",
@@ -8205,7 +8204,7 @@ function TopDownMap({
       fontWeight: "700",
       fill: target.color,
       opacity: "0.85"
-    }, etaMin, " MIN"));
+    }, etaLabel, " MIN"));
   })(), React.createElement("g", null, React.createElement("path", {
     d: `M${avatar.x},${avatar.y}
                     L${avatar.x + Math.cos(heading - 0.38) * 6.5},${avatar.y + Math.sin(heading - 0.38) * 6.5}

@@ -7845,7 +7845,13 @@ function _computeRecap(state) {
   };
   const walkSequence = caughtArtists.slice().sort((a, b) => _artistEpochM(a) - _artistEpochM(b));
   let walkingMinutesLo = 0, walkingMinutesHi = 0;
-  const WP = window.WALK_PAIRS || {};
+  // WALK_PAIRS is EDC Las Vegas geometry keyed by BARE stage id, and EDC
+  // Orlando reuses four of those ids — so this sum only means anything on the
+  // festival the table was measured at. Off it every pair misses, the totals
+  // stay 0, and the walking card hides itself (the `> 0` guards at the render
+  // sites). That is the honest answer, not a distance nobody measured.
+  const _walkTableOk = !!(CFG && CFG.id === window.WALK_TABLE_FESTIVAL_ID);
+  const WP = _walkTableOk ? (window.WALK_PAIRS || {}) : {};
   const PK = window._pairKey || ((a, b) => a < b ? `${a},${b}` : `${b},${a}`);
   for (let i = 1; i < walkSequence.length; i++) {
     const prev = walkSequence[i - 1].stage;

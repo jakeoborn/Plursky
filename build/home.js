@@ -831,8 +831,10 @@ var _WALK_MIN = {
   "quantum,waste": 16,
   "stereo,waste": 9
 };
-function stageWalkMinutes(fromId, toId) {
+function stageWalkMinutes(fromId, toId, festivalId) {
   if (fromId === toId) return 0;
+  var fid = festivalId || (typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG ? FESTIVAL_CONFIG.id : null);
+  if (fid !== WALK_TABLE_FESTIVAL_ID) return null;
   var key = fromId < toId ? `${fromId},${toId}` : `${toId},${fromId}`;
   return _WALK_MIN[key] != null ? _WALK_MIN[key] : null;
 }
