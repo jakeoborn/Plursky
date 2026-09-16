@@ -93,7 +93,7 @@ the current build — no resubmit needed.
 Payments go out "within 45 days of the last day of the fiscal month in which the transaction
 occurred", and the US/USD minimum payout threshold is $0.02, so there's no threshold problem.
 Practically: September sales arrive in the bank around mid-November, October sales around
-mid-December. Worth knowing when judging the Oct 31 revenue goal — booked revenue and cash
+mid-December. Worth knowing when judging the revenue goal — booked revenue and cash
 received are three to six weeks apart.
 Refs: https://developer.apple.com/help/app-store-connect/getting-paid/overview-of-receiving-payments/
       https://developer.apple.com/help/app-store-connect/reference/minimum-payment-threshold/

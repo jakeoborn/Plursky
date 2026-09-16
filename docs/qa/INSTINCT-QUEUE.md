@@ -161,7 +161,7 @@ turns an accepted sheet into `data.jsx`.
 **Status: NEEDS-JAKE** (copy is founder-voice) · Design/drafts only
 
 Two additions to first-run: a Plursky+ mention (what it is, not a hard sell) and
-a playlist-share toggle. Small surface, real path to the $500 goal.
+a playlist-share toggle. Small surface, real path to the revenue goal.
 
 ⚠️ **Do not draft price copy.** Prices are hardcoded strings in `spotify.jsx` and
 are founder-eyes until sign-off. Deliver a flow mockup and copy options as
