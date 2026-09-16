@@ -2456,6 +2456,7 @@ function isScheduleTBA(id) {
   var e = _regEntry(id || (typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.id : null));
   return !!(e && e.available && e.scheduleTBA);
 }
+var WALK_TABLE_FESTIVAL_ID = "edc-lv-2026";
 var _DATA_SETS = {
   "edc-lv-2026": {
     stages: STAGES,
@@ -2515,7 +2516,8 @@ Object.assign(window, {
   resolvedStageAnchor,
   dayDateFor,
   _weekendShiftMs,
-  _DATA_SETS
+  _DATA_SETS,
+  WALK_TABLE_FESTIVAL_ID
 });
 var _daysMemo = null;
 function _liveDays() {

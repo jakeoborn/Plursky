@@ -831,14 +831,13 @@ var _WALK_MIN = {
   "quantum,waste": 16,
   "stereo,waste": 9
 };
-function stageWalkMinutes(fromId, toId) {
+function stageWalkMinutes(fromId, toId, festivalId) {
   if (fromId === toId) return 0;
+  var fid = festivalId || (typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG ? FESTIVAL_CONFIG.id : null);
+  if (fid !== WALK_TABLE_FESTIVAL_ID) return null;
+  if (typeof geometryVerifiedFor !== "function" || !geometryVerifiedFor(fid)) return null;
   var key = fromId < toId ? `${fromId},${toId}` : `${toId},${fromId}`;
-  if (_WALK_MIN[key] != null) return _WALK_MIN[key];
-  var a = STAGES.find(s => s.id === fromId),
-    b = STAGES.find(s => s.id === toId);
-  if (!a || !b) return 0;
-  return Math.max(2, Math.round(Math.hypot(a.x - b.x, a.y - b.y) * 0.4));
+  return _WALK_MIN[key] != null ? _WALK_MIN[key] : null;
 }
 function liveAcrossStages() {
   var night = NOW.night;
@@ -869,9 +868,10 @@ function buildTonightsPlan(state) {
     var minsUntil = startMin - nowMin;
     var isLive = isSetLive(a);
     var isPast = nowMin >= endMin;
-    var leaveBy = walk > 0 ? startMin - walk : null;
+    var known = walk != null && walk > 0;
+    var leaveBy = known ? startMin - walk : null;
     var prevEnd = prev ? toNightMin(prev.end) : null;
-    var tight = prev && walk > 0 && startMin - prevEnd < walk;
+    var tight = !!prev && known && startMin - prevEnd < walk;
     var conflict = prev && overlaps(prev, a);
     return {
       artist: a,
@@ -2554,20 +2554,20 @@ function SavedByDay({
   }, meta?.name || `Day ${day}`), artists.map((a, i) => {
     var prev = artists[i - 1];
     var walk = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
-    var tight = prev && walk > 0 && toNightMin(a.start) - toNightMin(prev.end) < walk;
+    var tight = !!prev && walk != null && walk > 0 && toNightMin(a.start) - toNightMin(prev.end) < walk;
     var conflict = prev && overlaps(prev, a);
     var stage = STAGES.find(s => s.id === a.stage);
     var prevStage = prev ? STAGES.find(s => s.id === prev.stage) : null;
     return React.createElement("div", {
       key: a.id
-    }, prev && walk > 0 && React.createElement("div", {
+    }, prev && walk !== 0 && React.createElement("div", {
       style: {
         padding: "4px 0 4px 88px",
         fontSize: 13,
         lineHeight: "18px",
         color: tight ? "var(--warn)" : "var(--text-3)"
       }
-    }, tight ? "Tight · " : "", walk, " min walk · ", prev.stage === a.stage ? "same stage" : `${prevStage?.short || ""} → ${stage?.short || ""}`), React.createElement("button", {
+    }, tight ? "Tight · " : "", walk != null ? `${walk} min walk · ` : "", prev.stage === a.stage ? "same stage" : `${prevStage?.short || ""} → ${stage?.short || ""}`), React.createElement("button", {
       onClick: () => setState({
         ...state,
         artist: a.id
@@ -3510,7 +3510,7 @@ function PlanRow({
     var mm = m % 60;
     return `${String(h).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
   })() : null;
-  return React.createElement("div", null, prev && walk > 0 && React.createElement("div", {
+  return React.createElement("div", null, prev && walk !== 0 && React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -3532,7 +3532,7 @@ function PlanRow({
       color: tight ? "var(--ember-ink)" : "var(--muted)",
       fontWeight: tight ? 700 : 500
     }
-  }, walk, " MIN WALK · ", prev.stage === a.stage ? "SAME STAGE" : `${STAGES.find(s => s.id === prev.stage)?.short || "TBA"} → ${stage?.short || "TBA"}`, leaveByLabel && ` · LEAVE BY ${leaveByLabel}`)), React.createElement("div", {
+  }, walk != null ? `${walk} MIN WALK · ` : "", prev.stage === a.stage ? "SAME STAGE" : `${STAGES.find(s => s.id === prev.stage)?.short || "TBA"} → ${stage?.short || "TBA"}`, leaveByLabel && ` · LEAVE BY ${leaveByLabel}`)), React.createElement("div", {
     onClick: () => setState({
       ...state,
       tab: "home",

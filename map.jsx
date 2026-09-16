@@ -285,10 +285,16 @@ const FESTIVAL_LNG       = FESTIVAL_CONFIG.gps.lng;
 const ON_SITE_RADIUS_MI  = FESTIVAL_CONFIG.gps.onSiteRadiusMi;
 
 // 3-point Cramer affine: [mapX, mapY] = M · [lat, lng, 1]
-function _solveMapAffine() {
-  if (!FESTIVAL_CONFIG.gpsAnchors || FESTIVAL_CONFIG.gpsAnchors.length < 3) return null;
-  const find = (id) => STAGES.find(s => s.id === id);
-  const [a0, a1, a2] = FESTIVAL_CONFIG.gpsAnchors;
+// Takes a config + stages so the SAME solver can answer for a festival that
+// is not the active one. geometryVerifiedFor() needs that: a gated festival
+// can never be made active, so a predicate that could only ever see the
+// active festival would be structurally blind to exactly the cases we gate.
+function _solveMapAffine(cfg, stages) {
+  cfg = cfg || FESTIVAL_CONFIG;
+  stages = stages || STAGES;
+  if (!cfg.gpsAnchors || cfg.gpsAnchors.length < 3) return null;
+  const find = (id) => stages.find(s => s.id === id);
+  const [a0, a1, a2] = cfg.gpsAnchors;
   if (!find(a0.stageId) || !find(a1.stageId) || !find(a2.stageId)) return null;
   const A = { lat: a0.lat, lng: a0.lng, mx: find(a0.stageId).x, my: find(a0.stageId).y };
   const B = { lat: a1.lat, lng: a1.lng, mx: find(a1.stageId).x, my: find(a1.stageId).y };
@@ -350,43 +356,94 @@ const MAP_REGISTRATION_TOL_M = 25;
 const PLACED_STAGES = (typeof STAGES !== "undefined" ? STAGES : [])
   .filter(s => typeof s.x === "number" && typeof s.y === "number");
 
-const MAP_REGISTRATION_SOURCED = (() => {
-  const anchors = FESTIVAL_CONFIG.gpsAnchors || [];
+// mapToGps() reads the module-level MAP_AFFINE, i.e. the ACTIVE festival's.
+// This twin takes the affine, so the predicate below can corroborate a
+// festival that is not active.
+function _gpsFromAffine(affine, cfg, x, y) {
+  if (!affine) return null;
+  const A = affine.x, B = affine.y;
+  const det = A[0]*B[1] - A[1]*B[0];
+  if (!det) return null;
+  return {
+    lat: ( B[1]*(x - A[2]) - A[1]*(y - B[2])) / det,
+    lng: (-B[0]*(x - A[2]) + A[0]*(y - B[2])) / det,
+  };
+}
+
+// ⛔ THE ONE PREDICATE. Every numeric distance claim in the app — map metres,
+// walk minutes, leave-by times, tight-transition warnings, route ETAs, on the
+// map screen AND on the home plan — asks this and nothing else.
+//
+// It is asked about a FESTIVAL, never about the avatar. The previous version
+// was `!avatar || !avatar.live || SOURCED`, which handed full numbers to any
+// non-live ("demo") position. That exemption was wrong, not merely lenient: a
+// planning view has no GPS by definition, so the demo branch was the branch a
+// real attendee actually reads when they build their night days before the
+// gates open. Founder contract: readouts are OFF until that festival's
+// geometry is verified against official patron-map or ground evidence, in
+// EVERY state. No demo exception.
+//
+// _geomVerifiedMemo is also the seam the verify gate uses to prove the
+// positive direction: with no verified festival in the fleet today, flipping
+// one entry is the only way to show numbers COME BACK when geometry clears,
+// rather than shipping a gate that would pass just as happily if the whole
+// feature were dead.
+const _geomVerifiedMemo = {};
+function geometryVerifiedFor(festivalId, cfgIn, stagesIn) {
+  const key = festivalId || (cfgIn && cfgIn.id) || "";
+  if (!cfgIn && key in _geomVerifiedMemo) return _geomVerifiedMemo[key];
+
+  let cfg = cfgIn, stages = stagesIn;
+  if (!cfg) {
+    const ds = (typeof _DATA_SETS !== "undefined" && _DATA_SETS) ? _DATA_SETS[key] : null;
+    if (ds) { cfg = ds.config; stages = ds.stages; }
+    else if (typeof FESTIVAL_CONFIG !== "undefined" && key === FESTIVAL_CONFIG.id) {
+      cfg = FESTIVAL_CONFIG; stages = STAGES;
+    }
+  }
+  if (!cfg || !stages) { if (!cfgIn) _geomVerifiedMemo[key] = false; return false; }
+
+  const anchors = cfg.gpsAnchors || [];
   const basis = anchors.slice(0, 3);
   const isEvidence = a => a.src === "osm" || a.src === "crowd";
+  let out = false;
 
   // (1) PROVENANCE — the basis has to be built on a measurement.
-  if (basis.length !== 3 || !basis.some(isEvidence)) return false;
-  if (!MAP_AFFINE) return false;
+  const affine = _solveMapAffine(cfg, stages);
+  if (basis.length === 3 && basis.some(isEvidence) && affine) {
+    // (2) CORROBORATION — provenance alone was never enough, and shipping it
+    // alone was a real hole (see docs/reports/2026-09-06-anchor-resurvey-
+    // reconciliation.md). It says the anchors are real; it says nothing about
+    // whether the ART they register onto is an affine projection of the
+    // ground. _solveMapAffine() fits the first three anchors EXACTLY, so the
+    // basis can never disagree with itself — a poster whose local scale
+    // wanders (ACL's runs 5.8-11.3 m/unit) yields a transform that looks
+    // perfect at the three basis stages and puts the others in a lake.
+    //
+    // So: at least one SOURCED anchor outside the basis has to land near
+    // where the affine actually draws its stage. That is the only part of
+    // this that can fail, and it is the part that catches distorted art.
+    out = anchors.slice(3).some(a => {
+      if (!isEvidence(a)) return false;
+      const s = stages.find(x => x.id === a.stageId);
+      if (!s) return false;
+      const g = _gpsFromAffine(affine, cfg, s.x, s.y);
+      if (!g) return false;
+      return distMiles(a.lat, a.lng, g.lat, g.lng) * 1609.34 <= MAP_REGISTRATION_TOL_M;
+    });
+  }
+  if (!cfgIn) _geomVerifiedMemo[key] = out;
+  return out;
+}
 
-  // (2) CORROBORATION — provenance alone was never enough, and shipping it
-  // alone was a real hole (see docs/reports/2026-09-06-anchor-resurvey-
-  // reconciliation.md). It says the anchors are real; it says nothing about
-  // whether the ART they register onto is an affine projection of the ground.
-  // _solveMapAffine() fits the first three anchors EXACTLY, so the basis can
-  // never disagree with itself — a poster whose local scale wanders (ACL's
-  // runs 5.8-11.3 m/unit) yields a transform that looks perfect at the three
-  // basis stages and puts the others in a lake.
-  //
-  // So: at least one SOURCED anchor outside the basis has to land near where
-  // the affine actually draws its stage. That is the only part of this that
-  // can fail, and it is the part that catches distorted art.
-  return anchors.slice(3).some(a => {
-    if (!isEvidence(a)) return false;
-    const s = STAGES.find(x => x.id === a.stageId);
-    if (!s) return false;
-    const g = mapToGps(s.x, s.y);
-    if (!g) return false;
-    return distMiles(a.lat, a.lng, g.lat, g.lng) * 1609.34 <= MAP_REGISTRATION_TOL_M;
-  });
-})();
+const MAP_REGISTRATION_SOURCED = geometryVerifiedFor(
+  FESTIVAL_CONFIG.id, FESTIVAL_CONFIG, STAGES);
 
-// A grid-space distance is only honest when BOTH hold: the position it starts
-// from is real, and the grid it is measured on registers to the world.
-// `avatar.live` is stamped on at the one place a real GPS fix becomes an
-// avatar, so the flag travels with the position instead of being re-derived.
+// Kept as a function because every call site passes an avatar, but the avatar
+// no longer decides anything — see the contract above.
 function readoutHonest(avatar) {
-  return !avatar || !avatar.live || MAP_REGISTRATION_SOURCED;
+  return geometryVerifiedFor(
+    typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.id : "");
 }
 
 function gpsToMap(lat, lng) {
@@ -515,7 +572,10 @@ function useGeolocation(enabled) {
 // pinch-points. The 1-3 AM crowd window adds ~50-60% as people leak between
 // mainstage drops. Avatar→stage falls back to a piecewise distance curve
 // when the avatar isn't anchored to a known stage.
-// All 36 stage pairs; keys alphabetically sorted so _pairKey always hits.
+// All 36 EDC LAS VEGAS stage pairs; keys alphabetically sorted so _pairKey
+// hits. ⛔ Bare stage ids: EDC Orlando reuses kinetic/circuit/neon/stereo, so
+// every read of this table must first check FESTIVAL_CONFIG.id against
+// WALK_TABLE_FESTIVAL_ID. "_pairKey always hits" was never true off EDC LV.
 const WALK_PAIRS = {
   "basspod,bionic":  [10, 16],
   "basspod,circuit": [ 6, 10],
@@ -586,7 +646,11 @@ function computeWalkRange(avatar, targetStage, dist, nowTime) {
   const fromStage = _nearestStageId(avatarX, avatarY);
   if (fromStage && targetStage && fromStage !== targetStage.id) {
     const k = _pairKey(fromStage, targetStage.id);
-    if (WALK_PAIRS[k]) [lo, hi] = WALK_PAIRS[k];
+    // EDC Las Vegas measurements, keyed by bare stage id — and four of those
+    // ids are also EDC Orlando stages. readoutHonest() below would NOT catch
+    // that on a festival whose registration is sourced, so the festival has
+    // to match before the table may be read.
+    if (FESTIVAL_CONFIG.id === WALK_TABLE_FESTIVAL_ID && WALK_PAIRS[k]) [lo, hi] = WALK_PAIRS[k];
   }
   if (lo == null) [lo, hi] = _distToBand(dist);
 
@@ -5988,20 +6052,27 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           const mid1y = avatar.y + (target.y - avatar.y) * 0.33;
           const mid2x = avatar.x + (target.x - avatar.x) * 0.66;
           const mid2y = avatar.y + (target.y - avatar.y) * 0.66 + (Math.random() > 0.5 ? 2 : -2);
-          const walkMins = typeof _pairKey === "function" && typeof WALK_PAIRS !== "undefined"
-            ? (WALK_PAIRS[_pairKey(_nearestStageId(avatar.x, avatar.y) || "", selected)] || [0, 0])
-            : [0, 0];
-          const etaMin = Math.round((walkMins[0] + walkMins[1]) / 2) || Math.round(dist * 0.4);
+          // ⛔ This line used to compute its OWN eta: read WALK_PAIRS directly,
+          // fall through to `dist * 0.4`, and paint the result. That fallback
+          // is art-coordinate arithmetic (#97) scaled by a constant measured at
+          // EDC Las Vegas, and it never asked readoutHonest() — so every
+          // festival whose pairs miss the table, which is all of them but EDC
+          // LV, drew an invented number over the route line. walkMinsLabel's
+          // "EVERY walk readout funnels through here" was simply false.
+          // It funnels now: a label, or no label at all.
+          const etaLabel = walkMinsLabel(computeWalkRange(avatar, target, dist, NOW.time));
           return (
             <g>
               <path d={`M${avatar.x},${avatar.y} C${mid1x},${mid1y} ${mid2x},${mid2y} ${target.x},${target.y}`}
                 fill="none" stroke={target.color} strokeWidth="0.6" strokeDasharray="2 2" opacity="0.6">
                 <animate attributeName="stroke-dashoffset" values="0;-8" dur="1.5s" repeatCount="indefinite"/>
               </path>
-              <text x={(avatar.x + target.x) / 2} y={(avatar.y + target.y) / 2 - 2}
-                textAnchor="middle" fontSize="3" fontFamily="Geist Mono, monospace" fontWeight="700"
-                fill={target.color} opacity="0.85"
-              >{etaMin} MIN</text>
+              {etaLabel && (
+                <text x={(avatar.x + target.x) / 2} y={(avatar.y + target.y) / 2 - 2}
+                  textAnchor="middle" fontSize="3" fontFamily="Geist Mono, monospace" fontWeight="700"
+                  fill={target.color} opacity="0.85"
+                >{etaLabel} MIN</text>
+              )}
             </g>
           );
         })()}
@@ -7258,4 +7329,12 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
   );
 }
 
-Object.assign(window, { MapScreen, getMyPingCode, WALK_PAIRS, _pairKey });
+// geometryVerifiedFor is THE predicate for every numeric distance claim, and
+// home.jsx calls it by bare name — export it explicitly rather than relying on
+// the const→var lowering to leave a window prop behind. _geomVerifiedMemo is
+// exported because the verify control flips one entry to prove minutes return
+// when geometry clears; nothing in the app may write to it.
+Object.assign(window, {
+  MapScreen, getMyPingCode, WALK_PAIRS, _pairKey,
+  geometryVerifiedFor, _geomVerifiedMemo, MAP_REGISTRATION_SOURCED, readoutHonest,
+});
