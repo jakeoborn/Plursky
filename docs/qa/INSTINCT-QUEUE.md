@@ -1,9 +1,9 @@
 # INSTINCT QUEUE — Plursky standing job queue
 
-_Last refreshed by Instinct: **2026-09-08** (post-#106). Train at refresh: web
-**v283** on `main` (Portola 2026 LIVE, flip merged 2:39pm CT), iOS **1.12 (25)**
-WAITING FOR REVIEW since 2026-09-08 1:23am CT (resubmitted after the 2.1(b)
-rejection; Plursky+ Monthly $4.99 / Annual $7.99 prices set same day)._
+_Last refreshed by Claude Code: **2026-09-16**. Train at refresh: web **v332** on
+`main`, iOS **1.13** submitted for App Store review (1.12 is live). The prose in
+this file is hand-maintained and goes stale between refreshes — when it
+disagrees with the generated status block below, the generated block wins._
 _Contract: read **INSTINCT-ROLE.md** first — its hard rules override everything here._
 
 ## How this queue works
