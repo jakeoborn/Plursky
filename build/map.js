@@ -449,10 +449,12 @@ function WellnessPill() {
 var FESTIVAL_LAT = FESTIVAL_CONFIG.gps.lat;
 var FESTIVAL_LNG = FESTIVAL_CONFIG.gps.lng;
 var ON_SITE_RADIUS_MI = FESTIVAL_CONFIG.gps.onSiteRadiusMi;
-function _solveMapAffine() {
-  if (!FESTIVAL_CONFIG.gpsAnchors || FESTIVAL_CONFIG.gpsAnchors.length < 3) return null;
-  var find = id => STAGES.find(s => s.id === id);
-  var [a0, a1, a2] = FESTIVAL_CONFIG.gpsAnchors;
+function _solveMapAffine(cfg, stages) {
+  cfg = cfg || FESTIVAL_CONFIG;
+  stages = stages || STAGES;
+  if (!cfg.gpsAnchors || cfg.gpsAnchors.length < 3) return null;
+  var find = id => stages.find(s => s.id === id);
+  var [a0, a1, a2] = cfg.gpsAnchors;
   if (!find(a0.stageId) || !find(a1.stageId) || !find(a2.stageId)) return null;
   var A = {
     lat: a0.lat,
@@ -488,23 +490,58 @@ function _solveMapAffine() {
 var MAP_AFFINE = _solveMapAffine();
 var MAP_REGISTRATION_TOL_M = 25;
 var PLACED_STAGES = (typeof STAGES !== "undefined" ? STAGES : []).filter(s => typeof s.x === "number" && typeof s.y === "number");
-var MAP_REGISTRATION_SOURCED = (() => {
-  var anchors = FESTIVAL_CONFIG.gpsAnchors || [];
+function _gpsFromAffine(affine, cfg, x, y) {
+  if (!affine) return null;
+  var A = affine.x,
+    B = affine.y;
+  var det = A[0] * B[1] - A[1] * B[0];
+  if (!det) return null;
+  return {
+    lat: (B[1] * (x - A[2]) - A[1] * (y - B[2])) / det,
+    lng: (-B[0] * (x - A[2]) + A[0] * (y - B[2])) / det
+  };
+}
+var _geomVerifiedMemo = {};
+function geometryVerifiedFor(festivalId, cfgIn, stagesIn) {
+  var key = festivalId || cfgIn && cfgIn.id || "";
+  if (!cfgIn && key in _geomVerifiedMemo) return _geomVerifiedMemo[key];
+  var cfg = cfgIn,
+    stages = stagesIn;
+  if (!cfg) {
+    var ds = typeof _DATA_SETS !== "undefined" && _DATA_SETS ? _DATA_SETS[key] : null;
+    if (ds) {
+      cfg = ds.config;
+      stages = ds.stages;
+    } else if (typeof FESTIVAL_CONFIG !== "undefined" && key === FESTIVAL_CONFIG.id) {
+      cfg = FESTIVAL_CONFIG;
+      stages = STAGES;
+    }
+  }
+  if (!cfg || !stages) {
+    if (!cfgIn) _geomVerifiedMemo[key] = false;
+    return false;
+  }
+  var anchors = cfg.gpsAnchors || [];
   var basis = anchors.slice(0, 3);
   var isEvidence = a => a.src === "osm" || a.src === "crowd";
-  if (basis.length !== 3 || !basis.some(isEvidence)) return false;
-  if (!MAP_AFFINE) return false;
-  return anchors.slice(3).some(a => {
-    if (!isEvidence(a)) return false;
-    var s = STAGES.find(x => x.id === a.stageId);
-    if (!s) return false;
-    var g = mapToGps(s.x, s.y);
-    if (!g) return false;
-    return distMiles(a.lat, a.lng, g.lat, g.lng) * 1609.34 <= MAP_REGISTRATION_TOL_M;
-  });
-})();
+  var out = false;
+  var affine = _solveMapAffine(cfg, stages);
+  if (basis.length === 3 && basis.some(isEvidence) && affine) {
+    out = anchors.slice(3).some(a => {
+      if (!isEvidence(a)) return false;
+      var s = stages.find(x => x.id === a.stageId);
+      if (!s) return false;
+      var g = _gpsFromAffine(affine, cfg, s.x, s.y);
+      if (!g) return false;
+      return distMiles(a.lat, a.lng, g.lat, g.lng) * 1609.34 <= MAP_REGISTRATION_TOL_M;
+    });
+  }
+  if (!cfgIn) _geomVerifiedMemo[key] = out;
+  return out;
+}
+var MAP_REGISTRATION_SOURCED = geometryVerifiedFor(FESTIVAL_CONFIG.id, FESTIVAL_CONFIG, STAGES);
 function readoutHonest(avatar) {
-  return !avatar || !avatar.live || MAP_REGISTRATION_SOURCED;
+  return geometryVerifiedFor(typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.id : "");
 }
 function gpsToMap(lat, lng) {
   if (!MAP_AFFINE) return {
@@ -10447,5 +10484,9 @@ Object.assign(window, {
   MapScreen,
   getMyPingCode,
   WALK_PAIRS,
-  _pairKey
+  _pairKey,
+  geometryVerifiedFor,
+  _geomVerifiedMemo,
+  MAP_REGISTRATION_SOURCED,
+  readoutHonest
 });

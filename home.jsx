@@ -681,6 +681,12 @@ function stageWalkMinutes(fromId, toId, festivalId) {
   const fid = festivalId ||
     (typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG ? FESTIVAL_CONFIG.id : null);
   if (fid !== WALK_TABLE_FESTIVAL_ID) return null;
+  // Identity is NOT evidence. The table being hand-measured says somebody
+  // walked it; it does not say the geometry was ever checked against an
+  // official patron map, and EDC LV's own registration is unsourced today.
+  // So the same predicate that governs every map readout governs this one —
+  // one semantic, asked per festival, never about the avatar.
+  if (typeof geometryVerifiedFor !== "function" || !geometryVerifiedFor(fid)) return null;
   const key = fromId < toId ? `${fromId},${toId}` : `${toId},${fromId}`;
   return _WALK_MIN[key] != null ? _WALK_MIN[key] : null;
 }

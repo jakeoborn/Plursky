@@ -1867,9 +1867,18 @@ const REGISTRATION_TOL_M = 25;
     };
     const bad = [];
     for (const [name, probe] of Object.entries(probes)) {
-      // The demo avatar is an admitted simulation and keeps its numbers —
-      // blanking those would only make the pre-festival app look broken.
-      if (probe(demo) !== true) bad.push(`${name} suppressed for the DEMO avatar`);
+      // ⛔ NO DEMO EXCEPTION. This gate used to REQUIRE the demo avatar to keep
+      // its numbers, on the reasoning that a simulation may simulate. That was
+      // wrong, and it was wrong in the direction that reaches a real person: a
+      // PLANNING view has no GPS by definition, so the demo branch is the one
+      // an attendee actually reads while building their night days before the
+      // gates open. Blind ACL was handing out grid-derived minutes there the
+      // whole time. The predicate is asked about the FESTIVAL now, in every
+      // state, so demo and live must give the same answer.
+      if (probe(demo) !== sourced) {
+        bad.push(sourced ? `${name} suppressed for the DEMO avatar on a SOURCED map`
+                         : `${name} still quoted for a DEMO avatar on unverified geometry`);
+      }
       if (probe(live) !== sourced) {
         bad.push(sourced ? `${name} suppressed on a SOURCED map` : `${name} still quoted from a LIVE position`);
       }
@@ -2016,41 +2025,67 @@ const REGISTRATION_TOL_M = 25;
     const WDS = wc._DATA_SETS || {};
     if (!Object.keys(WDS).length) fail("_DATA_SETS is empty in the vm — the walk gate cannot enumerate festivals");
 
+    if (typeof wc.geometryVerifiedFor !== "function") {
+      fail("map.jsx must export geometryVerifiedFor(festivalId) — one predicate governs every numeric distance claim");
+    }
     let wBad = 0, wFests = 0, wPairs = 0;
     for (const [fid, ds] of Object.entries(WDS)) {
       const ids = (ds.stages || []).map(s => s.id);
       if (ids.length < 2) continue;
       wFests++;
       const bad = [];
-      let measured = 0;
+      const verified = wc.geometryVerifiedFor(fid);
       for (let i = 0; i < ids.length; i++) {
         for (let j = i + 1; j < ids.length; j++) {
           wPairs++;
           const m = wc.stageWalkMinutes(ids[i], ids[j], fid);
-          if (fid === TABLE_FID) {
-            // Positive control. A gate that only ever asserts silence passes
-            // just as happily when the whole feature goes blank.
-            if (m == null) bad.push(`${ids[i]}~${ids[j]} lost its measured minute`);
-            else measured++;
-          } else if (m != null && m !== 0) {
-            bad.push(`${ids[i]}~${ids[j]}=${m}min`);
-          }
+          // Festival IDENTITY is not evidence. A measured table says somebody
+          // walked it; only the predicate says the geometry was checked.
+          if (!verified && m != null && m !== 0) bad.push(`${ids[i]}~${ids[j]}=${m}min`);
         }
       }
       if (bad.length) {
         wBad++;
-        console.log(`  ✗  ${fid.padEnd(26)} ${bad.slice(0, 6).join(", ")}${bad.length > 6 ? ` +${bad.length - 6} more` : ""}`);
-      } else if (fid === TABLE_FID) {
-        console.log(`  ok ${fid.padEnd(26)} ${measured} measured pair(s) still quoted`);
+        console.log(`  ✗  ${fid.padEnd(26)} quotes minutes on UNVERIFIED geometry: ${bad.slice(0, 6).join(", ")}${bad.length > 6 ? ` +${bad.length - 6} more` : ""}`);
       } else {
-        console.log(`  ok ${fid.padEnd(26)} ${ids.length} stages, no minutes — geometry unmeasured`);
+        console.log(`  ok ${fid.padEnd(26)} ${String(ids.length).padStart(2)} stages — ${verified ? "geometry verified, minutes allowed" : "blind, no minutes in any state"}`);
       }
     }
     if (wBad) {
-      fail(`${wBad} festival(s) quote walk minutes measured at a DIFFERENT festival — see above. ` +
-           `The tables are keyed by bare stage id; pass the festival id and return null off ${TABLE_FID}.`);
+      fail(`${wBad} festival(s) quote walk minutes on geometry nobody verified — see above. ` +
+           `One predicate governs every numeric distance claim: geometryVerifiedFor(festivalId), ` +
+           `asked per festival and never about the avatar.`);
     }
-    console.log(`  ✓ ${wFests} festival(s), ${wPairs} stage pair(s) — minutes only on ${TABLE_FID}, gated festivals included`);
+    console.log(`  ✓ ${wFests} festival(s), ${wPairs} stage pair(s) — no minutes on unverified geometry, gated festivals included`);
+
+    // ── POSITIVE CONTROL ──────────────────────────────────────────────
+    // NO festival in the fleet is verified today, so every row above is a
+    // silence. A gate that can only assert silence would pass just as happily
+    // if the feature had been deleted outright. So flip the predicate's memo
+    // for the one festival that actually HAS a measured table, prove the
+    // minutes come back, and prove the flip was undone — otherwise every later
+    // gate in this run would be reading a doctored predicate.
+    {
+      const lvIds = ((WDS[TABLE_FID] || {}).stages || []).map(s => s.id);
+      const countPairs = () => {
+        let n = 0;
+        for (let i = 0; i < lvIds.length; i++)
+          for (let j = i + 1; j < lvIds.length; j++)
+            if (wc.stageWalkMinutes(lvIds[i], lvIds[j], TABLE_FID) != null) n++;
+        return n;
+      };
+      const before = wc.geometryVerifiedFor(TABLE_FID);
+      if (before) fail(`${TABLE_FID} reports VERIFIED geometry — this control assumes it is blind; re-point the control`);
+      wc._geomVerifiedMemo[TABLE_FID] = true;
+      const back = countPairs();
+      wc._geomVerifiedMemo[TABLE_FID] = before;
+      if (back !== 36) {
+        fail(`Walk-readout control: with ${TABLE_FID} marked verified the measured table must quote all 36 pairs, got ${back}. ` +
+             `Without this the gate cannot tell "correctly blind" from "the feature is dead".`);
+      }
+      if (countPairs() !== 0) fail("Walk-readout control: the memo did not restore — later gates would read a doctored predicate");
+      console.log(`  ✓ control: marking ${TABLE_FID} verified restores all 36 measured pairs; blind restored after`);
+    }
     console.log("  ✓ compiled build: no coordinate arithmetic in home.js, no `dist * 0.4` in map.js");
   }
 
