@@ -760,7 +760,8 @@ var FESTIVALS_REGISTRY = [{
 }];
 var _FESTIVAL_STALE_MS = 7 * 24 * 60 * 60 * 1000;
 function _resolveDefaultFestivalId(now) {
-  var avail = FESTIVALS_REGISTRY.filter(f => f && f.available && f.config && f.config.id);
+  var open = FESTIVALS_REGISTRY.filter(f => f && f.available && f.config && f.config.id);
+  var avail = open.some(f => !f.scheduleTBA) ? open.filter(f => !f.scheduleTBA) : open;
   if (!avail.length) return FESTIVALS_REGISTRY[0].config.id;
   var dated = avail.filter(f => typeof f.config.startMs === "number" && typeof f.config.endMs === "number");
   if (!dated.length) return avail[0].config.id;
@@ -2450,6 +2451,11 @@ for (var _id of _WAVE1_IDS) {
   });
 }
 var _regConfig = id => FESTIVALS_REGISTRY.find(f => f.config.id === id).config;
+var _regEntry = id => FESTIVALS_REGISTRY.find(f => f && f.config && f.config.id === id) || null;
+function isScheduleTBA(id) {
+  var e = _regEntry(id || (typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.id : null));
+  return !!(e && e.available && e.scheduleTBA);
+}
 var _DATA_SETS = {
   "edc-lv-2026": {
     stages: STAGES,
@@ -2503,6 +2509,7 @@ Object.assign(window, {
   FESTIVALS_REGISTRY,
   getActiveFestivalId,
   setActiveFestivalAndReload,
+  isScheduleTBA,
   _resolveDefaultFestivalId,
   resolvedStageAnchors,
   resolvedStageAnchor,

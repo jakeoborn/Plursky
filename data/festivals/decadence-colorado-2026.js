@@ -307,6 +307,6 @@
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
     // GATED: stage names, stage assignments, set times and the official map
     // are all unpublished. The lineup and the day split are real.
-    registry: { available: false, accent: "#d946ef", emoji: "\u2728", region: "North America" },
+    registry: { available: true, scheduleTBA: true, accent: "#d946ef", emoji: "\u2728", region: "North America" },
   };
 })();

@@ -428,6 +428,6 @@
   window.PLURSKY_FESTIVALS["iii-points-2026"] = {
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
     // GATED: set times, stages and the official map are all unpublished.
-    registry: { available: false, accent: "#22d3ee", emoji: "🔺", region: "North America" },
+    registry: { available: true, scheduleTBA: true, accent: "#22d3ee", emoji: "🔺", region: "North America" },
   };
 })();

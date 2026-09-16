@@ -494,6 +494,11 @@ function LineupScreen({ state, setState }) {
     }
     return state.lineupDay || NOW.day;
   });
+  // This festival is open with its lineup published and its schedule still to
+  // come (founder call 2026-09-15: show the lineup, don't hold the festival
+  // back). The screen has to SAY that — a list of acts whose every time reads
+  // "—" otherwise looks like the app failed to load them.
+  const _schedTBA = typeof isScheduleTBA === "function" && isScheduleTBA();
   const [filter, setFilter] = React.useState("all"); // all | saved
   const [stageFilter, setStageFilter] = React.useState("all"); // all | stage id
   const [tierFilter, setTierFilter] = React.useState("all"); // all | head | prime | open | legend
@@ -536,10 +541,18 @@ function LineupScreen({ state, setState }) {
   // them. Active filters surface as dismissable chips so a user can clear
   // them without re-opening the panel.
   const [filterSheetOpen, setFilterSheetOpen] = React.useState(false);
-  const [viewMode, setViewMode] = React.useState(() => {
+  const [viewModePref, setViewMode] = React.useState(() => {
     try { return localStorage.getItem('plursky_lineup_view') || 'list'; } catch { return 'list'; }
   });
-  React.useEffect(() => { try { localStorage.setItem('plursky_lineup_view', viewMode); } catch {} }, [viewMode]);
+  React.useEffect(() => { try { localStorage.setItem('plursky_lineup_view', viewModePref); } catch {} }, [viewModePref]);
+  // With no set times there is no timetable to draw, so the grid is not merely
+  // un-offered (the toggle is hidden) — it must not be the ACTIVE mode either.
+  // `plursky_lineup_view` persists across a festival switch, and viewMode
+  // drives the scroll container and both row blocks further down: a stale
+  // "grid" carried in from EDC would have rendered an unscrollable, EMPTY
+  // screen here — no grid, because gridLead is false, and no list, because
+  // `viewMode === "list"` was false too. Resolve it once, here.
+  const viewMode = _schedTBA ? "list" : viewModePref;
 
   // ── Collapsing header ────────────────────────────────────────────────────
   // The title block + dates + day cards + weekend toggle + toolbar + search
@@ -957,7 +970,18 @@ function LineupScreen({ state, setState }) {
           <button data-sched-check onClick={() => setSyncOpen(true)} aria-label="Check for schedule changes" style={textBtn}>Updates</button>
         )}
         <button onClick={() => setViewMode(viewMode === "grid" ? "list" : "grid")}
-          aria-label={viewMode === "grid" ? "Show as list" : "Show as stage grid"} style={fieldIconBtn}>
+          aria-label={viewMode === "grid" ? "Show as list" : "Show as stage grid"}
+          // A timetable is a picture of TIME. With no set times published there
+          // is nothing to draw one from, so the grid is not offered rather than
+          // offered-and-empty: every act would stack on the same default hour.
+          //
+          // `hidden` alone does NOT hide this: fieldIconBtn sets an inline
+          // display, and an inline display beats the UA stylesheet's
+          // [hidden]{display:none}. The attribute stays for semantics; the
+          // style is what actually removes it. (Measured: the button was still
+          // on screen while `el.hidden` read true.)
+          hidden={_schedTBA || undefined}
+          style={_schedTBA ? { ...fieldIconBtn, display: "none" } : fieldIconBtn}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             {viewMode === "grid"
               ? <path d="M8 6 H20 M8 12 H20 M8 18 H20 M4 6 H4.5 M4 12 H4.5 M4 18 H4.5"/>
@@ -1056,6 +1080,18 @@ function LineupScreen({ state, setState }) {
       {!online && (
         <div role="status" style={{ padding: "8px 20px", fontSize: 13, lineHeight: "18px", color: "var(--text-2)", borderBottom: "1px solid var(--line)" }}>
           Offline · showing the schedule saved on this phone
+        </div>
+      )}
+
+      {/* Open, lineup in, schedule still to come. Without this the screen is a
+          list of acts whose every time reads "—", which looks like the app
+          failed to load them rather than like the festival hasn't said yet. */}
+      {_schedTBA && (
+        <div role="status" style={{ padding: "10px 20px", borderBottom: "1px solid var(--line)" }}>
+          <div style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600 }}>Set times pending from the festival</div>
+          <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+            The full lineup is here. Save the acts you want and the schedule fills itself in as soon as {FESTIVAL_CONFIG.shortName || "the festival"} publishes it.
+          </div>
         </div>
       )}
 
@@ -1504,9 +1540,17 @@ const _gridBounds = (() => {
   // weekend-exempt: earliest/latest set times, which both weekends share. It
   // also runs at module scope, before the active lineup exists.
   const all = typeof ARTISTS !== "undefined" ? ARTISTS : [];
-  if (!all.length) return { start: 19 * 60, end: (24 + 5) * 60 + 30 };
+  // A festival can ship its LINEUP before its SET TIMES. Every act then
+  // carries start "" / end "", so toNightMin returns NaN and every comparison
+  // below is false: lo stayed Infinity and hi -Infinity, GRID_TOTAL_H came out
+  // NaN, and the timetable rendered with broken geometry. The `!all.length`
+  // guard never fired, because the acts are all there — only their times are
+  // missing. Bound the grid on acts that actually carry a time.
+  const timed = all.filter(a => a && a.start && a.end
+    && !isNaN(toNightMin(a.start)) && !isNaN(toNightMin(a.end)));
+  if (!timed.length) return { start: 19 * 60, end: (24 + 5) * 60 + 30 };
   let lo = Infinity, hi = -Infinity;
-  all.forEach(a => {
+  timed.forEach(a => {
     const s = toNightMin(a.start), e = toNightMin(a.end);
     if (s < lo) lo = s;
     if (e > hi) hi = e;

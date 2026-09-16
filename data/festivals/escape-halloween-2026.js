@@ -355,6 +355,6 @@
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
     // GATED: set times and artist→stage are unpublished, and the map is last
     // year's. Flip when Insomniac drops the schedule (~late Oct).
-    registry: { available: false, accent: "#F4511E", emoji: "🎪", region: "North America" },
+    registry: { available: true, scheduleTBA: true, accent: "#F4511E", emoji: "🎪", region: "North America" },
   };
 })();

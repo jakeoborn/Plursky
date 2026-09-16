@@ -813,13 +813,30 @@ if (fdata.length) {
     const live  = f.available === true;
     const label = String(id).padEnd(26);
     if (blank === acts.length) {
-      // Schedule not published. Honest — but it is not a shippable state.
-      if (live) {
-        console.log(`  ✗ ${label} available:true with NO set times (${acts.length} acts all blank)`);
+      // Schedule not published. There are now TWO honest shapes here, and the
+      // difference must be DECLARED, never inferred:
+      //   gated          — the festival is simply waiting its turn.
+      //   open + pending — the lineup is published and switchable, and the
+      //                    app says "set times pending" (founder call
+      //                    2026-09-15: open the festival, don't hold it back).
+      // An open festival that forgets the flag is still the original defect:
+      // live, no times, and nothing anywhere admitting it. That stays fatal.
+      if (live && f.scheduleTBA !== true) {
+        console.log(`  ✗ ${label} available:true with NO set times and no scheduleTBA (${acts.length} acts all blank)`);
         sbad++;
+      } else if (live) {
+        console.log(`  ok ${label} open, lineup published, set times pending (${acts.length} acts)`);
       } else {
         console.log(`  ok ${label} gated, schedule unpublished (${acts.length} acts, all blank)`);
       }
+      continue;
+    }
+    // The reverse of the above, and the failure mode a flip actually has: the
+    // real schedule lands, someone forgets to clear the flag, and the app goes
+    // on telling users the times are pending while showing them.
+    if (f.scheduleTBA === true) {
+      console.log(`  ✗ ${label} scheduleTBA still set, but ${acts.length - blank}/${acts.length} acts carry times — clear the flag`);
+      sbad++;
       continue;
     }
     if (blank > 0) {
@@ -837,7 +854,10 @@ if (fdata.length) {
     // carries that to users (#115 Schedule Sync). Copied from the module's own
     // SOURCE note; `official: false` marks a secondary or third-party capture.
     const ss = (f.config || f).scheduleSource;
-    if (live && !(ss && /^https:\/\//.test(ss.url || "") && /^\d{4}-\d{2}(-\d{2})?$/.test(ss.observedAt || "")
+    // A pending festival has no schedule to cite yet, so it is exempt — it
+    // never reaches here anyway, since all-blank continues above.
+    if (live && f.scheduleTBA !== true
+        && !(ss && /^https:\/\//.test(ss.url || "") && /^\d{4}-\d{2}(-\d{2})?$/.test(ss.observedAt || "")
                   && typeof ss.official === "boolean")) {
       console.log(`  ✗ ${label} live schedule with no scheduleSource { url, observedAt, official }`);
       ssbad++;

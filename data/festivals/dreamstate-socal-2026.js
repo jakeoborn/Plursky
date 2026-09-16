@@ -346,7 +346,7 @@
     // GATED: the day split, the set times, every act's stage assignment and
     // the official map are all unpublished, and so are the 2026 stage names
     // (STAGES is empty; see the leads block).
-    registry: { available: false, accent: "#6366f1", emoji: "🌀", region: "North America" },
+    registry: { available: true, scheduleTBA: true, accent: "#6366f1", emoji: "🌀", region: "North America" },
   };
 })();
 

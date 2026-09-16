@@ -1689,7 +1689,9 @@ function FestivalSwitcher({
       key: "e"
     }, "Ended"));else if (!f.available) parts.push(React.createElement("span", {
       key: "l"
-    }, f.previewOnly ? "Early access" : "Soon"));else if (st.saved && !st.conflicts) parts.push(React.createElement("span", {
+    }, f.previewOnly ? "Early access" : "Soon"));else if (f.scheduleTBA) parts.push(React.createElement("span", {
+      key: "tba"
+    }, "Set times TBA"));else if (st.saved && !st.conflicts) parts.push(React.createElement("span", {
       key: "r",
       style: {
         color: "var(--signal-ink)",

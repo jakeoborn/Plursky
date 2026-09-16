@@ -309,6 +309,6 @@
   window.PLURSKY_FESTIVALS["crssd-fall-2026"] = {
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
     // GATED: day split, set times and the site map are all unpublished.
-    registry: { available: false, accent: "#56fbf1", emoji: "🌊", region: "North America" },
+    registry: { available: true, scheduleTBA: true, accent: "#56fbf1", emoji: "🌊", region: "North America" },
   };
 })();

@@ -774,6 +774,7 @@ function LineupScreen({
     }
     return state.lineupDay || NOW.day;
   });
+  var _schedTBA = typeof isScheduleTBA === "function" && isScheduleTBA();
   var [filter, setFilter] = React.useState("all");
   var [stageFilter, setStageFilter] = React.useState("all");
   var [tierFilter, setTierFilter] = React.useState("all");
@@ -805,7 +806,7 @@ function LineupScreen({
     };
   }, [highlightId]);
   var [filterSheetOpen, setFilterSheetOpen] = React.useState(false);
-  var [viewMode, setViewMode] = React.useState(() => {
+  var [viewModePref, setViewMode] = React.useState(() => {
     try {
       return localStorage.getItem('plursky_lineup_view') || 'list';
     } catch {
@@ -814,9 +815,10 @@ function LineupScreen({
   });
   React.useEffect(() => {
     try {
-      localStorage.setItem('plursky_lineup_view', viewMode);
+      localStorage.setItem('plursky_lineup_view', viewModePref);
     } catch {}
-  }, [viewMode]);
+  }, [viewModePref]);
+  var viewMode = _schedTBA ? "list" : viewModePref;
   var [collapsed, setCollapsed] = React.useState(false);
   React.useEffect(() => {
     var el = null,
@@ -1308,7 +1310,11 @@ function LineupScreen({
   }, "Updates"), React.createElement("button", {
     onClick: () => setViewMode(viewMode === "grid" ? "list" : "grid"),
     "aria-label": viewMode === "grid" ? "Show as list" : "Show as stage grid",
-    style: fieldIconBtn
+    hidden: _schedTBA || undefined,
+    style: _schedTBA ? {
+      ...fieldIconBtn,
+      display: "none"
+    } : fieldIconBtn
   }, React.createElement("svg", {
     width: "20",
     height: "20",
@@ -1541,7 +1547,26 @@ function LineupScreen({
       color: "var(--text-2)",
       borderBottom: "1px solid var(--line)"
     }
-  }, "Offline · showing the schedule saved on this phone"), !gridLead && searchRow, !gridLead && actionsRow, wizardOpen && React.createElement(NightWizard, {
+  }, "Offline · showing the schedule saved on this phone"), _schedTBA && React.createElement("div", {
+    role: "status",
+    style: {
+      padding: "10px 20px",
+      borderBottom: "1px solid var(--line)"
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 600
+    }
+  }, "Set times pending from the festival"), React.createElement("div", {
+    style: {
+      marginTop: 2,
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, "The full lineup is here. Save the acts you want and the schedule fills itself in as soon as ", FESTIVAL_CONFIG.shortName || "the festival", " publishes it.")), !gridLead && searchRow, !gridLead && actionsRow, wizardOpen && React.createElement(NightWizard, {
     state: state,
     setState: setState,
     onClose: () => setWizardOpen(false)
@@ -2305,13 +2330,14 @@ function layoutLanes(sets) {
 }
 var _gridBounds = (() => {
   var all = typeof ARTISTS !== "undefined" ? ARTISTS : [];
-  if (!all.length) return {
+  var timed = all.filter(a => a && a.start && a.end && !isNaN(toNightMin(a.start)) && !isNaN(toNightMin(a.end)));
+  if (!timed.length) return {
     start: 19 * 60,
     end: (24 + 5) * 60 + 30
   };
   var lo = Infinity,
     hi = -Infinity;
-  all.forEach(a => {
+  timed.forEach(a => {
     var s = toNightMin(a.start),
       e = toNightMin(a.end);
     if (s < lo) lo = s;

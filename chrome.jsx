@@ -1301,6 +1301,9 @@ function FestivalSwitcher({ onClose }) {
     if (isActive) parts.push(<span key="a" style={{ color: "var(--signal-ink)", fontWeight: 600 }}>✓ Active</span>);
     else if (phase(f) === "ended") parts.push(<span key="e">Ended</span>);
     else if (!f.available) parts.push(<span key="l">{f.previewOnly ? "Early access" : "Soon"}</span>);
+    // Open, lineup in, schedule still to come — say so BEFORE the switch, so
+    // nobody taps in expecting a timetable and finds a list of dashes.
+    else if (f.scheduleTBA) parts.push(<span key="tba">Set times TBA</span>);
     else if (st.saved && !st.conflicts) parts.push(<span key="r" style={{ color: "var(--signal-ink)", fontWeight: 600 }}>✓ Ready</span>);
     return (
       <button key={f.config.id} onClick={() => onPick(f.config.id, f)} disabled={locked}
