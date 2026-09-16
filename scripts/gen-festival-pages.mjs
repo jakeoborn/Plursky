@@ -325,12 +325,23 @@ ${REG.filter(f => f.config.id !== id).map(f => `      <li><a href="/f/${f.config
 const CHECK_STRICT = process.argv.includes('--check-strict');
 const CHECK = CHECK_STRICT || process.argv.includes('--check');
 const drift = [];
-const norm = (t, f) => f === 'sitemap.xml'
+// lastmod is a content fingerprint now (see the sitemap block below), so it no
+// longer drifts on its own and CAN be compared — but only by the strict mode.
+// A festival ending moves its page's content, and so its fingerprint, with no
+// commit behind it; comparing that in --check would fail an unrelated PR for
+// the calendar, which is the exact wolf the two-mode split exists to avoid.
+// So --check still normalises lastmod away, and --check-strict — the scheduled
+// job that owns the clock — is where the date has to actually be current.
+const norm = (t, f) => (f === 'sitemap.xml' && !CHECK_STRICT)
   ? t.replace(/<lastmod>[^<]*<\/lastmod>/g, '<lastmod>-</lastmod>')
   : t;
-function emit(abs, content, alsoAccept) {
+// strictOnly: a file whose whole job is to carry dates across runs moves on the
+// calendar for the same reason the dates do, so the PR-facing --check skips it
+// entirely rather than normalise half of it away.
+function emit(abs, content, alsoAccept, strictOnly) {
   const rel = path.relative(root, abs);
   if (!CHECK) { writeFileSync(abs, content); return; }
+  if (strictOnly && !CHECK_STRICT) return;
   const cur = existsSync(abs) ? readFileSync(abs, 'utf8') : null;
   if (cur === null) { drift.push(`${rel} (missing)`); return; }
   const ok = norm(cur, rel) === norm(content, rel)
@@ -388,31 +399,11 @@ for (const entry of REG) {
   if (!CHECK) console.log(`[gen] f/${id}/index.html  artists=${n}  ${d ? d.start + '..' + d.end : 'NO DATES'}`);
 }
 
-// sitemap — generated here so it can never drift from the pages above.
-const lastmodOf = (f) => {
-  const o = f.config.scheduleSource?.observedAt;
-  return o && /^\d{4}-\d{2}-\d{2}$/.test(o) ? o : TODAY;
-};
-const urls = [
-  { loc: `${ORIGIN}/`, pri: '1.0', lastmod: TODAY },
-  ...REG.map(f => ({ loc: `${ORIGIN}/f/${f.config.id}/`, pri: '0.8', lastmod: lastmodOf(f) })),
-  { loc: `${ORIGIN}/terms.html`, pri: '0.3', lastmod: TODAY },
-  { loc: `${ORIGIN}/privacy.html`, pri: '0.3', lastmod: TODAY },
-];
-emit(path.join(root, 'sitemap.xml'),
-`<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map(u => `  <url>
-    <loc>${u.loc}</loc>
-    <lastmod>${u.lastmod}</lastmod>
-    <priority>${u.pri}</priority>
-  </url>`).join('\n')}
-</urlset>
-`);
-if (!CHECK) console.log(`[gen] sitemap.xml  ${urls.length} urls`);
 // index.html carries the same festival list twice (static shell + <noscript>).
 // Regenerate both between their markers so adding a festival to the registry
 // can never leave the homepage listing a stale set.
+// Built BEFORE the sitemap: the homepage's own lastmod is a fingerprint of
+// this exact content, so the content has to exist before the sitemap does.
 const INDEX = path.join(root, 'index.html');
 let idx = readFileSync(INDEX, 'utf8');
 const listHtml = (indent) => REG.map(f =>
@@ -426,6 +417,106 @@ for (const [marker, indent] of [['FESTIVAL-LIST', '        '], ['NOSCRIPT-LIST',
 }
 emit(INDEX, idx);
 if (!CHECK) console.log(`[gen] index.html festival lists refreshed (${REG.length} entries x2)`);
+
+// ── sitemap lastmod — a content fingerprint, not a clock ──────────────
+// Generated here so the sitemap can never drift from the pages above.
+//
+// What this replaces, and why both of its halves were wrong:
+//   - a festival with a schedule was pinned to `scheduleSource.observedAt`,
+//     so ACL sat frozen at 2026-09-04 while its page kept changing under it;
+//   - everything else was stamped TODAY, so 17 of 28 URLs re-announced
+//     themselves daily with nothing behind it. That is exactly why the
+//     comparison above had to throw lastmod away: the value was noise.
+// Google treats lastmod as a hint and discounts a sitemap that cries wolf, so
+// the noise was not free — it was spending the signal ACL and III Points need
+// before Oct 2 and Oct 16.
+//
+// Each URL now carries a fingerprint of its OWN indexable content, and
+// sitemap-lastmod.json remembers the date that fingerprint first appeared.
+// Unchanged content keeps its stored date, so running this twice is
+// byte-identical and no date moves on its own; changed content takes TODAY,
+// which is the honest answer to "when did this page last change?".
+//
+// Deliberately the festival's own content and NOT the rendered stub: every
+// stub embeds an "Other festivals" nav, so hashing the file would move all 26
+// festival dates whenever any single festival changed. Boilerplate churn is
+// the thing a crawler is least interested in being told about twice.
+//
+// The ledger is STATE, and it is committed next to the content it describes,
+// exactly like sitemap.xml. That is what keeps the dates coherent: a revert
+// carries the ledger back with it. Revert the content WITHOUT the ledger and
+// the fingerprint has genuinely moved twice, so the page reads as changed
+// today — right by the rules, and a real trap when testing by hand.
+const LEDGER = path.join(root, 'sitemap-lastmod.json');
+const SITEMAP = path.join(root, 'sitemap.xml');
+const fp = (v) => createHash('sha256').update(JSON.stringify(v)).digest('hex').slice(0, 16);
+const fileFp = (rel) => fp(existsSync(path.join(root, rel)) ? readFileSync(path.join(root, rel), 'utf8') : null);
+const festivalFp = (entry) => {
+  const cfg = entry.config;
+  const ds = DS[cfg.id] || {};
+  const d = eventDates(cfg);
+  return fp({
+    name: cfg.name, dates: cfg.dates, location: cfg.location || '', tagline: cfg.tagline || '',
+    available: !!entry.available, scheduleTBA: !!entry.scheduleTBA,
+    setTimesProvisional: !!cfg.setTimesProvisional,
+    // The "This festival has ended." line and the CTA verb move with the
+    // calendar alone. That IS a change a crawler sees, so it belongs in the
+    // fingerprint — and it is precisely why this is strict-only.
+    isPast: d ? d.end < TODAY : false,
+    artists: [...new Set((ds.artists || []).map(a => a.name).filter(Boolean))].sort((a, b) => a.localeCompare(b)),
+    stages: (ds.stages || []).map(s => [s.id, s.name, s.desc || '']),
+    acts: scheduleActs(ds.artists),
+    source: cfg.scheduleSource || null,
+  });
+};
+
+// First run has no ledger. Seeding from the sitemap already committed keeps
+// every published date that is still true, rather than announcing that all 28
+// pages changed at once on the day this shipped — which would be false for the
+// ended festivals sitting honestly at 2026-08-28. Seeding can only ever
+// UNDERSTATE recency: a page whose content moved before this landed keeps its
+// old date until its next real change. ACL is the one that matters there, and
+// the answer-block work in this same lane is that change.
+const prevLedger = (() => {
+  if (existsSync(LEDGER)) return JSON.parse(readFileSync(LEDGER, 'utf8'));
+  const seeded = {};
+  if (existsSync(SITEMAP)) {
+    for (const m of readFileSync(SITEMAP, 'utf8')
+         .matchAll(/<loc>([^<]*)<\/loc>\s*<lastmod>([^<]*)<\/lastmod>/g)) {
+      if (/^\d{4}-\d{2}-\d{2}$/.test(m[2])) seeded[m[1]] = { fp: null, lastmod: m[2] };
+    }
+  }
+  return seeded;
+})();
+const ledger = {};
+const lastmodFor = (loc, fingerprint) => {
+  const was = prevLedger[loc];
+  // A seeded row has no fingerprint yet: adopt its published date and record
+  // the fingerprint, rather than read "unknown" as "changed".
+  const lastmod = was && (was.fp === null || was.fp === fingerprint) ? was.lastmod : TODAY;
+  ledger[loc] = { fp: fingerprint, lastmod };
+  return lastmod;
+};
+
+const urls = [
+  { loc: `${ORIGIN}/`, pri: '1.0', lastmod: lastmodFor(`${ORIGIN}/`, fp(idx)) },
+  ...REG.map(f => ({ loc: `${ORIGIN}/f/${f.config.id}/`, pri: '0.8',
+                     lastmod: lastmodFor(`${ORIGIN}/f/${f.config.id}/`, festivalFp(f)) })),
+  { loc: `${ORIGIN}/terms.html`, pri: '0.3', lastmod: lastmodFor(`${ORIGIN}/terms.html`, fileFp('terms.html')) },
+  { loc: `${ORIGIN}/privacy.html`, pri: '0.3', lastmod: lastmodFor(`${ORIGIN}/privacy.html`, fileFp('privacy.html')) },
+];
+emit(SITEMAP,
+`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map(u => `  <url>
+    <loc>${u.loc}</loc>
+    <lastmod>${u.lastmod}</lastmod>
+    <priority>${u.pri}</priority>
+  </url>`).join('\n')}
+</urlset>
+`);
+emit(LEDGER, JSON.stringify(ledger, null, 2) + '\n', null, true);
+if (!CHECK) console.log(`[gen] sitemap.xml  ${urls.length} urls  (${urls.filter(u => u.lastmod === TODAY).length} dated ${TODAY})`);
 
 // A festival retired from the registry leaves its directory behind. The
 // non-check path wipes f/ and rebuilds, so it never noticed; check mode built
