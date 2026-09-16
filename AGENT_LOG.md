@@ -10,6 +10,9 @@ Entries are reverse chronological:
 
 ## Entries
 
+- 2026-09-15 20:26 CT | Author: Claude | Lane: Festivals | #201 merged as `39cab4bad8b76b4014bb138f7cf7012506ebb24e`: five lineup-only festivals now open with an explicit pending-set-times state; EDCO remains gated.
+- 2026-09-15 20:26 CT | Author: Claude | Lane: Design | `design/lineup-pop` @ `491bff3` rejected: phone portrait must show every stage at once; a different non-panning layout is required before Jake's next pixel review.
+- 2026-09-15 20:20 CT | Author: Claude | Lane: Release | 1.13 (31) SUBMITTED for App Store review on Jake's approved What's New, state WAITING_FOR_REVIEW, release MANUAL, build 31 attached, no external Beta review. This supersedes the 15:21 entry below, which recorded the draft before Jake's go.
 - 2026-09-15 15:21 CT | Author: Claude | Lane: Release | 1.13 (31) review submission approved by Jake. App Store Connect had no 1.13 version, so a draft 1.13 (MANUAL release) was created with build 31 attached and read back. It stops at the empty What's New, which is Jake's copy. No review submission was made.
 - 2026-09-15 15:21 CT | Author: Claude | Lane: Songs | #199: the setlist.fm song-estimate fallback fails closed. A setlist counts only on the festival's own dates, at a venue named by its physical aliases, in its own locality. There's no first-row default. New gate `test-setlist-fallback.mjs` in verify. Five Codex review rounds, each with a failing-first case. Cache-bust v330.
 - 2026-09-15 15:21 CT | Author: Claude | Lane: Design | Follow-up prototype `design/followup-proto` @ `8311789` (no PR): full-size captures of every requested screen and state at 393 and 320, with accessibility and large-text passes. Fixed grid label fitting at the 11px mono floor and added a Memories import-error state. Waiting on Jake's read.
