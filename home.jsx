@@ -642,13 +642,31 @@ const _WALK_MIN = {
   "neon,quantum":    9,  "neon,stereo":     12, "neon,waste":      15,
   "quantum,stereo":  9,  "quantum,waste":   16, "stereo,waste":    9,
 };
+// Minutes between two stages, or null when nobody has measured it.
+//
+// The table above is hand-measured EDC LV geometry. This used to fall through
+// to `hypot(x, y) * 0.4` on the STAGE GRID for any pair it did not hold —
+// which is 12 of the 13 festivals that have stages. Those x/y are ART:
+// data.jsx says it outright, "the poster is art, not a survey", and #97
+// forbids deriving world coordinates from poster coordinates. ACL therefore
+// printed "amex → beatbox = 29 min", plus a LEAVE BY time computed from it,
+// to someone standing in Zilker Park.
+//
+// The map layer already refuses this: computeWalkRange stamps
+// `known: readoutHonest(avatar)` and walkMinsLabel returns null when the grid
+// is unsourced. This function was exactly the "fourth walk readout that
+// formats lo/hi itself" the distance-readout gate warns about — same claim,
+// different door, no check.
+//
+// So: 0 for the same stage (true whatever the geometry), the measured number
+// when one exists, and null otherwise. null means WE DO NOT KNOW, and every
+// call site renders the transition without a number instead of inventing one.
+// A festival earns its readouts back when its geometry is verified against an
+// official patron map — blind is the honest state until then.
 function stageWalkMinutes(fromId, toId) {
   if (fromId === toId) return 0;
   const key = fromId < toId ? `${fromId},${toId}` : `${toId},${fromId}`;
-  if (_WALK_MIN[key] != null) return _WALK_MIN[key];
-  const a = STAGES.find(s => s.id === fromId), b = STAGES.find(s => s.id === toId);
-  if (!a || !b) return 0;
-  return Math.max(2, Math.round(Math.hypot(a.x - b.x, a.y - b.y) * 0.4));
+  return _WALK_MIN[key] != null ? _WALK_MIN[key] : null;
 }
 
 // What's playing at every stage right now. Live comes from real dates
@@ -692,10 +710,14 @@ function buildTonightsPlan(state) {
     const minsUntil = startMin - nowMin;
     const isLive    = isSetLive(a);
     const isPast    = nowMin >= endMin;
-    const leaveBy   = walk > 0 ? startMin - walk : null;
+    // walk is null when the pair is unmeasured. A LEAVE BY time and a "tight"
+    // warning are both distance claims, so neither may be inferred from an
+    // unknown — an explicit null test, not `null > 0` happening to be false.
+    const known     = walk != null && walk > 0;
+    const leaveBy   = known ? startMin - walk : null;
     // Tight transition flag — only meaningful if previous set actually overlaps walk window
     const prevEnd   = prev ? toNightMin(prev.end) : null;
-    const tight     = prev && walk > 0 && (startMin - prevEnd) < walk;
+    const tight     = !!prev && known && (startMin - prevEnd) < walk;
     const conflict  = prev && overlaps(prev, a);
     return { artist: a, prev, walk, minsUntil, isLive, isPast, leaveBy, tight, conflict };
   });
@@ -1874,15 +1896,19 @@ function SavedByDay({ state, setState }) {
           {artists.map((a, i) => {
             const prev = artists[i - 1];
             const walk = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
-            const tight = prev && walk > 0 && (toNightMin(a.start) - toNightMin(prev.end)) < walk;
+            const tight = !!prev && walk != null && walk > 0 && (toNightMin(a.start) - toNightMin(prev.end)) < walk;
             const conflict = prev && overlaps(prev, a);
             const stage = STAGES.find(s => s.id === a.stage);
             const prevStage = prev ? STAGES.find(s => s.id === prev.stage) : null;
             return (
               <div key={a.id}>
-                {prev && walk > 0 && (
+                {/* The stage change is still worth showing when the walk is
+                    unmeasured (walk === null) — you are moving, and by how far
+                    is the only part nobody can honestly state. walk === 0 is a
+                    same-stage back-to-back, which needs no row at all. */}
+                {prev && walk !== 0 && (
                   <div style={{ padding: "4px 0 4px 88px", fontSize: 13, lineHeight: "18px", color: tight ? "var(--warn)" : "var(--text-3)" }}>
-                    {tight ? "Tight · " : ""}{walk} min walk · {prev.stage === a.stage ? "same stage" : `${prevStage?.short || ""} → ${stage?.short || ""}`}
+                    {tight ? "Tight · " : ""}{walk != null ? `${walk} min walk · ` : ""}{prev.stage === a.stage ? "same stage" : `${prevStage?.short || ""} → ${stage?.short || ""}`}
                   </div>
                 )}
                 <button onClick={() => setState({ ...state, artist: a.id })} style={{
@@ -2331,7 +2357,7 @@ function PlanRow({ entry, state, setState }) {
   return (
     <div>
       {/* Walking transition pill from previous set */}
-      {prev && walk > 0 && (
+      {prev && walk !== 0 && (
         <div style={{
           display: "flex", alignItems: "center", gap: 8,
           padding: "4px 0 4px 56px", marginBottom: 2,
@@ -2342,7 +2368,9 @@ function PlanRow({ entry, state, setState }) {
             color: tight ? "var(--ember-ink)" : "var(--muted)",
             fontWeight: tight ? 700 : 500,
           }}>
-            {walk} MIN WALK · {prev.stage === a.stage ? "SAME STAGE" : `${STAGES.find(s=>s.id===prev.stage)?.short || "TBA"} → ${stage?.short || "TBA"}`}
+            {/* No minutes and no LEAVE BY on an unmeasured pair: leaveByLabel
+                is already null there, because leaveBy is. */}
+            {walk != null ? `${walk} MIN WALK · ` : ""}{prev.stage === a.stage ? "SAME STAGE" : `${STAGES.find(s=>s.id===prev.stage)?.short || "TBA"} → ${stage?.short || "TBA"}`}
             {leaveByLabel && ` · LEAVE BY ${leaveByLabel}`}
           </span>
         </div>

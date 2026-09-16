@@ -1911,6 +1911,39 @@ const REGISTRATION_TOL_M = 25;
   if (REG_GRID_NO_AFFINE.length)
     console.log(`  ✓ ${REG_GRID_NO_AFFINE.length} more carry a layout grid with no affine — checked, not assumed`);
 
+  // ── The FOURTH walk readout ────────────────────────────────────────────
+  // The gate above guards map.jsx, which asks readoutHonest() before it
+  // quotes anything. home.jsx had its own walk readout that asked nothing:
+  // stageWalkMinutes() fell through to `hypot(x, y) * 0.4` on the STAGE GRID
+  // for every pair outside its hand-measured EDC table — 12 of the 13
+  // festivals with stages. ACL shipped "amex → beatbox = 29 min" and a
+  // LEAVE BY time off poster pixels, to a phone standing in Zilker Park.
+  //
+  // That is precisely the drift this gate's own header predicted: "someone
+  // adds a fourth walk readout that formats lo/hi itself, and the data says
+  // one thing while the screen says another." So the rule is now enforced at
+  // the source: a stage-to-stage minute count comes from a MEASURED table or
+  // it does not exist. Coordinate arithmetic inside that function is banned.
+  {
+    const src = readFileSync(join(ROOT, "home.jsx"), "utf8");
+    const fn = /function stageWalkMinutes\s*\([^)]*\)\s*\{([\s\S]*?)\n\}/.exec(src);
+    if (!fn) fail("home.jsx: stageWalkMinutes() not found — the walk-readout gate cannot check what it cannot see");
+    const body = fn[1];
+    const COORD = /Math\.hypot|\.x\s*-|\.y\s*-|Math\.sqrt/;
+    if (COORD.test(body)) {
+      fail("home.jsx stageWalkMinutes() derives minutes from stage COORDINATES. " +
+           "Those x/y are art, not a survey (#97). Return null for an unmeasured pair " +
+           "instead — blind is the honest state until the geometry is verified.");
+    }
+    // Absence of coordinates is not presence of honesty: it must actually
+    // return null on a table miss, not 0 (0 reads as "same stage, no walk").
+    if (!/return\s+_WALK_MIN\[key\]\s*!=\s*null\s*\?\s*_WALK_MIN\[key\]\s*:\s*null/.test(body)) {
+      fail("home.jsx stageWalkMinutes() must return null for a pair the measured table does not hold");
+    }
+    console.log("▸ Walk-readout gate — stage minutes come from a measured table or not at all");
+    console.log("  ✓ home.jsx stageWalkMinutes(): no coordinate arithmetic, unmeasured pairs return null");
+  }
+
   // ── The capture path must emit what the crowd-anchor gate accepts ──────
   // survey.jsx exists to produce crowdAnchors rows, and the gate above
   // decides whether a crowdAnchors row may ship. Those two rules living in
