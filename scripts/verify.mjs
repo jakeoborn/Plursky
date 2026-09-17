@@ -2475,6 +2475,41 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   console.log(`  ✓ 0 poster-style <video> elements across the app's .jsx files; posters extract only via the idle queue; thumbnails lazy + async`);
 }
 
+// ── 1z-c1. Archive recovery attributes from the clip's own capture time ───
+// A video pulled back out of the archive by fingerprint must take its festival
+// AND its night from its own capture time, not from whichever festival is on
+// screen. _recoverCurrentVideoMomentsFromArchive copies the archived record's
+// real takenAt onto the moment and then used to ignore it three times over:
+// `needsRecovery` was judged by _photoFestivalNight(parsed) with no config (so
+// it fell back to the ACTIVE festival, and a clip from any other festival was
+// unplaceable by definition and always looked broken); `recoveredNight` was
+// computed the same way, so the night bucket inherited the assumption; and the
+// attribution itself was `if (!m.festivalId) m.festivalId = cur;`.
+//
+// The lookup only searches archive[cur].moments, so `= cur` PROPAGATED that
+// bucket's prior attribution rather than inventing a fresh one — but the bucket
+// was filled by whichever festival was on screen, which #213 established is not
+// evidence. Measured with acl-2026 active: a clip whose recovered capture time
+// is claimed by edc-lv-2026 and nothing else was stamped acl-2026, with
+// festivalAttribution null — not a declared guess, a fact-shaped stamp.
+//
+// The gate's night fixture uses the attributed festival's LAST night against a
+// seeded bucket of 1, and the archived record carries no `night`, so a night
+// computed against the wrong config cannot pass by coincidence. An existing
+// festivalId is still never re-stamped (#213's rule), so this corrects future
+// recoveries, not moments already mis-stamped.
+{
+  console.log("▸ Archive-recovery gate — recovered clips attributed from their own capture time");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-archive-recovery-attribution.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`archive recovery attribution failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c2. Post-import review ─────────────────────────────────────────────
 // Who needs review, what each retag writes, that a write touches exactly the
 // moments it names (never another festival's), that the lineup offered is the
