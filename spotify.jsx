@@ -7669,27 +7669,91 @@ function _recoverCurrentVideoMomentsFromArchive() {
     if (changed) _writeMoments(all);
   } catch {}
 }
+// Which festivals' night windows contain this moment's OWN capture time?
+//
+// Walks _DATA_SETS directly rather than photo-tag's _allDataSets(), which
+// filters to registry-`available` festivals (photo-tag.jsx:522). edc-orlando-2026
+// is GATED today, so a registry-filtered walk is blind to exactly the festival
+// whose clips this migration orphans — and a user cannot switch to a gated
+// festival to go find them, because getActiveFestivalId() also requires
+// `available`. That combination is what makes a wrong stamp unrecoverable.
+//
+// Returns EVERY claimant instead of the first. _anyFestivalNight stops at the
+// first match, which is fine for the boolean question its two callers ask, but
+// 10 of the registry's 53 night windows are claimed by two festivals running the
+// same weekend (lost-lands/nocturnal, lollapalooza/hard-summer, crssd/portola) —
+// first-wins there attributes by _DATA_SETS declaration order, an ordering
+// accident presented as a fact.
+//
+// takenAt ONLY. _momentCaptureMs falls back to createdAt, i.e. IMPORT time, which
+// would attribute a moment by when the user happened to import it — the same
+// guess this function exists to replace, wearing better clothes.
+function _festivalClaimantsFor(takenAt) {
+  if (!takenAt) return [];
+  const sets = window._DATA_SETS || {};
+  const date = typeof _momentTakenAtToDateParts === "function" ? _momentTakenAtToDateParts(takenAt) : null;
+  if (!date || typeof _photoFestivalNight !== "function") return [];
+  const out = [];
+  for (const id of Object.keys(sets)) {
+    const cfg = sets[id] && sets[id].config;
+    if (!cfg || !cfg.dayDates) continue;
+    if (_photoFestivalNight(date, cfg, null) != null) out.push(id);
+  }
+  return out;
+}
+
 function _maybeAutoArchive() {
   if (_archiveCheckDone) return;
-  _archiveCheckDone = true;
   try {
     const cur = window.FESTIVAL_CONFIG?.id;
+    // The once-per-load flag is consumed only by a run that can actually do
+    // something. It used to be set ABOVE this guard, so a load where
+    // FESTIVAL_CONFIG was not ready at the 100 ms timeout burned the flag on a
+    // run that returned immediately — and migration never ran again for that
+    // whole session, leaving every legacy moment unattributed.
     if (!cur) return;
+    _archiveCheckDone = true;
     const lastSeen = localStorage.getItem("plursky_last_festival_id");
     // Backfill festivalId on legacy moments (pre-v204) so multi-festival
-    // scoping works. They belong to whatever festival was active when they
-    // were created = the last-seen festival (or the current one on first run).
-    // Run BEFORE the switch handling so the prior festival's moments are
-    // correctly attributed and then scoped out of the now-active festival.
+    // scoping works.
+    //
+    // This used to stamp every unstamped moment with `lastSeen || cur` in one
+    // sweep — a guess about a mixed bucket, applied to records whose own capture
+    // time disproves it. Measured 2026-09-17 with ACL active on a first load: a
+    // clip shot 2026-05-15 (EDC Las Vegas) and one shot 2026-11-06 (EDC Orlando)
+    // were both stamped `acl-2026`, whose window is Oct 2-4 & 9-11.
+    // _activeMoments() keeps a moment only when its festivalId is the current
+    // one, so neither clip could be reached from the festival it was shot at —
+    // photo-tag.jsx:486 already spelled out that this is "not a display glitch
+    // you can switch away from".
+    //
+    // The defect was never the guess itself. It was that the guess was
+    // INDISTINGUISHABLE FROM EVIDENCE, and therefore permanent. So: where the
+    // record's own capture time proves an owner, use it; where it cannot, keep
+    // the record exactly where it has always been visible and SAY that the
+    // attribution is unproven, so a later pass (or a review surface) can fix it.
+    let sweptCleanly = false;
     try {
       const moments = _readMoments();
-      const attribId = lastSeen || cur;
       let changed = false;
       for (const arr of Object.values(moments)) {
         if (!Array.isArray(arr)) continue;
-        for (const m of arr) { if (m && !m.festivalId) { m.festivalId = attribId; changed = true; } }
+        for (const m of arr) {
+          if (!m || m.festivalId) continue;          // already attributed: never re-stamp
+          const claims = _festivalClaimantsFor(m.takenAt);
+          if (claims.length === 1) {
+            m.festivalId = claims[0];
+            m.festivalAttribution = "capture-time";
+          } else {
+            m.festivalId = lastSeen || cur;
+            m.festivalAttribution = "unresolved";
+            if (claims.length > 1) m.festivalCandidates = claims;
+          }
+          changed = true;
+        }
       }
       if (changed) _writeMoments(moments);
+      sweptCleanly = true;
     } catch {}
     if (lastSeen && lastSeen !== cur) {
       // Festival switched — snapshot the previous one's data BEFORE it's
@@ -7702,7 +7766,13 @@ function _maybeAutoArchive() {
         archiveFestival(lastSeen, prevCfg?.name || lastSeen, prevCfg);
       }
     }
-    localStorage.setItem("plursky_last_festival_id", cur);
+    // Advance the pointer ONLY when the sweep actually completed. `lastSeen` is
+    // the sole evidence a later load has for attributing the records this run
+    // could not prove. The old code set it inside the OUTER try, so a backfill
+    // that threw (quota, corrupt JSON) still moved the pointer to `cur` — the
+    // failure was swallowed, the evidence was destroyed, and the next load then
+    // guessed `cur` for everything with nothing left to contradict it.
+    if (sweptCleanly) localStorage.setItem("plursky_last_festival_id", cur);
   } catch {}
 }
 if (typeof window !== "undefined") setTimeout(_maybeAutoArchive, 100);

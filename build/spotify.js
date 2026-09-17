@@ -11926,27 +11926,48 @@ function _recoverCurrentVideoMomentsFromArchive() {
     if (changed) _writeMoments(all);
   } catch {}
 }
+function _festivalClaimantsFor(takenAt) {
+  if (!takenAt) return [];
+  var sets = window._DATA_SETS || {};
+  var date = typeof _momentTakenAtToDateParts === "function" ? _momentTakenAtToDateParts(takenAt) : null;
+  if (!date || typeof _photoFestivalNight !== "function") return [];
+  var out = [];
+  for (var id of Object.keys(sets)) {
+    var cfg = sets[id] && sets[id].config;
+    if (!cfg || !cfg.dayDates) continue;
+    if (_photoFestivalNight(date, cfg, null) != null) out.push(id);
+  }
+  return out;
+}
 function _maybeAutoArchive() {
   if (_archiveCheckDone) return;
-  _archiveCheckDone = true;
   try {
     var cur = window.FESTIVAL_CONFIG?.id;
     if (!cur) return;
+    _archiveCheckDone = true;
     var lastSeen = localStorage.getItem("plursky_last_festival_id");
+    var sweptCleanly = false;
     try {
       var moments = _readMoments();
-      var attribId = lastSeen || cur;
       var changed = false;
       for (var arr of Object.values(moments)) {
         if (!Array.isArray(arr)) continue;
         for (var m of arr) {
-          if (m && !m.festivalId) {
-            m.festivalId = attribId;
-            changed = true;
+          if (!m || m.festivalId) continue;
+          var claims = _festivalClaimantsFor(m.takenAt);
+          if (claims.length === 1) {
+            m.festivalId = claims[0];
+            m.festivalAttribution = "capture-time";
+          } else {
+            m.festivalId = lastSeen || cur;
+            m.festivalAttribution = "unresolved";
+            if (claims.length > 1) m.festivalCandidates = claims;
           }
+          changed = true;
         }
       }
       if (changed) _writeMoments(moments);
+      sweptCleanly = true;
     } catch {}
     if (lastSeen && lastSeen !== cur) {
       var archive = _readArchive();
@@ -11956,7 +11977,7 @@ function _maybeAutoArchive() {
         archiveFestival(lastSeen, prevCfg?.name || lastSeen, prevCfg);
       }
     }
-    localStorage.setItem("plursky_last_festival_id", cur);
+    if (sweptCleanly) localStorage.setItem("plursky_last_festival_id", cur);
   } catch {}
 }
 if (typeof window !== "undefined") setTimeout(_maybeAutoArchive, 100);
