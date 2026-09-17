@@ -25,7 +25,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
 import {
-  festivalFingerprint,
+  festivalFingerprint, templateFingerprint,
   FINGERPRINTED_CONFIG_FIELDS, FINGERPRINTED_ENTRY_FIELDS,
   EXCLUDED_CONFIG_FIELDS, EXCLUDED_ENTRY_FIELDS,
 } from './lib/sitemap-fingerprint.mjs';
@@ -201,6 +201,54 @@ if (from === -1 || to === -1 || to <= from) {
   } else {
     pass(`${seen.size} render-path field(s) all fingerprinted or explicitly excluded`);
   }
+}
+
+// ── 4. The TEMPLATE moves every festival url, and nothing else ────────
+// The field lists above cannot watch this door: a template edit reads no new
+// cfg.*/entry.* field, so section 3 sees nothing while every page changes.
+// The first attempt at a fix was a hand-bumped constant, which only restated
+// the contract — a forgotten bump still froze all 25 dates. The contribution
+// is now DERIVED from the render-path source, and these mutants are what make
+// that claim checkable instead of merely asserted.
+console.log('▸ A template-only edit moves every festival url and no others');
+
+const realTpl = templateFingerprint(gen);
+const TPL_ANCHOR = '<h2 id="answers-h">';
+const landed = gen.split(TPL_ANCHOR).length - 1;
+if (landed !== 1) {
+  fail(`template mutation anchor is not unique (${landed} occurrences) — every result below would be meaningless`);
+} else {
+  const mutTpl = templateFingerprint(gen.replace(TPL_ANCHOR, '<h2 id="answers-h" data-mutant="1">'));
+  if (mutTpl === realTpl) {
+    fail('a crawler-visible markup edit did NOT move the template fingerprint — the contract is unenforced');
+  } else {
+    pass('crawler-visible markup edit moves the template fingerprint');
+    const movedIds = REG.filter(e =>
+      festivalFingerprint(e, { ...deps(), templateFp: mutTpl }) !== base.get(e.config.id)
+    ).map(e => e.config.id);
+    if (movedIds.length === REG.length) {
+      pass(`template edit moved all ${REG.length} festival urls`);
+    } else {
+      const missing = REG.map(e => e.config.id).filter(i => !movedIds.includes(i));
+      fail(`template edit moved only ${movedIds.length}/${REG.length} festival urls — frozen: ${missing.join(', ')}`);
+    }
+  }
+
+  // The other direction: documentation must stay free. Without this, the hash
+  // would redate 25 urls for a comment edit — crying wolf, which is the exact
+  // noise the ledger was built to remove.
+  const cmtTpl = templateFingerprint(gen.replace('// ── Page template', '// ── Page template (comment edit)'));
+  if (cmtTpl === realTpl) pass('a comment-only edit moves nothing');
+  else fail('a comment-only edit MOVED the template fingerprint — 25 urls would be redated for nothing');
+}
+
+// The homepage, terms and privacy never pass through fingerprintInput at all —
+// they are hashed from file content — so a template edit cannot reach them.
+// Proven from the generator's source: recomputing the same input twice and
+// finding it unchanged would be vacuous.
+for (const needle of ["fileFp('terms.html')", "fileFp('privacy.html')", 'fp(idx)']) {
+  if (gen.includes(needle)) pass(`non-festival url hashed from file content — ${needle}`);
+  else fail(`the generator no longer hashes a non-festival url via ${needle} — re-prove template isolation`);
 }
 
 // ── Verdict ───────────────────────────────────────────────────────────

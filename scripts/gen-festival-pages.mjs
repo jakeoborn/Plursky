@@ -178,9 +178,14 @@ function faqItems(entry, { names, hasTimes, stages }) {
         : `Yes. The full ${cfg.name} schedule is on this page, day by day and stage by stage, gathered from community sources until the official grid is published.`,
     });
   } else if (names.length) {
+    // NEUTRAL BY REQUIREMENT. `hasTimes === false` proves only that Plursky has
+    // no ingested set times — it is NOT evidence about what the festival has or
+    // has not published. Reporting our own data absence as publisher state is a
+    // claim we cannot source, on 25 crawlable pages at once. This answer may say
+    // what Plursky has; it may not say what the festival has done.
     items.push({
       q: `Have the ${cfg.name} set times been announced?`,
-      a: `Not yet. The ${cfg.name} lineup is announced and listed on this page, but the festival has not published set times. Plursky adds the schedule as soon as it drops.`,
+      a: `Plursky does not have set times for ${cfg.name} yet. The announced lineup is listed on this page; the schedule will appear here when it is available.`,
     });
   }
 
@@ -196,7 +201,10 @@ function faqItems(entry, { names, hasTimes, stages }) {
   if (stages.length) {
     items.push({
       q: `How many stages does ${cfg.name} have?`,
-      a: `${cfg.name} has ${stages.length} stage${stages.length === 1 ? '' : 's'}${cfg.locationShort ? ` at ${cfg.locationShort}` : ''}, each one listed on this page and mapped in the Plursky app.`,
+      // Ends at what this page actually shows. `stages.length` proves a stage
+      // list exists; it proves nothing about what the app maps, so the answer
+      // does not claim it.
+      a: `${cfg.name} has ${stages.length} stage${stages.length === 1 ? '' : 's'}${cfg.locationShort ? ` at ${cfg.locationShort}` : ''}, each one listed on this page.`,
     });
   }
 

@@ -31,6 +31,17 @@ let checks = 0, failed = 0;
 const fail = (msg) => { checks++; failed++; console.log(`  ✗  ${msg}`); };
 const ok = () => { checks++; };
 
+// Phrases that report the PUBLISHER's state. We can only source our own
+// ingestion state, so these may not appear in a generated answer unless
+// explicit per-festival source state backs them.
+const BANNED_PUBLISHER_CLAIMS = [
+  'has not published', 'have not published', 'has yet to publish',
+  'the festival has not', 'not been announced by', 'not yet announced',
+];
+const NO_TIMES_HEAD = 'Plursky does not have set times for ';
+const NO_TIMES_TAIL = ' The announced lineup is listed on this page; the schedule will appear here when it is available.';
+let neutralSeen = 0;
+
 const decode = (s) => String(s)
   .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"')
   .replace(/&#39;/g, "'").replace(/&amp;/g, '&');
@@ -89,13 +100,29 @@ for (const id of pages) {
       if (!hasStages) fail(`${id}: answers a stage question with no rendered stage list`);
       else ok();
     }
-    if (/^Yes\./.test(answer) && /set times/i.test(question)) {
-      if (!hasSchedule) fail(`${id}: claims set times are published with no rendered schedule grid`);
-      else ok();
-    }
-    if (/^Not yet\./.test(answer)) {
-      if (hasSchedule) fail(`${id}: says set times are NOT published while rendering a schedule grid`);
-      else ok();
+    // Our own data absence is not evidence about the PUBLISHER. An answer may
+    // report what Plursky has; it may never report what the festival has or has
+    // not done, unless explicit source state backs the stronger words.
+    const inferred = BANNED_PUBLISHER_CLAIMS.find(b => answer.toLowerCase().includes(b));
+    if (inferred) fail(`${id}: answer infers publisher state from our own data absence — "${inferred}"`);
+    else ok();
+
+    // Likewise a rendered list proves a list, not an app capability.
+    if (/stage/i.test(question) && /plursky app/i.test(answer)) {
+      fail(`${id}: stage answer claims an app capability this page does not show`);
+    } else ok();
+
+    if (/set times/i.test(question)) {
+      if (/^Yes\./.test(answer)) {
+        if (!hasSchedule) fail(`${id}: claims set times are published with no rendered schedule grid`);
+        else ok();
+      } else {
+        if (hasSchedule) fail(`${id}: gives the no-ingested-times answer while rendering a schedule grid`);
+        else ok();
+        if (!answer.startsWith(NO_TIMES_HEAD) || !answer.endsWith(NO_TIMES_TAIL)) {
+          fail(`${id}: the no-ingested-times answer must stay neutral — got "${answer.slice(0, 90)}…"`);
+        } else { ok(); neutralSeen++; }
+      }
     }
 
     // A stated artist count must equal the one the lineup section prints.
@@ -108,6 +135,15 @@ for (const id of pages) {
     }
   }
 }
+
+// Positive control for the neutrality rule. If NO page exercises the
+// no-ingested-times branch, the banned-phrase sweep above passed only because
+// that branch never ran — and an unexercised rule reads exactly like a
+// satisfied one. This is the dead-control failure mode, so it gets an
+// assertion rather than trust.
+if (!neutralSeen) {
+  fail('no page exercised the neutral no-ingested-times branch — the neutrality rule is UNPROVEN, not satisfied');
+} else ok();
 
 if (failed) {
   console.log(`\n  ${failed}/${checks} checks FAILED — structured data claims something the page does not show.`);

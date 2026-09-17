@@ -17,24 +17,65 @@
 // adding it here and the gate names it.
 
 import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
 export const fp = (v) => createHash('sha256').update(JSON.stringify(v)).digest('hex').slice(0, 16);
 
-// The TEMPLATE is rendered output too, and it was the one hole in the contract
-// above: every field a page renders was hashed, but the page STRUCTURE was not.
-// Edit the stub template — add a section, change the anchor text — and all 26
-// pages genuinely change while not one fingerprint moves, leaving every
-// <lastmod> frozen over changed content. That is the exact one-directional
-// failure the header describes, arriving through the one door the field lists
-// cannot watch.
+// ── The template is rendered output too ──────────────────────────────────
+// This was the one hole in the contract above: every FIELD a page renders was
+// hashed, but the page STRUCTURE was not. Edit the stub template — add a
+// section, change a sentence — and every page genuinely changes while not one
+// fingerprint moves, leaving every <lastmod> frozen over changed content. That
+// is the exact one-directional failure the header describes, arriving through
+// the one door the field lists structurally cannot watch: a template edit
+// reads no new cfg.*/entry.* field, so the coverage detector sees nothing.
 //
-// Bump this whenever the generated markup changes in a way a crawler can see.
-// It is NOT the excluded "Other festivals" churn in disguise: that exclusion
-// stops ONE festival's data edit from redating the other 25, and this constant
-// still leaves that true. It moves all 26 only when all 26 really did change.
+// The first fix here was a hand-bumped `TEMPLATE_VERSION = 1`. That did NOT
+// enforce the contract — it only restated it. A markup edit with a forgotten
+// bump still froze every date, which is the same failure one step upstream: a
+// rule that depends on someone remembering is not a rule.
 //
-//   1 — answer blocks + FAQPage JSON-LD + descriptive internal anchors
-export const TEMPLATE_VERSION = 1;
+// So the contribution is DERIVED, and there is nothing left to forget. It is
+// the hash of the generator's own render-path source — the same slice the
+// coverage detector reads — with whole-line comments and blank lines removed.
+//
+// The deliberate trade-off: a pure refactor inside that slice (renaming a
+// local) moves all festival dates even though no output changed. That is
+// OVER-reporting — a redundant recrawl hint — and it is the safe direction.
+// Under-reporting tells a crawler "nothing moved here" about a page that did,
+// which the header calls worse than shipping no lastmod at all. Comments are
+// stripped precisely so documentation edits stay free; scripts/test-sitemap-
+// fingerprint.mjs proves both halves (a markup edit moves it, a comment-only
+// edit does not).
+const GEN_PATH = fileURLToPath(new URL('../gen-festival-pages.mjs', import.meta.url));
+const SLICE_START = 'function place(';
+const SLICE_END = 'const rows = [];';
+
+// Exported and PURE so the regression test can mutate real source text and
+// recompute, rather than trusting an injected value that proves only that the
+// field participates in the hash.
+export function templateMarkup(source) {
+  const from = source.indexOf(SLICE_START);
+  const to = source.indexOf(SLICE_END);
+  if (from === -1 || to === -1 || to <= from) {
+    throw new Error('sitemap-fingerprint: could not slice the render path out of '
+      + 'gen-festival-pages.mjs — the anchors moved. Fix this rather than deleting it: '
+      + 'without the slice, every festival <lastmod> silently stops tracking the template.');
+  }
+  return source.slice(from, to).split('\n')
+    .map(l => (/^\s*\/\//.test(l) ? '' : l))   // whole-line comments only: "//" also lives inside URLs
+    .filter(l => l.trim() !== '')
+    .join('\n');
+}
+
+export const templateFingerprint = (source) => fp(templateMarkup(source));
+
+let _tplFp = null;
+export function currentTemplateFingerprint() {
+  if (_tplFp === null) _tplFp = templateFingerprint(readFileSync(GEN_PATH, 'utf8'));
+  return _tplFp;
+}
 
 // entry.config fields that reach rendered output, each with where it lands.
 export const FINGERPRINTED_CONFIG_FIELDS = [
@@ -77,12 +118,14 @@ export const EXCLUDED_ENTRY_FIELDS = {
 
 // The exact object that gets hashed. Exported separately from the hash so the
 // test can diff WHICH field moved instead of only that something did.
-export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY }) {
+// `templateFp` is an override for the regression test only; production always
+// derives it from the generator source on disk.
+export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, templateFp }) {
   const cfg = entry.config;
   const ds = DS[cfg.id] || {};
   const d = eventDates(cfg);
   return {
-    template: TEMPLATE_VERSION,
+    template: templateFp || currentTemplateFingerprint(),
     name: cfg.name,
     dates: cfg.dates,
     location: cfg.location || '',
