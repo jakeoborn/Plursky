@@ -10,6 +10,8 @@ Entries are reverse chronological:
 
 ## Entries
 
+- 2026-09-17 10:07 CT | Author: Claude | Lane: Memories | A legacy moment now takes its festival from its own capture time instead of whichever festival was active when the app next booted; a record whose owner cannot be proved is marked unresolved rather than filed silently. New gate `test-festival-migration.mjs` (21 checks), four mutations proven to fail it. v336 on a branch, PR open, not merged.
+- 2026-09-17 10:07 CT | Author: Claude | Lane: Memories | Re-measured the queued Memories re-org against main before starting: its first correctness item was already closed by #210 (`1e0d5c6`), so nothing was rebuilt. Remaining items stay queued behind Jake's pixel review.
 - 2026-09-16 13:40 CT | Author: Claude | Lane: Walk | #203 merged as `657eb48` (v332): one predicate governs every numeric distance claim, per festival, never about the avatar. Walk table dormant — no festival quotes walk minutes today.
 - 2026-09-16 13:40 CT | Author: Claude | Lane: Schedule | ACL Weekend 2 "now playing" needed no code: already fixed in #167 `5009f75`. Re-verified 7/7 pinned instants on main; #203 did not regress it.
 - 2026-09-16 13:40 CT | Author: Claude | Lane: Festivals | Queue re-measured: 25 entries, 17 live, 8 gated. No available build work — every flip candidate waits on a publisher.

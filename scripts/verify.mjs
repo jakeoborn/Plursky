@@ -2326,6 +2326,36 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b6a. Legacy festival attribution ───────────────────────────────────
+// A legacy (pre-v204) moment gets its festivalId from its OWN capture time, not
+// from whichever festival happened to be on screen when the app next booted.
+// The old sweep stamped every unstamped moment `lastSeen || cur` at once: with
+// ACL active on a first load, a clip shot 2026-05-15 (EDC Las Vegas) and one
+// shot 2026-11-06 (EDC Orlando) were both stamped `acl-2026`, whose window is
+// Oct 2-4 & 9-11. _activeMoments() keeps a moment only when its festivalId is
+// the current one, so neither was reachable from the festival it was shot at,
+// and the pointer advanced in the same pass — destroying the `lastSeen` evidence
+// a later load would have needed to correct it.
+//
+// The gate checks the shape of the claim, not the implementation: a record
+// presented as attributed must be claimed by that festival's night windows, a
+// record that cannot be proved must SAY so, and — so the flag cannot buy a
+// trivial pass — every provable record must come back evidence-backed. It also
+// covers the gated case (edc-orlando-2026 is invisible to photo-tag's
+// registry-filtered _allDataSets) and the once-per-load flag that used to be
+// burned by an early return before FESTIVAL_CONFIG was ready.
+{
+  console.log("▸ Festival-migration gate — legacy moments attributed from their own capture time");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-migration.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`festival migration failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b7. Festival FAQ structured data ───────────────────────────────────
 // A festival page's FAQPage JSON-LD may never claim something the page does
 // not visibly say. Google treats that mismatch as a structured-data violation
