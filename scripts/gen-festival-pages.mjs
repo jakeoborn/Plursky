@@ -263,6 +263,16 @@ function stub(entry, isPastOverride) {
   const hasTimes = scheduleActs(DS[id]?.artists).some(a => a.start && a.start !== '');
   const titleTail = hasTimes ? 'Set Times, Lineup &amp; Map' : 'Lineup, Map &amp; Schedule';
   const stages = ds?.stages || [];
+  // Does THIS festival's data back "find stages on a live map"?
+  // map.jsx picks the real map on `mapImage && gpsAnchors.length >= 3` and
+  // otherwise falls back to the SVG TopDownMap — which, with no placed stages,
+  // "would render an empty plate with no stages and no art" (map.jsx:1933).
+  // So the clause needs BOTH map art and stages that can actually be placed.
+  // Preview entries (0 stages) and art-without-coordinates festivals get the
+  // clause dropped: the copy never outruns the data.
+  const mapBacked = stages.length > 0
+    && stages.every(s => s && s.x != null && s.y != null)
+    && !!(cfg.mapImage || cfg.mapMode);
   const answers = faqItems(entry, { names, hasTimes, stages });
 
   const desc = hasTimes
@@ -381,7 +391,7 @@ ${JSON.stringify(faqLd, null, 2)}
     <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
     <a class="cta-secondary" href="/?f=${esc(id)}">${entry.available ? (isPast ? 'Relive it in the browser' : 'Open in your browser') : 'Open Plursky in the browser'}</a>
   </p>
-  <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.</p>
+  <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, ${mapBacked ? 'find stages on a live map, ' : ''}meet your crew, and turn the weekend into a shareable recap.</p>
 ${entry.available
   ? (entry.scheduleTBA
       ? `  <p class="note">${esc(cfg.name)} is open in the app — the full lineup is in. Set times appear as soon as the festival publishes them.</p>`

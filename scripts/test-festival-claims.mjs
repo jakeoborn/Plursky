@@ -131,7 +131,13 @@ if (!verifiedIds.length || !blindIds.length) {
 // ⚠ OPEN FOR RULING: this note still says "find stages on a live map" on all 25
 // pages, 10 of which are preview entries with no stages at all. That is
 // audience-facing product copy, so it is Jake's call, not this gate's.
-const PRODUCT_NOTE = 'Plursky is a free festival companion — build a personal schedule from the official lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.';
+// TWO sanctioned variants. The map clause is itself a claim, so it rides only
+// on a festival whose data can actually place its stages on a map — map art
+// plus every stage carrying coordinates. map.jsx falls back to the SVG
+// TopDownMap, which with no placed stages "would render an empty plate with no
+// stages and no art" (map.jsx:1933).
+const PRODUCT_NOTE_MAP = 'Plursky is a free festival companion — build a personal schedule from the official lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.';
+const PRODUCT_NOTE_PLAIN = 'Plursky is a free festival companion — build a personal schedule from the official lineup, meet your crew, and turn the weekend into a shareable recap.';
 
 const MAP_CLAIMS = [
   /\blive map\b/i,
@@ -143,15 +149,34 @@ const WATER_CLAIMS = [/\bwater station/i, /\bwater point/i];
 const AMENITY_CLAIMS = [/\bamenit/i];
 const EVERY_STAGE_CLAIMS = [/\bevery stage\b/i, /\ball stages\b/i];
 
-let productNoteSeen = 0;
+let noteMapSeen = 0, notePlainSeen = 0;
 for (const id of pages) {
   const raw = visibleText(readFileSync(join(F_DIR, id, 'index.html'), 'utf8'));
-  // Remove the exempted product note by exact text BEFORE scanning, so any
-  // remaining map/amenity language is a claim this page makes about THIS
-  // festival and has to be backed by this festival's data.
-  const hadNote = raw.includes(PRODUCT_NOTE);
-  if (hadNote) productNoteSeen++;
-  const text = hadNote ? raw.split(PRODUCT_NOTE).join(' ') : raw;
+  const dsCfg = (DS[id] || {}).config || {};
+  const dsStages = (DS[id] || {}).stages || [];
+  const placed = dsStages.filter(s => s && s.x != null && s.y != null).length;
+  const mapBacked = dsStages.length > 0 && placed === dsStages.length
+    && !!(dsCfg.mapImage || dsCfg.mapMode);
+
+  const hasMapNote = raw.includes(PRODUCT_NOTE_MAP);
+  const hasPlainNote = raw.includes(PRODUCT_NOTE_PLAIN);
+  if (hasMapNote) noteMapSeen++;
+  if (hasPlainNote) notePlainSeen++;
+
+  // Exactly one sanctioned variant, always. Neither means the copy drifted;
+  // both is impossible unless the strings overlap and the exemption is leaking.
+  if (hasMapNote === hasPlainNote) {
+    fail(`${id}: expected exactly ONE sanctioned product-note variant — map=${hasMapNote} plain=${hasPlainNote}`);
+  } else ok();
+
+  // The map clause is a claim about THIS festival, so it has to be backed here.
+  if (hasMapNote && !mapBacked) {
+    fail(`${id}: product note says "find stages on a live map" but ${placed}/${dsStages.length} stages carry coordinates and mapArt=${!!(dsCfg.mapImage || dsCfg.mapMode)}`);
+  } else ok();
+
+  // Strip whichever variant this page carries BEFORE scanning, so any remaining
+  // map/amenity language is a claim the page makes on its own account.
+  const text = raw.split(PRODUCT_NOTE_MAP).join(' ').split(PRODUCT_NOTE_PLAIN).join(' ');
   const ds = DS[id] || {};
   const stages = ds.stages || [];
   const amenities = ds.amenities || [];
@@ -194,8 +219,15 @@ for (const id of pages) {
 // If the product note is edited, this fires. That is deliberate: the sentence
 // was exempted on the strength of what it says, so different words need a
 // fresh ruling rather than an inherited pass.
-if (productNoteSeen !== pages.length) {
-  fail(`product note matched on ${productNoteSeen}/${pages.length} pages — the exemption is keyed to exact text, so a changed sentence must be re-ruled, not silently exempted`);
+if (noteMapSeen + notePlainSeen !== pages.length) {
+  fail(`product note matched on ${noteMapSeen + notePlainSeen}/${pages.length} pages — the exemption is keyed to exact text, so a changed sentence must be re-ruled, not silently exempted`);
+} else ok();
+
+// Discrimination control, same reasoning as the geometry predicate: if every
+// page carried the same variant, the map-backing rule would be unexercised and
+// would pass just as happily if the conditional were deleted.
+if (!noteMapSeen || !notePlainSeen) {
+  fail(`the product-note rule does not discriminate (map=${noteMapSeen} plain=${notePlainSeen}) — one branch is UNEXERCISED and therefore unproven`);
 } else ok();
 
 if (failed) {

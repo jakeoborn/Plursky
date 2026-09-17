@@ -89,6 +89,13 @@ export const FINGERPRINTED_CONFIG_FIELDS = [
   'dayDates',            // schedule day headings AND every <time datetime="...">
   'setTimesProvisional', // the "not published yet" note under the lineup
   'scheduleSource',      // the official-vs-community source note
+  // Both gate the "find stages on a live map" clause in the product note.
+  // map.jsx picks the real map on mapImage and otherwise falls back to the SVG
+  // TopDownMap, so a festival gaining or losing map art changes what the page
+  // says about itself. Before this, that clause could change while <lastmod>
+  // stayed frozen — the one-directional failure this ledger exists to prevent.
+  'mapImage',
+  'mapMode',
 ];
 
 // Top-level registry-entry fields that reach rendered output.
@@ -138,12 +145,24 @@ export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, t
     available: !!entry.available,
     scheduleTBA: !!entry.scheduleTBA,
     setTimesProvisional: !!cfg.setTimesProvisional,
+    // Both gate the product note's "find stages on a live map" clause. These
+    // must live HERE, in the hash body — adding them to
+    // FINGERPRINTED_CONFIG_FIELDS alone silences the coverage detector while
+    // changing nothing, because that list feeds the detector, not the hash.
+    mapImage: cfg.mapImage || '',
+    mapMode: cfg.mapMode || '',
     // The "This festival has ended." line and the CTA verb move with the
     // calendar alone. That IS a change a crawler sees, so it belongs in the
     // fingerprint — and it is precisely why the comparison is strict-only.
     isPast: d ? d.end < TODAY : false,
     artists: [...new Set((ds.artists || []).map(a => a.name).filter(Boolean))].sort((a, b) => a.localeCompare(b)),
-    stages: (ds.stages || []).map(s => [s.id, s.name, s.desc || '']),
+    // PRESENCE of coordinates, not their values. The product note's map clause
+    // renders only when EVERY stage can be placed, so gaining or losing a
+    // coordinate changes the page — but nudging one by a metre does not, and
+    // hashing the numbers would redate 25 pages over text that never moved.
+    // The coverage detector cannot see this: it audits cfg.*/entry.* only.
+    stages: (ds.stages || []).map(s => [s.id, s.name, s.desc || '',
+      s.x != null && s.y != null]),
     acts: scheduleActs(ds.artists),
     source: cfg.scheduleSource || null,
   };
