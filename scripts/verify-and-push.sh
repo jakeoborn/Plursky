@@ -12,9 +12,23 @@
 # So the guard is mechanical, not a habit: verify's exit code is captured, and
 # push is unreachable unless it is 0.
 #
-#   zsh scripts/verify-and-push.sh <remote> <branch> [extra git push args...]
+# SUPPORTED INVOCATION — run it directly. The file is tracked executable, so this
+# works without naming an interpreter:
+#
+#   ./scripts/verify-and-push.sh <remote> <branch> [extra git push args...]
+#
+# ⛔ Do NOT run it as `bash scripts/verify-and-push.sh`: the `mktemp -t` call below
+# is zsh-flavoured and fails under bash, which looks like a verify failure but is
+# really a harness failure.
+# ⛔ Do NOT pipe this script into `tail`/`head`. A pipeline reports the LAST
+# command's status, so `verify-and-push.sh … | tail` yields 0 even when the script
+# never ran at all (it once returned 126 for a non-executable file and the caller
+# read success). Run it bare and read its own `✓`/`✗` verdict line — and treat a
+# MISSING verdict line as failure, not as a pass.
 #
 set -u
+# pipefail so an internal pipeline reports the failing stage, not the last one.
+set -o pipefail
 REMOTE="${1:-origin}"
 BRANCH="${2:-$(git rev-parse --abbrev-ref HEAD)}"
 shift 2 2>/dev/null || true

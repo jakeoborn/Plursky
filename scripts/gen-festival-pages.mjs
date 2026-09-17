@@ -136,10 +136,26 @@ function stagesSection(entry) {
   const cfg = entry.config;
   const stages = DS[cfg.id]?.stages || [];
   if (!stages.length) return '';
+  // DATA-BOUNDED BY REQUIREMENT. The old sentence read "The Plursky app carries
+  // a live map of <venue> with every stage, water station and amenity" and it
+  // rendered on all 15 stage-bearing pages. That is THREE separate claims, none
+  // of them checked against the data behind the page:
+  //   • "a live map"      — geometryVerifiedFor() is true for 3 festivals, not
+  //                         15. ACL is deliberately blind (its stage coords are
+  //                         poster art, src:"poster", which the predicate
+  //                         explicitly refuses as evidence).
+  //   • "water station"   — 6 of these festivals carry ZERO amenities, so zero
+  //                         water stations.
+  //   • "amenity"         — same 6, and this section renders no amenity list at
+  //                         all, so even a non-empty array is not shown here.
+  // A rendered stage list proves the stage list. It proves nothing about map
+  // accuracy or amenity coverage, so the copy now states only that. Anything
+  // stronger has to prove the corresponding fact per festival.
+  const n = stages.length;
   return `
   <section aria-labelledby="stages-h">
-    <h2 id="stages-h">${esc(cfg.name)} stages &amp; map</h2>
-    <p>The Plursky app carries a live map of ${esc(cfg.locationShort || cfg.name)} with every stage, water station and amenity.</p>
+    <h2 id="stages-h">${esc(cfg.name)} stages</h2>
+    <p>Plursky has ${n} stage${n === 1 ? '' : 's'} for ${esc(cfg.name)}${cfg.locationShort ? ` at ${esc(cfg.locationShort)}` : ''}, each one listed below.</p>
     <ul class="stagelist">
 ${stages.map(st => `      <li><strong>${esc(st.name)}</strong>${st.desc ? ` · ${esc(st.desc)}` : ''}</li>`).join('\n')}
     </ul>
