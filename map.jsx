@@ -387,10 +387,20 @@ function _gpsFromAffine(affine, cfg, x, y) {
 // every festival and every avatar state is ours. Don't re-attribute it.
 //
 // _geomVerifiedMemo is also the seam the verify gate uses to prove the
-// positive direction: with no verified festival in the fleet today, flipping
-// one entry is the only way to show numbers COME BACK when geometry clears,
-// rather than shipping a gate that would pass just as happily if the whole
-// feature were dead.
+// positive direction: a gate that can only ever assert SILENCE would pass just
+// as happily if the whole feature had been deleted, so the gate flips one entry
+// and proves the minutes COME BACK when geometry clears.
+//
+// ⚠ An earlier revision of this comment justified that flip with "no verified
+// festival in the fleet today". Measured false on 2026-09-17:
+// geometryVerifiedFor() is TRUE for summerfest-2026, lollapalooza-2026 and
+// outside-lands-2026. The flip is still necessary, but for a narrower reason
+// than the one written here — those three carry NO measured walk table (0 of
+// 45, 36 and 21 pairs), and the single festival that HAS one (edc-lv-2026,
+// 36/36) is blind. Verified geometry and a measured table are separate
+// properties, and today no festival has both. The premise was corrected in
+// place rather than deleted: an unmeasured claim sitting in a comment is
+// exactly what stops the next reader measuring.
 const _geomVerifiedMemo = {};
 function geometryVerifiedFor(festivalId, cfgIn, stagesIn) {
   const key = festivalId || (cfgIn && cfgIn.id) || "";
