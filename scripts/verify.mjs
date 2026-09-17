@@ -2574,6 +2574,29 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-c4. A mis-stamped moment is corrected from its own capture time ────
+// #213 and #215 both attribute from capture time, and both refuse to re-stamp
+// a moment that already carries a festivalId — correct for them, but it leaves
+// every moment mis-stamped BEFORE them wrong forever, and _activeMoments()
+// hides a moment whose festivalId isn't the current festival. So a clip shot at
+// EDC and stamped ACL is unreachable from the festival it was actually shot at.
+// The correcting pass fixes only what the record's own timestamp proves: one
+// claimant re-stamps, zero or two-plus stays put and is DECLARED unresolved,
+// and tagSource "manual"/"unknown" is never touched because that is the user's
+// own answer. Idempotence is graded too — this runs on every boot and every
+// write triggers the cloud sync.
+{
+  console.log("▸ Mis-stamped correction gate — provable stamps corrected, human intent and ambiguity untouched");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-mis-stamped-correction.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`mis-stamped correction failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 2. Mount probe ─────────────────────────────────────────────────────────
 // Loads the REAL index.html in an iframe rather than reconstructing the script
 // order. An earlier version of this check derived load order by grepping

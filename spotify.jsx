@@ -7792,6 +7792,68 @@ function _maybeAutoArchive() {
           changed = true;
         }
       }
+      // ── Correcting pass (founder ruling 2026-09-17) ──────────────────────
+      // The sweep above refuses to touch a moment that already has a
+      // festivalId, and #215 does the same on the recovery path. That was
+      // right for both — neither had a rule for overwriting an existing
+      // stamp — but it means every moment mis-stamped BEFORE them stays
+      // mis-stamped forever. Measured with acl-2026 active: a clip shot on
+      // edc-lv-2026's last night, claimed by edc-lv-2026 and nothing else, sat
+      // stamped acl-2026 with festivalAttribution null. _activeMoments() keeps
+      // a moment only when its festivalId is the current one, so that clip is
+      // unreachable from the festival it was actually shot at.
+      //
+      // A mis-stamped moment and a correct one are FIELD-IDENTICAL — same
+      // festivalId, same null attribution, same tagSource. Only the capture
+      // time tells them apart, so capture time is the only thing this may key
+      // on.
+      //
+      // The rule is deliberately the most conservative of the three put to
+      // Jake: correct ONLY what the record's own timestamp proves outright.
+      //   · exactly one claimant, and it disagrees -> re-stamp, "capture-time"
+      //   · zero or two-plus claimants             -> leave the stamp where it
+      //                                               is, DECLARE "unresolved"
+      //   · tagSource "manual" or "unknown"        -> never touched
+      //
+      // "manual" is the user's own retag and "unknown" is them answering "I
+      // don't know" (the UNKNOWN / NOT SURE button) — the one answer a machine
+      // must not overwrite with a guess. They are the only two human-intent
+      // values in the tagSource vocabulary; the other four (fallback,
+      // song-recovered, video-shazam, archive-recovered) are all machine-made.
+      //
+      // Every branch compares before it writes. This runs on EVERY boot and
+      // _writeMoments triggers the debounced cloud sync, so a pass that is not
+      // a fixed point would push a sync on every launch forever.
+      for (const arr of Object.values(moments)) {
+        if (!Array.isArray(arr)) continue;
+        for (const m of arr) {
+          if (!m || !m.festivalId) continue;         // the sweep above owns unstamped records
+          if (m.tagSource === "manual" || m.tagSource === "unknown") continue;
+          const claims = _festivalClaimantsFor(m.takenAt);
+          if (claims.length === 1) {
+            // Only a DISAGREEMENT is a correction. An earlier revision also
+            // back-filled festivalAttribution onto records already sitting in
+            // the right festival — "correct, but the stamp never said why".
+            // That was dropped deliberately: nothing reads festivalAttribution
+            // except the verify gates (Jake ruled the user-facing badge belongs
+            // to the Memories v2 design wave), so back-filling buys nothing a
+            // consumer can use while rewriting — and cloud-syncing — nearly
+            // every moment in a healthy library on the first boot after this
+            // ships. This pass writes only where something was actually wrong.
+            if (claims[0] !== m.festivalId) {
+              m.festivalId = claims[0];
+              m.festivalAttribution = "capture-time";
+              changed = true;
+            }
+          } else if (m.festivalAttribution !== "unresolved") {
+            // Cannot be proved from its own data: keep it exactly where it has
+            // always been visible, and say the attribution is unproven.
+            m.festivalAttribution = "unresolved";
+            if (claims.length > 1) m.festivalCandidates = claims;
+            changed = true;
+          }
+        }
+      }
       if (changed) _writeMoments(moments);
       sweptCleanly = true;
     } catch {}
