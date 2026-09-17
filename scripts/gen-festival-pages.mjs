@@ -119,7 +119,9 @@ function scheduleGrid(entry, dates) {
   const src = cfg.scheduleSource;
   const srcNote = src && src.official === true
     ? `Official set times${src.observedAt ? `, confirmed ${esc(src.observedAt)}` : ''}.`
-    : 'Set times gathered from community sources. Plursky swaps in the official schedule the moment it drops.';
+    // Bounded to OUR provenance and OUR behaviour. "the moment it drops" said the
+    // official grid had not dropped — a publisher-state claim we cannot source.
+    : 'Set times gathered from community sources. Plursky shows the official schedule once it has one.';
   return `
   <section aria-labelledby="schedule-h">
     <h2 id="schedule-h">${esc(cfg.name)} schedule &amp; set times</h2>
@@ -134,13 +136,110 @@ function stagesSection(entry) {
   const cfg = entry.config;
   const stages = DS[cfg.id]?.stages || [];
   if (!stages.length) return '';
+  // DATA-BOUNDED BY REQUIREMENT. The old sentence read "The Plursky app carries
+  // a live map of <venue> with every stage, water station and amenity" and it
+  // rendered on all 15 stage-bearing pages. That is THREE separate claims, none
+  // of them checked against the data behind the page:
+  //   • "a live map"      — geometryVerifiedFor() is true for 3 festivals, not
+  //                         15. ACL is deliberately blind (its stage coords are
+  //                         poster art, src:"poster", which the predicate
+  //                         explicitly refuses as evidence).
+  //   • "water station"   — 6 of these festivals carry ZERO amenities, so zero
+  //                         water stations.
+  //   • "amenity"         — same 6, and this section renders no amenity list at
+  //                         all, so even a non-empty array is not shown here.
+  // A rendered stage list proves the stage list. It proves nothing about map
+  // accuracy or amenity coverage, so the copy now states only that. Anything
+  // stronger has to prove the corresponding fact per festival.
+  const n = stages.length;
   return `
   <section aria-labelledby="stages-h">
-    <h2 id="stages-h">${esc(cfg.name)} stages &amp; map</h2>
-    <p>The Plursky app carries a live map of ${esc(cfg.locationShort || cfg.name)} with every stage, water station and amenity.</p>
+    <h2 id="stages-h">${esc(cfg.name)} stages</h2>
+    <p>Plursky has ${n} stage${n === 1 ? '' : 's'} for ${esc(cfg.name)}${cfg.locationShort ? ` at ${esc(cfg.locationShort)}` : ''}, each one listed below.</p>
     <ul class="stagelist">
 ${stages.map(st => `      <li><strong>${esc(st.name)}</strong>${st.desc ? ` · ${esc(st.desc)}` : ''}</li>`).join('\n')}
     </ul>
+  </section>`;
+}
+
+// ── Answers, and the FAQPage that mirrors them ───────────────────────
+// ONE array drives BOTH the visible <dl> and the FAQPage JSON-LD, so a
+// question cannot be claimed in structured data without being answered in the
+// rendered content. That is the same rule the `performer` block follows, and
+// Google treats a mismatch as a structured-data violation — building the two
+// from one source makes the violation unrepresentable rather than merely
+// forbidden.
+//
+// Every answer is built from registry values that are already in the sitemap
+// fingerprint, so an answer cannot go stale behind a frozen <lastmod>.
+// Nothing here is written by hand per festival: a sentence nobody can source
+// is a sentence this page does not get to say.
+function faqItems(entry, { names, hasTimes, stages }) {
+  const cfg = entry.config;
+  const where = cfg.location || '';
+  const items = [];
+
+  items.push({
+    q: `When and where is ${cfg.name}?`,
+    a: `${cfg.name} takes place ${cfg.dates}${where ? ` at ${where}` : ''}.`,
+  });
+
+  // The schedule answer is gated on the SAME `hasTimes` the page renders from,
+  // so "yes, times are published" and an actual grid can never disagree. A
+  // festival with no times gets the honest answer, not a softer one.
+  if (hasTimes) {
+    const src = cfg.scheduleSource;
+    items.push({
+      q: `Have the ${cfg.name} set times been announced?`,
+      a: src && src.official === true
+        ? `Yes. The full ${cfg.name} schedule is on this page, day by day and stage by stage${src.observedAt ? `, from the official times confirmed ${src.observedAt}` : ''}.`
+        // Stops at where OUR times came from. "until the official grid is
+        // published" asserted the publisher had not published one — the same
+        // defect class as reporting our data absence as their silence.
+        : `Yes. The full ${cfg.name} schedule is on this page, day by day and stage by stage, gathered from community sources.`,
+    });
+  } else if (names.length) {
+    // NEUTRAL BY REQUIREMENT. `hasTimes === false` proves only that Plursky has
+    // no ingested set times — it is NOT evidence about what the festival has or
+    // has not published. Reporting our own data absence as publisher state is a
+    // claim we cannot source, on 25 crawlable pages at once. This answer may say
+    // what Plursky has; it may not say what the festival has done.
+    items.push({
+      q: `Have the ${cfg.name} set times been announced?`,
+      a: `Plursky does not have set times for ${cfg.name} yet. The announced lineup is listed on this page; the schedule will appear here when it is available.`,
+    });
+  }
+
+  if (names.length) {
+    items.push({
+      q: `Who is playing ${cfg.name}?`,
+      a: `${names.length} artists are announced for ${cfg.name}, and every one of them is listed on this page.`,
+    });
+  }
+
+  // Only asked when stagesSection() actually renders a stage list — III Points
+  // carries 0 stages, so its page never claims a number it cannot show.
+  if (stages.length) {
+    items.push({
+      q: `How many stages does ${cfg.name} have?`,
+      // Ends at what this page actually shows. `stages.length` proves a stage
+      // list exists; it proves nothing about what the app maps, so the answer
+      // does not claim it.
+      a: `${cfg.name} has ${stages.length} stage${stages.length === 1 ? '' : 's'}${cfg.locationShort ? ` at ${cfg.locationShort}` : ''}, each one listed on this page.`,
+    });
+  }
+
+  return items;
+}
+
+function answersSection(entry, items) {
+  if (!items.length) return '';
+  return `
+  <section aria-labelledby="answers-h">
+    <h2 id="answers-h">${esc(entry.config.name)} — quick answers</h2>
+    <dl class="answers">
+${items.map(it => `      <dt>${esc(it.q)}</dt>\n      <dd>${esc(it.a)}</dd>`).join('\n')}
+    </dl>
   </section>`;
 }
 
@@ -163,6 +262,18 @@ function stub(entry, isPastOverride) {
   const where = cfg.location || '';
   const hasTimes = scheduleActs(DS[id]?.artists).some(a => a.start && a.start !== '');
   const titleTail = hasTimes ? 'Set Times, Lineup &amp; Map' : 'Lineup, Map &amp; Schedule';
+  const stages = ds?.stages || [];
+  // Does THIS festival's data back "find stages on a live map"?
+  // map.jsx picks the real map on `mapImage && gpsAnchors.length >= 3` and
+  // otherwise falls back to the SVG TopDownMap — which, with no placed stages,
+  // "would render an empty plate with no stages and no art" (map.jsx:1933).
+  // So the clause needs BOTH map art and stages that can actually be placed.
+  // Preview entries (0 stages) and art-without-coordinates festivals get the
+  // clause dropped: the copy never outruns the data.
+  const mapBacked = stages.length > 0
+    && stages.every(s => s && s.x != null && s.y != null)
+    && !!(cfg.mapImage || cfg.mapMode);
+  const answers = faqItems(entry, { names, hasTimes, stages });
 
   const desc = hasTimes
     ? `${cfg.name} set times and lineup — ${names.length} artists at ${venue}, ${cfg.dates}. Full schedule by day and stage. Plan your weekend with Plursky.`
@@ -186,6 +297,17 @@ function stub(entry, isPastOverride) {
     ...(names.length ? { performer: names.map(n => ({ '@type': 'MusicGroup', name: n })) } : {}),
     ...(cfg.brand ? { organizer: { '@type': 'Organization', name: cfg.brand } } : {}),
   };
+
+  // Built from `answers`, the same array answersSection() renders below.
+  const faqLd = answers.length ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: answers.map(it => ({
+      '@type': 'Question',
+      name: it.q,
+      acceptedAnswer: { '@type': 'Answer', text: it.a },
+    })),
+  } : null;
 
   const lineupSection = names.length ? `
   <section aria-labelledby="lineup-h">
@@ -243,6 +365,9 @@ ${cfg.setTimesProvisional ? `    <p class="note">Stage assignments and set times
   ul.sets li time { color:var(--muted); font-variant-numeric:tabular-nums; min-width:96px; flex:none; }
   ul.stagelist { list-style:none; padding:0; margin:8px 0 0; }
   ul.stagelist li { padding:6px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  dl.answers { margin:12px 0 0; }
+  dl.answers dt { font-weight:700; font-size:15px; margin:16px 0 4px; }
+  dl.answers dd { margin:0; color:var(--muted); font-size:14px; }
   a.cta-secondary { margin-left:14px; font-weight:600; }
   nav.other { margin-top:40px; }
   nav.other a { color:var(--ink); }
@@ -252,7 +377,10 @@ ${cfg.setTimesProvisional ? `    <p class="note">Stage assignments and set times
 <script type="application/ld+json">
 ${JSON.stringify(ld, null, 2)}
 </script>
-</head>
+${faqLd ? `<script type="application/ld+json">
+${JSON.stringify(faqLd, null, 2)}
+</script>
+` : ''}</head>
 <body>
 <main>
   <h1>${esc(cfg.name)}</h1>
@@ -263,12 +391,13 @@ ${JSON.stringify(ld, null, 2)}
     <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
     <a class="cta-secondary" href="/?f=${esc(id)}">${entry.available ? (isPast ? 'Relive it in the browser' : 'Open in your browser') : 'Open Plursky in the browser'}</a>
   </p>
-  <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.</p>
+  <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, ${mapBacked ? 'find stages on a live map, ' : ''}meet your crew, and turn the weekend into a shareable recap.</p>
 ${entry.available
   ? (entry.scheduleTBA
       ? `  <p class="note">${esc(cfg.name)} is open in the app — the full lineup is in. Set times appear as soon as the festival publishes them.</p>`
       : '')
   : `  <p class="note">${esc(cfg.name)} is not switchable in the app yet — it goes live once the official schedule is published. The links above open Plursky on the current festival.</p>`}
+${answersSection(entry, answers)}
 ${scheduleGrid(entry, dates)}
 ${stagesSection(entry)}
 ${lineupSection}
@@ -407,8 +536,17 @@ for (const entry of REG) {
 // this exact content, so the content has to exist before the sitemap does.
 const INDEX = path.join(root, 'index.html');
 let idx = readFileSync(INDEX, 'utf8');
+// Descriptive anchor text: "<festival> set times" once a schedule exists,
+// "<festival> lineup" until then. The bare name told a crawler nothing about
+// what the target page answers, and it is the homepage — the highest-authority
+// internal link surface on the site. The verb tracks `a.start` rather than a
+// hand-kept list, so an anchor cannot promise set times a page does not carry.
+const anchorText = (f) => {
+  const timed = scheduleActs(DS[f.config.id]?.artists).some(a => a.start && a.start !== '');
+  return `${f.config.name} ${timed ? 'set times' : 'lineup'}`;
+};
 const listHtml = (indent) => REG.map(f =>
-  `${indent}<li><a href="/f/${f.config.id}/">${esc(f.config.name)}</a> — ${esc(f.config.dates)} · ${esc(f.config.location || '')}</li>`
+  `${indent}<li><a href="/f/${f.config.id}/">${esc(anchorText(f))}</a> — ${esc(f.config.dates)} · ${esc(f.config.location || '')}</li>`
 ).join('\n');
 
 for (const [marker, indent] of [['FESTIVAL-LIST', '        '], ['NOSCRIPT-LIST', '        ']]) {

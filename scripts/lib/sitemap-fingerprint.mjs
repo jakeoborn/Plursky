@@ -17,8 +17,65 @@
 // adding it here and the gate names it.
 
 import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
 export const fp = (v) => createHash('sha256').update(JSON.stringify(v)).digest('hex').slice(0, 16);
+
+// ── The template is rendered output too ──────────────────────────────────
+// This was the one hole in the contract above: every FIELD a page renders was
+// hashed, but the page STRUCTURE was not. Edit the stub template — add a
+// section, change a sentence — and every page genuinely changes while not one
+// fingerprint moves, leaving every <lastmod> frozen over changed content. That
+// is the exact one-directional failure the header describes, arriving through
+// the one door the field lists structurally cannot watch: a template edit
+// reads no new cfg.*/entry.* field, so the coverage detector sees nothing.
+//
+// The first fix here was a hand-bumped `TEMPLATE_VERSION = 1`. That did NOT
+// enforce the contract — it only restated it. A markup edit with a forgotten
+// bump still froze every date, which is the same failure one step upstream: a
+// rule that depends on someone remembering is not a rule.
+//
+// So the contribution is DERIVED, and there is nothing left to forget. It is
+// the hash of the generator's own render-path source — the same slice the
+// coverage detector reads — with whole-line comments and blank lines removed.
+//
+// The deliberate trade-off: a pure refactor inside that slice (renaming a
+// local) moves all festival dates even though no output changed. That is
+// OVER-reporting — a redundant recrawl hint — and it is the safe direction.
+// Under-reporting tells a crawler "nothing moved here" about a page that did,
+// which the header calls worse than shipping no lastmod at all. Comments are
+// stripped precisely so documentation edits stay free; scripts/test-sitemap-
+// fingerprint.mjs proves both halves (a markup edit moves it, a comment-only
+// edit does not).
+const GEN_PATH = fileURLToPath(new URL('../gen-festival-pages.mjs', import.meta.url));
+const SLICE_START = 'function place(';
+const SLICE_END = 'const rows = [];';
+
+// Exported and PURE so the regression test can mutate real source text and
+// recompute, rather than trusting an injected value that proves only that the
+// field participates in the hash.
+export function templateMarkup(source) {
+  const from = source.indexOf(SLICE_START);
+  const to = source.indexOf(SLICE_END);
+  if (from === -1 || to === -1 || to <= from) {
+    throw new Error('sitemap-fingerprint: could not slice the render path out of '
+      + 'gen-festival-pages.mjs — the anchors moved. Fix this rather than deleting it: '
+      + 'without the slice, every festival <lastmod> silently stops tracking the template.');
+  }
+  return source.slice(from, to).split('\n')
+    .map(l => (/^\s*\/\//.test(l) ? '' : l))   // whole-line comments only: "//" also lives inside URLs
+    .filter(l => l.trim() !== '')
+    .join('\n');
+}
+
+export const templateFingerprint = (source) => fp(templateMarkup(source));
+
+let _tplFp = null;
+export function currentTemplateFingerprint() {
+  if (_tplFp === null) _tplFp = templateFingerprint(readFileSync(GEN_PATH, 'utf8'));
+  return _tplFp;
+}
 
 // entry.config fields that reach rendered output, each with where it lands.
 export const FINGERPRINTED_CONFIG_FIELDS = [
@@ -32,6 +89,13 @@ export const FINGERPRINTED_CONFIG_FIELDS = [
   'dayDates',            // schedule day headings AND every <time datetime="...">
   'setTimesProvisional', // the "not published yet" note under the lineup
   'scheduleSource',      // the official-vs-community source note
+  // Both gate the "find stages on a live map" clause in the product note.
+  // map.jsx picks the real map on mapImage and otherwise falls back to the SVG
+  // TopDownMap, so a festival gaining or losing map art changes what the page
+  // says about itself. Before this, that clause could change while <lastmod>
+  // stayed frozen — the one-directional failure this ledger exists to prevent.
+  'mapImage',
+  'mapMode',
 ];
 
 // Top-level registry-entry fields that reach rendered output.
@@ -52,20 +116,23 @@ export const EXCLUDED_ENTRY_FIELDS = {
 };
 
 // Also deliberately excluded, and not expressible as a field name: every stub
-// embeds an "Other festivals" nav listing the OTHER 25 festivals' id/name/dates
+// embeds an "Other festivals" nav listing the OTHER festivals' id/name/dates
 // (rendered as f.config.*, never cfg.*). Hashing the rendered file instead of
-// the festival's own content would move all 26 dates whenever any single
-// festival changed — boilerplate churn is the thing a crawler is least
+// the festival's own content would move EVERY festival's date whenever any
+// single festival changed — boilerplate churn is the thing a crawler is least
 // interested in hearing about twice. The homepage's own lastmod still
 // fingerprints index.html whole, which is where that list legitimately counts.
 
 // The exact object that gets hashed. Exported separately from the hash so the
 // test can diff WHICH field moved instead of only that something did.
-export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY }) {
+// `templateFp` is an override for the regression test only; production always
+// derives it from the generator source on disk.
+export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, templateFp }) {
   const cfg = entry.config;
   const ds = DS[cfg.id] || {};
   const d = eventDates(cfg);
   return {
+    template: templateFp || currentTemplateFingerprint(),
     name: cfg.name,
     dates: cfg.dates,
     location: cfg.location || '',
@@ -78,12 +145,24 @@ export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY })
     available: !!entry.available,
     scheduleTBA: !!entry.scheduleTBA,
     setTimesProvisional: !!cfg.setTimesProvisional,
+    // Both gate the product note's "find stages on a live map" clause. These
+    // must live HERE, in the hash body — adding them to
+    // FINGERPRINTED_CONFIG_FIELDS alone silences the coverage detector while
+    // changing nothing, because that list feeds the detector, not the hash.
+    mapImage: cfg.mapImage || '',
+    mapMode: cfg.mapMode || '',
     // The "This festival has ended." line and the CTA verb move with the
     // calendar alone. That IS a change a crawler sees, so it belongs in the
     // fingerprint — and it is precisely why the comparison is strict-only.
     isPast: d ? d.end < TODAY : false,
     artists: [...new Set((ds.artists || []).map(a => a.name).filter(Boolean))].sort((a, b) => a.localeCompare(b)),
-    stages: (ds.stages || []).map(s => [s.id, s.name, s.desc || '']),
+    // PRESENCE of coordinates, not their values. The product note's map clause
+    // renders only when EVERY stage can be placed, so gaining or losing a
+    // coordinate changes the page — but nudging one by a metre does not, and
+    // hashing the numbers would redate 25 pages over text that never moved.
+    // The coverage detector cannot see this: it audits cfg.*/entry.* only.
+    stages: (ds.stages || []).map(s => [s.id, s.name, s.desc || '',
+      s.x != null && s.y != null]),
     acts: scheduleActs(ds.artists),
     source: cfg.scheduleSource || null,
   };

@@ -25,7 +25,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
 import {
-  festivalFingerprint,
+  festivalFingerprint, templateFingerprint,
   FINGERPRINTED_CONFIG_FIELDS, FINGERPRINTED_ENTRY_FIELDS,
   EXCLUDED_CONFIG_FIELDS, EXCLUDED_ENTRY_FIELDS,
 } from './lib/sitemap-fingerprint.mjs';
@@ -111,6 +111,9 @@ for (const [label, build] of [
   ['cfg.tagline', () => { const e = withCfg('tagline'); return cfgPatch(e, { tagline: 'MUTANT TAGLINE' }); }],
   ['cfg.brand', () => { const e = withCfg('brand'); return cfgPatch(e, { brand: 'MUTANT BRAND' }); }],
   ['cfg.tzAbbr', () => { const e = withCfg('tzAbbr'); return cfgPatch(e, { tzAbbr: 'ZZT' }); }],
+  // Both gate the product note's "find stages on a live map" clause.
+  ['cfg.mapImage', () => { const e = withCfg('mapImage'); return cfgPatch(e, { mapImage: '/mutant-map.png' }); }],
+  ['cfg.mapMode', () => { const e = withCfg('mapMode'); return cfgPatch(e, { mapMode: 'MUTANT-MAP-MODE' }); }],
   ['cfg.dayDates', () => {
     const e = withCfg('dayDates');
     const dd = e.config.dayDates;
@@ -141,6 +144,32 @@ try {
     dsPatch(e.config.id, { stages: [{ ...st[0], name: 'MUTANT STAGE' }, ...st.slice(1)] }));
 } catch (err) { fail(`stages[].name → fixture error: ${err.message}`); }
 
+// Coordinate PRESENCE gates the product note's "find stages on a live map"
+// clause, so dropping one stage's coordinates changes what the page says.
+// The fixture is chosen by finding a PLACED stage rather than trusting list
+// order: nulling coordinates that were already null would prove nothing.
+try {
+  const e = REG.find(x => (DS[x.config.id]?.stages || []).some(s => s.x != null && s.y != null));
+  if (!e) throw new Error('no festival carries a placed stage');
+  const st = DS[e.config.id].stages;
+  const i = st.findIndex(s => s.x != null && s.y != null);
+  expectOnly('stages[].coords (presence)', e,
+    dsPatch(e.config.id, { stages: st.map((s, n) => n === i ? { ...s, x: null, y: null } : s) }));
+} catch (err) { fail(`stages[].coords presence → fixture error: ${err.message}`); }
+
+// ...and the other direction, which is the whole reason presence is hashed
+// instead of the numbers: moving a stage by a little changes no rendered text,
+// so it must NOT redate the page. Without this control, someone could "fix"
+// the hash to cover raw coordinates and every nudge would redate 25 pages.
+try {
+  const e = REG.find(x => (DS[x.config.id]?.stages || []).some(s => s.x != null && s.y != null));
+  if (!e) throw new Error('no festival carries a placed stage');
+  const st = DS[e.config.id].stages;
+  const i = st.findIndex(s => s.x != null && s.y != null);
+  expectNone('stages[].coords VALUE (presence is what renders)', e,
+    dsPatch(e.config.id, { stages: st.map((s, n) => n === i ? { ...s, x: s.x + 1.5, y: s.y - 1.5 } : s) }));
+} catch (err) { fail(`stages[].coords value → fixture error: ${err.message}`); }
+
 try {
   const e = withDS('artists');
   const ar = DS[e.config.id].artists;
@@ -162,7 +191,10 @@ console.log('▸ Unrendered fields move nothing');
 
 for (const [label, field, value] of [
   ['cfg.venue', 'venue', 'MUTANT VENUE OBJECT'],
-  ['cfg.mapImage', 'mapImage', '/mutant-map.png'],
+  // cfg.mapImage USED to live here. It does not any more: the product note's
+  // "find stages on a live map" clause is gated on map art, so the renderer
+  // reads it and it now has a POSITIVE mutant above. Leaving it here would have
+  // asserted the opposite of the truth.
   ['cfg.shortName', 'shortName', 'MUTANT SHORT NAME'],
 ]) {
   try {
@@ -201,6 +233,104 @@ if (from === -1 || to === -1 || to <= from) {
   } else {
     pass(`${seen.size} render-path field(s) all fingerprinted or explicitly excluded`);
   }
+}
+
+// ── 3b. Declared ⇒ hashed. The list is a CONTRACT, not documentation. ──
+// Section 3 proves the renderer reads nothing the lists OMIT. It does not
+// prove the hash contains what the lists CLAIM — FINGERPRINTED_* is consumed
+// by this test alone, while fingerprintInput() is a hand-written object
+// literal. So a field can be listed, silence the coverage detector, and still
+// be unhashed.
+//
+// That is not hypothetical: cfg.mapImage and cfg.mapMode were added to the
+// list and section 3 went green while the fingerprint did not move a byte.
+// Only a per-field mutant caught it — and per-field mutants exist only where
+// somebody remembered to write one. Same failure shape as the hand-bumped
+// TEMPLATE_VERSION: a contract kept by memory instead of by construction.
+console.log('▸ Every declared FINGERPRINTED_* field actually moves the hash');
+
+const perturb = (v) => {
+  if (typeof v === 'boolean') return !v;
+  if (typeof v === 'number') return v + 7;
+  if (v && typeof v === 'object') {
+    return Array.isArray(v) ? [...v, '__FP_GUARD__'] : { ...v, __fpGuard: '__FP_GUARD__' };
+  }
+  return `${v == null ? '' : v}__FP_GUARD__`;
+};
+
+for (const f of FINGERPRINTED_CONFIG_FIELDS) {
+  try {
+    const e = withCfg(f);
+    const base = festivalFingerprint(e, deps());
+    const mut = festivalFingerprint(cfgPatch(e, { [f]: perturb(e.config[f]) }), deps());
+    if (base === mut) {
+      fail(`config.${f} is DECLARED fingerprinted but changing it moves NOTHING — `
+         + `the list and fingerprintInput() have drifted; put it in the hash body, `
+         + `not just the list`);
+    } else pass(`config.${f} declared and actually hashed`);
+  } catch (err) { fail(`config.${f} → declared-vs-hashed guard fixture error: ${err.message}`); }
+}
+
+for (const f of FINGERPRINTED_ENTRY_FIELDS) {
+  try {
+    const e = REG.find(x => x[f] != null);
+    if (!e) throw new Error(`no fixture festival carries entry.${f}`);
+    const base = festivalFingerprint(e, deps());
+    const mut = festivalFingerprint(entPatch(e, { [f]: perturb(e[f]) }), deps());
+    if (base === mut) {
+      fail(`entry.${f} is DECLARED fingerprinted but changing it moves NOTHING — `
+         + `the list and fingerprintInput() have drifted; put it in the hash body, `
+         + `not just the list`);
+    } else pass(`entry.${f} declared and actually hashed`);
+  } catch (err) { fail(`entry.${f} → declared-vs-hashed guard fixture error: ${err.message}`); }
+}
+
+// ── 4. The TEMPLATE moves every festival url, and nothing else ────────
+// The field lists above cannot watch this door: a template edit reads no new
+// cfg.*/entry.* field, so section 3 sees nothing while every page changes.
+// The first attempt at a fix was a hand-bumped constant, which only restated
+// the contract — a forgotten bump still froze all 25 dates. The contribution
+// is now DERIVED from the render-path source, and these mutants are what make
+// that claim checkable instead of merely asserted.
+console.log('▸ A template-only edit moves every festival url and no others');
+
+const realTpl = templateFingerprint(gen);
+const TPL_ANCHOR = '<h2 id="answers-h">';
+const landed = gen.split(TPL_ANCHOR).length - 1;
+if (landed !== 1) {
+  fail(`template mutation anchor is not unique (${landed} occurrences) — every result below would be meaningless`);
+} else {
+  const mutTpl = templateFingerprint(gen.replace(TPL_ANCHOR, '<h2 id="answers-h" data-mutant="1">'));
+  if (mutTpl === realTpl) {
+    fail('a crawler-visible markup edit did NOT move the template fingerprint — the contract is unenforced');
+  } else {
+    pass('crawler-visible markup edit moves the template fingerprint');
+    const movedIds = REG.filter(e =>
+      festivalFingerprint(e, { ...deps(), templateFp: mutTpl }) !== base.get(e.config.id)
+    ).map(e => e.config.id);
+    if (movedIds.length === REG.length) {
+      pass(`template edit moved all ${REG.length} festival urls`);
+    } else {
+      const missing = REG.map(e => e.config.id).filter(i => !movedIds.includes(i));
+      fail(`template edit moved only ${movedIds.length}/${REG.length} festival urls — frozen: ${missing.join(', ')}`);
+    }
+  }
+
+  // The other direction: documentation must stay free. Without this, the hash
+  // would redate 25 urls for a comment edit — crying wolf, which is the exact
+  // noise the ledger was built to remove.
+  const cmtTpl = templateFingerprint(gen.replace('// ── Page template', '// ── Page template (comment edit)'));
+  if (cmtTpl === realTpl) pass('a comment-only edit moves nothing');
+  else fail('a comment-only edit MOVED the template fingerprint — 25 urls would be redated for nothing');
+}
+
+// The homepage, terms and privacy never pass through fingerprintInput at all —
+// they are hashed from file content — so a template edit cannot reach them.
+// Proven from the generator's source: recomputing the same input twice and
+// finding it unchanged would be vacuous.
+for (const needle of ["fileFp('terms.html')", "fileFp('privacy.html')", 'fp(idx)']) {
+  if (gen.includes(needle)) pass(`non-festival url hashed from file content — ${needle}`);
+  else fail(`the generator no longer hashes a non-festival url via ${needle} — re-prove template isolation`);
 }
 
 // ── Verdict ───────────────────────────────────────────────────────────

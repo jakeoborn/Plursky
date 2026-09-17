@@ -2326,6 +2326,51 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b7. Festival FAQ structured data ───────────────────────────────────
+// A festival page's FAQPage JSON-LD may never claim something the page does
+// not visibly say. Google treats that mismatch as a structured-data violation
+// and the penalty lands on the whole site's rich-result eligibility, not just
+// the offending page — the same rule the generator's `performer` block has
+// always followed. The visible <dl> and the JSON-LD are built from ONE array,
+// so they cannot disagree today; this gate is what keeps that true when
+// someone later edits one render path and not the other. It also enforces the
+// honesty the array encodes: a stage-count answer needs a rendered stage list,
+// "Yes, times are published" needs a rendered schedule grid, "Not yet" needs
+// the absence of one, and a stated artist count must equal the printed one.
+{
+  console.log("▸ Festival FAQ gate — structured data never outruns the rendered page");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-faq.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`festival FAQ structured data failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b8. Festival capability claims ─────────────────────────────────────
+// A festival page may not claim a capability the data behind that page does
+// not prove. One sentence used to promise "a live map … with every stage,
+// water station and amenity" on all 15 stage-bearing pages: three separate
+// claims, and the fleet supports none of them uniformly — geometryVerifiedFor()
+// is true for 3 festivals, 6 carry ZERO amenities, and ACL is deliberately
+// blind because its stage coordinates are poster art. The gate asks map.jsx's
+// OWN predicate (loaded from the compiled build) rather than a second copy of
+// its logic, and it asserts that predicate DISCRIMINATES, so the map rule can
+// never pass by being unsatisfiable.
+{
+  console.log("▸ Festival claims gate — no page claims what its data cannot prove");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-claims.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`festival capability claims failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c. Video thumbnails ────────────────────────────────────────────────
 // A library tile shows a stored poster <img>, never a live <video>. The old
 // "poster" was <video preload="metadata" src="...#t=0.1">: one decoder per
