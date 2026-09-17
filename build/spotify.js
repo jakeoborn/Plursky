@@ -2234,7 +2234,7 @@ function _metaFromFile(file, exifMeta) {
         mm: d.getMinutes(),
         ss: d.getSeconds()
       };
-      if (_anyFestivalNight(_fileDate) != null) {
+      if (_someFestivalClaimsCaptureTime(_fileDate)) {
         out.date = _fileDate;
         out.takenAtSource = "file-lastModified";
       }
@@ -2304,8 +2304,8 @@ function _recoverVideoMetaFromArchive(file, fp, meta) {
   var archiveMoment = _findArchivedVideoMomentForFingerprint(fp);
   var recoveredDate = _momentTakenAtToDateParts(archiveMoment?.takenAt);
   if (!archiveMoment || !recoveredDate) return null;
-  var parsedNight = meta?.date || meta?.rawUtcMs != null ? _anyFestivalNight(meta.date, meta.rawUtcMs)?.night ?? null : null;
-  if (parsedNight != null && meta?.takenAtSource !== "file-lastModified" && meta?.takenAtSource !== "none") return null;
+  var captureTimeIsClaimed = meta?.date || meta?.rawUtcMs != null ? _someFestivalClaimsCaptureTime(meta.date, meta.rawUtcMs) : false;
+  if (captureTimeIsClaimed && meta?.takenAtSource !== "file-lastModified" && meta?.takenAtSource !== "none") return null;
   return {
     meta: {
       ...(meta || {}),

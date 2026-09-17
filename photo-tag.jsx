@@ -583,16 +583,44 @@ function _resolveFestivalForPhoto(meta) {
   }
   return { ...win.ds, night: win.night, siteMeters: win.meters, resolvedBy };
 }
-// "Does ANY festival we know about claim this timestamp?" Used by the
-// trust gates in spotify.jsx that previously asked only the active one and
-// so discarded a real capture time for a photo from a different festival.
-function _anyFestivalNight(date, utcMs) {
-  if (!date && utcMs == null) return null;
-  for (const ds of _allDataSets()) {
-    const night = _photoFestivalNight(date, ds.config, utcMs);
-    if (night != null) return { festivalId: ds.id, night };
+// "Does ANY festival we know of claim this timestamp?" Used by the trust gates
+// in spotify.jsx that previously asked only the active festival and so
+// discarded a real capture time for a photo from a different one.
+//
+// This is a TRUST question, not an ATTRIBUTION question, and that distinction
+// is the whole reason it exists apart from _resolveFestivalForPhoto. The
+// callers ask it to decide whether a timestamp is a genuine capture time or
+// junk written by a re-encode. Nothing about that depends on WHICH festival, or
+// on which night — so it answers with a boolean and nothing else.
+//
+// It used to return {festivalId, night} from the FIRST claimant. Both fields
+// were an ordering accident: 10 of the 53 night windows are claimed by two
+// festivals running the same weekend (lost-lands/nocturnal,
+// lollapalooza/hard-summer, crssd/portola), and on those "first wins" reports
+// _DATA_SETS declaration order as a fact. No caller ever read them — one tests
+// `!= null`, the other takes `.night` and only compares that to null — so the
+// wrong answer was latent, waiting for the first caller to believe it. A
+// boolean does not guard that path, it removes it: there is no id left to read.
+//
+// It walks _DATA_SETS DIRECTLY rather than _allDataSets(), which filters to
+// registry-`available`. That filter is correct for _resolveFestivalForPhoto,
+// which attributes — stamping a moment with a gated id strands it, because
+// getActiveFestivalId() also requires `available`. It is wrong here, because
+// availability is a UI concern and says nothing about whether a timestamp is
+// real. edc-orlando-2026 is gated today and is the only gated festival carrying
+// a data module, so a genuine EDC Orlando capture time was being rejected as
+// junk and the clip imported as no-date — a real capture time destroyed by a
+// filter that exists to protect attribution.
+function _someFestivalClaimsCaptureTime(date, utcMs) {
+  if (!date && utcMs == null) return false;
+  const sets = window._DATA_SETS;
+  if (!sets) return _photoFestivalNight(date, null, utcMs) != null;
+  for (const id of Object.keys(sets)) {
+    const cfg = sets[id]?.config;
+    if (!cfg?.dayDates) continue;
+    if (_photoFestivalNight(date, cfg, utcMs) != null) return true;
   }
-  return null;
+  return false;
 }
 
 function _matchNearestLocation(lat, lng, ds) {

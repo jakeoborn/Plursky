@@ -1443,7 +1443,7 @@ function _metaFromFile(file, exifMeta) {
       // a real EDC capture time was rejected as junk whenever ACL happened to
       // be selected, and the photo imported as no-date/fallback. Any festival
       // we know about claiming the timestamp is enough to trust it.
-      if (_anyFestivalNight(fileDate) != null) { out.date = fileDate; out.takenAtSource = "file-lastModified"; }
+      if (_someFestivalClaimsCaptureTime(fileDate)) { out.date = fileDate; out.takenAtSource = "file-lastModified"; }
     }
   }
   // ── 0.4: is this capture time actually the capture time? ──────────────
@@ -1524,9 +1524,14 @@ function _recoverVideoMetaFromArchive(file, fp, meta) {
   // v235: any known festival, not just the active one — otherwise a video
   // whose own metadata is already good gets needlessly overwritten from the
   // archive purely because a different festival is on screen.
-  const parsedNight = (meta?.date || meta?.rawUtcMs != null)
-    ? (_anyFestivalNight(meta.date, meta.rawUtcMs)?.night ?? null) : null;
-  if (parsedNight != null && meta?.takenAtSource !== "file-lastModified" && meta?.takenAtSource !== "none") return null;
+  // Named for the question actually being asked. This was `parsedNight`, read
+  // off a {festivalId, night} record — but the ordinal was never used as a
+  // number, only compared to null, so the name promised a precision the value
+  // never had and the festivalId beside it was an ordering accident nobody
+  // consumed. Same behaviour, no invented facts in the return.
+  const captureTimeIsClaimed = (meta?.date || meta?.rawUtcMs != null)
+    ? _someFestivalClaimsCaptureTime(meta.date, meta.rawUtcMs) : false;
+  if (captureTimeIsClaimed && meta?.takenAtSource !== "file-lastModified" && meta?.takenAtSource !== "none") return null;
   return {
     meta: { ...(meta || {}), date: recoveredDate, takenAtSource: "archive-recovered" },
     moment: archiveMoment,
@@ -7678,12 +7683,14 @@ function _recoverCurrentVideoMomentsFromArchive() {
 // festival to go find them, because getActiveFestivalId() also requires
 // `available`. That combination is what makes a wrong stamp unrecoverable.
 //
-// Returns EVERY claimant instead of the first. _anyFestivalNight stops at the
-// first match, which is fine for the boolean question its two callers ask, but
-// 10 of the registry's 53 night windows are claimed by two festivals running the
-// same weekend (lost-lands/nocturnal, lollapalooza/hard-summer, crssd/portola) —
-// first-wins there attributes by _DATA_SETS declaration order, an ordering
-// accident presented as a fact.
+// Returns EVERY claimant instead of the first. The import-side trust question
+// is answered by _someFestivalClaimsCaptureTime, which returns only yes/no —
+// all its two callers need, and deliberately incapable of naming a festival.
+// This function must name them, and so must return all of them: 10 of the
+// registry's 53 night windows are claimed by two festivals running the same
+// weekend (lost-lands/nocturnal, lollapalooza/hard-summer, crssd/portola), and
+// taking the first would attribute by _DATA_SETS declaration order — an
+// ordering accident presented as a fact.
 //
 // takenAt ONLY. _momentCaptureMs falls back to createdAt, i.e. IMPORT time, which
 // would attribute a moment by when the user happened to import it — the same

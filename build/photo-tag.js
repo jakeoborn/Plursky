@@ -503,16 +503,16 @@ function _resolveFestivalForPhoto(meta) {
     resolvedBy
   };
 }
-function _anyFestivalNight(date, utcMs) {
-  if (!date && utcMs == null) return null;
-  for (var ds of _allDataSets()) {
-    var night = _photoFestivalNight(date, ds.config, utcMs);
-    if (night != null) return {
-      festivalId: ds.id,
-      night
-    };
+function _someFestivalClaimsCaptureTime(date, utcMs) {
+  if (!date && utcMs == null) return false;
+  var sets = window._DATA_SETS;
+  if (!sets) return _photoFestivalNight(date, null, utcMs) != null;
+  for (var id of Object.keys(sets)) {
+    var cfg = sets[id]?.config;
+    if (!cfg?.dayDates) continue;
+    if (_photoFestivalNight(date, cfg, utcMs) != null) return true;
   }
-  return null;
+  return false;
 }
 function _matchNearestLocation(lat, lng, ds) {
   var set = ds || _activeDataSet();
