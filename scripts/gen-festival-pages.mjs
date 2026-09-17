@@ -119,7 +119,9 @@ function scheduleGrid(entry, dates) {
   const src = cfg.scheduleSource;
   const srcNote = src && src.official === true
     ? `Official set times${src.observedAt ? `, confirmed ${esc(src.observedAt)}` : ''}.`
-    : 'Set times gathered from community sources. Plursky swaps in the official schedule the moment it drops.';
+    // Bounded to OUR provenance and OUR behaviour. "the moment it drops" said the
+    // official grid had not dropped — a publisher-state claim we cannot source.
+    : 'Set times gathered from community sources. Plursky shows the official schedule once it has one.';
   return `
   <section aria-labelledby="schedule-h">
     <h2 id="schedule-h">${esc(cfg.name)} schedule &amp; set times</h2>
@@ -175,7 +177,10 @@ function faqItems(entry, { names, hasTimes, stages }) {
       q: `Have the ${cfg.name} set times been announced?`,
       a: src && src.official === true
         ? `Yes. The full ${cfg.name} schedule is on this page, day by day and stage by stage${src.observedAt ? `, from the official times confirmed ${src.observedAt}` : ''}.`
-        : `Yes. The full ${cfg.name} schedule is on this page, day by day and stage by stage, gathered from community sources until the official grid is published.`,
+        // Stops at where OUR times came from. "until the official grid is
+        // published" asserted the publisher had not published one — the same
+        // defect class as reporting our data absence as their silence.
+        : `Yes. The full ${cfg.name} schedule is on this page, day by day and stage by stage, gathered from community sources.`,
     });
   } else if (names.length) {
     // NEUTRAL BY REQUIREMENT. `hasTimes === false` proves only that Plursky has

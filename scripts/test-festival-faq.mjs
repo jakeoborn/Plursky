@@ -37,10 +37,17 @@ const ok = () => { checks++; };
 const BANNED_PUBLISHER_CLAIMS = [
   'has not published', 'have not published', 'has yet to publish',
   'the festival has not', 'not been announced by', 'not yet announced',
+  // Community-sourced pages said these. Both describe the PUBLISHER's grid as
+  // absent, which we cannot source — we only know what Plursky ingested.
+  'until the official grid is published', 'the moment it drops',
 ];
 const NO_TIMES_HEAD = 'Plursky does not have set times for ';
 const NO_TIMES_TAIL = ' The announced lineup is listed on this page; the schedule will appear here when it is available.';
-let neutralSeen = 0;
+// A page whose schedule note names community provenance must keep its set-times
+// answer bounded to that provenance.
+const COMMUNITY_NOTE = 'Set times gathered from community sources.';
+const COMMUNITY_TAIL = ', gathered from community sources.';
+let neutralSeen = 0, communitySeen = 0;
 
 const decode = (s) => String(s)
   .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"')
@@ -85,6 +92,15 @@ for (const id of pages) {
 
   const hasSchedule = /id="schedule-h"/.test(html);
   const hasStages = /id="stages-h"/.test(html);
+  const isCommunity = text.includes(COMMUNITY_NOTE);
+
+  // The rule is about the PAGE, not only its structured data. Sweeping the
+  // rendered text as well means a publisher-state claim in ordinary prose — a
+  // schedule note, a caption — cannot pass by living outside an answer. That is
+  // exactly where the two community-source claims hid.
+  const pageClaim = BANNED_PUBLISHER_CLAIMS.find(b => text.toLowerCase().includes(b));
+  if (pageClaim) fail(`${id}: page text infers publisher state — "${pageClaim}"`);
+  else ok();
 
   for (const q of faq.mainEntity || []) {
     const question = q.name;
@@ -116,6 +132,13 @@ for (const id of pages) {
       if (/^Yes\./.test(answer)) {
         if (!hasSchedule) fail(`${id}: claims set times are published with no rendered schedule grid`);
         else ok();
+        // A community-sourced answer may say where OUR times came from. It may
+        // not go on to characterise the publisher's own grid.
+        if (isCommunity) {
+          if (!answer.endsWith(COMMUNITY_TAIL)) {
+            fail(`${id}: the community-sourced answer must stop at its own provenance — got "…${answer.slice(-80)}"`);
+          } else { ok(); communitySeen++; }
+        }
       } else {
         if (hasSchedule) fail(`${id}: gives the no-ingested-times answer while rendering a schedule grid`);
         else ok();
@@ -143,6 +166,12 @@ for (const id of pages) {
 // assertion rather than trust.
 if (!neutralSeen) {
   fail('no page exercised the neutral no-ingested-times branch — the neutrality rule is UNPROVEN, not satisfied');
+} else ok();
+
+// Same control for the community-sourced branch: if no page reaches it, the
+// source-bound above passed only because it never ran.
+if (!communitySeen) {
+  fail('no page exercised the community-sourced branch — its source-bound is UNPROVEN, not satisfied');
 } else ok();
 
 if (failed) {
