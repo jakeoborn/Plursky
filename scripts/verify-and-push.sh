@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env bash
 # Push ONLY on a green verify. Nothing else in this repo may push.
 #
 # WHY THIS EXISTS
@@ -17,9 +17,18 @@
 #
 #   ./scripts/verify-and-push.sh <remote> <branch> [extra git push args...]
 #
-# ⛔ Do NOT run it as `bash scripts/verify-and-push.sh`: the `mktemp -t` call below
-# is zsh-flavoured and fails under bash, which looks like a verify failure but is
-# really a harness failure.
+# It also runs correctly as `bash scripts/verify-and-push.sh` and under zsh — the
+# proof harness exercises every guard in BOTH shells.
+#
+# An earlier revision of this header claimed the `mktemp -t` call was
+# "zsh-flavoured and fails under bash" and pinned the shebang to /bin/zsh on that
+# basis. That was WRONG: mktemp is the same /usr/bin/mktemp binary whichever shell
+# invokes it, and the claim was never measured. The cost of the fiction was the
+# real bug it protected — a shebang of /bin/zsh cannot exec on a CI box that has
+# no zsh, and the kernel returns 126, which a caller reads as "verify failed"
+# rather than "the script never started". Same false-success shape as the pipe
+# below. The mktemp call now passes an explicit XXXXXX template, the form BSD and
+# GNU mktemp both accept, so neither the shell nor the platform decides it.
 # ⛔ Do NOT pipe this script into `tail`/`head`. A pipeline reports the LAST
 # command's status, so `verify-and-push.sh … | tail` yields 0 even when the script
 # never ran at all (it once returned 126 for a non-executable file and the caller
@@ -36,7 +45,7 @@ shift 2 2>/dev/null || true
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT" || { echo "✗ cannot cd to repo root"; exit 1; }
 
-LOG="$(mktemp -t plursky-verify)"
+LOG="$(mktemp "${TMPDIR:-/tmp}/plursky-verify.XXXXXX")"
 echo "▸ verify → $LOG"
 node scripts/verify.mjs > "$LOG" 2>&1
 EC=$?
