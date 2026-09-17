@@ -11978,6 +11978,25 @@ function _maybeAutoArchive() {
           changed = true;
         }
       }
+      for (var _arr of Object.values(moments)) {
+        if (!Array.isArray(_arr)) continue;
+        for (var _m3 of _arr) {
+          if (!_m3 || !_m3.festivalId) continue;
+          if (_m3.tagSource === "manual" || _m3.tagSource === "unknown") continue;
+          var _claims = _festivalClaimantsFor(_m3.takenAt);
+          if (_claims.length === 1) {
+            if (_claims[0] !== _m3.festivalId) {
+              _m3.festivalId = _claims[0];
+              _m3.festivalAttribution = "capture-time";
+              changed = true;
+            }
+          } else if (_m3.festivalAttribution !== "unresolved") {
+            _m3.festivalAttribution = "unresolved";
+            if (_claims.length > 1) _m3.festivalCandidates = _claims;
+            changed = true;
+          }
+        }
+      }
       if (changed) _writeMoments(moments);
       sweptCleanly = true;
     } catch {}
