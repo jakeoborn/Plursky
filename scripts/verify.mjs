@@ -2200,6 +2200,43 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-a3. Capture-time trust answers with a boolean ──────────────────────
+// "Is this a real festival capture time?" is a TRUST question, and it must not
+// be answered with a festival identity nobody can justify. The old
+// _anyFestivalNight walked _allDataSets() and returned {festivalId, night} from
+// the FIRST claimant, which broke in two different directions:
+//
+//   · LATENT — 10 of the 53 night windows are claimed by two festivals running
+//     the same weekend (lost-lands/nocturnal, lollapalooza/hard-summer,
+//     crssd/portola). On those, "first wins" reports _DATA_SETS declaration
+//     order as a fact. No caller read the id, so nothing was wrong on screen —
+//     it was a wrong answer sitting in the return type waiting to be believed.
+//   · LIVE — _allDataSets() filters to registry-`available`. Correct for
+//     _resolveFestivalForPhoto, which ATTRIBUTES (a gated id strands a moment,
+//     since getActiveFestivalId() also requires `available`); wrong for a trust
+//     question, where availability is a UI concern. edc-orlando-2026 is gated
+//     and is the only gated festival with a data module, so a genuine EDC
+//     Orlando capture time was rejected as junk and the clip imported as
+//     no-date.
+//
+// The gate gives the predicate a gated-only instant, an unclaimed instant, a
+// two-festival instant and the active festival's own, and requires a boolean
+// every time — so neither "trust nothing" nor "trust everything" can buy a
+// pass, and no invented id can come back. It also asserts the old name is gone
+// from source, because the point of the rename is that the mis-attribution path
+// is unreachable rather than merely unused.
+{
+  console.log("▸ Capture-time trust gate — boolean answer, gated festivals counted, no invented festival id");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-capture-time-trust.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`capture-time trust failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b. Board playlist planner ──────────────────────────────────────────
 // Saved sets are guaranteed seeds; discovery picks are capped, unsaved and
 // carry a reason that is TRUE of the lineup. Fixtures + every _DATA_SETS lineup.

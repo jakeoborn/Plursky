@@ -15,13 +15,19 @@
 //   photo-tag.jsx:486 already says it plainly: "that is not a display glitch
 //   you can switch away from."
 //
-// WHY NOT REUSE _anyFestivalNight: it is registry-filtered through
-// _allDataSets(), so a GATED festival is invisible to it — and edc-orlando-2026
-// is gated today, which is exactly the festival whose clips get orphaned. It
-// also returns the FIRST claimant with no tie-break, so on the 10 ambiguous
-// night-windows (of 53) it attributes by _DATA_SETS declaration order. Neither
-// is a live defect at its two current call sites, which read only `!= null` —
-// but both would become one the moment a caller read `.festivalId`.
+// WHY NOT REUSE THE IMPORT-SIDE TRUST PREDICATE: _someFestivalClaimsCaptureTime
+// answers only yes/no, deliberately — it cannot name a festival, which is
+// precisely what this migration needs it to do.
+//
+// Its predecessor _anyFestivalNight DID return {festivalId, night}, and both
+// fields were unusable here: it filtered through _allDataSets() to
+// registry-`available` festivals, so a GATED one like edc-orlando-2026 was
+// invisible — the very festival whose clips get orphaned — and it stopped at the
+// FIRST claimant with no tie-break, so on the 10 ambiguous night-windows (of 53)
+// it attributed by _DATA_SETS declaration order. Neither was a live defect at
+// its two call sites, which read only `!= null`; both would have become one the
+// moment a caller read `.festivalId`. That return type is now gone rather than
+// merely unused, so the trap cannot be re-entered here or anywhere else.
 //
 // Runs build/spotify.js in a vm so this grades the SHIPPED function.
 import vm from "node:vm";
