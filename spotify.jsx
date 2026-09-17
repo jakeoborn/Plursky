@@ -7645,10 +7645,15 @@ function _recoverCurrentVideoMomentsFromArchive() {
       for (const m of arr) {
         if (!m || m.kind !== "video" || !m._fingerprint) continue;
         if (m.festivalId && m.festivalId !== cur) continue;
-        const parsed = _momentTakenAtToDateParts(m.takenAt);
-        const parsedNight = parsed ? _photoFestivalNight(parsed) : null;
+        // "Can this clip's capture time be placed AT ALL?" — asked of every
+        // festival we hold data for, not just the one on screen.
+        // _photoFestivalNight(parsed) with no config falls back to
+        // window.FESTIVAL_CONFIG, so a clip from any OTHER festival was
+        // unplaceable by definition and therefore always looked broken enough to
+        // need recovering, however good its own metadata was.
+        const placeable = _festivalClaimantsFor(m.takenAt).length > 0;
         if (m.tagSource === "unknown") continue;      // the user's answer, not a gap
-        const needsRecovery = parsedNight == null || !m.artistId || m.tagSource === "fallback" || m.needsRetag;
+        const needsRecovery = !placeable || !m.artistId || m.tagSource === "fallback" || m.needsRetag;
         if (!needsRecovery) continue;
         const archived = _findArchivedVideoMomentForFingerprint(m._fingerprint);
         const recoveredDate = _momentTakenAtToDateParts(archived?.takenAt);
@@ -7656,13 +7661,41 @@ function _recoverCurrentVideoMomentsFromArchive() {
         m.takenAt = archived.takenAt;
         m.takenAtSource = "archive-recovered";
         m.artistId = archived.artistId || m.artistId || null;
-        const recoveredNight = archived.night || _photoFestivalNight(recoveredDate) || m.night;
+        // The archived record carries a REAL capture time — copied on the line
+        // above, then ignored: the old code stamped `cur`. Note the lookup
+        // searches only archive[cur].moments, so `= cur` PROPAGATED that bucket's
+        // prior attribution rather than inventing a fresh one. It is still not
+        // evidence: the bucket was filled by whichever festival was on screen.
+        const claims = _festivalClaimantsFor(archived.takenAt);
+        const attributedTo = claims.length === 1 ? claims[0] : null;
+        if (!m.festivalId) {
+          if (attributedTo) {
+            m.festivalId = attributedTo;
+            m.festivalAttribution = "capture-time";
+          } else {
+            // Unprovable — no claimant at all, or two festivals sharing the
+            // weekend. Keep the moment exactly where it has always been visible
+            // and SAY the attribution is unproven. Evicting it would be a second
+            // data-loss bug stacked on the first.
+            m.festivalId = cur;
+            m.festivalAttribution = "unresolved";
+            if (claims.length > 1) m.festivalCandidates = claims;
+          }
+        }
+        // The night follows the attribution. A night computed against the wrong
+        // festival's dayDates is the same guess wearing a different field, which
+        // is what _photoFestivalNight(recoveredDate) produced — it falls back to
+        // the ACTIVE config. archived.night is kept as the next-best source, but
+        // it ranks BELOW evidence because it was itself computed while some
+        // other festival may have been on screen.
+        const attributedCfg = attributedTo ? window._DATA_SETS?.[attributedTo]?.config : null;
+        const evidenceNight = attributedCfg ? _photoFestivalNight(recoveredDate, attributedCfg, null) : null;
+        const recoveredNight = evidenceNight || archived.night || _photoFestivalNight(recoveredDate) || m.night;
         m.night = recoveredNight;
         m.tagSource = "archive-recovered";
         m.autoTagged = !!m.artistId;
         m.needsRetag = false;
         m.tagAmbiguous = false;
-        if (!m.festivalId) m.festivalId = cur;
         if (String(recoveredNight) !== String(night)) moves.push({ from: night, to: String(recoveredNight), moment: m });
         changed = true;
       }

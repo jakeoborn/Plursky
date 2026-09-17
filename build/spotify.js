@@ -11890,10 +11890,9 @@ function _recoverCurrentVideoMomentsFromArchive() {
       for (var m of arr) {
         if (!m || m.kind !== "video" || !m._fingerprint) continue;
         if (m.festivalId && m.festivalId !== cur) continue;
-        var parsed = _momentTakenAtToDateParts(m.takenAt);
-        var parsedNight = parsed ? _photoFestivalNight(parsed) : null;
+        var placeable = _festivalClaimantsFor(m.takenAt).length > 0;
         if (m.tagSource === "unknown") continue;
-        var needsRecovery = parsedNight == null || !m.artistId || m.tagSource === "fallback" || m.needsRetag;
+        var needsRecovery = !placeable || !m.artistId || m.tagSource === "fallback" || m.needsRetag;
         if (!needsRecovery) continue;
         var archived = _findArchivedVideoMomentForFingerprint(m._fingerprint);
         var recoveredDate = _momentTakenAtToDateParts(archived?.takenAt);
@@ -11901,13 +11900,26 @@ function _recoverCurrentVideoMomentsFromArchive() {
         m.takenAt = archived.takenAt;
         m.takenAtSource = "archive-recovered";
         m.artistId = archived.artistId || m.artistId || null;
-        var recoveredNight = archived.night || _photoFestivalNight(recoveredDate) || m.night;
+        var claims = _festivalClaimantsFor(archived.takenAt);
+        var attributedTo = claims.length === 1 ? claims[0] : null;
+        if (!m.festivalId) {
+          if (attributedTo) {
+            m.festivalId = attributedTo;
+            m.festivalAttribution = "capture-time";
+          } else {
+            m.festivalId = cur;
+            m.festivalAttribution = "unresolved";
+            if (claims.length > 1) m.festivalCandidates = claims;
+          }
+        }
+        var attributedCfg = attributedTo ? window._DATA_SETS?.[attributedTo]?.config : null;
+        var evidenceNight = attributedCfg ? _photoFestivalNight(recoveredDate, attributedCfg, null) : null;
+        var recoveredNight = evidenceNight || archived.night || _photoFestivalNight(recoveredDate) || m.night;
         m.night = recoveredNight;
         m.tagSource = "archive-recovered";
         m.autoTagged = !!m.artistId;
         m.needsRetag = false;
         m.tagAmbiguous = false;
-        if (!m.festivalId) m.festivalId = cur;
         if (String(recoveredNight) !== String(night)) moves.push({
           from: night,
           to: String(recoveredNight),
