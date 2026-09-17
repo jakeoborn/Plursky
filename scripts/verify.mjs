@@ -2059,12 +2059,23 @@ const REGISTRATION_TOL_M = 25;
     console.log(`  ✓ ${wFests} festival(s), ${wPairs} stage pair(s) — no minutes on unverified geometry, gated festivals included`);
 
     // ── POSITIVE CONTROL ──────────────────────────────────────────────
-    // NO festival in the fleet is verified today, so every row above is a
-    // silence. A gate that can only assert silence would pass just as happily
-    // if the feature had been deleted outright. So flip the predicate's memo
-    // for the one festival that actually HAS a measured table, prove the
-    // minutes come back, and prove the flip was undone — otherwise every later
-    // gate in this run would be reading a doctored predicate.
+    // Every row above is a silence, and a gate that can only assert silence
+    // would pass just as happily if the feature had been deleted outright. So
+    // flip the predicate's memo for the one festival that actually HAS a
+    // measured table, prove the minutes come back, and prove the flip was
+    // undone — otherwise every later gate in this run would be reading a
+    // doctored predicate.
+    //
+    // ⚠ This comment used to open "NO festival in the fleet is verified
+    // today". Measured false on 2026-09-17: geometryVerifiedFor() is TRUE for
+    // summerfest-2026, lollapalooza-2026 and outside-lands-2026. The control
+    // still has to synthesise its subject, but for a narrower reason — those
+    // three carry no measured walk table (0 of 45, 36 and 21 pairs) while
+    // edc-lv-2026 has all 36 and is blind. Verified geometry and a measured
+    // table are separate properties and nothing has both yet, which is also
+    // why `before` is asserted false below rather than assumed: the day a
+    // verified festival gains a table, that assertion is what tells us to
+    // re-point the control instead of silently testing nothing.
     {
       const lvIds = ((WDS[TABLE_FID] || {}).stages || []).map(s => s.id);
       const countPairs = () => {
@@ -2435,6 +2446,25 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`festival capability claims failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b9. Shell portability ──────────────────────────────────────────────
+// Every push in this repo goes through scripts/verify-and-push.sh, and that
+// wrapper shipped with `#!/bin/zsh` until #211. On a box without zsh the kernel
+// cannot exec the interpreter and returns 126 — which a caller reads as "the
+// gate ran and failed", not "the gate never started". That is the same
+// false-success shape as a piped exit code, one layer further down, and it is
+// invisible to every other gate here because they all run under node.
+{
+  console.log("▸ Shell portability gate — an executable script starts on a box that is not this one");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-shell-portability.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`shell portability failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
