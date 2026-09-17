@@ -2326,6 +2326,29 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b7. Festival FAQ structured data ───────────────────────────────────
+// A festival page's FAQPage JSON-LD may never claim something the page does
+// not visibly say. Google treats that mismatch as a structured-data violation
+// and the penalty lands on the whole site's rich-result eligibility, not just
+// the offending page — the same rule the generator's `performer` block has
+// always followed. The visible <dl> and the JSON-LD are built from ONE array,
+// so they cannot disagree today; this gate is what keeps that true when
+// someone later edits one render path and not the other. It also enforces the
+// honesty the array encodes: a stage-count answer needs a rendered stage list,
+// "Yes, times are published" needs a rendered schedule grid, "Not yet" needs
+// the absence of one, and a stated artist count must equal the printed one.
+{
+  console.log("▸ Festival FAQ gate — structured data never outruns the rendered page");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-faq.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`festival FAQ structured data failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c. Video thumbnails ────────────────────────────────────────────────
 // A library tile shows a stored poster <img>, never a live <video>. The old
 // "poster" was <video preload="metadata" src="...#t=0.1">: one decoder per

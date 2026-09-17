@@ -20,6 +20,22 @@ import { createHash } from 'node:crypto';
 
 export const fp = (v) => createHash('sha256').update(JSON.stringify(v)).digest('hex').slice(0, 16);
 
+// The TEMPLATE is rendered output too, and it was the one hole in the contract
+// above: every field a page renders was hashed, but the page STRUCTURE was not.
+// Edit the stub template — add a section, change the anchor text — and all 26
+// pages genuinely change while not one fingerprint moves, leaving every
+// <lastmod> frozen over changed content. That is the exact one-directional
+// failure the header describes, arriving through the one door the field lists
+// cannot watch.
+//
+// Bump this whenever the generated markup changes in a way a crawler can see.
+// It is NOT the excluded "Other festivals" churn in disguise: that exclusion
+// stops ONE festival's data edit from redating the other 25, and this constant
+// still leaves that true. It moves all 26 only when all 26 really did change.
+//
+//   1 — answer blocks + FAQPage JSON-LD + descriptive internal anchors
+export const TEMPLATE_VERSION = 1;
+
 // entry.config fields that reach rendered output, each with where it lands.
 export const FINGERPRINTED_CONFIG_FIELDS = [
   'name',                // <h1>, <title>, og/twitter, JSON-LD name, section headings
@@ -52,10 +68,10 @@ export const EXCLUDED_ENTRY_FIELDS = {
 };
 
 // Also deliberately excluded, and not expressible as a field name: every stub
-// embeds an "Other festivals" nav listing the OTHER 25 festivals' id/name/dates
+// embeds an "Other festivals" nav listing the OTHER festivals' id/name/dates
 // (rendered as f.config.*, never cfg.*). Hashing the rendered file instead of
-// the festival's own content would move all 26 dates whenever any single
-// festival changed — boilerplate churn is the thing a crawler is least
+// the festival's own content would move EVERY festival's date whenever any
+// single festival changed — boilerplate churn is the thing a crawler is least
 // interested in hearing about twice. The homepage's own lastmod still
 // fingerprints index.html whole, which is where that list legitimately counts.
 
@@ -66,6 +82,7 @@ export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY })
   const ds = DS[cfg.id] || {};
   const d = eventDates(cfg);
   return {
+    template: TEMPLATE_VERSION,
     name: cfg.name,
     dates: cfg.dates,
     location: cfg.location || '',
