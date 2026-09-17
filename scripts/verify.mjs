@@ -2304,6 +2304,28 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b6. Memories grouping reachability ─────────────────────────────────
+// Every moment the TIMELINE lens COUNTS must be REACHABLE, exactly once, in
+// exactly one rendered group. Before this gate, a truthy artistId the ACTIVE
+// festival could not resolve fell out of BOTH groups — the set spine filtered
+// it (no matching artist) and "Between sets" never took it (its artistId is
+// truthy) — so it rendered nowhere while the day header's "N MOMENTS" and the
+// peak window still counted it. Fixtures cover an active set, a stale id, an
+// untagged clip, a stage-only clip, and a REAL cross-festival id pulled from
+// another entry in _DATA_SETS. The test runs build/spotify.js in a vm, so it
+// grades the shipped function rather than a re-implementation of it.
+{
+  console.log("▸ Memories-grouping gate — every counted moment reachable exactly once");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-memories-grouping.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`memories grouping failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c. Video thumbnails ────────────────────────────────────────────────
 // A library tile shows a stored poster <img>, never a live <video>. The old
 // "poster" was <video preload="metadata" src="...#t=0.1">: one decoder per

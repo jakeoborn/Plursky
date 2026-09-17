@@ -8728,6 +8728,36 @@ function _NightShareMenu({
     }
   }, lbl)))));
 }
+function _groupNightMoments({
+  moments,
+  attendedSet,
+  artists,
+  toMin
+}) {
+  var find = id => (artists || []).find(a => a.id === id);
+  var byArtist = new Map();
+  var untagged = [];
+  for (var m of moments || []) {
+    if (m.artistId) {
+      if (!byArtist.has(m.artistId)) byArtist.set(m.artistId, []);
+      byArtist.get(m.artistId).push(m);
+    } else untagged.push(m);
+  }
+  var spineIds = [...new Set([...(attendedSet || []), ...byArtist.keys()])].filter(id => find(id)).sort((aId, bId) => {
+    var aA = find(aId),
+      bA = find(bId);
+    var aMin = aA?.start ? toMin?.(aA.start) ?? 9999 : 9999;
+    var bMin = bA?.start ? toMin?.(bA.start) ?? 9999 : 9999;
+    return aMin - bMin;
+  });
+  var needsReview = (moments || []).filter(m => m.artistId && !find(m.artistId));
+  return {
+    byArtist,
+    untagged,
+    spineIds,
+    needsReview
+  };
+}
 function MemoriesScreen({
   state,
   setState
@@ -9722,22 +9752,18 @@ function MemoriesScreen({
       }
     }, "NO MOMENTS YET")), (() => {
       var attendedSet = (typeof getAttendedForNight === "function" ? getAttendedForNight(d.n) : null) || new Set();
-      var byArtist = new Map();
-      var untagged = [];
-      for (var m of moments) {
-        if (m.artistId) {
-          if (!byArtist.has(m.artistId)) byArtist.set(m.artistId, []);
-          byArtist.get(m.artistId).push(m);
-        } else untagged.push(m);
-      }
-      var spineIds = [...new Set([...attendedSet, ...byArtist.keys()])].filter(id => ARTISTS.find(a => a.id === id)).sort((aId, bId) => {
-        var aA = ARTISTS.find(x => x.id === aId),
-          bA = ARTISTS.find(x => x.id === bId);
-        var aMin = aA?.start ? window.toNightMin?.(aA.start) ?? 9999 : 9999;
-        var bMin = bA?.start ? window.toNightMin?.(bA.start) ?? 9999 : 9999;
-        return aMin - bMin;
+      var {
+        byArtist,
+        untagged,
+        spineIds,
+        needsReview
+      } = _groupNightMoments({
+        moments,
+        attendedSet,
+        artists: ARTISTS,
+        toMin: window.toNightMin
       });
-      if (!spineIds.length && !untagged.length) return null;
+      if (!spineIds.length && !untagged.length && !needsReview.length) return null;
       return React.createElement(React.Fragment, null, spineIds.length > 0 && React.createElement("div", {
         className: "mono",
         style: {
@@ -9915,6 +9941,78 @@ function MemoriesScreen({
         idx: i,
         total: untagged.length,
         groupMoments: untagged,
+        onOpenLightbox: openLightbox,
+        onDelete: handleDelete,
+        onUpdate: handleUpdate,
+        savedArtistIds: state.saved || [],
+        onArtistClick: id => setState(s => ({
+          ...s,
+          artist: id
+        }))
+      }))), needsReview.length > 0 && React.createElement("div", {
+        key: "__needs_review__",
+        style: {
+          marginTop: 14
+        }
+      }, React.createElement("div", {
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          padding: "6px 4px"
+        }
+      }, React.createElement("span", {
+        style: {
+          width: 4,
+          alignSelf: "stretch",
+          background: "var(--line-2)",
+          borderRadius: 3
+        }
+      }), React.createElement("div", {
+        style: {
+          flex: 1,
+          minWidth: 0
+        }
+      }, React.createElement("div", {
+        className: "mono",
+        style: {
+          fontSize: 9,
+          letterSpacing: 1.3,
+          fontWeight: 700,
+          color: "var(--muted)"
+        }
+      }, "NEEDS REVIEW"), React.createElement("div", {
+        className: "serif",
+        style: {
+          fontSize: 18,
+          color: "var(--ink)",
+          lineHeight: 1.1,
+          marginTop: 2
+        }
+      }, "Set not in this festival")), React.createElement("span", {
+        className: "mono",
+        style: {
+          fontSize: 9,
+          letterSpacing: 1.1,
+          color: "var(--muted)",
+          fontWeight: 700,
+          flexShrink: 0
+        }
+      }, needsReview.length, " ", needsReview.length === 1 ? "CLIP" : "CLIPS")), React.createElement("div", {
+        className: "mono",
+        style: {
+          fontSize: 9,
+          letterSpacing: 1,
+          color: "var(--muted)",
+          fontWeight: 600,
+          padding: "0 0 4px 12px"
+        }
+      }, "Tagged to a set this festival doesn’t have — retag to file it."), needsReview.map((m, i) => React.createElement(MomentCard, {
+        key: m.id,
+        moment: m,
+        idx: i,
+        total: needsReview.length,
+        groupMoments: needsReview,
         onOpenLightbox: openLightbox,
         onDelete: handleDelete,
         onUpdate: handleUpdate,

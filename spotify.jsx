@@ -5460,6 +5460,53 @@ function _NightShareMenu({ night, moments }) {
   );
 }
 
+// One night's moments, sorted into the groups the TIMELINE lens renders:
+// the "SETS YOU WATCHED" spine (sets you attended ∪ artists you filmed) and
+// the untagged "Between sets" pile.
+//
+// Extracted verbatim out of MemoriesScreen so the render path and the
+// regression test run the SAME code. A test that re-implements this grouping
+// would only prove the copy agrees with itself.
+//
+// PURE by construction: every input is a parameter. `artists` is the ACTIVE
+// festival's lineup (CLAUDE.md §5 — bare ARTISTS is whatever festival is
+// switched in), and `toMin` is lineup.jsx's toNightMin passed in rather than
+// reached through window, so a node harness can exercise this without
+// depending on script load order.
+function _groupNightMoments({ moments, attendedSet, artists, toMin }) {
+  const find = (id) => (artists || []).find(a => a.id === id);
+  const byArtist = new Map(); // artistId → moments[]
+  const untagged = [];
+  for (const m of (moments || [])) {
+    if (m.artistId) {
+      if (!byArtist.has(m.artistId)) byArtist.set(m.artistId, []);
+      byArtist.get(m.artistId).push(m);
+    } else untagged.push(m);
+  }
+  // Spine = sets you attended ∪ artists you filmed, by set start.
+  const spineIds = [...new Set([...(attendedSet || []), ...byArtist.keys()])]
+    .filter(id => find(id))
+    .sort((aId, bId) => {
+      const aA = find(aId), bA = find(bId);
+      const aMin = aA?.start ? (toMin?.(aA.start) ?? 9999) : 9999;
+      const bMin = bA?.start ? (toMin?.(bA.start) ?? 9999) : 9999;
+      return aMin - bMin;
+    });
+  // A truthy artistId the ACTIVE festival cannot resolve — a stale id, a set
+  // dropped from the lineup, a moment carried across a festival switch — used
+  // to fall out of BOTH groups: the spine filtered it (no matching artist) and
+  // `untagged` never took it (its artistId is truthy). It rendered NOWHERE
+  // while the day header's "N MOMENTS" and the peak window still counted it.
+  //
+  // It goes to Needs Review rather than Between Sets on purpose: Between Sets
+  // means "I filmed this away from any set", which is a claim about the
+  // moment. This is "I can't resolve the set you tagged" — a different fact,
+  // and folding the two together would destroy the provenance needed to retag.
+  // Capture order is preserved by filtering `moments` rather than byArtist.
+  const needsReview = (moments || []).filter(m => m.artistId && !find(m.artistId));
+  return { byArtist, untagged, spineIds, needsReview };
+}
+
 function MemoriesScreen({ state, setState }) {
   const [rawAll, setAll] = React.useState(_readMoments);
   // Scope all views/counts to the active festival (moments share one store
@@ -6309,24 +6356,13 @@ function MemoriesScreen({ state, setState }) {
                 // filmed during. Sets you caught but didn't film still show.
                 // Clips that matched no set drop to OTHER MOMENTS at the bottom.
                 const attendedSet = (typeof getAttendedForNight === "function" ? getAttendedForNight(d.n) : null) || new Set();
-                const byArtist = new Map(); // artistId → moments[]
-                const untagged = [];
-                for (const m of moments) {
-                  if (m.artistId) {
-                    if (!byArtist.has(m.artistId)) byArtist.set(m.artistId, []);
-                    byArtist.get(m.artistId).push(m);
-                  } else untagged.push(m);
-                }
-                // Spine = sets you attended ∪ artists you filmed, by set start.
-                const spineIds = [...new Set([...attendedSet, ...byArtist.keys()])]
-                  .filter(id => ARTISTS.find(a => a.id === id))
-                  .sort((aId, bId) => {
-                    const aA = ARTISTS.find(x => x.id === aId), bA = ARTISTS.find(x => x.id === bId);
-                    const aMin = aA?.start ? (window.toNightMin?.(aA.start) ?? 9999) : 9999;
-                    const bMin = bA?.start ? (window.toNightMin?.(bA.start) ?? 9999) : 9999;
-                    return aMin - bMin;
-                  });
-                if (!spineIds.length && !untagged.length) return null;
+                const { byArtist, untagged, spineIds, needsReview } = _groupNightMoments({
+                  moments, attendedSet, artists: ARTISTS, toMin: window.toNightMin,
+                });
+                // needsReview belongs in this guard: a night holding ONLY
+                // unresolvable moments would otherwise return null and hide
+                // the very records this fix exists to surface.
+                if (!spineIds.length && !untagged.length && !needsReview.length) return null;
                 return (
                   <>
                     {spineIds.length > 0 && (
@@ -6423,6 +6459,43 @@ function MemoriesScreen({ state, setState }) {
                             idx={i}
                             total={untagged.length}
                             groupMoments={untagged}
+                            onOpenLightbox={openLightbox}
+                            onDelete={handleDelete}
+                            onUpdate={handleUpdate}
+                            savedArtistIds={state.saved || []}
+                            onArtistClick={(id) => setState(s => ({ ...s, artist: id }))}
+                          />
+                        ))}
+                      </div>
+                    )}
+                    {/* Moments tagged to a set this festival cannot resolve.
+                        Deliberately NOT folded into Between Sets: that would
+                        assert the clip was shot away from any set, discarding
+                        the tag it actually carries. Shown plainly so the
+                        records are reachable and retaggable — the design wave
+                        decides what this group finally looks like. */}
+                    {needsReview.length > 0 && (
+                      <div key="__needs_review__" style={{ marginTop: 14 }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "6px 4px" }}>
+                          <span style={{ width: 4, alignSelf: "stretch", background: "var(--line-2)", borderRadius: 3 }}/>
+                          <div style={{ flex: 1, minWidth: 0 }}>
+                            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "var(--muted)" }}>NEEDS REVIEW</div>
+                            <div className="serif" style={{ fontSize: 18, color: "var(--ink)", lineHeight: 1.1, marginTop: 2 }}>Set not in this festival</div>
+                          </div>
+                          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 700, flexShrink: 0 }}>
+                            {needsReview.length} {needsReview.length === 1 ? "CLIP" : "CLIPS"}
+                          </span>
+                        </div>
+                        <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", fontWeight: 600, padding: "0 0 4px 12px" }}>
+                          Tagged to a set this festival doesn’t have — retag to file it.
+                        </div>
+                        {needsReview.map((m, i) => (
+                          <MomentCard
+                            key={m.id}
+                            moment={m}
+                            idx={i}
+                            total={needsReview.length}
+                            groupMoments={needsReview}
                             onOpenLightbox={openLightbox}
                             onDelete={handleDelete}
                             onUpdate={handleUpdate}
