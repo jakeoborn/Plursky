@@ -283,6 +283,50 @@ try {
     await ctx.close();
   }
 
+  // ── 5c. The proof outranks the guess on screen, not just in the model ────
+  // Same photo, two records: an auto-archived guess stored FIRST and the
+  // capture-time-proven record second. While the canonical was whichever
+  // record was read first, this header called proven media UNCONFIRMED and
+  // the festival's card dropped it entirely — the proof was discarded as the
+  // duplicate. Seeded in the losing order on purpose.
+  {
+    const artistId = 'n4';
+    const orderSeed = JSON.stringify({ "1": [
+      { id: "o1", night: 1, photoId: "k1", _fingerprint: "fp_order_same.jpg", artistId, kind: "photo", takenAt: "2026-05-16T05:30:00.000Z", createdAt: 1779000001000, festivalId: 'edc-lv-2026', festivalAttribution: 'unresolved' },
+      // Same media, proven, and in a DIFFERENT group (loose, not on the set).
+      { id: "o2", night: 1, photoId: "k2", _fingerprint: "fp_order_same.jpg", artistId: null, kind: "photo", takenAt: "2026-05-16T05:33:00.000Z", createdAt: 1779000002000, festivalId: 'edc-lv-2026', festivalAttribution: 'capture-time' },
+      { id: "o3", night: 1, photoId: "k3", _fingerprint: "fp_order_other.jpg", artistId, kind: "photo", takenAt: "2026-05-16T05:36:00.000Z", createdAt: 1779000003000, festivalId: 'edc-lv-2026' },
+    ]});
+    const { ctx, page } = await open(browser, { url: `${BASE}?tab=memories`, init: {
+      active_festival_id: 'edc-lv-2026', active_festival_explicit: '1',
+      plursky_last_festival_id: 'edc-lv-2026',
+      'edc-lv-2026_saved_v1': JSON.stringify([artistId]),
+      plursky_moments_v1: orderSeed,
+      plursky_memories_view_v1: 'library',
+    }});
+    const t = await text(page);
+    const head = t.match(/(\d+)\s+MOMENTS?/i);
+    check(head && +head[1] === 2,
+      `order: proven media counts as confirmed however it was stored (expected 2, got ${head && head[1]})`);
+    check(!/UNCONFIRMED/i.test(t),
+      'order: nothing is called unconfirmed when a proven record holds that media');
+    const model = await page.evaluate(() => {
+      const all = window._activeMoments(window._readMoments());
+      const lib = window._dedupeLibrary(all);
+      return { unique: lib.unique,
+               kept: (lib.byNight['1'] || []).map(m => m.id).join(','),
+               card: window.festivalMemoryCount('edc-lv-2026', window._readMoments()),
+               review: window.unattributedMoments(window._readMoments()).map(m => m.id).join(',') };
+    });
+    check(model.unique === 2 && model.kept === 'o2,o3',
+      `order: the library keeps the proof and parks the guess (got "${model.kept}")`);
+    check(model.card === 2,
+      `order: the landing card agrees with the header (got ${model.card})`);
+    check(model.review === '',
+      `order: General Home offers no review row for media already proven (got "${model.review}")`);
+    await ctx.close();
+  }
+
   // ── 7. Onboarding ends INSIDE a festival, never back at the chooser ──────
   // Picking a festival is the last thing first-run asks. Answering it and
   // being handed the same question again is the failure this covers, on both

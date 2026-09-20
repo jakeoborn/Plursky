@@ -127,12 +127,45 @@ function momentsForFestival(all, festivalId, opts) {
 }
 // "Not settled to a festival": never attributed at all, OR attributed by a
 // guess the app itself declared unproven. Both need the same human answer.
-function unattributedMoments(all) {
-  const out = [];
+//
+// ...unless another record for the SAME MEDIA already carries the answer. The
+// review row asks about a piece of media, not about a row in storage, so a
+// guess that a proven duplicate supersedes is not an open question — leaving
+// it in would make the landing offer to settle media the header has already
+// counted as confirmed, which is the same one-photo-counted-twice split this
+// screen exists to close. The record itself is not evicted: it is still
+// reachable as a duplicate of the winner (see _dedupeLibrary).
+function _provenMediaIdentities(all) {
+  const proven = new Set();
+  const id = (m) => (typeof _mediaIdentity === "function"
+    ? _mediaIdentity(m)
+    : (m._fingerprint || m.photoId || m.id || null));
   for (const night of Object.keys(all || {})) {
     const arr = all[night];
     if (!Array.isArray(arr)) continue;
-    for (const m of arr) if (m && (!m.festivalId || m.festivalAttribution === "unresolved")) out.push(m);
+    for (const m of arr) {
+      if (!m || !m.festivalId || m.festivalAttribution === "unresolved") continue;
+      const key = id(m);
+      if (key) proven.add(key);
+    }
+  }
+  return proven;
+}
+function unattributedMoments(all) {
+  const out = [];
+  const proven = _provenMediaIdentities(all);
+  const id = (m) => (typeof _mediaIdentity === "function"
+    ? _mediaIdentity(m)
+    : (m._fingerprint || m.photoId || m.id || null));
+  for (const night of Object.keys(all || {})) {
+    const arr = all[night];
+    if (!Array.isArray(arr)) continue;
+    for (const m of arr) {
+      if (!m || (m.festivalId && m.festivalAttribution !== "unresolved")) continue;
+      const key = id(m);
+      if (key && proven.has(key)) continue;
+      out.push(m);
+    }
   }
   return out;
 }
@@ -141,6 +174,10 @@ function unattributedMoments(all) {
 // Dedupe FIRST, then drop the guesses — the same order the Memories header
 // uses, so the card and the screen it opens cannot land on different numbers
 // when one piece of media is held by both a proven and an unresolved record.
+// That order is only safe because the dedupe itself now prefers the proven
+// record (_mediaAttributionRank): deduping first with an order-dependent
+// winner would hand the filter the guess and throw the proof away with it,
+// reporting ZERO memories for media this festival can actually prove.
 function festivalMemoryCount(festivalId, all) {
   const src = all || (typeof _readMoments === "function" ? _readMoments() : {});
   const mine = momentsForFestival(src, festivalId, { includeUnresolved: true });

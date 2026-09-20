@@ -5357,49 +5357,70 @@ function _mediaIdentity(m) {
   if (!m) return null;
   return m._fingerprint || m.photoId || m.id || null;
 }
+function _mediaAttributionRank(m) {
+  if (!m) return 0;
+  if (!m.festivalId || m.festivalAttribution === "unresolved") return 1;
+  return 2;
+}
 function _dedupeByMedia(moments) {
-  var seen = new Set();
+  var list = moments || [];
+  var winner = _mediaWinners(list);
   var out = [];
   var dupes = 0;
-  for (var m of moments || []) {
+  for (var m of list) {
     var key = _mediaIdentity(m);
-    if (key && seen.has(key)) {
+    if (key && winner.get(key) !== m) {
       dupes++;
       continue;
     }
-    if (key) seen.add(key);
     out.push(m);
   }
   out.duplicateCount = dupes;
   return out;
 }
+function _mediaWinners(list) {
+  var winner = new Map();
+  for (var m of list || []) {
+    if (!m) continue;
+    var key = _mediaIdentity(m);
+    if (!key) continue;
+    var cur = winner.get(key);
+    if (!cur || _mediaAttributionRank(m) > _mediaAttributionRank(cur)) winner.set(key, m);
+  }
+  return winner;
+}
 function _dedupeLibrary(all) {
-  var seen = new Map();
+  var nights = Object.keys(all || {});
+  var flat = [];
+  for (var night of nights) {
+    var arr = all[night];
+    if (Array.isArray(arr)) for (var m of arr) flat.push(m);
+  }
+  var winner = _mediaWinners(flat);
   var dupsByCanonical = new Map();
   var byNight = {};
   var unique = 0;
-  for (var night of Object.keys(all || {})) {
-    var arr = all[night];
-    if (!Array.isArray(arr)) {
-      byNight[night] = [];
+  for (var _night of nights) {
+    var _arr = all[_night];
+    if (!Array.isArray(_arr)) {
+      byNight[_night] = [];
       continue;
     }
     var keep = [];
-    for (var m of arr) {
-      if (!m) continue;
-      var key = _mediaIdentity(m);
-      if (key && seen.has(key)) {
-        var canon = seen.get(key);
+    for (var _m2 of _arr) {
+      if (!_m2) continue;
+      var key = _mediaIdentity(_m2);
+      if (key && winner.get(key) !== _m2) {
+        var canon = winner.get(key);
         var list = dupsByCanonical.get(canon.id) || [];
-        list.push(m);
+        list.push(_m2);
         dupsByCanonical.set(canon.id, list);
         continue;
       }
-      if (key) seen.set(key, m);
-      keep.push(m);
+      keep.push(_m2);
       unique++;
     }
-    byNight[night] = keep;
+    byNight[_night] = keep;
   }
   return {
     byNight,
@@ -6105,16 +6126,16 @@ async function _purgeVisibleMoments(match) {
     for (var m of visible[night] || []) if (match(m, night)) doomed.add(m);
   }
   if (!doomed.size) return 0;
-  for (var _night of Object.keys(all)) {
-    var arr = Array.isArray(all[_night]) ? all[_night] : [];
-    for (var _m2 of arr) {
-      if (!doomed.has(_m2) || !_m2.photoId) continue;
+  for (var _night2 of Object.keys(all)) {
+    var arr = Array.isArray(all[_night2]) ? all[_night2] : [];
+    for (var _m3 of arr) {
+      if (!doomed.has(_m3) || !_m3.photoId) continue;
       try {
-        await _deletePhoto(_m2.photoId);
+        await _deletePhoto(_m3.photoId);
       } catch {}
     }
     var kept = arr.filter(m => !doomed.has(m));
-    if (kept.length) all[_night] = kept;else delete all[_night];
+    if (kept.length) all[_night2] = kept;else delete all[_night2];
   }
   _writeMoments(all);
   return doomed.size;

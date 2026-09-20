@@ -175,6 +175,55 @@ if (typeof S._dedupeLibrary !== "function") {
     `split: both losing records are accounted for (got ${dayS.counts.duplicates})`);
 }
 
+// ── 2c. Evidence outranks a guess for the SAME media, in either order ─────
+// Deduping picks ONE record to speak for a piece of media. When the losing
+// record was chosen by array order alone, the answer to "is this confirmed?"
+// depended on storage order: a photo held by an auto-archived guess
+// (festivalAttribution:"unresolved") and by a capture-time-proven record read
+// as CONFIRMED when the proof came first and as UNCONFIRMED when it did not —
+// and the festival's own card, which dedupes and THEN drops guesses, threw the
+// proof away with the guess and reported zero. Both orders are fixtures here
+// because only one of them was ever broken.
+if (typeof S._dedupeLibrary !== "function") {
+  check(false, "HARNESS DEAD: _dedupeLibrary not reachable from build/spotify.js");
+} else {
+  const ORD = "fp_order_one_photo.jpg";
+  const rec = (id, attribution) => ({
+    id, photoId: id, _fingerprint: ORD, artistId: A1.id, takenAt: at(0),
+    festivalId: activeId, festivalAttribution: attribution,
+  });
+  const guess = () => rec("o-guess", "unresolved");
+  const proof = () => rec("o-proof", "capture-time");
+  for (const [name, arr] of [["guess first", [guess(), proof()]], ["proof first", [proof(), guess()]]]) {
+    const one = S._dedupeByMedia(arr);
+    check(one.length === 1 && one[0].id === "o-proof",
+      `order (${name}): the PROVEN record speaks for the media, not the earlier one (got ${one.map(m => m.id).join(",")})`);
+    const lib = S._dedupeLibrary({ 1: arr });
+    const kept = lib.byNight[1].map(m => m.id).join(",");
+    check(lib.unique === 1 && kept === "o-proof",
+      `order (${name}): the library keeps the proof and parks the guess (got "${kept}")`);
+    const unconfirmed = Object.values(lib.byNight)
+      .reduce((n, a) => n + a.filter(m => m.festivalAttribution === "unresolved").length, 0);
+    check(unconfirmed === 0,
+      `order (${name}): the header does not call proven media unconfirmed (got ${unconfirmed})`);
+    check((lib.dupsByCanonical.get("o-proof") || []).map(m => m.id).join(",") === "o-guess",
+      `order (${name}): the superseded guess stays reachable as a duplicate (#210)`);
+  }
+  // The winner is chosen across the whole library, then placed. A winner that
+  // gets swapped in during the walk lands in the LOSING record's night, which
+  // would file a photo under a night it was never captured on.
+  for (const [name, all] of [
+    ["guess on night 1", { 1: [guess()], 2: [proof()] }],
+    ["proof on night 1", { 1: [proof()], 2: [guess()] }],
+  ]) {
+    const lib = S._dedupeLibrary(all);
+    const where = Object.keys(lib.byNight).filter(n => lib.byNight[n].some(m => m.id === "o-proof")).join(",");
+    const home = Object.keys(all).find(n => all[n][0].id === "o-proof");
+    check(lib.unique === 1 && where === home,
+      `order (${name}): the surviving record stays on its OWN night (expected ${home}, got "${where}")`);
+  }
+}
+
 // ── 3/4. The library day: counts, one hero, reachability ───────────────────
 const attended = new Set([A1.id, A2.id]);
 const records = [

@@ -232,6 +232,49 @@ if (typeof S._dedupeLibrary === "function") {
   check(false, "HARNESS: _dedupeLibrary not reachable from build/spotify.js");
 }
 
+// ── 4c-ii. The proof survives the guess, whichever was stored first ───────
+// festivalMemoryCount dedupes and THEN drops the guesses. That order is only
+// honest if the dedupe hands it the PROVEN record: when the canonical was
+// whichever record came first, one photo held by both a guess and a proven
+// capture returned 0 for the festival that can actually prove it — the proof
+// was discarded as the duplicate, and the header called the same media
+// unconfirmed. Both orders are here because only one of them ever failed.
+for (const [name, night] of [
+  ["guess first", [
+    { id: "o1", photoId: "op1", _fingerprint: "fp_order.jpg", festivalId: activeId, festivalAttribution: "unresolved" },
+    { id: "o2", photoId: "op1", _fingerprint: "fp_order.jpg", festivalId: activeId, festivalAttribution: "capture-time" },
+  ]],
+  ["proof first", [
+    { id: "o2", photoId: "op1", _fingerprint: "fp_order.jpg", festivalId: activeId, festivalAttribution: "capture-time" },
+    { id: "o1", photoId: "op1", _fingerprint: "fp_order.jpg", festivalId: activeId, festivalAttribution: "unresolved" },
+  ]],
+]) {
+  const all = { 1: night };
+  const card = S.festivalMemoryCount(activeId, all);
+  check(card === 1,
+    `order (${name}): the card counts media this festival can prove (expected 1, got ${card})`);
+  const review = S.unattributedMoments(all).map(m => m.id).join(",");
+  check(review === "",
+    `order (${name}): no review row for media a proven record already settles (got "${review}")`);
+  if (typeof S._dedupeLibrary === "function") {
+    const lib = S._dedupeLibrary(all);
+    const unconfirmed = Object.values(lib.byNight)
+      .reduce((n, arr) => n + arr.filter(m => m.festivalAttribution === "unresolved").length, 0);
+    check(lib.unique === 1 && unconfirmed === 0,
+      `order (${name}): the header counts it once and calls it confirmed (got ${lib.unique}/${unconfirmed})`);
+    check(lib.unique - unconfirmed === card,
+      `order (${name}): header confirmed (${lib.unique - unconfirmed}) === landing card (${card})`);
+  }
+}
+// The guess must still be the whole answer when NOTHING proves that media.
+const guessOnly = { 1: [
+  { id: "x1", photoId: "xp1", _fingerprint: "fp_lonely_guess.jpg", festivalId: activeId, festivalAttribution: "unresolved" },
+] };
+check(S.festivalMemoryCount(activeId, guessOnly) === 0,
+  "order control: an unsupported guess still counts zero on the card");
+check(S.unattributedMoments(guessOnly).map(m => m.id).join(",") === "x1",
+  "order control: an unsupported guess still gets its review row");
+
 // ── 4d. Early access: a Plus subscriber walks in, everyone else gets asked ─
 // FestivalSwitcher has always had three answers here. The landing shipped
 // with one — locked — which shut out the subscribers who paid for exactly

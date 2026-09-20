@@ -3682,21 +3682,58 @@ function _mediaIdentity(m) {
   return m._fingerprint || m.photoId || m.id || null;
 }
 
-// First record wins, capture order preserved. Returns the canonical list plus
-// the duplicate count, so a surface can say "2 duplicates hidden" rather than
-// silently dropping rows.
+// Which of two records for ONE piece of media speaks for it.
+//
+// THE BUG THIS EXISTS FOR: the canonical used to be whichever record was
+// read first, so the answer to "is this media confirmed to a festival?"
+// depended on array order. One file held by an auto-archived guess
+// (festivalAttribution:"unresolved") and by a capture-time-proven record
+// counted as CONFIRMED when the proven copy happened to be read first and as
+// UNCONFIRMED — or as zero memories on the festival's own card — when the
+// guess was. Evidence and a guess about the same media are not a tie to be
+// broken by storage order: the evidence settles it, and the guess it
+// supersedes is a duplicate, not a second open question.
+//
+// 2 = attributed and proven. 1 = unsettled, whether that is a declared guess
+// or no festival at all (both need the same human answer, see
+// unattributedMoments). Equal rank keeps the earlier record, so capture
+// order still decides everything this rule does not.
+function _mediaAttributionRank(m) {
+  if (!m) return 0;
+  if (!m.festivalId || m.festivalAttribution === "unresolved") return 1;
+  return 2;
+}
+
+// Proven beats a guess, then first record wins; capture order preserved.
+// Returns the canonical list plus the duplicate count, so a surface can say
+// "2 duplicates hidden" rather than silently dropping rows.
 function _dedupeByMedia(moments) {
-  const seen = new Set();
+  const list = moments || [];
+  const winner = _mediaWinners(list);
   const out = [];
   let dupes = 0;
-  for (const m of (moments || [])) {
+  for (const m of list) {
     const key = _mediaIdentity(m);
-    if (key && seen.has(key)) { dupes++; continue; }
-    if (key) seen.add(key);
+    if (key && winner.get(key) !== m) { dupes++; continue; }
     out.push(m);
   }
   out.duplicateCount = dupes;
   return out;
+}
+
+// media identity -> the one record that speaks for it. Separate from the
+// walk that USES it so the whole-library pass can pick winners across every
+// night first and still leave each winner in its own night.
+function _mediaWinners(list) {
+  const winner = new Map();
+  for (const m of (list || [])) {
+    if (!m) continue;
+    const key = _mediaIdentity(m);
+    if (!key) continue;
+    const cur = winner.get(key);
+    if (!cur || _mediaAttributionRank(m) > _mediaAttributionRank(cur)) winner.set(key, m);
+  }
+  return winner;
 }
 
 // Dedupe across the WHOLE library, not per group.
@@ -3713,25 +3750,34 @@ function _dedupeByMedia(moments) {
 // the losing records are handed back keyed by the winner so they stay
 // reachable (#210: a record that is in no group at all is an orphan).
 function _dedupeLibrary(all) {
-  const seen = new Map();          // media identity -> canonical record
+  const nights = Object.keys(all || {});
+  // Winners are chosen over the WHOLE library first (proven beats a guess,
+  // see _mediaAttributionRank) and only then placed. Choosing while walking
+  // would let a night's arrival order decide, and swapping a winner in during
+  // the walk would file it under the losing record's night.
+  const flat = [];
+  for (const night of nights) {
+    const arr = all[night];
+    if (Array.isArray(arr)) for (const m of arr) flat.push(m);
+  }
+  const winner = _mediaWinners(flat);
   const dupsByCanonical = new Map(); // canonical record id -> losing records
   const byNight = {};
   let unique = 0;
-  for (const night of Object.keys(all || {})) {
+  for (const night of nights) {
     const arr = all[night];
     if (!Array.isArray(arr)) { byNight[night] = []; continue; }
     const keep = [];
     for (const m of arr) {
       if (!m) continue;
       const key = _mediaIdentity(m);
-      if (key && seen.has(key)) {
-        const canon = seen.get(key);
+      if (key && winner.get(key) !== m) {
+        const canon = winner.get(key);
         const list = dupsByCanonical.get(canon.id) || [];
         list.push(m);
         dupsByCanonical.set(canon.id, list);
         continue;
       }
-      if (key) seen.set(key, m);
       keep.push(m);
       unique++;
     }

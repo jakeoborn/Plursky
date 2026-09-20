@@ -82,12 +82,33 @@ function momentsForFestival(all, festivalId, opts) {
   }
   return out;
 }
-function unattributedMoments(all) {
-  var out = [];
+function _provenMediaIdentities(all) {
+  var proven = new Set();
+  var id = m => typeof _mediaIdentity === "function" ? _mediaIdentity(m) : m._fingerprint || m.photoId || m.id || null;
   for (var night of Object.keys(all || {})) {
     var arr = all[night];
     if (!Array.isArray(arr)) continue;
-    for (var m of arr) if (m && (!m.festivalId || m.festivalAttribution === "unresolved")) out.push(m);
+    for (var m of arr) {
+      if (!m || !m.festivalId || m.festivalAttribution === "unresolved") continue;
+      var key = id(m);
+      if (key) proven.add(key);
+    }
+  }
+  return proven;
+}
+function unattributedMoments(all) {
+  var out = [];
+  var proven = _provenMediaIdentities(all);
+  var id = m => typeof _mediaIdentity === "function" ? _mediaIdentity(m) : m._fingerprint || m.photoId || m.id || null;
+  for (var night of Object.keys(all || {})) {
+    var arr = all[night];
+    if (!Array.isArray(arr)) continue;
+    for (var m of arr) {
+      if (!m || m.festivalId && m.festivalAttribution !== "unresolved") continue;
+      var key = id(m);
+      if (key && proven.has(key)) continue;
+      out.push(m);
+    }
   }
   return out;
 }
