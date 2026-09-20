@@ -47,20 +47,26 @@ function TopBar({
       justifyContent: "space-between",
       gap: 12
     }
-  }, React.createElement("div", null, sub && React.createElement("div", {
+  }, React.createElement("div", {
+    style: {
+      minWidth: 0,
+      overflowWrap: "anywhere"
+    }
+  }, sub && React.createElement("div", {
     style: {
       fontSize: 11,
-      lineHeight: "14px",
+      lineHeight: 1.27,
       fontWeight: 600,
       letterSpacing: "0.04em",
       textTransform: "uppercase",
       color: "var(--text-2)",
       marginBottom: 4
     }
-  }, sub), React.createElement("div", {
+  }, sub), React.createElement("h1", {
     style: {
+      margin: 0,
       fontSize: 28,
-      lineHeight: "34px",
+      lineHeight: 1.21,
       fontWeight: 700,
       letterSpacing: "-0.01em"
     }
@@ -143,6 +149,7 @@ function TabBar({
         color: on ? "var(--signal-ink)" : "var(--text-2)",
         minWidth: 64,
         minHeight: 49,
+        maxWidth: "100%",
         transition: "color 0.15s ease"
       }
     }, React.createElement(Icon, {
@@ -150,8 +157,12 @@ function TabBar({
     }), React.createElement("span", {
       style: {
         fontSize: 12,
-        lineHeight: "14px",
+        lineHeight: 1.17,
         fontWeight: on ? 600 : 500,
+        minWidth: 0,
+        maxWidth: "100%",
+        overflowWrap: "anywhere",
+        textAlign: "center",
         transition: "color 0.15s"
       }
     }, t.label));
@@ -1550,7 +1561,8 @@ function FestivalThumb({
       fontWeight: 850,
       letterSpacing: "0.04em",
       color: "var(--media-ink)",
-      textShadow: "0 1px 8px rgba(0,0,0,.5)"
+      textShadow: "0 1px 8px rgba(0,0,0,.5)",
+      lineHeight: 1
     }
   }, art ? React.createElement("img", {
     src: `./${art}`,
@@ -2482,7 +2494,7 @@ function StatusStrip() {
   return (React.createElement("div", {
       style: {
         flexShrink: 0,
-        height: 24,
+        minHeight: 24,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -2490,7 +2502,7 @@ function StatusStrip() {
         background: "var(--paper)",
         borderBottom: "1px solid var(--line)",
         fontSize: 12,
-        lineHeight: "16px",
+        lineHeight: 1.33,
         fontWeight: 500,
         fontVariantNumeric: "tabular-nums",
         color: "var(--text-2)"

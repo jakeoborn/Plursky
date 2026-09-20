@@ -2380,39 +2380,107 @@ async function _sweepOrphanPosters() {
     return 0;
   }
 }
-function useMomentPhoto(photoId, enabled = true) {
-  var [url, setUrl] = React.useState(null);
+var _MEDIA_NONE = "none",
+  _MEDIA_LOADING = "loading",
+  _MEDIA_READY = "ready";
+var _MEDIA_UNAVAILABLE = "unavailable",
+  _MEDIA_OFFLINE = "offline",
+  _MEDIA_ERROR = "error";
+function useMomentMedia(photoId, enabled = true) {
+  var [st, setSt] = React.useState(() => ({
+    url: null,
+    status: photoId && enabled ? _MEDIA_LOADING : _MEDIA_NONE
+  }));
+  var [attempt, setAttempt] = React.useState(0);
   React.useEffect(() => {
     if (!photoId || !enabled) {
-      setUrl(null);
+      setSt({
+        url: null,
+        status: _MEDIA_NONE
+      });
       return;
     }
     var cancelled = false;
     var objectUrl = null;
+    setSt(s => s.status === _MEDIA_LOADING && !s.url ? s : {
+      url: null,
+      status: _MEDIA_LOADING
+    });
+    var settle = next => {
+      if (!cancelled) setSt(next);
+    };
     _getPhoto(photoId).then(async blob => {
       if (cancelled) return;
-      if (!blob && typeof window.sbDownloadMomentMedia === "function") {
+      if (!blob) {
+        var announceOffline = () => {
+          try {
+            window.dispatchEvent(new CustomEvent("plursky-media-offline"));
+          } catch {}
+        };
+        if (typeof window.sbDownloadMomentMedia !== "function") {
+          var _st = typeof navigator !== "undefined" && navigator.onLine === false ? _MEDIA_OFFLINE : _MEDIA_UNAVAILABLE;
+          if (_st === _MEDIA_OFFLINE) announceOffline();
+          settle({
+            url: null,
+            status: _st
+          });
+          return;
+        }
+        var cloud = null;
         try {
-          var cloud = await window.sbDownloadMomentMedia(photoId);
-          if (cancelled) return;
-          if (cloud) {
-            try {
-              await _putPhoto(photoId, cloud);
-            } catch {}
-            blob = cloud;
-          }
+          cloud = await window.sbDownloadMomentMedia(photoId);
+        } catch {
+          announceOffline();
+          settle({
+            url: null,
+            status: _MEDIA_OFFLINE
+          });
+          return;
+        }
+        if (cancelled) return;
+        if (!cloud) {
+          settle({
+            url: null,
+            status: _MEDIA_UNAVAILABLE
+          });
+          return;
+        }
+        try {
+          await _putPhoto(photoId, cloud);
         } catch {}
+        blob = cloud;
       }
-      if (cancelled || !blob) return;
+      if (cancelled) return;
       objectUrl = URL.createObjectURL(blob);
-      setUrl(objectUrl);
-    }).catch(() => {});
+      settle({
+        url: objectUrl,
+        status: _MEDIA_READY
+      });
+    }).catch(() => settle({
+      url: null,
+      status: _MEDIA_ERROR
+    }));
     return () => {
       cancelled = true;
       if (objectUrl) URL.revokeObjectURL(objectUrl);
     };
-  }, [photoId, enabled]);
-  return url;
+  }, [photoId, enabled, attempt]);
+  var retry = React.useCallback(() => setAttempt(a => a + 1), []);
+  var offline = st.status === _MEDIA_OFFLINE;
+  React.useEffect(() => {
+    if (!offline) return;
+    var back = () => setAttempt(a => a + 1);
+    window.addEventListener("online", back);
+    return () => window.removeEventListener("online", back);
+  }, [offline]);
+  return {
+    url: st.url,
+    status: st.status,
+    retry
+  };
+}
+function useMomentPhoto(photoId, enabled = true) {
+  return useMomentMedia(photoId, enabled).url;
 }
 var _posterInflight = new Map();
 var _posterQueue = [];
@@ -2513,11 +2581,14 @@ function useMomentThumb(moment, enabled = true) {
       if (objUrl) URL.revokeObjectURL(objUrl);
     };
   }, [enabled, isVideo, id]);
-  var mediaUrl = useMomentPhoto(!isVideo ? moment && moment.photoId || null : null, enabled);
+  var photo = useMomentMedia(!isVideo ? moment && moment.photoId || null : null, enabled);
+  var status = !enabled || !moment || !moment.photoId ? _MEDIA_NONE : isVideo ? posterUrl ? _MEDIA_READY : noPoster ? _MEDIA_UNAVAILABLE : _MEDIA_LOADING : photo.status;
   return {
-    url: posterUrl || mediaUrl,
+    url: posterUrl || photo.url,
     isPoster: !!posterUrl,
-    noPoster: isVideo && noPoster && !posterUrl
+    noPoster: isVideo && noPoster && !posterUrl,
+    status,
+    retry: photo.retry
   };
 }
 function _ThumbMedia({
@@ -2563,6 +2634,52 @@ function _ThumbMedia({
         fontWeight: 700
       }
     }, moment.duration ? _fmtClock(moment.duration) : "VIDEO"));
+  }
+  var st = thumb && thumb.status;
+  if (st === _MEDIA_UNAVAILABLE || st === _MEDIA_OFFLINE || st === _MEDIA_ERROR) {
+    var copy = st === _MEDIA_OFFLINE ? {
+      glyph: "☁",
+      line: "Offline"
+    } : st === _MEDIA_ERROR ? {
+      glyph: "!",
+      line: "Error"
+    } : {
+      glyph: "✕",
+      line: "Missing"
+    };
+    return React.createElement("div", {
+      role: "img",
+      "aria-label": `${label} — ${st === _MEDIA_OFFLINE ? "unavailable offline, retry when connected" : st === _MEDIA_ERROR ? "could not be read" : "media unavailable"}`,
+      style: {
+        ...fill,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 2,
+        boxSizing: "border-box",
+        padding: 4,
+        overflow: "hidden",
+        background: "var(--paper-3)",
+        color: "var(--text-2)",
+        textAlign: "center"
+      }
+    }, React.createElement("span", {
+      "aria-hidden": "true",
+      style: {
+        fontSize: 13,
+        lineHeight: 1
+      }
+    }, copy.glyph), React.createElement("span", {
+      className: "mono",
+      style: {
+        fontSize: 8,
+        letterSpacing: 0.6,
+        fontWeight: 700,
+        maxWidth: "100%",
+        overflow: "hidden"
+      }
+    }, copy.line));
   }
   return React.createElement("div", {
     className: "skel",
@@ -5236,9 +5353,29 @@ function _GroupHeroThumb({
     }
   }, "▶"));
 }
+function _mediaIdentity(m) {
+  if (!m) return null;
+  return m._fingerprint || m.photoId || m.id || null;
+}
+function _dedupeByMedia(moments) {
+  var seen = new Set();
+  var out = [];
+  var dupes = 0;
+  for (var m of moments || []) {
+    var key = _mediaIdentity(m);
+    if (key && seen.has(key)) {
+      dupes++;
+      continue;
+    }
+    if (key) seen.add(key);
+    out.push(m);
+  }
+  out.duplicateCount = dupes;
+  return out;
+}
 function _peakWindow(moments, windowMs) {
   windowMs = windowMs || 20 * 60000;
-  var timed = (moments || []).filter(m => m.photoId).map(m => ({
+  var timed = _dedupeByMedia(moments || []).filter(m => m.photoId).map(m => ({
     m,
     t: _momentCaptureMs(m)
   })).filter(x => x.t > 0).sort((a, b) => a.t - b.t);
@@ -5256,7 +5393,10 @@ function _peakWindow(moments, windowMs) {
       };
     }
   }
-  return best && best.items.length >= 3 ? best : null;
+  if (!best || best.items.length < 3) return null;
+  best.windowMs = windowMs;
+  best.spanMs = Math.max(0, best.endMs - best.startMs);
+  return best;
 }
 function _clock12(ms) {
   var d = new Date(ms);
@@ -5265,6 +5405,11 @@ function _clock12(ms) {
   var ap = h >= 12 ? "PM" : "AM";
   h = h % 12 || 12;
   return `${h}:${String(mn).padStart(2, "0")} ${ap}`;
+}
+function _fmtSpanMins(ms) {
+  var mins = Math.floor((ms || 0) / 60000);
+  if (mins <= 0) return "under a minute";
+  return `${mins} minute${mins === 1 ? "" : "s"}`;
 }
 function PeakMomentCard({
   peak,
@@ -5278,6 +5423,9 @@ function PeakMomentCard({
     startMs,
     endMs
   } = peak;
+  var windowMs = peak.windowMs || 20 * 60000;
+  var spanMs = typeof peak.spanMs === "number" ? peak.spanMs : Math.max(0, endMs - startMs);
+  var windowLabel = _fmtSpanMins(windowMs);
   var a = accent || "var(--ember)";
   return React.createElement("div", {
     style: {
@@ -5292,15 +5440,18 @@ function PeakMomentCard({
     style: {
       display: "flex",
       alignItems: "center",
-      gap: 9
+      gap: 9,
+      flexWrap: "wrap",
+      rowGap: 8
     }
   }, React.createElement("span", {
     style: {
       fontSize: 15
-    }
+    },
+    "aria-hidden": "true"
   }, "🔥"), React.createElement("div", {
     style: {
-      flex: 1,
+      flex: "1 1 160px",
       minWidth: 0
     }
   }, React.createElement("div", {
@@ -5311,24 +5462,25 @@ function PeakMomentCard({
       fontWeight: 800,
       color: a
     }
-  }, "YOUR PEAK · 20 MIN"), React.createElement("div", {
+  }, "YOUR PEAK"), React.createElement("div", {
     className: "serif",
     style: {
       fontSize: 17,
       color: "var(--ink)",
-      lineHeight: 1.1,
+      lineHeight: 1.15,
       marginTop: 1
     }
-  }, items.length, " moments in 20 minutes"), React.createElement("div", {
+  }, items.length, " moment", items.length === 1 ? "" : "s", " in your busiest ", windowLabel), React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 9,
       letterSpacing: 1,
       color: "var(--muted)",
       fontWeight: 600,
-      marginTop: 2
+      marginTop: 2,
+      lineHeight: 1.5
     }
-  }, _clock12(startMs), " – ", _clock12(endMs))), onPlayReel && React.createElement("button", {
+  }, _clock12(startMs), " – ", _clock12(endMs), " · captures span ", _fmtSpanMins(spanMs))), onPlayReel && React.createElement("button", {
     onClick: () => {
       try {
         window.plurskyHaptic?.("MEDIUM");
@@ -5342,13 +5494,16 @@ function PeakMomentCard({
       color: "var(--ink)",
       border: "none",
       borderRadius: 999,
-      padding: "7px 13px",
+      padding: "0 14px",
+      minHeight: 44,
+      minWidth: 44,
       cursor: "pointer",
       fontSize: 9,
       letterSpacing: 1.2,
       fontWeight: 800,
       display: "flex",
       alignItems: "center",
+      justifyContent: "center",
       gap: 5
     }
   }, "▶ RELIVE")), React.createElement("div", {
@@ -6439,7 +6594,9 @@ function ImportReview({
       border: "none",
       color: "var(--ember-ink)",
       cursor: "pointer",
-      padding: 0
+      padding: "0 8px",
+      minHeight: 44,
+      minWidth: 44
     }
   }, "SELECT THESE"))), React.createElement("div", {
     style: {
@@ -6490,19 +6647,36 @@ function ImportReview({
       "aria-checked": on,
       "aria-label": `Select ${_momentMediaLabel(r.m)}`,
       style: {
-        width: 24,
-        height: 24,
-        borderRadius: 6,
+        width: 44,
+        height: 44,
+        minWidth: 44,
+        minHeight: 44,
         flexShrink: 0,
         cursor: "pointer",
         padding: 0,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        border: "none",
+        background: "transparent"
+      }
+    }, React.createElement("span", {
+      "aria-hidden": "true",
+      style: {
+        width: 24,
+        height: 24,
+        borderRadius: 6,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        boxSizing: "border-box",
         border: on ? "none" : "1.5px solid var(--line-2)",
         background: on ? "var(--ink)" : "transparent",
         color: "var(--paper)",
         fontSize: 13,
         lineHeight: "24px"
       }
-    }, on ? "✓" : ""), React.createElement(_ReviewThumb, {
+    }, on ? "✓" : "")), React.createElement(_ReviewThumb, {
       moment: r.m
     }), React.createElement("button", {
       onClick: () => setPicking([r.id]),
@@ -6582,7 +6756,8 @@ function ImportReview({
     style: {
       ...mono,
       fontSize: 10,
-      padding: "11px 14px",
+      minHeight: 44,
+      padding: "0 14px",
       borderRadius: 12,
       border: "1px solid var(--line-2)",
       background: "transparent",
@@ -6596,7 +6771,8 @@ function ImportReview({
     style: {
       ...mono,
       fontSize: 10,
-      padding: "11px 16px",
+      minHeight: 44,
+      padding: "0 16px",
       borderRadius: 12,
       border: "none",
       background: "var(--ink)",
@@ -6610,6 +6786,7 @@ function ImportReview({
     className: "mono",
     style: {
       width: "100%",
+      minHeight: 44,
       padding: "12px 0",
       borderRadius: 12,
       border: "none",
@@ -6825,15 +7002,22 @@ function StorageManager({
         cursor: "pointer",
         fontSize: 9,
         letterSpacing: 1,
-        fontWeight: 700
+        fontWeight: 700,
+        minHeight: 44,
+        minWidth: 44
       }
     }, busy ? "..." : "DELETE")) : React.createElement("button", {
       onClick: () => setConfirming(d.n),
       "aria-label": "Clear night",
       className: "mono",
       style: {
-        padding: "4px 9px",
+        minHeight: 44,
+        minWidth: 44,
+        padding: "0 12px",
         borderRadius: 999,
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
         background: "transparent",
         border: "1px solid var(--line-2)",
         color: "var(--muted)",
@@ -6905,6 +7089,7 @@ function StorageManager({
     onClick: () => setConfirming("all"),
     className: "mono",
     style: {
+      minHeight: 44,
       padding: "8px 14px",
       width: "100%",
       borderRadius: 8,
@@ -8628,13 +8813,15 @@ function _NightMap({
     }
   }, React.createElement("button", {
     onClick: () => setOpen(o => !o),
+    "aria-expanded": open,
     className: "mono",
     style: {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
       width: "100%",
-      padding: "9px 12px",
+      minHeight: 44,
+      padding: "0 12px",
       borderRadius: 10,
       background: "var(--paper-2)",
       border: "1px solid var(--line)",
@@ -8644,7 +8831,18 @@ function _NightMap({
       letterSpacing: 1.3,
       fontWeight: 700
     }
-  }, React.createElement("span", null, "📍 WHERE THIS NIGHT HAPPENED"), React.createElement("span", null, open ? "▾" : "▸")), open && React.createElement("div", {
+  }, React.createElement("span", {
+    style: {
+      minWidth: 0,
+      overflowWrap: "anywhere",
+      textAlign: "left"
+    }
+  }, "📍 WHERE THIS NIGHT HAPPENED"), React.createElement("span", {
+    style: {
+      flexShrink: 0,
+      marginLeft: 8
+    }
+  }, open ? "▾" : "▸")), open && React.createElement("div", {
     style: {
       marginTop: 8
     }
@@ -8667,12 +8865,17 @@ function _NightShareMenu({
     onClick: () => setOpen(o => !o),
     className: "mono",
     style: {
-      background: "var(--ember)",
-      color: "var(--ink)",
+      background: "var(--paper-2)",
+      color: "var(--text-2)",
       border: "none",
       borderRadius: 999,
-      padding: "4px 10px",
+      padding: "0 12px",
       cursor: "pointer",
+      minHeight: 44,
+      minWidth: 44,
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
       fontSize: 9,
       letterSpacing: 1.2,
       fontWeight: 700,
@@ -8759,6 +8962,338 @@ function _groupNightMoments({
     spineIds,
     needsReview
   };
+}
+function _buildLibraryDay({
+  moments,
+  attendedSet,
+  artists,
+  toMin
+}) {
+  var {
+    byArtist,
+    untagged,
+    spineIds,
+    needsReview
+  } = _groupNightMoments({
+    moments,
+    attendedSet,
+    artists,
+    toMin
+  });
+  var find = id => (artists || []).find(a => a.id === id);
+  var shape = raw => {
+    var media = _dedupeByMedia(raw || []);
+    var keep = new Set(media.map(m => m.id));
+    var duplicates = (raw || []).filter(m => !keep.has(m.id));
+    var hero = media.length ? _pickHeroMoment(media) : null;
+    var stack = hero ? media.filter(m => m.id !== hero.id) : media;
+    var ordered = hero ? [hero, ...stack] : media;
+    return {
+      media,
+      hero,
+      stack,
+      ordered,
+      duplicates,
+      count: media.length
+    };
+  };
+  var sets = spineIds.map(aId => {
+    var artist = find(aId);
+    var stage = artist ? (window.STAGES || []).find(s => s.id === artist.stage) : null;
+    var g = shape(byArtist.get(aId) || []);
+    return {
+      key: `set:${aId}`,
+      kind: "set",
+      artistId: aId,
+      artist,
+      stage,
+      setTime: artist && artist.start ? artist.start : null,
+      attendedOnly: g.count === 0,
+      ...g
+    };
+  });
+  var between = {
+    key: "between",
+    kind: "between",
+    ...shape(untagged)
+  };
+  var review = {
+    key: "review",
+    kind: "review",
+    ...shape(needsReview)
+  };
+  var groups = [...sets, between, review].filter(g => g.kind === "set" || g.count > 0 || g.duplicates.length > 0);
+  var moments_ = groups.reduce((n, g) => n + g.count, 0);
+  return {
+    sets,
+    between,
+    review,
+    groups,
+    counts: {
+      sets: sets.length,
+      moments: moments_,
+      duplicates: groups.reduce((n, g) => n + g.duplicates.length, 0)
+    },
+    isEmpty: sets.length === 0 && between.count === 0 && review.count === 0
+  };
+}
+var _LIBRARY_FILTERS = ["all", "clips", "sets", "recaps"];
+function _filterLibraryDay(day, filter) {
+  if (!day || !filter || filter === "all") return day;
+  if (filter === "clips") {
+    var sets = day.sets.filter(s => s.count > 0);
+    var groups = [...sets, day.between, day.review].filter(g => g.count > 0);
+    return {
+      ...day,
+      sets,
+      groups,
+      counts: {
+        ...day.counts,
+        sets: sets.length,
+        moments: groups.reduce((n, g) => n + g.count, 0)
+      },
+      isEmpty: groups.length === 0
+    };
+  }
+  if (filter === "sets") {
+    return {
+      ...day,
+      groups: day.sets,
+      counts: {
+        ...day.counts,
+        moments: day.sets.reduce((n, g) => n + g.count, 0)
+      },
+      isEmpty: day.sets.length === 0
+    };
+  }
+  return {
+    ...day,
+    sets: [],
+    groups: [],
+    counts: {
+      ...day.counts,
+      sets: 0,
+      moments: 0
+    },
+    isEmpty: true
+  };
+}
+function _LibraryCover({
+  moment,
+  onClick,
+  label
+}) {
+  var thumb = useMomentThumb(moment);
+  if (!moment) return null;
+  return React.createElement("button", {
+    onClick: onClick,
+    "aria-label": label || "Open this set's photos",
+    style: {
+      flexShrink: 0,
+      width: 56,
+      height: 56,
+      borderRadius: 12,
+      padding: 0,
+      cursor: "pointer",
+      overflow: "hidden",
+      border: "1px solid var(--line)",
+      background: "var(--paper-2)",
+      position: "relative"
+    }
+  }, React.createElement(_ThumbMedia, {
+    moment: moment,
+    thumb: thumb,
+    showLength: false
+  }), moment.kind === "video" && React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      inset: 0,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "var(--ink)",
+      fontSize: 13,
+      textShadow: "0 1px 2px rgba(var(--shade-rgb),0.6)",
+      pointerEvents: "none"
+    }
+  }, "▶"));
+}
+function _libraryGroupChrome(group) {
+  if (group.kind === "between") {
+    return {
+      eyebrow: "BETWEEN SETS",
+      eyebrowColor: "var(--ember-ink)",
+      spine: "var(--ember)",
+      title: "Other moments",
+      note: null
+    };
+  }
+  if (group.kind === "review") {
+    return {
+      eyebrow: "NEEDS REVIEW",
+      eyebrowColor: "var(--warn)",
+      spine: "var(--warn)",
+      title: "Set not in this festival",
+      note: "Tagged to a set this festival doesn’t have — retag to file it."
+    };
+  }
+  var a = group.artist,
+    s = group.stage;
+  return {
+    eyebrow: [(s && (s.short || s.name) || "").toUpperCase(), group.setTime && typeof fmt12 === "function" ? fmt12(group.setTime) : ""].filter(Boolean).join(" · "),
+    eyebrowColor: "var(--text-2)",
+    spine: "var(--line-2)",
+    title: a && a.name || "Unknown set",
+    note: null
+  };
+}
+function LibraryGroupCard({
+  group,
+  onOpenLightbox,
+  onArtistClick,
+  onReview,
+  bulkRetag
+}) {
+  var chrome = _libraryGroupChrome(group);
+  var n = group.count;
+  var countLabel = group.kind === "set" && n === 0 ? "Caught" : `${n} ${n === 1 ? "clip" : "clips"}`;
+  var openAt = i => onOpenLightbox(group.ordered, i);
+  var titleTap = group.kind === "set" && group.artistId ? () => onArtistClick(group.artistId) : n > 0 ? () => openAt(0) : null;
+  return React.createElement("div", {
+    style: {
+      marginTop: 10,
+      padding: "10px 12px",
+      borderRadius: 14,
+      background: "var(--paper-2)",
+      border: "1px solid var(--line)",
+      minHeight: 64,
+      boxSizing: "border-box"
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 10
+    }
+  }, React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      width: 4,
+      alignSelf: "stretch",
+      minHeight: 40,
+      background: chrome.spine,
+      borderRadius: 3,
+      flexShrink: 0
+    }
+  }), React.createElement("button", {
+    onClick: titleTap || undefined,
+    disabled: !titleTap,
+    style: {
+      flex: 1,
+      minWidth: 0,
+      display: "block",
+      textAlign: "left",
+      padding: "2px 0",
+      background: "transparent",
+      border: "none",
+      color: "var(--ink)",
+      fontFamily: "inherit",
+      cursor: titleTap ? "pointer" : "default",
+      minHeight: 44
+    }
+  }, chrome.eyebrow && React.createElement("span", {
+    className: "mono",
+    style: {
+      display: "block",
+      fontSize: 9,
+      letterSpacing: 1.3,
+      fontWeight: 700,
+      color: chrome.eyebrowColor
+    }
+  }, chrome.eyebrow), React.createElement("span", {
+    className: "serif",
+    style: {
+      display: "block",
+      fontSize: 18,
+      lineHeight: 1.15,
+      color: "var(--ink)",
+      marginTop: 2,
+      overflowWrap: "anywhere"
+    }
+  }, chrome.title)), React.createElement("span", {
+    className: "mono",
+    style: {
+      flexShrink: 0,
+      fontSize: 9,
+      letterSpacing: 1.1,
+      fontWeight: 700,
+      color: n ? "var(--muted)" : "var(--text-2)",
+      fontVariantNumeric: "tabular-nums"
+    }
+  }, countLabel), group.hero && React.createElement(_LibraryCover, {
+    moment: group.hero,
+    onClick: () => openAt(0),
+    label: `Open ${chrome.title} — ${n} ${n === 1 ? "clip" : "clips"}`
+  })), chrome.note && React.createElement("div", {
+    style: {
+      marginTop: 6,
+      fontSize: 13,
+      lineHeight: 1.38,
+      color: "var(--text-2)"
+    }
+  }, chrome.note), group.kind === "set" && n === 0 && React.createElement("div", {
+    style: {
+      marginTop: 6,
+      fontSize: 13,
+      lineHeight: 1.38,
+      color: "var(--text-2)"
+    }
+  }, "You were here · no clips from this set yet"), group.stack.length > 0 && React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fill, minmax(72px, 1fr))",
+      gap: 6,
+      marginTop: 10
+    }
+  }, group.stack.map((m, i) => React.createElement(_GridTile, {
+    key: m.id,
+    moment: m,
+    onClick: () => openAt(i + 1)
+  }))), group.duplicates.length > 0 && React.createElement("button", {
+    onClick: () => onOpenLightbox(group.duplicates, 0),
+    style: {
+      marginTop: 8,
+      minHeight: 44,
+      width: "100%",
+      textAlign: "left",
+      padding: "0 2px",
+      background: "transparent",
+      border: "none",
+      cursor: "pointer",
+      color: "var(--text-2)",
+      fontSize: 13,
+      lineHeight: 1.38,
+      fontFamily: "inherit"
+    }
+  }, group.duplicates.length, " duplicate ", group.duplicates.length === 1 ? "record" : "records", " of this media · View"), group.kind === "review" && n > 0 && onReview && React.createElement("button", {
+    onClick: () => onReview(group.media),
+    style: {
+      marginTop: 8,
+      minHeight: 44,
+      width: "100%",
+      padding: "0 14px",
+      borderRadius: 12,
+      background: "var(--paper-3)",
+      border: "none",
+      cursor: "pointer",
+      color: "var(--ink)",
+      fontSize: 15,
+      lineHeight: 1.33,
+      fontWeight: 600,
+      fontFamily: "inherit"
+    }
+  }, "Retag ", n === 1 ? "this clip" : `these ${n} clips`), group.kind === "between" && bulkRetag);
 }
 function MemoriesScreen({
   state,
@@ -9035,11 +9570,34 @@ function MemoriesScreen({
     _writeMoments(next);
     setAll(next);
   };
+  var [pickerState, setPickerState] = React.useState(null);
+  var _pickerCapability = () => {
+    var cap = window.Capacitor;
+    var isNative = !!cap?.isNativePlatform?.();
+    if (!isNative || !window.__USE_NATIVE_PICKER__) return {
+      native: false,
+      plugin: false
+    };
+    return {
+      native: true,
+      plugin: !!cap.Plugins?.FilePicker?.pickMedia
+    };
+  };
+  var pickerAvailable = React.useMemo(() => {
+    if (pickerState && pickerState.status === "nopicker") return false;
+    var c = _pickerCapability();
+    return !c.native || c.plugin;
+  }, [pickerState]);
   var pickViaNative = async () => {
     var cap = window.Capacitor;
-    if (!cap?.isNativePlatform?.() || !window.__USE_NATIVE_PICKER__) return null;
-    var FilePicker = cap.Plugins?.FilePicker;
-    if (!FilePicker?.pickMedia) return null;
+    var capab = _pickerCapability();
+    if (!capab.native) return {
+      status: "unsupported"
+    };
+    if (!capab.plugin) return {
+      status: "nopicker"
+    };
+    var FilePicker = cap.Plugins.FilePicker;
     try {
       var result = await FilePicker.pickMedia({
         skipTranscoding: false,
@@ -9047,15 +9605,47 @@ function MemoriesScreen({
         readData: false
       });
       var files = result?.files || [];
-      if (files.length === 0) return [];
+      if (files.length === 0) return {
+        status: "cancelled"
+      };
       var out = [];
+      var unreadable = [];
       for (var i = 0; i < files.length; i++) {
         var f = files[i];
         var src = f.path ? cap.convertFileSrc ? cap.convertFileSrc(f.path) : f.path : null;
-        if (!src) continue;
-        var blob = await fetch(src).then(r => r.blob());
+        if (!src) {
+          unreadable.push({
+            name: f.name || `item ${i + 1}`,
+            why: "nofile"
+          });
+          continue;
+        }
+        var blob = null;
+        try {
+          blob = await fetch(src).then(r => r.blob());
+        } catch {
+          unreadable.push({
+            name: f.name || `item ${i + 1}`,
+            why: "unreadable"
+          });
+          continue;
+        }
+        if (!blob || !blob.size) {
+          unreadable.push({
+            name: f.name || `item ${i + 1}`,
+            why: "unreadable"
+          });
+          continue;
+        }
         var isVideo = /^video\//.test(f.mimeType || "") || /\.(mov|mp4|m4v)$/i.test(f.name || "");
         var type = f.mimeType || blob.type || (isVideo ? "video/mp4" : "image/jpeg");
+        if (!/^(image|video)\//.test(type)) {
+          unreadable.push({
+            name: f.name || `item ${i + 1}`,
+            why: "unsupported"
+          });
+          continue;
+        }
         var name = f.name || `pick-${i}.${isVideo ? "mp4" : "jpg"}`;
         var pickedFile = new File([blob], name, {
           type,
@@ -9072,19 +9662,78 @@ function MemoriesScreen({
         }
         out.push(pickedFile);
       }
-      return out;
+      if (out.length === 0) return {
+        status: unreadable.length ? "nofile" : "cancelled",
+        unreadable
+      };
+      return {
+        status: "picked",
+        files: out,
+        unreadable
+      };
     } catch (err) {
-      console.warn('[memories] native pickMedia failed; falling back to web input', err);
-      return null;
+      console.warn('[memories] native pickMedia failed', err);
+      return {
+        status: "error",
+        error: String(err && err.message || err)
+      };
     }
   };
   var handlePickClick = async () => {
-    var nativeFiles = await pickViaNative();
-    if (nativeFiles && nativeFiles.length > 0) {
-      await processImportedFiles(nativeFiles);
-    } else if (nativeFiles === null) {
-      batchInputRef.current?.click();
+    setPickerState(null);
+    var res = await pickViaNative();
+    if (res.status === "picked") {
+      if (res.unreadable && res.unreadable.length) setPickerState({
+        status: "unreadable",
+        detail: res.unreadable
+      });
+      await processImportedFiles(res.files);
+      return;
     }
+    if (res.status === "unsupported") {
+      var el = batchInputRef.current;
+      if (el && typeof el.click === "function") el.click();else setPickerState({
+        status: "nopicker"
+      });
+      return;
+    }
+    if (res.status === "cancelled") return;
+    setPickerState({
+      status: res.status,
+      detail: res.unreadable || res.error || null
+    });
+  };
+  var _pickerMessage = st => {
+    if (!st) return null;
+    if (st.status === "nopicker") return {
+      tone: "warn",
+      title: "Photo picking isn’t available on this build",
+      body: "Import needs the media picker, which this install doesn’t have. Your existing moments, sets and recaps are unaffected.",
+      retry: false
+    };
+    if (st.status === "error") return {
+      tone: "warn",
+      title: "Couldn’t open your photos",
+      body: "The picker returned an error. Nothing was imported.",
+      retry: true
+    };
+    if (st.status === "nofile") return {
+      tone: "warn",
+      title: "Nothing could be read",
+      body: "The items you picked couldn’t be opened — they may still be downloading from iCloud. Nothing was imported.",
+      retry: true
+    };
+    if (st.status === "unreadable") {
+      var n = (st.detail || []).length;
+      var icloud = (st.detail || []).some(d => d.why === "unreadable");
+      return {
+        tone: "warn",
+        title: `${n} ${n === 1 ? "item" : "items"} couldn’t be read`,
+        body: icloud ? "They may still be downloading from iCloud, or aren’t a supported photo or video. Everything else was imported." : "They aren’t a supported photo or video. Everything else was imported.",
+        retry: false
+      };
+    }
+    return null;
   };
   var handleUpdate = (moment, patch) => {
     var next = {
@@ -9146,16 +9795,107 @@ function MemoriesScreen({
     setAll(next);
   };
   var totalCount = Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
+  var [attendedTick, setAttendedTick] = React.useState(0);
+  React.useEffect(() => {
+    var bump = () => setAttendedTick(t => t + 1);
+    window.addEventListener("plursky-attended-change", bump);
+    return () => window.removeEventListener("plursky-attended-change", bump);
+  }, []);
+  var attendedTotal = React.useMemo(() => {
+    try {
+      return (typeof DAYS !== "undefined" ? DAYS : []).reduce((n, d) => {
+        var s = typeof getAttendedForNight === "function" ? getAttendedForNight(d.n) : null;
+        return n + (s && typeof s.size === "number" ? s.size : 0);
+      }, 0);
+    } catch {
+      return 0;
+    }
+  }, [attendedTick, totalCount]);
   var [view, setView] = React.useState(() => {
     try {
-      if (state.memoriesView === "night" || state.memoriesView === "grid") return state.memoriesView;
+      if (state.memoriesView === "night") return "library";
+      if (state.memoriesView === "library" || state.memoriesView === "grid") return state.memoriesView;
       var v = localStorage.getItem("plursky_memories_view_v1");
-      if (["grid", "night"].includes(v)) return v;
-      if (["story", "map", "artist", "stage"].includes(v)) return "night";
+      if (v === "library" || v === "grid") return v;
+      if (["night", "story", "map", "artist", "stage"].includes(v)) return "library";
     } catch {}
-    return "grid";
+    return "library";
   });
   var [memQuery, setMemQuery] = React.useState("");
+  var _festKey = FESTIVAL_CONFIG && FESTIVAL_CONFIG.id;
+  var _view0 = React.useMemo(() => {
+    try {
+      return typeof readFestivalView === "function" ? readFestivalView(_festKey) : {};
+    } catch {
+      return {};
+    }
+  }, [_festKey]);
+  var [filter, setFilter] = React.useState(() => typeof _LIBRARY_FILTERS !== "undefined" && _LIBRARY_FILTERS.includes(_view0.filter) ? _view0.filter : "all");
+  var [collapsedDays, setCollapsedDays] = React.useState(() => new Set(Array.isArray(_view0.collapsed) ? _view0.collapsed : []));
+  var scrollRef = React.useRef(null);
+  var [offlineMedia, setOfflineMedia] = React.useState(false);
+  var [mediaEpoch, setMediaEpoch] = React.useState(0);
+  React.useEffect(() => {
+    var seen = () => setOfflineMedia(true);
+    window.addEventListener("plursky-media-offline", seen);
+    var back = () => {
+      setOfflineMedia(false);
+      setMediaEpoch(e => e + 1);
+    };
+    window.addEventListener("online", back);
+    return () => {
+      window.removeEventListener("plursky-media-offline", seen);
+      window.removeEventListener("online", back);
+    };
+  }, []);
+  var retryMedia = React.useCallback(() => {
+    setOfflineMedia(false);
+    setMediaEpoch(e => e + 1);
+  }, []);
+  var toggleDay = React.useCallback(n => {
+    setCollapsedDays(prev => {
+      var next = new Set(prev);
+      if (next.has(n)) next.delete(n);else next.add(n);
+      return next;
+    });
+  }, []);
+  React.useEffect(() => {
+    try {
+      if (typeof writeFestivalView === "function") writeFestivalView(_festKey, {
+        filter,
+        collapsed: [...collapsedDays]
+      });
+    } catch {}
+  }, [_festKey, filter, collapsedDays]);
+  React.useEffect(() => {
+    var el = scrollRef.current;
+    if (!el) return;
+    var want = +(_view0.scroll || 0);
+    if (want > 0) {
+      try {
+        el.scrollTop = want;
+      } catch {}
+    }
+    var t = null;
+    var onScroll = () => {
+      if (t) return;
+      t = setTimeout(() => {
+        t = null;
+        try {
+          if (typeof writeFestivalView === "function") writeFestivalView(_festKey, {
+            scroll: el.scrollTop
+          });
+        } catch {}
+      }, 250);
+    };
+    el.addEventListener("scroll", onScroll, {
+      passive: true
+    });
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      if (t) clearTimeout(t);
+    };
+  }, [_festKey]);
   var [manage, setManage] = React.useState(false);
   React.useEffect(() => {
     try {
@@ -9291,19 +10031,20 @@ function MemoriesScreen({
       tab: "recap",
       artist: null
     }))
-  }), React.createElement("div", {
+  }), React.createElement(ScrollBody, {
+    ref: scrollRef,
     style: {
-      padding: "8px 20px"
+      padding: "0 20px calc(94px + env(safe-area-inset-bottom, 0px))"
+    }
+  }, React.createElement("div", {
+    style: {
+      margin: "0 -20px"
     }
   }, React.createElement(TopBar, {
     title: React.createElement("span", null, "Memories"),
     sub: `${totalCount} ${totalCount === 1 ? "MOMENT" : "MOMENTS"} · ${FESTIVAL_CONFIG.shortName.toUpperCase()}`,
     tight: true
-  })), React.createElement(ScrollBody, {
-    style: {
-      padding: "0 20px 94px"
-    }
-  }, React.createElement("input", {
+  })), React.createElement("input", {
     ref: batchInputRef,
     type: "file",
     accept: "image/*,video/*",
@@ -9312,7 +10053,7 @@ function MemoriesScreen({
     style: {
       display: "none"
     }
-  }), React.createElement("button", {
+  }), pickerAvailable && totalCount > 0 && React.createElement("button", {
     onClick: handlePickClick,
     disabled: !!batch && batch.done < batch.total,
     style: {
@@ -9339,30 +10080,95 @@ function MemoriesScreen({
   }, "✨"), React.createElement("span", {
     style: {
       flex: 1,
-      minWidth: 0
+      minWidth: 0,
+      overflowWrap: "anywhere"
     }
   }, React.createElement("span", {
     style: {
       display: "block",
       fontSize: 17,
-      lineHeight: "22px",
+      lineHeight: 1.29,
       fontWeight: 600
     }
   }, "Import from camera roll"), React.createElement("span", {
     style: {
       display: "block",
       fontSize: 13,
-      lineHeight: "18px",
+      lineHeight: 1.38,
       color: "var(--text-2)"
     }
   }, "Auto-tags by time and location")), React.createElement("span", {
     style: {
       fontSize: 15,
-      lineHeight: "20px",
+      lineHeight: 1.33,
       fontWeight: 600,
       fontVariantNumeric: "tabular-nums"
     }
-  }, batch && batch.done < batch.total ? `${batch.done}/${batch.total}` : "Pick")), !batch && reviewIds.length > 0 && React.createElement("button", {
+  }, batch && batch.done < batch.total ? `${batch.done}/${batch.total}` : "Pick")), (() => {
+    var msg = _pickerMessage(pickerState);
+    if (!msg) return null;
+    return React.createElement("div", {
+      role: "status",
+      style: {
+        marginTop: 12,
+        padding: "12px 14px",
+        borderRadius: 14,
+        background: "var(--paper-2)",
+        border: "1px solid var(--line)"
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 15,
+        lineHeight: 1.33,
+        fontWeight: 600,
+        color: "var(--warn)"
+      }
+    }, msg.title), React.createElement("p", {
+      style: {
+        margin: "4px 0 0",
+        fontSize: 13,
+        lineHeight: 1.38,
+        color: "var(--text-2)"
+      }
+    }, msg.body), React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 8,
+        marginTop: 8,
+        flexWrap: "wrap"
+      }
+    }, msg.retry && React.createElement("button", {
+      onClick: handlePickClick,
+      style: {
+        minHeight: 44,
+        padding: "0 14px",
+        borderRadius: 12,
+        border: "none",
+        cursor: "pointer",
+        background: "var(--paper-3)",
+        color: "var(--ink)",
+        fontSize: 15,
+        lineHeight: 1.33,
+        fontWeight: 600,
+        fontFamily: "inherit"
+      }
+    }, "Try again"), React.createElement("button", {
+      onClick: () => setPickerState(null),
+      style: {
+        minHeight: 44,
+        padding: "0 14px",
+        borderRadius: 12,
+        border: "none",
+        cursor: "pointer",
+        background: "transparent",
+        color: "var(--text-2)",
+        fontSize: 15,
+        lineHeight: 1.33,
+        fontWeight: 600,
+        fontFamily: "inherit"
+      }
+    }, "Dismiss")));
+  })(), !batch && reviewIds.length > 0 && React.createElement("button", {
     "data-review-later": true,
     onClick: () => setReview(reviewIds.map(id => ({
       momentId: id
@@ -9373,16 +10179,17 @@ function MemoriesScreen({
       textAlign: "left",
       marginTop: 8,
       minHeight: 44,
-      padding: "0 16px",
+      padding: "8px 16px",
       borderRadius: 14,
       cursor: "pointer",
       background: "var(--paper-2)",
       border: "none",
       color: "var(--warn)",
       fontSize: 15,
-      lineHeight: "20px",
+      lineHeight: 1.33,
       fontWeight: 600,
-      fontFamily: "inherit"
+      fontFamily: "inherit",
+      overflowWrap: "anywhere"
     }
   }, "⚑ ", reviewIds.length, " ", reviewIds.length === 1 ? "moment needs" : "moments need", " a set · Review"), batch && batch.done === batch.total && (() => {
     var tagged = batch.results.filter(r => !r.err && !r.skipped && r.artistId).length;
@@ -9411,7 +10218,7 @@ function MemoriesScreen({
     }, React.createElement("div", {
       style: {
         fontSize: 15,
-        lineHeight: "20px",
+        lineHeight: 1.33,
         fontWeight: 600,
         color: allTagged ? "var(--signal-ink)" : "var(--warn)"
       }
@@ -9419,93 +10226,18 @@ function MemoriesScreen({
       style: {
         marginTop: 4,
         fontSize: 13,
-        lineHeight: "18px",
+        lineHeight: 1.38,
         color: "var(--text-2)"
       }
     }, "iOS sometimes strips photo time when copying — tap an untagged moment to pick its set."), React.createElement("div", {
       style: {
         marginTop: 4,
         fontSize: 13,
-        lineHeight: "18px",
+        lineHeight: 1.38,
         color: "var(--text-2)"
       }
     }, batch.results.some(r => r.momentId) ? "Tap to review tags" : "Tap to dismiss"));
-  })(), allMoments.filter(m => m.photoId).length >= 3 && React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 12,
-      width: "100%",
-      minHeight: 64,
-      marginTop: 12,
-      padding: "10px 16px",
-      background: "var(--paper-2)",
-      border: "none",
-      borderRadius: 14,
-      color: "var(--ink)",
-      textAlign: "left",
-      fontFamily: "inherit"
-    }
-  }, React.createElement("div", {
-    style: {
-      flex: 1,
-      minWidth: 0
-    }
-  }, React.createElement("div", {
-    style: {
-      fontSize: 17,
-      lineHeight: "22px",
-      fontWeight: 600
-    }
-  }, "Relive your weekend"), React.createElement("div", {
-    style: {
-      fontSize: 13,
-      lineHeight: "18px",
-      color: "var(--text-2)",
-      fontVariantNumeric: "tabular-nums"
-    }
-  }, allMoments.filter(m => m.photoId).length, " moments · auto-play reel")), React.createElement("button", {
-    onClick: () => {
-      var ms = allMoments.filter(m => m.photoId).slice().sort((a, b) => {
-        var ta = a.takenAt || "",
-          tb = b.takenAt || "";
-        if (ta && tb) return ta.localeCompare(tb);
-        return (a.createdAt || 0) - (b.createdAt || 0);
-      });
-      playReel(ms, FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name, null);
-    },
-    style: {
-      flexShrink: 0,
-      minHeight: 44,
-      padding: "0 16px",
-      borderRadius: 14,
-      border: "none",
-      cursor: "pointer",
-      background: "var(--signal)",
-      color: "var(--on-signal)",
-      fontSize: 15,
-      lineHeight: "20px",
-      fontWeight: 600,
-      fontFamily: "inherit"
-    }
-  }, "▶ Play")), totalCount > 0 && React.createElement("div", {
-    style: {
-      display: "flex",
-      justifyContent: "flex-end",
-      marginTop: 8
-    }
-  }, React.createElement("button", {
-    onClick: () => setManage(m => !m),
-    "aria-pressed": manage,
-    style: {
-      ...fieldIconBtn,
-      width: "auto",
-      padding: "0 8px",
-      color: manage ? "var(--ink)" : "var(--text-2)",
-      fontSize: 15,
-      fontWeight: 500
-    }
-  }, manage ? "Done" : "Manage")), manage && backupStat.total > 0 && React.createElement("button", {
+  })(), manage && backupStat.total > 0 && React.createElement("button", {
     onClick: handleBackup,
     disabled: backupBusy,
     "aria-label": _isPlusSub() ? "Back up your memories to the cloud" : "Back up to cloud — Plursky Plus",
@@ -9547,7 +10279,7 @@ function MemoriesScreen({
   }, backupBusy ? "Backing up…" : backupStat.done >= backupStat.total ? "Memories backed up" : "Back up my weekend"), React.createElement("div", {
     style: {
       fontSize: 13,
-      lineHeight: "18px",
+      lineHeight: 1.38,
       marginTop: 2,
       fontVariantNumeric: "tabular-nums",
       color: backupStat.bytes >= _BACKUP_SOFT_CAP ? "var(--warn)" : "var(--text-2)"
@@ -9556,7 +10288,7 @@ function MemoriesScreen({
     style: {
       flexShrink: 0,
       fontSize: 15,
-      lineHeight: "20px",
+      lineHeight: 1.33,
       fontWeight: 600,
       color: _isPlusSub() ? "var(--ink)" : "var(--text-2)"
     }
@@ -9582,7 +10314,7 @@ function MemoriesScreen({
       color: "var(--ink)",
       cursor: "pointer",
       fontSize: 15,
-      lineHeight: "20px",
+      lineHeight: 1.33,
       fontFamily: "inherit"
     }
   }, React.createElement("span", null, "Auto-backup on Wi-Fi"), React.createElement("span", {
@@ -9593,64 +10325,199 @@ function MemoriesScreen({
   }, autoOn ? "On" : "Off")), showPlus && React.createElement(PlusSheet, {
     feature: "cloud backup",
     onClose: () => setShowPlus(false)
-  }), totalCount === 0 && React.createElement("div", {
+  }), totalCount === 0 && attendedTotal === 0 && React.createElement("div", {
     style: {
       marginTop: 24
     }
   }, React.createElement("div", {
     style: {
       fontSize: 20,
-      lineHeight: "25px",
+      lineHeight: 1.25,
       fontWeight: 600
     }
   }, "Your weekend, remembered"), React.createElement("p", {
     style: {
       margin: "6px 0 16px",
       fontSize: 15,
-      lineHeight: "21px",
+      lineHeight: 1.4,
       color: "var(--text-2)"
     }
-  }, "Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap."), React.createElement(FieldButton, {
+  }, pickerAvailable ? "Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap." : "Plursky organises your festival photos and videos by the set you were watching. This build can’t open your photo library, so there’s nothing to import from here yet."), pickerAvailable ? React.createElement(FieldButton, {
     onClick: handlePickClick
-  }, "Import from camera roll")), totalCount > 0 && React.createElement("div", {
+  }, "Import from camera roll") : React.createElement("p", {
+    style: {
+      margin: 0,
+      fontSize: 13,
+      lineHeight: 1.38,
+      color: "var(--text-2)"
+    }
+  }, "Sets you mark as attended on the Lineup still build your library and your recap.")), totalCount === 0 && attendedTotal > 0 && React.createElement("div", {
+    style: {
+      marginTop: 16
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 15,
+      lineHeight: 1.33,
+      fontWeight: 600
+    }
+  }, attendedTotal, " ", attendedTotal === 1 ? "set" : "sets", " caught · no clips yet"), React.createElement("p", {
+    style: {
+      margin: "4px 0 0",
+      fontSize: 13,
+      lineHeight: 1.38,
+      color: "var(--text-2)"
+    }
+  }, pickerAvailable ? "Import photos or videos and they’ll land on the sets below." : "This build can’t open your photo library, so the sets below are your library for now."), pickerAvailable && React.createElement("button", {
+    onClick: handlePickClick,
+    style: {
+      marginTop: 8,
+      minHeight: 44,
+      padding: "0 14px",
+      borderRadius: 12,
+      border: "none",
+      cursor: "pointer",
+      background: "var(--paper-2)",
+      color: "var(--ink)",
+      fontSize: 15,
+      lineHeight: 1.33,
+      fontWeight: 600,
+      fontFamily: "inherit"
+    }
+  }, "Import from camera roll")), (totalCount > 0 || attendedTotal > 0) && React.createElement("div", {
+    style: {
+      marginTop: 16,
+      marginBottom: 8
+    }
+  }, React.createElement("div", {
     role: "tablist",
-    "aria-label": "View",
+    "aria-label": "Library filter",
     style: {
       display: "flex",
-      marginTop: 16,
-      marginBottom: 8,
-      background: "var(--paper-2)",
-      borderRadius: 14
+      gap: 6,
+      flexWrap: "wrap",
+      minWidth: 0
     }
   }, [{
-    id: "grid",
-    label: "Wall"
+    id: "all",
+    label: "All"
   }, {
-    id: "night",
-    label: "Timeline"
-  }].map(v => {
-    var on = view === v.id;
+    id: "clips",
+    label: "Clips"
+  }, {
+    id: "sets",
+    label: "Sets"
+  }, {
+    id: "recaps",
+    label: "Recaps"
+  }].map(f => {
+    var on = view === "library" && filter === f.id;
     return React.createElement("button", {
-      key: v.id,
+      key: f.id,
       role: "tab",
       "aria-selected": on,
-      onClick: () => setView(v.id),
+      onClick: () => {
+        setView("library");
+        setFilter(f.id);
+      },
       style: {
-        flex: 1,
+        flex: "0 0 auto",
         minHeight: 44,
-        borderRadius: 14,
+        padding: "0 14px",
+        borderRadius: 999,
         border: "none",
         cursor: "pointer",
-        background: on ? "var(--paper-3)" : "transparent",
+        background: on ? "var(--paper-3)" : "var(--paper-2)",
         boxShadow: on ? "inset 0 0 0 1.5px var(--signal)" : "none",
         color: on ? "var(--ink)" : "var(--text-2)",
         fontSize: 15,
-        lineHeight: "20px",
+        lineHeight: 1.33,
         fontWeight: 600,
         fontFamily: "inherit"
       }
-    }, v.label);
-  })), view === "grid" && React.createElement(React.Fragment, null, React.createElement("input", {
+    }, f.label);
+  })), React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 4,
+      marginTop: 2
+    }
+  }, React.createElement("button", {
+    onClick: () => setView(v => v === "grid" ? "library" : "grid"),
+    "aria-pressed": view === "grid",
+    style: {
+      minHeight: 44,
+      padding: "0 10px",
+      borderRadius: 12,
+      border: "none",
+      cursor: "pointer",
+      background: "transparent",
+      color: view === "grid" ? "var(--ink)" : "var(--text-2)",
+      fontSize: 15,
+      lineHeight: 1.33,
+      fontWeight: 600,
+      fontFamily: "inherit"
+    }
+  }, view === "grid" ? "← Library" : "Wall →"), React.createElement("span", {
+    style: {
+      flex: 1
+    }
+  }), React.createElement("button", {
+    onClick: () => setManage(m => !m),
+    "aria-pressed": manage,
+    style: {
+      minHeight: 44,
+      padding: "0 10px",
+      borderRadius: 12,
+      background: "transparent",
+      border: "none",
+      cursor: "pointer",
+      color: manage ? "var(--ink)" : "var(--text-2)",
+      fontSize: 15,
+      lineHeight: 1.33,
+      fontWeight: 500,
+      fontFamily: "inherit"
+    }
+  }, manage ? "Done" : "Manage"))), offlineMedia && view === "library" && React.createElement("div", {
+    role: "status",
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      flexWrap: "wrap",
+      rowGap: 6,
+      marginBottom: 8,
+      padding: "10px 14px",
+      borderRadius: 14,
+      background: "var(--paper-2)",
+      border: "1px solid var(--line)"
+    }
+  }, React.createElement("span", {
+    style: {
+      flex: "1 1 180px",
+      minWidth: 0,
+      fontSize: 13,
+      lineHeight: 1.38,
+      color: "var(--text-2)"
+    }
+  }, "Some media is unavailable offline · retry when connected"), React.createElement("button", {
+    onClick: retryMedia,
+    style: {
+      flexShrink: 0,
+      minHeight: 44,
+      padding: "0 14px",
+      borderRadius: 12,
+      border: "none",
+      cursor: "pointer",
+      background: "var(--paper-3)",
+      color: "var(--ink)",
+      fontSize: 15,
+      lineHeight: 1.33,
+      fontWeight: 600,
+      fontFamily: "inherit"
+    }
+  }, "Retry")), view === "grid" && React.createElement(React.Fragment, null, React.createElement("input", {
     value: memQuery,
     onChange: e => setMemQuery(e.target.value),
     placeholder: "Search artist, song, or stage…",
@@ -9679,11 +10546,136 @@ function MemoriesScreen({
       });
     })(),
     onOpenLightbox: openLightbox
-  })), view === "night" && DAYS.map(d => {
+  })), view === "library" && filter === "recaps" && (() => {
+    var mediaCount = _dedupeByMedia(allMoments.filter(m => m.photoId)).length;
+    var archived = (() => {
+      try {
+        return _getRecapArchive()[FESTIVAL_CONFIG.id] || null;
+      } catch {
+        return null;
+      }
+    })();
+    if (mediaCount < 3 && !archived) {
+      return React.createElement("div", {
+        style: {
+          marginTop: 18
+        }
+      }, React.createElement("div", {
+        style: {
+          fontSize: 17,
+          lineHeight: 1.29,
+          fontWeight: 600
+        }
+      }, "No recap yet"), React.createElement("p", {
+        style: {
+          margin: "6px 0 0",
+          fontSize: 15,
+          lineHeight: 1.4,
+          color: "var(--text-2)"
+        }
+      }, mediaCount === 0 ? "Import a few photos or clips and Plursky builds your recap from them." : `${mediaCount} ${mediaCount === 1 ? "moment" : "moments"} so far — a recap needs at least 3.`));
+    }
+    return React.createElement("div", {
+      style: {
+        marginTop: 12
+      }
+    }, React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        width: "100%",
+        minHeight: 64,
+        padding: "10px 14px",
+        background: "var(--paper-2)",
+        borderRadius: 14,
+        flexWrap: "wrap",
+        rowGap: 8
+      }
+    }, React.createElement("div", {
+      style: {
+        flex: "1 1 160px",
+        minWidth: 0
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 17,
+        lineHeight: 1.29,
+        fontWeight: 600
+      }
+    }, FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name, " recap"), React.createElement("div", {
+      style: {
+        fontSize: 13,
+        lineHeight: 1.38,
+        color: "var(--text-2)",
+        fontVariantNumeric: "tabular-nums"
+      }
+    }, mediaCount, " ", mediaCount === 1 ? "moment" : "moments", " · auto-play reel")), React.createElement("button", {
+      onClick: () => {
+        var ms = _dedupeByMedia(allMoments.filter(m => m.photoId)).slice().sort((a, b) => _momentTime(a) - _momentTime(b));
+        playReel(ms, FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name, null);
+      },
+      style: {
+        flexShrink: 0,
+        minHeight: 44,
+        padding: "0 16px",
+        borderRadius: 14,
+        border: "none",
+        cursor: "pointer",
+        background: "var(--signal)",
+        color: "var(--on-signal)",
+        fontSize: 15,
+        lineHeight: 1.33,
+        fontWeight: 600,
+        fontFamily: "inherit"
+      }
+    }, "▶ Play")), React.createElement("button", {
+      onClick: () => setState(s => ({
+        ...s,
+        tab: "recap",
+        artist: null
+      })),
+      style: {
+        width: "100%",
+        marginTop: 8,
+        minHeight: 44,
+        padding: "0 14px",
+        borderRadius: 14,
+        background: "var(--paper-2)",
+        border: "none",
+        cursor: "pointer",
+        textAlign: "left",
+        color: "var(--ink)",
+        fontSize: 15,
+        lineHeight: 1.33,
+        fontWeight: 600,
+        fontFamily: "inherit"
+      }
+    }, "Create recap video"), archived && React.createElement("div", {
+      style: {
+        marginTop: 8,
+        fontSize: 13,
+        lineHeight: 1.38,
+        color: "var(--text-2)"
+      }
+    }, "Archived recap saved for this festival."));
+  })(), view === "library" && filter !== "recaps" && DAYS.map(d => {
     var moments = (all[d.n] || []).slice().sort((a, b) => _momentTime(a) - _momentTime(b));
     var dateInfo = FESTIVAL_CONFIG.dayDates?.[d.n];
     var savedNightArtists = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(a => a && a.day === d.n);
-    return React.createElement("div", {
+    var attendedSet = (typeof getAttendedForNight === "function" ? getAttendedForNight(d.n) : null) || new Set();
+    var dayAll = _buildLibraryDay({
+      moments,
+      attendedSet,
+      artists: ARTISTS,
+      toMin: window.toNightMin
+    });
+    var day = _filterLibraryDay(dayAll, filter);
+    var collapsed = collapsedDays.has(d.n);
+    if (day.isEmpty && !manage) return null;
+    var dayLabel = dateInfo ? `${["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"][dateInfo.m]} ${dateInfo.d}` : `DAY ${d.n}`;
+    var summary = `${day.counts.sets} ${day.counts.sets === 1 ? "set" : "sets"} · ${day.counts.moments} ${day.counts.moments === 1 ? "moment" : "moments"}`;
+    return React.createElement("section", {
       key: d.n,
       ref: el => {
         nightSectionRefs.current[d.n] = el;
@@ -9695,337 +10687,114 @@ function MemoriesScreen({
     }, React.createElement("div", {
       style: {
         display: "flex",
-        alignItems: "baseline",
-        gap: 10,
+        alignItems: "center",
+        gap: 8,
+        flexWrap: "wrap",
+        rowGap: 4,
         paddingTop: 14,
         paddingBottom: 8,
         marginBottom: 4,
         borderBottom: "1px solid var(--line)"
       }
-    }, React.createElement("div", {
+    }, React.createElement("button", {
+      onClick: () => toggleDay(d.n),
+      "aria-expanded": !collapsed,
+      style: {
+        flex: "1 1 auto",
+        minWidth: 0,
+        minHeight: 44,
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        background: "transparent",
+        border: "none",
+        cursor: "pointer",
+        color: "var(--ink)",
+        textAlign: "left",
+        fontFamily: "inherit",
+        padding: 0
+      }
+    }, React.createElement("svg", {
+      "aria-hidden": "true",
+      width: "13",
+      height: "13",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "var(--muted)",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      style: {
+        flexShrink: 0,
+        transform: collapsed ? "rotate(0deg)" : "rotate(90deg)",
+        transition: "transform .2s var(--ease-smooth)"
+      }
+    }, React.createElement("path", {
+      d: "M9 18 L15 12 L9 6"
+    })), React.createElement("span", {
+      style: {
+        minWidth: 0
+      }
+    }, React.createElement("h2", {
       className: "serif",
       style: {
+        display: "inline",
+        margin: 0,
         fontSize: 24,
-        color: "var(--ink)"
+        fontWeight: "inherit",
+        color: "var(--ink)",
+        lineHeight: 1.1
       }
-    }, d.label), React.createElement("div", {
+    }, d.label), React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 9,
         letterSpacing: 1.4,
         color: "var(--muted)",
-        fontWeight: 700
+        fontWeight: 700,
+        marginLeft: 8
       }
-    }, "· ", dateInfo ? `${["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"][dateInfo.m]} ${dateInfo.d}` : `DAY ${d.n}`), moments.length > 0 && React.createElement(React.Fragment, null, React.createElement(_NightShareMenu, {
-      night: d.n,
-      moments: moments
-    }), React.createElement("div", {
+    }, dayLabel), React.createElement("span", {
       className: "mono",
       style: {
+        display: "block",
         fontSize: 9,
         letterSpacing: 1.2,
         color: "var(--muted)",
-        fontWeight: 700
+        fontWeight: 700,
+        marginTop: 3,
+        fontVariantNumeric: "tabular-nums"
       }
-    }, moments.length, " MOMENT", moments.length === 1 ? "" : "S"))), moments.length > 0 && React.createElement(PeakMomentCard, {
-      peak: _peakWindow(moments),
+    }, summary))), day.counts.moments > 0 && React.createElement(_NightShareMenu, {
+      night: d.n,
+      moments: moments
+    })), !collapsed && React.createElement(React.Fragment, null, filter !== "sets" && day.counts.moments > 0 && React.createElement(PeakMomentCard, {
+      peak: _peakWindow(day.groups.flatMap(g => g.media)),
       accent: "var(--ember)",
       onOpenLightbox: openLightbox,
       onPlayReel: items => playReel(items, `${d.label} peak`, d.n)
-    }), moments.length > 0 && React.createElement(_NightMap, {
+    }), filter === "all" && day.counts.moments > 0 && React.createElement(_NightMap, {
       moments: moments,
       onPinTap: p => openLightbox(p.items, 0)
-    }), moments.length === 0 && adding !== d.n && React.createElement("div", {
-      style: {
-        padding: "18px 14px",
-        textAlign: "center",
-        border: "1px dashed var(--line-2)",
-        borderRadius: 14,
-        background: "var(--paper-2)",
-        marginTop: 10,
-        marginBottom: 10
-      }
-    }, React.createElement("div", {
-      className: "mono",
-      style: {
-        fontSize: 9,
-        letterSpacing: 1.3,
-        color: "var(--muted)",
-        fontWeight: 700
-      }
-    }, "NO MOMENTS YET")), (() => {
-      var attendedSet = (typeof getAttendedForNight === "function" ? getAttendedForNight(d.n) : null) || new Set();
-      var {
-        byArtist,
-        untagged,
-        spineIds,
-        needsReview
-      } = _groupNightMoments({
-        moments,
-        attendedSet,
-        artists: ARTISTS,
-        toMin: window.toNightMin
-      });
-      if (!spineIds.length && !untagged.length && !needsReview.length) return null;
-      return React.createElement(React.Fragment, null, spineIds.length > 0 && React.createElement("div", {
-        className: "mono",
-        style: {
-          fontSize: 9,
-          letterSpacing: 1.4,
-          color: "var(--muted)",
-          fontWeight: 700,
-          marginTop: 14,
-          marginBottom: 2
-        }
-      }, "SETS YOU WATCHED"), spineIds.map(aId => {
-        var artist = ARTISTS.find(x => x.id === aId);
-        var stage = artist ? STAGES.find(s => s.id === artist.stage) : null;
-        var accent = "var(--text-2)";
-        var groupMoments = byArtist.get(aId) || [];
-        var hero = groupMoments.length ? _pickHeroMoment(groupMoments) : null;
-        var orderedMoments = hero ? [hero, ...groupMoments.filter(m => m.id !== hero.id)] : groupMoments;
-        var setTime = artist?.start ? fmt12(artist.start) : "";
-        return React.createElement("div", {
-          key: aId,
-          style: {
-            marginTop: 10
-          }
-        }, React.createElement("div", {
-          style: {
-            display: "flex",
-            alignItems: "center",
-            gap: 8
-          }
-        }, React.createElement("button", {
-          onClick: () => setState(s => ({
-            ...s,
-            artist: aId
-          })),
-          style: {
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            flex: 1,
-            minWidth: 0,
-            padding: "6px 4px",
-            background: "transparent",
-            border: "none",
-            textAlign: "left",
-            cursor: "pointer"
-          }
-        }, React.createElement("span", {
-          style: {
-            width: 4,
-            alignSelf: "stretch",
-            background: "var(--line-2)",
-            borderRadius: 3
-          }
-        }), React.createElement("div", {
-          style: {
-            flex: 1,
-            minWidth: 0
-          }
-        }, React.createElement("div", {
-          className: "mono",
-          style: {
-            fontSize: 9,
-            letterSpacing: 1.3,
-            fontWeight: 700,
-            color: accent
-          }
-        }, [(stage?.short || stage?.name || "").toUpperCase(), setTime].filter(Boolean).join(" · ")), React.createElement("div", {
-          className: "serif",
-          style: {
-            fontSize: 18,
-            color: "var(--ink)",
-            lineHeight: 1.1,
-            marginTop: 2,
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis"
-          }
-        }, artist?.name || "Unknown")), React.createElement("span", {
-          className: "mono",
-          style: {
-            fontSize: 9,
-            letterSpacing: 1.1,
-            color: groupMoments.length ? "var(--muted)" : "var(--line-2)",
-            fontWeight: 700,
-            flexShrink: 0
-          }
-        }, groupMoments.length ? `${groupMoments.length} ${groupMoments.length === 1 ? "CLIP" : "CLIPS"}` : "✓ CAUGHT")), hero && React.createElement(_GroupHeroThumb, {
-          moment: hero,
-          accent: accent,
-          onClick: () => openLightbox(orderedMoments, 0)
-        })), artist && groupMoments.length > 0 && React.createElement(SetSongTimeline, {
-          artist: artist,
-          moments: orderedMoments,
-          onOpenMoment: m => openLightbox(orderedMoments, Math.max(0, orderedMoments.findIndex(x => x.id === m.id)))
-        }), groupMoments.length === 0 && React.createElement("div", {
-          className: "mono",
-          style: {
-            fontSize: 9,
-            letterSpacing: 1,
-            color: "var(--muted)",
-            fontWeight: 600,
-            padding: "4px 0 2px 12px"
-          }
-        }, "You were here · no clips from this set yet"), orderedMoments.map((m, i) => React.createElement(MomentCard, {
-          key: m.id,
-          moment: m,
-          idx: i,
-          total: orderedMoments.length,
-          groupMoments: orderedMoments,
-          onOpenLightbox: openLightbox,
-          onDelete: handleDelete,
-          onUpdate: handleUpdate,
-          savedArtistIds: state.saved || [],
-          onArtistClick: id => setState(s => ({
-            ...s,
-            artist: id
-          }))
-        })));
-      }), untagged.length > 0 && React.createElement("div", {
-        key: "__other__",
-        style: {
-          marginTop: 14
-        }
-      }, React.createElement("div", {
-        style: {
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-          padding: "6px 4px"
-        }
-      }, React.createElement("span", {
-        style: {
-          width: 4,
-          alignSelf: "stretch",
-          background: "var(--ember)",
-          borderRadius: 3
-        }
-      }), React.createElement("div", {
-        style: {
-          flex: 1,
-          minWidth: 0
-        }
-      }, React.createElement("div", {
-        className: "mono",
-        style: {
-          fontSize: 9,
-          letterSpacing: 1.3,
-          fontWeight: 700,
-          color: "var(--ember-ink)"
-        }
-      }, "BETWEEN SETS"), React.createElement("div", {
-        className: "serif",
-        style: {
-          fontSize: 18,
-          color: "var(--ink)",
-          lineHeight: 1.1,
-          marginTop: 2
-        }
-      }, "Other moments")), React.createElement("span", {
-        className: "mono",
-        style: {
-          fontSize: 9,
-          letterSpacing: 1.1,
-          color: "var(--muted)",
-          fontWeight: 700,
-          flexShrink: 0
-        }
-      }, untagged.length, " ", untagged.length === 1 ? "CLIP" : "CLIPS")), untagged.length >= 3 && savedNightArtists.length > 0 && React.createElement(BulkRetagRow, {
-        moments: untagged,
+    }), day.groups.map(g => React.createElement(_LazyMount, {
+      key: `${g.key}:${mediaEpoch}`,
+      minHeight: g.count > 0 ? 120 : 76
+    }, React.createElement(LibraryGroupCard, {
+      group: g,
+      onOpenLightbox: openLightbox,
+      onArtistClick: id => setState(s => ({
+        ...s,
+        artist: id
+      })),
+      onReview: ms => setReview(ms.map(m => ({
+        momentId: m.id
+      }))),
+      bulkRetag: g.kind === "between" && g.count >= 3 && savedNightArtists.length > 0 ? React.createElement(BulkRetagRow, {
+        moments: g.media,
         savedNightArtists: savedNightArtists,
         onUpdate: handleUpdate
-      }), untagged.map((m, i) => React.createElement(MomentCard, {
-        key: m.id,
-        moment: m,
-        idx: i,
-        total: untagged.length,
-        groupMoments: untagged,
-        onOpenLightbox: openLightbox,
-        onDelete: handleDelete,
-        onUpdate: handleUpdate,
-        savedArtistIds: state.saved || [],
-        onArtistClick: id => setState(s => ({
-          ...s,
-          artist: id
-        }))
-      }))), needsReview.length > 0 && React.createElement("div", {
-        key: "__needs_review__",
-        style: {
-          marginTop: 14
-        }
-      }, React.createElement("div", {
-        style: {
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-          padding: "6px 4px"
-        }
-      }, React.createElement("span", {
-        style: {
-          width: 4,
-          alignSelf: "stretch",
-          background: "var(--line-2)",
-          borderRadius: 3
-        }
-      }), React.createElement("div", {
-        style: {
-          flex: 1,
-          minWidth: 0
-        }
-      }, React.createElement("div", {
-        className: "mono",
-        style: {
-          fontSize: 9,
-          letterSpacing: 1.3,
-          fontWeight: 700,
-          color: "var(--muted)"
-        }
-      }, "NEEDS REVIEW"), React.createElement("div", {
-        className: "serif",
-        style: {
-          fontSize: 18,
-          color: "var(--ink)",
-          lineHeight: 1.1,
-          marginTop: 2
-        }
-      }, needsReview.every(m => !m.festivalReview) ? "Set not in this festival" : needsReview.every(m => m.festivalReview) ? "Outside this festival’s dates" : "Check these clips")), React.createElement("span", {
-        className: "mono",
-        style: {
-          fontSize: 9,
-          letterSpacing: 1.1,
-          color: "var(--muted)",
-          fontWeight: 700,
-          flexShrink: 0
-        }
-      }, needsReview.length, " ", needsReview.length === 1 ? "CLIP" : "CLIPS")), React.createElement("div", {
-        className: "mono",
-        style: {
-          fontSize: 9,
-          letterSpacing: 1,
-          color: "var(--muted)",
-          fontWeight: 600,
-          padding: "0 0 4px 12px"
-        }
-      }, needsReview.every(m => !m.festivalReview) ? "Tagged to a set this festival doesn’t have — retag to file it." : needsReview.every(m => m.festivalReview) ? needsReview.length === 1 ? "Its capture time doesn’t match this festival’s dates. We left it here." : "Their capture times don’t match this festival’s dates. We left them here." : "Some are tagged to a set this festival doesn’t have. Others were shot outside this festival’s dates."), needsReview.map((m, i) => React.createElement(MomentCard, {
-        key: m.id,
-        moment: m,
-        idx: i,
-        total: needsReview.length,
-        groupMoments: needsReview,
-        onOpenLightbox: openLightbox,
-        onDelete: handleDelete,
-        onUpdate: handleUpdate,
-        savedArtistIds: state.saved || [],
-        onArtistClick: id => setState(s => ({
-          ...s,
-          artist: id
-        }))
-      }))));
-    })(), (manage || adding === d.n) && (adding === d.n ? React.createElement(AddMomentForm, {
+      }) : null
+    }))), (manage || adding === d.n) && (adding === d.n ? React.createElement(AddMomentForm, {
       night: d.n,
       savedNightArtists: savedNightArtists,
       onAdd: handleAdd,
@@ -10035,6 +10804,7 @@ function MemoriesScreen({
       className: "mono",
       style: {
         width: "100%",
+        minHeight: 44,
         padding: "12px",
         background: "transparent",
         border: "1px dashed var(--line-2)",
@@ -10044,12 +10814,12 @@ function MemoriesScreen({
         letterSpacing: 1.4,
         fontWeight: 700,
         cursor: "pointer",
-        marginTop: moments.length > 0 ? 4 : 0
+        marginTop: 8
       }
     }, "+ ADD MOMENT")), manage && savedNightArtists.length > 0 && React.createElement(AttendanceReview, {
       night: d.n,
       savedNightArtists: savedNightArtists
-    }));
+    })));
   }), manage && React.createElement(StorageManager, {
     all: all,
     onChange: () => setAll(_readMoments())
@@ -10772,7 +11542,53 @@ function MeScreen({
     style: {
       overflow: "hidden"
     }
-  }, React.createElement(HistoryRecordsSection, {
+  }, typeof FestivalSaveRow === "function" && React.createElement(FestivalSaveRow, {
+    festivalId: FESTIVAL_CONFIG?.id,
+    name: FESTIVAL_CONFIG?.shortName || FESTIVAL_CONFIG?.name
+  }), React.createElement("button", {
+    onClick: () => setState(s => ({
+      ...s,
+      tab: "landing",
+      artist: null
+    })),
+    style: {
+      width: "100%",
+      minHeight: 52,
+      marginBottom: 14,
+      padding: "10px 14px",
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      background: "var(--paper-2)",
+      border: "none",
+      borderRadius: 14,
+      color: "var(--ink)",
+      cursor: "pointer",
+      textAlign: "left",
+      fontFamily: "inherit"
+    }
+  }, React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      fontSize: 16,
+      color: "var(--text-2)"
+    }
+  }, "⌂"), React.createElement("span", {
+    style: {
+      flex: 1,
+      minWidth: 0,
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 600
+    }
+  }, "All festivals"), React.createElement("span", {
+    style: {
+      flexShrink: 0,
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, "Your plan is kept")), React.createElement(HistoryRecordsSection, {
     state: state,
     setState: setState
   }), React.createElement("div", {

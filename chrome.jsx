@@ -33,15 +33,24 @@ function TopBar({ title, right, sub, tight }) {
       display: "flex", alignItems: "flex-end", justifyContent: "space-between",
       gap: 12,
     }}>
-      <div>
-        {/* Field Mode: 11/14 status eyebrow over a 28/34 bold screen title. */}
+      {/* minWidth 0: a flex child defaults to min-width:auto and cannot shrink
+          below its content, so at 200% text the eyebrow ("105 MOMENTS · EDC LV
+          2026") pushed this row 170px wider than the screen and the whole
+          header panned sideways. */}
+      <div style={{ minWidth: 0, overflowWrap: "anywhere" }}>
+        {/* Field Mode: 11/14 status eyebrow over a 28/34 bold screen title.
+            UNITLESS line-heights: a px line-height does not scale with the
+            font, so at 200% text a 22px eyebrow was still laying out on a 14px
+            line and the title printed straight through it. */}
         {sub && <div style={{
-          fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em",
+          fontSize: 11, lineHeight: 1.27, fontWeight: 600, letterSpacing: "0.04em",
           textTransform: "uppercase", color: "var(--text-2)", marginBottom: 4,
         }}>{sub}</div>}
-        <div style={{ fontSize: 28, lineHeight: "34px", fontWeight: 700, letterSpacing: "-0.01em" }}>
+        {/* A real <h1>: VoiceOver's heading rotor had nothing to land on
+            anywhere in Memories before this. */}
+        <h1 style={{ margin: 0, fontSize: 28, lineHeight: 1.21, fontWeight: 700, letterSpacing: "-0.01em" }}>
           {title}
-        </div>
+        </h1>
       </div>
       {right}
     </div>
@@ -94,13 +103,16 @@ function TabBar({ active, onChange }) {
               display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 3,
               padding: "4px 12px",
               color: on ? "var(--signal-ink)" : "var(--text-2)",
-              minWidth: 64, minHeight: 49,
+              minWidth: 64, minHeight: 49, maxWidth: "100%",
               transition: "color 0.15s ease",
             }}>
             <Icon on={on} />
+            {/* The label must be able to shrink, and its line box must scale
+                with it. At 200% text "Memories" ran past its own button. */}
             <span style={{
-              fontSize: 12, lineHeight: "14px",
+              fontSize: 12, lineHeight: 1.17,
               fontWeight: on ? 600 : 500,
+              minWidth: 0, maxWidth: "100%", overflowWrap: "anywhere", textAlign: "center",
               transition: "color 0.15s",
             }}>
               {t.label}
@@ -1234,6 +1246,9 @@ function FestivalThumb({ entry, size = 56, editorial = false }) {
       background: art ? "var(--paper-3)" : fallback, display: "flex", alignItems: "center", justifyContent: "center",
       fontSize: Math.max(14, Math.round(size * (editorial ? 0.18 : 0.25))), fontWeight: 850, letterSpacing: "0.04em",
       color: "var(--media-ink)", textShadow: "0 1px 8px rgba(0,0,0,.5)",
+      // lineHeight 1 keeps the wordmark fallback inside its box: the default
+      // ~1.2 line box grows past the tile at 200% text and is clipped.
+      lineHeight: 1,
     }}>
       {art ? <img src={`./${art}`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : mark}
     </div>
@@ -1827,12 +1842,15 @@ function StatusStrip() {
     // Field Mode: quiet 12pt status in tabular figures, on the shell colour.
     <div style={{
       flexShrink: 0,
-      height: 24,
+      // minHeight, not height: a fixed 24px box let a scaled clock spill out
+      // of the strip and print over the screen title underneath it.
+      minHeight: 24,
       display: "flex", alignItems: "center", justifyContent: "space-between",
       padding: "0 20px",
       background: "var(--paper)",
       borderBottom: "1px solid var(--line)",
-      fontSize: 12, lineHeight: "16px", fontWeight: 500, fontVariantNumeric: "tabular-nums",
+      // Unitless so the clock's line box scales with its own type.
+      fontSize: 12, lineHeight: 1.33, fontWeight: 500, fontVariantNumeric: "tabular-nums",
       color: "var(--text-2)",
     }}>
       <span>{day} · {hh}:{mm}</span>

@@ -80,6 +80,7 @@ const LOCAL = [
   `./build/spotify-api.js?v=${APP_VER}`,
   `./build/recap-engine.js?v=${APP_VER}`,
   `./build/historical.js?v=${APP_VER}`,
+  `./build/landing.js?v=${APP_VER}`,
   `./build/spotify.js?v=${APP_VER}`,
   `./build/app.js?v=${APP_VER}`,
 ];

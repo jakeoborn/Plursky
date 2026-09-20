@@ -2393,6 +2393,110 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b5b. Memories v2 organized library ─────────────────────────────────
+// Four contracts the v2 design wave introduces, graded against build/spotify.js
+// in a vm:
+//   · PEAK SEMANTICS — the analysis window and the OBSERVED capture span are
+//     two different numbers. The old card hardcoded "N moments in 20 minutes",
+//     so five clips shot inside one minute claimed twenty minutes of events.
+//   · MEDIA-IDENTITY DEDUPE — two RECORDS pointing at one piece of media must
+//     not inflate a count or render twice.
+//   · NO DUPLICATE HERO — _GroupHeroThumb drew the cover, then the cover was
+//     prepended to orderedMoments and drawn AGAIN as a full row.
+//   · REACHABILITY SURVIVES DEDUPE — #210's invariant is that every counted
+//     record is reachable exactly once, so a de-duplicated record has to stay
+//     reachable rather than becoming a new orphan.
+{
+  console.log("▸ Memories-library gate — bounded set cards, one hero, honest peak copy");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-memories-library.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`memories library failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b5c. General Landing + saved festivals ─────────────────────────────
+// Three stores have to stay apart or one festival's state shows up on
+// another's screen: the explicit SAVED list, the ACTIVE festival id, and
+// whether this load lands on General Home. The gate also pins the landing's
+// counting rule — a festival card counts UNIQUE media whose festivalId is
+// EXACTLY that festival, so an unstamped legacy moment is surfaced separately
+// instead of being attributed to whichever card happens to be on screen.
+{
+  console.log("▸ Landing-state gate — saved is not active, and a card counts only its own festival");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-landing-saved-festivals.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`landing state failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b5d. Media state machine, in the running app ───────────────────────
+// useMomentPhoto used to hold `url = null` forever when the local lookup AND
+// the cloud restore both came back empty, and every thumbnail reads "no url
+// yet" as "still loading" — so a photo this device will never have shimmered
+// until the user gave up. Three runs cover the three outcomes: no cloud path,
+// a cloud call that REJECTS (offline-retryable) and a cloud call that answers
+// "no" (genuinely unavailable). The rejecting run stays NOMINALLY ONLINE on
+// purpose, so an "offline" verdict can only have come from the request result
+// and never from navigator.onLine.
+{
+  console.log("▸ Media-state gate — a failed lookup reaches a designed terminal state, never a permanent shimmer");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-media-state.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`media state failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b5e. Root routing, deep links and the live count contract ──────────
+// The companion to the landing-state gate: that one proves the RULES, this one
+// proves the running app obeys them. A plain launch renders General Home with
+// no festival-scoped chrome mounted underneath; ?tab= and ?f= still name their
+// destination (?f= reloads, so the sentinel that survives the reload is part
+// of what is graded); entering a festival does not save it and saving does not
+// navigate; and a day header never claims a number its sections do not
+// contain. Both surfaces are also checked for horizontal pan at 320 CSS px.
+{
+  console.log("▸ Landing-routing gate — General Home at root, deep links intact, header counts honest");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-landing-routing.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`landing routing failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b5f. Memories v2 / Landing accessibility + large text ──────────────
+// Target size, accessible names, heading structure, horizontal pan, clipping,
+// text-over-text and reduced motion, at 393 and 320 CSS px and again with
+// every font size doubled. The doubling is a PROXY for iOS Dynamic Type at
+// 200% — Plursky styles in px with no text-size-adjust, so Dynamic Type does
+// not scale it today — and it is what surfaced the px line-heights that made
+// a scaled title print through the eyebrow above it.
+{
+  console.log("▸ Memories-a11y gate — 44x44, headings, no pan/clip/overlap, at normal and 200% type");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-memories-a11y.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`memories a11y failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b6a. Legacy festival attribution ───────────────────────────────────
 // A legacy (pre-v204) moment gets its festivalId from its OWN capture time, not
 // from whichever festival happened to be on screen when the app next booted.

@@ -1094,6 +1094,7 @@ function App() {
     var rawSearch = window.location.search || (window.location.hash?.startsWith("#?") ? window.location.hash.slice(1) : "");
     var params = new URLSearchParams(rawSearch);
     var dlFest = params.get("f") || params.get("festival");
+    var switchingFestival = false;
     if (dlFest && typeof FESTIVALS_REGISTRY !== "undefined") {
       var fEntry = FESTIVALS_REGISTRY.find(f => f.config.id === dlFest);
       var canSwitch = !!fEntry && (fEntry.available || fEntry.previewOnly && window._isPlusSub?.());
@@ -1110,6 +1111,10 @@ function App() {
           }
           window.history.replaceState({}, "", u.toString());
         } catch {}
+        try {
+          sessionStorage.setItem("plursky_landing_entered", dlFest);
+        } catch {}
+        switchingFestival = true;
         setActiveFestivalAndReload(dlFest);
       }
     }
@@ -1143,8 +1148,18 @@ function App() {
         history.replaceState(null, "", window.location.pathname);
       } catch {}
     }
+    try {
+      if (typeof runLandingMigration === "function") runLandingMigration();
+    } catch {}
+    var enteredFromLanding = null;
+    try {
+      enteredFromLanding = sessionStorage.getItem("plursky_landing_entered");
+      if (enteredFromLanding && !switchingFestival) sessionStorage.removeItem("plursky_landing_entered");
+    } catch {}
+    var deepLinked = typeof landingShouldOpenGeneral === "function" ? !landingShouldOpenGeneral(params) : true;
+    var bootTab = (validStage ? "lineup" : validTab) || (validCrew ? "me" : null);
     return {
-      tab: (validStage ? "lineup" : validTab) || (validCrew ? "me" : "home"),
+      tab: bootTab || (deepLinked || enteredFromLanding ? "home" : "landing"),
       saved: saved ?? [],
       spotifyConnected: spotifyTokenValid(),
       artist: validArtist,
@@ -1276,7 +1291,10 @@ function App() {
     };
   }, [state.saved.join(",")]);
   var body;
-  if (state.artist) body = React.createElement(ArtistScreen, {
+  if (state.tab === "landing") body = React.createElement(GeneralLandingScreen, {
+    state: state,
+    setState: setState
+  });else if (state.artist) body = React.createElement(ArtistScreen, {
     state: state,
     setState: setState
   });else if (state.tab === "home") body = React.createElement(HomeScreen, {
@@ -1315,12 +1333,12 @@ function App() {
       flexDirection: "column",
       paddingTop: state.tab === "home" && !state.artist ? 0 : "var(--top-pad, 54px)"
     }
-  }, !(state.tab === "home" && !state.artist) && React.createElement(StatusStrip, null), React.createElement("div", {
+  }, !(state.tab === "home" && !state.artist) && state.tab !== "landing" && React.createElement(StatusStrip, null), React.createElement("div", {
     style: {
       flex: 1,
       position: "relative"
     }
-  }, body, React.createElement(ToastHost, null)), !state.artist && (() => {
+  }, body, React.createElement(ToastHost, null)), !state.artist && state.tab !== "landing" && (() => {
     var postFest = (() => {
       try {
         return Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity);
