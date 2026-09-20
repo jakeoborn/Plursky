@@ -125,6 +125,89 @@ async function run(browser, label, cloudScript, expectLabel, expectWord) {
   await ctx.close();
 }
 
+async function runCloudClassification(browser) {
+  const ctx = await browser.newContext({ timezoneId: 'America/Los_Angeles' });
+  await ctx.addInitScript(() => {
+    localStorage.setItem('onboarded', 'v1');
+    localStorage.setItem('user_name', 'Test');
+    localStorage.setItem('active_festival_id', 'edc-lv-2026');
+    localStorage.setItem('active_festival_explicit', '1');
+  });
+  const page = await ctx.newPage();
+  await page.goto(`http://127.0.0.1:${PORT}/?tab=me`, { waitUntil: 'domcontentloaded' });
+  await page.waitForFunction(() => Array.isArray(window.ARTISTS) && window.ARTISTS.length > 0, null, { timeout: 30000 });
+
+  // Positive control: the REAL function must be present and reachable, and
+  // `_sb` must be a global we can actually swap. Without this the whole
+  // section would "pass" against an app that never loaded supabase.jsx.
+  const live = await page.evaluate(() => ({
+    fn: typeof window.sbDownloadMomentMedia === 'function',
+    sb: '_sb' in window,
+  }));
+  check(live.fn, 'cloud classify: the real sbDownloadMomentMedia is reachable (harness control)');
+  check(live.sb, 'cloud classify: _sb is a swappable global (harness control)');
+  if (!live.fn || !live.sb) { await ctx.close(); return; }
+
+  const drive = (error, opts = {}) => page.evaluate(async ({ error, opts }) => {
+    let calls = 0;
+    window.sbGetUser = async () => ({ id: 'u-test' });
+    window._sb = { storage: { from: () => ({ download: async () => {
+      calls++;
+      if (opts.succeedAfter && calls > opts.succeedAfter) return { data: { size: 1 }, error: null };
+      return { data: null, error };
+    } }) } };
+    const out = [];
+    for (let i = 0; i < (opts.times || 1); i++) {
+      try { out.push({ ok: true, value: await window.sbDownloadMomentMedia(opts.photoId) }); }
+      catch (e) { out.push({ ok: false, message: String(e && e.message || e) }); }
+    }
+    return { out, calls };
+  }, { error, opts });
+
+  // A transient provider error is a REJECTION — the hook reads that as
+  // "offline", which is retryable and auto-retries when the browser is back.
+  for (const [label, err] of [
+    ['a 500', { status: 500, message: 'Internal Error' }],
+    ['a 429', { status: 429, message: 'Too Many Requests' }],
+    ['an auth failure', { status: 401, message: 'Invalid JWT' }],
+    ['a bare network error', { message: 'Failed to fetch' }],
+  ]) {
+    const r = await drive(err, { photoId: `p-${err.status || 'net'}` });
+    check(r.out[0] && r.out[0].ok === false,
+      `cloud classify: ${label} REJECTS, so the tile reads Offline and can retry (got ${JSON.stringify(r.out[0])})`);
+  }
+
+  // A confirmed 404 is an answer: resolve null, and remember it so ten tiles
+  // do not each re-ask for an object the backup has already disclaimed.
+  for (const [label, err] of [
+    ['a 404', { status: 404, message: 'Object not found' }],
+    ['a message-only not-found', { message: 'The resource was not found' }],
+  ]) {
+    const r = await drive(err, { photoId: `q-${label.replace(/\W/g, '')}` });
+    check(r.out[0] && r.out[0].ok === true && r.out[0].value === null,
+      `cloud classify: ${label} resolves null, the settled "it is gone" answer (got ${JSON.stringify(r.out[0])})`);
+  }
+
+  // The cache is the other half of the bug. A transient failure must NOT be
+  // remembered: the very next attempt has to reach the network again and can
+  // succeed. A real 404 must be remembered.
+  const transient = await drive({ status: 503, message: 'Service Unavailable' },
+    { photoId: 'p-recovers', times: 2, succeedAfter: 1 });
+  check(transient.calls === 2,
+    `cloud classify: a transient failure is NOT cached — the retry reaches the network (calls=${transient.calls})`);
+  check(transient.out[1] && transient.out[1].ok === true && transient.out[1].value,
+    `cloud classify: and the retry SUCCEEDS, so the photo comes back (got ${JSON.stringify(transient.out[1])})`);
+
+  const settled = await drive({ status: 404, message: 'Object not found' },
+    { photoId: 'q-stays-gone', times: 3, succeedAfter: 1 });
+  check(settled.calls === 1,
+    `cloud classify: a confirmed miss IS cached — no refetch storm (calls=${settled.calls}, expected 1)`);
+  check(settled.out.every(r => r.ok === true && r.value === null),
+    'cloud classify: and it keeps answering "gone" without asking again');
+
+  await ctx.close();
+}
+
 try {
   for (let i = 0; i < 50; i++) { try { if ((await fetch(`http://127.0.0.1:${PORT}/index.html`)).ok) break; } catch {} await sleep(100); }
   // channel:'chrome' — the bundled Chromium cannot decode iPhone HEVC and the
@@ -150,6 +233,21 @@ try {
   await run(browser, 'cloud answers no',
     '(() => Promise.resolve(null))',
     'media unavailable', 'Missing');
+
+  // ── 4. The REAL sbDownloadMomentMedia classifies its own errors ──────────
+  // The three runs above stub that function out, so they grade the hook and
+  // say nothing about the code that decides what to hand it.
+  //
+  // THE BUG: every storage failure returned null AND was cached in
+  // _cloudMissing for the life of the tab. null means "the backup answered,
+  // and the answer is no", which the hook correctly renders as a permanent
+  // "Missing". So one 500, one dropped request or one expired token marked a
+  // photo as gone forever on a device whose backup still held it — and
+  // because the miss was cached, a retry could not undo it.
+  //
+  // Drives the shipped function against a fake storage client. `_sb` is a
+  // top-level const compiled to `var`, so it is a writable global here.
+  await runCloudClassification(browser);
 
   await browser.close();
 } finally {

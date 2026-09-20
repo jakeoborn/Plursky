@@ -3922,23 +3922,30 @@ async function sbUploadMomentMedia(photoId, blob) {
     return false;
   }
 }
+function _cloudSaysAbsent(error) {
+  if (!error) return false;
+  var code = error.status ?? error.statusCode ?? error.originalError?.status;
+  if (code != null && String(code) === "404") return true;
+  return /not[_\s-]?found|no such (?:file|object|key)/i.test(`${error.message || ""} ${error.error || ""}`);
+}
 async function sbDownloadMomentMedia(photoId) {
   if (!_sb || !photoId || _cloudMissing.has(photoId)) return null;
-  try {
-    var user = await sbGetUser();
-    if (!user) return null;
-    var {
-      data,
-      error
-    } = await _sb.storage.from(_MEDIA_BUCKET).download(`${user.id}/${photoId}`);
-    if (error || !data) {
-      _cloudMissing.add(photoId);
-      return null;
-    }
-    return data;
-  } catch {
+  var user = await sbGetUser();
+  if (!user) return null;
+  var {
+    data,
+    error
+  } = await _sb.storage.from(_MEDIA_BUCKET).download(`${user.id}/${photoId}`);
+  if (error) {
+    if (!_cloudSaysAbsent(error)) throw error;
+    _cloudMissing.add(photoId);
     return null;
   }
+  if (!data) {
+    _cloudMissing.add(photoId);
+    return null;
+  }
+  return data;
 }
 Object.assign(window, {
   sbUploadMomentMedia,

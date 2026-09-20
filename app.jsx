@@ -113,9 +113,20 @@ function OnboardingModal({ onDone, setState, state }) {
   const [page, setPage] = React.useState(0);
   const [q, setQ] = React.useState("");
   const heads = React.useMemo(() => _onbHeadliners(3), []);
+  // Picking a festival here IS entering it. Both halves of that were broken:
+  // a DIFFERENT festival reloaded without the landing sentinel, so the boot
+  // after the reload saw a bare URL and routed to the chooser; and the SAME
+  // festival called onDone() over a state whose tab was already "landing"
+  // (a first launch has no deep link), so dismissing the modal revealed the
+  // chooser too. Either way the user picked a festival and got asked again.
   const finish = (festId) => {
     try { localStorage.setItem("onboarded", ONBOARD_VERSION); } catch {}
-    if (festId && festId !== FESTIVAL_CONFIG.id) { setActiveFestivalAndReload(festId); return; }
+    if (festId && festId !== FESTIVAL_CONFIG.id) {
+      try { sessionStorage.setItem("plursky_landing_entered", festId); } catch {}
+      setActiveFestivalAndReload(festId);
+      return;
+    }
+    setState(s => ({ ...s, tab: "home", artist: null }));
     onDone();
   };
   const PAGES = [
@@ -174,7 +185,15 @@ function OnboardingModal({ onDone, setState, state }) {
           <div style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "0 20px" }}>
             {list.map(f => {
               const isActive = f.config.id === FESTIVAL_CONFIG.id;
-              const locked = !f.available;
+              // Same entitlement policy as the landing and the switcher: a
+              // Plus subscriber reinstalling the app can still pick the
+              // early-access festival they paid for. It does NOT open the
+              // offer sheet for everyone else — a paywall inside first-run is
+              // a product call Jake has not made, and the free app is meant to
+              // feel complete. The row says what it needs instead.
+              const locked = typeof landingCanEnter === "function"
+                ? !landingCanEnter(f, Date.now(), !!window._isPlusSub?.())
+                : !f.available;
               return (
                 <button key={f.config.id} disabled={locked} onClick={() => finish(f.config.id)} style={{
                   width: "100%", display: "flex", alignItems: "center", gap: 12, minHeight: 72, padding: "8px 0",
@@ -188,7 +207,7 @@ function OnboardingModal({ onDone, setState, state }) {
                     <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{f.config.location} · {f.config.dates}</div>
                     {(isActive || locked) && (
                       <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: isActive ? "var(--signal-ink)" : "var(--text-2)" }}>
-                        {isActive ? "✓ Selected" : f.previewOnly ? "Early access" : "Soon"}
+                        {isActive ? "✓ Selected" : f.previewOnly ? (locked ? "Early access · Plursky+" : "Early access") : "Soon"}
                       </div>
                     )}
                   </div>

@@ -52,6 +52,7 @@ const S = vm.runInContext(
       toggleSavedFestival, runLandingMigration, landingShouldOpenGeneral,
       momentsForFestival, unattributedMoments, festivalMemoryCount,
       readFestivalView, writeFestivalView, _landingFestivalState,
+      _dedupeLibrary, _dedupeByMedia, _landingPrimary, landingCanEnter,
       _sortFestivalsForSwitcher, _festivalPhase,
       FESTIVALS_REGISTRY, FESTIVAL_CONFIG, _DATA_SETS })`, ctx);
 
@@ -183,6 +184,120 @@ check(S.festivalMemoryCount(activeId, all) === 2,
   "counts: the last-festival pointer does not let an unstamped record inflate a card");
 check(S.festivalMemoryCount("a-festival-that-does-not-exist", all) === 0,
   "counts: an unknown festival counts zero, never a fallback total");
+
+// ── 4b. A DECLARED GUESS is not a memory OF that festival ─────────────────
+// #213/#215 park a record they cannot prove under the festival that was on
+// screen and stamp festivalAttribution:"unresolved" — a guess that says so.
+// Matching on festivalId alone made the landing card count those guesses as
+// known (a claim the app's own data denies) and, because they DO carry an id,
+// hid them from the unattributed list, which is the only offer to fix them.
+const guessed = {
+  1: [
+    { id: "g1", photoId: "q1", _fingerprint: "fp_g1.jpg", festivalId: activeId },
+    { id: "g2", photoId: "q2", _fingerprint: "fp_g2.jpg", festivalId: activeId,
+      festivalAttribution: "unresolved" },
+    { id: "g3", photoId: "q3", _fingerprint: "fp_g3.jpg", festivalId: activeId,
+      festivalAttribution: "capture-time" },
+    { id: "g4", photoId: "q4", _fingerprint: "fp_g4.jpg" },
+  ],
+};
+check(S.festivalMemoryCount(activeId, guessed) === 2,
+  `guess: the card counts only PROVEN ownership (expected 2, got ${S.festivalMemoryCount(activeId, guessed)})`);
+check(!S.momentsForFestival(guessed, activeId).some(m => m.id === "g2"),
+  "guess: an unresolved record is not returned as one of the festival's memories");
+check(S.momentsForFestival(guessed, activeId, { includeUnresolved: true }).some(m => m.id === "g2"),
+  "guess: it IS still reachable through the explicit includeUnresolved read — parked, not evicted");
+const unatt = S.unattributedMoments(guessed).map(m => m.id).sort().join(",");
+check(unatt === "g2,g4",
+  `guess: the review row offers BOTH the unstamped record and the declared guess (got ${unatt})`);
+check(S.momentsForFestival(guessed, activeId).every(m => m.festivalAttribution !== "unresolved"),
+  "guess: no unresolved record survives the default read");
+
+// ── 4c. The card and the screen it opens report the SAME number ───────────
+// The Memories header counts unique media in the festival's bucket and names
+// the unconfirmed ones; the landing card counts the confirmed ones. Those two
+// definitions have to agree record-for-record or the app contradicts itself
+// across one tap. Computed here the way MemoriesScreen computes it.
+if (typeof S._dedupeLibrary === "function") {
+  const bucket = { 1: guessed[1].filter(m => m.festivalId === activeId) };
+  const lib = S._dedupeLibrary(bucket);
+  const unconfirmed = Object.values(lib.byNight)
+    .reduce((n, arr) => n + arr.filter(m => m.festivalAttribution === "unresolved").length, 0);
+  const confirmed = lib.unique - unconfirmed;
+  check(confirmed === S.festivalMemoryCount(activeId, guessed),
+    `agreement: header confirmed (${confirmed}) === landing card (${S.festivalMemoryCount(activeId, guessed)})`);
+  check(lib.unique === confirmed + unconfirmed,
+    "agreement: confirmed + unconfirmed accounts for every tile the library draws");
+} else {
+  check(false, "HARNESS: _dedupeLibrary not reachable from build/spotify.js");
+}
+
+// ── 4d. Early access: a Plus subscriber walks in, everyone else gets asked ─
+// FestivalSwitcher has always had three answers here. The landing shipped
+// with one — locked — which shut out the subscribers who paid for exactly
+// this feature and removed the only upgrade route on the app's front door.
+const now2 = Date.now();
+const previewEntry = registry.find(f => !f.available && f.previewOnly)
+  || { available: false, previewOnly: true, config: { id: "synthetic-preview", name: "Preview" } };
+const stFree = S._landingFestivalState(previewEntry, now2, false);
+const stPlus = S._landingFestivalState(previewEntry, now2, true);
+check(stFree.locked === true && stFree.upsell === true,
+  "early access: a free user's row is locked as a destination but live as an OFFER");
+check(/plursky\+/i.test(stFree.label),
+  `early access: the free row names the offer (got ${JSON.stringify(stFree.label)})`);
+check(!stPlus.locked,
+  "early access: a Plus subscriber enters the festival they paid early access for");
+check(!stPlus.upsell,
+  "early access: a subscriber is never re-sold the thing they already bought");
+const gatedEntry = registry.find(f => !f.available && !f.previewOnly);
+if (gatedEntry) {
+  const g = S._landingFestivalState(gatedEntry, now2, true);
+  check(g.locked === true && !g.upsell,
+    "early access: Plus does NOT unlock a festival that simply is not open yet");
+}
+
+// ── 4e. The primary action obeys the same lock as the row ─────────────────
+// `primary` fell back to saved[0] with no eligibility check, so a festival
+// saved while it was open — or while the user had Plus — stayed the screen's
+// single most prominent button after it was gated, and entering it walked
+// past the lock its own browse row was drawing two inches below.
+if (typeof S._landingPrimary === "function") {
+  const mkEntry = (id, extra) => ({ available: false, previewOnly: false, config: {
+    id, name: id, location: "Somewhere", dates: "Jan 1",
+    startMs: Date.now() + 864e5, endMs: Date.now() + 1728e5 }, ...extra });
+  const gatedSaved  = mkEntry("saved-but-gated");
+  const previewSaved = mkEntry("saved-but-preview", { previewOnly: true });
+  const openOne      = mkEntry("open-one", { available: true });
+  // A gated festival that is LIVE right now. This is the fixture the
+  // "any live festival" fallback actually runs through, and without it that
+  // fallback can drop its availability check with every check still green.
+  const liveGated = { available: false, previewOnly: false, config: {
+    id: "live-but-gated", name: "Live But Gated", location: "Somewhere", dates: "Today",
+    startMs: Date.now() - 36e5, endMs: Date.now() + 36e5 } };
+  check(typeof S._festivalPhase === "function" && S._festivalPhase(liveGated, now2) === "live",
+    "primary fixture control: the gated fixture really is LIVE (otherwise the next check proves nothing)");
+  check(S._landingPrimary([liveGated], [], now2, false) === null,
+    "primary: a LIVE festival that is gated is never promoted to the primary action");
+  check(S._landingPrimary([liveGated, openOne], [], now2, false) === null,
+    "primary: an open-but-not-live festival is not promoted just to fill the slot");
+
+  check(S._landingPrimary([gatedSaved], [gatedSaved.config.id], now2, false) === null,
+    "primary: a saved festival that is now GATED is not offered as the primary action");
+  check(S._landingPrimary([previewSaved], [previewSaved.config.id], now2, false) === null,
+    "primary: a saved early-access festival is not the primary action without Plus");
+  check(S._landingPrimary([previewSaved], [previewSaved.config.id], now2, true) === previewSaved,
+    "primary: with Plus, that same saved early-access festival IS the primary action");
+  const pick = S._landingPrimary([gatedSaved, openOne], [gatedSaved.config.id, openOne.config.id], now2, false);
+  check(pick === openOne,
+    "primary: with one gated and one open saved festival, the OPEN one is offered");
+  check(S.landingCanEnter(gatedSaved, now2, true) === false,
+    "primary: Plus does not unlock a festival that is simply not open yet");
+  check(S.landingCanEnter(previewSaved, now2, false) === false
+     && S.landingCanEnter(previewSaved, now2, true) === true,
+    "primary: enterability is the SAME predicate the row locks on, entitlement included");
+} else {
+  check(false, "HARNESS: _landingPrimary not reachable from build/landing.js");
+}
 
 // ── 5. Per-festival view state is per festival ────────────────────────────
 S.writeFestivalView(activeId, { filter: "clips", scroll: 420, collapsed: [2] });

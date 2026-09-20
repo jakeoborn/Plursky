@@ -3004,15 +3004,34 @@ async function sbUploadMomentMedia(photoId, blob) {
   } catch (e) { console.warn("[backup] upload error:", e?.message); return false; }
 }
 
+// "The backup does not have it" and "we could not ask the backup" are
+// different answers, and only the first one is permanent. The old code
+// collapsed both into `return null`, and then CACHED that null in
+// _cloudMissing for the life of the tab — so one 500, one dropped request or
+// one expired token rendered that photo as "Missing" forever, on a device
+// whose backup still held it. A rejection propagates instead: the media hook
+// reads a throw as OFFLINE, which is retryable and auto-retries on "online".
+function _cloudSaysAbsent(error) {
+  if (!error) return false;
+  const code = error.status ?? error.statusCode ?? error.originalError?.status;
+  if (code != null && String(code) === "404") return true;
+  // supabase-js surfaces storage 404s as a message before it surfaces a code.
+  return /not[_\s-]?found|no such (?:file|object|key)/i.test(
+    `${error.message || ""} ${error.error || ""}`);
+}
+
 async function sbDownloadMomentMedia(photoId) {
   if (!_sb || !photoId || _cloudMissing.has(photoId)) return null;
-  try {
-    const user = await sbGetUser();
-    if (!user) return null;
-    const { data, error } = await _sb.storage.from(_MEDIA_BUCKET).download(`${user.id}/${photoId}`);
-    if (error || !data) { _cloudMissing.add(photoId); return null; }
-    return data; // Blob
-  } catch { return null; }
+  const user = await sbGetUser();   // a throw here is "could not ask", not "gone"
+  if (!user) return null;           // signed out: there is no backup to ask
+  const { data, error } = await _sb.storage.from(_MEDIA_BUCKET).download(`${user.id}/${photoId}`);
+  if (error) {
+    if (!_cloudSaysAbsent(error)) throw error;   // transient — do NOT remember it
+    _cloudMissing.add(photoId);
+    return null;
+  }
+  if (!data) { _cloudMissing.add(photoId); return null; }
+  return data; // Blob
 }
 
 Object.assign(window, {

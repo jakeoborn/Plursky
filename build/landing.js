@@ -65,13 +65,20 @@ function landingShouldOpenGeneral(params) {
   var named = get("f") || get("festival") || get("artist") || get("stage") || get("tab") || get("lineup") || get("crew") || get("day");
   return !named;
 }
-function momentsForFestival(all, festivalId) {
+function _isProvenFestivalMoment(m, festivalId) {
+  return !!m && m.festivalId === festivalId && m.festivalAttribution !== "unresolved";
+}
+function momentsForFestival(all, festivalId, opts) {
   var out = [];
   if (!festivalId) return out;
+  var loose = !!(opts && opts.includeUnresolved);
   for (var night of Object.keys(all || {})) {
     var arr = all[night];
     if (!Array.isArray(arr)) continue;
-    for (var m of arr) if (m && m.festivalId === festivalId) out.push(m);
+    for (var m of arr) {
+      if (!m) continue;
+      if (loose ? m.festivalId === festivalId : _isProvenFestivalMoment(m, festivalId)) out.push(m);
+    }
   }
   return out;
 }
@@ -80,14 +87,17 @@ function unattributedMoments(all) {
   for (var night of Object.keys(all || {})) {
     var arr = all[night];
     if (!Array.isArray(arr)) continue;
-    for (var m of arr) if (m && !m.festivalId) out.push(m);
+    for (var m of arr) if (m && (!m.festivalId || m.festivalAttribution === "unresolved")) out.push(m);
   }
   return out;
 }
 function festivalMemoryCount(festivalId, all) {
   var src = all || (typeof _readMoments === "function" ? _readMoments() : {});
-  var mine = momentsForFestival(src, festivalId);
-  return (typeof _dedupeByMedia === "function" ? _dedupeByMedia(mine) : mine).length;
+  var mine = momentsForFestival(src, festivalId, {
+    includeUnresolved: true
+  });
+  var unique = typeof _dedupeByMedia === "function" ? _dedupeByMedia(mine) : mine;
+  return unique.filter(m => m.festivalAttribution !== "unresolved").length;
 }
 var _FEST_VIEW_KEY = "plursky_festival_view_v1";
 function readFestivalView(festivalId) {
@@ -114,18 +124,24 @@ function writeFestivalView(festivalId, patch) {
     return {};
   }
 }
-function _landingFestivalState(entry, now) {
+function _landingFestivalState(entry, now, plus) {
   var phase = typeof _festivalPhase === "function" ? _festivalPhase(entry, now) : "upcoming";
   if (!entry.available && !entry.previewOnly) return {
     label: "Not open yet",
     tone: "muted",
     locked: true
   };
-  if (!entry.available && entry.previewOnly) return {
-    label: "Early access",
-    tone: "muted",
-    locked: true
-  };
+  if (!entry.available && entry.previewOnly) {
+    return plus ? {
+      label: "Early access",
+      tone: "signal"
+    } : {
+      label: "Early access · Plursky+",
+      tone: "muted",
+      locked: true,
+      upsell: true
+    };
+  }
   if (phase === "live") return {
     label: "Happening now",
     tone: "signal"
@@ -147,22 +163,36 @@ function _landingFestivalState(entry, now) {
     tone: "muted"
   };
 }
+function landingCanEnter(entry, now, plus) {
+  if (!entry || !entry.config) return false;
+  return !_landingFestivalState(entry, now, plus).locked;
+}
+function _landingPrimary(ordered, savedIds, now, plus) {
+  var ids = savedIds || [];
+  var ok = f => landingCanEnter(f, now, plus);
+  var saved = (ordered || []).filter(f => ids.includes(f.config.id) && ok(f));
+  var phase = f => typeof _festivalPhase === "function" ? _festivalPhase(f, now) : "upcoming";
+  return saved.find(f => phase(f) === "live") || saved.find(f => phase(f) === "upcoming") || (ordered || []).find(f => phase(f) === "live" && ok(f)) || saved[0] || null;
+}
 function _LandingFestivalCard({
   entry,
   saved,
   memoryCount,
-  onEnter
+  onEnter,
+  onUpsell,
+  plus
 }) {
   var now = Date.now();
-  var st = _landingFestivalState(entry, now);
+  var st = _landingFestivalState(entry, now, plus);
   var c = entry.config;
   var toneColor = st.tone === "signal" ? "var(--signal-ink)" : "var(--text-2)";
+  var dead = st.locked && !st.upsell;
   return React.createElement("button", {
     onClick: () => {
-      if (!st.locked) onEnter(c.id, entry);
+      if (st.upsell) onUpsell?.(c.id, entry);else if (!st.locked) onEnter(c.id, entry);
     },
-    disabled: st.locked,
-    "aria-label": `${c.name}. ${st.label}.${saved ? " Saved." : ""}${memoryCount ? ` ${memoryCount} memories.` : ""}`,
+    disabled: dead,
+    "aria-label": `${c.name}. ${st.label}.${st.upsell ? " Opens the Plursky+ offer." : ""}${saved ? " Saved." : ""}${memoryCount ? ` ${memoryCount} memories.` : ""}`,
     style: {
       width: "100%",
       display: "flex",
@@ -176,8 +206,8 @@ function _LandingFestivalCard({
       color: "var(--ink)",
       textAlign: "left",
       fontFamily: "inherit",
-      cursor: st.locked ? "default" : "pointer",
-      opacity: st.locked ? 0.55 : 1
+      cursor: dead ? "default" : "pointer",
+      opacity: dead ? 0.55 : st.upsell ? 0.8 : 1
     }
   }, typeof FestivalThumb === "function" ? React.createElement(FestivalThumb, {
     entry: entry
@@ -226,7 +256,7 @@ function _LandingFestivalCard({
       color: toneColor,
       fontVariantNumeric: "tabular-nums"
     }
-  }, st.label, memoryCount > 0 ? ` · ${memoryCount} ${memoryCount === 1 ? "memory" : "memories"}` : "")), !st.locked && React.createElement("svg", {
+  }, st.label, memoryCount > 0 ? ` · ${memoryCount} ${memoryCount === 1 ? "memory" : "memories"}` : "")), !dead && React.createElement("svg", {
     "aria-hidden": "true",
     width: "16",
     height: "16",
@@ -249,6 +279,8 @@ function GeneralLandingScreen({
 }) {
   var [savedIds, setSavedIds] = React.useState(readSavedFestivals);
   var [q, setQ] = React.useState("");
+  var [plusOpen, setPlusOpen] = React.useState(false);
+  var plus = !!window._isPlusSub?.();
   var [moments, setMoments] = React.useState(() => {
     try {
       return typeof _readMoments === "function" ? _readMoments() : {};
@@ -288,6 +320,11 @@ function GeneralLandingScreen({
     return (typeof _dedupeByMedia === "function" ? _dedupeByMedia(u) : u).length;
   }, [moments]);
   var enterFestival = React.useCallback(id => {
+    var entry = (typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : []).find(f => f && f.config && f.config.id === id);
+    if (entry && !landingCanEnter(entry, Date.now(), plus)) {
+      if (entry.previewOnly) setPlusOpen(true);
+      return;
+    }
     if (id && activeId && id !== activeId && typeof setActiveFestivalAndReload === "function") {
       try {
         sessionStorage.setItem("plursky_landing_entered", id);
@@ -300,7 +337,7 @@ function GeneralLandingScreen({
       tab: "home",
       artist: null
     }));
-  }, [activeId, setState]);
+  }, [activeId, setState, plus]);
   var saved = ordered.filter(f => savedIds.includes(f.config.id));
   var term = q.trim().toLowerCase();
   var matches = f => !term || `${f.config.name} ${f.config.location || ""}`.toLowerCase().includes(term);
@@ -331,11 +368,19 @@ function GeneralLandingScreen({
   var card = f => React.createElement(_LandingFestivalCard, {
     key: f.config.id,
     entry: f,
+    plus: plus,
     saved: savedIds.includes(f.config.id),
     memoryCount: counts[f.config.id] || 0,
-    onEnter: enterFestival
+    onEnter: enterFestival,
+    onUpsell: () => setPlusOpen(true)
   });
-  var primary = saved.find(f => phaseOf(f) === "live") || saved.find(f => phaseOf(f) === "upcoming") || ordered.find(f => phaseOf(f) === "live" && f.available) || saved[0] || null;
+  var primary = _landingPrimary(ordered, savedIds, now, plus);
+  if (plusOpen && typeof PlusSheet === "function") {
+    return React.createElement(PlusSheet, {
+      feature: "early festival access",
+      onClose: () => setPlusOpen(false)
+    });
+  }
   return React.createElement(Screen, null, React.createElement(ScrollBody, {
     style: {
       padding: "0 16px calc(96px + env(safe-area-inset-bottom, 0px))"
@@ -428,7 +473,7 @@ function GeneralLandingScreen({
       fontWeight: 600,
       fontFamily: "inherit"
     }
-  }, "⚑ ", orphanCount, " ", orphanCount === 1 ? "memory is" : "memories are", " not filed to a festival · Review"), React.createElement("h2", {
+  }, "⚑ ", orphanCount, " ", orphanCount === 1 ? "memory is" : "memories are", " not confirmed to a festival · Review"), React.createElement("h2", {
     style: eyebrow
   }, "Browse festivals"), React.createElement("input", {
     value: q,

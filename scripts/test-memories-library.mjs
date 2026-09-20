@@ -60,6 +60,7 @@ for (const n of ["data", "photo-tag", "spotify"]) {
 }
 const S = vm.runInContext(
   `({ _buildLibraryDay, _filterLibraryDay, _peakWindow, _dedupeByMedia, _mediaIdentity,
+      _dedupeLibrary,
       _LIBRARY_FILTERS, _DATA_SETS, ARTISTS, FESTIVAL_CONFIG })`, ctx);
 
 let checks = 0, failed = 0;
@@ -130,6 +131,49 @@ const peakDupes = S._peakWindow([
 ], 20 * 60000);
 check(peakDupes && peakDupes.items.length === 3,
   `dedupe: a duplicate record must not inflate the peak count (got ${peakDupes && peakDupes.items.length})`);
+
+// ── 2b. One media identity, one tile — ACROSS groups, not just within ─────
+// Dedupe keys on media identity; grouping partitions RECORDS. So two records
+// holding the same photo can land in DIFFERENT groups — a re-import tagged to
+// another artist, or a clip recovered onto another night beside the original.
+// A per-group dedupe sees one copy per group, keeps it, draws it and counts
+// it, and the same photo is on screen twice under a header that says one.
+if (typeof S._dedupeLibrary !== "function") {
+  check(false, "HARNESS DEAD: _dedupeLibrary not reachable from build/spotify.js");
+} else {
+  const SPLIT = "fp_split_one_photo.jpg";
+  const split = [
+    { id: "s-set",    photoId: "sp1", _fingerprint: SPLIT, artistId: A1.id,          takenAt: at(0)   },
+    { id: "s-loose",  photoId: "sp2", _fingerprint: SPLIT, artistId: null,           takenAt: at(30)  },
+    { id: "s-review", photoId: "sp3", _fingerprint: SPLIT, artistId: crossArtist.id, takenAt: at(60)  },
+    { id: "s-other",  photoId: "sp4", _fingerprint: "fp_split_other.jpg", artistId: A1.id, takenAt: at(90) },
+  ];
+  // Control: without day-wide dedupe these DO land in three different groups.
+  const naive = S._buildLibraryDay({ moments: split, attendedSet: new Set([A1.id]), artists: S.ARTISTS, toMin });
+  check(naive.counts.moments === 4,
+    `split control: ungrouped, the same photo really does reach 3 groups (got ${naive.counts.moments} — if this is 2 the fixture stopped exercising the bug)`);
+
+  const lib = S._dedupeLibrary({ 1: split });
+  check(lib.unique === 2,
+    `split: the library counts one photo once, however many groups claim it (expected 2, got ${lib.unique})`);
+  const dayS = S._buildLibraryDay({
+    moments: lib.byNight[1], attendedSet: new Set([A1.id]), artists: S.ARTISTS, toMin,
+    dupsFor: (id) => lib.dupsByCanonical.get(id) || [],
+  });
+  check(dayS.counts.moments === 2,
+    `split: the day summary agrees with the library total (expected 2, got ${dayS.counts.moments})`);
+  const drawn = dayS.groups.flatMap(g => g.media.map(m => m._fingerprint));
+  check(drawn.filter(f => f === SPLIT).length === 1,
+    `split: the photo is DRAWN exactly once across every group (got ${drawn.filter(f => f === SPLIT).length})`);
+  // #210: a record in no group at all is an orphan. The losers stay attached
+  // to the record that won, so nothing becomes unreachable.
+  const reachable = new Set(dayS.groups.flatMap(g => [...g.media, ...g.duplicates].map(m => m.id)));
+  for (const r of split) {
+    check(reachable.has(r.id), `split: ${r.id} stays reachable (parked as a duplicate, never orphaned)`);
+  }
+  check(dayS.counts.duplicates === 2,
+    `split: both losing records are accounted for (got ${dayS.counts.duplicates})`);
+}
 
 // ── 3/4. The library day: counts, one hero, reachability ───────────────────
 const attended = new Set([A1.id, A2.id]);

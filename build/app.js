@@ -181,9 +181,17 @@ function OnboardingModal({
       localStorage.setItem("onboarded", ONBOARD_VERSION);
     } catch {}
     if (festId && festId !== FESTIVAL_CONFIG.id) {
+      try {
+        sessionStorage.setItem("plursky_landing_entered", festId);
+      } catch {}
       setActiveFestivalAndReload(festId);
       return;
     }
+    setState(s => ({
+      ...s,
+      tab: "home",
+      artist: null
+    }));
     onDone();
   };
   var PAGES = [{
@@ -335,7 +343,7 @@ function OnboardingModal({
     }
   }, list.map(f => {
     var isActive = f.config.id === FESTIVAL_CONFIG.id;
-    var locked = !f.available;
+    var locked = typeof landingCanEnter === "function" ? !landingCanEnter(f, Date.now(), !!window._isPlusSub?.()) : !f.available;
     return React.createElement("button", {
       key: f.config.id,
       disabled: locked,
@@ -383,7 +391,7 @@ function OnboardingModal({
         fontWeight: 600,
         color: isActive ? "var(--signal-ink)" : "var(--text-2)"
       }
-    }, isActive ? "✓ Selected" : f.previewOnly ? "Early access" : "Soon")));
+    }, isActive ? "✓ Selected" : f.previewOnly ? locked ? "Early access · Plursky+" : "Early access" : "Soon")));
   }), !list.length && React.createElement("p", {
     style: {
       padding: "24px 0",

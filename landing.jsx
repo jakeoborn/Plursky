@@ -101,31 +101,51 @@ function landingShouldOpenGeneral(params) {
 // a landing card, which is a claim about one named festival next to twelve
 // others. So this matches `festivalId` EXACTLY and counts nothing else.
 // Unattributed records are returned separately and are never added to a card.
-function momentsForFestival(all, festivalId) {
+// A festivalId stamped `festivalAttribution: "unresolved"` is a DECLARED
+// GUESS — #213/#215 keep such a record parked in whichever bucket it was
+// already visible in, precisely so it is not lost, and mark it so no surface
+// mistakes it for evidence. Matching on festivalId alone undid that: the
+// guesses padded a named festival's count (a claim) and, because they do
+// carry an id, they also fell out of the unattributed list (the one place
+// that offers to fix them). So they were both over-claimed and unreachable.
+function _isProvenFestivalMoment(m, festivalId) {
+  return !!m && m.festivalId === festivalId && m.festivalAttribution !== "unresolved";
+}
+function momentsForFestival(all, festivalId, opts) {
   const out = [];
   if (!festivalId) return out;
+  const loose = !!(opts && opts.includeUnresolved);
   for (const night of Object.keys(all || {})) {
     const arr = all[night];
     if (!Array.isArray(arr)) continue;
-    for (const m of arr) if (m && m.festivalId === festivalId) out.push(m);
+    for (const m of arr) {
+      if (!m) continue;
+      if (loose ? m.festivalId === festivalId : _isProvenFestivalMoment(m, festivalId)) out.push(m);
+    }
   }
   return out;
 }
+// "Not settled to a festival": never attributed at all, OR attributed by a
+// guess the app itself declared unproven. Both need the same human answer.
 function unattributedMoments(all) {
   const out = [];
   for (const night of Object.keys(all || {})) {
     const arr = all[night];
     if (!Array.isArray(arr)) continue;
-    for (const m of arr) if (m && !m.festivalId) out.push(m);
+    for (const m of arr) if (m && (!m.festivalId || m.festivalAttribution === "unresolved")) out.push(m);
   }
   return out;
 }
 // Unique REACHABLE records for one festival — the same media-identity dedupe
 // the library counts with, so a card and the library it opens agree.
+// Dedupe FIRST, then drop the guesses — the same order the Memories header
+// uses, so the card and the screen it opens cannot land on different numbers
+// when one piece of media is held by both a proven and an unresolved record.
 function festivalMemoryCount(festivalId, all) {
   const src = all || (typeof _readMoments === "function" ? _readMoments() : {});
-  const mine = momentsForFestival(src, festivalId);
-  return (typeof _dedupeByMedia === "function" ? _dedupeByMedia(mine) : mine).length;
+  const mine = momentsForFestival(src, festivalId, { includeUnresolved: true });
+  const unique = (typeof _dedupeByMedia === "function" ? _dedupeByMedia(mine) : mine);
+  return unique.filter(m => m.festivalAttribution !== "unresolved").length;
 }
 
 // ── Per-festival view state ────────────────────────────────────────────────
@@ -157,10 +177,20 @@ function writeFestivalView(festivalId, patch) {
 // An honest one-line state for a festival row. Never a distance, an ETA, a set
 // time or an availability claim — those are only source-safe inside a festival
 // that has the data, and a landing card has no way to know.
-function _landingFestivalState(entry, now) {
+// The switcher (chrome.jsx) has always had THREE answers for an early-access
+// festival: a Plus subscriber walks in, everyone else gets the offer, and only
+// a genuinely unopened festival is dead. The landing shipped with one answer —
+// locked — so the app's new front door both shut out the subscribers who had
+// paid for exactly this and dropped the one upgrade route on the screen.
+// `plus` is passed in rather than read here so the pure gate can drive it.
+function _landingFestivalState(entry, now, plus) {
   const phase = typeof _festivalPhase === "function" ? _festivalPhase(entry, now) : "upcoming";
   if (!entry.available && !entry.previewOnly) return { label: "Not open yet", tone: "muted", locked: true };
-  if (!entry.available && entry.previewOnly)  return { label: "Early access", tone: "muted", locked: true };
+  if (!entry.available && entry.previewOnly) {
+    return plus
+      ? { label: "Early access", tone: "signal" }
+      : { label: "Early access · Plursky+", tone: "muted", locked: true, upsell: true };
+  }
   if (phase === "live")  return { label: "Happening now", tone: "signal" };
   if (phase === "ended") return { label: "Ended", tone: "muted" };
   if (phase === "tba")   return { label: "Dates TBA", tone: "muted" };
@@ -168,24 +198,50 @@ function _landingFestivalState(entry, now) {
   return { label: "Upcoming", tone: "muted" };
 }
 
-function _LandingFestivalCard({ entry, saved, memoryCount, onEnter }) {
+// ONE eligibility policy, used by the row, the primary button and the enter
+// handler. It used to live only in the row: `primary` fell back to saved[0]
+// with no check at all, so a festival you saved while it was open (or while
+// you had Plus) stayed the screen's most prominent action after it was gated,
+// and tapping it walked straight in past the lock its own browse row showed.
+function landingCanEnter(entry, now, plus) {
+  if (!entry || !entry.config) return false;
+  return !_landingFestivalState(entry, now, plus).locked;
+}
+// The one primary action. Only an ENTERABLE festival earns it: offering a
+// button that cannot be honoured is worse than offering none.
+function _landingPrimary(ordered, savedIds, now, plus) {
+  const ids = savedIds || [];
+  const ok = (f) => landingCanEnter(f, now, plus);
+  const saved = (ordered || []).filter(f => ids.includes(f.config.id) && ok(f));
+  const phase = (f) => (typeof _festivalPhase === "function" ? _festivalPhase(f, now) : "upcoming");
+  return saved.find(f => phase(f) === "live")
+      || saved.find(f => phase(f) === "upcoming")
+      || (ordered || []).find(f => phase(f) === "live" && ok(f))
+      || saved[0]
+      || null;
+}
+
+function _LandingFestivalCard({ entry, saved, memoryCount, onEnter, onUpsell, plus }) {
   const now = Date.now();
-  const st = _landingFestivalState(entry, now);
+  const st = _landingFestivalState(entry, now, plus);
   const c = entry.config;
   const toneColor = st.tone === "signal" ? "var(--signal-ink)" : "var(--text-2)";
+  // An upsell row is locked as a DESTINATION and live as an OFFER: disabling
+  // it is what made the row a dead end with nothing to tap.
+  const dead = st.locked && !st.upsell;
   return (
     <button
-      onClick={() => { if (!st.locked) onEnter(c.id, entry); }}
-      disabled={st.locked}
-      aria-label={`${c.name}. ${st.label}.${saved ? " Saved." : ""}${memoryCount ? ` ${memoryCount} memories.` : ""}`}
+      onClick={() => { if (st.upsell) onUpsell?.(c.id, entry); else if (!st.locked) onEnter(c.id, entry); }}
+      disabled={dead}
+      aria-label={`${c.name}. ${st.label}.${st.upsell ? " Opens the Plursky+ offer." : ""}${saved ? " Saved." : ""}${memoryCount ? ` ${memoryCount} memories.` : ""}`}
       style={{
         width: "100%", display: "flex", alignItems: "center", gap: 12,
         minHeight: 72, padding: "10px 0",
         background: "transparent", border: "none",
         borderBottom: "1px solid var(--line)",
         color: "var(--ink)", textAlign: "left", fontFamily: "inherit",
-        cursor: st.locked ? "default" : "pointer",
-        opacity: st.locked ? 0.55 : 1,
+        cursor: dead ? "default" : "pointer",
+        opacity: dead ? 0.55 : st.upsell ? 0.8 : 1,
       }}>
       {typeof FestivalThumb === "function" ? <FestivalThumb entry={entry} /> : null}
       <div style={{ flex: 1, minWidth: 0 }}>
@@ -213,7 +269,7 @@ function _LandingFestivalCard({ entry, saved, memoryCount, onEnter }) {
           {memoryCount > 0 ? ` · ${memoryCount} ${memoryCount === 1 ? "memory" : "memories"}` : ""}
         </div>
       </div>
-      {!st.locked && (
+      {!dead && (
         <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)"
              strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
           <path d="M9 6 L15 12 L9 18"/>
@@ -226,6 +282,10 @@ function _LandingFestivalCard({ entry, saved, memoryCount, onEnter }) {
 function GeneralLandingScreen({ state, setState }) {
   const [savedIds, setSavedIds] = React.useState(readSavedFestivals);
   const [q, setQ] = React.useState("");
+  // Same offer sheet and the same feature string the FestivalSwitcher uses,
+  // so early access is sold in one voice from both doors.
+  const [plusOpen, setPlusOpen] = React.useState(false);
+  const plus = !!window._isPlusSub?.();
   const [moments, setMoments] = React.useState(() => {
     try { return typeof _readMoments === "function" ? _readMoments() : {}; } catch { return {}; }
   });
@@ -267,8 +327,16 @@ function GeneralLandingScreen({ state, setState }) {
   }, [moments]);
 
   // ENTERING is not SAVING. This only changes which festival the scoped
-  // screens show, and lands on that festival's Today screen.
+  // screens show, and lands on that festival's Today screen — and it refuses
+  // a festival the screen would not let you into, because a handler that
+  // trusts its callers is a lock every future caller can forget to check.
   const enterFestival = React.useCallback((id) => {
+    const entry = (typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : [])
+      .find(f => f && f.config && f.config.id === id);
+    if (entry && !landingCanEnter(entry, Date.now(), plus)) {
+      if (entry.previewOnly) setPlusOpen(true);
+      return;
+    }
     if (id && activeId && id !== activeId && typeof setActiveFestivalAndReload === "function") {
       // The reload re-resolves the active festival; record the destination so
       // the boot after it does not bounce back to General Home.
@@ -277,7 +345,7 @@ function GeneralLandingScreen({ state, setState }) {
       return;
     }
     setState(s => ({ ...s, tab: "home", artist: null }));
-  }, [activeId, setState]);
+  }, [activeId, setState, plus]);
 
   const saved = ordered.filter(f => savedIds.includes(f.config.id));
   const term = q.trim().toLowerCase();
@@ -303,19 +371,19 @@ function GeneralLandingScreen({ state, setState }) {
     <_LandingFestivalCard
       key={f.config.id}
       entry={f}
+      plus={plus}
       saved={savedIds.includes(f.config.id)}
       memoryCount={counts[f.config.id] || 0}
       onEnter={enterFestival}
+      onUpsell={() => setPlusOpen(true)}
     />
   );
 
-  // The one primary action. With a saved or live festival it enters it; with
-  // nothing saved it points at Browse, which is already on screen.
-  const primary = saved.find(f => phaseOf(f) === "live")
-    || saved.find(f => phaseOf(f) === "upcoming")
-    || ordered.find(f => phaseOf(f) === "live" && f.available)
-    || saved[0]
-    || null;
+  const primary = _landingPrimary(ordered, savedIds, now, plus);
+
+  if (plusOpen && typeof PlusSheet === "function") {
+    return <PlusSheet feature="early festival access" onClose={() => setPlusOpen(false)} />;
+  }
 
   return (
     <Screen>
@@ -359,8 +427,10 @@ function GeneralLandingScreen({ state, setState }) {
           </p>
         )}
 
-        {/* Unattributed media is surfaced, never silently filed under a
-            festival. It is the landing's face of Needs Review. */}
+        {/* Media with no settled festival is surfaced, never silently filed
+            under one. It is the landing's face of Needs Review, and it counts
+            a declared guess as unsettled — an "unresolved" attribution is the
+            app admitting it does not know. */}
         {orphanCount > 0 && (
           <button
             onClick={() => setState(s => ({ ...s, tab: "memories", artist: null }))}
@@ -370,7 +440,7 @@ function GeneralLandingScreen({ state, setState }) {
               background: "var(--paper-2)", border: "none", color: "var(--warn)",
               fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit",
             }}>
-            ⚑ {orphanCount} {orphanCount === 1 ? "memory is" : "memories are"} not filed to a festival · Review
+            ⚑ {orphanCount} {orphanCount === 1 ? "memory is" : "memories are"} not confirmed to a festival · Review
           </button>
         )}
 

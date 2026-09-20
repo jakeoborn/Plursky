@@ -41,9 +41,10 @@ async function open(browser, { url = BASE, init = {}, width = 393 } = {}) {
     // look broken. The sentinel makes the second load read real app state.
     if (localStorage.getItem('__seeded') === '1') return;
     localStorage.setItem('__seeded', '1');
-    localStorage.setItem('onboarded', 'v1');
+    if (!kv.__onboarding) localStorage.setItem('onboarded', 'v1');
     localStorage.setItem('user_name', 'Test');
     for (const [k, v] of Object.entries(kv)) {
+      if (k === '__onboarding') continue;
       if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v);
     }
   }, init);
@@ -228,6 +229,262 @@ try {
     check(!/moments? in 20 minutes/.test(t), 'peak: the old "in 20 minutes" claim is gone');
     // No per-day empty boxes.
     check(!/NO MOMENTS YET/.test(t), 'library: no per-day "NO MOMENTS YET" box');
+    await ctx.close();
+  }
+
+  // ── 5b. The three totals on one library are ONE number ───────────────────
+  // The header counted raw RECORDS while the day summaries and the landing
+  // card counted unique media, so a duplicated import made the top of the
+  // screen disagree with the rows underneath it. A declared-guess record is
+  // named separately rather than folded into either number.
+  {
+    const artistId = 'n4';
+    const dupSeed = JSON.stringify({ "1": [
+      { id: "d1", night: 1, photoId: "c1", _fingerprint: "fp_dup_same.jpg", artistId, kind: "photo", takenAt: "2026-05-16T05:30:00.000Z", createdAt: 1779000001000, festivalId: 'edc-lv-2026' },
+      // Same media, different record, DIFFERENT group (loose, not on the set).
+      { id: "d2", night: 1, photoId: "c2", _fingerprint: "fp_dup_same.jpg", artistId: null, kind: "photo", takenAt: "2026-05-16T05:33:00.000Z", createdAt: 1779000002000, festivalId: 'edc-lv-2026' },
+      { id: "d3", night: 1, photoId: "c3", _fingerprint: "fp_dup_other.jpg", artistId, kind: "photo", takenAt: "2026-05-16T05:36:00.000Z", createdAt: 1779000003000, festivalId: 'edc-lv-2026' },
+      // Parked on a guess the app itself declared unproven.
+      { id: "d4", night: 1, photoId: "c4", _fingerprint: "fp_dup_guess.jpg", artistId, kind: "photo", takenAt: "2026-05-16T05:39:00.000Z", createdAt: 1779000004000, festivalId: 'edc-lv-2026', festivalAttribution: 'unresolved' },
+    ]});
+    const { ctx, page } = await open(browser, { url: `${BASE}?tab=memories`, init: {
+      active_festival_id: 'edc-lv-2026', active_festival_explicit: '1',
+      plursky_last_festival_id: 'edc-lv-2026',
+      'edc-lv-2026_saved_v1': JSON.stringify([artistId]),
+      plursky_moments_v1: dupSeed,
+      plursky_memories_view_v1: 'library',
+    }});
+    const t = await text(page);
+    const head = t.match(/(\d+)\s+MOMENTS?/i);
+    check(!!head, `totals: the Memories header states a moment count (saw ${JSON.stringify((t.match(/.*MOMENTS?.*/gi) || []).slice(0, 2))})`);
+    // 4 records, 3 unique media, 1 of those an unproven guess => 2 confirmed.
+    check(head && +head[1] === 2,
+      `totals: the header counts UNIQUE media and excludes the declared guess (expected 2, got ${head && head[1]})`);
+    check(/1\s+UNCONFIRMED/i.test(t),
+      'totals: the guess is named, not silently folded into the total or dropped');
+    const model = await page.evaluate(() => {
+      const all = window._activeMoments(window._readMoments());
+      const lib = window._dedupeLibrary(all);
+      const day = window._buildLibraryDay({
+        moments: lib.byNight['1'] || [], attendedSet: new Set(), artists: window.ARTISTS,
+        toMin: window.toNightMin, dupsFor: (id) => lib.dupsByCanonical.get(id) || [],
+      });
+      return { unique: lib.unique, dayMoments: day.counts.moments,
+               card: window.festivalMemoryCount('edc-lv-2026', window._readMoments()),
+               drawn: day.groups.flatMap(g => g.media.map(m => m._fingerprint))
+                        .filter(f => f === 'fp_dup_same.jpg').length };
+    });
+    check(model.unique === model.dayMoments,
+      `totals: library total === the day's own total (${model.unique} vs ${model.dayMoments})`);
+    check(model.card === 2,
+      `totals: the landing card reports the same confirmed count as the header (got ${model.card})`);
+    check(model.drawn === 1,
+      `totals: the duplicated photo is drawn once, not once per group (drawn ${model.drawn}x)`);
+    await ctx.close();
+  }
+
+  // ── 7. Onboarding ends INSIDE a festival, never back at the chooser ──────
+  // Picking a festival is the last thing first-run asks. Answering it and
+  // being handed the same question again is the failure this covers, on both
+  // paths: the active festival (no reload) and a different one (reload).
+  // EVERY query here is scoped INSIDE the modal. The wizard renders OVER
+  // General Home, which has its own row per festival with the same label, and
+  // a document-wide querySelectorAll finds the landing's row first — so an
+  // unscoped harness clicks the screen behind the dialog and grades a path
+  // the user never took. (That is exactly what this gate did until a mutation
+  // that should have failed it came back green.)
+  const DLG = '[role=dialog][aria-label="Welcome to Plursky"]';
+  const finishOnboarding = async (page, pick) => {
+    const inDialog = await page.evaluate((sel) => !!document.querySelector(sel), DLG);
+    check(inDialog, 'onboarding: the wizard dialog is on screen before the harness drives it');
+    // Three story pages, then the festival list.
+    await page.evaluate((sel) => {
+      const d = document.querySelector(sel); if (!d) return;
+      const b = [...d.querySelectorAll('button')].find(e => (e.textContent || '').trim() === 'Skip');
+      if (b) b.click();
+    }, DLG);
+    await sleep(500);
+    // Match the row by the name the REGISTRY prints, never by a short name a
+    // human would use: acl-2026 renders "Austin City Limits 2026", and a
+    // harness matching /ACL/ silently clicks nothing and grades a screen the
+    // user never reached.
+    const clicked = await page.evaluate(({ id, sel }) => {
+      const d = document.querySelector(sel);
+      if (!d) return null;
+      const btns = [...d.querySelectorAll('button')];
+      if (!id) {
+        const b = btns.find(e => /^Continue with /.test((e.textContent || '').trim()));
+        if (b) { b.click(); return 'continue'; }
+        return null;
+      }
+      const entry = (window.FESTIVALS_REGISTRY || []).find(f => f.config.id === id);
+      if (!entry) return null;
+      const b = btns.find(e => (e.textContent || '').includes(entry.config.name));
+      if (!b || b.disabled) return null;
+      b.click();
+      return entry.config.name;
+    }, { id: pick, sel: DLG });
+    check(!!clicked, `onboarding: the festival row for ${pick || 'the active festival'} was found and tapped`);
+    await sleep(1200);
+  };
+  {
+    const { ctx, page } = await open(browser, { init: {
+      __onboarding: '1', active_festival_id: 'edc-lv-2026', active_festival_explicit: '1',
+    }});
+    const t0 = await text(page);
+    check(/plan the night|where are you raving|1 of 3/i.test(t0),
+      `onboarding: first run shows the wizard (saw ${JSON.stringify(t0.slice(0, 60))})`);
+    await finishOnboarding(page, null);   // "Continue with EDC Las Vegas"
+    const t = await text(page);
+    check(!/browse festivals/i.test(t),
+      'onboarding (same festival): does NOT hand the user back to the chooser');
+    const nav = await page.evaluate(() => [...document.querySelectorAll('button')]
+      .filter(b => /^(Today|Lineup|Map|Me|Memories)$/.test((b.textContent || '').trim())).length);
+    check(nav > 0, `onboarding (same festival): lands inside the festival, bottom nav mounted (found ${nav})`);
+    const wiz = await page.evaluate((sel) => !!document.querySelector(sel), DLG);
+    check(!wiz, 'onboarding (same festival): the wizard is dismissed, not still sitting over the screen');
+    const onb = await page.evaluate(() => localStorage.getItem('onboarded'));
+    check(onb === 'v1', `onboarding (same festival): first run is recorded as done (onboarded=${onb})`);
+    await ctx.close();
+  }
+  {
+    const { ctx, page } = await open(browser, { init: {
+      __onboarding: '1', active_festival_id: 'edc-lv-2026', active_festival_explicit: '1',
+    }});
+    await finishOnboarding(page, 'acl-2026');
+    let active = null;
+    try {
+      await page.waitForFunction(() => localStorage.getItem('active_festival_id') === 'acl-2026', null, { timeout: 20000, polling: 150 });
+    } catch {}
+    active = await page.evaluate(() => localStorage.getItem('active_festival_id'));
+    check(active === 'acl-2026', `onboarding (different festival): switches to the chosen festival (active=${active})`);
+    const t = await text(page);
+    check(!/browse festivals/i.test(t),
+      'onboarding (different festival): the reload lands INSIDE it, not back on the chooser');
+    const nav = await page.evaluate(() => [...document.querySelectorAll('button')]
+      .filter(b => /^(Today|Lineup|Map|Me|Memories)$/.test((b.textContent || '').trim())).length);
+    check(nav > 0, `onboarding (different festival): bottom nav mounted (found ${nav})`);
+    const wiz = await page.evaluate((sel) => !!document.querySelector(sel), DLG);
+    check(!wiz, 'onboarding (different festival): the reload does NOT ask the same question again');
+    const onb = await page.evaluate(() => localStorage.getItem('onboarded'));
+    check(onb === 'v1', `onboarding (different festival): first run is recorded as done (onboarded=${onb})`);
+    await ctx.close();
+  }
+
+  // ── 7c. Onboarding uses the SAME entitlement policy as everywhere else ───
+  // A subscriber reinstalling the app must still be able to pick the
+  // early-access festival they paid for. Onboarding disabled it for everyone,
+  // which is the landing's old bug in the one place a returning subscriber
+  // meets it first. The registry carries no preview-only entry today, so the
+  // fixture makes one before the list paints.
+  for (const [label, isPlus, wantEnabled] of [['free', false, false], ['Plus', true, true]]) {
+    const { ctx, page } = await open(browser, { init: {
+      __onboarding: '1', active_festival_id: 'edc-lv-2026', active_festival_explicit: '1',
+    }});
+    const marked = await page.evaluate((plus) => {
+      const e = (window.FESTIVALS_REGISTRY || []).find(f => f.config.id === 'acl-2026');
+      if (!e) return null;
+      e.available = false; e.previewOnly = true;
+      window._isPlusSub = () => plus;
+      return e.config.name;
+    }, isPlus);
+    check(!!marked, `onboarding (${label}): the fixture marked a row preview-only`);
+    await page.evaluate((sel) => {
+      const d = document.querySelector(sel); if (!d) return;
+      const b = [...d.querySelectorAll('button')].find(e => (e.textContent || '').trim() === 'Skip');
+      if (b) b.click();
+    }, DLG);
+    await sleep(600);
+    const row = await page.evaluate(({ name, sel }) => {
+      const d = document.querySelector(sel); if (!d) return null;
+      const b = [...d.querySelectorAll('button')].find(e => (e.textContent || '').includes(name));
+      return b ? { disabled: b.disabled, text: (b.textContent || '').trim() } : null;
+    }, { name: marked, sel: DLG });
+    check(row && row.disabled === !wantEnabled,
+      `onboarding (${label}): the early-access row is ${wantEnabled ? 'pickable' : 'not pickable'} (${JSON.stringify(row)})`);
+    if (!wantEnabled) {
+      check(row && /plursky\+/i.test(row.text),
+        `onboarding (free): the row says what it would take (${row && row.text})`);
+    }
+    await ctx.close();
+  }
+
+  // ── 8. Early access obeys entitlement in the RUNNING app ─────────────────
+  // No registry entry carries previewOnly today, so the fixture makes one —
+  // otherwise this whole policy is untested until the day it first ships.
+  {
+    const { ctx, page } = await open(browser, { init: {
+      active_festival_id: 'edc-lv-2026', active_festival_explicit: '1',
+    }});
+    const asPreview = (plus) => page.evaluate((isPlus) => {
+      const e = (window.FESTIVALS_REGISTRY || []).find(f => f.config.id === 'acl-2026');
+      if (!e) return null;
+      e.available = false; e.previewOnly = true;
+      window._isPlusSub = () => isPlus;
+      // The landing mirrors saved state on this event; use it to re-render.
+      window.dispatchEvent(new CustomEvent('plursky-saved-festivals-change'));
+      return e.config.name;
+    }, plus);
+    const name = await asPreview(false);
+    check(!!name, 'early access: the fixture found a registry row to mark preview-only');
+    await sleep(500);
+    const free = await page.evaluate((n) => {
+      const b = [...document.querySelectorAll('button')].find(e => (e.getAttribute('aria-label') || '').startsWith(n + '.'));
+      return b ? { disabled: b.disabled, label: b.getAttribute('aria-label') } : null;
+    }, name);
+    check(free && !free.disabled,
+      `early access (free): the row is tappable so the offer is reachable (${JSON.stringify(free)})`);
+    check(free && /plursky\+/i.test(free.label),
+      `early access (free): the row names the offer (${free && free.label})`);
+    // Tapping it must open the offer and must NOT switch the festival.
+    await page.evaluate((n) => {
+      const b = [...document.querySelectorAll('button')].find(e => (e.getAttribute('aria-label') || '').startsWith(n + '.'));
+      if (b) b.click();
+    }, name);
+    await sleep(700);
+    const after = await text(page);
+    const stillEdc = await page.evaluate(() => localStorage.getItem('active_festival_id'));
+    check(stillEdc === 'edc-lv-2026',
+      `early access (free): tapping it did NOT enter the festival (active=${stillEdc})`);
+    check(/plursky\+/i.test(after),
+      'early access (free): tapping it opens the Plursky+ offer instead of a dead end');
+    await ctx.close();
+  }
+
+  // ── 8b. The enter handler re-checks, it does not trust the paint ─────────
+  // Filtering `primary` is the outer lock. This is the inner one, and it is
+  // the one that matters when eligibility changes between the paint and the
+  // tap — a subscription lapsing, or a festival being gated while the screen
+  // sits open. The fixture reproduces that by flipping the registry WITHOUT
+  // re-rendering, so the button on screen is the stale one the user taps.
+  {
+    const { ctx, page } = await open(browser, { init: {
+      active_festival_id: 'edc-lv-2026', active_festival_explicit: '1',
+      plursky_saved_festivals_v1: JSON.stringify({ v: 1, ids: ['acl-2026'] }),
+    }});
+    const primary = await page.evaluate(() => {
+      const b = [...document.querySelectorAll('button')]
+        .find(e => /^(Open|Plan) Austin City Limits/.test((e.textContent || '').trim().replace(/\n[\s\S]*/, '')));
+      return b ? (b.textContent || '').trim().split('\n')[0] : null;
+    });
+    check(!!primary, `enter guard: the saved festival really is the primary action first (saw ${JSON.stringify(primary)})`);
+    // Flip it to gated WITHOUT dispatching the re-render event.
+    await page.evaluate(() => {
+      const e = (window.FESTIVALS_REGISTRY || []).find(f => f.config.id === 'acl-2026');
+      if (e) { e.available = false; e.previewOnly = true; }
+      window._isPlusSub = () => false;
+    });
+    await page.evaluate(() => {
+      const b = [...document.querySelectorAll('button')]
+        .find(e => /^(Open|Plan) Austin City Limits/.test((e.textContent || '').trim().replace(/\n[\s\S]*/, '')));
+      if (b) b.click();
+    });
+    await sleep(800);
+    const active = await page.evaluate(() => localStorage.getItem('active_festival_id'));
+    check(active === 'edc-lv-2026',
+      `enter guard: a stale primary button cannot walk into a now-gated festival (active=${active})`);
+    check(/plursky\+/i.test(await text(page)),
+      'enter guard: it offers the upgrade instead of silently doing nothing');
     await ctx.close();
   }
 

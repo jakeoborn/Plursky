@@ -5373,6 +5373,40 @@ function _dedupeByMedia(moments) {
   out.duplicateCount = dupes;
   return out;
 }
+function _dedupeLibrary(all) {
+  var seen = new Map();
+  var dupsByCanonical = new Map();
+  var byNight = {};
+  var unique = 0;
+  for (var night of Object.keys(all || {})) {
+    var arr = all[night];
+    if (!Array.isArray(arr)) {
+      byNight[night] = [];
+      continue;
+    }
+    var keep = [];
+    for (var m of arr) {
+      if (!m) continue;
+      var key = _mediaIdentity(m);
+      if (key && seen.has(key)) {
+        var canon = seen.get(key);
+        var list = dupsByCanonical.get(canon.id) || [];
+        list.push(m);
+        dupsByCanonical.set(canon.id, list);
+        continue;
+      }
+      if (key) seen.set(key, m);
+      keep.push(m);
+      unique++;
+    }
+    byNight[night] = keep;
+  }
+  return {
+    byNight,
+    dupsByCanonical,
+    unique
+  };
+}
 function _peakWindow(moments, windowMs) {
   windowMs = windowMs || 20 * 60000;
   var timed = _dedupeByMedia(moments || []).filter(m => m.photoId).map(m => ({
@@ -8967,7 +9001,8 @@ function _buildLibraryDay({
   moments,
   attendedSet,
   artists,
-  toMin
+  toMin,
+  dupsFor
 }) {
   var {
     byArtist,
@@ -8984,7 +9019,7 @@ function _buildLibraryDay({
   var shape = raw => {
     var media = _dedupeByMedia(raw || []);
     var keep = new Set(media.map(m => m.id));
-    var duplicates = (raw || []).filter(m => !keep.has(m.id));
+    var duplicates = (raw || []).filter(m => !keep.has(m.id)).concat(dupsFor ? media.flatMap(m => dupsFor(m.id) || []) : []);
     var hero = media.length ? _pickHeroMoment(media) : null;
     var stack = hero ? media.filter(m => m.id !== hero.id) : media;
     var ordered = hero ? [hero, ...stack] : media;
@@ -9794,7 +9829,11 @@ function MemoriesScreen({
     _writeMoments(next);
     setAll(next);
   };
-  var totalCount = Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
+  var library = React.useMemo(() => _dedupeLibrary(all), [all]);
+  var dupsFor = React.useCallback(id => library.dupsByCanonical.get(id) || [], [library]);
+  var totalCount = library.unique;
+  var unconfirmedCount = React.useMemo(() => Object.values(library.byNight).reduce((n, arr) => n + (Array.isArray(arr) ? arr.filter(m => m && m.festivalAttribution === "unresolved").length : 0), 0), [library]);
+  var confirmedCount = Math.max(0, totalCount - unconfirmedCount);
   var [attendedTick, setAttendedTick] = React.useState(0);
   React.useEffect(() => {
     var bump = () => setAttendedTick(t => t + 1);
@@ -10042,7 +10081,7 @@ function MemoriesScreen({
     }
   }, React.createElement(TopBar, {
     title: React.createElement("span", null, "Memories"),
-    sub: `${totalCount} ${totalCount === 1 ? "MOMENT" : "MOMENTS"} · ${FESTIVAL_CONFIG.shortName.toUpperCase()}`,
+    sub: `${confirmedCount} ${confirmedCount === 1 ? "MOMENT" : "MOMENTS"}` + (unconfirmedCount ? ` · ${unconfirmedCount} UNCONFIRMED` : "") + ` · ${FESTIVAL_CONFIG.shortName.toUpperCase()}`,
     tight: true
   })), React.createElement("input", {
     ref: batchInputRef,
@@ -10660,7 +10699,7 @@ function MemoriesScreen({
       }
     }, "Archived recap saved for this festival."));
   })(), view === "library" && filter !== "recaps" && DAYS.map(d => {
-    var moments = (all[d.n] || []).slice().sort((a, b) => _momentTime(a) - _momentTime(b));
+    var moments = (library.byNight[d.n] || []).slice().sort((a, b) => _momentTime(a) - _momentTime(b));
     var dateInfo = FESTIVAL_CONFIG.dayDates?.[d.n];
     var savedNightArtists = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(a => a && a.day === d.n);
     var attendedSet = (typeof getAttendedForNight === "function" ? getAttendedForNight(d.n) : null) || new Set();
@@ -10668,7 +10707,8 @@ function MemoriesScreen({
       moments,
       attendedSet,
       artists: ARTISTS,
-      toMin: window.toNightMin
+      toMin: window.toNightMin,
+      dupsFor
     });
     var day = _filterLibraryDay(dayAll, filter);
     var collapsed = collapsedDays.has(d.n);

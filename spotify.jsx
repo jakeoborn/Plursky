@@ -3699,6 +3699,47 @@ function _dedupeByMedia(moments) {
   return out;
 }
 
+// Dedupe across the WHOLE library, not per group.
+//
+// THE BUG: _dedupeByMedia ran inside _buildLibraryDay's shape(), once per
+// group. Dedupe keys on MEDIA IDENTITY (fingerprint/photoId), but grouping
+// partitions RECORDS — and two records can share one piece of media while
+// landing in different groups (a re-import tagged to a different artist, or
+// a clip #215 recovered onto another night beside the original). Each group
+// then saw its copy exactly once, kept it, drew it, and counted it, so one
+// photo appeared twice on screen and twice in "N moments".
+//
+// Deduping first makes every count downstream a count of UNIQUE MEDIA, and
+// the losing records are handed back keyed by the winner so they stay
+// reachable (#210: a record that is in no group at all is an orphan).
+function _dedupeLibrary(all) {
+  const seen = new Map();          // media identity -> canonical record
+  const dupsByCanonical = new Map(); // canonical record id -> losing records
+  const byNight = {};
+  let unique = 0;
+  for (const night of Object.keys(all || {})) {
+    const arr = all[night];
+    if (!Array.isArray(arr)) { byNight[night] = []; continue; }
+    const keep = [];
+    for (const m of arr) {
+      if (!m) continue;
+      const key = _mediaIdentity(m);
+      if (key && seen.has(key)) {
+        const canon = seen.get(key);
+        const list = dupsByCanonical.get(canon.id) || [];
+        list.push(m);
+        dupsByCanonical.set(canon.id, list);
+        continue;
+      }
+      if (key) seen.set(key, m);
+      keep.push(m);
+      unique++;
+    }
+    byNight[night] = keep;
+  }
+  return { byNight, dupsByCanonical, unique };
+}
+
 // Returns the densest `windowMs` stretch of the night.
 //
 // THE COPY BUG THIS RETURN SHAPE EXISTS FOR: the old shape returned only
@@ -5733,7 +5774,7 @@ function _groupNightMoments({ moments, attendedSet, artists, toMin }) {
 //   2. every RECORD is reachable exactly once — as a set card's cover, in its
 //      stack, in Between Sets, in Needs Review, or in that group's duplicates
 //      list. Deduping for display must not make a record disappear.
-function _buildLibraryDay({ moments, attendedSet, artists, toMin }) {
+function _buildLibraryDay({ moments, attendedSet, artists, toMin, dupsFor }) {
   const { byArtist, untagged, spineIds, needsReview } = _groupNightMoments({ moments, attendedSet, artists, toMin });
   const find = (id) => (artists || []).find(a => a.id === id);
 
@@ -5743,7 +5784,12 @@ function _buildLibraryDay({ moments, attendedSet, artists, toMin }) {
   const shape = (raw) => {
     const media = _dedupeByMedia(raw || []);
     const keep = new Set(media.map(m => m.id));
-    const duplicates = (raw || []).filter(m => !keep.has(m.id));
+    // Losers dropped inside this group, plus the ones already dropped
+    // library-wide against a canonical record that lives in THIS group. Both
+    // stay attached to the record that won, which is what keeps them
+    // reachable instead of orphaned.
+    const duplicates = (raw || []).filter(m => !keep.has(m.id))
+      .concat(dupsFor ? media.flatMap(m => dupsFor(m.id) || []) : []);
     const hero = media.length ? _pickHeroMoment(media) : null;
     // The cover is NOT also a row. THE BUG THIS FIXES: _GroupHeroThumb drew
     // the hero, then the hero was prepended to orderedMoments and drawn again
@@ -6492,7 +6538,22 @@ function MemoriesScreen({ state, setState }) {
     setAll(next);
   };
 
-  const totalCount = Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
+  // ONE dedupe for the whole festival, shared by the header and every day, so
+  // the three numbers on screen cannot disagree. The header used to count raw
+  // RECORDS while the day summaries counted unique media and the landing card
+  // counted unique media again: a duplicated import made the header say 12
+  // over days that added up to 10.
+  const library = React.useMemo(() => _dedupeLibrary(all), [all]);
+  const dupsFor = React.useCallback(
+    (id) => library.dupsByCanonical.get(id) || [], [library]);
+  const totalCount = library.unique;
+  // Records this festival holds on a DECLARED GUESS (#213). They are drawn —
+  // evicting them would be a second data-loss bug — but they are not counted
+  // as things we know, and the header says how many are unconfirmed so the
+  // two numbers add up to what is on screen.
+  const unconfirmedCount = React.useMemo(() => Object.values(library.byNight)
+    .reduce((n, arr) => n + (Array.isArray(arr) ? arr.filter(m => m && m.festivalAttribution === "unresolved").length : 0), 0), [library]);
+  const confirmedCount = Math.max(0, totalCount - unconfirmedCount);
   // Attended sets are library records too. The old empty state counted only
   // media, so "NO MOMENTS YET" could contradict the set cards below it.
   const [attendedTick, setAttendedTick] = React.useState(0);
@@ -6731,7 +6792,9 @@ function MemoriesScreen({ state, setState }) {
         <div style={{ margin: "0 -20px" }}>
           <TopBar
             title={<span>Memories</span>}
-            sub={`${totalCount} ${totalCount === 1 ? "MOMENT" : "MOMENTS"} · ${FESTIVAL_CONFIG.shortName.toUpperCase()}`}
+            sub={`${confirmedCount} ${confirmedCount === 1 ? "MOMENT" : "MOMENTS"}`
+              + (unconfirmedCount ? ` · ${unconfirmedCount} UNCONFIRMED` : "")
+              + ` · ${FESTIVAL_CONFIG.shortName.toUpperCase()}`}
             tight
           />
         </div>
@@ -7107,13 +7170,13 @@ function MemoriesScreen({ state, setState }) {
           // it was imported — _momentTime falls back to createdAt only when the
           // capture time is missing. takenAt carries a full date+time, so a clip
           // shot at 00:32 naturally sorts after one shot at 23:35 the same night.
-          const moments = (all[d.n] || []).slice().sort((a, b) => _momentTime(a) - _momentTime(b));
+          const moments = (library.byNight[d.n] || []).slice().sort((a, b) => _momentTime(a) - _momentTime(b));
           const dateInfo = FESTIVAL_CONFIG.dayDates?.[d.n];
           const savedNightArtists = state.saved
             .map(id => ARTISTS.find(a => a.id === id))
             .filter(a => a && a.day === d.n);
           const attendedSet = (typeof getAttendedForNight === "function" ? getAttendedForNight(d.n) : null) || new Set();
-          const dayAll = _buildLibraryDay({ moments, attendedSet, artists: ARTISTS, toMin: window.toNightMin });
+          const dayAll = _buildLibraryDay({ moments, attendedSet, artists: ARTISTS, toMin: window.toNightMin, dupsFor });
           const day = _filterLibraryDay(dayAll, filter);
           const collapsed = collapsedDays.has(d.n);
           // Nothing here and nothing to manage — draw nothing at all.
