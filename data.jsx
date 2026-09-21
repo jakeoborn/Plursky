@@ -890,30 +890,6 @@ const FESTIVALS_REGISTRY = [
     region:    "Latin America",
   },
   {
-    // SOURCE countdownnye.com: "December 31 + January 1, 2027", "5 stages";
-    // lineup reads "Loading: 2026's lineup". /hours-and-info/: "NOS Events
-    // Center, 689 S E St., San Bernardino, CA 92408", 4:00pm – 2:00am, 18+.
-    // ⚠ That page still says "Thursday, December 31, 2025" — a stale year:
-    // Dec 31 is a Thursday in 2026, not 2025. The homepage year is used.
-    // The span crosses a year, so `dates` names both years.
-    config: {
-      id:        "countdown-nye-2026",
-      name:      "Countdown NYE 2026",
-      shortName: "Countdown",
-      brand:     "Countdown",
-      tagline:   "Five stages into the new year",
-      location:  "NOS Events Center · San Bernardino, CA",
-      locationShort: "NOS Events Center",
-      dates:     "Dec 31, 2026 – Jan 1, 2027",
-      year:      2026,
-      officialEvent: { id: 554480, url: "https://countdownnye.com/", website: "https://countdownnye.com/", tickets: "https://countdownnye.frontgatetickets.com/", observedAt: "2026-09-10" },
-    },
-    available: false,
-    accent:    "#60a5fa",
-    emoji:     "🎆",
-    region:    "North America",
-  },
-  {
     // SOURCE socal.beyondwonderland.com: "March 26+27, 2027". /hours-and-info/:
     // "NOS Events Center, 689 S. E St, San Bernardino, CA 92408", hours TBA,
     // 18+. Artists not announced (/lineup/ is headed "2026 Lineup").
@@ -3225,6 +3201,7 @@ const _WAVE1_IDS = [
   "hard-summer-2026", "arc-2026", "escape-halloween-2026",
   "dreamstate-socal-2026",
   "decadence-colorado-2026",
+  "countdown-nye-2026",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {
