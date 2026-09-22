@@ -1206,6 +1206,14 @@ function _festivalArt(cfg) {
   const img = cfg && cfg.mapImage;
   return img && /\.(webp|jpe?g|png)$/i.test(img) && !_GENERATED_ART.has(img) ? img : null;
 }
+const _FESTIVAL_EDITORIAL_ART = Object.freeze({
+  "acl-2026": "festival-art/acl-2026.webp",
+  "crssd-fall-2026": "festival-art/crssd-fall-2026.webp",
+  "portola-2026": "festival-art/portola-2026.webp",
+  "iii-points-2026": "festival-art/iii-points-2026.webp",
+  "edc-lv-2026": "festival-art/edc-lv-2026.webp",
+  "countdown-nye-2026": "festival-art/countdown-nye-2026.webp",
+});
 function FestivalThumb({ entry, size = 56, editorial = false }) {
   // The switcher's cards are discovery surfaces, not maps. Festival map art
   // looked like a tiny screenshot and generated/no-art festivals fell back to
@@ -1213,7 +1221,8 @@ function FestivalThumb({ entry, size = 56, editorial = false }) {
   // festival has licensed editorial photography, use a deterministic film
   // gradient + wordmark. Compact list rows still use real raster art where it
   // exists because there it reads as a useful identifier, not a hero photo.
-  const art = !editorial && entry ? _festivalArt(entry.config) : null;
+  const editorialArt = editorial && entry ? _FESTIVAL_EDITORIAL_ART[entry.config?.id] : null;
+  const art = editorialArt || (!editorial && entry ? _festivalArt(entry.config) : null);
   const name = entry?.config?.shortName || entry?.config?.brand || entry?.config?.name || "Plur";
   const mark = String(name).split(/\s+/).filter(Boolean).slice(0, 2).map(x => x[0]).join("").toUpperCase();
   const seed = String(entry?.config?.id || "plur").split("").reduce((n, c) => n + c.charCodeAt(0), 0);

@@ -1514,12 +1514,21 @@ function _festivalArt(cfg) {
   var img = cfg && cfg.mapImage;
   return img && /\.(webp|jpe?g|png)$/i.test(img) && !_GENERATED_ART.has(img) ? img : null;
 }
+var _FESTIVAL_EDITORIAL_ART = Object.freeze({
+  "acl-2026": "festival-art/acl-2026.webp",
+  "crssd-fall-2026": "festival-art/crssd-fall-2026.webp",
+  "portola-2026": "festival-art/portola-2026.webp",
+  "iii-points-2026": "festival-art/iii-points-2026.webp",
+  "edc-lv-2026": "festival-art/edc-lv-2026.webp",
+  "countdown-nye-2026": "festival-art/countdown-nye-2026.webp"
+});
 function FestivalThumb({
   entry,
   size = 56,
   editorial = false
 }) {
-  var art = !editorial && entry ? _festivalArt(entry.config) : null;
+  var editorialArt = editorial && entry ? _FESTIVAL_EDITORIAL_ART[entry.config?.id] : null;
+  var art = editorialArt || (!editorial && entry ? _festivalArt(entry.config) : null);
   var name = entry?.config?.shortName || entry?.config?.brand || entry?.config?.name || "Plur";
   var mark = String(name).split(/\s+/).filter(Boolean).slice(0, 2).map(x => x[0]).join("").toUpperCase();
   var seed = String(entry?.config?.id || "plur").split("").reduce((n, c) => n + c.charCodeAt(0), 0);

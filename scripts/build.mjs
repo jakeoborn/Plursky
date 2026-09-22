@@ -55,6 +55,11 @@ const dataFiles = existsSync(path.join(root, 'data', 'festivals'))
 
 // Compiled output. This is what index.html and sw.js actually reference now,
 // so a miss here is a blank app in the native shell, not a slow one.
+const festivalArtFiles = existsSync(path.join(root, 'festival-art'))
+  ? (await readdir(path.join(root, 'festival-art')))
+      .filter(f => /\.(webp|jpe?g|png)$/i.test(f)).map(f => path.join('festival-art', f))
+  : [];
+
 const buildFiles = existsSync(path.join(root, 'build'))
   ? (await readdir(path.join(root, 'build')))
       .filter(f => f.endsWith('.js')).map(f => path.join('build', f))
@@ -64,7 +69,7 @@ if (!buildFiles.length) {
   process.exit(1);
 }
 
-const allFiles = [...new Set([...COPY, ...buildFiles, ...imgFiles, ...dataFiles])];
+const allFiles = [...new Set([...COPY, ...buildFiles, ...imgFiles, ...dataFiles, ...festivalArtFiles])];
 for (const file of allFiles) {
   const src = path.join(root, file);
   if (!existsSync(src)) {
