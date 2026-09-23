@@ -233,22 +233,6 @@
    ]
   },
   {
-   "id": "lollapalooza-2025:how-long-gone-with-the-dare",
-   "name": "HOW LONG GONE WITH THE DARE",
-   "key": "how-long-gone-with-the-dare",
-   "performers": [
-    "how-long-gone-with-the-dare"
-   ]
-  },
-  {
-   "id": "lollapalooza-2025:bob-s-dance-shop",
-   "name": "BOB'S DANCE SHOP",
-   "key": "bob-s-dance-shop",
-   "performers": [
-    "bob-s-dance-shop"
-   ]
-  },
-  {
    "id": "lollapalooza-2025:23-skidoo-and-the-secret-agency",
    "name": "23 SKIDOO & THE SECRET AGENCY",
    "key": "23-skidoo-and-the-secret-agency",
@@ -657,27 +641,11 @@
    ]
   },
   {
-   "id": "lollapalooza-2025:the-bingo-go-go",
-   "name": "THE BINGO-GO-GO",
-   "key": "the-bingo-go-go",
-   "performers": [
-    "the-bingo-go-go"
-   ]
-  },
-  {
    "id": "lollapalooza-2025:gigi-perez-x-tatiana-miranda",
    "name": "GIGI PEREZ X TATIANA MIRANDA",
    "key": "gigi-perez-x-tatiana-miranda",
    "performers": [
     "gigi-perez-x-tatiana-miranda"
-   ]
-  },
-  {
-   "id": "lollapalooza-2025:how-long-gone-with-the-bear-s-corey-hendrix",
-   "name": "HOW LONG GONE WITH THE BEAR'S COREY HENDRIX",
-   "key": "how-long-gone-with-the-bear-s-corey-hendrix",
-   "performers": [
-    "how-long-gone-with-the-bear-s-corey-hendrix"
    ]
   },
   {
@@ -1457,22 +1425,6 @@
    ]
   },
   {
-   "id": "lollapalooza-2025:the-second-city-comedy-mixtape-vol-59",
-   "name": "THE SECOND CITY: COMEDY MIXTAPE VOL. 59",
-   "key": "the-second-city-comedy-mixtape-vol-59",
-   "performers": [
-    "the-second-city-comedy-mixtape-vol-59"
-   ]
-  },
-  {
-   "id": "lollapalooza-2025:katseye-interview-with-davis-burleson",
-   "name": "KATSEYE INTERVIEW WITH DAVIS BURLESON",
-   "key": "katseye-interview-with-davis-burleson",
-   "performers": [
-    "katseye-interview-with-davis-burleson"
-   ]
-  },
-  {
    "id": "lollapalooza-2025:benches",
    "name": "BENCHES",
    "key": "benches",
@@ -1826,22 +1778,6 @@
    "stageId": "lollapalooza-2025:bonus-tracks",
    "start": "15:15",
    "end": "15:45"
-  },
-  {
-   "id": "lollapalooza-2025:d1:bonus-tracks:1700:how-long-gone-with-the-dare",
-   "artistId": "lollapalooza-2025:how-long-gone-with-the-dare",
-   "day": 1,
-   "stageId": "lollapalooza-2025:bonus-tracks",
-   "start": "17:00",
-   "end": "17:30"
-  },
-  {
-   "id": "lollapalooza-2025:d1:bonus-tracks:1800:bob-s-dance-shop",
-   "artistId": "lollapalooza-2025:bob-s-dance-shop",
-   "day": 1,
-   "stageId": "lollapalooza-2025:bonus-tracks",
-   "start": "18:00",
-   "end": "18:30"
   },
   {
    "id": "lollapalooza-2025:d1:kidzapalooza:1200:23-skidoo-and-the-secret-agency",
@@ -2293,36 +2229,12 @@
    "end": "20:40"
   },
   {
-   "id": "lollapalooza-2025:d2:bonus-tracks:1515:the-bingo-go-go",
-   "artistId": "lollapalooza-2025:the-bingo-go-go",
-   "day": 2,
-   "stageId": "lollapalooza-2025:bonus-tracks",
-   "start": "15:15",
-   "end": "15:45"
-  },
-  {
    "id": "lollapalooza-2025:d2:bonus-tracks:1630:gigi-perez-x-tatiana-miranda",
    "artistId": "lollapalooza-2025:gigi-perez-x-tatiana-miranda",
    "day": 2,
    "stageId": "lollapalooza-2025:bonus-tracks",
    "start": "16:30",
    "end": "16:50"
-  },
-  {
-   "id": "lollapalooza-2025:d2:bonus-tracks:1745:how-long-gone-with-the-bear-s-corey-hendrix",
-   "artistId": "lollapalooza-2025:how-long-gone-with-the-bear-s-corey-hendrix",
-   "day": 2,
-   "stageId": "lollapalooza-2025:bonus-tracks",
-   "start": "17:45",
-   "end": "18:15"
-  },
-  {
-   "id": "lollapalooza-2025:d2:bonus-tracks:1845:bob-s-dance-shop",
-   "artistId": "lollapalooza-2025:bob-s-dance-shop",
-   "day": 2,
-   "stageId": "lollapalooza-2025:bonus-tracks",
-   "start": "18:45",
-   "end": "19:15"
   },
   {
    "id": "lollapalooza-2025:d2:kidzapalooza:1200:michael-and-the-rockness-monsters",
@@ -2782,14 +2694,6 @@
    "end": "20:45"
   },
   {
-   "id": "lollapalooza-2025:d3:bonus-tracks:1515:the-bingo-go-go",
-   "artistId": "lollapalooza-2025:the-bingo-go-go",
-   "day": 3,
-   "stageId": "lollapalooza-2025:bonus-tracks",
-   "start": "15:15",
-   "end": "15:45"
-  },
-  {
    "id": "lollapalooza-2025:d3:bonus-tracks:1800:damiano-david-x-tatiana-miranda",
    "artistId": "lollapalooza-2025:damiano-david-x-tatiana-miranda",
    "day": 3,
@@ -3247,30 +3151,6 @@
    "end": "20:45"
   },
   {
-   "id": "lollapalooza-2025:d4:bonus-tracks:1515:the-second-city-comedy-mixtape-vol-59",
-   "artistId": "lollapalooza-2025:the-second-city-comedy-mixtape-vol-59",
-   "day": 4,
-   "stageId": "lollapalooza-2025:bonus-tracks",
-   "start": "15:15",
-   "end": "15:45"
-  },
-  {
-   "id": "lollapalooza-2025:d4:bonus-tracks:1730:katseye-interview-with-davis-burleson",
-   "artistId": "lollapalooza-2025:katseye-interview-with-davis-burleson",
-   "day": 4,
-   "stageId": "lollapalooza-2025:bonus-tracks",
-   "start": "17:30",
-   "end": "17:50"
-  },
-  {
-   "id": "lollapalooza-2025:d4:bonus-tracks:1815:bob-s-dance-shop",
-   "artistId": "lollapalooza-2025:bob-s-dance-shop",
-   "day": 4,
-   "stageId": "lollapalooza-2025:bonus-tracks",
-   "start": "18:15",
-   "end": "18:45"
-  },
-  {
    "id": "lollapalooza-2025:d4:kidzapalooza:1200:birds-of-a-feather",
    "artistId": "lollapalooza-2025:birds-of-a-feather",
    "day": 4,
@@ -3575,7 +3455,6 @@
    "end": "20:00"
   }
  ],
- "events": [],
  "provenance": {
   "extractionMethod": "official_image_transcription",
   "official": "https://www.lollapalooza.com/schedule",

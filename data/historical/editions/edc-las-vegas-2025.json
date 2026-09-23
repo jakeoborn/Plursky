@@ -806,12 +806,6 @@
    ]
   },
   {
-   "id": "edc-las-vegas-2025:special-guest",
-   "name": "Special Guest",
-   "key": null,
-   "performers": []
-  },
-  {
    "id": "edc-las-vegas-2025:matt-faulk",
    "name": "Matt Faulk",
    "key": "matt-faulk",
@@ -3871,14 +3865,6 @@
    "end": "01:00"
   },
   {
-   "id": "edc-las-vegas-2025:d1:forest-house:2300:special-guest",
-   "artistId": "edc-las-vegas-2025:special-guest",
-   "day": 1,
-   "stageId": "edc-las-vegas-2025:forest-house",
-   "start": "23:00",
-   "end": "00:00"
-  },
-  {
    "id": "edc-las-vegas-2025:d1:forest-house:2200:matt-faulk",
    "artistId": "edc-las-vegas-2025:matt-faulk",
    "day": 1,
@@ -4085,14 +4071,6 @@
    "stageId": "edc-las-vegas-2025:ubuntu",
    "start": "23:30",
    "end": "01:00"
-  },
-  {
-   "id": "edc-las-vegas-2025:d1:ubuntu:2200:special-guest",
-   "artistId": "edc-las-vegas-2025:special-guest",
-   "day": 1,
-   "stageId": "edc-las-vegas-2025:ubuntu",
-   "start": "22:00",
-   "end": "23:30"
   },
   {
    "id": "edc-las-vegas-2025:d1:ubuntu:2030:eli-fola-hybrid-set",
@@ -5109,14 +5087,6 @@
    "stageId": "edc-las-vegas-2025:ubuntu",
    "start": "02:30",
    "end": "04:00"
-  },
-  {
-   "id": "edc-las-vegas-2025:d2:ubuntu:0100:special-guest",
-   "artistId": "edc-las-vegas-2025:special-guest",
-   "day": 2,
-   "stageId": "edc-las-vegas-2025:ubuntu",
-   "start": "01:00",
-   "end": "02:30"
   },
   {
    "id": "edc-las-vegas-2025:d2:ubuntu:2330:kasango",
@@ -6309,32 +6279,6 @@
    "stageId": "edc-las-vegas-2025:blacklight-bar",
    "start": "19:00",
    "end": "20:15"
-  }
- ],
- "events": [
-  {
-   "id": "edc-las-vegas-2025:d1:kinetic-field:0141:fireworks",
-   "label": "Fireworks",
-   "day": 1,
-   "stageId": "edc-las-vegas-2025:kinetic-field",
-   "start": "01:41",
-   "end": "01:47"
-  },
-  {
-   "id": "edc-las-vegas-2025:d2:kinetic-field:0141:fireworks",
-   "label": "Fireworks",
-   "day": 2,
-   "stageId": "edc-las-vegas-2025:kinetic-field",
-   "start": "01:41",
-   "end": "01:47"
-  },
-  {
-   "id": "edc-las-vegas-2025:d3:kinetic-field:0141:fireworks",
-   "label": "Fireworks",
-   "day": 3,
-   "stageId": "edc-las-vegas-2025:kinetic-field",
-   "start": "01:41",
-   "end": "01:47"
   }
  ],
  "provenance": {

@@ -291,5 +291,160 @@
         }
       ]
     }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "14:30",
+      "end": "15:00",
+      "billing": "ANTONI POROWSKI ON FOOD & CONNECTION",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "16:30",
+      "end": "17:00",
+      "billing": "EXTRAGRAMS PRESENTS DRAG BINGO!",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "18:30",
+      "end": "19:00",
+      "billing": "CIRQUE DU SLAY: A DRAG SHOW!",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    },
+    {
+      "day": 3,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "BONUS TRACKS",
+      "start": "16:30",
+      "end": "17:00",
+      "billing": "LP GIOBBI X SUPERMUSH",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    },
+    {
+      "day": 3,
+      "stage": "BONUS TRACKS",
+      "start": "18:45",
+      "end": "19:15",
+      "billing": "A CONVERSATION WITH LUCIUS",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    },
+    {
+      "day": 4,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "18:30",
+      "end": "19:00",
+      "billing": "MATTHEW MCCONAUGHEY X BRENÉ BROWN",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    },
+    {
+      "day": 5,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 5,
+      "stage": "BONUS TRACKS",
+      "start": "14:30",
+      "end": "15:00",
+      "billing": "STRETCH BEFORE THE SET",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    },
+    {
+      "day": 5,
+      "stage": "BONUS TRACKS",
+      "start": "16:30",
+      "end": "17:00",
+      "billing": "JAPANESE BREAKFAST X SUPERMUSH",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    },
+    {
+      "day": 5,
+      "stage": "BONUS TRACKS",
+      "start": "18:30",
+      "end": "19:00",
+      "billing": "LOS TACOS DE ACL FEST",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    },
+    {
+      "day": 6,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 6,
+      "stage": "BONUS TRACKS",
+      "start": "14:30",
+      "end": "15:00",
+      "billing": "EXTRAGRAMS PRESENTS DRAG BINGO!",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    },
+    {
+      "day": 6,
+      "stage": "BONUS TRACKS",
+      "start": "16:30",
+      "end": "17:00",
+      "billing": "MIXED-TAPE: A DRAG SHOW!",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    }
   ]
 }

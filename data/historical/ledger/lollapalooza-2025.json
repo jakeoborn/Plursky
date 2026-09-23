@@ -215,5 +215,88 @@
         }
       ]
     }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "17:00",
+      "end": "17:30",
+      "billing": "HOW LONG GONE WITH THE DARE",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    },
+    {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "18:00",
+      "end": "18:30",
+      "billing": "BOB'S DANCE SHOP",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "15:15",
+      "end": "15:45",
+      "billing": "THE BINGO-GO-GO",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "17:45",
+      "end": "18:15",
+      "billing": "HOW LONG GONE WITH THE BEAR'S COREY HENDRIX",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "18:45",
+      "end": "19:15",
+      "billing": "BOB'S DANCE SHOP",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    },
+    {
+      "day": 3,
+      "stage": "BONUS TRACKS",
+      "start": "15:15",
+      "end": "15:45",
+      "billing": "THE BINGO-GO-GO",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "15:15",
+      "end": "15:45",
+      "billing": "THE SECOND CITY: COMEDY MIXTAPE VOL. 59",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "17:30",
+      "end": "17:50",
+      "billing": "KATSEYE INTERVIEW WITH DAVIS BURLESON",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "18:15",
+      "end": "18:45",
+      "billing": "BOB'S DANCE SHOP",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    }
   ]
 }

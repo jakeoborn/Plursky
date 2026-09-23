@@ -275,5 +275,61 @@
         }
       ]
     }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Kinetic Field",
+      "start": "01:41",
+      "end": "01:47",
+      "billing": "Fireworks",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "Forest House",
+      "start": "23:00",
+      "end": "00:00",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 1,
+      "stage": "Ubuntu",
+      "start": "22:00",
+      "end": "23:30",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 2,
+      "stage": "Kinetic Field",
+      "start": "01:41",
+      "end": "01:47",
+      "billing": "Fireworks",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Ubuntu",
+      "start": "01:00",
+      "end": "02:30",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 3,
+      "stage": "Kinetic Field",
+      "start": "01:41",
+      "end": "01:47",
+      "billing": "Fireworks",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    }
   ]
 }

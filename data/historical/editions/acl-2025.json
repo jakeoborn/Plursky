@@ -526,30 +526,6 @@
    ]
   },
   {
-   "id": "acl-2025:antoni-porowski-on-food-and-connection",
-   "name": "ANTONI POROWSKI ON FOOD & CONNECTION",
-   "key": "antoni-porowski-on-food-and-connection",
-   "performers": [
-    "antoni-porowski-on-food-and-connection"
-   ]
-  },
-  {
-   "id": "acl-2025:extragrams-presents-drag-bingo",
-   "name": "EXTRAGRAMS PRESENTS DRAG BINGO!",
-   "key": "extragrams-presents-drag-bingo",
-   "performers": [
-    "extragrams-presents-drag-bingo"
-   ]
-  },
-  {
-   "id": "acl-2025:cirque-du-slay-a-drag-show",
-   "name": "CIRQUE DU SLAY: A DRAG SHOW!",
-   "key": "cirque-du-slay-a-drag-show",
-   "performers": [
-    "cirque-du-slay-a-drag-show"
-   ]
-  },
-  {
    "id": "acl-2025:alemeda",
    "name": "ALEMEDA",
    "key": "alemeda",
@@ -814,22 +790,6 @@
    ]
   },
   {
-   "id": "acl-2025:lp-giobbi-x-supermush",
-   "name": "LP GIOBBI X SUPERMUSH",
-   "key": "lp-giobbi-x-supermush",
-   "performers": [
-    "lp-giobbi-x-supermush"
-   ]
-  },
-  {
-   "id": "acl-2025:a-conversation-with-lucius",
-   "name": "A CONVERSATION WITH LUCIUS",
-   "key": "a-conversation-with-lucius",
-   "performers": [
-    "a-conversation-with-lucius"
-   ]
-  },
-  {
    "id": "acl-2025:flowerovlove",
    "name": "FLOWEROVLOVE",
    "key": "flowerovlove",
@@ -963,14 +923,6 @@
    "key": "farmer-s-wife",
    "performers": [
     "farmer-s-wife"
-   ]
-  },
-  {
-   "id": "acl-2025:matthew-mcconaughey-x-brene-brown",
-   "name": "MATTHEW MCCONAUGHEY X BRENÉ BROWN",
-   "key": "matthew-mcconaughey-x-brene-brown",
-   "performers": [
-    "matthew-mcconaughey-x-brene-brown"
    ]
   },
   {
@@ -1118,30 +1070,6 @@
    ]
   },
   {
-   "id": "acl-2025:stretch-before-the-set",
-   "name": "STRETCH BEFORE THE SET",
-   "key": "stretch-before-the-set",
-   "performers": [
-    "stretch-before-the-set"
-   ]
-  },
-  {
-   "id": "acl-2025:japanese-breakfast-x-supermush",
-   "name": "JAPANESE BREAKFAST X SUPERMUSH",
-   "key": "japanese-breakfast-x-supermush",
-   "performers": [
-    "japanese-breakfast-x-supermush"
-   ]
-  },
-  {
-   "id": "acl-2025:los-tacos-de-acl-fest",
-   "name": "LOS TACOS DE ACL FEST",
-   "key": "los-tacos-de-acl-fest",
-   "performers": [
-    "los-tacos-de-acl-fest"
-   ]
-  },
-  {
    "id": "acl-2025:strawbitty-yops",
    "name": "STRAWBITTY YOPS",
    "key": "strawbitty-yops",
@@ -1227,14 +1155,6 @@
    "key": "the-huston-tillotson-university-jazz-collective",
    "performers": [
     "the-huston-tillotson-university-jazz-collective"
-   ]
-  },
-  {
-   "id": "acl-2025:mixed-tape-a-drag-show",
-   "name": "MIXED-TAPE: A DRAG SHOW!",
-   "key": "mixed-tape-a-drag-show",
-   "performers": [
-    "mixed-tape-a-drag-show"
    ]
   },
   {
@@ -1731,30 +1651,6 @@
    "end": "19:30"
   },
   {
-   "id": "acl-2025:d2:bonus-tracks:1430:antoni-porowski-on-food-and-connection",
-   "artistId": "acl-2025:antoni-porowski-on-food-and-connection",
-   "day": 2,
-   "stageId": "acl-2025:bonus-tracks",
-   "start": "14:30",
-   "end": "15:00"
-  },
-  {
-   "id": "acl-2025:d2:bonus-tracks:1630:extragrams-presents-drag-bingo",
-   "artistId": "acl-2025:extragrams-presents-drag-bingo",
-   "day": 2,
-   "stageId": "acl-2025:bonus-tracks",
-   "start": "16:30",
-   "end": "17:00"
-  },
-  {
-   "id": "acl-2025:d2:bonus-tracks:1830:cirque-du-slay-a-drag-show",
-   "artistId": "acl-2025:cirque-du-slay-a-drag-show",
-   "day": 2,
-   "stageId": "acl-2025:bonus-tracks",
-   "start": "18:30",
-   "end": "19:00"
-  },
-  {
    "id": "acl-2025:d2:lady-bird:1345:alemeda",
    "artistId": "acl-2025:alemeda",
    "day": 2,
@@ -2027,22 +1923,6 @@
    "stageId": "acl-2025:bonus-tracks",
    "start": "14:30",
    "end": "15:00"
-  },
-  {
-   "id": "acl-2025:d3:bonus-tracks:1630:lp-giobbi-x-supermush",
-   "artistId": "acl-2025:lp-giobbi-x-supermush",
-   "day": 3,
-   "stageId": "acl-2025:bonus-tracks",
-   "start": "16:30",
-   "end": "17:00"
-  },
-  {
-   "id": "acl-2025:d3:bonus-tracks:1845:a-conversation-with-lucius",
-   "artistId": "acl-2025:a-conversation-with-lucius",
-   "day": 3,
-   "stageId": "acl-2025:bonus-tracks",
-   "start": "18:45",
-   "end": "19:15"
   },
   {
    "id": "acl-2025:d3:lady-bird:1345:flowerovlove",
@@ -2319,14 +2199,6 @@
    "end": "17:00"
   },
   {
-   "id": "acl-2025:d4:bonus-tracks:1830:matthew-mcconaughey-x-brene-brown",
-   "artistId": "acl-2025:matthew-mcconaughey-x-brene-brown",
-   "day": 4,
-   "stageId": "acl-2025:bonus-tracks",
-   "start": "18:30",
-   "end": "19:00"
-  },
-  {
    "id": "acl-2025:d4:lady-bird:1400:girl-tones",
    "artistId": "acl-2025:girl-tones",
    "day": 4,
@@ -2591,30 +2463,6 @@
    "stageId": "acl-2025:tito-s-handmade-vodka",
    "start": "18:30",
    "end": "19:30"
-  },
-  {
-   "id": "acl-2025:d5:bonus-tracks:1430:stretch-before-the-set",
-   "artistId": "acl-2025:stretch-before-the-set",
-   "day": 5,
-   "stageId": "acl-2025:bonus-tracks",
-   "start": "14:30",
-   "end": "15:00"
-  },
-  {
-   "id": "acl-2025:d5:bonus-tracks:1630:japanese-breakfast-x-supermush",
-   "artistId": "acl-2025:japanese-breakfast-x-supermush",
-   "day": 5,
-   "stageId": "acl-2025:bonus-tracks",
-   "start": "16:30",
-   "end": "17:00"
-  },
-  {
-   "id": "acl-2025:d5:bonus-tracks:1830:los-tacos-de-acl-fest",
-   "artistId": "acl-2025:los-tacos-de-acl-fest",
-   "day": 5,
-   "stageId": "acl-2025:bonus-tracks",
-   "start": "18:30",
-   "end": "19:00"
   },
   {
    "id": "acl-2025:d5:lady-bird:1345:alemeda",
@@ -2891,22 +2739,6 @@
    "end": "19:30"
   },
   {
-   "id": "acl-2025:d6:bonus-tracks:1430:extragrams-presents-drag-bingo",
-   "artistId": "acl-2025:extragrams-presents-drag-bingo",
-   "day": 6,
-   "stageId": "acl-2025:bonus-tracks",
-   "start": "14:30",
-   "end": "15:00"
-  },
-  {
-   "id": "acl-2025:d6:bonus-tracks:1630:mixed-tape-a-drag-show",
-   "artistId": "acl-2025:mixed-tape-a-drag-show",
-   "day": 6,
-   "stageId": "acl-2025:bonus-tracks",
-   "start": "16:30",
-   "end": "17:00"
-  },
-  {
    "id": "acl-2025:d6:bonus-tracks:1845:dj-cassandra-dance-party",
    "artistId": "acl-2025:dj-cassandra-dance-party",
    "day": 6,
@@ -3018,56 +2850,6 @@
    "stageId": "acl-2025:austin-kiddie-limits",
    "start": "17:00",
    "end": "17:30"
-  }
- ],
- "events": [
-  {
-   "id": "acl-2025:d1:tito-s-handmade-vodka:2000:silent-disco",
-   "label": "SILENT DISCO",
-   "day": 1,
-   "stageId": "acl-2025:tito-s-handmade-vodka",
-   "start": "20:00",
-   "end": "22:00"
-  },
-  {
-   "id": "acl-2025:d2:tito-s-handmade-vodka:2000:silent-disco",
-   "label": "SILENT DISCO",
-   "day": 2,
-   "stageId": "acl-2025:tito-s-handmade-vodka",
-   "start": "20:00",
-   "end": "22:00"
-  },
-  {
-   "id": "acl-2025:d3:tito-s-handmade-vodka:2000:silent-disco",
-   "label": "SILENT DISCO",
-   "day": 3,
-   "stageId": "acl-2025:tito-s-handmade-vodka",
-   "start": "20:00",
-   "end": "22:00"
-  },
-  {
-   "id": "acl-2025:d4:tito-s-handmade-vodka:2000:silent-disco",
-   "label": "SILENT DISCO",
-   "day": 4,
-   "stageId": "acl-2025:tito-s-handmade-vodka",
-   "start": "20:00",
-   "end": "22:00"
-  },
-  {
-   "id": "acl-2025:d5:tito-s-handmade-vodka:2000:silent-disco",
-   "label": "SILENT DISCO",
-   "day": 5,
-   "stageId": "acl-2025:tito-s-handmade-vodka",
-   "start": "20:00",
-   "end": "22:00"
-  },
-  {
-   "id": "acl-2025:d6:tito-s-handmade-vodka:2000:silent-disco",
-   "label": "SILENT DISCO",
-   "day": 6,
-   "stageId": "acl-2025:tito-s-handmade-vodka",
-   "start": "20:00",
-   "end": "22:00"
   }
  ],
  "provenance": {

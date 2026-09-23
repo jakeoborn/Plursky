@@ -6,6 +6,8 @@
 // page itself (Insomniac day tabs, or the header printed on each official
 // graphic), and the ledger holds the capture that shows it.
 
+import { slug } from "./lib.mjs";
+
 export const EDITIONS = {
   "governors-ball-2025": { festivalId: "governors-ball", name: "Governors Ball 2025", year: 2025,
     timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
@@ -27,11 +29,44 @@ export const EDITIONS = {
       "Weekend 2 · Friday", "Weekend 2 · Saturday", "Weekend 2 · Sunday"] },
 };
 
-// Operational rows the official schedule prints alongside sets. They are kept
-// as `events` on the edition, never as artists, so they cannot enter an
-// artist's history or search. Locked by test-historical-editions.mjs.
-export const OPERATIONAL = /^(fireworks|closing fireworks|opening ceremony|closing ceremony|silent disco)$/i;
+// Rows the official schedule prints that are NOT part of the library (founder
+// rulings on #221, 2026-09-22). They are dropped at build time: stored neither
+// as artists nor as events, so they cannot enter an artist's history, search
+// or a count. The sheets and review manifests keep them as the audit trail of
+// what was printed, and build-editions.mjs records every dropped row, with its
+// reason, in ledger/<id>.json. Locked by test-historical-editions.mjs.
+export const DROP_RULES = [
+  { category: "operational", test: /^(fireworks|closing fireworks|opening ceremony|closing ceremony|silent disco)$/i,
+    reason: "operational programming, not a billed performance" },
+  { category: "unnamed-slot", test: /^(special guest|surprise guest|tba|to be announced)$/i,
+    reason: "unnamed slot: no performer was billed" },
+];
 
-// A printed slot whose performer was not named. It stays a set (the slot is
-// real) but gets no cross-edition artist key.
-export const UNNAMED = /^(special guest|surprise guest|tba|to be announced)$/i;
+// Non-music activities on the Bonus Tracks stage (talks, bingo, drag shows,
+// classes, food, podcast tapings, brand activations), billed exactly as
+// printed. Only rows whose printed text makes them an activity are listed;
+// a row that could be a real music act billed there stays a set and is
+// raised for a ruling instead of guessed. Kids-stage acts are real billed
+// acts and stay.
+export const ACTIVITIES = {
+  "acl-2025": [
+    "STRETCH BEFORE THE SET", "LOS TACOS DE ACL FEST", "JAPANESE BREAKFAST X SUPERMUSH", "LP GIOBBI X SUPERMUSH",
+    "ANTONI POROWSKI ON FOOD & CONNECTION", "EXTRAGRAMS PRESENTS DRAG BINGO!", "CIRQUE DU SLAY: A DRAG SHOW!",
+    "MIXED-TAPE: A DRAG SHOW!", "A CONVERSATION WITH LUCIUS", "MATTHEW MCCONAUGHEY X BRENÉ BROWN",
+  ],
+  "lollapalooza-2025": [
+    "BOB'S DANCE SHOP", "THE BINGO-GO-GO", "THE SECOND CITY: COMEDY MIXTAPE VOL. 59",
+    "KATSEYE INTERVIEW WITH DAVIS BURLESON", "HOW LONG GONE WITH THE DARE", "HOW LONG GONE WITH THE BEAR'S COREY HENDRIX",
+  ],
+};
+const ACTIVITY_REASON = "non-music Bonus Tracks activity";
+
+// Why a printed billing is dropped, or null if it is a set.
+// Compared by slug, so an id segment or a re-cased billing is caught too.
+export function dropReason(billing) {
+  const name = String(billing).trim();
+  for (const r of DROP_RULES) if (r.test.test(name) || r.test.test(name.replace(/-/g, " "))) return { category: r.category, reason: r.reason };
+  const k = slug(name);
+  if (k && Object.values(ACTIVITIES).flat().some(a => slug(a) === k)) return { category: "activity", reason: ACTIVITY_REASON };
+  return null;
+}

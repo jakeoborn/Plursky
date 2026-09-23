@@ -7,7 +7,7 @@ here feeds the live schedule, map, notifications, photo tagging or Memories.
 
 | dir | what | written by |
 |---|---|---|
-| `ledger/` | every capture considered, the one chosen, hashes, revisions | `extract-insomniac.mjs`, `resolve-graphics.mjs` |
+| `ledger/` | every capture considered, the one chosen, hashes, revisions, every printed row dropped and why | `extract-insomniac.mjs`, `resolve-graphics.mjs`; `dropped` by `build-editions.mjs` |
 | `sheets/` | the reviewed source sheet, one row per printed set | `extract-insomniac.mjs`, `finalize-review.mjs` |
 | `review/` | per graphic: hash, rows confirmed against the pixels, every OCR correction | `finalize-review.mjs` |
 | `editions/` | the generated edition files (do not hand-edit; `--check` fails) | `build-editions.mjs` |
@@ -42,9 +42,14 @@ Then, for either path:
 
 - An edition is identified by what its page prints (weekday + date), never by
   a `<title>` or a "closest" capture: EDC LV's June 2025 page is titled 2026.
-- Billing is verbatim as printed. Operational rows (Fireworks, Silent Disco)
-  are `events`, never artists. An unnamed slot ("Special Guest") keeps its row
-  but gets no cross-edition artist key.
+- Billing is verbatim as printed; stage names as printed (ACL's LADYBIRD and
+  LADY BIRD are one stage; Lolla's DOLLAPALOOZA stays its own).
+- Fireworks, Silent Disco, unnamed slots ("Special Guest") and non-music
+  Bonus Tracks activities are **dropped**: not an artist, set, event or stage
+  in any form. The sheets and review manifests keep them as printed, and the
+  build records each dropped row with its reason in `ledger/<id>.json`
+  (`dropped`). Rules and the activity list live in
+  `scripts/historical/editions.mjs`. Kids-stage acts are billed acts and stay.
 - A closing set printed with only a start time is `openEnd`, never given an
   invented end.
 - Wall times are local; a set before `rolloverHour` belongs to the previous

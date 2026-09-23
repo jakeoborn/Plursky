@@ -16,7 +16,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { EDITIONS, OPERATIONAL, UNNAMED } from "./editions.mjs";
+import { EDITIONS, dropReason } from "./editions.mjs";
 import { slug } from "./lib.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -31,13 +31,19 @@ export function readSheet(file) {
 // The key an artist keeps across editions: billing, case- and accent-folded.
 // A B2B billing is one set but several performers; each gets its own key so a
 // later solo slot joins their history.
-export const artistKey = name => UNNAMED.test(name.trim()) ? null : slug(name);
-export const performerKeys = name => UNNAMED.test(name.trim()) ? []
-  : name.split(/\s+(?:B2B|B3B)\s+/i).map(slug).filter(Boolean);
+export const artistKey = name => slug(name);
+export const performerKeys = name => name.split(/\s+(?:B2B|B3B)\s+/i).map(slug).filter(Boolean);
+
+// Printed rows the library does not keep (editions.mjs DROP_RULES/ACTIVITIES),
+// with the reason, in sheet order. build writes them to ledger/<id>.json.
+export const droppedRows = rows => rows.flatMap(r => {
+  const why = dropReason(r.artist);
+  return why ? [{ day: +r.day, stage: r.stage, start: r.start, end: r.end || null, billing: r.artist, ...why }] : [];
+});
 
 export function buildEdition(id, rows, ledger) {
   const ed = EDITIONS[id];
-  const stages = [], artists = [], sets = [], events = [];
+  const stages = [], artists = [], sets = [];
   const stageId = name => {
     let s = stages.find(x => x.name === name);
     if (!s) stages.push(s = { id: `${id}:${slug(name)}`, name });
@@ -49,13 +55,10 @@ export function buildEdition(id, rows, ledger) {
     return a.id;
   };
   for (const r of rows) {
+    if (dropReason(r.artist)) continue;
     const day = +r.day, stage = stageId(r.stage);
     const base = { day, stageId: stage, start: r.start, end: r.end || null };
     if (r.openEnd === "1") base.openEnd = true;
-    if (OPERATIONAL.test(r.artist.trim())) {
-      events.push({ id: `${id}:d${day}:${slug(r.stage)}:${r.start.replace(":", "")}:${slug(r.artist)}`, label: r.artist, ...base });
-      continue;
-    }
     sets.push({ id: `${id}:d${day}:${slug(r.stage)}:${r.start.replace(":", "")}:${slug(r.artist)}`, artistId: artistId(r.artist), ...base });
   }
   const days = ed.dates.map(([date, weekday], i) => ({ day: i + 1, date, label: ed.dayLabels?.[i] || weekday }));
@@ -70,7 +73,7 @@ export function buildEdition(id, rows, ledger) {
   return {
     id, festivalId: ed.festivalId, name: ed.name, year: ed.year, timezone: ed.timezone, rolloverHour: ed.rolloverHour,
     completeness: sets.length ? "complete_schedule" : "lineup_only",
-    days, stages, artists, sets, events, provenance,
+    days, stages, artists, sets, provenance,
   };
 }
 
@@ -82,16 +85,20 @@ if (isMain) {
   for (const id of Object.keys(EDITIONS)) {
     const sheet = H(`sheets/${id}.tsv`), led = H(`ledger/${id}.json`);
     if (!existsSync(sheet) || !existsSync(led)) { console.log(`  · ${id}: no reviewed sheet yet — not emitted`); continue; }
-    const out = JSON.stringify(buildEdition(id, readSheet(sheet), JSON.parse(readFileSync(led, "utf8"))), null, 1) + "\n";
+    const rows = readSheet(sheet), ledger = JSON.parse(readFileSync(led, "utf8"));
+    const out = JSON.stringify(buildEdition(id, rows, ledger), null, 1) + "\n";
+    const ledOut = JSON.stringify({ ...ledger, dropped: droppedRows(rows) }, null, 2) + "\n";
     const file = H(`editions/${id}.json`);
     if (check) {
       const same = existsSync(file) && readFileSync(file, "utf8") === out;
       if (!same) { bad++; console.error(`  ✗ ${id}: editions/${id}.json is not what its sheet builds — rerun build-editions.mjs`); }
       else console.log(`  ✓ ${id}: generated file matches its sheet`);
+      if (readFileSync(led, "utf8") !== ledOut) { bad++; console.error(`  ✗ ${id}: ledger/${id}.json does not record exactly the rows the build drops — rerun build-editions.mjs`); }
     } else {
       writeFileSync(file, out);
-      const e = JSON.parse(out);
-      console.log(`  ✓ ${id}: ${e.completeness} · ${e.days.length} days · ${e.stages.length} stages · ${e.artists.length} artists · ${e.sets.length} sets · ${e.events.length} events · ${out.length} B`);
+      writeFileSync(led, ledOut);
+      const e = JSON.parse(out), d = JSON.parse(ledOut).dropped;
+      console.log(`  ✓ ${id}: ${e.completeness} · ${e.days.length} days · ${e.stages.length} stages · ${e.artists.length} artists · ${e.sets.length} sets · ${d.length} dropped · ${out.length} B`);
     }
   }
   process.exit(bad ? 1 : 0);

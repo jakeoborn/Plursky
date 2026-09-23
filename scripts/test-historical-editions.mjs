@@ -16,8 +16,8 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 import { validateEdition } from "./historical/validate.mjs";
-import { buildEdition, performerKeys, artistKey } from "./historical/build-editions.mjs";
-import { EDITIONS } from "./historical/editions.mjs";
+import { buildEdition, droppedRows, performerKeys, artistKey, readSheet } from "./historical/build-editions.mjs";
+import { ACTIVITIES, EDITIONS } from "./historical/editions.mjs";
 import { datedLabel, instant, to24 } from "./historical/lib.mjs";
 import { dayTabs, sheetRow } from "./historical/extract-insomniac.mjs";
 
@@ -29,6 +29,7 @@ const ok = (cond, msg) => { checks++; if (!cond) fails.push(msg); };
 const clone = x => JSON.parse(JSON.stringify(x));
 
 const expected = JSON.parse(readFileSync(H("expected-counts.json"), "utf8"));
+const droppedFor = id => JSON.parse(readFileSync(H(`ledger/${id}.json`), "utf8")).dropped;
 const reviewFor = id => existsSync(H(`review/${id}.json`)) ? JSON.parse(readFileSync(H(`review/${id}.json`), "utf8")) : undefined;
 const files = existsSync(H("editions")) ? readdirSync(H("editions")).filter(f => f.endsWith(".json")) : [];
 ok(files.length >= 2, `expected at least the 2 structured editions, found ${files.length}`);
@@ -37,7 +38,7 @@ ok(files.length >= 2, `expected at least the 2 structured editions, found ${file
 const editions = {};
 for (const f of files) {
   const e = editions[f.replace(/\.json$/, "")] = JSON.parse(readFileSync(H(`editions/${f}`), "utf8"));
-  const p = validateEdition(e, { expected: expected[e.id], review: reviewFor(e.id) });
+  const p = validateEdition(e, { expected: expected[e.id], review: reviewFor(e.id), dropped: droppedFor(e.id) });
   ok(!p.length, `${e.id} is invalid:\n      ${p.slice(0, 8).join("\n      ")}`);
 }
 try { execFileSync(process.execPath, ["scripts/historical/build-editions.mjs", "--check"], { cwd: ROOT, stdio: "pipe" }); ok(true); }
@@ -46,10 +47,12 @@ catch (e) { ok(false, `an edition file differs from what its sheet builds:\n${e.
 // ── 2. mutations: each must be caught ──
 const base = editions["hard-summer-2025"];
 const edc = editions["edc-las-vegas-2025"];
-const mustFail = (label, mutate, e = base) => {
-  const m = clone(e); mutate(m); mutations++;
-  const p = validateEdition(m, { expected: expected[e.id], review: reviewFor(e.id) });
-  ok(p.length > 0, `mutation not caught: ${label}`);
+// `by` names the rule that must catch it, when a count check would catch the
+// mutation anyway and so could hide a rule that is not running.
+const mustFail = (label, mutate, e = base, mutateDropped = () => {}, by = /./) => {
+  const m = clone(e), d = clone(droppedFor(e.id)); mutate(m); mutateDropped(d); mutations++;
+  const p = validateEdition(m, { expected: expected[e.id], review: reviewFor(e.id), dropped: d });
+  ok(p.some(x => by.test(x)), `mutation not caught${by.source === "." ? "" : ` by ${by}`}: ${label}`);
 };
 if (base && edc) {
   mustFail("drop one set row", m => m.sets.pop());
@@ -70,20 +73,32 @@ if (base && edc) {
   mustFail("missing artifact hash", m => { m.provenance.captures[0].sha256 = ""; });
   mustFail("lineup_only carrying placeholder times", m => { m.completeness = "lineup_only"; });
   mustFail("overnight set misread across days (EDC)", m => { const s = m.sets.find(x => x.start === "04:13"); s.start = "16:13"; }, edc);
-  mustFail("fireworks dropped (EDC)", m => { m.events.pop(); }, edc);
+  mustFail("a dropped Fireworks row left out of the ledger (EDC)", () => {}, edc, d => { d.pop(); });
   mustFail("Cyrillic look-alike in a billing (Lolla OCR)", m => { m.artists[0].name = "ОTОBOKE BEAVER"; });
   const lolla = editions["lollapalooza-2025"], acl = editions["acl-2025"];
   if (lolla && acl) {
     const withReview = (label, mutateEdition, mutateReview, e) => {
       const m = clone(e), r = clone(reviewFor(e.id)); mutateEdition(m); mutateReview(r); mutations++;
-      ok(validateEdition(m, { expected: expected[e.id], review: r }).length > 0, `mutation not caught: ${label}`);
+      ok(validateEdition(m, { expected: expected[e.id], review: r, dropped: droppedFor(e.id) }).length > 0, `mutation not caught: ${label}`);
     };
     withReview("reviewed graphic hash differs from the shipped provenance", () => {}, r => { r.days[0].sha256 = "0".repeat(64); }, lolla);
     withReview("fewer rows confirmed against pixels than shipped", () => {}, r => { r.days[1].rowsConfirmed -= 1; }, lolla);
     withReview("unsigned review", () => {}, r => { delete r.days[2].reviewer; }, lolla);
     mutations++;
-    ok(validateEdition(clone(acl), { expected: expected[acl.id], review: undefined }).length > 0, "mutation not caught: ACL with no review manifest");
-    withReview("Silent Disco turned into an artist set", m => { const ev = m.events.pop(); m.artists.push({ id: `${m.id}:silent-disco`, name: "SILENT DISCO" }); m.sets.push({ ...ev, id: ev.id + "-x", artistId: `${m.id}:silent-disco` }); }, () => {}, acl);
+    ok(validateEdition(clone(acl), { expected: expected[acl.id], review: undefined, dropped: droppedFor(acl.id) }).length > 0, "mutation not caught: ACL with no review manifest");
+    mustFail("a graphic day's dropped Silent Disco missing from the ledger (ACL)", () => {}, acl, d => { d.shift(); });
+  }
+  // Founder rulings (#221): a dropped category must not appear in an edition in
+  // ANY form. Every category, and every listed activity, is put back as an
+  // artist set, as an event, and as a stage, into the edition it came from.
+  const dropSamples = [["edc-las-vegas-2025", "Fireworks"], ["acl-2025", "SILENT DISCO"], ["edc-las-vegas-2025", "Special Guest"],
+    ...Object.entries(ACTIVITIES).flatMap(([id, list]) => list.map(a => [id, a]))];
+  for (const [id, billing] of dropSamples) {
+    const e = editions[id]; if (!e) continue;
+    const back = { id: `${id}:back`, name: billing, key: artistKey(billing), performers: performerKeys(billing) };
+    mustFail(`${billing} back as an artist set`, m => { m.artists.push(back); m.sets.push({ ...m.sets[0], id: `${m.sets[0].id}-${artistKey(billing)}`, artistId: back.id }); }, e, undefined, /: dropped /);
+    mustFail(`${billing} back as an event`, m => { m.events = [{ id: `${id}:d1:x:0000:${artistKey(billing)}`, label: billing, day: 1, stageId: m.stages[0].id, start: "20:00", end: "21:00" }]; }, e, undefined, /: dropped .*appears/);
+    mustFail(`${billing} back as a stage`, m => { m.stages[0].name = billing; }, e, undefined, /: dropped /);
   }
   mustFail("image-derived edition with no review manifest", m => { m.provenance.extractionMethod = "official_image_transcription"; m.provenance.captures.forEach(c => { c.pageArchivedUrl = c.archivedUrl; }); });
 }
@@ -91,24 +106,43 @@ if (base && edc) {
 // An edition that is valid as lineup_only must be accepted without times.
 if (base) {
   const lo = clone(base);
-  lo.completeness = "lineup_only"; lo.sets = []; lo.stages = []; lo.events = [];
+  lo.completeness = "lineup_only"; lo.sets = []; lo.stages = [];
   ok(validateEdition(lo, {}).length === 0, `a clean lineup_only edition was rejected: ${validateEdition(lo, {}).join("; ")}`);
 }
 
-// ── operational rows and artist keys ──
+// ── dropped rows and artist keys ──
 {
   const led = { official: "x", days: [{ day: 1, archivedUrl: "u", chosen: "t", sha256: "h" }] };
-  const e = buildEdition("edc-las-vegas-2025", [
+  const rows = [
     { day: "1", stage: "Kinetic Field", start: "01:41", end: "01:47", artist: "Fireworks" },
     { day: "1", stage: "Kinetic Field", start: "01:47", end: "02:57", artist: "Illenium B2B SLANDER" },
     { day: "1", stage: "Ubuntu", start: "22:00", end: "23:30", artist: "Special Guest" },
-  ], led);
-  ok(e.events.length === 1 && e.events[0].label === "Fireworks", "Fireworks must become an operational event");
-  ok(!e.artists.some(a => /fireworks/i.test(a.name)), "Fireworks must never be an artist");
-  ok(e.artists.find(a => a.name === "Special Guest")?.key === null, "an unnamed slot gets no cross-edition artist key");
+    { day: "1", stage: "TITO'S HANDMADE VODKA", start: "20:00", end: "22:00", artist: "SILENT DISCO" },
+    { day: "1", stage: "BONUS TRACKS", start: "14:30", end: "15:00", artist: "STRETCH BEFORE THE SET" },
+    { day: "1", stage: "KIDZAPALOOZA", start: "16:00", end: "16:30", artist: "SPECIAL GUEST: THE HAPPINESS CLUB" },
+    { day: "1", stage: "AUSTIN KIDDIE LIMITS", start: "15:00", end: "15:30", artist: "SCHOOL OF ROCK" },
+  ];
+  const e = buildEdition("edc-las-vegas-2025", rows, led), gone = droppedRows(rows);
+  ok(JSON.stringify(e.artists.map(a => a.name)) === '["Illenium B2B SLANDER","SPECIAL GUEST: THE HAPPINESS CLUB","SCHOOL OF ROCK"]',
+    `only billed acts survive the build (kids-stage acts included): ${e.artists.map(a => a.name).join(" | ")}`);
+  ok(!("events" in e) && !e.stages.some(s => /BONUS|TITO|Ubuntu/.test(s.name)), "dropped rows leave no event and no stage behind");
+  ok(JSON.stringify(gone.map(r => r.category)) === '["operational","unnamed-slot","operational","activity"]' && gone.every(r => r.reason),
+    `every dropped row is recorded with its category and reason: ${JSON.stringify(gone.map(r => r.category))}`);
   ok(JSON.stringify(performerKeys("Illenium B2B SLANDER")) === '["illenium","slander"]', "B2B splits into performer keys");
   ok(JSON.stringify(performerKeys("Chase & Status")) === '["chase-and-status"]', "an act with & in its name stays one performer");
   ok(artistKey("RÜFÜS DU SOL") === artistKey("Rufus Du Sol"), "artist keys fold case and accents across editions");
+}
+
+// Every listed activity must match a printed row of its edition (a misspelt
+// entry would silently drop nothing), and every recorded drop must be a row
+// the sheet actually printed.
+for (const [id, list] of Object.entries(ACTIVITIES)) {
+  const printed = new Set(readSheet(H(`sheets/${id}.tsv`)).map(r => r.artist));
+  for (const a of list) ok(printed.has(a), `${id}: listed activity "${a}" is not a printed row`);
+}
+for (const id of Object.keys(editions)) {
+  const printed = new Set(readSheet(H(`sheets/${id}.tsv`)).map(r => `${r.day}|${r.stage}|${r.start}|${r.artist}`));
+  for (const r of droppedFor(id)) ok(printed.has(`${r.day}|${r.stage}|${r.start}|${r.billing}`) && r.reason, `${id}: recorded drop ${r.billing} is not a printed row, or has no reason`);
 }
 
 // ── dates come from the page, not from editions.mjs alone ──
