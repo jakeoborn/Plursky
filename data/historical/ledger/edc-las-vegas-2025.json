@@ -1,0 +1,335 @@
+{
+  "id": "edc-las-vegas-2025",
+  "method": "structured_html",
+  "official": "https://lasvegas.electricdaisycarnival.com/lineup/set-times",
+  "window": [
+    "20250516",
+    "20251231"
+  ],
+  "days": [
+    {
+      "day": 1,
+      "url": "https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-1/",
+      "date": "2025-05-16",
+      "chosen": "20250611072342",
+      "archivedUrl": "https://web.archive.org/web/20250611072342/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-1/",
+      "sha256": "581e0143873c9a50a16efffc21a7d874f5e34790837a2a6324bbc62626411eea",
+      "rows": 136,
+      "stages": {
+        "Kinetic Field": 11,
+        "Cosmic Meadow": 11,
+        "Circuit Grounds": 8,
+        "Neon Garden": 7,
+        "Basspod": 11,
+        "Wasteland": 10,
+        "Quantum Valley": 10,
+        "Stereo Bloom": 9,
+        "Bionic Jungle": 9,
+        "Forest House": 10,
+        "Beatbox Art Car": 9,
+        "Metaphoenix": 9,
+        "Ubuntu": 7,
+        "yeEDC!": 6,
+        "Blacklight Bar": 9
+      },
+      "considered": [
+        {
+          "captureTimestamp": "20250517021144",
+          "archivedUrl": "https://web.archive.org/web/20250517021144/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-1/",
+          "sha256": "b1a45cf02f41986481f2e853984038c87ce90e8ef3762a3f84154293af98798e",
+          "bytes": 660348,
+          "tabs": [
+            "Friday, May 16",
+            "Saturday, May 17",
+            "Sunday, May 18"
+          ],
+          "date": "2025-05-16",
+          "valid": true,
+          "rows": 136,
+          "diffVsChosen": []
+        },
+        {
+          "captureTimestamp": "20250517051323",
+          "archivedUrl": "https://web.archive.org/web/20250517051323/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-1/",
+          "sha256": "f54b970bbae4a601943fca903c754264fb4fb286f3516f76ac68faa00e637559",
+          "bytes": 660348,
+          "tabs": [
+            "Friday, May 16",
+            "Saturday, May 17",
+            "Sunday, May 18"
+          ],
+          "date": "2025-05-16",
+          "valid": true,
+          "rows": 136,
+          "diffVsChosen": []
+        },
+        {
+          "captureTimestamp": "20250519104949",
+          "archivedUrl": "https://web.archive.org/web/20250519104949/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-1/",
+          "sha256": "e2ede12a3864ce6b9902fbffe4d85417e4553ebecc576c4ddc32fdc1bb31bcb8",
+          "bytes": 660348,
+          "tabs": [
+            "Friday, May 16",
+            "Saturday, May 17",
+            "Sunday, May 18"
+          ],
+          "date": "2025-05-16",
+          "valid": true,
+          "rows": 136,
+          "diffVsChosen": []
+        },
+        {
+          "captureTimestamp": "20250611072342",
+          "archivedUrl": "https://web.archive.org/web/20250611072342/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-1/",
+          "sha256": "581e0143873c9a50a16efffc21a7d874f5e34790837a2a6324bbc62626411eea",
+          "bytes": 659357,
+          "tabs": [
+            "Friday, May 16",
+            "Saturday, May 17",
+            "Sunday, May 18"
+          ],
+          "date": "2025-05-16",
+          "valid": true,
+          "rows": 136,
+          "diffVsChosen": []
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "url": "https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-2/",
+      "date": "2025-05-17",
+      "chosen": "20250908235528",
+      "archivedUrl": "https://web.archive.org/web/20250908235528/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-2/",
+      "sha256": "cda610a65fb570bb7d2a4c0570f4076c2665278ac4d511562b394c0cbfbadd9e",
+      "rows": 132,
+      "stages": {
+        "Kinetic Field": 10,
+        "Cosmic Meadow": 10,
+        "Circuit Grounds": 9,
+        "Neon Garden": 7,
+        "Basspod": 11,
+        "Wasteland": 10,
+        "Quantum Valley": 10,
+        "Stereo Bloom": 9,
+        "Bionic Jungle": 8,
+        "Forest House": 8,
+        "Beatbox Art Car": 9,
+        "Metaphoenix": 8,
+        "Ubuntu": 7,
+        "yeEDC!": 7,
+        "Blacklight Bar": 9
+      },
+      "considered": [
+        {
+          "captureTimestamp": "20250517060621",
+          "archivedUrl": "https://web.archive.org/web/20250517060621/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-2/",
+          "sha256": "4061d65943b4db06ce85067314d9ca1589831810353f4baffcb2b1193fc2c01c",
+          "bytes": 659761,
+          "tabs": [
+            "Friday, May 16",
+            "Saturday, May 17",
+            "Sunday, May 18"
+          ],
+          "date": "2025-05-17",
+          "valid": true,
+          "rows": 131,
+          "diffVsChosen": [
+            "only in chosen: AYYBO Cosmic Meadow 02:00-02:30"
+          ]
+        },
+        {
+          "captureTimestamp": "20250518003434",
+          "archivedUrl": "https://web.archive.org/web/20250518003434/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-2/",
+          "sha256": "4061d65943b4db06ce85067314d9ca1589831810353f4baffcb2b1193fc2c01c",
+          "bytes": 659761,
+          "tabs": [
+            "Friday, May 16",
+            "Saturday, May 17",
+            "Sunday, May 18"
+          ],
+          "date": "2025-05-17",
+          "valid": true,
+          "rows": 131,
+          "diffVsChosen": [
+            "only in chosen: AYYBO Cosmic Meadow 02:00-02:30"
+          ]
+        },
+        {
+          "captureTimestamp": "20250519105125",
+          "archivedUrl": "https://web.archive.org/web/20250519105125/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-2/",
+          "sha256": "65752f721882e8b6f06325c0c5a7d2ef0e0a0532c1543b8049c0c88eee8a4b92",
+          "bytes": 662998,
+          "tabs": [
+            "Friday, May 16",
+            "Saturday, May 17",
+            "Sunday, May 18"
+          ],
+          "date": "2025-05-17",
+          "valid": true,
+          "rows": 132,
+          "diffVsChosen": []
+        },
+        {
+          "captureTimestamp": "20250611055811",
+          "archivedUrl": "https://web.archive.org/web/20250611055811/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-2/",
+          "sha256": "baa2a995a0f38c533f37465d5a604d8ba498845fc88935fd78c4a86fcd48d12f",
+          "bytes": 661999,
+          "tabs": [
+            "Friday, May 16",
+            "Saturday, May 17",
+            "Sunday, May 18"
+          ],
+          "date": "2025-05-17",
+          "valid": true,
+          "rows": 132,
+          "diffVsChosen": []
+        },
+        {
+          "captureTimestamp": "20250908235528",
+          "archivedUrl": "https://web.archive.org/web/20250908235528/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-2/",
+          "sha256": "cda610a65fb570bb7d2a4c0570f4076c2665278ac4d511562b394c0cbfbadd9e",
+          "bytes": 824869,
+          "tabs": [
+            "Friday, May 16",
+            "Saturday, May 17",
+            "Sunday, May 18"
+          ],
+          "date": "2025-05-17",
+          "valid": true,
+          "rows": 132,
+          "diffVsChosen": []
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "url": "https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-3/",
+      "date": "2025-05-18",
+      "chosen": "20250611062931",
+      "archivedUrl": "https://web.archive.org/web/20250611062931/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-3/",
+      "sha256": "1de9a381a329dc78acc36b4e858b532f2a9f336f1f06ca1163f11f400a456c45",
+      "rows": 130,
+      "stages": {
+        "Kinetic Field": 10,
+        "Cosmic Meadow": 10,
+        "Circuit Grounds": 8,
+        "Neon Garden": 7,
+        "Basspod": 11,
+        "Wasteland": 10,
+        "Quantum Valley": 10,
+        "Stereo Bloom": 9,
+        "Bionic Jungle": 6,
+        "Forest House": 10,
+        "Beatbox Art Car": 9,
+        "Metaphoenix": 8,
+        "Ubuntu": 7,
+        "yeEDC!": 6,
+        "Blacklight Bar": 9
+      },
+      "considered": [
+        {
+          "captureTimestamp": "20250517060648",
+          "archivedUrl": "https://web.archive.org/web/20250517060648/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-3/",
+          "sha256": "1aa014fc4bf79788aedac852869dbe70cd404e269ab0f4c7e9a312515eef3a16",
+          "bytes": 669854,
+          "tabs": [
+            "Friday, May 16",
+            "Saturday, May 17",
+            "Sunday, May 18"
+          ],
+          "date": "2025-05-18",
+          "valid": true,
+          "rows": 130,
+          "diffVsChosen": []
+        },
+        {
+          "captureTimestamp": "20250519105105",
+          "archivedUrl": "https://web.archive.org/web/20250519105105/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-3/",
+          "sha256": "b714fc838c58a2868bf9cdfae3f1a3e257ec44461a4f17cf8bc5e0cbb4191c1c",
+          "bytes": 669854,
+          "tabs": [
+            "Friday, May 16",
+            "Saturday, May 17",
+            "Sunday, May 18"
+          ],
+          "date": "2025-05-18",
+          "valid": true,
+          "rows": 130,
+          "diffVsChosen": []
+        },
+        {
+          "captureTimestamp": "20250611062931",
+          "archivedUrl": "https://web.archive.org/web/20250611062931/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-3/",
+          "sha256": "1de9a381a329dc78acc36b4e858b532f2a9f336f1f06ca1163f11f400a456c45",
+          "bytes": 669721,
+          "tabs": [
+            "Friday, May 16",
+            "Saturday, May 17",
+            "Sunday, May 18"
+          ],
+          "date": "2025-05-18",
+          "valid": true,
+          "rows": 130,
+          "diffVsChosen": []
+        }
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Kinetic Field",
+      "start": "01:41",
+      "end": "01:47",
+      "billing": "Fireworks",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "Forest House",
+      "start": "23:00",
+      "end": "00:00",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 1,
+      "stage": "Ubuntu",
+      "start": "22:00",
+      "end": "23:30",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 2,
+      "stage": "Kinetic Field",
+      "start": "01:41",
+      "end": "01:47",
+      "billing": "Fireworks",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Ubuntu",
+      "start": "01:00",
+      "end": "02:30",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 3,
+      "stage": "Kinetic Field",
+      "start": "01:41",
+      "end": "01:47",
+      "billing": "Fireworks",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    }
+  ]
+}

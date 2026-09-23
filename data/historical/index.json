@@ -1,0 +1,174 @@
+{
+ "editions": [
+  {
+   "id": "acl-2025",
+   "festivalId": "acl",
+   "festivalName": "Austin City Limits",
+   "name": "Austin City Limits 2025",
+   "year": 2025,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-10-03",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2025-10-04",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2025-10-05",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2025-10-10",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2025-10-11",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2025-10-12",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 135,
+    "sets": 199
+   }
+  },
+  {
+   "id": "edc-las-vegas-2025",
+   "festivalId": "edc-lv",
+   "festivalName": "EDC Las Vegas",
+   "name": "EDC Las Vegas 2025",
+   "year": 2025,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-05-16",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2025-05-17",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2025-05-18",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 15,
+    "artists": 378,
+    "sets": 392
+   }
+  },
+  {
+   "id": "governors-ball-2025",
+   "festivalId": "governors-ball",
+   "festivalName": "Governors Ball",
+   "name": "Governors Ball 2025",
+   "year": 2025,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-06-06",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2025-06-07",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2025-06-08",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 3,
+    "artists": 53,
+    "sets": 53
+   }
+  },
+  {
+   "id": "hard-summer-2025",
+   "festivalId": "hard-summer",
+   "festivalName": "HARD Summer",
+   "name": "HARD Summer 2025",
+   "year": 2025,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-08-02",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2025-08-03",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 91,
+    "sets": 91
+   }
+  },
+  {
+   "id": "lollapalooza-2025",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2025",
+   "year": 2025,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-07-31",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2025-08-01",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2025-08-02",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2025-08-03",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 11,
+    "artists": 190,
+    "sets": 225
+   }
+  }
+ ]
+}

@@ -1,0 +1,8 @@
+{
+ "_comment": "Locked from the reviewed source sheets. setsPerDay is what each edition keeps; droppedPerDay is the printed rows the founder rulings leave out (ledger/<id>.json lists each with its reason). A change here is a data change: re-review the source before editing a number.",
+ "governors-ball-2025": { "stages": 3, "setsPerDay": [20, 13, 20], "droppedPerDay": [0, 0, 0] },
+ "lollapalooza-2025": { "stages": 11, "setsPerDay": [55, 56, 58, 56], "droppedPerDay": [3, 4, 2, 3] },
+ "hard-summer-2025": { "stages": 7, "setsPerDay": [46, 45], "droppedPerDay": [0, 0] },
+ "edc-las-vegas-2025": { "stages": 15, "setsPerDay": [133, 130, 129], "droppedPerDay": [3, 2, 1] },
+ "acl-2025": { "stages": 8, "setsPerDay": [32, 34, 33, 32, 34, 34], "droppedPerDay": [4, 4, 4, 3, 4, 4] }
+}

@@ -1,0 +1,78 @@
+{
+ "id": "governors-ball-2025",
+ "days": [
+  {
+   "day": 1,
+   "date": "2025-06-06",
+   "sha256": "dffadd09c854042df16461e83edeb8ce6e3b642a37cda3b3d8325cf5f60f34a6",
+   "originalUrl": "https://cdn.prod.website-files.com/6752f21b56158b1c6c4bc9f2/681e70624805710997d489bb_GBSchedule-Fri-WEB.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20250603010320/https://cdn.prod.website-files.com/6752f21b56158b1c6c4bc9f2/681e70624805710997d489bb_GBSchedule-Fri-WEB.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels, session b376a80d",
+   "reviewedAt": "2026-09-23T02:32:14.329Z",
+   "rowsConfirmed": 20,
+   "note": "Header read off the graphic: GOVBALL FRI. JUNE 6, 2025",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 20,
+   "corrections": [
+    "SCHOOL OF ROCK QUEENS: stage \"GOVBALLNYC presented Verizon\" → \"GOVBALLNYC\"",
+    "BLACK PARTY: stage \"GOVBALLNYC presented Verizon\" → \"GOVBALLNYC\"",
+    "ISABEL LAROSA: stage \"GOVBALLNYC presented Verizon\" → \"GOVBALLNYC\"",
+    "BIGXTHAPLUG: stage \"GOVBALLNYC presented Verizon\" → \"GOVBALLNYC\"",
+    "T-PAIN: stage \"GOVBALLNYC presented Verizon\" → \"GOVBALLNYC\"",
+    "MK.GEE: stage \"GOVBALLNYC presented Verizon\" → \"GOVBALLNYC\"",
+    "TYLER, THE CREATOR: artist \"TVLER, THE CREATOR\" → \"TYLER, THE CREATOR\"; stage \"GOVBALLNYC presented Verizon\" → \"GOVBALLNYC\"",
+    "BENSON BOONE: start 13:45 → 19:45"
+   ],
+   "ocrMissed": [],
+   "ocrExtra": []
+  },
+  {
+   "day": 2,
+   "date": "2025-06-07",
+   "sha256": "c9793fb53d104fce1b58bb6da720e4f58fbc0ce13ce3f12088574eaa2ba99763",
+   "originalUrl": "https://cdn.prod.website-files.com/6752f21b56158b1c6c4bc9f2/684499bcd1bfedc1610d064a_GBSchedule-Sat_6.7D-WEB.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20260607132709/https://cdn.prod.website-files.com/6752f21b56158b1c6c4bc9f2/684499bcd1bfedc1610d064a_GBSchedule-Sat_6.7D-WEB.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels, session b376a80d",
+   "reviewedAt": "2026-09-23T02:32:14.330Z",
+   "rowsConfirmed": 13,
+   "note": "Header read off the graphic: GOVBALL SAT. JUNE 7, 2025. Printed notice: WEATHER DELAY — DOORS DELAYED UNTIL 4:00 PM. This is the re-issued Saturday (Sat_6.7D); the originally planned Saturday grid (GBSchedule-Sat-WEB) is in the ledger's revisions.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 13,
+   "corrections": [
+    "MARINA: stage \"GOVBALLNYC presented Verizon\" → \"GOVBALLNYC\"",
+    "WALLOWS: stage \"GOVBALLNYC presented Verizon\" → \"GOVBALLNYC\"",
+    "CONAN GRAY: stage \"GOVBALLNYC presented Verizon\" → \"GOVBALLNYC\"",
+    "OLIVIA RODRIGO: stage \"GOVBALLNYC presented Verizon\" → \"GOVBALLNYC\"",
+    "ARTEMAS: artist \"WEATHER DELAY DOORS DELAYED UNTIL 4:00 PM ARTEMAS\" → \"ARTEMAS\""
+   ],
+   "ocrMissed": [],
+   "ocrExtra": []
+  },
+  {
+   "day": 3,
+   "date": "2025-06-08",
+   "sha256": "6f6ce22944a58ed1526aa307b6c340ddb98a1fa64639c4c1ca9a28e564ca3971",
+   "originalUrl": "https://cdn.prod.website-files.com/6752f21b56158b1c6c4bc9f2/681e7078f07d3040277ec61f_GBSchedule-Sun-WEB.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20250603010320/https://cdn.prod.website-files.com/6752f21b56158b1c6c4bc9f2/681e7078f07d3040277ec61f_GBSchedule-Sun-WEB.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels, session b376a80d",
+   "reviewedAt": "2026-09-23T02:32:14.330Z",
+   "rowsConfirmed": 20,
+   "note": "Header read off the graphic: GOVBALL SUN. JUNE 8, 2025",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 20,
+   "corrections": [
+    "KIDS ROCK FOR KIDS: stage \"GOUBALLNYC presented Verizon\" → \"GOVBALLNYC\"",
+    "NOURISHED BY TIME: stage \"GOUBALLNYC presented Verizon\" → \"GOVBALLNYC\"",
+    "JOEY VALENCE & BRAE: artist \"JOEV VALENCE & BRAE\" → \"JOEY VALENCE & BRAE\"; stage \"GOUBALLNYC presented Verizon\" → \"GOVBALLNYC\"",
+    "RAYE: artist \"RAVE\" → \"RAYE\"; stage \"GOUBALLNYC presented Verizon\" → \"GOVBALLNYC\"",
+    "ROYEL OTIS: artist \"ROVEL OTIS\" → \"ROYEL OTIS\"; stage \"GOUBALLNYC presented Verizon\" → \"GOVBALLNYC\"",
+    "MT. JOY: artist \"MT. JOV\" → \"MT. JOY\"; stage \"GOUBALLNYC presented Verizon\" → \"GOVBALLNYC\"",
+    "HOZIER: stage \"GOUBALLNYC presented Verizon\" → \"GOVBALLNYC\"",
+    "GLASS ANIMALS: start 13:30 → 19:30",
+    "KEY GLOCK: artist \"KEV GLOCK\" → \"KEY GLOCK\""
+   ],
+   "ocrMissed": [],
+   "ocrExtra": []
+  }
+ ]
+}

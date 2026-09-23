@@ -1,0 +1,928 @@
+{
+ "id": "governors-ball-2025",
+ "festivalId": "governors-ball",
+ "name": "Governors Ball 2025",
+ "year": 2025,
+ "timezone": "America/New_York",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2025-06-06",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2025-06-07",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2025-06-08",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "governors-ball-2025:govballnyc",
+   "name": "GOVBALLNYC"
+  },
+  {
+   "id": "governors-ball-2025:kiehl-s",
+   "name": "KIEHL'S"
+  },
+  {
+   "id": "governors-ball-2025:the-grove",
+   "name": "THE GROVE"
+  }
+ ],
+ "artists": [
+  {
+   "id": "governors-ball-2025:school-of-rock-queens",
+   "name": "SCHOOL OF ROCK QUEENS",
+   "key": "school-of-rock-queens",
+   "performers": [
+    "school-of-rock-queens"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:black-party",
+   "name": "BLACK PARTY",
+   "key": "black-party",
+   "performers": [
+    "black-party"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:isabel-larosa",
+   "name": "ISABEL LAROSA",
+   "key": "isabel-larosa",
+   "performers": [
+    "isabel-larosa"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:bigxthaplug",
+   "name": "BIGXTHAPLUG",
+   "key": "bigxthaplug",
+   "performers": [
+    "bigxthaplug"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:t-pain",
+   "name": "T-PAIN",
+   "key": "t-pain",
+   "performers": [
+    "t-pain"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:mk-gee",
+   "name": "MK.GEE",
+   "key": "mk-gee",
+   "performers": [
+    "mk-gee"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:tyler-the-creator",
+   "name": "TYLER, THE CREATOR",
+   "key": "tyler-the-creator",
+   "performers": [
+    "tyler-the-creator"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:stolen-gin",
+   "name": "STOLEN GIN",
+   "key": "stolen-gin",
+   "performers": [
+    "stolen-gin"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:jean-dawson",
+   "name": "JEAN DAWSON",
+   "key": "jean-dawson",
+   "performers": [
+    "jean-dawson"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:mannequin-pussy",
+   "name": "MANNEQUIN PUSSY",
+   "key": "mannequin-pussy",
+   "performers": [
+    "mannequin-pussy"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:tyla",
+   "name": "TYLA",
+   "key": "tyla",
+   "performers": [
+    "tyla"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:the-backseat-lovers",
+   "name": "THE BACKSEAT LOVERS",
+   "key": "the-backseat-lovers",
+   "performers": [
+    "the-backseat-lovers"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:benson-boone",
+   "name": "BENSON BOONE",
+   "key": "benson-boone",
+   "performers": [
+    "benson-boone"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:strawberry-launch",
+   "name": "STRAWBERRY LAUNCH",
+   "key": "strawberry-launch",
+   "performers": [
+    "strawberry-launch"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:dogpark",
+   "name": "DOGPARK",
+   "key": "dogpark",
+   "performers": [
+    "dogpark"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:matt-champion",
+   "name": "MATT CHAMPION",
+   "key": "matt-champion",
+   "performers": [
+    "matt-champion"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:wasia-project",
+   "name": "WASIA PROJECT",
+   "key": "wasia-project",
+   "performers": [
+    "wasia-project"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:the-beaches",
+   "name": "THE BEACHES",
+   "key": "the-beaches",
+   "performers": [
+    "the-beaches"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:role-model",
+   "name": "ROLE MODEL",
+   "key": "role-model",
+   "performers": [
+    "role-model"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:jpegmafia",
+   "name": "JPEGMAFIA",
+   "key": "jpegmafia",
+   "performers": [
+    "jpegmafia"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:marina",
+   "name": "MARINA",
+   "key": "marina",
+   "performers": [
+    "marina"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:wallows",
+   "name": "WALLOWS",
+   "key": "wallows",
+   "performers": [
+    "wallows"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:conan-gray",
+   "name": "CONAN GRAY",
+   "key": "conan-gray",
+   "performers": [
+    "conan-gray"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:olivia-rodrigo",
+   "name": "OLIVIA RODRIGO",
+   "key": "olivia-rodrigo",
+   "performers": [
+    "olivia-rodrigo"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:artemas",
+   "name": "ARTEMAS",
+   "key": "artemas",
+   "performers": [
+    "artemas"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:mariah-the-scientist",
+   "name": "MARIAH THE SCIENTIST",
+   "key": "mariah-the-scientist",
+   "performers": [
+    "mariah-the-scientist"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:young-miko",
+   "name": "YOUNG MIKO",
+   "key": "young-miko",
+   "performers": [
+    "young-miko"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:feid",
+   "name": "FEID",
+   "key": "feid",
+   "performers": [
+    "feid"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:the-lemon-twigs",
+   "name": "THE LEMON TWIGS",
+   "key": "the-lemon-twigs",
+   "performers": [
+    "the-lemon-twigs"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:orion-sun",
+   "name": "ORION SUN",
+   "key": "orion-sun",
+   "performers": [
+    "orion-sun"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:the-garden",
+   "name": "THE GARDEN",
+   "key": "the-garden",
+   "performers": [
+    "the-garden"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:car-seat-headrest",
+   "name": "CAR SEAT HEADREST",
+   "key": "car-seat-headrest",
+   "performers": [
+    "car-seat-headrest"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:wave-to-earth",
+   "name": "WAVE TO EARTH",
+   "key": "wave-to-earth",
+   "performers": [
+    "wave-to-earth"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:kids-rock-for-kids",
+   "name": "KIDS ROCK FOR KIDS",
+   "key": "kids-rock-for-kids",
+   "performers": [
+    "kids-rock-for-kids"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:nourished-by-time",
+   "name": "NOURISHED BY TIME",
+   "key": "nourished-by-time",
+   "performers": [
+    "nourished-by-time"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:joey-valence-and-brae",
+   "name": "JOEY VALENCE & BRAE",
+   "key": "joey-valence-and-brae",
+   "performers": [
+    "joey-valence-and-brae"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:raye",
+   "name": "RAYE",
+   "key": "raye",
+   "performers": [
+    "raye"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:royel-otis",
+   "name": "ROYEL OTIS",
+   "key": "royel-otis",
+   "performers": [
+    "royel-otis"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:mt-joy",
+   "name": "MT. JOY",
+   "key": "mt-joy",
+   "performers": [
+    "mt-joy"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:hozier",
+   "name": "HOZIER",
+   "key": "hozier",
+   "performers": [
+    "hozier"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:snow-wife",
+   "name": "SNOW WIFE",
+   "key": "snow-wife",
+   "performers": [
+    "snow-wife"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:militarie-gun",
+   "name": "MILITARIE GUN",
+   "key": "militarie-gun",
+   "performers": [
+    "militarie-gun"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:amaarae",
+   "name": "AMAARAE",
+   "key": "amaarae",
+   "performers": [
+    "amaarae"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:the-japanese-house",
+   "name": "THE JAPANESE HOUSE",
+   "key": "the-japanese-house",
+   "performers": [
+    "the-japanese-house"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:clairo",
+   "name": "CLAIRO",
+   "key": "clairo",
+   "performers": [
+    "clairo"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:glass-animals",
+   "name": "GLASS ANIMALS",
+   "key": "glass-animals",
+   "performers": [
+    "glass-animals"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:olivia-lunny",
+   "name": "OLIVIA LUNNY",
+   "key": "olivia-lunny",
+   "performers": [
+    "olivia-lunny"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:kyle-dion",
+   "name": "KYLE DION",
+   "key": "kyle-dion",
+   "performers": [
+    "kyle-dion"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:frost-children",
+   "name": "FROST CHILDREN",
+   "key": "frost-children",
+   "performers": [
+    "frost-children"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:mark-ambor",
+   "name": "MARK AMBOR",
+   "key": "mark-ambor",
+   "performers": [
+    "mark-ambor"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:berlioz",
+   "name": "BERLIOZ",
+   "key": "berlioz",
+   "performers": [
+    "berlioz"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:montell-fish",
+   "name": "MONTELL FISH",
+   "key": "montell-fish",
+   "performers": [
+    "montell-fish"
+   ]
+  },
+  {
+   "id": "governors-ball-2025:key-glock",
+   "name": "KEY GLOCK",
+   "key": "key-glock",
+   "performers": [
+    "key-glock"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "governors-ball-2025:d1:govballnyc:1215:school-of-rock-queens",
+   "artistId": "governors-ball-2025:school-of-rock-queens",
+   "day": 1,
+   "stageId": "governors-ball-2025:govballnyc",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2025:d1:govballnyc:1315:black-party",
+   "artistId": "governors-ball-2025:black-party",
+   "day": 1,
+   "stageId": "governors-ball-2025:govballnyc",
+   "start": "13:15",
+   "end": "13:45"
+  },
+  {
+   "id": "governors-ball-2025:d1:govballnyc:1415:isabel-larosa",
+   "artistId": "governors-ball-2025:isabel-larosa",
+   "day": 1,
+   "stageId": "governors-ball-2025:govballnyc",
+   "start": "14:15",
+   "end": "14:45"
+  },
+  {
+   "id": "governors-ball-2025:d1:govballnyc:1530:bigxthaplug",
+   "artistId": "governors-ball-2025:bigxthaplug",
+   "day": 1,
+   "stageId": "governors-ball-2025:govballnyc",
+   "start": "15:30",
+   "end": "16:15"
+  },
+  {
+   "id": "governors-ball-2025:d1:govballnyc:1700:t-pain",
+   "artistId": "governors-ball-2025:t-pain",
+   "day": 1,
+   "stageId": "governors-ball-2025:govballnyc",
+   "start": "17:00",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2025:d1:govballnyc:1845:mk-gee",
+   "artistId": "governors-ball-2025:mk-gee",
+   "day": 1,
+   "stageId": "governors-ball-2025:govballnyc",
+   "start": "18:45",
+   "end": "19:45"
+  },
+  {
+   "id": "governors-ball-2025:d1:govballnyc:2045:tyler-the-creator",
+   "artistId": "governors-ball-2025:tyler-the-creator",
+   "day": 1,
+   "stageId": "governors-ball-2025:govballnyc",
+   "start": "20:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "governors-ball-2025:d1:kiehl-s:1245:stolen-gin",
+   "artistId": "governors-ball-2025:stolen-gin",
+   "day": 1,
+   "stageId": "governors-ball-2025:kiehl-s",
+   "start": "12:45",
+   "end": "13:15"
+  },
+  {
+   "id": "governors-ball-2025:d1:kiehl-s:1345:jean-dawson",
+   "artistId": "governors-ball-2025:jean-dawson",
+   "day": 1,
+   "stageId": "governors-ball-2025:kiehl-s",
+   "start": "13:45",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2025:d1:kiehl-s:1445:mannequin-pussy",
+   "artistId": "governors-ball-2025:mannequin-pussy",
+   "day": 1,
+   "stageId": "governors-ball-2025:kiehl-s",
+   "start": "14:45",
+   "end": "15:30"
+  },
+  {
+   "id": "governors-ball-2025:d1:kiehl-s:1615:tyla",
+   "artistId": "governors-ball-2025:tyla",
+   "day": 1,
+   "stageId": "governors-ball-2025:kiehl-s",
+   "start": "16:15",
+   "end": "17:00"
+  },
+  {
+   "id": "governors-ball-2025:d1:kiehl-s:1745:the-backseat-lovers",
+   "artistId": "governors-ball-2025:the-backseat-lovers",
+   "day": 1,
+   "stageId": "governors-ball-2025:kiehl-s",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2025:d1:kiehl-s:1945:benson-boone",
+   "artistId": "governors-ball-2025:benson-boone",
+   "day": 1,
+   "stageId": "governors-ball-2025:kiehl-s",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "governors-ball-2025:d1:the-grove:1215:strawberry-launch",
+   "artistId": "governors-ball-2025:strawberry-launch",
+   "day": 1,
+   "stageId": "governors-ball-2025:the-grove",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2025:d1:the-grove:1315:dogpark",
+   "artistId": "governors-ball-2025:dogpark",
+   "day": 1,
+   "stageId": "governors-ball-2025:the-grove",
+   "start": "13:15",
+   "end": "13:45"
+  },
+  {
+   "id": "governors-ball-2025:d1:the-grove:1415:matt-champion",
+   "artistId": "governors-ball-2025:matt-champion",
+   "day": 1,
+   "stageId": "governors-ball-2025:the-grove",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2025:d1:the-grove:1530:wasia-project",
+   "artistId": "governors-ball-2025:wasia-project",
+   "day": 1,
+   "stageId": "governors-ball-2025:the-grove",
+   "start": "15:30",
+   "end": "16:15"
+  },
+  {
+   "id": "governors-ball-2025:d1:the-grove:1700:the-beaches",
+   "artistId": "governors-ball-2025:the-beaches",
+   "day": 1,
+   "stageId": "governors-ball-2025:the-grove",
+   "start": "17:00",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2025:d1:the-grove:1815:role-model",
+   "artistId": "governors-ball-2025:role-model",
+   "day": 1,
+   "stageId": "governors-ball-2025:the-grove",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "governors-ball-2025:d1:the-grove:1945:jpegmafia",
+   "artistId": "governors-ball-2025:jpegmafia",
+   "day": 1,
+   "stageId": "governors-ball-2025:the-grove",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "governors-ball-2025:d2:govballnyc:1715:marina",
+   "artistId": "governors-ball-2025:marina",
+   "day": 2,
+   "stageId": "governors-ball-2025:govballnyc",
+   "start": "17:15",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2025:d2:govballnyc:1815:wallows",
+   "artistId": "governors-ball-2025:wallows",
+   "day": 2,
+   "stageId": "governors-ball-2025:govballnyc",
+   "start": "18:15",
+   "end": "19:00"
+  },
+  {
+   "id": "governors-ball-2025:d2:govballnyc:1945:conan-gray",
+   "artistId": "governors-ball-2025:conan-gray",
+   "day": 2,
+   "stageId": "governors-ball-2025:govballnyc",
+   "start": "19:45",
+   "end": "20:30"
+  },
+  {
+   "id": "governors-ball-2025:d2:govballnyc:2125:olivia-rodrigo",
+   "artistId": "governors-ball-2025:olivia-rodrigo",
+   "day": 2,
+   "stageId": "governors-ball-2025:govballnyc",
+   "start": "21:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "governors-ball-2025:d2:kiehl-s:1645:artemas",
+   "artistId": "governors-ball-2025:artemas",
+   "day": 2,
+   "stageId": "governors-ball-2025:kiehl-s",
+   "start": "16:45",
+   "end": "17:15"
+  },
+  {
+   "id": "governors-ball-2025:d2:kiehl-s:1745:mariah-the-scientist",
+   "artistId": "governors-ball-2025:mariah-the-scientist",
+   "day": 2,
+   "stageId": "governors-ball-2025:kiehl-s",
+   "start": "17:45",
+   "end": "18:15"
+  },
+  {
+   "id": "governors-ball-2025:d2:kiehl-s:1900:young-miko",
+   "artistId": "governors-ball-2025:young-miko",
+   "day": 2,
+   "stageId": "governors-ball-2025:kiehl-s",
+   "start": "19:00",
+   "end": "19:45"
+  },
+  {
+   "id": "governors-ball-2025:d2:kiehl-s:2030:feid",
+   "artistId": "governors-ball-2025:feid",
+   "day": 2,
+   "stageId": "governors-ball-2025:kiehl-s",
+   "start": "20:30",
+   "end": "21:25"
+  },
+  {
+   "id": "governors-ball-2025:d2:the-grove:1645:the-lemon-twigs",
+   "artistId": "governors-ball-2025:the-lemon-twigs",
+   "day": 2,
+   "stageId": "governors-ball-2025:the-grove",
+   "start": "16:45",
+   "end": "17:15"
+  },
+  {
+   "id": "governors-ball-2025:d2:the-grove:1730:orion-sun",
+   "artistId": "governors-ball-2025:orion-sun",
+   "day": 2,
+   "stageId": "governors-ball-2025:the-grove",
+   "start": "17:30",
+   "end": "18:00"
+  },
+  {
+   "id": "governors-ball-2025:d2:the-grove:1830:the-garden",
+   "artistId": "governors-ball-2025:the-garden",
+   "day": 2,
+   "stageId": "governors-ball-2025:the-grove",
+   "start": "18:30",
+   "end": "19:00"
+  },
+  {
+   "id": "governors-ball-2025:d2:the-grove:1930:car-seat-headrest",
+   "artistId": "governors-ball-2025:car-seat-headrest",
+   "day": 2,
+   "stageId": "governors-ball-2025:the-grove",
+   "start": "19:30",
+   "end": "20:15"
+  },
+  {
+   "id": "governors-ball-2025:d2:the-grove:2045:wave-to-earth",
+   "artistId": "governors-ball-2025:wave-to-earth",
+   "day": 2,
+   "stageId": "governors-ball-2025:the-grove",
+   "start": "20:45",
+   "end": "21:30"
+  },
+  {
+   "id": "governors-ball-2025:d3:govballnyc:1200:kids-rock-for-kids",
+   "artistId": "governors-ball-2025:kids-rock-for-kids",
+   "day": 3,
+   "stageId": "governors-ball-2025:govballnyc",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "governors-ball-2025:d3:govballnyc:1300:nourished-by-time",
+   "artistId": "governors-ball-2025:nourished-by-time",
+   "day": 3,
+   "stageId": "governors-ball-2025:govballnyc",
+   "start": "13:00",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2025:d3:govballnyc:1400:joey-valence-and-brae",
+   "artistId": "governors-ball-2025:joey-valence-and-brae",
+   "day": 3,
+   "stageId": "governors-ball-2025:govballnyc",
+   "start": "14:00",
+   "end": "14:30"
+  },
+  {
+   "id": "governors-ball-2025:d3:govballnyc:1515:raye",
+   "artistId": "governors-ball-2025:raye",
+   "day": 3,
+   "stageId": "governors-ball-2025:govballnyc",
+   "start": "15:15",
+   "end": "16:00"
+  },
+  {
+   "id": "governors-ball-2025:d3:govballnyc:1645:royel-otis",
+   "artistId": "governors-ball-2025:royel-otis",
+   "day": 3,
+   "stageId": "governors-ball-2025:govballnyc",
+   "start": "16:45",
+   "end": "17:30"
+  },
+  {
+   "id": "governors-ball-2025:d3:govballnyc:1830:mt-joy",
+   "artistId": "governors-ball-2025:mt-joy",
+   "day": 3,
+   "stageId": "governors-ball-2025:govballnyc",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "governors-ball-2025:d3:govballnyc:2030:hozier",
+   "artistId": "governors-ball-2025:hozier",
+   "day": 3,
+   "stageId": "governors-ball-2025:govballnyc",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "governors-ball-2025:d3:kiehl-s:1230:snow-wife",
+   "artistId": "governors-ball-2025:snow-wife",
+   "day": 3,
+   "stageId": "governors-ball-2025:kiehl-s",
+   "start": "12:30",
+   "end": "13:00"
+  },
+  {
+   "id": "governors-ball-2025:d3:kiehl-s:1330:militarie-gun",
+   "artistId": "governors-ball-2025:militarie-gun",
+   "day": 3,
+   "stageId": "governors-ball-2025:kiehl-s",
+   "start": "13:30",
+   "end": "14:00"
+  },
+  {
+   "id": "governors-ball-2025:d3:kiehl-s:1430:amaarae",
+   "artistId": "governors-ball-2025:amaarae",
+   "day": 3,
+   "stageId": "governors-ball-2025:kiehl-s",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "governors-ball-2025:d3:kiehl-s:1600:the-japanese-house",
+   "artistId": "governors-ball-2025:the-japanese-house",
+   "day": 3,
+   "stageId": "governors-ball-2025:kiehl-s",
+   "start": "16:00",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2025:d3:kiehl-s:1730:clairo",
+   "artistId": "governors-ball-2025:clairo",
+   "day": 3,
+   "stageId": "governors-ball-2025:kiehl-s",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "governors-ball-2025:d3:kiehl-s:1930:glass-animals",
+   "artistId": "governors-ball-2025:glass-animals",
+   "day": 3,
+   "stageId": "governors-ball-2025:kiehl-s",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "governors-ball-2025:d3:the-grove:1215:olivia-lunny",
+   "artistId": "governors-ball-2025:olivia-lunny",
+   "day": 3,
+   "stageId": "governors-ball-2025:the-grove",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2025:d3:the-grove:1315:kyle-dion",
+   "artistId": "governors-ball-2025:kyle-dion",
+   "day": 3,
+   "stageId": "governors-ball-2025:the-grove",
+   "start": "13:15",
+   "end": "13:45"
+  },
+  {
+   "id": "governors-ball-2025:d3:the-grove:1415:frost-children",
+   "artistId": "governors-ball-2025:frost-children",
+   "day": 3,
+   "stageId": "governors-ball-2025:the-grove",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2025:d3:the-grove:1530:mark-ambor",
+   "artistId": "governors-ball-2025:mark-ambor",
+   "day": 3,
+   "stageId": "governors-ball-2025:the-grove",
+   "start": "15:30",
+   "end": "16:15"
+  },
+  {
+   "id": "governors-ball-2025:d3:the-grove:1645:berlioz",
+   "artistId": "governors-ball-2025:berlioz",
+   "day": 3,
+   "stageId": "governors-ball-2025:the-grove",
+   "start": "16:45",
+   "end": "17:30"
+  },
+  {
+   "id": "governors-ball-2025:d3:the-grove:1800:montell-fish",
+   "artistId": "governors-ball-2025:montell-fish",
+   "day": 3,
+   "stageId": "governors-ball-2025:the-grove",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "governors-ball-2025:d3:the-grove:1930:key-glock",
+   "artistId": "governors-ball-2025:key-glock",
+   "day": 3,
+   "stageId": "governors-ball-2025:the-grove",
+   "start": "19:30",
+   "end": "20:30"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_image_transcription",
+  "official": "https://www.governorsballmusicfestival.com/schedule",
+  "captures": [
+   {
+    "day": 1,
+    "pageArchivedUrl": "https://web.archive.org/web/20250916004249/https://www.governorsballmusicfestival.com/schedule",
+    "pageCapture": "20250916004249",
+    "imageArchivedUrl": "https://web.archive.org/web/20250603010320/https://cdn.prod.website-files.com/6752f21b56158b1c6c4bc9f2/681e70624805710997d489bb_GBSchedule-Fri-WEB.png",
+    "imageCapture": "20250603010320",
+    "sha256": "dffadd09c854042df16461e83edeb8ce6e3b642a37cda3b3d8325cf5f60f34a6",
+    "reviewManifest": "data/historical/review/governors-ball-2025.json"
+   },
+   {
+    "day": 2,
+    "pageArchivedUrl": "https://web.archive.org/web/20250916004249/https://www.governorsballmusicfestival.com/schedule",
+    "pageCapture": "20250916004249",
+    "imageArchivedUrl": "https://web.archive.org/web/20260607132709/https://cdn.prod.website-files.com/6752f21b56158b1c6c4bc9f2/684499bcd1bfedc1610d064a_GBSchedule-Sat_6.7D-WEB.png",
+    "imageCapture": "20260607132709",
+    "sha256": "c9793fb53d104fce1b58bb6da720e4f58fbc0ce13ce3f12088574eaa2ba99763",
+    "reviewManifest": "data/historical/review/governors-ball-2025.json"
+   },
+   {
+    "day": 3,
+    "pageArchivedUrl": "https://web.archive.org/web/20250916004249/https://www.governorsballmusicfestival.com/schedule",
+    "pageCapture": "20250916004249",
+    "imageArchivedUrl": "https://web.archive.org/web/20250603010320/https://cdn.prod.website-files.com/6752f21b56158b1c6c4bc9f2/681e7078f07d3040277ec61f_GBSchedule-Sun-WEB.png",
+    "imageCapture": "20250603010320",
+    "sha256": "6f6ce22944a58ed1526aa307b6c340ddb98a1fa64639c4c1ca9a28e564ca3971",
+    "reviewManifest": "data/historical/review/governors-ball-2025.json"
+   }
+  ]
+ }
+}

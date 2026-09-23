@@ -1882,7 +1882,67 @@ function FestivalSwitcher({
       fontSize: 15,
       fontWeight: 500
     }
-  }, "Open recap")))), React.createElement("p", {
+  }, "Open recap")))), React.createElement("button", {
+    onClick: () => {
+      onClose();
+      (window._pushNav || (() => {}))({
+        tab: "past",
+        pastEdition: null,
+        artist: null
+      });
+    },
+    style: {
+      ...rowStyle(false),
+      cursor: "pointer",
+      marginTop: 8
+    }
+  }, React.createElement("div", {
+    "aria-hidden": "true",
+    style: {
+      width: 44,
+      height: 44,
+      flexShrink: 0,
+      borderRadius: 12,
+      background: "var(--paper-3)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
+    }
+  }, React.createElement("svg", {
+    width: "22",
+    height: "22",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "var(--text-2)",
+    strokeWidth: "1.8",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("rect", {
+    x: "4",
+    y: "5",
+    width: "16",
+    height: "15",
+    rx: "2"
+  }), React.createElement("path", {
+    d: "M4 10 H20 M8 3 V7 M16 3 V7"
+  }))), React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 17,
+      lineHeight: "22px",
+      fontWeight: 600
+    }
+  }, "Past festivals"), React.createElement("div", {
+    style: {
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, "Official lineups and set times, archived")), chevron), React.createElement("p", {
     style: {
       margin: "16px 0",
       fontSize: 13,

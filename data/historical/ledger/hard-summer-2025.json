@@ -1,0 +1,108 @@
+{
+  "id": "hard-summer-2025",
+  "method": "structured_html",
+  "official": "https://www.hardsummer.com/lineup/set-times",
+  "window": [
+    "20250802",
+    "20251231"
+  ],
+  "days": [
+    {
+      "day": 1,
+      "url": "https://www.hardsummer.com/lineup/set-times/day-1/",
+      "date": "2025-08-02",
+      "chosen": "20251006215127",
+      "archivedUrl": "https://web.archive.org/web/20251006215127/https://www.hardsummer.com/lineup/set-times/day-1/",
+      "sha256": "f97dc723b8150d97b2b3cdda6e803abd4dfc27ca938a8f9eba21f399b14fd4c9",
+      "rows": 46,
+      "stages": {
+        "HARD Stage": 6,
+        "HARDER Stage": 7,
+        "Green Stage": 8,
+        "Purple Stage": 7,
+        "Pink Stage": 6,
+        "Beatbox Boombox Art Car": 6,
+        "Locals Only Ice Cream Truck": 6
+      },
+      "considered": [
+        {
+          "captureTimestamp": "20250917024728",
+          "archivedUrl": "https://web.archive.org/web/20250917024728/https://www.hardsummer.com/lineup/set-times/day-1/",
+          "sha256": "359a7777b5219b1d3e89000fb92a90953023460bc2a5939458621c6c9b40226d",
+          "bytes": 346973,
+          "tabs": [
+            "Saturday, August 02",
+            "Sunday, August 03"
+          ],
+          "date": "2025-08-02",
+          "valid": true,
+          "rows": 46,
+          "diffVsChosen": []
+        },
+        {
+          "captureTimestamp": "20251006215127",
+          "archivedUrl": "https://web.archive.org/web/20251006215127/https://www.hardsummer.com/lineup/set-times/day-1/",
+          "sha256": "f97dc723b8150d97b2b3cdda6e803abd4dfc27ca938a8f9eba21f399b14fd4c9",
+          "bytes": 346973,
+          "tabs": [
+            "Saturday, August 02",
+            "Sunday, August 03"
+          ],
+          "date": "2025-08-02",
+          "valid": true,
+          "rows": 46,
+          "diffVsChosen": []
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "url": "https://www.hardsummer.com/lineup/set-times/day-2/",
+      "date": "2025-08-03",
+      "chosen": "20251008010611",
+      "archivedUrl": "https://web.archive.org/web/20251008010611/https://www.hardsummer.com/lineup/set-times/day-2/",
+      "sha256": "45d4d4d7eead2670d2bd5a1afcd4d5be5160358cf845bd39baab974c51c7529f",
+      "rows": 45,
+      "stages": {
+        "HARD Stage": 6,
+        "HARDER Stage": 7,
+        "Green Stage": 8,
+        "Purple Stage": 6,
+        "Pink Stage": 6,
+        "Beatbox Boombox Art Car": 6,
+        "Locals Only Ice Cream Truck": 6
+      },
+      "considered": [
+        {
+          "captureTimestamp": "20251006203041",
+          "archivedUrl": "https://web.archive.org/web/20251006203041/https://www.hardsummer.com/lineup/set-times/day-2/",
+          "sha256": "5f2bd2e817c8a89106b6af9b3bccc52aeec891d8f23f377dfc4b1f6970f9a0d5",
+          "bytes": 338082,
+          "tabs": [
+            "Saturday, August 02",
+            "Sunday, August 03"
+          ],
+          "date": "2025-08-03",
+          "valid": true,
+          "rows": 45,
+          "diffVsChosen": []
+        },
+        {
+          "captureTimestamp": "20251008010611",
+          "archivedUrl": "https://web.archive.org/web/20251008010611/https://www.hardsummer.com/lineup/set-times/day-2/",
+          "sha256": "45d4d4d7eead2670d2bd5a1afcd4d5be5160358cf845bd39baab974c51c7529f",
+          "bytes": 338082,
+          "tabs": [
+            "Saturday, August 02",
+            "Sunday, August 03"
+          ],
+          "date": "2025-08-03",
+          "valid": true,
+          "rows": 45,
+          "diffVsChosen": []
+        }
+      ]
+    }
+  ],
+  "dropped": []
+}

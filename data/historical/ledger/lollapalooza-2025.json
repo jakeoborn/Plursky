@@ -1,0 +1,329 @@
+{
+  "id": "lollapalooza-2025",
+  "method": "official_image_transcription",
+  "official": "https://www.lollapalooza.com/schedule",
+  "window": [
+    "20250725",
+    "20251231"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20250731162817",
+      "archivedUrl": "https://web.archive.org/web/20250731162817/https://www.lollapalooza.com/schedule",
+      "sha256": "39e7d5d8e3d530ec71ac9ac04cfacce274a0279c59bc9d0ce2a1dd7a5a0e0d02",
+      "images": [
+        "688a73ce0067cda1581362f9_LOL25_Schedule-07.30-BT_Thurs.png",
+        "688a73b2244709abd26b129f_LOL25_Schedule-07.30-BT_Fri.png",
+        "688a73be9c532933d191e991_LOL25_Schedule-07.30-BT_Sat.png",
+        "688aad7511f2902cd45c6e12_LOL25_Schedule-07.30-BT_Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20250801190612",
+      "archivedUrl": "https://web.archive.org/web/20250801190612/https://www.lollapalooza.com/schedule",
+      "sha256": "4de69553cb6a5877a5fe52514f735126ba0ae037a761e6453c4e44c4e99d0f19",
+      "images": [
+        "688a73ce0067cda1581362f9_LOL25_Schedule-07.30-BT_Thurs.png",
+        "688a73b2244709abd26b129f_LOL25_Schedule-07.30-BT_Fri.png",
+        "688cdc4e2a01d6b4eaf1ae32_LOL25_Schedule-07-28-Chance-WEB.png",
+        "688bc6a15aadadfe974beb14_LOL25_Schedule-07.31-B_Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20250802224139",
+      "archivedUrl": "https://web.archive.org/web/20250802224139/https://www.lollapalooza.com/schedule",
+      "sha256": "b0b4d04a975e747feb1de2fad544ef37b2edd530a96ee205e36fe1d63ff405b6",
+      "images": [
+        "688a73ce0067cda1581362f9_LOL25_Schedule-07.30-BT_Thurs.png",
+        "688a73b2244709abd26b129f_LOL25_Schedule-07.30-BT_Fri.png",
+        "688e3b65796c112dba7ffee1_LOL25_Schedule-08.01-WEB.png",
+        "688e81894367c4fcf95881a4_LOL25_Schedule-07.31-B_Sun%20(1).png"
+      ]
+    },
+    {
+      "captureTimestamp": "20250802224139",
+      "archivedUrl": "https://web.archive.org/web/20250802224139/https://www.lollapalooza.com/schedule",
+      "sha256": "b0b4d04a975e747feb1de2fad544ef37b2edd530a96ee205e36fe1d63ff405b6",
+      "images": [
+        "688a73ce0067cda1581362f9_LOL25_Schedule-07.30-BT_Thurs.png",
+        "688a73b2244709abd26b129f_LOL25_Schedule-07.30-BT_Fri.png",
+        "688e3b65796c112dba7ffee1_LOL25_Schedule-08.01-WEB.png",
+        "688e81894367c4fcf95881a4_LOL25_Schedule-07.31-B_Sun%20(1).png"
+      ]
+    },
+    {
+      "captureTimestamp": "20250804021151",
+      "archivedUrl": "https://web.archive.org/web/20250804021151/https://www.lollapalooza.com/schedule",
+      "sha256": "78c69dfebc52e0e52871c189f8a4d558aa5a6208c48f05a5f5b879a5828f916f",
+      "images": [
+        "688a73ce0067cda1581362f9_LOL25_Schedule-07.30-BT_Thurs.png",
+        "688a73b2244709abd26b129f_LOL25_Schedule-07.30-BT_Fri.png",
+        "688e3b65796c112dba7ffee1_LOL25_Schedule-08.01-WEB.png",
+        "688f9be9b26f26166ba53026_LOL25_Schedule-08.03.04-Sun-WEB.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20250806214821",
+      "archivedUrl": "https://web.archive.org/web/20250806214821/https://www.lollapalooza.com/schedule",
+      "sha256": "e989ee8b4badb956f3d38894e695082e5088802998c7fd516a2fe0448614ce10",
+      "images": [
+        "688a73ce0067cda1581362f9_LOL25_Schedule-07.30-BT_Thurs.png",
+        "688a73b2244709abd26b129f_LOL25_Schedule-07.30-BT_Fri.png",
+        "688e3b65796c112dba7ffee1_LOL25_Schedule-08.01-WEB.png",
+        "688f9be9b26f26166ba53026_LOL25_Schedule-08.03.04-Sun-WEB.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20250812062352",
+      "archivedUrl": "https://web.archive.org/web/20250812062352/https://www.lollapalooza.com/schedule",
+      "sha256": "4d281379ce5f171143b8d9821e18bfa0aa7c37d9cfa75542b733ea996b35562f",
+      "images": [
+        "688a73ce0067cda1581362f9_LOL25_Schedule-07.30-BT_Thurs.png",
+        "688a73b2244709abd26b129f_LOL25_Schedule-07.30-BT_Fri.png",
+        "688e3b65796c112dba7ffee1_LOL25_Schedule-08.01-WEB.png",
+        "688f9be9b26f26166ba53026_LOL25_Schedule-08.03.04-Sun-WEB.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20250913163751",
+      "archivedUrl": "https://web.archive.org/web/20250913163751/https://www.lollapalooza.com/schedule",
+      "sha256": "4d281379ce5f171143b8d9821e18bfa0aa7c37d9cfa75542b733ea996b35562f",
+      "images": [
+        "688a73ce0067cda1581362f9_LOL25_Schedule-07.30-BT_Thurs.png",
+        "688a73b2244709abd26b129f_LOL25_Schedule-07.30-BT_Fri.png",
+        "688e3b65796c112dba7ffee1_LOL25_Schedule-08.01-WEB.png",
+        "688f9be9b26f26166ba53026_LOL25_Schedule-08.03.04-Sun-WEB.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20251122192158",
+      "archivedUrl": "https://web.archive.org/web/20251122192158/https://www.lollapalooza.com/schedule",
+      "sha256": "8d3e24b6645e5eed8a62d4e9b52bf285e1730927991d7dd07518a9e96c6f7484",
+      "images": [
+        "688a73ce0067cda1581362f9_LOL25_Schedule-07.30-BT_Thurs.png",
+        "688a73b2244709abd26b129f_LOL25_Schedule-07.30-BT_Fri.png",
+        "688e3b65796c112dba7ffee1_LOL25_Schedule-08.01-WEB.png",
+        "688f9be9b26f26166ba53026_LOL25_Schedule-08.03.04-Sun-WEB.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20251215060335",
+      "archivedUrl": "https://web.archive.org/web/20251215060335/https://www.lollapalooza.com/schedule",
+      "sha256": "abd4374589df8481f6d9941953d41db6d73de366ac55d4cb8dc1bf434c13ad13",
+      "images": [
+        "688a73ce0067cda1581362f9_LOL25_Schedule-07.30-BT_Thurs.png",
+        "688a73b2244709abd26b129f_LOL25_Schedule-07.30-BT_Fri.png",
+        "688e3b65796c112dba7ffee1_LOL25_Schedule-08.01-WEB.png",
+        "688f9be9b26f26166ba53026_LOL25_Schedule-08.03.04-Sun-WEB.png"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2025-07-31",
+      "pageCapture": "20251215060335",
+      "pageArchivedUrl": "https://web.archive.org/web/20251215060335/https://www.lollapalooza.com/schedule",
+      "originalUrl": "https://cdn.prod.website-files.com/67c1632e86f99390b0516b6d/688a73ce0067cda1581362f9_LOL25_Schedule-07.30-BT_Thurs.png",
+      "imageCapture": "20251224222747",
+      "imageArchivedUrl": "https://web.archive.org/web/20251224222747/https://cdn.prod.website-files.com/67c1632e86f99390b0516b6d/688a73ce0067cda1581362f9_LOL25_Schedule-07.30-BT_Thurs.png",
+      "sha256": "b0bceecf8ecc9115d8967006ddc8f3af8fa739b72c2af5a475d0fd3fe9551a0c",
+      "bytes": 236290,
+      "contentType": "image/png",
+      "cacheFile": "ba7d9c18ae4ef3fb5308a0c9.bin",
+      "revisions": [
+        {
+          "file": "688a73ce0067cda1581362f9_LOL25_Schedule-07.30-BT_Thurs.png",
+          "firstSeen": "20250731162817"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2025-08-01",
+      "pageCapture": "20251215060335",
+      "pageArchivedUrl": "https://web.archive.org/web/20251215060335/https://www.lollapalooza.com/schedule",
+      "originalUrl": "https://cdn.prod.website-files.com/67c1632e86f99390b0516b6d/688a73b2244709abd26b129f_LOL25_Schedule-07.30-BT_Fri.png",
+      "imageCapture": "20251224222747",
+      "imageArchivedUrl": "https://web.archive.org/web/20251224222747/https://cdn.prod.website-files.com/67c1632e86f99390b0516b6d/688a73b2244709abd26b129f_LOL25_Schedule-07.30-BT_Fri.png",
+      "sha256": "a5b587824d0795b4c2e577e87fcdef69544e64a77418f6425b12d3f562853c72",
+      "bytes": 233801,
+      "contentType": "image/png",
+      "cacheFile": "9ab2de712a9fa2221f45457a.bin",
+      "revisions": [
+        {
+          "file": "688a73b2244709abd26b129f_LOL25_Schedule-07.30-BT_Fri.png",
+          "firstSeen": "20250731162817"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2025-08-02",
+      "pageCapture": "20251215060335",
+      "pageArchivedUrl": "https://web.archive.org/web/20251215060335/https://www.lollapalooza.com/schedule",
+      "originalUrl": "https://cdn.prod.website-files.com/67c1632e86f99390b0516b6d/688e3b65796c112dba7ffee1_LOL25_Schedule-08.01-WEB.png",
+      "imageCapture": "20251224222747",
+      "imageArchivedUrl": "https://web.archive.org/web/20251224222747/https://cdn.prod.website-files.com/67c1632e86f99390b0516b6d/688e3b65796c112dba7ffee1_LOL25_Schedule-08.01-WEB.png",
+      "sha256": "5762853d24c078502261d27cdfeb7e59f2c745aa5cb9e8d7aa9808804fb431b0",
+      "bytes": 237097,
+      "contentType": "image/png",
+      "cacheFile": "8fd3c0f472fbfb63612bb29a.bin",
+      "revisions": [
+        {
+          "file": "688a73be9c532933d191e991_LOL25_Schedule-07.30-BT_Sat.png",
+          "firstSeen": "20250731162817"
+        },
+        {
+          "file": "688cdc4e2a01d6b4eaf1ae32_LOL25_Schedule-07-28-Chance-WEB.png",
+          "firstSeen": "20250801190612"
+        },
+        {
+          "file": "688e3b65796c112dba7ffee1_LOL25_Schedule-08.01-WEB.png",
+          "firstSeen": "20250802224139"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2025-08-03",
+      "pageCapture": "20251215060335",
+      "pageArchivedUrl": "https://web.archive.org/web/20251215060335/https://www.lollapalooza.com/schedule",
+      "originalUrl": "https://cdn.prod.website-files.com/67c1632e86f99390b0516b6d/688f9be9b26f26166ba53026_LOL25_Schedule-08.03.04-Sun-WEB.png",
+      "imageCapture": "20251215060330",
+      "imageArchivedUrl": "https://web.archive.org/web/20251215060330/https://cdn.prod.website-files.com/67c1632e86f99390b0516b6d/688f9be9b26f26166ba53026_LOL25_Schedule-08.03.04-Sun-WEB.png",
+      "sha256": "bd0393c1d7b6668a7b78c2e1c2d6fa5e8eb805e9fb8660ec43612aacf339142c",
+      "bytes": 230330,
+      "contentType": "image/png",
+      "cacheFile": "aeb677993a25a4172f9e4211.bin",
+      "revisions": [
+        {
+          "file": "688aad7511f2902cd45c6e12_LOL25_Schedule-07.30-BT_Sun.png",
+          "firstSeen": "20250731162817"
+        },
+        {
+          "file": "688bc6a15aadadfe974beb14_LOL25_Schedule-07.31-B_Sun.png",
+          "firstSeen": "20250801190612"
+        },
+        {
+          "file": "688e81894367c4fcf95881a4_LOL25_Schedule-07.31-B_Sun%20(1).png",
+          "firstSeen": "20250802224139"
+        },
+        {
+          "file": "688f9be9b26f26166ba53026_LOL25_Schedule-08.03.04-Sun-WEB.png",
+          "firstSeen": "20250804021151"
+        }
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "15:15",
+      "end": "15:45",
+      "billing": "ALEX WARREN X DAVIS BURLESON",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "17:00",
+      "end": "17:30",
+      "billing": "HOW LONG GONE WITH THE DARE",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "18:00",
+      "end": "18:30",
+      "billing": "BOB'S DANCE SHOP",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "15:15",
+      "end": "15:45",
+      "billing": "THE BINGO-GO-GO",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "16:30",
+      "end": "16:50",
+      "billing": "GIGI PEREZ X TATIANA MIRANDA",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "17:45",
+      "end": "18:15",
+      "billing": "HOW LONG GONE WITH THE BEAR'S COREY HENDRIX",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "18:45",
+      "end": "19:15",
+      "billing": "BOB'S DANCE SHOP",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 3,
+      "stage": "BONUS TRACKS",
+      "start": "15:15",
+      "end": "15:45",
+      "billing": "THE BINGO-GO-GO",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 3,
+      "stage": "BONUS TRACKS",
+      "start": "18:00",
+      "end": "18:30",
+      "billing": "DAMIANO DAVID X TATIANA MIRANDA",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "15:15",
+      "end": "15:45",
+      "billing": "THE SECOND CITY: COMEDY MIXTAPE VOL. 59",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "17:30",
+      "end": "17:50",
+      "billing": "KATSEYE INTERVIEW WITH DAVIS BURLESON",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "18:15",
+      "end": "18:45",
+      "billing": "BOB'S DANCE SHOP",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    }
+  ]
+}

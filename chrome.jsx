@@ -1382,6 +1382,18 @@ function FestivalSwitcher({ onClose }) {
           <button onClick={() => { onClose(); (window._pushNav || (() => {}))({ tab: "recap", artist: null }); }} style={{ ...fieldIconBtn, width: "auto", padding: "0 4px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 }}>Open recap</button>
         </>}
       </>)}
+      {/* The public library of past editions (historical.jsx). Not a switch:
+          it opens a read-only screen and never changes the active festival. */}
+      <button onClick={() => { onClose(); (window._pushNav || (() => {}))({ tab: "past", pastEdition: null, artist: null }); }} style={{ ...rowStyle(false), cursor: "pointer", marginTop: 8 }}>
+        <div aria-hidden="true" style={{ width: 44, height: 44, flexShrink: 0, borderRadius: 12, background: "var(--paper-3)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10 H20 M8 3 V7 M16 3 V7"/></svg>
+        </div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>Past festivals</div>
+          <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>Official lineups and set times, archived</div>
+        </div>
+        {chevron}
+      </button>
       <p style={{ margin: "16px 0", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
         Switching reloads the app with that festival's lineup and map.
       </p>
