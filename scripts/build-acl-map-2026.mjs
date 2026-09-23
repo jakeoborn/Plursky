@@ -62,6 +62,29 @@ export const ACL_MAP_2026 = {
     amenities: {
       aa3: { px: [1002, 500],  confidence: "high", note: "food-court marker (1), the legend's ACL EATS" },
       aa4: { px: [771, 1288],  confidence: "high", note: "food-court marker (2), the legend's ACL EATS SOUTH" },
+      // Every printed hydration drop, restroom and medical badge (founder
+      // ruling 2026-09-23), centred on the glyph's own pixels in the source:
+      // drops 13-14x19-20 px, restrooms 15-16x20-21, medical squares 35-36.
+      // Guest services ("i") and every other symbol stay off until verified.
+      ah1: { px: [412, 477], confidence: "high", note: "drop in the dark pill east of the Lady Bird Entrance EE (i · drop · recycle · beer)" },
+      ah2: { px: [266, 583], confidence: "high", note: "drop in the pill north of T-Mobile (drop · restroom · beer)" },
+      ah3: { px: [939, 447], confidence: "high", note: "drop at the east end of the pill by the SafeFest hand (i · bodega · drop)" },
+      ah4: { px: [1255, 709], confidence: "high", note: "drop in the pill south of Tito's (drop · beer)" },
+      ah5: { px: [590, 1032], confidence: "high", note: "drop leading the Accessibility Center pill east of BMI" },
+      ah6: { px: [1047, 765], confidence: "high", note: "drop in the pill east of ACL Market (drop · beer)" },
+      ah7: { px: [1213, 959], confidence: "high", note: "drop in the pill by ACL Sweets (bar · drop · merch · recycle)" },
+      ah8: { px: [702, 1336], confidence: "high", note: "drop in the pill south of Merch Palace (bar · drop)" },
+      ar1: { px: [288, 582], confidence: "high", note: "restroom glyph in the pill north of T-Mobile (drop · restroom · beer)" },
+      ar2: { px: [1122, 572], confidence: "high", note: "restroom badge west of Tito's" },
+      ar3: { px: [260, 857], confidence: "high", note: "restroom glyph in the pill east of VIP Grove West (bar · restroom)" },
+      ar4: { px: [1459, 752], confidence: "high", note: "restroom glyph in the pill west of the Platinum Lounge (bar · restroom)" },
+      ar5: { px: [1458, 976], confidence: "high", note: "restroom badge south-west of American Express" },
+      ar6: { px: [1353, 1020], confidence: "high", note: "restroom badge beside the EE east of VIP Grove East" },
+      ar7: { px: [865, 1290], confidence: "high", note: "restroom badge east of Merch Palace" },
+      am1: { px: [359, 665], confidence: "high", note: "medical cross square north-east of T-Mobile" },
+      am2: { px: [463, 1219], confidence: "high", note: "medical cross square north-east of BEATBOX" },
+      am3: { px: [853, 887], confidence: "high", note: "medical cross square north of Snapchat" },
+      am4: { px: [1606, 812], confidence: "high", note: "medical cross square above the American Express stage" },
     },
   },
 };

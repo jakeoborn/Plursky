@@ -1233,7 +1233,18 @@ const AMENITIES = [
   { id: "f1",  type: "food",   label: "General Store — Downtown", x: 42.4, y: 65.5 },
 ];
 
-const AVATAR_START = { x: 50, y: 52 };
+// The off-site demo "YOU" marker starts in a corner of the box it wanders in
+// (map.jsx clamps it to 12-88), never on a pin: founder ruling 2026-09-23,
+// after the old fleet-wide {x: 50, y: 52} landed on ACL 2026's Snapchat tent.
+// The first corner with no stage or amenity within AVATAR_CLEARANCE wins; if
+// every corner is crowded, the one farthest from any pin.
+const AVATAR_CLEARANCE = 10;
+function avatarStartFor(ds) {
+  const pins = [...(ds?.stages || []), ...(ds?.amenities || [])].filter(p => Number.isFinite(p.x) && Number.isFinite(p.y));
+  const corners = [{ x: 12, y: 88 }, { x: 88, y: 88 }, { x: 12, y: 12 }, { x: 88, y: 12 }];
+  const room = c => pins.length ? Math.min(...pins.map(p => Math.hypot(p.x - c.x, p.y - c.y))) : Infinity;
+  return corners.find(c => room(c) >= AVATAR_CLEARANCE) || corners.reduce((a, b) => room(b) > room(a) ? b : a);
+}
 
 const FRIENDS = [];
 
@@ -2398,14 +2409,35 @@ const ACL_ARTISTS = [
 // Eats South are the legend's numbered food courts (1) and (2), so each maps
 // to exactly one marker.
 //
-// WITHHELD, not guessed: the eight pins this list used to carry were round
-// numbers that matched no symbol on the 2025 or 2026 map. For Hydration (two
-// pins), Medical, Restrooms (two pins) and Guest Services, the 2026 map prints
-// several of each symbol, and nothing says which one a single pin stood for.
-// Adding every symbol would be a product decision, not a map refresh.
+// The eight pins this list used to carry were round numbers that matched no
+// symbol on the 2025 or 2026 map; they are gone. Founder ruling 2026-09-23:
+// pin EVERY printed hydration, restroom and medical badge, measured like the
+// stages; leave guest services ("i") and anything ambiguous off until it is
+// verified against the printed map.
 const ACL_AMENITIES = [
   { id: "aa3", type: "food",   label: "ACL Eats",       x: 56.8, y: 28.3 },
   { id: "aa4", type: "food",   label: "ACL Eats South", x: 43.7, y: 73.0 },
+  // Every hydration, restroom and medical badge printed on the 2026 map,
+  // measured on the glyph (scripts/build-acl-map-2026.mjs). No guest services.
+  { id: "ah1", type: "water",  label: "Hydration", x: 23.3, y: 27.0 },
+  { id: "ah2", type: "water",  label: "Hydration", x: 15.1, y: 33.0 },
+  { id: "ah3", type: "water",  label: "Hydration", x: 53.2, y: 25.3 },
+  { id: "ah4", type: "water",  label: "Hydration", x: 71.1, y: 40.2 },
+  { id: "ah5", type: "water",  label: "Hydration", x: 33.4, y: 58.5 },
+  { id: "ah6", type: "water",  label: "Hydration", x: 59.3, y: 43.3 },
+  { id: "ah7", type: "water",  label: "Hydration", x: 68.7, y: 54.3 },
+  { id: "ah8", type: "water",  label: "Hydration", x: 39.8, y: 75.7 },
+  { id: "ar1", type: "toilet", label: "Restrooms", x: 16.3, y: 33.0 },
+  { id: "ar2", type: "toilet", label: "Restrooms", x: 63.6, y: 32.4 },
+  { id: "ar3", type: "toilet", label: "Restrooms", x: 14.7, y: 48.6 },
+  { id: "ar4", type: "toilet", label: "Restrooms", x: 82.7, y: 42.6 },
+  { id: "ar5", type: "toilet", label: "Restrooms", x: 82.6, y: 55.3 },
+  { id: "ar6", type: "toilet", label: "Restrooms", x: 76.7, y: 57.8 },
+  { id: "ar7", type: "toilet", label: "Restrooms", x: 49.0, y: 73.1 },
+  { id: "am1", type: "med",    label: "Medical",   x: 20.3, y: 37.7 },
+  { id: "am2", type: "med",    label: "Medical",   x: 26.2, y: 69.1 },
+  { id: "am3", type: "med",    label: "Medical",   x: 48.3, y: 50.3 },
+  { id: "am4", type: "med",    label: "Medical",   x: 91.0, y: 46.0 },
 ];
 
 // ── Multi-festival data switching ──────────────────────────────────
@@ -3266,7 +3298,7 @@ const _active = _DATA_SETS[_activeId] || _DATA_SETS["edc-lv-2026"];
 
 Object.assign(window, {
   FESTIVAL: _active.config, FESTIVAL_CONFIG: _active.config,
-  STAGES: _active.stages, AMENITIES: _active.amenities, AVATAR_START, FRIENDS, ARTISTS: _active.artists,
+  STAGES: _active.stages, AMENITIES: _active.amenities, AVATAR_START: avatarStartFor(_active), avatarStartFor, FRIENDS, ARTISTS: _active.artists,
   NOW, ALERTS, ESSENTIALS, fmt12,
   FESTIVALS_REGISTRY, getActiveFestivalId, setActiveFestivalAndReload, isScheduleTBA,
   _resolveDefaultFestivalId,

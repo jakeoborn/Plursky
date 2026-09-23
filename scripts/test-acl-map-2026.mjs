@@ -41,7 +41,7 @@ const ctx = { window: {}, console, Date, Math, JSON, Object, Array, String, Numb
 vm.createContext(ctx);
 const mods = execFileSync("git", ["ls-files", "data/festivals/*.js"], { cwd: ROOT }).toString().trim().split("\n")
   .filter(Boolean).map(f => readFileSync(join(ROOT, f), "utf8")).join("\n");
-vm.runInContext(mods + "\n" + readFileSync(join(ROOT, "data.jsx"), "utf8") + "\n;__o={DS:_DATA_SETS};", ctx);
+vm.runInContext(mods + "\n" + readFileSync(join(ROOT, "data.jsx"), "utf8") + "\n;__o={DS:_DATA_SETS,avatarStartFor,AVATAR_CLEARANCE,active:_active};", ctx);
 const acl = ctx.__o.DS["acl-2026"];
 ok(acl?.config?.id === "acl-2026", "could not load the acl-2026 data set");
 
@@ -52,7 +52,13 @@ const tracked = new Set(execFileSync("git", ["ls-files"], { cwd: ROOT, encoding:
 
 const grid = v => Math.round(1000 * v / M.derivativeSize[0]) / 10;
 
-function validate(ds, { local = LOCAL } = {}) {
+const CORNERS = ["12,88", "88,88", "12,12", "88,12"];
+// The printed 2026 map, surveyed badge by badge: 8 hydration drops, 7 restroom
+// badges, 4 medical squares, plus the 2 numbered food courts. Guest services
+// ("i") is deliberately absent until verified (founder ruling 2026-09-23).
+const AMENITY_SURVEY = { water: 8, toilet: 7, med: 4, food: 2 };
+
+function validate(ds, { local = LOCAL, start = ctx.__o.avatarStartFor(ds) } = {}) {
   const p = [], cfg = ds.config;
   // Asset: the ACL config renders the 2026 plate, and the plate is precached.
   if (cfg.mapImage !== M.derivative) p.push(`mapImage is ${cfg.mapImage}, not ${M.derivative}`);
@@ -78,6 +84,17 @@ function validate(ds, { local = LOCAL } = {}) {
     if (item.x !== grid(m.px[0]) || item.y !== grid(m.px[1])) p.push(`${item.id} is (${item.x},${item.y}); measured ${m.px.join(",")} px = (${grid(m.px[0])},${grid(m.px[1])})`);
   }
   for (const id of Object.keys(M.measured.stages)) if (!ids.includes(id)) p.push(`measured stage ${id} is not shipped`);
+  const amIds = (ds.amenities || []).map(a => a.id);
+  for (const id of Object.keys(M.measured.amenities)) if (!amIds.includes(id)) p.push(`measured amenity ${id} is not shipped`);
+  const byType = {};
+  for (const a of ds.amenities || []) byType[a.type] = (byType[a.type] || 0) + 1;
+  if (JSON.stringify(byType, Object.keys(AMENITY_SURVEY).concat(Object.keys(byType)).sort()) !== JSON.stringify(AMENITY_SURVEY, Object.keys(AMENITY_SURVEY).concat(Object.keys(byType)).sort()))
+    p.push(`amenities by type are ${JSON.stringify(byType)}, the printed map surveys ${JSON.stringify(AMENITY_SURVEY)}`);
+  // The demo YOU marker: a corner of its wander box, clear of every pin.
+  const pins = [...ds.stages, ...(ds.amenities || [])];
+  const room = Math.min(...pins.map(q => Math.hypot(q.x - start.x, q.y - start.y)));
+  if (!CORNERS.includes(`${start.x},${start.y}`)) p.push(`the demo YOU marker starts at (${start.x},${start.y}), not a map corner`);
+  if (room < ctx.__o.AVATAR_CLEARANCE) p.push(`the demo YOU marker starts ${room.toFixed(1)} units from a pin`);
   // Copy must not claim what the map does not say.
   const snap = ds.stages.find(s => s.id === "snapchat");
   if (snap && /TBA|not yet|unpublished/i.test(`${snap.desc} ${snap.vibeNote}`)) p.push("Snapchat still reads as unplaced");
@@ -119,9 +136,28 @@ mustFail("restore Lady Bird as a stage", m => { m.stages.push({ id: "ladybird", 
 mustFail("drop a programmed stage", m => { m.stages = m.stages.filter(s => s.id !== "beatbox"); });
 mustFail("nudge a stage off its measurement", m => { m.stages.find(s => s.id === "snapchat").x += 1; });
 mustFail("carry an unmeasured 2025 amenity into 2026", m => { m.amenities.push({ id: "aa5", type: "med", label: "Medical", x: 55, y: 60 }); });
+mustFail("pin guest services before it is verified", m => { Object.assign(m.amenities.find(a => a.id === "ah1"), { type: "info", label: "Guest Services" }); });
+mustFail("drop a measured hydration badge", m => { m.amenities = m.amenities.filter(a => a.id !== "ah5"); });
+mustFail("start the YOU marker at the old fleet-wide {50,52}", () => {}, { start: { x: 50, y: 52 } });
+mustFail("start the YOU marker on a stage", m => { const c = ctx.__o.avatarStartFor(m); m.stages[0].x = c.x; m.stages[0].y = c.y; }, { start: ctx.__o.avatarStartFor(acl) });
 mustFail("Snapchat copy still says TBA", m => { m.stages.find(s => s.id === "snapchat").desc = "Location TBA · check the on-site map"; });
+
+// map.jsx seeds the demo marker from the bare AVATAR_START, which resolves
+// through window: it must be the computed corner for the active festival.
+ok(JSON.stringify(ctx.window.AVATAR_START) === JSON.stringify(ctx.__o.avatarStartFor(ctx.__o.active)),
+  `window.AVATAR_START is ${JSON.stringify(ctx.window.AVATAR_START)}, not the computed corner for the active festival`);
+ok(/React\.useState\(AVATAR_START\)/.test(readFileSync(join(ROOT, "map.jsx"), "utf8")), "map.jsx no longer seeds the demo marker from AVATAR_START");
+
+// ── 4. fleet-wide: no festival's demo marker starts on a pinned stage ──
+for (const [id, ds] of Object.entries(ctx.__o.DS)) {
+  const st = (ds.stages || []).filter(q => Number.isFinite(q.x) && Number.isFinite(q.y));
+  if (!st.length) continue;
+  const c = ctx.__o.avatarStartFor(ds);
+  const near = Math.min(...st.map(q => Math.hypot(q.x - c.x, q.y - c.y)));
+  ok(CORNERS.includes(`${c.x},${c.y}`) && near >= 3, `${id}: demo YOU marker starts at (${c.x},${c.y}), ${near.toFixed(1)} units from a stage`);
+}
 
 if (fails.length) { fails.forEach(f => console.error(`  ✗ ${f}`)); console.error(`  ${fails.length} of ${checks} ACL map checks failed`); process.exit(1); }
 console.log(`  ✓ ACL 2026 map: plate is the verified 2026 patron map (square ${M.derivativeSize.join("×")}), ` +
-  `${acl.stages.length} stages + ${acl.amenities.length} amenities on measured rows, 4 satellite anchors untouched, ` +
+  `${acl.stages.length} stages + ${acl.amenities.length} amenities on measured rows, 4 satellite anchors untouched, YOU starts at (${ctx.__o.avatarStartFor(acl).x},${ctx.__o.avatarStartFor(acl).y}), ` +
   `${checks} checks (${mutations} mutations, each caught)`);
