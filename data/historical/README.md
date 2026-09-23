@@ -1,0 +1,51 @@
+# Historical editions (Past Festivals)
+
+Past festival editions as frozen facts, read from **archived official pages**
+through the Wayback Machine. They are kept apart from `data/festivals/` and
+`_DATA_SETS`, so a past edition can never become the active festival. Nothing
+here feeds the live schedule, map, notifications, photo tagging or Memories.
+
+| dir | what | written by |
+|---|---|---|
+| `ledger/` | every capture considered, the one chosen, hashes, revisions | `extract-insomniac.mjs`, `resolve-graphics.mjs` |
+| `sheets/` | the reviewed source sheet, one row per printed set | `extract-insomniac.mjs`, `finalize-review.mjs` |
+| `review/` | per graphic: hash, rows confirmed against the pixels, every OCR correction | `finalize-review.mjs` |
+| `editions/` | the generated edition files (do not hand-edit; `--check` fails) | `build-editions.mjs` |
+| `expected-counts.json` | stage and per-day set counts locked from review | by hand, after review |
+
+Raw archived HTML and schedule graphics are research artifacts. They live in
+`~/Plursky-private/historical-cache/` and are **never committed or shipped**;
+only their hashes are.
+
+## Adding an edition
+
+Structured official pages (Insomniac platform: HARD, EDC …):
+
+    node scripts/historical/extract-insomniac.mjs <edition-id>
+
+Official schedule graphics (Gov Ball, Lolla, ACL …):
+
+    node scripts/historical/resolve-graphics.mjs <edition-id>
+    swiftc -O scripts/historical/ocr-vision.swift -o /tmp/ocr && /tmp/ocr <graphic.png> > dN.jsonl
+    node scripts/historical/assemble-ocr.mjs dN.jsonl --header Y0,Y1 --grid-bottom Y --axis-x X > <id>-dN.cand.tsv
+    # review: copy to <id>-dN.final.tsv and correct every row against the pixels,
+    # hand-transcribe footer strips, put the printed header in <id>-dN.note
+    node scripts/historical/finalize-review.mjs <edition-id> <review-dir> --reviewer "<who>"
+
+Then, for either path:
+
+    node scripts/historical/build-editions.mjs
+    # lock counts in expected-counts.json, then
+    node scripts/test-historical-editions.mjs
+
+## Rules the gate enforces
+
+- An edition is identified by what its page prints (weekday + date), never by
+  a `<title>` or a "closest" capture: EDC LV's June 2025 page is titled 2026.
+- Billing is verbatim as printed. Operational rows (Fireworks, Silent Disco)
+  are `events`, never artists. An unnamed slot ("Special Guest") keeps its row
+  but gets no cross-edition artist key.
+- A closing set printed with only a start time is `openEnd`, never given an
+  invented end.
+- Wall times are local; a set before `rolloverHour` belongs to the previous
+  festival night on the next calendar date.

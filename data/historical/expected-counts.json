@@ -1,0 +1,8 @@
+{
+ "_comment": "Locked from the reviewed source sheets. A change here is a data change: re-review the source before editing a number.",
+ "governors-ball-2025": { "stages": 3, "setsPerDay": [20, 13, 20], "events": 0 },
+ "lollapalooza-2025": { "stages": 12, "setsPerDay": [58, 60, 60, 59], "events": 0 },
+ "hard-summer-2025": { "stages": 7, "setsPerDay": [46, 45], "events": 0 },
+ "edc-las-vegas-2025": { "stages": 15, "setsPerDay": [135, 131, 129], "events": 3 },
+ "acl-2025": { "stages": 9, "setsPerDay": [35, 37, 36, 34, 37, 37], "events": 6 }
+}

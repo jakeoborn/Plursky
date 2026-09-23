@@ -2468,6 +2468,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-c4. Historical editions (Past Festivals) ─────────────────────────
+// Past editions are frozen facts read from archived OFFICIAL pages. Each one
+// must validate (days, stages, times, provenance, review manifest), equal what
+// its reviewed sheet builds, and stay out of the live registry, schedule and
+// precache. The gate also proves every rule by mutating a real edition.
+{
+  console.log("▸ Historical-editions gate — archived official schedules are valid, reviewed and isolated");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-historical-editions.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`historical editions failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c. Video thumbnails ────────────────────────────────────────────────
 // A library tile shows a stored poster <img>, never a live <video>. The old
 // "poster" was <video preload="metadata" src="...#t=0.1">: one decoder per

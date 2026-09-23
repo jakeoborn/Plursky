@@ -62,7 +62,11 @@ export function parseDay(html) {
     if (seen.has(id)) continue;
     const name = text((/<span\b[^>]*>([\s\S]*?)<\/span>/.exec(body) || [])[1] || "");
     const s = /data-timestamp-start="(\d+)"/.exec(body), e = /data-timestamp-end="(\d+)"/.exec(body);
-    seen.set(id, { id, stage, artist: name, start: s ? clock(+s[1]) : "", end: e ? clock(+e[1]) : "" });
+    // Older pages (EDC LV 2025) print the range in a second <span> and carry
+    // no epochs; keep it verbatim so a caller can prefer what was printed.
+    const printed = [...body.matchAll(/<span\b[^>]*>([\s\S]*?)<\/span>/g)].map(x => text(x[1]))
+      .find(t => /^\d{1,2}:\d{2}\s*[AP]M\s*-\s*\d{1,2}:\d{2}\s*[AP]M$/i.test(t)) || "";
+    seen.set(id, { id, stage, artist: name, start: s ? clock(+s[1]) : "", end: e ? clock(+e[1]) : "", printed });
   }
   return [...seen.values()];
 }
