@@ -100,6 +100,24 @@ if (base && edc) {
     mustFail(`${billing} back as an event`, m => { m.events = [{ id: `${id}:d1:x:0000:${artistKey(billing)}`, label: billing, day: 1, stageId: m.stages[0].id, start: "20:00", end: "21:00" }]; }, e, undefined, /: dropped .*appears/);
     mustFail(`${billing} back as a stage`, m => { m.stages[0].name = billing; }, e, undefined, /: dropped /);
   }
+  // Founder ruling 2: the Bonus Tracks stage is dropped whole. Every printed
+  // Bonus Tracks row is put back on a restored stage, and a stage renamed to
+  // it (with its sets intact) must fail too.
+  for (const id of ["acl-2025", "lollapalooza-2025"]) {
+    const e = editions[id]; if (!e) continue;
+    const rows = droppedFor(id).filter(r => r.category === "bonus-tracks-stage");
+    ok(rows.length > 0, `${id}: no Bonus Tracks rows recorded as dropped`);
+    for (const r of rows) mustFail(`${id} Bonus Tracks row "${r.billing}" back on its stage`, m => {
+      const st = { id: `${id}:bonus-tracks`, name: r.stage }, a = { id: `${id}:${artistKey(r.billing)}-bt`, name: r.billing, key: artistKey(r.billing), performers: performerKeys(r.billing) };
+      m.stages.push(st); m.artists.push(a);
+      m.sets.push({ id: `${id}:d${r.day}:bonus-tracks:${r.start.replace(":", "")}:${artistKey(r.billing)}`, artistId: a.id, day: r.day, stageId: st.id, start: r.start, end: r.end });
+    }, e, undefined, /: dropped bonus-tracks-stage /);
+    mustFail(`${id}: a kept stage renamed BONUS TRACKS`, m => { m.stages[0].name = "BONUS TRACKS"; }, e, undefined, /: dropped bonus-tracks-stage /);
+  }
+  // The named kids-stage act the ruling keeps.
+  const hc = editions["lollapalooza-2025"]?.artists.find(a => a.name === "SPECIAL GUEST: THE HAPPINESS CLUB");
+  ok(hc && editions["lollapalooza-2025"].sets.filter(x => x.artistId === hc.id).map(x => x.day).join() === "3,4",
+    "Lolla's named kids-stage act SPECIAL GUEST: THE HAPPINESS CLUB must stay, on days 3 and 4");
   mustFail("image-derived edition with no review manifest", m => { m.provenance.extractionMethod = "official_image_transcription"; m.provenance.captures.forEach(c => { c.pageArchivedUrl = c.archivedUrl; }); });
 }
 
@@ -119,14 +137,16 @@ if (base) {
     { day: "1", stage: "Ubuntu", start: "22:00", end: "23:30", artist: "Special Guest" },
     { day: "1", stage: "TITO'S HANDMADE VODKA", start: "20:00", end: "22:00", artist: "SILENT DISCO" },
     { day: "1", stage: "BONUS TRACKS", start: "14:30", end: "15:00", artist: "STRETCH BEFORE THE SET" },
+    { day: "1", stage: "Bonus Tracks", start: "16:30", end: "17:00", artist: "GIGI PEREZ X TATIANA MIRANDA" },
+    { day: "1", stage: "PERRY'S", start: "18:00", end: "18:30", artist: "BOB'S DANCE SHOP" },
     { day: "1", stage: "KIDZAPALOOZA", start: "16:00", end: "16:30", artist: "SPECIAL GUEST: THE HAPPINESS CLUB" },
     { day: "1", stage: "AUSTIN KIDDIE LIMITS", start: "15:00", end: "15:30", artist: "SCHOOL OF ROCK" },
   ];
   const e = buildEdition("edc-las-vegas-2025", rows, led), gone = droppedRows(rows);
   ok(JSON.stringify(e.artists.map(a => a.name)) === '["Illenium B2B SLANDER","SPECIAL GUEST: THE HAPPINESS CLUB","SCHOOL OF ROCK"]',
     `only billed acts survive the build (kids-stage acts included): ${e.artists.map(a => a.name).join(" | ")}`);
-  ok(!("events" in e) && !e.stages.some(s => /BONUS|TITO|Ubuntu/.test(s.name)), "dropped rows leave no event and no stage behind");
-  ok(JSON.stringify(gone.map(r => r.category)) === '["operational","unnamed-slot","operational","activity"]' && gone.every(r => r.reason),
+  ok(!("events" in e) && !e.stages.some(s => /BONUS|TITO|Ubuntu|PERRY/i.test(s.name)), "dropped rows leave no event and no stage behind");
+  ok(JSON.stringify(gone.map(r => r.category)) === '["operational","unnamed-slot","operational","bonus-tracks-stage","bonus-tracks-stage","activity"]' && gone.every(r => r.reason),
     `every dropped row is recorded with its category and reason: ${JSON.stringify(gone.map(r => r.category))}`);
   ok(JSON.stringify(performerKeys("Illenium B2B SLANDER")) === '["illenium","slander"]', "B2B splits into performer keys");
   ok(JSON.stringify(performerKeys("Chase & Status")) === '["chase-and-status"]', "an act with & in its name stays one performer");

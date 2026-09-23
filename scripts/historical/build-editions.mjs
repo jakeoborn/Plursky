@@ -37,7 +37,7 @@ export const performerKeys = name => name.split(/\s+(?:B2B|B3B)\s+/i).map(slug).
 // Printed rows the library does not keep (editions.mjs DROP_RULES/ACTIVITIES),
 // with the reason, in sheet order. build writes them to ledger/<id>.json.
 export const droppedRows = rows => rows.flatMap(r => {
-  const why = dropReason(r.artist);
+  const why = dropReason(r.artist, r.stage);
   return why ? [{ day: +r.day, stage: r.stage, start: r.start, end: r.end || null, billing: r.artist, ...why }] : [];
 });
 
@@ -55,7 +55,7 @@ export function buildEdition(id, rows, ledger) {
     return a.id;
   };
   for (const r of rows) {
-    if (dropReason(r.artist)) continue;
+    if (dropReason(r.artist, r.stage)) continue;
     const day = +r.day, stage = stageId(r.stage);
     const base = { day, stageId: stage, start: r.start, end: r.end || null };
     if (r.openEnd === "1") base.openEnd = true;

@@ -42,10 +42,6 @@
    "name": "LAKESHORE"
   },
   {
-   "id": "lollapalooza-2025:bonus-tracks",
-   "name": "BONUS TRACKS"
-  },
-  {
    "id": "lollapalooza-2025:kidzapalooza",
    "name": "KIDZAPALOOZA"
   },
@@ -222,14 +218,6 @@
    "key": "royel-otis",
    "performers": [
     "royel-otis"
-   ]
-  },
-  {
-   "id": "lollapalooza-2025:alex-warren-x-davis-burleson",
-   "name": "ALEX WARREN X DAVIS BURLESON",
-   "key": "alex-warren-x-davis-burleson",
-   "performers": [
-    "alex-warren-x-davis-burleson"
    ]
   },
   {
@@ -641,14 +629,6 @@
    ]
   },
   {
-   "id": "lollapalooza-2025:gigi-perez-x-tatiana-miranda",
-   "name": "GIGI PEREZ X TATIANA MIRANDA",
-   "key": "gigi-perez-x-tatiana-miranda",
-   "performers": [
-    "gigi-perez-x-tatiana-miranda"
-   ]
-  },
-  {
    "id": "lollapalooza-2025:winyah",
    "name": "WINYAH",
    "key": "winyah",
@@ -1014,14 +994,6 @@
    "key": "jpegmafia",
    "performers": [
     "jpegmafia"
-   ]
-  },
-  {
-   "id": "lollapalooza-2025:damiano-david-x-tatiana-miranda",
-   "name": "DAMIANO DAVID X TATIANA MIRANDA",
-   "key": "damiano-david-x-tatiana-miranda",
-   "performers": [
-    "damiano-david-x-tatiana-miranda"
    ]
   },
   {
@@ -1772,14 +1744,6 @@
    "end": "21:00"
   },
   {
-   "id": "lollapalooza-2025:d1:bonus-tracks:1515:alex-warren-x-davis-burleson",
-   "artistId": "lollapalooza-2025:alex-warren-x-davis-burleson",
-   "day": 1,
-   "stageId": "lollapalooza-2025:bonus-tracks",
-   "start": "15:15",
-   "end": "15:45"
-  },
-  {
    "id": "lollapalooza-2025:d1:kidzapalooza:1200:23-skidoo-and-the-secret-agency",
    "artistId": "lollapalooza-2025:23-skidoo-and-the-secret-agency",
    "day": 1,
@@ -2227,14 +2191,6 @@
    "stageId": "lollapalooza-2025:lakeshore",
    "start": "19:40",
    "end": "20:40"
-  },
-  {
-   "id": "lollapalooza-2025:d2:bonus-tracks:1630:gigi-perez-x-tatiana-miranda",
-   "artistId": "lollapalooza-2025:gigi-perez-x-tatiana-miranda",
-   "day": 2,
-   "stageId": "lollapalooza-2025:bonus-tracks",
-   "start": "16:30",
-   "end": "16:50"
   },
   {
    "id": "lollapalooza-2025:d2:kidzapalooza:1200:michael-and-the-rockness-monsters",
@@ -2692,14 +2648,6 @@
    "stageId": "lollapalooza-2025:lakeshore",
    "start": "19:45",
    "end": "20:45"
-  },
-  {
-   "id": "lollapalooza-2025:d3:bonus-tracks:1800:damiano-david-x-tatiana-miranda",
-   "artistId": "lollapalooza-2025:damiano-david-x-tatiana-miranda",
-   "day": 3,
-   "stageId": "lollapalooza-2025:bonus-tracks",
-   "start": "18:00",
-   "end": "18:30"
   },
   {
    "id": "lollapalooza-2025:d3:kidzapalooza:1200:birds-of-a-feather",

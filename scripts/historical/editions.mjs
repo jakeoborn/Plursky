@@ -35,19 +35,24 @@ export const EDITIONS = {
 // or a count. The sheets and review manifests keep them as the audit trail of
 // what was printed, and build-editions.mjs records every dropped row, with its
 // reason, in ledger/<id>.json. Locked by test-historical-editions.mjs.
+// A rule matches the printed billing (`test`) or the whole stage (`stage`).
+// Stage rules are checked first, so every row on a dropped stage carries the
+// stage's reason.
 export const DROP_RULES = [
+  { category: "bonus-tracks-stage", stage: /^bonus tracks$/i,
+    reason: "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup" },
   { category: "operational", test: /^(fireworks|closing fireworks|opening ceremony|closing ceremony|silent disco)$/i,
     reason: "operational programming, not a billed performance" },
   { category: "unnamed-slot", test: /^(special guest|surprise guest|tba|to be announced)$/i,
     reason: "unnamed slot: no performer was billed" },
 ];
 
-// Non-music activities on the Bonus Tracks stage (talks, bingo, drag shows,
-// classes, food, podcast tapings, brand activations), billed exactly as
-// printed. Only rows whose printed text makes them an activity are listed;
-// a row that could be a real music act billed there stays a set and is
-// raised for a ruling instead of guessed. Kids-stage acts are real billed
-// acts and stay.
+// Non-music activities (talks, bingo, drag shows, classes, food, podcast
+// tapings, brand activations), billed exactly as printed. The Bonus Tracks
+// stage rule already drops them where they were printed; this list keeps the
+// billing itself out of an edition wherever it might reappear. Kids-stage
+// acts are real billed acts and stay (including the named
+// "SPECIAL GUEST: THE HAPPINESS CLUB").
 export const ACTIVITIES = {
   "acl-2025": [
     "STRETCH BEFORE THE SET", "LOS TACOS DE ACL FEST", "JAPANESE BREAKFAST X SUPERMUSH", "LP GIOBBI X SUPERMUSH",
@@ -61,11 +66,14 @@ export const ACTIVITIES = {
 };
 const ACTIVITY_REASON = "non-music Bonus Tracks activity";
 
-// Why a printed billing is dropped, or null if it is a set.
-// Compared by slug, so an id segment or a re-cased billing is caught too.
-export function dropReason(billing) {
-  const name = String(billing).trim();
-  for (const r of DROP_RULES) if (r.test.test(name) || r.test.test(name.replace(/-/g, " "))) return { category: r.category, reason: r.reason };
+// Why a printed row (billing on stage) is dropped, or null if it is a set.
+// Compared case-folded and by slug, so an id segment or a re-cased billing
+// is caught too.
+export function dropReason(billing, stage = "") {
+  const name = String(billing).trim(), st = String(stage).trim();
+  const hits = (re, x) => re.test(x) || re.test(x.replace(/-/g, " "));
+  for (const r of DROP_RULES) if (r.stage && hits(r.stage, st)) return { category: r.category, reason: r.reason };
+  for (const r of DROP_RULES) if (r.test && hits(r.test, name)) return { category: r.category, reason: r.reason };
   const k = slug(name);
   if (k && Object.values(ACTIVITIES).flat().some(a => slug(a) === k)) return { category: "activity", reason: ACTIVITY_REASON };
   return null;

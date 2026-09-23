@@ -60,10 +60,6 @@
    "name": "TITO'S HANDMADE VODKA"
   },
   {
-   "id": "acl-2025:bonus-tracks",
-   "name": "BONUS TRACKS"
-  },
-  {
    "id": "acl-2025:lady-bird",
    "name": "LADY BIRD"
   },
@@ -235,30 +231,6 @@
    "key": "confidence-man",
    "performers": [
     "confidence-man"
-   ]
-  },
-  {
-   "id": "acl-2025:fall-in-love-again-and-again",
-   "name": "FALL IN LOVE AGAIN AND AGAIN",
-   "key": "fall-in-love-again-and-again",
-   "performers": [
-    "fall-in-love-again-and-again"
-   ]
-  },
-  {
-   "id": "acl-2025:cowboy-can-can",
-   "name": "COWBOY CAN CAN",
-   "key": "cowboy-can-can",
-   "performers": [
-    "cowboy-can-can"
-   ]
-  },
-  {
-   "id": "acl-2025:life-of-a-showgirl-with-dj-cassandra",
-   "name": "LIFE OF A SHOWGIRL WITH DJ CASSANDRA",
-   "key": "life-of-a-showgirl-with-dj-cassandra",
-   "performers": [
-    "life-of-a-showgirl-with-dj-cassandra"
    ]
   },
   {
@@ -782,14 +754,6 @@
    ]
   },
   {
-   "id": "acl-2025:3rd-and-longhorn",
-   "name": "3RD & LONGHORN",
-   "key": "3rd-and-longhorn",
-   "performers": [
-    "3rd-and-longhorn"
-   ]
-  },
-  {
    "id": "acl-2025:flowerovlove",
    "name": "FLOWEROVLOVE",
    "key": "flowerovlove",
@@ -1158,14 +1122,6 @@
    ]
   },
   {
-   "id": "acl-2025:dj-cassandra-dance-party",
-   "name": "DJ CASSANDRA DANCE PARTY",
-   "key": "dj-cassandra-dance-party",
-   "performers": [
-    "dj-cassandra-dance-party"
-   ]
-  },
-  {
    "id": "acl-2025:case-oats",
    "name": "CASE OATS",
    "key": "case-oats",
@@ -1359,30 +1315,6 @@
    "stageId": "acl-2025:tito-s-handmade-vodka",
    "start": "18:30",
    "end": "19:30"
-  },
-  {
-   "id": "acl-2025:d1:bonus-tracks:1445:fall-in-love-again-and-again",
-   "artistId": "acl-2025:fall-in-love-again-and-again",
-   "day": 1,
-   "stageId": "acl-2025:bonus-tracks",
-   "start": "14:45",
-   "end": "15:15"
-  },
-  {
-   "id": "acl-2025:d1:bonus-tracks:1630:cowboy-can-can",
-   "artistId": "acl-2025:cowboy-can-can",
-   "day": 1,
-   "stageId": "acl-2025:bonus-tracks",
-   "start": "16:30",
-   "end": "17:00"
-  },
-  {
-   "id": "acl-2025:d1:bonus-tracks:1830:life-of-a-showgirl-with-dj-cassandra",
-   "artistId": "acl-2025:life-of-a-showgirl-with-dj-cassandra",
-   "day": 1,
-   "stageId": "acl-2025:bonus-tracks",
-   "start": "18:30",
-   "end": "19:00"
   },
   {
    "id": "acl-2025:d1:lady-bird:1400:chance-emerson",
@@ -1917,14 +1849,6 @@
    "end": "19:30"
   },
   {
-   "id": "acl-2025:d3:bonus-tracks:1430:3rd-and-longhorn",
-   "artistId": "acl-2025:3rd-and-longhorn",
-   "day": 3,
-   "stageId": "acl-2025:bonus-tracks",
-   "start": "14:30",
-   "end": "15:00"
-  },
-  {
    "id": "acl-2025:d3:lady-bird:1345:flowerovlove",
    "artistId": "acl-2025:flowerovlove",
    "day": 3,
@@ -2189,14 +2113,6 @@
    "stageId": "acl-2025:tito-s-handmade-vodka",
    "start": "18:30",
    "end": "19:30"
-  },
-  {
-   "id": "acl-2025:d4:bonus-tracks:1630:cowboy-can-can",
-   "artistId": "acl-2025:cowboy-can-can",
-   "day": 4,
-   "stageId": "acl-2025:bonus-tracks",
-   "start": "16:30",
-   "end": "17:00"
   },
   {
    "id": "acl-2025:d4:lady-bird:1400:girl-tones",
@@ -2737,14 +2653,6 @@
    "stageId": "acl-2025:tito-s-handmade-vodka",
    "start": "18:30",
    "end": "19:30"
-  },
-  {
-   "id": "acl-2025:d6:bonus-tracks:1845:dj-cassandra-dance-party",
-   "artistId": "acl-2025:dj-cassandra-dance-party",
-   "day": 6,
-   "stageId": "acl-2025:bonus-tracks",
-   "start": "18:45",
-   "end": "19:15"
   },
   {
    "id": "acl-2025:d6:lady-bird:1345:flowerovlove",

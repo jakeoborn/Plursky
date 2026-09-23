@@ -68,13 +68,14 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   const stageIds = new Set(e.stages.map(s => s.id)), artistIds = new Set(e.artists.map(a => a.id));
   if (stageIds.size !== e.stages.length) p.push(`${e.id}: duplicate stage id`);
   if (artistIds.size !== e.artists.length) p.push(`${e.id}: duplicate artist id`);
-  // Founder rulings: fireworks, silent disco, unnamed slots and non-music
-  // activities are not in the library in ANY form (not an artist, a set, an
+  // Founder rulings: the Bonus Tracks stage, fireworks, silent disco, unnamed
+  // slots and non-music activities are not in the library in ANY form (not an artist, a set, an
   // event, a stage or an id). The ledger holds them as the audit trail.
   if ("events" in e) p.push(`${e.id}: carries an events list; operational rows are dropped, not stored`);
   const hit = new Set();
   for (const x of strings({ stages: e.stages, artists: e.artists, sets: e.sets, events: e.events })) {
-    const why = dropReason(x);
+    // Each string is tried as a billing and as a stage name.
+    const why = dropReason(x, x);
     if (why && !hit.has(x)) { hit.add(x); p.push(`${e.id}: dropped ${why.category} "${x}" appears in the edition`); }
   }
 

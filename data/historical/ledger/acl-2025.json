@@ -303,6 +303,33 @@
       "reason": "operational programming, not a billed performance"
     },
     {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "14:45",
+      "end": "15:15",
+      "billing": "FALL IN LOVE AGAIN AND AGAIN",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "16:30",
+      "end": "17:00",
+      "billing": "COWBOY CAN CAN",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "18:30",
+      "end": "19:00",
+      "billing": "LIFE OF A SHOWGIRL WITH DJ CASSANDRA",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
       "day": 2,
       "stage": "TITO'S HANDMADE VODKA",
       "start": "20:00",
@@ -317,8 +344,8 @@
       "start": "14:30",
       "end": "15:00",
       "billing": "ANTONI POROWSKI ON FOOD & CONNECTION",
-      "category": "activity",
-      "reason": "non-music Bonus Tracks activity"
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
     },
     {
       "day": 2,
@@ -326,8 +353,8 @@
       "start": "16:30",
       "end": "17:00",
       "billing": "EXTRAGRAMS PRESENTS DRAG BINGO!",
-      "category": "activity",
-      "reason": "non-music Bonus Tracks activity"
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
     },
     {
       "day": 2,
@@ -335,8 +362,8 @@
       "start": "18:30",
       "end": "19:00",
       "billing": "CIRQUE DU SLAY: A DRAG SHOW!",
-      "category": "activity",
-      "reason": "non-music Bonus Tracks activity"
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
     },
     {
       "day": 3,
@@ -346,6 +373,15 @@
       "billing": "SILENT DISCO",
       "category": "operational",
       "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "BONUS TRACKS",
+      "start": "14:30",
+      "end": "15:00",
+      "billing": "3RD & LONGHORN",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
     },
     {
       "day": 3,
@@ -353,8 +389,8 @@
       "start": "16:30",
       "end": "17:00",
       "billing": "LP GIOBBI X SUPERMUSH",
-      "category": "activity",
-      "reason": "non-music Bonus Tracks activity"
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
     },
     {
       "day": 3,
@@ -362,8 +398,8 @@
       "start": "18:45",
       "end": "19:15",
       "billing": "A CONVERSATION WITH LUCIUS",
-      "category": "activity",
-      "reason": "non-music Bonus Tracks activity"
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
     },
     {
       "day": 4,
@@ -377,11 +413,20 @@
     {
       "day": 4,
       "stage": "BONUS TRACKS",
+      "start": "16:30",
+      "end": "17:00",
+      "billing": "COWBOY CAN CAN",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
       "start": "18:30",
       "end": "19:00",
       "billing": "MATTHEW MCCONAUGHEY X BRENÉ BROWN",
-      "category": "activity",
-      "reason": "non-music Bonus Tracks activity"
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
     },
     {
       "day": 5,
@@ -398,8 +443,8 @@
       "start": "14:30",
       "end": "15:00",
       "billing": "STRETCH BEFORE THE SET",
-      "category": "activity",
-      "reason": "non-music Bonus Tracks activity"
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
     },
     {
       "day": 5,
@@ -407,8 +452,8 @@
       "start": "16:30",
       "end": "17:00",
       "billing": "JAPANESE BREAKFAST X SUPERMUSH",
-      "category": "activity",
-      "reason": "non-music Bonus Tracks activity"
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
     },
     {
       "day": 5,
@@ -416,8 +461,8 @@
       "start": "18:30",
       "end": "19:00",
       "billing": "LOS TACOS DE ACL FEST",
-      "category": "activity",
-      "reason": "non-music Bonus Tracks activity"
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
     },
     {
       "day": 6,
@@ -434,8 +479,8 @@
       "start": "14:30",
       "end": "15:00",
       "billing": "EXTRAGRAMS PRESENTS DRAG BINGO!",
-      "category": "activity",
-      "reason": "non-music Bonus Tracks activity"
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
     },
     {
       "day": 6,
@@ -443,8 +488,17 @@
       "start": "16:30",
       "end": "17:00",
       "billing": "MIXED-TAPE: A DRAG SHOW!",
-      "category": "activity",
-      "reason": "non-music Bonus Tracks activity"
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 6,
+      "stage": "BONUS TRACKS",
+      "start": "18:45",
+      "end": "19:15",
+      "billing": "DJ CASSANDRA DANCE PARTY",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
     }
   ]
 }
