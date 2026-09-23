@@ -209,6 +209,24 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
     ok(!/data\/historical|historicalEditions|web\.archive\.org/.test(src), `${f} references historical data or Wayback — historical editions must not reach the live schedule, registry or precache`);
     for (const id of Object.keys(EDITIONS)) ok(!src.includes(`"${id}"`) && !src.includes(`'${id}'`), `${f} names historical edition ${id}`);
   }
+  // historical.jsx is the one door: no other app source may fetch the library,
+  // the precache must not carry it, and the screen may not reach the live
+  // plan, reminders, the active festival or storage (it is read-only).
+  const code = f => readFileSync(join(ROOT, f), "utf8").split("\n").filter(l => !/^\s*(\/\/|\*|\/\*)/.test(l)).join("\n");
+  const doorless = readdirSync(ROOT).filter(f => f.endsWith(".jsx") && f !== "historical.jsx");
+  for (const f of doorless) {
+    ok(!/data\/historical/.test(code(f)), `${f} fetches the historical library; only historical.jsx may`);
+  }
+  const door = code("historical.jsx");
+  ok(/"data\/historical\/"/.test(door), "historical.jsx no longer loads data/historical — the isolation checks above would pass vacuously");
+  for (const [re, what] of [[/localStorage|sessionStorage|indexedDB/, "browser storage"], [/setActiveFestival|active_festival/, "the active festival"],
+    [/\bsaved\b|markAttended|scheduleReminders|sbPush|_SAVED_KEY/, "the saved plan or reminders"]])
+    ok(!re.test(door), `historical.jsx touches ${what}; the archive is read-only`);
+  const sw = readFileSync(join(ROOT, "sw.js"), "utf8");
+  ok(/\.\/build\/historical\.js/.test(sw) && !/historical\/(index|editions)/.test(sw), "sw.js must precache the screen (build/historical.js) and never the library data");
+  const bld = code("scripts/build.mjs");
+  ok(/'data\/historical\/index\.json'/.test(bld) && /'historical', 'editions'/.test(bld) && !/sheets|ledger|'review'/.test(bld),
+    "build.mjs must ship data/historical/index.json and editions/*.json only (sheets, ledgers and review manifests stay out of the app)");
   const walk = d => readdirSync(d, { withFileTypes: true }).flatMap(x => x.isDirectory() ? walk(join(d, x.name)) : [join(d, x.name)]);
   const art = walk(H("")).filter(f => /\.(png|jpe?g|webp|gif|svg|html?)$/i.test(f));
   ok(!art.length, `archived creative assets must never be committed: ${art.join(", ")}`);

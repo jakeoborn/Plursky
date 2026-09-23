@@ -1121,7 +1121,7 @@ function App() {
     var dlFrom = params.get("from");
     var dlCrew = params.get("crew");
     var validArtist = dlArtist && ARTISTS.find(a => a.id === dlArtist) ? dlArtist : null;
-    var validTab = ["home", "map", "lineup", "spotify", "me", "memories"].includes(dlTab) ? dlTab : null;
+    var validTab = ["home", "map", "lineup", "spotify", "me", "memories", "past"].includes(dlTab) ? dlTab : null;
     var validStage = dlStage && STAGES.find(s => s.id === dlStage || s.short.toLowerCase() === dlStage.toLowerCase()) ? dlStage : null;
     var validDay = dlDay && festivalDayNums().includes(+dlDay) ? +dlDay : null;
     var validFriendIds = dlLineup ? dlLineup.split(",").map(s => s.trim()).filter(id => ARTISTS.find(a => a.id === id)) : [];
@@ -1167,7 +1167,7 @@ function App() {
         var raw = u.search || (u.hash?.startsWith("#?") ? u.hash.slice(1) : "");
         var params = new URLSearchParams(raw);
         var tab = params.get("tab");
-        if (["home", "map", "lineup", "spotify", "me", "memories"].includes(tab)) {
+        if (["home", "map", "lineup", "spotify", "me", "memories", "past"].includes(tab)) {
           setState(prev => ({
             ...prev,
             tab
@@ -1300,6 +1300,9 @@ function App() {
   });else if (state.tab === "me") body = React.createElement(MeScreen, {
     state: state,
     setState: setState
+  });else if (state.tab === "past") body = React.createElement(PastFestivalsScreen, {
+    state: state,
+    setState: setState
   });
   var statusBarStyle = state.tab === "map" && !state.artist ? "light" : "dark";
   return React.createElement(IOSDevice, {
@@ -1325,7 +1328,7 @@ function App() {
         return false;
       }
     })();
-    var meFold = postFest ? ["spotify", "recap"] : ["spotify", "memories", "recap"];
+    var meFold = postFest ? ["spotify", "recap", "past"] : ["spotify", "memories", "recap", "past"];
     return React.createElement(TabBar, {
       active: meFold.includes(state.tab) ? "me" : state.tab,
       onChange: t => setState({
@@ -1439,7 +1442,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v342"
+        version: "v344"
       }));
     } catch {}
   }
@@ -1504,7 +1507,7 @@ class RootErrorBoundary extends React.Component {
         letterSpacing: 1.2,
         color: "rgba(var(--shade-rgb),0.45)"
       }
-    }, "PLURSKY · v342"));
+    }, "PLURSKY · v344"));
   }
 }
 function SetStartingCinematic() {

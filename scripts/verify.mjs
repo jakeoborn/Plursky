@@ -2485,6 +2485,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-c6. Past Festivals UI ─────────────────────────────────────────────
+// The library screens at 393pt, driven through the switcher: every count and
+// row comes from data/historical, a lineup_only edition renders names with no
+// times (a route-intercepted fixture), a failed fetch retries, nothing scrolls
+// sideways, and browsing never moves the active festival or the saved plan.
+{
+  console.log("▸ Past Festivals UI gate — the archived library renders from its files, read-only");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-past-festivals-ui.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Past Festivals UI failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c. Video thumbnails ────────────────────────────────────────────────
 // A library tile shows a stored poster <img>, never a live <video>. The old
 // "poster" was <video preload="metadata" src="...#t=0.1">: one decoder per

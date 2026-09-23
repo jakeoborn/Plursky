@@ -77,16 +77,33 @@ export function buildEdition(id, rows, ledger) {
   };
 }
 
+// The library's table of contents: what the Past Festivals list needs to draw
+// every edition row without fetching every edition file. Generated, and
+// --check fails on drift like the editions themselves.
+export function editionIndex(editions) {
+  return {
+    editions: editions.map(e => ({
+      id: e.id, festivalId: e.festivalId, festivalName: e.name.replace(/\s+\d{4}$/, ""), name: e.name, year: e.year,
+      timezone: e.timezone, completeness: e.completeness,
+      days: e.days.map(d => ({ day: d.day, date: d.date, label: d.label })),
+      counts: { stages: e.stages.length, artists: e.artists.length, sets: e.sets.length },
+    })).sort((a, b) => a.festivalName.localeCompare(b.festivalName) || b.year - a.year),
+  };
+}
+
 const isMain = import.meta.url === `file://${process.argv[1]}`;
 if (isMain) {
   const check = process.argv.includes("--check");
   let bad = 0;
+  const built = [];
   mkdirSync(H("editions"), { recursive: true });
   for (const id of Object.keys(EDITIONS)) {
     const sheet = H(`sheets/${id}.tsv`), led = H(`ledger/${id}.json`);
     if (!existsSync(sheet) || !existsSync(led)) { console.log(`  · ${id}: no reviewed sheet yet — not emitted`); continue; }
     const rows = readSheet(sheet), ledger = JSON.parse(readFileSync(led, "utf8"));
-    const out = JSON.stringify(buildEdition(id, rows, ledger), null, 1) + "\n";
+    const edition = buildEdition(id, rows, ledger);
+    built.push(edition);
+    const out = JSON.stringify(edition, null, 1) + "\n";
     const ledOut = JSON.stringify({ ...ledger, dropped: droppedRows(rows) }, null, 2) + "\n";
     const file = H(`editions/${id}.json`);
     if (check) {
@@ -101,5 +118,10 @@ if (isMain) {
       console.log(`  ✓ ${id}: ${e.completeness} · ${e.days.length} days · ${e.stages.length} stages · ${e.artists.length} artists · ${e.sets.length} sets · ${d.length} dropped · ${out.length} B`);
     }
   }
+  const idx = JSON.stringify(editionIndex(built), null, 1) + "\n", idxFile = H("index.json");
+  if (check) {
+    if (!existsSync(idxFile) || readFileSync(idxFile, "utf8") !== idx) { bad++; console.error("  ✗ index.json is not what the editions build — rerun build-editions.mjs"); }
+    else console.log(`  ✓ index.json matches ${built.length} editions`);
+  } else { writeFileSync(idxFile, idx); console.log(`  ✓ index.json: ${built.length} editions · ${idx.length} B`); }
   process.exit(bad ? 1 : 0);
 }

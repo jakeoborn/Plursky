@@ -5,12 +5,18 @@ through the Wayback Machine. They are kept apart from `data/festivals/` and
 `_DATA_SETS`, so a past edition can never become the active festival. Nothing
 here feeds the live schedule, map, notifications, photo tagging or Memories.
 
+The app reads `index.json` and `editions/*.json` only, through `historical.jsx`
+(the read-only Past Festivals screens, opened from the festival switcher). They
+load on demand and are never precached; `scripts/build.mjs` copies just those
+files into the iOS bundle. Sheets, ledgers and review manifests never ship.
+
 | dir | what | written by |
 |---|---|---|
 | `ledger/` | every capture considered, the one chosen, hashes, revisions, every printed row dropped and why | `extract-insomniac.mjs`, `resolve-graphics.mjs`; `dropped` by `build-editions.mjs` |
 | `sheets/` | the reviewed source sheet, one row per printed set | `extract-insomniac.mjs`, `finalize-review.mjs` |
 | `review/` | per graphic: hash, rows confirmed against the pixels, every OCR correction | `finalize-review.mjs` |
 | `editions/` | the generated edition files (do not hand-edit; `--check` fails) | `build-editions.mjs` |
+| `index.json` | the library's table of contents: one row per edition with days and counts (generated; `--check` fails on drift) | `build-editions.mjs` |
 | `expected-counts.json` | stage and per-day set counts locked from review | by hand, after review |
 
 Raw archived HTML and schedule graphics are research artifacts. They live in

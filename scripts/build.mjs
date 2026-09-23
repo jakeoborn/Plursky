@@ -60,6 +60,14 @@ const festivalArtFiles = existsSync(path.join(root, 'festival-art'))
       .filter(f => /\.(webp|jpe?g|png)$/i.test(f)).map(f => path.join('festival-art', f))
   : [];
 
+// Past Festivals library (historical.jsx fetches these on demand; never
+// precached). Only the index and the edition files ship: sheets, ledgers and
+// review manifests are build inputs and provenance, not runtime data.
+const historicalFiles = existsSync(path.join(root, 'data', 'historical', 'editions'))
+  ? ['data/historical/index.json', ...(await readdir(path.join(root, 'data', 'historical', 'editions')))
+      .filter(f => f.endsWith('.json')).map(f => path.join('data', 'historical', 'editions', f))]
+  : [];
+
 const buildFiles = existsSync(path.join(root, 'build'))
   ? (await readdir(path.join(root, 'build')))
       .filter(f => f.endsWith('.js')).map(f => path.join('build', f))
@@ -69,7 +77,7 @@ if (!buildFiles.length) {
   process.exit(1);
 }
 
-const allFiles = [...new Set([...COPY, ...buildFiles, ...imgFiles, ...dataFiles, ...festivalArtFiles])];
+const allFiles = [...new Set([...COPY, ...buildFiles, ...imgFiles, ...dataFiles, ...festivalArtFiles, ...historicalFiles])];
 for (const file of allFiles) {
   const src = path.join(root, file);
   if (!existsSync(src)) {

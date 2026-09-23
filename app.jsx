@@ -629,7 +629,7 @@ function App() {
     const dlFrom   = params.get("from"); // optional friend name
     const dlCrew   = params.get("crew"); // crew code from a shared invite link
     const validArtist = dlArtist && ARTISTS.find(a => a.id === dlArtist) ? dlArtist : null;
-    const validTab    = ["home","map","lineup","spotify","me","memories"].includes(dlTab) ? dlTab : null;
+    const validTab    = ["home","map","lineup","spotify","me","memories","past"].includes(dlTab) ? dlTab : null;
     const validStage  = dlStage && STAGES.find(s => s.id === dlStage || s.short.toLowerCase() === dlStage.toLowerCase()) ? dlStage : null;
     const validDay    = dlDay && festivalDayNums().includes(+dlDay) ? +dlDay : null;
     // Decode shared lineup: comma-joined IDs validated against the local lineup so
@@ -684,7 +684,7 @@ function App() {
         const raw = u.search || (u.hash?.startsWith("#?") ? u.hash.slice(1) : "");
         const params = new URLSearchParams(raw);
         const tab = params.get("tab");
-        if (["home","map","lineup","spotify","me","memories"].includes(tab)) {
+        if (["home","map","lineup","spotify","me","memories","past"].includes(tab)) {
           setState(prev => ({ ...prev, tab }));
           setShowOnboarding(false);
         }
@@ -780,6 +780,7 @@ function App() {
   else if (state.tab === "memories") body = <MemoriesScreen state={state} setState={setState} />;
   else if (state.tab === "recap")    body = <RecapScreen    state={state} setState={setState} />;
   else if (state.tab === "me")       body = <MeScreen       state={state} setState={setState} />;
+  else if (state.tab === "past")     body = <PastFestivalsScreen state={state} setState={setState} />;
 
   // status bar tint — dark pane on map, light elsewhere
   const statusBarStyle = state.tab === "map" && !state.artist ? "light" : "dark";
@@ -804,7 +805,7 @@ function App() {
           const postFest = (() => { try { return Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity); } catch { return false; } })();
           // Post-festival the Memories tab is in the bar, so "memories" maps
           // to itself; pre-festival it folds into Me (where its card lives).
-          const meFold = postFest ? ["spotify", "recap"] : ["spotify", "memories", "recap"];
+          const meFold = postFest ? ["spotify", "recap", "past"] : ["spotify", "memories", "recap", "past"];
           return (
             <TabBar
               active={meFold.includes(state.tab) ? "me" : state.tab}
@@ -912,7 +913,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v342",
+        version: "v344",
       }));
     } catch {}
   }
@@ -945,7 +946,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(var(--shade-rgb),0.45)" }}>
-          PLURSKY · v342
+          PLURSKY · v344
         </div>
       </div>
     );
