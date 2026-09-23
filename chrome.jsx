@@ -1206,15 +1206,36 @@ function _festivalArt(cfg) {
   const img = cfg && cfg.mapImage;
   return img && /\.(webp|jpe?g|png)$/i.test(img) && !_GENERATED_ART.has(img) ? img : null;
 }
-function FestivalThumb({ entry, size = 56 }) {
-  const art = entry ? _festivalArt(entry.config) : null;
+const _FESTIVAL_EDITORIAL_ART = Object.freeze({
+  "acl-2026": "festival-art/acl-2026.webp",
+  "crssd-fall-2026": "festival-art/crssd-fall-2026.webp",
+  "portola-2026": "festival-art/portola-2026.webp",
+  "iii-points-2026": "festival-art/iii-points-2026.webp",
+  "edc-lv-2026": "festival-art/edc-lv-2026.webp",
+  "countdown-nye-2026": "festival-art/countdown-nye-2026.webp",
+});
+function FestivalThumb({ entry, size = 56, editorial = false }) {
+  // The switcher's cards are discovery surfaces, not maps. Festival map art
+  // looked like a tiny screenshot and generated/no-art festivals fell back to
+  // platform-dependent emoji (empty boxes on iOS/headless Chrome). Until each
+  // festival has licensed editorial photography, use a deterministic film
+  // gradient + wordmark. Compact list rows still use real raster art where it
+  // exists because there it reads as a useful identifier, not a hero photo.
+  const editorialArt = editorial && entry ? _FESTIVAL_EDITORIAL_ART[entry.config?.id] : null;
+  const art = editorialArt || (!editorial && entry ? _festivalArt(entry.config) : null);
+  const name = entry?.config?.shortName || entry?.config?.brand || entry?.config?.name || "Plur";
+  const mark = String(name).split(/\s+/).filter(Boolean).slice(0, 2).map(x => x[0]).join("").toUpperCase();
+  const seed = String(entry?.config?.id || "plur").split("").reduce((n, c) => n + c.charCodeAt(0), 0);
+  const warm = 18 + (seed % 22);
+  const fallback = `radial-gradient(circle at 22% 18%, rgba(242,75,131,.72), transparent 36%), radial-gradient(circle at 82% 78%, hsla(${warm},92%,62%,.42), transparent 38%), linear-gradient(145deg,#15101b,#07101c 68%,#160b13)`;
   return (
     <div aria-hidden="true" style={{
       width: size, height: size, borderRadius: 14, overflow: "hidden", flexShrink: 0,
-      background: "var(--paper-3)", display: "flex", alignItems: "center", justifyContent: "center",
-      fontSize: Math.round(size * 0.46),
+      background: art ? "var(--paper-3)" : fallback, display: "flex", alignItems: "center", justifyContent: "center",
+      fontSize: Math.max(14, Math.round(size * (editorial ? 0.18 : 0.25))), fontWeight: 850, letterSpacing: "0.04em",
+      color: "var(--media-ink)", textShadow: "0 1px 8px rgba(0,0,0,.5)",
     }}>
-      {art ? <img src={`./${art}`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : ((entry && entry.emoji) || "🎪")}
+      {art ? <img src={`./${art}`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : mark}
     </div>
   );
 }
@@ -1243,6 +1264,10 @@ function FestivalSwitcher({ onClose }) {
   const activeId = FESTIVAL_CONFIG.id;
   const [plusOpen, setPlusOpen] = React.useState(false);
   const [pastOpen, setPastOpen] = React.useState(false);
+  const [viewMode, setViewMode] = React.useState(() => {
+    try { return localStorage.getItem("plursky_switcher_view_v1") || "grid"; } catch { return "grid"; }
+  });
+  const chooseView = mode => { setViewMode(mode); try { localStorage.setItem("plursky_switcher_view_v1", mode); } catch {} };
   const onPick = (id, entry) => {
     if (id === activeId) { onClose(); return; }
     if (entry.available) { setActiveFestivalAndReload(id); return; }
@@ -1309,7 +1334,7 @@ function FestivalSwitcher({ onClose }) {
       <button key={f.config.id} onClick={() => onPick(f.config.id, f)} disabled={locked}
         aria-current={isActive ? "true" : undefined}
         style={{ ...rowStyle(locked), cursor: locked ? "default" : "pointer" }}>
-        <FestivalThumb entry={f} />
+        <FestivalThumb entry={f} editorial={viewMode === "grid"} />
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>{f.config.name}</div>
           <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{f.config.location} · <span style={{ whiteSpace: "nowrap" }}>{f.config.dates}</span></div>
@@ -1330,10 +1355,17 @@ function FestivalSwitcher({ onClose }) {
     </section>
   );
   return (
-    <FieldSheet title="Where are you raving?" onClose={onClose}>
-      {live.length > 0 && group("Now", live.map(row))}
-      {months.map(g => group(g.label, g.fests.map(row)))}
-      {tba.length > 0 && group("Dates TBA", tba.map(row))}
+    <FieldSheet title="Choose your sky." onClose={onClose}>
+      <p style={{ margin: "-4px 0 14px", color: "var(--text-2)", fontSize: 14 }}>Live, next and remembered.</p>
+      <div role="group" aria-label="Festival view" style={{ display: "flex", padding: 3, marginBottom: 12, borderRadius: 12, background: "var(--paper-3)" }}>
+        {["grid", "list"].map(mode => <button key={mode} onClick={() => chooseView(mode)} aria-pressed={viewMode === mode} style={{ flex: 1, border: 0, borderRadius: 9, padding: "9px 6px", background: viewMode === mode ? "var(--signal)" : "transparent", color: viewMode === mode ? "var(--on-signal)" : "var(--text-2)", fontWeight: 750, textTransform: "capitalize" }}>{mode}</button>)}
+      </div>
+      <div className={viewMode === "grid" ? "midnight-festival-grid" : undefined}>
+        {live.map(row)}
+        {months.flatMap(g => g.fests.map(row))}
+        {tba.map(row)}
+      </div>
+      {viewMode === "list" && <div style={{ marginTop: 8, fontSize: 11, color: "var(--text-3)" }}>Ordered by festival date</div>}
       {(past.length > 0 || archive.length > 0) && group("Past", <>
         <button onClick={() => setPastOpen(o => !o)} aria-expanded={pastOpen} style={{ ...rowStyle(false), cursor: "pointer" }}>
           <FestivalThumb entry={past[0] || null} />

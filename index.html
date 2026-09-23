@@ -159,16 +159,16 @@
     --shadow-pop:0 10px 30px rgba(0,0,0,0.45);
   }
   .theme-field{color-scheme:dark;
-    --paper:#0A0A0C; --paper-2:#16161A; --paper-3:#212126;
-    --ink:#F5F5F7; --text-2:#A1A1AA; --text-3:#6B6B74;
-    --muted:#A1A1AA;
-    --line:rgba(255,255,255,0.08); --line-2:rgba(255,255,255,0.14);
-    --signal:#6D28D9; --signal-ink:#B79CFF; --on-signal:#FFFFFF;
-    --ember:#6D28D9; --ember-ink:#B79CFF; --on-ember:#FFFFFF;
-    --alert:#FF453A; --warn:#FF9F0A; --success:#B79CFF;
-    --dune:#212126; --flare:#B79CFF; --horizon:#B79CFF; --night:#0A0A0C; --dusk:#16161A; --sky:#A1A1AA;
-    --glass:22,22,26;
-    --ink-rgb:245,245,247; --shade-rgb:0,0,0; --signal-rgb:109,40,217; --alert-rgb:255,69,58;
+    --paper:#060B13; --paper-2:#10131B; --paper-3:#191D27;
+    --ink:#F7F4F8; --text-2:#B9B3BF; --text-3:#7C7682;
+    --muted:#B9B3BF;
+    --line:rgba(255,255,255,0.09); --line-2:rgba(255,255,255,0.16);
+    --signal:#F24B83; --signal-ink:#FF7EAA; --on-signal:#170810;
+    --ember:#F24B83; --ember-ink:#FF7EAA; --on-ember:#170810;
+    --alert:#FF5B67; --warn:#FFB23E; --success:#72D5AA;
+    --dune:#251722; --flare:#FFB23E; --horizon:#F24B83; --night:#060B13; --dusk:#130C16; --sky:#B9B3BF;
+    --glass:16,19,27;
+    --ink-rgb:247,244,248; --shade-rgb:0,0,0; --signal-rgb:242,75,131; --alert-rgb:255,91,103;
     --spotify:#1DB954; --spotify-rgb:29,185,84; --apple-music:#FA2D5A; --apple-music-rgb:250,45,90;
     --fs-label-s:11px; --fs-label:11px; --fs-label-l:12px;
     --fs-body-s:13px; --fs-body:15px; --fs-body-l:17px;
@@ -176,6 +176,17 @@
     --r-sm:14px; --r-md:14px;
   }
   html.theme-field,.theme-field body{background:var(--paper);color:var(--ink)}
+  .theme-field body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 8% 4%,rgba(242,75,131,.20),transparent 28%),radial-gradient(circle at 94% 44%,rgba(255,178,62,.11),transparent 30%),linear-gradient(#07101c,#09070e 68%,#120911)}
+  .theme-field [data-midnight-card]{background:linear-gradient(145deg,rgba(242,75,131,.09),rgba(255,178,62,.035) 62%,rgba(16,19,27,.96));border:1px solid var(--line-2);box-shadow:0 18px 50px rgba(0,0,0,.22)}
+  .theme-field .midnight-festival-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .theme-field .midnight-festival-grid>button{min-height:258px!important;border:1px solid var(--line)!important;border-radius:18px!important;padding:10px!important;background:linear-gradient(155deg,rgba(242,75,131,.09),rgba(16,19,27,.96))!important;align-items:flex-start!important;flex-direction:column!important;overflow:hidden!important}
+  .theme-field .midnight-festival-grid>button>div:first-child{width:100%!important;height:82px!important;border-radius:12px!important}
+  .theme-field .midnight-festival-grid>button>div:nth-child(2){width:100%;align-self:stretch;text-align:left}
+  .theme-field .midnight-festival-grid>button>div:nth-child(2)>div:first-child{font-size:15px!important;line-height:19px!important;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+  .theme-field .midnight-festival-grid>button>div:nth-child(2)>div:not(:first-child){font-size:12px!important;line-height:16px!important;overflow-wrap:anywhere}
+  .theme-field .midnight-festival-grid>button>svg{position:absolute;right:10px;bottom:10px}
+  @media(max-width:340px){.theme-field .midnight-festival-grid{grid-template-columns:1fr}.theme-field .midnight-festival-grid>button{min-height:118px!important;display:grid!important;grid-template-columns:72px 1fr 16px;align-items:center!important}.theme-field .midnight-festival-grid>button>div:first-child{width:72px!important;height:72px!important}.theme-field .midnight-festival-grid>button>svg{position:static}}
+  @media(prefers-reduced-motion:reduce){.theme-field body::before{background:radial-gradient(circle at 8% 4%,rgba(242,75,131,.16),transparent 28%),linear-gradient(#07101c,#09070e 68%,#120911)}}
   /* System font only. Inline styles name 'Geist' or 'Instrument Serif' ~580
      times and only !important beats an inline style, so the swap lives here
      until each surface is restyled. Display serif becomes bold, upright sans. */
@@ -424,46 +435,46 @@
       window.__USE_NATIVE_PICKER__ = true;
     }
   </script>
-  <script src="build/ios-frame.js?v=v340"></script>
+  <script src="build/ios-frame.js?v=v342"></script>
   <!-- Multi-festival wave 1. Plain .js (no JSX), so they load as normal scripts
        and are parsed before Babel even starts on the chain below. Each is an
        IIFE that registers itself on window.PLURSKY_FESTIVALS; data.jsx reads
        that map, so these MUST stay above it. Mirrored in sw.js's precache. -->
-  <script src="data/festivals/ultra-miami-2026.js?v=v340"></script>
-  <script src="data/festivals/governors-ball-2026.js?v=v340"></script>
-  <script src="data/festivals/summerfest-2026.js?v=v340"></script>
-  <script src="data/festivals/lollapalooza-2026.js?v=v340"></script>
-  <script src="data/festivals/outside-lands-2026.js?v=v340"></script>
-  <script src="data/festivals/iii-points-2026.js?v=v340"></script>
-  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v340"></script>
-  <script src="data/festivals/crssd-fall-2026.js?v=v340"></script>
-  <script src="data/festivals/portola-2026.js?v=v340"></script>
-  <script src="data/festivals/hard-summer-2026.js?v=v340"></script>
-  <script src="data/festivals/arc-2026.js?v=v340"></script>
-  <script src="data/festivals/escape-halloween-2026.js?v=v340"></script>
-  <script src="data/festivals/dreamstate-socal-2026.js?v=v340"></script>
-  <script src="data/festivals/decadence-colorado-2026.js?v=v340"></script>
-  <script src="data/festivals/countdown-nye-2026.js?v=v340"></script>
-  <script src="build/data.js?v=v340"></script>
-  <script src="build/supabase.js?v=v340"></script>
-  <script src="build/chrome.js?v=v340"></script>
-  <script src="build/home.js?v=v340"></script>
-  <script src="build/map.js?v=v340"></script>
-  <script src="build/survey.js?v=v340"></script>
-  <script src="build/lineup.js?v=v340"></script>
-  <script src="build/artist.js?v=v340"></script>
-  <script src="build/photo-tag.js?v=v340"></script>
-  <script src="build/spotify-api.js?v=v340"></script>
-  <script src="build/recap-engine.js?v=v340"></script>
-  <script src="build/spotify.js?v=v340"></script>
-  <script src="build/app.js?v=v340"></script>
+  <script src="data/festivals/ultra-miami-2026.js?v=v342"></script>
+  <script src="data/festivals/governors-ball-2026.js?v=v342"></script>
+  <script src="data/festivals/summerfest-2026.js?v=v342"></script>
+  <script src="data/festivals/lollapalooza-2026.js?v=v342"></script>
+  <script src="data/festivals/outside-lands-2026.js?v=v342"></script>
+  <script src="data/festivals/iii-points-2026.js?v=v342"></script>
+  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v342"></script>
+  <script src="data/festivals/crssd-fall-2026.js?v=v342"></script>
+  <script src="data/festivals/portola-2026.js?v=v342"></script>
+  <script src="data/festivals/hard-summer-2026.js?v=v342"></script>
+  <script src="data/festivals/arc-2026.js?v=v342"></script>
+  <script src="data/festivals/escape-halloween-2026.js?v=v342"></script>
+  <script src="data/festivals/dreamstate-socal-2026.js?v=v342"></script>
+  <script src="data/festivals/decadence-colorado-2026.js?v=v342"></script>
+  <script src="data/festivals/countdown-nye-2026.js?v=v342"></script>
+  <script src="build/data.js?v=v342"></script>
+  <script src="build/supabase.js?v=v342"></script>
+  <script src="build/chrome.js?v=v342"></script>
+  <script src="build/home.js?v=v342"></script>
+  <script src="build/map.js?v=v342"></script>
+  <script src="build/survey.js?v=v342"></script>
+  <script src="build/lineup.js?v=v342"></script>
+  <script src="build/artist.js?v=v342"></script>
+  <script src="build/photo-tag.js?v=v342"></script>
+  <script src="build/spotify-api.js?v=v342"></script>
+  <script src="build/recap-engine.js?v=v342"></script>
+  <script src="build/spotify.js?v=v342"></script>
+  <script src="build/app.js?v=v342"></script>
 
   <script>
 
     // Build version stamp â€” bumped on every deploy that changes app behaviour.
     // If the running tab's stored version doesn't match, force a full reload
     // (bypassing browser HTTP cache that GH-Pages serves with max-age=600).
-    const APP_VERSION = 'v340';
+    const APP_VERSION = 'v342';
     try {
       const stored = localStorage.getItem('app_version');
       if (stored && stored !== APP_VERSION) {
@@ -484,11 +495,11 @@
     if ('serviceWorker' in navigator) {
       caches.keys().then(keys =>
         Promise.all(
-          keys.filter(k => k !== 'plursky-v340' && !k.startsWith('plursky-tiles-'))
+          keys.filter(k => k !== 'plursky-v342' && !k.startsWith('plursky-tiles-'))
               .map(k => caches.delete(k))
         )
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v340', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v342', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 

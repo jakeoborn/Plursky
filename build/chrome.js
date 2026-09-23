@@ -1514,11 +1514,26 @@ function _festivalArt(cfg) {
   var img = cfg && cfg.mapImage;
   return img && /\.(webp|jpe?g|png)$/i.test(img) && !_GENERATED_ART.has(img) ? img : null;
 }
+var _FESTIVAL_EDITORIAL_ART = Object.freeze({
+  "acl-2026": "festival-art/acl-2026.webp",
+  "crssd-fall-2026": "festival-art/crssd-fall-2026.webp",
+  "portola-2026": "festival-art/portola-2026.webp",
+  "iii-points-2026": "festival-art/iii-points-2026.webp",
+  "edc-lv-2026": "festival-art/edc-lv-2026.webp",
+  "countdown-nye-2026": "festival-art/countdown-nye-2026.webp"
+});
 function FestivalThumb({
   entry,
-  size = 56
+  size = 56,
+  editorial = false
 }) {
-  var art = entry ? _festivalArt(entry.config) : null;
+  var editorialArt = editorial && entry ? _FESTIVAL_EDITORIAL_ART[entry.config?.id] : null;
+  var art = editorialArt || (!editorial && entry ? _festivalArt(entry.config) : null);
+  var name = entry?.config?.shortName || entry?.config?.brand || entry?.config?.name || "Plur";
+  var mark = String(name).split(/\s+/).filter(Boolean).slice(0, 2).map(x => x[0]).join("").toUpperCase();
+  var seed = String(entry?.config?.id || "plur").split("").reduce((n, c) => n + c.charCodeAt(0), 0);
+  var warm = 18 + seed % 22;
+  var fallback = `radial-gradient(circle at 22% 18%, rgba(242,75,131,.72), transparent 36%), radial-gradient(circle at 82% 78%, hsla(${warm},92%,62%,.42), transparent 38%), linear-gradient(145deg,#15101b,#07101c 68%,#160b13)`;
   return React.createElement("div", {
     "aria-hidden": "true",
     style: {
@@ -1527,11 +1542,15 @@ function FestivalThumb({
       borderRadius: 14,
       overflow: "hidden",
       flexShrink: 0,
-      background: "var(--paper-3)",
+      background: art ? "var(--paper-3)" : fallback,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      fontSize: Math.round(size * 0.46)
+      fontSize: Math.max(14, Math.round(size * (editorial ? 0.18 : 0.25))),
+      fontWeight: 850,
+      letterSpacing: "0.04em",
+      color: "var(--media-ink)",
+      textShadow: "0 1px 8px rgba(0,0,0,.5)"
     }
   }, art ? React.createElement("img", {
     src: `./${art}`,
@@ -1541,7 +1560,7 @@ function FestivalThumb({
       height: "100%",
       objectFit: "cover"
     }
-  }) : entry && entry.emoji || "🎪");
+  }) : mark);
 }
 function _festivalPlanStatus(id) {
   var ids = [];
@@ -1568,6 +1587,19 @@ function FestivalSwitcher({
   var activeId = FESTIVAL_CONFIG.id;
   var [plusOpen, setPlusOpen] = React.useState(false);
   var [pastOpen, setPastOpen] = React.useState(false);
+  var [viewMode, setViewMode] = React.useState(() => {
+    try {
+      return localStorage.getItem("plursky_switcher_view_v1") || "grid";
+    } catch {
+      return "grid";
+    }
+  });
+  var chooseView = mode => {
+    setViewMode(mode);
+    try {
+      localStorage.setItem("plursky_switcher_view_v1", mode);
+    } catch {}
+  };
   var onPick = (id, entry) => {
     if (id === activeId) {
       onClose();
@@ -1708,7 +1740,8 @@ function FestivalSwitcher({
         cursor: locked ? "default" : "pointer"
       }
     }, React.createElement(FestivalThumb, {
-      entry: f
+      entry: f,
+      editorial: viewMode === "grid"
     }), React.createElement("div", {
       style: {
         flex: 1,
@@ -1750,9 +1783,47 @@ function FestivalSwitcher({
     style: eyebrow
   }, label), kids);
   return React.createElement(FieldSheet, {
-    title: "Where are you raving?",
+    title: "Choose your sky.",
     onClose: onClose
-  }, live.length > 0 && group("Now", live.map(row)), months.map(g => group(g.label, g.fests.map(row))), tba.length > 0 && group("Dates TBA", tba.map(row)), (past.length > 0 || archive.length > 0) && group("Past", React.createElement(React.Fragment, null, React.createElement("button", {
+  }, React.createElement("p", {
+    style: {
+      margin: "-4px 0 14px",
+      color: "var(--text-2)",
+      fontSize: 14
+    }
+  }, "Live, next and remembered."), React.createElement("div", {
+    role: "group",
+    "aria-label": "Festival view",
+    style: {
+      display: "flex",
+      padding: 3,
+      marginBottom: 12,
+      borderRadius: 12,
+      background: "var(--paper-3)"
+    }
+  }, ["grid", "list"].map(mode => React.createElement("button", {
+    key: mode,
+    onClick: () => chooseView(mode),
+    "aria-pressed": viewMode === mode,
+    style: {
+      flex: 1,
+      border: 0,
+      borderRadius: 9,
+      padding: "9px 6px",
+      background: viewMode === mode ? "var(--signal)" : "transparent",
+      color: viewMode === mode ? "var(--on-signal)" : "var(--text-2)",
+      fontWeight: 750,
+      textTransform: "capitalize"
+    }
+  }, mode))), React.createElement("div", {
+    className: viewMode === "grid" ? "midnight-festival-grid" : undefined
+  }, live.map(row), months.flatMap(g => g.fests.map(row)), tba.map(row)), viewMode === "list" && React.createElement("div", {
+    style: {
+      marginTop: 8,
+      fontSize: 11,
+      color: "var(--text-3)"
+    }
+  }, "Ordered by festival date"), (past.length > 0 || archive.length > 0) && group("Past", React.createElement(React.Fragment, null, React.createElement("button", {
     onClick: () => setPastOpen(o => !o),
     "aria-expanded": pastOpen,
     style: {
