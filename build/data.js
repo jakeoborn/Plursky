@@ -634,11 +634,6 @@ var FESTIVALS_REGISTRY = [{
       lat: 30.268021,
       lng: -97.770282,
       src: "osm"
-    }, {
-      stageId: "bmi",
-      lat: 30.266404,
-      lng: -97.767698,
-      src: "derived"
     }],
     mainStageId: "amex",
     mapImage: "acl-park-2026.webp",

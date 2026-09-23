@@ -1448,8 +1448,9 @@ const REGISTRATION_TOL_M = 25;
       // Snapchat Stage, so the cross-check was real geometry against a stage
       // this app does not have. `bonus` was a label borrowed from the
       // Lollapalooza module. The basis (amex/miller/tmobile) is genuinely
-      // satellite-measured now; the only other anchor, `bmi`, is derived
-      // through that same basis and therefore cannot disagree with it.
+      // satellite-measured now, and it is the whole anchor set: `bmi`, which
+      // was derived through that same basis and so could never disagree with
+      // it, was dropped on 2026-09-23 after it measured 57 m off the 2026 fit.
       //
       // The official 2026 patron map published on 2026-09-22 and now places
       // `snapchat` on the ART (ACL_STAGES x/y). That does NOT clear this
@@ -1463,7 +1464,7 @@ const REGISTRATION_TOL_M = 25;
       // gpsAnchor answers "where did the artist DRAW it". EDC's measured
       // kinetic centroid is 438 m from its own poster pin.
       note: "basis is satellite-measured (amex/miller/tmobile) but nothing " +
-            "independent checks it — bmi is derived through that same basis. " +
+            "independent checks it (the derived bmi anchor was dropped 2026-09-23). " +
             "Needs a satellite or ground measurement of snapchat; the 2026 patron map places it on the art only",
     },
     // ultra-miami-2026 is NO LONGER HERE. Its basis is measured and it has

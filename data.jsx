@@ -794,11 +794,17 @@ const FESTIVALS_REGISTRY = [
         { stageId: "amex",    lat: 30.267233, lng: -97.763236, src: "osm" },
         { stageId: "miller",  lat: 30.269017, lng: -97.769316, src: "osm" },
         { stageId: "tmobile", lat: 30.268021, lng: -97.770282, src: "osm" },
-        // Derived through the NEW basis. Low confidence — unmeasurable in the
-        // capture (tree cover + teardown), so this is arithmetic, not survey.
-        { stageId: "bmi",     lat: 30.266404, lng: -97.767698, src: "derived" },
         //
-        // ⛔ NOT ANCHORED, deliberately — three reasons:
+        // ⛔ NOT ANCHORED, deliberately — four reasons:
+        //
+        // `bmi`: dropped 2026-09-23 (founder ruling). It was never measured:
+        // tree cover and teardown hid it in the capture, so it was derived
+        // arithmetic (30.266404, -97.767698) through the basis above, fixed
+        // against the 2025 art. Re-measured against the 2026 plate by
+        // scripts/anchor-residuals.mjs, it sits 57 m from where the new fit
+        // draws BMI. resolvedStageAnchors() hands every gpsAnchor to the photo
+        // tagger, so a known-bad anchor tags photos to the wrong stage.
+        // Re-add only from a satellite or ground measurement.
         //
         // `titos` + `beatbox`: deleted 2026-09-05. The poster's NE and S edges
         // are distorted enough that new-affine derivations put them in water

@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v344';
+﻿const CACHE      = 'plursky-v345';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v344';
+const APP_VER    = 'v345';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -58,7 +58,7 @@ const LOCAL = [
   './nocturnal-2026.svg',
   './hard-summer-2026.webp',
   './escape-2025-map.webp',
-  './acl-park.webp',
+  './acl-park-2026.webp',
   './edc-map-2026.jpg',
   './edco-tinker-2026.jpg',
   './festival-art/acl-2026.webp',

@@ -25,13 +25,13 @@ let checks = 0, mutations = 0;
 const ok = (cond, msg) => { checks++; if (!cond) fails.push(msg); };
 const clone = x => JSON.parse(JSON.stringify(x));
 
-// The anchors as they stood before the refresh. Same order: map.jsx solves
-// MAP_AFFINE from the first three.
+// The three satellite anchors, in order: map.jsx solves MAP_AFFINE from the
+// first three. The derived `bmi` anchor was dropped 2026-09-23 (founder
+// ruling) after measuring 57 m off the 2026 fit; it must not come back.
 const ANCHORS = [
   { stageId: "amex",    lat: 30.267233, lng: -97.763236, src: "osm" },
   { stageId: "miller",  lat: 30.269017, lng: -97.769316, src: "osm" },
   { stageId: "tmobile", lat: 30.268021, lng: -97.770282, src: "osm" },
-  { stageId: "bmi",     lat: 30.266404, lng: -97.767698, src: "derived" },
 ];
 const STAGE_IDS = ["amex", "snapchat", "titos", "miller", "tmobile", "bmi", "beatbox"];
 
@@ -43,6 +43,8 @@ const mods = execFileSync("git", ["ls-files", "data/festivals/*.js"], { cwd: ROO
   .filter(Boolean).map(f => readFileSync(join(ROOT, f), "utf8")).join("\n");
 vm.runInContext(mods + "\n" + readFileSync(join(ROOT, "data.jsx"), "utf8") + "\n;__o={DS:_DATA_SETS,avatarStartFor,AVATAR_CLEARANCE,active:_active};", ctx);
 const acl = ctx.__o.DS["acl-2026"];
+// The amenity label runs from the COMPILED photo-tag, as the browser runs it.
+vm.runInContext(readFileSync(join(ROOT, "build/photo-tag.js"), "utf8") + "\n;__o.near=_matchNearestLocation;", ctx);
 ok(acl?.config?.id === "acl-2026", "could not load the acl-2026 data set");
 
 const swSrc = readFileSync(join(ROOT, "sw.js"), "utf8");
@@ -70,7 +72,7 @@ function validate(ds, { local = LOCAL, start = ctx.__o.avatarStartFor(ds) } = {}
   if (ids.slice().sort().join() !== STAGE_IDS.slice().sort().join()) p.push(`stages are ${ids.join(",")}, expected the 7 programmed 2026 stages`);
   if (ids.some(id => /lady|bonus/i.test(id))) p.push("a Lady Bird / Bonus Tracks stage is defined with no 2026 programming");
   for (const a of ds.artists) if (!ids.includes(a.stage)) { p.push(`artist ${a.id} plays unknown stage ${a.stage}`); break; }
-  // World coordinates: the four satellite anchors, unchanged and in order.
+  // World coordinates: the three satellite anchors, unchanged and in order.
   const an = cfg.gpsAnchors || [];
   if (JSON.stringify(an.map(a => [a.stageId, a.lat, a.lng, a.src])) !== JSON.stringify(ANCHORS.map(a => [a.stageId, a.lat, a.lng, a.src])))
     p.push(`gpsAnchors changed: ${an.map(a => a.stageId).join(",")}`);
@@ -132,6 +134,7 @@ mustFail("add a Snapchat GPS anchor from the poster", m => { m.config.gpsAnchors
 mustFail("add a Tito's anchor", m => { m.config.gpsAnchors.push({ stageId: "titos", lat: 30.2685, lng: -97.7652, src: "derived" }); });
 mustFail("reorder the affine basis", m => { const a = m.config.gpsAnchors; [a[0], a[1]] = [a[1], a[0]]; });
 mustFail("move a satellite anchor", m => { m.config.gpsAnchors[2].lat += 0.0005; });
+mustFail("restore the derived BMI anchor", m => { m.config.gpsAnchors.push({ stageId: "bmi", lat: 30.266404, lng: -97.767698, src: "derived" }); });
 mustFail("restore Lady Bird as a stage", m => { m.stages.push({ id: "ladybird", name: "Lady Bird", x: 50, y: 50 }); });
 mustFail("drop a programmed stage", m => { m.stages = m.stages.filter(s => s.id !== "beatbox"); });
 mustFail("nudge a stage off its measurement", m => { m.stages.find(s => s.id === "snapchat").x += 1; });
@@ -157,7 +160,23 @@ for (const [id, ds] of Object.entries(ctx.__o.DS)) {
   ok(CORNERS.includes(`${c.x},${c.y}`) && near >= 3, `${id}: demo YOU marker starts at (${c.x},${c.y}), ${near.toFixed(1)} units from a stage`);
 }
 
+// ── 5. ACL amenity labels need verified geometry (founder ruling 2026-09-23) ──
+// Stand on a hydration badge as the label code places it (non-active festival:
+// the radial fallback), then flip the predicate both ways. EDC stays as it is
+// until #223, so it is the control that the gate is not just silencing labels.
+const onPin = (ds, id) => {
+  const a = ds.amenities.find(x => x.id === id), g = ds.config.gps, s = (g.onSiteRadiusMi || 0.4) * 1609.34 / 50;
+  return [g.lat + ((a.y - 50) * s) / 111320, g.lng + ((a.x - 50) * s) / (111320 * Math.cos(g.lat * Math.PI / 180))];
+};
+const aclSet = { id: "acl-2026", ...acl }, edcSet = { id: "edc-lv-2026", ...ctx.__o.DS["edc-lv-2026"] };
+const near = (ds, id, verified) => { ctx.geometryVerifiedFor = verified; return ctx.__o.near(...onPin(ds, id), ds); };
+ok(near(aclSet, "ah5", undefined) === null, "ACL labels a photo with no geometry predicate loaded; it must fail closed");
+ok(near(aclSet, "ah5", () => false) === null, "ACL labels a photo 'near' an amenity on unverified geometry");
+ok(near(aclSet, "ah5", () => true)?.type === "water", "ACL gives no amenity label even once geometry verifies; the gate is silencing, not gating");
+ok(near(edcSet, edcSet.amenities[0].id, () => false) !== null, "EDC lost its amenity label; that is #223's call, not this PR's");
+delete ctx.geometryVerifiedFor;
+
 if (fails.length) { fails.forEach(f => console.error(`  ✗ ${f}`)); console.error(`  ${fails.length} of ${checks} ACL map checks failed`); process.exit(1); }
 console.log(`  ✓ ACL 2026 map: plate is the verified 2026 patron map (square ${M.derivativeSize.join("×")}), ` +
-  `${acl.stages.length} stages + ${acl.amenities.length} amenities on measured rows, 4 satellite anchors untouched, YOU starts at (${ctx.__o.avatarStartFor(acl).x},${ctx.__o.avatarStartFor(acl).y}), ` +
+  `${acl.stages.length} stages + ${acl.amenities.length} amenities on measured rows, 3 satellite anchors untouched, no derived anchor, YOU starts at (${ctx.__o.avatarStartFor(acl).x},${ctx.__o.avatarStartFor(acl).y}), ` +
   `${checks} checks (${mutations} mutations, each caught)`);
