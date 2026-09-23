@@ -1451,9 +1451,12 @@ const REGISTRATION_TOL_M = 25;
       // satellite-measured now; the only other anchor, `bmi`, is derived
       // through that same basis and therefore cannot disagree with it.
       //
-      // Clears when the official 2026 patron map publishes and `snapchat` —
-      // the one real 2026 stage still unanchored — can be measured. That is
-      // an independent anchor, which is exactly what is missing.
+      // The official 2026 patron map published on 2026-09-22 and now places
+      // `snapchat` on the ART (ACL_STAGES x/y). That does NOT clear this
+      // waiver: a poster is not a survey, so it yields no world anchor, and
+      // test-acl-map-2026.mjs fails if one is read off it. Clears when
+      // `snapchat` (the one 2026 stage with no anchor) is measured on the
+      // ground or on satellite. That is the independent anchor still missing.
       //
       // Still true, still worth repeating: the Weekend 2 crowd pass does NOT
       // clear this. A crowd anchor answers "where does a person STAND"; a
@@ -1461,7 +1464,7 @@ const REGISTRATION_TOL_M = 25;
       // kinetic centroid is 438 m from its own poster pin.
       note: "basis is satellite-measured (amex/miller/tmobile) but nothing " +
             "independent checks it — bmi is derived through that same basis. " +
-            "Needs the 2026 patron map to anchor snapchat",
+            "Needs a satellite or ground measurement of snapchat; the 2026 patron map places it on the art only",
     },
     // ultra-miami-2026 is NO LONGER HERE. Its basis is measured and it has
     // four independent osm anchors, so it has neither registration finding.
@@ -2605,6 +2608,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`live check-in failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-c5. ACL 2026 map: art coordinates are not world coordinates ────────
+// The plate is the verified first-party 2026 patron map, every stage/amenity
+// x/y is a measured row on it, the four satellite anchors are untouched and
+// in order, and nothing (Snapchat, Tito's, Beatbox) is anchored off a poster.
+{
+  console.log("▸ ACL 2026 map gate — verified plate, measured pins, satellite anchors untouched, no poster anchors");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-acl-map-2026.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`ACL 2026 map failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 

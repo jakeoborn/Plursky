@@ -806,11 +806,12 @@ const FESTIVALS_REGISTRY = [
         // declines to geo-match a stage it cannot place, which is the correct
         // failure mode.
         //
-        // `snapchat`: new for 2026 (15 sets), real position unknown until the
-        // official patron map publishes. It replaced the 2024 Lady Bird stage
-        // in the lineup, so the tempting move is to inherit Lady Bird's coords
-        // — don't. A new sponsor stage is not necessarily the old stage's
-        // footprint, and a guessed anchor mis-tags photos silently.
+        // `snapchat`: new for 2026 (15 sets). The official 2026 patron map
+        // (2026-09-22) now places it on the ART, in the middle of the park by
+        // The Grove, and ACL_STAGES x/y is measured there. That is still not
+        // a world position: the poster is not a survey, so no anchor is read
+        // or projected off it. It also must not inherit Lady Bird's old
+        // coords. A guessed anchor mis-tags photos silently.
         //
         // `ladybird` / `bonus`: not stages in the 2026 app at all. They showed
         // up as anchor targets in the 2026-09-06 desk survey, and `ladybird`
@@ -828,11 +829,13 @@ const FESTIVALS_REGISTRY = [
       // stage (size 1.7, "headliners close here every night") and the 2026
       // grid agrees — Charli XCX, Rüfüs Du Sol and Twenty One Pilots close it.
       mainStageId: "amex",
-      // acl-park.webp = the official ACL patron map, processed for the app:
-      // legend panel + title chrome removed, padded to a square so the whole
-      // park always shows (no side-crop of T-Mobile/AMEX) and stage coords
-      // map directly. See scripts note / map.jsx image-overlay branch.
-      mapImage: "acl-park.webp",
+      // acl-park-2026.webp = the official ACL 2026 patron map
+      // (ACL26_Patron.Map_Horizontal_09.21.png, sha256 83a95f15…), legend
+      // panel cropped off and padded to a square, never scaled or stretched,
+      // so the whole park shows (T-Mobile to AMEX) and stage x/y map
+      // directly. Built by scripts/build-acl-map-2026.mjs from the unedited
+      // source in map-sources/.
+      mapImage: "acl-park-2026.webp",
       mapStyle: "image-overlay",
       mapTheme: "park",
       weatherEndpoint: "https://api.weather.gov/points/30.26,-97.77",
@@ -2172,31 +2175,29 @@ const ESSENTIALS = [
 // ─────────────────────────────────────────────────────────────
 // ACL 2026 — Austin City Limits at Zilker Park
 // ─────────────────────────────────────────────────────────────
-// Stage x/y calibrated to the ACL 2025 Zilker Park map (north-up,
-// 0–100 grid). Compass: N=up, Lady Bird Lake = top-right,
-// Barton Springs Rd = bottom, Andrew Zilker Rd = left edge.
-// Positions calibrated against the official ACL 2025 patron map (acl-map-2025.webp).
+// Stage x/y are measured on acl-park-2026.webp, the square derivative of the
+// official ACL 2026 patron map (ACL26_Patron.Map_Horizontal_09.21.png, 2305 x
+// 1441, sha256 83a95f15…, support.aclfestival.com article 4405399774484,
+// updated 2026-09-22). x = 100·px/1765, y = 100·py/1765, at the centre of each
+// stage STRUCTURE (not its label). The pixel table and the crop/pad that make
+// the derivative live in scripts/build-acl-map-2026.mjs, and verify gate
+// test-acl-map-2026.mjs fails if a value here drifts from it.
+// North-up: Lady Bird Lake top-right, Barton Springs Rd bottom, Andrew Zilker
+// Rd left. These answer "where is it on the map ART" only. The poster is not
+// a survey, so none of them is a GPS anchor (see gpsAnchors in the registry).
 const ACL_STAGES = [
-  { id: "amex",    name: "American Express",  short: "AMEX", color: "#ec4899", x: 92, y: 49, size: 1.7, desc: "East side · headliners",        vibe: "Main Event",       vibeNote: "The big stage. Headliners close here every night.",             peak: "17:00–22:00" },
+  { id: "amex",    name: "American Express",  short: "AMEX", color: "#ec4899", x: 87.6, y: 49.9, size: 1.7, desc: "East side · headliners",        vibe: "Main Event",       vibeNote: "The big stage. Headliners close here every night.",             peak: "17:00–22:00" },
   // NEW for 2026 (Live Nation sponsor stage, 15 sets on the official grid).
-  // ⚠ POSITION IS PROVISIONAL. The official 2026 patron map is not published
-  //   (support.aclfestival.com still says "2026 information is not yet
-  //   available"), so x/y here is a PLACEHOLDER, not a survey. It is stated in
-  //   `desc` so the map never silently lies to someone walking to it, and the
-  //   stage deliberately has NO gpsAnchor. Re-derive x/y AND add the anchor
-  //   through the amex/miller/beatbox affine the moment the map drops.
-  { id: "snapchat",name: "Snapchat Stage",    short: "SNAPCHAT",color: "#facc15", x: 66, y: 42, size: 1.2, desc: "Location TBA · check the on-site map", vibe: "New for 2026", vibeNote: "New sponsor stage. Placement confirms when ACL publishes the 2026 map.", peak: "14:00–21:00" },
-  // x/y CORRECTED 2026-09-05 from (80,31), which put the pin ~132 m north-east
-  // of the stage — out in Lady Bird Lake. Measured off acl-park.webp (the image
-  // the app actually renders) and cross-checked against acl-map-2025.webp
-  // through the crop/scale between them; the two agree to ~0.4 grid units.
-  // (68,37) is the stage PLATFORM, matching how amex/miller/bmi/beatbox sit on
-  // their structures rather than their labels.
-  { id: "titos",   name: "Tito's Stage",      short: "TITO'S",color: "#f97316", x: 68, y: 37, size: 1.2, desc: "North-east · mid-large stage",  vibe: "Texas Heat",        vibeNote: "Austin locals + rising stars. Vodka optional.",                 peak: "13:00–19:00" },
-  { id: "miller",  name: "Miller Lite Stage", short: "MILLER",color: "#38bdf8", x: 31, y: 24, size: 1.0, desc: "North · by Lady Bird Lake",     vibe: "Chill Vibes",       vibeNote: "Shade, cold beer, great sound. Closest to the lake.",           peak: "13:00–19:00" },
-  { id: "tmobile", name: "T-Mobile Stage",    short: "T-MOBILE",color: "#a855f7", x: 8, y: 34, size: 1.6, desc: "West side · co-headliners",   vibe: "The Other Main",   vibeNote: "Second headline stage — Skrillex, Lorde and The xx close here.", peak: "16:00–22:00" },
-  { id: "bmi",     name: "BMI Stage",         short: "BMI",  color: "#fbbf24", x: 25, y: 54, size: 0.9, desc: "Center-left · songwriter stage", vibe: "Songwriter's Corner",vibeNote: "Stripped-down, intimate. Singer-songwriter heaven.",           peak: "12:00–18:00" },
-  { id: "beatbox", name: "BEATBOX",           short: "BBX",  color: "#1e40af", x: 22, y: 72, size: 0.75,desc: "South-west · electronic stage",  vibe: "Bass Haven",        vibeNote: "DJs, producers, electronic acts. Near west entrance.",          peak: "14:00–21:00" },
+  // Placed from the official 2026 patron map: the dark tent labelled SNAPCHAT
+  // in the middle of the park, beside The Grove. That fixes where it is on the
+  // map art ONLY. It still has no gpsAnchor, and must not get one from this
+  // poster: a world position needs a survey, not artwork.
+  { id: "snapchat",name: "Snapchat Stage",    short: "SNAPCHAT",color: "#facc15", x: 51.4, y: 52.7, size: 1.2, desc: "Center · by The Grove", vibe: "New for 2026", vibeNote: "New sponsor stage in the middle of the park, next to The Grove.", peak: "14:00–21:00" },
+  { id: "titos",   name: "Tito's Stage",      short: "TITO'S",color: "#f97316", x: 67.3, y: 36.3, size: 1.2, desc: "North-east · mid-large stage",  vibe: "Texas Heat",        vibeNote: "Austin locals + rising stars. Vodka optional.",                 peak: "13:00–19:00" },
+  { id: "miller",  name: "Miller Lite Stage", short: "MILLER",color: "#38bdf8", x: 31.4, y: 25.8, size: 1.0, desc: "North · by Lady Bird Lake",     vibe: "Chill Vibes",       vibeNote: "Shade, cold beer, great sound. Closest to the lake.",           peak: "13:00–19:00" },
+  { id: "tmobile", name: "T-Mobile Stage",    short: "T-MOBILE",color: "#a855f7", x: 14.5, y: 38.8, size: 1.6, desc: "West side · co-headliners",   vibe: "The Other Main",   vibeNote: "Second headline stage — Skrillex, Lorde and The xx close here.", peak: "16:00–22:00" },
+  { id: "bmi",     name: "BMI Stage",         short: "BMI",  color: "#fbbf24", x: 29.2, y: 56.7, size: 0.9, desc: "Center-left · songwriter stage", vibe: "Songwriter's Corner",vibeNote: "Stripped-down, intimate. Singer-songwriter heaven.",           peak: "12:00–18:00" },
+  { id: "beatbox", name: "BEATBOX",           short: "BBX",  color: "#1e40af", x: 27.8, y: 72.9, size: 0.75,desc: "South-west · electronic stage",  vibe: "Bass Haven",        vibeNote: "DJs, producers, electronic acts. Near west entrance.",          peak: "14:00–21:00" },
 ];
 
 const _aclMk = (id, name, genre, stage, day, start, end, wk) => {
@@ -2223,10 +2224,11 @@ const _aclMk = (id, name, genre, stage, day, start, end, wk) => {
 //  · Kiddie Limits / side-stage strip excluded — not in the app stage model.
 //
 // 137 entries across 7 programmed stages — which is now every stage the app
-// defines for ACL. Lady Bird and Bonus Tracks are physically in the park and
-// on the 2025 map the app renders, but carry ZERO 2026 programming, so their
-// defs were dropped in v254 rather than ship two filter chips that select
-// nothing. See the gpsAnchors note above before restoring them.
+// defines for ACL. Lady Bird and Bonus Tracks carry ZERO 2026 programming, so
+// their defs were dropped in v254 rather than ship two filter chips that
+// select nothing. On the official 2026 patron map, Bonus Tracks is still a
+// labelled structure, and Lady Bird appears only as an entrance and a box
+// office, not a stage. See the gpsAnchors note above before restoring either.
 const ACL_ARTISTS = [
   // ── FRIDAY (day 1) ──
   // T-Mobile
@@ -2391,15 +2393,19 @@ const ACL_ARTISTS = [
   _aclMk("au45","Twenty One Pilots","—","amex",3,"20:30","22:00"),
 ];
 
+// Amenities measured on acl-park-2026.webp like the stages: each pin sits on
+// the one 2026 map symbol it names, at the symbol's centre. ACL Eats and ACL
+// Eats South are the legend's numbered food courts (1) and (2), so each maps
+// to exactly one marker.
+//
+// WITHHELD, not guessed: the eight pins this list used to carry were round
+// numbers that matched no symbol on the 2025 or 2026 map. For Hydration (two
+// pins), Medical, Restrooms (two pins) and Guest Services, the 2026 map prints
+// several of each symbol, and nothing says which one a single pin stood for.
+// Adding every symbol would be a product decision, not a map refresh.
 const ACL_AMENITIES = [
-  { id: "aa1", type: "water",  label: "Hydration",      x: 35, y: 40 },
-  { id: "aa2", type: "water",  label: "Hydration",      x: 65, y: 55 },
-  { id: "aa3", type: "food",   label: "ACL Eats",       x: 50, y: 35 },
-  { id: "aa4", type: "food",   label: "ACL Eats South",  x: 45, y: 65 },
-  { id: "aa5", type: "med",    label: "Medical",        x: 55, y: 60 },
-  { id: "aa6", type: "toilet", label: "Restrooms",      x: 30, y: 30 },
-  { id: "aa7", type: "toilet", label: "Restrooms",      x: 70, y: 45 },
-  { id: "aa8", type: "info",   label: "Guest Services",  x: 20, y: 35 },
+  { id: "aa3", type: "food",   label: "ACL Eats",       x: 56.8, y: 28.3 },
+  { id: "aa4", type: "food",   label: "ACL Eats South", x: 43.7, y: 73.0 },
 ];
 
 // ── Multi-festival data switching ──────────────────────────────────
