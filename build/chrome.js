@@ -475,6 +475,7 @@ function putArtistImages(entries, {
     }
     if (changed) localStorage.setItem(ARTIST_IMAGES_KEY, JSON.stringify(store));
   } catch {}
+  _scheduleArtistImageExpiry();
 }
 function putArtistImage(name, url, source, opts = {}) {
   putArtistImages([{
@@ -484,9 +485,50 @@ function putArtistImage(name, url, source, opts = {}) {
     spotifyId: opts.spotifyId
   }], opts);
 }
+var ARTIST_IMAGES_EXPIRED = "plursky:artist-images-expired";
+var _artistImageTimer = null;
+function _expireArtistImagesNow(now = Date.now()) {
+  var changed = false;
+  try {
+    var s = _readArtistImageStore();
+    changed = _pruneArtistImageStore(s, now);
+    if (changed) localStorage.setItem(ARTIST_IMAGES_KEY, JSON.stringify(s));
+  } catch {}
+  if (changed) try {
+    window.dispatchEvent(new Event(ARTIST_IMAGES_EXPIRED));
+  } catch {}
+  _scheduleArtistImageExpiry(now);
+  return changed;
+}
+function _scheduleArtistImageExpiry(now = Date.now()) {
+  try {
+    clearTimeout(_artistImageTimer);
+  } catch {}
+  _artistImageTimer = null;
+  var next = Infinity;
+  try {
+    for (var v of Object.values(_readArtistImageStore())) {
+      var rec = _artistImageRecord(v);
+      if (rec && rec.source === "spotify" && rec.fetchedAt != null) next = Math.min(next, rec.fetchedAt + SPOTIFY_IMAGE_TTL_MS);
+    }
+  } catch {}
+  if (next === Infinity) return;
+  _artistImageTimer = setTimeout(() => _expireArtistImagesNow(), Math.max(0, next - now) + 50);
+}
+function useArtistImageExpiry() {
+  var [n, setN] = React.useState(0);
+  React.useEffect(() => {
+    var on = () => setN(x => x + 1);
+    window.addEventListener(ARTIST_IMAGES_EXPIRED, on);
+    return () => window.removeEventListener(ARTIST_IMAGES_EXPIRED, on);
+  }, []);
+  return n;
+}
 try {
-  var _s = _readArtistImageStore();
-  if (_pruneArtistImageStore(_s)) localStorage.setItem(ARTIST_IMAGES_KEY, JSON.stringify(_s));
+  _expireArtistImagesNow();
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") _expireArtistImagesNow();
+  });
 } catch {}
 function SpotifyFullLogo({
   height = 21,
@@ -571,6 +613,10 @@ function useArtistPhoto(name) {
   var [photo, setPhoto] = React.useState(() => {
     return getArtistImage(name)?.url || null;
   });
+  var expiry = useArtistImageExpiry();
+  React.useEffect(() => {
+    if (expiry) setPhoto(getArtistImage(name)?.url || null);
+  }, [expiry]);
   React.useEffect(() => {
     if (photo) return;
     var live = true;
@@ -595,7 +641,7 @@ function useArtistPhoto(name) {
     return () => {
       live = false;
     };
-  }, [name.toLowerCase()]);
+  }, [name.toLowerCase(), photo]);
   return photo;
 }
 function ArtistSwatch({
@@ -2709,6 +2755,7 @@ Object.assign(window, {
   ArtistSwatch,
   Wordmark,
   useArtistPhoto,
+  useArtistImageExpiry,
   getArtistImage,
   getShareableArtistImage,
   putArtistImage,

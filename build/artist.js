@@ -1128,8 +1128,12 @@ function ArtistScreen({
   }, [a.id]);
   var activeName = isB2B ? b2bParts[activeB2B] : a.name;
   var lookupName = _lookupName(activeName);
-  var heroCacheRec = React.useMemo(() => getArtistImage(activeName), [a.id, activeName]);
+  var artistImageExpiry = useArtistImageExpiry();
+  var heroCacheRec = React.useMemo(() => getArtistImage(activeName), [a.id, activeName, artistImageExpiry]);
   var [fetchedPhoto, setFetchedPhoto] = React.useState(null);
+  React.useEffect(() => {
+    if (artistImageExpiry) setFetchedPhoto(null);
+  }, [artistImageExpiry]);
   var saved = state.saved.includes(a.id);
   var [saveFlash, setSaveFlash] = React.useState(false);
   var handleSave = () => {

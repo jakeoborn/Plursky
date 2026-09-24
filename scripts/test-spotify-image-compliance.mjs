@@ -9,6 +9,9 @@
 //   3. A Spotify-sourced artist hero shows the image uncropped with nothing
 //      drawn over it, and the full Spotify logo linking to the artist on
 //      Spotify. A non-Spotify hero keeps the full-bleed layout.
+//   4. A Spotify image expires while the app stays open: storage, the hero
+//      and a mounted useArtistPhoto all let it go at 24 h, whether it came
+//      from the cache or was fetched in this session.
 // Images are generated in-page as data: URLs; every artist-image network
 // lookup is stubbed empty, so no refetch can fill a gap the test expects.
 import { chromium } from 'playwright';
@@ -241,6 +244,62 @@ try {
       check(!r.spotifyHero && r.bgHits === 0, `[${width}px expired] an expired Spotify image is still shown`);
       await ctx.close();
     }
+  }
+  // ── 4. Expiry while the app stays open ────────────────────────────────────
+  // (a) A cached entry turns 24 h a moment after the page opens.
+  {
+    const ctx = await newCtx(393, null); const page = await ctx.newPage(); await boot(page);
+    const artist = await page.evaluate(() => { const a = window.ARTISTS.find(x => x.start && !/\bb2b\b/i.test(x.name)); return { id: a.id, name: a.name }; });
+    const img = await page.evaluate(() => { const c = document.createElement('canvas'); c.width = 60; c.height = 40; c.getContext('2d').fillRect(0, 0, 60, 40); return c.toDataURL('image/png'); });
+    await page.evaluate(({ name, img, DAY }) => localStorage.setItem('artist_images_v1', JSON.stringify({ [name.toLowerCase()]: { url: img, source: 'spotify', fetchedAt: Date.now() - DAY + 2500, spotifyId: 'EXP' } })), { name: artist.name, img, DAY });
+    await page.goto(`http://127.0.0.1:${PORT}/index.html?artist=${encodeURIComponent(artist.id)}`, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => !!document.querySelector('[aria-label="Back"]') && typeof useArtistPhoto === 'function', null, { timeout: 60000 });
+    // A mounted useArtistPhoto consumer, the hook ArtistSwatch uses.
+    await page.evaluate(name => {
+      const el = document.createElement('div'); el.id = 'photo-probe-root'; document.body.appendChild(el);
+      ReactDOM.createRoot(el).render(React.createElement(function Probe() { const p = useArtistPhoto(name); return React.createElement('i', { id: 'photo-probe', 'data-p': p ? 'img' : '' }); }));
+    }, artist.name);
+    await sleep(300);
+    const before = await page.evaluate(() => ({ hero: !!document.querySelector('[data-hero="spotify"]'), probe: document.getElementById('photo-probe')?.dataset.p }));
+    check(before.hero, '[expiry, cached] control: the Spotify hero was not showing before the entry expired');
+    check(before.probe === 'img', '[expiry, cached] control: useArtistPhoto had no image before the entry expired');
+    await sleep(3200);
+    const after = await page.evaluate(() => ({
+      hero: !!document.querySelector('[data-hero="spotify"]'),
+      probe: document.getElementById('photo-probe')?.dataset.p,
+      stored: Object.keys(JSON.parse(localStorage.getItem('artist_images_v1') || '{}')).length,
+    }));
+    check(after.stored === 0, '[expiry, cached] the Spotify entry is still in storage after 24 h with the app open');
+    check(!after.hero, '[expiry, cached] the artist hero still shows the Spotify image after 24 h with the app open');
+    check(after.probe === '', '[expiry, cached] a mounted useArtistPhoto still holds the Spotify image after 24 h');
+    await ctx.close();
+  }
+  // (b) Fetched in this session (the hero's own Spotify search), then the
+  // clock runs a day forward with the page still open.
+  {
+    const ctx = await newCtx(393, null);
+    await ctx.clock.install({ time: new Date() });
+    await ctx.addInitScript(DAY => { localStorage.setItem('spotify_token', 'test-token'); localStorage.setItem('spotify_expires', String(Date.now() + 10 * DAY)); }, DAY);
+    const page = await ctx.newPage(); await boot(page);
+    const artist = await page.evaluate(() => { const a = window.ARTISTS.find(x => x.start && !/\bb2b\b/i.test(x.name)); return { id: a.id, name: a.name }; });
+    const img = await page.evaluate(() => { const c = document.createElement('canvas'); c.width = 60; c.height = 40; c.getContext('2d').fillRect(0, 0, 60, 40); return c.toDataURL('image/png'); });
+    // The first search answers with an image; later ones find nothing, so a
+    // refetch after expiry cannot put the old image back.
+    let served = 0;
+    await ctx.route(/api\.spotify\.com\/v1\/search/, r => r.fulfill({ status: 200, contentType: 'application/json',
+      body: JSON.stringify(served++ ? {} : { artists: { items: [{ name: artist.name, id: 'FETCHED1', images: [{ url: img }] }] } }) }));
+    await page.evaluate(() => localStorage.setItem('artist_images_v1', '{}'));
+    await page.goto(`http://127.0.0.1:${PORT}/index.html?artist=${encodeURIComponent(artist.id)}`, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => !!document.querySelector('[aria-label="Back"]'), null, { timeout: 60000 });
+    await page.clock.runFor(2000);
+    const before = await page.evaluate(() => !!document.querySelector('[data-hero="spotify"]'));
+    check(before && served >= 1, `[expiry, fetched] control: the fetched Spotify image was not showing (searches served: ${served})`);
+    await page.clock.fastForward(DAY + 60000);
+    await page.clock.runFor(1000);
+    const after = await page.evaluate(() => ({ hero: !!document.querySelector('[data-hero="spotify"]'), stored: Object.keys(JSON.parse(localStorage.getItem('artist_images_v1') || '{}')).length }));
+    check(after.stored === 0, '[expiry, fetched] the fetched Spotify entry is still in storage a day later');
+    check(!after.hero, '[expiry, fetched] the hero still shows an image fetched from Spotify a day ago');
+    await ctx.close();
   }
   await browser.close();
   if (process.env.SPOTIFY_SHOTS_DIR) {

@@ -383,14 +383,57 @@ function putArtistImages(entries, { ifAbsent = false } = {}) {
     }
     if (changed) localStorage.setItem(ARTIST_IMAGES_KEY, JSON.stringify(store));
   } catch {}
+  _scheduleArtistImageExpiry();
 }
 function putArtistImage(name, url, source, opts = {}) {
   putArtistImages([{ name, url, source, spotifyId: opts.spotifyId }], opts);
 }
 
+// Expiry while the app stays open: a timer fires when the oldest Spotify
+// entry turns 24 h, prunes storage, and tells mounted consumers (the hero,
+// useArtistPhoto) to drop what they hold, so a session left running for days
+// never keeps showing a Spotify image past its TTL. iOS suspends timers in the
+// background, so a return to the foreground re-checks too.
+const ARTIST_IMAGES_EXPIRED = "plursky:artist-images-expired";
+let _artistImageTimer = null;
+function _expireArtistImagesNow(now = Date.now()) {
+  let changed = false;
+  try {
+    const s = _readArtistImageStore();
+    changed = _pruneArtistImageStore(s, now);
+    if (changed) localStorage.setItem(ARTIST_IMAGES_KEY, JSON.stringify(s));
+  } catch {}
+  if (changed) try { window.dispatchEvent(new Event(ARTIST_IMAGES_EXPIRED)); } catch {}
+  _scheduleArtistImageExpiry(now);
+  return changed;
+}
+function _scheduleArtistImageExpiry(now = Date.now()) {
+  try { clearTimeout(_artistImageTimer); } catch {}
+  _artistImageTimer = null;
+  let next = Infinity;
+  try {
+    for (const v of Object.values(_readArtistImageStore())) {
+      const rec = _artistImageRecord(v);
+      if (rec && rec.source === "spotify" && rec.fetchedAt != null) next = Math.min(next, rec.fetchedAt + SPOTIFY_IMAGE_TTL_MS);
+    }
+  } catch {}
+  if (next === Infinity) return;
+  _artistImageTimer = setTimeout(() => _expireArtistImagesNow(), Math.max(0, next - now) + 50);
+}
+// Re-renders a component when Spotify entries expire; returns a counter to
+// key memos and effects on.
+function useArtistImageExpiry() {
+  const [n, setN] = React.useState(0);
+  React.useEffect(() => {
+    const on = () => setN(x => x + 1);
+    window.addEventListener(ARTIST_IMAGES_EXPIRED, on);
+    return () => window.removeEventListener(ARTIST_IMAGES_EXPIRED, on);
+  }, []);
+  return n;
+}
 try {
-  const _s = _readArtistImageStore();
-  if (_pruneArtistImageStore(_s)) localStorage.setItem(ARTIST_IMAGES_KEY, JSON.stringify(_s));
+  _expireArtistImagesNow();
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") _expireArtistImagesNow(); });
 } catch {}
 
 // Spotify's full logo (icon + wordmark), the 2024 RGB artwork from
@@ -466,6 +509,12 @@ function useArtistPhoto(name) {
   const [photo, setPhoto] = React.useState(() => {
     return getArtistImage(name)?.url || null;
   });
+  // A Spotify URL held in state expires with its cache entry: re-read, and
+  // the effect below refetches when nothing showable is left.
+  const expiry = useArtistImageExpiry();
+  React.useEffect(() => {
+    if (expiry) setPhoto(getArtistImage(name)?.url || null);
+  }, [expiry]);
   React.useEffect(() => {
     if (photo) return;
     let live = true;
@@ -481,7 +530,7 @@ function useArtistPhoto(name) {
       _fetchItunesPhoto(name).then(url => { if (live && url) setPhoto(url); });
     }
     return () => { live = false; };
-  }, [name.toLowerCase()]);
+  }, [name.toLowerCase(), photo]);
   return photo;
 }
 
@@ -2022,7 +2071,7 @@ function plurskyHaptic(style = "LIGHT") {
 
 Object.assign(window, {
   Screen, ScrollBody, TopBar, TabBar, Pill, ArtistSwatch, Wordmark,
-  useArtistPhoto, getArtistImage, getShareableArtistImage, putArtistImage, putArtistImages,
+  useArtistPhoto, useArtistImageExpiry, getArtistImage, getShareableArtistImage, putArtistImage, putArtistImages,
   SpotifyFullLogo, SPOTIFY_IMAGE_TTL_MS,
   useInstallPrompt, InstallBanner,
   useNotifications, NotificationsCard, scheduleReminders,

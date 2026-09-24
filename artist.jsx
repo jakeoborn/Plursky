@@ -957,9 +957,13 @@ function ArtistScreen({ state, setState }) {
 
   // The cached entry for the tab on screen, or null when it is missing,
   // expired (Spotify, 24 h) or of unknown source — see getArtistImage.
-  const heroCacheRec = React.useMemo(() => getArtistImage(activeName), [a.id, activeName]);
+  // expiry ticks when a Spotify entry turns 24 h while this page is open: the
+  // cached record is re-read and the fetched Spotify URL is let go.
+  const artistImageExpiry = useArtistImageExpiry();
+  const heroCacheRec = React.useMemo(() => getArtistImage(activeName), [a.id, activeName, artistImageExpiry]);
   // On-demand photo: use cached image or fetch from Spotify search
   const [fetchedPhoto, setFetchedPhoto] = React.useState(null);
+  React.useEffect(() => { if (artistImageExpiry) setFetchedPhoto(null); }, [artistImageExpiry]);
   // heroPhoto is computed further down, AFTER `tadb` exists — see the note
   // there. Computing it here silently produced "no photo" on every artist.
   const saved = state.saved.includes(a.id);
