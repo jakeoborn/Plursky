@@ -131,6 +131,8 @@ const seed = { 1: [
   base("f9-unres-user",   { takenAt: T_WRONG, festivalAttribution: "unresolved", festivalStampSource: "user" }),
   // the marker does not relax the other conditions
   base("f10-unres-unverified", { takenAt: T_WRONG, dateUnverified: true, festivalAttribution: "unresolved" }),
+  // an unreadable capture time is no evidence: untouched, never "no-claimant"
+  base("f-unreadable",   { takenAt: "2026-05-17T05:00:00.000Z", festivalStampSource: "active-fallback" }),
   // correct stamp: must come out byte-identical
   base("f-right",        { takenAt: T_RIGHT, artistId: "x9", tagSource: "exif" }),
   // correct stamp carrying a stale review: the review is dropped
@@ -197,6 +199,11 @@ for (const [id, reason] of [["f5-machine-amb", "multiple-claimants"], ["f-unveri
 }
 check(JSON.stringify(byId["f5-machine-amb"].festivalReview?.candidates) === JSON.stringify(cA) && byId["f5-machine-amb"].festivalReview?.claimant === null,
   `f5-machine-amb: review must list every candidate and name no claimant — got ${JSON.stringify(byId["f5-machine-amb"].festivalReview)}`);
+
+// An unparseable takenAt proves nothing either way
+check(partsOf("2026-05-17T05:00:00.000Z") === null, "premise: the ISO fixture must be unparseable by _momentTakenAtToDateParts, or f-unreadable tests nothing");
+check(JSON.stringify(byId["f-unreadable"]) === JSON.stringify(beforeById["f-unreadable"]) && where["f-unreadable"].join() === "1",
+  `f-unreadable: a capture time the parser cannot read is no evidence and must leave the record byte-identical — got ${JSON.stringify(byId["f-unreadable"])}`);
 
 // Agreement: untouched, and a stale review is dropped
 check(JSON.stringify(byId["f-right"]) === JSON.stringify(beforeById["f-right"]) && where["f-right"].join() === "1",

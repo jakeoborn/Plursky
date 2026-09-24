@@ -7799,6 +7799,12 @@ function _reconcileFestivalStamps(moments) {
     if (!Array.isArray(arr)) continue;
     for (const m of arr) {
       if (!m || !m.festivalId || !m.takenAt) continue;   // no stamp, or no evidence
+      // A capture time this parser cannot read is NO evidence, not "no festival
+      // claims it". _festivalClaimantsFor returns [] for both, and reading the
+      // first as the second flagged every unparseable record "no-claimant"
+      // (measured: an ISO "2026-05-16T05:40:00.000Z" takenAt inside EDC's own
+      // dates went to Needs Review).
+      if (!_momentTakenAtToDateParts(m.takenAt)) continue;
       const claims = _festivalClaimantsFor(m.takenAt);
       if (claims.includes(m.festivalId)) {
         if (m.festivalReview) { delete m.festivalReview; changed = true; }
