@@ -7,7 +7,7 @@
 //
 // The official patron map is evidence for the first question only. This gate
 // locks: the exact first-party source and the square plate built from it; every
-// shipped x/y equals a measured row in scripts/build-acl-map-2026.mjs; the four
+// shipped x/y equals a measured row in scripts/build-acl-map-2026.mjs; the three
 // satellite anchors are untouched and in order; no anchor is read off the
 // poster (Snapchat, Tito's, Beatbox); no Lady Bird stage without a 2026 set.
 // Each rule is proven live by a mutation that must fail it.
@@ -176,7 +176,57 @@ ok(near(aclSet, "ah5", () => true)?.type === "water", "ACL gives no amenity labe
 ok(near(edcSet, edcSet.amenities[0].id, () => false) !== null, "EDC lost its amenity label; that is #223's call, not this PR's");
 delete ctx.geometryVerifiedFor;
 
+// ── 6. off_stage needs every programmed stage anchored (lane ruling 2026-09-23) ──
+// ACL has 3 of its 7 stages anchored. A photo in the BMI crowd is hundreds of
+// metres from all three, so "far from every anchor" says nothing about whether
+// you were between sets; it must fall through to the time matcher. EDC LV has
+// every stage anchored, so there far-from-everything still means off_stage.
+// Runs the COMPILED matcher, and again with the coverage check cut out, which
+// must break (a).
+const PHOTO_TAG = readFileSync(join(ROOT, "build/photo-tag.js"), "utf8");
+const COVERAGE_CALL = "&& _allProgrammedStagesAnchored(artists, night, anchors)";
+ok(PHOTO_TAG.includes(COVERAGE_CALL), "compiled photo-tag no longer gates off_stage on anchor coverage");
+const matcherFrom = src => {
+  const c = { window: {}, console, Date, Math, JSON, Object, Array, String, Number, isNaN, parseInt, parseFloat, Set, Map,
+    fetch: () => {}, localStorage: { getItem: () => null, setItem: () => {}, removeItem: () => {} } };
+  vm.createContext(c);
+  vm.runInContext(mods + "\n" + readFileSync(join(ROOT, "data.jsx"), "utf8") + "\n" + src +
+    "\n;__m={DS:_DATA_SETS,match:_matchArtistForPhoto,wall:_wallClockFromUtc};", c);
+  return c.__m;
+};
+const toMin = t => { const [h, m] = t.split(":").map(Number); return (h < 8 ? h + 24 : h) * 60 + m; };
+const photoAt = (M2, dsId, artistId, plusMin, lat, lng) => {
+  const ds = { id: dsId, ...M2.DS[dsId] }, a = ds.artists.find(x => x.id === artistId);
+  const date = M2.wall(ds.config.dayDates[a.day].midnightUtc + (toMin(a.start) + plusMin) * 60000, ds.config);
+  return M2.match({ date, lat, lng, acc: 10 }, [], [], ds);
+};
+// A spot in the BMI crowd: 340-440 m from every ACL anchor (a photo position, not an anchor).
+const BMI_CROWD = [30.266404, -97.767698];
+const liveM = matcherFrom(PHOTO_TAG);
+const aclA = ctx.__o.DS["acl-2026"].artists;
+const bmiSolo = aclA.find(a => a.stage === "bmi" && a.day === 3 && a.start === "12:45" && a.weekend === "W1");
+const bmiBusy = aclA.find(a => a.stage === "bmi" && a.day === 1 && a.start === "13:45" && a.weekend === "W1");
+ok(bmiSolo && bmiBusy, "the ACL BMI fixture sets moved; re-pick them");
+// a. BMI set, GPS far from all three anchors: tagged to the BMI set, not off_stage.
+const ra = bmiSolo && photoAt(liveM, "acl-2026", bmiSolo.id, 5, ...BMI_CROWD);
+ok(ra?.reason !== "off_stage" && ra?.artistId === bmiSolo.id,
+  `ACL photo in the BMI crowd during ${bmiSolo?.id} was ${ra?.reason} / ${ra?.artistId}, not tagged to the BMI set`);
+// a'. Mid-afternoon, 11 sets overlap: still not off_stage, and BMI stays one tap away.
+const rb = bmiBusy && photoAt(liveM, "acl-2026", bmiBusy.id, 20, ...BMI_CROWD);
+ok(rb?.reason !== "off_stage" && rb?.artistId && (rb.artistId === bmiBusy.id || (rb.ambiguous && rb.alternatives?.includes(bmiBusy.id))),
+  `ACL photo in the BMI crowd during a busy slot was ${rb?.reason} / ${rb?.artistId}; BMI must be the tag or a FIX TAG alternative`);
+// b. Positive control: EDC LV anchors every stage, so a photo >120 m from all of them is off_stage.
+const edcA = ctx.__o.DS["edc-lv-2026"].artists.find(a => a.day === 1);
+const rc = photoAt(liveM, "edc-lv-2026", edcA.id, 10, 36.265, -115.005);
+ok(rc.reason === "off_stage" && rc.artistId === null && rc.distMeters > 120,
+  `EDC LV (every stage anchored) photo far from all anchors was ${rc.reason}, not off_stage`);
+// c. Mutation: cut the coverage check out of the compiled matcher; (a) must break.
+const cut = matcherFrom(PHOTO_TAG.replace(COVERAGE_CALL, ""));
+mutations++;
+ok(bmiSolo && photoAt(cut, "acl-2026", bmiSolo.id, 5, ...BMI_CROWD).reason === "off_stage",
+  "mutation not caught: removing the all-stages-anchored check did not bring back off_stage for the BMI photo");
+
 if (fails.length) { fails.forEach(f => console.error(`  ✗ ${f}`)); console.error(`  ${fails.length} of ${checks} ACL map checks failed`); process.exit(1); }
 console.log(`  ✓ ACL 2026 map: plate is the verified 2026 patron map (square ${M.derivativeSize.join("×")}), ` +
-  `${acl.stages.length} stages + ${acl.amenities.length} amenities on measured rows, 3 satellite anchors untouched, no derived anchor, YOU starts at (${ctx.__o.avatarStartFor(acl).x},${ctx.__o.avatarStartFor(acl).y}), ` +
+  `${acl.stages.length} stages + ${acl.amenities.length} amenities on measured rows, 3 satellite anchors untouched, no derived anchor, off_stage only with every stage anchored, YOU starts at (${ctx.__o.avatarStartFor(acl).x},${ctx.__o.avatarStartFor(acl).y}), ` +
   `${checks} checks (${mutations} mutations, each caught)`);

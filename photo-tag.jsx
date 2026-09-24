@@ -696,6 +696,18 @@ function _matchNearestLocation(lat, lng, ds) {
 // same-minute video put the user 700 m away. The threshold is deliberately
 // generous; the point is to reject garbage, not to demand a perfect fix.
 const _GPS_STAGE_MAX_ACC_M = 200;
+// "Far from every anchor" only means "between sets" when every stage playing
+// that night HAS an anchor (lane ruling 2026-09-23). With one stage
+// unanchored, a photo taken in its crowd is also far from every anchor, and
+// calling it off_stage would throw away the time match that should tag it.
+// So a festival with partial anchors skips the negative inference and falls
+// through to the time matcher; no geometry is invented for the missing stage.
+// An act with no stage counts as unanchored.
+function _allProgrammedStagesAnchored(artists, night, anchors) {
+  const anchored = new Set(anchors.map(a => a.stageId));
+  return (artists || []).every(a => a.day !== night || anchored.has(a.stage));
+}
+
 function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, attendedIds, ds) {
   if (!date && rawUtcMs == null) return { artistId: null, night: null, festivalId: null, reason: "no_date" };
   // First: WHICH festival, and which of its nights, does this photo's
@@ -799,7 +811,7 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
     // crowd actually stands, eight tight-fix photos taken AT the main stage
     // were 218-317 m from every anchor and got dumped here as "between sets".
     const anchors = resolvedStageAnchors(cfg);
-    if (anchors.length > 0) {
+    if (anchors.length > 0 && _allProgrammedStagesAnchored(artists, night, anchors)) {
       let nearest = null, minMeters = Infinity;
       for (const a of anchors) {
         const m = _haversineMeters(sLat, sLng, a.lat, a.lng);

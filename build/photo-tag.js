@@ -569,6 +569,10 @@ function _matchNearestLocation(lat, lng, ds) {
   };
 }
 var _GPS_STAGE_MAX_ACC_M = 200;
+function _allProgrammedStagesAnchored(artists, night, anchors) {
+  var anchored = new Set(anchors.map(a => a.stageId));
+  return (artists || []).every(a => a.day !== night || anchored.has(a.stage));
+}
 function _matchArtistForPhoto({
   date,
   lat,
@@ -650,7 +654,7 @@ function _matchArtistForPhoto({
   }
   if (sLat != null && sLng != null) {
     var anchors = resolvedStageAnchors(cfg);
-    if (anchors.length > 0) {
+    if (anchors.length > 0 && _allProgrammedStagesAnchored(artists, night, anchors)) {
       var nearest = null,
         minMeters = Infinity;
       for (var a of anchors) {
