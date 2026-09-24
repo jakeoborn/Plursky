@@ -583,6 +583,10 @@ function stub(entry, statusOverride, lastmod) {
   const site = cfg.officialEvent && cfg.officialEvent.website;
   const sources = [
     site && `      <li>Official site: <a href="${esc(site)}" rel="noopener">${esc(site)}</a></li>`,
+    // The lineup's own source. Lineup-only festivals had NO source line at all
+    // (III Points listed 218 acts citing nothing); a festival whose set times
+    // came from the same page is already cited by the Set times row.
+    cfg.lineupSource && cfg.lineupSource.url && `      <li>Lineup: <a href="${esc(cfg.lineupSource.url)}" rel="noopener">${esc(cfg.lineupSource.url)}</a> (${cfg.lineupSource.official === true ? 'official' : 'community source'}${cfg.lineupSource.observedAt ? `, read ${esc(cfg.lineupSource.observedAt)}` : ''})</li>`,
     src && src.url && `      <li>Set times: <a href="${esc(src.url)}" rel="noopener">${esc(src.url)}</a> (${src.official === true ? 'official' : 'community source'}${src.observedAt ? `, checked ${esc(src.observedAt)}` : ''})</li>`,
     cfg.mapSource && cfg.mapSource.url && `      <li>Map: <a href="${esc(cfg.mapSource.url)}" rel="noopener">${esc(cfg.mapSource.url)}</a> (official, checked ${esc(cfg.mapSource.observedAt)})</li>`,
   ].filter(Boolean);

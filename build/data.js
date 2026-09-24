@@ -316,6 +316,10 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "electric-forest-2027",
+    officialEvent: {
+      website: "https://www.electricforestfestival.com/",
+      observedAt: "2026-09-24"
+    },
     name: "Electric Forest 2027",
     shortName: "Forest 2027",
     brand: "Electric Forest",
@@ -435,6 +439,11 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "edc-orlando-2026",
+    lineupSource: {
+      url: "https://orlando.edc.com/lineup/",
+      observedAt: "2026-09-13",
+      official: true
+    },
     name: "EDC Orlando 2026",
     shortName: "EDC Orlando",
     brand: "EDC",
@@ -541,6 +550,10 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "tomorrowland-2027",
+    officialEvent: {
+      website: "https://belgium.tomorrowland.com/",
+      observedAt: "2026-09-24"
+    },
     name: "Tomorrowland 2027",
     shortName: "Tomorrowland",
     brand: "Tomorrowland",
@@ -658,6 +671,10 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "coachella-2027",
+    officialEvent: {
+      website: "https://www.coachella.com/",
+      observedAt: "2026-09-24"
+    },
     name: "Coachella 2027",
     shortName: "Coachella",
     brand: "Coachella",
