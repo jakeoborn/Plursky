@@ -405,16 +405,30 @@ function _wallClockFromUtc(utcMs, cfg) {
   };
 }
 function _photoFestivalNight(date, cfgIn, utcMs) {
+  var r = _photoFestivalNightWeekend(date, cfgIn, utcMs);
+  return r ? r.night : null;
+}
+function _photoFestivalNightWeekend(date, cfgIn, utcMs) {
   var cfg = cfgIn || window.FESTIVAL_CONFIG;
   if (!cfg?.dayDates) return null;
   if (utcMs == null && !date) return null;
   var photoMs = utcMs != null ? utcMs : _photoEpochUtc(date, cfg);
-  for (var n of Object.keys(cfg.dayDates).map(Number)) {
-    var dm = cfg.dayDates[n];
-    if (!dm) continue;
-    var startMs = dm.midnightUtc + 11 * 3600000;
-    var endMs = dm.midnightUtc + 30 * 3600000;
-    if (photoMs >= startMs - 30 * 60000 && photoMs <= endMs + 30 * 60000) return n;
+  for (var {
+    weekend,
+    shift
+  } of festivalWeekendShifts(cfg)) {
+    for (var n of Object.keys(cfg.dayDates).map(Number)) {
+      var dm = cfg.dayDates[n];
+      if (!dm) continue;
+      var midnight = dm.midnightUtc + shift;
+      var startMs = midnight + 11 * 3600000;
+      var endMs = midnight + 30 * 3600000;
+      if (photoMs >= startMs - 30 * 60000 && photoMs <= endMs + 30 * 60000) return {
+        night: n,
+        weekend,
+        shift
+      };
+    }
   }
   return null;
 }
@@ -593,7 +607,6 @@ function _matchArtistForPhoto({
     rawUtcMs
   });
   var cfg = set.config || {};
-  var artists = set.artists || [];
   var festivalId = set.id || null;
   var resolvedBy = set.resolvedBy || "explicit";
   var gpsUsableForStage = acc == null || acc <= _GPS_STAGE_MAX_ACC_M;
@@ -601,8 +614,8 @@ function _matchArtistForPhoto({
   var sLng = gpsUsableForStage ? lng : null;
   var gpsRejected = !gpsUsableForStage && lat != null;
   var localDate = rawUtcMs != null ? _wallClockFromUtc(rawUtcMs, cfg) : date;
-  var night = _photoFestivalNight(localDate, cfg, rawUtcMs);
-  if (!night) return {
+  var nw = _photoFestivalNightWeekend(localDate, cfg, rawUtcMs);
+  if (!nw) return {
     localDate,
     gpsRejected,
     artistId: null,
@@ -611,17 +624,20 @@ function _matchArtistForPhoto({
     resolvedBy,
     reason: "outside_festival_window"
   };
+  var night = nw.night;
+  var artists = (set.artists || []).filter(a => actPlaysWeekend(a, nw.weekend));
   var photoMs = _photoEpochUtc(date, cfg);
   var setWindow = a => {
     var dm = cfg.dayDates?.[a.day];
     if (!dm) return null;
+    var midnight = dm.midnightUtc + nw.shift;
     var [sh, sm] = a.start.split(":").map(Number);
     var [eh, em] = a.end.split(":").map(Number);
     return {
       localDate,
       gpsRejected,
-      startMs: dm.midnightUtc + ((sh < 8 ? sh + 24 : sh) * 60 + sm) * 60000,
-      endMs: dm.midnightUtc + ((eh < 8 ? eh + 24 : eh) * 60 + em) * 60000
+      startMs: midnight + ((sh < 8 ? sh + 24 : sh) * 60 + sm) * 60000,
+      endMs: midnight + ((eh < 8 ? eh + 24 : eh) * 60 + em) * 60000
     };
   };
   var attendedSet = new Set(attendedIds || []);
