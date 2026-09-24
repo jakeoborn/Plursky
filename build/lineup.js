@@ -762,6 +762,15 @@ function LineupFilterSheet({
     }
   }, "Show ", matchCount, " ", matchCount === 1 ? "set" : "sets")));
 }
+function _lineupMetaValue(v) {
+  var s = String(v == null ? "" : v).trim();
+  if (!s || /^[-–—?·.\s]+$/.test(s) || /^(tba|tbd|n\/?a|unknown)$/i.test(s)) return null;
+  return s;
+}
+var _lineupDayWord = w => {
+  var s = String(w || "");
+  return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+};
 function LineupScreen({
   state,
   setState
@@ -820,15 +829,36 @@ function LineupScreen({
   }, [viewModePref]);
   var viewMode = _schedTBA ? "list" : viewModePref;
   var [collapsed, setCollapsed] = React.useState(false);
+  var collapsedRef = React.useRef(false);
+  collapsedRef.current = collapsed;
+  var filtersRef = React.useRef(null);
+  var [filtersH, setFiltersH] = React.useState(0);
+  var filtersHRef = React.useRef(0);
+  filtersHRef.current = filtersH;
+  React.useLayoutEffect(() => {
+    var el = filtersRef.current;
+    if (!el) return;
+    var measure = () => setFiltersH(el.offsetHeight);
+    measure();
+    var ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(measure) : null;
+    if (ro) ro.observe(el);
+    return () => {
+      if (ro) ro.disconnect();
+    };
+  }, [viewMode]);
+  var reduceMotion = typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
   React.useEffect(() => {
     var el = null,
-      lastY = 0;
+      lastY = 0,
+      lockUntil = 0,
+      lastH = 0;
     var attach = () => {
       var next = document.querySelector(viewMode === "grid" ? "[data-grid-scroll]" : "[data-lineup-scroll]");
       if (next === el) return;
       if (el) el.removeEventListener("scroll", onScroll);
       el = next;
       lastY = el ? el.scrollTop : 0;
+      lastH = el ? el.clientHeight : 0;
       if (el) el.addEventListener("scroll", onScroll, {
         passive: true
       });
@@ -836,7 +866,21 @@ function LineupScreen({
     function onScroll() {
       if (!el) return;
       var y = el.scrollTop;
-      if (y > 56 && y > lastY + 4) setCollapsed(true);else if (y < lastY - 8 || y < 24) setCollapsed(false);
+      var t = performance.now();
+      if (t < lockUntil || el.clientHeight !== lastH) {
+        lastY = y;
+        lastH = el.clientHeight;
+        return;
+      }
+      if (y > 56 && y > lastY + 4) {
+        if (!collapsedRef.current && el.scrollHeight - el.clientHeight - filtersHRef.current > 80) {
+          lockUntil = t + 280;
+          setCollapsed(true);
+        }
+      } else if ((y < lastY - 8 || y < 24) && collapsedRef.current) {
+        lockUntil = t + 280;
+        setCollapsed(false);
+      }
       lastY = y;
     }
     attach();
@@ -1014,6 +1058,33 @@ function LineupScreen({
     io.observe(rule);
     return () => io.disconnect();
   }, [viewMode, day, dayArtists, filter, sortBy]);
+  var searchInputRef = React.useRef(null);
+  var openSearch = () => {
+    setCollapsed(false);
+    if (viewMode === "grid") {
+      var g = document.querySelector("[data-grid-scroll]");
+      if (g) try {
+        g.scrollTo({
+          top: 0
+        });
+      } catch {}
+    }
+    setTimeout(() => {
+      try {
+        searchInputRef.current?.focus({
+          preventScroll: true
+        });
+      } catch {}
+    }, reduceMotion ? 0 : 260);
+  };
+  var compactSummary = (() => {
+    var d = dayStats.find(x => x.n === day);
+    var dayText = d ? `${_lineupDayWord(d.label)} ${String(d.date).split(" ")[1] || ""}`.trim() : "";
+    var stageName = stageFilter !== "all" ? (STAGES.find(x => x.id === stageFilter) || {}).name : null;
+    var show = stageName || (filter === "saved" ? "Saved" : filter === "now" ? "Now" : "All stages");
+    var extra = otherFilterCount - (stageFilter !== "all" ? 1 : 0);
+    return [dayText, hasWeekends ? weekendFilter === "W2" ? "Weekend 2" : "Weekend 1" : null, show, extra > 0 ? `+${extra} filter${extra === 1 ? "" : "s"}` : null, q.trim() ? `“${q.trim()}”` : null].filter(Boolean).join(" · ");
+  })();
   var searchRow = React.createElement("div", {
     style: {
       padding: gridLead ? "12px 12px 0" : "12px 20px 4px"
@@ -1045,6 +1116,7 @@ function LineupScreen({
   }), React.createElement("path", {
     d: "M21 21 L16.65 16.65"
   })), React.createElement("input", {
+    ref: searchInputRef,
     value: q,
     onChange: e => setQ(e.target.value),
     placeholder: "Search artists, stages, genres…",
@@ -1250,21 +1322,27 @@ function LineupScreen({
   return React.createElement(Screen, {
     bg: "var(--paper)"
   }, React.createElement("div", {
-    "data-lineup-header": true,
+    "data-lineup-filters": true,
     "data-collapsed": collapsed ? "1" : "0",
+    inert: collapsed ? "" : undefined,
+    "aria-hidden": collapsed || undefined,
     style: {
-      padding: collapsed ? "0 8px 0 20px" : "4px 8px 4px 20px",
+      flexShrink: 0,
+      minHeight: 0,
+      overflow: "hidden",
+      maxHeight: collapsed ? 0 : filtersH ? filtersH : "none",
+      opacity: collapsed ? 0 : 1,
+      transition: reduceMotion ? "none" : "max-height 240ms ease, opacity 180ms ease"
+    }
+  }, React.createElement("div", {
+    ref: filtersRef
+  }, React.createElement("div", {
+    "data-lineup-header": true,
+    style: {
+      padding: "4px 8px 4px 20px",
       display: "flex",
       alignItems: "center",
-      gap: 4,
-      maxHeight: collapsed ? 0 : 96,
-      minHeight: 0,
-      opacity: collapsed ? 0 : 1,
-      overflow: "hidden",
-      flexShrink: 0,
-      transform: collapsed ? "translateY(-6px)" : "translateY(0)",
-      transition: "max-height 220ms ease, opacity 160ms ease, padding 220ms ease, transform 220ms ease",
-      pointerEvents: collapsed ? "none" : "auto"
+      gap: 4
     }
   }, state._navStack?.length > 0 && React.createElement("button", {
     onClick: () => window._popNav?.(),
@@ -1354,8 +1432,7 @@ function LineupScreen({
       display: "flex",
       gap: 8,
       flexShrink: 0,
-      padding: collapsed ? "4px 20px 8px" : "4px 20px 12px",
-      transition: "padding 220ms ease"
+      padding: "4px 20px 12px"
     }
   }, dayStats.map(d => {
     var on = d.n === day;
@@ -1374,7 +1451,7 @@ function LineupScreen({
       style: {
         flex: 1,
         minWidth: 0,
-        minHeight: collapsed ? 44 : 64,
+        minHeight: 64,
         padding: "6px 2px",
         borderRadius: 14,
         background: on ? "var(--paper-3)" : "transparent",
@@ -1382,10 +1459,10 @@ function LineupScreen({
         color: "var(--ink)",
         cursor: "pointer",
         display: "flex",
-        flexDirection: collapsed ? "row" : "column",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        gap: collapsed ? 6 : 1
+        gap: 1
       }
     }, React.createElement("span", {
       style: {
@@ -1397,12 +1474,12 @@ function LineupScreen({
       }
     }, d.label), React.createElement("span", {
       style: {
-        fontSize: collapsed ? 15 : 20,
-        lineHeight: collapsed ? "20px" : "25px",
+        fontSize: 20,
+        lineHeight: "25px",
         fontWeight: 600,
         fontVariantNumeric: "tabular-nums"
       }
-    }, d.date.split(" ")[1]), !collapsed && d.count > 0 && React.createElement("span", {
+    }, d.date.split(" ")[1]), d.count > 0 && React.createElement("span", {
       "aria-hidden": "true",
       style: {
         fontSize: 12,
@@ -1538,7 +1615,96 @@ function LineupScreen({
     style: {
       fontVariantNumeric: "tabular-nums"
     }
-  }, otherFilterCount))), !online && React.createElement("div", {
+  }, otherFilterCount))), !gridLead && searchRow, !gridLead && actionsRow)), React.createElement("div", {
+    "data-lineup-compact": true,
+    "data-collapsed": collapsed ? "1" : "0",
+    inert: collapsed ? undefined : "",
+    "aria-hidden": collapsed ? undefined : true,
+    style: {
+      flexShrink: 0,
+      minHeight: 0,
+      overflow: "hidden",
+      maxHeight: collapsed ? 56 : 0,
+      opacity: collapsed ? 1 : 0,
+      borderBottom: collapsed ? "1px solid var(--line)" : "none",
+      transition: reduceMotion ? "none" : "max-height 240ms ease, opacity 180ms ease"
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 4,
+      padding: "2px 8px 2px 20px",
+      minHeight: 48
+    }
+  }, React.createElement("button", {
+    "data-lineup-expand": true,
+    onClick: () => setCollapsed(false),
+    "aria-label": `Show days and filters. Showing ${compactSummary}`,
+    style: {
+      flex: 1,
+      minWidth: 0,
+      minHeight: 44,
+      padding: 0,
+      border: "none",
+      background: "transparent",
+      color: "var(--ink)",
+      cursor: "pointer",
+      textAlign: "left",
+      fontFamily: "inherit",
+      display: "flex",
+      alignItems: "center",
+      gap: 6,
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 600
+    }
+  }, React.createElement("span", {
+    style: {
+      minWidth: 0,
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+      fontVariantNumeric: "tabular-nums"
+    }
+  }, compactSummary), React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "var(--text-2)",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    style: {
+      flexShrink: 0
+    }
+  }, React.createElement("path", {
+    d: "M6 9 L12 15 L18 9"
+  }))), React.createElement("button", {
+    "data-lineup-search-open": true,
+    "aria-label": "Search",
+    onClick: openSearch,
+    style: {
+      ...fieldIconBtn,
+      color: "var(--ink)"
+    }
+  }, React.createElement("svg", {
+    width: "20",
+    height: "20",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round"
+  }, React.createElement("circle", {
+    cx: "11",
+    cy: "11",
+    r: "7"
+  }), React.createElement("path", {
+    d: "M21 21 L16.65 16.65"
+  }))))), !online && React.createElement("div", {
     role: "status",
     style: {
       padding: "8px 20px",
@@ -1566,7 +1732,7 @@ function LineupScreen({
       lineHeight: "18px",
       color: "var(--text-2)"
     }
-  }, "The full lineup is here. Save the acts you want and the schedule fills itself in as soon as ", FESTIVAL_CONFIG.shortName || "the festival", " publishes it.")), !gridLead && searchRow, !gridLead && actionsRow, wizardOpen && React.createElement(NightWizard, {
+  }, "The full lineup is here. Save the acts you want and the schedule fills itself in as soon as ", FESTIVAL_CONFIG.shortName || "the festival", " publishes it.")), wizardOpen && React.createElement(NightWizard, {
     state: state,
     setState: setState,
     onClose: () => setWizardOpen(false)
@@ -1695,7 +1861,7 @@ function LineupScreen({
       var isHighlighted = highlightId === a.id;
       var isLive = isSetLive(a);
       var crew = window.sbGetCrewCount?.(a.id) || 0;
-      var flags = [isLegendary(a) && "Don't miss", hasWeekends && a.weekend && a.weekend !== "both" && (a.weekend === "W1" ? "Weekend 1" : "Weekend 2"), spotifyMatchedIds.has(a.id) && "In your music", crew > 0 && `${crew} crew`].filter(Boolean);
+      var flags = [isLegendary(a) && "Don't miss", hasWeekends && weekendFilter === "all" && a.weekend && a.weekend !== "both" && (a.weekend === "W1" ? "Weekend 1" : "Weekend 2"), spotifyMatchedIds.has(a.id) && "In your music", crew > 0 && `${crew} crew`].filter(Boolean);
       return React.createElement("div", {
         key: a.id,
         "data-animate": true,
@@ -1712,17 +1878,20 @@ function LineupScreen({
           animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined
         }
       }, React.createElement("div", {
+        "data-set-time": true,
         style: {
           width: 76,
           flexShrink: 0,
           fontVariantNumeric: "tabular-nums",
-          whiteSpace: "nowrap"
+          whiteSpace: "nowrap",
+          paddingTop: 2
         }
       }, React.createElement("div", {
         style: {
           fontSize: 15,
-          lineHeight: "21px",
-          fontWeight: 600
+          lineHeight: "20px",
+          fontWeight: 600,
+          color: "var(--ink)"
         }
       }, fmt12(a.start)), React.createElement("div", {
         style: {
@@ -1764,13 +1933,16 @@ function LineupScreen({
           background: "var(--signal)"
         }
       }), "Live"), React.createElement("span", {
+        "data-set-name": true,
         style: {
-          fontSize: 17,
-          lineHeight: "22px",
-          fontWeight: 600,
+          fontSize: 18,
+          lineHeight: "23px",
+          fontWeight: 700,
+          color: "var(--ink)",
           overflowWrap: "anywhere"
         }
       }, a.name), React.createElement("span", {
+        "data-set-meta": true,
         style: {
           marginTop: 2,
           fontSize: 13,
@@ -1788,7 +1960,7 @@ function LineupScreen({
           marginRight: 6,
           verticalAlign: "1px"
         }
-      }), stage.name, a.genre ? ` · ${a.genre}` : ""), flags.length > 0 && React.createElement("span", {
+      }), [_lineupMetaValue(stage.name), _lineupMetaValue(a.genre)].filter(Boolean).join(" · ")), flags.length > 0 && React.createElement("span", {
         style: {
           marginTop: 2,
           fontSize: 13,
@@ -1809,6 +1981,7 @@ function LineupScreen({
         "aria-pressed": saved,
         style: {
           ...fieldIconBtn,
+          alignSelf: "center",
           color: saved ? "var(--signal-ink)" : "var(--text-2)"
         }
       }, React.createElement("svg", {
