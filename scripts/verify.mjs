@@ -2572,6 +2572,26 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b8a. Festival full pages ───────────────────────────────────────────
+// Each /f/<id>/ page carries every section its data backs and nothing its data
+// does not: a map section iff a Plursky plate or a recorded official map page,
+// no patron-map art embedded (provenance is not reuse rights), every positioned
+// stage numbered on the plate, no walk or distance claim on unverified
+// geometry, every lineup name, every set row per weekend, noindex while a
+// lineup is empty. It mutates pages in memory to prove it catches an embedded
+// official map, a dropped act and a walk-time sentence.
+{
+  console.log("▸ Festival pages gate — every section backed, nothing unbacked");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-pages.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`festival pages failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b9. Shell portability ──────────────────────────────────────────────
 // Every push in this repo goes through scripts/verify-and-push.sh, and that
 // wrapper shipped with `#!/bin/zsh` until #211. On a box without zsh the kernel

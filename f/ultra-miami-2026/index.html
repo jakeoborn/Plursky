@@ -19,40 +19,60 @@
 <meta name="twitter:image" content="https://plursky.com/og-card.png">
 <link rel="icon" type="image/png" href="/apple-touch-icon.png">
 <style>
-  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; }
+  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; --panel:#1c1916; }
   * { box-sizing:border-box; }
   body { margin:0; padding:32px 20px 64px; background:var(--bg); color:var(--ink);
          font-family:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.6; }
   main { max-width:760px; margin:0 auto; }
-  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; }
+  nav.crumbs { font-size:13px; color:var(--muted); margin:0 0 16px; }
+  nav.crumbs a { color:var(--muted); }
+  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; text-wrap:balance; }
   h2 { font-size:18px; margin:32px 0 8px; }
   .meta { color:var(--muted); margin:0 0 20px; }
+  .chip { display:inline-block; margin-right:8px; padding:1px 10px; border-radius:999px; border:1px solid var(--line);
+          color:var(--ink); font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
+  .chip-live, .chip-soon { border-color:var(--ember); color:var(--ember); }
   .note { color:var(--muted); font-size:14px; }
+  figure { margin:16px 0; }
+  figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:12px; background:var(--panel); }
+  .platebox { position:relative; max-width:520px; }
+  .pin { position:absolute; transform:translate(-50%,-50%); width:20px; height:20px; border-radius:50%;
+         display:flex; align-items:center; justify-content:center; background:rgba(18,16,14,0.82);
+         border:1px solid var(--ink); color:var(--ink); font-size:11px; font-weight:700; pointer-events:none; }
+  ol.platekey { margin:8px 0 0; padding-left:22px; font-size:13px; columns:2; column-gap:20px; }
+  figcaption { color:var(--muted); font-size:13px; margin-top:6px; }
   .cta { display:inline-block; margin:20px 0 8px; padding:12px 22px; border-radius:12px;
          background:linear-gradient(135deg,#6D28D9,var(--ember)); color:#fff; text-decoration:none; font-weight:700; }
-  ul.lineup { list-style:none; padding:0; margin:12px 0 0;
-              display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:2px 16px; }
-  ul.lineup li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.lineup { list-style:none; padding:0; margin:12px 0 0; }
+  ul.lineup li { padding:5px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; flex-wrap:wrap; gap:2px 12px; }
+  ul.lineup .act { font-weight:600; }
+  ul.lineup .slots { color:var(--muted); overflow-wrap:anywhere; }
   h3 { font-size:16px; margin:24px 0 4px; }
   h4 { font-size:13px; margin:16px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
+  h5 { font-size:12px; margin:12px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
   ul.sets { list-style:none; padding:0; margin:4px 0 0; }
-  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; }
+  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; scroll-margin-top:16px; }
+  ul.sets li:target { background:rgba(232,93,46,0.14); }
   ul.sets li time { color:var(--muted); font-variant-numeric:tabular-nums; min-width:96px; flex:none; }
   ul.stagelist { list-style:none; padding:0; margin:8px 0 0; }
   ul.stagelist li { padding:6px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.stagelist .counts { color:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; }
   dl.answers { margin:12px 0 0; }
   dl.answers dt { font-weight:700; font-size:15px; margin:16px 0 4px; }
   dl.answers dd { margin:0; color:var(--muted); font-size:14px; }
-  a.cta-secondary { margin-left:14px; font-weight:600; }
+  p.ctas { display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; margin:20px 0 8px; }
+  p.ctas .cta { margin:0; }
+  a.cta-secondary { font-weight:600; white-space:nowrap; }
   nav.other { margin-top:40px; }
   nav.other a { color:var(--ink); }
+  section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
 </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "MusicFestival",
+  "@type": "MusicEvent",
   "name": "Ultra Miami 2026",
   "url": "https://plursky.com/f/ultra-miami-2026/",
   "startDate": "2026-03-27",
@@ -70,6 +90,7 @@
       "addressCountry": "US"
     }
   },
+  "image": "https://plursky.com/ultra-2026.svg",
   "performer": [
     {
       "@type": "MusicGroup",
@@ -770,6 +791,40 @@
         "@type": "Answer",
         "text": "Ultra Miami 2026 has 7 stages at Bayfront Park, each one listed on this page."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a map for Ultra Miami 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This page shows Plursky's Ultra Miami 2026 site plate. Abstract site plate generated from this festival's own stage and amenity coordinates. Not the official patron map; no festival artwork is reproduced."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Plursky",
+      "item": "https://plursky.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Festivals",
+      "item": "https://plursky.com/#festivals"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Ultra Miami 2026",
+      "item": "https://plursky.com/f/ultra-miami-2026/"
     }
   ]
 }
@@ -777,16 +832,10 @@
 </head>
 <body>
 <main>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Plursky</a> › <a href="/#festivals">Festivals</a> › <span aria-current="page">Ultra Miami 2026</span></nav>
   <h1>Ultra Miami 2026</h1>
-  <p class="meta">Mar 27–29, 2026 · Bayfront Park · Miami, FL · This festival has ended.</p>
+  <p class="meta"><span class="chip chip-past">Past</span>Mar 27–29, 2026 · Bayfront Park · Miami, FL</p>
   <p>Three days on Biscayne Bay</p>
-
-  <p>
-    <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
-    <a class="cta-secondary" href="/?f=ultra-miami-2026">Relive it in the browser</a>
-  </p>
-  <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.</p>
-
 
   <section aria-labelledby="answers-h">
     <h2 id="answers-h">Ultra Miami 2026 — quick answers</h2>
@@ -799,7 +848,35 @@
       <dd>164 artists are announced for Ultra Miami 2026, and every one of them is listed on this page.</dd>
       <dt>How many stages does Ultra Miami 2026 have?</dt>
       <dd>Ultra Miami 2026 has 7 stages at Bayfront Park, each one listed on this page.</dd>
+      <dt>Is there a map for Ultra Miami 2026?</dt>
+      <dd>This page shows Plursky&#39;s Ultra Miami 2026 site plate. Abstract site plate generated from this festival&#39;s own stage and amenity coordinates. Not the official patron map; no festival artwork is reproduced.</dd>
     </dl>
+  </section>
+
+  <section aria-labelledby="map-h">
+    <h2 id="map-h">Ultra Miami 2026 map</h2>
+    <figure class="plate">
+      <div class="platebox">
+        <img src="/ultra-2026.svg" width="100" height="100" loading="lazy" decoding="async" alt="Ultra Miami 2026 site plate: Plursky's abstract stage layout, not the official festival map">
+        <span class="pin" style="left:46.7%;top:13.8%" aria-hidden="true">1</span>
+        <span class="pin" style="left:33.3%;top:83.7%" aria-hidden="true">2</span>
+        <span class="pin" style="left:63.3%;top:90%" aria-hidden="true">3</span>
+        <span class="pin" style="left:75%;top:56.3%" aria-hidden="true">4</span>
+        <span class="pin" style="left:49%;top:35%" aria-hidden="true">5</span>
+        <span class="pin" style="left:20%;top:25%" aria-hidden="true">6</span>
+        <span class="pin" style="left:25%;top:58.8%" aria-hidden="true">7</span>
+      </div>
+      <ol class="platekey">
+        <li>ULTRA Main Stage</li>
+        <li>Worldwide Stage</li>
+        <li>Megastructure</li>
+        <li>The Cove</li>
+        <li>Live Stage</li>
+        <li>UMF Radio Stage</li>
+        <li>Oasis</li>
+      </ol>
+      <figcaption>Abstract site plate generated from this festival&#39;s own stage and amenity coordinates. Not the official patron map; no festival artwork is reproduced.</figcaption>
+    </figure>
   </section>
 
   <section aria-labelledby="schedule-h">
@@ -808,248 +885,234 @@
     <h3>Friday, March 27</h3>
     <h4>ULTRA Main Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-27T16:00">16:00 – 16:50</time> <span>Frank Walker</span></li>
-      <li><time datetime="2026-03-27T16:50">16:50 – 17:55</time> <span>VOYD</span></li>
-      <li><time datetime="2026-03-27T17:55">17:55 – 19:00</time> <span>Worship</span></li>
-      <li><time datetime="2026-03-27T19:00">19:00 – 20:05</time> <span>Illenium</span></li>
-      <li><time datetime="2026-03-27T20:05">20:05 – 21:20</time> <span>Bzrp</span></li>
-      <li><time datetime="2026-03-27T21:20">21:20 – 22:45</time> <span>Alesso b2b Martin Garrix</span></li>
-      <li><time datetime="2026-03-27T22:45">22:45 – 00:00</time> <span>Major Lazer</span></li>
+      <li id="set-ul1"><time datetime="2026-03-27T16:00">16:00 – 16:50</time> <span>Frank Walker</span></li>
+      <li id="set-ul2"><time datetime="2026-03-27T16:50">16:50 – 17:55</time> <span>VOYD</span></li>
+      <li id="set-ul3"><time datetime="2026-03-27T17:55">17:55 – 19:00</time> <span>Worship</span></li>
+      <li id="set-ul4"><time datetime="2026-03-27T19:00">19:00 – 20:05</time> <span>Illenium</span></li>
+      <li id="set-ul5"><time datetime="2026-03-27T20:05">20:05 – 21:20</time> <span>Bzrp</span></li>
+      <li id="set-ul6"><time datetime="2026-03-27T21:20">21:20 – 22:45</time> <span>Alesso b2b Martin Garrix</span></li>
+      <li id="set-ul7"><time datetime="2026-03-27T22:45">22:45 – 00:00</time> <span>Major Lazer</span></li>
     </ul>
     <h4>Worldwide Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-27T16:00">16:00 – 17:00</time> <span>Prada2000</span></li>
-      <li><time datetime="2026-03-27T17:00">17:00 – 18:00</time> <span>Matty Ralph</span></li>
-      <li><time datetime="2026-03-27T18:00">18:00 – 19:00</time> <span>Superstrings</span></li>
-      <li><time datetime="2026-03-27T19:00">19:00 – 20:00</time> <span>Vini Vici</span></li>
-      <li><time datetime="2026-03-27T20:00">20:00 – 21:00</time> <span>Lilly Palmer</span></li>
-      <li><time datetime="2026-03-27T21:00">21:00 – 22:30</time> <span>Armin van Buuren b2b Marlon Hoffstadt</span></li>
-      <li><time datetime="2026-03-27T22:30">22:30 – 00:00</time> <span>Armin van Buuren</span></li>
+      <li id="set-ul8"><time datetime="2026-03-27T16:00">16:00 – 17:00</time> <span>Prada2000</span></li>
+      <li id="set-ul9"><time datetime="2026-03-27T17:00">17:00 – 18:00</time> <span>Matty Ralph</span></li>
+      <li id="set-ul10"><time datetime="2026-03-27T18:00">18:00 – 19:00</time> <span>Superstrings</span></li>
+      <li id="set-ul11"><time datetime="2026-03-27T19:00">19:00 – 20:00</time> <span>Vini Vici</span></li>
+      <li id="set-ul12"><time datetime="2026-03-27T20:00">20:00 – 21:00</time> <span>Lilly Palmer</span></li>
+      <li id="set-ul13"><time datetime="2026-03-27T21:00">21:00 – 22:30</time> <span>Armin van Buuren b2b Marlon Hoffstadt</span></li>
+      <li id="set-ul14"><time datetime="2026-03-27T22:30">22:30 – 00:00</time> <span>Armin van Buuren</span></li>
     </ul>
     <h4>Megastructure</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-27T16:00">16:00 – 17:30</time> <span>MAR-T</span></li>
-      <li><time datetime="2026-03-27T17:30">17:30 – 19:00</time> <span>Massano</span></li>
-      <li><time datetime="2026-03-27T19:00">19:00 – 20:30</time> <span>Miss Monique</span></li>
-      <li><time datetime="2026-03-27T20:30">20:30 – 22:00</time> <span>Vintage Culture</span></li>
-      <li><time datetime="2026-03-27T22:00">22:00 – 00:00</time> <span>Eric Prydz</span></li>
+      <li id="set-ul15"><time datetime="2026-03-27T16:00">16:00 – 17:30</time> <span>MAR-T</span></li>
+      <li id="set-ul16"><time datetime="2026-03-27T17:30">17:30 – 19:00</time> <span>Massano</span></li>
+      <li id="set-ul17"><time datetime="2026-03-27T19:00">19:00 – 20:30</time> <span>Miss Monique</span></li>
+      <li id="set-ul18"><time datetime="2026-03-27T20:30">20:30 – 22:00</time> <span>Vintage Culture</span></li>
+      <li id="set-ul19"><time datetime="2026-03-27T22:00">22:00 – 00:00</time> <span>Eric Prydz</span></li>
     </ul>
     <h4>The Cove</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-27T16:00">16:00 – 17:30</time> <span>Godtripper</span></li>
-      <li><time datetime="2026-03-27T17:30">17:30 – 19:00</time> <span>ALT8</span></li>
-      <li><time datetime="2026-03-27T19:00">19:00 – 20:30</time> <span>999999999</span></li>
-      <li><time datetime="2026-03-27T20:30">20:30 – 22:00</time> <span>Clara Cuvé</span></li>
-      <li><time datetime="2026-03-27T22:00">22:00 – 00:00</time> <span>Sara Landry</span></li>
+      <li id="set-ul20"><time datetime="2026-03-27T16:00">16:00 – 17:30</time> <span>Godtripper</span></li>
+      <li id="set-ul21"><time datetime="2026-03-27T17:30">17:30 – 19:00</time> <span>ALT8</span></li>
+      <li id="set-ul22"><time datetime="2026-03-27T19:00">19:00 – 20:30</time> <span>999999999</span></li>
+      <li id="set-ul23"><time datetime="2026-03-27T20:30">20:30 – 22:00</time> <span>Clara Cuvé</span></li>
+      <li id="set-ul24"><time datetime="2026-03-27T22:00">22:00 – 00:00</time> <span>Sara Landry</span></li>
     </ul>
     <h4>Live Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-27T17:00">17:00 – 18:15</time> <span>Afrobeta</span></li>
-      <li><time datetime="2026-03-27T18:15">18:15 – 19:45</time> <span>SHIMA</span></li>
-      <li><time datetime="2026-03-27T19:45">19:45 – 21:15</time> <span>Black Tiger Sex Machine presents Connected Fighters</span></li>
-      <li><time datetime="2026-03-27T21:15">21:15 – 22:45</time> <span>Of The Trees</span></li>
-      <li><time datetime="2026-03-27T22:45">22:45 – 00:00</time> <span>Levity presents Lasership</span></li>
+      <li id="set-ul25"><time datetime="2026-03-27T17:00">17:00 – 18:15</time> <span>Afrobeta</span></li>
+      <li id="set-ul26"><time datetime="2026-03-27T18:15">18:15 – 19:45</time> <span>SHIMA</span></li>
+      <li id="set-ul27"><time datetime="2026-03-27T19:45">19:45 – 21:15</time> <span>Black Tiger Sex Machine presents Connected Fighters</span></li>
+      <li id="set-ul28"><time datetime="2026-03-27T21:15">21:15 – 22:45</time> <span>Of The Trees</span></li>
+      <li id="set-ul29"><time datetime="2026-03-27T22:45">22:45 – 00:00</time> <span>Levity presents Lasership</span></li>
     </ul>
     <h4>UMF Radio Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-27T16:00">16:00 – 16:30</time> <span>Linney</span></li>
-      <li><time datetime="2026-03-27T16:30">16:30 – 17:15</time> <span>Ookay</span></li>
-      <li><time datetime="2026-03-27T17:15">17:15 – 18:15</time> <span>Nostalgix</span></li>
-      <li><time datetime="2026-03-27T18:15">18:15 – 19:15</time> <span>Jessica Audiffred</span></li>
-      <li><time datetime="2026-03-27T19:15">19:15 – 20:15</time> <span>Steve Aoki</span></li>
-      <li><time datetime="2026-03-27T20:15">20:15 – 21:15</time> <span>Special Guest b2b Special Guest</span></li>
-      <li><time datetime="2026-03-27T21:15">21:15 – 22:15</time> <span>Laidback Luke</span></li>
-      <li><time datetime="2026-03-27T22:15">22:15 – 23:15</time> <span>Riot Ten</span></li>
-      <li><time datetime="2026-03-27T23:15">23:15 – 00:00</time> <span>Bloody Beetroots (Throwback Electro Set)</span></li>
+      <li id="set-ul30"><time datetime="2026-03-27T16:00">16:00 – 16:30</time> <span>Linney</span></li>
+      <li id="set-ul31"><time datetime="2026-03-27T16:30">16:30 – 17:15</time> <span>Ookay</span></li>
+      <li id="set-ul32"><time datetime="2026-03-27T17:15">17:15 – 18:15</time> <span>Nostalgix</span></li>
+      <li id="set-ul33"><time datetime="2026-03-27T18:15">18:15 – 19:15</time> <span>Jessica Audiffred</span></li>
+      <li id="set-ul34"><time datetime="2026-03-27T19:15">19:15 – 20:15</time> <span>Steve Aoki</span></li>
+      <li id="set-ul35"><time datetime="2026-03-27T20:15">20:15 – 21:15</time> <span>Special Guest b2b Special Guest</span></li>
+      <li id="set-ul36"><time datetime="2026-03-27T21:15">21:15 – 22:15</time> <span>Laidback Luke</span></li>
+      <li id="set-ul37"><time datetime="2026-03-27T22:15">22:15 – 23:15</time> <span>Riot Ten</span></li>
+      <li id="set-ul38"><time datetime="2026-03-27T23:15">23:15 – 00:00</time> <span>Bloody Beetroots (Throwback Electro Set)</span></li>
     </ul>
     <h4>Oasis</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-27T16:00">16:00 – 17:00</time> <span>Nundos</span></li>
-      <li><time datetime="2026-03-27T17:00">17:00 – 18:30</time> <span>Richard Fraioli b2b Jimmy Page b3b DJ Ideal</span></li>
-      <li><time datetime="2026-03-27T18:30">18:30 – 19:30</time> <span>Los De La Vega</span></li>
-      <li><time datetime="2026-03-27T19:30">19:30 – 20:00</time> <span>Hymm Marley</span></li>
-      <li><time datetime="2026-03-27T20:00">20:00 – 21:00</time> <span>Tak Shak</span></li>
-      <li><time datetime="2026-03-27T21:00">21:00 – 22:00</time> <span>Rodrigo Vieira</span></li>
-      <li><time datetime="2026-03-27T22:00">22:00 – 23:00</time> <span>DJ Hannah</span></li>
-      <li><time datetime="2026-03-27T23:00">23:00 – 00:00</time> <span>Luca Testa</span></li>
+      <li id="set-ul39"><time datetime="2026-03-27T16:00">16:00 – 17:00</time> <span>Nundos</span></li>
+      <li id="set-ul40"><time datetime="2026-03-27T17:00">17:00 – 18:30</time> <span>Richard Fraioli b2b Jimmy Page b3b DJ Ideal</span></li>
+      <li id="set-ul41"><time datetime="2026-03-27T18:30">18:30 – 19:30</time> <span>Los De La Vega</span></li>
+      <li id="set-ul42"><time datetime="2026-03-27T19:30">19:30 – 20:00</time> <span>Hymm Marley</span></li>
+      <li id="set-ul43"><time datetime="2026-03-27T20:00">20:00 – 21:00</time> <span>Tak Shak</span></li>
+      <li id="set-ul44"><time datetime="2026-03-27T21:00">21:00 – 22:00</time> <span>Rodrigo Vieira</span></li>
+      <li id="set-ul45"><time datetime="2026-03-27T22:00">22:00 – 23:00</time> <span>DJ Hannah</span></li>
+      <li id="set-ul46"><time datetime="2026-03-27T23:00">23:00 – 00:00</time> <span>Luca Testa</span></li>
     </ul>
     <h3>Saturday, March 28</h3>
     <h4>ULTRA Main Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-28T12:00">12:00 – 12:55</time> <span>Gil Glaze</span></li>
-      <li><time datetime="2026-03-28T12:55">12:55 – 14:00</time> <span>MYKRIS</span></li>
-      <li><time datetime="2026-03-28T14:00">14:00 – 15:05</time> <span>HALÕ</span></li>
-      <li><time datetime="2026-03-28T15:05">15:05 – 16:10</time> <span>Nicky Romero</span></li>
-      <li><time datetime="2026-03-28T16:10">16:10 – 17:15</time> <span>Loud Luxury</span></li>
-      <li><time datetime="2026-03-28T17:15">17:15 – 18:20</time> <span>Alan Walker</span></li>
-      <li><time datetime="2026-03-28T18:20">18:20 – 19:25</time> <span>Steve Aoki</span></li>
-      <li><time datetime="2026-03-28T19:25">19:25 – 20:30</time> <span>Excision</span></li>
-      <li><time datetime="2026-03-28T20:30">20:30 – 21:35</time> <span>Hardwell</span></li>
-      <li><time datetime="2026-03-28T21:35">21:35 – 22:45</time> <span>Armin van Buuren</span></li>
-      <li><time datetime="2026-03-28T22:45">22:45 – 00:00</time> <span>Sebastian Ingrosso b2b Steve Angello</span></li>
+      <li id="set-ul47"><time datetime="2026-03-28T12:00">12:00 – 12:55</time> <span>Gil Glaze</span></li>
+      <li id="set-ul48"><time datetime="2026-03-28T12:55">12:55 – 14:00</time> <span>MYKRIS</span></li>
+      <li id="set-ul49"><time datetime="2026-03-28T14:00">14:00 – 15:05</time> <span>HALÕ</span></li>
+      <li id="set-ul50"><time datetime="2026-03-28T15:05">15:05 – 16:10</time> <span>Nicky Romero</span></li>
+      <li id="set-ul51"><time datetime="2026-03-28T16:10">16:10 – 17:15</time> <span>Loud Luxury</span></li>
+      <li id="set-ul52"><time datetime="2026-03-28T17:15">17:15 – 18:20</time> <span>Alan Walker</span></li>
+      <li id="set-ul53"><time datetime="2026-03-28T18:20">18:20 – 19:25</time> <span>Steve Aoki</span></li>
+      <li id="set-ul54"><time datetime="2026-03-28T19:25">19:25 – 20:30</time> <span>Excision</span></li>
+      <li id="set-ul55"><time datetime="2026-03-28T20:30">20:30 – 21:35</time> <span>Hardwell</span></li>
+      <li id="set-ul56"><time datetime="2026-03-28T21:35">21:35 – 22:45</time> <span>Armin van Buuren</span></li>
+      <li id="set-ul57"><time datetime="2026-03-28T22:45">22:45 – 00:00</time> <span>Sebastian Ingrosso b2b Steve Angello</span></li>
     </ul>
     <h4>Worldwide Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-28T12:10">12:10 – 13:00</time> <span>Julian Cross</span></li>
-      <li><time datetime="2026-03-28T13:00">13:00 – 14:00</time> <span>Distinct Motive</span></li>
-      <li><time datetime="2026-03-28T14:00">14:00 – 15:00</time> <span>Sidequest</span></li>
-      <li><time datetime="2026-03-28T15:00">15:00 – 16:00</time> <span>Daniel Allan</span></li>
-      <li><time datetime="2026-03-28T16:00">16:00 – 17:00</time> <span>ARMNHMR</span></li>
-      <li><time datetime="2026-03-28T17:00">17:00 – 18:00</time> <span>HOL!</span></li>
-      <li><time datetime="2026-03-28T18:00">18:00 – 19:00</time> <span>BOU</span></li>
-      <li><time datetime="2026-03-28T19:00">19:00 – 20:00</time> <span>Kai Wachi</span></li>
-      <li><time datetime="2026-03-28T20:00">20:00 – 21:00</time> <span>Outlaw b2b Trym</span></li>
-      <li><time datetime="2026-03-28T21:00">21:00 – 22:00</time> <span>Hamdi</span></li>
-      <li><time datetime="2026-03-28T22:00">22:00 – 23:00</time> <span>¥ØU$UK€ ¥UK1MAT$U</span></li>
-      <li><time datetime="2026-03-28T23:00">23:00 – 00:00</time> <span>ISOXO</span></li>
+      <li id="set-ul58"><time datetime="2026-03-28T12:10">12:10 – 13:00</time> <span>Julian Cross</span></li>
+      <li id="set-ul59"><time datetime="2026-03-28T13:00">13:00 – 14:00</time> <span>Distinct Motive</span></li>
+      <li id="set-ul60"><time datetime="2026-03-28T14:00">14:00 – 15:00</time> <span>Sidequest</span></li>
+      <li id="set-ul61"><time datetime="2026-03-28T15:00">15:00 – 16:00</time> <span>Daniel Allan</span></li>
+      <li id="set-ul62"><time datetime="2026-03-28T16:00">16:00 – 17:00</time> <span>ARMNHMR</span></li>
+      <li id="set-ul63"><time datetime="2026-03-28T17:00">17:00 – 18:00</time> <span>HOL!</span></li>
+      <li id="set-ul64"><time datetime="2026-03-28T18:00">18:00 – 19:00</time> <span>BOU</span></li>
+      <li id="set-ul65"><time datetime="2026-03-28T19:00">19:00 – 20:00</time> <span>Kai Wachi</span></li>
+      <li id="set-ul66"><time datetime="2026-03-28T20:00">20:00 – 21:00</time> <span>Outlaw b2b Trym</span></li>
+      <li id="set-ul67"><time datetime="2026-03-28T21:00">21:00 – 22:00</time> <span>Hamdi</span></li>
+      <li id="set-ul68"><time datetime="2026-03-28T22:00">22:00 – 23:00</time> <span>¥ØU$UK€ ¥UK1MAT$U</span></li>
+      <li id="set-ul69"><time datetime="2026-03-28T23:00">23:00 – 00:00</time> <span>ISOXO</span></li>
     </ul>
     <h4>Megastructure</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-28T12:00">12:00 – 13:15</time> <span>Andy Pate b2b Rod B.</span></li>
-      <li><time datetime="2026-03-28T13:15">13:15 – 14:30</time> <span>Juliet Fox</span></li>
-      <li><time datetime="2026-03-28T14:30">14:30 – 16:00</time> <span>Alan Fitzpatrick b2b Marco Faraone</span></li>
-      <li><time datetime="2026-03-28T16:00">16:00 – 17:30</time> <span>Sasha_John Digweed</span></li>
-      <li><time datetime="2026-03-28T17:30">17:30 – 19:00</time> <span>Eli Brown</span></li>
-      <li><time datetime="2026-03-28T19:00">19:00 – 21:00</time> <span>Adam Beyer b2b Joseph Capriati</span></li>
-      <li><time datetime="2026-03-28T21:00">21:00 – 00:00</time> <span>Carl Cox</span></li>
+      <li id="set-ul70"><time datetime="2026-03-28T12:00">12:00 – 13:15</time> <span>Andy Pate b2b Rod B.</span></li>
+      <li id="set-ul71"><time datetime="2026-03-28T13:15">13:15 – 14:30</time> <span>Juliet Fox</span></li>
+      <li id="set-ul72"><time datetime="2026-03-28T14:30">14:30 – 16:00</time> <span>Alan Fitzpatrick b2b Marco Faraone</span></li>
+      <li id="set-ul73"><time datetime="2026-03-28T16:00">16:00 – 17:30</time> <span>Sasha_John Digweed</span></li>
+      <li id="set-ul74"><time datetime="2026-03-28T17:30">17:30 – 19:00</time> <span>Eli Brown</span></li>
+      <li id="set-ul75"><time datetime="2026-03-28T19:00">19:00 – 21:00</time> <span>Adam Beyer b2b Joseph Capriati</span></li>
+      <li id="set-ul76"><time datetime="2026-03-28T21:00">21:00 – 00:00</time> <span>Carl Cox</span></li>
     </ul>
     <h4>The Cove</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-28T12:00">12:00 – 13:15</time> <span>JOA</span></li>
-      <li><time datetime="2026-03-28T13:15">13:15 – 14:30</time> <span>Olympe</span></li>
-      <li><time datetime="2026-03-28T14:30">14:30 – 16:00</time> <span>Rivo</span></li>
-      <li><time datetime="2026-03-28T16:00">16:00 – 17:30</time> <span>Kasia</span></li>
-      <li><time datetime="2026-03-28T17:30">17:30 – 19:00</time> <span>Deep Dish</span></li>
-      <li><time datetime="2026-03-28T19:00">19:00 – 20:30</time> <span>Colyn b2b Innellea</span></li>
-      <li><time datetime="2026-03-28T20:30">20:30 – 22:00</time> <span>Cassian</span></li>
-      <li><time datetime="2026-03-28T22:00">22:00 – 00:00</time> <span>Joris Voorn b2b Korolova</span></li>
+      <li id="set-ul77"><time datetime="2026-03-28T12:00">12:00 – 13:15</time> <span>JOA</span></li>
+      <li id="set-ul78"><time datetime="2026-03-28T13:15">13:15 – 14:30</time> <span>Olympe</span></li>
+      <li id="set-ul79"><time datetime="2026-03-28T14:30">14:30 – 16:00</time> <span>Rivo</span></li>
+      <li id="set-ul80"><time datetime="2026-03-28T16:00">16:00 – 17:30</time> <span>Kasia</span></li>
+      <li id="set-ul81"><time datetime="2026-03-28T17:30">17:30 – 19:00</time> <span>Deep Dish</span></li>
+      <li id="set-ul82"><time datetime="2026-03-28T19:00">19:00 – 20:30</time> <span>Colyn b2b Innellea</span></li>
+      <li id="set-ul83"><time datetime="2026-03-28T20:30">20:30 – 22:00</time> <span>Cassian</span></li>
+      <li id="set-ul84"><time datetime="2026-03-28T22:00">22:00 – 00:00</time> <span>Joris Voorn b2b Korolova</span></li>
     </ul>
     <h4>Live Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-28T16:00">16:00 – 17:10</time> <span>Miss Bashful</span></li>
-      <li><time datetime="2026-03-28T17:10">17:10 – 18:30</time> <span>Confidence Man</span></li>
-      <li><time datetime="2026-03-28T18:30">18:30 – 20:00</time> <span>Snow Strippers</span></li>
-      <li><time datetime="2026-03-28T20:00">20:00 – 21:30</time> <span>Madeon</span></li>
-      <li><time datetime="2026-03-28T21:30">21:30 – 22:45</time> <span>Boys Noize Live</span></li>
-      <li><time datetime="2026-03-28T22:45">22:45 – 00:00</time> <span>Brutalismus 3000</span></li>
+      <li id="set-ul85"><time datetime="2026-03-28T16:00">16:00 – 17:10</time> <span>Miss Bashful</span></li>
+      <li id="set-ul86"><time datetime="2026-03-28T17:10">17:10 – 18:30</time> <span>Confidence Man</span></li>
+      <li id="set-ul87"><time datetime="2026-03-28T18:30">18:30 – 20:00</time> <span>Snow Strippers</span></li>
+      <li id="set-ul88"><time datetime="2026-03-28T20:00">20:00 – 21:30</time> <span>Madeon</span></li>
+      <li id="set-ul89"><time datetime="2026-03-28T21:30">21:30 – 22:45</time> <span>Boys Noize Live</span></li>
+      <li id="set-ul90"><time datetime="2026-03-28T22:45">22:45 – 00:00</time> <span>Brutalismus 3000</span></li>
     </ul>
     <h4>UMF Radio Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-28T12:00">12:00 – 13:30</time> <span>CGK</span></li>
-      <li><time datetime="2026-03-28T13:30">13:30 – 15:00</time> <span>Darksiderz</span></li>
-      <li><time datetime="2026-03-28T15:00">15:00 – 16:00</time> <span>Audiofreq</span></li>
-      <li><time datetime="2026-03-28T16:00">16:00 – 17:00</time> <span>The Purge</span></li>
-      <li><time datetime="2026-03-28T17:00">17:00 – 18:00</time> <span>The Saints</span></li>
-      <li><time datetime="2026-03-28T18:00">18:00 – 19:00</time> <span>Coone</span></li>
-      <li><time datetime="2026-03-28T19:00">19:00 – 20:00</time> <span>Da Tweekaz</span></li>
-      <li><time datetime="2026-03-28T20:00">20:00 – 21:00</time> <span>Mish</span></li>
-      <li><time datetime="2026-03-28T21:00">21:00 – 22:00</time> <span>D-Sturb</span></li>
-      <li><time datetime="2026-03-28T22:00">22:00 – 23:00</time> <span>Dual Damage</span></li>
-      <li><time datetime="2026-03-28T23:00">23:00 – 00:00</time> <span>Soren</span></li>
+      <li id="set-ul91"><time datetime="2026-03-28T12:00">12:00 – 13:30</time> <span>CGK</span></li>
+      <li id="set-ul92"><time datetime="2026-03-28T13:30">13:30 – 15:00</time> <span>Darksiderz</span></li>
+      <li id="set-ul93"><time datetime="2026-03-28T15:00">15:00 – 16:00</time> <span>Audiofreq</span></li>
+      <li id="set-ul94"><time datetime="2026-03-28T16:00">16:00 – 17:00</time> <span>The Purge</span></li>
+      <li id="set-ul95"><time datetime="2026-03-28T17:00">17:00 – 18:00</time> <span>The Saints</span></li>
+      <li id="set-ul96"><time datetime="2026-03-28T18:00">18:00 – 19:00</time> <span>Coone</span></li>
+      <li id="set-ul97"><time datetime="2026-03-28T19:00">19:00 – 20:00</time> <span>Da Tweekaz</span></li>
+      <li id="set-ul98"><time datetime="2026-03-28T20:00">20:00 – 21:00</time> <span>Mish</span></li>
+      <li id="set-ul99"><time datetime="2026-03-28T21:00">21:00 – 22:00</time> <span>D-Sturb</span></li>
+      <li id="set-ul100"><time datetime="2026-03-28T22:00">22:00 – 23:00</time> <span>Dual Damage</span></li>
+      <li id="set-ul101"><time datetime="2026-03-28T23:00">23:00 – 00:00</time> <span>Soren</span></li>
     </ul>
     <h4>Oasis</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-28T12:00">12:00 – 13:00</time> <span>Cimeo</span></li>
-      <li><time datetime="2026-03-28T13:00">13:00 – 14:00</time> <span>Juno b2b Wyzzard b3b Bebe Breaks</span></li>
-      <li><time datetime="2026-03-28T14:00">14:00 – 15:00</time> <span>Kauro</span></li>
-      <li><time datetime="2026-03-28T15:00">15:00 – 16:00</time> <span>Soul Goodman b2b Dabura</span></li>
-      <li><time datetime="2026-03-28T16:00">16:00 – 17:00</time> <span>CVMRN</span></li>
-      <li><time datetime="2026-03-28T17:00">17:00 – 18:00</time> <span>Bill Kelly</span></li>
-      <li><time datetime="2026-03-28T18:00">18:00 – 19:00</time> <span>Lucy Guo</span></li>
-      <li><time datetime="2026-03-28T19:00">19:00 – 20:00</time> <span>Jack Vice</span></li>
-      <li><time datetime="2026-03-28T20:00">20:00 – 21:00</time> <span>Pinto</span></li>
-      <li><time datetime="2026-03-28T21:00">21:00 – 22:00</time> <span>Marco Ninni</span></li>
-      <li><time datetime="2026-03-28T22:00">22:00 – 23:00</time> <span>Alexander Som</span></li>
-      <li><time datetime="2026-03-28T23:00">23:00 – 00:00</time> <span>Wally Lopez</span></li>
+      <li id="set-ul102"><time datetime="2026-03-28T12:00">12:00 – 13:00</time> <span>Cimeo</span></li>
+      <li id="set-ul103"><time datetime="2026-03-28T13:00">13:00 – 14:00</time> <span>Juno b2b Wyzzard b3b Bebe Breaks</span></li>
+      <li id="set-ul104"><time datetime="2026-03-28T14:00">14:00 – 15:00</time> <span>Kauro</span></li>
+      <li id="set-ul105"><time datetime="2026-03-28T15:00">15:00 – 16:00</time> <span>Soul Goodman b2b Dabura</span></li>
+      <li id="set-ul106"><time datetime="2026-03-28T16:00">16:00 – 17:00</time> <span>CVMRN</span></li>
+      <li id="set-ul107"><time datetime="2026-03-28T17:00">17:00 – 18:00</time> <span>Bill Kelly</span></li>
+      <li id="set-ul108"><time datetime="2026-03-28T18:00">18:00 – 19:00</time> <span>Lucy Guo</span></li>
+      <li id="set-ul109"><time datetime="2026-03-28T19:00">19:00 – 20:00</time> <span>Jack Vice</span></li>
+      <li id="set-ul110"><time datetime="2026-03-28T20:00">20:00 – 21:00</time> <span>Pinto</span></li>
+      <li id="set-ul111"><time datetime="2026-03-28T21:00">21:00 – 22:00</time> <span>Marco Ninni</span></li>
+      <li id="set-ul112"><time datetime="2026-03-28T22:00">22:00 – 23:00</time> <span>Alexander Som</span></li>
+      <li id="set-ul113"><time datetime="2026-03-28T23:00">23:00 – 00:00</time> <span>Wally Lopez</span></li>
     </ul>
     <h3>Sunday, March 29</h3>
     <h4>ULTRA Main Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-29T12:15">12:15 – 13:05</time> <span>Kapuchon</span></li>
-      <li><time datetime="2026-03-29T13:05">13:05 – 14:10</time> <span>ME N U</span></li>
-      <li><time datetime="2026-03-29T14:10">14:10 – 15:15</time> <span>R3HAB</span></li>
-      <li><time datetime="2026-03-29T15:15">15:15 – 16:20</time> <span>Maddix</span></li>
-      <li><time datetime="2026-03-29T16:20">16:20 – 17:25</time> <span>ARTBAT</span></li>
-      <li><time datetime="2026-03-29T17:25">17:25 – 18:30</time> <span>Marlon Hoffstadt</span></li>
-      <li><time datetime="2026-03-29T18:30">18:30 – 19:35</time> <span>Afrojack</span></li>
-      <li><time datetime="2026-03-29T19:35">19:35 – 20:45</time> <span>DJ Snake</span></li>
-      <li><time datetime="2026-03-29T20:45">20:45 – 22:00</time> <span>John Summit</span></li>
+      <li id="set-ul114"><time datetime="2026-03-29T12:15">12:15 – 13:05</time> <span>Kapuchon</span></li>
+      <li id="set-ul115"><time datetime="2026-03-29T13:05">13:05 – 14:10</time> <span>ME N U</span></li>
+      <li id="set-ul116"><time datetime="2026-03-29T14:10">14:10 – 15:15</time> <span>R3HAB</span></li>
+      <li id="set-ul117"><time datetime="2026-03-29T15:15">15:15 – 16:20</time> <span>Maddix</span></li>
+      <li id="set-ul118"><time datetime="2026-03-29T16:20">16:20 – 17:25</time> <span>ARTBAT</span></li>
+      <li id="set-ul119"><time datetime="2026-03-29T17:25">17:25 – 18:30</time> <span>Marlon Hoffstadt</span></li>
+      <li id="set-ul120"><time datetime="2026-03-29T18:30">18:30 – 19:35</time> <span>Afrojack</span></li>
+      <li id="set-ul121"><time datetime="2026-03-29T19:35">19:35 – 20:45</time> <span>DJ Snake</span></li>
+      <li id="set-ul122"><time datetime="2026-03-29T20:45">20:45 – 22:00</time> <span>John Summit</span></li>
     </ul>
     <h4>Worldwide Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-29T12:00">12:00 – 13:00</time> <span>Big Florida</span></li>
-      <li><time datetime="2026-03-29T13:00">13:00 – 14:00</time> <span>JSTJR</span></li>
-      <li><time datetime="2026-03-29T14:00">14:00 – 15:00</time> <span>BOLO</span></li>
-      <li><time datetime="2026-03-29T15:00">15:00 – 16:00</time> <span>LAYZ</span></li>
-      <li><time datetime="2026-03-29T16:00">16:00 – 17:00</time> <span>Andy C</span></li>
-      <li><time datetime="2026-03-29T17:00">17:00 – 18:00</time> <span>Holy Priest</span></li>
-      <li><time datetime="2026-03-29T18:00">18:00 – 19:00</time> <span>Peekaboo</span></li>
-      <li><time datetime="2026-03-29T19:00">19:00 – 20:30</time> <span>Ray Volpe b2b Sullivan King</span></li>
-      <li><time datetime="2026-03-29T20:30">20:30 – 22:00</time> <span>Wankdat</span></li>
+      <li id="set-ul123"><time datetime="2026-03-29T12:00">12:00 – 13:00</time> <span>Big Florida</span></li>
+      <li id="set-ul124"><time datetime="2026-03-29T13:00">13:00 – 14:00</time> <span>JSTJR</span></li>
+      <li id="set-ul125"><time datetime="2026-03-29T14:00">14:00 – 15:00</time> <span>BOLO</span></li>
+      <li id="set-ul126"><time datetime="2026-03-29T15:00">15:00 – 16:00</time> <span>LAYZ</span></li>
+      <li id="set-ul127"><time datetime="2026-03-29T16:00">16:00 – 17:00</time> <span>Andy C</span></li>
+      <li id="set-ul128"><time datetime="2026-03-29T17:00">17:00 – 18:00</time> <span>Holy Priest</span></li>
+      <li id="set-ul129"><time datetime="2026-03-29T18:00">18:00 – 19:00</time> <span>Peekaboo</span></li>
+      <li id="set-ul130"><time datetime="2026-03-29T19:00">19:00 – 20:30</time> <span>Ray Volpe b2b Sullivan King</span></li>
+      <li id="set-ul131"><time datetime="2026-03-29T20:30">20:30 – 22:00</time> <span>Wankdat</span></li>
     </ul>
     <h4>Megastructure</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-29T12:00">12:00 – 14:00</time> <span>Bassett b2b Christopher James</span></li>
-      <li><time datetime="2026-03-29T14:00">14:00 – 15:30</time> <span>Scenarios</span></li>
-      <li><time datetime="2026-03-29T15:30">15:30 – 17:00</time> <span>Argy b2b Mind Against</span></li>
-      <li><time datetime="2026-03-29T17:00">17:00 – 18:30</time> <span>Adriatique</span></li>
-      <li><time datetime="2026-03-29T18:30">18:30 – 20:00</time> <span>Boris Brejcha</span></li>
-      <li><time datetime="2026-03-29T20:00">20:00 – 22:00</time> <span>Amelie Lens b2b Sara Landry</span></li>
+      <li id="set-ul132"><time datetime="2026-03-29T12:00">12:00 – 14:00</time> <span>Bassett b2b Christopher James</span></li>
+      <li id="set-ul133"><time datetime="2026-03-29T14:00">14:00 – 15:30</time> <span>Scenarios</span></li>
+      <li id="set-ul134"><time datetime="2026-03-29T15:30">15:30 – 17:00</time> <span>Argy b2b Mind Against</span></li>
+      <li id="set-ul135"><time datetime="2026-03-29T17:00">17:00 – 18:30</time> <span>Adriatique</span></li>
+      <li id="set-ul136"><time datetime="2026-03-29T18:30">18:30 – 20:00</time> <span>Boris Brejcha</span></li>
+      <li id="set-ul137"><time datetime="2026-03-29T20:00">20:00 – 22:00</time> <span>Amelie Lens b2b Sara Landry</span></li>
     </ul>
     <h4>The Cove</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-29T12:00">12:00 – 13:00</time> <span>M.O.N.R.O.E.</span></li>
-      <li><time datetime="2026-03-29T13:00">13:00 – 14:00</time> <span>Plastik Funk</span></li>
-      <li><time datetime="2026-03-29T14:00">14:00 – 15:15</time> <span>Black Fancy</span></li>
-      <li><time datetime="2026-03-29T15:15">15:15 – 16:30</time> <span>Malóne</span></li>
-      <li><time datetime="2026-03-29T16:30">16:30 – 18:00</time> <span>Rossi.</span></li>
-      <li><time datetime="2026-03-29T18:00">18:00 – 20:00</time> <span>Dennis Cruz b2b Seth Troxler</span></li>
-      <li><time datetime="2026-03-29T20:00">20:00 – 22:00</time> <span>The Martinez Brothers</span></li>
+      <li id="set-ul138"><time datetime="2026-03-29T12:00">12:00 – 13:00</time> <span>M.O.N.R.O.E.</span></li>
+      <li id="set-ul139"><time datetime="2026-03-29T13:00">13:00 – 14:00</time> <span>Plastik Funk</span></li>
+      <li id="set-ul140"><time datetime="2026-03-29T14:00">14:00 – 15:15</time> <span>Black Fancy</span></li>
+      <li id="set-ul141"><time datetime="2026-03-29T15:15">15:15 – 16:30</time> <span>Malóne</span></li>
+      <li id="set-ul142"><time datetime="2026-03-29T16:30">16:30 – 18:00</time> <span>Rossi.</span></li>
+      <li id="set-ul143"><time datetime="2026-03-29T18:00">18:00 – 20:00</time> <span>Dennis Cruz b2b Seth Troxler</span></li>
+      <li id="set-ul144"><time datetime="2026-03-29T20:00">20:00 – 22:00</time> <span>The Martinez Brothers</span></li>
     </ul>
     <h4>Live Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-29T16:00">16:00 – 17:00</time> <span>BOIISH</span></li>
-      <li><time datetime="2026-03-29T17:00">17:00 – 18:15</time> <span>Parisi</span></li>
-      <li><time datetime="2026-03-29T18:15">18:15 – 19:30</time> <span>Louis The Child</span></li>
-      <li><time datetime="2026-03-29T19:30">19:30 – 21:00</time> <span>TIM3LESS</span></li>
-      <li><time datetime="2026-03-29T21:00">21:00 – 22:00</time> <span>ZHU</span></li>
+      <li id="set-ul145"><time datetime="2026-03-29T16:00">16:00 – 17:00</time> <span>BOIISH</span></li>
+      <li id="set-ul146"><time datetime="2026-03-29T17:00">17:00 – 18:15</time> <span>Parisi</span></li>
+      <li id="set-ul147"><time datetime="2026-03-29T18:15">18:15 – 19:30</time> <span>Louis The Child</span></li>
+      <li id="set-ul148"><time datetime="2026-03-29T19:30">19:30 – 21:00</time> <span>TIM3LESS</span></li>
+      <li id="set-ul149"><time datetime="2026-03-29T21:00">21:00 – 22:00</time> <span>ZHU</span></li>
     </ul>
     <h4>UMF Radio Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-29T12:00">12:00 – 13:30</time> <span>EERA</span></li>
-      <li><time datetime="2026-03-29T13:30">13:30 – 15:00</time> <span>Frost Children</span></li>
-      <li><time datetime="2026-03-29T15:00">15:00 – 16:30</time> <span>X CLUB.</span></li>
-      <li><time datetime="2026-03-29T16:30">16:30 – 18:00</time> <span>FCUKERS</span></li>
-      <li><time datetime="2026-03-29T18:00">18:00 – 19:30</time> <span>MCR-T</span></li>
-      <li><time datetime="2026-03-29T19:30">19:30 – 20:30</time> <span>DJ Gigola</span></li>
-      <li><time datetime="2026-03-29T20:30">20:30 – 22:00</time> <span>Peterblue</span></li>
+      <li id="set-ul150"><time datetime="2026-03-29T12:00">12:00 – 13:30</time> <span>EERA</span></li>
+      <li id="set-ul151"><time datetime="2026-03-29T13:30">13:30 – 15:00</time> <span>Frost Children</span></li>
+      <li id="set-ul152"><time datetime="2026-03-29T15:00">15:00 – 16:30</time> <span>X CLUB.</span></li>
+      <li id="set-ul153"><time datetime="2026-03-29T16:30">16:30 – 18:00</time> <span>FCUKERS</span></li>
+      <li id="set-ul154"><time datetime="2026-03-29T18:00">18:00 – 19:30</time> <span>MCR-T</span></li>
+      <li id="set-ul155"><time datetime="2026-03-29T19:30">19:30 – 20:30</time> <span>DJ Gigola</span></li>
+      <li id="set-ul156"><time datetime="2026-03-29T20:30">20:30 – 22:00</time> <span>Peterblue</span></li>
     </ul>
     <h4>Oasis</h4>
     <ul class="sets">
-      <li><time datetime="2026-03-29T12:00">12:00 – 13:00</time> <span>Dubplates &amp; Dragons</span></li>
-      <li><time datetime="2026-03-29T13:00">13:00 – 14:00</time> <span>Andy Ares</span></li>
-      <li><time datetime="2026-03-29T14:00">14:00 – 15:00</time> <span>Jay P</span></li>
-      <li><time datetime="2026-03-29T15:00">15:00 – 16:00</time> <span>Sebastian Morxx</span></li>
-      <li><time datetime="2026-03-29T16:00">16:00 – 17:00</time> <span>Wags b2b Lemony Snickettes</span></li>
-      <li><time datetime="2026-03-29T17:00">17:00 – 18:00</time> <span>Luke Hunter</span></li>
-      <li><time datetime="2026-03-29T18:00">18:00 – 19:00</time> <span>Purple</span></li>
-      <li><time datetime="2026-03-29T19:00">19:00 – 20:00</time> <span>Audiosal</span></li>
-      <li><time datetime="2026-03-29T20:00">20:00 – 21:00</time> <span>X-Con b2b Marvin Delgado b3b CJ</span></li>
-      <li><time datetime="2026-03-29T21:00">21:00 – 22:00</time> <span>Metaphysical</span></li>
-    </ul>
-  </section>
-
-  <section aria-labelledby="stages-h">
-    <h2 id="stages-h">Ultra Miami 2026 stages</h2>
-    <p>Plursky has 7 stages for Ultra Miami 2026 at Bayfront Park, each one listed below.</p>
-    <ul class="stagelist">
-      <li><strong>ULTRA Main Stage</strong> · North lawn · headliners</li>
-      <li><strong>Worldwide Stage</strong> · South lawn · bass, trance, hard</li>
-      <li><strong>Megastructure</strong> · RESISTANCE Megastructure · south-east, techno + house</li>
-      <li><strong>The Cove</strong> · Bayfront · underground takeovers</li>
-      <li><strong>Live Stage</strong> · FPL Solar Amphitheater · live acts</li>
-      <li><strong>UMF Radio Stage</strong> · North-west · takeover stage</li>
-      <li><strong>Oasis</strong> · Mid-park · local + rising</li>
+      <li id="set-ul157"><time datetime="2026-03-29T12:00">12:00 – 13:00</time> <span>Dubplates &amp; Dragons</span></li>
+      <li id="set-ul158"><time datetime="2026-03-29T13:00">13:00 – 14:00</time> <span>Andy Ares</span></li>
+      <li id="set-ul159"><time datetime="2026-03-29T14:00">14:00 – 15:00</time> <span>Jay P</span></li>
+      <li id="set-ul160"><time datetime="2026-03-29T15:00">15:00 – 16:00</time> <span>Sebastian Morxx</span></li>
+      <li id="set-ul161"><time datetime="2026-03-29T16:00">16:00 – 17:00</time> <span>Wags b2b Lemony Snickettes</span></li>
+      <li id="set-ul162"><time datetime="2026-03-29T17:00">17:00 – 18:00</time> <span>Luke Hunter</span></li>
+      <li id="set-ul163"><time datetime="2026-03-29T18:00">18:00 – 19:00</time> <span>Purple</span></li>
+      <li id="set-ul164"><time datetime="2026-03-29T19:00">19:00 – 20:00</time> <span>Audiosal</span></li>
+      <li id="set-ul165"><time datetime="2026-03-29T20:00">20:00 – 21:00</time> <span>X-Con b2b Marvin Delgado b3b CJ</span></li>
+      <li id="set-ul166"><time datetime="2026-03-29T21:00">21:00 – 22:00</time> <span>Metaphysical</span></li>
     </ul>
   </section>
 
@@ -1057,203 +1120,224 @@
     <h2 id="lineup-h">Ultra Miami 2026 lineup</h2>
     <p>164 artists announced.</p>
     <ul class="lineup">
-      <li>¥ØU$UK€ ¥UK1MAT$U</li>
-      <li>999999999</li>
-      <li>Adam Beyer b2b Joseph Capriati</li>
-      <li>Adriatique</li>
-      <li>Afrobeta</li>
-      <li>Afrojack</li>
-      <li>Alan Fitzpatrick b2b Marco Faraone</li>
-      <li>Alan Walker</li>
-      <li>Alesso b2b Martin Garrix</li>
-      <li>Alexander Som</li>
-      <li>ALT8</li>
-      <li>Amelie Lens b2b Sara Landry</li>
-      <li>Andy Ares</li>
-      <li>Andy C</li>
-      <li>Andy Pate b2b Rod B.</li>
-      <li>Argy b2b Mind Against</li>
-      <li>Armin van Buuren</li>
-      <li>Armin van Buuren b2b Marlon Hoffstadt</li>
-      <li>ARMNHMR</li>
-      <li>ARTBAT</li>
-      <li>Audiofreq</li>
-      <li>Audiosal</li>
-      <li>Bassett b2b Christopher James</li>
-      <li>Big Florida</li>
-      <li>Bill Kelly</li>
-      <li>Black Fancy</li>
-      <li>Black Tiger Sex Machine presents Connected Fighters</li>
-      <li>Bloody Beetroots (Throwback Electro Set)</li>
-      <li>BOIISH</li>
-      <li>BOLO</li>
-      <li>Boris Brejcha</li>
-      <li>BOU</li>
-      <li>Boys Noize Live</li>
-      <li>Brutalismus 3000</li>
-      <li>Bzrp</li>
-      <li>Carl Cox</li>
-      <li>Cassian</li>
-      <li>CGK</li>
-      <li>Cimeo</li>
-      <li>Clara Cuvé</li>
-      <li>Colyn b2b Innellea</li>
-      <li>Confidence Man</li>
-      <li>Coone</li>
-      <li>CVMRN</li>
-      <li>D-Sturb</li>
-      <li>Da Tweekaz</li>
-      <li>Daniel Allan</li>
-      <li>Darksiderz</li>
-      <li>Deep Dish</li>
-      <li>Dennis Cruz b2b Seth Troxler</li>
-      <li>Distinct Motive</li>
-      <li>DJ Gigola</li>
-      <li>DJ Hannah</li>
-      <li>DJ Snake</li>
-      <li>Dual Damage</li>
-      <li>Dubplates &amp; Dragons</li>
-      <li>EERA</li>
-      <li>Eli Brown</li>
-      <li>Eric Prydz</li>
-      <li>Excision</li>
-      <li>FCUKERS</li>
-      <li>Frank Walker</li>
-      <li>Frost Children</li>
-      <li>Gil Glaze</li>
-      <li>Godtripper</li>
-      <li>HALÕ</li>
-      <li>Hamdi</li>
-      <li>Hardwell</li>
-      <li>HOL!</li>
-      <li>Holy Priest</li>
-      <li>Hymm Marley</li>
-      <li>Illenium</li>
-      <li>ISOXO</li>
-      <li>Jack Vice</li>
-      <li>Jay P</li>
-      <li>Jessica Audiffred</li>
-      <li>JOA</li>
-      <li>John Summit</li>
-      <li>Joris Voorn b2b Korolova</li>
-      <li>JSTJR</li>
-      <li>Julian Cross</li>
-      <li>Juliet Fox</li>
-      <li>Juno b2b Wyzzard b3b Bebe Breaks</li>
-      <li>Kai Wachi</li>
-      <li>Kapuchon</li>
-      <li>Kasia</li>
-      <li>Kauro</li>
-      <li>Laidback Luke</li>
-      <li>LAYZ</li>
-      <li>Levity presents Lasership</li>
-      <li>Lilly Palmer</li>
-      <li>Linney</li>
-      <li>Los De La Vega</li>
-      <li>Loud Luxury</li>
-      <li>Louis The Child</li>
-      <li>Luca Testa</li>
-      <li>Lucy Guo</li>
-      <li>Luke Hunter</li>
-      <li>M.O.N.R.O.E.</li>
-      <li>Maddix</li>
-      <li>Madeon</li>
-      <li>Major Lazer</li>
-      <li>Malóne</li>
-      <li>MAR-T</li>
-      <li>Marco Ninni</li>
-      <li>Marlon Hoffstadt</li>
-      <li>Massano</li>
-      <li>Matty Ralph</li>
-      <li>MCR-T</li>
-      <li>ME N U</li>
-      <li>Metaphysical</li>
-      <li>Mish</li>
-      <li>Miss Bashful</li>
-      <li>Miss Monique</li>
-      <li>MYKRIS</li>
-      <li>Nicky Romero</li>
-      <li>Nostalgix</li>
-      <li>Nundos</li>
-      <li>Of The Trees</li>
-      <li>Olympe</li>
-      <li>Ookay</li>
-      <li>Outlaw b2b Trym</li>
-      <li>Parisi</li>
-      <li>Peekaboo</li>
-      <li>Peterblue</li>
-      <li>Pinto</li>
-      <li>Plastik Funk</li>
-      <li>Prada2000</li>
-      <li>Purple</li>
-      <li>R3HAB</li>
-      <li>Ray Volpe b2b Sullivan King</li>
-      <li>Richard Fraioli b2b Jimmy Page b3b DJ Ideal</li>
-      <li>Riot Ten</li>
-      <li>Rivo</li>
-      <li>Rodrigo Vieira</li>
-      <li>Rossi.</li>
-      <li>Sara Landry</li>
-      <li>Sasha_John Digweed</li>
-      <li>Scenarios</li>
-      <li>Sebastian Ingrosso b2b Steve Angello</li>
-      <li>Sebastian Morxx</li>
-      <li>SHIMA</li>
-      <li>Sidequest</li>
-      <li>Snow Strippers</li>
-      <li>Soren</li>
-      <li>Soul Goodman b2b Dabura</li>
-      <li>Special Guest b2b Special Guest</li>
-      <li>Steve Aoki</li>
-      <li>Superstrings</li>
-      <li>Tak Shak</li>
-      <li>The Martinez Brothers</li>
-      <li>The Purge</li>
-      <li>The Saints</li>
-      <li>TIM3LESS</li>
-      <li>Vini Vici</li>
-      <li>Vintage Culture</li>
-      <li>VOYD</li>
-      <li>Wags b2b Lemony Snickettes</li>
-      <li>Wally Lopez</li>
-      <li>Wankdat</li>
-      <li>Worship</li>
-      <li>X CLUB.</li>
-      <li>X-Con b2b Marvin Delgado b3b CJ</li>
-      <li>ZHU</li>
+      <li><span class="act">¥ØU$UK€ ¥UK1MAT$U</span> <span class="slots">Sat, Mar 28 · Worldwide Stage · <a href="#set-ul68">22:00</a></span></li>
+      <li><span class="act">999999999</span> <span class="slots">Fri, Mar 27 · The Cove · <a href="#set-ul22">19:00</a></span></li>
+      <li><span class="act">Adam Beyer b2b Joseph Capriati</span> <span class="slots">Sat, Mar 28 · Megastructure · <a href="#set-ul75">19:00</a></span></li>
+      <li><span class="act">Adriatique</span> <span class="slots">Sun, Mar 29 · Megastructure · <a href="#set-ul135">17:00</a></span></li>
+      <li><span class="act">Afrobeta</span> <span class="slots">Fri, Mar 27 · Live Stage · <a href="#set-ul25">17:00</a></span></li>
+      <li><span class="act">Afrojack</span> <span class="slots">Sun, Mar 29 · ULTRA Main Stage · <a href="#set-ul120">18:30</a></span></li>
+      <li><span class="act">Alan Fitzpatrick b2b Marco Faraone</span> <span class="slots">Sat, Mar 28 · Megastructure · <a href="#set-ul72">14:30</a></span></li>
+      <li><span class="act">Alan Walker</span> <span class="slots">Sat, Mar 28 · ULTRA Main Stage · <a href="#set-ul52">17:15</a></span></li>
+      <li><span class="act">Alesso b2b Martin Garrix</span> <span class="slots">Fri, Mar 27 · ULTRA Main Stage · <a href="#set-ul6">21:20</a></span></li>
+      <li><span class="act">Alexander Som</span> <span class="slots">Sat, Mar 28 · Oasis · <a href="#set-ul112">22:00</a></span></li>
+      <li><span class="act">ALT8</span> <span class="slots">Fri, Mar 27 · The Cove · <a href="#set-ul21">17:30</a></span></li>
+      <li><span class="act">Amelie Lens b2b Sara Landry</span> <span class="slots">Sun, Mar 29 · Megastructure · <a href="#set-ul137">20:00</a></span></li>
+      <li><span class="act">Andy Ares</span> <span class="slots">Sun, Mar 29 · Oasis · <a href="#set-ul158">13:00</a></span></li>
+      <li><span class="act">Andy C</span> <span class="slots">Sun, Mar 29 · Worldwide Stage · <a href="#set-ul127">16:00</a></span></li>
+      <li><span class="act">Andy Pate b2b Rod B.</span> <span class="slots">Sat, Mar 28 · Megastructure · <a href="#set-ul70">12:00</a></span></li>
+      <li><span class="act">Argy b2b Mind Against</span> <span class="slots">Sun, Mar 29 · Megastructure · <a href="#set-ul134">15:30</a></span></li>
+      <li><span class="act">Armin van Buuren</span> <span class="slots">Fri, Mar 27 · Worldwide Stage · <a href="#set-ul14">22:30</a>; Sat, Mar 28 · ULTRA Main Stage · <a href="#set-ul56">21:35</a></span></li>
+      <li><span class="act">Armin van Buuren b2b Marlon Hoffstadt</span> <span class="slots">Fri, Mar 27 · Worldwide Stage · <a href="#set-ul13">21:00</a></span></li>
+      <li><span class="act">ARMNHMR</span> <span class="slots">Sat, Mar 28 · Worldwide Stage · <a href="#set-ul62">16:00</a></span></li>
+      <li><span class="act">ARTBAT</span> <span class="slots">Sun, Mar 29 · ULTRA Main Stage · <a href="#set-ul118">16:20</a></span></li>
+      <li><span class="act">Audiofreq</span> <span class="slots">Sat, Mar 28 · UMF Radio Stage · <a href="#set-ul93">15:00</a></span></li>
+      <li><span class="act">Audiosal</span> <span class="slots">Sun, Mar 29 · Oasis · <a href="#set-ul164">19:00</a></span></li>
+      <li><span class="act">Bassett b2b Christopher James</span> <span class="slots">Sun, Mar 29 · Megastructure · <a href="#set-ul132">12:00</a></span></li>
+      <li><span class="act">Big Florida</span> <span class="slots">Sun, Mar 29 · Worldwide Stage · <a href="#set-ul123">12:00</a></span></li>
+      <li><span class="act">Bill Kelly</span> <span class="slots">Sat, Mar 28 · Oasis · <a href="#set-ul107">17:00</a></span></li>
+      <li><span class="act">Black Fancy</span> <span class="slots">Sun, Mar 29 · The Cove · <a href="#set-ul140">14:00</a></span></li>
+      <li><span class="act">Black Tiger Sex Machine presents Connected Fighters</span> <span class="slots">Fri, Mar 27 · Live Stage · <a href="#set-ul27">19:45</a></span></li>
+      <li><span class="act">Bloody Beetroots (Throwback Electro Set)</span> <span class="slots">Fri, Mar 27 · UMF Radio Stage · <a href="#set-ul38">23:15</a></span></li>
+      <li><span class="act">BOIISH</span> <span class="slots">Sun, Mar 29 · Live Stage · <a href="#set-ul145">16:00</a></span></li>
+      <li><span class="act">BOLO</span> <span class="slots">Sun, Mar 29 · Worldwide Stage · <a href="#set-ul125">14:00</a></span></li>
+      <li><span class="act">Boris Brejcha</span> <span class="slots">Sun, Mar 29 · Megastructure · <a href="#set-ul136">18:30</a></span></li>
+      <li><span class="act">BOU</span> <span class="slots">Sat, Mar 28 · Worldwide Stage · <a href="#set-ul64">18:00</a></span></li>
+      <li><span class="act">Boys Noize Live</span> <span class="slots">Sat, Mar 28 · Live Stage · <a href="#set-ul89">21:30</a></span></li>
+      <li><span class="act">Brutalismus 3000</span> <span class="slots">Sat, Mar 28 · Live Stage · <a href="#set-ul90">22:45</a></span></li>
+      <li><span class="act">Bzrp</span> <span class="slots">Fri, Mar 27 · ULTRA Main Stage · <a href="#set-ul5">20:05</a></span></li>
+      <li><span class="act">Carl Cox</span> <span class="slots">Sat, Mar 28 · Megastructure · <a href="#set-ul76">21:00</a></span></li>
+      <li><span class="act">Cassian</span> <span class="slots">Sat, Mar 28 · The Cove · <a href="#set-ul83">20:30</a></span></li>
+      <li><span class="act">CGK</span> <span class="slots">Sat, Mar 28 · UMF Radio Stage · <a href="#set-ul91">12:00</a></span></li>
+      <li><span class="act">Cimeo</span> <span class="slots">Sat, Mar 28 · Oasis · <a href="#set-ul102">12:00</a></span></li>
+      <li><span class="act">Clara Cuvé</span> <span class="slots">Fri, Mar 27 · The Cove · <a href="#set-ul23">20:30</a></span></li>
+      <li><span class="act">Colyn b2b Innellea</span> <span class="slots">Sat, Mar 28 · The Cove · <a href="#set-ul82">19:00</a></span></li>
+      <li><span class="act">Confidence Man</span> <span class="slots">Sat, Mar 28 · Live Stage · <a href="#set-ul86">17:10</a></span></li>
+      <li><span class="act">Coone</span> <span class="slots">Sat, Mar 28 · UMF Radio Stage · <a href="#set-ul96">18:00</a></span></li>
+      <li><span class="act">CVMRN</span> <span class="slots">Sat, Mar 28 · Oasis · <a href="#set-ul106">16:00</a></span></li>
+      <li><span class="act">D-Sturb</span> <span class="slots">Sat, Mar 28 · UMF Radio Stage · <a href="#set-ul99">21:00</a></span></li>
+      <li><span class="act">Da Tweekaz</span> <span class="slots">Sat, Mar 28 · UMF Radio Stage · <a href="#set-ul97">19:00</a></span></li>
+      <li><span class="act">Daniel Allan</span> <span class="slots">Sat, Mar 28 · Worldwide Stage · <a href="#set-ul61">15:00</a></span></li>
+      <li><span class="act">Darksiderz</span> <span class="slots">Sat, Mar 28 · UMF Radio Stage · <a href="#set-ul92">13:30</a></span></li>
+      <li><span class="act">Deep Dish</span> <span class="slots">Sat, Mar 28 · The Cove · <a href="#set-ul81">17:30</a></span></li>
+      <li><span class="act">Dennis Cruz b2b Seth Troxler</span> <span class="slots">Sun, Mar 29 · The Cove · <a href="#set-ul143">18:00</a></span></li>
+      <li><span class="act">Distinct Motive</span> <span class="slots">Sat, Mar 28 · Worldwide Stage · <a href="#set-ul59">13:00</a></span></li>
+      <li><span class="act">DJ Gigola</span> <span class="slots">Sun, Mar 29 · UMF Radio Stage · <a href="#set-ul155">19:30</a></span></li>
+      <li><span class="act">DJ Hannah</span> <span class="slots">Fri, Mar 27 · Oasis · <a href="#set-ul45">22:00</a></span></li>
+      <li><span class="act">DJ Snake</span> <span class="slots">Sun, Mar 29 · ULTRA Main Stage · <a href="#set-ul121">19:35</a></span></li>
+      <li><span class="act">Dual Damage</span> <span class="slots">Sat, Mar 28 · UMF Radio Stage · <a href="#set-ul100">22:00</a></span></li>
+      <li><span class="act">Dubplates &amp; Dragons</span> <span class="slots">Sun, Mar 29 · Oasis · <a href="#set-ul157">12:00</a></span></li>
+      <li><span class="act">EERA</span> <span class="slots">Sun, Mar 29 · UMF Radio Stage · <a href="#set-ul150">12:00</a></span></li>
+      <li><span class="act">Eli Brown</span> <span class="slots">Sat, Mar 28 · Megastructure · <a href="#set-ul74">17:30</a></span></li>
+      <li><span class="act">Eric Prydz</span> <span class="slots">Fri, Mar 27 · Megastructure · <a href="#set-ul19">22:00</a></span></li>
+      <li><span class="act">Excision</span> <span class="slots">Sat, Mar 28 · ULTRA Main Stage · <a href="#set-ul54">19:25</a></span></li>
+      <li><span class="act">FCUKERS</span> <span class="slots">Sun, Mar 29 · UMF Radio Stage · <a href="#set-ul153">16:30</a></span></li>
+      <li><span class="act">Frank Walker</span> <span class="slots">Fri, Mar 27 · ULTRA Main Stage · <a href="#set-ul1">16:00</a></span></li>
+      <li><span class="act">Frost Children</span> <span class="slots">Sun, Mar 29 · UMF Radio Stage · <a href="#set-ul151">13:30</a></span></li>
+      <li><span class="act">Gil Glaze</span> <span class="slots">Sat, Mar 28 · ULTRA Main Stage · <a href="#set-ul47">12:00</a></span></li>
+      <li><span class="act">Godtripper</span> <span class="slots">Fri, Mar 27 · The Cove · <a href="#set-ul20">16:00</a></span></li>
+      <li><span class="act">HALÕ</span> <span class="slots">Sat, Mar 28 · ULTRA Main Stage · <a href="#set-ul49">14:00</a></span></li>
+      <li><span class="act">Hamdi</span> <span class="slots">Sat, Mar 28 · Worldwide Stage · <a href="#set-ul67">21:00</a></span></li>
+      <li><span class="act">Hardwell</span> <span class="slots">Sat, Mar 28 · ULTRA Main Stage · <a href="#set-ul55">20:30</a></span></li>
+      <li><span class="act">HOL!</span> <span class="slots">Sat, Mar 28 · Worldwide Stage · <a href="#set-ul63">17:00</a></span></li>
+      <li><span class="act">Holy Priest</span> <span class="slots">Sun, Mar 29 · Worldwide Stage · <a href="#set-ul128">17:00</a></span></li>
+      <li><span class="act">Hymm Marley</span> <span class="slots">Fri, Mar 27 · Oasis · <a href="#set-ul42">19:30</a></span></li>
+      <li><span class="act">Illenium</span> <span class="slots">Fri, Mar 27 · ULTRA Main Stage · <a href="#set-ul4">19:00</a></span></li>
+      <li><span class="act">ISOXO</span> <span class="slots">Sat, Mar 28 · Worldwide Stage · <a href="#set-ul69">23:00</a></span></li>
+      <li><span class="act">Jack Vice</span> <span class="slots">Sat, Mar 28 · Oasis · <a href="#set-ul109">19:00</a></span></li>
+      <li><span class="act">Jay P</span> <span class="slots">Sun, Mar 29 · Oasis · <a href="#set-ul159">14:00</a></span></li>
+      <li><span class="act">Jessica Audiffred</span> <span class="slots">Fri, Mar 27 · UMF Radio Stage · <a href="#set-ul33">18:15</a></span></li>
+      <li><span class="act">JOA</span> <span class="slots">Sat, Mar 28 · The Cove · <a href="#set-ul77">12:00</a></span></li>
+      <li><span class="act">John Summit</span> <span class="slots">Sun, Mar 29 · ULTRA Main Stage · <a href="#set-ul122">20:45</a></span></li>
+      <li><span class="act">Joris Voorn b2b Korolova</span> <span class="slots">Sat, Mar 28 · The Cove · <a href="#set-ul84">22:00</a></span></li>
+      <li><span class="act">JSTJR</span> <span class="slots">Sun, Mar 29 · Worldwide Stage · <a href="#set-ul124">13:00</a></span></li>
+      <li><span class="act">Julian Cross</span> <span class="slots">Sat, Mar 28 · Worldwide Stage · <a href="#set-ul58">12:10</a></span></li>
+      <li><span class="act">Juliet Fox</span> <span class="slots">Sat, Mar 28 · Megastructure · <a href="#set-ul71">13:15</a></span></li>
+      <li><span class="act">Juno b2b Wyzzard b3b Bebe Breaks</span> <span class="slots">Sat, Mar 28 · Oasis · <a href="#set-ul103">13:00</a></span></li>
+      <li><span class="act">Kai Wachi</span> <span class="slots">Sat, Mar 28 · Worldwide Stage · <a href="#set-ul65">19:00</a></span></li>
+      <li><span class="act">Kapuchon</span> <span class="slots">Sun, Mar 29 · ULTRA Main Stage · <a href="#set-ul114">12:15</a></span></li>
+      <li><span class="act">Kasia</span> <span class="slots">Sat, Mar 28 · The Cove · <a href="#set-ul80">16:00</a></span></li>
+      <li><span class="act">Kauro</span> <span class="slots">Sat, Mar 28 · Oasis · <a href="#set-ul104">14:00</a></span></li>
+      <li><span class="act">Laidback Luke</span> <span class="slots">Fri, Mar 27 · UMF Radio Stage · <a href="#set-ul36">21:15</a></span></li>
+      <li><span class="act">LAYZ</span> <span class="slots">Sun, Mar 29 · Worldwide Stage · <a href="#set-ul126">15:00</a></span></li>
+      <li><span class="act">Levity presents Lasership</span> <span class="slots">Fri, Mar 27 · Live Stage · <a href="#set-ul29">22:45</a></span></li>
+      <li><span class="act">Lilly Palmer</span> <span class="slots">Fri, Mar 27 · Worldwide Stage · <a href="#set-ul12">20:00</a></span></li>
+      <li><span class="act">Linney</span> <span class="slots">Fri, Mar 27 · UMF Radio Stage · <a href="#set-ul30">16:00</a></span></li>
+      <li><span class="act">Los De La Vega</span> <span class="slots">Fri, Mar 27 · Oasis · <a href="#set-ul41">18:30</a></span></li>
+      <li><span class="act">Loud Luxury</span> <span class="slots">Sat, Mar 28 · ULTRA Main Stage · <a href="#set-ul51">16:10</a></span></li>
+      <li><span class="act">Louis The Child</span> <span class="slots">Sun, Mar 29 · Live Stage · <a href="#set-ul147">18:15</a></span></li>
+      <li><span class="act">Luca Testa</span> <span class="slots">Fri, Mar 27 · Oasis · <a href="#set-ul46">23:00</a></span></li>
+      <li><span class="act">Lucy Guo</span> <span class="slots">Sat, Mar 28 · Oasis · <a href="#set-ul108">18:00</a></span></li>
+      <li><span class="act">Luke Hunter</span> <span class="slots">Sun, Mar 29 · Oasis · <a href="#set-ul162">17:00</a></span></li>
+      <li><span class="act">M.O.N.R.O.E.</span> <span class="slots">Sun, Mar 29 · The Cove · <a href="#set-ul138">12:00</a></span></li>
+      <li><span class="act">Maddix</span> <span class="slots">Sun, Mar 29 · ULTRA Main Stage · <a href="#set-ul117">15:15</a></span></li>
+      <li><span class="act">Madeon</span> <span class="slots">Sat, Mar 28 · Live Stage · <a href="#set-ul88">20:00</a></span></li>
+      <li><span class="act">Major Lazer</span> <span class="slots">Fri, Mar 27 · ULTRA Main Stage · <a href="#set-ul7">22:45</a></span></li>
+      <li><span class="act">Malóne</span> <span class="slots">Sun, Mar 29 · The Cove · <a href="#set-ul141">15:15</a></span></li>
+      <li><span class="act">MAR-T</span> <span class="slots">Fri, Mar 27 · Megastructure · <a href="#set-ul15">16:00</a></span></li>
+      <li><span class="act">Marco Ninni</span> <span class="slots">Sat, Mar 28 · Oasis · <a href="#set-ul111">21:00</a></span></li>
+      <li><span class="act">Marlon Hoffstadt</span> <span class="slots">Sun, Mar 29 · ULTRA Main Stage · <a href="#set-ul119">17:25</a></span></li>
+      <li><span class="act">Massano</span> <span class="slots">Fri, Mar 27 · Megastructure · <a href="#set-ul16">17:30</a></span></li>
+      <li><span class="act">Matty Ralph</span> <span class="slots">Fri, Mar 27 · Worldwide Stage · <a href="#set-ul9">17:00</a></span></li>
+      <li><span class="act">MCR-T</span> <span class="slots">Sun, Mar 29 · UMF Radio Stage · <a href="#set-ul154">18:00</a></span></li>
+      <li><span class="act">ME N U</span> <span class="slots">Sun, Mar 29 · ULTRA Main Stage · <a href="#set-ul115">13:05</a></span></li>
+      <li><span class="act">Metaphysical</span> <span class="slots">Sun, Mar 29 · Oasis · <a href="#set-ul166">21:00</a></span></li>
+      <li><span class="act">Mish</span> <span class="slots">Sat, Mar 28 · UMF Radio Stage · <a href="#set-ul98">20:00</a></span></li>
+      <li><span class="act">Miss Bashful</span> <span class="slots">Sat, Mar 28 · Live Stage · <a href="#set-ul85">16:00</a></span></li>
+      <li><span class="act">Miss Monique</span> <span class="slots">Fri, Mar 27 · Megastructure · <a href="#set-ul17">19:00</a></span></li>
+      <li><span class="act">MYKRIS</span> <span class="slots">Sat, Mar 28 · ULTRA Main Stage · <a href="#set-ul48">12:55</a></span></li>
+      <li><span class="act">Nicky Romero</span> <span class="slots">Sat, Mar 28 · ULTRA Main Stage · <a href="#set-ul50">15:05</a></span></li>
+      <li><span class="act">Nostalgix</span> <span class="slots">Fri, Mar 27 · UMF Radio Stage · <a href="#set-ul32">17:15</a></span></li>
+      <li><span class="act">Nundos</span> <span class="slots">Fri, Mar 27 · Oasis · <a href="#set-ul39">16:00</a></span></li>
+      <li><span class="act">Of The Trees</span> <span class="slots">Fri, Mar 27 · Live Stage · <a href="#set-ul28">21:15</a></span></li>
+      <li><span class="act">Olympe</span> <span class="slots">Sat, Mar 28 · The Cove · <a href="#set-ul78">13:15</a></span></li>
+      <li><span class="act">Ookay</span> <span class="slots">Fri, Mar 27 · UMF Radio Stage · <a href="#set-ul31">16:30</a></span></li>
+      <li><span class="act">Outlaw b2b Trym</span> <span class="slots">Sat, Mar 28 · Worldwide Stage · <a href="#set-ul66">20:00</a></span></li>
+      <li><span class="act">Parisi</span> <span class="slots">Sun, Mar 29 · Live Stage · <a href="#set-ul146">17:00</a></span></li>
+      <li><span class="act">Peekaboo</span> <span class="slots">Sun, Mar 29 · Worldwide Stage · <a href="#set-ul129">18:00</a></span></li>
+      <li><span class="act">Peterblue</span> <span class="slots">Sun, Mar 29 · UMF Radio Stage · <a href="#set-ul156">20:30</a></span></li>
+      <li><span class="act">Pinto</span> <span class="slots">Sat, Mar 28 · Oasis · <a href="#set-ul110">20:00</a></span></li>
+      <li><span class="act">Plastik Funk</span> <span class="slots">Sun, Mar 29 · The Cove · <a href="#set-ul139">13:00</a></span></li>
+      <li><span class="act">Prada2000</span> <span class="slots">Fri, Mar 27 · Worldwide Stage · <a href="#set-ul8">16:00</a></span></li>
+      <li><span class="act">Purple</span> <span class="slots">Sun, Mar 29 · Oasis · <a href="#set-ul163">18:00</a></span></li>
+      <li><span class="act">R3HAB</span> <span class="slots">Sun, Mar 29 · ULTRA Main Stage · <a href="#set-ul116">14:10</a></span></li>
+      <li><span class="act">Ray Volpe b2b Sullivan King</span> <span class="slots">Sun, Mar 29 · Worldwide Stage · <a href="#set-ul130">19:00</a></span></li>
+      <li><span class="act">Richard Fraioli b2b Jimmy Page b3b DJ Ideal</span> <span class="slots">Fri, Mar 27 · Oasis · <a href="#set-ul40">17:00</a></span></li>
+      <li><span class="act">Riot Ten</span> <span class="slots">Fri, Mar 27 · UMF Radio Stage · <a href="#set-ul37">22:15</a></span></li>
+      <li><span class="act">Rivo</span> <span class="slots">Sat, Mar 28 · The Cove · <a href="#set-ul79">14:30</a></span></li>
+      <li><span class="act">Rodrigo Vieira</span> <span class="slots">Fri, Mar 27 · Oasis · <a href="#set-ul44">21:00</a></span></li>
+      <li><span class="act">Rossi.</span> <span class="slots">Sun, Mar 29 · The Cove · <a href="#set-ul142">16:30</a></span></li>
+      <li><span class="act">Sara Landry</span> <span class="slots">Fri, Mar 27 · The Cove · <a href="#set-ul24">22:00</a></span></li>
+      <li><span class="act">Sasha_John Digweed</span> <span class="slots">Sat, Mar 28 · Megastructure · <a href="#set-ul73">16:00</a></span></li>
+      <li><span class="act">Scenarios</span> <span class="slots">Sun, Mar 29 · Megastructure · <a href="#set-ul133">14:00</a></span></li>
+      <li><span class="act">Sebastian Ingrosso b2b Steve Angello</span> <span class="slots">Sat, Mar 28 · ULTRA Main Stage · <a href="#set-ul57">22:45</a></span></li>
+      <li><span class="act">Sebastian Morxx</span> <span class="slots">Sun, Mar 29 · Oasis · <a href="#set-ul160">15:00</a></span></li>
+      <li><span class="act">SHIMA</span> <span class="slots">Fri, Mar 27 · Live Stage · <a href="#set-ul26">18:15</a></span></li>
+      <li><span class="act">Sidequest</span> <span class="slots">Sat, Mar 28 · Worldwide Stage · <a href="#set-ul60">14:00</a></span></li>
+      <li><span class="act">Snow Strippers</span> <span class="slots">Sat, Mar 28 · Live Stage · <a href="#set-ul87">18:30</a></span></li>
+      <li><span class="act">Soren</span> <span class="slots">Sat, Mar 28 · UMF Radio Stage · <a href="#set-ul101">23:00</a></span></li>
+      <li><span class="act">Soul Goodman b2b Dabura</span> <span class="slots">Sat, Mar 28 · Oasis · <a href="#set-ul105">15:00</a></span></li>
+      <li><span class="act">Special Guest b2b Special Guest</span> <span class="slots">Fri, Mar 27 · UMF Radio Stage · <a href="#set-ul35">20:15</a></span></li>
+      <li><span class="act">Steve Aoki</span> <span class="slots">Fri, Mar 27 · UMF Radio Stage · <a href="#set-ul34">19:15</a>; Sat, Mar 28 · ULTRA Main Stage · <a href="#set-ul53">18:20</a></span></li>
+      <li><span class="act">Superstrings</span> <span class="slots">Fri, Mar 27 · Worldwide Stage · <a href="#set-ul10">18:00</a></span></li>
+      <li><span class="act">Tak Shak</span> <span class="slots">Fri, Mar 27 · Oasis · <a href="#set-ul43">20:00</a></span></li>
+      <li><span class="act">The Martinez Brothers</span> <span class="slots">Sun, Mar 29 · The Cove · <a href="#set-ul144">20:00</a></span></li>
+      <li><span class="act">The Purge</span> <span class="slots">Sat, Mar 28 · UMF Radio Stage · <a href="#set-ul94">16:00</a></span></li>
+      <li><span class="act">The Saints</span> <span class="slots">Sat, Mar 28 · UMF Radio Stage · <a href="#set-ul95">17:00</a></span></li>
+      <li><span class="act">TIM3LESS</span> <span class="slots">Sun, Mar 29 · Live Stage · <a href="#set-ul148">19:30</a></span></li>
+      <li><span class="act">Vini Vici</span> <span class="slots">Fri, Mar 27 · Worldwide Stage · <a href="#set-ul11">19:00</a></span></li>
+      <li><span class="act">Vintage Culture</span> <span class="slots">Fri, Mar 27 · Megastructure · <a href="#set-ul18">20:30</a></span></li>
+      <li><span class="act">VOYD</span> <span class="slots">Fri, Mar 27 · ULTRA Main Stage · <a href="#set-ul2">16:50</a></span></li>
+      <li><span class="act">Wags b2b Lemony Snickettes</span> <span class="slots">Sun, Mar 29 · Oasis · <a href="#set-ul161">16:00</a></span></li>
+      <li><span class="act">Wally Lopez</span> <span class="slots">Sat, Mar 28 · Oasis · <a href="#set-ul113">23:00</a></span></li>
+      <li><span class="act">Wankdat</span> <span class="slots">Sun, Mar 29 · Worldwide Stage · <a href="#set-ul131">20:30</a></span></li>
+      <li><span class="act">Worship</span> <span class="slots">Fri, Mar 27 · ULTRA Main Stage · <a href="#set-ul3">17:55</a></span></li>
+      <li><span class="act">X CLUB.</span> <span class="slots">Sun, Mar 29 · UMF Radio Stage · <a href="#set-ul152">15:00</a></span></li>
+      <li><span class="act">X-Con b2b Marvin Delgado b3b CJ</span> <span class="slots">Sun, Mar 29 · Oasis · <a href="#set-ul165">20:00</a></span></li>
+      <li><span class="act">ZHU</span> <span class="slots">Sun, Mar 29 · Live Stage · <a href="#set-ul149">21:00</a></span></li>
     </ul>
+  </section>
 
+  <section aria-labelledby="stages-h">
+    <h2 id="stages-h">Ultra Miami 2026 stages</h2>
+    <p>Plursky has 7 stages for Ultra Miami 2026 at Bayfront Park, each one listed below with its sets per day.</p>
+    <ul class="stagelist">
+      <li><strong>ULTRA Main Stage</strong> · North lawn · headliners<br><span class="counts">Fri, Mar 27: 7 · Sat, Mar 28: 11 · Sun, Mar 29: 9</span></li>
+      <li><strong>Worldwide Stage</strong> · South lawn · bass, trance, hard<br><span class="counts">Fri, Mar 27: 7 · Sat, Mar 28: 12 · Sun, Mar 29: 9</span></li>
+      <li><strong>Megastructure</strong> · RESISTANCE Megastructure · south-east, techno + house<br><span class="counts">Fri, Mar 27: 5 · Sat, Mar 28: 7 · Sun, Mar 29: 6</span></li>
+      <li><strong>The Cove</strong> · Bayfront · underground takeovers<br><span class="counts">Fri, Mar 27: 5 · Sat, Mar 28: 8 · Sun, Mar 29: 7</span></li>
+      <li><strong>Live Stage</strong> · FPL Solar Amphitheater · live acts<br><span class="counts">Fri, Mar 27: 5 · Sat, Mar 28: 6 · Sun, Mar 29: 5</span></li>
+      <li><strong>UMF Radio Stage</strong> · North-west · takeover stage<br><span class="counts">Fri, Mar 27: 9 · Sat, Mar 28: 11 · Sun, Mar 29: 7</span></li>
+      <li><strong>Oasis</strong> · Mid-park · local + rising<br><span class="counts">Fri, Mar 27: 8 · Sat, Mar 28: 12 · Sun, Mar 29: 10</span></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="plan-h">
+    <h2 id="plan-h">Plan your day at Ultra Miami 2026</h2>
+    <p>Amenities Plursky lists for Ultra Miami 2026: Medical (2) · Restrooms (2) · Water (2) · Art (1) · Food (1) · Info (1) · Lockers (1).</p>
+  </section>
+
+
+  <section aria-labelledby="app-h">
+    <h2 id="app-h">Get the app</h2>
+    <p class="ctas">
+      <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
+      <a class="cta-secondary" href="/?f=ultra-miami-2026">Relive it in the browser</a>
+    </p>
+    <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.</p>
+    <p><a href="/?f=ultra-miami-2026&amp;tab=memories">Your Ultra Miami 2026 Memories in Plursky</a></p>
   </section>
 
   <nav class="other" aria-labelledby="other-h">
     <h2 id="other-h">Other festivals on Plursky</h2>
     <ul>
       <li><a href="/f/edc-lv-2026/">EDC Las Vegas 2026</a> — May 15–17, 2026</li>
-      <li><a href="/f/electric-forest-2027/">Electric Forest 2027</a> — Dates TBA</li>
-      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
-      <li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a> — Nov 6–8, 2026</li>
-      <li><a href="/f/tomorrowland-2027/">Tomorrowland 2027</a> — Dates TBA</li>
-      <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
-      <li><a href="/f/coachella-2027/">Coachella 2027</a> — Apr 9–18, 2027</li>
-      <li><a href="/f/edc-mexico-2027/">EDC Mexico 2027</a> — Feb 19–21, 2027</li>
-      <li><a href="/f/beyond-wonderland-socal-2027/">Beyond Wonderland SoCal 2027</a> — Mar 26–27, 2027</li>
-      <li><a href="/f/beyond-wonderland-gorge-2027/">Beyond Wonderland at The Gorge 2027</a> — Jun 26–27, 2027</li>
       <li><a href="/f/governors-ball-2026/">Governors Ball 2026</a> — Jun 5–7, 2026</li>
       <li><a href="/f/summerfest-2026/">Summerfest 2026</a> — Jun 18–20, Jun 25–27 &amp; Jul 2–4, 2026</li>
       <li><a href="/f/lollapalooza-2026/">Lollapalooza 2026</a> — Jul 30 – Aug 2, 2026</li>
-      <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
-      <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
-      <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
-      <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
-      <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
       <li><a href="/f/hard-summer-2026/">HARD Summer 2026</a> — Aug 1–2, 2026</li>
+      <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
       <li><a href="/f/arc-2026/">ARC Music Festival 2026</a> — Sep 4–7, 2026</li>
-      <li><a href="/f/escape-halloween-2026/">Escape Halloween 2026</a> — Oct 30–31, 2026</li>
-      <li><a href="/f/dreamstate-socal-2026/">Dreamstate SoCal 2026</a> — Nov 20–21, 2026</li>
-      <li><a href="/f/decadence-colorado-2026/">Decadence Colorado 2026</a> — Dec 30–31, 2026</li>
-      <li><a href="/f/countdown-nye-2026/">Countdown NYE 2026</a> — Dec 31, 2026 – Jan 1, 2027</li>
+      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
     </ul>
   </nav>
+
+  <section class="sources" aria-labelledby="sources-h">
+    <h2 id="sources-h">Sources</h2>
+    <ul>
+      <li>Set times: <a href="https://ultramusicfestival.com/lineup/set-times/" rel="noopener">https://ultramusicfestival.com/lineup/set-times/</a> (official, checked 2026-08-28)</li>
+    </ul>
+    <p class="note">Last updated <time class="updated" datetime="2026-09-24">2026-09-24</time>.</p>
+  </section>
 
   <footer>
     <a href="/">Plursky</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a>

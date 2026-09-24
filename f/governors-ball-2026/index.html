@@ -19,40 +19,60 @@
 <meta name="twitter:image" content="https://plursky.com/og-card.png">
 <link rel="icon" type="image/png" href="/apple-touch-icon.png">
 <style>
-  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; }
+  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; --panel:#1c1916; }
   * { box-sizing:border-box; }
   body { margin:0; padding:32px 20px 64px; background:var(--bg); color:var(--ink);
          font-family:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.6; }
   main { max-width:760px; margin:0 auto; }
-  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; }
+  nav.crumbs { font-size:13px; color:var(--muted); margin:0 0 16px; }
+  nav.crumbs a { color:var(--muted); }
+  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; text-wrap:balance; }
   h2 { font-size:18px; margin:32px 0 8px; }
   .meta { color:var(--muted); margin:0 0 20px; }
+  .chip { display:inline-block; margin-right:8px; padding:1px 10px; border-radius:999px; border:1px solid var(--line);
+          color:var(--ink); font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
+  .chip-live, .chip-soon { border-color:var(--ember); color:var(--ember); }
   .note { color:var(--muted); font-size:14px; }
+  figure { margin:16px 0; }
+  figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:12px; background:var(--panel); }
+  .platebox { position:relative; max-width:520px; }
+  .pin { position:absolute; transform:translate(-50%,-50%); width:20px; height:20px; border-radius:50%;
+         display:flex; align-items:center; justify-content:center; background:rgba(18,16,14,0.82);
+         border:1px solid var(--ink); color:var(--ink); font-size:11px; font-weight:700; pointer-events:none; }
+  ol.platekey { margin:8px 0 0; padding-left:22px; font-size:13px; columns:2; column-gap:20px; }
+  figcaption { color:var(--muted); font-size:13px; margin-top:6px; }
   .cta { display:inline-block; margin:20px 0 8px; padding:12px 22px; border-radius:12px;
          background:linear-gradient(135deg,#6D28D9,var(--ember)); color:#fff; text-decoration:none; font-weight:700; }
-  ul.lineup { list-style:none; padding:0; margin:12px 0 0;
-              display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:2px 16px; }
-  ul.lineup li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.lineup { list-style:none; padding:0; margin:12px 0 0; }
+  ul.lineup li { padding:5px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; flex-wrap:wrap; gap:2px 12px; }
+  ul.lineup .act { font-weight:600; }
+  ul.lineup .slots { color:var(--muted); overflow-wrap:anywhere; }
   h3 { font-size:16px; margin:24px 0 4px; }
   h4 { font-size:13px; margin:16px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
+  h5 { font-size:12px; margin:12px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
   ul.sets { list-style:none; padding:0; margin:4px 0 0; }
-  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; }
+  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; scroll-margin-top:16px; }
+  ul.sets li:target { background:rgba(232,93,46,0.14); }
   ul.sets li time { color:var(--muted); font-variant-numeric:tabular-nums; min-width:96px; flex:none; }
   ul.stagelist { list-style:none; padding:0; margin:8px 0 0; }
   ul.stagelist li { padding:6px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.stagelist .counts { color:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; }
   dl.answers { margin:12px 0 0; }
   dl.answers dt { font-weight:700; font-size:15px; margin:16px 0 4px; }
   dl.answers dd { margin:0; color:var(--muted); font-size:14px; }
-  a.cta-secondary { margin-left:14px; font-weight:600; }
+  p.ctas { display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; margin:20px 0 8px; }
+  p.ctas .cta { margin:0; }
+  a.cta-secondary { font-weight:600; white-space:nowrap; }
   nav.other { margin-top:40px; }
   nav.other a { color:var(--ink); }
+  section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
 </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "MusicFestival",
+  "@type": "MusicEvent",
   "name": "Governors Ball 2026",
   "url": "https://plursky.com/f/governors-ball-2026/",
   "startDate": "2026-06-05",
@@ -70,6 +90,7 @@
       "addressCountry": "US"
     }
   },
+  "image": "https://plursky.com/govball-2026.svg",
   "performer": [
     {
       "@type": "MusicGroup",
@@ -346,6 +367,40 @@
         "@type": "Answer",
         "text": "Governors Ball 2026 has 3 stages at Flushing Meadows, each one listed on this page."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a map for Governors Ball 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This page shows Plursky's Governors Ball 2026 site plate. Abstract site plate generated from this festival's own stage and amenity coordinates. Not the official patron map; no festival artwork is reproduced."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Plursky",
+      "item": "https://plursky.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Festivals",
+      "item": "https://plursky.com/#festivals"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Governors Ball 2026",
+      "item": "https://plursky.com/f/governors-ball-2026/"
     }
   ]
 }
@@ -353,16 +408,10 @@
 </head>
 <body>
 <main>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Plursky</a> › <a href="/#festivals">Festivals</a> › <span aria-current="page">Governors Ball 2026</span></nav>
   <h1>Governors Ball 2026</h1>
-  <p class="meta">Jun 5–7, 2026 · Flushing Meadows Corona Park · Queens, NY · This festival has ended.</p>
+  <p class="meta"><span class="chip chip-past">Past</span>Jun 5–7, 2026 · Flushing Meadows Corona Park · Queens, NY</p>
   <p>Three days in Flushing Meadows</p>
-
-  <p>
-    <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
-    <a class="cta-secondary" href="/?f=governors-ball-2026">Relive it in the browser</a>
-  </p>
-  <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.</p>
-
 
   <section aria-labelledby="answers-h">
     <h2 id="answers-h">Governors Ball 2026 — quick answers</h2>
@@ -375,7 +424,27 @@
       <dd>58 artists are announced for Governors Ball 2026, and every one of them is listed on this page.</dd>
       <dt>How many stages does Governors Ball 2026 have?</dt>
       <dd>Governors Ball 2026 has 3 stages at Flushing Meadows, each one listed on this page.</dd>
+      <dt>Is there a map for Governors Ball 2026?</dt>
+      <dd>This page shows Plursky&#39;s Governors Ball 2026 site plate. Abstract site plate generated from this festival&#39;s own stage and amenity coordinates. Not the official patron map; no festival artwork is reproduced.</dd>
     </dl>
+  </section>
+
+  <section aria-labelledby="map-h">
+    <h2 id="map-h">Governors Ball 2026 map</h2>
+    <figure class="plate">
+      <div class="platebox">
+        <img src="/govball-2026.svg" width="100" height="100" loading="lazy" decoding="async" alt="Governors Ball 2026 site plate: Plursky's abstract stage layout, not the official festival map">
+        <span class="pin" style="left:46.3%;top:71.9%" aria-hidden="true">1</span>
+        <span class="pin" style="left:61%;top:31.2%" aria-hidden="true">2</span>
+        <span class="pin" style="left:18.3%;top:48.4%" aria-hidden="true">3</span>
+      </div>
+      <ol class="platekey">
+        <li>GovBallNYC</li>
+        <li>Snapchat Stage</li>
+        <li>The Grove</li>
+      </ol>
+      <figcaption>Abstract site plate generated from this festival&#39;s own stage and amenity coordinates. Not the official patron map; no festival artwork is reproduced.</figcaption>
+    </figure>
   </section>
 
   <section aria-labelledby="schedule-h">
@@ -384,100 +453,90 @@
     <h3>Friday, June 5</h3>
     <h4>GovBallNYC</h4>
     <ul class="sets">
-      <li><time datetime="2026-06-05T12:00">12:00 – 12:30</time> <span>School of Rock Queens</span></li>
-      <li><time datetime="2026-06-05T13:00">13:00 – 13:30</time> <span>Whatmore</span></li>
-      <li><time datetime="2026-06-05T14:00">14:00 – 14:30</time> <span>Audrey Hobert</span></li>
-      <li><time datetime="2026-06-05T15:15">15:15 – 16:00</time> <span>Del Water Gap</span></li>
-      <li><time datetime="2026-06-05T16:45">16:45 – 17:30</time> <span>Mariah the Scientist</span></li>
-      <li><time datetime="2026-06-05T18:35">18:35 – 19:30</time> <span>KATSEYE</span></li>
-      <li><time datetime="2026-06-05T20:30">20:30 – 22:00</time> <span>Lorde</span></li>
+      <li id="set-go1"><time datetime="2026-06-05T12:00">12:00 – 12:30</time> <span>School of Rock Queens</span></li>
+      <li id="set-go2"><time datetime="2026-06-05T13:00">13:00 – 13:30</time> <span>Whatmore</span></li>
+      <li id="set-go3"><time datetime="2026-06-05T14:00">14:00 – 14:30</time> <span>Audrey Hobert</span></li>
+      <li id="set-go4"><time datetime="2026-06-05T15:15">15:15 – 16:00</time> <span>Del Water Gap</span></li>
+      <li id="set-go5"><time datetime="2026-06-05T16:45">16:45 – 17:30</time> <span>Mariah the Scientist</span></li>
+      <li id="set-go6"><time datetime="2026-06-05T18:35">18:35 – 19:30</time> <span>KATSEYE</span></li>
+      <li id="set-go7"><time datetime="2026-06-05T20:30">20:30 – 22:00</time> <span>Lorde</span></li>
     </ul>
     <h4>Snapchat Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-06-05T12:30">12:30 – 13:00</time> <span>The Backfires</span></li>
-      <li><time datetime="2026-06-05T13:30">13:30 – 14:00</time> <span>Absolutely</span></li>
-      <li><time datetime="2026-06-05T14:30">14:30 – 15:15</time> <span>King Princess</span></li>
-      <li><time datetime="2026-06-05T16:00">16:00 – 16:45</time> <span>The Dare</span></li>
-      <li><time datetime="2026-06-05T17:30">17:30 – 18:30</time> <span>Pierce the Veil</span></li>
-      <li><time datetime="2026-06-05T19:30">19:30 – 20:30</time> <span>Baby Keem</span></li>
+      <li id="set-go8"><time datetime="2026-06-05T12:30">12:30 – 13:00</time> <span>The Backfires</span></li>
+      <li id="set-go9"><time datetime="2026-06-05T13:30">13:30 – 14:00</time> <span>Absolutely</span></li>
+      <li id="set-go10"><time datetime="2026-06-05T14:30">14:30 – 15:15</time> <span>King Princess</span></li>
+      <li id="set-go11"><time datetime="2026-06-05T16:00">16:00 – 16:45</time> <span>The Dare</span></li>
+      <li id="set-go12"><time datetime="2026-06-05T17:30">17:30 – 18:30</time> <span>Pierce the Veil</span></li>
+      <li id="set-go13"><time datetime="2026-06-05T19:30">19:30 – 20:30</time> <span>Baby Keem</span></li>
     </ul>
     <h4>The Grove</h4>
     <ul class="sets">
-      <li><time datetime="2026-06-05T12:15">12:15 – 12:45</time> <span>Kids Rock for Kids</span></li>
-      <li><time datetime="2026-06-05T13:15">13:15 – 13:45</time> <span>Old Mervs</span></li>
-      <li><time datetime="2026-06-05T14:15">14:15 – 15:00</time> <span>Confidence Man</span></li>
-      <li><time datetime="2026-06-05T15:30">15:30 – 16:15</time> <span>Arcy Drive</span></li>
-      <li><time datetime="2026-06-05T16:45">16:45 – 17:30</time> <span>Turnover</span></li>
-      <li><time datetime="2026-06-05T18:00">18:00 – 19:00</time> <span>The Beths</span></li>
-      <li><time datetime="2026-06-05T19:30">19:30 – 20:30</time> <span>Flipturn</span></li>
+      <li id="set-go14"><time datetime="2026-06-05T12:15">12:15 – 12:45</time> <span>Kids Rock for Kids</span></li>
+      <li id="set-go15"><time datetime="2026-06-05T13:15">13:15 – 13:45</time> <span>Old Mervs</span></li>
+      <li id="set-go16"><time datetime="2026-06-05T14:15">14:15 – 15:00</time> <span>Confidence Man</span></li>
+      <li id="set-go17"><time datetime="2026-06-05T15:30">15:30 – 16:15</time> <span>Arcy Drive</span></li>
+      <li id="set-go18"><time datetime="2026-06-05T16:45">16:45 – 17:30</time> <span>Turnover</span></li>
+      <li id="set-go19"><time datetime="2026-06-05T18:00">18:00 – 19:00</time> <span>The Beths</span></li>
+      <li id="set-go20"><time datetime="2026-06-05T19:30">19:30 – 20:30</time> <span>Flipturn</span></li>
     </ul>
     <h3>Saturday, June 6</h3>
     <h4>GovBallNYC</h4>
     <ul class="sets">
-      <li><time datetime="2026-06-06T12:00">12:00 – 12:30</time> <span>Jimmyboy</span></li>
-      <li><time datetime="2026-06-06T13:00">13:00 – 13:30</time> <span>Radio Free Alice</span></li>
-      <li><time datetime="2026-06-06T14:00">14:00 – 14:30</time> <span>Wisp</span></li>
-      <li><time datetime="2026-06-06T15:15">15:15 – 15:55</time> <span>2hollis</span></li>
-      <li><time datetime="2026-06-06T16:45">16:45 – 17:30</time> <span>Wet Leg</span></li>
-      <li><time datetime="2026-06-06T18:15">18:15 – 19:30</time> <span>Stray Kids</span></li>
+      <li id="set-go21"><time datetime="2026-06-06T12:00">12:00 – 12:30</time> <span>Jimmyboy</span></li>
+      <li id="set-go22"><time datetime="2026-06-06T13:00">13:00 – 13:30</time> <span>Radio Free Alice</span></li>
+      <li id="set-go23"><time datetime="2026-06-06T14:00">14:00 – 14:30</time> <span>Wisp</span></li>
+      <li id="set-go24"><time datetime="2026-06-06T15:15">15:15 – 15:55</time> <span>2hollis</span></li>
+      <li id="set-go25"><time datetime="2026-06-06T16:45">16:45 – 17:30</time> <span>Wet Leg</span></li>
+      <li id="set-go26"><time datetime="2026-06-06T18:15">18:15 – 19:30</time> <span>Stray Kids</span></li>
     </ul>
     <h4>Snapchat Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-06-06T12:30">12:30 – 13:00</time> <span>Chanpan</span></li>
-      <li><time datetime="2026-06-06T13:30">13:30 – 14:00</time> <span>Flowerovlove</span></li>
-      <li><time datetime="2026-06-06T14:30">14:30 – 15:15</time> <span>Spacey Jane</span></li>
-      <li><time datetime="2026-06-06T16:00">16:00 – 16:45</time> <span>Ravyn Lenae</span></li>
-      <li><time datetime="2026-06-06T17:30">17:30 – 18:15</time> <span>Major Lazer</span></li>
+      <li id="set-go27"><time datetime="2026-06-06T12:30">12:30 – 13:00</time> <span>Chanpan</span></li>
+      <li id="set-go28"><time datetime="2026-06-06T13:30">13:30 – 14:00</time> <span>Flowerovlove</span></li>
+      <li id="set-go29"><time datetime="2026-06-06T14:30">14:30 – 15:15</time> <span>Spacey Jane</span></li>
+      <li id="set-go30"><time datetime="2026-06-06T16:00">16:00 – 16:45</time> <span>Ravyn Lenae</span></li>
+      <li id="set-go31"><time datetime="2026-06-06T17:30">17:30 – 18:15</time> <span>Major Lazer</span></li>
     </ul>
     <h4>The Grove</h4>
     <ul class="sets">
-      <li><time datetime="2026-06-06T12:15">12:15 – 12:45</time> <span>Jade LeMac</span></li>
-      <li><time datetime="2026-06-06T13:15">13:15 – 13:45</time> <span>Villanelle</span></li>
-      <li><time datetime="2026-06-06T14:15">14:15 – 15:00</time> <span>Midnight Generation</span></li>
-      <li><time datetime="2026-06-06T15:50">15:50 – 16:30</time> <span>Jane Remover</span></li>
-      <li><time datetime="2026-06-06T16:50">16:50 – 17:35</time> <span>Snow Strippers</span></li>
-      <li><time datetime="2026-06-06T18:00">18:00 – 19:00</time> <span>Thee Sacred Souls</span></li>
+      <li id="set-go32"><time datetime="2026-06-06T12:15">12:15 – 12:45</time> <span>Jade LeMac</span></li>
+      <li id="set-go33"><time datetime="2026-06-06T13:15">13:15 – 13:45</time> <span>Villanelle</span></li>
+      <li id="set-go34"><time datetime="2026-06-06T14:15">14:15 – 15:00</time> <span>Midnight Generation</span></li>
+      <li id="set-go35"><time datetime="2026-06-06T15:50">15:50 – 16:30</time> <span>Jane Remover</span></li>
+      <li id="set-go36"><time datetime="2026-06-06T16:50">16:50 – 17:35</time> <span>Snow Strippers</span></li>
+      <li id="set-go37"><time datetime="2026-06-06T18:00">18:00 – 19:00</time> <span>Thee Sacred Souls</span></li>
     </ul>
     <h3>Sunday, June 7</h3>
     <h4>GovBallNYC</h4>
     <ul class="sets">
-      <li><time datetime="2026-06-07T11:25">11:25 – 11:55</time> <span>Evening Elephants</span></li>
-      <li><time datetime="2026-06-07T12:30">12:30 – 13:00</time> <span>Lexa Gates</span></li>
-      <li><time datetime="2026-06-07T13:45">13:45 – 14:30</time> <span>Slayyyter</span></li>
-      <li><time datetime="2026-06-07T15:15">15:15 – 16:00</time> <span>Holly Humberstone</span></li>
-      <li><time datetime="2026-06-07T16:45">16:45 – 17:45</time> <span>Geese</span></li>
-      <li><time datetime="2026-06-07T18:45">18:45 – 19:45</time> <span>Dominic Fike</span></li>
-      <li><time datetime="2026-06-07T20:45">20:45 – 22:00</time> <span>A$AP Rocky</span></li>
+      <li id="set-go38"><time datetime="2026-06-07T11:25">11:25 – 11:55</time> <span>Evening Elephants</span></li>
+      <li id="set-go39"><time datetime="2026-06-07T12:30">12:30 – 13:00</time> <span>Lexa Gates</span></li>
+      <li id="set-go40"><time datetime="2026-06-07T13:45">13:45 – 14:30</time> <span>Slayyyter</span></li>
+      <li id="set-go41"><time datetime="2026-06-07T15:15">15:15 – 16:00</time> <span>Holly Humberstone</span></li>
+      <li id="set-go42"><time datetime="2026-06-07T16:45">16:45 – 17:45</time> <span>Geese</span></li>
+      <li id="set-go43"><time datetime="2026-06-07T18:45">18:45 – 19:45</time> <span>Dominic Fike</span></li>
+      <li id="set-go44"><time datetime="2026-06-07T20:45">20:45 – 22:00</time> <span>A$AP Rocky</span></li>
     </ul>
     <h4>Snapchat Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-06-07T11:55">11:55 – 12:30</time> <span>Hemlocke Springs</span></li>
-      <li><time datetime="2026-06-07T13:00">13:00 – 13:45</time> <span>Rachel Chinouriri</span></li>
-      <li><time datetime="2026-06-07T14:30">14:30 – 15:15</time> <span>Japanese Breakfast</span></li>
-      <li><time datetime="2026-06-07T16:00">16:00 – 16:45</time> <span>Blood Orange</span></li>
-      <li><time datetime="2026-06-07T17:45">17:45 – 18:45</time> <span>Clipse</span></li>
-      <li><time datetime="2026-06-07T19:45">19:45 – 20:45</time> <span>Jennie</span></li>
+      <li id="set-go45"><time datetime="2026-06-07T11:55">11:55 – 12:30</time> <span>Hemlocke Springs</span></li>
+      <li id="set-go46"><time datetime="2026-06-07T13:00">13:00 – 13:45</time> <span>Rachel Chinouriri</span></li>
+      <li id="set-go47"><time datetime="2026-06-07T14:30">14:30 – 15:15</time> <span>Japanese Breakfast</span></li>
+      <li id="set-go48"><time datetime="2026-06-07T16:00">16:00 – 16:45</time> <span>Blood Orange</span></li>
+      <li id="set-go49"><time datetime="2026-06-07T17:45">17:45 – 18:45</time> <span>Clipse</span></li>
+      <li id="set-go50"><time datetime="2026-06-07T19:45">19:45 – 20:45</time> <span>Jennie</span></li>
     </ul>
     <h4>The Grove</h4>
     <ul class="sets">
-      <li><time datetime="2026-06-07T11:30">11:30 – 12:00</time> <span>School of Rock New York</span></li>
-      <li><time datetime="2026-06-07T12:30">12:30 – 13:00</time> <span>Hannah Jadagu</span></li>
-      <li><time datetime="2026-06-07T13:30">13:30 – 14:00</time> <span>After</span></li>
-      <li><time datetime="2026-06-07T14:30">14:30 – 15:15</time> <span>Between Friends</span></li>
-      <li><time datetime="2026-06-07T15:45">15:45 – 16:30</time> <span>Fcukers</span></li>
-      <li><time datetime="2026-06-07T17:00">17:00 – 17:45</time> <span>Khamari</span></li>
-      <li><time datetime="2026-06-07T18:15">18:15 – 19:15</time> <span>Hot Mulligan</span></li>
-      <li><time datetime="2026-06-07T19:45">19:45 – 20:45</time> <span>Freddie Gibbs &amp; The Alchemist</span></li>
-    </ul>
-  </section>
-
-  <section aria-labelledby="stages-h">
-    <h2 id="stages-h">Governors Ball 2026 stages</h2>
-    <p>Plursky has 3 stages for Governors Ball 2026 at Flushing Meadows, each one listed below.</p>
-    <ul class="stagelist">
-      <li><strong>GovBallNYC</strong> · Main field · headliners</li>
-      <li><strong>Snapchat Stage</strong> · North field · co-headliners</li>
-      <li><strong>The Grove</strong> · Tree line · discovery</li>
+      <li id="set-go51"><time datetime="2026-06-07T11:30">11:30 – 12:00</time> <span>School of Rock New York</span></li>
+      <li id="set-go52"><time datetime="2026-06-07T12:30">12:30 – 13:00</time> <span>Hannah Jadagu</span></li>
+      <li id="set-go53"><time datetime="2026-06-07T13:30">13:30 – 14:00</time> <span>After</span></li>
+      <li id="set-go54"><time datetime="2026-06-07T14:30">14:30 – 15:15</time> <span>Between Friends</span></li>
+      <li id="set-go55"><time datetime="2026-06-07T15:45">15:45 – 16:30</time> <span>Fcukers</span></li>
+      <li id="set-go56"><time datetime="2026-06-07T17:00">17:00 – 17:45</time> <span>Khamari</span></li>
+      <li id="set-go57"><time datetime="2026-06-07T18:15">18:15 – 19:15</time> <span>Hot Mulligan</span></li>
+      <li id="set-go58"><time datetime="2026-06-07T19:45">19:45 – 20:45</time> <span>Freddie Gibbs &amp; The Alchemist</span></li>
     </ul>
   </section>
 
@@ -485,97 +544,121 @@
     <h2 id="lineup-h">Governors Ball 2026 lineup</h2>
     <p>58 artists announced.</p>
     <ul class="lineup">
-      <li>2hollis</li>
-      <li>A$AP Rocky</li>
-      <li>Absolutely</li>
-      <li>After</li>
-      <li>Arcy Drive</li>
-      <li>Audrey Hobert</li>
-      <li>Baby Keem</li>
-      <li>Between Friends</li>
-      <li>Blood Orange</li>
-      <li>Chanpan</li>
-      <li>Clipse</li>
-      <li>Confidence Man</li>
-      <li>Del Water Gap</li>
-      <li>Dominic Fike</li>
-      <li>Evening Elephants</li>
-      <li>Fcukers</li>
-      <li>Flipturn</li>
-      <li>Flowerovlove</li>
-      <li>Freddie Gibbs &amp; The Alchemist</li>
-      <li>Geese</li>
-      <li>Hannah Jadagu</li>
-      <li>Hemlocke Springs</li>
-      <li>Holly Humberstone</li>
-      <li>Hot Mulligan</li>
-      <li>Jade LeMac</li>
-      <li>Jane Remover</li>
-      <li>Japanese Breakfast</li>
-      <li>Jennie</li>
-      <li>Jimmyboy</li>
-      <li>KATSEYE</li>
-      <li>Khamari</li>
-      <li>Kids Rock for Kids</li>
-      <li>King Princess</li>
-      <li>Lexa Gates</li>
-      <li>Lorde</li>
-      <li>Major Lazer</li>
-      <li>Mariah the Scientist</li>
-      <li>Midnight Generation</li>
-      <li>Old Mervs</li>
-      <li>Pierce the Veil</li>
-      <li>Rachel Chinouriri</li>
-      <li>Radio Free Alice</li>
-      <li>Ravyn Lenae</li>
-      <li>School of Rock New York</li>
-      <li>School of Rock Queens</li>
-      <li>Slayyyter</li>
-      <li>Snow Strippers</li>
-      <li>Spacey Jane</li>
-      <li>Stray Kids</li>
-      <li>The Backfires</li>
-      <li>The Beths</li>
-      <li>The Dare</li>
-      <li>Thee Sacred Souls</li>
-      <li>Turnover</li>
-      <li>Villanelle</li>
-      <li>Wet Leg</li>
-      <li>Whatmore</li>
-      <li>Wisp</li>
+      <li><span class="act">2hollis</span> <span class="slots">Sat, Jun 6 · GovBallNYC · <a href="#set-go24">15:15</a></span></li>
+      <li><span class="act">A$AP Rocky</span> <span class="slots">Sun, Jun 7 · GovBallNYC · <a href="#set-go44">20:45</a></span></li>
+      <li><span class="act">Absolutely</span> <span class="slots">Fri, Jun 5 · Snapchat Stage · <a href="#set-go9">13:30</a></span></li>
+      <li><span class="act">After</span> <span class="slots">Sun, Jun 7 · The Grove · <a href="#set-go53">13:30</a></span></li>
+      <li><span class="act">Arcy Drive</span> <span class="slots">Fri, Jun 5 · The Grove · <a href="#set-go17">15:30</a></span></li>
+      <li><span class="act">Audrey Hobert</span> <span class="slots">Fri, Jun 5 · GovBallNYC · <a href="#set-go3">14:00</a></span></li>
+      <li><span class="act">Baby Keem</span> <span class="slots">Fri, Jun 5 · Snapchat Stage · <a href="#set-go13">19:30</a></span></li>
+      <li><span class="act">Between Friends</span> <span class="slots">Sun, Jun 7 · The Grove · <a href="#set-go54">14:30</a></span></li>
+      <li><span class="act">Blood Orange</span> <span class="slots">Sun, Jun 7 · Snapchat Stage · <a href="#set-go48">16:00</a></span></li>
+      <li><span class="act">Chanpan</span> <span class="slots">Sat, Jun 6 · Snapchat Stage · <a href="#set-go27">12:30</a></span></li>
+      <li><span class="act">Clipse</span> <span class="slots">Sun, Jun 7 · Snapchat Stage · <a href="#set-go49">17:45</a></span></li>
+      <li><span class="act">Confidence Man</span> <span class="slots">Fri, Jun 5 · The Grove · <a href="#set-go16">14:15</a></span></li>
+      <li><span class="act">Del Water Gap</span> <span class="slots">Fri, Jun 5 · GovBallNYC · <a href="#set-go4">15:15</a></span></li>
+      <li><span class="act">Dominic Fike</span> <span class="slots">Sun, Jun 7 · GovBallNYC · <a href="#set-go43">18:45</a></span></li>
+      <li><span class="act">Evening Elephants</span> <span class="slots">Sun, Jun 7 · GovBallNYC · <a href="#set-go38">11:25</a></span></li>
+      <li><span class="act">Fcukers</span> <span class="slots">Sun, Jun 7 · The Grove · <a href="#set-go55">15:45</a></span></li>
+      <li><span class="act">Flipturn</span> <span class="slots">Fri, Jun 5 · The Grove · <a href="#set-go20">19:30</a></span></li>
+      <li><span class="act">Flowerovlove</span> <span class="slots">Sat, Jun 6 · Snapchat Stage · <a href="#set-go28">13:30</a></span></li>
+      <li><span class="act">Freddie Gibbs &amp; The Alchemist</span> <span class="slots">Sun, Jun 7 · The Grove · <a href="#set-go58">19:45</a></span></li>
+      <li><span class="act">Geese</span> <span class="slots">Sun, Jun 7 · GovBallNYC · <a href="#set-go42">16:45</a></span></li>
+      <li><span class="act">Hannah Jadagu</span> <span class="slots">Sun, Jun 7 · The Grove · <a href="#set-go52">12:30</a></span></li>
+      <li><span class="act">Hemlocke Springs</span> <span class="slots">Sun, Jun 7 · Snapchat Stage · <a href="#set-go45">11:55</a></span></li>
+      <li><span class="act">Holly Humberstone</span> <span class="slots">Sun, Jun 7 · GovBallNYC · <a href="#set-go41">15:15</a></span></li>
+      <li><span class="act">Hot Mulligan</span> <span class="slots">Sun, Jun 7 · The Grove · <a href="#set-go57">18:15</a></span></li>
+      <li><span class="act">Jade LeMac</span> <span class="slots">Sat, Jun 6 · The Grove · <a href="#set-go32">12:15</a></span></li>
+      <li><span class="act">Jane Remover</span> <span class="slots">Sat, Jun 6 · The Grove · <a href="#set-go35">15:50</a></span></li>
+      <li><span class="act">Japanese Breakfast</span> <span class="slots">Sun, Jun 7 · Snapchat Stage · <a href="#set-go47">14:30</a></span></li>
+      <li><span class="act">Jennie</span> <span class="slots">Sun, Jun 7 · Snapchat Stage · <a href="#set-go50">19:45</a></span></li>
+      <li><span class="act">Jimmyboy</span> <span class="slots">Sat, Jun 6 · GovBallNYC · <a href="#set-go21">12:00</a></span></li>
+      <li><span class="act">KATSEYE</span> <span class="slots">Fri, Jun 5 · GovBallNYC · <a href="#set-go6">18:35</a></span></li>
+      <li><span class="act">Khamari</span> <span class="slots">Sun, Jun 7 · The Grove · <a href="#set-go56">17:00</a></span></li>
+      <li><span class="act">Kids Rock for Kids</span> <span class="slots">Fri, Jun 5 · The Grove · <a href="#set-go14">12:15</a></span></li>
+      <li><span class="act">King Princess</span> <span class="slots">Fri, Jun 5 · Snapchat Stage · <a href="#set-go10">14:30</a></span></li>
+      <li><span class="act">Lexa Gates</span> <span class="slots">Sun, Jun 7 · GovBallNYC · <a href="#set-go39">12:30</a></span></li>
+      <li><span class="act">Lorde</span> <span class="slots">Fri, Jun 5 · GovBallNYC · <a href="#set-go7">20:30</a></span></li>
+      <li><span class="act">Major Lazer</span> <span class="slots">Sat, Jun 6 · Snapchat Stage · <a href="#set-go31">17:30</a></span></li>
+      <li><span class="act">Mariah the Scientist</span> <span class="slots">Fri, Jun 5 · GovBallNYC · <a href="#set-go5">16:45</a></span></li>
+      <li><span class="act">Midnight Generation</span> <span class="slots">Sat, Jun 6 · The Grove · <a href="#set-go34">14:15</a></span></li>
+      <li><span class="act">Old Mervs</span> <span class="slots">Fri, Jun 5 · The Grove · <a href="#set-go15">13:15</a></span></li>
+      <li><span class="act">Pierce the Veil</span> <span class="slots">Fri, Jun 5 · Snapchat Stage · <a href="#set-go12">17:30</a></span></li>
+      <li><span class="act">Rachel Chinouriri</span> <span class="slots">Sun, Jun 7 · Snapchat Stage · <a href="#set-go46">13:00</a></span></li>
+      <li><span class="act">Radio Free Alice</span> <span class="slots">Sat, Jun 6 · GovBallNYC · <a href="#set-go22">13:00</a></span></li>
+      <li><span class="act">Ravyn Lenae</span> <span class="slots">Sat, Jun 6 · Snapchat Stage · <a href="#set-go30">16:00</a></span></li>
+      <li><span class="act">School of Rock New York</span> <span class="slots">Sun, Jun 7 · The Grove · <a href="#set-go51">11:30</a></span></li>
+      <li><span class="act">School of Rock Queens</span> <span class="slots">Fri, Jun 5 · GovBallNYC · <a href="#set-go1">12:00</a></span></li>
+      <li><span class="act">Slayyyter</span> <span class="slots">Sun, Jun 7 · GovBallNYC · <a href="#set-go40">13:45</a></span></li>
+      <li><span class="act">Snow Strippers</span> <span class="slots">Sat, Jun 6 · The Grove · <a href="#set-go36">16:50</a></span></li>
+      <li><span class="act">Spacey Jane</span> <span class="slots">Sat, Jun 6 · Snapchat Stage · <a href="#set-go29">14:30</a></span></li>
+      <li><span class="act">Stray Kids</span> <span class="slots">Sat, Jun 6 · GovBallNYC · <a href="#set-go26">18:15</a></span></li>
+      <li><span class="act">The Backfires</span> <span class="slots">Fri, Jun 5 · Snapchat Stage · <a href="#set-go8">12:30</a></span></li>
+      <li><span class="act">The Beths</span> <span class="slots">Fri, Jun 5 · The Grove · <a href="#set-go19">18:00</a></span></li>
+      <li><span class="act">The Dare</span> <span class="slots">Fri, Jun 5 · Snapchat Stage · <a href="#set-go11">16:00</a></span></li>
+      <li><span class="act">Thee Sacred Souls</span> <span class="slots">Sat, Jun 6 · The Grove · <a href="#set-go37">18:00</a></span></li>
+      <li><span class="act">Turnover</span> <span class="slots">Fri, Jun 5 · The Grove · <a href="#set-go18">16:45</a></span></li>
+      <li><span class="act">Villanelle</span> <span class="slots">Sat, Jun 6 · The Grove · <a href="#set-go33">13:15</a></span></li>
+      <li><span class="act">Wet Leg</span> <span class="slots">Sat, Jun 6 · GovBallNYC · <a href="#set-go25">16:45</a></span></li>
+      <li><span class="act">Whatmore</span> <span class="slots">Fri, Jun 5 · GovBallNYC · <a href="#set-go2">13:00</a></span></li>
+      <li><span class="act">Wisp</span> <span class="slots">Sat, Jun 6 · GovBallNYC · <a href="#set-go23">14:00</a></span></li>
     </ul>
+  </section>
 
+  <section aria-labelledby="stages-h">
+    <h2 id="stages-h">Governors Ball 2026 stages</h2>
+    <p>Plursky has 3 stages for Governors Ball 2026 at Flushing Meadows, each one listed below with its sets per day.</p>
+    <ul class="stagelist">
+      <li><strong>GovBallNYC</strong> · Main field · headliners<br><span class="counts">Fri, Jun 5: 7 · Sat, Jun 6: 6 · Sun, Jun 7: 7</span></li>
+      <li><strong>Snapchat Stage</strong> · North field · co-headliners<br><span class="counts">Fri, Jun 5: 6 · Sat, Jun 6: 5 · Sun, Jun 7: 6</span></li>
+      <li><strong>The Grove</strong> · Tree line · discovery<br><span class="counts">Fri, Jun 5: 7 · Sat, Jun 6: 6 · Sun, Jun 7: 8</span></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="plan-h">
+    <h2 id="plan-h">Plan your day at Governors Ball 2026</h2>
+    <p>Amenities Plursky lists for Governors Ball 2026: Restrooms (2) · Water (2) · Food (1) · Info (1) · Medical (1).</p>
+  </section>
+
+  <section aria-labelledby="past-h">
+    <h2 id="past-h">Past editions of Governors Ball</h2>
+    <ul>
+      <li><a href="/?tab=past">Governors Ball 2025</a> — 2025, 53 artists, 53 sets</li>
+    </ul>
+    <p class="note">Each link opens Past Festivals in Plursky.</p>
+  </section>
+
+  <section aria-labelledby="app-h">
+    <h2 id="app-h">Get the app</h2>
+    <p class="ctas">
+      <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
+      <a class="cta-secondary" href="/?f=governors-ball-2026">Relive it in the browser</a>
+    </p>
+    <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.</p>
+    <p><a href="/?f=governors-ball-2026&amp;tab=memories">Your Governors Ball 2026 Memories in Plursky</a></p>
   </section>
 
   <nav class="other" aria-labelledby="other-h">
     <h2 id="other-h">Other festivals on Plursky</h2>
     <ul>
-      <li><a href="/f/edc-lv-2026/">EDC Las Vegas 2026</a> — May 15–17, 2026</li>
-      <li><a href="/f/electric-forest-2027/">Electric Forest 2027</a> — Dates TBA</li>
-      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
-      <li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a> — Nov 6–8, 2026</li>
-      <li><a href="/f/tomorrowland-2027/">Tomorrowland 2027</a> — Dates TBA</li>
-      <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
-      <li><a href="/f/coachella-2027/">Coachella 2027</a> — Apr 9–18, 2027</li>
-      <li><a href="/f/edc-mexico-2027/">EDC Mexico 2027</a> — Feb 19–21, 2027</li>
-      <li><a href="/f/beyond-wonderland-socal-2027/">Beyond Wonderland SoCal 2027</a> — Mar 26–27, 2027</li>
-      <li><a href="/f/beyond-wonderland-gorge-2027/">Beyond Wonderland at The Gorge 2027</a> — Jun 26–27, 2027</li>
-      <li><a href="/f/ultra-miami-2026/">Ultra Miami 2026</a> — Mar 27–29, 2026</li>
       <li><a href="/f/summerfest-2026/">Summerfest 2026</a> — Jun 18–20, Jun 25–27 &amp; Jul 2–4, 2026</li>
+      <li><a href="/f/edc-lv-2026/">EDC Las Vegas 2026</a> — May 15–17, 2026</li>
       <li><a href="/f/lollapalooza-2026/">Lollapalooza 2026</a> — Jul 30 – Aug 2, 2026</li>
-      <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
-      <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
-      <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
-      <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
-      <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
       <li><a href="/f/hard-summer-2026/">HARD Summer 2026</a> — Aug 1–2, 2026</li>
+      <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
+      <li><a href="/f/ultra-miami-2026/">Ultra Miami 2026</a> — Mar 27–29, 2026</li>
       <li><a href="/f/arc-2026/">ARC Music Festival 2026</a> — Sep 4–7, 2026</li>
-      <li><a href="/f/escape-halloween-2026/">Escape Halloween 2026</a> — Oct 30–31, 2026</li>
-      <li><a href="/f/dreamstate-socal-2026/">Dreamstate SoCal 2026</a> — Nov 20–21, 2026</li>
-      <li><a href="/f/decadence-colorado-2026/">Decadence Colorado 2026</a> — Dec 30–31, 2026</li>
-      <li><a href="/f/countdown-nye-2026/">Countdown NYE 2026</a> — Dec 31, 2026 – Jan 1, 2027</li>
+      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
     </ul>
   </nav>
+
+  <section class="sources" aria-labelledby="sources-h">
+    <h2 id="sources-h">Sources</h2>
+    <ul>
+      <li>Set times: <a href="https://governorsballmusicfestival.com/schedule" rel="noopener">https://governorsballmusicfestival.com/schedule</a> (official, checked 2026-08-28)</li>
+    </ul>
+    <p class="note">Last updated <time class="updated" datetime="2026-09-24">2026-09-24</time>.</p>
+  </section>
 
   <footer>
     <a href="/">Plursky</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a>

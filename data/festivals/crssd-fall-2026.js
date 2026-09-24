@@ -295,6 +295,11 @@
     // the honest choice here rather than a fallback — unlike Nocturnal, there
     // is no official map in ANY year to take a layout from.
     mapMode: "real",
+
+    // The festival's OWN map page, linked (never embedded) by the /f/ page:
+    // official publication is provenance, not reuse rights. mapYear is the
+    // year printed on the map the page showed when checked — the Fall '26 page still shows the Fall 2025 maps.
+    mapSource: { url: "https://www.crssdfest.com/map", observedAt: "2026-09-24", mapYear: 2025 },
     mapPrintsStageNames: false,
     // The affine-vs-poster gate has no poster to check against here. Not a
     // waiver — there is genuinely nothing to register.

@@ -19,6 +19,7 @@
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { plateFor, heroArtFor, pastEditionsFor, amenitySummary } from './festival-page-data.mjs';
 
 export const fp = (v) => createHash('sha256').update(JSON.stringify(v)).digest('hex').slice(0, 16);
 
@@ -96,6 +97,10 @@ export const FINGERPRINTED_CONFIG_FIELDS = [
   // stayed frozen — the one-directional failure this ledger exists to prevent.
   'mapImage',
   'mapMode',
+  'mapSource',       // the map section's official link, its year note, the Sources row
+  'year',            // whether the official map shown is this edition's
+  'weekendStartMs',  // weekend headings, per-weekend rows and the weekends answer
+  'officialEvent',   // the official-site link in Sources and on a no-lineup page
 ];
 
 // Top-level registry-entry fields that reach rendered output.
@@ -151,7 +156,7 @@ export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, t
     // changing nothing, because that list feeds the detector, not the hash.
     mapImage: cfg.mapImage || '',
     mapMode: cfg.mapMode || '',
-    // The "This festival has ended." line and the CTA verb move with the
+    // The Past status chip and the CTA verb move with the
     // calendar alone. That IS a change a crawler sees, so it belongs in the
     // fingerprint — and it is precisely why the comparison is strict-only.
     isPast: d ? d.end < TODAY : false,
@@ -165,6 +170,16 @@ export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, t
       s.x != null && s.y != null]),
     acts: scheduleActs(ds.artists),
     source: cfg.scheduleSource || null,
+    mapSource: cfg.mapSource || null,
+    year: cfg.year ?? null,
+    weekendStartMs: cfg.weekendStartMs || null,
+    officialEvent: cfg.officialEvent || null,
+    // Page sections fed from outside the registry, through the SAME helpers
+    // the generator renders with (scripts/lib/festival-page-data.mjs).
+    plate: (() => { const p = plateFor(cfg); return p ? [p.file, p.w, p.h, fp(p.svg)] : null; })(),
+    hero: (() => { const h = heroArtFor(cfg.id); return h ? [h.file, h.w, h.h, h.bytes, h.source] : null; })(),
+    editions: pastEditionsFor(cfg.id),
+    amenities: amenitySummary(DS, cfg.id, !!entry.available),
   };
 }
 

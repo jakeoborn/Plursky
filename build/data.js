@@ -170,6 +170,11 @@ var FESTIVAL_CONFIG = {
   weatherEndpoint: "https://api.weather.gov/points/36.27,-115.01",
   mainStageId: "kinetic",
   mapImage: "edc-map-2026.jpg",
+  mapSource: {
+    url: "https://lasvegas.edc.com/festival-map/",
+    observedAt: "2026-09-24",
+    mapYear: 2026
+  },
   mapStyle: "image-overlay",
   mapPrintsStageNames: true,
   mapArtIsGeoregistered: false,
@@ -637,6 +642,11 @@ var FESTIVALS_REGISTRY = [{
     }],
     mainStageId: "amex",
     mapImage: "acl-park-2026.webp",
+    mapSource: {
+      url: "https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map",
+      observedAt: "2026-09-24",
+      mapYear: null
+    },
     mapStyle: "image-overlay",
     mapTheme: "park",
     weatherEndpoint: "https://api.weather.gov/points/30.26,-97.77"

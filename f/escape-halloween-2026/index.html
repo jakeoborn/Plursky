@@ -3,63 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Escape Halloween 2026 — Lineup, Map &amp; Schedule · Plursky</title>
-<meta name="description" content="Escape Halloween 2026 lineup — 103 artists at NOS Events Center, Oct 30–31, 2026. Build your schedule, map the stages and share your weekend with Plursky.">
+<title>Escape Halloween 2026 — Lineup &amp; Map · Plursky</title>
+<meta name="description" content="Escape Halloween 2026 lineup — 103 artists at NOS Events Center, Oct 30–31, 2026. Build your schedule and share your weekend with Plursky.">
 <link rel="canonical" href="https://plursky.com/f/escape-halloween-2026/">
 <meta name="apple-itunes-app" content="app-id=6768888507">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Plursky">
-<meta property="og:title" content="Escape Halloween 2026 — Lineup, Map &amp; Schedule">
-<meta property="og:description" content="Escape Halloween 2026 lineup — 103 artists at NOS Events Center, Oct 30–31, 2026. Build your schedule, map the stages and share your weekend with Plursky.">
+<meta property="og:title" content="Escape Halloween 2026 — Lineup &amp; Map">
+<meta property="og:description" content="Escape Halloween 2026 lineup — 103 artists at NOS Events Center, Oct 30–31, 2026. Build your schedule and share your weekend with Plursky.">
 <meta property="og:url" content="https://plursky.com/f/escape-halloween-2026/">
 <meta property="og:image" content="https://plursky.com/og-card.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Escape Halloween 2026 — Lineup, Map &amp; Schedule">
-<meta name="twitter:description" content="Escape Halloween 2026 lineup — 103 artists at NOS Events Center, Oct 30–31, 2026. Build your schedule, map the stages and share your weekend with Plursky.">
+<meta name="twitter:title" content="Escape Halloween 2026 — Lineup &amp; Map">
+<meta name="twitter:description" content="Escape Halloween 2026 lineup — 103 artists at NOS Events Center, Oct 30–31, 2026. Build your schedule and share your weekend with Plursky.">
 <meta name="twitter:image" content="https://plursky.com/og-card.png">
 <link rel="icon" type="image/png" href="/apple-touch-icon.png">
 <style>
-  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; }
+  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; --panel:#1c1916; }
   * { box-sizing:border-box; }
   body { margin:0; padding:32px 20px 64px; background:var(--bg); color:var(--ink);
          font-family:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.6; }
   main { max-width:760px; margin:0 auto; }
-  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; }
+  nav.crumbs { font-size:13px; color:var(--muted); margin:0 0 16px; }
+  nav.crumbs a { color:var(--muted); }
+  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; text-wrap:balance; }
   h2 { font-size:18px; margin:32px 0 8px; }
   .meta { color:var(--muted); margin:0 0 20px; }
+  .chip { display:inline-block; margin-right:8px; padding:1px 10px; border-radius:999px; border:1px solid var(--line);
+          color:var(--ink); font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
+  .chip-live, .chip-soon { border-color:var(--ember); color:var(--ember); }
   .note { color:var(--muted); font-size:14px; }
+  figure { margin:16px 0; }
+  figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:12px; background:var(--panel); }
+  .platebox { position:relative; max-width:520px; }
+  .pin { position:absolute; transform:translate(-50%,-50%); width:20px; height:20px; border-radius:50%;
+         display:flex; align-items:center; justify-content:center; background:rgba(18,16,14,0.82);
+         border:1px solid var(--ink); color:var(--ink); font-size:11px; font-weight:700; pointer-events:none; }
+  ol.platekey { margin:8px 0 0; padding-left:22px; font-size:13px; columns:2; column-gap:20px; }
+  figcaption { color:var(--muted); font-size:13px; margin-top:6px; }
   .cta { display:inline-block; margin:20px 0 8px; padding:12px 22px; border-radius:12px;
          background:linear-gradient(135deg,#6D28D9,var(--ember)); color:#fff; text-decoration:none; font-weight:700; }
-  ul.lineup { list-style:none; padding:0; margin:12px 0 0;
-              display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:2px 16px; }
-  ul.lineup li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.lineup { list-style:none; padding:0; margin:12px 0 0; }
+  ul.lineup li { padding:5px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; flex-wrap:wrap; gap:2px 12px; }
+  ul.lineup .act { font-weight:600; }
+  ul.lineup .slots { color:var(--muted); overflow-wrap:anywhere; }
   h3 { font-size:16px; margin:24px 0 4px; }
   h4 { font-size:13px; margin:16px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
+  h5 { font-size:12px; margin:12px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
   ul.sets { list-style:none; padding:0; margin:4px 0 0; }
-  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; }
+  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; scroll-margin-top:16px; }
+  ul.sets li:target { background:rgba(232,93,46,0.14); }
   ul.sets li time { color:var(--muted); font-variant-numeric:tabular-nums; min-width:96px; flex:none; }
   ul.stagelist { list-style:none; padding:0; margin:8px 0 0; }
   ul.stagelist li { padding:6px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.stagelist .counts { color:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; }
   dl.answers { margin:12px 0 0; }
   dl.answers dt { font-weight:700; font-size:15px; margin:16px 0 4px; }
   dl.answers dd { margin:0; color:var(--muted); font-size:14px; }
-  a.cta-secondary { margin-left:14px; font-weight:600; }
+  p.ctas { display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; margin:20px 0 8px; }
+  p.ctas .cta { margin:0; }
+  a.cta-secondary { font-weight:600; white-space:nowrap; }
   nav.other { margin-top:40px; }
   nav.other a { color:var(--ink); }
+  section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
 </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "MusicFestival",
+  "@type": "MusicEvent",
   "name": "Escape Halloween 2026",
   "url": "https://plursky.com/f/escape-halloween-2026/",
   "startDate": "2026-10-30",
   "endDate": "2026-10-31",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-  "description": "Escape Halloween 2026 lineup — 103 artists at NOS Events Center, Oct 30–31, 2026. Build your schedule, map the stages and share your weekend with Plursky.",
+  "description": "Escape Halloween 2026 lineup — 103 artists at NOS Events Center, Oct 30–31, 2026. Build your schedule and share your weekend with Plursky.",
   "location": {
     "@type": "Place",
     "name": "NOS Events Center",
@@ -526,6 +546,40 @@
         "@type": "Answer",
         "text": "Escape Halloween 2026 has 5 stages at NOS Events Center, each one listed on this page."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a map for Escape Halloween 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This page links the festival's own map page, which showed the 2025 map when Plursky checked it on 2026-09-24."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Plursky",
+      "item": "https://plursky.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Festivals",
+      "item": "https://plursky.com/#festivals"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Escape Halloween 2026",
+      "item": "https://plursky.com/f/escape-halloween-2026/"
     }
   ]
 }
@@ -533,16 +587,10 @@
 </head>
 <body>
 <main>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Plursky</a> › <a href="/#festivals">Festivals</a> › <span aria-current="page">Escape Halloween 2026</span></nav>
   <h1>Escape Halloween 2026</h1>
-  <p class="meta">Oct 30–31, 2026 · NOS Events Center · San Bernardino, CA</p>
+  <p class="meta"><span class="chip chip-upcoming">Upcoming</span>Oct 30–31, 2026 · NOS Events Center · San Bernardino, CA</p>
   <p>Two nights of psycho circus</p>
-
-  <p>
-    <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
-    <a class="cta-secondary" href="/?f=escape-halloween-2026">Open in your browser</a>
-  </p>
-  <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.</p>
-  <p class="note">Escape Halloween 2026 is open in the app — the full lineup is in. Set times appear as soon as the festival publishes them.</p>
 
   <section aria-labelledby="answers-h">
     <h2 id="answers-h">Escape Halloween 2026 — quick answers</h2>
@@ -555,9 +603,127 @@
       <dd>103 artists are announced for Escape Halloween 2026, and every one of them is listed on this page.</dd>
       <dt>How many stages does Escape Halloween 2026 have?</dt>
       <dd>Escape Halloween 2026 has 5 stages at NOS Events Center, each one listed on this page.</dd>
+      <dt>Is there a map for Escape Halloween 2026?</dt>
+      <dd>This page links the festival&#39;s own map page, which showed the 2025 map when Plursky checked it on 2026-09-24.</dd>
     </dl>
   </section>
 
+  <section aria-labelledby="map-h">
+    <h2 id="map-h">Escape Halloween 2026 map</h2>
+    <p><a href="https://escapehalloween.com/festival-map/" rel="noopener">Official Escape festival map page</a>, on the festival's own site. When checked on 2026-09-24 it showed the 2025 map.</p>
+  </section>
+
+
+  <section aria-labelledby="lineup-h">
+    <h2 id="lineup-h">Escape Halloween 2026 lineup</h2>
+    <p>103 artists announced.</p>
+    <p class="note">Plursky does not have stage assignments or set times for every act at Escape Halloween 2026 yet; each row shows what it has.</p>
+    <ul class="lineup">
+      <li><span class="act">$coe</span></li>
+      <li><span class="act">999999999</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">A Little Sound</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">AC Slater</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Acyan</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Adam Ten</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Adventure Club</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Alex Chapman B2B Zoe Gitter</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">All Rise</span></li>
+      <li><span class="act">All The Reason</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Alok</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Andruss B2B Juos</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">AniMe - No Boundaries</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Avalon Emerson</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Azyr</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Benny Benassi</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Bou</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Cascada</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Cat &amp; Maomi</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Cera Khin</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Champion</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Chrysalis</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Clara Cuvé</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Cloonee</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Comadoses</span></li>
+      <li><span class="act">Coone B2B DJ Isaac</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Cyclops</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Dabin</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Darren Styles</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Death Simulator</span></li>
+      <li><span class="act">Desa Deca</span></li>
+      <li><span class="act">Dimitri Vegas &amp; Like Mike</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Disco Lines</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Discovery Project</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">DJ Heartstring</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">DJ Tennis</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Dr. Fresch</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">ero808</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Excision</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Frontliner (Journey Set)</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Funk Assault</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Galantis</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Gammer</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Getter</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">HerShe</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">HIWATER</span></li>
+      <li><span class="act">HoneyPacq</span></li>
+      <li><span class="act">HUA</span></li>
+      <li><span class="act">Ian Asher</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Ice Cube</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Indira Paganotto</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Jamie Jones B2B Franky Rizardo</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Jon Casey</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Joseph Capriati B2B Sosa</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">JOYRYDE (Sunset Set)</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">JSMN</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">k?d presents: Kill The Kid</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Kai Wachi</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Kana Hishiya</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Kimmo</span></li>
+      <li><span class="act">Kloud</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Know Good</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">KREAM</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Lady Faith B2B LNY TNZ</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Landopolo</span></li>
+      <li><span class="act">Level Up</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Liquid Stranger</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">LUMI</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Maddix</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">MALUGI</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Marie Nyx</span></li>
+      <li><span class="act">Mark Lizaola</span></li>
+      <li><span class="act">Mish</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">MODAL NODES</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Monic</span></li>
+      <li><span class="act">Morelia</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">MORTEN</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Nervo</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Nina J</span></li>
+      <li><span class="act">Nina Kraviz</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">OMNOM</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">PEDROZ</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Pixie Dust</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Richard Vission</span></li>
+      <li><span class="act">Richie Hawtin</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Rommii</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">RoRoll</span></li>
+      <li><span class="act">San Pacho</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Sedef Adasï</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">SEUNG</span></li>
+      <li><span class="act">SHAKING</span></li>
+      <li><span class="act">Showtek (Hardstyle Set)</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Silvie Loto</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Spency Be</span></li>
+      <li><span class="act">Steve Aoki</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">TELYKAST</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Trancemaster Krause</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Trym</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">TYKNI</span></li>
+      <li><span class="act">VNSSA B2B ????</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">Yanamaste</span> <span class="slots">Sat, Oct 31</span></li>
+      <li><span class="act">YDG</span> <span class="slots">Fri, Oct 30</span></li>
+      <li><span class="act">Zedd</span> <span class="slots">Sat, Oct 31</span></li>
+    </ul>
+  </section>
 
   <section aria-labelledby="stages-h">
     <h2 id="stages-h">Escape Halloween 2026 stages</h2>
@@ -571,146 +737,40 @@
     </ul>
   </section>
 
-  <section aria-labelledby="lineup-h">
-    <h2 id="lineup-h">Escape Halloween 2026 lineup</h2>
-    <p>103 artists announced.</p>
-    <ul class="lineup">
-      <li>$coe</li>
-      <li>999999999</li>
-      <li>A Little Sound</li>
-      <li>AC Slater</li>
-      <li>Acyan</li>
-      <li>Adam Ten</li>
-      <li>Adventure Club</li>
-      <li>Alex Chapman B2B Zoe Gitter</li>
-      <li>All Rise</li>
-      <li>All The Reason</li>
-      <li>Alok</li>
-      <li>Andruss B2B Juos</li>
-      <li>AniMe - No Boundaries</li>
-      <li>Avalon Emerson</li>
-      <li>Azyr</li>
-      <li>Benny Benassi</li>
-      <li>Bou</li>
-      <li>Cascada</li>
-      <li>Cat &amp; Maomi</li>
-      <li>Cera Khin</li>
-      <li>Champion</li>
-      <li>Chrysalis</li>
-      <li>Clara Cuvé</li>
-      <li>Cloonee</li>
-      <li>Comadoses</li>
-      <li>Coone B2B DJ Isaac</li>
-      <li>Cyclops</li>
-      <li>Dabin</li>
-      <li>Darren Styles</li>
-      <li>Death Simulator</li>
-      <li>Desa Deca</li>
-      <li>Dimitri Vegas &amp; Like Mike</li>
-      <li>Disco Lines</li>
-      <li>Discovery Project</li>
-      <li>DJ Heartstring</li>
-      <li>DJ Tennis</li>
-      <li>Dr. Fresch</li>
-      <li>ero808</li>
-      <li>Excision</li>
-      <li>Frontliner (Journey Set)</li>
-      <li>Funk Assault</li>
-      <li>Galantis</li>
-      <li>Gammer</li>
-      <li>Getter</li>
-      <li>HerShe</li>
-      <li>HIWATER</li>
-      <li>HoneyPacq</li>
-      <li>HUA</li>
-      <li>Ian Asher</li>
-      <li>Ice Cube</li>
-      <li>Indira Paganotto</li>
-      <li>Jamie Jones B2B Franky Rizardo</li>
-      <li>Jon Casey</li>
-      <li>Joseph Capriati B2B Sosa</li>
-      <li>JOYRYDE (Sunset Set)</li>
-      <li>JSMN</li>
-      <li>k?d presents: Kill The Kid</li>
-      <li>Kai Wachi</li>
-      <li>Kana Hishiya</li>
-      <li>Kimmo</li>
-      <li>Kloud</li>
-      <li>Know Good</li>
-      <li>KREAM</li>
-      <li>Lady Faith B2B LNY TNZ</li>
-      <li>Landopolo</li>
-      <li>Level Up</li>
-      <li>Liquid Stranger</li>
-      <li>LUMI</li>
-      <li>Maddix</li>
-      <li>MALUGI</li>
-      <li>Marie Nyx</li>
-      <li>Mark Lizaola</li>
-      <li>Mish</li>
-      <li>MODAL NODES</li>
-      <li>Monic</li>
-      <li>Morelia</li>
-      <li>MORTEN</li>
-      <li>Nervo</li>
-      <li>Nina J</li>
-      <li>Nina Kraviz</li>
-      <li>OMNOM</li>
-      <li>PEDROZ</li>
-      <li>Pixie Dust</li>
-      <li>Richard Vission</li>
-      <li>Richie Hawtin</li>
-      <li>Rommii</li>
-      <li>RoRoll</li>
-      <li>San Pacho</li>
-      <li>Sedef Adasï</li>
-      <li>SEUNG</li>
-      <li>SHAKING</li>
-      <li>Showtek (Hardstyle Set)</li>
-      <li>Silvie Loto</li>
-      <li>Spency Be</li>
-      <li>Steve Aoki</li>
-      <li>TELYKAST</li>
-      <li>Trancemaster Krause</li>
-      <li>Trym</li>
-      <li>TYKNI</li>
-      <li>VNSSA B2B ????</li>
-      <li>Yanamaste</li>
-      <li>YDG</li>
-      <li>Zedd</li>
-    </ul>
 
+
+  <section aria-labelledby="app-h">
+    <h2 id="app-h">Get the app</h2>
+    <p class="ctas">
+      <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
+      <a class="cta-secondary" href="/?f=escape-halloween-2026">Open in your browser</a>
+    </p>
+    <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.</p>
+    <p class="note">Escape Halloween 2026 is open in the app — the full lineup is in. Set times appear as soon as the festival publishes them.</p>
   </section>
 
   <nav class="other" aria-labelledby="other-h">
     <h2 id="other-h">Other festivals on Plursky</h2>
     <ul>
-      <li><a href="/f/edc-lv-2026/">EDC Las Vegas 2026</a> — May 15–17, 2026</li>
-      <li><a href="/f/electric-forest-2027/">Electric Forest 2027</a> — Dates TBA</li>
-      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
       <li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a> — Nov 6–8, 2026</li>
-      <li><a href="/f/tomorrowland-2027/">Tomorrowland 2027</a> — Dates TBA</li>
-      <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
-      <li><a href="/f/coachella-2027/">Coachella 2027</a> — Apr 9–18, 2027</li>
-      <li><a href="/f/edc-mexico-2027/">EDC Mexico 2027</a> — Feb 19–21, 2027</li>
-      <li><a href="/f/beyond-wonderland-socal-2027/">Beyond Wonderland SoCal 2027</a> — Mar 26–27, 2027</li>
-      <li><a href="/f/beyond-wonderland-gorge-2027/">Beyond Wonderland at The Gorge 2027</a> — Jun 26–27, 2027</li>
-      <li><a href="/f/ultra-miami-2026/">Ultra Miami 2026</a> — Mar 27–29, 2026</li>
-      <li><a href="/f/governors-ball-2026/">Governors Ball 2026</a> — Jun 5–7, 2026</li>
-      <li><a href="/f/summerfest-2026/">Summerfest 2026</a> — Jun 18–20, Jun 25–27 &amp; Jul 2–4, 2026</li>
-      <li><a href="/f/lollapalooza-2026/">Lollapalooza 2026</a> — Jul 30 – Aug 2, 2026</li>
-      <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
       <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
-      <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
+      <li><a href="/f/dreamstate-socal-2026/">Dreamstate SoCal 2026</a> — Nov 20–21, 2026</li>
+      <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
       <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
       <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
-      <li><a href="/f/hard-summer-2026/">HARD Summer 2026</a> — Aug 1–2, 2026</li>
-      <li><a href="/f/arc-2026/">ARC Music Festival 2026</a> — Sep 4–7, 2026</li>
-      <li><a href="/f/dreamstate-socal-2026/">Dreamstate SoCal 2026</a> — Nov 20–21, 2026</li>
-      <li><a href="/f/decadence-colorado-2026/">Decadence Colorado 2026</a> — Dec 30–31, 2026</li>
-      <li><a href="/f/countdown-nye-2026/">Countdown NYE 2026</a> — Dec 31, 2026 – Jan 1, 2027</li>
+      <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
+      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
     </ul>
   </nav>
+
+  <section class="sources" aria-labelledby="sources-h">
+    <h2 id="sources-h">Sources</h2>
+    <ul>
+      <li>Official site: <a href="https://escapehalloween.com/" rel="noopener">https://escapehalloween.com/</a></li>
+      <li>Map: <a href="https://escapehalloween.com/festival-map/" rel="noopener">https://escapehalloween.com/festival-map/</a> (official, checked 2026-09-24)</li>
+    </ul>
+    <p class="note">Last updated <time class="updated" datetime="2026-09-24">2026-09-24</time>.</p>
+  </section>
 
   <footer>
     <a href="/">Plursky</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a>

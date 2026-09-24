@@ -19,40 +19,60 @@
 <meta name="twitter:image" content="https://plursky.com/og-card.png">
 <link rel="icon" type="image/png" href="/apple-touch-icon.png">
 <style>
-  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; }
+  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; --panel:#1c1916; }
   * { box-sizing:border-box; }
   body { margin:0; padding:32px 20px 64px; background:var(--bg); color:var(--ink);
          font-family:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.6; }
   main { max-width:760px; margin:0 auto; }
-  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; }
+  nav.crumbs { font-size:13px; color:var(--muted); margin:0 0 16px; }
+  nav.crumbs a { color:var(--muted); }
+  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; text-wrap:balance; }
   h2 { font-size:18px; margin:32px 0 8px; }
   .meta { color:var(--muted); margin:0 0 20px; }
+  .chip { display:inline-block; margin-right:8px; padding:1px 10px; border-radius:999px; border:1px solid var(--line);
+          color:var(--ink); font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
+  .chip-live, .chip-soon { border-color:var(--ember); color:var(--ember); }
   .note { color:var(--muted); font-size:14px; }
+  figure { margin:16px 0; }
+  figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:12px; background:var(--panel); }
+  .platebox { position:relative; max-width:520px; }
+  .pin { position:absolute; transform:translate(-50%,-50%); width:20px; height:20px; border-radius:50%;
+         display:flex; align-items:center; justify-content:center; background:rgba(18,16,14,0.82);
+         border:1px solid var(--ink); color:var(--ink); font-size:11px; font-weight:700; pointer-events:none; }
+  ol.platekey { margin:8px 0 0; padding-left:22px; font-size:13px; columns:2; column-gap:20px; }
+  figcaption { color:var(--muted); font-size:13px; margin-top:6px; }
   .cta { display:inline-block; margin:20px 0 8px; padding:12px 22px; border-radius:12px;
          background:linear-gradient(135deg,#6D28D9,var(--ember)); color:#fff; text-decoration:none; font-weight:700; }
-  ul.lineup { list-style:none; padding:0; margin:12px 0 0;
-              display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:2px 16px; }
-  ul.lineup li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.lineup { list-style:none; padding:0; margin:12px 0 0; }
+  ul.lineup li { padding:5px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; flex-wrap:wrap; gap:2px 12px; }
+  ul.lineup .act { font-weight:600; }
+  ul.lineup .slots { color:var(--muted); overflow-wrap:anywhere; }
   h3 { font-size:16px; margin:24px 0 4px; }
   h4 { font-size:13px; margin:16px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
+  h5 { font-size:12px; margin:12px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
   ul.sets { list-style:none; padding:0; margin:4px 0 0; }
-  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; }
+  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; scroll-margin-top:16px; }
+  ul.sets li:target { background:rgba(232,93,46,0.14); }
   ul.sets li time { color:var(--muted); font-variant-numeric:tabular-nums; min-width:96px; flex:none; }
   ul.stagelist { list-style:none; padding:0; margin:8px 0 0; }
   ul.stagelist li { padding:6px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.stagelist .counts { color:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; }
   dl.answers { margin:12px 0 0; }
   dl.answers dt { font-weight:700; font-size:15px; margin:16px 0 4px; }
   dl.answers dd { margin:0; color:var(--muted); font-size:14px; }
-  a.cta-secondary { margin-left:14px; font-weight:600; }
+  p.ctas { display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; margin:20px 0 8px; }
+  p.ctas .cta { margin:0; }
+  a.cta-secondary { font-weight:600; white-space:nowrap; }
   nav.other { margin-top:40px; }
   nav.other a { color:var(--ink); }
+  section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
 </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "MusicFestival",
+  "@type": "MusicEvent",
   "name": "EDC Las Vegas 2026",
   "url": "https://plursky.com/f/edc-lv-2026/",
   "startDate": "2026-05-15",
@@ -1077,6 +1097,40 @@
         "@type": "Answer",
         "text": "EDC Las Vegas 2026 has 9 stages at Las Vegas Motor Speedway, each one listed on this page."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a map for EDC Las Vegas 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. This page links the official EDC Las Vegas 2026 map on the festival's own site."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Plursky",
+      "item": "https://plursky.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Festivals",
+      "item": "https://plursky.com/#festivals"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "EDC Las Vegas 2026",
+      "item": "https://plursky.com/f/edc-lv-2026/"
     }
   ]
 }
@@ -1084,16 +1138,10 @@
 </head>
 <body>
 <main>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Plursky</a> › <a href="/#festivals">Festivals</a> › <span aria-current="page">EDC Las Vegas 2026</span></nav>
   <h1>EDC Las Vegas 2026</h1>
-  <p class="meta">May 15–17, 2026 · Las Vegas Motor Speedway · Nevada · This festival has ended.</p>
+  <p class="meta"><span class="chip chip-past">Past</span>May 15–17, 2026 · Las Vegas Motor Speedway · Nevada</p>
   <p>Three nights under the electric sky</p>
-
-  <p>
-    <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
-    <a class="cta-secondary" href="/?f=edc-lv-2026">Relive it in the browser</a>
-  </p>
-  <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.</p>
-
 
   <section aria-labelledby="answers-h">
     <h2 id="answers-h">EDC Las Vegas 2026 — quick answers</h2>
@@ -1106,7 +1154,14 @@
       <dd>241 artists are announced for EDC Las Vegas 2026, and every one of them is listed on this page.</dd>
       <dt>How many stages does EDC Las Vegas 2026 have?</dt>
       <dd>EDC Las Vegas 2026 has 9 stages at Las Vegas Motor Speedway, each one listed on this page.</dd>
+      <dt>Is there a map for EDC Las Vegas 2026?</dt>
+      <dd>Yes. This page links the official EDC Las Vegas 2026 map on the festival&#39;s own site.</dd>
     </dl>
+  </section>
+
+  <section aria-labelledby="map-h">
+    <h2 id="map-h">EDC Las Vegas 2026 map</h2>
+    <p><a href="https://lasvegas.edc.com/festival-map/" rel="noopener">Official EDC Las Vegas 2026 map</a>, on the festival's own site.</p>
   </section>
 
   <section aria-labelledby="schedule-h">
@@ -1115,343 +1170,327 @@
     <h3>Friday, May 15</h3>
     <h4>Kinetic Field</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-15T00:32">00:32 – 01:42</time> <span>The Chainsmokers</span></li>
-      <li><time datetime="2026-05-15T01:47">01:47 – 02:57</time> <span>FISHER</span></li>
-      <li><time datetime="2026-05-15T03:01">03:01 – 04:11</time> <span>Porter Robinson (DJ Set)</span></li>
-      <li><time datetime="2026-05-15T04:14">04:14 – 05:29</time> <span>Charlotte de Witte</span></li>
-      <li><time datetime="2026-05-15T19:00">19:00 – 20:00</time> <span>Laidback Luke b2b Chuckie</span></li>
-      <li><time datetime="2026-05-15T20:00">20:00 – 21:00</time> <span>Korolova</span></li>
-      <li><time datetime="2026-05-15T21:00">21:00 – 22:00</time> <span>Argy</span></li>
-      <li><time datetime="2026-05-15T22:07">22:07 – 23:15</time> <span>Chris Lorenzo</span></li>
-      <li><time datetime="2026-05-15T23:19">23:19 – 00:30</time> <span>Sofi Tukker</span></li>
+      <li id="set-k6"><time datetime="2026-05-15T00:32">00:32 – 01:42</time> <span>The Chainsmokers</span></li>
+      <li id="set-k7"><time datetime="2026-05-15T01:47">01:47 – 02:57</time> <span>FISHER</span></li>
+      <li id="set-k8"><time datetime="2026-05-15T03:01">03:01 – 04:11</time> <span>Porter Robinson (DJ Set)</span></li>
+      <li id="set-k9"><time datetime="2026-05-15T04:14">04:14 – 05:29</time> <span>Charlotte de Witte</span></li>
+      <li id="set-k1"><time datetime="2026-05-15T19:00">19:00 – 20:00</time> <span>Laidback Luke b2b Chuckie</span></li>
+      <li id="set-k2"><time datetime="2026-05-15T20:00">20:00 – 21:00</time> <span>Korolova</span></li>
+      <li id="set-k3"><time datetime="2026-05-15T21:00">21:00 – 22:00</time> <span>Argy</span></li>
+      <li id="set-k4"><time datetime="2026-05-15T22:07">22:07 – 23:15</time> <span>Chris Lorenzo</span></li>
+      <li id="set-k5"><time datetime="2026-05-15T23:19">23:19 – 00:30</time> <span>Sofi Tukker</span></li>
     </ul>
     <h4>Quantum Valley</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-15T00:00">00:00 – 01:00</time> <span>Cosmic Gate</span></li>
-      <li><time datetime="2026-05-15T01:00">01:00 – 02:00</time> <span>Gareth Emery</span></li>
-      <li><time datetime="2026-05-15T02:00">02:00 – 03:00</time> <span>Ilan Bluestone</span></li>
-      <li><time datetime="2026-05-15T03:00">03:00 – 04:00</time> <span>Paul van Dyk</span></li>
-      <li><time datetime="2026-05-15T04:00">04:00 – 05:30</time> <span>Darren Porter</span></li>
-      <li><time datetime="2026-05-15T19:00">19:00 – 20:00</time> <span>Sarah de Warren</span></li>
-      <li><time datetime="2026-05-15T20:00">20:00 – 21:00</time> <span>Matty Ralph</span></li>
-      <li><time datetime="2026-05-15T21:00">21:00 – 22:00</time> <span>Cold Blue</span></li>
-      <li><time datetime="2026-05-15T22:00">22:00 – 23:00</time> <span>Pegassi</span></li>
-      <li><time datetime="2026-05-15T23:00">23:00 – 00:00</time> <span>Darude</span></li>
+      <li id="set-q6"><time datetime="2026-05-15T00:00">00:00 – 01:00</time> <span>Cosmic Gate</span></li>
+      <li id="set-q7"><time datetime="2026-05-15T01:00">01:00 – 02:00</time> <span>Gareth Emery</span></li>
+      <li id="set-q8"><time datetime="2026-05-15T02:00">02:00 – 03:00</time> <span>Ilan Bluestone</span></li>
+      <li id="set-q9"><time datetime="2026-05-15T03:00">03:00 – 04:00</time> <span>Paul van Dyk</span></li>
+      <li id="set-q10"><time datetime="2026-05-15T04:00">04:00 – 05:30</time> <span>Darren Porter</span></li>
+      <li id="set-q1"><time datetime="2026-05-15T19:00">19:00 – 20:00</time> <span>Sarah de Warren</span></li>
+      <li id="set-q2"><time datetime="2026-05-15T20:00">20:00 – 21:00</time> <span>Matty Ralph</span></li>
+      <li id="set-q3"><time datetime="2026-05-15T21:00">21:00 – 22:00</time> <span>Cold Blue</span></li>
+      <li id="set-q4"><time datetime="2026-05-15T22:00">22:00 – 23:00</time> <span>Pegassi</span></li>
+      <li id="set-q5"><time datetime="2026-05-15T23:00">23:00 – 00:00</time> <span>Darude</span></li>
     </ul>
     <h4>Bionic Jungle</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-15T00:30">00:30 – 02:30</time> <span>Salute b2b Chloé Caillet</span></li>
-      <li><time datetime="2026-05-15T02:30">02:30 – 04:00</time> <span>Robert Hood</span></li>
-      <li><time datetime="2026-05-15T04:00">04:00 – 05:30</time> <span>Avalon Emerson</span></li>
-      <li><time datetime="2026-05-15T19:00">19:00 – 20:00</time> <span>Stacy Christine</span></li>
-      <li><time datetime="2026-05-15T20:00">20:00 – 21:30</time> <span>The Carry Nation</span></li>
-      <li><time datetime="2026-05-15T21:30">21:30 – 23:00</time> <span>Massimiliano Pagliara</span></li>
-      <li><time datetime="2026-05-15T23:00">23:00 – 00:30</time> <span>Paramida</span></li>
+      <li id="set-b6"><time datetime="2026-05-15T00:30">00:30 – 02:30</time> <span>Salute b2b Chloé Caillet</span></li>
+      <li id="set-b7"><time datetime="2026-05-15T02:30">02:30 – 04:00</time> <span>Robert Hood</span></li>
+      <li id="set-b8"><time datetime="2026-05-15T04:00">04:00 – 05:30</time> <span>Avalon Emerson</span></li>
+      <li id="set-b2"><time datetime="2026-05-15T19:00">19:00 – 20:00</time> <span>Stacy Christine</span></li>
+      <li id="set-b3"><time datetime="2026-05-15T20:00">20:00 – 21:30</time> <span>The Carry Nation</span></li>
+      <li id="set-b4"><time datetime="2026-05-15T21:30">21:30 – 23:00</time> <span>Massimiliano Pagliara</span></li>
+      <li id="set-b5"><time datetime="2026-05-15T23:00">23:00 – 00:30</time> <span>Paramida</span></li>
     </ul>
     <h4>Stereo Bloom</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-15T00:45">00:45 – 02:00</time> <span>Josh Baker</span></li>
-      <li><time datetime="2026-05-15T02:00">02:00 – 03:15</time> <span>Max Dean</span></li>
-      <li><time datetime="2026-05-15T03:15">03:15 – 04:30</time> <span>Obskür</span></li>
-      <li><time datetime="2026-05-15T04:30">04:30 – 05:30</time> <span>Toman</span></li>
-      <li><time datetime="2026-05-15T19:00">19:00 – 20:00</time> <span>Abana b2b Juliet Mendoza</span></li>
-      <li><time datetime="2026-05-15T20:00">20:00 – 21:00</time> <span>Slamm</span></li>
-      <li><time datetime="2026-05-15T21:00">21:00 – 22:15</time> <span>Luuk van Dijk</span></li>
-      <li><time datetime="2026-05-15T22:15">22:15 – 23:30</time> <span>Omar+</span></li>
-      <li><time datetime="2026-05-15T23:30">23:30 – 00:45</time> <span>Luke Dean</span></li>
+      <li id="set-s6"><time datetime="2026-05-15T00:45">00:45 – 02:00</time> <span>Josh Baker</span></li>
+      <li id="set-s7"><time datetime="2026-05-15T02:00">02:00 – 03:15</time> <span>Max Dean</span></li>
+      <li id="set-s8"><time datetime="2026-05-15T03:15">03:15 – 04:30</time> <span>Obskür</span></li>
+      <li id="set-s9"><time datetime="2026-05-15T04:30">04:30 – 05:30</time> <span>Toman</span></li>
+      <li id="set-s1"><time datetime="2026-05-15T19:00">19:00 – 20:00</time> <span>Abana b2b Juliet Mendoza</span></li>
+      <li id="set-s2"><time datetime="2026-05-15T20:00">20:00 – 21:00</time> <span>Slamm</span></li>
+      <li id="set-s3"><time datetime="2026-05-15T21:00">21:00 – 22:15</time> <span>Luuk van Dijk</span></li>
+      <li id="set-s4"><time datetime="2026-05-15T22:15">22:15 – 23:30</time> <span>Omar+</span></li>
+      <li id="set-s5"><time datetime="2026-05-15T23:30">23:30 – 00:45</time> <span>Luke Dean</span></li>
     </ul>
     <h4>Cosmic Meadow</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-15T00:25">00:25 – 01:45</time> <span>MEDUZA</span></li>
-      <li><time datetime="2026-05-15T01:47">01:47 – 02:47</time> <span>Notion</span></li>
-      <li><time datetime="2026-05-15T02:47">02:47 – 04:02</time> <span>MPH</span></li>
-      <li><time datetime="2026-05-15T04:02">04:02 – 05:30</time> <span>San Pacho</span></li>
-      <li><time datetime="2026-05-15T19:00">19:00 – 19:55</time> <span>Jackie Hollander</span></li>
-      <li><time datetime="2026-05-15T19:55">19:55 – 20:55</time> <span>Roddy Lima</span></li>
-      <li><time datetime="2026-05-15T20:55">20:55 – 21:55</time> <span>Westend</span></li>
-      <li><time datetime="2026-05-15T21:55">21:55 – 22:55</time> <span>Walker &amp; Royce b2b VNSSA</span></li>
-      <li><time datetime="2026-05-15T23:10">23:10 – 00:10</time> <span>Underworld</span></li>
+      <li id="set-c7"><time datetime="2026-05-15T00:25">00:25 – 01:45</time> <span>MEDUZA</span></li>
+      <li id="set-c8"><time datetime="2026-05-15T01:47">01:47 – 02:47</time> <span>Notion</span></li>
+      <li id="set-c9"><time datetime="2026-05-15T02:47">02:47 – 04:02</time> <span>MPH</span></li>
+      <li id="set-c10"><time datetime="2026-05-15T04:02">04:02 – 05:30</time> <span>San Pacho</span></li>
+      <li id="set-c2"><time datetime="2026-05-15T19:00">19:00 – 19:55</time> <span>Jackie Hollander</span></li>
+      <li id="set-c3"><time datetime="2026-05-15T19:55">19:55 – 20:55</time> <span>Roddy Lima</span></li>
+      <li id="set-c4"><time datetime="2026-05-15T20:55">20:55 – 21:55</time> <span>Westend</span></li>
+      <li id="set-c5"><time datetime="2026-05-15T21:55">21:55 – 22:55</time> <span>Walker &amp; Royce b2b VNSSA</span></li>
+      <li id="set-c6"><time datetime="2026-05-15T23:10">23:10 – 00:10</time> <span>Underworld</span></li>
     </ul>
     <h4>Neon Garden</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-15T01:00">01:00 – 02:30</time> <span>Adriatique</span></li>
-      <li><time datetime="2026-05-15T02:30">02:30 – 04:00</time> <span>Joseph Capriati</span></li>
-      <li><time datetime="2026-05-15T04:00">04:00 – 05:30</time> <span>Eli Brown</span></li>
-      <li><time datetime="2026-05-15T19:00">19:00 – 20:30</time> <span>Anastazja</span></li>
-      <li><time datetime="2026-05-15T20:30">20:30 – 22:00</time> <span>Mestiza</span></li>
-      <li><time datetime="2026-05-15T22:00">22:00 – 23:30</time> <span>DJ Tennis b2b Chloé Caillet</span></li>
-      <li><time datetime="2026-05-15T23:30">23:30 – 01:00</time> <span>Peggy Gou</span></li>
+      <li id="set-n5"><time datetime="2026-05-15T01:00">01:00 – 02:30</time> <span>Adriatique</span></li>
+      <li id="set-n6"><time datetime="2026-05-15T02:30">02:30 – 04:00</time> <span>Joseph Capriati</span></li>
+      <li id="set-n7"><time datetime="2026-05-15T04:00">04:00 – 05:30</time> <span>Eli Brown</span></li>
+      <li id="set-n1"><time datetime="2026-05-15T19:00">19:00 – 20:30</time> <span>Anastazja</span></li>
+      <li id="set-n2"><time datetime="2026-05-15T20:30">20:30 – 22:00</time> <span>Mestiza</span></li>
+      <li id="set-n3"><time datetime="2026-05-15T22:00">22:00 – 23:30</time> <span>DJ Tennis b2b Chloé Caillet</span></li>
+      <li id="set-n4"><time datetime="2026-05-15T23:30">23:30 – 01:00</time> <span>Peggy Gou</span></li>
     </ul>
     <h4>Wasteland</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-15T00:30">00:30 – 01:30</time> <span>Kuko</span></li>
-      <li><time datetime="2026-05-15T01:30">01:30 – 02:30</time> <span>Gravedgr</span></li>
-      <li><time datetime="2026-05-15T02:30">02:30 – 03:30</time> <span>Rebekah</span></li>
-      <li><time datetime="2026-05-15T03:30">03:30 – 04:30</time> <span>Dyen</span></li>
-      <li><time datetime="2026-05-15T04:30">04:30 – 05:30</time> <span>Stan Christ</span></li>
-      <li><time datetime="2026-05-15T19:00">19:00 – 20:30</time> <span>Dømina</span></li>
-      <li><time datetime="2026-05-15T20:30">20:30 – 21:30</time> <span>Serafina</span></li>
-      <li><time datetime="2026-05-15T21:30">21:30 – 22:30</time> <span>Johannes Schuster</span></li>
-      <li><time datetime="2026-05-15T22:30">22:30 – 23:30</time> <span>Adrian Mills</span></li>
-      <li><time datetime="2026-05-15T23:30">23:30 – 00:30</time> <span>Cloudy</span></li>
+      <li id="set-w6"><time datetime="2026-05-15T00:30">00:30 – 01:30</time> <span>Kuko</span></li>
+      <li id="set-w7"><time datetime="2026-05-15T01:30">01:30 – 02:30</time> <span>Gravedgr</span></li>
+      <li id="set-w8"><time datetime="2026-05-15T02:30">02:30 – 03:30</time> <span>Rebekah</span></li>
+      <li id="set-w9"><time datetime="2026-05-15T03:30">03:30 – 04:30</time> <span>Dyen</span></li>
+      <li id="set-w10"><time datetime="2026-05-15T04:30">04:30 – 05:30</time> <span>Stan Christ</span></li>
+      <li id="set-w1"><time datetime="2026-05-15T19:00">19:00 – 20:30</time> <span>Dømina</span></li>
+      <li id="set-w2"><time datetime="2026-05-15T20:30">20:30 – 21:30</time> <span>Serafina</span></li>
+      <li id="set-w3"><time datetime="2026-05-15T21:30">21:30 – 22:30</time> <span>Johannes Schuster</span></li>
+      <li id="set-w4"><time datetime="2026-05-15T22:30">22:30 – 23:30</time> <span>Adrian Mills</span></li>
+      <li id="set-w5"><time datetime="2026-05-15T23:30">23:30 – 00:30</time> <span>Cloudy</span></li>
     </ul>
     <h4>Basspod</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-15T00:30">00:30 – 01:30</time> <span>ATLiens</span></li>
-      <li><time datetime="2026-05-15T01:30">01:30 – 02:30</time> <span>Kai Wachi</span></li>
-      <li><time datetime="2026-05-15T02:30">02:30 – 03:30</time> <span>Adventure Club (Throwback Set)</span></li>
-      <li><time datetime="2026-05-15T03:30">03:30 – 04:30</time> <span>Culture Shock</span></li>
-      <li><time datetime="2026-05-15T04:30">04:30 – 05:30</time> <span>Cyclops</span></li>
-      <li><time datetime="2026-05-15T19:00">19:00 – 19:50</time> <span>Riot</span></li>
-      <li><time datetime="2026-05-15T19:50">19:50 – 20:40</time> <span>Heyz</span></li>
-      <li><time datetime="2026-05-15T20:40">20:40 – 21:30</time> <span>Muzz</span></li>
-      <li><time datetime="2026-05-15T21:30">21:30 – 22:30</time> <span>Gorillat</span></li>
-      <li><time datetime="2026-05-15T22:30">22:30 – 23:30</time> <span>Ghengar</span></li>
-      <li><time datetime="2026-05-15T23:30">23:30 – 00:30</time> <span>Deathpact</span></li>
+      <li id="set-bp27"><time datetime="2026-05-15T00:30">00:30 – 01:30</time> <span>ATLiens</span></li>
+      <li id="set-bp28"><time datetime="2026-05-15T01:30">01:30 – 02:30</time> <span>Kai Wachi</span></li>
+      <li id="set-bp29"><time datetime="2026-05-15T02:30">02:30 – 03:30</time> <span>Adventure Club (Throwback Set)</span></li>
+      <li id="set-bp30"><time datetime="2026-05-15T03:30">03:30 – 04:30</time> <span>Culture Shock</span></li>
+      <li id="set-bp31"><time datetime="2026-05-15T04:30">04:30 – 05:30</time> <span>Cyclops</span></li>
+      <li id="set-bp21"><time datetime="2026-05-15T19:00">19:00 – 19:50</time> <span>Riot</span></li>
+      <li id="set-bp22"><time datetime="2026-05-15T19:50">19:50 – 20:40</time> <span>Heyz</span></li>
+      <li id="set-bp23"><time datetime="2026-05-15T20:40">20:40 – 21:30</time> <span>Muzz</span></li>
+      <li id="set-bp24"><time datetime="2026-05-15T21:30">21:30 – 22:30</time> <span>Gorillat</span></li>
+      <li id="set-bp25"><time datetime="2026-05-15T22:30">22:30 – 23:30</time> <span>Ghengar</span></li>
+      <li id="set-bp26"><time datetime="2026-05-15T23:30">23:30 – 00:30</time> <span>Deathpact</span></li>
     </ul>
     <h4>Circuit Grounds</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-15T00:25">00:25 – 01:35</time> <span>Wooli</span></li>
-      <li><time datetime="2026-05-15T01:35">01:35 – 02:35</time> <span>The Outlaw</span></li>
-      <li><time datetime="2026-05-15T02:35">02:35 – 03:30</time> <span>Holy Priest</span></li>
-      <li><time datetime="2026-05-15T03:30">03:30 – 04:30</time> <span>Ray Volpe</span></li>
-      <li><time datetime="2026-05-15T04:30">04:30 – 05:30</time> <span>Level Up</span></li>
-      <li><time datetime="2026-05-15T19:00">19:00 – 20:00</time> <span>1991</span></li>
-      <li><time datetime="2026-05-15T20:00">20:00 – 21:00</time> <span>Bou</span></li>
-      <li><time datetime="2026-05-15T21:00">21:00 – 22:00</time> <span>Nico Moreno</span></li>
-      <li><time datetime="2026-05-15T22:00">22:00 – 23:15</time> <span>I Hate Models</span></li>
-      <li><time datetime="2026-05-15T23:15">23:15 – 00:25</time> <span>Levity</span></li>
+      <li id="set-cg6"><time datetime="2026-05-15T00:25">00:25 – 01:35</time> <span>Wooli</span></li>
+      <li id="set-cg7"><time datetime="2026-05-15T01:35">01:35 – 02:35</time> <span>The Outlaw</span></li>
+      <li id="set-cg8"><time datetime="2026-05-15T02:35">02:35 – 03:30</time> <span>Holy Priest</span></li>
+      <li id="set-cg9"><time datetime="2026-05-15T03:30">03:30 – 04:30</time> <span>Ray Volpe</span></li>
+      <li id="set-cg10"><time datetime="2026-05-15T04:30">04:30 – 05:30</time> <span>Level Up</span></li>
+      <li id="set-cg1"><time datetime="2026-05-15T19:00">19:00 – 20:00</time> <span>1991</span></li>
+      <li id="set-cg2"><time datetime="2026-05-15T20:00">20:00 – 21:00</time> <span>Bou</span></li>
+      <li id="set-cg3"><time datetime="2026-05-15T21:00">21:00 – 22:00</time> <span>Nico Moreno</span></li>
+      <li id="set-cg4"><time datetime="2026-05-15T22:00">22:00 – 23:15</time> <span>I Hate Models</span></li>
+      <li id="set-cg5"><time datetime="2026-05-15T23:15">23:15 – 00:25</time> <span>Levity</span></li>
     </ul>
     <h3>Saturday, May 16</h3>
     <h4>Kinetic Field</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-16T00:32">00:32 – 01:42</time> <span>John Summit</span></li>
-      <li><time datetime="2026-05-16T01:47">01:47 – 02:57</time> <span>Subtronics</span></li>
-      <li><time datetime="2026-05-16T03:01">03:01 – 04:11</time> <span>Kaskade</span></li>
-      <li><time datetime="2026-05-16T04:14">04:14 – 05:29</time> <span>Above &amp; Beyond (Sunrise Set)</span></li>
-      <li><time datetime="2026-05-16T19:00">19:00 – 20:00</time> <span>AR/CO</span></li>
-      <li><time datetime="2026-05-16T20:00">20:00 – 21:00</time> <span>Hayla</span></li>
-      <li><time datetime="2026-05-16T21:00">21:00 – 22:00</time> <span>Sub Focus</span></li>
-      <li><time datetime="2026-05-16T22:07">22:07 – 23:15</time> <span>Steve Aoki</span></li>
-      <li><time datetime="2026-05-16T23:19">23:19 – 00:29</time> <span>Hardwell</span></li>
+      <li id="set-k15"><time datetime="2026-05-16T00:32">00:32 – 01:42</time> <span>John Summit</span></li>
+      <li id="set-k16"><time datetime="2026-05-16T01:47">01:47 – 02:57</time> <span>Subtronics</span></li>
+      <li id="set-k17"><time datetime="2026-05-16T03:01">03:01 – 04:11</time> <span>Kaskade</span></li>
+      <li id="set-k18"><time datetime="2026-05-16T04:14">04:14 – 05:29</time> <span>Above &amp; Beyond (Sunrise Set)</span></li>
+      <li id="set-k10"><time datetime="2026-05-16T19:00">19:00 – 20:00</time> <span>AR/CO</span></li>
+      <li id="set-k11"><time datetime="2026-05-16T20:00">20:00 – 21:00</time> <span>Hayla</span></li>
+      <li id="set-k12"><time datetime="2026-05-16T21:00">21:00 – 22:00</time> <span>Sub Focus</span></li>
+      <li id="set-k13"><time datetime="2026-05-16T22:07">22:07 – 23:15</time> <span>Steve Aoki</span></li>
+      <li id="set-k14"><time datetime="2026-05-16T23:19">23:19 – 00:29</time> <span>Hardwell</span></li>
     </ul>
     <h4>Quantum Valley</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-16T00:30">00:30 – 01:30</time> <span>Maddix</span></li>
-      <li><time datetime="2026-05-16T01:30">01:30 – 02:30</time> <span>Mathame</span></li>
-      <li><time datetime="2026-05-16T02:30">02:30 – 03:30</time> <span>Astrix</span></li>
-      <li><time datetime="2026-05-16T03:30">03:30 – 04:30</time> <span>T78</span></li>
-      <li><time datetime="2026-05-16T04:30">04:30 – 05:30</time> <span>Thomas Schumacher</span></li>
-      <li><time datetime="2026-05-16T19:00">19:00 – 20:30</time> <span>Maria Healy</span></li>
-      <li><time datetime="2026-05-16T20:30">20:30 – 21:30</time> <span>Superstrings</span></li>
-      <li><time datetime="2026-05-16T21:30">21:30 – 22:30</time> <span>Billy Gillies</span></li>
-      <li><time datetime="2026-05-16T22:30">22:30 – 23:30</time> <span>Paul Oakenfold</span></li>
-      <li><time datetime="2026-05-16T23:30">23:30 – 00:30</time> <span>Andrew Rayel</span></li>
+      <li id="set-q16"><time datetime="2026-05-16T00:30">00:30 – 01:30</time> <span>Maddix</span></li>
+      <li id="set-q17"><time datetime="2026-05-16T01:30">01:30 – 02:30</time> <span>Mathame</span></li>
+      <li id="set-q18"><time datetime="2026-05-16T02:30">02:30 – 03:30</time> <span>Astrix</span></li>
+      <li id="set-q19"><time datetime="2026-05-16T03:30">03:30 – 04:30</time> <span>T78</span></li>
+      <li id="set-q20"><time datetime="2026-05-16T04:30">04:30 – 05:30</time> <span>Thomas Schumacher</span></li>
+      <li id="set-q11"><time datetime="2026-05-16T19:00">19:00 – 20:30</time> <span>Maria Healy</span></li>
+      <li id="set-q12"><time datetime="2026-05-16T20:30">20:30 – 21:30</time> <span>Superstrings</span></li>
+      <li id="set-q13"><time datetime="2026-05-16T21:30">21:30 – 22:30</time> <span>Billy Gillies</span></li>
+      <li id="set-q14"><time datetime="2026-05-16T22:30">22:30 – 23:30</time> <span>Paul Oakenfold</span></li>
+      <li id="set-q15"><time datetime="2026-05-16T23:30">23:30 – 00:30</time> <span>Andrew Rayel</span></li>
     </ul>
     <h4>Bionic Jungle</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-16T00:00">00:00 – 01:15</time> <span>MCR-T</span></li>
-      <li><time datetime="2026-05-16T01:15">01:15 – 02:30</time> <span>Bad Boombox b2b Ollie Lishman</span></li>
-      <li><time datetime="2026-05-16T02:30">02:30 – 03:30</time> <span>Benwal</span></li>
-      <li><time datetime="2026-05-16T03:30">03:30 – 04:30</time> <span>Baugruppe90</span></li>
-      <li><time datetime="2026-05-16T04:30">04:30 – 05:30</time> <span>Club Angel</span></li>
-      <li><time datetime="2026-05-16T20:00">20:00 – 21:00</time> <span>Spray</span></li>
-      <li><time datetime="2026-05-16T21:00">21:00 – 22:30</time> <span>Bashkka b2b Sedef Adasi</span></li>
-      <li><time datetime="2026-05-16T22:30">22:30 – 00:00</time> <span>HAAi b2b Luke Alessi</span></li>
+      <li id="set-b12"><time datetime="2026-05-16T00:00">00:00 – 01:15</time> <span>MCR-T</span></li>
+      <li id="set-b13"><time datetime="2026-05-16T01:15">01:15 – 02:30</time> <span>Bad Boombox b2b Ollie Lishman</span></li>
+      <li id="set-b14"><time datetime="2026-05-16T02:30">02:30 – 03:30</time> <span>Benwal</span></li>
+      <li id="set-b15"><time datetime="2026-05-16T03:30">03:30 – 04:30</time> <span>Baugruppe90</span></li>
+      <li id="set-b16"><time datetime="2026-05-16T04:30">04:30 – 05:30</time> <span>Club Angel</span></li>
+      <li id="set-b9"><time datetime="2026-05-16T20:00">20:00 – 21:00</time> <span>Spray</span></li>
+      <li id="set-b10"><time datetime="2026-05-16T21:00">21:00 – 22:30</time> <span>Bashkka b2b Sedef Adasi</span></li>
+      <li id="set-b11"><time datetime="2026-05-16T22:30">22:30 – 00:00</time> <span>HAAi b2b Luke Alessi</span></li>
     </ul>
     <h4>Stereo Bloom</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-16T00:30">00:30 – 01:45</time> <span>Wax Motif</span></li>
-      <li><time datetime="2026-05-16T01:45">01:45 – 03:00</time> <span>Cid</span></li>
-      <li><time datetime="2026-05-16T03:00">03:00 – 04:15</time> <span>HNTR</span></li>
-      <li><time datetime="2026-05-16T04:15">04:15 – 05:30</time> <span>Bolo (Sunrise Set)</span></li>
-      <li><time datetime="2026-05-16T19:00">19:00 – 20:00</time> <span>Slugg</span></li>
-      <li><time datetime="2026-05-16T21:00">21:00 – 22:00</time> <span>Discip</span></li>
-      <li><time datetime="2026-05-16T22:00">22:00 – 23:15</time> <span>Omnom</span></li>
-      <li><time datetime="2026-05-16T23:15">23:15 – 00:30</time> <span>Noizu</span></li>
+      <li id="set-s14"><time datetime="2026-05-16T00:30">00:30 – 01:45</time> <span>Wax Motif</span></li>
+      <li id="set-s15"><time datetime="2026-05-16T01:45">01:45 – 03:00</time> <span>Cid</span></li>
+      <li id="set-s16"><time datetime="2026-05-16T03:00">03:00 – 04:15</time> <span>HNTR</span></li>
+      <li id="set-s17"><time datetime="2026-05-16T04:15">04:15 – 05:30</time> <span>Bolo (Sunrise Set)</span></li>
+      <li id="set-s10"><time datetime="2026-05-16T19:00">19:00 – 20:00</time> <span>Slugg</span></li>
+      <li id="set-s11"><time datetime="2026-05-16T21:00">21:00 – 22:00</time> <span>Discip</span></li>
+      <li id="set-s12"><time datetime="2026-05-16T22:00">22:00 – 23:15</time> <span>Omnom</span></li>
+      <li id="set-s13"><time datetime="2026-05-16T23:15">23:15 – 00:30</time> <span>Noizu</span></li>
     </ul>
     <h4>Cosmic Meadow</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-16T00:40">00:40 – 02:10</time> <span>BUNT. (In The Round)</span></li>
-      <li><time datetime="2026-05-16T02:10">02:10 – 03:30</time> <span>Interplanetary Criminal</span></li>
-      <li><time datetime="2026-05-16T03:30">03:30 – 04:30</time> <span>Malugi</span></li>
-      <li><time datetime="2026-05-16T04:30">04:30 – 05:30</time> <span>DJ Gigola b2b MCR-T</span></li>
-      <li><time datetime="2026-05-16T19:00">19:00 – 20:15</time> <span>Frost Children</span></li>
-      <li><time datetime="2026-05-16T20:15">20:15 – 21:25</time> <span>Hannah Laing</span></li>
-      <li><time datetime="2026-05-16T21:25">21:25 – 22:15</time> <span>Snow Strippers</span></li>
-      <li><time datetime="2026-05-16T22:15">22:15 – 23:30</time> <span>VTSS (In The Round)</span></li>
-      <li><time datetime="2026-05-16T23:35">23:35 – 00:35</time> <span>The Prodigy</span></li>
+      <li id="set-c16"><time datetime="2026-05-16T00:40">00:40 – 02:10</time> <span>BUNT. (In The Round)</span></li>
+      <li id="set-c17"><time datetime="2026-05-16T02:10">02:10 – 03:30</time> <span>Interplanetary Criminal</span></li>
+      <li id="set-c18"><time datetime="2026-05-16T03:30">03:30 – 04:30</time> <span>Malugi</span></li>
+      <li id="set-c19"><time datetime="2026-05-16T04:30">04:30 – 05:30</time> <span>DJ Gigola b2b MCR-T</span></li>
+      <li id="set-c11"><time datetime="2026-05-16T19:00">19:00 – 20:15</time> <span>Frost Children</span></li>
+      <li id="set-c12"><time datetime="2026-05-16T20:15">20:15 – 21:25</time> <span>Hannah Laing</span></li>
+      <li id="set-c13"><time datetime="2026-05-16T21:25">21:25 – 22:15</time> <span>Snow Strippers</span></li>
+      <li id="set-c14"><time datetime="2026-05-16T22:15">22:15 – 23:30</time> <span>VTSS (In The Round)</span></li>
+      <li id="set-c15"><time datetime="2026-05-16T23:35">23:35 – 00:35</time> <span>The Prodigy</span></li>
     </ul>
     <h4>Neon Garden</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-16T01:30">01:30 – 03:30</time> <span>Prospa</span></li>
-      <li><time datetime="2026-05-16T03:30">03:30 – 05:30</time> <span>Josh Baker b2b Kettama b2b Prospa</span></li>
-      <li><time datetime="2026-05-16T19:00">19:00 – 20:30</time> <span>Mink</span></li>
-      <li><time datetime="2026-05-16T20:30">20:30 – 22:00</time> <span>Silvie Loto</span></li>
-      <li><time datetime="2026-05-16T22:00">22:00 – 23:30</time> <span>Ahmed Spins</span></li>
-      <li><time datetime="2026-05-16T23:30">23:30 – 01:30</time> <span>Luciano</span></li>
+      <li id="set-n12"><time datetime="2026-05-16T01:30">01:30 – 03:30</time> <span>Prospa</span></li>
+      <li id="set-n13"><time datetime="2026-05-16T03:30">03:30 – 05:30</time> <span>Josh Baker b2b Kettama b2b Prospa</span></li>
+      <li id="set-n8"><time datetime="2026-05-16T19:00">19:00 – 20:30</time> <span>Mink</span></li>
+      <li id="set-n9"><time datetime="2026-05-16T20:30">20:30 – 22:00</time> <span>Silvie Loto</span></li>
+      <li id="set-n10"><time datetime="2026-05-16T22:00">22:00 – 23:30</time> <span>Ahmed Spins</span></li>
+      <li id="set-n11"><time datetime="2026-05-16T23:30">23:30 – 01:30</time> <span>Luciano</span></li>
     </ul>
     <h4>Wasteland</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-16T00:30">00:30 – 01:30</time> <span>Audiofreq b3b Code Black b3b Toneshifterz</span></li>
-      <li><time datetime="2026-05-16T01:30">01:30 – 02:30</time> <span>Da Tweekaz</span></li>
-      <li><time datetime="2026-05-16T02:30">02:30 – 03:30</time> <span>Lil Texas</span></li>
-      <li><time datetime="2026-05-16T03:30">03:30 – 04:30</time> <span>Mish</span></li>
-      <li><time datetime="2026-05-16T04:30">04:30 – 05:30</time> <span>Alyssa Jolee</span></li>
-      <li><time datetime="2026-05-16T19:00">19:00 – 20:30</time> <span>Cutdwn</span></li>
-      <li><time datetime="2026-05-16T20:30">20:30 – 21:30</time> <span>Dead X</span></li>
-      <li><time datetime="2026-05-16T21:30">21:30 – 22:30</time> <span>The Saints</span></li>
-      <li><time datetime="2026-05-16T22:30">22:30 – 23:30</time> <span>Rob Gee b2b Lenny Dee</span></li>
-      <li><time datetime="2026-05-16T23:30">23:30 – 00:30</time> <span>Lady Faith b2b LNY TNZ</span></li>
+      <li id="set-w16"><time datetime="2026-05-16T00:30">00:30 – 01:30</time> <span>Audiofreq b3b Code Black b3b Toneshifterz</span></li>
+      <li id="set-w17"><time datetime="2026-05-16T01:30">01:30 – 02:30</time> <span>Da Tweekaz</span></li>
+      <li id="set-w18"><time datetime="2026-05-16T02:30">02:30 – 03:30</time> <span>Lil Texas</span></li>
+      <li id="set-w19"><time datetime="2026-05-16T03:30">03:30 – 04:30</time> <span>Mish</span></li>
+      <li id="set-w30"><time datetime="2026-05-16T04:30">04:30 – 05:30</time> <span>Alyssa Jolee</span></li>
+      <li id="set-w11"><time datetime="2026-05-16T19:00">19:00 – 20:30</time> <span>Cutdwn</span></li>
+      <li id="set-w12"><time datetime="2026-05-16T20:30">20:30 – 21:30</time> <span>Dead X</span></li>
+      <li id="set-w13"><time datetime="2026-05-16T21:30">21:30 – 22:30</time> <span>The Saints</span></li>
+      <li id="set-w14"><time datetime="2026-05-16T22:30">22:30 – 23:30</time> <span>Rob Gee b2b Lenny Dee</span></li>
+      <li id="set-w15"><time datetime="2026-05-16T23:30">23:30 – 00:30</time> <span>Lady Faith b2b LNY TNZ</span></li>
     </ul>
     <h4>Basspod</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-16T00:30">00:30 – 01:30</time> <span>Getter</span></li>
-      <li><time datetime="2026-05-16T01:30">01:30 – 02:30</time> <span>Eptic b2b Space Laces</span></li>
-      <li><time datetime="2026-05-16T02:30">02:30 – 03:30</time> <span>Doctor P b2b Flux Pavilion b3b Funtcase</span></li>
-      <li><time datetime="2026-05-16T03:30">03:30 – 04:30</time> <span>Hol!</span></li>
-      <li><time datetime="2026-05-16T04:30">04:30 – 05:30</time> <span>Mary Droppinz</span></li>
-      <li><time datetime="2026-05-16T19:00">19:00 – 19:50</time> <span>Fallen with MC Dino</span></li>
-      <li><time datetime="2026-05-16T19:50">19:50 – 20:40</time> <span>Avello b2b Dennett</span></li>
-      <li><time datetime="2026-05-16T20:40">20:40 – 21:30</time> <span>Viperactive</span></li>
-      <li><time datetime="2026-05-16T21:30">21:30 – 22:30</time> <span>Hybrid Minds</span></li>
-      <li><time datetime="2026-05-16T22:30">22:30 – 23:30</time> <span>YDG</span></li>
-      <li><time datetime="2026-05-16T23:30">23:30 – 00:30</time> <span>Delta Heavy</span></li>
+      <li id="set-bp7"><time datetime="2026-05-16T00:30">00:30 – 01:30</time> <span>Getter</span></li>
+      <li id="set-bp8"><time datetime="2026-05-16T01:30">01:30 – 02:30</time> <span>Eptic b2b Space Laces</span></li>
+      <li id="set-bp9"><time datetime="2026-05-16T02:30">02:30 – 03:30</time> <span>Doctor P b2b Flux Pavilion b3b Funtcase</span></li>
+      <li id="set-bp10"><time datetime="2026-05-16T03:30">03:30 – 04:30</time> <span>Hol!</span></li>
+      <li id="set-bp11"><time datetime="2026-05-16T04:30">04:30 – 05:30</time> <span>Mary Droppinz</span></li>
+      <li id="set-bp1"><time datetime="2026-05-16T19:00">19:00 – 19:50</time> <span>Fallen with MC Dino</span></li>
+      <li id="set-bp2"><time datetime="2026-05-16T19:50">19:50 – 20:40</time> <span>Avello b2b Dennett</span></li>
+      <li id="set-bp3"><time datetime="2026-05-16T20:40">20:40 – 21:30</time> <span>Viperactive</span></li>
+      <li id="set-bp4"><time datetime="2026-05-16T21:30">21:30 – 22:30</time> <span>Hybrid Minds</span></li>
+      <li id="set-bp5"><time datetime="2026-05-16T22:30">22:30 – 23:30</time> <span>YDG</span></li>
+      <li id="set-bp6"><time datetime="2026-05-16T23:30">23:30 – 00:30</time> <span>Delta Heavy</span></li>
     </ul>
     <h4>Circuit Grounds</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-16T00:15">00:15 – 01:45</time> <span>Tiësto</span></li>
-      <li><time datetime="2026-05-16T01:45">01:45 – 03:15</time> <span>Peggy Gou b2b Ki/Ki</span></li>
-      <li><time datetime="2026-05-16T03:15">03:15 – 04:30</time> <span>Boys Noize</span></li>
-      <li><time datetime="2026-05-16T04:30">04:30 – 05:30</time> <span>Lilly Palmer</span></li>
-      <li><time datetime="2026-05-16T19:00">19:00 – 20:00</time> <span>DJ Mandy</span></li>
-      <li><time datetime="2026-05-16T20:00">20:00 – 21:15</time> <span>RØZ</span></li>
-      <li><time datetime="2026-05-16T21:15">21:15 – 22:45</time> <span>Kettama</span></li>
-      <li><time datetime="2026-05-16T22:45">22:45 – 00:15</time> <span>Sammy Virji</span></li>
+      <li id="set-cg15"><time datetime="2026-05-16T00:15">00:15 – 01:45</time> <span>Tiësto</span></li>
+      <li id="set-cg16"><time datetime="2026-05-16T01:45">01:45 – 03:15</time> <span>Peggy Gou b2b Ki/Ki</span></li>
+      <li id="set-cg17"><time datetime="2026-05-16T03:15">03:15 – 04:30</time> <span>Boys Noize</span></li>
+      <li id="set-cg18"><time datetime="2026-05-16T04:30">04:30 – 05:30</time> <span>Lilly Palmer</span></li>
+      <li id="set-cg11"><time datetime="2026-05-16T19:00">19:00 – 20:00</time> <span>DJ Mandy</span></li>
+      <li id="set-cg12"><time datetime="2026-05-16T20:00">20:00 – 21:15</time> <span>RØZ</span></li>
+      <li id="set-cg13"><time datetime="2026-05-16T21:15">21:15 – 22:45</time> <span>Kettama</span></li>
+      <li id="set-cg14"><time datetime="2026-05-16T22:45">22:45 – 00:15</time> <span>Sammy Virji</span></li>
     </ul>
     <h3>Sunday, May 17</h3>
     <h4>Kinetic Field</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-17T00:32">00:32 – 01:42</time> <span>Zedd</span></li>
-      <li><time datetime="2026-05-17T01:47">01:47 – 02:57</time> <span>Martin Garrix</span></li>
-      <li><time datetime="2026-05-17T03:01">03:01 – 04:11</time> <span>Cloonee</span></li>
-      <li><time datetime="2026-05-17T04:14">04:14 – 05:29</time> <span>Armin van Buuren (Sunrise Set)</span></li>
-      <li><time datetime="2026-05-17T19:00">19:00 – 20:00</time> <span>Trace</span></li>
-      <li><time datetime="2026-05-17T20:00">20:00 – 21:00</time> <span>Ship Wrek</span></li>
-      <li><time datetime="2026-05-17T21:00">21:00 – 22:00</time> <span>Layton Giordani</span></li>
-      <li><time datetime="2026-05-17T22:07">22:07 – 23:15</time> <span>Funk Tribu</span></li>
-      <li><time datetime="2026-05-17T23:19">23:19 – 00:29</time> <span>GRiZ b2b Wooli</span></li>
+      <li id="set-k24"><time datetime="2026-05-17T00:32">00:32 – 01:42</time> <span>Zedd</span></li>
+      <li id="set-k25"><time datetime="2026-05-17T01:47">01:47 – 02:57</time> <span>Martin Garrix</span></li>
+      <li id="set-k26"><time datetime="2026-05-17T03:01">03:01 – 04:11</time> <span>Cloonee</span></li>
+      <li id="set-k27"><time datetime="2026-05-17T04:14">04:14 – 05:29</time> <span>Armin van Buuren (Sunrise Set)</span></li>
+      <li id="set-k19"><time datetime="2026-05-17T19:00">19:00 – 20:00</time> <span>Trace</span></li>
+      <li id="set-k20"><time datetime="2026-05-17T20:00">20:00 – 21:00</time> <span>Ship Wrek</span></li>
+      <li id="set-k21"><time datetime="2026-05-17T21:00">21:00 – 22:00</time> <span>Layton Giordani</span></li>
+      <li id="set-k22"><time datetime="2026-05-17T22:07">22:07 – 23:15</time> <span>Funk Tribu</span></li>
+      <li id="set-k23"><time datetime="2026-05-17T23:19">23:19 – 00:29</time> <span>GRiZ b2b Wooli</span></li>
     </ul>
     <h4>Quantum Valley</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-17T00:00">00:00 – 01:00</time> <span>Tinlicker (DJ Set)</span></li>
-      <li><time datetime="2026-05-17T01:00">01:00 – 02:15</time> <span>Cassian</span></li>
-      <li><time datetime="2026-05-17T02:15">02:15 – 03:30</time> <span>Massano</span></li>
-      <li><time datetime="2026-05-17T03:30">03:30 – 04:30</time> <span>Innellea</span></li>
-      <li><time datetime="2026-05-17T04:30">04:30 – 05:30</time> <span>Kream</span></li>
-      <li><time datetime="2026-05-17T19:00">19:00 – 20:00</time> <span>Warung</span></li>
-      <li><time datetime="2026-05-17T20:00">20:00 – 21:00</time> <span>Shingo Nakamura</span></li>
-      <li><time datetime="2026-05-17T21:00">21:00 – 22:00</time> <span>Rebūke</span></li>
-      <li><time datetime="2026-05-17T22:00">22:00 – 23:00</time> <span>Cristoph</span></li>
-      <li><time datetime="2026-05-17T23:00">23:00 – 00:00</time> <span>Eli &amp; Fur</span></li>
+      <li id="set-q26"><time datetime="2026-05-17T00:00">00:00 – 01:00</time> <span>Tinlicker (DJ Set)</span></li>
+      <li id="set-q27"><time datetime="2026-05-17T01:00">01:00 – 02:15</time> <span>Cassian</span></li>
+      <li id="set-q28"><time datetime="2026-05-17T02:15">02:15 – 03:30</time> <span>Massano</span></li>
+      <li id="set-q29"><time datetime="2026-05-17T03:30">03:30 – 04:30</time> <span>Innellea</span></li>
+      <li id="set-q30"><time datetime="2026-05-17T04:30">04:30 – 05:30</time> <span>Kream</span></li>
+      <li id="set-q21"><time datetime="2026-05-17T19:00">19:00 – 20:00</time> <span>Warung</span></li>
+      <li id="set-q22"><time datetime="2026-05-17T20:00">20:00 – 21:00</time> <span>Shingo Nakamura</span></li>
+      <li id="set-q23"><time datetime="2026-05-17T21:00">21:00 – 22:00</time> <span>Rebūke</span></li>
+      <li id="set-q24"><time datetime="2026-05-17T22:00">22:00 – 23:00</time> <span>Cristoph</span></li>
+      <li id="set-q25"><time datetime="2026-05-17T23:00">23:00 – 00:00</time> <span>Eli &amp; Fur</span></li>
     </ul>
     <h4>Bionic Jungle</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-17T00:00">00:00 – 01:30</time> <span>Tiga</span></li>
-      <li><time datetime="2026-05-17T01:30">01:30 – 03:30</time> <span>DJ Tennis b2b Red Axes</span></li>
-      <li><time datetime="2026-05-17T03:30">03:30 – 05:30</time> <span>Beltran b2b Simas</span></li>
-      <li><time datetime="2026-05-17T19:00">19:00 – 20:30</time> <span>Alves</span></li>
-      <li><time datetime="2026-05-17T20:30">20:30 – 22:30</time> <span>Isabella</span></li>
-      <li><time datetime="2026-05-17T22:30">22:30 – 00:00</time> <span>Kinahau</span></li>
+      <li id="set-b20"><time datetime="2026-05-17T00:00">00:00 – 01:30</time> <span>Tiga</span></li>
+      <li id="set-b21"><time datetime="2026-05-17T01:30">01:30 – 03:30</time> <span>DJ Tennis b2b Red Axes</span></li>
+      <li id="set-b22"><time datetime="2026-05-17T03:30">03:30 – 05:30</time> <span>Beltran b2b Simas</span></li>
+      <li id="set-b17"><time datetime="2026-05-17T19:00">19:00 – 20:30</time> <span>Alves</span></li>
+      <li id="set-b18"><time datetime="2026-05-17T20:30">20:30 – 22:30</time> <span>Isabella</span></li>
+      <li id="set-b19"><time datetime="2026-05-17T22:30">22:30 – 00:00</time> <span>Kinahau</span></li>
     </ul>
     <h4>Stereo Bloom</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-17T01:00">01:00 – 02:15</time> <span>Chris Lorenzo b2b Bullet Tooth</span></li>
-      <li><time datetime="2026-05-17T02:15">02:15 – 03:30</time> <span>Silva Bumpa</span></li>
-      <li><time datetime="2026-05-17T03:30">03:30 – 04:30</time> <span>Morgan Seatree</span></li>
-      <li><time datetime="2026-05-17T04:30">04:30 – 05:30</time> <span>Lu.Re</span></li>
-      <li><time datetime="2026-05-17T19:00">19:00 – 20:00</time> <span>KLO</span></li>
-      <li><time datetime="2026-05-17T20:00">20:00 – 21:15</time> <span>Murphy&#39;s Law</span></li>
-      <li><time datetime="2026-05-17T21:15">21:15 – 22:30</time> <span>Sidney Charles b2b Bushbaby</span></li>
-      <li><time datetime="2026-05-17T22:30">22:30 – 23:45</time> <span>Skream</span></li>
-      <li><time datetime="2026-05-17T23:45">23:45 – 01:00</time> <span>Hamdi</span></li>
+      <li id="set-s23"><time datetime="2026-05-17T01:00">01:00 – 02:15</time> <span>Chris Lorenzo b2b Bullet Tooth</span></li>
+      <li id="set-s24"><time datetime="2026-05-17T02:15">02:15 – 03:30</time> <span>Silva Bumpa</span></li>
+      <li id="set-s25"><time datetime="2026-05-17T03:30">03:30 – 04:30</time> <span>Morgan Seatree</span></li>
+      <li id="set-s26"><time datetime="2026-05-17T04:30">04:30 – 05:30</time> <span>Lu.Re</span></li>
+      <li id="set-s18"><time datetime="2026-05-17T19:00">19:00 – 20:00</time> <span>KLO</span></li>
+      <li id="set-s19"><time datetime="2026-05-17T20:00">20:00 – 21:15</time> <span>Murphy&#39;s Law</span></li>
+      <li id="set-s20"><time datetime="2026-05-17T21:15">21:15 – 22:30</time> <span>Sidney Charles b2b Bushbaby</span></li>
+      <li id="set-s21"><time datetime="2026-05-17T22:30">22:30 – 23:45</time> <span>Skream</span></li>
+      <li id="set-s22"><time datetime="2026-05-17T23:45">23:45 – 01:00</time> <span>Hamdi</span></li>
     </ul>
     <h4>Cosmic Meadow</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-17T00:05">00:05 – 01:05</time> <span>Alison Wonderland</span></li>
-      <li><time datetime="2026-05-17T01:05">01:05 – 02:20</time> <span>Seven Lions</span></li>
-      <li><time datetime="2026-05-17T02:20">02:20 – 03:20</time> <span>Restricted</span></li>
-      <li><time datetime="2026-05-17T03:20">03:20 – 04:30</time> <span>Black Tiger Sex Machine</span></li>
-      <li><time datetime="2026-05-17T04:30">04:30 – 05:30</time> <span>Nico Moreno b2b Holy Priest</span></li>
-      <li><time datetime="2026-05-17T19:00">19:00 – 20:00</time> <span>Gravagerz</span></li>
-      <li><time datetime="2026-05-17T20:00">20:00 – 21:00</time> <span>Nostalgix</span></li>
-      <li><time datetime="2026-05-17T21:00">21:00 – 22:00</time> <span>William Black</span></li>
-      <li><time datetime="2026-05-17T22:00">22:00 – 23:00</time> <span>San Holo (Wholesome Riddim Set)</span></li>
-      <li><time datetime="2026-05-17T23:00">23:00 – 00:05</time> <span>Dabin</span></li>
+      <li id="set-c25"><time datetime="2026-05-17T00:05">00:05 – 01:05</time> <span>Alison Wonderland</span></li>
+      <li id="set-c26"><time datetime="2026-05-17T01:05">01:05 – 02:20</time> <span>Seven Lions</span></li>
+      <li id="set-c27"><time datetime="2026-05-17T02:20">02:20 – 03:20</time> <span>Restricted</span></li>
+      <li id="set-c28"><time datetime="2026-05-17T03:20">03:20 – 04:30</time> <span>Black Tiger Sex Machine</span></li>
+      <li id="set-c29"><time datetime="2026-05-17T04:30">04:30 – 05:30</time> <span>Nico Moreno b2b Holy Priest</span></li>
+      <li id="set-c20"><time datetime="2026-05-17T19:00">19:00 – 20:00</time> <span>Gravagerz</span></li>
+      <li id="set-c21"><time datetime="2026-05-17T20:00">20:00 – 21:00</time> <span>Nostalgix</span></li>
+      <li id="set-c22"><time datetime="2026-05-17T21:00">21:00 – 22:00</time> <span>William Black</span></li>
+      <li id="set-c23"><time datetime="2026-05-17T22:00">22:00 – 23:00</time> <span>San Holo (Wholesome Riddim Set)</span></li>
+      <li id="set-c24"><time datetime="2026-05-17T23:00">23:00 – 00:05</time> <span>Dabin</span></li>
     </ul>
     <h4>Neon Garden</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-17T00:10">00:10 – 01:30</time> <span>999999999</span></li>
-      <li><time datetime="2026-05-17T01:30">01:30 – 02:50</time> <span>Indira Paganotto</span></li>
-      <li><time datetime="2026-05-17T02:50">02:50 – 04:10</time> <span>Ki/Ki</span></li>
-      <li><time datetime="2026-05-17T04:10">04:10 – 05:30</time> <span>Klangkuenstler</span></li>
-      <li><time datetime="2026-05-17T19:00">19:00 – 20:15</time> <span>Bad Beat</span></li>
-      <li><time datetime="2026-05-17T20:15">20:15 – 21:30</time> <span>Frankie Bones</span></li>
-      <li><time datetime="2026-05-17T21:30">21:30 – 22:50</time> <span>Adiel</span></li>
-      <li><time datetime="2026-05-17T22:50">22:50 – 00:10</time> <span>DJ Gigola</span></li>
+      <li id="set-n20"><time datetime="2026-05-17T00:10">00:10 – 01:30</time> <span>999999999</span></li>
+      <li id="set-n17"><time datetime="2026-05-17T01:30">01:30 – 02:50</time> <span>Indira Paganotto</span></li>
+      <li id="set-n18"><time datetime="2026-05-17T02:50">02:50 – 04:10</time> <span>Ki/Ki</span></li>
+      <li id="set-n19"><time datetime="2026-05-17T04:10">04:10 – 05:30</time> <span>Klangkuenstler</span></li>
+      <li id="set-n14"><time datetime="2026-05-17T19:00">19:00 – 20:15</time> <span>Bad Beat</span></li>
+      <li id="set-n21"><time datetime="2026-05-17T20:15">20:15 – 21:30</time> <span>Frankie Bones</span></li>
+      <li id="set-n15"><time datetime="2026-05-17T21:30">21:30 – 22:50</time> <span>Adiel</span></li>
+      <li id="set-n16"><time datetime="2026-05-17T22:50">22:50 – 00:10</time> <span>DJ Gigola</span></li>
     </ul>
     <h4>Wasteland</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-17T00:30">00:30 – 01:30</time> <span>Vieze Asbak</span></li>
-      <li><time datetime="2026-05-17T01:30">01:30 – 02:30</time> <span>Sub Zero Project</span></li>
-      <li><time datetime="2026-05-17T02:30">02:30 – 03:30</time> <span>Rooler</span></li>
-      <li><time datetime="2026-05-17T03:30">03:30 – 04:30</time> <span>Warface</span></li>
-      <li><time datetime="2026-05-17T04:30">04:30 – 05:30</time> <span>Madgrrl b2b Vessel</span></li>
-      <li><time datetime="2026-05-17T19:00">19:00 – 20:30</time> <span>Sihk</span></li>
-      <li><time datetime="2026-05-17T20:30">20:30 – 21:30</time> <span>Clawz</span></li>
-      <li><time datetime="2026-05-17T21:30">21:30 – 22:30</time> <span>The Purge</span></li>
-      <li><time datetime="2026-05-17T22:30">22:30 – 23:30</time> <span>Yosuf</span></li>
-      <li><time datetime="2026-05-17T23:30">23:30 – 00:30</time> <span>DJ Isaac</span></li>
+      <li id="set-w25"><time datetime="2026-05-17T00:30">00:30 – 01:30</time> <span>Vieze Asbak</span></li>
+      <li id="set-w26"><time datetime="2026-05-17T01:30">01:30 – 02:30</time> <span>Sub Zero Project</span></li>
+      <li id="set-w27"><time datetime="2026-05-17T02:30">02:30 – 03:30</time> <span>Rooler</span></li>
+      <li id="set-w28"><time datetime="2026-05-17T03:30">03:30 – 04:30</time> <span>Warface</span></li>
+      <li id="set-w29"><time datetime="2026-05-17T04:30">04:30 – 05:30</time> <span>Madgrrl b2b Vessel</span></li>
+      <li id="set-w20"><time datetime="2026-05-17T19:00">19:00 – 20:30</time> <span>Sihk</span></li>
+      <li id="set-w21"><time datetime="2026-05-17T20:30">20:30 – 21:30</time> <span>Clawz</span></li>
+      <li id="set-w22"><time datetime="2026-05-17T21:30">21:30 – 22:30</time> <span>The Purge</span></li>
+      <li id="set-w23"><time datetime="2026-05-17T22:30">22:30 – 23:30</time> <span>Yosuf</span></li>
+      <li id="set-w24"><time datetime="2026-05-17T23:30">23:30 – 00:30</time> <span>DJ Isaac</span></li>
     </ul>
     <h4>Basspod</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-17T00:30">00:30 – 01:30</time> <span>Peekaboo</span></li>
-      <li><time datetime="2026-05-17T01:30">01:30 – 02:30</time> <span>Ahee b2b Liquid Stranger</span></li>
-      <li><time datetime="2026-05-17T02:30">02:30 – 03:30</time> <span>Whethan</span></li>
-      <li><time datetime="2026-05-17T03:30">03:30 – 04:30</time> <span>Boogie T b2b Distinct Motive</span></li>
-      <li><time datetime="2026-05-17T04:30">04:30 – 05:30</time> <span>Æon:Mode (Sunrise Set)</span></li>
-      <li><time datetime="2026-05-17T19:00">19:00 – 19:50</time> <span>Nightstalker with MC Dino</span></li>
-      <li><time datetime="2026-05-17T19:50">19:50 – 20:40</time> <span>Sippy</span></li>
-      <li><time datetime="2026-05-17T20:40">20:40 – 21:30</time> <span>Eazybaked</span></li>
-      <li><time datetime="2026-05-17T21:30">21:30 – 22:30</time> <span>Infekt b2b Samplifire</span></li>
-      <li><time datetime="2026-05-17T22:30">22:30 – 23:30</time> <span>A.M.C w/ Phantom</span></li>
-      <li><time datetime="2026-05-17T23:30">23:30 – 00:30</time> <span>Virtual Riot</span></li>
+      <li id="set-bp17"><time datetime="2026-05-17T00:30">00:30 – 01:30</time> <span>Peekaboo</span></li>
+      <li id="set-bp18"><time datetime="2026-05-17T01:30">01:30 – 02:30</time> <span>Ahee b2b Liquid Stranger</span></li>
+      <li id="set-bp19"><time datetime="2026-05-17T02:30">02:30 – 03:30</time> <span>Whethan</span></li>
+      <li id="set-bp20"><time datetime="2026-05-17T03:30">03:30 – 04:30</time> <span>Boogie T b2b Distinct Motive</span></li>
+      <li id="set-bp33"><time datetime="2026-05-17T04:30">04:30 – 05:30</time> <span>Æon:Mode (Sunrise Set)</span></li>
+      <li id="set-bp12"><time datetime="2026-05-17T19:00">19:00 – 19:50</time> <span>Nightstalker with MC Dino</span></li>
+      <li id="set-bp13"><time datetime="2026-05-17T19:50">19:50 – 20:40</time> <span>Sippy</span></li>
+      <li id="set-bp14"><time datetime="2026-05-17T20:40">20:40 – 21:30</time> <span>Eazybaked</span></li>
+      <li id="set-bp15"><time datetime="2026-05-17T21:30">21:30 – 22:30</time> <span>Infekt b2b Samplifire</span></li>
+      <li id="set-bp32"><time datetime="2026-05-17T22:30">22:30 – 23:30</time> <span>A.M.C w/ Phantom</span></li>
+      <li id="set-bp16"><time datetime="2026-05-17T23:30">23:30 – 00:30</time> <span>Virtual Riot</span></li>
     </ul>
     <h4>Circuit Grounds</h4>
     <ul class="sets">
-      <li><time datetime="2026-05-17T01:00">01:00 – 02:30</time> <span>Solomun</span></li>
-      <li><time datetime="2026-05-17T02:30">02:30 – 04:00</time> <span>Vintage Culture</span></li>
-      <li><time datetime="2026-05-17T04:00">04:00 – 05:30</time> <span>Kevin de Vries</span></li>
-      <li><time datetime="2026-05-17T19:00">19:00 – 20:30</time> <span>Linska</span></li>
-      <li><time datetime="2026-05-17T20:30">20:30 – 22:00</time> <span>ANNA</span></li>
-      <li><time datetime="2026-05-17T22:00">22:00 – 23:30</time> <span>Beltran</span></li>
-      <li><time datetime="2026-05-17T23:30">23:30 – 01:00</time> <span>Chris Stussy</span></li>
-    </ul>
-  </section>
-
-  <section aria-labelledby="stages-h">
-    <h2 id="stages-h">EDC Las Vegas 2026 stages</h2>
-    <p>Plursky has 9 stages for EDC Las Vegas 2026 at Las Vegas Motor Speedway, each one listed below.</p>
-    <ul class="stagelist">
-      <li><strong>Kinetic Field</strong> · Mainstage · headliners, sunrise sets</li>
-      <li><strong>Quantum Valley</strong> · Trance, psytrance</li>
-      <li><strong>Bionic Jungle</strong> · House, tech house</li>
-      <li><strong>Stereo Bloom</strong> · Tech house, underground</li>
-      <li><strong>Cosmic Meadow</strong> · Open-air · big room, legends</li>
-      <li><strong>Neon Garden</strong> · House, deep techno</li>
-      <li><strong>Wasteland</strong> · Dubstep, bass</li>
-      <li><strong>Basspod</strong> · Dubstep, hard bass</li>
-      <li><strong>Circuit Grounds</strong> · Techno, big room</li>
+      <li id="set-cg23"><time datetime="2026-05-17T01:00">01:00 – 02:30</time> <span>Solomun</span></li>
+      <li id="set-cg24"><time datetime="2026-05-17T02:30">02:30 – 04:00</time> <span>Vintage Culture</span></li>
+      <li id="set-cg25"><time datetime="2026-05-17T04:00">04:00 – 05:30</time> <span>Kevin de Vries</span></li>
+      <li id="set-cg19"><time datetime="2026-05-17T19:00">19:00 – 20:30</time> <span>Linska</span></li>
+      <li id="set-cg20"><time datetime="2026-05-17T20:30">20:30 – 22:00</time> <span>ANNA</span></li>
+      <li id="set-cg21"><time datetime="2026-05-17T22:00">22:00 – 23:30</time> <span>Beltran</span></li>
+      <li id="set-cg22"><time datetime="2026-05-17T23:30">23:30 – 01:00</time> <span>Chris Stussy</span></li>
     </ul>
   </section>
 
@@ -1459,280 +1498,312 @@
     <h2 id="lineup-h">EDC Las Vegas 2026 lineup</h2>
     <p>241 artists announced.</p>
     <ul class="lineup">
-      <li>1991</li>
-      <li>999999999</li>
-      <li>A.M.C w/ Phantom</li>
-      <li>Abana b2b Juliet Mendoza</li>
-      <li>Above &amp; Beyond (Sunrise Set)</li>
-      <li>Adiel</li>
-      <li>Adrian Mills</li>
-      <li>Adriatique</li>
-      <li>Adventure Club (Throwback Set)</li>
-      <li>Æon:Mode (Sunrise Set)</li>
-      <li>Ahee b2b Liquid Stranger</li>
-      <li>Ahmed Spins</li>
-      <li>Alison Wonderland</li>
-      <li>Alves</li>
-      <li>Alyssa Jolee</li>
-      <li>Anastazja</li>
-      <li>Andrew Rayel</li>
-      <li>ANNA</li>
-      <li>AR/CO</li>
-      <li>Argy</li>
-      <li>Armin van Buuren (Sunrise Set)</li>
-      <li>Astrix</li>
-      <li>ATLiens</li>
-      <li>Audiofreq b3b Code Black b3b Toneshifterz</li>
-      <li>Avalon Emerson</li>
-      <li>Avello b2b Dennett</li>
-      <li>Bad Beat</li>
-      <li>Bad Boombox b2b Ollie Lishman</li>
-      <li>Bashkka b2b Sedef Adasi</li>
-      <li>Baugruppe90</li>
-      <li>Beltran</li>
-      <li>Beltran b2b Simas</li>
-      <li>Benwal</li>
-      <li>Billy Gillies</li>
-      <li>Black Tiger Sex Machine</li>
-      <li>Bolo (Sunrise Set)</li>
-      <li>Boogie T b2b Distinct Motive</li>
-      <li>Bou</li>
-      <li>Boys Noize</li>
-      <li>BUNT. (In The Round)</li>
-      <li>Cassian</li>
-      <li>Charlotte de Witte</li>
-      <li>Chris Lorenzo</li>
-      <li>Chris Lorenzo b2b Bullet Tooth</li>
-      <li>Chris Stussy</li>
-      <li>Cid</li>
-      <li>Clawz</li>
-      <li>Cloonee</li>
-      <li>Cloudy</li>
-      <li>Club Angel</li>
-      <li>Cold Blue</li>
-      <li>Cosmic Gate</li>
-      <li>Cristoph</li>
-      <li>Culture Shock</li>
-      <li>Cutdwn</li>
-      <li>Cyclops</li>
-      <li>Da Tweekaz</li>
-      <li>Dabin</li>
-      <li>Darren Porter</li>
-      <li>Darude</li>
-      <li>Dead X</li>
-      <li>Deathpact</li>
-      <li>Delta Heavy</li>
-      <li>Discip</li>
-      <li>DJ Gigola</li>
-      <li>DJ Gigola b2b MCR-T</li>
-      <li>DJ Isaac</li>
-      <li>DJ Mandy</li>
-      <li>DJ Tennis b2b Chloé Caillet</li>
-      <li>DJ Tennis b2b Red Axes</li>
-      <li>Doctor P b2b Flux Pavilion b3b Funtcase</li>
-      <li>Dømina</li>
-      <li>Dyen</li>
-      <li>Eazybaked</li>
-      <li>Eli &amp; Fur</li>
-      <li>Eli Brown</li>
-      <li>Eptic b2b Space Laces</li>
-      <li>Fallen with MC Dino</li>
-      <li>FISHER</li>
-      <li>Frankie Bones</li>
-      <li>Frost Children</li>
-      <li>Funk Tribu</li>
-      <li>Gareth Emery</li>
-      <li>Getter</li>
-      <li>Ghengar</li>
-      <li>Gorillat</li>
-      <li>Gravagerz</li>
-      <li>Gravedgr</li>
-      <li>GRiZ b2b Wooli</li>
-      <li>HAAi b2b Luke Alessi</li>
-      <li>Hamdi</li>
-      <li>Hannah Laing</li>
-      <li>Hardwell</li>
-      <li>Hayla</li>
-      <li>Heyz</li>
-      <li>HNTR</li>
-      <li>Hol!</li>
-      <li>Holy Priest</li>
-      <li>Hybrid Minds</li>
-      <li>I Hate Models</li>
-      <li>Ilan Bluestone</li>
-      <li>Indira Paganotto</li>
-      <li>Infekt b2b Samplifire</li>
-      <li>Innellea</li>
-      <li>Interplanetary Criminal</li>
-      <li>Isabella</li>
-      <li>Jackie Hollander</li>
-      <li>Johannes Schuster</li>
-      <li>John Summit</li>
-      <li>Joseph Capriati</li>
-      <li>Josh Baker</li>
-      <li>Josh Baker b2b Kettama b2b Prospa</li>
-      <li>Kai Wachi</li>
-      <li>Kaskade</li>
-      <li>Kettama</li>
-      <li>Kevin de Vries</li>
-      <li>Ki/Ki</li>
-      <li>Kinahau</li>
-      <li>Klangkuenstler</li>
-      <li>KLO</li>
-      <li>Korolova</li>
-      <li>Kream</li>
-      <li>Kuko</li>
-      <li>Lady Faith b2b LNY TNZ</li>
-      <li>Laidback Luke b2b Chuckie</li>
-      <li>Layton Giordani</li>
-      <li>Level Up</li>
-      <li>Levity</li>
-      <li>Lil Texas</li>
-      <li>Lilly Palmer</li>
-      <li>Linska</li>
-      <li>Lu.Re</li>
-      <li>Luciano</li>
-      <li>Luke Dean</li>
-      <li>Luuk van Dijk</li>
-      <li>Maddix</li>
-      <li>Madgrrl b2b Vessel</li>
-      <li>Malugi</li>
-      <li>Maria Healy</li>
-      <li>Martin Garrix</li>
-      <li>Mary Droppinz</li>
-      <li>Massano</li>
-      <li>Massimiliano Pagliara</li>
-      <li>Mathame</li>
-      <li>Matty Ralph</li>
-      <li>Max Dean</li>
-      <li>MCR-T</li>
-      <li>MEDUZA</li>
-      <li>Mestiza</li>
-      <li>Mink</li>
-      <li>Mish</li>
-      <li>Morgan Seatree</li>
-      <li>MPH</li>
-      <li>Murphy&#39;s Law</li>
-      <li>Muzz</li>
-      <li>Nico Moreno</li>
-      <li>Nico Moreno b2b Holy Priest</li>
-      <li>Nightstalker with MC Dino</li>
-      <li>Noizu</li>
-      <li>Nostalgix</li>
-      <li>Notion</li>
-      <li>Obskür</li>
-      <li>Omar+</li>
-      <li>Omnom</li>
-      <li>Paramida</li>
-      <li>Paul Oakenfold</li>
-      <li>Paul van Dyk</li>
-      <li>Peekaboo</li>
-      <li>Pegassi</li>
-      <li>Peggy Gou</li>
-      <li>Peggy Gou b2b Ki/Ki</li>
-      <li>Porter Robinson (DJ Set)</li>
-      <li>Prospa</li>
-      <li>Ray Volpe</li>
-      <li>Rebekah</li>
-      <li>Rebūke</li>
-      <li>Restricted</li>
-      <li>Riot</li>
-      <li>Rob Gee b2b Lenny Dee</li>
-      <li>Robert Hood</li>
-      <li>Roddy Lima</li>
-      <li>Rooler</li>
-      <li>RØZ</li>
-      <li>Salute b2b Chloé Caillet</li>
-      <li>Sammy Virji</li>
-      <li>San Holo (Wholesome Riddim Set)</li>
-      <li>San Pacho</li>
-      <li>Sarah de Warren</li>
-      <li>Serafina</li>
-      <li>Seven Lions</li>
-      <li>Shingo Nakamura</li>
-      <li>Ship Wrek</li>
-      <li>Sidney Charles b2b Bushbaby</li>
-      <li>Sihk</li>
-      <li>Silva Bumpa</li>
-      <li>Silvie Loto</li>
-      <li>Sippy</li>
-      <li>Skream</li>
-      <li>Slamm</li>
-      <li>Slugg</li>
-      <li>Snow Strippers</li>
-      <li>Sofi Tukker</li>
-      <li>Solomun</li>
-      <li>Spray</li>
-      <li>Stacy Christine</li>
-      <li>Stan Christ</li>
-      <li>Steve Aoki</li>
-      <li>Sub Focus</li>
-      <li>Sub Zero Project</li>
-      <li>Subtronics</li>
-      <li>Superstrings</li>
-      <li>T78</li>
-      <li>The Carry Nation</li>
-      <li>The Chainsmokers</li>
-      <li>The Outlaw</li>
-      <li>The Prodigy</li>
-      <li>The Purge</li>
-      <li>The Saints</li>
-      <li>Thomas Schumacher</li>
-      <li>Tiësto</li>
-      <li>Tiga</li>
-      <li>Tinlicker (DJ Set)</li>
-      <li>Toman</li>
-      <li>Trace</li>
-      <li>Underworld</li>
-      <li>Vieze Asbak</li>
-      <li>Vintage Culture</li>
-      <li>Viperactive</li>
-      <li>Virtual Riot</li>
-      <li>VTSS (In The Round)</li>
-      <li>Walker &amp; Royce b2b VNSSA</li>
-      <li>Warface</li>
-      <li>Warung</li>
-      <li>Wax Motif</li>
-      <li>Westend</li>
-      <li>Whethan</li>
-      <li>William Black</li>
-      <li>Wooli</li>
-      <li>YDG</li>
-      <li>Yosuf</li>
-      <li>Zedd</li>
+      <li><span class="act">1991</span> <span class="slots">Fri, May 15 · Circuit Grounds · <a href="#set-cg1">19:00</a></span></li>
+      <li><span class="act">999999999</span> <span class="slots">Sun, May 17 · Neon Garden · <a href="#set-n20">00:10</a></span></li>
+      <li><span class="act">A.M.C w/ Phantom</span> <span class="slots">Sun, May 17 · Basspod · <a href="#set-bp32">22:30</a></span></li>
+      <li><span class="act">Abana b2b Juliet Mendoza</span> <span class="slots">Fri, May 15 · Stereo Bloom · <a href="#set-s1">19:00</a></span></li>
+      <li><span class="act">Above &amp; Beyond (Sunrise Set)</span> <span class="slots">Sat, May 16 · Kinetic Field · <a href="#set-k18">04:14</a></span></li>
+      <li><span class="act">Adiel</span> <span class="slots">Sun, May 17 · Neon Garden · <a href="#set-n15">21:30</a></span></li>
+      <li><span class="act">Adrian Mills</span> <span class="slots">Fri, May 15 · Wasteland · <a href="#set-w4">22:30</a></span></li>
+      <li><span class="act">Adriatique</span> <span class="slots">Fri, May 15 · Neon Garden · <a href="#set-n5">01:00</a></span></li>
+      <li><span class="act">Adventure Club (Throwback Set)</span> <span class="slots">Fri, May 15 · Basspod · <a href="#set-bp29">02:30</a></span></li>
+      <li><span class="act">Æon:Mode (Sunrise Set)</span> <span class="slots">Sun, May 17 · Basspod · <a href="#set-bp33">04:30</a></span></li>
+      <li><span class="act">Ahee b2b Liquid Stranger</span> <span class="slots">Sun, May 17 · Basspod · <a href="#set-bp18">01:30</a></span></li>
+      <li><span class="act">Ahmed Spins</span> <span class="slots">Sat, May 16 · Neon Garden · <a href="#set-n10">22:00</a></span></li>
+      <li><span class="act">Alison Wonderland</span> <span class="slots">Sun, May 17 · Cosmic Meadow · <a href="#set-c25">00:05</a></span></li>
+      <li><span class="act">Alves</span> <span class="slots">Sun, May 17 · Bionic Jungle · <a href="#set-b17">19:00</a></span></li>
+      <li><span class="act">Alyssa Jolee</span> <span class="slots">Sat, May 16 · Wasteland · <a href="#set-w30">04:30</a></span></li>
+      <li><span class="act">Anastazja</span> <span class="slots">Fri, May 15 · Neon Garden · <a href="#set-n1">19:00</a></span></li>
+      <li><span class="act">Andrew Rayel</span> <span class="slots">Sat, May 16 · Quantum Valley · <a href="#set-q15">23:30</a></span></li>
+      <li><span class="act">ANNA</span> <span class="slots">Sun, May 17 · Circuit Grounds · <a href="#set-cg20">20:30</a></span></li>
+      <li><span class="act">AR/CO</span> <span class="slots">Sat, May 16 · Kinetic Field · <a href="#set-k10">19:00</a></span></li>
+      <li><span class="act">Argy</span> <span class="slots">Fri, May 15 · Kinetic Field · <a href="#set-k3">21:00</a></span></li>
+      <li><span class="act">Armin van Buuren (Sunrise Set)</span> <span class="slots">Sun, May 17 · Kinetic Field · <a href="#set-k27">04:14</a></span></li>
+      <li><span class="act">Astrix</span> <span class="slots">Sat, May 16 · Quantum Valley · <a href="#set-q18">02:30</a></span></li>
+      <li><span class="act">ATLiens</span> <span class="slots">Fri, May 15 · Basspod · <a href="#set-bp27">00:30</a></span></li>
+      <li><span class="act">Audiofreq b3b Code Black b3b Toneshifterz</span> <span class="slots">Sat, May 16 · Wasteland · <a href="#set-w16">00:30</a></span></li>
+      <li><span class="act">Avalon Emerson</span> <span class="slots">Fri, May 15 · Bionic Jungle · <a href="#set-b8">04:00</a></span></li>
+      <li><span class="act">Avello b2b Dennett</span> <span class="slots">Sat, May 16 · Basspod · <a href="#set-bp2">19:50</a></span></li>
+      <li><span class="act">Bad Beat</span> <span class="slots">Sun, May 17 · Neon Garden · <a href="#set-n14">19:00</a></span></li>
+      <li><span class="act">Bad Boombox b2b Ollie Lishman</span> <span class="slots">Sat, May 16 · Bionic Jungle · <a href="#set-b13">01:15</a></span></li>
+      <li><span class="act">Bashkka b2b Sedef Adasi</span> <span class="slots">Sat, May 16 · Bionic Jungle · <a href="#set-b10">21:00</a></span></li>
+      <li><span class="act">Baugruppe90</span> <span class="slots">Sat, May 16 · Bionic Jungle · <a href="#set-b15">03:30</a></span></li>
+      <li><span class="act">Beltran</span> <span class="slots">Sun, May 17 · Circuit Grounds · <a href="#set-cg21">22:00</a></span></li>
+      <li><span class="act">Beltran b2b Simas</span> <span class="slots">Sun, May 17 · Bionic Jungle · <a href="#set-b22">03:30</a></span></li>
+      <li><span class="act">Benwal</span> <span class="slots">Sat, May 16 · Bionic Jungle · <a href="#set-b14">02:30</a></span></li>
+      <li><span class="act">Billy Gillies</span> <span class="slots">Sat, May 16 · Quantum Valley · <a href="#set-q13">21:30</a></span></li>
+      <li><span class="act">Black Tiger Sex Machine</span> <span class="slots">Sun, May 17 · Cosmic Meadow · <a href="#set-c28">03:20</a></span></li>
+      <li><span class="act">Bolo (Sunrise Set)</span> <span class="slots">Sat, May 16 · Stereo Bloom · <a href="#set-s17">04:15</a></span></li>
+      <li><span class="act">Boogie T b2b Distinct Motive</span> <span class="slots">Sun, May 17 · Basspod · <a href="#set-bp20">03:30</a></span></li>
+      <li><span class="act">Bou</span> <span class="slots">Fri, May 15 · Circuit Grounds · <a href="#set-cg2">20:00</a></span></li>
+      <li><span class="act">Boys Noize</span> <span class="slots">Sat, May 16 · Circuit Grounds · <a href="#set-cg17">03:15</a></span></li>
+      <li><span class="act">BUNT. (In The Round)</span> <span class="slots">Sat, May 16 · Cosmic Meadow · <a href="#set-c16">00:40</a></span></li>
+      <li><span class="act">Cassian</span> <span class="slots">Sun, May 17 · Quantum Valley · <a href="#set-q27">01:00</a></span></li>
+      <li><span class="act">Charlotte de Witte</span> <span class="slots">Fri, May 15 · Kinetic Field · <a href="#set-k9">04:14</a></span></li>
+      <li><span class="act">Chris Lorenzo</span> <span class="slots">Fri, May 15 · Kinetic Field · <a href="#set-k4">22:07</a></span></li>
+      <li><span class="act">Chris Lorenzo b2b Bullet Tooth</span> <span class="slots">Sun, May 17 · Stereo Bloom · <a href="#set-s23">01:00</a></span></li>
+      <li><span class="act">Chris Stussy</span> <span class="slots">Sun, May 17 · Circuit Grounds · <a href="#set-cg22">23:30</a></span></li>
+      <li><span class="act">Cid</span> <span class="slots">Sat, May 16 · Stereo Bloom · <a href="#set-s15">01:45</a></span></li>
+      <li><span class="act">Clawz</span> <span class="slots">Sun, May 17 · Wasteland · <a href="#set-w21">20:30</a></span></li>
+      <li><span class="act">Cloonee</span> <span class="slots">Sun, May 17 · Kinetic Field · <a href="#set-k26">03:01</a></span></li>
+      <li><span class="act">Cloudy</span> <span class="slots">Fri, May 15 · Wasteland · <a href="#set-w5">23:30</a></span></li>
+      <li><span class="act">Club Angel</span> <span class="slots">Sat, May 16 · Bionic Jungle · <a href="#set-b16">04:30</a></span></li>
+      <li><span class="act">Cold Blue</span> <span class="slots">Fri, May 15 · Quantum Valley · <a href="#set-q3">21:00</a></span></li>
+      <li><span class="act">Cosmic Gate</span> <span class="slots">Fri, May 15 · Quantum Valley · <a href="#set-q6">00:00</a></span></li>
+      <li><span class="act">Cristoph</span> <span class="slots">Sun, May 17 · Quantum Valley · <a href="#set-q24">22:00</a></span></li>
+      <li><span class="act">Culture Shock</span> <span class="slots">Fri, May 15 · Basspod · <a href="#set-bp30">03:30</a></span></li>
+      <li><span class="act">Cutdwn</span> <span class="slots">Sat, May 16 · Wasteland · <a href="#set-w11">19:00</a></span></li>
+      <li><span class="act">Cyclops</span> <span class="slots">Fri, May 15 · Basspod · <a href="#set-bp31">04:30</a></span></li>
+      <li><span class="act">Da Tweekaz</span> <span class="slots">Sat, May 16 · Wasteland · <a href="#set-w17">01:30</a></span></li>
+      <li><span class="act">Dabin</span> <span class="slots">Sun, May 17 · Cosmic Meadow · <a href="#set-c24">23:00</a></span></li>
+      <li><span class="act">Darren Porter</span> <span class="slots">Fri, May 15 · Quantum Valley · <a href="#set-q10">04:00</a></span></li>
+      <li><span class="act">Darude</span> <span class="slots">Fri, May 15 · Quantum Valley · <a href="#set-q5">23:00</a></span></li>
+      <li><span class="act">Dead X</span> <span class="slots">Sat, May 16 · Wasteland · <a href="#set-w12">20:30</a></span></li>
+      <li><span class="act">Deathpact</span> <span class="slots">Fri, May 15 · Basspod · <a href="#set-bp26">23:30</a></span></li>
+      <li><span class="act">Delta Heavy</span> <span class="slots">Sat, May 16 · Basspod · <a href="#set-bp6">23:30</a></span></li>
+      <li><span class="act">Discip</span> <span class="slots">Sat, May 16 · Stereo Bloom · <a href="#set-s11">21:00</a></span></li>
+      <li><span class="act">DJ Gigola</span> <span class="slots">Sun, May 17 · Neon Garden · <a href="#set-n16">22:50</a></span></li>
+      <li><span class="act">DJ Gigola b2b MCR-T</span> <span class="slots">Sat, May 16 · Cosmic Meadow · <a href="#set-c19">04:30</a></span></li>
+      <li><span class="act">DJ Isaac</span> <span class="slots">Sun, May 17 · Wasteland · <a href="#set-w24">23:30</a></span></li>
+      <li><span class="act">DJ Mandy</span> <span class="slots">Sat, May 16 · Circuit Grounds · <a href="#set-cg11">19:00</a></span></li>
+      <li><span class="act">DJ Tennis b2b Chloé Caillet</span> <span class="slots">Fri, May 15 · Neon Garden · <a href="#set-n3">22:00</a></span></li>
+      <li><span class="act">DJ Tennis b2b Red Axes</span> <span class="slots">Sun, May 17 · Bionic Jungle · <a href="#set-b21">01:30</a></span></li>
+      <li><span class="act">Doctor P b2b Flux Pavilion b3b Funtcase</span> <span class="slots">Sat, May 16 · Basspod · <a href="#set-bp9">02:30</a></span></li>
+      <li><span class="act">Dømina</span> <span class="slots">Fri, May 15 · Wasteland · <a href="#set-w1">19:00</a></span></li>
+      <li><span class="act">Dyen</span> <span class="slots">Fri, May 15 · Wasteland · <a href="#set-w9">03:30</a></span></li>
+      <li><span class="act">Eazybaked</span> <span class="slots">Sun, May 17 · Basspod · <a href="#set-bp14">20:40</a></span></li>
+      <li><span class="act">Eli &amp; Fur</span> <span class="slots">Sun, May 17 · Quantum Valley · <a href="#set-q25">23:00</a></span></li>
+      <li><span class="act">Eli Brown</span> <span class="slots">Fri, May 15 · Neon Garden · <a href="#set-n7">04:00</a></span></li>
+      <li><span class="act">Eptic b2b Space Laces</span> <span class="slots">Sat, May 16 · Basspod · <a href="#set-bp8">01:30</a></span></li>
+      <li><span class="act">Fallen with MC Dino</span> <span class="slots">Sat, May 16 · Basspod · <a href="#set-bp1">19:00</a></span></li>
+      <li><span class="act">FISHER</span> <span class="slots">Fri, May 15 · Kinetic Field · <a href="#set-k7">01:47</a></span></li>
+      <li><span class="act">Frankie Bones</span> <span class="slots">Sun, May 17 · Neon Garden · <a href="#set-n21">20:15</a></span></li>
+      <li><span class="act">Frost Children</span> <span class="slots">Sat, May 16 · Cosmic Meadow · <a href="#set-c11">19:00</a></span></li>
+      <li><span class="act">Funk Tribu</span> <span class="slots">Sun, May 17 · Kinetic Field · <a href="#set-k22">22:07</a></span></li>
+      <li><span class="act">Gareth Emery</span> <span class="slots">Fri, May 15 · Quantum Valley · <a href="#set-q7">01:00</a></span></li>
+      <li><span class="act">Getter</span> <span class="slots">Sat, May 16 · Basspod · <a href="#set-bp7">00:30</a></span></li>
+      <li><span class="act">Ghengar</span> <span class="slots">Fri, May 15 · Basspod · <a href="#set-bp25">22:30</a></span></li>
+      <li><span class="act">Gorillat</span> <span class="slots">Fri, May 15 · Basspod · <a href="#set-bp24">21:30</a></span></li>
+      <li><span class="act">Gravagerz</span> <span class="slots">Sun, May 17 · Cosmic Meadow · <a href="#set-c20">19:00</a></span></li>
+      <li><span class="act">Gravedgr</span> <span class="slots">Fri, May 15 · Wasteland · <a href="#set-w7">01:30</a></span></li>
+      <li><span class="act">GRiZ b2b Wooli</span> <span class="slots">Sun, May 17 · Kinetic Field · <a href="#set-k23">23:19</a></span></li>
+      <li><span class="act">HAAi b2b Luke Alessi</span> <span class="slots">Sat, May 16 · Bionic Jungle · <a href="#set-b11">22:30</a></span></li>
+      <li><span class="act">Hamdi</span> <span class="slots">Sun, May 17 · Stereo Bloom · <a href="#set-s22">23:45</a></span></li>
+      <li><span class="act">Hannah Laing</span> <span class="slots">Sat, May 16 · Cosmic Meadow · <a href="#set-c12">20:15</a></span></li>
+      <li><span class="act">Hardwell</span> <span class="slots">Sat, May 16 · Kinetic Field · <a href="#set-k14">23:19</a></span></li>
+      <li><span class="act">Hayla</span> <span class="slots">Sat, May 16 · Kinetic Field · <a href="#set-k11">20:00</a></span></li>
+      <li><span class="act">Heyz</span> <span class="slots">Fri, May 15 · Basspod · <a href="#set-bp22">19:50</a></span></li>
+      <li><span class="act">HNTR</span> <span class="slots">Sat, May 16 · Stereo Bloom · <a href="#set-s16">03:00</a></span></li>
+      <li><span class="act">Hol!</span> <span class="slots">Sat, May 16 · Basspod · <a href="#set-bp10">03:30</a></span></li>
+      <li><span class="act">Holy Priest</span> <span class="slots">Fri, May 15 · Circuit Grounds · <a href="#set-cg8">02:35</a></span></li>
+      <li><span class="act">Hybrid Minds</span> <span class="slots">Sat, May 16 · Basspod · <a href="#set-bp4">21:30</a></span></li>
+      <li><span class="act">I Hate Models</span> <span class="slots">Fri, May 15 · Circuit Grounds · <a href="#set-cg4">22:00</a></span></li>
+      <li><span class="act">Ilan Bluestone</span> <span class="slots">Fri, May 15 · Quantum Valley · <a href="#set-q8">02:00</a></span></li>
+      <li><span class="act">Indira Paganotto</span> <span class="slots">Sun, May 17 · Neon Garden · <a href="#set-n17">01:30</a></span></li>
+      <li><span class="act">Infekt b2b Samplifire</span> <span class="slots">Sun, May 17 · Basspod · <a href="#set-bp15">21:30</a></span></li>
+      <li><span class="act">Innellea</span> <span class="slots">Sun, May 17 · Quantum Valley · <a href="#set-q29">03:30</a></span></li>
+      <li><span class="act">Interplanetary Criminal</span> <span class="slots">Sat, May 16 · Cosmic Meadow · <a href="#set-c17">02:10</a></span></li>
+      <li><span class="act">Isabella</span> <span class="slots">Sun, May 17 · Bionic Jungle · <a href="#set-b18">20:30</a></span></li>
+      <li><span class="act">Jackie Hollander</span> <span class="slots">Fri, May 15 · Cosmic Meadow · <a href="#set-c2">19:00</a></span></li>
+      <li><span class="act">Johannes Schuster</span> <span class="slots">Fri, May 15 · Wasteland · <a href="#set-w3">21:30</a></span></li>
+      <li><span class="act">John Summit</span> <span class="slots">Sat, May 16 · Kinetic Field · <a href="#set-k15">00:32</a></span></li>
+      <li><span class="act">Joseph Capriati</span> <span class="slots">Fri, May 15 · Neon Garden · <a href="#set-n6">02:30</a></span></li>
+      <li><span class="act">Josh Baker</span> <span class="slots">Fri, May 15 · Stereo Bloom · <a href="#set-s6">00:45</a></span></li>
+      <li><span class="act">Josh Baker b2b Kettama b2b Prospa</span> <span class="slots">Sat, May 16 · Neon Garden · <a href="#set-n13">03:30</a></span></li>
+      <li><span class="act">Kai Wachi</span> <span class="slots">Fri, May 15 · Basspod · <a href="#set-bp28">01:30</a></span></li>
+      <li><span class="act">Kaskade</span> <span class="slots">Sat, May 16 · Kinetic Field · <a href="#set-k17">03:01</a></span></li>
+      <li><span class="act">Kettama</span> <span class="slots">Sat, May 16 · Circuit Grounds · <a href="#set-cg13">21:15</a></span></li>
+      <li><span class="act">Kevin de Vries</span> <span class="slots">Sun, May 17 · Circuit Grounds · <a href="#set-cg25">04:00</a></span></li>
+      <li><span class="act">Ki/Ki</span> <span class="slots">Sun, May 17 · Neon Garden · <a href="#set-n18">02:50</a></span></li>
+      <li><span class="act">Kinahau</span> <span class="slots">Sun, May 17 · Bionic Jungle · <a href="#set-b19">22:30</a></span></li>
+      <li><span class="act">Klangkuenstler</span> <span class="slots">Sun, May 17 · Neon Garden · <a href="#set-n19">04:10</a></span></li>
+      <li><span class="act">KLO</span> <span class="slots">Sun, May 17 · Stereo Bloom · <a href="#set-s18">19:00</a></span></li>
+      <li><span class="act">Korolova</span> <span class="slots">Fri, May 15 · Kinetic Field · <a href="#set-k2">20:00</a></span></li>
+      <li><span class="act">Kream</span> <span class="slots">Sun, May 17 · Quantum Valley · <a href="#set-q30">04:30</a></span></li>
+      <li><span class="act">Kuko</span> <span class="slots">Fri, May 15 · Wasteland · <a href="#set-w6">00:30</a></span></li>
+      <li><span class="act">Lady Faith b2b LNY TNZ</span> <span class="slots">Sat, May 16 · Wasteland · <a href="#set-w15">23:30</a></span></li>
+      <li><span class="act">Laidback Luke b2b Chuckie</span> <span class="slots">Fri, May 15 · Kinetic Field · <a href="#set-k1">19:00</a></span></li>
+      <li><span class="act">Layton Giordani</span> <span class="slots">Sun, May 17 · Kinetic Field · <a href="#set-k21">21:00</a></span></li>
+      <li><span class="act">Level Up</span> <span class="slots">Fri, May 15 · Circuit Grounds · <a href="#set-cg10">04:30</a></span></li>
+      <li><span class="act">Levity</span> <span class="slots">Fri, May 15 · Circuit Grounds · <a href="#set-cg5">23:15</a></span></li>
+      <li><span class="act">Lil Texas</span> <span class="slots">Sat, May 16 · Wasteland · <a href="#set-w18">02:30</a></span></li>
+      <li><span class="act">Lilly Palmer</span> <span class="slots">Sat, May 16 · Circuit Grounds · <a href="#set-cg18">04:30</a></span></li>
+      <li><span class="act">Linska</span> <span class="slots">Sun, May 17 · Circuit Grounds · <a href="#set-cg19">19:00</a></span></li>
+      <li><span class="act">Lu.Re</span> <span class="slots">Sun, May 17 · Stereo Bloom · <a href="#set-s26">04:30</a></span></li>
+      <li><span class="act">Luciano</span> <span class="slots">Sat, May 16 · Neon Garden · <a href="#set-n11">23:30</a></span></li>
+      <li><span class="act">Luke Dean</span> <span class="slots">Fri, May 15 · Stereo Bloom · <a href="#set-s5">23:30</a></span></li>
+      <li><span class="act">Luuk van Dijk</span> <span class="slots">Fri, May 15 · Stereo Bloom · <a href="#set-s3">21:00</a></span></li>
+      <li><span class="act">Maddix</span> <span class="slots">Sat, May 16 · Quantum Valley · <a href="#set-q16">00:30</a></span></li>
+      <li><span class="act">Madgrrl b2b Vessel</span> <span class="slots">Sun, May 17 · Wasteland · <a href="#set-w29">04:30</a></span></li>
+      <li><span class="act">Malugi</span> <span class="slots">Sat, May 16 · Cosmic Meadow · <a href="#set-c18">03:30</a></span></li>
+      <li><span class="act">Maria Healy</span> <span class="slots">Sat, May 16 · Quantum Valley · <a href="#set-q11">19:00</a></span></li>
+      <li><span class="act">Martin Garrix</span> <span class="slots">Sun, May 17 · Kinetic Field · <a href="#set-k25">01:47</a></span></li>
+      <li><span class="act">Mary Droppinz</span> <span class="slots">Sat, May 16 · Basspod · <a href="#set-bp11">04:30</a></span></li>
+      <li><span class="act">Massano</span> <span class="slots">Sun, May 17 · Quantum Valley · <a href="#set-q28">02:15</a></span></li>
+      <li><span class="act">Massimiliano Pagliara</span> <span class="slots">Fri, May 15 · Bionic Jungle · <a href="#set-b4">21:30</a></span></li>
+      <li><span class="act">Mathame</span> <span class="slots">Sat, May 16 · Quantum Valley · <a href="#set-q17">01:30</a></span></li>
+      <li><span class="act">Matty Ralph</span> <span class="slots">Fri, May 15 · Quantum Valley · <a href="#set-q2">20:00</a></span></li>
+      <li><span class="act">Max Dean</span> <span class="slots">Fri, May 15 · Stereo Bloom · <a href="#set-s7">02:00</a></span></li>
+      <li><span class="act">MCR-T</span> <span class="slots">Sat, May 16 · Bionic Jungle · <a href="#set-b12">00:00</a></span></li>
+      <li><span class="act">MEDUZA</span> <span class="slots">Fri, May 15 · Cosmic Meadow · <a href="#set-c7">00:25</a></span></li>
+      <li><span class="act">Mestiza</span> <span class="slots">Fri, May 15 · Neon Garden · <a href="#set-n2">20:30</a></span></li>
+      <li><span class="act">Mink</span> <span class="slots">Sat, May 16 · Neon Garden · <a href="#set-n8">19:00</a></span></li>
+      <li><span class="act">Mish</span> <span class="slots">Sat, May 16 · Wasteland · <a href="#set-w19">03:30</a></span></li>
+      <li><span class="act">Morgan Seatree</span> <span class="slots">Sun, May 17 · Stereo Bloom · <a href="#set-s25">03:30</a></span></li>
+      <li><span class="act">MPH</span> <span class="slots">Fri, May 15 · Cosmic Meadow · <a href="#set-c9">02:47</a></span></li>
+      <li><span class="act">Murphy&#39;s Law</span> <span class="slots">Sun, May 17 · Stereo Bloom · <a href="#set-s19">20:00</a></span></li>
+      <li><span class="act">Muzz</span> <span class="slots">Fri, May 15 · Basspod · <a href="#set-bp23">20:40</a></span></li>
+      <li><span class="act">Nico Moreno</span> <span class="slots">Fri, May 15 · Circuit Grounds · <a href="#set-cg3">21:00</a></span></li>
+      <li><span class="act">Nico Moreno b2b Holy Priest</span> <span class="slots">Sun, May 17 · Cosmic Meadow · <a href="#set-c29">04:30</a></span></li>
+      <li><span class="act">Nightstalker with MC Dino</span> <span class="slots">Sun, May 17 · Basspod · <a href="#set-bp12">19:00</a></span></li>
+      <li><span class="act">Noizu</span> <span class="slots">Sat, May 16 · Stereo Bloom · <a href="#set-s13">23:15</a></span></li>
+      <li><span class="act">Nostalgix</span> <span class="slots">Sun, May 17 · Cosmic Meadow · <a href="#set-c21">20:00</a></span></li>
+      <li><span class="act">Notion</span> <span class="slots">Fri, May 15 · Cosmic Meadow · <a href="#set-c8">01:47</a></span></li>
+      <li><span class="act">Obskür</span> <span class="slots">Fri, May 15 · Stereo Bloom · <a href="#set-s8">03:15</a></span></li>
+      <li><span class="act">Omar+</span> <span class="slots">Fri, May 15 · Stereo Bloom · <a href="#set-s4">22:15</a></span></li>
+      <li><span class="act">Omnom</span> <span class="slots">Sat, May 16 · Stereo Bloom · <a href="#set-s12">22:00</a></span></li>
+      <li><span class="act">Paramida</span> <span class="slots">Fri, May 15 · Bionic Jungle · <a href="#set-b5">23:00</a></span></li>
+      <li><span class="act">Paul Oakenfold</span> <span class="slots">Sat, May 16 · Quantum Valley · <a href="#set-q14">22:30</a></span></li>
+      <li><span class="act">Paul van Dyk</span> <span class="slots">Fri, May 15 · Quantum Valley · <a href="#set-q9">03:00</a></span></li>
+      <li><span class="act">Peekaboo</span> <span class="slots">Sun, May 17 · Basspod · <a href="#set-bp17">00:30</a></span></li>
+      <li><span class="act">Pegassi</span> <span class="slots">Fri, May 15 · Quantum Valley · <a href="#set-q4">22:00</a></span></li>
+      <li><span class="act">Peggy Gou</span> <span class="slots">Fri, May 15 · Neon Garden · <a href="#set-n4">23:30</a></span></li>
+      <li><span class="act">Peggy Gou b2b Ki/Ki</span> <span class="slots">Sat, May 16 · Circuit Grounds · <a href="#set-cg16">01:45</a></span></li>
+      <li><span class="act">Porter Robinson (DJ Set)</span> <span class="slots">Fri, May 15 · Kinetic Field · <a href="#set-k8">03:01</a></span></li>
+      <li><span class="act">Prospa</span> <span class="slots">Sat, May 16 · Neon Garden · <a href="#set-n12">01:30</a></span></li>
+      <li><span class="act">Ray Volpe</span> <span class="slots">Fri, May 15 · Circuit Grounds · <a href="#set-cg9">03:30</a></span></li>
+      <li><span class="act">Rebekah</span> <span class="slots">Fri, May 15 · Wasteland · <a href="#set-w8">02:30</a></span></li>
+      <li><span class="act">Rebūke</span> <span class="slots">Sun, May 17 · Quantum Valley · <a href="#set-q23">21:00</a></span></li>
+      <li><span class="act">Restricted</span> <span class="slots">Sun, May 17 · Cosmic Meadow · <a href="#set-c27">02:20</a></span></li>
+      <li><span class="act">Riot</span> <span class="slots">Fri, May 15 · Basspod · <a href="#set-bp21">19:00</a></span></li>
+      <li><span class="act">Rob Gee b2b Lenny Dee</span> <span class="slots">Sat, May 16 · Wasteland · <a href="#set-w14">22:30</a></span></li>
+      <li><span class="act">Robert Hood</span> <span class="slots">Fri, May 15 · Bionic Jungle · <a href="#set-b7">02:30</a></span></li>
+      <li><span class="act">Roddy Lima</span> <span class="slots">Fri, May 15 · Cosmic Meadow · <a href="#set-c3">19:55</a></span></li>
+      <li><span class="act">Rooler</span> <span class="slots">Sun, May 17 · Wasteland · <a href="#set-w27">02:30</a></span></li>
+      <li><span class="act">RØZ</span> <span class="slots">Sat, May 16 · Circuit Grounds · <a href="#set-cg12">20:00</a></span></li>
+      <li><span class="act">Salute b2b Chloé Caillet</span> <span class="slots">Fri, May 15 · Bionic Jungle · <a href="#set-b6">00:30</a></span></li>
+      <li><span class="act">Sammy Virji</span> <span class="slots">Sat, May 16 · Circuit Grounds · <a href="#set-cg14">22:45</a></span></li>
+      <li><span class="act">San Holo (Wholesome Riddim Set)</span> <span class="slots">Sun, May 17 · Cosmic Meadow · <a href="#set-c23">22:00</a></span></li>
+      <li><span class="act">San Pacho</span> <span class="slots">Fri, May 15 · Cosmic Meadow · <a href="#set-c10">04:02</a></span></li>
+      <li><span class="act">Sarah de Warren</span> <span class="slots">Fri, May 15 · Quantum Valley · <a href="#set-q1">19:00</a></span></li>
+      <li><span class="act">Serafina</span> <span class="slots">Fri, May 15 · Wasteland · <a href="#set-w2">20:30</a></span></li>
+      <li><span class="act">Seven Lions</span> <span class="slots">Sun, May 17 · Cosmic Meadow · <a href="#set-c26">01:05</a></span></li>
+      <li><span class="act">Shingo Nakamura</span> <span class="slots">Sun, May 17 · Quantum Valley · <a href="#set-q22">20:00</a></span></li>
+      <li><span class="act">Ship Wrek</span> <span class="slots">Sun, May 17 · Kinetic Field · <a href="#set-k20">20:00</a></span></li>
+      <li><span class="act">Sidney Charles b2b Bushbaby</span> <span class="slots">Sun, May 17 · Stereo Bloom · <a href="#set-s20">21:15</a></span></li>
+      <li><span class="act">Sihk</span> <span class="slots">Sun, May 17 · Wasteland · <a href="#set-w20">19:00</a></span></li>
+      <li><span class="act">Silva Bumpa</span> <span class="slots">Sun, May 17 · Stereo Bloom · <a href="#set-s24">02:15</a></span></li>
+      <li><span class="act">Silvie Loto</span> <span class="slots">Sat, May 16 · Neon Garden · <a href="#set-n9">20:30</a></span></li>
+      <li><span class="act">Sippy</span> <span class="slots">Sun, May 17 · Basspod · <a href="#set-bp13">19:50</a></span></li>
+      <li><span class="act">Skream</span> <span class="slots">Sun, May 17 · Stereo Bloom · <a href="#set-s21">22:30</a></span></li>
+      <li><span class="act">Slamm</span> <span class="slots">Fri, May 15 · Stereo Bloom · <a href="#set-s2">20:00</a></span></li>
+      <li><span class="act">Slugg</span> <span class="slots">Sat, May 16 · Stereo Bloom · <a href="#set-s10">19:00</a></span></li>
+      <li><span class="act">Snow Strippers</span> <span class="slots">Sat, May 16 · Cosmic Meadow · <a href="#set-c13">21:25</a></span></li>
+      <li><span class="act">Sofi Tukker</span> <span class="slots">Fri, May 15 · Kinetic Field · <a href="#set-k5">23:19</a></span></li>
+      <li><span class="act">Solomun</span> <span class="slots">Sun, May 17 · Circuit Grounds · <a href="#set-cg23">01:00</a></span></li>
+      <li><span class="act">Spray</span> <span class="slots">Sat, May 16 · Bionic Jungle · <a href="#set-b9">20:00</a></span></li>
+      <li><span class="act">Stacy Christine</span> <span class="slots">Fri, May 15 · Bionic Jungle · <a href="#set-b2">19:00</a></span></li>
+      <li><span class="act">Stan Christ</span> <span class="slots">Fri, May 15 · Wasteland · <a href="#set-w10">04:30</a></span></li>
+      <li><span class="act">Steve Aoki</span> <span class="slots">Sat, May 16 · Kinetic Field · <a href="#set-k13">22:07</a></span></li>
+      <li><span class="act">Sub Focus</span> <span class="slots">Sat, May 16 · Kinetic Field · <a href="#set-k12">21:00</a></span></li>
+      <li><span class="act">Sub Zero Project</span> <span class="slots">Sun, May 17 · Wasteland · <a href="#set-w26">01:30</a></span></li>
+      <li><span class="act">Subtronics</span> <span class="slots">Sat, May 16 · Kinetic Field · <a href="#set-k16">01:47</a></span></li>
+      <li><span class="act">Superstrings</span> <span class="slots">Sat, May 16 · Quantum Valley · <a href="#set-q12">20:30</a></span></li>
+      <li><span class="act">T78</span> <span class="slots">Sat, May 16 · Quantum Valley · <a href="#set-q19">03:30</a></span></li>
+      <li><span class="act">The Carry Nation</span> <span class="slots">Fri, May 15 · Bionic Jungle · <a href="#set-b3">20:00</a></span></li>
+      <li><span class="act">The Chainsmokers</span> <span class="slots">Fri, May 15 · Kinetic Field · <a href="#set-k6">00:32</a></span></li>
+      <li><span class="act">The Outlaw</span> <span class="slots">Fri, May 15 · Circuit Grounds · <a href="#set-cg7">01:35</a></span></li>
+      <li><span class="act">The Prodigy</span> <span class="slots">Sat, May 16 · Cosmic Meadow · <a href="#set-c15">23:35</a></span></li>
+      <li><span class="act">The Purge</span> <span class="slots">Sun, May 17 · Wasteland · <a href="#set-w22">21:30</a></span></li>
+      <li><span class="act">The Saints</span> <span class="slots">Sat, May 16 · Wasteland · <a href="#set-w13">21:30</a></span></li>
+      <li><span class="act">Thomas Schumacher</span> <span class="slots">Sat, May 16 · Quantum Valley · <a href="#set-q20">04:30</a></span></li>
+      <li><span class="act">Tiësto</span> <span class="slots">Sat, May 16 · Circuit Grounds · <a href="#set-cg15">00:15</a></span></li>
+      <li><span class="act">Tiga</span> <span class="slots">Sun, May 17 · Bionic Jungle · <a href="#set-b20">00:00</a></span></li>
+      <li><span class="act">Tinlicker (DJ Set)</span> <span class="slots">Sun, May 17 · Quantum Valley · <a href="#set-q26">00:00</a></span></li>
+      <li><span class="act">Toman</span> <span class="slots">Fri, May 15 · Stereo Bloom · <a href="#set-s9">04:30</a></span></li>
+      <li><span class="act">Trace</span> <span class="slots">Sun, May 17 · Kinetic Field · <a href="#set-k19">19:00</a></span></li>
+      <li><span class="act">Underworld</span> <span class="slots">Fri, May 15 · Cosmic Meadow · <a href="#set-c6">23:10</a></span></li>
+      <li><span class="act">Vieze Asbak</span> <span class="slots">Sun, May 17 · Wasteland · <a href="#set-w25">00:30</a></span></li>
+      <li><span class="act">Vintage Culture</span> <span class="slots">Sun, May 17 · Circuit Grounds · <a href="#set-cg24">02:30</a></span></li>
+      <li><span class="act">Viperactive</span> <span class="slots">Sat, May 16 · Basspod · <a href="#set-bp3">20:40</a></span></li>
+      <li><span class="act">Virtual Riot</span> <span class="slots">Sun, May 17 · Basspod · <a href="#set-bp16">23:30</a></span></li>
+      <li><span class="act">VTSS (In The Round)</span> <span class="slots">Sat, May 16 · Cosmic Meadow · <a href="#set-c14">22:15</a></span></li>
+      <li><span class="act">Walker &amp; Royce b2b VNSSA</span> <span class="slots">Fri, May 15 · Cosmic Meadow · <a href="#set-c5">21:55</a></span></li>
+      <li><span class="act">Warface</span> <span class="slots">Sun, May 17 · Wasteland · <a href="#set-w28">03:30</a></span></li>
+      <li><span class="act">Warung</span> <span class="slots">Sun, May 17 · Quantum Valley · <a href="#set-q21">19:00</a></span></li>
+      <li><span class="act">Wax Motif</span> <span class="slots">Sat, May 16 · Stereo Bloom · <a href="#set-s14">00:30</a></span></li>
+      <li><span class="act">Westend</span> <span class="slots">Fri, May 15 · Cosmic Meadow · <a href="#set-c4">20:55</a></span></li>
+      <li><span class="act">Whethan</span> <span class="slots">Sun, May 17 · Basspod · <a href="#set-bp19">02:30</a></span></li>
+      <li><span class="act">William Black</span> <span class="slots">Sun, May 17 · Cosmic Meadow · <a href="#set-c22">21:00</a></span></li>
+      <li><span class="act">Wooli</span> <span class="slots">Fri, May 15 · Circuit Grounds · <a href="#set-cg6">00:25</a></span></li>
+      <li><span class="act">YDG</span> <span class="slots">Sat, May 16 · Basspod · <a href="#set-bp5">22:30</a></span></li>
+      <li><span class="act">Yosuf</span> <span class="slots">Sun, May 17 · Wasteland · <a href="#set-w23">22:30</a></span></li>
+      <li><span class="act">Zedd</span> <span class="slots">Sun, May 17 · Kinetic Field · <a href="#set-k24">00:32</a></span></li>
     </ul>
+  </section>
 
+  <section aria-labelledby="stages-h">
+    <h2 id="stages-h">EDC Las Vegas 2026 stages</h2>
+    <p>Plursky has 9 stages for EDC Las Vegas 2026 at Las Vegas Motor Speedway, each one listed below with its sets per day.</p>
+    <ul class="stagelist">
+      <li><strong>Kinetic Field</strong> · Mainstage · headliners, sunrise sets<br><span class="counts">Fri, May 15: 9 · Sat, May 16: 9 · Sun, May 17: 9</span></li>
+      <li><strong>Quantum Valley</strong> · Trance, psytrance<br><span class="counts">Fri, May 15: 10 · Sat, May 16: 10 · Sun, May 17: 10</span></li>
+      <li><strong>Bionic Jungle</strong> · House, tech house<br><span class="counts">Fri, May 15: 7 · Sat, May 16: 8 · Sun, May 17: 6</span></li>
+      <li><strong>Stereo Bloom</strong> · Tech house, underground<br><span class="counts">Fri, May 15: 9 · Sat, May 16: 8 · Sun, May 17: 9</span></li>
+      <li><strong>Cosmic Meadow</strong> · Open-air · big room, legends<br><span class="counts">Fri, May 15: 9 · Sat, May 16: 9 · Sun, May 17: 10</span></li>
+      <li><strong>Neon Garden</strong> · House, deep techno<br><span class="counts">Fri, May 15: 7 · Sat, May 16: 6 · Sun, May 17: 8</span></li>
+      <li><strong>Wasteland</strong> · Dubstep, bass<br><span class="counts">Fri, May 15: 10 · Sat, May 16: 10 · Sun, May 17: 10</span></li>
+      <li><strong>Basspod</strong> · Dubstep, hard bass<br><span class="counts">Fri, May 15: 11 · Sat, May 16: 11 · Sun, May 17: 11</span></li>
+      <li><strong>Circuit Grounds</strong> · Techno, big room<br><span class="counts">Fri, May 15: 10 · Sat, May 16: 8 · Sun, May 17: 7</span></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="plan-h">
+    <h2 id="plan-h">Plan your day at EDC Las Vegas 2026</h2>
+    <p>Amenities Plursky lists for EDC Las Vegas 2026: Water (8) · Restrooms (6) · Medical (4) · Charging (3) · Info (2) · Food (1) · Lockers (1).</p>
+  </section>
+
+  <section aria-labelledby="past-h">
+    <h2 id="past-h">Past editions of EDC</h2>
+    <ul>
+      <li><a href="/?tab=past">EDC Las Vegas 2025</a> — 2025, 378 artists, 392 sets</li>
+    </ul>
+    <p class="note">Each link opens Past Festivals in Plursky.</p>
+  </section>
+
+  <section aria-labelledby="app-h">
+    <h2 id="app-h">Get the app</h2>
+    <p class="ctas">
+      <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
+      <a class="cta-secondary" href="/?f=edc-lv-2026">Relive it in the browser</a>
+    </p>
+    <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.</p>
+    <p><a href="/?f=edc-lv-2026&amp;tab=memories">Your EDC Las Vegas 2026 Memories in Plursky</a></p>
   </section>
 
   <nav class="other" aria-labelledby="other-h">
     <h2 id="other-h">Other festivals on Plursky</h2>
     <ul>
-      <li><a href="/f/electric-forest-2027/">Electric Forest 2027</a> — Dates TBA</li>
-      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
-      <li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a> — Nov 6–8, 2026</li>
-      <li><a href="/f/tomorrowland-2027/">Tomorrowland 2027</a> — Dates TBA</li>
-      <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
-      <li><a href="/f/coachella-2027/">Coachella 2027</a> — Apr 9–18, 2027</li>
-      <li><a href="/f/edc-mexico-2027/">EDC Mexico 2027</a> — Feb 19–21, 2027</li>
-      <li><a href="/f/beyond-wonderland-socal-2027/">Beyond Wonderland SoCal 2027</a> — Mar 26–27, 2027</li>
-      <li><a href="/f/beyond-wonderland-gorge-2027/">Beyond Wonderland at The Gorge 2027</a> — Jun 26–27, 2027</li>
-      <li><a href="/f/ultra-miami-2026/">Ultra Miami 2026</a> — Mar 27–29, 2026</li>
       <li><a href="/f/governors-ball-2026/">Governors Ball 2026</a> — Jun 5–7, 2026</li>
       <li><a href="/f/summerfest-2026/">Summerfest 2026</a> — Jun 18–20, Jun 25–27 &amp; Jul 2–4, 2026</li>
+      <li><a href="/f/ultra-miami-2026/">Ultra Miami 2026</a> — Mar 27–29, 2026</li>
       <li><a href="/f/lollapalooza-2026/">Lollapalooza 2026</a> — Jul 30 – Aug 2, 2026</li>
-      <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
-      <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
-      <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
-      <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
-      <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
       <li><a href="/f/hard-summer-2026/">HARD Summer 2026</a> — Aug 1–2, 2026</li>
+      <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
       <li><a href="/f/arc-2026/">ARC Music Festival 2026</a> — Sep 4–7, 2026</li>
-      <li><a href="/f/escape-halloween-2026/">Escape Halloween 2026</a> — Oct 30–31, 2026</li>
-      <li><a href="/f/dreamstate-socal-2026/">Dreamstate SoCal 2026</a> — Nov 20–21, 2026</li>
-      <li><a href="/f/decadence-colorado-2026/">Decadence Colorado 2026</a> — Dec 30–31, 2026</li>
-      <li><a href="/f/countdown-nye-2026/">Countdown NYE 2026</a> — Dec 31, 2026 – Jan 1, 2027</li>
+      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
     </ul>
   </nav>
+
+  <section class="sources" aria-labelledby="sources-h">
+    <h2 id="sources-h">Sources</h2>
+    <ul>
+      <li>Official site: <a href="https://lasvegas.edc.com/" rel="noopener">https://lasvegas.edc.com/</a></li>
+      <li>Set times: <a href="https://festivaldust.com/" rel="noopener">https://festivaldust.com/</a> (community source, checked 2026-05)</li>
+      <li>Map: <a href="https://lasvegas.edc.com/festival-map/" rel="noopener">https://lasvegas.edc.com/festival-map/</a> (official, checked 2026-09-24)</li>
+    </ul>
+    <p class="note">Last updated <time class="updated" datetime="2026-09-24">2026-09-24</time>.</p>
+  </section>
 
   <footer>
     <a href="/">Plursky</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a>

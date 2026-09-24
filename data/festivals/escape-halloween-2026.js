@@ -341,6 +341,11 @@
     // LAST YEAR'S map, per the founder ruling. See the header before
     // touching any of this.
     mapImage: "escape-2025-map.webp",
+
+    // The festival's OWN map page, linked (never embedded) by the /f/ page:
+    // official publication is provenance, not reuse rights. mapYear is the
+    // year printed on the map the page showed when checked — the 2026 page still shows the 2025 map.
+    mapSource: { url: "https://escapehalloween.com/festival-map/", observedAt: "2026-09-24", mapYear: 2025 },
     mapStyle: "image-overlay",
     mapTheme: "park",
     mapPrintsStageNames: true,
