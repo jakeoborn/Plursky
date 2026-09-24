@@ -6500,7 +6500,7 @@ function MemoriesScreen({ state, setState }) {
                             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "var(--muted)" }}>NEEDS REVIEW</div>
                             <div className="serif" style={{ fontSize: 18, color: "var(--ink)", lineHeight: 1.1, marginTop: 2 }}>
                               {needsReview.every(m => !m.festivalReview) ? "Set not in this festival"
-                                : needsReview.every(m => m.festivalReview) ? "May be from another festival"
+                                : needsReview.every(m => m.festivalReview) ? "Outside this festival’s dates"
                                 : "Check these clips"}
                             </div>
                           </div>
@@ -6513,8 +6513,9 @@ function MemoriesScreen({ state, setState }) {
                               a set tag this lineup can't resolve, and a festival stamp its
                               own capture time contradicts. Neither line may claim the other. */}
                           {needsReview.every(m => !m.festivalReview) ? "Tagged to a set this festival doesn’t have — retag to file it."
-                            : needsReview.every(m => m.festivalReview) ? `${needsReview.length === 1 ? "Its" : "Their"} capture time points somewhere else. Nothing was moved.`
-                            : "Some are tagged to a set this festival doesn’t have; some were captured at another time or festival."}
+                            : needsReview.every(m => m.festivalReview) ? (needsReview.length === 1 ? "Its capture time doesn’t match this festival’s dates. We left it here."
+                              : "Their capture times don’t match this festival’s dates. We left them here.")
+                            : "Some are tagged to a set this festival doesn’t have. Others were shot outside this festival’s dates."}
                         </div>
                         {needsReview.map((m, i) => (
                           <MomentCard
@@ -7775,12 +7776,14 @@ function _festivalClaimantsFor(takenAt) {
 // wrote the stamp. A legacy active-festival stamp and a correct one can be
 // field-identical except for takenAt, and tagSource only says how the ARTIST
 // was found. So an existing festivalId is replaced automatically only when
-// festivalStampSource says the machine wrote it as a fallback:
-//   · stamp source "active-fallback" + exactly one claimant that disagrees +
-//     a trusted capture time -> correct festivalId AND night AND bucket together
+// festivalStampSource says the machine wrote it as a fallback (or, for records
+// older than that field, festivalAttribution is "unresolved"; see below):
+//   · stamp source "active-fallback" (or no source + "unresolved") + exactly
+//     one claimant that disagrees + a trusted capture time -> correct
+//     festivalId AND night AND bucket together
 //   · anything else that disagrees (user, check-in, capture-time, or no
-//     stored source at all, which is every record written before this field
-//     existed) -> keep the stamp, and record the conflict in festivalReview so
+//     stored source and no "unresolved" marker, which covers most records
+//     written before this field existed) -> keep the stamp, and record the conflict in festivalReview so
 //     the NEEDS REVIEW group shows it and a person can settle it.
 //   · a record whose stamp agrees with its capture time is untouched, and a
 //     stale festivalReview is dropped.
@@ -7805,7 +7808,13 @@ function _reconcileFestivalStamps(moments) {
       const cfg = claimant ? window._DATA_SETS?.[claimant]?.config : null;
       const date = claimant ? _momentTakenAtToDateParts(m.takenAt) : null;
       const night = cfg && date ? _photoFestivalNight(date, cfg, null) : null;
-      if (claimant && night != null && !m.dateUnverified && m.festivalStampSource === "active-fallback") {
+      // A record with no stored stamp source but festivalAttribution
+      // "unresolved" was stamped by #213's sweep or #215's recovery: those are
+      // the only writers of "unresolved", and both write it in the same
+      // statement as a machine fallback stamp (lane ruling 2026-09-24).
+      const machineStamp = m.festivalStampSource === "active-fallback"
+        || (!m.festivalStampSource && m.festivalAttribution === "unresolved");
+      if (claimant && night != null && !m.dateUnverified && machineStamp) {
         // All three dependent fields in one step: festivalId with the old night
         // or the old bucket would file it under a night the festival never had.
         m.festivalId = claimant;

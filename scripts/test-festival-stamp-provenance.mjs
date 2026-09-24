@@ -13,8 +13,10 @@
 // correction with tagSource "exif" would have been overwritten.
 //
 // THE RULE (_reconcileFestivalStamps):
-//   · festivalStampSource "active-fallback" + one claimant that disagrees +
-//     trusted capture time -> festivalId, night and bucket corrected together
+//   · festivalStampSource "active-fallback" (or no stored source and
+//     festivalAttribution "unresolved", which only #213/#215 write) + one
+//     claimant that disagrees + trusted capture time -> festivalId, night and
+//     bucket corrected together
 //   · any other disagreement (user, unknown/absent, several or no claimants,
 //     unverified capture time) -> stamp, night and bucket unchanged, and a
 //     festivalReview record that puts the moment in NEEDS REVIEW
@@ -114,7 +116,7 @@ const seed = { 1: [
   base("f2-user",        { takenAt: T_WRONG, artistId: "x2", tagSource: "exif", festivalStampSource: "user" }),
   // 3. unknown provenance, machine tagSource
   base("f3-unknown",     { takenAt: T_WRONG, artistId: null, tagSource: "fallback" }),
-  // 4. explicit legacy-machine provenance, one claimant: the ONLY auto-repair
+  // 4. explicit legacy-machine provenance, one claimant: auto-repaired (as is 8)
   base("f4-machine",     { takenAt: T_WRONG, artistId: "x4", tagSource: "exif", festivalStampSource: "active-fallback", festivalAttribution: "unresolved" }),
   // 5. machine provenance but two claimants
   base("f5-machine-amb", { takenAt: T_AMBIG, artistId: null, festivalStampSource: "active-fallback" }),
@@ -122,6 +124,13 @@ const seed = { 1: [
   base("f-unverified",   { takenAt: T_WRONG, dateUnverified: true, festivalStampSource: "active-fallback" }),
   // machine provenance, no claimant at all
   base("f-none",         { takenAt: T_NONE, festivalStampSource: "active-fallback" }),
+  // 8. no stored source, but "unresolved": only #213/#215 write that marker,
+  // and always beside a machine fallback stamp (lane ruling 2026-09-24)
+  base("f8-legacy-unres", { takenAt: T_WRONG, artistId: "x8", festivalAttribution: "unresolved" }),
+  // a stored source wins over the marker
+  base("f9-unres-user",   { takenAt: T_WRONG, festivalAttribution: "unresolved", festivalStampSource: "user" }),
+  // the marker does not relax the other conditions
+  base("f10-unres-unverified", { takenAt: T_WRONG, dateUnverified: true, festivalAttribution: "unresolved" }),
   // correct stamp: must come out byte-identical
   base("f-right",        { takenAt: T_RIGHT, artistId: "x9", tagSource: "exif" }),
   // correct stamp carrying a stale review: the review is dropped
@@ -168,6 +177,16 @@ check(f4.festivalAttribution === "capture-time" && f4.festivalStampSource === "c
   `f4-machine: a correction must say it came from capture time and carry no review — got ${JSON.stringify({ a: f4.festivalAttribution, s: f4.festivalStampSource, r: f4.festivalReview })}`);
 check(f4.id === "f4-machine" && f4.text === beforeById["f4-machine"].text && f4.favorite === true && f4.artistId === "x4" && f4.tagSource === "exif",
   `f4-machine: identity and unrelated fields must survive the repair — got ${JSON.stringify(f4)}`);
+
+// 8: legacy "unresolved" with no stored source is corrected like "active-fallback"
+const f8 = byId["f8-legacy-unres"];
+check(f8.festivalId === REAL && String(f8.night) === String(NIGHT_REAL) && where["f8-legacy-unres"].join() === String(NIGHT_REAL)
+  && f8.festivalAttribution === "capture-time" && f8.festivalStampSource === "capture-time" && !f8.festivalReview && f8.artistId === "x8",
+  `f8-legacy-unres: festivalAttribution "unresolved" with no stored source + sole claimant must be corrected (id, night, bucket) — got ${JSON.stringify(f8)} in bucket ${where["f8-legacy-unres"]}`);
+check(kept("f9-unres-user") && byId["f9-unres-user"].festivalReview?.stampSource === "user",
+  `f9-unres-user: a stored "user" source must win over the "unresolved" marker — got ${JSON.stringify(byId["f9-unres-user"])}`);
+check(kept("f10-unres-unverified") && byId["f10-unres-unverified"].festivalReview?.reason === "unverified-capture-time",
+  `f10-unres-unverified: the marker must not relax the trusted-capture-time condition — got ${JSON.stringify(byId["f10-unres-unverified"])}`);
 
 // 5 + the other machine-stamped conflicts that cannot be proved
 for (const [id, reason] of [["f5-machine-amb", "multiple-claimants"], ["f-unverified", "unverified-capture-time"], ["f-none", "no-claimant"]]) {

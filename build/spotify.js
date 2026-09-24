@@ -9992,7 +9992,7 @@ function MemoriesScreen({
           lineHeight: 1.1,
           marginTop: 2
         }
-      }, needsReview.every(m => !m.festivalReview) ? "Set not in this festival" : needsReview.every(m => m.festivalReview) ? "May be from another festival" : "Check these clips")), React.createElement("span", {
+      }, needsReview.every(m => !m.festivalReview) ? "Set not in this festival" : needsReview.every(m => m.festivalReview) ? "Outside this festival’s dates" : "Check these clips")), React.createElement("span", {
         className: "mono",
         style: {
           fontSize: 9,
@@ -10010,7 +10010,7 @@ function MemoriesScreen({
           fontWeight: 600,
           padding: "0 0 4px 12px"
         }
-      }, needsReview.every(m => !m.festivalReview) ? "Tagged to a set this festival doesn’t have — retag to file it." : needsReview.every(m => m.festivalReview) ? `${needsReview.length === 1 ? "Its" : "Their"} capture time points somewhere else. Nothing was moved.` : "Some are tagged to a set this festival doesn’t have; some were captured at another time or festival."), needsReview.map((m, i) => React.createElement(MomentCard, {
+      }, needsReview.every(m => !m.festivalReview) ? "Tagged to a set this festival doesn’t have — retag to file it." : needsReview.every(m => m.festivalReview) ? needsReview.length === 1 ? "Its capture time doesn’t match this festival’s dates. We left it here." : "Their capture times don’t match this festival’s dates. We left them here." : "Some are tagged to a set this festival doesn’t have. Others were shot outside this festival’s dates."), needsReview.map((m, i) => React.createElement(MomentCard, {
         key: m.id,
         moment: m,
         idx: i,
@@ -11976,7 +11976,8 @@ function _reconcileFestivalStamps(moments) {
       var cfg = claimant ? window._DATA_SETS?.[claimant]?.config : null;
       var date = claimant ? _momentTakenAtToDateParts(m.takenAt) : null;
       var night = cfg && date ? _photoFestivalNight(date, cfg, null) : null;
-      if (claimant && night != null && !m.dateUnverified && m.festivalStampSource === "active-fallback") {
+      var machineStamp = m.festivalStampSource === "active-fallback" || !m.festivalStampSource && m.festivalAttribution === "unresolved";
+      if (claimant && night != null && !m.dateUnverified && machineStamp) {
         m.festivalId = claimant;
         m.festivalAttribution = "capture-time";
         m.festivalStampSource = "capture-time";
