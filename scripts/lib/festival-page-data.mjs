@@ -1,9 +1,9 @@
-// The /f/<id>/ page inputs that live OUTSIDE the registry: the map plate, the
-// hero photo, past editions and the amenity summary. One module, read by BOTH
+// The /f/<id>/ page inputs that live OUTSIDE the registry: the map plate,
+// past editions and the amenity summary. One module, read by BOTH
 // gen-festival-pages.mjs (to render) and sitemap-fingerprint.mjs (to hash), so
 // a page section can never change without its <lastmod> seeing it.
 
-import { readFileSync, existsSync, statSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -33,37 +33,6 @@ export function plateFor(cfg, root = ROOT) {
     desc: desc[1].replace(/\s+/g, ' ').trim(),
     bytes: Buffer.byteLength(svg), svg,
   };
-}
-
-// WebP dimensions straight from the RIFF header (VP8, VP8L and VP8X).
-function webpSize(buf) {
-  if (buf.toString('ascii', 0, 4) !== 'RIFF' || buf.toString('ascii', 8, 12) !== 'WEBP') return null;
-  const kind = buf.toString('ascii', 12, 16);
-  if (kind === 'VP8 ') return { w: buf.readUInt16LE(26) & 0x3fff, h: buf.readUInt16LE(28) & 0x3fff };
-  if (kind === 'VP8L') {
-    const b = buf.readUInt32LE(21);
-    return { w: (b & 0x3fff) + 1, h: ((b >> 14) & 0x3fff) + 1 };
-  }
-  if (kind === 'VP8X') return { w: buf.readUIntLE(24, 3) + 1, h: buf.readUIntLE(27, 3) + 1 };
-  return null;
-}
-
-// Hero card art: only a file festival-art/PROVENANCE.md lists, with the source
-// page it lists, and only within the page image budget.
-export function heroArtFor(id, root = ROOT) {
-  const prov = path.join(root, 'festival-art', 'PROVENANCE.md');
-  const file = `festival-art/${id}.webp`;
-  const abs = path.join(root, file);
-  if (!existsSync(prov) || !existsSync(abs)) return null;
-  const row = readFileSync(prov, 'utf8').split('\n')
-    .find(l => l.startsWith('|') && l.includes(`\`${id}.webp\``));
-  const source = row && /(https?:\/\/[^\s|]+)/.exec(row.split('|')[2] || '');
-  if (!source) return null;
-  const bytes = statSync(abs).size;
-  if (bytes > MAX_PAGE_IMAGE_BYTES) return null;
-  const size = webpSize(readFileSync(abs));
-  if (!size) return null;
-  return { file, ...size, bytes, source: source[1] };
 }
 
 // Past editions held in data/historical, matched on the festival id without

@@ -4,8 +4,8 @@
 //   - every registry festival has a page, and a page with no lineup is noindex
 //     and out of the sitemap (an indexable one is in it);
 //   - the map section exists iff there is a Plursky plate or a recorded
-//     official map page, and every image on a page is either OUR plate or the
-//     festival's PROVENANCE-listed hero within budget — never patron-map art;
+//     official map page, and the only image on a page is OUR plate — never
+//     patron-map art and never festival card art;
 //   - a plate numbers every stage that has a position, keys each one, and
 //     names any stage it cannot show;
 //   - no walk time, distance, leave-by or transition verdict appears on a page
@@ -15,16 +15,17 @@
 //   - JSON-LD parses, and its dates are the dates the page shows.
 //
 // The checks run per page through checkPage(). The same function then meets
-// the three mutations the spec names, in memory — an embedded official map,
-// a dropped act, a walk-time sentence — and each has to be caught, so the gate
-// cannot pass by checking nothing.
+// the three mutations the spec names plus the card-art ruling, in memory — an
+// embedded official map, festival card art, a dropped act, a walk-time
+// sentence — and each has to be caught, so the gate cannot pass by checking
+// nothing.
 
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
 import { loadBrowser } from './lib/load-browser.mjs';
-import { plateFor, heroArtFor, isPlaceholderStage, MAX_PAGE_IMAGE_BYTES } from './lib/festival-page-data.mjs';
+import { plateFor, isPlaceholderStage, MAX_PAGE_IMAGE_BYTES } from './lib/festival-page-data.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const F_DIR = join(ROOT, 'f');
@@ -95,15 +96,18 @@ function checkPage(entry, html, { verified }) {
   const mapSec = section(html, 'map-h') || '';
   if (/\bmap of\b/i.test(visibleText(mapSec))) out.push('map section says "map of"');
 
-  // Images: our plate, or the listed hero, and nothing else.
-  const hero = heroArtFor(id, ROOT);
-  const allowed = new Set([plate && `/${plate.file}`, hero && `/${hero.file}`].filter(Boolean));
+  // Images: our own plate and nothing else. Official festival photos were
+  // removed by lane ruling: PROVENANCE.md records where card art came from,
+  // not a right to republish it, so festival-art/ never reaches a public page
+  // (in-app card art is unaffected).
+  const allowed = new Set([plate && `/${plate.file}`].filter(Boolean));
   for (const m of html.matchAll(/<img\b[^>]*>/g)) {
     const tag = m[0];
     const src = (/\bsrc="([^"]*)"/.exec(tag) || [])[1] || '';
     const file = src.replace(/^\//, '');
     if (OFFICIAL_ART.has(file)) out.push(`embeds official map art ${src}`);
-    if (!allowed.has(src)) out.push(`image ${src} is neither this festival's plate nor its listed hero`);
+    if (/^festival-art\//.test(file)) out.push(`embeds festival card art ${src}`);
+    if (!allowed.has(src)) out.push(`image ${src} is not this festival's own plate`);
     if (!/\bwidth="\d+"/.test(tag) || !/\bheight="\d+"/.test(tag)) out.push(`image ${src} has no width/height`);
     if (existsSync(join(ROOT, file)) && statSync(join(ROOT, file)).size > MAX_PAGE_IMAGE_BYTES) out.push(`image ${src} is over the page image budget`);
     if (plate && src === `/${plate.file}` && !/\bloading="lazy"/.test(tag)) out.push('plate image is not lazy');
@@ -211,6 +215,8 @@ const withLineup = REG.find(e => (DS[e.config.id]?.artists || []).length > 1);
 const WALK = '<p>It is a 12 min walk from the main stage.</p>';
 const mutants = [
   ['an embedded official map', artFestival, (h) => h.replace('</main>', `<img src="/${artFestival.config.mapImage}" width="10" height="10">\n</main>`), false],
+  // The ruled-out photo coming back: festival card art on a public page.
+  ['official festival card art', byId('acl-2026'), (h) => h.replace('</main>', `<img src="/festival-art/acl-2026.webp" width="10" height="10">\n</main>`), false],
   ['a dropped act', withLineup, (h) => h.replace(/\n      <li><span class="act">[^\n]*<\/li>/, ''), false],
   ['a walk-time sentence on unverified geometry', unverified, (h) => h.replace('</main>', `${WALK}\n</main>`), false],
   // Control: the same sentence on VERIFIED geometry is not what the rule forbids.
@@ -232,4 +238,4 @@ if (failed) {
   console.log(`\n  ${failed}/${checks} checks FAILED`);
   process.exit(1);
 }
-console.log(`  ✓ festival pages: ${checks} checks across ${REG.length} pages (plates ${plates}, official-map links ${links}, noindex ${noindexed}, multi-weekend ${multiWeekend}; 3 mutations caught, 1 control passed)`);
+console.log(`  ✓ festival pages: ${checks} checks across ${REG.length} pages (plates ${plates}, official-map links ${links}, noindex ${noindexed}, multi-weekend ${multiWeekend}; 4 mutations caught, 1 control passed)`);

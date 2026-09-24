@@ -20,7 +20,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
 import { fp, festivalFingerprint } from './lib/sitemap-fingerprint.mjs';
-import { plateFor, heroArtFor, pastEditionsFor, amenitySummary, isPlaceholderStage } from './lib/festival-page-data.mjs';
+import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage } from './lib/festival-page-data.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://plursky.com';
@@ -504,7 +504,6 @@ function stub(entry, statusOverride, lastmod) {
   const stages = (ds?.stages || []).filter(s => !isPlaceholderStage(s));
   const blocks = weekendBlocks(cfg);
   const plate = plateFor(cfg);
-  const hero = heroArtFor(id);
   const editions = pastEditionsFor(id);
   const amenities = amenitySummary(DS, id, entry.available);
   const mapHtml = mapSection(entry, plate);
@@ -586,7 +585,6 @@ function stub(entry, statusOverride, lastmod) {
     site && `      <li>Official site: <a href="${esc(site)}" rel="noopener">${esc(site)}</a></li>`,
     src && src.url && `      <li>Set times: <a href="${esc(src.url)}" rel="noopener">${esc(src.url)}</a> (${src.official === true ? 'official' : 'community source'}${src.observedAt ? `, checked ${esc(src.observedAt)}` : ''})</li>`,
     cfg.mapSource && cfg.mapSource.url && `      <li>Map: <a href="${esc(cfg.mapSource.url)}" rel="noopener">${esc(cfg.mapSource.url)}</a> (official, checked ${esc(cfg.mapSource.observedAt)})</li>`,
-    hero && `      <li>Photo: <a href="${esc(hero.source)}" rel="noopener">${esc(hero.source)}</a> (official festival source)</li>`,
   ].filter(Boolean);
 
   return `<!DOCTYPE html>
@@ -676,11 +674,7 @@ ${JSON.stringify(crumbLd, null, 2)}
   <h1>${esc(cfg.name)}</h1>
   <p class="meta">${status ? `<span class="chip chip-${status}">${STATUS_LABEL[status]}</span>` : ''}${esc(cfg.dates)}${where ? ' · ' + esc(where) : ''}</p>
   <p>${esc(cfg.tagline || '')}</p>
-${hero ? `  <figure class="hero">
-    <img src="/${esc(hero.file)}" width="${hero.w}" height="${hero.h}" fetchpriority="high" alt="${esc(cfg.name)}: official festival photograph">
-    <figcaption>Photo from the festival's official site (see Sources).</figcaption>
-  </figure>
-` : ''}${answersSection(entry, answers)}
+${answersSection(entry, answers)}
 ${mapHtml}
 ${scheduleGrid(entry, dates, blocks)}
 ${lineupSection(entry, blocks, dates, names, hasTimes)}

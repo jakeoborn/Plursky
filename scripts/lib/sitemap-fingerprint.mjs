@@ -19,7 +19,7 @@
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { plateFor, heroArtFor, pastEditionsFor, amenitySummary } from './festival-page-data.mjs';
+import { plateFor, pastEditionsFor, amenitySummary } from './festival-page-data.mjs';
 
 export const fp = (v) => createHash('sha256').update(JSON.stringify(v)).digest('hex').slice(0, 16);
 
@@ -177,7 +177,6 @@ export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, t
     // Page sections fed from outside the registry, through the SAME helpers
     // the generator renders with (scripts/lib/festival-page-data.mjs).
     plate: (() => { const p = plateFor(cfg); return p ? [p.file, p.w, p.h, fp(p.svg)] : null; })(),
-    hero: (() => { const h = heroArtFor(cfg.id); return h ? [h.file, h.w, h.h, h.bytes, h.source] : null; })(),
     editions: pastEditionsFor(cfg.id),
     amenities: amenitySummary(DS, cfg.id, !!entry.available),
   };
