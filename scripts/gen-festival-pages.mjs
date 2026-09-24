@@ -695,6 +695,7 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
      permalink and one button; nothing from Instagram or X is requested. */
   section.watch blockquote.tap-embed { min-height:0; border-radius:12px 12px 0 0; padding:16px 16px 8px; }
   section.watch .embed-tap { background:var(--panel); border-radius:0 0 12px 12px; padding:0 16px 16px; max-width:540px; box-sizing:border-box; }
+  section.watch .embed-what { color:var(--ink); font-size:15px; font-weight:600; margin:0 0 10px; }
   section.watch .embed-load { min-height:44px; padding:10px 16px; border-radius:10px; border:1px solid var(--ember); background:transparent; color:var(--ember); font:inherit; font-weight:600; font-size:15px; cursor:pointer; }
   section.watch .embed-tap-note { color:var(--muted); font-size:13px; margin:8px 0 0; }
   section.watch figure.tapped .embed-tap { display:none; }

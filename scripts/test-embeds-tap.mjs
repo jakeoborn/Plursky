@@ -67,6 +67,9 @@ try {
       check(social.length === 0, `${at} the page contacted Instagram/X before any tap: ${social.join(', ')}`);
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
       check(overflow <= 0, `${at} the tap-to-load placeholders widen the page by ${overflow}px`);
+      const whats = await page.evaluate(() => [...document.querySelectorAll('figure[data-tap] .embed-what')].map(p => ({ t: p.textContent.replace(/\u00a0/g, ' '), shown: p.getClientRects().length > 0, over: p.scrollWidth - p.clientWidth })));
+      check(whats.length === counts.ig + counts.x && whats.every(w => w.shown && / · Posted [A-Z][a-z]+ \d{1,2}, \d{4}$/.test(w.t)), `${at} not every untapped post shows its "kind · Posted date" line: ${JSON.stringify(whats)}`);
+      check(whats.every(w => w.over <= 0), `${at} a date line overflows its box`);
       const btnH = await page.evaluate(() => Math.min(...[...document.querySelectorAll('button.embed-load')].map(b => b.getBoundingClientRect().height)));
       check(btnH >= 44, `${at} a load button is ${btnH}px tall (under 44)`);
 
@@ -78,6 +81,7 @@ try {
       const s1 = await page.evaluate(() => ({
         rendered: [...document.querySelectorAll('iframe.stub-ig')].map(f => f.getAttribute('data-src')),
         inert: document.querySelectorAll('figure[data-tap="instagram"] blockquote.tap-embed').length,
+        whatVisible: (() => { const w = document.querySelector('figure[data-tap="instagram"].tapped .embed-what'); return !!w && w.getClientRects().length > 0; })(),
         btnVisible: (() => { const b = document.querySelector('figure[data-tap="instagram"] button.embed-load'); return !!b && b.getClientRects().length > 0; })(),
         focusIsFig: document.activeElement && document.activeElement.matches('figure[data-tap="instagram"]'),
       }));
@@ -85,6 +89,7 @@ try {
       check(igReq() === 1, `${at} one tap fetched embed.js ${igReq()} times`);
       check(s1.rendered.length === 1 && s1.rendered[0] === firstPermalink, `${at} the tap did not load exactly the tapped post (${JSON.stringify(s1.rendered)})`);
       check(s1.inert === counts.ig - 1, `${at} tapping one Instagram post changed ${counts.ig - s1.inert} posts`);
+      check(!s1.whatVisible, `${at} the tapped post still shows its pre-tap date line over the real embed`);
       check(!s1.btnVisible, `${at} the tapped post still shows its load button`);
       check(s1.focusIsFig, `${at} focus did not move to the tapped post`);
       check(social.every(u => /instagram\.com\/embed\.js/.test(u)), `${at} an Instagram tap contacted X: ${social.join(', ')}`);

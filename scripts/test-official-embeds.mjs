@@ -226,6 +226,16 @@ for (const id of pages) {
   for (const fg of tapFigs) {
     check(/ data-tap="(?:instagram|x)"/.test(fg) && (fg.match(/<button type="button" class="embed-load">/g) || []).length === 1 && /<blockquote class="tap-embed" data-class=/.test(fg), `${at} a social post has no tap-to-load button: ${fg.slice(0, 100)}`);
     check(/href="\/privacy\.html#social-embeds"/.test(fg), `${at} a tap-to-load post does not link the privacy note`);
+    // The pre-tap line: our kind + the date decoded from the post's own id.
+    const whatRaw = (fg.match(/<p class="embed-what">([^<]*)<\/p>/) || [])[1];
+    check(!whatRaw || /Posted\u00a0[A-Z][a-z]+\u00a0\d{1,2},\u00a0\d{4}$/.test(whatRaw), `${at} the date can break across lines (no non-breaking spaces): ${whatRaw}`);
+    const what = whatRaw && whatRaw.replace(/\u00a0/g, ' ');
+    const pl = (fg.match(/data-instgrm-permalink="([^"]+)"/) || fg.match(/<a href="(https:\/\/twitter\.com\/[^"]+)"/) || [])[1] || '';
+    const iso = / data-tap="instagram"/.test(fg) ? L.instagramPublishedAt(pl) : L.xPublishedAt(pl);
+    const want = iso && new Date(iso + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+    check(!!what && /^(Lineup|Announcement|Photo|Photo set|Video|Aftermovie|Trailer) · Posted /.test(what), `${at} a tap-to-load post has no "kind · Posted date" line: ${what}`);
+    check(!!want && !!what && what.endsWith(`Posted ${want}`), `${at} a post's date line (${what}) is not its id's date (${want})`);
+    check(fg.indexOf('class="embed-what"') > fg.indexOf('</blockquote>'), `${at} the date line sits inside the blockquote (it must stay outside the post's own markup)`);
   }
   check(!/IntersectionObserver/.test(sec), `${at} the social loader still fires on scroll`);
   check(yt <= 1 && sp <= 1 && social <= 3, `${at} over the caps: ${yt} YouTube, ${social} social, ${sp} Spotify`);
@@ -296,6 +306,17 @@ for (const id of pages) {
   const ld = (html.match(/"performer": \[[\s\S]*?\n  \]/) || [''])[0];
   const ldCount = (ld.match(/"MusicGroup"/g) || []).length;
   if (ldCount) check(ldCount === total, `[${id}] JSON-LD lists ${ldCount} performers, the page ${total}: folding hid names from the HTML`);
+}
+
+// postSummary: kind label + UTC date from the id, and nothing else.
+{
+  const xid = ((BigInt(Date.UTC(2026, 4, 5, 18)) - 1288834974657n) << 22n).toString();
+  const x = { platform: 'x', kind: 'lineup', url: `https://x.com/aclfestival/status/${xid}` };
+  check(L.postSummary(x).replace(/\u00a0/g, ' ') === 'Lineup · Posted May 5, 2026', `postSummary(x lineup) = ${L.postSummary(x)}`);
+  check(L.postSummary({ ...x, kind: 'carousel' }).replace(/\u00a0/g, ' ') === 'Photo set · Posted May 5, 2026', `postSummary carousel label: ${L.postSummary({ ...x, kind: 'carousel' })}`);
+  const late = ((BigInt(Date.UTC(2026, 4, 5, 23, 59)) - 1288834974657n) << 22n).toString();
+  check(L.postSummary({ ...x, url: `https://x.com/aclfestival/status/${late}` })
+    .replace(/\u00a0/g, ' ').endsWith('May 5, 2026'), 'postSummary does not read the date in UTC');
 }
 
 if (problems.length) {

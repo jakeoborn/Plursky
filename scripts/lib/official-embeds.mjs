@@ -308,7 +308,22 @@ const caption = (e, festivalName) => {
 // pick it up) and makes no request to either platform until the reader taps
 // that post's button. Only then does the loader give the blockquote its real
 // class and fetch the platform's script. privacy.html#social-embeds says so.
+// Before the tap the post is described only from what we already hold: our
+// curated kind and the date decoded from the post's own id (UTC). Nothing of
+// the post itself (text, image, counts) is copied onto the page.
+const KIND_LABEL = { lineup: 'Lineup', announcement: 'Announcement', photo: 'Photo', carousel: 'Photo set', video: 'Video', aftermovie: 'Aftermovie', trailer: 'Trailer' };
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+export function postSummary(e) {
+  const iso = e.platform === 'instagram' ? instagramPublishedAt(e.url) : e.platform === 'x' ? xPublishedAt(e.url) : null;
+  const kind = KIND_LABEL[e.kind] || null;
+  if (!iso) return kind;
+  const [y, m, d] = iso.split('-').map(Number);
+  // Non-breaking spaces keep the date on one line at 320px.
+  const date = `${MONTHS[m - 1]}\u00a0${d},\u00a0${y}`;
+  return kind ? `${kind} · Posted\u00a0${date}` : `Posted\u00a0${date}`;
+}
 const tapPrompt = e => `      <div class="embed-tap">
+        <p class="embed-what">${esc(postSummary(e))}</p>
         <button type="button" class="embed-load">Load the ${PLATFORM_NAME[e.platform]} post</button>
         <p class="embed-tap-note">Nothing loads from ${PLATFORM_NAME[e.platform]} until you tap. <a href="/privacy.html#social-embeds">Privacy</a></p>
       </div>`;
