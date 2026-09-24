@@ -5709,6 +5709,7 @@ function AddMomentForm({
         kind: blob ? mediaKind : null,
         createdAt: Date.now(),
         festivalId: window.FESTIVAL_CONFIG?.id || null,
+        festivalStampSource: "user",
         tagSource: artistId ? "manual" : undefined
       };
       onAdd(moment);
@@ -8738,6 +8739,7 @@ function _groupNightMoments({
   var byArtist = new Map();
   var untagged = [];
   for (var m of moments || []) {
+    if (m.festivalReview) continue;
     if (m.artistId) {
       if (!byArtist.has(m.artistId)) byArtist.set(m.artistId, []);
       byArtist.get(m.artistId).push(m);
@@ -8750,7 +8752,7 @@ function _groupNightMoments({
     var bMin = bA?.start ? toMin?.(bA.start) ?? 9999 : 9999;
     return aMin - bMin;
   });
-  var needsReview = (moments || []).filter(m => m.artistId && !find(m.artistId));
+  var needsReview = (moments || []).filter(m => m.festivalReview || m.artistId && !find(m.artistId));
   return {
     byArtist,
     untagged,
@@ -8941,6 +8943,7 @@ function MemoriesScreen({
           heading: meta?.heading != null ? Math.round(meta.heading) : null,
           headingRef: meta?.headingRef || null,
           festivalId: matched.festivalId || window.FESTIVAL_CONFIG?.id || null,
+          festivalStampSource: matched.festivalId ? "capture-time" : "active-fallback",
           parsedGps: meta?.lat != null && meta?.lng != null ? {
             lat: meta.lat,
             lng: meta.lng
@@ -9989,7 +9992,7 @@ function MemoriesScreen({
           lineHeight: 1.1,
           marginTop: 2
         }
-      }, "Set not in this festival")), React.createElement("span", {
+      }, needsReview.every(m => !m.festivalReview) ? "Set not in this festival" : needsReview.every(m => m.festivalReview) ? "May be from another festival" : "Check these clips")), React.createElement("span", {
         className: "mono",
         style: {
           fontSize: 9,
@@ -10007,7 +10010,7 @@ function MemoriesScreen({
           fontWeight: 600,
           padding: "0 0 4px 12px"
         }
-      }, "Tagged to a set this festival doesn’t have — retag to file it."), needsReview.map((m, i) => React.createElement(MomentCard, {
+      }, needsReview.every(m => !m.festivalReview) ? "Tagged to a set this festival doesn’t have — retag to file it." : needsReview.every(m => m.festivalReview) ? `${needsReview.length === 1 ? "Its" : "Their"} capture time points somewhere else. Nothing was moved.` : "Some are tagged to a set this festival doesn’t have; some were captured at another time or festival."), needsReview.map((m, i) => React.createElement(MomentCard, {
         key: m.id,
         moment: m,
         idx: i,
@@ -11906,9 +11909,11 @@ function _recoverCurrentVideoMomentsFromArchive() {
           if (attributedTo) {
             m.festivalId = attributedTo;
             m.festivalAttribution = "capture-time";
+            m.festivalStampSource = "capture-time";
           } else {
             m.festivalId = cur;
             m.festivalAttribution = "unresolved";
+            m.festivalStampSource = "active-fallback";
             if (claims.length > 1) m.festivalCandidates = claims;
           }
         }
@@ -11951,6 +11956,67 @@ function _festivalClaimantsFor(takenAt) {
   }
   return out;
 }
+function _reconcileFestivalStamps(moments) {
+  var changed = false;
+  var moves = [];
+  for (var bucket of Object.keys(moments || {})) {
+    var arr = moments[bucket];
+    if (!Array.isArray(arr)) continue;
+    for (var m of arr) {
+      if (!m || !m.festivalId || !m.takenAt) continue;
+      var claims = _festivalClaimantsFor(m.takenAt);
+      if (claims.includes(m.festivalId)) {
+        if (m.festivalReview) {
+          delete m.festivalReview;
+          changed = true;
+        }
+        continue;
+      }
+      var claimant = claims.length === 1 ? claims[0] : null;
+      var cfg = claimant ? window._DATA_SETS?.[claimant]?.config : null;
+      var date = claimant ? _momentTakenAtToDateParts(m.takenAt) : null;
+      var night = cfg && date ? _photoFestivalNight(date, cfg, null) : null;
+      if (claimant && night != null && !m.dateUnverified && m.festivalStampSource === "active-fallback") {
+        m.festivalId = claimant;
+        m.festivalAttribution = "capture-time";
+        m.festivalStampSource = "capture-time";
+        m.night = night;
+        delete m.festivalCandidates;
+        delete m.festivalReview;
+        if (String(night) !== String(bucket)) moves.push({
+          from: bucket,
+          to: String(night),
+          moment: m
+        });
+        changed = true;
+        continue;
+      }
+      var review = {
+        reason: claims.length > 1 ? "multiple-claimants" : claims.length === 0 ? "no-claimant" : m.dateUnverified ? "unverified-capture-time" : "unproven-stamp",
+        existingFestivalId: m.festivalId,
+        claimant,
+        candidates: claims,
+        takenAt: m.takenAt,
+        takenAtSource: m.takenAtSource || null,
+        dateUnverified: !!m.dateUnverified,
+        stampSource: m.festivalStampSource || "unknown"
+      };
+      if (JSON.stringify(m.festivalReview) !== JSON.stringify(review)) {
+        m.festivalReview = review;
+        changed = true;
+      }
+    }
+  }
+  var _loop7 = function (move) {
+    moments[move.from] = moments[move.from].filter(x => x !== move.moment);
+    if (!moments[move.from].length) delete moments[move.from];
+    moments[move.to] = [...(moments[move.to] || []), move.moment];
+  };
+  for (var move of moves) {
+    _loop7(move);
+  }
+  return changed;
+}
 function _maybeAutoArchive() {
   if (_archiveCheckDone) return;
   try {
@@ -11970,14 +12036,17 @@ function _maybeAutoArchive() {
           if (claims.length === 1) {
             m.festivalId = claims[0];
             m.festivalAttribution = "capture-time";
+            m.festivalStampSource = "capture-time";
           } else {
             m.festivalId = lastSeen || cur;
             m.festivalAttribution = "unresolved";
+            m.festivalStampSource = "active-fallback";
             if (claims.length > 1) m.festivalCandidates = claims;
           }
           changed = true;
         }
       }
+      if (_reconcileFestivalStamps(moments)) changed = true;
       if (changed) _writeMoments(moments);
       sweptCleanly = true;
     } catch {}
@@ -12252,7 +12321,7 @@ function _fmtHrsMin(mins) {
 }
 function _aggregateSoundtrack(moments) {
   var songMap = {};
-  var _loop7 = function (m) {
+  var _loop8 = function (m) {
       if (!m.artistId || !m.takenAt) return 0;
       var {
         fid,
@@ -12275,7 +12344,7 @@ function _aggregateSoundtrack(moments) {
     },
     _ret3;
   for (var m of Object.values(moments)) {
-    _ret3 = _loop7(m);
+    _ret3 = _loop8(m);
     if (_ret3 === 0) continue;
   }
   return Object.values(songMap).sort((a, b) => b.count - a.count);
@@ -13959,7 +14028,7 @@ function HeroCards({
     var live = true;
     var want = [page, page + 1, page - 1].filter(i => i >= 0 && i < artists.length).map(i => artists[i]).filter(a => !cards[a.id]);
     (async () => {
-      var _loop8 = async function (a) {
+      var _loop9 = async function (a) {
           var canvas = await _renderHeroCard(a).catch(() => null);
           if (!live || !canvas) return 0;
           var blob = await new Promise(r => canvas.toBlob(r, "image/png"));
@@ -13976,7 +14045,7 @@ function HeroCards({
         },
         _ret4;
       for (var a of want) {
-        _ret4 = await _loop8(a);
+        _ret4 = await _loop9(a);
         if (_ret4 === 0) continue;
       }
     })();
@@ -16126,7 +16195,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   }
   var groups = [];
-  var _loop9 = function (rows) {
+  var _loop0 = function (rows) {
     rows.sort((x, y) => x.s - y.s);
     var i = rows.findIndex(r => r.now);
     var pick = i >= 0 ? rows.slice(Math.max(0, i - 1), i + 2) : (() => {
@@ -16140,7 +16209,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   };
   for (var [stageId, rows] of byStage) {
-    _loop9(rows);
+    _loop0(rows);
   }
   return groups.sort((x, y) => (y.stageId === firstStage) - (x.stageId === firstStage) || y.live - x.live);
 }
@@ -16181,6 +16250,7 @@ function _checkinMoment({
   return {
     id: `live_${t}_${(rand || Math.random)().toString(36).slice(2, 8)}`,
     festivalId: cfg.id,
+    festivalStampSource: "live-checkin",
     night: sel && sel.night || act && act.day || res.night,
     artistId,
     text: "",

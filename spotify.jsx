@@ -3852,6 +3852,9 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
         kind: blob ? mediaKind : null,
         createdAt: Date.now(),
         festivalId: window.FESTIVAL_CONFIG?.id || null,
+        // The user saved this INTO the festival on screen, on purpose: their
+        // stamp, never the machine's to overwrite (see _reconcileFestivalStamps).
+        festivalStampSource: "user",
         tagSource: artistId ? "manual" : undefined,
       };
       onAdd(moment);
@@ -5483,6 +5486,7 @@ function _groupNightMoments({ moments, attendedSet, artists, toMin }) {
   const byArtist = new Map(); // artistId → moments[]
   const untagged = [];
   for (const m of (moments || [])) {
+    if (m.festivalReview) continue;   // shown in Needs Review below, not twice
     if (m.artistId) {
       if (!byArtist.has(m.artistId)) byArtist.set(m.artistId, []);
       byArtist.get(m.artistId).push(m);
@@ -5508,7 +5512,11 @@ function _groupNightMoments({ moments, attendedSet, artists, toMin }) {
   // moment. This is "I can't resolve the set you tagged" — a different fact,
   // and folding the two together would destroy the provenance needed to retag.
   // Capture order is preserved by filtering `moments` rather than byArtist.
-  const needsReview = (moments || []).filter(m => m.artistId && !find(m.artistId));
+  //
+  // A moment whose own capture time contradicts its festival stamp, where the
+  // stamp could not be proved machine-written (_reconcileFestivalStamps), is
+  // the same kind of fact: "this may not belong here", kept where it was.
+  const needsReview = (moments || []).filter(m => m.festivalReview || (m.artistId && !find(m.artistId)));
   return { byArtist, untagged, spineIds, needsReview };
 }
 
@@ -5722,6 +5730,11 @@ function MemoriesScreen({ state, setState }) {
           // so the photo vanished and switching festivals never brought it
           // back. Falls back to the active festival when nothing resolved.
           festivalId: matched.festivalId || window.FESTIVAL_CONFIG?.id || null,
+          // WHO wrote festivalId, stored beside it. tagSource says how the
+          // ARTIST was found, never who stamped the festival, so it cannot
+          // stand in for this. Only "active-fallback" may later be corrected
+          // automatically (_reconcileFestivalStamps).
+          festivalStampSource: matched.festivalId ? "capture-time" : "active-fallback",
           parsedGps: meta?.lat != null && meta?.lng != null ? { lat: meta.lat, lng: meta.lng } : null,
           location: matched.location || null,
           hasGps: !!(meta?.lat != null && meta?.lng != null),
@@ -6485,14 +6498,23 @@ function MemoriesScreen({ state, setState }) {
                           <span style={{ width: 4, alignSelf: "stretch", background: "var(--line-2)", borderRadius: 3 }}/>
                           <div style={{ flex: 1, minWidth: 0 }}>
                             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "var(--muted)" }}>NEEDS REVIEW</div>
-                            <div className="serif" style={{ fontSize: 18, color: "var(--ink)", lineHeight: 1.1, marginTop: 2 }}>Set not in this festival</div>
+                            <div className="serif" style={{ fontSize: 18, color: "var(--ink)", lineHeight: 1.1, marginTop: 2 }}>
+                              {needsReview.every(m => !m.festivalReview) ? "Set not in this festival"
+                                : needsReview.every(m => m.festivalReview) ? "May be from another festival"
+                                : "Check these clips"}
+                            </div>
                           </div>
                           <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 700, flexShrink: 0 }}>
                             {needsReview.length} {needsReview.length === 1 ? "CLIP" : "CLIPS"}
                           </span>
                         </div>
                         <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", fontWeight: 600, padding: "0 0 4px 12px" }}>
-                          Tagged to a set this festival doesn’t have — retag to file it.
+                          {/* Two different facts share this group (see _groupNightMoments):
+                              a set tag this lineup can't resolve, and a festival stamp its
+                              own capture time contradicts. Neither line may claim the other. */}
+                          {needsReview.every(m => !m.festivalReview) ? "Tagged to a set this festival doesn’t have — retag to file it."
+                            : needsReview.every(m => m.festivalReview) ? `${needsReview.length === 1 ? "Its" : "Their"} capture time points somewhere else. Nothing was moved.`
+                            : "Some are tagged to a set this festival doesn’t have; some were captured at another time or festival."}
                         </div>
                         {needsReview.map((m, i) => (
                           <MomentCard
@@ -7672,6 +7694,7 @@ function _recoverCurrentVideoMomentsFromArchive() {
           if (attributedTo) {
             m.festivalId = attributedTo;
             m.festivalAttribution = "capture-time";
+            m.festivalStampSource = "capture-time";
           } else {
             // Unprovable — no claimant at all, or two festivals sharing the
             // weekend. Keep the moment exactly where it has always been visible
@@ -7679,6 +7702,7 @@ function _recoverCurrentVideoMomentsFromArchive() {
             // data-loss bug stacked on the first.
             m.festivalId = cur;
             m.festivalAttribution = "unresolved";
+            m.festivalStampSource = "active-fallback";
             if (claims.length > 1) m.festivalCandidates = claims;
           }
         }
@@ -7742,6 +7766,85 @@ function _festivalClaimantsFor(takenAt) {
   return out;
 }
 
+// Re-checks every STAMPED moment against its own capture time.
+//
+// The sweep below and #215's recovery only ever stamp an EMPTY festivalId, so a
+// moment mis-stamped before them stayed mis-stamped: _activeMoments() keeps a
+// moment only when festivalId is the current festival, so an EDC clip stamped
+// ACL is unreachable from EDC. But capture time proves a CONFLICT, not who
+// wrote the stamp. A legacy active-festival stamp and a correct one can be
+// field-identical except for takenAt, and tagSource only says how the ARTIST
+// was found. So an existing festivalId is replaced automatically only when
+// festivalStampSource says the machine wrote it as a fallback:
+//   · stamp source "active-fallback" + exactly one claimant that disagrees +
+//     a trusted capture time -> correct festivalId AND night AND bucket together
+//   · anything else that disagrees (user, check-in, capture-time, or no
+//     stored source at all, which is every record written before this field
+//     existed) -> keep the stamp, and record the conflict in festivalReview so
+//     the NEEDS REVIEW group shows it and a person can settle it.
+//   · a record whose stamp agrees with its capture time is untouched, and a
+//     stale festivalReview is dropped.
+//
+// Runs on every boot, and every write triggers the cloud sync, so every branch
+// compares before it writes: a second pass over its own output is a no-op.
+// Returns whether anything changed; the caller writes.
+function _reconcileFestivalStamps(moments) {
+  let changed = false;
+  const moves = [];
+  for (const bucket of Object.keys(moments || {})) {
+    const arr = moments[bucket];
+    if (!Array.isArray(arr)) continue;
+    for (const m of arr) {
+      if (!m || !m.festivalId || !m.takenAt) continue;   // no stamp, or no evidence
+      const claims = _festivalClaimantsFor(m.takenAt);
+      if (claims.includes(m.festivalId)) {
+        if (m.festivalReview) { delete m.festivalReview; changed = true; }
+        continue;
+      }
+      const claimant = claims.length === 1 ? claims[0] : null;
+      const cfg = claimant ? window._DATA_SETS?.[claimant]?.config : null;
+      const date = claimant ? _momentTakenAtToDateParts(m.takenAt) : null;
+      const night = cfg && date ? _photoFestivalNight(date, cfg, null) : null;
+      if (claimant && night != null && !m.dateUnverified && m.festivalStampSource === "active-fallback") {
+        // All three dependent fields in one step: festivalId with the old night
+        // or the old bucket would file it under a night the festival never had.
+        m.festivalId = claimant;
+        m.festivalAttribution = "capture-time";
+        m.festivalStampSource = "capture-time";
+        m.night = night;
+        delete m.festivalCandidates;
+        delete m.festivalReview;
+        if (String(night) !== String(bucket)) moves.push({ from: bucket, to: String(night), moment: m });
+        changed = true;
+        continue;
+      }
+      const review = {
+        reason: claims.length > 1 ? "multiple-claimants"
+          : claims.length === 0 ? "no-claimant"
+          : m.dateUnverified ? "unverified-capture-time"
+          : "unproven-stamp",
+        existingFestivalId: m.festivalId,
+        claimant,
+        candidates: claims,
+        takenAt: m.takenAt,
+        takenAtSource: m.takenAtSource || null,
+        dateUnverified: !!m.dateUnverified,
+        stampSource: m.festivalStampSource || "unknown",
+      };
+      if (JSON.stringify(m.festivalReview) !== JSON.stringify(review)) {
+        m.festivalReview = review;
+        changed = true;
+      }
+    }
+  }
+  for (const move of moves) {
+    moments[move.from] = moments[move.from].filter(x => x !== move.moment);
+    if (!moments[move.from].length) delete moments[move.from];
+    moments[move.to] = [...(moments[move.to] || []), move.moment];
+  }
+  return changed;
+}
+
 function _maybeAutoArchive() {
   if (_archiveCheckDone) return;
   try {
@@ -7784,14 +7887,19 @@ function _maybeAutoArchive() {
           if (claims.length === 1) {
             m.festivalId = claims[0];
             m.festivalAttribution = "capture-time";
+            m.festivalStampSource = "capture-time";
           } else {
             m.festivalId = lastSeen || cur;
             m.festivalAttribution = "unresolved";
+            m.festivalStampSource = "active-fallback";
             if (claims.length > 1) m.festivalCandidates = claims;
           }
           changed = true;
         }
       }
+      // Same read/write cycle as the sweep, so the two passes cannot interleave
+      // writes or double-fire the cloud sync.
+      if (_reconcileFestivalStamps(moments)) changed = true;
       if (changed) _writeMoments(moments);
       sweptCleanly = true;
     } catch {}
@@ -10492,6 +10600,7 @@ function _checkinMoment({ cfg, res, sel, song, startedAt, now, rand }) {
   return {
     id: `live_${t}_${((rand || Math.random)()).toString(36).slice(2, 8)}`,
     festivalId: cfg.id,
+    festivalStampSource: "live-checkin",
     night: (sel && sel.night) || (act && act.day) || res.night,
     artistId,
     text: "",
