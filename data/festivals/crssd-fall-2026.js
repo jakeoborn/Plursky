@@ -214,6 +214,9 @@
 
   const CONFIG = {
     id:        "crssd-fall-2026",
+    // Where the lineup rows came from (the SOURCE note above), as data so the
+    // public /f/ page can cite it. observedAt = the date it was read.
+    lineupSource: { url: "https://www.crssdfest.com/", observedAt: "2026-09-06", official: true },
     name:      "CRSSD Fest Fall 2026",
     shortName: "CRSSD",
     brand:     "CRSSD Fest",

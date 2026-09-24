@@ -101,6 +101,7 @@ export const FINGERPRINTED_CONFIG_FIELDS = [
   'year',            // whether the official map shown is this edition's
   'weekendStartMs',  // weekend headings, per-weekend rows and the weekends answer
   'officialEvent',   // the official-site link in Sources and on a no-lineup page
+  'lineupSource',    // the Lineup row in Sources
 ];
 
 // Top-level registry-entry fields that reach rendered output.
@@ -174,6 +175,7 @@ export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, t
     year: cfg.year ?? null,
     weekendStartMs: cfg.weekendStartMs || null,
     officialEvent: cfg.officialEvent || null,
+    lineupSource: cfg.lineupSource || null,
     // Page sections fed from outside the registry, through the SAME helpers
     // the generator renders with (scripts/lib/festival-page-data.mjs).
     plate: (() => { const p = plateFor(cfg); return p ? [p.file, p.w, p.h, fp(p.svg)] : null; })(),

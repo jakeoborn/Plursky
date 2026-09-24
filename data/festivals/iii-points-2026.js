@@ -338,6 +338,9 @@
 
   const CONFIG = {
     id:        "iii-points-2026",
+    // Where the lineup rows came from (the SOURCE note above), as data so the
+    // public /f/ page can cite it. observedAt = the date it was read.
+    lineupSource: { url: "https://www.iiipoints.com/lineup-2026/", observedAt: "2026-08-29", official: true },
     name:      "III Points 2026",
     shortName: "III Points",
     brand:     "III Points",

@@ -269,6 +269,9 @@
 
   const CONFIG = {
     id:        "escape-halloween-2026",
+    // Where the lineup rows came from (the SOURCE note above), as data so the
+    // public /f/ page can cite it. observedAt = the date it was read.
+    lineupSource: { url: "https://escapehalloween.com/lineup/", observedAt: "2026-09-07", official: true },
     name:      "Escape Halloween 2026",
     shortName: "Escape",
     brand:     "Escape",

@@ -376,6 +376,8 @@ const FESTIVALS_REGISTRY = [
     // dates when announced; do NOT infer them from 2026's.
     config: {
       id:        "electric-forest-2027",
+      // Official site, checked reachable 2026-09-24. No 2027 lineup yet.
+      officialEvent: { website: "https://www.electricforestfestival.com/", observedAt: "2026-09-24" },
       name:      "Electric Forest 2027",
       shortName: "Forest 2027",
       brand:     "Electric Forest",
@@ -604,6 +606,9 @@ const FESTIVALS_REGISTRY = [
     // stages the 2026 layout actually moves.
     config: {
       id:        "edc-orlando-2026",
+      // Where the lineup rows came from (the SOURCE note above), as data so the
+      // public /f/ page can cite it. observedAt = the date it was read.
+      lineupSource: { url: "https://orlando.edc.com/lineup/", observedAt: "2026-09-13", official: true },
       name:      "EDC Orlando 2026",
       shortName: "EDC Orlando",
       brand:     "EDC",
@@ -725,6 +730,10 @@ const FESTIVALS_REGISTRY = [
     // 23–25 either — that is our arithmetic, not an announcement.
     config: {
       id:        "tomorrowland-2027",
+      // The Belgium edition's own site, linked from tomorrowland.com (whose
+      // 2027 news is Tomorrowland Brasil); client-rendered, so its text could
+      // not be read automatically. Checked reachable 2026-09-24.
+      officialEvent: { website: "https://belgium.tomorrowland.com/", observedAt: "2026-09-24" },
       name:      "Tomorrowland 2027",
       shortName: "Tomorrowland",
       brand:     "Tomorrowland",
@@ -865,6 +874,8 @@ const FESTIVALS_REGISTRY = [
   {
     config: {
       id:        "coachella-2027",
+      // Official site, checked reachable 2026-09-24. No 2027 lineup yet.
+      officialEvent: { website: "https://www.coachella.com/", observedAt: "2026-09-24" },
       name:      "Coachella 2027",
       shortName: "Coachella",
       brand:     "Coachella",

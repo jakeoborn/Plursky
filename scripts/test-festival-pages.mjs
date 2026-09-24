@@ -172,6 +172,15 @@ function checkPage(entry, html, { verified }) {
   if (!lds.some(x => x['@type'] === 'BreadcrumbList')) out.push('no BreadcrumbList JSON-LD');
   if (ev && ev.image && !(plate && ev.image.endsWith(`/${plate.file}`))) out.push(`JSON-LD image ${ev.image} is not ours`);
 
+  // Sources: a page that lists acts names where they came from. Lineup-only
+  // festivals had no Sources row at all (III Points listed 218 acts citing
+  // nothing), so a lineup needs a Lineup row or a Set times row.
+  const sources = section(html, 'sources-h') || '';
+  const cites = (label) => new RegExp(`<li>${label}: <a href="https?://`).test(sources);
+  if (names.length && !cites('Lineup') && !cites('Set times')) out.push('lists acts but Sources names no lineup or set-times source');
+  // A preview with no lineup still points at the festival itself.
+  if (!names.length && !/<a href="https?:\/\/(?!plursky\.com|apps\.apple\.com)[^"]+"/.test(html)) out.push('an empty preview links no official site');
+
   return out;
 }
 
@@ -219,6 +228,10 @@ const mutants = [
   ['official festival card art', byId('acl-2026'), (h) => h.replace('</main>', `<img src="/festival-art/acl-2026.webp" width="10" height="10">\n</main>`), false],
   ['a dropped act', withLineup, (h) => h.replace(/\n      <li><span class="act">[^\n]*<\/li>/, ''), false],
   ['a walk-time sentence on unverified geometry', unverified, (h) => h.replace('</main>', `${WALK}\n</main>`), false],
+  // A lineup-only page losing its only source line, and a preview losing its
+  // only official link.
+  ['a lineup-only page with its Lineup source dropped', byId('iii-points-2026'), (h) => h.replace(/\n\s*<li>Lineup: [^\n]*<\/li>/, ''), false],
+  ['an empty preview with its official links dropped', byId('coachella-2027'), (h) => h.replace(/<a href="https:\/\/www\.coachella\.com\/"[^>]*>[^<]*<\/a>/g, 'coachella'), false],
   // Control: the same sentence on VERIFIED geometry is not what the rule forbids.
   ['a walk-time sentence on verified geometry', verified, (h) => h.replace('</main>', `${WALK}\n</main>`), true],
 ];
@@ -238,4 +251,4 @@ if (failed) {
   console.log(`\n  ${failed}/${checks} checks FAILED`);
   process.exit(1);
 }
-console.log(`  ✓ festival pages: ${checks} checks across ${REG.length} pages (plates ${plates}, official-map links ${links}, noindex ${noindexed}, multi-weekend ${multiWeekend}; 4 mutations caught, 1 control passed)`);
+console.log(`  ✓ festival pages: ${checks} checks across ${REG.length} pages (plates ${plates}, official-map links ${links}, noindex ${noindexed}, multi-weekend ${multiWeekend}; 6 mutations caught, 1 control passed)`);

@@ -134,6 +134,9 @@
 
   const CONFIG = {
     id: "countdown-nye-2026",
+    // Where the lineup rows came from (the SOURCE note above), as data so the
+    // public /f/ page can cite it. observedAt = the date it was read.
+    lineupSource: { url: "https://countdownnye.com/lineup/", observedAt: "2026-09-21", official: true },
     name: "Countdown NYE 2026",
     shortName: "Countdown",
     brand: "Countdown",
