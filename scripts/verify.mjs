@@ -2643,6 +2643,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-c8. An existing festival stamp is corrected only on proof ──────────
+// Capture time can show a stamp is wrong; only festivalStampSource can show the
+// machine wrote it. A proven fallback stamp with one contradicting claimant is
+// corrected (festivalId, night and bucket together). Every other contradiction
+// keeps the stamp and goes to Needs Review. tagSource is never the evidence.
+{
+  console.log("▸ Festival stamp provenance gate — only proven machine stamps corrected, the rest to Needs Review");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-stamp-provenance.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`festival stamp provenance failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 2. Mount probe ─────────────────────────────────────────────────────────
 // Loads the REAL index.html in an iframe rather than reconstructing the script
 // order. An earlier version of this check derived load order by grepping
