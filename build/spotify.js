@@ -9189,10 +9189,12 @@ function _libraryGroupChrome(group) {
     var all = [...(group.media || []), ...(group.duplicates || [])];
     var setOnly = all.every(m => !m.festivalReview);
     var festOnly = all.every(m => m.festivalReview);
+    var retag = (group.media || []).filter(m => !m.festivalReview);
     return {
       eyebrow: "NEEDS REVIEW",
       eyebrowColor: "var(--warn)",
       spine: "var(--warn)",
+      retag,
       title: setOnly ? "Set not in this festival" : festOnly ? "Outside this festival’s dates" : "Check these clips",
       note: setOnly ? "Tagged to a set this festival doesn’t have — retag to file it." : festOnly ? group.count === 1 ? "Its capture time doesn’t match this festival’s dates. We left it here." : "Their capture times don’t match this festival’s dates. We left them here." : "Some are tagged to a set this festival doesn’t have. Others were shot outside this festival’s dates."
     };
@@ -9335,8 +9337,8 @@ function LibraryGroupCard({
       lineHeight: 1.38,
       fontFamily: "inherit"
     }
-  }, group.duplicates.length, " duplicate ", group.duplicates.length === 1 ? "record" : "records", " of this media · View"), group.kind === "review" && n > 0 && onReview && React.createElement("button", {
-    onClick: () => onReview(group.media),
+  }, group.duplicates.length, " duplicate ", group.duplicates.length === 1 ? "record" : "records", " of this media · View"), group.kind === "review" && chrome.retag.length > 0 && onReview && React.createElement("button", {
+    onClick: () => onReview(chrome.retag),
     style: {
       marginTop: 8,
       minHeight: 44,
@@ -9352,7 +9354,7 @@ function LibraryGroupCard({
       fontWeight: 600,
       fontFamily: "inherit"
     }
-  }, "Retag ", n === 1 ? "this clip" : `these ${n} clips`), group.kind === "between" && bulkRetag);
+  }, "Retag ", chrome.retag.length === 1 ? "this clip" : `these ${chrome.retag.length} clips`), group.kind === "between" && bulkRetag);
 }
 function MemoriesScreen({
   state,

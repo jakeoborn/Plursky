@@ -5951,7 +5951,11 @@ function _libraryGroupChrome(group) {
     const all = [...(group.media || []), ...(group.duplicates || [])];
     const setOnly = all.every(m => !m.festivalReview);
     const festOnly = all.every(m => m.festivalReview);
-    return { eyebrow: "NEEDS REVIEW", eyebrowColor: "var(--warn)", spine: "var(--warn)",
+    // Retag settles a set tag, never a festival conflict (that is #228's
+    // control), so the button offers only the clips a retag can clear, and
+    // a group of festival conflicts alone gets no button at all.
+    const retag = (group.media || []).filter(m => !m.festivalReview);
+    return { eyebrow: "NEEDS REVIEW", eyebrowColor: "var(--warn)", spine: "var(--warn)", retag,
              title: setOnly ? "Set not in this festival"
                : festOnly ? "Outside this festival’s dates"
                : "Check these clips",
@@ -6057,12 +6061,12 @@ function LibraryGroupCard({ group, onOpenLightbox, onArtistClick, onReview, bulk
       )}
 
       {/* Retag without going through Manage, where the work actually is. */}
-      {group.kind === "review" && n > 0 && onReview && (
-        <button onClick={() => onReview(group.media)} style={{
+      {group.kind === "review" && chrome.retag.length > 0 && onReview && (
+        <button onClick={() => onReview(chrome.retag)} style={{
           marginTop: 8, minHeight: 44, width: "100%", padding: "0 14px", borderRadius: 12,
           background: "var(--paper-3)", border: "none", cursor: "pointer",
           color: "var(--ink)", fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit",
-        }}>Retag {n === 1 ? "this clip" : `these ${n} clips`}</button>
+        }}>Retag {chrome.retag.length === 1 ? "this clip" : `these ${chrome.retag.length} clips`}</button>
       )}
       {group.kind === "between" && bulkRetag}
     </div>

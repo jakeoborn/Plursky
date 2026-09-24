@@ -341,6 +341,15 @@ check(blank.isEmpty === true && blank.counts.moments === 0 && blank.counts.sets 
   const dupMixed = c(g([{ id: "a", artistId: "zz" }], [{ id: "b", ...rv }]));
   check(dupMixed.title === "Check these clips",
     `needs review: a festival conflict held only as a duplicate record still counts as present — got ${JSON.stringify(dupMixed)}`);
+  // Retag clears a set tag, never a festival conflict (#228 settles those),
+  // so the button offers only the clips a retag can clear.
+  const ids = (x) => x.retag.map(m => m.id).join(",");
+  check(two.retag.length === 0,
+    `needs review, festival conflicts only: no retag button — got retag=[${ids(two)}]`);
+  check(ids(mixed) === "a",
+    `needs review, mixed: retag offers only the set-tag clip — got retag=[${ids(mixed)}]`);
+  check(ids(setOnly) === "a",
+    `needs review, set tags only: retag offers every clip — got retag=[${ids(setOnly)}]`);
 }
 
 if (failed) { console.log(`\n  ${failed} of ${checks} checks failed`); process.exit(1); }
