@@ -83,6 +83,13 @@
   section.watch { overflow-x:clip; }
   section.watch .embed-ig blockquote, section.watch .embed-x blockquote { margin:0; min-height:420px; background:var(--panel); border-radius:12px; padding:16px; max-width:540px; }
   section.watch .embed-x blockquote { min-height:260px; }
+  /* Tap-to-load: until tapped, a social post is a compact card with its
+     permalink and one button; nothing from Instagram or X is requested. */
+  section.watch blockquote.tap-embed { min-height:0; border-radius:12px 12px 0 0; padding:16px 16px 8px; }
+  section.watch .embed-tap { background:var(--panel); border-radius:0 0 12px 12px; padding:0 16px 16px; max-width:540px; box-sizing:border-box; }
+  section.watch .embed-load { min-height:44px; padding:10px 16px; border-radius:10px; border:1px solid var(--ember); background:transparent; color:var(--ember); font:inherit; font-weight:600; font-size:15px; cursor:pointer; }
+  section.watch .embed-tap-note { color:var(--muted); font-size:13px; margin:8px 0 0; }
+  section.watch figure.tapped .embed-tap { display:none; }
   section.watch .embed-sp iframe { display:block; border:0; border-radius:12px; min-height:352px; }
   section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }
 </style>
@@ -568,20 +575,27 @@
 (function () {
   var sec = document.getElementById('watch');
   if (!sec) return;
-  var urls = [];
-  if (sec.querySelector('.instagram-media')) urls.push('https://www.instagram.com/embed.js');
-  if (sec.querySelector('.twitter-tweet')) urls.push('https://platform.twitter.com/widgets.js');
-  if (!urls.length) return;
-  var done = false;
-  function load() {
-    if (done) return; done = true;
-    urls.forEach(function (u) { var s = document.createElement('script'); s.async = true; s.src = u; document.body.appendChild(s); });
+  var SRC = { instagram: 'https://www.instagram.com/embed.js', x: 'https://platform.twitter.com/widgets.js' };
+  var requested = {};
+  function hydrate(p, fig) {
+    if (p === 'instagram' && window.instgrm && window.instgrm.Embeds) return window.instgrm.Embeds.process();
+    if (p === 'x' && window.twttr && window.twttr.widgets) return window.twttr.widgets.load(fig);
+    if (requested[p]) return; // in flight: the script scans the page when it runs
+    requested[p] = true;
+    var s = document.createElement('script'); s.async = true; s.src = SRC[p]; document.body.appendChild(s);
   }
-  if (!('IntersectionObserver' in window)) return load();
-  var io = new IntersectionObserver(function (es) {
-    if (es.some(function (x) { return x.isIntersecting; })) { io.disconnect(); load(); }
-  }, { rootMargin: '600px 0px' });
-  io.observe(sec);
+  sec.addEventListener('click', function (ev) {
+    var b = ev.target.closest && ev.target.closest('button.embed-load');
+    if (!b) return;
+    var fig = b.closest('figure'), bq = fig && fig.querySelector('blockquote.tap-embed');
+    if (!bq || !SRC[fig.getAttribute('data-tap')]) return;
+    bq.className = bq.getAttribute('data-class');
+    bq.removeAttribute('data-class');
+    fig.classList.add('tapped');
+    fig.setAttribute('tabindex', '-1');
+    fig.focus({ preventScroll: true });
+    hydrate(fig.getAttribute('data-tap'), fig);
+  });
 })();
     </script>
   </section>

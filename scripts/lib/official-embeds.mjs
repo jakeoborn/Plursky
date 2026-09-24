@@ -303,6 +303,16 @@ const caption = (e, festivalName) => {
   return `      <p class="embed-cap">${esc(who)} on ${PLATFORM_NAME[e.platform]} · <a href="${esc(e.url)}" rel="noopener">View the original</a></p>`;
 };
 
+// Instagram and X posts are tap-to-load: the page ships the permalink in an
+// inert blockquote (class tap-embed, so neither platform's script would ever
+// pick it up) and makes no request to either platform until the reader taps
+// that post's button. Only then does the loader give the blockquote its real
+// class and fetch the platform's script. privacy.html#social-embeds says so.
+const tapPrompt = e => `      <div class="embed-tap">
+        <button type="button" class="embed-load">Load the ${PLATFORM_NAME[e.platform]} post</button>
+        <p class="embed-tap-note">Nothing loads from ${PLATFORM_NAME[e.platform]} until you tap. <a href="/privacy.html#social-embeds">Privacy</a></p>
+      </div>`;
+
 function renderOne(e, festivalName) {
   if (e.platform === 'youtube') {
     const id = youtubeId(e.url);
@@ -314,16 +324,18 @@ ${caption(e, festivalName)}
   if (e.platform === 'instagram') {
     const { type, code } = instagramCode(e.url);
     const permalink = `https://www.instagram.com/${type}/${code}/`;
-    return `    <figure class="embed embed-ig">
-      <blockquote class="instagram-media" data-instgrm-permalink="${permalink}" data-instgrm-version="14"><a href="${permalink}" rel="noopener">View this post on Instagram</a></blockquote>
+    return `    <figure class="embed embed-ig" data-tap="instagram">
+      <blockquote class="tap-embed" data-class="instagram-media" data-instgrm-permalink="${permalink}" data-instgrm-version="14"><a href="${permalink}" rel="noopener">View this post on Instagram</a></blockquote>
+${tapPrompt(e)}
 ${caption(e, festivalName)}
     </figure>`;
   }
   if (e.platform === 'x') {
     const { handle, id } = xStatus(e.url);
     const permalink = `https://twitter.com/${handle}/status/${id}`;
-    return `    <figure class="embed embed-x">
-      <blockquote class="twitter-tweet" data-dnt="true" data-theme="dark"><a href="${permalink}" rel="noopener">View this post on X</a></blockquote>
+    return `    <figure class="embed embed-x" data-tap="x">
+      <blockquote class="tap-embed" data-class="twitter-tweet" data-dnt="true" data-theme="dark"><a href="${permalink}" rel="noopener">View this post on X</a></blockquote>
+${tapPrompt(e)}
 ${caption(e, festivalName)}
     </figure>`;
   }
@@ -334,27 +346,35 @@ ${caption(e, festivalName)}
     </figure>`;
 }
 
-// The loader injects embed.js / widgets.js ONCE, and only when the section
-// nears the viewport, so first paint and the text sections never wait on a
-// third party.
+// The loader fetches nothing by itself. A tap on one social post's button
+// turns THAT blockquote into the platform's own markup and loads embed.js /
+// widgets.js (once per platform); every untapped post stays inert, so tapping
+// one never loads another.
 const LOADER = `    <script>
 (function () {
   var sec = document.getElementById('watch');
   if (!sec) return;
-  var urls = [];
-  if (sec.querySelector('.instagram-media')) urls.push('https://www.instagram.com/embed.js');
-  if (sec.querySelector('.twitter-tweet')) urls.push('https://platform.twitter.com/widgets.js');
-  if (!urls.length) return;
-  var done = false;
-  function load() {
-    if (done) return; done = true;
-    urls.forEach(function (u) { var s = document.createElement('script'); s.async = true; s.src = u; document.body.appendChild(s); });
+  var SRC = { instagram: 'https://www.instagram.com/embed.js', x: 'https://platform.twitter.com/widgets.js' };
+  var requested = {};
+  function hydrate(p, fig) {
+    if (p === 'instagram' && window.instgrm && window.instgrm.Embeds) return window.instgrm.Embeds.process();
+    if (p === 'x' && window.twttr && window.twttr.widgets) return window.twttr.widgets.load(fig);
+    if (requested[p]) return; // in flight: the script scans the page when it runs
+    requested[p] = true;
+    var s = document.createElement('script'); s.async = true; s.src = SRC[p]; document.body.appendChild(s);
   }
-  if (!('IntersectionObserver' in window)) return load();
-  var io = new IntersectionObserver(function (es) {
-    if (es.some(function (x) { return x.isIntersecting; })) { io.disconnect(); load(); }
-  }, { rootMargin: '600px 0px' });
-  io.observe(sec);
+  sec.addEventListener('click', function (ev) {
+    var b = ev.target.closest && ev.target.closest('button.embed-load');
+    if (!b) return;
+    var fig = b.closest('figure'), bq = fig && fig.querySelector('blockquote.tap-embed');
+    if (!bq || !SRC[fig.getAttribute('data-tap')]) return;
+    bq.className = bq.getAttribute('data-class');
+    bq.removeAttribute('data-class');
+    fig.classList.add('tapped');
+    fig.setAttribute('tabindex', '-1');
+    fig.focus({ preventScroll: true });
+    hydrate(fig.getAttribute('data-tap'), fig);
+  });
 })();
     </script>`;
 

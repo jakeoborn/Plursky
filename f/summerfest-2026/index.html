@@ -83,6 +83,13 @@
   section.watch { overflow-x:clip; }
   section.watch .embed-ig blockquote, section.watch .embed-x blockquote { margin:0; min-height:420px; background:var(--panel); border-radius:12px; padding:16px; max-width:540px; }
   section.watch .embed-x blockquote { min-height:260px; }
+  /* Tap-to-load: until tapped, a social post is a compact card with its
+     permalink and one button; nothing from Instagram or X is requested. */
+  section.watch blockquote.tap-embed { min-height:0; border-radius:12px 12px 0 0; padding:16px 16px 8px; }
+  section.watch .embed-tap { background:var(--panel); border-radius:0 0 12px 12px; padding:0 16px 16px; max-width:540px; box-sizing:border-box; }
+  section.watch .embed-load { min-height:44px; padding:10px 16px; border-radius:10px; border:1px solid var(--ember); background:transparent; color:var(--ember); font:inherit; font-weight:600; font-size:15px; cursor:pointer; }
+  section.watch .embed-tap-note { color:var(--muted); font-size:13px; margin:8px 0 0; }
+  section.watch figure.tapped .embed-tap { display:none; }
   section.watch .embed-sp iframe { display:block; border:0; border-radius:12px; min-height:352px; }
   section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }
 </style>

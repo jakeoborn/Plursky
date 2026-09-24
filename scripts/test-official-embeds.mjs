@@ -15,6 +15,8 @@
 //   · an earlier edition's post is dropped
 //   · players: youtube-nocookie only, no autoplay, lazy iframes; embed.js /
 //     widgets.js injected once by the loader, never as a static <script src>
+//   · Instagram/X are tap-to-load: inert markup, one button per post, and a
+//     privacy.html line saying so (test-embeds-tap.mjs proves the network side)
 //   · no Spotify API image on any /f/ page
 //   · Watch & listen sits right after the quick answers; absent with no embeds
 //   · for humans: the lineup shows 20 rows and folds the rest into "Show all"
@@ -215,7 +217,17 @@ for (const id of pages) {
   check(!/youtube\.com\/embed/.test(sec), `${at} uses youtube.com instead of youtube-nocookie.com`);
   check(!/referrerpolicy="no-referrer"/.test(sec), `${at} suppresses the Referer on a player`);
   const yt = (sec.match(/embed-yt/g) || []).length, sp = (sec.match(/embed-sp/g) || []).length;
-  const social = (sec.match(/class="instagram-media"|class="twitter-tweet"/g) || []).length;
+  const social = (sec.match(/data-class="instagram-media"|data-class="twitter-tweet"/g) || []).length;
+  // Tap-to-load: no social blockquote ships with the class the platform's
+  // script looks for, and every one sits in a figure with its own button.
+  check(!/<blockquote class="(?:instagram-media|twitter-tweet)"/.test(sec), `${at} a social post ships live (a platform script would hydrate it without a tap)`);
+  const tapFigs = sec.match(/<figure class="embed embed-(?:ig|x)"[\s\S]*?<\/figure>/g) || [];
+  check(tapFigs.length === social, `${at} ${social} social posts but ${tapFigs.length} social figures`);
+  for (const fg of tapFigs) {
+    check(/ data-tap="(?:instagram|x)"/.test(fg) && (fg.match(/<button type="button" class="embed-load">/g) || []).length === 1 && /<blockquote class="tap-embed" data-class=/.test(fg), `${at} a social post has no tap-to-load button: ${fg.slice(0, 100)}`);
+    check(/href="\/privacy\.html#social-embeds"/.test(fg), `${at} a tap-to-load post does not link the privacy note`);
+  }
+  check(!/IntersectionObserver/.test(sec), `${at} the social loader still fires on scroll`);
   check(yt <= 1 && sp <= 1 && social <= 3, `${at} over the caps: ${yt} YouTube, ${social} social, ${sp} Spotify`);
   totalEmbeds += yt + sp + social;
   // Every rendered embed is a curated, provenance-complete, verified one.
@@ -246,7 +258,12 @@ for (const id of pages) {
   // Instagram's 326px minimum must never widen a 320px page.
   check(/section\.watch \{ overflow-x:clip; \}/.test(html) && /section\.watch \.embed-ig \{ overflow-x:auto;/.test(html), `${at} Watch & listen can widen the page (no overflow containment)`);
   // X embeds opt out of X's tailoring (developer policy's do-not-track).
-  for (const bq of sec.match(/<blockquote class="twitter-tweet"[^>]*>/g) || []) check(/data-dnt="true"/.test(bq), `${at} an X embed does not set data-dnt="true"`);
+  for (const bq of sec.match(/<blockquote class="tap-embed" data-class="twitter-tweet"[^>]*>/g) || []) check(/data-dnt="true"/.test(bq), `${at} an X embed does not set data-dnt="true"`);
+}
+{
+  const priv = readFileSync(path.join(root, 'privacy.html'), 'utf8');
+  const li = (priv.match(/<li id="social-embeds">[\s\S]*?<\/li>/) || [''])[0];
+  check(/Instagram/.test(li) && /\bX\b/.test(li) && /only when you tap/.test(li), 'privacy.html does not say social embeds load only on tap (#social-embeds)');
 }
 check(withEmbeds >= 5, `only ${withEmbeds} pages carry embeds; the sourced set should give more`);
 check(without >= 1, 'every page has embeds; the section-absent case is untested');
