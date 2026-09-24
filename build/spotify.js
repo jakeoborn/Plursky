@@ -9186,12 +9186,15 @@ function _libraryGroupChrome(group) {
     };
   }
   if (group.kind === "review") {
+    var all = [...(group.media || []), ...(group.duplicates || [])];
+    var setOnly = all.every(m => !m.festivalReview);
+    var festOnly = all.every(m => m.festivalReview);
     return {
       eyebrow: "NEEDS REVIEW",
       eyebrowColor: "var(--warn)",
       spine: "var(--warn)",
-      title: "Set not in this festival",
-      note: "Tagged to a set this festival doesn’t have — retag to file it."
+      title: setOnly ? "Set not in this festival" : festOnly ? "Outside this festival’s dates" : "Check these clips",
+      note: setOnly ? "Tagged to a set this festival doesn’t have — retag to file it." : festOnly ? group.count === 1 ? "Its capture time doesn’t match this festival’s dates. We left it here." : "Their capture times don’t match this festival’s dates. We left them here." : "Some are tagged to a set this festival doesn’t have. Others were shot outside this festival’s dates."
     };
   }
   var a = group.artist,

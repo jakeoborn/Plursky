@@ -60,7 +60,7 @@ for (const n of ["data", "photo-tag", "spotify"]) {
 }
 const S = vm.runInContext(
   `({ _buildLibraryDay, _filterLibraryDay, _peakWindow, _dedupeByMedia, _mediaIdentity,
-      _dedupeLibrary,
+      _dedupeLibrary, _libraryGroupChrome,
       _LIBRARY_FILTERS, _DATA_SETS, ARTISTS, FESTIVAL_CONFIG })`, ctx);
 
 let checks = 0, failed = 0;
@@ -317,6 +317,31 @@ check(all.counts.moments === day.counts.moments && all.groups.length === day.gro
 const blank = S._buildLibraryDay({ moments: [], attendedSet: new Set(), artists: S.ARTISTS, toMin });
 check(blank.isEmpty === true && blank.counts.moments === 0 && blank.counts.sets === 0,
   "empty day: no sets, no media and nothing to review reports isEmpty");
+
+// ── 7. Needs Review copy says which fact is present (#216's strings) ─────
+// Two facts share the group: a set tag this lineup can't resolve, and a
+// festival stamp its own capture time contradicts (festivalReview). The
+// title and note must name the one(s) present, and never claim the other.
+{
+  const rv = { festivalReview: { reason: "unproven-stamp" } };
+  const g = (media, dup = []) => ({ kind: "review", media, duplicates: dup, count: media.length });
+  const c = (grp) => S._libraryGroupChrome(grp);
+  const setOnly = c(g([{ id: "a", artistId: "zz" }]));
+  check(setOnly.title === "Set not in this festival" && setOnly.note === "Tagged to a set this festival doesn’t have — retag to file it.",
+    `needs review, set tags only: unchanged copy — got ${JSON.stringify(setOnly)}`);
+  const one = c(g([{ id: "b", ...rv }]));
+  check(one.title === "Outside this festival’s dates" && one.note === "Its capture time doesn’t match this festival’s dates. We left it here.",
+    `needs review, one festival conflict: singular date copy — got ${JSON.stringify(one)}`);
+  const two = c(g([{ id: "b", ...rv }, { id: "c", ...rv }]));
+  check(two.title === "Outside this festival’s dates" && two.note === "Their capture times don’t match this festival’s dates. We left them here.",
+    `needs review, two festival conflicts: plural date copy — got ${JSON.stringify(two)}`);
+  const mixed = c(g([{ id: "a", artistId: "zz" }, { id: "b", ...rv }]));
+  check(mixed.title === "Check these clips" && mixed.note === "Some are tagged to a set this festival doesn’t have. Others were shot outside this festival’s dates.",
+    `needs review, both facts: mixed copy — got ${JSON.stringify(mixed)}`);
+  const dupMixed = c(g([{ id: "a", artistId: "zz" }], [{ id: "b", ...rv }]));
+  check(dupMixed.title === "Check these clips",
+    `needs review: a festival conflict held only as a duplicate record still counts as present — got ${JSON.stringify(dupMixed)}`);
+}
 
 if (failed) { console.log(`\n  ${failed} of ${checks} checks failed`); process.exit(1); }
 console.log(`  ✓ ${checks} checks`);

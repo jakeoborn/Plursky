@@ -5943,9 +5943,22 @@ function _libraryGroupChrome(group) {
              title: "Other moments", note: null };
   }
   if (group.kind === "review") {
+    // Two different facts share this group (see _groupNightMoments): a set tag
+    // this lineup can't resolve, and a festival stamp its own capture time
+    // contradicts (#216's festivalReview). Neither line may claim the other.
+    // Strings are #216's, exactly as merged. Duplicates count toward which
+    // facts are present; the singular/plural follows the clips drawn.
+    const all = [...(group.media || []), ...(group.duplicates || [])];
+    const setOnly = all.every(m => !m.festivalReview);
+    const festOnly = all.every(m => m.festivalReview);
     return { eyebrow: "NEEDS REVIEW", eyebrowColor: "var(--warn)", spine: "var(--warn)",
-             title: "Set not in this festival",
-             note: "Tagged to a set this festival doesn’t have — retag to file it." };
+             title: setOnly ? "Set not in this festival"
+               : festOnly ? "Outside this festival’s dates"
+               : "Check these clips",
+             note: setOnly ? "Tagged to a set this festival doesn’t have — retag to file it."
+               : festOnly ? (group.count === 1 ? "Its capture time doesn’t match this festival’s dates. We left it here."
+                 : "Their capture times don’t match this festival’s dates. We left them here.")
+               : "Some are tagged to a set this festival doesn’t have. Others were shot outside this festival’s dates." };
   }
   const a = group.artist, s = group.stage;
   return {
