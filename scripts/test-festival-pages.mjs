@@ -138,6 +138,14 @@ function checkPage(entry, html, { verified }) {
   if (missing.length) out.push(`lineup is missing ${missing.length} act(s), e.g. ${missing[0]}`);
   if (acts.length !== new Set(acts).size) out.push('lineup repeats a name');
   if (/Schedule TBA/.test(visibleText(lineup))) out.push('lineup shows the placeholder stage');
+  // A one-day (or absent) dayDates is a bucket, not a published day split.
+  // Read off the slot text, where a day would print, for ANY date shape: a
+  // one-day bucket's name is itself a range ("Oct 16–17").
+  const slotText = [...lineup.matchAll(/<span class="slots">(.*?)<\/span>/g)].map(x => visibleText(x[1])).join(' ');
+  if (Object.keys(cfg.dayDates || {}).length <= 1
+      && /\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]* \d{1,2}\b/.test(slotText)) {
+    out.push('lineup shows a day for a festival with no day split');
+  }
 
   // Set times: the right number of rows, unique anchors, every lineup link lands.
   const ids = [...html.matchAll(/<li id="(set-[^"]+)"/g)].map(x => x[1]);
