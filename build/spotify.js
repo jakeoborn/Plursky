@@ -12615,6 +12615,7 @@ function _iapMsg(e) {
   }
 }
 var _rcInitialized = false;
+var _rcAppUserId = null;
 async function _initRevenueCat() {
   if (_rcInitialized || !RC_API_KEY) return;
   if (!window.Capacitor?.isNativePlatform?.()) return;
@@ -12624,6 +12625,9 @@ async function _initRevenueCat() {
       apiKey: RC_API_KEY
     }), 12000, "RevenueCat configure");
     _rcInitialized = true;
+    try {
+      _rcAppUserId = (await _withTimeout(Purchases.getAppUserID(), 5000, "RevenueCat getAppUserID"))?.appUserID || null;
+    } catch {}
     var {
       customerInfo
     } = await _withTimeout(Purchases.getCustomerInfo(), 12000, "RevenueCat getCustomerInfo");
@@ -12650,7 +12654,9 @@ function _iapDevHost() {
 function _iapAvailable() {
   return !!window.Capacitor?.isNativePlatform?.() || _iapDevHost();
 }
-async function _purchasePlus(productId) {
+async function _purchasePlus(productId, {
+  offeringId
+} = {}) {
   if (!window.Capacitor?.isNativePlatform?.()) {
     if (!_iapDevHost()) {
       console.warn("[plursky-iap] purchase blocked — web build has no StoreKit");
@@ -12675,7 +12681,8 @@ async function _purchasePlus(productId) {
   try {
     var Purchases = _rcPlugin();
     var offerings = await _withTimeout(Purchases.getOfferings(), 15000, "StoreKit offerings lookup");
-    var pkg = offerings?.current?.availablePackages?.find(p => p.product?.identifier === productId);
+    var offering = offeringId ? offerings?.all?.[offeringId] : offerings?.current;
+    var pkg = offering?.availablePackages?.find(p => p.product?.identifier === productId);
     if (!pkg) {
       console.warn("[plursky-iap] product not found:", productId);
       return {
@@ -12693,7 +12700,7 @@ async function _purchasePlus(productId) {
       success: !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT]
     };
   } catch (e) {
-    if (e?.code === "1" || e?.message?.includes("cancelled")) {
+    if (e?.userCancelled === true || e?.code === "1" || e?.message?.includes("cancelled")) {
       return {
         success: false,
         cancelled: true
@@ -12786,6 +12793,102 @@ async function _restorePurchases() {
       error: _iapMsg(e)
     };
   }
+}
+var RESCUE_PRODUCT_ID = "plursky_season_pass_2026_promo";
+var RESCUE_OFFERING_ID = "season_rescue";
+var RESCUE_STATE_KEY = "plursky_rescue_v1";
+function _rescueScope() {
+  return _rcAppUserId ? "rc:" + _rcAppUserId : "install";
+}
+function _rescueReadAll() {
+  try {
+    return JSON.parse(localStorage.getItem(RESCUE_STATE_KEY) || "{}") || {};
+  } catch {
+    return {};
+  }
+}
+function _rescueState() {
+  var all = _rescueReadAll(),
+    scope = _rescueScope();
+  return {
+    ...(all[scope] || scope !== "install" && all.install || {})
+  };
+}
+function _rescueWrite(next) {
+  var all = _rescueReadAll();
+  all[_rescueScope()] = next;
+  try {
+    localStorage.setItem(RESCUE_STATE_KEY, JSON.stringify(all));
+  } catch {}
+  return next;
+}
+function _rescueNoteView() {
+  var s = _rescueState(),
+    now = Date.now();
+  s.firstPaywallAt = s.firstPaywallAt || now;
+  s.paywallViewCount = (s.paywallViewCount || 0) + 1;
+  if (s.paywallViewCount >= 2 && !s.rescueEligibleAt) {
+    s.rescueEligibleAt = now;
+    s.rescueTrigger = "second_view";
+  }
+  return _rescueWrite(s);
+}
+function _rescueNoteSeasonCancel() {
+  var s = _rescueState();
+  if (!s.rescueEligibleAt) {
+    s.rescueEligibleAt = Date.now();
+    s.rescueTrigger = "season_purchase_cancel";
+  }
+  return _rescueWrite(s);
+}
+function _rescueNotePurchased() {
+  var s = _rescueState();
+  s.rescuePurchased = true;
+  return _rescueWrite(s);
+}
+async function _rescueOffer() {
+  if (!window.Capacitor?.isNativePlatform?.()) return null;
+  if (!_rcInitialized) await _initRevenueCat();
+  if (!_rcInitialized) return null;
+  try {
+    var offerings = await _withTimeout(_rcPlugin().getOfferings(), 10000, "Rescue offer lookup");
+    var offering = offerings?.all?.[RESCUE_OFFERING_ID];
+    if (!offering || offering.metadata?.rescue_enabled !== true) return null;
+    var pkg = (offering.availablePackages || []).find(p => p.product?.identifier === RESCUE_PRODUCT_ID);
+    var price = pkg?.product?.priceString;
+    return typeof price === "string" && price ? {
+      productId: RESCUE_PRODUCT_ID,
+      price
+    } : null;
+  } catch (e) {
+    console.warn("[plursky-iap] rescue offer unavailable:", _iapMsg(e));
+    return null;
+  }
+}
+var PLUS_EVENT_KEY = "plursky_plus_events";
+var _PLUS_EVENT_PROPS = ["entry_feature", "view_number", "is_native", "storefront", "rescue_eligible", "rescue_trigger", "product_id", "displayed_price", "trigger", "discount_product_id", "result"];
+function _plusEvent(name, props = {}) {
+  var clean = {};
+  for (var k of _PLUS_EVENT_PROPS) {
+    var v = props[k];
+    if (v === null || ["string", "number", "boolean"].includes(typeof v)) clean[k] = v ?? null;
+  }
+  var ev = {
+    name,
+    at: Date.now(),
+    ...clean
+  };
+  try {
+    var log = JSON.parse(localStorage.getItem(PLUS_EVENT_KEY) || "[]");
+    log.push(ev);
+    localStorage.setItem(PLUS_EVENT_KEY, JSON.stringify(log.slice(-200)));
+  } catch {}
+  try {
+    window.dispatchEvent(new CustomEvent("plursky:plus-event", {
+      detail: ev
+    }));
+  } catch {}
+  return ev;
 }
 function _isPlusSub() {
   try {
@@ -13122,21 +13225,89 @@ function PlusGate({
   var [buyError, setBuyError] = React.useState(null);
   var live = useLivePlusPrices();
   var [plan, setPlan] = React.useState(RC_PRODUCT_IDS.season);
-  if (_isPlusSub()) return children;
+  var [rescue, setRescue] = React.useState(null);
+  var [rescueOffer, setRescueOffer] = React.useState(null);
+  var rescueSeen = React.useRef(false);
+  var plusNow = _isPlusSub();
+  var nativeBuy = !plusNow && !!window.Capacitor?.isNativePlatform?.();
+  React.useEffect(() => {
+    if (plusNow) return;
+    var rec = nativeBuy ? _rescueNoteView() : null;
+    if (rec) setRescue(rec);
+    _plusEvent("plus_paywall_view", {
+      entry_feature: feature || null,
+      view_number: rec ? rec.paywallViewCount : null,
+      is_native: nativeBuy,
+      storefront: null,
+      rescue_eligible: !!rec?.rescueEligibleAt,
+      rescue_trigger: rec?.rescueTrigger || null
+    });
+  }, []);
+  React.useEffect(() => {
+    if (!nativeBuy || !rescue?.rescueEligibleAt || rescue.rescuePurchased) return;
+    var dead = false;
+    _rescueOffer().then(o => {
+      if (!dead) setRescueOffer(o);
+    });
+    return () => {
+      dead = true;
+    };
+  }, [rescue?.rescueEligibleAt]);
+  var rescueTrigger = rescue?.rescueTrigger || null;
+  var showRescue = nativeBuy && !!rescue?.rescueEligibleAt && !rescue.rescuePurchased && !!rescueOffer && (!(layout === "sheet" && typeof onStep === "function") || step === "plans");
+  React.useEffect(() => {
+    if (!showRescue || rescueSeen.current) return;
+    rescueSeen.current = true;
+    _plusEvent("plus_inline_rescue_view", {
+      trigger: rescueTrigger,
+      discount_product_id: rescueOffer.productId,
+      displayed_price: rescueOffer.price
+    });
+  }, [showRescue]);
+  if (plusNow) return children;
   var canBuy = _iapAvailable();
-  var handlePurchase = async productId => {
+  var handlePurchase = async (productId, {
+    rescue: isRescue = false
+  } = {}) => {
     var target = productId || RC_PRODUCT_IDS.season;
+    var shown = isRescue ? rescueOffer?.price : live && live[target] || null;
+    var trig = isRescue ? rescueTrigger : null;
     setBusy(true);
     setPending(target);
     setBuyError(null);
+    _plusEvent("plus_purchase_start", {
+      product_id: target,
+      displayed_price: shown || null,
+      rescue_trigger: trig
+    });
+    var outcome = "error";
     try {
-      var result = await _withTimeout(_purchasePlus(target), 50000, "Purchase");
+      var result = await _withTimeout(_purchasePlus(target, isRescue ? {
+        offeringId: RESCUE_OFFERING_ID
+      } : undefined), 50000, "Purchase");
+      outcome = result.success ? "success" : result.cancelled ? "cancel" : /timed out/i.test(result.error || "") ? "timeout" : "error";
+      _plusEvent("plus_purchase_result", {
+        result: outcome,
+        product_id: target,
+        rescue_trigger: trig
+      });
       if (result.success) {
+        if (isRescue) _rescueNotePurchased();
+        _plusEvent("plus_entitlement_active", {
+          product_id: target,
+          rescue_trigger: trig
+        });
         window.location.reload();
         return;
       }
+      if (result.cancelled && !isRescue && target === RC_PRODUCT_IDS.season && nativeBuy) setRescue(_rescueNoteSeasonCancel());
       if (!result.cancelled && !result.unsupported) setBuyError(result.error || "Purchase could not be completed.");
     } catch (e) {
+      if (outcome === "error") _plusEvent("plus_purchase_result", {
+        result: /timed out/i.test(e?.message || "") ? "timeout" : "error",
+        product_id: target,
+        rescue_trigger: trig
+      });
       setBuyError(e?.message || "Purchase could not be completed.");
     } finally {
       setBusy(false);
@@ -13261,7 +13432,55 @@ function PlusGate({
       lineHeight: "18px",
       color: "var(--warn)"
     }
-  }, buyError, " You are only charged when Apple confirms — nothing was charged for this attempt."), !showPlans ? null : canBuy ? React.createElement(React.Fragment, null, React.createElement("div", {
+  }, buyError, " You are only charged when Apple confirms — nothing was charged for this attempt."), !showPlans ? null : canBuy ? React.createElement(React.Fragment, null, showRescue && React.createElement("section", {
+    "aria-label": "Festival launch price",
+    style: {
+      marginTop: 16,
+      padding: "14px 14px 12px",
+      borderRadius: 14,
+      background: "var(--paper-2)",
+      border: "1.5px solid var(--signal)"
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 11,
+      lineHeight: "14px",
+      fontWeight: 600,
+      letterSpacing: "0.04em",
+      textTransform: "uppercase",
+      color: "var(--signal)"
+    }
+  }, "Festival launch price"), React.createElement("div", {
+    style: {
+      marginTop: 4,
+      fontSize: 17,
+      lineHeight: "22px",
+      fontWeight: 700,
+      fontVariantNumeric: "tabular-nums"
+    }
+  }, "Season Pass · ", rescueOffer.price, " one time"), React.createElement("div", {
+    style: {
+      marginTop: 2,
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, "Keep the full weekend. No subscription, nothing auto-renews."), React.createElement(FieldButton, {
+    onClick: () => handlePurchase(RESCUE_PRODUCT_ID, {
+      rescue: true
+    }),
+    disabled: busy,
+    style: {
+      marginTop: 12
+    }
+  }, pending === RESCUE_PRODUCT_ID ? "Processing…" : `Get Season Pass for ${rescueOffer.price}`), React.createElement("p", {
+    style: {
+      margin: "8px 0 0",
+      fontSize: 12,
+      lineHeight: "17px",
+      color: "var(--text-2)"
+    }
+  }, "Season Pass · ", rescueOffer.price, " one-time purchase. No subscription, nothing auto-renews.")), React.createElement("div", {
     role: "radiogroup",
     "aria-label": "Choose a plan",
     style: {
@@ -13277,7 +13496,14 @@ function PlusGate({
       key: p.id,
       role: "radio",
       "aria-checked": on,
-      onClick: () => setPlan(p.id),
+      onClick: () => {
+        setPlan(p.id);
+        _plusEvent("plus_plan_select", {
+          product_id: p.id,
+          displayed_price: price,
+          rescue_eligible: !!rescue?.rescueEligibleAt
+        });
+      },
       disabled: busy,
       style: {
         display: "flex",
@@ -13349,7 +13575,7 @@ function PlusGate({
     style: {
       marginTop: 16
     }
-  }, pending ? "Processing…" : waitingForPrice ? "Loading App Store price…" : selected.cta), PLANS.map(p => React.createElement("p", {
+  }, pending && pending !== RESCUE_PRODUCT_ID ? "Processing…" : waitingForPrice ? "Loading App Store price…" : selected.cta), PLANS.map(p => React.createElement("p", {
     key: p.id,
     style: {
       margin: "10px 0 0",
