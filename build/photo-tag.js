@@ -514,11 +514,17 @@ function _someFestivalClaimsCaptureTime(date, utcMs) {
   }
   return false;
 }
+var _AMENITY_LABEL_NEEDS_GEOMETRY = new Set(["acl-2026"]);
 function _matchNearestLocation(lat, lng, ds) {
   var set = ds || _activeDataSet();
   var amenities = set.amenities || [];
   if (!amenities.length) return null;
   var cfg = set.config || {};
+  var fid = set.id || cfg.id;
+  if (_AMENITY_LABEL_NEEDS_GEOMETRY.has(fid)) {
+    var verified = typeof geometryVerifiedFor === "function" && geometryVerifiedFor(fid);
+    if (!verified) return null;
+  }
   var isActive = !set.id || set.id === window.FESTIVAL_CONFIG?.id;
   var mapToGps = isActive ? window.mapToGps : null;
   var hasAffine = !!(isActive && cfg.gpsAnchors?.length >= 3);
@@ -563,6 +569,10 @@ function _matchNearestLocation(lat, lng, ds) {
   };
 }
 var _GPS_STAGE_MAX_ACC_M = 200;
+function _allProgrammedStagesAnchored(artists, night, anchors) {
+  var anchored = new Set(anchors.map(a => a.stageId));
+  return (artists || []).every(a => a.day !== night || anchored.has(a.stage));
+}
 function _matchArtistForPhoto({
   date,
   lat,
@@ -644,7 +654,7 @@ function _matchArtistForPhoto({
   }
   if (sLat != null && sLng != null) {
     var anchors = resolvedStageAnchors(cfg);
-    if (anchors.length > 0) {
+    if (anchors.length > 0 && _allProgrammedStagesAnchored(artists, night, anchors)) {
       var nearest = null,
         minMeters = Infinity;
       for (var a of anchors) {
