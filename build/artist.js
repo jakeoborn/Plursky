@@ -1128,13 +1128,7 @@ function ArtistScreen({
   }, [a.id]);
   var activeName = isB2B ? b2bParts[activeB2B] : a.name;
   var lookupName = _lookupName(activeName);
-  var artistImages = React.useMemo(() => {
-    try {
-      return JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-    } catch {
-      return {};
-    }
-  }, []);
+  var heroCacheRec = React.useMemo(() => getArtistImage(activeName), [a.id, activeName]);
   var [fetchedPhoto, setFetchedPhoto] = React.useState(null);
   var saved = state.saved.includes(a.id);
   var [saveFlash, setSaveFlash] = React.useState(false);
@@ -1171,9 +1165,13 @@ function ArtistScreen({
   var [mcTracks, setMcTracks] = React.useState(undefined);
   var [mcPlaying, setMcPlaying] = React.useState(null);
   var [tadb, setTadb] = React.useState(undefined);
-  var heroPhotoCache = artistImages[activeName.toLowerCase()] || null;
-  var heroPhoto = heroPhotoCache || fetchedPhoto || (tadb?.image ?? null);
-  var heroPhotoSrc = heroPhotoCache ? "CACHED" : fetchedPhoto ? "SPOTIFY" : tadb?.image ? "THEAUDIODB" : null;
+  var heroPhoto = heroCacheRec?.url || fetchedPhoto || (tadb?.image ?? null);
+  var heroSource = heroCacheRec ? heroCacheRec.source : fetchedPhoto ? "spotify" : tadb?.image ? "tadb" : null;
+  var heroPhotoSrc = {
+    spotify: "SPOTIFY",
+    itunes: "ITUNES",
+    tadb: "THEAUDIODB"
+  }[heroSource] || null;
   var [slError, setSlError] = React.useState(false);
   var [ytError, setYtError] = React.useState(false);
   var [edcTracklist, setEdcTracklist] = React.useState(undefined);
@@ -1212,14 +1210,9 @@ function ArtistScreen({
   React.useEffect(() => {
     var img = tadb?.image;
     if (!img) return;
-    var ln = activeName.toLowerCase();
-    try {
-      var imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-      if (!imgs[ln]) {
-        imgs[ln] = img;
-        localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
-      }
-    } catch {}
+    putArtistImage(activeName, img, "tadb", {
+      ifAbsent: true
+    });
   }, [tadb, activeName]);
   var [spotifyStats, setSpotifyStats] = React.useState(null);
   var [saveCount, setSaveCount] = React.useState(null);
@@ -1243,7 +1236,7 @@ function ArtistScreen({
       setSpotifyStats(null);
     }
     var ln = activeName.toLowerCase();
-    if (artistImages[ln] && hasCachedStats) return;
+    if (heroCacheRec && hasCachedStats) return;
     if (!localStorage.getItem("spotify_token") && !localStorage.getItem("spotify_refresh_token")) return;
     var ctrl = new AbortController();
     getValidToken().then(token => {
@@ -1258,15 +1251,13 @@ function ArtistScreen({
         var items = d?.artists?.items || [];
         var match = items.find(x => x.name.toLowerCase() === ln) || items.find(x => ln.includes(x.name.toLowerCase())) || items[0];
         if (!match) return;
-        if (!artistImages[ln]) {
+        if (!heroCacheRec) {
           var img = match?.images?.[0]?.url;
           if (img) {
             setFetchedPhoto(img);
-            try {
-              var imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-              imgs[ln] = img;
-              localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
-            } catch {}
+            putArtistImage(activeName, img, "spotify", {
+              spotifyId: match.id
+            });
           }
         }
         var topTrackNames = [];
@@ -1363,67 +1354,10 @@ function ArtistScreen({
   var connected = isSpotifyConnected();
   var [heroParallax, setHeroParallax] = React.useState(0);
   var scrollBodyRef = React.useRef(null);
-  return React.createElement(Screen, {
-    bg: "var(--paper)"
-  }, React.createElement(ScrollBody, {
-    ref: scrollBodyRef,
-    onScroll: e => {
-      var y = e.currentTarget.scrollTop;
-      setHeroParallax(Math.min(60, y * 0.3));
-    }
-  }, React.createElement("div", {
-    style: {
-      height: 300,
-      position: "relative",
-      overflow: "hidden",
-      color: "var(--ink)"
-    }
-  }, React.createElement("div", {
-    style: {
-      position: "absolute",
-      inset: 0,
-      top: -30,
-      background: heroPhoto ? "var(--ink)" : `linear-gradient(160deg, var(--ink) 0%, rgba(var(--signal-rgb),0.27) 40%, var(--ink) 100%)`,
-      backgroundImage: heroPhoto ? `url(${heroPhoto})` : undefined,
-      backgroundSize: "cover",
-      backgroundPosition: "center 20%",
-      transform: `translateY(${heroParallax}px)`,
-      willChange: "transform"
-    }
-  }), heroPhoto && React.createElement(ArtistAtmosphere, {
-    genre: a.genre,
-    stageColor: "var(--signal)",
-    tier: a.tier
-  }), !heroPhoto && React.createElement("div", {
-    style: {
-      position: "absolute",
-      inset: 0,
-      overflow: "hidden",
-      pointerEvents: "none",
-      zIndex: 1
-    }
-  }, React.createElement("div", {
-    style: {
-      position: "absolute",
-      top: "30%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      width: 180,
-      height: 180,
-      borderRadius: "50%",
-      background: `radial-gradient(circle, rgba(var(--signal-rgb),0.19), transparent 70%)`,
-      animation: "vfx-pulse 4s ease-in-out infinite"
-    }
-  })), a.tier === 3 && heroPhoto && React.createElement(PyroStarburst, {
-    color: "var(--signal)"
-  }), React.createElement("div", {
-    style: {
-      position: "absolute",
-      inset: 0,
-      zIndex: 2,
-      background: heroPhoto ? `linear-gradient(180deg, rgba(var(--shade-rgb),0.38) 0%, rgba(var(--shade-rgb),0.06) 26%, rgba(var(--signal-rgb),0.13) 52%, rgba(var(--shade-rgb),0.72) 76%, rgba(var(--shade-rgb),0.96) 100%)` : `linear-gradient(180deg, transparent 0%, rgba(var(--signal-rgb),0.08) 50%, rgba(var(--shade-rgb),0.95) 100%)`
-    }
-  }), React.createElement("button", {
+  var spotifyHero = !!heroPhoto && heroSource === "spotify";
+  var spotifyArtistId = heroCacheRec?.spotifyId || spotifyStats?.spotifyId || null;
+  var spotifyArtistUrl = spotifyArtistId ? "https://open.spotify.com/artist/" + spotifyArtistId : "https://open.spotify.com/search/" + encodeURIComponent(lookupName) + "/artists";
+  var heroControls = React.createElement(React.Fragment, null, React.createElement("button", {
     onClick: () => window._popNav ? window._popNav() : setState({
       ...state,
       artist: null
@@ -1520,29 +1454,8 @@ function ArtistScreen({
     }
   }, "DAY ", a.day, " · ", fmt12(a.start)), React.createElement(ShareArtistButton, {
     artist: a
-  })), heroPhoto && heroPhotoSrc && React.createElement("div", {
-    className: "mono",
-    "aria-hidden": "true",
-    style: {
-      position: "absolute",
-      top: 58,
-      right: 14,
-      zIndex: 3,
-      fontSize: 7.5,
-      letterSpacing: 1,
-      fontWeight: 700,
-      color: "rgba(var(--ink-rgb),0.55)",
-      textShadow: "0 1px 4px rgba(var(--shade-rgb),0.6)"
-    }
-  }, "PHOTO · ", heroPhotoSrc), React.createElement("div", {
-    style: {
-      position: "absolute",
-      bottom: 16,
-      left: 18,
-      right: 18,
-      zIndex: 3
-    }
-  }, React.createElement("div", {
+  })));
+  var heroNameInner = React.createElement(React.Fragment, null, React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -1581,7 +1494,133 @@ function ArtistScreen({
       letterSpacing: -1.5,
       textShadow: "0 2px 20px rgba(var(--shade-rgb),0.5)"
     }
-  }, a.name))), isB2B && React.createElement("div", {
+  }, a.name));
+  return React.createElement(Screen, {
+    bg: "var(--paper)"
+  }, React.createElement(ScrollBody, {
+    ref: scrollBodyRef,
+    onScroll: e => {
+      var y = e.currentTarget.scrollTop;
+      setHeroParallax(Math.min(60, y * 0.3));
+    }
+  }, spotifyHero ? React.createElement("div", {
+    "data-hero": "spotify",
+    style: {
+      position: "relative",
+      color: "var(--ink)",
+      background: "var(--paper)",
+      padding: "64px 18px 16px"
+    }
+  }, heroControls, React.createElement("figure", {
+    style: {
+      margin: 0,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start"
+    }
+  }, React.createElement("img", {
+    src: heroPhoto,
+    alt: activeName + " (photo from Spotify)",
+    "data-spotify-image": "1",
+    style: {
+      display: "block",
+      width: "min(60vw, 236px)",
+      maxWidth: "100%",
+      height: "auto",
+      borderRadius: 4
+    }
+  }), React.createElement("a", {
+    href: spotifyArtistUrl,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    "data-spotify-attribution": "1",
+    "aria-label": "Photo from Spotify. Open " + activeName + " on Spotify",
+    style: {
+      display: "inline-flex",
+      color: "var(--ink)",
+      padding: "11px 11px 11px 0"
+    }
+  }, React.createElement(SpotifyFullLogo, {
+    height: 21
+  }))), React.createElement("div", {
+    style: {
+      marginTop: 6
+    }
+  }, heroNameInner)) : React.createElement("div", {
+    style: {
+      height: 300,
+      position: "relative",
+      overflow: "hidden",
+      color: "var(--ink)"
+    }
+  }, React.createElement("div", {
+    style: {
+      position: "absolute",
+      inset: 0,
+      top: -30,
+      background: heroPhoto ? "var(--ink)" : `linear-gradient(160deg, var(--ink) 0%, rgba(var(--signal-rgb),0.27) 40%, var(--ink) 100%)`,
+      backgroundImage: heroPhoto ? `url(${heroPhoto})` : undefined,
+      backgroundSize: "cover",
+      backgroundPosition: "center 20%",
+      transform: `translateY(${heroParallax}px)`,
+      willChange: "transform"
+    }
+  }), heroPhoto && React.createElement(ArtistAtmosphere, {
+    genre: a.genre,
+    stageColor: "var(--signal)",
+    tier: a.tier
+  }), !heroPhoto && React.createElement("div", {
+    style: {
+      position: "absolute",
+      inset: 0,
+      overflow: "hidden",
+      pointerEvents: "none",
+      zIndex: 1
+    }
+  }, React.createElement("div", {
+    style: {
+      position: "absolute",
+      top: "30%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      width: 180,
+      height: 180,
+      borderRadius: "50%",
+      background: `radial-gradient(circle, rgba(var(--signal-rgb),0.19), transparent 70%)`,
+      animation: "vfx-pulse 4s ease-in-out infinite"
+    }
+  })), a.tier === 3 && heroPhoto && React.createElement(PyroStarburst, {
+    color: "var(--signal)"
+  }), React.createElement("div", {
+    style: {
+      position: "absolute",
+      inset: 0,
+      zIndex: 2,
+      background: heroPhoto ? `linear-gradient(180deg, rgba(var(--shade-rgb),0.38) 0%, rgba(var(--shade-rgb),0.06) 26%, rgba(var(--signal-rgb),0.13) 52%, rgba(var(--shade-rgb),0.72) 76%, rgba(var(--shade-rgb),0.96) 100%)` : `linear-gradient(180deg, transparent 0%, rgba(var(--signal-rgb),0.08) 50%, rgba(var(--shade-rgb),0.95) 100%)`
+    }
+  }), heroControls, heroPhoto && heroPhotoSrc && React.createElement("div", {
+    className: "mono",
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      top: 58,
+      right: 14,
+      zIndex: 3,
+      fontSize: 7.5,
+      letterSpacing: 1,
+      fontWeight: 700,
+      color: "rgba(var(--ink-rgb),0.55)",
+      textShadow: "0 1px 4px rgba(var(--shade-rgb),0.6)"
+    }
+  }, "PHOTO · ", heroPhotoSrc), React.createElement("div", {
+    style: {
+      position: "absolute",
+      bottom: 16,
+      left: 18,
+      right: 18,
+      zIndex: 3
+    }
+  }, heroNameInner)), isB2B && React.createElement("div", {
     style: {
       display: "flex",
       background: "var(--paper-2)",

@@ -1289,14 +1289,7 @@ async function fetchSpotifyTopArtists(onProgress) {
     const top = Array.from(byId.values()).sort((a, b) => b._score - a._score);
 
     // Persist artist images keyed by lowercase name for ArtistScreen hero
-    try {
-      const imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-      top.forEach(a => {
-        const url = a.images?.[0]?.url;
-        if (url && a.name) imgs[a.name.toLowerCase()] = url;
-      });
-      localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
-    } catch {}
+    putArtistImages(top.map(a => ({ name: a.name, url: a.images?.[0]?.url, source: "spotify", spotifyId: a.id })));
 
     // Also pull recently-played + Liked Songs so artists you've played even
     // once (but aren't in your top 50) get matched against the lineup.

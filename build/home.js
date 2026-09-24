@@ -1962,11 +1962,7 @@ function HomeScreen({
     var saved = state.saved || [];
     if (!saved.length || !navigator.onLine) return;
     if (typeof fetchAudioDB !== "function") return;
-    var cached = {};
-    try {
-      cached = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-    } catch {}
-    var missing = saved.map(id => ARTISTS.find(a => a.id === id)).filter(a => a && !cached[a.name.toLowerCase()]).slice(0, 12);
+    var missing = saved.map(id => ARTISTS.find(a => a.id === id)).filter(a => a && !getArtistImage(a.name)).slice(0, 12);
     if (!missing.length) return;
     var live = true;
     (async () => {
@@ -1977,15 +1973,9 @@ function HomeScreen({
           img = (await fetchAudioDB(a.name, a.genre))?.image || null;
         } catch {}
         if (!live) return;
-        if (img) {
-          try {
-            var imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-            if (!imgs[a.name.toLowerCase()]) {
-              imgs[a.name.toLowerCase()] = img;
-              localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
-            }
-          } catch {}
-        }
+        if (img) putArtistImage(a.name, img, "tadb", {
+          ifAbsent: true
+        });
         await new Promise(r => setTimeout(r, 400));
       }
     })();

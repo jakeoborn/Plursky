@@ -1402,14 +1402,12 @@ async function fetchSpotifyTopArtists(onProgress) {
       });
     });
     var top = Array.from(byId.values()).sort((a, b) => b._score - a._score);
-    try {
-      var imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-      top.forEach(a => {
-        var url = a.images?.[0]?.url;
-        if (url && a.name) imgs[a.name.toLowerCase()] = url;
-      });
-      localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
-    } catch {}
+    putArtistImages(top.map(a => ({
+      name: a.name,
+      url: a.images?.[0]?.url,
+      source: "spotify",
+      spotifyId: a.id
+    })));
     var seen = new Set(top.map(a => a.id));
     var extras = [];
     var pull = async (url, sourceTag, baseScore) => {
