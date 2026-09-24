@@ -12943,7 +12943,13 @@ function _reconcileFestivalStamps(moments) {
     if (!Array.isArray(arr)) continue;
     for (var m of arr) {
       if (!m || !m.festivalId || !m.takenAt) continue;
-      if (!_momentTakenAtToDateParts(m.takenAt)) continue;
+      if (!_momentTakenAtToDateParts(m.takenAt)) {
+        if (m.festivalReview && m.festivalReview.reason === "no-claimant") {
+          delete m.festivalReview;
+          changed = true;
+        }
+        continue;
+      }
       var claims = _festivalClaimantsFor(m.takenAt);
       if (claims.includes(m.festivalId)) {
         if (m.festivalReview) {
