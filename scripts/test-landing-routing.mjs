@@ -56,6 +56,38 @@ async function open(browser, { url = BASE, init = {}, width = 393 } = {}) {
 }
 const text = (page) => page.evaluate(() => document.body.innerText);
 
+// Waits for a festival switch to FINISH, not for its first side effect.
+//
+// setActiveFestivalAndReload writes active_festival_id and then reloads. The
+// old wait polled only the stored id, with a 20s cap and a catch that read
+// straight after any error: it ended BEFORE the reload (the write comes
+// first), so the reads after it could hit the outgoing document, and under
+// load on this 8 GB Mac the switch once landed after the cap (?f=acl-2026
+// read edc-lv-2026, then passed alone twice). This polls until the LIVE
+// document runs the named festival — the stored id, the running
+// FESTIVAL_CONFIG and a mounted #root all agree, which only the reloaded page
+// can satisfy — and keeps polling through the reload's context teardown
+// instead of treating it as the end. On a miss it returns what it last saw.
+async function waitForSwitch(page, id, ms = 60000) {
+  const end = Date.now() + ms;
+  let last = null;
+  while (Date.now() < end) {
+    try {
+      last = await page.evaluate(() => ({
+        stored: localStorage.getItem('active_festival_id'),
+        live: (window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id) || null,
+        root: (document.getElementById('root') || { children: [] }).children.length,
+        url: location.pathname + location.search,
+      }));
+      if (last.stored === id && last.live === id && last.root > 0) return { ok: true, ...last };
+    } catch (e) {
+      last = { ...(last || {}), error: String(e.message || e).split('\n')[0] };
+    }
+    await sleep(150);
+  }
+  return { ok: false, ...last };
+}
+
 try {
   for (let i = 0; i < 50; i++) { try { if ((await fetch(`${BASE}index.html`)).ok) break; } catch {} await sleep(100); }
   // The repo's existing convention (see test-import-toast.mjs): use the
@@ -113,14 +145,9 @@ try {
     const { ctx, page } = await open(browser, { url: `${BASE}?f=acl-2026`, init: {
       active_festival_id: 'edc-lv-2026', active_festival_explicit: '1',
     }});
-    // setActiveFestivalAndReload reloads, so wait for the value to land
-    // rather than racing it.
-    let active = null;
-    try {
-      await page.waitForFunction(() => localStorage.getItem('active_festival_id') === 'acl-2026', null, { timeout: 20000, polling: 150 });
-    } catch {}
-    active = await page.evaluate(() => localStorage.getItem('active_festival_id'));
-    check(active === 'acl-2026', `?f=acl-2026: enters the named festival (active=${active})`);
+    // setActiveFestivalAndReload reloads: wait for the reloaded page itself.
+    const sw = await waitForSwitch(page, 'acl-2026');
+    check(sw.ok, `?f=acl-2026: enters the named festival (${JSON.stringify(sw)})`);
     const t = await text(page);
     check(!/browse festivals/i.test(t), '?f=: a named festival wins over General Home');
     await ctx.close();
@@ -396,12 +423,8 @@ try {
       __onboarding: '1', active_festival_id: 'edc-lv-2026', active_festival_explicit: '1',
     }});
     await finishOnboarding(page, 'acl-2026');
-    let active = null;
-    try {
-      await page.waitForFunction(() => localStorage.getItem('active_festival_id') === 'acl-2026', null, { timeout: 20000, polling: 150 });
-    } catch {}
-    active = await page.evaluate(() => localStorage.getItem('active_festival_id'));
-    check(active === 'acl-2026', `onboarding (different festival): switches to the chosen festival (active=${active})`);
+    const sw = await waitForSwitch(page, 'acl-2026');
+    check(sw.ok, `onboarding (different festival): switches to the chosen festival (${JSON.stringify(sw)})`);
     const t = await text(page);
     check(!/browse festivals/i.test(t),
       'onboarding (different festival): the reload lands INSIDE it, not back on the chooser');
