@@ -8714,7 +8714,19 @@ function _reconcileFestivalStamps(moments) {
       // first as the second flagged every unparseable record "no-claimant"
       // (measured: an ISO "2026-05-16T05:40:00.000Z" takenAt inside EDC's own
       // dates went to Needs Review).
-      if (!_momentTakenAtToDateParts(m.takenAt)) continue;
+      //
+      // v350 (live 7:58-8:19 CT on 2026-09-24) did make that mistake and
+      // PERSISTED it, so skipping alone would keep that false flag forever.
+      // Drop exactly that review: "no-claimant" on a time we cannot read is
+      // the v350 bug's signature, since a real "no-claimant" needs a readable
+      // time. Any other review reason is left alone.
+      if (!_momentTakenAtToDateParts(m.takenAt)) {
+        if (m.festivalReview && m.festivalReview.reason === "no-claimant") {
+          delete m.festivalReview;
+          changed = true;
+        }
+        continue;
+      }
       const claims = _festivalClaimantsFor(m.takenAt);
       if (claims.includes(m.festivalId)) {
         if (m.festivalReview) { delete m.festivalReview; changed = true; }

@@ -133,6 +133,18 @@ const seed = { 1: [
   base("f10-unres-unverified", { takenAt: T_WRONG, dateUnverified: true, festivalAttribution: "unresolved" }),
   // an unreadable capture time is no evidence: untouched, never "no-claimant"
   base("f-unreadable",   { takenAt: "2026-05-17T05:00:00.000Z", festivalStampSource: "active-fallback" }),
+  // v350 wrote "no-claimant" on unreadable times and persisted it: the pass
+  // must clear that review and leave everything else byte-identical
+  base("f-v350-stale",   { takenAt: "2026-05-17T05:00:00.000Z", festivalStampSource: "active-fallback",
+                           festivalReview: { reason: "no-claimant", existingFestivalId: ACTIVE, claimant: null, candidates: [],
+                                             takenAt: "2026-05-17T05:00:00.000Z", takenAtSource: null, dateUnverified: false, stampSource: "active-fallback" } }),
+  // any OTHER review on an unreadable time is not v350's signature: it stays
+  base("f-unreadable-other", { takenAt: "2026-05-17T05:00:00.000Z", festivalStampSource: "active-fallback",
+                               festivalReview: { reason: "unproven-stamp" } }),
+  // a REAL "no-claimant" (readable time, no festival claims it), already persisted: it stays
+  base("f-none-kept",    { takenAt: T_NONE, festivalStampSource: "active-fallback",
+                           festivalReview: { reason: "no-claimant", existingFestivalId: ACTIVE, claimant: null, candidates: [],
+                                             takenAt: T_NONE, takenAtSource: null, dateUnverified: false, stampSource: "active-fallback" } }),
   // correct stamp: must come out byte-identical
   base("f-right",        { takenAt: T_RIGHT, artistId: "x9", tagSource: "exif" }),
   // correct stamp carrying a stale review: the review is dropped
@@ -204,6 +216,17 @@ check(JSON.stringify(byId["f5-machine-amb"].festivalReview?.candidates) === JSON
 check(partsOf("2026-05-17T05:00:00.000Z") === null, "premise: the ISO fixture must be unparseable by _momentTakenAtToDateParts, or f-unreadable tests nothing");
 check(JSON.stringify(byId["f-unreadable"]) === JSON.stringify(beforeById["f-unreadable"]) && where["f-unreadable"].join() === "1",
   `f-unreadable: a capture time the parser cannot read is no evidence and must leave the record byte-identical — got ${JSON.stringify(byId["f-unreadable"])}`);
+
+// v350's persisted false flag is cleared, and only it
+check(!("festivalReview" in byId["f-v350-stale"]) && stripReview(byId["f-v350-stale"]) === stripReview(beforeById["f-v350-stale"]) && where["f-v350-stale"].join() === "1",
+  `f-v350-stale: a "no-claimant" review on an unreadable capture time must be dropped and nothing else changed — got ${JSON.stringify(byId["f-v350-stale"])}`);
+check(p.store[MOMENTS_KEY].includes('"f-v350-stale"') && !JSON.parse(p.store[MOMENTS_KEY])["1"].find(m => m.id === "f-v350-stale").festivalReview,
+  "f-v350-stale: the cleanup is PERSISTED to the store, not just made in memory");
+check(JSON.stringify(byId["f-none-kept"]) === JSON.stringify(beforeById["f-none-kept"]) && where["f-none-kept"].join() === "1",
+  `f-none-kept: a real "no-claimant" on a readable capture time must stay — got ${JSON.stringify(byId["f-none-kept"].festivalReview ?? null)}`);
+
+check(JSON.stringify(byId["f-unreadable-other"]) === JSON.stringify(beforeById["f-unreadable-other"]),
+  `f-unreadable-other: only a "no-claimant" review is v350's signature; any other review on an unreadable time stays — got ${JSON.stringify(byId["f-unreadable-other"])}`);
 
 // Agreement: untouched, and a stale review is dropped
 check(JSON.stringify(byId["f-right"]) === JSON.stringify(beforeById["f-right"]) && where["f-right"].join() === "1",
