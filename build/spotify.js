@@ -3758,7 +3758,8 @@ function MomentLightbox({
   onIndexChange,
   onArtistClick,
   onUpdate,
-  onRecoverNight
+  onRecoverNight,
+  onDelete
 }) {
   var m = moments[index];
   var photoUrl = useMomentPhoto(m?.photoId);
@@ -3777,12 +3778,14 @@ function MomentLightbox({
   var [sharing, setSharing] = React.useState(false);
   var [retagging, setRetagging] = React.useState(false);
   var [retagQuery, setRetagQuery] = React.useState("");
+  var [confirmDelete, setConfirmDelete] = React.useState(false);
   React.useEffect(() => {
     setIdState("idle");
     setMismatch(null);
     setRecovery(null);
     setRetagging(false);
     setRetagQuery("");
+    setConfirmDelete(false);
   }, [index]);
   var retagOptions = React.useMemo(() => {
     var q = retagQuery.trim().toLowerCase();
@@ -4224,7 +4227,31 @@ function MomentLightbox({
       gap: 7,
       opacity: sharing ? 0.6 : 1
     }
-  }, sharing ? "Preparing…" : "Share this moment"), mismatch && React.createElement("button", {
+  }, sharing ? "Preparing…" : "Share this moment"), onDelete && React.createElement("button", {
+    onClick: () => {
+      if (!confirmDelete) {
+        setConfirmDelete(true);
+        return;
+      }
+      setConfirmDelete(false);
+      onDelete(m);
+    },
+    style: {
+      marginTop: 8,
+      minHeight: 44,
+      padding: "0 16px",
+      borderRadius: 14,
+      width: "100%",
+      background: confirmDelete ? "rgba(var(--warn-rgb, 220,38,38),0.16)" : "transparent",
+      color: confirmDelete ? "var(--warn)" : "rgba(var(--ink-rgb),0.7)",
+      border: "none",
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 600,
+      cursor: "pointer",
+      fontFamily: "inherit"
+    }
+  }, confirmDelete ? "Tap again to delete from Plursky" : "Delete this moment"), mismatch && React.createElement("button", {
     onClick: () => {
       onUpdate?.(m, {
         artistId: mismatch.id,
@@ -5359,7 +5386,7 @@ function _mediaIdentity(m) {
 }
 function _mediaAttributionRank(m) {
   if (!m) return 0;
-  if (!m.festivalId || m.festivalAttribution === "unresolved") return 1;
+  if (!m.festivalId || m.festivalAttribution === "unresolved" || m.festivalReview) return 1;
   return 2;
 }
 function _dedupeByMedia(moments) {
@@ -8317,6 +8344,7 @@ function MemoryGrid({
   var stacks = React.useMemo(() => _stackBursts(sorted), [sorted]);
   if (!sorted.length) return null;
   return React.createElement("div", {
+    "data-wall": true,
     style: {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
@@ -9038,19 +9066,21 @@ function _buildLibraryDay({
   });
   var find = id => (artists || []).find(a => a.id === id);
   var shape = raw => {
-    var media = _dedupeByMedia(raw || []);
+    var notes = (raw || []).filter(m => m && !m.photoId);
+    var media = _dedupeByMedia((raw || []).filter(m => m && m.photoId));
     var keep = new Set(media.map(m => m.id));
-    var duplicates = (raw || []).filter(m => !keep.has(m.id)).concat(dupsFor ? media.flatMap(m => dupsFor(m.id) || []) : []);
+    var duplicates = (raw || []).filter(m => m && m.photoId && !keep.has(m.id)).concat(dupsFor ? media.flatMap(m => dupsFor(m.id) || []) : []);
     var hero = media.length ? _pickHeroMoment(media) : null;
     var stack = hero ? media.filter(m => m.id !== hero.id) : media;
     var ordered = hero ? [hero, ...stack] : media;
     return {
       media,
+      notes,
       hero,
       stack,
       ordered,
       duplicates,
-      count: media.length
+      count: media.length + notes.length
     };
   };
   var sets = spineIds.map(aId => {
@@ -9186,10 +9216,10 @@ function _libraryGroupChrome(group) {
     };
   }
   if (group.kind === "review") {
-    var all = [...(group.media || []), ...(group.duplicates || [])];
+    var all = [...(group.media || []), ...(group.notes || []), ...(group.duplicates || [])];
     var setOnly = all.every(m => !m.festivalReview);
     var festOnly = all.every(m => m.festivalReview);
-    var retag = (group.media || []).filter(m => !m.festivalReview);
+    var retag = [...(group.media || []), ...(group.notes || [])].filter(m => !m.festivalReview);
     return {
       eyebrow: "NEEDS REVIEW",
       eyebrowColor: "var(--warn)",
@@ -9214,13 +9244,16 @@ function LibraryGroupCard({
   onOpenLightbox,
   onArtistClick,
   onReview,
-  bulkRetag
+  bulkRetag,
+  renderNote
 }) {
   var chrome = _libraryGroupChrome(group);
   var n = group.count;
-  var countLabel = group.kind === "set" && n === 0 ? "Caught" : `${n} ${n === 1 ? "clip" : "clips"}`;
+  var notes = group.notes || [];
+  var unit = notes.length ? n === 1 ? "moment" : "moments" : n === 1 ? "clip" : "clips";
+  var countLabel = group.kind === "set" && n === 0 ? "Caught" : `${n} ${unit}`;
   var openAt = i => onOpenLightbox(group.ordered, i);
-  var titleTap = group.kind === "set" && group.artistId ? () => onArtistClick(group.artistId) : n > 0 ? () => openAt(0) : null;
+  var titleTap = group.kind === "set" && group.artistId ? () => onArtistClick(group.artistId) : group.ordered.length > 0 ? () => openAt(0) : null;
   return React.createElement("div", {
     style: {
       marginTop: 10,
@@ -9295,7 +9328,7 @@ function LibraryGroupCard({
   }, countLabel), group.hero && React.createElement(_LibraryCover, {
     moment: group.hero,
     onClick: () => openAt(0),
-    label: `Open ${chrome.title} — ${n} ${n === 1 ? "clip" : "clips"}`
+    label: `Open ${chrome.title} — ${n} ${unit}`
   })), chrome.note && React.createElement("div", {
     style: {
       marginTop: 6,
@@ -9321,7 +9354,14 @@ function LibraryGroupCard({
     key: m.id,
     moment: m,
     onClick: () => openAt(i + 1)
-  }))), group.duplicates.length > 0 && React.createElement("button", {
+  }))), notes.length > 0 && renderNote && React.createElement("div", {
+    "data-library-notes": true,
+    style: {
+      marginTop: 10
+    }
+  }, notes.map(m => React.createElement(React.Fragment, {
+    key: m.id
+  }, renderNote(m)))), group.duplicates.length > 0 && React.createElement("button", {
     onClick: () => onOpenLightbox(group.duplicates, 0),
     style: {
       marginTop: 8,
@@ -9615,6 +9655,34 @@ function MemoriesScreen({
     if (landed.length) setReview(landed);
     setTimeout(() => setBatch(b => b && b.done === b.total ? null : b), 6000);
   };
+  var deleteMomentMedia = async moment => {
+    var key = _mediaIdentity(moment);
+    var cur = _readMoments();
+    var gone = new Set();
+    var blobs = new Set();
+    var next = {};
+    for (var n of Object.keys(cur)) {
+      next[n] = (cur[n] || []).filter(m => {
+        var hit = m && (m.id === moment.id || key && _mediaIdentity(m) === key);
+        if (hit) {
+          gone.add(m.id);
+          if (m.photoId) blobs.add(m.photoId);
+        }
+        return !hit;
+      });
+    }
+    for (var b of blobs) {
+      try {
+        await _deletePhoto(b);
+      } catch {}
+    }
+    _writeMoments(next);
+    setAll(next);
+    try {
+      window.dispatchEvent(new CustomEvent("plursky-moments-change"));
+    } catch {}
+    return gone;
+  };
   var handleDelete = async moment => {
     if (!window.confirm("Delete this moment?")) return;
     if (moment.photoId) {
@@ -9858,7 +9926,8 @@ function MemoriesScreen({
   var library = React.useMemo(() => _dedupeLibrary(all), [all]);
   var dupsFor = React.useCallback(id => library.dupsByCanonical.get(id) || [], [library]);
   var totalCount = library.unique;
-  var unconfirmedCount = React.useMemo(() => Object.values(library.byNight).reduce((n, arr) => n + (Array.isArray(arr) ? arr.filter(m => m && m.festivalAttribution === "unresolved").length : 0), 0), [library]);
+  var wallMoments = React.useMemo(() => Object.values(library.byNight).flatMap(arr => Array.isArray(arr) ? arr.filter(Boolean) : []), [library]);
+  var unconfirmedCount = React.useMemo(() => Object.values(library.byNight).reduce((n, arr) => n + (Array.isArray(arr) ? arr.filter(m => m && (m.festivalAttribution === "unresolved" || m.festivalReview)).length : 0), 0), [library]);
   var confirmedCount = Math.max(0, totalCount - unconfirmedCount);
   var [attendedTick, setAttendedTick] = React.useState(0);
   React.useEffect(() => {
@@ -10071,6 +10140,19 @@ function MemoriesScreen({
       artist: id
     })),
     onRecoverNight: handleRecoverNight,
+    onDelete: async mom => {
+      var gone = await deleteMomentMedia(mom);
+      setLightbox(lb => {
+        if (!lb) return lb;
+        var rest = lb.moments.filter(mm => !gone.has(mm.id));
+        if (!rest.length) return null;
+        return {
+          ...lb,
+          moments: rest,
+          index: Math.min(lb.index, rest.length - 1)
+        };
+      });
+    },
     onUpdate: (mom, patch) => {
       handleUpdate(mom, patch);
       setLightbox(lb => lb ? {
@@ -10602,9 +10684,10 @@ function MemoriesScreen({
     }
   }), React.createElement(MemoryGrid, {
     allMoments: (() => {
+      var canon = wallMoments;
       var q = memQuery.trim().toLowerCase();
-      if (!q) return allMoments;
-      return allMoments.filter(m => {
+      if (!q) return canon;
+      return canon.filter(m => {
         var a = m.artistId ? ARTISTS.find(x => x.id === m.artistId) : null;
         var s = a ? STAGES.find(st => st.id === a.stage) : null;
         return (a?.name || "").toLowerCase().includes(q) || (m.confirmedSong || "").toLowerCase().includes(q) || (s?.name || "").toLowerCase().includes(q);
@@ -10675,7 +10758,7 @@ function MemoriesScreen({
         color: "var(--text-2)",
         fontVariantNumeric: "tabular-nums"
       }
-    }, mediaCount, " ", mediaCount === 1 ? "moment" : "moments", " · auto-play reel")), React.createElement("button", {
+    }, mediaCount > 0 ? `${mediaCount} ${mediaCount === 1 ? "moment" : "moments"} · auto-play reel` : "Archived recap · its photos and clips are no longer on this device")), mediaCount > 0 && React.createElement("button", {
       onClick: () => {
         var ms = _dedupeByMedia(allMoments.filter(m => m.photoId)).slice().sort((a, b) => _momentTime(a) - _momentTime(b));
         playReel(ms, FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name, null);
@@ -10855,6 +10938,20 @@ function MemoriesScreen({
       onReview: ms => setReview(ms.map(m => ({
         momentId: m.id
       }))),
+      renderNote: m => React.createElement(MomentCard, {
+        moment: m,
+        idx: 0,
+        total: 1,
+        groupMoments: [m],
+        onOpenLightbox: openLightbox,
+        onDelete: handleDelete,
+        onUpdate: handleUpdate,
+        savedArtistIds: state.saved || [],
+        onArtistClick: id => setState(s => ({
+          ...s,
+          artist: id
+        }))
+      }),
       bulkRetag: g.kind === "between" && g.count >= 3 && savedNightArtists.length > 0 ? React.createElement(BulkRetagRow, {
         moments: g.media,
         savedNightArtists: savedNightArtists,
@@ -13748,9 +13845,20 @@ function _isPlusSub() {
   }
 }
 function _setPlusSub(v) {
+  var prev = null;
   try {
+    prev = localStorage.getItem(PLUS_KEY);
     localStorage.setItem(PLUS_KEY, v ? "1" : "0");
   } catch {}
+  if (prev !== (v ? "1" : "0")) {
+    try {
+      window.dispatchEvent(new CustomEvent("plursky-plus-change", {
+        detail: {
+          active: !!v
+        }
+      }));
+    } catch {}
+  }
 }
 try {
   _initRevenueCat();

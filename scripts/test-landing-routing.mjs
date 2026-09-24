@@ -465,7 +465,9 @@ try {
       if (!e) return null;
       e.available = false; e.previewOnly = true;
       window._isPlusSub = () => isPlus;
-      // The landing mirrors saved state on this event; use it to re-render.
+      // Entitlement changes announce themselves (see _setPlusSub); the saved
+      // event re-renders for the registry edit when entitlement is unchanged.
+      window.dispatchEvent(new CustomEvent('plursky-plus-change'));
       window.dispatchEvent(new CustomEvent('plursky-saved-festivals-change'));
       return e.config.name;
     }, plus);
@@ -529,6 +531,110 @@ try {
       `enter guard: a stale primary button cannot walk into a now-gated festival (active=${active})`);
     check(/plursky\+/i.test(await text(page)),
       'enter guard: it offers the upgrade instead of silently doing nothing');
+    await ctx.close();
+  }
+
+  // ── 8c. A restored/lapsed entitlement repaints the landing ───────────────
+  // RevenueCat answers after the first paint. The landing read _isPlusSub()
+  // once, so a restored subscriber stayed locked out until the next launch.
+  // Uses the REAL _setPlusSub — no stub — so the event it fires is the one
+  // production fires.
+  {
+    const { ctx, page } = await open(browser, { init: {
+      active_festival_id: 'edc-lv-2026', active_festival_explicit: '1', plursky_plus_active: '0',
+    }});
+    const name = await page.evaluate(() => {
+      const e = (window.FESTIVALS_REGISTRY || []).find(f => f.config.id === 'acl-2026');
+      if (!e) return null;
+      e.available = false; e.previewOnly = true;
+      window.dispatchEvent(new CustomEvent('plursky-saved-festivals-change'));
+      return e.config.name;
+    });
+    await sleep(400);
+    const label = () => page.evaluate((n) => {
+      const b = [...document.querySelectorAll('button')].find(e => (e.getAttribute('aria-label') || '').startsWith(n + '.'));
+      return b ? b.getAttribute('aria-label') : null;
+    }, name);
+    const before = await label();
+    check(before && /plursky\+/i.test(before), `entitlement: free paint offers Plursky+ (${before})`);
+    await page.evaluate(() => window._setPlusSub(true));
+    await sleep(400);
+    const after = await label();
+    check(after && !/plursky\+/i.test(after), `entitlement: a restored purchase unlocks the row without a relaunch (${after})`);
+    await page.evaluate(() => window._setPlusSub(false));
+    await sleep(400);
+    const lapsed = await label();
+    check(lapsed && /plursky\+/i.test(lapsed), `entitlement: a lapse re-locks it (${lapsed})`);
+    await ctx.close();
+  }
+
+  // ── 8d. A deep link that names nothing openable is not a destination ─────
+  // ?tab=bogus, ?artist=<removed>, ?f=<gated> used to open whichever festival
+  // was active; they must land on General Home like a bare launch.
+  {
+    const probe = await open(browser, { init: { active_festival_id: 'edc-lv-2026', active_festival_explicit: '1' } });
+    const gatedId = await probe.page.evaluate(() => {
+      const e = (window.FESTIVALS_REGISTRY || []).find(f => !f.available && !f.previewOnly);
+      return e ? e.config.id : null;
+    });
+    await probe.ctx.close();
+    check(!!gatedId, `bad links: the fixture found a gated festival (${gatedId})`);
+    for (const qs of ['?tab=bogus', '?artist=an-act-that-was-removed', `?f=${gatedId}`]) {
+      const { ctx, page } = await open(browser, { url: `${BASE}${qs}`, init: {
+        active_festival_id: 'edc-lv-2026', active_festival_explicit: '1',
+      }});
+      check(/browse festivals/i.test(await text(page)), `bad link ${qs}: lands on General Home, not a festival`);
+      await ctx.close();
+    }
+    // Control: a VALID tab link still goes straight in.
+    const { ctx, page } = await open(browser, { url: `${BASE}?tab=lineup`, init: {
+      active_festival_id: 'edc-lv-2026', active_festival_explicit: '1',
+    }});
+    check(!/browse festivals/i.test(await text(page)), 'bad links control: ?tab=lineup still opens the festival');
+    await ctx.close();
+  }
+
+  // ── 8e. Wall = the header's media set; one moment can be deleted ─────────
+  {
+    const lib = JSON.parse(seed('edc-lv-2026', 'n4'));
+    // A second RECORD of x1's media, tagged differently: one photo, two rows.
+    // x1 is the newest capture, so it is the Wall's FIRST tile — the one the
+    // delete below taps — and the delete must take both records.
+    lib['1'].push({ id: 'x1-dup', night: 1, photoId: 'b4', _fingerprint: 'fp_1_x1.jpg', artistId: null, kind: 'photo',
+      takenAt: '2026-05-16T05:50:00.000Z', createdAt: 1779000009000, festivalId: 'edc-lv-2026' });
+    const { ctx, page } = await open(browser, { url: `${BASE}?tab=memories`, init: {
+      active_festival_id: 'edc-lv-2026', active_festival_explicit: '1',
+      plursky_last_festival_id: 'edc-lv-2026', 'edc-lv-2026_saved_v1': JSON.stringify(['n4']),
+      plursky_moments_v1: JSON.stringify(lib), plursky_memories_view_v1: 'grid',
+    }});
+    await sleep(600);
+    const tiles = await page.evaluate(() => (document.querySelector('[data-wall]') || { children: [] }).children.length);
+    check(tiles === 4, `wall: 5 records of 4 media draw 4 tiles, not 5 (got ${tiles})`);
+    await page.evaluate(() => { const b = document.querySelector('[data-wall] button'); if (b) b.click(); });
+    await sleep(500);
+    const clickText = (re) => page.evaluate((src) => {
+      const r = new RegExp(src, 'i');
+      const b = [...document.querySelectorAll('button')].find(e => r.test((e.textContent || '').trim()));
+      if (b) b.click();
+      return !!b;
+    }, re);
+    check(await clickText('^Delete this moment$'), 'delete: the lightbox offers a per-moment delete');
+    await sleep(200);
+    const stillAll = await page.evaluate(() => Object.values(JSON.parse(localStorage.getItem('plursky_moments_v1'))).flat().length);
+    check(stillAll === 5, `delete: one tap does not delete (still ${stillAll} records)`);
+    check(await clickText('^Tap again to delete'), 'delete: the second tap confirms');
+    await sleep(500);
+    const left = await page.evaluate(() => Object.values(JSON.parse(localStorage.getItem('plursky_moments_v1'))).flat());
+    const fps = new Set(left.map(m => m._fingerprint));
+    const before = new Set(lib['1'].map(m => m._fingerprint));
+    const goneFps = [...before].filter(fp => !fps.has(fp));
+    // Exactly one MEDIA is gone, and with it every record of that media — a
+    // surviving duplicate would slide into the deleted tile's slot.
+    check(goneFps.join() === 'fp_1_x1.jpg', `delete: exactly the tapped media is gone (gone: ${goneFps})`);
+    const expectLeft = lib['1'].filter(m => !goneFps.includes(m._fingerprint)).length;
+    check(left.length === expectLeft, `delete: every record of it went too (${left.length} left, expected ${expectLeft})`);
+    const tilesAfter = await page.evaluate(() => (document.querySelector('[data-wall]') || { children: [] }).children.length);
+    check(tilesAfter === 3, `delete: the Wall repaints one tile shorter (got ${tilesAfter})`);
     await ctx.close();
   }
 

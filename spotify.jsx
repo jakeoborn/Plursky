@@ -2683,7 +2683,7 @@ function _FavBadge({ style }) {
   );
 }
 
-function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick, onUpdate, onRecoverNight }) {
+function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick, onUpdate, onRecoverNight, onDelete }) {
   const m = moments[index];
   const photoUrl = useMomentPhoto(m?.photoId);
   const artist = m?.artistId ? ARTISTS.find(a => a.id === m.artistId) : null;
@@ -2698,8 +2698,11 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
   const [sharing, setSharing] = React.useState(false);
   const [retagging, setRetagging] = React.useState(false); // inline "fix the artist" picker
   const [retagQuery, setRetagQuery] = React.useState("");
+  // Two taps, in the page: window.confirm is not reliable in every WebView
+  // this ships in, and a delete that asks nothing is one stray tap from loss.
+  const [confirmDelete, setConfirmDelete] = React.useState(false);
 
-  React.useEffect(() => { setIdState("idle"); setMismatch(null); setRecovery(null); setRetagging(false); setRetagQuery(""); }, [index]);
+  React.useEffect(() => { setIdState("idle"); setMismatch(null); setRecovery(null); setRetagging(false); setRetagQuery(""); setConfirmDelete(false); }, [index]);
 
   // Auto-tag guesses a stage by time (usually the mainstage) and gets the
   // night/stage wrong when there's no GPS. So the fix must search the WHOLE
@@ -2962,6 +2965,23 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
           opacity: sharing ? 0.6 : 1,
         }}>{sharing ? "Preparing…" : "Share this moment"}</button>
+
+        {/* The ONE per-moment delete. Every Library/Wall entry point opens this
+            lightbox, so a delete that lived only on the old per-record card
+            became unreachable once the library stopped rendering that card —
+            Manage offered only whole-night and clear-all. */}
+        {onDelete && (
+          <button onClick={() => {
+            if (!confirmDelete) { setConfirmDelete(true); return; }
+            setConfirmDelete(false);
+            onDelete(m);
+          }} style={{
+            marginTop: 8, minHeight: 44, padding: "0 16px", borderRadius: 14, width: "100%",
+            background: confirmDelete ? "rgba(var(--warn-rgb, 220,38,38),0.16)" : "transparent",
+            color: confirmDelete ? "var(--warn)" : "rgba(var(--ink-rgb),0.7)",
+            border: "none", fontSize: 15, lineHeight: "20px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit",
+          }}>{confirmDelete ? "Tap again to delete from Plursky" : "Delete this moment"}</button>
+        )}
 
         {/* Audio disagrees with the auto-tag → offer the correction */}
         {mismatch && (
@@ -3700,7 +3720,10 @@ function _mediaIdentity(m) {
 // order still decides everything this rule does not.
 function _mediaAttributionRank(m) {
   if (!m) return 0;
-  if (!m.festivalId || m.festivalAttribution === "unresolved") return 1;
+  // A retained stamp under festivalReview is as unsettled as a declared
+  // guess — the landing's _festivalAttributionUnsettled agrees — so it never
+  // outranks the proven copy of the same media.
+  if (!m.festivalId || m.festivalAttribution === "unresolved" || m.festivalReview) return 1;
   return 2;
 }
 
@@ -5385,7 +5408,7 @@ function MemoryGrid({ allMoments, onOpenLightbox }) {
   const stacks = React.useMemo(() => _stackBursts(sorted), [sorted]);
   if (!sorted.length) return null;
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6, marginTop: 4 }}>
+    <div data-wall style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6, marginTop: 4 }}>
       {stacks.map((st) => {
         const hero = (st.items.length > 1 ? _pickHeroMoment(st.items) : st.items[0]) || st.items[0];
         const idx = sorted.indexOf(hero);
@@ -5827,14 +5850,21 @@ function _buildLibraryDay({ moments, attendedSet, artists, toMin, dupsFor }) {
   // One group: dedupe to canonical media, pick the cover, and keep the
   // duplicate RECORDS to one side so they stay reachable without being
   // counted or drawn twice.
+  //
+  // A record with no photoId — a typed note, a Live Set Check-in — has no
+  // media to tile. It used to go into `media` anyway, so _GridTile drew a
+  // permanent skeleton and the note or the check-in's stage + song were lost
+  // from Memories. Those are NOTES: counted as moments, never tiles, never a
+  // cover, never in the lightbox order, and rendered with their own card.
   const shape = (raw) => {
-    const media = _dedupeByMedia(raw || []);
+    const notes = (raw || []).filter(m => m && !m.photoId);
+    const media = _dedupeByMedia((raw || []).filter(m => m && m.photoId));
     const keep = new Set(media.map(m => m.id));
     // Losers dropped inside this group, plus the ones already dropped
     // library-wide against a canonical record that lives in THIS group. Both
     // stay attached to the record that won, which is what keeps them
     // reachable instead of orphaned.
-    const duplicates = (raw || []).filter(m => !keep.has(m.id))
+    const duplicates = (raw || []).filter(m => m && m.photoId && !keep.has(m.id))
       .concat(dupsFor ? media.flatMap(m => dupsFor(m.id) || []) : []);
     const hero = media.length ? _pickHeroMoment(media) : null;
     // The cover is NOT also a row. THE BUG THIS FIXES: _GroupHeroThumb drew
@@ -5843,7 +5873,7 @@ function _buildLibraryDay({ moments, attendedSet, artists, toMin, dupsFor }) {
     const stack = hero ? media.filter(m => m.id !== hero.id) : media;
     // Lightbox order still leads with the cover, so tapping it opens on it.
     const ordered = hero ? [hero, ...stack] : media;
-    return { media, hero, stack, ordered, duplicates, count: media.length };
+    return { media, notes, hero, stack, ordered, duplicates, count: media.length + notes.length };
   };
 
   const sets = spineIds.map(aId => {
@@ -5948,13 +5978,13 @@ function _libraryGroupChrome(group) {
     // contradicts (#216's festivalReview). Neither line may claim the other.
     // Strings are #216's, exactly as merged. Duplicates count toward which
     // facts are present; the singular/plural follows the clips drawn.
-    const all = [...(group.media || []), ...(group.duplicates || [])];
+    const all = [...(group.media || []), ...(group.notes || []), ...(group.duplicates || [])];
     const setOnly = all.every(m => !m.festivalReview);
     const festOnly = all.every(m => m.festivalReview);
     // Retag settles a set tag, never a festival conflict (that is #228's
     // control), so the button offers only the clips a retag can clear, and
     // a group of festival conflicts alone gets no button at all.
-    const retag = (group.media || []).filter(m => !m.festivalReview);
+    const retag = [...(group.media || []), ...(group.notes || [])].filter(m => !m.festivalReview);
     return { eyebrow: "NEEDS REVIEW", eyebrowColor: "var(--warn)", spine: "var(--warn)", retag,
              title: setOnly ? "Set not in this festival"
                : festOnly ? "Outside this festival’s dates"
@@ -5973,16 +6003,19 @@ function _libraryGroupChrome(group) {
   };
 }
 
-function LibraryGroupCard({ group, onOpenLightbox, onArtistClick, onReview, bulkRetag }) {
+function LibraryGroupCard({ group, onOpenLightbox, onArtistClick, onReview, bulkRetag, renderNote }) {
   const chrome = _libraryGroupChrome(group);
   const n = group.count;
+  const notes = group.notes || [];
+  // "clips" only when every counted thing IS a clip; a note is a moment.
+  const unit = notes.length ? (n === 1 ? "moment" : "moments") : (n === 1 ? "clip" : "clips");
   const countLabel = group.kind === "set" && n === 0
     ? "Caught"
-    : `${n} ${n === 1 ? "clip" : "clips"}`;
+    : `${n} ${unit}`;
   const openAt = (i) => onOpenLightbox(group.ordered, i);
   const titleTap = group.kind === "set" && group.artistId
     ? () => onArtistClick(group.artistId)
-    : (n > 0 ? () => openAt(0) : null);
+    : (group.ordered.length > 0 ? () => openAt(0) : null);
   return (
     <div style={{
       marginTop: 10, padding: "10px 12px", borderRadius: 14,
@@ -6019,7 +6052,7 @@ function LibraryGroupCard({ group, onOpenLightbox, onArtistClick, onReview, bulk
         }}>{countLabel}</span>
         {group.hero && (
           <_LibraryCover moment={group.hero} onClick={() => openAt(0)}
-            label={`Open ${chrome.title} — ${n} ${n === 1 ? "clip" : "clips"}`} />
+            label={`Open ${chrome.title} — ${n} ${unit}`} />
         )}
       </div>
 
@@ -6044,6 +6077,14 @@ function LibraryGroupCard({ group, onOpenLightbox, onArtistClick, onReview, bulk
           {group.stack.map((m, i) => (
             <_GridTile key={m.id} moment={m} onClick={() => openAt(i + 1)} />
           ))}
+        </div>
+      )}
+
+      {/* Notes and check-ins keep their own card — text, stage, song, tag
+          and delete — instead of a blank media tile. */}
+      {notes.length > 0 && renderNote && (
+        <div data-library-notes style={{ marginTop: 10 }}>
+          {notes.map(m => <React.Fragment key={m.id}>{renderNote(m)}</React.Fragment>)}
         </div>
       )}
 
@@ -6358,6 +6399,32 @@ function MemoriesScreen({ state, setState }) {
     setTimeout(() => setBatch(b => (b && b.done === b.total ? null : b)), 6000);
   };
 
+  // Deletes one piece of MEDIA: the record the user is looking at and every
+  // duplicate record of the same media. The library shows one tile per media
+  // identity, so deleting only the canonical record would promote a hidden
+  // duplicate into the same slot — or, since duplicates can share one stored
+  // blob, leave it pointing at a photo that was just removed.
+  // Confirmation is the caller's (the lightbox's two-tap button).
+  const deleteMomentMedia = async (moment) => {
+    const key = _mediaIdentity(moment);
+    const cur = _readMoments();
+    const gone = new Set();
+    const blobs = new Set();
+    const next = {};
+    for (const n of Object.keys(cur)) {
+      next[n] = (cur[n] || []).filter(m => {
+        const hit = m && (m.id === moment.id || (key && _mediaIdentity(m) === key));
+        if (hit) { gone.add(m.id); if (m.photoId) blobs.add(m.photoId); }
+        return !hit;
+      });
+    }
+    for (const b of blobs) { try { await _deletePhoto(b); } catch {} }
+    _writeMoments(next);
+    setAll(next);
+    try { window.dispatchEvent(new CustomEvent("plursky-moments-change")); } catch {}
+    return gone;
+  };
+
   const handleDelete = async (moment) => {
     if (!window.confirm("Delete this moment?")) return;
     if (moment.photoId) { try { await _deletePhoto(moment.photoId); } catch {} }
@@ -6610,12 +6677,15 @@ function MemoriesScreen({ state, setState }) {
   const dupsFor = React.useCallback(
     (id) => library.dupsByCanonical.get(id) || [], [library]);
   const totalCount = library.unique;
+  const wallMoments = React.useMemo(
+    () => Object.values(library.byNight).flatMap(arr => Array.isArray(arr) ? arr.filter(Boolean) : []),
+    [library]);
   // Records this festival holds on a DECLARED GUESS (#213). They are drawn —
   // evicting them would be a second data-loss bug — but they are not counted
   // as things we know, and the header says how many are unconfirmed so the
   // two numbers add up to what is on screen.
   const unconfirmedCount = React.useMemo(() => Object.values(library.byNight)
-    .reduce((n, arr) => n + (Array.isArray(arr) ? arr.filter(m => m && m.festivalAttribution === "unresolved").length : 0), 0), [library]);
+    .reduce((n, arr) => n + (Array.isArray(arr) ? arr.filter(m => m && (m.festivalAttribution === "unresolved" || m.festivalReview)).length : 0), 0), [library]);
   const confirmedCount = Math.max(0, totalCount - unconfirmedCount);
   // Attended sets are library records too. The old empty state counted only
   // media, so "NO MOMENTS YET" could contradict the set cards below it.
@@ -6824,6 +6894,15 @@ function MemoriesScreen({ state, setState }) {
           onIndexChange={(i) => setLightbox(lb => ({ ...lb, index: i }))}
           onArtistClick={(id) => setState(s => ({ ...s, artist: id }))}
           onRecoverNight={handleRecoverNight}
+          onDelete={async (mom) => {
+            const gone = await deleteMomentMedia(mom);
+            setLightbox(lb => {
+              if (!lb) return lb;
+              const rest = lb.moments.filter(mm => !gone.has(mm.id));
+              if (!rest.length) return null;
+              return { ...lb, moments: rest, index: Math.min(lb.index, rest.length - 1) };
+            });
+          }}
           onUpdate={(mom, patch) => {
             handleUpdate(mom, patch);
             // Reflect the patch in the open lightbox immediately
@@ -7154,9 +7233,14 @@ function MemoriesScreen({ state, setState }) {
           />
           <MemoryGrid
             allMoments={(() => {
+              // The SAME canonical media set the header counts (library.byNight
+              // holds one winning record per media identity). Raw records made
+              // the Wall draw six tiles under a "5 MOMENTS" header, and label
+              // two copies of one photo as a burst.
+              const canon = wallMoments;
               const q = memQuery.trim().toLowerCase();
-              if (!q) return allMoments;
-              return allMoments.filter(m => {
+              if (!q) return canon;
+              return canon.filter(m => {
                 const a = m.artistId ? ARTISTS.find(x => x.id === m.artistId) : null;
                 const s = a ? STAGES.find(st => st.id === a.stage) : null;
                 return (a?.name || "").toLowerCase().includes(q)
@@ -7197,17 +7281,21 @@ function MemoriesScreen({ state, setState }) {
                     {FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name} recap
                   </div>
                   <div style={{ fontSize: 13, lineHeight: 1.38, color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
-                    {mediaCount} {mediaCount === 1 ? "moment" : "moments"} · auto-play reel
+                    {mediaCount > 0
+                      ? `${mediaCount} ${mediaCount === 1 ? "moment" : "moments"} · auto-play reel`
+                      : "Archived recap · its photos and clips are no longer on this device"}
                   </div>
                 </div>
-                <button onClick={() => {
+                {/* Play only when there is something to play: with the media
+                    cleared, the reel got [] and the button did nothing. */}
+                {mediaCount > 0 && <button onClick={() => {
                   const ms = _dedupeByMedia(allMoments.filter(m => m.photoId)).slice()
                     .sort((a, b) => _momentTime(a) - _momentTime(b));
                   playReel(ms, FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name, null);
                 }} style={{
                   flexShrink: 0, minHeight: 44, padding: "0 16px", borderRadius: 14, border: "none", cursor: "pointer",
                   background: "var(--signal)", color: "var(--on-signal)", fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit",
-                }}>▶ Play</button>
+                }}>▶ Play</button>}
               </div>
               <button onClick={() => setState(s => ({ ...s, tab: "recap", artist: null }))} style={{
                 width: "100%", marginTop: 8, minHeight: 44, padding: "0 14px", borderRadius: 14,
@@ -7320,6 +7408,12 @@ function MemoriesScreen({ state, setState }) {
                         onOpenLightbox={openLightbox}
                         onArtistClick={(id) => setState(s => ({ ...s, artist: id }))}
                         onReview={(ms) => setReview(ms.map(m => ({ momentId: m.id })))}
+                        renderNote={(m) => (
+                          <MomentCard moment={m} idx={0} total={1} groupMoments={[m]}
+                            onOpenLightbox={openLightbox} onDelete={handleDelete} onUpdate={handleUpdate}
+                            savedArtistIds={state.saved || []}
+                            onArtistClick={(id) => setState(s => ({ ...s, artist: id }))} />
+                        )}
                         bulkRetag={g.kind === "between" && g.count >= 3 && savedNightArtists.length > 0
                           ? <BulkRetagRow moments={g.media} savedNightArtists={savedNightArtists} onUpdate={handleUpdate} />
                           : null}
@@ -9541,7 +9635,18 @@ async function _restorePurchases() {
 }
 
 function _isPlusSub() { try { return localStorage.getItem(PLUS_KEY) === "1"; } catch { return false; } }
-function _setPlusSub(v) { try { localStorage.setItem(PLUS_KEY, v ? "1" : "0"); } catch {} }
+// Entitlement is REACTIVE: RevenueCat usually answers after the first paint
+// (and a restore or a lapse can land at any time), so a screen that read
+// _isPlusSub() once kept showing the old answer — a restored subscriber saw
+// early access locked until the next launch. Announce every real change;
+// screens that gate on Plus subscribe to "plursky-plus-change".
+function _setPlusSub(v) {
+  let prev = null;
+  try { prev = localStorage.getItem(PLUS_KEY); localStorage.setItem(PLUS_KEY, v ? "1" : "0"); } catch {}
+  if (prev !== (v ? "1" : "0")) {
+    try { window.dispatchEvent(new CustomEvent("plursky-plus-change", { detail: { active: !!v } })); } catch {}
+  }
+}
 
 // Initialize RevenueCat on first load (non-blocking)
 try { _initRevenueCat(); } catch {}

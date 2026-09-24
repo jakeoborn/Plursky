@@ -108,8 +108,16 @@ function landingShouldOpenGeneral(params) {
 // guesses padded a named festival's count (a claim) and, because they do
 // carry an id, they also fell out of the unattributed list (the one place
 // that offers to fix them). So they were both over-claimed and unreachable.
+//
+// A retained stamp that _reconcileFestivalStamps flagged `festivalReview`
+// (capture time contradicts the stamp, and the stamp could not safely be
+// rewritten) is the same kind of open question: Memories files it under Needs
+// Review, so the landing must not count it as proof on the named card.
+function _festivalAttributionUnsettled(m) {
+  return !!m && (m.festivalAttribution === "unresolved" || !!m.festivalReview);
+}
 function _isProvenFestivalMoment(m, festivalId) {
-  return !!m && m.festivalId === festivalId && m.festivalAttribution !== "unresolved";
+  return !!m && m.festivalId === festivalId && !_festivalAttributionUnsettled(m);
 }
 function momentsForFestival(all, festivalId, opts) {
   const out = [];
@@ -144,7 +152,7 @@ function _provenMediaIdentities(all) {
     const arr = all[night];
     if (!Array.isArray(arr)) continue;
     for (const m of arr) {
-      if (!m || !m.festivalId || m.festivalAttribution === "unresolved") continue;
+      if (!m || !m.festivalId || _festivalAttributionUnsettled(m)) continue;
       const key = id(m);
       if (key) proven.add(key);
     }
@@ -161,7 +169,7 @@ function unattributedMoments(all) {
     const arr = all[night];
     if (!Array.isArray(arr)) continue;
     for (const m of arr) {
-      if (!m || (m.festivalId && m.festivalAttribution !== "unresolved")) continue;
+      if (!m || (m.festivalId && !_festivalAttributionUnsettled(m))) continue;
       const key = id(m);
       if (key && proven.has(key)) continue;
       out.push(m);
@@ -182,7 +190,7 @@ function festivalMemoryCount(festivalId, all) {
   const src = all || (typeof _readMoments === "function" ? _readMoments() : {});
   const mine = momentsForFestival(src, festivalId, { includeUnresolved: true });
   const unique = (typeof _dedupeByMedia === "function" ? _dedupeByMedia(mine) : mine);
-  return unique.filter(m => m.festivalAttribution !== "unresolved").length;
+  return unique.filter(m => !_festivalAttributionUnsettled(m)).length;
 }
 
 // ── Per-festival view state ────────────────────────────────────────────────
@@ -322,7 +330,19 @@ function GeneralLandingScreen({ state, setState }) {
   // Same offer sheet and the same feature string the FestivalSwitcher uses,
   // so early access is sold in one voice from both doors.
   const [plusOpen, setPlusOpen] = React.useState(false);
-  const plus = !!window._isPlusSub?.();
+  // Held in state and refreshed on "plursky-plus-change" (see _setPlusSub):
+  // a render-time snapshot kept a restored subscriber locked out until the
+  // next launch, and kept a lapsed one walking in.
+  const [plus, setPlus] = React.useState(() => !!window._isPlusSub?.());
+  React.useEffect(() => {
+    const refresh = () => setPlus(!!window._isPlusSub?.());
+    window.addEventListener("plursky-plus-change", refresh);
+    window.addEventListener("storage", refresh);
+    return () => {
+      window.removeEventListener("plursky-plus-change", refresh);
+      window.removeEventListener("storage", refresh);
+    };
+  }, []);
   const [moments, setMoments] = React.useState(() => {
     try { return typeof _readMoments === "function" ? _readMoments() : {}; } catch { return {}; }
   });
@@ -370,7 +390,8 @@ function GeneralLandingScreen({ state, setState }) {
   const enterFestival = React.useCallback((id) => {
     const entry = (typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : [])
       .find(f => f && f.config && f.config.id === id);
-    if (entry && !landingCanEnter(entry, Date.now(), plus)) {
+    // Entitlement is re-read at ACTION time, not taken from the paint.
+    if (entry && !landingCanEnter(entry, Date.now(), !!window._isPlusSub?.())) {
       if (entry.previewOnly) setPlusOpen(true);
       return;
     }
@@ -382,7 +403,33 @@ function GeneralLandingScreen({ state, setState }) {
       return;
     }
     setState(s => ({ ...s, tab: "home", artist: null }));
-  }, [activeId, setState, plus]);
+  }, [activeId, setState]);
+
+  // "Review" must open where the counted records ARE. Memories is scoped to
+  // the active festival, so opening the active one hid every unsettled record
+  // parked under another festival. Go to the festival holding the most of
+  // them (never-stamped records are only visible from the active festival,
+  // so they vote for it), on its Memories tab.
+  const openUnsettled = React.useCallback(() => {
+    const tally = new Map();
+    for (const m of unattributedMoments(moments)) {
+      const id = m.festivalId || activeId;
+      if (id) tally.set(id, (tally.get(id) || 0) + 1);
+    }
+    let target = activeId, best = -1;
+    for (const [id, n] of tally) if (n > best) { best = n; target = id; }
+    const entry = (typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : [])
+      .find(f => f && f.config && f.config.id === target);
+    const canGo = entry && typeof festivalCanBeActive === "function" && festivalCanBeActive(entry);
+    if (target && target !== activeId && canGo && typeof setActiveFestivalAndReload === "function") {
+      // ?tab=memories is a validated deep link, so the boot after the reload
+      // lands on Memories inside that festival instead of General Home.
+      try { history.replaceState(null, "", window.location.pathname + "?tab=memories"); } catch {}
+      setActiveFestivalAndReload(target);
+      return;
+    }
+    setState(s => ({ ...s, tab: "memories", artist: null }));
+  }, [moments, activeId, setState]);
 
   const saved = ordered.filter(f => savedIds.includes(f.config.id));
   const term = q.trim().toLowerCase();
@@ -470,7 +517,7 @@ function GeneralLandingScreen({ state, setState }) {
             app admitting it does not know. */}
         {orphanCount > 0 && (
           <button
-            onClick={() => setState(s => ({ ...s, tab: "memories", artist: null }))}
+            onClick={openUnsettled}
             style={{
               width: "100%", marginTop: 12, minHeight: 44, padding: "10px 14px",
               display: "block", textAlign: "left", borderRadius: 14, cursor: "pointer",

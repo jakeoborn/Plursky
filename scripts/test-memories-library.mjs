@@ -276,6 +276,7 @@ const reached = [];
 for (const g of day.groups) {
   for (const m of g.ordered) reached.push(m.id);
   for (const m of g.duplicates) reached.push(m.id);
+  for (const m of (g.notes || [])) reached.push(m.id);
 }
 const uniqueReached = new Set(reached);
 check(reached.length === uniqueReached.size,
@@ -286,6 +287,35 @@ check(uniqueReached.size === records.length,
 const renderedUnique = day.groups.reduce((n, g) => n + g.count, 0);
 check(renderedUnique === day.counts.moments,
   `reachability: header total === sum of rendered group totals (${day.counts.moments} vs ${renderedUnique})`);
+
+// ── 4b. Notes and check-ins are not media tiles ────────────────────────────
+// A typed note or a Live Set Check-in has no photoId. It went into `media`,
+// so _GridTile drew a permanent skeleton and the text / stage + song were
+// lost. It is a NOTE: counted as a moment, rendered by its own card, never a
+// tile, never the cover, never in the lightbox order.
+{
+  const withNotes = [
+    ...records,
+    { id: "ci-1", kind: "checkin", text: "", artistId: A2.id, takenAt: at(200), stageId: A2.stage },
+    { id: "note-1", kind: "text", text: "lost my voice", artistId: null, takenAt: at(250) },
+  ];
+  const dN = S._buildLibraryDay({ moments: withNotes, attendedSet: attended, artists: S.ARTISTS, toMin });
+  const tiled = dN.groups.flatMap(g => [...g.media, ...g.stack, ...g.ordered, ...(g.hero ? [g.hero] : [])]);
+  check(!tiled.some(m => !m.photoId),
+    `notes: no record without media is tiled, covered or put in the lightbox (${tiled.filter(m => !m.photoId).map(m => m.id)})`);
+  const a2 = dN.sets.find(g => g.artistId === A2.id);
+  check(a2 && (a2.notes || []).map(m => m.id).join(",") === "ci-1",
+    `notes: the check-in is a note on its set's card (got ${a2 && (a2.notes || []).map(m => m.id)})`);
+  check(a2 && a2.attendedOnly === false && a2.count === 1,
+    "notes: a set with a check-in is not an empty 'caught' card");
+  check((dN.between.notes || []).some(m => m.id === "note-1"),
+    "notes: a loose text note stays in Between Sets as a note");
+  check(dN.counts.moments === 7,
+    `notes: the header counts notes as moments (expected 7, got ${dN.counts.moments})`);
+  const reachN = new Set(dN.groups.flatMap(g => [...g.ordered, ...g.duplicates, ...(g.notes || [])].map(m => m.id)));
+  check(reachN.size === withNotes.length,
+    `notes: every record is still reachable (expected ${withNotes.length}, got ${reachN.size})`);
+}
 
 // ── 5. Filters ─────────────────────────────────────────────────────────────
 check(Array.isArray(S._LIBRARY_FILTERS) && S._LIBRARY_FILTERS.join(",") === "all,clips,sets,recaps",

@@ -65,8 +65,11 @@ function landingShouldOpenGeneral(params) {
   var named = get("f") || get("festival") || get("artist") || get("stage") || get("tab") || get("lineup") || get("crew") || get("day");
   return !named;
 }
+function _festivalAttributionUnsettled(m) {
+  return !!m && (m.festivalAttribution === "unresolved" || !!m.festivalReview);
+}
 function _isProvenFestivalMoment(m, festivalId) {
-  return !!m && m.festivalId === festivalId && m.festivalAttribution !== "unresolved";
+  return !!m && m.festivalId === festivalId && !_festivalAttributionUnsettled(m);
 }
 function momentsForFestival(all, festivalId, opts) {
   var out = [];
@@ -89,7 +92,7 @@ function _provenMediaIdentities(all) {
     var arr = all[night];
     if (!Array.isArray(arr)) continue;
     for (var m of arr) {
-      if (!m || !m.festivalId || m.festivalAttribution === "unresolved") continue;
+      if (!m || !m.festivalId || _festivalAttributionUnsettled(m)) continue;
       var key = id(m);
       if (key) proven.add(key);
     }
@@ -104,7 +107,7 @@ function unattributedMoments(all) {
     var arr = all[night];
     if (!Array.isArray(arr)) continue;
     for (var m of arr) {
-      if (!m || m.festivalId && m.festivalAttribution !== "unresolved") continue;
+      if (!m || m.festivalId && !_festivalAttributionUnsettled(m)) continue;
       var key = id(m);
       if (key && proven.has(key)) continue;
       out.push(m);
@@ -118,7 +121,7 @@ function festivalMemoryCount(festivalId, all) {
     includeUnresolved: true
   });
   var unique = typeof _dedupeByMedia === "function" ? _dedupeByMedia(mine) : mine;
-  return unique.filter(m => m.festivalAttribution !== "unresolved").length;
+  return unique.filter(m => !_festivalAttributionUnsettled(m)).length;
 }
 var _FEST_VIEW_KEY = "plursky_festival_view_v1";
 function readFestivalView(festivalId) {
@@ -301,7 +304,16 @@ function GeneralLandingScreen({
   var [savedIds, setSavedIds] = React.useState(readSavedFestivals);
   var [q, setQ] = React.useState("");
   var [plusOpen, setPlusOpen] = React.useState(false);
-  var plus = !!window._isPlusSub?.();
+  var [plus, setPlus] = React.useState(() => !!window._isPlusSub?.());
+  React.useEffect(() => {
+    var refresh = () => setPlus(!!window._isPlusSub?.());
+    window.addEventListener("plursky-plus-change", refresh);
+    window.addEventListener("storage", refresh);
+    return () => {
+      window.removeEventListener("plursky-plus-change", refresh);
+      window.removeEventListener("storage", refresh);
+    };
+  }, []);
   var [moments, setMoments] = React.useState(() => {
     try {
       return typeof _readMoments === "function" ? _readMoments() : {};
@@ -342,7 +354,7 @@ function GeneralLandingScreen({
   }, [moments]);
   var enterFestival = React.useCallback(id => {
     var entry = (typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : []).find(f => f && f.config && f.config.id === id);
-    if (entry && !landingCanEnter(entry, Date.now(), plus)) {
+    if (entry && !landingCanEnter(entry, Date.now(), !!window._isPlusSub?.())) {
       if (entry.previewOnly) setPlusOpen(true);
       return;
     }
@@ -358,7 +370,34 @@ function GeneralLandingScreen({
       tab: "home",
       artist: null
     }));
-  }, [activeId, setState, plus]);
+  }, [activeId, setState]);
+  var openUnsettled = React.useCallback(() => {
+    var tally = new Map();
+    for (var m of unattributedMoments(moments)) {
+      var id = m.festivalId || activeId;
+      if (id) tally.set(id, (tally.get(id) || 0) + 1);
+    }
+    var target = activeId,
+      best = -1;
+    for (var [_id, n] of tally) if (n > best) {
+      best = n;
+      target = _id;
+    }
+    var entry = (typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : []).find(f => f && f.config && f.config.id === target);
+    var canGo = entry && typeof festivalCanBeActive === "function" && festivalCanBeActive(entry);
+    if (target && target !== activeId && canGo && typeof setActiveFestivalAndReload === "function") {
+      try {
+        history.replaceState(null, "", window.location.pathname + "?tab=memories");
+      } catch {}
+      setActiveFestivalAndReload(target);
+      return;
+    }
+    setState(s => ({
+      ...s,
+      tab: "memories",
+      artist: null
+    }));
+  }, [moments, activeId, setState]);
   var saved = ordered.filter(f => savedIds.includes(f.config.id));
   var term = q.trim().toLowerCase();
   var matches = f => !term || `${f.config.name} ${f.config.location || ""}`.toLowerCase().includes(term);
@@ -472,11 +511,7 @@ function GeneralLandingScreen({
       color: "var(--text-2)"
     }
   }, "Open a festival and tap Save to keep it here."), orphanCount > 0 && React.createElement("button", {
-    onClick: () => setState(s => ({
-      ...s,
-      tab: "memories",
-      artist: null
-    })),
+    onClick: openUnsettled,
     style: {
       width: "100%",
       marginTop: 12,

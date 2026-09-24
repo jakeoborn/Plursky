@@ -626,9 +626,16 @@ function App() {
     // runs — so anything that CONSUMES one-shot state has to skip itself here
     // or the reload arrives to find it already spent.
     let switchingFestival = false;
+    // Whether ?f= named a festival this load can actually show. A gated or
+    // unknown id is not a destination: it must not route to the PREVIOUS
+    // festival's Home, which is what counting the raw param did.
+    let dlFestOk = false;
     if (dlFest && typeof FESTIVALS_REGISTRY !== "undefined") {
       const fEntry = FESTIVALS_REGISTRY.find(f => f.config.id === dlFest);
-      const canSwitch = !!fEntry && (fEntry.available || (fEntry.previewOnly && window._isPlusSub?.()));
+      // The resolver's own predicate: a switch it would throw away on reload
+      // is exactly the "lands on an unrelated festival" bug.
+      const canSwitch = !!fEntry && festivalCanBeActive(fEntry);
+      dlFestOk = canSwitch;
       if (canSwitch && dlFest !== FESTIVAL_CONFIG.id) {
         try {
           const u = new URL(window.location.href);
@@ -711,8 +718,20 @@ function App() {
       // and the boot after the reload saw a bare URL and no sentinel.
       if (enteredFromLanding && !switchingFestival) sessionStorage.removeItem("plursky_landing_entered");
     } catch {}
+    // Decided on the VALIDATED values, never the raw ones: a stale share link
+    // (?artist=removed-id, ?tab=bogus, ?f=<gated>) names nothing this load
+    // can open, and treating it as a destination silently opened whichever
+    // festival happened to be active instead of the chooser.
+    const validParams = new URLSearchParams();
+    if (dlFestOk)              validParams.set("f", dlFest);
+    if (validArtist)           validParams.set("artist", validArtist);
+    if (validTab)              validParams.set("tab", validTab);
+    if (validStage)            validParams.set("stage", validStage);
+    if (validDay)              validParams.set("day", String(validDay));
+    if (validFriendIds.length) validParams.set("lineup", validFriendIds.join(","));
+    if (validCrew)             validParams.set("crew", validCrew);
     const deepLinked = typeof landingShouldOpenGeneral === "function"
-      ? !landingShouldOpenGeneral(params)
+      ? !landingShouldOpenGeneral(validParams)
       : true;
     const bootTab = (validStage ? "lineup" : validTab) || (validCrew ? "me" : null);
     return {
@@ -896,7 +915,10 @@ function App() {
         />
       )}
       {personalizeOpen && <PersonalizeSheet state={state} onClose={() => setPersonalizeOpen(false)} />}
-      {window.NowPlayingBar && React.createElement(window.NowPlayingBar)}
+      {/* Festival-scoped like the status strip and tab bar: it reads the ACTIVE
+          festival and starts its geolocation flow, so General Home, which is
+          before any festival is chosen, never mounts it. */}
+      {state.tab !== "landing" && window.NowPlayingBar && React.createElement(window.NowPlayingBar)}
       <BatterySaverToast />
     </IOSDevice>
   );
@@ -980,7 +1002,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v353",
+        version: "v355",
       }));
     } catch {}
   }
@@ -1013,7 +1035,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(var(--shade-rgb),0.45)" }}>
-          PLURSKY · v353
+          PLURSKY · v355
         </div>
       </div>
     );

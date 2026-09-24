@@ -1621,7 +1621,7 @@ function FestivalSwitcher({
       setActiveFestivalAndReload(id);
       return;
     }
-    if (entry.previewOnly && window._isPlusSub?.()) {
+    if (entry.previewOnly && festivalCanBeActive(entry)) {
       setActiveFestivalAndReload(id);
       return;
     }

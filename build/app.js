@@ -1103,9 +1103,11 @@ function App() {
     var params = new URLSearchParams(rawSearch);
     var dlFest = params.get("f") || params.get("festival");
     var switchingFestival = false;
+    var dlFestOk = false;
     if (dlFest && typeof FESTIVALS_REGISTRY !== "undefined") {
       var fEntry = FESTIVALS_REGISTRY.find(f => f.config.id === dlFest);
-      var canSwitch = !!fEntry && (fEntry.available || fEntry.previewOnly && window._isPlusSub?.());
+      var canSwitch = !!fEntry && festivalCanBeActive(fEntry);
+      dlFestOk = canSwitch;
       if (canSwitch && dlFest !== FESTIVAL_CONFIG.id) {
         try {
           var u = new URL(window.location.href);
@@ -1164,7 +1166,15 @@ function App() {
       enteredFromLanding = sessionStorage.getItem("plursky_landing_entered");
       if (enteredFromLanding && !switchingFestival) sessionStorage.removeItem("plursky_landing_entered");
     } catch {}
-    var deepLinked = typeof landingShouldOpenGeneral === "function" ? !landingShouldOpenGeneral(params) : true;
+    var validParams = new URLSearchParams();
+    if (dlFestOk) validParams.set("f", dlFest);
+    if (validArtist) validParams.set("artist", validArtist);
+    if (validTab) validParams.set("tab", validTab);
+    if (validStage) validParams.set("stage", validStage);
+    if (validDay) validParams.set("day", String(validDay));
+    if (validFriendIds.length) validParams.set("lineup", validFriendIds.join(","));
+    if (validCrew) validParams.set("crew", validCrew);
+    var deepLinked = typeof landingShouldOpenGeneral === "function" ? !landingShouldOpenGeneral(validParams) : true;
     var bootTab = (validStage ? "lineup" : validTab) || (validCrew ? "me" : null);
     return {
       tab: bootTab || (deepLinked || enteredFromLanding ? "home" : "landing"),
@@ -1376,7 +1386,7 @@ function App() {
   }), personalizeOpen && React.createElement(PersonalizeSheet, {
     state: state,
     onClose: () => setPersonalizeOpen(false)
-  }), window.NowPlayingBar && React.createElement(window.NowPlayingBar), React.createElement(BatterySaverToast, null));
+  }), state.tab !== "landing" && window.NowPlayingBar && React.createElement(window.NowPlayingBar), React.createElement(BatterySaverToast, null));
 }
 var styleTag = document.createElement("style");
 styleTag.textContent = `
@@ -1468,7 +1478,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v353"
+        version: "v355"
       }));
     } catch {}
   }
@@ -1533,7 +1543,7 @@ class RootErrorBoundary extends React.Component {
         letterSpacing: 1.2,
         color: "rgba(var(--shade-rgb),0.45)"
       }
-    }, "PLURSKY · v353"));
+    }, "PLURSKY · v355"));
   }
 }
 function SetStartingCinematic() {

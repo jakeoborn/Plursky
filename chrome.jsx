@@ -1286,7 +1286,7 @@ function FestivalSwitcher({ onClose }) {
   const onPick = (id, entry) => {
     if (id === activeId) { onClose(); return; }
     if (entry.available) { setActiveFestivalAndReload(id); return; }
-    if (entry.previewOnly && window._isPlusSub?.()) { setActiveFestivalAndReload(id); return; }
+    if (entry.previewOnly && festivalCanBeActive(entry)) { setActiveFestivalAndReload(id); return; }
     // A locked early-access row sells the offer instead of closing on the
     // user (#115). Only previewOnly rows are enabled, so this is the one path.
     if (entry.previewOnly) { setPlusOpen(true); return; }

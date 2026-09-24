@@ -54,7 +54,8 @@ const S = vm.runInContext(
       readFestivalView, writeFestivalView, _landingFestivalState,
       _dedupeLibrary, _dedupeByMedia, _landingPrimary, landingCanEnter,
       _sortFestivalsForSwitcher, _festivalPhase,
-      FESTIVALS_REGISTRY, FESTIVAL_CONFIG, _DATA_SETS })`, ctx);
+      FESTIVALS_REGISTRY, FESTIVAL_CONFIG, _DATA_SETS,
+      getActiveFestivalId, festivalCanBeActive, _setPlusSub })`, ctx);
 
 let checks = 0, failed = 0;
 function check(ok, msg) { checks++; if (!ok) { failed++; console.log(`  ✗  ${msg}`); } }
@@ -274,6 +275,72 @@ check(S.festivalMemoryCount(activeId, guessOnly) === 0,
   "order control: an unsupported guess still counts zero on the card");
 check(S.unattributedMoments(guessOnly).map(m => m.id).join(",") === "x1",
   "order control: an unsupported guess still gets its review row");
+
+// ── 4c2. A retained stamp under festivalReview is not proof ──────────────
+// _reconcileFestivalStamps keeps a stamp its capture time contradicts and
+// flags it festivalReview WITHOUT marking it unresolved. Memories files it
+// under Needs Review; the landing card counted it as proven and left it out
+// of the unconfirmed row. Both orders against a proven duplicate, plus the
+// lone-flag control.
+{
+  const lone = { 1: [
+    { id: "r1", photoId: "rp1", _fingerprint: "fp_review_lone.jpg", festivalId: activeId, festivalReview: { reason: "outside-window" } },
+  ] };
+  check(S.festivalMemoryCount(activeId, lone) === 0,
+    `review stamp: a festivalReview record is not counted as proven (got ${S.festivalMemoryCount(activeId, lone)})`);
+  check(S.unattributedMoments(lone).map(m => m.id).join(",") === "r1",
+    "review stamp: it is counted in the landing's not-confirmed row instead");
+  const proven = { id: "p1", photoId: "pp1", _fingerprint: "fp_review_pair.jpg", festivalId: activeId };
+  const flagged = { id: "f1", photoId: "pp1", _fingerprint: "fp_review_pair.jpg", festivalId: activeId, festivalReview: { reason: "outside-window" } };
+  for (const [name, arr] of [["proven first", [proven, flagged]], ["flagged first", [flagged, proven]]]) {
+    const lib = { 1: arr };
+    check(S.festivalMemoryCount(activeId, lib) === 1,
+      `review stamp (${name}): the proven copy still counts once (got ${S.festivalMemoryCount(activeId, lib)})`);
+    check(S.unattributedMoments(lib).length === 0,
+      `review stamp (${name}): media a proven record settles is not an open question`);
+  }
+}
+
+// ── 4c3. The resolver accepts what the doors allow ────────────────────────
+// Every door (switcher, landing, ?f=) lets a Plus subscriber pick an
+// early-access festival; the resolver took `available` only, so the reload
+// threw the pick away and opened the previous festival's Home.
+{
+  const target = registry.find(f => f.available && f.config.id !== activeId && S._DATA_SETS[f.config.id]);
+  check(!!target, "resolver: fixture found a second festival with a data set");
+  if (target) {
+    const was = { available: target.available, previewOnly: target.previewOnly };
+    target.available = false; target.previewOnly = true;
+    store["active_festival_id"] = target.config.id;
+    store["active_festival_explicit"] = "1";
+    store["plursky_plus_active"] = "1";
+    check(S.getActiveFestivalId() === target.config.id,
+      `resolver (Plus): an early-access pick survives the reload (got ${S.getActiveFestivalId()})`);
+    store["plursky_plus_active"] = "0";
+    check(S.getActiveFestivalId() !== target.config.id,
+      `resolver (free): an early-access pick is refused without Plus (got ${S.getActiveFestivalId()})`);
+    store["plursky_plus_active"] = "1";
+    const ghost = { available: false, previewOnly: true, config: { id: "preview-with-no-data-set" } };
+    check(S.festivalCanBeActive(ghost) === false,
+      "resolver: an id with no data set can never be active (it would render EDC)");
+    Object.assign(target, was);
+    check(S.getActiveFestivalId() === target.config.id,
+      "resolver control: an open festival resolves for everyone");
+    delete store["active_festival_id"]; delete store["active_festival_explicit"]; delete store["plursky_plus_active"];
+  }
+}
+
+// ── 4c4. Entitlement changes are announced ────────────────────────────────
+{
+  const seen = [];
+  const prevDispatch = ctx.dispatchEvent;
+  ctx.dispatchEvent = (e) => { seen.push(e.type); };
+  S._setPlusSub(true); S._setPlusSub(true); S._setPlusSub(false);
+  ctx.dispatchEvent = prevDispatch;
+  const n = seen.filter(t => t === "plursky-plus-change").length;
+  check(n === 2, `entitlement: grant and revoke each announce once, a no-op does not (got ${n})`);
+  delete store["plursky_plus_active"];
+}
 
 // ── 4d. Early access: a Plus subscriber walks in, everyone else gets asked ─
 // FestivalSwitcher has always had three answers here. The landing shipped
