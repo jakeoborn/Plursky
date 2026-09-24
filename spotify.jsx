@@ -8436,6 +8436,7 @@ function _iapMsg(e) {
 }
 
 let _rcInitialized = false;
+let _rcAppUserId = null;
 async function _initRevenueCat() {
   if (_rcInitialized || !RC_API_KEY) return;
   if (!window.Capacitor?.isNativePlatform?.()) return;
@@ -8443,6 +8444,7 @@ async function _initRevenueCat() {
     const Purchases = _rcPlugin();
     await _withTimeout(Purchases.configure({ apiKey: RC_API_KEY }), 12000, "RevenueCat configure");
     _rcInitialized = true;
+    try { _rcAppUserId = (await _withTimeout(Purchases.getAppUserID(), 5000, "RevenueCat getAppUserID"))?.appUserID || null; } catch {}
     const { customerInfo } = await _withTimeout(Purchases.getCustomerInfo(), 12000, "RevenueCat getCustomerInfo");
     _syncEntitlements(customerInfo);
     // CustomerInfoUpdateListener = (customerInfo: CustomerInfo) => void — the
@@ -8480,7 +8482,9 @@ function _iapAvailable() {
   return !!window.Capacitor?.isNativePlatform?.() || _iapDevHost();
 }
 
-async function _purchasePlus(productId) {
+// `offeringId` names a non-current offering to buy from (the Season Pass
+// rescue lives in its own "season_rescue" offering, never in `current`).
+async function _purchasePlus(productId, { offeringId } = {}) {
   if (!window.Capacitor?.isNativePlatform?.()) {
     if (!_iapDevHost()) {
       console.warn("[plursky-iap] purchase blocked — web build has no StoreKit");
@@ -8501,7 +8505,8 @@ async function _purchasePlus(productId) {
     // version difference, just wrong, and invisible until App Review hit it
     // (the Paid Apps agreement is verified ACTIVE as of 2026-09-07).
     const offerings = await _withTimeout(Purchases.getOfferings(), 15000, "StoreKit offerings lookup");
-    const pkg = offerings?.current?.availablePackages?.find(p =>
+    const offering = offeringId ? offerings?.all?.[offeringId] : offerings?.current;
+    const pkg = offering?.availablePackages?.find(p =>
       p.product?.identifier === productId
     );
     if (!pkg) {
@@ -8517,7 +8522,7 @@ async function _purchasePlus(productId) {
     _syncEntitlements(customerInfo);
     return { success: !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT] };
   } catch (e) {
-    if (e?.code === "1" || e?.message?.includes("cancelled")) {
+    if (e?.userCancelled === true || e?.code === "1" || e?.message?.includes("cancelled")) {
       return { success: false, cancelled: true };
     }
     console.error("[plursky-iap] purchase error:", _iapMsg(e));
@@ -8599,6 +8604,102 @@ async function _restorePurchases() {
     console.error("[plursky-iap] restore error:", _iapMsg(e));
     return { success: false, error: _iapMsg(e) };
   }
+}
+
+// ── Season Pass rescue (ops ruling 2026-09-23) ────────────────
+// One inline card offering the Season Pass as a separate $9.99 App Store
+// product, shown on the SECOND native paywall view or right after the user
+// cancels Apple's sheet for the full-price Season Pass. Never on an error, a
+// timeout, a failed lookup, offline, a monthly cancel or the web: a failure
+// stays a failure, so breaking checkout never earns a discount.
+//
+// Fail-closed at every layer. The card renders only when RevenueCat returns
+// the "season_rescue" offering, its dashboard metadata sets
+// `rescue_enabled: true` (the remote switch: absent or anything else = off),
+// and StoreKit returns the promo product with a localized priceString. The
+// price on screen and on the button is that string, never a literal. Apple
+// presents and charges the real promo product; Plus unlocks only when
+// CustomerInfo shows the `plus` entitlement, like every other purchase.
+const RESCUE_PRODUCT_ID = "plursky_season_pass_2026_promo";
+const RESCUE_OFFERING_ID = "season_rescue";
+const RESCUE_STATE_KEY = "plursky_rescue_v1";
+
+// Eligibility is keyed by the RevenueCat App User ID once RevenueCat has
+// answered, with an install-scoped record as the fallback. The first time an
+// App User ID is known, it adopts the install record, so views counted before
+// init still count.
+function _rescueScope() { return _rcAppUserId ? "rc:" + _rcAppUserId : "install"; }
+function _rescueReadAll() { try { return JSON.parse(localStorage.getItem(RESCUE_STATE_KEY) || "{}") || {}; } catch { return {}; } }
+function _rescueState() {
+  const all = _rescueReadAll(), scope = _rescueScope();
+  return { ...(all[scope] || (scope !== "install" && all.install) || {}) };
+}
+function _rescueWrite(next) {
+  const all = _rescueReadAll();
+  all[_rescueScope()] = next;
+  try { localStorage.setItem(RESCUE_STATE_KEY, JSON.stringify(all)); } catch {}
+  return next;
+}
+// Called once per purchase-capable NATIVE mount of the Plus SHEET only (lane
+// ruling 2026-09-23). Inline gates read the record but never count, or two
+// trips to an inline gate would qualify a user who never opened the paywall
+// and turn the rescue into a standing price cut. Returns the record.
+function _rescueNoteView() {
+  const s = _rescueState(), now = Date.now();
+  s.firstPaywallAt = s.firstPaywallAt || now;
+  s.paywallViewCount = (s.paywallViewCount || 0) + 1;
+  if (s.paywallViewCount >= 2 && !s.rescueEligibleAt) { s.rescueEligibleAt = now; s.rescueTrigger = "second_view"; }
+  return _rescueWrite(s);
+}
+// Only a user cancel of the FULL-PRICE Season Pass qualifies.
+function _rescueNoteSeasonCancel() {
+  const s = _rescueState();
+  if (!s.rescueEligibleAt) { s.rescueEligibleAt = Date.now(); s.rescueTrigger = "season_purchase_cancel"; }
+  return _rescueWrite(s);
+}
+function _rescueNotePurchased() { const s = _rescueState(); s.rescuePurchased = true; return _rescueWrite(s); }
+
+// The rescue offer, or null. Null on the web, before RevenueCat, on any error
+// or timeout, when the offering or product is missing, when the remote switch
+// is off, and when StoreKit gives no price.
+async function _rescueOffer() {
+  if (!window.Capacitor?.isNativePlatform?.()) return null;
+  if (!_rcInitialized) await _initRevenueCat();
+  if (!_rcInitialized) return null;
+  try {
+    const offerings = await _withTimeout(_rcPlugin().getOfferings(), 10000, "Rescue offer lookup");
+    const offering = offerings?.all?.[RESCUE_OFFERING_ID];
+    if (!offering || offering.metadata?.rescue_enabled !== true) return null;
+    const pkg = (offering.availablePackages || []).find(p => p.product?.identifier === RESCUE_PRODUCT_ID);
+    const price = pkg?.product?.priceString;
+    return typeof price === "string" && price ? { productId: RESCUE_PRODUCT_ID, price } : null;
+  } catch (e) {
+    console.warn("[plursky-iap] rescue offer unavailable:", _iapMsg(e));
+    return null;
+  }
+}
+
+// Narrow event adapter. There is no production analytics SDK in Plursky, so
+// events go to a capped local audit log (and a DOM event a future sink can
+// subscribe to). Only allowlisted keys with primitive values survive: no
+// receipt, transaction or customer payload can reach it by construction.
+const PLUS_EVENT_KEY = "plursky_plus_events";
+const _PLUS_EVENT_PROPS = ["entry_feature", "view_number", "is_native", "storefront", "rescue_eligible",
+  "rescue_trigger", "product_id", "displayed_price", "trigger", "discount_product_id", "result"];
+function _plusEvent(name, props = {}) {
+  const clean = {};
+  for (const k of _PLUS_EVENT_PROPS) {
+    const v = props[k];
+    if (v === null || ["string", "number", "boolean"].includes(typeof v)) clean[k] = v ?? null;
+  }
+  const ev = { name, at: Date.now(), ...clean };
+  try {
+    const log = JSON.parse(localStorage.getItem(PLUS_EVENT_KEY) || "[]");
+    log.push(ev);
+    localStorage.setItem(PLUS_EVENT_KEY, JSON.stringify(log.slice(-200)));
+  } catch {}
+  try { window.dispatchEvent(new CustomEvent("plursky:plus-event", { detail: ev })); } catch {}
+  return ev;
 }
 
 function _isPlusSub() { try { return localStorage.getItem(PLUS_KEY) === "1"; } catch { return false; } }
@@ -8774,21 +8875,70 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
   const [buyError, setBuyError] = React.useState(null);
   const live = useLivePlusPrices();
   const [plan, setPlan] = React.useState(RC_PRODUCT_IDS.season);
-  if (_isPlusSub()) return children;
+  // Season Pass rescue: the eligibility record and, once eligible, the live
+  // offer (null = fail closed, no card). Only a native SHEET mount counts as a
+  // view; an inline gate reads the stored record, so a user who already
+  // qualified still sees the card there.
+  const [rescue, setRescue] = React.useState(null);
+  const [rescueOffer, setRescueOffer] = React.useState(null);
+  const rescueSeen = React.useRef(false);
+  const plusNow = _isPlusSub();
+  const nativeBuy = !plusNow && !!window.Capacitor?.isNativePlatform?.();
+  React.useEffect(() => {
+    if (plusNow) return;
+    const counts = nativeBuy && layout === "sheet";
+    const rec = !nativeBuy ? null : counts ? _rescueNoteView() : _rescueState();
+    if (rec) setRescue(rec);
+    _plusEvent("plus_paywall_view", {
+      entry_feature: feature || null, view_number: counts ? rec.paywallViewCount : null, is_native: nativeBuy,
+      storefront: null, rescue_eligible: !!rec?.rescueEligibleAt, rescue_trigger: rec?.rescueTrigger || null,
+    });
+  }, []);
+  React.useEffect(() => {
+    if (!nativeBuy || !rescue?.rescueEligibleAt || rescue.rescuePurchased) return;
+    let dead = false;
+    _rescueOffer().then(o => { if (!dead) setRescueOffer(o); });
+    return () => { dead = true; };
+  }, [rescue?.rescueEligibleAt]);
+  const rescueTrigger = rescue?.rescueTrigger || null;
+  const showRescue = nativeBuy && !!rescue?.rescueEligibleAt && !rescue.rescuePurchased && !!rescueOffer && (!(layout === "sheet" && typeof onStep === "function") || step === "plans");
+  React.useEffect(() => {
+    if (!showRescue || rescueSeen.current) return;
+    rescueSeen.current = true;
+    _plusEvent("plus_inline_rescue_view", { trigger: rescueTrigger, discount_product_id: rescueOffer.productId, displayed_price: rescueOffer.price });
+  }, [showRescue]);
+  if (plusNow) return children;
   const canBuy = _iapAvailable();
 
-  const handlePurchase = async (productId) => {
+  const handlePurchase = async (productId, { rescue: isRescue = false } = {}) => {
     const target = productId || RC_PRODUCT_IDS.season;
+    const shown = isRescue ? rescueOffer?.price : (live && live[target]) || null;
+    const trig = isRescue ? rescueTrigger : null;
     setBusy(true); setPending(target); setBuyError(null);
+    _plusEvent("plus_purchase_start", { product_id: target, displayed_price: shown || null, rescue_trigger: trig });
+    let outcome = "error";
     try {
       // Master bound at the UI layer (50s > the 45s sheet bound inside):
       // even a future unbounded await anywhere in _purchasePlus can never
       // freeze this screen again.
-      const result = await _withTimeout(_purchasePlus(target), 50000, "Purchase");
-      if (result.success) { window.location.reload(); return; }
+      const result = await _withTimeout(
+        _purchasePlus(target, isRescue ? { offeringId: RESCUE_OFFERING_ID } : undefined), 50000, "Purchase");
+      outcome = result.success ? "success" : result.cancelled ? "cancel"
+        : /timed out/i.test(result.error || "") ? "timeout" : "error";
+      _plusEvent("plus_purchase_result", { result: outcome, product_id: target, rescue_trigger: trig });
+      if (result.success) {
+        if (isRescue) _rescueNotePurchased();
+        _plusEvent("plus_entitlement_active", { product_id: target, rescue_trigger: trig });
+        window.location.reload(); return;
+      }
+      // Only a user cancel of the FULL-PRICE Season Pass opens the rescue.
+      if (result.cancelled && !isRescue && target === RC_PRODUCT_IDS.season && nativeBuy)
+        setRescue(_rescueNoteSeasonCancel());
       if (!result.cancelled && !result.unsupported)
         setBuyError(result.error || "Purchase could not be completed.");
     } catch (e) {
+      if (outcome === "error") _plusEvent("plus_purchase_result", {
+        result: /timed out/i.test(e?.message || "") ? "timeout" : "error", product_id: target, rescue_trigger: trig });
       setBuyError(e?.message || "Purchase could not be completed.");
     } finally {
       setBusy(false); setPending(null);
@@ -8877,11 +9027,36 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
         </div>
       )}
       {!showPlans ? null : canBuy ? (<>
+        {showRescue && (
+          <section aria-label="Festival launch price" style={{
+            marginTop: 16, padding: "14px 14px 12px", borderRadius: 14,
+            background: "var(--paper-2)", border: "1.5px solid var(--signal)",
+          }}>
+            <div style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--signal)" }}>
+              Festival launch price
+            </div>
+            <div style={{ marginTop: 4, fontSize: 17, lineHeight: "22px", fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>
+              Season Pass · {rescueOffer.price} one time
+            </div>
+            <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+              Keep the full weekend. No subscription, nothing auto-renews.
+            </div>
+            <FieldButton onClick={() => handlePurchase(RESCUE_PRODUCT_ID, { rescue: true })} disabled={busy} style={{ marginTop: 12 }}>
+              {pending === RESCUE_PRODUCT_ID ? "Processing…" : `Get Season Pass for ${rescueOffer.price}`}
+            </FieldButton>
+            <p style={{ margin: "8px 0 0", fontSize: 12, lineHeight: "17px", color: "var(--text-2)" }}>
+              Season Pass · {rescueOffer.price} one-time purchase. No subscription, nothing auto-renews.
+            </p>
+          </section>
+        )}
         <div role="radiogroup" aria-label="Choose a plan" style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 16 }}>
           {PLANS.map(p => {
             const on = p.id === plan, price = priceOf(p.id);
             return (
-              <button key={p.id} role="radio" aria-checked={on} onClick={() => setPlan(p.id)} disabled={busy} style={{
+              <button key={p.id} role="radio" aria-checked={on} onClick={() => {
+                setPlan(p.id);
+                _plusEvent("plus_plan_select", { product_id: p.id, displayed_price: price, rescue_eligible: !!rescue?.rescueEligibleAt });
+              }} disabled={busy} style={{
                 display: "flex", alignItems: "center", gap: 12, minHeight: 64, padding: "12px 14px",
                 borderRadius: 14, background: "var(--paper-2)", color: "var(--ink)", textAlign: "left",
                 border: on ? "1.5px solid var(--signal)" : "1px solid var(--line-2)",
@@ -8904,7 +9079,7 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
           })}
         </div>
         <FieldButton onClick={() => handlePurchase(selected.id)} disabled={busy || waitingForPrice} style={{ marginTop: 16 }}>
-          {pending ? "Processing…" : waitingForPrice ? "Loading App Store price…" : selected.cta}
+          {pending && pending !== RESCUE_PRODUCT_ID ? "Processing…" : waitingForPrice ? "Loading App Store price…" : selected.cta}
         </FieldButton>
         {PLANS.map(p => (
           <p key={p.id} style={{ margin: "10px 0 0", fontSize: 12, lineHeight: "17px", color: "var(--text-2)" }}>{p.legal(priceOf(p.id))}</p>

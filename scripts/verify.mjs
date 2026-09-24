@@ -2502,6 +2502,24 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-c7. Season Pass rescue ─────────────────────────────────────────────
+// The $9.99 rescue card (spotify.jsx PlusGate) against a mocked StoreKit
+// bridge: it shows only on the second native paywall view or a cancelled
+// full-price Season Pass, fails closed on six store states, reads the store's
+// priceString, buys the promo package from its own offering, and leaves the
+// full-price, monthly and restore paths working. Events are allowlisted.
+{
+  console.log("▸ Season Pass rescue gate — two triggers, fail-closed, live price");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-season-rescue.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Season Pass rescue failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c. Video thumbnails ────────────────────────────────────────────────
 // A library tile shows a stored poster <img>, never a live <video>. The old
 // "poster" was <video preload="metadata" src="...#t=0.1">: one decoder per
