@@ -8640,7 +8640,10 @@ function _rescueWrite(next) {
   try { localStorage.setItem(RESCUE_STATE_KEY, JSON.stringify(all)); } catch {}
   return next;
 }
-// Called once per purchase-capable NATIVE paywall mount. Returns the record.
+// Called once per purchase-capable NATIVE mount of the Plus SHEET only (lane
+// ruling 2026-09-23). Inline gates read the record but never count, or two
+// trips to an inline gate would qualify a user who never opened the paywall
+// and turn the rescue into a standing price cut. Returns the record.
 function _rescueNoteView() {
   const s = _rescueState(), now = Date.now();
   s.firstPaywallAt = s.firstPaywallAt || now;
@@ -8873,7 +8876,9 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
   const live = useLivePlusPrices();
   const [plan, setPlan] = React.useState(RC_PRODUCT_IDS.season);
   // Season Pass rescue: the eligibility record and, once eligible, the live
-  // offer (null = fail closed, no card). Counted per native paywall mount.
+  // offer (null = fail closed, no card). Only a native SHEET mount counts as a
+  // view; an inline gate reads the stored record, so a user who already
+  // qualified still sees the card there.
   const [rescue, setRescue] = React.useState(null);
   const [rescueOffer, setRescueOffer] = React.useState(null);
   const rescueSeen = React.useRef(false);
@@ -8881,10 +8886,11 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
   const nativeBuy = !plusNow && !!window.Capacitor?.isNativePlatform?.();
   React.useEffect(() => {
     if (plusNow) return;
-    const rec = nativeBuy ? _rescueNoteView() : null;
+    const counts = nativeBuy && layout === "sheet";
+    const rec = !nativeBuy ? null : counts ? _rescueNoteView() : _rescueState();
     if (rec) setRescue(rec);
     _plusEvent("plus_paywall_view", {
-      entry_feature: feature || null, view_number: rec ? rec.paywallViewCount : null, is_native: nativeBuy,
+      entry_feature: feature || null, view_number: counts ? rec.paywallViewCount : null, is_native: nativeBuy,
       storefront: null, rescue_eligible: !!rec?.rescueEligibleAt, rescue_trigger: rec?.rescueTrigger || null,
     });
   }, []);

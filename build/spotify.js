@@ -13232,11 +13232,12 @@ function PlusGate({
   var nativeBuy = !plusNow && !!window.Capacitor?.isNativePlatform?.();
   React.useEffect(() => {
     if (plusNow) return;
-    var rec = nativeBuy ? _rescueNoteView() : null;
+    var counts = nativeBuy && layout === "sheet";
+    var rec = !nativeBuy ? null : counts ? _rescueNoteView() : _rescueState();
     if (rec) setRescue(rec);
     _plusEvent("plus_paywall_view", {
       entry_feature: feature || null,
-      view_number: rec ? rec.paywallViewCount : null,
+      view_number: counts ? rec.paywallViewCount : null,
       is_native: nativeBuy,
       storefront: null,
       rescue_eligible: !!rec?.rescueEligibleAt,

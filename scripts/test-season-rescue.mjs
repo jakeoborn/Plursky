@@ -10,6 +10,9 @@
 //
 // It proves:
 //   - the first native paywall view shows no rescue; the second does;
+//   - only the Plus SHEET counts as a view (lane ruling 2026-09-23): inline
+//     gates never add to the count, but show the card once a user qualifies,
+//     and a full-price cancel started from an inline gate still qualifies;
 //   - cancelling the FULL-PRICE Season Pass shows the rescue at once;
 //   - a monthly cancel, a store error and a timeout do not;
 //   - the web build and an active Plus never count a view or show a card;
@@ -128,6 +131,21 @@ try {
   const calls = page => page.evaluate(() => JSON.parse(sessionStorage.getItem("__rc_calls") || "[]"));
   const shot = async (page, name) => { if (SHOTS) { await sleep(300); await page.screenshot({ path: join(SHOTS, `${name}.png`) }); } };
   const LIVE = { native: true, rescueOffering: true, promo: true, price: "$9.99" };
+  // Mounts the real PlusGate with its default (inline) layout, the way the
+  // trading-cards export and hidden-gems screens do, into its own host.
+  const INLINE = ["trading cards export", "all hidden gems"];
+  const inlineHost = page => page.locator("#inline-gate-host");
+  const mountInline = async (page, feature) => {
+    await page.evaluate(f => {
+      const el = document.createElement("div"); el.id = "inline-gate-host"; document.body.appendChild(el);
+      window.__inlineRoot = ReactDOM.createRoot(el);
+      window.__inlineRoot.render(React.createElement(PlusGate, { feature: f }, React.createElement("div", null, "unlocked")));
+    }, feature);
+    await inlineHost(page).getByRole("button", { name: "Get the Season Pass" }).waitFor({ timeout: 10000 });
+    await sleep(400); // the offer lookup is async
+  };
+  const unmountInline = page => page.evaluate(() => { window.__inlineRoot.unmount(); document.getElementById("inline-gate-host").remove(); });
+  const scopedRec = async page => (await rescueRec(page))["rc:$RCAnonymousID:test"] || {};
 
   // ── 1+2. second native view ──
   {
@@ -189,6 +207,58 @@ try {
     const rv = ev.filter(e => e.name === "plus_inline_rescue_view");
     ok(rv.length === 1 && rv[0].trigger === "season_purchase_cancel", `cancel-trigger rescue view wrong: ${JSON.stringify(rv)}`);
     ok(ev.filter(e => e.name === "plus_paywall_view").length === 1, "the cancel path counted an extra paywall view");
+    await ctx.close();
+  }
+
+  // ── only the Plus sheet counts as a paywall view ──
+  {
+    const src = await (await fetch(`http://127.0.0.1:${PORT}/spotify.jsx`)).text();
+    ok(INLINE.every(f => src.includes(`<PlusGate feature="${f}">`)), "an inline gate call site changed; the inline-mount scenarios no longer mirror production");
+  }
+  {
+    // a. two inline mounts leave the user ineligible
+    const { ctx, page, errors } = await open(LIVE);
+    for (const f of INLINE) { await mountInline(page, f); await unmountInline(page); }
+    let rec = await scopedRec(page);
+    ok(!rec.paywallViewCount && !rec.rescueEligibleAt, `two inline gate mounts counted as paywall views: ${JSON.stringify(rec)}`);
+    let views = (await events(page)).filter(e => e.name === "plus_paywall_view");
+    ok(views.length === 2 && views.every(v => v.view_number === null && v.rescue_eligible === false && v.is_native === true) && views.map(v => v.entry_feature).join() === INLINE.join(),
+      `inline plus_paywall_view trace wrong: ${JSON.stringify(views)}`);
+    // b. a first sheet view plus an inline mount leaves the user ineligible
+    await openPaywall(page); await closePaywall(page);
+    await mountInline(page, INLINE[0]);
+    ok(await inlineHost(page).getByRole("region", { name: "Festival launch price" }).count() === 0, "an inline gate showed the rescue before the user qualified");
+    await unmountInline(page);
+    rec = await scopedRec(page);
+    ok(rec.paywallViewCount === 1 && !rec.rescueEligibleAt, `a sheet view plus an inline mount made the user eligible: ${JSON.stringify(rec)}`);
+    // c. a second sheet view makes the user eligible
+    await openPaywall(page);
+    ok(await card(page).count() === 1, "the second sheet view (after inline mounts) did not show the rescue");
+    rec = await scopedRec(page);
+    ok(rec.paywallViewCount === 2 && rec.rescueTrigger === "second_view", `second sheet view not recorded: ${JSON.stringify(rec)}`);
+    await closePaywall(page);
+    // once qualified, the card may show on an inline gate too, without counting
+    await mountInline(page, INLINE[1]);
+    ok(await inlineHost(page).getByRole("region", { name: "Festival launch price" }).count() === 1, "a qualified user saw no rescue on an inline gate");
+    ok((await scopedRec(page)).paywallViewCount === 2, "an inline mount counted after the user qualified");
+    views = (await events(page)).filter(e => e.name === "plus_paywall_view");
+    const last = views[views.length - 1];
+    ok(last.entry_feature === INLINE[1] && last.view_number === null && last.rescue_eligible === true && last.rescue_trigger === "second_view",
+      `inline view after qualifying should carry the stored record: ${JSON.stringify(last)}`);
+    ok(!errors.length, `page errors: ${errors.join(" | ")}`);
+    await ctx.close();
+  }
+  {
+    // d. a cancel of the $14.99 sheet started from an inline gate qualifies
+    const { ctx, page } = await open(LIVE);
+    await mountInline(page, INLINE[0]);
+    await inlineHost(page).getByRole("button", { name: "Get the Season Pass" }).click();
+    const inlineCard = inlineHost(page).getByRole("region", { name: "Festival launch price" });
+    await inlineCard.waitFor({ timeout: 5000 }).catch(() => {});
+    ok(await inlineCard.count() === 1, "cancelling the full-price Season Pass from an inline gate did not show the rescue");
+    const rec = await scopedRec(page);
+    ok(rec.rescueTrigger === "season_purchase_cancel" && rec.rescueEligibleAt && !rec.paywallViewCount,
+      `inline-gate season cancel not recorded as the cancel trigger: ${JSON.stringify(rec)}`);
     await ctx.close();
   }
 
@@ -277,4 +347,4 @@ try {
   server.kill();
 }
 if (fails.length) { fails.forEach(f => console.error(`  ✗ ${f}`)); console.error(`  ${fails.length} of ${checks} Season Pass rescue checks failed`); process.exit(1); }
-console.log(`  ✓ Season Pass rescue: two triggers only, fail-closed on 6 store states, live price, promo package, full-price/monthly/restore intact, ${checks} checks`);
+console.log(`  ✓ Season Pass rescue: two triggers only, sheet-only view count, fail-closed on 6 store states, live price, promo package, full-price/monthly/restore intact, ${checks} checks`);
