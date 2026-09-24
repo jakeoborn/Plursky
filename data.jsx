@@ -1047,14 +1047,24 @@ function _festivalEventDays(c) {
   const base = (c && c.dayDates ? Object.values(c.dayDates) : [])
     .map(d => (typeof d.midnightUtc === "number" ? d.midnightUtc : Date.UTC(d.y, d.m, d.d)))
     .filter(x => typeof x === "number" && !isNaN(x));
-  const out = new Set(base), wk = c && c.weekendStartMs;
-  if (wk && typeof wk.W1 === "number") {
-    for (const k of Object.keys(wk)) {
-      const shift = wk[k] - wk.W1;
-      if (shift > 0) base.forEach(x => out.add(x + shift));
-    }
-  }
+  const out = new Set(base);
+  for (const { shift } of festivalWeekendShifts(c)) if (shift > 0) base.forEach(x => out.add(x + shift));
   return [...out].sort((a, b) => a - b);
+}
+// Each weekend a festival runs and how far its days sit from the dayDates
+// (which describe weekend one). A single-weekend festival gets one entry,
+// { weekend: null, shift: 0 }, so callers walk the same loop either way.
+function festivalWeekendShifts(c) {
+  const wk = c && c.weekendStartMs;
+  if (!wk || typeof wk.W1 !== "number") return [{ weekend: null, shift: 0 }];
+  return Object.keys(wk).filter(k => typeof wk[k] === "number" && wk[k] - wk.W1 >= 0)
+    .map(k => ({ weekend: k, shift: wk[k] - wk.W1 })).sort((a, b) => a.shift - b.shift);
+}
+// Does this act play on `weekend`? The one rule for every weekend filter: the
+// active lineup, the retag picker and photo tagging. Untagged and "both" acts
+// play every weekend; no weekend (a single-weekend festival) keeps them all.
+function actPlaysWeekend(a, weekend) {
+  return !weekend || !a.weekend || a.weekend === "both" || a.weekend === weekend;
 }
 
 function _festivalPhase(f, now) {
@@ -1716,7 +1726,7 @@ function lineupFor(weekend) {
   const all = (typeof window !== "undefined" && window.ARTISTS) || ARTISTS || [];
   if (!weekend || weekend === "all") return all;
   if (_lineupMemo && _lineupMemo.src === all && _lineupMemo.wk === weekend) return _lineupMemo.list;
-  const list = all.filter(a => !a.weekend || a.weekend === "both" || a.weekend === weekend);
+  const list = all.filter(a => actPlaysWeekend(a, weekend));
   _lineupMemo = { src: all, wk: weekend, list };
   return list;
 }

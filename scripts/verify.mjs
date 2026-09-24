@@ -2240,6 +2240,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
 // pass, and no invented id can come back. It also asserts the old name is gone
 // from source, because the point of the rename is that the mis-attribution path
 // is unreachable rather than merely unused.
+// Photo tagging respects a two-weekend festival (lane ruling 2026-09-23, #225):
+// a weekend-2 photo gets its night and its weekend's acts, a weekend-1 photo
+// never lands on a weekend-2-only act, and single-weekend festivals return
+// exactly what main returned. Runs the compiled matcher.
+{
+  console.log("▸ Weekend photo-tag gate — ACL weekends resolve, wrong-weekend acts never match");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-weekend-photo-tag.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`weekend photo tagging failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
 {
   console.log("▸ Capture-time trust gate — boolean answer, gated festivals counted, no invented festival id");
   try {

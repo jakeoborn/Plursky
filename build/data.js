@@ -795,18 +795,30 @@ function _festivalWindow(c) {
 }
 function _festivalEventDays(c) {
   var base = (c && c.dayDates ? Object.values(c.dayDates) : []).map(d => typeof d.midnightUtc === "number" ? d.midnightUtc : Date.UTC(d.y, d.m, d.d)).filter(x => typeof x === "number" && !isNaN(x));
-  var out = new Set(base),
-    wk = c && c.weekendStartMs;
-  if (wk && typeof wk.W1 === "number") {
-    var _loop = function () {
-      var shift = wk[k] - wk.W1;
-      if (shift > 0) base.forEach(x => out.add(x + shift));
-    };
-    for (var k of Object.keys(wk)) {
-      _loop();
-    }
+  var out = new Set(base);
+  var _loop = function (shift) {
+    if (shift > 0) base.forEach(x => out.add(x + shift));
+  };
+  for (var {
+    shift
+  } of festivalWeekendShifts(c)) {
+    _loop(shift);
   }
   return [...out].sort((a, b) => a - b);
+}
+function festivalWeekendShifts(c) {
+  var wk = c && c.weekendStartMs;
+  if (!wk || typeof wk.W1 !== "number") return [{
+    weekend: null,
+    shift: 0
+  }];
+  return Object.keys(wk).filter(k => typeof wk[k] === "number" && wk[k] - wk.W1 >= 0).map(k => ({
+    weekend: k,
+    shift: wk[k] - wk.W1
+  })).sort((a, b) => a.shift - b.shift);
+}
+function actPlaysWeekend(a, weekend) {
+  return !weekend || !a.weekend || a.weekend === "both" || a.weekend === weekend;
 }
 function _festivalPhase(f, now) {
   var c = f && f.config,
@@ -1256,7 +1268,7 @@ function lineupFor(weekend) {
   var all = typeof window !== "undefined" && window.ARTISTS || ARTISTS || [];
   if (!weekend || weekend === "all") return all;
   if (_lineupMemo && _lineupMemo.src === all && _lineupMemo.wk === weekend) return _lineupMemo.list;
-  var list = all.filter(a => !a.weekend || a.weekend === "both" || a.weekend === weekend);
+  var list = all.filter(a => actPlaysWeekend(a, weekend));
   _lineupMemo = {
     src: all,
     wk: weekend,

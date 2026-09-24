@@ -443,22 +443,34 @@ function _wallClockFromUtc(utcMs, cfg) {
 // decide — so for videos the question is asked in UTC, where it has one
 // answer, instead of in a wall clock that silently assumed a timezone.
 function _photoFestivalNight(date, cfgIn, utcMs) {
+  const r = _photoFestivalNightWeekend(date, cfgIn, utcMs);
+  return r ? r.night : null;
+}
+// The night AND the weekend. dayDates describe weekend one only, so on a
+// two-weekend festival (weekendStartMs, ACL) each later weekend is the same
+// days shifted; a weekend-2 photo was outside every window and got no night
+// and no set (lane ruling 2026-09-23). Single-weekend festivals walk one
+// weekend with shift 0 and weekend null, exactly as before.
+function _photoFestivalNightWeekend(date, cfgIn, utcMs) {
   const cfg = cfgIn || window.FESTIVAL_CONFIG;
   if (!cfg?.dayDates) return null;
   if (utcMs == null && !date) return null;
   const photoMs = utcMs != null ? utcMs : _photoEpochUtc(date, cfg);
-  for (const n of Object.keys(cfg.dayDates).map(Number)) {
-    const dm = cfg.dayDates[n];
-    if (!dm) continue;
-    // 11:00 local of day N → 06:00 local day N+1. Was 19:00→06:00 (EDC's
-    // overnight shape) — but daytime festivals (ACL, Electric Forest) run
-    // sets from ~noon, so every afternoon photo fell outside the window
-    // and the attended/saved set-time match never ran. 11:00 still can't
-    // overlap the previous night's +30h end (06:00 < 11:00), so post-
-    // midnight photos keep bucketing to the night they belong to.
-    const startMs = dm.midnightUtc + 11 * 3600000;     // 11:00 local, day N
-    const endMs   = dm.midnightUtc + 30 * 3600000;     // 06:00 local, day N+1
-    if (photoMs >= startMs - 30 * 60000 && photoMs <= endMs + 30 * 60000) return n;
+  for (const { weekend, shift } of festivalWeekendShifts(cfg)) {
+    for (const n of Object.keys(cfg.dayDates).map(Number)) {
+      const dm = cfg.dayDates[n];
+      if (!dm) continue;
+      const midnight = dm.midnightUtc + shift;
+      // 11:00 local of day N → 06:00 local day N+1. Was 19:00→06:00 (EDC's
+      // overnight shape) — but daytime festivals (ACL, Electric Forest) run
+      // sets from ~noon, so every afternoon photo fell outside the window
+      // and the attended/saved set-time match never ran. 11:00 still can't
+      // overlap the previous night's +30h end (06:00 < 11:00), so post-
+      // midnight photos keep bucketing to the night they belong to.
+      const startMs = midnight + 11 * 3600000;     // 11:00 local, day N
+      const endMs   = midnight + 30 * 3600000;     // 06:00 local, day N+1
+      if (photoMs >= startMs - 30 * 60000 && photoMs <= endMs + 30 * 60000) return { night: n, weekend, shift };
+    }
   }
   return null;
 }
@@ -714,7 +726,6 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
   // timestamp (+ GPS, as a tiebreak) place it in?
   const set = ds || _resolveFestivalForPhoto({ date, lat, lng, rawUtcMs });
   const cfg = set.config || {};
-  const artists = set.artists || [];
   const festivalId = set.id || null;
   const resolvedBy = set.resolvedBy || "explicit";
   // NOW the festival is known, so a video's wall clock can finally be derived
@@ -729,8 +740,13 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
   const sLng = gpsUsableForStage ? lng : null;
   const gpsRejected = !gpsUsableForStage && lat != null;
   const localDate = (rawUtcMs != null) ? _wallClockFromUtc(rawUtcMs, cfg) : date;
-  const night = _photoFestivalNight(localDate, cfg, rawUtcMs);
-  if (!night) return { localDate, gpsRejected, artistId: null, night: null, festivalId, resolvedBy, reason: "outside_festival_window" };
+  const nw = _photoFestivalNightWeekend(localDate, cfg, rawUtcMs);
+  if (!nw) return { localDate, gpsRejected, artistId: null, night: null, festivalId, resolvedBy, reason: "outside_festival_window" };
+  const night = nw.night;
+  // Only the acts playing the photo's weekend: every match below (saved and
+  // attended, the time matcher, the changeover rescue, GPS separation) reads
+  // this list, so a weekend-1 photo can never land on a weekend-2-only act.
+  const artists = (set.artists || []).filter(a => actPlaysWeekend(a, nw.weekend));
 
   // NOTE: the GPS "off-stage" gate used to run HERE, before the attended/
   // saved set-time match — which was a bug. A photo taken from the middle/
@@ -754,12 +770,13 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
   const setWindow = (a) => {
     const dm = cfg.dayDates?.[a.day];
     if (!dm) return null;
+    const midnight = dm.midnightUtc + nw.shift;   // the act's day on the photo's weekend
     const [sh, sm] = a.start.split(":").map(Number);
     const [eh, em] = a.end.split(":").map(Number);
     return {
       localDate, gpsRejected,
-      startMs: dm.midnightUtc + ((sh < 8 ? sh + 24 : sh) * 60 + sm) * 60000,
-      endMs:   dm.midnightUtc + ((eh < 8 ? eh + 24 : eh) * 60 + em) * 60000,
+      startMs: midnight + ((sh < 8 ? sh + 24 : sh) * 60 + sm) * 60000,
+      endMs:   midnight + ((eh < 8 ? eh + 24 : eh) * 60 + em) * 60000,
     };
   };
   // SMARTEST SIGNAL: you film the sets you planned to see / actually saw.
