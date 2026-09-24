@@ -194,6 +194,8 @@ for (const id of pages) {
   const iWatch = html.indexOf('<section id="watch"'), iAns = html.indexOf('aria-labelledby="answers-h"');
   const later = ['aria-labelledby="map-h"', 'aria-labelledby="schedule-h"', 'aria-labelledby="lineup-h"'].map(s => html.indexOf(s)).filter(i => i >= 0);
   check(iAns >= 0 && iAns < iWatch && later.every(i => i > iWatch), `${at} Watch & listen is not directly after the quick answers`);
+  // Instagram's 326px minimum must never widen a 320px page.
+  check(/section\.watch \{ overflow-x:clip; \}/.test(html) && /section\.watch \.embed-ig \{ overflow-x:auto;/.test(html), `${at} Watch & listen can widen the page (no overflow containment)`);
   // X embeds opt out of X's tailoring (developer policy's do-not-track).
   for (const bq of sec.match(/<blockquote class="twitter-tweet"[^>]*>/g) || []) check(/data-dnt="true"/.test(bq), `${at} an X embed does not set data-dnt="true"`);
 }
