@@ -1613,34 +1613,98 @@ async function _sweepOrphanPosters() {
   } catch { return 0; }
 }
 
-function useMomentPhoto(photoId, enabled = true) {
-  const [url, setUrl] = React.useState(null);
+// ── Media state machine (v341) ─────────────────────────────────────────────
+// THE BUG THIS REPLACES: the old hook held `url = null` forever when the local
+// lookup AND the cloud restore both came back empty. Every surface reads "no
+// url yet" as "still loading", so a photo this device will never have shimmers
+// until the user gives up. There was no state that meant "this is not coming".
+//
+// Five states, and four of them are terminal-or-actionable:
+//   loading      — a lookup is in flight
+//   ready        — `url` is an object URL
+//   unavailable  — the blob is not local and the cloud backup does not hold it
+//   offline      — the cloud lookup was REJECTED; retryable, auto on reconnect
+//   error        — the local store itself threw
+// plus `none` for a moment that has no media at all (text-only).
+//
+// `offline` is decided by the cloud call REJECTING, not by `navigator.onLine`.
+// A device can be nominally online and still fail the request (captive portal,
+// dead DNS, Supabase down), and calling that "unavailable" would tell the user
+// their photo is gone when it is one retry away. Conversely `navigator.onLine`
+// is only consulted when there is no cloud path to try at all.
+const _MEDIA_NONE = "none", _MEDIA_LOADING = "loading", _MEDIA_READY = "ready";
+const _MEDIA_UNAVAILABLE = "unavailable", _MEDIA_OFFLINE = "offline", _MEDIA_ERROR = "error";
+
+function useMomentMedia(photoId, enabled = true) {
+  const [st, setSt] = React.useState(() => ({ url: null, status: photoId && enabled ? _MEDIA_LOADING : _MEDIA_NONE }));
+  const [attempt, setAttempt] = React.useState(0);
   React.useEffect(() => {
-    if (!photoId || !enabled) { setUrl(null); return; }
+    if (!photoId || !enabled) { setSt({ url: null, status: _MEDIA_NONE }); return; }
     let cancelled = false;
     let objectUrl = null;
+    setSt(s => (s.status === _MEDIA_LOADING && !s.url ? s : { url: null, status: _MEDIA_LOADING }));
+    const settle = (next) => { if (!cancelled) setSt(next); };
     _getPhoto(photoId).then(async blob => {
       if (cancelled) return;
       // Restore-on-view: this device doesn't have the blob locally (fresh
       // install / cleared cache) — pull it from the cloud backup if present,
       // re-cache to IndexedDB, then show it. No-ops for never-backed-up photos.
-      if (!blob && typeof window.sbDownloadMomentMedia === "function") {
+      if (!blob) {
+        const announceOffline = () => { try { window.dispatchEvent(new CustomEvent("plursky-media-offline")); } catch {} };
+        if (typeof window.sbDownloadMomentMedia !== "function") {
+          // No cloud path to try. Only HERE does connectivity decide the
+          // state, because there is no request whose outcome could.
+          const st = (typeof navigator !== "undefined" && navigator.onLine === false) ? _MEDIA_OFFLINE : _MEDIA_UNAVAILABLE;
+          if (st === _MEDIA_OFFLINE) announceOffline();
+          settle({ url: null, status: st });
+          return;
+        }
+        let cloud = null;
         try {
-          const cloud = await window.sbDownloadMomentMedia(photoId);
-          if (cancelled) return;
-          if (cloud) { try { await _putPhoto(photoId, cloud); } catch {} blob = cloud; }
-        } catch {}
+          cloud = await window.sbDownloadMomentMedia(photoId);
+        } catch {
+          // REJECTED — the backup may well hold it; we could not ask.
+          announceOffline();
+          settle({ url: null, status: _MEDIA_OFFLINE });
+          return;
+        }
+        if (cancelled) return;
+        if (!cloud) {
+          // Answered, and the answer is no. This one is genuinely gone.
+          settle({ url: null, status: _MEDIA_UNAVAILABLE });
+          return;
+        }
+        try { await _putPhoto(photoId, cloud); } catch {}
+        blob = cloud;
       }
-      if (cancelled || !blob) return;
+      if (cancelled) return;
       objectUrl = URL.createObjectURL(blob);
-      setUrl(objectUrl);
-    }).catch(() => {});
+      settle({ url: objectUrl, status: _MEDIA_READY });
+    }).catch(() => settle({ url: null, status: _MEDIA_ERROR }));
     return () => {
       cancelled = true;
       if (objectUrl) URL.revokeObjectURL(objectUrl);
     };
-  }, [photoId, enabled]);
-  return url;
+  }, [photoId, enabled, attempt]);
+  // Explicit retry, and an automatic one when the browser reports it is back.
+  // Only `offline` auto-retries: re-running an `unavailable` on every network
+  // blip would hammer the backup for an object it has already said it lacks.
+  const retry = React.useCallback(() => setAttempt(a => a + 1), []);
+  const offline = st.status === _MEDIA_OFFLINE;
+  React.useEffect(() => {
+    if (!offline) return;
+    const back = () => setAttempt(a => a + 1);
+    window.addEventListener("online", back);
+    return () => window.removeEventListener("online", back);
+  }, [offline]);
+  return { url: st.url, status: st.status, retry };
+}
+
+// Back-compat: the ten call sites that only ever wanted the URL keep working
+// unchanged. Surfaces that show a designed terminal state use useMomentMedia
+// (or useMomentThumb, which now forwards the status).
+function useMomentPhoto(photoId, enabled = true) {
+  return useMomentMedia(photoId, enabled).url;
 }
 
 // Resolve (and if necessary create) a video's poster frame. Module-level and
@@ -1731,8 +1795,22 @@ function useMomentThumb(moment, enabled = true) {
   // A video WITHOUT a poster never falls back to loading the clip: that put a
   // live <video> in every such tile and painted a black box on iOS. It reports
   // noPoster instead and _ThumbMedia draws the placeholder.
-  const mediaUrl = useMomentPhoto(!isVideo ? ((moment && moment.photoId) || null) : null, enabled);
-  return { url: posterUrl || mediaUrl, isPoster: !!posterUrl, noPoster: isVideo && noPoster && !posterUrl };
+  const photo = useMomentMedia(!isVideo ? ((moment && moment.photoId) || null) : null, enabled);
+  // One status for whichever path this moment actually uses. A video's poster
+  // pipeline already terminates honestly (noPoster -> designed placeholder),
+  // so it maps onto the same five names rather than growing a sixth.
+  const status = !enabled || !moment || !moment.photoId
+    ? _MEDIA_NONE
+    : isVideo
+      ? (posterUrl ? _MEDIA_READY : (noPoster ? _MEDIA_UNAVAILABLE : _MEDIA_LOADING))
+      : photo.status;
+  return {
+    url: posterUrl || photo.url,
+    isPoster: !!posterUrl,
+    noPoster: isVideo && noPoster && !posterUrl,
+    status,
+    retry: photo.retry,
+  };
 }
 
 // The one way a thumbnail shows a moment's media. Videos show their poster
@@ -1755,6 +1833,34 @@ function _ThumbMedia({ moment, thumb, showLength = true }) {
             {moment.duration ? _fmtClock(moment.duration) : "VIDEO"}
           </span>
         )}
+      </div>
+    );
+  }
+  // The terminal states. Before v341 every one of these fell through to the
+  // skeleton below and shimmered forever; the skeleton is now reserved for a
+  // lookup that is genuinely still in flight.
+  const st = thumb && thumb.status;
+  if (st === _MEDIA_UNAVAILABLE || st === _MEDIA_OFFLINE || st === _MEDIA_ERROR) {
+    const copy = st === _MEDIA_OFFLINE ? { glyph: "☁", line: "Offline" }
+               : st === _MEDIA_ERROR   ? { glyph: "!", line: "Error" }
+               :                         { glyph: "✕", line: "Missing" };
+    // overflow hidden + a shrinkable label: "Missing" at 8px mono is a hair
+    // wider than a 44px review thumb, and on CI's bundled Chromium that
+    // pushed the tile 3px past its own box. The word may clip inside an
+    // already-bounded thumbnail — the aria-label carries the full meaning
+    // either way — but the tile must not grow.
+    return (
+      <div role="img" aria-label={`${label} — ${st === _MEDIA_OFFLINE ? "unavailable offline, retry when connected" : st === _MEDIA_ERROR ? "could not be read" : "media unavailable"}`} style={{
+        ...fill, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+        gap: 2, boxSizing: "border-box", padding: 4, overflow: "hidden",
+        background: "var(--paper-3)", color: "var(--text-2)", textAlign: "center",
+      }}>
+        <span aria-hidden="true" style={{ fontSize: 13, lineHeight: 1 }}>{copy.glyph}</span>
+        {/* The word is NOT gated on showLength: showLength suppresses a clip's
+            DURATION on tiles that already carry a badge, and "Missing" is not
+            a duration. Gating it hid the state on covers and peak thumbs and
+            left a glyph the user has to guess at. */}
+        <span className="mono" style={{ fontSize: 8, letterSpacing: 0.6, fontWeight: 700, maxWidth: "100%", overflow: "hidden" }}>{copy.line}</span>
       </div>
     );
   }
@@ -2577,7 +2683,7 @@ function _FavBadge({ style }) {
   );
 }
 
-function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick, onUpdate, onRecoverNight }) {
+function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick, onUpdate, onRecoverNight, onDelete }) {
   const m = moments[index];
   const photoUrl = useMomentPhoto(m?.photoId);
   const artist = m?.artistId ? ARTISTS.find(a => a.id === m.artistId) : null;
@@ -2592,8 +2698,11 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
   const [sharing, setSharing] = React.useState(false);
   const [retagging, setRetagging] = React.useState(false); // inline "fix the artist" picker
   const [retagQuery, setRetagQuery] = React.useState("");
+  // Two taps, in the page: window.confirm is not reliable in every WebView
+  // this ships in, and a delete that asks nothing is one stray tap from loss.
+  const [confirmDelete, setConfirmDelete] = React.useState(false);
 
-  React.useEffect(() => { setIdState("idle"); setMismatch(null); setRecovery(null); setRetagging(false); setRetagQuery(""); }, [index]);
+  React.useEffect(() => { setIdState("idle"); setMismatch(null); setRecovery(null); setRetagging(false); setRetagQuery(""); setConfirmDelete(false); }, [index]);
 
   // Auto-tag guesses a stage by time (usually the mainstage) and gets the
   // night/stage wrong when there's no GPS. So the fix must search the WHOLE
@@ -2856,6 +2965,23 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
           opacity: sharing ? 0.6 : 1,
         }}>{sharing ? "Preparing…" : "Share this moment"}</button>
+
+        {/* The ONE per-moment delete. Every Library/Wall entry point opens this
+            lightbox, so a delete that lived only on the old per-record card
+            became unreachable once the library stopped rendering that card —
+            Manage offered only whole-night and clear-all. */}
+        {onDelete && (
+          <button onClick={() => {
+            if (!confirmDelete) { setConfirmDelete(true); return; }
+            setConfirmDelete(false);
+            onDelete(m);
+          }} style={{
+            marginTop: 8, minHeight: 44, padding: "0 16px", borderRadius: 14, width: "100%",
+            background: confirmDelete ? "rgba(var(--warn-rgb, 220,38,38),0.16)" : "transparent",
+            color: confirmDelete ? "var(--warn)" : "rgba(var(--ink-rgb),0.7)",
+            border: "none", fontSize: 15, lineHeight: "20px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit",
+          }}>{confirmDelete ? "Tap again to delete from Plursky" : "Delete this moment"}</button>
+        )}
 
         {/* Audio disagrees with the auto-tag → offer the correction */}
         {mismatch && (
@@ -3556,9 +3682,148 @@ function _GroupHeroThumb({ moment, accent, onClick }) {
 // stretch where you shot the most. A sliding window over capture times
 // (EXIF, falling back to import time) picks the start that captures the most
 // moments. Only a "peak" if it clusters 3+ — a sparse night has no peak.
+// ── Stable media identity (v341) ───────────────────────────────────────────
+// Two RECORDS can point at one piece of MEDIA: the same file imported twice,
+// a moment recovered from the archive beside the live one it was recovered
+// for. Counting or rendering both says the night was busier than it was and
+// shows the user the same photo twice in one stack.
+//
+// `_fingerprint` is the app's own duplicate key — import already refuses a
+// second file that matches one (see existingFingerprints in handleBatchPick),
+// so it is the identity the rest of the app already agrees on. photoId is the
+// blob key and is the next best thing; a text-only moment has neither and is
+// only ever itself.
+//
+// This is deliberately NOT a merge: the record identities survive, so review
+// and retag still reach every row. It picks one canonical REPRESENTATIVE for
+// counting and display.
+function _mediaIdentity(m) {
+  if (!m) return null;
+  return m._fingerprint || m.photoId || m.id || null;
+}
+
+// Which of two records for ONE piece of media speaks for it.
+//
+// THE BUG THIS EXISTS FOR: the canonical used to be whichever record was
+// read first, so the answer to "is this media confirmed to a festival?"
+// depended on array order. One file held by an auto-archived guess
+// (festivalAttribution:"unresolved") and by a capture-time-proven record
+// counted as CONFIRMED when the proven copy happened to be read first and as
+// UNCONFIRMED — or as zero memories on the festival's own card — when the
+// guess was. Evidence and a guess about the same media are not a tie to be
+// broken by storage order: the evidence settles it, and the guess it
+// supersedes is a duplicate, not a second open question.
+//
+// 2 = attributed and proven. 1 = unsettled, whether that is a declared guess
+// or no festival at all (both need the same human answer, see
+// unattributedMoments). Equal rank keeps the earlier record, so capture
+// order still decides everything this rule does not.
+function _mediaAttributionRank(m) {
+  if (!m) return 0;
+  // A retained stamp under festivalReview is as unsettled as a declared
+  // guess — the landing's _festivalAttributionUnsettled agrees — so it never
+  // outranks the proven copy of the same media.
+  if (!m.festivalId || m.festivalAttribution === "unresolved" || m.festivalReview) return 1;
+  return 2;
+}
+
+// Proven beats a guess, then first record wins; capture order preserved.
+// Returns the canonical list plus the duplicate count, so a surface can say
+// "2 duplicates hidden" rather than silently dropping rows.
+function _dedupeByMedia(moments) {
+  const list = moments || [];
+  const winner = _mediaWinners(list);
+  const out = [];
+  let dupes = 0;
+  for (const m of list) {
+    const key = _mediaIdentity(m);
+    if (key && winner.get(key) !== m) { dupes++; continue; }
+    out.push(m);
+  }
+  out.duplicateCount = dupes;
+  return out;
+}
+
+// media identity -> the one record that speaks for it. Separate from the
+// walk that USES it so the whole-library pass can pick winners across every
+// night first and still leave each winner in its own night.
+function _mediaWinners(list) {
+  const winner = new Map();
+  for (const m of (list || [])) {
+    if (!m) continue;
+    const key = _mediaIdentity(m);
+    if (!key) continue;
+    const cur = winner.get(key);
+    if (!cur || _mediaAttributionRank(m) > _mediaAttributionRank(cur)) winner.set(key, m);
+  }
+  return winner;
+}
+
+// Dedupe across the WHOLE library, not per group.
+//
+// THE BUG: _dedupeByMedia ran inside _buildLibraryDay's shape(), once per
+// group. Dedupe keys on MEDIA IDENTITY (fingerprint/photoId), but grouping
+// partitions RECORDS — and two records can share one piece of media while
+// landing in different groups (a re-import tagged to a different artist, or
+// a clip #215 recovered onto another night beside the original). Each group
+// then saw its copy exactly once, kept it, drew it, and counted it, so one
+// photo appeared twice on screen and twice in "N moments".
+//
+// Deduping first makes every count downstream a count of UNIQUE MEDIA, and
+// the losing records are handed back keyed by the winner so they stay
+// reachable (#210: a record that is in no group at all is an orphan).
+function _dedupeLibrary(all) {
+  const nights = Object.keys(all || {});
+  // Winners are chosen over the WHOLE library first (proven beats a guess,
+  // see _mediaAttributionRank) and only then placed. Choosing while walking
+  // would let a night's arrival order decide, and swapping a winner in during
+  // the walk would file it under the losing record's night.
+  const flat = [];
+  for (const night of nights) {
+    const arr = all[night];
+    if (Array.isArray(arr)) for (const m of arr) flat.push(m);
+  }
+  const winner = _mediaWinners(flat);
+  const dupsByCanonical = new Map(); // canonical record id -> losing records
+  const byNight = {};
+  let unique = 0;
+  for (const night of nights) {
+    const arr = all[night];
+    if (!Array.isArray(arr)) { byNight[night] = []; continue; }
+    const keep = [];
+    for (const m of arr) {
+      if (!m) continue;
+      const key = _mediaIdentity(m);
+      if (key && winner.get(key) !== m) {
+        const canon = winner.get(key);
+        const list = dupsByCanonical.get(canon.id) || [];
+        list.push(m);
+        dupsByCanonical.set(canon.id, list);
+        continue;
+      }
+      keep.push(m);
+      unique++;
+    }
+    byNight[night] = keep;
+  }
+  return { byNight, dupsByCanonical, unique };
+}
+
+// Returns the densest `windowMs` stretch of the night.
+//
+// THE COPY BUG THIS RETURN SHAPE EXISTS FOR: the old shape returned only
+// startMs/endMs — the OBSERVED capture span — while PeakMomentCard hardcoded
+// "20 MIN" and "N moments in 20 minutes". Five clips shot between 10:00 and
+// 10:01 were reported as "5 moments in 20 minutes", which claims the visible
+// events lasted twenty minutes. They lasted one. The analysis window and the
+// observed span are two different numbers and both are now returned, so copy
+// can say "20-minute peak window · captures span 1 minute" and be true.
+//
+// Dedupe runs BEFORE the window scan, so one piece of media held by two
+// records cannot inflate the peak count or appear twice in the strip.
 function _peakWindow(moments, windowMs) {
   windowMs = windowMs || 20 * 60000;
-  const timed = (moments || [])
+  const timed = _dedupeByMedia(moments || [])
     .filter(m => m.photoId)
     .map(m => ({ m, t: _momentCaptureMs(m) }))
     .filter(x => x.t > 0)
@@ -3573,7 +3838,12 @@ function _peakWindow(moments, windowMs) {
       best = { items, startMs: timed[i].t, endMs: timed[i + items.length - 1].t };
     }
   }
-  return (best && best.items.length >= 3) ? best : null;
+  if (!best || best.items.length < 3) return null;
+  // spanMs is what the user's own clips cover; windowMs is the lens we looked
+  // through. spanMs <= windowMs always, and is frequently far smaller.
+  best.windowMs = windowMs;
+  best.spanMs = Math.max(0, best.endMs - best.startMs);
+  return best;
 }
 
 // Spotify-Wrapped-style stat card for the peak window: the count, the clock
@@ -3584,9 +3854,23 @@ function _clock12(ms) {
   const ap = h >= 12 ? "PM" : "AM"; h = h % 12 || 12;
   return `${h}:${String(mn).padStart(2, "0")} ${ap}`;
 }
+// "20 minutes" and "1 minute" in words, for the two DIFFERENT durations a peak
+// carries. Minute-resolution on purpose: the analysis window is always whole
+// minutes, and rounding an observed span UP to a minute would re-introduce the
+// overstatement this card exists to remove, so a sub-minute span says so.
+function _fmtSpanMins(ms) {
+  const mins = Math.floor((ms || 0) / 60000);
+  if (mins <= 0) return "under a minute";
+  return `${mins} minute${mins === 1 ? "" : "s"}`;
+}
 function PeakMomentCard({ peak, accent, onOpenLightbox, onPlayReel }) {
   if (!peak) return null;
   const { items, startMs, endMs } = peak;
+  // Defaulted so a caller that still passes an old-shape peak degrades to the
+  // window it actually used rather than rendering "undefined".
+  const windowMs = peak.windowMs || 20 * 60000;
+  const spanMs = typeof peak.spanMs === "number" ? peak.spanMs : Math.max(0, endMs - startMs);
+  const windowLabel = _fmtSpanMins(windowMs);
   const a = accent || "var(--ember)";
   return (
     <div style={{
@@ -3594,25 +3878,29 @@ function PeakMomentCard({ peak, accent, onOpenLightbox, onPlayReel }) {
       background: `linear-gradient(135deg, ${a}1f, var(--paper-2))`,
       border: `1px solid ${a}40`,
     }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
-        <span style={{ fontSize: 15 }}>🔥</span>
-        <div style={{ flex: 1, minWidth: 0 }}>
+      {/* wrap + rowGap: at 320px and 200% text the RELIVE button used to fight
+          the multi-line count copy on one line. It drops below instead. */}
+      <div style={{ display: "flex", alignItems: "center", gap: 9, flexWrap: "wrap", rowGap: 8 }}>
+        <span style={{ fontSize: 15 }} aria-hidden="true">🔥</span>
+        <div style={{ flex: "1 1 160px", minWidth: 0 }}>
           <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.4, fontWeight: 800, color: a }}>
-            YOUR PEAK · 20 MIN
+            YOUR PEAK
           </div>
-          <div className="serif" style={{ fontSize: 17, color: "var(--ink)", lineHeight: 1.1, marginTop: 1 }}>
-            {items.length} moments in 20 minutes
+          {/* The count is of the window; the span is of the captures. Saying
+              both is the whole point — never "N moments in 20 minutes". */}
+          <div className="serif" style={{ fontSize: 17, color: "var(--ink)", lineHeight: 1.15, marginTop: 1 }}>
+            {items.length} moment{items.length === 1 ? "" : "s"} in your busiest {windowLabel}
           </div>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", fontWeight: 600, marginTop: 2 }}>
-            {_clock12(startMs)} – {_clock12(endMs)}
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", fontWeight: 600, marginTop: 2, lineHeight: 1.5 }}>
+            {_clock12(startMs)} – {_clock12(endMs)} · captures span {_fmtSpanMins(spanMs)}
           </div>
         </div>
         {onPlayReel && (
           <button onClick={() => { try { window.plurskyHaptic?.("MEDIUM"); } catch {} onPlayReel(items); }} className="mono" style={{
             flexShrink: 0, background: a, color: "var(--ink)", border: "none",
-            borderRadius: 999, padding: "7px 13px", cursor: "pointer",
+            borderRadius: 999, padding: "0 14px", minHeight: 44, minWidth: 44, cursor: "pointer",
             fontSize: 9, letterSpacing: 1.2, fontWeight: 800,
-            display: "flex", alignItems: "center", gap: 5,
+            display: "flex", alignItems: "center", justifyContent: "center", gap: 5,
           }}>▶ RELIVE</button>
         )}
       </div>
@@ -4254,7 +4542,7 @@ function ImportReview({ results, moments, onClose, onPatch, onMove }) {
               {[(results || []).some(r => r.name) && `${rows.length} IMPORTED`, need ? `${need} NEED REVIEW` : "ALL ANSWERED"].filter(Boolean).join(" · ")}
             </div>
             {need > 0 && (
-              <button onClick={() => setSel(new Set(rows.filter(r => r.review).map(r => r.id)))} style={{ ...mono, fontSize: 9, background: "none", border: "none", color: "var(--ember-ink)", cursor: "pointer", padding: 0 }}>
+              <button onClick={() => setSel(new Set(rows.filter(r => r.review).map(r => r.id)))} style={{ ...mono, fontSize: 9, background: "none", border: "none", color: "var(--ember-ink)", cursor: "pointer", padding: "0 8px", minHeight: 44, minWidth: 44 }}>
                 SELECT THESE
               </button>
             )}
@@ -4280,11 +4568,21 @@ function ImportReview({ results, moments, onClose, onPatch, onMove }) {
                         background: r.review ? "rgba(var(--signal-rgb),0.07)" : "transparent",
                         border: r.review ? "1px solid rgba(var(--signal-rgb),0.45)" : "1px solid var(--line)",
                       }}>
+                        {/* 44x44 target around a 24px box (v341 pixel pass
+                            measured it at 24x24). The tick keeps its size;
+                            only the hit area grows. */}
                         <button onClick={() => toggle(r.id)} role="checkbox" aria-checked={on} aria-label={`Select ${_momentMediaLabel(r.m)}`} style={{
-                          width: 24, height: 24, borderRadius: 6, flexShrink: 0, cursor: "pointer", padding: 0,
-                          border: on ? "none" : "1.5px solid var(--line-2)", background: on ? "var(--ink)" : "transparent",
-                          color: "var(--paper)", fontSize: 13, lineHeight: "24px",
-                        }}>{on ? "✓" : ""}</button>
+                          width: 44, height: 44, minWidth: 44, minHeight: 44, flexShrink: 0, cursor: "pointer", padding: 0,
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                          border: "none", background: "transparent",
+                        }}>
+                          <span aria-hidden="true" style={{
+                            width: 24, height: 24, borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center",
+                            boxSizing: "border-box",
+                            border: on ? "none" : "1.5px solid var(--line-2)", background: on ? "var(--ink)" : "transparent",
+                            color: "var(--paper)", fontSize: 13, lineHeight: "24px",
+                          }}>{on ? "✓" : ""}</span>
+                        </button>
                         <_ReviewThumb moment={r.m}/>
                         <button onClick={() => setPicking([r.id])} aria-label={`Change the tag for ${_momentMediaLabel(r.m)}`} style={{
                           flex: 1, minWidth: 0, textAlign: "left", background: "none", border: "none", padding: 0,
@@ -4318,12 +4616,12 @@ function ImportReview({ results, moments, onClose, onPatch, onMove }) {
               <div style={{ ...mono, fontSize: 9, color: "var(--muted)", flex: 1 }}>
                 {oneFestival ? `${sel.size} SELECTED` : "SELECT ONE FESTIVAL'S MOMENTS"}
               </div>
-              <button onClick={() => setSel(new Set())} style={{ ...mono, fontSize: 10, padding: "11px 14px", borderRadius: 12, border: "1px solid var(--line-2)", background: "transparent", color: "var(--ink)", cursor: "pointer" }}>CLEAR</button>
-              <button data-review-batch disabled={!oneFestival} onClick={() => setPicking([...sel])} style={{ ...mono, fontSize: 10, padding: "11px 16px", borderRadius: 12, border: "none", background: "var(--ink)", color: "var(--paper)", cursor: oneFestival ? "pointer" : "default", opacity: oneFestival ? 1 : 0.4 }}>TAG {sel.size}</button>
+              <button onClick={() => setSel(new Set())} style={{ ...mono, fontSize: 10, minHeight: 44, padding: "0 14px", borderRadius: 12, border: "1px solid var(--line-2)", background: "transparent", color: "var(--ink)", cursor: "pointer" }}>CLEAR</button>
+              <button data-review-batch disabled={!oneFestival} onClick={() => setPicking([...sel])} style={{ ...mono, fontSize: 10, minHeight: 44, padding: "0 16px", borderRadius: 12, border: "none", background: "var(--ink)", color: "var(--paper)", cursor: oneFestival ? "pointer" : "default", opacity: oneFestival ? 1 : 0.4 }}>TAG {sel.size}</button>
             </div>
           ) : (
             <button data-review-done onClick={onClose} className="mono" style={{
-              width: "100%", padding: "12px 0", borderRadius: 12, border: "none",
+              width: "100%", minHeight: 44, padding: "12px 0", borderRadius: 12, border: "none",
               background: "var(--ink)", color: "var(--paper)", cursor: "pointer",
               fontSize: 11, letterSpacing: 1.3, fontWeight: 800,
             }}>{need === 0 ? `LOOKS RIGHT · ${rows.length} SAVED` : `DONE · ${need} LEFT TO REVIEW LATER`}</button>
@@ -4450,11 +4748,14 @@ function StorageManager({ all, onChange }) {
                   <button onClick={() => handlePurge(d.n)} disabled={busy} className="mono" style={{
                     padding: "4px 9px", borderRadius: 999, background: "var(--ember)", color: "var(--ink)", border: "none",
                     cursor: "pointer", fontSize: 9, letterSpacing: 1, fontWeight: 700,
+                    minHeight: 44, minWidth: 44,
                   }}>{busy ? "..." : "DELETE"}</button>
                 </div>
               ) : (
                 <button onClick={() => setConfirming(d.n)} aria-label="Clear night" className="mono" style={{
-                  padding: "4px 9px", borderRadius: 999, background: "transparent", border: "1px solid var(--line-2)",
+                  minHeight: 44, minWidth: 44, padding: "0 12px", borderRadius: 999,
+                  display: "inline-flex", alignItems: "center", justifyContent: "center",
+                  background: "transparent", border: "1px solid var(--line-2)",
                   color: "var(--muted)", cursor: "pointer", fontSize: 9, letterSpacing: 1, fontWeight: 700,
                 }}>CLEAR</button>
               )}
@@ -4486,7 +4787,7 @@ function StorageManager({ all, onChange }) {
             </div>
           ) : (
             <button onClick={() => setConfirming("all")} className="mono" style={{
-              padding: "8px 14px", width: "100%", borderRadius: 8,
+              minHeight: 44, padding: "8px 14px", width: "100%", borderRadius: 8,
               background: "transparent", border: "1px dashed var(--line-2)",
               color: "var(--muted)", cursor: "pointer",
               fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
@@ -5107,7 +5408,7 @@ function MemoryGrid({ allMoments, onOpenLightbox }) {
   const stacks = React.useMemo(() => _stackBursts(sorted), [sorted]);
   if (!sorted.length) return null;
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6, marginTop: 4 }}>
+    <div data-wall style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6, marginTop: 4 }}>
       {stacks.map((st) => {
         const hero = (st.items.length > 1 ? _pickHeroMoment(st.items) : st.items[0]) || st.items[0];
         const idx = sorted.indexOf(hero);
@@ -5410,15 +5711,16 @@ function _NightMap({ moments, onPinTap }) {
   if (!moments || !moments.length) return null;
   return (
     <div style={{ marginTop: 8 }}>
-      <button onClick={() => setOpen(o => !o)} className="mono" style={{
+      {/* 38px tall before v341, under the 44 floor. */}
+      <button onClick={() => setOpen(o => !o)} aria-expanded={open} className="mono" style={{
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        width: "100%", padding: "9px 12px", borderRadius: 10,
+        width: "100%", minHeight: 44, padding: "0 12px", borderRadius: 10,
         background: "var(--paper-2)", border: "1px solid var(--line)",
         color: "var(--muted)", cursor: "pointer",
         fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
       }}>
-        <span>📍 WHERE THIS NIGHT HAPPENED</span>
-        <span>{open ? "▾" : "▸"}</span>
+        <span style={{ minWidth: 0, overflowWrap: "anywhere", textAlign: "left" }}>📍 WHERE THIS NIGHT HAPPENED</span>
+        <span style={{ flexShrink: 0, marginLeft: 8 }}>{open ? "▾" : "▸"}</span>
       </button>
       {open && <div style={{ marginTop: 8 }}><MemoriesMapTab moments={moments} onPinTap={onPinTap} /></div>}
     </div>
@@ -5431,9 +5733,14 @@ function _NightShareMenu({ night, moments }) {
   const [open, setOpen] = React.useState(false);
   return (
     <div style={{ position: "relative", marginLeft: "auto" }}>
+      {/* minHeight/minWidth 44: this measured 88x26 in the v341 pixel pass,
+          under the 44x44 floor the design wave gates on. The visual pill is
+          unchanged — the padding grows the TARGET, not the ink. */}
       <button onClick={() => setOpen(o => !o)} className="mono" style={{
-        background: "var(--ember)", color: "var(--ink)", border: "none",
-        borderRadius: 999, padding: "4px 10px", cursor: "pointer",
+        background: "var(--paper-2)", color: "var(--text-2)", border: "none",
+        borderRadius: 999, padding: "0 12px", cursor: "pointer",
+        minHeight: 44, minWidth: 44,
+        display: "inline-flex", alignItems: "center", justifyContent: "center",
         fontSize: 9, letterSpacing: 1.2, fontWeight: 700, whiteSpace: "nowrap",
       }}>📸 SHARE ▾</button>
       {open && (
@@ -5518,6 +5825,293 @@ function _groupNightMoments({ moments, attendedSet, artists, toMin }) {
   // the same kind of fact: "this may not belong here", kept where it was.
   const needsReview = (moments || []).filter(m => m.festivalReview || (m.artistId && !find(m.artistId)));
   return { byArtist, untagged, spineIds, needsReview };
+}
+
+// ── The organized library, one day at a time (v341) ────────────────────────
+// Turns #210's grouping into the IA the v2 spec asks for:
+//   festival -> collapsible day -> bounded set card -> deduped media stack.
+//
+// It deliberately CONSUMES _groupNightMoments rather than re-deriving the
+// groups. That function is the #210 regression's subject; a second grouping
+// path here would be a second place for orphans to appear, and the gate would
+// only be watching one of them.
+//
+// Two invariants this must keep, both asserted by test-memories-library.mjs:
+//   1. counts.moments === the number of UNIQUE media identities rendered in
+//      the day, summed across every group. The header cannot claim a number
+//      the sections do not contain.
+//   2. every RECORD is reachable exactly once — as a set card's cover, in its
+//      stack, in Between Sets, in Needs Review, or in that group's duplicates
+//      list. Deduping for display must not make a record disappear.
+function _buildLibraryDay({ moments, attendedSet, artists, toMin, dupsFor }) {
+  const { byArtist, untagged, spineIds, needsReview } = _groupNightMoments({ moments, attendedSet, artists, toMin });
+  const find = (id) => (artists || []).find(a => a.id === id);
+
+  // One group: dedupe to canonical media, pick the cover, and keep the
+  // duplicate RECORDS to one side so they stay reachable without being
+  // counted or drawn twice.
+  //
+  // A record with no photoId — a typed note, a Live Set Check-in — has no
+  // media to tile. It used to go into `media` anyway, so _GridTile drew a
+  // permanent skeleton and the note or the check-in's stage + song were lost
+  // from Memories. Those are NOTES: counted as moments, never tiles, never a
+  // cover, never in the lightbox order, and rendered with their own card.
+  const shape = (raw) => {
+    const notes = (raw || []).filter(m => m && !m.photoId);
+    const media = _dedupeByMedia((raw || []).filter(m => m && m.photoId));
+    const keep = new Set(media.map(m => m.id));
+    // Losers dropped inside this group, plus the ones already dropped
+    // library-wide against a canonical record that lives in THIS group. Both
+    // stay attached to the record that won, which is what keeps them
+    // reachable instead of orphaned.
+    const duplicates = (raw || []).filter(m => m && m.photoId && !keep.has(m.id))
+      .concat(dupsFor ? media.flatMap(m => dupsFor(m.id) || []) : []);
+    const hero = media.length ? _pickHeroMoment(media) : null;
+    // The cover is NOT also a row. THE BUG THIS FIXES: _GroupHeroThumb drew
+    // the hero, then the hero was prepended to orderedMoments and drawn again
+    // as a full MomentCard, so the best shot of every set appeared twice.
+    const stack = hero ? media.filter(m => m.id !== hero.id) : media;
+    // Lightbox order still leads with the cover, so tapping it opens on it.
+    const ordered = hero ? [hero, ...stack] : media;
+    return { media, notes, hero, stack, ordered, duplicates, count: media.length + notes.length };
+  };
+
+  const sets = spineIds.map(aId => {
+    const artist = find(aId);
+    const stage = artist ? (window.STAGES || []).find(s => s.id === artist.stage) : null;
+    const g = shape(byArtist.get(aId) || []);
+    return {
+      key: `set:${aId}`, kind: "set", artistId: aId, artist, stage,
+      setTime: artist && artist.start ? artist.start : null,
+      // An attended set with no media is a real library row, not an empty
+      // state: you were there, and the card says so compactly.
+      attendedOnly: g.count === 0,
+      ...g,
+    };
+  });
+
+  const between = { key: "between", kind: "between", ...shape(untagged) };
+  const review  = { key: "review",  kind: "review",  ...shape(needsReview) };
+
+  const groups = [...sets, between, review].filter(g => g.kind === "set" || g.count > 0 || g.duplicates.length > 0);
+  const moments_ = groups.reduce((n, g) => n + g.count, 0);
+  return {
+    sets, between, review, groups,
+    counts: {
+      // "N sets · M moments". Sets counts attended-and-filmed set cards,
+      // including the zero-media ones; moments counts unique media.
+      sets: sets.length,
+      moments: moments_,
+      duplicates: groups.reduce((n, g) => n + g.duplicates.length, 0),
+    },
+    // A day with no sets, no media and nothing to review renders nothing at
+    // all — the caller collapses it rather than printing an empty box per day.
+    isEmpty: sets.length === 0 && between.count === 0 && review.count === 0,
+  };
+}
+
+// All / Clips / Sets / Recaps. The filter narrows what a day SHOWS; it never
+// changes provenance, never moves a record between groups, and never merges
+// Needs Review into Between Sets.
+const _LIBRARY_FILTERS = ["all", "clips", "sets", "recaps"];
+function _filterLibraryDay(day, filter) {
+  if (!day || !filter || filter === "all") return day;
+  if (filter === "clips") {
+    // Media only. Attended-with-no-media set cards drop out because there is
+    // no clip in them; every group that holds media stays, in place, so a
+    // clip is still filed under the set it was shot at.
+    const sets = day.sets.filter(s => s.count > 0);
+    const groups = [...sets, day.between, day.review].filter(g => g.count > 0);
+    return { ...day, sets, groups,
+      counts: { ...day.counts, sets: sets.length, moments: groups.reduce((n, g) => n + g.count, 0) },
+      isEmpty: groups.length === 0 };
+  }
+  if (filter === "sets") {
+    // The set spine, including the ones you caught but did not film. Between
+    // Sets and Needs Review are by definition not sets, so they are out.
+    return { ...day, groups: day.sets,
+      counts: { ...day.counts, moments: day.sets.reduce((n, g) => n + g.count, 0) },
+      isEmpty: day.sets.length === 0 };
+  }
+  // recaps: handled at the screen level (a recap is a festival artifact, not
+  // a per-day one), so every day renders nothing.
+  return { ...day, sets: [], groups: [], counts: { ...day.counts, sets: 0, moments: 0 }, isEmpty: true };
+}
+
+// ── Organized library: the bounded set card (v341) ─────────────────────────
+// ONE card per set, with a stable boundary and a stable height. The card's
+// cover is its best shot; the stack below is every OTHER unique clip. The
+// cover is never also a row — that duplicate was the shipped bug — and the
+// count is of unique media, so the header, the stack and the day total agree.
+function _LibraryCover({ moment, onClick, label }) {
+  const thumb = useMomentThumb(moment);
+  if (!moment) return null;
+  return (
+    <button onClick={onClick} aria-label={label || "Open this set's photos"} style={{
+      flexShrink: 0, width: 56, height: 56, borderRadius: 12, padding: 0, cursor: "pointer",
+      overflow: "hidden", border: "1px solid var(--line)", background: "var(--paper-2)",
+      position: "relative",
+    }}>
+      <_ThumbMedia moment={moment} thumb={thumb} showLength={false}/>
+      {moment.kind === "video" && (
+        <span aria-hidden="true" style={{
+          position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
+          color: "var(--ink)", fontSize: 13, textShadow: "0 1px 2px rgba(var(--shade-rgb),0.6)", pointerEvents: "none",
+        }}>▶</span>
+      )}
+    </button>
+  );
+}
+
+// The per-group chrome: which eyebrow, which title, which spine colour.
+// Needs Review is visually distinct from Between Sets on purpose — they are
+// different claims about a clip and #210 exists because folding them together
+// destroyed the provenance a retag needs.
+function _libraryGroupChrome(group) {
+  if (group.kind === "between") {
+    return { eyebrow: "BETWEEN SETS", eyebrowColor: "var(--ember-ink)", spine: "var(--ember)",
+             title: "Other moments", note: null };
+  }
+  if (group.kind === "review") {
+    // Two different facts share this group (see _groupNightMoments): a set tag
+    // this lineup can't resolve, and a festival stamp its own capture time
+    // contradicts (#216's festivalReview). Neither line may claim the other.
+    // Strings are #216's, exactly as merged. Duplicates count toward which
+    // facts are present; the singular/plural follows the clips drawn.
+    const all = [...(group.media || []), ...(group.notes || []), ...(group.duplicates || [])];
+    const setOnly = all.every(m => !m.festivalReview);
+    const festOnly = all.every(m => m.festivalReview);
+    // Retag settles a set tag, never a festival conflict (that is #228's
+    // control), so the button offers only the clips a retag can clear, and
+    // a group of festival conflicts alone gets no button at all.
+    const retag = [...(group.media || []), ...(group.notes || [])].filter(m => !m.festivalReview);
+    return { eyebrow: "NEEDS REVIEW", eyebrowColor: "var(--warn)", spine: "var(--warn)", retag,
+             title: setOnly ? "Set not in this festival"
+               : festOnly ? "Outside this festival’s dates"
+               : "Check these clips",
+             note: setOnly ? "Tagged to a set this festival doesn’t have — retag to file it."
+               : festOnly ? (group.count === 1 ? "Its capture time doesn’t match this festival’s dates. We left it here."
+                 : "Their capture times don’t match this festival’s dates. We left them here.")
+               : "Some are tagged to a set this festival doesn’t have. Others were shot outside this festival’s dates." };
+  }
+  const a = group.artist, s = group.stage;
+  return {
+    eyebrow: [(s && (s.short || s.name) || "").toUpperCase(),
+              group.setTime && typeof fmt12 === "function" ? fmt12(group.setTime) : ""].filter(Boolean).join(" · "),
+    eyebrowColor: "var(--text-2)", spine: "var(--line-2)",
+    title: (a && a.name) || "Unknown set", note: null,
+  };
+}
+
+function LibraryGroupCard({ group, onOpenLightbox, onArtistClick, onReview, bulkRetag, renderNote }) {
+  const chrome = _libraryGroupChrome(group);
+  const n = group.count;
+  const notes = group.notes || [];
+  // "clips" only when every counted thing IS a clip; a note is a moment.
+  const unit = notes.length ? (n === 1 ? "moment" : "moments") : (n === 1 ? "clip" : "clips");
+  const countLabel = group.kind === "set" && n === 0
+    ? "Caught"
+    : `${n} ${unit}`;
+  const openAt = (i) => onOpenLightbox(group.ordered, i);
+  const titleTap = group.kind === "set" && group.artistId
+    ? () => onArtistClick(group.artistId)
+    : (group.ordered.length > 0 ? () => openAt(0) : null);
+  return (
+    <div style={{
+      marginTop: 10, padding: "10px 12px", borderRadius: 14,
+      background: "var(--paper-2)", border: "1px solid var(--line)",
+      // A bounded card with a floor: the height cannot collapse while media
+      // resolves and cannot jump when it fails, so scroll survives both.
+      minHeight: 64, boxSizing: "border-box",
+    }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <span aria-hidden="true" style={{ width: 4, alignSelf: "stretch", minHeight: 40, background: chrome.spine, borderRadius: 3, flexShrink: 0 }}/>
+        <button
+          onClick={titleTap || undefined}
+          disabled={!titleTap}
+          style={{
+            flex: 1, minWidth: 0, display: "block", textAlign: "left", padding: "2px 0",
+            background: "transparent", border: "none", color: "var(--ink)",
+            fontFamily: "inherit", cursor: titleTap ? "pointer" : "default",
+            minHeight: 44,
+          }}>
+          {chrome.eyebrow && (
+            <span className="mono" style={{ display: "block", fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: chrome.eyebrowColor }}>
+              {chrome.eyebrow}
+            </span>
+          )}
+          {/* Wraps instead of truncating: at 200% text a clipped artist name
+              is an ambiguous row and the full value is nowhere else on screen. */}
+          <span className="serif" style={{ display: "block", fontSize: 18, lineHeight: 1.15, color: "var(--ink)", marginTop: 2, overflowWrap: "anywhere" }}>
+            {chrome.title}
+          </span>
+        </button>
+        <span className="mono" style={{
+          flexShrink: 0, fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
+          color: n ? "var(--muted)" : "var(--text-2)", fontVariantNumeric: "tabular-nums",
+        }}>{countLabel}</span>
+        {group.hero && (
+          <_LibraryCover moment={group.hero} onClick={() => openAt(0)}
+            label={`Open ${chrome.title} — ${n} ${unit}`} />
+        )}
+      </div>
+
+      {chrome.note && (
+        <div style={{ marginTop: 6, fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>{chrome.note}</div>
+      )}
+
+      {/* An attended set with no media is a compact in-card line — NOT a
+          full empty row, and never a page-level "no moments" box. */}
+      {group.kind === "set" && n === 0 && (
+        <div style={{ marginTop: 6, fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>
+          You were here · no clips from this set yet
+        </div>
+      )}
+
+      {/* The deduped stack: every unique clip EXCEPT the cover. */}
+      {group.stack.length > 0 && (
+        <div style={{
+          display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(72px, 1fr))",
+          gap: 6, marginTop: 10,
+        }}>
+          {group.stack.map((m, i) => (
+            <_GridTile key={m.id} moment={m} onClick={() => openAt(i + 1)} />
+          ))}
+        </div>
+      )}
+
+      {/* Notes and check-ins keep their own card — text, stage, song, tag
+          and delete — instead of a blank media tile. */}
+      {notes.length > 0 && renderNote && (
+        <div data-library-notes style={{ marginTop: 10 }}>
+          {notes.map(m => <React.Fragment key={m.id}>{renderNote(m)}</React.Fragment>)}
+        </div>
+      )}
+
+      {/* Duplicate RECORDS stay reachable. They are not counted and not drawn
+          in the stack (one media, one tile), but they are not orphaned
+          either — #210's invariant is that nothing countable vanishes. */}
+      {group.duplicates.length > 0 && (
+        <button onClick={() => onOpenLightbox(group.duplicates, 0)} style={{
+          marginTop: 8, minHeight: 44, width: "100%", textAlign: "left", padding: "0 2px",
+          background: "transparent", border: "none", cursor: "pointer",
+          color: "var(--text-2)", fontSize: 13, lineHeight: 1.38, fontFamily: "inherit",
+        }}>
+          {group.duplicates.length} duplicate {group.duplicates.length === 1 ? "record" : "records"} of this media · View
+        </button>
+      )}
+
+      {/* Retag without going through Manage, where the work actually is. */}
+      {group.kind === "review" && chrome.retag.length > 0 && onReview && (
+        <button onClick={() => onReview(chrome.retag)} style={{
+          marginTop: 8, minHeight: 44, width: "100%", padding: "0 14px", borderRadius: 12,
+          background: "var(--paper-3)", border: "none", cursor: "pointer",
+          color: "var(--ink)", fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit",
+        }}>Retag {chrome.retag.length === 1 ? "this clip" : `these ${chrome.retag.length} clips`}</button>
+      )}
+      {group.kind === "between" && bulkRetag}
+    </div>
+  );
 }
 
 function MemoriesScreen({ state, setState }) {
@@ -5805,6 +6399,32 @@ function MemoriesScreen({ state, setState }) {
     setTimeout(() => setBatch(b => (b && b.done === b.total ? null : b)), 6000);
   };
 
+  // Deletes one piece of MEDIA: the record the user is looking at and every
+  // duplicate record of the same media. The library shows one tile per media
+  // identity, so deleting only the canonical record would promote a hidden
+  // duplicate into the same slot — or, since duplicates can share one stored
+  // blob, leave it pointing at a photo that was just removed.
+  // Confirmation is the caller's (the lightbox's two-tap button).
+  const deleteMomentMedia = async (moment) => {
+    const key = _mediaIdentity(moment);
+    const cur = _readMoments();
+    const gone = new Set();
+    const blobs = new Set();
+    const next = {};
+    for (const n of Object.keys(cur)) {
+      next[n] = (cur[n] || []).filter(m => {
+        const hit = m && (m.id === moment.id || (key && _mediaIdentity(m) === key));
+        if (hit) { gone.add(m.id); if (m.photoId) blobs.add(m.photoId); }
+        return !hit;
+      });
+    }
+    for (const b of blobs) { try { await _deletePhoto(b); } catch {} }
+    _writeMoments(next);
+    setAll(next);
+    try { window.dispatchEvent(new CustomEvent("plursky-moments-change")); } catch {}
+    return gone;
+  };
+
   const handleDelete = async (moment) => {
     if (!window.confirm("Delete this moment?")) return;
     if (moment.photoId) { try { await _deletePhoto(moment.photoId); } catch {} }
@@ -5831,16 +6451,62 @@ function MemoriesScreen({ state, setState }) {
   // PHPicker is out-of-process, so it needs NO NSPhotoLibraryUsageDescription
   // and triggers no permission prompt. GPS is stripped by PHPicker unless the
   // user grants full library access in iOS Settings — same as before.
+  // ── Picker capability states (v341) ──────────────────────────────────────
+  // THE BUG THIS REPLACES: pickViaNative returned `null` for four different
+  // situations — not native, flag off, plugin missing, and an EXCEPTION — and
+  // the caller treated all four the same by clicking the hidden web input. On
+  // a native WebView where that input does nothing, a failed import was a
+  // button that silently did nothing at all. An error was also indistinguishable
+  // from a cancel, so a real failure looked like the user changing their mind.
+  //
+  // The states, each of which the UI can now say out loud:
+  //   picked      — files came back
+  //   cancelled   — the sheet opened and the user backed out. A NO-OP.
+  //   unsupported — no native picker here; the web input is the correct path
+  //   nopicker    — native, but the picking plugin is absent. No dead fallback.
+  //   error       — the call threw. NOT a cancel.
+  //   nofile      — the sheet returned entries but none could be read
+  //   unreadable  — some entries could not be read (iCloud not downloaded,
+  //                 read failure, unsupported type). Reported, not swallowed.
+  const [pickerState, setPickerState] = React.useState(null); // null | { status, detail }
+  const _pickerCapability = () => {
+    const cap = window.Capacitor;
+    const isNative = !!cap?.isNativePlatform?.();
+    if (!isNative || !window.__USE_NATIVE_PICKER__) return { native: false, plugin: false };
+    return { native: true, plugin: !!cap.Plugins?.FilePicker?.pickMedia };
+  };
+  // Is there a working picker at all? On web the hidden <input> is one. On a
+  // native build it is the FilePicker plugin — and if that is missing, there
+  // is no fallback that does anything, so the UI must not offer the action.
+  // A confirmed "nopicker" from an actual attempt outranks the capability
+  // probe, because a probe can be right about the plugin and wrong about the
+  // WebView that has to open it.
+  //
+  // Declared AFTER _pickerCapability on purpose: useMemo runs its factory
+  // during this statement, so reading a `const` declared below it would be a
+  // temporal-dead-zone ReferenceError at first render, not a lint nit.
+  const pickerAvailable = React.useMemo(() => {
+    if (pickerState && pickerState.status === "nopicker") return false;
+    const c = _pickerCapability();
+    return !c.native || c.plugin;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pickerState]);
   const pickViaNative = async () => {
     const cap = window.Capacitor;
-    if (!cap?.isNativePlatform?.() || !window.__USE_NATIVE_PICKER__) return null;
-    const FilePicker = cap.Plugins?.FilePicker;
-    if (!FilePicker?.pickMedia) return null;
+    const capab = _pickerCapability();
+    // Not a native build (or the flag is off): the web <input> IS the picker.
+    if (!capab.native) return { status: "unsupported" };
+    // Native, but the plugin that does the picking is not installed. The web
+    // input is not a working fallback here, so say so instead of no-opping.
+    if (!capab.plugin) return { status: "nopicker" };
+    const FilePicker = cap.Plugins.FilePicker;
     try {
       const result = await FilePicker.pickMedia({ skipTranscoding: false, limit: 50, readData: false });
       const files = result?.files || [];
-      if (files.length === 0) return [];
+      // An empty selection is the user cancelling. Nothing to report.
+      if (files.length === 0) return { status: "cancelled" };
       const out = [];
+      const unreadable = [];
       for (let i = 0; i < files.length; i++) {
         const f = files[i];
         // `path` is a native file URL; convertFileSrc makes it loadable by
@@ -5848,10 +6514,21 @@ function MemoriesScreen({ state, setState }) {
         // a File so the existing ingest pipeline sees the same shape it would
         // from <input type="file">.
         const src = f.path ? (cap.convertFileSrc ? cap.convertFileSrc(f.path) : f.path) : null;
-        if (!src) continue;
-        const blob = await fetch(src).then(r => r.blob());
+        if (!src) { unreadable.push({ name: f.name || `item ${i + 1}`, why: "nofile" }); continue; }
+        // A file still in iCloud, or one the WebView cannot read, rejects
+        // HERE. Before v341 the whole batch threw and became a "fall back to
+        // the web input" — one un-downloaded photo lost the other 49.
+        let blob = null;
+        try {
+          blob = await fetch(src).then(r => r.blob());
+        } catch {
+          unreadable.push({ name: f.name || `item ${i + 1}`, why: "unreadable" });
+          continue;
+        }
+        if (!blob || !blob.size) { unreadable.push({ name: f.name || `item ${i + 1}`, why: "unreadable" }); continue; }
         const isVideo = /^video\//.test(f.mimeType || "") || /\.(mov|mp4|m4v)$/i.test(f.name || "");
         const type = f.mimeType || blob.type || (isVideo ? "video/mp4" : "image/jpeg");
+        if (!/^(image|video)\//.test(type)) { unreadable.push({ name: f.name || `item ${i + 1}`, why: "unsupported" }); continue; }
         const name = f.name || `pick-${i}.${isVideo ? "mp4" : "jpg"}`;
         const pickedFile = new File([blob], name, {
           type,
@@ -5866,24 +6543,74 @@ function MemoriesScreen({ state, setState }) {
         }
         out.push(pickedFile);
       }
-      return out;
+      // Everything the user picked failed to read. That is NOT a cancel.
+      if (out.length === 0) return { status: unreadable.length ? "nofile" : "cancelled", unreadable };
+      return { status: "picked", files: out, unreadable };
     } catch (err) {
-      console.warn('[memories] native pickMedia failed; falling back to web input', err);
-      return null;
+      console.warn('[memories] native pickMedia failed', err);
+      // An exception is an ERROR, never a cancel and never a silent web
+      // fallback: on a native build that fallback does nothing visible.
+      return { status: "error", error: String(err && err.message || err) };
     }
   };
 
   const handlePickClick = async () => {
-    const nativeFiles = await pickViaNative();
-    if (nativeFiles && nativeFiles.length > 0) {
-      await processImportedFiles(nativeFiles);
-    } else if (nativeFiles === null) {
-      // Native path declined to handle (flag off / not in Capacitor / errored).
-      // Fall through to the existing hidden-input click.
-      batchInputRef.current?.click();
+    setPickerState(null);
+    const res = await pickViaNative();
+    if (res.status === "picked") {
+      // Some items read, some did not — import what we have and say what we
+      // could not take, rather than reporting a clean success.
+      if (res.unreadable && res.unreadable.length) setPickerState({ status: "unreadable", detail: res.unreadable });
+      await processImportedFiles(res.files);
+      return;
     }
-    // nativeFiles === [] means the user opened the native picker and cancelled
-    // without picking — don't fall back to the web input, just no-op.
+    if (res.status === "unsupported") {
+      // The web <input> is the real picker on this platform.
+      const el = batchInputRef.current;
+      if (el && typeof el.click === "function") el.click();
+      else setPickerState({ status: "nopicker" });
+      return;
+    }
+    // cancelled is a deliberate no-op: no message, no state change.
+    if (res.status === "cancelled") return;
+    setPickerState({ status: res.status, detail: res.unreadable || res.error || null });
+  };
+
+  // What the user is told for each non-success picker state. `cancelled` is
+  // absent on purpose — it has no message.
+  const _pickerMessage = (st) => {
+    if (!st) return null;
+    if (st.status === "nopicker") return {
+      tone: "warn",
+      title: "Photo picking isn’t available on this build",
+      body: "Import needs the media picker, which this install doesn’t have. Your existing moments, sets and recaps are unaffected.",
+      retry: false,
+    };
+    if (st.status === "error") return {
+      tone: "warn",
+      title: "Couldn’t open your photos",
+      body: "The picker returned an error. Nothing was imported.",
+      retry: true,
+    };
+    if (st.status === "nofile") return {
+      tone: "warn",
+      title: "Nothing could be read",
+      body: "The items you picked couldn’t be opened — they may still be downloading from iCloud. Nothing was imported.",
+      retry: true,
+    };
+    if (st.status === "unreadable") {
+      const n = (st.detail || []).length;
+      const icloud = (st.detail || []).some(d => d.why === "unreadable");
+      return {
+        tone: "warn",
+        title: `${n} ${n === 1 ? "item" : "items"} couldn’t be read`,
+        body: icloud
+          ? "They may still be downloading from iCloud, or aren’t a supported photo or video. Everything else was imported."
+          : "They aren’t a supported photo or video. Everything else was imported.",
+        retry: false,
+      };
+    }
+    return null;
   };
 
   // In-place edit (e.g. retagging the artist on an auto-imported photo
@@ -5941,21 +6668,56 @@ function MemoriesScreen({ state, setState }) {
     setAll(next);
   };
 
-  const totalCount = Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
+  // ONE dedupe for the whole festival, shared by the header and every day, so
+  // the three numbers on screen cannot disagree. The header used to count raw
+  // RECORDS while the day summaries counted unique media and the landing card
+  // counted unique media again: a duplicated import made the header say 12
+  // over days that added up to 10.
+  const library = React.useMemo(() => _dedupeLibrary(all), [all]);
+  const dupsFor = React.useCallback(
+    (id) => library.dupsByCanonical.get(id) || [], [library]);
+  const totalCount = library.unique;
+  const wallMoments = React.useMemo(
+    () => Object.values(library.byNight).flatMap(arr => Array.isArray(arr) ? arr.filter(Boolean) : []),
+    [library]);
+  // Records this festival holds on a DECLARED GUESS (#213). They are drawn —
+  // evicting them would be a second data-loss bug — but they are not counted
+  // as things we know, and the header says how many are unconfirmed so the
+  // two numbers add up to what is on screen.
+  const unconfirmedCount = React.useMemo(() => Object.values(library.byNight)
+    .reduce((n, arr) => n + (Array.isArray(arr) ? arr.filter(m => m && (m.festivalAttribution === "unresolved" || m.festivalReview)).length : 0), 0), [library]);
+  const confirmedCount = Math.max(0, totalCount - unconfirmedCount);
+  // Attended sets are library records too. The old empty state counted only
+  // media, so "NO MOMENTS YET" could contradict the set cards below it.
+  const [attendedTick, setAttendedTick] = React.useState(0);
+  React.useEffect(() => {
+    const bump = () => setAttendedTick(t => t + 1);
+    window.addEventListener("plursky-attended-change", bump);
+    return () => window.removeEventListener("plursky-attended-change", bump);
+  }, []);
+  const attendedTotal = React.useMemo(() => {
+    try {
+      return (typeof DAYS !== "undefined" ? DAYS : []).reduce((n, d) => {
+        const s = typeof getAttendedForNight === "function" ? getAttendedForNight(d.n) : null;
+        return n + (s && typeof s.size === "number" ? s.size : 0);
+      }, 0);
+    } catch { return 0; }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [attendedTick, totalCount]);
 
-  // Three lenses on the same data. Default is "night" (preserves the
-  // festival narrative + keeps + ADD MOMENT and the attendance review
-  // affordances per night). "artist" and "stage" are rewatch lenses:
-  // flatten across all nights, group by the dimension. Untagged moments
-  // always float to a bottom group so retag work is grouped.
-  // Persisted across navigations — users settle on one lens; resetting
-  // to "night" every time the user comes back from another tab was
-  // unnecessary friction.
+  // Two surfaces, not lenses (v341): LIBRARY is Memories — the organized
+  // festival -> day -> set -> media hierarchy — and WALL is the separate
+  // glanceable grid that owns artist/song/stage search. The choice persists
+  // across navigations; users settle on one and resetting it every time they
+  // came back from another tab was friction.
   const [view, setView] = React.useState(() => {
     try {
       // A navigation can ask for a lens: a Live Set Check-in has no photo, so
       // the WALL can't show it and its VIEW link opens TIMELINE.
-      if (state.memoriesView === "night" || state.memoriesView === "grid") return state.memoriesView;
+      // A navigation may still ask for the old "night" lens name; it means
+      // the organized library now.
+      if (state.memoriesView === "night") return "library";
+      if (state.memoriesView === "library" || state.memoriesView === "grid") return state.memoriesView;
       const v = localStorage.getItem("plursky_memories_view_v1");
       // v206: lenses simplified to GRID · STORY · NIGHT (the old 5-tab bar read
       // as cluttered). A persisted artist/stage selection falls back to NIGHT —
@@ -5964,12 +6726,75 @@ function MemoriesScreen({ state, setState }) {
       // Legacy story/map/artist/stage all fold into TIMELINE: the per-night map
       // is inline now, and the whole-weekend reel is the "Relive your weekend"
       // hero at the top. Unknown/legacy → WALL (the calm default browse wall).
-      if (["grid", "night"].includes(v)) return v;
-      if (["story", "map", "artist", "stage"].includes(v)) return "night";
+      // v341: Memories IS the organized library, so "library" is the default
+      // and "night" (the old TIMELINE lens) maps onto it. WALL stays a real,
+      // separate surface — the v2 spec keeps artist/song/stage search there —
+      // it is just no longer what Memories opens on.
+      if (v === "library" || v === "grid") return v;
+      if (["night", "story", "map", "artist", "stage"].includes(v)) return "library";
     } catch {}
-    return "grid";
+    return "library";
   });
   const [memQuery, setMemQuery] = React.useState(""); // grid search: artist/song/stage
+
+  // ── Library view state, per festival (v341) ─────────────────────────────
+  // Filter, day-collapse and scroll are remembered PER FESTIVAL, so returning
+  // from General Home lands you where you were — and so two festivals never
+  // share a scroll offset. Reading it never saves the festival.
+  const _festKey = FESTIVAL_CONFIG && FESTIVAL_CONFIG.id;
+  const _view0 = React.useMemo(() => {
+    try { return typeof readFestivalView === "function" ? readFestivalView(_festKey) : {}; } catch { return {}; }
+  }, [_festKey]);
+  const [filter, setFilter] = React.useState(() =>
+    (typeof _LIBRARY_FILTERS !== "undefined" && _LIBRARY_FILTERS.includes(_view0.filter)) ? _view0.filter : "all");
+  const [collapsedDays, setCollapsedDays] = React.useState(() => new Set(Array.isArray(_view0.collapsed) ? _view0.collapsed : []));
+  const scrollRef = React.useRef(null);
+  // Any media that settles into `offline` announces itself; the library then
+  // offers ONE explicit retry for all of them. Bumping mediaEpoch is used as a
+  // React key below, which remounts the cards and re-runs every media hook.
+  const [offlineMedia, setOfflineMedia] = React.useState(false);
+  const [mediaEpoch, setMediaEpoch] = React.useState(0);
+  React.useEffect(() => {
+    const seen = () => setOfflineMedia(true);
+    window.addEventListener("plursky-media-offline", seen);
+    // A reconnect clears the banner; the hooks retry themselves on the same
+    // event, so the banner must not outlive the condition it describes.
+    const back = () => { setOfflineMedia(false); setMediaEpoch(e => e + 1); };
+    window.addEventListener("online", back);
+    return () => { window.removeEventListener("plursky-media-offline", seen); window.removeEventListener("online", back); };
+  }, []);
+  const retryMedia = React.useCallback(() => { setOfflineMedia(false); setMediaEpoch(e => e + 1); }, []);
+  const toggleDay = React.useCallback((n) => {
+    setCollapsedDays(prev => {
+      const next = new Set(prev);
+      if (next.has(n)) next.delete(n); else next.add(n);
+      return next;
+    });
+  }, []);
+  React.useEffect(() => {
+    try { if (typeof writeFestivalView === "function") writeFestivalView(_festKey, { filter, collapsed: [...collapsedDays] }); } catch {}
+  }, [_festKey, filter, collapsedDays]);
+  // Scroll is restored once on mount and written back on a settled scroll.
+  // Filter and collapse changes deliberately do NOT reset it: the v2 spec
+  // requires the position to survive filter, collapse, load, failure, restore
+  // and retag, and the only thing that legitimately moves it is the user.
+  React.useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const want = +(_view0.scroll || 0);
+    if (want > 0) { try { el.scrollTop = want; } catch {} }
+    let t = null;
+    const onScroll = () => {
+      if (t) return;
+      t = setTimeout(() => {
+        t = null;
+        try { if (typeof writeFestivalView === "function") writeFestivalView(_festKey, { scroll: el.scrollTop }); } catch {}
+      }, 250);
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => { el.removeEventListener("scroll", onScroll); if (t) clearTimeout(t); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [_festKey]);
   // v219: TIMELINE defaults to pure relive. Attendance check-off + ADD MOMENT
   // (data-entry) hide behind MANAGE so they don't clutter the browse surface.
   const [manage, setManage] = React.useState(false);
@@ -6069,6 +6894,15 @@ function MemoriesScreen({ state, setState }) {
           onIndexChange={(i) => setLightbox(lb => ({ ...lb, index: i }))}
           onArtistClick={(id) => setState(s => ({ ...s, artist: id }))}
           onRecoverNight={handleRecoverNight}
+          onDelete={async (mom) => {
+            const gone = await deleteMomentMedia(mom);
+            setLightbox(lb => {
+              if (!lb) return lb;
+              const rest = lb.moments.filter(mm => !gone.has(mm.id));
+              if (!rest.length) return null;
+              return { ...lb, moments: rest, index: Math.min(lb.index, rest.length - 1) };
+            });
+          }}
           onUpdate={(mom, patch) => {
             handleUpdate(mom, patch);
             // Reflect the patch in the open lightbox immediately
@@ -6089,14 +6923,23 @@ function MemoriesScreen({ state, setState }) {
       )}
       {/* Memories is a root bottom-nav tab — no back arrow (that read as a
           sub-screen). The tab bar is the way out. */}
-      <div style={{ padding: "8px 20px" }}>
-        <TopBar
-          title={<span>Memories</span>}
-          sub={`${totalCount} ${totalCount === 1 ? "MOMENT" : "MOMENTS"} · ${FESTIVAL_CONFIG.shortName.toUpperCase()}`}
-          tight
-        />
-      </div>
-      <ScrollBody style={{ padding: "0 20px 94px" }}>
+      {/* The title SCROLLS with the library (iOS large-title behaviour)
+          rather than sitting in fixed chrome. As a fixed flex child of Screen
+          — which is overflow:hidden — it was squeezed below its own content
+          at 200% type and clipped the title; pinning it with flexShrink:0
+          instead pushed the whole screen 11px past its own box. Inside the
+          scroller both problems go away, and at normal type it looks the
+          same until you scroll. */}
+      <ScrollBody ref={scrollRef} style={{ padding: "0 20px calc(94px + env(safe-area-inset-bottom, 0px))" }}>
+        <div style={{ margin: "0 -20px" }}>
+          <TopBar
+            title={<span>Memories</span>}
+            sub={`${confirmedCount} ${confirmedCount === 1 ? "MOMENT" : "MOMENTS"}`
+              + (unconfirmedCount ? ` · ${unconfirmedCount} UNCONFIRMED` : "")
+              + ` · ${FESTIVAL_CONFIG.shortName.toUpperCase()}`}
+            tight
+          />
+        </div>
         {/* v135 batch import — auto-tags each photo by EXIF time + GPS,
             then drops it into the right night without further input. */}
         <input
@@ -6107,21 +6950,61 @@ function MemoriesScreen({ state, setState }) {
           onChange={handleBatchPick}
           style={{ display: "none" }}
         />
-        {/* Field Mode: flat rows in words; no gradient washes or pills. */}
+        {/* ONE import CTA (v341). The old screen drew this card AND a
+            full-width "Import from camera roll" button inside the empty
+            state, so the first thing a new user saw was the same action
+            twice. At zero moments the empty state owns it; above zero this
+            card does. And when there is no picker at all, neither renders a
+            dead button — see the honest capability state below. */}
+        {pickerAvailable && totalCount > 0 && (
         <button onClick={handlePickClick}
           disabled={!!batch && batch.done < batch.total}
           style={{ display: "flex", alignItems: "center", gap: 12, width: "100%", minHeight: 64, marginTop: 12, padding: "10px 16px", background: "var(--paper-2)", border: "none", borderRadius: 14, color: "var(--ink)", textAlign: "left", fontFamily: "inherit", cursor: "pointer" }}>
           <span aria-hidden="true" style={{ fontSize: 20 }}>✨</span>
-          <span style={{ flex: 1, minWidth: 0 }}>
-            <span style={{ display: "block", fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>Import from camera roll</span>
-            <span style={{ display: "block", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>Auto-tags by time and location</span>
+          <span style={{ flex: 1, minWidth: 0, overflowWrap: "anywhere" }}>
+            <span style={{ display: "block", fontSize: 17, lineHeight: 1.29, fontWeight: 600 }}>Import from camera roll</span>
+            <span style={{ display: "block", fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>Auto-tags by time and location</span>
           </span>
-          <span style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{batch && batch.done < batch.total ? `${batch.done}/${batch.total}` : "Pick"}</span>
+          <span style={{ fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{batch && batch.done < batch.total ? `${batch.done}/${batch.total}` : "Pick"}</span>
         </button>
+        )}
+
+        {/* Picker capability / failure states. Cancel is absent by design —
+            it is a no-op and says nothing. An error is never shown as a
+            cancel, and a missing picker never leaves a button that does
+            nothing when tapped. */}
+        {(() => {
+          const msg = _pickerMessage(pickerState);
+          if (!msg) return null;
+          return (
+            <div role="status" style={{
+              marginTop: 12, padding: "12px 14px", borderRadius: 14,
+              background: "var(--paper-2)", border: "1px solid var(--line)",
+            }}>
+              <div style={{ fontSize: 15, lineHeight: 1.33, fontWeight: 600, color: "var(--warn)" }}>{msg.title}</div>
+              <p style={{ margin: "4px 0 0", fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>{msg.body}</p>
+              <div style={{ display: "flex", gap: 8, marginTop: 8, flexWrap: "wrap" }}>
+                {msg.retry && (
+                  <button onClick={handlePickClick} style={{
+                    minHeight: 44, padding: "0 14px", borderRadius: 12, border: "none", cursor: "pointer",
+                    background: "var(--paper-3)", color: "var(--ink)",
+                    fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit",
+                  }}>Try again</button>
+                )}
+                <button onClick={() => setPickerState(null)} style={{
+                  minHeight: 44, padding: "0 14px", borderRadius: 12, border: "none", cursor: "pointer",
+                  background: "transparent", color: "var(--text-2)",
+                  fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit",
+                }}>Dismiss</button>
+              </div>
+            </div>
+          );
+        })()}
         {!batch && reviewIds.length > 0 && (
           <button data-review-later onClick={() => setReview(reviewIds.map(id => ({ momentId: id })))} style={{
-            display: "block", width: "100%", textAlign: "left", marginTop: 8, minHeight: 44, padding: "0 16px", borderRadius: 14, cursor: "pointer",
-            background: "var(--paper-2)", border: "none", color: "var(--warn)", fontSize: 15, lineHeight: "20px", fontWeight: 600, fontFamily: "inherit",
+            display: "block", width: "100%", textAlign: "left", marginTop: 8, minHeight: 44, padding: "8px 16px", borderRadius: 14, cursor: "pointer",
+            background: "var(--paper-2)", border: "none", color: "var(--warn)", fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit",
+            overflowWrap: "anywhere",
           }}>
             ⚑ {reviewIds.length} {reviewIds.length === 1 ? "moment needs" : "moments need"} a set · Review
           </button>
@@ -6137,56 +7020,20 @@ function MemoriesScreen({ state, setState }) {
               display: "block", width: "100%", textAlign: "left", marginTop: 8, padding: "10px 16px", minHeight: 44,
               background: "var(--paper-2)", border: "none", borderRadius: 14, cursor: "pointer", color: "var(--ink)", fontFamily: "inherit",
             }}>
-              <div style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600, color: allTagged ? "var(--signal-ink)" : "var(--warn)" }}>
+              <div style={{ fontSize: 15, lineHeight: 1.33, fontWeight: 600, color: allTagged ? "var(--signal-ink)" : "var(--warn)" }}>
                 ✓ {tagged} tagged{needRetag > 0 ? ` · ${needRetag} need a set` : ""}{dupes > 0 ? ` · ${dupes} skipped (duplicate)` : ""}{failed > 0 ? ` · ${failed} failed` : ""}
               </div>
               {needRetag > 0 && (
-                <div style={{ marginTop: 4, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+                <div style={{ marginTop: 4, fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>
                   iOS sometimes strips photo time when copying — tap an untagged moment to pick its set.
                 </div>
               )}
-              <div style={{ marginTop: 4, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+              <div style={{ marginTop: 4, fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>
                 {batch.results.some(r => r.momentId) ? "Tap to review tags" : "Tap to dismiss"}
               </div>
             </button>
           );
         })()}
-
-        {/* ✨ Create recap hero — the payoff CTA. Plays an auto-advancing reel
-            of the whole weekend; the recap-video export lives one tap deeper. */}
-        {allMoments.filter(m => m.photoId).length >= 3 && (
-          <div style={{ display: "flex", alignItems: "center", gap: 12, width: "100%", minHeight: 64, marginTop: 12, padding: "10px 16px", background: "var(--paper-2)", border: "none", borderRadius: 14, color: "var(--ink)", textAlign: "left", fontFamily: "inherit" }}>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>Relive your weekend</div>
-              <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
-                {allMoments.filter(m => m.photoId).length} moments · auto-play reel
-              </div>
-            </div>
-            <button onClick={() => {
-              const ms = allMoments.filter(m => m.photoId).slice().sort((a, b) => {
-                const ta = a.takenAt || "", tb = b.takenAt || "";
-                if (ta && tb) return ta.localeCompare(tb);
-                return (a.createdAt || 0) - (b.createdAt || 0);
-              });
-              playReel(ms, FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name, null);
-            }} style={{
-              flexShrink: 0, minHeight: 44, padding: "0 16px", borderRadius: 14, border: "none", cursor: "pointer",
-              background: "var(--signal)", color: "var(--on-signal)", fontSize: 15, lineHeight: "20px", fontWeight: 600, fontFamily: "inherit",
-            }}>▶ Play</button>
-          </div>
-        )}
-
-        {/* MANAGE reveals the data surfaces (cloud backup + per-night
-            attendance check-off + ADD MOMENT). Default-off keeps the screen a
-            calm relive view, not a control panel. */}
-        {totalCount > 0 && (
-          <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 8 }}>
-            <button onClick={() => setManage(m => !m)} aria-pressed={manage} style={{
-              ...fieldIconBtn, width: "auto", padding: "0 8px", color: manage ? "var(--ink)" : "var(--text-2)",
-              fontSize: 15, fontWeight: 500,
-            }}>{manage ? "Done" : "Manage"}</button>
-          </div>
-        )}
 
         {/* Cloud backup (Plursky+) — manual, wifi-only. Free taps open the
             paywall; Plus runs the upload and shows X/Y backed up. Behind MANAGE. */}
@@ -6205,7 +7052,7 @@ function MemoriesScreen({ state, setState }) {
                 <div className="serif" style={{ fontSize: 15, lineHeight: 1.1 }}>
                   {backupBusy ? "Backing up…" : (backupStat.done >= backupStat.total ? "Memories backed up" : "Back up my weekend")}
                 </div>
-                <div style={{ fontSize: 13, lineHeight: "18px", marginTop: 2, fontVariantNumeric: "tabular-nums",
+                <div style={{ fontSize: 13, lineHeight: 1.38, marginTop: 2, fontVariantNumeric: "tabular-nums",
                   color: backupStat.bytes >= _BACKUP_SOFT_CAP ? "var(--warn)" : "var(--text-2)" }}>
                   {backupBusy && backupProg ? `BACKING UP… ${backupProg.done}/${backupProg.total}`
                     : backupStat.done >= backupStat.total ? `ALL SAFE${backupScopeHint} · ${_fmtSize(backupStat.bytes)}`
@@ -6214,7 +7061,7 @@ function MemoriesScreen({ state, setState }) {
                 </div>
               </div>
             </div>
-            <span style={{ flexShrink: 0, fontSize: 15, lineHeight: "20px", fontWeight: 600, color: _isPlusSub() ? "var(--ink)" : "var(--text-2)" }}>
+            <span style={{ flexShrink: 0, fontSize: 15, lineHeight: 1.33, fontWeight: 600, color: _isPlusSub() ? "var(--ink)" : "var(--text-2)" }}>
               {_isPlusSub() ? (backupStat.done >= backupStat.total ? "✓" : "Back up") : "Plursky+"}
             </span>
           </button>
@@ -6226,7 +7073,7 @@ function MemoriesScreen({ state, setState }) {
             display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8,
             width: "100%", marginTop: 8, minHeight: 44, padding: "0 16px", borderRadius: 14,
             background: "var(--paper-2)", border: "none", color: "var(--ink)", cursor: "pointer",
-            fontSize: 15, lineHeight: "20px", fontFamily: "inherit",
+            fontSize: 15, lineHeight: 1.33, fontFamily: "inherit",
           }}>
             <span>Auto-backup on Wi-Fi</span>
             <span style={{ fontWeight: 600, color: autoOn ? "var(--signal-ink)" : "var(--text-2)" }}>{autoOn ? "On" : "Off"}</span>
@@ -6236,14 +7083,52 @@ function MemoriesScreen({ state, setState }) {
         {/* Paywall overlay — shown when a free user taps cloud backup. */}
         {showPlus && <PlusSheet feature="cloud backup" onClose={() => setShowPlus(false)} />}
 
-        {/* Inviting empty state — first run, no moments yet. */}
-        {totalCount === 0 && (
+        {/* ── Empty states (v341) ─────────────────────────────────────────
+            ONE page-level empty state, and only when the library is genuinely
+            empty. The old copy keyed on media alone, so a user who had marked
+            six sets attended was told they had nothing — while the sets they
+            had just ticked sat right below the message.
+
+            Three cases:
+              no media, no attended sets  → the full invitation
+              no media, attended sets     → a compact import line ABOVE the
+                                            set library, which renders as normal
+              no picker                   → an honest explanation, never a
+                                            dead picker button */}
+        {totalCount === 0 && attendedTotal === 0 && (
           <div style={{ marginTop: 24 }}>
-            <div style={{ fontSize: 20, lineHeight: "25px", fontWeight: 600 }}>Your weekend, remembered</div>
-            <p style={{ margin: "6px 0 16px", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>
-              Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap.
+            <div style={{ fontSize: 20, lineHeight: 1.25, fontWeight: 600 }}>Your weekend, remembered</div>
+            <p style={{ margin: "6px 0 16px", fontSize: 15, lineHeight: 1.4, color: "var(--text-2)" }}>
+              {pickerAvailable
+                ? "Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap."
+                : "Plursky organises your festival photos and videos by the set you were watching. This build can’t open your photo library, so there’s nothing to import from here yet."}
             </p>
-            <FieldButton onClick={handlePickClick}>Import from camera roll</FieldButton>
+            {pickerAvailable
+              ? <FieldButton onClick={handlePickClick}>Import from camera roll</FieldButton>
+              : (
+                <p style={{ margin: 0, fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>
+                  Sets you mark as attended on the Lineup still build your library and your recap.
+                </p>
+              )}
+          </div>
+        )}
+        {totalCount === 0 && attendedTotal > 0 && (
+          <div style={{ marginTop: 16 }}>
+            <div style={{ fontSize: 15, lineHeight: 1.33, fontWeight: 600 }}>
+              {attendedTotal} {attendedTotal === 1 ? "set" : "sets"} caught · no clips yet
+            </div>
+            <p style={{ margin: "4px 0 0", fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>
+              {pickerAvailable
+                ? "Import photos or videos and they’ll land on the sets below."
+                : "This build can’t open your photo library, so the sets below are your library for now."}
+            </p>
+            {pickerAvailable && (
+              <button onClick={handlePickClick} style={{
+                marginTop: 8, minHeight: 44, padding: "0 14px", borderRadius: 12, border: "none", cursor: "pointer",
+                background: "var(--paper-2)", color: "var(--ink)",
+                fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit",
+              }}>Import from camera roll</button>
+            )}
           </div>
         )}
 
@@ -6252,25 +7137,86 @@ function MemoriesScreen({ state, setState }) {
             "manage" view (+ ADD MOMENT + retag, grouped by night→artist with
             the hero + song timeline). Per-artist / per-stage are reached by
             tapping a group, not a top-level tab. */}
-        {totalCount > 0 && <div role="tablist" aria-label="View" style={{
-          display: "flex", marginTop: 16, marginBottom: 8, background: "var(--paper-2)", borderRadius: 14,
-        }}>
-          {[
-            { id: "grid",   label: "Wall" },
-            { id: "night",  label: "Timeline" },
-          ].map(v => {
-            const on = view === v.id;
-            return (
-              <button key={v.id} role="tab" aria-selected={on} onClick={() => setView(v.id)} style={{
-                flex: 1, minHeight: 44, borderRadius: 14, border: "none", cursor: "pointer",
-                background: on ? "var(--paper-3)" : "transparent",
-                boxShadow: on ? "inset 0 0 0 1.5px var(--signal)" : "none",
-                color: on ? "var(--ink)" : "var(--text-2)",
-                fontSize: 15, lineHeight: "20px", fontWeight: 600, fontFamily: "inherit",
-              }}>{v.label}</button>
-            );
-          })}
-        </div>}
+        {/* ── Library filters + the Wall (v341) ──────────────────────────
+            EXACTLY four filters, per the v2 spec. Wall is NOT a fifth: it is
+            a separate surface with its own artist/song/stage search, reached
+            by its own labelled control, so filtering the library can never be
+            confused with leaving it. */}
+        {(totalCount > 0 || attendedTotal > 0) && (
+          <div style={{ marginTop: 16, marginBottom: 8 }}>
+            {/* The four filters get their own WRAPPING row. Sharing one line
+                with Wall + Manage pushed "Recaps" into a horizontal scroll,
+                and a half-clipped pill reads as broken even though it worked. */}
+            <div role="tablist" aria-label="Library filter" style={{
+              display: "flex", gap: 6, flexWrap: "wrap", minWidth: 0,
+            }}>
+              {[
+                { id: "all",    label: "All" },
+                { id: "clips",  label: "Clips" },
+                { id: "sets",   label: "Sets" },
+                { id: "recaps", label: "Recaps" },
+              ].map(f => {
+                const on = view === "library" && filter === f.id;
+                return (
+                  <button key={f.id} role="tab" aria-selected={on}
+                    onClick={() => { setView("library"); setFilter(f.id); }}
+                    style={{
+                      flex: "0 0 auto", minHeight: 44, padding: "0 14px", borderRadius: 999,
+                      border: "none", cursor: "pointer",
+                      background: on ? "var(--paper-3)" : "var(--paper-2)",
+                      boxShadow: on ? "inset 0 0 0 1.5px var(--signal)" : "none",
+                      color: on ? "var(--ink)" : "var(--text-2)",
+                      fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit",
+                    }}>{f.label}</button>
+                );
+              })}
+            </div>
+            {/* Wall (a separate SURFACE, not a fifth filter) and Manage (the
+                data surfaces) sit under the filters as quiet text actions —
+                they are not peers of the filter pills and should not read as
+                one. Keeping them off their own full-width line each is what
+                the spec's "import, review, recap, manage and the view controls
+                all before the first library card" finding asked for. */}
+            <div style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 2 }}>
+              <button
+                onClick={() => setView(v => (v === "grid" ? "library" : "grid"))}
+                aria-pressed={view === "grid"}
+                style={{
+                  minHeight: 44, padding: "0 10px", borderRadius: 12,
+                  border: "none", cursor: "pointer", background: "transparent",
+                  color: view === "grid" ? "var(--ink)" : "var(--text-2)",
+                  fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit",
+                }}>{view === "grid" ? "← Library" : "Wall →"}</button>
+              <span style={{ flex: 1 }} />
+              <button onClick={() => setManage(m => !m)} aria-pressed={manage} style={{
+                minHeight: 44, padding: "0 10px", borderRadius: 12,
+                background: "transparent", border: "none", cursor: "pointer",
+                color: manage ? "var(--ink)" : "var(--text-2)",
+                fontSize: 15, lineHeight: 1.33, fontWeight: 500, fontFamily: "inherit",
+              }}>{manage ? "Done" : "Manage"}</button>
+            </div>
+          </div>
+        )}
+        {/* Offline media: one honest line and one explicit retry, because a
+            56px cover has nowhere to put a button of its own. The hooks also
+            retry themselves when the browser reports it is back. */}
+        {offlineMedia && view === "library" && (
+          <div role="status" style={{
+            display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", rowGap: 6,
+            marginBottom: 8, padding: "10px 14px", borderRadius: 14,
+            background: "var(--paper-2)", border: "1px solid var(--line)",
+          }}>
+            <span style={{ flex: "1 1 180px", minWidth: 0, fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>
+              Some media is unavailable offline · retry when connected
+            </span>
+            <button onClick={retryMedia} style={{
+              flexShrink: 0, minHeight: 44, padding: "0 14px", borderRadius: 12, border: "none", cursor: "pointer",
+              background: "var(--paper-3)", color: "var(--ink)",
+              fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit",
+            }}>Retry</button>
+          </div>
+        )}
+
         {view === "grid" && (<>
           {/* Search — filter the grid by artist, song, or stage. */}
           <input
@@ -6287,9 +7233,14 @@ function MemoriesScreen({ state, setState }) {
           />
           <MemoryGrid
             allMoments={(() => {
+              // The SAME canonical media set the header counts (library.byNight
+              // holds one winning record per media identity). Raw records made
+              // the Wall draw six tiles under a "5 MOMENTS" header, and label
+              // two copies of one photo as a burst.
+              const canon = wallMoments;
               const q = memQuery.trim().toLowerCase();
-              if (!q) return allMoments;
-              return allMoments.filter(m => {
+              if (!q) return canon;
+              return canon.filter(m => {
                 const a = m.artistId ? ARTISTS.find(x => x.id === m.artistId) : null;
                 const s = a ? STAGES.find(st => st.id === a.stage) : null;
                 return (a?.name || "").toLowerCase().includes(q)
@@ -6300,264 +7251,199 @@ function MemoriesScreen({ state, setState }) {
             onOpenLightbox={openLightbox}
           />
         </>)}
-        {/* v219: STORY/MAP/ARTIST/STAGE lenses folded into the 2-mode model.
-            The whole-weekend reel is the "Relive your weekend" hero above; the
-            per-night map is inline in TIMELINE; per-artist is reached by tapping
-            a group header. */}
-        {view === "night" && DAYS.map(d => {
+        {/* ── Recaps (v341) ───────────────────────────────────────────────
+            A recap is a FESTIVAL artifact, not a per-day one, so this filter
+            replaces the day list rather than filtering inside it. It states
+            its own empty case honestly instead of showing an empty library. */}
+        {view === "library" && filter === "recaps" && (() => {
+          const mediaCount = _dedupeByMedia(allMoments.filter(m => m.photoId)).length;
+          const archived = (() => { try { return _getRecapArchive()[FESTIVAL_CONFIG.id] || null; } catch { return null; } })();
+          if (mediaCount < 3 && !archived) {
+            return (
+              <div style={{ marginTop: 18 }}>
+                <div style={{ fontSize: 17, lineHeight: 1.29, fontWeight: 600 }}>No recap yet</div>
+                <p style={{ margin: "6px 0 0", fontSize: 15, lineHeight: 1.4, color: "var(--text-2)" }}>
+                  {mediaCount === 0
+                    ? "Import a few photos or clips and Plursky builds your recap from them."
+                    : `${mediaCount} ${mediaCount === 1 ? "moment" : "moments"} so far — a recap needs at least 3.`}
+                </p>
+              </div>
+            );
+          }
+          return (
+            <div style={{ marginTop: 12 }}>
+              <div style={{
+                display: "flex", alignItems: "center", gap: 12, width: "100%", minHeight: 64,
+                padding: "10px 14px", background: "var(--paper-2)", borderRadius: 14, flexWrap: "wrap", rowGap: 8,
+              }}>
+                <div style={{ flex: "1 1 160px", minWidth: 0 }}>
+                  <div style={{ fontSize: 17, lineHeight: 1.29, fontWeight: 600 }}>
+                    {FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name} recap
+                  </div>
+                  <div style={{ fontSize: 13, lineHeight: 1.38, color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
+                    {mediaCount > 0
+                      ? `${mediaCount} ${mediaCount === 1 ? "moment" : "moments"} · auto-play reel`
+                      : "Archived recap · its photos and clips are no longer on this device"}
+                  </div>
+                </div>
+                {/* Play only when there is something to play: with the media
+                    cleared, the reel got [] and the button did nothing. */}
+                {mediaCount > 0 && <button onClick={() => {
+                  const ms = _dedupeByMedia(allMoments.filter(m => m.photoId)).slice()
+                    .sort((a, b) => _momentTime(a) - _momentTime(b));
+                  playReel(ms, FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name, null);
+                }} style={{
+                  flexShrink: 0, minHeight: 44, padding: "0 16px", borderRadius: 14, border: "none", cursor: "pointer",
+                  background: "var(--signal)", color: "var(--on-signal)", fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit",
+                }}>▶ Play</button>}
+              </div>
+              <button onClick={() => setState(s => ({ ...s, tab: "recap", artist: null }))} style={{
+                width: "100%", marginTop: 8, minHeight: 44, padding: "0 14px", borderRadius: 14,
+                background: "var(--paper-2)", border: "none", cursor: "pointer", textAlign: "left",
+                color: "var(--ink)", fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit",
+              }}>Create recap video</button>
+              {archived && (
+                <div style={{ marginTop: 8, fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>
+                  Archived recap saved for this festival.
+                </div>
+              )}
+            </div>
+          );
+        })()}
+
+        {/* ── The organized library (v341) ────────────────────────────────
+            festival -> collapsible day -> bounded set card -> deduped media
+            stack. A day that holds nothing renders NOTHING: the old code drew
+            a "NO MOMENTS YET" box per day, so an empty festival showed three
+            of them under a page empty state that already said it once. */}
+        {view === "library" && filter !== "recaps" && DAYS.map(d => {
           // Chronological by when the moment was CAPTURED (takenAt), not when
           // it was imported — _momentTime falls back to createdAt only when the
           // capture time is missing. takenAt carries a full date+time, so a clip
           // shot at 00:32 naturally sorts after one shot at 23:35 the same night.
-          const moments = (all[d.n] || []).slice().sort((a, b) => _momentTime(a) - _momentTime(b));
+          const moments = (library.byNight[d.n] || []).slice().sort((a, b) => _momentTime(a) - _momentTime(b));
           const dateInfo = FESTIVAL_CONFIG.dayDates?.[d.n];
           const savedNightArtists = state.saved
             .map(id => ARTISTS.find(a => a.id === id))
             .filter(a => a && a.day === d.n);
+          const attendedSet = (typeof getAttendedForNight === "function" ? getAttendedForNight(d.n) : null) || new Set();
+          const dayAll = _buildLibraryDay({ moments, attendedSet, artists: ARTISTS, toMin: window.toNightMin, dupsFor });
+          const day = _filterLibraryDay(dayAll, filter);
+          const collapsed = collapsedDays.has(d.n);
+          // Nothing here and nothing to manage — draw nothing at all.
+          if (day.isEmpty && !manage) return null;
+          const dayLabel = dateInfo
+            ? `${["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"][dateInfo.m]} ${dateInfo.d}`
+            : `DAY ${d.n}`;
+          const summary = `${day.counts.sets} ${day.counts.sets === 1 ? "set" : "sets"} · ${day.counts.moments} ${day.counts.moments === 1 ? "moment" : "moments"}`;
           return (
-            <div key={d.n}
+            <section key={d.n}
               ref={el => { nightSectionRefs.current[d.n] = el; }}
               style={{ marginBottom: 22, scrollMarginTop: 12 }}
             >
+              {/* Collapsible day header. Wraps to two rows at 320px and large
+                  text rather than squeezing the label, the date, the share
+                  menu and the count onto one dense line. */}
               <div style={{
-                display: "flex", alignItems: "baseline", gap: 10,
+                display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", rowGap: 4,
                 paddingTop: 14, paddingBottom: 8, marginBottom: 4,
                 borderBottom: "1px solid var(--line)",
               }}>
-                <div className="serif" style={{ fontSize: 24, color: "var(--ink)" }}>
-                  {d.label}
-                </div>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", fontWeight: 700 }}>
-                  · {dateInfo ? `${["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"][dateInfo.m]} ${dateInfo.d}` : `DAY ${d.n}`}
-                </div>
-                {moments.length > 0 && (
-                  <>
-                    <_NightShareMenu night={d.n} moments={moments} />
-                    <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700 }}>
-                      {moments.length} MOMENT{moments.length === 1 ? "" : "S"}
-                    </div>
-                  </>
-                )}
+                <button
+                  onClick={() => toggleDay(d.n)}
+                  aria-expanded={!collapsed}
+                  style={{
+                    flex: "1 1 auto", minWidth: 0, minHeight: 44, display: "flex", alignItems: "center", gap: 8,
+                    background: "transparent", border: "none", cursor: "pointer",
+                    color: "var(--ink)", textAlign: "left", fontFamily: "inherit", padding: 0,
+                  }}>
+                  <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)"
+                       strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                       style={{ flexShrink: 0, transform: collapsed ? "rotate(0deg)" : "rotate(90deg)", transition: "transform .2s var(--ease-smooth)" }}>
+                    <path d="M9 18 L15 12 L9 6"/>
+                  </svg>
+                  <span style={{ minWidth: 0 }}>
+                    <h2 className="serif" style={{ display: "inline", margin: 0, fontSize: 24, fontWeight: "inherit", color: "var(--ink)", lineHeight: 1.1 }}>{d.label}</h2>
+                    <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", fontWeight: 700, marginLeft: 8 }}>
+                      {dayLabel}
+                    </span>
+                    {/* "N sets · M moments" — both numbers come from the
+                        records this section actually contains. */}
+                    <span className="mono" style={{
+                      display: "block", fontSize: 9, letterSpacing: 1.2, color: "var(--muted)",
+                      fontWeight: 700, marginTop: 3, fontVariantNumeric: "tabular-nums",
+                    }}>{summary}</span>
+                  </span>
+                </button>
+                {day.counts.moments > 0 && <_NightShareMenu night={d.n} moments={moments} />}
               </div>
 
-              {moments.length > 0 && (
-                <PeakMomentCard
-                  peak={_peakWindow(moments)}
-                  accent="var(--ember)"
-                  onOpenLightbox={openLightbox}
-                  onPlayReel={(items) => playReel(items, `${d.label} peak`, d.n)}
-                />
-              )}
+              {/* Collapsing UNMOUNTS the cards, which revokes their object
+                  URLs through the media hooks' cleanup. No edit state is lost
+                  because edits live in the moments store, not in card state. */}
+              {!collapsed && (
+                <>
+                  {filter !== "sets" && day.counts.moments > 0 && (
+                    <PeakMomentCard
+                      peak={_peakWindow(day.groups.flatMap(g => g.media))}
+                      accent="var(--ember)"
+                      onOpenLightbox={openLightbox}
+                      onPlayReel={(items) => playReel(items, `${d.label} peak`, d.n)}
+                    />
+                  )}
 
-              {/* Inline "where this night happened" map — absorbs the old MAP
-                  lens, scoped to this night, collapsed by default. */}
-              {moments.length > 0 && (
-                <_NightMap moments={moments} onPinTap={(p) => openLightbox(p.items, 0)} />
-              )}
+                  {/* Inline "where this night happened" map — scoped to this
+                      night, collapsed by default. */}
+                  {filter === "all" && day.counts.moments > 0 && (
+                    <_NightMap moments={moments} onPinTap={(p) => openLightbox(p.items, 0)} />
+                  )}
 
-              {moments.length === 0 && adding !== d.n && (
-                <div style={{
-                  padding: "18px 14px", textAlign: "center",
-                  border: "1px dashed var(--line-2)", borderRadius: 14,
-                  background: "var(--paper-2)", marginTop: 10, marginBottom: 10,
-                }}>
-                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>
-                    NO MOMENTS YET
-                  </div>
-                </div>
-              )}
-
-              {(() => {
-                // v222: "SETS YOU WATCHED" spine. The sets you marked attended
-                // (plus any artist you have a clip for) ARE the backbone, in
-                // set-time order; each photo/video slots under the artist it was
-                // filmed during. Sets you caught but didn't film still show.
-                // Clips that matched no set drop to OTHER MOMENTS at the bottom.
-                const attendedSet = (typeof getAttendedForNight === "function" ? getAttendedForNight(d.n) : null) || new Set();
-                const { byArtist, untagged, spineIds, needsReview } = _groupNightMoments({
-                  moments, attendedSet, artists: ARTISTS, toMin: window.toNightMin,
-                });
-                // needsReview belongs in this guard: a night holding ONLY
-                // unresolvable moments would otherwise return null and hide
-                // the very records this fix exists to surface.
-                if (!spineIds.length && !untagged.length && !needsReview.length) return null;
-                return (
-                  <>
-                    {spineIds.length > 0 && (
-                      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", fontWeight: 700, marginTop: 14, marginBottom: 2 }}>
-                        SETS YOU WATCHED
-                      </div>
-                    )}
-                    {spineIds.map(aId => {
-                      const artist = ARTISTS.find(x => x.id === aId);
-                      const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
-                      const accent = "var(--text-2)";
-                      const groupMoments = byArtist.get(aId) || [];
-                      const hero = groupMoments.length ? _pickHeroMoment(groupMoments) : null;
-                      const orderedMoments = hero ? [hero, ...groupMoments.filter(m => m.id !== hero.id)] : groupMoments;
-                      const setTime = artist?.start ? fmt12(artist.start) : "";
-                      return (
-                        <div key={aId} style={{ marginTop: 10 }}>
-                          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                            <button
-                              onClick={() => setState(s => ({ ...s, artist: aId }))}
-                              style={{
-                                display: "flex", alignItems: "center", gap: 8,
-                                flex: 1, minWidth: 0, padding: "6px 4px",
-                                background: "transparent", border: "none",
-                                textAlign: "left", cursor: "pointer",
-                              }}>
-                              <span style={{ width: 4, alignSelf: "stretch", background: "var(--line-2)", borderRadius: 3 }}/>
-                              <div style={{ flex: 1, minWidth: 0 }}>
-                                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: accent }}>
-                                  {[(stage?.short || stage?.name || "").toUpperCase(), setTime].filter(Boolean).join(" · ")}
-                                </div>
-                                <div className="serif" style={{ fontSize: 18, color: "var(--ink)", lineHeight: 1.1, marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                                  {artist?.name || "Unknown"}
-                                </div>
-                              </div>
-                              <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: groupMoments.length ? "var(--muted)" : "var(--line-2)", fontWeight: 700, flexShrink: 0 }}>
-                                {groupMoments.length ? `${groupMoments.length} ${groupMoments.length === 1 ? "CLIP" : "CLIPS"}` : "✓ CAUGHT"}
-                              </span>
-                            </button>
-                            {hero && (
-                              <_GroupHeroThumb moment={hero} accent={accent} onClick={() => openLightbox(orderedMoments, 0)} />
-                            )}
-                          </div>
-                          {/* "the song you were filming": tappable index of tracks captured during this set. */}
-                          {artist && groupMoments.length > 0 && (
-                            <SetSongTimeline
-                              artist={artist}
-                              moments={orderedMoments}
-                              onOpenMoment={(m) => openLightbox(orderedMoments, Math.max(0, orderedMoments.findIndex(x => x.id === m.id)))}
-                            />
-                          )}
-                          {groupMoments.length === 0 && (
-                            <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", fontWeight: 600, padding: "4px 0 2px 12px" }}>
-                              You were here · no clips from this set yet
-                            </div>
-                          )}
-                          {orderedMoments.map((m, i) => (
-                            <MomentCard
-                              key={m.id}
-                              moment={m}
-                              idx={i}
-                              total={orderedMoments.length}
-                              groupMoments={orderedMoments}
-                              onOpenLightbox={openLightbox}
-                              onDelete={handleDelete}
-                              onUpdate={handleUpdate}
-                              savedArtistIds={state.saved || []}
-                              onArtistClick={(id) => setState(s => ({ ...s, artist: id }))}
-                            />
-                          ))}
-                        </div>
-                      );
-                    })}
-                    {untagged.length > 0 && (
-                      <div key="__other__" style={{ marginTop: 14 }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "6px 4px" }}>
-                          <span style={{ width: 4, alignSelf: "stretch", background: "var(--ember)", borderRadius: 3 }}/>
-                          <div style={{ flex: 1, minWidth: 0 }}>
-                            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "var(--ember-ink)" }}>BETWEEN SETS</div>
-                            <div className="serif" style={{ fontSize: 18, color: "var(--ink)", lineHeight: 1.1, marginTop: 2 }}>Other moments</div>
-                          </div>
-                          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 700, flexShrink: 0 }}>
-                            {untagged.length} {untagged.length === 1 ? "CLIP" : "CLIPS"}
-                          </span>
-                        </div>
-                        {/* Bulk-retag: one tap drops a stuck batch (EXIF stripped) onto the same set. */}
-                        {untagged.length >= 3 && savedNightArtists.length > 0 && (
-                          <BulkRetagRow moments={untagged} savedNightArtists={savedNightArtists} onUpdate={handleUpdate} />
+                  {/* Bounded cards, lazy-mounted. At 100+ moments the bodies
+                      outside the viewport are not in the DOM and hold no
+                      decoded media, and the spacer keeps the scroll position. */}
+                  {day.groups.map(g => (
+                    <_LazyMount key={`${g.key}:${mediaEpoch}`} minHeight={g.count > 0 ? 120 : 76}>
+                      <LibraryGroupCard
+                        group={g}
+                        onOpenLightbox={openLightbox}
+                        onArtistClick={(id) => setState(s => ({ ...s, artist: id }))}
+                        onReview={(ms) => setReview(ms.map(m => ({ momentId: m.id })))}
+                        renderNote={(m) => (
+                          <MomentCard moment={m} idx={0} total={1} groupMoments={[m]}
+                            onOpenLightbox={openLightbox} onDelete={handleDelete} onUpdate={handleUpdate}
+                            savedArtistIds={state.saved || []}
+                            onArtistClick={(id) => setState(s => ({ ...s, artist: id }))} />
                         )}
-                        {untagged.map((m, i) => (
-                          <MomentCard
-                            key={m.id}
-                            moment={m}
-                            idx={i}
-                            total={untagged.length}
-                            groupMoments={untagged}
-                            onOpenLightbox={openLightbox}
-                            onDelete={handleDelete}
-                            onUpdate={handleUpdate}
-                            savedArtistIds={state.saved || []}
-                            onArtistClick={(id) => setState(s => ({ ...s, artist: id }))}
-                          />
-                        ))}
-                      </div>
-                    )}
-                    {/* Moments tagged to a set this festival cannot resolve.
-                        Deliberately NOT folded into Between Sets: that would
-                        assert the clip was shot away from any set, discarding
-                        the tag it actually carries. Shown plainly so the
-                        records are reachable and retaggable — the design wave
-                        decides what this group finally looks like. */}
-                    {needsReview.length > 0 && (
-                      <div key="__needs_review__" style={{ marginTop: 14 }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "6px 4px" }}>
-                          <span style={{ width: 4, alignSelf: "stretch", background: "var(--line-2)", borderRadius: 3 }}/>
-                          <div style={{ flex: 1, minWidth: 0 }}>
-                            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "var(--muted)" }}>NEEDS REVIEW</div>
-                            <div className="serif" style={{ fontSize: 18, color: "var(--ink)", lineHeight: 1.1, marginTop: 2 }}>
-                              {needsReview.every(m => !m.festivalReview) ? "Set not in this festival"
-                                : needsReview.every(m => m.festivalReview) ? "Outside this festival’s dates"
-                                : "Check these clips"}
-                            </div>
-                          </div>
-                          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 700, flexShrink: 0 }}>
-                            {needsReview.length} {needsReview.length === 1 ? "CLIP" : "CLIPS"}
-                          </span>
-                        </div>
-                        <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", fontWeight: 600, padding: "0 0 4px 12px" }}>
-                          {/* Two different facts share this group (see _groupNightMoments):
-                              a set tag this lineup can't resolve, and a festival stamp its
-                              own capture time contradicts. Neither line may claim the other. */}
-                          {needsReview.every(m => !m.festivalReview) ? "Tagged to a set this festival doesn’t have — retag to file it."
-                            : needsReview.every(m => m.festivalReview) ? (needsReview.length === 1 ? "Its capture time doesn’t match this festival’s dates. We left it here."
-                              : "Their capture times don’t match this festival’s dates. We left them here.")
-                            : "Some are tagged to a set this festival doesn’t have. Others were shot outside this festival’s dates."}
-                        </div>
-                        {needsReview.map((m, i) => (
-                          <MomentCard
-                            key={m.id}
-                            moment={m}
-                            idx={i}
-                            total={needsReview.length}
-                            groupMoments={needsReview}
-                            onOpenLightbox={openLightbox}
-                            onDelete={handleDelete}
-                            onUpdate={handleUpdate}
-                            savedArtistIds={state.saved || []}
-                            onArtistClick={(id) => setState(s => ({ ...s, artist: id }))}
-                          />
-                        ))}
-                      </div>
-                    )}
-                  </>
-                );
-              })()}
+                        bulkRetag={g.kind === "between" && g.count >= 3 && savedNightArtists.length > 0
+                          ? <BulkRetagRow moments={g.media} savedNightArtists={savedNightArtists} onUpdate={handleUpdate} />
+                          : null}
+                      />
+                    </_LazyMount>
+                  ))}
 
-              {(manage || adding === d.n) && (adding === d.n ? (
-                <AddMomentForm
-                  night={d.n}
-                  savedNightArtists={savedNightArtists}
-                  onAdd={handleAdd}
-                  onCancel={() => setAdding(null)}
-                />
-              ) : (
-                <button onClick={() => setAdding(d.n)} className="mono" style={{
-                  width: "100%", padding: "12px",
-                  background: "transparent", border: "1px dashed var(--line-2)",
-                  borderRadius: 12, color: "var(--ink)",
-                  fontSize: 10, letterSpacing: 1.4, fontWeight: 700, cursor: "pointer",
-                  marginTop: moments.length > 0 ? 4 : 0,
-                }}>+ ADD MOMENT</button>
-              ))}
+                  {(manage || adding === d.n) && (adding === d.n ? (
+                    <AddMomentForm
+                      night={d.n}
+                      savedNightArtists={savedNightArtists}
+                      onAdd={handleAdd}
+                      onCancel={() => setAdding(null)}
+                    />
+                  ) : (
+                    <button onClick={() => setAdding(d.n)} className="mono" style={{
+                      width: "100%", minHeight: 44, padding: "12px",
+                      background: "transparent", border: "1px dashed var(--line-2)",
+                      borderRadius: 12, color: "var(--ink)",
+                      fontSize: 10, letterSpacing: 1.4, fontWeight: 700, cursor: "pointer",
+                      marginTop: 8,
+                    }}>+ ADD MOMENT</button>
+                  ))}
 
-              {manage && savedNightArtists.length > 0 && (
-                <AttendanceReview night={d.n} savedNightArtists={savedNightArtists} />
+                  {manage && savedNightArtists.length > 0 && (
+                    <AttendanceReview night={d.n} savedNightArtists={savedNightArtists} />
+                  )}
+                </>
               )}
-            </div>
+            </section>
           );
         })}
 
@@ -7023,6 +7909,30 @@ function MeScreen({ state, setState }) {
             transition: "grid-template-rows 0.3s var(--ease-smooth)",
           }}>
             <div style={{ overflow: "hidden" }}>
+              {/* The festival page owns Save/Unsave (v341). Saving is separate
+                  from entering: browsing a festival never saves it, and saving
+                  never navigates. */}
+              {typeof FestivalSaveRow === "function" && (
+                <FestivalSaveRow festivalId={FESTIVAL_CONFIG?.id} name={FESTIVAL_CONFIG?.shortName || FESTIVAL_CONFIG?.name} />
+              )}
+              {/* Back to General Home. The scoped plan is untouched — this
+                  changes the screen, not active_festival_id or any saved key. */}
+              <button
+                onClick={() => setState(s => ({ ...s, tab: "landing", artist: null }))}
+                style={{
+                  width: "100%", minHeight: 52, marginBottom: 14, padding: "10px 14px",
+                  display: "flex", alignItems: "center", gap: 10,
+                  background: "var(--paper-2)", border: "none", borderRadius: 14,
+                  color: "var(--ink)", cursor: "pointer", textAlign: "left", fontFamily: "inherit",
+                }}>
+                <span aria-hidden="true" style={{ fontSize: 16, color: "var(--text-2)" }}>⌂</span>
+                <span style={{ flex: 1, minWidth: 0, fontSize: 15, lineHeight: "20px", fontWeight: 600 }}>
+                  All festivals
+                </span>
+                <span style={{ flexShrink: 0, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+                  Your plan is kept
+                </span>
+              </button>
               <HistoryRecordsSection state={state} setState={setState} />
               <div style={{ marginTop: 14 }}/>
               <div id="plursky-badges-anchor"/>
@@ -8725,7 +9635,18 @@ async function _restorePurchases() {
 }
 
 function _isPlusSub() { try { return localStorage.getItem(PLUS_KEY) === "1"; } catch { return false; } }
-function _setPlusSub(v) { try { localStorage.setItem(PLUS_KEY, v ? "1" : "0"); } catch {} }
+// Entitlement is REACTIVE: RevenueCat usually answers after the first paint
+// (and a restore or a lapse can land at any time), so a screen that read
+// _isPlusSub() once kept showing the old answer — a restored subscriber saw
+// early access locked until the next launch. Announce every real change;
+// screens that gate on Plus subscribe to "plursky-plus-change".
+function _setPlusSub(v) {
+  let prev = null;
+  try { prev = localStorage.getItem(PLUS_KEY); localStorage.setItem(PLUS_KEY, v ? "1" : "0"); } catch {}
+  if (prev !== (v ? "1" : "0")) {
+    try { window.dispatchEvent(new CustomEvent("plursky-plus-change", { detail: { active: !!v } })); } catch {}
+  }
+}
 
 // Initialize RevenueCat on first load (non-blocking)
 try { _initRevenueCat(); } catch {}

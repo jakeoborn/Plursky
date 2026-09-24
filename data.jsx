@@ -1109,11 +1109,34 @@ function _sortFestivalsForSwitcher(list, now) {
     .map(x => x.f);
 }
 
+// Can this festival BE the active one? The same answer every door gives:
+// open festivals for everyone, early-access (previewOnly) ones for Plus.
+// The resolver used to accept `available` only, so the switcher, the landing
+// and ?f= all let a subscriber pick an early-access festival, wrote the id,
+// reloaded — and this resolver threw the pick away and opened the previous
+// festival instead. It also needs a data set: an id with nothing to load
+// would resolve and then silently render EDC.
+//
+// spotify.jsx (which owns _isPlusSub) loads AFTER this file and the resolver
+// runs at eval time, so the bare name is not defined yet on boot; read the
+// same key it reads. At runtime the function wins, so a test (or a later
+// entitlement source) that replaces it is honoured.
+function _plusActiveForResolver() {
+  try {
+    if (typeof _isPlusSub === "function") return !!_isPlusSub();
+    return localStorage.getItem("plursky_plus_active") === "1";
+  } catch { return false; }
+}
+function festivalCanBeActive(entry) {
+  if (!entry || !entry.config) return false;
+  if (typeof _DATA_SETS !== "undefined" && !_DATA_SETS[entry.config.id]) return false;
+  return !!entry.available || (!!entry.previewOnly && _plusActiveForResolver());
+}
 function getActiveFestivalId() {
   const now = Date.now();
   try {
     const stored = localStorage.getItem("active_festival_id");
-    const entry = stored && FESTIVALS_REGISTRY.find(f => f.config.id === stored && f.available);
+    const entry = stored && FESTIVALS_REGISTRY.find(f => f.config.id === stored && festivalCanBeActive(f));
     if (entry) {
       const end = entry.config.endMs;
       // An EXPLICIT pick outranks staleness, forever. Without this the switcher
@@ -3286,9 +3309,9 @@ function isScheduleTBA(id) {
 // lookup hands Las Vegas Motor Speedway minutes to a phone in Tinker Field.
 //
 // It lives here, on the lookup, and not in a live-festival check, because
-// getActiveFestivalId() requires `.available`: a GATED festival can never
-// become the active one, so nothing that reasons about the active festival
-// can see this. EDC Orlando is gated today and un-gates at the Nov 6-8 flip.
+// getActiveFestivalId() requires festivalCanBeActive (open, or early access
+// for Plus): a GATED festival can never become the active one, so nothing
+// that reasons about the active festival can see this. EDC Orlando is gated today and un-gates at the Nov 6-8 flip.
 //
 // A festival earns a table by measuring its own geometry against an official
 // patron map — #97. That fleet-wide bar is a trust policy, not a founder
@@ -3316,7 +3339,7 @@ Object.assign(window, {
   FESTIVAL: _active.config, FESTIVAL_CONFIG: _active.config,
   STAGES: _active.stages, AMENITIES: _active.amenities, AVATAR_START: avatarStartFor(_active), avatarStartFor, FRIENDS, ARTISTS: _active.artists,
   NOW, ALERTS, ESSENTIALS, fmt12,
-  FESTIVALS_REGISTRY, getActiveFestivalId, setActiveFestivalAndReload, isScheduleTBA,
+  FESTIVALS_REGISTRY, getActiveFestivalId, festivalCanBeActive, setActiveFestivalAndReload, isScheduleTBA,
   _resolveDefaultFestivalId,
   resolvedStageAnchors, resolvedStageAnchor, dayDateFor, _weekendShiftMs,
   _DATA_SETS, WALK_TABLE_FESTIVAL_ID,

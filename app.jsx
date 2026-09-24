@@ -113,9 +113,20 @@ function OnboardingModal({ onDone, setState, state }) {
   const [page, setPage] = React.useState(0);
   const [q, setQ] = React.useState("");
   const heads = React.useMemo(() => _onbHeadliners(3), []);
+  // Picking a festival here IS entering it. Both halves of that were broken:
+  // a DIFFERENT festival reloaded without the landing sentinel, so the boot
+  // after the reload saw a bare URL and routed to the chooser; and the SAME
+  // festival called onDone() over a state whose tab was already "landing"
+  // (a first launch has no deep link), so dismissing the modal revealed the
+  // chooser too. Either way the user picked a festival and got asked again.
   const finish = (festId) => {
     try { localStorage.setItem("onboarded", ONBOARD_VERSION); } catch {}
-    if (festId && festId !== FESTIVAL_CONFIG.id) { setActiveFestivalAndReload(festId); return; }
+    if (festId && festId !== FESTIVAL_CONFIG.id) {
+      try { sessionStorage.setItem("plursky_landing_entered", festId); } catch {}
+      setActiveFestivalAndReload(festId);
+      return;
+    }
+    setState(s => ({ ...s, tab: "home", artist: null }));
     onDone();
   };
   const PAGES = [
@@ -174,7 +185,15 @@ function OnboardingModal({ onDone, setState, state }) {
           <div style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "0 20px" }}>
             {list.map(f => {
               const isActive = f.config.id === FESTIVAL_CONFIG.id;
-              const locked = !f.available;
+              // Same entitlement policy as the landing and the switcher: a
+              // Plus subscriber reinstalling the app can still pick the
+              // early-access festival they paid for. It does NOT open the
+              // offer sheet for everyone else — a paywall inside first-run is
+              // a product call Jake has not made, and the free app is meant to
+              // feel complete. The row says what it needs instead.
+              const locked = typeof landingCanEnter === "function"
+                ? !landingCanEnter(f, Date.now(), !!window._isPlusSub?.())
+                : !f.available;
               return (
                 <button key={f.config.id} disabled={locked} onClick={() => finish(f.config.id)} style={{
                   width: "100%", display: "flex", alignItems: "center", gap: 12, minHeight: 72, padding: "8px 0",
@@ -188,7 +207,7 @@ function OnboardingModal({ onDone, setState, state }) {
                     <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{f.config.location} · {f.config.dates}</div>
                     {(isActive || locked) && (
                       <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: isActive ? "var(--signal-ink)" : "var(--text-2)" }}>
-                        {isActive ? "✓ Selected" : f.previewOnly ? "Early access" : "Soon"}
+                        {isActive ? "✓ Selected" : f.previewOnly ? (locked ? "Early access · Plursky+" : "Early access") : "Soon"}
                       </div>
                     )}
                   </div>
@@ -602,9 +621,21 @@ function App() {
     //   3. strip the param BEFORE reloading, so even if 1 or 2 ever regress a
     //      reload cannot re-trigger this.
     const dlFest = params.get("f") || params.get("festival");
+    // Set when this load is on its way OUT via a festival switch. location
+    // .reload() does NOT stop execution — the rest of this initializer still
+    // runs — so anything that CONSUMES one-shot state has to skip itself here
+    // or the reload arrives to find it already spent.
+    let switchingFestival = false;
+    // Whether ?f= named a festival this load can actually show. A gated or
+    // unknown id is not a destination: it must not route to the PREVIOUS
+    // festival's Home, which is what counting the raw param did.
+    let dlFestOk = false;
     if (dlFest && typeof FESTIVALS_REGISTRY !== "undefined") {
       const fEntry = FESTIVALS_REGISTRY.find(f => f.config.id === dlFest);
-      const canSwitch = !!fEntry && (fEntry.available || (fEntry.previewOnly && window._isPlusSub?.()));
+      // The resolver's own predicate: a switch it would throw away on reload
+      // is exactly the "lands on an unrelated festival" bug.
+      const canSwitch = !!fEntry && festivalCanBeActive(fEntry);
+      dlFestOk = canSwitch;
       if (canSwitch && dlFest !== FESTIVAL_CONFIG.id) {
         try {
           const u = new URL(window.location.href);
@@ -617,6 +648,12 @@ function App() {
           }
           window.history.replaceState({}, "", u.toString());
         } catch {}
+        // The reload that follows has no ?f= left in the URL, so without this
+        // the next boot would see "no deep link" and show General Home — the
+        // user asked for a named festival and would land on the chooser.
+        // Same sentinel the General Landing uses when you tap a festival.
+        try { sessionStorage.setItem("plursky_landing_entered", dlFest); } catch {}
+        switchingFestival = true;
         setActiveFestivalAndReload(dlFest);
       }
     }
@@ -658,10 +695,49 @@ function App() {
       try { history.replaceState(null, "", window.location.pathname); } catch {}
     }
 
+    // ── Root routing (v341) ────────────────────────────────────────────────
+    // A plain launch lands on General Home. A deep link that NAMES a
+    // destination still goes straight there — the crawlable /f/<id>/ stubs,
+    // share links and invite links all keep working unchanged.
+    //
+    // The stored active festival is deliberately NOT consulted: treating it as
+    // a destination is the behaviour this wave exists to remove, and it is
+    // also how a returning user ended up on a finished festival's wrap page.
+    // It stays in place as continuity INPUT — the scoped screens still read
+    // it — but it no longer chooses the landing state.
+    try { if (typeof runLandingMigration === "function") runLandingMigration(); } catch {}
+    // Set by the landing right before setActiveFestivalAndReload, so the boot
+    // that the reload produces lands INSIDE the festival the user just tapped
+    // instead of bouncing back to General Home. Session-scoped and read once.
+    let enteredFromLanding = null;
+    try {
+      enteredFromLanding = sessionStorage.getItem("plursky_landing_entered");
+      // Do NOT consume it on a load that is itself about to reload into the
+      // festival — that read-and-remove is what made a ?f= deep link land on
+      // General Home: the sentinel was written and spent in the same tick,
+      // and the boot after the reload saw a bare URL and no sentinel.
+      if (enteredFromLanding && !switchingFestival) sessionStorage.removeItem("plursky_landing_entered");
+    } catch {}
+    // Decided on the VALIDATED values, never the raw ones: a stale share link
+    // (?artist=removed-id, ?tab=bogus, ?f=<gated>) names nothing this load
+    // can open, and treating it as a destination silently opened whichever
+    // festival happened to be active instead of the chooser.
+    const validParams = new URLSearchParams();
+    if (dlFestOk)              validParams.set("f", dlFest);
+    if (validArtist)           validParams.set("artist", validArtist);
+    if (validTab)              validParams.set("tab", validTab);
+    if (validStage)            validParams.set("stage", validStage);
+    if (validDay)              validParams.set("day", String(validDay));
+    if (validFriendIds.length) validParams.set("lineup", validFriendIds.join(","));
+    if (validCrew)             validParams.set("crew", validCrew);
+    const deepLinked = typeof landingShouldOpenGeneral === "function"
+      ? !landingShouldOpenGeneral(validParams)
+      : true;
+    const bootTab = (validStage ? "lineup" : validTab) || (validCrew ? "me" : null);
     return {
       // Crew deep-link without an explicit tab routes to Me so CrewCard mounts
       // and auto-joins (otherwise the friend never subscribes to broadcasts).
-      tab:             (validStage ? "lineup" : validTab) || (validCrew ? "me" : "home"),
+      tab:             bootTab || (deepLinked || enteredFromLanding ? "home" : "landing"),
       saved:           saved ?? [],
       spotifyConnected: spotifyTokenValid(),
       artist:          validArtist,
@@ -772,7 +848,11 @@ function App() {
   }, [state.saved.join(",")]);
 
   let body;
-  if (state.artist) body = <ArtistScreen state={state} setState={setState} />;
+  // General Home is checked BEFORE state.artist: it is the one surface that is
+  // not scoped to a festival, so no festival-scoped screen may mount under it
+  // as a fallback (the landing gate asserts exactly this).
+  if (state.tab === "landing") body = <GeneralLandingScreen state={state} setState={setState} />;
+  else if (state.artist) body = <ArtistScreen state={state} setState={setState} />;
   else if (state.tab === "home")     body = <HomeScreen     state={state} setState={setState} />;
   else if (state.tab === "map")      body = <MapScreen      state={state} setState={setState} />;
   else if (state.tab === "lineup")   body = <LineupScreen   state={state} setState={setState} />;
@@ -790,7 +870,9 @@ function App() {
       {/* Field Mode Home runs its hero under the safe area and carries its
           own live/offline status, so it skips the top inset and the strip. */}
       <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", paddingTop: state.tab === "home" && !state.artist ? 0 : "var(--top-pad, 54px)" }}>
-        {!(state.tab === "home" && !state.artist) && <StatusStrip />}
+        {/* StatusStrip reads the ACTIVE festival's live/offline state, so it
+            is festival-scoped chrome and stays off General Home. */}
+        {!(state.tab === "home" && !state.artist) && state.tab !== "landing" && <StatusStrip />}
         <div style={{ flex: 1, position: "relative" }}>
           {body}
           {/* Search FAB — floats above TabBar, accessible from any screen.
@@ -801,7 +883,11 @@ function App() {
               top bar on Today, the search field on Lineup, the sheet on Map. */}
           <ToastHost />
         </div>
-        {!state.artist && (() => {
+        {/* No bottom nav on General Home. The bar is festival-scoped chrome —
+            Today / Lineup / Map all mean "of the active festival" — and
+            showing it on a screen with no festival chosen would be the same
+            implicit selection this wave removes. */}
+        {!state.artist && state.tab !== "landing" && (() => {
           const postFest = (() => { try { return Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity); } catch { return false; } })();
           // Post-festival the Memories tab is in the bar, so "memories" maps
           // to itself; pre-festival it folds into Me (where its card lives).
@@ -829,7 +915,10 @@ function App() {
         />
       )}
       {personalizeOpen && <PersonalizeSheet state={state} onClose={() => setPersonalizeOpen(false)} />}
-      {window.NowPlayingBar && React.createElement(window.NowPlayingBar)}
+      {/* Festival-scoped like the status strip and tab bar: it reads the ACTIVE
+          festival and starts its geolocation flow, so General Home, which is
+          before any festival is chosen, never mounts it. */}
+      {state.tab !== "landing" && window.NowPlayingBar && React.createElement(window.NowPlayingBar)}
       <BatterySaverToast />
     </IOSDevice>
   );
@@ -913,7 +1002,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v352",
+        version: "v355",
       }));
     } catch {}
   }
@@ -946,7 +1035,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(var(--shade-rgb),0.45)" }}>
-          PLURSKY · v352
+          PLURSKY · v355
         </div>
       </div>
     );

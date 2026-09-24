@@ -857,11 +857,24 @@ function _sortFestivalsForSwitcher(list, now) {
     };
   }).sort((a, b) => rank[a.p] - rank[b.p] || (a.p === "ended" ? cmp(b.e, a.e) || b.w.endMs - a.w.endMs : a.p === "tba" ? 0 : cmp(a.s, b.s) || a.w.startMs - b.w.startMs) || a.i - b.i).map(x => x.f);
 }
+function _plusActiveForResolver() {
+  try {
+    if (typeof _isPlusSub === "function") return !!_isPlusSub();
+    return localStorage.getItem("plursky_plus_active") === "1";
+  } catch {
+    return false;
+  }
+}
+function festivalCanBeActive(entry) {
+  if (!entry || !entry.config) return false;
+  if (typeof _DATA_SETS !== "undefined" && !_DATA_SETS[entry.config.id]) return false;
+  return !!entry.available || !!entry.previewOnly && _plusActiveForResolver();
+}
 function getActiveFestivalId() {
   var now = Date.now();
   try {
     var stored = localStorage.getItem("active_festival_id");
-    var entry = stored && FESTIVALS_REGISTRY.find(f => f.config.id === stored && f.available);
+    var entry = stored && FESTIVALS_REGISTRY.find(f => f.config.id === stored && festivalCanBeActive(f));
     if (entry) {
       var end = entry.config.endMs;
       var explicit = localStorage.getItem("active_festival_explicit") !== "0";
@@ -2587,6 +2600,7 @@ Object.assign(window, {
   fmt12,
   FESTIVALS_REGISTRY,
   getActiveFestivalId,
+  festivalCanBeActive,
   setActiveFestivalAndReload,
   isScheduleTBA,
   _resolveDefaultFestivalId,
