@@ -68,6 +68,20 @@
   section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
+  details.more { margin:4px 0 0; }
+  details.more > summary { cursor:pointer; color:var(--ember); font-weight:600; font-size:14px; padding:10px 0; min-height:44px; display:flex; align-items:center; }
+  details.more[open] > summary { color:var(--muted); }
+  section.watch .embed { margin:16px 0 20px; }
+  section.watch .yt { position:relative; aspect-ratio:16/9; width:100%; min-height:200px; background:var(--panel); border-radius:12px; overflow:hidden; }
+  section.watch .yt iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+  /* Instagram's embed has a fixed 326px minimum. On a 320px phone that is
+     wider than the screen, so the embed scrolls inside its own box and the
+     page never scrolls sideways. */
+  section.watch .embed-ig { overflow-x:auto; max-width:100%; }
+  section.watch .embed-ig blockquote, section.watch .embed-x blockquote { margin:0; min-height:420px; background:var(--panel); border-radius:12px; padding:16px; max-width:540px; }
+  section.watch .embed-x blockquote { min-height:260px; }
+  section.watch .embed-sp iframe { display:block; border:0; border-radius:12px; min-height:352px; }
+  section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }
 </style>
 <script type="application/ld+json">
 {
@@ -455,6 +469,38 @@
       <dd>70 artists are announced for Dreamstate SoCal 2026, and every one of them is listed on this page.</dd>
     </dl>
   </section>
+  <section id="watch" class="watch" aria-labelledby="watch-h">
+    <h2 id="watch-h">Watch &amp; listen</h2>
+    <p class="note">From Dreamstate SoCal 2026's official accounts.</p>
+    <figure class="embed embed-x">
+      <blockquote class="twitter-tweet" data-dnt="true" data-theme="dark"><a href="https://twitter.com/dreamstateusa/status/1987977510144156152" rel="noopener">View this post on X</a></blockquote>
+      <p class="embed-cap">@DreamstateUSA on X · <a href="https://x.com/DreamstateUSA/status/1987977510144156152" rel="noopener">View the original</a></p>
+    </figure>
+    <figure class="embed embed-sp">
+      <iframe src="https://open.spotify.com/embed/playlist/1xmVnKmyX8jJrXmEGndRdY" title="Dreamstate SoCal 2026 playlist on Spotify" width="100%" height="352" loading="lazy" allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      <p class="embed-cap">Dreamstate SoCal 2026's official playlist on Spotify · <a href="https://open.spotify.com/playlist/1xmVnKmyX8jJrXmEGndRdY" rel="noopener">View the original</a></p>
+    </figure>
+    <script>
+(function () {
+  var sec = document.getElementById('watch');
+  if (!sec) return;
+  var urls = [];
+  if (sec.querySelector('.instagram-media')) urls.push('https://www.instagram.com/embed.js');
+  if (sec.querySelector('.twitter-tweet')) urls.push('https://platform.twitter.com/widgets.js');
+  if (!urls.length) return;
+  var done = false;
+  function load() {
+    if (done) return; done = true;
+    urls.forEach(function (u) { var s = document.createElement('script'); s.async = true; s.src = u; document.body.appendChild(s); });
+  }
+  if (!('IntersectionObserver' in window)) return load();
+  var io = new IntersectionObserver(function (es) {
+    if (es.some(function (x) { return x.isIntersecting; })) { io.disconnect(); load(); }
+  }, { rootMargin: '600px 0px' });
+  io.observe(sec);
+})();
+    </script>
+  </section>
 
 
 
@@ -483,57 +529,62 @@
       <li><span class="act">Burn In Noise</span></li>
       <li><span class="act">Chris Metcalfe</span></li>
       <li><span class="act">Cold Blue</span></li>
-      <li><span class="act">Darren Porter + Sean Tyas</span></li>
-      <li><span class="act">Das Pharaoh</span></li>
-      <li><span class="act">Dash Berlin</span></li>
-      <li><span class="act">David Forbes + Mark Sherry pres Thick As Thieves</span></li>
-      <li><span class="act">David Rust + Olly James</span></li>
-      <li><span class="act">Discovery Project</span></li>
-      <li><span class="act">Eddie Halliwell + Judge Jules</span></li>
-      <li><span class="act">Enrico Sangiuliano</span></li>
-      <li><span class="act">Ferry Corsten + Marsh</span></li>
-      <li><span class="act">Ferry Tayle + Tonks pres Mirage (Live)</span></li>
-      <li><span class="act">FRANKYEFFE</span></li>
-      <li><span class="act">Giorgia Angiuli</span></li>
-      <li><span class="act">GMS</span></li>
-      <li><span class="act">Hannah Laing + Marie Vaunt</span></li>
-      <li><span class="act">Infected Mushroom</span></li>
-      <li><span class="act">JOA</span></li>
-      <li><span class="act">John 00 Fleming</span></li>
-      <li><span class="act">John Askew + Simon Patterson</span></li>
-      <li><span class="act">KARMÅ</span></li>
-      <li><span class="act">KAUFMANN (DE)</span></li>
-      <li><span class="act">Lee Ann Roberts</span></li>
-      <li><span class="act">Marco V</span></li>
-      <li><span class="act">Maria Healy</span></li>
-      <li><span class="act">MaRLo</span></li>
-      <li><span class="act">Matty Ralph</span></li>
-      <li><span class="act">Mauro Picotto</span></li>
-      <li><span class="act">Maximizer</span></li>
-      <li><span class="act">Neelix</span></li>
-      <li><span class="act">NRG2000</span></li>
-      <li><span class="act">Nu Aspect</span></li>
-      <li><span class="act">Panteros666</span></li>
-      <li><span class="act">Paul Denton + Will Rees pres Parallel Worlds</span></li>
-      <li><span class="act">Paul van Dyk pres Essence Of Acid</span></li>
-      <li><span class="act">Pegassi</span></li>
-      <li><span class="act">Perfect Stranger</span></li>
-      <li><span class="act">Phaxe</span></li>
-      <li><span class="act">Reinier Zonneveld (Live)</span></li>
-      <li><span class="act">Rising Dust</span></li>
-      <li><span class="act">Schrotthagen</span></li>
-      <li><span class="act">Sequence Six</span></li>
-      <li><span class="act">Shay De Castro</span></li>
-      <li><span class="act">Sighter</span></li>
-      <li><span class="act">Solarstone</span></li>
-      <li><span class="act">Steve Dekay</span></li>
-      <li><span class="act">Terra</span></li>
-      <li><span class="act">TH;EN</span></li>
-      <li><span class="act">The Rocketman</span></li>
-      <li><span class="act">Vini Vici</span></li>
-      <li><span class="act">VisionV</span></li>
-      <li><span class="act">Warp Brothers</span></li>
     </ul>
+    <details class="more">
+      <summary>Show all 70 artists</summary>
+      <ul class="lineup">
+        <li><span class="act">Darren Porter + Sean Tyas</span></li>
+        <li><span class="act">Das Pharaoh</span></li>
+        <li><span class="act">Dash Berlin</span></li>
+        <li><span class="act">David Forbes + Mark Sherry pres Thick As Thieves</span></li>
+        <li><span class="act">David Rust + Olly James</span></li>
+        <li><span class="act">Discovery Project</span></li>
+        <li><span class="act">Eddie Halliwell + Judge Jules</span></li>
+        <li><span class="act">Enrico Sangiuliano</span></li>
+        <li><span class="act">Ferry Corsten + Marsh</span></li>
+        <li><span class="act">Ferry Tayle + Tonks pres Mirage (Live)</span></li>
+        <li><span class="act">FRANKYEFFE</span></li>
+        <li><span class="act">Giorgia Angiuli</span></li>
+        <li><span class="act">GMS</span></li>
+        <li><span class="act">Hannah Laing + Marie Vaunt</span></li>
+        <li><span class="act">Infected Mushroom</span></li>
+        <li><span class="act">JOA</span></li>
+        <li><span class="act">John 00 Fleming</span></li>
+        <li><span class="act">John Askew + Simon Patterson</span></li>
+        <li><span class="act">KARMÅ</span></li>
+        <li><span class="act">KAUFMANN (DE)</span></li>
+        <li><span class="act">Lee Ann Roberts</span></li>
+        <li><span class="act">Marco V</span></li>
+        <li><span class="act">Maria Healy</span></li>
+        <li><span class="act">MaRLo</span></li>
+        <li><span class="act">Matty Ralph</span></li>
+        <li><span class="act">Mauro Picotto</span></li>
+        <li><span class="act">Maximizer</span></li>
+        <li><span class="act">Neelix</span></li>
+        <li><span class="act">NRG2000</span></li>
+        <li><span class="act">Nu Aspect</span></li>
+        <li><span class="act">Panteros666</span></li>
+        <li><span class="act">Paul Denton + Will Rees pres Parallel Worlds</span></li>
+        <li><span class="act">Paul van Dyk pres Essence Of Acid</span></li>
+        <li><span class="act">Pegassi</span></li>
+        <li><span class="act">Perfect Stranger</span></li>
+        <li><span class="act">Phaxe</span></li>
+        <li><span class="act">Reinier Zonneveld (Live)</span></li>
+        <li><span class="act">Rising Dust</span></li>
+        <li><span class="act">Schrotthagen</span></li>
+        <li><span class="act">Sequence Six</span></li>
+        <li><span class="act">Shay De Castro</span></li>
+        <li><span class="act">Sighter</span></li>
+        <li><span class="act">Solarstone</span></li>
+        <li><span class="act">Steve Dekay</span></li>
+        <li><span class="act">Terra</span></li>
+        <li><span class="act">TH;EN</span></li>
+        <li><span class="act">The Rocketman</span></li>
+        <li><span class="act">Vini Vici</span></li>
+        <li><span class="act">VisionV</span></li>
+        <li><span class="act">Warp Brothers</span></li>
+      </ul>
+    </details>
   </section>
 
 
@@ -556,11 +607,17 @@
       <li><a href="/f/escape-halloween-2026/">Escape Halloween 2026</a> — Oct 30–31, 2026</li>
       <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
       <li><a href="/f/decadence-colorado-2026/">Decadence Colorado 2026</a> — Dec 30–31, 2026</li>
-      <li><a href="/f/countdown-nye-2026/">Countdown NYE 2026</a> — Dec 31, 2026 – Jan 1, 2027</li>
-      <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
-      <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
-      <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
     </ul>
+    <details class="more">
+      <summary>Show 4 more</summary>
+      <ul>
+        <li><a href="/f/countdown-nye-2026/">Countdown NYE 2026</a> — Dec 31, 2026 – Jan 1, 2027</li>
+        <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
+        <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
+        <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
+      </ul>
+    </details>
+
   </nav>
 
   <section class="sources" aria-labelledby="sources-h">

@@ -1,0 +1,53 @@
+# Weekly re-check of the official embeds on the committed /f/ pages.
+#
+# A post that the festival deletes, makes private or stops allowing embeds on
+# goes dead without any commit here. The pages would then show a platform
+# "unavailable" box, which the embeds spec forbids. This job re-runs the same
+# verification the build uses (scripts/check-official-embeds.mjs --report)
+# against the embeds the committed pages show, and opens an issue listing the
+# dead ones. Like page-freshness.yml it reports rather than pushes: dropping an
+# embed changes a public page, so it goes through a PR.
+name: official embeds weekly
+
+on:
+  schedule:
+    # Mondays 06:40 UTC, off the hour (see page-freshness.yml).
+    - cron: '40 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  embeds:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # Playwright drives the runner's system Chrome for the YouTube player
+      # probe (the same executablePath fallback the other browser gates use).
+      - run: npm ci
+
+      - name: Re-verify the embeds on the committed pages
+        id: check
+        run: |
+          set +e
+          node scripts/check-official-embeds.mjs --report > embeds-report.md
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+          cat embeds-report.md
+
+      - name: Open an issue listing dead embeds
+        if: steps.check.outputs.code != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "Dead official embeds on /f/ pages ($(date -u +%F))" \
+            --body-file embeds-report.md
+
+      - name: Fail the run so it shows red
+        if: steps.check.outputs.code != '0'
+        run: exit 1

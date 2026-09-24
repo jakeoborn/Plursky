@@ -2592,6 +2592,25 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b8b. Official embeds on festival pages ────────────────────────────
+// Watch & listen shows only the festival's OWN posts: the official site links
+// the account, the platform names that account as the author, the post is
+// live and from this edition, and the caps hold (1 YouTube, 3 social across
+// Instagram + X, 1 Spotify). Players are youtube-nocookie / Spotify embed,
+// lazy, no autoplay; the Instagram/X scripts load once, late. Also pins the
+// "for humans" fold: 20 lineup rows, then Show all.
+{
+  console.log("▸ Official embeds gate — official, live, capped, lazy");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-official-embeds.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`official embeds failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b9. Shell portability ──────────────────────────────────────────────
 // Every push in this repo goes through scripts/verify-and-push.sh, and that
 // wrapper shipped with `#!/bin/zsh` until #211. On a box without zsh the kernel

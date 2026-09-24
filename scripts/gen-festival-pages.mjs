@@ -21,10 +21,12 @@ import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
 import { fp, festivalFingerprint } from './lib/sitemap-fingerprint.mjs';
 import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage } from './lib/festival-page-data.mjs';
+import { loadEmbedData, selectEmbeds, embedsSection, embedWindowStart } from './lib/official-embeds.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://plursky.com';
 const OUT_DIR = path.join(root, 'f');
+const EMBEDS = loadEmbedData(root);
 
 // ── Load the registry out of data.jsx ────────────────────────────────
 // scripts/lib/load-registry.mjs runs data/festivals/*.js before data.jsx, the
@@ -286,10 +288,22 @@ function lineupSection(entry, blocks, dates, names, hasTimes) {
     <h2 id="lineup-h">${esc(cfg.name)} lineup</h2>
     <p>${names.length} artists announced.</p>
 ${hasTimes ? '' : `    <p class="note">Plursky does not have stage assignments or set times for every act at ${esc(cfg.name)} yet; each row shows what it has.</p>\n`}    <ul class="lineup">
-${rows.join('\n')}
+${rows.slice(0, LINEUP_SHOWN).join('\n')}
     </ul>
-  </section>`;
+${rows.length > LINEUP_SHOWN ? `    <details class="more">
+      <summary>Show all ${rows.length} artists</summary>
+      <ul class="lineup">
+${rows.slice(LINEUP_SHOWN).map(r => '  ' + r).join('\n')}
+      </ul>
+    </details>
+` : ''}  </section>`;
 }
+
+// A page for humans: the first rows read at a glance and the rest sit one tap
+// away. The collapsed rows stay in the HTML, so search engines and the
+// JSON-LD performer list still see every name.
+const LINEUP_SHOWN = 20;
+const OTHERS_SHOWN = 4;
 
 // "Stages" — real per-festival stage content (name + description + how many
 // sets each day), so "<festival> stages" queries land on substance.
@@ -525,6 +539,7 @@ function stub(entry, statusOverride, lastmod) {
     && allStages.every(s => s && s.x != null && s.y != null)
     && !!(cfg.mapImage || cfg.mapMode);
   const answers = faqItems(entry, { names, hasTimes, stages, blocks, plate });
+  const watchHtml = embedsSection(cfg.name, selectEmbeds(id, EMBEDS, embedWindowStart(cfg, dates)));
 
   const desc = hasTimes
     ? `${cfg.name} set times and lineup — ${names.length} artists at ${venue}, ${cfg.dates}. Full schedule by day and stage. Plan your weekend with Plursky.`
@@ -661,6 +676,20 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
   section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
+  details.more { margin:4px 0 0; }
+  details.more > summary { cursor:pointer; color:var(--ember); font-weight:600; font-size:14px; padding:10px 0; min-height:44px; display:flex; align-items:center; }
+  details.more[open] > summary { color:var(--muted); }
+  section.watch .embed { margin:16px 0 20px; }
+  section.watch .yt { position:relative; aspect-ratio:16/9; width:100%; min-height:200px; background:var(--panel); border-radius:12px; overflow:hidden; }
+  section.watch .yt iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+  /* Instagram's embed has a fixed 326px minimum. On a 320px phone that is
+     wider than the screen, so the embed scrolls inside its own box and the
+     page never scrolls sideways. */
+  section.watch .embed-ig { overflow-x:auto; max-width:100%; }
+  section.watch .embed-ig blockquote, section.watch .embed-x blockquote { margin:0; min-height:420px; background:var(--panel); border-radius:12px; padding:16px; max-width:540px; }
+  section.watch .embed-x blockquote { min-height:260px; }
+  section.watch .embed-sp iframe { display:block; border:0; border-radius:12px; min-height:352px; }
+  section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }
 </style>
 <script type="application/ld+json">
 ${JSON.stringify(ld, null, 2)}
@@ -678,7 +707,7 @@ ${JSON.stringify(crumbLd, null, 2)}
   <h1>${esc(cfg.name)}</h1>
   <p class="meta">${status ? `<span class="chip chip-${status}">${STATUS_LABEL[status]}</span>` : ''}${esc(cfg.dates)}${where ? ' · ' + esc(where) : ''}</p>
   <p>${esc(cfg.tagline || '')}</p>
-${answersSection(entry, answers)}
+${answersSection(entry, answers)}${watchHtml}
 ${mapHtml}
 ${scheduleGrid(entry, dates, blocks)}
 ${lineupSection(entry, blocks, dates, names, hasTimes)}
@@ -701,9 +730,11 @@ ${entry.available
 
   <nav class="other" aria-labelledby="other-h">
     <h2 id="other-h">Other festivals on Plursky</h2>
-    <ul>
-${otherFestivals(entry).map(f => `      <li><a href="/f/${f.config.id}/">${esc(f.config.name)}</a> — ${esc(f.config.dates)}</li>`).join('\n')}
-    </ul>
+${(() => {
+  const li = otherFestivals(entry).map(f => `      <li><a href="/f/${f.config.id}/">${esc(f.config.name)}</a> — ${esc(f.config.dates)}</li>`);
+  return `    <ul>\n${li.slice(0, OTHERS_SHOWN).join('\n')}\n    </ul>\n` + (li.length > OTHERS_SHOWN
+    ? `    <details class="more">\n      <summary>Show ${li.length - OTHERS_SHOWN} more</summary>\n      <ul>\n${li.slice(OTHERS_SHOWN).map(r => '  ' + r).join('\n')}\n      </ul>\n    </details>\n` : '');
+})()}
   </nav>
 
   <section class="sources" aria-labelledby="sources-h">

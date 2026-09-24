@@ -69,6 +69,20 @@
   section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
+  details.more { margin:4px 0 0; }
+  details.more > summary { cursor:pointer; color:var(--ember); font-weight:600; font-size:14px; padding:10px 0; min-height:44px; display:flex; align-items:center; }
+  details.more[open] > summary { color:var(--muted); }
+  section.watch .embed { margin:16px 0 20px; }
+  section.watch .yt { position:relative; aspect-ratio:16/9; width:100%; min-height:200px; background:var(--panel); border-radius:12px; overflow:hidden; }
+  section.watch .yt iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+  /* Instagram's embed has a fixed 326px minimum. On a 320px phone that is
+     wider than the screen, so the embed scrolls inside its own box and the
+     page never scrolls sideways. */
+  section.watch .embed-ig { overflow-x:auto; max-width:100%; }
+  section.watch .embed-ig blockquote, section.watch .embed-x blockquote { margin:0; min-height:420px; background:var(--panel); border-radius:12px; padding:16px; max-width:540px; }
+  section.watch .embed-x blockquote { min-height:260px; }
+  section.watch .embed-sp iframe { display:block; border:0; border-radius:12px; min-height:352px; }
+  section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }
 </style>
 <script type="application/ld+json">
 {
@@ -154,6 +168,38 @@
       <dd>Coachella 2027 takes place Apr 9–18, 2027 at Empire Polo Club · Indio, CA.</dd>
     </dl>
   </section>
+  <section id="watch" class="watch" aria-labelledby="watch-h">
+    <h2 id="watch-h">Watch &amp; listen</h2>
+    <p class="note">From Coachella 2027's official accounts.</p>
+    <figure class="embed embed-ig">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXxZVLiklra/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DXxZVLiklra/" rel="noopener">View this post on Instagram</a></blockquote>
+      <p class="embed-cap">@coachella on Instagram · <a href="https://www.instagram.com/coachella/p/DXxZVLiklra/" rel="noopener">View the original</a></p>
+    </figure>
+    <figure class="embed embed-ig">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXz32uux-sA/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DXz32uux-sA/" rel="noopener">View this post on Instagram</a></blockquote>
+      <p class="embed-cap">@coachella on Instagram · <a href="https://www.instagram.com/coachella/reel/DXz32uux-sA/" rel="noopener">View the original</a></p>
+    </figure>
+    <script>
+(function () {
+  var sec = document.getElementById('watch');
+  if (!sec) return;
+  var urls = [];
+  if (sec.querySelector('.instagram-media')) urls.push('https://www.instagram.com/embed.js');
+  if (sec.querySelector('.twitter-tweet')) urls.push('https://platform.twitter.com/widgets.js');
+  if (!urls.length) return;
+  var done = false;
+  function load() {
+    if (done) return; done = true;
+    urls.forEach(function (u) { var s = document.createElement('script'); s.async = true; s.src = u; document.body.appendChild(s); });
+  }
+  if (!('IntersectionObserver' in window)) return load();
+  var io = new IntersectionObserver(function (es) {
+    if (es.some(function (x) { return x.isIntersecting; })) { io.disconnect(); load(); }
+  }, { rootMargin: '600px 0px' });
+  io.observe(sec);
+})();
+    </script>
+  </section>
 
 
 
@@ -182,11 +228,17 @@
       <li><a href="/f/edc-mexico-2027/">EDC Mexico 2027</a> — Feb 19–21, 2027</li>
       <li><a href="/f/beyond-wonderland-gorge-2027/">Beyond Wonderland at The Gorge 2027</a> — Jun 26–27, 2027</li>
       <li><a href="/f/countdown-nye-2026/">Countdown NYE 2026</a> — Dec 31, 2026 – Jan 1, 2027</li>
-      <li><a href="/f/decadence-colorado-2026/">Decadence Colorado 2026</a> — Dec 30–31, 2026</li>
-      <li><a href="/f/dreamstate-socal-2026/">Dreamstate SoCal 2026</a> — Nov 20–21, 2026</li>
-      <li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a> — Nov 6–8, 2026</li>
-      <li><a href="/f/escape-halloween-2026/">Escape Halloween 2026</a> — Oct 30–31, 2026</li>
     </ul>
+    <details class="more">
+      <summary>Show 4 more</summary>
+      <ul>
+        <li><a href="/f/decadence-colorado-2026/">Decadence Colorado 2026</a> — Dec 30–31, 2026</li>
+        <li><a href="/f/dreamstate-socal-2026/">Dreamstate SoCal 2026</a> — Nov 20–21, 2026</li>
+        <li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a> — Nov 6–8, 2026</li>
+        <li><a href="/f/escape-halloween-2026/">Escape Halloween 2026</a> — Oct 30–31, 2026</li>
+      </ul>
+    </details>
+
   </nav>
 
   <section class="sources" aria-labelledby="sources-h">

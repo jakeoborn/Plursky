@@ -68,6 +68,20 @@
   section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
+  details.more { margin:4px 0 0; }
+  details.more > summary { cursor:pointer; color:var(--ember); font-weight:600; font-size:14px; padding:10px 0; min-height:44px; display:flex; align-items:center; }
+  details.more[open] > summary { color:var(--muted); }
+  section.watch .embed { margin:16px 0 20px; }
+  section.watch .yt { position:relative; aspect-ratio:16/9; width:100%; min-height:200px; background:var(--panel); border-radius:12px; overflow:hidden; }
+  section.watch .yt iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+  /* Instagram's embed has a fixed 326px minimum. On a 320px phone that is
+     wider than the screen, so the embed scrolls inside its own box and the
+     page never scrolls sideways. */
+  section.watch .embed-ig { overflow-x:auto; max-width:100%; }
+  section.watch .embed-ig blockquote, section.watch .embed-x blockquote { margin:0; min-height:420px; background:var(--panel); border-radius:12px; padding:16px; max-width:540px; }
+  section.watch .embed-x blockquote { min-height:260px; }
+  section.watch .embed-sp iframe { display:block; border:0; border-radius:12px; min-height:352px; }
+  section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }
 </style>
 <script type="application/ld+json">
 {
@@ -616,6 +630,38 @@
       <dd>EDC Orlando 2026 has 5 stages at Tinker Field, each one listed on this page.</dd>
     </dl>
   </section>
+  <section id="watch" class="watch" aria-labelledby="watch-h">
+    <h2 id="watch-h">Watch &amp; listen</h2>
+    <p class="note">From EDC Orlando 2026's official accounts.</p>
+    <figure class="embed embed-ig">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DRvNpwrjWaV/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DRvNpwrjWaV/" rel="noopener">View this post on Instagram</a></blockquote>
+      <p class="embed-cap">@edc_orlando on Instagram · <a href="https://www.instagram.com/edc_orlando/reel/DRvNpwrjWaV/" rel="noopener">View the original</a></p>
+    </figure>
+    <figure class="embed embed-sp">
+      <iframe src="https://open.spotify.com/embed/playlist/31JmJV1ZZCGX2ZmeWKI1Hg" title="EDC Orlando 2026 playlist on Spotify" width="100%" height="352" loading="lazy" allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      <p class="embed-cap">EDC Orlando 2026's official playlist on Spotify · <a href="https://open.spotify.com/playlist/31JmJV1ZZCGX2ZmeWKI1Hg" rel="noopener">View the original</a></p>
+    </figure>
+    <script>
+(function () {
+  var sec = document.getElementById('watch');
+  if (!sec) return;
+  var urls = [];
+  if (sec.querySelector('.instagram-media')) urls.push('https://www.instagram.com/embed.js');
+  if (sec.querySelector('.twitter-tweet')) urls.push('https://platform.twitter.com/widgets.js');
+  if (!urls.length) return;
+  var done = false;
+  function load() {
+    if (done) return; done = true;
+    urls.forEach(function (u) { var s = document.createElement('script'); s.async = true; s.src = u; document.body.appendChild(s); });
+  }
+  if (!('IntersectionObserver' in window)) return load();
+  var io = new IntersectionObserver(function (es) {
+    if (es.some(function (x) { return x.isIntersecting; })) { io.disconnect(); load(); }
+  }, { rootMargin: '600px 0px' });
+  io.observe(sec);
+})();
+    </script>
+  </section>
 
 
 
@@ -644,95 +690,100 @@
       <li><span class="act">Azzecca</span> <span class="slots">Fri, Nov 6</span></li>
       <li><span class="act">Benda B2B Vastive</span> <span class="slots">Fri, Nov 6</span></li>
       <li><span class="act">Big Florida</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Boogie T</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Bou B2B Kanine</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Boys Noize B2B Brutalismus 3000</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Brunello (Sunset Set)</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Bullet Tooth B2B Sidney Charles</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">ChaseWest</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Chef Boyarbeatz</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Chris Lorenzo</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">CØNTRA</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">David Guetta</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Dennis Cruz</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Deorro B2B DJ Diesel</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Devault (Sunset Set)</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Discip</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Disco Lines</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Discovery Project</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">ESSE</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Fallon</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Franky Rizardo</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Fury with MC Dino</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Gabss</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Greg 99</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Hardwell</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">HAYLA</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Holy Priest</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">I Hate Models</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Ian Asher</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">IDEMI</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Inbal</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Interplanetary Criminal</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Jessica Audiffred</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Jkyl &amp; Hyde</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">JOA</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Josh Baker</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Joshwa</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Kaivon</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Kaskade</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">KI/KI</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">KinAhau</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Klangkuenstler</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Know Good</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Kompany</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">KREAM</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">LAYZ</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Level Up</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Levity</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">M81!</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Maddix</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">MADVKTM</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Mai Iachetti</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">MALUGI (Sunset Set)</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Marlon Hoffstadt (Sunset Set)</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Martin Garrix</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Matthias</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Mau P</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Max Dean, Luke Dean</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Me n ü</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Meduza</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Miguelle &amp; Tons</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Monoky</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">MPH</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Nico Moreno</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Of The Trees (Sunset Set)</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Omar+</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Pegassi</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">phrva</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Prospa</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Prospa B2B Josh Baker</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">RAJE</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Ravenscoon</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Ray Volpe</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Roddy Lima</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Rossi. (Sunset Set)</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">San Holo (Wholesome Riddim Set)</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">SHDW</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Sippy</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Skull Machine (Black Tiger Sex Machine x Kai Wachi)</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">SLANDER (Sunset Set)</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Sloth</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Steve Aoki</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Subsonic</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Taiki Nulight</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">TroyBoi</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Twinsick</span> <span class="slots">Sat, Nov 7</span></li>
-      <li><span class="act">Ultrathem</span> <span class="slots">Sun, Nov 8</span></li>
-      <li><span class="act">Whethan</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Wooli</span> <span class="slots">Fri, Nov 6</span></li>
-      <li><span class="act">Zack Martino</span> <span class="slots">Fri, Nov 6</span></li>
     </ul>
+    <details class="more">
+      <summary>Show all 108 artists</summary>
+      <ul class="lineup">
+        <li><span class="act">Boogie T</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Bou B2B Kanine</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Boys Noize B2B Brutalismus 3000</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Brunello (Sunset Set)</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Bullet Tooth B2B Sidney Charles</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">ChaseWest</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Chef Boyarbeatz</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Chris Lorenzo</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">CØNTRA</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">David Guetta</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Dennis Cruz</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Deorro B2B DJ Diesel</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Devault (Sunset Set)</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Discip</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Disco Lines</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Discovery Project</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">ESSE</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Fallon</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Franky Rizardo</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Fury with MC Dino</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Gabss</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Greg 99</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Hardwell</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">HAYLA</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Holy Priest</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">I Hate Models</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Ian Asher</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">IDEMI</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Inbal</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Interplanetary Criminal</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Jessica Audiffred</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Jkyl &amp; Hyde</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">JOA</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Josh Baker</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Joshwa</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Kaivon</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Kaskade</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">KI/KI</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">KinAhau</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Klangkuenstler</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Know Good</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Kompany</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">KREAM</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">LAYZ</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Level Up</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Levity</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">M81!</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Maddix</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">MADVKTM</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Mai Iachetti</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">MALUGI (Sunset Set)</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Marlon Hoffstadt (Sunset Set)</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Martin Garrix</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Matthias</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Mau P</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Max Dean, Luke Dean</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Me n ü</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Meduza</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Miguelle &amp; Tons</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Monoky</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">MPH</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Nico Moreno</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Of The Trees (Sunset Set)</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Omar+</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Pegassi</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">phrva</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Prospa</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Prospa B2B Josh Baker</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">RAJE</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Ravenscoon</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Ray Volpe</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Roddy Lima</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Rossi. (Sunset Set)</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">San Holo (Wholesome Riddim Set)</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">SHDW</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Sippy</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Skull Machine (Black Tiger Sex Machine x Kai Wachi)</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">SLANDER (Sunset Set)</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Sloth</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Steve Aoki</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Subsonic</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Taiki Nulight</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">TroyBoi</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Twinsick</span> <span class="slots">Sat, Nov 7</span></li>
+        <li><span class="act">Ultrathem</span> <span class="slots">Sun, Nov 8</span></li>
+        <li><span class="act">Whethan</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Wooli</span> <span class="slots">Fri, Nov 6</span></li>
+        <li><span class="act">Zack Martino</span> <span class="slots">Fri, Nov 6</span></li>
+      </ul>
+    </details>
   </section>
 
   <section aria-labelledby="stages-h">
@@ -766,11 +817,17 @@
       <li><a href="/f/dreamstate-socal-2026/">Dreamstate SoCal 2026</a> — Nov 20–21, 2026</li>
       <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
       <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
-      <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
-      <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
-      <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
-      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
     </ul>
+    <details class="more">
+      <summary>Show 4 more</summary>
+      <ul>
+        <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
+        <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
+        <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
+        <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
+      </ul>
+    </details>
+
   </nav>
 
   <section class="sources" aria-labelledby="sources-h">

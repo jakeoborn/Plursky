@@ -68,6 +68,20 @@
   section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
+  details.more { margin:4px 0 0; }
+  details.more > summary { cursor:pointer; color:var(--ember); font-weight:600; font-size:14px; padding:10px 0; min-height:44px; display:flex; align-items:center; }
+  details.more[open] > summary { color:var(--muted); }
+  section.watch .embed { margin:16px 0 20px; }
+  section.watch .yt { position:relative; aspect-ratio:16/9; width:100%; min-height:200px; background:var(--panel); border-radius:12px; overflow:hidden; }
+  section.watch .yt iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+  /* Instagram's embed has a fixed 326px minimum. On a 320px phone that is
+     wider than the screen, so the embed scrolls inside its own box and the
+     page never scrolls sideways. */
+  section.watch .embed-ig { overflow-x:auto; max-width:100%; }
+  section.watch .embed-ig blockquote, section.watch .embed-x blockquote { margin:0; min-height:420px; background:var(--panel); border-radius:12px; padding:16px; max-width:540px; }
+  section.watch .embed-x blockquote { min-height:260px; }
+  section.watch .embed-sp iframe { display:block; border:0; border-radius:12px; min-height:352px; }
+  section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }
 </style>
 <script type="application/ld+json">
 {
@@ -2533,371 +2547,376 @@
       <li><span class="act">Allison Mahal</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Summerville · <a href="#set-su229">12:00</a></span></li>
       <li><span class="act">Altered By Mom</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Aurora Pavilion · <a href="#set-su121">16:30</a></span></li>
       <li><span class="act">Alyssia Dominguez</span> <span class="slots">Weekend 2 · Sat, Jun 27 · BMO Pavilion · <a href="#set-su240">17:00</a></span></li>
-      <li><span class="act">American Progress</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Miller Lite Oasis · <a href="#set-su114">14:45</a></span></li>
-      <li><span class="act">Amy Lowe &amp; King Katz</span> <span class="slots">Weekend 1 · Fri, Jun 19 · T-Mobile Stage · <a href="#set-su76">12:45</a></span></li>
-      <li><span class="act">Amyl and the Sniffers</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Miller Lite Oasis · <a href="#set-su69">22:30</a></span></li>
-      <li><span class="act">Anees</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Miller Lite Oasis · <a href="#set-su312">20:30</a></span></li>
-      <li><span class="act">Ask Carol</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Aurora Pavilion · <a href="#set-su367">15:15</a></span></li>
-      <li><span class="act">Aspen</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Aurora Pavilion · <a href="#set-su124">21:00</a></span></li>
-      <li><span class="act">Aubrey Marie</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Summerville · <a href="#set-su281">12:00</a></span></li>
-      <li><span class="act">Audrey Nuna</span> <span class="slots">Weekend 2 · Sat, Jun 27 · T-Mobile Stage · <a href="#set-su274">22:15</a></span></li>
-      <li><span class="act">Avery Cochrane</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Big Backyard · <a href="#set-su7">14:30</a></span></li>
-      <li><span class="act">Ax And The Hatchetmen</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Generac Power Stage · <a href="#set-su356">19:30</a></span></li>
-      <li><span class="act">Baha Men</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Aurora Pavilion · <a href="#set-su425">19:00</a></span></li>
-      <li><span class="act">Barely Civil</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Uline Warehouse · <a href="#set-su33">12:30</a></span></li>
-      <li><span class="act">Ben Mulwana</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Aurora Pavilion · <a href="#set-su71">15:15</a></span></li>
-      <li><span class="act">BERMS.</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Big Backyard · <a href="#set-su401">13:00</a></span></li>
-      <li><span class="act">BG Good</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Aurora Pavilion · <a href="#set-su371">21:00</a></span></li>
-      <li><span class="act">Big Daddy Kane</span> <span class="slots">Weekend 2 · Thu, Jun 25 · BMO Pavilion · <a href="#set-su149">17:30</a></span></li>
-      <li><span class="act">Big Wild</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Generac Power Stage · <a href="#set-su206">19:30</a></span></li>
-      <li><span class="act">Blonde</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Big Backyard · <a href="#set-su199">16:30</a></span></li>
-      <li><span class="act">Blondshell</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Big Backyard · <a href="#set-su300">20:00</a></span></li>
-      <li><span class="act">Blues Disciples</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Summerville · <a href="#set-su39">12:00</a></span></li>
-      <li><span class="act">Bob Mittnacht &amp; The Crowning Glories</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Uline Warehouse · <a href="#set-su378">12:30</a></span></li>
-      <li><span class="act">Bobby Friss</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Generac Power Stage · <a href="#set-su205">17:45</a></span></li>
-      <li><span class="act">BoDeans</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Generac Power Stage · <a href="#set-su412">22:00</a></span></li>
-      <li><span class="act">Booker T. Jones</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Generac Power Stage · <a href="#set-su158">16:15</a></span></li>
-      <li><span class="act">BØRNS</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Big Backyard · <a href="#set-su250">22:00</a></span></li>
-      <li><span class="act">Bowling Shoes</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Miller Lite Oasis · <a href="#set-su17">13:15</a></span></li>
-      <li><span class="act">Boy Golden</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Aurora Pavilion · <a href="#set-su170">17:45</a></span></li>
-      <li><span class="act">Brady Lee</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Big Backyard · <a href="#set-su53">14:30</a></span></li>
-      <li><span class="act">Braid</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Miller Lite Oasis · <a href="#set-su117">20:30</a></span></li>
-      <li><span class="act">Breaking Cadence</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Miller Lite Oasis · <a href="#set-su310">16:30</a></span></li>
-      <li><span class="act">Buckcherry</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Generac Power Stage · <a href="#set-su306">19:30</a></span></li>
-      <li><span class="act">Buffchick</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Big Backyard · <a href="#set-su296">13:00</a></span></li>
-      <li><span class="act">Buju Banton</span> <span class="slots">Weekend 3 · Fri, Jul 3 · BMO Pavilion · <a href="#set-su345">21:00</a></span></li>
-      <li><span class="act">Cameron Whitcomb</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Big Backyard · <a href="#set-su57">22:00</a></span></li>
-      <li><span class="act">Candlebox</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Generac Power Stage · <a href="#set-su307">21:30</a></span></li>
-      <li><span class="act">Cardinal Bloom</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Big Backyard · <a href="#set-su246">14:30</a></span></li>
-      <li><span class="act">Carín León</span> <span class="slots">Weekend 1 · Sat, Jun 20 · AmFam Amphitheater · <a href="#set-su97">19:00</a></span></li>
-      <li><span class="act">Carolina Liar</span> <span class="slots">Weekend 3 · Sat, Jul 4 · T-Mobile Stage · <a href="#set-su429">16:15</a></span></li>
-      <li><span class="act">Carter Faith</span> <span class="slots">Weekend 2 · Sat, Jun 27 · AmFam Amphitheater · <a href="#set-su238">19:00</a></span></li>
-      <li><span class="act">Case Oats</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Aurora Pavilion · <a href="#set-su316">16:30</a></span></li>
-      <li><span class="act">Charlie Wilson</span> <span class="slots">Weekend 1 · Thu, Jun 18 · BMO Pavilion · <a href="#set-su5">22:00</a></span></li>
-      <li><span class="act">Chase McDaniel</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Miller Lite Oasis · <a href="#set-su363">20:30</a></span></li>
-      <li><span class="act">Chris Crain</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Aurora Pavilion · <a href="#set-su73">17:45</a></span></li>
-      <li><span class="act">Chris Koster</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Generac Power Stage · <a href="#set-su252">15:30</a></span></li>
-      <li><span class="act">Christopher Cross</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Uline Warehouse · <a href="#set-su136">21:30</a></span></li>
-      <li><span class="act">Chrystal Gales</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Miller Lite Oasis · <a href="#set-su163">14:45</a></span></li>
-      <li><span class="act">Cigarettes @ Sunset</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Aurora Pavilion · <a href="#set-su120">15:15</a></span></li>
-      <li><span class="act">Circa 79</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Generac Power Stage · <a href="#set-su13">15:30</a></span></li>
-      <li><span class="act">City of the Sun</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Miller Lite Oasis · <a href="#set-su19">16:30</a></span></li>
-      <li><span class="act">Cody Johnson</span> <span class="slots">Weekend 2 · Fri, Jun 26 · AmFam Amphitheater · <a href="#set-su194">20:30</a></span></li>
-      <li><span class="act">Colin Bracewell</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Miller Lite Oasis · <a href="#set-su115">16:30</a></span></li>
-      <li><span class="act">Colin Lynch</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Big Backyard · <a href="#set-su54">16:00</a></span></li>
-      <li><span class="act">Common</span> <span class="slots">Weekend 2 · Thu, Jun 25 · BMO Pavilion · <a href="#set-su151">21:00</a></span></li>
-      <li><span class="act">Connor Price</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Big Backyard · <a href="#set-su106">22:00</a></span></li>
-      <li><span class="act">Current Comfort</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Miller Lite Oasis · <a href="#set-su65">14:45</a></span></li>
-      <li><span class="act">Dan Kolesari</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Summerville · <a href="#set-su140">17:30</a>; Weekend 1 · Sat, Jun 20 · Summerville · <a href="#set-su141">19:30</a></span></li>
-      <li><span class="act">Daniel Nathan Electracoustic</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Summerville · <a href="#set-su137">12:00</a></span></li>
-      <li><span class="act">Danny Miller Band</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Summerville · <a href="#set-su230">13:45</a>; Weekend 2 · Fri, Jun 26 · Summerville · <a href="#set-su231">15:30</a></span></li>
-      <li><span class="act">Dannyboy</span> <span class="slots">Weekend 1 · Thu, Jun 18 · BMO Pavilion · <a href="#set-su4">19:15</a></span></li>
-      <li><span class="act">David Lee Roth</span> <span class="slots">Weekend 1 · Sat, Jun 20 · BMO Pavilion · <a href="#set-su100">21:00</a></span></li>
-      <li><span class="act">David Shaw and Zack Feinberg of the Revivalists</span> <span class="slots">Weekend 2 · Fri, Jun 26 · AmFam House · <a href="#set-su236">16:00</a></span></li>
-      <li><span class="act">Deer Tick</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Generac Power Stage · <a href="#set-su61">17:30</a></span></li>
-      <li><span class="act">Dexter And The Moonrocks</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Aurora Pavilion · <a href="#set-su123">19:00</a></span></li>
-      <li><span class="act">Divas &amp; Jazz</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Summerville · <a href="#set-su138">13:45</a>; Weekend 1 · Sat, Jun 20 · Summerville · <a href="#set-su139">15:30</a></span></li>
-      <li><span class="act">DJ Andres</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Aurora Pavilion · <a href="#set-su263">14:45</a></span></li>
-      <li><span class="act">DJ B-Lee</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Aurora Pavilion · <a href="#set-su27">21:00</a></span></li>
-      <li><span class="act">DJ Don B</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Aurora Pavilion · <a href="#set-su268">21:00</a></span></li>
-      <li><span class="act">DJ Gemini Gilly</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Aurora Pavilion · <a href="#set-su172">21:00</a></span></li>
-      <li><span class="act">DJ Jazzy Jeff</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Big Backyard · <a href="#set-su350">20:00</a></span></li>
-      <li><span class="act">DJ Kool</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Big Backyard · <a href="#set-su349">18:00</a></span></li>
-      <li><span class="act">DJ Splackavelli</span> <span class="slots">Weekend 3 · Fri, Jul 3 · BMO Pavilion · <a href="#set-su343">17:30</a></span></li>
-      <li><span class="act">DJay Mando</span> <span class="slots">Weekend 1 · Thu, Jun 18 · AmFam House · <a href="#set-su44">12:00</a>; Weekend 1 · Thu, Jun 18 · AmFam House · <a href="#set-su47">18:00</a>; Weekend 1 · Fri, Jun 19 · AmFam House · <a href="#set-su92">12:00</a>; Weekend 1 · Fri, Jun 19 · AmFam House · <a href="#set-su96">19:00</a>; Weekend 1 · Sat, Jun 20 · AmFam House · <a href="#set-su142">12:00</a>; Weekend 1 · Sat, Jun 20 · AmFam House · <a href="#set-su145">18:00</a>; Weekend 2 · Thu, Jun 25 · AmFam House · <a href="#set-su189">12:00</a>; Weekend 2 · Thu, Jun 25 · AmFam House · <a href="#set-su192">18:00</a>; Weekend 2 · Fri, Jun 26 · AmFam House · <a href="#set-su234">12:00</a>; Weekend 2 · Fri, Jun 26 · AmFam House · <a href="#set-su237">18:00</a>; Weekend 2 · Sat, Jun 27 · AmFam House · <a href="#set-su286">12:00</a>; Weekend 2 · Sat, Jun 27 · AmFam House · <a href="#set-su289">18:00</a>; Weekend 3 · Thu, Jul 2 · AmFam House · <a href="#set-su337">12:00</a>; Weekend 3 · Thu, Jul 2 · AmFam House · <a href="#set-su339">18:00</a>; Weekend 3 · Fri, Jul 3 · T-Mobile Stage · <a href="#set-su376">20:15</a>; Weekend 3 · Fri, Jul 3 · AmFam House · <a href="#set-su389">12:00</a>; Weekend 3 · Fri, Jul 3 · AmFam House · <a href="#set-su392">18:00</a>; Weekend 3 · Sat, Jul 4 · AmFam House · <a href="#set-su444">12:00</a>; Weekend 3 · Sat, Jul 4 · AmFam House · <a href="#set-su447">18:00</a></span></li>
-      <li><span class="act">Don Felder</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Uline Warehouse · <a href="#set-su135">19:30</a></span></li>
-      <li><span class="act">Don Toliver with SahBabii, SoFaygo, Che, Lelo, Chase B, and sosocamo</span> <span class="slots">Weekend 1 · Fri, Jun 19 · AmFam Amphitheater · <a href="#set-su48">19:00</a></span></li>
-      <li><span class="act">Dora Jar</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Big Backyard · <a href="#set-su10">20:00</a></span></li>
-      <li><span class="act">Dorsten</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Summerville · <a href="#set-su442">17:30</a>; Weekend 3 · Sat, Jul 4 · Summerville · <a href="#set-su443">19:30</a></span></li>
-      <li><span class="act">Drown The Lifeguard</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Miller Lite Oasis · <a href="#set-su417">18:45</a></span></li>
-      <li><span class="act">Dylan Schneider</span> <span class="slots">Weekend 2 · Sat, Jun 27 · BMO Pavilion · <a href="#set-su242">20:15</a>; Weekend 2 · Sat, Jun 27 · AmFam House · <a href="#set-su288">16:00</a></span></li>
-      <li><span class="act">Easy Honey</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Generac Power Stage · <a href="#set-su353">14:00</a></span></li>
-      <li><span class="act">Echo &amp; The Bunnymen</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Generac Power Stage · <a href="#set-su16">22:00</a></span></li>
-      <li><span class="act">Ed Sheeran</span> <span class="slots">Weekend 2 · Thu, Jun 25 · AmFam Amphitheater · <a href="#set-su148">21:15</a></span></li>
-      <li><span class="act">Edgehill</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Generac Power Stage · <a href="#set-su355">17:30</a></span></li>
-      <li><span class="act">El Sebas</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Miller Lite Oasis · <a href="#set-su311">18:30</a></span></li>
-      <li><span class="act">Elderbrook</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Generac Power Stage · <a href="#set-su207">21:30</a></span></li>
-      <li><span class="act">Elephonic</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Big Backyard · <a href="#set-su403">16:00</a></span></li>
-      <li><span class="act">Elijah Scott</span> <span class="slots">Weekend 2 · Thu, Jun 25 · T-Mobile Stage · <a href="#set-su176">18:45</a></span></li>
-      <li><span class="act">Ella Mai</span> <span class="slots">Weekend 3 · Thu, Jul 2 · BMO Pavilion · <a href="#set-su295">21:00</a></span></li>
-      <li><span class="act">Emei</span> <span class="slots">Weekend 3 · Fri, Jul 3 · AmFam Amphitheater · <a href="#set-su340">18:55</a></span></li>
-      <li><span class="act">Emmitt James</span> <span class="slots">Weekend 1 · Fri, Jun 19 · T-Mobile Stage · <a href="#set-su79">18:15</a></span></li>
-      <li><span class="act">Ethan Burdick</span> <span class="slots">Weekend 3 · Sat, Jul 4 · AmFam Amphitheater · <a href="#set-su394">17:00</a></span></li>
-      <li><span class="act">Evan Honer</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Generac Power Stage · <a href="#set-su62">19:30</a>; Weekend 1 · Fri, Jun 19 · AmFam House · <a href="#set-su94">16:00</a></span></li>
-      <li><span class="act">Father John Misty</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Generac Power Stage · <a href="#set-su63">21:30</a></span></li>
-      <li><span class="act">FEE$</span> <span class="slots">Weekend 1 · Fri, Jun 19 · T-Mobile Stage · <a href="#set-su80">20:15</a></span></li>
-      <li><span class="act">Fellow Travelers</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Miller Lite Oasis · <a href="#set-su358">12:30</a></span></li>
-      <li><span class="act">FieldHockey</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Uline Warehouse · <a href="#set-su82">13:45</a></span></li>
-      <li><span class="act">Flatwounds</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Miller Lite Oasis · <a href="#set-su414">13:45</a></span></li>
-      <li><span class="act">flipturn</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Generac Power Stage · <a href="#set-su112">21:30</a>; Weekend 1 · Sat, Jun 20 · AmFam House · <a href="#set-su143">14:00</a></span></li>
-      <li><span class="act">Flo Rida</span> <span class="slots">Weekend 3 · Fri, Jul 3 · T-Mobile Stage · <a href="#set-su377">22:15</a></span></li>
-      <li><span class="act">Florentine Opera Company</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Aurora Pavilion · <a href="#set-su314">12:45</a></span></li>
-      <li><span class="act">Flourescents</span> <span class="slots">Weekend 3 · Thu, Jul 2 · T-Mobile Stage · <a href="#set-su322">16:15</a></span></li>
-      <li><span class="act">flowersatherfeet</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Generac Power Stage · <a href="#set-su58">12:30</a></span></li>
-      <li><span class="act">Freddy Jones Band</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Uline Warehouse · <a href="#set-su279">19:30</a></span></li>
-      <li><span class="act">Frogwater</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Summerville · <a href="#set-su439">12:00</a></span></li>
-      <li><span class="act">From Ashes to Embers</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Miller Lite Oasis · <a href="#set-su64">13:15</a></span></li>
-      <li><span class="act">Fuzzysurf</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Big Backyard · <a href="#set-su245">13:15</a></span></li>
-      <li><span class="act">Gabriel Jacoby</span> <span class="slots">Weekend 2 · Thu, Jun 25 · BMO Pavilion · <a href="#set-su150">19:15</a>; Weekend 2 · Thu, Jun 25 · AmFam House · <a href="#set-su191">16:00</a></span></li>
-      <li><span class="act">Gego Y Nony</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Aurora Pavilion · <a href="#set-su423">16:30</a></span></li>
-      <li><span class="act">Gene Simmons Band</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Uline Warehouse · <a href="#set-su383">21:30</a></span></li>
-      <li><span class="act">Ghosts in the Gravel</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Summerville · <a href="#set-su185">13:45</a>; Weekend 2 · Thu, Jun 25 · Summerville · <a href="#set-su186">15:30</a></span></li>
-      <li><span class="act">Gin Blossoms</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Uline Warehouse · <a href="#set-su331">21:30</a></span></li>
-      <li><span class="act">Girlfriends</span> <span class="slots">Weekend 3 · Thu, Jul 2 · T-Mobile Stage · <a href="#set-su323">18:15</a></span></li>
-      <li><span class="act">GIRLNEXTDOOR</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Aurora Pavilion · <a href="#set-su319">21:00</a></span></li>
-      <li><span class="act">Gold Steps</span> <span class="slots">Weekend 3 · Thu, Jul 2 · T-Mobile Stage · <a href="#set-su321">14:30</a></span></li>
-      <li><span class="act">Goldfinger</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Miller Lite Oasis · <a href="#set-su213">22:30</a></span></li>
-      <li><span class="act">Grabbitz</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Generac Power Stage · <a href="#set-su160">20:00</a></span></li>
-      <li><span class="act">GRAHAM</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Big Backyard · <a href="#set-su104">18:00</a></span></li>
-      <li><span class="act">Greg Koch &amp; The Koch Marshall Trio</span> <span class="slots">Weekend 2 · Fri, Jun 26 · T-Mobile Stage · <a href="#set-su221">18:15</a></span></li>
-      <li><span class="act">Grouplove</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Uline Warehouse · <a href="#set-su227">19:30</a>; Weekend 2 · Fri, Jun 26 · AmFam House · <a href="#set-su235">14:00</a></span></li>
-      <li><span class="act">Guardrail</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Miller Lite Oasis · <a href="#set-su208">13:15</a></span></li>
-      <li><span class="act">Halestorm</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Uline Warehouse · <a href="#set-su183">21:30</a></span></li>
-      <li><span class="act">Haley Johnsen</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Uline Warehouse · <a href="#set-su276">14:00</a></span></li>
-      <li><span class="act">Hank Azaria And The EZ Street Band</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Uline Warehouse · <a href="#set-su278">17:30</a></span></li>
-      <li><span class="act">Hanna Simone</span> <span class="slots">Weekend 3 · Fri, Jul 3 · T-Mobile Stage · <a href="#set-su372">12:45</a></span></li>
-      <li><span class="act">Harper O&#39;Neill</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Aurora Pavilion · <a href="#set-su216">17:45</a></span></li>
-      <li><span class="act">Harrison Gordon</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Miller Lite Oasis · <a href="#set-su209">14:45</a></span></li>
-      <li><span class="act">Hazlett</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Miller Lite Oasis · <a href="#set-su166">20:30</a></span></li>
-      <li><span class="act">Hell On Heels</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Big Backyard · <a href="#set-su297">14:30</a></span></li>
-      <li><span class="act">Henrik</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Big Backyard · <a href="#set-su201">20:00</a></span></li>
-      <li><span class="act">Holly Humberstone</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Big Backyard · <a href="#set-su11">22:00</a></span></li>
-      <li><span class="act">Hot &amp; Dirty Brass Band</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Summerville · <a href="#set-su88">13:45</a>; Weekend 1 · Fri, Jun 19 · Summerville · <a href="#set-su89">15:30</a></span></li>
-      <li><span class="act">Hot Mulligan</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Uline Warehouse · <a href="#set-su86">21:30</a>; Weekend 1 · Fri, Jun 19 · AmFam House · <a href="#set-su95">18:00</a></span></li>
-      <li><span class="act">Hotel Fiction</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Big Backyard · <a href="#set-su298">16:00</a></span></li>
-      <li><span class="act">Hunny</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Miller Lite Oasis · <a href="#set-su21">20:30</a></span></li>
-      <li><span class="act">IDKCONUNDRUM</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Miller Lite Oasis · <a href="#set-su113">13:15</a></span></li>
-      <li><span class="act">In The Know</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Miller Lite Oasis · <a href="#set-su256">13:15</a></span></li>
-      <li><span class="act">Initiate</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Generac Power Stage · <a href="#set-su59">14:00</a></span></li>
-      <li><span class="act">JazzMen</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Aurora Pavilion · <a href="#set-su72">16:30</a></span></li>
-      <li><span class="act">Jazzteca</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Aurora Pavilion · <a href="#set-su264">15:15</a></span></li>
-      <li><span class="act">Jean Dawson</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Generac Power Stage · <a href="#set-su253">17:30</a></span></li>
-      <li><span class="act">Jelly Roll</span> <span class="slots">Weekend 3 · Sat, Jul 4 · AmFam Amphitheater · <a href="#set-su397">20:00</a></span></li>
-      <li><span class="act">Jerry Harrison&#39;s &#39;50 Years Of Talking Heads&#39;</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Uline Warehouse · <a href="#set-su436">17:30</a></span></li>
-      <li><span class="act">Jessie Murph</span> <span class="slots">Weekend 2 · Fri, Jun 26 · AmFam Amphitheater · <a href="#set-su193">19:00</a></span></li>
-      <li><span class="act">Jimmy Ray &amp; The Hipsters</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Summerville · <a href="#set-su184">12:00</a></span></li>
-      <li><span class="act">Jobi Riccio</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Aurora Pavilion · <a href="#set-su317">17:45</a></span></li>
-      <li><span class="act">Joe Wray</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Summerville · <a href="#set-su440">13:45</a>; Weekend 3 · Sat, Jul 4 · Summerville · <a href="#set-su441">15:30</a></span></li>
-      <li><span class="act">John Kocher</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Summerville · <a href="#set-su87">12:00</a></span></li>
-      <li><span class="act">John Vincent III</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Big Backyard · <a href="#set-su405">20:00</a></span></li>
-      <li><span class="act">Jonah Kagen</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Big Backyard · <a href="#set-su406">22:00</a></span></li>
-      <li><span class="act">Jonny T-Bird &amp; The MP&#39;s</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Miller Lite Oasis · <a href="#set-su308">12:30</a></span></li>
-      <li><span class="act">Joywave</span> <span class="slots">Weekend 3 · Sat, Jul 4 · T-Mobile Stage · <a href="#set-su431">20:15</a></span></li>
-      <li><span class="act">JP Saxe</span> <span class="slots">Weekend 1 · Thu, Jun 18 · AmFam Amphitheater · <a href="#set-su2">19:30</a></span></li>
-      <li><span class="act">Julia Wolf</span> <span class="slots">Weekend 3 · Thu, Jul 2 · AmFam Amphitheater · <a href="#set-su291">20:00</a></span></li>
-      <li><span class="act">Julianna Joy</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Uline Warehouse · <a href="#set-su379">14:00</a></span></li>
-      <li><span class="act">Junior Rivera</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Aurora Pavilion · <a href="#set-su266">17:45</a></span></li>
-      <li><span class="act">Kaleo</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Miller Lite Oasis · <a href="#set-su167">22:30</a></span></li>
-      <li><span class="act">Ken Pomeroy</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Uline Warehouse · <a href="#set-su381">17:30</a></span></li>
-      <li><span class="act">Kenneth Brian Band</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Uline Warehouse · <a href="#set-su132">14:00</a></span></li>
-      <li><span class="act">KennyHoopla</span> <span class="slots">Weekend 3 · Thu, Jul 2 · T-Mobile Stage · <a href="#set-su324">20:15</a></span></li>
-      <li><span class="act">Kerry King</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Miller Lite Oasis · <a href="#set-su419">22:30</a></span></li>
-      <li><span class="act">Kim Gordon</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Big Backyard · <a href="#set-su156">22:30</a></span></li>
-      <li><span class="act">King Buffalo</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Generac Power Stage · <a href="#set-su254">19:30</a></span></li>
-      <li><span class="act">King Solomon</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Miller Lite Oasis · <a href="#set-su257">14:45</a></span></li>
-      <li><span class="act">Kirstie Kraus</span> <span class="slots">Weekend 1 · Sat, Jun 20 · BMO Pavilion · <a href="#set-su99">19:15</a></span></li>
-      <li><span class="act">Known Moons</span> <span class="slots">Weekend 3 · Sat, Jul 4 · T-Mobile Stage · <a href="#set-su428">14:30</a></span></li>
-      <li><span class="act">KSP</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Big Backyard · <a href="#set-su200">18:15</a></span></li>
-      <li><span class="act">KT Tunstall</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Big Backyard · <a href="#set-su404">18:00</a></span></li>
-      <li><span class="act">Kyle Ray</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Aurora Pavilion · <a href="#set-su315">15:15</a></span></li>
-      <li><span class="act">Lake Drive</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Miller Lite Oasis · <a href="#set-su210">16:30</a></span></li>
-      <li><span class="act">LAMB</span> <span class="slots">Weekend 2 · Sat, Jun 27 · T-Mobile Stage · <a href="#set-su271">16:15</a></span></li>
-      <li><span class="act">Landon Wilks</span> <span class="slots">Weekend 1 · Sat, Jun 20 · T-Mobile Stage · <a href="#set-su127">16:15</a></span></li>
-      <li><span class="act">Lanie Gardner</span> <span class="slots">Weekend 2 · Thu, Jun 25 · T-Mobile Stage · <a href="#set-su177">20:15</a></span></li>
-      <li><span class="act">Lauren Gottshall</span> <span class="slots">Weekend 1 · Sat, Jun 20 · T-Mobile Stage · <a href="#set-su125">12:45</a></span></li>
-      <li><span class="act">Left on Sunset</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Miller Lite Oasis · <a href="#set-su258">16:30</a></span></li>
-      <li><span class="act">Lindsey Lomis</span> <span class="slots">Weekend 3 · Thu, Jul 2 · BMO Pavilion · <a href="#set-su294">19:15</a></span></li>
-      <li><span class="act">Lisa Loeb</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Uline Warehouse · <a href="#set-su181">17:45</a></span></li>
-      <li><span class="act">Little Feat</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Uline Warehouse · <a href="#set-su280">21:30</a></span></li>
-      <li><span class="act">Living Colour</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Generac Power Stage · <a href="#set-su305">17:30</a></span></li>
-      <li><span class="act">Lost Orange Cat</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Miller Lite Oasis · <a href="#set-su359">14:00</a></span></li>
-      <li><span class="act">Louie &amp; The Flashbombs</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Big Backyard · <a href="#set-su402">14:30</a></span></li>
-      <li><span class="act">Louis Tomlinson</span> <span class="slots">Weekend 2 · Fri, Jun 26 · BMO Pavilion · <a href="#set-su197">21:00</a></span></li>
-      <li><span class="act">LowDown Brass Band</span> <span class="slots">Weekend 3 · Fri, Jul 3 · T-Mobile Stage · <a href="#set-su375">18:15</a></span></li>
-      <li><span class="act">Lucky Boys Confusion</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Miller Lite Oasis · <a href="#set-su212">20:30</a></span></li>
-      <li><span class="act">Lunde</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Aurora Pavilion · <a href="#set-su366">14:00</a></span></li>
-      <li><span class="act">Manny Torres</span> <span class="slots">Weekend 3 · Fri, Jul 3 · T-Mobile Stage · <a href="#set-su373">14:30</a></span></li>
-      <li><span class="act">Marcus King Band</span> <span class="slots">Weekend 2 · Fri, Jun 26 · T-Mobile Stage · <a href="#set-su223">22:15</a></span></li>
-      <li><span class="act">Marcya Danielle</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Summerville · <a href="#set-su332">12:00</a></span></li>
-      <li><span class="act">Mari</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Miller Lite Oasis · <a href="#set-su18">14:45</a></span></li>
-      <li><span class="act">Mariachi Sol De Mexico</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Aurora Pavilion · <a href="#set-su267">19:00</a></span></li>
-      <li><span class="act">Maris</span> <span class="slots">Weekend 2 · Sat, Jun 27 · T-Mobile Stage · <a href="#set-su273">20:15</a></span></li>
-      <li><span class="act">Marlon Funaki</span> <span class="slots">Weekend 1 · Thu, Jun 18 · T-Mobile Stage · <a href="#set-su31">20:15</a></span></li>
-      <li><span class="act">Matthew Hansen</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Aurora Pavilion · <a href="#set-su318">19:00</a></span></li>
-      <li><span class="act">Maximiano</span> <span class="slots">Weekend 1 · Thu, Jun 18 · T-Mobile Stage · <a href="#set-su29">16:15</a></span></li>
-      <li><span class="act">McCoy Moore</span> <span class="slots">Weekend 1 · Sat, Jun 20 · T-Mobile Stage · <a href="#set-su129">20:15</a></span></li>
-      <li><span class="act">Megan Moroney</span> <span class="slots">Weekend 1 · Thu, Jun 18 · AmFam Amphitheater · <a href="#set-su3">20:45</a></span></li>
-      <li><span class="act">Micah Emrich</span> <span class="slots">Weekend 1 · Thu, Jun 18 · T-Mobile Stage · <a href="#set-su28">14:30</a></span></li>
-      <li><span class="act">Milly &amp; The Mayhem</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Uline Warehouse · <a href="#set-su131">12:30</a></span></li>
-      <li><span class="act">Mindi Abair</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Uline Warehouse · <a href="#set-su437">19:30</a></span></li>
-      <li><span class="act">MKE Live Groove: Summerfest Edition</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Aurora Pavilion · <a href="#set-su23">12:00</a></span></li>
-      <li><span class="act">Modern Alibi</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Big Backyard · <a href="#set-su247">16:00</a></span></li>
-      <li><span class="act">Modern English</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Generac Power Stage · <a href="#set-su15">19:30</a></span></li>
-      <li><span class="act">Morgan St. Jean</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Big Backyard · <a href="#set-su9">18:00</a></span></li>
-      <li><span class="act">Mr. New York</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Aurora Pavilion · <a href="#set-su218">21:00</a></span></li>
-      <li><span class="act">Mrs. Fun</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Summerville · <a href="#set-su90">17:30</a>; Weekend 1 · Fri, Jun 19 · Summerville · <a href="#set-su91">19:30</a></span></li>
-      <li><span class="act">Munroe</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Generac Power Stage · <a href="#set-su303">14:00</a></span></li>
-      <li><span class="act">Muse</span> <span class="slots">Weekend 3 · Thu, Jul 2 · AmFam Amphitheater · <a href="#set-su292">21:10</a></span></li>
-      <li><span class="act">MUSIC6S for Veterans &amp; First Responders</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Generac Power Stage · <a href="#set-su251">12:00</a></span></li>
-      <li><span class="act">Myles Smith</span> <span class="slots">Weekend 2 · Thu, Jun 25 · AmFam Amphitheater · <a href="#set-su147">20:00</a></span></li>
-      <li><span class="act">Nate Smith</span> <span class="slots">Weekend 1 · Sat, Jun 20 · T-Mobile Stage · <a href="#set-su130">22:15</a></span></li>
-      <li><span class="act">Neal Francis</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Aurora Pavilion · <a href="#set-su370">19:00</a></span></li>
-      <li><span class="act">Nicholas Tremulis &amp; The Prodigals</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Miller Lite Oasis · <a href="#set-su20">18:30</a></span></li>
-      <li><span class="act">Nico At Nite</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Aurora Pavilion · <a href="#set-su75">21:00</a></span></li>
-      <li><span class="act">Nicole Lawrence</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Generac Power Stage · <a href="#set-su409">15:30</a></span></li>
-      <li><span class="act">Noah Cyrus</span> <span class="slots">Weekend 3 · Fri, Jul 3 · AmFam Amphitheater · <a href="#set-su341">19:45</a></span></li>
-      <li><span class="act">Noah Richardson</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Big Backyard · <a href="#set-su102">14:30</a></span></li>
-      <li><span class="act">NOBRO</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Miller Lite Oasis · <a href="#set-su68">20:30</a></span></li>
-      <li><span class="act">Oh Geeez, Not Again</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Generac Power Stage · <a href="#set-su407">12:30</a></span></li>
-      <li><span class="act">Old 97&#39;s</span> <span class="slots">Weekend 2 · Thu, Jun 25 · T-Mobile Stage · <a href="#set-su175">17:15</a></span></li>
-      <li><span class="act">Old Mervs</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Generac Power Stage · <a href="#set-su109">15:30</a></span></li>
-      <li><span class="act">Organissimo</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Summerville · <a href="#set-su282">13:45</a>; Weekend 2 · Sat, Jun 27 · Summerville · <a href="#set-su283">15:30</a></span></li>
-      <li><span class="act">Orquesta Ayala</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Aurora Pavilion · <a href="#set-su265">16:30</a></span></li>
-      <li><span class="act">OUTDrejas</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Miller Lite Oasis · <a href="#set-su162">13:15</a></span></li>
-      <li><span class="act">Outronaut</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Uline Warehouse · <a href="#set-su327">14:00</a></span></li>
-      <li><span class="act">Palm Ghosts</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Uline Warehouse · <a href="#set-su326">12:30</a></span></li>
-      <li><span class="act">Palmer Anthony</span> <span class="slots">Weekend 3 · Sat, Jul 4 · BMO Pavilion · <a href="#set-su398">17:30</a></span></li>
-      <li><span class="act">Panic Shack</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Miller Lite Oasis · <a href="#set-su67">18:30</a></span></li>
-      <li><span class="act">Passion Pit</span> <span class="slots">Weekend 1 · Thu, Jun 18 · T-Mobile Stage · <a href="#set-su32">22:15</a>; Weekend 1 · Thu, Jun 18 · AmFam House · <a href="#set-su46">16:00</a></span></li>
-      <li><span class="act">Pat McCurdy</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Generac Power Stage · <a href="#set-su159">17:45</a></span></li>
-      <li><span class="act">Paul Spencer Band</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Summerville · <a href="#set-su333">13:45</a>; Weekend 3 · Thu, Jul 2 · Summerville · <a href="#set-su334">15:30</a></span></li>
-      <li><span class="act">PawPaw Rod</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Big Backyard · <a href="#set-su249">20:00</a>; Weekend 2 · Sat, Jun 27 · AmFam House · <a href="#set-su287">14:00</a></span></li>
-      <li><span class="act">Penelope Road</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Generac Power Stage · <a href="#set-su111">19:30</a></span></li>
-      <li><span class="act">Pepper</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Miller Lite Oasis · <a href="#set-su261">22:30</a></span></li>
-      <li><span class="act">Petey USA</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Big Backyard · <a href="#set-su202">22:00</a></span></li>
-      <li><span class="act">Phil Wittliff</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Big Backyard · <a href="#set-su52">13:00</a></span></li>
-      <li><span class="act">Pierre &#39;Mr. Untouchable&#39; Lee</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Summerville · <a href="#set-su387">17:30</a>; Weekend 3 · Fri, Jul 3 · Summerville · <a href="#set-su388">19:30</a></span></li>
-      <li><span class="act">Poi Dog Pondering</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Uline Warehouse · <a href="#set-su435">15:30</a></span></li>
-      <li><span class="act">Porch Light</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Miller Lite Oasis · <a href="#set-su165">18:30</a></span></li>
-      <li><span class="act">Porcupine</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Uline Warehouse · <a href="#set-su434">14:00</a></span></li>
-      <li><span class="act">Post Malone</span> <span class="slots">Weekend 2 · Sat, Jun 27 · AmFam Amphitheater · <a href="#set-su239">20:30</a></span></li>
-      <li><span class="act">Post Sex Nachos</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Uline Warehouse · <a href="#set-su35">15:30</a></span></li>
-      <li><span class="act">Preston Cooper</span> <span class="slots">Weekend 3 · Sat, Jul 4 · BMO Pavilion · <a href="#set-su399">19:15</a></span></li>
-      <li><span class="act">Pretty Pity</span> <span class="slots">Weekend 3 · Thu, Jul 2 · T-Mobile Stage · <a href="#set-su320">12:45</a></span></li>
-      <li><span class="act">Pure Hex</span> <span class="slots">Weekend 3 · Sat, Jul 4 · T-Mobile Stage · <a href="#set-su430">18:15</a></span></li>
-      <li><span class="act">Queen Drie</span> <span class="slots">Weekend 1 · Fri, Jun 19 · T-Mobile Stage · <a href="#set-su77">14:30</a></span></li>
-      <li><span class="act">Radio Radio</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Uline Warehouse · <a href="#set-su380">15:30</a></span></li>
-      <li><span class="act">Red Jumpsuit Apparatus</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Uline Warehouse · <a href="#set-su84">17:30</a></span></li>
-      <li><span class="act">Red Leather</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Aurora Pavilion · <a href="#set-su122">17:45</a></span></li>
-      <li><span class="act">Rev Run</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Big Backyard · <a href="#set-su351">22:00</a></span></li>
-      <li><span class="act">Robert Randolph &amp; The Family Band</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Big Backyard · <a href="#set-su153">16:30</a></span></li>
-      <li><span class="act">Rockonsin</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Aurora Pavilion · <a href="#set-su70">12:15</a>; Weekend 1 · Sat, Jun 20 · Aurora Pavilion · <a href="#set-su119">12:15</a></span></li>
-      <li><span class="act">Rockonsin: Runner Up</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Aurora Pavilion · <a href="#set-su420">12:45</a></span></li>
-      <li><span class="act">Rockonsin: Winner</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Aurora Pavilion · <a href="#set-su421">14:00</a></span></li>
-      <li><span class="act">Russell Dickerson</span> <span class="slots">Weekend 2 · Sat, Jun 27 · BMO Pavilion · <a href="#set-su243">22:00</a></span></li>
-      <li><span class="act">Sad Boy Saturday</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Aurora Pavilion · <a href="#set-su426">21:00</a></span></li>
-      <li><span class="act">Saint Blonde</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Big Backyard · <a href="#set-su6">13:00</a></span></li>
-      <li><span class="act">Sam Barber</span> <span class="slots">Weekend 3 · Sat, Jul 4 · BMO Pavilion · <a href="#set-su400">22:00</a></span></li>
-      <li><span class="act">Sarah Fierek</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Big Backyard · <a href="#set-su346">13:00</a></span></li>
-      <li><span class="act">Sarah Krohn</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Big Backyard · <a href="#set-su101">13:00</a></span></li>
-      <li><span class="act">School of Rock</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Big Backyard · <a href="#set-su152">12:00</a>; Weekend 2 · Thu, Jun 25 · Generac Power Stage · <a href="#set-su157">12:00</a>; Weekend 2 · Thu, Jun 25 · Aurora Pavilion · <a href="#set-su168">12:00</a>; Weekend 2 · Thu, Jun 25 · T-Mobile Stage · <a href="#set-su173">12:00</a>; Weekend 2 · Thu, Jun 25 · Uline Warehouse · <a href="#set-su179">12:00</a>; Weekend 2 · Fri, Jun 26 · Big Backyard · <a href="#set-su198">12:00</a>; Weekend 2 · Fri, Jun 26 · Generac Power Stage · <a href="#set-su203">12:00</a>; Weekend 2 · Fri, Jun 26 · Aurora Pavilion · <a href="#set-su214">12:00</a>; Weekend 2 · Fri, Jun 26 · T-Mobile Stage · <a href="#set-su219">12:00</a>; Weekend 2 · Fri, Jun 26 · Uline Warehouse · <a href="#set-su224">12:00</a></span></li>
-      <li><span class="act">Scorched Waves</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Generac Power Stage · <a href="#set-su304">15:30</a></span></li>
-      <li><span class="act">Scott E. Berendt &amp; The US Project</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Generac Power Stage · <a href="#set-su12">14:00</a></span></li>
-      <li><span class="act">Scott Wolverton</span> <span class="slots">Weekend 1 · Sat, Jun 20 · T-Mobile Stage · <a href="#set-su128">18:15</a></span></li>
-      <li><span class="act">Scout Speer</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Miller Lite Oasis · <a href="#set-su361">17:15</a></span></li>
-      <li><span class="act">Sean Paul</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Miller Lite Oasis · <a href="#set-su313">22:30</a></span></li>
-      <li><span class="act">Showoff</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Miller Lite Oasis · <a href="#set-su211">18:30</a></span></li>
-      <li><span class="act">SIIN</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Miller Lite Oasis · <a href="#set-su416">17:00</a></span></li>
-      <li><span class="act">Sincere Engineer</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Big Backyard · <a href="#set-su155">20:30</a></span></li>
-      <li><span class="act">Siobhan Bodrug</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Aurora Pavilion · <a href="#set-su215">16:30</a></span></li>
-      <li><span class="act">Sister Hazel</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Uline Warehouse · <a href="#set-su329">17:30</a></span></li>
-      <li><span class="act">Six Foot Blonde</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Aurora Pavilion · <a href="#set-su368">16:30</a></span></li>
-      <li><span class="act">Sleepy Gaucho</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Generac Power Stage · <a href="#set-su60">15:30</a></span></li>
-      <li><span class="act">SM6</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Big Backyard · <a href="#set-su103">16:00</a></span></li>
-      <li><span class="act">Social Cig</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Generac Power Stage · <a href="#set-su352">12:30</a></span></li>
-      <li><span class="act">Solon Holt</span> <span class="slots">Weekend 1 · Thu, Jun 18 · AmFam Amphitheater · <a href="#set-su1">18:30</a></span></li>
-      <li><span class="act">Sons Of The Silent Age</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Uline Warehouse · <a href="#set-su225">16:15</a></span></li>
-      <li><span class="act">Soul Asylum</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Generac Power Stage · <a href="#set-su410">17:30</a>; Weekend 3 · Sat, Jul 4 · AmFam House · <a href="#set-su445">14:00</a></span></li>
-      <li><span class="act">Soulidified</span> <span class="slots">Weekend 2 · Sat, Jun 27 · T-Mobile Stage · <a href="#set-su272">18:15</a></span></li>
-      <li><span class="act">Spin Doctors</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Uline Warehouse · <a href="#set-su330">19:30</a>; Weekend 3 · Thu, Jul 2 · AmFam House · <a href="#set-su338">16:00</a></span></li>
-      <li><span class="act">Spoon</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Generac Power Stage · <a href="#set-su357">21:30</a>; Weekend 3 · Fri, Jul 3 · AmFam House · <a href="#set-su391">16:00</a></span></li>
-      <li><span class="act">St. Paul And The Broken Bones</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Uline Warehouse · <a href="#set-su382">19:30</a>; Weekend 3 · Fri, Jul 3 · AmFam House · <a href="#set-su390">14:00</a></span></li>
-      <li><span class="act">State Champs</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Uline Warehouse · <a href="#set-su85">19:30</a>; Weekend 1 · Fri, Jun 19 · AmFam House · <a href="#set-su93">14:00</a></span></li>
-      <li><span class="act">Steph Strings</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Big Backyard · <a href="#set-su55">18:00</a></span></li>
-      <li><span class="act">Stephan Jenkins of Third Eye Blind</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Aurora Pavilion · <a href="#set-su24">14:00</a>; Weekend 1 · Thu, Jun 18 · AmFam House · <a href="#set-su45">14:00</a></span></li>
-      <li><span class="act">Stephen Marley</span> <span class="slots">Weekend 3 · Fri, Jul 3 · BMO Pavilion · <a href="#set-su344">19:15</a></span></li>
-      <li><span class="act">Stone Jam Band</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Big Backyard · <a href="#set-su348">16:00</a></span></li>
-      <li><span class="act">Straight No Chaser</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Uline Warehouse · <a href="#set-su438">22:00</a></span></li>
-      <li><span class="act">Styx</span> <span class="slots">Weekend 1 · Fri, Jun 19 · BMO Pavilion · <a href="#set-su51">21:00</a></span></li>
-      <li><span class="act">Substitutes: Tales From The Who</span> <span class="slots">Weekend 1 · Sat, Jun 20 · BMO Pavilion · <a href="#set-su98">17:30</a></span></li>
-      <li><span class="act">Subtronics</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Generac Power Stage · <a href="#set-su161">22:00</a></span></li>
-      <li><span class="act">Sudan Archives</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Aurora Pavilion · <a href="#set-su217">19:00</a></span></li>
-      <li><span class="act">Sugo</span> <span class="slots">Weekend 2 · Fri, Jun 26 · T-Mobile Stage · <a href="#set-su220">16:15</a></span></li>
-      <li><span class="act">Summerfest Opening Ceremonies</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Aurora Pavilion · <a href="#set-su25">18:00</a></span></li>
-      <li><span class="act">Sunami</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Miller Lite Oasis · <a href="#set-su418">20:30</a></span></li>
-      <li><span class="act">Sunflower Bean</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Big Backyard · <a href="#set-su299">18:00</a></span></li>
-      <li><span class="act">Sunny Black</span> <span class="slots">Weekend 3 · Sat, Jul 4 · AmFam Amphitheater · <a href="#set-su393">16:30</a></span></li>
-      <li><span class="act">Superfly</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Miller Lite Oasis · <a href="#set-su309">14:45</a></span></li>
-      <li><span class="act">Supertaste</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Uline Warehouse · <a href="#set-su34">14:00</a></span></li>
-      <li><span class="act">Suzanne Grzanna</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Summerville · <a href="#set-su384">12:00</a></span></li>
-      <li><span class="act">Tag Team</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Aurora Pavilion · <a href="#set-su424">17:45</a></span></li>
-      <li><span class="act">Tash Sultana</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Miller Lite Oasis · <a href="#set-su22">22:30</a></span></li>
-      <li><span class="act">Taylor Acorn</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Uline Warehouse · <a href="#set-su36">17:30</a></span></li>
-      <li><span class="act">Taz</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Big Backyard · <a href="#set-su248">18:00</a></span></li>
-      <li><span class="act">Temper City</span> <span class="slots">Weekend 3 · Thu, Jul 2 · AmFam Amphitheater · <a href="#set-su290">19:00</a></span></li>
-      <li><span class="act">Tempo Dance Co.</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Aurora Pavilion · <a href="#set-su262">12:00</a></span></li>
-      <li><span class="act">Testing Floor</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Summerville · <a href="#set-su232">17:30</a>; Weekend 2 · Fri, Jun 26 · Summerville · <a href="#set-su233">19:30</a></span></li>
-      <li><span class="act">The Academy Is...</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Miller Lite Oasis · <a href="#set-su118">22:30</a></span></li>
-      <li><span class="act">The Aces</span> <span class="slots">Weekend 2 · Fri, Jun 26 · BMO Pavilion · <a href="#set-su196">19:15</a></span></li>
-      <li><span class="act">The Band Loula</span> <span class="slots">Weekend 2 · Fri, Jun 26 · T-Mobile Stage · <a href="#set-su222">20:15</a></span></li>
-      <li><span class="act">The Band Solstice</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Generac Power Stage · <a href="#set-su107">12:30</a></span></li>
-      <li><span class="act">The Bends</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Uline Warehouse · <a href="#set-su37">19:30</a></span></li>
-      <li><span class="act">The Beths</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Big Backyard · <a href="#set-su301">22:00</a></span></li>
-      <li><span class="act">The Big Win</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Miller Lite Oasis · <a href="#set-su360">16:00</a></span></li>
-      <li><span class="act">The Dream Syndicate</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Generac Power Stage · <a href="#set-su14">17:30</a></span></li>
-      <li><span class="act">The Expendables</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Miller Lite Oasis · <a href="#set-su259">18:30</a></span></li>
-      <li><span class="act">The Family Stone</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Aurora Pavilion · <a href="#set-su74">19:00</a></span></li>
-      <li><span class="act">The Group</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Summerville · <a href="#set-su335">17:30</a>; Weekend 3 · Thu, Jul 2 · Summerville · <a href="#set-su336">19:30</a></span></li>
-      <li><span class="act">The Handcuffs</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Big Backyard · <a href="#set-su154">18:30</a></span></li>
-      <li><span class="act">The Heavy Heavy</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Aurora Pavilion · <a href="#set-su369">17:45</a></span></li>
-      <li><span class="act">The Hungry Williams</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Summerville · <a href="#set-su284">17:30</a>; Weekend 2 · Sat, Jun 27 · Summerville · <a href="#set-su285">19:30</a></span></li>
-      <li><span class="act">The Jayhawks</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Generac Power Stage · <a href="#set-su411">19:30</a></span></li>
-      <li><span class="act">The Juliana Theory</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Miller Lite Oasis · <a href="#set-su116">18:30</a></span></li>
-      <li><span class="act">The Kal Bergendahl Project</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Summerville · <a href="#set-su385">13:45</a>; Weekend 3 · Fri, Jul 3 · Summerville · <a href="#set-su386">15:30</a></span></li>
-      <li><span class="act">The Last Bees</span> <span class="slots">Weekend 3 · Sat, Jul 4 · T-Mobile Stage · <a href="#set-su427">12:45</a></span></li>
-      <li><span class="act">The Lovemonkeys</span> <span class="slots">Weekend 1 · Fri, Jun 19 · BMO Pavilion · <a href="#set-su49">17:30</a></span></li>
-      <li><span class="act">The Maiden Voyage</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Miller Lite Oasis · <a href="#set-su415">15:15</a></span></li>
-      <li><span class="act">The Mighty Ms. Erica And the Sound Production</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Summerville · <a href="#set-su40">13:45</a>; Weekend 1 · Thu, Jun 18 · Summerville · <a href="#set-su41">15:30</a></span></li>
-      <li><span class="act">The Mountain Goats</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Aurora Pavilion · <a href="#set-su171">19:00</a></span></li>
-      <li><span class="act">The Movement</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Miller Lite Oasis · <a href="#set-su260">20:30</a></span></li>
-      <li><span class="act">The Noize</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Uline Warehouse · <a href="#set-su275">12:30</a></span></li>
-      <li><span class="act">The Ocean Blue</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Uline Warehouse · <a href="#set-su328">15:30</a></span></li>
-      <li><span class="act">The President Kings</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Generac Power Stage · <a href="#set-su302">12:30</a></span></li>
-      <li><span class="act">The Revivalists</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Uline Warehouse · <a href="#set-su228">21:30</a></span></li>
-      <li><span class="act">The Taxmen</span> <span class="slots">Weekend 2 · Sat, Jun 27 · T-Mobile Stage · <a href="#set-su269">12:45</a></span></li>
-      <li><span class="act">The Temper Trap</span> <span class="slots">Weekend 3 · Sat, Jul 4 · T-Mobile Stage · <a href="#set-su432">22:15</a>; Weekend 3 · Sat, Jul 4 · AmFam House · <a href="#set-su446">16:00</a></span></li>
-      <li><span class="act">The Terry Sims Band</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Summerville · <a href="#set-su187">17:30</a>; Weekend 2 · Thu, Jun 25 · Summerville · <a href="#set-su188">19:30</a></span></li>
-      <li><span class="act">Third Eye Blind</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Uline Warehouse · <a href="#set-su38">22:00</a></span></li>
-      <li><span class="act">Three 6 Mafia</span> <span class="slots">Weekend 3 · Sat, Jul 4 · AmFam Amphitheater · <a href="#set-su395">17:35</a></span></li>
-      <li><span class="act">Tigernite</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Big Backyard · <a href="#set-su8">16:00</a></span></li>
-      <li><span class="act">Tiny Voices</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Uline Warehouse · <a href="#set-su83">15:30</a></span></li>
-      <li><span class="act">Tobacco Road</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Generac Power Stage · <a href="#set-su108">14:00</a></span></li>
-      <li><span class="act">Tracy Bonham</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Uline Warehouse · <a href="#set-su277">15:30</a></span></li>
-      <li><span class="act">Trapper Schoepp</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Uline Warehouse · <a href="#set-su134">17:30</a></span></li>
-      <li><span class="act">Troy Tyler</span> <span class="slots">Weekend 1 · Fri, Jun 19 · T-Mobile Stage · <a href="#set-su78">16:15</a></span></li>
-      <li><span class="act">Tucker Wetmore</span> <span class="slots">Weekend 2 · Thu, Jun 25 · T-Mobile Stage · <a href="#set-su178">22:15</a></span></li>
-      <li><span class="act">Two Feet</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Uline Warehouse · <a href="#set-su226">17:45</a></span></li>
-      <li><span class="act">Tyler Hubbard</span> <span class="slots">Weekend 3 · Sat, Jul 4 · AmFam Amphitheater · <a href="#set-su396">18:45</a></span></li>
-      <li><span class="act">Tyrese</span> <span class="slots">Weekend 1 · Fri, Jun 19 · T-Mobile Stage · <a href="#set-su81">22:15</a></span></li>
-      <li><span class="act">Ur Mom</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Generac Power Stage · <a href="#set-su408">14:00</a></span></li>
-      <li><span class="act">V-Funk</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Big Backyard · <a href="#set-su347">14:30</a></span></li>
-      <li><span class="act">VALE</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Aurora Pavilion · <a href="#set-su422">15:15</a></span></li>
-      <li><span class="act">Venus &amp; The Flytraps</span> <span class="slots">Weekend 1 · Thu, Jun 18 · T-Mobile Stage · <a href="#set-su30">18:15</a></span></li>
-      <li><span class="act">Vertical Horizon</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Miller Lite Oasis · <a href="#set-su164">16:30</a></span></li>
-      <li><span class="act">Vial</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Miller Lite Oasis · <a href="#set-su66">16:30</a></span></li>
-      <li><span class="act">Victor Jones</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Uline Warehouse · <a href="#set-su433">12:30</a></span></li>
-      <li><span class="act">Vincent Van Great</span> <span class="slots">Weekend 2 · Sat, Jun 27 · T-Mobile Stage · <a href="#set-su270">14:30</a></span></li>
-      <li><span class="act">Walk Off The Earth</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Uline Warehouse · <a href="#set-su182">19:30</a>; Weekend 2 · Thu, Jun 25 · AmFam House · <a href="#set-su190">14:00</a></span></li>
-      <li><span class="act">Wave X Nile</span> <span class="slots">Weekend 3 · Fri, Jul 3 · T-Mobile Stage · <a href="#set-su374">16:15</a></span></li>
-      <li><span class="act">Weston Estate</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Big Backyard · <a href="#set-su105">20:00</a>; Weekend 1 · Sat, Jun 20 · AmFam House · <a href="#set-su144">16:00</a></span></li>
-      <li><span class="act">Whiskey Myers</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Miller Lite Oasis · <a href="#set-su364">22:30</a></span></li>
-      <li><span class="act">wht.rrbt.obj</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Aurora Pavilion · <a href="#set-su365">12:45</a></span></li>
-      <li><span class="act">Will Terry</span> <span class="slots">Weekend 1 · Sat, Jun 20 · T-Mobile Stage · <a href="#set-su126">14:30</a></span></li>
-      <li><span class="act">Winyah</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Generac Power Stage · <a href="#set-su110">17:30</a></span></li>
-      <li><span class="act">Wire &amp; Nail</span> <span class="slots">Weekend 2 · Thu, Jun 25 · T-Mobile Stage · <a href="#set-su174">16:15</a></span></li>
-      <li><span class="act">Wolfmother</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Generac Power Stage · <a href="#set-su255">21:30</a></span></li>
-      <li><span class="act">YaYa Biggs</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Generac Power Stage · <a href="#set-su354">15:30</a></span></li>
     </ul>
+    <details class="more">
+      <summary>Show all 384 artists</summary>
+      <ul class="lineup">
+        <li><span class="act">American Progress</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Miller Lite Oasis · <a href="#set-su114">14:45</a></span></li>
+        <li><span class="act">Amy Lowe &amp; King Katz</span> <span class="slots">Weekend 1 · Fri, Jun 19 · T-Mobile Stage · <a href="#set-su76">12:45</a></span></li>
+        <li><span class="act">Amyl and the Sniffers</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Miller Lite Oasis · <a href="#set-su69">22:30</a></span></li>
+        <li><span class="act">Anees</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Miller Lite Oasis · <a href="#set-su312">20:30</a></span></li>
+        <li><span class="act">Ask Carol</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Aurora Pavilion · <a href="#set-su367">15:15</a></span></li>
+        <li><span class="act">Aspen</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Aurora Pavilion · <a href="#set-su124">21:00</a></span></li>
+        <li><span class="act">Aubrey Marie</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Summerville · <a href="#set-su281">12:00</a></span></li>
+        <li><span class="act">Audrey Nuna</span> <span class="slots">Weekend 2 · Sat, Jun 27 · T-Mobile Stage · <a href="#set-su274">22:15</a></span></li>
+        <li><span class="act">Avery Cochrane</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Big Backyard · <a href="#set-su7">14:30</a></span></li>
+        <li><span class="act">Ax And The Hatchetmen</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Generac Power Stage · <a href="#set-su356">19:30</a></span></li>
+        <li><span class="act">Baha Men</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Aurora Pavilion · <a href="#set-su425">19:00</a></span></li>
+        <li><span class="act">Barely Civil</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Uline Warehouse · <a href="#set-su33">12:30</a></span></li>
+        <li><span class="act">Ben Mulwana</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Aurora Pavilion · <a href="#set-su71">15:15</a></span></li>
+        <li><span class="act">BERMS.</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Big Backyard · <a href="#set-su401">13:00</a></span></li>
+        <li><span class="act">BG Good</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Aurora Pavilion · <a href="#set-su371">21:00</a></span></li>
+        <li><span class="act">Big Daddy Kane</span> <span class="slots">Weekend 2 · Thu, Jun 25 · BMO Pavilion · <a href="#set-su149">17:30</a></span></li>
+        <li><span class="act">Big Wild</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Generac Power Stage · <a href="#set-su206">19:30</a></span></li>
+        <li><span class="act">Blonde</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Big Backyard · <a href="#set-su199">16:30</a></span></li>
+        <li><span class="act">Blondshell</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Big Backyard · <a href="#set-su300">20:00</a></span></li>
+        <li><span class="act">Blues Disciples</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Summerville · <a href="#set-su39">12:00</a></span></li>
+        <li><span class="act">Bob Mittnacht &amp; The Crowning Glories</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Uline Warehouse · <a href="#set-su378">12:30</a></span></li>
+        <li><span class="act">Bobby Friss</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Generac Power Stage · <a href="#set-su205">17:45</a></span></li>
+        <li><span class="act">BoDeans</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Generac Power Stage · <a href="#set-su412">22:00</a></span></li>
+        <li><span class="act">Booker T. Jones</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Generac Power Stage · <a href="#set-su158">16:15</a></span></li>
+        <li><span class="act">BØRNS</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Big Backyard · <a href="#set-su250">22:00</a></span></li>
+        <li><span class="act">Bowling Shoes</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Miller Lite Oasis · <a href="#set-su17">13:15</a></span></li>
+        <li><span class="act">Boy Golden</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Aurora Pavilion · <a href="#set-su170">17:45</a></span></li>
+        <li><span class="act">Brady Lee</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Big Backyard · <a href="#set-su53">14:30</a></span></li>
+        <li><span class="act">Braid</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Miller Lite Oasis · <a href="#set-su117">20:30</a></span></li>
+        <li><span class="act">Breaking Cadence</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Miller Lite Oasis · <a href="#set-su310">16:30</a></span></li>
+        <li><span class="act">Buckcherry</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Generac Power Stage · <a href="#set-su306">19:30</a></span></li>
+        <li><span class="act">Buffchick</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Big Backyard · <a href="#set-su296">13:00</a></span></li>
+        <li><span class="act">Buju Banton</span> <span class="slots">Weekend 3 · Fri, Jul 3 · BMO Pavilion · <a href="#set-su345">21:00</a></span></li>
+        <li><span class="act">Cameron Whitcomb</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Big Backyard · <a href="#set-su57">22:00</a></span></li>
+        <li><span class="act">Candlebox</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Generac Power Stage · <a href="#set-su307">21:30</a></span></li>
+        <li><span class="act">Cardinal Bloom</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Big Backyard · <a href="#set-su246">14:30</a></span></li>
+        <li><span class="act">Carín León</span> <span class="slots">Weekend 1 · Sat, Jun 20 · AmFam Amphitheater · <a href="#set-su97">19:00</a></span></li>
+        <li><span class="act">Carolina Liar</span> <span class="slots">Weekend 3 · Sat, Jul 4 · T-Mobile Stage · <a href="#set-su429">16:15</a></span></li>
+        <li><span class="act">Carter Faith</span> <span class="slots">Weekend 2 · Sat, Jun 27 · AmFam Amphitheater · <a href="#set-su238">19:00</a></span></li>
+        <li><span class="act">Case Oats</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Aurora Pavilion · <a href="#set-su316">16:30</a></span></li>
+        <li><span class="act">Charlie Wilson</span> <span class="slots">Weekend 1 · Thu, Jun 18 · BMO Pavilion · <a href="#set-su5">22:00</a></span></li>
+        <li><span class="act">Chase McDaniel</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Miller Lite Oasis · <a href="#set-su363">20:30</a></span></li>
+        <li><span class="act">Chris Crain</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Aurora Pavilion · <a href="#set-su73">17:45</a></span></li>
+        <li><span class="act">Chris Koster</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Generac Power Stage · <a href="#set-su252">15:30</a></span></li>
+        <li><span class="act">Christopher Cross</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Uline Warehouse · <a href="#set-su136">21:30</a></span></li>
+        <li><span class="act">Chrystal Gales</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Miller Lite Oasis · <a href="#set-su163">14:45</a></span></li>
+        <li><span class="act">Cigarettes @ Sunset</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Aurora Pavilion · <a href="#set-su120">15:15</a></span></li>
+        <li><span class="act">Circa 79</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Generac Power Stage · <a href="#set-su13">15:30</a></span></li>
+        <li><span class="act">City of the Sun</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Miller Lite Oasis · <a href="#set-su19">16:30</a></span></li>
+        <li><span class="act">Cody Johnson</span> <span class="slots">Weekend 2 · Fri, Jun 26 · AmFam Amphitheater · <a href="#set-su194">20:30</a></span></li>
+        <li><span class="act">Colin Bracewell</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Miller Lite Oasis · <a href="#set-su115">16:30</a></span></li>
+        <li><span class="act">Colin Lynch</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Big Backyard · <a href="#set-su54">16:00</a></span></li>
+        <li><span class="act">Common</span> <span class="slots">Weekend 2 · Thu, Jun 25 · BMO Pavilion · <a href="#set-su151">21:00</a></span></li>
+        <li><span class="act">Connor Price</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Big Backyard · <a href="#set-su106">22:00</a></span></li>
+        <li><span class="act">Current Comfort</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Miller Lite Oasis · <a href="#set-su65">14:45</a></span></li>
+        <li><span class="act">Dan Kolesari</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Summerville · <a href="#set-su140">17:30</a>; Weekend 1 · Sat, Jun 20 · Summerville · <a href="#set-su141">19:30</a></span></li>
+        <li><span class="act">Daniel Nathan Electracoustic</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Summerville · <a href="#set-su137">12:00</a></span></li>
+        <li><span class="act">Danny Miller Band</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Summerville · <a href="#set-su230">13:45</a>; Weekend 2 · Fri, Jun 26 · Summerville · <a href="#set-su231">15:30</a></span></li>
+        <li><span class="act">Dannyboy</span> <span class="slots">Weekend 1 · Thu, Jun 18 · BMO Pavilion · <a href="#set-su4">19:15</a></span></li>
+        <li><span class="act">David Lee Roth</span> <span class="slots">Weekend 1 · Sat, Jun 20 · BMO Pavilion · <a href="#set-su100">21:00</a></span></li>
+        <li><span class="act">David Shaw and Zack Feinberg of the Revivalists</span> <span class="slots">Weekend 2 · Fri, Jun 26 · AmFam House · <a href="#set-su236">16:00</a></span></li>
+        <li><span class="act">Deer Tick</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Generac Power Stage · <a href="#set-su61">17:30</a></span></li>
+        <li><span class="act">Dexter And The Moonrocks</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Aurora Pavilion · <a href="#set-su123">19:00</a></span></li>
+        <li><span class="act">Divas &amp; Jazz</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Summerville · <a href="#set-su138">13:45</a>; Weekend 1 · Sat, Jun 20 · Summerville · <a href="#set-su139">15:30</a></span></li>
+        <li><span class="act">DJ Andres</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Aurora Pavilion · <a href="#set-su263">14:45</a></span></li>
+        <li><span class="act">DJ B-Lee</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Aurora Pavilion · <a href="#set-su27">21:00</a></span></li>
+        <li><span class="act">DJ Don B</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Aurora Pavilion · <a href="#set-su268">21:00</a></span></li>
+        <li><span class="act">DJ Gemini Gilly</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Aurora Pavilion · <a href="#set-su172">21:00</a></span></li>
+        <li><span class="act">DJ Jazzy Jeff</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Big Backyard · <a href="#set-su350">20:00</a></span></li>
+        <li><span class="act">DJ Kool</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Big Backyard · <a href="#set-su349">18:00</a></span></li>
+        <li><span class="act">DJ Splackavelli</span> <span class="slots">Weekend 3 · Fri, Jul 3 · BMO Pavilion · <a href="#set-su343">17:30</a></span></li>
+        <li><span class="act">DJay Mando</span> <span class="slots">Weekend 1 · Thu, Jun 18 · AmFam House · <a href="#set-su44">12:00</a>; Weekend 1 · Thu, Jun 18 · AmFam House · <a href="#set-su47">18:00</a>; Weekend 1 · Fri, Jun 19 · AmFam House · <a href="#set-su92">12:00</a>; Weekend 1 · Fri, Jun 19 · AmFam House · <a href="#set-su96">19:00</a>; Weekend 1 · Sat, Jun 20 · AmFam House · <a href="#set-su142">12:00</a>; Weekend 1 · Sat, Jun 20 · AmFam House · <a href="#set-su145">18:00</a>; Weekend 2 · Thu, Jun 25 · AmFam House · <a href="#set-su189">12:00</a>; Weekend 2 · Thu, Jun 25 · AmFam House · <a href="#set-su192">18:00</a>; Weekend 2 · Fri, Jun 26 · AmFam House · <a href="#set-su234">12:00</a>; Weekend 2 · Fri, Jun 26 · AmFam House · <a href="#set-su237">18:00</a>; Weekend 2 · Sat, Jun 27 · AmFam House · <a href="#set-su286">12:00</a>; Weekend 2 · Sat, Jun 27 · AmFam House · <a href="#set-su289">18:00</a>; Weekend 3 · Thu, Jul 2 · AmFam House · <a href="#set-su337">12:00</a>; Weekend 3 · Thu, Jul 2 · AmFam House · <a href="#set-su339">18:00</a>; Weekend 3 · Fri, Jul 3 · T-Mobile Stage · <a href="#set-su376">20:15</a>; Weekend 3 · Fri, Jul 3 · AmFam House · <a href="#set-su389">12:00</a>; Weekend 3 · Fri, Jul 3 · AmFam House · <a href="#set-su392">18:00</a>; Weekend 3 · Sat, Jul 4 · AmFam House · <a href="#set-su444">12:00</a>; Weekend 3 · Sat, Jul 4 · AmFam House · <a href="#set-su447">18:00</a></span></li>
+        <li><span class="act">Don Felder</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Uline Warehouse · <a href="#set-su135">19:30</a></span></li>
+        <li><span class="act">Don Toliver with SahBabii, SoFaygo, Che, Lelo, Chase B, and sosocamo</span> <span class="slots">Weekend 1 · Fri, Jun 19 · AmFam Amphitheater · <a href="#set-su48">19:00</a></span></li>
+        <li><span class="act">Dora Jar</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Big Backyard · <a href="#set-su10">20:00</a></span></li>
+        <li><span class="act">Dorsten</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Summerville · <a href="#set-su442">17:30</a>; Weekend 3 · Sat, Jul 4 · Summerville · <a href="#set-su443">19:30</a></span></li>
+        <li><span class="act">Drown The Lifeguard</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Miller Lite Oasis · <a href="#set-su417">18:45</a></span></li>
+        <li><span class="act">Dylan Schneider</span> <span class="slots">Weekend 2 · Sat, Jun 27 · BMO Pavilion · <a href="#set-su242">20:15</a>; Weekend 2 · Sat, Jun 27 · AmFam House · <a href="#set-su288">16:00</a></span></li>
+        <li><span class="act">Easy Honey</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Generac Power Stage · <a href="#set-su353">14:00</a></span></li>
+        <li><span class="act">Echo &amp; The Bunnymen</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Generac Power Stage · <a href="#set-su16">22:00</a></span></li>
+        <li><span class="act">Ed Sheeran</span> <span class="slots">Weekend 2 · Thu, Jun 25 · AmFam Amphitheater · <a href="#set-su148">21:15</a></span></li>
+        <li><span class="act">Edgehill</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Generac Power Stage · <a href="#set-su355">17:30</a></span></li>
+        <li><span class="act">El Sebas</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Miller Lite Oasis · <a href="#set-su311">18:30</a></span></li>
+        <li><span class="act">Elderbrook</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Generac Power Stage · <a href="#set-su207">21:30</a></span></li>
+        <li><span class="act">Elephonic</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Big Backyard · <a href="#set-su403">16:00</a></span></li>
+        <li><span class="act">Elijah Scott</span> <span class="slots">Weekend 2 · Thu, Jun 25 · T-Mobile Stage · <a href="#set-su176">18:45</a></span></li>
+        <li><span class="act">Ella Mai</span> <span class="slots">Weekend 3 · Thu, Jul 2 · BMO Pavilion · <a href="#set-su295">21:00</a></span></li>
+        <li><span class="act">Emei</span> <span class="slots">Weekend 3 · Fri, Jul 3 · AmFam Amphitheater · <a href="#set-su340">18:55</a></span></li>
+        <li><span class="act">Emmitt James</span> <span class="slots">Weekend 1 · Fri, Jun 19 · T-Mobile Stage · <a href="#set-su79">18:15</a></span></li>
+        <li><span class="act">Ethan Burdick</span> <span class="slots">Weekend 3 · Sat, Jul 4 · AmFam Amphitheater · <a href="#set-su394">17:00</a></span></li>
+        <li><span class="act">Evan Honer</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Generac Power Stage · <a href="#set-su62">19:30</a>; Weekend 1 · Fri, Jun 19 · AmFam House · <a href="#set-su94">16:00</a></span></li>
+        <li><span class="act">Father John Misty</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Generac Power Stage · <a href="#set-su63">21:30</a></span></li>
+        <li><span class="act">FEE$</span> <span class="slots">Weekend 1 · Fri, Jun 19 · T-Mobile Stage · <a href="#set-su80">20:15</a></span></li>
+        <li><span class="act">Fellow Travelers</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Miller Lite Oasis · <a href="#set-su358">12:30</a></span></li>
+        <li><span class="act">FieldHockey</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Uline Warehouse · <a href="#set-su82">13:45</a></span></li>
+        <li><span class="act">Flatwounds</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Miller Lite Oasis · <a href="#set-su414">13:45</a></span></li>
+        <li><span class="act">flipturn</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Generac Power Stage · <a href="#set-su112">21:30</a>; Weekend 1 · Sat, Jun 20 · AmFam House · <a href="#set-su143">14:00</a></span></li>
+        <li><span class="act">Flo Rida</span> <span class="slots">Weekend 3 · Fri, Jul 3 · T-Mobile Stage · <a href="#set-su377">22:15</a></span></li>
+        <li><span class="act">Florentine Opera Company</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Aurora Pavilion · <a href="#set-su314">12:45</a></span></li>
+        <li><span class="act">Flourescents</span> <span class="slots">Weekend 3 · Thu, Jul 2 · T-Mobile Stage · <a href="#set-su322">16:15</a></span></li>
+        <li><span class="act">flowersatherfeet</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Generac Power Stage · <a href="#set-su58">12:30</a></span></li>
+        <li><span class="act">Freddy Jones Band</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Uline Warehouse · <a href="#set-su279">19:30</a></span></li>
+        <li><span class="act">Frogwater</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Summerville · <a href="#set-su439">12:00</a></span></li>
+        <li><span class="act">From Ashes to Embers</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Miller Lite Oasis · <a href="#set-su64">13:15</a></span></li>
+        <li><span class="act">Fuzzysurf</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Big Backyard · <a href="#set-su245">13:15</a></span></li>
+        <li><span class="act">Gabriel Jacoby</span> <span class="slots">Weekend 2 · Thu, Jun 25 · BMO Pavilion · <a href="#set-su150">19:15</a>; Weekend 2 · Thu, Jun 25 · AmFam House · <a href="#set-su191">16:00</a></span></li>
+        <li><span class="act">Gego Y Nony</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Aurora Pavilion · <a href="#set-su423">16:30</a></span></li>
+        <li><span class="act">Gene Simmons Band</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Uline Warehouse · <a href="#set-su383">21:30</a></span></li>
+        <li><span class="act">Ghosts in the Gravel</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Summerville · <a href="#set-su185">13:45</a>; Weekend 2 · Thu, Jun 25 · Summerville · <a href="#set-su186">15:30</a></span></li>
+        <li><span class="act">Gin Blossoms</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Uline Warehouse · <a href="#set-su331">21:30</a></span></li>
+        <li><span class="act">Girlfriends</span> <span class="slots">Weekend 3 · Thu, Jul 2 · T-Mobile Stage · <a href="#set-su323">18:15</a></span></li>
+        <li><span class="act">GIRLNEXTDOOR</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Aurora Pavilion · <a href="#set-su319">21:00</a></span></li>
+        <li><span class="act">Gold Steps</span> <span class="slots">Weekend 3 · Thu, Jul 2 · T-Mobile Stage · <a href="#set-su321">14:30</a></span></li>
+        <li><span class="act">Goldfinger</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Miller Lite Oasis · <a href="#set-su213">22:30</a></span></li>
+        <li><span class="act">Grabbitz</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Generac Power Stage · <a href="#set-su160">20:00</a></span></li>
+        <li><span class="act">GRAHAM</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Big Backyard · <a href="#set-su104">18:00</a></span></li>
+        <li><span class="act">Greg Koch &amp; The Koch Marshall Trio</span> <span class="slots">Weekend 2 · Fri, Jun 26 · T-Mobile Stage · <a href="#set-su221">18:15</a></span></li>
+        <li><span class="act">Grouplove</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Uline Warehouse · <a href="#set-su227">19:30</a>; Weekend 2 · Fri, Jun 26 · AmFam House · <a href="#set-su235">14:00</a></span></li>
+        <li><span class="act">Guardrail</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Miller Lite Oasis · <a href="#set-su208">13:15</a></span></li>
+        <li><span class="act">Halestorm</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Uline Warehouse · <a href="#set-su183">21:30</a></span></li>
+        <li><span class="act">Haley Johnsen</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Uline Warehouse · <a href="#set-su276">14:00</a></span></li>
+        <li><span class="act">Hank Azaria And The EZ Street Band</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Uline Warehouse · <a href="#set-su278">17:30</a></span></li>
+        <li><span class="act">Hanna Simone</span> <span class="slots">Weekend 3 · Fri, Jul 3 · T-Mobile Stage · <a href="#set-su372">12:45</a></span></li>
+        <li><span class="act">Harper O&#39;Neill</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Aurora Pavilion · <a href="#set-su216">17:45</a></span></li>
+        <li><span class="act">Harrison Gordon</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Miller Lite Oasis · <a href="#set-su209">14:45</a></span></li>
+        <li><span class="act">Hazlett</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Miller Lite Oasis · <a href="#set-su166">20:30</a></span></li>
+        <li><span class="act">Hell On Heels</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Big Backyard · <a href="#set-su297">14:30</a></span></li>
+        <li><span class="act">Henrik</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Big Backyard · <a href="#set-su201">20:00</a></span></li>
+        <li><span class="act">Holly Humberstone</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Big Backyard · <a href="#set-su11">22:00</a></span></li>
+        <li><span class="act">Hot &amp; Dirty Brass Band</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Summerville · <a href="#set-su88">13:45</a>; Weekend 1 · Fri, Jun 19 · Summerville · <a href="#set-su89">15:30</a></span></li>
+        <li><span class="act">Hot Mulligan</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Uline Warehouse · <a href="#set-su86">21:30</a>; Weekend 1 · Fri, Jun 19 · AmFam House · <a href="#set-su95">18:00</a></span></li>
+        <li><span class="act">Hotel Fiction</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Big Backyard · <a href="#set-su298">16:00</a></span></li>
+        <li><span class="act">Hunny</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Miller Lite Oasis · <a href="#set-su21">20:30</a></span></li>
+        <li><span class="act">IDKCONUNDRUM</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Miller Lite Oasis · <a href="#set-su113">13:15</a></span></li>
+        <li><span class="act">In The Know</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Miller Lite Oasis · <a href="#set-su256">13:15</a></span></li>
+        <li><span class="act">Initiate</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Generac Power Stage · <a href="#set-su59">14:00</a></span></li>
+        <li><span class="act">JazzMen</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Aurora Pavilion · <a href="#set-su72">16:30</a></span></li>
+        <li><span class="act">Jazzteca</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Aurora Pavilion · <a href="#set-su264">15:15</a></span></li>
+        <li><span class="act">Jean Dawson</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Generac Power Stage · <a href="#set-su253">17:30</a></span></li>
+        <li><span class="act">Jelly Roll</span> <span class="slots">Weekend 3 · Sat, Jul 4 · AmFam Amphitheater · <a href="#set-su397">20:00</a></span></li>
+        <li><span class="act">Jerry Harrison&#39;s &#39;50 Years Of Talking Heads&#39;</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Uline Warehouse · <a href="#set-su436">17:30</a></span></li>
+        <li><span class="act">Jessie Murph</span> <span class="slots">Weekend 2 · Fri, Jun 26 · AmFam Amphitheater · <a href="#set-su193">19:00</a></span></li>
+        <li><span class="act">Jimmy Ray &amp; The Hipsters</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Summerville · <a href="#set-su184">12:00</a></span></li>
+        <li><span class="act">Jobi Riccio</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Aurora Pavilion · <a href="#set-su317">17:45</a></span></li>
+        <li><span class="act">Joe Wray</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Summerville · <a href="#set-su440">13:45</a>; Weekend 3 · Sat, Jul 4 · Summerville · <a href="#set-su441">15:30</a></span></li>
+        <li><span class="act">John Kocher</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Summerville · <a href="#set-su87">12:00</a></span></li>
+        <li><span class="act">John Vincent III</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Big Backyard · <a href="#set-su405">20:00</a></span></li>
+        <li><span class="act">Jonah Kagen</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Big Backyard · <a href="#set-su406">22:00</a></span></li>
+        <li><span class="act">Jonny T-Bird &amp; The MP&#39;s</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Miller Lite Oasis · <a href="#set-su308">12:30</a></span></li>
+        <li><span class="act">Joywave</span> <span class="slots">Weekend 3 · Sat, Jul 4 · T-Mobile Stage · <a href="#set-su431">20:15</a></span></li>
+        <li><span class="act">JP Saxe</span> <span class="slots">Weekend 1 · Thu, Jun 18 · AmFam Amphitheater · <a href="#set-su2">19:30</a></span></li>
+        <li><span class="act">Julia Wolf</span> <span class="slots">Weekend 3 · Thu, Jul 2 · AmFam Amphitheater · <a href="#set-su291">20:00</a></span></li>
+        <li><span class="act">Julianna Joy</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Uline Warehouse · <a href="#set-su379">14:00</a></span></li>
+        <li><span class="act">Junior Rivera</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Aurora Pavilion · <a href="#set-su266">17:45</a></span></li>
+        <li><span class="act">Kaleo</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Miller Lite Oasis · <a href="#set-su167">22:30</a></span></li>
+        <li><span class="act">Ken Pomeroy</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Uline Warehouse · <a href="#set-su381">17:30</a></span></li>
+        <li><span class="act">Kenneth Brian Band</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Uline Warehouse · <a href="#set-su132">14:00</a></span></li>
+        <li><span class="act">KennyHoopla</span> <span class="slots">Weekend 3 · Thu, Jul 2 · T-Mobile Stage · <a href="#set-su324">20:15</a></span></li>
+        <li><span class="act">Kerry King</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Miller Lite Oasis · <a href="#set-su419">22:30</a></span></li>
+        <li><span class="act">Kim Gordon</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Big Backyard · <a href="#set-su156">22:30</a></span></li>
+        <li><span class="act">King Buffalo</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Generac Power Stage · <a href="#set-su254">19:30</a></span></li>
+        <li><span class="act">King Solomon</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Miller Lite Oasis · <a href="#set-su257">14:45</a></span></li>
+        <li><span class="act">Kirstie Kraus</span> <span class="slots">Weekend 1 · Sat, Jun 20 · BMO Pavilion · <a href="#set-su99">19:15</a></span></li>
+        <li><span class="act">Known Moons</span> <span class="slots">Weekend 3 · Sat, Jul 4 · T-Mobile Stage · <a href="#set-su428">14:30</a></span></li>
+        <li><span class="act">KSP</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Big Backyard · <a href="#set-su200">18:15</a></span></li>
+        <li><span class="act">KT Tunstall</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Big Backyard · <a href="#set-su404">18:00</a></span></li>
+        <li><span class="act">Kyle Ray</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Aurora Pavilion · <a href="#set-su315">15:15</a></span></li>
+        <li><span class="act">Lake Drive</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Miller Lite Oasis · <a href="#set-su210">16:30</a></span></li>
+        <li><span class="act">LAMB</span> <span class="slots">Weekend 2 · Sat, Jun 27 · T-Mobile Stage · <a href="#set-su271">16:15</a></span></li>
+        <li><span class="act">Landon Wilks</span> <span class="slots">Weekend 1 · Sat, Jun 20 · T-Mobile Stage · <a href="#set-su127">16:15</a></span></li>
+        <li><span class="act">Lanie Gardner</span> <span class="slots">Weekend 2 · Thu, Jun 25 · T-Mobile Stage · <a href="#set-su177">20:15</a></span></li>
+        <li><span class="act">Lauren Gottshall</span> <span class="slots">Weekend 1 · Sat, Jun 20 · T-Mobile Stage · <a href="#set-su125">12:45</a></span></li>
+        <li><span class="act">Left on Sunset</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Miller Lite Oasis · <a href="#set-su258">16:30</a></span></li>
+        <li><span class="act">Lindsey Lomis</span> <span class="slots">Weekend 3 · Thu, Jul 2 · BMO Pavilion · <a href="#set-su294">19:15</a></span></li>
+        <li><span class="act">Lisa Loeb</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Uline Warehouse · <a href="#set-su181">17:45</a></span></li>
+        <li><span class="act">Little Feat</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Uline Warehouse · <a href="#set-su280">21:30</a></span></li>
+        <li><span class="act">Living Colour</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Generac Power Stage · <a href="#set-su305">17:30</a></span></li>
+        <li><span class="act">Lost Orange Cat</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Miller Lite Oasis · <a href="#set-su359">14:00</a></span></li>
+        <li><span class="act">Louie &amp; The Flashbombs</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Big Backyard · <a href="#set-su402">14:30</a></span></li>
+        <li><span class="act">Louis Tomlinson</span> <span class="slots">Weekend 2 · Fri, Jun 26 · BMO Pavilion · <a href="#set-su197">21:00</a></span></li>
+        <li><span class="act">LowDown Brass Band</span> <span class="slots">Weekend 3 · Fri, Jul 3 · T-Mobile Stage · <a href="#set-su375">18:15</a></span></li>
+        <li><span class="act">Lucky Boys Confusion</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Miller Lite Oasis · <a href="#set-su212">20:30</a></span></li>
+        <li><span class="act">Lunde</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Aurora Pavilion · <a href="#set-su366">14:00</a></span></li>
+        <li><span class="act">Manny Torres</span> <span class="slots">Weekend 3 · Fri, Jul 3 · T-Mobile Stage · <a href="#set-su373">14:30</a></span></li>
+        <li><span class="act">Marcus King Band</span> <span class="slots">Weekend 2 · Fri, Jun 26 · T-Mobile Stage · <a href="#set-su223">22:15</a></span></li>
+        <li><span class="act">Marcya Danielle</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Summerville · <a href="#set-su332">12:00</a></span></li>
+        <li><span class="act">Mari</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Miller Lite Oasis · <a href="#set-su18">14:45</a></span></li>
+        <li><span class="act">Mariachi Sol De Mexico</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Aurora Pavilion · <a href="#set-su267">19:00</a></span></li>
+        <li><span class="act">Maris</span> <span class="slots">Weekend 2 · Sat, Jun 27 · T-Mobile Stage · <a href="#set-su273">20:15</a></span></li>
+        <li><span class="act">Marlon Funaki</span> <span class="slots">Weekend 1 · Thu, Jun 18 · T-Mobile Stage · <a href="#set-su31">20:15</a></span></li>
+        <li><span class="act">Matthew Hansen</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Aurora Pavilion · <a href="#set-su318">19:00</a></span></li>
+        <li><span class="act">Maximiano</span> <span class="slots">Weekend 1 · Thu, Jun 18 · T-Mobile Stage · <a href="#set-su29">16:15</a></span></li>
+        <li><span class="act">McCoy Moore</span> <span class="slots">Weekend 1 · Sat, Jun 20 · T-Mobile Stage · <a href="#set-su129">20:15</a></span></li>
+        <li><span class="act">Megan Moroney</span> <span class="slots">Weekend 1 · Thu, Jun 18 · AmFam Amphitheater · <a href="#set-su3">20:45</a></span></li>
+        <li><span class="act">Micah Emrich</span> <span class="slots">Weekend 1 · Thu, Jun 18 · T-Mobile Stage · <a href="#set-su28">14:30</a></span></li>
+        <li><span class="act">Milly &amp; The Mayhem</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Uline Warehouse · <a href="#set-su131">12:30</a></span></li>
+        <li><span class="act">Mindi Abair</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Uline Warehouse · <a href="#set-su437">19:30</a></span></li>
+        <li><span class="act">MKE Live Groove: Summerfest Edition</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Aurora Pavilion · <a href="#set-su23">12:00</a></span></li>
+        <li><span class="act">Modern Alibi</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Big Backyard · <a href="#set-su247">16:00</a></span></li>
+        <li><span class="act">Modern English</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Generac Power Stage · <a href="#set-su15">19:30</a></span></li>
+        <li><span class="act">Morgan St. Jean</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Big Backyard · <a href="#set-su9">18:00</a></span></li>
+        <li><span class="act">Mr. New York</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Aurora Pavilion · <a href="#set-su218">21:00</a></span></li>
+        <li><span class="act">Mrs. Fun</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Summerville · <a href="#set-su90">17:30</a>; Weekend 1 · Fri, Jun 19 · Summerville · <a href="#set-su91">19:30</a></span></li>
+        <li><span class="act">Munroe</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Generac Power Stage · <a href="#set-su303">14:00</a></span></li>
+        <li><span class="act">Muse</span> <span class="slots">Weekend 3 · Thu, Jul 2 · AmFam Amphitheater · <a href="#set-su292">21:10</a></span></li>
+        <li><span class="act">MUSIC6S for Veterans &amp; First Responders</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Generac Power Stage · <a href="#set-su251">12:00</a></span></li>
+        <li><span class="act">Myles Smith</span> <span class="slots">Weekend 2 · Thu, Jun 25 · AmFam Amphitheater · <a href="#set-su147">20:00</a></span></li>
+        <li><span class="act">Nate Smith</span> <span class="slots">Weekend 1 · Sat, Jun 20 · T-Mobile Stage · <a href="#set-su130">22:15</a></span></li>
+        <li><span class="act">Neal Francis</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Aurora Pavilion · <a href="#set-su370">19:00</a></span></li>
+        <li><span class="act">Nicholas Tremulis &amp; The Prodigals</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Miller Lite Oasis · <a href="#set-su20">18:30</a></span></li>
+        <li><span class="act">Nico At Nite</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Aurora Pavilion · <a href="#set-su75">21:00</a></span></li>
+        <li><span class="act">Nicole Lawrence</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Generac Power Stage · <a href="#set-su409">15:30</a></span></li>
+        <li><span class="act">Noah Cyrus</span> <span class="slots">Weekend 3 · Fri, Jul 3 · AmFam Amphitheater · <a href="#set-su341">19:45</a></span></li>
+        <li><span class="act">Noah Richardson</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Big Backyard · <a href="#set-su102">14:30</a></span></li>
+        <li><span class="act">NOBRO</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Miller Lite Oasis · <a href="#set-su68">20:30</a></span></li>
+        <li><span class="act">Oh Geeez, Not Again</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Generac Power Stage · <a href="#set-su407">12:30</a></span></li>
+        <li><span class="act">Old 97&#39;s</span> <span class="slots">Weekend 2 · Thu, Jun 25 · T-Mobile Stage · <a href="#set-su175">17:15</a></span></li>
+        <li><span class="act">Old Mervs</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Generac Power Stage · <a href="#set-su109">15:30</a></span></li>
+        <li><span class="act">Organissimo</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Summerville · <a href="#set-su282">13:45</a>; Weekend 2 · Sat, Jun 27 · Summerville · <a href="#set-su283">15:30</a></span></li>
+        <li><span class="act">Orquesta Ayala</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Aurora Pavilion · <a href="#set-su265">16:30</a></span></li>
+        <li><span class="act">OUTDrejas</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Miller Lite Oasis · <a href="#set-su162">13:15</a></span></li>
+        <li><span class="act">Outronaut</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Uline Warehouse · <a href="#set-su327">14:00</a></span></li>
+        <li><span class="act">Palm Ghosts</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Uline Warehouse · <a href="#set-su326">12:30</a></span></li>
+        <li><span class="act">Palmer Anthony</span> <span class="slots">Weekend 3 · Sat, Jul 4 · BMO Pavilion · <a href="#set-su398">17:30</a></span></li>
+        <li><span class="act">Panic Shack</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Miller Lite Oasis · <a href="#set-su67">18:30</a></span></li>
+        <li><span class="act">Passion Pit</span> <span class="slots">Weekend 1 · Thu, Jun 18 · T-Mobile Stage · <a href="#set-su32">22:15</a>; Weekend 1 · Thu, Jun 18 · AmFam House · <a href="#set-su46">16:00</a></span></li>
+        <li><span class="act">Pat McCurdy</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Generac Power Stage · <a href="#set-su159">17:45</a></span></li>
+        <li><span class="act">Paul Spencer Band</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Summerville · <a href="#set-su333">13:45</a>; Weekend 3 · Thu, Jul 2 · Summerville · <a href="#set-su334">15:30</a></span></li>
+        <li><span class="act">PawPaw Rod</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Big Backyard · <a href="#set-su249">20:00</a>; Weekend 2 · Sat, Jun 27 · AmFam House · <a href="#set-su287">14:00</a></span></li>
+        <li><span class="act">Penelope Road</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Generac Power Stage · <a href="#set-su111">19:30</a></span></li>
+        <li><span class="act">Pepper</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Miller Lite Oasis · <a href="#set-su261">22:30</a></span></li>
+        <li><span class="act">Petey USA</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Big Backyard · <a href="#set-su202">22:00</a></span></li>
+        <li><span class="act">Phil Wittliff</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Big Backyard · <a href="#set-su52">13:00</a></span></li>
+        <li><span class="act">Pierre &#39;Mr. Untouchable&#39; Lee</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Summerville · <a href="#set-su387">17:30</a>; Weekend 3 · Fri, Jul 3 · Summerville · <a href="#set-su388">19:30</a></span></li>
+        <li><span class="act">Poi Dog Pondering</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Uline Warehouse · <a href="#set-su435">15:30</a></span></li>
+        <li><span class="act">Porch Light</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Miller Lite Oasis · <a href="#set-su165">18:30</a></span></li>
+        <li><span class="act">Porcupine</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Uline Warehouse · <a href="#set-su434">14:00</a></span></li>
+        <li><span class="act">Post Malone</span> <span class="slots">Weekend 2 · Sat, Jun 27 · AmFam Amphitheater · <a href="#set-su239">20:30</a></span></li>
+        <li><span class="act">Post Sex Nachos</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Uline Warehouse · <a href="#set-su35">15:30</a></span></li>
+        <li><span class="act">Preston Cooper</span> <span class="slots">Weekend 3 · Sat, Jul 4 · BMO Pavilion · <a href="#set-su399">19:15</a></span></li>
+        <li><span class="act">Pretty Pity</span> <span class="slots">Weekend 3 · Thu, Jul 2 · T-Mobile Stage · <a href="#set-su320">12:45</a></span></li>
+        <li><span class="act">Pure Hex</span> <span class="slots">Weekend 3 · Sat, Jul 4 · T-Mobile Stage · <a href="#set-su430">18:15</a></span></li>
+        <li><span class="act">Queen Drie</span> <span class="slots">Weekend 1 · Fri, Jun 19 · T-Mobile Stage · <a href="#set-su77">14:30</a></span></li>
+        <li><span class="act">Radio Radio</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Uline Warehouse · <a href="#set-su380">15:30</a></span></li>
+        <li><span class="act">Red Jumpsuit Apparatus</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Uline Warehouse · <a href="#set-su84">17:30</a></span></li>
+        <li><span class="act">Red Leather</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Aurora Pavilion · <a href="#set-su122">17:45</a></span></li>
+        <li><span class="act">Rev Run</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Big Backyard · <a href="#set-su351">22:00</a></span></li>
+        <li><span class="act">Robert Randolph &amp; The Family Band</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Big Backyard · <a href="#set-su153">16:30</a></span></li>
+        <li><span class="act">Rockonsin</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Aurora Pavilion · <a href="#set-su70">12:15</a>; Weekend 1 · Sat, Jun 20 · Aurora Pavilion · <a href="#set-su119">12:15</a></span></li>
+        <li><span class="act">Rockonsin: Runner Up</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Aurora Pavilion · <a href="#set-su420">12:45</a></span></li>
+        <li><span class="act">Rockonsin: Winner</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Aurora Pavilion · <a href="#set-su421">14:00</a></span></li>
+        <li><span class="act">Russell Dickerson</span> <span class="slots">Weekend 2 · Sat, Jun 27 · BMO Pavilion · <a href="#set-su243">22:00</a></span></li>
+        <li><span class="act">Sad Boy Saturday</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Aurora Pavilion · <a href="#set-su426">21:00</a></span></li>
+        <li><span class="act">Saint Blonde</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Big Backyard · <a href="#set-su6">13:00</a></span></li>
+        <li><span class="act">Sam Barber</span> <span class="slots">Weekend 3 · Sat, Jul 4 · BMO Pavilion · <a href="#set-su400">22:00</a></span></li>
+        <li><span class="act">Sarah Fierek</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Big Backyard · <a href="#set-su346">13:00</a></span></li>
+        <li><span class="act">Sarah Krohn</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Big Backyard · <a href="#set-su101">13:00</a></span></li>
+        <li><span class="act">School of Rock</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Big Backyard · <a href="#set-su152">12:00</a>; Weekend 2 · Thu, Jun 25 · Generac Power Stage · <a href="#set-su157">12:00</a>; Weekend 2 · Thu, Jun 25 · Aurora Pavilion · <a href="#set-su168">12:00</a>; Weekend 2 · Thu, Jun 25 · T-Mobile Stage · <a href="#set-su173">12:00</a>; Weekend 2 · Thu, Jun 25 · Uline Warehouse · <a href="#set-su179">12:00</a>; Weekend 2 · Fri, Jun 26 · Big Backyard · <a href="#set-su198">12:00</a>; Weekend 2 · Fri, Jun 26 · Generac Power Stage · <a href="#set-su203">12:00</a>; Weekend 2 · Fri, Jun 26 · Aurora Pavilion · <a href="#set-su214">12:00</a>; Weekend 2 · Fri, Jun 26 · T-Mobile Stage · <a href="#set-su219">12:00</a>; Weekend 2 · Fri, Jun 26 · Uline Warehouse · <a href="#set-su224">12:00</a></span></li>
+        <li><span class="act">Scorched Waves</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Generac Power Stage · <a href="#set-su304">15:30</a></span></li>
+        <li><span class="act">Scott E. Berendt &amp; The US Project</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Generac Power Stage · <a href="#set-su12">14:00</a></span></li>
+        <li><span class="act">Scott Wolverton</span> <span class="slots">Weekend 1 · Sat, Jun 20 · T-Mobile Stage · <a href="#set-su128">18:15</a></span></li>
+        <li><span class="act">Scout Speer</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Miller Lite Oasis · <a href="#set-su361">17:15</a></span></li>
+        <li><span class="act">Sean Paul</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Miller Lite Oasis · <a href="#set-su313">22:30</a></span></li>
+        <li><span class="act">Showoff</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Miller Lite Oasis · <a href="#set-su211">18:30</a></span></li>
+        <li><span class="act">SIIN</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Miller Lite Oasis · <a href="#set-su416">17:00</a></span></li>
+        <li><span class="act">Sincere Engineer</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Big Backyard · <a href="#set-su155">20:30</a></span></li>
+        <li><span class="act">Siobhan Bodrug</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Aurora Pavilion · <a href="#set-su215">16:30</a></span></li>
+        <li><span class="act">Sister Hazel</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Uline Warehouse · <a href="#set-su329">17:30</a></span></li>
+        <li><span class="act">Six Foot Blonde</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Aurora Pavilion · <a href="#set-su368">16:30</a></span></li>
+        <li><span class="act">Sleepy Gaucho</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Generac Power Stage · <a href="#set-su60">15:30</a></span></li>
+        <li><span class="act">SM6</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Big Backyard · <a href="#set-su103">16:00</a></span></li>
+        <li><span class="act">Social Cig</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Generac Power Stage · <a href="#set-su352">12:30</a></span></li>
+        <li><span class="act">Solon Holt</span> <span class="slots">Weekend 1 · Thu, Jun 18 · AmFam Amphitheater · <a href="#set-su1">18:30</a></span></li>
+        <li><span class="act">Sons Of The Silent Age</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Uline Warehouse · <a href="#set-su225">16:15</a></span></li>
+        <li><span class="act">Soul Asylum</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Generac Power Stage · <a href="#set-su410">17:30</a>; Weekend 3 · Sat, Jul 4 · AmFam House · <a href="#set-su445">14:00</a></span></li>
+        <li><span class="act">Soulidified</span> <span class="slots">Weekend 2 · Sat, Jun 27 · T-Mobile Stage · <a href="#set-su272">18:15</a></span></li>
+        <li><span class="act">Spin Doctors</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Uline Warehouse · <a href="#set-su330">19:30</a>; Weekend 3 · Thu, Jul 2 · AmFam House · <a href="#set-su338">16:00</a></span></li>
+        <li><span class="act">Spoon</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Generac Power Stage · <a href="#set-su357">21:30</a>; Weekend 3 · Fri, Jul 3 · AmFam House · <a href="#set-su391">16:00</a></span></li>
+        <li><span class="act">St. Paul And The Broken Bones</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Uline Warehouse · <a href="#set-su382">19:30</a>; Weekend 3 · Fri, Jul 3 · AmFam House · <a href="#set-su390">14:00</a></span></li>
+        <li><span class="act">State Champs</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Uline Warehouse · <a href="#set-su85">19:30</a>; Weekend 1 · Fri, Jun 19 · AmFam House · <a href="#set-su93">14:00</a></span></li>
+        <li><span class="act">Steph Strings</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Big Backyard · <a href="#set-su55">18:00</a></span></li>
+        <li><span class="act">Stephan Jenkins of Third Eye Blind</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Aurora Pavilion · <a href="#set-su24">14:00</a>; Weekend 1 · Thu, Jun 18 · AmFam House · <a href="#set-su45">14:00</a></span></li>
+        <li><span class="act">Stephen Marley</span> <span class="slots">Weekend 3 · Fri, Jul 3 · BMO Pavilion · <a href="#set-su344">19:15</a></span></li>
+        <li><span class="act">Stone Jam Band</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Big Backyard · <a href="#set-su348">16:00</a></span></li>
+        <li><span class="act">Straight No Chaser</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Uline Warehouse · <a href="#set-su438">22:00</a></span></li>
+        <li><span class="act">Styx</span> <span class="slots">Weekend 1 · Fri, Jun 19 · BMO Pavilion · <a href="#set-su51">21:00</a></span></li>
+        <li><span class="act">Substitutes: Tales From The Who</span> <span class="slots">Weekend 1 · Sat, Jun 20 · BMO Pavilion · <a href="#set-su98">17:30</a></span></li>
+        <li><span class="act">Subtronics</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Generac Power Stage · <a href="#set-su161">22:00</a></span></li>
+        <li><span class="act">Sudan Archives</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Aurora Pavilion · <a href="#set-su217">19:00</a></span></li>
+        <li><span class="act">Sugo</span> <span class="slots">Weekend 2 · Fri, Jun 26 · T-Mobile Stage · <a href="#set-su220">16:15</a></span></li>
+        <li><span class="act">Summerfest Opening Ceremonies</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Aurora Pavilion · <a href="#set-su25">18:00</a></span></li>
+        <li><span class="act">Sunami</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Miller Lite Oasis · <a href="#set-su418">20:30</a></span></li>
+        <li><span class="act">Sunflower Bean</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Big Backyard · <a href="#set-su299">18:00</a></span></li>
+        <li><span class="act">Sunny Black</span> <span class="slots">Weekend 3 · Sat, Jul 4 · AmFam Amphitheater · <a href="#set-su393">16:30</a></span></li>
+        <li><span class="act">Superfly</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Miller Lite Oasis · <a href="#set-su309">14:45</a></span></li>
+        <li><span class="act">Supertaste</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Uline Warehouse · <a href="#set-su34">14:00</a></span></li>
+        <li><span class="act">Suzanne Grzanna</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Summerville · <a href="#set-su384">12:00</a></span></li>
+        <li><span class="act">Tag Team</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Aurora Pavilion · <a href="#set-su424">17:45</a></span></li>
+        <li><span class="act">Tash Sultana</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Miller Lite Oasis · <a href="#set-su22">22:30</a></span></li>
+        <li><span class="act">Taylor Acorn</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Uline Warehouse · <a href="#set-su36">17:30</a></span></li>
+        <li><span class="act">Taz</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Big Backyard · <a href="#set-su248">18:00</a></span></li>
+        <li><span class="act">Temper City</span> <span class="slots">Weekend 3 · Thu, Jul 2 · AmFam Amphitheater · <a href="#set-su290">19:00</a></span></li>
+        <li><span class="act">Tempo Dance Co.</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Aurora Pavilion · <a href="#set-su262">12:00</a></span></li>
+        <li><span class="act">Testing Floor</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Summerville · <a href="#set-su232">17:30</a>; Weekend 2 · Fri, Jun 26 · Summerville · <a href="#set-su233">19:30</a></span></li>
+        <li><span class="act">The Academy Is...</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Miller Lite Oasis · <a href="#set-su118">22:30</a></span></li>
+        <li><span class="act">The Aces</span> <span class="slots">Weekend 2 · Fri, Jun 26 · BMO Pavilion · <a href="#set-su196">19:15</a></span></li>
+        <li><span class="act">The Band Loula</span> <span class="slots">Weekend 2 · Fri, Jun 26 · T-Mobile Stage · <a href="#set-su222">20:15</a></span></li>
+        <li><span class="act">The Band Solstice</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Generac Power Stage · <a href="#set-su107">12:30</a></span></li>
+        <li><span class="act">The Bends</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Uline Warehouse · <a href="#set-su37">19:30</a></span></li>
+        <li><span class="act">The Beths</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Big Backyard · <a href="#set-su301">22:00</a></span></li>
+        <li><span class="act">The Big Win</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Miller Lite Oasis · <a href="#set-su360">16:00</a></span></li>
+        <li><span class="act">The Dream Syndicate</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Generac Power Stage · <a href="#set-su14">17:30</a></span></li>
+        <li><span class="act">The Expendables</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Miller Lite Oasis · <a href="#set-su259">18:30</a></span></li>
+        <li><span class="act">The Family Stone</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Aurora Pavilion · <a href="#set-su74">19:00</a></span></li>
+        <li><span class="act">The Group</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Summerville · <a href="#set-su335">17:30</a>; Weekend 3 · Thu, Jul 2 · Summerville · <a href="#set-su336">19:30</a></span></li>
+        <li><span class="act">The Handcuffs</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Big Backyard · <a href="#set-su154">18:30</a></span></li>
+        <li><span class="act">The Heavy Heavy</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Aurora Pavilion · <a href="#set-su369">17:45</a></span></li>
+        <li><span class="act">The Hungry Williams</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Summerville · <a href="#set-su284">17:30</a>; Weekend 2 · Sat, Jun 27 · Summerville · <a href="#set-su285">19:30</a></span></li>
+        <li><span class="act">The Jayhawks</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Generac Power Stage · <a href="#set-su411">19:30</a></span></li>
+        <li><span class="act">The Juliana Theory</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Miller Lite Oasis · <a href="#set-su116">18:30</a></span></li>
+        <li><span class="act">The Kal Bergendahl Project</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Summerville · <a href="#set-su385">13:45</a>; Weekend 3 · Fri, Jul 3 · Summerville · <a href="#set-su386">15:30</a></span></li>
+        <li><span class="act">The Last Bees</span> <span class="slots">Weekend 3 · Sat, Jul 4 · T-Mobile Stage · <a href="#set-su427">12:45</a></span></li>
+        <li><span class="act">The Lovemonkeys</span> <span class="slots">Weekend 1 · Fri, Jun 19 · BMO Pavilion · <a href="#set-su49">17:30</a></span></li>
+        <li><span class="act">The Maiden Voyage</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Miller Lite Oasis · <a href="#set-su415">15:15</a></span></li>
+        <li><span class="act">The Mighty Ms. Erica And the Sound Production</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Summerville · <a href="#set-su40">13:45</a>; Weekend 1 · Thu, Jun 18 · Summerville · <a href="#set-su41">15:30</a></span></li>
+        <li><span class="act">The Mountain Goats</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Aurora Pavilion · <a href="#set-su171">19:00</a></span></li>
+        <li><span class="act">The Movement</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Miller Lite Oasis · <a href="#set-su260">20:30</a></span></li>
+        <li><span class="act">The Noize</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Uline Warehouse · <a href="#set-su275">12:30</a></span></li>
+        <li><span class="act">The Ocean Blue</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Uline Warehouse · <a href="#set-su328">15:30</a></span></li>
+        <li><span class="act">The President Kings</span> <span class="slots">Weekend 3 · Thu, Jul 2 · Generac Power Stage · <a href="#set-su302">12:30</a></span></li>
+        <li><span class="act">The Revivalists</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Uline Warehouse · <a href="#set-su228">21:30</a></span></li>
+        <li><span class="act">The Taxmen</span> <span class="slots">Weekend 2 · Sat, Jun 27 · T-Mobile Stage · <a href="#set-su269">12:45</a></span></li>
+        <li><span class="act">The Temper Trap</span> <span class="slots">Weekend 3 · Sat, Jul 4 · T-Mobile Stage · <a href="#set-su432">22:15</a>; Weekend 3 · Sat, Jul 4 · AmFam House · <a href="#set-su446">16:00</a></span></li>
+        <li><span class="act">The Terry Sims Band</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Summerville · <a href="#set-su187">17:30</a>; Weekend 2 · Thu, Jun 25 · Summerville · <a href="#set-su188">19:30</a></span></li>
+        <li><span class="act">Third Eye Blind</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Uline Warehouse · <a href="#set-su38">22:00</a></span></li>
+        <li><span class="act">Three 6 Mafia</span> <span class="slots">Weekend 3 · Sat, Jul 4 · AmFam Amphitheater · <a href="#set-su395">17:35</a></span></li>
+        <li><span class="act">Tigernite</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Big Backyard · <a href="#set-su8">16:00</a></span></li>
+        <li><span class="act">Tiny Voices</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Uline Warehouse · <a href="#set-su83">15:30</a></span></li>
+        <li><span class="act">Tobacco Road</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Generac Power Stage · <a href="#set-su108">14:00</a></span></li>
+        <li><span class="act">Tracy Bonham</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Uline Warehouse · <a href="#set-su277">15:30</a></span></li>
+        <li><span class="act">Trapper Schoepp</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Uline Warehouse · <a href="#set-su134">17:30</a></span></li>
+        <li><span class="act">Troy Tyler</span> <span class="slots">Weekend 1 · Fri, Jun 19 · T-Mobile Stage · <a href="#set-su78">16:15</a></span></li>
+        <li><span class="act">Tucker Wetmore</span> <span class="slots">Weekend 2 · Thu, Jun 25 · T-Mobile Stage · <a href="#set-su178">22:15</a></span></li>
+        <li><span class="act">Two Feet</span> <span class="slots">Weekend 2 · Fri, Jun 26 · Uline Warehouse · <a href="#set-su226">17:45</a></span></li>
+        <li><span class="act">Tyler Hubbard</span> <span class="slots">Weekend 3 · Sat, Jul 4 · AmFam Amphitheater · <a href="#set-su396">18:45</a></span></li>
+        <li><span class="act">Tyrese</span> <span class="slots">Weekend 1 · Fri, Jun 19 · T-Mobile Stage · <a href="#set-su81">22:15</a></span></li>
+        <li><span class="act">Ur Mom</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Generac Power Stage · <a href="#set-su408">14:00</a></span></li>
+        <li><span class="act">V-Funk</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Big Backyard · <a href="#set-su347">14:30</a></span></li>
+        <li><span class="act">VALE</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Aurora Pavilion · <a href="#set-su422">15:15</a></span></li>
+        <li><span class="act">Venus &amp; The Flytraps</span> <span class="slots">Weekend 1 · Thu, Jun 18 · T-Mobile Stage · <a href="#set-su30">18:15</a></span></li>
+        <li><span class="act">Vertical Horizon</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Miller Lite Oasis · <a href="#set-su164">16:30</a></span></li>
+        <li><span class="act">Vial</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Miller Lite Oasis · <a href="#set-su66">16:30</a></span></li>
+        <li><span class="act">Victor Jones</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Uline Warehouse · <a href="#set-su433">12:30</a></span></li>
+        <li><span class="act">Vincent Van Great</span> <span class="slots">Weekend 2 · Sat, Jun 27 · T-Mobile Stage · <a href="#set-su270">14:30</a></span></li>
+        <li><span class="act">Walk Off The Earth</span> <span class="slots">Weekend 2 · Thu, Jun 25 · Uline Warehouse · <a href="#set-su182">19:30</a>; Weekend 2 · Thu, Jun 25 · AmFam House · <a href="#set-su190">14:00</a></span></li>
+        <li><span class="act">Wave X Nile</span> <span class="slots">Weekend 3 · Fri, Jul 3 · T-Mobile Stage · <a href="#set-su374">16:15</a></span></li>
+        <li><span class="act">Weston Estate</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Big Backyard · <a href="#set-su105">20:00</a>; Weekend 1 · Sat, Jun 20 · AmFam House · <a href="#set-su144">16:00</a></span></li>
+        <li><span class="act">Whiskey Myers</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Miller Lite Oasis · <a href="#set-su364">22:30</a></span></li>
+        <li><span class="act">wht.rrbt.obj</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Aurora Pavilion · <a href="#set-su365">12:45</a></span></li>
+        <li><span class="act">Will Terry</span> <span class="slots">Weekend 1 · Sat, Jun 20 · T-Mobile Stage · <a href="#set-su126">14:30</a></span></li>
+        <li><span class="act">Winyah</span> <span class="slots">Weekend 1 · Sat, Jun 20 · Generac Power Stage · <a href="#set-su110">17:30</a></span></li>
+        <li><span class="act">Wire &amp; Nail</span> <span class="slots">Weekend 2 · Thu, Jun 25 · T-Mobile Stage · <a href="#set-su174">16:15</a></span></li>
+        <li><span class="act">Wolfmother</span> <span class="slots">Weekend 2 · Sat, Jun 27 · Generac Power Stage · <a href="#set-su255">21:30</a></span></li>
+        <li><span class="act">YaYa Biggs</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Generac Power Stage · <a href="#set-su354">15:30</a></span></li>
+      </ul>
+    </details>
   </section>
 
   <section aria-labelledby="stages-h">
@@ -2940,11 +2959,17 @@
       <li><a href="/f/edc-lv-2026/">EDC Las Vegas 2026</a> — May 15–17, 2026</li>
       <li><a href="/f/lollapalooza-2026/">Lollapalooza 2026</a> — Jul 30 – Aug 2, 2026</li>
       <li><a href="/f/hard-summer-2026/">HARD Summer 2026</a> — Aug 1–2, 2026</li>
-      <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
-      <li><a href="/f/arc-2026/">ARC Music Festival 2026</a> — Sep 4–7, 2026</li>
-      <li><a href="/f/ultra-miami-2026/">Ultra Miami 2026</a> — Mar 27–29, 2026</li>
-      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
     </ul>
+    <details class="more">
+      <summary>Show 4 more</summary>
+      <ul>
+        <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
+        <li><a href="/f/arc-2026/">ARC Music Festival 2026</a> — Sep 4–7, 2026</li>
+        <li><a href="/f/ultra-miami-2026/">Ultra Miami 2026</a> — Mar 27–29, 2026</li>
+        <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
+      </ul>
+    </details>
+
   </nav>
 
   <section class="sources" aria-labelledby="sources-h">

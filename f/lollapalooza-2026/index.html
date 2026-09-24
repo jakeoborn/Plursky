@@ -68,6 +68,20 @@
   section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
+  details.more { margin:4px 0 0; }
+  details.more > summary { cursor:pointer; color:var(--ember); font-weight:600; font-size:14px; padding:10px 0; min-height:44px; display:flex; align-items:center; }
+  details.more[open] > summary { color:var(--muted); }
+  section.watch .embed { margin:16px 0 20px; }
+  section.watch .yt { position:relative; aspect-ratio:16/9; width:100%; min-height:200px; background:var(--panel); border-radius:12px; overflow:hidden; }
+  section.watch .yt iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+  /* Instagram's embed has a fixed 326px minimum. On a 320px phone that is
+     wider than the screen, so the embed scrolls inside its own box and the
+     page never scrolls sideways. */
+  section.watch .embed-ig { overflow-x:auto; max-width:100%; }
+  section.watch .embed-ig blockquote, section.watch .embed-x blockquote { margin:0; min-height:420px; background:var(--panel); border-radius:12px; padding:16px; max-width:540px; }
+  section.watch .embed-x blockquote { min-height:260px; }
+  section.watch .embed-sp iframe { display:block; border:0; border-radius:12px; min-height:352px; }
+  section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }
 </style>
 <script type="application/ld+json">
 {
@@ -920,6 +934,42 @@
       <dd>This page shows Plursky&#39;s Lollapalooza 2026 site plate. Abstract site plate generated from this festival&#39;s own stage and amenity coordinates. Not the official patron map; no festival artwork is reproduced.</dd>
     </dl>
   </section>
+  <section id="watch" class="watch" aria-labelledby="watch-h">
+    <h2 id="watch-h">Watch &amp; listen</h2>
+    <p class="note">From Lollapalooza 2026's official accounts.</p>
+    <figure class="embed embed-ig">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWEjmYolFgT/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DWEjmYolFgT/" rel="noopener">View this post on Instagram</a></blockquote>
+      <p class="embed-cap">@lollapalooza on Instagram · <a href="https://www.instagram.com/p/DWEjmYolFgT/" rel="noopener">View the original</a></p>
+    </figure>
+    <figure class="embed embed-ig">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DbgfYjSDbmr/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DbgfYjSDbmr/" rel="noopener">View this post on Instagram</a></blockquote>
+      <p class="embed-cap">@lollapalooza on Instagram · <a href="https://www.instagram.com/p/DbgfYjSDbmr/" rel="noopener">View the original</a></p>
+    </figure>
+    <figure class="embed embed-x">
+      <blockquote class="twitter-tweet" data-dnt="true" data-theme="dark"><a href="https://twitter.com/lollapalooza/status/2083621871346495987" rel="noopener">View this post on X</a></blockquote>
+      <p class="embed-cap">@lollapalooza on X · <a href="https://x.com/lollapalooza/status/2083621871346495987" rel="noopener">View the original</a></p>
+    </figure>
+    <script>
+(function () {
+  var sec = document.getElementById('watch');
+  if (!sec) return;
+  var urls = [];
+  if (sec.querySelector('.instagram-media')) urls.push('https://www.instagram.com/embed.js');
+  if (sec.querySelector('.twitter-tweet')) urls.push('https://platform.twitter.com/widgets.js');
+  if (!urls.length) return;
+  var done = false;
+  function load() {
+    if (done) return; done = true;
+    urls.forEach(function (u) { var s = document.createElement('script'); s.async = true; s.src = u; document.body.appendChild(s); });
+  }
+  if (!('IntersectionObserver' in window)) return load();
+  var io = new IntersectionObserver(function (es) {
+    if (es.some(function (x) { return x.isIntersecting; })) { io.disconnect(); load(); }
+  }, { rootMargin: '600px 0px' });
+  io.observe(sec);
+})();
+    </script>
+  </section>
 
   <section aria-labelledby="map-h">
     <h2 id="map-h">Lollapalooza 2026 map</h2>
@@ -1287,168 +1337,173 @@
       <li><span class="act">Bella Kay</span> <span class="slots">Thu, Jul 30 · BMI Stage · <a href="#set-lo41">16:30</a></span></li>
       <li><span class="act">Bella Kay x Mack</span> <span class="slots">Thu, Jul 30 · Bonus Tracks · <a href="#set-lo47">17:45</a></span></li>
       <li><span class="act">Beno</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo80">12:00</a></span></li>
-      <li><span class="act">Between Friends</span> <span class="slots">Thu, Jul 30 · Bud Light Stage · <a href="#set-lo7">14:45</a></span></li>
-      <li><span class="act">Bixby</span> <span class="slots">Thu, Jul 30 · Bud Light Stage · <a href="#set-lo6">13:00</a></span></li>
-      <li><span class="act">Blood Orange</span> <span class="slots">Thu, Jul 30 · Bud Light Stage · <a href="#set-lo8">16:45</a></span></li>
-      <li><span class="act">Boris Brejcha</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo16">17:45</a></span></li>
-      <li><span class="act">Boys Noize</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo15">16:15</a></span></li>
-      <li><span class="act">Bradeazy</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo62">12:00</a></span></li>
-      <li><span class="act">Calder Allen</span> <span class="slots">Sat, Aug 1 · BMI Stage · <a href="#set-lo134">17:00</a></span></li>
-      <li><span class="act">Cameron Whitcomb</span> <span class="slots">Sat, Aug 1 · Airbnb Stage · <a href="#set-lo131">20:00</a></span></li>
-      <li><span class="act">Case Oats</span> <span class="slots">Sun, Aug 2 · BMI Stage · <a href="#set-lo181">15:20</a></span></li>
-      <li><span class="act">Chalk</span> <span class="slots">Thu, Jul 30 · BMI Stage · <a href="#set-lo42">17:40</a></span></li>
-      <li><span class="act">Charli xcx</span> <span class="slots">Fri, Jul 31 · T-Mobile Stage · <a href="#set-lo56">20:40</a></span></li>
-      <li><span class="act">Chicago Made</span> <span class="slots">Fri, Jul 31 · Tito&#39;s Stage · <a href="#set-lo70">12:30</a></span></li>
-      <li><span class="act">Claire Rosinkranz</span> <span class="slots">Fri, Jul 31 · Allianz Stage · <a href="#set-lo76">13:40</a></span></li>
-      <li><span class="act">Clipse</span> <span class="slots">Sat, Aug 1 · Bud Light Stage · <a href="#set-lo111">17:15</a></span></li>
-      <li><span class="act">CMAT</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo35">18:30</a></span></li>
-      <li><span class="act">CORTIS</span> <span class="slots">Sat, Aug 1 · T-Mobile Stage · <a href="#set-lo106">15:40</a></span></li>
-      <li><span class="act">Cruz Beckham and The Breakers</span> <span class="slots">Sun, Aug 2 · Tito&#39;s Stage · <a href="#set-lo161">14:15</a></span></li>
-      <li><span class="act">Cruz Beckham x Mack</span> <span class="slots">Sun, Aug 2 · Bonus Tracks · <a href="#set-lo187">15:30</a></span></li>
-      <li><span class="act">Day We Ran</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo81">12:50</a></span></li>
-      <li><span class="act">Destin Conrad</span> <span class="slots">Sun, Aug 2 · Allianz Stage · <a href="#set-lo166">14:00</a></span></li>
-      <li><span class="act">Devault</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo13">13:45</a>; Thu, Jul 30 · Tito&#39;s Stage · <a href="#set-lo23">19:30</a></span></li>
-      <li><span class="act">Die Spitz</span> <span class="slots">Sat, Aug 1 · Airbnb Stage · <a href="#set-lo127">15:30</a></span></li>
-      <li><span class="act">Disco Lines</span> <span class="slots">Sat, Aug 1 · Perry&#39;s Stage · <a href="#set-lo119">20:30</a></span></li>
-      <li><span class="act">DJ Prince Lex</span> <span class="slots">Thu, Jul 30 · Bonus Tracks · <a href="#set-lo44">13:30</a>; Thu, Jul 30 · Bonus Tracks · <a href="#set-lo46">16:30</a>; Fri, Jul 31 · Bonus Tracks · <a href="#set-lo96">14:00</a>; Fri, Jul 31 · Bonus Tracks · <a href="#set-lo100">17:45</a>; Sat, Aug 1 · Bonus Tracks · <a href="#set-lo138">16:45</a>; Sun, Aug 2 · Bonus Tracks · <a href="#set-lo185">13:30</a>; Sun, Aug 2 · Bonus Tracks · <a href="#set-lo189">18:00</a></span></li>
-      <li><span class="act">DJ Trixie Mattel</span> <span class="slots">Sat, Aug 1 · Airbnb Stage · <a href="#set-lo132">21:15</a></span></li>
-      <li><span class="act">Dombresky</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo156">16:15</a></span></li>
-      <li><span class="act">Duke Dumont</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo157">17:35</a></span></li>
-      <li><span class="act">Easy Honey</span> <span class="slots">Sun, Aug 2 · Tito&#39;s Stage · <a href="#set-lo160">12:45</a></span></li>
-      <li><span class="act">Ecca Vandal</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo32">14:50</a></span></li>
-      <li><span class="act">Eli Brown</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo158">18:50</a></span></li>
-      <li><span class="act">Elizabeth Nichols</span> <span class="slots">Thu, Jul 30 · BMI Stage · <a href="#set-lo40">15:20</a></span></li>
-      <li><span class="act">Ella Boh</span> <span class="slots">Fri, Jul 31 · BMI Stage · <a href="#set-lo90">14:10</a></span></li>
-      <li><span class="act">Ella Red</span> <span class="slots">Fri, Jul 31 · BMI Stage · <a href="#set-lo93">17:40</a></span></li>
-      <li><span class="act">Emi Grace</span> <span class="slots">Fri, Jul 31 · BMI Stage · <a href="#set-lo91">15:20</a></span></li>
-      <li><span class="act">Empire of the Sun</span> <span class="slots">Thu, Jul 30 · Bud Light Stage · <a href="#set-lo9">18:30</a></span></li>
-      <li><span class="act">Ethel Cain</span> <span class="slots">Sat, Aug 1 · Bud Light Stage · <a href="#set-lo112">19:00</a></span></li>
-      <li><span class="act">Evening Elephants</span> <span class="slots">Thu, Jul 30 · BMI Stage · <a href="#set-lo43">18:50</a></span></li>
-      <li><span class="act">Faouzia</span> <span class="slots">Thu, Jul 30 · Tito&#39;s Stage · <a href="#set-lo19">12:15</a></span></li>
-      <li><span class="act">Finn Wolfhard</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo84">16:00</a></span></li>
-      <li><span class="act">Flor Bromley</span> <span class="slots">Sun, Aug 2 · Kidzapalooza · <a href="#set-lo191">12:00</a></span></li>
-      <li><span class="act">Freddie Gibbs</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo88">21:15</a></span></li>
-      <li><span class="act">Frost Children</span> <span class="slots">Sat, Aug 1 · Tito&#39;s Stage · <a href="#set-lo122">18:15</a></span></li>
-      <li><span class="act">Geese</span> <span class="slots">Sat, Aug 1 · Allianz Stage · <a href="#set-lo126">19:30</a></span></li>
-      <li><span class="act">Goldie Boutilier</span> <span class="slots">Sat, Aug 1 · Tito&#39;s Stage · <a href="#set-lo120">15:30</a></span></li>
-      <li><span class="act">Haute &amp; Freddy</span> <span class="slots">Thu, Jul 30 · T-Mobile Stage · <a href="#set-lo2">14:30</a></span></li>
-      <li><span class="act">High Vis</span> <span class="slots">Fri, Jul 31 · Bud Light Stage · <a href="#set-lo57">13:15</a></span></li>
-      <li><span class="act">Horsegiirl</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo87">19:55</a></span></li>
-      <li><span class="act">Hot Mulligan</span> <span class="slots">Sun, Aug 2 · Tito&#39;s Stage · <a href="#set-lo163">18:00</a></span></li>
-      <li><span class="act">i-dle</span> <span class="slots">Fri, Jul 31 · T-Mobile Stage · <a href="#set-lo54">14:40</a></span></li>
-      <li><span class="act">INJI</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo174">16:00</a></span></li>
-      <li><span class="act">INK</span> <span class="slots">Sat, Aug 1 · BMI Stage · <a href="#set-lo133">15:50</a></span></li>
-      <li><span class="act">Ivri</span> <span class="slots">Fri, Jul 31 · BMI Stage · <a href="#set-lo92">16:30</a></span></li>
-      <li><span class="act">Jackie Hollander</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo153">12:45</a></span></li>
-      <li><span class="act">JADE</span> <span class="slots">Sun, Aug 2 · Allianz Stage · <a href="#set-lo168">17:45</a></span></li>
-      <li><span class="act">Jae Stephens</span> <span class="slots">Sat, Aug 1 · BMI Stage · <a href="#set-lo135">18:10</a></span></li>
-      <li><span class="act">Jazzy Ash</span> <span class="slots">Thu, Jul 30 · Kidzapalooza · <a href="#set-lo52">17:15</a>; Fri, Jul 31 · Kidzapalooza · <a href="#set-lo104">15:00</a></span></li>
-      <li><span class="act">Jennie</span> <span class="slots">Sat, Aug 1 · Bud Light Stage · <a href="#set-lo113">20:55</a></span></li>
-      <li><span class="act">John Summit</span> <span class="slots">Thu, Jul 30 · Bud Light Stage · <a href="#set-lo10">20:30</a></span></li>
-      <li><span class="act">John Walt Foundation: Chicago&#39;s Got Next</span> <span class="slots">Sun, Aug 2 · Bonus Tracks · <a href="#set-lo188">17:00</a></span></li>
-      <li><span class="act">Julia Wolf</span> <span class="slots">Fri, Jul 31 · Tito&#39;s Stage · <a href="#set-lo71">14:00</a></span></li>
-      <li><span class="act">Justine Skye</span> <span class="slots">Sun, Aug 2 · BMI Stage · <a href="#set-lo182">16:30</a></span></li>
-      <li><span class="act">Kettama</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo17">19:00</a></span></li>
-      <li><span class="act">Khamari</span> <span class="slots">Sat, Aug 1 · Allianz Stage · <a href="#set-lo124">16:20</a></span></li>
-      <li><span class="act">Kim Theory</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo29">12:00</a></span></li>
-      <li><span class="act">Kingfishr</span> <span class="slots">Thu, Jul 30 · Tito&#39;s Stage · <a href="#set-lo20">13:45</a></span></li>
-      <li><span class="act">KLO</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo11">12:00</a></span></li>
-      <li><span class="act">Know Good</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo12">12:45</a></span></li>
-      <li><span class="act">kwn</span> <span class="slots">Sat, Aug 1 · Airbnb Stage · <a href="#set-lo130">18:45</a></span></li>
-      <li><span class="act">Leon Thomas</span> <span class="slots">Sat, Aug 1 · T-Mobile Stage · <a href="#set-lo107">17:00</a></span></li>
-      <li><span class="act">Little Simz</span> <span class="slots">Thu, Jul 30 · Tito&#39;s Stage · <a href="#set-lo22">17:45</a></span></li>
-      <li><span class="act">Loathe</span> <span class="slots">Fri, Jul 31 · Tito&#39;s Stage · <a href="#set-lo73">17:30</a></span></li>
-      <li><span class="act">Lorde</span> <span class="slots">Thu, Jul 30 · T-Mobile Stage · <a href="#set-lo5">20:30</a></span></li>
-      <li><span class="act">Los Retros</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo175">17:15</a></span></li>
-      <li><span class="act">Love Spells</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo82">13:50</a></span></li>
-      <li><span class="act">Lucky Diaz</span> <span class="slots">Sun, Aug 2 · Kidzapalooza · <a href="#set-lo192">13:30</a></span></li>
-      <li><span class="act">LYNY</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo64">13:45</a></span></li>
-      <li><span class="act">Major Lazer</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo69">20:20</a></span></li>
-      <li><span class="act">Marlon Funaki</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo31">13:50</a></span></li>
-      <li><span class="act">Max Styler</span> <span class="slots">Sat, Aug 1 · Perry&#39;s Stage · <a href="#set-lo117">17:55</a></span></li>
-      <li><span class="act">Mega Ran</span> <span class="slots">Sun, Aug 2 · Kidzapalooza · <a href="#set-lo195">17:15</a></span></li>
-      <li><span class="act">Miss Tutti &amp; The Fruity Band</span> <span class="slots">Thu, Jul 30 · Kidzapalooza · <a href="#set-lo51">15:00</a>; Fri, Jul 31 · Kidzapalooza · <a href="#set-lo102">12:00</a></span></li>
-      <li><span class="act">Mister G</span> <span class="slots">Thu, Jul 30 · Kidzapalooza · <a href="#set-lo49">12:00</a>; Fri, Jul 31 · Kidzapalooza · <a href="#set-lo103">13:30</a></span></li>
-      <li><span class="act">Momma</span> <span class="slots">Sat, Aug 1 · Tito&#39;s Stage · <a href="#set-lo121">16:30</a></span></li>
-      <li><span class="act">Monaleo</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo176">18:30</a></span></li>
-      <li><span class="act">Mother Mother</span> <span class="slots">Fri, Jul 31 · Tito&#39;s Stage · <a href="#set-lo72">15:30</a></span></li>
-      <li><span class="act">MPH</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo14">15:00</a></span></li>
-      <li><span class="act">MUNA</span> <span class="slots">Sun, Aug 2 · T-Mobile Stage · <a href="#set-lo144">16:45</a></span></li>
-      <li><span class="act">Mustard</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo68">18:50</a></span></li>
-      <li><span class="act">Nettspend</span> <span class="slots">Fri, Jul 31 · Tito&#39;s Stage · <a href="#set-lo74">19:30</a></span></li>
-      <li><span class="act">New Constellations</span> <span class="slots">Sun, Aug 2 · T-Mobile Stage · <a href="#set-lo142">13:15</a></span></li>
-      <li><span class="act">Ninajirachi</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo33">16:00</a></span></li>
-      <li><span class="act">Not For Radio</span> <span class="slots">Fri, Jul 31 · Allianz Stage · <a href="#set-lo79">19:30</a></span></li>
-      <li><span class="act">Notion</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo66">16:15</a></span></li>
-      <li><span class="act">Okamoto Sisters Self-Care Set</span> <span class="slots">Thu, Jul 30 · Bonus Tracks · <a href="#set-lo45">15:00</a></span></li>
-      <li><span class="act">Oklou</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo86">18:45</a></span></li>
-      <li><span class="act">Olivia Dean</span> <span class="slots">Sat, Aug 1 · T-Mobile Stage · <a href="#set-lo109">20:30</a></span></li>
-      <li><span class="act">Omnom</span> <span class="slots">Sat, Aug 1 · Perry&#39;s Stage · <a href="#set-lo114">15:30</a></span></li>
-      <li><span class="act">Paris Paloma</span> <span class="slots">Thu, Jul 30 · Tito&#39;s Stage · <a href="#set-lo21">15:45</a></span></li>
-      <li><span class="act">partyof2</span> <span class="slots">Fri, Jul 31 · T-Mobile Stage · <a href="#set-lo53">12:55</a></span></li>
-      <li><span class="act">Pearly Drops</span> <span class="slots">Thu, Jul 30 · Allianz Stage · <a href="#set-lo24">12:00</a></span></li>
-      <li><span class="act">Penelope Road</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo30">12:50</a></span></li>
-      <li><span class="act">Porch Light</span> <span class="slots">Sun, Aug 2 · BMI Stage · <a href="#set-lo183">17:40</a></span></li>
-      <li><span class="act">Q Brothers</span> <span class="slots">Sat, Aug 1 · Kidzapalooza · <a href="#set-lo141">17:15</a>; Sun, Aug 2 · Kidzapalooza · <a href="#set-lo193">15:00</a></span></li>
-      <li><span class="act">Quadeca</span> <span class="slots">Sat, Aug 1 · Airbnb Stage · <a href="#set-lo128">16:30</a></span></li>
-      <li><span class="act">Riordan</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo155">15:00</a></span></li>
-      <li><span class="act">RØZ</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo65">15:00</a></span></li>
-      <li><span class="act">Ryman</span> <span class="slots">Sat, Aug 1 · BMI Stage · <a href="#set-lo136">19:20</a></span></li>
-      <li><span class="act">SB19</span> <span class="slots">Thu, Jul 30 · Allianz Stage · <a href="#set-lo26">15:30</a></span></li>
-      <li><span class="act">School of Rock</span> <span class="slots">Thu, Jul 30 · Kidzapalooza · <a href="#set-lo50">13:30</a>; Fri, Jul 31 · Kidzapalooza · <a href="#set-lo105">17:15</a></span></li>
-      <li><span class="act">Shout Section ft. Tatum Langley</span> <span class="slots">Sun, Aug 2 · Bonus Tracks · <a href="#set-lo190">19:00</a></span></li>
-      <li><span class="act">Sidepiece</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo67">17:40</a></span></li>
-      <li><span class="act">Sienna Spiro</span> <span class="slots">Sat, Aug 1 · Airbnb Stage · <a href="#set-lo129">17:30</a></span></li>
-      <li><span class="act">Simon Grossmann</span> <span class="slots">Thu, Jul 30 · BMI Stage · <a href="#set-lo39">14:10</a></span></li>
-      <li><span class="act">Skye Newman</span> <span class="slots">Fri, Jul 31 · Allianz Stage · <a href="#set-lo77">15:40</a></span></li>
-      <li><span class="act">Slayyyter</span> <span class="slots">Fri, Jul 31 · Bud Light Stage · <a href="#set-lo58">14:45</a></span></li>
-      <li><span class="act">Slayyyter with Davis Burleson</span> <span class="slots">Fri, Jul 31 · Bonus Tracks · <a href="#set-lo99">17:15</a></span></li>
-      <li><span class="act">Snacktime</span> <span class="slots">Fri, Jul 31 · Bonus Tracks · <a href="#set-lo101">18:45</a>; Sun, Aug 2 · BMI Stage · <a href="#set-lo179">13:00</a></span></li>
-      <li><span class="act">Snow Strippers</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo36">19:45</a></span></li>
-      <li><span class="act">sombr</span> <span class="slots">Thu, Jul 30 · T-Mobile Stage · <a href="#set-lo4">18:30</a></span></li>
-      <li><span class="act">sombr x Davis Burleson</span> <span class="slots">Fri, Jul 31 · Bonus Tracks · <a href="#set-lo97">15:15</a></span></li>
-      <li><span class="act">Spacey Jane</span> <span class="slots">Sat, Aug 1 · Allianz Stage · <a href="#set-lo125">17:45</a></span></li>
-      <li><span class="act">Special Guest: The Happiness Club</span> <span class="slots">Sat, Aug 1 · Kidzapalooza · <a href="#set-lo140">16:00</a>; Sun, Aug 2 · Kidzapalooza · <a href="#set-lo194">16:00</a></span></li>
-      <li><span class="act">Squirrel Flower</span> <span class="slots">Sun, Aug 2 · Allianz Stage · <a href="#set-lo165">12:30</a></span></li>
-      <li><span class="act">Stella Lefty</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo177">19:45</a></span></li>
-      <li><span class="act">Stella Lefty with Davis Burleson</span> <span class="slots">Sun, Aug 2 · Bonus Tracks · <a href="#set-lo186">15:15</a></span></li>
-      <li><span class="act">Suki Waterhouse</span> <span class="slots">Fri, Jul 31 · Allianz Stage · <a href="#set-lo78">17:20</a></span></li>
-      <li><span class="act">Sunshine Benzi</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo170">12:00</a></span></li>
-      <li><span class="act">Surfing For Daisy</span> <span class="slots">Sun, Aug 2 · BMI Stage · <a href="#set-lo180">14:10</a></span></li>
-      <li><span class="act">Tate McRae</span> <span class="slots">Sun, Aug 2 · T-Mobile Stage · <a href="#set-lo146">20:45</a></span></li>
-      <li><span class="act">The Army, The Navy</span> <span class="slots">Fri, Jul 31 · Allianz Stage · <a href="#set-lo75">12:10</a></span></li>
-      <li><span class="act">The Bends</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo171">12:50</a></span></li>
-      <li><span class="act">The Braymores</span> <span class="slots">Thu, Jul 30 · BMI Stage · <a href="#set-lo38">13:00</a></span></li>
-      <li><span class="act">The Chainsmokers</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo159">20:30</a></span></li>
-      <li><span class="act">The Neighbourhood</span> <span class="slots">Sat, Aug 1 · T-Mobile Stage · <a href="#set-lo108">18:30</a></span></li>
-      <li><span class="act">The Second City: Lolla Made Us Do It</span> <span class="slots">Sat, Aug 1 · Bonus Tracks · <a href="#set-lo137">15:15</a></span></li>
-      <li><span class="act">The Smashing Pumpkins</span> <span class="slots">Fri, Jul 31 · Bud Light Stage · <a href="#set-lo61">20:30</a></span></li>
-      <li><span class="act">The Story So Far</span> <span class="slots">Fri, Jul 31 · Bud Light Stage · <a href="#set-lo59">16:30</a></span></li>
-      <li><span class="act">The Try Guys Eat The Menu</span> <span class="slots">Sat, Aug 1 · Bonus Tracks · <a href="#set-lo139">18:45</a></span></li>
-      <li><span class="act">The xx</span> <span class="slots">Sun, Aug 2 · Bud Light Stage · <a href="#set-lo151">20:45</a></span></li>
-      <li><span class="act">Track Star Live: Jack Coyne ft. Penelope Road</span> <span class="slots">Thu, Jul 30 · Bonus Tracks · <a href="#set-lo48">18:30</a></span></li>
-      <li><span class="act">Turnstile</span> <span class="slots">Sun, Aug 2 · Bud Light Stage · <a href="#set-lo150">19:00</a></span></li>
-      <li><span class="act">Valencia Grace</span> <span class="slots">Fri, Jul 31 · BMI Stage · <a href="#set-lo89">13:00</a></span></li>
-      <li><span class="act">Vandelux</span> <span class="slots">Sun, Aug 2 · Tito&#39;s Stage · <a href="#set-lo164">20:00</a></span></li>
-      <li><span class="act">Viagra Boys</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo37">21:00</a></span></li>
-      <li><span class="act">Water From Your Eyes</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo173">14:50</a></span></li>
-      <li><span class="act">Waylon Wyatt</span> <span class="slots">Sun, Aug 2 · Bud Light Stage · <a href="#set-lo148">15:00</a></span></li>
-      <li><span class="act">Westend</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo154">13:45</a></span></li>
-      <li><span class="act">Wet Leg</span> <span class="slots">Thu, Jul 30 · Allianz Stage · <a href="#set-lo28">19:30</a></span></li>
-      <li><span class="act">Whatmore</span> <span class="slots">Sun, Aug 2 · Bud Light Stage · <a href="#set-lo147">13:30</a></span></li>
-      <li><span class="act">Whethan</span> <span class="slots">Sat, Aug 1 · Perry&#39;s Stage · <a href="#set-lo116">17:00</a></span></li>
-      <li><span class="act">Whitney Whitney</span> <span class="slots">Fri, Jul 31 · BMI Stage · <a href="#set-lo94">18:50</a></span></li>
-      <li><span class="act">Will Swinton</span> <span class="slots">Sun, Aug 2 · BMI Stage · <a href="#set-lo184">18:50</a></span></li>
-      <li><span class="act">Wolf Alice</span> <span class="slots">Sat, Aug 1 · Bud Light Stage · <a href="#set-lo110">16:00</a></span></li>
-      <li><span class="act">Worship</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo18">20:30</a></span></li>
-      <li><span class="act">Wunderhorse</span> <span class="slots">Sun, Aug 2 · Tito&#39;s Stage · <a href="#set-lo162">16:00</a></span></li>
-      <li><span class="act">YOASOBI</span> <span class="slots">Sun, Aug 2 · Bud Light Stage · <a href="#set-lo149">17:00</a></span></li>
-      <li><span class="act">Yungblud</span> <span class="slots">Fri, Jul 31 · Bud Light Stage · <a href="#set-lo60">18:30</a></span></li>
-      <li><span class="act">Yungblud with Mack</span> <span class="slots">Fri, Jul 31 · Bonus Tracks · <a href="#set-lo98">16:15</a></span></li>
-      <li><span class="act">Zack Martino</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo152">12:00</a></span></li>
-      <li><span class="act">Zara Larsson</span> <span class="slots">Fri, Jul 31 · T-Mobile Stage · <a href="#set-lo55">18:20</a></span></li>
-      <li><span class="act">Zara Larsson x Davis Burleson</span> <span class="slots">Fri, Jul 31 · Bonus Tracks · <a href="#set-lo95">13:00</a></span></li>
     </ul>
+    <details class="more">
+      <summary>Show all 181 artists</summary>
+      <ul class="lineup">
+        <li><span class="act">Between Friends</span> <span class="slots">Thu, Jul 30 · Bud Light Stage · <a href="#set-lo7">14:45</a></span></li>
+        <li><span class="act">Bixby</span> <span class="slots">Thu, Jul 30 · Bud Light Stage · <a href="#set-lo6">13:00</a></span></li>
+        <li><span class="act">Blood Orange</span> <span class="slots">Thu, Jul 30 · Bud Light Stage · <a href="#set-lo8">16:45</a></span></li>
+        <li><span class="act">Boris Brejcha</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo16">17:45</a></span></li>
+        <li><span class="act">Boys Noize</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo15">16:15</a></span></li>
+        <li><span class="act">Bradeazy</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo62">12:00</a></span></li>
+        <li><span class="act">Calder Allen</span> <span class="slots">Sat, Aug 1 · BMI Stage · <a href="#set-lo134">17:00</a></span></li>
+        <li><span class="act">Cameron Whitcomb</span> <span class="slots">Sat, Aug 1 · Airbnb Stage · <a href="#set-lo131">20:00</a></span></li>
+        <li><span class="act">Case Oats</span> <span class="slots">Sun, Aug 2 · BMI Stage · <a href="#set-lo181">15:20</a></span></li>
+        <li><span class="act">Chalk</span> <span class="slots">Thu, Jul 30 · BMI Stage · <a href="#set-lo42">17:40</a></span></li>
+        <li><span class="act">Charli xcx</span> <span class="slots">Fri, Jul 31 · T-Mobile Stage · <a href="#set-lo56">20:40</a></span></li>
+        <li><span class="act">Chicago Made</span> <span class="slots">Fri, Jul 31 · Tito&#39;s Stage · <a href="#set-lo70">12:30</a></span></li>
+        <li><span class="act">Claire Rosinkranz</span> <span class="slots">Fri, Jul 31 · Allianz Stage · <a href="#set-lo76">13:40</a></span></li>
+        <li><span class="act">Clipse</span> <span class="slots">Sat, Aug 1 · Bud Light Stage · <a href="#set-lo111">17:15</a></span></li>
+        <li><span class="act">CMAT</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo35">18:30</a></span></li>
+        <li><span class="act">CORTIS</span> <span class="slots">Sat, Aug 1 · T-Mobile Stage · <a href="#set-lo106">15:40</a></span></li>
+        <li><span class="act">Cruz Beckham and The Breakers</span> <span class="slots">Sun, Aug 2 · Tito&#39;s Stage · <a href="#set-lo161">14:15</a></span></li>
+        <li><span class="act">Cruz Beckham x Mack</span> <span class="slots">Sun, Aug 2 · Bonus Tracks · <a href="#set-lo187">15:30</a></span></li>
+        <li><span class="act">Day We Ran</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo81">12:50</a></span></li>
+        <li><span class="act">Destin Conrad</span> <span class="slots">Sun, Aug 2 · Allianz Stage · <a href="#set-lo166">14:00</a></span></li>
+        <li><span class="act">Devault</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo13">13:45</a>; Thu, Jul 30 · Tito&#39;s Stage · <a href="#set-lo23">19:30</a></span></li>
+        <li><span class="act">Die Spitz</span> <span class="slots">Sat, Aug 1 · Airbnb Stage · <a href="#set-lo127">15:30</a></span></li>
+        <li><span class="act">Disco Lines</span> <span class="slots">Sat, Aug 1 · Perry&#39;s Stage · <a href="#set-lo119">20:30</a></span></li>
+        <li><span class="act">DJ Prince Lex</span> <span class="slots">Thu, Jul 30 · Bonus Tracks · <a href="#set-lo44">13:30</a>; Thu, Jul 30 · Bonus Tracks · <a href="#set-lo46">16:30</a>; Fri, Jul 31 · Bonus Tracks · <a href="#set-lo96">14:00</a>; Fri, Jul 31 · Bonus Tracks · <a href="#set-lo100">17:45</a>; Sat, Aug 1 · Bonus Tracks · <a href="#set-lo138">16:45</a>; Sun, Aug 2 · Bonus Tracks · <a href="#set-lo185">13:30</a>; Sun, Aug 2 · Bonus Tracks · <a href="#set-lo189">18:00</a></span></li>
+        <li><span class="act">DJ Trixie Mattel</span> <span class="slots">Sat, Aug 1 · Airbnb Stage · <a href="#set-lo132">21:15</a></span></li>
+        <li><span class="act">Dombresky</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo156">16:15</a></span></li>
+        <li><span class="act">Duke Dumont</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo157">17:35</a></span></li>
+        <li><span class="act">Easy Honey</span> <span class="slots">Sun, Aug 2 · Tito&#39;s Stage · <a href="#set-lo160">12:45</a></span></li>
+        <li><span class="act">Ecca Vandal</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo32">14:50</a></span></li>
+        <li><span class="act">Eli Brown</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo158">18:50</a></span></li>
+        <li><span class="act">Elizabeth Nichols</span> <span class="slots">Thu, Jul 30 · BMI Stage · <a href="#set-lo40">15:20</a></span></li>
+        <li><span class="act">Ella Boh</span> <span class="slots">Fri, Jul 31 · BMI Stage · <a href="#set-lo90">14:10</a></span></li>
+        <li><span class="act">Ella Red</span> <span class="slots">Fri, Jul 31 · BMI Stage · <a href="#set-lo93">17:40</a></span></li>
+        <li><span class="act">Emi Grace</span> <span class="slots">Fri, Jul 31 · BMI Stage · <a href="#set-lo91">15:20</a></span></li>
+        <li><span class="act">Empire of the Sun</span> <span class="slots">Thu, Jul 30 · Bud Light Stage · <a href="#set-lo9">18:30</a></span></li>
+        <li><span class="act">Ethel Cain</span> <span class="slots">Sat, Aug 1 · Bud Light Stage · <a href="#set-lo112">19:00</a></span></li>
+        <li><span class="act">Evening Elephants</span> <span class="slots">Thu, Jul 30 · BMI Stage · <a href="#set-lo43">18:50</a></span></li>
+        <li><span class="act">Faouzia</span> <span class="slots">Thu, Jul 30 · Tito&#39;s Stage · <a href="#set-lo19">12:15</a></span></li>
+        <li><span class="act">Finn Wolfhard</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo84">16:00</a></span></li>
+        <li><span class="act">Flor Bromley</span> <span class="slots">Sun, Aug 2 · Kidzapalooza · <a href="#set-lo191">12:00</a></span></li>
+        <li><span class="act">Freddie Gibbs</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo88">21:15</a></span></li>
+        <li><span class="act">Frost Children</span> <span class="slots">Sat, Aug 1 · Tito&#39;s Stage · <a href="#set-lo122">18:15</a></span></li>
+        <li><span class="act">Geese</span> <span class="slots">Sat, Aug 1 · Allianz Stage · <a href="#set-lo126">19:30</a></span></li>
+        <li><span class="act">Goldie Boutilier</span> <span class="slots">Sat, Aug 1 · Tito&#39;s Stage · <a href="#set-lo120">15:30</a></span></li>
+        <li><span class="act">Haute &amp; Freddy</span> <span class="slots">Thu, Jul 30 · T-Mobile Stage · <a href="#set-lo2">14:30</a></span></li>
+        <li><span class="act">High Vis</span> <span class="slots">Fri, Jul 31 · Bud Light Stage · <a href="#set-lo57">13:15</a></span></li>
+        <li><span class="act">Horsegiirl</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo87">19:55</a></span></li>
+        <li><span class="act">Hot Mulligan</span> <span class="slots">Sun, Aug 2 · Tito&#39;s Stage · <a href="#set-lo163">18:00</a></span></li>
+        <li><span class="act">i-dle</span> <span class="slots">Fri, Jul 31 · T-Mobile Stage · <a href="#set-lo54">14:40</a></span></li>
+        <li><span class="act">INJI</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo174">16:00</a></span></li>
+        <li><span class="act">INK</span> <span class="slots">Sat, Aug 1 · BMI Stage · <a href="#set-lo133">15:50</a></span></li>
+        <li><span class="act">Ivri</span> <span class="slots">Fri, Jul 31 · BMI Stage · <a href="#set-lo92">16:30</a></span></li>
+        <li><span class="act">Jackie Hollander</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo153">12:45</a></span></li>
+        <li><span class="act">JADE</span> <span class="slots">Sun, Aug 2 · Allianz Stage · <a href="#set-lo168">17:45</a></span></li>
+        <li><span class="act">Jae Stephens</span> <span class="slots">Sat, Aug 1 · BMI Stage · <a href="#set-lo135">18:10</a></span></li>
+        <li><span class="act">Jazzy Ash</span> <span class="slots">Thu, Jul 30 · Kidzapalooza · <a href="#set-lo52">17:15</a>; Fri, Jul 31 · Kidzapalooza · <a href="#set-lo104">15:00</a></span></li>
+        <li><span class="act">Jennie</span> <span class="slots">Sat, Aug 1 · Bud Light Stage · <a href="#set-lo113">20:55</a></span></li>
+        <li><span class="act">John Summit</span> <span class="slots">Thu, Jul 30 · Bud Light Stage · <a href="#set-lo10">20:30</a></span></li>
+        <li><span class="act">John Walt Foundation: Chicago&#39;s Got Next</span> <span class="slots">Sun, Aug 2 · Bonus Tracks · <a href="#set-lo188">17:00</a></span></li>
+        <li><span class="act">Julia Wolf</span> <span class="slots">Fri, Jul 31 · Tito&#39;s Stage · <a href="#set-lo71">14:00</a></span></li>
+        <li><span class="act">Justine Skye</span> <span class="slots">Sun, Aug 2 · BMI Stage · <a href="#set-lo182">16:30</a></span></li>
+        <li><span class="act">Kettama</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo17">19:00</a></span></li>
+        <li><span class="act">Khamari</span> <span class="slots">Sat, Aug 1 · Allianz Stage · <a href="#set-lo124">16:20</a></span></li>
+        <li><span class="act">Kim Theory</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo29">12:00</a></span></li>
+        <li><span class="act">Kingfishr</span> <span class="slots">Thu, Jul 30 · Tito&#39;s Stage · <a href="#set-lo20">13:45</a></span></li>
+        <li><span class="act">KLO</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo11">12:00</a></span></li>
+        <li><span class="act">Know Good</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo12">12:45</a></span></li>
+        <li><span class="act">kwn</span> <span class="slots">Sat, Aug 1 · Airbnb Stage · <a href="#set-lo130">18:45</a></span></li>
+        <li><span class="act">Leon Thomas</span> <span class="slots">Sat, Aug 1 · T-Mobile Stage · <a href="#set-lo107">17:00</a></span></li>
+        <li><span class="act">Little Simz</span> <span class="slots">Thu, Jul 30 · Tito&#39;s Stage · <a href="#set-lo22">17:45</a></span></li>
+        <li><span class="act">Loathe</span> <span class="slots">Fri, Jul 31 · Tito&#39;s Stage · <a href="#set-lo73">17:30</a></span></li>
+        <li><span class="act">Lorde</span> <span class="slots">Thu, Jul 30 · T-Mobile Stage · <a href="#set-lo5">20:30</a></span></li>
+        <li><span class="act">Los Retros</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo175">17:15</a></span></li>
+        <li><span class="act">Love Spells</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo82">13:50</a></span></li>
+        <li><span class="act">Lucky Diaz</span> <span class="slots">Sun, Aug 2 · Kidzapalooza · <a href="#set-lo192">13:30</a></span></li>
+        <li><span class="act">LYNY</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo64">13:45</a></span></li>
+        <li><span class="act">Major Lazer</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo69">20:20</a></span></li>
+        <li><span class="act">Marlon Funaki</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo31">13:50</a></span></li>
+        <li><span class="act">Max Styler</span> <span class="slots">Sat, Aug 1 · Perry&#39;s Stage · <a href="#set-lo117">17:55</a></span></li>
+        <li><span class="act">Mega Ran</span> <span class="slots">Sun, Aug 2 · Kidzapalooza · <a href="#set-lo195">17:15</a></span></li>
+        <li><span class="act">Miss Tutti &amp; The Fruity Band</span> <span class="slots">Thu, Jul 30 · Kidzapalooza · <a href="#set-lo51">15:00</a>; Fri, Jul 31 · Kidzapalooza · <a href="#set-lo102">12:00</a></span></li>
+        <li><span class="act">Mister G</span> <span class="slots">Thu, Jul 30 · Kidzapalooza · <a href="#set-lo49">12:00</a>; Fri, Jul 31 · Kidzapalooza · <a href="#set-lo103">13:30</a></span></li>
+        <li><span class="act">Momma</span> <span class="slots">Sat, Aug 1 · Tito&#39;s Stage · <a href="#set-lo121">16:30</a></span></li>
+        <li><span class="act">Monaleo</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo176">18:30</a></span></li>
+        <li><span class="act">Mother Mother</span> <span class="slots">Fri, Jul 31 · Tito&#39;s Stage · <a href="#set-lo72">15:30</a></span></li>
+        <li><span class="act">MPH</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo14">15:00</a></span></li>
+        <li><span class="act">MUNA</span> <span class="slots">Sun, Aug 2 · T-Mobile Stage · <a href="#set-lo144">16:45</a></span></li>
+        <li><span class="act">Mustard</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo68">18:50</a></span></li>
+        <li><span class="act">Nettspend</span> <span class="slots">Fri, Jul 31 · Tito&#39;s Stage · <a href="#set-lo74">19:30</a></span></li>
+        <li><span class="act">New Constellations</span> <span class="slots">Sun, Aug 2 · T-Mobile Stage · <a href="#set-lo142">13:15</a></span></li>
+        <li><span class="act">Ninajirachi</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo33">16:00</a></span></li>
+        <li><span class="act">Not For Radio</span> <span class="slots">Fri, Jul 31 · Allianz Stage · <a href="#set-lo79">19:30</a></span></li>
+        <li><span class="act">Notion</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo66">16:15</a></span></li>
+        <li><span class="act">Okamoto Sisters Self-Care Set</span> <span class="slots">Thu, Jul 30 · Bonus Tracks · <a href="#set-lo45">15:00</a></span></li>
+        <li><span class="act">Oklou</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo86">18:45</a></span></li>
+        <li><span class="act">Olivia Dean</span> <span class="slots">Sat, Aug 1 · T-Mobile Stage · <a href="#set-lo109">20:30</a></span></li>
+        <li><span class="act">Omnom</span> <span class="slots">Sat, Aug 1 · Perry&#39;s Stage · <a href="#set-lo114">15:30</a></span></li>
+        <li><span class="act">Paris Paloma</span> <span class="slots">Thu, Jul 30 · Tito&#39;s Stage · <a href="#set-lo21">15:45</a></span></li>
+        <li><span class="act">partyof2</span> <span class="slots">Fri, Jul 31 · T-Mobile Stage · <a href="#set-lo53">12:55</a></span></li>
+        <li><span class="act">Pearly Drops</span> <span class="slots">Thu, Jul 30 · Allianz Stage · <a href="#set-lo24">12:00</a></span></li>
+        <li><span class="act">Penelope Road</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo30">12:50</a></span></li>
+        <li><span class="act">Porch Light</span> <span class="slots">Sun, Aug 2 · BMI Stage · <a href="#set-lo183">17:40</a></span></li>
+        <li><span class="act">Q Brothers</span> <span class="slots">Sat, Aug 1 · Kidzapalooza · <a href="#set-lo141">17:15</a>; Sun, Aug 2 · Kidzapalooza · <a href="#set-lo193">15:00</a></span></li>
+        <li><span class="act">Quadeca</span> <span class="slots">Sat, Aug 1 · Airbnb Stage · <a href="#set-lo128">16:30</a></span></li>
+        <li><span class="act">Riordan</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo155">15:00</a></span></li>
+        <li><span class="act">RØZ</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo65">15:00</a></span></li>
+        <li><span class="act">Ryman</span> <span class="slots">Sat, Aug 1 · BMI Stage · <a href="#set-lo136">19:20</a></span></li>
+        <li><span class="act">SB19</span> <span class="slots">Thu, Jul 30 · Allianz Stage · <a href="#set-lo26">15:30</a></span></li>
+        <li><span class="act">School of Rock</span> <span class="slots">Thu, Jul 30 · Kidzapalooza · <a href="#set-lo50">13:30</a>; Fri, Jul 31 · Kidzapalooza · <a href="#set-lo105">17:15</a></span></li>
+        <li><span class="act">Shout Section ft. Tatum Langley</span> <span class="slots">Sun, Aug 2 · Bonus Tracks · <a href="#set-lo190">19:00</a></span></li>
+        <li><span class="act">Sidepiece</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo67">17:40</a></span></li>
+        <li><span class="act">Sienna Spiro</span> <span class="slots">Sat, Aug 1 · Airbnb Stage · <a href="#set-lo129">17:30</a></span></li>
+        <li><span class="act">Simon Grossmann</span> <span class="slots">Thu, Jul 30 · BMI Stage · <a href="#set-lo39">14:10</a></span></li>
+        <li><span class="act">Skye Newman</span> <span class="slots">Fri, Jul 31 · Allianz Stage · <a href="#set-lo77">15:40</a></span></li>
+        <li><span class="act">Slayyyter</span> <span class="slots">Fri, Jul 31 · Bud Light Stage · <a href="#set-lo58">14:45</a></span></li>
+        <li><span class="act">Slayyyter with Davis Burleson</span> <span class="slots">Fri, Jul 31 · Bonus Tracks · <a href="#set-lo99">17:15</a></span></li>
+        <li><span class="act">Snacktime</span> <span class="slots">Fri, Jul 31 · Bonus Tracks · <a href="#set-lo101">18:45</a>; Sun, Aug 2 · BMI Stage · <a href="#set-lo179">13:00</a></span></li>
+        <li><span class="act">Snow Strippers</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo36">19:45</a></span></li>
+        <li><span class="act">sombr</span> <span class="slots">Thu, Jul 30 · T-Mobile Stage · <a href="#set-lo4">18:30</a></span></li>
+        <li><span class="act">sombr x Davis Burleson</span> <span class="slots">Fri, Jul 31 · Bonus Tracks · <a href="#set-lo97">15:15</a></span></li>
+        <li><span class="act">Spacey Jane</span> <span class="slots">Sat, Aug 1 · Allianz Stage · <a href="#set-lo125">17:45</a></span></li>
+        <li><span class="act">Special Guest: The Happiness Club</span> <span class="slots">Sat, Aug 1 · Kidzapalooza · <a href="#set-lo140">16:00</a>; Sun, Aug 2 · Kidzapalooza · <a href="#set-lo194">16:00</a></span></li>
+        <li><span class="act">Squirrel Flower</span> <span class="slots">Sun, Aug 2 · Allianz Stage · <a href="#set-lo165">12:30</a></span></li>
+        <li><span class="act">Stella Lefty</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo177">19:45</a></span></li>
+        <li><span class="act">Stella Lefty with Davis Burleson</span> <span class="slots">Sun, Aug 2 · Bonus Tracks · <a href="#set-lo186">15:15</a></span></li>
+        <li><span class="act">Suki Waterhouse</span> <span class="slots">Fri, Jul 31 · Allianz Stage · <a href="#set-lo78">17:20</a></span></li>
+        <li><span class="act">Sunshine Benzi</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo170">12:00</a></span></li>
+        <li><span class="act">Surfing For Daisy</span> <span class="slots">Sun, Aug 2 · BMI Stage · <a href="#set-lo180">14:10</a></span></li>
+        <li><span class="act">Tate McRae</span> <span class="slots">Sun, Aug 2 · T-Mobile Stage · <a href="#set-lo146">20:45</a></span></li>
+        <li><span class="act">The Army, The Navy</span> <span class="slots">Fri, Jul 31 · Allianz Stage · <a href="#set-lo75">12:10</a></span></li>
+        <li><span class="act">The Bends</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo171">12:50</a></span></li>
+        <li><span class="act">The Braymores</span> <span class="slots">Thu, Jul 30 · BMI Stage · <a href="#set-lo38">13:00</a></span></li>
+        <li><span class="act">The Chainsmokers</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo159">20:30</a></span></li>
+        <li><span class="act">The Neighbourhood</span> <span class="slots">Sat, Aug 1 · T-Mobile Stage · <a href="#set-lo108">18:30</a></span></li>
+        <li><span class="act">The Second City: Lolla Made Us Do It</span> <span class="slots">Sat, Aug 1 · Bonus Tracks · <a href="#set-lo137">15:15</a></span></li>
+        <li><span class="act">The Smashing Pumpkins</span> <span class="slots">Fri, Jul 31 · Bud Light Stage · <a href="#set-lo61">20:30</a></span></li>
+        <li><span class="act">The Story So Far</span> <span class="slots">Fri, Jul 31 · Bud Light Stage · <a href="#set-lo59">16:30</a></span></li>
+        <li><span class="act">The Try Guys Eat The Menu</span> <span class="slots">Sat, Aug 1 · Bonus Tracks · <a href="#set-lo139">18:45</a></span></li>
+        <li><span class="act">The xx</span> <span class="slots">Sun, Aug 2 · Bud Light Stage · <a href="#set-lo151">20:45</a></span></li>
+        <li><span class="act">Track Star Live: Jack Coyne ft. Penelope Road</span> <span class="slots">Thu, Jul 30 · Bonus Tracks · <a href="#set-lo48">18:30</a></span></li>
+        <li><span class="act">Turnstile</span> <span class="slots">Sun, Aug 2 · Bud Light Stage · <a href="#set-lo150">19:00</a></span></li>
+        <li><span class="act">Valencia Grace</span> <span class="slots">Fri, Jul 31 · BMI Stage · <a href="#set-lo89">13:00</a></span></li>
+        <li><span class="act">Vandelux</span> <span class="slots">Sun, Aug 2 · Tito&#39;s Stage · <a href="#set-lo164">20:00</a></span></li>
+        <li><span class="act">Viagra Boys</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo37">21:00</a></span></li>
+        <li><span class="act">Water From Your Eyes</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo173">14:50</a></span></li>
+        <li><span class="act">Waylon Wyatt</span> <span class="slots">Sun, Aug 2 · Bud Light Stage · <a href="#set-lo148">15:00</a></span></li>
+        <li><span class="act">Westend</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo154">13:45</a></span></li>
+        <li><span class="act">Wet Leg</span> <span class="slots">Thu, Jul 30 · Allianz Stage · <a href="#set-lo28">19:30</a></span></li>
+        <li><span class="act">Whatmore</span> <span class="slots">Sun, Aug 2 · Bud Light Stage · <a href="#set-lo147">13:30</a></span></li>
+        <li><span class="act">Whethan</span> <span class="slots">Sat, Aug 1 · Perry&#39;s Stage · <a href="#set-lo116">17:00</a></span></li>
+        <li><span class="act">Whitney Whitney</span> <span class="slots">Fri, Jul 31 · BMI Stage · <a href="#set-lo94">18:50</a></span></li>
+        <li><span class="act">Will Swinton</span> <span class="slots">Sun, Aug 2 · BMI Stage · <a href="#set-lo184">18:50</a></span></li>
+        <li><span class="act">Wolf Alice</span> <span class="slots">Sat, Aug 1 · Bud Light Stage · <a href="#set-lo110">16:00</a></span></li>
+        <li><span class="act">Worship</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo18">20:30</a></span></li>
+        <li><span class="act">Wunderhorse</span> <span class="slots">Sun, Aug 2 · Tito&#39;s Stage · <a href="#set-lo162">16:00</a></span></li>
+        <li><span class="act">YOASOBI</span> <span class="slots">Sun, Aug 2 · Bud Light Stage · <a href="#set-lo149">17:00</a></span></li>
+        <li><span class="act">Yungblud</span> <span class="slots">Fri, Jul 31 · Bud Light Stage · <a href="#set-lo60">18:30</a></span></li>
+        <li><span class="act">Yungblud with Mack</span> <span class="slots">Fri, Jul 31 · Bonus Tracks · <a href="#set-lo98">16:15</a></span></li>
+        <li><span class="act">Zack Martino</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo152">12:00</a></span></li>
+        <li><span class="act">Zara Larsson</span> <span class="slots">Fri, Jul 31 · T-Mobile Stage · <a href="#set-lo55">18:20</a></span></li>
+        <li><span class="act">Zara Larsson x Davis Burleson</span> <span class="slots">Fri, Jul 31 · Bonus Tracks · <a href="#set-lo95">13:00</a></span></li>
+      </ul>
+    </details>
   </section>
 
   <section aria-labelledby="stages-h">
@@ -1497,11 +1552,17 @@
       <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
       <li><a href="/f/arc-2026/">ARC Music Festival 2026</a> — Sep 4–7, 2026</li>
       <li><a href="/f/summerfest-2026/">Summerfest 2026</a> — Jun 18–20, Jun 25–27 &amp; Jul 2–4, 2026</li>
-      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
-      <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
-      <li><a href="/f/governors-ball-2026/">Governors Ball 2026</a> — Jun 5–7, 2026</li>
-      <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
     </ul>
+    <details class="more">
+      <summary>Show 4 more</summary>
+      <ul>
+        <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
+        <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
+        <li><a href="/f/governors-ball-2026/">Governors Ball 2026</a> — Jun 5–7, 2026</li>
+        <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
+      </ul>
+    </details>
+
   </nav>
 
   <section class="sources" aria-labelledby="sources-h">

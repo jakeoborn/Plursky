@@ -68,6 +68,20 @@
   section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
+  details.more { margin:4px 0 0; }
+  details.more > summary { cursor:pointer; color:var(--ember); font-weight:600; font-size:14px; padding:10px 0; min-height:44px; display:flex; align-items:center; }
+  details.more[open] > summary { color:var(--muted); }
+  section.watch .embed { margin:16px 0 20px; }
+  section.watch .yt { position:relative; aspect-ratio:16/9; width:100%; min-height:200px; background:var(--panel); border-radius:12px; overflow:hidden; }
+  section.watch .yt iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+  /* Instagram's embed has a fixed 326px minimum. On a 320px phone that is
+     wider than the screen, so the embed scrolls inside its own box and the
+     page never scrolls sideways. */
+  section.watch .embed-ig { overflow-x:auto; max-width:100%; }
+  section.watch .embed-ig blockquote, section.watch .embed-x blockquote { margin:0; min-height:420px; background:var(--panel); border-radius:12px; padding:16px; max-width:540px; }
+  section.watch .embed-x blockquote { min-height:260px; }
+  section.watch .embed-sp iframe { display:block; border:0; border-radius:12px; min-height:352px; }
+  section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }
 </style>
 <script type="application/ld+json">
 {
@@ -607,6 +621,34 @@
       <dd>This page links the festival&#39;s own map page, which showed the 2025 map when Plursky checked it on 2026-09-24.</dd>
     </dl>
   </section>
+  <section id="watch" class="watch" aria-labelledby="watch-h">
+    <h2 id="watch-h">Watch &amp; listen</h2>
+    <p class="note">From Escape Halloween 2026's official accounts.</p>
+    <figure class="embed embed-sp">
+      <iframe src="https://open.spotify.com/embed/playlist/05UbakOey3Wx9a44Ck2Lyd" title="Escape Halloween 2026 playlist on Spotify" width="100%" height="352" loading="lazy" allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      <p class="embed-cap">Escape Halloween 2026's official playlist on Spotify · <a href="https://open.spotify.com/playlist/05UbakOey3Wx9a44Ck2Lyd" rel="noopener">View the original</a></p>
+    </figure>
+    <script>
+(function () {
+  var sec = document.getElementById('watch');
+  if (!sec) return;
+  var urls = [];
+  if (sec.querySelector('.instagram-media')) urls.push('https://www.instagram.com/embed.js');
+  if (sec.querySelector('.twitter-tweet')) urls.push('https://platform.twitter.com/widgets.js');
+  if (!urls.length) return;
+  var done = false;
+  function load() {
+    if (done) return; done = true;
+    urls.forEach(function (u) { var s = document.createElement('script'); s.async = true; s.src = u; document.body.appendChild(s); });
+  }
+  if (!('IntersectionObserver' in window)) return load();
+  var io = new IntersectionObserver(function (es) {
+    if (es.some(function (x) { return x.isIntersecting; })) { io.disconnect(); load(); }
+  }, { rootMargin: '600px 0px' });
+  io.observe(sec);
+})();
+    </script>
+  </section>
 
   <section aria-labelledby="map-h">
     <h2 id="map-h">Escape Halloween 2026 map</h2>
@@ -639,90 +681,95 @@
       <li><span class="act">Cascada</span> <span class="slots">Fri, Oct 30</span></li>
       <li><span class="act">Cat &amp; Maomi</span> <span class="slots">Sat, Oct 31</span></li>
       <li><span class="act">Cera Khin</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Champion</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">Chrysalis</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">Clara Cuvé</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Cloonee</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Comadoses</span></li>
-      <li><span class="act">Coone B2B DJ Isaac</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Cyclops</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Dabin</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">Darren Styles</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Death Simulator</span></li>
-      <li><span class="act">Desa Deca</span></li>
-      <li><span class="act">Dimitri Vegas &amp; Like Mike</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Disco Lines</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">Discovery Project</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">DJ Heartstring</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">DJ Tennis</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Dr. Fresch</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">ero808</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">Excision</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Frontliner (Journey Set)</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Funk Assault</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">Galantis</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">Gammer</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Getter</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">HerShe</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">HIWATER</span></li>
-      <li><span class="act">HoneyPacq</span></li>
-      <li><span class="act">HUA</span></li>
-      <li><span class="act">Ian Asher</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">Ice Cube</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">Indira Paganotto</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">Jamie Jones B2B Franky Rizardo</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Jon Casey</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">Joseph Capriati B2B Sosa</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">JOYRYDE (Sunset Set)</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">JSMN</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">k?d presents: Kill The Kid</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Kai Wachi</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Kana Hishiya</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Kimmo</span></li>
-      <li><span class="act">Kloud</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Know Good</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">KREAM</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Lady Faith B2B LNY TNZ</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Landopolo</span></li>
-      <li><span class="act">Level Up</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Liquid Stranger</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">LUMI</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">Maddix</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">MALUGI</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">Marie Nyx</span></li>
-      <li><span class="act">Mark Lizaola</span></li>
-      <li><span class="act">Mish</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">MODAL NODES</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Monic</span></li>
-      <li><span class="act">Morelia</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">MORTEN</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Nervo</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Nina J</span></li>
-      <li><span class="act">Nina Kraviz</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">OMNOM</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">PEDROZ</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">Pixie Dust</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Richard Vission</span></li>
-      <li><span class="act">Richie Hawtin</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">Rommii</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">RoRoll</span></li>
-      <li><span class="act">San Pacho</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">Sedef Adasï</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">SEUNG</span></li>
-      <li><span class="act">SHAKING</span></li>
-      <li><span class="act">Showtek (Hardstyle Set)</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Silvie Loto</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Spency Be</span></li>
-      <li><span class="act">Steve Aoki</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">TELYKAST</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">Trancemaster Krause</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Trym</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">TYKNI</span></li>
-      <li><span class="act">VNSSA B2B ????</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">Yanamaste</span> <span class="slots">Sat, Oct 31</span></li>
-      <li><span class="act">YDG</span> <span class="slots">Fri, Oct 30</span></li>
-      <li><span class="act">Zedd</span> <span class="slots">Sat, Oct 31</span></li>
     </ul>
+    <details class="more">
+      <summary>Show all 103 artists</summary>
+      <ul class="lineup">
+        <li><span class="act">Champion</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">Chrysalis</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">Clara Cuvé</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Cloonee</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Comadoses</span></li>
+        <li><span class="act">Coone B2B DJ Isaac</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Cyclops</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Dabin</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">Darren Styles</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Death Simulator</span></li>
+        <li><span class="act">Desa Deca</span></li>
+        <li><span class="act">Dimitri Vegas &amp; Like Mike</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Disco Lines</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">Discovery Project</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">DJ Heartstring</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">DJ Tennis</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Dr. Fresch</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">ero808</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">Excision</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Frontliner (Journey Set)</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Funk Assault</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">Galantis</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">Gammer</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Getter</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">HerShe</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">HIWATER</span></li>
+        <li><span class="act">HoneyPacq</span></li>
+        <li><span class="act">HUA</span></li>
+        <li><span class="act">Ian Asher</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">Ice Cube</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">Indira Paganotto</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">Jamie Jones B2B Franky Rizardo</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Jon Casey</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">Joseph Capriati B2B Sosa</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">JOYRYDE (Sunset Set)</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">JSMN</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">k?d presents: Kill The Kid</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Kai Wachi</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Kana Hishiya</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Kimmo</span></li>
+        <li><span class="act">Kloud</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Know Good</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">KREAM</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Lady Faith B2B LNY TNZ</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Landopolo</span></li>
+        <li><span class="act">Level Up</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Liquid Stranger</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">LUMI</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">Maddix</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">MALUGI</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">Marie Nyx</span></li>
+        <li><span class="act">Mark Lizaola</span></li>
+        <li><span class="act">Mish</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">MODAL NODES</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Monic</span></li>
+        <li><span class="act">Morelia</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">MORTEN</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Nervo</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Nina J</span></li>
+        <li><span class="act">Nina Kraviz</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">OMNOM</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">PEDROZ</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">Pixie Dust</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Richard Vission</span></li>
+        <li><span class="act">Richie Hawtin</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">Rommii</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">RoRoll</span></li>
+        <li><span class="act">San Pacho</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">Sedef Adasï</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">SEUNG</span></li>
+        <li><span class="act">SHAKING</span></li>
+        <li><span class="act">Showtek (Hardstyle Set)</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Silvie Loto</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Spency Be</span></li>
+        <li><span class="act">Steve Aoki</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">TELYKAST</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">Trancemaster Krause</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Trym</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">TYKNI</span></li>
+        <li><span class="act">VNSSA B2B ????</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">Yanamaste</span> <span class="slots">Sat, Oct 31</span></li>
+        <li><span class="act">YDG</span> <span class="slots">Fri, Oct 30</span></li>
+        <li><span class="act">Zedd</span> <span class="slots">Sat, Oct 31</span></li>
+      </ul>
+    </details>
   </section>
 
   <section aria-labelledby="stages-h">
@@ -756,11 +803,17 @@
       <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
       <li><a href="/f/dreamstate-socal-2026/">Dreamstate SoCal 2026</a> — Nov 20–21, 2026</li>
       <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
-      <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
-      <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
-      <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
-      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
     </ul>
+    <details class="more">
+      <summary>Show 4 more</summary>
+      <ul>
+        <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
+        <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
+        <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
+        <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
+      </ul>
+    </details>
+
   </nav>
 
   <section class="sources" aria-labelledby="sources-h">

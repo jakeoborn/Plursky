@@ -68,6 +68,20 @@
   section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
+  details.more { margin:4px 0 0; }
+  details.more > summary { cursor:pointer; color:var(--ember); font-weight:600; font-size:14px; padding:10px 0; min-height:44px; display:flex; align-items:center; }
+  details.more[open] > summary { color:var(--muted); }
+  section.watch .embed { margin:16px 0 20px; }
+  section.watch .yt { position:relative; aspect-ratio:16/9; width:100%; min-height:200px; background:var(--panel); border-radius:12px; overflow:hidden; }
+  section.watch .yt iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+  /* Instagram's embed has a fixed 326px minimum. On a 320px phone that is
+     wider than the screen, so the embed scrolls inside its own box and the
+     page never scrolls sideways. */
+  section.watch .embed-ig { overflow-x:auto; max-width:100%; }
+  section.watch .embed-ig blockquote, section.watch .embed-x blockquote { margin:0; min-height:420px; background:var(--panel); border-radius:12px; padding:16px; max-width:540px; }
+  section.watch .embed-x blockquote { min-height:260px; }
+  section.watch .embed-sp iframe { display:block; border:0; border-radius:12px; min-height:352px; }
+  section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }
 </style>
 <script type="application/ld+json">
 {
@@ -459,6 +473,34 @@
       <dd>71 artists are announced for Countdown NYE 2026, and every one of them is listed on this page.</dd>
     </dl>
   </section>
+  <section id="watch" class="watch" aria-labelledby="watch-h">
+    <h2 id="watch-h">Watch &amp; listen</h2>
+    <p class="note">From Countdown NYE 2026's official accounts.</p>
+    <figure class="embed embed-sp">
+      <iframe src="https://open.spotify.com/embed/playlist/4U3wjxn8PEtjqv1XrPeGC6" title="Countdown NYE 2026 playlist on Spotify" width="100%" height="352" loading="lazy" allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      <p class="embed-cap">Countdown NYE 2026's official playlist on Spotify · <a href="https://open.spotify.com/playlist/4U3wjxn8PEtjqv1XrPeGC6" rel="noopener">View the original</a></p>
+    </figure>
+    <script>
+(function () {
+  var sec = document.getElementById('watch');
+  if (!sec) return;
+  var urls = [];
+  if (sec.querySelector('.instagram-media')) urls.push('https://www.instagram.com/embed.js');
+  if (sec.querySelector('.twitter-tweet')) urls.push('https://platform.twitter.com/widgets.js');
+  if (!urls.length) return;
+  var done = false;
+  function load() {
+    if (done) return; done = true;
+    urls.forEach(function (u) { var s = document.createElement('script'); s.async = true; s.src = u; document.body.appendChild(s); });
+  }
+  if (!('IntersectionObserver' in window)) return load();
+  var io = new IntersectionObserver(function (es) {
+    if (es.some(function (x) { return x.isIntersecting; })) { io.disconnect(); load(); }
+  }, { rootMargin: '600px 0px' });
+  io.observe(sec);
+})();
+    </script>
+  </section>
 
 
 
@@ -487,58 +529,63 @@
       <li><span class="act">DJ Diesel</span></li>
       <li><span class="act">DJ Guestlist</span></li>
       <li><span class="act">DJ Snake</span></li>
-      <li><span class="act">DØMINA</span></li>
-      <li><span class="act">ECCHI.MP4</span></li>
-      <li><span class="act">ESSE</span></li>
-      <li><span class="act">Flosstradamus</span></li>
-      <li><span class="act">Ghengar</span></li>
-      <li><span class="act">Gordo</span></li>
-      <li><span class="act">GorillaT</span></li>
-      <li><span class="act">GRAVEDGR</span></li>
-      <li><span class="act">Green Matter</span></li>
-      <li><span class="act">HEYZ B2B Tynan</span></li>
-      <li><span class="act">Hills</span></li>
-      <li><span class="act">HOL!</span></li>
-      <li><span class="act">Insomniac Records Takeover</span></li>
-      <li><span class="act">Jaden Bojsen</span></li>
-      <li><span class="act">James Hype</span></li>
-      <li><span class="act">Jessica Audiffred</span></li>
-      <li><span class="act">Jev</span></li>
-      <li><span class="act">Joshwa</span></li>
-      <li><span class="act">Kelland</span></li>
-      <li><span class="act">KHROME</span></li>
-      <li><span class="act">Kloud</span></li>
-      <li><span class="act">Lavern</span></li>
-      <li><span class="act">Loud Luxury</span></li>
-      <li><span class="act">Lucky</span></li>
-      <li><span class="act">LYNY B2B Peekaboo</span></li>
-      <li><span class="act">MADVKTM</span></li>
-      <li><span class="act">Marshmello</span></li>
-      <li><span class="act">Matroda</span></li>
-      <li><span class="act">Mija B2B sim0ne</span></li>
-      <li><span class="act">NGHTMRE</span></li>
-      <li><span class="act">Noise Mafia</span></li>
-      <li><span class="act">Oliver Heldens</span></li>
-      <li><span class="act">R3HAB</span></li>
-      <li><span class="act">Ranger Trucco</span></li>
-      <li><span class="act">Rinzen</span></li>
-      <li><span class="act">RØZ</span></li>
-      <li><span class="act">S.Y.N (SVDDEN DEATH, yvm3, NIMDA)</span></li>
-      <li><span class="act">Seven Lions</span></li>
-      <li><span class="act">Sincera</span></li>
-      <li><span class="act">Skilah</span></li>
-      <li><span class="act">Smoakland</span></li>
-      <li><span class="act">Space Laces</span></li>
-      <li><span class="act">Subtronics</span></li>
-      <li><span class="act">Taiki Nulight</span></li>
-      <li><span class="act">Tchami</span></li>
-      <li><span class="act">TOBEHONEST</span></li>
-      <li><span class="act">TOKiMONSTA</span></li>
-      <li><span class="act">TroyBoi</span></li>
-      <li><span class="act">Walker &amp; Royce</span></li>
-      <li><span class="act">Wax Motif</span></li>
-      <li><span class="act">Zingara</span></li>
     </ul>
+    <details class="more">
+      <summary>Show all 71 artists</summary>
+      <ul class="lineup">
+        <li><span class="act">DØMINA</span></li>
+        <li><span class="act">ECCHI.MP4</span></li>
+        <li><span class="act">ESSE</span></li>
+        <li><span class="act">Flosstradamus</span></li>
+        <li><span class="act">Ghengar</span></li>
+        <li><span class="act">Gordo</span></li>
+        <li><span class="act">GorillaT</span></li>
+        <li><span class="act">GRAVEDGR</span></li>
+        <li><span class="act">Green Matter</span></li>
+        <li><span class="act">HEYZ B2B Tynan</span></li>
+        <li><span class="act">Hills</span></li>
+        <li><span class="act">HOL!</span></li>
+        <li><span class="act">Insomniac Records Takeover</span></li>
+        <li><span class="act">Jaden Bojsen</span></li>
+        <li><span class="act">James Hype</span></li>
+        <li><span class="act">Jessica Audiffred</span></li>
+        <li><span class="act">Jev</span></li>
+        <li><span class="act">Joshwa</span></li>
+        <li><span class="act">Kelland</span></li>
+        <li><span class="act">KHROME</span></li>
+        <li><span class="act">Kloud</span></li>
+        <li><span class="act">Lavern</span></li>
+        <li><span class="act">Loud Luxury</span></li>
+        <li><span class="act">Lucky</span></li>
+        <li><span class="act">LYNY B2B Peekaboo</span></li>
+        <li><span class="act">MADVKTM</span></li>
+        <li><span class="act">Marshmello</span></li>
+        <li><span class="act">Matroda</span></li>
+        <li><span class="act">Mija B2B sim0ne</span></li>
+        <li><span class="act">NGHTMRE</span></li>
+        <li><span class="act">Noise Mafia</span></li>
+        <li><span class="act">Oliver Heldens</span></li>
+        <li><span class="act">R3HAB</span></li>
+        <li><span class="act">Ranger Trucco</span></li>
+        <li><span class="act">Rinzen</span></li>
+        <li><span class="act">RØZ</span></li>
+        <li><span class="act">S.Y.N (SVDDEN DEATH, yvm3, NIMDA)</span></li>
+        <li><span class="act">Seven Lions</span></li>
+        <li><span class="act">Sincera</span></li>
+        <li><span class="act">Skilah</span></li>
+        <li><span class="act">Smoakland</span></li>
+        <li><span class="act">Space Laces</span></li>
+        <li><span class="act">Subtronics</span></li>
+        <li><span class="act">Taiki Nulight</span></li>
+        <li><span class="act">Tchami</span></li>
+        <li><span class="act">TOBEHONEST</span></li>
+        <li><span class="act">TOKiMONSTA</span></li>
+        <li><span class="act">TroyBoi</span></li>
+        <li><span class="act">Walker &amp; Royce</span></li>
+        <li><span class="act">Wax Motif</span></li>
+        <li><span class="act">Zingara</span></li>
+      </ul>
+    </details>
   </section>
 
 
@@ -561,11 +608,17 @@
       <li><a href="/f/dreamstate-socal-2026/">Dreamstate SoCal 2026</a> — Nov 20–21, 2026</li>
       <li><a href="/f/edc-mexico-2027/">EDC Mexico 2027</a> — Feb 19–21, 2027</li>
       <li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a> — Nov 6–8, 2026</li>
-      <li><a href="/f/escape-halloween-2026/">Escape Halloween 2026</a> — Oct 30–31, 2026</li>
-      <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
-      <li><a href="/f/beyond-wonderland-socal-2027/">Beyond Wonderland SoCal 2027</a> — Mar 26–27, 2027</li>
-      <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
     </ul>
+    <details class="more">
+      <summary>Show 4 more</summary>
+      <ul>
+        <li><a href="/f/escape-halloween-2026/">Escape Halloween 2026</a> — Oct 30–31, 2026</li>
+        <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
+        <li><a href="/f/beyond-wonderland-socal-2027/">Beyond Wonderland SoCal 2027</a> — Mar 26–27, 2027</li>
+        <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
+      </ul>
+    </details>
+
   </nav>
 
   <section class="sources" aria-labelledby="sources-h">
