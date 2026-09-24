@@ -12,6 +12,7 @@
 //                                       the generator shows ONLY embeds it
 //                                       marks ok, so gen --check needs no network
 import { readFileSync, existsSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -109,12 +110,17 @@ export function xPublishedAt(url) {
   const s = xStatus(url); if (!s) return null;
   return new Date(Number((BigInt(s.id) >> 22n) + 1288834974657n)).toISOString().slice(0, 10);
 }
+// A request that failed for a reason unrelated to the post (network error,
+// 429, 5xx, after the fetcher's own retry). It makes a check inconclusive
+// ("could not confirm"), never a dead embed.
+export class TransientFetch extends Error {}
+const rethrowTransient = err => { if (err instanceof TransientFetch) throw err; return null; };
 async function youtubePublishedAt(url, fetcher) {
   try {
     const r = await fetcher(`https://www.youtube.com/watch?v=${youtubeId(url)}`);
     const m = r && r.status === 200 && r.text.match(/itemprop="uploadDate" content="(\d{4}-\d{2}-\d{2})/);
     return m ? m[1] : null;
-  } catch { return null; }
+  } catch (err) { return rethrowTransient(err); }
 }
 // Posts older than this belong to an earlier edition: roughly 13 months
 // before the edition starts, or the start of the prior year when dates are TBA.
@@ -140,7 +146,7 @@ export async function youtubeChannelId(url, fetcher) {
     if (!r || r.status !== 200) return null;
     const m = r.text.match(/<link rel="canonical" href="https:\/\/www\.youtube\.com\/channel\/(UC[A-Za-z0-9_-]{22})"/);
     return m ? m[1] : null;
-  } catch { return null; }
+  } catch (err) { return rethrowTransient(err); }
 }
 
 // ── Network verification (injected fetch, so tests run offline) ───────────
@@ -180,13 +186,26 @@ function authorMatches(platform, officialAccount, body, pageHtml, url, ctx = {})
 export async function verifyEmbed(e, fetcher, opts = {}) {
   const bad = validateEmbed(e);
   if (bad) return { ok: false, reason: bad };
-  let src;
-  try { src = await fetcher(e.accountSourceUrl); } catch (err) { return { ok: false, reason: `accountSourceUrl unreachable: ${err.message}` }; }
-  if (!src || src.status !== 200) return { ok: false, reason: `accountSourceUrl returned ${src && src.status}` };
+  // Only a definitive answer (404, private, not embeddable, wrong author) is a
+  // failure; a request that could not complete is "could not confirm".
+  const get = async url => {
+    let r;
+    try { r = await fetcher(url); } catch (err) { throw new TransientFetch(`${url} unreachable: ${err.message}`); }
+    if (!r || r.status === 429 || r.status >= 500) throw new TransientFetch(`${url} returned ${r && r.status}`);
+    return r;
+  };
+  try { return await _verifyEmbed(e, get, opts); }
+  catch (err) {
+    if (err instanceof TransientFetch) return { ok: false, unknown: true, reason: `could not confirm: ${err.message}` };
+    throw err;
+  }
+}
+async function _verifyEmbed(e, fetcher, opts) {
+  const src = await fetcher(e.accountSourceUrl);
+  if (src.status !== 200) return { ok: false, reason: `accountSourceUrl returned ${src.status}` };
   if (!pageLinksAccount(src.text, e.platform, e.officialAccount)) return { ok: false, reason: 'accountSourceUrl does not link the official account' };
-  let oe;
-  try { oe = await fetcher(OEMBED[e.platform](e.url)); } catch (err) { return { ok: false, reason: `oEmbed unreachable: ${err.message}` }; }
-  if (!oe || oe.status !== 200) return { ok: false, reason: `oEmbed returned ${oe && oe.status} (dead, private or not embeddable)` };
+  const oe = await fetcher(OEMBED[e.platform](e.url));
+  if (oe.status !== 200) return { ok: false, reason: `oEmbed returned ${oe.status} (dead, private or not embeddable)` };
   let body; try { body = JSON.parse(oe.text); } catch { return { ok: false, reason: 'oEmbed returned non-JSON' }; }
   if (!body || body.error || !body.html) return { ok: false, reason: 'oEmbed returned no embed' };
   let pageHtml = null;
@@ -197,10 +216,10 @@ export async function verifyEmbed(e, fetcher, opts = {}) {
   }
   if (e.platform === 'instagram') {
     const { type, code } = instagramCode(e.url);
-    try { const p = await fetcher(`https://www.instagram.com/${type}/${code}/embed/`); pageHtml = p && p.status === 200 ? p.text : null; } catch {}
+    const p = await fetcher(`https://www.instagram.com/${type}/${code}/embed/`); pageHtml = p.status === 200 ? p.text : null;
   }
   if (e.platform === 'spotify' && accountKey('spotify', e.officialAccount).startsWith('user/')) {
-    try { const p = await fetcher(e.url); pageHtml = p && p.status === 200 ? p.text : null; } catch {}
+    const p = await fetcher(e.url); pageHtml = p.status === 200 ? p.text : null;
   }
   if (!authorMatches(e.platform, e.officialAccount, body, pageHtml, e.url, ctx)) return { ok: false, reason: 'post is not by the official account' };
   const publishedAt = e.platform === 'instagram' ? instagramPublishedAt(e.url)
@@ -223,10 +242,18 @@ export function loadEmbedData(root = REPO) {
   return { curated: read('official-embeds.json') || {}, verified: read('official-embeds.verified.json') || { results: {} } };
 }
 
-// What a page shows: statically valid, verified ok, then capped by platform.
+// Binds a verification result to the record it verified: a data edit that
+// moves a URL to another festival or changes its account or source page
+// invalidates the old ok until the live check runs again.
+export function embedSig(festivalId, e) {
+  return createHash('sha256').update(JSON.stringify([festivalId, e.platform, e.url, e.officialAccount, e.accountSourceUrl])).digest('hex').slice(0, 16);
+}
+
+// What a page shows: statically valid, verified ok FOR THIS RECORD, then
+// capped by platform.
 export function selectEmbeds(festivalId, { curated, verified }, notBefore = null) {
   const res = u => verified.results?.[u];
-  const list = (curated[festivalId] || []).filter(e => !validateEmbed(e) && res(e.url)?.ok === true
+  const list = (curated[festivalId] || []).filter(e => !validateEmbed(e) && res(e.url)?.ok === true && res(e.url).sig === embedSig(festivalId, e)
     // An earlier edition's post is not this page's; playlists carry no date.
     && (e.platform === 'spotify' || !notBefore || (res(e.url).publishedAt && res(e.url).publishedAt >= notBefore)))
     .map(e => res(e.url).accountName ? { ...e, accountName: res(e.url).accountName } : e);
@@ -237,6 +264,23 @@ export function selectEmbeds(festivalId, { curated, verified }, notBefore = null
     social: rank(list.filter(e => e.platform === 'instagram' || e.platform === 'x')).slice(0, CAPS.social),
     spotify: rank(by('spotify')).slice(0, CAPS.spotify),
   };
+}
+// The record the checker writes for one embed. A could-not-confirm result
+// never flips an embed that was verified for this same record.
+export function resultRecord(fid, e, r, prior, today) {
+  const sig = embedSig(fid, e);
+  if (r.unknown && prior && prior.ok === true && prior.sig === sig) return { ...prior, unconfirmedAt: today };
+  return { ok: r.ok, reason: r.reason, festival: fid, platform: e.platform, sig, publishedAt: r.publishedAt || null, ...(r.accountName ? { accountName: r.accountName } : {}), checkedAt: today };
+}
+
+// Is this embed on a committed page? Matched by the post's own id, which is
+// how each platform's markup carries it (nocookie iframe, permalink, embed).
+export function embedShownOn(html, e) {
+  const key = e.platform === 'youtube' ? youtubeId(e.url)
+    : e.platform === 'instagram' ? instagramCode(e.url)?.code
+    : e.platform === 'x' ? xStatus(e.url)?.id
+    : e.platform === 'spotify' ? spotifyPlaylist(e.url) : null;
+  return !!key && String(html || '').includes(key);
 }
 export const embedCount = s => s.youtube.length + s.social.length + s.spotify.length;
 

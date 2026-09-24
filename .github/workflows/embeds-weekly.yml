@@ -4,9 +4,12 @@
 # goes dead without any commit here. The pages would then show a platform
 # "unavailable" box, which the embeds spec forbids. This job re-runs the same
 # verification the build uses (scripts/check-official-embeds.mjs --report)
-# against the embeds the committed pages show, and opens an issue listing the
-# dead ones. Like page-freshness.yml it reports rather than pushes: dropping an
-# embed changes a public page, so it goes through a PR.
+# against the embeds the committed pages show and fails the run when one is
+# dead. The repo is public and open defects are reported privately, so the
+# log carries only the count: GitHub emails the owner about the failed run,
+# and the detail comes from running the same command locally. Like
+# page-freshness.yml it never pushes: dropping an embed changes a public
+# page, so it goes through a PR.
 name: official embeds weekly
 
 on:
@@ -17,7 +20,6 @@ on:
 
 permissions:
   contents: read
-  issues: write
 
 jobs:
   embeds:
@@ -32,22 +34,10 @@ jobs:
       - run: npm ci
 
       - name: Re-verify the embeds on the committed pages
-        id: check
         run: |
           set +e
           node scripts/check-official-embeds.mjs --report > embeds-report.md
-          echo "code=$?" >> "$GITHUB_OUTPUT"
-          cat embeds-report.md
-
-      - name: Open an issue listing dead embeds
-        if: steps.check.outputs.code != '0'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh issue create \
-            --title "Dead official embeds on /f/ pages ($(date -u +%F))" \
-            --body-file embeds-report.md
-
-      - name: Fail the run so it shows red
-        if: steps.check.outputs.code != '0'
-        run: exit 1
+          code=$?
+          # The count only; the list stays off this public log.
+          head -n 1 embeds-report.md | sed 's/^## //'
+          exit $code

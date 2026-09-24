@@ -11,13 +11,17 @@
 // "Video unavailable" box.
 //
 //   node scripts/check-official-embeds.mjs            verify, write, list failures
-//   node scripts/check-official-embeds.mjs --report   verify the COMMITTED pages'
-//        embeds without writing; print a Markdown list of failures and exit 1
-//        if any. The weekly workflow turns that into an issue.
-import { writeFileSync } from 'node:fs';
+//   node scripts/check-official-embeds.mjs --report   verify the embeds the
+//        COMMITTED f/<id>/index.html pages carry, without writing; print a
+//        Markdown list of failures and exit 1 if any. The weekly workflow
+//        prints only the count: the repo is public, so the detail is read by
+//        running this locally, never posted.
+// A request that cannot complete (network, 429, 5xx) is "could not confirm":
+// never counted as dead, and a previously verified embed keeps its result.
+import { writeFileSync, readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadEmbedData, verifyEmbed, selectEmbeds } from './lib/official-embeds.mjs';
+import { loadEmbedData, verifyEmbed, resultRecord, embedShownOn } from './lib/official-embeds.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const REPORT = process.argv.includes('--report');
@@ -89,19 +93,21 @@ const failures = [];
 // Could not tell (probe blocked, timeout): dropped from pages at build time,
 // but never reported as dead.
 const unknowns = [];
+let targetsChecked = 0;
 for (const [fid, list] of Object.entries(curated)) {
   // --report checks what the committed pages show; the default checks all.
-  const targets = REPORT
-    ? (({ youtube, social, spotify }) => [...youtube, ...social, ...spotify])(selectEmbeds(fid, { curated, verified }))
-    : list;
+  const pageFile = path.join(root, 'f', fid, 'index.html');
+  const pageHtml = REPORT && existsSync(pageFile) ? readFileSync(pageFile, 'utf8') : '';
+  const targets = REPORT ? list.filter(e => embedShownOn(pageHtml, e)) : list;
+  targetsChecked += targets.length;
   for (const e of targets) {
     const r = await verifyEmbed(e, cached, { youtubePlayable });
-    results[e.url] = { ok: r.ok, reason: r.reason, festival: fid, platform: e.platform, publishedAt: r.publishedAt || null, ...(r.accountName ? { accountName: r.accountName } : {}), checkedAt: today };
+    results[e.url] = resultRecord(fid, e, r, verified.results?.[e.url], today);
     if (!r.ok) (r.unknown ? unknowns : failures).push({ fid, e, reason: r.reason });
   }
 }
 
-if (probe) { if (probe.controlOk !== true) console.log('  ! YouTube probe control failed: no video could be confirmed this run'); await probe.close(); }
+if (probe) { if (probe.controlOk !== true) console.error('  ! YouTube probe control failed: no video could be confirmed this run'); await probe.close(); }
 
 if (REPORT) {
   if (failures.length) {
@@ -111,13 +117,15 @@ if (REPORT) {
     console.log('\nRe-run `node scripts/check-official-embeds.mjs && node scripts/gen-festival-pages.mjs` to drop them from the pages, or replace them in data/official-embeds.json.');
     process.exit(1);
   }
+  // Summary first: the weekly job prints only this line.
+  console.log(`✓ no embed on the committed pages is dead (${today}; ${targetsChecked} checked, ${unknowns.length} could not be confirmed)`);
   for (const u of unknowns) console.log(`! could not confirm ${u.fid} ${u.e.platform} ${u.e.url} — ${u.reason}`);
-  console.log(`✓ no embed on the committed pages is dead (${today})`);
   process.exit(0);
 }
 
 writeFileSync(path.join(root, 'data', 'official-embeds.verified.json'),
   JSON.stringify({ checkedAt: today, results: Object.fromEntries(Object.entries(results).sort()) }, null, 2) + '\n');
 const ok = Object.values(results).filter(r => r.ok).length;
-console.log(`official embeds: ${ok} verified, ${failures.length + unknowns.length} dropped`);
-for (const f of [...failures, ...unknowns]) console.log(`  ✗ ${f.fid} ${f.e.platform} ${f.e.url} — ${f.reason}`);
+console.log(`official embeds: ${ok} verified, ${Object.keys(results).length - ok} not shown`);
+for (const f of failures) console.log(`  ✗ ${f.fid} ${f.e.platform} ${f.e.url} — ${f.reason}`);
+for (const u of unknowns) console.log(`  ? ${u.fid} ${u.e.platform} ${u.e.url} — ${u.reason}${results[u.e.url].ok ? ' (kept: verified before)' : ''}`);
