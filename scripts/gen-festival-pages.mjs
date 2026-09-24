@@ -20,6 +20,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
 import { fp, festivalFingerprint } from './lib/sitemap-fingerprint.mjs';
+import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage } from './lib/festival-page-data.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://plursky.com';
@@ -32,7 +33,7 @@ const OUT_DIR = path.join(root, 'f');
 // Each stub renders the festival's real schedule inline (day then stage,
 // from the same _scheduleActs data schedule.json ships) and links the App
 // Store install path, so "<festival> set times" queries land on substance.
-const { REG, DS, scheduleActs, eventDates } = loadRegistry(root);
+const { REG, DS, scheduleActs, eventDates, weekendShifts, actPlaysWeekend } = loadRegistry(root);
 
 // ── Helpers ──────────────────────────────────────────────────────────
 const esc = (s) => String(s ?? '')
@@ -76,26 +77,93 @@ function place(cfg, region) {
 
 const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
+const DAY_MS = 86400000;
+const SHORT_MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const dayMs = (e) => Date.UTC(e.y, e.m, e.d);
+
 // dayDates months are 0-indexed (m:8 = September). Date label for a schedule
 // day; days outside the registry's public `dates` span are early-entry (Lost
 // Lands days 1-2 are Sep 16-17 pre-party days while the public dates are
 // Sep 18-20) and say so, because the page must never claim a festival day
-// the public dates don't.
-function dayLabel(dd, d, dates) {
+// the public dates don't. `shift` moves a weekend-1 day onto a later weekend
+// (ACL's dayDates carry weekend 1 only); it is always whole weeks, so the
+// weekday name still holds.
+function dayLabel(dd, d, dates, shift = 0, short = false) {
   const e = (dd || {})[d];
-  if (!e) return `Day ${d}`;
-  let label = `${e.name}, ${MONTH_NAMES[e.m]} ${e.d}`;
-  const ymd = `${e.y}-${String(e.m + 1).padStart(2, '0')}-${String(e.d).padStart(2, '0')}`;
+  if (!e) return { label: `Day ${d}`, ymd: null };
+  const at = new Date(dayMs(e) + shift);
+  const month = short ? SHORT_MONTHS[at.getUTCMonth()] : MONTH_NAMES[at.getUTCMonth()];
+  let label = `${short ? e.name.slice(0, 3) : e.name}, ${month} ${at.getUTCDate()}`;
+  const ymd = at.toISOString().slice(0, 10);
   if (dates && (ymd < dates.start || ymd > dates.end)) label += ' (early entry)';
   return { label, ymd };
 }
 
-// The schedule grid: the same acts schedule.json ships, grouped day then
-// stage, rendered INLINE at build time (never client-fetched) because these
-// stubs are the only HTML a crawler sees. Source honesty mirrors the data:
-// an unofficial scheduleSource says so on the page rather than letting the
-// page overclaim.
-function scheduleGrid(entry, dates) {
+// ── Weekends ─────────────────────────────────────────────────────────
+// A festival runs as one block of days or as several weekends. Two data shapes
+// say "several", and both are read, never inferred from a name:
+//   - weekendStartMs (ACL): the same days repeat per weekend, and each act's
+//     `weekend` says which it plays, via data.jsx's actPlaysWeekend;
+//   - dayDates with a calendar gap (Summerfest's three Thu–Sat blocks): each
+//     block is its own weekend and owns its own days.
+function weekendBlocks(cfg) {
+  const dd = cfg.dayDates || {};
+  const days = Object.keys(dd).map(Number).sort((a, b) => a - b);
+  const shifts = weekendShifts(cfg);
+  if (shifts.length > 1) return shifts.map((s, i) => ({ key: s.weekend, n: i + 1, shift: s.shift, days }));
+  const blocks = [];
+  for (const d of days) {
+    const b = blocks[blocks.length - 1];
+    if (b && dayMs(dd[d]) - dayMs(dd[b.days[b.days.length - 1]]) <= DAY_MS) b.days.push(d);
+    else blocks.push({ key: null, n: blocks.length + 1, shift: 0, days: [d] });
+  }
+  return blocks.length ? blocks : [{ key: null, n: 1, shift: 0, days: [] }];
+}
+
+// Which acts a block holds. One block holds every act, whatever its day.
+const inBlock = (blocks, b) => (a) => b.key ? actPlaysWeekend(a, b.key)
+  : blocks.length > 1 ? b.days.includes(a.day) : true;
+
+function blockRange(cfg, b) {
+  const dd = cfg.dayDates || {};
+  const at = (d) => new Date(dayMs(dd[d]) + b.shift);
+  const a = at(b.days[0]), z = at(b.days[b.days.length - 1]);
+  return a.getUTCMonth() === z.getUTCMonth()
+    ? `${SHORT_MONTHS[a.getUTCMonth()]} ${a.getUTCDate()}–${z.getUTCDate()}`
+    : `${SHORT_MONTHS[a.getUTCMonth()]} ${a.getUTCDate()} – ${SHORT_MONTHS[z.getUTCMonth()]} ${z.getUTCDate()}`;
+}
+
+// Every set row has an anchor, so the lineup can link a name to its slot.
+const setId = (b, a) => `set-${b.key ? b.key.toLowerCase() + '-' : ''}${String(a.id).replace(/[^A-Za-z0-9_-]/g, '-')}`;
+
+// ── Status ───────────────────────────────────────────────────────────
+// From the visible dates and the real event days only. Between ACL's two
+// weekends is not "happening now": nothing is playing.
+const STATUS_LABEL = { upcoming: 'Upcoming', soon: 'This weekend', live: 'Happening now', past: 'Past' };
+function eventDaySet(cfg) {
+  const out = new Set();
+  for (const b of weekendBlocks(cfg)) for (const d of b.days) {
+    const e = (cfg.dayDates || {})[d];
+    if (e) out.add(new Date(dayMs(e) + b.shift).toISOString().slice(0, 10));
+  }
+  return out;
+}
+function statusOf(cfg, today) {
+  const dates = eventDates(cfg);
+  if (!dates) return null;
+  if (today > dates.end) return 'past';
+  const days = [...eventDaySet(cfg)].filter(d => d >= dates.start && d <= dates.end).sort();
+  if (days.includes(today) || (!days.length && today >= dates.start)) return 'live';
+  const next = days.find(d => d > today) || dates.start;
+  return (Date.parse(next) - Date.parse(today)) / DAY_MS <= 6 ? 'soon' : 'upcoming';
+}
+
+// The schedule grid: the same acts schedule.json ships, grouped (weekend,)
+// day, then stage, rendered INLINE at build time (never client-fetched)
+// because these stubs are the only HTML a crawler sees. Source honesty mirrors
+// the data: an unofficial scheduleSource says so on the page rather than
+// letting the page overclaim.
+function scheduleGrid(entry, dates, blocks) {
   const cfg = entry.config;
   const stages = DS[cfg.id]?.stages || [];
   const acts = scheduleActs(DS[cfg.id]?.artists).filter(a => a.start && a.start !== '');
@@ -103,19 +171,26 @@ function scheduleGrid(entry, dates) {
   const stageIx = (sid) => { const i = stages.findIndex(t => t.id === sid); return i === -1 ? stages.length : i; };
   const stageName = (sid) => stages.find(t => t.id === sid)?.name
     || String(sid || 'Other').replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-  const days = [...new Set(acts.map(a => a.day))].sort((a, b) => a - b);
-  const blocks = days.map(d => {
-    const { label, ymd } = dayLabel(cfg.dayDates, d, dates);
-    const dayActs = acts.filter(a => a.day === d);
-    const stageIds = [...new Set(dayActs.map(a => a.stage))].sort((x, y) => stageIx(x) - stageIx(y));
-    return `    <h3>${esc(label)}</h3>\n` + stageIds.map(st => {
-      const sets = dayActs.filter(a => a.stage === st)
-        .sort((a, b) => String(a.start).localeCompare(String(b.start)));
-      return `    <h4>${esc(stageName(st))}</h4>\n    <ul class="sets">\n` +
-        sets.map(a => `      <li><time${ymd ? ` datetime="${ymd}T${esc(a.start)}"` : ''}>${esc(a.start)}${a.end ? ' – ' + esc(a.end) : ''}</time> <span>${esc(a.name)}</span></li>`).join('\n') +
-        `\n    </ul>`;
+  const multi = blocks.length > 1;
+  const [hDay, hStage] = multi ? ['h4', 'h5'] : ['h3', 'h4'];
+  const body = blocks.map(b => {
+    const bActs = acts.filter(inBlock(blocks, b));
+    if (!bActs.length) return '';
+    const days = [...new Set(bActs.map(a => a.day))].sort((x, y) => x - y);
+    const head = multi ? `    <h3 id="weekend-${b.n}">Weekend ${b.n} · ${esc(blockRange(cfg, b))}</h3>\n` : '';
+    return head + days.map(d => {
+      const { label, ymd } = dayLabel(cfg.dayDates, d, dates, b.shift);
+      const dayActs = bActs.filter(a => a.day === d);
+      const stageIds = [...new Set(dayActs.map(a => a.stage))].sort((x, y) => stageIx(x) - stageIx(y));
+      return `    <${hDay}>${esc(label)}</${hDay}>\n` + stageIds.map(st => {
+        const sets = dayActs.filter(a => a.stage === st)
+          .sort((a, b2) => String(a.start).localeCompare(String(b2.start)));
+        return `    <${hStage}>${esc(stageName(st))}</${hStage}>\n    <ul class="sets">\n` +
+          sets.map(a => `      <li id="${setId(b, a)}"><time${ymd ? ` datetime="${ymd}T${esc(a.start)}"` : ''}>${esc(a.start)}${a.end ? ' – ' + esc(a.end) : ''}</time> <span>${esc(a.name)}</span></li>`).join('\n') +
+          `\n    </ul>`;
+      }).join('\n');
     }).join('\n');
-  }).join('\n');
+  }).filter(Boolean).join('\n');
   const src = cfg.scheduleSource;
   const srcNote = src && src.official === true
     ? `Official set times${src.observedAt ? `, confirmed ${esc(src.observedAt)}` : ''}.`
@@ -126,15 +201,101 @@ function scheduleGrid(entry, dates) {
   <section aria-labelledby="schedule-h">
     <h2 id="schedule-h">${esc(cfg.name)} schedule &amp; set times</h2>
     <p class="note">${srcNote}${cfg.tzAbbr ? ` All times local (${esc(cfg.tzAbbr)}).` : ''}</p>
-${blocks}
+${body}
   </section>`;
 }
 
-// "Stages & map" — real per-festival stage content (name + description), so
-// "<festival> map" queries land on substance, not a placeholder.
-function stagesSection(entry) {
+// ── Map ──────────────────────────────────────────────────────────────
+// Two things may appear, and nothing else: a plate Plursky generated (an SVG
+// drawn from our own coordinates, captioned with its OWN <desc>, so its limits
+// travel with it), and a link to the festival's own map page as recorded in
+// the festival module with the year that page showed. Official patron-map art
+// is never embedded — official publication establishes provenance, not reuse
+// rights. With neither, there is no section.
+function mapSection(entry, plate) {
   const cfg = entry.config;
-  const stages = DS[cfg.id]?.stages || [];
+  const src = cfg.mapSource;
+  if (!plate && !(src && src.url)) return '';
+  // The plate is drawn from the same 0–100 stage coordinates the app uses, so
+  // each stage's name sits on its own dot. A stage with no coordinates cannot
+  // be on the plate, and the caption says so instead of letting it vanish.
+  const stages = (DS[cfg.id]?.stages || []).filter(s => !isPlaceholderStage(s));
+  const placed = stages.filter(s => s.x != null && s.y != null);
+  const unplaced = stages.filter(s => s.x == null || s.y == null);
+  const fig = plate ? `
+    <figure class="plate">
+      <div class="platebox">
+        <img src="/${esc(plate.file)}" width="${plate.w}" height="${plate.h}" loading="lazy" decoding="async" alt="${esc(cfg.name)} site plate: Plursky's abstract stage layout, not the official festival map">
+${placed.map((s, i) => `        <span class="pin" style="left:${+s.x}%;top:${+s.y}%" aria-hidden="true">${i + 1}</span>`).join('\n')}
+      </div>
+      <ol class="platekey">
+${placed.map(s => `        <li>${esc(s.name)}</li>`).join('\n')}
+      </ol>
+      <figcaption>${esc(plate.desc)}${unplaced.length ? ` ${unplaced.map(s => esc(s.name)).join(', ')} ${unplaced.length === 1 ? 'has' : 'have'} no position on this plate.` : ''}</figcaption>
+    </figure>` : '';
+  let link = '';
+  if (src && src.url) {
+    const label = src.mapYear === cfg.year ? `Official ${cfg.name} map` : `Official ${cfg.brand || cfg.name} festival map page`;
+    const yearNote = src.mapYear == null
+      ? ` Plursky could not confirm which year's map it shows (checked ${esc(src.observedAt)}).`
+      : src.mapYear !== cfg.year ? ` When checked on ${esc(src.observedAt)} it showed the ${src.mapYear} map.` : '';
+    link = `
+    <p><a href="${esc(src.url)}" rel="noopener">${esc(label)}</a>, on the festival's own site.${yearNote}</p>`;
+  }
+  return `
+  <section aria-labelledby="map-h">
+    <h2 id="map-h">${esc(cfg.name)} map</h2>${fig}${link}
+  </section>`;
+}
+
+// ── Lineup ───────────────────────────────────────────────────────────
+// Every act, A–Z, with what the data PROVES about it and nothing more:
+//   - day, only for a festival with more than one dated day (a one-day
+//     dayDates is a bucket, not a day split);
+//   - stage, only a real one (never the "Schedule TBA" placeholder);
+//   - the time, as a link to its row in the set-times grid.
+// No billing tiers: `tier` in the data is display weight derived from start
+// hours, not the order a poster printed.
+function lineupSection(entry, blocks, dates, names, hasTimes) {
+  const cfg = entry.config;
+  const artists = DS[cfg.id]?.artists || [];
+  if (!names.length) {
+    const site = cfg.officialEvent && cfg.officialEvent.website;
+    return `
+  <section aria-labelledby="lineup-h">
+    <h2 id="lineup-h">${esc(cfg.name)} lineup</h2>
+    <p>Plursky does not have a lineup for ${esc(cfg.name)} yet.${site ? ` The festival's own site: <a href="${esc(site)}" rel="noopener">${esc(site.replace(/^https?:\/\//, '').replace(/\/$/, ''))}</a>.` : ''}</p>
+  </section>`;
+  }
+  const dd = cfg.dayDates || {};
+  const daySplit = Object.keys(dd).length > 1;
+  const real = new Map((DS[cfg.id]?.stages || []).filter(s => !isPlaceholderStage(s)).map(s => [s.id, s]));
+  const multi = blocks.length > 1;
+  const slots = (a) => blocks.filter(b => inBlock(blocks, b)(a)).map(b => [
+    multi ? `Weekend ${b.n}` : '',
+    daySplit && dd[a.day] ? esc(dayLabel(dd, a.day, dates, b.shift, true).label) : '',
+    real.has(a.stage) ? esc(real.get(a.stage).name) : '',
+    a.start ? `<a href="#${setId(b, a)}">${esc(a.start)}</a>` : '',
+  ].filter(Boolean).join(' · ')).filter(Boolean);
+  const rows = names.map(n => {
+    const s = artists.filter(a => a.name === n).flatMap(slots);
+    return `      <li><span class="act">${esc(n)}</span>${s.length ? ` <span class="slots">${s.join('; ')}</span>` : ''}</li>`;
+  });
+  return `
+  <section aria-labelledby="lineup-h">
+    <h2 id="lineup-h">${esc(cfg.name)} lineup</h2>
+    <p>${names.length} artists announced.</p>
+${hasTimes ? '' : `    <p class="note">Plursky does not have stage assignments or set times for every act at ${esc(cfg.name)} yet; each row shows what it has.</p>\n`}    <ul class="lineup">
+${rows.join('\n')}
+    </ul>
+  </section>`;
+}
+
+// "Stages" — real per-festival stage content (name + description + how many
+// sets each day), so "<festival> stages" queries land on substance.
+function stagesSection(entry, blocks, dates) {
+  const cfg = entry.config;
+  const stages = (DS[cfg.id]?.stages || []).filter(s => !isPlaceholderStage(s));
   if (!stages.length) return '';
   // DATA-BOUNDED BY REQUIREMENT. The old sentence read "The Plursky app carries
   // a live map of <venue> with every stage, water station and amenity" and it
@@ -151,14 +312,58 @@ function stagesSection(entry) {
   // A rendered stage list proves the stage list. It proves nothing about map
   // accuracy or amenity coverage, so the copy now states only that. Anything
   // stronger has to prove the corresponding fact per festival.
+  const acts = scheduleActs(DS[cfg.id]?.artists);
+  const timed = acts.filter(a => a.start);
+  const count = (st) => {
+    if (timed.length) {
+      return blocks.flatMap(b => {
+        const bActs = timed.filter(a => a.stage === st && inBlock(blocks, b)(a));
+        return [...new Set(bActs.map(a => a.day))].sort((x, y) => x - y)
+          .map(d => `${dayLabel(cfg.dayDates, d, dates, b.shift, true).label}: ${bActs.filter(a => a.day === d).length}`);
+      }).join(' · ');
+    }
+    const n = acts.filter(a => a.stage === st).length;
+    return n ? `${n} act${n === 1 ? '' : 's'}` : '';
+  };
   const n = stages.length;
   return `
   <section aria-labelledby="stages-h">
     <h2 id="stages-h">${esc(cfg.name)} stages</h2>
-    <p>Plursky has ${n} stage${n === 1 ? '' : 's'} for ${esc(cfg.name)}${cfg.locationShort ? ` at ${esc(cfg.locationShort)}` : ''}, each one listed below.</p>
+    <p>Plursky has ${n} stage${n === 1 ? '' : 's'} for ${esc(cfg.name)}${cfg.locationShort ? ` at ${esc(cfg.locationShort)}` : ''}, each one listed below${timed.length ? ' with its sets per day' : ''}.</p>
     <ul class="stagelist">
-${stages.map(st => `      <li><strong>${esc(st.name)}</strong>${st.desc ? ` · ${esc(st.desc)}` : ''}</li>`).join('\n')}
+${stages.map(st => { const c = count(st.id); return `      <li><strong>${esc(st.name)}</strong>${st.desc ? ` · ${esc(st.desc)}` : ''}${c ? `<br><span class="counts">${esc(c)}</span>` : ''}</li>`; }).join('\n')}
     </ul>
+  </section>`;
+}
+
+// ── Plan your day ─────────────────────────────────────────────────────
+// Amenity TYPES the app carries, and nothing positional: no walk times,
+// distances, leave-by or transition verdicts on any page, because
+// geometryVerifiedFor() holds for 3 festivals and a crawlable page cannot
+// show the gate the app shows. Gates and hours need a recorded source, and
+// no festival records one, so none are listed.
+function planSection(entry, amenities) {
+  if (!amenities.length) return '';
+  const cfg = entry.config;
+  return `
+  <section aria-labelledby="plan-h">
+    <h2 id="plan-h">Plan your day at ${esc(cfg.name)}</h2>
+    <p>Amenities Plursky lists for ${esc(cfg.name)}: ${amenities.map(([k, v]) => `${esc(k)} (${v})`).join(' · ')}.</p>
+  </section>`;
+}
+
+// ── Past editions ─────────────────────────────────────────────────────
+// Past Festivals is the read-only archive; this page is only an index into it.
+function pastSection(entry, editions) {
+  if (!editions.length) return '';
+  const cfg = entry.config;
+  return `
+  <section aria-labelledby="past-h">
+    <h2 id="past-h">Past editions of ${esc(cfg.brand || cfg.name)}</h2>
+    <ul>
+${editions.map(e => `      <li><a href="/?tab=past">${esc(e.name)}</a> — ${e.year}${e.artists != null ? `, ${e.artists} artists` : ''}${e.sets != null ? `, ${e.sets} sets` : ''}</li>`).join('\n')}
+    </ul>
+    <p class="note">Each link opens Past Festivals in Plursky.</p>
   </section>`;
 }
 
@@ -170,11 +375,11 @@ ${stages.map(st => `      <li><strong>${esc(st.name)}</strong>${st.desc ? ` · $
 // from one source makes the violation unrepresentable rather than merely
 // forbidden.
 //
-// Every answer is built from registry values that are already in the sitemap
+// Every answer is built from values that are already in the sitemap
 // fingerprint, so an answer cannot go stale behind a frozen <lastmod>.
 // Nothing here is written by hand per festival: a sentence nobody can source
 // is a sentence this page does not get to say.
-function faqItems(entry, { names, hasTimes, stages }) {
+function faqItems(entry, { names, hasTimes, stages, blocks, plate }) {
   const cfg = entry.config;
   const where = cfg.location || '';
   const items = [];
@@ -183,6 +388,14 @@ function faqItems(entry, { names, hasTimes, stages }) {
     q: `When and where is ${cfg.name}?`,
     a: `${cfg.name} takes place ${cfg.dates}${where ? ` at ${where}` : ''}.`,
   });
+
+  // Asked only when the day data itself holds more than one weekend.
+  if (blocks.length > 1 && blocks.every(b => b.days.length)) {
+    items.push({
+      q: `How many weekends is ${cfg.name}?`,
+      a: `${cfg.name} runs over ${blocks.length} weekends: ${blocks.map(b => blockRange(cfg, b)).join(', ').replace(/, ([^,]*)$/, ' and $1')}.`,
+    });
+  }
 
   // The schedule answer is gated on the SAME `hasTimes` the page renders from,
   // so "yes, times are published" and an actual grid can never disagree. A
@@ -229,6 +442,23 @@ function faqItems(entry, { names, hasTimes, stages }) {
     });
   }
 
+  // Answered from what the map section actually renders: the plate's own
+  // caption, or the official page with the year it showed.
+  const src = cfg.mapSource;
+  if (plate) {
+    items.push({
+      q: `Is there a map for ${cfg.name}?`,
+      a: `This page shows Plursky's ${cfg.name} site plate. ${plate.desc}`,
+    });
+  } else if (src && src.url) {
+    items.push({
+      q: `Is there a map for ${cfg.name}?`,
+      a: src.mapYear === cfg.year
+        ? `Yes. This page links the official ${cfg.name} map on the festival's own site.`
+        : `This page links the festival's own map page${src.mapYear == null ? '' : `, which showed the ${src.mapYear} map when Plursky checked it on ${src.observedAt}`}.`,
+    });
+  }
+
   return items;
 }
 
@@ -245,8 +475,19 @@ ${items.map(it => `      <dt>${esc(it.q)}</dt>\n      <dd>${esc(it.a)}</dd>`).jo
 
 const TODAY = new Date().toISOString().slice(0, 10);
 
+// Other festivals, nearest in time first, eight at most. A festival with no
+// dates sorts last rather than guessing where it belongs.
+function otherFestivals(entry) {
+  const at = (f) => { const d = eventDates(f.config); return d ? Date.parse(d.start) : null; };
+  const me = at(entry);
+  return REG.filter(f => f.config.id !== entry.config.id)
+    .map(f => ({ f, gap: me == null || at(f) == null ? Infinity : Math.abs(at(f) - me) }))
+    .sort((x, y) => x.gap - y.gap || x.f.config.name.localeCompare(y.f.config.name))
+    .slice(0, 8).map(x => x.f);
+}
+
 // ── Page template ────────────────────────────────────────────────────
-function stub(entry, isPastOverride) {
+function stub(entry, statusOverride, lastmod) {
   const cfg = entry.config;
   const id = cfg.id;
   const url = `${ORIGIN}/f/${id}/`;
@@ -256,13 +497,22 @@ function stub(entry, isPastOverride) {
   const names = [...new Set(artists.map(a => a.name).filter(Boolean))].sort((a, b) => a.localeCompare(b));
   const dates = eventDates(cfg);
   const { venue, addr } = place(cfg, entry.region);
-  const isPast = typeof isPastOverride === 'boolean'
-    ? isPastOverride
-    : (dates ? dates.end < TODAY : false);
+  const status = statusOverride !== undefined ? statusOverride : statusOf(cfg, TODAY);
+  const isPast = status === 'past';
   const where = cfg.location || '';
   const hasTimes = scheduleActs(DS[id]?.artists).some(a => a.start && a.start !== '');
-  const titleTail = hasTimes ? 'Set Times, Lineup &amp; Map' : 'Lineup, Map &amp; Schedule';
-  const stages = ds?.stages || [];
+  const stages = (ds?.stages || []).filter(s => !isPlaceholderStage(s));
+  const blocks = weekendBlocks(cfg);
+  const plate = plateFor(cfg);
+  const editions = pastEditionsFor(id);
+  const amenities = amenitySummary(DS, id, entry.available);
+  const mapHtml = mapSection(entry, plate);
+  const indexable = names.length > 0;
+  // The title promises only the sections this page renders.
+  const promised = [hasTimes && 'Set Times', names.length && 'Lineup', mapHtml && 'Map'].filter(Boolean);
+  const titleTail = promised.length
+    ? promised.join(', ').replace(/, ([^,]*)$/, ' &amp; $1')
+    : 'Dates &amp; Venue';
   // Does THIS festival's data back "find stages on a live map"?
   // map.jsx picks the real map on `mapImage && gpsAnchors.length >= 3` and
   // otherwise falls back to the SVG TopDownMap — which, with no placed stages,
@@ -270,20 +520,21 @@ function stub(entry, isPastOverride) {
   // So the clause needs BOTH map art and stages that can actually be placed.
   // Preview entries (0 stages) and art-without-coordinates festivals get the
   // clause dropped: the copy never outruns the data.
-  const mapBacked = stages.length > 0
-    && stages.every(s => s && s.x != null && s.y != null)
+  const allStages = ds?.stages || [];
+  const mapBacked = allStages.length > 0
+    && allStages.every(s => s && s.x != null && s.y != null)
     && !!(cfg.mapImage || cfg.mapMode);
-  const answers = faqItems(entry, { names, hasTimes, stages });
+  const answers = faqItems(entry, { names, hasTimes, stages, blocks, plate });
 
   const desc = hasTimes
     ? `${cfg.name} set times and lineup — ${names.length} artists at ${venue}, ${cfg.dates}. Full schedule by day and stage. Plan your weekend with Plursky.`
     : names.length
-      ? `${cfg.name} lineup — ${names.length} artists at ${venue}, ${cfg.dates}. Build your schedule, map the stages and share your weekend with Plursky.`
-      : `${cfg.name} at ${venue}, ${cfg.dates}. Build your schedule, map the stages and share your weekend with Plursky.`;
+      ? `${cfg.name} lineup — ${names.length} artists at ${venue}, ${cfg.dates}. Build your schedule and share your weekend with Plursky.`
+      : `${cfg.name} at ${venue}, ${cfg.dates}. Build your schedule and share your weekend with Plursky.`;
 
   const ld = {
     '@context': 'https://schema.org',
-    '@type': 'MusicFestival',
+    '@type': 'MusicEvent',
     name: cfg.name,
     url,
     ...(dates ? { startDate: dates.start, endDate: dates.end } : {}),
@@ -291,6 +542,9 @@ function stub(entry, isPastOverride) {
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     description: desc,
     location: { '@type': 'Place', name: venue, ...(Object.keys(addr).length ? { address: { '@type': 'PostalAddress', ...addr } } : {}) },
+    // Only an image that is ours: the plate. Card art is official photography
+    // and patron maps are official art; neither is licensed to us.
+    ...(plate ? { image: `${ORIGIN}/${plate.file}` } : {}),
     // performer is emitted ONLY when the names are also visible on the page
     // below — structured data that isn't in the rendered content is a
     // Google structured-data violation.
@@ -309,19 +563,29 @@ function stub(entry, isPastOverride) {
     })),
   } : null;
 
-  const lineupSection = names.length ? `
-  <section aria-labelledby="lineup-h">
-    <h2 id="lineup-h">${esc(cfg.name)} lineup</h2>
-    <p>${names.length} artists announced.</p>
-    <ul class="lineup">
-${names.map(n => `      <li>${esc(n)}</li>`).join('\n')}
-    </ul>
-${cfg.setTimesProvisional ? `    <p class="note">Stage assignments and set times for ${esc(cfg.name)} have not been published yet. Plursky adds the official schedule as soon as it drops.</p>` : ''}
-  </section>` : `
-  <section>
-    <h2>${esc(cfg.name)} lineup</h2>
-    <p>The ${esc(cfg.name)} lineup has not been announced yet. Plursky adds it as soon as it drops.</p>
-  </section>`;
+  // Mirrors the visible breadcrumb at the top of <main>.
+  const crumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Plursky', item: `${ORIGIN}/` },
+      { '@type': 'ListItem', position: 2, name: 'Festivals', item: `${ORIGIN}/#festivals` },
+      { '@type': 'ListItem', position: 3, name: cfg.name, item: url },
+    ],
+  };
+
+  // The next edition, once the registry carries one.
+  const base = id.replace(/-\d{4}$/, '');
+  const next = isPast ? REG.find(f => f.config.id !== id && f.config.id.replace(/-\d{4}$/, '') === base
+    && (eventDates(f.config)?.start || '') > (dates?.end || '')) : null;
+
+  const src = cfg.scheduleSource;
+  const site = cfg.officialEvent && cfg.officialEvent.website;
+  const sources = [
+    site && `      <li>Official site: <a href="${esc(site)}" rel="noopener">${esc(site)}</a></li>`,
+    src && src.url && `      <li>Set times: <a href="${esc(src.url)}" rel="noopener">${esc(src.url)}</a> (${src.official === true ? 'official' : 'community source'}${src.observedAt ? `, checked ${esc(src.observedAt)}` : ''})</li>`,
+    cfg.mapSource && cfg.mapSource.url && `      <li>Map: <a href="${esc(cfg.mapSource.url)}" rel="noopener">${esc(cfg.mapSource.url)}</a> (official, checked ${esc(cfg.mapSource.observedAt)})</li>`,
+  ].filter(Boolean);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -330,7 +594,7 @@ ${cfg.setTimesProvisional ? `    <p class="note">Stage assignments and set times
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(cfg.name)} — ${titleTail} · Plursky</title>
 <meta name="description" content="${esc(desc)}">
-<link rel="canonical" href="${url}">
+${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonical" href="${url}">
 <meta name="apple-itunes-app" content="app-id=6768888507">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Plursky">
@@ -344,33 +608,53 @@ ${cfg.setTimesProvisional ? `    <p class="note">Stage assignments and set times
 <meta name="twitter:image" content="${ORIGIN}/og-card.png">
 <link rel="icon" type="image/png" href="/apple-touch-icon.png">
 <style>
-  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; }
+  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; --panel:#1c1916; }
   * { box-sizing:border-box; }
   body { margin:0; padding:32px 20px 64px; background:var(--bg); color:var(--ink);
          font-family:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.6; }
   main { max-width:760px; margin:0 auto; }
-  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; }
+  nav.crumbs { font-size:13px; color:var(--muted); margin:0 0 16px; }
+  nav.crumbs a { color:var(--muted); }
+  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; text-wrap:balance; }
   h2 { font-size:18px; margin:32px 0 8px; }
   .meta { color:var(--muted); margin:0 0 20px; }
+  .chip { display:inline-block; margin-right:8px; padding:1px 10px; border-radius:999px; border:1px solid var(--line);
+          color:var(--ink); font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
+  .chip-live, .chip-soon { border-color:var(--ember); color:var(--ember); }
   .note { color:var(--muted); font-size:14px; }
+  figure { margin:16px 0; }
+  figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:12px; background:var(--panel); }
+  .platebox { position:relative; max-width:520px; }
+  .pin { position:absolute; transform:translate(-50%,-50%); width:20px; height:20px; border-radius:50%;
+         display:flex; align-items:center; justify-content:center; background:rgba(18,16,14,0.82);
+         border:1px solid var(--ink); color:var(--ink); font-size:11px; font-weight:700; pointer-events:none; }
+  ol.platekey { margin:8px 0 0; padding-left:22px; font-size:13px; columns:2; column-gap:20px; }
+  figcaption { color:var(--muted); font-size:13px; margin-top:6px; }
   .cta { display:inline-block; margin:20px 0 8px; padding:12px 22px; border-radius:12px;
          background:linear-gradient(135deg,#6D28D9,var(--ember)); color:#fff; text-decoration:none; font-weight:700; }
-  ul.lineup { list-style:none; padding:0; margin:12px 0 0;
-              display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:2px 16px; }
-  ul.lineup li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.lineup { list-style:none; padding:0; margin:12px 0 0; }
+  ul.lineup li { padding:5px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; flex-wrap:wrap; gap:2px 12px; }
+  ul.lineup .act { font-weight:600; }
+  ul.lineup .slots { color:var(--muted); overflow-wrap:anywhere; }
   h3 { font-size:16px; margin:24px 0 4px; }
   h4 { font-size:13px; margin:16px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
+  h5 { font-size:12px; margin:12px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
   ul.sets { list-style:none; padding:0; margin:4px 0 0; }
-  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; }
+  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; scroll-margin-top:16px; }
+  ul.sets li:target { background:rgba(232,93,46,0.14); }
   ul.sets li time { color:var(--muted); font-variant-numeric:tabular-nums; min-width:96px; flex:none; }
   ul.stagelist { list-style:none; padding:0; margin:8px 0 0; }
   ul.stagelist li { padding:6px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.stagelist .counts { color:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; }
   dl.answers { margin:12px 0 0; }
   dl.answers dt { font-weight:700; font-size:15px; margin:16px 0 4px; }
   dl.answers dd { margin:0; color:var(--muted); font-size:14px; }
-  a.cta-secondary { margin-left:14px; font-weight:600; }
+  p.ctas { display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; margin:20px 0 8px; }
+  p.ctas .cta { margin:0; }
+  a.cta-secondary { font-weight:600; white-space:nowrap; }
   nav.other { margin-top:40px; }
   nav.other a { color:var(--ink); }
+  section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
 </style>
@@ -380,34 +664,47 @@ ${JSON.stringify(ld, null, 2)}
 ${faqLd ? `<script type="application/ld+json">
 ${JSON.stringify(faqLd, null, 2)}
 </script>
-` : ''}</head>
+` : ''}<script type="application/ld+json">
+${JSON.stringify(crumbLd, null, 2)}
+</script>
+</head>
 <body>
 <main>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Plursky</a> › <a href="/#festivals">Festivals</a> › <span aria-current="page">${esc(cfg.name)}</span></nav>
   <h1>${esc(cfg.name)}</h1>
-  <p class="meta">${esc(cfg.dates)}${where ? ' · ' + esc(where) : ''}${isPast ? ' · This festival has ended.' : ''}</p>
+  <p class="meta">${status ? `<span class="chip chip-${status}">${STATUS_LABEL[status]}</span>` : ''}${esc(cfg.dates)}${where ? ' · ' + esc(where) : ''}</p>
   <p>${esc(cfg.tagline || '')}</p>
+${answersSection(entry, answers)}
+${mapHtml}
+${scheduleGrid(entry, dates, blocks)}
+${lineupSection(entry, blocks, dates, names, hasTimes)}
+${stagesSection(entry, blocks, dates)}
+${planSection(entry, amenities)}
+${pastSection(entry, editions)}
 
-  <p>
-    <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
-    <a class="cta-secondary" href="/?f=${esc(id)}">${entry.available ? (isPast ? 'Relive it in the browser' : 'Open in your browser') : 'Open Plursky in the browser'}</a>
-  </p>
-  <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, ${mapBacked ? 'find stages on a live map, ' : ''}meet your crew, and turn the weekend into a shareable recap.</p>
+  <section aria-labelledby="app-h">
+    <h2 id="app-h">Get the app</h2>
+    <p class="ctas">
+      <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
+      <a class="cta-secondary" href="/?f=${esc(id)}">${entry.available ? (isPast ? 'Relive it in the browser' : 'Open in your browser') : 'Open Plursky in the browser'}</a>
+    </p>
+    <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, ${mapBacked ? 'find stages on a live map, ' : ''}meet your crew, and turn the weekend into a shareable recap.</p>
 ${entry.available
   ? (entry.scheduleTBA
-      ? `  <p class="note">${esc(cfg.name)} is open in the app — the full lineup is in. Set times appear as soon as the festival publishes them.</p>`
+      ? `    <p class="note">${esc(cfg.name)} is open in the app — the full lineup is in. Set times appear as soon as the festival publishes them.</p>\n`
       : '')
-  : `  <p class="note">${esc(cfg.name)} is not switchable in the app yet — it goes live once the official schedule is published. The links above open Plursky on the current festival.</p>`}
-${answersSection(entry, answers)}
-${scheduleGrid(entry, dates)}
-${stagesSection(entry)}
-${lineupSection}
+  : `    <p class="note">${esc(cfg.name)} is not switchable in the app yet — it goes live once the official schedule is published. The links above open Plursky on the current festival.</p>\n`}${isPast && entry.available ? `    <p><a href="/?f=${esc(id)}&amp;tab=memories">Your ${esc(cfg.name)} Memories in Plursky</a>${next ? ` · Next edition: <a href="/f/${esc(next.config.id)}/">${esc(next.config.name)}</a>` : ''}</p>\n` : ''}  </section>
 
   <nav class="other" aria-labelledby="other-h">
     <h2 id="other-h">Other festivals on Plursky</h2>
     <ul>
-${REG.filter(f => f.config.id !== id).map(f => `      <li><a href="/f/${f.config.id}/">${esc(f.config.name)}</a> — ${esc(f.config.dates)}</li>`).join('\n')}
+${otherFestivals(entry).map(f => `      <li><a href="/f/${f.config.id}/">${esc(f.config.name)}</a> — ${esc(f.config.dates)}</li>`).join('\n')}
     </ul>
   </nav>
+
+  <section class="sources" aria-labelledby="sources-h">
+    <h2 id="sources-h">Sources</h2>
+${sources.length ? `    <ul>\n${sources.join('\n')}\n    </ul>\n` : ''}${lastmod ? `    <p class="note">Last updated <time class="updated" datetime="${lastmod}">${lastmod}</time>.</p>\n` : ''}  </section>
 
   <footer>
     <a href="/">Plursky</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a>
@@ -442,12 +739,12 @@ ${REG.filter(f => f.config.id !== id).map(f => `      <li><a href="/f/${f.config
 //                   exists to hang that on, so it must NOT fail an unrelated
 //                   PR — it is owned by the scheduled workflow instead.
 //
-// The page text that moves on its own is the "This festival has ended." line
-// and the CTA verb, both derived from `dates.end < TODAY`. Rather than regex
-// them out of the comparison and risk masking a real edit to those strings,
-// --check renders the stub BOTH ways and accepts either. Every other
-// difference — a name, a date range, a lineup, an availability flip — still
-// fails, because only the isPast branch is allowed to vary.
+// The page text that moves on its own is the status chip (Upcoming / This
+// weekend / Happening now / Past, from statusOf) and the CTA verb that follows
+// Past. Rather than regex them out of the comparison and risk masking a real
+// edit to those strings, --check renders the stub under EVERY status and
+// accepts any. Every other difference — a name, a date range, a lineup, an
+// availability flip — still fails, because only the status is allowed to vary.
 //
 // Without this, the tree that is green today goes red on 2026-09-21 with no
 // commit in between: Lost Lands and Nocturnal both end on Sep 20. Verified by
@@ -462,8 +759,11 @@ const drift = [];
 // the calendar, which is the exact wolf the two-mode split exists to avoid.
 // So --check still normalises lastmod away, and --check-strict — the scheduled
 // job that owns the clock — is where the date has to actually be current.
-const norm = (t, f) => (f === 'sitemap.xml' && !CHECK_STRICT)
-  ? t.replace(/<lastmod>[^<]*<\/lastmod>/g, '<lastmod>-</lastmod>')
+// A page's "Last updated" line IS its sitemap lastmod, so it is normalised by
+// the same rule and for the same reason.
+const norm = (t, f) => CHECK_STRICT ? t
+  : f === 'sitemap.xml' ? t.replace(/<lastmod>[^<]*<\/lastmod>/g, '<lastmod>-</lastmod>')
+  : /^f\/[^/]+\/index\.html$/.test(f) ? t.replace(/<time class="updated" datetime="[^"]*">[^<]*<\/time>/g, '<time class="updated">-</time>')
   : t;
 // strictOnly: a file whose whole job is to carry dates across runs moves on the
 // calendar for the same reason the dates do, so the PR-facing --check skips it
@@ -475,7 +775,7 @@ function emit(abs, content, alsoAccept, strictOnly) {
   const cur = existsSync(abs) ? readFileSync(abs, 'utf8') : null;
   if (cur === null) { drift.push(`${rel} (missing)`); return; }
   const ok = norm(cur, rel) === norm(content, rel)
-    || (!CHECK_STRICT && alsoAccept != null && norm(cur, rel) === norm(alsoAccept, rel));
+    || (!CHECK_STRICT && [].concat(alsoAccept || []).some(alt => norm(cur, rel) === norm(alt, rel)));
   if (!ok) drift.push(rel);
 }
 
@@ -504,15 +804,61 @@ function scheduleFeed(entry) {
 }
 
 const rows = [];
+// The ledger is read BEFORE the pages are rendered, because each page prints
+// its own lastmod as "Last updated". The fingerprint is of the page's source
+// content, not the rendered file, so there is no cycle.
+const LEDGER = path.join(root, 'sitemap-lastmod.json');
+const SITEMAP = path.join(root, 'sitemap.xml');
+const fileFp = (rel) => fp(existsSync(path.join(root, rel)) ? readFileSync(path.join(root, rel), 'utf8') : null);
+// Which source fields are hashed, which are deliberately not, and why, all
+// live in scripts/lib/sitemap-fingerprint.mjs — shared with
+// scripts/test-sitemap-fingerprint.mjs so the generator and its regression
+// mutants hash through one function rather than two copies of a rule.
+const festivalFp = (entry) => festivalFingerprint(entry, { DS, scheduleActs, eventDates, TODAY });
+
+// First run has no ledger. Seeding from the sitemap already committed keeps
+// every published date that is still true, rather than announcing that all 28
+// pages changed at once on the day this shipped — which would be false for the
+// ended festivals sitting honestly at 2026-08-28. Seeding can only ever
+// UNDERSTATE recency: a page whose content moved before this landed keeps its
+// old date until its next real change. ACL is the one that matters there, and
+// the answer-block work in this same lane is that change.
+const prevLedger = (() => {
+  if (existsSync(LEDGER)) return JSON.parse(readFileSync(LEDGER, 'utf8'));
+  const seeded = {};
+  if (existsSync(SITEMAP)) {
+    for (const m of readFileSync(SITEMAP, 'utf8')
+         .matchAll(/<loc>([^<]*)<\/loc>\s*<lastmod>([^<]*)<\/lastmod>/g)) {
+      if (/^\d{4}-\d{2}-\d{2}$/.test(m[2])) seeded[m[1]] = { fp: null, lastmod: m[2] };
+    }
+  }
+  return seeded;
+})();
+const ledger = {};
+const lastmodFor = (loc, fingerprint) => {
+  const was = prevLedger[loc];
+  // A seeded row has no fingerprint yet: adopt its published date and record
+  // the fingerprint, rather than read "unknown" as "changed".
+  const lastmod = was && (was.fp === null || was.fp === fingerprint) ? was.lastmod : TODAY;
+  ledger[loc] = { fp: fingerprint, lastmod };
+  return lastmod;
+};
+
+const festivalLastmod = new Map();
+const STATUSES = ['upcoming', 'soon', 'live', 'past'];
 for (const entry of REG) {
   const id = entry.config.id;
   const dir = path.join(OUT_DIR, id);
   if (!CHECK) mkdirSync(dir, { recursive: true });
-  // The alternate is the same page on the other side of its end date — see
-  // the two-modes note above. Ignored by --check-strict.
-  emit(path.join(dir, 'index.html'), stub(entry),
-       CHECK && !CHECK_STRICT ? stub(entry, !(eventDates(entry.config)
-         ? eventDates(entry.config).end < TODAY : false)) : null);
+  const loc = `${ORIGIN}/f/${id}/`;
+  const lastmod = lastmodFor(loc, festivalFp(entry));
+  festivalLastmod.set(id, lastmod);
+  // The alternates are the same page under every other status chip — see the
+  // two-modes note above: the chip moves with the calendar, not with a commit.
+  // Ignored by --check-strict.
+  const status = statusOf(entry.config, TODAY);
+  emit(path.join(dir, 'index.html'), stub(entry, status, lastmod),
+       CHECK && !CHECK_STRICT && status ? STATUSES.filter(x => x !== status).map(x => stub(entry, x, lastmod)) : null);
   // Every open festival ships a feed, INCLUDING one whose set times are still
   // pending. A blank feed is not a fabricated one: `source` is null and each
   // act carries start "" / end "", which is a first-class state throughout —
@@ -586,47 +932,12 @@ if (!CHECK) console.log(`[gen] index.html festival lists refreshed (${REG.length
 // carries the ledger back with it. Revert the content WITHOUT the ledger and
 // the fingerprint has genuinely moved twice, so the page reads as changed
 // today — right by the rules, and a real trap when testing by hand.
-const LEDGER = path.join(root, 'sitemap-lastmod.json');
-const SITEMAP = path.join(root, 'sitemap.xml');
-const fileFp = (rel) => fp(existsSync(path.join(root, rel)) ? readFileSync(path.join(root, rel), 'utf8') : null);
-// Which source fields are hashed, which are deliberately not, and why, all
-// live in scripts/lib/sitemap-fingerprint.mjs — shared with
-// scripts/test-sitemap-fingerprint.mjs so the generator and its regression
-// mutants hash through one function rather than two copies of a rule.
-const festivalFp = (entry) => festivalFingerprint(entry, { DS, scheduleActs, eventDates, TODAY });
-
-// First run has no ledger. Seeding from the sitemap already committed keeps
-// every published date that is still true, rather than announcing that all 28
-// pages changed at once on the day this shipped — which would be false for the
-// ended festivals sitting honestly at 2026-08-28. Seeding can only ever
-// UNDERSTATE recency: a page whose content moved before this landed keeps its
-// old date until its next real change. ACL is the one that matters there, and
-// the answer-block work in this same lane is that change.
-const prevLedger = (() => {
-  if (existsSync(LEDGER)) return JSON.parse(readFileSync(LEDGER, 'utf8'));
-  const seeded = {};
-  if (existsSync(SITEMAP)) {
-    for (const m of readFileSync(SITEMAP, 'utf8')
-         .matchAll(/<loc>([^<]*)<\/loc>\s*<lastmod>([^<]*)<\/lastmod>/g)) {
-      if (/^\d{4}-\d{2}-\d{2}$/.test(m[2])) seeded[m[1]] = { fp: null, lastmod: m[2] };
-    }
-  }
-  return seeded;
-})();
-const ledger = {};
-const lastmodFor = (loc, fingerprint) => {
-  const was = prevLedger[loc];
-  // A seeded row has no fingerprint yet: adopt its published date and record
-  // the fingerprint, rather than read "unknown" as "changed".
-  const lastmod = was && (was.fp === null || was.fp === fingerprint) ? was.lastmod : TODAY;
-  ledger[loc] = { fp: fingerprint, lastmod };
-  return lastmod;
-};
-
 const urls = [
   { loc: `${ORIGIN}/`, pri: '1.0', lastmod: lastmodFor(`${ORIGIN}/`, fp(idx)) },
-  ...REG.map(f => ({ loc: `${ORIGIN}/f/${f.config.id}/`, pri: '0.8',
-                     lastmod: lastmodFor(`${ORIGIN}/f/${f.config.id}/`, festivalFp(f)) })),
+  // A page with no lineup is noindex, so it stays out of the sitemap until it
+  // has one; its ledger row is kept so its date survives the wait.
+  ...REG.filter(f => (DS[f.config.id]?.artists || []).some(a => a.name))
+    .map(f => ({ loc: `${ORIGIN}/f/${f.config.id}/`, pri: '0.8', lastmod: festivalLastmod.get(f.config.id) })),
   { loc: `${ORIGIN}/terms.html`, pri: '0.3', lastmod: lastmodFor(`${ORIGIN}/terms.html`, fileFp('terms.html')) },
   { loc: `${ORIGIN}/privacy.html`, pri: '0.3', lastmod: lastmodFor(`${ORIGIN}/privacy.html`, fileFp('privacy.html')) },
 ];

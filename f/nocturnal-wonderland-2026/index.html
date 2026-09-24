@@ -19,40 +19,60 @@
 <meta name="twitter:image" content="https://plursky.com/og-card.png">
 <link rel="icon" type="image/png" href="/apple-touch-icon.png">
 <style>
-  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; }
+  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; --panel:#1c1916; }
   * { box-sizing:border-box; }
   body { margin:0; padding:32px 20px 64px; background:var(--bg); color:var(--ink);
          font-family:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.6; }
   main { max-width:760px; margin:0 auto; }
-  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; }
+  nav.crumbs { font-size:13px; color:var(--muted); margin:0 0 16px; }
+  nav.crumbs a { color:var(--muted); }
+  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; text-wrap:balance; }
   h2 { font-size:18px; margin:32px 0 8px; }
   .meta { color:var(--muted); margin:0 0 20px; }
+  .chip { display:inline-block; margin-right:8px; padding:1px 10px; border-radius:999px; border:1px solid var(--line);
+          color:var(--ink); font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
+  .chip-live, .chip-soon { border-color:var(--ember); color:var(--ember); }
   .note { color:var(--muted); font-size:14px; }
+  figure { margin:16px 0; }
+  figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:12px; background:var(--panel); }
+  .platebox { position:relative; max-width:520px; }
+  .pin { position:absolute; transform:translate(-50%,-50%); width:20px; height:20px; border-radius:50%;
+         display:flex; align-items:center; justify-content:center; background:rgba(18,16,14,0.82);
+         border:1px solid var(--ink); color:var(--ink); font-size:11px; font-weight:700; pointer-events:none; }
+  ol.platekey { margin:8px 0 0; padding-left:22px; font-size:13px; columns:2; column-gap:20px; }
+  figcaption { color:var(--muted); font-size:13px; margin-top:6px; }
   .cta { display:inline-block; margin:20px 0 8px; padding:12px 22px; border-radius:12px;
          background:linear-gradient(135deg,#6D28D9,var(--ember)); color:#fff; text-decoration:none; font-weight:700; }
-  ul.lineup { list-style:none; padding:0; margin:12px 0 0;
-              display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:2px 16px; }
-  ul.lineup li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.lineup { list-style:none; padding:0; margin:12px 0 0; }
+  ul.lineup li { padding:5px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; flex-wrap:wrap; gap:2px 12px; }
+  ul.lineup .act { font-weight:600; }
+  ul.lineup .slots { color:var(--muted); overflow-wrap:anywhere; }
   h3 { font-size:16px; margin:24px 0 4px; }
   h4 { font-size:13px; margin:16px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
+  h5 { font-size:12px; margin:12px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
   ul.sets { list-style:none; padding:0; margin:4px 0 0; }
-  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; }
+  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; scroll-margin-top:16px; }
+  ul.sets li:target { background:rgba(232,93,46,0.14); }
   ul.sets li time { color:var(--muted); font-variant-numeric:tabular-nums; min-width:96px; flex:none; }
   ul.stagelist { list-style:none; padding:0; margin:8px 0 0; }
   ul.stagelist li { padding:6px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.stagelist .counts { color:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; }
   dl.answers { margin:12px 0 0; }
   dl.answers dt { font-weight:700; font-size:15px; margin:16px 0 4px; }
   dl.answers dd { margin:0; color:var(--muted); font-size:14px; }
-  a.cta-secondary { margin-left:14px; font-weight:600; }
+  p.ctas { display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; margin:20px 0 8px; }
+  p.ctas .cta { margin:0; }
+  a.cta-secondary { font-weight:600; white-space:nowrap; }
   nav.other { margin-top:40px; }
   nav.other a { color:var(--ink); }
+  section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
 </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "MusicFestival",
+  "@type": "MusicEvent",
   "name": "Nocturnal Wonderland 2026",
   "url": "https://plursky.com/f/nocturnal-wonderland-2026/",
   "startDate": "2026-09-19",
@@ -70,6 +90,7 @@
       "addressCountry": "US"
     }
   },
+  "image": "https://plursky.com/nocturnal-2026.svg",
   "performer": [
     {
       "@type": "MusicGroup",
@@ -458,6 +479,40 @@
         "@type": "Answer",
         "text": "Nocturnal Wonderland 2026 has 5 stages at Glen Helen Regional Park, each one listed on this page."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a map for Nocturnal Wonderland 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This page shows Plursky's Nocturnal Wonderland 2026 site plate. Abstract site plate. Stage positions are read from the 2025 official festival map (the 2026 map is not published); the artwork here is generated from those coordinates and reproduces no festival art. Not georeferenced."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Plursky",
+      "item": "https://plursky.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Festivals",
+      "item": "https://plursky.com/#festivals"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Nocturnal Wonderland 2026",
+      "item": "https://plursky.com/f/nocturnal-wonderland-2026/"
     }
   ]
 }
@@ -465,16 +520,10 @@
 </head>
 <body>
 <main>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Plursky</a> › <a href="/#festivals">Festivals</a> › <span aria-current="page">Nocturnal Wonderland 2026</span></nav>
   <h1>Nocturnal Wonderland 2026</h1>
-  <p class="meta">Sep 19–20, 2026 · Glen Helen Regional Park · San Bernardino, CA · This festival has ended.</p>
+  <p class="meta"><span class="chip chip-past">Past</span>Sep 19–20, 2026 · Glen Helen Regional Park · San Bernardino, CA</p>
   <p>Two nights with the creatures of the night</p>
-
-  <p>
-    <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
-    <a class="cta-secondary" href="/?f=nocturnal-wonderland-2026">Relive it in the browser</a>
-  </p>
-  <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, meet your crew, and turn the weekend into a shareable recap.</p>
-
 
   <section aria-labelledby="answers-h">
     <h2 id="answers-h">Nocturnal Wonderland 2026 — quick answers</h2>
@@ -487,7 +536,29 @@
       <dd>86 artists are announced for Nocturnal Wonderland 2026, and every one of them is listed on this page.</dd>
       <dt>How many stages does Nocturnal Wonderland 2026 have?</dt>
       <dd>Nocturnal Wonderland 2026 has 5 stages at Glen Helen Regional Park, each one listed on this page.</dd>
+      <dt>Is there a map for Nocturnal Wonderland 2026?</dt>
+      <dd>This page shows Plursky&#39;s Nocturnal Wonderland 2026 site plate. Abstract site plate. Stage positions are read from the 2025 official festival map (the 2026 map is not published); the artwork here is generated from those coordinates and reproduces no festival art. Not georeferenced.</dd>
     </dl>
+  </section>
+
+  <section aria-labelledby="map-h">
+    <h2 id="map-h">Nocturnal Wonderland 2026 map</h2>
+    <figure class="plate">
+      <div class="platebox">
+        <img src="/nocturnal-2026.svg" width="100" height="100" loading="lazy" decoding="async" alt="Nocturnal Wonderland 2026 site plate: Plursky's abstract stage layout, not the official festival map">
+        <span class="pin" style="left:29.9%;top:57.9%" aria-hidden="true">1</span>
+        <span class="pin" style="left:70.8%;top:9.3%" aria-hidden="true">2</span>
+        <span class="pin" style="left:61.7%;top:43.6%" aria-hidden="true">3</span>
+        <span class="pin" style="left:26%;top:81.4%" aria-hidden="true">4</span>
+      </div>
+      <ol class="platekey">
+        <li>Mystic Wild</li>
+        <li>Dawn Mountain</li>
+        <li>Aurora Plains</li>
+        <li>Beatbox Boombox</li>
+      </ol>
+      <figcaption>Abstract site plate. Stage positions are read from the 2025 official festival map (the 2026 map is not published); the artwork here is generated from those coordinates and reproduces no festival art. Not georeferenced. Rave Cave has no position on this plate.</figcaption>
+    </figure>
   </section>
 
   <section aria-labelledby="schedule-h">
@@ -496,132 +567,120 @@
     <h3>Saturday, September 19</h3>
     <h4>Mystic Wild</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-19T15:00">15:00 – 16:00</time> <span>Shima</span></li>
-      <li><time datetime="2026-09-19T16:00">16:00 – 17:00</time> <span>Flava D</span></li>
-      <li><time datetime="2026-09-19T17:00">17:00 – 18:00</time> <span>GRAVAGERZ</span></li>
-      <li><time datetime="2026-09-19T18:00">18:00 – 19:00</time> <span>SABAI</span></li>
-      <li><time datetime="2026-09-19T19:00">19:00 – 20:00</time> <span>Malaa</span></li>
-      <li><time datetime="2026-09-19T20:00">20:00 – 21:00</time> <span>JSTJR</span></li>
-      <li><time datetime="2026-09-19T21:00">21:00 – 22:00</time> <span>James Hype</span></li>
-      <li><time datetime="2026-09-19T22:00">22:00 – 23:00</time> <span>Deorro</span></li>
-      <li><time datetime="2026-09-19T23:00">23:00 – 00:00</time> <span>deadmau5</span></li>
+      <li id="set-nw-shima"><time datetime="2026-09-19T15:00">15:00 – 16:00</time> <span>Shima</span></li>
+      <li id="set-nw-flava-d"><time datetime="2026-09-19T16:00">16:00 – 17:00</time> <span>Flava D</span></li>
+      <li id="set-nw-gravagerz"><time datetime="2026-09-19T17:00">17:00 – 18:00</time> <span>GRAVAGERZ</span></li>
+      <li id="set-nw-sabai"><time datetime="2026-09-19T18:00">18:00 – 19:00</time> <span>SABAI</span></li>
+      <li id="set-nw-malaa"><time datetime="2026-09-19T19:00">19:00 – 20:00</time> <span>Malaa</span></li>
+      <li id="set-nw-jstjr"><time datetime="2026-09-19T20:00">20:00 – 21:00</time> <span>JSTJR</span></li>
+      <li id="set-nw-james-hype"><time datetime="2026-09-19T21:00">21:00 – 22:00</time> <span>James Hype</span></li>
+      <li id="set-nw-deorro"><time datetime="2026-09-19T22:00">22:00 – 23:00</time> <span>Deorro</span></li>
+      <li id="set-nw-deadmau5"><time datetime="2026-09-19T23:00">23:00 – 00:00</time> <span>deadmau5</span></li>
     </ul>
     <h4>Dawn Mountain</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-19T15:00">15:00 – 16:00</time> <span>CALLEN B2B SEKTOR 8</span></li>
-      <li><time datetime="2026-09-19T16:00">16:00 – 17:00</time> <span>Wolfie</span></li>
-      <li><time datetime="2026-09-19T17:00">17:00 – 18:00</time> <span>Sippy</span></li>
-      <li><time datetime="2026-09-19T18:00">18:00 – 19:00</time> <span>Jkyl &amp; Hyde B2B Nikita, the Wicked</span></li>
-      <li><time datetime="2026-09-19T19:00">19:00 – 20:00</time> <span>Hybrid Minds</span></li>
-      <li><time datetime="2026-09-19T20:00">20:00 – 21:00</time> <span>Kompany B2B Samplifire</span></li>
-      <li><time datetime="2026-09-19T21:00">21:00 – 22:00</time> <span>INFEKT B2B Virtual Riot</span></li>
-      <li><time datetime="2026-09-19T22:00">22:00 – 23:00</time> <span>NGHTMRE</span></li>
-      <li><time datetime="2026-09-19T23:00">23:00 – 00:00</time> <span>Svdden Death</span></li>
+      <li id="set-nw-callen-b2b-sektor-8"><time datetime="2026-09-19T15:00">15:00 – 16:00</time> <span>CALLEN B2B SEKTOR 8</span></li>
+      <li id="set-nw-wolfie"><time datetime="2026-09-19T16:00">16:00 – 17:00</time> <span>Wolfie</span></li>
+      <li id="set-nw-sippy"><time datetime="2026-09-19T17:00">17:00 – 18:00</time> <span>Sippy</span></li>
+      <li id="set-nw-jkyl-and-hyde-b2b-nikita-the-wicked"><time datetime="2026-09-19T18:00">18:00 – 19:00</time> <span>Jkyl &amp; Hyde B2B Nikita, the Wicked</span></li>
+      <li id="set-nw-hybrid-minds"><time datetime="2026-09-19T19:00">19:00 – 20:00</time> <span>Hybrid Minds</span></li>
+      <li id="set-nw-kompany-b2b-samplifire"><time datetime="2026-09-19T20:00">20:00 – 21:00</time> <span>Kompany B2B Samplifire</span></li>
+      <li id="set-nw-infekt-b2b-virtual-riot"><time datetime="2026-09-19T21:00">21:00 – 22:00</time> <span>INFEKT B2B Virtual Riot</span></li>
+      <li id="set-nw-nghtmre"><time datetime="2026-09-19T22:00">22:00 – 23:00</time> <span>NGHTMRE</span></li>
+      <li id="set-nw-svdden-death"><time datetime="2026-09-19T23:00">23:00 – 00:00</time> <span>Svdden Death</span></li>
     </ul>
     <h4>Aurora Plains</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-19T15:00">15:00 – 16:00</time> <span>Trainer Red</span></li>
-      <li><time datetime="2026-09-19T16:00">16:00 – 17:00</time> <span>Braydon Terzo</span></li>
-      <li><time datetime="2026-09-19T17:00">17:00 – 18:00</time> <span>M-High</span></li>
-      <li><time datetime="2026-09-19T18:00">18:00 – 19:00</time> <span>Fleur Shore</span></li>
-      <li><time datetime="2026-09-19T19:00">19:00 – 20:00</time> <span>Ragie Ban</span></li>
-      <li><time datetime="2026-09-19T20:00">20:00 – 21:15</time> <span>Patrick Topping</span></li>
-      <li><time datetime="2026-09-19T21:15">21:15 – 22:30</time> <span>Partiboi69</span></li>
-      <li><time datetime="2026-09-19T22:30">22:30 – 00:00</time> <span>Green Velvet</span></li>
+      <li id="set-nw-trainer-red"><time datetime="2026-09-19T15:00">15:00 – 16:00</time> <span>Trainer Red</span></li>
+      <li id="set-nw-braydon-terzo"><time datetime="2026-09-19T16:00">16:00 – 17:00</time> <span>Braydon Terzo</span></li>
+      <li id="set-nw-m-high"><time datetime="2026-09-19T17:00">17:00 – 18:00</time> <span>M-High</span></li>
+      <li id="set-nw-fleur-shore"><time datetime="2026-09-19T18:00">18:00 – 19:00</time> <span>Fleur Shore</span></li>
+      <li id="set-nw-ragie-ban"><time datetime="2026-09-19T19:00">19:00 – 20:00</time> <span>Ragie Ban</span></li>
+      <li id="set-nw-patrick-topping"><time datetime="2026-09-19T20:00">20:00 – 21:15</time> <span>Patrick Topping</span></li>
+      <li id="set-nw-partiboi69"><time datetime="2026-09-19T21:15">21:15 – 22:30</time> <span>Partiboi69</span></li>
+      <li id="set-nw-green-velvet"><time datetime="2026-09-19T22:30">22:30 – 00:00</time> <span>Green Velvet</span></li>
     </ul>
     <h4>Rave Cave</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-19T15:00">15:00 – 16:30</time> <span>Steve Leclair</span></li>
-      <li><time datetime="2026-09-19T16:30">16:30 – 18:00</time> <span>Steve Loria</span></li>
-      <li><time datetime="2026-09-19T18:00">18:00 – 19:00</time> <span>Ed Bailey</span></li>
-      <li><time datetime="2026-09-19T19:00">19:00 – 20:00</time> <span>Oscar Da Grouch</span></li>
-      <li><time datetime="2026-09-19T20:00">20:00 – 21:30</time> <span>Reid Speed</span></li>
-      <li><time datetime="2026-09-19T21:30">21:30 – 22:45</time> <span>Subsonic</span></li>
-      <li><time datetime="2026-09-19T22:45">22:45 – 00:00</time> <span>Basstripper</span></li>
+      <li id="set-nw-steve-leclair"><time datetime="2026-09-19T15:00">15:00 – 16:30</time> <span>Steve Leclair</span></li>
+      <li id="set-nw-steve-loria"><time datetime="2026-09-19T16:30">16:30 – 18:00</time> <span>Steve Loria</span></li>
+      <li id="set-nw-ed-bailey"><time datetime="2026-09-19T18:00">18:00 – 19:00</time> <span>Ed Bailey</span></li>
+      <li id="set-nw-oscar-da-grouch"><time datetime="2026-09-19T19:00">19:00 – 20:00</time> <span>Oscar Da Grouch</span></li>
+      <li id="set-nw-reid-speed"><time datetime="2026-09-19T20:00">20:00 – 21:30</time> <span>Reid Speed</span></li>
+      <li id="set-nw-subsonic"><time datetime="2026-09-19T21:30">21:30 – 22:45</time> <span>Subsonic</span></li>
+      <li id="set-nw-basstripper"><time datetime="2026-09-19T22:45">22:45 – 00:00</time> <span>Basstripper</span></li>
     </ul>
     <h4>Beatbox Boombox</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-19T15:00">15:00 – 16:00</time> <span>NEDA(:</span></li>
-      <li><time datetime="2026-09-19T16:00">16:00 – 17:00</time> <span>Lily Ardalan</span></li>
-      <li><time datetime="2026-09-19T17:00">17:00 – 18:00</time> <span>THA4SAKEN</span></li>
-      <li><time datetime="2026-09-19T18:00">18:00 – 19:00</time> <span>Kittamami B2B Tony H</span></li>
-      <li><time datetime="2026-09-19T19:00">19:00 – 20:00</time> <span>DMZ and Friends</span></li>
-      <li><time datetime="2026-09-19T20:00">20:00 – 21:00</time> <span>Dances B2B Techno Tupac</span></li>
-      <li><time datetime="2026-09-19T21:00">21:00 – 22:00</time> <span>Hekler</span></li>
-      <li><time datetime="2026-09-19T22:00">22:00 – 23:00</time> <span>Dack Janiels B2B Mongrel</span></li>
-      <li><time datetime="2026-09-19T23:00">23:00 – 00:00</time> <span>Woof Logik</span></li>
+      <li id="set-nw-neda"><time datetime="2026-09-19T15:00">15:00 – 16:00</time> <span>NEDA(:</span></li>
+      <li id="set-nw-lily-ardalan"><time datetime="2026-09-19T16:00">16:00 – 17:00</time> <span>Lily Ardalan</span></li>
+      <li id="set-nw-tha4saken"><time datetime="2026-09-19T17:00">17:00 – 18:00</time> <span>THA4SAKEN</span></li>
+      <li id="set-nw-kittamami-b2b-tony-h"><time datetime="2026-09-19T18:00">18:00 – 19:00</time> <span>Kittamami B2B Tony H</span></li>
+      <li id="set-nw-dmz-and-friends"><time datetime="2026-09-19T19:00">19:00 – 20:00</time> <span>DMZ and Friends</span></li>
+      <li id="set-nw-dances-b2b-techno-tupac"><time datetime="2026-09-19T20:00">20:00 – 21:00</time> <span>Dances B2B Techno Tupac</span></li>
+      <li id="set-nw-hekler"><time datetime="2026-09-19T21:00">21:00 – 22:00</time> <span>Hekler</span></li>
+      <li id="set-nw-dack-janiels-b2b-mongrel"><time datetime="2026-09-19T22:00">22:00 – 23:00</time> <span>Dack Janiels B2B Mongrel</span></li>
+      <li id="set-nw-woof-logik"><time datetime="2026-09-19T23:00">23:00 – 00:00</time> <span>Woof Logik</span></li>
     </ul>
     <h3>Sunday, September 20</h3>
     <h4>Mystic Wild</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-20T15:00">15:00 – 15:45</time> <span>Jordan Savage</span></li>
-      <li><time datetime="2026-09-20T15:45">15:45 – 16:45</time> <span>Mattilo</span></li>
-      <li><time datetime="2026-09-20T16:45">16:45 – 17:45</time> <span>Angrybaby</span></li>
-      <li><time datetime="2026-09-20T17:45">17:45 – 18:45</time> <span>CHYL</span></li>
-      <li><time datetime="2026-09-20T18:50">18:50 – 19:50</time> <span>Said The Sky (Sunset Set)</span></li>
-      <li><time datetime="2026-09-20T19:50">19:50 – 20:50</time> <span>R3HAB</span></li>
-      <li><time datetime="2026-09-20T20:50">20:50 – 21:50</time> <span>SIDEPIECE</span></li>
-      <li><time datetime="2026-09-20T21:55">21:55 – 22:55</time> <span>Seven Lions</span></li>
-      <li><time datetime="2026-09-20T23:00">23:00 – 00:00</time> <span>Illenium</span></li>
+      <li id="set-nw-jordan-savage"><time datetime="2026-09-20T15:00">15:00 – 15:45</time> <span>Jordan Savage</span></li>
+      <li id="set-nw-mattilo"><time datetime="2026-09-20T15:45">15:45 – 16:45</time> <span>Mattilo</span></li>
+      <li id="set-nw-angrybaby"><time datetime="2026-09-20T16:45">16:45 – 17:45</time> <span>Angrybaby</span></li>
+      <li id="set-nw-chyl"><time datetime="2026-09-20T17:45">17:45 – 18:45</time> <span>CHYL</span></li>
+      <li id="set-nw-said-the-sky-sunset-set"><time datetime="2026-09-20T18:50">18:50 – 19:50</time> <span>Said The Sky (Sunset Set)</span></li>
+      <li id="set-nw-r3hab"><time datetime="2026-09-20T19:50">19:50 – 20:50</time> <span>R3HAB</span></li>
+      <li id="set-nw-sidepiece"><time datetime="2026-09-20T20:50">20:50 – 21:50</time> <span>SIDEPIECE</span></li>
+      <li id="set-nw-seven-lions"><time datetime="2026-09-20T21:55">21:55 – 22:55</time> <span>Seven Lions</span></li>
+      <li id="set-nw-illenium"><time datetime="2026-09-20T23:00">23:00 – 00:00</time> <span>Illenium</span></li>
     </ul>
     <h4>Dawn Mountain</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-20T15:00">15:00 – 16:30</time> <span>Nightstalker with MC Dino</span></li>
-      <li><time datetime="2026-09-20T16:30">16:30 – 17:30</time> <span>RIOT</span></li>
-      <li><time datetime="2026-09-20T17:30">17:30 – 18:30</time> <span>Friction</span></li>
-      <li><time datetime="2026-09-20T18:30">18:30 – 19:30</time> <span>Eliminate</span></li>
-      <li><time datetime="2026-09-20T19:30">19:30 – 20:30</time> <span>BARELY ALIVE</span></li>
-      <li><time datetime="2026-09-20T20:30">20:30 – 21:30</time> <span>LAYZ</span></li>
-      <li><time datetime="2026-09-20T21:30">21:30 – 22:30</time> <span>Hedex</span></li>
-      <li><time datetime="2026-09-20T22:30">22:30 – 23:30</time> <span>TroyBoi</span></li>
-      <li><time datetime="2026-09-20T23:30">23:30 – 00:00</time> <span>Teddy Pain (T-Pain Bass Set)</span></li>
+      <li id="set-nw-nightstalker-with-mc-dino"><time datetime="2026-09-20T15:00">15:00 – 16:30</time> <span>Nightstalker with MC Dino</span></li>
+      <li id="set-nw-riot"><time datetime="2026-09-20T16:30">16:30 – 17:30</time> <span>RIOT</span></li>
+      <li id="set-nw-friction"><time datetime="2026-09-20T17:30">17:30 – 18:30</time> <span>Friction</span></li>
+      <li id="set-nw-eliminate"><time datetime="2026-09-20T18:30">18:30 – 19:30</time> <span>Eliminate</span></li>
+      <li id="set-nw-barely-alive"><time datetime="2026-09-20T19:30">19:30 – 20:30</time> <span>BARELY ALIVE</span></li>
+      <li id="set-nw-layz"><time datetime="2026-09-20T20:30">20:30 – 21:30</time> <span>LAYZ</span></li>
+      <li id="set-nw-hedex"><time datetime="2026-09-20T21:30">21:30 – 22:30</time> <span>Hedex</span></li>
+      <li id="set-nw-troyboi"><time datetime="2026-09-20T22:30">22:30 – 23:30</time> <span>TroyBoi</span></li>
+      <li id="set-nw-teddy-pain-t-pain-bass-set"><time datetime="2026-09-20T23:30">23:30 – 00:00</time> <span>Teddy Pain (T-Pain Bass Set)</span></li>
     </ul>
     <h4>Aurora Plains</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-20T15:00">15:00 – 16:00</time> <span>GAINZ</span></li>
-      <li><time datetime="2026-09-20T16:00">16:00 – 17:00</time> <span>Juos</span></li>
-      <li><time datetime="2026-09-20T17:00">17:00 – 18:00</time> <span>Inntraw</span></li>
-      <li><time datetime="2026-09-20T18:00">18:00 – 19:00</time> <span>Tini Gessler</span></li>
-      <li><time datetime="2026-09-20T19:00">19:00 – 20:00</time> <span>GUDFELLA</span></li>
-      <li><time datetime="2026-09-20T20:00">20:00 – 21:00</time> <span>Joshwa</span></li>
-      <li><time datetime="2026-09-20T21:00">21:00 – 22:00</time> <span>Ely Oaks</span></li>
-      <li><time datetime="2026-09-20T22:00">22:00 – 23:00</time> <span>Walker &amp; Royce</span></li>
-      <li><time datetime="2026-09-20T23:00">23:00 – 00:00</time> <span>Dombresky</span></li>
+      <li id="set-nw-gainz"><time datetime="2026-09-20T15:00">15:00 – 16:00</time> <span>GAINZ</span></li>
+      <li id="set-nw-juos"><time datetime="2026-09-20T16:00">16:00 – 17:00</time> <span>Juos</span></li>
+      <li id="set-nw-inntraw"><time datetime="2026-09-20T17:00">17:00 – 18:00</time> <span>Inntraw</span></li>
+      <li id="set-nw-tini-gessler"><time datetime="2026-09-20T18:00">18:00 – 19:00</time> <span>Tini Gessler</span></li>
+      <li id="set-nw-gudfella"><time datetime="2026-09-20T19:00">19:00 – 20:00</time> <span>GUDFELLA</span></li>
+      <li id="set-nw-joshwa"><time datetime="2026-09-20T20:00">20:00 – 21:00</time> <span>Joshwa</span></li>
+      <li id="set-nw-ely-oaks"><time datetime="2026-09-20T21:00">21:00 – 22:00</time> <span>Ely Oaks</span></li>
+      <li id="set-nw-walker-and-royce"><time datetime="2026-09-20T22:00">22:00 – 23:00</time> <span>Walker &amp; Royce</span></li>
+      <li id="set-nw-dombresky"><time datetime="2026-09-20T23:00">23:00 – 00:00</time> <span>Dombresky</span></li>
     </ul>
     <h4>Rave Cave</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-20T15:00">15:00 – 16:00</time> <span>DJ Uncle Noah</span></li>
-      <li><time datetime="2026-09-20T16:00">16:00 – 17:00</time> <span>Oscure</span></li>
-      <li><time datetime="2026-09-20T17:00">17:00 – 18:00</time> <span>B-Side</span></li>
-      <li><time datetime="2026-09-20T18:00">18:00 – 19:00</time> <span>Vitamin D</span></li>
-      <li><time datetime="2026-09-20T19:00">19:00 – 20:00</time> <span>John Kelley</span></li>
-      <li><time datetime="2026-09-20T20:00">20:00 – 21:00</time> <span>Star Eyes</span></li>
-      <li><time datetime="2026-09-20T21:00">21:00 – 22:30</time> <span>Simply Jeff feat. Sharyn Maceren (Live)</span></li>
-      <li><time datetime="2026-09-20T22:30">22:30 – 00:00</time> <span>Stanton Warriors</span></li>
+      <li id="set-nw-dj-uncle-noah"><time datetime="2026-09-20T15:00">15:00 – 16:00</time> <span>DJ Uncle Noah</span></li>
+      <li id="set-nw-oscure"><time datetime="2026-09-20T16:00">16:00 – 17:00</time> <span>Oscure</span></li>
+      <li id="set-nw-b-side"><time datetime="2026-09-20T17:00">17:00 – 18:00</time> <span>B-Side</span></li>
+      <li id="set-nw-vitamin-d"><time datetime="2026-09-20T18:00">18:00 – 19:00</time> <span>Vitamin D</span></li>
+      <li id="set-nw-john-kelley"><time datetime="2026-09-20T19:00">19:00 – 20:00</time> <span>John Kelley</span></li>
+      <li id="set-nw-star-eyes"><time datetime="2026-09-20T20:00">20:00 – 21:00</time> <span>Star Eyes</span></li>
+      <li id="set-nw-simply-jeff-feat-sharyn-maceren-live"><time datetime="2026-09-20T21:00">21:00 – 22:30</time> <span>Simply Jeff feat. Sharyn Maceren (Live)</span></li>
+      <li id="set-nw-stanton-warriors"><time datetime="2026-09-20T22:30">22:30 – 00:00</time> <span>Stanton Warriors</span></li>
     </ul>
     <h4>Beatbox Boombox</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-20T15:00">15:00 – 16:00</time> <span>Kristin Lush</span></li>
-      <li><time datetime="2026-09-20T16:00">16:00 – 17:00</time> <span>TankDubz</span></li>
-      <li><time datetime="2026-09-20T17:00">17:00 – 18:00</time> <span>Nifty Nubez</span></li>
-      <li><time datetime="2026-09-20T18:00">18:00 – 19:00</time> <span>Kendo B2B SLAYY</span></li>
-      <li><time datetime="2026-09-20T19:00">19:00 – 20:00</time> <span>Maximus Grooves</span></li>
-      <li><time datetime="2026-09-20T20:00">20:00 – 21:00</time> <span>Lenny V</span></li>
-      <li><time datetime="2026-09-20T21:00">21:00 – 22:00</time> <span>Mark Lewis</span></li>
-      <li><time datetime="2026-09-20T22:00">22:00 – 23:00</time> <span>Shay De Castro</span></li>
-      <li><time datetime="2026-09-20T23:00">23:00 – 00:00</time> <span>Donald Glaude B2B Thee-O</span></li>
-    </ul>
-  </section>
-
-  <section aria-labelledby="stages-h">
-    <h2 id="stages-h">Nocturnal Wonderland 2026 stages</h2>
-    <p>Plursky has 5 stages for Nocturnal Wonderland 2026 at Glen Helen Regional Park, each one listed below.</p>
-    <ul class="stagelist">
-      <li><strong>Mystic Wild</strong> · Main stage</li>
-      <li><strong>Dawn Mountain</strong> · Bass · Bassrush</li>
-      <li><strong>Aurora Plains</strong> · House + techno · Insomniac Records</li>
-      <li><strong>Rave Cave</strong> · Old-school + underground</li>
-      <li><strong>Beatbox Boombox</strong> · Art car</li>
+      <li id="set-nw-kristin-lush"><time datetime="2026-09-20T15:00">15:00 – 16:00</time> <span>Kristin Lush</span></li>
+      <li id="set-nw-tankdubz"><time datetime="2026-09-20T16:00">16:00 – 17:00</time> <span>TankDubz</span></li>
+      <li id="set-nw-nifty-nubez"><time datetime="2026-09-20T17:00">17:00 – 18:00</time> <span>Nifty Nubez</span></li>
+      <li id="set-nw-kendo-b2b-slayy"><time datetime="2026-09-20T18:00">18:00 – 19:00</time> <span>Kendo B2B SLAYY</span></li>
+      <li id="set-nw-maximus-grooves"><time datetime="2026-09-20T19:00">19:00 – 20:00</time> <span>Maximus Grooves</span></li>
+      <li id="set-nw-lenny-v"><time datetime="2026-09-20T20:00">20:00 – 21:00</time> <span>Lenny V</span></li>
+      <li id="set-nw-mark-lewis"><time datetime="2026-09-20T21:00">21:00 – 22:00</time> <span>Mark Lewis</span></li>
+      <li id="set-nw-shay-de-castro"><time datetime="2026-09-20T22:00">22:00 – 23:00</time> <span>Shay De Castro</span></li>
+      <li id="set-nw-donald-glaude-b2b-thee-o"><time datetime="2026-09-20T23:00">23:00 – 00:00</time> <span>Donald Glaude B2B Thee-O</span></li>
     </ul>
   </section>
 
@@ -629,125 +688,141 @@
     <h2 id="lineup-h">Nocturnal Wonderland 2026 lineup</h2>
     <p>86 artists announced.</p>
     <ul class="lineup">
-      <li>Angrybaby</li>
-      <li>B-Side</li>
-      <li>BARELY ALIVE</li>
-      <li>Basstripper</li>
-      <li>Braydon Terzo</li>
-      <li>CALLEN B2B SEKTOR 8</li>
-      <li>CHYL</li>
-      <li>Dack Janiels B2B Mongrel</li>
-      <li>Dances B2B Techno Tupac</li>
-      <li>deadmau5</li>
-      <li>Deorro</li>
-      <li>DJ Uncle Noah</li>
-      <li>DMZ and Friends</li>
-      <li>Dombresky</li>
-      <li>Donald Glaude B2B Thee-O</li>
-      <li>Ed Bailey</li>
-      <li>Eliminate</li>
-      <li>Ely Oaks</li>
-      <li>Flava D</li>
-      <li>Fleur Shore</li>
-      <li>Friction</li>
-      <li>GAINZ</li>
-      <li>GRAVAGERZ</li>
-      <li>Green Velvet</li>
-      <li>GUDFELLA</li>
-      <li>Hedex</li>
-      <li>Hekler</li>
-      <li>Hybrid Minds</li>
-      <li>Illenium</li>
-      <li>INFEKT B2B Virtual Riot</li>
-      <li>Inntraw</li>
-      <li>James Hype</li>
-      <li>Jkyl &amp; Hyde B2B Nikita, the Wicked</li>
-      <li>John Kelley</li>
-      <li>Jordan Savage</li>
-      <li>Joshwa</li>
-      <li>JSTJR</li>
-      <li>Juos</li>
-      <li>Kendo B2B SLAYY</li>
-      <li>Kittamami B2B Tony H</li>
-      <li>Kompany B2B Samplifire</li>
-      <li>Kristin Lush</li>
-      <li>LAYZ</li>
-      <li>Lenny V</li>
-      <li>Lily Ardalan</li>
-      <li>M-High</li>
-      <li>Malaa</li>
-      <li>Mark Lewis</li>
-      <li>Mattilo</li>
-      <li>Maximus Grooves</li>
-      <li>NEDA(:</li>
-      <li>NGHTMRE</li>
-      <li>Nifty Nubez</li>
-      <li>Nightstalker with MC Dino</li>
-      <li>Oscar Da Grouch</li>
-      <li>Oscure</li>
-      <li>Partiboi69</li>
-      <li>Patrick Topping</li>
-      <li>R3HAB</li>
-      <li>Ragie Ban</li>
-      <li>Reid Speed</li>
-      <li>RIOT</li>
-      <li>SABAI</li>
-      <li>Said The Sky (Sunset Set)</li>
-      <li>Seven Lions</li>
-      <li>Shay De Castro</li>
-      <li>Shima</li>
-      <li>SIDEPIECE</li>
-      <li>Simply Jeff feat. Sharyn Maceren (Live)</li>
-      <li>Sippy</li>
-      <li>Stanton Warriors</li>
-      <li>Star Eyes</li>
-      <li>Steve Leclair</li>
-      <li>Steve Loria</li>
-      <li>Subsonic</li>
-      <li>Svdden Death</li>
-      <li>TankDubz</li>
-      <li>Teddy Pain (T-Pain Bass Set)</li>
-      <li>THA4SAKEN</li>
-      <li>Tini Gessler</li>
-      <li>Trainer Red</li>
-      <li>TroyBoi</li>
-      <li>Vitamin D</li>
-      <li>Walker &amp; Royce</li>
-      <li>Wolfie</li>
-      <li>Woof Logik</li>
+      <li><span class="act">Angrybaby</span> <span class="slots">Sun, Sep 20 · Mystic Wild · <a href="#set-nw-angrybaby">16:45</a></span></li>
+      <li><span class="act">B-Side</span> <span class="slots">Sun, Sep 20 · Rave Cave · <a href="#set-nw-b-side">17:00</a></span></li>
+      <li><span class="act">BARELY ALIVE</span> <span class="slots">Sun, Sep 20 · Dawn Mountain · <a href="#set-nw-barely-alive">19:30</a></span></li>
+      <li><span class="act">Basstripper</span> <span class="slots">Sat, Sep 19 · Rave Cave · <a href="#set-nw-basstripper">22:45</a></span></li>
+      <li><span class="act">Braydon Terzo</span> <span class="slots">Sat, Sep 19 · Aurora Plains · <a href="#set-nw-braydon-terzo">16:00</a></span></li>
+      <li><span class="act">CALLEN B2B SEKTOR 8</span> <span class="slots">Sat, Sep 19 · Dawn Mountain · <a href="#set-nw-callen-b2b-sektor-8">15:00</a></span></li>
+      <li><span class="act">CHYL</span> <span class="slots">Sun, Sep 20 · Mystic Wild · <a href="#set-nw-chyl">17:45</a></span></li>
+      <li><span class="act">Dack Janiels B2B Mongrel</span> <span class="slots">Sat, Sep 19 · Beatbox Boombox · <a href="#set-nw-dack-janiels-b2b-mongrel">22:00</a></span></li>
+      <li><span class="act">Dances B2B Techno Tupac</span> <span class="slots">Sat, Sep 19 · Beatbox Boombox · <a href="#set-nw-dances-b2b-techno-tupac">20:00</a></span></li>
+      <li><span class="act">deadmau5</span> <span class="slots">Sat, Sep 19 · Mystic Wild · <a href="#set-nw-deadmau5">23:00</a></span></li>
+      <li><span class="act">Deorro</span> <span class="slots">Sat, Sep 19 · Mystic Wild · <a href="#set-nw-deorro">22:00</a></span></li>
+      <li><span class="act">DJ Uncle Noah</span> <span class="slots">Sun, Sep 20 · Rave Cave · <a href="#set-nw-dj-uncle-noah">15:00</a></span></li>
+      <li><span class="act">DMZ and Friends</span> <span class="slots">Sat, Sep 19 · Beatbox Boombox · <a href="#set-nw-dmz-and-friends">19:00</a></span></li>
+      <li><span class="act">Dombresky</span> <span class="slots">Sun, Sep 20 · Aurora Plains · <a href="#set-nw-dombresky">23:00</a></span></li>
+      <li><span class="act">Donald Glaude B2B Thee-O</span> <span class="slots">Sun, Sep 20 · Beatbox Boombox · <a href="#set-nw-donald-glaude-b2b-thee-o">23:00</a></span></li>
+      <li><span class="act">Ed Bailey</span> <span class="slots">Sat, Sep 19 · Rave Cave · <a href="#set-nw-ed-bailey">18:00</a></span></li>
+      <li><span class="act">Eliminate</span> <span class="slots">Sun, Sep 20 · Dawn Mountain · <a href="#set-nw-eliminate">18:30</a></span></li>
+      <li><span class="act">Ely Oaks</span> <span class="slots">Sun, Sep 20 · Aurora Plains · <a href="#set-nw-ely-oaks">21:00</a></span></li>
+      <li><span class="act">Flava D</span> <span class="slots">Sat, Sep 19 · Mystic Wild · <a href="#set-nw-flava-d">16:00</a></span></li>
+      <li><span class="act">Fleur Shore</span> <span class="slots">Sat, Sep 19 · Aurora Plains · <a href="#set-nw-fleur-shore">18:00</a></span></li>
+      <li><span class="act">Friction</span> <span class="slots">Sun, Sep 20 · Dawn Mountain · <a href="#set-nw-friction">17:30</a></span></li>
+      <li><span class="act">GAINZ</span> <span class="slots">Sun, Sep 20 · Aurora Plains · <a href="#set-nw-gainz">15:00</a></span></li>
+      <li><span class="act">GRAVAGERZ</span> <span class="slots">Sat, Sep 19 · Mystic Wild · <a href="#set-nw-gravagerz">17:00</a></span></li>
+      <li><span class="act">Green Velvet</span> <span class="slots">Sat, Sep 19 · Aurora Plains · <a href="#set-nw-green-velvet">22:30</a></span></li>
+      <li><span class="act">GUDFELLA</span> <span class="slots">Sun, Sep 20 · Aurora Plains · <a href="#set-nw-gudfella">19:00</a></span></li>
+      <li><span class="act">Hedex</span> <span class="slots">Sun, Sep 20 · Dawn Mountain · <a href="#set-nw-hedex">21:30</a></span></li>
+      <li><span class="act">Hekler</span> <span class="slots">Sat, Sep 19 · Beatbox Boombox · <a href="#set-nw-hekler">21:00</a></span></li>
+      <li><span class="act">Hybrid Minds</span> <span class="slots">Sat, Sep 19 · Dawn Mountain · <a href="#set-nw-hybrid-minds">19:00</a></span></li>
+      <li><span class="act">Illenium</span> <span class="slots">Sun, Sep 20 · Mystic Wild · <a href="#set-nw-illenium">23:00</a></span></li>
+      <li><span class="act">INFEKT B2B Virtual Riot</span> <span class="slots">Sat, Sep 19 · Dawn Mountain · <a href="#set-nw-infekt-b2b-virtual-riot">21:00</a></span></li>
+      <li><span class="act">Inntraw</span> <span class="slots">Sun, Sep 20 · Aurora Plains · <a href="#set-nw-inntraw">17:00</a></span></li>
+      <li><span class="act">James Hype</span> <span class="slots">Sat, Sep 19 · Mystic Wild · <a href="#set-nw-james-hype">21:00</a></span></li>
+      <li><span class="act">Jkyl &amp; Hyde B2B Nikita, the Wicked</span> <span class="slots">Sat, Sep 19 · Dawn Mountain · <a href="#set-nw-jkyl-and-hyde-b2b-nikita-the-wicked">18:00</a></span></li>
+      <li><span class="act">John Kelley</span> <span class="slots">Sun, Sep 20 · Rave Cave · <a href="#set-nw-john-kelley">19:00</a></span></li>
+      <li><span class="act">Jordan Savage</span> <span class="slots">Sun, Sep 20 · Mystic Wild · <a href="#set-nw-jordan-savage">15:00</a></span></li>
+      <li><span class="act">Joshwa</span> <span class="slots">Sun, Sep 20 · Aurora Plains · <a href="#set-nw-joshwa">20:00</a></span></li>
+      <li><span class="act">JSTJR</span> <span class="slots">Sat, Sep 19 · Mystic Wild · <a href="#set-nw-jstjr">20:00</a></span></li>
+      <li><span class="act">Juos</span> <span class="slots">Sun, Sep 20 · Aurora Plains · <a href="#set-nw-juos">16:00</a></span></li>
+      <li><span class="act">Kendo B2B SLAYY</span> <span class="slots">Sun, Sep 20 · Beatbox Boombox · <a href="#set-nw-kendo-b2b-slayy">18:00</a></span></li>
+      <li><span class="act">Kittamami B2B Tony H</span> <span class="slots">Sat, Sep 19 · Beatbox Boombox · <a href="#set-nw-kittamami-b2b-tony-h">18:00</a></span></li>
+      <li><span class="act">Kompany B2B Samplifire</span> <span class="slots">Sat, Sep 19 · Dawn Mountain · <a href="#set-nw-kompany-b2b-samplifire">20:00</a></span></li>
+      <li><span class="act">Kristin Lush</span> <span class="slots">Sun, Sep 20 · Beatbox Boombox · <a href="#set-nw-kristin-lush">15:00</a></span></li>
+      <li><span class="act">LAYZ</span> <span class="slots">Sun, Sep 20 · Dawn Mountain · <a href="#set-nw-layz">20:30</a></span></li>
+      <li><span class="act">Lenny V</span> <span class="slots">Sun, Sep 20 · Beatbox Boombox · <a href="#set-nw-lenny-v">20:00</a></span></li>
+      <li><span class="act">Lily Ardalan</span> <span class="slots">Sat, Sep 19 · Beatbox Boombox · <a href="#set-nw-lily-ardalan">16:00</a></span></li>
+      <li><span class="act">M-High</span> <span class="slots">Sat, Sep 19 · Aurora Plains · <a href="#set-nw-m-high">17:00</a></span></li>
+      <li><span class="act">Malaa</span> <span class="slots">Sat, Sep 19 · Mystic Wild · <a href="#set-nw-malaa">19:00</a></span></li>
+      <li><span class="act">Mark Lewis</span> <span class="slots">Sun, Sep 20 · Beatbox Boombox · <a href="#set-nw-mark-lewis">21:00</a></span></li>
+      <li><span class="act">Mattilo</span> <span class="slots">Sun, Sep 20 · Mystic Wild · <a href="#set-nw-mattilo">15:45</a></span></li>
+      <li><span class="act">Maximus Grooves</span> <span class="slots">Sun, Sep 20 · Beatbox Boombox · <a href="#set-nw-maximus-grooves">19:00</a></span></li>
+      <li><span class="act">NEDA(:</span> <span class="slots">Sat, Sep 19 · Beatbox Boombox · <a href="#set-nw-neda">15:00</a></span></li>
+      <li><span class="act">NGHTMRE</span> <span class="slots">Sat, Sep 19 · Dawn Mountain · <a href="#set-nw-nghtmre">22:00</a></span></li>
+      <li><span class="act">Nifty Nubez</span> <span class="slots">Sun, Sep 20 · Beatbox Boombox · <a href="#set-nw-nifty-nubez">17:00</a></span></li>
+      <li><span class="act">Nightstalker with MC Dino</span> <span class="slots">Sun, Sep 20 · Dawn Mountain · <a href="#set-nw-nightstalker-with-mc-dino">15:00</a></span></li>
+      <li><span class="act">Oscar Da Grouch</span> <span class="slots">Sat, Sep 19 · Rave Cave · <a href="#set-nw-oscar-da-grouch">19:00</a></span></li>
+      <li><span class="act">Oscure</span> <span class="slots">Sun, Sep 20 · Rave Cave · <a href="#set-nw-oscure">16:00</a></span></li>
+      <li><span class="act">Partiboi69</span> <span class="slots">Sat, Sep 19 · Aurora Plains · <a href="#set-nw-partiboi69">21:15</a></span></li>
+      <li><span class="act">Patrick Topping</span> <span class="slots">Sat, Sep 19 · Aurora Plains · <a href="#set-nw-patrick-topping">20:00</a></span></li>
+      <li><span class="act">R3HAB</span> <span class="slots">Sun, Sep 20 · Mystic Wild · <a href="#set-nw-r3hab">19:50</a></span></li>
+      <li><span class="act">Ragie Ban</span> <span class="slots">Sat, Sep 19 · Aurora Plains · <a href="#set-nw-ragie-ban">19:00</a></span></li>
+      <li><span class="act">Reid Speed</span> <span class="slots">Sat, Sep 19 · Rave Cave · <a href="#set-nw-reid-speed">20:00</a></span></li>
+      <li><span class="act">RIOT</span> <span class="slots">Sun, Sep 20 · Dawn Mountain · <a href="#set-nw-riot">16:30</a></span></li>
+      <li><span class="act">SABAI</span> <span class="slots">Sat, Sep 19 · Mystic Wild · <a href="#set-nw-sabai">18:00</a></span></li>
+      <li><span class="act">Said The Sky (Sunset Set)</span> <span class="slots">Sun, Sep 20 · Mystic Wild · <a href="#set-nw-said-the-sky-sunset-set">18:50</a></span></li>
+      <li><span class="act">Seven Lions</span> <span class="slots">Sun, Sep 20 · Mystic Wild · <a href="#set-nw-seven-lions">21:55</a></span></li>
+      <li><span class="act">Shay De Castro</span> <span class="slots">Sun, Sep 20 · Beatbox Boombox · <a href="#set-nw-shay-de-castro">22:00</a></span></li>
+      <li><span class="act">Shima</span> <span class="slots">Sat, Sep 19 · Mystic Wild · <a href="#set-nw-shima">15:00</a></span></li>
+      <li><span class="act">SIDEPIECE</span> <span class="slots">Sun, Sep 20 · Mystic Wild · <a href="#set-nw-sidepiece">20:50</a></span></li>
+      <li><span class="act">Simply Jeff feat. Sharyn Maceren (Live)</span> <span class="slots">Sun, Sep 20 · Rave Cave · <a href="#set-nw-simply-jeff-feat-sharyn-maceren-live">21:00</a></span></li>
+      <li><span class="act">Sippy</span> <span class="slots">Sat, Sep 19 · Dawn Mountain · <a href="#set-nw-sippy">17:00</a></span></li>
+      <li><span class="act">Stanton Warriors</span> <span class="slots">Sun, Sep 20 · Rave Cave · <a href="#set-nw-stanton-warriors">22:30</a></span></li>
+      <li><span class="act">Star Eyes</span> <span class="slots">Sun, Sep 20 · Rave Cave · <a href="#set-nw-star-eyes">20:00</a></span></li>
+      <li><span class="act">Steve Leclair</span> <span class="slots">Sat, Sep 19 · Rave Cave · <a href="#set-nw-steve-leclair">15:00</a></span></li>
+      <li><span class="act">Steve Loria</span> <span class="slots">Sat, Sep 19 · Rave Cave · <a href="#set-nw-steve-loria">16:30</a></span></li>
+      <li><span class="act">Subsonic</span> <span class="slots">Sat, Sep 19 · Rave Cave · <a href="#set-nw-subsonic">21:30</a></span></li>
+      <li><span class="act">Svdden Death</span> <span class="slots">Sat, Sep 19 · Dawn Mountain · <a href="#set-nw-svdden-death">23:00</a></span></li>
+      <li><span class="act">TankDubz</span> <span class="slots">Sun, Sep 20 · Beatbox Boombox · <a href="#set-nw-tankdubz">16:00</a></span></li>
+      <li><span class="act">Teddy Pain (T-Pain Bass Set)</span> <span class="slots">Sun, Sep 20 · Dawn Mountain · <a href="#set-nw-teddy-pain-t-pain-bass-set">23:30</a></span></li>
+      <li><span class="act">THA4SAKEN</span> <span class="slots">Sat, Sep 19 · Beatbox Boombox · <a href="#set-nw-tha4saken">17:00</a></span></li>
+      <li><span class="act">Tini Gessler</span> <span class="slots">Sun, Sep 20 · Aurora Plains · <a href="#set-nw-tini-gessler">18:00</a></span></li>
+      <li><span class="act">Trainer Red</span> <span class="slots">Sat, Sep 19 · Aurora Plains · <a href="#set-nw-trainer-red">15:00</a></span></li>
+      <li><span class="act">TroyBoi</span> <span class="slots">Sun, Sep 20 · Dawn Mountain · <a href="#set-nw-troyboi">22:30</a></span></li>
+      <li><span class="act">Vitamin D</span> <span class="slots">Sun, Sep 20 · Rave Cave · <a href="#set-nw-vitamin-d">18:00</a></span></li>
+      <li><span class="act">Walker &amp; Royce</span> <span class="slots">Sun, Sep 20 · Aurora Plains · <a href="#set-nw-walker-and-royce">22:00</a></span></li>
+      <li><span class="act">Wolfie</span> <span class="slots">Sat, Sep 19 · Dawn Mountain · <a href="#set-nw-wolfie">16:00</a></span></li>
+      <li><span class="act">Woof Logik</span> <span class="slots">Sat, Sep 19 · Beatbox Boombox · <a href="#set-nw-woof-logik">23:00</a></span></li>
     </ul>
+  </section>
 
+  <section aria-labelledby="stages-h">
+    <h2 id="stages-h">Nocturnal Wonderland 2026 stages</h2>
+    <p>Plursky has 5 stages for Nocturnal Wonderland 2026 at Glen Helen Regional Park, each one listed below with its sets per day.</p>
+    <ul class="stagelist">
+      <li><strong>Mystic Wild</strong> · Main stage<br><span class="counts">Sat, Sep 19: 9 · Sun, Sep 20: 9</span></li>
+      <li><strong>Dawn Mountain</strong> · Bass · Bassrush<br><span class="counts">Sat, Sep 19: 9 · Sun, Sep 20: 9</span></li>
+      <li><strong>Aurora Plains</strong> · House + techno · Insomniac Records<br><span class="counts">Sat, Sep 19: 8 · Sun, Sep 20: 9</span></li>
+      <li><strong>Rave Cave</strong> · Old-school + underground<br><span class="counts">Sat, Sep 19: 7 · Sun, Sep 20: 8</span></li>
+      <li><strong>Beatbox Boombox</strong> · Art car<br><span class="counts">Sat, Sep 19: 9 · Sun, Sep 20: 9</span></li>
+    </ul>
+  </section>
+
+
+
+  <section aria-labelledby="app-h">
+    <h2 id="app-h">Get the app</h2>
+    <p class="ctas">
+      <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
+      <a class="cta-secondary" href="/?f=nocturnal-wonderland-2026">Relive it in the browser</a>
+    </p>
+    <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, meet your crew, and turn the weekend into a shareable recap.</p>
+    <p><a href="/?f=nocturnal-wonderland-2026&amp;tab=memories">Your Nocturnal Wonderland 2026 Memories in Plursky</a></p>
   </section>
 
   <nav class="other" aria-labelledby="other-h">
     <h2 id="other-h">Other festivals on Plursky</h2>
     <ul>
-      <li><a href="/f/edc-lv-2026/">EDC Las Vegas 2026</a> — May 15–17, 2026</li>
-      <li><a href="/f/electric-forest-2027/">Electric Forest 2027</a> — Dates TBA</li>
       <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
-      <li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a> — Nov 6–8, 2026</li>
-      <li><a href="/f/tomorrowland-2027/">Tomorrowland 2027</a> — Dates TBA</li>
-      <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
-      <li><a href="/f/coachella-2027/">Coachella 2027</a> — Apr 9–18, 2027</li>
-      <li><a href="/f/edc-mexico-2027/">EDC Mexico 2027</a> — Feb 19–21, 2027</li>
-      <li><a href="/f/beyond-wonderland-socal-2027/">Beyond Wonderland SoCal 2027</a> — Mar 26–27, 2027</li>
-      <li><a href="/f/beyond-wonderland-gorge-2027/">Beyond Wonderland at The Gorge 2027</a> — Jun 26–27, 2027</li>
-      <li><a href="/f/ultra-miami-2026/">Ultra Miami 2026</a> — Mar 27–29, 2026</li>
-      <li><a href="/f/governors-ball-2026/">Governors Ball 2026</a> — Jun 5–7, 2026</li>
-      <li><a href="/f/summerfest-2026/">Summerfest 2026</a> — Jun 18–20, Jun 25–27 &amp; Jul 2–4, 2026</li>
-      <li><a href="/f/lollapalooza-2026/">Lollapalooza 2026</a> — Jul 30 – Aug 2, 2026</li>
-      <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
-      <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
       <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
       <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
-      <li><a href="/f/hard-summer-2026/">HARD Summer 2026</a> — Aug 1–2, 2026</li>
+      <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
       <li><a href="/f/arc-2026/">ARC Music Festival 2026</a> — Sep 4–7, 2026</li>
+      <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
       <li><a href="/f/escape-halloween-2026/">Escape Halloween 2026</a> — Oct 30–31, 2026</li>
-      <li><a href="/f/dreamstate-socal-2026/">Dreamstate SoCal 2026</a> — Nov 20–21, 2026</li>
-      <li><a href="/f/decadence-colorado-2026/">Decadence Colorado 2026</a> — Dec 30–31, 2026</li>
-      <li><a href="/f/countdown-nye-2026/">Countdown NYE 2026</a> — Dec 31, 2026 – Jan 1, 2027</li>
+      <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
     </ul>
   </nav>
+
+  <section class="sources" aria-labelledby="sources-h">
+    <h2 id="sources-h">Sources</h2>
+    <ul>
+      <li>Official site: <a href="https://www.nocturnalwonderland.com/" rel="noopener">https://www.nocturnalwonderland.com/</a></li>
+      <li>Set times: <a href="https://nocturnalwonderland.com/lineup/set-times/day-1/" rel="noopener">https://nocturnalwonderland.com/lineup/set-times/day-1/</a> (official, checked 2026-09-10)</li>
+    </ul>
+    <p class="note">Last updated <time class="updated" datetime="2026-09-24">2026-09-24</time>.</p>
+  </section>
 
   <footer>
     <a href="/">Plursky</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a>

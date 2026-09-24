@@ -267,6 +267,11 @@ const FESTIVAL_CONFIG = {
   // ── Defaults ──
   mainStageId: "kinetic",
   mapImage: "edc-map-2026.jpg",
+
+  // The festival's OWN map page, linked (never embedded) by the /f/ page:
+  // official publication is provenance, not reuse rights. mapYear is the
+  // year printed on the map the page showed when checked — the page is already titled 2027 but still shows the 2026 map.
+  mapSource: { url: "https://lasvegas.edc.com/festival-map/", observedAt: "2026-09-24", mapYear: 2026 },
   mapStyle: "image-overlay",
   // The poster prints all nine stage names in display type (verified against
   // the asset, 2026-08-27), so Plursky must not echo them a few pixels away.
@@ -842,6 +847,12 @@ const FESTIVALS_REGISTRY = [
       // directly. Built by scripts/build-acl-map-2026.mjs from the unedited
       // source in map-sources/.
       mapImage: "acl-park-2026.webp",
+
+      // The festival's OWN map page, linked (never embedded) by the /f/ page:
+      // official publication is provenance, not reuse rights. mapYear is the
+      // year printed on the map the page showed when checked — null: the article (linked as "Festival Map" from
+      // aclfestival.com) refuses automated reads, so its year is unverified.
+      mapSource: { url: "https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map", observedAt: "2026-09-24", mapYear: null },
       mapStyle: "image-overlay",
       mapTheme: "park",
       weatherEndpoint: "https://api.weather.gov/points/30.26,-97.77",

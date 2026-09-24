@@ -19,40 +19,60 @@
 <meta name="twitter:image" content="https://plursky.com/og-card.png">
 <link rel="icon" type="image/png" href="/apple-touch-icon.png">
 <style>
-  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; }
+  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; --panel:#1c1916; }
   * { box-sizing:border-box; }
   body { margin:0; padding:32px 20px 64px; background:var(--bg); color:var(--ink);
          font-family:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.6; }
   main { max-width:760px; margin:0 auto; }
-  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; }
+  nav.crumbs { font-size:13px; color:var(--muted); margin:0 0 16px; }
+  nav.crumbs a { color:var(--muted); }
+  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; text-wrap:balance; }
   h2 { font-size:18px; margin:32px 0 8px; }
   .meta { color:var(--muted); margin:0 0 20px; }
+  .chip { display:inline-block; margin-right:8px; padding:1px 10px; border-radius:999px; border:1px solid var(--line);
+          color:var(--ink); font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
+  .chip-live, .chip-soon { border-color:var(--ember); color:var(--ember); }
   .note { color:var(--muted); font-size:14px; }
+  figure { margin:16px 0; }
+  figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:12px; background:var(--panel); }
+  .platebox { position:relative; max-width:520px; }
+  .pin { position:absolute; transform:translate(-50%,-50%); width:20px; height:20px; border-radius:50%;
+         display:flex; align-items:center; justify-content:center; background:rgba(18,16,14,0.82);
+         border:1px solid var(--ink); color:var(--ink); font-size:11px; font-weight:700; pointer-events:none; }
+  ol.platekey { margin:8px 0 0; padding-left:22px; font-size:13px; columns:2; column-gap:20px; }
+  figcaption { color:var(--muted); font-size:13px; margin-top:6px; }
   .cta { display:inline-block; margin:20px 0 8px; padding:12px 22px; border-radius:12px;
          background:linear-gradient(135deg,#6D28D9,var(--ember)); color:#fff; text-decoration:none; font-weight:700; }
-  ul.lineup { list-style:none; padding:0; margin:12px 0 0;
-              display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:2px 16px; }
-  ul.lineup li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.lineup { list-style:none; padding:0; margin:12px 0 0; }
+  ul.lineup li { padding:5px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; flex-wrap:wrap; gap:2px 12px; }
+  ul.lineup .act { font-weight:600; }
+  ul.lineup .slots { color:var(--muted); overflow-wrap:anywhere; }
   h3 { font-size:16px; margin:24px 0 4px; }
   h4 { font-size:13px; margin:16px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
+  h5 { font-size:12px; margin:12px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
   ul.sets { list-style:none; padding:0; margin:4px 0 0; }
-  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; }
+  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; scroll-margin-top:16px; }
+  ul.sets li:target { background:rgba(232,93,46,0.14); }
   ul.sets li time { color:var(--muted); font-variant-numeric:tabular-nums; min-width:96px; flex:none; }
   ul.stagelist { list-style:none; padding:0; margin:8px 0 0; }
   ul.stagelist li { padding:6px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.stagelist .counts { color:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; }
   dl.answers { margin:12px 0 0; }
   dl.answers dt { font-weight:700; font-size:15px; margin:16px 0 4px; }
   dl.answers dd { margin:0; color:var(--muted); font-size:14px; }
-  a.cta-secondary { margin-left:14px; font-weight:600; }
+  p.ctas { display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; margin:20px 0 8px; }
+  p.ctas .cta { margin:0; }
+  a.cta-secondary { font-weight:600; white-space:nowrap; }
   nav.other { margin-top:40px; }
   nav.other a { color:var(--ink); }
+  section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
 </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "MusicFestival",
+  "@type": "MusicEvent",
   "name": "Lollapalooza 2026",
   "url": "https://plursky.com/f/lollapalooza-2026/",
   "startDate": "2026-07-30",
@@ -70,6 +90,7 @@
       "addressCountry": "US"
     }
   },
+  "image": "https://plursky.com/lolla-2026.svg",
   "performer": [
     {
       "@type": "MusicGroup",
@@ -838,6 +859,40 @@
         "@type": "Answer",
         "text": "Lollapalooza 2026 has 9 stages at Grant Park, each one listed on this page."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a map for Lollapalooza 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This page shows Plursky's Lollapalooza 2026 site plate. Abstract site plate generated from this festival's own stage and amenity coordinates. Not the official patron map; no festival artwork is reproduced."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Plursky",
+      "item": "https://plursky.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Festivals",
+      "item": "https://plursky.com/#festivals"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Lollapalooza 2026",
+      "item": "https://plursky.com/f/lollapalooza-2026/"
     }
   ]
 }
@@ -845,16 +900,10 @@
 </head>
 <body>
 <main>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Plursky</a> › <a href="/#festivals">Festivals</a> › <span aria-current="page">Lollapalooza 2026</span></nav>
   <h1>Lollapalooza 2026</h1>
-  <p class="meta">Jul 30 – Aug 2, 2026 · Grant Park · Chicago, IL · This festival has ended.</p>
+  <p class="meta"><span class="chip chip-past">Past</span>Jul 30 – Aug 2, 2026 · Grant Park · Chicago, IL</p>
   <p>Four days in Grant Park</p>
-
-  <p>
-    <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
-    <a class="cta-secondary" href="/?f=lollapalooza-2026">Relive it in the browser</a>
-  </p>
-  <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.</p>
-
 
   <section aria-labelledby="answers-h">
     <h2 id="answers-h">Lollapalooza 2026 — quick answers</h2>
@@ -867,7 +916,39 @@
       <dd>181 artists are announced for Lollapalooza 2026, and every one of them is listed on this page.</dd>
       <dt>How many stages does Lollapalooza 2026 have?</dt>
       <dd>Lollapalooza 2026 has 9 stages at Grant Park, each one listed on this page.</dd>
+      <dt>Is there a map for Lollapalooza 2026?</dt>
+      <dd>This page shows Plursky&#39;s Lollapalooza 2026 site plate. Abstract site plate generated from this festival&#39;s own stage and amenity coordinates. Not the official patron map; no festival artwork is reproduced.</dd>
     </dl>
+  </section>
+
+  <section aria-labelledby="map-h">
+    <h2 id="map-h">Lollapalooza 2026 map</h2>
+    <figure class="plate">
+      <div class="platebox">
+        <img src="/lolla-2026.svg" width="100" height="100" loading="lazy" decoding="async" alt="Lollapalooza 2026 site plate: Plursky's abstract stage layout, not the official festival map">
+        <span class="pin" style="left:53.8%;top:11.8%" aria-hidden="true">1</span>
+        <span class="pin" style="left:56.8%;top:88.1%" aria-hidden="true">2</span>
+        <span class="pin" style="left:22.9%;top:79.7%" aria-hidden="true">3</span>
+        <span class="pin" style="left:55.5%;top:47.2%" aria-hidden="true">4</span>
+        <span class="pin" style="left:34.6%;top:59.3%" aria-hidden="true">5</span>
+        <span class="pin" style="left:38.5%;top:34.3%" aria-hidden="true">6</span>
+        <span class="pin" style="left:32.1%;top:22.2%" aria-hidden="true">7</span>
+        <span class="pin" style="left:29.5%;top:68.5%" aria-hidden="true">8</span>
+        <span class="pin" style="left:70.5%;top:73.1%" aria-hidden="true">9</span>
+      </div>
+      <ol class="platekey">
+        <li>T-Mobile Stage</li>
+        <li>Bud Light Stage</li>
+        <li>Perry&#39;s Stage</li>
+        <li>Tito&#39;s Stage</li>
+        <li>Allianz Stage</li>
+        <li>Airbnb Stage</li>
+        <li>BMI Stage</li>
+        <li>Bonus Tracks</li>
+        <li>Kidzapalooza</li>
+      </ol>
+      <figcaption>Abstract site plate generated from this festival&#39;s own stage and amenity coordinates. Not the official patron map; no festival artwork is reproduced.</figcaption>
+    </figure>
   </section>
 
   <section aria-labelledby="schedule-h">
@@ -876,325 +957,309 @@
     <h3>Thursday, July 30</h3>
     <h4>T-Mobile Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-07-30T12:45">12:45 – 13:30</time> <span>Asha Banks</span></li>
-      <li><time datetime="2026-07-30T14:30">14:30 – 15:30</time> <span>Haute &amp; Freddy</span></li>
-      <li><time datetime="2026-07-30T16:30">16:30 – 17:30</time> <span>5 Seconds of Summer</span></li>
-      <li><time datetime="2026-07-30T18:30">18:30 – 19:30</time> <span>sombr</span></li>
-      <li><time datetime="2026-07-30T20:30">20:30 – 22:00</time> <span>Lorde</span></li>
+      <li id="set-lo1"><time datetime="2026-07-30T12:45">12:45 – 13:30</time> <span>Asha Banks</span></li>
+      <li id="set-lo2"><time datetime="2026-07-30T14:30">14:30 – 15:30</time> <span>Haute &amp; Freddy</span></li>
+      <li id="set-lo3"><time datetime="2026-07-30T16:30">16:30 – 17:30</time> <span>5 Seconds of Summer</span></li>
+      <li id="set-lo4"><time datetime="2026-07-30T18:30">18:30 – 19:30</time> <span>sombr</span></li>
+      <li id="set-lo5"><time datetime="2026-07-30T20:30">20:30 – 22:00</time> <span>Lorde</span></li>
     </ul>
     <h4>Bud Light Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-07-30T13:00">13:00 – 13:45</time> <span>Bixby</span></li>
-      <li><time datetime="2026-07-30T14:45">14:45 – 15:45</time> <span>Between Friends</span></li>
-      <li><time datetime="2026-07-30T16:45">16:45 – 17:45</time> <span>Blood Orange</span></li>
-      <li><time datetime="2026-07-30T18:30">18:30 – 19:30</time> <span>Empire of the Sun</span></li>
-      <li><time datetime="2026-07-30T20:30">20:30 – 22:00</time> <span>John Summit</span></li>
+      <li id="set-lo6"><time datetime="2026-07-30T13:00">13:00 – 13:45</time> <span>Bixby</span></li>
+      <li id="set-lo7"><time datetime="2026-07-30T14:45">14:45 – 15:45</time> <span>Between Friends</span></li>
+      <li id="set-lo8"><time datetime="2026-07-30T16:45">16:45 – 17:45</time> <span>Blood Orange</span></li>
+      <li id="set-lo9"><time datetime="2026-07-30T18:30">18:30 – 19:30</time> <span>Empire of the Sun</span></li>
+      <li id="set-lo10"><time datetime="2026-07-30T20:30">20:30 – 22:00</time> <span>John Summit</span></li>
     </ul>
     <h4>Perry&#39;s Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-07-30T12:00">12:00 – 12:30</time> <span>KLO</span></li>
-      <li><time datetime="2026-07-30T12:45">12:45 – 13:30</time> <span>Know Good</span></li>
-      <li><time datetime="2026-07-30T13:45">13:45 – 14:45</time> <span>Devault</span></li>
-      <li><time datetime="2026-07-30T15:00">15:00 – 16:00</time> <span>MPH</span></li>
-      <li><time datetime="2026-07-30T16:15">16:15 – 17:15</time> <span>Boys Noize</span></li>
-      <li><time datetime="2026-07-30T17:45">17:45 – 18:45</time> <span>Boris Brejcha</span></li>
-      <li><time datetime="2026-07-30T19:00">19:00 – 20:00</time> <span>Kettama</span></li>
-      <li><time datetime="2026-07-30T20:30">20:30 – 21:45</time> <span>Worship</span></li>
+      <li id="set-lo11"><time datetime="2026-07-30T12:00">12:00 – 12:30</time> <span>KLO</span></li>
+      <li id="set-lo12"><time datetime="2026-07-30T12:45">12:45 – 13:30</time> <span>Know Good</span></li>
+      <li id="set-lo13"><time datetime="2026-07-30T13:45">13:45 – 14:45</time> <span>Devault</span></li>
+      <li id="set-lo14"><time datetime="2026-07-30T15:00">15:00 – 16:00</time> <span>MPH</span></li>
+      <li id="set-lo15"><time datetime="2026-07-30T16:15">16:15 – 17:15</time> <span>Boys Noize</span></li>
+      <li id="set-lo16"><time datetime="2026-07-30T17:45">17:45 – 18:45</time> <span>Boris Brejcha</span></li>
+      <li id="set-lo17"><time datetime="2026-07-30T19:00">19:00 – 20:00</time> <span>Kettama</span></li>
+      <li id="set-lo18"><time datetime="2026-07-30T20:30">20:30 – 21:45</time> <span>Worship</span></li>
     </ul>
     <h4>Tito&#39;s Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-07-30T12:15">12:15 – 13:00</time> <span>Faouzia</span></li>
-      <li><time datetime="2026-07-30T13:45">13:45 – 14:45</time> <span>Kingfishr</span></li>
-      <li><time datetime="2026-07-30T15:45">15:45 – 16:45</time> <span>Paris Paloma</span></li>
-      <li><time datetime="2026-07-30T17:45">17:45 – 18:30</time> <span>Little Simz</span></li>
-      <li><time datetime="2026-07-30T19:30">19:30 – 20:30</time> <span>Devault</span></li>
+      <li id="set-lo19"><time datetime="2026-07-30T12:15">12:15 – 13:00</time> <span>Faouzia</span></li>
+      <li id="set-lo20"><time datetime="2026-07-30T13:45">13:45 – 14:45</time> <span>Kingfishr</span></li>
+      <li id="set-lo21"><time datetime="2026-07-30T15:45">15:45 – 16:45</time> <span>Paris Paloma</span></li>
+      <li id="set-lo22"><time datetime="2026-07-30T17:45">17:45 – 18:30</time> <span>Little Simz</span></li>
+      <li id="set-lo23"><time datetime="2026-07-30T19:30">19:30 – 20:30</time> <span>Devault</span></li>
     </ul>
     <h4>Allianz Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-07-30T12:00">12:00 – 12:45</time> <span>Pearly Drops</span></li>
-      <li><time datetime="2026-07-30T13:30">13:30 – 14:30</time> <span>Bad Nerves</span></li>
-      <li><time datetime="2026-07-30T15:30">15:30 – 16:30</time> <span>SB19</span></li>
-      <li><time datetime="2026-07-30T17:30">17:30 – 18:30</time> <span>Audrey Hobert</span></li>
-      <li><time datetime="2026-07-30T19:30">19:30 – 20:30</time> <span>Wet Leg</span></li>
+      <li id="set-lo24"><time datetime="2026-07-30T12:00">12:00 – 12:45</time> <span>Pearly Drops</span></li>
+      <li id="set-lo25"><time datetime="2026-07-30T13:30">13:30 – 14:30</time> <span>Bad Nerves</span></li>
+      <li id="set-lo26"><time datetime="2026-07-30T15:30">15:30 – 16:30</time> <span>SB19</span></li>
+      <li id="set-lo27"><time datetime="2026-07-30T17:30">17:30 – 18:30</time> <span>Audrey Hobert</span></li>
+      <li id="set-lo28"><time datetime="2026-07-30T19:30">19:30 – 20:30</time> <span>Wet Leg</span></li>
     </ul>
     <h4>Airbnb Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-07-30T12:00">12:00 – 12:30</time> <span>Kim Theory</span></li>
-      <li><time datetime="2026-07-30T12:50">12:50 – 13:30</time> <span>Penelope Road</span></li>
-      <li><time datetime="2026-07-30T13:50">13:50 – 14:30</time> <span>Marlon Funaki</span></li>
-      <li><time datetime="2026-07-30T14:50">14:50 – 15:30</time> <span>Ecca Vandal</span></li>
-      <li><time datetime="2026-07-30T16:00">16:00 – 16:45</time> <span>Ninajirachi</span></li>
-      <li><time datetime="2026-07-30T17:15">17:15 – 18:00</time> <span>Amble</span></li>
-      <li><time datetime="2026-07-30T18:30">18:30 – 19:15</time> <span>CMAT</span></li>
-      <li><time datetime="2026-07-30T19:45">19:45 – 20:30</time> <span>Snow Strippers</span></li>
-      <li><time datetime="2026-07-30T21:00">21:00 – 22:00</time> <span>Viagra Boys</span></li>
+      <li id="set-lo29"><time datetime="2026-07-30T12:00">12:00 – 12:30</time> <span>Kim Theory</span></li>
+      <li id="set-lo30"><time datetime="2026-07-30T12:50">12:50 – 13:30</time> <span>Penelope Road</span></li>
+      <li id="set-lo31"><time datetime="2026-07-30T13:50">13:50 – 14:30</time> <span>Marlon Funaki</span></li>
+      <li id="set-lo32"><time datetime="2026-07-30T14:50">14:50 – 15:30</time> <span>Ecca Vandal</span></li>
+      <li id="set-lo33"><time datetime="2026-07-30T16:00">16:00 – 16:45</time> <span>Ninajirachi</span></li>
+      <li id="set-lo34"><time datetime="2026-07-30T17:15">17:15 – 18:00</time> <span>Amble</span></li>
+      <li id="set-lo35"><time datetime="2026-07-30T18:30">18:30 – 19:15</time> <span>CMAT</span></li>
+      <li id="set-lo36"><time datetime="2026-07-30T19:45">19:45 – 20:30</time> <span>Snow Strippers</span></li>
+      <li id="set-lo37"><time datetime="2026-07-30T21:00">21:00 – 22:00</time> <span>Viagra Boys</span></li>
     </ul>
     <h4>BMI Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-07-30T13:00">13:00 – 13:40</time> <span>The Braymores</span></li>
-      <li><time datetime="2026-07-30T14:10">14:10 – 14:50</time> <span>Simon Grossmann</span></li>
-      <li><time datetime="2026-07-30T15:20">15:20 – 16:00</time> <span>Elizabeth Nichols</span></li>
-      <li><time datetime="2026-07-30T16:30">16:30 – 17:10</time> <span>Bella Kay</span></li>
-      <li><time datetime="2026-07-30T17:40">17:40 – 18:20</time> <span>Chalk</span></li>
-      <li><time datetime="2026-07-30T18:50">18:50 – 19:30</time> <span>Evening Elephants</span></li>
+      <li id="set-lo38"><time datetime="2026-07-30T13:00">13:00 – 13:40</time> <span>The Braymores</span></li>
+      <li id="set-lo39"><time datetime="2026-07-30T14:10">14:10 – 14:50</time> <span>Simon Grossmann</span></li>
+      <li id="set-lo40"><time datetime="2026-07-30T15:20">15:20 – 16:00</time> <span>Elizabeth Nichols</span></li>
+      <li id="set-lo41"><time datetime="2026-07-30T16:30">16:30 – 17:10</time> <span>Bella Kay</span></li>
+      <li id="set-lo42"><time datetime="2026-07-30T17:40">17:40 – 18:20</time> <span>Chalk</span></li>
+      <li id="set-lo43"><time datetime="2026-07-30T18:50">18:50 – 19:30</time> <span>Evening Elephants</span></li>
     </ul>
     <h4>Bonus Tracks</h4>
     <ul class="sets">
-      <li><time datetime="2026-07-30T13:30">13:30 – 14:00</time> <span>DJ Prince Lex</span></li>
-      <li><time datetime="2026-07-30T15:00">15:00 – 15:30</time> <span>Okamoto Sisters Self-Care Set</span></li>
-      <li><time datetime="2026-07-30T16:30">16:30 – 17:00</time> <span>DJ Prince Lex</span></li>
-      <li><time datetime="2026-07-30T17:45">17:45 – 18:15</time> <span>Bella Kay x Mack</span></li>
-      <li><time datetime="2026-07-30T18:30">18:30 – 19:00</time> <span>Track Star Live: Jack Coyne ft. Penelope Road</span></li>
+      <li id="set-lo44"><time datetime="2026-07-30T13:30">13:30 – 14:00</time> <span>DJ Prince Lex</span></li>
+      <li id="set-lo45"><time datetime="2026-07-30T15:00">15:00 – 15:30</time> <span>Okamoto Sisters Self-Care Set</span></li>
+      <li id="set-lo46"><time datetime="2026-07-30T16:30">16:30 – 17:00</time> <span>DJ Prince Lex</span></li>
+      <li id="set-lo47"><time datetime="2026-07-30T17:45">17:45 – 18:15</time> <span>Bella Kay x Mack</span></li>
+      <li id="set-lo48"><time datetime="2026-07-30T18:30">18:30 – 19:00</time> <span>Track Star Live: Jack Coyne ft. Penelope Road</span></li>
     </ul>
     <h4>Kidzapalooza</h4>
     <ul class="sets">
-      <li><time datetime="2026-07-30T12:00">12:00 – 12:30</time> <span>Mister G</span></li>
-      <li><time datetime="2026-07-30T13:30">13:30 – 14:00</time> <span>School of Rock</span></li>
-      <li><time datetime="2026-07-30T15:00">15:00 – 15:30</time> <span>Miss Tutti &amp; The Fruity Band</span></li>
-      <li><time datetime="2026-07-30T17:15">17:15 – 17:45</time> <span>Jazzy Ash</span></li>
+      <li id="set-lo49"><time datetime="2026-07-30T12:00">12:00 – 12:30</time> <span>Mister G</span></li>
+      <li id="set-lo50"><time datetime="2026-07-30T13:30">13:30 – 14:00</time> <span>School of Rock</span></li>
+      <li id="set-lo51"><time datetime="2026-07-30T15:00">15:00 – 15:30</time> <span>Miss Tutti &amp; The Fruity Band</span></li>
+      <li id="set-lo52"><time datetime="2026-07-30T17:15">17:15 – 17:45</time> <span>Jazzy Ash</span></li>
     </ul>
     <h3>Friday, July 31</h3>
     <h4>T-Mobile Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-07-31T12:55">12:55 – 13:40</time> <span>partyof2</span></li>
-      <li><time datetime="2026-07-31T14:40">14:40 – 15:40</time> <span>i-dle</span></li>
-      <li><time datetime="2026-07-31T18:20">18:20 – 19:20</time> <span>Zara Larsson</span></li>
-      <li><time datetime="2026-07-31T20:40">20:40 – 22:00</time> <span>Charli xcx</span></li>
+      <li id="set-lo53"><time datetime="2026-07-31T12:55">12:55 – 13:40</time> <span>partyof2</span></li>
+      <li id="set-lo54"><time datetime="2026-07-31T14:40">14:40 – 15:40</time> <span>i-dle</span></li>
+      <li id="set-lo55"><time datetime="2026-07-31T18:20">18:20 – 19:20</time> <span>Zara Larsson</span></li>
+      <li id="set-lo56"><time datetime="2026-07-31T20:40">20:40 – 22:00</time> <span>Charli xcx</span></li>
     </ul>
     <h4>Bud Light Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-07-31T13:15">13:15 – 14:00</time> <span>High Vis</span></li>
-      <li><time datetime="2026-07-31T14:45">14:45 – 15:30</time> <span>Slayyyter</span></li>
-      <li><time datetime="2026-07-31T16:30">16:30 – 17:30</time> <span>The Story So Far</span></li>
-      <li><time datetime="2026-07-31T18:30">18:30 – 19:30</time> <span>Yungblud</span></li>
-      <li><time datetime="2026-07-31T20:30">20:30 – 22:00</time> <span>The Smashing Pumpkins</span></li>
+      <li id="set-lo57"><time datetime="2026-07-31T13:15">13:15 – 14:00</time> <span>High Vis</span></li>
+      <li id="set-lo58"><time datetime="2026-07-31T14:45">14:45 – 15:30</time> <span>Slayyyter</span></li>
+      <li id="set-lo59"><time datetime="2026-07-31T16:30">16:30 – 17:30</time> <span>The Story So Far</span></li>
+      <li id="set-lo60"><time datetime="2026-07-31T18:30">18:30 – 19:30</time> <span>Yungblud</span></li>
+      <li id="set-lo61"><time datetime="2026-07-31T20:30">20:30 – 22:00</time> <span>The Smashing Pumpkins</span></li>
     </ul>
     <h4>Perry&#39;s Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-07-31T12:00">12:00 – 12:30</time> <span>Bradeazy</span></li>
-      <li><time datetime="2026-07-31T12:45">12:45 – 13:30</time> <span>Avello</span></li>
-      <li><time datetime="2026-07-31T13:45">13:45 – 14:45</time> <span>LYNY</span></li>
-      <li><time datetime="2026-07-31T15:00">15:00 – 16:00</time> <span>RØZ</span></li>
-      <li><time datetime="2026-07-31T16:15">16:15 – 17:15</time> <span>Notion</span></li>
-      <li><time datetime="2026-07-31T17:40">17:40 – 18:40</time> <span>Sidepiece</span></li>
-      <li><time datetime="2026-07-31T18:50">18:50 – 19:50</time> <span>Mustard</span></li>
-      <li><time datetime="2026-07-31T20:20">20:20 – 21:55</time> <span>Major Lazer</span></li>
+      <li id="set-lo62"><time datetime="2026-07-31T12:00">12:00 – 12:30</time> <span>Bradeazy</span></li>
+      <li id="set-lo63"><time datetime="2026-07-31T12:45">12:45 – 13:30</time> <span>Avello</span></li>
+      <li id="set-lo64"><time datetime="2026-07-31T13:45">13:45 – 14:45</time> <span>LYNY</span></li>
+      <li id="set-lo65"><time datetime="2026-07-31T15:00">15:00 – 16:00</time> <span>RØZ</span></li>
+      <li id="set-lo66"><time datetime="2026-07-31T16:15">16:15 – 17:15</time> <span>Notion</span></li>
+      <li id="set-lo67"><time datetime="2026-07-31T17:40">17:40 – 18:40</time> <span>Sidepiece</span></li>
+      <li id="set-lo68"><time datetime="2026-07-31T18:50">18:50 – 19:50</time> <span>Mustard</span></li>
+      <li id="set-lo69"><time datetime="2026-07-31T20:20">20:20 – 21:55</time> <span>Major Lazer</span></li>
     </ul>
     <h4>Tito&#39;s Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-07-31T12:30">12:30 – 13:15</time> <span>Chicago Made</span></li>
-      <li><time datetime="2026-07-31T14:00">14:00 – 14:45</time> <span>Julia Wolf</span></li>
-      <li><time datetime="2026-07-31T15:30">15:30 – 16:30</time> <span>Mother Mother</span></li>
-      <li><time datetime="2026-07-31T17:30">17:30 – 18:30</time> <span>Loathe</span></li>
-      <li><time datetime="2026-07-31T19:30">19:30 – 20:30</time> <span>Nettspend</span></li>
+      <li id="set-lo70"><time datetime="2026-07-31T12:30">12:30 – 13:15</time> <span>Chicago Made</span></li>
+      <li id="set-lo71"><time datetime="2026-07-31T14:00">14:00 – 14:45</time> <span>Julia Wolf</span></li>
+      <li id="set-lo72"><time datetime="2026-07-31T15:30">15:30 – 16:30</time> <span>Mother Mother</span></li>
+      <li id="set-lo73"><time datetime="2026-07-31T17:30">17:30 – 18:30</time> <span>Loathe</span></li>
+      <li id="set-lo74"><time datetime="2026-07-31T19:30">19:30 – 20:30</time> <span>Nettspend</span></li>
     </ul>
     <h4>Allianz Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-07-31T12:10">12:10 – 12:55</time> <span>The Army, The Navy</span></li>
-      <li><time datetime="2026-07-31T13:40">13:40 – 14:40</time> <span>Claire Rosinkranz</span></li>
-      <li><time datetime="2026-07-31T15:40">15:40 – 16:40</time> <span>Skye Newman</span></li>
-      <li><time datetime="2026-07-31T17:20">17:20 – 18:20</time> <span>Suki Waterhouse</span></li>
-      <li><time datetime="2026-07-31T19:30">19:30 – 20:30</time> <span>Not For Radio</span></li>
+      <li id="set-lo75"><time datetime="2026-07-31T12:10">12:10 – 12:55</time> <span>The Army, The Navy</span></li>
+      <li id="set-lo76"><time datetime="2026-07-31T13:40">13:40 – 14:40</time> <span>Claire Rosinkranz</span></li>
+      <li id="set-lo77"><time datetime="2026-07-31T15:40">15:40 – 16:40</time> <span>Skye Newman</span></li>
+      <li id="set-lo78"><time datetime="2026-07-31T17:20">17:20 – 18:20</time> <span>Suki Waterhouse</span></li>
+      <li id="set-lo79"><time datetime="2026-07-31T19:30">19:30 – 20:30</time> <span>Not For Radio</span></li>
     </ul>
     <h4>Airbnb Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-07-31T12:00">12:00 – 12:30</time> <span>Beno</span></li>
-      <li><time datetime="2026-07-31T12:50">12:50 – 13:30</time> <span>Day We Ran</span></li>
-      <li><time datetime="2026-07-31T13:50">13:50 – 14:30</time> <span>Love Spells</span></li>
-      <li><time datetime="2026-07-31T14:50">14:50 – 15:30</time> <span>54 Ultra</span></li>
-      <li><time datetime="2026-07-31T16:00">16:00 – 16:45</time> <span>Finn Wolfhard</span></li>
-      <li><time datetime="2026-07-31T17:30">17:30 – 18:15</time> <span>Balu Brigada</span></li>
-      <li><time datetime="2026-07-31T18:45">18:45 – 19:30</time> <span>Oklou</span></li>
-      <li><time datetime="2026-07-31T19:55">19:55 – 20:40</time> <span>Horsegiirl</span></li>
-      <li><time datetime="2026-07-31T21:15">21:15 – 22:00</time> <span>Freddie Gibbs</span></li>
+      <li id="set-lo80"><time datetime="2026-07-31T12:00">12:00 – 12:30</time> <span>Beno</span></li>
+      <li id="set-lo81"><time datetime="2026-07-31T12:50">12:50 – 13:30</time> <span>Day We Ran</span></li>
+      <li id="set-lo82"><time datetime="2026-07-31T13:50">13:50 – 14:30</time> <span>Love Spells</span></li>
+      <li id="set-lo83"><time datetime="2026-07-31T14:50">14:50 – 15:30</time> <span>54 Ultra</span></li>
+      <li id="set-lo84"><time datetime="2026-07-31T16:00">16:00 – 16:45</time> <span>Finn Wolfhard</span></li>
+      <li id="set-lo85"><time datetime="2026-07-31T17:30">17:30 – 18:15</time> <span>Balu Brigada</span></li>
+      <li id="set-lo86"><time datetime="2026-07-31T18:45">18:45 – 19:30</time> <span>Oklou</span></li>
+      <li id="set-lo87"><time datetime="2026-07-31T19:55">19:55 – 20:40</time> <span>Horsegiirl</span></li>
+      <li id="set-lo88"><time datetime="2026-07-31T21:15">21:15 – 22:00</time> <span>Freddie Gibbs</span></li>
     </ul>
     <h4>BMI Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-07-31T13:00">13:00 – 13:40</time> <span>Valencia Grace</span></li>
-      <li><time datetime="2026-07-31T14:10">14:10 – 14:50</time> <span>Ella Boh</span></li>
-      <li><time datetime="2026-07-31T15:20">15:20 – 16:00</time> <span>Emi Grace</span></li>
-      <li><time datetime="2026-07-31T16:30">16:30 – 17:10</time> <span>Ivri</span></li>
-      <li><time datetime="2026-07-31T17:40">17:40 – 18:20</time> <span>Ella Red</span></li>
-      <li><time datetime="2026-07-31T18:50">18:50 – 19:30</time> <span>Whitney Whitney</span></li>
+      <li id="set-lo89"><time datetime="2026-07-31T13:00">13:00 – 13:40</time> <span>Valencia Grace</span></li>
+      <li id="set-lo90"><time datetime="2026-07-31T14:10">14:10 – 14:50</time> <span>Ella Boh</span></li>
+      <li id="set-lo91"><time datetime="2026-07-31T15:20">15:20 – 16:00</time> <span>Emi Grace</span></li>
+      <li id="set-lo92"><time datetime="2026-07-31T16:30">16:30 – 17:10</time> <span>Ivri</span></li>
+      <li id="set-lo93"><time datetime="2026-07-31T17:40">17:40 – 18:20</time> <span>Ella Red</span></li>
+      <li id="set-lo94"><time datetime="2026-07-31T18:50">18:50 – 19:30</time> <span>Whitney Whitney</span></li>
     </ul>
     <h4>Bonus Tracks</h4>
     <ul class="sets">
-      <li><time datetime="2026-07-31T13:00">13:00 – 13:30</time> <span>Zara Larsson x Davis Burleson</span></li>
-      <li><time datetime="2026-07-31T14:00">14:00 – 14:30</time> <span>DJ Prince Lex</span></li>
-      <li><time datetime="2026-07-31T15:15">15:15 – 15:30</time> <span>sombr x Davis Burleson</span></li>
-      <li><time datetime="2026-07-31T16:15">16:15 – 16:30</time> <span>Yungblud with Mack</span></li>
-      <li><time datetime="2026-07-31T17:15">17:15 – 17:30</time> <span>Slayyyter with Davis Burleson</span></li>
-      <li><time datetime="2026-07-31T17:45">17:45 – 18:15</time> <span>DJ Prince Lex</span></li>
-      <li><time datetime="2026-07-31T18:45">18:45 – 19:15</time> <span>Snacktime</span></li>
+      <li id="set-lo95"><time datetime="2026-07-31T13:00">13:00 – 13:30</time> <span>Zara Larsson x Davis Burleson</span></li>
+      <li id="set-lo96"><time datetime="2026-07-31T14:00">14:00 – 14:30</time> <span>DJ Prince Lex</span></li>
+      <li id="set-lo97"><time datetime="2026-07-31T15:15">15:15 – 15:30</time> <span>sombr x Davis Burleson</span></li>
+      <li id="set-lo98"><time datetime="2026-07-31T16:15">16:15 – 16:30</time> <span>Yungblud with Mack</span></li>
+      <li id="set-lo99"><time datetime="2026-07-31T17:15">17:15 – 17:30</time> <span>Slayyyter with Davis Burleson</span></li>
+      <li id="set-lo100"><time datetime="2026-07-31T17:45">17:45 – 18:15</time> <span>DJ Prince Lex</span></li>
+      <li id="set-lo101"><time datetime="2026-07-31T18:45">18:45 – 19:15</time> <span>Snacktime</span></li>
     </ul>
     <h4>Kidzapalooza</h4>
     <ul class="sets">
-      <li><time datetime="2026-07-31T12:00">12:00 – 12:30</time> <span>Miss Tutti &amp; The Fruity Band</span></li>
-      <li><time datetime="2026-07-31T13:30">13:30 – 14:00</time> <span>Mister G</span></li>
-      <li><time datetime="2026-07-31T15:00">15:00 – 15:30</time> <span>Jazzy Ash</span></li>
-      <li><time datetime="2026-07-31T17:15">17:15 – 17:45</time> <span>School of Rock</span></li>
+      <li id="set-lo102"><time datetime="2026-07-31T12:00">12:00 – 12:30</time> <span>Miss Tutti &amp; The Fruity Band</span></li>
+      <li id="set-lo103"><time datetime="2026-07-31T13:30">13:30 – 14:00</time> <span>Mister G</span></li>
+      <li id="set-lo104"><time datetime="2026-07-31T15:00">15:00 – 15:30</time> <span>Jazzy Ash</span></li>
+      <li id="set-lo105"><time datetime="2026-07-31T17:15">17:15 – 17:45</time> <span>School of Rock</span></li>
     </ul>
     <h3>Saturday, August 1</h3>
     <h4>T-Mobile Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-08-01T15:40">15:40 – 16:20</time> <span>CORTIS</span></li>
-      <li><time datetime="2026-08-01T17:00">17:00 – 17:45</time> <span>Leon Thomas</span></li>
-      <li><time datetime="2026-08-01T18:30">18:30 – 19:30</time> <span>The Neighbourhood</span></li>
-      <li><time datetime="2026-08-01T20:30">20:30 – 22:00</time> <span>Olivia Dean</span></li>
+      <li id="set-lo106"><time datetime="2026-08-01T15:40">15:40 – 16:20</time> <span>CORTIS</span></li>
+      <li id="set-lo107"><time datetime="2026-08-01T17:00">17:00 – 17:45</time> <span>Leon Thomas</span></li>
+      <li id="set-lo108"><time datetime="2026-08-01T18:30">18:30 – 19:30</time> <span>The Neighbourhood</span></li>
+      <li id="set-lo109"><time datetime="2026-08-01T20:30">20:30 – 22:00</time> <span>Olivia Dean</span></li>
     </ul>
     <h4>Bud Light Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-08-01T16:00">16:00 – 16:30</time> <span>Wolf Alice</span></li>
-      <li><time datetime="2026-08-01T17:15">17:15 – 18:15</time> <span>Clipse</span></li>
-      <li><time datetime="2026-08-01T19:00">19:00 – 20:00</time> <span>Ethel Cain</span></li>
-      <li><time datetime="2026-08-01T20:55">20:55 – 22:00</time> <span>Jennie</span></li>
+      <li id="set-lo110"><time datetime="2026-08-01T16:00">16:00 – 16:30</time> <span>Wolf Alice</span></li>
+      <li id="set-lo111"><time datetime="2026-08-01T17:15">17:15 – 18:15</time> <span>Clipse</span></li>
+      <li id="set-lo112"><time datetime="2026-08-01T19:00">19:00 – 20:00</time> <span>Ethel Cain</span></li>
+      <li id="set-lo113"><time datetime="2026-08-01T20:55">20:55 – 22:00</time> <span>Jennie</span></li>
     </ul>
     <h4>Perry&#39;s Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-08-01T15:30">15:30 – 16:00</time> <span>Omnom</span></li>
-      <li><time datetime="2026-08-01T16:10">16:10 – 16:50</time> <span>ayybo</span></li>
-      <li><time datetime="2026-08-01T17:00">17:00 – 17:45</time> <span>Whethan</span></li>
-      <li><time datetime="2026-08-01T17:55">17:55 – 18:50</time> <span>Max Styler</span></li>
-      <li><time datetime="2026-08-01T19:05">19:05 – 20:00</time> <span>Alison Wonderland</span></li>
-      <li><time datetime="2026-08-01T20:30">20:30 – 21:45</time> <span>Disco Lines</span></li>
+      <li id="set-lo114"><time datetime="2026-08-01T15:30">15:30 – 16:00</time> <span>Omnom</span></li>
+      <li id="set-lo115"><time datetime="2026-08-01T16:10">16:10 – 16:50</time> <span>ayybo</span></li>
+      <li id="set-lo116"><time datetime="2026-08-01T17:00">17:00 – 17:45</time> <span>Whethan</span></li>
+      <li id="set-lo117"><time datetime="2026-08-01T17:55">17:55 – 18:50</time> <span>Max Styler</span></li>
+      <li id="set-lo118"><time datetime="2026-08-01T19:05">19:05 – 20:00</time> <span>Alison Wonderland</span></li>
+      <li id="set-lo119"><time datetime="2026-08-01T20:30">20:30 – 21:45</time> <span>Disco Lines</span></li>
     </ul>
     <h4>Tito&#39;s Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-08-01T15:30">15:30 – 16:00</time> <span>Goldie Boutilier</span></li>
-      <li><time datetime="2026-08-01T16:30">16:30 – 17:15</time> <span>Momma</span></li>
-      <li><time datetime="2026-08-01T18:15">18:15 – 19:00</time> <span>Frost Children</span></li>
-      <li><time datetime="2026-08-01T20:00">20:00 – 20:55</time> <span>bbno$</span></li>
+      <li id="set-lo120"><time datetime="2026-08-01T15:30">15:30 – 16:00</time> <span>Goldie Boutilier</span></li>
+      <li id="set-lo121"><time datetime="2026-08-01T16:30">16:30 – 17:15</time> <span>Momma</span></li>
+      <li id="set-lo122"><time datetime="2026-08-01T18:15">18:15 – 19:00</time> <span>Frost Children</span></li>
+      <li id="set-lo123"><time datetime="2026-08-01T20:00">20:00 – 20:55</time> <span>bbno$</span></li>
     </ul>
     <h4>Allianz Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-08-01T16:20">16:20 – 17:00</time> <span>Khamari</span></li>
-      <li><time datetime="2026-08-01T17:45">17:45 – 18:30</time> <span>Spacey Jane</span></li>
-      <li><time datetime="2026-08-01T19:30">19:30 – 20:30</time> <span>Geese</span></li>
+      <li id="set-lo124"><time datetime="2026-08-01T16:20">16:20 – 17:00</time> <span>Khamari</span></li>
+      <li id="set-lo125"><time datetime="2026-08-01T17:45">17:45 – 18:30</time> <span>Spacey Jane</span></li>
+      <li id="set-lo126"><time datetime="2026-08-01T19:30">19:30 – 20:30</time> <span>Geese</span></li>
     </ul>
     <h4>Airbnb Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-08-01T15:30">15:30 – 16:00</time> <span>Die Spitz</span></li>
-      <li><time datetime="2026-08-01T16:30">16:30 – 17:00</time> <span>Quadeca</span></li>
-      <li><time datetime="2026-08-01T17:30">17:30 – 18:15</time> <span>Sienna Spiro</span></li>
-      <li><time datetime="2026-08-01T18:45">18:45 – 19:30</time> <span>kwn</span></li>
-      <li><time datetime="2026-08-01T20:00">20:00 – 20:45</time> <span>Cameron Whitcomb</span></li>
-      <li><time datetime="2026-08-01T21:15">21:15 – 22:00</time> <span>DJ Trixie Mattel</span></li>
+      <li id="set-lo127"><time datetime="2026-08-01T15:30">15:30 – 16:00</time> <span>Die Spitz</span></li>
+      <li id="set-lo128"><time datetime="2026-08-01T16:30">16:30 – 17:00</time> <span>Quadeca</span></li>
+      <li id="set-lo129"><time datetime="2026-08-01T17:30">17:30 – 18:15</time> <span>Sienna Spiro</span></li>
+      <li id="set-lo130"><time datetime="2026-08-01T18:45">18:45 – 19:30</time> <span>kwn</span></li>
+      <li id="set-lo131"><time datetime="2026-08-01T20:00">20:00 – 20:45</time> <span>Cameron Whitcomb</span></li>
+      <li id="set-lo132"><time datetime="2026-08-01T21:15">21:15 – 22:00</time> <span>DJ Trixie Mattel</span></li>
     </ul>
     <h4>BMI Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-08-01T15:50">15:50 – 16:30</time> <span>INK</span></li>
-      <li><time datetime="2026-08-01T17:00">17:00 – 17:40</time> <span>Calder Allen</span></li>
-      <li><time datetime="2026-08-01T18:10">18:10 – 18:50</time> <span>Jae Stephens</span></li>
-      <li><time datetime="2026-08-01T19:20">19:20 – 20:00</time> <span>Ryman</span></li>
+      <li id="set-lo133"><time datetime="2026-08-01T15:50">15:50 – 16:30</time> <span>INK</span></li>
+      <li id="set-lo134"><time datetime="2026-08-01T17:00">17:00 – 17:40</time> <span>Calder Allen</span></li>
+      <li id="set-lo135"><time datetime="2026-08-01T18:10">18:10 – 18:50</time> <span>Jae Stephens</span></li>
+      <li id="set-lo136"><time datetime="2026-08-01T19:20">19:20 – 20:00</time> <span>Ryman</span></li>
     </ul>
     <h4>Bonus Tracks</h4>
     <ul class="sets">
-      <li><time datetime="2026-08-01T15:15">15:15 – 15:45</time> <span>The Second City: Lolla Made Us Do It</span></li>
-      <li><time datetime="2026-08-01T16:45">16:45 – 17:15</time> <span>DJ Prince Lex</span></li>
-      <li><time datetime="2026-08-01T18:45">18:45 – 19:15</time> <span>The Try Guys Eat The Menu</span></li>
+      <li id="set-lo137"><time datetime="2026-08-01T15:15">15:15 – 15:45</time> <span>The Second City: Lolla Made Us Do It</span></li>
+      <li id="set-lo138"><time datetime="2026-08-01T16:45">16:45 – 17:15</time> <span>DJ Prince Lex</span></li>
+      <li id="set-lo139"><time datetime="2026-08-01T18:45">18:45 – 19:15</time> <span>The Try Guys Eat The Menu</span></li>
     </ul>
     <h4>Kidzapalooza</h4>
     <ul class="sets">
-      <li><time datetime="2026-08-01T16:00">16:00 – 16:30</time> <span>Special Guest: The Happiness Club</span></li>
-      <li><time datetime="2026-08-01T17:15">17:15 – 17:45</time> <span>Q Brothers</span></li>
+      <li id="set-lo140"><time datetime="2026-08-01T16:00">16:00 – 16:30</time> <span>Special Guest: The Happiness Club</span></li>
+      <li id="set-lo141"><time datetime="2026-08-01T17:15">17:15 – 17:45</time> <span>Q Brothers</span></li>
     </ul>
     <h3>Sunday, August 2</h3>
     <h4>T-Mobile Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-08-02T13:15">13:15 – 14:00</time> <span>New Constellations</span></li>
-      <li><time datetime="2026-08-02T15:00">15:00 – 15:45</time> <span>Adéla</span></li>
-      <li><time datetime="2026-08-02T16:45">16:45 – 17:45</time> <span>MUNA</span></li>
-      <li><time datetime="2026-08-02T18:45">18:45 – 19:45</time> <span>beabadoobee</span></li>
-      <li><time datetime="2026-08-02T20:45">20:45 – 22:00</time> <span>Tate McRae</span></li>
+      <li id="set-lo142"><time datetime="2026-08-02T13:15">13:15 – 14:00</time> <span>New Constellations</span></li>
+      <li id="set-lo143"><time datetime="2026-08-02T15:00">15:00 – 15:45</time> <span>Adéla</span></li>
+      <li id="set-lo144"><time datetime="2026-08-02T16:45">16:45 – 17:45</time> <span>MUNA</span></li>
+      <li id="set-lo145"><time datetime="2026-08-02T18:45">18:45 – 19:45</time> <span>beabadoobee</span></li>
+      <li id="set-lo146"><time datetime="2026-08-02T20:45">20:45 – 22:00</time> <span>Tate McRae</span></li>
     </ul>
     <h4>Bud Light Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-08-02T13:30">13:30 – 14:15</time> <span>Whatmore</span></li>
-      <li><time datetime="2026-08-02T15:00">15:00 – 16:00</time> <span>Waylon Wyatt</span></li>
-      <li><time datetime="2026-08-02T17:00">17:00 – 18:00</time> <span>YOASOBI</span></li>
-      <li><time datetime="2026-08-02T19:00">19:00 – 20:00</time> <span>Turnstile</span></li>
-      <li><time datetime="2026-08-02T20:45">20:45 – 22:00</time> <span>The xx</span></li>
+      <li id="set-lo147"><time datetime="2026-08-02T13:30">13:30 – 14:15</time> <span>Whatmore</span></li>
+      <li id="set-lo148"><time datetime="2026-08-02T15:00">15:00 – 16:00</time> <span>Waylon Wyatt</span></li>
+      <li id="set-lo149"><time datetime="2026-08-02T17:00">17:00 – 18:00</time> <span>YOASOBI</span></li>
+      <li id="set-lo150"><time datetime="2026-08-02T19:00">19:00 – 20:00</time> <span>Turnstile</span></li>
+      <li id="set-lo151"><time datetime="2026-08-02T20:45">20:45 – 22:00</time> <span>The xx</span></li>
     </ul>
     <h4>Perry&#39;s Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-08-02T12:00">12:00 – 12:30</time> <span>Zack Martino</span></li>
-      <li><time datetime="2026-08-02T12:45">12:45 – 13:30</time> <span>Jackie Hollander</span></li>
-      <li><time datetime="2026-08-02T13:45">13:45 – 14:45</time> <span>Westend</span></li>
-      <li><time datetime="2026-08-02T15:00">15:00 – 16:00</time> <span>Riordan</span></li>
-      <li><time datetime="2026-08-02T16:15">16:15 – 17:15</time> <span>Dombresky</span></li>
-      <li><time datetime="2026-08-02T17:35">17:35 – 18:35</time> <span>Duke Dumont</span></li>
-      <li><time datetime="2026-08-02T18:50">18:50 – 19:50</time> <span>Eli Brown</span></li>
-      <li><time datetime="2026-08-02T20:30">20:30 – 21:45</time> <span>The Chainsmokers</span></li>
+      <li id="set-lo152"><time datetime="2026-08-02T12:00">12:00 – 12:30</time> <span>Zack Martino</span></li>
+      <li id="set-lo153"><time datetime="2026-08-02T12:45">12:45 – 13:30</time> <span>Jackie Hollander</span></li>
+      <li id="set-lo154"><time datetime="2026-08-02T13:45">13:45 – 14:45</time> <span>Westend</span></li>
+      <li id="set-lo155"><time datetime="2026-08-02T15:00">15:00 – 16:00</time> <span>Riordan</span></li>
+      <li id="set-lo156"><time datetime="2026-08-02T16:15">16:15 – 17:15</time> <span>Dombresky</span></li>
+      <li id="set-lo157"><time datetime="2026-08-02T17:35">17:35 – 18:35</time> <span>Duke Dumont</span></li>
+      <li id="set-lo158"><time datetime="2026-08-02T18:50">18:50 – 19:50</time> <span>Eli Brown</span></li>
+      <li id="set-lo159"><time datetime="2026-08-02T20:30">20:30 – 21:45</time> <span>The Chainsmokers</span></li>
     </ul>
     <h4>Tito&#39;s Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-08-02T12:45">12:45 – 13:30</time> <span>Easy Honey</span></li>
-      <li><time datetime="2026-08-02T14:15">14:15 – 15:00</time> <span>Cruz Beckham and The Breakers</span></li>
-      <li><time datetime="2026-08-02T16:00">16:00 – 17:00</time> <span>Wunderhorse</span></li>
-      <li><time datetime="2026-08-02T18:00">18:00 – 19:00</time> <span>Hot Mulligan</span></li>
-      <li><time datetime="2026-08-02T20:00">20:00 – 20:45</time> <span>Vandelux</span></li>
+      <li id="set-lo160"><time datetime="2026-08-02T12:45">12:45 – 13:30</time> <span>Easy Honey</span></li>
+      <li id="set-lo161"><time datetime="2026-08-02T14:15">14:15 – 15:00</time> <span>Cruz Beckham and The Breakers</span></li>
+      <li id="set-lo162"><time datetime="2026-08-02T16:00">16:00 – 17:00</time> <span>Wunderhorse</span></li>
+      <li id="set-lo163"><time datetime="2026-08-02T18:00">18:00 – 19:00</time> <span>Hot Mulligan</span></li>
+      <li id="set-lo164"><time datetime="2026-08-02T20:00">20:00 – 20:45</time> <span>Vandelux</span></li>
     </ul>
     <h4>Allianz Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-08-02T12:30">12:30 – 13:15</time> <span>Squirrel Flower</span></li>
-      <li><time datetime="2026-08-02T14:00">14:00 – 15:00</time> <span>Destin Conrad</span></li>
-      <li><time datetime="2026-08-02T15:45">15:45 – 16:45</time> <span>Amber Mark</span></li>
-      <li><time datetime="2026-08-02T17:45">17:45 – 18:45</time> <span>JADE</span></li>
-      <li><time datetime="2026-08-02T19:45">19:45 – 20:45</time> <span>aespa</span></li>
+      <li id="set-lo165"><time datetime="2026-08-02T12:30">12:30 – 13:15</time> <span>Squirrel Flower</span></li>
+      <li id="set-lo166"><time datetime="2026-08-02T14:00">14:00 – 15:00</time> <span>Destin Conrad</span></li>
+      <li id="set-lo167"><time datetime="2026-08-02T15:45">15:45 – 16:45</time> <span>Amber Mark</span></li>
+      <li id="set-lo168"><time datetime="2026-08-02T17:45">17:45 – 18:45</time> <span>JADE</span></li>
+      <li id="set-lo169"><time datetime="2026-08-02T19:45">19:45 – 20:45</time> <span>aespa</span></li>
     </ul>
     <h4>Airbnb Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-08-02T12:00">12:00 – 12:30</time> <span>Sunshine Benzi</span></li>
-      <li><time datetime="2026-08-02T12:50">12:50 – 13:30</time> <span>The Bends</span></li>
-      <li><time datetime="2026-08-02T13:50">13:50 – 14:30</time> <span>After</span></li>
-      <li><time datetime="2026-08-02T14:50">14:50 – 15:30</time> <span>Water From Your Eyes</span></li>
-      <li><time datetime="2026-08-02T16:00">16:00 – 16:45</time> <span>INJI</span></li>
-      <li><time datetime="2026-08-02T17:15">17:15 – 18:00</time> <span>Los Retros</span></li>
-      <li><time datetime="2026-08-02T18:30">18:30 – 19:15</time> <span>Monaleo</span></li>
-      <li><time datetime="2026-08-02T19:45">19:45 – 20:30</time> <span>Stella Lefty</span></li>
-      <li><time datetime="2026-08-02T21:15">21:15 – 22:00</time> <span>Ado</span></li>
+      <li id="set-lo170"><time datetime="2026-08-02T12:00">12:00 – 12:30</time> <span>Sunshine Benzi</span></li>
+      <li id="set-lo171"><time datetime="2026-08-02T12:50">12:50 – 13:30</time> <span>The Bends</span></li>
+      <li id="set-lo172"><time datetime="2026-08-02T13:50">13:50 – 14:30</time> <span>After</span></li>
+      <li id="set-lo173"><time datetime="2026-08-02T14:50">14:50 – 15:30</time> <span>Water From Your Eyes</span></li>
+      <li id="set-lo174"><time datetime="2026-08-02T16:00">16:00 – 16:45</time> <span>INJI</span></li>
+      <li id="set-lo175"><time datetime="2026-08-02T17:15">17:15 – 18:00</time> <span>Los Retros</span></li>
+      <li id="set-lo176"><time datetime="2026-08-02T18:30">18:30 – 19:15</time> <span>Monaleo</span></li>
+      <li id="set-lo177"><time datetime="2026-08-02T19:45">19:45 – 20:30</time> <span>Stella Lefty</span></li>
+      <li id="set-lo178"><time datetime="2026-08-02T21:15">21:15 – 22:00</time> <span>Ado</span></li>
     </ul>
     <h4>BMI Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-08-02T13:00">13:00 – 13:40</time> <span>Snacktime</span></li>
-      <li><time datetime="2026-08-02T14:10">14:10 – 14:50</time> <span>Surfing For Daisy</span></li>
-      <li><time datetime="2026-08-02T15:20">15:20 – 16:00</time> <span>Case Oats</span></li>
-      <li><time datetime="2026-08-02T16:30">16:30 – 17:10</time> <span>Justine Skye</span></li>
-      <li><time datetime="2026-08-02T17:40">17:40 – 18:20</time> <span>Porch Light</span></li>
-      <li><time datetime="2026-08-02T18:50">18:50 – 19:30</time> <span>Will Swinton</span></li>
+      <li id="set-lo179"><time datetime="2026-08-02T13:00">13:00 – 13:40</time> <span>Snacktime</span></li>
+      <li id="set-lo180"><time datetime="2026-08-02T14:10">14:10 – 14:50</time> <span>Surfing For Daisy</span></li>
+      <li id="set-lo181"><time datetime="2026-08-02T15:20">15:20 – 16:00</time> <span>Case Oats</span></li>
+      <li id="set-lo182"><time datetime="2026-08-02T16:30">16:30 – 17:10</time> <span>Justine Skye</span></li>
+      <li id="set-lo183"><time datetime="2026-08-02T17:40">17:40 – 18:20</time> <span>Porch Light</span></li>
+      <li id="set-lo184"><time datetime="2026-08-02T18:50">18:50 – 19:30</time> <span>Will Swinton</span></li>
     </ul>
     <h4>Bonus Tracks</h4>
     <ul class="sets">
-      <li><time datetime="2026-08-02T13:30">13:30 – 14:00</time> <span>DJ Prince Lex</span></li>
-      <li><time datetime="2026-08-02T15:15">15:15 – 15:30</time> <span>Stella Lefty with Davis Burleson</span></li>
-      <li><time datetime="2026-08-02T15:30">15:30 – 15:45</time> <span>Cruz Beckham x Mack</span></li>
-      <li><time datetime="2026-08-02T17:00">17:00 – 17:30</time> <span>John Walt Foundation: Chicago&#39;s Got Next</span></li>
-      <li><time datetime="2026-08-02T18:00">18:00 – 18:30</time> <span>DJ Prince Lex</span></li>
-      <li><time datetime="2026-08-02T19:00">19:00 – 19:45</time> <span>Shout Section ft. Tatum Langley</span></li>
+      <li id="set-lo185"><time datetime="2026-08-02T13:30">13:30 – 14:00</time> <span>DJ Prince Lex</span></li>
+      <li id="set-lo186"><time datetime="2026-08-02T15:15">15:15 – 15:30</time> <span>Stella Lefty with Davis Burleson</span></li>
+      <li id="set-lo187"><time datetime="2026-08-02T15:30">15:30 – 15:45</time> <span>Cruz Beckham x Mack</span></li>
+      <li id="set-lo188"><time datetime="2026-08-02T17:00">17:00 – 17:30</time> <span>John Walt Foundation: Chicago&#39;s Got Next</span></li>
+      <li id="set-lo189"><time datetime="2026-08-02T18:00">18:00 – 18:30</time> <span>DJ Prince Lex</span></li>
+      <li id="set-lo190"><time datetime="2026-08-02T19:00">19:00 – 19:45</time> <span>Shout Section ft. Tatum Langley</span></li>
     </ul>
     <h4>Kidzapalooza</h4>
     <ul class="sets">
-      <li><time datetime="2026-08-02T12:00">12:00 – 12:30</time> <span>Flor Bromley</span></li>
-      <li><time datetime="2026-08-02T13:30">13:30 – 14:00</time> <span>Lucky Diaz</span></li>
-      <li><time datetime="2026-08-02T15:00">15:00 – 15:30</time> <span>Q Brothers</span></li>
-      <li><time datetime="2026-08-02T16:00">16:00 – 16:30</time> <span>Special Guest: The Happiness Club</span></li>
-      <li><time datetime="2026-08-02T17:15">17:15 – 17:45</time> <span>Mega Ran</span></li>
-    </ul>
-  </section>
-
-  <section aria-labelledby="stages-h">
-    <h2 id="stages-h">Lollapalooza 2026 stages</h2>
-    <p>Plursky has 9 stages for Lollapalooza 2026 at Grant Park, each one listed below.</p>
-    <ul class="stagelist">
-      <li><strong>T-Mobile Stage</strong> · North · Butler Field, headliners</li>
-      <li><strong>Bud Light Stage</strong> · South · Hutchinson Field, headliners</li>
-      <li><strong>Perry&#39;s Stage</strong> · South-west · electronic</li>
-      <li><strong>Tito&#39;s Stage</strong> · Tito&#39;s Handmade Vodka Stage · by Buckingham Fountain</li>
-      <li><strong>Allianz Stage</strong> · West side · indie + rising</li>
-      <li><strong>Airbnb Stage</strong> · North-west · discovery</li>
-      <li><strong>BMI Stage</strong> · North · songwriter showcase</li>
-      <li><strong>Bonus Tracks</strong> · South-west · talks + specials</li>
-      <li><strong>Kidzapalooza</strong> · South-east · family stage</li>
+      <li id="set-lo191"><time datetime="2026-08-02T12:00">12:00 – 12:30</time> <span>Flor Bromley</span></li>
+      <li id="set-lo192"><time datetime="2026-08-02T13:30">13:30 – 14:00</time> <span>Lucky Diaz</span></li>
+      <li id="set-lo193"><time datetime="2026-08-02T15:00">15:00 – 15:30</time> <span>Q Brothers</span></li>
+      <li id="set-lo194"><time datetime="2026-08-02T16:00">16:00 – 16:30</time> <span>Special Guest: The Happiness Club</span></li>
+      <li id="set-lo195"><time datetime="2026-08-02T17:15">17:15 – 17:45</time> <span>Mega Ran</span></li>
     </ul>
   </section>
 
@@ -1202,220 +1267,250 @@
     <h2 id="lineup-h">Lollapalooza 2026 lineup</h2>
     <p>181 artists announced.</p>
     <ul class="lineup">
-      <li>5 Seconds of Summer</li>
-      <li>54 Ultra</li>
-      <li>Adéla</li>
-      <li>Ado</li>
-      <li>aespa</li>
-      <li>After</li>
-      <li>Alison Wonderland</li>
-      <li>Amber Mark</li>
-      <li>Amble</li>
-      <li>Asha Banks</li>
-      <li>Audrey Hobert</li>
-      <li>Avello</li>
-      <li>ayybo</li>
-      <li>Bad Nerves</li>
-      <li>Balu Brigada</li>
-      <li>bbno$</li>
-      <li>beabadoobee</li>
-      <li>Bella Kay</li>
-      <li>Bella Kay x Mack</li>
-      <li>Beno</li>
-      <li>Between Friends</li>
-      <li>Bixby</li>
-      <li>Blood Orange</li>
-      <li>Boris Brejcha</li>
-      <li>Boys Noize</li>
-      <li>Bradeazy</li>
-      <li>Calder Allen</li>
-      <li>Cameron Whitcomb</li>
-      <li>Case Oats</li>
-      <li>Chalk</li>
-      <li>Charli xcx</li>
-      <li>Chicago Made</li>
-      <li>Claire Rosinkranz</li>
-      <li>Clipse</li>
-      <li>CMAT</li>
-      <li>CORTIS</li>
-      <li>Cruz Beckham and The Breakers</li>
-      <li>Cruz Beckham x Mack</li>
-      <li>Day We Ran</li>
-      <li>Destin Conrad</li>
-      <li>Devault</li>
-      <li>Die Spitz</li>
-      <li>Disco Lines</li>
-      <li>DJ Prince Lex</li>
-      <li>DJ Trixie Mattel</li>
-      <li>Dombresky</li>
-      <li>Duke Dumont</li>
-      <li>Easy Honey</li>
-      <li>Ecca Vandal</li>
-      <li>Eli Brown</li>
-      <li>Elizabeth Nichols</li>
-      <li>Ella Boh</li>
-      <li>Ella Red</li>
-      <li>Emi Grace</li>
-      <li>Empire of the Sun</li>
-      <li>Ethel Cain</li>
-      <li>Evening Elephants</li>
-      <li>Faouzia</li>
-      <li>Finn Wolfhard</li>
-      <li>Flor Bromley</li>
-      <li>Freddie Gibbs</li>
-      <li>Frost Children</li>
-      <li>Geese</li>
-      <li>Goldie Boutilier</li>
-      <li>Haute &amp; Freddy</li>
-      <li>High Vis</li>
-      <li>Horsegiirl</li>
-      <li>Hot Mulligan</li>
-      <li>i-dle</li>
-      <li>INJI</li>
-      <li>INK</li>
-      <li>Ivri</li>
-      <li>Jackie Hollander</li>
-      <li>JADE</li>
-      <li>Jae Stephens</li>
-      <li>Jazzy Ash</li>
-      <li>Jennie</li>
-      <li>John Summit</li>
-      <li>John Walt Foundation: Chicago&#39;s Got Next</li>
-      <li>Julia Wolf</li>
-      <li>Justine Skye</li>
-      <li>Kettama</li>
-      <li>Khamari</li>
-      <li>Kim Theory</li>
-      <li>Kingfishr</li>
-      <li>KLO</li>
-      <li>Know Good</li>
-      <li>kwn</li>
-      <li>Leon Thomas</li>
-      <li>Little Simz</li>
-      <li>Loathe</li>
-      <li>Lorde</li>
-      <li>Los Retros</li>
-      <li>Love Spells</li>
-      <li>Lucky Diaz</li>
-      <li>LYNY</li>
-      <li>Major Lazer</li>
-      <li>Marlon Funaki</li>
-      <li>Max Styler</li>
-      <li>Mega Ran</li>
-      <li>Miss Tutti &amp; The Fruity Band</li>
-      <li>Mister G</li>
-      <li>Momma</li>
-      <li>Monaleo</li>
-      <li>Mother Mother</li>
-      <li>MPH</li>
-      <li>MUNA</li>
-      <li>Mustard</li>
-      <li>Nettspend</li>
-      <li>New Constellations</li>
-      <li>Ninajirachi</li>
-      <li>Not For Radio</li>
-      <li>Notion</li>
-      <li>Okamoto Sisters Self-Care Set</li>
-      <li>Oklou</li>
-      <li>Olivia Dean</li>
-      <li>Omnom</li>
-      <li>Paris Paloma</li>
-      <li>partyof2</li>
-      <li>Pearly Drops</li>
-      <li>Penelope Road</li>
-      <li>Porch Light</li>
-      <li>Q Brothers</li>
-      <li>Quadeca</li>
-      <li>Riordan</li>
-      <li>RØZ</li>
-      <li>Ryman</li>
-      <li>SB19</li>
-      <li>School of Rock</li>
-      <li>Shout Section ft. Tatum Langley</li>
-      <li>Sidepiece</li>
-      <li>Sienna Spiro</li>
-      <li>Simon Grossmann</li>
-      <li>Skye Newman</li>
-      <li>Slayyyter</li>
-      <li>Slayyyter with Davis Burleson</li>
-      <li>Snacktime</li>
-      <li>Snow Strippers</li>
-      <li>sombr</li>
-      <li>sombr x Davis Burleson</li>
-      <li>Spacey Jane</li>
-      <li>Special Guest: The Happiness Club</li>
-      <li>Squirrel Flower</li>
-      <li>Stella Lefty</li>
-      <li>Stella Lefty with Davis Burleson</li>
-      <li>Suki Waterhouse</li>
-      <li>Sunshine Benzi</li>
-      <li>Surfing For Daisy</li>
-      <li>Tate McRae</li>
-      <li>The Army, The Navy</li>
-      <li>The Bends</li>
-      <li>The Braymores</li>
-      <li>The Chainsmokers</li>
-      <li>The Neighbourhood</li>
-      <li>The Second City: Lolla Made Us Do It</li>
-      <li>The Smashing Pumpkins</li>
-      <li>The Story So Far</li>
-      <li>The Try Guys Eat The Menu</li>
-      <li>The xx</li>
-      <li>Track Star Live: Jack Coyne ft. Penelope Road</li>
-      <li>Turnstile</li>
-      <li>Valencia Grace</li>
-      <li>Vandelux</li>
-      <li>Viagra Boys</li>
-      <li>Water From Your Eyes</li>
-      <li>Waylon Wyatt</li>
-      <li>Westend</li>
-      <li>Wet Leg</li>
-      <li>Whatmore</li>
-      <li>Whethan</li>
-      <li>Whitney Whitney</li>
-      <li>Will Swinton</li>
-      <li>Wolf Alice</li>
-      <li>Worship</li>
-      <li>Wunderhorse</li>
-      <li>YOASOBI</li>
-      <li>Yungblud</li>
-      <li>Yungblud with Mack</li>
-      <li>Zack Martino</li>
-      <li>Zara Larsson</li>
-      <li>Zara Larsson x Davis Burleson</li>
+      <li><span class="act">5 Seconds of Summer</span> <span class="slots">Thu, Jul 30 · T-Mobile Stage · <a href="#set-lo3">16:30</a></span></li>
+      <li><span class="act">54 Ultra</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo83">14:50</a></span></li>
+      <li><span class="act">Adéla</span> <span class="slots">Sun, Aug 2 · T-Mobile Stage · <a href="#set-lo143">15:00</a></span></li>
+      <li><span class="act">Ado</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo178">21:15</a></span></li>
+      <li><span class="act">aespa</span> <span class="slots">Sun, Aug 2 · Allianz Stage · <a href="#set-lo169">19:45</a></span></li>
+      <li><span class="act">After</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo172">13:50</a></span></li>
+      <li><span class="act">Alison Wonderland</span> <span class="slots">Sat, Aug 1 · Perry&#39;s Stage · <a href="#set-lo118">19:05</a></span></li>
+      <li><span class="act">Amber Mark</span> <span class="slots">Sun, Aug 2 · Allianz Stage · <a href="#set-lo167">15:45</a></span></li>
+      <li><span class="act">Amble</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo34">17:15</a></span></li>
+      <li><span class="act">Asha Banks</span> <span class="slots">Thu, Jul 30 · T-Mobile Stage · <a href="#set-lo1">12:45</a></span></li>
+      <li><span class="act">Audrey Hobert</span> <span class="slots">Thu, Jul 30 · Allianz Stage · <a href="#set-lo27">17:30</a></span></li>
+      <li><span class="act">Avello</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo63">12:45</a></span></li>
+      <li><span class="act">ayybo</span> <span class="slots">Sat, Aug 1 · Perry&#39;s Stage · <a href="#set-lo115">16:10</a></span></li>
+      <li><span class="act">Bad Nerves</span> <span class="slots">Thu, Jul 30 · Allianz Stage · <a href="#set-lo25">13:30</a></span></li>
+      <li><span class="act">Balu Brigada</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo85">17:30</a></span></li>
+      <li><span class="act">bbno$</span> <span class="slots">Sat, Aug 1 · Tito&#39;s Stage · <a href="#set-lo123">20:00</a></span></li>
+      <li><span class="act">beabadoobee</span> <span class="slots">Sun, Aug 2 · T-Mobile Stage · <a href="#set-lo145">18:45</a></span></li>
+      <li><span class="act">Bella Kay</span> <span class="slots">Thu, Jul 30 · BMI Stage · <a href="#set-lo41">16:30</a></span></li>
+      <li><span class="act">Bella Kay x Mack</span> <span class="slots">Thu, Jul 30 · Bonus Tracks · <a href="#set-lo47">17:45</a></span></li>
+      <li><span class="act">Beno</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo80">12:00</a></span></li>
+      <li><span class="act">Between Friends</span> <span class="slots">Thu, Jul 30 · Bud Light Stage · <a href="#set-lo7">14:45</a></span></li>
+      <li><span class="act">Bixby</span> <span class="slots">Thu, Jul 30 · Bud Light Stage · <a href="#set-lo6">13:00</a></span></li>
+      <li><span class="act">Blood Orange</span> <span class="slots">Thu, Jul 30 · Bud Light Stage · <a href="#set-lo8">16:45</a></span></li>
+      <li><span class="act">Boris Brejcha</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo16">17:45</a></span></li>
+      <li><span class="act">Boys Noize</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo15">16:15</a></span></li>
+      <li><span class="act">Bradeazy</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo62">12:00</a></span></li>
+      <li><span class="act">Calder Allen</span> <span class="slots">Sat, Aug 1 · BMI Stage · <a href="#set-lo134">17:00</a></span></li>
+      <li><span class="act">Cameron Whitcomb</span> <span class="slots">Sat, Aug 1 · Airbnb Stage · <a href="#set-lo131">20:00</a></span></li>
+      <li><span class="act">Case Oats</span> <span class="slots">Sun, Aug 2 · BMI Stage · <a href="#set-lo181">15:20</a></span></li>
+      <li><span class="act">Chalk</span> <span class="slots">Thu, Jul 30 · BMI Stage · <a href="#set-lo42">17:40</a></span></li>
+      <li><span class="act">Charli xcx</span> <span class="slots">Fri, Jul 31 · T-Mobile Stage · <a href="#set-lo56">20:40</a></span></li>
+      <li><span class="act">Chicago Made</span> <span class="slots">Fri, Jul 31 · Tito&#39;s Stage · <a href="#set-lo70">12:30</a></span></li>
+      <li><span class="act">Claire Rosinkranz</span> <span class="slots">Fri, Jul 31 · Allianz Stage · <a href="#set-lo76">13:40</a></span></li>
+      <li><span class="act">Clipse</span> <span class="slots">Sat, Aug 1 · Bud Light Stage · <a href="#set-lo111">17:15</a></span></li>
+      <li><span class="act">CMAT</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo35">18:30</a></span></li>
+      <li><span class="act">CORTIS</span> <span class="slots">Sat, Aug 1 · T-Mobile Stage · <a href="#set-lo106">15:40</a></span></li>
+      <li><span class="act">Cruz Beckham and The Breakers</span> <span class="slots">Sun, Aug 2 · Tito&#39;s Stage · <a href="#set-lo161">14:15</a></span></li>
+      <li><span class="act">Cruz Beckham x Mack</span> <span class="slots">Sun, Aug 2 · Bonus Tracks · <a href="#set-lo187">15:30</a></span></li>
+      <li><span class="act">Day We Ran</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo81">12:50</a></span></li>
+      <li><span class="act">Destin Conrad</span> <span class="slots">Sun, Aug 2 · Allianz Stage · <a href="#set-lo166">14:00</a></span></li>
+      <li><span class="act">Devault</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo13">13:45</a>; Thu, Jul 30 · Tito&#39;s Stage · <a href="#set-lo23">19:30</a></span></li>
+      <li><span class="act">Die Spitz</span> <span class="slots">Sat, Aug 1 · Airbnb Stage · <a href="#set-lo127">15:30</a></span></li>
+      <li><span class="act">Disco Lines</span> <span class="slots">Sat, Aug 1 · Perry&#39;s Stage · <a href="#set-lo119">20:30</a></span></li>
+      <li><span class="act">DJ Prince Lex</span> <span class="slots">Thu, Jul 30 · Bonus Tracks · <a href="#set-lo44">13:30</a>; Thu, Jul 30 · Bonus Tracks · <a href="#set-lo46">16:30</a>; Fri, Jul 31 · Bonus Tracks · <a href="#set-lo96">14:00</a>; Fri, Jul 31 · Bonus Tracks · <a href="#set-lo100">17:45</a>; Sat, Aug 1 · Bonus Tracks · <a href="#set-lo138">16:45</a>; Sun, Aug 2 · Bonus Tracks · <a href="#set-lo185">13:30</a>; Sun, Aug 2 · Bonus Tracks · <a href="#set-lo189">18:00</a></span></li>
+      <li><span class="act">DJ Trixie Mattel</span> <span class="slots">Sat, Aug 1 · Airbnb Stage · <a href="#set-lo132">21:15</a></span></li>
+      <li><span class="act">Dombresky</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo156">16:15</a></span></li>
+      <li><span class="act">Duke Dumont</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo157">17:35</a></span></li>
+      <li><span class="act">Easy Honey</span> <span class="slots">Sun, Aug 2 · Tito&#39;s Stage · <a href="#set-lo160">12:45</a></span></li>
+      <li><span class="act">Ecca Vandal</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo32">14:50</a></span></li>
+      <li><span class="act">Eli Brown</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo158">18:50</a></span></li>
+      <li><span class="act">Elizabeth Nichols</span> <span class="slots">Thu, Jul 30 · BMI Stage · <a href="#set-lo40">15:20</a></span></li>
+      <li><span class="act">Ella Boh</span> <span class="slots">Fri, Jul 31 · BMI Stage · <a href="#set-lo90">14:10</a></span></li>
+      <li><span class="act">Ella Red</span> <span class="slots">Fri, Jul 31 · BMI Stage · <a href="#set-lo93">17:40</a></span></li>
+      <li><span class="act">Emi Grace</span> <span class="slots">Fri, Jul 31 · BMI Stage · <a href="#set-lo91">15:20</a></span></li>
+      <li><span class="act">Empire of the Sun</span> <span class="slots">Thu, Jul 30 · Bud Light Stage · <a href="#set-lo9">18:30</a></span></li>
+      <li><span class="act">Ethel Cain</span> <span class="slots">Sat, Aug 1 · Bud Light Stage · <a href="#set-lo112">19:00</a></span></li>
+      <li><span class="act">Evening Elephants</span> <span class="slots">Thu, Jul 30 · BMI Stage · <a href="#set-lo43">18:50</a></span></li>
+      <li><span class="act">Faouzia</span> <span class="slots">Thu, Jul 30 · Tito&#39;s Stage · <a href="#set-lo19">12:15</a></span></li>
+      <li><span class="act">Finn Wolfhard</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo84">16:00</a></span></li>
+      <li><span class="act">Flor Bromley</span> <span class="slots">Sun, Aug 2 · Kidzapalooza · <a href="#set-lo191">12:00</a></span></li>
+      <li><span class="act">Freddie Gibbs</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo88">21:15</a></span></li>
+      <li><span class="act">Frost Children</span> <span class="slots">Sat, Aug 1 · Tito&#39;s Stage · <a href="#set-lo122">18:15</a></span></li>
+      <li><span class="act">Geese</span> <span class="slots">Sat, Aug 1 · Allianz Stage · <a href="#set-lo126">19:30</a></span></li>
+      <li><span class="act">Goldie Boutilier</span> <span class="slots">Sat, Aug 1 · Tito&#39;s Stage · <a href="#set-lo120">15:30</a></span></li>
+      <li><span class="act">Haute &amp; Freddy</span> <span class="slots">Thu, Jul 30 · T-Mobile Stage · <a href="#set-lo2">14:30</a></span></li>
+      <li><span class="act">High Vis</span> <span class="slots">Fri, Jul 31 · Bud Light Stage · <a href="#set-lo57">13:15</a></span></li>
+      <li><span class="act">Horsegiirl</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo87">19:55</a></span></li>
+      <li><span class="act">Hot Mulligan</span> <span class="slots">Sun, Aug 2 · Tito&#39;s Stage · <a href="#set-lo163">18:00</a></span></li>
+      <li><span class="act">i-dle</span> <span class="slots">Fri, Jul 31 · T-Mobile Stage · <a href="#set-lo54">14:40</a></span></li>
+      <li><span class="act">INJI</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo174">16:00</a></span></li>
+      <li><span class="act">INK</span> <span class="slots">Sat, Aug 1 · BMI Stage · <a href="#set-lo133">15:50</a></span></li>
+      <li><span class="act">Ivri</span> <span class="slots">Fri, Jul 31 · BMI Stage · <a href="#set-lo92">16:30</a></span></li>
+      <li><span class="act">Jackie Hollander</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo153">12:45</a></span></li>
+      <li><span class="act">JADE</span> <span class="slots">Sun, Aug 2 · Allianz Stage · <a href="#set-lo168">17:45</a></span></li>
+      <li><span class="act">Jae Stephens</span> <span class="slots">Sat, Aug 1 · BMI Stage · <a href="#set-lo135">18:10</a></span></li>
+      <li><span class="act">Jazzy Ash</span> <span class="slots">Thu, Jul 30 · Kidzapalooza · <a href="#set-lo52">17:15</a>; Fri, Jul 31 · Kidzapalooza · <a href="#set-lo104">15:00</a></span></li>
+      <li><span class="act">Jennie</span> <span class="slots">Sat, Aug 1 · Bud Light Stage · <a href="#set-lo113">20:55</a></span></li>
+      <li><span class="act">John Summit</span> <span class="slots">Thu, Jul 30 · Bud Light Stage · <a href="#set-lo10">20:30</a></span></li>
+      <li><span class="act">John Walt Foundation: Chicago&#39;s Got Next</span> <span class="slots">Sun, Aug 2 · Bonus Tracks · <a href="#set-lo188">17:00</a></span></li>
+      <li><span class="act">Julia Wolf</span> <span class="slots">Fri, Jul 31 · Tito&#39;s Stage · <a href="#set-lo71">14:00</a></span></li>
+      <li><span class="act">Justine Skye</span> <span class="slots">Sun, Aug 2 · BMI Stage · <a href="#set-lo182">16:30</a></span></li>
+      <li><span class="act">Kettama</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo17">19:00</a></span></li>
+      <li><span class="act">Khamari</span> <span class="slots">Sat, Aug 1 · Allianz Stage · <a href="#set-lo124">16:20</a></span></li>
+      <li><span class="act">Kim Theory</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo29">12:00</a></span></li>
+      <li><span class="act">Kingfishr</span> <span class="slots">Thu, Jul 30 · Tito&#39;s Stage · <a href="#set-lo20">13:45</a></span></li>
+      <li><span class="act">KLO</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo11">12:00</a></span></li>
+      <li><span class="act">Know Good</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo12">12:45</a></span></li>
+      <li><span class="act">kwn</span> <span class="slots">Sat, Aug 1 · Airbnb Stage · <a href="#set-lo130">18:45</a></span></li>
+      <li><span class="act">Leon Thomas</span> <span class="slots">Sat, Aug 1 · T-Mobile Stage · <a href="#set-lo107">17:00</a></span></li>
+      <li><span class="act">Little Simz</span> <span class="slots">Thu, Jul 30 · Tito&#39;s Stage · <a href="#set-lo22">17:45</a></span></li>
+      <li><span class="act">Loathe</span> <span class="slots">Fri, Jul 31 · Tito&#39;s Stage · <a href="#set-lo73">17:30</a></span></li>
+      <li><span class="act">Lorde</span> <span class="slots">Thu, Jul 30 · T-Mobile Stage · <a href="#set-lo5">20:30</a></span></li>
+      <li><span class="act">Los Retros</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo175">17:15</a></span></li>
+      <li><span class="act">Love Spells</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo82">13:50</a></span></li>
+      <li><span class="act">Lucky Diaz</span> <span class="slots">Sun, Aug 2 · Kidzapalooza · <a href="#set-lo192">13:30</a></span></li>
+      <li><span class="act">LYNY</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo64">13:45</a></span></li>
+      <li><span class="act">Major Lazer</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo69">20:20</a></span></li>
+      <li><span class="act">Marlon Funaki</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo31">13:50</a></span></li>
+      <li><span class="act">Max Styler</span> <span class="slots">Sat, Aug 1 · Perry&#39;s Stage · <a href="#set-lo117">17:55</a></span></li>
+      <li><span class="act">Mega Ran</span> <span class="slots">Sun, Aug 2 · Kidzapalooza · <a href="#set-lo195">17:15</a></span></li>
+      <li><span class="act">Miss Tutti &amp; The Fruity Band</span> <span class="slots">Thu, Jul 30 · Kidzapalooza · <a href="#set-lo51">15:00</a>; Fri, Jul 31 · Kidzapalooza · <a href="#set-lo102">12:00</a></span></li>
+      <li><span class="act">Mister G</span> <span class="slots">Thu, Jul 30 · Kidzapalooza · <a href="#set-lo49">12:00</a>; Fri, Jul 31 · Kidzapalooza · <a href="#set-lo103">13:30</a></span></li>
+      <li><span class="act">Momma</span> <span class="slots">Sat, Aug 1 · Tito&#39;s Stage · <a href="#set-lo121">16:30</a></span></li>
+      <li><span class="act">Monaleo</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo176">18:30</a></span></li>
+      <li><span class="act">Mother Mother</span> <span class="slots">Fri, Jul 31 · Tito&#39;s Stage · <a href="#set-lo72">15:30</a></span></li>
+      <li><span class="act">MPH</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo14">15:00</a></span></li>
+      <li><span class="act">MUNA</span> <span class="slots">Sun, Aug 2 · T-Mobile Stage · <a href="#set-lo144">16:45</a></span></li>
+      <li><span class="act">Mustard</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo68">18:50</a></span></li>
+      <li><span class="act">Nettspend</span> <span class="slots">Fri, Jul 31 · Tito&#39;s Stage · <a href="#set-lo74">19:30</a></span></li>
+      <li><span class="act">New Constellations</span> <span class="slots">Sun, Aug 2 · T-Mobile Stage · <a href="#set-lo142">13:15</a></span></li>
+      <li><span class="act">Ninajirachi</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo33">16:00</a></span></li>
+      <li><span class="act">Not For Radio</span> <span class="slots">Fri, Jul 31 · Allianz Stage · <a href="#set-lo79">19:30</a></span></li>
+      <li><span class="act">Notion</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo66">16:15</a></span></li>
+      <li><span class="act">Okamoto Sisters Self-Care Set</span> <span class="slots">Thu, Jul 30 · Bonus Tracks · <a href="#set-lo45">15:00</a></span></li>
+      <li><span class="act">Oklou</span> <span class="slots">Fri, Jul 31 · Airbnb Stage · <a href="#set-lo86">18:45</a></span></li>
+      <li><span class="act">Olivia Dean</span> <span class="slots">Sat, Aug 1 · T-Mobile Stage · <a href="#set-lo109">20:30</a></span></li>
+      <li><span class="act">Omnom</span> <span class="slots">Sat, Aug 1 · Perry&#39;s Stage · <a href="#set-lo114">15:30</a></span></li>
+      <li><span class="act">Paris Paloma</span> <span class="slots">Thu, Jul 30 · Tito&#39;s Stage · <a href="#set-lo21">15:45</a></span></li>
+      <li><span class="act">partyof2</span> <span class="slots">Fri, Jul 31 · T-Mobile Stage · <a href="#set-lo53">12:55</a></span></li>
+      <li><span class="act">Pearly Drops</span> <span class="slots">Thu, Jul 30 · Allianz Stage · <a href="#set-lo24">12:00</a></span></li>
+      <li><span class="act">Penelope Road</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo30">12:50</a></span></li>
+      <li><span class="act">Porch Light</span> <span class="slots">Sun, Aug 2 · BMI Stage · <a href="#set-lo183">17:40</a></span></li>
+      <li><span class="act">Q Brothers</span> <span class="slots">Sat, Aug 1 · Kidzapalooza · <a href="#set-lo141">17:15</a>; Sun, Aug 2 · Kidzapalooza · <a href="#set-lo193">15:00</a></span></li>
+      <li><span class="act">Quadeca</span> <span class="slots">Sat, Aug 1 · Airbnb Stage · <a href="#set-lo128">16:30</a></span></li>
+      <li><span class="act">Riordan</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo155">15:00</a></span></li>
+      <li><span class="act">RØZ</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo65">15:00</a></span></li>
+      <li><span class="act">Ryman</span> <span class="slots">Sat, Aug 1 · BMI Stage · <a href="#set-lo136">19:20</a></span></li>
+      <li><span class="act">SB19</span> <span class="slots">Thu, Jul 30 · Allianz Stage · <a href="#set-lo26">15:30</a></span></li>
+      <li><span class="act">School of Rock</span> <span class="slots">Thu, Jul 30 · Kidzapalooza · <a href="#set-lo50">13:30</a>; Fri, Jul 31 · Kidzapalooza · <a href="#set-lo105">17:15</a></span></li>
+      <li><span class="act">Shout Section ft. Tatum Langley</span> <span class="slots">Sun, Aug 2 · Bonus Tracks · <a href="#set-lo190">19:00</a></span></li>
+      <li><span class="act">Sidepiece</span> <span class="slots">Fri, Jul 31 · Perry&#39;s Stage · <a href="#set-lo67">17:40</a></span></li>
+      <li><span class="act">Sienna Spiro</span> <span class="slots">Sat, Aug 1 · Airbnb Stage · <a href="#set-lo129">17:30</a></span></li>
+      <li><span class="act">Simon Grossmann</span> <span class="slots">Thu, Jul 30 · BMI Stage · <a href="#set-lo39">14:10</a></span></li>
+      <li><span class="act">Skye Newman</span> <span class="slots">Fri, Jul 31 · Allianz Stage · <a href="#set-lo77">15:40</a></span></li>
+      <li><span class="act">Slayyyter</span> <span class="slots">Fri, Jul 31 · Bud Light Stage · <a href="#set-lo58">14:45</a></span></li>
+      <li><span class="act">Slayyyter with Davis Burleson</span> <span class="slots">Fri, Jul 31 · Bonus Tracks · <a href="#set-lo99">17:15</a></span></li>
+      <li><span class="act">Snacktime</span> <span class="slots">Fri, Jul 31 · Bonus Tracks · <a href="#set-lo101">18:45</a>; Sun, Aug 2 · BMI Stage · <a href="#set-lo179">13:00</a></span></li>
+      <li><span class="act">Snow Strippers</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo36">19:45</a></span></li>
+      <li><span class="act">sombr</span> <span class="slots">Thu, Jul 30 · T-Mobile Stage · <a href="#set-lo4">18:30</a></span></li>
+      <li><span class="act">sombr x Davis Burleson</span> <span class="slots">Fri, Jul 31 · Bonus Tracks · <a href="#set-lo97">15:15</a></span></li>
+      <li><span class="act">Spacey Jane</span> <span class="slots">Sat, Aug 1 · Allianz Stage · <a href="#set-lo125">17:45</a></span></li>
+      <li><span class="act">Special Guest: The Happiness Club</span> <span class="slots">Sat, Aug 1 · Kidzapalooza · <a href="#set-lo140">16:00</a>; Sun, Aug 2 · Kidzapalooza · <a href="#set-lo194">16:00</a></span></li>
+      <li><span class="act">Squirrel Flower</span> <span class="slots">Sun, Aug 2 · Allianz Stage · <a href="#set-lo165">12:30</a></span></li>
+      <li><span class="act">Stella Lefty</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo177">19:45</a></span></li>
+      <li><span class="act">Stella Lefty with Davis Burleson</span> <span class="slots">Sun, Aug 2 · Bonus Tracks · <a href="#set-lo186">15:15</a></span></li>
+      <li><span class="act">Suki Waterhouse</span> <span class="slots">Fri, Jul 31 · Allianz Stage · <a href="#set-lo78">17:20</a></span></li>
+      <li><span class="act">Sunshine Benzi</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo170">12:00</a></span></li>
+      <li><span class="act">Surfing For Daisy</span> <span class="slots">Sun, Aug 2 · BMI Stage · <a href="#set-lo180">14:10</a></span></li>
+      <li><span class="act">Tate McRae</span> <span class="slots">Sun, Aug 2 · T-Mobile Stage · <a href="#set-lo146">20:45</a></span></li>
+      <li><span class="act">The Army, The Navy</span> <span class="slots">Fri, Jul 31 · Allianz Stage · <a href="#set-lo75">12:10</a></span></li>
+      <li><span class="act">The Bends</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo171">12:50</a></span></li>
+      <li><span class="act">The Braymores</span> <span class="slots">Thu, Jul 30 · BMI Stage · <a href="#set-lo38">13:00</a></span></li>
+      <li><span class="act">The Chainsmokers</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo159">20:30</a></span></li>
+      <li><span class="act">The Neighbourhood</span> <span class="slots">Sat, Aug 1 · T-Mobile Stage · <a href="#set-lo108">18:30</a></span></li>
+      <li><span class="act">The Second City: Lolla Made Us Do It</span> <span class="slots">Sat, Aug 1 · Bonus Tracks · <a href="#set-lo137">15:15</a></span></li>
+      <li><span class="act">The Smashing Pumpkins</span> <span class="slots">Fri, Jul 31 · Bud Light Stage · <a href="#set-lo61">20:30</a></span></li>
+      <li><span class="act">The Story So Far</span> <span class="slots">Fri, Jul 31 · Bud Light Stage · <a href="#set-lo59">16:30</a></span></li>
+      <li><span class="act">The Try Guys Eat The Menu</span> <span class="slots">Sat, Aug 1 · Bonus Tracks · <a href="#set-lo139">18:45</a></span></li>
+      <li><span class="act">The xx</span> <span class="slots">Sun, Aug 2 · Bud Light Stage · <a href="#set-lo151">20:45</a></span></li>
+      <li><span class="act">Track Star Live: Jack Coyne ft. Penelope Road</span> <span class="slots">Thu, Jul 30 · Bonus Tracks · <a href="#set-lo48">18:30</a></span></li>
+      <li><span class="act">Turnstile</span> <span class="slots">Sun, Aug 2 · Bud Light Stage · <a href="#set-lo150">19:00</a></span></li>
+      <li><span class="act">Valencia Grace</span> <span class="slots">Fri, Jul 31 · BMI Stage · <a href="#set-lo89">13:00</a></span></li>
+      <li><span class="act">Vandelux</span> <span class="slots">Sun, Aug 2 · Tito&#39;s Stage · <a href="#set-lo164">20:00</a></span></li>
+      <li><span class="act">Viagra Boys</span> <span class="slots">Thu, Jul 30 · Airbnb Stage · <a href="#set-lo37">21:00</a></span></li>
+      <li><span class="act">Water From Your Eyes</span> <span class="slots">Sun, Aug 2 · Airbnb Stage · <a href="#set-lo173">14:50</a></span></li>
+      <li><span class="act">Waylon Wyatt</span> <span class="slots">Sun, Aug 2 · Bud Light Stage · <a href="#set-lo148">15:00</a></span></li>
+      <li><span class="act">Westend</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo154">13:45</a></span></li>
+      <li><span class="act">Wet Leg</span> <span class="slots">Thu, Jul 30 · Allianz Stage · <a href="#set-lo28">19:30</a></span></li>
+      <li><span class="act">Whatmore</span> <span class="slots">Sun, Aug 2 · Bud Light Stage · <a href="#set-lo147">13:30</a></span></li>
+      <li><span class="act">Whethan</span> <span class="slots">Sat, Aug 1 · Perry&#39;s Stage · <a href="#set-lo116">17:00</a></span></li>
+      <li><span class="act">Whitney Whitney</span> <span class="slots">Fri, Jul 31 · BMI Stage · <a href="#set-lo94">18:50</a></span></li>
+      <li><span class="act">Will Swinton</span> <span class="slots">Sun, Aug 2 · BMI Stage · <a href="#set-lo184">18:50</a></span></li>
+      <li><span class="act">Wolf Alice</span> <span class="slots">Sat, Aug 1 · Bud Light Stage · <a href="#set-lo110">16:00</a></span></li>
+      <li><span class="act">Worship</span> <span class="slots">Thu, Jul 30 · Perry&#39;s Stage · <a href="#set-lo18">20:30</a></span></li>
+      <li><span class="act">Wunderhorse</span> <span class="slots">Sun, Aug 2 · Tito&#39;s Stage · <a href="#set-lo162">16:00</a></span></li>
+      <li><span class="act">YOASOBI</span> <span class="slots">Sun, Aug 2 · Bud Light Stage · <a href="#set-lo149">17:00</a></span></li>
+      <li><span class="act">Yungblud</span> <span class="slots">Fri, Jul 31 · Bud Light Stage · <a href="#set-lo60">18:30</a></span></li>
+      <li><span class="act">Yungblud with Mack</span> <span class="slots">Fri, Jul 31 · Bonus Tracks · <a href="#set-lo98">16:15</a></span></li>
+      <li><span class="act">Zack Martino</span> <span class="slots">Sun, Aug 2 · Perry&#39;s Stage · <a href="#set-lo152">12:00</a></span></li>
+      <li><span class="act">Zara Larsson</span> <span class="slots">Fri, Jul 31 · T-Mobile Stage · <a href="#set-lo55">18:20</a></span></li>
+      <li><span class="act">Zara Larsson x Davis Burleson</span> <span class="slots">Fri, Jul 31 · Bonus Tracks · <a href="#set-lo95">13:00</a></span></li>
     </ul>
+  </section>
 
+  <section aria-labelledby="stages-h">
+    <h2 id="stages-h">Lollapalooza 2026 stages</h2>
+    <p>Plursky has 9 stages for Lollapalooza 2026 at Grant Park, each one listed below with its sets per day.</p>
+    <ul class="stagelist">
+      <li><strong>T-Mobile Stage</strong> · North · Butler Field, headliners<br><span class="counts">Thu, Jul 30: 5 · Fri, Jul 31: 4 · Sat, Aug 1: 4 · Sun, Aug 2: 5</span></li>
+      <li><strong>Bud Light Stage</strong> · South · Hutchinson Field, headliners<br><span class="counts">Thu, Jul 30: 5 · Fri, Jul 31: 5 · Sat, Aug 1: 4 · Sun, Aug 2: 5</span></li>
+      <li><strong>Perry&#39;s Stage</strong> · South-west · electronic<br><span class="counts">Thu, Jul 30: 8 · Fri, Jul 31: 8 · Sat, Aug 1: 6 · Sun, Aug 2: 8</span></li>
+      <li><strong>Tito&#39;s Stage</strong> · Tito&#39;s Handmade Vodka Stage · by Buckingham Fountain<br><span class="counts">Thu, Jul 30: 5 · Fri, Jul 31: 5 · Sat, Aug 1: 4 · Sun, Aug 2: 5</span></li>
+      <li><strong>Allianz Stage</strong> · West side · indie + rising<br><span class="counts">Thu, Jul 30: 5 · Fri, Jul 31: 5 · Sat, Aug 1: 3 · Sun, Aug 2: 5</span></li>
+      <li><strong>Airbnb Stage</strong> · North-west · discovery<br><span class="counts">Thu, Jul 30: 9 · Fri, Jul 31: 9 · Sat, Aug 1: 6 · Sun, Aug 2: 9</span></li>
+      <li><strong>BMI Stage</strong> · North · songwriter showcase<br><span class="counts">Thu, Jul 30: 6 · Fri, Jul 31: 6 · Sat, Aug 1: 4 · Sun, Aug 2: 6</span></li>
+      <li><strong>Bonus Tracks</strong> · South-west · talks + specials<br><span class="counts">Thu, Jul 30: 5 · Fri, Jul 31: 7 · Sat, Aug 1: 3 · Sun, Aug 2: 6</span></li>
+      <li><strong>Kidzapalooza</strong> · South-east · family stage<br><span class="counts">Thu, Jul 30: 4 · Fri, Jul 31: 4 · Sat, Aug 1: 2 · Sun, Aug 2: 5</span></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="plan-h">
+    <h2 id="plan-h">Plan your day at Lollapalooza 2026</h2>
+    <p>Amenities Plursky lists for Lollapalooza 2026: Restrooms (3) · Water (3) · Art (2) · Food (2) · Medical (2) · Info (1).</p>
+  </section>
+
+  <section aria-labelledby="past-h">
+    <h2 id="past-h">Past editions of Lollapalooza</h2>
+    <ul>
+      <li><a href="/?tab=past">Lollapalooza 2025</a> — 2025, 190 artists, 225 sets</li>
+    </ul>
+    <p class="note">Each link opens Past Festivals in Plursky.</p>
+  </section>
+
+  <section aria-labelledby="app-h">
+    <h2 id="app-h">Get the app</h2>
+    <p class="ctas">
+      <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
+      <a class="cta-secondary" href="/?f=lollapalooza-2026">Relive it in the browser</a>
+    </p>
+    <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.</p>
+    <p><a href="/?f=lollapalooza-2026&amp;tab=memories">Your Lollapalooza 2026 Memories in Plursky</a></p>
   </section>
 
   <nav class="other" aria-labelledby="other-h">
     <h2 id="other-h">Other festivals on Plursky</h2>
     <ul>
-      <li><a href="/f/edc-lv-2026/">EDC Las Vegas 2026</a> — May 15–17, 2026</li>
-      <li><a href="/f/electric-forest-2027/">Electric Forest 2027</a> — Dates TBA</li>
-      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
-      <li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a> — Nov 6–8, 2026</li>
-      <li><a href="/f/tomorrowland-2027/">Tomorrowland 2027</a> — Dates TBA</li>
-      <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
-      <li><a href="/f/coachella-2027/">Coachella 2027</a> — Apr 9–18, 2027</li>
-      <li><a href="/f/edc-mexico-2027/">EDC Mexico 2027</a> — Feb 19–21, 2027</li>
-      <li><a href="/f/beyond-wonderland-socal-2027/">Beyond Wonderland SoCal 2027</a> — Mar 26–27, 2027</li>
-      <li><a href="/f/beyond-wonderland-gorge-2027/">Beyond Wonderland at The Gorge 2027</a> — Jun 26–27, 2027</li>
-      <li><a href="/f/ultra-miami-2026/">Ultra Miami 2026</a> — Mar 27–29, 2026</li>
-      <li><a href="/f/governors-ball-2026/">Governors Ball 2026</a> — Jun 5–7, 2026</li>
-      <li><a href="/f/summerfest-2026/">Summerfest 2026</a> — Jun 18–20, Jun 25–27 &amp; Jul 2–4, 2026</li>
-      <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
-      <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
-      <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
-      <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
-      <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
       <li><a href="/f/hard-summer-2026/">HARD Summer 2026</a> — Aug 1–2, 2026</li>
+      <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
       <li><a href="/f/arc-2026/">ARC Music Festival 2026</a> — Sep 4–7, 2026</li>
-      <li><a href="/f/escape-halloween-2026/">Escape Halloween 2026</a> — Oct 30–31, 2026</li>
-      <li><a href="/f/dreamstate-socal-2026/">Dreamstate SoCal 2026</a> — Nov 20–21, 2026</li>
-      <li><a href="/f/decadence-colorado-2026/">Decadence Colorado 2026</a> — Dec 30–31, 2026</li>
-      <li><a href="/f/countdown-nye-2026/">Countdown NYE 2026</a> — Dec 31, 2026 – Jan 1, 2027</li>
+      <li><a href="/f/summerfest-2026/">Summerfest 2026</a> — Jun 18–20, Jun 25–27 &amp; Jul 2–4, 2026</li>
+      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
+      <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
+      <li><a href="/f/governors-ball-2026/">Governors Ball 2026</a> — Jun 5–7, 2026</li>
+      <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
     </ul>
   </nav>
+
+  <section class="sources" aria-labelledby="sources-h">
+    <h2 id="sources-h">Sources</h2>
+    <ul>
+      <li>Set times: <a href="https://lollapalooza.com/schedule" rel="noopener">https://lollapalooza.com/schedule</a> (official, checked 2026-08-28)</li>
+    </ul>
+    <p class="note">Last updated <time class="updated" datetime="2026-09-24">2026-09-24</time>.</p>
+  </section>
 
   <footer>
     <a href="/">Plursky</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a>

@@ -3,63 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dreamstate SoCal 2026 — Lineup, Map &amp; Schedule · Plursky</title>
-<meta name="description" content="Dreamstate SoCal 2026 lineup — 70 artists at Queen Mary Waterfront, Nov 20–21, 2026. Build your schedule, map the stages and share your weekend with Plursky.">
+<title>Dreamstate SoCal 2026 — Lineup · Plursky</title>
+<meta name="description" content="Dreamstate SoCal 2026 lineup — 70 artists at Queen Mary Waterfront, Nov 20–21, 2026. Build your schedule and share your weekend with Plursky.">
 <link rel="canonical" href="https://plursky.com/f/dreamstate-socal-2026/">
 <meta name="apple-itunes-app" content="app-id=6768888507">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Plursky">
-<meta property="og:title" content="Dreamstate SoCal 2026 — Lineup, Map &amp; Schedule">
-<meta property="og:description" content="Dreamstate SoCal 2026 lineup — 70 artists at Queen Mary Waterfront, Nov 20–21, 2026. Build your schedule, map the stages and share your weekend with Plursky.">
+<meta property="og:title" content="Dreamstate SoCal 2026 — Lineup">
+<meta property="og:description" content="Dreamstate SoCal 2026 lineup — 70 artists at Queen Mary Waterfront, Nov 20–21, 2026. Build your schedule and share your weekend with Plursky.">
 <meta property="og:url" content="https://plursky.com/f/dreamstate-socal-2026/">
 <meta property="og:image" content="https://plursky.com/og-card.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Dreamstate SoCal 2026 — Lineup, Map &amp; Schedule">
-<meta name="twitter:description" content="Dreamstate SoCal 2026 lineup — 70 artists at Queen Mary Waterfront, Nov 20–21, 2026. Build your schedule, map the stages and share your weekend with Plursky.">
+<meta name="twitter:title" content="Dreamstate SoCal 2026 — Lineup">
+<meta name="twitter:description" content="Dreamstate SoCal 2026 lineup — 70 artists at Queen Mary Waterfront, Nov 20–21, 2026. Build your schedule and share your weekend with Plursky.">
 <meta name="twitter:image" content="https://plursky.com/og-card.png">
 <link rel="icon" type="image/png" href="/apple-touch-icon.png">
 <style>
-  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; }
+  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; --panel:#1c1916; }
   * { box-sizing:border-box; }
   body { margin:0; padding:32px 20px 64px; background:var(--bg); color:var(--ink);
          font-family:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.6; }
   main { max-width:760px; margin:0 auto; }
-  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; }
+  nav.crumbs { font-size:13px; color:var(--muted); margin:0 0 16px; }
+  nav.crumbs a { color:var(--muted); }
+  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; text-wrap:balance; }
   h2 { font-size:18px; margin:32px 0 8px; }
   .meta { color:var(--muted); margin:0 0 20px; }
+  .chip { display:inline-block; margin-right:8px; padding:1px 10px; border-radius:999px; border:1px solid var(--line);
+          color:var(--ink); font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
+  .chip-live, .chip-soon { border-color:var(--ember); color:var(--ember); }
   .note { color:var(--muted); font-size:14px; }
+  figure { margin:16px 0; }
+  figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:12px; background:var(--panel); }
+  .platebox { position:relative; max-width:520px; }
+  .pin { position:absolute; transform:translate(-50%,-50%); width:20px; height:20px; border-radius:50%;
+         display:flex; align-items:center; justify-content:center; background:rgba(18,16,14,0.82);
+         border:1px solid var(--ink); color:var(--ink); font-size:11px; font-weight:700; pointer-events:none; }
+  ol.platekey { margin:8px 0 0; padding-left:22px; font-size:13px; columns:2; column-gap:20px; }
+  figcaption { color:var(--muted); font-size:13px; margin-top:6px; }
   .cta { display:inline-block; margin:20px 0 8px; padding:12px 22px; border-radius:12px;
          background:linear-gradient(135deg,#6D28D9,var(--ember)); color:#fff; text-decoration:none; font-weight:700; }
-  ul.lineup { list-style:none; padding:0; margin:12px 0 0;
-              display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:2px 16px; }
-  ul.lineup li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.lineup { list-style:none; padding:0; margin:12px 0 0; }
+  ul.lineup li { padding:5px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; flex-wrap:wrap; gap:2px 12px; }
+  ul.lineup .act { font-weight:600; }
+  ul.lineup .slots { color:var(--muted); overflow-wrap:anywhere; }
   h3 { font-size:16px; margin:24px 0 4px; }
   h4 { font-size:13px; margin:16px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
+  h5 { font-size:12px; margin:12px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
   ul.sets { list-style:none; padding:0; margin:4px 0 0; }
-  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; }
+  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; scroll-margin-top:16px; }
+  ul.sets li:target { background:rgba(232,93,46,0.14); }
   ul.sets li time { color:var(--muted); font-variant-numeric:tabular-nums; min-width:96px; flex:none; }
   ul.stagelist { list-style:none; padding:0; margin:8px 0 0; }
   ul.stagelist li { padding:6px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.stagelist .counts { color:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; }
   dl.answers { margin:12px 0 0; }
   dl.answers dt { font-weight:700; font-size:15px; margin:16px 0 4px; }
   dl.answers dd { margin:0; color:var(--muted); font-size:14px; }
-  a.cta-secondary { margin-left:14px; font-weight:600; }
+  p.ctas { display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; margin:20px 0 8px; }
+  p.ctas .cta { margin:0; }
+  a.cta-secondary { font-weight:600; white-space:nowrap; }
   nav.other { margin-top:40px; }
   nav.other a { color:var(--ink); }
+  section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
 </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "MusicFestival",
+  "@type": "MusicEvent",
   "name": "Dreamstate SoCal 2026",
   "url": "https://plursky.com/f/dreamstate-socal-2026/",
   "startDate": "2026-11-20",
   "endDate": "2026-11-21",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-  "description": "Dreamstate SoCal 2026 lineup — 70 artists at Queen Mary Waterfront, Nov 20–21, 2026. Build your schedule, map the stages and share your weekend with Plursky.",
+  "description": "Dreamstate SoCal 2026 lineup — 70 artists at Queen Mary Waterfront, Nov 20–21, 2026. Build your schedule and share your weekend with Plursky.",
   "location": {
     "@type": "Place",
     "name": "Queen Mary Waterfront",
@@ -390,19 +410,39 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Plursky",
+      "item": "https://plursky.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Festivals",
+      "item": "https://plursky.com/#festivals"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Dreamstate SoCal 2026",
+      "item": "https://plursky.com/f/dreamstate-socal-2026/"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <main>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Plursky</a> › <a href="/#festivals">Festivals</a> › <span aria-current="page">Dreamstate SoCal 2026</span></nav>
   <h1>Dreamstate SoCal 2026</h1>
-  <p class="meta">Nov 20–21, 2026 · Queen Mary Waterfront · Long Beach, CA</p>
+  <p class="meta"><span class="chip chip-upcoming">Upcoming</span>Nov 20–21, 2026 · Queen Mary Waterfront · Long Beach, CA</p>
   <p>Two nights of trance on the Long Beach waterfront</p>
-
-  <p>
-    <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
-    <a class="cta-secondary" href="/?f=dreamstate-socal-2026">Open in your browser</a>
-  </p>
-  <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, meet your crew, and turn the weekend into a shareable recap.</p>
-  <p class="note">Dreamstate SoCal 2026 is open in the app — the full lineup is in. Set times appear as soon as the festival publishes them.</p>
 
   <section aria-labelledby="answers-h">
     <h2 id="answers-h">Dreamstate SoCal 2026 — quick answers</h2>
@@ -421,110 +461,115 @@
   <section aria-labelledby="lineup-h">
     <h2 id="lineup-h">Dreamstate SoCal 2026 lineup</h2>
     <p>70 artists announced.</p>
+    <p class="note">Plursky does not have stage assignments or set times for every act at Dreamstate SoCal 2026 yet; each row shows what it has.</p>
     <ul class="lineup">
-      <li>4 Strings (Classics Set)</li>
-      <li>A.N.I.</li>
-      <li>Aaron Hibell (Live)</li>
-      <li>Above &amp; Beyond (Anjunabeats Classics)</li>
-      <li>Ace Ventura</li>
-      <li>Allen Watts + Talla 2XLC</li>
-      <li>ALPHA 9 + Ilan Bluestone</li>
-      <li>Aly &amp; Fila + Billy Gillies</li>
-      <li>Andrew Rayel pres Extasia</li>
-      <li>Andy Moor</li>
-      <li>Animato</li>
-      <li>ARTBAT</li>
-      <li>Astrix</li>
-      <li>Barakuda</li>
-      <li>BK</li>
-      <li>Bryan Kearney + John O&#39;Callaghan pres Key4050</li>
-      <li>BT + Matt Fax</li>
-      <li>Burn In Noise</li>
-      <li>Chris Metcalfe</li>
-      <li>Cold Blue</li>
-      <li>Darren Porter + Sean Tyas</li>
-      <li>Das Pharaoh</li>
-      <li>Dash Berlin</li>
-      <li>David Forbes + Mark Sherry pres Thick As Thieves</li>
-      <li>David Rust + Olly James</li>
-      <li>Discovery Project</li>
-      <li>Eddie Halliwell + Judge Jules</li>
-      <li>Enrico Sangiuliano</li>
-      <li>Ferry Corsten + Marsh</li>
-      <li>Ferry Tayle + Tonks pres Mirage (Live)</li>
-      <li>FRANKYEFFE</li>
-      <li>Giorgia Angiuli</li>
-      <li>GMS</li>
-      <li>Hannah Laing + Marie Vaunt</li>
-      <li>Infected Mushroom</li>
-      <li>JOA</li>
-      <li>John 00 Fleming</li>
-      <li>John Askew + Simon Patterson</li>
-      <li>KARMÅ</li>
-      <li>KAUFMANN (DE)</li>
-      <li>Lee Ann Roberts</li>
-      <li>Marco V</li>
-      <li>Maria Healy</li>
-      <li>MaRLo</li>
-      <li>Matty Ralph</li>
-      <li>Mauro Picotto</li>
-      <li>Maximizer</li>
-      <li>Neelix</li>
-      <li>NRG2000</li>
-      <li>Nu Aspect</li>
-      <li>Panteros666</li>
-      <li>Paul Denton + Will Rees pres Parallel Worlds</li>
-      <li>Paul van Dyk pres Essence Of Acid</li>
-      <li>Pegassi</li>
-      <li>Perfect Stranger</li>
-      <li>Phaxe</li>
-      <li>Reinier Zonneveld (Live)</li>
-      <li>Rising Dust</li>
-      <li>Schrotthagen</li>
-      <li>Sequence Six</li>
-      <li>Shay De Castro</li>
-      <li>Sighter</li>
-      <li>Solarstone</li>
-      <li>Steve Dekay</li>
-      <li>Terra</li>
-      <li>TH;EN</li>
-      <li>The Rocketman</li>
-      <li>Vini Vici</li>
-      <li>VisionV</li>
-      <li>Warp Brothers</li>
+      <li><span class="act">4 Strings (Classics Set)</span></li>
+      <li><span class="act">A.N.I.</span></li>
+      <li><span class="act">Aaron Hibell (Live)</span></li>
+      <li><span class="act">Above &amp; Beyond (Anjunabeats Classics)</span></li>
+      <li><span class="act">Ace Ventura</span></li>
+      <li><span class="act">Allen Watts + Talla 2XLC</span></li>
+      <li><span class="act">ALPHA 9 + Ilan Bluestone</span></li>
+      <li><span class="act">Aly &amp; Fila + Billy Gillies</span></li>
+      <li><span class="act">Andrew Rayel pres Extasia</span></li>
+      <li><span class="act">Andy Moor</span></li>
+      <li><span class="act">Animato</span></li>
+      <li><span class="act">ARTBAT</span></li>
+      <li><span class="act">Astrix</span></li>
+      <li><span class="act">Barakuda</span></li>
+      <li><span class="act">BK</span></li>
+      <li><span class="act">Bryan Kearney + John O&#39;Callaghan pres Key4050</span></li>
+      <li><span class="act">BT + Matt Fax</span></li>
+      <li><span class="act">Burn In Noise</span></li>
+      <li><span class="act">Chris Metcalfe</span></li>
+      <li><span class="act">Cold Blue</span></li>
+      <li><span class="act">Darren Porter + Sean Tyas</span></li>
+      <li><span class="act">Das Pharaoh</span></li>
+      <li><span class="act">Dash Berlin</span></li>
+      <li><span class="act">David Forbes + Mark Sherry pres Thick As Thieves</span></li>
+      <li><span class="act">David Rust + Olly James</span></li>
+      <li><span class="act">Discovery Project</span></li>
+      <li><span class="act">Eddie Halliwell + Judge Jules</span></li>
+      <li><span class="act">Enrico Sangiuliano</span></li>
+      <li><span class="act">Ferry Corsten + Marsh</span></li>
+      <li><span class="act">Ferry Tayle + Tonks pres Mirage (Live)</span></li>
+      <li><span class="act">FRANKYEFFE</span></li>
+      <li><span class="act">Giorgia Angiuli</span></li>
+      <li><span class="act">GMS</span></li>
+      <li><span class="act">Hannah Laing + Marie Vaunt</span></li>
+      <li><span class="act">Infected Mushroom</span></li>
+      <li><span class="act">JOA</span></li>
+      <li><span class="act">John 00 Fleming</span></li>
+      <li><span class="act">John Askew + Simon Patterson</span></li>
+      <li><span class="act">KARMÅ</span></li>
+      <li><span class="act">KAUFMANN (DE)</span></li>
+      <li><span class="act">Lee Ann Roberts</span></li>
+      <li><span class="act">Marco V</span></li>
+      <li><span class="act">Maria Healy</span></li>
+      <li><span class="act">MaRLo</span></li>
+      <li><span class="act">Matty Ralph</span></li>
+      <li><span class="act">Mauro Picotto</span></li>
+      <li><span class="act">Maximizer</span></li>
+      <li><span class="act">Neelix</span></li>
+      <li><span class="act">NRG2000</span></li>
+      <li><span class="act">Nu Aspect</span></li>
+      <li><span class="act">Panteros666</span></li>
+      <li><span class="act">Paul Denton + Will Rees pres Parallel Worlds</span></li>
+      <li><span class="act">Paul van Dyk pres Essence Of Acid</span></li>
+      <li><span class="act">Pegassi</span></li>
+      <li><span class="act">Perfect Stranger</span></li>
+      <li><span class="act">Phaxe</span></li>
+      <li><span class="act">Reinier Zonneveld (Live)</span></li>
+      <li><span class="act">Rising Dust</span></li>
+      <li><span class="act">Schrotthagen</span></li>
+      <li><span class="act">Sequence Six</span></li>
+      <li><span class="act">Shay De Castro</span></li>
+      <li><span class="act">Sighter</span></li>
+      <li><span class="act">Solarstone</span></li>
+      <li><span class="act">Steve Dekay</span></li>
+      <li><span class="act">Terra</span></li>
+      <li><span class="act">TH;EN</span></li>
+      <li><span class="act">The Rocketman</span></li>
+      <li><span class="act">Vini Vici</span></li>
+      <li><span class="act">VisionV</span></li>
+      <li><span class="act">Warp Brothers</span></li>
     </ul>
+  </section>
 
+
+
+
+  <section aria-labelledby="app-h">
+    <h2 id="app-h">Get the app</h2>
+    <p class="ctas">
+      <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
+      <a class="cta-secondary" href="/?f=dreamstate-socal-2026">Open in your browser</a>
+    </p>
+    <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, meet your crew, and turn the weekend into a shareable recap.</p>
+    <p class="note">Dreamstate SoCal 2026 is open in the app — the full lineup is in. Set times appear as soon as the festival publishes them.</p>
   </section>
 
   <nav class="other" aria-labelledby="other-h">
     <h2 id="other-h">Other festivals on Plursky</h2>
     <ul>
-      <li><a href="/f/edc-lv-2026/">EDC Las Vegas 2026</a> — May 15–17, 2026</li>
-      <li><a href="/f/electric-forest-2027/">Electric Forest 2027</a> — Dates TBA</li>
-      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
       <li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a> — Nov 6–8, 2026</li>
-      <li><a href="/f/tomorrowland-2027/">Tomorrowland 2027</a> — Dates TBA</li>
-      <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
-      <li><a href="/f/coachella-2027/">Coachella 2027</a> — Apr 9–18, 2027</li>
-      <li><a href="/f/edc-mexico-2027/">EDC Mexico 2027</a> — Feb 19–21, 2027</li>
-      <li><a href="/f/beyond-wonderland-socal-2027/">Beyond Wonderland SoCal 2027</a> — Mar 26–27, 2027</li>
-      <li><a href="/f/beyond-wonderland-gorge-2027/">Beyond Wonderland at The Gorge 2027</a> — Jun 26–27, 2027</li>
-      <li><a href="/f/ultra-miami-2026/">Ultra Miami 2026</a> — Mar 27–29, 2026</li>
-      <li><a href="/f/governors-ball-2026/">Governors Ball 2026</a> — Jun 5–7, 2026</li>
-      <li><a href="/f/summerfest-2026/">Summerfest 2026</a> — Jun 18–20, Jun 25–27 &amp; Jul 2–4, 2026</li>
-      <li><a href="/f/lollapalooza-2026/">Lollapalooza 2026</a> — Jul 30 – Aug 2, 2026</li>
-      <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
-      <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
-      <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
-      <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
-      <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
-      <li><a href="/f/hard-summer-2026/">HARD Summer 2026</a> — Aug 1–2, 2026</li>
-      <li><a href="/f/arc-2026/">ARC Music Festival 2026</a> — Sep 4–7, 2026</li>
       <li><a href="/f/escape-halloween-2026/">Escape Halloween 2026</a> — Oct 30–31, 2026</li>
+      <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
       <li><a href="/f/decadence-colorado-2026/">Decadence Colorado 2026</a> — Dec 30–31, 2026</li>
       <li><a href="/f/countdown-nye-2026/">Countdown NYE 2026</a> — Dec 31, 2026 – Jan 1, 2027</li>
+      <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
+      <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
+      <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
     </ul>
   </nav>
+
+  <section class="sources" aria-labelledby="sources-h">
+    <h2 id="sources-h">Sources</h2>
+    <ul>
+      <li>Official site: <a href="https://socal.dreamstateusa.com/" rel="noopener">https://socal.dreamstateusa.com/</a></li>
+    </ul>
+    <p class="note">Last updated <time class="updated" datetime="2026-09-24">2026-09-24</time>.</p>
+  </section>
 
   <footer>
     <a href="/">Plursky</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a>

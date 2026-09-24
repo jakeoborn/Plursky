@@ -19,40 +19,60 @@
 <meta name="twitter:image" content="https://plursky.com/og-card.png">
 <link rel="icon" type="image/png" href="/apple-touch-icon.png">
 <style>
-  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; }
+  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; --panel:#1c1916; }
   * { box-sizing:border-box; }
   body { margin:0; padding:32px 20px 64px; background:var(--bg); color:var(--ink);
          font-family:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.6; }
   main { max-width:760px; margin:0 auto; }
-  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; }
+  nav.crumbs { font-size:13px; color:var(--muted); margin:0 0 16px; }
+  nav.crumbs a { color:var(--muted); }
+  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; text-wrap:balance; }
   h2 { font-size:18px; margin:32px 0 8px; }
   .meta { color:var(--muted); margin:0 0 20px; }
+  .chip { display:inline-block; margin-right:8px; padding:1px 10px; border-radius:999px; border:1px solid var(--line);
+          color:var(--ink); font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
+  .chip-live, .chip-soon { border-color:var(--ember); color:var(--ember); }
   .note { color:var(--muted); font-size:14px; }
+  figure { margin:16px 0; }
+  figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:12px; background:var(--panel); }
+  .platebox { position:relative; max-width:520px; }
+  .pin { position:absolute; transform:translate(-50%,-50%); width:20px; height:20px; border-radius:50%;
+         display:flex; align-items:center; justify-content:center; background:rgba(18,16,14,0.82);
+         border:1px solid var(--ink); color:var(--ink); font-size:11px; font-weight:700; pointer-events:none; }
+  ol.platekey { margin:8px 0 0; padding-left:22px; font-size:13px; columns:2; column-gap:20px; }
+  figcaption { color:var(--muted); font-size:13px; margin-top:6px; }
   .cta { display:inline-block; margin:20px 0 8px; padding:12px 22px; border-radius:12px;
          background:linear-gradient(135deg,#6D28D9,var(--ember)); color:#fff; text-decoration:none; font-weight:700; }
-  ul.lineup { list-style:none; padding:0; margin:12px 0 0;
-              display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:2px 16px; }
-  ul.lineup li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.lineup { list-style:none; padding:0; margin:12px 0 0; }
+  ul.lineup li { padding:5px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; flex-wrap:wrap; gap:2px 12px; }
+  ul.lineup .act { font-weight:600; }
+  ul.lineup .slots { color:var(--muted); overflow-wrap:anywhere; }
   h3 { font-size:16px; margin:24px 0 4px; }
   h4 { font-size:13px; margin:16px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
+  h5 { font-size:12px; margin:12px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
   ul.sets { list-style:none; padding:0; margin:4px 0 0; }
-  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; }
+  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; scroll-margin-top:16px; }
+  ul.sets li:target { background:rgba(232,93,46,0.14); }
   ul.sets li time { color:var(--muted); font-variant-numeric:tabular-nums; min-width:96px; flex:none; }
   ul.stagelist { list-style:none; padding:0; margin:8px 0 0; }
   ul.stagelist li { padding:6px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.stagelist .counts { color:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; }
   dl.answers { margin:12px 0 0; }
   dl.answers dt { font-weight:700; font-size:15px; margin:16px 0 4px; }
   dl.answers dd { margin:0; color:var(--muted); font-size:14px; }
-  a.cta-secondary { margin-left:14px; font-weight:600; }
+  p.ctas { display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; margin:20px 0 8px; }
+  p.ctas .cta { margin:0; }
+  a.cta-secondary { font-weight:600; white-space:nowrap; }
   nav.other { margin-top:40px; }
   nav.other a { color:var(--ink); }
+  section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
 </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "MusicFestival",
+  "@type": "MusicEvent",
   "name": "Austin City Limits 2026",
   "url": "https://plursky.com/f/acl-2026/",
   "startDate": "2026-10-02",
@@ -617,6 +637,14 @@
     },
     {
       "@type": "Question",
+      "name": "How many weekends is Austin City Limits 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Austin City Limits 2026 runs over 2 weekends: Oct 2–4 and Oct 9–11."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "Have the Austin City Limits 2026 set times been announced?",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -638,6 +666,40 @@
         "@type": "Answer",
         "text": "Austin City Limits 2026 has 7 stages at Zilker Park, each one listed on this page."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a map for Austin City Limits 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This page links the festival's own map page."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Plursky",
+      "item": "https://plursky.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Festivals",
+      "item": "https://plursky.com/#festivals"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Austin City Limits 2026",
+      "item": "https://plursky.com/f/acl-2026/"
     }
   ]
 }
@@ -645,250 +707,359 @@
 </head>
 <body>
 <main>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Plursky</a> › <a href="/#festivals">Festivals</a> › <span aria-current="page">Austin City Limits 2026</span></nav>
   <h1>Austin City Limits 2026</h1>
-  <p class="meta">Oct 2–4 &amp; 9–11, 2026 · Zilker Park · Austin, TX</p>
+  <p class="meta"><span class="chip chip-upcoming">Upcoming</span>Oct 2–4 &amp; 9–11, 2026 · Zilker Park · Austin, TX</p>
   <p>Two weekends in Zilker Park</p>
-
-  <p>
-    <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
-    <a class="cta-secondary" href="/?f=acl-2026">Open in your browser</a>
-  </p>
-  <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.</p>
-
 
   <section aria-labelledby="answers-h">
     <h2 id="answers-h">Austin City Limits 2026 — quick answers</h2>
     <dl class="answers">
       <dt>When and where is Austin City Limits 2026?</dt>
       <dd>Austin City Limits 2026 takes place Oct 2–4 &amp; 9–11, 2026 at Zilker Park · Austin, TX.</dd>
+      <dt>How many weekends is Austin City Limits 2026?</dt>
+      <dd>Austin City Limits 2026 runs over 2 weekends: Oct 2–4 and Oct 9–11.</dd>
       <dt>Have the Austin City Limits 2026 set times been announced?</dt>
       <dd>Yes. The full Austin City Limits 2026 schedule is on this page, day by day and stage by stage, from the official times confirmed 2026-09-04.</dd>
       <dt>Who is playing Austin City Limits 2026?</dt>
       <dd>131 artists are announced for Austin City Limits 2026, and every one of them is listed on this page.</dd>
       <dt>How many stages does Austin City Limits 2026 have?</dt>
       <dd>Austin City Limits 2026 has 7 stages at Zilker Park, each one listed on this page.</dd>
+      <dt>Is there a map for Austin City Limits 2026?</dt>
+      <dd>This page links the festival&#39;s own map page.</dd>
     </dl>
+  </section>
+
+  <section aria-labelledby="map-h">
+    <h2 id="map-h">Austin City Limits 2026 map</h2>
+    <p><a href="https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map" rel="noopener">Official ACL festival map page</a>, on the festival's own site. Plursky could not confirm which year's map it shows (checked 2026-09-24).</p>
   </section>
 
   <section aria-labelledby="schedule-h">
     <h2 id="schedule-h">Austin City Limits 2026 schedule &amp; set times</h2>
     <p class="note">Official set times, confirmed 2026-09-04. All times local (CDT).</p>
-    <h3>Friday, October 2</h3>
-    <h4>American Express</h4>
+    <h3 id="weekend-1">Weekend 1 · Oct 2–4</h3>
+    <h4>Friday, October 2</h4>
+    <h5>American Express</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-02T13:15">13:15 – 14:00</time> <span>Hunx And His Punx</span></li>
-      <li><time datetime="2026-10-02T13:15">13:15 – 14:00</time> <span>Brigitte Calls Me Baby</span></li>
-      <li><time datetime="2026-10-02T14:45">14:45 – 15:30</time> <span>CMAT</span></li>
-      <li><time datetime="2026-10-02T14:45">14:45 – 15:30</time> <span>Faouzia</span></li>
-      <li><time datetime="2026-10-02T16:30">16:30 – 17:30</time> <span>Amyl And The Sniffers</span></li>
-      <li><time datetime="2026-10-02T18:30">18:30 – 19:30</time> <span>Labrinth</span></li>
-      <li><time datetime="2026-10-02T20:40">20:40 – 22:00</time> <span>Charli XCX</span></li>
+      <li id="set-w1-af43"><time datetime="2026-10-02T13:15">13:15 – 14:00</time> <span>Hunx And His Punx</span></li>
+      <li id="set-w1-af45"><time datetime="2026-10-02T14:45">14:45 – 15:30</time> <span>CMAT</span></li>
+      <li id="set-w1-af47"><time datetime="2026-10-02T16:30">16:30 – 17:30</time> <span>Amyl And The Sniffers</span></li>
+      <li id="set-w1-af48"><time datetime="2026-10-02T18:30">18:30 – 19:30</time> <span>Labrinth</span></li>
+      <li id="set-w1-af49"><time datetime="2026-10-02T20:40">20:40 – 22:00</time> <span>Charli XCX</span></li>
     </ul>
-    <h4>Snapchat Stage</h4>
+    <h5>Snapchat Stage</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-02T14:00">14:00 – 14:45</time> <span>Elijah Delgado</span></li>
-      <li><time datetime="2026-10-02T14:00">14:00 – 14:45</time> <span>Dallas Wax</span></li>
-      <li><time datetime="2026-10-02T15:30">15:30 – 16:30</time> <span>LP</span></li>
-      <li><time datetime="2026-10-02T17:30">17:30 – 18:30</time> <span>BUNT.</span></li>
-      <li><time datetime="2026-10-02T19:30">19:30 – 20:30</time> <span>The Chainsmokers</span></li>
+      <li id="set-w1-af38"><time datetime="2026-10-02T14:00">14:00 – 14:45</time> <span>Elijah Delgado</span></li>
+      <li id="set-w1-af40"><time datetime="2026-10-02T15:30">15:30 – 16:30</time> <span>LP</span></li>
+      <li id="set-w1-af41"><time datetime="2026-10-02T17:30">17:30 – 18:30</time> <span>BUNT.</span></li>
+      <li id="set-w1-af42"><time datetime="2026-10-02T19:30">19:30 – 20:30</time> <span>The Chainsmokers</span></li>
     </ul>
-    <h4>Tito&#39;s Stage</h4>
+    <h5>Tito&#39;s Stage</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-02T12:45">12:45 – 13:30</time> <span>The 4411</span></li>
-      <li><time datetime="2026-10-02T12:45">12:45 – 13:30</time> <span>Almost Heaven</span></li>
-      <li><time datetime="2026-10-02T14:00">14:00 – 14:45</time> <span>Solomon Hicks</span></li>
-      <li><time datetime="2026-10-02T14:00">14:00 – 14:45</time> <span>Cassandra Coleman</span></li>
-      <li><time datetime="2026-10-02T15:15">15:15 – 16:00</time> <span>Bo Staloch</span></li>
-      <li><time datetime="2026-10-02T16:30">16:30 – 17:30</time> <span>Rebecca Black</span></li>
-      <li><time datetime="2026-10-02T16:30">16:30 – 17:30</time> <span>Natasha Bedingfield</span></li>
-      <li><time datetime="2026-10-02T18:30">18:30 – 19:30</time> <span>Steve Aoki</span></li>
-      <li><time datetime="2026-10-02T20:00">20:00 – 22:00</time> <span>Silent Disco</span></li>
+      <li id="set-w1-af29"><time datetime="2026-10-02T12:45">12:45 – 13:30</time> <span>The 4411</span></li>
+      <li id="set-w1-af31"><time datetime="2026-10-02T14:00">14:00 – 14:45</time> <span>Solomon Hicks</span></li>
+      <li id="set-w1-af33"><time datetime="2026-10-02T15:15">15:15 – 16:00</time> <span>Bo Staloch</span></li>
+      <li id="set-w1-af34"><time datetime="2026-10-02T16:30">16:30 – 17:30</time> <span>Rebecca Black</span></li>
+      <li id="set-w1-af36"><time datetime="2026-10-02T18:30">18:30 – 19:30</time> <span>Steve Aoki</span></li>
+      <li id="set-w1-af37"><time datetime="2026-10-02T20:00">20:00 – 22:00</time> <span>Silent Disco</span></li>
     </ul>
-    <h4>Miller Lite Stage</h4>
+    <h5>Miller Lite Stage</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-02T13:45">13:45 – 14:30</time> <span>Faouzia</span></li>
-      <li><time datetime="2026-10-02T13:45">13:45 – 14:30</time> <span>Radio Free Alice</span></li>
-      <li><time datetime="2026-10-02T15:15">15:15 – 16:15</time> <span>Paris Paloma</span></li>
-      <li><time datetime="2026-10-02T15:30">15:30 – 16:15</time> <span>Sienna Spiro</span></li>
-      <li><time datetime="2026-10-02T17:15">17:15 – 18:15</time> <span>Brandon Flowers</span></li>
-      <li><time datetime="2026-10-02T17:15">17:15 – 18:15</time> <span>Paris Paloma</span></li>
-      <li><time datetime="2026-10-02T19:15">19:15 – 20:15</time> <span>Leon Thomas</span></li>
+      <li id="set-w1-af09"><time datetime="2026-10-02T13:45">13:45 – 14:30</time> <span>Faouzia</span></li>
+      <li id="set-w1-af11"><time datetime="2026-10-02T15:15">15:15 – 16:15</time> <span>Paris Paloma</span></li>
+      <li id="set-w1-af13"><time datetime="2026-10-02T17:15">17:15 – 18:15</time> <span>Brandon Flowers</span></li>
+      <li id="set-w1-af15"><time datetime="2026-10-02T19:15">19:15 – 20:15</time> <span>Leon Thomas</span></li>
     </ul>
-    <h4>T-Mobile Stage</h4>
+    <h5>T-Mobile Stage</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-02T13:00">13:00 – 13:45</time> <span>Asleep At The Wheel</span></li>
-      <li><time datetime="2026-10-02T13:00">13:00 – 13:45</time> <span>Happy Landing</span></li>
-      <li><time datetime="2026-10-02T14:30">14:30 – 15:15</time> <span>New Constellations</span></li>
-      <li><time datetime="2026-10-02T14:30">14:30 – 15:15</time> <span>Bella Kay</span></li>
-      <li><time datetime="2026-10-02T16:15">16:15 – 17:15</time> <span>Jesse Welles</span></li>
-      <li><time datetime="2026-10-02T18:15">18:15 – 19:15</time> <span>Turnstile</span></li>
-      <li><time datetime="2026-10-02T20:15">20:15 – 22:00</time> <span>Skrillex</span></li>
-      <li><time datetime="2026-10-02T20:15">20:15 – 22:00</time> <span>Kings of Leon</span></li>
+      <li id="set-w1-af01"><time datetime="2026-10-02T13:00">13:00 – 13:45</time> <span>Asleep At The Wheel</span></li>
+      <li id="set-w1-af03"><time datetime="2026-10-02T14:30">14:30 – 15:15</time> <span>New Constellations</span></li>
+      <li id="set-w1-af05"><time datetime="2026-10-02T16:15">16:15 – 17:15</time> <span>Jesse Welles</span></li>
+      <li id="set-w1-af06"><time datetime="2026-10-02T18:15">18:15 – 19:15</time> <span>Turnstile</span></li>
+      <li id="set-w1-af07"><time datetime="2026-10-02T20:15">20:15 – 22:00</time> <span>Skrillex</span></li>
     </ul>
-    <h4>BMI Stage</h4>
+    <h5>BMI Stage</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-02T13:45">13:45 – 14:30</time> <span>Elle Coves</span></li>
-      <li><time datetime="2026-10-02T13:45">13:45 – 14:30</time> <span>Leon Knight</span></li>
-      <li><time datetime="2026-10-02T15:30">15:30 – 16:15</time> <span>Izzy Escobar</span></li>
-      <li><time datetime="2026-10-02T15:30">15:30 – 16:15</time> <span>Girlfriend</span></li>
-      <li><time datetime="2026-10-02T17:15">17:15 – 18:15</time> <span>Grocery Bag</span></li>
-      <li><time datetime="2026-10-02T17:15">17:15 – 18:15</time> <span>Joe Jordan</span></li>
+      <li id="set-w1-af16"><time datetime="2026-10-02T13:45">13:45 – 14:30</time> <span>Elle Coves</span></li>
+      <li id="set-w1-af18"><time datetime="2026-10-02T15:30">15:30 – 16:15</time> <span>Izzy Escobar</span></li>
+      <li id="set-w1-af20"><time datetime="2026-10-02T17:15">17:15 – 18:15</time> <span>Grocery Bag</span></li>
     </ul>
-    <h4>BEATBOX</h4>
+    <h5>BEATBOX</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-02T14:00">14:00 – 14:45</time> <span>Night Traveler</span></li>
-      <li><time datetime="2026-10-02T14:00">14:00 – 14:45</time> <span>S.G. Goodman</span></li>
-      <li><time datetime="2026-10-02T15:30">15:30 – 16:30</time> <span>Marlon Funaki</span></li>
-      <li><time datetime="2026-10-02T15:30">15:30 – 16:30</time> <span>World Famous Pets</span></li>
-      <li><time datetime="2026-10-02T17:30">17:30 – 18:30</time> <span>Rusowsky</span></li>
-      <li><time datetime="2026-10-02T19:30">19:30 – 20:30</time> <span>Molly Santana</span></li>
-      <li><time datetime="2026-10-02T19:30">19:30 – 20:30</time> <span>Live</span></li>
+      <li id="set-w1-af22"><time datetime="2026-10-02T14:00">14:00 – 14:45</time> <span>Night Traveler</span></li>
+      <li id="set-w1-af24"><time datetime="2026-10-02T15:30">15:30 – 16:30</time> <span>Marlon Funaki</span></li>
+      <li id="set-w1-af26"><time datetime="2026-10-02T17:30">17:30 – 18:30</time> <span>Rusowsky</span></li>
+      <li id="set-w1-af27"><time datetime="2026-10-02T19:30">19:30 – 20:30</time> <span>Molly Santana</span></li>
     </ul>
-    <h3>Saturday, October 3</h3>
-    <h4>American Express</h4>
+    <h4>Saturday, October 3</h4>
+    <h5>American Express</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-03T13:15">13:15 – 14:00</time> <span>Annie DiRusso</span></li>
-      <li><time datetime="2026-10-03T14:45">14:45 – 15:30</time> <span>Finn Wolfhard</span></li>
-      <li><time datetime="2026-10-03T16:30">16:30 – 17:30</time> <span>Young Miko</span></li>
-      <li><time datetime="2026-10-03T18:30">18:30 – 19:30</time> <span>Lola Young</span></li>
-      <li><time datetime="2026-10-03T20:30">20:30 – 22:00</time> <span>Rüfüs Du Sol</span></li>
+      <li id="set-w1-as39"><time datetime="2026-10-03T13:15">13:15 – 14:00</time> <span>Annie DiRusso</span></li>
+      <li id="set-w1-as40"><time datetime="2026-10-03T14:45">14:45 – 15:30</time> <span>Finn Wolfhard</span></li>
+      <li id="set-w1-as41"><time datetime="2026-10-03T16:30">16:30 – 17:30</time> <span>Young Miko</span></li>
+      <li id="set-w1-as42"><time datetime="2026-10-03T18:30">18:30 – 19:30</time> <span>Lola Young</span></li>
+      <li id="set-w1-as43"><time datetime="2026-10-03T20:30">20:30 – 22:00</time> <span>Rüfüs Du Sol</span></li>
     </ul>
-    <h4>Snapchat Stage</h4>
+    <h5>Snapchat Stage</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-03T14:00">14:00 – 14:45</time> <span>Rochelle Jordan</span></li>
-      <li><time datetime="2026-10-03T14:00">14:00 – 14:45</time> <span>Gabriel Jacoby</span></li>
-      <li><time datetime="2026-10-03T15:30">15:30 – 16:30</time> <span>Skye Newman</span></li>
-      <li><time datetime="2026-10-03T17:30">17:30 – 18:30</time> <span>It&#39;s Murph</span></li>
-      <li><time datetime="2026-10-03T19:30">19:30 – 20:30</time> <span>Lykke Li</span></li>
+      <li id="set-w1-as34"><time datetime="2026-10-03T14:00">14:00 – 14:45</time> <span>Rochelle Jordan</span></li>
+      <li id="set-w1-as36"><time datetime="2026-10-03T15:30">15:30 – 16:30</time> <span>Skye Newman</span></li>
+      <li id="set-w1-as37"><time datetime="2026-10-03T17:30">17:30 – 18:30</time> <span>It&#39;s Murph</span></li>
+      <li id="set-w1-as38"><time datetime="2026-10-03T19:30">19:30 – 20:30</time> <span>Lykke Li</span></li>
     </ul>
-    <h4>Tito&#39;s Stage</h4>
+    <h5>Tito&#39;s Stage</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-03T12:45">12:45 – 13:30</time> <span>Left Lucid</span></li>
-      <li><time datetime="2026-10-03T12:45">12:45 – 13:30</time> <span>Montclair</span></li>
-      <li><time datetime="2026-10-03T14:00">14:00 – 14:45</time> <span>DJ Cassandra</span></li>
-      <li><time datetime="2026-10-03T14:00">14:00 – 14:45</time> <span>Nat Myers</span></li>
-      <li><time datetime="2026-10-03T15:15">15:15 – 16:00</time> <span>Don West</span></li>
-      <li><time datetime="2026-10-03T16:30">16:30 – 17:30</time> <span>Rodrigo Y Gabriela</span></li>
-      <li><time datetime="2026-10-03T18:30">18:30 – 19:30</time> <span>Yousuke Yukimatsu</span></li>
-      <li><time datetime="2026-10-03T20:00">20:00 – 22:00</time> <span>Silent Disco</span></li>
+      <li id="set-w1-as26"><time datetime="2026-10-03T12:45">12:45 – 13:30</time> <span>Left Lucid</span></li>
+      <li id="set-w1-as28"><time datetime="2026-10-03T14:00">14:00 – 14:45</time> <span>DJ Cassandra</span></li>
+      <li id="set-w1-as30"><time datetime="2026-10-03T15:15">15:15 – 16:00</time> <span>Don West</span></li>
+      <li id="set-w1-as31"><time datetime="2026-10-03T16:30">16:30 – 17:30</time> <span>Rodrigo Y Gabriela</span></li>
+      <li id="set-w1-as32"><time datetime="2026-10-03T18:30">18:30 – 19:30</time> <span>Yousuke Yukimatsu</span></li>
+      <li id="set-w1-as33"><time datetime="2026-10-03T20:00">20:00 – 22:00</time> <span>Silent Disco</span></li>
     </ul>
-    <h4>Miller Lite Stage</h4>
+    <h5>Miller Lite Stage</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-03T13:45">13:45 – 14:30</time> <span>Temper City</span></li>
-      <li><time datetime="2026-10-03T15:15">15:15 – 16:15</time> <span>Arcy Drive</span></li>
-      <li><time datetime="2026-10-03T15:15">15:15 – 16:15</time> <span>Laszewo</span></li>
-      <li><time datetime="2026-10-03T17:15">17:15 – 18:15</time> <span>Snow Strippers</span></li>
-      <li><time datetime="2026-10-03T19:15">19:15 – 20:15</time> <span>Levity</span></li>
+      <li id="set-w1-as06"><time datetime="2026-10-03T13:45">13:45 – 14:30</time> <span>Temper City</span></li>
+      <li id="set-w1-as07"><time datetime="2026-10-03T15:15">15:15 – 16:15</time> <span>Arcy Drive</span></li>
+      <li id="set-w1-as09"><time datetime="2026-10-03T17:15">17:15 – 18:15</time> <span>Snow Strippers</span></li>
+      <li id="set-w1-as10"><time datetime="2026-10-03T19:15">19:15 – 20:15</time> <span>Levity</span></li>
     </ul>
-    <h4>T-Mobile Stage</h4>
+    <h5>T-Mobile Stage</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-03T13:00">13:00 – 13:45</time> <span>Night Tapes</span></li>
-      <li><time datetime="2026-10-03T14:30">14:30 – 15:15</time> <span>Balu Brigada</span></li>
-      <li><time datetime="2026-10-03T16:15">16:15 – 17:15</time> <span>Suki Waterhouse</span></li>
-      <li><time datetime="2026-10-03T18:15">18:15 – 19:15</time> <span>Bleachers</span></li>
-      <li><time datetime="2026-10-03T20:15">20:15 – 22:00</time> <span>Lorde</span></li>
+      <li id="set-w1-as01"><time datetime="2026-10-03T13:00">13:00 – 13:45</time> <span>Night Tapes</span></li>
+      <li id="set-w1-as02"><time datetime="2026-10-03T14:30">14:30 – 15:15</time> <span>Balu Brigada</span></li>
+      <li id="set-w1-as03"><time datetime="2026-10-03T16:15">16:15 – 17:15</time> <span>Suki Waterhouse</span></li>
+      <li id="set-w1-as04"><time datetime="2026-10-03T18:15">18:15 – 19:15</time> <span>Bleachers</span></li>
+      <li id="set-w1-as05"><time datetime="2026-10-03T20:15">20:15 – 22:00</time> <span>Lorde</span></li>
     </ul>
-    <h4>BMI Stage</h4>
+    <h5>BMI Stage</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-03T12:45">12:45 – 13:15</time> <span>Fightmaster</span></li>
-      <li><time datetime="2026-10-03T12:45">12:45 – 13:15</time> <span>Macy Todd</span></li>
-      <li><time datetime="2026-10-03T13:45">13:45 – 14:30</time> <span>Emma Ogier</span></li>
-      <li><time datetime="2026-10-03T13:45">13:45 – 14:30</time> <span>Damaris Bojor</span></li>
-      <li><time datetime="2026-10-03T15:30">15:30 – 16:15</time> <span>Coleman Jennings</span></li>
-      <li><time datetime="2026-10-03T15:30">15:30 – 16:15</time> <span>Common People</span></li>
-      <li><time datetime="2026-10-03T17:15">17:15 – 18:15</time> <span>Fai Laci</span></li>
-      <li><time datetime="2026-10-03T17:15">17:15 – 18:15</time> <span>Chloe Qisha</span></li>
+      <li id="set-w1-as11"><time datetime="2026-10-03T12:45">12:45 – 13:15</time> <span>Fightmaster</span></li>
+      <li id="set-w1-as13"><time datetime="2026-10-03T13:45">13:45 – 14:30</time> <span>Emma Ogier</span></li>
+      <li id="set-w1-as15"><time datetime="2026-10-03T15:30">15:30 – 16:15</time> <span>Coleman Jennings</span></li>
+      <li id="set-w1-as17"><time datetime="2026-10-03T17:15">17:15 – 18:15</time> <span>Fai Laci</span></li>
     </ul>
-    <h4>BEATBOX</h4>
+    <h5>BEATBOX</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-03T14:00">14:00 – 14:45</time> <span>Cure For Paranoia</span></li>
-      <li><time datetime="2026-10-03T14:00">14:00 – 14:45</time> <span>LLUVII</span></li>
-      <li><time datetime="2026-10-03T15:30">15:30 – 16:30</time> <span>Ryan Beatty</span></li>
-      <li><time datetime="2026-10-03T15:30">15:30 – 16:30</time> <span>Arcy Drive</span></li>
-      <li><time datetime="2026-10-03T17:30">17:30 – 18:30</time> <span>Palace</span></li>
-      <li><time datetime="2026-10-03T17:30">17:30 – 18:30</time> <span>Ryan Beatty</span></li>
-      <li><time datetime="2026-10-03T19:30">19:30 – 20:30</time> <span>Fakemink</span></li>
+      <li id="set-w1-as19"><time datetime="2026-10-03T14:00">14:00 – 14:45</time> <span>Cure For Paranoia</span></li>
+      <li id="set-w1-as21"><time datetime="2026-10-03T15:30">15:30 – 16:30</time> <span>Ryan Beatty</span></li>
+      <li id="set-w1-as23"><time datetime="2026-10-03T17:30">17:30 – 18:30</time> <span>Palace</span></li>
+      <li id="set-w1-as25"><time datetime="2026-10-03T19:30">19:30 – 20:30</time> <span>Fakemink</span></li>
     </ul>
-    <h3>Sunday, October 4</h3>
-    <h4>American Express</h4>
+    <h4>Sunday, October 4</h4>
+    <h5>American Express</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-04T13:15">13:15 – 14:00</time> <span>Villanelle</span></li>
-      <li><time datetime="2026-10-04T13:15">13:15 – 14:00</time> <span>Rum Jungle</span></li>
-      <li><time datetime="2026-10-04T14:45">14:45 – 15:30</time> <span>Dexter And The Moonrocks</span></li>
-      <li><time datetime="2026-10-04T14:45">14:45 – 15:30</time> <span>Ethan Regan</span></li>
-      <li><time datetime="2026-10-04T16:30">16:30 – 17:30</time> <span>Max McNown</span></li>
-      <li><time datetime="2026-10-04T18:30">18:30 – 19:30</time> <span>Sofi Tukker</span></li>
-      <li><time datetime="2026-10-04T20:30">20:30 – 22:00</time> <span>Twenty One Pilots</span></li>
+      <li id="set-w1-au39"><time datetime="2026-10-04T13:15">13:15 – 14:00</time> <span>Villanelle</span></li>
+      <li id="set-w1-au41"><time datetime="2026-10-04T14:45">14:45 – 15:30</time> <span>Dexter And The Moonrocks</span></li>
+      <li id="set-w1-au43"><time datetime="2026-10-04T16:30">16:30 – 17:30</time> <span>Max McNown</span></li>
+      <li id="set-w1-au44"><time datetime="2026-10-04T18:30">18:30 – 19:30</time> <span>Sofi Tukker</span></li>
+      <li id="set-w1-au45"><time datetime="2026-10-04T20:30">20:30 – 22:00</time> <span>Twenty One Pilots</span></li>
     </ul>
-    <h4>Snapchat Stage</h4>
+    <h5>Snapchat Stage</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-04T14:00">14:00 – 14:45</time> <span>Sunday (1994)</span></li>
-      <li><time datetime="2026-10-04T15:30">15:30 – 16:30</time> <span>Grace Ives</span></li>
-      <li><time datetime="2026-10-04T17:30">17:30 – 18:30</time> <span>Cannons</span></li>
-      <li><time datetime="2026-10-04T17:30">17:30 – 18:30</time> <span>Houndmouth</span></li>
-      <li><time datetime="2026-10-04T19:30">19:30 – 20:30</time> <span>The War On Drugs</span></li>
+      <li id="set-w1-au34"><time datetime="2026-10-04T14:00">14:00 – 14:45</time> <span>Sunday (1994)</span></li>
+      <li id="set-w1-au36"><time datetime="2026-10-04T17:30">17:30 – 18:30</time> <span>Cannons</span></li>
+      <li id="set-w1-au38"><time datetime="2026-10-04T19:30">19:30 – 20:30</time> <span>The War On Drugs</span></li>
     </ul>
-    <h4>Tito&#39;s Stage</h4>
+    <h5>Tito&#39;s Stage</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-04T12:45">12:45 – 13:30</time> <span>The Moriah Sisters</span></li>
-      <li><time datetime="2026-10-04T12:45">12:45 – 13:30</time> <span>Huston-Tillotson University Jazz Collective</span></li>
-      <li><time datetime="2026-10-04T14:00">14:00 – 14:45</time> <span>Paloma Morphy</span></li>
-      <li><time datetime="2026-10-04T15:15">15:15 – 16:00</time> <span>Calder Allen</span></li>
-      <li><time datetime="2026-10-04T16:30">16:30 – 17:30</time> <span>Rio Kosta</span></li>
-      <li><time datetime="2026-10-04T18:30">18:30 – 19:30</time> <span>Fcukers</span></li>
-      <li><time datetime="2026-10-04T20:00">20:00 – 22:00</time> <span>Silent Disco</span></li>
+      <li id="set-w1-au27"><time datetime="2026-10-04T12:45">12:45 – 13:30</time> <span>The Moriah Sisters</span></li>
+      <li id="set-w1-au29"><time datetime="2026-10-04T14:00">14:00 – 14:45</time> <span>Paloma Morphy</span></li>
+      <li id="set-w1-au30"><time datetime="2026-10-04T15:15">15:15 – 16:00</time> <span>Calder Allen</span></li>
+      <li id="set-w1-au31"><time datetime="2026-10-04T16:30">16:30 – 17:30</time> <span>Rio Kosta</span></li>
+      <li id="set-w1-au32"><time datetime="2026-10-04T18:30">18:30 – 19:30</time> <span>Fcukers</span></li>
+      <li id="set-w1-au33"><time datetime="2026-10-04T20:00">20:00 – 22:00</time> <span>Silent Disco</span></li>
     </ul>
-    <h4>Miller Lite Stage</h4>
+    <h5>Miller Lite Stage</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-04T14:00">14:00 – 14:45</time> <span>Jess Williamson</span></li>
-      <li><time datetime="2026-10-04T14:00">14:00 – 14:45</time> <span>Joshua Jensen</span></li>
-      <li><time datetime="2026-10-04T15:30">15:30 – 16:30</time> <span>Claire Rosinkranz</span></li>
-      <li><time datetime="2026-10-04T17:30">17:30 – 18:30</time> <span>Saint Motel</span></li>
-      <li><time datetime="2026-10-04T19:30">19:30 – 20:30</time> <span>Parcels</span></li>
+      <li id="set-w1-au08"><time datetime="2026-10-04T14:00">14:00 – 14:45</time> <span>Jess Williamson</span></li>
+      <li id="set-w1-au10"><time datetime="2026-10-04T15:30">15:30 – 16:30</time> <span>Claire Rosinkranz</span></li>
+      <li id="set-w1-au11"><time datetime="2026-10-04T17:30">17:30 – 18:30</time> <span>Saint Motel</span></li>
+      <li id="set-w1-au12"><time datetime="2026-10-04T19:30">19:30 – 20:30</time> <span>Parcels</span></li>
     </ul>
-    <h4>T-Mobile Stage</h4>
+    <h5>T-Mobile Stage</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-04T13:15">13:15 – 14:00</time> <span>Solya</span></li>
-      <li><time datetime="2026-10-04T13:15">13:15 – 14:00</time> <span>Thomas Day</span></li>
-      <li><time datetime="2026-10-04T14:45">14:45 – 15:30</time> <span>Stella Lefty</span></li>
-      <li><time datetime="2026-10-04T14:45">14:45 – 15:30</time> <span>Charlotte Lawrence</span></li>
-      <li><time datetime="2026-10-04T16:30">16:30 – 17:30</time> <span>Audrey Hobert</span></li>
-      <li><time datetime="2026-10-04T18:30">18:30 – 19:30</time> <span>Geese</span></li>
-      <li><time datetime="2026-10-04T20:30">20:30 – 22:00</time> <span>The xx</span></li>
+      <li id="set-w1-au01"><time datetime="2026-10-04T13:15">13:15 – 14:00</time> <span>Solya</span></li>
+      <li id="set-w1-au03"><time datetime="2026-10-04T14:45">14:45 – 15:30</time> <span>Stella Lefty</span></li>
+      <li id="set-w1-au05"><time datetime="2026-10-04T16:30">16:30 – 17:30</time> <span>Audrey Hobert</span></li>
+      <li id="set-w1-au06"><time datetime="2026-10-04T18:30">18:30 – 19:30</time> <span>Geese</span></li>
+      <li id="set-w1-au07"><time datetime="2026-10-04T20:30">20:30 – 22:00</time> <span>The xx</span></li>
     </ul>
-    <h4>BMI Stage</h4>
+    <h5>BMI Stage</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-04T12:45">12:45 – 13:15</time> <span>Rubio</span></li>
-      <li><time datetime="2026-10-04T12:45">12:45 – 13:15</time> <span>Marzz</span></li>
-      <li><time datetime="2026-10-04T14:00">14:00 – 14:45</time> <span>Aaron Rowe</span></li>
-      <li><time datetime="2026-10-04T14:00">14:00 – 14:45</time> <span>Chelsea Jordan</span></li>
-      <li><time datetime="2026-10-04T15:30">15:30 – 16:15</time> <span>Fancy Hagood</span></li>
-      <li><time datetime="2026-10-04T15:30">15:30 – 16:15</time> <span>Vwillz</span></li>
-      <li><time datetime="2026-10-04T17:30">17:30 – 18:30</time> <span>Lauren Sanderson</span></li>
-      <li><time datetime="2026-10-04T18:00">18:00 – 18:30</time> <span>Sasha Keable</span></li>
+      <li id="set-w1-au13"><time datetime="2026-10-04T12:45">12:45 – 13:15</time> <span>Rubio</span></li>
+      <li id="set-w1-au15"><time datetime="2026-10-04T14:00">14:00 – 14:45</time> <span>Aaron Rowe</span></li>
+      <li id="set-w1-au17"><time datetime="2026-10-04T15:30">15:30 – 16:15</time> <span>Fancy Hagood</span></li>
+      <li id="set-w1-au19"><time datetime="2026-10-04T17:30">17:30 – 18:30</time> <span>Lauren Sanderson</span></li>
     </ul>
-    <h4>BEATBOX</h4>
+    <h5>BEATBOX</h5>
     <ul class="sets">
-      <li><time datetime="2026-10-04T14:00">14:00 – 14:45</time> <span>Britton</span></li>
-      <li><time datetime="2026-10-04T14:00">14:00 – 14:45</time> <span>Kevin Atwater</span></li>
-      <li><time datetime="2026-10-04T15:30">15:30 – 16:30</time> <span>Underscores</span></li>
-      <li><time datetime="2026-10-04T15:30">15:30 – 16:30</time> <span>Bad Nerves</span></li>
-      <li><time datetime="2026-10-04T17:30">17:30 – 18:30</time> <span>Noga Erez</span></li>
-      <li><time datetime="2026-10-04T19:30">19:30 – 20:30</time> <span>Blood Orange</span></li>
+      <li id="set-w1-au21"><time datetime="2026-10-04T14:00">14:00 – 14:45</time> <span>Britton</span></li>
+      <li id="set-w1-au23"><time datetime="2026-10-04T15:30">15:30 – 16:30</time> <span>Underscores</span></li>
+      <li id="set-w1-au25"><time datetime="2026-10-04T17:30">17:30 – 18:30</time> <span>Noga Erez</span></li>
+      <li id="set-w1-au26"><time datetime="2026-10-04T19:30">19:30 – 20:30</time> <span>Blood Orange</span></li>
     </ul>
-  </section>
-
-  <section aria-labelledby="stages-h">
-    <h2 id="stages-h">Austin City Limits 2026 stages</h2>
-    <p>Plursky has 7 stages for Austin City Limits 2026 at Zilker Park, each one listed below.</p>
-    <ul class="stagelist">
-      <li><strong>American Express</strong> · East side · headliners</li>
-      <li><strong>Snapchat Stage</strong> · Center · by The Grove</li>
-      <li><strong>Tito&#39;s Stage</strong> · North-east · mid-large stage</li>
-      <li><strong>Miller Lite Stage</strong> · North · by Lady Bird Lake</li>
-      <li><strong>T-Mobile Stage</strong> · West side · co-headliners</li>
-      <li><strong>BMI Stage</strong> · Center-left · songwriter stage</li>
-      <li><strong>BEATBOX</strong> · South-west · electronic stage</li>
+    <h3 id="weekend-2">Weekend 2 · Oct 9–11</h3>
+    <h4>Friday, October 9</h4>
+    <h5>American Express</h5>
+    <ul class="sets">
+      <li id="set-w2-af44"><time datetime="2026-10-09T13:15">13:15 – 14:00</time> <span>Brigitte Calls Me Baby</span></li>
+      <li id="set-w2-af46"><time datetime="2026-10-09T14:45">14:45 – 15:30</time> <span>Faouzia</span></li>
+      <li id="set-w2-af47"><time datetime="2026-10-09T16:30">16:30 – 17:30</time> <span>Amyl And The Sniffers</span></li>
+      <li id="set-w2-af48"><time datetime="2026-10-09T18:30">18:30 – 19:30</time> <span>Labrinth</span></li>
+      <li id="set-w2-af49"><time datetime="2026-10-09T20:40">20:40 – 22:00</time> <span>Charli XCX</span></li>
+    </ul>
+    <h5>Snapchat Stage</h5>
+    <ul class="sets">
+      <li id="set-w2-af39"><time datetime="2026-10-09T14:00">14:00 – 14:45</time> <span>Dallas Wax</span></li>
+      <li id="set-w2-af40"><time datetime="2026-10-09T15:30">15:30 – 16:30</time> <span>LP</span></li>
+      <li id="set-w2-af41"><time datetime="2026-10-09T17:30">17:30 – 18:30</time> <span>BUNT.</span></li>
+      <li id="set-w2-af42"><time datetime="2026-10-09T19:30">19:30 – 20:30</time> <span>The Chainsmokers</span></li>
+    </ul>
+    <h5>Tito&#39;s Stage</h5>
+    <ul class="sets">
+      <li id="set-w2-af30"><time datetime="2026-10-09T12:45">12:45 – 13:30</time> <span>Almost Heaven</span></li>
+      <li id="set-w2-af32"><time datetime="2026-10-09T14:00">14:00 – 14:45</time> <span>Cassandra Coleman</span></li>
+      <li id="set-w2-af33"><time datetime="2026-10-09T15:15">15:15 – 16:00</time> <span>Bo Staloch</span></li>
+      <li id="set-w2-af35"><time datetime="2026-10-09T16:30">16:30 – 17:30</time> <span>Natasha Bedingfield</span></li>
+      <li id="set-w2-af36"><time datetime="2026-10-09T18:30">18:30 – 19:30</time> <span>Steve Aoki</span></li>
+      <li id="set-w2-af37"><time datetime="2026-10-09T20:00">20:00 – 22:00</time> <span>Silent Disco</span></li>
+    </ul>
+    <h5>Miller Lite Stage</h5>
+    <ul class="sets">
+      <li id="set-w2-af10"><time datetime="2026-10-09T13:45">13:45 – 14:30</time> <span>Radio Free Alice</span></li>
+      <li id="set-w2-af12"><time datetime="2026-10-09T15:30">15:30 – 16:15</time> <span>Sienna Spiro</span></li>
+      <li id="set-w2-af14"><time datetime="2026-10-09T17:15">17:15 – 18:15</time> <span>Paris Paloma</span></li>
+      <li id="set-w2-af15"><time datetime="2026-10-09T19:15">19:15 – 20:15</time> <span>Leon Thomas</span></li>
+    </ul>
+    <h5>T-Mobile Stage</h5>
+    <ul class="sets">
+      <li id="set-w2-af02"><time datetime="2026-10-09T13:00">13:00 – 13:45</time> <span>Happy Landing</span></li>
+      <li id="set-w2-af04"><time datetime="2026-10-09T14:30">14:30 – 15:15</time> <span>Bella Kay</span></li>
+      <li id="set-w2-af05"><time datetime="2026-10-09T16:15">16:15 – 17:15</time> <span>Jesse Welles</span></li>
+      <li id="set-w2-af06"><time datetime="2026-10-09T18:15">18:15 – 19:15</time> <span>Turnstile</span></li>
+      <li id="set-w2-af08"><time datetime="2026-10-09T20:15">20:15 – 22:00</time> <span>Kings of Leon</span></li>
+    </ul>
+    <h5>BMI Stage</h5>
+    <ul class="sets">
+      <li id="set-w2-af17"><time datetime="2026-10-09T13:45">13:45 – 14:30</time> <span>Leon Knight</span></li>
+      <li id="set-w2-af19"><time datetime="2026-10-09T15:30">15:30 – 16:15</time> <span>Girlfriend</span></li>
+      <li id="set-w2-af21"><time datetime="2026-10-09T17:15">17:15 – 18:15</time> <span>Joe Jordan</span></li>
+    </ul>
+    <h5>BEATBOX</h5>
+    <ul class="sets">
+      <li id="set-w2-af23"><time datetime="2026-10-09T14:00">14:00 – 14:45</time> <span>S.G. Goodman</span></li>
+      <li id="set-w2-af25"><time datetime="2026-10-09T15:30">15:30 – 16:30</time> <span>World Famous Pets</span></li>
+      <li id="set-w2-af26"><time datetime="2026-10-09T17:30">17:30 – 18:30</time> <span>Rusowsky</span></li>
+      <li id="set-w2-af28"><time datetime="2026-10-09T19:30">19:30 – 20:30</time> <span>Live</span></li>
+    </ul>
+    <h4>Saturday, October 10</h4>
+    <h5>American Express</h5>
+    <ul class="sets">
+      <li id="set-w2-as39"><time datetime="2026-10-10T13:15">13:15 – 14:00</time> <span>Annie DiRusso</span></li>
+      <li id="set-w2-as40"><time datetime="2026-10-10T14:45">14:45 – 15:30</time> <span>Finn Wolfhard</span></li>
+      <li id="set-w2-as41"><time datetime="2026-10-10T16:30">16:30 – 17:30</time> <span>Young Miko</span></li>
+      <li id="set-w2-as42"><time datetime="2026-10-10T18:30">18:30 – 19:30</time> <span>Lola Young</span></li>
+      <li id="set-w2-as43"><time datetime="2026-10-10T20:30">20:30 – 22:00</time> <span>Rüfüs Du Sol</span></li>
+    </ul>
+    <h5>Snapchat Stage</h5>
+    <ul class="sets">
+      <li id="set-w2-as35"><time datetime="2026-10-10T14:00">14:00 – 14:45</time> <span>Gabriel Jacoby</span></li>
+      <li id="set-w2-as36"><time datetime="2026-10-10T15:30">15:30 – 16:30</time> <span>Skye Newman</span></li>
+      <li id="set-w2-as37"><time datetime="2026-10-10T17:30">17:30 – 18:30</time> <span>It&#39;s Murph</span></li>
+      <li id="set-w2-as38"><time datetime="2026-10-10T19:30">19:30 – 20:30</time> <span>Lykke Li</span></li>
+    </ul>
+    <h5>Tito&#39;s Stage</h5>
+    <ul class="sets">
+      <li id="set-w2-as27"><time datetime="2026-10-10T12:45">12:45 – 13:30</time> <span>Montclair</span></li>
+      <li id="set-w2-as29"><time datetime="2026-10-10T14:00">14:00 – 14:45</time> <span>Nat Myers</span></li>
+      <li id="set-w2-as30"><time datetime="2026-10-10T15:15">15:15 – 16:00</time> <span>Don West</span></li>
+      <li id="set-w2-as31"><time datetime="2026-10-10T16:30">16:30 – 17:30</time> <span>Rodrigo Y Gabriela</span></li>
+      <li id="set-w2-as32"><time datetime="2026-10-10T18:30">18:30 – 19:30</time> <span>Yousuke Yukimatsu</span></li>
+      <li id="set-w2-as33"><time datetime="2026-10-10T20:00">20:00 – 22:00</time> <span>Silent Disco</span></li>
+    </ul>
+    <h5>Miller Lite Stage</h5>
+    <ul class="sets">
+      <li id="set-w2-as06"><time datetime="2026-10-10T13:45">13:45 – 14:30</time> <span>Temper City</span></li>
+      <li id="set-w2-as08"><time datetime="2026-10-10T15:15">15:15 – 16:15</time> <span>Laszewo</span></li>
+      <li id="set-w2-as09"><time datetime="2026-10-10T17:15">17:15 – 18:15</time> <span>Snow Strippers</span></li>
+      <li id="set-w2-as10"><time datetime="2026-10-10T19:15">19:15 – 20:15</time> <span>Levity</span></li>
+    </ul>
+    <h5>T-Mobile Stage</h5>
+    <ul class="sets">
+      <li id="set-w2-as01"><time datetime="2026-10-10T13:00">13:00 – 13:45</time> <span>Night Tapes</span></li>
+      <li id="set-w2-as02"><time datetime="2026-10-10T14:30">14:30 – 15:15</time> <span>Balu Brigada</span></li>
+      <li id="set-w2-as03"><time datetime="2026-10-10T16:15">16:15 – 17:15</time> <span>Suki Waterhouse</span></li>
+      <li id="set-w2-as04"><time datetime="2026-10-10T18:15">18:15 – 19:15</time> <span>Bleachers</span></li>
+      <li id="set-w2-as05"><time datetime="2026-10-10T20:15">20:15 – 22:00</time> <span>Lorde</span></li>
+    </ul>
+    <h5>BMI Stage</h5>
+    <ul class="sets">
+      <li id="set-w2-as12"><time datetime="2026-10-10T12:45">12:45 – 13:15</time> <span>Macy Todd</span></li>
+      <li id="set-w2-as14"><time datetime="2026-10-10T13:45">13:45 – 14:30</time> <span>Damaris Bojor</span></li>
+      <li id="set-w2-as16"><time datetime="2026-10-10T15:30">15:30 – 16:15</time> <span>Common People</span></li>
+      <li id="set-w2-as18"><time datetime="2026-10-10T17:15">17:15 – 18:15</time> <span>Chloe Qisha</span></li>
+    </ul>
+    <h5>BEATBOX</h5>
+    <ul class="sets">
+      <li id="set-w2-as20"><time datetime="2026-10-10T14:00">14:00 – 14:45</time> <span>LLUVII</span></li>
+      <li id="set-w2-as22"><time datetime="2026-10-10T15:30">15:30 – 16:30</time> <span>Arcy Drive</span></li>
+      <li id="set-w2-as24"><time datetime="2026-10-10T17:30">17:30 – 18:30</time> <span>Ryan Beatty</span></li>
+      <li id="set-w2-as25"><time datetime="2026-10-10T19:30">19:30 – 20:30</time> <span>Fakemink</span></li>
+    </ul>
+    <h4>Sunday, October 11</h4>
+    <h5>American Express</h5>
+    <ul class="sets">
+      <li id="set-w2-au40"><time datetime="2026-10-11T13:15">13:15 – 14:00</time> <span>Rum Jungle</span></li>
+      <li id="set-w2-au42"><time datetime="2026-10-11T14:45">14:45 – 15:30</time> <span>Ethan Regan</span></li>
+      <li id="set-w2-au43"><time datetime="2026-10-11T16:30">16:30 – 17:30</time> <span>Max McNown</span></li>
+      <li id="set-w2-au44"><time datetime="2026-10-11T18:30">18:30 – 19:30</time> <span>Sofi Tukker</span></li>
+      <li id="set-w2-au45"><time datetime="2026-10-11T20:30">20:30 – 22:00</time> <span>Twenty One Pilots</span></li>
+    </ul>
+    <h5>Snapchat Stage</h5>
+    <ul class="sets">
+      <li id="set-w2-au34"><time datetime="2026-10-11T14:00">14:00 – 14:45</time> <span>Sunday (1994)</span></li>
+      <li id="set-w2-au35"><time datetime="2026-10-11T15:30">15:30 – 16:30</time> <span>Grace Ives</span></li>
+      <li id="set-w2-au37"><time datetime="2026-10-11T17:30">17:30 – 18:30</time> <span>Houndmouth</span></li>
+      <li id="set-w2-au38"><time datetime="2026-10-11T19:30">19:30 – 20:30</time> <span>The War On Drugs</span></li>
+    </ul>
+    <h5>Tito&#39;s Stage</h5>
+    <ul class="sets">
+      <li id="set-w2-au28"><time datetime="2026-10-11T12:45">12:45 – 13:30</time> <span>Huston-Tillotson University Jazz Collective</span></li>
+      <li id="set-w2-au29"><time datetime="2026-10-11T14:00">14:00 – 14:45</time> <span>Paloma Morphy</span></li>
+      <li id="set-w2-au30"><time datetime="2026-10-11T15:15">15:15 – 16:00</time> <span>Calder Allen</span></li>
+      <li id="set-w2-au31"><time datetime="2026-10-11T16:30">16:30 – 17:30</time> <span>Rio Kosta</span></li>
+      <li id="set-w2-au32"><time datetime="2026-10-11T18:30">18:30 – 19:30</time> <span>Fcukers</span></li>
+      <li id="set-w2-au33"><time datetime="2026-10-11T20:00">20:00 – 22:00</time> <span>Silent Disco</span></li>
+    </ul>
+    <h5>Miller Lite Stage</h5>
+    <ul class="sets">
+      <li id="set-w2-au09"><time datetime="2026-10-11T14:00">14:00 – 14:45</time> <span>Joshua Jensen</span></li>
+      <li id="set-w2-au10"><time datetime="2026-10-11T15:30">15:30 – 16:30</time> <span>Claire Rosinkranz</span></li>
+      <li id="set-w2-au11"><time datetime="2026-10-11T17:30">17:30 – 18:30</time> <span>Saint Motel</span></li>
+      <li id="set-w2-au12"><time datetime="2026-10-11T19:30">19:30 – 20:30</time> <span>Parcels</span></li>
+    </ul>
+    <h5>T-Mobile Stage</h5>
+    <ul class="sets">
+      <li id="set-w2-au02"><time datetime="2026-10-11T13:15">13:15 – 14:00</time> <span>Thomas Day</span></li>
+      <li id="set-w2-au04"><time datetime="2026-10-11T14:45">14:45 – 15:30</time> <span>Charlotte Lawrence</span></li>
+      <li id="set-w2-au05"><time datetime="2026-10-11T16:30">16:30 – 17:30</time> <span>Audrey Hobert</span></li>
+      <li id="set-w2-au06"><time datetime="2026-10-11T18:30">18:30 – 19:30</time> <span>Geese</span></li>
+      <li id="set-w2-au07"><time datetime="2026-10-11T20:30">20:30 – 22:00</time> <span>The xx</span></li>
+    </ul>
+    <h5>BMI Stage</h5>
+    <ul class="sets">
+      <li id="set-w2-au14"><time datetime="2026-10-11T12:45">12:45 – 13:15</time> <span>Marzz</span></li>
+      <li id="set-w2-au16"><time datetime="2026-10-11T14:00">14:00 – 14:45</time> <span>Chelsea Jordan</span></li>
+      <li id="set-w2-au18"><time datetime="2026-10-11T15:30">15:30 – 16:15</time> <span>Vwillz</span></li>
+      <li id="set-w2-au20"><time datetime="2026-10-11T18:00">18:00 – 18:30</time> <span>Sasha Keable</span></li>
+    </ul>
+    <h5>BEATBOX</h5>
+    <ul class="sets">
+      <li id="set-w2-au22"><time datetime="2026-10-11T14:00">14:00 – 14:45</time> <span>Kevin Atwater</span></li>
+      <li id="set-w2-au24"><time datetime="2026-10-11T15:30">15:30 – 16:30</time> <span>Bad Nerves</span></li>
+      <li id="set-w2-au25"><time datetime="2026-10-11T17:30">17:30 – 18:30</time> <span>Noga Erez</span></li>
+      <li id="set-w2-au26"><time datetime="2026-10-11T19:30">19:30 – 20:30</time> <span>Blood Orange</span></li>
     </ul>
   </section>
 
@@ -896,170 +1067,198 @@
     <h2 id="lineup-h">Austin City Limits 2026 lineup</h2>
     <p>131 artists announced.</p>
     <ul class="lineup">
-      <li>Aaron Rowe</li>
-      <li>Almost Heaven</li>
-      <li>Amyl And The Sniffers</li>
-      <li>Annie DiRusso</li>
-      <li>Arcy Drive</li>
-      <li>Asleep At The Wheel</li>
-      <li>Audrey Hobert</li>
-      <li>Bad Nerves</li>
-      <li>Balu Brigada</li>
-      <li>Bella Kay</li>
-      <li>Bleachers</li>
-      <li>Blood Orange</li>
-      <li>Bo Staloch</li>
-      <li>Brandon Flowers</li>
-      <li>Brigitte Calls Me Baby</li>
-      <li>Britton</li>
-      <li>BUNT.</li>
-      <li>Calder Allen</li>
-      <li>Cannons</li>
-      <li>Cassandra Coleman</li>
-      <li>Charli XCX</li>
-      <li>Charlotte Lawrence</li>
-      <li>Chelsea Jordan</li>
-      <li>Chloe Qisha</li>
-      <li>Claire Rosinkranz</li>
-      <li>CMAT</li>
-      <li>Coleman Jennings</li>
-      <li>Common People</li>
-      <li>Cure For Paranoia</li>
-      <li>Dallas Wax</li>
-      <li>Damaris Bojor</li>
-      <li>Dexter And The Moonrocks</li>
-      <li>DJ Cassandra</li>
-      <li>Don West</li>
-      <li>Elijah Delgado</li>
-      <li>Elle Coves</li>
-      <li>Emma Ogier</li>
-      <li>Ethan Regan</li>
-      <li>Fai Laci</li>
-      <li>Fakemink</li>
-      <li>Fancy Hagood</li>
-      <li>Faouzia</li>
-      <li>Fcukers</li>
-      <li>Fightmaster</li>
-      <li>Finn Wolfhard</li>
-      <li>Gabriel Jacoby</li>
-      <li>Geese</li>
-      <li>Girlfriend</li>
-      <li>Grace Ives</li>
-      <li>Grocery Bag</li>
-      <li>Happy Landing</li>
-      <li>Houndmouth</li>
-      <li>Hunx And His Punx</li>
-      <li>Huston-Tillotson University Jazz Collective</li>
-      <li>It&#39;s Murph</li>
-      <li>Izzy Escobar</li>
-      <li>Jess Williamson</li>
-      <li>Jesse Welles</li>
-      <li>Joe Jordan</li>
-      <li>Joshua Jensen</li>
-      <li>Kevin Atwater</li>
-      <li>Kings of Leon</li>
-      <li>Labrinth</li>
-      <li>Laszewo</li>
-      <li>Lauren Sanderson</li>
-      <li>Left Lucid</li>
-      <li>Leon Knight</li>
-      <li>Leon Thomas</li>
-      <li>Levity</li>
-      <li>Live</li>
-      <li>LLUVII</li>
-      <li>Lola Young</li>
-      <li>Lorde</li>
-      <li>LP</li>
-      <li>Lykke Li</li>
-      <li>Macy Todd</li>
-      <li>Marlon Funaki</li>
-      <li>Marzz</li>
-      <li>Max McNown</li>
-      <li>Molly Santana</li>
-      <li>Montclair</li>
-      <li>Nat Myers</li>
-      <li>Natasha Bedingfield</li>
-      <li>New Constellations</li>
-      <li>Night Tapes</li>
-      <li>Night Traveler</li>
-      <li>Noga Erez</li>
-      <li>Palace</li>
-      <li>Paloma Morphy</li>
-      <li>Parcels</li>
-      <li>Paris Paloma</li>
-      <li>Radio Free Alice</li>
-      <li>Rebecca Black</li>
-      <li>Rio Kosta</li>
-      <li>Rochelle Jordan</li>
-      <li>Rodrigo Y Gabriela</li>
-      <li>Rubio</li>
-      <li>Rüfüs Du Sol</li>
-      <li>Rum Jungle</li>
-      <li>Rusowsky</li>
-      <li>Ryan Beatty</li>
-      <li>S.G. Goodman</li>
-      <li>Saint Motel</li>
-      <li>Sasha Keable</li>
-      <li>Sienna Spiro</li>
-      <li>Silent Disco</li>
-      <li>Skrillex</li>
-      <li>Skye Newman</li>
-      <li>Snow Strippers</li>
-      <li>Sofi Tukker</li>
-      <li>Solomon Hicks</li>
-      <li>Solya</li>
-      <li>Stella Lefty</li>
-      <li>Steve Aoki</li>
-      <li>Suki Waterhouse</li>
-      <li>Sunday (1994)</li>
-      <li>Temper City</li>
-      <li>The 4411</li>
-      <li>The Chainsmokers</li>
-      <li>The Moriah Sisters</li>
-      <li>The War On Drugs</li>
-      <li>The xx</li>
-      <li>Thomas Day</li>
-      <li>Turnstile</li>
-      <li>Twenty One Pilots</li>
-      <li>Underscores</li>
-      <li>Villanelle</li>
-      <li>Vwillz</li>
-      <li>World Famous Pets</li>
-      <li>Young Miko</li>
-      <li>Yousuke Yukimatsu</li>
+      <li><span class="act">Aaron Rowe</span> <span class="slots">Weekend 1 · Sun, Oct 4 · BMI Stage · <a href="#set-w1-au15">14:00</a></span></li>
+      <li><span class="act">Almost Heaven</span> <span class="slots">Weekend 2 · Fri, Oct 9 · Tito&#39;s Stage · <a href="#set-w2-af30">12:45</a></span></li>
+      <li><span class="act">Amyl And The Sniffers</span> <span class="slots">Weekend 1 · Fri, Oct 2 · American Express · <a href="#set-w1-af47">16:30</a>; Weekend 2 · Fri, Oct 9 · American Express · <a href="#set-w2-af47">16:30</a></span></li>
+      <li><span class="act">Annie DiRusso</span> <span class="slots">Weekend 1 · Sat, Oct 3 · American Express · <a href="#set-w1-as39">13:15</a>; Weekend 2 · Sat, Oct 10 · American Express · <a href="#set-w2-as39">13:15</a></span></li>
+      <li><span class="act">Arcy Drive</span> <span class="slots">Weekend 1 · Sat, Oct 3 · Miller Lite Stage · <a href="#set-w1-as07">15:15</a>; Weekend 2 · Sat, Oct 10 · BEATBOX · <a href="#set-w2-as22">15:30</a></span></li>
+      <li><span class="act">Asleep At The Wheel</span> <span class="slots">Weekend 1 · Fri, Oct 2 · T-Mobile Stage · <a href="#set-w1-af01">13:00</a></span></li>
+      <li><span class="act">Audrey Hobert</span> <span class="slots">Weekend 1 · Sun, Oct 4 · T-Mobile Stage · <a href="#set-w1-au05">16:30</a>; Weekend 2 · Sun, Oct 11 · T-Mobile Stage · <a href="#set-w2-au05">16:30</a></span></li>
+      <li><span class="act">Bad Nerves</span> <span class="slots">Weekend 2 · Sun, Oct 11 · BEATBOX · <a href="#set-w2-au24">15:30</a></span></li>
+      <li><span class="act">Balu Brigada</span> <span class="slots">Weekend 1 · Sat, Oct 3 · T-Mobile Stage · <a href="#set-w1-as02">14:30</a>; Weekend 2 · Sat, Oct 10 · T-Mobile Stage · <a href="#set-w2-as02">14:30</a></span></li>
+      <li><span class="act">Bella Kay</span> <span class="slots">Weekend 2 · Fri, Oct 9 · T-Mobile Stage · <a href="#set-w2-af04">14:30</a></span></li>
+      <li><span class="act">Bleachers</span> <span class="slots">Weekend 1 · Sat, Oct 3 · T-Mobile Stage · <a href="#set-w1-as04">18:15</a>; Weekend 2 · Sat, Oct 10 · T-Mobile Stage · <a href="#set-w2-as04">18:15</a></span></li>
+      <li><span class="act">Blood Orange</span> <span class="slots">Weekend 1 · Sun, Oct 4 · BEATBOX · <a href="#set-w1-au26">19:30</a>; Weekend 2 · Sun, Oct 11 · BEATBOX · <a href="#set-w2-au26">19:30</a></span></li>
+      <li><span class="act">Bo Staloch</span> <span class="slots">Weekend 1 · Fri, Oct 2 · Tito&#39;s Stage · <a href="#set-w1-af33">15:15</a>; Weekend 2 · Fri, Oct 9 · Tito&#39;s Stage · <a href="#set-w2-af33">15:15</a></span></li>
+      <li><span class="act">Brandon Flowers</span> <span class="slots">Weekend 1 · Fri, Oct 2 · Miller Lite Stage · <a href="#set-w1-af13">17:15</a></span></li>
+      <li><span class="act">Brigitte Calls Me Baby</span> <span class="slots">Weekend 2 · Fri, Oct 9 · American Express · <a href="#set-w2-af44">13:15</a></span></li>
+      <li><span class="act">Britton</span> <span class="slots">Weekend 1 · Sun, Oct 4 · BEATBOX · <a href="#set-w1-au21">14:00</a></span></li>
+      <li><span class="act">BUNT.</span> <span class="slots">Weekend 1 · Fri, Oct 2 · Snapchat Stage · <a href="#set-w1-af41">17:30</a>; Weekend 2 · Fri, Oct 9 · Snapchat Stage · <a href="#set-w2-af41">17:30</a></span></li>
+      <li><span class="act">Calder Allen</span> <span class="slots">Weekend 1 · Sun, Oct 4 · Tito&#39;s Stage · <a href="#set-w1-au30">15:15</a>; Weekend 2 · Sun, Oct 11 · Tito&#39;s Stage · <a href="#set-w2-au30">15:15</a></span></li>
+      <li><span class="act">Cannons</span> <span class="slots">Weekend 1 · Sun, Oct 4 · Snapchat Stage · <a href="#set-w1-au36">17:30</a></span></li>
+      <li><span class="act">Cassandra Coleman</span> <span class="slots">Weekend 2 · Fri, Oct 9 · Tito&#39;s Stage · <a href="#set-w2-af32">14:00</a></span></li>
+      <li><span class="act">Charli XCX</span> <span class="slots">Weekend 1 · Fri, Oct 2 · American Express · <a href="#set-w1-af49">20:40</a>; Weekend 2 · Fri, Oct 9 · American Express · <a href="#set-w2-af49">20:40</a></span></li>
+      <li><span class="act">Charlotte Lawrence</span> <span class="slots">Weekend 2 · Sun, Oct 11 · T-Mobile Stage · <a href="#set-w2-au04">14:45</a></span></li>
+      <li><span class="act">Chelsea Jordan</span> <span class="slots">Weekend 2 · Sun, Oct 11 · BMI Stage · <a href="#set-w2-au16">14:00</a></span></li>
+      <li><span class="act">Chloe Qisha</span> <span class="slots">Weekend 2 · Sat, Oct 10 · BMI Stage · <a href="#set-w2-as18">17:15</a></span></li>
+      <li><span class="act">Claire Rosinkranz</span> <span class="slots">Weekend 1 · Sun, Oct 4 · Miller Lite Stage · <a href="#set-w1-au10">15:30</a>; Weekend 2 · Sun, Oct 11 · Miller Lite Stage · <a href="#set-w2-au10">15:30</a></span></li>
+      <li><span class="act">CMAT</span> <span class="slots">Weekend 1 · Fri, Oct 2 · American Express · <a href="#set-w1-af45">14:45</a></span></li>
+      <li><span class="act">Coleman Jennings</span> <span class="slots">Weekend 1 · Sat, Oct 3 · BMI Stage · <a href="#set-w1-as15">15:30</a></span></li>
+      <li><span class="act">Common People</span> <span class="slots">Weekend 2 · Sat, Oct 10 · BMI Stage · <a href="#set-w2-as16">15:30</a></span></li>
+      <li><span class="act">Cure For Paranoia</span> <span class="slots">Weekend 1 · Sat, Oct 3 · BEATBOX · <a href="#set-w1-as19">14:00</a></span></li>
+      <li><span class="act">Dallas Wax</span> <span class="slots">Weekend 2 · Fri, Oct 9 · Snapchat Stage · <a href="#set-w2-af39">14:00</a></span></li>
+      <li><span class="act">Damaris Bojor</span> <span class="slots">Weekend 2 · Sat, Oct 10 · BMI Stage · <a href="#set-w2-as14">13:45</a></span></li>
+      <li><span class="act">Dexter And The Moonrocks</span> <span class="slots">Weekend 1 · Sun, Oct 4 · American Express · <a href="#set-w1-au41">14:45</a></span></li>
+      <li><span class="act">DJ Cassandra</span> <span class="slots">Weekend 1 · Sat, Oct 3 · Tito&#39;s Stage · <a href="#set-w1-as28">14:00</a></span></li>
+      <li><span class="act">Don West</span> <span class="slots">Weekend 1 · Sat, Oct 3 · Tito&#39;s Stage · <a href="#set-w1-as30">15:15</a>; Weekend 2 · Sat, Oct 10 · Tito&#39;s Stage · <a href="#set-w2-as30">15:15</a></span></li>
+      <li><span class="act">Elijah Delgado</span> <span class="slots">Weekend 1 · Fri, Oct 2 · Snapchat Stage · <a href="#set-w1-af38">14:00</a></span></li>
+      <li><span class="act">Elle Coves</span> <span class="slots">Weekend 1 · Fri, Oct 2 · BMI Stage · <a href="#set-w1-af16">13:45</a></span></li>
+      <li><span class="act">Emma Ogier</span> <span class="slots">Weekend 1 · Sat, Oct 3 · BMI Stage · <a href="#set-w1-as13">13:45</a></span></li>
+      <li><span class="act">Ethan Regan</span> <span class="slots">Weekend 2 · Sun, Oct 11 · American Express · <a href="#set-w2-au42">14:45</a></span></li>
+      <li><span class="act">Fai Laci</span> <span class="slots">Weekend 1 · Sat, Oct 3 · BMI Stage · <a href="#set-w1-as17">17:15</a></span></li>
+      <li><span class="act">Fakemink</span> <span class="slots">Weekend 1 · Sat, Oct 3 · BEATBOX · <a href="#set-w1-as25">19:30</a>; Weekend 2 · Sat, Oct 10 · BEATBOX · <a href="#set-w2-as25">19:30</a></span></li>
+      <li><span class="act">Fancy Hagood</span> <span class="slots">Weekend 1 · Sun, Oct 4 · BMI Stage · <a href="#set-w1-au17">15:30</a></span></li>
+      <li><span class="act">Faouzia</span> <span class="slots">Weekend 1 · Fri, Oct 2 · Miller Lite Stage · <a href="#set-w1-af09">13:45</a>; Weekend 2 · Fri, Oct 9 · American Express · <a href="#set-w2-af46">14:45</a></span></li>
+      <li><span class="act">Fcukers</span> <span class="slots">Weekend 1 · Sun, Oct 4 · Tito&#39;s Stage · <a href="#set-w1-au32">18:30</a>; Weekend 2 · Sun, Oct 11 · Tito&#39;s Stage · <a href="#set-w2-au32">18:30</a></span></li>
+      <li><span class="act">Fightmaster</span> <span class="slots">Weekend 1 · Sat, Oct 3 · BMI Stage · <a href="#set-w1-as11">12:45</a></span></li>
+      <li><span class="act">Finn Wolfhard</span> <span class="slots">Weekend 1 · Sat, Oct 3 · American Express · <a href="#set-w1-as40">14:45</a>; Weekend 2 · Sat, Oct 10 · American Express · <a href="#set-w2-as40">14:45</a></span></li>
+      <li><span class="act">Gabriel Jacoby</span> <span class="slots">Weekend 2 · Sat, Oct 10 · Snapchat Stage · <a href="#set-w2-as35">14:00</a></span></li>
+      <li><span class="act">Geese</span> <span class="slots">Weekend 1 · Sun, Oct 4 · T-Mobile Stage · <a href="#set-w1-au06">18:30</a>; Weekend 2 · Sun, Oct 11 · T-Mobile Stage · <a href="#set-w2-au06">18:30</a></span></li>
+      <li><span class="act">Girlfriend</span> <span class="slots">Weekend 2 · Fri, Oct 9 · BMI Stage · <a href="#set-w2-af19">15:30</a></span></li>
+      <li><span class="act">Grace Ives</span> <span class="slots">Weekend 2 · Sun, Oct 11 · Snapchat Stage · <a href="#set-w2-au35">15:30</a></span></li>
+      <li><span class="act">Grocery Bag</span> <span class="slots">Weekend 1 · Fri, Oct 2 · BMI Stage · <a href="#set-w1-af20">17:15</a></span></li>
+      <li><span class="act">Happy Landing</span> <span class="slots">Weekend 2 · Fri, Oct 9 · T-Mobile Stage · <a href="#set-w2-af02">13:00</a></span></li>
+      <li><span class="act">Houndmouth</span> <span class="slots">Weekend 2 · Sun, Oct 11 · Snapchat Stage · <a href="#set-w2-au37">17:30</a></span></li>
+      <li><span class="act">Hunx And His Punx</span> <span class="slots">Weekend 1 · Fri, Oct 2 · American Express · <a href="#set-w1-af43">13:15</a></span></li>
+      <li><span class="act">Huston-Tillotson University Jazz Collective</span> <span class="slots">Weekend 2 · Sun, Oct 11 · Tito&#39;s Stage · <a href="#set-w2-au28">12:45</a></span></li>
+      <li><span class="act">It&#39;s Murph</span> <span class="slots">Weekend 1 · Sat, Oct 3 · Snapchat Stage · <a href="#set-w1-as37">17:30</a>; Weekend 2 · Sat, Oct 10 · Snapchat Stage · <a href="#set-w2-as37">17:30</a></span></li>
+      <li><span class="act">Izzy Escobar</span> <span class="slots">Weekend 1 · Fri, Oct 2 · BMI Stage · <a href="#set-w1-af18">15:30</a></span></li>
+      <li><span class="act">Jess Williamson</span> <span class="slots">Weekend 1 · Sun, Oct 4 · Miller Lite Stage · <a href="#set-w1-au08">14:00</a></span></li>
+      <li><span class="act">Jesse Welles</span> <span class="slots">Weekend 1 · Fri, Oct 2 · T-Mobile Stage · <a href="#set-w1-af05">16:15</a>; Weekend 2 · Fri, Oct 9 · T-Mobile Stage · <a href="#set-w2-af05">16:15</a></span></li>
+      <li><span class="act">Joe Jordan</span> <span class="slots">Weekend 2 · Fri, Oct 9 · BMI Stage · <a href="#set-w2-af21">17:15</a></span></li>
+      <li><span class="act">Joshua Jensen</span> <span class="slots">Weekend 2 · Sun, Oct 11 · Miller Lite Stage · <a href="#set-w2-au09">14:00</a></span></li>
+      <li><span class="act">Kevin Atwater</span> <span class="slots">Weekend 2 · Sun, Oct 11 · BEATBOX · <a href="#set-w2-au22">14:00</a></span></li>
+      <li><span class="act">Kings of Leon</span> <span class="slots">Weekend 2 · Fri, Oct 9 · T-Mobile Stage · <a href="#set-w2-af08">20:15</a></span></li>
+      <li><span class="act">Labrinth</span> <span class="slots">Weekend 1 · Fri, Oct 2 · American Express · <a href="#set-w1-af48">18:30</a>; Weekend 2 · Fri, Oct 9 · American Express · <a href="#set-w2-af48">18:30</a></span></li>
+      <li><span class="act">Laszewo</span> <span class="slots">Weekend 2 · Sat, Oct 10 · Miller Lite Stage · <a href="#set-w2-as08">15:15</a></span></li>
+      <li><span class="act">Lauren Sanderson</span> <span class="slots">Weekend 1 · Sun, Oct 4 · BMI Stage · <a href="#set-w1-au19">17:30</a></span></li>
+      <li><span class="act">Left Lucid</span> <span class="slots">Weekend 1 · Sat, Oct 3 · Tito&#39;s Stage · <a href="#set-w1-as26">12:45</a></span></li>
+      <li><span class="act">Leon Knight</span> <span class="slots">Weekend 2 · Fri, Oct 9 · BMI Stage · <a href="#set-w2-af17">13:45</a></span></li>
+      <li><span class="act">Leon Thomas</span> <span class="slots">Weekend 1 · Fri, Oct 2 · Miller Lite Stage · <a href="#set-w1-af15">19:15</a>; Weekend 2 · Fri, Oct 9 · Miller Lite Stage · <a href="#set-w2-af15">19:15</a></span></li>
+      <li><span class="act">Levity</span> <span class="slots">Weekend 1 · Sat, Oct 3 · Miller Lite Stage · <a href="#set-w1-as10">19:15</a>; Weekend 2 · Sat, Oct 10 · Miller Lite Stage · <a href="#set-w2-as10">19:15</a></span></li>
+      <li><span class="act">Live</span> <span class="slots">Weekend 2 · Fri, Oct 9 · BEATBOX · <a href="#set-w2-af28">19:30</a></span></li>
+      <li><span class="act">LLUVII</span> <span class="slots">Weekend 2 · Sat, Oct 10 · BEATBOX · <a href="#set-w2-as20">14:00</a></span></li>
+      <li><span class="act">Lola Young</span> <span class="slots">Weekend 1 · Sat, Oct 3 · American Express · <a href="#set-w1-as42">18:30</a>; Weekend 2 · Sat, Oct 10 · American Express · <a href="#set-w2-as42">18:30</a></span></li>
+      <li><span class="act">Lorde</span> <span class="slots">Weekend 1 · Sat, Oct 3 · T-Mobile Stage · <a href="#set-w1-as05">20:15</a>; Weekend 2 · Sat, Oct 10 · T-Mobile Stage · <a href="#set-w2-as05">20:15</a></span></li>
+      <li><span class="act">LP</span> <span class="slots">Weekend 1 · Fri, Oct 2 · Snapchat Stage · <a href="#set-w1-af40">15:30</a>; Weekend 2 · Fri, Oct 9 · Snapchat Stage · <a href="#set-w2-af40">15:30</a></span></li>
+      <li><span class="act">Lykke Li</span> <span class="slots">Weekend 1 · Sat, Oct 3 · Snapchat Stage · <a href="#set-w1-as38">19:30</a>; Weekend 2 · Sat, Oct 10 · Snapchat Stage · <a href="#set-w2-as38">19:30</a></span></li>
+      <li><span class="act">Macy Todd</span> <span class="slots">Weekend 2 · Sat, Oct 10 · BMI Stage · <a href="#set-w2-as12">12:45</a></span></li>
+      <li><span class="act">Marlon Funaki</span> <span class="slots">Weekend 1 · Fri, Oct 2 · BEATBOX · <a href="#set-w1-af24">15:30</a></span></li>
+      <li><span class="act">Marzz</span> <span class="slots">Weekend 2 · Sun, Oct 11 · BMI Stage · <a href="#set-w2-au14">12:45</a></span></li>
+      <li><span class="act">Max McNown</span> <span class="slots">Weekend 1 · Sun, Oct 4 · American Express · <a href="#set-w1-au43">16:30</a>; Weekend 2 · Sun, Oct 11 · American Express · <a href="#set-w2-au43">16:30</a></span></li>
+      <li><span class="act">Molly Santana</span> <span class="slots">Weekend 1 · Fri, Oct 2 · BEATBOX · <a href="#set-w1-af27">19:30</a></span></li>
+      <li><span class="act">Montclair</span> <span class="slots">Weekend 2 · Sat, Oct 10 · Tito&#39;s Stage · <a href="#set-w2-as27">12:45</a></span></li>
+      <li><span class="act">Nat Myers</span> <span class="slots">Weekend 2 · Sat, Oct 10 · Tito&#39;s Stage · <a href="#set-w2-as29">14:00</a></span></li>
+      <li><span class="act">Natasha Bedingfield</span> <span class="slots">Weekend 2 · Fri, Oct 9 · Tito&#39;s Stage · <a href="#set-w2-af35">16:30</a></span></li>
+      <li><span class="act">New Constellations</span> <span class="slots">Weekend 1 · Fri, Oct 2 · T-Mobile Stage · <a href="#set-w1-af03">14:30</a></span></li>
+      <li><span class="act">Night Tapes</span> <span class="slots">Weekend 1 · Sat, Oct 3 · T-Mobile Stage · <a href="#set-w1-as01">13:00</a>; Weekend 2 · Sat, Oct 10 · T-Mobile Stage · <a href="#set-w2-as01">13:00</a></span></li>
+      <li><span class="act">Night Traveler</span> <span class="slots">Weekend 1 · Fri, Oct 2 · BEATBOX · <a href="#set-w1-af22">14:00</a></span></li>
+      <li><span class="act">Noga Erez</span> <span class="slots">Weekend 1 · Sun, Oct 4 · BEATBOX · <a href="#set-w1-au25">17:30</a>; Weekend 2 · Sun, Oct 11 · BEATBOX · <a href="#set-w2-au25">17:30</a></span></li>
+      <li><span class="act">Palace</span> <span class="slots">Weekend 1 · Sat, Oct 3 · BEATBOX · <a href="#set-w1-as23">17:30</a></span></li>
+      <li><span class="act">Paloma Morphy</span> <span class="slots">Weekend 1 · Sun, Oct 4 · Tito&#39;s Stage · <a href="#set-w1-au29">14:00</a>; Weekend 2 · Sun, Oct 11 · Tito&#39;s Stage · <a href="#set-w2-au29">14:00</a></span></li>
+      <li><span class="act">Parcels</span> <span class="slots">Weekend 1 · Sun, Oct 4 · Miller Lite Stage · <a href="#set-w1-au12">19:30</a>; Weekend 2 · Sun, Oct 11 · Miller Lite Stage · <a href="#set-w2-au12">19:30</a></span></li>
+      <li><span class="act">Paris Paloma</span> <span class="slots">Weekend 1 · Fri, Oct 2 · Miller Lite Stage · <a href="#set-w1-af11">15:15</a>; Weekend 2 · Fri, Oct 9 · Miller Lite Stage · <a href="#set-w2-af14">17:15</a></span></li>
+      <li><span class="act">Radio Free Alice</span> <span class="slots">Weekend 2 · Fri, Oct 9 · Miller Lite Stage · <a href="#set-w2-af10">13:45</a></span></li>
+      <li><span class="act">Rebecca Black</span> <span class="slots">Weekend 1 · Fri, Oct 2 · Tito&#39;s Stage · <a href="#set-w1-af34">16:30</a></span></li>
+      <li><span class="act">Rio Kosta</span> <span class="slots">Weekend 1 · Sun, Oct 4 · Tito&#39;s Stage · <a href="#set-w1-au31">16:30</a>; Weekend 2 · Sun, Oct 11 · Tito&#39;s Stage · <a href="#set-w2-au31">16:30</a></span></li>
+      <li><span class="act">Rochelle Jordan</span> <span class="slots">Weekend 1 · Sat, Oct 3 · Snapchat Stage · <a href="#set-w1-as34">14:00</a></span></li>
+      <li><span class="act">Rodrigo Y Gabriela</span> <span class="slots">Weekend 1 · Sat, Oct 3 · Tito&#39;s Stage · <a href="#set-w1-as31">16:30</a>; Weekend 2 · Sat, Oct 10 · Tito&#39;s Stage · <a href="#set-w2-as31">16:30</a></span></li>
+      <li><span class="act">Rubio</span> <span class="slots">Weekend 1 · Sun, Oct 4 · BMI Stage · <a href="#set-w1-au13">12:45</a></span></li>
+      <li><span class="act">Rüfüs Du Sol</span> <span class="slots">Weekend 1 · Sat, Oct 3 · American Express · <a href="#set-w1-as43">20:30</a>; Weekend 2 · Sat, Oct 10 · American Express · <a href="#set-w2-as43">20:30</a></span></li>
+      <li><span class="act">Rum Jungle</span> <span class="slots">Weekend 2 · Sun, Oct 11 · American Express · <a href="#set-w2-au40">13:15</a></span></li>
+      <li><span class="act">Rusowsky</span> <span class="slots">Weekend 1 · Fri, Oct 2 · BEATBOX · <a href="#set-w1-af26">17:30</a>; Weekend 2 · Fri, Oct 9 · BEATBOX · <a href="#set-w2-af26">17:30</a></span></li>
+      <li><span class="act">Ryan Beatty</span> <span class="slots">Weekend 1 · Sat, Oct 3 · BEATBOX · <a href="#set-w1-as21">15:30</a>; Weekend 2 · Sat, Oct 10 · BEATBOX · <a href="#set-w2-as24">17:30</a></span></li>
+      <li><span class="act">S.G. Goodman</span> <span class="slots">Weekend 2 · Fri, Oct 9 · BEATBOX · <a href="#set-w2-af23">14:00</a></span></li>
+      <li><span class="act">Saint Motel</span> <span class="slots">Weekend 1 · Sun, Oct 4 · Miller Lite Stage · <a href="#set-w1-au11">17:30</a>; Weekend 2 · Sun, Oct 11 · Miller Lite Stage · <a href="#set-w2-au11">17:30</a></span></li>
+      <li><span class="act">Sasha Keable</span> <span class="slots">Weekend 2 · Sun, Oct 11 · BMI Stage · <a href="#set-w2-au20">18:00</a></span></li>
+      <li><span class="act">Sienna Spiro</span> <span class="slots">Weekend 2 · Fri, Oct 9 · Miller Lite Stage · <a href="#set-w2-af12">15:30</a></span></li>
+      <li><span class="act">Silent Disco</span> <span class="slots">Weekend 1 · Fri, Oct 2 · Tito&#39;s Stage · <a href="#set-w1-af37">20:00</a>; Weekend 2 · Fri, Oct 9 · Tito&#39;s Stage · <a href="#set-w2-af37">20:00</a>; Weekend 1 · Sat, Oct 3 · Tito&#39;s Stage · <a href="#set-w1-as33">20:00</a>; Weekend 2 · Sat, Oct 10 · Tito&#39;s Stage · <a href="#set-w2-as33">20:00</a>; Weekend 1 · Sun, Oct 4 · Tito&#39;s Stage · <a href="#set-w1-au33">20:00</a>; Weekend 2 · Sun, Oct 11 · Tito&#39;s Stage · <a href="#set-w2-au33">20:00</a></span></li>
+      <li><span class="act">Skrillex</span> <span class="slots">Weekend 1 · Fri, Oct 2 · T-Mobile Stage · <a href="#set-w1-af07">20:15</a></span></li>
+      <li><span class="act">Skye Newman</span> <span class="slots">Weekend 1 · Sat, Oct 3 · Snapchat Stage · <a href="#set-w1-as36">15:30</a>; Weekend 2 · Sat, Oct 10 · Snapchat Stage · <a href="#set-w2-as36">15:30</a></span></li>
+      <li><span class="act">Snow Strippers</span> <span class="slots">Weekend 1 · Sat, Oct 3 · Miller Lite Stage · <a href="#set-w1-as09">17:15</a>; Weekend 2 · Sat, Oct 10 · Miller Lite Stage · <a href="#set-w2-as09">17:15</a></span></li>
+      <li><span class="act">Sofi Tukker</span> <span class="slots">Weekend 1 · Sun, Oct 4 · American Express · <a href="#set-w1-au44">18:30</a>; Weekend 2 · Sun, Oct 11 · American Express · <a href="#set-w2-au44">18:30</a></span></li>
+      <li><span class="act">Solomon Hicks</span> <span class="slots">Weekend 1 · Fri, Oct 2 · Tito&#39;s Stage · <a href="#set-w1-af31">14:00</a></span></li>
+      <li><span class="act">Solya</span> <span class="slots">Weekend 1 · Sun, Oct 4 · T-Mobile Stage · <a href="#set-w1-au01">13:15</a></span></li>
+      <li><span class="act">Stella Lefty</span> <span class="slots">Weekend 1 · Sun, Oct 4 · T-Mobile Stage · <a href="#set-w1-au03">14:45</a></span></li>
+      <li><span class="act">Steve Aoki</span> <span class="slots">Weekend 1 · Fri, Oct 2 · Tito&#39;s Stage · <a href="#set-w1-af36">18:30</a>; Weekend 2 · Fri, Oct 9 · Tito&#39;s Stage · <a href="#set-w2-af36">18:30</a></span></li>
+      <li><span class="act">Suki Waterhouse</span> <span class="slots">Weekend 1 · Sat, Oct 3 · T-Mobile Stage · <a href="#set-w1-as03">16:15</a>; Weekend 2 · Sat, Oct 10 · T-Mobile Stage · <a href="#set-w2-as03">16:15</a></span></li>
+      <li><span class="act">Sunday (1994)</span> <span class="slots">Weekend 1 · Sun, Oct 4 · Snapchat Stage · <a href="#set-w1-au34">14:00</a>; Weekend 2 · Sun, Oct 11 · Snapchat Stage · <a href="#set-w2-au34">14:00</a></span></li>
+      <li><span class="act">Temper City</span> <span class="slots">Weekend 1 · Sat, Oct 3 · Miller Lite Stage · <a href="#set-w1-as06">13:45</a>; Weekend 2 · Sat, Oct 10 · Miller Lite Stage · <a href="#set-w2-as06">13:45</a></span></li>
+      <li><span class="act">The 4411</span> <span class="slots">Weekend 1 · Fri, Oct 2 · Tito&#39;s Stage · <a href="#set-w1-af29">12:45</a></span></li>
+      <li><span class="act">The Chainsmokers</span> <span class="slots">Weekend 1 · Fri, Oct 2 · Snapchat Stage · <a href="#set-w1-af42">19:30</a>; Weekend 2 · Fri, Oct 9 · Snapchat Stage · <a href="#set-w2-af42">19:30</a></span></li>
+      <li><span class="act">The Moriah Sisters</span> <span class="slots">Weekend 1 · Sun, Oct 4 · Tito&#39;s Stage · <a href="#set-w1-au27">12:45</a></span></li>
+      <li><span class="act">The War On Drugs</span> <span class="slots">Weekend 1 · Sun, Oct 4 · Snapchat Stage · <a href="#set-w1-au38">19:30</a>; Weekend 2 · Sun, Oct 11 · Snapchat Stage · <a href="#set-w2-au38">19:30</a></span></li>
+      <li><span class="act">The xx</span> <span class="slots">Weekend 1 · Sun, Oct 4 · T-Mobile Stage · <a href="#set-w1-au07">20:30</a>; Weekend 2 · Sun, Oct 11 · T-Mobile Stage · <a href="#set-w2-au07">20:30</a></span></li>
+      <li><span class="act">Thomas Day</span> <span class="slots">Weekend 2 · Sun, Oct 11 · T-Mobile Stage · <a href="#set-w2-au02">13:15</a></span></li>
+      <li><span class="act">Turnstile</span> <span class="slots">Weekend 1 · Fri, Oct 2 · T-Mobile Stage · <a href="#set-w1-af06">18:15</a>; Weekend 2 · Fri, Oct 9 · T-Mobile Stage · <a href="#set-w2-af06">18:15</a></span></li>
+      <li><span class="act">Twenty One Pilots</span> <span class="slots">Weekend 1 · Sun, Oct 4 · American Express · <a href="#set-w1-au45">20:30</a>; Weekend 2 · Sun, Oct 11 · American Express · <a href="#set-w2-au45">20:30</a></span></li>
+      <li><span class="act">Underscores</span> <span class="slots">Weekend 1 · Sun, Oct 4 · BEATBOX · <a href="#set-w1-au23">15:30</a></span></li>
+      <li><span class="act">Villanelle</span> <span class="slots">Weekend 1 · Sun, Oct 4 · American Express · <a href="#set-w1-au39">13:15</a></span></li>
+      <li><span class="act">Vwillz</span> <span class="slots">Weekend 2 · Sun, Oct 11 · BMI Stage · <a href="#set-w2-au18">15:30</a></span></li>
+      <li><span class="act">World Famous Pets</span> <span class="slots">Weekend 2 · Fri, Oct 9 · BEATBOX · <a href="#set-w2-af25">15:30</a></span></li>
+      <li><span class="act">Young Miko</span> <span class="slots">Weekend 1 · Sat, Oct 3 · American Express · <a href="#set-w1-as41">16:30</a>; Weekend 2 · Sat, Oct 10 · American Express · <a href="#set-w2-as41">16:30</a></span></li>
+      <li><span class="act">Yousuke Yukimatsu</span> <span class="slots">Weekend 1 · Sat, Oct 3 · Tito&#39;s Stage · <a href="#set-w1-as32">18:30</a>; Weekend 2 · Sat, Oct 10 · Tito&#39;s Stage · <a href="#set-w2-as32">18:30</a></span></li>
     </ul>
+  </section>
 
+  <section aria-labelledby="stages-h">
+    <h2 id="stages-h">Austin City Limits 2026 stages</h2>
+    <p>Plursky has 7 stages for Austin City Limits 2026 at Zilker Park, each one listed below with its sets per day.</p>
+    <ul class="stagelist">
+      <li><strong>American Express</strong> · East side · headliners<br><span class="counts">Fri, Oct 2: 5 · Sat, Oct 3: 5 · Sun, Oct 4: 5 · Fri, Oct 9: 5 · Sat, Oct 10: 5 · Sun, Oct 11: 5</span></li>
+      <li><strong>Snapchat Stage</strong> · Center · by The Grove<br><span class="counts">Fri, Oct 2: 4 · Sat, Oct 3: 4 · Sun, Oct 4: 3 · Fri, Oct 9: 4 · Sat, Oct 10: 4 · Sun, Oct 11: 4</span></li>
+      <li><strong>Tito&#39;s Stage</strong> · North-east · mid-large stage<br><span class="counts">Fri, Oct 2: 6 · Sat, Oct 3: 6 · Sun, Oct 4: 6 · Fri, Oct 9: 6 · Sat, Oct 10: 6 · Sun, Oct 11: 6</span></li>
+      <li><strong>Miller Lite Stage</strong> · North · by Lady Bird Lake<br><span class="counts">Fri, Oct 2: 4 · Sat, Oct 3: 4 · Sun, Oct 4: 4 · Fri, Oct 9: 4 · Sat, Oct 10: 4 · Sun, Oct 11: 4</span></li>
+      <li><strong>T-Mobile Stage</strong> · West side · co-headliners<br><span class="counts">Fri, Oct 2: 5 · Sat, Oct 3: 5 · Sun, Oct 4: 5 · Fri, Oct 9: 5 · Sat, Oct 10: 5 · Sun, Oct 11: 5</span></li>
+      <li><strong>BMI Stage</strong> · Center-left · songwriter stage<br><span class="counts">Fri, Oct 2: 3 · Sat, Oct 3: 4 · Sun, Oct 4: 4 · Fri, Oct 9: 3 · Sat, Oct 10: 4 · Sun, Oct 11: 4</span></li>
+      <li><strong>BEATBOX</strong> · South-west · electronic stage<br><span class="counts">Fri, Oct 2: 4 · Sat, Oct 3: 4 · Sun, Oct 4: 4 · Fri, Oct 9: 4 · Sat, Oct 10: 4 · Sun, Oct 11: 4</span></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="plan-h">
+    <h2 id="plan-h">Plan your day at Austin City Limits 2026</h2>
+    <p>Amenities Plursky lists for Austin City Limits 2026: Water (8) · Restrooms (7) · Medical (4) · Food (2).</p>
+  </section>
+
+  <section aria-labelledby="past-h">
+    <h2 id="past-h">Past editions of ACL</h2>
+    <ul>
+      <li><a href="/?tab=past">Austin City Limits 2025</a> — 2025, 135 artists, 199 sets</li>
+    </ul>
+    <p class="note">Each link opens Past Festivals in Plursky.</p>
+  </section>
+
+  <section aria-labelledby="app-h">
+    <h2 id="app-h">Get the app</h2>
+    <p class="ctas">
+      <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
+      <a class="cta-secondary" href="/?f=acl-2026">Open in your browser</a>
+    </p>
+    <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.</p>
   </section>
 
   <nav class="other" aria-labelledby="other-h">
     <h2 id="other-h">Other festivals on Plursky</h2>
     <ul>
-      <li><a href="/f/edc-lv-2026/">EDC Las Vegas 2026</a> — May 15–17, 2026</li>
-      <li><a href="/f/electric-forest-2027/">Electric Forest 2027</a> — Dates TBA</li>
-      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
-      <li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a> — Nov 6–8, 2026</li>
-      <li><a href="/f/tomorrowland-2027/">Tomorrowland 2027</a> — Dates TBA</li>
-      <li><a href="/f/coachella-2027/">Coachella 2027</a> — Apr 9–18, 2027</li>
-      <li><a href="/f/edc-mexico-2027/">EDC Mexico 2027</a> — Feb 19–21, 2027</li>
-      <li><a href="/f/beyond-wonderland-socal-2027/">Beyond Wonderland SoCal 2027</a> — Mar 26–27, 2027</li>
-      <li><a href="/f/beyond-wonderland-gorge-2027/">Beyond Wonderland at The Gorge 2027</a> — Jun 26–27, 2027</li>
-      <li><a href="/f/ultra-miami-2026/">Ultra Miami 2026</a> — Mar 27–29, 2026</li>
-      <li><a href="/f/governors-ball-2026/">Governors Ball 2026</a> — Jun 5–7, 2026</li>
-      <li><a href="/f/summerfest-2026/">Summerfest 2026</a> — Jun 18–20, Jun 25–27 &amp; Jul 2–4, 2026</li>
-      <li><a href="/f/lollapalooza-2026/">Lollapalooza 2026</a> — Jul 30 – Aug 2, 2026</li>
-      <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
-      <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
-      <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
       <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
       <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
-      <li><a href="/f/hard-summer-2026/">HARD Summer 2026</a> — Aug 1–2, 2026</li>
+      <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
+      <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
+      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
       <li><a href="/f/arc-2026/">ARC Music Festival 2026</a> — Sep 4–7, 2026</li>
       <li><a href="/f/escape-halloween-2026/">Escape Halloween 2026</a> — Oct 30–31, 2026</li>
-      <li><a href="/f/dreamstate-socal-2026/">Dreamstate SoCal 2026</a> — Nov 20–21, 2026</li>
-      <li><a href="/f/decadence-colorado-2026/">Decadence Colorado 2026</a> — Dec 30–31, 2026</li>
-      <li><a href="/f/countdown-nye-2026/">Countdown NYE 2026</a> — Dec 31, 2026 – Jan 1, 2027</li>
+      <li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a> — Nov 6–8, 2026</li>
     </ul>
   </nav>
+
+  <section class="sources" aria-labelledby="sources-h">
+    <h2 id="sources-h">Sources</h2>
+    <ul>
+      <li>Set times: <a href="https://aclfestival.com/schedule" rel="noopener">https://aclfestival.com/schedule</a> (official, checked 2026-09-04)</li>
+      <li>Map: <a href="https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map" rel="noopener">https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map</a> (official, checked 2026-09-24)</li>
+    </ul>
+    <p class="note">Last updated <time class="updated" datetime="2026-09-24">2026-09-24</time>.</p>
+  </section>
 
   <footer>
     <a href="/">Plursky</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a>

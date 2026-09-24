@@ -3,56 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portola 2026 — Set Times, Lineup &amp; Map · Plursky</title>
+<title>Portola 2026 — Set Times &amp; Lineup · Plursky</title>
 <meta name="description" content="Portola 2026 set times and lineup — 63 artists at Pier 80, Sep 26–27, 2026. Full schedule by day and stage. Plan your weekend with Plursky.">
 <link rel="canonical" href="https://plursky.com/f/portola-2026/">
 <meta name="apple-itunes-app" content="app-id=6768888507">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Plursky">
-<meta property="og:title" content="Portola 2026 — Set Times, Lineup &amp; Map">
+<meta property="og:title" content="Portola 2026 — Set Times &amp; Lineup">
 <meta property="og:description" content="Portola 2026 set times and lineup — 63 artists at Pier 80, Sep 26–27, 2026. Full schedule by day and stage. Plan your weekend with Plursky.">
 <meta property="og:url" content="https://plursky.com/f/portola-2026/">
 <meta property="og:image" content="https://plursky.com/og-card.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Portola 2026 — Set Times, Lineup &amp; Map">
+<meta name="twitter:title" content="Portola 2026 — Set Times &amp; Lineup">
 <meta name="twitter:description" content="Portola 2026 set times and lineup — 63 artists at Pier 80, Sep 26–27, 2026. Full schedule by day and stage. Plan your weekend with Plursky.">
 <meta name="twitter:image" content="https://plursky.com/og-card.png">
 <link rel="icon" type="image/png" href="/apple-touch-icon.png">
 <style>
-  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; }
+  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; --panel:#1c1916; }
   * { box-sizing:border-box; }
   body { margin:0; padding:32px 20px 64px; background:var(--bg); color:var(--ink);
          font-family:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.6; }
   main { max-width:760px; margin:0 auto; }
-  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; }
+  nav.crumbs { font-size:13px; color:var(--muted); margin:0 0 16px; }
+  nav.crumbs a { color:var(--muted); }
+  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; text-wrap:balance; }
   h2 { font-size:18px; margin:32px 0 8px; }
   .meta { color:var(--muted); margin:0 0 20px; }
+  .chip { display:inline-block; margin-right:8px; padding:1px 10px; border-radius:999px; border:1px solid var(--line);
+          color:var(--ink); font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
+  .chip-live, .chip-soon { border-color:var(--ember); color:var(--ember); }
   .note { color:var(--muted); font-size:14px; }
+  figure { margin:16px 0; }
+  figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:12px; background:var(--panel); }
+  .platebox { position:relative; max-width:520px; }
+  .pin { position:absolute; transform:translate(-50%,-50%); width:20px; height:20px; border-radius:50%;
+         display:flex; align-items:center; justify-content:center; background:rgba(18,16,14,0.82);
+         border:1px solid var(--ink); color:var(--ink); font-size:11px; font-weight:700; pointer-events:none; }
+  ol.platekey { margin:8px 0 0; padding-left:22px; font-size:13px; columns:2; column-gap:20px; }
+  figcaption { color:var(--muted); font-size:13px; margin-top:6px; }
   .cta { display:inline-block; margin:20px 0 8px; padding:12px 22px; border-radius:12px;
          background:linear-gradient(135deg,#6D28D9,var(--ember)); color:#fff; text-decoration:none; font-weight:700; }
-  ul.lineup { list-style:none; padding:0; margin:12px 0 0;
-              display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:2px 16px; }
-  ul.lineup li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.lineup { list-style:none; padding:0; margin:12px 0 0; }
+  ul.lineup li { padding:5px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; flex-wrap:wrap; gap:2px 12px; }
+  ul.lineup .act { font-weight:600; }
+  ul.lineup .slots { color:var(--muted); overflow-wrap:anywhere; }
   h3 { font-size:16px; margin:24px 0 4px; }
   h4 { font-size:13px; margin:16px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
+  h5 { font-size:12px; margin:12px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
   ul.sets { list-style:none; padding:0; margin:4px 0 0; }
-  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; }
+  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; scroll-margin-top:16px; }
+  ul.sets li:target { background:rgba(232,93,46,0.14); }
   ul.sets li time { color:var(--muted); font-variant-numeric:tabular-nums; min-width:96px; flex:none; }
   ul.stagelist { list-style:none; padding:0; margin:8px 0 0; }
   ul.stagelist li { padding:6px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  ul.stagelist .counts { color:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; }
   dl.answers { margin:12px 0 0; }
   dl.answers dt { font-weight:700; font-size:15px; margin:16px 0 4px; }
   dl.answers dd { margin:0; color:var(--muted); font-size:14px; }
-  a.cta-secondary { margin-left:14px; font-weight:600; }
+  p.ctas { display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; margin:20px 0 8px; }
+  p.ctas .cta { margin:0; }
+  a.cta-secondary { font-weight:600; white-space:nowrap; }
   nav.other { margin-top:40px; }
   nav.other a { color:var(--ink); }
+  section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
 </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "MusicFestival",
+  "@type": "MusicEvent",
   "name": "Portola 2026",
   "url": "https://plursky.com/f/portola-2026/",
   "startDate": "2026-09-26",
@@ -370,19 +390,39 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Plursky",
+      "item": "https://plursky.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Festivals",
+      "item": "https://plursky.com/#festivals"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Portola 2026",
+      "item": "https://plursky.com/f/portola-2026/"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <main>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Plursky</a> › <a href="/#festivals">Festivals</a> › <span aria-current="page">Portola 2026</span></nav>
   <h1>Portola 2026</h1>
-  <p class="meta">Sep 26–27, 2026 · Pier 80 · San Francisco, CA</p>
+  <p class="meta"><span class="chip chip-soon">This weekend</span>Sep 26–27, 2026 · Pier 80 · San Francisco, CA</p>
   <p>Two days of dance music on the San Francisco waterfront</p>
-
-  <p>
-    <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
-    <a class="cta-secondary" href="/?f=portola-2026">Open in your browser</a>
-  </p>
-  <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, meet your crew, and turn the weekend into a shareable recap.</p>
-
 
   <section aria-labelledby="answers-h">
     <h2 id="answers-h">Portola 2026 — quick answers</h2>
@@ -398,116 +438,105 @@
     </dl>
   </section>
 
+
   <section aria-labelledby="schedule-h">
     <h2 id="schedule-h">Portola 2026 schedule &amp; set times</h2>
     <p class="note">Official set times, confirmed 2026-09-06. All times local (PDT).</p>
     <h3>Saturday, September 26</h3>
     <h4>Pier Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-26T13:30">13:30 – 14:30</time> <span>AIRWOLF PARADISE</span></li>
-      <li><time datetime="2026-09-26T14:40">14:40 – 15:30</time> <span>GELLI HAHA</span></li>
-      <li><time datetime="2026-09-26T15:40">15:40 – 16:30</time> <span>OSKAR MED K</span></li>
-      <li><time datetime="2026-09-26T16:40">16:40 – 17:30</time> <span>FCUKERS</span></li>
-      <li><time datetime="2026-09-26T17:40">17:40 – 18:30</time> <span>TOVE LO</span></li>
-      <li><time datetime="2026-09-26T19:10">19:10 – 20:10</time> <span>ROBYN</span></li>
-      <li><time datetime="2026-09-26T21:00">21:00 – 22:15</time> <span>DOG BLOOD (SKRILLEX + BOYS NOIZE)</span></li>
+      <li id="set-pt1-airwolf-paradise"><time datetime="2026-09-26T13:30">13:30 – 14:30</time> <span>AIRWOLF PARADISE</span></li>
+      <li id="set-pt1-gelli-haha"><time datetime="2026-09-26T14:40">14:40 – 15:30</time> <span>GELLI HAHA</span></li>
+      <li id="set-pt1-oskar-med-k"><time datetime="2026-09-26T15:40">15:40 – 16:30</time> <span>OSKAR MED K</span></li>
+      <li id="set-pt1-fcukers"><time datetime="2026-09-26T16:40">16:40 – 17:30</time> <span>FCUKERS</span></li>
+      <li id="set-pt1-tove-lo"><time datetime="2026-09-26T17:40">17:40 – 18:30</time> <span>TOVE LO</span></li>
+      <li id="set-pt1-robyn"><time datetime="2026-09-26T19:10">19:10 – 20:10</time> <span>ROBYN</span></li>
+      <li id="set-pt1-dog-blood-skrillex-boys-noize"><time datetime="2026-09-26T21:00">21:00 – 22:15</time> <span>DOG BLOOD (SKRILLEX + BOYS NOIZE)</span></li>
     </ul>
     <h4>Warehouse</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-26T13:30">13:30 – 14:45</time> <span>SAM ALFRED</span></li>
-      <li><time datetime="2026-09-26T14:45">14:45 – 15:45</time> <span>RANGER TRUCCO B2B ALISHA</span></li>
-      <li><time datetime="2026-09-26T15:45">15:45 – 16:45</time> <span>CHLOÉ CAILLET</span></li>
-      <li><time datetime="2026-09-26T16:45">16:45 – 18:00</time> <span>GROOVE ARMADA</span></li>
-      <li><time datetime="2026-09-26T18:00">18:00 – 19:15</time> <span>MAX STYLER</span></li>
-      <li><time datetime="2026-09-26T19:15">19:15 – 20:30</time> <span>KETTAMA</span></li>
-      <li><time datetime="2026-09-26T20:30">20:30 – 21:45</time> <span>BELTRAN B2B BEN STERLING</span></li>
-      <li><time datetime="2026-09-26T21:45">21:45 – 23:00</time> <span>PROSPA</span></li>
+      <li id="set-pt1-sam-alfred"><time datetime="2026-09-26T13:30">13:30 – 14:45</time> <span>SAM ALFRED</span></li>
+      <li id="set-pt1-ranger-trucco-b2b-alisha"><time datetime="2026-09-26T14:45">14:45 – 15:45</time> <span>RANGER TRUCCO B2B ALISHA</span></li>
+      <li id="set-pt1-chloe-caillet"><time datetime="2026-09-26T15:45">15:45 – 16:45</time> <span>CHLOÉ CAILLET</span></li>
+      <li id="set-pt1-groove-armada"><time datetime="2026-09-26T16:45">16:45 – 18:00</time> <span>GROOVE ARMADA</span></li>
+      <li id="set-pt1-max-styler"><time datetime="2026-09-26T18:00">18:00 – 19:15</time> <span>MAX STYLER</span></li>
+      <li id="set-pt1-kettama"><time datetime="2026-09-26T19:15">19:15 – 20:30</time> <span>KETTAMA</span></li>
+      <li id="set-pt1-beltran-b2b-ben-sterling"><time datetime="2026-09-26T20:30">20:30 – 21:45</time> <span>BELTRAN B2B BEN STERLING</span></li>
+      <li id="set-pt1-prospa"><time datetime="2026-09-26T21:45">21:45 – 23:00</time> <span>PROSPA</span></li>
     </ul>
     <h4>Crane Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-26T13:30">13:30 – 15:00</time> <span>ERIKA B2B SF COWBOY</span></li>
-      <li><time datetime="2026-09-26T15:20">15:20 – 16:10</time> <span>TRICKY</span></li>
-      <li><time datetime="2026-09-26T16:25">16:25 – 17:15</time> <span>NIMINO</span></li>
-      <li><time datetime="2026-09-26T17:30">17:30 – 18:30</time> <span>DJ SHADOW CELEBRATES 30 YEARS OF ENDTRODUCING.....</span></li>
-      <li><time datetime="2026-09-26T18:45">18:45 – 19:35</time> <span>SKEPTA</span></li>
-      <li><time datetime="2026-09-26T19:55">19:55 – 21:25</time> <span>FATBOY SLIM</span></li>
-      <li><time datetime="2026-09-26T21:55">21:55 – 22:55</time> <span>SOULWAX</span></li>
+      <li id="set-pt1-erika-b2b-sf-cowboy"><time datetime="2026-09-26T13:30">13:30 – 15:00</time> <span>ERIKA B2B SF COWBOY</span></li>
+      <li id="set-pt1-tricky"><time datetime="2026-09-26T15:20">15:20 – 16:10</time> <span>TRICKY</span></li>
+      <li id="set-pt1-nimino"><time datetime="2026-09-26T16:25">16:25 – 17:15</time> <span>NIMINO</span></li>
+      <li id="set-pt1-dj-shadow-celebrates-30-years-of-e"><time datetime="2026-09-26T17:30">17:30 – 18:30</time> <span>DJ SHADOW CELEBRATES 30 YEARS OF ENDTRODUCING.....</span></li>
+      <li id="set-pt1-skepta"><time datetime="2026-09-26T18:45">18:45 – 19:35</time> <span>SKEPTA</span></li>
+      <li id="set-pt1-fatboy-slim"><time datetime="2026-09-26T19:55">19:55 – 21:25</time> <span>FATBOY SLIM</span></li>
+      <li id="set-pt1-soulwax"><time datetime="2026-09-26T21:55">21:55 – 22:55</time> <span>SOULWAX</span></li>
     </ul>
     <h4>Ship Tent</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-26T13:40">13:40 – 14:40</time> <span>FELLY FELL</span></li>
-      <li><time datetime="2026-09-26T14:50">14:50 – 15:30</time> <span>MGNA CRRRTA</span></li>
-      <li><time datetime="2026-09-26T15:40">15:40 – 16:20</time> <span>SIX SEX</span></li>
-      <li><time datetime="2026-09-26T16:40">16:40 – 17:30</time> <span>MIKE D 5D</span></li>
-      <li><time datetime="2026-09-26T17:40">17:40 – 18:40</time> <span>JYOTY</span></li>
-      <li><time datetime="2026-09-26T18:50">18:50 – 19:40</time> <span>BASSVICTIM</span></li>
-      <li><time datetime="2026-09-26T19:50">19:50 – 20:40</time> <span>JIGITZ</span></li>
-      <li><time datetime="2026-09-26T20:55">20:55 – 21:35</time> <span>NATE SIB</span></li>
-      <li><time datetime="2026-09-26T21:50">21:50 – 22:30</time> <span>MELANIE C (DJ SET)</span></li>
+      <li id="set-pt1-felly-fell"><time datetime="2026-09-26T13:40">13:40 – 14:40</time> <span>FELLY FELL</span></li>
+      <li id="set-pt1-mgna-crrrta"><time datetime="2026-09-26T14:50">14:50 – 15:30</time> <span>MGNA CRRRTA</span></li>
+      <li id="set-pt1-six-sex"><time datetime="2026-09-26T15:40">15:40 – 16:20</time> <span>SIX SEX</span></li>
+      <li id="set-pt1-mike-d-5d"><time datetime="2026-09-26T16:40">16:40 – 17:30</time> <span>MIKE D 5D</span></li>
+      <li id="set-pt1-jyoty"><time datetime="2026-09-26T17:40">17:40 – 18:40</time> <span>JYOTY</span></li>
+      <li id="set-pt1-bassvictim"><time datetime="2026-09-26T18:50">18:50 – 19:40</time> <span>BASSVICTIM</span></li>
+      <li id="set-pt1-jigitz"><time datetime="2026-09-26T19:50">19:50 – 20:40</time> <span>JIGITZ</span></li>
+      <li id="set-pt1-nate-sib"><time datetime="2026-09-26T20:55">20:55 – 21:35</time> <span>NATE SIB</span></li>
+      <li id="set-pt1-melanie-c-dj-set"><time datetime="2026-09-26T21:50">21:50 – 22:30</time> <span>MELANIE C (DJ SET)</span></li>
     </ul>
     <h4>Despacio</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-26T14:45">14:45 – 21:45</time> <span>DESPACIO</span></li>
+      <li id="set-pt1-despacio"><time datetime="2026-09-26T14:45">14:45 – 21:45</time> <span>DESPACIO</span></li>
     </ul>
     <h3>Sunday, September 27</h3>
     <h4>Pier Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-27T13:30">13:30 – 14:20</time> <span>CLEARCAST</span></li>
-      <li><time datetime="2026-09-27T14:30">14:30 – 15:20</time> <span>MIND ENTERPRISES</span></li>
-      <li><time datetime="2026-09-27T15:30">15:30 – 16:20</time> <span>CHANNEL TRES</span></li>
-      <li><time datetime="2026-09-27T16:30">16:30 – 17:25</time> <span>SG LEWIS (LIVE)</span></li>
-      <li><time datetime="2026-09-27T17:35">17:35 – 18:35</time> <span>MOCHAKK</span></li>
-      <li><time datetime="2026-09-27T19:05">19:05 – 20:05</time> <span>ZARA LARSSON</span></li>
-      <li><time datetime="2026-09-27T20:45">20:45 – 22:00</time> <span>SWEDISH HOUSE MAFIA</span></li>
+      <li id="set-pt2-clearcast"><time datetime="2026-09-27T13:30">13:30 – 14:20</time> <span>CLEARCAST</span></li>
+      <li id="set-pt2-mind-enterprises"><time datetime="2026-09-27T14:30">14:30 – 15:20</time> <span>MIND ENTERPRISES</span></li>
+      <li id="set-pt2-channel-tres"><time datetime="2026-09-27T15:30">15:30 – 16:20</time> <span>CHANNEL TRES</span></li>
+      <li id="set-pt2-sg-lewis-live"><time datetime="2026-09-27T16:30">16:30 – 17:25</time> <span>SG LEWIS (LIVE)</span></li>
+      <li id="set-pt2-mochakk"><time datetime="2026-09-27T17:35">17:35 – 18:35</time> <span>MOCHAKK</span></li>
+      <li id="set-pt2-zara-larsson"><time datetime="2026-09-27T19:05">19:05 – 20:05</time> <span>ZARA LARSSON</span></li>
+      <li id="set-pt2-swedish-house-mafia"><time datetime="2026-09-27T20:45">20:45 – 22:00</time> <span>SWEDISH HOUSE MAFIA</span></li>
     </ul>
     <h4>Warehouse</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-27T13:30">13:30 – 14:30</time> <span>DEAN TURNLEY</span></li>
-      <li><time datetime="2026-09-27T14:30">14:30 – 15:30</time> <span>SILVA BUMPA</span></li>
-      <li><time datetime="2026-09-27T15:30">15:30 – 16:30</time> <span>BRUNELLO</span></li>
-      <li><time datetime="2026-09-27T16:30">16:30 – 17:30</time> <span>VTSS</span></li>
-      <li><time datetime="2026-09-27T17:30">17:30 – 18:45</time> <span>MARLON HOFFSTADT</span></li>
-      <li><time datetime="2026-09-27T18:45">18:45 – 20:15</time> <span>TIËSTO</span></li>
-      <li><time datetime="2026-09-27T20:20">20:20 – 21:20</time> <span>OVERMONO</span></li>
-      <li><time datetime="2026-09-27T21:30">21:30 – 23:00</time> <span>FOUR TET</span></li>
+      <li id="set-pt2-dean-turnley"><time datetime="2026-09-27T13:30">13:30 – 14:30</time> <span>DEAN TURNLEY</span></li>
+      <li id="set-pt2-silva-bumpa"><time datetime="2026-09-27T14:30">14:30 – 15:30</time> <span>SILVA BUMPA</span></li>
+      <li id="set-pt2-brunello"><time datetime="2026-09-27T15:30">15:30 – 16:30</time> <span>BRUNELLO</span></li>
+      <li id="set-pt2-vtss"><time datetime="2026-09-27T16:30">16:30 – 17:30</time> <span>VTSS</span></li>
+      <li id="set-pt2-marlon-hoffstadt"><time datetime="2026-09-27T17:30">17:30 – 18:45</time> <span>MARLON HOFFSTADT</span></li>
+      <li id="set-pt2-tiesto"><time datetime="2026-09-27T18:45">18:45 – 20:15</time> <span>TIËSTO</span></li>
+      <li id="set-pt2-overmono"><time datetime="2026-09-27T20:20">20:20 – 21:20</time> <span>OVERMONO</span></li>
+      <li id="set-pt2-four-tet"><time datetime="2026-09-27T21:30">21:30 – 23:00</time> <span>FOUR TET</span></li>
     </ul>
     <h4>Crane Stage</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-27T13:30">13:30 – 14:30</time> <span>TORREN FOOT</span></li>
-      <li><time datetime="2026-09-27T14:30">14:30 – 15:30</time> <span>AZZECCA</span></li>
-      <li><time datetime="2026-09-27T15:50">15:50 – 16:30</time> <span>ADÉLA</span></li>
-      <li><time datetime="2026-09-27T16:45">16:45 – 17:35</time> <span>ZULAN</span></li>
-      <li><time datetime="2026-09-27T17:50">17:50 – 18:40</time> <span>UNDERSCORES</span></li>
-      <li><time datetime="2026-09-27T19:00">19:00 – 19:50</time> <span>NINAJIRACHI</span></li>
-      <li><time datetime="2026-09-27T20:10">20:10 – 21:00</time> <span>HORSEGIIRL</span></li>
-      <li><time datetime="2026-09-27T21:30">21:30 – 22:45</time> <span>PARCELS</span></li>
+      <li id="set-pt2-torren-foot"><time datetime="2026-09-27T13:30">13:30 – 14:30</time> <span>TORREN FOOT</span></li>
+      <li id="set-pt2-azzecca"><time datetime="2026-09-27T14:30">14:30 – 15:30</time> <span>AZZECCA</span></li>
+      <li id="set-pt2-adela"><time datetime="2026-09-27T15:50">15:50 – 16:30</time> <span>ADÉLA</span></li>
+      <li id="set-pt2-zulan"><time datetime="2026-09-27T16:45">16:45 – 17:35</time> <span>ZULAN</span></li>
+      <li id="set-pt2-underscores"><time datetime="2026-09-27T17:50">17:50 – 18:40</time> <span>UNDERSCORES</span></li>
+      <li id="set-pt2-ninajirachi"><time datetime="2026-09-27T19:00">19:00 – 19:50</time> <span>NINAJIRACHI</span></li>
+      <li id="set-pt2-horsegiirl"><time datetime="2026-09-27T20:10">20:10 – 21:00</time> <span>HORSEGIIRL</span></li>
+      <li id="set-pt2-parcels"><time datetime="2026-09-27T21:30">21:30 – 22:45</time> <span>PARCELS</span></li>
     </ul>
     <h4>Ship Tent</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-27T13:40">13:40 – 14:55</time> <span>KAYTREE</span></li>
-      <li><time datetime="2026-09-27T14:55">14:55 – 16:10</time> <span>RIRIA</span></li>
-      <li><time datetime="2026-09-27T16:20">16:20 – 17:00</time> <span>EAR</span></li>
-      <li><time datetime="2026-09-27T17:10">17:10 – 18:30</time> <span>BEN UFO</span></li>
-      <li><time datetime="2026-09-27T18:30">18:30 – 19:50</time> <span>DAPHNI</span></li>
-      <li><time datetime="2026-09-27T20:05">20:05 – 20:50</time> <span>KELELA</span></li>
-      <li><time datetime="2026-09-27T21:00">21:00 – 21:30</time> <span>JT</span></li>
-      <li><time datetime="2026-09-27T21:40">21:40 – 22:30</time> <span>BABY J</span></li>
+      <li id="set-pt2-kaytree"><time datetime="2026-09-27T13:40">13:40 – 14:55</time> <span>KAYTREE</span></li>
+      <li id="set-pt2-riria"><time datetime="2026-09-27T14:55">14:55 – 16:10</time> <span>RIRIA</span></li>
+      <li id="set-pt2-ear"><time datetime="2026-09-27T16:20">16:20 – 17:00</time> <span>EAR</span></li>
+      <li id="set-pt2-ben-ufo"><time datetime="2026-09-27T17:10">17:10 – 18:30</time> <span>BEN UFO</span></li>
+      <li id="set-pt2-daphni"><time datetime="2026-09-27T18:30">18:30 – 19:50</time> <span>DAPHNI</span></li>
+      <li id="set-pt2-kelela"><time datetime="2026-09-27T20:05">20:05 – 20:50</time> <span>KELELA</span></li>
+      <li id="set-pt2-jt"><time datetime="2026-09-27T21:00">21:00 – 21:30</time> <span>JT</span></li>
+      <li id="set-pt2-baby-j"><time datetime="2026-09-27T21:40">21:40 – 22:30</time> <span>BABY J</span></li>
     </ul>
     <h4>Despacio</h4>
     <ul class="sets">
-      <li><time datetime="2026-09-27T15:30">15:30 – 22:30</time> <span>DESPACIO</span></li>
-    </ul>
-  </section>
-
-  <section aria-labelledby="stages-h">
-    <h2 id="stages-h">Portola 2026 stages</h2>
-    <p>Plursky has 5 stages for Portola 2026 at Pier 80, each one listed below.</p>
-    <ul class="stagelist">
-      <li><strong>Pier Stage</strong> · Main stage · pier apron</li>
-      <li><strong>Warehouse</strong> · House + techno · inside the shed</li>
-      <li><strong>Crane Stage</strong> · Live + eclectic</li>
-      <li><strong>Ship Tent</strong> · Club + selectors</li>
-      <li><strong>Despacio</strong> · Mirrorball soundsystem · one continuous set</li>
+      <li id="set-pt2-despacio"><time datetime="2026-09-27T15:30">15:30 – 22:30</time> <span>DESPACIO</span></li>
     </ul>
   </section>
 
@@ -515,102 +544,116 @@
     <h2 id="lineup-h">Portola 2026 lineup</h2>
     <p>63 artists announced.</p>
     <ul class="lineup">
-      <li>ADÉLA</li>
-      <li>AIRWOLF PARADISE</li>
-      <li>AZZECCA</li>
-      <li>BABY J</li>
-      <li>BASSVICTIM</li>
-      <li>BELTRAN B2B BEN STERLING</li>
-      <li>BEN UFO</li>
-      <li>BRUNELLO</li>
-      <li>CHANNEL TRES</li>
-      <li>CHLOÉ CAILLET</li>
-      <li>CLEARCAST</li>
-      <li>DAPHNI</li>
-      <li>DEAN TURNLEY</li>
-      <li>DESPACIO</li>
-      <li>DJ SHADOW CELEBRATES 30 YEARS OF ENDTRODUCING.....</li>
-      <li>DOG BLOOD (SKRILLEX + BOYS NOIZE)</li>
-      <li>EAR</li>
-      <li>ERIKA B2B SF COWBOY</li>
-      <li>FATBOY SLIM</li>
-      <li>FCUKERS</li>
-      <li>FELLY FELL</li>
-      <li>FOUR TET</li>
-      <li>GELLI HAHA</li>
-      <li>GROOVE ARMADA</li>
-      <li>HORSEGIIRL</li>
-      <li>JIGITZ</li>
-      <li>JT</li>
-      <li>JYOTY</li>
-      <li>KAYTREE</li>
-      <li>KELELA</li>
-      <li>KETTAMA</li>
-      <li>MARLON HOFFSTADT</li>
-      <li>MAX STYLER</li>
-      <li>MELANIE C (DJ SET)</li>
-      <li>MGNA CRRRTA</li>
-      <li>MIKE D 5D</li>
-      <li>MIND ENTERPRISES</li>
-      <li>MOCHAKK</li>
-      <li>NATE SIB</li>
-      <li>NIMINO</li>
-      <li>NINAJIRACHI</li>
-      <li>OSKAR MED K</li>
-      <li>OVERMONO</li>
-      <li>PARCELS</li>
-      <li>PROSPA</li>
-      <li>RANGER TRUCCO B2B ALISHA</li>
-      <li>RIRIA</li>
-      <li>ROBYN</li>
-      <li>SAM ALFRED</li>
-      <li>SG LEWIS (LIVE)</li>
-      <li>SILVA BUMPA</li>
-      <li>SIX SEX</li>
-      <li>SKEPTA</li>
-      <li>SOULWAX</li>
-      <li>SWEDISH HOUSE MAFIA</li>
-      <li>TIËSTO</li>
-      <li>TORREN FOOT</li>
-      <li>TOVE LO</li>
-      <li>TRICKY</li>
-      <li>UNDERSCORES</li>
-      <li>VTSS</li>
-      <li>ZARA LARSSON</li>
-      <li>ZULAN</li>
+      <li><span class="act">ADÉLA</span> <span class="slots">Sun, Sep 27 · Crane Stage · <a href="#set-pt2-adela">15:50</a></span></li>
+      <li><span class="act">AIRWOLF PARADISE</span> <span class="slots">Sat, Sep 26 · Pier Stage · <a href="#set-pt1-airwolf-paradise">13:30</a></span></li>
+      <li><span class="act">AZZECCA</span> <span class="slots">Sun, Sep 27 · Crane Stage · <a href="#set-pt2-azzecca">14:30</a></span></li>
+      <li><span class="act">BABY J</span> <span class="slots">Sun, Sep 27 · Ship Tent · <a href="#set-pt2-baby-j">21:40</a></span></li>
+      <li><span class="act">BASSVICTIM</span> <span class="slots">Sat, Sep 26 · Ship Tent · <a href="#set-pt1-bassvictim">18:50</a></span></li>
+      <li><span class="act">BELTRAN B2B BEN STERLING</span> <span class="slots">Sat, Sep 26 · Warehouse · <a href="#set-pt1-beltran-b2b-ben-sterling">20:30</a></span></li>
+      <li><span class="act">BEN UFO</span> <span class="slots">Sun, Sep 27 · Ship Tent · <a href="#set-pt2-ben-ufo">17:10</a></span></li>
+      <li><span class="act">BRUNELLO</span> <span class="slots">Sun, Sep 27 · Warehouse · <a href="#set-pt2-brunello">15:30</a></span></li>
+      <li><span class="act">CHANNEL TRES</span> <span class="slots">Sun, Sep 27 · Pier Stage · <a href="#set-pt2-channel-tres">15:30</a></span></li>
+      <li><span class="act">CHLOÉ CAILLET</span> <span class="slots">Sat, Sep 26 · Warehouse · <a href="#set-pt1-chloe-caillet">15:45</a></span></li>
+      <li><span class="act">CLEARCAST</span> <span class="slots">Sun, Sep 27 · Pier Stage · <a href="#set-pt2-clearcast">13:30</a></span></li>
+      <li><span class="act">DAPHNI</span> <span class="slots">Sun, Sep 27 · Ship Tent · <a href="#set-pt2-daphni">18:30</a></span></li>
+      <li><span class="act">DEAN TURNLEY</span> <span class="slots">Sun, Sep 27 · Warehouse · <a href="#set-pt2-dean-turnley">13:30</a></span></li>
+      <li><span class="act">DESPACIO</span> <span class="slots">Sat, Sep 26 · Despacio · <a href="#set-pt1-despacio">14:45</a>; Sun, Sep 27 · Despacio · <a href="#set-pt2-despacio">15:30</a></span></li>
+      <li><span class="act">DJ SHADOW CELEBRATES 30 YEARS OF ENDTRODUCING.....</span> <span class="slots">Sat, Sep 26 · Crane Stage · <a href="#set-pt1-dj-shadow-celebrates-30-years-of-e">17:30</a></span></li>
+      <li><span class="act">DOG BLOOD (SKRILLEX + BOYS NOIZE)</span> <span class="slots">Sat, Sep 26 · Pier Stage · <a href="#set-pt1-dog-blood-skrillex-boys-noize">21:00</a></span></li>
+      <li><span class="act">EAR</span> <span class="slots">Sun, Sep 27 · Ship Tent · <a href="#set-pt2-ear">16:20</a></span></li>
+      <li><span class="act">ERIKA B2B SF COWBOY</span> <span class="slots">Sat, Sep 26 · Crane Stage · <a href="#set-pt1-erika-b2b-sf-cowboy">13:30</a></span></li>
+      <li><span class="act">FATBOY SLIM</span> <span class="slots">Sat, Sep 26 · Crane Stage · <a href="#set-pt1-fatboy-slim">19:55</a></span></li>
+      <li><span class="act">FCUKERS</span> <span class="slots">Sat, Sep 26 · Pier Stage · <a href="#set-pt1-fcukers">16:40</a></span></li>
+      <li><span class="act">FELLY FELL</span> <span class="slots">Sat, Sep 26 · Ship Tent · <a href="#set-pt1-felly-fell">13:40</a></span></li>
+      <li><span class="act">FOUR TET</span> <span class="slots">Sun, Sep 27 · Warehouse · <a href="#set-pt2-four-tet">21:30</a></span></li>
+      <li><span class="act">GELLI HAHA</span> <span class="slots">Sat, Sep 26 · Pier Stage · <a href="#set-pt1-gelli-haha">14:40</a></span></li>
+      <li><span class="act">GROOVE ARMADA</span> <span class="slots">Sat, Sep 26 · Warehouse · <a href="#set-pt1-groove-armada">16:45</a></span></li>
+      <li><span class="act">HORSEGIIRL</span> <span class="slots">Sun, Sep 27 · Crane Stage · <a href="#set-pt2-horsegiirl">20:10</a></span></li>
+      <li><span class="act">JIGITZ</span> <span class="slots">Sat, Sep 26 · Ship Tent · <a href="#set-pt1-jigitz">19:50</a></span></li>
+      <li><span class="act">JT</span> <span class="slots">Sun, Sep 27 · Ship Tent · <a href="#set-pt2-jt">21:00</a></span></li>
+      <li><span class="act">JYOTY</span> <span class="slots">Sat, Sep 26 · Ship Tent · <a href="#set-pt1-jyoty">17:40</a></span></li>
+      <li><span class="act">KAYTREE</span> <span class="slots">Sun, Sep 27 · Ship Tent · <a href="#set-pt2-kaytree">13:40</a></span></li>
+      <li><span class="act">KELELA</span> <span class="slots">Sun, Sep 27 · Ship Tent · <a href="#set-pt2-kelela">20:05</a></span></li>
+      <li><span class="act">KETTAMA</span> <span class="slots">Sat, Sep 26 · Warehouse · <a href="#set-pt1-kettama">19:15</a></span></li>
+      <li><span class="act">MARLON HOFFSTADT</span> <span class="slots">Sun, Sep 27 · Warehouse · <a href="#set-pt2-marlon-hoffstadt">17:30</a></span></li>
+      <li><span class="act">MAX STYLER</span> <span class="slots">Sat, Sep 26 · Warehouse · <a href="#set-pt1-max-styler">18:00</a></span></li>
+      <li><span class="act">MELANIE C (DJ SET)</span> <span class="slots">Sat, Sep 26 · Ship Tent · <a href="#set-pt1-melanie-c-dj-set">21:50</a></span></li>
+      <li><span class="act">MGNA CRRRTA</span> <span class="slots">Sat, Sep 26 · Ship Tent · <a href="#set-pt1-mgna-crrrta">14:50</a></span></li>
+      <li><span class="act">MIKE D 5D</span> <span class="slots">Sat, Sep 26 · Ship Tent · <a href="#set-pt1-mike-d-5d">16:40</a></span></li>
+      <li><span class="act">MIND ENTERPRISES</span> <span class="slots">Sun, Sep 27 · Pier Stage · <a href="#set-pt2-mind-enterprises">14:30</a></span></li>
+      <li><span class="act">MOCHAKK</span> <span class="slots">Sun, Sep 27 · Pier Stage · <a href="#set-pt2-mochakk">17:35</a></span></li>
+      <li><span class="act">NATE SIB</span> <span class="slots">Sat, Sep 26 · Ship Tent · <a href="#set-pt1-nate-sib">20:55</a></span></li>
+      <li><span class="act">NIMINO</span> <span class="slots">Sat, Sep 26 · Crane Stage · <a href="#set-pt1-nimino">16:25</a></span></li>
+      <li><span class="act">NINAJIRACHI</span> <span class="slots">Sun, Sep 27 · Crane Stage · <a href="#set-pt2-ninajirachi">19:00</a></span></li>
+      <li><span class="act">OSKAR MED K</span> <span class="slots">Sat, Sep 26 · Pier Stage · <a href="#set-pt1-oskar-med-k">15:40</a></span></li>
+      <li><span class="act">OVERMONO</span> <span class="slots">Sun, Sep 27 · Warehouse · <a href="#set-pt2-overmono">20:20</a></span></li>
+      <li><span class="act">PARCELS</span> <span class="slots">Sun, Sep 27 · Crane Stage · <a href="#set-pt2-parcels">21:30</a></span></li>
+      <li><span class="act">PROSPA</span> <span class="slots">Sat, Sep 26 · Warehouse · <a href="#set-pt1-prospa">21:45</a></span></li>
+      <li><span class="act">RANGER TRUCCO B2B ALISHA</span> <span class="slots">Sat, Sep 26 · Warehouse · <a href="#set-pt1-ranger-trucco-b2b-alisha">14:45</a></span></li>
+      <li><span class="act">RIRIA</span> <span class="slots">Sun, Sep 27 · Ship Tent · <a href="#set-pt2-riria">14:55</a></span></li>
+      <li><span class="act">ROBYN</span> <span class="slots">Sat, Sep 26 · Pier Stage · <a href="#set-pt1-robyn">19:10</a></span></li>
+      <li><span class="act">SAM ALFRED</span> <span class="slots">Sat, Sep 26 · Warehouse · <a href="#set-pt1-sam-alfred">13:30</a></span></li>
+      <li><span class="act">SG LEWIS (LIVE)</span> <span class="slots">Sun, Sep 27 · Pier Stage · <a href="#set-pt2-sg-lewis-live">16:30</a></span></li>
+      <li><span class="act">SILVA BUMPA</span> <span class="slots">Sun, Sep 27 · Warehouse · <a href="#set-pt2-silva-bumpa">14:30</a></span></li>
+      <li><span class="act">SIX SEX</span> <span class="slots">Sat, Sep 26 · Ship Tent · <a href="#set-pt1-six-sex">15:40</a></span></li>
+      <li><span class="act">SKEPTA</span> <span class="slots">Sat, Sep 26 · Crane Stage · <a href="#set-pt1-skepta">18:45</a></span></li>
+      <li><span class="act">SOULWAX</span> <span class="slots">Sat, Sep 26 · Crane Stage · <a href="#set-pt1-soulwax">21:55</a></span></li>
+      <li><span class="act">SWEDISH HOUSE MAFIA</span> <span class="slots">Sun, Sep 27 · Pier Stage · <a href="#set-pt2-swedish-house-mafia">20:45</a></span></li>
+      <li><span class="act">TIËSTO</span> <span class="slots">Sun, Sep 27 · Warehouse · <a href="#set-pt2-tiesto">18:45</a></span></li>
+      <li><span class="act">TORREN FOOT</span> <span class="slots">Sun, Sep 27 · Crane Stage · <a href="#set-pt2-torren-foot">13:30</a></span></li>
+      <li><span class="act">TOVE LO</span> <span class="slots">Sat, Sep 26 · Pier Stage · <a href="#set-pt1-tove-lo">17:40</a></span></li>
+      <li><span class="act">TRICKY</span> <span class="slots">Sat, Sep 26 · Crane Stage · <a href="#set-pt1-tricky">15:20</a></span></li>
+      <li><span class="act">UNDERSCORES</span> <span class="slots">Sun, Sep 27 · Crane Stage · <a href="#set-pt2-underscores">17:50</a></span></li>
+      <li><span class="act">VTSS</span> <span class="slots">Sun, Sep 27 · Warehouse · <a href="#set-pt2-vtss">16:30</a></span></li>
+      <li><span class="act">ZARA LARSSON</span> <span class="slots">Sun, Sep 27 · Pier Stage · <a href="#set-pt2-zara-larsson">19:05</a></span></li>
+      <li><span class="act">ZULAN</span> <span class="slots">Sun, Sep 27 · Crane Stage · <a href="#set-pt2-zulan">16:45</a></span></li>
     </ul>
+  </section>
 
+  <section aria-labelledby="stages-h">
+    <h2 id="stages-h">Portola 2026 stages</h2>
+    <p>Plursky has 5 stages for Portola 2026 at Pier 80, each one listed below with its sets per day.</p>
+    <ul class="stagelist">
+      <li><strong>Pier Stage</strong> · Main stage · pier apron<br><span class="counts">Sat, Sep 26: 7 · Sun, Sep 27: 7</span></li>
+      <li><strong>Warehouse</strong> · House + techno · inside the shed<br><span class="counts">Sat, Sep 26: 8 · Sun, Sep 27: 8</span></li>
+      <li><strong>Crane Stage</strong> · Live + eclectic<br><span class="counts">Sat, Sep 26: 7 · Sun, Sep 27: 8</span></li>
+      <li><strong>Ship Tent</strong> · Club + selectors<br><span class="counts">Sat, Sep 26: 9 · Sun, Sep 27: 8</span></li>
+      <li><strong>Despacio</strong> · Mirrorball soundsystem · one continuous set<br><span class="counts">Sat, Sep 26: 1 · Sun, Sep 27: 1</span></li>
+    </ul>
+  </section>
+
+
+
+  <section aria-labelledby="app-h">
+    <h2 id="app-h">Get the app</h2>
+    <p class="ctas">
+      <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
+      <a class="cta-secondary" href="/?f=portola-2026">Open in your browser</a>
+    </p>
+    <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, meet your crew, and turn the weekend into a shareable recap.</p>
   </section>
 
   <nav class="other" aria-labelledby="other-h">
     <h2 id="other-h">Other festivals on Plursky</h2>
     <ul>
-      <li><a href="/f/edc-lv-2026/">EDC Las Vegas 2026</a> — May 15–17, 2026</li>
-      <li><a href="/f/electric-forest-2027/">Electric Forest 2027</a> — Dates TBA</li>
-      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
-      <li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a> — Nov 6–8, 2026</li>
-      <li><a href="/f/tomorrowland-2027/">Tomorrowland 2027</a> — Dates TBA</li>
-      <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
-      <li><a href="/f/coachella-2027/">Coachella 2027</a> — Apr 9–18, 2027</li>
-      <li><a href="/f/edc-mexico-2027/">EDC Mexico 2027</a> — Feb 19–21, 2027</li>
-      <li><a href="/f/beyond-wonderland-socal-2027/">Beyond Wonderland SoCal 2027</a> — Mar 26–27, 2027</li>
-      <li><a href="/f/beyond-wonderland-gorge-2027/">Beyond Wonderland at The Gorge 2027</a> — Jun 26–27, 2027</li>
-      <li><a href="/f/ultra-miami-2026/">Ultra Miami 2026</a> — Mar 27–29, 2026</li>
-      <li><a href="/f/governors-ball-2026/">Governors Ball 2026</a> — Jun 5–7, 2026</li>
-      <li><a href="/f/summerfest-2026/">Summerfest 2026</a> — Jun 18–20, Jun 25–27 &amp; Jul 2–4, 2026</li>
-      <li><a href="/f/lollapalooza-2026/">Lollapalooza 2026</a> — Jul 30 – Aug 2, 2026</li>
-      <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
-      <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
-      <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
       <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
-      <li><a href="/f/hard-summer-2026/">HARD Summer 2026</a> — Aug 1–2, 2026</li>
+      <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
+      <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
+      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
+      <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
       <li><a href="/f/arc-2026/">ARC Music Festival 2026</a> — Sep 4–7, 2026</li>
       <li><a href="/f/escape-halloween-2026/">Escape Halloween 2026</a> — Oct 30–31, 2026</li>
-      <li><a href="/f/dreamstate-socal-2026/">Dreamstate SoCal 2026</a> — Nov 20–21, 2026</li>
-      <li><a href="/f/decadence-colorado-2026/">Decadence Colorado 2026</a> — Dec 30–31, 2026</li>
-      <li><a href="/f/countdown-nye-2026/">Countdown NYE 2026</a> — Dec 31, 2026 – Jan 1, 2027</li>
+      <li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a> — Nov 6–8, 2026</li>
     </ul>
   </nav>
+
+  <section class="sources" aria-labelledby="sources-h">
+    <h2 id="sources-h">Sources</h2>
+    <ul>
+      <li>Set times: <a href="https://portolamusicfestival.com/set-times" rel="noopener">https://portolamusicfestival.com/set-times</a> (official, checked 2026-09-06)</li>
+    </ul>
+    <p class="note">Last updated <time class="updated" datetime="2026-09-24">2026-09-24</time>.</p>
+  </section>
 
   <footer>
     <a href="/">Plursky</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a>
