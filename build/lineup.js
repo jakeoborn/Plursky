@@ -1081,7 +1081,7 @@ function LineupScreen({
     var d = dayStats.find(x => x.n === day);
     var dayText = d ? `${_lineupDayWord(d.label)} ${String(d.date).split(" ")[1] || ""}`.trim() : "";
     var stageName = stageFilter !== "all" ? (STAGES.find(x => x.id === stageFilter) || {}).name : null;
-    var show = stageName || (filter === "saved" ? "Saved" : filter === "now" ? "Now" : "All stages");
+    var show = [stageName, filter === "saved" ? "Saved" : filter === "now" ? "Now" : null].filter(Boolean).join(" · ") || "All stages";
     var extra = otherFilterCount - (stageFilter !== "all" ? 1 : 0);
     return [dayText, hasWeekends ? weekendFilter === "W2" ? "Weekend 2" : "Weekend 1" : null, show, extra > 0 ? `+${extra} filter${extra === 1 ? "" : "s"}` : null, q.trim() ? `“${q.trim()}”` : null].filter(Boolean).join(" · ");
   })();
@@ -1154,6 +1154,26 @@ function LineupScreen({
   }, React.createElement("path", {
     d: "M6 6 L18 18 M18 6 L6 18"
   })))));
+  var saveDayCard = savedToday.length === 0 ? (() => {
+    var dayTopPicks = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
+    if (dayTopPicks.length === 0) return null;
+    var dayLabel = FESTIVAL_CONFIG.dayDates?.[day]?.name || DAYS.find(d => d.n === day)?.label || `Day ${day}`;
+    var topPickIds = dayTopPicks.map(a => a.id);
+    var save = () => setState(s => ({
+      ...s,
+      saved: [...new Set([...s.saved, ...topPickIds])]
+    }));
+    return React.createElement("button", {
+      "data-save-day": true,
+      onClick: save,
+      title: `Save the ${dayTopPicks.length} headliners for ${dayLabel}`,
+      style: {
+        ...textBtn,
+        color: "var(--ink)",
+        fontWeight: 600
+      }
+    }, "Save top picks · ", dayTopPicks.length);
+  })() : null;
   var actionsRow = React.createElement("div", {
     style: {
       display: "flex",
@@ -1176,7 +1196,7 @@ function LineupScreen({
       alignItems: "center",
       flexWrap: "wrap"
     }
-  }, totalSaved >= 2 && (() => {
+  }, saveDayCard, totalSaved >= 2 && (() => {
     var clash = dayStats.some(d => d.clashes > 0);
     return React.createElement("button", {
       onClick: () => setWizardOpen(true),
@@ -1262,62 +1282,6 @@ function LineupScreen({
         lineHeight: "21px"
       }
     }, stage.vibeNote));
-  })() : null;
-  var saveDayCard = savedToday.length === 0 ? (() => {
-    var dayTopPicks = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
-    if (dayTopPicks.length === 0) return null;
-    var dayLabel = FESTIVAL_CONFIG.dayDates?.[day]?.name || DAYS.find(d => d.n === day)?.label || `Day ${day}`;
-    var topPickIds = dayTopPicks.map(a => a.id);
-    var save = () => setState(s => ({
-      ...s,
-      saved: [...new Set([...s.saved, ...topPickIds])]
-    }));
-    return React.createElement("button", {
-      "data-save-day": true,
-      onClick: save,
-      style: {
-        width: gridLead ? "calc(100% - 24px)" : "100%",
-        margin: gridLead ? "0 12px 12px" : "12px 0",
-        display: "flex",
-        alignItems: "center",
-        gap: 12,
-        minHeight: 56,
-        background: "var(--paper-2)",
-        color: "var(--ink)",
-        border: "none",
-        borderRadius: 14,
-        padding: "10px 16px",
-        cursor: "pointer",
-        textAlign: "left",
-        fontFamily: "inherit"
-      }
-    }, React.createElement("span", {
-      style: {
-        flex: 1,
-        minWidth: 0
-      }
-    }, React.createElement("span", {
-      style: {
-        display: "block",
-        fontSize: 15,
-        lineHeight: "21px",
-        fontWeight: 600
-      }
-    }, "Save all top picks for ", dayLabel), React.createElement("span", {
-      style: {
-        display: "block",
-        fontSize: 13,
-        lineHeight: "18px",
-        color: "var(--text-2)"
-      }
-    }, dayTopPicks.length, " headliner", dayTopPicks.length === 1 ? "" : "s")), React.createElement("span", {
-      style: {
-        fontSize: 15,
-        lineHeight: "20px",
-        fontWeight: 600,
-        flexShrink: 0
-      }
-    }, "Save"));
   })() : null;
   return React.createElement(Screen, {
     bg: "var(--paper)"
@@ -1747,7 +1711,7 @@ function LineupScreen({
     } : {
       padding: "0 20px 96px"
     }
-  }, !gridLead && saveDayCard, gridLead && (() => {
+  }, gridLead && (() => {
     var dayMeta = DAYS.find(x => x.n === day);
     var dayArt = lineupFor(weekendFilter).filter(a => a.day === day).filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both");
     return React.createElement("div", {
@@ -1768,7 +1732,7 @@ function LineupScreen({
         minHeight: 0
       }
     }, React.createElement(TimelineGrid, {
-      lead: React.createElement(React.Fragment, null, searchRow, actionsRow, conflictCard, vibeCard, saveDayCard),
+      lead: React.createElement(React.Fragment, null, searchRow, actionsRow, conflictCard, vibeCard),
       day: day,
       allDayArtists: dayArt,
       state: state,
@@ -1860,18 +1824,17 @@ function LineupScreen({
       var clashWith = conflictById[a.id];
       var isHighlighted = highlightId === a.id;
       var isLive = isSetLive(a);
-      var crew = window.sbGetCrewCount?.(a.id) || 0;
-      var flags = [isLegendary(a) && "Don't miss", hasWeekends && weekendFilter === "all" && a.weekend && a.weekend !== "both" && (a.weekend === "W1" ? "Weekend 1" : "Weekend 2"), spotifyMatchedIds.has(a.id) && "In your music", crew > 0 && `${crew} crew`].filter(Boolean);
+      var dotColor = filter === "all" ? "var(--text-3)" : stage.color || "var(--text-3)";
       return React.createElement("div", {
         key: a.id,
         "data-animate": true,
         "data-lineup-highlight": isHighlighted ? "true" : undefined,
         style: {
           display: "flex",
-          alignItems: "flex-start",
+          alignItems: "center",
           gap: 12,
-          minHeight: 64,
-          padding: "12px 8px",
+          minHeight: 56,
+          padding: "6px 8px",
           margin: "0 -8px",
           borderBottom: "1px solid var(--line)",
           borderRadius: isHighlighted ? 14 : 0,
@@ -1884,22 +1847,12 @@ function LineupScreen({
           flexShrink: 0,
           fontVariantNumeric: "tabular-nums",
           whiteSpace: "nowrap",
-          paddingTop: 2
-        }
-      }, React.createElement("div", {
-        style: {
           fontSize: 15,
           lineHeight: "20px",
           fontWeight: 600,
-          color: "var(--ink)"
+          color: isLive && filter !== "now" ? "var(--signal-ink)" : "var(--ink)"
         }
-      }, fmt12(a.start)), React.createElement("div", {
-        style: {
-          fontSize: 13,
-          lineHeight: "18px",
-          color: "var(--text-2)"
-        }
-      }, fmt12(a.end))), React.createElement("button", {
+      }, fmt12(a.start)), React.createElement("button", {
         onClick: () => setState({
           ...state,
           artist: a.id
@@ -1916,38 +1869,29 @@ function LineupScreen({
           cursor: "pointer",
           display: "flex",
           flexDirection: "column",
-          alignItems: "flex-start"
-        }
-      }, isLive && React.createElement("span", {
-        style: {
-          ..._fieldEyebrow,
-          color: "var(--signal-ink)",
-          marginBottom: 2
+          justifyContent: "center",
+          alignItems: "stretch"
         }
       }, React.createElement("span", {
-        "aria-hidden": "true",
-        style: {
-          width: 7,
-          height: 7,
-          borderRadius: 4,
-          background: "var(--signal)"
-        }
-      }), "Live"), React.createElement("span", {
         "data-set-name": true,
         style: {
-          fontSize: 18,
-          lineHeight: "23px",
+          fontSize: 17,
+          lineHeight: "22px",
           fontWeight: 700,
           color: "var(--ink)",
-          overflowWrap: "anywhere"
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis"
         }
       }, a.name), React.createElement("span", {
         "data-set-meta": true,
         style: {
-          marginTop: 2,
           fontSize: 13,
           lineHeight: "18px",
-          color: "var(--text-2)"
+          color: "var(--text-2)",
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis"
         }
       }, React.createElement("span", {
         "aria-hidden": "true",
@@ -1956,26 +1900,21 @@ function LineupScreen({
           width: 7,
           height: 7,
           borderRadius: 4,
-          background: "var(--text-3)",
+          background: isLive && filter === "all" ? "var(--signal)" : dotColor,
           marginRight: 6,
           verticalAlign: "1px"
         }
-      }), [_lineupMetaValue(stage.name), _lineupMetaValue(a.genre)].filter(Boolean).join(" · ")), flags.length > 0 && React.createElement("span", {
+      }), isLive && filter !== "now" && React.createElement("span", {
         style: {
-          marginTop: 2,
-          fontSize: 13,
-          lineHeight: "18px",
-          color: "var(--text-2)"
+          color: "var(--signal-ink)",
+          fontWeight: 600
         }
-      }, flags.join(" · ")), clashWith && React.createElement("span", {
+      }, "Live · "), clashWith && React.createElement("span", {
         style: {
-          marginTop: 2,
-          fontSize: 13,
-          lineHeight: "18px",
-          fontWeight: 600,
-          color: "var(--warn)"
+          color: "var(--warn)",
+          fontWeight: 600
         }
-      }, "⚠ Clashes with ", clashWith.join(", "))), React.createElement("button", {
+      }, "Clash · "), _lineupMetaValue(stage.name))), React.createElement("button", {
         onClick: () => toggleSave(state, setState, a.id),
         "aria-label": saved ? `Unsave ${a.name}` : `Save ${a.name}`,
         "aria-pressed": saved,

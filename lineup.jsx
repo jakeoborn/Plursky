@@ -893,7 +893,7 @@ function LineupScreen({ state, setState }) {
     const d = dayStats.find(x => x.n === day);
     const dayText = d ? `${_lineupDayWord(d.label)} ${String(d.date).split(" ")[1] || ""}`.trim() : "";
     const stageName = stageFilter !== "all" ? (STAGES.find(x => x.id === stageFilter) || {}).name : null;
-    const show = stageName || (filter === "saved" ? "Saved" : filter === "now" ? "Now" : "All stages");
+    const show = [stageName, filter === "saved" ? "Saved" : filter === "now" ? "Now" : null].filter(Boolean).join(" · ") || "All stages";
     const extra = otherFilterCount - (stageFilter !== "all" ? 1 : 0);
     return [
       dayText,
@@ -930,6 +930,20 @@ function LineupScreen({ state, setState }) {
     </div>
   );
 
+  // "Save the Day": nothing saved for this day yet → one tap saves its
+  // headliners. A quiet row in both modes, gone once the day has a save.
+  const saveDayCard = savedToday.length === 0 ? (() => {
+    const dayTopPicks = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
+    if (dayTopPicks.length === 0) return null;
+    const dayLabel = FESTIVAL_CONFIG.dayDates?.[day]?.name || DAYS.find(d => d.n === day)?.label || `Day ${day}`;
+    const topPickIds = dayTopPicks.map(a => a.id);
+    const save = () => setState(s => ({ ...s, saved: [...new Set([...s.saved, ...topPickIds])] }));
+    return (
+      <button data-save-day onClick={save} title={`Save the ${dayTopPicks.length} headliners for ${dayLabel}`}
+        style={{ ...textBtn, color: "var(--ink)", fontWeight: 600 }}>Save top picks · {dayTopPicks.length}</button>
+    );
+  })() : null;
+
   // Set count, then quiet text actions: My night, Share, Calendar, Surprise me.
   const actionsRow = (
     <div style={{
@@ -940,6 +954,7 @@ function LineupScreen({ state, setState }) {
         {dayArtists.length} {dayArtists.length === 1 ? "set" : "sets"}
       </div>
       <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}>
+        {saveDayCard}
         {totalSaved >= 2 && (() => {
           const clash = dayStats.some(d => d.clashes > 0);
           return <button onClick={() => setWizardOpen(true)} style={{ ...textBtn, color: clash ? "var(--warn)" : "var(--ink)", fontWeight: 600 }}>{clash ? "⚠ My night" : "My night"}</button>;
@@ -986,30 +1001,6 @@ function LineupScreen({ state, setState }) {
         {stage.desc && <div style={{ marginTop: 4, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{stage.desc}</div>}
         {stage.vibeNote && <div style={{ marginTop: 4, fontSize: 15, lineHeight: "21px" }}>{stage.vibeNote}</div>}
       </div>
-    );
-  })() : null;
-
-  // "Save the Day": nothing saved for this day yet → one tap saves its
-  // headliners. A quiet row in both modes, gone once the day has a save.
-  const saveDayCard = savedToday.length === 0 ? (() => {
-    const dayTopPicks = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
-    if (dayTopPicks.length === 0) return null;
-    const dayLabel = FESTIVAL_CONFIG.dayDates?.[day]?.name || DAYS.find(d => d.n === day)?.label || `Day ${day}`;
-    const topPickIds = dayTopPicks.map(a => a.id);
-    const save = () => setState(s => ({ ...s, saved: [...new Set([...s.saved, ...topPickIds])] }));
-    return (
-      <button data-save-day onClick={save} style={{
-        width: gridLead ? "calc(100% - 24px)" : "100%", margin: gridLead ? "0 12px 12px" : "12px 0",
-        display: "flex", alignItems: "center", gap: 12, minHeight: 56,
-        background: "var(--paper-2)", color: "var(--ink)", border: "none",
-        borderRadius: 14, padding: "10px 16px", cursor: "pointer", textAlign: "left", fontFamily: "inherit",
-      }}>
-        <span style={{ flex: 1, minWidth: 0 }}>
-          <span style={{ display: "block", fontSize: 15, lineHeight: "21px", fontWeight: 600 }}>Save all top picks for {dayLabel}</span>
-          <span style={{ display: "block", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{dayTopPicks.length} headliner{dayTopPicks.length === 1 ? "" : "s"}</span>
-        </span>
-        <span style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600, flexShrink: 0 }}>Save</span>
-      </button>
     );
   })() : null;
 
@@ -1224,7 +1215,6 @@ function LineupScreen({ state, setState }) {
           ? { overflowY: "hidden", display: "flex", flexDirection: "column", padding: 0 }
           : { padding: "0 20px 96px" }
       }>
-        {!gridLead && saveDayCard}
         {gridLead && (() => {
           // v165: grid now shows only the selected day (like list mode) so
           // navigation is clean — no more scrolling through all 3 days.
@@ -1247,7 +1237,7 @@ function LineupScreen({ state, setState }) {
                   the full width so more stages are visible at once. */}
               <div style={{ display: "flex", flexDirection: "column", flex: 1, minHeight: 0 }}>
                 <TimelineGrid
-                  lead={<>{searchRow}{actionsRow}{conflictCard}{vibeCard}{saveDayCard}</>}
+                  lead={<>{searchRow}{actionsRow}{conflictCard}{vibeCard}</>}
                   day={day}
                   allDayArtists={dayArt}
                   state={state}
@@ -1305,53 +1295,39 @@ function LineupScreen({ state, setState }) {
             const clashWith = conflictById[a.id];
             const isHighlighted = highlightId === a.id;
             const isLive = isSetLive(a);
-            const crew = window.sbGetCrewCount?.(a.id) || 0;
-            const flags = [
-              isLegendary(a) && "Don't miss",
-              // Only when the view mixes weekends; with one selected it says
-              // nothing the toggle above does not already say.
-              hasWeekends && weekendFilter === "all" && a.weekend && a.weekend !== "both" && (a.weekend === "W1" ? "Weekend 1" : "Weekend 2"),
-              spotifyMatchedIds.has(a.id) && "In your music",
-              crew > 0 && `${crew} crew`,
-            ].filter(Boolean);
+            // Dot: neutral in the main list; the stage colour in Saved/Now,
+            // which interleave stages. One dot, never coloured text.
+            const dotColor = filter === "all" ? "var(--text-3)" : (stage.color || "var(--text-3)");
             return (
               <div key={a.id}
                 data-animate
                 data-lineup-highlight={isHighlighted ? "true" : undefined}
                 style={{
-                  display: "flex", alignItems: "flex-start", gap: 12, minHeight: 64,
-                  padding: "12px 8px", margin: "0 -8px",
+                  display: "flex", alignItems: "center", gap: 12, minHeight: 56,
+                  padding: "6px 8px", margin: "0 -8px",
                   borderBottom: "1px solid var(--line)",
                   borderRadius: isHighlighted ? 14 : 0,
                   animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined,
                 }}>
-                {/* Time is the second voice: start strong, end muted, and the
-                    artist name to its right is the loudest thing in the row. */}
-                <div data-set-time style={{ width: 76, flexShrink: 0, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap", paddingTop: 2 }}>
-                  <div style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600, color: "var(--ink)" }}>{fmt12(a.start)}</div>
-                  <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{fmt12(a.end)}</div>
+                <div data-set-time style={{ width: 76, flexShrink: 0, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap",
+                  fontSize: 15, lineHeight: "20px", fontWeight: 600, color: isLive && filter !== "now" ? "var(--signal-ink)" : "var(--ink)" }}>
+                  {fmt12(a.start)}
                 </div>
                 <button onClick={() => setState({ ...state, artist: a.id })} style={{
                   flex: 1, minWidth: 0, minHeight: 44, padding: 0, background: "transparent", border: "none",
                   color: "var(--ink)", textAlign: "left", cursor: "pointer",
-                  display: "flex", flexDirection: "column", alignItems: "flex-start",
+                  display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "stretch",
                 }}>
-                  {isLive && (
-                    <span style={{ ..._fieldEyebrow, color: "var(--signal-ink)", marginBottom: 2 }}>
-                      <span aria-hidden="true" style={{ width: 7, height: 7, borderRadius: 4, background: "var(--signal)" }} />Live
-                    </span>
-                  )}
-                  <span data-set-name style={{ fontSize: 18, lineHeight: "23px", fontWeight: 700, color: "var(--ink)", overflowWrap: "anywhere" }}>{a.name}</span>
-                  {/* Stage, then only REAL values: a "—" placeholder never
-                      prints, so no separator dangles. The dot stays neutral:
-                      Jake's standing call (2026-09-13) is stage colours only
-                      on the map. Inline dot, so a long stage name wraps. */}
-                  <span data-set-meta style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
-                    <span aria-hidden="true" style={{ display: "inline-block", width: 7, height: 7, borderRadius: 4, background: "var(--text-3)", marginRight: 6, verticalAlign: "1px" }} />
-                    {[_lineupMetaValue(stage.name), _lineupMetaValue(a.genre)].filter(Boolean).join(" · ")}
+                  <span data-set-name style={{ fontSize: 17, lineHeight: "22px", fontWeight: 700, color: "var(--ink)",
+                    whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</span>
+                  <span data-set-meta style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)",
+                    whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    <span aria-hidden="true" style={{ display: "inline-block", width: 7, height: 7, borderRadius: 4,
+                      background: isLive && filter === "all" ? "var(--signal)" : dotColor, marginRight: 6, verticalAlign: "1px" }} />
+                    {isLive && filter !== "now" && <span style={{ color: "var(--signal-ink)", fontWeight: 600 }}>Live · </span>}
+                    {clashWith && <span style={{ color: "var(--warn)", fontWeight: 600 }}>Clash · </span>}
+                    {_lineupMetaValue(stage.name)}
                   </span>
-                  {flags.length > 0 && <span style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{flags.join(" · ")}</span>}
-                  {clashWith && <span style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: "var(--warn)" }}>⚠ Clashes with {clashWith.join(", ")}</span>}
                 </button>
                 <button onClick={() => toggleSave(state, setState, a.id)}
                   aria-label={saved ? `Unsave ${a.name}` : `Save ${a.name}`} aria-pressed={saved}

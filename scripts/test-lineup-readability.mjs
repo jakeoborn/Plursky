@@ -6,9 +6,14 @@
 //   it back; the list's scroll position never jumps; tiny scrolls do nothing;
 //   folded controls are inert; reduced motion drops the animation; GRID
 //   behaves the same on its own scroller.
-//   Rows: the artist name is the loudest text; no "· —" placeholder or
-//   dangling separator; no "Weekend N" when one weekend is selected; meta text
-//   meets WCAG AA; save buttons are 44px and vertically centred.
+//   Rows (the one-line row Jake approved from the #236 mock): start time only
+//   (no end time), the artist name on ONE line and the loudest text, the stage
+//   under it, nothing else (no genre, no "—", no weekend, no Don't miss / In
+//   your music / crew); rows ≤ 60px; meta text meets WCAG AA; save buttons are
+//   44px and vertically centred. Dots are neutral in the main list and carry
+//   the map's stage colour in Saved and Now; Clash and Live are a prefix word.
+//   "Save top picks" lives in the header, never between rows. The folded bar
+//   keeps Saved/Now when a stage is picked.
 // The clock is pinned to a live ACL Weekend 1 evening. No network.
 import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
@@ -26,13 +31,14 @@ try {
   const executablePath = ['/opt/google/chrome/chrome', '/usr/bin/google-chrome', '/usr/bin/chromium'].find(existsSync);
   const browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
 
-  const open = async ({ fid = 'acl-2026', at = '2026-10-03T01:30:00Z', view = 'list', width = 393, reduced = false } = {}) => {
+  const open = async ({ fid = 'acl-2026', at = '2026-10-03T01:30:00Z', view = 'list', width = 393, reduced = false, saved = null } = {}) => {
     const ctx = await browser.newContext({ viewport: { width, height: 844 }, serviceWorkers: 'block', reducedMotion: reduced ? 'reduce' : 'no-preference' });
     await ctx.clock.install({ time: new Date(at) });
-    await ctx.addInitScript(({ fid, view }) => {
+    await ctx.addInitScript(({ fid, view, saved }) => {
       localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', fid); localStorage.setItem('active_festival_explicit', '1');
       localStorage.setItem('plursky_lineup_view', view); localStorage.setItem('cloud_nudge_seen', '1');
-    }, { fid, view });
+      if (saved) localStorage.setItem(`${fid}_saved_v1`, JSON.stringify(saved));
+    }, { fid, view, saved });
     const page = await ctx.newPage();
     await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${fid}&tab=lineup`, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(fid => window.FESTIVAL_CONFIG?.id === fid && document.querySelector('[data-lineup-filters]') && document.querySelector('[data-lineup-scroll]'), fid, { timeout: 60000 });
@@ -166,14 +172,18 @@ try {
         rowText: rows.map(r => r.innerText),
         contrast: rows.slice(0, 6).map(r => { const m = r.querySelector('[data-set-meta]'); return ratio(getComputedStyle(m).color, bgOf(m)); }),
         nameVsTime: rows.slice(0, 6).map(r => {
-          const n = getComputedStyle(r.querySelector('[data-set-name]')), t = getComputedStyle(r.querySelector('[data-set-time] div'));
-          return { name: parseFloat(n.fontSize), nameW: +n.fontWeight, time: parseFloat(t.fontSize) };
+          const ne = r.querySelector('[data-set-name]'), n = getComputedStyle(ne), t = getComputedStyle(r.querySelector('[data-set-time]'));
+          return { name: parseFloat(n.fontSize), nameW: +n.fontWeight, time: parseFloat(t.fontSize), nameH: ne.getBoundingClientRect().height, nameLH: parseFloat(n.lineHeight), nowrap: n.whiteSpace === 'nowrap', ellipsis: n.textOverflow === 'ellipsis' };
         }),
         saves: rows.slice(0, 8).map(r => {
           const b = r.querySelector('button[aria-pressed]').getBoundingClientRect(), rb = r.getBoundingClientRect();
           return { w: b.width, h: b.height, off: Math.abs((b.top + b.height / 2) - (rb.top + rb.height / 2)), rowH: rb.height };
         }),
-        dots: rows.slice(0, 6).map(r => getComputedStyle(r.querySelector('[data-set-meta] span')).backgroundColor),
+        dots: rows.filter(r => !/^Live/.test(r.querySelector('[data-set-meta]').textContent.trim())).slice(0, 12).map(r => getComputedStyle(r.querySelector('[data-set-meta] span')).backgroundColor),
+        clocks: rows.map(r => (r.innerText.match(/\b\d{1,2}:\d{2}\b/g) || []).length),
+        rowHs: rows.map(r => Math.round(r.getBoundingClientRect().height)),
+        saveDay: [...document.querySelectorAll('[data-save-day]')].map(b => ({ inHeader: !!b.closest('[data-lineup-filters]'), text: b.textContent.trim() })),
+        savedToday: (() => { try { return JSON.parse(localStorage.getItem('acl-2026_saved_v1') || '[]').length; } catch { return -1; } })(),
       };
     });
     const at = `[${width}px ACL W1 Fri]`;
@@ -184,15 +194,66 @@ try {
     check(!r.rowText.some(t => /\bWeekend [12]\b/.test(t)), `${at} a row repeats "Weekend N" while one weekend is selected`);
     for (const c of r.contrast) check(c >= 4.5, `${at} meta text contrast ${c.toFixed(2)} is under WCAG AA 4.5`);
     for (const x of r.nameVsTime) check(x.name > x.time && x.nameW >= 700, `${at} artist name (${x.name}px/${x.nameW}) is not the loudest text (time ${x.time}px)`);
+    check(r.nameVsTime.every(x => x.nowrap && x.ellipsis && x.nameH <= x.nameLH + 1), `${at} an artist name is not one ellipsised line: ${JSON.stringify(r.nameVsTime)}`);
+    check(r.clocks.every(c => c === 1), `${at} a row prints more than its start time (clock counts ${[...new Set(r.clocks)].join(',')})`);
+    check(!r.rowText.some(t => /Don't miss|In your music|\bcrew\b/i.test(t)), `${at} a row carries a flag line (Don't miss / In your music / crew)`);
+    check(Math.max(...r.rowHs) <= 60, `${at} a row is ${Math.max(...r.rowHs)}px tall; the one-line row is ≤ 60px`);
+    check(r.savedToday === 0 && r.saveDay.length === 1 && r.saveDay[0].inHeader && /^Save top picks · \d+$/.test(r.saveDay[0].text), `${at} "Save top picks" is not a single header action while nothing is saved: ${JSON.stringify(r.saveDay)}`);
     for (const s of r.saves) {
       check(Math.round(s.w) >= 44 && Math.round(s.h) >= 44, `${at} save button ${s.w}x${s.h} is under 44px`);
       check(s.off <= 2, `${at} save button is ${s.off.toFixed(1)}px off the row's vertical centre`);
-      check(s.rowH >= 64, `${at} row height ${s.rowH} under the 64px rhythm`);
+      check(s.rowH >= 44, `${at} row height ${s.rowH} under the 44px tap floor`);
     }
-    // Jake's standing call (2026-09-13): stage colours only on the map.
-    check(new Set(r.dots).size === 1, `${at} row dots carry stage colours (${[...new Set(r.dots)].join(' ')}); stage colours are map-only`);
+    // The main list keeps one neutral dot (live rows use the signal dot).
+    check(r.dots.length > 5 && new Set(r.dots).size === 1, `${at} main-list dots carry stage colours (${[...new Set(r.dots)].join(' ')}); they stay neutral there`);
     await ctx.close();
   }
+
+  // ── Saved and Now: stage-colour dots, Clash prefix, P2 folded summary ────
+  try {
+    // Save four Friday W1 sets on different stages, two of them overlapping.
+    const first = await open();
+    const picked = await first.page.evaluate(() => {
+      const fri = (window.ARTISTS || []).filter(a => a.day === 1 && a.weekend !== 'W2' && a.start != null);
+      const toMin = t => { const [h, m] = String(t).split(':').map(Number); return (h < 6 ? h + 24 : h) * 60 + m; };
+      const byStage = new Map(); for (const a of fri) if (!byStage.has(a.stage)) byStage.set(a.stage, a);
+      let pair = null;
+      for (const a of fri) { for (const b of fri) { if (a.stage !== b.stage && toMin(a.start) < toMin(b.end) && toMin(b.start) < toMin(a.end)) { pair = [a, b]; break; } } if (pair) break; }
+      const ids = [...new Set([...(pair || []).map(a => a.id), ...[...byStage.values()].slice(0, 4).map(a => a.id)])];
+      return { ids, pair: !!pair };
+    });
+    await first.ctx.close();
+    const { ctx, page } = await open({ saved: picked.ids });
+    check(picked.pair && picked.ids.length >= 3, `control: could not pick overlapping sets on different stages (${JSON.stringify(picked)})`);
+    const dotsFor = () => page.evaluate(() => {
+      const norm = c => { const d = document.createElement('i'); d.style.background = c; document.body.appendChild(d); const v = getComputedStyle(d).backgroundColor; d.remove(); return v; };
+      return [...document.querySelectorAll('[data-lineup-scroll] [data-set-name]')].map(n => {
+        const row = n.closest('[data-animate]'), meta = row.querySelector('[data-set-meta]');
+        const text = meta.textContent.trim(), stageName = text.replace(/^(Live · |Clash · )+/, '');
+        const st = (window.STAGES || []).find(s => s.name === stageName);
+        return { text, dot: getComputedStyle(meta.querySelector('span')).backgroundColor, want: st && st.color ? norm(st.color) : null };
+      });
+    });
+    await page.getByRole('radio', { name: 'Saved' }).click(); await page.clock.runFor(500); await page.waitForTimeout(300);
+    const saved = await dotsFor();
+    check(saved.length >= 3, `control: Saved shows ${saved.length} rows`);
+    check(saved.every(d => d.want && d.dot === d.want), `Saved: a dot is not its stage's map colour: ${JSON.stringify(saved)}`);
+    check(new Set(saved.map(d => d.dot)).size >= 2, 'Saved: dots do not vary by stage');
+    check(saved.filter(d => /^Clash · /.test(d.text)).length >= 2, `Saved: overlapping sets carry no "Clash ·" prefix: ${JSON.stringify(saved.map(d => d.text))}`);
+    await page.getByRole('radio', { name: 'Now' }).click(); await page.clock.runFor(500); await page.waitForTimeout(300);
+    const now = await dotsFor();
+    check(now.length >= 2, `control: Now shows ${now.length} live rows at the pinned clock`);
+    check(now.every(d => d.want && d.dot === d.want), `Now: a dot is not its stage's map colour: ${JSON.stringify(now)}`);
+    // P2: pick a stage in the Filters sheet, keep Saved; the folded bar names both.
+    await page.getByRole('radio', { name: 'Saved' }).click(); await page.clock.runFor(300);
+    await page.locator('button[aria-label^="Filters"]').click(); await page.clock.runFor(500); await page.waitForTimeout(300);
+    const stage = await page.evaluate(() => (window.STAGES || [])[0]);
+    await page.locator('button[aria-pressed]', { hasText: stage.short || stage.name }).first().click();
+    await page.getByRole('button', { name: /^Show \d+ sets?$/ }).click(); await page.clock.runFor(500); await page.waitForTimeout(300);
+    const s = await state(page);
+    check(s.summary === `Fri 2 · Weekend 1 · ${stage.name} · Saved`, `P2: folded bar reads "${s.summary}", expected "Fri 2 · Weekend 1 · ${stage.name} · Saved"`);
+    await ctx.close();
+  } catch (err) { check(false, `Saved/Now block threw: ${String(err.message || err).split("\n")[0]}`); }
 
   // ── A single-weekend festival: summary has no weekend, rows unchanged ────
   try {
@@ -200,6 +261,16 @@ try {
     await drag(page, 700, 8);
     const s = await state(page);
     check(s.collapsed && s.summary === 'Fri 15 · All stages', `EDC compact bar reads "${s.summary}", expected "Fri 15 · All stages"`);
+    // EDC has acts isLegendary() flags (b2b names, kinetic sunrise); ACL has
+    // none, so the "no flag line" rule is only non-vacuous here.
+    const edc = await page.evaluate(() => {
+      const rows = [...document.querySelectorAll('[data-lineup-scroll] [data-set-name]')].map(n => n.closest('[data-animate]'));
+      const shown = new Set(rows.map(r => r.querySelector('[data-set-name]').textContent));
+      return { legendaryShown: (window.ARTISTS || []).filter(a => a.day === 1 && shown.has(a.name) && typeof isLegendary === 'function' && isLegendary(a)).length,
+        flagged: rows.filter(r => /Don't miss|In your music|\bcrew\b/i.test(r.innerText)).length };
+    });
+    check(edc.legendaryShown > 0, `EDC control: no legendary act on screen (${edc.legendaryShown}), so the flag rule is untested`);
+    check(edc.flagged === 0, `EDC: ${edc.flagged} rows carry a flag line (Don't miss / In your music / crew)`);
     await ctx.close();
   } catch (err) { check(false, `A single-weekend festival block threw: ${String(err.message || err).split("\n")[0]}`); }
   await browser.close();
