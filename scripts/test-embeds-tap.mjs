@@ -16,6 +16,7 @@ import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { existsSync } from 'node:fs';
 import { chromium } from 'playwright';
+import { serverReady } from './lib/server-ready.mjs';
 
 const PAGE = '/f/acl-2026/'; // 2 Instagram posts and 1 X post
 const SOCIAL = /(^|\.)(instagram\.com|cdninstagram\.com|fbcdn\.net|facebook\.com|facebook\.net|twitter\.com|twimg\.com|x\.com)$/;
@@ -40,7 +41,7 @@ const server = spawn('python3', ['-m', 'http.server', String(PORT), '--bind', '1
 const BASE = `http://127.0.0.1:${PORT}`;
 
 try {
-  for (let i = 0; i < 50; i++) { try { if ((await fetch(BASE + PAGE)).ok) break; } catch {} await new Promise(r => setTimeout(r, 100)); }
+  await serverReady(BASE + PAGE);
   const executablePath = ['/opt/google/chrome/chrome', '/usr/bin/google-chrome', '/usr/bin/chromium'].find(existsSync);
   const browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
   try {
