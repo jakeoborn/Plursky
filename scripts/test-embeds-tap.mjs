@@ -70,6 +70,10 @@ try {
       const whats = await page.evaluate(() => [...document.querySelectorAll('figure[data-tap] .embed-what')].map(p => ({ t: p.textContent.replace(/\u00a0/g, ' '), shown: p.getClientRects().length > 0, over: p.scrollWidth - p.clientWidth })));
       check(whats.length === counts.ig + counts.x && whats.every(w => w.shown && / · Posted [A-Z][a-z]+ \d{1,2}, \d{4}$/.test(w.t)), `${at} not every untapped post shows its "kind · Posted date" line: ${JSON.stringify(whats)}`);
       check(whats.every(w => w.over <= 0), `${at} a date line overflows its box`);
+      const dupes = await page.evaluate(() => [...document.querySelectorAll('figure[data-tap]')].map(f => [...f.querySelectorAll('a')].filter(a => a.getClientRects().length && /View (this post|the original)/.test(a.textContent)).length));
+      check(dupes.every(n => n === 1), `${at} a card shows ${JSON.stringify(dupes)} visible links to its post (want 1 each)`);
+      const boxes = await page.evaluate(() => [...document.querySelectorAll('blockquote.tap-embed')].map(b => b.getBoundingClientRect().height));
+      check(boxes.length > 0 && boxes.every(h => h === 0), `${at} an untapped post draws an empty blockquote box (${JSON.stringify(boxes)}px)`);
       const btnH = await page.evaluate(() => Math.min(...[...document.querySelectorAll('button.embed-load')].map(b => b.getBoundingClientRect().height)));
       check(btnH >= 44, `${at} a load button is ${btnH}px tall (under 44)`);
 

@@ -83,10 +83,11 @@
   section.watch { overflow-x:clip; }
   section.watch .embed-ig blockquote, section.watch .embed-x blockquote { margin:0; min-height:420px; background:var(--panel); border-radius:12px; padding:16px; max-width:540px; }
   section.watch .embed-x blockquote { min-height:260px; }
-  /* Tap-to-load: until tapped, a social post is a compact card with its
-     permalink and one button; nothing from Instagram or X is requested. */
-  section.watch blockquote.tap-embed { min-height:0; border-radius:12px 12px 0 0; padding:16px 16px 8px; }
-  section.watch .embed-tap { background:var(--panel); border-radius:0 0 12px 12px; padding:0 16px 16px; max-width:540px; box-sizing:border-box; }
+  /* Tap-to-load: until tapped, a social post is a compact card with its type,
+     date, one button and the notice; nothing from Instagram or X is requested.
+     The blockquote stays empty and hidden until the tap fills it. */
+  section.watch blockquote.tap-embed { display:none; }
+  section.watch .embed-tap { background:var(--panel); border-radius:12px; padding:16px; max-width:540px; box-sizing:border-box; }
   section.watch .embed-what { color:var(--ink); font-size:15px; font-weight:600; margin:0 0 10px; }
   section.watch .embed-load { min-height:44px; padding:10px 16px; border-radius:10px; border:1px solid var(--ember); background:transparent; color:var(--ember); font:inherit; font-weight:600; font-size:15px; cursor:pointer; }
   section.watch .embed-tap-note { color:var(--muted); font-size:13px; margin:8px 0 0; }
@@ -484,11 +485,11 @@
     <h2 id="watch-h">Watch &amp; listen</h2>
     <p class="note">From Dreamstate SoCal 2026's official accounts.</p>
     <figure class="embed embed-x" data-tap="x">
-      <blockquote class="tap-embed" data-class="twitter-tweet" data-dnt="true" data-theme="dark"><a href="https://twitter.com/dreamstateusa/status/1987977510144156152" rel="noopener">View this post on X</a></blockquote>
+      <blockquote class="tap-embed" data-class="twitter-tweet" data-dnt="true" data-theme="dark" data-href="https://twitter.com/dreamstateusa/status/1987977510144156152"></blockquote>
       <div class="embed-tap">
         <p class="embed-what">Lineup · Posted November 10, 2025</p>
         <button type="button" class="embed-load">Load the X post</button>
-        <p class="embed-tap-note">Nothing loads from X until you tap. <a href="/privacy.html#social-embeds">Privacy</a></p>
+        <p class="embed-tap-note">Loading shows content from X, which may collect data about your visit. <a href="/privacy.html#social-embeds">Privacy</a></p>
       </div>
       <p class="embed-cap">@DreamstateUSA on X · <a href="https://x.com/DreamstateUSA/status/1987977510144156152" rel="noopener">View the original</a></p>
     </figure>
@@ -514,6 +515,9 @@
     if (!b) return;
     var fig = b.closest('figure'), bq = fig && fig.querySelector('blockquote.tap-embed');
     if (!bq || !SRC[fig.getAttribute('data-tap')]) return;
+    var a = document.createElement('a'); a.href = bq.getAttribute('data-href'); a.rel = 'noopener';
+    a.textContent = 'View this post on ' + (fig.getAttribute('data-tap') === 'x' ? 'X' : 'Instagram');
+    bq.appendChild(a); // X's script reads the post id from this link
     bq.className = bq.getAttribute('data-class');
     bq.removeAttribute('data-class');
     fig.classList.add('tapped');
@@ -649,7 +653,7 @@
       <li>Official site: <a href="https://socal.dreamstateusa.com/" rel="noopener">https://socal.dreamstateusa.com/</a></li>
       <li>Lineup: <a href="https://socal.dreamstateusa.com/lineup/" rel="noopener">https://socal.dreamstateusa.com/lineup/</a> (official, read 2026-09-09)</li>
     </ul>
-    <p class="note">Last updated <time class="updated" datetime="2026-09-24">2026-09-24</time>.</p>
+    <p class="note">Last updated <time class="updated" datetime="2026-09-25">2026-09-25</time>.</p>
   </section>
 
   <footer>

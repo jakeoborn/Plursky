@@ -307,7 +307,9 @@ const caption = (e, festivalName) => {
 // inert blockquote (class tap-embed, so neither platform's script would ever
 // pick it up) and makes no request to either platform until the reader taps
 // that post's button. Only then does the loader give the blockquote its real
-// class and fetch the platform's script. privacy.html#social-embeds says so.
+// class and the permalink the platform's script reads, and fetch the script.
+// The blockquote ships empty and hidden, so each card shows ONE link to the
+// post (the caption's "View the original"). privacy.html#social-embeds says so.
 // Before the tap the post is described only from what we already hold: our
 // curated kind and the date decoded from the post's own id (UTC). Nothing of
 // the post itself (text, image, counts) is copied onto the page.
@@ -322,10 +324,12 @@ export function postSummary(e) {
   const date = `${MONTHS[m - 1]}\u00a0${d},\u00a0${y}`;
   return kind ? `${kind} · Posted\u00a0${date}` : `Posted\u00a0${date}`;
 }
+// The notice X's Developer Policy asks for, before the reader opts in.
+const NOTICE_NAME = { instagram: 'Instagram (Meta)', x: 'X' };
 const tapPrompt = e => `      <div class="embed-tap">
         <p class="embed-what">${esc(postSummary(e))}</p>
         <button type="button" class="embed-load">Load the ${PLATFORM_NAME[e.platform]} post</button>
-        <p class="embed-tap-note">Nothing loads from ${PLATFORM_NAME[e.platform]} until you tap. <a href="/privacy.html#social-embeds">Privacy</a></p>
+        <p class="embed-tap-note">Loading shows content from ${NOTICE_NAME[e.platform]}, which may collect data about your visit. <a href="/privacy.html#social-embeds">Privacy</a></p>
       </div>`;
 
 function renderOne(e, festivalName) {
@@ -340,7 +344,7 @@ ${caption(e, festivalName)}
     const { type, code } = instagramCode(e.url);
     const permalink = `https://www.instagram.com/${type}/${code}/`;
     return `    <figure class="embed embed-ig" data-tap="instagram">
-      <blockquote class="tap-embed" data-class="instagram-media" data-instgrm-permalink="${permalink}" data-instgrm-version="14"><a href="${permalink}" rel="noopener">View this post on Instagram</a></blockquote>
+      <blockquote class="tap-embed" data-class="instagram-media" data-instgrm-permalink="${permalink}" data-instgrm-version="14" data-href="${permalink}"></blockquote>
 ${tapPrompt(e)}
 ${caption(e, festivalName)}
     </figure>`;
@@ -349,7 +353,7 @@ ${caption(e, festivalName)}
     const { handle, id } = xStatus(e.url);
     const permalink = `https://twitter.com/${handle}/status/${id}`;
     return `    <figure class="embed embed-x" data-tap="x">
-      <blockquote class="tap-embed" data-class="twitter-tweet" data-dnt="true" data-theme="dark"><a href="${permalink}" rel="noopener">View this post on X</a></blockquote>
+      <blockquote class="tap-embed" data-class="twitter-tweet" data-dnt="true" data-theme="dark" data-href="${permalink}"></blockquote>
 ${tapPrompt(e)}
 ${caption(e, festivalName)}
     </figure>`;
@@ -383,6 +387,9 @@ const LOADER = `    <script>
     if (!b) return;
     var fig = b.closest('figure'), bq = fig && fig.querySelector('blockquote.tap-embed');
     if (!bq || !SRC[fig.getAttribute('data-tap')]) return;
+    var a = document.createElement('a'); a.href = bq.getAttribute('data-href'); a.rel = 'noopener';
+    a.textContent = 'View this post on ' + (fig.getAttribute('data-tap') === 'x' ? 'X' : 'Instagram');
+    bq.appendChild(a); // X's script reads the post id from this link
     bq.className = bq.getAttribute('data-class');
     bq.removeAttribute('data-class');
     fig.classList.add('tapped');

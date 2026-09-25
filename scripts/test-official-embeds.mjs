@@ -230,7 +230,7 @@ for (const id of pages) {
     const whatRaw = (fg.match(/<p class="embed-what">([^<]*)<\/p>/) || [])[1];
     check(!whatRaw || /Posted\u00a0[A-Z][a-z]+\u00a0\d{1,2},\u00a0\d{4}$/.test(whatRaw), `${at} the date can break across lines (no non-breaking spaces): ${whatRaw}`);
     const what = whatRaw && whatRaw.replace(/\u00a0/g, ' ');
-    const pl = (fg.match(/data-instgrm-permalink="([^"]+)"/) || fg.match(/<a href="(https:\/\/twitter\.com\/[^"]+)"/) || [])[1] || '';
+    const pl = (fg.match(/data-href="([^"]+)"/) || [])[1] || '';
     const iso = / data-tap="instagram"/.test(fg) ? L.instagramPublishedAt(pl) : L.xPublishedAt(pl);
     const want = iso && new Date(iso + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
     check(!!what && /^(Lineup|Announcement|Photo|Photo set|Video|Aftermovie|Trailer) · Posted /.test(what), `${at} a tap-to-load post has no "kind · Posted date" line: ${what}`);
@@ -254,9 +254,18 @@ for (const id of pages) {
     const e = curatedFor(id).find(match);
     check(!!e && L.validateEmbed(e) === null && okUrls.has(e.url), `${at} shows an embed that is not curated, complete and verified`);
   }
-  // No post content persisted: the social blockquotes hold only the link.
+  // No post content persisted: the social blockquotes ship EMPTY, carrying
+  // only the permalink the loader hands the platform on tap.
   for (const bq of sec.match(/<blockquote[\s\S]*?<\/blockquote>/g) || []) {
-    check(/^<blockquote[^>]*><a href="[^"]+" rel="noopener">View this post on (Instagram|X)<\/a><\/blockquote>$/.test(bq), `${at} a social blockquote carries more than its permalink: ${bq.slice(0, 120)}`);
+    check(/^<blockquote [^>]*data-href="https:\/\/(www\.instagram\.com|twitter\.com)\/[^"]+"[^>]*><\/blockquote>$/.test(bq), `${at} a social blockquote is not empty-with-permalink: ${bq.slice(0, 120)}`);
+  }
+  // One link to the post per card: the caption's "View the original".
+  for (const fg of sec.match(/<figure class="embed embed-(?:ig|x)"[\s\S]*?<\/figure>/g) || []) {
+    const perma = (fg.match(/data-href="([^"]+)"/) || [])[1] || '';
+    const code = perma.replace(/\/+$/, '').split('/').pop();
+    const links = (fg.match(/<a href="[^"]*"/g) || []).filter(a => code && a.includes(code));
+    check(links.length === 1 && /View the original/.test(fg), `${at} a card links its post ${links.length} times (want 1, the caption)`);
+    check(/which may collect data about your visit\. <a href="\/privacy\.html#social-embeds">Privacy<\/a>/.test(fg) && /Loading shows content from (Instagram \(Meta\)|X),/.test(fg), `${at} a card's note does not give the data-collection notice`);
   }
   check((sec.match(/<figure class="embed/g) || []).length === (sec.match(/class="embed-cap"/g) || []).length, `${at} an embed has no caption naming its account`);
   const loaders = (html.match(/document\.getElementById\('watch'\)/g) || []).length;
@@ -273,6 +282,13 @@ for (const id of pages) {
 {
   const priv = readFileSync(path.join(root, 'privacy.html'), 'utf8');
   const li = (priv.match(/<li id="social-embeds">[\s\S]*?<\/li>/) || [''])[0];
+  // X's Developer Policy notice: what happens once a post loads, and how to opt out.
+  check(/may collect data about your browsing, including for interest-based ads and personalisation/.test(li), 'privacy.html #social-embeds does not say Meta/X may use the data for interest-based ads and personalisation');
+  check(/<a id="x-opt-out" href="https:\/\/help\.x\.com\/en\/safety-and-security\/privacy-controls-for-tailored-ads"/.test(li), 'privacy.html #social-embeds does not link X\'s opt-out');
+  const yt = (priv.match(/<li><strong>YouTube<\/strong>[\s\S]*?<\/li>/) || [''])[0];
+  check(/festival pages/.test(yt) && /privacy-enhanced mode \(youtube-nocookie\.com\)/.test(yt), 'privacy.html YouTube entry does not list the festival-page player (privacy-enhanced mode)');
+  const sp = (priv.match(/<li><strong>Spotify<\/strong>[\s\S]*?<\/li>/) || [''])[0];
+  check(/festival pages/.test(sp) && /playlist player/.test(sp), 'privacy.html Spotify entry does not list the festival-page playlist player');
   check(/Instagram/.test(li) && /\bX\b/.test(li) && /only when you tap/.test(li), 'privacy.html does not say social embeds load only on tap (#social-embeds)');
 }
 check(withEmbeds >= 5, `only ${withEmbeds} pages carry embeds; the sourced set should give more`);
