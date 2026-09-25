@@ -18,9 +18,10 @@
 // MISMATCHES between official sources — recorded, not resolved by guessing:
 //   1. SKEPTA MÁS TIEMPO: on Sunday's grid (City Steps 3:45–5:00 PM), but
 //      GONE from the lineup page as re-read 2026-09-25 (Last-Modified 12:28
-//      UTC, ten hours after the graphics). The newer official billing wins,
-//      so the act is not in this lineup and its slot is not shown. If CRSSD
-//      re-bills it, it goes back from the grid row above.
+//      UTC, ten hours after the graphics). Ruled 2026-09-25: the newer
+//      official billing wins, so the act is not in this lineup and its slot
+//      is not shown. Kept as data in REMOVED_AFTER_GRAPHIC (below ARTISTS)
+//      with its full grid row, so a re-bill is a one-step re-add.
 //   2. PETE SOUL (Ocean View) and CHRIS LORENZO (The Palms): new on that same
 //      lineup page, on neither graphic. Listed with their stage, no day, no
 //      time (ARTISTS, end).
@@ -300,6 +301,19 @@
     mkUnscheduled("crssd-chris-lorenzo",        "Chris Lorenzo",                    "palms"),
   ];
 
+  // Acts the official day graphic timed and the LATER official lineup page
+  // dropped (MISMATCHES 1). Not in ARTISTS, so no screen, count or search
+  // sees them; kept verbatim so a re-bill is fast. To re-add: append the
+  // `mk(...)` line to ARTISTS and the grid row to the import sheet, then
+  // re-run import-set-times.mjs (the grid itself is unchanged).
+  const REMOVED_AFTER_GRAPHIC = [
+    { id: "crssd-skepta-mas-tiempo", name: "Skepta Más Tiempo", stage: "citysteps",
+      day: 2, start: "15:45", end: "17:00",
+      graphic: { url: "https://www.crssdfest.com/wp-content/uploads/CFS26_SundaySetTimes_Web.png", lastModified: "2026-09-25T01:58:23Z" },
+      removedFrom: { url: "https://www.crssdfest.com/", lastModified: "2026-09-25T12:28:29Z" },
+      reAdd: `mk("crssd-skepta-mas-tiempo", "Skepta Más Tiempo", "citysteps")  ·  sheet: 2\tCity Steps\t3:45 PM\t5:00 PM\tSkepta Más Tiempo` },
+  ];
+
   const CONFIG = {
     id:        "crssd-fall-2026",
     // Where the lineup rows came from (the SOURCE note above), as data so the
@@ -392,6 +406,7 @@
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};
   window.PLURSKY_FESTIVALS["crssd-fall-2026"] = {
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
+    removedAfterGraphic: REMOVED_AFTER_GRAPHIC,
     // Set times are the official grid (see the header). The site map is
     // still unpublished for this edition, so mapMode stays "real".
     registry: { available: true, accent: "#56fbf1", emoji: "🌊", region: "North America" },

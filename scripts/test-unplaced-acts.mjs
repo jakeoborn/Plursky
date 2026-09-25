@@ -10,12 +10,16 @@
 //      DAYS.find(...).label and bounce the user to the landing screen),
 //      says DAY + SET TIME NOT PUBLISHED, and offers no SCHEDULE link;
 //   2. control: a timed act still prints its day and times and the link;
+//   0. an act the later lineup page dropped after the day graphic timed it
+//      (CRSSD's Skepta Más Tiempo) stays out of the lineup, and its record
+//      keeps the full grid row so a re-bill is a one-step re-add;
 //   3. the onboarding "Plan the night" sample, with CRSSD active, shows only
 //      acts that have a day (it put the two day-null acts first, as "—  · Ocean View").
 import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import vm from 'node:vm';
 import { serverReady } from './lib/server-ready.mjs';
 import { loadRegistry } from './lib/load-registry.mjs';
 
@@ -37,6 +41,27 @@ const unplaced = REG.filter(e => e.available).flatMap(e =>
 check(unplaced.some(u => u.fest === 'crssd-fall-2026'), `control: no day-null act found on crssd-fall-2026 (found ${unplaced.length} on ${[...new Set(unplaced.map(u => u.fest))].join(', ') || 'none'})`);
 const timed = (DS['crssd-fall-2026']?.artists || []).find(a => a.id === 'crssd-horsegiirl');
 check(timed && timed.day === 1 && timed.start === '20:30', `control: crssd-horsegiirl is not the Saturday 20:30 set (${JSON.stringify(timed && { day: timed.day, start: timed.start })})`);
+
+// 0. Removed-after-graphic records, read off the modules themselves.
+{
+  const ctx = { window: {} }; vm.createContext(ctx);
+  for (const f of readdirSync('data/festivals').filter(f => f.endsWith('.js')).sort())
+    vm.runInContext(readFileSync(`data/festivals/${f}`, 'utf8'), ctx);
+  const mods = ctx.window.PLURSKY_FESTIVALS || {};
+  const removed = Object.entries(mods).flatMap(([fid, m]) => (m.removedAfterGraphic || []).map(r => ({ fid, r, m })));
+  check(removed.some(({ fid, r }) => fid === 'crssd-fall-2026' && r.id === 'crssd-skepta-mas-tiempo'),
+    'control: crssd-fall-2026 has no removed-after-graphic record for crssd-skepta-mas-tiempo');
+  for (const { fid, r, m } of removed) {
+    const inLineup = m.artists.some(a => a.id === r.id || a.name.toLowerCase() === String(r.name).toLowerCase());
+    check(!inLineup, `${fid} ${r.id}: removed after the graphic, but still in the lineup`);
+    const inLoaded = ((DS[fid] || {}).artists || []).some(a => a.id === r.id);
+    check(!inLoaded, `${fid} ${r.id}: removed after the graphic, but _DATA_SETS still carries it`);
+    check(m.stages.some(s => s.id === r.stage) && Number.isInteger(r.day) && /^\d\d:\d\d$/.test(r.start || '') && /^\d\d:\d\d$/.test(r.end || ''),
+      `${fid} ${r.id}: record lacks a full grid row (stage/day/start/end) to re-add from`);
+    check(/^https:\/\//.test(r.graphic?.url || '') && /^https:\/\//.test(r.removedFrom?.url || '') && r.graphic?.lastModified < r.removedFrom?.lastModified,
+      `${fid} ${r.id}: record must cite the graphic and the LATER page that dropped it`);
+  }
+}
 
 const PORT = await reservePort();
 const server = spawn('python3', ['-m', 'http.server', String(PORT), '--bind', '127.0.0.1'], { cwd: process.cwd(), stdio: 'ignore' });
