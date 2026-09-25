@@ -2592,10 +2592,47 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
-// ── 1z-b8b. Official maps and hours, exactly as ruled ─────────────────────
+// ── 1z-b8b. Official embeds on festival pages ────────────────────────────
+// Watch & listen shows only the festival's OWN posts: the official site links
+// the account, the platform names that account as the author, the post is
+// live and from this edition, and the caps hold (1 YouTube, 3 social across
+// Instagram + X, 1 Spotify). Players are youtube-nocookie / Spotify embed,
+// lazy, no autoplay; the Instagram/X scripts load once, late. Also pins the
+// "for humans" fold: 20 lineup rows, then Show all.
+{
+  console.log("▸ Official embeds gate — official, live, capped, lazy");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-official-embeds.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`official embeds failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b8b. Social embeds are tap-to-load ────────────────────────────────
+// Instagram and X posts on /f/ pages load only when the reader taps one:
+// a real browser renders and scrolls the page and asserts zero requests to
+// either platform, then taps and asserts exactly the tapped post loads.
+{
+  console.log("▸ Embeds tap-to-load gate — no Instagram/X request before a tap");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-embeds-tap.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`embeds tap-to-load failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b8c. Official maps and hours, exactly as ruled ─────────────────────
 // Every map link and hours value carries its first-party URL and the date it
 // was read; a festival with no published value has no field, and the held
-// ones (Portola, EDC Orlando, Decadence, Beyond SoCal) stay empty.
+// ones (Portola, EDC Orlando, Decadence, Beyond SoCal, Countdown NYE, Outside
+// Lands) stay empty. Edition gate: hours print only from the official page's
+// dated block for THIS edition (editionHours()).
 {
   console.log("▸ Maps & hours gate — every value sourced and dated, nothing inferred");
   try {

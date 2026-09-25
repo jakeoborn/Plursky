@@ -68,6 +68,34 @@
   section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
+  details.more { margin:4px 0 0; }
+  details.more > summary { cursor:pointer; color:var(--ember); font-weight:600; font-size:14px; padding:10px 0; min-height:44px; display:flex; align-items:center; }
+  details.more[open] > summary { color:var(--muted); }
+  section.watch .embed { margin:16px 0 20px; }
+  section.watch .yt { position:relative; aspect-ratio:16/9; width:100%; min-height:200px; background:var(--panel); border-radius:12px; overflow:hidden; }
+  section.watch .yt iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+  /* Instagram's embed.js stamps an inline 326px min-width on its iframe. On a
+     320px phone that ran 26px past the screen and cut off "View profile", so
+     the iframe is held to its column; Instagram's own layout reflows to fit.
+     The scroll box stays as a backstop for anything else a script inserts. */
+  section.watch .embed-ig { overflow-x:auto; max-width:100%; }
+  section.watch .embed-ig iframe { min-width:0 !important; width:100% !important; max-width:100% !important; box-sizing:border-box; }
+  /* And nothing a third-party script inserts may widen the page, even for a
+     frame mid-hydration (seen once at 320px: 346px for a moment). */
+  section.watch { overflow-x:clip; }
+  section.watch .embed-ig blockquote, section.watch .embed-x blockquote { margin:0; min-height:420px; background:var(--panel); border-radius:12px; padding:16px; max-width:540px; }
+  section.watch .embed-x blockquote { min-height:260px; }
+  /* Tap-to-load: until tapped, a social post is a compact card with its type,
+     date, one button and the notice; nothing from Instagram or X is requested.
+     The blockquote stays empty and hidden until the tap fills it. */
+  section.watch blockquote.tap-embed { display:none; }
+  section.watch .embed-tap { background:var(--panel); border-radius:12px; padding:16px; max-width:540px; box-sizing:border-box; }
+  section.watch .embed-what { color:var(--ink); font-size:15px; font-weight:600; margin:0 0 10px; }
+  section.watch .embed-load { min-height:44px; padding:10px 16px; border-radius:10px; border:1px solid var(--ember); background:transparent; color:var(--ember); font:inherit; font-weight:600; font-size:15px; cursor:pointer; }
+  section.watch .embed-tap-note { color:var(--muted); font-size:13px; margin:8px 0 0; }
+  section.watch figure.tapped .embed-tap { display:none; }
+  section.watch .embed-sp iframe { display:block; border:0; border-radius:12px; min-height:352px; }
+  section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }
 </style>
 <script type="application/ld+json">
 {
@@ -569,6 +597,62 @@
       <dd>ARC Music Festival 2026 has 4 stages at Union Park, each one listed on this page.</dd>
     </dl>
   </section>
+  <section id="watch" class="watch" aria-labelledby="watch-h">
+    <h2 id="watch-h">Watch &amp; listen</h2>
+    <p class="note">From ARC Music Festival 2026's official accounts.</p>
+    <figure class="embed embed-x" data-tap="x">
+      <blockquote class="tap-embed" data-class="twitter-tweet" data-dnt="true" data-theme="dark" data-href="https://twitter.com/arcmusicfest/status/2031405805388410929"></blockquote>
+      <div class="embed-tap">
+        <p class="embed-what">Announcement · Posted March 10, 2026</p>
+        <button type="button" class="embed-load">Load the X post</button>
+        <p class="embed-tap-note">Loading shows content from X, which may collect data about your visit. <a href="/privacy.html#social-embeds">Privacy</a></p>
+      </div>
+      <p class="embed-cap">@arcmusicfest on X · <a href="https://x.com/arcmusicfest/status/2031405805388410929" rel="noopener">View the original</a></p>
+    </figure>
+    <figure class="embed embed-x" data-tap="x">
+      <blockquote class="tap-embed" data-class="twitter-tweet" data-dnt="true" data-theme="dark" data-href="https://twitter.com/arcmusicfest/status/2031467774321611074"></blockquote>
+      <div class="embed-tap">
+        <p class="embed-what">Announcement · Posted March 10, 2026</p>
+        <button type="button" class="embed-load">Load the X post</button>
+        <p class="embed-tap-note">Loading shows content from X, which may collect data about your visit. <a href="/privacy.html#social-embeds">Privacy</a></p>
+      </div>
+      <p class="embed-cap">@arcmusicfest on X · <a href="https://x.com/arcmusicfest/status/2031467774321611074" rel="noopener">View the original</a></p>
+    </figure>
+    <figure class="embed embed-sp">
+      <iframe src="https://open.spotify.com/embed/playlist/14fOWfs7TBF4kQhZQUE8El" title="ARC Music Festival 2026 playlist on Spotify" width="100%" height="352" loading="lazy" allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      <p class="embed-cap">ARC Music Festival 2026's official playlist on Spotify · <a href="https://open.spotify.com/playlist/14fOWfs7TBF4kQhZQUE8El" rel="noopener">View the original</a></p>
+    </figure>
+    <script>
+(function () {
+  var sec = document.getElementById('watch');
+  if (!sec) return;
+  var SRC = { instagram: 'https://www.instagram.com/embed.js', x: 'https://platform.twitter.com/widgets.js' };
+  var requested = {};
+  function hydrate(p, fig) {
+    if (p === 'instagram' && window.instgrm && window.instgrm.Embeds) return window.instgrm.Embeds.process();
+    if (p === 'x' && window.twttr && window.twttr.widgets) return window.twttr.widgets.load(fig);
+    if (requested[p]) return; // in flight: the script scans the page when it runs
+    requested[p] = true;
+    var s = document.createElement('script'); s.async = true; s.src = SRC[p]; document.body.appendChild(s);
+  }
+  sec.addEventListener('click', function (ev) {
+    var b = ev.target.closest && ev.target.closest('button.embed-load');
+    if (!b) return;
+    var fig = b.closest('figure'), bq = fig && fig.querySelector('blockquote.tap-embed');
+    if (!bq || !SRC[fig.getAttribute('data-tap')]) return;
+    var a = document.createElement('a'); a.href = bq.getAttribute('data-href'); a.rel = 'noopener';
+    a.textContent = 'View this post on ' + (fig.getAttribute('data-tap') === 'x' ? 'X' : 'Instagram');
+    bq.appendChild(a); // X's script reads the post id from this link
+    bq.className = bq.getAttribute('data-class');
+    bq.removeAttribute('data-class');
+    fig.classList.add('tapped');
+    fig.setAttribute('tabindex', '-1');
+    fig.focus({ preventScroll: true });
+    hydrate(fig.getAttribute('data-tap'), fig);
+  });
+})();
+    </script>
+  </section>
 
 
   <section aria-labelledby="schedule-h">
@@ -748,83 +832,88 @@
       <li><span class="act">CARLITA B2B WHOMADEWHO</span> <span class="slots">Mon, Sep 7 · Expansions · <a href="#set-arc-carlita-b2b-whomadewho-expansions-d4">19:00</a></span></li>
       <li><span class="act">CHAOS IN THE CBD</span> <span class="slots">Sat, Sep 5 · area909 · <a href="#set-arc-chaos-in-the-cbd-area909-d2">16:00</a></span></li>
       <li><span class="act">CHASE &amp; STATUS</span> <span class="slots">Fri, Sep 4 · The Grid · <a href="#set-arc-chase-and-status-grid-d1">19:00</a></span></li>
-      <li><span class="act">CHRIS AVANTGARDE B2B KEVIN DE VRIES</span> <span class="slots">Sun, Sep 6 · The Grid · <a href="#set-arc-chris-avantgarde-b2b-kevin-de-vries-grid-d3">17:20</a></span></li>
-      <li><span class="act">CHRIS STUSSY</span> <span class="slots">Fri, Sep 4 · Expansions · <a href="#set-arc-chris-stussy-expansions-d1">20:30</a></span></li>
-      <li><span class="act">CLOONEE</span> <span class="slots">Sat, Sep 5 · The Grid · <a href="#set-arc-cloonee-grid-d2">19:00</a></span></li>
-      <li><span class="act">DABURA B2B ANNA MARIA</span> <span class="slots">Fri, Sep 4 · The Midway · <a href="#set-arc-dabura-b2b-anna-maria-midway-d1">14:00</a></span></li>
-      <li><span class="act">DAX J LIVE</span> <span class="slots">Sat, Sep 5 · Expansions · <a href="#set-arc-dax-j-live-expansions-d2">16:00</a></span></li>
-      <li><span class="act">DENNIS CRUZ B2B BEN STERLING</span> <span class="slots">Sun, Sep 6 · Expansions · <a href="#set-arc-dennis-cruz-b2b-ben-sterling-expansions-d3">17:30</a></span></li>
-      <li><span class="act">DERRICK CARTER</span> <span class="slots">Mon, Sep 7 · The Grid · <a href="#set-arc-derrick-carter-grid-d4">16:15</a></span></li>
-      <li><span class="act">DETROIT LOVE</span> <span class="slots">Sat, Sep 5 · area909 · <a href="#set-arc-detroit-love-area909-d2">17:30</a></span></li>
-      <li><span class="act">DISCIP B2B RODDY LIMA</span> <span class="slots">Sat, Sep 5 · The Midway · <a href="#set-arc-discip-b2b-roddy-lima-midway-d2">17:00</a></span></li>
-      <li><span class="act">DJ GIGOLA B2B SKIN ON SKIN</span> <span class="slots">Sun, Sep 6 · area909 · <a href="#set-arc-dj-gigola-b2b-skin-on-skin-area909-d3">19:00</a></span></li>
-      <li><span class="act">DJ HEARTSTRING B2B BAUGRUPPE90</span> <span class="slots">Mon, Sep 7 · area909 · <a href="#set-arc-dj-heartstring-b2b-baugruppe90-area909-d4">19:00</a></span></li>
-      <li><span class="act">DJ HYPERACTIVE B2B LINDSEY HERBERT</span> <span class="slots">Sat, Sep 5 · Expansions · <a href="#set-arc-dj-hyperactive-b2b-lindsey-herbert-expansions-d2">15:00</a></span></li>
-      <li><span class="act">DUNES OF DAWN</span> <span class="slots">Mon, Sep 7 · The Midway · <a href="#set-arc-dunes-of-dawn-midway-d4">15:00</a></span></li>
-      <li><span class="act">ELI &amp; FUR B2B CRISTOPH</span> <span class="slots">Fri, Sep 4 · The Midway · <a href="#set-arc-eli-and-fur-b2b-cristoph-midway-d1">19:00</a></span></li>
-      <li><span class="act">FLORES NEGRAS</span> <span class="slots">Sat, Sep 5 · Expansions · <a href="#set-arc-flores-negras-expansions-d2">14:00</a></span></li>
-      <li><span class="act">FRECHETTE</span> <span class="slots">Fri, Sep 4 · area909 · <a href="#set-arc-frechette-area909-d1">14:00</a></span></li>
-      <li><span class="act">GREEN VELVET B2B JOSH BAKER</span> <span class="slots">Mon, Sep 7 · The Grid · <a href="#set-arc-green-velvet-b2b-josh-baker-grid-d4">20:30</a></span></li>
-      <li><span class="act">HONEY DIJON</span> <span class="slots">Mon, Sep 7 · The Grid · <a href="#set-arc-honey-dijon-grid-d4">17:30</a></span></li>
-      <li><span class="act">HOTPRETTY</span> <span class="slots">Mon, Sep 7 · area909 · <a href="#set-arc-hotpretty-area909-d4">15:00</a></span></li>
-      <li><span class="act">I HATE MODELS</span> <span class="slots">Sat, Sep 5 · Expansions · <a href="#set-arc-i-hate-models-expansions-d2">18:30</a></span></li>
-      <li><span class="act">IDEMI</span> <span class="slots">Fri, Sep 4 · Expansions · <a href="#set-arc-idemi-expansions-d1">15:00</a></span></li>
-      <li><span class="act">INVT</span> <span class="slots">Fri, Sep 4 · The Grid · <a href="#set-arc-invt-grid-d1">15:00</a></span></li>
-      <li><span class="act">JAMBACK B2B MARSOLO</span> <span class="slots">Sun, Sep 6 · Expansions · <a href="#set-arc-jamback-b2b-marsolo-expansions-d3">16:00</a></span></li>
-      <li><span class="act">JJ ILLGEN B2B JANESITA</span> <span class="slots">Sat, Sep 5 · The Midway · <a href="#set-arc-jj-illgen-b2b-janesita-midway-d2">14:00</a></span></li>
-      <li><span class="act">JOSH BAKER</span> <span class="slots">Mon, Sep 7 · Expansions · <a href="#set-arc-josh-baker-expansions-d4">17:30</a></span></li>
-      <li><span class="act">JOY ORBISON B2B BEN UFO</span> <span class="slots">Fri, Sep 4 · area909 · <a href="#set-arc-joy-orbison-b2b-ben-ufo-area909-d1">21:00</a></span></li>
-      <li><span class="act">KI/KI</span> <span class="slots">Fri, Sep 4 · The Grid · <a href="#set-arc-ki-ki-grid-d1">17:30</a></span></li>
-      <li><span class="act">KIRK</span> <span class="slots">Mon, Sep 7 · area909 · <a href="#set-arc-kirk-area909-d4">14:00</a></span></li>
-      <li><span class="act">KLOUD</span> <span class="slots">Mon, Sep 7 · The Midway · <a href="#set-arc-kloud-midway-d4">20:30</a></span></li>
-      <li><span class="act">KOROLOVA B2B KASIA</span> <span class="slots">Fri, Sep 4 · The Midway · <a href="#set-arc-korolova-b2b-kasia-midway-d1">17:30</a></span></li>
-      <li><span class="act">LAURENCE GUY B2B MONTY KIDDO</span> <span class="slots">Sat, Sep 5 · The Midway · <a href="#set-arc-laurence-guy-b2b-monty-kiddo-midway-d2">15:30</a></span></li>
-      <li><span class="act">LOCKLEAD</span> <span class="slots">Sun, Sep 6 · Expansions · <a href="#set-arc-locklead-expansions-d3">15:00</a></span></li>
-      <li><span class="act">LUSID</span> <span class="slots">Mon, Sep 7 · Expansions · <a href="#set-arc-lusid-expansions-d4">15:00</a></span></li>
-      <li><span class="act">LUUK VAN DIJK B2B SIDNEY CHARLES</span> <span class="slots">Sat, Sep 5 · The Midway · <a href="#set-arc-luuk-van-dijk-b2b-sidney-charles-midway-d2">18:30</a></span></li>
-      <li><span class="act">M3RCH</span> <span class="slots">Sat, Sep 5 · The Grid · <a href="#set-arc-m3rch-grid-d2">14:00</a></span></li>
-      <li><span class="act">MADELINE</span> <span class="slots">Mon, Sep 7 · The Grid · <a href="#set-arc-madeline-grid-d4">14:00</a></span></li>
-      <li><span class="act">MAU P</span> <span class="slots">Sat, Sep 5 · The Grid · <a href="#set-arc-mau-p-grid-d2">20:30</a></span></li>
-      <li><span class="act">MAX DEAN B2B LUKE DEAN</span> <span class="slots">Fri, Sep 4 · Expansions · <a href="#set-arc-max-dean-b2b-luke-dean-expansions-d1">17:30</a></span></li>
-      <li><span class="act">MCR-T</span> <span class="slots">Sun, Sep 6 · area909 · <a href="#set-arc-mcr-t-area909-d3">16:30</a></span></li>
-      <li><span class="act">MEDUZA B2B GENESI</span> <span class="slots">Fri, Sep 4 · The Midway · <a href="#set-arc-meduza-b2b-genesi-midway-d1">20:30</a></span></li>
-      <li><span class="act">MICHAEL BIBI</span> <span class="slots">Mon, Sep 7 · The Grid · <a href="#set-arc-michael-bibi-grid-d4">19:00</a></span></li>
-      <li><span class="act">MIKE DUNN</span> <span class="slots">Sun, Sep 6 · The Midway · <a href="#set-arc-mike-dunn-midway-d3">15:00</a></span></li>
-      <li><span class="act">MOCHAKK</span> <span class="slots">Sun, Sep 6 · Expansions · <a href="#set-arc-mochakk-expansions-d3">20:30</a></span></li>
-      <li><span class="act">MUFFY</span> <span class="slots">Fri, Sep 4 · Expansions · <a href="#set-arc-muffy-expansions-d1">14:00</a></span></li>
-      <li><span class="act">NIA ARCHIVES B2B X CLUB.</span> <span class="slots">Sun, Sep 6 · area909 · <a href="#set-arc-nia-archives-b2b-x-club-area909-d3">17:30</a></span></li>
-      <li><span class="act">NICK C</span> <span class="slots">Sun, Sep 6 · Expansions · <a href="#set-arc-nick-c-expansions-d3">14:00</a></span></li>
-      <li><span class="act">NICO MORENO</span> <span class="slots">Sat, Sep 5 · Expansions · <a href="#set-arc-nico-moreno-expansions-d2">20:30</a></span></li>
-      <li><span class="act">NICOLE MOUDABER B2B PACO OSUNA B2B DUBFIRE</span> <span class="slots">Sat, Sep 5 · The Midway · <a href="#set-arc-nicole-moudaber-b2b-paco-osuna-b2b-dubfire-midway-d2">20:00</a></span></li>
-      <li><span class="act">NOTRE DAME</span> <span class="slots">Fri, Sep 4 · The Midway · <a href="#set-arc-notre-dame-midway-d1">16:00</a></span></li>
-      <li><span class="act">ODD MOB</span> <span class="slots">Sat, Sep 5 · The Grid · <a href="#set-arc-odd-mob-grid-d2">17:30</a></span></li>
-      <li><span class="act">OGUZ</span> <span class="slots">Mon, Sep 7 · The Midway · <a href="#set-arc-oguz-midway-d4">16:00</a></span></li>
-      <li><span class="act">OMAR+ B2B OBSKÜR</span> <span class="slots">Sat, Sep 5 · The Grid · <a href="#set-arc-omarplus-b2b-obsk-r-grid-d2">16:00</a></span></li>
-      <li><span class="act">OOGIE B2B PHIVES</span> <span class="slots">Mon, Sep 7 · Expansions · <a href="#set-arc-oogie-b2b-phives-expansions-d4">14:00</a></span></li>
-      <li><span class="act">PEGASSI</span> <span class="slots">Fri, Sep 4 · area909 · <a href="#set-arc-pegassi-area909-d1">19:00</a></span></li>
-      <li><span class="act">PLUKO DJ SET</span> <span class="slots">Sun, Sep 6 · area909 · <a href="#set-arc-pluko-dj-set-area909-d3">15:30</a></span></li>
-      <li><span class="act">PROSPA</span> <span class="slots">Fri, Sep 4 · Expansions · <a href="#set-arc-prospa-expansions-d1">19:00</a></span></li>
-      <li><span class="act">QUEST B2B ELLEN ALLIEN</span> <span class="slots">Mon, Sep 7 · The Midway · <a href="#set-arc-quest-b2b-ellen-allien-midway-d4">17:30</a></span></li>
-      <li><span class="act">RIKA B</span> <span class="slots">Sun, Sep 6 · The Midway · <a href="#set-arc-rika-b-midway-d3">14:00</a></span></li>
-      <li><span class="act">ROOBIES4EVER</span> <span class="slots">Mon, Sep 7 · The Midway · <a href="#set-arc-roobies4ever-midway-d4">14:00</a></span></li>
-      <li><span class="act">SALUTE</span> <span class="slots">Sat, Sep 5 · area909 · <a href="#set-arc-salute-area909-d2">19:00</a></span></li>
-      <li><span class="act">SAM ALFRED B2B CLUB ANGEL</span> <span class="slots">Mon, Sep 7 · area909 · <a href="#set-arc-sam-alfred-b2b-club-angel-area909-d4">17:00</a></span></li>
-      <li><span class="act">SARA LANDRY PRESENTS ETERNALISM</span> <span class="slots">Fri, Sep 4 · The Grid · <a href="#set-arc-sara-landry-presents-eternalism-grid-d1">20:45</a></span></li>
-      <li><span class="act">SILVA BUMPA</span> <span class="slots">Fri, Sep 4 · area909 · <a href="#set-arc-silva-bumpa-area909-d1">18:00</a></span></li>
-      <li><span class="act">SILVIE LOTO B2B KINAHAU</span> <span class="slots">Mon, Sep 7 · The Grid · <a href="#set-arc-silvie-loto-b2b-kinahau-grid-d4">15:00</a></span></li>
-      <li><span class="act">SON OF SON</span> <span class="slots">Sun, Sep 6 · The Grid · <a href="#set-arc-son-of-son-grid-d3">15:00</a></span></li>
-      <li><span class="act">SUPERJANE</span> <span class="slots">Sat, Sep 5 · area909 · <a href="#set-arc-superjane-area909-d2">14:00</a></span></li>
-      <li><span class="act">SWIMMING PAUL</span> <span class="slots">Sun, Sep 6 · The Grid · <a href="#set-arc-swimming-paul-grid-d3">16:00</a></span></li>
-      <li><span class="act">THE BLESSED MADONNA B2B LIL&#39; LOUIS</span> <span class="slots">Sat, Sep 5 · area909 · <a href="#set-arc-the-blessed-madonna-b2b-lil-louis-area909-d2">20:30</a></span></li>
-      <li><span class="act">TIGA B2B BRUNELLO</span> <span class="slots">Fri, Sep 4 · Expansions · <a href="#set-arc-tiga-b2b-brunello-expansions-d1">16:00</a></span></li>
-      <li><span class="act">TRÈS MORTIMER B2B COLE KNIGHT</span> <span class="slots">Sat, Sep 5 · The Grid · <a href="#set-arc-tr-s-mortimer-b2b-cole-knight-grid-d2">15:00</a></span></li>
-      <li><span class="act">UNDERWORLD</span> <span class="slots">Sun, Sep 6 · The Grid · <a href="#set-arc-underworld-grid-d3">19:15</a></span></li>
-      <li><span class="act">VINTAGE CULTURE B2B DAMIAN LAZARUS</span> <span class="slots">Mon, Sep 7 · Expansions · <a href="#set-arc-vintage-culture-b2b-damian-lazarus-expansions-d4">20:30</a></span></li>
-      <li><span class="act">VIRAGO</span> <span class="slots">Fri, Sep 4 · The Grid · <a href="#set-arc-virago-grid-d1">14:00</a></span></li>
-      <li><span class="act">WALKER &amp; ROYCE B2B VNSSA</span> <span class="slots">Sun, Sep 6 · The Midway · <a href="#set-arc-walker-and-royce-b2b-vnssa-midway-d3">19:00</a></span></li>
-      <li><span class="act">WILL CLARKE</span> <span class="slots">Sun, Sep 6 · The Midway · <a href="#set-arc-will-clarke-midway-d3">16:00</a></span></li>
-      <li><span class="act">ZULAN</span> <span class="slots">Fri, Sep 4 · area909 · <a href="#set-arc-zulan-area909-d1">17:00</a></span></li>
     </ul>
+    <details class="more">
+      <summary>Show all 96 artists</summary>
+      <ul class="lineup">
+        <li><span class="act">CHRIS AVANTGARDE B2B KEVIN DE VRIES</span> <span class="slots">Sun, Sep 6 · The Grid · <a href="#set-arc-chris-avantgarde-b2b-kevin-de-vries-grid-d3">17:20</a></span></li>
+        <li><span class="act">CHRIS STUSSY</span> <span class="slots">Fri, Sep 4 · Expansions · <a href="#set-arc-chris-stussy-expansions-d1">20:30</a></span></li>
+        <li><span class="act">CLOONEE</span> <span class="slots">Sat, Sep 5 · The Grid · <a href="#set-arc-cloonee-grid-d2">19:00</a></span></li>
+        <li><span class="act">DABURA B2B ANNA MARIA</span> <span class="slots">Fri, Sep 4 · The Midway · <a href="#set-arc-dabura-b2b-anna-maria-midway-d1">14:00</a></span></li>
+        <li><span class="act">DAX J LIVE</span> <span class="slots">Sat, Sep 5 · Expansions · <a href="#set-arc-dax-j-live-expansions-d2">16:00</a></span></li>
+        <li><span class="act">DENNIS CRUZ B2B BEN STERLING</span> <span class="slots">Sun, Sep 6 · Expansions · <a href="#set-arc-dennis-cruz-b2b-ben-sterling-expansions-d3">17:30</a></span></li>
+        <li><span class="act">DERRICK CARTER</span> <span class="slots">Mon, Sep 7 · The Grid · <a href="#set-arc-derrick-carter-grid-d4">16:15</a></span></li>
+        <li><span class="act">DETROIT LOVE</span> <span class="slots">Sat, Sep 5 · area909 · <a href="#set-arc-detroit-love-area909-d2">17:30</a></span></li>
+        <li><span class="act">DISCIP B2B RODDY LIMA</span> <span class="slots">Sat, Sep 5 · The Midway · <a href="#set-arc-discip-b2b-roddy-lima-midway-d2">17:00</a></span></li>
+        <li><span class="act">DJ GIGOLA B2B SKIN ON SKIN</span> <span class="slots">Sun, Sep 6 · area909 · <a href="#set-arc-dj-gigola-b2b-skin-on-skin-area909-d3">19:00</a></span></li>
+        <li><span class="act">DJ HEARTSTRING B2B BAUGRUPPE90</span> <span class="slots">Mon, Sep 7 · area909 · <a href="#set-arc-dj-heartstring-b2b-baugruppe90-area909-d4">19:00</a></span></li>
+        <li><span class="act">DJ HYPERACTIVE B2B LINDSEY HERBERT</span> <span class="slots">Sat, Sep 5 · Expansions · <a href="#set-arc-dj-hyperactive-b2b-lindsey-herbert-expansions-d2">15:00</a></span></li>
+        <li><span class="act">DUNES OF DAWN</span> <span class="slots">Mon, Sep 7 · The Midway · <a href="#set-arc-dunes-of-dawn-midway-d4">15:00</a></span></li>
+        <li><span class="act">ELI &amp; FUR B2B CRISTOPH</span> <span class="slots">Fri, Sep 4 · The Midway · <a href="#set-arc-eli-and-fur-b2b-cristoph-midway-d1">19:00</a></span></li>
+        <li><span class="act">FLORES NEGRAS</span> <span class="slots">Sat, Sep 5 · Expansions · <a href="#set-arc-flores-negras-expansions-d2">14:00</a></span></li>
+        <li><span class="act">FRECHETTE</span> <span class="slots">Fri, Sep 4 · area909 · <a href="#set-arc-frechette-area909-d1">14:00</a></span></li>
+        <li><span class="act">GREEN VELVET B2B JOSH BAKER</span> <span class="slots">Mon, Sep 7 · The Grid · <a href="#set-arc-green-velvet-b2b-josh-baker-grid-d4">20:30</a></span></li>
+        <li><span class="act">HONEY DIJON</span> <span class="slots">Mon, Sep 7 · The Grid · <a href="#set-arc-honey-dijon-grid-d4">17:30</a></span></li>
+        <li><span class="act">HOTPRETTY</span> <span class="slots">Mon, Sep 7 · area909 · <a href="#set-arc-hotpretty-area909-d4">15:00</a></span></li>
+        <li><span class="act">I HATE MODELS</span> <span class="slots">Sat, Sep 5 · Expansions · <a href="#set-arc-i-hate-models-expansions-d2">18:30</a></span></li>
+        <li><span class="act">IDEMI</span> <span class="slots">Fri, Sep 4 · Expansions · <a href="#set-arc-idemi-expansions-d1">15:00</a></span></li>
+        <li><span class="act">INVT</span> <span class="slots">Fri, Sep 4 · The Grid · <a href="#set-arc-invt-grid-d1">15:00</a></span></li>
+        <li><span class="act">JAMBACK B2B MARSOLO</span> <span class="slots">Sun, Sep 6 · Expansions · <a href="#set-arc-jamback-b2b-marsolo-expansions-d3">16:00</a></span></li>
+        <li><span class="act">JJ ILLGEN B2B JANESITA</span> <span class="slots">Sat, Sep 5 · The Midway · <a href="#set-arc-jj-illgen-b2b-janesita-midway-d2">14:00</a></span></li>
+        <li><span class="act">JOSH BAKER</span> <span class="slots">Mon, Sep 7 · Expansions · <a href="#set-arc-josh-baker-expansions-d4">17:30</a></span></li>
+        <li><span class="act">JOY ORBISON B2B BEN UFO</span> <span class="slots">Fri, Sep 4 · area909 · <a href="#set-arc-joy-orbison-b2b-ben-ufo-area909-d1">21:00</a></span></li>
+        <li><span class="act">KI/KI</span> <span class="slots">Fri, Sep 4 · The Grid · <a href="#set-arc-ki-ki-grid-d1">17:30</a></span></li>
+        <li><span class="act">KIRK</span> <span class="slots">Mon, Sep 7 · area909 · <a href="#set-arc-kirk-area909-d4">14:00</a></span></li>
+        <li><span class="act">KLOUD</span> <span class="slots">Mon, Sep 7 · The Midway · <a href="#set-arc-kloud-midway-d4">20:30</a></span></li>
+        <li><span class="act">KOROLOVA B2B KASIA</span> <span class="slots">Fri, Sep 4 · The Midway · <a href="#set-arc-korolova-b2b-kasia-midway-d1">17:30</a></span></li>
+        <li><span class="act">LAURENCE GUY B2B MONTY KIDDO</span> <span class="slots">Sat, Sep 5 · The Midway · <a href="#set-arc-laurence-guy-b2b-monty-kiddo-midway-d2">15:30</a></span></li>
+        <li><span class="act">LOCKLEAD</span> <span class="slots">Sun, Sep 6 · Expansions · <a href="#set-arc-locklead-expansions-d3">15:00</a></span></li>
+        <li><span class="act">LUSID</span> <span class="slots">Mon, Sep 7 · Expansions · <a href="#set-arc-lusid-expansions-d4">15:00</a></span></li>
+        <li><span class="act">LUUK VAN DIJK B2B SIDNEY CHARLES</span> <span class="slots">Sat, Sep 5 · The Midway · <a href="#set-arc-luuk-van-dijk-b2b-sidney-charles-midway-d2">18:30</a></span></li>
+        <li><span class="act">M3RCH</span> <span class="slots">Sat, Sep 5 · The Grid · <a href="#set-arc-m3rch-grid-d2">14:00</a></span></li>
+        <li><span class="act">MADELINE</span> <span class="slots">Mon, Sep 7 · The Grid · <a href="#set-arc-madeline-grid-d4">14:00</a></span></li>
+        <li><span class="act">MAU P</span> <span class="slots">Sat, Sep 5 · The Grid · <a href="#set-arc-mau-p-grid-d2">20:30</a></span></li>
+        <li><span class="act">MAX DEAN B2B LUKE DEAN</span> <span class="slots">Fri, Sep 4 · Expansions · <a href="#set-arc-max-dean-b2b-luke-dean-expansions-d1">17:30</a></span></li>
+        <li><span class="act">MCR-T</span> <span class="slots">Sun, Sep 6 · area909 · <a href="#set-arc-mcr-t-area909-d3">16:30</a></span></li>
+        <li><span class="act">MEDUZA B2B GENESI</span> <span class="slots">Fri, Sep 4 · The Midway · <a href="#set-arc-meduza-b2b-genesi-midway-d1">20:30</a></span></li>
+        <li><span class="act">MICHAEL BIBI</span> <span class="slots">Mon, Sep 7 · The Grid · <a href="#set-arc-michael-bibi-grid-d4">19:00</a></span></li>
+        <li><span class="act">MIKE DUNN</span> <span class="slots">Sun, Sep 6 · The Midway · <a href="#set-arc-mike-dunn-midway-d3">15:00</a></span></li>
+        <li><span class="act">MOCHAKK</span> <span class="slots">Sun, Sep 6 · Expansions · <a href="#set-arc-mochakk-expansions-d3">20:30</a></span></li>
+        <li><span class="act">MUFFY</span> <span class="slots">Fri, Sep 4 · Expansions · <a href="#set-arc-muffy-expansions-d1">14:00</a></span></li>
+        <li><span class="act">NIA ARCHIVES B2B X CLUB.</span> <span class="slots">Sun, Sep 6 · area909 · <a href="#set-arc-nia-archives-b2b-x-club-area909-d3">17:30</a></span></li>
+        <li><span class="act">NICK C</span> <span class="slots">Sun, Sep 6 · Expansions · <a href="#set-arc-nick-c-expansions-d3">14:00</a></span></li>
+        <li><span class="act">NICO MORENO</span> <span class="slots">Sat, Sep 5 · Expansions · <a href="#set-arc-nico-moreno-expansions-d2">20:30</a></span></li>
+        <li><span class="act">NICOLE MOUDABER B2B PACO OSUNA B2B DUBFIRE</span> <span class="slots">Sat, Sep 5 · The Midway · <a href="#set-arc-nicole-moudaber-b2b-paco-osuna-b2b-dubfire-midway-d2">20:00</a></span></li>
+        <li><span class="act">NOTRE DAME</span> <span class="slots">Fri, Sep 4 · The Midway · <a href="#set-arc-notre-dame-midway-d1">16:00</a></span></li>
+        <li><span class="act">ODD MOB</span> <span class="slots">Sat, Sep 5 · The Grid · <a href="#set-arc-odd-mob-grid-d2">17:30</a></span></li>
+        <li><span class="act">OGUZ</span> <span class="slots">Mon, Sep 7 · The Midway · <a href="#set-arc-oguz-midway-d4">16:00</a></span></li>
+        <li><span class="act">OMAR+ B2B OBSKÜR</span> <span class="slots">Sat, Sep 5 · The Grid · <a href="#set-arc-omarplus-b2b-obsk-r-grid-d2">16:00</a></span></li>
+        <li><span class="act">OOGIE B2B PHIVES</span> <span class="slots">Mon, Sep 7 · Expansions · <a href="#set-arc-oogie-b2b-phives-expansions-d4">14:00</a></span></li>
+        <li><span class="act">PEGASSI</span> <span class="slots">Fri, Sep 4 · area909 · <a href="#set-arc-pegassi-area909-d1">19:00</a></span></li>
+        <li><span class="act">PLUKO DJ SET</span> <span class="slots">Sun, Sep 6 · area909 · <a href="#set-arc-pluko-dj-set-area909-d3">15:30</a></span></li>
+        <li><span class="act">PROSPA</span> <span class="slots">Fri, Sep 4 · Expansions · <a href="#set-arc-prospa-expansions-d1">19:00</a></span></li>
+        <li><span class="act">QUEST B2B ELLEN ALLIEN</span> <span class="slots">Mon, Sep 7 · The Midway · <a href="#set-arc-quest-b2b-ellen-allien-midway-d4">17:30</a></span></li>
+        <li><span class="act">RIKA B</span> <span class="slots">Sun, Sep 6 · The Midway · <a href="#set-arc-rika-b-midway-d3">14:00</a></span></li>
+        <li><span class="act">ROOBIES4EVER</span> <span class="slots">Mon, Sep 7 · The Midway · <a href="#set-arc-roobies4ever-midway-d4">14:00</a></span></li>
+        <li><span class="act">SALUTE</span> <span class="slots">Sat, Sep 5 · area909 · <a href="#set-arc-salute-area909-d2">19:00</a></span></li>
+        <li><span class="act">SAM ALFRED B2B CLUB ANGEL</span> <span class="slots">Mon, Sep 7 · area909 · <a href="#set-arc-sam-alfred-b2b-club-angel-area909-d4">17:00</a></span></li>
+        <li><span class="act">SARA LANDRY PRESENTS ETERNALISM</span> <span class="slots">Fri, Sep 4 · The Grid · <a href="#set-arc-sara-landry-presents-eternalism-grid-d1">20:45</a></span></li>
+        <li><span class="act">SILVA BUMPA</span> <span class="slots">Fri, Sep 4 · area909 · <a href="#set-arc-silva-bumpa-area909-d1">18:00</a></span></li>
+        <li><span class="act">SILVIE LOTO B2B KINAHAU</span> <span class="slots">Mon, Sep 7 · The Grid · <a href="#set-arc-silvie-loto-b2b-kinahau-grid-d4">15:00</a></span></li>
+        <li><span class="act">SON OF SON</span> <span class="slots">Sun, Sep 6 · The Grid · <a href="#set-arc-son-of-son-grid-d3">15:00</a></span></li>
+        <li><span class="act">SUPERJANE</span> <span class="slots">Sat, Sep 5 · area909 · <a href="#set-arc-superjane-area909-d2">14:00</a></span></li>
+        <li><span class="act">SWIMMING PAUL</span> <span class="slots">Sun, Sep 6 · The Grid · <a href="#set-arc-swimming-paul-grid-d3">16:00</a></span></li>
+        <li><span class="act">THE BLESSED MADONNA B2B LIL&#39; LOUIS</span> <span class="slots">Sat, Sep 5 · area909 · <a href="#set-arc-the-blessed-madonna-b2b-lil-louis-area909-d2">20:30</a></span></li>
+        <li><span class="act">TIGA B2B BRUNELLO</span> <span class="slots">Fri, Sep 4 · Expansions · <a href="#set-arc-tiga-b2b-brunello-expansions-d1">16:00</a></span></li>
+        <li><span class="act">TRÈS MORTIMER B2B COLE KNIGHT</span> <span class="slots">Sat, Sep 5 · The Grid · <a href="#set-arc-tr-s-mortimer-b2b-cole-knight-grid-d2">15:00</a></span></li>
+        <li><span class="act">UNDERWORLD</span> <span class="slots">Sun, Sep 6 · The Grid · <a href="#set-arc-underworld-grid-d3">19:15</a></span></li>
+        <li><span class="act">VINTAGE CULTURE B2B DAMIAN LAZARUS</span> <span class="slots">Mon, Sep 7 · Expansions · <a href="#set-arc-vintage-culture-b2b-damian-lazarus-expansions-d4">20:30</a></span></li>
+        <li><span class="act">VIRAGO</span> <span class="slots">Fri, Sep 4 · The Grid · <a href="#set-arc-virago-grid-d1">14:00</a></span></li>
+        <li><span class="act">WALKER &amp; ROYCE B2B VNSSA</span> <span class="slots">Sun, Sep 6 · The Midway · <a href="#set-arc-walker-and-royce-b2b-vnssa-midway-d3">19:00</a></span></li>
+        <li><span class="act">WILL CLARKE</span> <span class="slots">Sun, Sep 6 · The Midway · <a href="#set-arc-will-clarke-midway-d3">16:00</a></span></li>
+        <li><span class="act">ZULAN</span> <span class="slots">Fri, Sep 4 · area909 · <a href="#set-arc-zulan-area909-d1">17:00</a></span></li>
+      </ul>
+    </details>
   </section>
 
   <section aria-labelledby="stages-h">
@@ -857,11 +946,17 @@
       <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
       <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
       <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
-      <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
-      <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
-      <li><a href="/f/hard-summer-2026/">HARD Summer 2026</a> — Aug 1–2, 2026</li>
-      <li><a href="/f/lollapalooza-2026/">Lollapalooza 2026</a> — Jul 30 – Aug 2, 2026</li>
     </ul>
+    <details class="more">
+      <summary>Show 4 more</summary>
+      <ul>
+        <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
+        <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
+        <li><a href="/f/hard-summer-2026/">HARD Summer 2026</a> — Aug 1–2, 2026</li>
+        <li><a href="/f/lollapalooza-2026/">Lollapalooza 2026</a> — Jul 30 – Aug 2, 2026</li>
+      </ul>
+    </details>
+
   </nav>
 
   <section class="sources" aria-labelledby="sources-h">

@@ -68,6 +68,34 @@
   section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
+  details.more { margin:4px 0 0; }
+  details.more > summary { cursor:pointer; color:var(--ember); font-weight:600; font-size:14px; padding:10px 0; min-height:44px; display:flex; align-items:center; }
+  details.more[open] > summary { color:var(--muted); }
+  section.watch .embed { margin:16px 0 20px; }
+  section.watch .yt { position:relative; aspect-ratio:16/9; width:100%; min-height:200px; background:var(--panel); border-radius:12px; overflow:hidden; }
+  section.watch .yt iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+  /* Instagram's embed.js stamps an inline 326px min-width on its iframe. On a
+     320px phone that ran 26px past the screen and cut off "View profile", so
+     the iframe is held to its column; Instagram's own layout reflows to fit.
+     The scroll box stays as a backstop for anything else a script inserts. */
+  section.watch .embed-ig { overflow-x:auto; max-width:100%; }
+  section.watch .embed-ig iframe { min-width:0 !important; width:100% !important; max-width:100% !important; box-sizing:border-box; }
+  /* And nothing a third-party script inserts may widen the page, even for a
+     frame mid-hydration (seen once at 320px: 346px for a moment). */
+  section.watch { overflow-x:clip; }
+  section.watch .embed-ig blockquote, section.watch .embed-x blockquote { margin:0; min-height:420px; background:var(--panel); border-radius:12px; padding:16px; max-width:540px; }
+  section.watch .embed-x blockquote { min-height:260px; }
+  /* Tap-to-load: until tapped, a social post is a compact card with its type,
+     date, one button and the notice; nothing from Instagram or X is requested.
+     The blockquote stays empty and hidden until the tap fills it. */
+  section.watch blockquote.tap-embed { display:none; }
+  section.watch .embed-tap { background:var(--panel); border-radius:12px; padding:16px; max-width:540px; box-sizing:border-box; }
+  section.watch .embed-what { color:var(--ink); font-size:15px; font-weight:600; margin:0 0 10px; }
+  section.watch .embed-load { min-height:44px; padding:10px 16px; border-radius:10px; border:1px solid var(--ember); background:transparent; color:var(--ember); font:inherit; font-weight:600; font-size:15px; cursor:pointer; }
+  section.watch .embed-tap-note { color:var(--muted); font-size:13px; margin:8px 0 0; }
+  section.watch figure.tapped .embed-tap { display:none; }
+  section.watch .embed-sp iframe { display:block; border:0; border-radius:12px; min-height:352px; }
+  section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }
 </style>
 <script type="application/ld+json">
 {
@@ -1047,6 +1075,53 @@
       <dd>218 artists are announced for III Points 2026, and every one of them is listed on this page.</dd>
     </dl>
   </section>
+  <section id="watch" class="watch" aria-labelledby="watch-h">
+    <h2 id="watch-h">Watch &amp; listen</h2>
+    <p class="note">From III Points 2026's official accounts.</p>
+    <figure class="embed embed-ig" data-tap="instagram">
+      <blockquote class="tap-embed" data-class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DVeP_fKEeNA/" data-instgrm-version="14" data-href="https://www.instagram.com/p/DVeP_fKEeNA/"></blockquote>
+      <div class="embed-tap">
+        <p class="embed-what">Lineup · Posted March 4, 2026</p>
+        <button type="button" class="embed-load">Load the Instagram post</button>
+        <p class="embed-tap-note">Loading shows content from Instagram (Meta), which may collect data about your visit. <a href="/privacy.html#social-embeds">Privacy</a></p>
+      </div>
+      <p class="embed-cap">@IIIPoints on Instagram · <a href="https://www.instagram.com/p/DVeP_fKEeNA/" rel="noopener">View the original</a></p>
+    </figure>
+    <figure class="embed embed-sp">
+      <iframe src="https://open.spotify.com/embed/playlist/6SNUo04uqX8mDALxD9hkFC" title="III Points 2026 playlist on Spotify" width="100%" height="352" loading="lazy" allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      <p class="embed-cap">III Points 2026's official playlist on Spotify · <a href="https://open.spotify.com/playlist/6SNUo04uqX8mDALxD9hkFC" rel="noopener">View the original</a></p>
+    </figure>
+    <script>
+(function () {
+  var sec = document.getElementById('watch');
+  if (!sec) return;
+  var SRC = { instagram: 'https://www.instagram.com/embed.js', x: 'https://platform.twitter.com/widgets.js' };
+  var requested = {};
+  function hydrate(p, fig) {
+    if (p === 'instagram' && window.instgrm && window.instgrm.Embeds) return window.instgrm.Embeds.process();
+    if (p === 'x' && window.twttr && window.twttr.widgets) return window.twttr.widgets.load(fig);
+    if (requested[p]) return; // in flight: the script scans the page when it runs
+    requested[p] = true;
+    var s = document.createElement('script'); s.async = true; s.src = SRC[p]; document.body.appendChild(s);
+  }
+  sec.addEventListener('click', function (ev) {
+    var b = ev.target.closest && ev.target.closest('button.embed-load');
+    if (!b) return;
+    var fig = b.closest('figure'), bq = fig && fig.querySelector('blockquote.tap-embed');
+    if (!bq || !SRC[fig.getAttribute('data-tap')]) return;
+    var a = document.createElement('a'); a.href = bq.getAttribute('data-href'); a.rel = 'noopener';
+    a.textContent = 'View this post on ' + (fig.getAttribute('data-tap') === 'x' ? 'X' : 'Instagram');
+    bq.appendChild(a); // X's script reads the post id from this link
+    bq.className = bq.getAttribute('data-class');
+    bq.removeAttribute('data-class');
+    fig.classList.add('tapped');
+    fig.setAttribute('tabindex', '-1');
+    fig.focus({ preventScroll: true });
+    hydrate(fig.getAttribute('data-tap'), fig);
+  });
+})();
+    </script>
+  </section>
 
 
 
@@ -1075,205 +1150,210 @@
       <li><span class="act">Ashley Venom B2B Souls Departed</span></li>
       <li><span class="act">B0YG1RL</span></li>
       <li><span class="act">Baby Jesus B2B CHAOS!</span></li>
-      <li><span class="act">Bakke</span></li>
-      <li><span class="act">Bassvictim</span></li>
-      <li><span class="act">Beltran B2B Ben Sterling</span></li>
-      <li><span class="act">Bill Patrick B2B Bort</span></li>
-      <li><span class="act">Blood Orange</span></li>
-      <li><span class="act">Bone Thugs-N-Harmony</span></li>
-      <li><span class="act">Bonita Applebumz B2B Toni Shardai</span></li>
-      <li><span class="act">Bozito B2B Gabo Escalona</span></li>
-      <li><span class="act">Bricolage B2B DAY/DEM</span></li>
-      <li><span class="act">Brunello B2B Rafael</span></li>
-      <li><span class="act">Cami di Marzo</span></li>
-      <li><span class="act">Camp Blu</span></li>
-      <li><span class="act">Carter Jackson-Brown</span></li>
-      <li><span class="act">Chanel Beads</span></li>
-      <li><span class="act">Charlotte de Witte</span></li>
-      <li><span class="act">ChaseWest</span></li>
-      <li><span class="act">Cloonee</span></li>
-      <li><span class="act">Coffintexts B2B DJ Fuckoff</span></li>
-      <li><span class="act">Cole Knight B2B DREYA V</span></li>
-      <li><span class="act">Connan Mockasin</span></li>
-      <li><span class="act">Corridos Ketamina</span></li>
-      <li><span class="act">D.Luxe B2B Dennis Baker</span></li>
-      <li><span class="act">Daizy</span></li>
-      <li><span class="act">Dan Molinari</span></li>
-      <li><span class="act">Danny Brown</span></li>
-      <li><span class="act">Danny Daze B2B DJ Godfather</span></li>
-      <li><span class="act">Daphni</span></li>
-      <li><span class="act">David Vunk</span></li>
-      <li><span class="act">Dean Turnley</span></li>
-      <li><span class="act">Deep Cleansing</span></li>
-      <li><span class="act">Differ</span></li>
-      <li><span class="act">Discip</span></li>
-      <li><span class="act">Disco Lines</span></li>
-      <li><span class="act">DJ Harvey</span></li>
-      <li><span class="act">DJ Ray B2B EZ Dee</span></li>
-      <li><span class="act">DJ Sabi B2B GRUE5OME</span></li>
-      <li><span class="act">DJ Three B2B Sister System</span></li>
-      <li><span class="act">DomnRob</span></li>
-      <li><span class="act">doris dana</span></li>
-      <li><span class="act">Dr. Rubinstein B2B Ultrathem</span></li>
-      <li><span class="act">Duality B2B GumtheWrapper</span></li>
-      <li><span class="act">Dude Skywalker</span></li>
-      <li><span class="act">duun B2B Sleepy C</span></li>
-      <li><span class="act">ear</span></li>
-      <li><span class="act">eco-sistema</span></li>
-      <li><span class="act">Eli Escobar B2B Jubilee</span></li>
-      <li><span class="act">Elias Garcia B2B Mila Gama</span></li>
-      <li><span class="act">Ellynora</span></li>
-      <li><span class="act">eveava B2B Jovigibs</span></li>
-      <li><span class="act">Extra Andrew B2B Mutant Pete</span></li>
-      <li><span class="act">Faith Leazae</span></li>
-      <li><span class="act">fakemink</span></li>
-      <li><span class="act">Feph B2B Mr. Tron</span></li>
-      <li><span class="act">Fiin</span></li>
-      <li><span class="act">Fine</span></li>
-      <li><span class="act">FIUZA B2B Madison Kay</span></li>
-      <li><span class="act">Floating Points</span></li>
-      <li><span class="act">Flying Lotus</span></li>
-      <li><span class="act">Four Tet</span></li>
-      <li><span class="act">Generous B B2B Hakuna</span></li>
-      <li><span class="act">Gio Elia B2B Meghan Lee</span></li>
-      <li><span class="act">Godisound</span></li>
-      <li><span class="act">Grace Arribas B2B MARTE</span></li>
-      <li><span class="act">Grant Sabadash B2B Shir Miya</span></li>
-      <li><span class="act">HAAi</span></li>
-      <li><span class="act">Hamdi</span></li>
-      <li><span class="act">Heidi Lawden</span></li>
-      <li><span class="act">Honey Dijon</span></li>
-      <li><span class="act">horsegiirL</span></li>
-      <li><span class="act">Idriss D B2B Danyelino</span></li>
-      <li><span class="act">Interplanetary Criminal</span></li>
-      <li><span class="act">INVT</span></li>
-      <li><span class="act">Ivy Lab</span></li>
-      <li><span class="act">Jacques Greene</span></li>
-      <li><span class="act">Jane Remover</span></li>
-      <li><span class="act">Jason Rault</span></li>
-      <li><span class="act">JBZ</span></li>
-      <li><span class="act">JENCARLOS</span></li>
-      <li><span class="act">Jeremy Ismael</span></li>
-      <li><span class="act">Jigitz</span></li>
-      <li><span class="act">Jinks B2B Romulo Del Castillo</span></li>
-      <li><span class="act">JINN_PR</span></li>
-      <li><span class="act">Joanna Kuchta B2B Robyn Sin Love</span></li>
-      <li><span class="act">Joss Dean</span></li>
-      <li><span class="act">Jump Source</span></li>
-      <li><span class="act">Katie Ox B2B Nat Siriani</span></li>
-      <li><span class="act">Kelela</span></li>
-      <li><span class="act">KETTAMA</span></li>
-      <li><span class="act">Khami</span></li>
-      <li><span class="act">KI/KI</span></li>
-      <li><span class="act">KinAhau</span></li>
-      <li><span class="act">Kujo B2B RARA</span></li>
-      <li><span class="act">Kumi</span></li>
-      <li><span class="act">La BB</span></li>
-      <li><span class="act">Lady Narcisse B2B Racci</span></li>
-      <li><span class="act">LADYBOY</span></li>
-      <li><span class="act">Lagrimas de Oro</span></li>
-      <li><span class="act">Lauren Palma</span></li>
-      <li><span class="act">Levity B2B Taiki Nulight</span></li>
-      <li><span class="act">Lil&#39; Kim</span></li>
-      <li><span class="act">Liquid Dinosaurs</span></li>
-      <li><span class="act">Lizzie_mcguire</span></li>
-      <li><span class="act">Lotusoph B2B Julia Saturno</span></li>
-      <li><span class="act">Loukeman</span></li>
-      <li><span class="act">Lousy Lover B2B Lucaz</span></li>
-      <li><span class="act">Lupreme B2B SANTO</span></li>
-      <li><span class="act">Maccabi B2B Pezlo MD</span></li>
-      <li><span class="act">Machine Girl</span></li>
-      <li><span class="act">Maher Daniel B2B Mai Iachetti</span></li>
-      <li><span class="act">Malóne B2B Miluhska</span></li>
-      <li><span class="act">Mango B2B Mister Lo</span></li>
-      <li><span class="act">Marco Carola B2B Franky Rizardo</span></li>
-      <li><span class="act">Marie Qrie B2B Viva Vidal</span></li>
-      <li><span class="act">Marsolo</span></li>
-      <li><span class="act">Mary Droppinz</span></li>
-      <li><span class="act">Mason Norris B2B Mia Vendetta</span></li>
-      <li><span class="act">Max Dean B2B Luke Dean</span></li>
-      <li><span class="act">Max Styler B2B Vintage Culture</span></li>
-      <li><span class="act">Megusta B2B MIGS</span></li>
-      <li><span class="act">Men I Trust</span></li>
-      <li><span class="act">MGNA Crrrta</span></li>
-      <li><span class="act">Miguel Clark B2B Naim Zarzour</span></li>
-      <li><span class="act">Miguelle &amp; Tons B2B Saraga</span></li>
-      <li><span class="act">Mila Gama B2B X3BUTTERFLY</span></li>
-      <li><span class="act">Milo Ziro B2B Xilla</span></li>
-      <li><span class="act">Mind Enterprises</span></li>
-      <li><span class="act">ML Buch</span></li>
-      <li><span class="act">Monoky</span></li>
-      <li><span class="act">Moscoman</span></li>
-      <li><span class="act">MPH</span></li>
-      <li><span class="act">Mr. Bitch</span></li>
-      <li><span class="act">Mr. Brown</span></li>
-      <li><span class="act">Natalia Roth B2B Max Stern</span></li>
-      <li><span class="act">nate sib</span></li>
-      <li><span class="act">Nicholas G. Padilla</span></li>
-      <li><span class="act">Nick León B2B Safety Trance</span></li>
-      <li><span class="act">Nicole Gallamini B2B Nikita Green</span></li>
-      <li><span class="act">Nii Tei</span></li>
-      <li><span class="act">Odd Mob</span></li>
-      <li><span class="act">oma totem B2B True Vine</span></li>
-      <li><span class="act">Omar+</span></li>
-      <li><span class="act">P1no B2B Trippie Hippie</span></li>
-      <li><span class="act">Parcels</span></li>
-      <li><span class="act">Patch+</span></li>
-      <li><span class="act">PAWSA</span></li>
-      <li><span class="act">Peach B2B Shanti Celeste</span></li>
-      <li><span class="act">phiphi B2B Winter Wrong</span></li>
-      <li><span class="act">Pressure Point B2B Berrakka</span></li>
-      <li><span class="act">Proletar B2B Zamurai</span></li>
-      <li><span class="act">Puma</span></li>
-      <li><span class="act">Purity Ring</span></li>
-      <li><span class="act">R/V Calypso</span></li>
-      <li><span class="act">Ragie Ban</span></li>
-      <li><span class="act">RAJE B2B Slugg</span></li>
-      <li><span class="act">Rebolledo</span></li>
-      <li><span class="act">Red Axes</span></li>
-      <li><span class="act">Rello</span></li>
-      <li><span class="act">Rental Snakes</span></li>
-      <li><span class="act">res_ (live)</span></li>
-      <li><span class="act">Rimaye B2B Inbal</span></li>
-      <li><span class="act">Roddy Lima</span></li>
-      <li><span class="act">Roman Flügel</span></li>
-      <li><span class="act">Rude Boy B2B SDRV</span></li>
-      <li><span class="act">rusowsky</span></li>
-      <li><span class="act">Saint &amp; Romero</span></li>
-      <li><span class="act">Sam Alfred</span></li>
-      <li><span class="act">Santiago Villu</span></li>
-      <li><span class="act">SATURNSARii B2B SUZ</span></li>
-      <li><span class="act">SEL.6 B2B PLAYSHADO</span></li>
-      <li><span class="act">serafitz B2B SOL Discos</span></li>
-      <li><span class="act">Seth Troxler</span></li>
-      <li><span class="act">Shinobi</span></li>
-      <li><span class="act">Silvie Loto B2B Ms. Mada</span></li>
-      <li><span class="act">Sosa</span></li>
-      <li><span class="act">Spice Crime B2B Violeta</span></li>
-      <li><span class="act">Sportswax</span></li>
-      <li><span class="act">Sunn O)))</span></li>
-      <li><span class="act">Tech G1rls</span></li>
-      <li><span class="act">Terence Tabeau</span></li>
-      <li><span class="act">Tiffy Vera B2B Thunderpony</span></li>
-      <li><span class="act">Tiga</span></li>
-      <li><span class="act">Tokischa</span></li>
-      <li><span class="act">Tricky</span></li>
-      <li><span class="act">Uchi</span></li>
-      <li><span class="act">Ultrathem</span></li>
-      <li><span class="act">Underworld</span></li>
-      <li><span class="act">V1FRO</span></li>
-      <li><span class="act">Vania Junco</span></li>
-      <li><span class="act">Velora</span></li>
-      <li><span class="act">vsyana</span></li>
-      <li><span class="act">VTSS</span></li>
-      <li><span class="act">VVilhelm</span></li>
-      <li><span class="act">Whitesquare</span></li>
-      <li><span class="act">Will Buck B2B Taimur</span></li>
-      <li><span class="act">Will Renuart</span></li>
-      <li><span class="act">Willikens &amp; Ivkovic</span></li>
-      <li><span class="act">YHWH Nailgun</span></li>
-      <li><span class="act">ZEP</span></li>
     </ul>
+    <details class="more">
+      <summary>Show all 218 artists</summary>
+      <ul class="lineup">
+        <li><span class="act">Bakke</span></li>
+        <li><span class="act">Bassvictim</span></li>
+        <li><span class="act">Beltran B2B Ben Sterling</span></li>
+        <li><span class="act">Bill Patrick B2B Bort</span></li>
+        <li><span class="act">Blood Orange</span></li>
+        <li><span class="act">Bone Thugs-N-Harmony</span></li>
+        <li><span class="act">Bonita Applebumz B2B Toni Shardai</span></li>
+        <li><span class="act">Bozito B2B Gabo Escalona</span></li>
+        <li><span class="act">Bricolage B2B DAY/DEM</span></li>
+        <li><span class="act">Brunello B2B Rafael</span></li>
+        <li><span class="act">Cami di Marzo</span></li>
+        <li><span class="act">Camp Blu</span></li>
+        <li><span class="act">Carter Jackson-Brown</span></li>
+        <li><span class="act">Chanel Beads</span></li>
+        <li><span class="act">Charlotte de Witte</span></li>
+        <li><span class="act">ChaseWest</span></li>
+        <li><span class="act">Cloonee</span></li>
+        <li><span class="act">Coffintexts B2B DJ Fuckoff</span></li>
+        <li><span class="act">Cole Knight B2B DREYA V</span></li>
+        <li><span class="act">Connan Mockasin</span></li>
+        <li><span class="act">Corridos Ketamina</span></li>
+        <li><span class="act">D.Luxe B2B Dennis Baker</span></li>
+        <li><span class="act">Daizy</span></li>
+        <li><span class="act">Dan Molinari</span></li>
+        <li><span class="act">Danny Brown</span></li>
+        <li><span class="act">Danny Daze B2B DJ Godfather</span></li>
+        <li><span class="act">Daphni</span></li>
+        <li><span class="act">David Vunk</span></li>
+        <li><span class="act">Dean Turnley</span></li>
+        <li><span class="act">Deep Cleansing</span></li>
+        <li><span class="act">Differ</span></li>
+        <li><span class="act">Discip</span></li>
+        <li><span class="act">Disco Lines</span></li>
+        <li><span class="act">DJ Harvey</span></li>
+        <li><span class="act">DJ Ray B2B EZ Dee</span></li>
+        <li><span class="act">DJ Sabi B2B GRUE5OME</span></li>
+        <li><span class="act">DJ Three B2B Sister System</span></li>
+        <li><span class="act">DomnRob</span></li>
+        <li><span class="act">doris dana</span></li>
+        <li><span class="act">Dr. Rubinstein B2B Ultrathem</span></li>
+        <li><span class="act">Duality B2B GumtheWrapper</span></li>
+        <li><span class="act">Dude Skywalker</span></li>
+        <li><span class="act">duun B2B Sleepy C</span></li>
+        <li><span class="act">ear</span></li>
+        <li><span class="act">eco-sistema</span></li>
+        <li><span class="act">Eli Escobar B2B Jubilee</span></li>
+        <li><span class="act">Elias Garcia B2B Mila Gama</span></li>
+        <li><span class="act">Ellynora</span></li>
+        <li><span class="act">eveava B2B Jovigibs</span></li>
+        <li><span class="act">Extra Andrew B2B Mutant Pete</span></li>
+        <li><span class="act">Faith Leazae</span></li>
+        <li><span class="act">fakemink</span></li>
+        <li><span class="act">Feph B2B Mr. Tron</span></li>
+        <li><span class="act">Fiin</span></li>
+        <li><span class="act">Fine</span></li>
+        <li><span class="act">FIUZA B2B Madison Kay</span></li>
+        <li><span class="act">Floating Points</span></li>
+        <li><span class="act">Flying Lotus</span></li>
+        <li><span class="act">Four Tet</span></li>
+        <li><span class="act">Generous B B2B Hakuna</span></li>
+        <li><span class="act">Gio Elia B2B Meghan Lee</span></li>
+        <li><span class="act">Godisound</span></li>
+        <li><span class="act">Grace Arribas B2B MARTE</span></li>
+        <li><span class="act">Grant Sabadash B2B Shir Miya</span></li>
+        <li><span class="act">HAAi</span></li>
+        <li><span class="act">Hamdi</span></li>
+        <li><span class="act">Heidi Lawden</span></li>
+        <li><span class="act">Honey Dijon</span></li>
+        <li><span class="act">horsegiirL</span></li>
+        <li><span class="act">Idriss D B2B Danyelino</span></li>
+        <li><span class="act">Interplanetary Criminal</span></li>
+        <li><span class="act">INVT</span></li>
+        <li><span class="act">Ivy Lab</span></li>
+        <li><span class="act">Jacques Greene</span></li>
+        <li><span class="act">Jane Remover</span></li>
+        <li><span class="act">Jason Rault</span></li>
+        <li><span class="act">JBZ</span></li>
+        <li><span class="act">JENCARLOS</span></li>
+        <li><span class="act">Jeremy Ismael</span></li>
+        <li><span class="act">Jigitz</span></li>
+        <li><span class="act">Jinks B2B Romulo Del Castillo</span></li>
+        <li><span class="act">JINN_PR</span></li>
+        <li><span class="act">Joanna Kuchta B2B Robyn Sin Love</span></li>
+        <li><span class="act">Joss Dean</span></li>
+        <li><span class="act">Jump Source</span></li>
+        <li><span class="act">Katie Ox B2B Nat Siriani</span></li>
+        <li><span class="act">Kelela</span></li>
+        <li><span class="act">KETTAMA</span></li>
+        <li><span class="act">Khami</span></li>
+        <li><span class="act">KI/KI</span></li>
+        <li><span class="act">KinAhau</span></li>
+        <li><span class="act">Kujo B2B RARA</span></li>
+        <li><span class="act">Kumi</span></li>
+        <li><span class="act">La BB</span></li>
+        <li><span class="act">Lady Narcisse B2B Racci</span></li>
+        <li><span class="act">LADYBOY</span></li>
+        <li><span class="act">Lagrimas de Oro</span></li>
+        <li><span class="act">Lauren Palma</span></li>
+        <li><span class="act">Levity B2B Taiki Nulight</span></li>
+        <li><span class="act">Lil&#39; Kim</span></li>
+        <li><span class="act">Liquid Dinosaurs</span></li>
+        <li><span class="act">Lizzie_mcguire</span></li>
+        <li><span class="act">Lotusoph B2B Julia Saturno</span></li>
+        <li><span class="act">Loukeman</span></li>
+        <li><span class="act">Lousy Lover B2B Lucaz</span></li>
+        <li><span class="act">Lupreme B2B SANTO</span></li>
+        <li><span class="act">Maccabi B2B Pezlo MD</span></li>
+        <li><span class="act">Machine Girl</span></li>
+        <li><span class="act">Maher Daniel B2B Mai Iachetti</span></li>
+        <li><span class="act">Malóne B2B Miluhska</span></li>
+        <li><span class="act">Mango B2B Mister Lo</span></li>
+        <li><span class="act">Marco Carola B2B Franky Rizardo</span></li>
+        <li><span class="act">Marie Qrie B2B Viva Vidal</span></li>
+        <li><span class="act">Marsolo</span></li>
+        <li><span class="act">Mary Droppinz</span></li>
+        <li><span class="act">Mason Norris B2B Mia Vendetta</span></li>
+        <li><span class="act">Max Dean B2B Luke Dean</span></li>
+        <li><span class="act">Max Styler B2B Vintage Culture</span></li>
+        <li><span class="act">Megusta B2B MIGS</span></li>
+        <li><span class="act">Men I Trust</span></li>
+        <li><span class="act">MGNA Crrrta</span></li>
+        <li><span class="act">Miguel Clark B2B Naim Zarzour</span></li>
+        <li><span class="act">Miguelle &amp; Tons B2B Saraga</span></li>
+        <li><span class="act">Mila Gama B2B X3BUTTERFLY</span></li>
+        <li><span class="act">Milo Ziro B2B Xilla</span></li>
+        <li><span class="act">Mind Enterprises</span></li>
+        <li><span class="act">ML Buch</span></li>
+        <li><span class="act">Monoky</span></li>
+        <li><span class="act">Moscoman</span></li>
+        <li><span class="act">MPH</span></li>
+        <li><span class="act">Mr. Bitch</span></li>
+        <li><span class="act">Mr. Brown</span></li>
+        <li><span class="act">Natalia Roth B2B Max Stern</span></li>
+        <li><span class="act">nate sib</span></li>
+        <li><span class="act">Nicholas G. Padilla</span></li>
+        <li><span class="act">Nick León B2B Safety Trance</span></li>
+        <li><span class="act">Nicole Gallamini B2B Nikita Green</span></li>
+        <li><span class="act">Nii Tei</span></li>
+        <li><span class="act">Odd Mob</span></li>
+        <li><span class="act">oma totem B2B True Vine</span></li>
+        <li><span class="act">Omar+</span></li>
+        <li><span class="act">P1no B2B Trippie Hippie</span></li>
+        <li><span class="act">Parcels</span></li>
+        <li><span class="act">Patch+</span></li>
+        <li><span class="act">PAWSA</span></li>
+        <li><span class="act">Peach B2B Shanti Celeste</span></li>
+        <li><span class="act">phiphi B2B Winter Wrong</span></li>
+        <li><span class="act">Pressure Point B2B Berrakka</span></li>
+        <li><span class="act">Proletar B2B Zamurai</span></li>
+        <li><span class="act">Puma</span></li>
+        <li><span class="act">Purity Ring</span></li>
+        <li><span class="act">R/V Calypso</span></li>
+        <li><span class="act">Ragie Ban</span></li>
+        <li><span class="act">RAJE B2B Slugg</span></li>
+        <li><span class="act">Rebolledo</span></li>
+        <li><span class="act">Red Axes</span></li>
+        <li><span class="act">Rello</span></li>
+        <li><span class="act">Rental Snakes</span></li>
+        <li><span class="act">res_ (live)</span></li>
+        <li><span class="act">Rimaye B2B Inbal</span></li>
+        <li><span class="act">Roddy Lima</span></li>
+        <li><span class="act">Roman Flügel</span></li>
+        <li><span class="act">Rude Boy B2B SDRV</span></li>
+        <li><span class="act">rusowsky</span></li>
+        <li><span class="act">Saint &amp; Romero</span></li>
+        <li><span class="act">Sam Alfred</span></li>
+        <li><span class="act">Santiago Villu</span></li>
+        <li><span class="act">SATURNSARii B2B SUZ</span></li>
+        <li><span class="act">SEL.6 B2B PLAYSHADO</span></li>
+        <li><span class="act">serafitz B2B SOL Discos</span></li>
+        <li><span class="act">Seth Troxler</span></li>
+        <li><span class="act">Shinobi</span></li>
+        <li><span class="act">Silvie Loto B2B Ms. Mada</span></li>
+        <li><span class="act">Sosa</span></li>
+        <li><span class="act">Spice Crime B2B Violeta</span></li>
+        <li><span class="act">Sportswax</span></li>
+        <li><span class="act">Sunn O)))</span></li>
+        <li><span class="act">Tech G1rls</span></li>
+        <li><span class="act">Terence Tabeau</span></li>
+        <li><span class="act">Tiffy Vera B2B Thunderpony</span></li>
+        <li><span class="act">Tiga</span></li>
+        <li><span class="act">Tokischa</span></li>
+        <li><span class="act">Tricky</span></li>
+        <li><span class="act">Uchi</span></li>
+        <li><span class="act">Ultrathem</span></li>
+        <li><span class="act">Underworld</span></li>
+        <li><span class="act">V1FRO</span></li>
+        <li><span class="act">Vania Junco</span></li>
+        <li><span class="act">Velora</span></li>
+        <li><span class="act">vsyana</span></li>
+        <li><span class="act">VTSS</span></li>
+        <li><span class="act">VVilhelm</span></li>
+        <li><span class="act">Whitesquare</span></li>
+        <li><span class="act">Will Buck B2B Taimur</span></li>
+        <li><span class="act">Will Renuart</span></li>
+        <li><span class="act">Willikens &amp; Ivkovic</span></li>
+        <li><span class="act">YHWH Nailgun</span></li>
+        <li><span class="act">ZEP</span></li>
+      </ul>
+    </details>
   </section>
 
 
@@ -1296,11 +1376,17 @@
       <li><a href="/f/escape-halloween-2026/">Escape Halloween 2026</a> — Oct 30–31, 2026</li>
       <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
       <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
-      <li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a> — Nov 6–8, 2026</li>
-      <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
-      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
-      <li><a href="/f/dreamstate-socal-2026/">Dreamstate SoCal 2026</a> — Nov 20–21, 2026</li>
     </ul>
+    <details class="more">
+      <summary>Show 4 more</summary>
+      <ul>
+        <li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a> — Nov 6–8, 2026</li>
+        <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
+        <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
+        <li><a href="/f/dreamstate-socal-2026/">Dreamstate SoCal 2026</a> — Nov 20–21, 2026</li>
+      </ul>
+    </details>
+
   </nav>
 
   <section class="sources" aria-labelledby="sources-h">

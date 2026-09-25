@@ -20,6 +20,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { plateFor, pastEditionsFor, amenitySummary } from './festival-page-data.mjs';
+import { loadEmbedData, selectEmbeds, embedFingerprintInput, embedWindowStart } from './official-embeds.mjs';
 
 export const fp = (v) => createHash('sha256').update(JSON.stringify(v)).digest('hex').slice(0, 16);
 
@@ -183,6 +184,9 @@ export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, t
     plate: (() => { const p = plateFor(cfg); return p ? [p.file, p.w, p.h, fp(p.svg)] : null; })(),
     editions: pastEditionsFor(cfg.id),
     amenities: amenitySummary(DS, cfg.id, !!entry.available),
+    // The Watch & listen section: the embeds the page shows, in order. A
+    // verification that drops or restores one moves the page, and so lastmod.
+    embeds: embedFingerprintInput(selectEmbeds(cfg.id, loadEmbedData(), embedWindowStart(cfg, d))),
   };
 }
 

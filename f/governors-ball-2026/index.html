@@ -68,6 +68,34 @@
   section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
+  details.more { margin:4px 0 0; }
+  details.more > summary { cursor:pointer; color:var(--ember); font-weight:600; font-size:14px; padding:10px 0; min-height:44px; display:flex; align-items:center; }
+  details.more[open] > summary { color:var(--muted); }
+  section.watch .embed { margin:16px 0 20px; }
+  section.watch .yt { position:relative; aspect-ratio:16/9; width:100%; min-height:200px; background:var(--panel); border-radius:12px; overflow:hidden; }
+  section.watch .yt iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+  /* Instagram's embed.js stamps an inline 326px min-width on its iframe. On a
+     320px phone that ran 26px past the screen and cut off "View profile", so
+     the iframe is held to its column; Instagram's own layout reflows to fit.
+     The scroll box stays as a backstop for anything else a script inserts. */
+  section.watch .embed-ig { overflow-x:auto; max-width:100%; }
+  section.watch .embed-ig iframe { min-width:0 !important; width:100% !important; max-width:100% !important; box-sizing:border-box; }
+  /* And nothing a third-party script inserts may widen the page, even for a
+     frame mid-hydration (seen once at 320px: 346px for a moment). */
+  section.watch { overflow-x:clip; }
+  section.watch .embed-ig blockquote, section.watch .embed-x blockquote { margin:0; min-height:420px; background:var(--panel); border-radius:12px; padding:16px; max-width:540px; }
+  section.watch .embed-x blockquote { min-height:260px; }
+  /* Tap-to-load: until tapped, a social post is a compact card with its type,
+     date, one button and the notice; nothing from Instagram or X is requested.
+     The blockquote stays empty and hidden until the tap fills it. */
+  section.watch blockquote.tap-embed { display:none; }
+  section.watch .embed-tap { background:var(--panel); border-radius:12px; padding:16px; max-width:540px; box-sizing:border-box; }
+  section.watch .embed-what { color:var(--ink); font-size:15px; font-weight:600; margin:0 0 10px; }
+  section.watch .embed-load { min-height:44px; padding:10px 16px; border-radius:10px; border:1px solid var(--ember); background:transparent; color:var(--ember); font:inherit; font-weight:600; font-size:15px; cursor:pointer; }
+  section.watch .embed-tap-note { color:var(--muted); font-size:13px; margin:8px 0 0; }
+  section.watch figure.tapped .embed-tap { display:none; }
+  section.watch .embed-sp iframe { display:block; border:0; border-radius:12px; min-height:352px; }
+  section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }
 </style>
 <script type="application/ld+json">
 {
@@ -428,6 +456,67 @@
       <dd>This page shows Plursky&#39;s Governors Ball 2026 site plate. Abstract site plate generated from this festival&#39;s own stage and amenity coordinates. Not the official patron map; no festival artwork is reproduced.</dd>
     </dl>
   </section>
+  <section id="watch" class="watch" aria-labelledby="watch-h">
+    <h2 id="watch-h">Watch &amp; listen</h2>
+    <p class="note">From Governors Ball 2026's official accounts.</p>
+    <figure class="embed embed-x" data-tap="x">
+      <blockquote class="tap-embed" data-class="twitter-tweet" data-dnt="true" data-theme="dark" data-href="https://twitter.com/govballnyc/status/2008555042366705813"></blockquote>
+      <div class="embed-tap">
+        <p class="embed-what">Announcement · Posted January 6, 2026</p>
+        <button type="button" class="embed-load">Load the X post</button>
+        <p class="embed-tap-note">Loading shows content from X, which may collect data about your visit. <a href="/privacy.html#social-embeds">Privacy</a></p>
+      </div>
+      <p class="embed-cap">@govballnyc on X · <a href="https://x.com/GovBallNYC/status/2008555042366705813" rel="noopener">View the original</a></p>
+    </figure>
+    <figure class="embed embed-ig" data-tap="instagram">
+      <blockquote class="tap-embed" data-class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DZYsfTOICNV/" data-instgrm-version="14" data-href="https://www.instagram.com/p/DZYsfTOICNV/"></blockquote>
+      <div class="embed-tap">
+        <p class="embed-what">Photo · Posted June 10, 2026</p>
+        <button type="button" class="embed-load">Load the Instagram post</button>
+        <p class="embed-tap-note">Loading shows content from Instagram (Meta), which may collect data about your visit. <a href="/privacy.html#social-embeds">Privacy</a></p>
+      </div>
+      <p class="embed-cap">@govballnyc on Instagram · <a href="https://www.instagram.com/p/DZYsfTOICNV/" rel="noopener">View the original</a></p>
+    </figure>
+    <figure class="embed embed-ig" data-tap="instagram">
+      <blockquote class="tap-embed" data-class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DZYBikQiRMq/" data-instgrm-version="14" data-href="https://www.instagram.com/p/DZYBikQiRMq/"></blockquote>
+      <div class="embed-tap">
+        <p class="embed-what">Photo · Posted June 9, 2026</p>
+        <button type="button" class="embed-load">Load the Instagram post</button>
+        <p class="embed-tap-note">Loading shows content from Instagram (Meta), which may collect data about your visit. <a href="/privacy.html#social-embeds">Privacy</a></p>
+      </div>
+      <p class="embed-cap">@govballnyc on Instagram · <a href="https://www.instagram.com/p/DZYBikQiRMq/" rel="noopener">View the original</a></p>
+    </figure>
+    <script>
+(function () {
+  var sec = document.getElementById('watch');
+  if (!sec) return;
+  var SRC = { instagram: 'https://www.instagram.com/embed.js', x: 'https://platform.twitter.com/widgets.js' };
+  var requested = {};
+  function hydrate(p, fig) {
+    if (p === 'instagram' && window.instgrm && window.instgrm.Embeds) return window.instgrm.Embeds.process();
+    if (p === 'x' && window.twttr && window.twttr.widgets) return window.twttr.widgets.load(fig);
+    if (requested[p]) return; // in flight: the script scans the page when it runs
+    requested[p] = true;
+    var s = document.createElement('script'); s.async = true; s.src = SRC[p]; document.body.appendChild(s);
+  }
+  sec.addEventListener('click', function (ev) {
+    var b = ev.target.closest && ev.target.closest('button.embed-load');
+    if (!b) return;
+    var fig = b.closest('figure'), bq = fig && fig.querySelector('blockquote.tap-embed');
+    if (!bq || !SRC[fig.getAttribute('data-tap')]) return;
+    var a = document.createElement('a'); a.href = bq.getAttribute('data-href'); a.rel = 'noopener';
+    a.textContent = 'View this post on ' + (fig.getAttribute('data-tap') === 'x' ? 'X' : 'Instagram');
+    bq.appendChild(a); // X's script reads the post id from this link
+    bq.className = bq.getAttribute('data-class');
+    bq.removeAttribute('data-class');
+    fig.classList.add('tapped');
+    fig.setAttribute('tabindex', '-1');
+    fig.focus({ preventScroll: true });
+    hydrate(fig.getAttribute('data-tap'), fig);
+  });
+})();
+    </script>
+  </section>
 
   <section aria-labelledby="map-h">
     <h2 id="map-h">Governors Ball 2026 map</h2>
@@ -565,45 +654,50 @@
       <li><span class="act">Flowerovlove</span> <span class="slots">Sat, Jun 6 · Snapchat Stage · <a href="#set-go28">13:30</a></span></li>
       <li><span class="act">Freddie Gibbs &amp; The Alchemist</span> <span class="slots">Sun, Jun 7 · The Grove · <a href="#set-go58">19:45</a></span></li>
       <li><span class="act">Geese</span> <span class="slots">Sun, Jun 7 · GovBallNYC · <a href="#set-go42">16:45</a></span></li>
-      <li><span class="act">Hannah Jadagu</span> <span class="slots">Sun, Jun 7 · The Grove · <a href="#set-go52">12:30</a></span></li>
-      <li><span class="act">Hemlocke Springs</span> <span class="slots">Sun, Jun 7 · Snapchat Stage · <a href="#set-go45">11:55</a></span></li>
-      <li><span class="act">Holly Humberstone</span> <span class="slots">Sun, Jun 7 · GovBallNYC · <a href="#set-go41">15:15</a></span></li>
-      <li><span class="act">Hot Mulligan</span> <span class="slots">Sun, Jun 7 · The Grove · <a href="#set-go57">18:15</a></span></li>
-      <li><span class="act">Jade LeMac</span> <span class="slots">Sat, Jun 6 · The Grove · <a href="#set-go32">12:15</a></span></li>
-      <li><span class="act">Jane Remover</span> <span class="slots">Sat, Jun 6 · The Grove · <a href="#set-go35">15:50</a></span></li>
-      <li><span class="act">Japanese Breakfast</span> <span class="slots">Sun, Jun 7 · Snapchat Stage · <a href="#set-go47">14:30</a></span></li>
-      <li><span class="act">Jennie</span> <span class="slots">Sun, Jun 7 · Snapchat Stage · <a href="#set-go50">19:45</a></span></li>
-      <li><span class="act">Jimmyboy</span> <span class="slots">Sat, Jun 6 · GovBallNYC · <a href="#set-go21">12:00</a></span></li>
-      <li><span class="act">KATSEYE</span> <span class="slots">Fri, Jun 5 · GovBallNYC · <a href="#set-go6">18:35</a></span></li>
-      <li><span class="act">Khamari</span> <span class="slots">Sun, Jun 7 · The Grove · <a href="#set-go56">17:00</a></span></li>
-      <li><span class="act">Kids Rock for Kids</span> <span class="slots">Fri, Jun 5 · The Grove · <a href="#set-go14">12:15</a></span></li>
-      <li><span class="act">King Princess</span> <span class="slots">Fri, Jun 5 · Snapchat Stage · <a href="#set-go10">14:30</a></span></li>
-      <li><span class="act">Lexa Gates</span> <span class="slots">Sun, Jun 7 · GovBallNYC · <a href="#set-go39">12:30</a></span></li>
-      <li><span class="act">Lorde</span> <span class="slots">Fri, Jun 5 · GovBallNYC · <a href="#set-go7">20:30</a></span></li>
-      <li><span class="act">Major Lazer</span> <span class="slots">Sat, Jun 6 · Snapchat Stage · <a href="#set-go31">17:30</a></span></li>
-      <li><span class="act">Mariah the Scientist</span> <span class="slots">Fri, Jun 5 · GovBallNYC · <a href="#set-go5">16:45</a></span></li>
-      <li><span class="act">Midnight Generation</span> <span class="slots">Sat, Jun 6 · The Grove · <a href="#set-go34">14:15</a></span></li>
-      <li><span class="act">Old Mervs</span> <span class="slots">Fri, Jun 5 · The Grove · <a href="#set-go15">13:15</a></span></li>
-      <li><span class="act">Pierce the Veil</span> <span class="slots">Fri, Jun 5 · Snapchat Stage · <a href="#set-go12">17:30</a></span></li>
-      <li><span class="act">Rachel Chinouriri</span> <span class="slots">Sun, Jun 7 · Snapchat Stage · <a href="#set-go46">13:00</a></span></li>
-      <li><span class="act">Radio Free Alice</span> <span class="slots">Sat, Jun 6 · GovBallNYC · <a href="#set-go22">13:00</a></span></li>
-      <li><span class="act">Ravyn Lenae</span> <span class="slots">Sat, Jun 6 · Snapchat Stage · <a href="#set-go30">16:00</a></span></li>
-      <li><span class="act">School of Rock New York</span> <span class="slots">Sun, Jun 7 · The Grove · <a href="#set-go51">11:30</a></span></li>
-      <li><span class="act">School of Rock Queens</span> <span class="slots">Fri, Jun 5 · GovBallNYC · <a href="#set-go1">12:00</a></span></li>
-      <li><span class="act">Slayyyter</span> <span class="slots">Sun, Jun 7 · GovBallNYC · <a href="#set-go40">13:45</a></span></li>
-      <li><span class="act">Snow Strippers</span> <span class="slots">Sat, Jun 6 · The Grove · <a href="#set-go36">16:50</a></span></li>
-      <li><span class="act">Spacey Jane</span> <span class="slots">Sat, Jun 6 · Snapchat Stage · <a href="#set-go29">14:30</a></span></li>
-      <li><span class="act">Stray Kids</span> <span class="slots">Sat, Jun 6 · GovBallNYC · <a href="#set-go26">18:15</a></span></li>
-      <li><span class="act">The Backfires</span> <span class="slots">Fri, Jun 5 · Snapchat Stage · <a href="#set-go8">12:30</a></span></li>
-      <li><span class="act">The Beths</span> <span class="slots">Fri, Jun 5 · The Grove · <a href="#set-go19">18:00</a></span></li>
-      <li><span class="act">The Dare</span> <span class="slots">Fri, Jun 5 · Snapchat Stage · <a href="#set-go11">16:00</a></span></li>
-      <li><span class="act">Thee Sacred Souls</span> <span class="slots">Sat, Jun 6 · The Grove · <a href="#set-go37">18:00</a></span></li>
-      <li><span class="act">Turnover</span> <span class="slots">Fri, Jun 5 · The Grove · <a href="#set-go18">16:45</a></span></li>
-      <li><span class="act">Villanelle</span> <span class="slots">Sat, Jun 6 · The Grove · <a href="#set-go33">13:15</a></span></li>
-      <li><span class="act">Wet Leg</span> <span class="slots">Sat, Jun 6 · GovBallNYC · <a href="#set-go25">16:45</a></span></li>
-      <li><span class="act">Whatmore</span> <span class="slots">Fri, Jun 5 · GovBallNYC · <a href="#set-go2">13:00</a></span></li>
-      <li><span class="act">Wisp</span> <span class="slots">Sat, Jun 6 · GovBallNYC · <a href="#set-go23">14:00</a></span></li>
     </ul>
+    <details class="more">
+      <summary>Show all 58 artists</summary>
+      <ul class="lineup">
+        <li><span class="act">Hannah Jadagu</span> <span class="slots">Sun, Jun 7 · The Grove · <a href="#set-go52">12:30</a></span></li>
+        <li><span class="act">Hemlocke Springs</span> <span class="slots">Sun, Jun 7 · Snapchat Stage · <a href="#set-go45">11:55</a></span></li>
+        <li><span class="act">Holly Humberstone</span> <span class="slots">Sun, Jun 7 · GovBallNYC · <a href="#set-go41">15:15</a></span></li>
+        <li><span class="act">Hot Mulligan</span> <span class="slots">Sun, Jun 7 · The Grove · <a href="#set-go57">18:15</a></span></li>
+        <li><span class="act">Jade LeMac</span> <span class="slots">Sat, Jun 6 · The Grove · <a href="#set-go32">12:15</a></span></li>
+        <li><span class="act">Jane Remover</span> <span class="slots">Sat, Jun 6 · The Grove · <a href="#set-go35">15:50</a></span></li>
+        <li><span class="act">Japanese Breakfast</span> <span class="slots">Sun, Jun 7 · Snapchat Stage · <a href="#set-go47">14:30</a></span></li>
+        <li><span class="act">Jennie</span> <span class="slots">Sun, Jun 7 · Snapchat Stage · <a href="#set-go50">19:45</a></span></li>
+        <li><span class="act">Jimmyboy</span> <span class="slots">Sat, Jun 6 · GovBallNYC · <a href="#set-go21">12:00</a></span></li>
+        <li><span class="act">KATSEYE</span> <span class="slots">Fri, Jun 5 · GovBallNYC · <a href="#set-go6">18:35</a></span></li>
+        <li><span class="act">Khamari</span> <span class="slots">Sun, Jun 7 · The Grove · <a href="#set-go56">17:00</a></span></li>
+        <li><span class="act">Kids Rock for Kids</span> <span class="slots">Fri, Jun 5 · The Grove · <a href="#set-go14">12:15</a></span></li>
+        <li><span class="act">King Princess</span> <span class="slots">Fri, Jun 5 · Snapchat Stage · <a href="#set-go10">14:30</a></span></li>
+        <li><span class="act">Lexa Gates</span> <span class="slots">Sun, Jun 7 · GovBallNYC · <a href="#set-go39">12:30</a></span></li>
+        <li><span class="act">Lorde</span> <span class="slots">Fri, Jun 5 · GovBallNYC · <a href="#set-go7">20:30</a></span></li>
+        <li><span class="act">Major Lazer</span> <span class="slots">Sat, Jun 6 · Snapchat Stage · <a href="#set-go31">17:30</a></span></li>
+        <li><span class="act">Mariah the Scientist</span> <span class="slots">Fri, Jun 5 · GovBallNYC · <a href="#set-go5">16:45</a></span></li>
+        <li><span class="act">Midnight Generation</span> <span class="slots">Sat, Jun 6 · The Grove · <a href="#set-go34">14:15</a></span></li>
+        <li><span class="act">Old Mervs</span> <span class="slots">Fri, Jun 5 · The Grove · <a href="#set-go15">13:15</a></span></li>
+        <li><span class="act">Pierce the Veil</span> <span class="slots">Fri, Jun 5 · Snapchat Stage · <a href="#set-go12">17:30</a></span></li>
+        <li><span class="act">Rachel Chinouriri</span> <span class="slots">Sun, Jun 7 · Snapchat Stage · <a href="#set-go46">13:00</a></span></li>
+        <li><span class="act">Radio Free Alice</span> <span class="slots">Sat, Jun 6 · GovBallNYC · <a href="#set-go22">13:00</a></span></li>
+        <li><span class="act">Ravyn Lenae</span> <span class="slots">Sat, Jun 6 · Snapchat Stage · <a href="#set-go30">16:00</a></span></li>
+        <li><span class="act">School of Rock New York</span> <span class="slots">Sun, Jun 7 · The Grove · <a href="#set-go51">11:30</a></span></li>
+        <li><span class="act">School of Rock Queens</span> <span class="slots">Fri, Jun 5 · GovBallNYC · <a href="#set-go1">12:00</a></span></li>
+        <li><span class="act">Slayyyter</span> <span class="slots">Sun, Jun 7 · GovBallNYC · <a href="#set-go40">13:45</a></span></li>
+        <li><span class="act">Snow Strippers</span> <span class="slots">Sat, Jun 6 · The Grove · <a href="#set-go36">16:50</a></span></li>
+        <li><span class="act">Spacey Jane</span> <span class="slots">Sat, Jun 6 · Snapchat Stage · <a href="#set-go29">14:30</a></span></li>
+        <li><span class="act">Stray Kids</span> <span class="slots">Sat, Jun 6 · GovBallNYC · <a href="#set-go26">18:15</a></span></li>
+        <li><span class="act">The Backfires</span> <span class="slots">Fri, Jun 5 · Snapchat Stage · <a href="#set-go8">12:30</a></span></li>
+        <li><span class="act">The Beths</span> <span class="slots">Fri, Jun 5 · The Grove · <a href="#set-go19">18:00</a></span></li>
+        <li><span class="act">The Dare</span> <span class="slots">Fri, Jun 5 · Snapchat Stage · <a href="#set-go11">16:00</a></span></li>
+        <li><span class="act">Thee Sacred Souls</span> <span class="slots">Sat, Jun 6 · The Grove · <a href="#set-go37">18:00</a></span></li>
+        <li><span class="act">Turnover</span> <span class="slots">Fri, Jun 5 · The Grove · <a href="#set-go18">16:45</a></span></li>
+        <li><span class="act">Villanelle</span> <span class="slots">Sat, Jun 6 · The Grove · <a href="#set-go33">13:15</a></span></li>
+        <li><span class="act">Wet Leg</span> <span class="slots">Sat, Jun 6 · GovBallNYC · <a href="#set-go25">16:45</a></span></li>
+        <li><span class="act">Whatmore</span> <span class="slots">Fri, Jun 5 · GovBallNYC · <a href="#set-go2">13:00</a></span></li>
+        <li><span class="act">Wisp</span> <span class="slots">Sat, Jun 6 · GovBallNYC · <a href="#set-go23">14:00</a></span></li>
+      </ul>
+    </details>
   </section>
 
   <section aria-labelledby="stages-h">
@@ -646,11 +740,17 @@
       <li><a href="/f/edc-lv-2026/">EDC Las Vegas 2026</a> — May 15–17, 2026</li>
       <li><a href="/f/lollapalooza-2026/">Lollapalooza 2026</a> — Jul 30 – Aug 2, 2026</li>
       <li><a href="/f/hard-summer-2026/">HARD Summer 2026</a> — Aug 1–2, 2026</li>
-      <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
-      <li><a href="/f/ultra-miami-2026/">Ultra Miami 2026</a> — Mar 27–29, 2026</li>
-      <li><a href="/f/arc-2026/">ARC Music Festival 2026</a> — Sep 4–7, 2026</li>
-      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
     </ul>
+    <details class="more">
+      <summary>Show 4 more</summary>
+      <ul>
+        <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
+        <li><a href="/f/ultra-miami-2026/">Ultra Miami 2026</a> — Mar 27–29, 2026</li>
+        <li><a href="/f/arc-2026/">ARC Music Festival 2026</a> — Sep 4–7, 2026</li>
+        <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
+      </ul>
+    </details>
+
   </nav>
 
   <section class="sources" aria-labelledby="sources-h">
