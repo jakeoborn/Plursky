@@ -18,13 +18,15 @@ const SETLISTS_PROXY_URL = "https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/p
 // who the act is — "Sunday (1994)", "KAUFMANN (DE)", "Small (danny g luvs u B2B
 // Bori)", "DOG BLOOD (SKRILLEX + BOYS NOIZE)". A note says so: it contains the
 // word "set" ("Sunset Set", "DJ set", "2 Hour Set"), or is one of the few the
-// lineups print without it (Live, Detox, In The Round, "… Classics"). Built
+// lineups print without it (Live, Detox, In The Round, "… Classics"), or an
+// unbracketed "… performing <album>" billing. Built
 // from all 26 parentheticals across the registry, 2026-09-10; the regression
 // table lives in scripts/verify.mjs. spotify-api.jsx's searches use this too.
 const _LOOKUP_SET_NOTE = /^(?:.*\bsets?\b.*|live|detox|in the round|.*\bclassics\b.*)$/i;
 function _lookupName(s) {
   const raw = String(s || "");
   const t = raw.replace(/\s*\(([^)]*)\)\s*/g, (m, inner) => (_LOOKUP_SET_NOTE.test(inner.trim()) ? " " : m))
+    .replace(/\s+performing\s.*$/i, "")  // "GZA performing Liquid Swords" (III Points 2026) is GZA
     .replace(/\s+/g, " ").trim();
   return t || raw;
 }
