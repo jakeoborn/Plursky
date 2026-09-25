@@ -377,7 +377,7 @@ function pastSection(entry, editions) {
   <section aria-labelledby="past-h">
     <h2 id="past-h">Past editions of ${esc(cfg.brand || cfg.name)}</h2>
     <ul>
-${editions.map(e => `      <li><a href="/?tab=past">${esc(e.name)}</a> — ${e.year}${e.artists != null ? `, ${e.artists} artists` : ''}${e.sets != null ? `, ${e.sets} sets` : ''}</li>`).join('\n')}
+${editions.map(e => `      <li><a href="/?tab=past">${esc(e.name)}</a> — ${e.year}${e.artists != null ? `, ${e.artists} artists` : ''}${e.sets != null ? `, ${e.sets} sets` : ''}${e.lineupOnly ? ', lineup only' : ''}</li>`).join('\n')}
     </ul>
     <p class="note">Each link opens Past Festivals in Plursky.</p>
   </section>`;
