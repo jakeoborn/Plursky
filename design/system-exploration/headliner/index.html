@@ -1,0 +1,269 @@
+<html lang="en"><title>Plursky Headliner</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="stylesheet" href="../shared/board.css">
+<script src="../shared/sample.js"></script>
+<script src="tokens.js"></script>
+<script src="../shared/system.js"></script>
+<script src="../shared/icons.js"></script>
+<style>
+/* ── HEADLINER screen components. Every value is a token from tokens.js. ── */
+.K{background:var(--ground);color:var(--paper);font-family:var(--f-ui);-webkit-font-smoothing:antialiased}
+.K::after{content:"";position:absolute;inset:0;background:var(--grain);mix-blend-mode:overlay;opacity:.16;pointer-events:none;z-index:40}
+.K .body{position:absolute;inset:54px 0 88px 0;overflow:hidden}
+.K .tabbar{position:absolute;left:0;right:0;bottom:0;height:88px;display:grid;grid-template-columns:repeat(4,1fr);padding:8px 12px 26px;background:var(--ground);border-top:2px solid var(--paper);z-index:10}
+.K .tab{display:grid;justify-items:center;align-content:center;gap:4px;color:var(--paper-2);font:700 11px/1 var(--f-label);letter-spacing:.08em;text-transform:uppercase;font-stretch:108%}
+.K .tab.on{background:var(--paper);color:var(--ground)}
+.K .pad{padding:0 20px}
+.K .row{display:flex;align-items:center;gap:12px}
+.K .between{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.K .p2{color:var(--paper-2)}
+.K .spot{color:var(--spot)}
+.K .rule{height:2px;background:var(--paper)}
+.K .hair{border-top:1px solid var(--line)}
+.K .sticker{display:inline-flex;align-items:center;gap:6px;padding:6px 10px 5px;border-radius:var(--r-sticker);font:800 11px/1 var(--f-label);letter-spacing:.08em;text-transform:uppercase;font-stretch:108%}
+.K .chip{padding:9px 12px 8px;border:2px solid var(--paper);border-radius:var(--r-2);font:800 12px/1 var(--f-label);letter-spacing:.08em;text-transform:uppercase;font-stretch:108%;white-space:nowrap}
+.K .chip.on{background:var(--paper);color:var(--ground);box-shadow:var(--mis-sm)}
+.K .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 18px;border-radius:var(--r-2);font:900 17px/1 var(--f-billing);letter-spacing:.03em;text-transform:uppercase;font-stretch:80%}
+.K .btn.pri{background:var(--spot);color:var(--on-spot)}
+.K .btn.sec{border:2px solid var(--paper);color:var(--paper)}
+.K .mis{text-shadow:3px 3px 0 var(--spot)}
+.K .ticker{overflow:hidden;white-space:nowrap;background:var(--spot);color:var(--on-spot);font:900 18px/38px var(--f-billing);letter-spacing:.02em;text-transform:uppercase;font-stretch:70%}
+.K .ticker span{display:inline-block;padding-left:12px;animation:crawl 30s linear infinite}
+@keyframes crawl{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.K .ticker span{animation:none}}
+.render .K *{animation:none!important}
+.duo{position:relative;overflow:hidden;background:var(--ground)}
+.duo img,.duo .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.35) brightness(1.05);mix-blend-mode:screen}
+.duo::after{content:"";position:absolute;inset:0;background:var(--spot);mix-blend-mode:multiply}
+.duo::before{content:"";position:absolute;inset:0;background:var(--halftone);z-index:2;mix-blend-mode:multiply;opacity:.55}
+</style>
+
+<header class="dir-head">
+  <div class="dir-kicker"><a href="../index.html">Plursky design systems</a> · Direction 03 · Poster</div>
+  <h1 class="dir-title" style="font:900 72px/.9 Archivo,sans-serif;font-stretch:62%;text-transform:uppercase;letter-spacing:.005em">Headliner</h1>
+  <p class="dir-pitch">The lineup poster is the culture's most-screenshotted artifact. Ravers zoom in, circle names and argue about the font size. HEADLINER makes the app that poster. Type is the image, and every night prints in its own two riso inks. Your plan gets billed like a headliner, so the night you built becomes a poster you can post. The ground is deep ultramarine, not black, so it still reads at 3 AM.</p>
+  <ul class="dir-principles"><li>Type is the image</li><li>Two inks per night</li><li>You set the billing</li><li>Print, not physics</li><li>Photos get printed, not pasted</li></ul>
+</header>
+
+<div class="screens" id="screens"></div>
+
+<section class="why">
+  <div><b>Signature: your poster</b>Lineup has a Poster view. Your picks are billed top-tier in pink, and the rest sits below by stage. It's the flyer with you as the promoter.</div>
+  <div><b>Signature: the night's print run</b>Friday prints black and orange, Saturday blue and pink, Sunday green and yellow. The app reprints itself each night, and a screenshot tells you which night it was.</div>
+  <div><b>Why ravers get it</b>Riso flyers, misregistered ink and condensed billing type are the scene's own print culture, from warehouse flyers to today's lineup drops.</div>
+  <div><b>The honest cost</b>It's the loudest of the three. A blue ground costs more OLED power than black, and it asks the most of type discipline across 13 festivals.</div>
+</section>
+
+<div class="spec" id="spec"></div>
+
+<script>
+const E = window.EDC, I = window.ICON, NOW = E.moments.late.hhmm;
+const P="#F4F1EA", P2="#B9BEF2", G="#1B24B8", S="#FF4FB4";
+function tabbar(active){
+  const t=[["today","Today"],["lineup","Lineup"],["map","Map"],["me","Me"]];
+  return `<nav class="tabbar">${t.map(([k,l])=>`<div class="tab ${k===active?"on":""}">${I(k,{sw:2.5,cap:"square",join:"miter",color:k===active?G:P2})}<span>${l}</span></div>`).join("")}</nav>`;
+}
+function phone(inner, active){ return `<div class="phone K">${STATUS(E.moments.late.label,P)}${inner}${active?tabbar(active):""}${HOMEBAR(P)}</div>`; }
+const duo=(slug,style="")=>`<div class="duo" style="${style}"><img src="../photos/artist-${slug}.jpg" alt=""></div>`;
+
+// ── 1. TODAY ──────────────────────────────────────────────
+function today(){
+  const js=E.byName("John Summit"), pg=E.byName("Peggy Gou b2b Ki/Ki"), st=E.byName("Subtronics");
+  const pct=Math.round(E.progress(js,NOW)*100);
+  const live=E.liveAt(NOW).filter(s=>s.stage!=="kinetic").map(s=>`${s.name} <span style="opacity:.6">@</span> ${E.stage(s.stage).name}`).join(" ✱ ");
+  return phone(`<div class="body">
+    <div class="pad between" style="padding-top:8px"><span style="font:900 26px/1 var(--f-billing);font-stretch:62%;letter-spacing:.02em">PLURSKY</span><span class="sticker" style="background:var(--paper);color:var(--ground);box-shadow:var(--mis-sm)">EDC LV · Night 2 · Sat</span></div>
+    <div class="pad" style="margin-top:18px"><div class="rule"></div></div>
+    <div class="pad between" style="margin-top:12px"><span class="t-label spot">● Now · on your plan</span><span class="t-label p2">Kinetic Field</span></div>
+    <div class="pad" style="margin-top:8px"><div class="t-mega mis" style="font-size:118px;line-height:96px">John<br>Summit</div></div>
+    <div class="pad between" style="margin-top:14px"><span class="t-time">12:32–1:42 AM</span><span class="t-label p2">${js.e-E.toMin(NOW)} min left</span></div>
+    <div class="pad" style="margin-top:10px"><div style="height:10px;background:var(--ground-2);position:relative"><div style="position:absolute;left:0;top:0;bottom:0;width:${pct}%;background:var(--spot)"></div><div style="position:absolute;left:${pct}%;top:-5px;width:3px;height:20px;background:var(--paper)"></div></div></div>
+    <div class="ticker" data-bleed style="margin-top:22px;transform:rotate(-2deg);margin-left:-10px;margin-right:-10px"><span>Live now ✱ ${live} ✱ Live now ✱ ${live}</span></div>
+    <div class="pad" style="margin-top:22px">
+      <div class="between"><span class="t-label">Next on your plan</span><span class="sticker" style="background:var(--clash);color:var(--ground);transform:rotate(-4deg)">Clash</span></div>
+      ${[pg,st].map((s,i)=>`<div class="between hair" style="padding:12px 0;${i?"":"margin-top:10px"}"><div style="min-width:0"><div class="t-tier2" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:290px">${s.name}</div><div class="t-label p2" style="margin-top:4px">${E.stage(s.stage).name}</div></div><span class="t-time">${E.fmt(s.start)}</span></div>`).join("")}
+    </div>
+    <div class="pad" style="margin-top:18px"><div class="rule"></div>
+      <div class="between" style="margin-top:12px;align-items:flex-end"><div><div class="t-label p2">Sunrise set · Kinetic Field</div><div class="t-tier1" data-wrap style="margin-top:6px">Above &amp; Beyond</div></div>
+      <div style="text-align:right"><div class="t-mega spot" style="font-size:64px;line-height:54px">5:35</div><div class="t-label p2" style="margin-top:4px;white-space:nowrap">sun up · 4h 45m</div></div></div>
+    </div>
+  </div>`,"today");
+}
+
+// ── 2. LINEUP · POSTER VIEW ───────────────────────────────
+function lineup(){
+  const planNames=E.PLAN.map(p=>p.name);
+  const t2=E.SETS.filter(s=>["kinetic","circuit"].includes(s.stage)&&!planNames.includes(s.name)).sort((a,b)=>b.s-a.s).map(s=>s.name);
+  const t3=E.SETS.filter(s=>["neon","cosmic","quantum"].includes(s.stage)&&!planNames.includes(s.name)).sort((a,b)=>b.s-a.s).map(s=>s.name);
+  const t4=E.SETS.filter(s=>["bionic","stereo","waste","basspod"].includes(s.stage)).sort((a,b)=>b.s-a.s).map(s=>s.name);
+  const bullet=` <span class="spot">•</span> `;
+  return phone(`<div class="body">
+    <div class="pad between" style="padding-top:6px"><div class="row" style="gap:0">${["Fri","Sat","Sun"].map((d,i)=>`<span class="t-label" style="padding:9px 14px 8px;${i===1?"background:var(--paper);color:var(--ground);box-shadow:var(--mis-sm)":"color:var(--paper-2)"}">${d} ${15+i}</span>`).join("")}</div>
+      <div class="row" style="gap:16px">${I("search",{sw:2.5,cap:"square",color:P})}</div></div>
+    <div class="pad row" style="gap:8px;margin-top:12px"><span class="chip on">Poster</span><span class="chip">List</span><span class="chip">Grid</span></div>
+    <div class="pad" style="margin-top:16px;text-align:center">
+      <div class="t-label p2">EDC Las Vegas · Saturday May 16 · Your billing</div>
+      <div class="rule" style="margin:10px 0 12px"></div>
+      <div class="t-tier1 spot mis" style="text-shadow:2px 2px 0 #10157A;font-size:46px;line-height:42px">${planNames.slice(0,4).map(n=>n.replace(" b2b "," b2b ")).join(bullet.replace("spot","")).replace(/Peggy Gou b2b Ki\/Ki/,"Peggy Gou b2b Ki/Ki")}</div>
+      <div class="t-tier1 spot" style="font-size:38px;line-height:36px;margin-top:4px">${planNames.slice(4).join(`<span style="color:var(--paper)"> • </span>`)}</div>
+      <div class="t-label" style="margin:12px auto 10px;display:inline-block;padding:5px 10px;background:var(--spot);color:var(--on-spot)">✓ Your 8 · clash flagged 1:45</div>
+      <div class="t-tier2" style="font-size:23px;line-height:25px">${t2.join(bullet)}</div>
+      <div class="t-tier3" style="margin-top:10px;color:var(--paper)">${t3.join(bullet)}</div>
+      <div class="t-tier3 p2" style="margin-top:8px;font-size:13.5px;line-height:16px">${t4.join(" • ")}</div>
+    </div>
+  </div>`,"lineup");
+}
+
+// ── 3. MAP ────────────────────────────────────────────────
+function map(){
+  // The OFFICIAL EDC LV 2026 map, printed as a two-ink duotone so it sits in
+  // the night's print run. Stage x/y (data.jsx) are percentages of this image.
+  // The map prints stage names; Plursky adds code stickers only. No distances.
+  const W=587, H=W*1350/1080, ox=-12, oy=130;
+  const px=(x)=>ox+x/100*W, py=(y)=>oy+y/100*H;
+  const you={x:px(33),y:py(40)}, k=E.stage("kinetic");
+  return phone(`<div style="position:absolute;inset:0;overflow:hidden;background:var(--ground)">
+    <div class="duo" style="position:absolute;left:${ox}px;top:${oy}px;width:${W}px;height:${H}px"><img src="../../../edc-map-2026.jpg" alt=""></div>
+    <div style="position:absolute;left:0;right:0;top:0;height:190px;background:linear-gradient(180deg,var(--ground) 62%,rgba(27,36,184,0))"></div>
+    <svg width="440" height="956" style="position:absolute;inset:0"><path d="M${you.x} ${you.y} Q ${you.x+80} ${(you.y+py(k.y))/2} ${px(k.x)+2} ${py(k.y)+30}" fill="none" stroke="${P}" stroke-width="4" stroke-dasharray="10 7"/></svg>
+    ${E.STAGES.map(s=>{const x=px(s.x),y=py(s.y),hot=s.id==="kinetic";return `<span class="sticker" style="position:absolute;left:${x}px;top:${y}px;transform:translate(-50%,-50%) rotate(${hot?-4:0}deg);border-radius:var(--r-2);${hot?"background:var(--paper);color:var(--ground);box-shadow:var(--mis);font-size:14px;padding:8px 12px 7px":"background:var(--ground);color:var(--paper);box-shadow:0 0 0 1.5px var(--paper)"}">${hot?"● KIN · John Summit":s.short}</span>`;}).join("")}
+    <div style="position:absolute;left:${you.x-12}px;top:${you.y-12}px;width:24px;height:24px;border-radius:50%;background:var(--paper);box-shadow:0 0 0 5px var(--ground),0 0 0 7px var(--paper)"></div>
+    <div style="position:absolute;top:60px;left:20px;right:20px" class="between"><span style="font:900 46px/1 var(--f-billing);font-stretch:62%;text-transform:uppercase">Map</span><span class="sticker" style="background:var(--paper);color:var(--ground)">Official · EDC 2026</span></div>
+    <div class="row" style="position:absolute;top:116px;left:20px;right:0;gap:8px"><span class="chip on">Stages</span><span class="chip" style="background:var(--ground)">Water</span><span class="chip" style="background:var(--ground)">Medical</span><span class="chip" style="background:var(--ground)">Crew</span></div>
+    <div style="position:absolute;left:12px;right:12px;bottom:100px;background:var(--paper);color:var(--ink);box-shadow:var(--mis);padding:16px 18px 18px">
+      <div class="between"><span class="t-label" style="color:var(--ink)">Stage · KIN</span><span class="sticker" style="background:var(--spot);color:var(--on-spot)">● Live</span></div>
+      <div class="t-tier1" style="margin-top:6px;color:var(--ink)">Kinetic Field</div>
+      <div class="between" style="margin-top:8px;border-top:2px solid var(--ink);padding-top:10px"><span style="font:700 15px var(--f-ui)">John Summit</span><span class="t-time" style="font-size:18px">→ 1:42</span></div>
+      <div class="between" style="margin-top:6px"><span style="font:400 15px var(--f-ui)">Next · Subtronics</span><span class="t-time" style="font-size:18px">1:47</span></div>
+      <div class="row" style="margin-top:14px;gap:10px"><span class="btn pri" style="flex:1;box-shadow:none">${I("crew",{size:20,sw:2.5,cap:"square",color:"#10157A"})}Meet crew here</span><span class="btn" style="width:52px;padding:0;border:2px solid var(--ink)">${I("lineup",{size:20,sw:2.5,cap:"square",color:"#10157A"})}</span></div>
+    </div>
+  </div>`,"map");
+}
+
+// ── 4. ARTIST ─────────────────────────────────────────────
+function artist(){
+  const js=E.byName("John Summit"), prev=E.byName("Hardwell"), next=E.byName("Subtronics");
+  const pct=Math.round(E.progress(js,NOW)*100);
+  return phone(`<div style="position:absolute;inset:0 0 88px 0;overflow:hidden">
+    ${duo("john-summit","position:absolute;left:0;right:0;top:0;height:470px")}
+    <div style="position:absolute;left:0;right:0;top:0;height:120px;background:linear-gradient(180deg,rgba(27,36,184,.9),rgba(27,36,184,0))"></div>
+    <div class="pad between" style="position:absolute;left:0;right:0;top:62px;z-index:3">${I("back",{sw:2.8,cap:"square",join:"miter",color:P})}<span class="sticker" style="background:var(--paper);color:var(--ground)">Photo · Spotify</span>${I("share",{sw:2.5,cap:"square",color:P})}</div>
+    <div class="pad" style="position:absolute;left:0;right:0;top:300px;z-index:3"><div class="t-mega" style="font-size:112px;line-height:92px;color:var(--paper);text-shadow:4px 4px 0 #10157A">John<br>Summit</div></div>
+    <div class="pad" style="position:absolute;left:0;right:0;top:494px">
+      <div class="row" style="gap:8px"><span class="sticker" style="background:var(--spot);color:var(--on-spot)">● Live</span><span class="sticker" style="box-shadow:0 0 0 1.5px var(--paper)">Tech House</span><span class="sticker" style="box-shadow:0 0 0 1.5px var(--paper)">Kinetic Field</span></div>
+      <div class="between" style="margin-top:14px"><span class="t-time" style="font-size:34px;line-height:34px">12:32–1:42</span><span class="t-label p2">52 min left</span></div>
+      <div style="height:8px;background:var(--ground-2);position:relative;margin-top:10px"><div style="position:absolute;left:0;top:0;bottom:0;width:${pct}%;background:var(--spot)"></div></div>
+      <div class="row" style="gap:10px;margin-top:14px"><span class="btn pri" style="flex:1">${I("check",{size:20,sw:3,cap:"square",join:"miter",color:"#10157A"})}On your plan</span><span class="btn sec" style="flex:1">${I("play",{size:18,sw:2,color:P,fill:P})}Listen</span></div>
+      <div class="t-label" style="margin:18px 0 2px">On Kinetic tonight</div>
+      ${[[prev,"hardwell","Before"],[js,"john-summit","Now"],[next,"subtronics","Next · your plan"]].map(([s,slug,l],i)=>`<div class="between hair" style="padding:8px 0">
+        <div class="row" style="gap:12px">${duo(slug,`width:42px;height:42px;flex:none;${i===1?"box-shadow:3px 3px 0 var(--spot)":""}`)}<div><div class="t-tier2" style="font-size:21px;line-height:22px;${i===1?"color:var(--spot)":""}">${s.name}</div><div class="t-label p2" style="font-size:11px;margin-top:2px">${l}</div></div></div>
+        <span class="t-time" style="font-size:19px">${E.fmt(s.start)}</span></div>`).join("")}
+    </div>
+  </div>`,"lineup");
+}
+
+// ── 5. ME · MY POSTER ─────────────────────────────────────
+function me(){
+  const seen=[["Above & Beyond",75,1],["Kaskade",70,1],["Subtronics",66,1],["John Summit",70,1],["The Prodigy",60,0],["Sammy Virji",52,0],["Kettama",41,0]];
+  return phone(`<div class="body">
+    <div class="pad between" style="padding-top:8px"><div class="row" style="gap:12px"><span style="width:46px;height:46px;display:grid;place-items:center;background:var(--paper);color:var(--ground);font:900 20px var(--f-billing);font-stretch:70%;box-shadow:var(--mis-sm)">JO</span><div><div style="font:900 30px/1 var(--f-billing);font-stretch:62%;text-transform:uppercase">Jake</div><div class="t-label p2" style="margin-top:4px">4 festivals · since 2024</div></div></div>${I("gear",{sw:2.2,cap:"square",color:P})}</div>
+    <div class="pad" style="margin-top:18px">
+      <div style="background:var(--spot);color:var(--on-spot);padding:18px 16px 16px;text-align:center;box-shadow:6px 6px 0 var(--paper);position:relative;overflow:hidden">
+        <div style="position:absolute;inset:0;background:var(--halftone);opacity:.18"></div>
+        <div class="t-label" style="color:var(--on-spot);position:relative">Plursky presents</div>
+        <div style="font:900 64px/54px var(--f-billing);font-stretch:62%;text-transform:uppercase;margin-top:6px;position:relative">My EDC<br>2026</div>
+        <div style="height:2px;background:var(--on-spot);margin:10px 0 10px"></div>
+        <div style="position:relative;text-wrap:balance">${seen.map(([n,m,big])=>`<span style="white-space:nowrap;font:900 ${big?25:17}px/${big?27:21}px var(--f-billing);font-stretch:${big?64:72}%;text-transform:uppercase">${n}</span>`).join(`<span style="font:900 17px var(--f-billing)"> • </span>`)}</div>
+        <div style="height:2px;background:var(--on-spot);margin:10px 0 8px"></div>
+        <div class="t-label" style="color:var(--on-spot);position:relative">Billed by minutes you stayed<br>14 sets · 19.7 hours</div>
+      </div>
+      <div class="btn pri" style="width:100%;margin-top:16px;background:var(--paper);color:var(--ground);box-shadow:var(--mis)">${I("share",{size:20,sw:2.5,cap:"square",color:G})}Post my poster</div>
+    </div>
+    <div class="pad" style="margin-top:22px"><div class="t-label" style="margin-bottom:6px">Passport</div>
+      ${[["EDC Las Vegas 2026","3 nights · 14 sets"],["Nocturnal Wonderland 2025","2 nights · 9 sets"],["EDC Las Vegas 2025","3 nights · 17 sets"]].map(([n,d])=>`<div class="between hair" style="padding:10px 0"><div><div class="t-tier2" style="font-size:21px;line-height:22px">${n}</div><div class="t-label p2" style="font-size:11px;margin-top:3px">${d}</div></div>${I("chevron",{size:18,sw:2.5,cap:"square",color:P2})}</div>`).join("")}
+    </div>
+  </div>`,"me");
+}
+
+// ── LINEUP · LIST (a departure board of billing) ──────────
+function listView(){
+  const plan=new Set(E.PLAN.map(p=>p.id)), nowM=E.toMin(NOW);
+  const rows=E.SETS.filter(s=>s.s>=E.toMin("01:15")&&s.s<=E.toMin("02:10")).sort((a,b)=>a.s-b.s||(plan.has(b.id)-plan.has(a.id))||a.name.localeCompare(b.name));
+  const clash=(s)=>plan.has(s.id)&&(s.name==="Subtronics"||s.name.startsWith("Peggy"));
+  return phone(`<div class="body">
+    <div class="pad between" style="padding-top:6px"><div class="row" style="gap:0">${["Fri","Sat","Sun"].map((d,i)=>`<span class="t-label" style="padding:9px 14px 8px;${i===1?"background:var(--paper);color:var(--ground);box-shadow:var(--mis-sm)":"color:var(--paper-2)"}">${d} ${15+i}</span>`).join("")}</div>${I("search",{sw:2.5,cap:"square",color:P})}</div>
+    <div class="pad row" style="gap:8px;margin-top:12px"><span class="chip">Poster</span><span class="chip on">List</span><span class="chip">Grid</span></div>
+    <div class="pad" style="margin-top:16px"><div class="between"><span class="t-label spot">● Now</span><span class="t-label p2">12:50 AM</span></div><div class="rule" style="margin-top:8px"></div>
+      <div class="between" style="padding:12px 0;border-bottom:2px solid var(--paper)"><div><div class="t-tier1 spot">John Summit</div><div class="t-label p2" style="margin-top:4px">KIN · Kinetic Field · until 1:42</div></div><span class="sticker" style="background:var(--spot);color:var(--on-spot)">Your plan</span></div>
+    </div>
+    <div class="pad" style="margin-top:6px">
+      ${rows.map(s=>`<div class="between hair" style="padding:10px 0;${plan.has(s.id)?"":""}">
+        <div class="row" style="gap:14px;min-width:0"><span class="t-time" style="width:50px;${plan.has(s.id)?"color:var(--spot)":""}">${E.fmt(s.start)}</span>
+        <div style="min-width:0"><div class="t-tier2" style="font-size:22px;line-height:23px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:212px;${plan.has(s.id)?"color:var(--spot)":""}">${s.name}</div><div class="t-label p2" style="font-size:11px;margin-top:3px">${E.stage(s.stage).short} · ${E.stage(s.stage).name}</div></div></div>
+        ${clash(s)?`<span class="sticker" style="background:var(--clash);color:var(--ground);transform:rotate(-3deg)">Clash</span>`:plan.has(s.id)?`<span class="sticker" style="background:var(--spot);color:var(--on-spot)">✓</span>`:`<span class="sticker" style="box-shadow:0 0 0 1.5px var(--paper-2);color:var(--paper-2)">+ Add</span>`}
+      </div>`).join("")}
+    </div>
+  </div>`,"lineup");
+}
+
+// ── CALENDAR (timetable) ──────────────────────────────────
+function calendar(){
+  const order=["kinetic","circuit","neon","cosmic","quantum","bionic","stereo","waste","basspod"];
+  const t0=E.toMin("23:30"), t1=E.toMin("03:30"), k=2.45, colW=112, gut=58;
+  const plan=new Set(E.PLAN.map(p=>p.id)), nowM=E.toMin(NOW);
+  const ticks=[];for(let m=t0;m<=t1;m+=30)ticks.push(m);
+  const clock=(m)=>{let h=(19+Math.floor(m/60))%24,mm=m%60;const ap=h>=12?"P":"A";h=h%12||12;return mm?`${h}:${String(mm).padStart(2,"0")}`:`${h} ${ap}M`;};
+  const block=(s)=>{const a=Math.max(s.s,t0), b=Math.min(s.e,t1); if(b<=a) return "";
+    const top=(a-t0)*k, h=(b-a)*k-4, pl=plan.has(s.id), clash=pl&&(s.name==="Subtronics"||s.name.startsWith("Peggy"));
+    return `<div style="position:absolute;left:3px;right:5px;top:${top}px;height:${h}px;padding:7px 8px;overflow:hidden;${pl?`background:var(--spot);color:var(--on-spot);box-shadow:3px 3px 0 ${clash?"var(--clash)":"var(--paper)"}`:"box-shadow:inset 0 0 0 1.5px rgba(244,241,234,.35)"}">
+      <div data-wrap style="font:900 ${pl?17:15}px/${pl?17:16}px var(--f-billing);font-stretch:${pl?66:72}%;text-transform:uppercase;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:${h>70?3:2};-webkit-box-orient:vertical;overflow:hidden">${s.name}</div>
+      ${h>46?`<div style="margin-top:4px;font:800 12px/1 var(--f-label);font-stretch:108%;letter-spacing:.06em;${pl?"":"color:var(--paper-2)"}">${clash?"✱ CLASH":E.fmt(s.start)}</div>`:""}</div>`;};
+  const H=(t1-t0)*k;
+  return phone(`<div class="body">
+    <div class="pad between" style="padding-top:6px"><div class="row" style="gap:0">${["Fri","Sat","Sun"].map((d,i)=>`<span class="t-label" style="padding:9px 14px 8px;${i===1?"background:var(--paper);color:var(--ground);box-shadow:var(--mis-sm)":"color:var(--paper-2)"}">${d} ${15+i}</span>`).join("")}</div>${I("search",{sw:2.5,cap:"square",color:P})}</div>
+    <div class="pad row" style="gap:8px;margin-top:12px"><span class="chip">Poster</span><span class="chip">List</span><span class="chip on">Grid</span></div>
+    <div data-scroll-x style="position:absolute;left:0;right:0;top:112px;bottom:0;overflow:hidden">
+      <div style="position:absolute;left:${gut}px;top:0;display:flex">${order.map(id=>`<div style="width:${colW}px;padding:10px 4px 8px;font:900 17px/1 var(--f-billing);font-stretch:66%;text-transform:uppercase;white-space:nowrap">${E.stage(id).name.split(" ")[0]}</div>`).join("")}</div>
+      <div style="position:absolute;left:0;right:0;top:38px;height:2px;background:var(--paper)"></div>
+      <div style="position:absolute;left:0;top:48px;width:${gut}px;height:${H}px">${ticks.filter(m=>Math.abs(m-nowM)*k>22).map(m=>`<div class="t-time" style="position:absolute;right:8px;top:${(m-t0)*k-8}px;font-size:15px;white-space:nowrap;${m%60?"color:var(--paper-2)":""}">${clock(m)}</div>`).join("")}</div>
+      <div style="position:absolute;left:${gut}px;top:48px;height:${H}px;display:flex">
+        ${ticks.map(m=>`<div style="position:absolute;left:0;width:${order.length*colW}px;top:${(m-t0)*k}px;height:1px;background:var(--line)"></div>`).join("")}
+        ${order.map(id=>`<div style="position:relative;width:${colW}px;height:${H}px">${E.SETS.filter(s=>s.stage===id).map(block).join("")}</div>`).join("")}
+        <div style="position:absolute;left:-${gut}px;width:${order.length*colW+gut}px;top:${(nowM-t0)*k-1}px;height:3px;background:var(--paper)"></div>
+        <span class="sticker" style="position:absolute;left:-${gut-2}px;top:${(nowM-t0)*k-12}px;background:var(--paper);color:var(--ground);border-radius:var(--r-2)">12:50</span>
+      </div>
+    </div>
+  </div>`,"lineup");
+}
+
+// ── INSIDE THE ARTIST CARD (scrolled) ─────────────────────
+function artistInside(){
+  const sim=["Bad Boombox b2b Ollie Lishman","Prospa","Cid"].map(E.byName);
+  const tracks=[["Where You Are","with Hayla, who played Kinetic at 8"],["La Danza",""],["Deep End",""],["Make Me Feel",""]];
+  return phone(`<div class="body">
+    <div class="pad between" style="padding-top:6px;padding-bottom:12px;border-bottom:2px solid var(--paper)">
+      <div class="row" style="gap:12px">${I("back",{sw:2.8,cap:"square",join:"miter",color:P})}${duo("john-summit","width:40px;height:40px;flex:none;box-shadow:3px 3px 0 var(--spot)")}<div><div class="t-tier2" style="font-size:24px;line-height:24px">John Summit</div><div class="t-label spot" style="margin-top:3px">● Live · KIN · 52 min left</div></div></div>
+      ${I("share",{sw:2.5,cap:"square",color:P})}
+    </div>
+    <div class="pad" style="margin-top:16px">
+      <div class="between"><span class="t-label">Likely in the set</span><span class="t-label p2">From recent sets</span></div>
+      <div style="font:400 14px/19px var(--f-ui);color:var(--paper-2);margin-top:6px">A guide, not a setlist.</div>
+      ${tracks.map(([t,n],i)=>`<div class="between hair" style="padding:10px 0;${i?"":"margin-top:8px"}"><div class="row" style="gap:12px;align-items:flex-start"><span class="t-time spot" style="font-size:24px;line-height:24px;width:30px">${i+1}</span><div><div class="t-tier2" style="font-size:22px;line-height:23px">${t}</div>${n?`<div style="font:400 13px/17px var(--f-ui);color:var(--paper-2)">${n}</div>`:""}</div></div><span class="sticker" style="box-shadow:0 0 0 1.5px var(--spot);color:var(--spot)">Likely</span></div>`).join("")}
+      <div class="btn sec" style="width:100%;margin-top:10px">${I("play",{size:16,sw:2,color:P,fill:P})}Open in Spotify</div>
+    </div>
+    <div class="pad" style="margin-top:18px">
+      <div class="between" style="margin-bottom:10px"><span class="t-label">Your moments · this set</span><span class="t-label p2">3</span></div>
+      <div class="row" style="gap:8px">${["IMG_5484","IMG_5621","IMG_5605"].map(p=>`<div class="duo" style="flex:1;height:110px;box-shadow:3px 3px 0 var(--spot)"><img src="../photos/${p}.jpg" alt=""></div>`).join("")}</div>
+    </div>
+    <div class="pad" style="margin-top:18px"><div class="t-label" style="margin-bottom:4px">If you like this · next up</div>
+      ${sim.map(s=>`<div class="between hair" style="padding:9px 0"><div style="min-width:0"><div class="t-tier2" style="font-size:20px;line-height:21px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px">${s.name}</div><div class="t-label p2" style="font-size:11px;margin-top:2px">${s.genre} · ${E.stage(s.stage).name}</div></div><span class="t-time" style="font-size:19px">${E.fmt(s.start)}</span></div>`).join("")}
+    </div>
+  </div>`,"lineup");
+}
+
+const SCREENS=[["today","Today",today],["lineup","Lineup · Poster",lineup],["list","Lineup · List",listView],["calendar","Lineup · Calendar",calendar],["map","Map",map],["artist","Artist",artist],["artist-inside","Artist · inside the card",artistInside],["me","Me",me]];
+document.getElementById("screens").innerHTML=SCREENS.map(([k,l,f],i)=>`<div class="screen-wrap" data-screen="${k}"><div class="screen-cap">0${i+1} · ${l}</div>${f()}</div>`).join("");
+TOKENS.icons.samples=["today","lineup","map","me","search","share","sun","clash","water","medic","crew","play"].map(n=>`<div>${I(n,{sw:2.5,cap:"square",join:"miter",color:P})}</div>`).join("");
+renderSpec(document.getElementById("spec"));
+if(location.hash==="#render")document.documentElement.classList.add("render");
+</script>

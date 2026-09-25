@@ -1,0 +1,95 @@
+// HOLO — light, with a Blacklight night mode. PLUR made tactile: the
+// wristband foil, kandi beads, trading-card sets you collect.
+window.TOKENS = {
+  id: "holo",
+  name: "Holo",
+  scheme: "light",
+  fontsHref: "https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&display=swap",
+  color: [
+    { group: "Ground — pearl, cool not cream", items: [
+      { token: "--pearl", hex: "#F4F3F8", role: "App ground" },
+      { token: "--card",  hex: "#FFFFFF", role: "Cards, sheets" },
+      { token: "--mist",  hex: "#EAE8F1", role: "Wells, pressed state, track" },
+      { token: "--line",  hex: "#E1DEEA", role: "Hairlines" },
+      { token: "--line-2", hex: "#CFCADB", role: "Bead rims, dividers" },
+    ]},
+    { group: "Ink", items: [
+      { token: "--ink",   hex: "#14121C", role: "Primary text" },
+      { token: "--ink-2", hex: "#565266", role: "Secondary text" },
+      { token: "--ink-3", hex: "#767287", role: "Metadata" },
+    ]},
+    { group: "Signal — one ink, three states", items: [
+      { token: "--uv",     hex: "#4A2BFF", role: "Ultraviolet. THE accent: primary action, your plan" },
+      { token: "--on-uv",  hex: "#FFFFFF", role: "Text on UV" },
+      { token: "--live",   hex: "#00845A", role: "Live (text-safe green)" },
+      { token: "--clash",  hex: "#D81B57", role: "Clash, error" },
+      { token: "--sun",    hex: "#B84A00", role: "Sunrise (text-safe amber)" },
+    ]},
+    { group: "Foil — only on collectibles: the band, set cards, beads you earned", items: [
+      { token: "--f-pink",  hex: "#FFB3E6", role: "Foil stop" },
+      { token: "--f-peri",  hex: "#B8C4FF", role: "Foil stop" },
+      { token: "--f-mint",  hex: "#A6F4E4", role: "Foil stop" },
+      { token: "--f-butter", hex: "#FFF1A8", role: "Foil stop" },
+      { token: "--f-peach", hex: "#FFC8A8", role: "Foil stop" },
+    ]},
+    { group: "Blacklight — the night mode (auto after sunset)", items: [
+      { token: "--bl-ground", hex: "#0E0B1D", role: "Night ground" },
+      { token: "--bl-card",   hex: "#1A1530", role: "Night card" },
+      { token: "--bl-ink",    hex: "#F4F1FF", role: "Night text" },
+      { token: "--bl-ink-2",  hex: "#ABA4C8", role: "Night secondary" },
+      { token: "--bl-uv",     hex: "#C4FF4D", role: "UV-reactive lime — the foil's night self" },
+      { token: "--bl-pink",   hex: "#FF5CDB", role: "UV-reactive pink" },
+    ]},
+  ],
+  contrastPairs: [
+    ["--ink", "--pearl", "Body"], ["--ink-2", "--pearl", "Secondary"], ["--ink-3", "--card", "Metadata"],
+    ["--on-uv", "--uv", "Primary button"], ["--uv", "--card", "Accent as text"], ["--live", "--card", "LIVE"],
+    ["--clash", "--card", "Clash"], ["--sun", "--card", "Sunrise"], ["--ink", "--f-peri", "Text on foil (darkest-light stop)"],
+    ["--bl-ink", "--bl-ground", "Night body"], ["--bl-ink-2", "--bl-card", "Night secondary"], ["--bl-uv", "--bl-ground", "Night accent"],
+  ],
+  extraVars: [
+    ["--page-bg", "#F4F3F8"], ["--page-ink", "#14121C"], ["--page-ink-2", "#565266"], ["--page-line", "#E1DEEA"], ["--page-accent", "#4A2BFF"], ["--page-card", "#FFFFFF"],
+    ["--foil", "conic-gradient(from 200deg at 30% 40%, #FFB3E6, #B8C4FF 18%, #A6F4E4 36%, #FFF1A8 52%, #FFC8A8 66%, #FFB3E6 80%, #B8C4FF)"],
+    ["--sheen", "repeating-linear-gradient(115deg, rgba(255,255,255,0) 0 14px, rgba(255,255,255,.55) 16px, rgba(255,255,255,0) 22px 40px)"],
+    ["--bead", "radial-gradient(circle at 35% 30%, #fff 0 18%, rgba(255,255,255,0) 42%)"],
+  ],
+  fonts: {
+    display: { name: "Unbounded", stack: "Unbounded, 'SF Pro Rounded', system-ui, sans-serif", role: "Soft, wide, a little Y2K — the kandi letter-bead voice. Headlines, numbers, the band." },
+    ui:      { name: "SF Pro", stack: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif", role: "Everything you read at length. Native Dynamic Type." },
+  },
+  type: [
+    { token: "hero",     family: "display", size: 64, lh: 60, weight: 700, track: -0.04, sample: "5:05" },
+    { token: "display",  family: "display", size: 34, lh: 36, weight: 700, track: -0.03, sample: "Above & Beyond" },
+    { token: "title",    family: "display", size: 24, lh: 28, weight: 700, track: -0.02, sample: "Lineup" },
+    { token: "headline", family: "ui",      size: 18, lh: 23, weight: 650, track: -0.012, sample: "Bolo · Sunrise Set" },
+    { token: "body",     family: "ui",      size: 16, lh: 22, weight: 400, track: -0.005, sample: "Mainstage · headliners, sunrise sets" },
+    { token: "body-s",   family: "ui",      size: 14, lh: 19, weight: 500, track: 0, sample: "Kinetic Field" },
+    { token: "label",    family: "display", size: 11, lh: 14, weight: 600, track: 0.06, upper: true, sample: "Night 2 · Saturday" },
+    { token: "num",      family: "display", size: 15, lh: 18, weight: 600, track: -0.01, extra: "font-variant-numeric:tabular-nums;", sample: "4:14 – 5:29" },
+  ],
+  space: [4, 8, 12, 16, 20, 24, 32, 40, 56],
+  radius: [
+    { token: "--r-bead", value: "999px", use: "Beads: chips, toggles, avatars" },
+    { token: "--r-sm", value: "14px", use: "Rows, inputs" },
+    { token: "--r-md", value: "22px", use: "Cards" },
+    { token: "--r-lg", value: "32px", use: "Sheets, the band" },
+  ],
+  elevation: [
+    { token: "--e1", value: "0 1px 2px rgba(20,18,28,.05), 0 6px 18px -10px rgba(20,18,28,.14)", use: "Resting card", demo: "background:#fff;box-shadow:0 1px 2px rgba(20,18,28,.05),0 6px 18px -10px rgba(20,18,28,.14)" },
+    { token: "--e2", value: "0 2px 6px rgba(20,18,28,.06), 0 24px 48px -20px rgba(74,43,255,.28)", use: "Lifted: the band, sheets — shadow tinted UV", demo: "background:#fff;box-shadow:0 2px 6px rgba(20,18,28,.06),0 24px 48px -20px rgba(74,43,255,.28)" },
+    { token: "--gloss", value: "inset 0 1px 0 #fff, inset 0 -2px 4px rgba(20,18,28,.06)", use: "Bead gloss — pressable things look pressable", demo: "background:#F4F3F8;border-radius:999px;box-shadow:inset 0 1px 0 #fff,inset 0 -2px 4px rgba(20,18,28,.06),0 0 0 1px #CFCADB" },
+  ],
+  icons: {
+    note: "2px stroke, round caps, on a 24 grid, with a soft duotone: every icon carries a 12% UV fill under the stroke. The active tab icon fills with foil. Friendly and legible, never cartoony.",
+    samples: "",
+  },
+  motionNote: "Springy and tactile. Beads pop in, and cards settle with a slight overshoot. The foil answers the phone's tilt (gyroscope, ±8° → a 30% hue shift), so the band shimmers when you move. Collecting a set flips its card from matte to holo. Blacklight takes over at sunset over 2 seconds, like the UV rig warming up. Reduce Motion keeps the foil still.",
+  motion: [
+    { token: "--spring", value: "cubic-bezier(.34,1.56,.64,1)", use: "Beads, toggles, card settle" },
+    { token: "--ease", value: "cubic-bezier(.2,.8,.2,1)", use: "Sheets, pushes" },
+    { token: "--t-pop", value: "240ms", use: "Bead toggle" },
+    { token: "--t-move", value: "380ms", use: "Card / sheet" },
+    { token: "--t-flip", value: "620ms", use: "Matte → holo when a set is collected" },
+    { token: "--t-dusk", value: "2000ms", use: "Day → Blacklight at sunset" },
+  ],
+};

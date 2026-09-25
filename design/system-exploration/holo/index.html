@@ -1,0 +1,322 @@
+<html lang="en"><title>Plursky Holo</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="stylesheet" href="../shared/board.css">
+<script src="../shared/sample.js"></script>
+<script src="tokens.js"></script>
+<script src="../shared/system.js"></script>
+<script src="../shared/icons.js"></script>
+<style>
+/* ── HOLO screen components. Every value is a token from tokens.js. ── */
+.H{background:var(--pearl);color:var(--ink);font-family:var(--f-ui);-webkit-font-smoothing:antialiased}
+.H .body{position:absolute;inset:54px 0 90px 0;overflow:hidden}
+.H .tabbar{position:absolute;left:0;right:0;bottom:0;height:90px;display:grid;grid-template-columns:repeat(4,1fr);padding:8px 14px 26px;background:rgba(255,255,255,.86);backdrop-filter:blur(20px);border-top:1px solid var(--line);z-index:10}
+.H .tab{display:grid;justify-items:center;align-content:start;gap:4px;color:var(--ink-3);font:600 11px/1 var(--f-ui)}
+.H .tab .ic{width:58px;height:32px;border-radius:var(--r-bead);display:grid;place-items:center}
+.H .tab.on{color:var(--ink)}
+.H .tab.on .ic{background:var(--sheen),var(--foil);box-shadow:var(--gloss)}
+.H .pad{padding:0 20px}
+.H .row{display:flex;align-items:center;gap:12px}
+.H .between{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.H .ink2{color:var(--ink-2)} .H .ink3{color:var(--ink-3)}
+.H .card{background:var(--card);border-radius:var(--r-md);box-shadow:var(--e1)}
+.H .foil{background:var(--sheen),var(--foil);background-blend-mode:soft-light,normal}
+.H .bead{display:inline-flex;flex:none;align-items:center;gap:6px;height:36px;padding:0 15px;border-radius:var(--r-bead);background:var(--bead),linear-gradient(180deg,#fff,#F1EFF6);box-shadow:var(--gloss),0 0 0 1px var(--line-2);font:600 14px/1 var(--f-ui);color:var(--ink-2);white-space:nowrap}
+.H .bead.on{background:var(--ink);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
+.H .bead.foilb{background:var(--bead),var(--sheen),var(--foil);color:var(--ink);box-shadow:var(--gloss),0 0 0 1px rgba(20,18,28,.08)}
+.H .bead small{font:600 11px/1 var(--f-display);opacity:.75}
+.H .live{display:inline-flex;align-items:center;gap:6px;color:var(--live)}
+.H .live i{width:8px;height:8px;border-radius:50%;background:var(--live);box-shadow:0 0 0 3px rgba(0,132,90,.15)}
+.H .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 20px;border-radius:var(--r-bead);font:650 16px/1 var(--f-ui)}
+.H .btn.pri{background:var(--uv);color:var(--on-uv);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 10px 24px -10px rgba(74,43,255,.7)}
+.H .btn.sec{background:var(--card);color:var(--ink);box-shadow:var(--gloss),0 0 0 1px var(--line-2)}
+.H .toggle{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;flex:none;background:var(--bead),linear-gradient(180deg,#fff,#EFEDF5);box-shadow:var(--gloss),0 0 0 1px var(--line-2)}
+.H .toggle.on{background:var(--bead),var(--uv);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 4px 10px -4px rgba(74,43,255,.8)}
+.H .ltr{display:inline-grid;place-items:center;width:23px;height:23px;border-radius:6px;font:700 11px/1 var(--f-display);color:var(--ink);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -2px 3px rgba(20,18,28,.08),0 0 0 1px rgba(20,18,28,.1)}
+.H .track{height:10px;border-radius:5px;background:var(--mist);box-shadow:inset 0 1px 2px rgba(20,18,28,.08);position:relative}
+.H .track b{position:absolute;left:0;top:0;bottom:0;border-radius:5px;background:var(--sheen),var(--foil)}
+.H .track b::after{content:"";position:absolute;right:-9px;top:-5px;width:20px;height:20px;border-radius:50%;background:var(--bead),#fff;box-shadow:0 2px 6px rgba(20,18,28,.25),0 0 0 1px var(--line-2)}
+/* Blacklight */
+.BL{background:var(--bl-ground);color:var(--bl-ink)}
+.BL .tabbar{background:rgba(14,11,29,.85);border-top-color:#2A2446}
+.BL .tab{color:#6F6890}.BL .tab.on{color:var(--bl-ink)}
+.BL .tab.on .ic{background:none;box-shadow:0 0 0 1.5px var(--bl-uv),0 0 16px rgba(196,255,77,.45)}
+.BL .card{background:var(--bl-card);box-shadow:0 0 0 1px #2A2446}
+.BL .ink2{color:var(--bl-ink-2)} .BL .ink3{color:#8A83AA}
+.BL .live{color:var(--bl-uv)} .BL .live i{background:var(--bl-uv);box-shadow:0 0 10px var(--bl-uv)}
+.BL .track{background:#2A2446;box-shadow:none}
+.BL .track b{background:linear-gradient(90deg,var(--bl-pink),var(--bl-uv))}
+.BL .track b::after{background:var(--bl-ground);box-shadow:0 0 0 2px var(--bl-uv),0 0 12px var(--bl-uv)}
+</style>
+
+<header class="dir-head">
+  <div class="dir-kicker"><a href="../index.html">Plursky design systems</a> · Direction 02 · Light, with a Blacklight night mode</div>
+  <h1 class="dir-title" style="font:800 52px/1 Unbounded,sans-serif;letter-spacing:-.04em">Holo</h1>
+  <p class="dir-pitch">PLUR made tactile. The ground is cool pearl, never cream. The festival's collectibles become the interface: a holographic wristband, kandi letter beads, and a holo trading card for every set you catch. Foil appears only on things you've earned or are wearing, so it stays special. After sunset the app switches to Blacklight, where the same foil glows like UV paint. It's easy on the eyes at 3 AM and still unmistakably Plursky.</p>
+  <ul class="dir-principles"><li>Foil is earned, never decoration</li><li>Everything pressable looks like a bead</li><li>One ink: ultraviolet</li><li>Day is pearl, night is Blacklight</li><li>Photos support, never lead</li></ul>
+</header>
+
+<div class="screens" id="screens"></div>
+
+<section class="why">
+  <div><b>Signature: the band</b>Today's hero is your wristband, woven with foil that shifts when you tilt the phone. It carries the one thing that matters right now: the clock and the sun.</div>
+  <div><b>Signature: sets are collectibles</b>Every set you catch mints a holo card, and a missed one stays matte. The collection becomes the recap people post. It turns "I was there" into a flex, which is the whole culture of kandi trading.</div>
+  <div><b>Why ravers get it</b>Kandi letter beads, wristbands and holo stickers are what ravers wear and trade. The wordmark is spelled in beads.</div>
+  <div><b>Why it isn't too bright at night</b>It isn't bright at night at all. Blacklight takes over at sunset: a deep indigo ground with UV-reactive lime and pink. It's the sixth screen below.</div>
+</section>
+
+<div class="spec" id="spec"></div>
+
+<script>
+const E = window.EDC, I = window.ICON, NOW = E.moments.dawn.hhmm;
+const photo = (n) => `url(../photos/${n}.jpg), linear-gradient(135deg,#EAE8F1,#fff)`;
+const UV="#4A2BFF";
+function tabbar(active,bl){
+  const t=[["today","Today"],["lineup","Lineup"],["map","Map"],["me","Me"]];
+  return `<nav class="tabbar">${t.map(([k,l])=>`<div class="tab ${k===active?"on":""}"><span class="ic">${I(k,{sw:2,color:k===active?(bl?"#C4FF4D":"#14121C"):(bl?"#6F6890":"#767287"),under:k===active||bl?null:"rgba(74,43,255,.12)"})}</span><span>${l}</span></div>`).join("")}</nav>`;
+}
+function phone(inner, active, o={}){ const bl=o.bl; return `<div class="phone H ${bl?"BL":""}">${STATUS(o.time||E.moments.dawn.label,bl?"#F4F1FF":"#14121C")}${inner}${active?tabbar(active,bl):""}${HOMEBAR(bl?"#F4F1FF":"#14121C")}</div>`; }
+const beadWord=(w,foilIdx=[1,3,5])=>`<span class="row" style="gap:3px">${w.split("").map((c,i)=>`<span class="ltr" style="background:${foilIdx.includes(i)?"var(--bead),var(--sheen),var(--foil)":"var(--bead),#fff"}">${c}</span>`).join("")}</span>`;
+
+// ── 1. TODAY ──────────────────────────────────────────────
+function band(){
+  // The wristband: woven foil, printed clock, the sun on the horizon.
+  return `<div style="position:relative;height:236px;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--e2)" class="foil">
+    <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.18) 0 1px,transparent 1px 4px),repeating-linear-gradient(90deg,rgba(20,18,28,.035) 0 1px,transparent 1px 5px)"></div>
+    <svg width="400" height="236" viewBox="0 0 400 236" style="position:absolute;inset:0">
+      <defs><radialGradient id="hSun" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFF6D6"/><stop offset=".55" stop-color="#FFD27A"/><stop offset="1" stop-color="#FF9A5C"/></radialGradient>
+      <radialGradient id="hGlow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFE9A8" stop-opacity=".9"/><stop offset="1" stop-color="#FFE9A8" stop-opacity="0"/></radialGradient></defs>
+      <circle cx="318" cy="170" r="92" fill="url(#hGlow)"/>
+      ${[0,1,2,3,4,5,6,7,8].map(i=>`<line x1="318" y1="170" x2="${318+Math.cos((-180+i*22.5)*Math.PI/180)*120}" y2="${170+Math.sin((-180+i*22.5)*Math.PI/180)*120}" stroke="#fff" stroke-opacity=".55" stroke-width="1.2"/>`).join("")}
+      <circle cx="318" cy="170" r="34" fill="url(#hSun)"/>
+      <rect x="0" y="170" width="400" height="66" fill="rgba(255,255,255,.35)"/>
+      <line x1="0" y1="170" x2="400" y2="170" stroke="#14121C" stroke-opacity=".5" stroke-width="1"/>
+    </svg>
+    <div style="position:absolute;left:20px;top:18px;right:20px" class="between"><span class="t-label">EDC Las Vegas 2026</span><span class="t-label">Night 2 · Sat</span></div>
+    <div style="position:absolute;left:18px;top:52px"><div class="t-hero" style="font-size:78px;line-height:74px">5:05</div><div class="t-label ink2" style="margin-top:6px">AM · First light 5:07</div></div>
+    <div style="position:absolute;left:20px;right:20px;bottom:16px" class="between"><span class="row" style="gap:8px;font:600 15px var(--f-ui)">${I("sun",{size:18,sw:2,color:"#14121C"})}Sunrise 5:35</span><span class="t-num">30 MIN</span></div>
+  </div>`;
+}
+function today(){
+  const ab=E.byName("Above & Beyond"), pct=Math.round(E.progress(ab,NOW)*100);
+  const beads=[["Kettama","K",1],["Sammy Virji","SV",1],["The Prodigy","TP",1],["John Summit","JS",1],["Peggy Gou b2b Ki/Ki","PG",0],["Subtronics","ST",1],["Kaskade","KA",1],["Above & Beyond","AB",2]];
+  return phone(`<div class="body">
+    <div class="pad between" style="padding-top:10px">${beadWord("PLURSKY")}<div class="bead" style="width:36px;padding:0;justify-content:center;font:700 12px var(--f-display);color:var(--ink)">JO</div></div>
+    <div class="pad" style="margin-top:16px">${band()}</div>
+    <div class="pad" style="margin-top:14px">
+      <div class="card" style="padding:18px 18px 16px">
+        <div class="between"><span class="t-label live"><i></i>Live · on your plan</span><span class="t-label ink3">Kinetic Field</span></div>
+        <div class="t-display" style="margin-top:10px">Above &amp; Beyond</div>
+        <div class="t-body-s ink2" style="margin-top:4px">Sunrise Set · Trance</div>
+        <div class="track" style="margin-top:16px"><b style="width:${pct}%"></b></div>
+        <div class="between" style="margin-top:10px"><span class="t-num">4:14 – 5:29</span><span class="t-num ink3">${ab.e-E.toMin(NOW)} MIN LEFT</span></div>
+      </div>
+    </div>
+    <div class="pad" style="margin-top:12px">
+      <div class="card" style="padding:16px 18px">
+        <div class="between"><span class="t-label">Your night</span><span class="t-num ink2" style="font-size:13px">7 of 8 collected</span></div>
+        <div style="position:relative;margin-top:14px;height:40px">
+          <svg width="364" height="40" style="position:absolute;inset:0"><path d="M4 20 C 60 32, 120 32, 182 22 S 300 10, 360 20" fill="none" stroke="#CFCADB" stroke-width="1.5"/></svg>
+          <div style="position:absolute;inset:0;display:flex;justify-content:space-between;align-items:center">
+          ${beads.map(([n,c,st])=>`<span style="width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font:700 11px var(--f-display);${st===1?"background:var(--bead),var(--sheen),var(--foil);box-shadow:var(--gloss),0 0 0 1px rgba(20,18,28,.08)":st===2?"background:var(--bead),var(--uv);color:#fff;box-shadow:0 0 0 4px rgba(74,43,255,.18),0 6px 14px -6px rgba(74,43,255,.9)":"background:var(--pearl);color:var(--ink-3);box-shadow:inset 0 0 0 1.5px var(--line-2);border:1.5px dashed transparent"}">${c}</span>`).join("")}
+          </div></div>
+      </div>
+    </div>
+    <div class="pad" style="margin-top:12px"><div class="card between" style="padding:14px 18px">
+      <div class="row" style="gap:12px"><span class="row" style="gap:0">${["M","D","R"].map((c,i)=>`<span style="width:34px;height:34px;border-radius:50%;display:grid;place-items:center;margin-left:${i?-8:0}px;font:700 12px var(--f-display);position:relative;z-index:${3-i};background:var(--bead),${["#FFB3E6","#A6F4E4","#FFF1A8"][i]};box-shadow:0 0 0 2.5px #fff">${c}</span>`).join("")}</span>
+      <div><div class="t-body-s">Crew · 3 at Kinetic Field</div><div class="t-body-s ink3" style="font-weight:400;font-size:13px">Meeting at the rail for sunrise</div></div></div>${I("chevron",{size:18,sw:2,color:"#767287"})}</div></div>
+  </div>`,"today");
+}
+
+// ── 2. LINEUP ─────────────────────────────────────────────
+function lineup(){
+  const planIds=new Set(E.PLAN.map(p=>p.id));
+  const ab=E.byName("Above & Beyond"), bolo=E.byName("Bolo");
+  const rows=E.SETS.filter(s=>s.s>=E.toMin("04:15")&&s.s<=E.toMin("04:30")).sort((a,b)=>a.s-b.s||a.name.localeCompare(b.name));
+  const row=(s,i)=>{const pl=planIds.has(s.id); return `<div class="between" style="padding:12px 14px 12px 16px;${i?"border-top:1px solid var(--line)":""}">
+    <div class="row" style="gap:14px;min-width:0"><span class="t-num" style="width:42px;font-size:14px">${E.fmt(s.start)}</span>
+    <div style="min-width:0"><div class="t-headline" style="font-size:16.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:230px">${s.name}</div><div class="t-body-s ink2" style="font-weight:400;font-size:13px">${E.stage(s.stage).name}${s.note?" · "+s.note:""}</div></div></div>
+    <span class="toggle ${pl?"on":""}">${pl?I("check",{size:17,sw:2.6,color:"#fff"}):I("plus",{size:16,sw:2.2,color:"#565266"})}</span></div>`;};
+  const mini=(s,tag)=>`<div class="foil" style="flex:none;width:196px;height:128px;border-radius:var(--r-md);padding:14px;position:relative;overflow:hidden;box-shadow:var(--e1)">
+    <div class="t-label">${tag}</div>
+    <div data-wrap style="font:700 19px/22px var(--f-display);letter-spacing:-.02em;margin-top:10px">${s.name}</div>
+    <div class="between" style="position:absolute;left:14px;right:14px;bottom:12px"><span class="t-num" style="font-size:13px">${E.fmt(s.start)}</span><span class="t-label" style="font-size:11px">${E.stage(s.stage).short}</span></div></div>`;
+  return phone(`<div class="body">
+    <div class="pad between" style="padding-top:8px"><div class="t-title" style="font-size:28px;line-height:32px">Lineup</div><span class="toggle" style="width:40px;height:40px">${I("search",{size:20,sw:2,color:"#14121C"})}</span></div>
+    <div class="pad row" style="gap:8px;margin-top:14px">${[["Fri","15"],["Sat","16"],["Sun","17"]].map(([d,n],i)=>`<span class="bead ${i===1?"foilb":""}" style="flex:1;justify-content:center;height:44px;font-size:15px;${i===1?"color:var(--ink)":""}">${d} <small>${n}</small></span>`).join("")}</div>
+    <div class="pad row" style="gap:8px;margin-top:10px;overflow:hidden"><span class="bead on">List</span><span class="bead">Grid</span><span class="bead">My plan <small>8</small></span><span class="bead">Live <small>9</small></span></div>
+    <div class="pad" style="margin-top:18px"><div class="between" style="margin-bottom:10px"><span class="t-label">Sunrise sets</span><span class="t-label ink3">Sun up 5:35</span></div>
+      <div class="row" style="gap:10px">${mini(ab,"Live · Kinetic")}${mini(bolo,"Stereo Bloom")}</div></div>
+    <div class="pad" style="margin-top:18px"><div class="t-label" style="margin-bottom:10px">4 AM</div>
+      <div class="card">${rows.map(row).join("")}</div></div>
+  </div>`,"lineup");
+}
+
+// ── 3. MAP ────────────────────────────────────────────────
+function map(){
+  // The OFFICIAL EDC LV 2026 map, mounted like a sticker: full colour, white
+  // die-cut edge. Stage x/y (data.jsx) are percentages of this image; the map
+  // prints stage names, so Plursky adds beads only. No distances.
+  const W=600, H=W*1350/1080, ox=-20, oy=160;
+  const px=(x)=>ox+x/100*W, py=(y)=>oy+y/100*H;
+  const you={x:px(33),y:py(40)}, k=E.stage("kinetic");
+  return phone(`<div style="position:absolute;inset:0;overflow:hidden;background:var(--pearl)">
+    <div style="position:absolute;left:10px;right:10px;top:160px;bottom:0;border-radius:28px 28px 0 0;overflow:hidden;box-shadow:0 0 0 6px #fff,var(--e2)">
+      <img src="../../../edc-map-2026.jpg" style="position:absolute;left:${ox-10}px;top:${oy-160}px;width:${W}px;height:${H}px">
+    </div>
+    <svg width="440" height="956" style="position:absolute;inset:0">
+      <path d="M${you.x} ${you.y} Q ${you.x+80} ${(you.y+py(k.y))/2} ${px(k.x)} ${py(k.y)+26}" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-dasharray="1 11"/>
+      <path d="M${you.x} ${you.y} Q ${you.x+80} ${(you.y+py(k.y))/2} ${px(k.x)} ${py(k.y)+26}" fill="none" stroke="#4A2BFF" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 11"/>
+    </svg>
+    ${E.STAGES.map(s=>{const x=px(s.x),y=py(s.y),hot=s.id==="kinetic";return hot
+      ?`<div class="foil" style="position:absolute;left:${x-26}px;top:${y-26}px;width:52px;height:52px;border-radius:50%;box-shadow:0 0 0 4px #fff,0 8px 20px -6px rgba(74,43,255,.6)"></div><div style="position:absolute;left:${x-10}px;top:${y-10}px;width:20px;height:20px;border-radius:50%;background:var(--bead),var(--uv)"></div>
+        <div style="position:absolute;right:${440-x+34}px;top:${y-16}px;padding:8px 12px;border-radius:14px;background:#fff;box-shadow:var(--e2)"><div class="t-label live" style="font-size:11px"><i></i>Live</div><div style="font:600 13px/1.2 var(--f-ui);margin-top:4px">Above &amp; Beyond</div></div>`
+      :`<div style="position:absolute;left:${x-9}px;top:${y-9}px;width:18px;height:18px;border-radius:50%;background:var(--bead),#fff;box-shadow:0 0 0 2.5px ${s.color},0 3px 6px -2px rgba(20,18,28,.4)"></div>`;}).join("")}
+    <div style="position:absolute;left:${you.x-11}px;top:${you.y-11}px;width:22px;height:22px;border-radius:50%;background:var(--uv);box-shadow:0 0 0 4px #fff,0 0 0 10px rgba(74,43,255,.25)"></div>
+    <div style="position:absolute;top:62px;left:20px;right:20px" class="between"><div class="t-title" style="font-size:28px;line-height:32px">Map</div><span class="bead" style="height:34px;font-size:12.5px">Official · EDC 2026</span></div>
+    <div style="position:absolute;top:108px;left:20px;right:0;display:flex;gap:8px;overflow:hidden"><span class="bead on">Stages</span><span class="bead">Water</span><span class="bead">Medical</span><span class="bead">Crew</span></div>
+    <div style="position:absolute;left:12px;right:12px;bottom:100px;background:#fff;border-radius:var(--r-lg);box-shadow:var(--e2);padding:10px 20px 18px">
+      <div style="width:36px;height:5px;border-radius:3px;background:var(--line-2);margin:0 auto 12px"></div>
+      <div class="between"><div><div class="t-label ink3">Stage</div><div class="t-title" style="margin-top:6px">Kinetic Field</div></div><span class="t-label live"><i></i>Live</span></div>
+      <div class="between" style="margin-top:12px"><span class="t-body-s">Above &amp; Beyond · Sunrise Set</span><span class="t-num ink2" style="font-size:13px">→ 5:29</span></div>
+      <div class="row" style="margin-top:14px;gap:10px"><span class="btn pri" style="flex:1">${I("crew",{size:20,sw:2,color:"#fff"})}Meet crew here</span><span class="btn sec" style="width:52px;padding:0">${I("lineup",{size:20,sw:2,color:"#14121C"})}</span></div>
+    </div>
+  </div>`,"map");
+}
+
+// ── 4. ARTIST ─────────────────────────────────────────────
+function artist(){
+  const ab=E.byName("Above & Beyond"), ka=E.byName("Kaskade");
+  let rays=""; for(let i=0;i<36;i++){const a=i*10*Math.PI/180; rays+=`<line x1="180" y1="150" x2="${180+Math.cos(a)*260}" y2="${150+Math.sin(a)*260}" stroke="#fff" stroke-opacity="${i%2?.25:.6}" stroke-width="${i%3?1:2}"/>`;}
+  let spark=""; for(let i=0;i<40;i++){const x=(i*97)%340+10,y=(i*53)%260+10; spark+=`<path d="M${x} ${y-4} L${x+1} ${y-1} L${x+4} ${y} L${x+1} ${y+1} L${x} ${y+4} L${x-1} ${y+1} L${x-4} ${y} L${x-1} ${y-1}Z" fill="#fff" opacity="${.4+(i%3)*.2}"/>`;}
+  return phone(`<div class="body">
+    <div class="pad between" style="padding-top:8px"><span class="toggle" style="width:40px;height:40px">${I("back",{size:20,sw:2.2,color:"#14121C"})}</span><span class="t-label ink2">Set 09 of 09 · Kinetic Field</span><span class="toggle" style="width:40px;height:40px">${I("share",{size:19,sw:2,color:"#14121C"})}</span></div>
+    <div class="pad" style="margin-top:16px">
+      <div style="border-radius:26px;padding:10px;box-shadow:var(--e2),0 0 0 1px rgba(20,18,28,.06);transform:rotate(-1.2deg)" class="foil">
+        <div style="border-radius:18px;background:rgba(255,255,255,.55);padding:14px 14px 16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.8)">
+          <div class="between"><span class="t-label">Sat · Night 2</span><span class="t-label">#081 / 081</span></div>
+          <div style="position:relative;height:270px;border-radius:14px;margin-top:10px;overflow:hidden;background:url(../photos/artist-above-beyond.jpg) center 30%/cover,var(--mist);box-shadow:inset 0 0 0 1px rgba(20,18,28,.08)">
+            <div class="foil" style="position:absolute;inset:0;mix-blend-mode:soft-light;opacity:.85"></div>
+            <div style="position:absolute;inset:0;background:var(--sheen);mix-blend-mode:overlay;opacity:.6"></div>
+            <span class="bead foilb" style="position:absolute;left:12px;bottom:12px;height:32px;font-size:12.5px">${I("sun",{size:14,sw:2,color:"#14121C"})}Sunrise Set</span>
+            <span style="position:absolute;right:10px;top:10px;font:600 11px/1 var(--f-ui);padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.85);color:var(--ink-2)">Photo · Spotify</span>
+          </div>
+          <div class="t-display" style="margin-top:14px;font-size:32px;line-height:34px">Above &amp; Beyond</div>
+          <div class="between" style="margin-top:12px"><span class="t-body-s ink2">Trance · Kinetic Field</span><span class="t-num" style="font-size:14px">4:14 – 5:29</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="pad" style="margin-top:22px"><div class="between"><span class="t-label live"><i></i>Live · collecting</span><span class="t-num ink3" style="font-size:13px">${ab.e-E.toMin(NOW)} MIN LEFT</span></div>
+      <div class="track" style="margin-top:12px"><b style="width:${Math.round(E.progress(ab,NOW)*100)}%"></b></div></div>
+    <div class="pad row" style="gap:10px;margin-top:18px"><span class="btn pri" style="flex:1">${I("check",{size:20,sw:2.4,color:"#fff"})}On your plan</span><span class="btn sec" style="flex:1">${I("play",{size:17,sw:2,color:"#14121C",fill:"#14121C"})}Listen</span></div>
+    <div class="pad" style="margin-top:16px"><div class="card between" style="padding:14px 16px"><div class="row" style="gap:12px"><span style="width:44px;height:44px;border-radius:50%;background:url(../photos/artist-kaskade.jpg) center/cover,var(--mist);box-shadow:0 0 0 2px #fff,0 0 0 3.5px #B8C4FF"></span><div><div class="t-label ink3">Before on Kinetic</div><div class="t-body-s" style="margin-top:4px">Kaskade · ${E.fmt(ka.start)}</div></div></div><span class="t-label" style="color:var(--uv)">Collected</span></div></div>
+  </div>`,"lineup");
+}
+
+// ── 5. ME ─────────────────────────────────────────────────
+function me(){
+  const cards=[["Kettama",1],["Sammy Virji",1],["The Prodigy",1],["John Summit",1],["Peggy Gou",0],["Subtronics",1],["Kaskade",1],["Above & Beyond",2],["+6 more",3]];
+  return phone(`<div class="body">
+    <div class="pad between" style="padding-top:8px"><div class="row" style="gap:12px"><div class="foil" style="width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font:700 16px var(--f-display);box-shadow:var(--gloss),0 0 0 3px #fff,0 0 0 4px var(--line-2)">JO</div><div><div class="t-title" style="font-size:22px">Jake</div><div class="t-label ink3" style="margin-top:4px">4 festivals · since 2024</div></div></div><span class="toggle" style="width:40px;height:40px">${I("gear",{size:20,sw:1.8,color:"#14121C"})}</span></div>
+    <div class="pad" style="margin-top:18px"><div class="card" style="padding:16px">
+      <div class="between"><span class="t-label">EDC 2026 · your collection</span><span class="t-num ink2" style="font-size:13px">14 / 15</span></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px">
+        ${cards.map(([n,st])=>`<div class="${st===1||st===2?"foil":""}" style="height:112px;border-radius:12px;padding:9px;display:flex;flex-direction:column;justify-content:space-between;${st===0?"background:var(--mist);color:var(--ink-3)":st===3?"background:var(--pearl);box-shadow:inset 0 0 0 1.5px var(--line-2);color:var(--ink-2)":"box-shadow:0 0 0 1px rgba(20,18,28,.06)"};${st===2?"box-shadow:0 0 0 2px var(--uv),0 8px 18px -8px rgba(74,43,255,.7)":""}">
+          <span class="t-label" style="font-size:11px;${st===0?"color:var(--ink-3)":""}">${st===0?"Missed":st===2?"Live":st===3?"":"Sat"}</span>
+          <span data-wrap style="font:700 12.5px/14px var(--f-display);letter-spacing:-.02em">${n}</span></div>`).join("")}
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);margin-top:14px;padding-top:12px;border-top:1px solid var(--line)">${[["14","sets"],["19.7","hours"],["212","moments"]].map(([a,b])=>`<div><div class="t-hero" style="font-size:26px;line-height:28px">${a}</div><div class="t-label ink3" style="margin-top:4px">${b}</div></div>`).join("")}</div>
+      <div class="btn pri" style="width:100%;margin-top:14px">${I("share",{size:19,sw:2,color:"#fff"})}Share collection</div>
+    </div></div>
+    <div class="pad" style="margin-top:16px"><div class="between" style="margin-bottom:10px"><span class="t-label">Passport</span><span class="t-label ink3">4 stamps</span></div>
+      <div class="row" style="gap:10px">${[["EDC","26",1],["NOC","25",0],["EDC","25",0],["ESC","24",0]].map(([a,b,f])=>`<div class="${f?"foil":""}" style="flex:1;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;align-content:center;${f?"":"background:#fff"};box-shadow:var(--gloss),0 0 0 1.5px ${f?"rgba(20,18,28,.08)":"var(--line-2)"}"><span style="font:700 13px/1 var(--f-display)">${a}</span><span class="t-num ink2" style="font-size:12px;margin-top:3px">’${b}</span></div>`).join("")}</div></div>
+  </div>`,"me");
+}
+
+// ── 6. TODAY · BLACKLIGHT (night mode, 12:50 AM) ──────────
+function todayBL(){
+  const js=E.byName("John Summit"), pg=E.byName("Peggy Gou b2b Ki/Ki"), st=E.byName("Subtronics");
+  const T="00:50", pct=Math.round(E.progress(js,T)*100);
+  return phone(`<div class="body">
+    <div class="pad between" style="padding-top:10px"><span class="row" style="gap:3px">${"PLURSKY".split("").map((c,i)=>`<span style="display:inline-grid;place-items:center;width:23px;height:23px;border-radius:6px;font:700 11px/1 var(--f-display);color:${i%2?"#C4FF4D":"#F4F1FF"};box-shadow:0 0 0 1px ${i%2?"#C4FF4D":"#3A3358"}${i%2?",0 0 10px rgba(196,255,77,.35)":""}">${c}</span>`).join("")}</span><span style="width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font:700 12px var(--f-display);box-shadow:0 0 0 1px #3A3358">JO</span></div>
+    <div class="pad" style="margin-top:16px"><div style="position:relative;height:236px;border-radius:var(--r-lg);overflow:hidden;background:#140F2A;box-shadow:0 0 0 1.5px #C4FF4D,0 0 30px -4px rgba(196,255,77,.35),inset 0 0 60px rgba(255,92,219,.18)">
+      <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(196,255,77,.05) 0 1px,transparent 1px 4px)"></div>
+      <svg width="400" height="236" style="position:absolute;inset:0">${[0,1,2,3,4,5].map(i=>`<path d="M-10 ${150+i*14} C 100 ${120+i*10}, 250 ${190-i*8}, 410 ${140+i*16}" fill="none" stroke="${i%2?"#FF5CDB":"#C4FF4D"}" stroke-opacity="${.6-i*.07}" stroke-width="1.4"/>`).join("")}</svg>
+      <div style="position:absolute;left:20px;top:18px;right:20px" class="between"><span class="t-label" style="color:#C4FF4D">EDC Las Vegas 2026</span><span class="t-label ink2">Night 2 · Sat</span></div>
+      <div style="position:absolute;left:18px;top:52px"><div class="t-hero" style="font-size:78px;line-height:74px;color:#F4F1FF;text-shadow:0 0 18px rgba(255,92,219,.45)">12:50</div><div class="t-label ink2" style="margin-top:6px">AM · Blacklight on</div></div>
+      <div style="position:absolute;left:20px;right:20px;bottom:16px" class="between"><span class="row" style="gap:8px;font:600 15px var(--f-ui)">${I("sun",{size:18,sw:2,color:"#FF5CDB"})}Sunrise 5:35</span><span class="t-num" style="color:#FF5CDB">4H 45M</span></div>
+    </div></div>
+    <div class="pad" style="margin-top:14px"><div class="card" style="padding:18px 18px 16px">
+      <div class="between"><span class="t-label live"><i></i>Live · on your plan</span><span class="t-label ink3">Kinetic Field</span></div>
+      <div class="t-display" style="margin-top:10px">John Summit</div>
+      <div class="t-body-s ink2" style="margin-top:4px">Tech House</div>
+      <div class="track" style="margin-top:16px"><b style="width:${pct}%"></b></div>
+      <div class="between" style="margin-top:10px"><span class="t-num">12:32 – 1:42</span><span class="t-num ink3">52 MIN LEFT</span></div>
+    </div></div>
+    <div class="pad" style="margin-top:12px"><div class="card" style="padding:14px 18px">
+      <div class="between"><span class="t-label">Next on your plan</span><span class="t-label" style="color:#FF5CDB">Clash</span></div>
+      ${[pg,st].map((s,i)=>`<div class="between" style="padding:10px 0 ${i?0:10}px;${i?"border-top:1px solid #2A2446":""}"><div><div class="t-headline" style="font-size:16.5px">${s.name}</div><div class="t-body-s ink2" style="font-weight:400;font-size:13px">${E.stage(s.stage).name}</div></div><span class="t-num">${E.fmt(s.start)}</span></div>`).join("")}
+    </div></div>
+  </div>`,"today",{bl:1,time:"12:50"});
+}
+
+// ── CALENDAR (timetable) ──────────────────────────────────
+function calendar(){
+  // Stages across (96px floor → scrolls sideways), time down. Your picks are
+  // foil cards; the now-line is a UV bead string.
+  const order=["kinetic","circuit","neon","cosmic","quantum","bionic","stereo","waste","basspod"];
+  const t0=E.toMin("02:30"), t1=E.toMin("05:30"), k=3.1, colW=114, gut=58;
+  const plan=new Set(E.PLAN.map(p=>p.id)), nowM=E.toMin(NOW);
+  const ticks=[];for(let m=t0;m<=t1;m+=30)ticks.push(m);
+  const clock=(m)=>{let h=(19+Math.floor(m/60))%24,mm=m%60;h=h%12||12;return mm?`${h}:${String(mm).padStart(2,"0")}`:`${h} AM`;};
+  const block=(s)=>{const a=Math.max(s.s,t0), b=Math.min(s.e,t1); if(b<=a) return "";
+    const top=(a-t0)*k, h=(b-a)*k-4, pl=plan.has(s.id), live=s.s<=nowM&&nowM<s.e;
+    return `<div class="${pl?"foil":""}" style="position:absolute;left:3px;right:3px;top:${top}px;height:${h}px;border-radius:14px;padding:8px 9px;overflow:hidden;${pl?"box-shadow:0 0 0 1px rgba(20,18,28,.08),0 8px 18px -10px rgba(74,43,255,.5)":"background:#fff;box-shadow:var(--e1)"}">
+      <div data-wrap style="font:${pl?"700 13px/16px var(--f-display)":"600 13.5px/17px var(--f-ui)"};letter-spacing:${pl?"-.02em":"0"};color:var(--ink);hyphens:auto;-webkit-hyphens:auto;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:${h>80?3:2};-webkit-box-orient:vertical;overflow:hidden">${s.name}</div>
+      ${h>52?`<div style="margin-top:5px;font:600 12px/1 var(--f-ui);color:${live?"var(--live)":"var(--ink-3)"}">${live?"● Live":E.fmt(s.start)}</div>`:""}</div>`;};
+  const H=(t1-t0)*k;
+  return phone(`<div class="body">
+    <div class="pad between" style="padding-top:8px"><div class="t-title" style="font-size:28px;line-height:32px">Lineup</div><span class="toggle" style="width:40px;height:40px">${I("search",{size:20,sw:2,color:"#14121C"})}</span></div>
+    <div class="pad row" style="gap:8px;margin-top:12px"><span class="bead">List</span><span class="bead on">Grid</span><span class="bead">My plan <small>8</small></span><span class="bead foilb" style="margin-left:auto">Sat <small>16</small></span></div>
+    <div data-scroll-x style="position:absolute;left:0;right:0;top:112px;bottom:0;overflow:hidden">
+      <div style="position:absolute;left:${gut}px;top:0;display:flex">${order.map(id=>`<div style="width:${colW}px;padding:10px 6px;font:600 13px/1 var(--f-ui);color:${id==="kinetic"?"var(--ink)":"var(--ink-2)"};white-space:nowrap">${E.stage(id).name}</div>`).join("")}</div>
+      <div style="position:absolute;left:0;top:44px;width:${gut}px;height:${H}px">${ticks.filter(m=>Math.abs(m-nowM)*k>22).map(m=>`<div class="t-num ink3" style="position:absolute;right:8px;top:${(m-t0)*k-8}px;font-size:12px;white-space:nowrap">${clock(m)}</div>`).join("")}</div>
+      <div style="position:absolute;left:${gut}px;top:44px;height:${H}px;display:flex">
+        ${ticks.map(m=>`<div style="position:absolute;left:0;width:${order.length*colW}px;top:${(m-t0)*k}px;height:1px;background:var(--line)"></div>`).join("")}
+        ${order.map(id=>`<div style="position:relative;width:${colW}px;height:${H}px">${E.SETS.filter(s=>s.stage===id).map(block).join("")}</div>`).join("")}
+        <div style="position:absolute;left:-${gut}px;width:${order.length*colW+gut}px;top:${(nowM-t0)*k-1}px;height:3px;border-radius:2px;background:var(--uv)"></div>
+        <span style="position:absolute;left:-${gut-4}px;top:${(nowM-t0)*k-12}px;padding:5px 8px;border-radius:999px;background:var(--uv);color:#fff;font:700 12px/1 var(--f-display)">5:05</span>
+      </div>
+    </div>
+  </div>`,"lineup");
+}
+
+// ── INSIDE THE ARTIST CARD (scrolled) ─────────────────────
+function artistInside(){
+  const sim=["Bolo","Lilly Palmer","Josh Baker b2b Kettama b2b Prospa"].map(E.byName).sort((a,b)=>a.s-b.s);
+  const tracks=["Sun & Moon","Blue Sky Action","Thing Called Love","Alchemy"];
+  return phone(`<div class="body">
+    <div class="pad between" style="padding-top:6px;padding-bottom:12px">
+      <div class="row" style="gap:12px"><span class="toggle" style="width:40px;height:40px">${I("back",{size:20,sw:2.2,color:"#14121C"})}</span><span style="width:40px;height:40px;border-radius:50%;background:url(../photos/artist-above-beyond.jpg) center/cover,var(--mist);box-shadow:0 0 0 2px #fff,0 0 0 3.5px #B8C4FF"></span><div><div class="t-headline" style="font-size:17px">Above &amp; Beyond</div><div class="t-body-s" style="font-size:13px;color:var(--live)">● Live · Kinetic · 24 min left</div></div></div>
+    </div>
+    <div class="pad"><div class="card" style="padding:16px 18px">
+      <div class="between"><span class="t-label">Likely in the set</span><span class="t-label ink3">From recent sets</span></div>
+      <div class="t-body-s ink2" style="font-weight:400;margin-top:6px">A guide, not a setlist.</div>
+      ${tracks.map((t,i)=>`<div class="between" style="padding:11px 0 ${i===3?0:11}px;${i?"border-top:1px solid var(--line)":"margin-top:6px"}"><div class="row" style="gap:12px"><span class="${i<2?"foil":""}" style="width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:700 12px var(--f-display);${i<2?"":"background:var(--mist)"}">${i+1}</span><span class="t-body-s" style="font-size:15px">${t}</span></div><span style="font:600 11px/1 var(--f-display);padding:6px 9px;border-radius:999px;background:rgba(74,43,255,.08);color:var(--uv)">Likely</span></div>`).join("")}
+    </div></div>
+    <div class="pad" style="margin-top:12px"><span class="btn sec" style="width:100%">${I("play",{size:16,sw:2,color:"#14121C",fill:"#14121C"})}Open in Spotify</span></div>
+    <div class="pad" style="margin-top:18px">
+      <div class="between" style="margin-bottom:10px"><span class="t-label">Your moments · this set</span><span class="t-label ink3">2 so far</span></div>
+      <div class="row" style="gap:8px">${["IMG_5567","IMG_5626"].map(p=>`<div style="flex:1;height:120px;border-radius:18px;background:${photo(p)};background-size:cover;background-position:center;box-shadow:0 0 0 3px #fff,var(--e1)"></div>`).join("")}</div>
+    </div>
+    <div class="pad" style="margin-top:18px"><div class="card" style="padding:6px 18px">
+      ${sim.map((s,i)=>`<div class="between" style="padding:11px 0;${i?"border-top:1px solid var(--line)":""}"><div style="min-width:0"><div class="t-body-s" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:250px">${s.name}</div><div class="t-body-s ink3" style="font-weight:400;font-size:13px">Also closing · ${E.stage(s.stage).name}</div></div><span class="t-num ink2" style="font-size:14px">${E.fmt(s.start)}</span></div>`).join("")}
+    </div></div>
+  </div>`,"lineup");
+}
+
+const SCREENS=[["today","Today",today],["lineup","Lineup · List",lineup],["calendar","Lineup · Calendar",calendar],["map","Map",map],["artist","Artist",artist],["artist-inside","Artist · inside the card",artistInside],["me","Me",me],["today-blacklight","Today · Blacklight (night)",todayBL]];
+document.getElementById("screens").innerHTML=SCREENS.map(([k,l,f],i)=>`<div class="screen-wrap" data-screen="${k}"><div class="screen-cap">0${i+1} · ${l}</div>${f()}</div>`).join("");
+TOKENS.icons.samples=["today","lineup","map","me","search","share","sun","clash","water","medic","crew","play"].map(n=>`<div>${I(n,{sw:2,color:"#14121C",under:"rgba(74,43,255,.12)"})}</div>`).join("");
+renderSpec(document.getElementById("spec"));
+if(location.hash==="#render")document.documentElement.classList.add("render");
+</script>

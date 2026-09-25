@@ -1,0 +1,82 @@
+// LASER — dark. The interface draws in light, the way a rig does.
+window.TOKENS = {
+  id: "laser",
+  name: "Laser",
+  scheme: "dark",
+  fontsHref: "https://fonts.googleapis.com/css2?family=Michroma&family=Martian+Mono:wght@300;400;500;600&display=swap",
+  color: [
+    { group: "Ground — the void the rig fires into", items: [
+      { token: "--void", hex: "#07060B", role: "App ground. Violet-biased black, not #000" },
+      { token: "--s1",   hex: "#100E17", role: "Rows, sheets" },
+      { token: "--s2",   hex: "#19161F", role: "Cards, inputs" },
+      { token: "--s3",   hex: "#241F2C", role: "Pressed, selected surface" },
+      { token: "--line", hex: "#221E2B", role: "Hairline between rows" },
+      { token: "--line-2", hex: "#342E3F", role: "Card edge, divider" },
+    ]},
+    { group: "Ink", items: [
+      { token: "--ink",   hex: "#F3F0FA", role: "Primary text" },
+      { token: "--ink-2", hex: "#ABA4BB", role: "Secondary text" },
+      { token: "--ink-3", hex: "#807A8F", role: "Tertiary, metadata" },
+    ]},
+    { group: "Spectrum — named by laser wavelength (nm)", items: [
+      { token: "--l405", hex: "#9474FF", role: "Violet. THE accent: your plan, selection, primary fill" },
+      { token: "--l450", hex: "#4D86FF", role: "Blue. Links, secondary beams" },
+      { token: "--l520", hex: "#3DF5A0", role: "Green. LIVE only — never decoration" },
+      { token: "--l590", hex: "#FFC545", role: "Sodium amber. Sunrise, gentle warnings" },
+      { token: "--l638", hex: "#FF4574", role: "Red. Clashes, errors" },
+      { token: "--on-l405", hex: "#0B0816", role: "Text on a violet fill" },
+    ]},
+  ],
+  contrastPairs: [
+    ["--ink", "--void", "Body text"], ["--ink-2", "--void", "Secondary text"], ["--ink-3", "--void", "Metadata (≥ 13px only)"],
+    ["--ink-2", "--s2", "Secondary on a card"], ["--l405", "--void", "Accent as text"], ["--l520", "--void", "LIVE label"],
+    ["--l638", "--void", "Clash label"], ["--l590", "--void", "Sunrise label"], ["--on-l405", "--l405", "Primary button"],
+  ],
+  extraVars: [
+    ["--page-bg", "#07060B"], ["--page-ink", "#F3F0FA"], ["--page-ink-2", "#ABA4BB"], ["--page-line", "#221E2B"], ["--page-accent", "#9474FF"], ["--page-card", "#19161F"],
+    ["--beam", "linear-gradient(90deg, rgba(148,116,255,0), #9474FF 30%, #F3F0FA)"],
+  ],
+  fonts: {
+    display: { name: "Michroma", stack: "Michroma, 'Eurostile', 'Helvetica Neue', sans-serif", role: "Wide technical caps — wordmark, stage codes, eyebrows. Never above 22px, never sentence case. The rave-flyer Eurostile lineage." },
+    ui:      { name: "SF Pro", stack: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif", role: "Everything you read: names, body, buttons. Native Dynamic Type path." },
+    data:    { name: "Martian Mono", stack: "'Martian Mono', ui-monospace, 'SF Mono', monospace", role: "Times, counts, countdowns. Tabular by construction, so a live clock never jitters." },
+  },
+  type: [
+    { token: "clock",    family: "data",    size: 56, lh: 56, weight: 300, track: -0.05, sample: "12:50" },
+    { token: "display",  family: "ui",      size: 40, lh: 42, weight: 800, track: -0.035, sample: "John Summit" },
+    { token: "title",    family: "ui",      size: 28, lh: 32, weight: 700, track: -0.025, sample: "Lineup" },
+    { token: "headline", family: "ui",      size: 19, lh: 24, weight: 650, track: -0.012, sample: "Peggy Gou b2b Ki/Ki" },
+    { token: "body",     family: "ui",      size: 16, lh: 22, weight: 400, track: -0.005, sample: "Mainstage · headliners, sunrise sets" },
+    { token: "body-s",   family: "ui",      size: 14, lh: 19, weight: 500, track: 0, sample: "Kinetic Field" },
+    { token: "label",    family: "display", size: 11, lh: 14, weight: 400, track: 0.14, upper: true, sample: "Night 2 · Saturday" },
+    { token: "data",     family: "data",    size: 14, lh: 18, weight: 500, track: -0.02, sample: "12:32 → 1:42" },
+    { token: "data-s",   family: "data",    size: 12, lh: 15, weight: 400, track: -0.01, sample: "55 MIN" },
+  ],
+  space: [4, 8, 12, 16, 20, 24, 32, 40, 56],
+  radius: [
+    { token: "--r-xs", value: "6px",  use: "Codes, tiny chips" },
+    { token: "--r-sm", value: "12px", use: "Rows, buttons" },
+    { token: "--r-md", value: "18px", use: "Cards" },
+    { token: "--r-lg", value: "28px", use: "Sheets, hero panel" },
+    { token: "--r-pill", value: "999px", use: "Filter chips, live pill" },
+  ],
+  elevation: [
+    { token: "--e0", value: "none", use: "Flat on the void (lists)" },
+    { token: "--e1", value: "inset 0 1px 0 rgba(243,240,250,.06), 0 0 0 1px #221E2B", use: "Lit edge: cards are lit from above, not shadowed", demo: "background:#19161F;box-shadow:inset 0 1px 0 rgba(243,240,250,.06),0 0 0 1px #221E2B" },
+    { token: "--e2", value: "inset 0 1px 0 rgba(243,240,250,.08), 0 24px 48px -24px rgba(0,0,0,.9)", use: "Sheets over the map", demo: "background:#19161F;box-shadow:inset 0 1px 0 rgba(243,240,250,.08),0 24px 48px -24px rgba(0,0,0,.9)" },
+    { token: "--glow", value: "0 0 0 1px rgba(148,116,255,.55), 0 0 32px rgba(148,116,255,.35)", use: "The ONE lifted thing: now / your next set", demo: "background:#19161F;box-shadow:0 0 0 1px rgba(148,116,255,.55),0 0 32px rgba(148,116,255,.35)" },
+  ],
+  icons: {
+    note: "1.6px stroke on a 24 grid, round caps, open forms — drawn like a single beam. The active state doesn't fill: it gains a 2px violet beam above the tab and a glow. Pictograms for amenities are the only filled glyphs.",
+    samples: "",
+  },
+  motionNote: "Timing is set in BEATS at 128 BPM, the tempo of the room. Beams sweep across two bars, and the Now glow breathes once a bar. UI transitions decay like light (fast attack, long tail). Strobe-safe by rule: nothing flashes more than 3 times a second (WCAG 2.3.1). Reduce Motion freezes beams at rest.",
+  motion: [
+    { token: "--beat", value: "469ms", use: "1 beat @128 BPM — the base unit" },
+    { token: "--bar", value: "1875ms", use: "Now-glow breath (4 beats)" },
+    { token: "--sweep", value: "3750ms", use: "Hero laser sweep (2 bars)" },
+    { token: "--t-tap", value: "140ms", use: "Press feedback" },
+    { token: "--t-move", value: "280ms", use: "Sheet, push, tab change" },
+    { token: "--ease-decay", value: "cubic-bezier(.16,.84,.24,1)", use: "Fast attack, long tail — how light fades" },
+  ],
+};
