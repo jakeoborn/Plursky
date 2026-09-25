@@ -2437,6 +2437,25 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b5c3. Lineup list for humans ──────────────────────────────────────
+// A downward scroll folds the WHOLE filter header into one compact bar that
+// names the selection; an upward scroll or a tap brings it back; the list
+// never jumps and a resize-clamped scroll is not read as the user (GRID used
+// to oscillate open/closed). Rows: artist name loudest, no "· —" placeholder,
+// no "Weekend N" with one weekend selected, AA meta contrast, 44px centred
+// save buttons. The clock is pinned to a live ACL evening.
+{
+  console.log("▸ Lineup readability gate — header folds to one bar, rows read");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-lineup-readability.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`lineup readability failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b5c2. Spotify artist images: attributed, temporary, never exported ──
 // Spotify's Developer Terms allow only temporary caching of Spotify cover art
 // and the Design Guidelines forbid cropping or overlaying it and require the

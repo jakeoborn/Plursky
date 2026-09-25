@@ -482,6 +482,17 @@ function LineupFilterSheet({
 }
 
 
+// A value the data uses to mean "unknown" is not content. Several festival
+// modules fill genre/country with "—", so ACL rows read "BMI Stage · —".
+// Drop it rather than print a separator that leads nowhere.
+function _lineupMetaValue(v) {
+  const s = String(v == null ? "" : v).trim();
+  if (!s || /^[-–—?·.\s]+$/.test(s) || /^(tba|tbd|n\/?a|unknown)$/i.test(s)) return null;
+  return s;
+}
+// "FRI" → "Fri", for the compact bar's one-line summary.
+const _lineupDayWord = (w) => { const s = String(w || ""); return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase(); };
+
 function LineupScreen({ state, setState }) {
   // Highlight-on-arrival: ArtistScreen "SCHEDULE" hands off `lineupHighlight`.
   // Force the day to that artist's day so the flash actually has a target,
@@ -562,16 +573,35 @@ function LineupScreen({ state, setState }) {
   // Scrolling up brings it back. Height + opacity, never display:none, so
   // the list underneath does not jump.
   const [collapsed, setCollapsed] = React.useState(false);
+  const collapsedRef = React.useRef(false);
+  collapsedRef.current = collapsed;
+  // The whole filter header folds, so its height is measured, not guessed:
+  // max-height animates to the real number and the list never jumps.
+  const filtersRef = React.useRef(null);
+  const [filtersH, setFiltersH] = React.useState(0);
+  const filtersHRef = React.useRef(0);
+  filtersHRef.current = filtersH;
+  React.useLayoutEffect(() => {
+    const el = filtersRef.current;
+    if (!el) return;
+    const measure = () => setFiltersH(el.offsetHeight);
+    measure();
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(measure) : null;
+    if (ro) ro.observe(el);
+    return () => { if (ro) ro.disconnect(); };
+  }, [viewMode]);
+  const reduceMotion = typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
   React.useEffect(() => {
     // The scrolling element differs by mode: LIST scrolls the page body,
     // GRID scrolls the grid itself (it owns the only scroll region there).
-    let el = null, lastY = 0;
+    let el = null, lastY = 0, lockUntil = 0, lastH = 0;
     const attach = () => {
       const next = document.querySelector(viewMode === "grid" ? "[data-grid-scroll]" : "[data-lineup-scroll]");
       if (next === el) return;
       if (el) el.removeEventListener("scroll", onScroll);
       el = next;
       lastY = el ? el.scrollTop : 0;
+      lastH = el ? el.clientHeight : 0;
       if (el) el.addEventListener("scroll", onScroll, { passive: true });
     };
     // Read straight through — no rAF. The handler only reads scrollTop and
@@ -580,11 +610,25 @@ function LineupScreen({ state, setState }) {
     function onScroll() {
       if (!el) return;
       const y = el.scrollTop;
-      // Hysteresis: collapse only after a real downward drag past the title's
-      // own height, expand on any meaningful upward move. Without the gap the
-      // header flickers on the momentum bounce.
-      if (y > 56 && y > lastY + 4) setCollapsed(true);
-      else if (y < lastY - 8 || y < 24) setCollapsed(false);
+      const t = performance.now();
+      // While the header animates, the list's own box is resizing; those
+      // scroll events are not the user's and must not flip it back. Folding
+      // makes the scroller taller, which CLAMPS scrollTop upward near the
+      // end of the list: read as "the user scrolled up", that reopened the
+      // header, the list re-clamped, and GRID oscillated every ~500ms.
+      if (t < lockUntil || el.clientHeight !== lastH) { lastY = y; lastH = el.clientHeight; return; }
+      // Hysteresis: collapse only after a real downward drag, expand on any
+      // meaningful upward move. Without the gap the header flickers on the
+      // momentum bounce.
+      if (y > 56 && y > lastY + 4) {
+        // Only when the list still scrolls with the header gone. Otherwise
+        // folding it clamps scrollTop under 24 and bounces it open again.
+        if (!collapsedRef.current && el.scrollHeight - el.clientHeight - filtersHRef.current > 80) {
+          lockUntil = t + 280; setCollapsed(true);
+        }
+      } else if ((y < lastY - 8 || y < 24) && collapsedRef.current) {
+        lockUntil = t + 280; setCollapsed(false);
+      }
       lastY = y;
     }
     attach();
@@ -832,12 +876,40 @@ function LineupScreen({ state, setState }) {
     return () => io.disconnect();
   }, [viewMode, day, dayArtists, filter, sortBy]);
 
+  const searchInputRef = React.useRef(null);
+  // The compact bar's search button: unfold, then focus the one search input
+  // (in GRID it rides the grid's own scroller, so bring that to the top).
+  const openSearch = () => {
+    setCollapsed(false);
+    if (viewMode === "grid") {
+      const g = document.querySelector("[data-grid-scroll]");
+      if (g) try { g.scrollTo({ top: 0 }); } catch {}
+    }
+    setTimeout(() => { try { searchInputRef.current?.focus({ preventScroll: true }); } catch {} }, reduceMotion ? 0 : 260);
+  };
+  // What the folded bar says: "Fri 2 · Weekend 1 · All stages", plus a stage
+  // or Saved/Now, extra filters and a search term when they narrow the list.
+  const compactSummary = (() => {
+    const d = dayStats.find(x => x.n === day);
+    const dayText = d ? `${_lineupDayWord(d.label)} ${String(d.date).split(" ")[1] || ""}`.trim() : "";
+    const stageName = stageFilter !== "all" ? (STAGES.find(x => x.id === stageFilter) || {}).name : null;
+    const show = [stageName, filter === "saved" ? "Saved" : filter === "now" ? "Now" : null].filter(Boolean).join(" · ") || "All stages";
+    const extra = otherFilterCount - (stageFilter !== "all" ? 1 : 0);
+    return [
+      dayText,
+      hasWeekends ? (weekendFilter === "W2" ? "Weekend 2" : "Weekend 1") : null,
+      show,
+      extra > 0 ? `+${extra} filter${extra === 1 ? "" : "s"}` : null,
+      q.trim() ? `“${q.trim()}”` : null,
+    ].filter(Boolean).join(" · ");
+  })();
   const searchRow = (
     <div style={{ padding: gridLead ? "12px 12px 0" : "12px 20px 4px" }}>
       <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
         <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" strokeWidth="2" strokeLinecap="round"
           style={{ position: "absolute", left: 14, pointerEvents: "none" }}><circle cx="11" cy="11" r="7"/><path d="M21 21 L16.65 16.65"/></svg>
         <input
+          ref={searchInputRef}
           value={q}
           onChange={e => setQ(e.target.value)}
           placeholder="Search artists, stages, genres…"
@@ -858,6 +930,20 @@ function LineupScreen({ state, setState }) {
     </div>
   );
 
+  // "Save the Day": nothing saved for this day yet → one tap saves its
+  // headliners. A quiet row in both modes, gone once the day has a save.
+  const saveDayCard = savedToday.length === 0 ? (() => {
+    const dayTopPicks = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
+    if (dayTopPicks.length === 0) return null;
+    const dayLabel = FESTIVAL_CONFIG.dayDates?.[day]?.name || DAYS.find(d => d.n === day)?.label || `Day ${day}`;
+    const topPickIds = dayTopPicks.map(a => a.id);
+    const save = () => setState(s => ({ ...s, saved: [...new Set([...s.saved, ...topPickIds])] }));
+    return (
+      <button data-save-day onClick={save} title={`Save the ${dayTopPicks.length} headliners for ${dayLabel}`}
+        style={{ ...textBtn, color: "var(--ink)", fontWeight: 600 }}>Save top picks · {dayTopPicks.length}</button>
+    );
+  })() : null;
+
   // Set count, then quiet text actions: My night, Share, Calendar, Surprise me.
   const actionsRow = (
     <div style={{
@@ -868,6 +954,7 @@ function LineupScreen({ state, setState }) {
         {dayArtists.length} {dayArtists.length === 1 ? "set" : "sets"}
       </div>
       <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}>
+        {saveDayCard}
         {totalSaved >= 2 && (() => {
           const clash = dayStats.some(d => d.clashes > 0);
           return <button onClick={() => setWizardOpen(true)} style={{ ...textBtn, color: clash ? "var(--warn)" : "var(--ink)", fontWeight: 600 }}>{clash ? "⚠ My night" : "My night"}</button>;
@@ -917,45 +1004,27 @@ function LineupScreen({ state, setState }) {
     );
   })() : null;
 
-  // "Save the Day": nothing saved for this day yet → one tap saves its
-  // headliners. A quiet row in both modes, gone once the day has a save.
-  const saveDayCard = savedToday.length === 0 ? (() => {
-    const dayTopPicks = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
-    if (dayTopPicks.length === 0) return null;
-    const dayLabel = FESTIVAL_CONFIG.dayDates?.[day]?.name || DAYS.find(d => d.n === day)?.label || `Day ${day}`;
-    const topPickIds = dayTopPicks.map(a => a.id);
-    const save = () => setState(s => ({ ...s, saved: [...new Set([...s.saved, ...topPickIds])] }));
-    return (
-      <button data-save-day onClick={save} style={{
-        width: gridLead ? "calc(100% - 24px)" : "100%", margin: gridLead ? "0 12px 12px" : "12px 0",
-        display: "flex", alignItems: "center", gap: 12, minHeight: 56,
-        background: "var(--paper-2)", color: "var(--ink)", border: "none",
-        borderRadius: 14, padding: "10px 16px", cursor: "pointer", textAlign: "left", fontFamily: "inherit",
-      }}>
-        <span style={{ flex: 1, minWidth: 0 }}>
-          <span style={{ display: "block", fontSize: 15, lineHeight: "21px", fontWeight: 600 }}>Save all top picks for {dayLabel}</span>
-          <span style={{ display: "block", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{dayTopPicks.length} headliner{dayTopPicks.length === 1 ? "" : "s"}</span>
-        </span>
-        <span style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600, flexShrink: 0 }}>Save</span>
-      </button>
-    );
-  })() : null;
-
   return (
     <Screen bg="var(--paper)">
-      {/* Title. Folds on scroll down, returns on scroll up: height and
-          opacity, never display:none, so the list below never jumps.
+      {/* The whole filter header (title, days, weekend, show row, search,
+          count) folds on a downward scroll into one compact bar, and returns
+          on an upward scroll or a tap on that bar. Height + opacity to the
+          MEASURED height, never display:none, so the list never jumps; inert
+          while folded so focus cannot land on a control nobody can see.
           minHeight:0 because a column flex item's default min-height:auto
-          would floor this at its content height. */}
-      <div data-lineup-header data-collapsed={collapsed ? "1" : "0"} style={{
-        padding: collapsed ? "0 8px 0 20px" : "4px 8px 4px 20px",
+          would floor it at its content height. */}
+      <div data-lineup-filters data-collapsed={collapsed ? "1" : "0"}
+        inert={collapsed ? "" : undefined} aria-hidden={collapsed || undefined}
+        style={{
+          flexShrink: 0, minHeight: 0, overflow: "hidden",
+          maxHeight: collapsed ? 0 : (filtersH ? filtersH : "none"),
+          opacity: collapsed ? 0 : 1,
+          transition: reduceMotion ? "none" : "max-height 240ms ease, opacity 180ms ease",
+        }}>
+      <div ref={filtersRef}>
+      <div data-lineup-header style={{
+        padding: "4px 8px 4px 20px",
         display: "flex", alignItems: "center", gap: 4,
-        maxHeight: collapsed ? 0 : 96, minHeight: 0,
-        opacity: collapsed ? 0 : 1,
-        overflow: "hidden", flexShrink: 0,
-        transform: collapsed ? "translateY(-6px)" : "translateY(0)",
-        transition: "max-height 220ms ease, opacity 160ms ease, padding 220ms ease, transform 220ms ease",
-        pointerEvents: collapsed ? "none" : "auto",
       }}>
         {state._navStack?.length > 0 && (
           <button onClick={() => window._popNav?.()} aria-label="Go back" style={{ ...fieldIconBtn, marginLeft: -12 }}>
@@ -997,8 +1066,7 @@ function LineupScreen({ state, setState }) {
           and clash counts ride on each day, in words for assistive tech. */}
       <div role="tablist" aria-label="Festival day" style={{
         display: "flex", gap: 8, flexShrink: 0,
-        padding: collapsed ? "4px 20px 8px" : "4px 20px 12px",
-        transition: "padding 220ms ease",
+        padding: "4px 20px 12px",
       }}>
         {dayStats.map(d => {
           const on = d.n === day;
@@ -1007,17 +1075,17 @@ function LineupScreen({ state, setState }) {
               aria-label={`${d.label} ${d.date}${d.count ? `, ${d.count} saved` : ""}${d.clashes ? `, ${d.clashes} clash${d.clashes === 1 ? "" : "es"}` : ""}`}
               onClick={() => { setDay(d.n); setState(s => ({ ...s, lineupDay: d.n })); }}
               style={{
-                flex: 1, minWidth: 0, minHeight: collapsed ? 44 : 64,
+                flex: 1, minWidth: 0, minHeight: 64,
                 padding: "6px 2px", borderRadius: 14,
                 background: on ? "var(--paper-3)" : "transparent",
                 border: on ? "1.5px solid var(--signal)" : "1px solid var(--line)",
                 color: "var(--ink)", cursor: "pointer",
-                display: "flex", flexDirection: collapsed ? "row" : "column",
-                alignItems: "center", justifyContent: "center", gap: collapsed ? 6 : 1,
+                display: "flex", flexDirection: "column",
+                alignItems: "center", justifyContent: "center", gap: 1,
               }}>
               <span style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", color: on ? "var(--ink)" : "var(--text-2)" }}>{d.label}</span>
-              <span style={{ fontSize: collapsed ? 15 : 20, lineHeight: collapsed ? "20px" : "25px", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{d.date.split(" ")[1]}</span>
-              {!collapsed && d.count > 0 && (
+              <span style={{ fontSize: 20, lineHeight: "25px", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{d.date.split(" ")[1]}</span>
+              {d.count > 0 && (
                 <span aria-hidden="true" style={{ fontSize: 12, lineHeight: "16px", color: d.clashes ? "var(--warn)" : "var(--text-2)", whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}>
                   {d.clashes ? `${d.count} · ⚠` : `${d.count} saved`}
                 </span>
@@ -1077,6 +1145,41 @@ function LineupScreen({ state, setState }) {
           {otherFilterCount > 0 && <span style={{ fontVariantNumeric: "tabular-nums" }}>{otherFilterCount}</span>}
         </button>
       </div>
+      {/* LIST: the utility stack folds with the header. GRID: the same
+          elements ride INSIDE the grid's one scroller (TimelineGrid lead),
+          so they scroll away and leave the timetable (#116). */}
+      {!gridLead && searchRow}
+      {!gridLead && actionsRow}
+      </div>
+      </div>
+
+      {/* Folded: one line says what is selected; a tap on it (or any upward
+          scroll) brings the full header back, and search is one tap too. */}
+      <div data-lineup-compact data-collapsed={collapsed ? "1" : "0"}
+        inert={collapsed ? undefined : ""} aria-hidden={collapsed ? undefined : true}
+        style={{
+          flexShrink: 0, minHeight: 0, overflow: "hidden",
+          maxHeight: collapsed ? 56 : 0, opacity: collapsed ? 1 : 0,
+          borderBottom: collapsed ? "1px solid var(--line)" : "none",
+          transition: reduceMotion ? "none" : "max-height 240ms ease, opacity 180ms ease",
+        }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 4, padding: "2px 8px 2px 20px", minHeight: 48 }}>
+          <button data-lineup-expand onClick={() => setCollapsed(false)}
+            aria-label={`Show days and filters. Showing ${compactSummary}`}
+            style={{
+              flex: 1, minWidth: 0, minHeight: 44, padding: 0, border: "none", background: "transparent",
+              color: "var(--ink)", cursor: "pointer", textAlign: "left", fontFamily: "inherit",
+              display: "flex", alignItems: "center", gap: 6,
+              fontSize: 15, lineHeight: "20px", fontWeight: 600,
+            }}>
+            <span style={{ minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}>{compactSummary}</span>
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M6 9 L12 15 L18 9"/></svg>
+          </button>
+          <button data-lineup-search-open aria-label="Search" onClick={openSearch} style={{ ...fieldIconBtn, color: "var(--ink)" }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21 L16.65 16.65"/></svg>
+          </button>
+        </div>
+      </div>
       {!online && (
         <div role="status" style={{ padding: "8px 20px", fontSize: 13, lineHeight: "18px", color: "var(--text-2)", borderBottom: "1px solid var(--line)" }}>
           Offline · showing the schedule saved on this phone
@@ -1095,11 +1198,6 @@ function LineupScreen({ state, setState }) {
         </div>
       )}
 
-      {/* LIST: the utility stack sits here, above the list. GRID: the same
-          elements ride INSIDE the grid's one scroller (TimelineGrid `lead`),
-          so they scroll away and leave the timetable (#116). */}
-      {!gridLead && searchRow}
-      {!gridLead && actionsRow}
 
       {wizardOpen && (
         <NightWizard state={state} setState={setState} onClose={() => setWizardOpen(false)} />
@@ -1117,7 +1215,6 @@ function LineupScreen({ state, setState }) {
           ? { overflowY: "hidden", display: "flex", flexDirection: "column", padding: 0 }
           : { padding: "0 20px 96px" }
       }>
-        {!gridLead && saveDayCard}
         {gridLead && (() => {
           // v165: grid now shows only the selected day (like list mode) so
           // navigation is clean — no more scrolling through all 3 days.
@@ -1140,7 +1237,7 @@ function LineupScreen({ state, setState }) {
                   the full width so more stages are visible at once. */}
               <div style={{ display: "flex", flexDirection: "column", flex: 1, minHeight: 0 }}>
                 <TimelineGrid
-                  lead={<>{searchRow}{actionsRow}{conflictCard}{vibeCard}{saveDayCard}</>}
+                  lead={<>{searchRow}{actionsRow}{conflictCard}{vibeCard}</>}
                   day={day}
                   allDayArtists={dayArt}
                   state={state}
@@ -1198,50 +1295,43 @@ function LineupScreen({ state, setState }) {
             const clashWith = conflictById[a.id];
             const isHighlighted = highlightId === a.id;
             const isLive = isSetLive(a);
-            const crew = window.sbGetCrewCount?.(a.id) || 0;
-            const flags = [
-              isLegendary(a) && "Don't miss",
-              hasWeekends && a.weekend && a.weekend !== "both" && (a.weekend === "W1" ? "Weekend 1" : "Weekend 2"),
-              spotifyMatchedIds.has(a.id) && "In your music",
-              crew > 0 && `${crew} crew`,
-            ].filter(Boolean);
+            // Dot: neutral in the main list; the stage colour in Saved/Now,
+            // which interleave stages. One dot, never coloured text.
+            const dotColor = filter === "all" ? "var(--text-3)" : (stage.color || "var(--text-3)");
             return (
               <div key={a.id}
                 data-animate
                 data-lineup-highlight={isHighlighted ? "true" : undefined}
                 style={{
-                  display: "flex", alignItems: "flex-start", gap: 12, minHeight: 64,
-                  padding: "12px 8px", margin: "0 -8px",
+                  display: "flex", alignItems: "center", gap: 12, minHeight: 56,
+                  padding: "6px 8px", margin: "0 -8px",
                   borderBottom: "1px solid var(--line)",
                   borderRadius: isHighlighted ? 14 : 0,
                   animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined,
                 }}>
-                <div style={{ width: 76, flexShrink: 0, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
-                  <div style={{ fontSize: 15, lineHeight: "21px", fontWeight: 600 }}>{fmt12(a.start)}</div>
-                  <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{fmt12(a.end)}</div>
+                <div data-set-time style={{ width: 76, flexShrink: 0, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap",
+                  fontSize: 15, lineHeight: "20px", fontWeight: 600, color: isLive && filter !== "now" ? "var(--signal-ink)" : "var(--ink)" }}>
+                  {fmt12(a.start)}
                 </div>
                 <button onClick={() => setState({ ...state, artist: a.id })} style={{
                   flex: 1, minWidth: 0, minHeight: 44, padding: 0, background: "transparent", border: "none",
                   color: "var(--ink)", textAlign: "left", cursor: "pointer",
-                  display: "flex", flexDirection: "column", alignItems: "flex-start",
+                  display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "stretch",
                 }}>
-                  {isLive && (
-                    <span style={{ ..._fieldEyebrow, color: "var(--signal-ink)", marginBottom: 2 }}>
-                      <span aria-hidden="true" style={{ width: 7, height: 7, borderRadius: 4, background: "var(--signal)" }} />Live
-                    </span>
-                  )}
-                  <span style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{a.name}</span>
-                  {/* Inline dot, so a long stage name wraps as text, not dot-then-line. */}
-                  <span style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
-                    <span aria-hidden="true" style={{ display: "inline-block", width: 7, height: 7, borderRadius: 4, background: "var(--text-3)", marginRight: 6, verticalAlign: "1px" }} />
-                    {stage.name}{a.genre ? ` · ${a.genre}` : ""}
+                  <span data-set-name style={{ fontSize: 17, lineHeight: "22px", fontWeight: 700, color: "var(--ink)",
+                    whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</span>
+                  <span data-set-meta style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)",
+                    whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    <span aria-hidden="true" style={{ display: "inline-block", width: 7, height: 7, borderRadius: 4,
+                      background: isLive && filter === "all" ? "var(--signal)" : dotColor, marginRight: 6, verticalAlign: "1px" }} />
+                    {isLive && filter !== "now" && <span style={{ color: "var(--signal-ink)", fontWeight: 600 }}>Live · </span>}
+                    {clashWith && <span style={{ color: "var(--warn)", fontWeight: 600 }}>Clash · </span>}
+                    {_lineupMetaValue(stage.name)}
                   </span>
-                  {flags.length > 0 && <span style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{flags.join(" · ")}</span>}
-                  {clashWith && <span style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: "var(--warn)" }}>⚠ Clashes with {clashWith.join(", ")}</span>}
                 </button>
                 <button onClick={() => toggleSave(state, setState, a.id)}
                   aria-label={saved ? `Unsave ${a.name}` : `Save ${a.name}`} aria-pressed={saved}
-                  style={{ ...fieldIconBtn, color: saved ? "var(--signal-ink)" : "var(--text-2)" }}>
+                  style={{ ...fieldIconBtn, alignSelf: "center", color: saved ? "var(--signal-ink)" : "var(--text-2)" }}>
                   <svg width="22" height="22" viewBox="0 0 24 24" fill={saved ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
                   </svg>
