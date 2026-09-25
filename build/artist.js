@@ -2,7 +2,7 @@ var SETLISTS_PROXY_URL = "https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/pro
 var _LOOKUP_SET_NOTE = /^(?:.*\bsets?\b.*|live|detox|in the round|.*\bclassics\b.*)$/i;
 function _lookupName(s) {
   var raw = String(s || "");
-  var t = raw.replace(/\s*\(([^)]*)\)\s*/g, (m, inner) => _LOOKUP_SET_NOTE.test(inner.trim()) ? " " : m).replace(/\s+/g, " ").trim();
+  var t = raw.replace(/\s*\(([^)]*)\)\s*/g, (m, inner) => _LOOKUP_SET_NOTE.test(inner.trim()) ? " " : m).replace(/\s+performing\s.*$/i, "").replace(/\s+/g, " ").trim();
   return t || raw;
 }
 function _b2bParts(name) {
