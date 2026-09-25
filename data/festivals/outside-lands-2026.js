@@ -14,6 +14,8 @@
 //   Riff Magazine set-time reports (Charli xcx 8:40 Lands End, The Strokes 8:35,
 //   RÜFÜS DU SOL 8:25, PinkPantheress 8:45 Sutro, The xx 8:10 Twin Peaks).
 // SOURCE hours: gates 11am, music noon-10pm — SF Chronicle 2026 festival guide.
+//   No hours field: sfoutsidelands.com/info prints no hours as of 2026-09-24 (the
+//   festival is over), and press is not a source for the page. Lane ruling 2026-09-24.
 // SOURCE stage positions: OpenStreetMap — Polo Field, Hellman Hollow, Lindley Meadow and
 //   Marx Meadow are measured features; SOMA, Dolores’ and Duboce Triangle are by hand.
 //
@@ -251,6 +253,9 @@
 
   const CONFIG = {
     id: "outside-lands-2026",
+    // No mapSource: sfoutsidelands.com/info returns 404 as of 2026-09-24 and no
+    // other first-party page on the post-festival site carries a map.
+    // No hours field: held (see SOURCE hours above).
     // From the SOURCE note above: InMusic per-day listings, captured 2026-08-28 — the header's SECONDARY SOURCE. Feeds /f/<id>/schedule.json.
     scheduleSource: { url: "https://inmusicblog.com/", observedAt: "2026-08-28", official: false },
     name: "Outside Lands 2026",

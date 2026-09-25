@@ -207,7 +207,7 @@ async function _heroCardSource(artist) {
     }
   } catch {}
   try {
-    var url = JSON.parse(localStorage.getItem("artist_images_v1") || "{}")[(artist.name || "").toLowerCase()];
+    var url = getShareableArtistImage(artist.name || "")?.url;
     if (url) {
       var _img = await new Promise((res, rej) => {
         var im = new Image();

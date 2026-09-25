@@ -2456,6 +2456,26 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b5c2. Spotify artist images: attributed, temporary, never exported ──
+// Spotify's Developer Terms allow only temporary caching of Spotify cover art
+// and the Design Guidelines forbid cropping or overlaying it and require the
+// Spotify logo linking back. The gate pins: one helper owns artist_images_v1
+// and records each entry's source and fetch time; a Spotify entry is shown for
+// 24 h and then dropped; an unknown legacy entry is never shown or exported;
+// the recap hero card never draws a Spotify image; and a Spotify-sourced
+// artist hero is uncropped, un-overlaid and carries the linked full logo.
+{
+  console.log("▸ Spotify image gate — attributed, uncropped, 24 h, never in a share card");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-spotify-image-compliance.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`spotify image compliance failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b5d. Media state machine, in the running app ───────────────────────
 // useMomentPhoto used to hold `url = null` forever when the local lookup AND
 // the cloud restore both came back empty, and every thumbnail reads "no url
@@ -2643,6 +2663,39 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`embeds tap-to-load failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b8c. Official maps and hours, exactly as ruled ─────────────────────
+// Every map link and hours value carries its first-party URL and the date it
+// was read; a festival with no published value has no field, and the held
+// ones (Portola, EDC Orlando, Decadence, Beyond SoCal, Countdown NYE, Outside
+// Lands) stay empty. Edition gate: hours print only from the official page's
+// dated block for THIS edition (editionHours()).
+{
+  console.log("▸ Maps & hours gate — every value sourced and dated, nothing inferred");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-maps-hours.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`maps & hours failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b8d. Server readiness probes read their bodies ─────────────────────
+// A probe that checks a fetch's status without reading its body can
+// crash Node's fetch from a socket event (CI run 36089778095, embeds tap gate).
+{
+  console.log("▸ Readiness-probe gate — every server probe reads its body");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-readiness-probe.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`readiness probe failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 

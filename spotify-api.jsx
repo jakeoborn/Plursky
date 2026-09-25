@@ -1289,14 +1289,7 @@ async function fetchSpotifyTopArtists(onProgress) {
     const top = Array.from(byId.values()).sort((a, b) => b._score - a._score);
 
     // Persist artist images keyed by lowercase name for ArtistScreen hero
-    try {
-      const imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-      top.forEach(a => {
-        const url = a.images?.[0]?.url;
-        if (url && a.name) imgs[a.name.toLowerCase()] = url;
-      });
-      localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
-    } catch {}
+    putArtistImages(top.map(a => ({ name: a.name, url: a.images?.[0]?.url, source: "spotify", spotifyId: a.id })));
 
     // Also pull recently-played + Liked Songs so artists you've played even
     // once (but aren't in your top 50) get matched against the lineup.
@@ -1474,21 +1467,20 @@ async function fetchSpotifyTopArtists(onProgress) {
 }
 
 // Search Spotify for a 30-sec preview URL for a given artist name.
-// Spotify deprecated `preview_url` for new apps in late 2024 — most tracks
-// now return null. Falls back to iTunes Search (free, no auth, CORS-OK)
-// which still serves 30s previews for ~95% of mainstream artists.
+// Spotify deprecated `preview_url` for new apps in late 2024, so many tracks
+// return null; then there is no preview (the artist screen says NO PREVIEW
+// AVAILABLE). There is deliberately no iTunes fallback: its previews may only
+// promote store content next to a store badge. See _previewPlayable (chrome.jsx).
 async function fetchPreviewUrl(artistName) {
   artistName = typeof _lookupName === "function" ? _lookupName(artistName) : artistName;  // artist.jsx
   const cacheKey = "preview_urls_v1";
-  try {
-    const cached = JSON.parse(localStorage.getItem(cacheKey) || "{}");
-    const entry = cached[artistName.toLowerCase()];
-    if (entry) return entry;
-  } catch {}
+  const cached = _prunePreviewCache()[artistName.toLowerCase()];  // Spotify entries only
+  if (cached) return cached;
 
   const _cachePreview = (result) => {
+    if (!_previewPlayable(result)) return null;
     try {
-      const cached = JSON.parse(localStorage.getItem(cacheKey) || "{}");
+      const cached = _prunePreviewCache();
       cached[artistName.toLowerCase()] = result;
       localStorage.setItem(cacheKey, JSON.stringify(cached));
     } catch {}
@@ -1517,20 +1509,7 @@ async function fetchPreviewUrl(artistName) {
     } catch {}
   }
 
-  // iTunes fallback — works without auth, returns 30s m4a previews
-  try {
-    const q = encodeURIComponent(artistName);
-    const res = await fetch(`https://itunes.apple.com/search?term=${q}&entity=song&limit=10`);
-    if (!res.ok) return null;
-    const data = await res.json();
-    const results = data.results || [];
-    const first = results.find(t =>
-      t.previewUrl && t.artistName?.toLowerCase().includes(firstWord)
-    ) || results.find(t => t.previewUrl);
-    return first ? _cachePreview({ url: first.previewUrl, name: first.trackName, source: "itunes" }) : null;
-  } catch {
-    return null;
-  }
+  return null;
 }
 
 // Match Spotify artist names against the EDC lineup.

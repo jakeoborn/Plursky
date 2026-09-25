@@ -320,6 +320,11 @@ var FESTIVALS_REGISTRY = [{
       website: "https://www.electricforestfestival.com/",
       observedAt: "2026-09-24"
     },
+    mapSource: {
+      url: "https://www.electricforestfestival.com/maps",
+      observedAt: "2026-09-24",
+      mapYear: 2026
+    },
     name: "Electric Forest 2027",
     shortName: "Forest 2027",
     brand: "Electric Forest",
@@ -674,6 +679,11 @@ var FESTIVALS_REGISTRY = [{
     officialEvent: {
       website: "https://www.coachella.com/",
       observedAt: "2026-09-24"
+    },
+    mapSource: {
+      url: "https://www.coachella.com/maps",
+      observedAt: "2026-09-24",
+      mapYear: 2026
     },
     name: "Coachella 2027",
     shortName: "Coachella",

@@ -9,6 +9,7 @@ import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { existsSync } from 'node:fs';
+import { serverReady } from './lib/server-ready.mjs';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const reservePort = () => new Promise((resolve, reject) => {
   const s = createServer(); s.once('error', reject);
@@ -89,7 +90,7 @@ async function waitForSwitch(page, id, ms = 60000) {
 }
 
 try {
-  for (let i = 0; i < 50; i++) { try { if ((await fetch(`${BASE}index.html`)).ok) break; } catch {} await sleep(100); }
+  await serverReady(`${BASE}index.html`);
   // The repo's existing convention (see test-import-toast.mjs): use the
   // system Chrome where one exists — the runner has one and does NOT have
   // playwright's own download — and fall back to the bundled build locally.

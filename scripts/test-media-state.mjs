@@ -20,6 +20,7 @@ import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { existsSync } from 'node:fs';
+import { serverReady } from './lib/server-ready.mjs';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const reservePort = () => new Promise((resolve, reject) => {
   const s = createServer(); s.once('error', reject);
@@ -209,7 +210,7 @@ async function runCloudClassification(browser) {
 }
 
 try {
-  for (let i = 0; i < 50; i++) { try { if ((await fetch(`http://127.0.0.1:${PORT}/index.html`)).ok) break; } catch {} await sleep(100); }
+  await serverReady(`http://127.0.0.1:${PORT}/index.html`);
   // channel:'chrome' — the bundled Chromium cannot decode iPhone HEVC and the
   // rest of this suite standardised on the real browser for media work.
   // The repo's existing convention (see test-import-toast.mjs): use the

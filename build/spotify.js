@@ -15984,22 +15984,7 @@ function RecapScreen({
             setTrackResults((d.tracks?.items || []).filter(t => t.preview_url).slice(0, 5));
           }
         } else {
-          var _res = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(q)}&entity=song&limit=6`);
-          if (_res.ok) {
-            var _d = await _res.json();
-            setTrackResults((_d.results || []).filter(t => t.previewUrl).slice(0, 5).map(t => ({
-              name: t.trackName,
-              artists: [{
-                name: t.artistName
-              }],
-              preview_url: t.previewUrl,
-              album: {
-                images: [{
-                  url: t.artworkUrl60
-                }]
-              }
-            })));
-          }
+          setTrackResults([]);
         }
       } catch {}
       setSearching(false);
@@ -16259,7 +16244,14 @@ function RecapScreen({
         color: "rgba(var(--ink-rgb),0.3)",
         marginTop: 4
       }
-    }, "Searching…"))), React.createElement("button", {
+    }, "Searching…"), !searching && trackQuery.length >= 2 && !localStorage.getItem("spotify_token") && React.createElement("div", {
+      className: "mono",
+      style: {
+        fontSize: 9,
+        color: "rgba(var(--ink-rgb),0.5)",
+        marginTop: 4
+      }
+    }, "CONNECT SPOTIFY TO SEARCH SONGS"))), React.createElement("button", {
       disabled: vidState === "rendering",
       onClick: async () => {
         if (previewAudio) {

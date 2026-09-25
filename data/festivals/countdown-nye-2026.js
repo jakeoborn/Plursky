@@ -27,8 +27,11 @@
 // contain multiple artists, so those counts do not conflict.
 // SOURCE hours + age: countdownnye.com/hours-and-info/, read 2026-09-21 —
 // NOS Events Center, 689 S E St., 4 PM–2 AM, 18+ entry and 21+ alcohol. That
-// page's "December 31, 2025" is stale: it calls the day Thursday, which matches
-// 2026, while the edition homepage explicitly names Dec 31, 2026 + Jan 1, 2027.
+// page's dated block reads "Thursday, December 31, 2025 + Friday, January 1"
+// (re-read 2026-09-24). The weekday fits 2026 but the year says 2025, so the
+// block is not provably this edition's. Lane ruling 2026-09-24: no hours field
+// until the page prints a block dated for Dec 31, 2026 (the edition gate,
+// editionHours() in scripts/lib/festival-page-data.mjs, refuses anything else).
 // SOURCE venue geometry: OpenStreetMap way 563078901, legal name "National
 // Orange Show & Event Center". The same surveyed venue data already used by
 // Escape 2026 is reused here; no festival layout is inferred from it.
@@ -134,6 +137,8 @@
 
   const CONFIG = {
     id: "countdown-nye-2026",
+    // No hours field: the official page's dated block says 2025 (see SOURCE
+    // hours above). Add one only with a `dated` block for this edition.
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
     lineupSource: { url: "https://countdownnye.com/lineup/", observedAt: "2026-09-21", official: true },
