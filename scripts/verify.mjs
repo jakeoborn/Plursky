@@ -2645,6 +2645,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b8d. Server readiness probes read their bodies ─────────────────────
+// A probe that checks a fetch's status without reading its body can
+// crash Node's fetch from a socket event (CI run 36089778095, embeds tap gate).
+{
+  console.log("▸ Readiness-probe gate — every server probe reads its body");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-readiness-probe.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`readiness probe failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b9. Shell portability ──────────────────────────────────────────────
 // Every push in this repo goes through scripts/verify-and-push.sh, and that
 // wrapper shipped with `#!/bin/zsh` until #211. On a box without zsh the kernel
