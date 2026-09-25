@@ -99,6 +99,7 @@ export const FINGERPRINTED_CONFIG_FIELDS = [
   'mapImage',
   'mapMode',
   'mapSource',       // the map section's official link, its year note, the Sources row
+  'hours',           // the Plan-your-day hours line and the Sources row
   'year',            // whether the official map shown is this edition's
   'weekendStartMs',  // weekend headings, per-weekend rows and the weekends answer
   'officialEvent',   // the official-site link in Sources and on a no-lineup page
@@ -173,6 +174,7 @@ export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, t
     acts: scheduleActs(ds.artists),
     source: cfg.scheduleSource || null,
     mapSource: cfg.mapSource || null,
+    hours: cfg.hours || null,
     year: cfg.year ?? null,
     weekendStartMs: cfg.weekendStartMs || null,
     officialEvent: cfg.officialEvent || null,

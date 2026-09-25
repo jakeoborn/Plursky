@@ -10,6 +10,7 @@ import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { existsSync } from 'node:fs';
+import { serverReady } from './lib/server-ready.mjs';
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const reservePort=()=>new Promise((resolve,reject)=>{const s=createServer();s.once('error',reject);s.listen(0,'127.0.0.1',()=>{const a=s.address();s.close(e=>e?reject(e):resolve(a.port));});});
 const FEST='edc-lv-2026', ACTIVE='acl-2026';
@@ -17,7 +18,7 @@ const TRACKS=[{timeMs:0,title:'Opener'},{timeMs:10*60000,title:'Ten'},{timeMs:20
 const PORT=await reservePort();
 const server=spawn('python3',['-m','http.server',String(PORT),'--bind','127.0.0.1'],{cwd:process.cwd(),stdio:'ignore'});
 try {
-  for(let i=0;i<50;i++){try{if((await fetch(`http://127.0.0.1:${PORT}/index.html`)).ok)break;}catch{} await sleep(100);}
+  await serverReady(`http://127.0.0.1:${PORT}/index.html`);
   const executablePath=['/opt/google/chrome/chrome','/usr/bin/google-chrome','/usr/bin/chromium'].find(existsSync);
   const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
   // The same moment viewed from the festival's zone and from the far side of the world.

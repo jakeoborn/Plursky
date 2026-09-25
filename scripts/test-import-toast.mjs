@@ -6,6 +6,7 @@ import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { existsSync } from 'node:fs';
+import { serverReady } from './lib/server-ready.mjs';
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const requestedPort=process.env.PLURSKY_IMPORT_TOAST_PORT;
 if(requestedPort&&!/^\d+$/.test(requestedPort))throw new Error('PLURSKY_IMPORT_TOAST_PORT must be a numeric TCP port');
@@ -13,7 +14,7 @@ const reservePort=()=>new Promise((resolve,reject)=>{const socket=createServer()
 const PORT=await reservePort(), URL=`http://127.0.0.1:${PORT}/?tab=me`;
 const server=spawn('python3',['-m','http.server',String(PORT),'--bind','127.0.0.1'],{cwd:process.cwd(),stdio:'ignore'});
 try {
-  for(let i=0;i<50;i++){try{if((await fetch(`http://127.0.0.1:${PORT}/index.html`)).ok)break;}catch{} await sleep(100);}
+  await serverReady(`http://127.0.0.1:${PORT}/index.html`);
   const executablePath=['/opt/google/chrome/chrome','/usr/bin/google-chrome','/usr/bin/chromium'].find(existsSync);
   const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
   const ctx=await browser.newContext({timezoneId:'America/Los_Angeles'});
