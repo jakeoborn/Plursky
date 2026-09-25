@@ -6,7 +6,10 @@
 //     post (only) into the platform's embed; the others stay inert
 //   · a second post of the same platform reuses the script (no second fetch)
 //   · the tapped post's button is gone and focus lands on the post
-//   · at 320px the placeholders never widen the page
+//   · at 320px the placeholders never widen the page, and neither does a
+//     tapped post: the Instagram stub stamps the same inline 326px min-width
+//     the real embed.js does, the X stub sizes to its column as widgets.js
+//     does (both measured live at 320px), and every rendered post must fit
 // The platform scripts are stubbed (CI is offline): each stub hydrates the
 // blockquotes carrying the platform's class, exactly as the real script scans.
 import { spawn } from 'node:child_process';
@@ -19,11 +22,13 @@ const SOCIAL = /(^|\.)(instagram\.com|cdninstagram\.com|fbcdn\.net|facebook\.com
 const STUB = {
   'https://www.instagram.com/embed.js': `window.instgrm = { Embeds: { process: function () {
     document.querySelectorAll('blockquote.instagram-media').forEach(function (b) {
-      var f = document.createElement('iframe'); f.className = 'stub-ig'; f.setAttribute('data-src', b.getAttribute('data-instgrm-permalink')); b.replaceWith(f);
+      var f = document.createElement('iframe'); f.className = 'stub-ig instagram-media instagram-media-rendered'; f.setAttribute('data-src', b.getAttribute('data-instgrm-permalink'));
+      f.setAttribute('style', 'background-color: white; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;'); f.height = 613; b.replaceWith(f);
     }); } } }; window.instgrm.Embeds.process();`,
   'https://platform.twitter.com/widgets.js': `window.twttr = { widgets: { load: function (el) {
     (el || document).querySelectorAll('blockquote.twitter-tweet').forEach(function (b) {
-      var f = document.createElement('iframe'); f.className = 'stub-x'; f.setAttribute('data-src', b.querySelector('a').href); b.replaceWith(f);
+      var f = document.createElement('iframe'); f.className = 'stub-x'; f.setAttribute('data-src', b.querySelector('a').href);
+      f.setAttribute('style', 'position: static; visibility: visible; width: ' + b.closest('figure').clientWidth + 'px; height: 563px; display: block; flex-grow: 1;'); b.replaceWith(f);
     }); } } }; window.twttr.widgets.load();`,
 };
 
@@ -112,6 +117,19 @@ try {
       const xr = await page.evaluate(() => document.querySelectorAll('iframe.stub-x').length);
       const xReq = social.filter(u => /platform\.twitter\.com\/widgets\.js/.test(u)).length;
       check(xr === 1 && xReq === 1, `${at} the X tap rendered ${xr} posts with ${xReq} script fetches (want 1/1)`);
+
+      // Every tapped post fits: inside its figure, inside the viewport, and the
+      // figure never needs a sideways scroll (at 320 the real Instagram iframe
+      // ran to x=346 and cut off "View profile").
+      const fit = await page.evaluate(() => [...document.querySelectorAll('figure[data-tap] iframe')].map(f => {
+        const r = f.getBoundingClientRect(), fig = f.closest('figure'), fr = fig.getBoundingClientRect();
+        return { cls: f.className.split(' ')[0], left: Math.round(r.left), right: Math.round(r.right), figRight: Math.round(fr.right), vw: window.innerWidth, figOver: fig.scrollWidth - fig.clientWidth };
+      }));
+      check(fit.length === 3, `${at} control: 3 tapped posts should be measured (got ${fit.length})`);
+      check(fit.every(f => f.right <= f.figRight && f.right <= f.vw && f.left >= 0), `${at} a tapped post runs past its column or the screen: ${JSON.stringify(fit)}`);
+      check(fit.every(f => f.figOver <= 0), `${at} a tapped post only fits by scrolling its box sideways: ${JSON.stringify(fit)}`);
+      const overAfter = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+      check(overAfter <= 0, `${at} the tapped posts widen the page by ${overAfter}px`);
       await ctx.close();
     }
   } finally { await browser.close(); }

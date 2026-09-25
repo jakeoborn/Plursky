@@ -75,10 +75,12 @@
   section.watch .embed { margin:16px 0 20px; }
   section.watch .yt { position:relative; aspect-ratio:16/9; width:100%; min-height:200px; background:var(--panel); border-radius:12px; overflow:hidden; }
   section.watch .yt iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
-  /* Instagram's embed has a fixed 326px minimum. On a 320px phone that is
-     wider than the screen, so the embed scrolls inside its own box and the
-     page never scrolls sideways. */
+  /* Instagram's embed.js stamps an inline 326px min-width on its iframe. On a
+     320px phone that ran 26px past the screen and cut off "View profile", so
+     the iframe is held to its column; Instagram's own layout reflows to fit.
+     The scroll box stays as a backstop for anything else a script inserts. */
   section.watch .embed-ig { overflow-x:auto; max-width:100%; }
+  section.watch .embed-ig iframe { min-width:0 !important; width:100% !important; max-width:100% !important; box-sizing:border-box; }
   /* And nothing a third-party script inserts may widen the page, even for a
      frame mid-hydration (seen once at 320px: 346px for a moment). */
   section.watch { overflow-x:clip; }
