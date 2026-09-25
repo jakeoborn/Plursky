@@ -32,7 +32,6 @@ const MAPS = {
   'hard-summer-2026': ['https://www.hardsummer.com/festival-map/', 2026],
   'electric-forest-2027': ['https://www.electricforestfestival.com/maps', 2026],
   'governors-ball-2026': ['https://support.govball.com/hc/en-us/articles/11579732251284-Is-there-a-current-festival-map', 2026],
-  'outside-lands-2026': ['https://www.sfoutsidelands.com/info', 2026],
   'coachella-2027': ['https://www.coachella.com/maps', 2026],
   'summerfest-2026': ['https://www.summerfest.com/about/', 2026],
 };
@@ -45,6 +44,9 @@ const DATED = {
   'nocturnal-wonderland-2026': 'September 19 + 20, 2026',
   'dreamstate-socal-2026': 'Friday, November 20 + Saturday, November 21, 2026',
 };
+// No map link: Outside Lands' /info returned 404 on 2026-09-24 and no other
+// first-party page carries a map (lane ruling: remove it until one resolves).
+const NO_MAP = ['outside-lands-2026'];
 const HELD = ['portola-2026', 'edc-orlando-2026', 'decadence-colorado-2026', 'beyond-wonderland-socal-2027', 'countdown-nye-2026', 'outside-lands-2026'];
 const DATE = /^\d{4}-\d{2}-\d{2}$/, HM = /^([01]\d|2[0-3]):[0-5]\d$/;
 
@@ -56,6 +58,7 @@ for (const e of REG) {
   const { id, mapSource: m, hours: h } = e.config;
   // Maps
   check(!!m === !!MAPS[id], `${id}: ${m ? 'has a map link the ruling does not give it' : 'is missing its ruled map link'}`);
+  if (NO_MAP.includes(id)) check(!m, `${id}: carries a map link, but its map page 404s (held until a first-party map resolves)`);
   if (m) {
     check(/^https:\/\//.test(m.url) && DATE.test(m.observedAt || ''), `${id}: mapSource without an https URL and observedAt date: ${JSON.stringify(m)}`);
     if (MAPS[id]) check(m.url === MAPS[id][0] && (m.mapYear ?? null) === MAPS[id][1], `${id}: mapSource ${m.url} (${m.mapYear}) is not the ruled ${MAPS[id][0]} (${MAPS[id][1]})`);

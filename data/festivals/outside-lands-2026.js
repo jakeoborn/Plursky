@@ -253,8 +253,8 @@
 
   const CONFIG = {
     id: "outside-lands-2026",
-    // The festival's OWN map page, linked (never embedded) by the /f/ page.
-    mapSource: { url: "https://www.sfoutsidelands.com/info", observedAt: "2026-09-24", mapYear: 2026 },
+    // No mapSource: sfoutsidelands.com/info returns 404 as of 2026-09-24 and no
+    // other first-party page on the post-festival site carries a map.
     // No hours field: held (see SOURCE hours above).
     // From the SOURCE note above: InMusic per-day listings, captured 2026-08-28 — the header's SECONDARY SOURCE. Feeds /f/<id>/schedule.json.
     scheduleSource: { url: "https://inmusicblog.com/", observedAt: "2026-08-28", official: false },
