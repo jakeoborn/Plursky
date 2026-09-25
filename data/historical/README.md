@@ -38,7 +38,14 @@ Official schedule graphics (Gov Ball, Lolla, ACL …):
     # hand-transcribe footer strips, put the printed header in <id>-dN.note
     node scripts/historical/finalize-review.mjs <edition-id> <review-dir> --reviewer "<who>"
 
-Then, for either path:
+Official lineup pages, for editions whose set-times pages were never archived
+(EDC Orlando, Nocturnal, Escape, Beyond SoCal, Dreamstate SoCal 2025):
+
+    node scripts/historical/extract-insomniac-lineup.mjs <edition-id>
+    # writes sheets/<id>.lineup.tsv (billing, day, stage) and the ledger;
+    # the edition is lineup_only: no sets and no times, ever
+
+Then, for any path:
 
     node scripts/historical/build-editions.mjs
     # lock counts in expected-counts.json, then
@@ -57,6 +64,10 @@ Then, for either path:
   (`dropped`). Rules and the activity list live in
   `scripts/historical/editions.mjs`. Kids-stage acts are billed acts and stay (including the named
   "SPECIAL GUEST: THE HAPPINESS CLUB").
+- A `lineup_only` edition comes from an official lineup page and carries no
+  sets and no times. An artist's day and stage appear only where that page
+  printed them (By Day / By Stage tabs), joined only when unambiguous; every
+  disagreement between the tabs is listed in the ledger's `crossTab`.
 - A closing set printed with only a start time is `openEnd`, never given an
   invented end.
 - Wall times are local; a set before `rolloverHour` belongs to the previous

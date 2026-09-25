@@ -47,6 +47,58 @@
    }
   },
   {
+   "id": "beyond-wonderland-socal-2025",
+   "festivalId": "beyond-wonderland-socal",
+   "festivalName": "Beyond Wonderland SoCal",
+   "name": "Beyond Wonderland SoCal 2025",
+   "year": 2025,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-03-28",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2025-03-29",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 132,
+    "sets": 0
+   }
+  },
+  {
+   "id": "dreamstate-socal-2025",
+   "festivalId": "dreamstate-socal",
+   "festivalName": "Dreamstate SoCal",
+   "name": "Dreamstate SoCal 2025",
+   "year": 2025,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-11-21",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2025-11-22",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 72,
+    "sets": 0
+   }
+  },
+  {
    "id": "edc-las-vegas-2025",
    "festivalId": "edc-lv",
    "festivalName": "EDC Las Vegas",
@@ -75,6 +127,63 @@
     "stages": 15,
     "artists": 378,
     "sets": 392
+   }
+  },
+  {
+   "id": "edc-orlando-2025",
+   "festivalId": "edc-orlando",
+   "festivalName": "EDC Orlando",
+   "name": "EDC Orlando 2025",
+   "year": 2025,
+   "timezone": "America/New_York",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-11-07",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2025-11-08",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2025-11-09",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 121,
+    "sets": 0
+   }
+  },
+  {
+   "id": "escape-halloween-2025",
+   "festivalId": "escape-halloween",
+   "festivalName": "Escape Halloween",
+   "name": "Escape Halloween 2025",
+   "year": 2025,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-10-31",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2025-11-01",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 127,
+    "sets": 0
    }
   },
   {
@@ -168,6 +277,32 @@
     "stages": 11,
     "artists": 190,
     "sets": 225
+   }
+  },
+  {
+   "id": "nocturnal-wonderland-2025",
+   "festivalId": "nocturnal-wonderland",
+   "festivalName": "Nocturnal Wonderland",
+   "name": "Nocturnal Wonderland 2025",
+   "year": 2025,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-09-13",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2025-09-14",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 80,
+    "sets": 0
    }
   }
  ]
