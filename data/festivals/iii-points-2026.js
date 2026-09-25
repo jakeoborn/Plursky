@@ -5,11 +5,41 @@
 // GATED SCAFFOLD. The LINEUP is real and complete; everything that places an
 // act in space or time is NOT PUBLISHED, and nothing here invents it.
 //
-// SOURCE lineup: iiipoints.com/lineup-2026/ (official), accessed 2026-08-29.
-//   218 acts, parsed from the 218 <li> rows of the page's single
-//   `ul.lineup__list`. 218 unique, 80 of them B2B. B2B billing is preserved
-//   VERBATIM as one act, because that is how the set is sold and how the
-//   schedule will print it.
+// SOURCE lineup: iiipoints.com/lineup-2026/ (official), re-read 2026-09-25
+//   14:08 UTC (response Last-Modified 10:50:22 UTC, which equals its Date
+//   header: it dates the cached render, not an edit). 215 acts, parsed from
+//   the 215 <li> rows of the page's `ul.lineup__list`, 78 of them printing
+//   B2B (79 here: see drift 5 for the 1-800 row). First
+//   read 2026-08-29 at 218 rows / 80 B2B. B2B billing is preserved VERBATIM
+//   as one act, because that is how the set is sold and how the schedule
+//   will print it. Ids never change with billing, so saved acts survive.
+//
+// ── LINEUP DRIFT, recorded 2026-09-25 (newest official billing wins) ──
+// Three reads of the same page: ours 2026-08-29 (218), the Wayback Machine
+// capture 2026-09-02 01:51 UTC (216), and today (215).
+//   1. REMOVED, gone from today's page. Each is in REMOVED_FROM_LINEUP
+//      below, out of the lineup, with a one-line re-add:
+//        JENCARLOS · Mr. Brown · Mila Gama B2B X3BUTTERFLY  (on 09-02, gone today)
+//        Ultrathem (solo)                                   (already gone 09-02)
+//      The 09-02 read is the Internet Archive's capture (timestamp
+//      20260902015146); it is cited here only, never linked from a live
+//      module. Every record cites the official page as read today.
+//      Mila Gama and Ultrathem are still billed in other B2Bs
+//      ("Elias Garcia B2B Mila Gama", "Dr. Rubinstein B2B Ultrathem").
+//   2. ADDED: "GZA performing Liquid Swords" (on neither earlier read). The
+//      row's data-artist-name is "GZA"; the billing is what we show, and
+//      artist.jsx's _lookupName drops the "performing …" note for lookups.
+//   3. CASING: "SEL.6 B2B PLAYSHADO" now prints "SEL.6 B2B Playshado".
+//   4. Dude Skywalker is on 08-29 and today, but not in the 09-02 capture.
+//      Kept: today's page bills it.
+//   5. DISPLAY ≠ NAME, one row contradicts itself, NOT resolved by guessing:
+//      the row that used to print "1-800-Lolita B2B Xana" now prints
+//      "1-800-305", while its data-artist-name is still "1-800-Lolita&Xana"
+//      and its data-artist-id is the same pair (440360-440357) as 09-02.
+//      Kept as "1-800-Lolita B2B Xana": the row's own structured name, which
+//      names two artists the "1-800-305" text does not. Re-check at the flip.
+//      Two older display/name gaps are benign billing notes, also kept as
+//      printed: "Daizy" (name "Daizy (US)") and "res_ (live)" (name "res_").
 // SOURCE venue + dates + policies: iiipoints.com/guide/, accessed 2026-08-29
 //   — "Mana Wynwood, 2217 NW 5th Ave, Miami, FL 33127", "October 16+17, 2026",
 //   no re-entry, 21+ for alcohol, "asphalt and grass terrain".
@@ -200,6 +230,7 @@
     mk("iiip-godisound",                    "Godisound"),
     mk("iiip-grace-arribas-b2b-marte",      "Grace Arribas B2B MARTE"),
     mk("iiip-grant-sabadash-b2b-shir-mi",   "Grant Sabadash B2B Shir Miya"),
+    mk("iiip-gza",                          "GZA performing Liquid Swords"),
     mk("iiip-haai",                         "HAAi"),
     mk("iiip-hamdi",                        "Hamdi"),
     mk("iiip-heidi-lawden",                 "Heidi Lawden"),
@@ -213,7 +244,6 @@
     mk("iiip-jane-remover",                 "Jane Remover"),
     mk("iiip-jason-rault",                  "Jason Rault"),
     mk("iiip-jbz",                          "JBZ"),
-    mk("iiip-jencarlos",                    "JENCARLOS"),
     mk("iiip-jeremy-ismael",                "Jeremy Ismael"),
     mk("iiip-jigitz",                       "Jigitz"),
     mk("iiip-jinks-b2b-romulo-del-casti",   "Jinks B2B Romulo Del Castillo"),
@@ -260,7 +290,6 @@
     mk("iiip-mgna-crrrta",                  "MGNA Crrrta"),
     mk("iiip-miguel-clark-b2b-naim-zarz",   "Miguel Clark B2B Naim Zarzour"),
     mk("iiip-miguelle-tons-b2b-saraga",     "Miguelle & Tons B2B Saraga"),
-    mk("iiip-mila-gama-b2b-x3butterfly",    "Mila Gama B2B X3BUTTERFLY"),
     mk("iiip-milo-ziro-b2b-xilla",          "Milo Ziro B2B Xilla"),
     mk("iiip-mind-enterprises",             "Mind Enterprises"),
     mk("iiip-ml-buch",                      "ML Buch"),
@@ -268,7 +297,6 @@
     mk("iiip-moscoman",                     "Moscoman"),
     mk("iiip-mph",                          "MPH"),
     mk("iiip-mr-bitch",                     "Mr. Bitch"),
-    mk("iiip-mr-brown",                     "Mr. Brown"),
     mk("iiip-natalia-roth-b2b-max-stern",   "Natalia Roth B2B Max Stern"),
     mk("iiip-nate-sib",                     "nate sib"),
     mk("iiip-nicholas-g-padilla",           "Nicholas G. Padilla"),
@@ -305,7 +333,7 @@
     mk("iiip-sam-alfred",                   "Sam Alfred"),
     mk("iiip-santiago-villu",               "Santiago Villu"),
     mk("iiip-saturnsarii-b2b-suz",          "SATURNSARii B2B SUZ"),
-    mk("iiip-sel-6-b2b-playshado",          "SEL.6 B2B PLAYSHADO"),
+    mk("iiip-sel-6-b2b-playshado",          "SEL.6 B2B Playshado"),
     mk("iiip-serafitz-b2b-sol-discos",      "serafitz B2B SOL Discos"),
     mk("iiip-seth-troxler",                 "Seth Troxler"),
     mk("iiip-shinobi",                      "Shinobi"),
@@ -321,7 +349,6 @@
     mk("iiip-tokischa",                     "Tokischa"),
     mk("iiip-tricky",                       "Tricky"),
     mk("iiip-uchi",                         "Uchi"),
-    mk("iiip-ultrathem",                    "Ultrathem"),
     mk("iiip-underworld",                   "Underworld"),
     mk("iiip-v1fro",                        "V1FRO"),
     mk("iiip-vania-junco",                  "Vania Junco"),
@@ -336,11 +363,23 @@
     mk("iiip-yhwh-nailgun",                 "YHWH Nailgun"),
     mk("iiip-zep",                          "ZEP"),  ];
 
+  // Acts the official lineup page billed and then dropped (LINEUP DRIFT 1 in
+  // the header). Kept OUT of ARTISTS, so no screen, count or search sees
+  // them; kept HERE so a re-bill is a one-line re-add with the same id,
+  // which brings any saved pick back with it.
+  const LINEUP = "https://www.iiipoints.com/lineup-2026/";
+  const REMOVED_FROM_LINEUP = [
+    { id: "iiip-jencarlos", name: "JENCARLOS", lastSeen: "2026-09-02", removedFrom: { url: LINEUP, observedAt: "2026-09-25" } },
+    { id: "iiip-mr-brown", name: "Mr. Brown", lastSeen: "2026-09-02", removedFrom: { url: LINEUP, observedAt: "2026-09-25" } },
+    { id: "iiip-mila-gama-b2b-x3butterfly", name: "Mila Gama B2B X3BUTTERFLY", lastSeen: "2026-09-02", removedFrom: { url: LINEUP, observedAt: "2026-09-25" } },
+    { id: "iiip-ultrathem", name: "Ultrathem", lastSeen: "2026-08-29", removedFrom: { url: LINEUP, observedAt: "2026-09-25" } },
+  ].map(r => ({ ...r, reAdd: `mk("${r.id}", "${r.name}")` }));
+
   const CONFIG = {
     id:        "iii-points-2026",
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
-    lineupSource: { url: "https://www.iiipoints.com/lineup-2026/", observedAt: "2026-08-29", official: true },
+    lineupSource: { url: "https://www.iiipoints.com/lineup-2026/", observedAt: "2026-09-25", official: true },
     name:      "III Points 2026",
     shortName: "III Points",
     brand:     "III Points",
@@ -430,6 +469,7 @@
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};
   window.PLURSKY_FESTIVALS["iii-points-2026"] = {
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
+    removedFromLineup: REMOVED_FROM_LINEUP,
     // GATED: set times, stages and the official map are all unpublished.
     registry: { available: true, scheduleTBA: true, accent: "#22d3ee", emoji: "🔺", region: "North America" },
   };

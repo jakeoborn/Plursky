@@ -442,6 +442,22 @@ if (fdata.length) {
   }
 }
 
+// ── Lineup removals gate ─────────────────────────────────────────────────
+// An act an official lineup billed and then dropped stays OUT of the lineup,
+// and its module record keeps a cited, one-line re-add (III Points 2026).
+{
+  console.log("▸ Lineup removals gate — dropped acts out, cited, re-addable");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-lineup-removals.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    console.log("  " + out.trim());
+  } catch (e) {
+    const detail = ((e.stderr || "") + (e.stdout || "")).trim();
+    if (detail) console.log("  " + detail.replace(/\n/g, "\n  "));
+    fail("a dropped act is back in a lineup, or its record is incomplete — see above");
+  }
+}
+
 // ── Precache integrity gate ──────────────────────────────────────────────
 // sw.js installs its own-origin files with cache.addAll(), and addAll is
 // ATOMIC: it rejects as a unit. One entry that 404s and NOTHING in LOCAL gets
@@ -997,6 +1013,7 @@ if (fdata.length) {
     ["Small (danny g luvs u B2B Bori)", "Small (danny g luvs u B2B Bori)"],
     ["DOG BLOOD (SKRILLEX + BOYS NOIZE)", "DOG BLOOD (SKRILLEX + BOYS NOIZE)"],
     ["Skull Machine (Black Tiger Sex Machine x Kai Wachi)", "Skull Machine (Black Tiger Sex Machine x Kai Wachi)"],
+    ["GZA performing Liquid Swords", "GZA"],
     ["Levity", "Levity"], ["", ""],
   ];
   const SPLIT = [
