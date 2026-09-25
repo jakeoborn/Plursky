@@ -802,12 +802,25 @@ if (fdata.length) {
     const id = f.id || (f.config && f.config.id);
     const acts = ((SDS[id] || {}).artists) || [];
     if (!acts.length) { console.log(`  ok ${String(id).padEnd(26)} no acts yet`); continue; }
-    let blank = 0;
+    let blank = 0, declared = 0, badDecl = [];
     const pairs = new Set();
     for (const a of acts) {
       const st = a.start || "", en = a.end || "";
       if (!st || !en) blank++;
       pairs.add(st + "→" + en);
+      // A billed act the official schedule does not place (CRSSD 2026-09-25:
+      // on the newest lineup page, on neither day graphic). DECLARED with
+      // `unscheduled: true`, and only honest with no day: an act parked on a
+      // day with no time would render in that day's lineup as if pending.
+      if (a.unscheduled === true) {
+        if (st || en || a.day != null) badDecl.push(a.name);
+        else declared++;
+      }
+    }
+    if (badDecl.length) {
+      console.log(`  ✗ ${String(id).padEnd(26)} unscheduled:true on an act with a day or a time: ${badDecl.slice(0, 4).join(", ")}`);
+      sbad++;
+      continue;
     }
     const ratio = pairs.size / acts.length;
     const live  = f.available === true;
@@ -839,8 +852,9 @@ if (fdata.length) {
       sbad++;
       continue;
     }
-    if (blank > 0) {
-      console.log(`  ✗ ${label} ${blank}/${acts.length} acts blank, the rest timed — half-filled schedule`);
+    if (blank > declared) {
+      console.log(`  ✗ ${label} ${blank - declared}/${acts.length} acts blank, the rest timed — half-filled schedule` +
+                  (declared ? ` (${declared} more declared unscheduled)` : ""));
       sbad++;
       continue;
     }
@@ -863,7 +877,7 @@ if (fdata.length) {
       ssbad++;
       continue;
     }
-    console.log(`  ok ${label} real schedule (${acts.length} acts, ${pairs.size} distinct times, ${ratio.toFixed(3)})${ss ? (ss.official ? "" : " · secondary source") : ""}`);
+    console.log(`  ok ${label} real schedule (${acts.length} acts, ${pairs.size} distinct times, ${ratio.toFixed(3)})${declared ? ` · ${declared} billed, unscheduled` : ""}${ss ? (ss.official ? "" : " · secondary source") : ""}`);
   }
   if (sbad) fail(`${sbad} festival(s) carry fabricated or half-filled set times — blank them, or fill them from the official schedule`);
   if (ssbad) fail(`${ssbad} live festival(s) have no scheduleSource — add { url, observedAt, official } from the module's SOURCE note`);
@@ -2514,6 +2528,24 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`landing routing failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b5e2. Billed acts no official schedule placed ─────────────────────
+// Escape's lineup-card acts and CRSSD's late adds are on the official lineup
+// with no day. Their artist screens threw on a day lookup and bounced to the
+// landing screen (all 20 of Escape's, live since #201); onboarding's sample
+// put CRSSD's two first, as "—  · Ocean View". Every such act on a live
+// festival is opened, plus a timed control.
+{
+  console.log("▸ Unplaced-acts gate — day-null acts mount, say so, and stay out of the onboarding sample");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-unplaced-acts.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`unplaced acts failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 

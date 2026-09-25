@@ -94,7 +94,7 @@ from `_DATA_SETS`. Ordered by start date; entries without one sort last.
 | ARC Music Festival 2026 | `arc-2026` | Sep 4–7, 2026 | 96 | 96 | 0 | 4 | live |
 | Lost Lands 2026 | `lost-lands-2026` | Sep 18–20, 2026 | 206 | 206 | 0 | 7 | live |
 | Nocturnal Wonderland 2026 | `nocturnal-wonderland-2026` | Sep 19–20, 2026 | 86 | 86 | 0 | 5 | live |
-| CRSSD Fest Fall 2026 | `crssd-fall-2026` | Sep 26–27, 2026 | 52 | 0 | 0 | 3 | live |
+| CRSSD Fest Fall 2026 | `crssd-fall-2026` | Sep 26–27, 2026 | 53 | 51 | 0 | 3 | live |
 | Portola 2026 | `portola-2026` | Sep 26–27, 2026 | 64 | 64 | 0 | 5 | live |
 | Austin City Limits 2026 | `acl-2026` | Oct 2–4 & 9–11, 2026 | 137 | 137 | 0 | 7 | live |
 | III Points 2026 | `iii-points-2026` | Oct 16–17, 2026 | 218 | 0 | 218 | 0 | live |
@@ -111,7 +111,7 @@ live in the generated table above, never here.
 
 | # | Festival | Dates | Flip needs |
 |---|---|---|---|
-| 1 | CRSSD Fall | Sep 26–27 | official day/time rows when the schedule drops, then verify + flip |
+| 1 | CRSSD Fall | Sep 26–27 | 2026-09-25: 51 sets imported from the official set-times graphics (PR, not merged); open: an official Fall 2026 map |
 | 2 | III Points | Oct 16–17 | import/matching built now; flip when the official schedule lands |
 | 3 | Escape Halloween | Oct 30–31 | official times + a 2026 map check, then flip |
 | 4 | EDC Orlando | Nov 6–8 | every act from the official app; replace the provisional map (W-3) |

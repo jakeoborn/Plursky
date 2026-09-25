@@ -2,10 +2,38 @@
 // CRSSD FEST FALL 2026 — Waterfront Park · San Diego, CA
 // Sep 26–27, 2026
 // ═══════════════════════════════════════════════════════════════════════
-// GATED SCAFFOLD. This one sits between the other two gated builds: III
-// Points has no stages at all, Nocturnal has stages AND a day split — CRSSD
-// publishes REAL STAGES but NO DAY SPLIT and NO SET TIMES, and nothing below
-// invents either.
+// SET TIMES ARE OFFICIAL (2026-09-25). Every timed act below is read off
+// CRSSD's own set-times graphics; the two acts the grid does not list keep
+// their stage and nothing else. See SET TIMES and MISMATCHES below.
+//
+// SOURCE set times: crssdfest.com/set-times/ (page dateModified
+//   2026-09-25T02:47:48Z), which carries one graphic per day, headed
+//   SATURDAY / SUNDAY and footed "FALL … 2026":
+//     CFS26_SaturdaySetTimes_Web.png  Last-Modified 2026-09-25 01:58:18 UTC  sha256 a6589a93b6725916…
+//     CFS26_SundaySetTimes_Web.png    Last-Modified 2026-09-25 01:58:23 UTC  sha256 b50de29c6e65df85…
+//   (the 1080×1920 story versions print the same grid with the day header.)
+//   Transcribed by hand, then checked row by row against a macOS Vision OCR
+//   of both graphics: every stage, start and end agrees. 51 timed acts.
+//
+// MISMATCHES between official sources — recorded, not resolved by guessing:
+//   1. SKEPTA MÁS TIEMPO: on Sunday's grid (City Steps 3:45–5:00 PM), but
+//      GONE from the lineup page as re-read 2026-09-25 (Last-Modified 12:28
+//      UTC, ten hours after the graphics). The newer official billing wins,
+//      so the act is not in this lineup and its slot is not shown. If CRSSD
+//      re-bills it, it goes back from the grid row above.
+//   2. PETE SOUL (Ocean View) and CHRIS LORENZO (The Palms): new on that same
+//      lineup page, on neither graphic. Listed with their stage, no day, no
+//      time (ARTISTS, end).
+//   3. SATURDAY OCEAN VIEW 3:00–4:30 PM prints "Special Guest": an unnamed
+//      slot, so it is not an act (the historical DROP_RULES precedent).
+//      Nothing official ties it to Pete Soul, so he is not placed in it.
+//   4. HORSEGIIRL and GROOVE ARMADA: the 2026-09-06 lineup page grouped them
+//      under The Palms and City Steps; the grid and the re-read lineup page
+//      both put them on Ocean View and The Palms. Moved.
+//   5. The lineup page bills "DISCLOSURE dj set"; the grid prints "Chris Lake
+//      b2b Disclosure" with no set type. The grid's billing is used.
+//   6. The site's own meta description reads "SEP 25 + 27"; the page body,
+//      the set-times page and both graphics say 26 + 27. 26 + 27 is used.
 //
 // SOURCE lineup + stages: crssdfest.com (official home page), accessed
 //   2026-09-06. The lineup is authored as three `.vc_ls__stage-group`
@@ -14,6 +42,9 @@
 //   B2B billing is preserved VERBATIM as one act, because that is how the
 //   set is sold and how the schedule will print it. Same for "(dj set)",
 //   which the site marks up as its own `.vc_ls__settype` span.
+//   RE-READ 2026-09-25 for the flip (Last-Modified 12:28 UTC): 53 billings
+//   after Pete Soul and Chris Lorenzo were added and Skepta Más Tiempo was
+//   removed (MISMATCHES 1–2).
 // SOURCE stage COLOURS: the same page's stylesheet, which gives each stage
 //   group its own hover glow — ocean #56fbf1, city steps #fdb915, palms
 //   #7e9f5d. Those are CRSSD's own stage colours, read off their CSS rather
@@ -25,14 +56,9 @@
 //   Overpass 2026-09-06. 39 vertices, 64,524 m², 489 m N–S × 152 m E–W.
 // SOURCE sun times: api.sunrise-sunset.org at the OSM centroid, 2026-09-06.
 //
-// ── WHAT IS NOT PUBLISHED (verified 2026-09-06, do not fabricate) ──
-// DAY SPLIT: absent. The lineup is grouped by STAGE only — there are no
-//   Sat/Sun tabs and no per-act day. See the dayDates comment below for why
-//   that becomes one TBA bucket rather than `day: null`.
-// SET TIMES: absent, and the FAQ says so itself — "Set times will be posted
-//   on the website, social media pages, and the CRSSD mobile app a few days
-//   before the festival." Every act carries start/end "".
-// SITE MAP: absent. The FAQ references one ("clearly marked on the map"),
+// ── WHAT IS NOT PUBLISHED (do not fabricate) ──
+// SITE MAP: absent for this edition (re-checked 2026-09-25: crssdfest.com/map
+//   shows the Fall 2025 PDFs and Spring 2026 JPGs, no Fall 2026 map). The FAQ references one ("clearly marked on the map"),
 //   but no map is published on the site yet — no 2026 map, and no prior-year
 //   map either. Checked every `wp-content/uploads` image reference on both
 //   the home page and the FAQ page; there is none.
@@ -69,39 +95,27 @@
 // do not promote it to T1 VERIFIED on the strength of being in OSM. Its
 // 15.9 acres also exceed the County's stated 12: the polygon is the park
 // boundary with the County Administration Center still inside it, not the
-// lawn area alone. Replace it at the flip from the official festival map.
+// lawn area alone. Replace it from an official festival map when one publishes.
 //
 // ⚠ ADDRESS: the FAQ writes "1600 Pacific Coast Highway". The street is
 // Pacific Highway — there is no Pacific Coast Highway in downtown San Diego —
 // so the navigable address below says Pacific Hwy. This is the one place a
 // verbatim official string is not used, and it is deliberate.
 //
-// ⚠ NAME CASING is verbatim, which means it is INCONSISTENT, on purpose.
-// The site types its headliner tier in caps ("SONNY FODERA") and its A–Z
-// tier in real casing ("salute", "ear", "oskar med k", "beginagain"). No
-// `text-transform` is involved — that is the authored text. Since the caps
-// tier mixes possible stylisations (CHASEWEST, HORSEGIIRL) with ordinary
-// names shouted by the poster, title-casing it would be a guess applied to
-// both. Verbatim is the only option that invents nothing; fix it at the flip
-// against the set-times listing, which prints real casing.
-//   Datapoint for that session: iii-points-2026.js carries the same act as
-//   "ChaseWest", off III Points' own official page. Two official sources,
-//   two casings — which is the argument for not guessing here, and a hint
-//   that this tier is poster typography rather than artist styling.
+// NAME CASING is the set-times grid's, verbatim. The lineup page types its
+// headliner tier in caps ("SONNY FODERA"); the grid prints real casing
+// ("Sonny Fodera", "horsegiirl", "Roya"), so the grid wins wherever the two
+// differ. Where the grid itself prints caps (CHASEWEST, AYYBO, DRAMA, SAAND,
+// GENESI, GREG 99, VTSS, MPH) that is the act's own styling and is kept.
+// Pete Soul and Chris Lorenzo are not on the grid, so they carry the lineup
+// page's casing.
+//   iii-points-2026.js carries the same act as "ChaseWest", off III Points'
+//   own page; CRSSD's grid prints CHASEWEST. Each festival keeps its own.
 //
-// ── FLIP CHECKLIST (set times + official map, a few days before Sep 26) ──
-//   1. Real Sat/Sun dayDates; per-act `day`; drop `provisional`.
-//   2. start/end per act from the official schedule.
-//   3. STAGES get real lat/lng from the official map, and x/y DERIVED from
-//      that lat/lng — never the reverse. Then mapMode can leave "real".
-//   4. gpsAnchors once the stages have positions — src "poster" for art
-//      reads, "osm" for satellite-measured features. `derived` is banned
-//      from the basis.
-//   5. Replace venue.footprint with the real festival perimeter.
-//   6. amenities from the official map legend (water refills are documented
-//      as "near the center fountain"; the rest is not published).
-//   7. Re-check artist name casing against the set-times listing.
-//   8. registry.available → true — its own PR, founder review (AGENTS.md).
+// ── STILL OPEN (the map half of the old flip checklist) ──
+//   · STAGES get real lat/lng from an official Fall 2026 map, x/y DERIVED
+//     from it; then gpsAnchors, the real perimeter and amenities. Until
+//     then mapMode stays "real" and no distance is quoted.
 (function () {
   "use strict";
 
@@ -125,17 +139,66 @@
   // No amenity map published — see the header.
   const AMENITIES = [];
 
-  // Every act has a REAL stage and NOTHING ELSE: no day, no set time. `tier`
-  // drives lineup card weighting; with no times there is no basis to rank, so
-  // every act sits at the same tier rather than being silently ordered by a
-  // guess. `provisional: true` marks the whole set for the flip session.
-  // The flip fills this block from the OFFICIAL schedule, after the config
-  // gets real Sat/Sun dayDates (flip checklist step 1):
+  // The OFFICIAL set-times grid (see the header), transcribed into a sheet
+  // and written here by the importer, which checks every row against the
+  // lineup, the stages and its neighbours on the same stage:
   //   node scripts/import-set-times.mjs crssd-fall-2026 <sheet.tsv> --days-from-sheet --source <official-url>
-  // id → [stageId, start, end, day]. Empty until then, so every act stays as
-  // below: real stage, no day, no time.
+  // id → [stageId, start, end, day]. `tier` stays 2 for every act: the grid
+  // prints times, not a billing rank.
   const SCHEDULE = {
     // SCHEDULE:BEGIN crssd-fall-2026
+    // source: https://www.crssdfest.com/set-times/ · imported 2026-09-25 · 51 of 53 acts
+    "crssd-beginagain": ["oceanview", "12:30", "13:15", 1],  // beginagain
+    "crssd-ear": ["oceanview", "13:15", "14:15", 1],  // ear
+    "crssd-mind-enterprises": ["oceanview", "16:45", "17:45", 1],  // Mind Enterprises
+    "crssd-ayybo": ["oceanview", "18:00", "19:00", 1],  // AYYBO
+    "crssd-notion": ["oceanview", "19:15", "20:15", 1],  // Notion
+    "crssd-horsegiirl": ["oceanview", "20:30", "21:45", 1],  // horsegiirl (live)
+    "crssd-mochakk": ["oceanview", "22:00", "23:00", 1],  // Mochakk
+    "crssd-bb-shaine": ["citysteps", "12:00", "12:45", 1],  // BB Shaine
+    "crssd-adam-sellouk": ["citysteps", "12:45", "14:00", 1],  // Adam Sellouk
+    "crssd-ahadadream": ["citysteps", "14:00", "15:15", 1],  // Ahadadream
+    "crssd-salute": ["citysteps", "15:15", "16:30", 1],  // salute
+    "crssd-mph": ["citysteps", "16:30", "17:45", 1],  // MPH
+    "crssd-ben-ufo": ["citysteps", "17:45", "19:00", 1],  // Ben UFO
+    "crssd-marlon-hoffstadt": ["citysteps", "19:00", "20:30", 1],  // Marlon Hoffstadt
+    "crssd-i-hate-models": ["citysteps", "20:30", "21:45", 1],  // I Hate Models
+    "crssd-vtss": ["citysteps", "21:45", "23:00", 1],  // VTSS
+    "crssd-heminguey": ["palms", "12:00", "13:00", 1],  // Heminguey
+    "crssd-torren-foot": ["palms", "13:00", "14:00", 1],  // Torren Foot
+    "crssd-rafael": ["palms", "14:00", "15:00", 1],  // Rafael
+    "crssd-dean-turnley": ["palms", "15:00", "16:00", 1],  // Dean Turnley
+    "crssd-jamback": ["palms", "16:00", "17:00", 1],  // Jamback
+    "crssd-locklead": ["palms", "17:00", "18:00", 1],  // Locklead
+    "crssd-rossi-b2b-carlita": ["palms", "18:00", "19:30", 1],  // Rossi. b2b Carlita
+    "crssd-chasewest": ["palms", "19:30", "21:00", 1],  // CHASEWEST
+    "crssd-layton-giordani": ["palms", "21:00", "22:00", 1],  // Layton Giordani
+    "crssd-sonny-fodera": ["palms", "22:00", "23:00", 1],  // Sonny Fodera
+    "crssd-saand": ["oceanview", "12:30", "13:00", 2],  // SAAND
+    "crssd-roya": ["oceanview", "13:15", "14:00", 2],  // Roya
+    "crssd-sebastien-tellier": ["oceanview", "14:30", "15:15", 2],  // Sébastien Tellier
+    "crssd-balu-brigada": ["oceanview", "15:45", "16:30", 2],  // Balu Brigada
+    "crssd-oskar-med-k": ["oceanview", "17:00", "17:45", 2],  // oskar med K
+    "crssd-drama": ["oceanview", "18:00", "18:45", 2],  // DRAMA
+    "crssd-big-wild": ["oceanview", "19:00", "20:00", 2],  // Big Wild
+    "crssd-chris-lake-b2b-disclosure": ["oceanview", "20:30", "22:00", 2],  // Chris Lake b2b Disclosure
+    "crssd-rivka-m": ["citysteps", "12:00", "12:30", 2],  // Rivka M
+    "crssd-son-of-son": ["citysteps", "12:30", "13:30", 2],  // Son of Son
+    "crssd-arodes": ["citysteps", "13:30", "14:30", 2],  // Arodes
+    "crssd-kas-st": ["citysteps", "14:30", "15:45", 2],  // KAS:ST
+    "crssd-mathame": ["citysteps", "17:00", "18:15", 2],  // Mathame
+    "crssd-helena-hauff": ["citysteps", "18:15", "19:30", 2],  // Helena Hauff
+    "crssd-boys-noize": ["citysteps", "19:30", "20:45", 2],  // Boys Noize
+    "crssd-999999999": ["citysteps", "20:45", "22:00", 2],  // 999999999
+    "crssd-punkybutter": ["palms", "12:00", "12:30", 2],  // Punkybutter
+    "crssd-greg-99": ["palms", "12:30", "13:30", 2],  // GREG 99
+    "crssd-sam-alfred": ["palms", "13:30", "14:30", 2],  // Sam Alfred
+    "crssd-jay-de-lys": ["palms", "14:30", "15:30", 2],  // Jay de Lys
+    "crssd-genesi": ["palms", "15:30", "16:30", 2],  // GENESI
+    "crssd-marco-strous": ["palms", "16:30", "17:30", 2],  // Marco Strous
+    "crssd-groove-armada-dj-set": ["palms", "17:30", "19:00", 2],  // Groove Armada (dj set)
+    "crssd-prospa": ["palms", "19:00", "20:30", 2],  // Prospa
+    "crssd-kettama": ["palms", "20:30", "22:00", 2],  // Kettama
     // SCHEDULE:END
   };
   const scheduled = act => {
@@ -154,10 +217,28 @@
     provisional: true,
   });
 
+  // A billed act the official schedule does not place: real stage, no day,
+  // no time (see the end of ARTISTS).
+  const mkUnscheduled = (id, name, stage) => ({
+    id, name, genre: "—", country: "—",
+    stage, day: null, start: "", end: "", tier: 2,
+    img: `linear-gradient(135deg, ${(STAGES.find(s => s.id === stage) || STAGES[0]).color}, #0a1420)`,
+    bio: `On the official CRSSD Fest Fall 2026 lineup, ${(STAGES.find(s => s.id === stage) || {}).name} stage. ` +
+         `The official set times do not list this act, so its day and set time are not published.`,
+    unscheduled: true,
+  });
+
+  // Names are the SET-TIMES GRID's casing (flip checklist step 7): the grid
+  // prints real casing where the lineup page shouts a headliner tier. Ids are
+  // unchanged from the gated scaffold, so saved acts survive the flip.
+  // Stages are the grid's. Two acts moved stage between the 2026-09-06
+  // lineup read and the grid (horsegiirl → Ocean View, Groove Armada → The
+  // Palms); the lineup page re-read on 2026-09-25 agrees with the grid on both.
   const ARTISTS = [
     // ─────────── Ocean View ───────────
-    mk("crssd-chris-lake-b2b-disclosure",        "CHRIS LAKE b2b DISCLOSURE",        "oceanview"),
-    mk("crssd-mochakk",                          "MOCHAKK",                          "oceanview"),
+    mk("crssd-chris-lake-b2b-disclosure",        "Chris Lake b2b Disclosure",        "oceanview"),
+    mk("crssd-mochakk",                          "Mochakk",                          "oceanview"),
+    mk("crssd-horsegiirl",                       "horsegiirl (live)",                "oceanview"),
     mk("crssd-ayybo",                            "AYYBO",                            "oceanview"),
     mk("crssd-balu-brigada",                     "Balu Brigada",                     "oceanview"),
     mk("crssd-beginagain",                       "beginagain",                       "oceanview"),
@@ -166,19 +247,18 @@
     mk("crssd-ear",                              "ear",                              "oceanview"),
     mk("crssd-mind-enterprises",                 "Mind Enterprises",                 "oceanview"),
     mk("crssd-notion",                           "Notion",                           "oceanview"),
-    mk("crssd-oskar-med-k",                      "oskar med k",                      "oceanview"),
-    mk("crssd-roya",                             "ROYA",                             "oceanview"),
+    mk("crssd-oskar-med-k",                      "oskar med K",                      "oceanview"),
+    mk("crssd-roya",                             "Roya",                             "oceanview"),
     mk("crssd-saand",                            "SAAND",                            "oceanview"),
     mk("crssd-sebastien-tellier",                "Sébastien Tellier",                "oceanview"),
     // ─────────── The Palms ───────────
     mk("crssd-chasewest",                        "CHASEWEST",                        "palms"),
-    mk("crssd-horsegiirl",                       "HORSEGIIRL",                       "palms"),
-    mk("crssd-kettama",                          "KETTAMA",                          "palms"),
-    mk("crssd-layton-giordani",                  "LAYTON GIORDANI",                  "palms"),
-    mk("crssd-prospa",                           "PROSPA",                           "palms"),
-    mk("crssd-rossi-b2b-carlita",                "ROSSI. b2b CARLITA",               "palms"),
-    mk("crssd-skepta-mas-tiempo",                "SKEPTA MÁS TIEMPO",                "palms"),
-    mk("crssd-sonny-fodera",                     "SONNY FODERA",                     "palms"),
+    mk("crssd-groove-armada-dj-set",             "Groove Armada (dj set)",           "palms"),
+    mk("crssd-kettama",                          "Kettama",                          "palms"),
+    mk("crssd-layton-giordani",                  "Layton Giordani",                  "palms"),
+    mk("crssd-prospa",                           "Prospa",                           "palms"),
+    mk("crssd-rossi-b2b-carlita",                "Rossi. b2b Carlita",               "palms"),
+    mk("crssd-sonny-fodera",                     "Sonny Fodera",                     "palms"),
     mk("crssd-dean-turnley",                     "Dean Turnley",                     "palms"),
     mk("crssd-genesi",                           "GENESI",                           "palms"),
     mk("crssd-greg-99",                          "GREG 99",                          "palms"),
@@ -193,15 +273,14 @@
     mk("crssd-torren-foot",                      "Torren Foot",                      "palms"),
     // ─────────── City Steps ───────────
     mk("crssd-999999999",                        "999999999",                        "citysteps"),
-    mk("crssd-boys-noize",                       "BOYS NOIZE",                       "citysteps"),
-    mk("crssd-groove-armada-dj-set",             "GROOVE ARMADA (dj set)",           "citysteps"),
-    mk("crssd-i-hate-models",                    "I HATE MODELS",                    "citysteps"),
-    mk("crssd-marlon-hoffstadt",                 "MARLON HOFFSTADT",                 "citysteps"),
-    mk("crssd-mathame",                          "MATHAME",                          "citysteps"),
+    mk("crssd-boys-noize",                       "Boys Noize",                       "citysteps"),
+    mk("crssd-i-hate-models",                    "I Hate Models",                    "citysteps"),
+    mk("crssd-marlon-hoffstadt",                 "Marlon Hoffstadt",                 "citysteps"),
+    mk("crssd-mathame",                          "Mathame",                          "citysteps"),
     mk("crssd-vtss",                             "VTSS",                             "citysteps"),
     mk("crssd-adam-sellouk",                     "Adam Sellouk",                     "citysteps"),
     mk("crssd-ahadadream",                       "Ahadadream",                       "citysteps"),
-    mk("crssd-arodes",                           "ARODES",                           "citysteps"),
+    mk("crssd-arodes",                           "Arodes",                           "citysteps"),
     mk("crssd-bb-shaine",                        "BB Shaine",                        "citysteps"),
     mk("crssd-ben-ufo",                          "Ben UFO",                          "citysteps"),
     mk("crssd-helena-hauff",                     "Helena Hauff",                     "citysteps"),
@@ -210,13 +289,24 @@
     mk("crssd-rivka-m",                          "Rivka M",                          "citysteps"),
     mk("crssd-salute",                           "salute",                           "citysteps"),
     mk("crssd-son-of-son",                       "Son of Son",                       "citysteps"),
+    // ─────────── Billed, not on the grid ───────────
+    // On the lineup page as re-read 2026-09-25 (Last-Modified 12:28 UTC,
+    // ten hours after the grid's 01:58 UTC graphics), absent from both day
+    // graphics. Stage is the lineup page's; day and time are unpublished, so
+    // day is null (the Escape precedent) and nothing is inferred. Saturday
+    // Ocean View prints an unnamed "Special Guest" 3:00–4:30 PM; nothing
+    // official says either act is that slot, so neither is placed in it.
+    mkUnscheduled("crssd-pete-soul",            "Pete Soul",                        "oceanview"),
+    mkUnscheduled("crssd-chris-lorenzo",        "Chris Lorenzo",                    "palms"),
   ];
 
   const CONFIG = {
     id:        "crssd-fall-2026",
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
-    lineupSource: { url: "https://www.crssdfest.com/", observedAt: "2026-09-06", official: true },
+    lineupSource: { url: "https://www.crssdfest.com/", observedAt: "2026-09-25", official: true },
+    // The day graphics on the official set-times page (see the header).
+    scheduleSource: { url: "https://www.crssdfest.com/set-times/", observedAt: "2026-09-25", official: true },
     name:      "CRSSD Fest Fall 2026",
     shortName: "CRSSD",
     brand:     "CRSSD Fest",
@@ -226,38 +316,26 @@
     dates:     "Sep 26–27, 2026",
     year:      2026,
     // "Doors open at 12PM both days" (official FAQ). California is PDT
-    // (UTC-7) in September — DST does not end until Nov 1.
-    //
-    // ⚠ The CLOSE time is NOT published. Waterfront Park is a County park
-    // with a curfew, but no hour is stated anywhere official, so endMs
-    // bounds day 2 generously at local midnight rather than asserting a
-    // curfew we would be inventing. It gets replaced by the real hours at
-    // the flip, along with the set times.
+    // (UTC-7) in September — DST does not end until Nov 1. The close is the
+    // official grid's last set: 11:00 PM Saturday, 10:00 PM Sunday.
     startMs: Date.UTC(2026, 8, 26, 19, 0, 0),  // Sep 26 12:00 PDT, doors
-    endMs:   Date.UTC(2026, 8, 28,  7, 0, 0),  // Sep 28 00:00 PDT, generous bound
+    endMs:   Date.UTC(2026, 8, 28,  5, 0, 0),  // Sep 27 22:00 PDT, last set ends
     tz:      "America/Los_Angeles",
     tzAbbr:  "PDT",
     utcOffsetHours: -7,
-    // ⚠️ ONE bucket for a TWO-day festival, on purpose — the III Points
-    // precedent, for the same measured reason. The day split is not
-    // published (see header), and:
-    //   - day: null on every act → the lineup screen renders EMPTY, because
-    //     the app filters `a.day === activeDay` in 48 places. 52 acts
-    //     shipped and none reachable.
-    //   - each act on BOTH days → claims every act plays twice. False.
-    //   - ONE bucket labelled TBA → every act browsable and saveable now,
-    //     and the label states exactly what is unknown.
-    // Reverses cleanly at the flip, where this becomes the real Sat/Sun pair
-    // and each act gets its true day.
+    // The official set-times graphics head each day SATURDAY / SUNDAY, and
+    // the site dates the edition "Saturday + Sunday SEPTEMBER 26 + 27".
     dayDates: {
-      1: { y: 2026, m: 8, d: 26, name: "Sep 26–27", short: "TBA",
+      1: { y: 2026, m: 8, d: 26, name: "Saturday", short: "SAT",
            midnightUtc: Date.UTC(2026, 8, 26, 7, 0, 0) },
+      2: { y: 2026, m: 8, d: 27, name: "Sunday", short: "SUN",
+           midnightUtc: Date.UTC(2026, 8, 27, 7, 0, 0) },
     },
-    // api.sunrise-sunset.org at 32.72204,-117.17210, converted to PDT.
-    // Sep 26 and 27 differ by one minute at each end; the single bucket
-    // takes day 1's, which is correct to within that minute for either date.
+    // api.sunrise-sunset.org at 32.72204,-117.17210, tzid America/Los_Angeles,
+    // fetched 2026-09-25.
     sunTimes: {
       1: { rise: "06:38", set: "18:41" },
+      2: { rise: "06:39", set: "18:39" },
     },
     // Polygon centroid of the OSM park way, not a street geocode. The park
     // is long and narrow (489 × 152 m), so 0.3 mi from the centroid covers
@@ -273,7 +351,7 @@
       // decimation, so there is no epsilon for a future reader to wonder
       // about. 64,524 m². OSM tags this `source=knowledge`, so it is the
       // best published outline rather than a survey; see the header before
-      // treating it as measured, and replace it at the flip.
+      // treating it as measured, and replace it from an official map.
       footprint: [
         [32.72003, -117.17285], [32.72003, -117.17234], [32.72001, -117.17124],
         [32.72005, -117.17124], [32.72088, -117.17124], [32.72107, -117.17123],
@@ -307,8 +385,6 @@
     // The affine-vs-poster gate has no poster to check against here. Not a
     // waiver — there is genuinely nothing to register.
     mapArtIsGeoregistered: false,
-    // Flip markers, read by humans rather than by code.
-    setTimesProvisional: true,
     // Published policy: 21+ entry, no re-entry, smoke-free.
     policies: { minimumAge: 21, alcoholAge: 21, reentry: false, smokeFree: true },
   };
@@ -316,7 +392,8 @@
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};
   window.PLURSKY_FESTIVALS["crssd-fall-2026"] = {
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
-    // GATED: day split, set times and the site map are all unpublished.
-    registry: { available: true, scheduleTBA: true, accent: "#56fbf1", emoji: "🌊", region: "North America" },
+    // Set times are the official grid (see the header). The site map is
+    // still unpublished for this edition, so mapMode stays "real".
+    registry: { available: true, accent: "#56fbf1", emoji: "🌊", region: "North America" },
   };
 })();

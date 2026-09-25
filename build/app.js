@@ -41,12 +41,12 @@ function VfxParticleField({
     });
   }));
 }
-function _onbHeadliners(n) {
+function _onbHeadliners(n, keep = () => true) {
   var lineup = (typeof activeLineup === "function" ? activeLineup() : ARTISTS) || [];
-  return [...lineup].sort((a, b) => (b.tier || 0) - (a.tier || 0) || a.day - b.day || toNightMin(a.start) - toNightMin(b.start)).slice(0, n);
+  return lineup.filter(keep).sort((a, b) => (a.day == null) - (b.day == null) || (b.tier || 0) - (a.tier || 0) || a.day - b.day || toNightMin(a.start) - toNightMin(b.start)).slice(0, n);
 }
 function OnbSchedulePreview() {
-  var rows = _onbHeadliners(4).sort((a, b) => a.day - b.day || toNightMin(a.start) - toNightMin(b.start)).slice(0, 3);
+  var rows = _onbHeadliners(4, a => a.day != null).sort((a, b) => a.day - b.day || toNightMin(a.start) - toNightMin(b.start)).slice(0, 3);
   return React.createElement("div", {
     style: {
       background: "var(--paper-2)",
@@ -1478,7 +1478,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v365"
+        version: "v367"
       }));
     } catch {}
   }
@@ -1543,7 +1543,7 @@ class RootErrorBoundary extends React.Component {
         letterSpacing: 1.2,
         color: "rgba(var(--shade-rgb),0.45)"
       }
-    }, "PLURSKY · v365"));
+    }, "PLURSKY · v367"));
   }
 }
 function SetStartingCinematic() {

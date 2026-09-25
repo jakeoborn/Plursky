@@ -47,15 +47,17 @@ function VfxParticleField({ count = 14, scale = 1 }) {
 // invented stats or placeholder art), then the festival list. No permission
 // prompts here: name, Spotify and reminders are asked when the user opens
 // Personalize (Home's setup notice, Me), each with one sentence of why.
-function _onbHeadliners(n) {
+function _onbHeadliners(n, keep = () => true) {
   const lineup = (typeof activeLineup === "function" ? activeLineup() : ARTISTS) || [];
-  return [...lineup]
-    .sort((a, b) => (b.tier || 0) - (a.tier || 0) || (a.day - b.day) || (toNightMin(a.start) - toNightMin(b.start)))
+  return lineup.filter(keep)
+    .sort((a, b) => ((a.day == null) - (b.day == null)) || (b.tier || 0) - (a.tier || 0) || (a.day - b.day) || (toNightMin(a.start) - toNightMin(b.start)))
     .slice(0, n);
 }
 
 function OnbSchedulePreview() {
-  const rows = _onbHeadliners(4)
+  // A schedule row needs a day to sort and print. A billed act the official
+  // schedule never placed (CRSSD's day-null acts) is not an example of one.
+  const rows = _onbHeadliners(4, a => a.day != null)
     .sort((a, b) => (a.day - b.day) || (toNightMin(a.start) - toNightMin(b.start)))
     .slice(0, 3);
   return (
@@ -1002,7 +1004,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v365",
+        version: "v367",
       }));
     } catch {}
   }
@@ -1035,7 +1037,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(var(--shade-rgb),0.45)" }}>
-          PLURSKY · v365
+          PLURSKY · v367
         </div>
       </div>
     );
