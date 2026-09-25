@@ -21,6 +21,9 @@
 //      below, out of the lineup, with a one-line re-add:
 //        JENCARLOS · Mr. Brown · Mila Gama B2B X3BUTTERFLY  (on 09-02, gone today)
 //        Ultrathem (solo)                                   (already gone 09-02)
+//      The 09-02 read is the Internet Archive's capture (timestamp
+//      20260902015146); it is cited here only, never linked from a live
+//      module. Every record cites the official page as read today.
 //      Mila Gama and Ultrathem are still billed in other B2Bs
 //      ("Elias Garcia B2B Mila Gama", "Dr. Rubinstein B2B Ultrathem").
 //   2. ADDED: "GZA performing Liquid Swords" (on neither earlier read). The
@@ -369,7 +372,7 @@
     { id: "iiip-jencarlos", name: "JENCARLOS", lastSeen: "2026-09-02", removedFrom: { url: LINEUP, observedAt: "2026-09-25" } },
     { id: "iiip-mr-brown", name: "Mr. Brown", lastSeen: "2026-09-02", removedFrom: { url: LINEUP, observedAt: "2026-09-25" } },
     { id: "iiip-mila-gama-b2b-x3butterfly", name: "Mila Gama B2B X3BUTTERFLY", lastSeen: "2026-09-02", removedFrom: { url: LINEUP, observedAt: "2026-09-25" } },
-    { id: "iiip-ultrathem", name: "Ultrathem", lastSeen: "2026-08-29", removedFrom: { url: "https://web.archive.org/web/20260902015146/https://www.iiipoints.com/lineup-2026/", observedAt: "2026-09-02" } },
+    { id: "iiip-ultrathem", name: "Ultrathem", lastSeen: "2026-08-29", removedFrom: { url: LINEUP, observedAt: "2026-09-25" } },
   ].map(r => ({ ...r, reAdd: `mk("${r.id}", "${r.name}")` }));
 
   const CONFIG = {
