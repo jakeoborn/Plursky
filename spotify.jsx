@@ -10859,11 +10859,9 @@ function RecapScreen({ state, setState }) {
                   setTrackResults((d.tracks?.items || []).filter(t => t.preview_url).slice(0, 5));
                 }
               } else {
-                const res = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(q)}&entity=song&limit=6`);
-                if (res.ok) {
-                  const d = await res.json();
-                  setTrackResults((d.results || []).filter(t => t.previewUrl).slice(0, 5).map(t => ({ name: t.trackName, artists: [{ name: t.artistName }], preview_url: t.previewUrl, album: { images: [{ url: t.artworkUrl60 }] } })));
-                }
+                // No iTunes fallback: its previews may only promote store
+                // content next to a store badge (see _previewPlayable).
+                setTrackResults([]);
               }
             } catch {}
             setSearching(false);
@@ -10973,6 +10971,7 @@ function RecapScreen({ state, setState }) {
                       </div>
                     )}
                     {searching && <div className="mono" style={{ fontSize: 9, color: "rgba(var(--ink-rgb),0.3)", marginTop: 4 }}>Searching…</div>}
+                    {!searching && trackQuery.length >= 2 && !localStorage.getItem("spotify_token") && <div className="mono" style={{ fontSize: 9, color: "rgba(var(--ink-rgb),0.5)", marginTop: 4 }}>CONNECT SPOTIFY TO SEARCH SONGS</div>}
                   </>
                 )}
               </div>

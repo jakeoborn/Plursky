@@ -2437,6 +2437,26 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b5c2. Spotify artist images: attributed, temporary, never exported ──
+// Spotify's Developer Terms allow only temporary caching of Spotify cover art
+// and the Design Guidelines forbid cropping or overlaying it and require the
+// Spotify logo linking back. The gate pins: one helper owns artist_images_v1
+// and records each entry's source and fetch time; a Spotify entry is shown for
+// 24 h and then dropped; an unknown legacy entry is never shown or exported;
+// the recap hero card never draws a Spotify image; and a Spotify-sourced
+// artist hero is uncropped, un-overlaid and carries the linked full logo.
+{
+  console.log("▸ Spotify image gate — attributed, uncropped, 24 h, never in a share card");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-spotify-image-compliance.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`spotify image compliance failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b5d. Media state machine, in the running app ───────────────────────
 // useMomentPhoto used to hold `url = null` forever when the local lookup AND
 // the cloud restore both came back empty, and every thumbnail reads "no url

@@ -1533,47 +1533,6 @@ function HomeScreen({ state, setState }) {
   const countdown = preEventCountdown(state.saved);
   const isPostFestival = Date.now() > FESTIVAL_END_MS;
 
-  // Offline prep: prefetch photos for any saved sets we haven't cached yet,
-  // so the schedule + artist screens render with hero images even when the
-  // festival's LTE is saturated. TheAudioDB, no auth — Deezer used to do this
-  // but api.deezer.com sends no access-control-allow-origin, so every one of
-  // these requests was blocked by the browser and the prefetch cached nothing
-  // (v254). SEQUENTIAL, not a forEach fan-out: TADB's free key is rate
-  // limited, and twelve parallel requests get throttled into failures that
-  // look exactly like "no photo exists".
-  React.useEffect(() => {
-    const saved = state.saved || [];
-    if (!saved.length || !navigator.onLine) return;
-    if (typeof fetchAudioDB !== "function") return;
-    let cached = {};
-    try { cached = JSON.parse(localStorage.getItem("artist_images_v1") || "{}"); } catch {}
-    const missing = saved
-      .map(id => ARTISTS.find(a => a.id === id))
-      .filter(a => a && !cached[a.name.toLowerCase()])
-      .slice(0, 12); // throttle: 12 per session, rest fill in on revisit
-    if (!missing.length) return;
-    let live = true;
-    (async () => {
-      for (const a of missing) {
-        if (!live) return;
-        let img = null;
-        try { img = (await fetchAudioDB(a.name, a.genre))?.image || null; } catch {}
-        if (!live) return;
-        if (img) {
-          try {
-            const imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-            if (!imgs[a.name.toLowerCase()]) {
-              imgs[a.name.toLowerCase()] = img;
-              localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
-            }
-          } catch {}
-        }
-        await new Promise(r => setTimeout(r, 400));
-      }
-    })();
-    return () => { live = false; };
-  }, [state.saved?.length]);
-
   const current = ARTISTS.find(a => a.id === NOW.currentArtistId) || null;
   const next    = ARTISTS.find(a => a.id === NOW.nextArtistId) || null;
   const stageOf = id => STAGES.find(s => s.id === id);
