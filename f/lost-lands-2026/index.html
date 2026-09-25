@@ -68,6 +68,34 @@
   section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
+  details.more { margin:4px 0 0; }
+  details.more > summary { cursor:pointer; color:var(--ember); font-weight:600; font-size:14px; padding:10px 0; min-height:44px; display:flex; align-items:center; }
+  details.more[open] > summary { color:var(--muted); }
+  section.watch .embed { margin:16px 0 20px; }
+  section.watch .yt { position:relative; aspect-ratio:16/9; width:100%; min-height:200px; background:var(--panel); border-radius:12px; overflow:hidden; }
+  section.watch .yt iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+  /* Instagram's embed.js stamps an inline 326px min-width on its iframe. On a
+     320px phone that ran 26px past the screen and cut off "View profile", so
+     the iframe is held to its column; Instagram's own layout reflows to fit.
+     The scroll box stays as a backstop for anything else a script inserts. */
+  section.watch .embed-ig { overflow-x:auto; max-width:100%; }
+  section.watch .embed-ig iframe { min-width:0 !important; width:100% !important; max-width:100% !important; box-sizing:border-box; }
+  /* And nothing a third-party script inserts may widen the page, even for a
+     frame mid-hydration (seen once at 320px: 346px for a moment). */
+  section.watch { overflow-x:clip; }
+  section.watch .embed-ig blockquote, section.watch .embed-x blockquote { margin:0; min-height:420px; background:var(--panel); border-radius:12px; padding:16px; max-width:540px; }
+  section.watch .embed-x blockquote { min-height:260px; }
+  /* Tap-to-load: until tapped, a social post is a compact card with its type,
+     date, one button and the notice; nothing from Instagram or X is requested.
+     The blockquote stays empty and hidden until the tap fills it. */
+  section.watch blockquote.tap-embed { display:none; }
+  section.watch .embed-tap { background:var(--panel); border-radius:12px; padding:16px; max-width:540px; box-sizing:border-box; }
+  section.watch .embed-what { color:var(--ink); font-size:15px; font-weight:600; margin:0 0 10px; }
+  section.watch .embed-load { min-height:44px; padding:10px 16px; border-radius:10px; border:1px solid var(--ember); background:transparent; color:var(--ember); font:inherit; font-weight:600; font-size:15px; cursor:pointer; }
+  section.watch .embed-tap-note { color:var(--muted); font-size:13px; margin:8px 0 0; }
+  section.watch figure.tapped .embed-tap { display:none; }
+  section.watch .embed-sp iframe { display:block; border:0; border-radius:12px; min-height:352px; }
+  section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }
 </style>
 <script type="application/ld+json">
 {
@@ -1009,6 +1037,67 @@
       <dd>Lost Lands 2026 has 7 stages at Legend Valley, each one listed on this page.</dd>
     </dl>
   </section>
+  <section id="watch" class="watch" aria-labelledby="watch-h">
+    <h2 id="watch-h">Watch &amp; listen</h2>
+    <p class="note">From Lost Lands 2026's official accounts.</p>
+    <figure class="embed embed-ig" data-tap="instagram">
+      <blockquote class="tap-embed" data-class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DYP6adbMal_/" data-instgrm-version="14" data-href="https://www.instagram.com/p/DYP6adbMal_/"></blockquote>
+      <div class="embed-tap">
+        <p class="embed-what">Lineup · Posted May 12, 2026</p>
+        <button type="button" class="embed-load">Load the Instagram post</button>
+        <p class="embed-tap-note">Loading shows content from Instagram (Meta), which may collect data about your visit. <a href="/privacy.html#social-embeds">Privacy</a></p>
+      </div>
+      <p class="embed-cap">@lostlandsfestival on Instagram · <a href="https://www.instagram.com/p/DYP6adbMal_/" rel="noopener">View the original</a></p>
+    </figure>
+    <figure class="embed embed-ig" data-tap="instagram">
+      <blockquote class="tap-embed" data-class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DdjtWPkER06/" data-instgrm-version="14" data-href="https://www.instagram.com/p/DdjtWPkER06/"></blockquote>
+      <div class="embed-tap">
+        <p class="embed-what">Photo set · Posted September 21, 2026</p>
+        <button type="button" class="embed-load">Load the Instagram post</button>
+        <p class="embed-tap-note">Loading shows content from Instagram (Meta), which may collect data about your visit. <a href="/privacy.html#social-embeds">Privacy</a></p>
+      </div>
+      <p class="embed-cap">@lostlandsfestival on Instagram · <a href="https://www.instagram.com/lostlandsfestival/p/DdjtWPkER06/" rel="noopener">View the original</a></p>
+    </figure>
+    <figure class="embed embed-ig" data-tap="instagram">
+      <blockquote class="tap-embed" data-class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Ddhj6HmjxTS/" data-instgrm-version="14" data-href="https://www.instagram.com/p/Ddhj6HmjxTS/"></blockquote>
+      <div class="embed-tap">
+        <p class="embed-what">Photo set · Posted September 20, 2026</p>
+        <button type="button" class="embed-load">Load the Instagram post</button>
+        <p class="embed-tap-note">Loading shows content from Instagram (Meta), which may collect data about your visit. <a href="/privacy.html#social-embeds">Privacy</a></p>
+      </div>
+      <p class="embed-cap">@lostlandsfestival on Instagram · <a href="https://www.instagram.com/lostlandsfestival/p/Ddhj6HmjxTS/" rel="noopener">View the original</a></p>
+    </figure>
+    <script>
+(function () {
+  var sec = document.getElementById('watch');
+  if (!sec) return;
+  var SRC = { instagram: 'https://www.instagram.com/embed.js', x: 'https://platform.twitter.com/widgets.js' };
+  var requested = {};
+  function hydrate(p, fig) {
+    if (p === 'instagram' && window.instgrm && window.instgrm.Embeds) return window.instgrm.Embeds.process();
+    if (p === 'x' && window.twttr && window.twttr.widgets) return window.twttr.widgets.load(fig);
+    if (requested[p]) return; // in flight: the script scans the page when it runs
+    requested[p] = true;
+    var s = document.createElement('script'); s.async = true; s.src = SRC[p]; document.body.appendChild(s);
+  }
+  sec.addEventListener('click', function (ev) {
+    var b = ev.target.closest && ev.target.closest('button.embed-load');
+    if (!b) return;
+    var fig = b.closest('figure'), bq = fig && fig.querySelector('blockquote.tap-embed');
+    if (!bq || !SRC[fig.getAttribute('data-tap')]) return;
+    var a = document.createElement('a'); a.href = bq.getAttribute('data-href'); a.rel = 'noopener';
+    a.textContent = 'View this post on ' + (fig.getAttribute('data-tap') === 'x' ? 'X' : 'Instagram');
+    bq.appendChild(a); // X's script reads the post id from this link
+    bq.className = bq.getAttribute('data-class');
+    bq.removeAttribute('data-class');
+    fig.classList.add('tapped');
+    fig.setAttribute('tabindex', '-1');
+    fig.focus({ preventScroll: true });
+    hydrate(fig.getAttribute('data-tap'), fig);
+  });
+})();
+    </script>
+  </section>
 
 
   <section aria-labelledby="schedule-h">
@@ -1317,193 +1406,198 @@
       <li><span class="act">Benda</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf6">16:30</a></span></li>
       <li><span class="act">Big Florida</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls7">16:30</a></span></li>
       <li><span class="act">Black Tiger Sex Machine (Unmasked)</span> <span class="slots">Sun, Sep 20 · Forest Stage · <a href="#set-llu53">01:00</a></span></li>
-      <li><span class="act">Boogie T</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu7">21:45</a></span></li>
-      <li><span class="act">Borgore</span> <span class="slots">Fri, Sep 18 · The Crater · <a href="#set-llf7">20:45</a></span></li>
-      <li><span class="act">Bou</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-lls8">21:00</a></span></li>
-      <li><span class="act">Brainrack</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls9">03:00</a></span></li>
-      <li><span class="act">Calcium B2B Mad Dubz</span> <span class="slots">Wed, Sep 16 (early entry) · The Crater · <a href="#set-llw2">19:00</a></span></li>
-      <li><span class="act">Canabliss</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf8">19:00</a></span></li>
-      <li><span class="act">Capochino</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls10">15:00</a></span></li>
-      <li><span class="act">Casey Club</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf9">02:00</a></span></li>
-      <li><span class="act">Caspa</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw3">21:40</a></span></li>
-      <li><span class="act">Champagne Drip</span> <span class="slots">Sun, Sep 20 · The Crater · <a href="#set-llu8">21:50</a></span></li>
-      <li><span class="act">Chassi</span> <span class="slots">Wed, Sep 16 (early entry) · The Crater · <a href="#set-llw4">15:00</a></span></li>
-      <li><span class="act">Chozen</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls11">19:00</a></span></li>
-      <li><span class="act">Codd Dubz</span> <span class="slots">Sun, Sep 20 · The Crater · <a href="#set-llu9">16:25</a></span></li>
-      <li><span class="act">Crankdat B2B Alleycvt</span> <span class="slots">Sun, Sep 20 · Prehistoric Paradox · <a href="#set-llu2">20:30</a></span></li>
-      <li><span class="act">Craze B2B Dieselboy</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-lls13">02:00</a></span></li>
-      <li><span class="act">Crizzly</span> <span class="slots">Fri, Sep 18 · The Crater · <a href="#set-llf10">15:15</a></span></li>
-      <li><span class="act">Crumb Pit</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-lls14">16:00</a></span></li>
-      <li><span class="act">Crystal Skies</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu10">01:05</a></span></li>
-      <li><span class="act">Cyclops</span> <span class="slots">Sat, Sep 19 · The Crater · <a href="#set-lls15">18:35</a></span></li>
-      <li><span class="act">Darksiderz B2B Madgrrl</span> <span class="slots">Sat, Sep 19 · Raptor Alley · <a href="#set-lls16">02:00</a></span></li>
-      <li><span class="act">Deadcrow</span> <span class="slots">Thu, Sep 17 (early entry) · The Crater · <a href="#set-llh2">14:00</a></span></li>
-      <li><span class="act">Delta Heavy</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-lls17">19:00</a></span></li>
-      <li><span class="act">Dion Timmer</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf11">18:30</a></span></li>
-      <li><span class="act">Dirt Monkey</span> <span class="slots">Thu, Sep 17 (early entry) · The Grove · <a href="#set-llh3">18:00</a></span></li>
-      <li><span class="act">Dirtyphonics</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-lls18">01:00</a></span></li>
-      <li><span class="act">Dirtysnatcha</span> <span class="slots">Fri, Sep 18 · The Crater · <a href="#set-llf12">21:50</a></span></li>
-      <li><span class="act">Distant Matter</span> <span class="slots">Sun, Sep 20 · Forest Stage · <a href="#set-llu11">17:00</a></span></li>
-      <li><span class="act">Distinct Motive</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw5">20:50</a></span></li>
-      <li><span class="act">Doctor P</span> <span class="slots">Fri, Sep 18 · The Crater · <a href="#set-llf13">19:40</a></span></li>
-      <li><span class="act">Dr. Fresch</span> <span class="slots">Sat, Sep 19 · The Crater · <a href="#set-lls19">21:50</a></span></li>
-      <li><span class="act">Dr. Ushuu</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf15">16:00</a></span></li>
-      <li><span class="act">Dream Takers</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu12">15:00</a></span></li>
-      <li><span class="act">Drinkurwater</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf16">17:30</a></span></li>
-      <li><span class="act">Dubscribe</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf17">19:00</a></span></li>
-      <li><span class="act">Effin</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls20">16:55</a></span></li>
-      <li><span class="act">Emorfik B2B Usaybflow</span> <span class="slots">Wed, Sep 16 (early entry) · The Crater · <a href="#set-llw6">18:00</a></span></li>
-      <li><span class="act">Eptic B2B LYNY</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu13">18:00</a></span></li>
-      <li><span class="act">Excision (2 Hour Set)</span> <span class="slots">Fri, Sep 18 · Prehistoric Paradox · <a href="#set-llf60">22:10</a></span></li>
-      <li><span class="act">Excision (Detox Set)</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu14">19:00</a></span></li>
-      <li><span class="act">Excision B2B Space Laces</span> <span class="slots">Sun, Sep 20 · Prehistoric Paradox · <a href="#set-llu15">21:40</a></span></li>
-      <li><span class="act">FINNUH</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu16">16:00</a></span></li>
-      <li><span class="act">Flosstradamus</span> <span class="slots">Sat, Sep 19 · The Crater · <a href="#set-lls21">22:55</a></span></li>
-      <li><span class="act">Flux Pavilion</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls22">18:50</a></span></li>
-      <li><span class="act">Fresh Meat: Hevnfall</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw20">13:00</a></span></li>
-      <li><span class="act">Fresh Meat: Keeb</span> <span class="slots">Thu, Sep 17 (early entry) · The Crater · <a href="#set-llh13">13:00</a></span></li>
-      <li><span class="act">Fresh Meat: NEGAT1VE5PACE</span> <span class="slots">Wed, Sep 16 (early entry) · The Crater · <a href="#set-llw19">13:00</a></span></li>
-      <li><span class="act">Funtcase</span> <span class="slots">Thu, Sep 17 (early entry) · The Crater · <a href="#set-llh4">18:00</a></span></li>
-      <li><span class="act">Funtcase B2B Doctor P (DnB Set)</span> <span class="slots">Fri, Sep 18 · Raptor Alley · <a href="#set-llf63">00:00</a></span></li>
-      <li><span class="act">Future Exit</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf18">18:00</a></span></li>
-      <li><span class="act">Ganja White Night</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls23">21:30</a></span></li>
-      <li><span class="act">Gardella</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw7">15:00</a></span></li>
-      <li><span class="act">Ghastly</span> <span class="slots">Sun, Sep 20 · Forest Stage · <a href="#set-llu17">02:00</a></span></li>
-      <li><span class="act">GHENGAR</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls24">18:30</a></span></li>
-      <li><span class="act">Gladde Paling</span> <span class="slots">Sat, Sep 19 · Raptor Alley · <a href="#set-lls25">01:00</a></span></li>
-      <li><span class="act">Grabbitz</span> <span class="slots">Sun, Sep 20 · Prehistoric Paradox · <a href="#set-llu18">16:45</a></span></li>
-      <li><span class="act">Green Matter</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls26">16:00</a></span></li>
-      <li><span class="act">Hairitage</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw8">20:00</a></span></li>
-      <li><span class="act">Haliene</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu19">00:10</a></span></li>
-      <li><span class="act">Hedex</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-lls27">20:00</a></span></li>
-      <li><span class="act">Hershe</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw9">16:40</a></span></li>
-      <li><span class="act">Heyz</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls28">16:00</a></span></li>
-      <li><span class="act">HOL!</span> <span class="slots">Fri, Sep 18 · Prehistoric Paradox · <a href="#set-llf19">19:00</a></span></li>
-      <li><span class="act">Hostage Situation</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu20">20:00</a></span></li>
-      <li><span class="act">Hurtbox</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu21">19:00</a></span></li>
-      <li><span class="act">HVDES</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls29">15:30</a></span></li>
-      <li><span class="act">Hydraulix</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw10">15:50</a></span></li>
-      <li><span class="act">Illenium</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls30">22:50</a></span></li>
-      <li><span class="act">Imanu</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-lls31">03:00</a></span></li>
-      <li><span class="act">Infekt B2B Samplifire</span> <span class="slots">Fri, Sep 18 · Prehistoric Paradox · <a href="#set-llf20">18:00</a></span></li>
-      <li><span class="act">Ivory</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls32">00:15</a></span></li>
-      <li><span class="act">Ivy Lab</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf21">20:00</a></span></li>
-      <li><span class="act">Izadi</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf22">23:00</a></span></li>
-      <li><span class="act">Izzy Vadim</span> <span class="slots">Wed, Sep 16 (early entry) · The Crater · <a href="#set-llw11">16:00</a></span></li>
-      <li><span class="act">Jaenga</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw12">17:30</a></span></li>
-      <li><span class="act">Jantsen</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf23">21:00</a></span></li>
-      <li><span class="act">Jessica Audiffred</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls33">17:50</a></span></li>
-      <li><span class="act">Jkyl &amp; Hyde</span> <span class="slots">Fri, Sep 18 · Prehistoric Paradox · <a href="#set-llf24">16:00</a></span></li>
-      <li><span class="act">Josh Teed</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls34">02:00</a></span></li>
-      <li><span class="act">Kai Wachi</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls35">20:50</a></span></li>
-      <li><span class="act">Killmatter</span> <span class="slots">Sun, Sep 20 · Raptor Alley · <a href="#set-llu22">01:00</a></span></li>
-      <li><span class="act">Kliptic</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf25">20:00</a></span></li>
-      <li><span class="act">Klo</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf26">01:00</a></span></li>
-      <li><span class="act">Know Good</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu23">17:00</a></span></li>
-      <li><span class="act">Kompany</span> <span class="slots">Sun, Sep 20 · Prehistoric Paradox · <a href="#set-llu24">17:40</a></span></li>
-      <li><span class="act">Krewella</span> <span class="slots">Sun, Sep 20 · The Crater · <a href="#set-llu25">20:45</a></span></li>
-      <li><span class="act">Layz</span> <span class="slots">Sat, Sep 19 · The Crater · <a href="#set-lls36">19:40</a></span></li>
-      <li><span class="act">Lazrus</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf27">15:00</a></span></li>
-      <li><span class="act">Leotrix</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls37">22:00</a></span></li>
-      <li><span class="act">Levity</span> <span class="slots">Fri, Sep 18 · Prehistoric Paradox · <a href="#set-llf28">21:00</a></span></li>
-      <li><span class="act">Lil Texas</span> <span class="slots">Sat, Sep 19 · Raptor Alley · <a href="#set-lls38">00:00</a></span></li>
-      <li><span class="act">Liquid Stranger</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf29">20:30</a></span></li>
-      <li><span class="act">Lowcation</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls39">03:00</a></span></li>
-      <li><span class="act">Luci</span> <span class="slots">Sun, Sep 20 · The Crater · <a href="#set-llu26">15:15</a></span></li>
-      <li><span class="act">Lumasi</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf30">01:00</a></span></li>
-      <li><span class="act">Machaki</span> <span class="slots">Thu, Sep 17 (early entry) · The Crater · <a href="#set-llh5">16:00</a></span></li>
-      <li><span class="act">Mad Dubz</span> <span class="slots">Sun, Sep 20 · Prehistoric Paradox · <a href="#set-llu27">14:55</a></span></li>
-      <li><span class="act">Mefjus + Daxta MC</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-lls40">22:00</a></span></li>
-      <li><span class="act">Mile32</span> <span class="slots">Wed, Sep 16 (early entry) · The Crater · <a href="#set-llw13">14:00</a></span></li>
-      <li><span class="act">Mindset</span> <span class="slots">Thu, Sep 17 (early entry) · The Grove · <a href="#set-llh7">13:00</a></span></li>
-      <li><span class="act">Modal Nodes</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu28">21:00</a></span></li>
-      <li><span class="act">Mozey</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-lls41">18:00</a></span></li>
-      <li><span class="act">MPORT</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw14">14:00</a></span></li>
-      <li><span class="act">Muerte</span> <span class="slots">Wed, Sep 16 (early entry) · The Crater · <a href="#set-llw15">17:00</a></span></li>
-      <li><span class="act">Myrias</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls42">15:00</a></span></li>
-      <li><span class="act">Mythm</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls43">00:00</a></span></li>
-      <li><span class="act">Neotek</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls44">14:00</a></span></li>
-      <li><span class="act">Neumonic</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf31">03:00</a></span></li>
-      <li><span class="act">Nghtmre</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf32">21:30</a></span></li>
-      <li><span class="act">Nikita, The Wicked</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw16">18:20</a></span></li>
-      <li><span class="act">Nimda</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf33">21:00</a></span></li>
-      <li><span class="act">Noetika</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls45">18:00</a></span></li>
-      <li><span class="act">OG NIXIN</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu29">01:00</a></span></li>
-      <li><span class="act">Oliverse</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf34">03:00</a></span></li>
-      <li><span class="act">Onara</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu30">02:00</a></span></li>
-      <li><span class="act">Otsukare</span> <span class="slots">Thu, Sep 17 (early entry) · The Crater · <a href="#set-llh14">15:00</a></span></li>
-      <li><span class="act">Paper Skies</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf35">14:30</a></span></li>
-      <li><span class="act">Passport</span> <span class="slots">Sun, Sep 20 · Forest Stage · <a href="#set-llu31">22:00</a></span></li>
-      <li><span class="act">Phaseone</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls46">17:30</a></span></li>
-      <li><span class="act">Phrva</span> <span class="slots">Thu, Sep 17 (early entry) · The Grove · <a href="#set-llh8">16:00</a></span></li>
-      <li><span class="act">Poni</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf37">16:00</a></span></li>
-      <li><span class="act">Pretty Sweet</span> <span class="slots">Sun, Sep 20 · The Crater · <a href="#set-llu32">14:00</a></span></li>
-      <li><span class="act">Probcause</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf38">18:00</a></span></li>
-      <li><span class="act">Prosecute</span> <span class="slots">Sat, Sep 19 · The Crater · <a href="#set-lls47">17:30</a></span></li>
-      <li><span class="act">Ravenscoon</span> <span class="slots">Fri, Sep 18 · Prehistoric Paradox · <a href="#set-llf39">17:00</a></span></li>
-      <li><span class="act">Reaper</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-llf40">00:00</a></span></li>
-      <li><span class="act">Remk</span> <span class="slots">Sun, Sep 20 · Raptor Alley · <a href="#set-llu33">00:00</a></span></li>
-      <li><span class="act">Richard Finger</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf41">00:00</a></span></li>
-      <li><span class="act">Riot</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf42">02:05</a></span></li>
-      <li><span class="act">Riot Ten</span> <span class="slots">Wed, Sep 16 (early entry) · The Crater · <a href="#set-llw17">20:00</a></span></li>
-      <li><span class="act">ROI*</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu34">18:00</a></span></li>
-      <li><span class="act">Rsun</span> <span class="slots">Thu, Sep 17 (early entry) · The Grove · <a href="#set-llh9">15:00</a></span></li>
-      <li><span class="act">Ryns</span> <span class="slots">Sun, Sep 20 · Forest Stage · <a href="#set-llu35">16:00</a></span></li>
-      <li><span class="act">RZRKT</span> <span class="slots">Thu, Sep 17 (early entry) · The Crater · <a href="#set-llh10">17:00</a></span></li>
-      <li><span class="act">Saint Miller</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls48">17:00</a></span></li>
-      <li><span class="act">Seth David</span> <span class="slots">Fri, Sep 18 · Prehistoric Paradox · <a href="#set-llf43">15:00</a></span></li>
-      <li><span class="act">Seven Lions (Sunset Set)</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls49">19:30</a></span></li>
-      <li><span class="act">Shank Aaron</span> <span class="slots">Fri, Sep 18 · The Crater · <a href="#set-llf61">14:00</a></span></li>
-      <li><span class="act">Shlump</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf44">23:00</a></span></li>
-      <li><span class="act">Sigma</span> <span class="slots">Fri, Sep 18 · Raptor Alley · <a href="#set-llf45">01:00</a></span></li>
-      <li><span class="act">Sippy</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf46">00:15</a></span></li>
-      <li><span class="act">Sisto</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu36">00:00</a></span></li>
-      <li><span class="act">Skilah</span> <span class="slots">Sun, Sep 20 · Forest Stage · <a href="#set-llu37">21:00</a></span></li>
-      <li><span class="act">Slander</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls50">21:50</a></span></li>
-      <li><span class="act">Smoakland</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw18">19:10</a></span></li>
-      <li><span class="act">Sodown</span> <span class="slots">Sun, Sep 20 · The Crater · <a href="#set-llu38">18:35</a></span></li>
-      <li><span class="act">Space Wizard</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls51">01:10</a></span></li>
-      <li><span class="act">Sportmode</span> <span class="slots">Sun, Sep 20 · Raptor Alley · <a href="#set-llu39">23:00</a></span></li>
-      <li><span class="act">SQISHI</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu40">17:00</a></span></li>
-      <li><span class="act">Stoned Level</span> <span class="slots">Sat, Sep 19 · The Crater · <a href="#set-lls52">16:25</a></span></li>
-      <li><span class="act">Stumpi</span> <span class="slots">Sun, Sep 20 · Forest Stage · <a href="#set-llu41">00:00</a></span></li>
-      <li><span class="act">Subsonic</span> <span class="slots">Fri, Sep 18 · Raptor Alley · <a href="#set-llf47">02:00</a></span></li>
-      <li><span class="act">Subtronics B2B Level Up</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls53">22:45</a></span></li>
-      <li><span class="act">Sullivan King B2B Ray Volpe</span> <span class="slots">Fri, Sep 18 · Prehistoric Paradox · <a href="#set-llf48">20:00</a></span></li>
-      <li><span class="act">Super Future</span> <span class="slots">Thu, Sep 17 (early entry) · The Grove · <a href="#set-llh11">17:00</a></span></li>
-      <li><span class="act">Taiki Nulight</span> <span class="slots">Sun, Sep 20 · Forest Stage · <a href="#set-llu42">20:00</a></span></li>
-      <li><span class="act">The Frim</span> <span class="slots">Fri, Sep 18 · The Crater · <a href="#set-llf62">17:30</a></span></li>
-      <li><span class="act">The Resistance</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf49">22:45</a></span></li>
-      <li><span class="act">The Widdler</span> <span class="slots">Fri, Sep 18 · The Crater · <a href="#set-llf50">22:55</a></span></li>
-      <li><span class="act">Tisoki</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls54">02:05</a></span></li>
-      <li><span class="act">Tokyo Machine</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls55">21:00</a></span></li>
-      <li><span class="act">Trivecta</span> <span class="slots">Sun, Sep 20 · The Crater · <a href="#set-llu43">17:30</a></span></li>
-      <li><span class="act">Truth</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls56">20:00</a></span></li>
-      <li><span class="act">Twopercent</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf51">03:00</a></span></li>
-      <li><span class="act">TYNAN</span> <span class="slots">Fri, Sep 18 · Prehistoric Paradox · <a href="#set-llf52">14:00</a></span></li>
-      <li><span class="act">Usaybflow</span> <span class="slots">Sun, Sep 20 · Prehistoric Paradox · <a href="#set-llu44">14:00</a></span></li>
-      <li><span class="act">Vampa</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf53">22:00</a></span></li>
-      <li><span class="act">Virtual Riot</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu45">20:50</a></span></li>
-      <li><span class="act">VKTM</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf54">15:30</a></span></li>
-      <li><span class="act">Warlord</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu46">22:00</a></span></li>
-      <li><span class="act">Wax Motif</span> <span class="slots">Sun, Sep 20 · Forest Stage · <a href="#set-llu47">23:00</a></span></li>
-      <li><span class="act">Whales</span> <span class="slots">Sat, Sep 19 · The Crater · <a href="#set-lls57">15:15</a></span></li>
-      <li><span class="act">Whethan</span> <span class="slots">Sat, Sep 19 · The Crater · <a href="#set-lls58">20:45</a></span></li>
-      <li><span class="act">Wiley</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf55">02:00</a></span></li>
-      <li><span class="act">William Black</span> <span class="slots">Sun, Sep 20 · The Crater · <a href="#set-llu48">19:40</a></span></li>
-      <li><span class="act">Wonkywilla</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu49">16:00</a></span></li>
-      <li><span class="act">Wooli (Sunset Set)</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf56">19:30</a></span></li>
-      <li><span class="act">Wraz</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls59">01:00</a></span></li>
-      <li><span class="act">Xotix</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf57">22:00</a></span></li>
-      <li><span class="act">Yetep</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu50">02:00</a></span></li>
-      <li><span class="act">YOOKIE</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf58">01:10</a></span></li>
-      <li><span class="act">YVM3</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu51">23:00</a></span></li>
-      <li><span class="act">Zen Selekta</span> <span class="slots">Thu, Sep 17 (early entry) · The Grove · <a href="#set-llh12">14:00</a></span></li>
-      <li><span class="act">Zero</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf59">00:00</a></span></li>
-      <li><span class="act">Zingara</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls60">20:30</a></span></li>
-      <li><span class="act">Zoey808</span> <span class="slots">Sun, Sep 20 · Forest Stage · <a href="#set-llu52">19:00</a></span></li>
-      <li><span class="act">Zomboy</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls61">19:50</a></span></li>
     </ul>
+    <details class="more">
+      <summary>Show all 206 artists</summary>
+      <ul class="lineup">
+        <li><span class="act">Boogie T</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu7">21:45</a></span></li>
+        <li><span class="act">Borgore</span> <span class="slots">Fri, Sep 18 · The Crater · <a href="#set-llf7">20:45</a></span></li>
+        <li><span class="act">Bou</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-lls8">21:00</a></span></li>
+        <li><span class="act">Brainrack</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls9">03:00</a></span></li>
+        <li><span class="act">Calcium B2B Mad Dubz</span> <span class="slots">Wed, Sep 16 (early entry) · The Crater · <a href="#set-llw2">19:00</a></span></li>
+        <li><span class="act">Canabliss</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf8">19:00</a></span></li>
+        <li><span class="act">Capochino</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls10">15:00</a></span></li>
+        <li><span class="act">Casey Club</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf9">02:00</a></span></li>
+        <li><span class="act">Caspa</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw3">21:40</a></span></li>
+        <li><span class="act">Champagne Drip</span> <span class="slots">Sun, Sep 20 · The Crater · <a href="#set-llu8">21:50</a></span></li>
+        <li><span class="act">Chassi</span> <span class="slots">Wed, Sep 16 (early entry) · The Crater · <a href="#set-llw4">15:00</a></span></li>
+        <li><span class="act">Chozen</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls11">19:00</a></span></li>
+        <li><span class="act">Codd Dubz</span> <span class="slots">Sun, Sep 20 · The Crater · <a href="#set-llu9">16:25</a></span></li>
+        <li><span class="act">Crankdat B2B Alleycvt</span> <span class="slots">Sun, Sep 20 · Prehistoric Paradox · <a href="#set-llu2">20:30</a></span></li>
+        <li><span class="act">Craze B2B Dieselboy</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-lls13">02:00</a></span></li>
+        <li><span class="act">Crizzly</span> <span class="slots">Fri, Sep 18 · The Crater · <a href="#set-llf10">15:15</a></span></li>
+        <li><span class="act">Crumb Pit</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-lls14">16:00</a></span></li>
+        <li><span class="act">Crystal Skies</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu10">01:05</a></span></li>
+        <li><span class="act">Cyclops</span> <span class="slots">Sat, Sep 19 · The Crater · <a href="#set-lls15">18:35</a></span></li>
+        <li><span class="act">Darksiderz B2B Madgrrl</span> <span class="slots">Sat, Sep 19 · Raptor Alley · <a href="#set-lls16">02:00</a></span></li>
+        <li><span class="act">Deadcrow</span> <span class="slots">Thu, Sep 17 (early entry) · The Crater · <a href="#set-llh2">14:00</a></span></li>
+        <li><span class="act">Delta Heavy</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-lls17">19:00</a></span></li>
+        <li><span class="act">Dion Timmer</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf11">18:30</a></span></li>
+        <li><span class="act">Dirt Monkey</span> <span class="slots">Thu, Sep 17 (early entry) · The Grove · <a href="#set-llh3">18:00</a></span></li>
+        <li><span class="act">Dirtyphonics</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-lls18">01:00</a></span></li>
+        <li><span class="act">Dirtysnatcha</span> <span class="slots">Fri, Sep 18 · The Crater · <a href="#set-llf12">21:50</a></span></li>
+        <li><span class="act">Distant Matter</span> <span class="slots">Sun, Sep 20 · Forest Stage · <a href="#set-llu11">17:00</a></span></li>
+        <li><span class="act">Distinct Motive</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw5">20:50</a></span></li>
+        <li><span class="act">Doctor P</span> <span class="slots">Fri, Sep 18 · The Crater · <a href="#set-llf13">19:40</a></span></li>
+        <li><span class="act">Dr. Fresch</span> <span class="slots">Sat, Sep 19 · The Crater · <a href="#set-lls19">21:50</a></span></li>
+        <li><span class="act">Dr. Ushuu</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf15">16:00</a></span></li>
+        <li><span class="act">Dream Takers</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu12">15:00</a></span></li>
+        <li><span class="act">Drinkurwater</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf16">17:30</a></span></li>
+        <li><span class="act">Dubscribe</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf17">19:00</a></span></li>
+        <li><span class="act">Effin</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls20">16:55</a></span></li>
+        <li><span class="act">Emorfik B2B Usaybflow</span> <span class="slots">Wed, Sep 16 (early entry) · The Crater · <a href="#set-llw6">18:00</a></span></li>
+        <li><span class="act">Eptic B2B LYNY</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu13">18:00</a></span></li>
+        <li><span class="act">Excision (2 Hour Set)</span> <span class="slots">Fri, Sep 18 · Prehistoric Paradox · <a href="#set-llf60">22:10</a></span></li>
+        <li><span class="act">Excision (Detox Set)</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu14">19:00</a></span></li>
+        <li><span class="act">Excision B2B Space Laces</span> <span class="slots">Sun, Sep 20 · Prehistoric Paradox · <a href="#set-llu15">21:40</a></span></li>
+        <li><span class="act">FINNUH</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu16">16:00</a></span></li>
+        <li><span class="act">Flosstradamus</span> <span class="slots">Sat, Sep 19 · The Crater · <a href="#set-lls21">22:55</a></span></li>
+        <li><span class="act">Flux Pavilion</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls22">18:50</a></span></li>
+        <li><span class="act">Fresh Meat: Hevnfall</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw20">13:00</a></span></li>
+        <li><span class="act">Fresh Meat: Keeb</span> <span class="slots">Thu, Sep 17 (early entry) · The Crater · <a href="#set-llh13">13:00</a></span></li>
+        <li><span class="act">Fresh Meat: NEGAT1VE5PACE</span> <span class="slots">Wed, Sep 16 (early entry) · The Crater · <a href="#set-llw19">13:00</a></span></li>
+        <li><span class="act">Funtcase</span> <span class="slots">Thu, Sep 17 (early entry) · The Crater · <a href="#set-llh4">18:00</a></span></li>
+        <li><span class="act">Funtcase B2B Doctor P (DnB Set)</span> <span class="slots">Fri, Sep 18 · Raptor Alley · <a href="#set-llf63">00:00</a></span></li>
+        <li><span class="act">Future Exit</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf18">18:00</a></span></li>
+        <li><span class="act">Ganja White Night</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls23">21:30</a></span></li>
+        <li><span class="act">Gardella</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw7">15:00</a></span></li>
+        <li><span class="act">Ghastly</span> <span class="slots">Sun, Sep 20 · Forest Stage · <a href="#set-llu17">02:00</a></span></li>
+        <li><span class="act">GHENGAR</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls24">18:30</a></span></li>
+        <li><span class="act">Gladde Paling</span> <span class="slots">Sat, Sep 19 · Raptor Alley · <a href="#set-lls25">01:00</a></span></li>
+        <li><span class="act">Grabbitz</span> <span class="slots">Sun, Sep 20 · Prehistoric Paradox · <a href="#set-llu18">16:45</a></span></li>
+        <li><span class="act">Green Matter</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls26">16:00</a></span></li>
+        <li><span class="act">Hairitage</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw8">20:00</a></span></li>
+        <li><span class="act">Haliene</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu19">00:10</a></span></li>
+        <li><span class="act">Hedex</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-lls27">20:00</a></span></li>
+        <li><span class="act">Hershe</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw9">16:40</a></span></li>
+        <li><span class="act">Heyz</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls28">16:00</a></span></li>
+        <li><span class="act">HOL!</span> <span class="slots">Fri, Sep 18 · Prehistoric Paradox · <a href="#set-llf19">19:00</a></span></li>
+        <li><span class="act">Hostage Situation</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu20">20:00</a></span></li>
+        <li><span class="act">Hurtbox</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu21">19:00</a></span></li>
+        <li><span class="act">HVDES</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls29">15:30</a></span></li>
+        <li><span class="act">Hydraulix</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw10">15:50</a></span></li>
+        <li><span class="act">Illenium</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls30">22:50</a></span></li>
+        <li><span class="act">Imanu</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-lls31">03:00</a></span></li>
+        <li><span class="act">Infekt B2B Samplifire</span> <span class="slots">Fri, Sep 18 · Prehistoric Paradox · <a href="#set-llf20">18:00</a></span></li>
+        <li><span class="act">Ivory</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls32">00:15</a></span></li>
+        <li><span class="act">Ivy Lab</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf21">20:00</a></span></li>
+        <li><span class="act">Izadi</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf22">23:00</a></span></li>
+        <li><span class="act">Izzy Vadim</span> <span class="slots">Wed, Sep 16 (early entry) · The Crater · <a href="#set-llw11">16:00</a></span></li>
+        <li><span class="act">Jaenga</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw12">17:30</a></span></li>
+        <li><span class="act">Jantsen</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf23">21:00</a></span></li>
+        <li><span class="act">Jessica Audiffred</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls33">17:50</a></span></li>
+        <li><span class="act">Jkyl &amp; Hyde</span> <span class="slots">Fri, Sep 18 · Prehistoric Paradox · <a href="#set-llf24">16:00</a></span></li>
+        <li><span class="act">Josh Teed</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls34">02:00</a></span></li>
+        <li><span class="act">Kai Wachi</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls35">20:50</a></span></li>
+        <li><span class="act">Killmatter</span> <span class="slots">Sun, Sep 20 · Raptor Alley · <a href="#set-llu22">01:00</a></span></li>
+        <li><span class="act">Kliptic</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf25">20:00</a></span></li>
+        <li><span class="act">Klo</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf26">01:00</a></span></li>
+        <li><span class="act">Know Good</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu23">17:00</a></span></li>
+        <li><span class="act">Kompany</span> <span class="slots">Sun, Sep 20 · Prehistoric Paradox · <a href="#set-llu24">17:40</a></span></li>
+        <li><span class="act">Krewella</span> <span class="slots">Sun, Sep 20 · The Crater · <a href="#set-llu25">20:45</a></span></li>
+        <li><span class="act">Layz</span> <span class="slots">Sat, Sep 19 · The Crater · <a href="#set-lls36">19:40</a></span></li>
+        <li><span class="act">Lazrus</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf27">15:00</a></span></li>
+        <li><span class="act">Leotrix</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls37">22:00</a></span></li>
+        <li><span class="act">Levity</span> <span class="slots">Fri, Sep 18 · Prehistoric Paradox · <a href="#set-llf28">21:00</a></span></li>
+        <li><span class="act">Lil Texas</span> <span class="slots">Sat, Sep 19 · Raptor Alley · <a href="#set-lls38">00:00</a></span></li>
+        <li><span class="act">Liquid Stranger</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf29">20:30</a></span></li>
+        <li><span class="act">Lowcation</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls39">03:00</a></span></li>
+        <li><span class="act">Luci</span> <span class="slots">Sun, Sep 20 · The Crater · <a href="#set-llu26">15:15</a></span></li>
+        <li><span class="act">Lumasi</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf30">01:00</a></span></li>
+        <li><span class="act">Machaki</span> <span class="slots">Thu, Sep 17 (early entry) · The Crater · <a href="#set-llh5">16:00</a></span></li>
+        <li><span class="act">Mad Dubz</span> <span class="slots">Sun, Sep 20 · Prehistoric Paradox · <a href="#set-llu27">14:55</a></span></li>
+        <li><span class="act">Mefjus + Daxta MC</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-lls40">22:00</a></span></li>
+        <li><span class="act">Mile32</span> <span class="slots">Wed, Sep 16 (early entry) · The Crater · <a href="#set-llw13">14:00</a></span></li>
+        <li><span class="act">Mindset</span> <span class="slots">Thu, Sep 17 (early entry) · The Grove · <a href="#set-llh7">13:00</a></span></li>
+        <li><span class="act">Modal Nodes</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu28">21:00</a></span></li>
+        <li><span class="act">Mozey</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-lls41">18:00</a></span></li>
+        <li><span class="act">MPORT</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw14">14:00</a></span></li>
+        <li><span class="act">Muerte</span> <span class="slots">Wed, Sep 16 (early entry) · The Crater · <a href="#set-llw15">17:00</a></span></li>
+        <li><span class="act">Myrias</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls42">15:00</a></span></li>
+        <li><span class="act">Mythm</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls43">00:00</a></span></li>
+        <li><span class="act">Neotek</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls44">14:00</a></span></li>
+        <li><span class="act">Neumonic</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf31">03:00</a></span></li>
+        <li><span class="act">Nghtmre</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf32">21:30</a></span></li>
+        <li><span class="act">Nikita, The Wicked</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw16">18:20</a></span></li>
+        <li><span class="act">Nimda</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf33">21:00</a></span></li>
+        <li><span class="act">Noetika</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls45">18:00</a></span></li>
+        <li><span class="act">OG NIXIN</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu29">01:00</a></span></li>
+        <li><span class="act">Oliverse</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf34">03:00</a></span></li>
+        <li><span class="act">Onara</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu30">02:00</a></span></li>
+        <li><span class="act">Otsukare</span> <span class="slots">Thu, Sep 17 (early entry) · The Crater · <a href="#set-llh14">15:00</a></span></li>
+        <li><span class="act">Paper Skies</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf35">14:30</a></span></li>
+        <li><span class="act">Passport</span> <span class="slots">Sun, Sep 20 · Forest Stage · <a href="#set-llu31">22:00</a></span></li>
+        <li><span class="act">Phaseone</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls46">17:30</a></span></li>
+        <li><span class="act">Phrva</span> <span class="slots">Thu, Sep 17 (early entry) · The Grove · <a href="#set-llh8">16:00</a></span></li>
+        <li><span class="act">Poni</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf37">16:00</a></span></li>
+        <li><span class="act">Pretty Sweet</span> <span class="slots">Sun, Sep 20 · The Crater · <a href="#set-llu32">14:00</a></span></li>
+        <li><span class="act">Probcause</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf38">18:00</a></span></li>
+        <li><span class="act">Prosecute</span> <span class="slots">Sat, Sep 19 · The Crater · <a href="#set-lls47">17:30</a></span></li>
+        <li><span class="act">Ravenscoon</span> <span class="slots">Fri, Sep 18 · Prehistoric Paradox · <a href="#set-llf39">17:00</a></span></li>
+        <li><span class="act">Reaper</span> <span class="slots">Sat, Sep 19 · Forest Stage · <a href="#set-llf40">00:00</a></span></li>
+        <li><span class="act">Remk</span> <span class="slots">Sun, Sep 20 · Raptor Alley · <a href="#set-llu33">00:00</a></span></li>
+        <li><span class="act">Richard Finger</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf41">00:00</a></span></li>
+        <li><span class="act">Riot</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf42">02:05</a></span></li>
+        <li><span class="act">Riot Ten</span> <span class="slots">Wed, Sep 16 (early entry) · The Crater · <a href="#set-llw17">20:00</a></span></li>
+        <li><span class="act">ROI*</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu34">18:00</a></span></li>
+        <li><span class="act">Rsun</span> <span class="slots">Thu, Sep 17 (early entry) · The Grove · <a href="#set-llh9">15:00</a></span></li>
+        <li><span class="act">Ryns</span> <span class="slots">Sun, Sep 20 · Forest Stage · <a href="#set-llu35">16:00</a></span></li>
+        <li><span class="act">RZRKT</span> <span class="slots">Thu, Sep 17 (early entry) · The Crater · <a href="#set-llh10">17:00</a></span></li>
+        <li><span class="act">Saint Miller</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls48">17:00</a></span></li>
+        <li><span class="act">Seth David</span> <span class="slots">Fri, Sep 18 · Prehistoric Paradox · <a href="#set-llf43">15:00</a></span></li>
+        <li><span class="act">Seven Lions (Sunset Set)</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls49">19:30</a></span></li>
+        <li><span class="act">Shank Aaron</span> <span class="slots">Fri, Sep 18 · The Crater · <a href="#set-llf61">14:00</a></span></li>
+        <li><span class="act">Shlump</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf44">23:00</a></span></li>
+        <li><span class="act">Sigma</span> <span class="slots">Fri, Sep 18 · Raptor Alley · <a href="#set-llf45">01:00</a></span></li>
+        <li><span class="act">Sippy</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf46">00:15</a></span></li>
+        <li><span class="act">Sisto</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu36">00:00</a></span></li>
+        <li><span class="act">Skilah</span> <span class="slots">Sun, Sep 20 · Forest Stage · <a href="#set-llu37">21:00</a></span></li>
+        <li><span class="act">Slander</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls50">21:50</a></span></li>
+        <li><span class="act">Smoakland</span> <span class="slots">Wed, Sep 16 (early entry) · The Grove · <a href="#set-llw18">19:10</a></span></li>
+        <li><span class="act">Sodown</span> <span class="slots">Sun, Sep 20 · The Crater · <a href="#set-llu38">18:35</a></span></li>
+        <li><span class="act">Space Wizard</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls51">01:10</a></span></li>
+        <li><span class="act">Sportmode</span> <span class="slots">Sun, Sep 20 · Raptor Alley · <a href="#set-llu39">23:00</a></span></li>
+        <li><span class="act">SQISHI</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu40">17:00</a></span></li>
+        <li><span class="act">Stoned Level</span> <span class="slots">Sat, Sep 19 · The Crater · <a href="#set-lls52">16:25</a></span></li>
+        <li><span class="act">Stumpi</span> <span class="slots">Sun, Sep 20 · Forest Stage · <a href="#set-llu41">00:00</a></span></li>
+        <li><span class="act">Subsonic</span> <span class="slots">Fri, Sep 18 · Raptor Alley · <a href="#set-llf47">02:00</a></span></li>
+        <li><span class="act">Subtronics B2B Level Up</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls53">22:45</a></span></li>
+        <li><span class="act">Sullivan King B2B Ray Volpe</span> <span class="slots">Fri, Sep 18 · Prehistoric Paradox · <a href="#set-llf48">20:00</a></span></li>
+        <li><span class="act">Super Future</span> <span class="slots">Thu, Sep 17 (early entry) · The Grove · <a href="#set-llh11">17:00</a></span></li>
+        <li><span class="act">Taiki Nulight</span> <span class="slots">Sun, Sep 20 · Forest Stage · <a href="#set-llu42">20:00</a></span></li>
+        <li><span class="act">The Frim</span> <span class="slots">Fri, Sep 18 · The Crater · <a href="#set-llf62">17:30</a></span></li>
+        <li><span class="act">The Resistance</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf49">22:45</a></span></li>
+        <li><span class="act">The Widdler</span> <span class="slots">Fri, Sep 18 · The Crater · <a href="#set-llf50">22:55</a></span></li>
+        <li><span class="act">Tisoki</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls54">02:05</a></span></li>
+        <li><span class="act">Tokyo Machine</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls55">21:00</a></span></li>
+        <li><span class="act">Trivecta</span> <span class="slots">Sun, Sep 20 · The Crater · <a href="#set-llu43">17:30</a></span></li>
+        <li><span class="act">Truth</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls56">20:00</a></span></li>
+        <li><span class="act">Twopercent</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf51">03:00</a></span></li>
+        <li><span class="act">TYNAN</span> <span class="slots">Fri, Sep 18 · Prehistoric Paradox · <a href="#set-llf52">14:00</a></span></li>
+        <li><span class="act">Usaybflow</span> <span class="slots">Sun, Sep 20 · Prehistoric Paradox · <a href="#set-llu44">14:00</a></span></li>
+        <li><span class="act">Vampa</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf53">22:00</a></span></li>
+        <li><span class="act">Virtual Riot</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu45">20:50</a></span></li>
+        <li><span class="act">VKTM</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf54">15:30</a></span></li>
+        <li><span class="act">Warlord</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu46">22:00</a></span></li>
+        <li><span class="act">Wax Motif</span> <span class="slots">Sun, Sep 20 · Forest Stage · <a href="#set-llu47">23:00</a></span></li>
+        <li><span class="act">Whales</span> <span class="slots">Sat, Sep 19 · The Crater · <a href="#set-lls57">15:15</a></span></li>
+        <li><span class="act">Whethan</span> <span class="slots">Sat, Sep 19 · The Crater · <a href="#set-lls58">20:45</a></span></li>
+        <li><span class="act">Wiley</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf55">02:00</a></span></li>
+        <li><span class="act">William Black</span> <span class="slots">Sun, Sep 20 · The Crater · <a href="#set-llu48">19:40</a></span></li>
+        <li><span class="act">Wonkywilla</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu49">16:00</a></span></li>
+        <li><span class="act">Wooli (Sunset Set)</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf56">19:30</a></span></li>
+        <li><span class="act">Wraz</span> <span class="slots">Sat, Sep 19 · Subsidia Stage · <a href="#set-lls59">01:00</a></span></li>
+        <li><span class="act">Xotix</span> <span class="slots">Fri, Sep 18 · Forest Stage · <a href="#set-llf57">22:00</a></span></li>
+        <li><span class="act">Yetep</span> <span class="slots">Sun, Sep 20 · Wompy Woods · <a href="#set-llu50">02:00</a></span></li>
+        <li><span class="act">YOOKIE</span> <span class="slots">Fri, Sep 18 · Wompy Woods · <a href="#set-llf58">01:10</a></span></li>
+        <li><span class="act">YVM3</span> <span class="slots">Sun, Sep 20 · Subsidia Stage · <a href="#set-llu51">23:00</a></span></li>
+        <li><span class="act">Zen Selekta</span> <span class="slots">Thu, Sep 17 (early entry) · The Grove · <a href="#set-llh12">14:00</a></span></li>
+        <li><span class="act">Zero</span> <span class="slots">Fri, Sep 18 · Subsidia Stage · <a href="#set-llf59">00:00</a></span></li>
+        <li><span class="act">Zingara</span> <span class="slots">Sat, Sep 19 · Wompy Woods · <a href="#set-lls60">20:30</a></span></li>
+        <li><span class="act">Zoey808</span> <span class="slots">Sun, Sep 20 · Forest Stage · <a href="#set-llu52">19:00</a></span></li>
+        <li><span class="act">Zomboy</span> <span class="slots">Sat, Sep 19 · Prehistoric Paradox · <a href="#set-lls61">19:50</a></span></li>
+      </ul>
+    </details>
   </section>
 
   <section aria-labelledby="stages-h">
@@ -1543,11 +1637,17 @@
       <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
       <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
       <li><a href="/f/arc-2026/">ARC Music Festival 2026</a> — Sep 4–7, 2026</li>
-      <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
-      <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
-      <li><a href="/f/escape-halloween-2026/">Escape Halloween 2026</a> — Oct 30–31, 2026</li>
-      <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
     </ul>
+    <details class="more">
+      <summary>Show 4 more</summary>
+      <ul>
+        <li><a href="/f/acl-2026/">Austin City Limits 2026</a> — Oct 2–4 &amp; 9–11, 2026</li>
+        <li><a href="/f/iii-points-2026/">III Points 2026</a> — Oct 16–17, 2026</li>
+        <li><a href="/f/escape-halloween-2026/">Escape Halloween 2026</a> — Oct 30–31, 2026</li>
+        <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
+      </ul>
+    </details>
+
   </nav>
 
   <section class="sources" aria-labelledby="sources-h">
@@ -1555,7 +1655,7 @@
     <ul>
       <li>Set times: <a href="https://github.com/johnta2000/johnta2000.github.io/blob/01315c1f03c0a01c9a8294132ac8cb6480a49ac3/convex/lostLandsSetTimes.ts" rel="noopener">https://github.com/johnta2000/johnta2000.github.io/blob/01315c1f03c0a01c9a8294132ac8cb6480a49ac3/convex/lostLandsSetTimes.ts</a> (community source, checked 2026-09-10)</li>
     </ul>
-    <p class="note">Last updated <time class="updated" datetime="2026-09-24">2026-09-24</time>.</p>
+    <p class="note">Last updated <time class="updated" datetime="2026-09-25">2026-09-25</time>.</p>
   </section>
 
   <footer>

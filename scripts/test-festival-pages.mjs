@@ -178,8 +178,11 @@ function checkPage(entry, html, { verified }) {
   const sources = section(html, 'sources-h') || '';
   const cites = (label) => new RegExp(`<li>${label}: <a href="https?://`).test(sources);
   if (names.length && !cites('Lineup') && !cites('Set times')) out.push('lists acts but Sources names no lineup or set-times source');
-  // A preview with no lineup still points at the festival itself.
-  if (!names.length && !/<a href="https?:\/\/(?!plursky\.com|apps\.apple\.com)[^"]+"/.test(html)) out.push('an empty preview links no official site');
+  // A preview with no lineup still points at the festival itself: its OWN
+  // site, not merely some external link. Once Watch & listen carries
+  // Instagram/X links, "any external link" stopped meaning "the festival".
+  const site = cfg.officialEvent && cfg.officialEvent.website;
+  if (!names.length && !(site && html.includes(`<a href="${site}"`))) out.push('an empty preview links no official site');
 
   return out;
 }
