@@ -27,6 +27,7 @@ import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { mkdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { serverReady } from './lib/server-ready.mjs';
 const OUT = process.env.PIXEL_OUT || '/tmp/pixels-v341';
 mkdirSync(OUT, { recursive: true });
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -152,7 +153,7 @@ const audit = (page) => page.evaluate(() => {
 });
 
 try {
-  for (let i = 0; i < 60; i++) { try { if ((await fetch(BASE + 'index.html')).ok) break; } catch {} await sleep(100); }
+  await serverReady(BASE + 'index.html', { tries: 60 });
   // The repo's existing convention (see test-import-toast.mjs): use the
   // system Chrome where one exists — the runner has one and does NOT have
   // playwright's own download — and fall back to the bundled build locally.
