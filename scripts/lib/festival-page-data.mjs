@@ -54,6 +54,25 @@ const AMENITY_LABELS = {
   charge: 'Charging', locker: 'Lockers', art: 'Art',
 };
 
+// The edition gate: hours count only when they quote the official page's own
+// dated block (hours.dated, verbatim) and that block is for THIS edition: its
+// first year is the edition's year and it names the edition's start day.
+// Countdown's page still printed "December 31, 2025 + January 1" for the 2026
+// edition; those hours were last year's and must never print.
+const MON = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+export function editionStart(dates) {
+  const m = String(dates || '').match(/^([A-Za-z]{3})[a-z]*\.?\s+(\d{1,2})\b[\s\S]*?\b(\d{4})\b/);
+  return m && MON.includes(m[1].toLowerCase()) ? { mon: m[1].toLowerCase(), day: +m[2], year: +m[3] } : null;
+}
+export function hoursMatchEdition(h, dates) {
+  const ed = editionStart(dates);
+  if (!h || !h.dated || !ed) return false;
+  const q = String(h.dated), year = (q.match(/\b(?:19|20)\d{2}\b/) || [])[0];
+  const days = [...q.matchAll(/\b([A-Za-z]{3})[a-z]*\.?\s+(\d{1,2})\b/g)].filter(m => MON.includes(m[1].toLowerCase()));
+  return +year === ed.year && days.some(m => m[1].toLowerCase() === ed.mon && +m[2] === ed.day);
+}
+export const editionHours = cfg => (cfg && hoursMatchEdition(cfg.hours, cfg.dates) ? cfg.hours : null);
+
 // Amenity TYPES and counts, never positions: a list of what the app carries
 // says nothing about where anything is, so it needs no verified geometry.
 // Gated festivals are not in the app yet, so their pages list none.

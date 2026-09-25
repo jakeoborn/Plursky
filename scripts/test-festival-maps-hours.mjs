@@ -8,11 +8,17 @@
 //     (Portola: conflicting doors; EDC Orlando: gated; Decadence: 2025 page;
 //     Beyond SoCal: TBA) can only gain one through a new ruling here
 //   · each page prints its hours line and Sources row, and no other page does
+//   · the edition gate (lane ruling 2026-09-24): every hours value quotes the
+//     official page's dated block verbatim (hours.dated), and that block's
+//     year and start day are the edition's. Countdown's page printed a 2025
+//     block for the 2026 edition; Outside Lands' page prints no hours at all
+//     now. Both are held, and editionHours() refuses a mismatched block even
+//     if one is added back.
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
-import { hoursLine } from './lib/festival-page-data.mjs';
+import { hoursLine, hoursMatchEdition, editionHours, editionStart } from './lib/festival-page-data.mjs';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 let checks = 0; const problems = [];
@@ -31,12 +37,15 @@ const MAPS = {
   'summerfest-2026': ['https://www.summerfest.com/about/', 2026],
 };
 const HOURS = {
-  'outside-lands-2026': ['https://www.sfoutsidelands.com/info', 'Gates open 11:00 AM; music starts 12:00 PM.'],
   'nocturnal-wonderland-2026': ['https://www.nocturnalwonderland.com/guide/hours-and-info/', 'Festival hours: 3:00 PM – 12:00 AM each day.'],
-  'countdown-nye-2026': ['https://countdownnye.com/guide/hours-and-info/', 'Festival hours: 4:00 PM – 2:00 AM.'],
   'dreamstate-socal-2026': ['https://socal.dreamstateusa.com/guide/hours-and-info/', 'Event hours: 4:00 PM – 1:00 AM.'],
 };
-const HELD = ['portola-2026', 'edc-orlando-2026', 'decadence-colorado-2026', 'beyond-wonderland-socal-2027'];
+// The dated block each official hours page prints, verbatim (read 2026-09-24).
+const DATED = {
+  'nocturnal-wonderland-2026': 'September 19 + 20, 2026',
+  'dreamstate-socal-2026': 'Friday, November 20 + Saturday, November 21, 2026',
+};
+const HELD = ['portola-2026', 'edc-orlando-2026', 'decadence-colorado-2026', 'beyond-wonderland-socal-2027', 'countdown-nye-2026', 'outside-lands-2026'];
 const DATE = /^\d{4}-\d{2}-\d{2}$/, HM = /^([01]\d|2[0-3]):[0-5]\d$/;
 
 const { REG } = loadRegistry(ROOT);
@@ -60,7 +69,10 @@ for (const e of REG) {
     if (HOURS[id]) {
       check(h.url === HOURS[id][0], `${id}: hours cite ${h.url}, not the ruled ${HOURS[id][0]}`);
       check(hoursLine(h) === HOURS[id][1], `${id}: hours read "${hoursLine(h)}", want "${HOURS[id][1]}"`);
+      check(h.dated === DATED[id], `${id}: hours quote the dated block "${h.dated}", want the page's "${DATED[id]}"`);
     }
+    check(!!editionStart(e.config.dates), `${id}: control: cannot read the edition's start from dates "${e.config.dates}"`);
+    check(hoursMatchEdition(h, e.config.dates), `${id}: hours dated "${h.dated}" are not for this edition (${e.config.dates})`);
   }
   if (HELD.includes(id)) check(!h, `${id}: held by the ruling, but carries hours`);
 
@@ -77,6 +89,16 @@ for (const e of REG) {
   }
   if (MAPS[id]) check(html.includes(`<li>Map: <a href="${MAPS[id][0].replace(/&/g, '&amp;')}"`), `${id}: Sources has no Map row for ${MAPS[id][0]}`);
 }
+
+// The edition gate itself, on the real blocks.
+const CD = 'Dec 31, 2026 – Jan 1, 2027', DS = 'Nov 20–21, 2026';
+const cdHours = { label: 'Festival', open: '16:00', close: '02:00', url: 'https://countdownnye.com/guide/hours-and-info/', observedAt: '2026-09-24' };
+check(!hoursMatchEdition({ ...cdHours, dated: 'Thursday, December 31, 2025 + Friday, January 1' }, CD), 'edition gate: Countdown\'s 2025 block passes for the 2026 edition');
+check(hoursMatchEdition({ ...cdHours, dated: 'Thursday, December 31, 2026 + Friday, January 1, 2027' }, CD), 'edition gate: a 2026 Countdown block is refused (control)');
+check(!hoursMatchEdition(cdHours, CD), 'edition gate: hours with no dated block pass');
+check(!hoursMatchEdition({ ...cdHours, dated: 'Saturday, November 21, 2026' }, DS), 'edition gate: a block without the start day passes');
+check(!hoursMatchEdition({ ...cdHours, dated: 'Friday, November 20 + Saturday, November 21, 2025' }, DS), 'edition gate: last year\'s block passes');
+check(editionHours({ hours: { ...cdHours, dated: 'Thursday, December 31, 2025 + Friday, January 1' }, dates: CD }) === null, 'edition gate: editionHours() hands the page a stale block');
 
 // The clock: midnight and noon are the two a formatter gets wrong.
 check(hoursLine({ label: 'Festival', open: '12:00', close: '00:00', url: 'https://x' }) === 'Festival hours: 12:00 PM – 12:00 AM.', 'clock: noon/midnight mislabelled');
