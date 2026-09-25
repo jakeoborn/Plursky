@@ -26,7 +26,7 @@ const check = (ok, msg) => { checks++; if (!ok) problems.push(msg); };
 
 const MAPS = {
   'edc-lv-2026': ['https://lasvegas.edc.com/festival-map/', 2026],
-  'acl-2026': ['https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map', null],
+  'acl-2026': ['https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map', 2026],
   'crssd-fall-2026': ['https://www.crssdfest.com/map', 2025],
   'escape-halloween-2026': ['https://escapehalloween.com/festival-map/', 2025],
   'hard-summer-2026': ['https://www.hardsummer.com/festival-map/', 2026],
