@@ -1,0 +1,889 @@
+{
+  "checkedAt": "2026-09-24",
+  "results": {
+    "https://open.spotify.com/playlist/05UbakOey3Wx9a44Ck2Lyd": {
+      "ok": true,
+      "reason": null,
+      "festival": "escape-halloween-2026",
+      "platform": "spotify",
+      "sig": "9ad2d5ffbb18b254",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://open.spotify.com/playlist/0yS25E7g9xQZ1Dst5SqUZn": {
+      "ok": false,
+      "reason": "accountSourceUrl does not link the official account",
+      "festival": "tomorrowland-2027",
+      "platform": "spotify",
+      "sig": "acaad0099b6daa8b",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://open.spotify.com/playlist/14fOWfs7TBF4kQhZQUE8El": {
+      "ok": true,
+      "reason": null,
+      "festival": "arc-2026",
+      "platform": "spotify",
+      "sig": "19b02dcbb6da5853",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://open.spotify.com/playlist/1xmVnKmyX8jJrXmEGndRdY": {
+      "ok": true,
+      "reason": null,
+      "festival": "dreamstate-socal-2026",
+      "platform": "spotify",
+      "sig": "e83bce816394baff",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://open.spotify.com/playlist/2ElJvqUMNvJB120gJzi7Kq": {
+      "ok": true,
+      "reason": null,
+      "festival": "nocturnal-wonderland-2026",
+      "platform": "spotify",
+      "sig": "0130ffd5926630cc",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://open.spotify.com/playlist/31JmJV1ZZCGX2ZmeWKI1Hg": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-orlando-2026",
+      "platform": "spotify",
+      "sig": "6237bc208e590d05",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://open.spotify.com/playlist/37i9dQZF1DX5LFAujdafjI": {
+      "ok": false,
+      "reason": "Spotify editorial playlist, not the festival's own",
+      "festival": "portola-2026",
+      "platform": "spotify",
+      "sig": "ccd0aca08e4fcbd1",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://open.spotify.com/playlist/3EioeVIOJxZQARH4GlGw2I": {
+      "ok": true,
+      "reason": null,
+      "festival": "crssd-fall-2026",
+      "platform": "spotify",
+      "sig": "3452c3682040de1c",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://open.spotify.com/playlist/4U3wjxn8PEtjqv1XrPeGC6": {
+      "ok": true,
+      "reason": null,
+      "festival": "countdown-nye-2026",
+      "platform": "spotify",
+      "sig": "8852f5d101ee080c",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://open.spotify.com/playlist/52pDVp6zxrUhcxGmhiFIhD": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-mexico-2027",
+      "platform": "spotify",
+      "sig": "b143edd0bf395861",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://open.spotify.com/playlist/551QIUGTDUvr7jAFb9y6oK": {
+      "ok": true,
+      "reason": null,
+      "festival": "beyond-wonderland-gorge-2027",
+      "platform": "spotify",
+      "sig": "880ef7dad6872240",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://open.spotify.com/playlist/5EMV8YLCANkLaKdpLcWQh5": {
+      "ok": true,
+      "reason": null,
+      "festival": "ultra-miami-2026",
+      "platform": "spotify",
+      "sig": "e9d52e30150e7e1d",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://open.spotify.com/playlist/69NIxGSDXjmdUGSqM32IEA": {
+      "ok": true,
+      "reason": null,
+      "festival": "hard-summer-2026",
+      "platform": "spotify",
+      "sig": "fb3837e062f6e16a",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://open.spotify.com/playlist/6SNUo04uqX8mDALxD9hkFC": {
+      "ok": true,
+      "reason": null,
+      "festival": "iii-points-2026",
+      "platform": "spotify",
+      "sig": "40757ceb969cea6d",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://open.spotify.com/playlist/6aKeNXbP3MirExlGu1tVXf": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-lv-2026",
+      "platform": "spotify",
+      "sig": "b3f0f08729e1eccf",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://open.spotify.com/playlist/7MGRNqdZ5jjvF8Dscmy42t": {
+      "ok": true,
+      "reason": null,
+      "festival": "beyond-wonderland-socal-2027",
+      "platform": "spotify",
+      "sig": "452f1e34a05675c4",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://open.spotify.com/playlist/7jHh1nCUwYHFJQUW16V9sa": {
+      "ok": false,
+      "reason": "accountSourceUrl does not link the official account",
+      "festival": "electric-forest-2027",
+      "platform": "spotify",
+      "sig": "641c233080b6f3ef",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/arcmusicfestival/p/C2QJehGrDqJ/": {
+      "ok": true,
+      "reason": null,
+      "festival": "arc-2026",
+      "platform": "instagram",
+      "sig": "60a05fbef2bf618b",
+      "publishedAt": "2024-01-18",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/arcmusicfestival/p/DOMKheZDVdr/": {
+      "ok": false,
+      "reason": "oEmbed returned 400 (dead, private or not embeddable)",
+      "festival": "arc-2026",
+      "platform": "instagram",
+      "sig": "20bc3a2f36263fde",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/arcmusicfestival/reel/C4GgL2trkGF/": {
+      "ok": true,
+      "reason": null,
+      "festival": "arc-2026",
+      "platform": "instagram",
+      "sig": "8bdc1d90a7220452",
+      "publishedAt": "2024-03-04",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/beyondwland/p/C5ZC-PEOZcg/": {
+      "ok": true,
+      "reason": null,
+      "festival": "beyond-wonderland-socal-2027",
+      "platform": "instagram",
+      "sig": "2e5a4bf5fc908d43",
+      "publishedAt": "2024-04-05",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/beyondwland/reel/DEN2IOuxWkK/": {
+      "ok": true,
+      "reason": null,
+      "festival": "beyond-wonderland-socal-2027",
+      "platform": "instagram",
+      "sig": "7aa1972efedbfea2",
+      "publishedAt": "2024-12-30",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/beyondwlandpnw/p/C2dJS3hP6LO/": {
+      "ok": true,
+      "reason": null,
+      "festival": "beyond-wonderland-gorge-2027",
+      "platform": "instagram",
+      "sig": "c1881645383bb329",
+      "publishedAt": "2024-01-23",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/beyondwlandpnw/p/DHWgWnYyFe_/": {
+      "ok": true,
+      "reason": null,
+      "festival": "beyond-wonderland-gorge-2027",
+      "platform": "instagram",
+      "sig": "8b5935395ce29974",
+      "publishedAt": "2025-03-18",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/beyondwlandpnw/reel/C59DockxxHx/": {
+      "ok": true,
+      "reason": null,
+      "festival": "beyond-wonderland-gorge-2027",
+      "platform": "instagram",
+      "sig": "37163be697c8ec8d",
+      "publishedAt": "2024-04-19",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/coachella/p/DXxZVLiklra/": {
+      "ok": true,
+      "reason": null,
+      "festival": "coachella-2027",
+      "platform": "instagram",
+      "sig": "1976088a98e82ffc",
+      "publishedAt": "2026-04-30",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/coachella/reel/DXz32uux-sA/": {
+      "ok": true,
+      "reason": null,
+      "festival": "coachella-2027",
+      "platform": "instagram",
+      "sig": "a863da6fa2d40acc",
+      "publishedAt": "2026-05-01",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/crssdfest/reel/C7NHAKjSALI/": {
+      "ok": true,
+      "reason": null,
+      "festival": "crssd-fall-2026",
+      "platform": "instagram",
+      "sig": "3dcaa66064f4a09d",
+      "publishedAt": "2024-05-20",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/edc_lasvegas/reel/C33lfCYPorg/": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-lv-2026",
+      "platform": "instagram",
+      "sig": "fb1300be111b3bac",
+      "publishedAt": "2024-02-27",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/edc_mexico/p/DF0jQL6v_m8/": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-mexico-2027",
+      "platform": "instagram",
+      "sig": "c54d7b6e37ee656c",
+      "publishedAt": "2025-02-08",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/edc_mexico/p/DGeZ2QESlrI/": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-mexico-2027",
+      "platform": "instagram",
+      "sig": "f4e808448bd24bb0",
+      "publishedAt": "2025-02-25",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/edc_orlando/reel/DCUa9wyPL3q/": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-orlando-2026",
+      "platform": "instagram",
+      "sig": "86e2fb3221e3b9b7",
+      "publishedAt": "2024-11-13",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/edc_orlando/reel/DPNK0WZj37b/": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-orlando-2026",
+      "platform": "instagram",
+      "sig": "ddf8c7e442c464e7",
+      "publishedAt": "2025-09-30",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/edc_orlando/reel/DRvNpwrjWaV/": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-orlando-2026",
+      "platform": "instagram",
+      "sig": "4f33a451fe811879",
+      "publishedAt": "2025-12-01",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/electric_forest/p/DaH3432HJAn/": {
+      "ok": true,
+      "reason": null,
+      "festival": "electric-forest-2027",
+      "platform": "instagram",
+      "sig": "c3753ad2e74e2cb2",
+      "publishedAt": "2026-06-28",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/electric_forest/p/DaH3delhCWT/": {
+      "ok": true,
+      "reason": null,
+      "festival": "electric-forest-2027",
+      "platform": "instagram",
+      "sig": "5bc1b6959f4c7f74",
+      "publishedAt": "2026-06-28",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/electric_forest/p/DaIxesFHAxj/": {
+      "ok": true,
+      "reason": null,
+      "festival": "electric-forest-2027",
+      "platform": "instagram",
+      "sig": "221e7cc61a7cf524",
+      "publishedAt": "2026-06-28",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/escapehalloween/p/C51VOoELI6_/": {
+      "ok": true,
+      "reason": null,
+      "festival": "escape-halloween-2026",
+      "platform": "instagram",
+      "sig": "cad71c9a992a6b1a",
+      "publishedAt": "2024-04-16",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/escapehalloween/p/Cx8pbLqOt2S/": {
+      "ok": true,
+      "reason": null,
+      "festival": "escape-halloween-2026",
+      "platform": "instagram",
+      "sig": "e5f38992afb64e71",
+      "publishedAt": "2023-10-03",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/lostlandsfestival/p/Ddhj6HmjxTS/": {
+      "ok": true,
+      "reason": null,
+      "festival": "lost-lands-2026",
+      "platform": "instagram",
+      "sig": "5baec3803ac01cc4",
+      "publishedAt": "2026-09-20",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/lostlandsfestival/p/DdjtWPkER06/": {
+      "ok": true,
+      "reason": null,
+      "festival": "lost-lands-2026",
+      "platform": "instagram",
+      "sig": "a7df0ca42819c114",
+      "publishedAt": "2026-09-21",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DOpjC9aEbB6/": {
+      "ok": true,
+      "reason": null,
+      "festival": "coachella-2027",
+      "platform": "instagram",
+      "sig": "85c59852ed716773",
+      "publishedAt": "2025-09-16",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DP67RslDoZY/": {
+      "ok": false,
+      "reason": "post is not by the official account",
+      "festival": "iii-points-2026",
+      "platform": "instagram",
+      "sig": "a043d7cd6f3c342c",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DS_OZkPjgqj/": {
+      "ok": false,
+      "reason": "post is not by the official account",
+      "festival": "iii-points-2026",
+      "platform": "instagram",
+      "sig": "bf8ad7c18d50bc83",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DT0M-0oDVRD/": {
+      "ok": false,
+      "reason": "accountSourceUrl does not link the official account",
+      "festival": "tomorrowland-2027",
+      "platform": "instagram",
+      "sig": "e98d693b89fc50a2",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DU3mWSnkbaD/": {
+      "ok": false,
+      "reason": "oEmbed returned 400 (dead, private or not embeddable)",
+      "festival": "iii-points-2026",
+      "platform": "instagram",
+      "sig": "e9981e2c7c4bcd7b",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DU8IXTSDMN2/": {
+      "ok": false,
+      "reason": "accountSourceUrl returned 403",
+      "festival": "summerfest-2026",
+      "platform": "instagram",
+      "sig": "4479ac360a2a30e2",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DVbtRD2kp9P/": {
+      "ok": true,
+      "reason": null,
+      "festival": "outside-lands-2026",
+      "platform": "instagram",
+      "sig": "ce91ad1f2ef58dd9",
+      "publishedAt": "2026-03-03",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DVeP_fKEeNA/": {
+      "ok": true,
+      "reason": null,
+      "festival": "iii-points-2026",
+      "platform": "instagram",
+      "sig": "80389a506e7948ae",
+      "publishedAt": "2026-03-04",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DVwHALQketR/": {
+      "ok": true,
+      "reason": null,
+      "festival": "outside-lands-2026",
+      "platform": "instagram",
+      "sig": "ce55667590d467d0",
+      "publishedAt": "2026-03-11",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DWEjmYolFgT/": {
+      "ok": true,
+      "reason": null,
+      "festival": "lollapalooza-2026",
+      "platform": "instagram",
+      "sig": "3a0e9df739e94ea1",
+      "publishedAt": "2026-03-19",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DWywBfsDb2J/": {
+      "ok": true,
+      "reason": null,
+      "festival": "ultra-miami-2026",
+      "platform": "instagram",
+      "sig": "ea6f63e03d16cb81",
+      "publishedAt": "2026-04-06",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DX9afEPDKLr/": {
+      "ok": true,
+      "reason": null,
+      "festival": "acl-2026",
+      "platform": "instagram",
+      "sig": "61992526e842f943",
+      "publishedAt": "2026-05-05",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DY5RfGrhdtj/": {
+      "ok": false,
+      "reason": "oEmbed returned 400 (dead, private or not embeddable)",
+      "festival": "portola-2026",
+      "platform": "instagram",
+      "sig": "0f2d52bbedddc6f1",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DYP6adbMal_/": {
+      "ok": true,
+      "reason": null,
+      "festival": "lost-lands-2026",
+      "platform": "instagram",
+      "sig": "440f4dea6bd37bbc",
+      "publishedAt": "2026-05-12",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DZYBikQiRMq/": {
+      "ok": true,
+      "reason": null,
+      "festival": "governors-ball-2026",
+      "platform": "instagram",
+      "sig": "e6a2231d5e4ef49e",
+      "publishedAt": "2026-06-09",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DZYsfTOICNV/": {
+      "ok": true,
+      "reason": null,
+      "festival": "governors-ball-2026",
+      "platform": "instagram",
+      "sig": "16ac0f092ebcbfa0",
+      "publishedAt": "2026-06-10",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DZkZvZhjRxg/": {
+      "ok": false,
+      "reason": "accountSourceUrl does not link the official account",
+      "festival": "tomorrowland-2027",
+      "platform": "instagram",
+      "sig": "f599c5b7fcade0ad",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DaQt9LoCe1j/": {
+      "ok": true,
+      "reason": null,
+      "festival": "hard-summer-2026",
+      "platform": "instagram",
+      "sig": "c348c272e4c40216",
+      "publishedAt": "2026-07-01",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DbgfYjSDbmr/": {
+      "ok": true,
+      "reason": null,
+      "festival": "lollapalooza-2026",
+      "platform": "instagram",
+      "sig": "5fb5469ccba20e14",
+      "publishedAt": "2026-08-01",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/Dc1dduhtDQ8/": {
+      "ok": true,
+      "reason": null,
+      "festival": "ultra-miami-2026",
+      "platform": "instagram",
+      "sig": "23fda4c0f34f6688",
+      "publishedAt": "2026-09-03",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DcJ62D5CfuO/": {
+      "ok": true,
+      "reason": null,
+      "festival": "acl-2026",
+      "platform": "instagram",
+      "sig": "708a4790ecf12845",
+      "publishedAt": "2026-08-17",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DcJjcQsKoCO/": {
+      "ok": true,
+      "reason": null,
+      "festival": "decadence-colorado-2026",
+      "platform": "instagram",
+      "sig": "3185f83fbaffab98",
+      "publishedAt": "2026-08-17",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/DcPakYHJ65H/": {
+      "ok": true,
+      "reason": null,
+      "festival": "decadence-colorado-2026",
+      "platform": "instagram",
+      "sig": "f8b59869901c35c3",
+      "publishedAt": "2026-08-19",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/p/Ddjbzk6l13y/": {
+      "ok": false,
+      "reason": "accountSourceUrl returned 403",
+      "festival": "summerfest-2026",
+      "platform": "instagram",
+      "sig": "cdcc3df8ad7a79f8",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/ultra/p/Ddfq6j9EZii/": {
+      "ok": true,
+      "reason": null,
+      "festival": "ultra-miami-2026",
+      "platform": "instagram",
+      "sig": "343b05948b138b0d",
+      "publishedAt": "2026-09-20",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.instagram.com/ultra/p/DditxOuk8kk/": {
+      "ok": true,
+      "reason": null,
+      "festival": "ultra-miami-2026",
+      "platform": "instagram",
+      "sig": "70e2fa339b82c394",
+      "publishedAt": "2026-09-21",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.youtube.com/watch?v=2aXXxuDtUJo": {
+      "ok": false,
+      "reason": "YouTube player refuses embedded playback (\"This video is unavailable\")",
+      "festival": "lost-lands-2026",
+      "platform": "youtube",
+      "sig": "924693af19ad3b6f",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.youtube.com/watch?v=4GjztNT2bRE": {
+      "ok": true,
+      "reason": null,
+      "festival": "ultra-miami-2026",
+      "platform": "youtube",
+      "sig": "2aee9be08862fefa",
+      "publishedAt": "2026-09-08",
+      "accountName": "UMF TV",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.youtube.com/watch?v=IEwo9y1e5sQ": {
+      "ok": false,
+      "reason": "YouTube player refuses embedded playback (\"This video is unavailable\")",
+      "festival": "arc-2026",
+      "platform": "youtube",
+      "sig": "79287d50ad7cbc0c",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.youtube.com/watch?v=MipYmCdGRWs": {
+      "ok": false,
+      "reason": "accountSourceUrl returned 403",
+      "festival": "summerfest-2026",
+      "platform": "youtube",
+      "sig": "8792222a1b58ff7d",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.youtube.com/watch?v=XX2XMvp6EL0": {
+      "ok": false,
+      "reason": "YouTube player refuses embedded playback (\"This video is unavailable\")",
+      "festival": "hard-summer-2026",
+      "platform": "youtube",
+      "sig": "c5c994810ae8df99",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.youtube.com/watch?v=Y7PeLt8dbHw": {
+      "ok": true,
+      "reason": null,
+      "festival": "outside-lands-2026",
+      "platform": "youtube",
+      "sig": "67f0a8e87c419849",
+      "publishedAt": "2026-08-12",
+      "accountName": "Outside Lands",
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.youtube.com/watch?v=ZcLw3yqt6Cs": {
+      "ok": false,
+      "reason": "YouTube player refuses embedded playback (\"This video is unavailable\")",
+      "festival": "portola-2026",
+      "platform": "youtube",
+      "sig": "8920c9980c604a0d",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://www.youtube.com/watch?v=k5yQBhDnrvM": {
+      "ok": false,
+      "reason": "accountSourceUrl does not link the official account",
+      "festival": "tomorrowland-2027",
+      "platform": "youtube",
+      "sig": "34b47c779802c6f2",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/BeyondWland/status/1897376573159776477": {
+      "ok": true,
+      "reason": null,
+      "festival": "beyond-wonderland-socal-2027",
+      "platform": "x",
+      "sig": "75b7674962d2f968",
+      "publishedAt": "2025-03-05",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/BeyondWland/status/2031490286770131108": {
+      "ok": true,
+      "reason": null,
+      "festival": "beyond-wonderland-socal-2027",
+      "platform": "x",
+      "sig": "97e8f19a2dc0a54d",
+      "publishedAt": "2026-03-10",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/BeyondWlandPNW/status/1939773516187885793": {
+      "ok": true,
+      "reason": null,
+      "festival": "beyond-wonderland-gorge-2027",
+      "platform": "x",
+      "sig": "1d7844ae90c1f689",
+      "publishedAt": "2025-06-30",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/DreamstateUSA/status/1987977510144156152": {
+      "ok": true,
+      "reason": null,
+      "festival": "dreamstate-socal-2026",
+      "platform": "x",
+      "sig": "b471123e0f87ead6",
+      "publishedAt": "2025-11-10",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/EDC_LasVegas/status/1930432526239055955": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-lv-2026",
+      "platform": "x",
+      "sig": "266450760aa8a208",
+      "publishedAt": "2025-06-05",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/EDC_LasVegas/status/2022007805209702830": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-lv-2026",
+      "platform": "x",
+      "sig": "4e3afc71840fa62d",
+      "publishedAt": "2026-02-12",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/EDC_MEXICO/status/1861183273994469779": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-mexico-2027",
+      "platform": "x",
+      "sig": "b38083491bf2df92",
+      "publishedAt": "2024-11-25",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/EDC_Orlando/status/1963678468421399004": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-orlando-2026",
+      "platform": "x",
+      "sig": "b73402747155f608",
+      "publishedAt": "2025-09-04",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/EscapeHalloween/status/1954226188043399665": {
+      "ok": true,
+      "reason": null,
+      "festival": "escape-halloween-2026",
+      "platform": "x",
+      "sig": "bad0faec97dfff6b",
+      "publishedAt": "2025-08-09",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/GovBallNYC/status/2008555042366705813": {
+      "ok": true,
+      "reason": null,
+      "festival": "governors-ball-2026",
+      "platform": "x",
+      "sig": "676eab34301f4480",
+      "publishedAt": "2026-01-06",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/HARDFEST/status/2026386654248734834": {
+      "ok": true,
+      "reason": null,
+      "festival": "hard-summer-2026",
+      "platform": "x",
+      "sig": "0b80d08f8cc72536",
+      "publishedAt": "2026-02-24",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/NocturnalWland/status/1833929828581720483": {
+      "ok": true,
+      "reason": null,
+      "festival": "nocturnal-wonderland-2026",
+      "platform": "x",
+      "sig": "34e86d4723000653",
+      "publishedAt": "2024-09-11",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/PortolaFestival/status/1840121508854899059": {
+      "ok": true,
+      "reason": null,
+      "festival": "portola-2026",
+      "platform": "x",
+      "sig": "27221d6ab69c3128",
+      "publishedAt": "2024-09-28",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/PortolaFestival/status/1926002029941428710": {
+      "ok": true,
+      "reason": null,
+      "festival": "portola-2026",
+      "platform": "x",
+      "sig": "ba0027473aa53c8c",
+      "publishedAt": "2025-05-23",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/Summerfest/status/2024461508411846785": {
+      "ok": false,
+      "reason": "accountSourceUrl returned 403",
+      "festival": "summerfest-2026",
+      "platform": "x",
+      "sig": "9866304fb549f86a",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/aclfestival/status/2051663687899811953": {
+      "ok": true,
+      "reason": null,
+      "festival": "acl-2026",
+      "platform": "x",
+      "sig": "1f89bc29fbea4247",
+      "publishedAt": "2026-05-05",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/arcmusicfest/status/2031405805388410929": {
+      "ok": true,
+      "reason": null,
+      "festival": "arc-2026",
+      "platform": "x",
+      "sig": "5fa685995025a714",
+      "publishedAt": "2026-03-10",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/arcmusicfest/status/2031467774321611074": {
+      "ok": true,
+      "reason": null,
+      "festival": "arc-2026",
+      "platform": "x",
+      "sig": "8297186a9df8c3c3",
+      "publishedAt": "2026-03-10",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/countdown_nye/status/1978626950059999544": {
+      "ok": true,
+      "reason": null,
+      "festival": "countdown-nye-2026",
+      "platform": "x",
+      "sig": "07c5f49e20389056",
+      "publishedAt": "2025-10-16",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/crssdfest/status/1882163865049612741": {
+      "ok": true,
+      "reason": null,
+      "festival": "crssd-fall-2026",
+      "platform": "x",
+      "sig": "fa194aae48e1b521",
+      "publishedAt": "2025-01-22",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/iiiPoints/status/1917601243607830972": {
+      "ok": true,
+      "reason": null,
+      "festival": "iii-points-2026",
+      "platform": "x",
+      "sig": "8eafdd4fc98cbf91",
+      "publishedAt": "2025-04-30",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/lollapalooza/status/2083621871346495987": {
+      "ok": true,
+      "reason": null,
+      "festival": "lollapalooza-2026",
+      "platform": "x",
+      "sig": "4aa9868fb6dd26a3",
+      "publishedAt": "2026-08-01",
+      "checkedAt": "2026-09-24"
+    },
+    "https://x.com/sfoutsidelands/status/1902795869474460017": {
+      "ok": false,
+      "reason": "accountSourceUrl does not link the official account",
+      "festival": "outside-lands-2026",
+      "platform": "x",
+      "sig": "6d7bb1a64593a543",
+      "publishedAt": null,
+      "checkedAt": "2026-09-24"
+    }
+  }
+}

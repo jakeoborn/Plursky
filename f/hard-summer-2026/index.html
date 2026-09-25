@@ -68,6 +68,34 @@
   section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
+  details.more { margin:4px 0 0; }
+  details.more > summary { cursor:pointer; color:var(--ember); font-weight:600; font-size:14px; padding:10px 0; min-height:44px; display:flex; align-items:center; }
+  details.more[open] > summary { color:var(--muted); }
+  section.watch .embed { margin:16px 0 20px; }
+  section.watch .yt { position:relative; aspect-ratio:16/9; width:100%; min-height:200px; background:var(--panel); border-radius:12px; overflow:hidden; }
+  section.watch .yt iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+  /* Instagram's embed.js stamps an inline 326px min-width on its iframe. On a
+     320px phone that ran 26px past the screen and cut off "View profile", so
+     the iframe is held to its column; Instagram's own layout reflows to fit.
+     The scroll box stays as a backstop for anything else a script inserts. */
+  section.watch .embed-ig { overflow-x:auto; max-width:100%; }
+  section.watch .embed-ig iframe { min-width:0 !important; width:100% !important; max-width:100% !important; box-sizing:border-box; }
+  /* And nothing a third-party script inserts may widen the page, even for a
+     frame mid-hydration (seen once at 320px: 346px for a moment). */
+  section.watch { overflow-x:clip; }
+  section.watch .embed-ig blockquote, section.watch .embed-x blockquote { margin:0; min-height:420px; background:var(--panel); border-radius:12px; padding:16px; max-width:540px; }
+  section.watch .embed-x blockquote { min-height:260px; }
+  /* Tap-to-load: until tapped, a social post is a compact card with its type,
+     date, one button and the notice; nothing from Instagram or X is requested.
+     The blockquote stays empty and hidden until the tap fills it. */
+  section.watch blockquote.tap-embed { display:none; }
+  section.watch .embed-tap { background:var(--panel); border-radius:12px; padding:16px; max-width:540px; box-sizing:border-box; }
+  section.watch .embed-what { color:var(--ink); font-size:15px; font-weight:600; margin:0 0 10px; }
+  section.watch .embed-load { min-height:44px; padding:10px 16px; border-radius:10px; border:1px solid var(--ember); background:transparent; color:var(--ember); font:inherit; font-weight:600; font-size:15px; cursor:pointer; }
+  section.watch .embed-tap-note { color:var(--muted); font-size:13px; margin:8px 0 0; }
+  section.watch figure.tapped .embed-tap { display:none; }
+  section.watch .embed-sp iframe { display:block; border:0; border-radius:12px; min-height:352px; }
+  section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }
 </style>
 <script type="application/ld+json">
 {
@@ -559,6 +587,62 @@
       <dd>Yes. This page links the official HARD Summer 2026 map on the festival&#39;s own site.</dd>
     </dl>
   </section>
+  <section id="watch" class="watch" aria-labelledby="watch-h">
+    <h2 id="watch-h">Watch &amp; listen</h2>
+    <p class="note">From HARD Summer 2026's official accounts.</p>
+    <figure class="embed embed-x" data-tap="x">
+      <blockquote class="tap-embed" data-class="twitter-tweet" data-dnt="true" data-theme="dark" data-href="https://twitter.com/hardfest/status/2026386654248734834"></blockquote>
+      <div class="embed-tap">
+        <p class="embed-what">Lineup · Posted February 24, 2026</p>
+        <button type="button" class="embed-load">Load the X post</button>
+        <p class="embed-tap-note">Loading shows content from X, which may collect data about your visit. <a href="/privacy.html#social-embeds">Privacy</a></p>
+      </div>
+      <p class="embed-cap">@HARDFEST on X · <a href="https://x.com/HARDFEST/status/2026386654248734834" rel="noopener">View the original</a></p>
+    </figure>
+    <figure class="embed embed-ig" data-tap="instagram">
+      <blockquote class="tap-embed" data-class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DaQt9LoCe1j/" data-instgrm-version="14" data-href="https://www.instagram.com/p/DaQt9LoCe1j/"></blockquote>
+      <div class="embed-tap">
+        <p class="embed-what">Announcement · Posted July 1, 2026</p>
+        <button type="button" class="embed-load">Load the Instagram post</button>
+        <p class="embed-tap-note">Loading shows content from Instagram (Meta), which may collect data about your visit. <a href="/privacy.html#social-embeds">Privacy</a></p>
+      </div>
+      <p class="embed-cap">@HARDFEST on Instagram · <a href="https://www.instagram.com/p/DaQt9LoCe1j/" rel="noopener">View the original</a></p>
+    </figure>
+    <figure class="embed embed-sp">
+      <iframe src="https://open.spotify.com/embed/playlist/69NIxGSDXjmdUGSqM32IEA" title="HARD Summer 2026 playlist on Spotify" width="100%" height="352" loading="lazy" allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      <p class="embed-cap">HARD Summer 2026's official playlist on Spotify · <a href="https://open.spotify.com/playlist/69NIxGSDXjmdUGSqM32IEA" rel="noopener">View the original</a></p>
+    </figure>
+    <script>
+(function () {
+  var sec = document.getElementById('watch');
+  if (!sec) return;
+  var SRC = { instagram: 'https://www.instagram.com/embed.js', x: 'https://platform.twitter.com/widgets.js' };
+  var requested = {};
+  function hydrate(p, fig) {
+    if (p === 'instagram' && window.instgrm && window.instgrm.Embeds) return window.instgrm.Embeds.process();
+    if (p === 'x' && window.twttr && window.twttr.widgets) return window.twttr.widgets.load(fig);
+    if (requested[p]) return; // in flight: the script scans the page when it runs
+    requested[p] = true;
+    var s = document.createElement('script'); s.async = true; s.src = SRC[p]; document.body.appendChild(s);
+  }
+  sec.addEventListener('click', function (ev) {
+    var b = ev.target.closest && ev.target.closest('button.embed-load');
+    if (!b) return;
+    var fig = b.closest('figure'), bq = fig && fig.querySelector('blockquote.tap-embed');
+    if (!bq || !SRC[fig.getAttribute('data-tap')]) return;
+    var a = document.createElement('a'); a.href = bq.getAttribute('data-href'); a.rel = 'noopener';
+    a.textContent = 'View this post on ' + (fig.getAttribute('data-tap') === 'x' ? 'X' : 'Instagram');
+    bq.appendChild(a); // X's script reads the post id from this link
+    bq.className = bq.getAttribute('data-class');
+    bq.removeAttribute('data-class');
+    fig.classList.add('tapped');
+    fig.setAttribute('tabindex', '-1');
+    fig.focus({ preventScroll: true });
+    hydrate(fig.getAttribute('data-tap'), fig);
+  });
+})();
+    </script>
+  </section>
 
   <section aria-labelledby="map-h">
     <h2 id="map-h">HARD Summer 2026 map</h2>
@@ -729,78 +813,83 @@
       <li><span class="act">Canary Yellow</span> <span class="slots">Sun, Aug 2 · HARDER · <a href="#set-hs2-canary-yellow">15:00</a></span></li>
       <li><span class="act">Capes</span> <span class="slots">Sat, Aug 1 · Ice Cream Truck · <a href="#set-hs1-capes">20:30</a></span></li>
       <li><span class="act">Cerulo</span> <span class="slots">Sun, Aug 2 · Beatbox Art Car · <a href="#set-hs2-cerulo">16:00</a></span></li>
-      <li><span class="act">Charlotte de Witte</span> <span class="slots">Sat, Aug 1 · HARDER · <a href="#set-hs1-charlotte-de-witte">20:45</a></span></li>
-      <li><span class="act">Chloe404 B2B Kyle Arthur</span> <span class="slots">Sun, Aug 2 · Beatbox Art Car · <a href="#set-hs2-chloe404-b2b-kyle-arthur">14:00</a></span></li>
-      <li><span class="act">Chris Lorenzo</span> <span class="slots">Sat, Aug 1 · HARD · <a href="#set-hs1-chris-lorenzo">17:25</a></span></li>
-      <li><span class="act">Cole Terrazas</span> <span class="slots">Sun, Aug 2 · Pink · <a href="#set-hs2-cole-terrazas">14:00</a></span></li>
-      <li><span class="act">Confidence Man</span> <span class="slots">Sat, Aug 1 · Purple · <a href="#set-hs1-confidence-man">17:10</a></span></li>
-      <li><span class="act">Cquestt</span> <span class="slots">Sat, Aug 1 · Purple · <a href="#set-hs1-cquestt">14:00</a></span></li>
-      <li><span class="act">debbiesthuglife</span> <span class="slots">Sat, Aug 1 · Ice Cream Truck · <a href="#set-hs1-debbiesthuglife">16:00</a></span></li>
-      <li><span class="act">DJ Blackmarket</span> <span class="slots">Sat, Aug 1 · Beatbox Art Car · <a href="#set-hs1-dj-blackmarket">20:30</a></span></li>
-      <li><span class="act">DJ Fuckoff</span> <span class="slots">Sun, Aug 2 · Green · <a href="#set-hs2-dj-fuckoff">15:00</a></span></li>
-      <li><span class="act">DJ Kita</span> <span class="slots">Sat, Aug 1 · Beatbox Art Car · <a href="#set-hs1-dj-kita">17:30</a></span></li>
-      <li><span class="act">DJ Seinfeld B2B Luuk van Dijk</span> <span class="slots">Sat, Aug 1 · Pink · <a href="#set-hs1-dj-seinfeld-b2b-luuk-van-dijk">19:00</a></span></li>
-      <li><span class="act">DJ Snake (Hip Hop Set)</span> <span class="slots">Sun, Aug 2 · HARDER · <a href="#set-hs2-dj-snake-hip-hop-set">21:00</a></span></li>
-      <li><span class="act">DJ Warning</span> <span class="slots">Sat, Aug 1 · Green · <a href="#set-hs1-dj-warning">14:00</a></span></li>
-      <li><span class="act">DREYA V</span> <span class="slots">Sat, Aug 1 · Pink · <a href="#set-hs1-dreya-v">14:00</a></span></li>
-      <li><span class="act">Edge Control</span> <span class="slots">Sun, Aug 2 · Beatbox Art Car · <a href="#set-hs2-edge-control">15:00</a></span></li>
-      <li><span class="act">Etari</span> <span class="slots">Sun, Aug 2 · Green · <a href="#set-hs2-etari">14:00</a></span></li>
-      <li><span class="act">FIFI</span> <span class="slots">Sun, Aug 2 · HARDER · <a href="#set-hs2-fifi">16:10</a></span></li>
-      <li><span class="act">FLABBERGAST</span> <span class="slots">Sun, Aug 2 · Beatbox Art Car · <a href="#set-hs2-flabbergast">20:30</a></span></li>
-      <li><span class="act">Frost Children</span> <span class="slots">Sun, Aug 2 · Purple · <a href="#set-hs2-frost-children">16:40</a></span></li>
-      <li><span class="act">fun2bjane</span> <span class="slots">Sun, Aug 2 · Purple · <a href="#set-hs2-fun2bjane">14:00</a></span></li>
-      <li><span class="act">Gay Felony</span> <span class="slots">Sat, Aug 1 · Ice Cream Truck · <a href="#set-hs1-gay-felony">15:00</a></span></li>
-      <li><span class="act">Hannah Laing</span> <span class="slots">Sat, Aug 1 · Green · <a href="#set-hs1-hannah-laing">19:30</a></span></li>
-      <li><span class="act">Hyperbeam</span> <span class="slots">Sun, Aug 2 · HARD · <a href="#set-hs2-hyperbeam">16:20</a></span></li>
-      <li><span class="act">Interplanetary Criminal B2B Main Phase</span> <span class="slots">Sat, Aug 1 · Green · <a href="#set-hs1-interplanetary-criminal-b2b-main-p">20:45</a></span></li>
-      <li><span class="act">Jon Casey</span> <span class="slots">Sat, Aug 1 · HARDER · <a href="#set-hs1-jon-casey">15:00</a></span></li>
-      <li><span class="act">Kali Uchis</span> <span class="slots">Sat, Aug 1 · HARD · <a href="#set-hs1-kali-uchis">20:56</a></span></li>
-      <li><span class="act">Knock2 B2B Zedd</span> <span class="slots">Sun, Aug 2 · HARD · <a href="#set-hs2-knock2-b2b-zedd">20:45</a></span></li>
-      <li><span class="act">KsoFresKo</span> <span class="slots">Sun, Aug 2 · HARDER · <a href="#set-hs2-ksofresko">14:00</a></span></li>
-      <li><span class="act">Lake Hills B2B Ønyx</span> <span class="slots">Sat, Aug 1 · Ice Cream Truck · <a href="#set-hs1-lake-hills-b2b-nyx">19:00</a></span></li>
-      <li><span class="act">Lily Ardalan</span> <span class="slots">Sun, Aug 2 · Beatbox Art Car · <a href="#set-hs2-lily-ardalan">17:30</a></span></li>
-      <li><span class="act">Locklead</span> <span class="slots">Sat, Aug 1 · Pink · <a href="#set-hs1-locklead">16:00</a></span></li>
-      <li><span class="act">Lovefoxy</span> <span class="slots">Sat, Aug 1 · Green · <a href="#set-hs1-lovefoxy">15:00</a></span></li>
-      <li><span class="act">Luke Alessi</span> <span class="slots">Sat, Aug 1 · Pink · <a href="#set-hs1-luke-alessi">17:00</a></span></li>
-      <li><span class="act">Maceo Plex</span> <span class="slots">Sat, Aug 1 · Pink · <a href="#set-hs1-maceo-plex">20:30</a></span></li>
-      <li><span class="act">Mary Droppinz</span> <span class="slots">Sat, Aug 1 · HARDER · <a href="#set-hs1-mary-droppinz">16:00</a></span></li>
-      <li><span class="act">Mau P</span> <span class="slots">Sat, Aug 1 · HARD · <a href="#set-hs1-mau-p">18:45</a></span></li>
-      <li><span class="act">MCR-T</span> <span class="slots">Sun, Aug 2 · Purple · <a href="#set-hs2-mcr-t">17:40</a></span></li>
-      <li><span class="act">Mesmé</span> <span class="slots">Sat, Aug 1 · Ice Cream Truck · <a href="#set-hs1-mesme">17:30</a></span></li>
-      <li><span class="act">Mez Monty B2B Shane Thomas</span> <span class="slots">Sun, Aug 2 · Ice Cream Truck · <a href="#set-hs2-mez-monty-b2b-shane-thomas">19:00</a></span></li>
-      <li><span class="act">Miguelle &amp; Tons</span> <span class="slots">Sun, Aug 2 · Pink · <a href="#set-hs2-miguelle-tons">17:30</a></span></li>
-      <li><span class="act">Miluhska</span> <span class="slots">Sun, Aug 2 · Pink · <a href="#set-hs2-miluhska">15:00</a></span></li>
-      <li><span class="act">Montique</span> <span class="slots">Sat, Aug 1 · Beatbox Art Car · <a href="#set-hs1-montique">14:00</a></span></li>
-      <li><span class="act">Naomi Green</span> <span class="slots">Sat, Aug 1 · Ice Cream Truck · <a href="#set-hs1-naomi-green">14:00</a></span></li>
-      <li><span class="act">Nick León</span> <span class="slots">Sat, Aug 1 · Purple · <a href="#set-hs1-nick-leon">15:00</a></span></li>
-      <li><span class="act">Omar+</span> <span class="slots">Sat, Aug 1 · Pink · <a href="#set-hs1-omar">18:00</a></span></li>
-      <li><span class="act">Oppidan</span> <span class="slots">Sun, Aug 2 · HARDER · <a href="#set-hs2-oppidan">17:20</a></span></li>
-      <li><span class="act">Oscar Osorio</span> <span class="slots">Sun, Aug 2 · Ice Cream Truck · <a href="#set-hs2-oscar-osorio">20:30</a></span></li>
-      <li><span class="act">Pegassi</span> <span class="slots">Sat, Aug 1 · Green · <a href="#set-hs1-pegassi">17:30</a></span></li>
-      <li><span class="act">PITCHBLACK</span> <span class="slots">Sun, Aug 2 · Beatbox Art Car · <a href="#set-hs2-pitchblack">19:00</a></span></li>
-      <li><span class="act">Quinn Blake</span> <span class="slots">Sat, Aug 1 · HARD · <a href="#set-hs1-quinn-blake">14:00</a></span></li>
-      <li><span class="act">Ranger Trucco</span> <span class="slots">Sun, Aug 2 · Pink · <a href="#set-hs2-ranger-trucco">16:00</a></span></li>
-      <li><span class="act">RL Grime</span> <span class="slots">Sun, Aug 2 · HARDER · <a href="#set-hs2-rl-grime">20:00</a></span></li>
-      <li><span class="act">RØZ</span> <span class="slots">Sat, Aug 1 · HARDER · <a href="#set-hs1-rz">17:10</a></span></li>
-      <li><span class="act">salute</span> <span class="slots">Sat, Aug 1 · Purple · <a href="#set-hs1-salute">18:10</a></span></li>
-      <li><span class="act">Sammy Virji</span> <span class="slots">Sun, Aug 2 · HARD · <a href="#set-hs2-sammy-virji">19:00</a></span></li>
-      <li><span class="act">Samwise</span> <span class="slots">Sun, Aug 2 · Ice Cream Truck · <a href="#set-hs2-samwise">16:00</a></span></li>
-      <li><span class="act">SHAKING</span> <span class="slots">Sat, Aug 1 · HARDER · <a href="#set-hs1-shaking">14:00</a></span></li>
-      <li><span class="act">Shygirl presents Club Shy</span> <span class="slots">Sun, Aug 2 · Purple · <a href="#set-hs2-shygirl-presents-club-shy">18:40</a></span></li>
-      <li><span class="act">Sim Ivy</span> <span class="slots">Sat, Aug 1 · Beatbox Art Car · <a href="#set-hs1-sim-ivy">15:00</a></span></li>
-      <li><span class="act">Six Sex</span> <span class="slots">Sat, Aug 1 · Purple · <a href="#set-hs1-six-sex">16:10</a></span></li>
-      <li><span class="act">Small (danny g luvs u B2B Bori)</span> <span class="slots">Sat, Aug 1 · Beatbox Art Car · <a href="#set-hs1-small-danny-g-luvs-u-b2b-bori">16:00</a></span></li>
-      <li><span class="act">Snow Strippers</span> <span class="slots">Sun, Aug 2 · HARD · <a href="#set-hs2-snow-strippers">18:05</a></span></li>
-      <li><span class="act">Spiñorita</span> <span class="slots">Sat, Aug 1 · Beatbox Art Car · <a href="#set-hs1-spinorita">19:00</a></span></li>
-      <li><span class="act">Strawbry</span> <span class="slots">Sun, Aug 2 · HARD · <a href="#set-hs2-strawbry">14:00</a></span></li>
-      <li><span class="act">Tiga</span> <span class="slots">Sun, Aug 2 · Pink · <a href="#set-hs2-tiga">19:00</a></span></li>
-      <li><span class="act">Tokischa</span> <span class="slots">Sat, Aug 1 · HARDER · <a href="#set-hs1-tokischa">18:35</a></span></li>
-      <li><span class="act">underscores</span> <span class="slots">Sun, Aug 2 · Purple · <a href="#set-hs2-underscores">15:50</a></span></li>
-      <li><span class="act">Vintage Culture</span> <span class="slots">Sun, Aug 2 · Pink · <a href="#set-hs2-vintage-culture">20:30</a></span></li>
-      <li><span class="act">VTSS</span> <span class="slots">Sun, Aug 2 · Green · <a href="#set-hs2-vtss">19:30</a></span></li>
-      <li><span class="act">X CLUB. B2B ATRIP</span> <span class="slots">Sat, Aug 1 · Green · <a href="#set-hs1-x-club-b2b-atrip">16:00</a></span></li>
-      <li><span class="act">Zack Fox</span> <span class="slots">Sat, Aug 1 · Purple · <a href="#set-hs1-zack-fox">19:30</a></span></li>
     </ul>
+    <details class="more">
+      <summary>Show all 91 artists</summary>
+      <ul class="lineup">
+        <li><span class="act">Charlotte de Witte</span> <span class="slots">Sat, Aug 1 · HARDER · <a href="#set-hs1-charlotte-de-witte">20:45</a></span></li>
+        <li><span class="act">Chloe404 B2B Kyle Arthur</span> <span class="slots">Sun, Aug 2 · Beatbox Art Car · <a href="#set-hs2-chloe404-b2b-kyle-arthur">14:00</a></span></li>
+        <li><span class="act">Chris Lorenzo</span> <span class="slots">Sat, Aug 1 · HARD · <a href="#set-hs1-chris-lorenzo">17:25</a></span></li>
+        <li><span class="act">Cole Terrazas</span> <span class="slots">Sun, Aug 2 · Pink · <a href="#set-hs2-cole-terrazas">14:00</a></span></li>
+        <li><span class="act">Confidence Man</span> <span class="slots">Sat, Aug 1 · Purple · <a href="#set-hs1-confidence-man">17:10</a></span></li>
+        <li><span class="act">Cquestt</span> <span class="slots">Sat, Aug 1 · Purple · <a href="#set-hs1-cquestt">14:00</a></span></li>
+        <li><span class="act">debbiesthuglife</span> <span class="slots">Sat, Aug 1 · Ice Cream Truck · <a href="#set-hs1-debbiesthuglife">16:00</a></span></li>
+        <li><span class="act">DJ Blackmarket</span> <span class="slots">Sat, Aug 1 · Beatbox Art Car · <a href="#set-hs1-dj-blackmarket">20:30</a></span></li>
+        <li><span class="act">DJ Fuckoff</span> <span class="slots">Sun, Aug 2 · Green · <a href="#set-hs2-dj-fuckoff">15:00</a></span></li>
+        <li><span class="act">DJ Kita</span> <span class="slots">Sat, Aug 1 · Beatbox Art Car · <a href="#set-hs1-dj-kita">17:30</a></span></li>
+        <li><span class="act">DJ Seinfeld B2B Luuk van Dijk</span> <span class="slots">Sat, Aug 1 · Pink · <a href="#set-hs1-dj-seinfeld-b2b-luuk-van-dijk">19:00</a></span></li>
+        <li><span class="act">DJ Snake (Hip Hop Set)</span> <span class="slots">Sun, Aug 2 · HARDER · <a href="#set-hs2-dj-snake-hip-hop-set">21:00</a></span></li>
+        <li><span class="act">DJ Warning</span> <span class="slots">Sat, Aug 1 · Green · <a href="#set-hs1-dj-warning">14:00</a></span></li>
+        <li><span class="act">DREYA V</span> <span class="slots">Sat, Aug 1 · Pink · <a href="#set-hs1-dreya-v">14:00</a></span></li>
+        <li><span class="act">Edge Control</span> <span class="slots">Sun, Aug 2 · Beatbox Art Car · <a href="#set-hs2-edge-control">15:00</a></span></li>
+        <li><span class="act">Etari</span> <span class="slots">Sun, Aug 2 · Green · <a href="#set-hs2-etari">14:00</a></span></li>
+        <li><span class="act">FIFI</span> <span class="slots">Sun, Aug 2 · HARDER · <a href="#set-hs2-fifi">16:10</a></span></li>
+        <li><span class="act">FLABBERGAST</span> <span class="slots">Sun, Aug 2 · Beatbox Art Car · <a href="#set-hs2-flabbergast">20:30</a></span></li>
+        <li><span class="act">Frost Children</span> <span class="slots">Sun, Aug 2 · Purple · <a href="#set-hs2-frost-children">16:40</a></span></li>
+        <li><span class="act">fun2bjane</span> <span class="slots">Sun, Aug 2 · Purple · <a href="#set-hs2-fun2bjane">14:00</a></span></li>
+        <li><span class="act">Gay Felony</span> <span class="slots">Sat, Aug 1 · Ice Cream Truck · <a href="#set-hs1-gay-felony">15:00</a></span></li>
+        <li><span class="act">Hannah Laing</span> <span class="slots">Sat, Aug 1 · Green · <a href="#set-hs1-hannah-laing">19:30</a></span></li>
+        <li><span class="act">Hyperbeam</span> <span class="slots">Sun, Aug 2 · HARD · <a href="#set-hs2-hyperbeam">16:20</a></span></li>
+        <li><span class="act">Interplanetary Criminal B2B Main Phase</span> <span class="slots">Sat, Aug 1 · Green · <a href="#set-hs1-interplanetary-criminal-b2b-main-p">20:45</a></span></li>
+        <li><span class="act">Jon Casey</span> <span class="slots">Sat, Aug 1 · HARDER · <a href="#set-hs1-jon-casey">15:00</a></span></li>
+        <li><span class="act">Kali Uchis</span> <span class="slots">Sat, Aug 1 · HARD · <a href="#set-hs1-kali-uchis">20:56</a></span></li>
+        <li><span class="act">Knock2 B2B Zedd</span> <span class="slots">Sun, Aug 2 · HARD · <a href="#set-hs2-knock2-b2b-zedd">20:45</a></span></li>
+        <li><span class="act">KsoFresKo</span> <span class="slots">Sun, Aug 2 · HARDER · <a href="#set-hs2-ksofresko">14:00</a></span></li>
+        <li><span class="act">Lake Hills B2B Ønyx</span> <span class="slots">Sat, Aug 1 · Ice Cream Truck · <a href="#set-hs1-lake-hills-b2b-nyx">19:00</a></span></li>
+        <li><span class="act">Lily Ardalan</span> <span class="slots">Sun, Aug 2 · Beatbox Art Car · <a href="#set-hs2-lily-ardalan">17:30</a></span></li>
+        <li><span class="act">Locklead</span> <span class="slots">Sat, Aug 1 · Pink · <a href="#set-hs1-locklead">16:00</a></span></li>
+        <li><span class="act">Lovefoxy</span> <span class="slots">Sat, Aug 1 · Green · <a href="#set-hs1-lovefoxy">15:00</a></span></li>
+        <li><span class="act">Luke Alessi</span> <span class="slots">Sat, Aug 1 · Pink · <a href="#set-hs1-luke-alessi">17:00</a></span></li>
+        <li><span class="act">Maceo Plex</span> <span class="slots">Sat, Aug 1 · Pink · <a href="#set-hs1-maceo-plex">20:30</a></span></li>
+        <li><span class="act">Mary Droppinz</span> <span class="slots">Sat, Aug 1 · HARDER · <a href="#set-hs1-mary-droppinz">16:00</a></span></li>
+        <li><span class="act">Mau P</span> <span class="slots">Sat, Aug 1 · HARD · <a href="#set-hs1-mau-p">18:45</a></span></li>
+        <li><span class="act">MCR-T</span> <span class="slots">Sun, Aug 2 · Purple · <a href="#set-hs2-mcr-t">17:40</a></span></li>
+        <li><span class="act">Mesmé</span> <span class="slots">Sat, Aug 1 · Ice Cream Truck · <a href="#set-hs1-mesme">17:30</a></span></li>
+        <li><span class="act">Mez Monty B2B Shane Thomas</span> <span class="slots">Sun, Aug 2 · Ice Cream Truck · <a href="#set-hs2-mez-monty-b2b-shane-thomas">19:00</a></span></li>
+        <li><span class="act">Miguelle &amp; Tons</span> <span class="slots">Sun, Aug 2 · Pink · <a href="#set-hs2-miguelle-tons">17:30</a></span></li>
+        <li><span class="act">Miluhska</span> <span class="slots">Sun, Aug 2 · Pink · <a href="#set-hs2-miluhska">15:00</a></span></li>
+        <li><span class="act">Montique</span> <span class="slots">Sat, Aug 1 · Beatbox Art Car · <a href="#set-hs1-montique">14:00</a></span></li>
+        <li><span class="act">Naomi Green</span> <span class="slots">Sat, Aug 1 · Ice Cream Truck · <a href="#set-hs1-naomi-green">14:00</a></span></li>
+        <li><span class="act">Nick León</span> <span class="slots">Sat, Aug 1 · Purple · <a href="#set-hs1-nick-leon">15:00</a></span></li>
+        <li><span class="act">Omar+</span> <span class="slots">Sat, Aug 1 · Pink · <a href="#set-hs1-omar">18:00</a></span></li>
+        <li><span class="act">Oppidan</span> <span class="slots">Sun, Aug 2 · HARDER · <a href="#set-hs2-oppidan">17:20</a></span></li>
+        <li><span class="act">Oscar Osorio</span> <span class="slots">Sun, Aug 2 · Ice Cream Truck · <a href="#set-hs2-oscar-osorio">20:30</a></span></li>
+        <li><span class="act">Pegassi</span> <span class="slots">Sat, Aug 1 · Green · <a href="#set-hs1-pegassi">17:30</a></span></li>
+        <li><span class="act">PITCHBLACK</span> <span class="slots">Sun, Aug 2 · Beatbox Art Car · <a href="#set-hs2-pitchblack">19:00</a></span></li>
+        <li><span class="act">Quinn Blake</span> <span class="slots">Sat, Aug 1 · HARD · <a href="#set-hs1-quinn-blake">14:00</a></span></li>
+        <li><span class="act">Ranger Trucco</span> <span class="slots">Sun, Aug 2 · Pink · <a href="#set-hs2-ranger-trucco">16:00</a></span></li>
+        <li><span class="act">RL Grime</span> <span class="slots">Sun, Aug 2 · HARDER · <a href="#set-hs2-rl-grime">20:00</a></span></li>
+        <li><span class="act">RØZ</span> <span class="slots">Sat, Aug 1 · HARDER · <a href="#set-hs1-rz">17:10</a></span></li>
+        <li><span class="act">salute</span> <span class="slots">Sat, Aug 1 · Purple · <a href="#set-hs1-salute">18:10</a></span></li>
+        <li><span class="act">Sammy Virji</span> <span class="slots">Sun, Aug 2 · HARD · <a href="#set-hs2-sammy-virji">19:00</a></span></li>
+        <li><span class="act">Samwise</span> <span class="slots">Sun, Aug 2 · Ice Cream Truck · <a href="#set-hs2-samwise">16:00</a></span></li>
+        <li><span class="act">SHAKING</span> <span class="slots">Sat, Aug 1 · HARDER · <a href="#set-hs1-shaking">14:00</a></span></li>
+        <li><span class="act">Shygirl presents Club Shy</span> <span class="slots">Sun, Aug 2 · Purple · <a href="#set-hs2-shygirl-presents-club-shy">18:40</a></span></li>
+        <li><span class="act">Sim Ivy</span> <span class="slots">Sat, Aug 1 · Beatbox Art Car · <a href="#set-hs1-sim-ivy">15:00</a></span></li>
+        <li><span class="act">Six Sex</span> <span class="slots">Sat, Aug 1 · Purple · <a href="#set-hs1-six-sex">16:10</a></span></li>
+        <li><span class="act">Small (danny g luvs u B2B Bori)</span> <span class="slots">Sat, Aug 1 · Beatbox Art Car · <a href="#set-hs1-small-danny-g-luvs-u-b2b-bori">16:00</a></span></li>
+        <li><span class="act">Snow Strippers</span> <span class="slots">Sun, Aug 2 · HARD · <a href="#set-hs2-snow-strippers">18:05</a></span></li>
+        <li><span class="act">Spiñorita</span> <span class="slots">Sat, Aug 1 · Beatbox Art Car · <a href="#set-hs1-spinorita">19:00</a></span></li>
+        <li><span class="act">Strawbry</span> <span class="slots">Sun, Aug 2 · HARD · <a href="#set-hs2-strawbry">14:00</a></span></li>
+        <li><span class="act">Tiga</span> <span class="slots">Sun, Aug 2 · Pink · <a href="#set-hs2-tiga">19:00</a></span></li>
+        <li><span class="act">Tokischa</span> <span class="slots">Sat, Aug 1 · HARDER · <a href="#set-hs1-tokischa">18:35</a></span></li>
+        <li><span class="act">underscores</span> <span class="slots">Sun, Aug 2 · Purple · <a href="#set-hs2-underscores">15:50</a></span></li>
+        <li><span class="act">Vintage Culture</span> <span class="slots">Sun, Aug 2 · Pink · <a href="#set-hs2-vintage-culture">20:30</a></span></li>
+        <li><span class="act">VTSS</span> <span class="slots">Sun, Aug 2 · Green · <a href="#set-hs2-vtss">19:30</a></span></li>
+        <li><span class="act">X CLUB. B2B ATRIP</span> <span class="slots">Sat, Aug 1 · Green · <a href="#set-hs1-x-club-b2b-atrip">16:00</a></span></li>
+        <li><span class="act">Zack Fox</span> <span class="slots">Sat, Aug 1 · Purple · <a href="#set-hs1-zack-fox">19:30</a></span></li>
+      </ul>
+    </details>
   </section>
 
   <section aria-labelledby="stages-h">
@@ -843,11 +932,17 @@
       <li><a href="/f/outside-lands-2026/">Outside Lands 2026</a> — Aug 7–9, 2026</li>
       <li><a href="/f/arc-2026/">ARC Music Festival 2026</a> — Sep 4–7, 2026</li>
       <li><a href="/f/summerfest-2026/">Summerfest 2026</a> — Jun 18–20, Jun 25–27 &amp; Jul 2–4, 2026</li>
-      <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
-      <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
-      <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
-      <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
     </ul>
+    <details class="more">
+      <summary>Show 4 more</summary>
+      <ul>
+        <li><a href="/f/lost-lands-2026/">Lost Lands 2026</a> — Sep 18–20, 2026</li>
+        <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a> — Sep 19–20, 2026</li>
+        <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a> — Sep 26–27, 2026</li>
+        <li><a href="/f/portola-2026/">Portola 2026</a> — Sep 26–27, 2026</li>
+      </ul>
+    </details>
+
   </nav>
 
   <section class="sources" aria-labelledby="sources-h">
@@ -857,7 +952,7 @@
       <li>Set times: <a href="https://hardsummer.com/lineup/set-times/day-1/" rel="noopener">https://hardsummer.com/lineup/set-times/day-1/</a> (official, checked 2026-09-06)</li>
       <li>Map: <a href="https://www.hardsummer.com/festival-map/" rel="noopener">https://www.hardsummer.com/festival-map/</a> (official, checked 2026-09-24)</li>
     </ul>
-    <p class="note">Last updated <time class="updated" datetime="2026-09-24">2026-09-24</time>.</p>
+    <p class="note">Last updated <time class="updated" datetime="2026-09-25">2026-09-25</time>.</p>
   </section>
 
   <footer>
