@@ -251,6 +251,13 @@
 
   const CONFIG = {
     id: "outside-lands-2026",
+    // The festival's OWN map page, linked (never embedded) by the /f/ page.
+    mapSource: { url: "https://www.sfoutsidelands.com/info", observedAt: "2026-09-24", mapYear: 2026 },
+    // Hours as the festival's OWN page prints them (24h wall clock, local):
+    // label is the page's word for the window ("Gates", "Festival", "Event").
+    // No published value means no field — never inferred from an older year.
+    // No close time: the official page prints none (the 10pm above is press).
+    hours: { label: "Gates", open: "11:00", musicStart: "12:00", url: "https://www.sfoutsidelands.com/info", observedAt: "2026-09-24" },
     // From the SOURCE note above: InMusic per-day listings, captured 2026-08-28 — the header's SECONDARY SOURCE. Feeds /f/<id>/schedule.json.
     scheduleSource: { url: "https://inmusicblog.com/", observedAt: "2026-08-28", official: false },
     name: "Outside Lands 2026",

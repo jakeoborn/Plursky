@@ -665,6 +665,9 @@
 
   const CONFIG = {
     id: "summerfest-2026",
+    // The festival's OWN map page, linked (never embedded) by the /f/ page. The page links
+    // the "2026 Summerfest Grounds Map"; link the page, never the image.
+    mapSource: { url: "https://www.summerfest.com/about/", observedAt: "2026-09-24", mapYear: 2026 },
     // From the SOURCE note above: summerfest.com/lineup daily schedule graphics, accessed 2026-08-28. Feeds /f/<id>/schedule.json.
     scheduleSource: { url: "https://summerfest.com/lineup", observedAt: "2026-08-28", official: true },
     name: "Summerfest 2026",

@@ -267,6 +267,10 @@
 
   const CONFIG = {
     id:        "dreamstate-socal-2026",
+    // Hours as the festival's OWN page prints them (24h wall clock, local):
+    // label is the page's word for the window ("Gates", "Festival", "Event").
+    // No published value means no field — never inferred from an older year.
+    hours: { label: "Event", open: "16:00", close: "01:00", url: "https://socal.dreamstateusa.com/guide/hours-and-info/", observedAt: "2026-09-24" },
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
     lineupSource: { url: "https://socal.dreamstateusa.com/lineup/", observedAt: "2026-09-09", official: true },

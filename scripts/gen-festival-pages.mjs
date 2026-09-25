@@ -20,7 +20,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
 import { fp, festivalFingerprint } from './lib/sitemap-fingerprint.mjs';
-import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage } from './lib/festival-page-data.mjs';
+import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage, hoursLine } from './lib/festival-page-data.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://plursky.com';
@@ -340,16 +340,17 @@ ${stages.map(st => { const c = count(st.id); return `      <li><strong>${esc(st.
 // Amenity TYPES the app carries, and nothing positional: no walk times,
 // distances, leave-by or transition verdicts on any page, because
 // geometryVerifiedFor() holds for 3 festivals and a crawlable page cannot
-// show the gate the app shows. Gates and hours need a recorded source, and
-// no festival records one, so none are listed.
+// show the gate the app shows. Hours print only from cfg.hours, which exists
+// only where the festival's own page publishes them (with its URL and the
+// date it was read); everywhere else there is no hours line at all.
 function planSection(entry, amenities) {
-  if (!amenities.length) return '';
   const cfg = entry.config;
+  const hours = hoursLine(cfg.hours);
+  if (!amenities.length && !hours) return '';
   return `
   <section aria-labelledby="plan-h">
     <h2 id="plan-h">Plan your day at ${esc(cfg.name)}</h2>
-    <p>Amenities Plursky lists for ${esc(cfg.name)}: ${amenities.map(([k, v]) => `${esc(k)} (${v})`).join(' · ')}.</p>
-  </section>`;
+${hours ? `    <p class="hours">${esc(hours)} <span class="note">Per the <a href="${esc(cfg.hours.url)}" rel="noopener">official hours page</a>, checked ${esc(cfg.hours.observedAt)}.</span></p>\n` : ''}${amenities.length ? `    <p>Amenities Plursky lists for ${esc(cfg.name)}: ${amenities.map(([k, v]) => `${esc(k)} (${v})`).join(' · ')}.</p>\n` : ''}  </section>`;
 }
 
 // ── Past editions ─────────────────────────────────────────────────────
@@ -589,6 +590,7 @@ function stub(entry, statusOverride, lastmod) {
     cfg.lineupSource && cfg.lineupSource.url && `      <li>Lineup: <a href="${esc(cfg.lineupSource.url)}" rel="noopener">${esc(cfg.lineupSource.url)}</a> (${cfg.lineupSource.official === true ? 'official' : 'community source'}${cfg.lineupSource.observedAt ? `, read ${esc(cfg.lineupSource.observedAt)}` : ''})</li>`,
     src && src.url && `      <li>Set times: <a href="${esc(src.url)}" rel="noopener">${esc(src.url)}</a> (${src.official === true ? 'official' : 'community source'}${src.observedAt ? `, checked ${esc(src.observedAt)}` : ''})</li>`,
     cfg.mapSource && cfg.mapSource.url && `      <li>Map: <a href="${esc(cfg.mapSource.url)}" rel="noopener">${esc(cfg.mapSource.url)}</a> (official, checked ${esc(cfg.mapSource.observedAt)})</li>`,
+    cfg.hours && cfg.hours.url && `      <li>Hours: <a href="${esc(cfg.hours.url)}" rel="noopener">${esc(cfg.hours.url)}</a> (official, checked ${esc(cfg.hours.observedAt)})</li>`,
   ].filter(Boolean);
 
   return `<!DOCTYPE html>

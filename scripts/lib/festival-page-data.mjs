@@ -66,3 +66,17 @@ export function amenitySummary(DS, id, available) {
   }
   return [...counts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
 }
+
+// The Plan-your-day hours line, from cfg.hours only (see gen-festival-pages).
+const clock = hm => {
+  const [h, m] = String(hm).split(':').map(Number);
+  return `${h % 12 || 12}:${String(m).padStart(2, '0')} ${h < 12 ? 'AM' : 'PM'}`;
+};
+export function hoursLine(h) {
+  if (!h || !h.url || !h.open) return '';
+  const win = h.close ? `${clock(h.open)} – ${clock(h.close)}` : null;
+  const main = h.label === 'Gates'
+    ? `Gates open ${clock(h.open)}${h.close ? `, close ${clock(h.close)}` : ''}`
+    : `${h.label} hours: ${win || `from ${clock(h.open)}`}`;
+  return `${main}${h.daily ? ' each day' : ''}${h.musicStart ? `; music starts ${clock(h.musicStart)}` : ''}.`;
+}

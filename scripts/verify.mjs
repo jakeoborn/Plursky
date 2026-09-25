@@ -2592,6 +2592,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b8b. Official maps and hours, exactly as ruled ─────────────────────
+// Every map link and hours value carries its first-party URL and the date it
+// was read; a festival with no published value has no field, and the held
+// ones (Portola, EDC Orlando, Decadence, Beyond SoCal) stay empty.
+{
+  console.log("▸ Maps & hours gate — every value sourced and dated, nothing inferred");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-maps-hours.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`maps & hours failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b9. Shell portability ──────────────────────────────────────────────
 // Every push in this repo goes through scripts/verify-and-push.sh, and that
 // wrapper shipped with `#!/bin/zsh` until #211. On a box without zsh the kernel

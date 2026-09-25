@@ -378,6 +378,8 @@ const FESTIVALS_REGISTRY = [
       id:        "electric-forest-2027",
       // Official site, checked reachable 2026-09-24. No 2027 lineup yet.
       officialEvent: { website: "https://www.electricforestfestival.com/", observedAt: "2026-09-24" },
+      // The festival's OWN map page (2026 map; no 2027 map yet), linked never embedded.
+      mapSource: { url: "https://www.electricforestfestival.com/maps", observedAt: "2026-09-24", mapYear: 2026 },
       name:      "Electric Forest 2027",
       shortName: "Forest 2027",
       brand:     "Electric Forest",
@@ -876,6 +878,9 @@ const FESTIVALS_REGISTRY = [
       id:        "coachella-2027",
       // Official site, checked reachable 2026-09-24. No 2027 lineup yet.
       officialEvent: { website: "https://www.coachella.com/", observedAt: "2026-09-24" },
+      // The festival's OWN maps page ("Coachella 2026 Venue map" + directions,
+      // parking, camping). Link the page; never hotlink or re-host the images.
+      mapSource: { url: "https://www.coachella.com/maps", observedAt: "2026-09-24", mapYear: 2026 },
       name:      "Coachella 2027",
       shortName: "Coachella",
       brand:     "Coachella",
