@@ -20,6 +20,7 @@ import { buildEdition, droppedRows, performerKeys, artistKey, readSheet } from "
 import { ACTIVITIES, EDITIONS } from "./historical/editions.mjs";
 import { datedLabel, instant, to24 } from "./historical/lib.mjs";
 import { dayTabs, sheetRow } from "./historical/extract-insomniac.mjs";
+import { parseLineupPage, provesEdition, lineupRows } from "./historical/extract-insomniac-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const H = p => join(ROOT, "data/historical", p);
@@ -123,9 +124,15 @@ if (base && edc) {
 
 // An edition that is valid as lineup_only must be accepted without times.
 if (base) {
-  const lo = clone(base);
-  lo.completeness = "lineup_only"; lo.sets = []; lo.stages = [];
-  ok(validateEdition(lo, {}).length === 0, `a clean lineup_only edition was rejected: ${validateEdition(lo, {}).join("; ")}`);
+  // A lineup page with no By Stage tab (Dreamstate, EDC Orlando): days, no stages.
+  const noc = editions["nocturnal-wonderland-2025"];
+  if (noc) {
+    const lo = clone(noc);
+    lo.stages = []; lo.artists.forEach(a => a.appearances.forEach(x => delete x.stageId));
+    const exp = { ...expected[noc.id], stages: 0 };
+    const p = validateEdition(lo, { expected: exp, dropped: [] });
+    ok(p.length === 0, `a clean lineup_only edition without stages was rejected: ${p.join("; ")}`);
+  }
 }
 
 // ── dropped rows and artist keys ──
@@ -161,6 +168,11 @@ for (const [id, list] of Object.entries(ACTIVITIES)) {
   for (const a of list) ok(printed.has(a), `${id}: listed activity "${a}" is not a printed row`);
 }
 for (const id of Object.keys(editions)) {
+  if (editions[id].completeness === "lineup_only") {
+    const printed = new Set(readSheet(H(`sheets/${id}.lineup.tsv`)).map(r => `${r.day}|${r.stage}|${r.artist}`));
+    for (const r of droppedFor(id)) ok(printed.has(`${r.day || ""}|${r.stage || ""}|${r.billing}`) && r.reason, `${id}: recorded drop ${r.billing} is not a printed billing, or has no reason`);
+    continue;
+  }
   const printed = new Set(readSheet(H(`sheets/${id}.tsv`)).map(r => `${r.day}|${r.stage}|${r.start}|${r.artist}`));
   for (const r of droppedFor(id)) ok(printed.has(`${r.day}|${r.stage}|${r.start}|${r.billing}`) && r.reason, `${id}: recorded drop ${r.billing} is not a printed row, or has no reason`);
 }
@@ -170,7 +182,11 @@ const MONTH = ["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST"
 for (const [id, e] of Object.entries(editions)) {
   const led = JSON.parse(readFileSync(H(`ledger/${id}.json`), "utf8")), rev = reviewFor(id);
   for (const d of e.days) {
-    if (led.method === "structured_html") {
+    if (led.method === "official_lineup_html") {
+      // The chosen capture's own By Day header for this day, as the ledger recorded it.
+      const head = led.considered.find(c => c.captureTimestamp === led.chosen)?.days?.[d.day - 1] || "";
+      ok(datedLabel(head, e.year) === d.date, `${id} day ${d.day}: ${d.date} is not what the archived lineup's By Day tab printed ("${head}")`);
+    } else if (led.method === "structured_html") {
       ok(led.days.find(x => x.day === d.day)?.date === d.date, `${id} day ${d.day}: ${d.date} is not what the archived page's day tab printed`);
     } else {
       // The reviewer copied each graphic's printed header into its note;
@@ -198,6 +214,59 @@ ok(sheetRow(1, { id: "1", stage: "S", artist: "A", start: "09:00", end: "10:00",
   "the printed range wins over epochs");
 ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
   "EDC Friday's 04:13 set is Saturday 04:13 PDT, still grouped under Friday");
+
+// ── 3b. lineup-only editions (official lineup page, no times) ──
+{
+  const lineups = Object.values(editions).filter(e => e.completeness === "lineup_only");
+  ok(lineups.length === 5, `expected the 5 Insomniac 2025 lineup editions, found ${lineups.length}`);
+  for (const e of lineups) {
+    ok(e.provenance.extractionMethod === "official_lineup_html" && !e.sets.length, `${e.id}: lineup_only must come from a lineup page and carry no sets`);
+    ok(!JSON.stringify(e.artists).match(/"(start|end|time)"/), `${e.id}: an artist carries a time`);
+    for (const d of e.days) ok(e.artists.some(a => a.appearances.some(x => x.day === d.day)), `${e.id}: day ${d.day} has no billed artist`);
+    const led = JSON.parse(readFileSync(H(`ledger/${e.id}.json`), "utf8"));
+    ok(led.chosen === led.considered.filter(c => c.valid && c.billings).at(-1)?.captureTimestamp, `${e.id}: the chosen capture is not the latest one that proves the edition`);
+    ok(JSON.stringify(e.stages.map(s => s.name)) === JSON.stringify(led.stageOrder || []), `${e.id}: stages are not in the order the By Stage tab printed (${e.stages.map(s => s.name).join(", ")})`);
+  }
+  const noc = editions["nocturnal-wonderland-2025"], esc = editions["escape-halloween-2025"];
+  if (noc && esc) {
+    mustFail("a lineup edition gains a set", m => { m.sets.push({ id: `${m.id}:d1:x:2000:y`, artistId: m.artists[0].id, day: 1, stageId: m.stages[0].id, start: "20:00", end: "21:00" }); }, noc, undefined, /no sets/);
+    mustFail("a lineup appearance gains a time", m => { m.artists[0].appearances[0].start = "20:00"; }, noc, undefined, /other than a day and a stage/);
+    mustFail("a lineup appearance on a day the edition does not have", m => { m.artists[0].appearances[0].day = 3; }, noc, undefined, /not an edition day/);
+    mustFail("a lineup appearance on an unknown stage", m => { m.artists[0].appearances[0].stageId = `${m.id}:nowhere`; }, noc, undefined, /unknown stage/);
+    mustFail("a lineup stage nobody played", m => { m.stages.push({ id: `${m.id}:empty`, name: "Empty Stage" }); }, noc, undefined, /on no artist/);
+    mustFail("a lineup artist removed", m => { m.artists.pop(); }, noc, undefined, /artists, locked/);
+    mustFail("a lineup day's appearance removed", m => { const a = m.artists.find(x => x.appearances.some(y => y.day === 2)); a.appearances = a.appearances.filter(y => y.day !== 2); }, noc, undefined, /appearances per day/);
+    mustFail("a lineup page promoted to a complete schedule", m => { m.completeness = "complete_schedule"; }, noc, undefined, /cannot make a complete_schedule/);
+    mustFail("a lineup capture from a non-official host", m => { m.provenance.captures[0].archivedUrl = "https://web.archive.org/web/20250912223717/https://www.clashfinder.com/s/nw2025/"; }, noc, undefined, /not an official/);
+    mustFail("a lineup capture from the wrong year", m => { m.provenance.captures[0].archivedUrl = m.provenance.captures[0].archivedUrl.replace("/web/2025", "/web/2024"); }, noc, undefined, /not from 2025/);
+    mustFail("Special Guest back in a lineup", m => { m.artists.push({ id: `${m.id}:special-guest`, name: "Special Guest", key: "special-guest", performers: ["special-guest"], appearances: [{ day: 1 }] }); }, esc, undefined, /: dropped /);
+  }
+
+  // Parser fixtures: the real markup shapes, and the traps.
+  const li = (name, extra = "") => `<li><span><a href="#modal-lineup-artist" data-artist-id="1" data-artist-name="${name}"${extra}>${name}</a></span></li>`;
+  const page = (title, dayHeads, stages) => `<title>Lineup &#8211; ${title}</title>
+    <div class="tabs__trigger tabs__trigger--active">Alphabetical</div><div class="tabs__trigger">By Day</div>${stages ? `<div class="tabs__trigger">By Stage</div>` : ""}
+    <div class="tabs__content tabs__content--active"><ul>${li("Alpha")}<li><span><a data-artist-name="Adam Beyer">Adam Beyer</a> B2B <a data-artist-name="Layton Giordani">Layton Giordani</a></span></li>${li("Beta", ' aria-label="view artist details for Beta"')}${li("Two Stager")}</ul></div>
+    <div class="tabs__content"><h3>${dayHeads[0]}</h3><ul>${li("Alpha")}${li("Two Stager")}</ul><h3>${dayHeads[1]}</h3><ul><li><span><a data-artist-name="Adam Beyer">Adam Beyer</a> B2B <a data-artist-name="Layton Giordani">Layton Giordani</a></span></li>${li("Beta")}</ul><h3>Sponsors</h3><ul><li><a href="https://sponsor.example">Sponsor Co</a></li></ul></div>
+    ${stages ? `<div class="tabs__content"><h3>Main</h3><ul>${li("Alpha")}${li("Two Stager")}</ul><h3>Casa</h3><ul>${li("Two Stager")}${li("Only Staged")}</ul></div>` : ""}`;
+  const good = parseLineupPage(page("Nocturnal Wonderland 2025", ["Saturday, September 13", "Sunday, September 14"], true));
+  const alpha = good.tabs[0].groups.flatMap(g => g.acts);
+  ok(alpha.includes("Adam Beyer B2B Layton Giordani") && !alpha.includes("Adam Beyer"), "a B2B line is one billing, not one per link");
+  ok(alpha.includes("Beta"), "a billing whose link carries aria-label is still read (Escape's markup)");
+  ok(!good.tabs[1].groups.flatMap(g => g.acts).includes("Sponsor Co"), "a sponsor link is not an act");
+  ok(provesEdition(good, "nocturnal-wonderland-2025").valid, "the 2025 page with 2025 day headers proves the edition");
+  ok(!provesEdition(parseLineupPage(page("Nocturnal Wonderland 2024", ["Saturday, September 13", "Sunday, September 14"], true)), "nocturnal-wonderland-2025").valid,
+    "a page titled 2024 must not pass as 2025");
+  ok(!provesEdition(parseLineupPage(page("Nocturnal Wonderland 2025", ["Saturday, September 14", "Sunday, September 15"], true)), "nocturnal-wonderland-2025").valid,
+    "2025 title over last year's day headers (Sat Sep 14 is 2024) must not pass");
+  const { rows, findings } = lineupRows(good, "nocturnal-wonderland-2025");
+  const at = n => rows.filter(r => r.artist === n).map(r => `${r.day}|${r.stage}`).sort().join(",");
+  ok(at("Alpha") === "1|Main", `one day and one stage join into one appearance (got ${at("Alpha")})`);
+  ok(at("Two Stager") === "1|Casa,1|Main", `one day and two stages give two appearances that day (got ${at("Two Stager")})`);
+  ok(at("Only Staged") === "|Casa" && findings.some(f => f.startsWith("Only Staged:")), "a billing printed only under a stage keeps its stage, no invented day, and is flagged");
+  ok(at("Beta") === "2|" && findings.some(f => f.startsWith("Beta:")), "a billing missing from By Stage keeps its day and is flagged");
+  ok(!findings.some(f => f.startsWith("Alpha:")), "a billing every tab agrees on is not flagged");
+}
 
 // ── 4. isolation from the live app ──
 {
