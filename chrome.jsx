@@ -304,15 +304,17 @@ function useStaggerFade(depKey) {
 // for an image whose source nobody wrote down.
 //   spotify        shown for SPOTIFY_IMAGE_TTL_MS after the fetch, then dropped
 //                  and refetched. Never drawn into a share or recap export.
-//   itunes · tadb  shown until overwritten; allowed in exports.
-//   unknown        a pre-v360 bare-string entry. It may be Spotify, so it is
-//                  never exported and never shown; the next view refetches it.
+//   unknown        a pre-v360 bare-string entry, or an old "itunes"/"tadb"
+//                  one. Never shown or exported, and pruned at boot and on
+//                  every write. TheAudioDB (its free-API terms) and the iTunes
+//                  Search API (artwork only "to promote store content", beside
+//                  a store badge) are not sources: lane ruling 2026-09-24.
 // 24 h keeps one festival day's scrolling to one Spotify search per artist and
-// is the longest window we can call temporary; offline, the TheAudioDB
-// prefetch in home.jsx fills the gap an expired Spotify entry leaves.
+// is the longest window we can call temporary. With nothing else allowed, a
+// share or recap export draws no cached artist image at all.
 const ARTIST_IMAGES_KEY = "artist_images_v1";
 const SPOTIFY_IMAGE_TTL_MS = 24 * 60 * 60 * 1000;
-const _ARTIST_IMAGE_SOURCES = ["spotify", "itunes", "tadb"];
+const _ARTIST_IMAGE_SOURCES = ["spotify"];
 
 function _readArtistImageStore() {
   try {
@@ -338,7 +340,7 @@ function _artistImageShowable(rec, now = Date.now()) {
     const age = now - rec.fetchedAt;
     return rec.fetchedAt != null && age >= 0 && age < SPOTIFY_IMAGE_TTL_MS;
   }
-  return rec.source === "itunes" || rec.source === "tadb";
+  return false;
 }
 
 // The entry to SHOW for an artist, or null (missing, expired, or unknown).
@@ -366,7 +368,7 @@ function _pruneArtistImageStore(store, now = Date.now()) {
 }
 
 // entries: [{ name, url, source, spotifyId? }]. ifAbsent: keep a showable
-// entry already there (TheAudioDB defers to anything newer or sharper).
+// entry already there.
 function putArtistImages(entries, { ifAbsent = false } = {}) {
   try {
     const store = _readArtistImageStore();
@@ -435,6 +437,14 @@ try {
   _expireArtistImagesNow();
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") _expireArtistImagesNow(); });
 } catch {}
+// TheAudioDB's per-artist lookups (bio, image URLs) were cached under
+// tadb_<name>_v2. It is not a source any more, so its data does not stay.
+try {
+  for (let i = localStorage.length - 1; i >= 0; i--) {
+    const k = localStorage.key(i);
+    if (k && /^tadb_.+_v\d+$/.test(k)) localStorage.removeItem(k);
+  }
+} catch {}
 
 // Spotify's full logo (icon + wordmark), the 2024 RGB artwork from
 // developer.spotify.com/documentation/design, paths unmodified. Monochrome via
@@ -490,21 +500,6 @@ function _queuePhoto(name) {
   return new Promise(resolve => { _photoQueue.push({ name, resolve }); _drainPhotoQueue(); });
 }
 
-function _fetchItunesPhoto(name) {
-  return fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(name)}&entity=musicArtist&limit=1`)
-    .then(r => r.json())
-    .then(d => {
-      const art = d.results?.[0];
-      if (!art?.artistName) return null;
-      if (art.artistName.toLowerCase() !== name.toLowerCase()) return null;
-      const url = (art.artworkUrl100 || "").replace("100x100", "600x600");
-      if (!url) return null;
-      putArtistImage(name, url, "itunes");
-      return url;
-    })
-    .catch(() => null);
-}
-
 function useArtistPhoto(name) {
   const [photo, setPhoto] = React.useState(() => {
     return getArtistImage(name)?.url || null;
@@ -520,14 +515,10 @@ function useArtistPhoto(name) {
     let live = true;
     const token   = localStorage.getItem("spotify_token");
     const expires = localStorage.getItem("spotify_expires");
+    // Spotify (connected users, 24 h rule) is the only photo source; with no
+    // photo the swatch keeps its gradient and initials.
     if (token && expires && Date.now() < parseInt(expires)) {
-      _queuePhoto(name).then(img => {
-        if (!live) return;
-        if (img) { setPhoto(img); return; }
-        _fetchItunesPhoto(name).then(url => { if (live && url) setPhoto(url); });
-      });
-    } else {
-      _fetchItunesPhoto(name).then(url => { if (live && url) setPhoto(url); });
+      _queuePhoto(name).then(img => { if (live && img) setPhoto(img); });
     }
     return () => { live = false; };
   }, [name.toLowerCase(), photo]);

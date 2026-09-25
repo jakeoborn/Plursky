@@ -402,7 +402,7 @@ function useStaggerFade(depKey) {
 }
 var ARTIST_IMAGES_KEY = "artist_images_v1";
 var SPOTIFY_IMAGE_TTL_MS = 24 * 60 * 60 * 1000;
-var _ARTIST_IMAGE_SOURCES = ["spotify", "itunes", "tadb"];
+var _ARTIST_IMAGE_SOURCES = ["spotify"];
 function _readArtistImageStore() {
   try {
     var o = JSON.parse(localStorage.getItem(ARTIST_IMAGES_KEY) || "{}");
@@ -432,7 +432,7 @@ function _artistImageShowable(rec, now = Date.now()) {
     var age = now - rec.fetchedAt;
     return rec.fetchedAt != null && age >= 0 && age < SPOTIFY_IMAGE_TTL_MS;
   }
-  return rec.source === "itunes" || rec.source === "tadb";
+  return false;
 }
 function getArtistImage(name, now = Date.now()) {
   if (!name) return null;
@@ -530,6 +530,12 @@ try {
     if (document.visibilityState === "visible") _expireArtistImagesNow();
   });
 } catch {}
+try {
+  for (var i = localStorage.length - 1; i >= 0; i--) {
+    var k = localStorage.key(i);
+    if (k && /^tadb_.+_v\d+$/.test(k)) localStorage.removeItem(k);
+  }
+} catch {}
 function SpotifyFullLogo({
   height = 21,
   title = "Spotify"
@@ -598,17 +604,6 @@ function _queuePhoto(name) {
     _drainPhotoQueue();
   });
 }
-function _fetchItunesPhoto(name) {
-  return fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(name)}&entity=musicArtist&limit=1`).then(r => r.json()).then(d => {
-    var art = d.results?.[0];
-    if (!art?.artistName) return null;
-    if (art.artistName.toLowerCase() !== name.toLowerCase()) return null;
-    var url = (art.artworkUrl100 || "").replace("100x100", "600x600");
-    if (!url) return null;
-    putArtistImage(name, url, "itunes");
-    return url;
-  }).catch(() => null);
-}
 function useArtistPhoto(name) {
   var [photo, setPhoto] = React.useState(() => {
     return getArtistImage(name)?.url || null;
@@ -624,18 +619,7 @@ function useArtistPhoto(name) {
     var expires = localStorage.getItem("spotify_expires");
     if (token && expires && Date.now() < parseInt(expires)) {
       _queuePhoto(name).then(img => {
-        if (!live) return;
-        if (img) {
-          setPhoto(img);
-          return;
-        }
-        _fetchItunesPhoto(name).then(url => {
-          if (live && url) setPhoto(url);
-        });
-      });
-    } else {
-      _fetchItunesPhoto(name).then(url => {
-        if (live && url) setPhoto(url);
+        if (live && img) setPhoto(img);
       });
     }
     return () => {
@@ -1048,7 +1032,7 @@ function _capLocalNotifications() {
 }
 function _notifIdForArtist(id) {
   var h = 0;
-  for (var i = 0; i < id.length; i++) h = h * 31 + id.charCodeAt(i) | 0;
+  for (var _i = 0; _i < id.length; _i++) h = h * 31 + id.charCodeAt(_i) | 0;
   return Math.abs(h) % 1_999_999_999 + 1;
 }
 var _TEST_NOTIF_ID = 9_999_001;
@@ -1733,7 +1717,7 @@ function _festivalPlanStatus(id) {
   var arts = ((window._DATA_SETS || {})[id]?.artists || []).filter(a => set.has(a.id));
   var sameWeekend = (a, b) => !a.weekend || !b.weekend || a.weekend === "both" || b.weekend === "both" || a.weekend === b.weekend;
   var conflicts = 0;
-  for (var i = 0; i < arts.length; i++) for (var j = i + 1; j < arts.length; j++) if (arts[i].day === arts[j].day && sameWeekend(arts[i], arts[j]) && typeof overlaps === "function" && overlaps(arts[i], arts[j])) conflicts++;
+  for (var _i2 = 0; _i2 < arts.length; _i2++) for (var j = _i2 + 1; j < arts.length; j++) if (arts[_i2].day === arts[j].day && sameWeekend(arts[_i2], arts[j]) && typeof overlaps === "function" && overlaps(arts[_i2], arts[j])) conflicts++;
   return {
     saved: arts.length,
     conflicts

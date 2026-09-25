@@ -1,14 +1,19 @@
 #!/usr/bin/env node
 // Spotify artist-image compliance, in the running app.
-//   1. A share/recap export never draws a Spotify image: the hero card's
-//      fallback takes an iTunes or TheAudioDB entry, never a Spotify one, and
-//      an unknown (pre-v360, bare-string) entry counts as Spotify.
+//   0. TheAudioDB and the iTunes Search API are not artist-image sources (lane
+//      ruling 2026-09-24): no call to either from app code, no "tadb"/"itunes"
+//      cache source, old entries of either pruned at boot, and TheAudioDB's
+//      per-artist tadb_<name>_vN keys cleared.
+//   1. A share/recap export never draws a Spotify image, and an unknown
+//      (pre-v360 bare-string, or old itunes/tadb) entry counts as Spotify.
+//      With no other source allowed, the card draws no cached artist image.
 //   2. Every artist_images_v1 entry records its source and fetch time; a
 //      Spotify entry older than SPOTIFY_IMAGE_TTL_MS is not shown and is
 //      dropped; an unknown entry is not shown. One helper owns the key.
 //   3. A Spotify-sourced artist hero shows the image uncropped with nothing
 //      drawn over it, and the full Spotify logo linking to the artist on
-//      Spotify. A non-Spotify hero keeps the full-bleed layout.
+//      Spotify. With no Spotify image, the hero falls to the gradient: no
+//      photo, no source label.
 //   4. A Spotify image expires while the app stays open: storage, the hero
 //      and a mounted useArtistPhoto all let it go at 24 h, whether it came
 //      from the cache or was fetched in this session.
@@ -32,6 +37,28 @@ for (const f of readdirSync('.').filter(f => f.endsWith('.jsx'))) {
   const hits = (src.match(/["'`]artist_images_v1["'`]/g) || []).length;
   if (f === 'chrome.jsx') check(hits === 1, `chrome.jsx should name artist_images_v1 exactly once (the helper's key), found ${hits}`);
   else check(hits === 0, `${f} touches artist_images_v1 directly (${hits}x); go through getArtistImage/putArtistImage`);
+}
+
+// ── Static: TheAudioDB and iTunes artist images are gone ────────────────────
+// No TheAudioDB call anywhere in app code; no iTunes ARTIST lookup or artwork
+// in the artist-image paths; no "tadb"/"itunes" image source. (spotify-api.jsx
+// and spotify.jsx still search iTunes for SONG previews: a separate use,
+// reported for a ruling, not an artist photo.)
+{
+  const app = readdirSync('.').filter(f => f.endsWith('.jsx'));
+  // Code lines only: a line that IS a comment may name the services (the
+  // notes explaining why they are gone). No regex comment-stripping: a
+  // "capacitor://localhost/*" inside a // comment would open a fake block
+  // and hide real code.
+  const codeLines = src => src.split('\n').filter(l => !/^\s*(\/\/|\*|\/\*|\{\/\*)/.test(l)).join('\n');
+  const code = Object.fromEntries(app.map(f => [f, codeLines(readFileSync(f, 'utf8'))]));
+  check(app.length > 10 && code['chrome.jsx'].includes('putArtistImage'), `control: app code not read (${app.length} .jsx files)`);
+  const tadb = app.filter(f => /theaudiodb\.com|fetchAudioDB|["'`]tadb["'`]/i.test(code[f]));
+  check(tadb.length === 0, `TheAudioDB is still called or used as a source in ${tadb.join(', ')}`);
+  const IMG = ['chrome.jsx', 'artist.jsx', 'home.jsx', 'recap-engine.jsx'];
+  const itunes = IMG.filter(f => /itunes\.apple\.com|_fetchItunesPhoto|artworkUrl|["'`]itunes["'`]/i.test(code[f]));
+  check(itunes.length === 0, `iTunes is still an artist-image source in ${itunes.join(', ')}`);
+  check(/_ARTIST_IMAGE_SOURCES = \["spotify"\];/.test(code['chrome.jsx']), 'the cache allows a source other than spotify');
 }
 
 const PORT = await reservePort();
@@ -68,15 +95,22 @@ try {
       'fresh spotify': { url: 'https://i.scdn.co/image/fresh', source: 'spotify', fetchedAt: now - 60000, spotifyId: 'id1' },
       'stale spotify': { url: 'https://i.scdn.co/image/stale', source: 'spotify', fetchedAt: now - DAY - 60000 },
       'legacy string': 'https://i.scdn.co/image/legacy',
-      'old tadb':      { url: 'https://r2.theaudiodb.com/x.jpg', source: 'tadb', fetchedAt: now - 400 * DAY },
+      'old tadb':      { url: 'https://r2.theaudiodb.com/x.jpg', source: 'tadb', fetchedAt: now - 60000 },
+      'old itunes':    { url: 'https://is1-ssl.mzstatic.com/x.jpg', source: 'itunes', fetchedAt: now - 60000 },
     };
-    const ctx = await newCtx(393, seed); const page = await ctx.newPage(); await boot(page);
-    const r = await page.evaluate(() => ({ store: JSON.parse(localStorage.getItem('artist_images_v1') || '{}'), ttl: SPOTIFY_IMAGE_TTL_MS }));
+    const ctx = await newCtx(393, seed);
+    await ctx.addInitScript(() => { localStorage.setItem('tadb_korolova_v2', '{"data":{"bio":"x"},"fetchedAt":0}'); localStorage.setItem('tadb_note', 'kept'); });
+    const page = await ctx.newPage(); await boot(page);
+    const r = await page.evaluate(() => ({ store: JSON.parse(localStorage.getItem('artist_images_v1') || '{}'), ttl: SPOTIFY_IMAGE_TTL_MS,
+      tadbKey: localStorage.getItem('tadb_korolova_v2'), control: localStorage.getItem('tadb_note') }));
     check(r.ttl === DAY, `SPOTIFY_IMAGE_TTL_MS is ${r.ttl}, the PR states 24 h`);
     check(!!r.store['fresh spotify'], 'boot prune dropped a fresh Spotify entry');
     check(!('stale spotify' in r.store), 'boot prune kept a Spotify entry older than the TTL (stored indefinitely)');
     check(!('legacy string' in r.store), 'boot prune kept an unknown-source legacy entry');
-    check(!!r.store['old tadb'], 'boot prune dropped a TheAudioDB entry (only Spotify expires)');
+    check(!('old tadb' in r.store), 'boot prune kept a TheAudioDB entry (not a source)');
+    check(!('old itunes' in r.store), 'boot prune kept an iTunes entry (not a source)');
+    check(r.tadbKey === null, "TheAudioDB's cached lookup (tadb_<name>_v2) survived boot");
+    check(r.control === 'kept', 'control: the tadb_ key prune removed a key it does not own');
     await ctx.close();
   }
 
@@ -93,15 +127,15 @@ try {
       const t0 = Date.now();
       putArtistImage('Alpha', png('#f00'), 'spotify', { spotifyId: 'sp-alpha' });
       putArtistImage('Beta', png('#0f0'), 'itunes');
-      putArtistImage('Gamma', png('#00f'), 'tadb');
+      putArtistImage('Gamma', png('#00f'), 'tadb');  // both refused: not sources
       putArtistImages([{ name: 'Delta', url: png('#ff0'), source: 'spotify', spotifyId: 'sp-delta' }]);
       putArtistImage('Epsilon', png('#0ff'), 'somewhere-else');
       const s = get();
-      out.recorded = ['alpha', 'beta', 'gamma', 'delta'].map(k => ({ k, source: s[k]?.source, fresh: s[k]?.fetchedAt >= t0 && s[k]?.fetchedAt <= Date.now(), id: s[k]?.spotifyId || null }));
-      out.unknownSourceWritten = 'epsilon' in s;
-      // ifAbsent: TheAudioDB never replaces a showable entry.
-      putArtistImage('Alpha', png('#fff'), 'tadb', { ifAbsent: true });
-      out.ifAbsentKept = get().alpha.source === 'spotify';
+      out.recorded = ['alpha', 'delta'].map(k => ({ k, source: s[k]?.source, fresh: s[k]?.fetchedAt >= t0 && s[k]?.fetchedAt <= Date.now(), id: s[k]?.spotifyId || null }));
+      out.refused = ['beta', 'gamma', 'epsilon'].filter(k => k in s);
+      // ifAbsent keeps a showable entry.
+      putArtistImage('Alpha', png('#fff'), 'spotify', { ifAbsent: true, spotifyId: 'other' });
+      out.ifAbsentKept = get().alpha.spotifyId === 'sp-alpha';
       // Expiry.
       const now = Date.now(), TTL = SPOTIFY_IMAGE_TTL_MS;
       set({ fresh: { url: 'u1', source: 'spotify', fetchedAt: now - TTL + 60000 },
@@ -111,8 +145,8 @@ try {
             legacy: 'u5', itunes: { url: 'u6', source: 'itunes', fetchedAt: 0 } });
       out.show = Object.fromEntries(['fresh', 'expired', 'future', 'nodate', 'legacy', 'itunes'].map(k => [k, getArtistImage(k)?.url || null]));
       out.share = Object.fromEntries(['fresh', 'legacy', 'itunes'].map(k => [k, getShareableArtistImage(k)?.url || null]));
-      // A write prunes: the expired entry is gone afterwards.
-      putArtistImage('Zeta', 'u7', 'itunes');
+      // A write prunes: the expired, legacy and iTunes entries are gone afterwards.
+      putArtistImage('Zeta', 'u7', 'spotify');
       out.afterWrite = Object.keys(get()).sort();
       // Share card: seeded with images that WOULD load, so only the policy can refuse them.
       const artist = window.ARTISTS[0];
@@ -123,6 +157,11 @@ try {
         legacyOnly:  await card(png('#f0f')),
         tadb:        await card({ url: png('#0f0'), source: 'tadb', fetchedAt: Date.now() }),
         itunes:      await card({ url: png('#0f0'), source: 'itunes', fetchedAt: Date.now() }),
+        // Control: were a source shareable, the card WOULD draw it (so the
+        // nulls above are the policy, not a broken card).
+        control:     await (async () => { set({}); const real = window.getShareableArtistImage; const url = png('#0f0');
+          window.getShareableArtistImage = () => ({ url, source: 'self' });
+          try { return (await _heroCardSource(artist)) ? 'image' : null; } finally { window.getShareableArtistImage = real; } })(),
         none:        await card(null),
       };
       out.cardArtist = artist.name;
@@ -133,26 +172,25 @@ try {
       check(x.fresh, `${x.k}: fetchedAt missing or not the write time`);
     }
     check(r.recorded.find(x => x.k === 'alpha').source === 'spotify' && r.recorded.find(x => x.k === 'alpha').id === 'sp-alpha', 'Spotify entry lost its source or artist id');
-    check(r.recorded.find(x => x.k === 'beta').source === 'itunes', 'iTunes entry recorded the wrong source');
-    check(r.recorded.find(x => x.k === 'gamma').source === 'tadb', 'TheAudioDB entry recorded the wrong source');
+    check(r.refused.length === 0, `an entry from a source that is not allowed was written: ${r.refused.join(', ')} (itunes, tadb, unknown)`);
     check(r.recorded.find(x => x.k === 'delta').id === 'sp-delta', 'batch Spotify write lost its artist id');
-    check(!r.unknownSourceWritten, 'an entry with an unrecognised source was written');
-    check(r.ifAbsentKept, 'TheAudioDB overwrote a showable Spotify entry');
+    check(r.ifAbsentKept, 'ifAbsent overwrote a showable entry');
     check(r.show.fresh === 'u1', 'a Spotify entry inside the TTL is not shown');
     check(r.show.expired === null, 'an expired Spotify entry is still shown');
     check(r.show.future === null, 'a Spotify entry dated in the future is shown (clock skew must not extend the TTL)');
     check(r.show.nodate === null, 'a Spotify entry with no fetch time is shown');
     check(r.show.legacy === null, 'an unknown-source legacy entry is shown instead of refetched');
-    check(r.show.itunes === 'u6', 'an old iTunes entry is hidden (only Spotify expires)');
+    check(r.show.itunes === null, 'an old iTunes entry is still shown (iTunes is not a source)');
     check(r.share.fresh === null, 'getShareableArtistImage returned a Spotify image');
     check(r.share.legacy === null, 'getShareableArtistImage returned an unknown-source legacy image');
-    check(r.share.itunes === 'u6', 'getShareableArtistImage refused an iTunes image');
-    check(!r.afterWrite.includes('expired') && !r.afterWrite.includes('legacy'), `a write did not prune expired/unknown entries: ${r.afterWrite.join(',')}`);
+    check(r.share.itunes === null, 'getShareableArtistImage returned an iTunes image');
+    check(!r.afterWrite.includes('expired') && !r.afterWrite.includes('legacy') && !r.afterWrite.includes('itunes') && r.afterWrite.includes('zeta'), `a write did not prune expired/unknown/iTunes entries: ${r.afterWrite.join(',')}`);
     check(r.card.spotifyOnly === null, `share card drew a Spotify-sourced image (${r.cardArtist})`);
     check(r.card.legacyOnly === null, `share card drew an unknown-source legacy image (${r.cardArtist})`);
-    check(r.card.tadb === 'image', 'share card refused a TheAudioDB image (control)');
-    check(r.card.itunes === 'image', 'share card refused an iTunes image (control)');
+    check(r.card.tadb === null, 'share card drew a TheAudioDB image');
+    check(r.card.itunes === null, 'share card drew an iTunes image');
     check(r.card.none === null, 'share card found an image in an empty cache');
+    check(r.card.control === 'image', 'control: the share card draws no image even when a shareable one exists, so the refusals prove nothing');
     await ctx.close();
   }
 
@@ -227,15 +265,14 @@ try {
       check(r.link && r.link.href.startsWith('https://open.spotify.com/search/'), `[${width}px spotify, no id] logo link is ${r.link?.href}, expected ${want}`);
       await ctx.close();
     }
-    // Non-Spotify: unchanged full-bleed hero, honest source label.
-    {
-      const { r, page, ctx } = await heroCase(width, img => ({ url: img, source: 'tadb', fetchedAt: Date.now() }));
-      const at = `[${width}px tadb]`;
-      check(!r.spotifyHero, `${at} a TheAudioDB image got the Spotify hero`);
-      check(r.bgHits >= 1, `${at} the non-Spotify hero no longer shows its image full-bleed`);
-      check(r.labels.includes('PHOTO · THEAUDIODB'), `${at} source label is ${r.labels.join(',') || 'missing'}, expected PHOTO · THEAUDIODB`);
-      check(!r.cachedLabel, `${at} the "CACHED" label is still used`);
-      shots.push({ file: `tadb-${width}.png`, buf: await page.screenshot({ fullPage: false }) });
+    // An old TheAudioDB entry (what used to be the non-Spotify hero): the hero
+    // falls to the gradient, with no photo and no source label.
+    for (const src of ['tadb', 'itunes']) {
+      const { r, page, ctx } = await heroCase(width, img => ({ url: img, source: src, fetchedAt: Date.now() }));
+      const at = `[${width}px ${src}]`;
+      check(!r.spotifyHero && r.bgHits === 0, `${at} the hero still shows a ${src} image`);
+      check(r.labels.length === 0 && !r.cachedLabel, `${at} the gradient hero carries a source label: ${r.labels.join(',')}`);
+      if (src === 'tadb') shots.push({ file: `gradient-${width}.png`, buf: await page.screenshot({ fullPage: false }) });
       await ctx.close();
     }
     // Expired Spotify: not shown anywhere on the hero.

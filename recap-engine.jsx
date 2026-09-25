@@ -226,9 +226,10 @@ async function _heroCardSource(artist) {
     }
   } catch {}
   // A share card is a public export, so a Spotify image never lands in one
-  // (Spotify Developer Terms IV.3.2 and the attribution rules): only an
-  // iTunes or TheAudioDB entry qualifies, and an unknown legacy entry counts
-  // as Spotify. Otherwise the card goes without an artist image.
+  // (Spotify Developer Terms IV.3.2 and the attribution rules), and an unknown
+  // legacy entry counts as Spotify. Only a non-Spotify source may qualify, and
+  // the cache holds none now (TheAudioDB and iTunes are not sources), so the
+  // card goes without a cached artist image.
   try {
     const url = getShareableArtistImage(artist.name || "")?.url;
     if (url) {
