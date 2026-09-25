@@ -17,6 +17,12 @@
 //   4. A Spotify image expires while the app stays open: storage, the hero
 //      and a mounted useArtistPhoto all let it go at 24 h, whether it came
 //      from the cache or was fetched in this session.
+//   5. Song previews are Spotify only (lane ruling 2026-09-24: the iTunes
+//      Search API's previews may only promote store content next to a store
+//      badge). No iTunes call in any app code; old "itunes" preview_urls_v1
+//      entries are pruned at boot and never returned; fetchPreviewUrl never
+//      fetches iTunes; the artist screen shows NO PREVIEW AVAILABLE when
+//      Spotify has none, and plays a Spotify preview when it has one.
 // Images are generated in-page as data: URLs; every artist-image network
 // lookup is stubbed empty, so no refetch can fill a gap the test expects.
 import { chromium } from 'playwright';
@@ -42,9 +48,8 @@ for (const f of readdirSync('.').filter(f => f.endsWith('.jsx'))) {
 
 // ── Static: TheAudioDB and iTunes artist images are gone ────────────────────
 // No TheAudioDB call anywhere in app code; no iTunes ARTIST lookup or artwork
-// in the artist-image paths; no "tadb"/"itunes" image source. (spotify-api.jsx
-// and spotify.jsx still search iTunes for SONG previews: a separate use,
-// reported for a ruling, not an artist photo.)
+// in the artist-image paths; no "tadb"/"itunes" image source; and (5) no
+// iTunes Search API call anywhere in app code, song previews included.
 {
   const app = readdirSync('.').filter(f => f.endsWith('.jsx'));
   // Code lines only: a line that IS a comment may name the services (the
@@ -60,6 +65,9 @@ for (const f of readdirSync('.').filter(f => f.endsWith('.jsx'))) {
   const itunes = IMG.filter(f => /itunes\.apple\.com|_fetchItunesPhoto|artworkUrl|["'`]itunes["'`]/i.test(code[f]));
   check(itunes.length === 0, `iTunes is still an artist-image source in ${itunes.join(', ')}`);
   check(/_ARTIST_IMAGE_SOURCES = \["spotify"\];/.test(code['chrome.jsx']), 'the cache allows a source other than spotify');
+  const itunesAny = app.filter(f => /itunes\.apple\.com/i.test(code[f]));
+  check(itunesAny.length === 0, `the iTunes Search API is still called (song previews?) in ${itunesAny.join(', ')}`);
+  check(/source: "spotify"/.test(code['spotify-api.jsx']), 'control: fetchPreviewUrl no longer records a Spotify source');
 }
 
 const PORT = await reservePort();
@@ -337,6 +345,111 @@ try {
     const after = await page.evaluate(() => ({ hero: !!document.querySelector('[data-hero="spotify"]'), stored: Object.keys(JSON.parse(localStorage.getItem('artist_images_v1') || '{}')).length }));
     check(after.stored === 0, '[expiry, fetched] the fetched Spotify entry is still in storage a day later');
     check(!after.hero, '[expiry, fetched] the hero still shows an image fetched from Spotify a day ago');
+    await ctx.close();
+  }
+  // ── 5. Song previews: Spotify only ────────────────────────────────────────
+  {
+    const SP = 'https://p.scdn.co/mp3-preview/plursky-test';
+    const IT = 'https://audio-ssl.itunes.apple.com/itunes-assets/test.m4a';
+    const ctx = await newCtx(393, null);
+    await ctx.addInitScript(({ IT, SP }) => {
+      if (sessionStorage.getItem('seeded_previews')) return;
+      sessionStorage.setItem('seeded_previews', '1');
+      localStorage.setItem('preview_urls_v1', JSON.stringify({
+        'old itunes':   { url: IT, name: 'Old', source: 'itunes' },
+        'no source':    { url: IT, name: 'Bare' },
+        'kept spotify': { url: SP, name: 'Kept', source: 'spotify' },
+      }));
+    }, { IT, SP });
+    await ctx.addInitScript(() => {
+      window.__played = [];
+      HTMLMediaElement.prototype.play = function () { window.__played.push(this.src); return Promise.resolve(); };
+    });
+    const page = await ctx.newPage();
+    const itunesReqs = []; let trackMode = 'none'; let trackSearches = 0;
+    page.on('request', r => { if (/itunes\.apple\.com|mzstatic\.com/.test(r.url())) itunesReqs.push(r.url()); });
+    await page.route(/api\.spotify\.com\/v1\/search/, r => {
+      if (!/type=track/.test(r.request().url())) return r.fulfill({ status: 200, contentType: 'application/json', body: '{}' });
+      trackSearches++;
+      const items = trackMode === 'preview'
+        ? [{ name: 'Test Song', preview_url: SP, artists: [{ name: 'x' }] }]
+        : [{ name: 'No Preview Song', preview_url: null, artists: [{ name: 'x' }] }];
+      return r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ tracks: { items } }) });
+    });
+    await boot(page);
+
+    // 5a. Boot prune.
+    const pruned = await page.evaluate(() => JSON.parse(localStorage.getItem('preview_urls_v1') || '{}'));
+    check(!('old itunes' in pruned), 'boot prune kept an iTunes song preview in preview_urls_v1');
+    check(!('no source' in pruned), 'boot prune kept a preview entry with no source');
+    check(pruned['kept spotify']?.url === SP, 'control: boot prune dropped a Spotify preview');
+
+    // 5b. fetchPreviewUrl.
+    const r = await page.evaluate(async ({ IT }) => {
+      const out = {};
+      const cache = () => JSON.parse(localStorage.getItem('preview_urls_v1') || '{}');
+      // An iTunes entry written after boot (e.g. by an older tab) is still refused.
+      localStorage.setItem('preview_urls_v1', JSON.stringify({ ...cache(), 'late itunes': { url: IT, name: 'Late', source: 'itunes' } }));
+      out.late = await fetchPreviewUrl('Late Itunes');
+      out.lateCached = 'late itunes' in cache();
+      out.kept = await fetchPreviewUrl('Kept Spotify');
+      localStorage.removeItem('spotify_token');
+      out.noToken = await fetchPreviewUrl('Nobody Here');
+      localStorage.setItem('spotify_token', 'test-token');
+      out.noPreview = await fetchPreviewUrl('Silent Artist');
+      out.noPreviewCached = 'silent artist' in cache();
+      return out;
+    }, { IT });
+    check(r.late === null, `fetchPreviewUrl returned a cached iTunes preview (${JSON.stringify(r.late)})`);
+    check(!r.lateCached, 'fetchPreviewUrl left an iTunes entry in preview_urls_v1');
+    check(r.kept?.url === SP && r.kept?.source === 'spotify', 'control: a cached Spotify preview was not returned');
+    check(r.noToken === null, 'fetchPreviewUrl found a preview with no Spotify connection');
+    check(r.noPreview === null, 'fetchPreviewUrl found a preview when Spotify has none');
+    check(!r.noPreviewCached, 'fetchPreviewUrl cached a missing preview');
+    trackMode = 'preview';
+    const found = await page.evaluate(async () => ({ res: await fetchPreviewUrl('Loud Artist'), cached: JSON.parse(localStorage.getItem('preview_urls_v1') || '{}')['loud artist'] || null }));
+    check(found.res?.url === SP && found.res?.source === 'spotify' && found.cached?.source === 'spotify', `control: a Spotify preview was not found and cached (${JSON.stringify(found)})`);
+    check(trackSearches >= 2, `control: Spotify track search was not reached (${trackSearches})`);
+
+    // 5c. The artist screen's preview row. Fresh artist each state; the
+    // cache is cleared so every state asks Spotify.
+    const artist = await page.evaluate(() => { const a = window.ARTISTS.find(x => x.start && !/\bb2b\b/i.test(x.name)); return { id: a.id, name: a.name }; });
+    const state = async (mode, connected) => {
+      trackMode = mode;
+      await page.evaluate((connected) => {
+        localStorage.setItem('preview_urls_v1', '{}');
+        if (connected) { localStorage.setItem('spotify_token', 'test-token'); localStorage.setItem('spotify_expires', String(Date.now() + 3600000)); }
+        else { localStorage.removeItem('spotify_token'); localStorage.removeItem('spotify_expires'); }
+      }, connected);
+      await page.goto(`http://127.0.0.1:${PORT}/index.html?artist=${encodeURIComponent(artist.id)}`, { waitUntil: 'domcontentloaded' });
+      await page.waitForFunction(() => !!document.querySelector('[aria-label="Play preview"]'), null, { timeout: 60000 });
+      await page.click('[aria-label="Play preview"]');
+      await sleep(600);
+      return page.evaluate(() => {
+        // The status line must be readable on the (inverted) card: its colour
+        // differs from the nearest painted background by a real luminance gap.
+        const el = document.querySelector('[data-preview-status]');
+        const rgb = c => (c.match(/[\d.]+/g) || []).slice(0, 3).map(Number);
+        const lum = ([r, g, b]) => [r, g, b].map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }).reduce((a, v, i) => a + v * [0.2126, 0.7152, 0.0722][i], 0);
+        let bgEl = el; while (bgEl && /rgba\(0, 0, 0, 0\)|transparent/.test(getComputedStyle(bgEl).backgroundColor)) bgEl = bgEl.parentElement;
+        // Composite the line's opacity over the card, as the browser paints it.
+        const a = Number(getComputedStyle(el).opacity), bgc = rgb(getComputedStyle(bgEl).backgroundColor);
+        const fgc = rgb(getComputedStyle(el).color).map((v, i) => a * v + (1 - a) * bgc[i]);
+        const fg = lum(fgc), bg = lum(bgc);
+        const ratio = (Math.max(fg, bg) + 0.05) / (Math.min(fg, bg) + 0.05);
+        return { text: document.body.innerText, played: window.__played.slice(), status: el?.innerText || '', ratio };
+      });
+    };
+    const none = await state('none', true);
+    check(none.status === 'NO PREVIEW AVAILABLE', `[artist] Spotify has no preview, but the status line says "${none.status}"`);
+    check(none.ratio >= 4.5, `[artist] the preview status line is unreadable on its card (contrast ${none.ratio.toFixed(2)}:1, need 4.5)`);
+    check(none.played.length === 0, `[artist] audio played with no Spotify preview: ${none.played.join(', ')}`);
+    const off = await state('preview', false);
+    check(/CONNECT SPOTIFY TO PREVIEW/.test(off.text) && off.played.length === 0, '[artist] with Spotify disconnected, the row should ask to connect and play nothing');
+    const on = await state('preview', true);
+    check(on.played.length === 1 && on.played[0] === SP, `[artist] control: the Spotify preview did not play (${on.played.join(', ')})`);
+    check(/PLAYING · VIA SPOTIFY/.test(on.text), '[artist] control: the playing Spotify preview is not labelled VIA SPOTIFY');
+    check(itunesReqs.length === 0, `iTunes was requested: ${itunesReqs.slice(0, 3).join(', ')}`);
     await ctx.close();
   }
   await browser.close();

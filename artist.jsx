@@ -2284,7 +2284,9 @@ function ArtistScreen({ state, setState }) {
             <div className="serif" style={{ fontSize: 16, lineHeight: 1.1 }}>
               {preview && typeof preview === "object" ? preview.name : "30-sec Preview"}
             </div>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(var(--ink-rgb),0.5)", marginTop: 3 }}>
+            {/* The card is inverted (ink ground), so the status line takes the
+                card's own text colour; --ink here drew it invisible. */}
+            <div className="mono" data-preview-status style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--paper)", opacity: 0.6, marginTop: 3 }}>
               {!connected     ? "CONNECT SPOTIFY TO PREVIEW"
                : preview === "none"    ? "NO PREVIEW AVAILABLE"
                : preview === "loading" ? "LOADING…"

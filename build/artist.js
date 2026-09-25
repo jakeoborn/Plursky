@@ -3353,10 +3353,12 @@ function ArtistScreen({
     }
   }, preview && typeof preview === "object" ? preview.name : "30-sec Preview"), React.createElement("div", {
     className: "mono",
+    "data-preview-status": true,
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "rgba(var(--ink-rgb),0.5)",
+      color: "var(--paper)",
+      opacity: 0.6,
       marginTop: 3
     }
   }, !connected ? "CONNECT SPOTIFY TO PREVIEW" : preview === "none" ? "NO PREVIEW AVAILABLE" : preview === "loading" ? "LOADING…" : playing ? "PLAYING · VIA SPOTIFY" : "TAP TO PLAY · 30 SEC")), React.createElement("div", {

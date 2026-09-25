@@ -1581,14 +1581,12 @@ async function fetchSpotifyTopArtists(onProgress) {
 async function fetchPreviewUrl(artistName) {
   artistName = typeof _lookupName === "function" ? _lookupName(artistName) : artistName;
   var cacheKey = "preview_urls_v1";
-  try {
-    var cached = JSON.parse(localStorage.getItem(cacheKey) || "{}");
-    var entry = cached[artistName.toLowerCase()];
-    if (entry) return entry;
-  } catch {}
+  var cached = _prunePreviewCache()[artistName.toLowerCase()];
+  if (cached) return cached;
   var _cachePreview = result => {
+    if (!_previewPlayable(result)) return null;
     try {
-      var _cached = JSON.parse(localStorage.getItem(cacheKey) || "{}");
+      var _cached = _prunePreviewCache();
       _cached[artistName.toLowerCase()] = result;
       localStorage.setItem(cacheKey, JSON.stringify(_cached));
     } catch {}
@@ -1616,21 +1614,7 @@ async function fetchPreviewUrl(artistName) {
       }
     } catch {}
   }
-  try {
-    var _q = encodeURIComponent(artistName);
-    var _res = await fetch(`https://itunes.apple.com/search?term=${_q}&entity=song&limit=10`);
-    if (!_res.ok) return null;
-    var _data = await _res.json();
-    var results = _data.results || [];
-    var _first = results.find(t => t.previewUrl && t.artistName?.toLowerCase().includes(firstWord)) || results.find(t => t.previewUrl);
-    return _first ? _cachePreview({
-      url: _first.previewUrl,
-      name: _first.trackName,
-      source: "itunes"
-    }) : null;
-  } catch {
-    return null;
-  }
+  return null;
 }
 function matchLineupArtists(spotifyArtists) {
   if (!spotifyArtists?.length) return [];

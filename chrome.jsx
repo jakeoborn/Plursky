@@ -445,6 +445,28 @@ try {
     if (k && /^tadb_.+_v\d+$/.test(k)) localStorage.removeItem(k);
   }
 } catch {}
+// Song previews play from Spotify only. The iTunes Search API's 30-sec
+// previews are licensed only to promote store content next to a store badge,
+// which no Plursky screen has, so an old "itunes" entry in preview_urls_v1
+// is dropped at boot and never played (fetchPreviewUrl uses this too).
+function _previewPlayable(e) {
+  return !!e && e.source === "spotify" && typeof e.url === "string" && /^https:\/\//.test(e.url);
+}
+function _prunePreviewCache() {
+  try {
+    const raw = localStorage.getItem("preview_urls_v1");
+    if (!raw) return {};
+    const all = JSON.parse(raw) || {};
+    const kept = {};
+    for (const k of Object.keys(all)) if (_previewPlayable(all[k])) kept[k] = all[k];
+    if (Object.keys(kept).length !== Object.keys(all).length) localStorage.setItem("preview_urls_v1", JSON.stringify(kept));
+    return kept;
+  } catch {
+    try { localStorage.removeItem("preview_urls_v1"); } catch {}
+    return {};
+  }
+}
+_prunePreviewCache();
 
 // Spotify's full logo (icon + wordmark), the 2024 RGB artwork from
 // developer.spotify.com/documentation/design, paths unmodified. Monochrome via

@@ -536,6 +536,26 @@ try {
     if (k && /^tadb_.+_v\d+$/.test(k)) localStorage.removeItem(k);
   }
 } catch {}
+function _previewPlayable(e) {
+  return !!e && e.source === "spotify" && typeof e.url === "string" && /^https:\/\//.test(e.url);
+}
+function _prunePreviewCache() {
+  try {
+    var raw = localStorage.getItem("preview_urls_v1");
+    if (!raw) return {};
+    var all = JSON.parse(raw) || {};
+    var kept = {};
+    for (var _k of Object.keys(all)) if (_previewPlayable(all[_k])) kept[_k] = all[_k];
+    if (Object.keys(kept).length !== Object.keys(all).length) localStorage.setItem("preview_urls_v1", JSON.stringify(kept));
+    return kept;
+  } catch {
+    try {
+      localStorage.removeItem("preview_urls_v1");
+    } catch {}
+    return {};
+  }
+}
+_prunePreviewCache();
 function SpotifyFullLogo({
   height = 21,
   title = "Spotify"
