@@ -25,6 +25,10 @@ function av(name, size = 40, cls = "") {
   const d = Math.round(size * .66);
   return `<span class="avp" style="width:${size}px;height:${size}px">${face(ms[0], d, "left:0;top:0")}${face(ms[1], d, "right:0;bottom:0")}</span>`;
 }
+// Display rule for a chain of 3+ artists (b3b): the first artist + "+N".
+// "Audiofreq b3b Code Black b3b Toneshifterz" → "Audiofreq +2". A b2b stays
+// in full. The artist page carries every name.
+const disp = (n) => { const m = members(n); return m.length > 2 ? `${m[0]} +${m.length - 1}` : n; };
 window.DUO_PHOTO_COVERAGE = () => { const all = [...new Set(E.SETS.map((s) => s.name))]; return { acts: all.length, withPhoto: all.filter((n) => members(n).some((m) => HAVE.has(slug(m)))).length }; };
 
 function tabbar(active) {
@@ -48,12 +52,12 @@ function today() {
   const order = ["circuit", "neon", "cosmic", "quantum", "bionic", "stereo", "waste", "basspod"];
   // One cell = face + full name + one line of detail, always left-aligned so
   // the eye runs straight down both columns. Names wrap; they never truncate.
-  const cell = (s, detail, ring) => s ? `<div class="row" style="gap:10px;align-items:flex-start;min-width:0">${av(s.name, 36, ring || (planIds.has(s.id) ? "on" : ""))}<div style="min-width:0;padding-top:1px"><div data-name data-wrap style="font:600 14px/18px var(--f-ui)">${s.name}</div><div class="t-data-s ink3" style="margin-top:3px">${detail}</div></div></div>` : `<div class="t-body-s ink3" style="font-weight:400">Stage closed</div>`;
+  const cell = (s, detail, ring) => s ? `<div class="row" style="gap:10px;align-items:flex-start;min-width:0">${av(s.name, 36, ring || (planIds.has(s.id) ? "on" : ""))}<div style="min-width:0;padding-top:1px"><div data-name data-wrap style="font:600 14px/18px var(--f-ui)">${disp(s.name)}</div><div class="t-data-s ink3" style="margin-top:3px">${detail}</div></div></div>` : `<div class="t-body-s ink3" style="font-weight:400">Stage closed</div>`;
   const rows = order.map((id) => { const a = liveOn(id), b = nextOn(id);
     return `<div class="hair" style="padding:12px 16px 14px">
       <div style="font:600 13px/16px var(--f-ui);color:var(--ink-2)">${E.stage(id).name}</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px">${cell(a, a ? "TO " + E.fmt(a.end) : "")}${cell(b, b ? E.fmt(b.start) : "")}</div></div>`; }).join("");
-  const side = (s) => `<div class="row" style="gap:10px;min-width:0">${av(s.name, 30, "cl")}<div style="min-width:0"><div data-name data-wrap style="font:600 14px/18px var(--f-ui)">${s.name}</div><div class="t-data-s ink2" style="margin-top:2px">${E.fmt(s.start)} · ${E.stage(s.stage).name.toUpperCase()}</div></div></div>`;
+  const side = (s) => `<div class="row" style="gap:10px;min-width:0">${av(s.name, 30, "cl")}<div style="min-width:0"><div data-name data-wrap style="font:600 14px/18px var(--f-ui)">${disp(s.name)}</div><div class="t-data-s ink2" style="margin-top:2px">${E.fmt(s.start)} · ${E.stage(s.stage).name.toUpperCase()}</div></div></div>`;
   return phone(`<div class="body" style="overflow:hidden">
     <div class="pad between" style="padding-top:10px"><span class="t-label ink3">Night 2 · Sat May 16</span><span class="row" style="gap:6px;color:var(--sun)">${ic("sun", { size: 16, sw: 1.8 })}<span class="t-data-s">SUNRISE 5:35</span></span></div>
     <div class="pad" style="margin-top:10px"><div class="t-hero">EDC Las Vegas</div></div>
@@ -62,7 +66,7 @@ function today() {
     <div class="pad" style="margin-top:18px"><div class="card lift" style="padding:14px 16px 14px">
       <div class="between"><span class="sect">Your plan</span><span class="t-label live"><i></i>Live</span></div>
       <div class="between" style="margin-top:12px;align-items:flex-start;gap:14px">
-        <div class="row" style="gap:12px;align-items:flex-start;min-width:0">${av(js.name, 52, "on")}<div style="min-width:0;padding-top:3px"><div data-name data-wrap style="font:700 18px/22px var(--f-ui)">${js.name}</div><div class="t-data-s ink3" style="margin-top:4px">KINETIC FIELD · TO ${E.fmt(js.end)}</div></div></div>
+        <div class="row" style="gap:12px;align-items:flex-start;min-width:0">${av(js.name, 52, "on")}<div style="min-width:0;padding-top:3px"><div data-name data-wrap style="font:700 18px/22px var(--f-ui)">${disp(js.name)}</div><div class="t-data-s ink3" style="margin-top:4px">KINETIC FIELD · TO ${E.fmt(js.end)}</div></div></div>
         <div style="text-align:right;flex:none"><div class="t-clock" style="font-size:32px;line-height:32px">${left}</div><div class="t-data-s ink3" style="margin-top:3px">MIN LEFT</div></div>
       </div>
       <div class="track" style="margin-top:12px"><b style="width:${pct}%"></b></div>
@@ -95,7 +99,7 @@ function lineup() {
   const row = (s, live) => { const pl = planIds.has(s.id), cl = isClash(s);
     return `<div class="between" style="min-height:64px;padding:8px 12px;border-radius:var(--r-sm);${live ? "background:var(--s2);box-shadow:var(--glow);" : pl ? "background:var(--acc-08);" : ""}">
       <div class="row" style="gap:12px;min-width:0"><span class="t-data ${pl ? "" : "ink2"}" style="width:46px;flex:none">${E.fmt(s.start)}</span>${av(s.name, 42, live || pl ? (cl ? "cl" : "on") : "")}
-      <div style="min-width:0"><div data-name data-wrap class="t-headline" style="${pl ? "" : "font-weight:550"}">${s.name}</div><div class="t-body-s ${cl ? "clash" : "ink3"}" style="font-weight:400;font-size:13px">${cl ? "Clash · " : ""}${E.stage(s.stage).name}</div></div></div>
+      <div style="min-width:0"><div data-name data-wrap class="t-headline" style="${pl ? "" : "font-weight:550"}">${disp(s.name)}</div><div class="t-body-s ${cl ? "clash" : "ink3"}" style="font-weight:400;font-size:13px">${cl ? "Clash · " : ""}${E.stage(s.stage).name}</div></div></div>
       ${live ? `<span class="t-label live" style="font-size:11px"><i></i>Live</span>` : `<span class="add ${pl ? "on" : ""}">${ic(pl ? "check" : "plus", { size: 16, sw: 2.2 })}</span>`}</div>`; };
   return phone(`<div class="body">
     <div class="pad between" style="padding-top:8px"><div class="t-title">Lineup</div><div class="row ink2" style="gap:6px"><span class="ibtn">${ic("search")}</span><span class="ibtn">${ic("filter")}</span></div></div>
@@ -120,7 +124,7 @@ function calendar() {
     const top = (a - t0) * k, h = (b - a) * k - 3, pl = planIds.has(s.id), live = s.s <= nowM && nowM < s.e, cl = isClash(s);
     return `<div style="position:absolute;left:3px;right:3px;top:${top}px;height:${h}px;border-radius:12px;padding:7px 8px;overflow:hidden;${pl ? `background:linear-gradient(var(--acc-14),var(--acc-14)),var(--bg);box-shadow:inset 0 0 0 1.5px ${cl ? "var(--clash)" : "var(--acc)"}` : `background:var(--s2);box-shadow:inset 0 0 0 1px var(--line)`}">
       <div class="between" style="gap:4px">${av(s.name, 24, pl ? (cl ? "cl" : "on") : "")}${h > 40 ? `<span class="t-data-s ${cl ? "clash" : live ? "" : "ink3"}" style="${live && !cl ? "color:var(--live)" : ""}">${cl ? "CLASH" : live ? "LIVE" : E.fmt(s.start)}</span>` : ""}</div>
-      <div data-name data-wrap style="margin-top:${h > 60 ? 6 : 3}px;font:${pl ? 650 : 550} ${h > 60 ? 13 : 12}px/${h > 60 ? 16 : 14}px var(--f-ui);color:${pl ? "var(--ink)" : "var(--ink-2)"}">${s.name}</div>
+      <div data-name data-wrap style="margin-top:${h > 60 ? 6 : 3}px;font:${pl ? 650 : 550} ${h > 60 ? 13 : 12}px/${h > 60 ? 16 : 14}px var(--f-ui);color:${pl ? "var(--ink)" : "var(--ink-2)"}">${disp(s.name)}</div>
     </div>`; };
   const H = (t1 - t0) * k;
   return phone(`<div class="body">
@@ -152,7 +156,7 @@ function map() {
   const pins = E.STAGES.map((s) => { const x = px(s.x), y = py(s.y), hot = s.id === "kinetic";
     return hot ? `<g><circle cx="${x}" cy="${y}" r="44" style="fill:var(--acc)" opacity=".22"/><circle cx="${x}" cy="${y}" r="30" fill="none" style="stroke:var(--acc)" stroke-width="2"/><circle cx="${x}" cy="${y}" r="8" style="fill:var(--acc)"/></g>`
       : `<g><circle cx="${x}" cy="${y}" r="11" style="fill:var(--bg);stroke:var(--ink)" fill-opacity=".7" stroke-opacity=".7" stroke-width="1.4"/><circle cx="${x}" cy="${y}" r="4" style="fill:var(--ink)"/></g>`; }).join("");
-  const r = (s, lbl, t) => `<div class="between" style="padding:9px 0"><span class="row" style="gap:12px;min-width:0">${av(s.name, 38, lbl ? "" : "on")}<span style="min-width:0"><span data-name class="t-body-s" style="display:block">${s.name}</span><span class="t-data-s ink3">${lbl || "NOW"}</span></span></span><span class="t-data ink2">${t}</span></div>`;
+  const r = (s, lbl, t) => `<div class="between" style="padding:9px 0"><span class="row" style="gap:12px;min-width:0">${av(s.name, 38, lbl ? "" : "on")}<span style="min-width:0"><span data-name class="t-body-s" style="display:block">${disp(s.name)}</span><span class="t-data-s ink3">${lbl || "NOW"}</span></span></span><span class="t-data ink2">${t}</span></div>`;
   return phone(`<div style="position:absolute;inset:0;overflow:hidden;background:var(--bg)">
     <img src="../../../edc-map-2026.jpg" alt="" style="position:absolute;left:${ox}px;top:${oy}px;width:${W}px;height:${H}px;filter:var(--map-filter)">
     <div style="position:absolute;inset:0;background:var(--map-fade)"></div>
@@ -193,7 +197,7 @@ function artist() {
       </div>
       <div class="row" style="gap:10px;margin-top:12px"><span class="btn pri" style="flex:1">${ic("check", { size: 20, sw: 2.2 })}On your plan</span><span class="btn sec" style="width:52px;padding:0">${ic("crew", { size: 20 })}</span></div>
       <div class="sect" style="margin:18px 0 2px">On Kinetic Field tonight</div>
-      ${[[prev, "Before"], [js, "Now"], [next, "Next · on your plan"]].map(([s, l], i) => `<div class="between hair" style="padding:9px 0"><div class="row" style="gap:12px">${av(s.name, 44, i === 1 ? "on" : "")}<div><div data-name class="t-body-s" style="${i === 1 ? "color:var(--acc-ink)" : ""}">${s.name}</div><div class="t-data-s ink3" style="margin-top:3px">${l.toUpperCase()}</div></div></div><span class="t-data ${i === 1 ? "" : "ink3"}">${E.fmt(s.start)}</span></div>`).join("")}
+      ${[[prev, "Before"], [js, "Now"], [next, "Next · on your plan"]].map(([s, l], i) => `<div class="between hair" style="padding:9px 0"><div class="row" style="gap:12px">${av(s.name, 44, i === 1 ? "on" : "")}<div><div data-name class="t-body-s" style="${i === 1 ? "color:var(--acc-ink)" : ""}">${disp(s.name)}</div><div class="t-data-s ink3" style="margin-top:3px">${l.toUpperCase()}</div></div></div><span class="t-data ${i === 1 ? "" : "ink3"}">${E.fmt(s.start)}</span></div>`).join("")}
     </div>
   </div>`, "lineup", true);
 }
@@ -221,7 +225,7 @@ function artistInside() {
     </div>
     <div class="pad" style="margin-top:20px">
       <div class="sect" style="margin-bottom:4px">If you like this · tonight</div>
-      ${sim.map((s) => `<div class="between hair" style="padding:9px 0"><div class="row" style="gap:12px;min-width:0">${av(s.name, 42)}<div style="min-width:0"><div data-name data-wrap class="t-body-s">${s.name}</div><div class="t-body-s ink3" style="font-weight:400;font-size:13px">${s.genre} · ${E.stage(s.stage).name}</div></div></div><div class="row" style="gap:10px"><span class="t-data ink2">${E.fmt(s.start)}</span><span class="add">${ic("plus", { size: 16, sw: 2.2 })}</span></div></div>`).join("")}
+      ${sim.map((s) => `<div class="between hair" style="padding:9px 0"><div class="row" style="gap:12px;min-width:0">${av(s.name, 42)}<div style="min-width:0"><div data-name data-wrap class="t-body-s">${disp(s.name)}</div><div class="t-body-s ink3" style="font-weight:400;font-size:13px">${s.genre} · ${E.stage(s.stage).name}</div></div></div><div class="row" style="gap:10px"><span class="t-data ink2">${E.fmt(s.start)}</span><span class="add">${ic("plus", { size: 16, sw: 2.2 })}</span></div></div>`).join("")}
     </div>
   </div>`, "lineup");
 }
@@ -254,7 +258,7 @@ function me() {
         <div class="t-title" style="font-size:24px;line-height:28px;margin-top:8px" data-wrap>${R.title}</div>
         <div class="t-data ink2" style="margin-top:6px">${R.stats.toUpperCase()}</div>
         <div class="row" style="gap:0;margin-top:14px">${R.seen.map((n, i) => `<span style="margin-left:${i ? -8 : 0}px;position:relative;z-index:${9 - i};border-radius:50%;box-shadow:0 0 0 2px var(--s2)">${av(n, 32)}</span>`).join("")}</div>
-        <div style="margin-top:12px;line-height:22px">${top.map((n) => `<span data-name style="font:650 16px/22px var(--f-ui);white-space:nowrap">${n}</span>`).join(`<span class="ink3"> · </span>`)}${rest.length ? `<span class="ink3"> · </span>` + rest.map((n) => `<span data-name class="ink2" style="font:500 14px/22px var(--f-ui);white-space:nowrap">${n}</span>`).join(`<span class="ink3"> · </span>`) : ""}</div>
+        <div style="margin-top:12px;line-height:22px">${top.map((n) => `<span data-name style="font:650 16px/22px var(--f-ui);white-space:nowrap">${disp(n)}</span>`).join(`<span class="ink3"> · </span>`)}${rest.length ? `<span class="ink3"> · </span>` + rest.map((n) => `<span data-name class="ink2" style="font:500 14px/22px var(--f-ui);white-space:nowrap">${disp(n)}</span>`).join(`<span class="ink3"> · </span>`) : ""}</div>
       </div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px">${[["share", "Story", 1], ["crew", "Crew", 0], ["photo", "Save", 0], ["chevron", "More", 0]].map(([k, l, p]) => `<div style="display:grid;justify-items:center;gap:7px"><span style="width:52px;height:52px;border-radius:50%;display:grid;place-items:center;${p ? "background:var(--acc);color:var(--on-acc)" : "box-shadow:inset 0 0 0 1.5px var(--line-2);color:var(--ink)"}">${ic(k, { size: 21, sw: 1.8 })}</span><span class="t-body-s ink2" style="font-size:13px">${l}</span></div>`).join("")}</div>
     </div>

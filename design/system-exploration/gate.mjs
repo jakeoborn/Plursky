@@ -13,7 +13,7 @@
 //   G8 tap targets          buttons and tabs ≥ 44px tall, chips ≥ 32px
 //   G9 token contrast       every declared pair meets its floor (4.5, or 3 when marked large)
 //   G10 broken labels       a short label (≤ 24 chars, no <br>) never wraps, and no text leaves a widow
-//   G13 names in full       artist names ([data-name]) never ellipsised, clamped or cut; stages never shown as codes
+//   G13 names in full       artist names ([data-name]) never ellipsised, clamped or cut; a 3+ chain shows as "First +N"; stages never shown as codes
 // With no arguments it runs THE APPEARANCE GATE on live/: G1–G10 on every
 // screen in Dark and in Light (each loaded in one mode, then toggled in place
 // to the other), plus
@@ -129,7 +129,8 @@ async function measure(page, errors) {
       for (const el of ph.querySelectorAll("[data-name]")) {
         f.names++;
         const cs = getComputedStyle(el), clamp = cs.webkitLineClamp && cs.webkitLineClamp !== "none";
-        if (cs.textOverflow === "ellipsis" || clamp) f.trunc.push(`"${label(el)}" carries ${clamp ? "a line clamp" : "an ellipsis"}`);
+        if ((el.textContent.match(/\bb[23]b\b/g) || []).length >= 2) f.trunc.push(`"${label(el)}" is a 3+ artist chain shown in full (show the first artist + N)`);
+        else if (cs.textOverflow === "ellipsis" || clamp) f.trunc.push(`"${label(el)}" carries ${clamp ? "a line clamp" : "an ellipsis"}`);
         else if (cs.overflow !== "visible") { if (el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 1) f.trunc.push(`"${label(el)}" is cut inside its own box`); }   // a clipping ancestor is G4's job
       }
       // A stage is named in full: a 3-letter code means nothing to a first-timer.
