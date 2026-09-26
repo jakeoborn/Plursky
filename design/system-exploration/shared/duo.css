@@ -34,6 +34,12 @@
 .D .av{flex:none;border-radius:50%;overflow:hidden;display:flex;background:var(--s3);box-shadow:0 0 0 1.5px var(--line-2)}
 .D .av>span{flex:1;background-size:cover;background-position:center 25%}
 .D .av>span+span{border-left:1.5px solid var(--bg)}
+.D .avp{position:relative;flex:none;display:block}
+.D .avp>.av{position:absolute}
+.D .avp>.av+.av{box-shadow:0 0 0 2px var(--ring-bg,var(--bg)),0 0 0 3.5px var(--line-2)}
+.D .avp>.av.on+.av.on{box-shadow:0 0 0 2px var(--ring-bg,var(--bg)),0 0 0 4px var(--acc)}
+.D .avp>.av.cl+.av.cl{box-shadow:0 0 0 2px var(--ring-bg,var(--bg)),0 0 0 4px var(--clash)}
+.D .card{--ring-bg:var(--s2)}
 .D .av.mono{display:grid;place-items:center;color:var(--ink-2);font:650 13px/1 var(--f-ui);letter-spacing:.02em}
 .D .av.on{box-shadow:0 0 0 2px var(--acc),0 0 14px var(--acc-30)}
 .D .av.cl{box-shadow:0 0 0 2px var(--clash)}

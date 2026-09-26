@@ -12,7 +12,7 @@
 .opts button[aria-pressed=true]{background:var(--page-ink);color:var(--page-bg);border-color:var(--page-ink)}
 .readout{font:13px/1.6 ui-monospace,"SF Mono",monospace;color:var(--page-ink-2);border-top:1px solid var(--page-line);padding-top:12px}
 .readout b{color:var(--page-ink)}
-.phone .tab,.phone [data-go],.phone .toggle{cursor:pointer}
+.phone .tab,.phone [data-go],.phone .toggle,.phone [data-fest]{cursor:pointer}
 @media (max-width:820px){.ctl{order:-1}}
 </style>
 <script src="../shared/sample.js"></script>
@@ -37,6 +37,8 @@
   if (board) {   // every screen, as on the mode boards (the gate and renders use this)
     const el = document.getElementById("screens"); el.hidden = false;
     el.innerHTML = DUO_SCREENS.map(([k, l, f], i) => `<div class="screen-wrap" data-screen="${k}"><div class="screen-cap">0${i + 1} · ${l}</div>${f()}</div>`).join("");
+    // …plus Me for every other festival in the switcher, so each recap is gated
+    el.innerHTML += DUO_RECAP_KEYS.slice(1).map((f) => { window.ME_FEST = f; const h = `<div class="screen-wrap" data-screen="me-${f}"><div class="screen-cap">Me · ${f}</div>${byKey.me()}</div>`; window.ME_FEST = null; return h; }).join("");
     return;
   }
   let cur = "today";
@@ -45,14 +47,18 @@
     <div class="ctl">
       <div><h2>Stand-in for the iPhone setting</h2><p>Settings → Display. Only matters while Me says System.</p></div>
       <div class="opts" id="sys"><button data-s="dark">iPhone Dark</button><button data-s="light">iPhone Light</button></div>
-      <div><h2>Go to</h2><p>Or tap the tabs, John Summit on Today, and the back button on his page.</p></div>
-      <div class="opts" id="go"><button data-k="today">Today</button><button data-k="artist">Artist</button><button data-k="me">Me · Appearance</button></div>
+      <div><h2>Go to</h2><p>Or tap the tabs, your plan on Today, the back button on the artist page, and the festival chips or passport rows on Me.</p></div>
+      <div class="opts" id="go"><button data-k="today">Today</button><button data-k="artist">Artist</button><button data-k="me">Me · Recap and Appearance</button></div>
       <div class="readout" id="ro"></div>
     </div>`;
   const mq = matchMedia("(prefers-color-scheme: light)");
   let sys = mq.matches ? "light" : "dark", stood = false;   // stood: a stand-in button was used
   mq.addEventListener("change", () => { if (!stood) { sys = mq.matches ? "light" : "dark"; paint(); } });
-  const show = (k) => { cur = k; const one = document.getElementById("one"); one.dataset.screen = k; one.innerHTML = byKey[k](); if (k === "me") one.querySelector(".body").scrollTop = 330; tag(); };
+  const show = (k, keep) => { const one = document.getElementById("one"), was = one.querySelector(".body")?.scrollTop || 0; cur = k; one.dataset.screen = k; one.innerHTML = byKey[k]();
+    const body = one.querySelector(".body");
+    if (keep) body.scrollTop = was;
+    else if (k === "me") body.scrollTop = body.querySelector(".seg").closest(".card").offsetTop - 330;
+    tag(); };
   const tag = () => {   // make the drawn screen tappable
     const ph = document.querySelector("#one .phone");
     ph.querySelectorAll(".tab").forEach((t, i) => (t.dataset.go = ["today", "lineup", "map", "me"][i]));
@@ -66,8 +72,9 @@
     document.getElementById("ro").innerHTML = `iPhone setting <b>${sys}</b><br>Me → Appearance <b>${APPEARANCE.choice()}</b> (stored: ${stored || "nothing"})<br>On screen <b>${APPEARANCE.mode()}</b>`;
   };
   document.addEventListener("click", (e) => {
-    const t = e.target.closest(".toggle,[data-go],[data-s],[data-k]"); if (!t) return;
+    const t = e.target.closest(".toggle,[data-go],[data-s],[data-k],[data-fest]"); if (!t) return;
     if (t.classList.contains("toggle")) APPEARANCE.set(t.dataset.v);
+    else if (t.dataset.fest) { window.ME_FEST = t.dataset.fest; show("me", true); }
     else if (t.dataset.s) { sys = t.dataset.s; stood = true; APPEARANCE.simulateSystem(sys); }
     else { const k = t.dataset.go || t.dataset.k; if (byKey[k]) show(k); }
     paint();

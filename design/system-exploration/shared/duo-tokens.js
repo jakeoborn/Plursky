@@ -17,7 +17,7 @@ window.DUO_TOKENS = function (mode) {
     id: dark ? "dark" : "light",
     name: dark ? "Dark" : "Light",
     scheme: dark ? "dark" : "light",
-    fontsHref: "https://fonts.googleapis.com/css2?family=Michroma&family=Martian+Mono:wght@300;400;500;600&family=Archivo:wdth,wght@62..125,400..900&display=swap",
+    fontsHref: "https://fonts.googleapis.com/css2?family=Michroma&family=Martian+Mono:wght@300;400;500;600&display=swap",
     color: [
       { group: dark ? "Ground — violet-black, not #000" : "Ground — cool pearl, not cream", items: [
         { token: "--bg", hex: C.bg, role: "App ground" },
@@ -63,7 +63,6 @@ window.DUO_TOKENS = function (mode) {
       display: { name: "Michroma", stack: "Michroma, 'Eurostile', 'Helvetica Neue', sans-serif", role: "Wide technical caps: eyebrows, stage codes. Never above 22px, never sentence case." },
       ui:      { name: "SF Pro", stack: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif", role: "Everything you read. Native Dynamic Type path." },
       data:    { name: "Martian Mono", stack: "'Martian Mono', ui-monospace, 'SF Mono', monospace", role: "Times, counts, countdowns. Tabular, so a live clock never jitters." },
-      billing: { name: "Archivo", stack: "Archivo, 'Helvetica Neue', sans-serif", role: "Poster billing only (Me → My EDC poster). Width 62–72, weight 900." },
     },
     type: [
       { token: "clock",    family: "data",    size: 56, lh: 56, weight: 300, track: -0.05, sample: "12:50" },

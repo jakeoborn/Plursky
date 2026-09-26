@@ -13,6 +13,7 @@
 //   G8 tap targets          buttons and tabs ≥ 44px tall, chips ≥ 32px
 //   G9 token contrast       every declared pair meets its floor (4.5, or 3 when marked large)
 //   G10 broken labels       a short label (≤ 24 chars, no <br>) never wraps, and no text leaves a widow
+//   G13 names in full       artist names ([data-name]) never ellipsised, clamped or cut; stages never shown as codes
 // With no arguments it runs THE APPEARANCE GATE on live/: G1–G10 on every
 // screen in Dark and in Light (each loaded in one mode, then toggled in place
 // to the other), plus
@@ -27,7 +28,7 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
 const browser = await chromium.launch({ channel: "chrome" });
 let total = 0;
-const report = (name, fails, n, unit = "screens") => { total += fails.length; console.log(`${fails.length ? "✗" : "✓"} ${name}: ${n} ${unit}, ${fails.length} failures`); fails.forEach((x) => console.log("   " + x)); };
+const report = (name, fails, n, unit = "screens", names) => { total += fails.length; console.log(`${fails.length ? "✗" : "✓"} ${name}: ${n} ${unit}${names != null ? `, ${names} artist names checked` : ""}, ${fails.length} failures`); fails.forEach((x) => console.log("   " + x)); };
 
 // G1–G10 on every .screen-wrap of an already-loaded page.
 async function measure(page, errors) {
@@ -52,7 +53,7 @@ async function measure(page, errors) {
       // or every check below silently skips whatever is off-screen.
       wrap.querySelector(".phone").scrollIntoView({ block: "start" });
       const key = wrap.dataset.screen, ph = wrap.querySelector(".phone"), P = ph.getBoundingClientRect();
-      const f = { key, images: [], clipped: [], escaped: [], collide: [], small: [], targets: [], wraps: [] };
+      const f = { key, images: [], clipped: [], escaped: [], collide: [], small: [], targets: [], wraps: [], trunc: [] };
       // G3
       for (const img of ph.querySelectorAll("img")) if (!(img.complete && img.naturalWidth > 0)) f.images.push(img.getAttribute("src"));
       for (const el of ph.querySelectorAll("*")) for (const u of bgUrls(el)) if (!u.startsWith("data:") && !(await load(u))) f.images.push(u);
@@ -84,7 +85,8 @@ async function measure(page, errors) {
             const R = a.getBoundingClientRect();
             // A scroll view scrolls VERTICALLY: text cut at its top/bottom just
             // scrolls, but text cut at its sides is a real defect.
-            if (isScrollX(a)) { clipBox = inter(clipBox, { left: R.left, right: R.right, top: -1e9, bottom: 1e9 }); ownsX = true; }   // horizontal is now the scroller's job
+            if (isScrollX(a) && isScroll(a)) { clipBox = inter(clipBox, R); ownsX = true; }   // a 2-D scroll view (the timetable): cuts either way just scroll
+            else if (isScrollX(a)) { clipBox = inter(clipBox, { left: R.left, right: R.right, top: -1e9, bottom: 1e9 }); ownsX = true; }   // horizontal is now the scroller's job
             else if (isScroll(a)) { clipBox = inter(clipBox, { left: -1e9, right: 1e9, top: R.top, bottom: R.bottom }); if (!ownsX && !ellipsis && !el.closest("[data-bleed]") && (u.left < R.left - 1 || u.right > R.right + 1)) cut = true; }
             else if (!ellipsis && !el.closest("[data-bleed]") && ((!ownsX && (u.left < R.left - 1 || u.right > R.right + 1)) || u.top < R.top - 1 || u.bottom > R.bottom + 1)) cut = true;
           }
@@ -121,6 +123,18 @@ async function measure(page, errors) {
         if (A.el.contains(B.el) || B.el.contains(A.el)) continue;
         if (A.lines.some((ra) => B.lines.some((rb) => { const x = inter(ra, rb); return x.right - x.left > 1.5 && x.bottom - x.top > 1.5; }))) f.collide.push(`"${A.t}" × "${B.t}"`);
       }
+      // G13 — an artist name is never truncated: no ellipsis, no line clamp,
+      // and nothing hidden inside its own box. Every name carries data-name.
+      f.names = 0;
+      for (const el of ph.querySelectorAll("[data-name]")) {
+        f.names++;
+        const cs = getComputedStyle(el), clamp = cs.webkitLineClamp && cs.webkitLineClamp !== "none";
+        if (cs.textOverflow === "ellipsis" || clamp) f.trunc.push(`"${label(el)}" carries ${clamp ? "a line clamp" : "an ellipsis"}`);
+        else if (cs.overflow !== "visible") { if (el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 1) f.trunc.push(`"${label(el)}" is cut inside its own box`); }   // a clipping ancestor is G4's job
+      }
+      // A stage is named in full: a 3-letter code means nothing to a first-timer.
+      // (the one system only: the retired Laser/Holo/Headliner boards predate this rule)
+      if (ph.classList.contains("D")) for (const el of ph.querySelectorAll("*")) { const own = [...el.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent).join(" "); if (/\b(KIN|CIR|NEN|CSM|QNT|BIO|STR|WST|BAS)\b/.test(own)) f.trunc.push(`stage code in "${label(el)}"`); }
       // G8
       for (const el of ph.querySelectorAll(".btn,.tab")) { const h = el.getBoundingClientRect().height; if (h < 44) f.targets.push(`${el.className} "${label(el)}" ${h.toFixed(0)}px`); }
       for (const el of ph.querySelectorAll(".chip,.bead,.toggle")) { const h = el.getBoundingClientRect().height; if (h < 32) f.targets.push(`${el.className} "${label(el)}" ${h.toFixed(0)}px`); }
@@ -138,9 +152,9 @@ async function measure(page, errors) {
   res.contrast.forEach((c) => fails.push(`G9 ${c}`));
   for (const s of res.screens) {
     const add = (g, arr) => [...new Set(arr)].forEach((x) => fails.push(`${g} [${s.key}] ${x}`));
-    add("G3 image", s.images); add("G4 clipped", s.clipped); add("G5 escaped", s.escaped); add("G6 collide", s.collide); add("G7 small", s.small); add("G8 target", s.targets); add("G10 wraps", s.wraps);
+    add("G3 image", s.images); add("G4 clipped", s.clipped); add("G5 escaped", s.escaped); add("G6 collide", s.collide); add("G7 small", s.small); add("G8 target", s.targets); add("G10 wraps", s.wraps); add("G13 name", s.trunc);
   }
-  return { fails, n: res.screens.length };
+  return { fails, n: res.screens.length, names: res.screens.reduce((a, x) => a + x.names, 0) };
 }
 async function open(ctx, url) {
   const page = await ctx.newPage();
@@ -171,7 +185,7 @@ const file = (d, q = "") => "file://" + path.join(here, d, "index.html") + q + "
 
 if (args.length) {   // named direction pages, as before
   const ctx = await browser.newContext({ viewport: { width: 560, height: 1040 } });
-  for (const d of args) { const { page, errors } = await open(ctx, file(d)); const r = await measure(page, errors); report(d, r.fails, r.n); await page.close(); }
+  for (const d of args) { const { page, errors } = await open(ctx, file(d)); const r = await measure(page, errors); report(d, r.fails, r.n, "screens", r.names); await page.close(); }
 } else {
   // THE APPEARANCE GATE: every screen in BOTH modes, reached the way a user
   // reaches them — the page loads in one mode and the toggle switches it in
@@ -181,22 +195,22 @@ if (args.length) {   // named direction pages, as before
     const { page, errors } = await open(ctx, file("live", "?board"));
     const on = await page.evaluate(() => document.documentElement.dataset.mode);
     if (on !== first) report(`load ${first}`, [`G11 iPhone ${first} with no choice opened ${on}`], 0);
-    let r = await measure(page, errors); report(`${first} (loaded)`, r.fails, r.n);
+    let r = await measure(page, errors); report(`${first} (loaded)`, r.fails, r.n, "screens", r.names);
     await page.evaluate((m) => APPEARANCE.set(m), second);
     await page.waitForTimeout(300);
-    r = await measure(page, errors); report(`${second} (toggled from ${first})`, r.fails, r.n);
+    r = await measure(page, errors); report(`${second} (toggled from ${first})`, r.fails, r.n, "screens", r.names);
     // G12 mode leak: a screen toggled into a mode must be pixel-identical to
     // the same screen loaded fresh in that mode. Anything drawn with a
     // literal colour instead of a token stays behind and shows up here.
     const fresh = await open(ctx, file("live", `?board&mode=${second}`));
-    const leak = [];
+    const leak = []; let leakN = 0;
     for (const key of await page.$$eval(".screen-wrap", (w) => w.map((x) => x.dataset.screen))) {
       const shot = async (pg) => { const el = await pg.$(`.screen-wrap[data-screen="${key}"] .phone`); await el.scrollIntoViewIfNeeded(); return el.screenshot({ animations: "disabled" }); };
       const [x, y] = [await shot(page), await shot(fresh.page)];
-      const n = await diffPx(x, y);
+      const n = await diffPx(x, y); leakN++;
       if (n >= 20) leak.push(`G12 leak [${key}] toggled into ${second}: ${n} px differ by >96/255 from a fresh ${second} load`);
     }
-    report(`${second} leak check`, leak, 7);
+    report(`${second} leak check`, leak, leakN);
     await ctx.close();
   }
   // G11 appearance rules, on the interactive page.
