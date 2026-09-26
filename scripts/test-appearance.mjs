@@ -254,6 +254,9 @@ try {
     return { n, box: n ? `${x0},${y0}–${x1},${y1}` : '' };
   }, [a.toString('base64'), b.toString('base64')]);
 
+  // Layout boxes of every element, for leak evidence: a failure can then say
+  // WHICH element moved or changed under the differing box.
+  const rects = (page) => page.evaluate(() => [...document.querySelectorAll('body *')].map(e => { const r = e.getBoundingClientRect(), c = getComputedStyle(e); return { e: e.tagName.toLowerCase() + (e.getAttribute('aria-label') ? `[${e.getAttribute('aria-label')}]` : ''), x: r.x, y: r.y, w: r.width, h: r.height, font: `${c.fontFamily} ${c.fontSize} ${c.letterSpacing}`, t: (e.childElementCount ? '' : e.textContent || '').slice(0, 24) }; }).filter(r => r.w && r.h));
   const totals = {};
   const nameFails = new Set();
   const onMediaInk = {};   // `${screen}/${mode}` → text → colour, for text on a photo
@@ -266,12 +269,13 @@ try {
       // Audit the whole screen, not the first viewport: step the main
       // scroller, and keep a settled screenshot of every screenful for the
       // leak check below (a leak below the fold is still a leak).
-      const a = { fails: [], media: 0, measured: 0 }, seen = new Set(), fresh = [];
+      const a = { fails: [], media: 0, measured: 0 }, seen = new Set(), fresh = [], freshRects = [];
       onMediaInk[`${key}/${mode}`] = new Map();
       const steps = await markScroller(A.page);
       for (let i = 0; i < steps; i++) {
         if (i) await scrollTo(A.page, i);
         fresh.push(await shot(A.page));
+        if (process.env.APPEARANCE_EVIDENCE) freshRects[i] = await rects(A.page);
         const r = await audit(A.page);
         a.media += r.media; a.measured += r.measured;
         for (const [t, c] of r.mediaInk) onMediaInk[`${key}/${mode}`].set(t, c);
@@ -300,6 +304,8 @@ try {
           const dir = process.env.APPEARANCE_EVIDENCE, tag = `${key}-${other}-to-${mode}-${i + 1}`;
           mkdirSync(dir, { recursive: true });
           writeFileSync(`${dir}/${tag}-fresh.png`, fresh[i]); writeFileSync(`${dir}/${tag}-toggled.png`, toggled);
+          const [bx0, by0, bx1, by1] = box.split(/[,–]/).map(Number), hit = r => r.x <= bx1 && r.x + r.w >= bx0 && r.y <= by1 && r.y + r.h >= by0;
+          writeFileSync(`${dir}/${tag}-rects.json`, JSON.stringify({ box, fresh: (freshRects[i] || []).filter(hit), toggled: (await rects(B.page)).filter(hit) }, null, 1));
         }
         // Noise ceiling 20 px. Once the map's SVG pulses were parked and its
         // idle wander honoured Reduce Motion, noise measured 0 px in 10 of 10
