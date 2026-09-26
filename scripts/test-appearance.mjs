@@ -21,7 +21,7 @@
 import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
-import { existsSync } from 'node:fs';
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { serverReady } from './lib/server-ready.mjs';
 
 const reservePort = () => new Promise((resolve, reject) => { const s = createServer(); s.once('error', reject); s.listen(0, '127.0.0.1', () => { const a = s.address(); s.close(e => e ? reject(e) : resolve(a.port)); }); });
@@ -294,7 +294,13 @@ try {
       check(bSteps === steps, `[${key}] toggled ${other}→${mode} has ${bSteps} screenfuls, fresh has ${steps}`);
       for (let i = 0; i < Math.min(steps, bSteps); i++) {
         if (i) await scrollTo(B.page, i);
-        const { n, box } = await diffPx(await shot(B.page), fresh[i]);
+        const toggled = await shot(B.page);
+        const { n, box } = await diffPx(toggled, fresh[i]);
+        if (n >= 20 && process.env.APPEARANCE_EVIDENCE) {
+          const dir = process.env.APPEARANCE_EVIDENCE, tag = `${key}-${other}-to-${mode}-${i + 1}`;
+          mkdirSync(dir, { recursive: true });
+          writeFileSync(`${dir}/${tag}-fresh.png`, fresh[i]); writeFileSync(`${dir}/${tag}-toggled.png`, toggled);
+        }
         // Noise ceiling 20 px. Once the map's SVG pulses were parked and its
         // idle wander honoured Reduce Motion, noise measured 0 px in 10 of 10
         // toggles (it had reached 257 px); the smallest planted leak is 11,221 px.
