@@ -76,6 +76,15 @@ try {
     await page.waitForFunction(([fid, sel]) => window.FESTIVAL_CONFIG?.id === fid && document.querySelector(sel), [FID, ready], { timeout: 60000 });
     await page.clock.runFor(2500);
     await page.waitForTimeout(300);
+    // Settle: offline fetches (tracklists, bios, counts) fail on their own
+    // clocks, so a page can still be growing. Wait until the tallest scroller
+    // stops changing height three times running (≤ 12 tries).
+    let last = -1, same = 0;
+    for (let i = 0; i < 12 && same < 3; i++) {
+      const h = await page.evaluate(() => Math.max(...[...document.querySelectorAll('*')].map(e => e.scrollHeight)));
+      same = h === last ? same + 1 : 0; last = h;
+      await page.clock.runFor(500); await page.waitForTimeout(150);
+    }
     return { ctx, page, errors };
   };
   const modeOf = (page) => page.evaluate(() => document.documentElement.getAttribute('data-mode'));
@@ -280,7 +289,9 @@ try {
       for (let i = 0; i < Math.min(steps, bSteps); i++) {
         if (i) await scrollTo(B.page, i);
         const n = await diffPx(await shot(B.page), fresh[i]);
-        check(n < 60, `[${key}] toggled ${other}→${mode} differs from a fresh ${mode} load at ${n} px on screenful ${i + 1} (a colour did not follow the mode)`);
+        // Noise ceiling 150 px: the map's live pins measured up to 84 px under
+        // full-verify load; the smallest planted real leak measured 11,221 px.
+        check(n < 150, `[${key}] toggled ${other}→${mode} differs from a fresh ${mode} load at ${n} px on screenful ${i + 1} (a colour did not follow the mode)`);
       }
       await B.ctx.close();
     }
