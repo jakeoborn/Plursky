@@ -1182,7 +1182,7 @@ function ArtistScreen({ state, setState }) {
           </button>
         )}
         <Pill tone="outline" style={{ background: "rgba(var(--ink-rgb),0.15)", color: "var(--ink)", backdropFilter: "blur(8px)", borderColor: "rgba(var(--ink-rgb),0.3)" }}>
-          DAY {a.day} · {fmt12(a.start)}
+          {a.day != null ? `DAY ${a.day}` : "DAY TBA"} · {fmt12(a.start)}
         </Pill>
         <ShareArtistButton artist={a} />
       </div>
@@ -1426,7 +1426,11 @@ function ArtistScreen({ state, setState }) {
           <div style={{ flex: 1 }}>
             <div className="serif" style={{ fontSize: 20, lineHeight: 1 }}>{stage.name}</div>
             <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)", marginTop: 3 }}>
-              {DAYS.find(d => d.n === a.day).label} · {fmt12(a.start)}–{fmt12(a.end)}
+              {/* A billed act no official schedule has placed (Escape's lineup-card
+                  acts, CRSSD's late adds) has no day: say so, rather than
+                  look up a day that does not exist and crash the screen. */}
+              {a.day == null ? "DAY + SET TIME NOT PUBLISHED"
+                : `${(DAYS.find(d => d.n === a.day) || { label: `DAY ${a.day}` }).label} · ${a.start ? `${fmt12(a.start)}–${fmt12(a.end)}` : "SET TIME NOT PUBLISHED"}`}
             </div>
             {saveCount != null && saveCount >= 2 && (
               <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--signal-ink)", marginTop: 5 }}>
@@ -1441,12 +1445,12 @@ function ArtistScreen({ state, setState }) {
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2,
               cursor: "pointer",
             }}>ON MAP</button>
-            <button onClick={() => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "lineup", lineupDay: a.day, lineupHighlight: a.id, artist: null })} style={{
+            {a.day != null && <button onClick={() => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "lineup", lineupDay: a.day, lineupHighlight: a.id, artist: null })} style={{
               background: "transparent", border: "1px solid var(--line-2)",
               borderRadius: 999, padding: "6px 12px",
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2,
               cursor: "pointer", whiteSpace: "nowrap",
-            }}>SCHEDULE</button>
+            }}>SCHEDULE</button>}
           </div>
         </div>
 

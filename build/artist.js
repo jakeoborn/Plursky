@@ -1397,7 +1397,7 @@ function ArtistScreen({
       backdropFilter: "blur(8px)",
       borderColor: "rgba(var(--ink-rgb),0.3)"
     }
-  }, "DAY ", a.day, " · ", fmt12(a.start)), React.createElement(ShareArtistButton, {
+  }, a.day != null ? `DAY ${a.day}` : "DAY TBA", " · ", fmt12(a.start)), React.createElement(ShareArtistButton, {
     artist: a
   })));
   var heroNameInner = React.createElement(React.Fragment, null, React.createElement("div", {
@@ -1752,7 +1752,9 @@ function ArtistScreen({
       color: "var(--muted)",
       marginTop: 3
     }
-  }, DAYS.find(d => d.n === a.day).label, " · ", fmt12(a.start), "–", fmt12(a.end)), saveCount != null && saveCount >= 2 && React.createElement("div", {
+  }, a.day == null ? "DAY + SET TIME NOT PUBLISHED" : `${(DAYS.find(d => d.n === a.day) || {
+    label: `DAY ${a.day}`
+  }).label} · ${a.start ? `${fmt12(a.start)}–${fmt12(a.end)}` : "SET TIME NOT PUBLISHED"}`), saveCount != null && saveCount >= 2 && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 9,
@@ -1786,7 +1788,7 @@ function ArtistScreen({
       letterSpacing: 1.2,
       cursor: "pointer"
     }
-  }, "ON MAP"), React.createElement("button", {
+  }, "ON MAP"), a.day != null && React.createElement("button", {
     onClick: () => (window._pushNav || (n => setState({
       ...state,
       ...n
