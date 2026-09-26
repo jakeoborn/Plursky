@@ -408,6 +408,22 @@ if (fdata.length) {
   }
 }
 
+// Festival essentials: entry age never borrowed from alcohol age, a sourced
+// camping "false" never silently becomes unknown, no stale or resale ticket
+// link, and every value carries its own first-party, per-edition source.
+{
+  console.log("▸ Festival-essentials gate — entry age, camping and ticket links stay sourced and independent");
+  try {
+    const out = execFileSync("node", ["scripts/test-festival-essentials.mjs"],
+                             { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    console.log("  " + out.trim());
+  } catch (e) {
+    const detail = ((e.stderr || "") + (e.stdout || "")).trim();
+    if (detail) console.log("  " + detail.replace(/\n/g, "\n  "));
+    fail("festival essentials regression");
+  }
+}
+
 // ── Set-time importer gate ───────────────────────────────────────────────
 // Every gated festival flips through import-set-times.mjs. It must write into
 // the festival's own module, take days from the sheet for a lineup that

@@ -143,6 +143,9 @@
 
   const CONFIG = {
     id: "governors-ball-2026",
+    policies: { minimumAge: 0, camping: false },
+    // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+    essentialsSources: {"minimumAge": {"url": "https://support.govball.com/hc/en-us/articles/11579656802836-Age-Kids-Policy-Do-children-need-tickets", "observedAt": "2026-09-26", "edition": "2026"}, "camping": {"url": "https://support.govball.com/hc/en-us/articles/11579632488596-Is-camping-available-at-the-festival", "observedAt": "2026-09-26", "edition": "2026"}},
     // The festival's OWN map page, linked (never embedded) by the /f/ page.
     mapSource: { url: "https://support.govball.com/hc/en-us/articles/11579732251284-Is-there-a-current-festival-map", observedAt: "2026-09-24", mapYear: 2026 },
     // From the SOURCE note above: governorsballmusicfestival.com/schedule graphics, accessed 2026-08-28. Feeds /f/<id>/schedule.json.

@@ -197,6 +197,9 @@
 
   const CONFIG = {
     id:        "decadence-colorado-2026",
+    officialEvent: { website: "https://decadencenye.com/", tickets: "https://www.axs.com/festivals/1583425", observedAt: "2026-09-26" },
+    // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+    essentialsSources: {"minimumAge": {"url": "https://decadencenye.com/tickets/ga-tickets/", "observedAt": "2026-09-26", "edition": "2026"}, "tickets": {"url": "https://www.axs.com/festivals/1583425", "state": "on-sale", "observedAt": "2026-09-26", "edition": "2026", "evidence": "https://decadencenye.com/tickets/ga-tickets/"}},
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
     lineupSource: { url: "https://decadencenye.com/lineup/", observedAt: "2026-09-10", official: true },

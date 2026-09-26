@@ -214,6 +214,9 @@
 
   const CONFIG = {
     id:        "crssd-fall-2026",
+    officialEvent: { website: "https://www.crssdfest.com/", tickets: "https://events.leapevents.com/event/fngrs-crssd-presents-crssd-festival-fall-26/tag/website", observedAt: "2026-09-26" },
+    // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+    essentialsSources: {"minimumAge": {"url": "https://www.crssdfest.com/info/", "observedAt": "2026-09-26", "edition": "2026"}, "tickets": {"url": "https://events.leapevents.com/event/fngrs-crssd-presents-crssd-festival-fall-26/tag/website", "state": "on-sale", "observedAt": "2026-09-26", "edition": "2026", "evidence": "https://www.crssdfest.com/"}},
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
     lineupSource: { url: "https://www.crssdfest.com/", observedAt: "2026-09-06", official: true },

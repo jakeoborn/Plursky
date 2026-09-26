@@ -35,7 +35,7 @@ const EMBEDS = loadEmbedData(root);
 // Each stub renders the festival's real schedule inline (day then stage,
 // from the same _scheduleActs data schedule.json ships) and links the App
 // Store install path, so "<festival> set times" queries land on substance.
-const { REG, DS, scheduleActs, eventDates, weekendShifts, actPlaysWeekend } = loadRegistry(root);
+const { REG, DS, scheduleActs, eventDates, weekendShifts, actPlaysWeekend, festivalEssentials, entryAgeLabel, campingLabel } = loadRegistry(root);
 
 // ── Helpers ──────────────────────────────────────────────────────────
 const esc = (s) => String(s ?? '')
@@ -361,11 +361,16 @@ ${stages.map(st => { const c = count(st.id); return `      <li><strong>${esc(st.
 function planSection(entry, amenities) {
   const cfg = entry.config;
   const eh = editionHours(cfg), hours = hoursLine(eh);
-  if (!amenities.length && !hours) return '';
+  // Entry age, camping and the official ticket link: the same accessor the
+  // app calls, evaluated at TODAY noon UTC (the date the sitemap stamps). An
+  // unknown value prints NOTHING: a missing chip must never read as "no".
+  const ess = festivalEssentials(cfg, Date.parse(`${TODAY}T12:00:00Z`));
+  const facts = [entryAgeLabel(ess.entryAge), campingLabel(ess.camping)].filter(Boolean);
+  if (!amenities.length && !hours && !facts.length && !ess.tickets) return '';
   return `
   <section aria-labelledby="plan-h">
     <h2 id="plan-h">Plan your day at ${esc(cfg.name)}</h2>
-${hours ? `    <p class="hours">${esc(hours)} <span class="note">Per the <a href="${esc(eh.url)}" rel="noopener">official hours page</a>, checked ${esc(eh.observedAt)}.</span></p>\n` : ''}${amenities.length ? `    <p>Amenities Plursky lists for ${esc(cfg.name)}: ${amenities.map(([k, v]) => `${esc(k)} (${v})`).join(' · ')}.</p>\n` : ''}  </section>`;
+${facts.length ? `    <ul class="facts" aria-label="Entry policy">${facts.map(f => `<li>${esc(f)}</li>`).join('')}</ul>\n` : ''}${ess.tickets ? `    <p class="tickets"><a href="${esc(ess.tickets)}" rel="noopener">Official tickets</a> <span class="note">Primary seller, checked ${esc(cfg.essentialsSources.tickets.observedAt)}.</span></p>\n` : ''}${hours ? `    <p class="hours">${esc(hours)} <span class="note">Per the <a href="${esc(eh.url)}" rel="noopener">official hours page</a>, checked ${esc(eh.observedAt)}.</span></p>\n` : ''}${amenities.length ? `    <p>Amenities Plursky lists for ${esc(cfg.name)}: ${amenities.map(([k, v]) => `${esc(k)} (${v})`).join(' · ')}.</p>\n` : ''}  </section>`;
 }
 
 // ── Past editions ─────────────────────────────────────────────────────
@@ -606,6 +611,11 @@ function stub(entry, statusOverride, lastmod) {
     cfg.lineupSource && cfg.lineupSource.url && `      <li>Lineup: <a href="${esc(cfg.lineupSource.url)}" rel="noopener">${esc(cfg.lineupSource.url)}</a> (${cfg.lineupSource.official === true ? 'official' : 'community source'}${cfg.lineupSource.observedAt ? `, read ${esc(cfg.lineupSource.observedAt)}` : ''})</li>`,
     src && src.url && `      <li>Set times: <a href="${esc(src.url)}" rel="noopener">${esc(src.url)}</a> (${src.official === true ? 'official' : 'community source'}${src.observedAt ? `, checked ${esc(src.observedAt)}` : ''})</li>`,
     cfg.mapSource && cfg.mapSource.url && `      <li>Map: <a href="${esc(cfg.mapSource.url)}" rel="noopener">${esc(cfg.mapSource.url)}</a> (official, checked ${esc(cfg.mapSource.observedAt)})</li>`,
+    ...['minimumAge', 'camping'].map(k => {
+      const src = cfg.essentialsSources && cfg.essentialsSources[k];
+      const v = (festivalEssentials(cfg)[k === 'minimumAge' ? 'entryAge' : 'camping']);
+      return v != null && src && src.url && `      <li>${k === 'minimumAge' ? 'Entry age' : 'Camping'}: <a href="${esc(src.url)}" rel="noopener">${esc(src.url)}</a> (official, ${esc(src.edition)} edition, checked ${esc(src.observedAt)})</li>`;
+    }),
     editionHours(cfg)?.url && `      <li>Hours: <a href="${esc(cfg.hours.url)}" rel="noopener">${esc(cfg.hours.url)}</a> (official, checked ${esc(cfg.hours.observedAt)})</li>`,
   ].filter(Boolean);
 
@@ -644,6 +654,9 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
           color:var(--ink); font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
   .chip-live, .chip-soon { border-color:var(--ember); color:var(--ember); }
   .note { color:var(--muted); font-size:14px; }
+  ul.facts { list-style:none; padding:0; margin:8px 0 12px; display:flex; flex-wrap:wrap; gap:8px; }
+  ul.facts li { padding:3px 12px; border-radius:999px; background:var(--panel); border:1px solid var(--line); font-size:14px; font-weight:600; }
+  p.tickets a { color:var(--ink); font-weight:700; text-underline-offset:3px; }
   figure { margin:16px 0; }
   figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:12px; background:var(--panel); }
   .platebox { position:relative; max-width:520px; }
@@ -866,7 +879,7 @@ const fileFp = (rel) => fp(existsSync(path.join(root, rel)) ? readFileSync(path.
 // live in scripts/lib/sitemap-fingerprint.mjs — shared with
 // scripts/test-sitemap-fingerprint.mjs so the generator and its regression
 // mutants hash through one function rather than two copies of a rule.
-const festivalFp = (entry) => festivalFingerprint(entry, { DS, scheduleActs, eventDates, TODAY });
+const festivalFp = (entry) => festivalFingerprint(entry, { DS, scheduleActs, eventDates, TODAY, festivalEssentials });
 
 // First run has no ledger. Seeding from the sitemap already committed keeps
 // every published date that is still true, rather than announcing that all 28
