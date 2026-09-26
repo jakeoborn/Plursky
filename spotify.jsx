@@ -6228,11 +6228,16 @@ function MemoriesScreen({ state, setState }) {
     const unreadable = [];
     for (let i = 0; i < files.length; i++) {
       let f = files[i];
+      // True only while the native item is being READ. A failure after the
+      // read (an IndexedDB save hitting a full disk) is not "unreadable" and
+      // must not get the iCloud banner.
+      let reading = false;
       try {
         // PHPicker returns paths, not media blobs. Fetch just this item, write
         // it to IndexedDB, then advance. Twenty 200 MB files must not become
         // twenty simultaneous Blob/File objects in the WebView heap.
         if (nativePicker) {
+          reading = true;
           const item = f;
           const src = item.path ? (window.Capacitor?.convertFileSrc?.(item.path) || item.path) : null;
           if (!src) throw new Error("No readable file path");
@@ -6249,6 +6254,7 @@ function MemoriesScreen({ state, setState }) {
             type, lastModified: item.modifiedAt || Date.now(),
           });
           if (isVideo && item.path) Object.defineProperty(f, "nativePath", { value: item.path });
+          reading = false;
         }
         const fp = await _fileFingerprint(f);
         if (fp && existingFingerprints.has(fp)) {
@@ -6376,7 +6382,7 @@ function MemoriesScreen({ state, setState }) {
         if (!results.some(r => r.fileIndex === i && r.momentId)) {
           const name = f?.name || `item ${i + 1}`;
           results.push({ name, fileIndex: i, night: null, artistId: null, err: err?.message || "failed" });
-          if (nativePicker && !(err?.message || "").includes("200 MB")) unreadable.push({ name, why: "unreadable" });
+          if (reading && !(err?.message || "").includes("200 MB")) unreadable.push({ name, why: "unreadable" });
         }
       }
       setBatch({ total: files.length, done: i + 1, results: results.slice() });

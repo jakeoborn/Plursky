@@ -2191,6 +2191,25 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-v. Native picker video batch ──────────────────────────────────────
+// Twenty clips land through the web input AND through the mocked PHPicker
+// bridge one fetch at a time; a failed SAVE is not reported as unreadable.
+// A mock, not iPhone evidence: real-device QA stays on the device lane.
+for (const [script, label] of [
+  ["scripts/test-video-batch-20.mjs", "20-video batch (web + native mock, one in flight)"],
+  ["scripts/test-video-native-failures.mjs", "native read vs save failures"],
+]) {
+  console.log(`▸ Video import gate — ${label}`);
+  try {
+    const out = execFileSync(process.execPath, [script],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`${label} regression failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-a. iPhone video GPS (QuickTime mdta) ───────────────────────────────
 {
   console.log("▸ Video GPS gate — iPhone mdta location + accuracy reach the tagger");

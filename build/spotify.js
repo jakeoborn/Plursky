@@ -9509,8 +9509,10 @@ function MemoriesScreen({
     var unreadable = [];
     var _loop5 = async function (i) {
       var f = files[i];
+      var reading = false;
       try {
         if (nativePicker) {
+          reading = true;
           var item = f;
           var src = item.path ? window.Capacitor?.convertFileSrc?.(item.path) || item.path : null;
           if (!src) throw new Error("No readable file path");
@@ -9530,6 +9532,7 @@ function MemoriesScreen({
           if (isVideo && item.path) Object.defineProperty(f, "nativePath", {
             value: item.path
           });
+          reading = false;
         }
         var fp = await _fileFingerprint(f);
         if (fp && existingFingerprints.has(fp)) {
@@ -9638,7 +9641,7 @@ function MemoriesScreen({
             artistId: null,
             err: err?.message || "failed"
           });
-          if (nativePicker && !(err?.message || "").includes("200 MB")) unreadable.push({
+          if (reading && !(err?.message || "").includes("200 MB")) unreadable.push({
             name,
             why: "unreadable"
           });
