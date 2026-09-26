@@ -357,7 +357,14 @@ function SpiderWeb({
     };
   });
   var edcCount = nodes.filter(n => n.edcArtist).length;
-  var truncate = (str, max) => str.length > max ? str.slice(0, max) + "…" : str;
+  var twoLines = (str, max) => {
+    var n = actDisplayName(str);
+    if (n.length <= max || !n.includes(" ")) return [n];
+    var mid = n.length / 2;
+    var best = -1;
+    for (var i = 0; i < n.length; i++) if (n[i] === " " && (best < 0 || Math.abs(i - mid) < Math.abs(best - mid))) best = i;
+    return [n.slice(0, best), n.slice(best + 1)];
+  };
   return React.createElement("div", {
     style: {
       background: "var(--paper-2)",
@@ -378,7 +385,7 @@ function SpiderWeb({
     style: {
       fontSize: 9,
       letterSpacing: 1.5,
-      color: "rgba(var(--ink-rgb),0.45)",
+      color: "var(--text-3)",
       fontWeight: 700
     }
   }, "SIMILAR ARTISTS"), edcCount > 0 && React.createElement("span", {
@@ -429,26 +436,33 @@ function SpiderWeb({
   })), React.createElement("circle", {
     cx: cx,
     cy: cy,
-    r: 28,
+    r: 32,
     fill: "var(--signal)"
   }), React.createElement("circle", {
     cx: cx,
     cy: cy,
-    r: 33,
+    r: 37,
     fill: "none",
     stroke: "var(--signal)",
     strokeWidth: 1,
     opacity: 0.3
-  }), React.createElement("text", {
-    x: cx,
-    y: cy,
-    textAnchor: "middle",
-    dominantBaseline: "middle",
-    fill: "var(--ink)",
-    fontSize: currentArtist.name.length > 10 ? 7 : 8.5,
-    fontFamily: "Geist Mono, monospace",
-    fontWeight: "700"
-  }, truncate(currentArtist.name, 11)), nodes.map((n, i) => {
+  }), (() => {
+    var ln = twoLines(currentArtist.name, 10);
+    return React.createElement("text", {
+      x: cx,
+      y: cy - (ln.length - 1) * 5,
+      textAnchor: "middle",
+      dominantBaseline: "middle",
+      fill: "var(--on-signal)",
+      fontSize: ln.length > 1 || currentArtist.name.length > 10 ? 8 : 9,
+      fontFamily: "Geist Mono, monospace",
+      fontWeight: "700"
+    }, ln.map((t, i) => React.createElement("tspan", {
+      key: i,
+      x: cx,
+      dy: i ? 10 : 0
+    }, t)));
+  })(), nodes.map((n, i) => {
     var r = n.edcArtist ? 21 : 14;
     var labelY = n.y + r + 13;
     var dayLabel = n.edcArtist ? ["FRI", "SAT", "SUN"][n.edcArtist.day - 1] : null;
@@ -482,13 +496,17 @@ function SpiderWeb({
       x: n.x,
       y: labelY,
       textAnchor: "middle",
-      fill: n.edcStage ? "rgba(var(--ink-rgb),0.9)" : "rgba(var(--ink-rgb),0.32)",
+      fill: n.edcStage ? "var(--ink)" : "var(--text-2)",
       fontSize: 7.5,
       fontFamily: "Geist Mono, monospace",
       fontWeight: n.edcStage ? "600" : "400"
-    }, truncate(n.name, 13)), n.edcStage && dayLabel && React.createElement("text", {
+    }, twoLines(n.name, 13).map((t, i) => React.createElement("tspan", {
+      key: i,
       x: n.x,
-      y: labelY + 11,
+      dy: i ? 9 : 0
+    }, t))), n.edcStage && dayLabel && React.createElement("text", {
+      x: n.x,
+      y: labelY + 11 + (twoLines(n.name, 13).length - 1) * 9,
       textAnchor: "middle",
       fill: "var(--text-2)",
       fontSize: 7,
@@ -717,13 +735,13 @@ function YourPhotosStrip({
         fontSize: 9,
         letterSpacing: 1.6,
         fontWeight: 700,
-        color: "rgba(var(--ink-rgb),0.4)"
+        color: "var(--text-3)"
       }
     }, "YOUR MOMENTS")), React.createElement("div", {
       style: {
         fontSize: 13,
         lineHeight: 1.5,
-        color: "rgba(var(--ink-rgb),0.7)"
+        color: "var(--text-2)"
       }
     }, "You haven't filmed anything at ", artistObj?.name || "this set", " yet."), (when || stage) && React.createElement("button", {
       onClick: () => onOpenMap?.(artistObj),
@@ -798,7 +816,7 @@ function YourPhotosStrip({
       borderRadius: 999,
       padding: "4px 10px",
       cursor: "pointer",
-      color: "rgba(var(--ink-rgb),0.5)",
+      color: "var(--text-3)",
       fontSize: 8,
       letterSpacing: 1.2,
       fontWeight: 700
@@ -819,7 +837,7 @@ function YourPhotosStrip({
   }, mine.length), React.createElement("span", {
     style: {
       fontSize: 10,
-      color: "rgba(var(--ink-rgb),0.45)"
+      color: "var(--text-3)"
     }
   }, mine.length === 1 ? "memory" : "memories", vids > 0 ? ` · ${vids} video${vids > 1 ? "s" : ""}` : ""))), React.createElement("div", {
     className: "no-scrollbar",
@@ -1492,6 +1510,7 @@ function ArtistScreen({
       marginTop: 6
     }
   }, heroNameInner)) : React.createElement("div", {
+    className: "media-scope",
     style: {
       height: 300,
       position: "relative",
@@ -1503,7 +1522,7 @@ function ArtistScreen({
       position: "absolute",
       inset: 0,
       top: -30,
-      background: heroPhoto ? "var(--ink)" : `linear-gradient(160deg, var(--ink) 0%, rgba(var(--signal-rgb),0.27) 40%, var(--ink) 100%)`,
+      background: heroPhoto ? "var(--media-ground)" : `linear-gradient(160deg, var(--media-ground) 0%, rgba(var(--signal-rgb),0.27) 40%, var(--media-ground) 100%)`,
       backgroundImage: heroPhoto ? `url(${heroPhoto})` : undefined,
       backgroundSize: "cover",
       backgroundPosition: "center 20%",
@@ -1927,7 +1946,7 @@ function ArtistScreen({
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "rgba(var(--ink-rgb),0.35)"
+        color: "var(--text-3)"
       }
     }, tracks.length, " TRACKS"))), React.createElement("div", {
       style: {
@@ -1946,7 +1965,7 @@ function ArtistScreen({
       className: "mono",
       style: {
         fontSize: 8,
-        color: "rgba(var(--ink-rgb),0.25)",
+        color: "var(--text-3)",
         width: 38,
         textAlign: "right",
         flexShrink: 0
@@ -1970,7 +1989,7 @@ function ArtistScreen({
       style: {
         fontSize: 8,
         letterSpacing: 0.8,
-        color: "rgba(var(--ink-rgb),0.4)",
+        color: "var(--text-3)",
         marginTop: 1
       }
     }, t.artist)))), tracks.length > 8 && React.createElement("button", {
@@ -1997,7 +2016,7 @@ function ArtistScreen({
         fontFamily: "Geist Mono, monospace",
         fontSize: 8,
         letterSpacing: 1.2,
-        color: "rgba(var(--ink-rgb),0.35)",
+        color: "var(--text-3)",
         textDecoration: "none",
         textAlign: "center"
       }
@@ -2392,21 +2411,21 @@ function ArtistScreen({
       style: {
         fontSize: 8,
         letterSpacing: 1.1,
-        color: "rgba(var(--ink-rgb),0.5)"
+        color: "var(--text-3)"
       }
     }, "TAP TO PLAY"), ytVideo.durationMin > 0 && React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 8,
         letterSpacing: 0.8,
-        color: "rgba(var(--ink-rgb),0.5)"
+        color: "var(--text-3)"
       }
     }, ytVideo.durationMin >= 60 ? `${Math.floor(ytVideo.durationMin / 60)}H ${ytVideo.durationMin % 60}M` : `${ytVideo.durationMin} MIN`), ytVideo.views > 0 && React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 8,
         letterSpacing: 0.8,
-        color: "rgba(var(--ink-rgb),0.5)",
+        color: "var(--text-3)",
         marginLeft: "auto"
       }
     }, ytVideo.views >= 1e6 ? `${(ytVideo.views / 1e6).toFixed(1)}M` : ytVideo.views >= 1e3 ? `${(ytVideo.views / 1e3).toFixed(0)}K` : ytVideo.views, " VIEWS")))), YOUTUBE_KEY && ytVideo && ytPlaying && React.createElement("div", {
@@ -2435,6 +2454,7 @@ function ArtistScreen({
         textAlign: "center"
       }
     }, React.createElement("div", {
+      "aria-hidden": "true",
       style: {
         fontSize: 20,
         opacity: 0.3,
@@ -2713,14 +2733,14 @@ function ArtistScreen({
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "rgba(var(--ink-rgb),0.4)"
+        color: "var(--text-3)"
       }
     }, _mcDur(track.duration)), track.plays > 0 && React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "rgba(var(--ink-rgb),0.35)"
+        color: "var(--text-3)"
       }
     }, _mcFmt(track.plays), " PLAYS")))), mcPlaying === track.key && React.createElement("div", {
       style: {
@@ -2747,7 +2767,7 @@ function ArtistScreen({
         fontFamily: "Geist Mono, monospace",
         fontSize: 9,
         letterSpacing: 1.2,
-        color: "rgba(var(--ink-rgb),0.4)",
+        color: "var(--text-3)",
         cursor: "pointer"
       }
     }, "▲ CLOSE")))), Array.isArray(mcTracks) && mcTracks.length === 0 && React.createElement("a", {
@@ -2930,14 +2950,14 @@ function ArtistScreen({
     style: {
       fontSize: 8,
       letterSpacing: 1.1,
-      color: "rgba(var(--ink-rgb),0.75)"
+      color: "var(--on-ember)"
     }
   }, ev.date ? _tmDate(ev.date).split(" ")[0].toUpperCase() : ""), React.createElement("div", {
     className: "serif",
     style: {
       fontSize: 20,
       lineHeight: 1,
-      color: "var(--ink)",
+      color: "var(--on-ember)",
       letterSpacing: -0.5
     }
   }, ev.date ? _tmDate(ev.date).split(" ")[1].replace(",", "") : "—"), React.createElement("div", {
@@ -2945,7 +2965,7 @@ function ArtistScreen({
     style: {
       fontSize: 8,
       letterSpacing: 0.8,
-      color: "rgba(var(--ink-rgb),0.7)"
+      color: "var(--on-ember)"
     }
   }, ev.date ? ev.date.split("-")[0] : "")), React.createElement("div", {
     style: {

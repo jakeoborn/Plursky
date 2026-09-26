@@ -326,8 +326,8 @@ function NightWizard({
     onClick: autoFill,
     title: "Auto-fill best non-clashing sets for this day",
     style: {
-      background: "var(--horizon)",
-      color: "var(--ink)",
+      background: "var(--signal)",
+      color: "var(--on-signal)",
       border: "none",
       borderRadius: 999,
       padding: "8px 13px",
@@ -775,6 +775,9 @@ function LineupScreen({
   state,
   setState
 }) {
+  React.useLayoutEffect(() => {
+    fitNames(document.querySelector("[data-lineup-scroll]"));
+  });
   var highlightId = state.lineupHighlight || null;
   var [day, setDay] = React.useState(() => {
     if (highlightId) {
@@ -1015,8 +1018,8 @@ function LineupScreen({
           if (!ackedPairs.has(_pairKey(a.id, b.id))) {
             _conflicts.push([a, b]);
           }
-          (_byId[a.id] = _byId[a.id] || []).push(b.name);
-          (_byId[b.id] = _byId[b.id] || []).push(a.name);
+          (_byId[a.id] = _byId[a.id] || []).push(b);
+          (_byId[b.id] = _byId[b.id] || []).push(a);
         }
       }
     }
@@ -1874,16 +1877,17 @@ function LineupScreen({
         }
       }, React.createElement("span", {
         "data-set-name": true,
+        "data-fit-name": true,
+        "data-fit-min": "16",
         style: {
           fontSize: 17,
           lineHeight: "22px",
           fontWeight: 700,
           color: "var(--ink)",
           whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis"
+          overflowWrap: "break-word"
         }
-      }, a.name), React.createElement("span", {
+      }, actDisplayName(a.name)), React.createElement("span", {
         "data-set-meta": true,
         style: {
           fontSize: 13,
@@ -1914,7 +1918,16 @@ function LineupScreen({
           color: "var(--warn)",
           fontWeight: 600
         }
-      }, "Clash · "), _lineupMetaValue(stage.name))), React.createElement("button", {
+      }, "Clash · "), _lineupMetaValue(stage.name)), clashWith && clashWith.map(o => React.createElement("span", {
+        key: o.id,
+        "data-clash-with": o.id,
+        style: {
+          fontSize: 13,
+          lineHeight: "18px",
+          color: "var(--warn)",
+          fontWeight: 600
+        }
+      }, "vs ", actDisplayName(o.name), " · ", fmt12(o.start), " · ", (STAGES.find(s => s.id === o.stage) || UNPLACED_STAGE).name))), React.createElement("button", {
         onClick: () => toggleSave(state, setState, a.id),
         "aria-label": saved ? `Unsave ${a.name}` : `Save ${a.name}`,
         "aria-pressed": saved,
@@ -2631,7 +2644,6 @@ function GridSetBlock({
   var isHeadliner = a.tier === 3;
   var _lineH = narrow ? 10.2 : isHeadliner ? 13.8 : 12.7;
   var _chrome = narrow ? 8 : 20;
-  var nameLines = Math.max(1, Math.min(4, Math.floor((height - _chrome) / _lineH)));
   var _saved = (state.saved || []).includes(a.id);
   var _store = refStore;
   var _resetHold = e => {
@@ -2714,16 +2726,13 @@ function GridSetBlock({
       fontWeight: isHeadliner ? 800 : 700,
       lineHeight: narrow ? 1.05 : 1.1,
       color: "var(--ink)",
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      display: "-webkit-box",
-      WebkitLineClamp: nameLines,
-      WebkitBoxOrient: "vertical",
+      hyphens: "auto",
+      WebkitHyphens: "auto",
       overflowWrap: "break-word",
       paddingRight: saved ? clash ? narrow ? 19 : 23 : narrow ? 9 : 12 : 0,
       fontFamily: isHeadliner ? "Instrument Serif, Georgia, serif" : "Geist, -apple-system, sans-serif"
     }
-  }, a.name), !narrow && React.createElement("div", {
+  }, actDisplayName(a.name)), !narrow && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 8,
@@ -2739,8 +2748,7 @@ function GridSetBlock({
       fontSize: 8,
       letterSpacing: 1,
       fontWeight: 800,
-      color: "var(--ember-ink)",
-      whiteSpace: "nowrap"
+      color: "var(--ember-ink)"
     }
   }, "YOU'RE DUE HERE · ", dueMins, " MIN"), saved && React.createElement("span", {
     style: {
@@ -2989,9 +2997,9 @@ function TimelineGrid({
         }
       }, React.createElement("span", {
         style: {
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          whiteSpace: "nowrap"
+          lineHeight: "12px",
+          textAlign: "center",
+          letterSpacing: 0.4
         }
       }, s.short), n > 0 && React.createElement("span", {
         style: {
@@ -3212,7 +3220,7 @@ function ConflictResolver({
         fontWeight: 600,
         overflowWrap: "anywhere"
       }
-    }, art.name), React.createElement("div", {
+    }, actDisplayName(art.name)), React.createElement("div", {
       style: {
         fontSize: 13,
         lineHeight: "18px",

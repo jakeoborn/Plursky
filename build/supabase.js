@@ -1554,7 +1554,7 @@ function FriendsCard({
     style: {
       fontSize: 8.5,
       letterSpacing: 1.2,
-      color: "rgba(var(--ink-rgb),0.45)",
+      color: "var(--text-3)",
       marginBottom: 6
     }
   }, "CURRENT STAGE"), React.createElement("div", {
@@ -3495,7 +3495,7 @@ function CrewCard({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "rgba(var(--ink-rgb),0.4)",
+      color: "var(--text-3)",
       fontSize: 16,
       padding: 0,
       animation: totemUrl ? "totem-pulse 3s ease-in-out infinite" : "none"
@@ -3520,7 +3520,7 @@ function CrewCard({
     style: {
       fontSize: 8.5,
       letterSpacing: 1.2,
-      color: "rgba(var(--ink-rgb),0.45)",
+      color: "var(--text-3)",
       marginBottom: 3
     }
   }, totemUrl ? "YOUR TOTEM · TAP TO CHANGE" : "TAP 📷 TO SET YOUR TOTEM"), React.createElement("div", {
@@ -3579,7 +3579,7 @@ function CrewCard({
       borderRadius: 8,
       padding: "7px 11px",
       cursor: "pointer",
-      color: "rgba(var(--ink-rgb),0.5)",
+      color: "var(--text-3)",
       fontFamily: "Geist Mono, monospace",
       fontSize: 9,
       letterSpacing: 1.2

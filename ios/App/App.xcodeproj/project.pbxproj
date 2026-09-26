@@ -12,6 +12,7 @@
 		504EC3081FED79650016851F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504EC3071FED79650016851F /* AppDelegate.swift */; };
 		E41F2A3B2D0E00010016851F /* ShazamPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F2A3A2D0E00010016851F /* ShazamPlugin.swift */; };
 		E41F2A3B2D0E00020016851F /* PlurskyBridgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F2A3A2D0E00020016851F /* PlurskyBridgeViewController.swift */; };
+		E41F2A3B2D0E00030016851F /* AppearancePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F2A3A2D0E00030016851F /* AppearancePlugin.swift */; };
 		E41F2A3B2D0E00030016851F /* AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F2A3A2D0E00030016851F /* AppUITests.swift */; };
 		504EC30D1FED79650016851F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC30B1FED79650016851F /* Main.storyboard */; };
 		504EC30F1FED79650016851F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 504EC30E1FED79650016851F /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 		504EC3071FED79650016851F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E41F2A3A2D0E00010016851F /* ShazamPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamPlugin.swift; sourceTree = "<group>"; };
 		E41F2A3A2D0E00020016851F /* PlurskyBridgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlurskyBridgeViewController.swift; sourceTree = "<group>"; };
+		E41F2A3A2D0E00030016851F /* AppearancePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearancePlugin.swift; sourceTree = "<group>"; };
 		E41F2A3A2D0E00030016851F /* AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUITests.swift; sourceTree = "<group>"; };
 		504EC30C1FED79650016851F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		504EC30E1FED79650016851F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				504EC3071FED79650016851F /* AppDelegate.swift */,
 				E41F2A3A2D0E00010016851F /* ShazamPlugin.swift */,
 				E41F2A3A2D0E00020016851F /* PlurskyBridgeViewController.swift */,
+				E41F2A3A2D0E00030016851F /* AppearancePlugin.swift */,
 				504EC30B1FED79650016851F /* Main.storyboard */,
 				504EC30E1FED79650016851F /* Assets.xcassets */,
 				504EC3101FED79650016851F /* LaunchScreen.storyboard */,
@@ -280,6 +283,7 @@
 				504EC3081FED79650016851F /* AppDelegate.swift in Sources */,
 				E41F2A3B2D0E00010016851F /* ShazamPlugin.swift in Sources */,
 				E41F2A3B2D0E00020016851F /* PlurskyBridgeViewController.swift in Sources */,
+				E41F2A3B2D0E00030016851F /* AppearancePlugin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

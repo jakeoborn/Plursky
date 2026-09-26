@@ -752,7 +752,7 @@ function InstallBanner() {
         <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--flare)", fontWeight: 700 }}>
           INSTALL PLURSKY
         </div>
-        <div style={{ fontSize: 12, lineHeight: 1.35, marginTop: 2, color: "rgba(var(--ink-rgb),0.85)" }}>
+        <div style={{ fontSize: 12, lineHeight: 1.35, marginTop: 2, color: "var(--text-2)" }}>
           {ip.isIOS
             ? <>Tap <span style={{ display: "inline-flex", verticalAlign: "middle", padding: "0 2px" }}>
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -771,7 +771,7 @@ function InstallBanner() {
       )}
       <button onClick={ip.dismiss} aria-label="Dismiss" style={{
         background: "transparent", border: "none", cursor: "pointer",
-        color: "rgba(var(--ink-rgb),0.55)", padding: 4, flexShrink: 0,
+        color: "var(--text-3)", padding: 4, flexShrink: 0,
         fontSize: 18, lineHeight: 1,
       }}>×</button>
     </div>
@@ -1757,13 +1757,13 @@ function BatterySaverToast() {
         <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--flare)", fontWeight: 700 }}>
           BATTERY SAVER ON
         </div>
-        <div style={{ fontSize: 13, lineHeight: 1.35, marginTop: 2, color: "rgba(var(--ink-rgb),0.85)" }}>
+        <div style={{ fontSize: 13, lineHeight: 1.35, marginTop: 2, color: "var(--text-2)" }}>
           {reason}
         </div>
       </div>
       <button onClick={() => setDismissed(true)} aria-label="Dismiss" style={{
         background: "transparent", border: "none", cursor: "pointer",
-        color: "rgba(var(--ink-rgb),0.6)", fontSize: 18, lineHeight: 1, padding: 4,
+        color: "var(--text-3)", fontSize: 18, lineHeight: 1, padding: 4,
       }}>×</button>
     </div>
   );
@@ -1850,111 +1850,78 @@ function BatterySaverCard() {
 }
 
 // ─────────────────────────────────────────────────────────────
-// Theme mode (v267). The palette has always auto-shifted with the sky, but
-// ONLY inside the festival window — outside it the app is light 24h a day,
-// which is most of the year. This adds a manual override so "dark mode"
-// stops being a three-day-a-year accident of the clock.
-//
-// Mirrors the battery-saver module deliberately: module-level state + a
-// listener set, so the pref survives remounts and any consumer can subscribe.
-// The class is applied here at eval time (before React mounts) so a pinned
-// mode does not flash the wrong palette on every cold boot; app.jsx owns the
-// 60s recompute that makes AUTO track the hour.
-const THEME_PREF_KEY = "theme_pref";
-const _TH = (window._TH = window._TH || {
-  mode: (() => {
-    try { return localStorage.getItem(THEME_PREF_KEY) || "auto"; }
-    catch { return "auto"; }
-  })(),
-  listeners: new Set(),   // (mode) => void
-});
-
-// Returns the <html> class for a given pref. Field Mode is one black
-// utility shell at every hour, so the pref no longer changes the look; it is
-// still read so a stored "light"/"dark" value stays harmless.
-function resolveThemeClass(mode) {
-  return "theme-field";
+// Appearance: System / Dark / Light. The policy is window.PlurskyAppearance,
+// defined inline in index.html so it runs before first paint; this file only
+// subscribes to it and draws the Me row. Never restate the rules here.
+// On iOS the native layer (sheets, pickers, status bar) follows the resolved
+// mode through the Appearance plugin when the build has it.
+function _syncNativeAppearance(mode) {
+  try { window.Capacitor?.Plugins?.Appearance?.setStyle?.({ style: mode }); } catch {}
+}
+if (!window._appearanceNativeInited && window.PlurskyAppearance) {
+  window._appearanceNativeInited = true;
+  _syncNativeAppearance(window.PlurskyAppearance.mode());
+  window.PlurskyAppearance.onChange((m) => _syncNativeAppearance(m));
 }
 
-function applyThemeClass() {
-  const next = resolveThemeClass(_TH.mode);
-  if (document.documentElement.className !== next) {
-    document.documentElement.className = next;
+// Artist names are never truncated (lane ruling 2026-09-26) and one-line rows
+// stay one line where they can (#236). Every [data-fit-name] inside `root`
+// starts at its own size on one line; if it overflows it steps down to
+// data-fit-min px, and only a name that still cannot fit wraps.
+function fitNames(root) {
+  if (!root) return;
+  for (const el of root.querySelectorAll("[data-fit-name]")) {
+    const base = parseFloat(el.dataset.fitBase || getComputedStyle(el).fontSize);
+    if (!el.dataset.fitBase) el.dataset.fitBase = String(base);
+    const min = parseFloat(el.dataset.fitMin || "14");
+    el.style.whiteSpace = "nowrap"; el.style.fontSize = base + "px";
+    let size = base;
+    while (el.scrollWidth > el.clientWidth + 1 && size > min) { size -= 1; el.style.fontSize = size + "px"; }
+    if (el.scrollWidth > el.clientWidth + 1) el.style.whiteSpace = "normal";
   }
-  return next;
 }
-
-function setThemeMode(mode) {
-  if (!["auto", "light", "dark"].includes(mode)) return;
-  _TH.mode = mode;
-  try { localStorage.setItem(THEME_PREF_KEY, mode); } catch {}
-  applyThemeClass();
-  _TH.listeners.forEach(fn => { try { fn(mode); } catch {} });
-}
-
-if (!window._thInited) {
-  window._thInited = true;
-  try { applyThemeClass(); } catch {}
-}
-
-function useThemeMode() {
-  const [, force] = React.useReducer(x => x + 1, 0);
+function useFitNames(ref) {
+  React.useLayoutEffect(() => { fitNames(ref.current); });
   React.useEffect(() => {
-    _TH.listeners.add(force);
-    return () => _TH.listeners.delete(force);
+    const onR = () => fitNames(ref.current);
+    window.addEventListener("resize", onR);
+    return () => window.removeEventListener("resize", onR);
   }, []);
-  return { mode: _TH.mode, setMode: setThemeMode };
 }
 
-function ThemeCard() {
-  const { mode, setMode } = useThemeMode();
-  const segs = [
-    { id: "auto",  label: "AUTO" },
-    { id: "light", label: "LIGHT" },
-    { id: "dark",  label: "DARK" },
-  ];
-  const activeClass = resolveThemeClass(mode);
-  const nowLabel = activeClass === "theme-night"  ? "NIGHT"
-                 : activeClass === "theme-dawn"   ? "DAWN"
-                 : activeClass === "theme-sunset" ? "SUNSET"
-                 : "LIGHT";
+function useAppearance() {
+  const A = window.PlurskyAppearance;
+  const [, force] = React.useReducer(x => x + 1, 0);
+  React.useEffect(() => (A ? A.onChange(force) : undefined), []);
+  return { choice: A ? A.choice() : "system", mode: A ? A.mode() : "dark", set: (c) => A && A.set(c) };
+}
 
+// The Me row, as approved on the boards: one tap, no sub-page (Opera's and
+// Cosmos's inline System/Dark/Light control on Mobbin).
+function AppearanceRow() {
+  const { choice, set } = useAppearance();
+  const opts = [["system", "System"], ["dark", "Dark"], ["light", "Light"]];
   return (
-    <div style={{
-      padding: 14, borderRadius: 14,
-      background: "var(--paper)", border: "1px solid var(--line)",
-      marginBottom: 12,
+    <div data-appearance-row style={{
+      display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12,
+      padding: "8px 8px 8px 16px", borderRadius: 14, marginBottom: 12,
+      background: "var(--paper-2)", border: "1px solid var(--line)",
     }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
-        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.5, color: "var(--muted)", fontWeight: 700 }}>
-          THEME
-        </div>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>
-          {nowLabel}
-        </span>
-      </div>
-      <div className="serif" style={{ fontSize: 20, lineHeight: 1.1, marginBottom: 4 }}>
-        Paper by day, stars by night
-      </div>
-      <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5, marginBottom: 12 }}>
-        Auto follows the sky during the festival. Pin light or dark anytime.
-      </div>
-
-      <div style={{
-        display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 4,
-        background: "var(--paper-2)", borderRadius: 999, padding: 3,
-        border: "1px solid var(--line)",
+      <div style={{ fontSize: 15, fontWeight: 600, color: "var(--ink)" }}>Appearance</div>
+      <div role="radiogroup" aria-label="Appearance" style={{
+        display: "grid", gridTemplateColumns: "repeat(3, 1fr)", padding: 3, borderRadius: 999,
+        background: "var(--paper-3)", flex: "none", width: 222,
       }}>
-        {segs.map(s => {
-          const on = mode === s.id;
+        {opts.map(([v, l]) => {
+          const on = choice === v;
           return (
-            <button key={s.id} onClick={() => setMode(s.id)} style={{
-              background: on ? "var(--ink)" : "transparent",
-              color: on ? "var(--paper)" : "var(--ink)",
-              border: "none", borderRadius: 999, padding: "7px 10px",
-              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-              cursor: "pointer",
-            }}>{s.label}</button>
+            <button key={v} role="radio" aria-checked={on} data-appearance={v} onClick={() => set(v)} style={{
+              minHeight: 38, border: 0, borderRadius: 999, cursor: "pointer",
+              font: "600 14px/1 var(--font-ui)",
+              background: on ? "var(--paper)" : "transparent",
+              color: on ? "var(--ink)" : "var(--text-2)",
+              boxShadow: on ? "0 0 0 1px var(--line-2), 0 2px 6px -2px rgba(var(--shade-rgb),0.25)" : "none",
+            }}>{l}</button>
           );
         })}
       </div>
@@ -1962,11 +1929,6 @@ function ThemeCard() {
   );
 }
 
-// ─────────────────────────────────────────────────────────────
-// Status strip — sticky thin bar above every screen.
-// Shows local DAY · TIME plus offline and battery-saver indicators
-// so reorientation / connectivity / power context is glanceable
-// from any tab without opening Home.
 // ─────────────────────────────────────────────────────────────
 function _useTickMs(intervalMs) {
   const [, force] = React.useReducer(x => x + 1, 0);
@@ -2092,7 +2054,7 @@ Object.assign(window, {
   isAttended, getAttendanceSource, detectCurrentArtist, recordAttendanceFromGps,
   FestivalChip, FestivalSwitcher,
   useBatterySaver, BatterySaverCard, BatterySaverToast, setBatterySaverMode,
-  useThemeMode, ThemeCard, setThemeMode, resolveThemeClass, applyThemeClass,
+  useAppearance, AppearanceRow, fitNames, useFitNames,
   useOnlineStatus, StatusStrip,
   plurskyHaptic,
 });

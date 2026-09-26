@@ -49,11 +49,44 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Plursky">
-<meta name="theme-color" content="#0A0A0C">
+<meta name="theme-color" content="#07060B">
 <!-- Inside the iOS app or an installed PWA, the crawler shell in <body> would flash its text
      for a beat before React mounts. There it stays an empty canvas-coloured screen; browsers
      and crawlers still get the text. -->
 <script>try{if(window.Capacitor||navigator.standalone||matchMedia("(display-mode: standalone)").matches)document.documentElement.classList.add("boot-quiet")}catch(e){}</script>
+<!-- Appearance: one system, two modes. THE policy lives here, and it runs before
+     first paint so the app never flashes the wrong mode; everything else
+     (the Me row in chrome.jsx, native chrome, tests) calls it and never
+     restates it.
+       1. A pick made in Me (Dark or Light) wins and is kept; after that the
+          iPhone setting no longer matters.
+       2. With no pick ("System"), the app follows the iPhone: Light when iOS is
+          in light mode...
+       3. ...and Dark otherwise, including with no signal at all. Dark is the
+          default: the app lives at night.
+     Colours only: <html data-mode> swaps the colour tokens below; no layout
+     reads the mode. The old v267 "theme_pref" is deliberately NOT read. -->
+<script>(function(){
+  var KEY="plursky.appearance", mq=null, subs=[];
+  try{mq=matchMedia("(prefers-color-scheme: light)")}catch(e){}
+  var valid=function(v){return v==="dark"||v==="light"?v:null};
+  var read=function(){try{return valid(localStorage.getItem(KEY))}catch(e){return null}};
+  var mode=function(){return read()||(mq&&mq.matches?"light":"dark")};
+  var apply=function(){
+    var m=mode(), d=document.documentElement;
+    d.setAttribute("data-mode",m); d.setAttribute("data-appearance",read()||"system");
+    var tc=document.querySelector('meta[name="theme-color"]'); if(tc)tc.setAttribute("content",m==="light"?"#F4F3F8":"#07060B");
+    for(var i=0;i<subs.length;i++){try{subs[i](m,read()||"system")}catch(e){}}
+  };
+  window.PlurskyAppearance={
+    choice:function(){return read()||"system"},   // what Me shows as picked
+    mode:mode,                                     // what is on screen
+    set:function(c){try{valid(c)?localStorage.setItem(KEY,c):localStorage.removeItem(KEY)}catch(e){} apply()},
+    onChange:function(f){subs.push(f);return function(){subs=subs.filter(function(g){return g!==f})}}
+  };
+  if(mq){try{mq.addEventListener("change",apply)}catch(e){try{mq.addListener(apply)}catch(_){}}}
+  apply();
+})();</script>
 <link rel="manifest" href="./manifest.json">
 <link rel="icon" type="image/png" href="./apple-touch-icon.png">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
@@ -127,21 +160,10 @@
     --ease-spring:cubic-bezier(0.34,1.56,0.64,1);
     --ease-smooth:cubic-bezier(0.22,0.61,0.36,1);
   }
-  /* ── Night-aware theme (festival hours) ── */
-  .theme-sunset{--ink:#1a120d;--paper:#f5e6d0;--paper-2:#e8d4b8;--line:rgba(26,18,13,0.14);--line-2:rgba(26,18,13,0.24);--muted:rgba(26,18,13,0.68)}
-  /* Night legibility (v267): paper-2 lifted off near-black so cards read as
-     surfaces, muted/line alphas raised, and --ember-ink brightens ember TEXT
-     on dark. --ember itself is unchanged — filled buttons still want the
-     saturated original against white type. color-scheme:dark hands form
-     controls, scrollbars and the caret to the UA dark palette. */
-  .theme-night{color-scheme:dark;--ink:#f0e6d8;--paper:#0d0a14;--paper-2:#241a3e;--line:rgba(240,230,216,0.14);--line-2:rgba(240,230,216,0.24);--muted:rgba(240,230,216,0.78);--dune:#3d2e5c;--ember-ink:#f97e52;--alert:#f87171;--warn:#f59a36;--glass:36,26,62}
-  .theme-night html,.theme-night body{background:#0d0a14;color:#f0e6d8}
-  .theme-dawn{--ink:#1a120d;--paper:#f0e0f0;--paper-2:#e0d0e8;--line:rgba(26,18,13,0.12);--line-2:rgba(26,18,13,0.2);--muted:rgba(26,18,13,0.62);--horizon:#9b5dba}
   /* ── Field Mode ──
-     Dark is the brand: festival media is shot at night and carries the
-     colour. Every colour on a restyled surface comes from these tokens, and
-     components never write a hex or a white. There's one accent, Plursky
-     purple. --signal fills (the primary button, a selected toggle).
+     Festival media is shot at night and carries the colour. Every colour on
+     a restyled surface comes from the mode tokens below, and components never
+     write a hex or a white. There's one accent, Plursky violet. --signal fills (the primary button, a selected toggle).
      --signal-ink is the same hue lifted for text and thin marks on dark (NOW,
      the live rail, the active tab), because #6D28D9 itself is only 2.6:1 on
      the canvas. --media-* is type and chrome that sits ON a photo, which
@@ -154,39 +176,78 @@
     --scrim:rgba(0,0,0,0.6); --chrome:rgba(10,10,12,0.72);
     --hero-scrim:linear-gradient(180deg,rgba(10,10,12,0.5) 0%,rgba(10,10,12,0) 22%,rgba(10,10,12,0) 44%,rgba(10,10,12,0.72) 80%,var(--paper) 100%);
     --media-ink:#FFFFFF; --media-ink-2:rgba(255,255,255,0.8);
+    --media-ground:#0B0816;   /* behind a photo that has not loaded, or a hero with none */
     --media-scrim:linear-gradient(0deg,rgba(0,0,0,0.78),rgba(0,0,0,0));
     --media-badge:rgba(0,0,0,0.6);
     --shadow-pop:0 10px 30px rgba(0,0,0,0.45);
   }
-  .theme-field{color-scheme:dark;
-    --paper:#060B13; --paper-2:#10131B; --paper-3:#191D27;
-    --ink:#F7F4F8; --text-2:#B9B3BF; --text-3:#7C7682;
-    --muted:#B9B3BF;
-    --line:rgba(255,255,255,0.09); --line-2:rgba(255,255,255,0.16);
-    --signal:#F24B83; --signal-ink:#FF7EAA; --on-signal:#170810;
-    --ember:#F24B83; --ember-ink:#FF7EAA; --on-ember:#170810;
-    --alert:#FF5B67; --warn:#FFB23E; --success:#72D5AA;
-    --dune:#251722; --flare:#FFB23E; --horizon:#F24B83; --night:#060B13; --dusk:#130C16; --sky:#B9B3BF;
-    --glass:16,19,27;
-    --ink-rgb:247,244,248; --shade-rgb:0,0,0; --signal-rgb:242,75,131; --alert-rgb:255,91,103;
+  /* Structure shared by both modes (type floor, radii). No colour here. */
+  .theme-field{
     --spotify:#1DB954; --spotify-rgb:29,185,84; --apple-music:#FA2D5A; --apple-music-rgb:250,45,90;
+    --on-apple-music:#14121C;   /* brand fills are the same in both modes, so is their ink */
     --fs-label-s:11px; --fs-label:11px; --fs-label-l:12px;
     --fs-body-s:13px; --fs-body:15px; --fs-body-l:17px;
     --fs-title-s:17px; --fs-title:20px; --fs-title-l:28px;
     --r-sm:14px; --r-md:14px;
   }
+  /* ── Appearance: the two modes ──
+     One system, two modes; only these colour tokens differ. Dark is the
+     default (the app lives at night): violet-black ground, one violet accent,
+     green only for live. Light is the same system on a cool pearl ground.
+     The legacy names (--paper, --ember, --dune...) stay so every existing
+     call site follows the mode; they map onto the new roles:
+       --paper  ground        --paper-2 card/row    --paper-3 well/pressed
+       --ink / --text-2 / --text-3 / --muted        text, strongest to weakest
+       --signal fill accent   --signal-ink accent as text   --on-signal text on the fill
+       --success live         --alert clash/error   --warn sunrise/caution
+     Every text pair is gated in both modes (scripts/test-appearance.mjs). */
+  :root[data-mode="dark"]{color-scheme:dark;
+    --paper:#07060B; --paper-2:#19161F; --paper-3:#241F2C;
+    --ink:#F3F0FA; --text-2:#ABA4BB; --text-3:#8A849A; --muted:#ABA4BB;
+    --line:#221E2B; --line-2:#342E3F;
+    --signal:#9474FF; --signal-ink:#B7A3FF; --on-signal:#0B0816;
+    --ember:#9474FF; --ember-ink:#B7A3FF; --on-ember:#0B0816;
+    --alert:#FF4574; --warn:#FFC545; --success:#3DF5A0;
+    --dune:#241F2C; --flare:#FFC545; --horizon:#B7A3FF; --night:#07060B; --dusk:#100E17; --sky:#ABA4BB;
+    --glass:16,14,23;
+    --ink-rgb:243,240,250; --shade-rgb:0,0,0; --signal-rgb:148,116,255; --alert-rgb:255,69,116;
+    --scrim:rgba(0,0,0,0.6); --chrome:rgba(7,6,11,0.72);
+    --hero-scrim:linear-gradient(180deg,rgba(7,6,11,0.5) 0%,rgba(7,6,11,0) 22%,rgba(7,6,11,0) 44%,rgba(7,6,11,0.72) 80%,var(--paper) 100%);
+    --shadow-pop:0 10px 30px rgba(0,0,0,0.45);
+    --field-glow:radial-gradient(circle at 8% 4%,rgba(148,116,255,.16),transparent 30%),linear-gradient(#07060B,#07060B);
+  }
+  :root[data-mode="light"]{color-scheme:light;
+    --paper:#F4F3F8; --paper-2:#FFFFFF; --paper-3:#EAE8F1;
+    --ink:#14121C; --text-2:#565266; --text-3:#6B6780; --muted:#565266;
+    --line:#E6E3EE; --line-2:#D3CEDF;
+    --signal:#4A2BFF; --signal-ink:#4A2BFF; --on-signal:#FFFFFF;
+    --ember:#4A2BFF; --ember-ink:#4A2BFF; --on-ember:#FFFFFF;
+    --alert:#D81B57; --warn:#B84A00; --success:#007A53;
+    --dune:#EAE8F1; --flare:#B84A00; --horizon:#4A2BFF; --night:#FFFFFF; --dusk:#EAE8F1; --sky:#565266;
+    --glass:255,255,255;
+    --ink-rgb:20,18,28; --shade-rgb:28,20,70; --signal-rgb:74,43,255; --alert-rgb:216,27,87;
+    --scrim:rgba(20,18,28,0.45); --chrome:rgba(244,243,248,0.82);
+    --hero-scrim:linear-gradient(180deg,rgba(0,0,0,0.35) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 44%,rgba(244,243,248,0.7) 82%,var(--paper) 100%);
+    --shadow-pop:0 10px 30px rgba(28,20,70,0.18);
+    --field-glow:linear-gradient(#F4F3F8,#F4F3F8);
+  }
   html.theme-field,.theme-field body{background:var(--paper);color:var(--ink)}
-  .theme-field body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 8% 4%,rgba(242,75,131,.20),transparent 28%),radial-gradient(circle at 94% 44%,rgba(255,178,62,.11),transparent 30%),linear-gradient(#07101c,#09070e 68%,#120911)}
-  .theme-field [data-midnight-card]{background:linear-gradient(145deg,rgba(242,75,131,.09),rgba(255,178,62,.035) 62%,rgba(16,19,27,.96));border:1px solid var(--line-2);box-shadow:0 18px 50px rgba(0,0,0,.22)}
+  /* A media scope: text drawn ON a photo or artwork (the full-bleed artist
+     hero). The picture does not change with the mode, so neither does the
+     type on it: inside .media-scope the ink tokens point at the --media-*
+     values in BOTH modes. Components keep writing var(--ink); the scope
+     decides what that means. */
+  .media-scope{--ink:var(--media-ink);--ink-rgb:255,255,255;--text-2:var(--media-ink-2);--text-3:var(--media-ink-2);--muted:var(--media-ink-2);--signal-ink:#B7A3FF;color:var(--media-ink)}
+  .theme-field body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:var(--field-glow)}
+  .theme-field [data-midnight-card]{background:linear-gradient(145deg,rgba(var(--signal-rgb),.08),var(--paper-2) 62%);border:1px solid var(--line-2);box-shadow:0 18px 50px rgba(var(--shade-rgb),.12)}
   .theme-field .midnight-festival-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .theme-field .midnight-festival-grid>button{min-height:258px!important;border:1px solid var(--line)!important;border-radius:18px!important;padding:10px!important;background:linear-gradient(155deg,rgba(242,75,131,.09),rgba(16,19,27,.96))!important;align-items:flex-start!important;flex-direction:column!important;overflow:hidden!important}
+  .theme-field .midnight-festival-grid>button{min-height:258px!important;border:1px solid var(--line)!important;border-radius:18px!important;padding:10px!important;background:linear-gradient(155deg,rgba(var(--signal-rgb),.08),var(--paper-2))!important;align-items:flex-start!important;flex-direction:column!important;overflow:hidden!important}
   .theme-field .midnight-festival-grid>button>div:first-child{width:100%!important;height:82px!important;border-radius:12px!important}
   .theme-field .midnight-festival-grid>button>div:nth-child(2){width:100%;align-self:stretch;text-align:left}
   .theme-field .midnight-festival-grid>button>div:nth-child(2)>div:first-child{font-size:15px!important;line-height:19px!important;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
   .theme-field .midnight-festival-grid>button>div:nth-child(2)>div:not(:first-child){font-size:12px!important;line-height:16px!important;overflow-wrap:anywhere}
   .theme-field .midnight-festival-grid>button>svg{position:absolute;right:10px;bottom:10px}
   @media(max-width:340px){.theme-field .midnight-festival-grid{grid-template-columns:1fr}.theme-field .midnight-festival-grid>button{min-height:118px!important;display:grid!important;grid-template-columns:72px 1fr 16px;align-items:center!important}.theme-field .midnight-festival-grid>button>div:first-child{width:72px!important;height:72px!important}.theme-field .midnight-festival-grid>button>svg{position:static}}
-  @media(prefers-reduced-motion:reduce){.theme-field body::before{background:radial-gradient(circle at 8% 4%,rgba(242,75,131,.16),transparent 28%),linear-gradient(#07101c,#09070e 68%,#120911)}}
   /* System font only. Inline styles name 'Geist' or 'Instrument Serif' ~580
      times and only !important beats an inline style, so the swap lives here
      until each surface is restyled. Display serif becomes bold, upright sans. */
@@ -205,11 +266,11 @@
   .theme-field .serif *,.theme-field [style*="font-style: italic"]{font-style:normal!important}
   .theme-field svg text{font-family:var(--font-ui)}
   button { transition: opacity 0.1s ease; }
-  @keyframes totem-pulse{0%,100%{box-shadow:0 0 0 0 rgba(109,40,217,0.4);transform:scale(1)}50%{box-shadow:0 0 12px 4px rgba(109,40,217,0.25);transform:scale(1.06)}}
+  @keyframes totem-pulse{0%,100%{box-shadow:0 0 0 0 rgba(var(--signal-rgb),0.4);transform:scale(1)}50%{box-shadow:0 0 12px 4px rgba(var(--signal-rgb),0.25);transform:scale(1.06)}}
   @keyframes song-ripple {
-    0% { box-shadow: 0 0 0 0 rgba(109,40,217,0.4); }
-    70% { box-shadow: 0 0 0 8px rgba(109,40,217,0); }
-    100% { box-shadow: 0 0 0 0 rgba(109,40,217,0); }
+    0% { box-shadow: 0 0 0 0 rgba(var(--signal-rgb),0.4); }
+    70% { box-shadow: 0 0 0 8px rgba(var(--signal-rgb),0); }
+    100% { box-shadow: 0 0 0 0 rgba(var(--signal-rgb),0); }
   }
   @keyframes song-fade-in {
     0% { opacity: 0; transform: translateY(4px) scale(0.95); }
@@ -219,7 +280,7 @@
   @keyframes savePop{0%{transform:scale(1)}35%{transform:scale(1.06)}100%{transform:scale(1)}}
   @keyframes checkIn{0%{opacity:0;transform:scale(0.3)}60%{opacity:1;transform:scale(1.15)}100%{opacity:1;transform:scale(1)}}
   @keyframes springIn{0%{opacity:0;transform:translateY(8px) scale(0.97)}60%{transform:translateY(-2px) scale(1.01)}100%{opacity:1;transform:translateY(0) scale(1)}}
-  .skel{background:linear-gradient(90deg,var(--paper-2) 25%,rgba(26,18,13,0.08) 50%,var(--paper-2) 75%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite;border-radius:6px}
+  .skel{background:linear-gradient(90deg,var(--paper-2) 25%,rgba(var(--ink-rgb),0.08) 50%,var(--paper-2) 75%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite;border-radius:6px}
   .skel-dark{background:linear-gradient(90deg,rgba(247,237,224,0.04) 25%,rgba(247,237,224,0.08) 50%,rgba(247,237,224,0.04) 75%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite;border-radius:6px}
   /* Keyboard-only focus ring (WCAG 2.4.7) — :focus-visible so it never shows on mouse/touch tap. */
   :focus-visible{outline:2px solid var(--ember);outline-offset:2px;border-radius:3px}
@@ -435,50 +496,50 @@
       window.__USE_NATIVE_PICKER__ = true;
     }
   </script>
-  <script src="build/ios-frame.js?v=v368"></script>
+  <script src="build/ios-frame.js?v=v372"></script>
   <!-- Multi-festival wave 1. Plain .js (no JSX), so they load as normal scripts
        and are parsed before Babel even starts on the chain below. Each is an
        IIFE that registers itself on window.PLURSKY_FESTIVALS; data.jsx reads
        that map, so these MUST stay above it. Mirrored in sw.js's precache. -->
-  <script src="data/festivals/ultra-miami-2026.js?v=v368"></script>
-  <script src="data/festivals/governors-ball-2026.js?v=v368"></script>
-  <script src="data/festivals/summerfest-2026.js?v=v368"></script>
-  <script src="data/festivals/lollapalooza-2026.js?v=v368"></script>
-  <script src="data/festivals/outside-lands-2026.js?v=v368"></script>
-  <script src="data/festivals/iii-points-2026.js?v=v368"></script>
-  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v368"></script>
-  <script src="data/festivals/crssd-fall-2026.js?v=v368"></script>
-  <script src="data/festivals/portola-2026.js?v=v368"></script>
-  <script src="data/festivals/hard-summer-2026.js?v=v368"></script>
-  <script src="data/festivals/arc-2026.js?v=v368"></script>
-  <script src="data/festivals/escape-halloween-2026.js?v=v368"></script>
-  <script src="data/festivals/dreamstate-socal-2026.js?v=v368"></script>
-  <script src="data/festivals/decadence-colorado-2026.js?v=v368"></script>
-  <script src="data/festivals/countdown-nye-2026.js?v=v368"></script>
-  <script src="build/data.js?v=v368"></script>
-  <script src="build/supabase.js?v=v368"></script>
-  <script src="build/chrome.js?v=v368"></script>
-  <script src="build/home.js?v=v368"></script>
-  <script src="build/map.js?v=v368"></script>
-  <script src="build/survey.js?v=v368"></script>
-  <script src="build/lineup.js?v=v368"></script>
-  <script src="build/artist.js?v=v368"></script>
-  <script src="build/photo-tag.js?v=v368"></script>
-  <script src="build/spotify-api.js?v=v368"></script>
-  <script src="build/recap-engine.js?v=v368"></script>
-  <script src="build/historical.js?v=v368"></script>
+  <script src="data/festivals/ultra-miami-2026.js?v=v372"></script>
+  <script src="data/festivals/governors-ball-2026.js?v=v372"></script>
+  <script src="data/festivals/summerfest-2026.js?v=v372"></script>
+  <script src="data/festivals/lollapalooza-2026.js?v=v372"></script>
+  <script src="data/festivals/outside-lands-2026.js?v=v372"></script>
+  <script src="data/festivals/iii-points-2026.js?v=v372"></script>
+  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v372"></script>
+  <script src="data/festivals/crssd-fall-2026.js?v=v372"></script>
+  <script src="data/festivals/portola-2026.js?v=v372"></script>
+  <script src="data/festivals/hard-summer-2026.js?v=v372"></script>
+  <script src="data/festivals/arc-2026.js?v=v372"></script>
+  <script src="data/festivals/escape-halloween-2026.js?v=v372"></script>
+  <script src="data/festivals/dreamstate-socal-2026.js?v=v372"></script>
+  <script src="data/festivals/decadence-colorado-2026.js?v=v372"></script>
+  <script src="data/festivals/countdown-nye-2026.js?v=v372"></script>
+  <script src="build/data.js?v=v372"></script>
+  <script src="build/supabase.js?v=v372"></script>
+  <script src="build/chrome.js?v=v372"></script>
+  <script src="build/home.js?v=v372"></script>
+  <script src="build/map.js?v=v372"></script>
+  <script src="build/survey.js?v=v372"></script>
+  <script src="build/lineup.js?v=v372"></script>
+  <script src="build/artist.js?v=v372"></script>
+  <script src="build/photo-tag.js?v=v372"></script>
+  <script src="build/spotify-api.js?v=v372"></script>
+  <script src="build/recap-engine.js?v=v372"></script>
+  <script src="build/historical.js?v=v372"></script>
   <!-- General Landing + saved festivals. Before spotify.js per CLAUDE.md §4;
        everything it borrows from there is called at runtime by bare name. -->
-  <script src="build/landing.js?v=v368"></script>
-  <script src="build/spotify.js?v=v368"></script>
-  <script src="build/app.js?v=v368"></script>
+  <script src="build/landing.js?v=v372"></script>
+  <script src="build/spotify.js?v=v372"></script>
+  <script src="build/app.js?v=v372"></script>
 
   <script>
 
     // Build version stamp â€” bumped on every deploy that changes app behaviour.
     // If the running tab's stored version doesn't match, force a full reload
     // (bypassing browser HTTP cache that GH-Pages serves with max-age=600).
-    const APP_VERSION = 'v368';
+    const APP_VERSION = 'v372';
     try {
       const stored = localStorage.getItem('app_version');
       if (stored && stored !== APP_VERSION) {
@@ -499,11 +560,11 @@
     if ('serviceWorker' in navigator) {
       caches.keys().then(keys =>
         Promise.all(
-          keys.filter(k => k !== 'plursky-v368' && !k.startsWith('plursky-tiles-'))
+          keys.filter(k => k !== 'plursky-v372' && !k.startsWith('plursky-tiles-'))
               .map(k => caches.delete(k))
         )
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v368', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v372', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 

@@ -1362,7 +1362,7 @@ function FriendsCard({ state, setState }) {
           <div style={{ marginTop: 10 }}>
             <div className="mono" style={{
               fontSize: 8.5, letterSpacing: 1.2,
-              color: "rgba(var(--ink-rgb),0.45)", marginBottom: 6,
+              color: "var(--text-3)", marginBottom: 6,
             }}>CURRENT STAGE</div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
               {STAGES?.map(s => (
@@ -2775,13 +2775,13 @@ function CrewCard({ state }) {
               border: totemUrl ? "2px solid rgba(var(--ink-rgb),0.5)" : "2px dashed rgba(var(--ink-rgb),0.3)",
               background: totemUrl ? `url(${totemUrl}) center/cover` : "rgba(var(--ink-rgb),0.08)",
               cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
-              color: "rgba(var(--ink-rgb),0.4)", fontSize: 16, padding: 0,
+              color: "var(--text-3)", fontSize: 16, padding: 0,
               animation: totemUrl ? "totem-pulse 3s ease-in-out infinite" : "none",
             }}>{totemUrl ? "" : "📷"}</button>
             <input ref={totemInputRef} type="file" accept="image/*" style={{ display: "none" }}
               onChange={e => { pickTotem(e.target.files?.[0]); e.target.value = ""; }} />
             <div style={{ flex: 1 }}>
-              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "rgba(var(--ink-rgb),0.45)", marginBottom: 3 }}>{totemUrl ? "YOUR TOTEM · TAP TO CHANGE" : "TAP 📷 TO SET YOUR TOTEM"}</div>
+              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "var(--text-3)", marginBottom: 3 }}>{totemUrl ? "YOUR TOTEM · TAP TO CHANGE" : "TAP 📷 TO SET YOUR TOTEM"}</div>
               <div className="mono" style={{ fontSize: 28, letterSpacing: 8, fontWeight: 700, lineHeight: 1 }}>{code}</div>
             </div>
             <button onClick={async () => {
@@ -2802,7 +2802,7 @@ function CrewCard({ state }) {
             }}>{copied ? "✓" : "↗ SHARE"}</button>
             <button onClick={() => { if (leaveRef.current) leaveRef.current(); setJoined(false); setMembers(new Map()); }} style={{
               background: "rgba(var(--ink-rgb),0.08)", border: "none", borderRadius: 8,
-              padding: "7px 11px", cursor: "pointer", color: "rgba(var(--ink-rgb),0.5)",
+              padding: "7px 11px", cursor: "pointer", color: "var(--text-3)",
               fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2,
             }}>LEAVE</button>
           </div>

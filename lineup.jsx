@@ -243,7 +243,7 @@ function NightWizard({ state, setState, onClose }) {
             </button>
           </>)}
           <button onClick={autoFill} title="Auto-fill best non-clashing sets for this day" style={{
-            background: "var(--horizon)", color: "var(--ink)", border: "none",
+            background: "var(--signal)", color: "var(--on-signal)", border: "none",
             borderRadius: 999, padding: "8px 13px", cursor: "pointer",
             fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           }}>✦ AUTO</button>
@@ -494,6 +494,8 @@ function _lineupMetaValue(v) {
 const _lineupDayWord = (w) => { const s = String(w || ""); return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase(); };
 
 function LineupScreen({ state, setState }) {
+  // Names are never truncated: fit each list name to its row after every render.
+  React.useLayoutEffect(() => { fitNames(document.querySelector("[data-lineup-scroll]")); });
   // Highlight-on-arrival: ArtistScreen "SCHEDULE" hands off `lineupHighlight`.
   // Force the day to that artist's day so the flash actually has a target,
   // even if state.lineupDay was set to something else by an earlier route.
@@ -820,7 +822,8 @@ function LineupScreen({ state, setState }) {
       return next;
     });
   };
-  // conflictById: artist.id → array of saved set names this artist clashes with.
+  // conflictById: artist.id → the saved SETS (whole acts) this artist clashes
+  // with, so a row can name the other side: who, when and where.
   // Powers the per-card ⚠ chip so users can spot WHICH saved sets clash, not
   // just the day-tab total. Memoized — was an O(n²) overlap loop on every
   // render (report-card #8); now only recomputes when saved/day/acks change.
@@ -836,8 +839,8 @@ function LineupScreen({ state, setState }) {
           }
           // Per-card chip stays even after KEEP BOTH so the warning info
           // doesn't disappear — the only thing that hides is the resolver card.
-          (_byId[a.id] = _byId[a.id] || []).push(b.name);
-          (_byId[b.id] = _byId[b.id] || []).push(a.name);
+          (_byId[a.id] = _byId[a.id] || []).push(b);
+          (_byId[b.id] = _byId[b.id] || []).push(a);
         }
       }
     }
@@ -1318,8 +1321,8 @@ function LineupScreen({ state, setState }) {
                   color: "var(--ink)", textAlign: "left", cursor: "pointer",
                   display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "stretch",
                 }}>
-                  <span data-set-name style={{ fontSize: 17, lineHeight: "22px", fontWeight: 700, color: "var(--ink)",
-                    whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</span>
+                  <span data-set-name data-fit-name data-fit-min="16" style={{ fontSize: 17, lineHeight: "22px", fontWeight: 700, color: "var(--ink)",
+                    whiteSpace: "nowrap", overflowWrap: "break-word" }}>{actDisplayName(a.name)}</span>
                   <span data-set-meta style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)",
                     whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                     <span aria-hidden="true" style={{ display: "inline-block", width: 7, height: 7, borderRadius: 4,
@@ -1328,6 +1331,14 @@ function LineupScreen({ state, setState }) {
                     {clashWith && <span style={{ color: "var(--warn)", fontWeight: 600 }}>Clash · </span>}
                     {_lineupMetaValue(stage.name)}
                   </span>
+                  {/* A clash names the other side (lane ruling 2026-09-26), so
+                      choosing between them means something. It wraps: a name
+                      is never truncated. */}
+                  {clashWith && clashWith.map(o => (
+                    <span key={o.id} data-clash-with={o.id} style={{ fontSize: 13, lineHeight: "18px", color: "var(--warn)", fontWeight: 600 }}>
+                      vs {actDisplayName(o.name)} · {fmt12(o.start)} · {(STAGES.find(s => s.id === o.stage) || UNPLACED_STAGE).name}
+                    </span>
+                  ))}
                 </button>
                 <button onClick={() => toggleSave(state, setState, a.id)}
                   aria-label={saved ? `Unsave ${a.name}` : `Save ${a.name}`} aria-pressed={saved}
@@ -1780,7 +1791,6 @@ function GridSetBlock({
   // wall of text.
   const _lineH   = narrow ? 10.2 : isHeadliner ? 13.8 : 12.7;
   const _chrome  = narrow ? 8 : 20; // padding, plus the time line where it renders
-  const nameLines = Math.max(1, Math.min(4, Math.floor((height - _chrome) / _lineH)));
   // One accent: the rail marks what you saved; the stage is its column header.
   const _saved = (state.saved || []).includes(a.id);
   const _store = refStore;
@@ -1831,10 +1841,10 @@ function GridSetBlock({
         fontSize: narrow ? 9.5 : isHeadliner ? 12.5 : 11.5,
         fontWeight: isHeadliner ? 800 : 700,
         lineHeight: narrow ? 1.05 : 1.1, color: "var(--ink)",
-        overflow: "hidden", textOverflow: "ellipsis",
-        display: "-webkit-box",
-        WebkitLineClamp: nameLines,
-        WebkitBoxOrient: "vertical",
+        // The whole name, always: no clamp, no ellipsis (a name is never
+        // truncated). Hyphenation splits a long word at a syllable instead of
+        // "Interplanetar / y".
+        hyphens: "auto", WebkitHyphens: "auto",
         // overflowWrap, NOT wordBreak. `wordBreak: break-word` breaks at any
         // character even when a space break was available, which turned
         // "Paris Paloma" into "Paris / Palom / a". overflowWrap breaks long
@@ -1843,7 +1853,7 @@ function GridSetBlock({
         overflowWrap: "break-word",
         paddingRight: saved ? (clash ? (narrow ? 19 : 23) : (narrow ? 9 : 12)) : 0,
         fontFamily: isHeadliner ? "Instrument Serif, Georgia, serif" : "Geist, -apple-system, sans-serif",
-      }}>{a.name}</div>
+      }}>{actDisplayName(a.name)}</div>
       {/* Time label. The range only renders where it FITS — a 94px column
           clipped "2:45 PM - 3:30 P" mid-string, so narrow layouts show the
           start time alone rather than a truncated lie. Below `narrow` even the
@@ -1857,7 +1867,7 @@ function GridSetBlock({
       {dueMins != null && height > 46 && (
         <div className="mono" style={{
           marginTop: "auto", fontSize: 8, letterSpacing: 1, fontWeight: 800,
-          color: "var(--ember-ink)", whiteSpace: "nowrap",
+          color: "var(--ember-ink)",
         }}>YOU'RE DUE HERE · {dueMins} MIN</div>
       )}
       {saved && (
@@ -2091,7 +2101,7 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
                     fontSize: 10, letterSpacing: 1.1, fontWeight: 800,
                     fontFamily: "inherit",
                   }}>
-                  <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.short}</span>
+                  <span style={{ lineHeight: "12px", textAlign: "center", letterSpacing: 0.4 }}>{s.short}</span>
                   {n > 0 && (
                     <span style={{ flexShrink: 0, color: "var(--ember-ink)", fontSize: 8.5, fontWeight: 800 }}>★{n}</span>
                   )}
@@ -2222,7 +2232,7 @@ function ConflictResolver({ conflicts, onKeep, onKeepBoth, onSplit }) {
         return (
           <div key={art.id} style={{ display: "flex", alignItems: "center", gap: 12, minHeight: 56, borderBottom: "1px solid var(--line)" }}>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{art.name}</div>
+              <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{actDisplayName(art.name)}</div>
               <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>{stg.name} · {fmt12(art.start)}–{fmt12(art.end)}</div>
             </div>
             <button onClick={() => onKeep(art.id, i === 0 ? b.id : a.id)} style={{ ...crBtn, color: "var(--ink)", fontWeight: 600 }}>Keep this</button>

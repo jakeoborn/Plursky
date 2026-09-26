@@ -1747,7 +1747,7 @@ async function _shareStageCollage(stage, momentsAcrossArtists, format) {
     subtitle: `MY NIGHTS AT ${stage.short || stage.name?.toUpperCase()}`,
     accent: stage.color || "#1a120d",
     moments: momentsAcrossArtists,
-    filenameSlug: `stage-${stage.short || stage.id}`,
+    filenameSlug: `stage-${stage.id}`,
     shareTitle: `My ${stage.name} at ${CFG.shortName || "the festival"}`,
     format
   });

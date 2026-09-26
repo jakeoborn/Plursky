@@ -27,6 +27,17 @@ var QUICK_REPLIES = [{
   tag: "NEED YOU",
   text: "🆘 come find me"
 }];
+function _inkOnHex(hex) {
+  var m = /^#?([0-9a-f]{6})$/i.exec(String(hex || "").trim());
+  if (!m) return "var(--ink)";
+  var n = parseInt(m[1], 16),
+    ch = [n >> 16, n >> 8 & 255, n & 255].map(v => {
+      v /= 255;
+      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+  var L = 0.2126 * ch[0] + 0.7152 * ch[1] + 0.0722 * ch[2];
+  return (L + 0.05) / 0.05 >= 1.05 / (L + 0.05) ? "#14121C" : "#FFFFFF";
+}
 function buildSmartReplies({
   myStage,
   friendStage,
@@ -607,7 +618,7 @@ function formatLastSeen(ts) {
   if (!ts) return {
     label: "",
     freshness: "cold",
-    color: "rgba(var(--ink-rgb),0.45)"
+    color: "var(--text-3)"
   };
   var mins = Math.max(0, Math.round((Date.now() - ts) / 60000));
   if (mins < 1) return {
@@ -628,13 +639,13 @@ function formatLastSeen(ts) {
   if (mins < 60) return {
     label: `${mins}m`,
     freshness: "cold",
-    color: "rgba(var(--ink-rgb),0.55)"
+    color: "var(--text-3)"
   };
   var hrs = Math.floor(mins / 60);
   return {
     label: `${hrs}h+`,
     freshness: "cold",
-    color: "rgba(var(--ink-rgb),0.45)"
+    color: "var(--text-3)"
   };
 }
 function useGeolocation(enabled) {
@@ -7196,26 +7207,26 @@ function RealMap({
     }
   }, React.createElement("div", null, "MAP ERROR"), React.createElement("div", {
     style: {
-      color: "rgba(var(--ink-rgb),0.6)",
+      color: "var(--text-3)",
       fontSize: 9,
       maxWidth: 240
     }
   }, err), FESTIVAL_CONFIG.mapMode === "real" ? React.createElement(React.Fragment, null, React.createElement("div", {
     style: {
-      color: "rgba(var(--ink-rgb),0.75)",
+      color: "var(--text-2)",
       fontSize: 10,
       marginTop: 10,
       letterSpacing: 1.1
     }
   }, FESTIVAL_CONFIG.venue?.name || FESTIVAL_CONFIG.locationShort), React.createElement("div", {
     style: {
-      color: "rgba(var(--ink-rgb),0.5)",
+      color: "var(--text-3)",
       fontSize: 9,
       maxWidth: 240
     }
   }, FESTIVAL_CONFIG.venue?.address || FESTIVAL_CONFIG.location), React.createElement("div", {
     style: {
-      color: "rgba(var(--ink-rgb),0.4)",
+      color: "var(--text-3)",
       fontSize: 8,
       marginTop: 6,
       maxWidth: 250
@@ -7241,7 +7252,7 @@ function RealMap({
     }
   }, "RETRY")) : React.createElement(React.Fragment, null, React.createElement("div", {
     style: {
-      color: "rgba(var(--ink-rgb),0.45)",
+      color: "var(--text-3)",
       fontSize: 8,
       marginTop: 4
     }
@@ -7378,7 +7389,7 @@ function TopDownMap({
     }
     return out;
   }, []);
-  var _pillName = n => (n && n.length > 14 ? n.slice(0, 13).trimEnd() + "…" : n || "").toUpperCase();
+  var _pillName = n => actDisplayName(n).toUpperCase();
   var anchorFor = s => {
     var cx = 50,
       cy = 50;
@@ -8387,9 +8398,9 @@ function TopDownMap({
         ...tx,
         pointerEvents: "auto",
         cursor: "pointer",
-        background: on ? s.color : "rgba(var(--shade-rgb),0.82)",
-        color: on ? "var(--ink)" : "rgba(var(--ink-rgb),0.88)",
-        border: `1px solid ${on ? s.color : "rgba(var(--ink-rgb),0.18)"})"}`,
+        background: on ? s.color : "rgba(var(--glass),0.92)",
+        color: on ? _inkOnHex(s.color) : "var(--ink)",
+        border: `1px solid ${on ? s.color : "var(--line-2)"}`,
         padding: on ? "4px 10px" : "3px 9px",
         borderRadius: 999,
         fontFamily: "Geist Mono, monospace",
@@ -8397,9 +8408,6 @@ function TopDownMap({
         letterSpacing: 1.2,
         fontWeight: 700,
         whiteSpace: "nowrap",
-        maxWidth: "46vw",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
         boxShadow: on ? `0 4px 18px ${s.color}66, 0 0 8px ${s.color}33` : "0 1px 0 rgba(0,0,0,0.4), 0 2px 12px rgba(0,0,0,0.5)",
         transition: "all 0.15s"
       }
@@ -8499,7 +8507,7 @@ function TopDownMap({
       }
     }, "· ", (atStage.short || atStage.name).toUpperCase()), seen.label && seen.freshness !== "fresh" && React.createElement("span", {
       style: {
-        color: "rgba(var(--ink-rgb),0.7)",
+        color: "var(--text-2)",
         fontWeight: 500
       }
     }, "· ", seen.label)));
@@ -8928,7 +8936,7 @@ function GroundPeek({
       fontFamily: "Geist Mono, monospace",
       fontSize: 8,
       letterSpacing: 1.2,
-      color: "rgba(var(--ink-rgb),0.7)",
+      color: "var(--text-2)",
       background: "rgba(var(--shade-rgb),0.6)",
       padding: "2px 5px",
       borderRadius: 4
