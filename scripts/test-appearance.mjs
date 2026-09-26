@@ -192,11 +192,14 @@ try {
   // A settled screenshot: async content (a fetched photo, a late count) can
   // land between two captures, which reads as a leak when it is only timing.
   // Retake until two consecutive captures agree (≤ 6 tries).
+  // `animations: 'disabled'` stops CSS animations only; SVG <animate>
+  // (the map's stage pulses) keeps running, so park every SVG at t=0 too.
+  const still = (page) => page.evaluate(() => document.querySelectorAll('svg').forEach(s => { try { s.pauseAnimations(); s.setCurrentTime(0); } catch {} })).then(() => page.screenshot({ animations: 'disabled' }));
   const shot = async (page) => {
-    let prev = await page.screenshot({ animations: 'disabled' });
+    let prev = await still(page);
     for (let i = 0; i < 6; i++) {
       await page.clock.runFor(400); await page.waitForTimeout(250);
-      const cur = await page.screenshot({ animations: 'disabled' });
+      const cur = await still(page);
       if (cur.equals(prev)) return cur;
       prev = cur;
     }
@@ -242,10 +245,13 @@ try {
   const diffPx = (a, b) => cmp.evaluate(async ([a, b]) => {
     const im = (s) => new Promise(r => { const i = new Image(); i.onload = () => r(i); i.src = 'data:image/png;base64,' + s; });
     const px = (i) => { const k = document.createElement('canvas'); k.width = i.width; k.height = i.height; const g = k.getContext('2d'); g.drawImage(i, 0, 0); return g.getImageData(0, 0, i.width, i.height).data; };
-    const [i1, i2] = [await im(a), await im(b)]; if (i1.width !== i2.width || i1.height !== i2.height) return 1e9;
-    const [d1, d2] = [px(i1), px(i2)]; let n = 0;
-    for (let p = 0; p < d1.length; p += 4) if (Math.max(Math.abs(d1[p] - d2[p]), Math.abs(d1[p + 1] - d2[p + 1]), Math.abs(d1[p + 2] - d2[p + 2])) > 96) n++;
-    return n;
+    const [i1, i2] = [await im(a), await im(b)]; if (i1.width !== i2.width || i1.height !== i2.height) return { n: 1e9, box: 'size' };
+    const [d1, d2] = [px(i1), px(i2)]; let n = 0, x0 = 1e9, y0 = 1e9, x1 = -1, y1 = -1;
+    for (let p = 0; p < d1.length; p += 4) if (Math.max(Math.abs(d1[p] - d2[p]), Math.abs(d1[p + 1] - d2[p + 1]), Math.abs(d1[p + 2] - d2[p + 2])) > 96) {
+      n++; const q = p / 4, x = q % i1.width, y = (q / i1.width) | 0;
+      x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y);
+    }
+    return { n, box: n ? `${x0},${y0}–${x1},${y1}` : '' };
   }, [a.toString('base64'), b.toString('base64')]);
 
   const totals = {};
@@ -288,10 +294,11 @@ try {
       check(bSteps === steps, `[${key}] toggled ${other}→${mode} has ${bSteps} screenfuls, fresh has ${steps}`);
       for (let i = 0; i < Math.min(steps, bSteps); i++) {
         if (i) await scrollTo(B.page, i);
-        const n = await diffPx(await shot(B.page), fresh[i]);
-        // Noise ceiling 150 px: the map's live pins measured up to 84 px under
-        // full-verify load; the smallest planted real leak measured 11,221 px.
-        check(n < 150, `[${key}] toggled ${other}→${mode} differs from a fresh ${mode} load at ${n} px on screenful ${i + 1} (a colour did not follow the mode)`);
+        const { n, box } = await diffPx(await shot(B.page), fresh[i]);
+        // Noise ceiling 20 px. Once the map's SVG pulses were parked and its
+        // idle wander honoured Reduce Motion, noise measured 0 px in 10 of 10
+        // toggles (it had reached 257 px); the smallest planted leak is 11,221 px.
+        check(n < 20, `[${key}] toggled ${other}→${mode} differs from a fresh ${mode} load at ${n} px in ${box} on screenful ${i + 1} (a colour did not follow the mode)`);
       }
       await B.ctx.close();
     }

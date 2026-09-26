@@ -2750,10 +2750,18 @@ function MapScreen({
   var {
     active: bsActive
   } = useBatterySaver();
+  var reduceMotion = React.useMemo(() => {
+    try {
+      return !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    } catch {
+      return false;
+    }
+  }, []);
   React.useEffect(() => {
     if (!useDemo) return;
     var id = setInterval(() => {
       var goal = meetMode && meetTarget ? meetTarget : selectedStage ? STAGES.find(s => s.id === selectedStage) : null;
+      if (reduceMotion && !goal) return;
       setDemoAvatar(a => {
         if (goal) {
           var _dx = goal.x - a.x,
@@ -2791,7 +2799,7 @@ function MapScreen({
       }));
     }, bsActive ? 2400 : 600);
     return () => clearInterval(id);
-  }, [useDemo, selectedStage, meetMode, meetTarget, meetGroup, bsActive]);
+  }, [useDemo, selectedStage, meetMode, meetTarget, meetGroup, bsActive, reduceMotion]);
   React.useEffect(() => {
     if (!isLiveOnSite) return;
     var goal = meetMode && meetTarget ? meetTarget : selectedStage ? STAGES.find(s => s.id === selectedStage) : null;

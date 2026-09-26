@@ -2101,13 +2101,17 @@ function MapScreen({ state, setState }) {
   // Demo wander tick — only runs when not pinned to real on-site GPS.
   // Slows from 600ms → 2400ms in battery-saver mode (still feels alive,
   // 4× fewer renders).
+  // Reduce Motion: the idle wander stops; a walk toward a goal the user
+  // picked still moves.
   const { active: bsActive } = useBatterySaver();
+  const reduceMotion = React.useMemo(() => { try { return !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches; } catch { return false; } }, []);
   React.useEffect(() => {
     if (!useDemo) return;
     const id = setInterval(() => {
       const goal = meetMode && meetTarget ? meetTarget
                  : selectedStage ? STAGES.find(s => s.id === selectedStage)
                  : null;
+      if (reduceMotion && !goal) return;
       setDemoAvatar(a => {
         if (goal) {
           const dx = goal.x - a.x, dy = goal.y - a.y;
@@ -2136,7 +2140,7 @@ function MapScreen({ state, setState }) {
       }));
     }, bsActive ? 2400 : 600);
     return () => clearInterval(id);
-  }, [useDemo, selectedStage, meetMode, meetTarget, meetGroup, bsActive]);
+  }, [useDemo, selectedStage, meetMode, meetTarget, meetGroup, bsActive, reduceMotion]);
 
   // Heading derivation when real GPS is on-site and walking toward a goal
   React.useEffect(() => {
