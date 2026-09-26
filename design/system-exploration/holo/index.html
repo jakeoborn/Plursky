@@ -176,9 +176,11 @@ function map(){
     <div style="position:absolute;top:108px;left:20px;right:0;display:flex;gap:8px;overflow:hidden"><span class="bead on">Stages</span><span class="bead">Water</span><span class="bead">Medical</span><span class="bead">Crew</span></div>
     <div style="position:absolute;left:12px;right:12px;bottom:100px;background:#fff;border-radius:var(--r-lg);box-shadow:var(--e2);padding:10px 20px 18px">
       <div style="width:36px;height:5px;border-radius:3px;background:var(--line-2);margin:0 auto 12px"></div>
-      <div class="between"><div><div class="t-label ink3">Stage</div><div class="t-title" style="margin-top:6px">Kinetic Field</div></div><span class="t-label live"><i></i>Live</span></div>
+      <div class="between" style="align-items:flex-start"><div><div class="t-label ink3"><span class="live" style="margin-right:8px"><i></i>Live</span>Stage</div><div class="t-title" style="margin-top:6px">Kinetic Field</div></div>
+        <div class="row" style="gap:8px"><span class="toggle" style="width:36px;height:36px">${I("share",{size:17,sw:2,color:"#14121C"})}</span><span class="toggle" style="width:36px;height:36px"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="#14121C" stroke-width="2.2" stroke-linecap="round"/></svg></span></div></div>
       <div class="between" style="margin-top:12px"><span class="t-body-s">Above &amp; Beyond · Sunrise Set</span><span class="t-num ink2" style="font-size:13px">→ 5:29</span></div>
-      <div class="row" style="margin-top:14px;gap:10px"><span class="btn pri" style="flex:1">${I("crew",{size:20,sw:2,color:"#fff"})}Meet crew here</span><span class="btn sec" style="width:52px;padding:0">${I("lineup",{size:20,sw:2,color:"#14121C"})}</span></div>
+      <div class="row" style="margin-top:14px;gap:10px"><span class="btn pri" style="flex:1">${I("crew",{size:20,sw:2,color:"#fff"})}Meet crew here</span></div>
+      <div class="row" style="margin-top:10px;gap:8px"><span class="bead">${I("lineup",{size:15,sw:2,color:"#14121C"})}Stage schedule</span><span class="bead">${I("sun",{size:15,sw:2,color:"#14121C"})}Sunrise set</span></div>
     </div>
   </div>`,"map");
 }
@@ -225,7 +227,8 @@ function me(){
           <span data-wrap style="font:700 12.5px/14px var(--f-display);letter-spacing:-.02em">${n}</span></div>`).join("")}
       </div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);margin-top:14px;padding-top:12px;border-top:1px solid var(--line)">${[["14","sets"],["19.7","hours"],["212","moments"]].map(([a,b])=>`<div><div class="t-hero" style="font-size:26px;line-height:28px">${a}</div><div class="t-label ink3" style="margin-top:4px">${b}</div></div>`).join("")}</div>
-      <div class="btn pri" style="width:100%;margin-top:14px">${I("share",{size:19,sw:2,color:"#fff"})}Share collection</div>
+      <div class="t-label ink3" style="margin-top:12px">Sat so far · updates as you collect</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px">${[["share","Story",1],["crew","Crew",0],["photo","Save",0],["chevron","More",0]].map(([k,l,p])=>`<div style="display:grid;justify-items:center;gap:6px"><span class="${p?"":"toggle"}" style="width:50px;height:50px;border-radius:50%;display:grid;place-items:center;${p?"background:var(--uv);box-shadow:0 8px 18px -8px rgba(74,43,255,.9)":""}">${I(k,{size:20,sw:2,color:p?"#fff":"#14121C"})}</span><span class="t-body-s" style="font-size:13px">${l}</span></div>`).join("")}</div>
     </div></div>
     <div class="pad" style="margin-top:16px"><div class="between" style="margin-bottom:10px"><span class="t-label">Passport</span><span class="t-label ink3">4 stamps</span></div>
       <div class="row" style="gap:10px">${[["EDC","26",1],["NOC","25",0],["EDC","25",0],["ESC","24",0]].map(([a,b,f])=>`<div class="${f?"foil":""}" style="flex:1;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;align-content:center;${f?"":"background:#fff"};box-shadow:var(--gloss),0 0 0 1.5px ${f?"rgba(20,18,28,.08)":"var(--line-2)"}"><span style="font:700 13px/1 var(--f-display)">${a}</span><span class="t-num ink2" style="font-size:12px;margin-top:3px">’${b}</span></div>`).join("")}</div></div>

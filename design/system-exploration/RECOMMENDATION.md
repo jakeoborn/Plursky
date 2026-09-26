@@ -90,10 +90,21 @@ share card, set in Laser's type and colour.
   Artist screens credit "Photo · Spotify".
 - **Memories thumbnails** are Jake's own EDC 2026 photos. They live in the
   gitignored `photos/` folder and are never committed.
-- **Mobbin** was not used. The MCP returned "requires a paid plan" on this
-  account's session, and re-authenticating with `/mcp` is a founder action. The
-  directions are drawn from the culture's own materials instead: lasers,
-  Eurostile flyer caps, wristbands, kandi, and riso lineup posters.
+- **Mobbin** (second pass, 2026-09-26). Four changes, each restyled per
+  direction; the gate still passes at 0 failures on all 23 screens:
+  - **Today:** artist faces on "Next on your plan" rows, as in Spotify's queue
+    and Particle's "Playing Next". A Spotify photo only where we hold that
+    artist's own; otherwise initials, never a stand-in. (Laser, Headliner)
+  - **Lineup:** a circled add button that fills when the set is on your plan,
+    as in Spotify's artist Events list. (Laser; Holo and Headliner already had it)
+  - **Map:** share and close in the stage sheet's header, plus a row of
+    follow-up actions, as in the Pangea, Tabby and Wanderlog place sheets.
+    Bump's "1.8 mi from you" was deliberately not copied: no distance claims.
+  - **Me:** share destinations (Story, Crew, Save, More) under the card, as in
+    Beli's recap, and "so far" on the stats, as in Duolingo's dated review.
+  - Checked and unchanged: the timetable's current-time pill (Todoist) and the
+    artist page order (Shazam, DICE, Live Nation).
+  Each Mobbin link is in the review page.
 
 ## Design gate
 

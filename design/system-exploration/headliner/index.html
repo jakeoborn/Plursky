@@ -81,7 +81,7 @@ function today(){
     <div class="ticker" data-bleed style="margin-top:22px;transform:rotate(-2deg);margin-left:-10px;margin-right:-10px"><span>Live now ✱ ${live} ✱ Live now ✱ ${live}</span></div>
     <div class="pad" style="margin-top:22px">
       <div class="between"><span class="t-label">Next on your plan</span><span class="sticker" style="background:var(--clash);color:var(--ground);transform:rotate(-4deg)">Clash</span></div>
-      ${[pg,st].map((s,i)=>`<div class="between hair" style="padding:12px 0;${i?"":"margin-top:10px"}"><div style="min-width:0"><div class="t-tier2" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:290px">${s.name}</div><div class="t-label p2" style="margin-top:4px">${E.stage(s.stage).name}</div></div><span class="t-time">${E.fmt(s.start)}</span></div>`).join("")}
+      ${[pg,st].map((s,i)=>`<div class="between hair" style="padding:12px 0;${i?"":"margin-top:10px"}"><div class="row" style="gap:12px;min-width:0">${s.name==="Subtronics"?duo("subtronics","width:42px;height:42px;flex:none"):`<span style="width:42px;height:42px;flex:none;display:grid;place-items:center;background:var(--paper);color:var(--ground);font:900 18px/1 var(--f-billing);font-stretch:70%">PG</span>`}<div style="min-width:0"><div class="t-tier2" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:236px">${s.name}</div><div class="t-label p2" style="margin-top:4px">${E.stage(s.stage).name}</div></div></div><span class="t-time">${E.fmt(s.start)}</span></div>`).join("")}
     </div>
     <div class="pad" style="margin-top:18px"><div class="rule"></div>
       <div class="between" style="margin-top:12px;align-items:flex-end"><div><div class="t-label p2">Sunrise set · Kinetic Field</div><div class="t-tier1" data-wrap style="margin-top:6px">Above &amp; Beyond</div></div>
@@ -131,11 +131,13 @@ function map(){
     <div style="position:absolute;top:60px;left:20px;right:20px" class="between"><span style="font:900 46px/1 var(--f-billing);font-stretch:62%;text-transform:uppercase">Map</span><span class="sticker" style="background:var(--paper);color:var(--ground)">Official · EDC 2026</span></div>
     <div class="row" style="position:absolute;top:116px;left:20px;right:0;gap:8px"><span class="chip on">Stages</span><span class="chip" style="background:var(--ground)">Water</span><span class="chip" style="background:var(--ground)">Medical</span><span class="chip" style="background:var(--ground)">Crew</span></div>
     <div style="position:absolute;left:12px;right:12px;bottom:100px;background:var(--paper);color:var(--ink);box-shadow:var(--mis);padding:16px 18px 18px">
-      <div class="between"><span class="t-label" style="color:var(--ink)">Stage · KIN</span><span class="sticker" style="background:var(--spot);color:var(--on-spot)">● Live</span></div>
+      <div class="between"><div class="row" style="gap:8px"><span class="sticker" style="background:var(--spot);color:var(--on-spot)">● Live</span><span class="t-label" style="color:var(--ink)">Stage · KIN</span></div>
+        <div class="row" style="gap:8px"><span style="width:36px;height:36px;display:grid;place-items:center;box-shadow:inset 0 0 0 2px var(--ink)">${I("share",{size:17,sw:2.5,cap:"square",color:"#10157A"})}</span><span style="width:36px;height:36px;display:grid;place-items:center;box-shadow:inset 0 0 0 2px var(--ink)"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="#10157A" stroke-width="2.6" stroke-linecap="square"/></svg></span></div></div>
       <div class="t-tier1" style="margin-top:6px;color:var(--ink)">Kinetic Field</div>
       <div class="between" style="margin-top:8px;border-top:2px solid var(--ink);padding-top:10px"><span style="font:700 15px var(--f-ui)">John Summit</span><span class="t-time" style="font-size:18px">→ 1:42</span></div>
       <div class="between" style="margin-top:6px"><span style="font:400 15px var(--f-ui)">Next · Subtronics</span><span class="t-time" style="font-size:18px">1:47</span></div>
-      <div class="row" style="margin-top:14px;gap:10px"><span class="btn pri" style="flex:1;box-shadow:none">${I("crew",{size:20,sw:2.5,cap:"square",color:"#10157A"})}Meet crew here</span><span class="btn" style="width:52px;padding:0;border:2px solid var(--ink)">${I("lineup",{size:20,sw:2.5,cap:"square",color:"#10157A"})}</span></div>
+      <div class="row" style="margin-top:14px;gap:10px"><span class="btn pri" style="flex:1;box-shadow:none">${I("crew",{size:20,sw:2.5,cap:"square",color:"#10157A"})}Meet crew here</span></div>
+      <div class="row" style="margin-top:10px;gap:8px">${[["lineup","Stage schedule"],["plus","Add Subtronics"]].map(([k,l])=>`<span style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;box-shadow:inset 0 0 0 2px var(--ink);color:var(--ink);font:700 13px/1 var(--f-ui);text-transform:uppercase;letter-spacing:.04em">${I(k,{size:15,sw:2.5,cap:"square",color:"#10157A"})}${l}</span>`).join("")}</div>
     </div>
   </div>`,"map");
 }
@@ -175,9 +177,9 @@ function me(){
         <div style="height:2px;background:var(--on-spot);margin:10px 0 10px"></div>
         <div style="position:relative;text-wrap:balance">${seen.map(([n,m,big])=>`<span style="white-space:nowrap;font:900 ${big?25:17}px/${big?27:21}px var(--f-billing);font-stretch:${big?64:72}%;text-transform:uppercase">${n}</span>`).join(`<span style="font:900 17px var(--f-billing)"> • </span>`)}</div>
         <div style="height:2px;background:var(--on-spot);margin:10px 0 8px"></div>
-        <div class="t-label" style="color:var(--on-spot);position:relative">Billed by minutes you stayed<br>14 sets · 19.7 hours</div>
+        <div class="t-label" style="color:var(--on-spot);position:relative">Billed by minutes you stayed<br>14 sets · 19.7 hours · Sat so far</div>
       </div>
-      <div class="btn pri" style="width:100%;margin-top:16px;background:var(--paper);color:var(--ground);box-shadow:var(--mis)">${I("share",{size:20,sw:2.5,cap:"square",color:G})}Post my poster</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px">${[["share","Story",1],["crew","Crew",0],["photo","Save",0],["chevron","More",0]].map(([k,l,p])=>`<div style="display:grid;justify-items:center;gap:7px"><span style="width:52px;height:52px;display:grid;place-items:center;${p?"background:var(--paper);box-shadow:var(--mis-sm)":"box-shadow:inset 0 0 0 2px var(--paper)"}">${I(k,{size:21,sw:2.5,cap:"square",color:p?G:P})}</span><span class="t-label" style="font-size:11px">${l}</span></div>`).join("")}</div>
     </div>
     <div class="pad" style="margin-top:22px"><div class="t-label" style="margin-bottom:6px">Passport</div>
       ${[["EDC Las Vegas 2026","3 nights · 14 sets"],["Nocturnal Wonderland 2025","2 nights · 9 sets"],["EDC Las Vegas 2025","3 nights · 17 sets"]].map(([n,d])=>`<div class="between hair" style="padding:10px 0"><div><div class="t-tier2" style="font-size:21px;line-height:22px">${n}</div><div class="t-label p2" style="font-size:11px;margin-top:3px">${d}</div></div>${I("chevron",{size:18,sw:2.5,cap:"square",color:P2})}</div>`).join("")}
