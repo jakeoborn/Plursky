@@ -228,9 +228,9 @@ function TonightCard({ state, setState }) {
 
   const card = (label, value, sub, accent) => (
     <div style={{ flex: 1, minWidth: 0 }}>
-      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "rgba(var(--ink-rgb),0.55)", fontWeight: 600 }}>{label}</div>
+      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--text-3)", fontWeight: 600 }}>{label}</div>
       <div style={{ fontFamily: "Geist Mono, monospace", fontSize: 18, fontWeight: 600, color: accent || "var(--paper)", marginTop: 3, lineHeight: 1 }}>{value}</div>
-      {sub && <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "rgba(var(--ink-rgb),0.6)", marginTop: 4 }}>{sub}</div>}
+      {sub && <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--text-3)", marginTop: 4 }}>{sub}</div>}
     </div>
   );
 
@@ -252,11 +252,11 @@ function TonightCard({ state, setState }) {
       }}/>
       <div style={{ position: "relative" }}>
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 12 }}>
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "rgba(var(--ink-rgb),0.6)" }}>
+          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--text-3)" }}>
             {isPreEvent ? "OPENING NIGHT" : `TONIGHT · DAY ${day}`}
           </div>
           {period && (
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(var(--ink-rgb),0.5)", display: "flex", alignItems: "center", gap: 5 }}>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--text-3)", display: "flex", alignItems: "center", gap: 5 }}>
               NWS · {period.name.toUpperCase()}
               {cacheAgeLabel && (
                 <span style={{
@@ -311,10 +311,10 @@ function TonightCard({ state, setState }) {
           return (
             <div style={{ marginTop: 14, padding: "10px 12px", borderRadius: 10, background: "rgba(var(--ink-rgb),0.05)", border: "1px solid rgba(var(--ink-rgb),0.1)" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
-                <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "rgba(var(--ink-rgb),0.55)", fontWeight: 600 }}>
+                <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--text-3)", fontWeight: 600 }}>
                   NEXT 12H
                 </span>
-                <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.5)" }}>
+                <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--text-3)" }}>
                   {min}° → {max}°
                 </span>
               </div>
@@ -325,8 +325,8 @@ function TonightCard({ state, setState }) {
                 ))}
               </svg>
               <div style={{ display: "flex", justifyContent: "space-between", marginTop: 4 }}>
-                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.4)" }}>{fmtH(firstHour)}</span>
-                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.4)" }}>{fmtH(lastHour)}</span>
+                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--text-3)" }}>{fmtH(firstHour)}</span>
+                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--text-3)" }}>{fmtH(lastHour)}</span>
               </div>
             </div>
           );
@@ -1044,7 +1044,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                 : `TONIGHT · ${dayMeta?.name?.toUpperCase() || "DAY " + day}`}
           </div>
           <div className="mono" style={{
-            fontSize: 9, letterSpacing: 1.4, color: "rgba(var(--ink-rgb),0.55)", fontWeight: 600,
+            fontSize: 9, letterSpacing: 1.4, color: "var(--text-3)", fontWeight: 600,
           }}>
             {phase === "pre"
               ? FESTIVAL_CONFIG.dates.toUpperCase()
@@ -1071,7 +1071,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
             <div style={{ fontSize: 28, lineHeight: 0.96, letterSpacing: -0.5, marginBottom: 6, fontWeight: 600 }}>
               {FESTIVAL_CONFIG.dayDates[1]?.short} · <span className="serif" style={{ fontStyle: "italic", fontWeight: 400, color: accent }}>{FESTIVAL_CONFIG.brand}</span>
             </div>
-            <div style={{ fontSize: 13, color: "rgba(var(--ink-rgb),0.7)", lineHeight: 1.4, marginBottom: spotlight ? 16 : 0 }}>
+            <div style={{ fontSize: 13, color: "var(--text-2)", lineHeight: 1.4, marginBottom: spotlight ? 16 : 0 }}>
               {preCd && preCd.days === 0
                 ? `gates in ${preCd.hours}h ${preCd.mins}m${preDawn ? " — sleep." : "."}`
                 : `${FESTIVAL_CONFIG.locationShort} · gates open ${FESTIVAL_CONFIG.dayDates[1]?.name || "Friday"}.`}
@@ -1097,13 +1097,13 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                       whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
                     }}>{spotlight.name}</div>
                     <div className="mono" style={{
-                      fontSize: 9, letterSpacing: 0.8, color: "rgba(var(--ink-rgb),0.55)", marginTop: 3,
+                      fontSize: 9, letterSpacing: 0.8, color: "var(--text-3)", marginTop: 3,
                     }}>
                       {sStage?.name?.toUpperCase() || ""} · DAY {spotlight.day} · {fmt12(spotlight.start)}
                     </div>
                   </div>
                   <div style={{
-                    color: "rgba(var(--ink-rgb),0.4)", fontSize: 16, flexShrink: 0,
+                    color: "var(--text-3)", fontSize: 16, flexShrink: 0,
                   }}>→</div>
                 </button>
               );
@@ -1120,14 +1120,14 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                 boxShadow: `0 0 0 4px ${accent}33`,
                 animation: "pulse 1.6s ease-in-out infinite",
               }}/>
-              <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "rgba(var(--ink-rgb),0.75)", fontWeight: 600 }}>
+              <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--text-2)", fontWeight: 600 }}>
                 NOW · {featured.genre.toUpperCase()}
               </span>
             </div>
             <div className="serif" style={{ fontSize: 34, lineHeight: 0.95, letterSpacing: -0.4, marginBottom: 6 }}>
               {featured.name}
             </div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "rgba(var(--ink-rgb),0.7)", marginBottom: 14 }}>
+            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "var(--text-2)", marginBottom: 14 }}>
               {fmt12(featured.start)} – {fmt12(featured.end)}
             </div>
             <div style={{ display: "flex", gap: 8 }}>
@@ -1179,7 +1179,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                   <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, marginTop: 2 }}>
                     {featured.name}
                   </div>
-                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(var(--ink-rgb),0.6)", marginTop: 2 }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--text-3)", marginTop: 2 }}>
                     {stage?.short || ""} · {fmt12(featured.start)}
                   </div>
                 </div>
@@ -1194,7 +1194,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
             <div className="serif" style={{ fontSize: 28, lineHeight: 0.96, letterSpacing: -0.4, marginBottom: 6 }}>
               Stage <span style={{ fontStyle: "italic", color: accent }}>changeover</span>
             </div>
-            <div style={{ fontSize: 13, color: "rgba(var(--ink-rgb),0.7)", lineHeight: 1.4, marginBottom: 12 }}>
+            <div style={{ fontSize: 13, color: "var(--text-2)", lineHeight: 1.4, marginBottom: 12 }}>
               Decks are quiet between sets — your next pick is queued below.
             </div>
             {featured && (
@@ -1214,7 +1214,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                   <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, marginTop: 2 }}>
                     {featured.name}
                   </div>
-                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(var(--ink-rgb),0.6)", marginTop: 2 }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--text-3)", marginTop: 2 }}>
                     {stage?.short || ""} · {fmt12(featured.start)}
                   </div>
                 </div>
@@ -1301,7 +1301,7 @@ function LastNightRecap({ state, setState }) {
             {artist.name}
           </div>
           <div className="mono" style={{
-            fontSize: 8, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.85)", marginTop: 2,
+            fontSize: 8, letterSpacing: 1, color: "var(--text-2)", marginTop: 2,
           }}>
             {stage?.short || ""} · {fmt12(artist.start)}
           </div>
@@ -1903,9 +1903,9 @@ function SavedByDay({ state, setState }) {
                     <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{fmt12(a.end)}</div>
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{a.name}</div>
+                    <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{actDisplayName(a.name)}</div>
                     {stage && <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{stage.name}</div>}
-                    {conflict && <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: "var(--warn)" }}>⚠ Clashes with {prev.name}</div>}
+                    {conflict && <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: "var(--warn)" }}>⚠ Clashes with {actDisplayName(prev.name)} · {fmt12(prev.start)} · {(STAGES.find(s => s.id === prev.stage) || {}).name || "stage TBA"}</div>}
                   </div>
                 </button>
               </div>

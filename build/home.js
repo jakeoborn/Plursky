@@ -229,7 +229,7 @@ function TonightCard({
     style: {
       fontSize: 9,
       letterSpacing: 1.4,
-      color: "rgba(var(--ink-rgb),0.55)",
+      color: "var(--text-3)",
       fontWeight: 600
     }
   }, label), React.createElement("div", {
@@ -246,7 +246,7 @@ function TonightCard({
     style: {
       fontSize: 9,
       letterSpacing: 1.1,
-      color: "rgba(var(--ink-rgb),0.6)",
+      color: "var(--text-3)",
       marginTop: 4
     }
   }, sub));
@@ -283,14 +283,14 @@ function TonightCard({
     style: {
       fontSize: 10,
       letterSpacing: 1.6,
-      color: "rgba(var(--ink-rgb),0.6)"
+      color: "var(--text-3)"
     }
   }, isPreEvent ? "OPENING NIGHT" : `TONIGHT · DAY ${day}`), period && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "rgba(var(--ink-rgb),0.5)",
+      color: "var(--text-3)",
       display: "flex",
       alignItems: "center",
       gap: 5
@@ -375,7 +375,7 @@ function TonightCard({
       style: {
         fontSize: 9,
         letterSpacing: 1.4,
-        color: "rgba(var(--ink-rgb),0.55)",
+        color: "var(--text-3)",
         fontWeight: 600
       }
     }, "NEXT 12H"), React.createElement("span", {
@@ -383,7 +383,7 @@ function TonightCard({
       style: {
         fontSize: 9,
         letterSpacing: 1,
-        color: "rgba(var(--ink-rgb),0.5)"
+        color: "var(--text-3)"
       }
     }, min, "° → ", max, "°")), React.createElement("svg", {
       viewBox: `0 0 ${W} ${H}`,
@@ -417,14 +417,14 @@ function TonightCard({
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "rgba(var(--ink-rgb),0.4)"
+        color: "var(--text-3)"
       }
     }, fmtH(firstHour)), React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "rgba(var(--ink-rgb),0.4)"
+        color: "var(--text-3)"
       }
     }, fmtH(lastHour))));
   })(), inShuttleWindow && React.createElement("button", {
@@ -1210,7 +1210,7 @@ function F1TonightHero({
     style: {
       fontSize: 9,
       letterSpacing: 1.4,
-      color: "rgba(var(--ink-rgb),0.55)",
+      color: "var(--text-3)",
       fontWeight: 600
     }
   }, phase === "pre" ? FESTIVAL_CONFIG.dates.toUpperCase() : `NIGHT ${day} / ${DAYS.length}`)), phase === "pre" && React.createElement(React.Fragment, null, React.createElement("div", {
@@ -1239,7 +1239,7 @@ function F1TonightHero({
   }, FESTIVAL_CONFIG.brand)), React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "rgba(var(--ink-rgb),0.7)",
+      color: "var(--text-2)",
       lineHeight: 1.4,
       marginBottom: spotlight ? 16 : 0
     }
@@ -1295,12 +1295,12 @@ function F1TonightHero({
       style: {
         fontSize: 9,
         letterSpacing: 0.8,
-        color: "rgba(var(--ink-rgb),0.55)",
+        color: "var(--text-3)",
         marginTop: 3
       }
     }, sStage?.name?.toUpperCase() || "", " · DAY ", spotlight.day, " · ", fmt12(spotlight.start))), React.createElement("div", {
       style: {
-        color: "rgba(var(--ink-rgb),0.4)",
+        color: "var(--text-3)",
         fontSize: 16,
         flexShrink: 0
       }
@@ -1326,7 +1326,7 @@ function F1TonightHero({
     style: {
       fontSize: 9,
       letterSpacing: 1.6,
-      color: "rgba(var(--ink-rgb),0.75)",
+      color: "var(--text-2)",
       fontWeight: 600
     }
   }, "NOW · ", featured.genre.toUpperCase())), React.createElement("div", {
@@ -1342,7 +1342,7 @@ function F1TonightHero({
     style: {
       fontSize: 10,
       letterSpacing: 1.4,
-      color: "rgba(var(--ink-rgb),0.7)",
+      color: "var(--text-2)",
       marginBottom: 14
     }
   }, fmt12(featured.start), " – ", fmt12(featured.end)), React.createElement("div", {
@@ -1458,7 +1458,7 @@ function F1TonightHero({
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "rgba(var(--ink-rgb),0.6)",
+      color: "var(--text-3)",
       marginTop: 2
     }
   }, stage?.short || "", " · ", fmt12(featured.start))))), phase === "between" && React.createElement(React.Fragment, null, React.createElement("div", {
@@ -1477,7 +1477,7 @@ function F1TonightHero({
   }, "changeover")), React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "rgba(var(--ink-rgb),0.7)",
+      color: "var(--text-2)",
       lineHeight: 1.4,
       marginBottom: 12
     }
@@ -1533,7 +1533,7 @@ function F1TonightHero({
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "rgba(var(--ink-rgb),0.6)",
+      color: "var(--text-3)",
       marginTop: 2
     }
   }, stage?.short || "", " · ", fmt12(featured.start)))))));
@@ -1630,7 +1630,7 @@ function LastNightRecap({
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "rgba(var(--ink-rgb),0.85)",
+        color: "var(--text-2)",
         marginTop: 2
       }
     }, stage?.short || "", " · ", fmt12(artist.start))));
@@ -2582,7 +2582,7 @@ function SavedByDay({
         fontWeight: 600,
         overflowWrap: "anywhere"
       }
-    }, a.name), stage && React.createElement("div", {
+    }, actDisplayName(a.name)), stage && React.createElement("div", {
       style: {
         marginTop: 2,
         fontSize: 13,
@@ -2597,7 +2597,7 @@ function SavedByDay({
         fontWeight: 600,
         color: "var(--warn)"
       }
-    }, "⚠ Clashes with ", prev.name))));
+    }, "⚠ Clashes with ", actDisplayName(prev.name), " · ", fmt12(prev.start), " · ", (STAGES.find(s => s.id === prev.stage) || {}).name || "stage TBA"))));
   }))));
 }
 function _pickHeroMomentId() {

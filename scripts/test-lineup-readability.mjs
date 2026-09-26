@@ -7,7 +7,9 @@
 //   folded controls are inert; reduced motion drops the animation; GRID
 //   behaves the same on its own scroller.
 //   Rows (the one-line row Jake approved from the #236 mock): start time only
-//   (no end time), the artist name on ONE line and the loudest text, the stage
+//   (no end time), the artist name the loudest text and NEVER truncated (one
+//   line where it fits, stepping down to fit, wrapping only as a last resort —
+//   lane ruling 2026-09-26 supersedes #236's ellipsis), the stage
 //   under it, nothing else (no genre, no "—", no weekend, no Don't miss / In
 //   your music / crew); rows ≤ 60px; meta text meets WCAG AA; save buttons are
 //   44px and vertically centred. Dots are neutral in the main list and carry
@@ -174,7 +176,7 @@ try {
         contrast: rows.slice(0, 6).map(r => { const m = r.querySelector('[data-set-meta]'); return ratio(getComputedStyle(m).color, bgOf(m)); }),
         nameVsTime: rows.slice(0, 6).map(r => {
           const ne = r.querySelector('[data-set-name]'), n = getComputedStyle(ne), t = getComputedStyle(r.querySelector('[data-set-time]'));
-          return { name: parseFloat(n.fontSize), nameW: +n.fontWeight, time: parseFloat(t.fontSize), nameH: ne.getBoundingClientRect().height, nameLH: parseFloat(n.lineHeight), nowrap: n.whiteSpace === 'nowrap', ellipsis: n.textOverflow === 'ellipsis' };
+          return { name: parseFloat(n.fontSize), nameW: +n.fontWeight, time: parseFloat(t.fontSize), nameH: ne.getBoundingClientRect().height, nameLH: parseFloat(n.lineHeight), nowrap: n.whiteSpace === 'nowrap', full: ne.scrollWidth <= ne.clientWidth + 1, ellipsis: n.textOverflow === 'ellipsis' };
         }),
         saves: rows.slice(0, 8).map(r => {
           const b = r.querySelector('button[aria-pressed]').getBoundingClientRect(), rb = r.getBoundingClientRect();
@@ -183,6 +185,9 @@ try {
         dots: rows.filter(r => !/^Live/.test(r.querySelector('[data-set-meta]').textContent.trim())).slice(0, 12).map(r => getComputedStyle(r.querySelector('[data-set-meta] span')).backgroundColor),
         clocks: rows.map(r => (r.innerText.match(/\b\d{1,2}:\d{2}\b/g) || []).length),
         rowHs: rows.map(r => Math.round(r.getBoundingClientRect().height)),
+        // rows whose name wrapped (the only rows allowed past the one-line cap)
+        wrappedRowHs: rows.filter(r => { const ne = r.querySelector('[data-set-name]'); return ne.getBoundingClientRect().height > parseFloat(getComputedStyle(ne).lineHeight) + 1; }).map(r => Math.round(r.getBoundingClientRect().height)),
+        oneLineRowHs: rows.filter(r => { const ne = r.querySelector('[data-set-name]'); return ne.getBoundingClientRect().height <= parseFloat(getComputedStyle(ne).lineHeight) + 1; }).map(r => Math.round(r.getBoundingClientRect().height)),
         saveDay: [...document.querySelectorAll('[data-save-day]')].map(b => ({ inHeader: !!b.closest('[data-lineup-filters]'), text: b.textContent.trim() })),
         savedToday: (() => { try { return JSON.parse(localStorage.getItem('acl-2026_saved_v1') || '[]').length; } catch { return -1; } })(),
       };
@@ -195,10 +200,16 @@ try {
     check(!r.rowText.some(t => /\bWeekend [12]\b/.test(t)), `${at} a row repeats "Weekend N" while one weekend is selected`);
     for (const c of r.contrast) check(c >= 4.5, `${at} meta text contrast ${c.toFixed(2)} is under WCAG AA 4.5`);
     for (const x of r.nameVsTime) check(x.name > x.time && x.nameW >= 700, `${at} artist name (${x.name}px/${x.nameW}) is not the loudest text (time ${x.time}px)`);
-    check(r.nameVsTime.every(x => x.nowrap && x.ellipsis && x.nameH <= x.nameLH + 1), `${at} an artist name is not one ellipsised line: ${JSON.stringify(r.nameVsTime)}`);
+    // Lane ruling 2026-09-26 supersedes #236's "one ellipsised line": an
+    // artist name is NEVER truncated. It stays one line wherever it fits,
+    // steps down (never below the time's size) to fit, and only a name that
+    // still cannot fit wraps to a second line.
+    check(r.nameVsTime.every(x => !x.ellipsis && x.full), `${at} an artist name is truncated: ${JSON.stringify(r.nameVsTime)}`);
+    check(r.nameVsTime.every(x => x.nameH <= x.nameLH + 1 || x.name <= x.time + 1), `${at} a name wrapped before stepping down to fit on one line: ${JSON.stringify(r.nameVsTime)}`);
     check(r.clocks.every(c => c === 1), `${at} a row prints more than its start time (clock counts ${[...new Set(r.clocks)].join(',')})`);
     check(!r.rowText.some(t => /Don't miss|In your music|\bcrew\b/i.test(t)), `${at} a row carries a flag line (Don't miss / In your music / crew)`);
-    check(Math.max(...r.rowHs) <= 60, `${at} a row is ${Math.max(...r.rowHs)}px tall; the one-line row is ≤ 60px`);
+    check(Math.max(...r.oneLineRowHs) <= 60, `${at} a one-line row is ${Math.max(...r.oneLineRowHs)}px tall; the one-line row is ≤ 60px`);
+    check(!r.wrappedRowHs.length || Math.max(...r.wrappedRowHs) <= 84, `${at} a two-line row is ${Math.max(...r.wrappedRowHs)}px tall (≤ 84px)`);
     check(r.savedToday === 0 && r.saveDay.length === 1 && r.saveDay[0].inHeader && /^Save top picks · \d+$/.test(r.saveDay[0].text), `${at} "Save top picks" is not a single header action while nothing is saved: ${JSON.stringify(r.saveDay)}`);
     for (const s of r.saves) {
       check(Math.round(s.w) >= 44 && Math.round(s.h) >= 44, `${at} save button ${s.w}x${s.h} is under 44px`);

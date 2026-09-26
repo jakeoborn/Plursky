@@ -21,6 +21,16 @@ const QUICK_REPLIES = [
 // chip row offers a relevant suggestion instead of a generic OMW. v1 is
 // rule-based; a future iteration can call the Anthropic API to draft a
 // real personalized message when online.
+// Black or white ink for text on an arbitrary hex fill (a stage colour),
+// whichever clears WCAG AA. Stage colours are map-only and not mode tokens.
+function _inkOnHex(hex) {
+  const m = /^#?([0-9a-f]{6})$/i.exec(String(hex || "").trim());
+  if (!m) return "var(--ink)";
+  const n = parseInt(m[1], 16), ch = [n >> 16, (n >> 8) & 255, n & 255].map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+  const L = 0.2126 * ch[0] + 0.7152 * ch[1] + 0.0722 * ch[2];
+  return (L + 0.05) / 0.05 >= 1.05 / (L + 0.05) ? "#14121C" : "#FFFFFF";
+}
+
 function buildSmartReplies({ myStage, friendStage, nextSavedSet }) {
   const out = [];
   if (myStage) {
@@ -525,14 +535,14 @@ function upcomingMeetups() {
 // fresh = the data is trustworthy ("they ARE there"); stale = trust but verify;
 // cold = treat as a hint, not a fact. Designed for 4AM-tired eyes.
 function formatLastSeen(ts) {
-  if (!ts) return { label: "", freshness: "cold", color: "rgba(var(--ink-rgb),0.45)" };
+  if (!ts) return { label: "", freshness: "cold", color: "var(--text-3)" };
   const mins = Math.max(0, Math.round((Date.now() - ts) / 60000));
   if (mins < 1)  return { label: "NOW",            freshness: "fresh", color: "var(--signal-ink)" };  // var(--success)
   if (mins < 5)  return { label: `${mins}m`,       freshness: "fresh", color: "var(--signal-ink)" };
   if (mins < 15) return { label: `${mins}m`,       freshness: "stale", color: "var(--signal-ink)" };  // var(--flare)
-  if (mins < 60) return { label: `${mins}m`,       freshness: "cold",  color: "rgba(var(--ink-rgb),0.55)" };
+  if (mins < 60) return { label: `${mins}m`,       freshness: "cold",  color: "var(--text-3)" };
   const hrs = Math.floor(mins / 60);
-  return     { label: `${hrs}h+`,                  freshness: "cold",  color: "rgba(var(--ink-rgb),0.45)" };
+  return     { label: `${hrs}h+`,                  freshness: "cold",  color: "var(--text-3)" };
 }
 
 // Watch the user's real position. Returns { pos, status, lastUpdate }.
@@ -2091,13 +2101,17 @@ function MapScreen({ state, setState }) {
   // Demo wander tick — only runs when not pinned to real on-site GPS.
   // Slows from 600ms → 2400ms in battery-saver mode (still feels alive,
   // 4× fewer renders).
+  // Reduce Motion: the idle wander stops; a walk toward a goal the user
+  // picked still moves.
   const { active: bsActive } = useBatterySaver();
+  const reduceMotion = React.useMemo(() => { try { return !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches; } catch { return false; } }, []);
   React.useEffect(() => {
     if (!useDemo) return;
     const id = setInterval(() => {
       const goal = meetMode && meetTarget ? meetTarget
                  : selectedStage ? STAGES.find(s => s.id === selectedStage)
                  : null;
+      if (reduceMotion && !goal) return;
       setDemoAvatar(a => {
         if (goal) {
           const dx = goal.x - a.x, dy = goal.y - a.y;
@@ -2126,7 +2140,7 @@ function MapScreen({ state, setState }) {
       }));
     }, bsActive ? 2400 : 600);
     return () => clearInterval(id);
-  }, [useDemo, selectedStage, meetMode, meetTarget, meetGroup, bsActive]);
+  }, [useDemo, selectedStage, meetMode, meetTarget, meetGroup, bsActive, reduceMotion]);
 
   // Heading derivation when real GPS is on-site and walking toward a goal
   React.useEffect(() => {
@@ -5469,7 +5483,7 @@ function RealMap({
           gap: 6, padding: 20, textAlign: "center",
         }}>
           <div>MAP ERROR</div>
-          <div style={{ color: "rgba(var(--ink-rgb),0.6)", fontSize: 9, maxWidth: 240 }}>{err}</div>
+          <div style={{ color: "var(--text-3)", fontSize: 9, maxWidth: 240 }}>{err}</div>
           {/* "USE FESTIVAL MAP" is only an offer worth making when a festival
               map EXISTS. On a mapMode:"real" festival there is no art and no
               stage grid, so that button drops the user onto a blank plate —
@@ -5479,13 +5493,13 @@ function RealMap({
               and you are trying to get there. */}
           {FESTIVAL_CONFIG.mapMode === "real" ? (
             <>
-              <div style={{ color: "rgba(var(--ink-rgb),0.75)", fontSize: 10, marginTop: 10, letterSpacing: 1.1 }}>
+              <div style={{ color: "var(--text-2)", fontSize: 10, marginTop: 10, letterSpacing: 1.1 }}>
                 {FESTIVAL_CONFIG.venue?.name || FESTIVAL_CONFIG.locationShort}
               </div>
-              <div style={{ color: "rgba(var(--ink-rgb),0.5)", fontSize: 9, maxWidth: 240 }}>
+              <div style={{ color: "var(--text-3)", fontSize: 9, maxWidth: 240 }}>
                 {FESTIVAL_CONFIG.venue?.address || FESTIVAL_CONFIG.location}
               </div>
-              <div style={{ color: "rgba(var(--ink-rgb),0.4)", fontSize: 8, marginTop: 6, maxWidth: 250 }}>
+              <div style={{ color: "var(--text-3)", fontSize: 8, marginTop: 6, maxWidth: 250 }}>
                 The official festival map publishes before doors. Until then this
                 screen needs a connection.
               </div>
@@ -5497,7 +5511,7 @@ function RealMap({
             </>
           ) : (
             <>
-              <div style={{ color: "rgba(var(--ink-rgb),0.45)", fontSize: 8, marginTop: 4 }}>
+              <div style={{ color: "var(--text-3)", fontSize: 8, marginTop: 4 }}>
                 Tip: the festival map below works offline — one tap switches and remembers.
               </div>
               <button onClick={() => _fatal("Switched to festival map")} style={{
@@ -5601,7 +5615,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
   // Push label OUT from stage in the direction farthest from the Daisy Lane
   // plaza centre (50,50), so labels never collide with the central rectangle.
   // Artist names are long enough to collide on a phone; stage names were not.
-  const _pillName = (n) => (n && n.length > 14 ? n.slice(0, 13).trimEnd() + "…" : n || "").toUpperCase();
+  const _pillName = (n) => actDisplayName(n).toUpperCase();   // never cut: see actDisplayName
 
   const anchorFor = (s) => {
     const cx = 50, cy = 50;
@@ -6223,16 +6237,18 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
               style={{
                 position: "absolute", ...pos, ...tx,
                 pointerEvents: "auto", cursor: "pointer",
-                background: on ? s.color : "rgba(var(--shade-rgb),0.82)",
-                color: on ? "var(--ink)" : "rgba(var(--ink-rgb),0.88)",
-                border: `1px solid ${on ? s.color : "rgba(var(--ink-rgb),0.18)"})"}`,
+                // Off: the map's glass surface, so it follows the mode. On: the
+                // stage's own colour, with whichever ink reads on it.
+                background: on ? s.color : "rgba(var(--glass),0.92)",
+                color: on ? _inkOnHex(s.color) : "var(--ink)",
+                border: `1px solid ${on ? s.color : "var(--line-2)"}`,
                 padding: on ? "4px 10px" : "3px 9px",
                 borderRadius: 999,
                 fontFamily: "Geist Mono, monospace",
                 fontSize: on ? 9.5 : 8.5,
                 letterSpacing: 1.2, fontWeight: 700,
                 whiteSpace: "nowrap",
-                maxWidth: "46vw", overflow: "hidden", textOverflow: "ellipsis",
+
                 boxShadow: on
                   ? `0 4px 18px ${s.color}66, 0 0 8px ${s.color}33`
                   : "0 1px 0 rgba(0,0,0,0.4), 0 2px 12px rgba(0,0,0,0.5)",
@@ -6306,7 +6322,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
                   </span>
                 )}
                 {seen.label && seen.freshness !== "fresh" && (
-                  <span style={{ color: "rgba(var(--ink-rgb),0.7)", fontWeight: 500 }}>
+                  <span style={{ color: "var(--text-2)", fontWeight: 500 }}>
                     · {seen.label}
                   </span>
                 )}
@@ -6514,7 +6530,7 @@ function GroundPeek({ stage, onClose }) {
       <div style={{
         position: "absolute", bottom: 4, left: 4,
         fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.2,
-        color: "rgba(var(--ink-rgb),0.7)", background: "rgba(var(--shade-rgb),0.6)",
+        color: "var(--text-2)", background: "rgba(var(--shade-rgb),0.6)",
         padding: "2px 5px", borderRadius: 4,
       }}>GROUND VIEW</div>
     </div>

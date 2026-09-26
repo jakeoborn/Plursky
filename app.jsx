@@ -305,7 +305,7 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
       a.name.toLowerCase().includes(query) ||
       a.genre.toLowerCase().includes(query) ||
       (stage?.name || "").toLowerCase().includes(query) ||
-      (stage?.short || "").toLowerCase().includes(query) ||
+      (stage?.short || "").toLowerCase().includes(query) || (stage?.code || "").toLowerCase().includes(query) ||
       (stage?.vibe || "").toLowerCase().includes(query) ||
       (["legend","legendary","sunrise","b2b"].includes(query) && isLegendary(a))
     );
@@ -565,17 +565,6 @@ function App() {
   React.useEffect(() => {
     try { sbOutboxInit?.(); } catch {}
   }, []);
-  // Night-aware theme — shifts palette with the sky during the festival, unless
-  // the user has pinned LIGHT or DARK. The resolver and the pref both live in
-  // chrome.jsx (see resolveThemeClass / useThemeMode); this effect only owns the
-  // recompute cadence, so AUTO still crosses 20:00 without a reload. Re-runs on
-  // themeMode so tapping the segmented control repaints immediately.
-  const { mode: themeMode } = useThemeMode();
-  React.useEffect(() => {
-    applyThemeClass();
-    const id = setInterval(applyThemeClass, 60000);
-    return () => clearInterval(id);
-  }, [themeMode]);
   // Native Spotify OAuth handoff (v196). When the user finishes the
   // SafariViewController flow, the appUrlOpen listener in spotify.jsx
   // exchanges the code for a token and dispatches this event. Mirror it
@@ -667,7 +656,7 @@ function App() {
     const dlCrew   = params.get("crew"); // crew code from a shared invite link
     const validArtist = dlArtist && ARTISTS.find(a => a.id === dlArtist) ? dlArtist : null;
     const validTab    = ["home","map","lineup","spotify","me","memories","past"].includes(dlTab) ? dlTab : null;
-    const validStage  = dlStage && STAGES.find(s => s.id === dlStage || s.short.toLowerCase() === dlStage.toLowerCase()) ? dlStage : null;
+    const validStage  = dlStage && STAGES.find(s => s.id === dlStage || (s.code || s.short || "").toLowerCase() === dlStage.toLowerCase()) ? dlStage : null;
     const validDay    = dlDay && festivalDayNums().includes(+dlDay) ? +dlDay : null;
     // Decode shared lineup: comma-joined IDs validated against the local lineup so
     // a stale or malicious URL can't inject phantom artists.
@@ -1002,7 +991,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v368",
+        version: "v372",
       }));
     } catch {}
   }
@@ -1035,7 +1024,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(var(--shade-rgb),0.45)" }}>
-          PLURSKY · v368
+          PLURSKY · v372
         </div>
       </div>
     );
@@ -1106,7 +1095,7 @@ function SetStartingCinematic() {
           letterSpacing: 2, fontVariantNumeric: "tabular-nums",
           color: "var(--ink)", textShadow: "0 0 30px rgba(var(--signal-rgb),0.8)",
         }}>{minsLeft} MIN</div>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "rgba(var(--ink-rgb),0.4)", marginTop: 20 }}>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--text-3)", marginTop: 20 }}>
           TAP TO DISMISS
         </div>
       </div>

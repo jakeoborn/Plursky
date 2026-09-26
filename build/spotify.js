@@ -309,11 +309,11 @@ function SpotifyScreen({
       fontSize: 9,
       letterSpacing: 0.5,
       lineHeight: 1.5,
-      color: "rgba(var(--ink-rgb),0.55)"
+      color: "var(--text-3)"
     }
   }, "💡 Your saved sets build a playlist on ", React.createElement("span", {
     style: {
-      color: "rgba(var(--ink-rgb),0.92)",
+      color: "var(--ink)",
       fontWeight: 700
     }
   }, "Spotify or Apple Music"), " — import your taste from one, export to either. No Spotify needed for the Apple Music playlist.")), React.createElement(BoardPlaylistCard, {
@@ -329,7 +329,7 @@ function SpotifyScreen({
       padding: 20,
       background: amConnected ? "var(--paper)" : "var(--paper-2)",
       border: `1px solid ${amConnected ? "rgba(var(--alert-rgb),0.25)" : "var(--line)"}`,
-      color: amConnected ? "var(--paper)" : "var(--ink)",
+      color: "var(--ink)",
       marginBottom: 14,
       position: "relative",
       overflow: "hidden"
@@ -347,10 +347,10 @@ function SpotifyScreen({
     width: "24",
     height: "24",
     rx: "6",
-    fill: "var(--alert)"
+    fill: "var(--apple-music)"
   }), React.createElement("path", {
     d: "M16.5 7.5 L10 9 L10 15",
-    stroke: "var(--ink)",
+    stroke: "var(--on-apple-music)",
     strokeWidth: "1.5",
     strokeLinecap: "round",
     strokeLinejoin: "round",
@@ -359,18 +359,18 @@ function SpotifyScreen({
     cx: "8.5",
     cy: "15",
     r: "1.5",
-    fill: "var(--ink)"
+    fill: "var(--on-apple-music)"
   }), React.createElement("circle", {
     cx: "15",
     cy: "13",
     r: "1.5",
-    fill: "var(--ink)"
+    fill: "var(--on-apple-music)"
   })), React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 10,
       letterSpacing: 1.6,
-      opacity: amConnected ? 0.65 : 0.5,
+      color: "var(--text-2)",
       marginBottom: 8
     }
   }, amConnected ? "APPLE MUSIC CONNECTED" : "CONNECT APPLE MUSIC"), React.createElement("div", {
@@ -393,7 +393,7 @@ function SpotifyScreen({
   }, "Link Apple Music"))), !amConnected && React.createElement(React.Fragment, null, React.createElement("div", {
     style: {
       fontSize: 12,
-      opacity: 0.65,
+      color: "var(--text-2)",
       lineHeight: 1.5,
       marginBottom: 14,
       maxWidth: "88%"
@@ -408,8 +408,8 @@ function SpotifyScreen({
     onClick: handleAmConnect,
     disabled: amLoading,
     style: {
-      background: "var(--alert)",
-      color: "var(--ink)",
+      background: "var(--apple-music)",
+      color: "var(--on-apple-music)",
       border: "none",
       borderRadius: 999,
       padding: "10px 18px",
@@ -1828,7 +1828,6 @@ function HistoryRecordsSection({
       borderRadius: 12,
       background: "var(--paper-2)",
       borderLeft: `3px solid ${n.topStage?.color || "var(--line-2)"}`,
-      opacity: n.count === 0 && !n.isLive ? 0.62 : 1,
       border: "none",
       cursor: "pointer",
       textAlign: "left",
@@ -1843,7 +1842,8 @@ function HistoryRecordsSection({
     className: "serif",
     style: {
       fontSize: 16,
-      lineHeight: 1.15
+      lineHeight: 1.15,
+      color: n.count === 0 && !n.isLive ? "var(--text-2)" : "var(--ink)"
     }
   }, n.name || `Night ${n.n}`, n.isLive && React.createElement("span", {
     className: "mono",
@@ -1853,10 +1853,10 @@ function HistoryRecordsSection({
       letterSpacing: 1.2,
       fontWeight: 800,
       color: "var(--success)",
-      background: "rgba(var(--signal-rgb),0.14)",
+      background: "transparent",
       padding: "1px 6px",
       borderRadius: 999,
-      border: "0.5px solid rgba(var(--signal-rgb),0.55)"
+      border: "1px solid var(--success)"
     }
   }, "● LIVE")), React.createElement("div", {
     className: "mono",
@@ -3910,7 +3910,7 @@ function MomentLightbox({
     style: {
       fontSize: 10,
       letterSpacing: 1.4,
-      color: "rgba(var(--ink-rgb),0.7)",
+      color: "var(--text-2)",
       fontWeight: 700
     }
   }, index + 1, " / ", moments.length), onUpdate && React.createElement(_FavStar, {
@@ -4029,7 +4029,7 @@ function MomentLightbox({
     style: {
       fontSize: 22,
       lineHeight: 1,
-      color: "rgba(var(--ink-rgb),0.6)",
+      color: "var(--text-3)",
       fontStyle: "italic",
       marginBottom: 6
     }
@@ -4044,7 +4044,7 @@ function MomentLightbox({
     }
   }, "♫ ", song.song, m.confirmedSong && React.createElement("span", {
     style: {
-      color: "rgba(var(--ink-rgb),0.45)",
+      color: "var(--text-3)",
       marginLeft: 6
     }
   }, "· SHAZAMED")), React.createElement("div", {
@@ -4052,7 +4052,7 @@ function MomentLightbox({
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "rgba(var(--ink-rgb),0.5)",
+      color: "var(--text-3)",
       fontWeight: 600
     }
   }, [stage?.name?.toUpperCase(), prettyTime, m.location?.label?.toUpperCase()].filter(Boolean).join(" · ")), m.kind === "video" && !m.confirmedSong && React.createElement("button", {
@@ -4103,7 +4103,7 @@ function MomentLightbox({
       marginTop: 3,
       fontSize: 8,
       letterSpacing: 1,
-      color: "rgba(var(--ink-rgb),0.72)",
+      color: "var(--text-2)",
       fontWeight: 700
     }
   }, "PROVES THE SONG FROM THE CLIP'S AUDIO"))), React.createElement("span", {
@@ -4118,7 +4118,7 @@ function MomentLightbox({
       background: "transparent",
       border: "none",
       padding: 0,
-      color: "rgba(var(--ink-rgb),0.6)",
+      color: "var(--text-3)",
       fontSize: 9,
       letterSpacing: 1.1,
       fontWeight: 700,
@@ -4185,7 +4185,7 @@ function MomentLightbox({
       style: {
         fontSize: 8,
         letterSpacing: 0.6,
-        color: "rgba(var(--ink-rgb),0.5)",
+        color: "var(--text-3)",
         flexShrink: 0
       }
     }, st?.short || "", " · ", window.fmt12?.(a.start) || a.start));
@@ -4530,7 +4530,7 @@ function _LightboxVideo({
       marginTop: 5,
       fontSize: 8,
       letterSpacing: 1,
-      color: "rgba(var(--ink-rgb),0.7)",
+      color: "var(--text-2)",
       fontWeight: 700
     }
   }, React.createElement("span", null, _fmtClock(cur)), React.createElement("span", null, _fmtClock(dur)))));
@@ -11634,7 +11634,7 @@ function MeScreen({
     style: {
       fontSize: 9,
       letterSpacing: 1.3,
-      color: "rgba(var(--ink-rgb),0.65)",
+      color: "var(--text-2)",
       marginTop: 4,
       fontWeight: 700
     }
@@ -11932,7 +11932,7 @@ function MeScreen({
   })), React.createElement(AccountCard, {
     state: state,
     setState: setState
-  })))), React.createElement("div", {
+  })))), React.createElement(AppearanceRow, null), React.createElement("div", {
     style: {
       marginBottom: 14
     }
@@ -11971,7 +11971,7 @@ function MeScreen({
       color: "var(--muted)",
       marginTop: 3
     }
-  }, "NOTIFICATIONS · THEME · BATTERY · PACK LIST")), React.createElement("svg", {
+  }, "NOTIFICATIONS · BATTERY · PACK LIST")), React.createElement("svg", {
     width: "13",
     height: "13",
     viewBox: "0 0 24 24",
@@ -12079,7 +12079,7 @@ function MeScreen({
         bottom: 6,
         left: 6,
         right: 6,
-        color: "var(--ink)",
+        color: "var(--media-ink)",
         textAlign: "left"
       },
       className: "mono"
@@ -12090,11 +12090,9 @@ function MeScreen({
         fontWeight: 700,
         lineHeight: 1.1,
         marginBottom: 2,
-        whiteSpace: "nowrap",
-        overflow: "hidden",
-        textOverflow: "ellipsis"
+        overflowWrap: "break-word"
       }
-    }, a.name), React.createElement("div", {
+    }, actDisplayName(a.name)), React.createElement("div", {
       style: {
         fontSize: 8,
         letterSpacing: 1,
@@ -12226,7 +12224,7 @@ function FollowedNudge({
     onClick: () => setExpanded(e => !e),
     style: {
       background: "transparent",
-      color: "rgba(var(--ink-rgb),0.6)",
+      color: "var(--text-3)",
       border: "1px solid rgba(var(--ink-rgb),0.2)",
       borderRadius: 999,
       padding: "5px 10px",
@@ -12780,7 +12778,7 @@ function AppleMusicPlaylistButton({
   };
   var label,
     bg = "rgba(var(--apple-music-rgb),0.14)",
-    color = "var(--apple-music)",
+    color = "var(--ink)",
     border = "1px solid var(--apple-music)";
   if (status === "working") {
     label = prog ? `BUILDING · ${prog}` : "BUILDING…";
@@ -12789,7 +12787,7 @@ function AppleMusicPlaylistButton({
     var open = result?.url ? " — OPEN ↗" : "";
     label = soundtrack && sm > 0 ? `✓ ${sm} OF YOUR SONGS + ${result?.added - sm} MORE${open}` : `✓ ${result?.added} TRACKS IN APPLE MUSIC${open}`;
     bg = "var(--apple-music)";
-    color = "var(--ink)";
+    color = "var(--on-apple-music)";
     border = "none";
   } else if (status === "err") {
     if (result?.reason === "not_connected") label = "↻ TAP TO CONNECT APPLE MUSIC";else if (result?.reason === "empty") label = "SAVE SETS FIRST";else if (result?.reason === "no_tracks") label = "✕ NO TRACKS FOUND";else label = `✕ ${result?.status || ""} TRY AGAIN`;
@@ -13429,7 +13427,7 @@ function WrappedStory({
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          color: "rgba(var(--ink-rgb),0.9)"
+          color: "var(--ink)"
         }
       }, React.createElement("span", {
         style: {
@@ -13437,7 +13435,7 @@ function WrappedStory({
         }
       }, `${i + 1}. ${s.song}`), React.createElement("span", {
         style: {
-          color: "rgba(var(--ink-rgb),0.4)",
+          color: "var(--text-3)",
           fontSize: 8
         }
       }, `${s.count} photo${s.count > 1 ? "s" : ""}`))))
@@ -13540,7 +13538,7 @@ function WrappedStory({
     style: {
       fontSize: 10,
       letterSpacing: 2,
-      color: "rgba(var(--ink-rgb),0.5)",
+      color: "var(--text-3)",
       fontWeight: 700,
       marginBottom: 24
     }
@@ -13557,7 +13555,7 @@ function WrappedStory({
   }, card.headline), React.createElement("div", {
     style: {
       fontSize: 14,
-      color: "rgba(var(--ink-rgb),0.6)",
+      color: "var(--text-3)",
       textAlign: "center",
       lineHeight: 1.5,
       maxWidth: 280
@@ -13596,7 +13594,7 @@ function WrappedStory({
       borderRadius: 999,
       border: "1px solid rgba(var(--ink-rgb),0.2)",
       background: "rgba(var(--ink-rgb),0.08)",
-      color: "rgba(var(--ink-rgb),0.7)",
+      color: "var(--text-2)",
       fontSize: 9,
       letterSpacing: 1.4,
       fontWeight: 700,
@@ -14695,7 +14693,7 @@ function FestivalYearCard({
     style: {
       fontSize: 10,
       letterSpacing: 1.2,
-      color: "rgba(var(--ink-rgb),0.6)",
+      color: "var(--text-3)",
       marginTop: 8
     }
   }, yd.totalSets, " SETS · ", yd.totalMoments, " MEMORIES", yd.totalMin > 0 ? ` · ${_fmtHrsMin(yd.totalMin).toUpperCase()} ON DANCEFLOORS` : ""), React.createElement("div", {
@@ -14750,7 +14748,7 @@ function FestivalYearCard({
     style: {
       fontSize: 8,
       letterSpacing: 1,
-      color: "rgba(var(--ink-rgb),0.45)",
+      color: "var(--text-3)",
       marginTop: 2
     }
   }, f.sets, " SETS · ", f.moments, " MEMORIES", f.archived ? "" : " · LIVE"))))), yd.topArtists.length > 0 && React.createElement("div", {
@@ -14762,7 +14760,7 @@ function FestivalYearCard({
     style: {
       fontSize: 9,
       letterSpacing: 1.3,
-      color: "rgba(var(--ink-rgb),0.4)",
+      color: "var(--text-3)",
       fontWeight: 700,
       marginBottom: 6
     }
@@ -15422,7 +15420,7 @@ function RecapScreen({
     style: {
       fontSize: 9,
       letterSpacing: 1.6,
-      color: "rgba(var(--ink-rgb),0.75)",
+      color: "var(--text-2)",
       fontWeight: 700,
       marginBottom: 10
     }
@@ -15457,7 +15455,7 @@ function RecapScreen({
       fontSize: 9,
       letterSpacing: 1.3,
       fontWeight: 700,
-      color: "rgba(var(--ink-rgb),0.7)",
+      color: "var(--text-2)",
       marginTop: 3
     }
   }, "SETS CAUGHT")), React.createElement("div", null, React.createElement("div", {
@@ -15472,7 +15470,7 @@ function RecapScreen({
       fontSize: 9,
       letterSpacing: 1.3,
       fontWeight: 700,
-      color: "rgba(var(--ink-rgb),0.7)",
+      color: "var(--text-2)",
       marginTop: 3
     }
   }, "ON DANCEFLOORS")), React.createElement("div", null, React.createElement("div", {
@@ -15487,7 +15485,7 @@ function RecapScreen({
       fontSize: 9,
       letterSpacing: 1.3,
       fontWeight: 700,
-      color: "rgba(var(--ink-rgb),0.7)",
+      color: "var(--text-2)",
       marginTop: 3
     }
   }, "NIGHTS")), React.createElement("div", null, React.createElement("div", {
@@ -15502,7 +15500,7 @@ function RecapScreen({
       fontSize: 9,
       letterSpacing: 1.3,
       fontWeight: 700,
-      color: "rgba(var(--ink-rgb),0.7)",
+      color: "var(--text-2)",
       marginTop: 3
     }
   }, "HEADLINERS")))), recap.setsCount > 0 && React.createElement("button", {
@@ -16048,7 +16046,7 @@ function RecapScreen({
       className: "mono",
       style: {
         fontSize: 9,
-        color: "rgba(var(--ink-rgb),0.35)",
+        color: "var(--text-3)",
         marginTop: 8,
         letterSpacing: 1
       }
@@ -16078,7 +16076,7 @@ function RecapScreen({
       className: "mono",
       style: {
         fontSize: 8,
-        color: "rgba(var(--ink-rgb),0.3)",
+        color: "var(--text-3)",
         letterSpacing: 1
       }
     }, vidFormat === "story" ? "FOR IG STORIES · TIKTOK" : "FOR THE FEED")), React.createElement("div", {
@@ -16090,7 +16088,7 @@ function RecapScreen({
       style: {
         fontSize: 9,
         letterSpacing: 1.2,
-        color: "rgba(var(--ink-rgb),0.4)",
+        color: "var(--text-3)",
         marginBottom: 6
       }
     }, "🎵 ", selectedTrack ? "SOUNDTRACK" : _isPlusSub() ? "PICK A SONG (OPTIONAL)" : "🔒 CUSTOM SOUNDTRACK · PLURSKY+"), !_isPlusSub() && !selectedTrack ? React.createElement("div", {
@@ -16100,7 +16098,7 @@ function RecapScreen({
         borderRadius: 10,
         background: "rgba(var(--ink-rgb),0.04)",
         border: "1px solid rgba(var(--ink-rgb),0.08)",
-        color: "rgba(var(--ink-rgb),0.2)",
+        color: "var(--text-3)",
         fontSize: 10,
         textAlign: "center"
       }
@@ -16138,7 +16136,7 @@ function RecapScreen({
       className: "mono",
       style: {
         fontSize: 9,
-        color: "rgba(var(--ink-rgb),0.5)"
+        color: "var(--text-3)"
       }
     }, selectedTrack.artists?.[0]?.name)), React.createElement("button", {
       onClick: () => {
@@ -16153,7 +16151,7 @@ function RecapScreen({
       style: {
         background: "none",
         border: "none",
-        color: "rgba(var(--ink-rgb),0.4)",
+        color: "var(--text-3)",
         cursor: "pointer",
         fontSize: 14,
         padding: "4px"
@@ -16229,7 +16227,7 @@ function RecapScreen({
       className: "mono",
       style: {
         fontSize: 8,
-        color: "rgba(var(--ink-rgb),0.4)"
+        color: "var(--text-3)"
       }
     }, tr.artists?.[0]?.name)), React.createElement("div", {
       className: "mono",
@@ -16241,14 +16239,14 @@ function RecapScreen({
       className: "mono",
       style: {
         fontSize: 9,
-        color: "rgba(var(--ink-rgb),0.3)",
+        color: "var(--text-3)",
         marginTop: 4
       }
     }, "Searching…"), !searching && trackQuery.length >= 2 && !localStorage.getItem("spotify_token") && React.createElement("div", {
       className: "mono",
       style: {
         fontSize: 9,
-        color: "rgba(var(--ink-rgb),0.5)",
+        color: "var(--text-3)",
         marginTop: 4
       }
     }, "CONNECT SPOTIFY TO SEARCH SONGS"))), React.createElement("button", {
@@ -16524,7 +16522,7 @@ function RecapScreen({
         style: {
           fontSize: 8,
           letterSpacing: 1,
-          color: "rgba(var(--ink-rgb),0.4)",
+          color: "var(--text-3)",
           marginTop: 2
         }
       }, a._reason || stage?.name || "", " · ", FESTIVAL_CONFIG.dayDates?.[a.day]?.short || "", " ", window.fmt12?.(a.start) || a.start)), React.createElement("button", {
@@ -16563,7 +16561,7 @@ function RecapScreen({
       className: "mono",
       style: {
         fontSize: 10,
-        color: "rgba(var(--ink-rgb),0.5)",
+        color: "var(--text-3)",
         letterSpacing: 1.2
       }
     }, "+", discoveries.length - freeLimit, " MORE PICKS WAITING")))));
@@ -16706,7 +16704,7 @@ function RecapScreen({
     className: "mono",
     style: {
       fontSize: 9,
-      color: "rgba(var(--ink-rgb),0.3)",
+      color: "var(--text-3)",
       marginTop: 10,
       textAlign: "center",
       letterSpacing: 1.2
@@ -18075,7 +18073,7 @@ function NowPlayingBar() {
     style: {
       fontSize: 8,
       letterSpacing: 0.6,
-      color: "rgba(var(--ink-rgb),0.5)",
+      color: "var(--text-3)",
       marginTop: 2,
       overflow: "hidden",
       textOverflow: "ellipsis",
@@ -18189,7 +18187,7 @@ function NowPlayingBar() {
     style: {
       fontSize: 10,
       lineHeight: 1.4,
-      color: "rgba(var(--ink-rgb),0.6)",
+      color: "var(--text-3)",
       marginTop: 8
     }
   }, "Listens for up to 12 seconds to identify the track. Saves the song, set, stage, time, and location confidence — never the audio."), trialLive && cs.phase === "review" && React.createElement(LiveCheckinSheet, {

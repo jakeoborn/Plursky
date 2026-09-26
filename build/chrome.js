@@ -984,7 +984,7 @@ function InstallBanner() {
       fontSize: 12,
       lineHeight: 1.35,
       marginTop: 2,
-      color: "rgba(var(--ink-rgb),0.85)"
+      color: "var(--text-2)"
     }
   }, ip.isIOS ? React.createElement(React.Fragment, null, "Tap ", React.createElement("span", {
     style: {
@@ -1037,7 +1037,7 @@ function InstallBanner() {
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      color: "rgba(var(--ink-rgb),0.55)",
+      color: "var(--text-3)",
       padding: 4,
       flexShrink: 0,
       fontSize: 18,
@@ -2313,7 +2313,7 @@ function BatterySaverToast() {
       fontSize: 13,
       lineHeight: 1.35,
       marginTop: 2,
-      color: "rgba(var(--ink-rgb),0.85)"
+      color: "var(--text-2)"
     }
   }, reason)), React.createElement("button", {
     onClick: () => setDismissed(true),
@@ -2322,7 +2322,7 @@ function BatterySaverToast() {
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      color: "rgba(var(--ink-rgb),0.6)",
+      color: "var(--text-3)",
       fontSize: 18,
       lineHeight: 1,
       padding: 4
@@ -2466,147 +2466,110 @@ function BatterySaverCard() {
     }
   }, battPct, "% ", battery.charging ? "· CHARGING" : "")));
 }
-var THEME_PREF_KEY = "theme_pref";
-var _TH = window._TH = window._TH || {
-  mode: (() => {
-    try {
-      return localStorage.getItem(THEME_PREF_KEY) || "auto";
-    } catch {
-      return "auto";
+function _syncNativeAppearance(mode) {
+  try {
+    window.Capacitor?.Plugins?.Appearance?.setStyle?.({
+      style: mode
+    });
+  } catch {}
+}
+if (!window._appearanceNativeInited && window.PlurskyAppearance) {
+  window._appearanceNativeInited = true;
+  _syncNativeAppearance(window.PlurskyAppearance.mode());
+  window.PlurskyAppearance.onChange(m => _syncNativeAppearance(m));
+}
+function fitNames(root) {
+  if (!root) return;
+  for (var el of root.querySelectorAll("[data-fit-name]")) {
+    var base = parseFloat(el.dataset.fitBase || getComputedStyle(el).fontSize);
+    if (!el.dataset.fitBase) el.dataset.fitBase = String(base);
+    var min = parseFloat(el.dataset.fitMin || "14");
+    el.style.whiteSpace = "nowrap";
+    el.style.fontSize = base + "px";
+    var size = base;
+    while (el.scrollWidth > el.clientWidth + 1 && size > min) {
+      size -= 1;
+      el.style.fontSize = size + "px";
     }
-  })(),
-  listeners: new Set()
-};
-function resolveThemeClass(mode) {
-  return "theme-field";
-}
-function applyThemeClass() {
-  var next = resolveThemeClass(_TH.mode);
-  if (document.documentElement.className !== next) {
-    document.documentElement.className = next;
+    if (el.scrollWidth > el.clientWidth + 1) el.style.whiteSpace = "normal";
   }
-  return next;
 }
-function setThemeMode(mode) {
-  if (!["auto", "light", "dark"].includes(mode)) return;
-  _TH.mode = mode;
-  try {
-    localStorage.setItem(THEME_PREF_KEY, mode);
-  } catch {}
-  applyThemeClass();
-  _TH.listeners.forEach(fn => {
-    try {
-      fn(mode);
-    } catch {}
+function useFitNames(ref) {
+  React.useLayoutEffect(() => {
+    fitNames(ref.current);
   });
-}
-if (!window._thInited) {
-  window._thInited = true;
-  try {
-    applyThemeClass();
-  } catch {}
-}
-function useThemeMode() {
-  var [, force] = React.useReducer(x => x + 1, 0);
   React.useEffect(() => {
-    _TH.listeners.add(force);
-    return () => _TH.listeners.delete(force);
+    var onR = () => fitNames(ref.current);
+    window.addEventListener("resize", onR);
+    return () => window.removeEventListener("resize", onR);
   }, []);
+}
+function useAppearance() {
+  var A = window.PlurskyAppearance;
+  var [, force] = React.useReducer(x => x + 1, 0);
+  React.useEffect(() => A ? A.onChange(force) : undefined, []);
   return {
-    mode: _TH.mode,
-    setMode: setThemeMode
+    choice: A ? A.choice() : "system",
+    mode: A ? A.mode() : "dark",
+    set: c => A && A.set(c)
   };
 }
-function ThemeCard() {
+function AppearanceRow() {
   var {
-    mode,
-    setMode
-  } = useThemeMode();
-  var segs = [{
-    id: "auto",
-    label: "AUTO"
-  }, {
-    id: "light",
-    label: "LIGHT"
-  }, {
-    id: "dark",
-    label: "DARK"
-  }];
-  var activeClass = resolveThemeClass(mode);
-  var nowLabel = activeClass === "theme-night" ? "NIGHT" : activeClass === "theme-dawn" ? "DAWN" : activeClass === "theme-sunset" ? "SUNSET" : "LIGHT";
+    choice,
+    set
+  } = useAppearance();
+  var opts = [["system", "System"], ["dark", "Dark"], ["light", "Light"]];
   return React.createElement("div", {
-    style: {
-      padding: 14,
-      borderRadius: 14,
-      background: "var(--paper)",
-      border: "1px solid var(--line)",
-      marginBottom: 12
-    }
-  }, React.createElement("div", {
+    "data-appearance-row": true,
     style: {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      marginBottom: 6
+      gap: 12,
+      padding: "8px 8px 8px 16px",
+      borderRadius: 14,
+      marginBottom: 12,
+      background: "var(--paper-2)",
+      border: "1px solid var(--line)"
     }
   }, React.createElement("div", {
-    className: "mono",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.5,
-      color: "var(--muted)",
-      fontWeight: 700
+      fontSize: 15,
+      fontWeight: 600,
+      color: "var(--ink)"
     }
-  }, "THEME"), React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      fontWeight: 700
-    }
-  }, nowLabel)), React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 20,
-      lineHeight: 1.1,
-      marginBottom: 4
-    }
-  }, "Paper by day, stars by night"), React.createElement("div", {
-    style: {
-      fontSize: 13,
-      color: "var(--muted)",
-      lineHeight: 1.5,
-      marginBottom: 12
-    }
-  }, "Auto follows the sky during the festival. Pin light or dark anytime."), React.createElement("div", {
+  }, "Appearance"), React.createElement("div", {
+    role: "radiogroup",
+    "aria-label": "Appearance",
     style: {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
-      gap: 4,
-      background: "var(--paper-2)",
-      borderRadius: 999,
       padding: 3,
-      border: "1px solid var(--line)"
+      borderRadius: 999,
+      background: "var(--paper-3)",
+      flex: "none",
+      width: 222
     }
-  }, segs.map(s => {
-    var on = mode === s.id;
+  }, opts.map(([v, l]) => {
+    var on = choice === v;
     return React.createElement("button", {
-      key: s.id,
-      onClick: () => setMode(s.id),
+      key: v,
+      role: "radio",
+      "aria-checked": on,
+      "data-appearance": v,
+      onClick: () => set(v),
       style: {
-        background: on ? "var(--ink)" : "transparent",
-        color: on ? "var(--paper)" : "var(--ink)",
-        border: "none",
+        minHeight: 38,
+        border: 0,
         borderRadius: 999,
-        padding: "7px 10px",
-        fontFamily: "Geist Mono, monospace",
-        fontSize: 10,
-        letterSpacing: 1.2,
-        fontWeight: 700,
-        cursor: "pointer"
+        cursor: "pointer",
+        font: "600 14px/1 var(--font-ui)",
+        background: on ? "var(--paper)" : "transparent",
+        color: on ? "var(--ink)" : "var(--text-2)",
+        boxShadow: on ? "0 0 0 1px var(--line-2), 0 2px 6px -2px rgba(var(--shade-rgb),0.25)" : "none"
       }
-    }, s.label);
+    }, l);
   })));
 }
 function _useTickMs(intervalMs) {
@@ -2786,11 +2749,10 @@ Object.assign(window, {
   BatterySaverCard,
   BatterySaverToast,
   setBatterySaverMode,
-  useThemeMode,
-  ThemeCard,
-  setThemeMode,
-  resolveThemeClass,
-  applyThemeClass,
+  useAppearance,
+  AppearanceRow,
+  fitNames,
+  useFitNames,
   useOnlineStatus,
   StatusStrip,
   plurskyHaptic

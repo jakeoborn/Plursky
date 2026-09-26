@@ -2473,6 +2473,26 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-ap. Appearance: one system, two modes ──
+// Lane ruling 2026-09-26: Dark by default, System follows the iPhone, a pick
+// in Me (System / Dark / Light) wins and sticks; colours only. Every screen is
+// checked in BOTH modes, each loaded in one and toggled into the other: text
+// contrast (WCAG AA) against what is really behind it, text on a photo keeps
+// one colour, no colour left behind by a toggle (settled pixel diff on every
+// screenful), artist names never truncated (3+ chains as "First +N"), stages
+// never shown as codes, and the resolver rules. A mode-specific break fails.
+{
+  console.log("▸ Appearance gate — every screen in Dark and Light, names in full");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-appearance.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`appearance failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b5c2. Spotify artist images: attributed, temporary, never exported ──
 // Spotify's Developer Terms allow only temporary caching of Spotify cover art
 // and the Design Guidelines forbid cropping or overlaying it and require the
