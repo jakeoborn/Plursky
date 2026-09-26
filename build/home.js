@@ -2081,6 +2081,8 @@ function HomeScreen({
   }, React.createElement("path", {
     d: d
   }));
+  var essentialFacts = festivalEssentials(FESTIVAL_CONFIG);
+  var factChips = [entryAgeLabel(essentialFacts.entryAge), campingLabel(essentialFacts.camping)].filter(Boolean);
   var essentials = [{
     id: "map",
     label: "Map",
@@ -2119,6 +2121,12 @@ function HomeScreen({
     label: "Basics",
     icon: icon("M12 3 A9 9 0 1 0 12 21 A9 9 0 1 0 12 3 M12 11 V16 M12 8 V8.5"),
     onClick: () => setFirstTimerOpen(true)
+  }, essentialFacts.tickets && {
+    id: "tickets",
+    label: "Official tickets",
+    sub: "Opens the official seller",
+    href: essentialFacts.tickets,
+    icon: icon("M4 7 H20 V10 A2 2 0 0 0 20 14 V17 H4 V14 A2 2 0 0 0 4 10 Z M14 7 V17")
   }, {
     id: "alerts",
     label: "Alerts",
@@ -2273,7 +2281,28 @@ function HomeScreen({
     setState: setState
   })), savedRow, React.createElement("section", null, React.createElement(FieldSectionHeader, {
     title: "Festival essentials"
-  }), React.createElement(FieldMediaRow, null, essentials.map(({
+  }), factChips.length > 0 && React.createElement("ul", {
+    "aria-label": `${FESTIVAL_CONFIG.name} entry policy`,
+    style: {
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 8,
+      listStyle: "none",
+      margin: "0 0 12px",
+      padding: "0 20px"
+    }
+  }, factChips.map(t => React.createElement("li", {
+    key: t,
+    style: {
+      fontSize: 13,
+      lineHeight: "18px",
+      fontWeight: 600,
+      padding: "5px 10px",
+      borderRadius: 999,
+      background: "var(--paper-2)",
+      color: "var(--ink)"
+    }
+  }, t))), React.createElement(FieldMediaRow, null, essentials.map(({
     id,
     ...e
   }) => React.createElement(EssentialTile, {
@@ -3038,11 +3067,23 @@ function EssentialTile({
   label,
   sub,
   icon,
-  onClick
+  onClick,
+  href
 }) {
-  return React.createElement("button", {
-    onClick: onClick,
+  var Tag = href ? "a" : "button";
+  var linkProps = href ? {
+    href,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    "aria-label": `${label} (opens the official seller)`
+  } : {
+    onClick
+  };
+  return React.createElement(Tag, {
+    ...linkProps,
     style: {
+      textDecoration: "none",
+      boxSizing: "border-box",
       width: 112,
       minHeight: 96,
       flexShrink: 0,

@@ -219,6 +219,8 @@
 
   const CONFIG = {
     id:        "arc-2026",
+    // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+    essentialsSources: {"minimumAge": {"url": "https://arcmusicfestival.com/faqs/", "observedAt": "2026-09-26", "edition": "2026"}, "camping": {"url": "https://arcmusicfestival.com/faqs/", "observedAt": "2026-09-26", "edition": "2026"}},
     // From the SOURCE note above: arcmusicfestival.com/set-times, read 2026-09-06. Feeds /f/<id>/schedule.json.
     scheduleSource: { url: "https://arcmusicfestival.com/set-times", observedAt: "2026-09-06", official: true },
     name:      "ARC Music Festival 2026",
@@ -294,7 +296,7 @@
     mapPrintsStageNames: false,
     mapArtIsGeoregistered: false,
     // Published policy: 18+, no re-entry, cashless.
-    policies: { minimumAge: 18, alcoholAge: 21, reentry: false, cashless: true },
+    policies: { minimumAge: 18, alcoholAge: 21, reentry: false, cashless: true, camping: false },
   };
 
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};

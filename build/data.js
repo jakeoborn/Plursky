@@ -341,6 +341,22 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "lost-lands-2026",
+    policies: {
+      minimumAge: 18,
+      camping: true
+    },
+    essentialsSources: {
+      "minimumAge": {
+        "url": "https://www.lostlandsfestival.com/faq/",
+        "observedAt": "2026-09-26",
+        "edition": "2026"
+      },
+      "camping": {
+        "url": "https://www.lostlandsfestival.com/faq/",
+        "observedAt": "2026-09-26",
+        "edition": "2026"
+      }
+    },
     scheduleSource: {
       url: "https://github.com/johnta2000/johnta2000.github.io/blob/01315c1f03c0a01c9a8294132ac8cb6480a49ac3/convex/lostLandsSetTimes.ts",
       observedAt: "2026-09-10",
@@ -444,6 +460,29 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "edc-orlando-2026",
+    policies: {
+      minimumAge: 18,
+      camping: false
+    },
+    essentialsSources: {
+      "minimumAge": {
+        "url": "https://orlando.edc.com/tickets/",
+        "observedAt": "2026-09-26",
+        "edition": "2026"
+      },
+      "camping": {
+        "url": "https://orlando.edc.com/guide/hours-and-info/",
+        "observedAt": "2026-09-26",
+        "edition": "2026"
+      },
+      "tickets": {
+        "url": "https://edcorlando.frontgatetickets.com/",
+        "state": "on-sale",
+        "observedAt": "2026-09-26",
+        "edition": "2026",
+        "evidence": "https://orlando.edc.com/tickets/"
+      }
+    },
     lineupSource: {
       url: "https://orlando.edc.com/lineup/",
       observedAt: "2026-09-13",
@@ -555,6 +594,16 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "tomorrowland-2027",
+    policies: {
+      minimumAge: 18
+    },
+    essentialsSources: {
+      "minimumAge": {
+        "url": "https://faq.tomorrowland.com/hc/en-us/articles/360037215752-What-is-the-minimum-age-to-attend-Tomorrowland-Belgium-2027",
+        "observedAt": "2026-09-26",
+        "edition": "2027"
+      }
+    },
     officialEvent: {
       website: "https://belgium.tomorrowland.com/",
       observedAt: "2026-09-24"
@@ -574,6 +623,33 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "acl-2026",
+    policies: {
+      minimumAge: 0,
+      camping: false
+    },
+    officialEvent: {
+      website: "https://www.aclfestival.com/",
+      tickets: "https://www.aclfestival.com/tickets",
+      observedAt: "2026-09-26"
+    },
+    essentialsSources: {
+      "minimumAge": {
+        "url": "https://support.aclfestival.com/hc/en-us/articles/11266487580564-Age-and-Kids-Policy-Do-children-need-tickets",
+        "observedAt": "2026-09-26",
+        "edition": "2026"
+      },
+      "camping": {
+        "url": "https://support.aclfestival.com/hc/en-us/articles/48907691544724-Camping-at-the-Festival",
+        "observedAt": "2026-09-26",
+        "edition": "2026"
+      },
+      "tickets": {
+        "url": "https://www.aclfestival.com/tickets",
+        "state": "on-sale",
+        "observedAt": "2026-09-26",
+        "edition": "2026"
+      }
+    },
     scheduleSource: {
       url: "https://aclfestival.com/schedule",
       observedAt: "2026-09-04",
@@ -676,8 +752,25 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "coachella-2027",
+    policies: {
+      camping: true
+    },
+    essentialsSources: {
+      "camping": {
+        "url": "https://www.coachella.com/passes",
+        "observedAt": "2026-09-26",
+        "edition": "2027"
+      },
+      "tickets": {
+        "url": "https://www.coachella.com/passes",
+        "state": "sold-out",
+        "observedAt": "2026-09-26",
+        "edition": "2027"
+      }
+    },
     officialEvent: {
       website: "https://www.coachella.com/",
+      tickets: "https://www.coachella.com/passes",
       observedAt: "2026-09-24"
     },
     mapSource: {
@@ -700,6 +793,14 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "edc-mexico-2027",
+    essentialsSources: {
+      "tickets": {
+        "url": "https://edcmexico.frontgatetickets.com/",
+        "state": "on-sale",
+        "observedAt": "2026-09-26",
+        "edition": "2027"
+      }
+    },
     name: "EDC Mexico 2027",
     shortName: "EDC Mexico",
     brand: "EDC",
@@ -712,6 +813,7 @@ var FESTIVALS_REGISTRY = [{
       id: 548875,
       url: "https://mexico.electricdaisycarnival.com/",
       website: "https://mexico.edc.com/",
+      tickets: "https://edcmexico.frontgatetickets.com/",
       observedAt: "2026-09-10"
     }
   },
@@ -722,6 +824,28 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "beyond-wonderland-socal-2027",
+    policies: {
+      minimumAge: 18,
+      camping: false
+    },
+    essentialsSources: {
+      "minimumAge": {
+        "url": "https://socal.beyondwonderland.com/guide/hours-and-info/",
+        "observedAt": "2026-09-26",
+        "edition": "2027"
+      },
+      "camping": {
+        "url": "https://socal.beyondwonderland.com/guide/hours-and-info/",
+        "observedAt": "2026-09-26",
+        "edition": "2027"
+      },
+      "tickets": {
+        "url": "https://beyondsocal.frontgatetickets.com/",
+        "state": "on-sale",
+        "observedAt": "2026-09-26",
+        "edition": "2027"
+      }
+    },
     name: "Beyond Wonderland SoCal 2027",
     shortName: "Beyond SoCal",
     brand: "Beyond Wonderland",
@@ -745,6 +869,29 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "beyond-wonderland-gorge-2027",
+    policies: {
+      minimumAge: 18,
+      camping: true
+    },
+    essentialsSources: {
+      "minimumAge": {
+        "url": "https://beyondpnw.frontgatetickets.com/",
+        "observedAt": "2026-09-26",
+        "edition": "2027"
+      },
+      "camping": {
+        "url": "https://pnw.beyondwonderland.com/camping/",
+        "observedAt": "2026-09-26",
+        "edition": "2027"
+      },
+      "tickets": {
+        "url": "https://beyondpnw.frontgatetickets.com/",
+        "state": "on-sale",
+        "observedAt": "2026-09-26",
+        "edition": "2027",
+        "evidence": "https://pnw.beyondwonderland.com/"
+      }
+    },
     name: "Beyond Wonderland at The Gorge 2027",
     shortName: "Beyond Gorge",
     brand: "Beyond Wonderland",
@@ -2578,6 +2725,27 @@ for (var _id of _WAVE1_IDS) {
   });
 }
 var _regConfig = id => FESTIVALS_REGISTRY.find(f => f.config.id === id).config;
+var TICKETS_FRESH_DAYS = 45;
+function festivalEssentials(cfg, nowMs = Date.now()) {
+  var p = cfg && cfg.policies || {};
+  var oe = cfg && cfg.officialEvent || {};
+  var t = cfg && cfg.essentialsSources && cfg.essentialsSources.tickets;
+  var ended = Number.isFinite(cfg && cfg.endMs) && nowMs > cfg.endMs;
+  var tickets = null;
+  if (!ended && typeof oe.tickets === "string" && t && t.state === "on-sale" && t.url === oe.tickets && t.observedAt) {
+    var days = (nowMs - Date.parse(`${t.observedAt}T00:00:00Z`)) / 864e5;
+    if (days >= 0 && days <= TICKETS_FRESH_DAYS) tickets = oe.tickets;
+  }
+  return {
+    entryAge: Number.isInteger(p.minimumAge) && p.minimumAge >= 0 ? p.minimumAge : null,
+    alcoholAge: Number.isInteger(p.alcoholAge) ? p.alcoholAge : null,
+    camping: typeof p.camping === "boolean" ? p.camping : null,
+    tickets,
+    ticketState: ended ? "ended" : t && t.state || null
+  };
+}
+var entryAgeLabel = n => n == null ? null : n === 0 ? "All ages" : `Entry ${n}+`;
+var campingLabel = v => v === true ? "Camping on site" : v === false ? "No camping" : null;
 var _regEntry = id => FESTIVALS_REGISTRY.find(f => f && f.config && f.config.id === id) || null;
 function isScheduleTBA(id) {
   var e = _regEntry(id || (typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.id : null));
@@ -2640,6 +2808,9 @@ Object.assign(window, {
   festivalCanBeActive,
   setActiveFestivalAndReload,
   isScheduleTBA,
+  festivalEssentials,
+  entryAgeLabel,
+  campingLabel,
   _resolveDefaultFestivalId,
   resolvedStageAnchors,
   resolvedStageAnchor,

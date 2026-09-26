@@ -269,6 +269,8 @@
 
   const CONFIG = {
     id:        "escape-halloween-2026",
+    // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+    essentialsSources: {"minimumAge": {"url": "https://escapehalloween.com/guide/hours-and-info/", "observedAt": "2026-09-26", "edition": "2026"}, "camping": {"url": "https://escapehalloween.com/guide/hours-and-info/", "observedAt": "2026-09-26", "edition": "2026"}, "tickets": {"url": "https://escapehalloween.frontgatetickets.com/", "state": "on-sale", "observedAt": "2026-09-26", "edition": "2026"}},
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
     lineupSource: { url: "https://escapehalloween.com/lineup/", observedAt: "2026-09-07", official: true },
@@ -355,7 +357,7 @@
     mapArtIsGeoregistered: false,
     // Published policy: 18+ entry, 21+ alcohol, no ins-and-outs. NOT
     // cashless — the FAQ says ATMs are available inside and outside.
-    policies: { minimumAge: 18, alcoholAge: 21, reentry: false, cashless: false },
+    policies: { minimumAge: 18, alcoholAge: 21, reentry: false, cashless: false, camping: false },
   };
 
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};

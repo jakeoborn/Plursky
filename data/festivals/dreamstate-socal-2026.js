@@ -267,6 +267,8 @@
 
   const CONFIG = {
     id:        "dreamstate-socal-2026",
+    // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+    essentialsSources: {"minimumAge": {"url": "https://socal.dreamstateusa.com/hours-and-info/", "observedAt": "2026-09-26", "edition": "2026"}, "camping": {"url": "https://socal.dreamstateusa.com/hours-and-info/", "observedAt": "2026-09-26", "edition": "2026"}, "tickets": {"url": "https://dreamstate.frontgatetickets.com/", "state": "on-sale", "observedAt": "2026-09-26", "edition": "2026"}},
     // Hours as the festival's OWN page prints them (24h wall clock, local):
     // label is the page's word for the window ("Gates", "Festival", "Event").
     // No published value means no field — never inferred from an older year.
@@ -346,7 +348,7 @@
     // Nothing to register — not a waiver.
     mapArtIsGeoregistered: false,
     // Published policy, drives FAQ copy only.
-    policies: { reentry: false, alcoholAge: 21 },
+    policies: { reentry: false, alcoholAge: 21, minimumAge: 18, camping: false },
   };
 
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};

@@ -402,6 +402,9 @@ const FESTIVALS_REGISTRY = [
     // "real" with no anchors (decided 2026-09-07, see the map block below).
     config: {
       id:        "lost-lands-2026",
+      policies: { minimumAge: 18, camping: true },
+      // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+      essentialsSources: {"minimumAge": {"url": "https://www.lostlandsfestival.com/faq/", "observedAt": "2026-09-26", "edition": "2026"}, "camping": {"url": "https://www.lostlandsfestival.com/faq/", "observedAt": "2026-09-26", "edition": "2026"}},
       // The SCHEDULE block's source: a public capture of the official Lost
       // Lands app (v10.0.0, captured 2026-09-10) — third-party, so official: false.
       scheduleSource: { url: "https://github.com/johnta2000/johnta2000.github.io/blob/01315c1f03c0a01c9a8294132ac8cb6480a49ac3/convex/lostLandsSetTimes.ts", observedAt: "2026-09-10", official: false },
@@ -608,6 +611,9 @@ const FESTIVALS_REGISTRY = [
     // stages the 2026 layout actually moves.
     config: {
       id:        "edc-orlando-2026",
+      policies: { minimumAge: 18, camping: false },
+      // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+      essentialsSources: {"minimumAge": {"url": "https://orlando.edc.com/tickets/", "observedAt": "2026-09-26", "edition": "2026"}, "camping": {"url": "https://orlando.edc.com/guide/hours-and-info/", "observedAt": "2026-09-26", "edition": "2026"}, "tickets": {"url": "https://edcorlando.frontgatetickets.com/", "state": "on-sale", "observedAt": "2026-09-26", "edition": "2026", "evidence": "https://orlando.edc.com/tickets/"}},
       // Where the lineup rows came from (the SOURCE note above), as data so the
       // public /f/ page can cite it. observedAt = the date it was read.
       lineupSource: { url: "https://orlando.edc.com/lineup/", observedAt: "2026-09-13", official: true },
@@ -732,6 +738,9 @@ const FESTIVALS_REGISTRY = [
     // 23–25 either — that is our arithmetic, not an announcement.
     config: {
       id:        "tomorrowland-2027",
+      policies: { minimumAge: 18 },
+      // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+      essentialsSources: {"minimumAge": {"url": "https://faq.tomorrowland.com/hc/en-us/articles/360037215752-What-is-the-minimum-age-to-attend-Tomorrowland-Belgium-2027", "observedAt": "2026-09-26", "edition": "2027"}},
       // The Belgium edition's own site, linked from tomorrowland.com (whose
       // 2027 news is Tomorrowland Brasil); client-rendered, so its text could
       // not be read automatically. Checked reachable 2026-09-24.
@@ -752,6 +761,10 @@ const FESTIVALS_REGISTRY = [
   {
     config: {
       id:        "acl-2026",
+      policies: { minimumAge: 0, camping: false },
+      officialEvent: { website: "https://www.aclfestival.com/", tickets: "https://www.aclfestival.com/tickets", observedAt: "2026-09-26" },
+      // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+      essentialsSources: {"minimumAge": {"url": "https://support.aclfestival.com/hc/en-us/articles/11266487580564-Age-and-Kids-Policy-Do-children-need-tickets", "observedAt": "2026-09-26", "edition": "2026"}, "camping": {"url": "https://support.aclfestival.com/hc/en-us/articles/48907691544724-Camping-at-the-Festival", "observedAt": "2026-09-26", "edition": "2026"}, "tickets": {"url": "https://www.aclfestival.com/tickets", "state": "on-sale", "observedAt": "2026-09-26", "edition": "2026"}},
       // The ACL_ARTISTS header: official posters on aclfestival.com/schedule,
       // transcribed Sep 3–4 2026.
       scheduleSource: { url: "https://aclfestival.com/schedule", observedAt: "2026-09-04", official: true },
@@ -876,8 +889,11 @@ const FESTIVALS_REGISTRY = [
   {
     config: {
       id:        "coachella-2027",
+      policies: { camping: true },
+      // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+      essentialsSources: {"camping": {"url": "https://www.coachella.com/passes", "observedAt": "2026-09-26", "edition": "2027"}, "tickets": {"url": "https://www.coachella.com/passes", "state": "sold-out", "observedAt": "2026-09-26", "edition": "2027"}},
       // Official site, checked reachable 2026-09-24. No 2027 lineup yet.
-      officialEvent: { website: "https://www.coachella.com/", observedAt: "2026-09-24" },
+      officialEvent: { website: "https://www.coachella.com/", tickets: "https://www.coachella.com/passes", observedAt: "2026-09-24" },
       // The festival's OWN maps page ("Coachella 2026 Venue map" + directions,
       // parking, camping). Link the page; never hotlink or re-host the images.
       mapSource: { url: "https://www.coachella.com/maps", observedAt: "2026-09-24", mapYear: 2026 },
@@ -908,6 +924,8 @@ const FESTIVALS_REGISTRY = [
     // edition. No 2027 lineup is published.
     config: {
       id:        "edc-mexico-2027",
+      // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+      essentialsSources: {"tickets": {"url": "https://edcmexico.frontgatetickets.com/", "state": "on-sale", "observedAt": "2026-09-26", "edition": "2027"}},
       name:      "EDC Mexico 2027",
       shortName: "EDC Mexico",
       brand:     "EDC",
@@ -918,7 +936,7 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Autódromo Hermanos Rodríguez",
       dates:     "Feb 19–21, 2027",
       year:      2027,
-      officialEvent: { id: 548875, url: "https://mexico.electricdaisycarnival.com/", website: "https://mexico.edc.com/", observedAt: "2026-09-10" },
+      officialEvent: { id: 548875, url: "https://mexico.electricdaisycarnival.com/", website: "https://mexico.edc.com/", tickets: "https://edcmexico.frontgatetickets.com/", observedAt: "2026-09-10" },
     },
     available: false,
     accent:    "#f43f5e",
@@ -931,6 +949,9 @@ const FESTIVALS_REGISTRY = [
     // 18+. Artists not announced (/lineup/ is headed "2026 Lineup").
     config: {
       id:        "beyond-wonderland-socal-2027",
+      policies: { minimumAge: 18, camping: false },
+      // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+      essentialsSources: {"minimumAge": {"url": "https://socal.beyondwonderland.com/guide/hours-and-info/", "observedAt": "2026-09-26", "edition": "2027"}, "camping": {"url": "https://socal.beyondwonderland.com/guide/hours-and-info/", "observedAt": "2026-09-26", "edition": "2027"}, "tickets": {"url": "https://beyondsocal.frontgatetickets.com/", "state": "on-sale", "observedAt": "2026-09-26", "edition": "2027"}},
       name:      "Beyond Wonderland SoCal 2027",
       shortName: "Beyond SoCal",
       brand:     "Beyond Wonderland",
@@ -956,6 +977,9 @@ const FESTIVALS_REGISTRY = [
     // NW, George, WA 98848". Artists not announced (/lineup/ is the 2026 list).
     config: {
       id:        "beyond-wonderland-gorge-2027",
+      policies: { minimumAge: 18, camping: true },
+      // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+      essentialsSources: {"minimumAge": {"url": "https://beyondpnw.frontgatetickets.com/", "observedAt": "2026-09-26", "edition": "2027"}, "camping": {"url": "https://pnw.beyondwonderland.com/camping/", "observedAt": "2026-09-26", "edition": "2027"}, "tickets": {"url": "https://beyondpnw.frontgatetickets.com/", "state": "on-sale", "observedAt": "2026-09-26", "edition": "2027", "evidence": "https://pnw.beyondwonderland.com/"}},
       name:      "Beyond Wonderland at The Gorge 2027",
       shortName: "Beyond Gorge",
       brand:     "Beyond Wonderland",
@@ -3319,6 +3343,42 @@ for (const _id of _WAVE1_IDS) {
 
 const _regConfig = (id) => FESTIVALS_REGISTRY.find(f => f.config.id === id).config;
 
+// ── Festival essentials: entry age, camping, official tickets ────────────
+// Four INDEPENDENT claims, each read from the config and nowhere else:
+//   policies.minimumAge  entry age (0 = all ages). NEVER derived from
+//                        alcoholAge: a 21+ bar is not a 21+ gate.
+//   policies.alcoholAge  drinking age, kept separate.
+//   policies.camping     true/false only with edition evidence; absent means
+//                        UNKNOWN, never "no".
+//   officialEvent.tickets the primary purchase URL. The CTA shows only while
+//                        essentialsSources.tickets says "on-sale" for that
+//                        same URL, read within TICKETS_FRESH_DAYS, and the
+//                        festival has not ended: an old link never sells.
+// essentialsSources.<field> = { url, observedAt, edition } is the provenance
+// for each backfilled fact (tickets add `state`). The app screens and the
+// public /f/ pages both call this, so they cannot disagree.
+const TICKETS_FRESH_DAYS = 45;
+function festivalEssentials(cfg, nowMs = Date.now()) {
+  const p = (cfg && cfg.policies) || {};
+  const oe = (cfg && cfg.officialEvent) || {};
+  const t = cfg && cfg.essentialsSources && cfg.essentialsSources.tickets;
+  const ended = Number.isFinite(cfg && cfg.endMs) && nowMs > cfg.endMs;
+  let tickets = null;
+  if (!ended && typeof oe.tickets === "string" && t && t.state === "on-sale" && t.url === oe.tickets && t.observedAt) {
+    const days = (nowMs - Date.parse(`${t.observedAt}T00:00:00Z`)) / 864e5;
+    if (days >= 0 && days <= TICKETS_FRESH_DAYS) tickets = oe.tickets;
+  }
+  return {
+    entryAge: Number.isInteger(p.minimumAge) && p.minimumAge >= 0 ? p.minimumAge : null,
+    alcoholAge: Number.isInteger(p.alcoholAge) ? p.alcoholAge : null,
+    camping: typeof p.camping === "boolean" ? p.camping : null,
+    tickets,
+    ticketState: ended ? "ended" : (t && t.state) || null,
+  };
+}
+const entryAgeLabel = (n) => n == null ? null : n === 0 ? "All ages" : `Entry ${n}+`;
+const campingLabel = (v) => v === true ? "Camping on site" : v === false ? "No camping" : null;
+
 // The registry entry for a festival, and the one question the UI asks of it:
 // is this festival open with its set times still unpublished? `scheduleTBA`
 // lives on the REGISTRY entry, not on FESTIVAL_CONFIG, so every screen that
@@ -3367,6 +3427,7 @@ Object.assign(window, {
   STAGES: _active.stages, AMENITIES: _active.amenities, AVATAR_START: avatarStartFor(_active), avatarStartFor, FRIENDS, ARTISTS: _active.artists,
   NOW, ALERTS, ESSENTIALS, fmt12,
   FESTIVALS_REGISTRY, getActiveFestivalId, festivalCanBeActive, setActiveFestivalAndReload, isScheduleTBA,
+  festivalEssentials, entryAgeLabel, campingLabel,
   _resolveDefaultFestivalId,
   resolvedStageAnchors, resolvedStageAnchor, dayDateFor, _weekendShiftMs,
   _DATA_SETS, WALK_TABLE_FESTIVAL_ID,

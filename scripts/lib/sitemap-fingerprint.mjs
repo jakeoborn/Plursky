@@ -104,6 +104,9 @@ export const FINGERPRINTED_CONFIG_FIELDS = [
   'weekendStartMs',  // weekend headings, per-weekend rows and the weekends answer
   'officialEvent',   // the official-site link in Sources and on a no-lineup page
   'lineupSource',    // the Lineup row in Sources
+  'policies',        // entry-age and camping chips (via festivalEssentials)
+  'essentialsSources', // their Sources rows and the ticket CTA's state/date
+  'endMs',           // an ended festival drops its ticket CTA
 ];
 
 // Top-level registry-entry fields that reach rendered output.
@@ -135,7 +138,7 @@ export const EXCLUDED_ENTRY_FIELDS = {
 // test can diff WHICH field moved instead of only that something did.
 // `templateFp` is an override for the regression test only; production always
 // derives it from the generator source on disk.
-export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, templateFp }) {
+export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, templateFp, festivalEssentials }) {
   const cfg = entry.config;
   const ds = DS[cfg.id] || {};
   const d = eventDates(cfg);
@@ -179,6 +182,13 @@ export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, t
     weekendStartMs: cfg.weekendStartMs || null,
     officialEvent: cfg.officialEvent || null,
     lineupSource: cfg.lineupSource || null,
+    policies: cfg.policies || null,
+    essentialsSources: cfg.essentialsSources || null,
+    endMs: cfg.endMs ?? null,
+    // The ticket CTA also moves with the calendar (ended, or its check went
+    // stale), so the RESOLVED output is hashed, at the same instant the
+    // generator renders it.
+    essentials: festivalEssentials ? festivalEssentials(cfg, Date.parse(`${TODAY}T12:00:00Z`)) : null,
     // Page sections fed from outside the registry, through the SAME helpers
     // the generator renders with (scripts/lib/festival-page-data.mjs).
     plate: (() => { const p = plateFor(cfg); return p ? [p.file, p.w, p.h, fp(p.svg)] : null; })(),

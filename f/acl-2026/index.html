@@ -33,6 +33,9 @@
           color:var(--ink); font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
   .chip-live, .chip-soon { border-color:var(--ember); color:var(--ember); }
   .note { color:var(--muted); font-size:14px; }
+  ul.facts { list-style:none; padding:0; margin:8px 0 12px; display:flex; flex-wrap:wrap; gap:8px; }
+  ul.facts li { padding:3px 12px; border-radius:999px; background:var(--panel); border:1px solid var(--line); font-size:14px; font-weight:600; }
+  p.tickets a { color:var(--ink); font-weight:700; text-underline-offset:3px; }
   figure { margin:16px 0; }
   figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:12px; background:var(--panel); }
   .platebox { position:relative; max-width:520px; }
@@ -737,7 +740,7 @@
 <main>
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Plursky</a> › <a href="/#festivals">Festivals</a> › <span aria-current="page">Austin City Limits 2026</span></nav>
   <h1>Austin City Limits 2026</h1>
-  <p class="meta"><span class="chip chip-upcoming">Upcoming</span>Oct 2–4 &amp; 9–11, 2026 · Zilker Park · Austin, TX</p>
+  <p class="meta"><span class="chip chip-soon">This weekend</span>Oct 2–4 &amp; 9–11, 2026 · Zilker Park · Austin, TX</p>
   <p>Two weekends in Zilker Park</p>
 
   <section aria-labelledby="answers-h">
@@ -1311,6 +1314,8 @@
 
   <section aria-labelledby="plan-h">
     <h2 id="plan-h">Plan your day at Austin City Limits 2026</h2>
+    <ul class="facts" aria-label="Entry policy"><li>All ages</li><li>No camping</li></ul>
+    <p class="tickets"><a href="https://www.aclfestival.com/tickets" rel="noopener">Official tickets</a> <span class="note">Primary seller, checked 2026-09-26.</span></p>
     <p>Amenities Plursky lists for Austin City Limits 2026: Water (8) · Restrooms (7) · Medical (4) · Food (2).</p>
   </section>
 
@@ -1354,10 +1359,13 @@
   <section class="sources" aria-labelledby="sources-h">
     <h2 id="sources-h">Sources</h2>
     <ul>
+      <li>Official site: <a href="https://www.aclfestival.com/" rel="noopener">https://www.aclfestival.com/</a></li>
       <li>Set times: <a href="https://aclfestival.com/schedule" rel="noopener">https://aclfestival.com/schedule</a> (official, checked 2026-09-04)</li>
       <li>Map: <a href="https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map" rel="noopener">https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map</a> (official, checked 2026-09-24)</li>
+      <li>Entry age: <a href="https://support.aclfestival.com/hc/en-us/articles/11266487580564-Age-and-Kids-Policy-Do-children-need-tickets" rel="noopener">https://support.aclfestival.com/hc/en-us/articles/11266487580564-Age-and-Kids-Policy-Do-children-need-tickets</a> (official, 2026 edition, checked 2026-09-26)</li>
+      <li>Camping: <a href="https://support.aclfestival.com/hc/en-us/articles/48907691544724-Camping-at-the-Festival" rel="noopener">https://support.aclfestival.com/hc/en-us/articles/48907691544724-Camping-at-the-Festival</a> (official, 2026 edition, checked 2026-09-26)</li>
     </ul>
-    <p class="note">Last updated <time class="updated" datetime="2026-09-25">2026-09-25</time>.</p>
+    <p class="note">Last updated <time class="updated" datetime="2026-09-26">2026-09-26</time>.</p>
   </section>
 
   <footer>

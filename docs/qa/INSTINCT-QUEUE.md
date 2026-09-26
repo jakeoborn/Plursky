@@ -102,6 +102,37 @@ from `_DATA_SETS`. Ordered by start date; entries without one sort last.
 | Dreamstate SoCal 2026 | `dreamstate-socal-2026` | Nov 20–21, 2026 | 70 | 0 | 70 | 0 | live |
 | Decadence Colorado 2026 | `decadence-colorado-2026` | Dec 30–31, 2026 | 23 | 0 | 23 | 0 | live |
 | Countdown NYE 2026 | `countdown-nye-2026` | Dec 31, 2026 – Jan 1, 2027 | 71 | 0 | 71 | 0 | live |
+
+**Festival essentials: entry age 18/25 verified · camping 14/25 · official ticket state 15/25.**
+First-party, per edition (`essentialsSources`); unknown stays unknown and never shows in the app.
+
+| Festival | Id | Entry age | Camping | Official tickets |
+|---|---|---|---|---|
+| Ultra Miami 2026 | `ultra-miami-2026` | unknown | unknown | unknown |
+| EDC Las Vegas 2026 | `edc-lv-2026` | unknown | unknown | unknown |
+| Governors Ball 2026 | `governors-ball-2026` | All ages | no | unknown |
+| Summerfest 2026 | `summerfest-2026` | unknown | unknown | unknown |
+| Lollapalooza 2026 | `lollapalooza-2026` | All ages | unknown | unknown |
+| HARD Summer 2026 | `hard-summer-2026` | Entry 18+ | no | ended (checked 2026-09-26) |
+| Outside Lands 2026 | `outside-lands-2026` | All ages | no | unknown |
+| ARC Music Festival 2026 | `arc-2026` | Entry 18+ | no | unknown |
+| Lost Lands 2026 | `lost-lands-2026` | Entry 18+ | yes | unknown |
+| Nocturnal Wonderland 2026 | `nocturnal-wonderland-2026` | Entry 18+ | yes | ended (checked 2026-09-26) |
+| CRSSD Fest Fall 2026 | `crssd-fall-2026` | Entry 21+ | unknown | on-sale (checked 2026-09-26) |
+| Portola 2026 | `portola-2026` | Entry 21+ | unknown | on-sale (checked 2026-09-26) |
+| Austin City Limits 2026 | `acl-2026` | All ages | no | on-sale (checked 2026-09-26) |
+| III Points 2026 | `iii-points-2026` | unknown | no | on-sale (checked 2026-09-26) |
+| Escape Halloween 2026 | `escape-halloween-2026` | Entry 18+ | no | on-sale (checked 2026-09-26) |
+| EDC Orlando 2026 | `edc-orlando-2026` | Entry 18+ | no | on-sale (checked 2026-09-26) |
+| Dreamstate SoCal 2026 | `dreamstate-socal-2026` | Entry 18+ | no | on-sale (checked 2026-09-26) |
+| Decadence Colorado 2026 | `decadence-colorado-2026` | Entry 18+ | unknown | on-sale (checked 2026-09-26) |
+| Countdown NYE 2026 | `countdown-nye-2026` | Entry 18+ | unknown | on-sale (checked 2026-09-26) |
+| Beyond Wonderland at The Gorge 2027 | `beyond-wonderland-gorge-2027` | Entry 18+ | yes | on-sale (checked 2026-09-26) |
+| Beyond Wonderland SoCal 2027 | `beyond-wonderland-socal-2027` | Entry 18+ | no | on-sale (checked 2026-09-26) |
+| Coachella 2027 | `coachella-2027` | unknown | yes | sold-out (checked 2026-09-26) |
+| EDC Mexico 2027 | `edc-mexico-2027` | unknown | unknown | on-sale (checked 2026-09-26) |
+| Electric Forest 2027 | `electric-forest-2027` | unknown | unknown | unknown |
+| Tomorrowland 2027 | `tomorrowland-2027` | Entry 18+ | unknown | unknown |
 <!-- festival-status:end -->
 
 ### Ordering (Jake, 2026-09-12)

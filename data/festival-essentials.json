@@ -1,0 +1,131 @@
+{
+ "observedAt": "2026-09-26",
+ "note": "Verified values only; unknown = null. Unknowns and conflicts live in the private backfill ledger.",
+ "festivals": {
+  "acl-2026": {
+   "entryAge": 0,
+   "camping": false,
+   "tickets": "https://www.aclfestival.com/tickets"
+  },
+  "arc-2026": {
+   "entryAge": 18,
+   "camping": false,
+   "tickets": null
+  },
+  "beyond-wonderland-gorge-2027": {
+   "entryAge": 18,
+   "camping": true,
+   "tickets": "https://beyondpnw.frontgatetickets.com/"
+  },
+  "beyond-wonderland-socal-2027": {
+   "entryAge": 18,
+   "camping": false,
+   "tickets": "https://beyondsocal.frontgatetickets.com/"
+  },
+  "coachella-2027": {
+   "entryAge": null,
+   "camping": true,
+   "tickets": "https://www.coachella.com/passes"
+  },
+  "countdown-nye-2026": {
+   "entryAge": 18,
+   "camping": null,
+   "tickets": "https://countdownnye.frontgatetickets.com/"
+  },
+  "crssd-fall-2026": {
+   "entryAge": 21,
+   "camping": null,
+   "tickets": "https://events.leapevents.com/event/fngrs-crssd-presents-crssd-festival-fall-26/tag/website"
+  },
+  "decadence-colorado-2026": {
+   "entryAge": 18,
+   "camping": null,
+   "tickets": "https://www.axs.com/festivals/1583425"
+  },
+  "dreamstate-socal-2026": {
+   "entryAge": 18,
+   "camping": false,
+   "tickets": "https://dreamstate.frontgatetickets.com/"
+  },
+  "edc-lv-2026": {
+   "entryAge": null,
+   "camping": null,
+   "tickets": null
+  },
+  "edc-mexico-2027": {
+   "entryAge": null,
+   "camping": null,
+   "tickets": "https://edcmexico.frontgatetickets.com/"
+  },
+  "edc-orlando-2026": {
+   "entryAge": 18,
+   "camping": false,
+   "tickets": "https://edcorlando.frontgatetickets.com/"
+  },
+  "electric-forest-2027": {
+   "entryAge": null,
+   "camping": null,
+   "tickets": null
+  },
+  "escape-halloween-2026": {
+   "entryAge": 18,
+   "camping": false,
+   "tickets": "https://escapehalloween.frontgatetickets.com/"
+  },
+  "governors-ball-2026": {
+   "entryAge": 0,
+   "camping": false,
+   "tickets": null
+  },
+  "hard-summer-2026": {
+   "entryAge": 18,
+   "camping": false,
+   "tickets": "https://www.hardsummer.com/tickets/"
+  },
+  "iii-points-2026": {
+   "entryAge": null,
+   "camping": false,
+   "tickets": "https://iiipoints.frontgatetickets.com/"
+  },
+  "lollapalooza-2026": {
+   "entryAge": 0,
+   "camping": null,
+   "tickets": null
+  },
+  "lost-lands-2026": {
+   "entryAge": 18,
+   "camping": true,
+   "tickets": null
+  },
+  "nocturnal-wonderland-2026": {
+   "entryAge": 18,
+   "camping": true,
+   "tickets": "https://nocturnal.frontgatetickets.com/"
+  },
+  "outside-lands-2026": {
+   "entryAge": 0,
+   "camping": false,
+   "tickets": null
+  },
+  "portola-2026": {
+   "entryAge": 21,
+   "camping": null,
+   "tickets": "https://www.axs.com/events/1434447/portola-2026-tickets?skin=portola"
+  },
+  "summerfest-2026": {
+   "entryAge": null,
+   "camping": null,
+   "tickets": null
+  },
+  "tomorrowland-2027": {
+   "entryAge": 18,
+   "camping": null,
+   "tickets": null
+  },
+  "ultra-miami-2026": {
+   "entryAge": null,
+   "camping": null,
+   "tickets": null
+  }
+ }
+}

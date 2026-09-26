@@ -214,6 +214,9 @@
 
   const CONFIG = {
     id:        "portola-2026",
+    officialEvent: { website: "https://portolamusicfestival.com/", tickets: "https://www.axs.com/events/1434447/portola-2026-tickets?skin=portola", observedAt: "2026-09-26" },
+    // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+    essentialsSources: {"minimumAge": {"url": "https://portolamusicfestival.com/faq/", "observedAt": "2026-09-26", "edition": "2026"}, "tickets": {"url": "https://www.axs.com/events/1434447/portola-2026-tickets?skin=portola", "state": "on-sale", "observedAt": "2026-09-26", "edition": "2026", "evidence": "https://portolamusicfestival.com/"}},
     // From the SOURCE note above: portolamusicfestival.com/set-times, read 2026-09-06. Feeds /f/<id>/schedule.json.
     scheduleSource: { url: "https://portolamusicfestival.com/set-times", observedAt: "2026-09-06", official: true },
     name:      "Portola 2026",

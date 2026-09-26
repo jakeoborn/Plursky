@@ -1642,6 +1642,8 @@ function HomeScreen({ state, setState }) {
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d={d}/></svg>
   );
+  const essentialFacts = festivalEssentials(FESTIVAL_CONFIG);
+  const factChips = [entryAgeLabel(essentialFacts.entryAge), campingLabel(essentialFacts.camping)].filter(Boolean);
   const essentials = [
     { id: "map", label: "Map", icon: icon("M9 4 L3 6 V20 L9 18 L15 20 L21 18 V4 L15 6 Z M9 4 V18 M15 6 V20"),
       onClick: () => setState({ ...state, tab: "map" }) },
@@ -1657,6 +1659,11 @@ function HomeScreen({ state, setState }) {
       onClick: () => setSheet("upcoming") },
     { id: "basics", label: "Basics", icon: icon("M12 3 A9 9 0 1 0 12 21 A9 9 0 1 0 12 3 M12 11 V16 M12 8 V8.5"),
       onClick: () => setFirstTimerOpen(true) },
+    // Only a verified, current primary sale (festivalEssentials). Never a
+    // resale link, never an old one, never after the festival ends.
+    essentialFacts.tickets && { id: "tickets", label: "Official tickets", sub: "Opens the official seller",
+      href: essentialFacts.tickets,
+      icon: icon("M4 7 H20 V10 A2 2 0 0 0 20 14 V17 H4 V14 A2 2 0 0 0 4 10 Z M14 7 V17") },
     { id: "alerts", label: "Alerts", sub: unread ? `${unread} new` : null, icon: icon("M6 9 C6 5.5 8.5 3 12 3 C15.5 3 18 5.5 18 9 L18 13 L20 16 L4 16 L6 13 Z M10 19 Q12 21 14 19"),
       onClick: () => setAlertsOpen(true) },
   ].filter(Boolean);
@@ -1733,6 +1740,18 @@ function HomeScreen({ state, setState }) {
 
         <section>
           <FieldSectionHeader title="Festival essentials" />
+          {factChips.length > 0 && (
+            <ul aria-label={`${FESTIVAL_CONFIG.name} entry policy`} style={{
+              display: "flex", flexWrap: "wrap", gap: 8, listStyle: "none", margin: "0 0 12px", padding: "0 20px",
+            }}>
+              {factChips.map(t => (
+                <li key={t} style={{
+                  fontSize: 13, lineHeight: "18px", fontWeight: 600, padding: "5px 10px", borderRadius: 999,
+                  background: "var(--paper-2)", color: "var(--ink)",
+                }}>{t}</li>
+              ))}
+            </ul>
+          )}
           <FieldMediaRow>
             {essentials.map(({ id, ...e }) => <EssentialTile key={id} {...e} />)}
           </FieldMediaRow>
@@ -2102,9 +2121,13 @@ function SavedTile({ a, onOpen }) {
   );
 }
 
-function EssentialTile({ label, sub, icon, onClick }) {
+function EssentialTile({ label, sub, icon, onClick, href }) {
+  // An external destination is a real link (opens outside the app), not a
+  // button pretending to be one.
+  const Tag = href ? "a" : "button";
+  const linkProps = href ? { href, target: "_blank", rel: "noopener noreferrer", "aria-label": `${label} (opens the official seller)` } : { onClick };
   return (
-    <button onClick={onClick} style={{
+    <Tag {...linkProps} style={{ textDecoration: "none", boxSizing: "border-box",
       width: 112, minHeight: 96, flexShrink: 0, scrollSnapAlign: "start",
       display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 12,
       padding: 14, background: "var(--paper-2)", border: "none", borderRadius: 14,
@@ -2115,7 +2138,7 @@ function EssentialTile({ label, sub, icon, onClick }) {
         {label}
         {sub && <span style={{ display: "block", fontSize: 13, lineHeight: "18px", fontWeight: 400, color: "var(--text-2)" }}>{sub}</span>}
       </span>
-    </button>
+    </Tag>
   );
 }
 
