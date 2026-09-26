@@ -404,7 +404,7 @@ try {
       __onboarding: '1', active_festival_id: 'edc-lv-2026', active_festival_explicit: '1',
     }});
     const t0 = await text(page);
-    check(/plan the night|where are you raving|1 of 3/i.test(t0),
+    check(/your night|where are you raving|1 of 3/i.test(t0),
       `onboarding: first run shows the wizard (saw ${JSON.stringify(t0.slice(0, 60))})`);
     await finishOnboarding(page, null);   // "Continue with EDC Las Vegas"
     const t = await text(page);

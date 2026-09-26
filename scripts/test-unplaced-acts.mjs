@@ -13,7 +13,7 @@
 //   0. an act the later lineup page dropped after the day graphic timed it
 //      (CRSSD's Skepta Más Tiempo) stays out of the lineup, and its record
 //      keeps the full grid row so a re-bill is a one-step re-add;
-//   3. the onboarding "Plan the night" sample, with CRSSD active, shows only
+//   3. the onboarding schedule sample, with CRSSD active, shows only
 //      acts that have a day (it put the two day-null acts first, as "—  · Ocean View").
 import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
@@ -113,11 +113,9 @@ try {
     // 3. Onboarding sample with CRSSD active: every row has a day.
     {
       const { ctx, page, errors } = await open(browser, `${BASE}?f=crssd-fall-2026`, { onboarded: false });
-      await page.getByText('Plan the night.').waitFor({ timeout: 15000 }).catch(() => {});
+      await page.getByRole('dialog', { name: 'Welcome to Plursky' }).getByText('Your night.').waitFor({ timeout: 15000 });
       const rows = await page.evaluate(() => {
-        const h = [...document.querySelectorAll('*')].find(n => n.children.length === 0 && n.textContent === 'Plan the night.');
-        const card = h && h.closest('[role=dialog], div')?.parentElement;
-        const scope = card || document.body;
+        const scope = document.querySelector('[role=dialog]') || document.body;
         return [...scope.querySelectorAll('div')].filter(d => /^(Saturday|Sunday)? ?·? ?(Ocean View|City Steps|The Palms)$/.test(d.textContent.trim()) && d.children.length === 0).map(d => d.textContent.trim());
       });
       check(!errors.length, `onboarding: threw: ${errors[0]}`);

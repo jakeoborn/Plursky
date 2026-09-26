@@ -168,6 +168,39 @@ function OnbCardPreview({
     }
   }))));
 }
+function OnbEditorialPlan({
+  heads
+}) {
+  var lineup = (typeof activeLineup === "function" ? activeLineup() : ARTISTS) || [];
+  var isCrssd = FESTIVAL_CONFIG.id === "crssd-fall-2026";
+  var featured = isCrssd && lineup.find(a => a.id === "crssd-chris-lake-b2b-disclosure" && a.day === 2 && a.start === "20:30");
+  var other = heads.find(a => a.day != null && a.start);
+  var act = featured || other;
+  var st = act && STAGES.find(s => s.id === act.stage);
+  var day = act && FESTIVAL_CONFIG.dayDates?.[act.day]?.name;
+  return React.createElement("div", {
+    className: "onb-editorial"
+  }, React.createElement("div", {
+    className: "onb-editorial-content"
+  }, React.createElement("div", {
+    className: "onb-editorial-kicker"
+  }, "01 / THE PLAN"), React.createElement("h1", null, "Your night.", React.createElement("br", null), "Already", React.createElement("br", null), "taking shape."), React.createElement("p", {
+    className: "onb-editorial-sub"
+  }, "Find the set. Save it. Know exactly where to be."), act && React.createElement("div", {
+    className: "onb-editorial-hero"
+  }, React.createElement("div", {
+    className: "onb-editorial-art",
+    "aria-hidden": "true"
+  }, React.createElement("span", null, "LIVE", React.createElement("br", null), "SETS")), React.createElement("div", {
+    className: "onb-editorial-detail"
+  }, React.createElement("span", {
+    className: "onb-editorial-label"
+  }, day?.toUpperCase(), st ? ` · ${st.name.toUpperCase()}` : ""), React.createElement("strong", null, act.name), React.createElement("span", {
+    className: "onb-editorial-time"
+  }, fmt12(act.start), act.end ? `–${fmt12(act.end)}` : "", React.createElement("br", null), FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name), React.createElement("span", {
+    className: "onb-editorial-save"
+  }, "+ SAVE SET"))), React.createElement(OnbSchedulePreview, null)));
+}
 function OnboardingModal({
   onDone,
   setState,
@@ -246,8 +279,10 @@ function OnboardingModal({
       paddingTop: "var(--top-pad, 0px)",
       paddingBottom: "env(safe-area-inset-bottom, 0px)",
       animation: "fadeIn .25s"
-    }
+    },
+    className: page === 0 ? "onb-editorial-modal" : ""
   }, React.createElement("div", {
+    className: page === 0 ? "onb-editorial-top" : "",
     style: {
       display: "flex",
       alignItems: "center",
@@ -262,7 +297,7 @@ function OnboardingModal({
       color: "var(--text-2)",
       fontVariantNumeric: "tabular-nums"
     }
-  }, story ? `${page + 1} of 3` : "Almost there"), story && React.createElement("button", {
+  }, story ? page === 0 ? "PLURSKY / FIELD MODE" : `${page + 1} of 3` : "Almost there"), story && React.createElement("button", {
     onClick: () => setPage(3),
     style: {
       ...fieldIconBtn,
@@ -272,7 +307,23 @@ function OnboardingModal({
       fontSize: 15,
       fontWeight: 500
     }
-  }, "Skip")), story ? React.createElement(React.Fragment, null, React.createElement("div", {
+  }, "Skip")), story ? page === 0 ? React.createElement("div", {
+    className: "onb-editorial-page"
+  }, React.createElement(OnbEditorialPlan, {
+    heads: heads
+  }), React.createElement("div", {
+    className: "onb-editorial-bottom"
+  }, React.createElement("div", {
+    className: "onb-editorial-rule"
+  }), React.createElement("p", null, "Build your own route through the weekend."), React.createElement("button", {
+    onClick: () => setPage(1),
+    className: "onb-editorial-continue"
+  }, "Continue ", React.createElement("span", {
+    "aria-hidden": "true"
+  }, "→")), React.createElement("div", {
+    className: "onb-editorial-dots",
+    "aria-label": "Page 1 of 3"
+  }, React.createElement("i", null), React.createElement("i", null), React.createElement("i", null)))) : React.createElement(React.Fragment, null, React.createElement("div", {
     key: page,
     style: {
       flex: 1,
@@ -1478,7 +1529,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v367"
+        version: "v369"
       }));
     } catch {}
   }
@@ -1543,7 +1594,7 @@ class RootErrorBoundary extends React.Component {
         letterSpacing: 1.2,
         color: "rgba(var(--shade-rgb),0.45)"
       }
-    }, "PLURSKY · v367"));
+    }, "PLURSKY · v369"));
   }
 }
 function SetStartingCinematic() {

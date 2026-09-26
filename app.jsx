@@ -109,6 +109,37 @@ function OnbCardPreview({ artists, count = 1 }) {
   );
 }
 
+// Editorial first page. The licensed crowd photograph supplies atmosphere;
+// the artwork tile is non-personal so no artist likeness implies endorsement.
+function OnbEditorialPlan({ heads }) {
+  const lineup = (typeof activeLineup === "function" ? activeLineup() : ARTISTS) || [];
+  const isCrssd = FESTIVAL_CONFIG.id === "crssd-fall-2026";
+  const featured = isCrssd && lineup.find(a => a.id === "crssd-chris-lake-b2b-disclosure" && a.day === 2 && a.start === "20:30");
+  const other = heads.find(a => a.day != null && a.start);
+  const act = featured || other;
+  const st = act && STAGES.find(s => s.id === act.stage);
+  const day = act && FESTIVAL_CONFIG.dayDates?.[act.day]?.name;
+  return (
+    <div className="onb-editorial">
+      <div className="onb-editorial-content">
+        <div className="onb-editorial-kicker">01 / THE PLAN</div>
+        <h1>Your night.<br/>Already<br/>taking shape.</h1>
+        <p className="onb-editorial-sub">Find the set. Save it. Know exactly where to be.</p>
+        {act && <div className="onb-editorial-hero">
+          <div className="onb-editorial-art" aria-hidden="true"><span>LIVE<br/>SETS</span></div>
+          <div className="onb-editorial-detail">
+            <span className="onb-editorial-label">{day?.toUpperCase()}{st ? ` · ${st.name.toUpperCase()}` : ""}</span>
+            <strong>{act.name}</strong>
+            <span className="onb-editorial-time">{fmt12(act.start)}{act.end ? `–${fmt12(act.end)}` : ""}<br/>{FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name}</span>
+            <span className="onb-editorial-save">+ SAVE SET</span>
+          </div>
+        </div>}
+        <OnbSchedulePreview />
+      </div>
+    </div>
+  );
+}
+
 function OnboardingModal({ onDone, setState, state }) {
   // 0-2 are the story, 3 is the festival list. Clamped: a double tap must
   // never run past the last page (the old wizard blanked that way).
@@ -155,12 +186,22 @@ function OnboardingModal({ onDone, setState, state }) {
       display: "flex", flexDirection: "column",
       paddingTop: "var(--top-pad, 0px)", paddingBottom: "env(safe-area-inset-bottom, 0px)",
       animation: "fadeIn .25s",
-    }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", minHeight: 52, padding: "0 8px 0 20px" }}>
-        <span style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>{story ? `${page + 1} of 3` : "Almost there"}</span>
+    }} className={page === 0 ? "onb-editorial-modal" : ""}>
+      <div className={page === 0 ? "onb-editorial-top" : ""} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", minHeight: 52, padding: "0 8px 0 20px" }}>
+        <span style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>{story ? (page === 0 ? "PLURSKY / FIELD MODE" : `${page + 1} of 3`) : "Almost there"}</span>
         {story && <button onClick={() => setPage(3)} style={{ ...fieldIconBtn, width: "auto", padding: "0 12px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 }}>Skip</button>}
       </div>
-      {story ? (
+      {story ? page === 0 ? (
+        <div className="onb-editorial-page">
+          <OnbEditorialPlan heads={heads} />
+          <div className="onb-editorial-bottom">
+            <div className="onb-editorial-rule" />
+            <p>Build your own route through the weekend.</p>
+            <button onClick={() => setPage(1)} className="onb-editorial-continue">Continue <span aria-hidden="true">→</span></button>
+            <div className="onb-editorial-dots" aria-label="Page 1 of 3"><i/><i/><i/></div>
+          </div>
+        </div>
+      ) : (
         <>
           <div key={page} style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "8px 20px 0", display: "flex", flexDirection: "column", justifyContent: "center", animation: "fadeIn .2s" }}>
             {cur.preview}
@@ -1004,7 +1045,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v367",
+        version: "v369",
       }));
     } catch {}
   }
@@ -1037,7 +1078,7 @@ class RootErrorBoundary extends React.Component {
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
         }}>RELOAD</button>
         <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(var(--shade-rgb),0.45)" }}>
-          PLURSKY · v367
+          PLURSKY · v369
         </div>
       </div>
     );
