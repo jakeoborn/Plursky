@@ -6201,7 +6201,7 @@ function MemoriesScreen({ state, setState }) {
     } catch { return null; }
   };
 
-  const processImportedFiles = async (files) => {
+  const processImportedFiles = async (files, nativePicker = false) => {
     if (files.length === 0) {
       window.plurskyToast?.("No photos received — pick a few at a time; if they're in iCloud, open them in Photos first so they download.");
       return;
@@ -6225,9 +6225,37 @@ function MemoriesScreen({ state, setState }) {
       ? window.NOW.day
       : (allNights[allNights.length - 1] || 1);
     let skippedDupes = 0;
+    const unreadable = [];
     for (let i = 0; i < files.length; i++) {
-      const f = files[i];
+      let f = files[i];
+      // True only while the native item is being READ. A failure after the
+      // read (an IndexedDB save hitting a full disk) is not "unreadable" and
+      // must not get the iCloud banner.
+      let reading = false;
       try {
+        // PHPicker returns paths, not media blobs. Fetch just this item, write
+        // it to IndexedDB, then advance. Twenty 200 MB files must not become
+        // twenty simultaneous Blob/File objects in the WebView heap.
+        if (nativePicker) {
+          reading = true;
+          const item = f;
+          const src = item.path ? (window.Capacitor?.convertFileSrc?.(item.path) || item.path) : null;
+          if (!src) throw new Error("No readable file path");
+          const isVideo = /^video\//.test(item.mimeType || "") || /\.(mov|mp4|m4v)$/i.test(item.name || "");
+          if (isVideo && item.size > _MAX_VIDEO_BYTES) throw new Error("Video exceeds 200 MB cap");
+          const response = await fetch(src);
+          if (!response.ok) throw new Error(`Media read failed (${response.status})`);
+          const blob = await response.blob();
+          if (!blob.size) throw new Error("Empty or unavailable iCloud media");
+          if (isVideo && blob.size > _MAX_VIDEO_BYTES) throw new Error("Video exceeds 200 MB cap");
+          const type = item.mimeType || blob.type || (isVideo ? "video/mp4" : "image/jpeg");
+          if (!/^(image|video)\//.test(type)) throw new Error("Unsupported media type");
+          f = new File([blob], item.name || `pick-${i}.${isVideo ? "mp4" : "jpg"}`, {
+            type, lastModified: item.modifiedAt || Date.now(),
+          });
+          if (isVideo && item.path) Object.defineProperty(f, "nativePath", { value: item.path });
+          reading = false;
+        }
         const fp = await _fileFingerprint(f);
         if (fp && existingFingerprints.has(fp)) {
           skippedDupes++;
@@ -6352,7 +6380,9 @@ function MemoriesScreen({ state, setState }) {
         // refresh failure) must not count the same file as both imported and
         // failed. The landed result is the durable outcome.
         if (!results.some(r => r.fileIndex === i && r.momentId)) {
-          results.push({ name: f.name, fileIndex: i, night: null, artistId: null, err: err?.message || "failed" });
+          const name = f?.name || `item ${i + 1}`;
+          results.push({ name, fileIndex: i, night: null, artistId: null, err: err?.message || "failed" });
+          if (reading && !(err?.message || "").includes("200 MB")) unreadable.push({ name, why: "unreadable" });
         }
       }
       setBatch({ total: files.length, done: i + 1, results: results.slice() });
@@ -6397,6 +6427,7 @@ function MemoriesScreen({ state, setState }) {
     if (landed.length) setReview(landed);
     // Auto-dismiss summary banner after 6s if user doesn't tap it
     setTimeout(() => setBatch(b => (b && b.done === b.total ? null : b)), 6000);
+    return { unreadable, landed: landed.length };
   };
 
   // Deletes one piece of MEDIA: the record the user is looking at and every
@@ -6505,47 +6536,9 @@ function MemoriesScreen({ state, setState }) {
       const files = result?.files || [];
       // An empty selection is the user cancelling. Nothing to report.
       if (files.length === 0) return { status: "cancelled" };
-      const out = [];
-      const unreadable = [];
-      for (let i = 0; i < files.length; i++) {
-        const f = files[i];
-        // `path` is a native file URL; convertFileSrc makes it loadable by
-        // the WebView so fetch() can read it into a Blob, then we wrap it as
-        // a File so the existing ingest pipeline sees the same shape it would
-        // from <input type="file">.
-        const src = f.path ? (cap.convertFileSrc ? cap.convertFileSrc(f.path) : f.path) : null;
-        if (!src) { unreadable.push({ name: f.name || `item ${i + 1}`, why: "nofile" }); continue; }
-        // A file still in iCloud, or one the WebView cannot read, rejects
-        // HERE. Before v341 the whole batch threw and became a "fall back to
-        // the web input" — one un-downloaded photo lost the other 49.
-        let blob = null;
-        try {
-          blob = await fetch(src).then(r => r.blob());
-        } catch {
-          unreadable.push({ name: f.name || `item ${i + 1}`, why: "unreadable" });
-          continue;
-        }
-        if (!blob || !blob.size) { unreadable.push({ name: f.name || `item ${i + 1}`, why: "unreadable" }); continue; }
-        const isVideo = /^video\//.test(f.mimeType || "") || /\.(mov|mp4|m4v)$/i.test(f.name || "");
-        const type = f.mimeType || blob.type || (isVideo ? "video/mp4" : "image/jpeg");
-        if (!/^(image|video)\//.test(type)) { unreadable.push({ name: f.name || `item ${i + 1}`, why: "unsupported" }); continue; }
-        const name = f.name || `pick-${i}.${isVideo ? "mp4" : "jpg"}`;
-        const pickedFile = new File([blob], name, {
-          type,
-          // modifiedAt is the freshly-transcoded temp file's mtime (≈now),
-          // which the <30s heuristic in _metaFromFile correctly ignores so
-          // photos tag from real EXIF rather than the conversion stamp.
-          lastModified: f.modifiedAt || Date.now(),
-        });
-        if (isVideo && f.path) {
-          try { Object.defineProperty(pickedFile, "nativePath", { value: f.path }); }
-          catch { pickedFile.nativePath = f.path; }
-        }
-        out.push(pickedFile);
-      }
-      // Everything the user picked failed to read. That is NOT a cancel.
-      if (out.length === 0) return { status: unreadable.length ? "nofile" : "cancelled", unreadable };
-      return { status: "picked", files: out, unreadable };
+      // Do not fetch here: the ingest loop resolves one path at a time.
+      // The picker may select 50 clips of up to 200 MB each.
+      return { status: "picked", files };
     } catch (err) {
       console.warn('[memories] native pickMedia failed', err);
       // An exception is an ERROR, never a cancel and never a silent web
@@ -6558,10 +6551,10 @@ function MemoriesScreen({ state, setState }) {
     setPickerState(null);
     const res = await pickViaNative();
     if (res.status === "picked") {
-      // Some items read, some did not — import what we have and say what we
-      // could not take, rather than reporting a clean success.
-      if (res.unreadable && res.unreadable.length) setPickerState({ status: "unreadable", detail: res.unreadable });
-      await processImportedFiles(res.files);
+      const settled = await processImportedFiles(res.files, true);
+      if (settled?.unreadable?.length) {
+        setPickerState({ status: settled.landed ? "unreadable" : "nofile", detail: settled.unreadable });
+      }
       return;
     }
     if (res.status === "unsupported") {

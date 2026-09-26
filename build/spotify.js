@@ -9481,7 +9481,7 @@ function MemoriesScreen({
       return null;
     }
   };
-  var processImportedFiles = async files => {
+  var processImportedFiles = async (files, nativePicker = false) => {
     if (files.length === 0) {
       window.plurskyToast?.("No photos received — pick a few at a time; if they're in iCloud, open them in Photos first so they download.");
       return;
@@ -9506,9 +9506,34 @@ function MemoriesScreen({
     var allNights = Object.keys(window.FESTIVAL_CONFIG?.dayDates || {}).map(Number).sort((a, b) => a - b);
     var fallbackNight = window.NOW?.day && allNights.includes(window.NOW.day) ? window.NOW.day : allNights[allNights.length - 1] || 1;
     var skippedDupes = 0;
+    var unreadable = [];
     var _loop5 = async function (i) {
       var f = files[i];
+      var reading = false;
       try {
+        if (nativePicker) {
+          reading = true;
+          var item = f;
+          var src = item.path ? window.Capacitor?.convertFileSrc?.(item.path) || item.path : null;
+          if (!src) throw new Error("No readable file path");
+          var isVideo = /^video\//.test(item.mimeType || "") || /\.(mov|mp4|m4v)$/i.test(item.name || "");
+          if (isVideo && item.size > _MAX_VIDEO_BYTES) throw new Error("Video exceeds 200 MB cap");
+          var response = await fetch(src);
+          if (!response.ok) throw new Error(`Media read failed (${response.status})`);
+          var blob = await response.blob();
+          if (!blob.size) throw new Error("Empty or unavailable iCloud media");
+          if (isVideo && blob.size > _MAX_VIDEO_BYTES) throw new Error("Video exceeds 200 MB cap");
+          var type = item.mimeType || blob.type || (isVideo ? "video/mp4" : "image/jpeg");
+          if (!/^(image|video)\//.test(type)) throw new Error("Unsupported media type");
+          f = new File([blob], item.name || `pick-${i}.${isVideo ? "mp4" : "jpg"}`, {
+            type,
+            lastModified: item.modifiedAt || Date.now()
+          });
+          if (isVideo && item.path) Object.defineProperty(f, "nativePath", {
+            value: item.path
+          });
+          reading = false;
+        }
         var fp = await _fileFingerprint(f);
         if (fp && existingFingerprints.has(fp)) {
           skippedDupes++;
@@ -9608,12 +9633,17 @@ function MemoriesScreen({
         });
       } catch (err) {
         if (!results.some(r => r.fileIndex === i && r.momentId)) {
+          var name = f?.name || `item ${i + 1}`;
           results.push({
-            name: f.name,
+            name,
             fileIndex: i,
             night: null,
             artistId: null,
             err: err?.message || "failed"
+          });
+          if (reading && !(err?.message || "").includes("200 MB")) unreadable.push({
+            name,
+            why: "unreadable"
           });
         }
       }
@@ -9654,6 +9684,10 @@ function MemoriesScreen({
     }
     if (landed.length) setReview(landed);
     setTimeout(() => setBatch(b => b && b.done === b.total ? null : b), 6000);
+    return {
+      unreadable,
+      landed: landed.length
+    };
   };
   var deleteMomentMedia = async moment => {
     var key = _mediaIdentity(moment);
@@ -9737,68 +9771,9 @@ function MemoriesScreen({
       if (files.length === 0) return {
         status: "cancelled"
       };
-      var out = [];
-      var unreadable = [];
-      for (var i = 0; i < files.length; i++) {
-        var f = files[i];
-        var src = f.path ? cap.convertFileSrc ? cap.convertFileSrc(f.path) : f.path : null;
-        if (!src) {
-          unreadable.push({
-            name: f.name || `item ${i + 1}`,
-            why: "nofile"
-          });
-          continue;
-        }
-        var blob = null;
-        try {
-          blob = await fetch(src).then(r => r.blob());
-        } catch {
-          unreadable.push({
-            name: f.name || `item ${i + 1}`,
-            why: "unreadable"
-          });
-          continue;
-        }
-        if (!blob || !blob.size) {
-          unreadable.push({
-            name: f.name || `item ${i + 1}`,
-            why: "unreadable"
-          });
-          continue;
-        }
-        var isVideo = /^video\//.test(f.mimeType || "") || /\.(mov|mp4|m4v)$/i.test(f.name || "");
-        var type = f.mimeType || blob.type || (isVideo ? "video/mp4" : "image/jpeg");
-        if (!/^(image|video)\//.test(type)) {
-          unreadable.push({
-            name: f.name || `item ${i + 1}`,
-            why: "unsupported"
-          });
-          continue;
-        }
-        var name = f.name || `pick-${i}.${isVideo ? "mp4" : "jpg"}`;
-        var pickedFile = new File([blob], name, {
-          type,
-          lastModified: f.modifiedAt || Date.now()
-        });
-        if (isVideo && f.path) {
-          try {
-            Object.defineProperty(pickedFile, "nativePath", {
-              value: f.path
-            });
-          } catch {
-            pickedFile.nativePath = f.path;
-          }
-        }
-        out.push(pickedFile);
-      }
-      if (out.length === 0) return {
-        status: unreadable.length ? "nofile" : "cancelled",
-        unreadable
-      };
       return {
         status: "picked",
-        files: out,
-        unreadable
+        files
       };
     } catch (err) {
       console.warn('[memories] native pickMedia failed', err);
@@ -9812,11 +9787,13 @@ function MemoriesScreen({
     setPickerState(null);
     var res = await pickViaNative();
     if (res.status === "picked") {
-      if (res.unreadable && res.unreadable.length) setPickerState({
-        status: "unreadable",
-        detail: res.unreadable
-      });
-      await processImportedFiles(res.files);
+      var settled = await processImportedFiles(res.files, true);
+      if (settled?.unreadable?.length) {
+        setPickerState({
+          status: settled.landed ? "unreadable" : "nofile",
+          detail: settled.unreadable
+        });
+      }
       return;
     }
     if (res.status === "unsupported") {
