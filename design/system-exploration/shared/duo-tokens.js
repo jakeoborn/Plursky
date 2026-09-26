@@ -2,7 +2,7 @@
 // style, radius and motion value; only the colour tokens and elevation change.
 // dark/tokens.js and white/tokens.js each call DUO_TOKENS(mode).
 window.DUO_TOKENS = function (mode) {
-  const dark = mode === "dark";
+  const dark = mode === "dark";   // anything else is Light ("white" is the old name)
   const C = dark ? {
     bg: "#07060B", s1: "#100E17", s2: "#19161F", s3: "#241F2C", line: "#221E2B", line2: "#342E3F",
     ink: "#F3F0FA", ink2: "#ABA4BB", ink3: "#8A849A",
@@ -14,8 +14,8 @@ window.DUO_TOKENS = function (mode) {
   };
   const rgba = (h, a) => { const n = parseInt(h.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; };
   return {
-    id: mode,
-    name: dark ? "Dark" : "White",
+    id: dark ? "dark" : "light",
+    name: dark ? "Dark" : "Light",
     scheme: dark ? "dark" : "light",
     fontsHref: "https://fonts.googleapis.com/css2?family=Michroma&family=Martian+Mono:wght@300;400;500;600&family=Archivo:wdth,wght@62..125,400..900&display=swap",
     color: [

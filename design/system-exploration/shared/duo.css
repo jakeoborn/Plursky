@@ -39,5 +39,10 @@
 .D .av.cl{box-shadow:0 0 0 2px var(--clash)}
 .D .add{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;flex:none;box-shadow:inset 0 0 0 1.5px var(--line-2);color:var(--ink-2)}
 .D .add.on{background:var(--acc);color:var(--on-acc);box-shadow:0 6px 16px -8px var(--acc-55)}
+/* Appearance row (Me). The selected segment follows <html data-appearance>,
+   so the row is right after a toggle without re-rendering the screen. */
+.D .seg{display:grid;grid-template-columns:repeat(3,1fr);padding:3px;border-radius:var(--r-pill);background:var(--s3);flex:none;width:220px}
+.D .seg .toggle{height:34px;display:grid;place-items:center;border-radius:var(--r-pill);font:600 13px/1 var(--f-ui);color:var(--ink-2);cursor:pointer;border:0;background:none;padding:0}
+html[data-appearance=system] .D .seg [data-v=system],html[data-appearance=dark] .D .seg [data-v=dark],html[data-appearance=light] .D .seg [data-v=light]{background:var(--s1);color:var(--ink);box-shadow:0 0 0 1px var(--line-2),0 2px 6px -2px rgba(0,0,0,.25)}
 @media (prefers-reduced-motion:reduce){.D .live i{animation:none}}
 .render .D *{animation:none!important}

@@ -4,34 +4,44 @@
 // object, so a documented token can never drift from the one on screen.
 // Contrast ratios are computed (WCAG 2.x relative luminance), not typed.
 (function () {
-  const T = window.TOKENS;
+  let T = window.TOKENS;
 
   // ── colour math ──
   const hexToRgb = (h) => { h = h.replace("#", ""); if (h.length === 3) h = h.split("").map((c) => c + c).join(""); return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16)); };
   const lum = (h) => hexToRgb(h).map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }).reduce((a, v, i) => a + v * [0.2126, 0.7152, 0.0722][i], 0);
   const contrast = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
-  const colorMap = {};
-  T.color.forEach((g) => g.items.forEach((c) => (colorMap[c.token] = c.hex)));
+  let colorMap = {};
   window.contrastOf = (a, b) => contrast(colorMap[a] || a, colorMap[b] || b);
 
   // ── CSS from tokens ──
-  const css = [];
-  const root = [];
-  T.color.forEach((g) => g.items.forEach((c) => root.push(`${c.token}:${c.hex}`)));
-  (T.extraVars || []).forEach(([k, v]) => root.push(`${k}:${v}`));
-  Object.entries(T.fonts).forEach(([k, f]) => root.push(`--f-${k}:${f.stack}`));
-  T.space.forEach((s) => root.push(`--sp-${s}:${s}px`));
-  T.radius.forEach((r) => root.push(`${r.token}:${r.value}`));
-  T.elevation.forEach((e) => root.push(`${e.token}:${e.value}`));
-  T.motion.forEach((m) => root.push(`${m.token}:${m.value}`));
-  css.push(`:root{color-scheme:${T.scheme || "dark"};${root.join(";")}}`);
-  T.type.forEach((t) => {
-    css.push(`.t-${t.token}{font-family:var(--f-${t.family});font-size:${t.size}px;line-height:${t.lh}px;font-weight:${t.weight};letter-spacing:${t.track || 0}em;${t.upper ? "text-transform:uppercase;" : ""}${t.extra || ""}}`);
-  });
+  // applyTokens can run again at runtime (the appearance toggle swaps Dark and
+  // Light in place): it rewrites the same <style>, so nothing is re-rendered
+  // and a screen that hardcodes a colour instead of a var() shows up as a leak.
   const style = document.createElement("style");
-  style.textContent = css.join("\n");
+  style.id = "tokens";
   document.head.appendChild(style);
-  if (T.fontsHref) { const l = document.createElement("link"); l.rel = "stylesheet"; l.href = T.fontsHref; document.head.appendChild(l); }
+  window.applyTokens = function (next) {
+    T = window.TOKENS = next;
+    colorMap = {};
+    T.color.forEach((g) => g.items.forEach((c) => (colorMap[c.token] = c.hex)));
+    const css = [];
+    const root = [];
+    T.color.forEach((g) => g.items.forEach((c) => root.push(`${c.token}:${c.hex}`)));
+    (T.extraVars || []).forEach(([k, v]) => root.push(`${k}:${v}`));
+    Object.entries(T.fonts).forEach(([k, f]) => root.push(`--f-${k}:${f.stack}`));
+    T.space.forEach((s) => root.push(`--sp-${s}:${s}px`));
+    T.radius.forEach((r) => root.push(`${r.token}:${r.value}`));
+    T.elevation.forEach((e) => root.push(`${e.token}:${e.value}`));
+    T.motion.forEach((m) => root.push(`${m.token}:${m.value}`));
+    css.push(`:root{color-scheme:${T.scheme || "dark"};${root.join(";")}}`);
+    T.type.forEach((t) => {
+      css.push(`.t-${t.token}{font-family:var(--f-${t.family});font-size:${t.size}px;line-height:${t.lh}px;font-weight:${t.weight};letter-spacing:${t.track || 0}em;${t.upper ? "text-transform:uppercase;" : ""}${t.extra || ""}}`);
+    });
+    style.textContent = css.join("\n");
+    document.documentElement.dataset.mode = T.id;
+    if (T.fontsHref && !document.querySelector(`link[href="${T.fontsHref}"]`)) { const l = document.createElement("link"); l.rel = "stylesheet"; l.href = T.fontsHref; document.head.appendChild(l); }
+  };
+  window.applyTokens(T);
 
   // ── spec sheet ──
   const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));

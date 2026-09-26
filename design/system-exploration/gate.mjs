@@ -3,31 +3,34 @@
 // Chrome at the App Store 6.9" point size), not the source.
 //   node design/system-exploration/gate.mjs [dir...]
 // Checks, per screen:
-//   G1 page errors          none
+//   G1 page errors          none, and the page decodes as UTF-8
 //   G2 fonts                every declared family actually loaded
 //   G3 images               every <img> and photo background decoded
-//   G4 clipped text         no text box cut off by its container (ellipsis is allowed)
+//   G4 clipped text         no text box cut off by its container, or running past its own border/fill (ellipsis is allowed)
 //   G5 escaped text         no text past the phone's edges (data-bleed opts out)
 //   G6 colliding text       no two text boxes overlap
 //   G7 min type             HTML text ≥ 11px; SVG diagram labels ≥ 9px
 //   G8 tap targets          buttons and tabs ≥ 44px tall, chips ≥ 32px
 //   G9 token contrast       every declared pair meets its floor (4.5, or 3 when marked large)
 //   G10 broken labels       a short label (≤ 24 chars, no <br>) never wraps, and no text leaves a widow
+// With no arguments it runs THE APPEARANCE GATE on live/: G1–G10 on every
+// screen in Dark and in Light (each loaded in one mode, then toggled in place
+// to the other), plus
+//   G11 appearance rules    Dark by default; no choice follows the iPhone; a pick in Me wins, sticks, and System hands back
+//   G12 mode leak           a screen toggled into a mode is pixel-identical to the same screen loaded in it
+// Named directions (node gate.mjs laser holo) run G1–G10 on those pages only.
 import { chromium } from "playwright";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import fs from "node:fs";
 const here = path.dirname(fileURLToPath(import.meta.url));
-const dirs = process.argv.slice(2).length ? process.argv.slice(2) : ["laser", "holo", "headliner"];
+const args = process.argv.slice(2);
 const browser = await chromium.launch({ channel: "chrome" });
 let total = 0;
-for (const d of dirs) {
-  const page = await browser.newPage({ viewport: { width: 560, height: 1040 } });
-  const errors = [];
-  page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto("file://" + path.join(here, d, "index.html") + "#render");
-  await page.evaluate(() => document.fonts.ready);
-  await page.waitForTimeout(700);
+const report = (name, fails, n, unit = "screens") => { total += fails.length; console.log(`${fails.length ? "✗" : "✓"} ${name}: ${n} ${unit}, ${fails.length} failures`); fails.forEach((x) => console.log("   " + x)); };
+
+// G1–G10 on every .screen-wrap of an already-loaded page.
+async function measure(page, errors) {
   const res = await page.evaluate(async () => {
     const out = { fonts: [], screens: [], contrast: [] };
     // G2 — every family the tokens declare (first name in the stack) must load
@@ -95,6 +98,9 @@ for (const d of dirs) {
         const vis = lines.filter((r) => onTop(el, (r.left + r.right) / 2, (r.top + r.bottom) / 2));
         if (!vis.length) continue;                                 // covered by a sheet / bar
         if (cut) f.clipped.push(label(el));                        // G4
+        // …or runs past its OWN drawn frame (a border or fill) without being clipped
+        { const R = el.getBoundingClientRect(), framed = parseFloat(cs.borderLeftWidth) > 0 || !/rgba\(0, 0, 0, 0\)|transparent/.test(cs.backgroundColor);
+          if (framed && !ellipsis && (u.right > R.right - parseFloat(cs.borderRightWidth) + 1 || u.left < R.left + parseFloat(cs.borderLeftWidth) - 1)) f.clipped.push(`${label(el)} (past its own frame)`); }
         if (!el.closest("[data-bleed]") && vis.some((r) => r.left < P.left - 1 || r.right > P.right + 1)) f.escaped.push(label(el)); // G5
         if (!inStatus(el) && fsz < 11) f.small.push(`${label(el)} (${cs.fontSize})`);          // G7
         // G10 — distinct line tops = rendered lines
@@ -124,16 +130,105 @@ for (const d of dirs) {
   });
   const fails = [];
   if (errors.length) fails.push(`G1 page errors: ${errors.join(" | ")}`);
+  // Declared, not sniffed: without <meta charset> Chrome guesses per load, so
+  // the same file passes one run and shows "TiÃ«sto" the next.
+  const cs = await page.evaluate(() => (document.querySelector("meta[charset]") ? document.characterSet : "an undeclared charset"));
+  if (cs !== "UTF-8") fails.push(`G1 page decoded as ${cs}, not UTF-8: every "·" and accented name becomes mojibake (add <meta charset="utf-8">)`);
   if (res.fonts.length) fails.push(`G2 fonts not loaded: ${res.fonts.join(", ")}`);
   res.contrast.forEach((c) => fails.push(`G9 ${c}`));
   for (const s of res.screens) {
     const add = (g, arr) => [...new Set(arr)].forEach((x) => fails.push(`${g} [${s.key}] ${x}`));
     add("G3 image", s.images); add("G4 clipped", s.clipped); add("G5 escaped", s.escaped); add("G6 collide", s.collide); add("G7 small", s.small); add("G8 target", s.targets); add("G10 wraps", s.wraps);
   }
-  total += fails.length;
-  console.log(`${fails.length ? "✗" : "✓"} ${d}: ${res.screens.length} screens, ${fails.length} failures`);
-  fails.forEach((x) => console.log("   " + x));
-  await page.close();
+  return { fails, n: res.screens.length };
+}
+async function open(ctx, url) {
+  const page = await ctx.newPage();
+  const errors = [];
+  page.on("pageerror", (e) => errors.push(e.message));
+  await page.goto(url);
+  await page.evaluate(() => document.fonts.ready);
+  await page.waitForTimeout(700);
+  return { page, errors };
+}
+// Pixels that differ by more than 96/255 on any channel. Two renders of the
+// same screen differ only by antialiasing (measured ≤ 37/255); a colour left
+// over from the other mode differs by 150+.
+let cmpPage;
+async function diffPx(a, b) {
+  cmpPage ||= await browser.newPage();
+  return cmpPage.evaluate(async ([a, b]) => {
+    const im = (s) => new Promise((r) => { const i = new Image(); i.onload = () => r(i); i.src = "data:image/png;base64," + s; });
+    const px = (i) => { const k = document.createElement("canvas"); k.width = i.width; k.height = i.height; const g = k.getContext("2d"); g.drawImage(i, 0, 0); return g.getImageData(0, 0, i.width, i.height).data; };
+    const [i1, i2] = [await im(a), await im(b)];
+    if (i1.width !== i2.width || i1.height !== i2.height) return 1e9;
+    const [d1, d2] = [px(i1), px(i2)]; let n = 0;
+    for (let p = 0; p < d1.length; p += 4) if (Math.max(Math.abs(d1[p] - d2[p]), Math.abs(d1[p + 1] - d2[p + 1]), Math.abs(d1[p + 2] - d2[p + 2])) > 96) n++;
+    return n;
+  }, [a.toString("base64"), b.toString("base64")]);
+}
+const file = (d, q = "") => "file://" + path.join(here, d, "index.html") + q + "#render";
+
+if (args.length) {   // named direction pages, as before
+  const ctx = await browser.newContext({ viewport: { width: 560, height: 1040 } });
+  for (const d of args) { const { page, errors } = await open(ctx, file(d)); const r = await measure(page, errors); report(d, r.fails, r.n); await page.close(); }
+} else {
+  // THE APPEARANCE GATE: every screen in BOTH modes, reached the way a user
+  // reaches them — the page loads in one mode and the toggle switches it in
+  // place — so a mode-specific break fails here.
+  for (const [first, second] of [["dark", "light"], ["light", "dark"]]) {
+    const ctx = await browser.newContext({ viewport: { width: 560, height: 1040 }, colorScheme: first });
+    const { page, errors } = await open(ctx, file("live", "?board"));
+    const on = await page.evaluate(() => document.documentElement.dataset.mode);
+    if (on !== first) report(`load ${first}`, [`G11 iPhone ${first} with no choice opened ${on}`], 0);
+    let r = await measure(page, errors); report(`${first} (loaded)`, r.fails, r.n);
+    await page.evaluate((m) => APPEARANCE.set(m), second);
+    await page.waitForTimeout(300);
+    r = await measure(page, errors); report(`${second} (toggled from ${first})`, r.fails, r.n);
+    // G12 mode leak: a screen toggled into a mode must be pixel-identical to
+    // the same screen loaded fresh in that mode. Anything drawn with a
+    // literal colour instead of a token stays behind and shows up here.
+    const fresh = await open(ctx, file("live", `?board&mode=${second}`));
+    const leak = [];
+    for (const key of await page.$$eval(".screen-wrap", (w) => w.map((x) => x.dataset.screen))) {
+      const shot = async (pg) => { const el = await pg.$(`.screen-wrap[data-screen="${key}"] .phone`); await el.scrollIntoViewIfNeeded(); return el.screenshot({ animations: "disabled" }); };
+      const [x, y] = [await shot(page), await shot(fresh.page)];
+      const n = await diffPx(x, y);
+      if (n >= 20) leak.push(`G12 leak [${key}] toggled into ${second}: ${n} px differ by >96/255 from a fresh ${second} load`);
+    }
+    report(`${second} leak check`, leak, 7);
+    await ctx.close();
+  }
+  // G11 appearance rules, on the interactive page.
+  const g11 = [];
+  const scen = async (scheme, pre, expect, why) => {
+    const ctx = await browser.newContext({ viewport: { width: 1000, height: 1100 }, colorScheme: scheme });
+    if (pre) await ctx.addInitScript((v) => { try { localStorage.setItem("plursky.appearance", v); } catch {} }, pre);
+    const { page } = await open(ctx, "file://" + path.join(here, "live", "index.html"));
+    const got = await page.evaluate(() => document.documentElement.dataset.mode);
+    if (got !== expect) g11.push(`G11 ${why}: expected ${expect}, got ${got}`);
+    return { ctx, page };
+  };
+  (await scen("no-preference", null, "dark", "no choice, no iPhone signal → Dark default")).ctx.close();
+  (await scen("dark", null, "dark", "no choice, iPhone Dark")).ctx.close();
+  (await scen("light", null, "light", "no choice, iPhone Light")).ctx.close();
+  (await scen("light", "dark", "dark", "picked Dark, iPhone Light")).ctx.close();
+  (await scen("dark", "light", "light", "picked Light, iPhone Dark")).ctx.close();
+  { // the pick is made in Me, survives a reload, and ignores later iPhone changes
+    const { ctx, page } = await scen("dark", null, "dark", "fresh install on a dark iPhone");
+    await page.click("#go [data-k=me]"); await page.click("#one .toggle[data-v=light]");
+    if (await page.evaluate(() => document.documentElement.dataset.mode) !== "light") g11.push("G11 tapping Light in Me did not switch");
+    await page.emulateMedia({ colorScheme: "dark" }); await page.reload(); await page.waitForTimeout(400);
+    if (await page.evaluate(() => document.documentElement.dataset.mode) !== "light") g11.push("G11 the Light pick did not survive a reload on a dark iPhone");
+    await page.emulateMedia({ colorScheme: "light" }); await page.emulateMedia({ colorScheme: "dark" }); await page.waitForTimeout(200);
+    if (await page.evaluate(() => document.documentElement.dataset.mode) !== "light") g11.push("G11 an iPhone change overrode the stored pick");
+    await page.click("#go [data-k=me]"); await page.click("#one .toggle[data-v=system]");
+    if (await page.evaluate(() => document.documentElement.dataset.mode) !== "dark") g11.push("G11 choosing System did not hand control back to the iPhone");
+    await page.emulateMedia({ colorScheme: "light" }); await page.waitForTimeout(200);
+    if (await page.evaluate(() => document.documentElement.dataset.mode) !== "light") g11.push("G11 on System, flipping the iPhone to Light did not follow live");
+    await ctx.close();
+  }
+  report("appearance rules (G11)", g11, 11, "checks");
 }
 await browser.close();
 process.exit(total ? 1 : 0);

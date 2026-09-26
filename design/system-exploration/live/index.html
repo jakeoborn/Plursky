@@ -1,0 +1,79 @@
+<html lang="en"><meta charset="utf-8"><title>Plursky Appearance</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="stylesheet" href="../shared/board.css">
+<link rel="stylesheet" href="../shared/duo.css">
+<style>
+.stage{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start;padding-top:8px}
+.ctl{display:grid;gap:18px;max-width:360px}
+.ctl h2{margin:0;font:700 15px/1.2 -apple-system,sans-serif}
+.ctl p{margin:0;color:var(--page-ink-2);font-size:14px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opts button{font:600 14px/1 -apple-system,sans-serif;padding:10px 14px;border-radius:999px;border:1px solid var(--page-line);background:none;color:var(--page-ink);cursor:pointer}
+.opts button[aria-pressed=true]{background:var(--page-ink);color:var(--page-bg);border-color:var(--page-ink)}
+.readout{font:13px/1.6 ui-monospace,"SF Mono",monospace;color:var(--page-ink-2);border-top:1px solid var(--page-line);padding-top:12px}
+.readout b{color:var(--page-ink)}
+.phone .tab,.phone [data-go],.phone .toggle{cursor:pointer}
+@media (max-width:820px){.ctl{order:-1}}
+</style>
+<script src="../shared/sample.js"></script>
+<script src="../photos/have.js"></script>
+<script src="../shared/duo-tokens.js"></script>
+<script src="../shared/appearance.js"></script>
+<script src="../shared/system.js"></script>
+<script src="../shared/icons.js"></script>
+
+<header class="dir-head">
+  <div class="dir-kicker">Plursky design system · appearance</div>
+  <h1 class="dir-title" style="font:800 44px/1.05 -apple-system,BlinkMacSystemFont,sans-serif;letter-spacing:-.03em">One system, two modes</h1>
+  <p class="dir-pitch">Dark is the default. With no choice made, the app follows the iPhone. Picking Dark or Light in Me overrides the iPhone from then on, and the choice sticks.</p>
+</header>
+<div class="stage" id="stage"></div>
+<div class="screens" id="screens" hidden></div>
+<script src="../shared/duo.js"></script>
+<script>
+(function () {
+  const board = new URLSearchParams(location.search).has("board");
+  const byKey = Object.fromEntries(DUO_SCREENS.map(([k, , f]) => [k, f]));
+  if (board) {   // every screen, as on the mode boards (the gate and renders use this)
+    const el = document.getElementById("screens"); el.hidden = false;
+    el.innerHTML = DUO_SCREENS.map(([k, l, f], i) => `<div class="screen-wrap" data-screen="${k}"><div class="screen-cap">0${i + 1} · ${l}</div>${f()}</div>`).join("");
+    return;
+  }
+  let cur = "today";
+  const stage = document.getElementById("stage");
+  stage.innerHTML = `<div class="screen-wrap" id="one"></div>
+    <div class="ctl">
+      <div><h2>Stand-in for the iPhone setting</h2><p>Settings → Display. Only matters while Me says System.</p></div>
+      <div class="opts" id="sys"><button data-s="dark">iPhone Dark</button><button data-s="light">iPhone Light</button></div>
+      <div><h2>Go to</h2><p>Or tap the tabs, John Summit on Today, and the back button on his page.</p></div>
+      <div class="opts" id="go"><button data-k="today">Today</button><button data-k="artist">Artist</button><button data-k="me">Me · Appearance</button></div>
+      <div class="readout" id="ro"></div>
+    </div>`;
+  const mq = matchMedia("(prefers-color-scheme: light)");
+  let sys = mq.matches ? "light" : "dark", stood = false;   // stood: a stand-in button was used
+  mq.addEventListener("change", () => { if (!stood) { sys = mq.matches ? "light" : "dark"; paint(); } });
+  const show = (k) => { cur = k; const one = document.getElementById("one"); one.dataset.screen = k; one.innerHTML = byKey[k](); if (k === "me") one.querySelector(".body").scrollTop = 330; tag(); };
+  const tag = () => {   // make the drawn screen tappable
+    const ph = document.querySelector("#one .phone");
+    ph.querySelectorAll(".tab").forEach((t, i) => (t.dataset.go = ["today", "lineup", "map", "me"][i]));
+    if (cur === "today") ph.querySelector(".card.lift").dataset.go = "artist";
+    if (cur === "artist") ph.querySelector(".ibtn").dataset.go = "today";
+  };
+  const paint = () => {
+    document.querySelectorAll("#sys button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.s === sys));
+    document.querySelectorAll("#go button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.k === cur));
+    let stored = null; try { stored = localStorage.getItem("plursky.appearance"); } catch {}
+    document.getElementById("ro").innerHTML = `iPhone setting <b>${sys}</b><br>Me → Appearance <b>${APPEARANCE.choice()}</b> (stored: ${stored || "nothing"})<br>On screen <b>${APPEARANCE.mode()}</b>`;
+  };
+  document.addEventListener("click", (e) => {
+    const t = e.target.closest(".toggle,[data-go],[data-s],[data-k]"); if (!t) return;
+    if (t.classList.contains("toggle")) APPEARANCE.set(t.dataset.v);
+    else if (t.dataset.s) { sys = t.dataset.s; stood = true; APPEARANCE.simulateSystem(sys); }
+    else { const k = t.dataset.go || t.dataset.k; if (byKey[k]) show(k); }
+    paint();
+  });
+  APPEARANCE.onChange(paint);
+  show(location.hash.slice(1) in byKey ? location.hash.slice(1) : "today");
+  paint();
+})();
+</script>

@@ -3,7 +3,6 @@
 // (Mobbin), each cited where it is used.
 (function () {
 const E = window.EDC, I = window.ICON, NOW = E.moments.late.hhmm, nowM = E.toMin(NOW);
-const MODE = window.TOKENS.id;
 const ic = (n, o = {}) => I(n, Object.assign({ sw: 1.7, color: "currentColor" }, o));
 const photo = (n) => `url(../photos/${n}.jpg)`;
 
@@ -27,8 +26,7 @@ function tabbar(active) {
   const t = [["today", "Today"], ["lineup", "Lineup"], ["map", "Map"], ["me", "Me"]];
   return `<nav class="tabbar">${t.map(([k, l]) => `<div class="tab ${k === active ? "on" : ""}">${ic(k, { sw: 1.6 })}<span>${l}</span></div>`).join("")}</nav>`;
 }
-const ink = () => getComputedStyle(document.documentElement).getPropertyValue("--ink").trim();
-function phone(inner, active, onPhoto) { return `<div class="phone D">${STATUS(E.moments.late.label, onPhoto ? "#FFFFFF" : ink())}${inner}${active ? tabbar(active) : ""}${HOMEBAR(ink())}</div>`; }
+function phone(inner, active, onPhoto) { return `<div class="phone D">${STATUS(E.moments.late.label, onPhoto ? "#FFFFFF" : "var(--ink)")}${inner}${active ? tabbar(active) : ""}${HOMEBAR("var(--ink)")}</div>`; }
 const planIds = new Set(E.PLAN.map((p) => p.id));
 const isClash = (s) => planIds.has(s.id) && (s.name === "Subtronics" || s.name.startsWith("Peggy"));
 const liveOn = (st) => E.SETS.find((s) => s.stage === st && s.s <= nowM && nowM < s.e);
@@ -217,7 +215,9 @@ function artistInside() {
 }
 
 // ── 7. ME ────────────────────────────────────────────────
-// Headliner's elements, kept: the "My EDC 2026" poster billed by minutes you
+// Headliner's elements, kept as they were. The Appearance row is Opera's and
+// Cosmos's inline System/Dark/Light control (Mobbin): one tap, no sub-page.
+// Headliner's elements: the "My EDC 2026" poster billed by minutes you
 // stayed, the share row under it (Beli's recap: destinations, not a generic
 // button) and the passport. Faces of the night run under the title.
 function me() {
@@ -238,8 +238,12 @@ function me() {
       </div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px">${[["share", "Story", 1], ["crew", "Crew", 0], ["photo", "Save", 0], ["chevron", "More", 0]].map(([k, l, p]) => `<div style="display:grid;justify-items:center;gap:7px"><span style="width:52px;height:52px;border-radius:50%;display:grid;place-items:center;${p ? "background:var(--acc);color:var(--on-acc)" : "box-shadow:inset 0 0 0 1.5px var(--line-2);color:var(--ink)"}">${ic(k, { size: 21, sw: 1.8 })}</span><span class="t-body-s ink2" style="font-size:13px">${l}</span></div>`).join("")}</div>
     </div>
+    <div class="pad" style="margin-top:16px"><div class="card between" style="padding:10px 10px 10px 16px">
+      <div class="t-body-s">Appearance</div>
+      <div class="seg" role="radiogroup" aria-label="Appearance">${[["system", "System"], ["dark", "Dark"], ["light", "Light"]].map(([v, l]) => `<button class="toggle" role="radio" data-v="${v}">${l}</button>`).join("")}</div>
+    </div></div>
     <div class="pad" style="margin-top:18px"><div class="sect" style="margin-bottom:4px">Passport</div>
-      ${[["EDC", "Las Vegas 2026", "3 nights · 14 sets"], ["NOC", "Nocturnal Wonderland 2025", "2 nights · 9 sets"], ["EDC", "Las Vegas 2025", "3 nights · 17 sets"]].map(([c, n, d]) => `<div class="between hair" style="padding:11px 0"><div class="row" style="gap:12px"><span class="code" style="width:44px;text-align:center">${c}</span><div><div class="t-body-s">${n}</div><div class="t-data-s ink3" style="margin-top:3px">${d.toUpperCase()}</div></div></div><span class="ink3">${ic("chevron", { size: 18, sw: 1.6 })}</span></div>`).join("")}
+      ${[["EDC", "Las Vegas 2026", "3 nights · 14 sets"], ["NOC", "Nocturnal Wonderland 2025", "2 nights · 9 sets"], ["EDC", "Las Vegas 2025", "3 nights · 17 sets"]].map(([c, n, d]) => `<div class="between hair" style="padding:11px 0"><div class="row" style="gap:12px"><span class="code" style="min-width:56px;text-align:center">${c}</span><div><div class="t-body-s">${n}</div><div class="t-data-s ink3" style="margin-top:3px">${d.toUpperCase()}</div></div></div><span class="ink3">${ic("chevron", { size: 18, sw: 1.6 })}</span></div>`).join("")}
     </div>
     <div class="pad" style="margin-top:18px"><div class="between" style="margin-bottom:10px"><span class="sect">Memories</span><span class="t-data-s ink3">212 →</span></div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">${["IMG_5537", "IMG_5545", "IMG_5597", "IMG_5626"].map((p) => `<div style="aspect-ratio:1;border-radius:var(--r-sm);background:${photo(p)} center/cover,var(--s3)"></div>`).join("")}</div></div>
@@ -247,8 +251,10 @@ function me() {
 }
 
 const SCREENS = [["today", "Today", today], ["lineup", "Lineup · List", lineup], ["calendar", "Lineup · Grid", calendar], ["map", "Map", map], ["artist", "Artist", artist], ["artist-inside", "Artist · inside", artistInside], ["me", "Me", me]];
-document.getElementById("screens").innerHTML = SCREENS.map(([k, l, f], i) => `<div class="screen-wrap" data-screen="${k}"><div class="screen-cap">0${i + 1} · ${l}</div>${f()}</div>`).join("");
+window.DUO_SCREENS = SCREENS;
+const board = document.getElementById("screens");
+if (board) board.innerHTML = SCREENS.map(([k, l, f], i) => `<div class="screen-wrap" data-screen="${k}"><div class="screen-cap">0${i + 1} · ${l}</div>${f()}</div>`).join("");
 TOKENS.icons.samples = ["today", "lineup", "map", "me", "search", "share", "sun", "clash", "water", "medic", "crew", "play"].map((n) => `<div style="color:var(--ink)">${ic(n, { sw: 1.6 })}</div>`).join("");
-renderSpec(document.getElementById("spec"));
+if (document.getElementById("spec")) renderSpec(document.getElementById("spec"));
 if (location.hash === "#render") document.documentElement.classList.add("render");
 })();
