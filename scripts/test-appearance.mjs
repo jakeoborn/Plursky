@@ -246,10 +246,17 @@ try {
     const im = (s) => new Promise(r => { const i = new Image(); i.onload = () => r(i); i.src = 'data:image/png;base64,' + s; });
     const px = (i) => { const k = document.createElement('canvas'); k.width = i.width; k.height = i.height; const g = k.getContext('2d'); g.drawImage(i, 0, 0); return g.getImageData(0, 0, i.width, i.height).data; };
     const [i1, i2] = [await im(a), await im(b)]; if (i1.width !== i2.width || i1.height !== i2.height) return { n: 1e9, box: 'size' };
-    const [d1, d2] = [px(i1), px(i2)]; let n = 0, x0 = 1e9, y0 = 1e9, x1 = -1, y1 = -1;
-    for (let p = 0; p < d1.length; p += 4) if (Math.max(Math.abs(d1[p] - d2[p]), Math.abs(d1[p + 1] - d2[p + 1]), Math.abs(d1[p + 2] - d2[p + 2])) > 96) {
-      n++; const q = p / 4, x = q % i1.width, y = (q / i1.width) | 0;
-      x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y);
+    // A pixel counts only when NO pixel within 1 px in the other image is
+    // close to it, both ways round: the CI runner rasterised the same "+"
+    // glyph a pixel apart in two loads with identical layout. Text-level
+    // colour leaks are caught exactly by the computed-colour check instead.
+    const [d1, d2] = [px(i1), px(i2)], W = i1.width, H = i1.height; let n = 0, x0 = 1e9, y0 = 1e9, x1 = -1, y1 = -1;
+    const near = (a, b, x, y) => { const p = (y * W + x) * 4; for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) { const X = x + dx, Y = y + dy; if (X < 0 || Y < 0 || X >= W || Y >= H) continue; const q = (Y * W + X) * 4; if (Math.max(Math.abs(a[p] - b[q]), Math.abs(a[p + 1] - b[q + 1]), Math.abs(a[p + 2] - b[q + 2])) <= 96) return true; } return false; };
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const p = (y * W + x) * 4;
+      if (Math.max(Math.abs(d1[p] - d2[p]), Math.abs(d1[p + 1] - d2[p + 1]), Math.abs(d1[p + 2] - d2[p + 2])) <= 96) continue;
+      if (near(d1, d2, x, y) && near(d2, d1, x, y)) continue;
+      n++; x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y);
     }
     return { n, box: n ? `${x0},${y0}–${x1},${y1}` : '' };
   }, [a.toString('base64'), b.toString('base64')]);
@@ -257,6 +264,10 @@ try {
   // Layout boxes of every element, for leak evidence: a failure can then say
   // WHICH element moved or changed under the differing box.
   const rects = (page) => page.evaluate(() => [...document.querySelectorAll('body *')].map(e => { const r = e.getBoundingClientRect(), c = getComputedStyle(e); return { e: e.tagName.toLowerCase() + (e.getAttribute('aria-label') ? `[${e.getAttribute('aria-label')}]` : ''), x: r.x, y: r.y, w: r.width, h: r.height, font: `${c.fontFamily} ${c.fontSize} ${c.letterSpacing}`, t: (e.childElementCount ? '' : e.textContent || '').slice(0, 24) }; }).filter(r => r.w && r.h));
+  // Every element's computed colours, in document order: a toggled load must
+  // match a fresh load exactly (a colour frozen at mount shows up here even
+  // where it is a few pixels of text).
+  const colours = (page) => page.evaluate(() => [...document.querySelectorAll('body *')].map(e => { const c = getComputedStyle(e); return `${e.tagName.toLowerCase()}${e.getAttribute('aria-label') ? `[${e.getAttribute('aria-label')}]` : ''} "${(e.childElementCount ? '' : e.textContent || '').trim().slice(0, 24)}" color:${c.color} bg:${c.backgroundColor} ${c.backgroundImage === 'none' ? '' : 'img:' + c.backgroundImage.slice(0, 120)} border:${c.borderTopColor} fill:${c.fill} stroke:${c.stroke}`; }));
   const totals = {};
   const nameFails = new Set();
   const onMediaInk = {};   // `${screen}/${mode}` → text → colour, for text on a photo
@@ -271,6 +282,8 @@ try {
       // leak check below (a leak below the fold is still a leak).
       const a = { fails: [], media: 0, measured: 0 }, seen = new Set(), fresh = [], freshRects = [];
       onMediaInk[`${key}/${mode}`] = new Map();
+      await shot(A.page);   // settle first: a skeleton still loading is not a leak
+      const freshColours = await colours(A.page);
       const steps = await markScroller(A.page);
       for (let i = 0; i < steps; i++) {
         if (i) await scrollTo(A.page, i);
@@ -294,6 +307,10 @@ try {
       const B = await open({ scheme: 'dark', pick: other, query, extra, ready });
       await B.page.evaluate(m => window.PlurskyAppearance.set(m), mode);
       await B.page.clock.runFor(500); await B.page.waitForTimeout(250);
+      await shot(B.page);
+      const togColours = await colours(B.page);
+      const off = togColours.map((t, j) => t === freshColours[j] ? null : `  fresh:   ${freshColours[j]}\n  toggled: ${t}`).filter(Boolean);
+      check(togColours.length === freshColours.length && !off.length, `[${key}] toggled ${other}→${mode}: ${off.length} element(s) keep a colour a fresh ${mode} load does not have (${togColours.length} vs ${freshColours.length} elements)\n${off.slice(0, 3).join('\n')}`);
       const bSteps = await markScroller(B.page);
       check(bSteps === steps, `[${key}] toggled ${other}→${mode} has ${bSteps} screenfuls, fresh has ${steps}`);
       for (let i = 0; i < Math.min(steps, bSteps); i++) {
