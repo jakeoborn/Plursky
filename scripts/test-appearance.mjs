@@ -7,8 +7,9 @@
 //     · System hands control back to the iPhone
 //   Every screen, in BOTH modes:
 //     · contrast: every visible text node meets WCAG AA against what is really
-//       behind it (4.5:1, or 3:1 at ≥24px or ≥18.66px bold). Text on a photo or
-//       a gradient is out of scope (it is drawn with the --media-* tokens).
+//       behind it (4.5:1, or 3:1 at ≥24px or ≥18.66px bold). Behind text on a
+//       photo, artwork or gradient the background is measured in PIXELS (the
+//       mean colour under the text box, text hidden).
 //     · names in full: no truncated artist name, a 3+ chain as "First +N",
 //       and every stage by its full name, never its code
 //     · text on a photo or artwork keeps one colour in both modes (--media-ink)
@@ -86,7 +87,7 @@ try {
     const lum = (c) => [c.r, c.g, c.b].map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }).reduce((s, v, i) => s + v * [0.2126, 0.7152, 0.0722][i], 0);
     const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
     const W = innerWidth, H = innerHeight, out = [];
-    let media = 0, measured = 0; const mediaInk = [];
+    let media = 0, measured = 0; const mediaInk = [], mediaBoxes = [];
     for (const el of document.querySelectorAll('body *')) {
       if (el.closest('svg,script,style,noscript,[aria-hidden="true"]')) continue;
       const own = [...el.childNodes].filter(n => n.nodeType === 3 && n.textContent.trim());
@@ -123,7 +124,15 @@ try {
           const ub = parse(us.backgroundColor); if (ub && ub.a >= 0.999) break;
         }
       }
-      if (onMedia) { media++; mediaInk.push([own.map(n => n.textContent).join(' ').trim().slice(0, 40), cs.color]); continue; }
+      if (onMedia) {
+        media++;
+        const t = own.map(n => n.textContent).join(' ').trim().slice(0, 40);
+        mediaInk.push([t, cs.color]);
+        const px = parseFloat(cs.fontSize), wt = parseInt(cs.fontWeight) || 400;
+        el.setAttribute('data-appearance-media', String(mediaBoxes.length));
+        mediaBoxes.push({ t, color: cs.color, op, large: px >= 24 || (px >= 18.66 && wt >= 700), x: Math.max(0, r.left), y: Math.max(0, r.top), w: Math.min(W, r.right) - Math.max(0, r.left), h: Math.min(H, r.bottom) - Math.max(0, r.top) });
+        continue;
+      }
       let bg = { r: 255, g: 255, b: 255, a: 1 };
       const root = parse(getComputedStyle(document.documentElement).backgroundColor); if (root && root.a > 0) bg = over(root, bg);
       for (let i = layers.length - 1; i >= 0; i--) bg = over(layers[i], bg);
@@ -135,7 +144,7 @@ try {
       measured++;
       if (cr < (large ? 3 : 4.5)) out.push({ t: own.map(n => n.textContent).join(' ').trim().replace(/\s+/g, ' ').slice(0, 40), cr: +cr.toFixed(2), fg: cs.color, bg: `rgb(${Math.round(bg.r)},${Math.round(bg.g)},${Math.round(bg.b)})`, px, sel: el.tagName.toLowerCase() + (el.getAttribute('data-testid') ? `[${el.getAttribute('data-testid')}]` : '') });
     }
-    return { fails: out, media, measured, mediaInk };
+    return { fails: out, media, measured, mediaInk, mediaBoxes };
   });
 
   // Names in full (lane ruling 2026-09-26), mode-independent, so run once:
@@ -191,7 +200,36 @@ try {
     if (!sc) return 1; sc.setAttribute('data-appearance-scroller', ''); return Math.min(12, Math.ceil(sc.scrollHeight / (sc.clientHeight * 0.8)));
   });
   const scrollTo = async (page, i) => { await page.evaluate(i => { const sc = document.querySelector('[data-appearance-scroller]'); if (sc) sc.scrollTop = i * sc.clientHeight * 0.8; }, i); await page.clock.runFor(300); await page.waitForTimeout(80); };
+  // Text ON a photo, artwork or gradient: its background is pixels, not a
+  // colour, so measure the pixels. Hide the text, screenshot, and take the
+  // mean colour under each text box; the text must meet AA against it.
+  const mediaContrast = async (page, boxes) => {
+    if (!boxes.length) return [];
+    await page.evaluate(() => { for (const e of document.querySelectorAll('[data-appearance-media]')) { e.dataset.appearanceColor = e.style.color; e.dataset.appearanceShadow = e.style.textShadow; e.style.setProperty('color', 'transparent', 'important'); e.style.setProperty('text-shadow', 'none', 'important'); } });
+    const png = await page.screenshot({ animations: 'disabled' });
+    await page.evaluate(() => { for (const e of document.querySelectorAll('[data-appearance-media]')) { e.style.removeProperty('color'); e.style.removeProperty('text-shadow'); if (e.dataset.appearanceColor) e.style.color = e.dataset.appearanceColor; if (e.dataset.appearanceShadow) e.style.textShadow = e.dataset.appearanceShadow; e.removeAttribute('data-appearance-media'); delete e.dataset.appearanceColor; delete e.dataset.appearanceShadow; } });
+    return cmp.evaluate(async ([b64, boxes]) => {
+      const i = await new Promise(r => { const im = new Image(); im.onload = () => r(im); im.src = 'data:image/png;base64,' + b64; });
+      const k = document.createElement('canvas'); k.width = i.width; k.height = i.height; const g = k.getContext('2d'); g.drawImage(i, 0, 0);
+      const sx = i.width / innerWidth;   // the page's viewport width is what the boxes are in
+      const lum = (c) => c.map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }).reduce((s, v, j) => s + v * [0.2126, 0.7152, 0.0722][j], 0);
+      const out = [];
+      for (const b of boxes) {
+        if (b.w < 2 || b.h < 2) continue;
+        const d = g.getImageData(Math.round(b.x * sx), Math.round(b.y * sx), Math.max(1, Math.round(b.w * sx)), Math.max(1, Math.round(b.h * sx))).data;
+        let R = 0, G = 0, B = 0, n = 0; for (let q = 0; q < d.length; q += 4) { R += d[q]; G += d[q + 1]; B += d[q + 2]; n++; }
+        const bg = [R / n, G / n, B / n];
+        const m = b.color.match(/rgba?\(([^)]+)\)/); if (!m) continue;
+        const p = m[1].split(/[\s,/]+/).filter(Boolean).map(Number), a = (p.length > 3 ? p[3] : 1) * b.op;
+        const fg = [0, 1, 2].map(j => p[j] * a + bg[j] * (1 - a));
+        const [x, y] = [lum(fg), lum(bg)].sort((u, v) => v - u), cr = (x + 0.05) / (y + 0.05);
+        if (cr < (b.large ? 3 : 4.5)) out.push({ t: b.t, cr: +cr.toFixed(2), fg: b.color, bg: `pixels rgb(${bg.map(Math.round).join(',')})`, px: b.large ? 'large' : 'small' });
+      }
+      return out;
+    }, [png.toString('base64'), boxes]);
+  };
   const cmp = await browser.newPage();
+  await cmp.setViewportSize({ width: 393, height: 852 });
   const diffPx = (a, b) => cmp.evaluate(async ([a, b]) => {
     const im = (s) => new Promise(r => { const i = new Image(); i.onload = () => r(i); i.src = 'data:image/png;base64,' + s; });
     const px = (i) => { const k = document.createElement('canvas'); k.width = i.width; k.height = i.height; const g = k.getContext('2d'); g.drawImage(i, 0, 0); return g.getImageData(0, 0, i.width, i.height).data; };
@@ -222,6 +260,7 @@ try {
         const r = await audit(A.page);
         a.media += r.media; a.measured += r.measured;
         for (const [t, c] of r.mediaInk) onMediaInk[`${key}/${mode}`].set(t, c);
+        for (const f of await mediaContrast(A.page, r.mediaBoxes)) { const k = f.t + f.fg; if (!seen.has(k)) { seen.add(k); a.fails.push(f); } }
         if (mode === 'dark') for (const x of await names(A.page)) nameFails.add(`[${key}] ${x}`);
         for (const f of r.fails) { const k = f.t + f.fg; if (!seen.has(k)) { seen.add(k); a.fails.push(f); } }
       }

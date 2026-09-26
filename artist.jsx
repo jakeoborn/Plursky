@@ -1266,10 +1266,14 @@ function ArtistScreen({ state, setState }) {
       }}>
         <div style={{
           position: "absolute", inset: 0, top: -30,
-          background: heroPhoto
-            ? "var(--media-ground)"
+          // Longhands only: a `background` shorthand holding var() is wiped
+          // when React then sets backgroundSize/Position, so the no-photo
+          // hero used to paint NOTHING (invisible in Dark, a pale ground
+          // under white controls in Light).
+          backgroundColor: "var(--media-ground)",
+          backgroundImage: heroPhoto
+            ? `url(${heroPhoto})`
             : `linear-gradient(160deg, var(--media-ground) 0%, rgba(var(--signal-rgb),0.27) 40%, var(--media-ground) 100%)`,
-          backgroundImage: heroPhoto ? `url(${heroPhoto})` : undefined,
           backgroundSize: "cover",
           backgroundPosition: "center 20%",
           transform: `translateY(${heroParallax}px)`,
