@@ -123,6 +123,9 @@ function NightWizard({ state, setState, onClose }) {
   // counts, the list, the gap fits and Auto-fill resolved from storage and
   // hid other-weekend picks until Save (round 5, same defect as the share).
   const localIds = Array.from(local);
+  // Writes keep the raw selection (an orphan stays stored); what the wizard
+  // counts, exports and shares is the lineup's view of it.
+  const liveLocalIds = savedInLineup(localIds);
 
   const dayStats = DAYS.map(d => {
     const sets = activeLineup(localIds).filter(a => a.day === d.n && local.has(a.id));
@@ -204,13 +207,13 @@ function NightWizard({ state, setState, onClose }) {
         <div>
           <div className="mono" style={{ fontSize: 10, letterSpacing: 1.8, fontWeight: 700, textAlign: "center" }}>BUILD MY NIGHT</div>
           <div className="mono" style={{ fontSize: 8, letterSpacing: 1.2, color: "var(--muted)", textAlign: "center", marginTop: 2 }}>
-            {Array.from(local).length} SETS SAVED
+            {liveLocalIds.length} SETS SAVED
           </div>
         </div>
         <div style={{ display: "flex", gap: 6 }}>
-          {Array.from(local).length > 0 && (<>
+          {liveLocalIds.length > 0 && (<>
             <button
-              onClick={() => exportSavedSetsICS(Array.from(local))}
+              onClick={() => exportSavedSetsICS(liveLocalIds)}
               aria-label="Export to calendar"
               title="Export to calendar"
               style={{
@@ -225,7 +228,7 @@ function NightWizard({ state, setState, onClose }) {
             </button>
             <button
               onClick={() => {
-                const text = _nightShareText(Array.from(local));
+                const text = _nightShareText(liveLocalIds);
                 if (navigator.share) { navigator.share({ title: `My ${FESTIVAL_CONFIG.shortName || "festival"} lineup`, text }).catch(() => {}); }
                 else { try { navigator.clipboard.writeText(text); } catch {} }
               }}

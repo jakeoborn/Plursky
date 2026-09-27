@@ -108,6 +108,7 @@ function NightWizard({
   });
   var [local, setLocal] = React.useState(() => new Set(state.saved));
   var localIds = Array.from(local);
+  var liveLocalIds = savedInLineup(localIds);
   var dayStats = DAYS.map(d => {
     var sets = activeLineup(localIds).filter(a => a.day === d.n && local.has(a.id));
     var clashes = 0;
@@ -231,13 +232,13 @@ function NightWizard({
       textAlign: "center",
       marginTop: 2
     }
-  }, Array.from(local).length, " SETS SAVED")), React.createElement("div", {
+  }, liveLocalIds.length, " SETS SAVED")), React.createElement("div", {
     style: {
       display: "flex",
       gap: 6
     }
-  }, Array.from(local).length > 0 && React.createElement(React.Fragment, null, React.createElement("button", {
-    onClick: () => exportSavedSetsICS(Array.from(local)),
+  }, liveLocalIds.length > 0 && React.createElement(React.Fragment, null, React.createElement("button", {
+    onClick: () => exportSavedSetsICS(liveLocalIds),
     "aria-label": "Export to calendar",
     title: "Export to calendar",
     style: {
@@ -274,7 +275,7 @@ function NightWizard({
     stroke: "none"
   }))), React.createElement("button", {
     onClick: () => {
-      var text = _nightShareText(Array.from(local));
+      var text = _nightShareText(liveLocalIds);
       if (navigator.share) {
         navigator.share({
           title: `My ${FESTIVAL_CONFIG.shortName || "festival"} lineup`,

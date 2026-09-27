@@ -145,7 +145,7 @@ try {
   };
   const liveIds = await (async () => {
     const { bctx, page } = await open([], "home");
-    const ids = await page.evaluate(() => window.ARTISTS.filter(a => a.day != null && a.start).slice(0, 3).map(a => a.id));
+    const ids = await page.evaluate(() => window.activeLineup().filter(a => a.day != null && a.start).slice(0, 3).map(a => a.id));
     const hasOrphan = await page.evaluate(id => window.ARTISTS.some(a => a.id === id), ORPHAN);
     await bctx.close();
     check(!hasOrphan, "app fixture sanity: the orphan id is not in ACL's lineup");
@@ -200,6 +200,21 @@ try {
     } else {
       check(false, `B1b. harness: no "Add to lineup" button on ${L2}'s artist screen`);
     }
+    await bctx.close();
+  }
+  // 1d. Build My Night: the wizard counts and shares the view, writes raw.
+  {
+    const { bctx, page } = await open([L1, L2, ORPHAN], "lineup");
+    const btn = page.getByRole("button", { name: /My night$/ }).first();
+    if (await btn.count()) {
+      await btn.click();
+      await page.clock.runFor(500);
+      const n = await page.evaluate(() => (document.body.innerText.match(/(\d+) SETS SAVED/) || [])[1] ?? null);
+      check(n === "2", `B1d. Build My Night reads 2 SETS SAVED with two live + one orphan (got ${n})`);
+    } else {
+      check(false, "B1d. harness: no My night action on the lineup with two live saves");
+    }
+    check(same(await stored(page), [L1, L2, ORPHAN]), "B1d. opening the wizard did not delete the orphan");
     await bctx.close();
   }
   // 4. zero saved live acts, in the app
