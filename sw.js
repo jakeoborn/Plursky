@@ -61,6 +61,7 @@ const LOCAL = [
   './acl-park-2026.webp',
   './edc-map-2026.jpg',
   './edco-tinker-2026.jpg',
+  './onboarding-crowd-unsplash.jpg',
   './festival-art/acl-2026.webp',
   './festival-art/crssd-fall-2026.webp',
   './festival-art/portola-2026.webp',
