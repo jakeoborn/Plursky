@@ -61,8 +61,6 @@
 	<!-- Plursky is paper-and-ink only by design (see DESIGN.md). Lock the
 	     interface to Light so iOS doesn't auto-invert status bar / scroll
 	     indicators / form controls based on the user's system setting. -->
-	<key>UIUserInterfaceStyle</key>
-	<string>Dark</string>
 	<!-- Custom URL scheme so OAuth providers (Spotify) can redirect back into
 	     the native app. The Spotify dashboard's redirect-URI list must include
 	     `plursky://callback` for this to work; on the JS side we open the

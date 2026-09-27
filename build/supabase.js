@@ -762,7 +762,7 @@ function AccountCard({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        color: "var(--ink)",
+        color: "var(--on-signal)",
         fontFamily: "Instrument Serif, serif",
         fontSize: 15
       }
@@ -906,7 +906,7 @@ function AccountCard({
       style: {
         flex: 1,
         background: "var(--ember)",
-        color: "var(--ink)",
+        color: "var(--on-ember)",
         border: "none",
         borderRadius: 10,
         padding: "9px 12px",
@@ -1554,7 +1554,7 @@ function FriendsCard({
     style: {
       fontSize: 8.5,
       letterSpacing: 1.2,
-      color: "rgba(var(--ink-rgb),0.45)",
+      color: "var(--text-3)",
       marginBottom: 6
     }
   }, "CURRENT STAGE"), React.createElement("div", {
@@ -3098,7 +3098,7 @@ function CrewChat({
         padding: "6px 4px",
         borderRadius: 8,
         background: on ? s.color : "var(--paper)",
-        color: on ? "var(--ink)" : "var(--ink)",
+        color: on ? _inkOnHex(s.color) : "var(--ink)",
         border: on ? "none" : "1px solid var(--line-2)",
         fontFamily: "Geist Mono, monospace",
         fontSize: 8,
@@ -3495,7 +3495,7 @@ function CrewCard({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "rgba(var(--ink-rgb),0.4)",
+      color: "var(--text-3)",
       fontSize: 16,
       padding: 0,
       animation: totemUrl ? "totem-pulse 3s ease-in-out infinite" : "none"
@@ -3520,7 +3520,7 @@ function CrewCard({
     style: {
       fontSize: 8.5,
       letterSpacing: 1.2,
-      color: "rgba(var(--ink-rgb),0.45)",
+      color: "var(--text-3)",
       marginBottom: 3
     }
   }, totemUrl ? "YOUR TOTEM · TAP TO CHANGE" : "TAP 📷 TO SET YOUR TOTEM"), React.createElement("div", {
@@ -3579,7 +3579,7 @@ function CrewCard({
       borderRadius: 8,
       padding: "7px 11px",
       cursor: "pointer",
-      color: "rgba(var(--ink-rgb),0.5)",
+      color: "var(--text-3)",
       fontFamily: "Geist Mono, monospace",
       fontSize: 9,
       letterSpacing: 1.2
@@ -3793,7 +3793,7 @@ function CrewCard({
         flex: 1,
         padding: "11px",
         background: "var(--signal)",
-        color: "var(--ink)",
+        color: "var(--on-signal)",
         border: "none",
         borderRadius: 10,
         cursor: "pointer",
@@ -3807,7 +3807,7 @@ function CrewCard({
       style: {
         padding: "11px 14px",
         background: "var(--signal)",
-        color: "var(--ink)",
+        color: "var(--on-signal)",
         border: "none",
         borderRadius: 10,
         cursor: "pointer",

@@ -280,7 +280,7 @@ function OnboardingModal({
       paddingBottom: "env(safe-area-inset-bottom, 0px)",
       animation: "fadeIn .25s"
     },
-    className: page === 0 ? "onb-editorial-modal" : ""
+    className: page === 0 ? "onb-editorial-modal media-scope" : ""
   }, React.createElement("div", {
     className: page === 0 ? "onb-editorial-top" : "",
     style: {
@@ -597,7 +597,7 @@ function SearchModal({
   var results = query.length === 0 ? [] : activeLineup().filter(a => {
     if (dayFilter) return a.day === dayFilter;
     var stage = STAGES.find(s => s.id === a.stage);
-    return a.name.toLowerCase().includes(query) || a.genre.toLowerCase().includes(query) || (stage?.name || "").toLowerCase().includes(query) || (stage?.short || "").toLowerCase().includes(query) || (stage?.vibe || "").toLowerCase().includes(query) || ["legend", "legendary", "sunrise", "b2b"].includes(query) && isLegendary(a);
+    return a.name.toLowerCase().includes(query) || a.genre.toLowerCase().includes(query) || (stage?.name || "").toLowerCase().includes(query) || (stage?.short || "").toLowerCase().includes(query) || (stage?.code || "").toLowerCase().includes(query) || (stage?.vibe || "").toLowerCase().includes(query) || ["legend", "legendary", "sunrise", "b2b"].includes(query) && isLegendary(a);
   }).sort((a, b) => {
     var aStart = a.name.toLowerCase().startsWith(query);
     var bStart = b.name.toLowerCase().startsWith(query);
@@ -1119,14 +1119,6 @@ function App() {
       sbOutboxInit?.();
     } catch {}
   }, []);
-  var {
-    mode: themeMode
-  } = useThemeMode();
-  React.useEffect(() => {
-    applyThemeClass();
-    var id = setInterval(applyThemeClass, 60000);
-    return () => clearInterval(id);
-  }, [themeMode]);
   React.useEffect(() => {
     var onConnect = e => {
       if (e?.detail?.ok) {
@@ -1188,7 +1180,7 @@ function App() {
     var dlCrew = params.get("crew");
     var validArtist = dlArtist && ARTISTS.find(a => a.id === dlArtist) ? dlArtist : null;
     var validTab = ["home", "map", "lineup", "spotify", "me", "memories", "past"].includes(dlTab) ? dlTab : null;
-    var validStage = dlStage && STAGES.find(s => s.id === dlStage || s.short.toLowerCase() === dlStage.toLowerCase()) ? dlStage : null;
+    var validStage = dlStage && STAGES.find(s => s.id === dlStage || (s.code || s.short || "").toLowerCase() === dlStage.toLowerCase()) ? dlStage : null;
     var validDay = dlDay && festivalDayNums().includes(+dlDay) ? +dlDay : null;
     var validFriendIds = dlLineup ? dlLineup.split(",").map(s => s.trim()).filter(id => ARTISTS.find(a => a.id === id)) : [];
     var validFrom = (dlFrom || "").slice(0, 24).replace(/[^a-zA-Z0-9 _.-]/g, "") || null;
@@ -1529,7 +1521,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v369"
+        version: "v374"
       }));
     } catch {}
   }
@@ -1594,7 +1586,7 @@ class RootErrorBoundary extends React.Component {
         letterSpacing: 1.2,
         color: "rgba(var(--shade-rgb),0.45)"
       }
-    }, "PLURSKY · v369"));
+    }, "PLURSKY · v374"));
   }
 }
 function SetStartingCinematic() {
@@ -1716,7 +1708,7 @@ function SetStartingCinematic() {
     style: {
       fontSize: 9,
       letterSpacing: 1.6,
-      color: "rgba(var(--ink-rgb),0.4)",
+      color: "var(--text-3)",
       marginTop: 20
     }
   }, "TAP TO DISMISS")));
