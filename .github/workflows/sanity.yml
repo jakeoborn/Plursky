@@ -74,3 +74,17 @@ jobs:
 
       - name: Verify gate (babel react-preset + headless mount probe)
         run: node scripts/verify.mjs
+        env:
+          APPEARANCE_EVIDENCE: ${{ runner.temp }}/appearance-evidence
+
+      # A failed appearance leak check saves the fresh and toggled shots of
+      # the screenful that differed (fixture data only), so a runner-only
+      # failure can be looked at instead of guessed at.
+      - name: Upload appearance evidence
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: appearance-evidence
+          path: ${{ runner.temp }}/appearance-evidence
+          if-no-files-found: ignore
+          retention-days: 7
