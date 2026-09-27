@@ -2823,7 +2823,7 @@ function CrewCard({ state }) {
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
               {others.map(([pid, m]) => {
-                const ids = m.artistIds || [];
+                const ids = savedInLineup(m.artistIds);
                 const inCommon = ids.filter(id => state.saved.includes(id)).length;
                 const isOpen = expandedPid === pid;
                 const ARTISTS = window.ARTISTS || [];
@@ -2893,12 +2893,12 @@ function CrewCard({ state }) {
             const _crewShare = async (fmt) => {
               const crewNames = [myName || "Me"];
               const avs = [{ initial: (myName || "M")[0].toUpperCase(), color: _presColor(myPid) }];
-              const crewArtistIds = new Set(state.saved || []);
+              const crewArtistIds = new Set(savedInLineup(state.saved));
               const overlapIds = new Set();
               for (const [pid, m] of others) {
                 crewNames.push(m.name || "Friend");
                 avs.push({ initial: (m.name || "F")[0].toUpperCase(), color: _presColor(pid) });
-                for (const id of (m.artistIds || [])) {
+                for (const id of savedInLineup(m.artistIds)) {
                   crewArtistIds.add(id);
                   if ((state.saved || []).includes(id)) overlapIds.add(id);
                 }

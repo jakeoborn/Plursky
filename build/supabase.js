@@ -3615,7 +3615,7 @@ function CrewCard({
       gap: 7
     }
   }, others.map(([pid, m]) => {
-    var ids = m.artistIds || [];
+    var ids = savedInLineup(m.artistIds);
     var inCommon = ids.filter(id => state.saved.includes(id)).length;
     var isOpen = expandedPid === pid;
     var ARTISTS = window.ARTISTS || [];
@@ -3762,7 +3762,7 @@ function CrewCard({
         initial: (myName || "M")[0].toUpperCase(),
         color: _presColor(myPid)
       }];
-      var crewArtistIds = new Set(state.saved || []);
+      var crewArtistIds = new Set(savedInLineup(state.saved));
       var overlapIds = new Set();
       for (var [pid, m] of others) {
         crewNames.push(m.name || "Friend");
@@ -3770,7 +3770,7 @@ function CrewCard({
           initial: (m.name || "F")[0].toUpperCase(),
           color: _presColor(pid)
         });
-        for (var id of m.artistIds || []) {
+        for (var id of savedInLineup(m.artistIds)) {
           crewArtistIds.add(id);
           if ((state.saved || []).includes(id)) overlapIds.add(id);
         }

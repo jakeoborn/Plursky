@@ -2281,7 +2281,7 @@ async function _renderCrewComparison(myName, myState, otherName, otherArtistIds)
   ctx.fillStyle = "rgba(255,255,255,0.4)";
   ctx.fillText(`${(CFG.shortName || "FESTIVAL").toUpperCase()} · ${CFG.dates || ""}`, W / 2, 160);
   var mySaved = savedInLineup(myState.saved);
-  var theirSaved = otherArtistIds || [];
+  var theirSaved = savedInLineup(otherArtistIds);
   var overlap = mySaved.filter(id => theirSaved.includes(id));
   var myOnly = mySaved.filter(id => !theirSaved.includes(id));
   var theirOnly = theirSaved.filter(id => !mySaved.includes(id));

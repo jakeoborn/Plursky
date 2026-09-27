@@ -170,6 +170,21 @@ try {
     check(await meSaved(page) === 1, `B1. Me counts 1 saved set with one live + one orphan (got ${await meSaved(page)})`);
     check(await searchHeader(page) === "1", "B1. Search reads YOUR LINEUP · 1 SETS, not 2");
     check(same(await stored(page), [L1, ORPHAN]), "B1. loading and reading did not delete the orphan from storage");
+    // Crew showdown, both sides: a crew member on an older build can still
+    // broadcast an orphan. Same orphan on both sides: counted raw it reads
+    // SETS SAVED 2/2 and IN COMMON 1; through the view, 1/1 and 0.
+    const rows = await page.evaluate(async ({ L1, L2, ORPHAN }) => {
+      const drawn = [];
+      const orig = CanvasRenderingContext2D.prototype.fillText;
+      CanvasRenderingContext2D.prototype.fillText = function (t) { drawn.push(String(t)); return orig.apply(this, arguments); };
+      try { await window._renderCrewComparison("Me", { saved: [L1, ORPHAN] }, "Friend", [L2, ORPHAN]); }
+      finally { CanvasRenderingContext2D.prototype.fillText = orig; }
+      const at = label => { const i = drawn.indexOf(label); return i < 0 ? null : [drawn[i + 1], drawn[i + 2]]; };
+      return { saved: at("SETS SAVED"), common: at("IN COMMON"), unique: at("UNIQUE PICKS") };
+    }, { L1, L2, ORPHAN });
+    check(same(rows.saved, ["1", "1"]), `B1c. crew showdown SETS SAVED counts live acts on both sides (got ${JSON.stringify(rows.saved)})`);
+    check(same(rows.common, ["0", "0"]), `B1c. crew showdown IN COMMON ignores a shared orphan (got ${JSON.stringify(rows.common)})`);
+    check(same(rows.unique, ["1", "1"]), `B1c. crew showdown UNIQUE PICKS counts live acts only (got ${JSON.stringify(rows.unique)})`);
     await bctx.close();
   }
   // 1b. a save written while an orphan is stored keeps the orphan
