@@ -3,6 +3,13 @@ import UIKit
 import WebKit
 
 final class PlurskyBridgeViewController: CAPBridgeViewController {
+    // Local plugins that live in this target, registered by hand so they
+    // never depend on `cap sync` writing them into packageClassList.
+    override func capacitorDidLoad() {
+        super.capacitorDidLoad()
+        bridge?.registerPluginInstance(AppearancePlugin())
+    }
+
     override func webViewConfiguration(for instanceConfiguration: InstanceConfiguration) -> WKWebViewConfiguration {
         #if DEBUG
         let configuration = super.webViewConfiguration(for: instanceConfiguration)

@@ -819,7 +819,7 @@ function AccountCard({ state, setState }) {
                 width: 32, height: 32, borderRadius: 32, flexShrink: 0, overflow: "hidden",
                 background: "linear-gradient(135deg, var(--ember), var(--horizon))",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                color: "var(--ink)", fontFamily: "Instrument Serif, serif", fontSize: 15,
+                color: "var(--on-signal)", fontFamily: "Instrument Serif, serif", fontSize: 15,
               }}>
                 {avatar
                   ? <img src={avatar} alt={displayName} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -890,7 +890,7 @@ function AccountCard({ state, setState }) {
                       onClick={handleDelete}
                       disabled={deletePhase === "working"}
                       style={{
-                        flex: 1, background: "var(--ember)", color: "var(--ink)",
+                        flex: 1, background: "var(--ember)", color: "var(--on-ember)",
                         border: "none", borderRadius: 10, padding: "9px 12px",
                         cursor: deletePhase === "working" ? "default" : "pointer",
                         fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
@@ -1362,7 +1362,7 @@ function FriendsCard({ state, setState }) {
           <div style={{ marginTop: 10 }}>
             <div className="mono" style={{
               fontSize: 8.5, letterSpacing: 1.2,
-              color: "rgba(var(--ink-rgb),0.45)", marginBottom: 6,
+              color: "var(--text-3)", marginBottom: 6,
             }}>CURRENT STAGE</div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
               {STAGES?.map(s => (
@@ -2550,7 +2550,7 @@ function CrewChat({ code, myPid, myName }) {
                 <button key={s.id} onClick={() => togglePollStage(s.id)} style={{
                   padding: "6px 4px", borderRadius: 8,
                   background: on ? s.color : "var(--paper)",
-                  color: on ? "var(--ink)" : "var(--ink)",
+                  color: on ? _inkOnHex(s.color) : "var(--ink)",
                   border: on ? "none" : "1px solid var(--line-2)",
                   fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 0.8,
                   fontWeight: on ? 700 : 500, cursor: "pointer",
@@ -2775,13 +2775,13 @@ function CrewCard({ state }) {
               border: totemUrl ? "2px solid rgba(var(--ink-rgb),0.5)" : "2px dashed rgba(var(--ink-rgb),0.3)",
               background: totemUrl ? `url(${totemUrl}) center/cover` : "rgba(var(--ink-rgb),0.08)",
               cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
-              color: "rgba(var(--ink-rgb),0.4)", fontSize: 16, padding: 0,
+              color: "var(--text-3)", fontSize: 16, padding: 0,
               animation: totemUrl ? "totem-pulse 3s ease-in-out infinite" : "none",
             }}>{totemUrl ? "" : "📷"}</button>
             <input ref={totemInputRef} type="file" accept="image/*" style={{ display: "none" }}
               onChange={e => { pickTotem(e.target.files?.[0]); e.target.value = ""; }} />
             <div style={{ flex: 1 }}>
-              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "rgba(var(--ink-rgb),0.45)", marginBottom: 3 }}>{totemUrl ? "YOUR TOTEM · TAP TO CHANGE" : "TAP 📷 TO SET YOUR TOTEM"}</div>
+              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "var(--text-3)", marginBottom: 3 }}>{totemUrl ? "YOUR TOTEM · TAP TO CHANGE" : "TAP 📷 TO SET YOUR TOTEM"}</div>
               <div className="mono" style={{ fontSize: 28, letterSpacing: 8, fontWeight: 700, lineHeight: 1 }}>{code}</div>
             </div>
             <button onClick={async () => {
@@ -2802,7 +2802,7 @@ function CrewCard({ state }) {
             }}>{copied ? "✓" : "↗ SHARE"}</button>
             <button onClick={() => { if (leaveRef.current) leaveRef.current(); setJoined(false); setMembers(new Map()); }} style={{
               background: "rgba(var(--ink-rgb),0.08)", border: "none", borderRadius: 8,
-              padding: "7px 11px", cursor: "pointer", color: "rgba(var(--ink-rgb),0.5)",
+              padding: "7px 11px", cursor: "pointer", color: "var(--text-3)",
               fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2,
             }}>LEAVE</button>
           </div>
@@ -2902,13 +2902,13 @@ function CrewCard({ state }) {
               <div style={{ display: "flex", gap: 8, marginTop: 10 }}>
                 <button onClick={() => _crewShare()} style={{
                   flex: 1, padding: "11px",
-                  background: "var(--signal)", color: "var(--ink)",
+                  background: "var(--signal)", color: "var(--on-signal)",
                   border: "none", borderRadius: 10, cursor: "pointer",
                   fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
                 }}>📸 SHARE OUR WEEKEND</button>
                 <button onClick={() => _crewShare("gif")} style={{
                   padding: "11px 14px",
-                  background: "var(--signal)", color: "var(--ink)",
+                  background: "var(--signal)", color: "var(--on-signal)",
                   border: "none", borderRadius: 10, cursor: "pointer",
                   fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
                 }}>🎬 GIF</button>

@@ -149,6 +149,7 @@ const audit = (page) => page.evaluate(() => {
     unlabelled: tappable.filter(e => !(e.innerText || '').trim() && !e.getAttribute('aria-label') && !e.getAttribute('title'))
       .map(e => e.outerHTML.slice(0, 60)),
     themeClass: document.documentElement.className,
+    mode: document.documentElement.getAttribute('data-mode'),
   };
 });
 
@@ -202,12 +203,20 @@ try {
   for (const pref of ['auto', 'light', 'dark']) {
     const { ctx, page } = await open(browser, { url: BASE + '?tab=memories', width: 393, themePref: pref });
     const a = await audit(page);
-    classes.push(`${pref}->${a.themeClass}`);
+    classes.push(`${pref}->${a.themeClass}|${a.mode}`);
     await ctx.close();
   }
   note(`theme pref -> <html> class: ${classes.join(', ')}`);
-  check(classes.every(c => c.endsWith('->theme-field')),
-    `theme: Field Mode is ONE shell at every pref, by design (got ${classes.join(', ')})`);
+  // Appearance (lane ruling 2026-09-26): one system in two modes, resolved by
+  // window.PlurskyAppearance from its OWN key. The retired v267 theme_pref is
+  // ignored: every old value keeps the structural Field shell class and lands
+  // in whatever mode the iPhone reports (this context's default, light), so
+  // an old "dark" landing in Light is the proof it was ignored. Other classes
+  // may sit on <html> too (#116's app-live, which the old 60s theme tick used
+  // to wipe).
+  const parsed = classes.map(c => { const [pref, rest] = c.split('->'); const [cls, mode] = rest.split('|'); return { pref, cls: cls.split(/\s+/), mode }; });
+  check(parsed.every(p => p.cls.includes('theme-field') && p.mode === 'light'),
+    `theme: the retired theme_pref must be ignored (Field shell, the iPhone's mode) (got ${classes.join(', ')})`);
 
   // ── Reduced motion is honoured globally ──────────────────────────────────
   {
