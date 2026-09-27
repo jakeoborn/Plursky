@@ -1238,6 +1238,11 @@ var mk = (id, name, genre, stage, day, start, end, bio) => {
     bio: bio || `Playing ${FESTIVAL_CONFIG?.name || "EDC Las Vegas 2026"}.`
   };
 };
+function actDisplayName(name) {
+  var n = String(name || "");
+  var members = n.split(/\s+b\d+b\s+/i);
+  return members.length > 2 ? `${members[0]} +${members.length - 1}` : n;
+}
 function fmt12(t) {
   if (t == null || t === "") return "\u2014";
   if (typeof t !== "string") return t;
@@ -2620,6 +2625,14 @@ for (var _id3 of _WAVE1_IDS) {
   };
 }
 _applyScheduleOverlays(_DATA_SETS);
+for (var _ds of Object.values(_DATA_SETS)) {
+  for (var _s of _ds.stages || []) {
+    if (_s && _s.code === undefined) {
+      _s.code = _s.short;
+      _s.short = _s.name || _s.short;
+    }
+  }
+}
 var _activeId = getActiveFestivalId();
 var _active = _DATA_SETS[_activeId] || _DATA_SETS["edc-lv-2026"];
 Object.assign(window, {
