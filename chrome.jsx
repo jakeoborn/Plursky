@@ -1868,27 +1868,43 @@ if (!window._appearanceNativeInited && window.PlurskyAppearance) {
 // stay one line where they can (#236). Every [data-fit-name] inside `root`
 // starts at its own size on one line; if it overflows it steps down to
 // data-fit-min px, and only a name that still cannot fit wraps.
+function fitName(el) {
+  const base = parseFloat(el.dataset.fitBase || getComputedStyle(el).fontSize);
+  if (!el.dataset.fitBase) el.dataset.fitBase = String(base);
+  const min = parseFloat(el.dataset.fitMin || "14");
+  el.style.whiteSpace = "nowrap"; el.style.fontSize = base + "px";
+  let size = base;
+  while (el.scrollWidth > el.clientWidth + 1 && size > min) { size -= 1; el.style.fontSize = size + "px"; }
+  if (el.scrollWidth > el.clientWidth + 1) el.style.whiteSpace = "normal";
+  el.dataset.fitW = String(el.clientWidth);
+}
 function fitNames(root) {
   if (!root) return;
-  for (const el of root.querySelectorAll("[data-fit-name]")) {
-    const base = parseFloat(el.dataset.fitBase || getComputedStyle(el).fontSize);
-    if (!el.dataset.fitBase) el.dataset.fitBase = String(base);
-    const min = parseFloat(el.dataset.fitMin || "14");
-    el.style.whiteSpace = "nowrap"; el.style.fontSize = base + "px";
-    let size = base;
-    while (el.scrollWidth > el.clientWidth + 1 && size > min) { size -= 1; el.style.fontSize = size + "px"; }
-    if (el.scrollWidth > el.clientWidth + 1) el.style.whiteSpace = "normal";
-  }
+  for (const el of root.querySelectorAll("[data-fit-name]")) fitName(el);
 }
 // `root` is a ref or a function returning the element. Refits after every
-// render and on resize (an iPhone rotation keeps the screen mounted).
+// render, when any name's own width changes (a rotation), and once the page
+// settles. A fit taken before the page settled otherwise sticks: CI's runner
+// wrapped "Eptic b2b Space Laces" at 16px where it fits on one line at 17px.
 function useFitNames(root) {
   const el = () => (typeof root === "function" ? root() : root && root.current);
-  React.useLayoutEffect(() => { fitNames(el()); });
+  const ro = React.useRef(null);
+  React.useLayoutEffect(() => {
+    const r = el(); fitNames(r);
+    if (!r || typeof ResizeObserver === "undefined") return;
+    if (!ro.current) ro.current = new ResizeObserver((entries) => {
+      for (const { target } of entries) if (target.isConnected && String(target.clientWidth) !== target.dataset.fitW) fitName(target);
+    });
+    for (const n of r.querySelectorAll("[data-fit-name]")) ro.current.observe(n);
+  });
+  // Text metrics can also change without a render or a width change (styles
+  // or fonts that land after the first paint), so refit once the page settles.
   React.useEffect(() => {
-    const onR = () => fitNames(el());
-    window.addEventListener("resize", onR);
-    return () => window.removeEventListener("resize", onR);
+    const refit = () => fitNames(el());
+    if (document.readyState !== "complete") window.addEventListener("load", refit, { once: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(refit);
+    const settle = setTimeout(refit, 1200);
+    return () => { clearTimeout(settle); window.removeEventListener("load", refit); ro.current && ro.current.disconnect(); };
   }, []);
 }
 

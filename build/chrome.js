@@ -2478,31 +2478,50 @@ if (!window._appearanceNativeInited && window.PlurskyAppearance) {
   _syncNativeAppearance(window.PlurskyAppearance.mode());
   window.PlurskyAppearance.onChange(m => _syncNativeAppearance(m));
 }
+function fitName(el) {
+  var base = parseFloat(el.dataset.fitBase || getComputedStyle(el).fontSize);
+  if (!el.dataset.fitBase) el.dataset.fitBase = String(base);
+  var min = parseFloat(el.dataset.fitMin || "14");
+  el.style.whiteSpace = "nowrap";
+  el.style.fontSize = base + "px";
+  var size = base;
+  while (el.scrollWidth > el.clientWidth + 1 && size > min) {
+    size -= 1;
+    el.style.fontSize = size + "px";
+  }
+  if (el.scrollWidth > el.clientWidth + 1) el.style.whiteSpace = "normal";
+  el.dataset.fitW = String(el.clientWidth);
+}
 function fitNames(root) {
   if (!root) return;
-  for (var el of root.querySelectorAll("[data-fit-name]")) {
-    var base = parseFloat(el.dataset.fitBase || getComputedStyle(el).fontSize);
-    if (!el.dataset.fitBase) el.dataset.fitBase = String(base);
-    var min = parseFloat(el.dataset.fitMin || "14");
-    el.style.whiteSpace = "nowrap";
-    el.style.fontSize = base + "px";
-    var size = base;
-    while (el.scrollWidth > el.clientWidth + 1 && size > min) {
-      size -= 1;
-      el.style.fontSize = size + "px";
-    }
-    if (el.scrollWidth > el.clientWidth + 1) el.style.whiteSpace = "normal";
-  }
+  for (var el of root.querySelectorAll("[data-fit-name]")) fitName(el);
 }
 function useFitNames(root) {
   var el = () => typeof root === "function" ? root() : root && root.current;
+  var ro = React.useRef(null);
   React.useLayoutEffect(() => {
-    fitNames(el());
+    var r = el();
+    fitNames(r);
+    if (!r || typeof ResizeObserver === "undefined") return;
+    if (!ro.current) ro.current = new ResizeObserver(entries => {
+      for (var {
+        target
+      } of entries) if (target.isConnected && String(target.clientWidth) !== target.dataset.fitW) fitName(target);
+    });
+    for (var n of r.querySelectorAll("[data-fit-name]")) ro.current.observe(n);
   });
   React.useEffect(() => {
-    var onR = () => fitNames(el());
-    window.addEventListener("resize", onR);
-    return () => window.removeEventListener("resize", onR);
+    var refit = () => fitNames(el());
+    if (document.readyState !== "complete") window.addEventListener("load", refit, {
+      once: true
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(refit);
+    var settle = setTimeout(refit, 1200);
+    return () => {
+      clearTimeout(settle);
+      window.removeEventListener("load", refit);
+      ro.current && ro.current.disconnect();
+    };
   }, []);
 }
 function useAppearance() {
