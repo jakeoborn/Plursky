@@ -53,13 +53,13 @@ function buildSmartReplies({
     var stageName = stage ? stage.name : "the stage";
     if (nextSavedSet.isLive) {
       out.push({
-        tag: `${a.name.toUpperCase().slice(0, 8)} LIVE`,
+        tag: `${a.name.toUpperCase()} LIVE`,
         text: `🎧 ${a.name} is LIVE at ${stageName} — get over here`,
         smart: true
       });
     } else if (nextSavedSet.minsUntil > 0 && nextSavedSet.minsUntil <= 90) {
       out.push({
-        tag: `${a.name.toUpperCase().slice(0, 8)} ${nextSavedSet.minsUntil}M`,
+        tag: `${a.name.toUpperCase()} ${nextSavedSet.minsUntil}M`,
         text: `${a.name} in ${nextSavedSet.minsUntil}m at ${stageName} — meet there?`,
         smart: true
       });
@@ -10401,10 +10401,14 @@ function MessageDrawer({
       key: `${qr.tag}-${i}`,
       onClick: () => send(qr.text),
       className: "mono",
+      "data-quick-reply": qr.smart ? "smart" : "stock",
       style: {
         flexShrink: 0,
+        maxWidth: "100%",
         padding: "6px 11px",
-        borderRadius: 999,
+        borderRadius: qr.smart ? 14 : 999,
+        textAlign: "left",
+        overflowWrap: "anywhere",
         background: qr.smart ? "var(--ember)" : "var(--paper-2)",
         color: qr.smart ? "var(--ink)" : "var(--ink)",
         border: qr.smart ? "none" : "1px solid var(--line-2)",
