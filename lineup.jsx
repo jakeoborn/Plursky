@@ -855,7 +855,8 @@ function LineupScreen({ state, setState }) {
   // timetable and come back at the top — no separate show/hide state that
   // can disagree with the scroll position, and no second vertical scroller.
   // Same condition the grid itself renders under.
-  const gridLead = viewMode === "grid" && !(filter === "saved" && state.saved.length === 0);
+  const liveSavedCount = savedInLineup(state.saved).length;
+  const gridLead = viewMode === "grid" && !(filter === "saved" && liveSavedCount === 0);
   // The floating global Search pill hides in GRID (app.jsx): the grid's own
   // search is one short upward scroll away, and the pill sat on set cards.
   React.useEffect(() => {
@@ -963,9 +964,9 @@ function LineupScreen({ state, setState }) {
           const clash = dayStats.some(d => d.clashes > 0);
           return <button onClick={() => setWizardOpen(true)} style={{ ...textBtn, color: clash ? "var(--warn)" : "var(--ink)", fontWeight: 600 }}>{clash ? "⚠ My night" : "My night"}</button>;
         })()}
-        {state.saved.length > 0 && <ShareLineupButton state={state} />}
-        {state.saved.length > 0 && (
-          <button onClick={() => { window.plurskyHaptic?.("LIGHT"); exportSavedSetsICS(state.saved); }} style={textBtn}>Calendar</button>
+        {liveSavedCount > 0 && <ShareLineupButton state={state} />}
+        {liveSavedCount > 0 && (
+          <button onClick={() => { window.plurskyHaptic?.("LIGHT"); exportSavedSetsICS(savedInLineup(state.saved)); }} style={textBtn}>Calendar</button>
         )}
         <button onClick={() => {
           const savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
@@ -1271,8 +1272,8 @@ function LineupScreen({ state, setState }) {
             ? { title: "Nothing is on right now",
                 sub: NOW.night === day ? "Between sets on this day." : "This day isn't live right now.",
                 action: "Show all sets", onAction: () => setFilter("all") }
-            : { title: state.saved.length === 0 ? "No sets saved yet" : "Nothing saved for this day",
-                sub: state.saved.length === 0 ? "Tap the save button on any set to add it." : "Switch to All stages to browse.",
+            : { title: liveSavedCount === 0 ? "No sets saved yet" : "Nothing saved for this day",
+                sub: liveSavedCount === 0 ? "Tap the save button on any set to add it." : "Switch to All stages to browse.",
                 action: filter !== "all" ? "Show all sets" : null, onAction: () => setFilter("all") };
           return (
             <div style={{ padding: "40px 0" }}>
@@ -1282,7 +1283,7 @@ function LineupScreen({ state, setState }) {
             </div>
           );
         })()}
-        {viewMode === "grid" && filter === "saved" && state.saved.length === 0 && (
+        {viewMode === "grid" && filter === "saved" && liveSavedCount === 0 && (
           <div style={{ padding: "40px 20px" }}>
             <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>No sets saved yet</div>
             <div style={{ marginTop: 4, fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>Switch to All stages and tap any set to save it.</div>
@@ -1403,7 +1404,7 @@ function LineupScreen({ state, setState }) {
         <LineupFilterSheet
           day={day}
           dayGenres={dayGenres}
-          savedIds={state.saved || []}
+          savedIds={savedInLineup(state.saved)}
           weekendFilter={weekendFilter}
           initial={{ filter, tierFilter, stageFilter, genreFilter, sortBy }}
           onClose={() => setFilterSheetOpen(false)}
@@ -2516,7 +2517,7 @@ function printLineupPDF(state) {
 }
 
 async function copyScheduleText(state) {
-  const ids = state.saved;
+  const ids = savedInLineup(state.saved);
   if (!ids.length) return { ok: false, reason: "empty" };
   const lines = festivalDayNums().flatMap(day => {
     const d = FESTIVAL_CONFIG.dayDates[day];
@@ -2551,7 +2552,7 @@ function ShareLineupButton({ state }) {
   const wrap = (key, fn) => async () => {
     if (busy) return;
     setOpen(false); setBusy(true);
-    const r = await fn(state);
+    const r = await fn({ ...state, saved: savedInLineup(state.saved) });
     setBusy(false);
     if (r?.ok) { setDone(key); setTimeout(() => setDone(null), 1800); }
     else if (r?.reason === "popup_blocked") {
@@ -2652,13 +2653,14 @@ function toggleSave(state, setState, id) {
   setState(s => ({ ...s, saved: next }));
   try {
     const label = a?.name ? a.name.toUpperCase() : "SET";
-    const isFirstSave = !has && state.saved.length === 0;
-    const isMilestone = !has && [5, 10, 15, 20].includes(next.length);
+    const liveNext = savedInLineup(next).length;
+    const isFirstSave = !has && savedInLineup(state.saved).length === 0;
+    const isMilestone = !has && [5, 10, 15, 20].includes(liveNext);
     const msg = has ? `REMOVED · ${label}`
       : isFirstSave ? `✦ FIRST SET SAVED · ${label} · LET'S GO`
-      : isMilestone ? `✦ ${next.length} SETS · ${label} · LINEUP GROWING`
+      : isMilestone ? `✦ ${liveNext} SETS · ${label} · LINEUP GROWING`
       : hasConflict ? `SAVED · ${label} · ⚠ CLASH`
-      : `SAVED · ${next.length} SETS`;
+      : `SAVED · ${liveNext} SETS`;
     // 3s UNDO toast — restores the exact prior saved set and reverses the
     // cloud-sync tombstone so an accidental tap (or long-press) is one tap to
     // revert. Re-saving clears the removal tombstone; un-saving re-adds it.

@@ -1026,7 +1026,8 @@ function LineupScreen({
       conflictById: _byId
     };
   }, [savedToday, ackedPairs]);
-  var gridLead = viewMode === "grid" && !(filter === "saved" && state.saved.length === 0);
+  var liveSavedCount = savedInLineup(state.saved).length;
+  var gridLead = viewMode === "grid" && !(filter === "saved" && liveSavedCount === 0);
   React.useEffect(() => {
     var g = viewMode === "grid";
     setState(s => !!s.lineupGrid === g ? s : {
@@ -1207,12 +1208,12 @@ function LineupScreen({
         fontWeight: 600
       }
     }, clash ? "⚠ My night" : "My night");
-  })(), state.saved.length > 0 && React.createElement(ShareLineupButton, {
+  })(), liveSavedCount > 0 && React.createElement(ShareLineupButton, {
     state: state
-  }), state.saved.length > 0 && React.createElement("button", {
+  }), liveSavedCount > 0 && React.createElement("button", {
     onClick: () => {
       window.plurskyHaptic?.("LIGHT");
-      exportSavedSetsICS(state.saved);
+      exportSavedSetsICS(savedInLineup(state.saved));
     },
     style: textBtn
   }, "Calendar"), React.createElement("button", {
@@ -1765,8 +1766,8 @@ function LineupScreen({
       action: "Show all sets",
       onAction: () => setFilter("all")
     } : {
-      title: state.saved.length === 0 ? "No sets saved yet" : "Nothing saved for this day",
-      sub: state.saved.length === 0 ? "Tap the save button on any set to add it." : "Switch to All stages to browse.",
+      title: liveSavedCount === 0 ? "No sets saved yet" : "Nothing saved for this day",
+      sub: liveSavedCount === 0 ? "Tap the save button on any set to add it." : "Switch to All stages to browse.",
       action: filter !== "all" ? "Show all sets" : null,
       onAction: () => setFilter("all")
     };
@@ -1794,7 +1795,7 @@ function LineupScreen({
         marginTop: 16
       }
     }, empty.action));
-  })(), viewMode === "grid" && filter === "saved" && state.saved.length === 0 && React.createElement("div", {
+  })(), viewMode === "grid" && filter === "saved" && liveSavedCount === 0 && React.createElement("div", {
     style: {
       padding: "40px 20px"
     }
@@ -2040,7 +2041,7 @@ function LineupScreen({
   }), "Now"), filterSheetOpen && React.createElement(LineupFilterSheet, {
     day: day,
     dayGenres: dayGenres,
-    savedIds: state.saved || [],
+    savedIds: savedInLineup(state.saved),
     weekendFilter: weekendFilter,
     initial: {
       filter,
@@ -3562,7 +3563,7 @@ function printLineupPDF(state) {
   };
 }
 async function copyScheduleText(state) {
-  var ids = state.saved;
+  var ids = savedInLineup(state.saved);
   if (!ids.length) return {
     ok: false,
     reason: "empty"
@@ -3607,7 +3608,10 @@ function ShareLineupButton({
     if (busy) return;
     setOpen(false);
     setBusy(true);
-    var r = await fn(state);
+    var r = await fn({
+      ...state,
+      saved: savedInLineup(state.saved)
+    });
     setBusy(false);
     if (r?.ok) {
       setDone(key);
@@ -3877,9 +3881,10 @@ function toggleSave(state, setState, id) {
   }));
   try {
     var label = a?.name ? a.name.toUpperCase() : "SET";
-    var isFirstSave = !has && state.saved.length === 0;
-    var isMilestone = !has && [5, 10, 15, 20].includes(next.length);
-    var msg = has ? `REMOVED · ${label}` : isFirstSave ? `✦ FIRST SET SAVED · ${label} · LET'S GO` : isMilestone ? `✦ ${next.length} SETS · ${label} · LINEUP GROWING` : hasConflict ? `SAVED · ${label} · ⚠ CLASH` : `SAVED · ${next.length} SETS`;
+    var liveNext = savedInLineup(next).length;
+    var isFirstSave = !has && savedInLineup(state.saved).length === 0;
+    var isMilestone = !has && [5, 10, 15, 20].includes(liveNext);
+    var msg = has ? `REMOVED · ${label}` : isFirstSave ? `✦ FIRST SET SAVED · ${label} · LET'S GO` : isMilestone ? `✦ ${liveNext} SETS · ${label} · LINEUP GROWING` : hasConflict ? `SAVED · ${label} · ⚠ CLASH` : `SAVED · ${liveNext} SETS`;
     var undo = () => {
       if (has) {
         try {
