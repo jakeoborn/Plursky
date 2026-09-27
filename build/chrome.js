@@ -2478,27 +2478,33 @@ if (!window._appearanceNativeInited && window.PlurskyAppearance) {
   _syncNativeAppearance(window.PlurskyAppearance.mode());
   window.PlurskyAppearance.onChange(m => _syncNativeAppearance(m));
 }
-function fitName(el) {
+function fitName(el, force) {
+  var key = el.textContent + "|" + el.clientWidth;
+  if (!force && el.dataset.fitKey === key) return;
   var base = parseFloat(el.dataset.fitBase || getComputedStyle(el).fontSize);
   if (!el.dataset.fitBase) el.dataset.fitBase = String(base);
   var min = parseFloat(el.dataset.fitMin || "14");
   el.style.whiteSpace = "nowrap";
   el.style.fontSize = base + "px";
+  var rg = document.createRange();
+  rg.selectNodeContents(el);
+  var over = () => rg.getBoundingClientRect().width > el.getBoundingClientRect().width + 0.5;
   var size = base;
-  while (el.scrollWidth > el.clientWidth + 1 && size > min) {
+  while (over() && size > min) {
     size -= 1;
     el.style.fontSize = size + "px";
   }
-  if (el.scrollWidth > el.clientWidth + 1) el.style.whiteSpace = "normal";
-  el.dataset.fitW = String(el.clientWidth);
+  if (over()) el.style.whiteSpace = "normal";
+  el.dataset.fitKey = el.textContent + "|" + el.clientWidth;
 }
-function fitNames(root) {
+function fitNames(root, force) {
   if (!root) return;
-  for (var el of root.querySelectorAll("[data-fit-name]")) fitName(el);
+  for (var el of root.querySelectorAll("[data-fit-name]")) fitName(el, force);
 }
 function useFitNames(root) {
   var el = () => typeof root === "function" ? root() : root && root.current;
   var ro = React.useRef(null);
+  var probe = React.useRef(null);
   React.useLayoutEffect(() => {
     var r = el();
     fitNames(r);
@@ -2506,22 +2512,25 @@ function useFitNames(root) {
     if (!ro.current) ro.current = new ResizeObserver(entries => {
       for (var {
         target
-      } of entries) if (target.isConnected && String(target.clientWidth) !== target.dataset.fitW) fitName(target);
+      } of entries) {
+        if (!target.isConnected) continue;
+        if (target === probe.current) fitNames(el(), true);else fitName(target);
+      }
     });
     for (var n of r.querySelectorAll("[data-fit-name]")) ro.current.observe(n);
+    if (!probe.current || !r.contains(probe.current)) {
+      var p = document.createElement("span");
+      p.setAttribute("aria-hidden", "true");
+      p.textContent = "Eptic b2b Space Laces";
+      p.style.cssText = "position:absolute;left:0;top:0;visibility:hidden;pointer-events:none;white-space:nowrap;font-size:17px;font-weight:700";
+      r.appendChild(p);
+      probe.current = p;
+      ro.current.observe(p);
+    }
   });
-  React.useEffect(() => {
-    var refit = () => fitNames(el());
-    if (document.readyState !== "complete") window.addEventListener("load", refit, {
-      once: true
-    });
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(refit);
-    var settle = setTimeout(refit, 1200);
-    return () => {
-      clearTimeout(settle);
-      window.removeEventListener("load", refit);
-      ro.current && ro.current.disconnect();
-    };
+  React.useEffect(() => () => {
+    ro.current && ro.current.disconnect();
+    if (probe.current) probe.current.remove();
   }, []);
 }
 function useAppearance() {

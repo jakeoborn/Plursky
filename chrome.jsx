@@ -1868,44 +1868,63 @@ if (!window._appearanceNativeInited && window.PlurskyAppearance) {
 // stay one line where they can (#236). Every [data-fit-name] inside `root`
 // starts at its own size on one line; if it overflows it steps down to
 // data-fit-min px, and only a name that still cannot fit wraps.
-function fitName(el) {
+// A fit is keyed on the name and its width: an ordinary re-render (a colour
+// mode switch, a fold of the header) must not re-measure a name that sits on
+// the borderline, or it can land a pixel the other way and reflow the list.
+function fitName(el, force) {
+  const key = el.textContent + "|" + el.clientWidth;
+  if (!force && el.dataset.fitKey === key) return;
   const base = parseFloat(el.dataset.fitBase || getComputedStyle(el).fontSize);
   if (!el.dataset.fitBase) el.dataset.fitBase = String(base);
   const min = parseFloat(el.dataset.fitMin || "14");
   el.style.whiteSpace = "nowrap"; el.style.fontSize = base + "px";
+  // Compare the text's own width (a Range: the glyph advances) with the box's,
+  // not scrollWidth, which rounds by where the box sits on the pixel grid: a
+  // name within a pixel of its box fitted at 17px on one load and 16px on the
+  // next. Both are rendered rects, so a transform on the row scales both.
+  const rg = document.createRange(); rg.selectNodeContents(el);
+  const over = () => rg.getBoundingClientRect().width > el.getBoundingClientRect().width + 0.5;
   let size = base;
-  while (el.scrollWidth > el.clientWidth + 1 && size > min) { size -= 1; el.style.fontSize = size + "px"; }
-  if (el.scrollWidth > el.clientWidth + 1) el.style.whiteSpace = "normal";
-  el.dataset.fitW = String(el.clientWidth);
+  while (over() && size > min) { size -= 1; el.style.fontSize = size + "px"; }
+  if (over()) el.style.whiteSpace = "normal";
+  el.dataset.fitKey = el.textContent + "|" + el.clientWidth;
 }
-function fitNames(root) {
+function fitNames(root, force) {
   if (!root) return;
-  for (const el of root.querySelectorAll("[data-fit-name]")) fitName(el);
+  for (const el of root.querySelectorAll("[data-fit-name]")) fitName(el, force);
 }
-// `root` is a ref or a function returning the element. Refits after every
-// render, when any name's own width changes (a rotation), and once the page
-// settles. A fit taken before the page settled otherwise sticks: CI's runner
+// `root` is a ref or a function returning the element. Fits new or resized
+// names after every render and when a name's width changes (a rotation), and
+// refits all of them when the list's font metrics change. A fit taken before the page settled otherwise sticks: CI's runner
 // wrapped "Eptic b2b Space Laces" at 16px where it fits on one line at 17px.
 function useFitNames(root) {
   const el = () => (typeof root === "function" ? root() : root && root.current);
   const ro = React.useRef(null);
+  const probe = React.useRef(null);
   React.useLayoutEffect(() => {
     const r = el(); fitNames(r);
     if (!r || typeof ResizeObserver === "undefined") return;
     if (!ro.current) ro.current = new ResizeObserver((entries) => {
-      for (const { target } of entries) if (target.isConnected && String(target.clientWidth) !== target.dataset.fitW) fitName(target);
+      for (const { target } of entries) {
+        if (!target.isConnected) continue;
+        if (target === probe.current) fitNames(el(), true); else fitName(target);
+      }
     });
     for (const n of r.querySelectorAll("[data-fit-name]")) ro.current.observe(n);
+    // Text metrics change with no render and no width change when a font
+    // activates late (a system face on first use, a runner's fontconfig): a
+    // name measured at 136px became 200px a second later. A hidden one-line
+    // sample in the list's own font is as wide as its text, so its resize is
+    // the signal to refit every name.
+    if (!probe.current || !r.contains(probe.current)) {
+      const p = document.createElement("span");
+      p.setAttribute("aria-hidden", "true");
+      p.textContent = "Eptic b2b Space Laces";
+      p.style.cssText = "position:absolute;left:0;top:0;visibility:hidden;pointer-events:none;white-space:nowrap;font-size:17px;font-weight:700";
+      r.appendChild(p); probe.current = p; ro.current.observe(p);
+    }
   });
-  // Text metrics can also change without a render or a width change (styles
-  // or fonts that land after the first paint), so refit once the page settles.
-  React.useEffect(() => {
-    const refit = () => fitNames(el());
-    if (document.readyState !== "complete") window.addEventListener("load", refit, { once: true });
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(refit);
-    const settle = setTimeout(refit, 1200);
-    return () => { clearTimeout(settle); window.removeEventListener("load", refit); ro.current && ro.current.disconnect(); };
-  }, []);
+  React.useEffect(() => () => { ro.current && ro.current.disconnect(); if (probe.current) probe.current.remove(); }, []);
 }
 
 function useAppearance() {

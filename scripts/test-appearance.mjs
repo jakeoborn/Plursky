@@ -35,6 +35,10 @@ const FID = 'edc-lv-2026', AT = '2026-05-17T07:50:00Z';
 const SCREENS = [
   ['home',     'tab=home',            {},                                   '#root > *'],
   ['lineup',   'tab=lineup',          { plursky_lineup_view: 'list' },      '[data-lineup-scroll]'],
+  // The list again in a wider face than this Mac's, as CI's runner has: it
+  // puts names on the fit borderline, where a re-measure during the mode
+  // switch's re-render landed a pixel the other way and shifted every row.
+  ['lineup-wide', 'tab=lineup',       { plursky_lineup_view: 'list' },      '[data-lineup-scroll]', 'Verdana'],
   ['grid',     'tab=lineup',          { plursky_lineup_view: 'grid' },      '[data-grid-scroll]'],
   ['map',      'tab=map',             {},                                   '#root > *'],
   ['artist',   'tab=lineup&artist=k9', {},                                  '#root > *'],
@@ -54,7 +58,7 @@ try {
   const executablePath = ['/opt/google/chrome/chrome', '/usr/bin/google-chrome', '/usr/bin/chromium'].find(existsSync);
   browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
 
-  const open = async ({ scheme = 'dark', pick = null, query = 'tab=home', extra = {}, ready = '#root > *', noSignal = false, width = 393, fid = FID } = {}) => {
+  const open = async ({ scheme = 'dark', pick = null, query = 'tab=home', extra = {}, ready = '#root > *', noSignal = false, width = 393, fid = FID, font = null } = {}) => {
     const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: scheme });
     await ctx.clock.install({ time: new Date(AT) });
     await ctx.addInitScript(({ FID, pick, extra }) => {
@@ -71,6 +75,9 @@ try {
     // No signal at all: a browser without prefers-color-scheme. Every real
     // engine reports light or dark, so the only faithful stand-in is none.
     if (noSignal) await ctx.addInitScript(() => { window.matchMedia = undefined; });
+    // A wider face than this Mac's, as CI's runner has: it puts list names on
+    // the fit borderline, where a re-measure can land a pixel either way.
+    if (font) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, font);
     const page = await ctx.newPage();
     const errors = []; page.on('pageerror', e => errors.push(e.message));
     await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${fid}&${query}`, { waitUntil: 'domcontentloaded' });
@@ -290,11 +297,11 @@ try {
   const totals = {};
   const nameFails = new Set();
   const onMediaInk = {};   // `${screen}/${mode}` → text → colour, for text on a photo
-  for (const [key, query, extra, ready] of SCREENS) {
+  for (const [key, query, extra, ready, font] of SCREENS) {
     for (const mode of ['dark', 'light']) {
       const other = mode === 'dark' ? 'light' : 'dark';
       // fresh in this mode
-      const A = await open({ scheme: 'dark', pick: mode, query, extra, ready });
+      const A = await open({ scheme: 'dark', pick: mode, query, extra, ready, font });
       check((await modeOf(A.page)) === mode, `[${key}] picked ${mode} but the page is ${await modeOf(A.page)}`);
       // Audit the whole screen, not the first viewport: step the main
       // scroller, and keep a settled screenshot of every screenful for the
@@ -323,7 +330,7 @@ try {
       check(!A.errors.length, `[${key}/${mode}] page errors: ${A.errors.join(' | ')}`);
       await A.ctx.close();
       // loaded in the other mode, then toggled into this one
-      const B = await open({ scheme: 'dark', pick: other, query, extra, ready });
+      const B = await open({ scheme: 'dark', pick: other, query, extra, ready, font });
       await B.page.evaluate(m => window.PlurskyAppearance.set(m), mode);
       await B.page.clock.runFor(500); await B.page.waitForTimeout(250);
       await shot(B.page);
