@@ -742,28 +742,28 @@ function InstallBanner() {
       padding: "10px 12px",
       borderRadius: 14,
       background: "var(--ink)",
-      color: "var(--paper)",
+      color: "var(--on-ink)",
       display: "flex", alignItems: "center", gap: 11,
     }}>
       <img src="./apple-touch-icon.png" alt=""
         width="36" height="36"
         style={{ borderRadius: 9, display: "block", flexShrink: 0 }} />
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--flare)", fontWeight: 700 }}>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--on-ink-flare)", fontWeight: 700 }}>
           INSTALL PLURSKY
         </div>
-        <div style={{ fontSize: 12, lineHeight: 1.35, marginTop: 2, color: "var(--text-2)" }}>
+        <div style={{ fontSize: 12, lineHeight: 1.35, marginTop: 2, color: "var(--on-ink-2)" }}>
           {ip.isIOS
             ? <>Tap <span style={{ display: "inline-flex", verticalAlign: "middle", padding: "0 2px" }}>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--on-ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 3 L12 16"/><path d="M7 8 L12 3 L17 8"/><rect x="5" y="13" width="14" height="8" rx="1.5"/>
-                </svg></span> then <strong style={{ color: "var(--ink)" }}>Add to Home Screen</strong> for offline + full-screen.</>
+                </svg></span> then <strong style={{ color: "var(--on-ink)" }}>Add to Home Screen</strong> for offline + full-screen.</>
             : <>Add to home screen for offline lineup + full-screen map.</>}
         </div>
       </div>
       {!ip.isIOS && (
         <button onClick={ip.install} style={{
-          background: "var(--ember)", color: "var(--ink)", border: "none",
+          background: "var(--ember)", color: "var(--on-ember)", border: "none",
           borderRadius: 999, padding: "7px 12px", cursor: "pointer",
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           flexShrink: 0,
@@ -771,7 +771,7 @@ function InstallBanner() {
       )}
       <button onClick={ip.dismiss} aria-label="Dismiss" style={{
         background: "transparent", border: "none", cursor: "pointer",
-        color: "var(--text-3)", padding: 4, flexShrink: 0,
+        color: "var(--on-ink-3)", padding: 4, flexShrink: 0,
         fontSize: 18, lineHeight: 1,
       }}>×</button>
     </div>
@@ -1315,7 +1315,7 @@ function NotificationsCard({ state }) {
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
         {perm !== "granted" && perm !== "denied" && (
           <button onClick={onEnable} style={{
-            background: "var(--ember)", color: "var(--ink)", border: "none",
+            background: "var(--ember)", color: "var(--on-ember)", border: "none",
             borderRadius: 999, padding: "8px 14px", cursor: "pointer",
             fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           }}>ENABLE</button>
@@ -1748,22 +1748,22 @@ function BatterySaverToast() {
     <div className="bs-hide" style={{
       position: "absolute", left: 16, right: 16, top: 60, zIndex: 80,
       padding: "10px 14px", borderRadius: 14,
-      background: "var(--ink)", color: "var(--paper)",
+      background: "var(--ink)", color: "var(--on-ink)",
       display: "flex", alignItems: "center", gap: 10,
       boxShadow: "0 8px 24px rgba(var(--shade-rgb),0.35)",
     }}>
       <span style={{ fontSize: 16 }}>🔋</span>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--flare)", fontWeight: 700 }}>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--on-ink-flare)", fontWeight: 700 }}>
           BATTERY SAVER ON
         </div>
-        <div style={{ fontSize: 13, lineHeight: 1.35, marginTop: 2, color: "var(--text-2)" }}>
+        <div style={{ fontSize: 13, lineHeight: 1.35, marginTop: 2, color: "var(--on-ink-2)" }}>
           {reason}
         </div>
       </div>
       <button onClick={() => setDismissed(true)} aria-label="Dismiss" style={{
         background: "transparent", border: "none", cursor: "pointer",
-        color: "var(--text-3)", fontSize: 18, lineHeight: 1, padding: 4,
+        color: "var(--on-ink-3)", fontSize: 18, lineHeight: 1, padding: 4,
       }}>×</button>
     </div>
   );
@@ -1880,10 +1880,13 @@ function fitNames(root) {
     if (el.scrollWidth > el.clientWidth + 1) el.style.whiteSpace = "normal";
   }
 }
-function useFitNames(ref) {
-  React.useLayoutEffect(() => { fitNames(ref.current); });
+// `root` is a ref or a function returning the element. Refits after every
+// render and on resize (an iPhone rotation keeps the screen mounted).
+function useFitNames(root) {
+  const el = () => (typeof root === "function" ? root() : root && root.current);
+  React.useLayoutEffect(() => { fitNames(el()); });
   React.useEffect(() => {
-    const onR = () => fitNames(ref.current);
+    const onR = () => fitNames(el());
     window.addEventListener("resize", onR);
     return () => window.removeEventListener("resize", onR);
   }, []);
@@ -1904,13 +1907,14 @@ function AppearanceRow() {
   return (
     <div data-appearance-row style={{
       display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12,
+      flexWrap: "wrap",   // 320px: the selector drops under the label, never off-screen
       padding: "8px 8px 8px 16px", borderRadius: 14, marginBottom: 12,
       background: "var(--paper-2)", border: "1px solid var(--line)",
     }}>
       <div style={{ fontSize: 15, fontWeight: 600, color: "var(--ink)" }}>Appearance</div>
       <div role="radiogroup" aria-label="Appearance" style={{
         display: "grid", gridTemplateColumns: "repeat(3, 1fr)", padding: 3, borderRadius: 999,
-        background: "var(--paper-3)", flex: "none", width: 222,
+        background: "var(--paper-3)", flex: "1 1 196px", maxWidth: 222,
       }}>
         {opts.map(([v, l]) => {
           const on = choice === v;

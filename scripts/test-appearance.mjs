@@ -21,8 +21,9 @@
 import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
-import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs';
 import { serverReady } from './lib/server-ready.mjs';
+import { tokenPairFailures, stageFillFailures } from './lib/token-pairs.mjs';
 
 const reservePort = () => new Promise((resolve, reject) => { const s = createServer(); s.once('error', reject); s.listen(0, '127.0.0.1', () => { const a = s.address(); s.close(e => e ? reject(e) : resolve(a.port)); }); });
 const problems = []; let checks = 0;
@@ -53,8 +54,8 @@ try {
   const executablePath = ['/opt/google/chrome/chrome', '/usr/bin/google-chrome', '/usr/bin/chromium'].find(existsSync);
   browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
 
-  const open = async ({ scheme = 'dark', pick = null, query = 'tab=home', extra = {}, ready = '#root > *', noSignal = false } = {}) => {
-    const ctx = await browser.newContext({ viewport: { width: 393, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: scheme });
+  const open = async ({ scheme = 'dark', pick = null, query = 'tab=home', extra = {}, ready = '#root > *', noSignal = false, width = 393, fid = FID } = {}) => {
+    const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: scheme });
     await ctx.clock.install({ time: new Date(AT) });
     await ctx.addInitScript(({ FID, pick, extra }) => {
       if (sessionStorage.getItem('__seeded')) return;   // seed once: a reload must see what the app stored
@@ -66,14 +67,14 @@ try {
       localStorage.setItem('ping_code', 'ECHO'); localStorage.setItem('plursky_pid', 'appearance-test');   // per-install randoms, pinned
       if (pick) localStorage.setItem('plursky.appearance', pick);
       for (const [k, v] of Object.entries(extra)) localStorage.setItem(k, v);
-    }, { FID, pick, extra });
+    }, { FID: fid, pick, extra });
     // No signal at all: a browser without prefers-color-scheme. Every real
     // engine reports light or dark, so the only faithful stand-in is none.
     if (noSignal) await ctx.addInitScript(() => { window.matchMedia = undefined; });
     const page = await ctx.newPage();
     const errors = []; page.on('pageerror', e => errors.push(e.message));
-    await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${FID}&${query}`, { waitUntil: 'domcontentloaded' });
-    await page.waitForFunction(([fid, sel]) => window.FESTIVAL_CONFIG?.id === fid && document.querySelector(sel), [FID, ready], { timeout: 60000 });
+    await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${fid}&${query}`, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(([fid, sel]) => window.FESTIVAL_CONFIG?.id === fid && document.querySelector(sel), [fid, ready], { timeout: 60000 });
     await page.clock.runFor(2500);
     await page.waitForTimeout(300);
     // Settle: offline fetches (tracklists, bios, counts) fail on their own
@@ -175,9 +176,26 @@ try {
       const own = [...el.childNodes].filter(n => n.nodeType === 3 && n.textContent.trim());
       if (!own.length) continue;
       const r = el.getBoundingClientRect();
-      if (r.width < 1 || r.height < 1 || r.bottom < 0 || r.top > H || r.right < 0 || r.left > W) continue;
+      if (r.width < 1 || r.height < 1) continue;
       const cs = getComputedStyle(el); if (cs.visibility === 'hidden' || cs.display === 'none') continue;
       const t = el.textContent.trim().replace(/\s+/g, ' ');
+      // A clip is the name against its container, wherever it sits: a grid
+      // column scrolled off to the right clips its short blocks all the same.
+      if (isName(t)) {
+        const rg = document.createRange(); rg.selectNodeContents(el); const tb = rg.getBoundingClientRect();
+        // Per axis, and only up to the nearest scroller on that axis: a name
+        // scrolled out of a list is reachable, a name past a hidden edge is not.
+        let x = true, y = true;
+        for (let a = el.parentElement; a && a !== document.body && (x || y); a = a.parentElement) {
+          const ac = getComputedStyle(a), ar = a.getBoundingClientRect();
+          const cx = x && /hidden|clip/.test(ac.overflowX), cy = y && /hidden|clip/.test(ac.overflowY);
+          const over = Math.max(cy ? Math.max(tb.bottom - ar.bottom, ar.top - tb.top) : 0, cx ? Math.max(tb.right - ar.right, ar.left - tb.left) : 0);
+          if (/auto|scroll/.test(ac.overflowX)) x = false;
+          if (/auto|scroll/.test(ac.overflowY)) y = false;
+          if (over > 1.5) { out.push(`artist name clipped by its container (${Math.round(over)}px hidden): "${t.slice(0, 40)}"`); break; }
+        }
+      }
+      if (r.bottom < 0 || r.top > H || r.right < 0 || r.left > W) continue;
       const clamp = cs.webkitLineClamp && cs.webkitLineClamp !== 'none';
       if (isName(t) && ((cs.textOverflow === 'ellipsis' && el.scrollWidth > el.clientWidth + 1) || (clamp && el.scrollHeight > el.clientHeight + 1)))
         out.push(`artist name truncated by ${clamp ? 'a line clamp' : 'an ellipsis'}: "${t.slice(0, 40)}"`);
@@ -245,20 +263,21 @@ try {
   const diffPx = (a, b) => cmp.evaluate(async ([a, b]) => {
     const im = (s) => new Promise(r => { const i = new Image(); i.onload = () => r(i); i.src = 'data:image/png;base64,' + s; });
     const px = (i) => { const k = document.createElement('canvas'); k.width = i.width; k.height = i.height; const g = k.getContext('2d'); g.drawImage(i, 0, 0); return g.getImageData(0, 0, i.width, i.height).data; };
-    const [i1, i2] = [await im(a), await im(b)]; if (i1.width !== i2.width || i1.height !== i2.height) return { n: 1e9, box: 'size' };
-    // A pixel counts only when NO pixel within 1 px in the other image is
-    // close to it, both ways round: the CI runner rasterised the same "+"
-    // glyph a pixel apart in two loads with identical layout. Text-level
-    // colour leaks are caught exactly by the computed-colour check instead.
-    const [d1, d2] = [px(i1), px(i2)], W = i1.width, H = i1.height; let n = 0, x0 = 1e9, y0 = 1e9, x1 = -1, y1 = -1;
+    const [i1, i2] = [await im(a), await im(b)]; if (i1.width !== i2.width || i1.height !== i2.height) return { n: 1e9, nt: 1e9, box: 'size' };
+    // Two counts. `n` is the scoped gate: every pixel that differs. `nt` is
+    // the companion: a pixel counts only when NO pixel within 1 px in the
+    // other image is close to it, both ways round (the CI runner once drew the
+    // same "+" glyph a pixel apart in two loads with identical layout).
+    const [d1, d2] = [px(i1), px(i2)], W = i1.width, H = i1.height;
+    let n = 0, x0 = 1e9, y0 = 1e9, x1 = -1, y1 = -1, nt = 0;
     const near = (a, b, x, y) => { const p = (y * W + x) * 4; for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) { const X = x + dx, Y = y + dy; if (X < 0 || Y < 0 || X >= W || Y >= H) continue; const q = (Y * W + X) * 4; if (Math.max(Math.abs(a[p] - b[q]), Math.abs(a[p + 1] - b[q + 1]), Math.abs(a[p + 2] - b[q + 2])) <= 96) return true; } return false; };
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
       const p = (y * W + x) * 4;
       if (Math.max(Math.abs(d1[p] - d2[p]), Math.abs(d1[p + 1] - d2[p + 1]), Math.abs(d1[p + 2] - d2[p + 2])) <= 96) continue;
-      if (near(d1, d2, x, y) && near(d2, d1, x, y)) continue;
       n++; x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y);
+      if (!(near(d1, d2, x, y) && near(d2, d1, x, y))) nt++;
     }
-    return { n, box: n ? `${x0},${y0}–${x1},${y1}` : '' };
+    return { n, nt, box: n ? `${x0},${y0}–${x1},${y1}` : '' };
   }, [a.toString('base64'), b.toString('base64')]);
 
   // Layout boxes of every element, for leak evidence: a failure can then say
@@ -316,24 +335,38 @@ try {
       for (let i = 0; i < Math.min(steps, bSteps); i++) {
         if (i) await scrollTo(B.page, i);
         const toggled = await shot(B.page);
-        const { n, box } = await diffPx(toggled, fresh[i]);
-        if (n >= 20 && process.env.APPEARANCE_EVIDENCE) {
+        const { n, nt, box } = await diffPx(toggled, fresh[i]);
+        if ((n >= 150 || nt >= 20) && process.env.APPEARANCE_EVIDENCE) {
           const dir = process.env.APPEARANCE_EVIDENCE, tag = `${key}-${other}-to-${mode}-${i + 1}`;
           mkdirSync(dir, { recursive: true });
           writeFileSync(`${dir}/${tag}-fresh.png`, fresh[i]); writeFileSync(`${dir}/${tag}-toggled.png`, toggled);
           const [bx0, by0, bx1, by1] = box.split(/[,–]/).map(Number), hit = r => r.x <= bx1 && r.x + r.w >= bx0 && r.y <= by1 && r.y + r.h >= by0;
           writeFileSync(`${dir}/${tag}-rects.json`, JSON.stringify({ box, fresh: (freshRects[i] || []).filter(hit), toggled: (await rects(B.page)).filter(hit) }, null, 1));
         }
-        // Noise ceiling 20 px. Once the map's SVG pulses were parked and its
-        // idle wander honoured Reduce Motion, noise measured 0 px in 10 of 10
-        // toggles (it had reached 257 px); the smallest planted leak is 11,221 px.
-        check(n < 20, `[${key}] toggled ${other}→${mode} differs from a fresh ${mode} load at ${n} px in ${box} on screenful ${i + 1} (a colour did not follow the mode)`);
+        // The scoped gate: noise ceiling 150 px. Measured noise is 0 px on this
+        // Mac once the map's SVG pulses are parked and its idle wander honours
+        // Reduce Motion, and 22 px on the CI runner (glyph rasterisation); the
+        // smallest planted real leak measured 674 px.
+        check(n < 150, `[${key}] toggled ${other}→${mode} differs from a fresh ${mode} load at ${n} px in ${box} on screenful ${i + 1} (a colour did not follow the mode)`);
+        // Companion: the same diff with 1 px of placement tolerance, held tight.
+        check(nt < 20, `[${key}] toggled ${other}→${mode} differs from a fresh ${mode} load at ${nt} px beyond 1 px placement in ${box} on screenful ${i + 1} (a colour did not follow the mode)`);
       }
       await B.ctx.close();
     }
   }
 
   for (const x of nameFails) check(false, x);
+  // Static: every fill/text token pair written in the JSX, in both modes,
+  // including sheets and banners no screen above opens.
+  {
+    const jsx = readdirSync('.').filter(f => f.endsWith('.jsx'));
+    const { pairs, fails } = tokenPairFailures(jsx);
+    check(pairs > 300, `token pairs: only ${pairs} fill/text pairs found in ${jsx.length} .jsx files (the scan broke?)`);
+    for (const f of fails) check(false, `token pair ${f}`);
+    const st = stageFillFailures(jsx);
+    check(st.fills >= 7, `stage fills: only ${st.fills} stage-colour fills with text found (the scan broke?)`);
+    for (const f of st.fails) check(false, `stage fill ${f}`);
+  }
   // Text on a photo or artwork sits on the picture, not on the mode's ground,
   // so its colour must not change with the mode (use --media-ink).
   for (const [key] of SCREENS) {
@@ -365,6 +398,83 @@ try {
     await page.emulateMedia({ colorScheme: 'light' }); await page.waitForTimeout(150);
     check((await modeOf(page)) === 'light', 'rule: on System, the iPhone flipping to Light was not followed live');
     check(!(await page.evaluate(() => localStorage.getItem('theme_pref'))), 'rule: the retired theme_pref key was written');
+    await ctx.close();
+  }
+  // The smallest supported phone: every option of the Me selector is whole on screen.
+  {
+    const { ctx, page } = await open({ query: 'tab=me', ready: '[data-appearance-row]', width: 320 });
+    const r = await page.evaluate(() => {
+      const row = document.querySelector('[data-appearance-row]');
+      return { over: row.scrollWidth - row.clientWidth, opts: [...row.querySelectorAll('[data-appearance]')].map(b => { const q = b.getBoundingClientRect(); return { v: b.dataset.appearance, l: q.left, r: q.right, w: b.scrollWidth - b.clientWidth }; }) };
+    });
+    check(r.over <= 0, `320px: the Appearance row overflows by ${r.over}px`);
+    for (const o of r.opts) check(o.l >= 0 && o.r <= 320 && o.w <= 0, `320px: the ${o.v} option is not whole on screen (${Math.round(o.l)}–${Math.round(o.r)}px, text over by ${o.w}px)`);
+    await ctx.close();
+  }
+  // The list at the smallest phone: the clash lines ("vs Mathame · 1:30 AM ·
+  // Quantum Valley") wrap, and no name runs past a hidden edge.
+  {
+    const { ctx, page } = await open({ query: 'tab=lineup', extra: { plursky_lineup_view: 'list' }, ready: '[data-lineup-scroll]', width: 320 });
+    const clashes = await page.evaluate(() => document.querySelectorAll('[data-clash-with]').length);
+    check(clashes > 0, '320px list: no clash line rendered (the saved plan no longer clashes?)');
+    const nf = await names(page);
+    check(!nf.length, `[lineup @320] ${nf.join(' · ')}`);
+    await ctx.close();
+  }
+  // Map pills at the smallest phone: with every set saved, each stage's pill
+  // carries its next set's full name, and each pill sits whole on screen.
+  {
+    const first = await open({ query: 'tab=map' });
+    const ids = await first.page.evaluate(() => (window.ARTISTS || []).map(a => a.id));
+    await first.ctx.close();
+    const { ctx, page } = await open({ query: 'tab=map', width: 320, extra: { [`${FID}_saved_v1`]: JSON.stringify(ids) }, ready: '[role=button][aria-label$=" stage"]' });
+    // Measured on load and after two minute ticks: a re-render must not undo
+    // the edge nudge (it once flipped off on every other render).
+    for (const when of ['on load', 'after 1 tick', 'after 2 ticks']) {
+      if (when !== 'on load') { await page.clock.runFor(61000); await page.waitForTimeout(300); }
+      const pills = await page.evaluate(() => [...document.querySelectorAll('[role=button][aria-label$=" stage"]')].map(p => {
+        const q = p.getBoundingClientRect(); return { t: p.textContent.trim(), l: q.left, r: q.right, w: p.scrollWidth - p.clientWidth };
+      }));
+      const named = pills.filter(p => p.t.startsWith('★'));
+      check(named.length >= 3, `320px map ${when}: only ${named.length} saved-set pills rendered (the fixture no longer reaches the case?)`);
+      const off = named.filter(p => !(p.l >= 0 && p.r <= 320 && p.w <= 0));
+      check(!off.length, `320px map ${when}: pills not whole on screen: ${off.map(p => `"${p.t.slice(0, 30)}" ${Math.round(p.l)}–${Math.round(p.r)}px`).join(' · ')}`);
+    }
+    let nf = await names(page);
+    check(!nf.length, `[map @320] ${nf.join(' · ')}`);
+    // No EDC name is wider than the screen, so lengthen them all in place
+    // (Codex's case: "Interplanetary Criminal B2B Main Phase · 30M") and let
+    // the minute tick redraw the pills.
+    await page.evaluate(() => { for (const a of window.ARTISTS || []) a.name += ' b2b Interplanetary Criminal (Sunrise Set)'; });
+    await page.clock.runFor(61000); await page.waitForTimeout(300);
+    const long = await page.evaluate(() => [...document.querySelectorAll('[data-stage-pill]')].map(p => { const q = p.getBoundingClientRect(); return { t: p.textContent.trim(), l: q.left, r: q.right }; }).filter(p => p.t.includes('INTERPLANETARY')));
+    check(long.length >= 3, `320px map: only ${long.length} pills took the long names (the redraw did not happen?)`);
+    for (const p of long) check(p.l >= 0 && p.r <= 320, `320px map: long pill "${p.t.slice(0, 40)}…" is not whole on screen (${Math.round(p.l)}–${Math.round(p.r)}px)`);
+    nf = await names(page);
+    check(!nf.length, `[map @320, long names] ${nf.join(' · ')}`);
+    await ctx.close();
+  }
+  // Short grid slots: EDC has none, Lollapalooza has 15-minute talks with
+  // two-line names in ~27px blocks. The whole name shows at the smallest
+  // phone; the grown count proves the fixture reached the case.
+  for (const day of [2, 4]) {
+    const { ctx, page } = await open({ fid: 'lollapalooza-2026', query: `tab=lineup&day=${day}`, extra: { plursky_lineup_view: 'grid' }, ready: '[data-grid-block]', width: 320 });
+    const grown = await page.evaluate(() => document.querySelectorAll('[data-grid-grown]').length);
+    check(grown > 0, `short grid slots: Lollapalooza day ${day} grew no block (the fixture no longer reaches a short slot?)`);
+    const nf = await names(page);
+    check(!nf.length, `[grid lollapalooza day ${day} @320] ${nf.join(' · ')}`);
+    const covered = await page.evaluate(() => {
+      const out = [];
+      for (const b of document.querySelectorAll('[data-grid-block]')) {
+        const br = b.getBoundingClientRect();
+        for (const o of b.parentElement.querySelectorAll(':scope > [data-grid-block]')) {
+          const q = o.getBoundingClientRect();
+          if (o !== b && Math.abs(q.left - br.left) < 2 && q.top > br.top && q.top < br.bottom - 1) out.push(`${o.querySelector('[data-grid-name]').textContent} is under ${b.querySelector('[data-grid-name]').textContent}`);
+        }
+      }
+      return out;
+    });
+    check(!covered.length, `[grid lollapalooza day ${day} @320] a grown block covers the next set: ${covered.join(' · ')}`);
     await ctx.close();
   }
 

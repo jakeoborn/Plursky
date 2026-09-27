@@ -951,7 +951,7 @@ function InstallBanner() {
       padding: "10px 12px",
       borderRadius: 14,
       background: "var(--ink)",
-      color: "var(--paper)",
+      color: "var(--on-ink)",
       display: "flex",
       alignItems: "center",
       gap: 11
@@ -976,7 +976,7 @@ function InstallBanner() {
     style: {
       fontSize: 9,
       letterSpacing: 1.4,
-      color: "var(--flare)",
+      color: "var(--on-ink-flare)",
       fontWeight: 700
     }
   }, "INSTALL PLURSKY"), React.createElement("div", {
@@ -984,7 +984,7 @@ function InstallBanner() {
       fontSize: 12,
       lineHeight: 1.35,
       marginTop: 2,
-      color: "var(--text-2)"
+      color: "var(--on-ink-2)"
     }
   }, ip.isIOS ? React.createElement(React.Fragment, null, "Tap ", React.createElement("span", {
     style: {
@@ -997,7 +997,7 @@ function InstallBanner() {
     height: "13",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "var(--ink)",
+    stroke: "var(--on-ink)",
     strokeWidth: "1.8",
     strokeLinecap: "round",
     strokeLinejoin: "round"
@@ -1013,13 +1013,13 @@ function InstallBanner() {
     rx: "1.5"
   }))), " then ", React.createElement("strong", {
     style: {
-      color: "var(--ink)"
+      color: "var(--on-ink)"
     }
   }, "Add to Home Screen"), " for offline + full-screen.") : React.createElement(React.Fragment, null, "Add to home screen for offline lineup + full-screen map."))), !ip.isIOS && React.createElement("button", {
     onClick: ip.install,
     style: {
       background: "var(--ember)",
-      color: "var(--ink)",
+      color: "var(--on-ember)",
       border: "none",
       borderRadius: 999,
       padding: "7px 12px",
@@ -1037,7 +1037,7 @@ function InstallBanner() {
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      color: "var(--text-3)",
+      color: "var(--on-ink-3)",
       padding: 4,
       flexShrink: 0,
       fontSize: 18,
@@ -1588,7 +1588,7 @@ function NotificationsCard({
     onClick: onEnable,
     style: {
       background: "var(--ember)",
-      color: "var(--ink)",
+      color: "var(--on-ember)",
       border: "none",
       borderRadius: 999,
       padding: "8px 14px",
@@ -2285,7 +2285,7 @@ function BatterySaverToast() {
       padding: "10px 14px",
       borderRadius: 14,
       background: "var(--ink)",
-      color: "var(--paper)",
+      color: "var(--on-ink)",
       display: "flex",
       alignItems: "center",
       gap: 10,
@@ -2305,7 +2305,7 @@ function BatterySaverToast() {
     style: {
       fontSize: 9,
       letterSpacing: 1.4,
-      color: "var(--flare)",
+      color: "var(--on-ink-flare)",
       fontWeight: 700
     }
   }, "BATTERY SAVER ON"), React.createElement("div", {
@@ -2313,7 +2313,7 @@ function BatterySaverToast() {
       fontSize: 13,
       lineHeight: 1.35,
       marginTop: 2,
-      color: "var(--text-2)"
+      color: "var(--on-ink-2)"
     }
   }, reason)), React.createElement("button", {
     onClick: () => setDismissed(true),
@@ -2322,7 +2322,7 @@ function BatterySaverToast() {
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      color: "var(--text-3)",
+      color: "var(--on-ink-3)",
       fontSize: 18,
       lineHeight: 1,
       padding: 4
@@ -2494,12 +2494,13 @@ function fitNames(root) {
     if (el.scrollWidth > el.clientWidth + 1) el.style.whiteSpace = "normal";
   }
 }
-function useFitNames(ref) {
+function useFitNames(root) {
+  var el = () => typeof root === "function" ? root() : root && root.current;
   React.useLayoutEffect(() => {
-    fitNames(ref.current);
+    fitNames(el());
   });
   React.useEffect(() => {
-    var onR = () => fitNames(ref.current);
+    var onR = () => fitNames(el());
     window.addEventListener("resize", onR);
     return () => window.removeEventListener("resize", onR);
   }, []);
@@ -2527,6 +2528,7 @@ function AppearanceRow() {
       alignItems: "center",
       justifyContent: "space-between",
       gap: 12,
+      flexWrap: "wrap",
       padding: "8px 8px 8px 16px",
       borderRadius: 14,
       marginBottom: 12,
@@ -2548,8 +2550,8 @@ function AppearanceRow() {
       padding: 3,
       borderRadius: 999,
       background: "var(--paper-3)",
-      flex: "none",
-      width: 222
+      flex: "1 1 196px",
+      maxWidth: 222
     }
   }, opts.map(([v, l]) => {
     var on = choice === v;

@@ -288,7 +288,7 @@ function SpotifyScreen({ state, setState }) {
                   const newSaved = [...new Set([...state.saved, ...amMatched.map(a => a.id)])];
                   setState({ ...state, saved: newSaved });
                 }} style={{
-                  background: "var(--alert)", color: "var(--ink)", border: "none",
+                  background: "var(--alert)", color: "var(--on-alert)", border: "none",
                   borderRadius: 999, padding: "10px 16px", cursor: "pointer",
                   fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
                 }}>
@@ -4747,7 +4747,7 @@ function StorageManager({ all, onChange }) {
                     color: "var(--ink)", cursor: "pointer", fontSize: 9, letterSpacing: 1, fontWeight: 700,
                   }}>CANCEL</button>
                   <button onClick={() => handlePurge(d.n)} disabled={busy} className="mono" style={{
-                    padding: "4px 9px", borderRadius: 999, background: "var(--ember)", color: "var(--ink)", border: "none",
+                    padding: "4px 9px", borderRadius: 999, background: "var(--ember)", color: "var(--on-ember)", border: "none",
                     cursor: "pointer", fontSize: 9, letterSpacing: 1, fontWeight: 700,
                     minHeight: 44, minWidth: 44,
                   }}>{busy ? "..." : "DELETE"}</button>
@@ -4781,7 +4781,7 @@ function StorageManager({ all, onChange }) {
                   color: "var(--ink)", cursor: "pointer", fontSize: 9, letterSpacing: 1, fontWeight: 700,
                 }}>NO</button>
                 <button onClick={() => handlePurge("all")} disabled={busy} className="mono" style={{
-                  padding: "5px 10px", borderRadius: 999, background: "var(--ember)", color: "var(--ink)", border: "none",
+                  padding: "5px 10px", borderRadius: 999, background: "var(--ember)", color: "var(--on-ember)", border: "none",
                   cursor: "pointer", fontSize: 9, letterSpacing: 1, fontWeight: 700,
                 }}>{busy ? "..." : "DELETE ALL"}</button>
               </div>
@@ -9358,7 +9358,7 @@ function WrappedStory({ recap, onClose }) {
           <button onClick={onClose} className="mono" style={{
             padding: "12px 32px", borderRadius: 999, border: "none",
             background: "linear-gradient(135deg, var(--signal), var(--signal))",
-            color: "var(--ink)", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
+            color: "var(--on-signal)", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
             cursor: "pointer", boxShadow: "0 4px 20px rgba(var(--signal-rgb),0.4)",
           }}>CLOSE WRAPPED</button>
         ) : (
@@ -10142,7 +10142,7 @@ function FestivalYearCard({ yearData }) {
               width: 34, height: 34, borderRadius: 10, flexShrink: 0,
               background: "linear-gradient(135deg, var(--ember), var(--signal))",
               display: "flex", alignItems: "center", justifyContent: "center",
-              color: "var(--ink)", fontWeight: 800, fontSize: 12,
+              color: "var(--on-signal)", fontWeight: 800, fontSize: 12,
             }}>
               {(f.brand || f.name || "?").slice(0, 2).toUpperCase()}
             </div>
@@ -10816,7 +10816,7 @@ function RecapScreen({ state, setState }) {
                 }}
                 style={{
                   padding: "8px 14px", borderRadius: 999,
-                  background: "var(--ember)", color: "var(--ink)", border: "none",
+                  background: "var(--ember)", color: "var(--on-ember)", border: "none",
                   fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
                   cursor: "pointer",
                 }}>📸 SHARE WEEKEND</button>
@@ -10833,7 +10833,7 @@ function RecapScreen({ state, setState }) {
                 }}
                 style={{
                   padding: "8px 14px", borderRadius: 999,
-                  background: "var(--signal)", color: "var(--ink)", border: "none",
+                  background: "var(--signal)", color: "var(--on-signal)", border: "none",
                   fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
                   cursor: "pointer",
                 }}>🎬 GIF</button>
@@ -11112,7 +11112,7 @@ function RecapScreen({ state, setState }) {
                         width: 28, height: 28, borderRadius: "50%", flexShrink: 0,
                         background: "var(--signal)",
                         display: "flex", alignItems: "center", justifyContent: "center",
-                        fontSize: 12, color: "var(--ink)", fontWeight: 700,
+                        fontSize: 12, color: "var(--on-signal)", fontWeight: 700,
                       }}>{i + 1}</div>
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div style={{ fontSize: 13, fontWeight: 600, color: "var(--ink)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</div>
@@ -11198,7 +11198,7 @@ function RecapScreen({ state, setState }) {
                 const all = []; try { const raw = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}"); for (const n of Object.keys(raw)) for (const m of (raw[n] || [])) all.push(m); } catch {}
                 await window._shareFestivalDNA?.(all);
               }} className="mono" style={{
-                padding: "12px", background: "linear-gradient(90deg, var(--signal), var(--signal), var(--signal), var(--signal))", color: "var(--ink)",
+                padding: "12px", background: "linear-gradient(90deg, var(--signal), var(--signal), var(--signal), var(--signal))", color: "var(--on-signal)",
                 border: "none", borderRadius: 10, cursor: "pointer", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
               }}>🧬 FESTIVAL DNA — YOUR UNIQUE COLOR BARCODE</button>
               <button onClick={() => window._shareFestivalPassport?.(state)} className="mono" style={{
@@ -12094,12 +12094,12 @@ function NowPlayingBar() {
           ) : cs.phase === "saved" ? (
             <button data-checkin-phase="saved" onClick={() => window._pushNav?.({ tab: "memories", memoriesNight: cs.night, memoriesView: "night", artist: null })} style={{
               height: 36, borderRadius: 36, border: "none", cursor: "pointer", padding: "0 14px",
-              background: "var(--success)", color: "var(--ink)", fontWeight: 700, fontSize: 9, letterSpacing: 1.2, fontFamily: "Geist Mono, monospace",
+              background: "var(--success)", color: "var(--on-success)", fontWeight: 700, fontSize: 9, letterSpacing: 1.2, fontFamily: "Geist Mono, monospace",
             }}>✓ SAVED · VIEW</button>
           ) : (
             <button data-checkin-phase="idle" onClick={checkin.start} disabled={cs.phase === "review"} style={{
               minHeight: 36, borderRadius: 36, border: "none", cursor: "pointer", padding: "0 14px",
-              background: "linear-gradient(135deg, var(--signal), var(--signal))", color: "var(--ink)",
+              background: "linear-gradient(135deg, var(--signal), var(--signal))", color: "var(--on-signal)",
               fontWeight: 700, fontSize: 9, letterSpacing: 1.2, fontFamily: "Geist Mono, monospace", flexShrink: 0,
             }}>CHECK IN TO THIS SET</button>
           )

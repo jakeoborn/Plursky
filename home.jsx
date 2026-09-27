@@ -2773,7 +2773,7 @@ function FriendLineupBanner({ state, setState }) {
         }}>{expanded ? "HIDE SETS" : "VIEW SETS"}</button>
         {fresh.length > 0 && (
           <button onClick={addOverlap} className="mono" style={{
-            background: "var(--ember)", color: "var(--ink)", border: "none",
+            background: "var(--ember)", color: "var(--on-ember)", border: "none",
             borderRadius: 999, padding: "8px 14px", cursor: "pointer",
             fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           }}>+ ADD {fresh.length} NEW</button>

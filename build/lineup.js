@@ -341,7 +341,7 @@ function NightWizard({
     onClick: handleSave,
     style: {
       background: "var(--ember)",
-      color: "var(--ink)",
+      color: "var(--on-ember)",
       border: "none",
       borderRadius: 999,
       padding: "8px 16px",
@@ -775,9 +775,7 @@ function LineupScreen({
   state,
   setState
 }) {
-  React.useLayoutEffect(() => {
-    fitNames(document.querySelector("[data-lineup-scroll]"));
-  });
+  useFitNames(() => document.querySelector("[data-lineup-scroll]"));
   var highlightId = state.lineupHighlight || null;
   var [day, setDay] = React.useState(() => {
     if (highlightId) {
@@ -2622,6 +2620,52 @@ function SavedSidebar({
     }, "×"));
   })));
 }
+function fitGridBlocks(root) {
+  if (!root) return;
+  var cols = new Map();
+  var _loop3 = function (b) {
+      var name = b.querySelector("[data-grid-name]"),
+        time = b.querySelector("[data-grid-time]");
+      if (!name) return 0;
+      b.style.top = b.dataset.top + "px";
+      b.style.height = b.dataset.h + "px";
+      b.style.zIndex = b.dataset.z;
+      delete b.dataset.gridGrown;
+      var byLeft = cols.get(b.parentElement);
+      if (!byLeft) cols.set(b.parentElement, byLeft = new Map());
+      if (!byLeft.has(b.dataset.left)) byLeft.set(b.dataset.left, []);
+      byLeft.get(b.dataset.left).push(b);
+      if (time) time.style.display = "";
+      if (!name.dataset.base) name.dataset.base = String(parseFloat(getComputedStyle(name).fontSize));
+      var base = parseFloat(name.dataset.base);
+      name.style.fontSize = base + "px";
+      var over = () => b.scrollHeight > b.clientHeight + 1;
+      if (!over()) return 0;
+      if (time) time.style.display = "none";
+      for (var s = base; over() && s > 9;) {
+        s = Math.max(9, s - 0.5);
+        name.style.fontSize = s + "px";
+      }
+      if (over()) {
+        b.style.height = b.scrollHeight + "px";
+        b.dataset.gridGrown = "1";
+      }
+    },
+    _ret;
+  for (var b of root.querySelectorAll("[data-grid-block]")) {
+    _ret = _loop3(b);
+    if (_ret === 0) continue;
+  }
+  for (var col of [...cols.values()].flatMap(m => [...m.values()])) {
+    col.sort((a, b) => a.dataset.top - b.dataset.top);
+    for (var i = 1; i < col.length; i++) {
+      var prev = col[i - 1],
+        floor = parseFloat(prev.style.top) + parseFloat(prev.style.height) + 2;
+      var moved = prev.dataset.gridGrown || parseFloat(prev.style.top) !== parseFloat(prev.dataset.top);
+      if (moved && parseFloat(col[i].style.top) < floor) col[i].style.top = floor + "px";
+    }
+  }
+}
 function GridSetBlock({
   a,
   stage,
@@ -2642,8 +2686,6 @@ function GridSetBlock({
   narrow = false
 }) {
   var isHeadliner = a.tier === 3;
-  var _lineH = narrow ? 10.2 : isHeadliner ? 13.8 : 12.7;
-  var _chrome = narrow ? 8 : 20;
   var _saved = (state.saved || []).includes(a.id);
   var _store = refStore;
   var _resetHold = e => {
@@ -2660,6 +2702,11 @@ function GridSetBlock({
     }
   };
   return React.createElement("div", {
+    "data-grid-block": true,
+    "data-top": top,
+    "data-left": left,
+    "data-h": height,
+    "data-z": isHighlighted ? 6 : dueMins != null ? 5 : "",
     "data-lineup-highlight": isHighlighted ? "true" : undefined,
     onClick: () => {
       if (_store.fired) {
@@ -2721,6 +2768,7 @@ function GridSetBlock({
       flexDirection: "column"
     }
   }, React.createElement("div", {
+    "data-grid-name": true,
     style: {
       fontSize: narrow ? 9.5 : isHeadliner ? 12.5 : 11.5,
       fontWeight: isHeadliner ? 800 : 700,
@@ -2733,6 +2781,7 @@ function GridSetBlock({
       fontFamily: isHeadliner ? "Instrument Serif, Georgia, serif" : "Geist, -apple-system, sans-serif"
     }
   }, actDisplayName(a.name)), !narrow && React.createElement("div", {
+    "data-grid-time": true,
     className: "mono",
     style: {
       fontSize: 8,
@@ -2832,6 +2881,14 @@ function TimelineGrid({
   var scrollRef = React.useRef(null);
   var leadRef = React.useRef(null);
   var _blockRefs = React.useRef({});
+  React.useLayoutEffect(() => {
+    fitGridBlocks(scrollRef.current);
+  });
+  React.useEffect(() => {
+    var onR = () => fitGridBlocks(scrollRef.current);
+    window.addEventListener("resize", onR);
+    return () => window.removeEventListener("resize", onR);
+  }, []);
   var HOURS = [];
   for (var h = Math.floor(GRID_START_MIN / 60); h <= Math.floor(GRID_END_MIN / 60); h++) {
     var h24 = h % 24;
@@ -3046,7 +3103,7 @@ function TimelineGrid({
         zIndex: 6,
         fontSize: 8,
         letterSpacing: 0.6,
-        color: "var(--ink)",
+        color: "var(--on-ember)",
         fontWeight: 800,
         background: "var(--ember)",
         padding: "1px 4px",
@@ -3898,7 +3955,7 @@ async function shareLineupImage(state) {
     label: d.label,
     date: d.date.toUpperCase()
   }]));
-  var _loop3 = async function (a) {
+  var _loop4 = async function (a) {
     if (a.day !== lastDay) {
       lastDay = a.day;
       var dm = dayMeta[a.day];
@@ -3938,7 +3995,7 @@ async function shareLineupImage(state) {
     if (y > H - 180) return 1;
   };
   for (var a of saved) {
-    if (await _loop3(a)) break;
+    if (await _loop4(a)) break;
   }
   ctx.fillStyle = "#1a120d";
   ctx.font = '500 22px "Geist Mono", monospace';

@@ -24,9 +24,10 @@ const QUICK_REPLIES = [
 // Black or white ink for text on an arbitrary hex fill (a stage colour),
 // whichever clears WCAG AA. Stage colours are map-only and not mode tokens.
 function _inkOnHex(hex) {
-  const m = /^#?([0-9a-f]{6})$/i.exec(String(hex || "").trim());
+  let m = /^#?([0-9a-f]{6}|[0-9a-f]{3})$/i.exec(String(hex || "").trim());
   if (!m) return "var(--ink)";
-  const n = parseInt(m[1], 16), ch = [n >> 16, (n >> 8) & 255, n & 255].map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+  const h6 = m[1].length === 3 ? m[1].split("").map(c => c + c).join("") : m[1];
+  const n = parseInt(h6, 16), ch = [n >> 16, (n >> 8) & 255, n & 255].map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
   const L = 0.2126 * ch[0] + 0.7152 * ch[1] + 0.0722 * ch[2];
   return (L + 0.05) / 0.05 >= 1.05 / (L + 0.05) ? "#14121C" : "#FFFFFF";
 }
@@ -247,7 +248,7 @@ function WellnessPill() {
               </div>
               <button onClick={drank} style={{
                 marginTop: 8, width: "100%",
-                background: "var(--signal)", color: "var(--ink)", border: "none",
+                background: "var(--signal)", color: "var(--on-signal)", border: "none",
                 borderRadius: 10, padding: "10px 12px",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
                 cursor: "pointer",
@@ -901,7 +902,7 @@ function PingSheet({ onClose, onDropPin, friends }) {
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
             <button onClick={shareCode} style={{
-              background: "var(--ember)", color: "var(--ink)", border: "none",
+              background: "var(--ember)", color: "var(--on-ember)", border: "none",
               borderRadius: 8, padding: "7px 14px",
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
               cursor: "pointer",
@@ -1014,7 +1015,7 @@ function IAmAtSheet({ onClose, initialStage, onStatusSet }) {
               <button key={s.id} onClick={() => setSelected(s.id)} style={{
                 padding: "8px 6px", borderRadius: 10,
                 background: on ? s.color : "var(--paper-2)",
-                color: on ? "var(--ink)" : "var(--ink)",
+                color: on ? _inkOnHex(s.color) : "var(--ink)",
                 border: on ? "none" : "1px solid var(--line-2)",
                 cursor: "pointer",
                 display: "flex", flexDirection: "column", alignItems: "center", gap: 4,
@@ -1491,7 +1492,7 @@ function MeetupsSheet({ onClose }) {
         {!creating ? (
           <button onClick={() => setCreating(true)} style={{
             width: "100%", padding: "12px 16px", borderRadius: 999,
-            background: "var(--ember)", color: "var(--ink)", border: "none",
+            background: "var(--ember)", color: "var(--on-ember)", border: "none",
             cursor: "pointer", fontFamily: "Geist Mono, monospace",
             fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
           }}>+ NEW MEETUP</button>
@@ -1511,7 +1512,7 @@ function MeetupsSheet({ onClose }) {
                   <button key={s.id} onClick={() => setStageId(s.id)} style={{
                     padding: "6px 4px", borderRadius: 8,
                     background: on ? s.color : "var(--paper-2)",
-                    color: on ? "var(--ink)" : "var(--ink)",
+                    color: on ? _inkOnHex(s.color) : "var(--ink)",
                     border: on ? "none" : "1px solid var(--line-2)",
                     fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 0.8,
                     fontWeight: on ? 700 : 500, cursor: "pointer",
@@ -1542,7 +1543,7 @@ function MeetupsSheet({ onClose }) {
               }}>CANCEL</button>
               <button onClick={handleSave} style={{
                 flex: 1, padding: "10px 12px", borderRadius: 999,
-                background: "var(--ember)", color: "var(--ink)", border: "none", cursor: "pointer",
+                background: "var(--ember)", color: "var(--on-ember)", border: "none", cursor: "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
               }}>SAVE</button>
             </div>
@@ -1780,7 +1781,7 @@ function SunriseStrip({ avatar, onSelect }) {
       width: "100%", display: "flex", alignItems: "center", gap: 8,
       padding: "5px 11px", marginTop: 6,
       background: "linear-gradient(90deg, var(--signal) 0%, var(--signal) 60%, var(--signal) 100%)",
-      color: "var(--ink)", border: "none", borderRadius: 999,
+      color: "var(--on-signal)", border: "none", borderRadius: 999,
       cursor: "pointer", textAlign: "left",
       boxShadow: "0 3px 10px rgba(var(--signal-rgb),0.30)",
     }}>
@@ -2101,8 +2102,9 @@ function MapScreen({ state, setState }) {
   // Demo wander tick — only runs when not pinned to real on-site GPS.
   // Slows from 600ms → 2400ms in battery-saver mode (still feels alive,
   // 4× fewer renders).
-  // Reduce Motion: the idle wander stops; a walk toward a goal the user
-  // picked still moves.
+  // Reduce Motion: random wander stops for everyone (you and every friend);
+  // only walks the user asked for still move (you toward a picked stage or
+  // meet point, meetup friends toward the meet point).
   const { active: bsActive } = useBatterySaver();
   const reduceMotion = React.useMemo(() => { try { return !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches; } catch { return false; } }, []);
   React.useEffect(() => {
@@ -2111,7 +2113,6 @@ function MapScreen({ state, setState }) {
       const goal = meetMode && meetTarget ? meetTarget
                  : selectedStage ? STAGES.find(s => s.id === selectedStage)
                  : null;
-      if (reduceMotion && !goal) return;
       setDemoAvatar(a => {
         if (goal) {
           const dx = goal.x - a.x, dy = goal.y - a.y;
@@ -2120,6 +2121,7 @@ function MapScreen({ state, setState }) {
           if (d < 1.2) return a;
           return { x: a.x + (dx/d) * 0.35, y: a.y + (dy/d) * 0.35 };
         }
+        if (reduceMotion) return a;
         return {
           x: Math.max(12, Math.min(88, a.x + (Math.random() - 0.5) * 0.2)),
           y: Math.max(12, Math.min(88, a.y + (Math.random() - 0.5) * 0.2)),
@@ -2132,6 +2134,7 @@ function MapScreen({ state, setState }) {
           if (d < 1.2) return f;
           return { ...f, x: f.x + (dx/d) * 0.32, y: f.y + (dy/d) * 0.32 };
         }
+        if (reduceMotion) return f;
         return {
           ...f,
           x: Math.max(12, Math.min(88, f.x + (Math.random() - 0.5) * 0.25)),
@@ -2624,7 +2627,7 @@ function MapScreen({ state, setState }) {
                     boxShadow: "0 1px 3px rgba(var(--shade-rgb),0.3)",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     fontFamily: "Geist Mono, monospace", fontSize: 8,
-                    fontWeight: 900, color: "var(--ink)", lineHeight: 1,
+                    fontWeight: 900, color: a.ink, lineHeight: 1,
                   }}>{a.letter}</span>
                   <span style={{
                     fontSize: 11, fontWeight: 600, flex: 1,
@@ -2964,7 +2967,7 @@ function MapScreen({ state, setState }) {
                               <span style={{
                                 position: "absolute", top: -3, right: -3,
                                 minWidth: 14, height: 14, padding: "0 4px",
-                                background: "var(--ember)", color: "var(--ink)",
+                                background: "var(--ember)", color: "var(--on-ember)",
                                 borderRadius: 14, fontSize: 8, fontWeight: 700,
                                 display: "flex", alignItems: "center", justifyContent: "center",
                                 border: "1.5px solid var(--paper)",
@@ -3107,7 +3110,7 @@ function MapScreen({ state, setState }) {
           <div style={{
             position: "absolute", top: 0, left: 0, right: 0, zIndex: 9,
             background: "linear-gradient(135deg, var(--signal), var(--ember))",
-            color: "var(--ink)", padding: "10px 14px",
+            color: "var(--on-signal)", padding: "10px 14px",
             paddingTop: "calc(10px + env(safe-area-inset-top, 0px))",
             boxShadow: "0 4px 16px rgba(var(--shade-rgb),0.4)",
             display: "flex", alignItems: "center", gap: 10,
@@ -3128,11 +3131,11 @@ function MapScreen({ state, setState }) {
               setMeetTarget({ x: incomingRally.x, y: incomingRally.y, label: incomingRally.label, isRally: true });
               setIncomingRally(null);
             }} className="mono" style={{
-              background: "var(--ink)", color: "var(--ember)", border: "none", borderRadius: 999,
+              background: "var(--ink)", color: "var(--on-ink-accent)", border: "none", borderRadius: 999,
               padding: "6px 13px", cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 800, flexShrink: 0,
             }}>HEAD OVER</button>
             <button onClick={() => { dismissedRallyRef.current.add(incomingRally.rallyId); setIncomingRally(null); }} aria-label="Dismiss" style={{
-              background: "rgba(var(--shade-rgb),0.2)", color: "var(--ink)", border: "none", borderRadius: 999,
+              background: "rgba(var(--shade-rgb),0.2)", color: "var(--on-signal)", border: "none", borderRadius: 999,
               width: 26, height: 26, cursor: "pointer", fontSize: 12, flexShrink: 0,
             }}>✕</button>
           </div>
@@ -3151,7 +3154,7 @@ function MapScreen({ state, setState }) {
           return (
             <div style={{
               position: "absolute", top: 0, left: 0, right: 0, zIndex: 8,
-              background: "linear-gradient(135deg, var(--signal), var(--paper))", color: "var(--ink)",
+              background: "var(--signal)", color: "var(--on-signal)",
               padding: "10px 14px", paddingTop: "calc(10px + env(safe-area-inset-top, 0px))",
               boxShadow: "0 4px 16px rgba(var(--shade-rgb),0.35)",
               display: "flex", alignItems: "center", gap: 10, animation: "springIn 0.3s ease-out",
@@ -3173,11 +3176,11 @@ function MapScreen({ state, setState }) {
                 </span>
               </span>
               <button onClick={headOver} className="mono" style={{
-                background: "var(--ink)", color: "var(--signal-ink)", border: "none", borderRadius: 999,
+                background: "var(--ink)", color: "var(--on-ink-accent)", border: "none", borderRadius: 999,
                 padding: "6px 13px", cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 800, flexShrink: 0,
               }}>HEAD OVER</button>
               <button onClick={() => setClusterDismissed(sig)} aria-label="Dismiss" style={{
-                background: "rgba(var(--shade-rgb),0.2)", color: "var(--ink)", border: "none", borderRadius: 999,
+                background: "rgba(var(--shade-rgb),0.2)", color: "var(--on-signal)", border: "none", borderRadius: 999,
                 width: 26, height: 26, cursor: "pointer", fontSize: 12, flexShrink: 0,
               }}>✕</button>
             </div>
@@ -5505,7 +5508,7 @@ function RealMap({
               </div>
               <button onClick={() => { setErr(null); fatalRef.current = false; tileErrRef.current = 0; }} style={{
                 marginTop: 10, padding: "7px 16px", borderRadius: 999, border: "none",
-                background: "var(--ember)", color: "var(--ink)", cursor: "pointer",
+                background: "var(--ember)", color: "var(--on-ember)", cursor: "pointer",
                 fontFamily: "'Geist Mono',monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
               }}>RETRY</button>
             </>
@@ -5516,7 +5519,7 @@ function RealMap({
               </div>
               <button onClick={() => _fatal("Switched to festival map")} style={{
                 marginTop: 8, padding: "7px 16px", borderRadius: 999, border: "none",
-                background: "var(--ember)", color: "var(--ink)", cursor: "pointer",
+                background: "var(--ember)", color: "var(--on-ember)", cursor: "pointer",
                 fontFamily: "'Geist Mono',monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
               }}>USE FESTIVAL MAP</button>
             </>
@@ -5562,15 +5565,16 @@ function _crowdDensity(stageId, nowMin) {
 // coloured dot — which is what shipped before: the map drew eight colours and
 // the only key was the one printed inside the poster raster, ~3px tall at
 // phone size and effectively invisible. Ordered by what you need at 3am.
+// `ink` is the letter's colour on that fill, AA in both modes.
 const AMENITY_KEY = [
-  { type: "med",    color: "var(--alert)", letter: "+", label: "First aid" },
-  { type: "water",  color: "var(--signal-ink)", letter: "",  label: "Water" },
-  { type: "toilet", color: "var(--signal-ink)", letter: "",  label: "Restrooms" },
-  { type: "food",   color: "var(--signal-ink)", letter: "",  label: "Food" },
-  { type: "charge", color: "var(--signal-ink)", letter: "⚡", label: "Charging" },
-  { type: "locker", color: "var(--signal-ink)", letter: "L", label: "Lockers" },
-  { type: "info",   color: "var(--signal-ink)", letter: "i", label: "Info / lost" },
-  { type: "art",    color: "var(--signal-ink)", letter: "",  label: "Art" },
+  { type: "med",    color: "var(--alert)", ink: "var(--on-alert)", letter: "+", label: "First aid" },
+  { type: "water",  color: "var(--signal-ink)", ink: "var(--paper)", letter: "",  label: "Water" },
+  { type: "toilet", color: "var(--signal-ink)", ink: "var(--paper)", letter: "",  label: "Restrooms" },
+  { type: "food",   color: "var(--signal-ink)", ink: "var(--paper)", letter: "",  label: "Food" },
+  { type: "charge", color: "var(--signal-ink)", ink: "var(--paper)", letter: "⚡", label: "Charging" },
+  { type: "locker", color: "var(--signal-ink)", ink: "var(--paper)", letter: "L", label: "Lockers" },
+  { type: "info",   color: "var(--signal-ink)", ink: "var(--paper)", letter: "i", label: "Info / lost" },
+  { type: "art",    color: "var(--signal-ink)", ink: "var(--paper)", letter: "",  label: "Art" },
 ];
 const AMENITY_STYLE = Object.fromEntries(AMENITY_KEY.map(a => [a.type, a]));
 
@@ -5723,6 +5727,27 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
   const yOff = (VB_H - 100) / 2;
   // Map-space y (0–100) → percentage of the container, matching the SVG exactly.
   const mapY = (y) => ((Number(y) + yOff) / VB_H) * 100;
+
+  // The anchor rules above place a pill from its stage's map position, which
+  // cannot know the pill's width, pan or zoom, so a side-anchored pill could
+  // still run past the edge ("★ LUCIANO · NOW" at 203–346px on a 320px map).
+  // Measure after layout and slide each pill back inside the map's box. The
+  // nudge sits after the counter-rotation, so it is screen-horizontal; divide
+  // by the zoom so it moves the rendered pill by exactly the overshoot.
+  React.useLayoutEffect(() => {
+    const box = boxRef.current; if (!box) return;
+    const br = box.getBoundingClientRect(), pad = 6;
+    for (const p of box.querySelectorAll("[data-stage-pill]")) {
+      // The pill transitions `all`: measured mid-transition, a reset reads the
+      // old nudged box and the nudge flips off on the next render. Suspend it.
+      const t = p.style.transition; p.style.transition = "none";
+      p.style.setProperty("--pill-nudge", "0px");
+      const r = p.getBoundingClientRect(), k = (p.offsetWidth && r.width / p.offsetWidth) || 1;
+      const dx = r.left < br.left + pad ? br.left + pad - r.left : r.right > br.right - pad ? br.right - pad - r.right : 0;
+      if (dx) p.style.setProperty("--pill-nudge", `${dx / k}px`);
+      void p.offsetWidth; p.style.transition = t;
+    }
+  });
 
   return (
     <div ref={boxRef} style={{
@@ -5952,7 +5977,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
               <circle cx={a.x} cy={a.y} r="1.4" fill={cfg.color} opacity="0.92" stroke="var(--ink)" strokeWidth="0.22"/>
               {cfg.letter && (
                 <text x={a.x} y={a.y + 0.65} textAnchor="middle" fontSize="1.8"
-                  fill="var(--ink)" fontFamily="Geist Mono, monospace" fontWeight="900">
+                  fill={cfg.ink} fontFamily="Geist Mono, monospace" fontWeight="900">
                   {cfg.letter}
                 </text>
               )}
@@ -6225,13 +6250,13 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           const hx = Math.max(0, Math.min(1, (s.x - 8) / 84));
           const shiftX = `${(-hx * 100).toFixed(1)}%`;
           const tx = {
-            N: { transform: `translate(${shiftX}, calc(-100% - ${off}px))${counterRot}` },
-            S: { transform: `translate(${shiftX}, ${off}px)${counterRot}` },
-            E: { transform: `translate(${off}px, -50%)${counterRot}` },
-            W: { transform: `translate(calc(-100% - ${off}px), -50%)${counterRot}` },
+            N: { transform: `translate(${shiftX}, calc(-100% - ${off}px))${counterRot} translateX(var(--pill-nudge, 0px))` },
+            S: { transform: `translate(${shiftX}, ${off}px)${counterRot} translateX(var(--pill-nudge, 0px))` },
+            E: { transform: `translate(${off}px, -50%)${counterRot} translateX(var(--pill-nudge, 0px))` },
+            W: { transform: `translate(calc(-100% - ${off}px), -50%)${counterRot} translateX(var(--pill-nudge, 0px))` },
           }[anchor];
           return (
-            <div key={s.id} role="button" tabIndex={0} aria-label={`${s.name} stage`}
+            <div key={s.id} data-stage-pill role="button" tabIndex={0} aria-label={`${s.name} stage`}
               onClick={(e) => { e.stopPropagation(); onPickStage(s.id); }}
               onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onPickStage(s.id); } }}
               style={{
@@ -6247,7 +6272,12 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
                 fontFamily: "Geist Mono, monospace",
                 fontSize: on ? 9.5 : 8.5,
                 letterSpacing: 1.2, fontWeight: 700,
-                whiteSpace: "nowrap",
+                // A saved set's full name ("INTERPLANETARY CRIMINAL B2B MAIN
+                // PHASE · 30M") wraps inside a bounded pill rather than running
+                // off a 320px map; max-content keeps an edge stage's pill from
+                // collapsing to the sliver of width left of its anchor.
+                width: "max-content", maxWidth: "min(46vw, 170px)",
+                whiteSpace: "normal", overflowWrap: "anywhere", lineHeight: 1.35,
 
                 boxShadow: on
                   ? `0 4px 18px ${s.color}66, 0 0 8px ${s.color}33`
@@ -6269,7 +6299,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           <div key={f.id} style={{
             position: "absolute", left: `${f.x}%`, top: `${mapY(f.y)}%`,
             transform: `translate(-50%, 14px)${counterRot}`,
-            background: f.color, color: "var(--ink)",
+            background: f.color, color: _inkOnHex(f.color),
             padding: "2px 7px", borderRadius: 999,
             fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
             boxShadow: `0 3px 10px ${f.color}66`, pointerEvents: "none",
@@ -6297,7 +6327,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
                 border: "2px solid rgba(var(--ink-rgb),0.95)",
                 boxShadow: `0 4px 14px ${f.color}aa, 0 0 0 1px rgba(var(--shade-rgb),0.45)`,
                 display: "flex", alignItems: "center", justifyContent: "center",
-                color: "var(--ink)",
+                color: _inkOnHex(f.color),
                 fontFamily: "Instrument Serif, serif", fontSize: 18, fontWeight: 400,
                 lineHeight: 1,
               }}>{initial}</div>
@@ -6456,7 +6486,7 @@ function RideshareSheet({ onClose }) {
             cursor: "pointer",
           }}>OPEN UBER</button>
           <button onClick={() => open(lyftUrl)} style={{
-            background: "var(--signal)", color: "var(--ink)", border: "none",
+            background: "var(--signal)", color: "var(--on-signal)", border: "none",
             borderRadius: 12, padding: "14px 16px",
             fontFamily: "Geist Mono, monospace", fontSize: 12, letterSpacing: 1.4, fontWeight: 700,
             cursor: "pointer",
@@ -6541,15 +6571,9 @@ function GroundPeek({ stage, onClose }) {
 // WCAG contrast helper — picks dark vs white ink for text/icons sitting ON a
 // stage color, so light stages (cyan/green/yellow) don't render unreadable
 // white text on the hero / GO HERE button / nav icon. Relative-luminance gate.
-function _inkOn(hex) {
-  try {
-    const h = String(hex).replace("#", "");
-    const n = h.length === 3 ? h.split("").map(c => c + c).join("") : h;
-    const ch = i => { let v = parseInt(n.slice(i, i + 2), 16) / 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
-    const L = 0.2126 * ch(0) + 0.7152 * ch(2) + 0.0722 * ch(4);
-    return L > 0.45 ? "#1a120d" : "#fff";
-  } catch { return "#fff"; }
-}
+// One policy for text on a stage colour: the AA-correct choice (this used a
+// 0.45 luminance cut, which put white text on mid-tone fills at ~3:1).
+function _inkOn(hex) { return _inkOnHex(hex); }
 
 // Slim "navigating" chrome shown after GO HERE: collapses the full place card
 // so the animated walking route + ETA already drawn on the map are visible.
@@ -6612,8 +6636,8 @@ function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, m
     return (
       <div style={{ background: "var(--paper)", color: "var(--ink)", padding: "14px 16px 12px", borderTopLeftRadius: 22, borderTopRightRadius: 22, boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.4)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
-          <div style={{ width: 38, height: 38, borderRadius: 38, background: "var(--ember)", color: "var(--ink)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="2"><path d="M12 2 C8 2 5 5 5 9 c0 5 7 13 7 13 s7-8 7-13 c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5" fill="var(--ink)"/></svg>
+          <div style={{ width: 38, height: 38, borderRadius: 38, background: "var(--ember)", color: "var(--on-ember)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2 C8 2 5 5 5 9 c0 5 7 13 7 13 s7-8 7-13 c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5" fill="currentColor"/></svg>
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--ember-ink)", fontWeight: 700 }}>MEETING</div>
@@ -6704,7 +6728,7 @@ function YourStagePhotosStrip({ stageId, accent, onOpen, stageObj }) {
               className="mono"
               title="Share an animated GIF of your nights at this stage"
               style={{
-                background: "var(--signal)", color: "var(--ink)", border: "none",
+                background: "var(--signal)", color: "var(--on-signal)", border: "none",
                 borderRadius: 999, padding: "5px 11px", cursor: "pointer",
                 fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
                 whiteSpace: "nowrap",
@@ -6844,7 +6868,7 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
         </button>
         <button onClick={() => setPeek(p => !p)} aria-pressed={peek} className="mono" style={{
           flex: 1, background: peek ? stage.color : "var(--paper-2)",
-          color: peek ? "var(--ink)" : "var(--ink)",
+          color: peek ? _inkOnHex(stage.color) : "var(--ink)",
           border: peek ? "none" : "1px solid var(--line-2)",
           borderRadius: 12, padding: "11px 8px", cursor: "pointer",
           fontSize: 11, letterSpacing: 1.2, fontWeight: 700,
@@ -6925,12 +6949,12 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
             <button key={d.n} onClick={() => { setDay(d.n); setExpanded(true); }} style={{
               flex: 1, padding: "7px 6px", borderRadius: 8,
               background: on ? stage.color : "var(--paper-2)",
-              color: on ? "var(--ink)" : "var(--ink)",
+              color: on ? _inkOnHex(stage.color) : "var(--ink)",
               border: "none", cursor: "pointer",
               display: "flex", flexDirection: "column", alignItems: "center", gap: 1,
             }}>
-              <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, opacity: on ? 0.85 : 0.55, fontWeight: 600 }}>{d.label}</span>
-              <span className="serif" style={{ fontSize: 13, lineHeight: 1 }}>{count} <span style={{ fontSize: 9, opacity: 0.7 }}>sets</span></span>
+              <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, opacity: on ? 1 : 0.55, fontWeight: 600 }}>{d.label}</span>
+              <span className="serif" style={{ fontSize: 13, lineHeight: 1 }}>{count} <span style={{ fontSize: 9, opacity: on ? 1 : 0.7 }}>sets</span></span>
             </button>
           );
         })}
@@ -6941,7 +6965,7 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
         <div onClick={() => onOpenArtist(nowAtStage.id)} style={{
           display: "flex", alignItems: "center", gap: 10,
           padding: "8px 10px", marginBottom: 8,
-          background: stage.color, color: "var(--ink)",
+          background: stage.color, color: _inkOnHex(stage.color),
           borderRadius: 12, cursor: "pointer",
         }}>
           <span style={{
@@ -6950,7 +6974,7 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
             animation: "pulse 1.6s infinite", flexShrink: 0,
           }}/>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, fontWeight: 700, opacity: 0.9 }}>ON STAGE NOW</div>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, fontWeight: 700 }}>ON STAGE NOW</div>
             <div className="serif" style={{ fontSize: 16, lineHeight: 1.05 }}>{nowAtStage.name}</div>
           </div>
           <div className="mono" style={{ fontSize: 9, letterSpacing: 1, opacity: 0.9, whiteSpace: "nowrap" }}>
@@ -7000,7 +7024,7 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
               {live && (
                 <span className="mono" style={{
                   fontSize: 8, letterSpacing: 1.3, fontWeight: 700,
-                  color: "var(--ink)", background: stage.color,
+                  color: _inkOnHex(stage.color), background: stage.color,
                   padding: "2px 6px", borderRadius: 4,
                 }}>LIVE</span>
               )}

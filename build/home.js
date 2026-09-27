@@ -4218,7 +4218,7 @@ function FriendLineupBanner({
     className: "mono",
     style: {
       background: "var(--ember)",
-      color: "var(--ink)",
+      color: "var(--on-ember)",
       border: "none",
       borderRadius: 999,
       padding: "8px 14px",

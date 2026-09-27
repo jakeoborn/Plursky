@@ -28,9 +28,10 @@ var QUICK_REPLIES = [{
   text: "🆘 come find me"
 }];
 function _inkOnHex(hex) {
-  var m = /^#?([0-9a-f]{6})$/i.exec(String(hex || "").trim());
+  var m = /^#?([0-9a-f]{6}|[0-9a-f]{3})$/i.exec(String(hex || "").trim());
   if (!m) return "var(--ink)";
-  var n = parseInt(m[1], 16),
+  var h6 = m[1].length === 3 ? m[1].split("").map(c => c + c).join("") : m[1];
+  var n = parseInt(h6, 16),
     ch = [n >> 16, n >> 8 & 255, n & 255].map(v => {
       v /= 255;
       return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
@@ -387,7 +388,7 @@ function WellnessPill() {
       marginTop: 8,
       width: "100%",
       background: "var(--signal)",
-      color: "var(--ink)",
+      color: "var(--on-signal)",
       border: "none",
       borderRadius: 10,
       padding: "10px 12px",
@@ -1042,7 +1043,7 @@ function PingSheet({
     onClick: shareCode,
     style: {
       background: "var(--ember)",
-      color: "var(--ink)",
+      color: "var(--on-ember)",
       border: "none",
       borderRadius: 8,
       padding: "7px 14px",
@@ -1238,7 +1239,7 @@ function IAmAtSheet({
         padding: "8px 6px",
         borderRadius: 10,
         background: on ? s.color : "var(--paper-2)",
-        color: on ? "var(--ink)" : "var(--ink)",
+        color: on ? _inkOnHex(s.color) : "var(--ink)",
         border: on ? "none" : "1px solid var(--line-2)",
         cursor: "pointer",
         display: "flex",
@@ -1977,7 +1978,7 @@ function MeetupsSheet({
       padding: "12px 16px",
       borderRadius: 999,
       background: "var(--ember)",
-      color: "var(--ink)",
+      color: "var(--on-ember)",
       border: "none",
       cursor: "pointer",
       fontFamily: "Geist Mono, monospace",
@@ -2020,7 +2021,7 @@ function MeetupsSheet({
         padding: "6px 4px",
         borderRadius: 8,
         background: on ? s.color : "var(--paper-2)",
-        color: on ? "var(--ink)" : "var(--ink)",
+        color: on ? _inkOnHex(s.color) : "var(--ink)",
         border: on ? "none" : "1px solid var(--line-2)",
         fontFamily: "Geist Mono, monospace",
         fontSize: 8,
@@ -2085,7 +2086,7 @@ function MeetupsSheet({
       padding: "10px 12px",
       borderRadius: 999,
       background: "var(--ember)",
-      color: "var(--ink)",
+      color: "var(--on-ember)",
       border: "none",
       cursor: "pointer",
       fontFamily: "Geist Mono, monospace",
@@ -2386,7 +2387,7 @@ function SunriseStrip({
       padding: "5px 11px",
       marginTop: 6,
       background: "linear-gradient(90deg, var(--signal) 0%, var(--signal) 60%, var(--signal) 100%)",
-      color: "var(--ink)",
+      color: "var(--on-signal)",
       border: "none",
       borderRadius: 999,
       cursor: "pointer",
@@ -2761,7 +2762,6 @@ function MapScreen({
     if (!useDemo) return;
     var id = setInterval(() => {
       var goal = meetMode && meetTarget ? meetTarget : selectedStage ? STAGES.find(s => s.id === selectedStage) : null;
-      if (reduceMotion && !goal) return;
       setDemoAvatar(a => {
         if (goal) {
           var _dx = goal.x - a.x,
@@ -2774,6 +2774,7 @@ function MapScreen({
             y: a.y + _dy / d * 0.35
           };
         }
+        if (reduceMotion) return a;
         return {
           x: Math.max(12, Math.min(88, a.x + (Math.random() - 0.5) * 0.2)),
           y: Math.max(12, Math.min(88, a.y + (Math.random() - 0.5) * 0.2))
@@ -2791,6 +2792,7 @@ function MapScreen({
             y: f.y + _dy2 / d * 0.32
           };
         }
+        if (reduceMotion) return f;
         return {
           ...f,
           x: Math.max(12, Math.min(88, f.x + (Math.random() - 0.5) * 0.25)),
@@ -3464,7 +3466,7 @@ function MapScreen({
         fontFamily: "Geist Mono, monospace",
         fontSize: 8,
         fontWeight: 900,
-        color: "var(--ink)",
+        color: a.ink,
         lineHeight: 1
       }
     }, a.letter), React.createElement("span", {
@@ -4181,7 +4183,7 @@ function MapScreen({
           height: 14,
           padding: "0 4px",
           background: "var(--ember)",
-          color: "var(--ink)",
+          color: "var(--on-ember)",
           borderRadius: 14,
           fontSize: 8,
           fontWeight: 700,
@@ -4400,7 +4402,7 @@ function MapScreen({
       right: 0,
       zIndex: 9,
       background: "linear-gradient(135deg, var(--signal), var(--ember))",
-      color: "var(--ink)",
+      color: "var(--on-signal)",
       padding: "10px 14px",
       paddingTop: "calc(10px + env(safe-area-inset-top, 0px))",
       boxShadow: "0 4px 16px rgba(var(--shade-rgb),0.4)",
@@ -4452,7 +4454,7 @@ function MapScreen({
     className: "mono",
     style: {
       background: "var(--ink)",
-      color: "var(--ember)",
+      color: "var(--on-ink-accent)",
       border: "none",
       borderRadius: 999,
       padding: "6px 13px",
@@ -4470,7 +4472,7 @@ function MapScreen({
     "aria-label": "Dismiss",
     style: {
       background: "rgba(var(--shade-rgb),0.2)",
-      color: "var(--ink)",
+      color: "var(--on-signal)",
       border: "none",
       borderRadius: 999,
       width: 26,
@@ -4500,8 +4502,8 @@ function MapScreen({
         left: 0,
         right: 0,
         zIndex: 8,
-        background: "linear-gradient(135deg, var(--signal), var(--paper))",
-        color: "var(--ink)",
+        background: "var(--signal)",
+        color: "var(--on-signal)",
         padding: "10px 14px",
         paddingTop: "calc(10px + env(safe-area-inset-top, 0px))",
         boxShadow: "0 4px 16px rgba(var(--shade-rgb),0.35)",
@@ -4561,7 +4563,7 @@ function MapScreen({
       className: "mono",
       style: {
         background: "var(--ink)",
-        color: "var(--signal-ink)",
+        color: "var(--on-ink-accent)",
         border: "none",
         borderRadius: 999,
         padding: "6px 13px",
@@ -4576,7 +4578,7 @@ function MapScreen({
       "aria-label": "Dismiss",
       style: {
         background: "rgba(var(--shade-rgb),0.2)",
-        color: "var(--ink)",
+        color: "var(--on-signal)",
         border: "none",
         borderRadius: 999,
         width: 26,
@@ -7251,7 +7253,7 @@ function RealMap({
       borderRadius: 999,
       border: "none",
       background: "var(--ember)",
-      color: "var(--ink)",
+      color: "var(--on-ember)",
       cursor: "pointer",
       fontFamily: "'Geist Mono',monospace",
       fontSize: 9,
@@ -7272,7 +7274,7 @@ function RealMap({
       borderRadius: 999,
       border: "none",
       background: "var(--ember)",
-      color: "var(--ink)",
+      color: "var(--on-ember)",
       cursor: "pointer",
       fontFamily: "'Geist Mono',monospace",
       fontSize: 9,
@@ -7301,41 +7303,49 @@ function _crowdDensity(stageId, nowMin) {
 var AMENITY_KEY = [{
   type: "med",
   color: "var(--alert)",
+  ink: "var(--on-alert)",
   letter: "+",
   label: "First aid"
 }, {
   type: "water",
   color: "var(--signal-ink)",
+  ink: "var(--paper)",
   letter: "",
   label: "Water"
 }, {
   type: "toilet",
   color: "var(--signal-ink)",
+  ink: "var(--paper)",
   letter: "",
   label: "Restrooms"
 }, {
   type: "food",
   color: "var(--signal-ink)",
+  ink: "var(--paper)",
   letter: "",
   label: "Food"
 }, {
   type: "charge",
   color: "var(--signal-ink)",
+  ink: "var(--paper)",
   letter: "⚡",
   label: "Charging"
 }, {
   type: "locker",
   color: "var(--signal-ink)",
+  ink: "var(--paper)",
   letter: "L",
   label: "Lockers"
 }, {
   type: "info",
   color: "var(--signal-ink)",
+  ink: "var(--paper)",
   letter: "i",
   label: "Info / lost"
 }, {
   type: "art",
   color: "var(--signal-ink)",
+  ink: "var(--paper)",
   letter: "",
   label: "Art"
 }];
@@ -7493,6 +7503,23 @@ function TopDownMap({
   var VB_H = box.w > 0 && box.h > 0 ? Math.max(100, 100 * box.h / box.w) : 100;
   var yOff = (VB_H - 100) / 2;
   var mapY = y => (Number(y) + yOff) / VB_H * 100;
+  React.useLayoutEffect(() => {
+    var box = boxRef.current;
+    if (!box) return;
+    var br = box.getBoundingClientRect(),
+      pad = 6;
+    for (var p of box.querySelectorAll("[data-stage-pill]")) {
+      var t = p.style.transition;
+      p.style.transition = "none";
+      p.style.setProperty("--pill-nudge", "0px");
+      var r = p.getBoundingClientRect(),
+        k = p.offsetWidth && r.width / p.offsetWidth || 1;
+      var dx = r.left < br.left + pad ? br.left + pad - r.left : r.right > br.right - pad ? br.right - pad - r.right : 0;
+      if (dx) p.style.setProperty("--pill-nudge", `${dx / k}px`);
+      void p.offsetWidth;
+      p.style.transition = t;
+    }
+  });
   return React.createElement("div", {
     ref: boxRef,
     style: {
@@ -8007,7 +8034,7 @@ function TopDownMap({
       y: a.y + 0.65,
       textAnchor: "middle",
       fontSize: "1.8",
-      fill: "var(--ink)",
+      fill: cfg.ink,
       fontFamily: "Geist Mono, monospace",
       fontWeight: "900"
     }, cfg.letter));
@@ -8373,20 +8400,21 @@ function TopDownMap({
     var shiftX = `${(-hx * 100).toFixed(1)}%`;
     var tx = {
       N: {
-        transform: `translate(${shiftX}, calc(-100% - ${off}px))${counterRot}`
+        transform: `translate(${shiftX}, calc(-100% - ${off}px))${counterRot} translateX(var(--pill-nudge, 0px))`
       },
       S: {
-        transform: `translate(${shiftX}, ${off}px)${counterRot}`
+        transform: `translate(${shiftX}, ${off}px)${counterRot} translateX(var(--pill-nudge, 0px))`
       },
       E: {
-        transform: `translate(${off}px, -50%)${counterRot}`
+        transform: `translate(${off}px, -50%)${counterRot} translateX(var(--pill-nudge, 0px))`
       },
       W: {
-        transform: `translate(calc(-100% - ${off}px), -50%)${counterRot}`
+        transform: `translate(calc(-100% - ${off}px), -50%)${counterRot} translateX(var(--pill-nudge, 0px))`
       }
     }[anchor];
     return React.createElement("div", {
       key: s.id,
+      "data-stage-pill": true,
       role: "button",
       tabIndex: 0,
       "aria-label": `${s.name} stage`,
@@ -8415,7 +8443,11 @@ function TopDownMap({
         fontSize: on ? 9.5 : 8.5,
         letterSpacing: 1.2,
         fontWeight: 700,
-        whiteSpace: "nowrap",
+        width: "max-content",
+        maxWidth: "min(46vw, 170px)",
+        whiteSpace: "normal",
+        overflowWrap: "anywhere",
+        lineHeight: 1.35,
         boxShadow: on ? `0 4px 18px ${s.color}66, 0 0 8px ${s.color}33` : "0 1px 0 rgba(0,0,0,0.4), 0 2px 12px rgba(0,0,0,0.5)",
         transition: "all 0.15s"
       }
@@ -8439,7 +8471,7 @@ function TopDownMap({
       top: `${mapY(f.y)}%`,
       transform: `translate(-50%, 14px)${counterRot}`,
       background: f.color,
-      color: "var(--ink)",
+      color: _inkOnHex(f.color),
       padding: "2px 7px",
       borderRadius: 999,
       fontFamily: "Geist Mono, monospace",
@@ -8478,7 +8510,7 @@ function TopDownMap({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        color: "var(--ink)",
+        color: _inkOnHex(f.color),
         fontFamily: "Instrument Serif, serif",
         fontSize: 18,
         fontWeight: 400,
@@ -8758,7 +8790,7 @@ function RideshareSheet({
     onClick: () => open(lyftUrl),
     style: {
       background: "var(--signal)",
-      color: "var(--ink)",
+      color: "var(--on-signal)",
       border: "none",
       borderRadius: 12,
       padding: "14px 16px",
@@ -8952,18 +8984,7 @@ function GroundPeek({
   }, "GROUND VIEW"));
 }
 function _inkOn(hex) {
-  try {
-    var h = String(hex).replace("#", "");
-    var n = h.length === 3 ? h.split("").map(c => c + c).join("") : h;
-    var ch = i => {
-      var v = parseInt(n.slice(i, i + 2), 16) / 255;
-      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
-    };
-    var L = 0.2126 * ch(0) + 0.7152 * ch(2) + 0.0722 * ch(4);
-    return L > 0.45 ? "#1a120d" : "#fff";
-  } catch {
-    return "#fff";
-  }
+  return _inkOnHex(hex);
 }
 function StageNavBar({
   stage,
@@ -9134,7 +9155,7 @@ function BottomSheet({
         height: 38,
         borderRadius: 38,
         background: "var(--ember)",
-        color: "var(--ink)",
+        color: "var(--on-ember)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -9145,7 +9166,7 @@ function BottomSheet({
       height: "18",
       viewBox: "0 0 24 24",
       fill: "none",
-      stroke: "var(--ink)",
+      stroke: "currentColor",
       strokeWidth: "2"
     }, React.createElement("path", {
       d: "M12 2 C8 2 5 5 5 9 c0 5 7 13 7 13 s7-8 7-13 c0-4-3-7-7-7z"
@@ -9153,7 +9174,7 @@ function BottomSheet({
       cx: "12",
       cy: "9",
       r: "2.5",
-      fill: "var(--ink)"
+      fill: "currentColor"
     }))), React.createElement("div", {
       style: {
         flex: 1,
@@ -9376,7 +9397,7 @@ function YourStagePhotosStrip({
     title: "Share an animated GIF of your nights at this stage",
     style: {
       background: "var(--signal)",
-      color: "var(--ink)",
+      color: "var(--on-signal)",
       border: "none",
       borderRadius: 999,
       padding: "5px 11px",
@@ -9666,7 +9687,7 @@ function StageLineupSheet({
     style: {
       flex: 1,
       background: peek ? stage.color : "var(--paper-2)",
-      color: peek ? "var(--ink)" : "var(--ink)",
+      color: peek ? _inkOnHex(stage.color) : "var(--ink)",
       border: peek ? "none" : "1px solid var(--line-2)",
       borderRadius: 12,
       padding: "11px 8px",
@@ -9812,7 +9833,7 @@ function StageLineupSheet({
         padding: "7px 6px",
         borderRadius: 8,
         background: on ? stage.color : "var(--paper-2)",
-        color: on ? "var(--ink)" : "var(--ink)",
+        color: on ? _inkOnHex(stage.color) : "var(--ink)",
         border: "none",
         cursor: "pointer",
         display: "flex",
@@ -9825,7 +9846,7 @@ function StageLineupSheet({
       style: {
         fontSize: 9,
         letterSpacing: 1.4,
-        opacity: on ? 0.85 : 0.55,
+        opacity: on ? 1 : 0.55,
         fontWeight: 600
       }
     }, d.label), React.createElement("span", {
@@ -9837,7 +9858,7 @@ function StageLineupSheet({
     }, count, " ", React.createElement("span", {
       style: {
         fontSize: 9,
-        opacity: 0.7
+        opacity: on ? 1 : 0.7
       }
     }, "sets")));
   })), day === NOW.night && nowAtStage && React.createElement("div", {
@@ -9849,7 +9870,7 @@ function StageLineupSheet({
       padding: "8px 10px",
       marginBottom: 8,
       background: stage.color,
-      color: "var(--ink)",
+      color: _inkOnHex(stage.color),
       borderRadius: 12,
       cursor: "pointer"
     }
@@ -9873,8 +9894,7 @@ function StageLineupSheet({
     style: {
       fontSize: 9,
       letterSpacing: 1.6,
-      fontWeight: 700,
-      opacity: 0.9
+      fontWeight: 700
     }
   }, "ON STAGE NOW"), React.createElement("div", {
     className: "serif",
@@ -9979,7 +9999,7 @@ function StageLineupSheet({
         fontSize: 8,
         letterSpacing: 1.3,
         fontWeight: 700,
-        color: "var(--ink)",
+        color: _inkOnHex(stage.color),
         background: stage.color,
         padding: "2px 6px",
         borderRadius: 4
