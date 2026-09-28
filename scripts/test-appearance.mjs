@@ -314,7 +314,7 @@ try {
     }
     return { pinned, moved };
   }, [...fits]);
-  const fitStats = { pinned: 0, moved: 0 };
+  const fitStats = { recorded: 0, pinned: 0, moved: 0 };
   const nameFails = new Set();
   const onMediaInk = {};   // `${screen}/${mode}` → text → colour, for text on a photo
   for (const [key, query, extra, ready, font] of SCREENS) {
@@ -335,7 +335,7 @@ try {
       for (let i = 0; i < steps; i++) {
         if (i) await scrollTo(A.page, i);
         fresh.push(await shot(A.page));
-        await readFits(A.page, fits);
+        await readFits(A.page, fits); fitStats.recorded = Math.max(fitStats.recorded, fits.size);
         if (process.env.APPEARANCE_EVIDENCE) freshRects[i] = await rects(A.page);
         const r = await audit(A.page);
         a.media += r.media; a.measured += r.measured;
@@ -508,8 +508,11 @@ try {
     await ctx.close();
   }
 
-  // The pin must reach names, or it stopped doing anything (a renamed attribute).
-  check(fitStats.pinned > 0, `fitted names: the toggled loads pinned none of the fresh fits`);
+  // The pin must reach names, or it stopped doing anything: a renamed
+  // attribute (the list screens always carry fitted names) or a key that no
+  // longer matches between loads. A focused run on other screens has none.
+  const ranList = SCREENS.some(([k]) => k === 'lineup' || k === 'lineup-wide');
+  check(!(ranList || fitStats.recorded) || fitStats.pinned > 0, `fitted names: the toggled loads pinned none of the fresh fits (${fitStats.recorded} recorded)`);
   console.log(`  fitted names pinned from the fresh load: ${fitStats.pinned}, of which ${fitStats.moved} had fitted differently on the toggled load`);
   console.log(Object.entries(totals).map(([k, v]) => `  ${k}: ${v.measured} text nodes measured over ${v.steps} screenful(s), ${v.media} on media, ${v.fails} below AA`).join('\n'));
 } catch (e) {
