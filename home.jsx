@@ -718,8 +718,9 @@ function buildTonightsPlan(state) {
   const night = NOW.night;
   if (night == null) return [];
   const nowMin = toNightMin(NOW.time);
-  const lineup = activeLineup(state.saved);
-  const sets = state.saved
+  const saved = savedInLineup(state.saved);
+  const lineup = activeLineup(saved);
+  const sets = saved
     .map(id => lineup.find(a => a.id === id))
     .filter(a => a && a.day === night)
     .sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
@@ -786,7 +787,7 @@ function computeAlerts(savedIds, day, timeStr) {
 }
 
 function PostFestivalRecap({ state, setState }) {
-  const savedIds = state.saved || [];
+  const savedIds = savedInLineup(state.saved);
   const byDay = festivalDayNums().map(day => ({
     day,
     meta: FESTIVAL_CONFIG.dayDates[day],
@@ -921,7 +922,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
   const isPostEvent = now > FESTIVAL_END_MS;
   const day = NOW.day;
   const dayMeta = FESTIVAL_CONFIG.dayDates[day];
-  const savedIds = state.saved || [];
+  const savedIds = savedInLineup(state.saved);
 
   // The currently-live artist (anywhere on grounds), preferring mainstage.
   const live = (() => {
@@ -1237,7 +1238,7 @@ function LastNightRecap({ state, setState }) {
   const prevDay = day - 1;
   if (prevDay < 1 || prevDay > 3) return null;
   const meta = FESTIVAL_CONFIG.dayDates[prevDay];
-  const savedIds = state.saved || [];
+  const savedIds = savedInLineup(state.saved);
 
   // Score = tier (1-3) weighted by set duration in minutes
   const score = a => {
@@ -1374,7 +1375,7 @@ function LastNightRecap({ state, setState }) {
 function UpcomingTeaser({ state, setState }) {
   const now = Date.now();
   const isPreEvent = now < FESTIVAL_START_MS;
-  const savedIds = state.saved || [];
+  const savedIds = savedInLineup(state.saved);
 
   // Which days to surface
   const upcomingDays = (() => {
@@ -1513,10 +1514,10 @@ function HomeScreen({ state, setState }) {
   // they later un-save everything.
   React.useEffect(() => {
     if (setupBannerDismissed) return;
-    if ((state.saved?.length || 0) === 0) return;
+    if (savedInLineup(state.saved).length === 0) return;
     try { localStorage.setItem("setup_banner_dismissed", "1"); } catch {}
     setSetupBannerDismissed(true);
-  }, [state.saved?.length, setupBannerDismissed]);
+  }, [state.saved?.join(","), setupBannerDismissed]);
   const { perm: notifPerm, enable: enableNotifs } = useNotifications();
   const weatherAlert = useWeatherAlert();
   // Pre-event newcomers haven't seen the first-timer guide yet — show a
@@ -1530,7 +1531,8 @@ function HomeScreen({ state, setState }) {
 
   // Re-render every minute so the pre-event countdown stays accurate
   useTick(60000);
-  const countdown = preEventCountdown(state.saved);
+  const liveSaved = savedInLineup(state.saved);
+  const countdown = preEventCountdown(liveSaved);
   const isPostFestival = Date.now() > FESTIVAL_END_MS;
 
   const current = ARTISTS.find(a => a.id === NOW.currentArtistId) || null;
@@ -1546,8 +1548,8 @@ function HomeScreen({ state, setState }) {
   const liveStrip = liveAcrossStages();
 
   // Computed alerts from saved sets — replaces static demo ALERTS during festival
-  const _dynAlerts = !countdown && state.saved?.length
-    ? computeAlerts(state.saved, NOW.night, NOW.time)
+  const _dynAlerts = !countdown && liveSaved.length
+    ? computeAlerts(liveSaved, NOW.night, NOW.time)
     : [];
   const alerts = _dynAlerts.length ? _dynAlerts : (state.alerts || ALERTS);
   const unread = alerts.filter(a => a.unread).length;
@@ -1579,7 +1581,7 @@ function HomeScreen({ state, setState }) {
   // Now/Next row, one primary action, then flat rows. Every section the old
   // Home carried is still one tap away, in the essentials row or a sheet.
   const [sheet, setSheet] = React.useState(null);
-  const savedIds = state.saved || [];
+  const savedIds = savedInLineup(state.saved);
   const online = useOnlineStatus();
   const isLive = !countdown && !isPostFestival;
   const heroMomentId = useHeroMomentId();
@@ -1851,7 +1853,7 @@ function HeadlinerHighlights({ state, setState }) {
 // Saved sets by day as flat, time-led rows with walk gaps. A clash is a small
 // warning with its word, never a neon card. Opened as "My saved sets".
 function SavedByDay({ state, setState }) {
-  const savedIds = state.saved || [];
+  const savedIds = savedInLineup(state.saved);
   const byDay = festivalDayNums().map(day => ({
     day, meta: FESTIVAL_CONFIG.dayDates[day],
     artists: activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id))
@@ -2024,7 +2026,7 @@ function FieldHomeHero({ photo, status, live, deviceOffline, title, sub, offline
 // The current saved set if one is live, else the next one. No saved sets
 // means one plain sentence and one action, never invented event data.
 function FieldNowNext({ state, setState, onOpenNight }) {
-  const savedIds = state.saved || [];
+  const savedIds = savedInLineup(state.saved);
   const saved = activeLineup(savedIds).filter(a => savedIds.includes(a.id));
   const now = Date.now();
   const live = saved.find(a => isSetLive(a)) || null;
@@ -2722,7 +2724,7 @@ function _buildShareUrl(savedIds) {
 
 
 function FriendLineupBanner({ state, setState }) {
-  const friendIds = state.friendLineup || [];
+  const friendIds = savedInLineup(state.friendLineup);
   const savedSet = new Set(state.saved || []);
   const overlap = friendIds.filter(id => savedSet.has(id));
   const fresh = friendIds.filter(id => !savedSet.has(id));

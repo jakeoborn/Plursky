@@ -1949,8 +1949,9 @@ async function _renderCrewComparison(myName, myState, otherName, otherArtistIds)
   ctx.fillStyle = "rgba(255,255,255,0.4)";
   ctx.fillText(`${(CFG.shortName || "FESTIVAL").toUpperCase()} · ${CFG.dates || ""}`, W/2, 160);
 
-  const mySaved = myState.saved || [];
-  const theirSaved = otherArtistIds || [];
+  const mySaved = savedInLineup(myState.saved);
+  // Both sides: a crew member on an older build can still broadcast an orphan.
+  const theirSaved = savedInLineup(otherArtistIds);
   const overlap = mySaved.filter(id => theirSaved.includes(id));
   const myOnly = mySaved.filter(id => !theirSaved.includes(id));
   const theirOnly = theirSaved.filter(id => !mySaved.includes(id));

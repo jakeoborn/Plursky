@@ -2470,6 +2470,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Saved sets the lineup still carries ──────────────────────────────────
+// Every saved-set surface reads savedInLineup(); storage, cloud push and the
+// sign-in union keep orphan ids (lane ruling 2026-09-27: no deletion until a
+// data-retention decision). Removed, removed-then-readded, union merge, zero
+// live; plus a detector for raw saved-list counts.
+{
+  console.log("▸ Saved-set view — counts and screens read the lineup; storage keeps every id");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-saved-set-lineup-view.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`saved-set view failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b5c3. Lineup list for humans ──────────────────────────────────────
 // A downward scroll folds the WHOLE filter header into one compact bar that
 // names the selection; an upward scroll or a tap brings it back; the list
@@ -2908,6 +2925,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`live check-in failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-c4b. Map chat quick replies name the artist in full ────────────────
+// A smart chip ("<ARTIST> LIVE", "<ARTIST> 12M") carries the whole name and
+// wraps inside the row at 320px instead of cutting at 8 characters.
+{
+  console.log("▸ Map quick replies gate — smart chips name the artist in full, fit the row at 320px");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-map-quick-replies.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`map quick replies failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
