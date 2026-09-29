@@ -2895,6 +2895,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-c4b. Map chat quick replies name the artist in full ────────────────
+// A smart chip ("<ARTIST> LIVE", "<ARTIST> 12M") carries the whole name and
+// wraps inside the row at 320px instead of cutting at 8 characters.
+{
+  console.log("▸ Map quick replies gate — smart chips name the artist in full, fit the row at 320px");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-map-quick-replies.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`map quick replies failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c5. ACL 2026 map: art coordinates are not world coordinates ────────
 // The plate is the verified first-party 2026 patron map, every stage/amenity
 // x/y is a measured row on it, the four satellite anchors are untouched and
