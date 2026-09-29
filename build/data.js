@@ -1334,6 +1334,11 @@ function lineupFor(weekend) {
 function activeLineup(savedIds) {
   return lineupFor(activeWeekend(null, undefined, savedIds));
 }
+function savedInLineup(savedIds) {
+  if (!Array.isArray(savedIds) || !savedIds.length) return [];
+  var known = new Set(lineupFor("all").map(a => a.id));
+  return savedIds.filter(id => known.has(id));
+}
 function momentWeekend(takenAt, cfg) {
   var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
   var w = c && c.weekendStartMs;

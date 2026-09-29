@@ -1806,6 +1806,23 @@ function activeLineup(savedIds) {
   return lineupFor(activeWeekend(null, undefined, savedIds));
 }
 
+// ── SAVED SETS THE LINEUP STILL CARRIES — one view for every saved-set surface ──
+//
+// A saved id outlives its act: an official lineup can drop a set after
+// someone saved it (CRSSD Fall 2026 lost Skepta Más Tiempo between two
+// official renderings). Storage and the cloud row keep EVERY id, orphans
+// included, until an explicit data-retention decision: an act that comes back
+// comes back saved, and a sign-in union merges what each side holds. What the
+// user SEES and COUNTS is this view: ids the active festival's whole lineup
+// (both weekends, identity, not schedule) still carries, in saved order.
+// Counts, empty states, Search, Saved by day, sharing and crew broadcasts
+// read it; toggles, storage and cloud sync write the raw list.
+function savedInLineup(savedIds) {
+  if (!Array.isArray(savedIds) || !savedIds.length) return [];
+  const known = new Set(lineupFor("all").map(a => a.id));
+  return savedIds.filter(id => known.has(id));
+}
+
 // The weekend a MOMENT belongs to, read off its own capture time — the
 // moment's datum, the way artistDayDate reads the act's. The session resolver
 // is clock-first, so from Oct 9 it answers W2 for good, and a Weekend 1 photo

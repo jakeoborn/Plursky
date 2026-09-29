@@ -248,7 +248,7 @@ function SpotifyScreen({
       marginBottom: 10,
       letterSpacing: 0.8
     }
-  }, "Session expired — please reconnect."), connected && (state.saved.length > 0 || (window._collectMomentSongs?.() || []).length > 0) && React.createElement("div", {
+  }, "Session expired — please reconnect."), connected && (savedInLineup(state.saved).length > 0 || (window._collectMomentSongs?.() || []).length > 0) && React.createElement("div", {
     style: {
       marginBottom: 8
     }
@@ -273,9 +273,9 @@ function SpotifyScreen({
       fontWeight: 600,
       transition: "background 0.3s"
     }
-  }, saveFlash ? `✓ SAVED ${matched.length} ARTISTS` : `SAVE ALL ${matched.length} ARTISTS`), connected && state.saved.length > 0 && React.createElement(BuildPlaylistButton, {
+  }, saveFlash ? `✓ SAVED ${matched.length} ARTISTS` : `SAVE ALL ${matched.length} ARTISTS`), connected && savedInLineup(state.saved).length > 0 && React.createElement(BuildPlaylistButton, {
     state: state
-  }), state.saved.length > 0 && React.createElement(AppleMusicPlaylistButton, {
+  }), savedInLineup(state.saved).length > 0 && React.createElement(AppleMusicPlaylistButton, {
     state: state
   }), (window._collectMomentSongs?.() || []).length > 0 && React.createElement(React.Fragment, null, connected && React.createElement(BuildPlaylistButton, {
     state: state,
@@ -302,7 +302,7 @@ function SpotifyScreen({
       transition: "all 0.3s var(--ease-spring)",
       animation: connected && spotifyArtists === null ? "savePop 1.2s ease-in-out infinite" : undefined
     }
-  }, connected && spotifyArtists === null ? "⟳ LOADING…" : connected ? "✓ CONNECTED" : "CONNECT ACCOUNT")), APPLE_DEV_TOKEN && state.saved.length > 0 && React.createElement("div", {
+  }, connected && spotifyArtists === null ? "⟳ LOADING…" : connected ? "✓ CONNECTED" : "CONNECT ACCOUNT")), APPLE_DEV_TOKEN && savedInLineup(state.saved).length > 0 && React.createElement("div", {
     className: "mono",
     style: {
       marginTop: 10,
@@ -11224,7 +11224,7 @@ function MeScreen({
     return () => window.removeEventListener("plursky-attended-change", refresh);
   }, []);
   var daysHere = NOW.day || 0;
-  var savedCount = state.saved.length;
+  var savedCount = savedInLineup(state.saved).length;
   var badgesEarnedCount = React.useMemo(() => _computeBadges(state.saved).filter(b => b.earned).length, [state.saved]);
   var _cfg = window.FESTIVAL_CONFIG || {};
   var tagline = daysHere ? `DAY ${daysHere} OF ${(_cfg.shortName || _cfg.brand || "").toUpperCase()}` : `${(_cfg.shortName || _cfg.brand || "").toUpperCase()} · ${(_cfg.dates || "").toUpperCase()}`;
@@ -12164,7 +12164,7 @@ function FollowedNudge({
   var [expanded, setExpanded] = React.useState(false);
   React.useEffect(() => {
     fetchFollowedEdcArtists(state.saved).then(setFollowed);
-  }, [state.saved.length]);
+  }, [state.saved.join(",")]);
   if (!followed || followed.length === 0) return null;
   var handleSave = artist => {
     setState(s => ({

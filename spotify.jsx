@@ -179,7 +179,7 @@ function SpotifyScreen({ state, setState }) {
             </div>
           )}
 
-          {connected && (state.saved.length > 0 || (window._collectMomentSongs?.() || []).length > 0) && (
+          {connected && (savedInLineup(state.saved).length > 0 || (window._collectMomentSongs?.() || []).length > 0) && (
             <div style={{ marginBottom: 8 }}><PlaylistVisibilityToggle /></div>
           )}
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
@@ -194,10 +194,10 @@ function SpotifyScreen({ state, setState }) {
                 {saveFlash ? `✓ SAVED ${matched.length} ARTISTS` : `SAVE ALL ${matched.length} ARTISTS`}
               </button>
             )}
-            {connected && state.saved.length > 0 && (
+            {connected && savedInLineup(state.saved).length > 0 && (
               <BuildPlaylistButton state={state} />
             )}
-            {state.saved.length > 0 && <AppleMusicPlaylistButton state={state} />}
+            {savedInLineup(state.saved).length > 0 && <AppleMusicPlaylistButton state={state} />}
             {/* "Your Weekend Soundtrack" — appears once Shazam has confirmed
                 songs in your moments: the real tracks you were there for,
                 exportable to either service. */}
@@ -222,7 +222,7 @@ function SpotifyScreen({ state, setState }) {
           {/* #6 service-agnostic framing: your saved sets are the source;
               export to whichever service you have. Lets non-Spotify users
               (or anyone hitting Spotify's 5-user cap) still get a playlist. */}
-          {APPLE_DEV_TOKEN && state.saved.length > 0 && (
+          {APPLE_DEV_TOKEN && savedInLineup(state.saved).length > 0 && (
             <div className="mono" style={{ marginTop: 10, fontSize: 9, letterSpacing: 0.5, lineHeight: 1.5, color: "var(--text-3)" }}>
               💡 Your saved sets build a playlist on <span style={{ color: "var(--ink)", fontWeight: 700 }}>Spotify or Apple Music</span> — import your taste from one, export to either. No Spotify needed for the Apple Music playlist.
             </div>
@@ -7637,7 +7637,7 @@ function MeScreen({ state, setState }) {
     return () => window.removeEventListener("plursky-attended-change", refresh);
   }, []);
   const daysHere = NOW.day || 0;
-  const savedCount = state.saved.length;
+  const savedCount = savedInLineup(state.saved).length;
   // Earned-badge count for the 4-card grid — same source of truth as
   // BadgesSection (v227: the old hand-mirrored copy here desynced and
   // carried EDC-only stage ids onto ACL).
@@ -8138,7 +8138,7 @@ function FollowedNudge({ state, setState }) {
 
   React.useEffect(() => {
     fetchFollowedEdcArtists(state.saved).then(setFollowed);
-  }, [state.saved.length]);
+  }, [state.saved.join(",")]);
 
   if (!followed || followed.length === 0) return null;
 
