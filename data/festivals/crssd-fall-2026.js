@@ -2,6 +2,10 @@
 // CRSSD FEST FALL 2026 — Waterfront Park · San Diego, CA
 // Sep 26–27, 2026
 // ═══════════════════════════════════════════════════════════════════════
+// PAST EDITION. It ended Sep 27, 2026, before this landed, so it opens as a
+// past festival (no scheduleTBA): the 53 sets below are its archived record,
+// and "ended" comes from the dates, the same as every other past edition.
+//
 // SET TIMES ARE OFFICIAL, re-pulled 2026-09-27. All 53 billed acts are
 // timed, read off CRSSD's own set-times page as it stood that day. Nothing
 // below comes from the 2026-09-25 graphics without being re-checked against
