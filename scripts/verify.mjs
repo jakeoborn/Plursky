@@ -2273,6 +2273,17 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 {
+  console.log("▸ ACL W2 now-playing — real grid at real W2 times, W2 begins when its first day opens");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-acl-w2-now.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`ACL W2 now-playing failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
   console.log("▸ Capture-time trust gate — boolean answer, gated festivals counted, no invented festival id");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-capture-time-trust.mjs"],
