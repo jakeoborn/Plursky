@@ -893,7 +893,7 @@ function App() {
         <SearchModal
           onClose={() => setSearchOpen(false)}
           onSelectArtist={(id) => setState({ ...state, artist: id })}
-          saved={state.saved || []}
+          saved={savedInLineup(state.saved)}
         />
       )}
       {showOnboarding && (

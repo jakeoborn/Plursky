@@ -1370,7 +1370,7 @@ function App() {
       ...state,
       artist: id
     }),
-    saved: state.saved || []
+    saved: savedInLineup(state.saved)
   }), showOnboarding && React.createElement(OnboardingModal, {
     state: state,
     setState: setState,
