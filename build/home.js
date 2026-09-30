@@ -229,7 +229,7 @@ function TonightCard({
     style: {
       fontSize: 9,
       letterSpacing: 1.4,
-      color: "rgba(var(--ink-rgb),0.55)",
+      color: "var(--text-3)",
       fontWeight: 600
     }
   }, label), React.createElement("div", {
@@ -246,7 +246,7 @@ function TonightCard({
     style: {
       fontSize: 9,
       letterSpacing: 1.1,
-      color: "rgba(var(--ink-rgb),0.6)",
+      color: "var(--text-3)",
       marginTop: 4
     }
   }, sub));
@@ -283,14 +283,14 @@ function TonightCard({
     style: {
       fontSize: 10,
       letterSpacing: 1.6,
-      color: "rgba(var(--ink-rgb),0.6)"
+      color: "var(--text-3)"
     }
   }, isPreEvent ? "OPENING NIGHT" : `TONIGHT · DAY ${day}`), period && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "rgba(var(--ink-rgb),0.5)",
+      color: "var(--text-3)",
       display: "flex",
       alignItems: "center",
       gap: 5
@@ -375,7 +375,7 @@ function TonightCard({
       style: {
         fontSize: 9,
         letterSpacing: 1.4,
-        color: "rgba(var(--ink-rgb),0.55)",
+        color: "var(--text-3)",
         fontWeight: 600
       }
     }, "NEXT 12H"), React.createElement("span", {
@@ -383,7 +383,7 @@ function TonightCard({
       style: {
         fontSize: 9,
         letterSpacing: 1,
-        color: "rgba(var(--ink-rgb),0.5)"
+        color: "var(--text-3)"
       }
     }, min, "° → ", max, "°")), React.createElement("svg", {
       viewBox: `0 0 ${W} ${H}`,
@@ -417,14 +417,14 @@ function TonightCard({
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "rgba(var(--ink-rgb),0.4)"
+        color: "var(--text-3)"
       }
     }, fmtH(firstHour)), React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "rgba(var(--ink-rgb),0.4)"
+        color: "var(--text-3)"
       }
     }, fmtH(lastHour))));
   })(), inShuttleWindow && React.createElement("button", {
@@ -858,8 +858,9 @@ function buildTonightsPlan(state) {
   var night = NOW.night;
   if (night == null) return [];
   var nowMin = toNightMin(NOW.time);
-  var lineup = activeLineup(state.saved);
-  var sets = state.saved.map(id => lineup.find(a => a.id === id)).filter(a => a && a.day === night).sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
+  var saved = savedInLineup(state.saved);
+  var lineup = activeLineup(saved);
+  var sets = saved.map(id => lineup.find(a => a.id === id)).filter(a => a && a.day === night).sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
   return sets.map((a, i) => {
     var prev = sets[i - 1];
     var walk = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
@@ -929,7 +930,7 @@ function PostFestivalRecap({
   state,
   setState
 }) {
-  var savedIds = state.saved || [];
+  var savedIds = savedInLineup(state.saved);
   var byDay = festivalDayNums().map(day => ({
     day,
     meta: FESTIVAL_CONFIG.dayDates[day],
@@ -1103,7 +1104,7 @@ function F1TonightHero({
   var isPostEvent = now > FESTIVAL_END_MS;
   var day = NOW.day;
   var dayMeta = FESTIVAL_CONFIG.dayDates[day];
-  var savedIds = state.saved || [];
+  var savedIds = savedInLineup(state.saved);
   var live = (() => {
     if (isPreEvent || isPostEvent) return null;
     var nowMin = toNightMin(NOW.time);
@@ -1210,7 +1211,7 @@ function F1TonightHero({
     style: {
       fontSize: 9,
       letterSpacing: 1.4,
-      color: "rgba(var(--ink-rgb),0.55)",
+      color: "var(--text-3)",
       fontWeight: 600
     }
   }, phase === "pre" ? FESTIVAL_CONFIG.dates.toUpperCase() : `NIGHT ${day} / ${DAYS.length}`)), phase === "pre" && React.createElement(React.Fragment, null, React.createElement("div", {
@@ -1239,7 +1240,7 @@ function F1TonightHero({
   }, FESTIVAL_CONFIG.brand)), React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "rgba(var(--ink-rgb),0.7)",
+      color: "var(--text-2)",
       lineHeight: 1.4,
       marginBottom: spotlight ? 16 : 0
     }
@@ -1295,12 +1296,12 @@ function F1TonightHero({
       style: {
         fontSize: 9,
         letterSpacing: 0.8,
-        color: "rgba(var(--ink-rgb),0.55)",
+        color: "var(--text-3)",
         marginTop: 3
       }
     }, sStage?.name?.toUpperCase() || "", " · DAY ", spotlight.day, " · ", fmt12(spotlight.start))), React.createElement("div", {
       style: {
-        color: "rgba(var(--ink-rgb),0.4)",
+        color: "var(--text-3)",
         fontSize: 16,
         flexShrink: 0
       }
@@ -1326,7 +1327,7 @@ function F1TonightHero({
     style: {
       fontSize: 9,
       letterSpacing: 1.6,
-      color: "rgba(var(--ink-rgb),0.75)",
+      color: "var(--text-2)",
       fontWeight: 600
     }
   }, "NOW · ", featured.genre.toUpperCase())), React.createElement("div", {
@@ -1342,7 +1343,7 @@ function F1TonightHero({
     style: {
       fontSize: 10,
       letterSpacing: 1.4,
-      color: "rgba(var(--ink-rgb),0.7)",
+      color: "var(--text-2)",
       marginBottom: 14
     }
   }, fmt12(featured.start), " – ", fmt12(featured.end)), React.createElement("div", {
@@ -1458,7 +1459,7 @@ function F1TonightHero({
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "rgba(var(--ink-rgb),0.6)",
+      color: "var(--text-3)",
       marginTop: 2
     }
   }, stage?.short || "", " · ", fmt12(featured.start))))), phase === "between" && React.createElement(React.Fragment, null, React.createElement("div", {
@@ -1477,7 +1478,7 @@ function F1TonightHero({
   }, "changeover")), React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "rgba(var(--ink-rgb),0.7)",
+      color: "var(--text-2)",
       lineHeight: 1.4,
       marginBottom: 12
     }
@@ -1533,7 +1534,7 @@ function F1TonightHero({
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "rgba(var(--ink-rgb),0.6)",
+      color: "var(--text-3)",
       marginTop: 2
     }
   }, stage?.short || "", " · ", fmt12(featured.start)))))));
@@ -1546,7 +1547,7 @@ function LastNightRecap({
   var prevDay = day - 1;
   if (prevDay < 1 || prevDay > 3) return null;
   var meta = FESTIVAL_CONFIG.dayDates[prevDay];
-  var savedIds = state.saved || [];
+  var savedIds = savedInLineup(state.saved);
   var score = a => {
     var dur = Math.max(20, toNightMin(a.end) - toNightMin(a.start));
     return (a.tier || 1) * 100 + dur;
@@ -1630,7 +1631,7 @@ function LastNightRecap({
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "rgba(var(--ink-rgb),0.85)",
+        color: "var(--text-2)",
         marginTop: 2
       }
     }, stage?.short || "", " · ", fmt12(artist.start))));
@@ -1749,7 +1750,7 @@ function UpcomingTeaser({
 }) {
   var now = Date.now();
   var isPreEvent = now < FESTIVAL_START_MS;
-  var savedIds = state.saved || [];
+  var savedIds = savedInLineup(state.saved);
   var upcomingDays = (() => {
     var days = festivalDayNums();
     if (isPreEvent) return days;
@@ -1936,12 +1937,12 @@ function HomeScreen({
   });
   React.useEffect(() => {
     if (setupBannerDismissed) return;
-    if ((state.saved?.length || 0) === 0) return;
+    if (savedInLineup(state.saved).length === 0) return;
     try {
       localStorage.setItem("setup_banner_dismissed", "1");
     } catch {}
     setSetupBannerDismissed(true);
-  }, [state.saved?.length, setupBannerDismissed]);
+  }, [state.saved?.join(","), setupBannerDismissed]);
   var {
     perm: notifPerm,
     enable: enableNotifs
@@ -1956,7 +1957,8 @@ function HomeScreen({
   })();
   var [ftDismissed, setFtDismissed] = React.useState(ftSeen);
   useTick(60000);
-  var countdown = preEventCountdown(state.saved);
+  var liveSaved = savedInLineup(state.saved);
+  var countdown = preEventCountdown(liveSaved);
   var isPostFestival = Date.now() > FESTIVAL_END_MS;
   var current = ARTISTS.find(a => a.id === NOW.currentArtistId) || null;
   var next = ARTISTS.find(a => a.id === NOW.nextArtistId) || null;
@@ -1968,7 +1970,7 @@ function HomeScreen({
   var upNextMin = next ? Math.max(0, toNightMin(next.start) - toNightMin(NOW.time)) : 0;
   var tonight = buildTonightsPlan(state);
   var liveStrip = liveAcrossStages();
-  var _dynAlerts = !countdown && state.saved?.length ? computeAlerts(state.saved, NOW.night, NOW.time) : [];
+  var _dynAlerts = !countdown && liveSaved.length ? computeAlerts(liveSaved, NOW.night, NOW.time) : [];
   var alerts = _dynAlerts.length ? _dynAlerts : state.alerts || ALERTS;
   var unread = alerts.filter(a => a.unread).length;
   var [heroParallax, setHeroParallax] = React.useState(0);
@@ -2003,7 +2005,7 @@ function HomeScreen({
     }
   };
   var [sheet, setSheet] = React.useState(null);
-  var savedIds = state.saved || [];
+  var savedIds = savedInLineup(state.saved);
   var online = useOnlineStatus();
   var isLive = !countdown && !isPostFestival;
   var heroMomentId = useHeroMomentId();
@@ -2467,7 +2469,7 @@ function SavedByDay({
   state,
   setState
 }) {
-  var savedIds = state.saved || [];
+  var savedIds = savedInLineup(state.saved);
   var byDay = festivalDayNums().map(day => ({
     day,
     meta: FESTIVAL_CONFIG.dayDates[day],
@@ -2582,7 +2584,7 @@ function SavedByDay({
         fontWeight: 600,
         overflowWrap: "anywhere"
       }
-    }, a.name), stage && React.createElement("div", {
+    }, actDisplayName(a.name)), stage && React.createElement("div", {
       style: {
         marginTop: 2,
         fontSize: 13,
@@ -2597,7 +2599,7 @@ function SavedByDay({
         fontWeight: 600,
         color: "var(--warn)"
       }
-    }, "⚠ Clashes with ", prev.name))));
+    }, "⚠ Clashes with ", actDisplayName(prev.name), " · ", fmt12(prev.start), " · ", (STAGES.find(s => s.id === prev.stage) || {}).name || "stage TBA"))));
   }))));
 }
 function _pickHeroMomentId() {
@@ -2844,7 +2846,7 @@ function FieldNowNext({
   setState,
   onOpenNight
 }) {
-  var savedIds = state.saved || [];
+  var savedIds = savedInLineup(state.saved);
   var saved = activeLineup(savedIds).filter(a => savedIds.includes(a.id));
   var now = Date.now();
   var live = saved.find(a => isSetLive(a)) || null;
@@ -4113,7 +4115,7 @@ function FriendLineupBanner({
   state,
   setState
 }) {
-  var friendIds = state.friendLineup || [];
+  var friendIds = savedInLineup(state.friendLineup);
   var savedSet = new Set(state.saved || []);
   var overlap = friendIds.filter(id => savedSet.has(id));
   var fresh = friendIds.filter(id => !savedSet.has(id));
@@ -4218,7 +4220,7 @@ function FriendLineupBanner({
     className: "mono",
     style: {
       background: "var(--ember)",
-      color: "var(--ink)",
+      color: "var(--on-ember)",
       border: "none",
       borderRadius: 999,
       padding: "8px 14px",

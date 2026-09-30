@@ -18,13 +18,15 @@ const SETLISTS_PROXY_URL = "https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/p
 // who the act is — "Sunday (1994)", "KAUFMANN (DE)", "Small (danny g luvs u B2B
 // Bori)", "DOG BLOOD (SKRILLEX + BOYS NOIZE)". A note says so: it contains the
 // word "set" ("Sunset Set", "DJ set", "2 Hour Set"), or is one of the few the
-// lineups print without it (Live, Detox, In The Round, "… Classics"). Built
+// lineups print without it (Live, Detox, In The Round, "… Classics"), or an
+// unbracketed "… performing <album>" billing. Built
 // from all 26 parentheticals across the registry, 2026-09-10; the regression
 // table lives in scripts/verify.mjs. spotify-api.jsx's searches use this too.
 const _LOOKUP_SET_NOTE = /^(?:.*\bsets?\b.*|live|detox|in the round|.*\bclassics\b.*)$/i;
 function _lookupName(s) {
   const raw = String(s || "");
   const t = raw.replace(/\s*\(([^)]*)\)\s*/g, (m, inner) => (_LOOKUP_SET_NOTE.test(inner.trim()) ? " " : m))
+    .replace(/\s+performing\s.*$/i, "")  // "GZA performing Liquid Swords" (III Points 2026) is GZA
     .replace(/\s+/g, " ").trim();
   return t || raw;
 }
@@ -413,7 +415,15 @@ function SpiderWeb({ currentArtist, currentStage, similar, onSelectArtist }) {
   });
 
   const edcCount = nodes.filter(n => n.edcArtist).length;
-  const truncate = (str, max) => str.length > max ? str.slice(0, max) + "…" : str;
+  // Names are never cut (lane ruling 2026-09-26): a long one breaks over two
+  // lines at the space nearest its middle instead of losing its end.
+  const twoLines = (str, max) => {
+    const n = actDisplayName(str);
+    if (n.length <= max || !n.includes(" ")) return [n];
+    const mid = n.length / 2; let best = -1;
+    for (let i = 0; i < n.length; i++) if (n[i] === " " && (best < 0 || Math.abs(i - mid) < Math.abs(best - mid))) best = i;
+    return [n.slice(0, best), n.slice(best + 1)];
+  };
 
   return (
     <div style={{
@@ -424,7 +434,7 @@ function SpiderWeb({ currentArtist, currentStage, similar, onSelectArtist }) {
         display: "flex", alignItems: "center", justifyContent: "space-between",
         marginBottom: 6, padding: "0 2px",
       }}>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.5, color: "rgba(var(--ink-rgb),0.45)", fontWeight: 700 }}>
+        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.5, color: "var(--text-3)", fontWeight: 700 }}>
           SIMILAR ARTISTS
         </span>
         {edcCount > 0 && (
@@ -462,13 +472,14 @@ function SpiderWeb({ currentArtist, currentStage, similar, onSelectArtist }) {
         ))}
 
         {/* Center node */}
-        <circle cx={cx} cy={cy} r={28} fill={"var(--signal)"}/>
-        <circle cx={cx} cy={cy} r={33} fill="none" stroke={"var(--signal)"} strokeWidth={1} opacity={0.3}/>
-        <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle"
-          fill="var(--ink)" fontSize={currentArtist.name.length > 10 ? 7 : 8.5}
-          fontFamily="Geist Mono, monospace" fontWeight="700">
-          {truncate(currentArtist.name, 11)}
-        </text>
+        <circle cx={cx} cy={cy} r={32} fill={"var(--signal)"}/>
+        <circle cx={cx} cy={cy} r={37} fill="none" stroke={"var(--signal)"} strokeWidth={1} opacity={0.3}/>
+        {(() => { const ln = twoLines(currentArtist.name, 10); return (
+          <text x={cx} y={cy - (ln.length - 1) * 5} textAnchor="middle" dominantBaseline="middle"
+            fill="var(--on-signal)" fontSize={ln.length > 1 || currentArtist.name.length > 10 ? 8 : 9}
+            fontFamily="Geist Mono, monospace" fontWeight="700">
+            {ln.map((t, i) => <tspan key={i} x={cx} dy={i ? 10 : 0}>{t}</tspan>)}
+          </text>); })()}
 
         {/* Peripheral nodes */}
         {nodes.map((n, i) => {
@@ -498,16 +509,16 @@ function SpiderWeb({ currentArtist, currentStage, similar, onSelectArtist }) {
 
               {/* Artist name */}
               <text x={n.x} y={labelY} textAnchor="middle"
-                fill={n.edcStage ? "rgba(var(--ink-rgb),0.9)" : "rgba(var(--ink-rgb),0.32)"}
+                fill={n.edcStage ? "var(--ink)" : "var(--text-2)"}
                 fontSize={7.5} fontFamily="Geist Mono, monospace"
                 fontWeight={n.edcStage ? "600" : "400"}
               >
-                {truncate(n.name, 13)}
+                {twoLines(n.name, 13).map((t, i) => <tspan key={i} x={n.x} dy={i ? 9 : 0}>{t}</tspan>)}
               </text>
 
               {/* Stage · Day under EDC matches */}
               {n.edcStage && dayLabel && (
-                <text x={n.x} y={labelY + 11} textAnchor="middle"
+                <text x={n.x} y={labelY + 11 + (twoLines(n.name, 13).length - 1) * 9} textAnchor="middle"
                   fill="var(--text-2)" fontSize={7}
                   fontFamily="Geist Mono, monospace" fontWeight="700"
                 >
@@ -668,11 +679,11 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj, onOpenMap
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
           <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(var(--ink-rgb),0.25)" }} />
-          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, fontWeight: 700, color: "rgba(var(--ink-rgb),0.4)" }}>
+          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, fontWeight: 700, color: "var(--text-3)" }}>
             YOUR MOMENTS
           </span>
         </div>
-        <div style={{ fontSize: 13, lineHeight: 1.5, color: "rgba(var(--ink-rgb),0.7)" }}>
+        <div style={{ fontSize: 13, lineHeight: 1.5, color: "var(--text-2)" }}>
           You haven't filmed anything at {artistObj?.name || "this set"} yet.
         </div>
         {(when || stage) && (
@@ -710,12 +721,12 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj, onOpenMap
           <button onClick={() => onOpen(night)} className="mono" style={{
             background: "rgba(var(--ink-rgb),0.08)", border: "1px solid rgba(var(--ink-rgb),0.1)",
             borderRadius: 999, padding: "4px 10px", cursor: "pointer",
-            color: "rgba(var(--ink-rgb),0.5)", fontSize: 8, letterSpacing: 1.2, fontWeight: 700,
+            color: "var(--text-3)", fontSize: 8, letterSpacing: 1.2, fontWeight: 700,
           }}>VIEW ALL →</button>
         </div>
         <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginTop: 4 }}>
           <span className="serif" style={{ fontSize: 20, color: "var(--ink)" }}>{mine.length}</span>
-          <span style={{ fontSize: 10, color: "rgba(var(--ink-rgb),0.45)" }}>
+          <span style={{ fontSize: 10, color: "var(--text-3)" }}>
             {mine.length === 1 ? "memory" : "memories"}{vids > 0 ? ` · ${vids} video${vids > 1 ? "s" : ""}` : ""}
           </span>
         </div>
@@ -1180,7 +1191,12 @@ function ArtistScreen({ state, setState }) {
           </button>
         )}
         <Pill tone="outline" style={{ background: "rgba(var(--ink-rgb),0.15)", color: "var(--ink)", backdropFilter: "blur(8px)", borderColor: "rgba(var(--ink-rgb),0.3)" }}>
-          DAY {a.day} · {fmt12(a.start)}
+          {/* The time joins only when there is one: fmt12("") is an em dash, and
+              "DAY TBA · —" reads as a time that exists. One text node, so the
+              gate can assert the exact string. */}
+          <span data-artist-day-pill>
+            {[a.day != null ? `DAY ${a.day}` : "DAY TBA", a.start ? fmt12(a.start) : null].filter(Boolean).join(" · ")}
+          </span>
         </Pill>
         <ShareArtistButton artist={a} />
       </div>
@@ -1248,17 +1264,21 @@ function ArtistScreen({ state, setState }) {
           </div>
         </div>
       ) : (
-      <div style={{
+      <div className="media-scope" style={{
         height: 300, position: "relative",
         overflow: "hidden",
         color: "var(--ink)",
       }}>
         <div style={{
           position: "absolute", inset: 0, top: -30,
-          background: heroPhoto
-            ? "var(--ink)"
-            : `linear-gradient(160deg, var(--ink) 0%, rgba(var(--signal-rgb),0.27) 40%, var(--ink) 100%)`,
-          backgroundImage: heroPhoto ? `url(${heroPhoto})` : undefined,
+          // Longhands only: a `background` shorthand holding var() is wiped
+          // when React then sets backgroundSize/Position, so the no-photo
+          // hero used to paint NOTHING (invisible in Dark, a pale ground
+          // under white controls in Light).
+          backgroundColor: "var(--media-ground)",
+          backgroundImage: heroPhoto
+            ? `url(${heroPhoto})`
+            : `linear-gradient(160deg, var(--media-ground) 0%, rgba(var(--signal-rgb),0.27) 40%, var(--media-ground) 100%)`,
           backgroundSize: "cover",
           backgroundPosition: "center 20%",
           transform: `translateY(${heroParallax}px)`,
@@ -1424,7 +1444,11 @@ function ArtistScreen({ state, setState }) {
           <div style={{ flex: 1 }}>
             <div className="serif" style={{ fontSize: 20, lineHeight: 1 }}>{stage.name}</div>
             <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)", marginTop: 3 }}>
-              {DAYS.find(d => d.n === a.day).label} · {fmt12(a.start)}–{fmt12(a.end)}
+              {/* A billed act no official schedule has placed (Escape's lineup-card
+                  acts, CRSSD's late adds) has no day: say so, rather than
+                  look up a day that does not exist and crash the screen. */}
+              {a.day == null ? "DAY + SET TIME NOT PUBLISHED"
+                : `${(DAYS.find(d => d.n === a.day) || { label: `DAY ${a.day}` }).label} · ${a.start ? `${fmt12(a.start)}–${fmt12(a.end)}` : "SET TIME NOT PUBLISHED"}`}
             </div>
             {saveCount != null && saveCount >= 2 && (
               <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--signal-ink)", marginTop: 5 }}>
@@ -1439,12 +1463,12 @@ function ArtistScreen({ state, setState }) {
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2,
               cursor: "pointer",
             }}>ON MAP</button>
-            <button onClick={() => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "lineup", lineupDay: a.day, lineupHighlight: a.id, artist: null })} style={{
+            {a.day != null && <button onClick={() => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "lineup", lineupDay: a.day, lineupHighlight: a.id, artist: null })} style={{
               background: "transparent", border: "1px solid var(--line-2)",
               borderRadius: 999, padding: "6px 12px",
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2,
               cursor: "pointer", whiteSpace: "nowrap",
-            }}>SCHEDULE</button>
+            }}>SCHEDULE</button>}
           </div>
         </div>
 
@@ -1510,7 +1534,7 @@ function ArtistScreen({ state, setState }) {
                       WHAT THEY PLAYED AT {(FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.brand || "EDC").toUpperCase()}
                     </span>
                   </div>
-                  <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.35)" }}>
+                  <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--text-3)" }}>
                     {tracks.length} TRACKS
                   </span>
                 </div>
@@ -1521,7 +1545,7 @@ function ArtistScreen({ state, setState }) {
                     display: "flex", alignItems: "baseline", gap: 10, padding: "5px 0",
                     borderTop: i === 0 ? `1px solid rgba(var(--ink-rgb),0.06)` : "none",
                   }}>
-                    <span className="mono" style={{ fontSize: 8, color: "rgba(var(--ink-rgb),0.25)", width: 38, textAlign: "right", flexShrink: 0 }}>
+                    <span className="mono" style={{ fontSize: 8, color: "var(--text-3)", width: 38, textAlign: "right", flexShrink: 0 }}>
                       {fmtTime(t.time)}
                     </span>
                     <div style={{ flex: 1, minWidth: 0 }}>
@@ -1529,7 +1553,7 @@ function ArtistScreen({ state, setState }) {
                         {t.title}
                       </div>
                       {t.artist && t.artist !== a.name && (
-                        <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "rgba(var(--ink-rgb),0.4)", marginTop: 1 }}>
+                        <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--text-3)", marginTop: 1 }}>
                           {t.artist}
                         </div>
                       )}
@@ -1551,7 +1575,7 @@ function ArtistScreen({ state, setState }) {
                   display: "block", padding: "10px 16px",
                   borderTop: "1px solid rgba(var(--ink-rgb),0.06)",
                   fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.2,
-                  color: "rgba(var(--ink-rgb),0.35)", textDecoration: "none", textAlign: "center",
+                  color: "var(--text-3)", textDecoration: "none", textAlign: "center",
                 }}>SOURCE: 1001TRACKLISTS ↗</a>
               )}
             </div>
@@ -1773,18 +1797,18 @@ function ArtistScreen({ state, setState }) {
                   }}>
                     <div style={{ fontSize: 13, color: "var(--ink)", lineHeight: 1.3, fontWeight: 500 }}>{ytVideo.title}</div>
                     <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 5 }}>
-                      <span className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "rgba(var(--ink-rgb),0.5)" }}>
+                      <span className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "var(--text-3)" }}>
                         TAP TO PLAY
                       </span>
                       {ytVideo.durationMin > 0 && (
-                        <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "rgba(var(--ink-rgb),0.5)" }}>
+                        <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--text-3)" }}>
                           {ytVideo.durationMin >= 60
                             ? `${Math.floor(ytVideo.durationMin / 60)}H ${ytVideo.durationMin % 60}M`
                             : `${ytVideo.durationMin} MIN`}
                         </span>
                       )}
                       {ytVideo.views > 0 && (
-                        <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "rgba(var(--ink-rgb),0.5)", marginLeft: "auto" }}>
+                        <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--text-3)", marginLeft: "auto" }}>
                           {ytVideo.views >= 1e6
                             ? `${(ytVideo.views / 1e6).toFixed(1)}M`
                             : ytVideo.views >= 1e3
@@ -1816,7 +1840,7 @@ function ArtistScreen({ state, setState }) {
                   background: "var(--paper-2)", border: "1px solid var(--line)",
                   textAlign: "center",
                 }}>
-                  <div style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>▶</div>
+                  <div aria-hidden="true" style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>▶</div>
                   <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)" }}>
                     {ytError ? "COULDN'T LOAD VIDEO" : "NO LIVE SET FOUND"}
                   </div>
@@ -1948,12 +1972,12 @@ function ArtistScreen({ state, setState }) {
                             {track.user.toUpperCase()}
                           </span>
                           {track.duration > 0 && (
-                            <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.4)" }}>
+                            <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--text-3)" }}>
                               {_mcDur(track.duration)}
                             </span>
                           )}
                           {track.plays > 0 && (
-                            <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.35)" }}>
+                            <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--text-3)" }}>
                               {_mcFmt(track.plays)} PLAYS
                             </span>
                           )}
@@ -1974,7 +1998,7 @@ function ArtistScreen({ state, setState }) {
                         width: "100%", background: "transparent", border: "none",
                         padding: "8px 0 10px",
                         fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2,
-                        color: "rgba(var(--ink-rgb),0.4)", cursor: "pointer",
+                        color: "var(--text-3)", cursor: "pointer",
                       }}>▲ CLOSE</button>
                     </div>
                   )}
@@ -2062,13 +2086,13 @@ function ArtistScreen({ state, setState }) {
                   background: "var(--ember)", borderRadius: 8,
                   padding: "6px 10px", minWidth: 42,
                 }}>
-                  <div className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "rgba(var(--ink-rgb),0.75)" }}>
+                  <div className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "var(--on-ember)" }}>
                     {ev.date ? _tmDate(ev.date).split(" ")[0].toUpperCase() : ""}
                   </div>
-                  <div className="serif" style={{ fontSize: 20, lineHeight: 1, color: "var(--ink)", letterSpacing: -0.5 }}>
+                  <div className="serif" style={{ fontSize: 20, lineHeight: 1, color: "var(--on-ember)", letterSpacing: -0.5 }}>
                     {ev.date ? _tmDate(ev.date).split(" ")[1].replace(",","") : "—"}
                   </div>
-                  <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "rgba(var(--ink-rgb),0.7)" }}>
+                  <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--on-ember)" }}>
                     {ev.date ? ev.date.split("-")[0] : ""}
                   </div>
                 </div>

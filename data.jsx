@@ -861,9 +861,13 @@ const FESTIVALS_REGISTRY = [
 
       // The festival's OWN map page, linked (never embedded) by the /f/ page:
       // official publication is provenance, not reuse rights. mapYear is the
-      // year printed on the map the page showed when checked — null: the article (linked as "Festival Map" from
-      // aclfestival.com) refuses automated reads, so its year is unverified.
-      mapSource: { url: "https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map", observedAt: "2026-09-24", mapYear: null },
+      // year of the map the page showed when checked. 2026, read 2026-09-25 through the help centre's JSON API
+      // (/api/v2/help_center/en-us/articles/4405399774484.json; the HTML page answers automated reads with a
+      // Cloudflare 403): the article, edited 2026-09-23T16:31Z, is headed "2026 Festival Map" and embeds one
+      // image, ACL26_Patron.Map_Horizontal_09.22.png (attachment 53859674183572, Last-Modified 2026-09-23
+      // 16:31:03Z). The image itself prints no year; it prints "25 YEARS", which is 2026 (first festival 2002).
+      // Link only: the in-app ACL map stays blind under the registration waiver until 2026-10-19.
+      mapSource: { url: "https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map", observedAt: "2026-09-25", mapYear: 2026 },
       mapStyle: "image-overlay",
       mapTheme: "park",
       weatherEndpoint: "https://api.weather.gov/points/30.26,-97.77",
@@ -1338,6 +1342,18 @@ const mk = (id, name, genre, stage, day, start, end, bio) => {
   };
 };
 
+// How an act is NAMED in a row, a block, a pill or a card (lane ruling
+// 2026-09-26). An artist name is never truncated: no ellipsis, no clamp, no
+// character cut. The one shortening allowed is for a chain of 3+ artists,
+// which would break any row: the first artist + "+N" ("Audiofreq b3b Code
+// Black b3b Toneshifterz" → "Audiofreq +2"). A b2b stays in full. The artist
+// page and anything that IS the act's own title keep the full name.
+function actDisplayName(name) {
+  const n = String(name || "");
+  const members = n.split(/\s+b\d+b\s+/i);
+  return members.length > 2 ? `${members[0]} +${members.length - 1}` : n;
+}
+
 // 24h "HH:MM" → 12h "H:MM AM/PM" for display. Sort/diff logic still uses raw a.start.
 function fmt12(t) {
   // A gated festival ships real acts with NO set time yet (start: ""), and 53
@@ -1727,13 +1743,24 @@ function _weekendMajorityIsW2(saved) {
 // NOW recompute — 137 ACL acts against every saved id, a thousand times over.
 // Reading the string is cheap; parsing and scanning it is not.
 let _wkMemo = null;                                    // { fid, raw, shift }
+// When W2 "has begun" for the ruling above: its first festival DAY opens, at
+// 08:00 local on its date (the night window _nightWindowFlags uses), not at
+// weekendStartMs.W2, which is the first set. Between the two, W2 Friday
+// morning resolved to W1: Oct 2-4 dates, no next set, no night, on the day
+// itself. Falls back to W2 when there are no day dates to read.
+function _w2BeganMs(cfg, w, shift) {
+  const nums = Object.keys((cfg && cfg.dayDates) || {}).map(Number).sort((a, b) => a - b);
+  const d1 = nums.length ? cfg.dayDates[nums[0]] : null;
+  if (!d1 || typeof d1.midnightUtc !== "number") return w.W2;
+  return Math.min(w.W2, d1.midnightUtc + shift + 8 * 3600000);
+}
 function _weekendShiftMs(cfg, nowMs, savedIds) {
   const w = cfg && cfg.weekendStartMs;
   if (!w || typeof w.W1 !== "number" || typeof w.W2 !== "number") return 0;
   const shift = w.W2 - w.W1;
   if (!(shift > 0)) return 0;
   const now = typeof nowMs === "number" ? nowMs : Date.now();
-  if (now >= w.W2) return shift;                       // clock wins outright
+  if (now >= _w2BeganMs(cfg, w, shift)) return shift;  // clock wins outright
   try {                                                // else: what did they save?
     if (Array.isArray(savedIds)) return _weekendMajorityIsW2(savedIds) ? shift : 0;
     const raw = localStorage.getItem(`${cfg.id}_saved_v1`) || "[]";
@@ -1788,6 +1815,23 @@ function lineupFor(weekend) {
 // that selection reads one list and acts on another.
 function activeLineup(savedIds) {
   return lineupFor(activeWeekend(null, undefined, savedIds));
+}
+
+// ── SAVED SETS THE LINEUP STILL CARRIES — one view for every saved-set surface ──
+//
+// A saved id outlives its act: an official lineup can drop a set after
+// someone saved it (CRSSD Fall 2026 lost Skepta Más Tiempo between two
+// official renderings). Storage and the cloud row keep EVERY id, orphans
+// included, until an explicit data-retention decision: an act that comes back
+// comes back saved, and a sign-in union merges what each side holds. What the
+// user SEES and COUNTS is this view: ids the active festival's whole lineup
+// (both weekends, identity, not schedule) still carries, in saved order.
+// Counts, empty states, Search, Saved by day, sharing and crew broadcasts
+// read it; toggles, storage and cloud sync write the raw list.
+function savedInLineup(savedIds) {
+  if (!Array.isArray(savedIds) || !savedIds.length) return [];
+  const known = new Set(lineupFor("all").map(a => a.id));
+  return savedIds.filter(id => known.has(id));
 }
 
 // The weekend a MOMENT belongs to, read off its own capture time — the
@@ -3359,6 +3403,17 @@ for (const _id of _WAVE1_IDS) {
 }
 // Confirmed schedule updates, BEFORE anything reads a lineup (see scheduleReview).
 _applyScheduleOverlays(_DATA_SETS);
+// Stages are shown by their FULL name everywhere (lane ruling 2026-09-26: a
+// code like KIN or QNT means nothing to a first-time user). Every display
+// site reads `stage.short`, so it is normalised once, here, for every
+// festival: `short` becomes the name, and the old code survives as `code`
+// for the machine uses (the ?stage= deep link). A new call site that reads
+// `.short` gets the full name for free.
+for (const _ds of Object.values(_DATA_SETS)) {
+  for (const _s of _ds.stages || []) {
+    if (_s && _s.code === undefined) { _s.code = _s.short; _s.short = _s.name || _s.short; }
+  }
+}
 const _activeId = getActiveFestivalId();
 const _active = _DATA_SETS[_activeId] || _DATA_SETS["edc-lv-2026"];
 

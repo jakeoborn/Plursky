@@ -809,10 +809,20 @@ const drift = [];
 // A festival ending moves its page's content, and so its fingerprint, with no
 // commit behind it; comparing that in --check would fail an unrelated PR for
 // the calendar, which is the exact wolf the two-mode split exists to avoid.
-// So --check still normalises lastmod away, and --check-strict — the scheduled
-// job that owns the clock — is where the date has to actually be current.
-// A page's "Last updated" line IS its sitemap lastmod, so it is normalised by
-// the same rule and for the same reason.
+// So --check still normalises lastmod away here, and --check-strict — the
+// scheduled job that owns the clock — is where the festival dates have to
+// actually be current. A page's "Last updated" line IS its sitemap lastmod,
+// so it is normalised by the same rule and for the same reason.
+//
+// The homepage, terms and privacy rows are different: their fingerprints are
+// of committed files only (index.html, terms.html, privacy.html), with no
+// calendar input, so only a commit can move them. --check holds those rows'
+// ledger entries AND their sitemap <lastmod> to the committed values (see
+// COMMIT_ROWS, after the sitemap is built). Before that, a cache-bust in
+// index.html moved the homepage fingerprint, passed every PR's verify, and
+// turned the scheduled strict job red on main after the merge. That check
+// lives outside this render slice on purpose: code here feeds
+// templateFingerprint, and moving it would re-date every festival page.
 const norm = (t, f) => CHECK_STRICT ? t
   : f === 'sitemap.xml' ? t.replace(/<lastmod>[^<]*<\/lastmod>/g, '<lastmod>-</lastmod>')
   : /^f\/[^/]+\/index\.html$/.test(f) ? t.replace(/<time class="updated" datetime="[^"]*">[^<]*<\/time>/g, '<time class="updated">-</time>')
@@ -1004,6 +1014,23 @@ ${urls.map(u => `  <url>
 </urlset>
 `);
 emit(LEDGER, JSON.stringify(ledger, null, 2) + '\n', null, true);
+// The rows no calendar can move. --check holds each one to what is committed:
+// its ledger fingerprint and date, and its <lastmod> in sitemap.xml. The
+// festival rows stay strict-only (see norm above).
+const COMMIT_ROWS = [`${ORIGIN}/`, `${ORIGIN}/terms.html`, `${ORIGIN}/privacy.html`];
+if (CHECK && !CHECK_STRICT) {
+  const committed = existsSync(LEDGER) ? JSON.parse(readFileSync(LEDGER, 'utf8')) : {};
+  const published = {};
+  if (existsSync(SITEMAP)) for (const m of readFileSync(SITEMAP, 'utf8')
+       .matchAll(/<loc>([^<]*)<\/loc>\s*<lastmod>([^<]*)<\/lastmod>/g)) published[m[1]] = m[2];
+  for (const loc of COMMIT_ROWS) {
+    const was = committed[loc], now = ledger[loc], path_ = loc.slice(ORIGIN.length);
+    if (!was || was.fp !== now.fp || was.lastmod !== now.lastmod)
+      drift.push(`sitemap-lastmod.json (${path_}: fingerprint ${was ? was.fp : 'missing'}, content is ${now.fp})`);
+    if (published[loc] !== now.lastmod)
+      drift.push(`sitemap.xml (${path_}: <lastmod> ${published[loc] || 'missing'}, should be ${now.lastmod})`);
+  }
+}
 if (!CHECK) console.log(`[gen] sitemap.xml  ${urls.length} urls  (${urls.filter(u => u.lastmod === TODAY).length} dated ${TODAY})`);
 
 // A festival retired from the registry leaves its directory behind. The

@@ -742,28 +742,28 @@ function InstallBanner() {
       padding: "10px 12px",
       borderRadius: 14,
       background: "var(--ink)",
-      color: "var(--paper)",
+      color: "var(--on-ink)",
       display: "flex", alignItems: "center", gap: 11,
     }}>
       <img src="./apple-touch-icon.png" alt=""
         width="36" height="36"
         style={{ borderRadius: 9, display: "block", flexShrink: 0 }} />
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--flare)", fontWeight: 700 }}>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--on-ink-flare)", fontWeight: 700 }}>
           INSTALL PLURSKY
         </div>
-        <div style={{ fontSize: 12, lineHeight: 1.35, marginTop: 2, color: "rgba(var(--ink-rgb),0.85)" }}>
+        <div style={{ fontSize: 12, lineHeight: 1.35, marginTop: 2, color: "var(--on-ink-2)" }}>
           {ip.isIOS
             ? <>Tap <span style={{ display: "inline-flex", verticalAlign: "middle", padding: "0 2px" }}>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--on-ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 3 L12 16"/><path d="M7 8 L12 3 L17 8"/><rect x="5" y="13" width="14" height="8" rx="1.5"/>
-                </svg></span> then <strong style={{ color: "var(--ink)" }}>Add to Home Screen</strong> for offline + full-screen.</>
+                </svg></span> then <strong style={{ color: "var(--on-ink)" }}>Add to Home Screen</strong> for offline + full-screen.</>
             : <>Add to home screen for offline lineup + full-screen map.</>}
         </div>
       </div>
       {!ip.isIOS && (
         <button onClick={ip.install} style={{
-          background: "var(--ember)", color: "var(--ink)", border: "none",
+          background: "var(--ember)", color: "var(--on-ember)", border: "none",
           borderRadius: 999, padding: "7px 12px", cursor: "pointer",
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           flexShrink: 0,
@@ -771,7 +771,7 @@ function InstallBanner() {
       )}
       <button onClick={ip.dismiss} aria-label="Dismiss" style={{
         background: "transparent", border: "none", cursor: "pointer",
-        color: "rgba(var(--ink-rgb),0.55)", padding: 4, flexShrink: 0,
+        color: "var(--on-ink-3)", padding: 4, flexShrink: 0,
         fontSize: 18, lineHeight: 1,
       }}>×</button>
     </div>
@@ -1315,7 +1315,7 @@ function NotificationsCard({ state }) {
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
         {perm !== "granted" && perm !== "denied" && (
           <button onClick={onEnable} style={{
-            background: "var(--ember)", color: "var(--ink)", border: "none",
+            background: "var(--ember)", color: "var(--on-ember)", border: "none",
             borderRadius: 999, padding: "8px 14px", cursor: "pointer",
             fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           }}>ENABLE</button>
@@ -1748,22 +1748,22 @@ function BatterySaverToast() {
     <div className="bs-hide" style={{
       position: "absolute", left: 16, right: 16, top: 60, zIndex: 80,
       padding: "10px 14px", borderRadius: 14,
-      background: "var(--ink)", color: "var(--paper)",
+      background: "var(--ink)", color: "var(--on-ink)",
       display: "flex", alignItems: "center", gap: 10,
       boxShadow: "0 8px 24px rgba(var(--shade-rgb),0.35)",
     }}>
       <span style={{ fontSize: 16 }}>🔋</span>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--flare)", fontWeight: 700 }}>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--on-ink-flare)", fontWeight: 700 }}>
           BATTERY SAVER ON
         </div>
-        <div style={{ fontSize: 13, lineHeight: 1.35, marginTop: 2, color: "rgba(var(--ink-rgb),0.85)" }}>
+        <div style={{ fontSize: 13, lineHeight: 1.35, marginTop: 2, color: "var(--on-ink-2)" }}>
           {reason}
         </div>
       </div>
       <button onClick={() => setDismissed(true)} aria-label="Dismiss" style={{
         background: "transparent", border: "none", cursor: "pointer",
-        color: "rgba(var(--ink-rgb),0.6)", fontSize: 18, lineHeight: 1, padding: 4,
+        color: "var(--on-ink-3)", fontSize: 18, lineHeight: 1, padding: 4,
       }}>×</button>
     </div>
   );
@@ -1850,111 +1850,117 @@ function BatterySaverCard() {
 }
 
 // ─────────────────────────────────────────────────────────────
-// Theme mode (v267). The palette has always auto-shifted with the sky, but
-// ONLY inside the festival window — outside it the app is light 24h a day,
-// which is most of the year. This adds a manual override so "dark mode"
-// stops being a three-day-a-year accident of the clock.
-//
-// Mirrors the battery-saver module deliberately: module-level state + a
-// listener set, so the pref survives remounts and any consumer can subscribe.
-// The class is applied here at eval time (before React mounts) so a pinned
-// mode does not flash the wrong palette on every cold boot; app.jsx owns the
-// 60s recompute that makes AUTO track the hour.
-const THEME_PREF_KEY = "theme_pref";
-const _TH = (window._TH = window._TH || {
-  mode: (() => {
-    try { return localStorage.getItem(THEME_PREF_KEY) || "auto"; }
-    catch { return "auto"; }
-  })(),
-  listeners: new Set(),   // (mode) => void
-});
-
-// Returns the <html> class for a given pref. Field Mode is one black
-// utility shell at every hour, so the pref no longer changes the look; it is
-// still read so a stored "light"/"dark" value stays harmless.
-function resolveThemeClass(mode) {
-  return "theme-field";
+// Appearance: System / Dark / Light. The policy is window.PlurskyAppearance,
+// defined inline in index.html so it runs before first paint; this file only
+// subscribes to it and draws the Me row. Never restate the rules here.
+// On iOS the native layer (sheets, pickers, status bar) follows the resolved
+// mode through the Appearance plugin when the build has it.
+function _syncNativeAppearance(mode) {
+  try { window.Capacitor?.Plugins?.Appearance?.setStyle?.({ style: mode }); } catch {}
+}
+if (!window._appearanceNativeInited && window.PlurskyAppearance) {
+  window._appearanceNativeInited = true;
+  _syncNativeAppearance(window.PlurskyAppearance.mode());
+  window.PlurskyAppearance.onChange((m) => _syncNativeAppearance(m));
 }
 
-function applyThemeClass() {
-  const next = resolveThemeClass(_TH.mode);
-  if (document.documentElement.className !== next) {
-    document.documentElement.className = next;
-  }
-  return next;
+// Artist names are never truncated (lane ruling 2026-09-26) and one-line rows
+// stay one line where they can (#236). Every [data-fit-name] inside `root`
+// starts at its own size on one line; if it overflows it steps down to
+// data-fit-min px, and only a name that still cannot fit wraps.
+// A fit is keyed on the name and its width: an ordinary re-render (a colour
+// mode switch, a fold of the header) must not re-measure a name that sits on
+// the borderline, or it can land a pixel the other way and reflow the list.
+function fitName(el, force) {
+  const key = el.textContent + "|" + el.clientWidth;
+  if (!force && el.dataset.fitKey === key) return;
+  const base = parseFloat(el.dataset.fitBase || getComputedStyle(el).fontSize);
+  if (!el.dataset.fitBase) el.dataset.fitBase = String(base);
+  const min = parseFloat(el.dataset.fitMin || "14");
+  el.style.whiteSpace = "nowrap"; el.style.fontSize = base + "px";
+  // Compare the text's own width (a Range: the glyph advances) with the box's,
+  // not scrollWidth, which rounds by where the box sits on the pixel grid: a
+  // name within a pixel of its box fitted at 17px on one load and 16px on the
+  // next. Both are rendered rects, so a transform on the row scales both.
+  const rg = document.createRange(); rg.selectNodeContents(el);
+  const over = () => rg.getBoundingClientRect().width > el.getBoundingClientRect().width + 0.5;
+  let size = base;
+  while (over() && size > min) { size -= 1; el.style.fontSize = size + "px"; }
+  if (over()) el.style.whiteSpace = "normal";
+  el.dataset.fitKey = el.textContent + "|" + el.clientWidth;
+}
+function fitNames(root, force) {
+  if (!root) return;
+  for (const el of root.querySelectorAll("[data-fit-name]")) fitName(el, force);
+}
+// `root` is a ref or a function returning the element. Fits new or resized
+// names after every render and when a name's width changes (a rotation), and
+// refits all of them when the list's font metrics change. A fit taken before the page settled otherwise sticks: CI's runner
+// wrapped "Eptic b2b Space Laces" at 16px where it fits on one line at 17px.
+function useFitNames(root) {
+  const el = () => (typeof root === "function" ? root() : root && root.current);
+  const ro = React.useRef(null);
+  const probe = React.useRef(null);
+  React.useLayoutEffect(() => {
+    const r = el(); fitNames(r);
+    if (!r || typeof ResizeObserver === "undefined") return;
+    if (!ro.current) ro.current = new ResizeObserver((entries) => {
+      for (const { target } of entries) {
+        if (!target.isConnected) continue;
+        if (target === probe.current) fitNames(el(), true); else fitName(target);
+      }
+    });
+    for (const n of r.querySelectorAll("[data-fit-name]")) ro.current.observe(n);
+    // Text metrics change with no render and no width change when a font
+    // activates late (a system face on first use, a runner's fontconfig): a
+    // name measured at 136px became 200px a second later. A hidden one-line
+    // sample in the list's own font is as wide as its text, so its resize is
+    // the signal to refit every name.
+    if (!probe.current || !r.contains(probe.current)) {
+      const p = document.createElement("span");
+      p.setAttribute("aria-hidden", "true");
+      p.textContent = "Eptic b2b Space Laces";
+      p.style.cssText = "position:absolute;left:0;top:0;visibility:hidden;pointer-events:none;white-space:nowrap;font-size:17px;font-weight:700";
+      r.appendChild(p); probe.current = p; ro.current.observe(p);
+    }
+  });
+  React.useEffect(() => () => { ro.current && ro.current.disconnect(); if (probe.current) probe.current.remove(); }, []);
 }
 
-function setThemeMode(mode) {
-  if (!["auto", "light", "dark"].includes(mode)) return;
-  _TH.mode = mode;
-  try { localStorage.setItem(THEME_PREF_KEY, mode); } catch {}
-  applyThemeClass();
-  _TH.listeners.forEach(fn => { try { fn(mode); } catch {} });
-}
-
-if (!window._thInited) {
-  window._thInited = true;
-  try { applyThemeClass(); } catch {}
-}
-
-function useThemeMode() {
+function useAppearance() {
+  const A = window.PlurskyAppearance;
   const [, force] = React.useReducer(x => x + 1, 0);
-  React.useEffect(() => {
-    _TH.listeners.add(force);
-    return () => _TH.listeners.delete(force);
-  }, []);
-  return { mode: _TH.mode, setMode: setThemeMode };
+  React.useEffect(() => (A ? A.onChange(force) : undefined), []);
+  return { choice: A ? A.choice() : "system", mode: A ? A.mode() : "dark", set: (c) => A && A.set(c) };
 }
 
-function ThemeCard() {
-  const { mode, setMode } = useThemeMode();
-  const segs = [
-    { id: "auto",  label: "AUTO" },
-    { id: "light", label: "LIGHT" },
-    { id: "dark",  label: "DARK" },
-  ];
-  const activeClass = resolveThemeClass(mode);
-  const nowLabel = activeClass === "theme-night"  ? "NIGHT"
-                 : activeClass === "theme-dawn"   ? "DAWN"
-                 : activeClass === "theme-sunset" ? "SUNSET"
-                 : "LIGHT";
-
+// The Me row, as approved on the boards: one tap, no sub-page (Opera's and
+// Cosmos's inline System/Dark/Light control on Mobbin).
+function AppearanceRow() {
+  const { choice, set } = useAppearance();
+  const opts = [["system", "System"], ["dark", "Dark"], ["light", "Light"]];
   return (
-    <div style={{
-      padding: 14, borderRadius: 14,
-      background: "var(--paper)", border: "1px solid var(--line)",
-      marginBottom: 12,
+    <div data-appearance-row style={{
+      display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12,
+      flexWrap: "wrap",   // 320px: the selector drops under the label, never off-screen
+      padding: "8px 8px 8px 16px", borderRadius: 14, marginBottom: 12,
+      background: "var(--paper-2)", border: "1px solid var(--line)",
     }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
-        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.5, color: "var(--muted)", fontWeight: 700 }}>
-          THEME
-        </div>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>
-          {nowLabel}
-        </span>
-      </div>
-      <div className="serif" style={{ fontSize: 20, lineHeight: 1.1, marginBottom: 4 }}>
-        Paper by day, stars by night
-      </div>
-      <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5, marginBottom: 12 }}>
-        Auto follows the sky during the festival. Pin light or dark anytime.
-      </div>
-
-      <div style={{
-        display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 4,
-        background: "var(--paper-2)", borderRadius: 999, padding: 3,
-        border: "1px solid var(--line)",
+      <div style={{ fontSize: 15, fontWeight: 600, color: "var(--ink)" }}>Appearance</div>
+      <div role="radiogroup" aria-label="Appearance" style={{
+        display: "grid", gridTemplateColumns: "repeat(3, 1fr)", padding: 3, borderRadius: 999,
+        background: "var(--paper-3)", flex: "1 1 196px", maxWidth: 222,
       }}>
-        {segs.map(s => {
-          const on = mode === s.id;
+        {opts.map(([v, l]) => {
+          const on = choice === v;
           return (
-            <button key={s.id} onClick={() => setMode(s.id)} style={{
-              background: on ? "var(--ink)" : "transparent",
-              color: on ? "var(--paper)" : "var(--ink)",
-              border: "none", borderRadius: 999, padding: "7px 10px",
-              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-              cursor: "pointer",
-            }}>{s.label}</button>
+            <button key={v} role="radio" aria-checked={on} data-appearance={v} onClick={() => set(v)} style={{
+              minHeight: 38, border: 0, borderRadius: 999, cursor: "pointer",
+              font: "600 14px/1 var(--font-ui)",
+              background: on ? "var(--paper)" : "transparent",
+              color: on ? "var(--ink)" : "var(--text-2)",
+              boxShadow: on ? "0 0 0 1px var(--line-2), 0 2px 6px -2px rgba(var(--shade-rgb),0.25)" : "none",
+            }}>{l}</button>
           );
         })}
       </div>
@@ -1962,11 +1968,6 @@ function ThemeCard() {
   );
 }
 
-// ─────────────────────────────────────────────────────────────
-// Status strip — sticky thin bar above every screen.
-// Shows local DAY · TIME plus offline and battery-saver indicators
-// so reorientation / connectivity / power context is glanceable
-// from any tab without opening Home.
 // ─────────────────────────────────────────────────────────────
 function _useTickMs(intervalMs) {
   const [, force] = React.useReducer(x => x + 1, 0);
@@ -2092,7 +2093,7 @@ Object.assign(window, {
   isAttended, getAttendanceSource, detectCurrentArtist, recordAttendanceFromGps,
   FestivalChip, FestivalSwitcher,
   useBatterySaver, BatterySaverCard, BatterySaverToast, setBatterySaverMode,
-  useThemeMode, ThemeCard, setThemeMode, resolveThemeClass, applyThemeClass,
+  useAppearance, AppearanceRow, fitNames, useFitNames,
   useOnlineStatus, StatusStrip,
   plurskyHaptic,
 });
