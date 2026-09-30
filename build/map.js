@@ -8306,6 +8306,7 @@ function TopDownMap({
     dur: "2.2s",
     repeatCount: "indefinite"
   })), React.createElement("circle", {
+    "data-avatar-dot": true,
     cx: avatar.x,
     cy: avatar.y,
     r: "1.8",
@@ -8318,20 +8319,26 @@ function TopDownMap({
     r: "0.7",
     fill: "var(--ink)"
   })))), React.createElement("div", {
+    "data-map-html-overlay": true,
     style: {
       position: "absolute",
-      top: "50%",
       left: 0,
       width: "100%",
-      aspectRatio: "1 / 1",
-      transform: "translateY(-50%)",
-      pointerEvents: "none"
+      pointerEvents: "none",
+      ...(VB_H > 100 ? {
+        top: 0,
+        height: "100%"
+      } : {
+        top: "50%",
+        aspectRatio: "1 / 1",
+        transform: "translateY(-50%)"
+      })
     }
   }, (FESTIVAL_CONFIG.placeLabel || (FESTIVAL_CONFIG.gates || []).length > 0) && React.createElement(React.Fragment, null, FESTIVAL_CONFIG.placeLabel && React.createElement("div", {
     style: {
       position: "absolute",
       left: "50%",
-      top: "43%",
+      top: `${mapY(43)}%`,
       transform: "translate(-50%, -130%)",
       fontFamily: "Geist Mono, monospace",
       fontSize: 8,
@@ -8552,6 +8559,7 @@ function TopDownMap({
       }
     }, "· ", seen.label)));
   }), React.createElement("div", {
+    "data-avatar-label": true,
     style: {
       position: "absolute",
       left: `${avatar.x}%`,
