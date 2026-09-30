@@ -2514,6 +2514,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── /f/ page status chip ─────────────────────────────────────────────────
+// A festival whose day split is unpublished (one dayDates bucket, a two-day
+// printed range) is "Happening now" on every printed day; a festival that
+// runs in blocks is not in its gap. Real registry festivals at pinned dates.
+{
+  console.log("▸ Page status — single-bucket festivals stay live through their last day; gaps are not live");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-page-status.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`page status failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Map: HTML labels sit on the SVG points they name ─────────────────────
 // The YOU label and the stage pills are HTML over an SVG map. In a portrait
 // container the HTML layer applied the map's vertical centring twice, so the
