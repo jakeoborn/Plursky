@@ -295,6 +295,26 @@ try {
   // where it is a few pixels of text).
   const colours = (page) => page.evaluate(() => [...document.querySelectorAll('body *')].map(e => { const c = getComputedStyle(e); return `${e.tagName.toLowerCase()}${e.getAttribute('aria-label') ? `[${e.getAttribute('aria-label')}]` : ''} "${(e.childElementCount ? '' : e.textContent || '').trim().slice(0, 24)}" color:${c.color} bg:${c.backgroundColor} ${c.backgroundImage === 'none' ? '' : 'img:' + c.backgroundImage.slice(0, 120)} border:${c.borderTopColor} fill:${c.fill} stroke:${c.stroke}`; }));
   const totals = {};
+  // Fitted names (useFitNames) are pinned from the fresh load onto the toggled
+  // one before each capture. The fit compares glyph width to box width, and
+  // those differ by a fraction of a pixel between two loads of the same page:
+  // CI's evidence for the recurring lineup-wide failure was one borderline
+  // name ("Above & Beyond (Sunrise Set)", 209px box) at 16px fresh and 17px
+  // toggled, and a forced refit on both loads still split. Any fit threshold
+  // has some name sitting on it, so the leak check takes the fresh fit as
+  // given and compares colour. The fresh load keeps the app's own fit, and
+  // names() still checks every name renders in full there.
+  const readFits = (page, into) => page.evaluate(() => [...document.querySelectorAll('[data-fit-name]')].map(el => [el.textContent + '|' + el.clientWidth, el.style.fontSize, el.style.whiteSpace])).then(rows => { for (const [k, f, w] of rows) into.set(k, [f, w]); });
+  const pinFits = (page, fits) => page.evaluate(fits => {
+    const m = new Map(fits); let pinned = 0, moved = 0;
+    for (const el of document.querySelectorAll('[data-fit-name]')) {
+      const f = m.get(el.textContent + '|' + el.clientWidth); if (!f) continue;
+      pinned++; if (el.style.fontSize !== f[0] || el.style.whiteSpace !== f[1]) moved++;
+      el.style.fontSize = f[0]; el.style.whiteSpace = f[1];
+    }
+    return { pinned, moved };
+  }, [...fits]);
+  const fitStats = { recorded: 0, pinned: 0, moved: 0 };
   const nameFails = new Set();
   const onMediaInk = {};   // `${screen}/${mode}` → text → colour, for text on a photo
   for (const [key, query, extra, ready, font] of SCREENS) {
@@ -307,6 +327,7 @@ try {
       // scroller, and keep a settled screenshot of every screenful for the
       // leak check below (a leak below the fold is still a leak).
       const a = { fails: [], media: 0, measured: 0 }, seen = new Set(), fresh = [], freshRects = [];
+      const fits = new Map();
       onMediaInk[`${key}/${mode}`] = new Map();
       await shot(A.page);   // settle first: a skeleton still loading is not a leak
       const freshColours = await colours(A.page);
@@ -314,6 +335,7 @@ try {
       for (let i = 0; i < steps; i++) {
         if (i) await scrollTo(A.page, i);
         fresh.push(await shot(A.page));
+        await readFits(A.page, fits); fitStats.recorded = Math.max(fitStats.recorded, fits.size);
         if (process.env.APPEARANCE_EVIDENCE) freshRects[i] = await rects(A.page);
         const r = await audit(A.page);
         a.media += r.media; a.measured += r.measured;
@@ -341,6 +363,7 @@ try {
       check(bSteps === steps, `[${key}] toggled ${other}→${mode} has ${bSteps} screenfuls, fresh has ${steps}`);
       for (let i = 0; i < Math.min(steps, bSteps); i++) {
         if (i) await scrollTo(B.page, i);
+        const fp = await pinFits(B.page, fits); fitStats.pinned += fp.pinned; fitStats.moved += fp.moved;
         const toggled = await shot(B.page);
         const { n, nt, box } = await diffPx(toggled, fresh[i]);
         if ((n >= 150 || nt >= 20) && process.env.APPEARANCE_EVIDENCE) {
@@ -485,6 +508,12 @@ try {
     await ctx.close();
   }
 
+  // The pin must reach names, or it stopped doing anything: a renamed
+  // attribute (the list screens always carry fitted names) or a key that no
+  // longer matches between loads. A focused run on other screens has none.
+  const ranList = SCREENS.some(([k]) => k === 'lineup' || k === 'lineup-wide');
+  check(!(ranList || fitStats.recorded) || fitStats.pinned > 0, `fitted names: the toggled loads pinned none of the fresh fits (${fitStats.recorded} recorded)`);
+  console.log(`  fitted names pinned from the fresh load: ${fitStats.pinned}, of which ${fitStats.moved} had fitted differently on the toggled load`);
   console.log(Object.entries(totals).map(([k, v]) => `  ${k}: ${v.measured} text nodes measured over ${v.steps} screenful(s), ${v.media} on media, ${v.fails} below AA`).join('\n'));
 } catch (e) {
   problems.push(`harness: ${e.message}`);

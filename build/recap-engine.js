@@ -2198,7 +2198,8 @@ async function _renderFilmStrip(moments) {
     if (artist) {
       ctx.fillStyle = "rgba(247,237,224,0.6)";
       ctx.font = "700 8px 'Geist Mono', monospace";
-      ctx.fillText(artist.name.toUpperCase().slice(0, 18), x + frameW / 2, y - 10);
+      var lines = _heroWrap(ctx, artist.name.toUpperCase(), frameW);
+      lines.forEach((line, li) => ctx.fillText(line, x + frameW / 2, y - 10 - (lines.length - 1 - li) * 10));
     }
   });
   ctx.fillStyle = "#f7ede0";
@@ -2280,8 +2281,8 @@ async function _renderCrewComparison(myName, myState, otherName, otherArtistIds)
   ctx.font = "700 14px 'Geist Mono', monospace";
   ctx.fillStyle = "rgba(255,255,255,0.4)";
   ctx.fillText(`${(CFG.shortName || "FESTIVAL").toUpperCase()} · ${CFG.dates || ""}`, W / 2, 160);
-  var mySaved = myState.saved || [];
-  var theirSaved = otherArtistIds || [];
+  var mySaved = savedInLineup(myState.saved);
+  var theirSaved = savedInLineup(otherArtistIds);
   var overlap = mySaved.filter(id => theirSaved.includes(id));
   var myOnly = mySaved.filter(id => !theirSaved.includes(id));
   var theirOnly = theirSaved.filter(id => !mySaved.includes(id));

@@ -436,6 +436,20 @@ async function sbPush(artistIds, notes) {
   await _sb.from("user_data").upsert(row);
 }
 
+// Sign-in merge of the saved list: the union of local and cloud, minus any id
+// whose removal tombstone is newer than the cloud row (a device unsaved it
+// after that row was last pushed). An id the active lineup no longer carries
+// is NOT a removal: it stays in the union, so storage and the cloud row keep
+// it until an explicit data-retention decision (savedInLineup hides it).
+function mergeCloudSaved(localSaved, cloud, removedAt) {
+  const cloudUpdated = (cloud && cloud.updated_at) || new Date(0).toISOString();
+  const union = new Set([...(localSaved || []), ...((cloud && cloud.artist_ids) || [])]);
+  for (const [id, ts] of Object.entries(removedAt || {})) {
+    if (ts > cloudUpdated) union.delete(id);
+  }
+  return [...union];
+}
+
 // Moment writes have to sync too. sbPush needs the saved list + notes, which
 // only App held — so tagging a moment never pushed anything. The auto-push in
 // app.jsx is additionally gated on `state.saved.length`, so a user who imports
@@ -646,14 +660,7 @@ function AccountCard({ state, setState }) {
             });
             try { localStorage.setItem("plursky_removed_at_v1", JSON.stringify(mergedRemoved)); } catch {}
 
-            const cloudUpdated = cloud.updated_at || new Date(0).toISOString();
-            const union = new Set([...st.saved, ...(cloud.artist_ids || [])]);
-            // Drop any artist whose tombstone is newer than the cloud row
-            // (means a device unsaved them after the cloud row was last pushed)
-            for (const [id, removedAt] of Object.entries(mergedRemoved)) {
-              if (removedAt > cloudUpdated) union.delete(id);
-            }
-            const merged = [...union];
+            const merged = mergeCloudSaved(st.saved, cloud, mergedRemoved);
             let localNotes = {};
             try { localNotes = JSON.parse(localStorage.getItem("artist_notes_v1") || "{}"); } catch {}
             const mergedNotes = { ...localNotes, ...cloud.notes };
@@ -842,7 +849,7 @@ function AccountCard({ state, setState }) {
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
                 transition: "background 0.3s",
               }}>
-                {syncing ? "SYNCING…" : syncMsg || `↑ PUSH ${state.saved.length} SETS TO CLOUD`}
+                {syncing ? "SYNCING…" : syncMsg || `↑ PUSH ${savedInLineup(state.saved).length} SETS TO CLOUD`}
               </button>
               <button onClick={handleSignOut} style={{
                 background: "transparent", border: "1px solid var(--line-2)",
@@ -2639,7 +2646,7 @@ function CrewCard({ state }) {
     setCode(newCode);
     try { localStorage.setItem("plursky_group_code", newCode); } catch {}
     if (leaveRef.current) leaveRef.current();
-    leaveRef.current = sbGroupJoin(newCode, { pid: myPid, name: myName, artistIds: state.saved }, setMembers);
+    leaveRef.current = sbGroupJoin(newCode, { pid: myPid, name: myName, artistIds: savedInLineup(state.saved) }, setMembers);
     setJoined(true);
     setJoining(false);
     setCodeInput("");
@@ -2650,7 +2657,7 @@ function CrewCard({ state }) {
   };
 
   React.useEffect(() => {
-    if (joined) sbGroupUpdate(code, { pid: myPid, name: myName, artistIds: state.saved });
+    if (joined) sbGroupUpdate(code, { pid: myPid, name: myName, artistIds: savedInLineup(state.saved) });
   }, [state.saved.join(","), joined]);
 
   // Auto-join when arriving via a `?crew=CODE` share link. App.jsx flags it,
@@ -2816,7 +2823,7 @@ function CrewCard({ state }) {
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
               {others.map(([pid, m]) => {
-                const ids = m.artistIds || [];
+                const ids = savedInLineup(m.artistIds);
                 const inCommon = ids.filter(id => state.saved.includes(id)).length;
                 const isOpen = expandedPid === pid;
                 const ARTISTS = window.ARTISTS || [];
@@ -2886,12 +2893,12 @@ function CrewCard({ state }) {
             const _crewShare = async (fmt) => {
               const crewNames = [myName || "Me"];
               const avs = [{ initial: (myName || "M")[0].toUpperCase(), color: _presColor(myPid) }];
-              const crewArtistIds = new Set(state.saved || []);
+              const crewArtistIds = new Set(savedInLineup(state.saved));
               const overlapIds = new Set();
               for (const [pid, m] of others) {
                 crewNames.push(m.name || "Friend");
                 avs.push({ initial: (m.name || "F")[0].toUpperCase(), color: _presColor(pid) });
-                for (const id of (m.artistIds || [])) {
+                for (const id of savedInLineup(m.artistIds)) {
                   crewArtistIds.add(id);
                   if ((state.saved || []).includes(id)) overlapIds.add(id);
                 }

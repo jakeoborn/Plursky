@@ -288,6 +288,14 @@ async function sbPush(artistIds, notes) {
   } catch {}
   await _sb.from("user_data").upsert(row);
 }
+function mergeCloudSaved(localSaved, cloud, removedAt) {
+  var cloudUpdated = cloud && cloud.updated_at || new Date(0).toISOString();
+  var union = new Set([...(localSaved || []), ...(cloud && cloud.artist_ids || [])]);
+  for (var [id, ts] of Object.entries(removedAt || {})) {
+    if (ts > cloudUpdated) union.delete(id);
+  }
+  return [...union];
+}
 async function sbPushMoments() {
   if (!_sb) return;
   var saved = null,
@@ -509,12 +517,7 @@ function AccountCard({
             try {
               localStorage.setItem("plursky_removed_at_v1", JSON.stringify(mergedRemoved));
             } catch {}
-            var cloudUpdated = cloud.updated_at || new Date(0).toISOString();
-            var union = new Set([...st.saved, ...(cloud.artist_ids || [])]);
-            for (var [id, removedAt] of Object.entries(mergedRemoved)) {
-              if (removedAt > cloudUpdated) union.delete(id);
-            }
-            var merged = [...union];
+            var merged = mergeCloudSaved(st.saved, cloud, mergedRemoved);
             var localNotes = {};
             try {
               localNotes = JSON.parse(localStorage.getItem("artist_notes_v1") || "{}");
@@ -819,7 +822,7 @@ function AccountCard({
         fontWeight: 600,
         transition: "background 0.3s"
       }
-    }, syncing ? "SYNCING…" : syncMsg || `↑ PUSH ${state.saved.length} SETS TO CLOUD`), React.createElement("button", {
+    }, syncing ? "SYNCING…" : syncMsg || `↑ PUSH ${savedInLineup(state.saved).length} SETS TO CLOUD`), React.createElement("button", {
       onClick: handleSignOut,
       style: {
         background: "transparent",
@@ -3239,7 +3242,7 @@ function CrewCard({
     leaveRef.current = sbGroupJoin(newCode, {
       pid: myPid,
       name: myName,
-      artistIds: state.saved
+      artistIds: savedInLineup(state.saved)
     }, setMembers);
     setJoined(true);
     setJoining(false);
@@ -3251,7 +3254,7 @@ function CrewCard({
     if (joined) sbGroupUpdate(code, {
       pid: myPid,
       name: myName,
-      artistIds: state.saved
+      artistIds: savedInLineup(state.saved)
     });
   }, [state.saved.join(","), joined]);
   React.useEffect(() => {
@@ -3612,7 +3615,7 @@ function CrewCard({
       gap: 7
     }
   }, others.map(([pid, m]) => {
-    var ids = m.artistIds || [];
+    var ids = savedInLineup(m.artistIds);
     var inCommon = ids.filter(id => state.saved.includes(id)).length;
     var isOpen = expandedPid === pid;
     var ARTISTS = window.ARTISTS || [];
@@ -3759,7 +3762,7 @@ function CrewCard({
         initial: (myName || "M")[0].toUpperCase(),
         color: _presColor(myPid)
       }];
-      var crewArtistIds = new Set(state.saved || []);
+      var crewArtistIds = new Set(savedInLineup(state.saved));
       var overlapIds = new Set();
       for (var [pid, m] of others) {
         crewNames.push(m.name || "Friend");
@@ -3767,7 +3770,7 @@ function CrewCard({
           initial: (m.name || "F")[0].toUpperCase(),
           color: _presColor(pid)
         });
-        for (var id of m.artistIds || []) {
+        for (var id of savedInLineup(m.artistIds)) {
           crewArtistIds.add(id);
           if ((state.saved || []).includes(id)) overlapIds.add(id);
         }

@@ -1888,9 +1888,13 @@ async function _renderFilmStrip(moments) {
 
     const artist = moment?.artistId ? (window.ARTISTS || []).find(a => a.id === moment.artistId) : null;
     if (artist) {
+      // The name in full, never cut: it wraps to the frame's width and the
+      // lines stack upward from the frame edge (a fixed 18-character slice
+      // printed "CHRIS LAKE B2B DIS"; same class as #247's chip names).
       ctx.fillStyle = "rgba(247,237,224,0.6)";
       ctx.font = "700 8px 'Geist Mono', monospace";
-      ctx.fillText(artist.name.toUpperCase().slice(0, 18), x + frameW / 2, y - 10);
+      const lines = _heroWrap(ctx, artist.name.toUpperCase(), frameW);
+      lines.forEach((line, li) => ctx.fillText(line, x + frameW / 2, y - 10 - (lines.length - 1 - li) * 10));
     }
   });
 
@@ -1949,8 +1953,9 @@ async function _renderCrewComparison(myName, myState, otherName, otherArtistIds)
   ctx.fillStyle = "rgba(255,255,255,0.4)";
   ctx.fillText(`${(CFG.shortName || "FESTIVAL").toUpperCase()} · ${CFG.dates || ""}`, W/2, 160);
 
-  const mySaved = myState.saved || [];
-  const theirSaved = otherArtistIds || [];
+  const mySaved = savedInLineup(myState.saved);
+  // Both sides: a crew member on an older build can still broadcast an orphan.
+  const theirSaved = savedInLineup(otherArtistIds);
   const overlap = mySaved.filter(id => theirSaved.includes(id));
   const myOnly = mySaved.filter(id => !theirSaved.includes(id));
   const theirOnly = theirSaved.filter(id => !mySaved.includes(id));
