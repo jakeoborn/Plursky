@@ -22,6 +22,7 @@
 // here, not outputs.
 
 import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { fitAffine, applyAffine, deriveGrid, distanceM, metresPerDegree, outsideBoundsM, worstPairwiseError, festivalById } from "./georef-map.mjs";
@@ -182,7 +183,7 @@ ok(outsideBoundsM(RAW.neon, POLY) > 0 && outsideBoundsM(RAW.stereo, POLY) > 0 &&
   const threeOnly = list => list.length === 3 && ANCHORED.every((id, i) => list[i].stageId === id);
   ok(threeOnly(live), `three GPS anchors, in order (${live.map(a => a.stageId).join(", ")})`);
   caught(threeOnly(ANCHORS_73), "all five of #73's anchors still ship");
-  ok(live.every((a, i) => a.lat === ANCHORS_73[i].lat && a.lng === ANCHORS_73[i].lng), "the three kept anchors are #73's, unmoved");
+  ok(live.some((a, i) => a.lat !== ANCHORS_73[i].lat || a.lng !== ANCHORS_73[i].lng), "the three anchors are the 2025-plate re-fit, not #73's values (section 4)");
   ok(live.every(a => a.src === "poster"), "every anchor is still poster class: a read off art, not a measurement");
   caught([{ ...live[0], src: "osm" }, live[1], live[2]].every(a => a.src === "poster"), "a poster anchor relabelled as a measurement");
   const unanchored = IDS.filter(id => !live.some(a => a.stageId === id));
@@ -192,42 +193,57 @@ ok(outsideBoundsM(RAW.neon, POLY) > 0 && outsideBoundsM(RAW.stereo, POLY) > 0 &&
   ok(!(config.crowdAnchors || []).length, "no crowd anchor stands in for a removed one");
 }
 
-// ── 4. the three-anchor fit, measured ────────────────────────────────────
-// map.jsx solves its GPS-to-map affine from the first three anchors and the
-// pins of the same three stages. This re-solves it and records what it is.
-// Nothing here is a validation: three points fit any affine exactly.
+// ── 4. the fit on the 2025 plate, and the four corners ───────────────────
+// Founder ruling 2026-09-30: fix the art's registration, verified at the four
+// corners. Four street intersections the 2025 art draws are matched to
+// OpenStreetMap (map-sources/edco-map-2025-control-points.json) and fitted
+// by least squares: four points, six unknowns, so the fit can fail to close.
+// The three anchors are that fit applied to their stages' pins. The corners
+// are then checked through the affine the APP solves (three anchors against
+// three pins, as map.jsx does), in plate pixels.
+const CP = JSON.parse(readFileSync(join(ROOT, "map-sources/edco-map-2025-control-points.json"), "utf8"));
+const PLATE = CP.plateSize[0];
+const CORNER_TOL_M = 15, CORNER_TOL_PX = 16, AXES_TOL_DEG = 5;
+const shapeOf = aff => {
+  const ux = [aff.east[0], aff.north[0]], uy = [aff.east[1], aff.north[1]], len = v => Math.hypot(v[0], v[1]);
+  return { deg: Math.acos((ux[0] * uy[0] + ux[1] * uy[1]) / (len(ux) * len(uy))) * 180 / Math.PI, sx: len(ux), sy: len(uy) };
+};
+// Ground point → pixels through an affine fitted px → ground.
+const toPx = (aff, p) => {
+  const m = metresPerDegree(aff.lat0);
+  const e = (p.lng - aff.lng0) * m.lng - aff.east[2], n = (p.lat - aff.lat0) * m.lat - aff.north[2];
+  const det = aff.east[0] * aff.north[1] - aff.east[1] * aff.north[0];
+  return [aff.px0 + (aff.north[1] * e - aff.east[1] * n) / det, aff.py0 + (aff.east[0] * n - aff.north[0] * e) / det];
+};
+// The app's own affine: three anchors against their pins, in plate px.
+const appAffine = anchors => fitAffine(anchors.slice(0, 3).map(a => { const st = shipped(a.stageId); return { name: a.stageId, px: st.x * PLATE / 100, py: st.y * PLATE / 100, lat: a.lat, lng: a.lng }; })).affine;
+const cornersOff = anchors => { const aff = appAffine(anchors); return CP.controlPoints.map(c => { const [x, y] = toPx(aff, c); return { name: c.name, px: Math.hypot(x - c.px, y - c.py) }; }); };
 {
+  ok(CP.plate === config.mapImage && CP.controlPoints.length === 4, `four control points on the plate that ships (${CP.plate}, ${CP.controlPoints.length})`);
+  const fit = fitAffine(CP.controlPoints);
+  ok(fit.residuals.every(r => r.metres <= CORNER_TOL_M), `the fit closes: every corner within ${CORNER_TOL_M} m (${fit.residuals.map(r => r.metres.toFixed(1)).join(", ")} m; rms ${fit.rms.toFixed(1)})`);
+  const sh = shapeOf(fit.affine);
+  ok(Math.abs(sh.deg - 90) <= AXES_TOL_DEG, `the fit is square on the ground: axes ${sh.deg.toFixed(1)}° (north-up art)`);
+  ok(sh.sx / sh.sy > 0.8 && sh.sx / sh.sy < 1.25, `the fit is near one scale: ${sh.sx.toFixed(2)} by ${sh.sy.toFixed(2)} m per px`);
+  // Each shipped anchor is the fit applied to its pin (anchor-distance check).
   const live = config.gpsAnchors;
-  const pinOf = id => { const st = shipped(id); return { px: st.x, py: st.y }; };
-  const fit = fitAffine(live.map(a => ({ name: a.stageId, ...pinOf(a.stageId), lat: a.lat, lng: a.lng })));
-  ok(fit.worst.metres < 0.01, `the fit is exact at its own three anchors, by construction (worst ${fit.worst.metres.toFixed(4)} m)`);
-  // Where the two removed anchors stood against where this fit draws their
-  // stages. This was the only disagreement the data could show, and it is
-  // why the blue dot is called approximate. Removing the anchors removed the
-  // evidence from data.jsx, not the error from the map.
-  const gap = id => { const pin = pinOf(id); return distanceM(applyAffine(fit.affine, pin.px, pin.py), ANCHORS_73.find(a => a.stageId === id)); };
-  ok(Math.abs(gap("stereo") - 98) < 2 && Math.abs(gap("bacardi") - 48) < 2,
-    `the removed anchors sat 98 m (stereo) and 48 m (bacardi) from where the fit draws them (${gap("stereo").toFixed(1)}, ${gap("bacardi").toFixed(1)})`);
-  // The shape of the fit. The art is drawn north-up, so a sound registration
-  // would have its two axes square on the ground. These do not.
-  const { east, north } = fit.affine;
-  const ux = [east[0], north[0]], uy = [east[1], north[1]];
-  const len = v => Math.hypot(v[0], v[1]);
-  const between = Math.acos((ux[0] * uy[0] + ux[1] * uy[1]) / (len(ux) * len(uy))) * 180 / Math.PI;
-  ok(Math.abs(between - 114) < 1.5, `the map axes meet at 114° on the ground, not 90°: the fit is sheared (${between.toFixed(1)}°)`);
-  ok(Math.abs(len(ux) - 5.7) < 0.15 && Math.abs(len(uy) - 9.3) < 0.2, `one grid unit is 5.7 m across and 9.3 m down (${len(ux).toFixed(2)}, ${len(uy).toFixed(2)})`);
-  // A person at the festival polygon's north-west corner (Church St at
-  // S Tampa Ave) is drawn left of the plate's edge.
-  const m = metresPerDegree(fit.affine.lat0);
-  const toGrid = p => {
-    const e = (p.lng - fit.affine.lng0) * m.lng - east[2], n = (p.lat - fit.affine.lat0) * m.lat - north[2];
-    const det = east[0] * north[1] - east[1] * north[0];
-    return [fit.affine.px0 + (north[1] * e - east[1] * n) / det, fit.affine.py0 + (east[0] * n - north[0] * e) / det];
-  };
-  const back = toGrid(live[0]);
-  ok(Math.abs(back[0] - shipped("kinetic").x) < 0.01 && Math.abs(back[1] - shipped("kinetic").y) < 0.01, "the inverse used here puts kinetic's anchor back on kinetic's pin");
-  const nw = toGrid({ lat: POLY.n, lng: POLY.w });
-  ok(nw[0] < 0 && nw[0] > -12, `the polygon's north-west corner draws off the plate's left edge (x ${nw[0].toFixed(1)})`);
+  const offFit = live.map(a => { const st = shipped(a.stageId); return distanceM(applyAffine(fit.affine, st.x * PLATE / 100, st.y * PLATE / 100), a); });
+  ok(offFit.every(d => d < 1), `each anchor is the fit applied to its stage's pin (${live.map((a, i) => `${a.stageId} ${offFit[i].toFixed(2)} m`).join(", ")})`);
+  // How far each anchor moved from #73's value, recorded.
+  const MOVED = { kinetic: 56, circuit: 226, neon: 19 };
+  const moved = live.map(a => distanceM(a, ANCHORS_73.find(x => x.stageId === a.stageId)));
+  ok(live.every((a, i) => Math.abs(moved[i] - MOVED[a.stageId]) < 3), `moved from #73: ${live.map((a, i) => `${a.stageId} ${moved[i].toFixed(1)} m`).join(", ")}`);
+  // THE CORNERS, through the app's own affine, in plate pixels.
+  const off = cornersOff(live);
+  ok(off.every(c => c.px <= CORNER_TOL_PX), `all four corners pixel-verify through the app's affine, within ${CORNER_TOL_PX} px (${off.map(c => `${c.name.replace(/ \(.*/, "")} ${c.px.toFixed(1)}`).join("; ")})`);
+  ok(Math.abs(shapeOf(appAffine(live)).deg - 90) <= AXES_TOL_DEG, `the app's affine is square too (${shapeOf(appAffine(live)).deg.toFixed(1)}°)`);
+  // Mutations.
+  caught(cornersOff(ANCHORS_73).every(c => c.px <= CORNER_TOL_PX), "#73's anchors back in place (the sheared registration)");
+  caught(Math.abs(shapeOf(appAffine(ANCHORS_73)).deg - 90) <= AXES_TOL_DEG, "#73's anchors pass the square-axes check");
+  const misread = clone(CP.controlPoints); misread[0].px += 60;
+  caught(fitAffine(misread).residuals.every(r => r.metres <= CORNER_TOL_M), "a corner read 60 px wrong on the plate");
+  const nudged = clone(live); nudged[1].lng += 0.0005;
+  caught(cornersOff(nudged).every(c => c.px <= CORNER_TOL_PX), "circuit's anchor moved 49 m east");
 }
 
 // ── 5. the 2026 map pipeline, unpinned ────────────────────────────────────

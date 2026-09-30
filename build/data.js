@@ -517,18 +517,18 @@ var FESTIVALS_REGISTRY = [{
     },
     gpsAnchors: [{
       stageId: "kinetic",
-      lat: 28.53700,
-      lng: -81.40040,
+      lat: 28.537024,
+      lng: -81.399828,
       src: "poster"
     }, {
       stageId: "circuit",
-      lat: 28.53999,
-      lng: -81.40219,
+      lat: 28.539811,
+      lng: -81.404500,
       src: "poster"
     }, {
       stageId: "neon",
-      lat: 28.53900,
-      lng: -81.39850,
+      lat: 28.539153,
+      lng: -81.398598,
       src: "poster"
     }],
     mainStageId: "kinetic",

@@ -654,6 +654,7 @@ const FESTIVALS_REGISTRY = [
       // residential block on the far side of Tampa. onSiteRadiusMi 0.6 clears
       // every anchor with room to spare — the farthest, neon, is 0.19 mi out.
       gps: { lat: 28.53826, lng: -81.40144, onSiteRadiusMi: 0.6 },
+      // HISTORY, superseded 2026-09-30 by the re-fit further down.
       // Anchors MEASURED 2026-09-06, replacing five venue-centroid offsets
       // that were 170–481 m from the real stage positions. Method: the
       // official EDCO 2025 map (Insomniac; north-up, real street frame)
@@ -686,27 +687,35 @@ const FESTIVALS_REGISTRY = [
       // FLIP SESSION: re-fit from the official 2026 map with
       // scripts/georef-map.mjs, from control points saved as a points.json.
       //
-      // ⚠ Since 2026-09-30 the anchors feed a LIVE festival, and there are
-      // THREE of them (founder ruling 2026-09-30: keep kinetic/circuit/neon,
-      // remove stereo and bacardi). The stereo and bacardi STAGES are untouched:
-      // they keep their pins on the art (EDCO_STAGES x/y). What they lost is a
-      // lat/lng, so nothing GPS-side (live stage detection, presence) can match
-      // those two stages until the flip. Removed, for the record:
-      //   stereo  28.53730,-81.40310   bacardi 28.53660,-81.40240
-      // They were never in the fit: map.jsx solves its GPS-to-map affine from
-      // the first three anchors against their x/y on the 2025 plate, so the
-      // blue dot is drawn exactly as it was with five. Three points fit an
-      // affine with zero residual BY CONSTRUCTION, which is not agreement: the
-      // two removed anchors sat 98 m and 48 m from where this affine draws
-      // their art pins, and the affine is sheared (its axes meet at 114° on
-      // the ground, not 90°) on art that is drawn north-up. The blue dot is a
-      // poster read pushed through a poster read. That is what the dated
-      // registration waiver in verify.mjs excuses (unsourced + blind), and why
-      // every distance readout stays withheld.
+      // ⚠ Since 2026-09-30 the anchors feed a LIVE festival, there are THREE
+      // of them (founder ruling: kinetic, circuit, neon; stereo and bacardi
+      // keep their pins on the art and carry no lat/lng), and they are
+      // RE-FITTED on the 2025 plate itself (founder ruling, same day: "fix the
+      // art"). The #73 values above were fitted on other art, and against a
+      // west edge that is not Tampa Avenue (see below); on this plate they gave
+      // an affine whose axes met at 114 degrees and put the site's corners
+      // 70-165 plate px off.
+      //
+      // The fit: four street intersections the 2025 art draws, each read on
+      // the plate and matched to OpenStreetMap geometry, least squares with
+      // scripts/georef-map.mjs. The points, with their sources, are
+      // map-sources/edco-map-2025-control-points.json; re-run it with
+      //   node scripts/georef-map.mjs fit map-sources/edco-map-2025-control-points.json
+      // Residuals 7-12 m (rms 9.6), axes 93.7 degrees, 0.86 / 0.93 m per px.
+      // Each anchor is that fit applied to its stage's pin. They stay `poster`:
+      // a read off art through a fit, not a survey, and the blue dot is only as
+      // good as the art is to scale (the drawn stadium sits ~54 m from the real
+      // one's centre). Distances and walk minutes stay withheld.
+      //
+      // ⚠ The centroid comment above says the west edge is "S Tampa -81.40353".
+      // OpenStreetMap puts Tampa Avenue at -81.40549, 190 m further west;
+      // -81.40353 falls inside the stadium's footprint (-81.40393..-81.40157).
+      // The centroid and radius are not changed here (the radius still covers
+      // the whole site); this fit does not use them.
       gpsAnchors: [
-        { stageId: "kinetic", lat: 28.53700, lng: -81.40040, src: "poster" }, // SE of the stadium, N of W Anderson, W of Nashville
-        { stageId: "circuit", lat: 28.53999, lng: -81.40219, src: "poster" }, // Tinker Field mowed rectangle, NE part
-        { stageId: "neon",    lat: 28.53900, lng: -81.39850, src: "poster" }, // practice field EAST of Nashville Ave — outside the core rectangle by design
+        { stageId: "kinetic", lat: 28.537024, lng: -81.399828, src: "poster" }, // the long stage wall, SE field, N of W Anderson
+        { stageId: "circuit", lat: 28.539811, lng: -81.404500, src: "poster" }, // Tinker Field, between Tampa Ave and the stadium
+        { stageId: "neon",    lat: 28.539153, lng: -81.398598, src: "poster" }, // practice field EAST of Nashville Ave
       ],
       mainStageId: "kinetic",
       // edco-tinker-2025.webp = the official EDC Orlando 2025 festival map

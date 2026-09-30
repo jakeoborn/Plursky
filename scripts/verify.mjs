@@ -1522,14 +1522,14 @@ const REGISTRATION_TOL_M = 25;
       // on its lineup over the official 2025 map, labelled as such.
       //
       // Both conditions are real. Three anchors ship (kinetic, circuit, neon;
-      // founder ruling 2026-09-30 removed stereo and bacardi), all `poster`:
-      // reads off the 2025 art through a fit whose control points were never
-      // recorded (#73). They are the whole basis, so the affine fits them with
-      // zero residual by construction and nothing in the data can contradict
-      // it. What could, did, before it was removed: stereo and bacardi sat
-      // 98 m and 48 m from where this affine draws them. Removing them took
-      // the evidence out of the data, not the error out of the map. The blue
-      // dot is a poster read, and every distance readout stays withheld.
+      // founder ruling 2026-09-30), all `poster`: the 2025 plate fitted to four
+      // OpenStreetMap street intersections the art draws (control points in
+      // map-sources/edco-map-2025-control-points.json, residuals 7-12 m), then
+      // applied to each stage's pin. A fit off art is still a read off art, so
+      // the basis is unsourced; and the three are the whole basis, so it is
+      // blind. The four corners are checked in scripts/test-georef-map.mjs and
+      // on screen in scripts/test-edco-corners.mjs. Every distance readout
+      // stays withheld.
       //
       // This waiver covers EDC Orlando's three anchors and nothing else. It is
       // not a precedent for any other festival opening unsourced.
@@ -1537,7 +1537,7 @@ const REGISTRATION_TOL_M = 25;
       // Clears at the flip: control points saved and re-fitted on the official
       // 2026 art with scripts/georef-map.mjs, plus one osm or ground anchor.
       note: "opened on its lineup over the official 2025 map (founder ruling " +
-            "2026-09-30); three anchors, all poster reads, all of them the basis. " +
+            "2026-09-30); three anchors fitted on the 2025 plate to four OSM street corners, all of them the basis. " +
             "Clears when the official 2026 map is fitted from saved control points",
     },
   };
@@ -3074,6 +3074,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`georef failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── EDC Orlando: the four corners, on screen ─────────────────────────────
+// A mocked position at each street corner the 2025 art draws must be drawn on
+// that corner (within 16 plate px). The fit itself is held above; this holds
+// what the app renders from the three anchors.
+{
+  console.log("▸ EDC Orlando corners — a person at each street corner is drawn on it");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-edco-corners.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`EDC Orlando corners failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
