@@ -65,6 +65,28 @@ const total = Object.values(CASES).reduce((n, c) => n + Object.keys(c).length, 0
 for (const w of run(pageStatus)) check(false, w);
 checks += total - run(pageStatus).length;
 
+// Scope: the rule changes nothing for a festival with more than one day
+// bucket. Every such festival in the registry, every day from two weeks
+// before its printed start to two weeks after its end, reads exactly what the
+// old rule read (the old rule is this function with the single-bucket case
+// off, which is main's statusOf line for line).
+{
+  const DAY = 86400000, iso = t => new Date(t).toISOString().slice(0, 10);
+  let compared = 0, fests = 0; const diff = [];
+  for (const e of REG) {
+    const cfg = e.config, d = eventDates(cfg);
+    if (!d || Object.keys(cfg.dayDates || {}).length === 1) continue;
+    fests++;
+    for (let t = Date.parse(d.start) - 14 * DAY; t <= Date.parse(d.end) + 14 * DAY; t += DAY) {
+      compared++;
+      const a = pageStatus(d, daysOf(cfg), iso(t), Object.keys(cfg.dayDates || {}).length);
+      const b = pageStatus(d, daysOf(cfg), iso(t), 99);
+      if (a !== b) diff.push(`${cfg.id} ${iso(t)}: ${b} → ${a}`);
+    }
+  }
+  check(fests >= 10 && diff.length === 0, `multi-bucket festivals read as before on every day compared (${fests} festivals, ${compared} days, ${diff.length} differ${diff.length ? `: ${diff.slice(0, 3).join('; ')}` : ''})`);
+}
+
 // Mutations: each must get at least one pinned date wrong.
 const literal = (d, days, today) => pageStatus(d, days, today, 99);              // single-bucket rule off: main's behaviour
 const spanOnly = (d, days, today) => (today > d.end ? 'past' : today >= d.start ? 'live' : pageStatus(d, days, today, 1)); // live across the whole printed range
