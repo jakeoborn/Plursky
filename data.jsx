@@ -835,7 +835,9 @@ const FESTIVALS_REGISTRY = [
         // or projected off it. It also must not inherit Lady Bird's old
         // coords. A guessed anchor mis-tags photos silently.
         //
-        // `ladybird` / `bonus`: not stages in the 2026 app at all. They showed
+        // `ladybird` / `bonus`: not stages in the current app model. Bonus
+        // Tracks now has September 30 programming in its separate readiness
+        // collection, without a surveyed GPS anchor. They showed
         // up as anchor targets in the 2026-09-06 desk survey, and `ladybird`
         // is where that survey's "independent 34 m cross-check" lived — a real
         // measurement against a stage this lineup does not have, so it cannot
