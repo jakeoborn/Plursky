@@ -194,7 +194,7 @@ for (const [id, e] of Object.entries(editions)) {
     const lc = JSON.parse(readFileSync(H(`ledger/${id}.json`), "utf8")).lineupCheck;
     ok(lc && lc.billings > 0 && !lc.unmatched.length && lc.matched + lc.aliased.length === lc.billings,
       `${id}: no clean lineup check in its ledger (${lc ? `${lc.unmatched.length} unmatched of ${lc.billings}` : "missing"}) — run check-insomniac-lineup.mjs`);
-    ok(lc && /^https:\/\/web\.archive\.org\/web\/\d{14}\//.test(lc.archivedUrl) && /^[0-9a-f]{64}$/.test(lc.sha256) && lc.title.includes(EDITIONS[id].name),
+    ok(lc && /^https:\/\/web\.archive\.org\/web\/\d{14}\//.test(lc.archivedUrl) && /^[0-9a-f]{64}$/.test(lc.sha256) && (lc.title.includes(EDITIONS[id].name) || (lc.staleTitle && LINEUP_PAGES[id]?.staleTitle === lc.title && lc.identityText === LINEUP_PAGES[id]?.identityText)),
       `${id}: the lineup check must cite an archived capture, its hash, and a page titled ${EDITIONS[id].name}`);
     ok(!!LINEUP_PAGES[id], `${id}: no LINEUP_PAGES entry`);
   }
@@ -202,6 +202,13 @@ for (const [id, e] of Object.entries(editions)) {
   ok(!j.unmatched.length && j.matched === 2 && j.aliased.length === 1, "joinLineup matches billings and a listed alias");
   mutations++; ok(joinLineup(["A", "Missing Act"], ["A"]).unmatched.length === 1, "mutation not caught: a billed act with no set");
   mutations++; ok(joinLineup(["Diesel"], ["DJ Diesel"]).unmatched.length === 1, "mutation not caught: an alias nobody listed");
+  // A stale <title> passes only with the identity text recorded for it.
+  for (const id of Object.keys(LINEUP_PAGES).filter(id => LINEUP_PAGES[id].staleTitle)) {
+    const lc = JSON.parse(readFileSync(H(`ledger/${id}.json`), "utf8")).lineupCheck;
+    const passes = x => x.title.includes(EDITIONS[id].name) || (x.staleTitle && LINEUP_PAGES[id].staleTitle === x.title && x.identityText === LINEUP_PAGES[id].identityText);
+    mutations++; ok(lc && !passes({ ...lc, identityText: undefined }), `mutation not caught: ${id} stale title without its identity text`);
+    mutations++; ok(lc && !passes({ ...lc, title: "Lineup – Some Other Festival 2025" }), `mutation not caught: ${id} a different stale title`);
+  }
 }
 
 // ── 3. edition identity from the page itself ──

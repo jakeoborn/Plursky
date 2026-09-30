@@ -27,6 +27,15 @@ export const LINEUP_PAGES = {
     // lineup page billing → set-times billing, same act (checked on both pages)
     aliases: { "Diesel": "DJ Diesel" },
   },
+  // The site never updated its <title> ("…at The Gorge 2025") for 2026. The
+  // edition is proven instead by text the page prints ("Beyond PNW 2026") and
+  // by the set-times capture of the same crawl, whose day tabs print Saturday
+  // June 27 / Sunday June 28 (2026 weekdays; Jun 27 2025 was a Friday).
+  "beyond-wonderland-gorge-2026": {
+    url: "https://pnw.beyondwonderland.com/lineup/", capture: "20260627043900", title: "Beyond Wonderland at The Gorge 2026",
+    staleTitle: "Lineup – Beyond Wonderland at The Gorge 2025", identityText: "Beyond PNW 2026",
+    aliases: {},
+  },
 };
 
 const ENT = { "&amp;": "&", "&#038;": "&", "&quot;": '"', "&#039;": "'", "&#8217;": "’", "&#8211;": "–", "&nbsp;": " " };
@@ -62,14 +71,16 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     if (!cfg) { console.error(`no LINEUP_PAGES entry for ${id}`); process.exit(2); }
     const got = await fetchCapture(cfg.capture, cfg.url);
     const title = text((/<title>([^<]*)/.exec(got.text) || [])[1] || "");
-    if (!title.includes(cfg.title)) { console.error(`✗ ${id}: capture title "${title}" does not name ${cfg.title}`); process.exit(1); }
+    const staleOk = cfg.staleTitle && title === cfg.staleTitle && got.text.includes(cfg.identityText);
+    if (!title.includes(cfg.title) && !staleOk) { console.error(`✗ ${id}: capture title "${title}" does not name ${cfg.title}`); process.exit(1); }
     const billings = lineupBillings(got.text);
     if (!billings?.length) { console.error(`✗ ${id}: no lineup list in the capture`); process.exit(1); }
     const sheet = readSheet(join(ROOT, `data/historical/sheets/${id}.tsv`)).map(r => r.artist);
     const j = joinLineup(billings, sheet, cfg.aliases);
     const file = join(ROOT, `data/historical/ledger/${id}.json`);
     const ledger = JSON.parse(readFileSync(file, "utf8"));
-    ledger.lineupCheck = { page: cfg.url, archivedUrl: got.archivedUrl, captureTimestamp: got.captureTimestamp, sha256: got.sha256, title, ...j };
+    ledger.lineupCheck = { page: cfg.url, archivedUrl: got.archivedUrl, captureTimestamp: got.captureTimestamp, sha256: got.sha256, title,
+      ...(staleOk ? { staleTitle: true, identityText: cfg.identityText } : {}), ...j };
     writeFileSync(file, JSON.stringify(ledger, null, 2) + "\n");
     console.log(`${j.unmatched.length ? "✗" : "✓"} ${id}: ${j.billings} billed · ${j.matched} matched · ${j.aliased.length} aliased · ${j.unmatched.length} unmatched · ${j.setTimesOnly.length} set-times only (${j.setTimesOnly.join(", ")})`);
   }

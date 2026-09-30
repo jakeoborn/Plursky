@@ -14,6 +14,7 @@ export const OFFICIAL_HOSTS = {
   "edc-lv": ["lasvegas.electricdaisycarnival.com"],
   "acl": ["aclfestival.com", "cdn.prod.website-files.com"],
   "beyond-wonderland-socal": ["socal.beyondwonderland.com"],
+  "beyond-wonderland-gorge": ["pnw.beyondwonderland.com"],
 };
 
 const HHMM = /^([01]\d|2[0-3]):[0-5]\d$/;

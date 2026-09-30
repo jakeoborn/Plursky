@@ -47,6 +47,32 @@
    }
   },
   {
+   "id": "beyond-wonderland-gorge-2026",
+   "festivalId": "beyond-wonderland-gorge",
+   "festivalName": "Beyond Wonderland at The Gorge",
+   "name": "Beyond Wonderland at The Gorge 2026",
+   "year": 2026,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2026-06-27",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2026-06-28",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 3,
+    "artists": 56,
+    "sets": 56
+   }
+  },
+  {
    "id": "beyond-wonderland-socal-2026",
    "festivalId": "beyond-wonderland-socal",
    "festivalName": "Beyond Wonderland SoCal",
