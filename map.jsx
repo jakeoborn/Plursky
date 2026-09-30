@@ -6138,18 +6138,25 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           <circle cx={avatar.x} cy={avatar.y} r="3.2" fill="var(--signal-ink)" opacity="0.22">
             <animate attributeName="r" values="2.5;4.5;2.5" dur="2.2s" repeatCount="indefinite"/>
           </circle>
-          <circle cx={avatar.x} cy={avatar.y} r="1.8" fill="var(--signal-ink)" stroke="rgba(255,255,255,0.95)" strokeWidth="0.6"/>
+          <circle data-avatar-dot cx={avatar.x} cy={avatar.y} r="1.8" fill="var(--signal-ink)" stroke="rgba(255,255,255,0.95)" strokeWidth="0.6"/>
           <circle cx={avatar.x} cy={avatar.y} r="0.7" fill="var(--ink)"/>
         </g>
         </g>
       </svg>
 
-      {/* HTML label overlay — sized to match the SVG's xMidYMid-meet square so
-          left/top % values align exactly with the dots inside the SVG. */}
-      <div style={{
-        position: "absolute", top: "50%", left: 0, width: "100%",
-        aspectRatio: "1 / 1", transform: "translateY(-50%)",
-        pointerEvents: "none",
+      {/* HTML label overlay. Every child places itself with `mapY()`, which
+          already carries the offset that centres the 0–100 map in a viewBox as
+          tall as the CONTAINER. So in a portrait container this box has to be
+          the container itself. It used to stay the centred square from before
+          `mapY()` existed, which applied the centring twice: everything off the
+          map's middle row was pulled toward it (the YOU label sat ~85 px above
+          its dot in a bottom corner, and stage pills drifted off their pins).
+          A container no taller than wide has no offset (VB_H is 100), and
+          keeps the square. */}
+      <div data-map-html-overlay style={{
+        position: "absolute", left: 0, width: "100%", pointerEvents: "none",
+        ...(VB_H > 100 ? { top: 0, height: "100%" }
+                       : { top: "50%", aspectRatio: "1 / 1", transform: "translateY(-50%)" }),
       }}>
         {/* Place labels and entrance gates, PER FESTIVAL. This used to be a
             hardcoded Las Vegas block behind `mapTheme !== "park"`, so any
@@ -6158,7 +6165,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
             declaring them. */}
         {(FESTIVAL_CONFIG.placeLabel || (FESTIVAL_CONFIG.gates || []).length > 0) && (<>
         {FESTIVAL_CONFIG.placeLabel && <div style={{
-          position: "absolute", left: "50%", top: "43%",
+          position: "absolute", left: "50%", top: `${mapY(43)}%`,
           transform: "translate(-50%, -130%)",
           fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 2.2, fontWeight: 700,
           color: "rgba(var(--signal-rgb),0.85)",
@@ -6361,7 +6368,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           );
         })}
 
-        <div style={{
+        <div data-avatar-label style={{
           position: "absolute", left: `${avatar.x}%`, top: `${mapY(avatar.y)}%`,
           transform: `translate(-50%, -22px)${counterRot}`,
           background: "rgba(var(--signal-rgb),0.95)", color: "var(--ink)",

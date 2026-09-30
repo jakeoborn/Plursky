@@ -2530,6 +2530,24 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Map: HTML labels sit on the SVG points they name ─────────────────────
+// The YOU label and the stage pills are HTML over an SVG map. In a portrait
+// container the HTML layer applied the map's vertical centring twice, so the
+// YOU label rendered ~85 px off its dot. Measured against the SVG's own
+// transform; pills come from a fixture so the gate does not depend on which
+// live festival's art prints its own stage names.
+{
+  console.log("▸ Map overlay registration — the YOU label and stage pills sit on their points");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-map-overlay-registration.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`map overlay registration failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── III Points 2026: each act's day is the official day graphic's ─────────
 // The lineup-by-day graphic is transcribed in docs/qa/reports/iii-points-2026-
 // day-split/graphic.tsv; the list page is the lineup. Both directions of the
