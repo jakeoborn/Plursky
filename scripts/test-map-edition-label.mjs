@@ -22,10 +22,33 @@ import { existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { serverReady } from "./lib/server-ready.mjs";
+import { loadRegistry } from "./lib/load-registry.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 let checks = 0, failed = 0;
 function check(ok, msg) { checks++; if (!ok) { failed++; console.log(`  ✗  ${msg}`); } }
+
+// ── Every festival that ships another edition's art says so ───────────────
+// A festival's own map page can still be showing last year's map
+// (`mapSource.mapYear`, recorded when the page was checked). Art shipped while
+// that is true cannot be this year's official map, so the config has to name
+// the art's year. Escape Halloween 2026 shipped its 2025 map for weeks with
+// no label in the app; this is the rule that would have caught it.
+{
+  const { REG } = loadRegistry(ROOT);
+  const unlabelled = list => list.map(e => e.config).filter(c => c.mapImage && c.mapSource && c.mapSource.mapYear != null
+    && c.mapSource.mapYear !== c.year && c.mapArtYear !== c.mapSource.mapYear).map(c => c.id);
+  const declared = REG.map(e => e.config).filter(c => c.mapArtYear != null);
+  check(unlabelled(REG).length === 0, `a festival whose map page shows another year's map ships that art unlabelled: ${unlabelled(REG).join(", ")}`);
+  check(declared.every(c => c.mapImage && Number.isInteger(c.mapArtYear) && c.mapArtYear < c.year),
+    `mapArtYear is an earlier year, on a festival that ships art (${declared.map(c => `${c.id} ${c.mapArtYear}`).join(", ")})`);
+  const esc = REG.find(e => e.config.id === "escape-halloween-2026");
+  check(esc && esc.config.mapArtYear === 2025 && esc.config.mapSource?.mapYear === 2025 && esc.config.year === 2026,
+    `escape-halloween-2026 names its 2025 art (mapArtYear ${esc?.config.mapArtYear}, map page showed ${esc?.config.mapSource?.mapYear})`);
+  // Mutation: the field dropped from Escape must be flagged.
+  const stripped = REG.map(e => (e.config.id === "escape-halloween-2026" ? { ...e, config: { ...e.config, mapArtYear: undefined } } : e));
+  check(unlabelled(stripped).join() === "escape-halloween-2026", `mutation: Escape without mapArtYear is caught (${unlabelled(stripped).join(", ") || "nothing flagged"})`);
+}
 
 const reservePort = () => new Promise((resolve, reject) => { const s = createServer(); s.once("error", reject); s.listen(0, "127.0.0.1", () => { const a = s.address(); s.close(e => e ? reject(e) : resolve(a.port)); }); });
 const PORT = await reservePort();
