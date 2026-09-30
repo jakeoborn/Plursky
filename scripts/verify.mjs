@@ -2176,6 +2176,11 @@ const REGISTRATION_TOL_M = 25;
   }
 }
 
+console.log("▸ ACL programming readiness - independent event identities and source-only vendor map");
+try {
+  console.log(execFileSync(process.execPath, ["scripts/test-acl-programming-readiness.mjs"], { cwd: ROOT }).toString().trim());
+} catch (e) { fail("ACL programming readiness: " + (e.stdout || e.message)); }
+
 if (process.argv.includes("--parse-only")) process.exit(0);
 
 // ── 1z. Mixed-import toast regression ─────────────────────────────────────
