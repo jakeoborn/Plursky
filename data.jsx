@@ -861,9 +861,13 @@ const FESTIVALS_REGISTRY = [
 
       // The festival's OWN map page, linked (never embedded) by the /f/ page:
       // official publication is provenance, not reuse rights. mapYear is the
-      // year printed on the map the page showed when checked — null: the article (linked as "Festival Map" from
-      // aclfestival.com) refuses automated reads, so its year is unverified.
-      mapSource: { url: "https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map", observedAt: "2026-09-24", mapYear: null },
+      // year of the map the page showed when checked. 2026, read 2026-09-25 through the help centre's JSON API
+      // (/api/v2/help_center/en-us/articles/4405399774484.json; the HTML page answers automated reads with a
+      // Cloudflare 403): the article, edited 2026-09-23T16:31Z, is headed "2026 Festival Map" and embeds one
+      // image, ACL26_Patron.Map_Horizontal_09.22.png (attachment 53859674183572, Last-Modified 2026-09-23
+      // 16:31:03Z). The image itself prints no year; it prints "25 YEARS", which is 2026 (first festival 2002).
+      // Link only: the in-app ACL map stays blind under the registration waiver until 2026-10-19.
+      mapSource: { url: "https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map", observedAt: "2026-09-25", mapYear: 2026 },
       mapStyle: "image-overlay",
       mapTheme: "park",
       weatherEndpoint: "https://api.weather.gov/points/30.26,-97.77",
@@ -1739,13 +1743,24 @@ function _weekendMajorityIsW2(saved) {
 // NOW recompute — 137 ACL acts against every saved id, a thousand times over.
 // Reading the string is cheap; parsing and scanning it is not.
 let _wkMemo = null;                                    // { fid, raw, shift }
+// When W2 "has begun" for the ruling above: its first festival DAY opens, at
+// 08:00 local on its date (the night window _nightWindowFlags uses), not at
+// weekendStartMs.W2, which is the first set. Between the two, W2 Friday
+// morning resolved to W1: Oct 2-4 dates, no next set, no night, on the day
+// itself. Falls back to W2 when there are no day dates to read.
+function _w2BeganMs(cfg, w, shift) {
+  const nums = Object.keys((cfg && cfg.dayDates) || {}).map(Number).sort((a, b) => a - b);
+  const d1 = nums.length ? cfg.dayDates[nums[0]] : null;
+  if (!d1 || typeof d1.midnightUtc !== "number") return w.W2;
+  return Math.min(w.W2, d1.midnightUtc + shift + 8 * 3600000);
+}
 function _weekendShiftMs(cfg, nowMs, savedIds) {
   const w = cfg && cfg.weekendStartMs;
   if (!w || typeof w.W1 !== "number" || typeof w.W2 !== "number") return 0;
   const shift = w.W2 - w.W1;
   if (!(shift > 0)) return 0;
   const now = typeof nowMs === "number" ? nowMs : Date.now();
-  if (now >= w.W2) return shift;                       // clock wins outright
+  if (now >= _w2BeganMs(cfg, w, shift)) return shift;  // clock wins outright
   try {                                                // else: what did they save?
     if (Array.isArray(savedIds)) return _weekendMajorityIsW2(savedIds) ? shift : 0;
     const raw = localStorage.getItem(`${cfg.id}_saved_v1`) || "[]";
