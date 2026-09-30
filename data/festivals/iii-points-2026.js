@@ -22,6 +22,9 @@
 //   panel per day. All 217 entries transcribed by hand and the two local
 //   panels checked against a macOS Vision OCR; the transcription is
 //   docs/qa/reports/iii-points-2026-day-split/graphic.tsv.
+//   Every billed act, reconciled row by row (list text, structured name,
+//   graphic billing and day, shipped day, evidence), is in
+//   docs/qa/reports/iii-points-2026-day-split/reconciliation.tsv.
 //   The graphic carries NO stage and NO set time. "4PM-4AM" under each panel
 //   is event hours; the 444 box names extended sets, not a stage.
 //
@@ -46,9 +49,11 @@
 //       face has no leet digits; the list's B0YG1RL, Tech G1rls, V1FRO and
 //       ¥UK1MAT$U are the artists' own styling and are kept.
 //   · The graphic bills ONE member where the list bills a B2B including
-//     them. The act takes that member's day on the graphic and keeps the
-//     list's billing. If III Points moved the B2B to the other day, these
-//     three are wrong; they are named here and in the gate:
+//     them. No first-party source puts the billed B2B SET on a day, so these
+//     three are DAY TBA (mkUnscheduled), billed as the list bills them.
+//     Correction 2026-09-30 (Instinct / Jake): #267 first gave each the
+//     member's day, which the evidence does not support. The member-only
+//     graphic entries are recorded in GRAPHIC_MEMBER_ONLY below:
 //       graphic "FIUZA" (Fri)    list "FIUZA B2B Madison Kay"
 //       graphic "SEL.6" (Sat)    list "SEL.6 B2B Playshado"
 //       graphic "DAY/DEM" (Sat)  list "Bricolage B2B DAY/DEM"
@@ -58,9 +63,9 @@
 //         so it moves to REMOVED_FROM_LINEUP. Today's list bills "Ghostface
 //         Killah presents Supreme Clientele", which the graphic does not carry.
 //       Mr. Brown (Fri), Jencarlos (Sat): already removed on 2026-09-25.
-//   · On today's list, not on the graphic: 16 acts, billed, so in the lineup,
-//     with NO day (mkUnscheduled), the way Escape Halloween carries its
-//     lineup-card acts: amar · Blind Fish · Canela · Crespi Drum Syndicate
+//   · On today's list, not on the graphic at all: 16 acts, billed, so in the
+//     lineup, DAY TBA (mkUnscheduled), the way Escape Halloween carries its
+//     lineup-card acts. With the three B2Bs above, 19 acts are DAY TBA: amar · Blind Fish · Canela · Crespi Drum Syndicate
 //     (Live) · Cumbiamba · DJ Ahamed · Emily Afre · Ghostface Killah presents
 //     Supreme Clientele · GodBlessJai · Huracán · iiry? · Lylac · Nikole ·
 //     P1no B2B Trippie Hippie · Scotty Sobek · serafitz B2B SOL Discos
@@ -116,7 +121,7 @@
 // been read. The guide FAQ: "Maps showing stage locations, food, bathrooms,
 // etc. WILL BE AVAILABLE PRIOR TO THE EVENT" and "DURING THE DAYS LEADING UP
 // TO THE FESTIVAL, set times will be posted." So every artist carries
-// stage: null and start/end "", and 16 of them also carry day: null.
+// stage: null and start/end "", and 19 of them also carry day: null.
 //
 // ── SPATIAL MODEL ──
 // There is none, deliberately, and that is the point. Every other festival in
@@ -145,7 +150,7 @@
 //
 // ── FLIP CHECKLIST (official map + set times, ~early Oct) ──
 //   1. STAGES with real lat/lng; derive x/y from them (never the reverse).
-//   2. start/end per act (and a day for the 16 unscheduled acts, from the
+//   2. start/end per act (and a day for the 19 unscheduled acts, from the
 //      official schedule only); drop the `provisional` flag.
 //   3. gpsAnchors re-measured to T1 against the official map.
 //   4. Widen venue.footprint to the real perimeter.
@@ -170,7 +175,8 @@
   // No amenity map published.
   const AMENITIES = [];
 
-  // Every act is unplaced and untimed; all but 16 have their official day.
+  // Every act is unplaced and untimed; 210 have an official day for the
+  // full billed set, 19 are DAY TBA.
   // `tier` drives lineup card weighting
   // elsewhere; with no set times there is no basis to rank, so all acts sit
   // at the same tier rather than being silently ordered by a guess.
@@ -202,19 +208,19 @@
 
   // Billed on today's official list, absent from the lineup-by-day graphic
   // (see the header). No day, stage or time is inferred for them.
-  const mkUnscheduled = (id, name) => scheduled({
+  const mkUnscheduled = (id, name, why) => scheduled({
     id, name, genre: "—", country: "—", stage: null, day: null,
     start: "", end: "", tier: 2,
     img: "linear-gradient(135deg, #22d3ee, #1a0a28)",
     bio: "On the official III Points 2026 lineup. Its day, stage and set time are not published: " +
-         "the official lineup-by-day graphic does not list it.",
+         (why || "the official lineup-by-day graphic does not list it."),
     provisional: true, unscheduled: true,
   });
 
   // Day from the official lineup-by-day graphic; billing from today's list,
   // in the graphic's B2B order. Ids never change with billing.
   const ARTISTS = [
-    // ─────────── Friday, October 16 (105 acts) ───────────
+    // ─────────── Friday, October 16 (104 acts) ───────────
     mk("iiip-1tbsp",                         "1tbsp", 1),
     mk("iiip-aabel-b2b-siegel",              "Aabel B2B Siegel", 1),
     mk("iiip-ackdaddy",                      "Ackdaddy", 1),
@@ -253,7 +259,6 @@
     mk("iiip-extra-andrew-b2b-mutant-pe",    "Extra Andrew B2B Mutant Pete", 1),
     mk("iiip-feph-b2b-mr-tron",              "Feph B2B Mr. Tron", 1),
     mk("iiip-fiin",                          "Fiin", 1),
-    mk("iiip-fiuza-b2b-madison-kay",         "FIUZA B2B Madison Kay", 1),
     mk("iiip-floating-points",               "Floating Points", 1),
     mk("iiip-flying-lotus",                  "Flying Lotus", 1),
     mk("iiip-gio-elia-b2b-meghan-lee",       "Gio Elia B2B Meghan Lee", 1),
@@ -320,7 +325,7 @@
     mk("iiip-max-styler-b2b-vintage-cul",    "Vintage Culture B2B Max Styler", 1),
     mk("iiip-will-renuart",                  "Will Renuart", 1),
     mk("iiip-zep",                           "ZEP", 1),
-    // ─────────── Saturday, October 17 (108 acts) ───────────
+    // ─────────── Saturday, October 17 (106 acts) ───────────
     mk("iiip-1-800-lolita-b2b-xana",         "1-800-305", 2),
     mk("iiip-2up",                           "2UP!", 2),
     mk("iiip-619",                           "619!", 2),
@@ -335,7 +340,6 @@
     mk("iiip-blood-orange",                  "Blood Orange", 2),
     mk("iiip-bonita-applebumz-b2b-toni-",    "Bonita Applebumz B2B Toni Shardai", 2),
     mk("iiip-bozito-b2b-gabo-escalona",      "Bozito B2B Gabo Escalona", 2),
-    mk("iiip-bricolage-b2b-day-dem",         "Bricolage B2B DAY/DEM", 2),
     mk("iiip-camp-blu",                      "Camp Blu", 2),
     mk("iiip-carter-jackson-brown",          "Carter Jackson-Brown", 2),
     mk("iiip-chanel-beads",                  "Chanel Beads", 2),
@@ -409,7 +413,6 @@
     mk("iiip-sam-alfred",                    "Sam Alfred", 2),
     mk("iiip-santiago-villu",                "Santiago Villu", 2),
     mk("iiip-saturnsarii-b2b-suz",           "SATURNSARii B2B SUZ", 2),
-    mk("iiip-sel-6-b2b-playshado",           "SEL.6 B2B Playshado", 2),
     mk("iiip-seth-troxler",                  "Seth Troxler", 2),
     mk("iiip-shinobi",                       "Shinobi", 2),
     mk("iiip-grant-sabadash-b2b-shir-mi",    "Shir Miya B2B Grant Sabadash", 2),
@@ -429,7 +432,10 @@
     mk("iiip-willikens-ivkovic",             "Willikens & Ivkovic", 2),
     mk("iiip-yhwh-nailgun",                  "YHWH Nailgun", 2),
     mk("iiip-u-uk-uk1mat-u",                 "¥ØU$UK€ ¥UK1MAT$U", 2),
-    // ─────────── On the lineup, not on the day graphic (16 acts) ───────────
+    // ─────────── DAY TBA: on the lineup, no day for the billed set (19 acts) ───────────
+    mkUnscheduled("iiip-bricolage-b2b-day-dem", "Bricolage B2B DAY/DEM", "the lineup-by-day graphic bills DAY/DEM alone on Saturday, not this set."),
+    mkUnscheduled("iiip-sel-6-b2b-playshado", "SEL.6 B2B Playshado", "the lineup-by-day graphic bills SEL.6 alone on Saturday, not this set."),
+    mkUnscheduled("iiip-fiuza-b2b-madison-kay", "FIUZA B2B Madison Kay", "the lineup-by-day graphic bills FIUZA alone on Friday, not this set."),
     mkUnscheduled("iiip-amar",               "amar"),
     mkUnscheduled("iiip-blind-fish",         "Blind Fish"),
     mkUnscheduled("iiip-canela",             "Canela"),
@@ -471,6 +477,14 @@
     { billing: "Jencarlos", day: 2, note: "removed from the list by 09-25" },
   ].map(r => ({ ...r, graphic: { url: DAY_GRAPHIC, observedAt: "2026-09-30" } }));
 
+  // On the graphic as ONE member of a set the list bills as a B2B. The
+  // member's day is recorded; the set itself stays DAY TBA (see the header).
+  const GRAPHIC_MEMBER_ONLY = [
+    { billing: "FIUZA",   day: 1, act: "iiip-fiuza-b2b-madison-kay" },
+    { billing: "SEL.6",   day: 2, act: "iiip-sel-6-b2b-playshado" },
+    { billing: "DAY/DEM", day: 2, act: "iiip-bricolage-b2b-day-dem" },
+  ].map(r => ({ ...r, graphic: { url: DAY_GRAPHIC, observedAt: "2026-09-30" } }));
+
   const CONFIG = {
     id:        "iii-points-2026",
     // Where the lineup rows came from (the SOURCE note above), as data so the
@@ -496,7 +510,7 @@
     // Two real days, from the official lineup-by-day graphic (see header).
     // Until 2026-09-30 this was ONE "Oct 16–17" bucket labelled TBA,
     // because no split had been read and a null day hides an act from every
-    // day tab. 16 billed acts still have no day; they are `unscheduled`.
+    // day tab. 19 billed acts still have no day; they are `unscheduled`.
     dayDates: {
       1: { y: 2026, m: 9, d: 16, name: "Friday",   short: "FRI", midnightUtc: Date.UTC(2026, 9, 16, 4, 0, 0) },
       2: { y: 2026, m: 9, d: 17, name: "Saturday", short: "SAT", midnightUtc: Date.UTC(2026, 9, 17, 4, 0, 0) },
@@ -555,6 +569,7 @@
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
     removedFromLineup: REMOVED_FROM_LINEUP,
     graphicOnly: GRAPHIC_ONLY,
+    graphicMemberOnly: GRAPHIC_MEMBER_ONLY,
     // GATED: set times, stages and the official map are all unpublished.
     registry: { available: true, scheduleTBA: true, accent: "#22d3ee", emoji: "🔺", region: "North America" },
   };

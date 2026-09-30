@@ -29,19 +29,28 @@ const fold = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().repla
   .replace(/0/g, "o").replace(/1/g, "i").replace(/[^a-z0-9¥ø$€+]/g, "");
 const members = s => s.split(/\s+B2B\s+/i).map(fold);
 const key = s => members(s).sort().join("|");
-// Graphic billing → list billing, where the two print one act differently.
-// Each is recorded in the module header; the last three are the one-member
-// inferences (the graphic bills one member, the list a B2B with them).
-const ALIAS = { "Malóne Morez B2B Miluhska": "Malóne B2B Miluhska", "Maccabiii B2B Pezlo MD": "Maccabi B2B Pezlo MD",
-  "ITBSP": "1tbsp", "Fiuza": "FIUZA B2B Madison Kay", "SEL.6": "SEL.6 B2B Playshado", "Day/Dem": "Bricolage B2B DAY/DEM" };
-const ONE_MEMBER = ["Fiuza", "SEL.6", "Day/Dem"];
+// Graphic billing → list billing, where the two print THE SAME SET with a
+// different spelling (every member present on both). Recorded in the header.
+const ALIAS = { "Malóne Morez B2B Miluhska": "Malóne B2B Miluhska", "Maccabiii B2B Pezlo MD": "Maccabi B2B Pezlo MD", "ITBSP": "1tbsp" };
+// The graphic bills ONE member where the list bills a B2B with them. No
+// source puts the billed set on a day, so each set must be DAY TBA.
+const MEMBER_ONLY = { "Fiuza": "iiip-fiuza-b2b-madison-kay", "SEL.6": "iiip-sel-6-b2b-playshado", "Day/Dem": "iiip-bricolage-b2b-day-dem" };
 
-const run = (artists, graphicOnly) => {
+const run = (artists, graphicOnly, memberOnly) => {
   const bad = [];
   const byKey = new Map(artists.map(a => [key(a.name), a]));
   const onlyKey = new Map((graphicOnly || []).map(r => [key(r.billing), r]));
+  const memberKey = new Map((memberOnly || []).map(r => [key(r.billing), r]));
   const seen = new Set();
   for (const r of rows) {
+    const mo = memberKey.get(key(r.billing));
+    if (mo) {
+      const act = artists.find(x => x.id === mo.act);
+      if (mo.day !== r.day) bad.push(`GRAPHIC_MEMBER_ONLY "${r.billing}": day ${mo.day}, the graphic says ${r.day}`);
+      if (!act) bad.push(`GRAPHIC_MEMBER_ONLY "${r.billing}" points at ${mo.act}, which is not billed`);
+      else if (act.day != null || !act.unscheduled) bad.push(`${act.name}: day ${act.day} from one member's graphic entry ("${r.billing}"), with no source for the billed set`);
+      continue;
+    }
     const a = byKey.get(key(ALIAS[r.billing] || r.billing));
     if (a) {
       seen.add(a.id);
@@ -62,32 +71,58 @@ const run = (artists, graphicOnly) => {
   return bad;
 };
 
-const bad = run(M.artists, M.graphicOnly);
+const bad = run(M.artists, M.graphicOnly, M.graphicMemberOnly);
 bad.forEach(b => check(false, b));
 checks += 1; // the join as a whole
 check(rows.length === 217 && rows.filter(r => r.day === 1).length === 108 && rows.filter(r => r.day === 2).length === 109,
   `the transcription is the whole graphic: 217 entries, 108 Friday, 109 Saturday (${rows.length})`);
 const count = d => M.artists.filter(a => a.day === d).length;
-check(M.artists.length === 229 && count(1) === 105 && count(2) === 108 && count(null) === 16,
-  `229 acts: 105 Friday, 108 Saturday, 16 with no day (${M.artists.length}: ${count(1)}, ${count(2)}, ${count(null)})`);
+check(M.artists.length === 229 && count(1) === 104 && count(2) === 106 && count(null) === 19,
+  `229 acts: 104 Friday, 106 Saturday, 19 DAY TBA (${M.artists.length}: ${count(1)}, ${count(2)}, ${count(null)})`);
 const dd = M.config.dayDates;
 check(Object.keys(dd).join() === "1,2" && dd[1].d === 16 && dd[1].m === 9 && dd[1].name === "Friday" && dd[2].d === 17 && dd[2].name === "Saturday",
   "the days are Friday Oct 16 and Saturday Oct 17");
 check(M.registry.available === true && M.registry.scheduleTBA === true && M.stages.length === 0, "open on its lineup, set times pending, no stages");
-check(ONE_MEMBER.every(b => { const a = M.artists.find(x => key(x.name) === key(ALIAS[b])); return a && a.day === rows.find(r => r.billing === b).day; }),
-  "the three one-member inferences are the ones the header names, each on its member's day");
+// The three controls: billed, same ids, DAY TBA, no stage or time, and a bio
+// that says why.
+for (const [b, id] of Object.entries(MEMBER_ONLY)) {
+  const a = M.artists.find(x => x.id === id), rec = (M.graphicMemberOnly || []).find(r => r.act === id);
+  check(a && a.day === null && a.unscheduled === true && a.stage === null && !a.start && !a.end,
+    `${id}: billed, DAY TBA, no stage, no time (${a ? `day ${a.day}, stage ${a.stage}` : "missing"})`);
+  check(a && a.bio.toLowerCase().includes(`bills ${b.toLowerCase()} alone`), `${id}: its bio names the member the graphic bills alone`);
+  check(rec && rec.day === rows.find(r => r.billing === b).day, `${id}: the member's graphic day is recorded, not applied (${rec ? rec.day : "no record"})`);
+}
 check((M.graphicOnly || []).map(r => r.billing).sort().join("|") === ["GZA performing Liquid Swords", "Jencarlos", "Mr. Brown", "Underscores"].sort().join("|"),
   `graphic-only records: Underscores, GZA, Mr. Brown, Jencarlos (${(M.graphicOnly || []).map(r => r.billing).join(", ")})`);
 
+// The row-by-row reconciliation (docs/qa/reports/.../reconciliation.tsv)
+// must say exactly what ships: every billed act once, its day, its evidence.
+{
+  const R = readFileSync("docs/qa/reports/iii-points-2026-day-split/reconciliation.tsv", "utf8").split("\n")
+    .filter(l => l && !l.startsWith("#") && !l.startsWith("act_id\t")).map(l => l.split("\t"));
+  const acts = R.filter(r => r[0]);
+  const DAYS = { 1: "Fri Oct 16", 2: "Sat Oct 17" };
+  const mism = M.artists.filter(a => { const r = acts.find(x => x[0] === a.id); return !r || r[1] !== a.name || r[7] !== (DAYS[a.day] || "DAY TBA")
+    || (r[8] === "graphic_full_set") !== (a.day != null); });
+  check(acts.length === 229 && new Set(acts.map(r => r[0])).size === 229 && mism.length === 0,
+    `the reconciliation file lists all 229 billed acts once, with the shipped name, day and evidence (${acts.length} rows, ${mism.length} mismatched${mism.length ? `: ${mism.slice(0, 3).map(a => a.id).join(", ")}` : ""})`);
+  check(acts.filter(r => r[8] === "graphic_member_only").map(r => r[0]).sort().join() === Object.values(MEMBER_ONLY).sort().join(),
+    "the file names the same three member-only sets");
+  check(R.filter(r => !r[0] && r[8] === "graphic_only").length === 4, "the file lists the four graphic-only entries");
+}
+
 // Mutations: each must be caught by run().
 const clone = x => JSON.parse(JSON.stringify(x));
-const mutate = (label, f) => { const arts = clone(M.artists), go = clone(M.graphicOnly || []); f(arts, go); check(run(arts, go).length > 0, `mutation not caught: ${label}`); };
+const mutate = (label, f) => { const arts = clone(M.artists), go = clone(M.graphicOnly || []), mo = clone(M.graphicMemberOnly || []); f(arts, go, mo); check(run(arts, go, mo).length > 0, `mutation not caught: ${label}`); };
 mutate("an act moved to the other day", a => { a.find(x => x.name === "Four Tet").day = 1; });
 mutate("a B2B back in the list's alphabetical order", a => { a.find(x => x.id === "iiip-artime-b2b-mystic-bill").name = "Artime B2B Mystic Bill"; });
 mutate("an unscheduled act given a day", a => { a.find(x => x.name === "Blind Fish").day = 2; });
 mutate("a graphic-only act dropped from the records", (a, go) => { go.splice(go.findIndex(r => r.billing === "Underscores"), 1); });
 mutate("a stage invented for an act", a => { a[0].stage = "main"; });
 mutate("an act on the graphic lost", a => { a.splice(a.findIndex(x => x.name === "Underworld"), 1); });
+mutate("FIUZA B2B Madison Kay given FIUZA's graphic day", a => { const x = a.find(y => y.id === "iiip-fiuza-b2b-madison-kay"); x.day = 1; delete x.unscheduled; });
+mutate("SEL.6 B2B Playshado given SEL.6's graphic day", a => { const x = a.find(y => y.id === "iiip-sel-6-b2b-playshado"); x.day = 2; delete x.unscheduled; });
+mutate("Bricolage B2B DAY/DEM given DAY/DEM's graphic day", a => { const x = a.find(y => y.id === "iiip-bricolage-b2b-day-dem"); x.day = 2; delete x.unscheduled; });
 
-console.log(`  ${failed ? "✗" : "✓"}  III Points day split: ${checks - failed}/${checks} checks, 6 mutations`);
+console.log(`  ${failed ? "✗" : "✓"}  III Points day split: ${checks - failed}/${checks} checks, 9 mutations`);
 process.exit(failed ? 1 : 0);
