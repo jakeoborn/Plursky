@@ -10,7 +10,7 @@
 //     from the loaded _DATA_SETS, so no screen, count or search shows it;
 //   - it cites the page that dropped it, over https, dated AFTER lastSeen;
 //   - its reAdd line carries the same id and name.
-// Positive control first: III Points' four records must be found, or the
+// Positive control first: III Points' five records must be found, or the
 // loader changed shape and a pass would prove nothing.
 import { readFileSync, readdirSync } from 'node:fs';
 import vm from 'node:vm';
@@ -27,7 +27,7 @@ const { DS } = loadRegistry(process.cwd());
 
 const removed = Object.entries(mods).flatMap(([fid, m]) => (m.removedFromLineup || []).map(r => ({ fid, r, m })));
 const iii = removed.filter(x => x.fid === 'iii-points-2026').map(x => x.r.id).sort();
-const want = ['iiip-jencarlos', 'iiip-mila-gama-b2b-x3butterfly', 'iiip-mr-brown', 'iiip-ultrathem'];
+const want = ['iiip-gza', 'iiip-jencarlos', 'iiip-mila-gama-b2b-x3butterfly', 'iiip-mr-brown', 'iiip-ultrathem'];
 check(JSON.stringify(iii) === JSON.stringify(want), `control: iii-points-2026 removedFromLineup is ${JSON.stringify(iii)}, expected ${JSON.stringify(want)}`);
 
 const DATE = /^\d{4}-\d\d-\d\d$/;
