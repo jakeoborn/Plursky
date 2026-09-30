@@ -2399,6 +2399,24 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b5a. Sitemap commit rows ───────────────────────────────────────────
+// The homepage, terms and privacy fingerprints come from committed files only,
+// so plain --check (the freshness gate above) must hold them to the committed
+// ledger and <lastmod>. A cache-bust that skipped the regenerate used to pass
+// here and turn the scheduled --check-strict job red after the merge. Runs the
+// real generator in scratch copies, with festival-row controls.
+{
+  console.log("▸ Sitemap commit-row gate — a stale homepage/terms/privacy fingerprint fails plain --check");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-sitemap-commit-rows.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`sitemap commit rows failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b6. Memories grouping reachability ─────────────────────────────────
 // Every moment the TIMELINE lens COUNTS must be REACHABLE, exactly once, in
 // exactly one rendered group. Before this gate, a truthy artistId the ACTIVE
@@ -2465,6 +2483,37 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Memories film strip names ─────────────────────────────────────────────
+// Every frame names its artist in full (wrapped to the frame, never sliced);
+// same class as #247's chip names. Real renderer, recorded fillText.
+{
+  console.log("▸ Film strip names — every frame's artist in full, within the frame's width");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-film-strip-names.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`film strip names failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Artist screen: an act with no day ─────────────────────────────────────
+// A billed act no official schedule has placed renders ("DAY + SET TIME NOT
+// PUBLISHED") instead of crashing on DAYS.find(...).label. Fixture acts, so
+// the gate survives Escape's set times publishing.
+{
+  console.log("▸ Artist no-day — a billed, unplaced act renders instead of crashing");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-no-day.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist no-day failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Saved sets the lineup still carries ──────────────────────────────────
 // Every saved-set surface reads savedInLineup(); storage, cloud push and the
 // sign-in union keep orphan ids (lane ruling 2026-09-27: no deletion until a
@@ -2479,6 +2528,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`saved-set view failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// CRSSD Fall 2026's flip drops Skepta Más Tiempo (Codex P2 on #249): the REAL
+// orphan id against the REAL flipped lineup. Counts, Search, Build My Night and
+// its share, crew showdown read zero for it; storage and the cloud push keep
+// it; re-billing the act brings it back saved.
+{
+  console.log("▸ CRSSD saved orphan — Skepta Más Tiempo reads zero, stays stored, returns if re-billed");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-crssd-saved-orphan.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`CRSSD saved orphan failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 

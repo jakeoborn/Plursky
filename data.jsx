@@ -861,9 +861,13 @@ const FESTIVALS_REGISTRY = [
 
       // The festival's OWN map page, linked (never embedded) by the /f/ page:
       // official publication is provenance, not reuse rights. mapYear is the
-      // year printed on the map the page showed when checked — null: the article (linked as "Festival Map" from
-      // aclfestival.com) refuses automated reads, so its year is unverified.
-      mapSource: { url: "https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map", observedAt: "2026-09-24", mapYear: null },
+      // year of the map the page showed when checked. 2026, read 2026-09-25 through the help centre's JSON API
+      // (/api/v2/help_center/en-us/articles/4405399774484.json; the HTML page answers automated reads with a
+      // Cloudflare 403): the article, edited 2026-09-23T16:31Z, is headed "2026 Festival Map" and embeds one
+      // image, ACL26_Patron.Map_Horizontal_09.22.png (attachment 53859674183572, Last-Modified 2026-09-23
+      // 16:31:03Z). The image itself prints no year; it prints "25 YEARS", which is 2026 (first festival 2002).
+      // Link only: the in-app ACL map stays blind under the registration waiver until 2026-10-19.
+      mapSource: { url: "https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map", observedAt: "2026-09-25", mapYear: 2026 },
       mapStyle: "image-overlay",
       mapTheme: "park",
       weatherEndpoint: "https://api.weather.gov/points/30.26,-97.77",
