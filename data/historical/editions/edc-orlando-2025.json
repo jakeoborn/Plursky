@@ -1,0 +1,1640 @@
+{
+ "id": "edc-orlando-2025",
+ "festivalId": "edc-orlando",
+ "name": "EDC Orlando 2025",
+ "year": 2025,
+ "timezone": "America/New_York",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2025-11-07",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2025-11-08",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2025-11-09",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "edc-orlando-2025:2ar",
+   "name": "2AR",
+   "key": "2ar",
+   "performers": [
+    "2ar"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:999999999-acid-set",
+   "name": "999999999 (Acid Set)",
+   "key": "999999999-acid-set",
+   "performers": [
+    "999999999-acid-set"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:a-hundred-drums",
+   "name": "A Hundred Drums",
+   "key": "a-hundred-drums",
+   "performers": [
+    "a-hundred-drums"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:adam-beyer-b2b-layton-giordani",
+   "name": "Adam Beyer B2B Layton Giordani",
+   "key": "adam-beyer-b2b-layton-giordani",
+   "performers": [
+    "adam-beyer",
+    "layton-giordani"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:adam-beyer-presents-drumcode",
+   "name": "Adam Beyer presents Drumcode",
+   "key": "adam-beyer-presents-drumcode",
+   "performers": [
+    "adam-beyer-presents-drumcode"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:alleycvt",
+   "name": "ALLEYCVT",
+   "key": "alleycvt",
+   "performers": [
+    "alleycvt"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:alves",
+   "name": "Alves",
+   "key": "alves",
+   "performers": [
+    "alves"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:andromedik",
+   "name": "Andromedik",
+   "key": "andromedik",
+   "performers": [
+    "andromedik"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:angel-fernandez",
+   "name": "Angel Fernandez",
+   "key": "angel-fernandez",
+   "performers": [
+    "angel-fernandez"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:apashe",
+   "name": "Apashe",
+   "key": "apashe",
+   "performers": [
+    "apashe"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:argy",
+   "name": "Argy",
+   "key": "argy",
+   "performers": [
+    "argy"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:armin-van-buuren",
+   "name": "Armin van Buuren",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:ayybo",
+   "name": "AYYBO",
+   "key": "ayybo",
+   "performers": [
+    "ayybo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:bad-girl-bailey",
+   "name": "Bad Girl Bailey",
+   "key": "bad-girl-bailey",
+   "performers": [
+    "bad-girl-bailey"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:baggi",
+   "name": "Baggi",
+   "key": "baggi",
+   "performers": [
+    "baggi"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:barely-alive",
+   "name": "BARELY ALIVE",
+   "key": "barely-alive",
+   "performers": [
+    "barely-alive"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:bart-skils",
+   "name": "Bart Skils",
+   "key": "bart-skils",
+   "performers": [
+    "bart-skils"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:beltran",
+   "name": "Beltran",
+   "key": "beltran",
+   "performers": [
+    "beltran"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:ben-hemsley",
+   "name": "Ben Hemsley",
+   "key": "ben-hemsley",
+   "performers": [
+    "ben-hemsley"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:ben-sterling",
+   "name": "Ben Sterling",
+   "key": "ben-sterling",
+   "performers": [
+    "ben-sterling"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:bolo",
+   "name": "BOLO",
+   "key": "bolo",
+   "performers": [
+    "bolo"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:canabliss",
+   "name": "Canabliss",
+   "key": "canabliss",
+   "performers": [
+    "canabliss"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:carlos-mendoza",
+   "name": "Carlos Mendoza",
+   "key": "carlos-mendoza",
+   "performers": [
+    "carlos-mendoza"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:caspa-sunset-set",
+   "name": "Caspa (Sunset Set)",
+   "key": "caspa-sunset-set",
+   "performers": [
+    "caspa-sunset-set"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:cassian",
+   "name": "Cassian",
+   "key": "cassian",
+   "performers": [
+    "cassian"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:charlotte-de-witte",
+   "name": "Charlotte de Witte",
+   "key": "charlotte-de-witte",
+   "performers": [
+    "charlotte-de-witte"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:chase-and-status",
+   "name": "Chase & Status",
+   "key": "chase-and-status",
+   "performers": [
+    "chase-and-status"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:chasewest",
+   "name": "ChaseWest",
+   "key": "chasewest",
+   "performers": [
+    "chasewest"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:chris-lake",
+   "name": "Chris Lake",
+   "key": "chris-lake",
+   "performers": [
+    "chris-lake"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:circle-k",
+   "name": "Circle K",
+   "key": "circle-k",
+   "performers": [
+    "circle-k"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:cloonee",
+   "name": "Cloonee",
+   "key": "cloonee",
+   "performers": [
+    "cloonee"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:coco-and-breezy",
+   "name": "Coco & Breezy",
+   "key": "coco-and-breezy",
+   "performers": [
+    "coco-and-breezy"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    },
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:cole-knight",
+   "name": "Cole Knight",
+   "key": "cole-knight",
+   "performers": [
+    "cole-knight"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:crankdat",
+   "name": "Crankdat",
+   "key": "crankdat",
+   "performers": [
+    "crankdat"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:crespo",
+   "name": "Crespo",
+   "key": "crespo",
+   "performers": [
+    "crespo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:deborah-de-luca",
+   "name": "Deborah De Luca",
+   "key": "deborah-de-luca",
+   "performers": [
+    "deborah-de-luca"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:discovery-project",
+   "name": "Discovery Project",
+   "key": "discovery-project",
+   "performers": [
+    "discovery-project"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:dj-snake",
+   "name": "DJ Snake",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:dom-dolla",
+   "name": "Dom Dolla",
+   "key": "dom-dolla",
+   "performers": [
+    "dom-dolla"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:dombresky",
+   "name": "Dombresky",
+   "key": "dombresky",
+   "performers": [
+    "dombresky"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:dr-greco",
+   "name": "Dr. Greco",
+   "key": "dr-greco",
+   "performers": [
+    "dr-greco"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:dreya-v",
+   "name": "DREYA V",
+   "key": "dreya-v",
+   "performers": [
+    "dreya-v"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:eater",
+   "name": "Eater",
+   "key": "eater",
+   "performers": [
+    "eater"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:edgar-v",
+   "name": "Edgar V",
+   "key": "edgar-v",
+   "performers": [
+    "edgar-v"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:eli-brown",
+   "name": "Eli Brown",
+   "key": "eli-brown",
+   "performers": [
+    "eli-brown"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:ely-oaks",
+   "name": "Ely Oaks",
+   "key": "ely-oaks",
+   "performers": [
+    "ely-oaks"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:excision",
+   "name": "Excision",
+   "key": "excision",
+   "performers": [
+    "excision"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:flozone",
+   "name": "Flozone",
+   "key": "flozone",
+   "performers": [
+    "flozone"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:funk-tribu",
+   "name": "Funk Tribu",
+   "key": "funk-tribu",
+   "performers": [
+    "funk-tribu"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:fury-mc-dino",
+   "name": "Fury + MC Dino",
+   "key": "fury-mc-dino",
+   "performers": [
+    "fury-mc-dino"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:gorgon-city",
+   "name": "Gorgon City",
+   "key": "gorgon-city",
+   "performers": [
+    "gorgon-city"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:gorillat",
+   "name": "GorillaT",
+   "key": "gorillat",
+   "performers": [
+    "gorillat"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:green-velvet-b2b-alok-sunset-set",
+   "name": "Green Velvet B2B Alok (Sunset Set)",
+   "key": "green-velvet-b2b-alok-sunset-set",
+   "performers": [
+    "green-velvet",
+    "alok-sunset-set"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:gryffin",
+   "name": "Gryffin",
+   "key": "gryffin",
+   "performers": [
+    "gryffin"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:hills",
+   "name": "Hills",
+   "key": "hills",
+   "performers": [
+    "hills"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:hol",
+   "name": "HOL!",
+   "key": "hol",
+   "performers": [
+    "hol"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:ina-nia",
+   "name": "Ina Nia",
+   "key": "ina-nia",
+   "performers": [
+    "ina-nia"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:indira-paganotto",
+   "name": "Indira Paganotto",
+   "key": "indira-paganotto",
+   "performers": [
+    "indira-paganotto"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:infekt",
+   "name": "INFEKT",
+   "key": "infekt",
+   "performers": [
+    "infekt"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:j-patron",
+   "name": "J Patron",
+   "key": "j-patron",
+   "performers": [
+    "j-patron"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:jaden-bojsen",
+   "name": "Jaden Bojsen",
+   "key": "jaden-bojsen",
+   "performers": [
+    "jaden-bojsen"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:james-hype",
+   "name": "James Hype",
+   "key": "james-hype",
+   "performers": [
+    "james-hype"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:jesse-james",
+   "name": "Jesse James",
+   "key": "jesse-james",
+   "performers": [
+    "jesse-james"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:jev",
+   "name": "Jev",
+   "key": "jev",
+   "performers": [
+    "jev"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:juos",
+   "name": "Juos",
+   "key": "juos",
+   "performers": [
+    "juos"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:kai-wachi",
+   "name": "Kai Wachi",
+   "key": "kai-wachi",
+   "performers": [
+    "kai-wachi"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:kamino",
+   "name": "Kamino",
+   "key": "kamino",
+   "performers": [
+    "kamino"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:kasia",
+   "name": "KASIA",
+   "key": "kasia",
+   "performers": [
+    "kasia"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:kevin-de-vries",
+   "name": "Kevin de Vries",
+   "key": "kevin-de-vries",
+   "performers": [
+    "kevin-de-vries"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:knock2",
+   "name": "Knock2",
+   "key": "knock2",
+   "performers": [
+    "knock2"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:korolova",
+   "name": "Korolova",
+   "key": "korolova",
+   "performers": [
+    "korolova"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:ky-william",
+   "name": "Ky William",
+   "key": "ky-william",
+   "performers": [
+    "ky-william"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:aszewo",
+   "name": "Łaszewo",
+   "key": "aszewo",
+   "performers": [
+    "aszewo"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:lavern",
+   "name": "Lavern",
+   "key": "lavern",
+   "performers": [
+    "lavern"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:leisan",
+   "name": "Leisan",
+   "key": "leisan",
+   "performers": [
+    "leisan"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    },
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:leveltronics",
+   "name": "Leveltronics",
+   "key": "leveltronics",
+   "performers": [
+    "leveltronics"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:loofy",
+   "name": "Loofy",
+   "key": "loofy",
+   "performers": [
+    "loofy"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:loud-luxury",
+   "name": "Loud Luxury",
+   "key": "loud-luxury",
+   "performers": [
+    "loud-luxury"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:luke-dean-b2b-ranger-trucco-sunset-set",
+   "name": "Luke Dean B2B Ranger Trucco (Sunset Set)",
+   "key": "luke-dean-b2b-ranger-trucco-sunset-set",
+   "performers": [
+    "luke-dean",
+    "ranger-trucco-sunset-set"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:luuk-van-dijk",
+   "name": "Luuk van Dijk",
+   "key": "luuk-van-dijk",
+   "performers": [
+    "luuk-van-dijk"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:lyon-808",
+   "name": "Lyon 808",
+   "key": "lyon-808",
+   "performers": [
+    "lyon-808"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:maddy-o-neal",
+   "name": "Maddy O'Neal",
+   "key": "maddy-o-neal",
+   "performers": [
+    "maddy-o-neal"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:malone",
+   "name": "Malóne",
+   "key": "malone",
+   "performers": [
+    "malone"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:max-styler",
+   "name": "Max Styler",
+   "key": "max-styler",
+   "performers": [
+    "max-styler"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:miss-monique",
+   "name": "Miss Monique",
+   "key": "miss-monique",
+   "performers": [
+    "miss-monique"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:monoky",
+   "name": "Monoky",
+   "key": "monoky",
+   "performers": [
+    "monoky"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:morgan-seatree",
+   "name": "Morgan Seatree",
+   "key": "morgan-seatree",
+   "performers": [
+    "morgan-seatree"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:mph",
+   "name": "MPH",
+   "key": "mph",
+   "performers": [
+    "mph"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:nico-moreno",
+   "name": "Nico Moreno",
+   "key": "nico-moreno",
+   "performers": [
+    "nico-moreno"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:no-thanks",
+   "name": "No Thanks",
+   "key": "no-thanks",
+   "performers": [
+    "no-thanks"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:noise-mafia",
+   "name": "Noise Mafia",
+   "key": "noise-mafia",
+   "performers": [
+    "noise-mafia"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:okayval",
+   "name": "OKAYVAL",
+   "key": "okayval",
+   "performers": [
+    "okayval"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:omnom",
+   "name": "Omnom",
+   "key": "omnom",
+   "performers": [
+    "omnom"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:tta",
+   "name": "ØTTA",
+   "key": "tta",
+   "performers": [
+    "tta"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:the-outlaw",
+   "name": "The Outlaw",
+   "key": "the-outlaw",
+   "performers": [
+    "the-outlaw"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:porter-robinson-sunset-dj-set",
+   "name": "Porter Robinson (Sunset DJ Set)",
+   "key": "porter-robinson-sunset-dj-set",
+   "performers": [
+    "porter-robinson-sunset-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:prospa-b2b-kettama",
+   "name": "Prospa B2B KETTAMA",
+   "key": "prospa-b2b-kettama",
+   "performers": [
+    "prospa",
+    "kettama"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:riordan",
+   "name": "Riordan",
+   "key": "riordan",
+   "performers": [
+    "riordan"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:rudim3ntal",
+   "name": "RUDIM3NTAL",
+   "key": "rudim3ntal",
+   "performers": [
+    "rudim3ntal"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:san-pacho-sunset-set",
+   "name": "San Pacho (Sunset Set)",
+   "key": "san-pacho-sunset-set",
+   "performers": [
+    "san-pacho-sunset-set"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:sara-landry",
+   "name": "Sara Landry",
+   "key": "sara-landry",
+   "performers": [
+    "sara-landry"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:seven-lions-sunset-set",
+   "name": "Seven Lions (Sunset Set)",
+   "key": "seven-lions-sunset-set",
+   "performers": [
+    "seven-lions-sunset-set"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:slugg",
+   "name": "Slugg",
+   "key": "slugg",
+   "performers": [
+    "slugg"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:sofi-tukker",
+   "name": "Sofi Tukker",
+   "key": "sofi-tukker",
+   "performers": [
+    "sofi-tukker"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:sosa",
+   "name": "Sosa",
+   "key": "sosa",
+   "performers": [
+    "sosa"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:sota",
+   "name": "Sota",
+   "key": "sota",
+   "performers": [
+    "sota"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:sub-focus-sunset-set",
+   "name": "Sub Focus (Sunset Set)",
+   "key": "sub-focus-sunset-set",
+   "performers": [
+    "sub-focus-sunset-set"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:subtronics",
+   "name": "Subtronics",
+   "key": "subtronics",
+   "performers": [
+    "subtronics"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:tape-b",
+   "name": "Tape B",
+   "key": "tape-b",
+   "performers": [
+    "tape-b"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:tiesto-sunset-set",
+   "name": "Tiësto (Sunset Set)",
+   "key": "tiesto-sunset-set",
+   "performers": [
+    "tiesto-sunset-set"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:tiffy-vera",
+   "name": "Tiffy Vera",
+   "key": "tiffy-vera",
+   "performers": [
+    "tiffy-vera"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:virtual-riot",
+   "name": "Virtual Riot",
+   "key": "virtual-riot",
+   "performers": [
+    "virtual-riot"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:voyd",
+   "name": "VOYD",
+   "key": "voyd",
+   "performers": [
+    "voyd"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:wakyin",
+   "name": "Wakyin",
+   "key": "wakyin",
+   "performers": [
+    "wakyin"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:walker-and-royce",
+   "name": "Walker & Royce",
+   "key": "walker-and-royce",
+   "performers": [
+    "walker-and-royce"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:westend",
+   "name": "Westend",
+   "key": "westend",
+   "performers": [
+    "westend"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:wilkinson",
+   "name": "Wilkinson",
+   "key": "wilkinson",
+   "performers": [
+    "wilkinson"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:wooli",
+   "name": "Wooli",
+   "key": "wooli",
+   "performers": [
+    "wooli"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:wuki",
+   "name": "Wuki",
+   "key": "wuki",
+   "performers": [
+    "wuki"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:ydg",
+   "name": "YDG",
+   "key": "ydg",
+   "performers": [
+    "ydg"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2025:zedd",
+   "name": "Zedd",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://orlando.electricdaisycarnival.com/lineup/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20251107131035/https://orlando.electricdaisycarnival.com/lineup/",
+    "captureTimestamp": "20251107131035",
+    "sha256": "8d792f3889b4d0d6292a6449c5b31f469e0849fcda0462748800920eedefa7d6"
+   }
+  ]
+ }
+}

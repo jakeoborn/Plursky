@@ -29,6 +29,7 @@ import { plateFor, isPlaceholderStage, MAX_PAGE_IMAGE_BYTES } from './lib/festiv
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const F_DIR = join(ROOT, 'f');
+const HIST = existsSync(join(ROOT, 'data/historical/index.json')) ? JSON.parse(readFileSync(join(ROOT, 'data/historical/index.json'), 'utf8')).editions : [];
 
 let checks = 0, failed = 0;
 const fail = (msg) => { checks++; failed++; console.log(`  ✗  ${msg}`); };
@@ -94,6 +95,18 @@ function checkPage(entry, html, { verified }) {
   const hasMap = /id="map-h"/.test(html);
   if (hasMap !== wantMap) out.push(`map section present=${hasMap}, expected ${wantMap} (plate=${!!plate}, mapSource=${!!cfg.mapSource})`);
   const mapSec = section(html, 'map-h') || '';
+
+  // Past editions: one line per library edition of this festival, read from
+  // data/historical/index.json. A lineup_only edition says "lineup only" and
+  // never "0 sets": it has no sets because none were archived.
+  const past = HIST.filter(e => e.festivalId === id.replace(/-\d{4}$/, ''));
+  const pastText = visibleText(section(html, 'past-h') || '');
+  if (!!past.length !== /id="past-h"/.test(html)) out.push(`past-editions section present=${/id="past-h"/.test(html)}, library has ${past.length}`);
+  for (const e of past) {
+    const want = `${e.name} — ${e.year}, ${e.counts.artists} artists, ${e.completeness === 'lineup_only' ? 'lineup only' : `${e.counts.sets} sets`}`;
+    if (!pastText.includes(want)) out.push(`past editions do not read "${want}"`);
+  }
+  if (/\b0 sets\b/.test(pastText)) out.push('past editions claim "0 sets"');
   if (/\bmap of\b/i.test(visibleText(mapSec))) out.push('map section says "map of"');
 
   // Images: our own plate and nothing else. Official festival photos were
@@ -235,6 +248,8 @@ const mutants = [
   // only official link.
   ['a lineup-only page with its Lineup source dropped', byId('iii-points-2026'), (h) => h.replace(/\n\s*<li>Lineup: [^\n]*<\/li>/, ''), false],
   ['an empty preview with its official links dropped', byId('coachella-2027'), (h) => h.replace(/<a href="https:\/\/www\.coachella\.com\/[^"]*"[^>]*>[^<]*<\/a>/g, 'coachella'), false], // site AND maps page
+  // A lineup-only past edition relabelled with the zero its sets list happens to hold.
+  ['a lineup-only past edition shown as "0 sets"', byId('nocturnal-wonderland-2026'), (h) => h.replace(', lineup only</li>', ', 0 sets</li>'), false],
   // Control: the same sentence on VERIFIED geometry is not what the rule forbids.
   ['a walk-time sentence on verified geometry', verified, (h) => h.replace('</main>', `${WALK}\n</main>`), true],
 ];
@@ -254,4 +269,4 @@ if (failed) {
   console.log(`\n  ${failed}/${checks} checks FAILED`);
   process.exit(1);
 }
-console.log(`  ✓ festival pages: ${checks} checks across ${REG.length} pages (plates ${plates}, official-map links ${links}, noindex ${noindexed}, multi-weekend ${multiWeekend}; 6 mutations caught, 1 control passed)`);
+console.log(`  ✓ festival pages: ${checks} checks across ${REG.length} pages (plates ${plates}, official-map links ${links}, noindex ${noindexed}, multi-weekend ${multiWeekend}; 7 mutations caught, 1 control passed)`);

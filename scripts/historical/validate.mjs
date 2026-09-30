@@ -13,6 +13,11 @@ export const OFFICIAL_HOSTS = {
   "hard-summer": ["hardsummer.com"],
   "edc-lv": ["lasvegas.electricdaisycarnival.com"],
   "acl": ["aclfestival.com", "cdn.prod.website-files.com"],
+  "edc-orlando": ["orlando.electricdaisycarnival.com"],
+  "nocturnal-wonderland": ["nocturnalwonderland.com"],
+  "escape-halloween": ["escapehalloween.com"],
+  "beyond-wonderland-socal": ["socal.beyondwonderland.com"],
+  "dreamstate-socal": ["socal.dreamstateusa.com"],
 };
 
 const HHMM = /^([01]\d|2[0-3]):[0-5]\d$/;
@@ -51,19 +56,21 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   if (!e.provenance?.captures?.length) p.push(`${e.id}: no provenance captures`);
   for (const c of e.provenance?.captures || []) {
     const url = c.archivedUrl || c.pageArchivedUrl;
-    const ts = officialArchive(url, e.festivalId, e.year, p, `${e.id} day ${c.day}`);
-    if (ts && !ts.startsWith(String(e.year))) p.push(`${e.id} day ${c.day}: page capture ${ts} is not from ${e.year}`);
-    if (c.imageArchivedUrl) officialArchive(c.imageArchivedUrl, e.festivalId, e.year, p, `${e.id} day ${c.day} graphic`);
-    if (!/^[0-9a-f]{64}$/.test(c.sha256 || "")) p.push(`${e.id} day ${c.day}: artifact hash missing`);
+    const where = c.day ? `day ${c.day}` : `${c.page || "?"} page`;
+    const ts = officialArchive(url, e.festivalId, e.year, p, `${e.id} ${where}`);
+    if (ts && !ts.startsWith(String(e.year))) p.push(`${e.id} ${where}: page capture ${ts} is not from ${e.year}`);
+    if (c.imageArchivedUrl) officialArchive(c.imageArchivedUrl, e.festivalId, e.year, p, `${e.id} ${where} graphic`);
+    if (!/^[0-9a-f]{64}$/.test(c.sha256 || "")) p.push(`${e.id} ${where}: artifact hash missing`);
   }
 
   // Completeness.
   if (!["complete_schedule", "lineup_only"].includes(e.completeness)) p.push(`${e.id}: completeness "${e.completeness}"`);
-  if (e.completeness === "lineup_only") {
-    if (e.sets?.length || e.stages?.length) p.push(`${e.id}: lineup_only must carry no stages or sets (no placeholder times)`);
-    if (!e.artists?.length) p.push(`${e.id}: lineup_only with no artists`);
-    return p;
-  }
+  const lineupOnly = e.completeness === "lineup_only";
+  if (lineupOnly && (e.sets?.length || e.provenance?.extractionMethod !== "official_lineup_html"))
+    p.push(`${e.id}: lineup_only must carry no sets (no placeholder times) and come from an official lineup page`);
+  if (!lineupOnly && e.provenance?.extractionMethod === "official_lineup_html")
+    return p.concat(`${e.id}: a lineup page has no times, so it cannot make a complete_schedule`);
+  if (lineupOnly && !e.artists?.length) p.push(`${e.id}: lineup_only with no artists`);
 
   const stageIds = new Set(e.stages.map(s => s.id)), artistIds = new Set(e.artists.map(a => a.id));
   if (stageIds.size !== e.stages.length) p.push(`${e.id}: duplicate stage id`);
@@ -78,6 +85,8 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
     const why = dropReason(x, x);
     if (why && !hit.has(x)) { hit.add(x); p.push(`${e.id}: dropped ${why.category} "${x}" appears in the edition`); }
   }
+
+  if (lineupOnly) return p.concat(validateLineup(e, { expected, dropped }, stageIds));
 
   const ids = new Set(), slots = new Set(), used = new Set();
   for (const s of e.sets) {
@@ -108,9 +117,7 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   // "ОTОBOKE BEAVER" came back with Cyrillic О). It renders identically and
   // silently breaks search and cross-edition matching, so billing and stage
   // names must be Latin-script letters (accented Latin such as RÜFÜS, BÔA is fine).
-  for (const x of [...e.artists, ...e.stages])
-    // Letters only: symbols in a stylized billing are real ("€URO TRA$H").
-    if (/(?=\p{L})\P{Script=Latin}/u.test(x.name)) p.push(`${e.id}: "${x.name}" contains a non-Latin look-alike character`);
+  p.push(...nonLatin(e));
 
   // Every documented day and stage present; counts locked from the reviewed sheet.
   for (const d of e.days) if (!e.sets.some(s => s.day === d.day)) p.push(`${e.id}: day ${d.day} has no sets`);
@@ -118,7 +125,8 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   if (!expected) p.push(`${e.id}: no locked expected counts`);
   else {
     if (expected.stages !== e.stages.length) p.push(`${e.id}: ${e.stages.length} stages, locked ${expected.stages}`);
-    expected.setsPerDay.forEach((n, i) => {
+    if (!Array.isArray(expected.setsPerDay)) p.push(`${e.id}: no locked setsPerDay`);
+    else expected.setsPerDay.forEach((n, i) => {
       const got = e.sets.filter(s => s.day === i + 1).length;
       if (got !== n) p.push(`${e.id}: day ${i + 1} has ${got} sets, locked ${n}`);
     });
@@ -144,5 +152,33 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
       }
     }
   }
+  return p;
+}
+
+// Letters only: symbols in a stylized billing are real ("€URO TRA$H").
+const nonLatin = e => [...e.artists, ...e.stages]
+  .filter(x => /(?=\p{L})\P{Script=Latin}/u.test(x.name))
+  .map(x => `${e.id}: "${x.name}" contains a non-Latin look-alike character`);
+
+// A lineup_only edition: artists as the official lineup page billed them,
+// each with the day and stage it printed (where it printed them), no times.
+function validateLineup(e, { expected, dropped }, stageIds) {
+  const p = nonLatin(e), used = new Set();
+  for (const a of e.artists) {
+    if (!a.id.startsWith(e.id + ":")) p.push(`${e.id} ${a.id}: id not scoped to its edition`);
+    for (const x of a.appearances || []) {
+      const keys = Object.keys(x);
+      if (keys.some(k => k !== "day" && k !== "stageId") || !keys.length) p.push(`${e.id} ${a.name}: appearance ${JSON.stringify(x)} carries something other than a day and a stage`);
+      if ("day" in x && (!Number.isInteger(x.day) || x.day < 1 || x.day > e.days.length)) p.push(`${e.id} ${a.name}: day ${x.day} is not an edition day`);
+      if ("stageId" in x) { if (!stageIds.has(x.stageId)) p.push(`${e.id} ${a.name}: unknown stage ${x.stageId}`); used.add(x.stageId); }
+    }
+  }
+  for (const st of e.stages) if (!used.has(st.id)) p.push(`${e.id}: stage ${st.name} is on no artist's appearance`);
+  if (!expected) return p.concat(`${e.id}: no locked expected counts`);
+  if (expected.artists !== e.artists.length) p.push(`${e.id}: ${e.artists.length} artists, locked ${expected.artists}`);
+  if (expected.stages !== e.stages.length) p.push(`${e.id}: ${e.stages.length} stages, locked ${expected.stages}`);
+  const per = e.days.map(d => e.artists.reduce((n, a) => n + (a.appearances || []).filter(x => x.day === d.day).length, 0));
+  if (JSON.stringify(per) !== JSON.stringify(expected.appearancesPerDay)) p.push(`${e.id}: appearances per day ${per.join("/")}, locked ${(expected.appearancesPerDay || []).join("/")}`);
+  if ((dropped || []).length !== (expected.dropped ?? -1)) p.push(`${e.id}: drops ${(dropped || []).length} printed billings, locked ${expected.dropped}`);
   return p;
 }

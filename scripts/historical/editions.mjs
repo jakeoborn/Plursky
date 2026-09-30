@@ -27,6 +27,24 @@ export const EDITIONS = {
       ["2025-10-10", "Friday"], ["2025-10-11", "Saturday"], ["2025-10-12", "Sunday"]],
     dayLabels: ["Weekend 1 · Friday", "Weekend 1 · Saturday", "Weekend 1 · Sunday",
       "Weekend 2 · Friday", "Weekend 2 · Saturday", "Weekend 2 · Sunday"] },
+  // Lineup only: these editions' set-times pages were never archived, so the
+  // library carries their official lineup page (billing, and the day and
+  // stage it printed) and no times (extract-insomniac-lineup.mjs).
+  "edc-orlando-2025": { festivalId: "edc-orlando", name: "EDC Orlando 2025", year: 2025,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2025-11-07", "Friday"], ["2025-11-08", "Saturday"], ["2025-11-09", "Sunday"]] },
+  "nocturnal-wonderland-2025": { festivalId: "nocturnal-wonderland", name: "Nocturnal Wonderland 2025", year: 2025,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2025-09-13", "Saturday"], ["2025-09-14", "Sunday"]] },
+  "escape-halloween-2025": { festivalId: "escape-halloween", name: "Escape Halloween 2025", year: 2025,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2025-10-31", "Friday"], ["2025-11-01", "Saturday"]] },
+  "beyond-wonderland-socal-2025": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2025", year: 2025,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2025-03-28", "Friday"], ["2025-03-29", "Saturday"]] },
+  "dreamstate-socal-2025": { festivalId: "dreamstate-socal", name: "Dreamstate SoCal 2025", year: 2025,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2025-11-21", "Friday"], ["2025-11-22", "Saturday"]] },
 };
 
 // Rows the official schedule prints that are NOT part of the library (founder

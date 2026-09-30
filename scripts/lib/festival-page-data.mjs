@@ -44,8 +44,11 @@ export function pastEditionsFor(id, root = ROOT) {
   const base = String(id).replace(/-\d{4}$/, '');
   return (JSON.parse(readFileSync(idx, 'utf8')).editions || [])
     .filter(e => e.festivalId === base)
-    .map(e => ({ id: e.id, name: e.name, year: e.year,
-                 artists: e.counts?.artists ?? null, sets: e.counts?.sets ?? null }))
+    // A lineup_only edition has no sets because none were archived, not
+    // because the festival had none: it says "lineup only", never "0 sets".
+    .map(e => ({ id: e.id, name: e.name, year: e.year, lineupOnly: e.completeness === 'lineup_only',
+                 artists: e.counts?.artists ?? null,
+                 sets: e.completeness === 'lineup_only' ? null : e.counts?.sets ?? null }))
     .sort((a, b) => b.year - a.year);
 }
 

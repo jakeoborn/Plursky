@@ -1,0 +1,186 @@
+{
+  "id": "beyond-wonderland-socal-2025",
+  "method": "official_lineup_html",
+  "official": "https://socal.beyondwonderland.com/lineup/",
+  "chosen": "20250330061707",
+  "archivedUrl": "https://web.archive.org/web/20250330061707/https://socal.beyondwonderland.com/lineup/",
+  "sha256": "9b16bef99a16f4d45c5967f07d2feab42fdf55fc49e707ff3f16c4fdc5795760",
+  "title": "Lineup – Beyond Wonderland SoCal 2025",
+  "tabs": [
+    "Alphabetical 131",
+    "By Day 132",
+    "By Stage 132"
+  ],
+  "stageOrder": [
+    "Queen's Domain",
+    "Mad Hatter's Castle",
+    "Caterpillar's Garden",
+    "Cheshire Woods",
+    "The Looking Glass",
+    "Sea Of Wonder",
+    "Beatbox Boombox Art Car"
+  ],
+  "crossTab": [
+    "SABAI: not alphabetical; days 1; stages Caterpillar's Garden"
+  ],
+  "considered": [
+    {
+      "captureTimestamp": "20250116115319",
+      "archivedUrl": "https://web.archive.org/web/20250116115319/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "a922d41cf34553726927e9268280011e078ef46ec224fbe54d0d9b4314b3e17e",
+      "bytes": 81314,
+      "title": "Lineup – Beyond Wonderland SoCal 2025",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250121041143",
+      "archivedUrl": "https://web.archive.org/web/20250121041143/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "0bef3cbf40ba0fe9e82f4c650fc963cde7831e54cbf7339f3ca7be57bcb79de7",
+      "bytes": 81506,
+      "title": "Lineup – Beyond Wonderland SoCal 2025",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250124121048",
+      "archivedUrl": "https://web.archive.org/web/20250124121048/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "a8df618ed489c12f9e06ed098dec606fbc860b773f381130c757026149dc90b5",
+      "bytes": 81492,
+      "title": "Lineup – Beyond Wonderland SoCal 2025",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250314122820",
+      "archivedUrl": "https://web.archive.org/web/20250314122820/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "1f2751d61313add92ffbde99e8a90f57098f5788c1acc1e898f4f8748cd4a66d",
+      "bytes": 134399,
+      "title": "Lineup – Beyond Wonderland SoCal 2025",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, March 28",
+        "Saturday, March 29"
+      ],
+      "billings": 121,
+      "diffVsChosen": [
+        "added by the final: $ami G",
+        "added by the final: Country Night",
+        "added by the final: DJ Pinke",
+        "added by the final: DKT B2B Goldbrush",
+        "added by the final: DØMINA",
+        "added by the final: Habstrakt B2B JSTJR",
+        "added by the final: JAYV B2B Jazzy J",
+        "added by the final: Jessica Audiffred B2B Nostalgix",
+        "added by the final: Kaiyo",
+        "added by the final: Line Dancing With The Redheaded Cowgirl",
+        "added by the final: Pickle",
+        "added by the final: Recess",
+        "added by the final: RHOME",
+        "added by the final: Roxy Ferrari",
+        "added by the final: SABAI (K-Pop Set)",
+        "added by the final: TFTI",
+        "removed by the final: Discovery Project",
+        "removed by the final: Domina",
+        "removed by the final: Nostalgix",
+        "removed by the final: Pickle Presents: Pickleback",
+        "removed by the final: Sabai (K-Pop Set)"
+      ]
+    },
+    {
+      "captureTimestamp": "20250324023654",
+      "archivedUrl": "https://web.archive.org/web/20250324023654/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "0984d153e069b4d133d0aa6f5478f2223c8efc822bd6546531aacb663d0720aa",
+      "bytes": 144945,
+      "title": "Lineup – Beyond Wonderland SoCal 2025",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, March 28",
+        "Saturday, March 29"
+      ],
+      "billings": 132,
+      "diffVsChosen": [
+        "added by the final: Kaiyo",
+        "removed by the final: Discovery Project"
+      ]
+    },
+    {
+      "captureTimestamp": "20250330061707",
+      "archivedUrl": "https://web.archive.org/web/20250330061707/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "9b16bef99a16f4d45c5967f07d2feab42fdf55fc49e707ff3f16c4fdc5795760",
+      "bytes": 144882,
+      "title": "Lineup – Beyond Wonderland SoCal 2025",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, March 28",
+        "Saturday, March 29"
+      ],
+      "billings": 132,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20250406045045",
+      "archivedUrl": "https://web.archive.org/web/20250406045045/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "7026871fd23acdae54d6f205396a5201fce80203e3e547f313cad13e99a512bb",
+      "bytes": 83848,
+      "title": "Lineup – Beyond Wonderland SoCal 2025",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250713195246",
+      "archivedUrl": "https://web.archive.org/web/20250713195246/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "caa60c8773d60ca554a2a55ea514a71750d64e34e93a3e9d81dc96e3a5f59349",
+      "bytes": 129234,
+      "title": "Lineup – Beyond Wonderland SoCal 2025",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250820124938",
+      "archivedUrl": "https://web.archive.org/web/20250820124938/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "9ea66922e217ef129671dbba1f47aaa4d3ada1c4ea3dacf6981ec1c87403c4d5",
+      "bytes": 140969,
+      "title": "Lineup – Beyond Wonderland SoCal 2025",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20251012010441",
+      "archivedUrl": "https://web.archive.org/web/20251012010441/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "b73ea01883bc0de63e1643e312e415f4d0c375bbb41c9da74fc41fcda7316d9d",
+      "bytes": 140904,
+      "title": "Lineup – Beyond Wonderland SoCal 2026",
+      "valid": false,
+      "titled": false,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    }
+  ],
+  "dropped": []
+}

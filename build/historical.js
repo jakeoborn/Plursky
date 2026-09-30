@@ -286,6 +286,7 @@ function _HistLibrary({
 }
 var _HIST_METHOD = {
   structured_html: "Read from the festival's official set-times pages",
+  official_lineup_html: "Read from the festival's official lineup page (its set times were never archived)",
   official_image_transcription: "Transcribed from the festival's official schedule graphics, checked block by block"
 };
 function _HistProvenance({
@@ -343,12 +344,12 @@ function _HistProvenance({
     style: {
       fontWeight: 600
     }
-  }, dayLabel(c.day)), c.archivedUrl && React.createElement("a", {
+  }, c.day ? dayLabel(c.day) : "All days"), c.archivedUrl && React.createElement("a", {
     href: c.archivedUrl,
     target: "_blank",
     rel: "noopener noreferrer",
     style: link
-  }, "Set-times page · ", stamp(c.captureTimestamp)), c.imageArchivedUrl && React.createElement("div", null, React.createElement("a", {
+  }, c.page === "lineup" ? "Lineup page" : "Set-times page", " · ", stamp(c.captureTimestamp)), c.imageArchivedUrl && React.createElement("div", null, React.createElement("a", {
     href: c.imageArchivedUrl,
     target: "_blank",
     rel: "noopener noreferrer",
@@ -425,6 +426,7 @@ function _HistEdition({
   var scroller = React.useRef(null);
   var e = res.status === "ready" ? res.data : null;
   var lineupOnly = meta.completeness === "lineup_only";
+  var lineupDays = lineupOnly && !!e && e.artists.some(a => (a.appearances || []).some(x => x.day));
   var frozen = `Official ${meta.year} ${lineupOnly ? "lineup" : "schedule"} · archived`;
   var view = React.useMemo(() => {
     if (!e) return null;
@@ -502,39 +504,95 @@ function _HistEdition({
     }
   }, sub)));
   var body = null;
+  var place = a => (a.appearances || []).map(x => [x.day && _histDayParts(meta.days.find(d => d.day === x.day) || {}).name, view.stage[x.stageId]?.name].filter(Boolean).join(" · ")).filter(Boolean).join("; ");
+  var nameRow = (a, sub) => React.createElement("li", {
+    key: a.id,
+    style: {
+      padding: "10px 0",
+      borderBottom: "1px solid var(--line)"
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 16,
+      lineHeight: "21px",
+      fontWeight: 600,
+      overflowWrap: "anywhere"
+    }
+  }, a.name), sub && React.createElement("div", {
+    style: {
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, sub));
+  var byName = (a, b) => a.name.localeCompare(b.name);
   if (e && lineupOnly) {
-    var list = e.artists.filter(a => !query || _histFold(a.name).includes(query)).sort((a, b) => a.name.localeCompare(b.name));
+    var printedDays = e.artists.some(a => (a.appearances || []).some(x => x.day));
+    var note = `No official set times survive for this edition.${printedDays ? ` Days${e.stages.length ? " and stages" : ""} are as the official lineup printed them.` : " Only the lineup is shown."}`;
+    var list;
+    if (query || day === "all" || !printedDays) {
+      var hits = e.artists.filter(a => !query || _histFold(a.name).includes(query)).sort(byName);
+      list = React.createElement(React.Fragment, null, React.createElement("ul", {
+        "aria-label": "Lineup",
+        style: {
+          listStyle: "none",
+          margin: 0,
+          padding: 0
+        }
+      }, hits.map(a => nameRow(a, place(a)))), !hits.length && React.createElement("p", {
+        style: {
+          color: "var(--text-2)"
+        }
+      }, "No artist matches “", q.trim(), "”."));
+    } else {
+      var onDay = e.artists.filter(a => (a.appearances || []).some(x => x.day === day));
+      var _groups = e.stages.length ? [...e.stages.map(st => ({
+        id: st.id,
+        name: st.name,
+        acts: onDay.filter(a => a.appearances.some(x => x.day === day && x.stageId === st.id))
+      })), {
+        id: "none",
+        name: "Stage not printed",
+        acts: onDay.filter(a => a.appearances.some(x => x.day === day && !x.stageId))
+      }] : [{
+        id: "all",
+        name: null,
+        acts: onDay
+      }];
+      list = _groups.filter(g => g.acts.length).map(g => React.createElement("section", {
+        key: g.id,
+        "data-stage": g.id,
+        style: {
+          marginTop: g.name ? 20 : 0
+        }
+      }, g.name && React.createElement("h2", {
+        style: {
+          margin: "0 0 2px",
+          fontSize: 20,
+          lineHeight: "25px",
+          fontWeight: 700,
+          overflowWrap: "anywhere"
+        }
+      }, g.name), React.createElement("ul", {
+        "aria-label": g.name || "Lineup",
+        style: {
+          listStyle: "none",
+          margin: 0,
+          padding: 0
+        }
+      }, g.acts.sort(byName).map(a => nameRow(a)))));
+    }
     body = React.createElement(React.Fragment, null, React.createElement("p", {
       style: {
         margin: "4px 0 12px",
         fontSize: 14,
         color: "var(--text-2)"
       }
-    }, "No official set times survive for this edition, so only the lineup is shown."), React.createElement("ul", {
-      "aria-label": "Lineup",
-      style: {
-        listStyle: "none",
-        margin: 0,
-        padding: 0
-      }
-    }, list.map(a => React.createElement("li", {
-      key: a.id,
-      style: {
-        padding: "10px 0",
-        borderBottom: "1px solid var(--line)",
-        fontSize: 16,
-        fontWeight: 600,
-        overflowWrap: "anywhere"
-      }
-    }, a.name))), !list.length && React.createElement("p", {
-      style: {
-        color: "var(--text-2)"
-      }
-    }, "No artist matches “", q.trim(), "”."));
+    }, note), list);
   } else if (e && query) {
-    var hits = e.sets.filter(s => _histFold(view.artist[s.artistId]?.name).includes(query));
+    var _hits = e.sets.filter(s => _histFold(view.artist[s.artistId]?.name).includes(query));
     body = React.createElement(React.Fragment, null, meta.days.map(d => {
-      var rows = hits.filter(s => s.day === d.day).sort(view.byTime);
+      var rows = _hits.filter(s => s.day === d.day).sort(view.byTime);
       if (!rows.length) return null;
       return React.createElement("section", {
         key: d.day,
@@ -558,7 +616,7 @@ function _HistEdition({
           padding: 0
         }
       }, rows.map(s => setRow(s, view.stage[s.stageId]?.name))));
-    }), !hits.length && React.createElement("p", {
+    }), !_hits.length && React.createElement("p", {
       style: {
         color: "var(--text-2)"
       }
@@ -646,7 +704,7 @@ function _HistEdition({
       gap: 8,
       borderBottom: "1px solid var(--line)"
     }
-  }, !lineupOnly && !query && groups.map(g => React.createElement("div", {
+  }, (!lineupOnly || lineupDays) && !query && groups.map(g => React.createElement("div", {
     key: g.name || "days",
     role: "group",
     "aria-label": g.name || "Days",
@@ -678,7 +736,16 @@ function _HistEdition({
         top: 0
       });
     }
-  }, d.short.slice(0, 3), " ", +d.date.slice(8))))), React.createElement("input", {
+  }, d.short.slice(0, 3), " ", +d.date.slice(8))), lineupOnly && React.createElement(_HistChip, {
+    on: day === "all",
+    label: "The whole lineup",
+    onClick: () => {
+      setDay("all");
+      scroller.current?.scrollTo({
+        top: 0
+      });
+    }
+  }, "All"))), React.createElement("input", {
     type: "search",
     value: q,
     onChange: ev => setQ(ev.target.value),

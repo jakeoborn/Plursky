@@ -1,0 +1,1921 @@
+{
+ "id": "beyond-wonderland-socal-2025",
+ "festivalId": "beyond-wonderland-socal",
+ "name": "Beyond Wonderland SoCal 2025",
+ "year": 2025,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2025-03-28",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2025-03-29",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "beyond-wonderland-socal-2025:queen-s-domain",
+   "name": "Queen's Domain"
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:mad-hatter-s-castle",
+   "name": "Mad Hatter's Castle"
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:caterpillar-s-garden",
+   "name": "Caterpillar's Garden"
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:cheshire-woods",
+   "name": "Cheshire Woods"
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:the-looking-glass",
+   "name": "The Looking Glass"
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:sea-of-wonder",
+   "name": "Sea Of Wonder"
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:beatbox-boombox-art-car",
+   "name": "Beatbox Boombox Art Car"
+  }
+ ],
+ "artists": [
+  {
+   "id": "beyond-wonderland-socal-2025:ami-g",
+   "name": "$ami G",
+   "key": "ami-g",
+   "performers": [
+    "ami-g"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:1991",
+   "name": "1991",
+   "key": "1991",
+   "performers": [
+    "1991"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:sea-of-wonder"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:999999999",
+   "name": "999999999",
+   "key": "999999999",
+   "performers": [
+    "999999999"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:the-looking-glass"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:ac-slater",
+   "name": "AC Slater",
+   "key": "ac-slater",
+   "performers": [
+    "ac-slater"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:acraze",
+   "name": "ACRAZE",
+   "key": "acraze",
+   "performers": [
+    "acraze"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:alleycvt",
+   "name": "ALLEYCVT",
+   "key": "alleycvt",
+   "performers": [
+    "alleycvt"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:aly-and-fila",
+   "name": "Aly & Fila",
+   "key": "aly-and-fila",
+   "performers": [
+    "aly-and-fila"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:andruss",
+   "name": "Andruss",
+   "key": "andruss",
+   "performers": [
+    "andruss"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:astrix",
+   "name": "Astrix",
+   "key": "astrix",
+   "performers": [
+    "astrix"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:audien",
+   "name": "Audien",
+   "key": "audien",
+   "performers": [
+    "audien"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:b",
+   "name": "b.",
+   "key": "b",
+   "performers": [
+    "b"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:barely-alive-b2b-kompany",
+   "name": "BARELY ALIVE B2B Kompany",
+   "key": "barely-alive-b2b-kompany",
+   "performers": [
+    "barely-alive",
+    "kompany"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:basstripper",
+   "name": "Basstripper",
+   "key": "basstripper",
+   "performers": [
+    "basstripper"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:ben-nicky-vs-darren-styles",
+   "name": "Ben Nicky vs Darren Styles",
+   "key": "ben-nicky-vs-darren-styles",
+   "performers": [
+    "ben-nicky-vs-darren-styles"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:blanke",
+   "name": "Blanke",
+   "key": "blanke",
+   "performers": [
+    "blanke"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:bolo",
+   "name": "BOLO",
+   "key": "bolo",
+   "performers": [
+    "bolo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:boys-noize",
+   "name": "Boys Noize",
+   "key": "boys-noize",
+   "performers": [
+    "boys-noize"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:the-looking-glass"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:capochino",
+   "name": "Capochino",
+   "key": "capochino",
+   "performers": [
+    "capochino"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:cera-khin",
+   "name": "Cera Khin",
+   "key": "cera-khin",
+   "performers": [
+    "cera-khin"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:the-looking-glass"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:charlie-sparks",
+   "name": "Charlie Sparks",
+   "key": "charlie-sparks",
+   "performers": [
+    "charlie-sparks"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:the-looking-glass"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:cosmic-gate",
+   "name": "Cosmic Gate",
+   "key": "cosmic-gate",
+   "performers": [
+    "cosmic-gate"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:country-night",
+   "name": "Country Night",
+   "key": "country-night",
+   "performers": [
+    "country-night"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:culture-shock-b2b-on-mode",
+   "name": "Culture Shock B2B ÆON:MODE",
+   "key": "culture-shock-b2b-on-mode",
+   "performers": [
+    "culture-shock",
+    "on-mode"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:sea-of-wonder"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:da-tweekaz",
+   "name": "Da Tweekaz",
+   "key": "da-tweekaz",
+   "performers": [
+    "da-tweekaz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:danny-avila",
+   "name": "Danny Avila",
+   "key": "danny-avila",
+   "performers": [
+    "danny-avila"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:dead-x",
+   "name": "Dead X",
+   "key": "dead-x",
+   "performers": [
+    "dead-x"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:deadmau5",
+   "name": "deadmau5",
+   "key": "deadmau5",
+   "performers": [
+    "deadmau5"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:deborah-de-luca",
+   "name": "Deborah De Luca",
+   "key": "deborah-de-luca",
+   "performers": [
+    "deborah-de-luca"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:the-looking-glass"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:deeper-purpose",
+   "name": "Deeper Purpose",
+   "key": "deeper-purpose",
+   "performers": [
+    "deeper-purpose"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:dimension",
+   "name": "Dimension",
+   "key": "dimension",
+   "performers": [
+    "dimension"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:dj-isaac",
+   "name": "DJ Isaac",
+   "key": "dj-isaac",
+   "performers": [
+    "dj-isaac"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:dj-pinke",
+   "name": "DJ Pinke",
+   "key": "dj-pinke",
+   "performers": [
+    "dj-pinke"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:dkt-b2b-goldbrush",
+   "name": "DKT B2B Goldbrush",
+   "key": "dkt-b2b-goldbrush",
+   "performers": [
+    "dkt",
+    "goldbrush"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:d-mina",
+   "name": "DØMINA",
+   "key": "d-mina",
+   "performers": [
+    "d-mina"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:dr-fresch",
+   "name": "Dr. Fresch",
+   "key": "dr-fresch",
+   "performers": [
+    "dr-fresch"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:duke-dumont",
+   "name": "Duke Dumont",
+   "key": "duke-dumont",
+   "performers": [
+    "duke-dumont"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:egzod",
+   "name": "Egzod",
+   "key": "egzod",
+   "performers": [
+    "egzod"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:estella-boersma",
+   "name": "Estella Boersma",
+   "key": "estella-boersma",
+   "performers": [
+    "estella-boersma"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:the-looking-glass"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:excision",
+   "name": "Excision",
+   "key": "excision",
+   "performers": [
+    "excision"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:fjaak",
+   "name": "FJAAK",
+   "key": "fjaak",
+   "performers": [
+    "fjaak"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:the-looking-glass"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:friction",
+   "name": "Friction",
+   "key": "friction",
+   "performers": [
+    "friction"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:sea-of-wonder"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:friendly-fire",
+   "name": "Friendly Fire",
+   "key": "friendly-fire",
+   "performers": [
+    "friendly-fire"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:sea-of-wonder"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:gene-farris",
+   "name": "Gene Farris",
+   "key": "gene-farris",
+   "performers": [
+    "gene-farris"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:sea-of-wonder"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:godlands",
+   "name": "Godlands",
+   "key": "godlands",
+   "performers": [
+    "godlands"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:habstrakt-b2b-jstjr",
+   "name": "Habstrakt B2B JSTJR",
+   "key": "habstrakt-b2b-jstjr",
+   "performers": [
+    "habstrakt",
+    "jstjr"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:habstrakt",
+   "name": "Habstrakt",
+   "key": "habstrakt",
+   "performers": [
+    "habstrakt"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:haliene",
+   "name": "HALIENE",
+   "key": "haliene",
+   "performers": [
+    "haliene"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:hector-oaks",
+   "name": "Héctor Oaks",
+   "key": "hector-oaks",
+   "performers": [
+    "hector-oaks"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:the-looking-glass"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:honu",
+   "name": "HONÜ",
+   "key": "honu",
+   "performers": [
+    "honu"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:sea-of-wonder"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:illenium",
+   "name": "Illenium",
+   "key": "illenium",
+   "performers": [
+    "illenium"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:infekt",
+   "name": "INFEKT",
+   "key": "infekt",
+   "performers": [
+    "infekt"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:iznyrs",
+   "name": "IZNYRS",
+   "key": "iznyrs",
+   "performers": [
+    "iznyrs"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:jackie-hollander",
+   "name": "Jackie Hollander",
+   "key": "jackie-hollander",
+   "performers": [
+    "jackie-hollander"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:jake-silva",
+   "name": "Jake Silva",
+   "key": "jake-silva",
+   "performers": [
+    "jake-silva"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:jayv-b2b-jazzy-j",
+   "name": "JAYV B2B Jazzy J",
+   "key": "jayv-b2b-jazzy-j",
+   "performers": [
+    "jayv",
+    "jazzy-j"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:jessica-audiffred",
+   "name": "Jessica Audiffred",
+   "key": "jessica-audiffred",
+   "performers": [
+    "jessica-audiffred"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:jessica-audiffred-b2b-nostalgix",
+   "name": "Jessica Audiffred B2B Nostalgix",
+   "key": "jessica-audiffred-b2b-nostalgix",
+   "performers": [
+    "jessica-audiffred",
+    "nostalgix"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:jia",
+   "name": "Jia",
+   "key": "jia",
+   "performers": [
+    "jia"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:the-looking-glass"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:johnny-chay",
+   "name": "Johnny Chay",
+   "key": "johnny-chay",
+   "performers": [
+    "johnny-chay"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:joshwa",
+   "name": "Joshwa",
+   "key": "joshwa",
+   "performers": [
+    "joshwa"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:jstjr",
+   "name": "JSTJR",
+   "key": "jstjr",
+   "performers": [
+    "jstjr"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:juelz",
+   "name": "Juelz",
+   "key": "juelz",
+   "performers": [
+    "juelz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:justin-jay",
+   "name": "Justin Jay",
+   "key": "justin-jay",
+   "performers": [
+    "justin-jay"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:sea-of-wonder"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:kai-wachi",
+   "name": "Kai Wachi",
+   "key": "kai-wachi",
+   "performers": [
+    "kai-wachi"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:kaiyo",
+   "name": "Kaiyo",
+   "key": "kaiyo",
+   "performers": [
+    "kaiyo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:kimmic",
+   "name": "KIMMIC",
+   "key": "kimmic",
+   "performers": [
+    "kimmic"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:kobosil",
+   "name": "Kobosil",
+   "key": "kobosil",
+   "performers": [
+    "kobosil"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:the-looking-glass"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:lee-foss",
+   "name": "Lee Foss",
+   "key": "lee-foss",
+   "performers": [
+    "lee-foss"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:sea-of-wonder"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:leisan",
+   "name": "Leisan",
+   "key": "leisan",
+   "performers": [
+    "leisan"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:sea-of-wonder"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:levity",
+   "name": "Levity",
+   "key": "levity",
+   "performers": [
+    "levity"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:line-dancing-with-the-redheaded-cowgirl",
+   "name": "Line Dancing With The Redheaded Cowgirl",
+   "key": "line-dancing-with-the-redheaded-cowgirl",
+   "performers": [
+    "line-dancing-with-the-redheaded-cowgirl"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:loud-luxury",
+   "name": "Loud Luxury",
+   "key": "loud-luxury",
+   "performers": [
+    "loud-luxury"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:louis-the-child",
+   "name": "Louis The Child",
+   "key": "louis-the-child",
+   "performers": [
+    "louis-the-child"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:maddix",
+   "name": "Maddix",
+   "key": "maddix",
+   "performers": [
+    "maddix"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:mark-knight",
+   "name": "Mark Knight",
+   "key": "mark-knight",
+   "performers": [
+    "mark-knight"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:sea-of-wonder"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:me-n-u",
+   "name": "Me n ü",
+   "key": "me-n-u",
+   "performers": [
+    "me-n-u"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:mish",
+   "name": "Mish",
+   "key": "mish",
+   "performers": [
+    "mish"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:mph",
+   "name": "MPH",
+   "key": "mph",
+   "performers": [
+    "mph"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:sea-of-wonder"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:netsky",
+   "name": "Netsky",
+   "key": "netsky",
+   "performers": [
+    "netsky"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:nifra",
+   "name": "Nifra",
+   "key": "nifra",
+   "performers": [
+    "nifra"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:odd-mob",
+   "name": "Odd Mob",
+   "key": "odd-mob",
+   "performers": [
+    "odd-mob"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:panteros666",
+   "name": "Panteros666",
+   "key": "panteros666",
+   "performers": [
+    "panteros666"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:paul-van-dyk",
+   "name": "Paul van Dyk",
+   "key": "paul-van-dyk",
+   "performers": [
+    "paul-van-dyk"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:pickle",
+   "name": "Pickle",
+   "key": "pickle",
+   "performers": [
+    "pickle"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:pocket",
+   "name": "Pocket",
+   "key": "pocket",
+   "performers": [
+    "pocket"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:sea-of-wonder"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:pyke",
+   "name": "Pyke",
+   "key": "pyke",
+   "performers": [
+    "pyke"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:ram-and-richard-durand-present-digital-culture",
+   "name": "Ram & Richard Durand present Digital Culture",
+   "key": "ram-and-richard-durand-present-digital-culture",
+   "performers": [
+    "ram-and-richard-durand-present-digital-culture"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:recess",
+   "name": "Recess",
+   "key": "recess",
+   "performers": [
+    "recess"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:reinier-zonneveld",
+   "name": "Reinier Zonneveld",
+   "key": "reinier-zonneveld",
+   "performers": [
+    "reinier-zonneveld"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:the-looking-glass"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:rhome",
+   "name": "RHOME",
+   "key": "rhome",
+   "performers": [
+    "rhome"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:ricky-retro",
+   "name": "Ricky Retro",
+   "key": "ricky-retro",
+   "performers": [
+    "ricky-retro"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:rl-grime",
+   "name": "RL Grime",
+   "key": "rl-grime",
+   "performers": [
+    "rl-grime"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:roadhouse",
+   "name": "Roadhouse",
+   "key": "roadhouse",
+   "performers": [
+    "roadhouse"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:roger-sanchez",
+   "name": "Roger Sanchez",
+   "key": "roger-sanchez",
+   "performers": [
+    "roger-sanchez"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:rooler",
+   "name": "Rooler",
+   "key": "rooler",
+   "performers": [
+    "rooler"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:rossy",
+   "name": "Rossy",
+   "key": "rossy",
+   "performers": [
+    "rossy"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:roxy-ferrari",
+   "name": "Roxy Ferrari",
+   "key": "roxy-ferrari",
+   "performers": [
+    "roxy-ferrari"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:sabai-k-pop-set",
+   "name": "SABAI (K-Pop Set)",
+   "key": "sabai-k-pop-set",
+   "performers": [
+    "sabai-k-pop-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:said-the-sky",
+   "name": "Said The Sky",
+   "key": "said-the-sky",
+   "performers": [
+    "said-the-sky"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:sam-binga",
+   "name": "Sam Binga",
+   "key": "sam-binga",
+   "performers": [
+    "sam-binga"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:sea-of-wonder"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:samplifire",
+   "name": "Samplifire",
+   "key": "samplifire",
+   "performers": [
+    "samplifire"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:san-pacho",
+   "name": "San Pacho",
+   "key": "san-pacho",
+   "performers": [
+    "san-pacho"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:seven-lions",
+   "name": "Seven Lions",
+   "key": "seven-lions",
+   "performers": [
+    "seven-lions"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:ship-wrek",
+   "name": "Ship Wrek",
+   "key": "ship-wrek",
+   "performers": [
+    "ship-wrek"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:showtek-hardstyle-set",
+   "name": "Showtek Hardstyle Set",
+   "key": "showtek-hardstyle-set",
+   "performers": [
+    "showtek-hardstyle-set"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:sota",
+   "name": "Sota",
+   "key": "sota",
+   "performers": [
+    "sota"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:sea-of-wonder"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:space-92",
+   "name": "Space 92",
+   "key": "space-92",
+   "performers": [
+    "space-92"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:the-looking-glass"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:supergloss",
+   "name": "Supergloss",
+   "key": "supergloss",
+   "performers": [
+    "supergloss"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:the-looking-glass"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:svdden-death",
+   "name": "Svdden Death",
+   "key": "svdden-death",
+   "performers": [
+    "svdden-death"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:taylor-kade",
+   "name": "Taylor Kade",
+   "key": "taylor-kade",
+   "performers": [
+    "taylor-kade"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:teko",
+   "name": "Teko",
+   "key": "teko",
+   "performers": [
+    "teko"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:sea-of-wonder"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:tfti",
+   "name": "TFTI",
+   "key": "tfti",
+   "performers": [
+    "tfti"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:timmy-trumpet",
+   "name": "Timmy Trumpet",
+   "key": "timmy-trumpet",
+   "performers": [
+    "timmy-trumpet"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:tita-lau",
+   "name": "Tita Lau",
+   "key": "tita-lau",
+   "performers": [
+    "tita-lau"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:sea-of-wonder"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:tony-junior",
+   "name": "Tony Junior",
+   "key": "tony-junior",
+   "performers": [
+    "tony-junior"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:valentino-khan",
+   "name": "Valentino Khan",
+   "key": "valentino-khan",
+   "performers": [
+    "valentino-khan"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:vangar",
+   "name": "Vangar",
+   "key": "vangar",
+   "performers": [
+    "vangar"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:void",
+   "name": "VOID",
+   "key": "void",
+   "performers": [
+    "void"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:sea-of-wonder"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:walker-and-royce-b2b-vnssa",
+   "name": "Walker & Royce B2B VNSSA",
+   "key": "walker-and-royce-b2b-vnssa",
+   "performers": [
+    "walker-and-royce",
+    "vnssa"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:wax-motif",
+   "name": "Wax Motif",
+   "key": "wax-motif",
+   "performers": [
+    "wax-motif"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:westend",
+   "name": "Westend",
+   "key": "westend",
+   "performers": [
+    "westend"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:sea-of-wonder"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:whipped-cream",
+   "name": "WHIPPED CREAM",
+   "key": "whipped-cream",
+   "performers": [
+    "whipped-cream"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:whoo-kid",
+   "name": "Whoo Kid",
+   "key": "whoo-kid",
+   "performers": [
+    "whoo-kid"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:sea-of-wonder"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:william-black",
+   "name": "William Black",
+   "key": "william-black",
+   "performers": [
+    "william-black"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:with-l-ve",
+   "name": "With Løve",
+   "key": "with-l-ve",
+   "performers": [
+    "with-l-ve"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:wooli",
+   "name": "Wooli",
+   "key": "wooli",
+   "performers": [
+    "wooli"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:wuki",
+   "name": "Wuki",
+   "key": "wuki",
+   "performers": [
+    "wuki"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:queen-s-domain"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:yellow-claw",
+   "name": "Yellow Claw",
+   "key": "yellow-claw",
+   "performers": [
+    "yellow-claw"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:yosuf",
+   "name": "Yosuf",
+   "key": "yosuf",
+   "performers": [
+    "yosuf"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:cheshire-woods"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:zeds-dead",
+   "name": "Zeds Dead",
+   "key": "zeds-dead",
+   "performers": [
+    "zeds-dead"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "beyond-wonderland-socal-2025:mad-hatter-s-castle"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:zorza",
+   "name": "Zorza",
+   "key": "zorza",
+   "performers": [
+    "zorza"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:the-looking-glass"
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2025:sabai",
+   "name": "SABAI",
+   "key": "sabai",
+   "performers": [
+    "sabai"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "beyond-wonderland-socal-2025:caterpillar-s-garden"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://socal.beyondwonderland.com/lineup/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20250330061707/https://socal.beyondwonderland.com/lineup/",
+    "captureTimestamp": "20250330061707",
+    "sha256": "9b16bef99a16f4d45c5967f07d2feab42fdf55fc49e707ff3f16c4fdc5795760"
+   }
+  ]
+ }
+}
