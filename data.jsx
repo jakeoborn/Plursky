@@ -589,23 +589,25 @@ const FESTIVALS_REGISTRY = [
   // benefit at the current scale. Re-evaluate at festival #5.
   {
     // ── EDC Orlando 2026 — Tinker Field, Orlando FL ──
-    // ⛔ GATE (revival wave 2026-08-22): full data set (EDCO_STAGES /
-    // EDCO_ARTISTS / EDCO_AMENITIES) is staged below; DATES CORRECTED vs
-    // the June preview stub, which carried "Nov 13–15, 2026" — the
-    // official dates per the Insomniac press release (2026-06-23) and
-    // orlando.edc.com are NOV 6–8, 2026. Day-by-day lineup is REAL
-    // (108 acts, official site day filters); set times, per-artist stage
-    // assignments, and the official 2026 map are NOT published yet
-    // (checked 2026-08-22; Insomniac drops them in the EDC app ~1-2
-    // weeks out). Flip `available: true` ONLY after the flip session
-    // replaces times/stages/map.
+    // OPEN ON ITS LINEUP (founder ruling 2026-09-30): "use 2025 and say we are
+    // waiting for official 2026 map". The day-by-day lineup is REAL (108 acts,
+    // official site day filters; dates NOV 6–8, 2026 per the Insomniac press
+    // release of 2026-06-23 and orlando.edc.com). Set times and per-artist
+    // stages are NOT published, so every act sits on "tba" with no time, and
+    // the festival is `scheduleTBA`.
     //
-    // GEO IS DONE (2026-09-06, #68): centroid, the five gpsAnchors and the
-    // EDCO_STAGES x/y grid are all measured — see the block comments below.
-    // The flip session no longer owns recalibration; it owns (1) per-artist
-    // stage + set times from the Insomniac app, (2) the official 2026 map art
-    // replacing edco-tinker-2026.jpg, and (3) re-deriving ONLY the anchors of
-    // stages the 2026 layout actually moves.
+    // THE MAP IS LAST YEAR'S, and says so. The official 2026 map is not
+    // published (checked 2026-09-30), so the plate is the official 2025 map
+    // (scripts/build-edco-map-2025.mjs) and `mapArtYear: 2025` makes the map
+    // screen label it "2025 MAP · OFFICIAL 2026 MAP PENDING". Stage x/y are
+    // where each stage is DRAWN ON THAT ART. Nothing on it is a claim about the
+    // 2026 layout.
+    //
+    // FLIP (when the official 2026 map publishes): pin it in
+    // scripts/build-edco-map-2026.mjs, re-measure every x/y on the new plate,
+    // re-fit the anchors with scripts/georef-map.mjs from saved control points,
+    // drop `mapArtYear`, and clear the registration waiver in verify.mjs. Set
+    // times and stages arrive separately, in one import for all 108 acts.
     config: {
       id:        "edc-orlando-2026",
       // Where the lineup rows came from (the SOURCE note above), as data so the
@@ -681,9 +683,15 @@ const FESTIVALS_REGISTRY = [
       // stale: it measured the centroid-offset artifact, never a real layout
       // signal. The five stages are internally consistent once measured.
       //
-      // FLIP SESSION: re-derive an anchor ONLY if the official 2026 map moves
-      // that stage. Same method, and re-check the x/y grid in EDCO_STAGES if
-      // you do — the two are derived together.
+      // FLIP SESSION: re-fit from the official 2026 map with
+      // scripts/georef-map.mjs, from control points saved as a points.json.
+      //
+      // ⚠ Since 2026-09-30 these five feed a LIVE festival. map.jsx solves its
+      // GPS-to-map affine from the first three (kinetic, circuit, neon) against
+      // their x/y on the 2025 plate, so the blue dot is a poster read pushed
+      // through a poster read. That is what the dated registration waiver in
+      // verify.mjs excuses (unsourced + blind), and why every distance readout
+      // stays withheld.
       gpsAnchors: [
         { stageId: "kinetic", lat: 28.53700, lng: -81.40040, src: "poster" }, // SE of the stadium, N of W Anderson, W of Nashville
         { stageId: "circuit", lat: 28.53999, lng: -81.40219, src: "poster" }, // Tinker Field mowed rectangle, NE part
@@ -692,28 +700,31 @@ const FESTIVALS_REGISTRY = [
         { stageId: "bacardi", lat: 28.53660, lng: -81.40240, src: "poster" }, // N of SR-408, between Tampa and Lake Beardall
       ],
       mainStageId: "kinetic",
-      // edco-tinker-2026.jpg = PROVISIONAL generated abstract overlay
-      // (ImageMagick plasma, not traced). Replace with the processed
-      // official 2026 map when it drops.
-      mapImage: "edco-tinker-2026.jpg",
+      // edco-tinker-2025.webp = the official EDC Orlando 2025 festival map
+      // (edco_2025_de_festival_map_1080x1350_r03.png, sha256 a438644f…): map
+      // art cropped out from under the title block and above the legend, then
+      // padded to a square, never scaled. Built by
+      // scripts/build-edco-map-2025.mjs from the unedited source in
+      // map-sources/. It replaces a generated placeholder.
+      mapImage: "edco-tinker-2025.webp",
+      // The edition the art was drawn for. When it is not `year`, the map
+      // screen says whose map it is and that this year's is pending.
+      mapArtYear: 2025,
       mapStyle: "image-overlay",
       mapTheme: "park",
+      // The art prints all five stage names beside their structures.
+      mapPrintsStageNames: true,
       weatherEndpoint: "https://api.weather.gov/points/28.54,-81.41",
       setTimesProvisional: true,
     },
-    // STAYS GATED, and not for schedule reasons. The 2026-09-15 call opens a
-    // festival whose set times are unpublished, and EDC Orlando qualifies on
-    // that axis — but opening it makes it LIVE, and a live festival has to
-    // clear the map-registration gate. EDCO has no sourced registration by
-    // design: no OSM polygon matches the fence, so it carries no footprint and
-    // waits on the official 2026 map (the same map the hourly watch probes).
-    // Verify says it plainly: "unsourced, blind with no waiver".
-    //
-    // A waiver here would be a judgement about map accuracy with no evidence
-    // behind it, which is the founder's call and not a drive-by in this PR.
-    // Flip this to `available: true, scheduleTBA: true` the day the official
-    // map lands — the schedule side is already ready for it.
-    available: false,
+    // OPEN since 2026-09-30 (founder ruling, quoted at the top of this entry).
+    // The 2026-09-15 call already opened festivals whose set times are
+    // unpublished; EDC Orlando was held back only by the map-registration
+    // gate, because a live festival has to clear it and this one has no
+    // sourced registration. The ruling accepts that: last year's map, labelled,
+    // under a dated waiver (REGISTRATION_WAIVERS in scripts/verify.mjs).
+    available: true,
+    scheduleTBA: true,
     accent:    "#22c55e",
     emoji:     "🌴",
     region:    "North America",
@@ -2570,29 +2581,28 @@ const ACL_AMENITIES = [
 // 12:00-13:00 times until the flip session. Stage names verified from
 // orlando.edc.com/experience/stages (incl. 5th stage CASA BACARDÍ).
 
-// Stage x/y are a 0–100 GRID, and since v264 they are DERIVED from the
-// measured gpsAnchors above, not eyeballed. One isotropic scale (5.62 m per
-// grid unit) so the abstract layout is honest about relative position AND
-// relative distance: worst pairwise inter-stage error is 3.9 %, and that is
-// integer rounding, nothing else. The previous grid put kinetic at y=24 —
-// far NORTH — when the measured main stage is the SOUTH-EASTERN one.
+// Stage x/y are where each stage is DRAWN on edco-tinker-2025.webp, the
+// official 2025 map: round(100·px/940, 1) of the rows measured in
+// scripts/build-edco-map-2025.mjs, at the stage's own structure and never its
+// badge or label (scripts/test-georef-map.mjs holds the two in step). Pins
+// were drawn back onto the plate and looked at.
 //
-// ⚠ Do not "square up" this grid by stretching it to fill 10..90 on both
-// axes. The east span (450 m) is 1.20x the north span (376 m), so filling
-// both would apply a 20 % vertical stretch and push worst pairwise error to
-// 9.6 %. The map space in map.jsx is 0–100 SQUARE, so a per-axis scale is a
-// real distortion, not a viewport artifact. The n/s margin is the honest
-// cost of preserving aspect.
+// Until 2026-09-30 this was an abstract grid DERIVED from the gpsAnchors on
+// one scale (5.62 m per unit), over a generated placeholder. It is not that
+// any more: real art is on screen, so a pin has to sit on the stage the art
+// draws. `node scripts/georef-map.mjs grid edc-orlando-2026` still prints
+// the derived grid, and it no longer matches by design. The art is drawn,
+// not surveyed: BACARDÍ sits mid-south on it, while its anchor is west.
 //
-// The plasma overlay art stays abstract, so nothing registers against it;
-// re-derive this grid with the anchors if the official 2026 map moves a stage.
+// "tba" carries no x/y on purpose: it is not a place, and a pin for it on
+// official art would be one. It stays a stage everywhere else (lineup rows).
 const EDCO_STAGES = [
-  { id: "kinetic", name: "kineticFIELD",   short: "KINETIC",  color: "#f97316", x: 57, y: 76, size: 1.7, desc: "Main stage",               vibe: "Main Event",      vibeNote: "Headliners under the electric sky.",                 peak: "18:00–00:00" },
-  { id: "circuit", name: "circuitGROUNDS", short: "CIRCUIT",  color: "#38bdf8", x: 26, y: 17, size: 1.4, desc: "Epic-melody big room",     vibe: "Big Melodies",    vibeNote: "Trance, melodic bass, anthem energy.",               peak: "16:00–00:00" },
-  { id: "neon",    name: "neonGARDEN",     short: "NEON",     color: "#a855f7", x: 90, y: 36, size: 1.3, desc: "Factory 93 home base",     vibe: "House & Techno",  vibeNote: "Factory 93 takeover territory, four-on-the-floor.",  peak: "15:00–00:00" },
-  { id: "stereo",  name: "stereoBLOOM",    short: "STEREO",   color: "#f43f5e", x: 10, y: 70, size: 1.1, desc: "Insomniac Records stage",  vibe: "Label Sounds",    vibeNote: "Insomniac Records + Dreamstate hosting.",            peak: "14:00–23:00" },
-  { id: "bacardi", name: "CASA BACARDÍ",   short: "BACARDÍ",  color: "#22c55e", x: 22, y: 83, size: 0.9, desc: "Lounge stage",             vibe: "Lounge Sessions", vibeNote: "Day-party energy under the palms.",                  peak: "13:00–20:00" },
-  { id: "tba",    name: "Schedule TBA",    short: "TBA",      color: "#9ca3af", x: 50, y: 50, size: 0.1, desc: "PROVISIONAL: stage assignments drop with the official schedule", vibe: "Unscheduled", vibeNote: "Every artist sits here until the official schedule assigns stages + times.", peak: "—" },
+  { id: "kinetic", name: "kineticFIELD",   short: "KINETIC",  color: "#f97316", x: 73.4, y: 64.3, size: 1.7, desc: "Main stage",               vibe: "Main Event",      vibeNote: "Headliners under the electric sky.",                 peak: "18:00–00:00" },
+  { id: "circuit", name: "circuitGROUNDS", short: "CIRCUIT",  color: "#38bdf8", x: 16.5, y: 25.4, size: 1.4, desc: "Epic-melody big room",     vibe: "Big Melodies",    vibeNote: "Trance, melodic bass, anthem energy.",               peak: "16:00–00:00" },
+  { id: "neon",    name: "neonGARDEN",     short: "NEON",     color: "#a855f7", x: 88.5, y: 38.2, size: 1.3, desc: "Factory 93 home base",     vibe: "House & Techno",  vibeNote: "Factory 93 takeover territory, four-on-the-floor.",  peak: "15:00–00:00" },
+  { id: "stereo",  name: "stereoBLOOM",    short: "STEREO",   color: "#f43f5e", x: 13, y: 65.9, size: 1.1, desc: "Insomniac Records stage",  vibe: "Label Sounds",    vibeNote: "Insomniac Records + Dreamstate hosting.",            peak: "14:00–23:00" },
+  { id: "bacardi", name: "CASA BACARDÍ",   short: "BACARDÍ",  color: "#22c55e", x: 44.1, y: 75, size: 0.9, desc: "Lounge stage",             vibe: "Lounge Sessions", vibeNote: "Day-party energy under the palms.",                  peak: "13:00–20:00" },
+  { id: "tba",    name: "Schedule TBA",    short: "TBA",      color: "#9ca3af", size: 0.1, desc: "PROVISIONAL: stage assignments drop with the official schedule", vibe: "Unscheduled", vibeNote: "Every artist sits here until the official schedule assigns stages + times.", peak: "—" },
 ];
 
 // The flip fills this block from the OFFICIAL schedule:
@@ -2731,16 +2741,12 @@ const EDCO_ARTISTS = [
   _edcoMk("ecu36", "Ultrathem",                                "Electronic", 3),
 ];
 
-const EDCO_AMENITIES = [
-  { id: "eoa1", type: "water",  label: "Hydration",            x: 44, y: 30 },
-  { id: "eoa2", type: "water",  label: "Hydration",            x: 60, y: 62 },
-  { id: "eoa3", type: "food",   label: "Vendor Village",       x: 50, y: 50 },
-  { id: "eoa4", type: "food",   label: "Westside Eats",        x: 22, y: 58 },
-  { id: "eoa5", type: "med",    label: "Medical",              x: 54, y: 40 },
-  { id: "eoa6", type: "toilet", label: "Restrooms",            x: 30, y: 40 },
-  { id: "eoa7", type: "toilet", label: "Restrooms",            x: 70, y: 56 },
-  { id: "eoa8", type: "info",   label: "Info & Guest Services", x: 48, y: 18 },
-];
+// No amenity pins. The eight that were here (two hydration, "Vendor Village",
+// "Westside Eats", medical, two restrooms, info) came from no official source
+// and were removed on 2026-09-30 (founder ruling: accuracy bar). The 2025 art
+// prints its own amenity icons; reading 2026 amenities off last year's map is
+// not a source either. Add rows only from the official 2026 map.
+const EDCO_AMENITIES = [];
 
 // ── Lost Lands 2026 — Legend Valley, Thornville OH (Sep 18–20; early entry Sep 16–17) ──
 // Day-by-day lineup = official daily-lineups poster (lostlandsfestival.com,

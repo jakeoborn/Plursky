@@ -130,6 +130,14 @@ moves, re-run A3.
 
 ## Scope B — `edc-orlando-2026` flip session (map expected closer to Nov 6–8)
 
+**Open since 2026-09-30** (founder ruling: "use 2025 and say we are waiting for
+official 2026 map"). EDC Orlando is live on its lineup over the official 2025
+map (`edco-tinker-2025.webp`, `mapArtYear: 2025`), labelled on the map screen
+as the 2025 map with the official 2026 map pending. Stage x/y are measured on
+that plate, the eight placeholder amenity pins are gone, and a registration
+waiver in `scripts/verify.mjs` (unsourced + blind, expires 2026-11-09) covers
+the five poster anchors. What is left below is the map flip.
+
 **Corrected 2026-09-30.** This section used to say the venue centroid was
 provisional and that no existing anchor should be treated as measured. That
 described the tree before PR #73 (v264, 2026-09-06) and is no longer true:
@@ -137,21 +145,21 @@ described the tree before PR #73 (v264, 2026-09-06) and is no longer true:
 - The centroid (`28.53826, -81.40144`, `onSiteRadiusMi: 0.6`) is the midpoint
   of the measured festival polygon. Do not re-survey it.
 - All five anchors (`kinetic, circuit, neon, stereo, bacardi`) were re-fitted
-  from the official 2025 map onto Orange County orthos, and the `EDCO_STAGES`
-  x/y grid is derived from them on one scale. They stay `src: "poster"`: a
-  read off map art, so every distance readout stays withheld.
+  from the official 2025 map onto Orange County orthos. They stay
+  `src: "poster"`: a read off map art, so every distance readout stays
+  withheld. (`EDCO_STAGES` x/y was derived from them until 2026-09-30; it is
+  now measured on the 2025 plate.)
 - No `venue.footprint`, by design. No OSM polygon matches the fence.
 
 What the flip session owns, once the official 2026 map publishes:
 
 1. Pin the map in `scripts/build-edco-map-2026.mjs` (source, hash, crop, pad)
-   and build the plate that replaces the `edco-tinker-2026.jpg` placeholder.
-2. Re-fit an anchor ONLY for a stage the 2026 layout moves:
-   `node scripts/georef-map.mjs fit points.json`. The x/y grid and the anchors
-   are derived together; `node scripts/georef-map.mjs grid edc-orlando-2026`
-   shows whether the shipped grid still matches.
-3. Stage and set time for all 108 acts in one import.
-4. Flip `available: true` as its own PR.
+   and build the plate that replaces `edco-tinker-2025.webp`.
+2. Re-measure every stage x/y on the new plate and drop `mapArtYear`.
+3. Re-fit the anchors from control points saved as a `points.json`:
+   `node scripts/georef-map.mjs fit points.json`.
+4. Clear the `edc-orlando-2026` registration waiver, or re-date it on purpose.
+5. Stage and set time for all 108 acts in one import, separately.
 
 A fit on the 2026 art is still a read off art. It does not promote an anchor
 out of `poster`; `scripts/anchor-residuals.mjs` and the distance-readout gate

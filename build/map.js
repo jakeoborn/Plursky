@@ -501,6 +501,9 @@ function _solveMapAffine(cfg, stages) {
 }
 var MAP_AFFINE = _solveMapAffine();
 var MAP_REGISTRATION_TOL_M = 25;
+function _mapArtIsOtherEdition(cfg) {
+  return !!(cfg && cfg.mapImage && cfg.mapArtYear != null && cfg.year != null && cfg.mapArtYear !== cfg.year);
+}
 var PLACED_STAGES = (typeof STAGES !== "undefined" ? STAGES : []).filter(s => typeof s.x === "number" && typeof s.y === "number");
 function _gpsFromAffine(affine, cfg, x, y) {
   if (!affine) return null;
@@ -2582,7 +2585,7 @@ function MapScreen({
   var [amenityKey, setAmenityKey] = React.useState(false);
   var [amenityFilter, setAmenityFilter] = React.useState(null);
   var REAL_MAP_ONLY = FESTIVAL_CONFIG.mapMode === "real";
-  var mapPostureLabel = REAL_MAP_ONLY ? "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY";
+  var mapPostureLabel = _mapArtIsOtherEdition(FESTIVAL_CONFIG) ? `${FESTIVAL_CONFIG.mapArtYear} MAP · OFFICIAL ${FESTIVAL_CONFIG.year} MAP PENDING` : REAL_MAP_ONLY ? "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY";
   var [useRealMap, setUseRealMap] = React.useState(() => {
     if (REAL_MAP_ONLY) return true;
     try {
@@ -3017,13 +3020,16 @@ function MapScreen({
       background: "var(--paper-2)"
     }
   }, React.createElement(WellnessPill, null), React.createElement("div", {
+    "data-map-posture": true,
     style: {
       position: "absolute",
       top: 68,
       left: 10,
       zIndex: 4,
+      maxWidth: "calc(100% - 100px)",
+      boxSizing: "border-box",
       padding: "5px 9px",
-      borderRadius: 999,
+      borderRadius: 12,
       background: "rgba(var(--glass),0.92)",
       color: "var(--ink)",
       border: "1px solid var(--line-2)",
@@ -3035,7 +3041,9 @@ function MapScreen({
   }, React.createElement("span", {
     className: "mono",
     style: {
+      display: "block",
       fontSize: 8,
+      lineHeight: 1.35,
       letterSpacing: 1.05,
       fontWeight: 800
     }

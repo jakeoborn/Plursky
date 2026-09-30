@@ -1670,7 +1670,7 @@ function FestivalChip({
     onClose: () => setOpen(false)
   }));
 }
-var _GENERATED_ART = new Set(["edco-tinker-2026.jpg"]);
+var _GENERATED_ART = new Set([]);
 function _festivalArt(cfg) {
   var img = cfg && cfg.mapImage;
   return img && /\.(webp|jpe?g|png)$/i.test(img) && !_GENERATED_ART.has(img) ? img : null;

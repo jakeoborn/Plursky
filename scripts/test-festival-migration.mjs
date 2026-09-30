@@ -69,8 +69,22 @@ function boot(seed = {}) {
   for (const n of ["data", "photo-tag", "spotify"]) {
     vm.runInContext(readFileSync(join(ROOT, "build", `${n}.js`), "utf8"), ctx, { filename: `build/${n}.js` });
   }
+  gateInHarness(ctx, GATED_FIXTURE);
   return { ctx, store, run: (src) => vm.runInContext(src, ctx) };
 }
+
+const GATED_FIXTURE = "edc-orlando-2026";
+// EDC Orlando was the only gated festival with a data module until it opened on
+// 2026-09-30, and since then NO gated festival carries one. The gated case is
+// still real (the next festival staged ahead of its flip will be one), so the
+// harness gates this festival ITSELF, in its own vm context, rather than
+// depending on which festival happens to be gated on main this week.
+// _allDataSets() reads FESTIVALS_REGISTRY at call time, so this is exactly the
+// state the shipped code saw while EDC Orlando was gated.
+function gateInHarness(ctx, id) {
+  vm.runInContext(`(function () { const r = (FESTIVALS_REGISTRY || []).find(f => f && f.config && f.config.id === ${JSON.stringify(id)}); if (r) r.available = false; })()`, ctx);
+}
+
 
 let checks = 0, failed = 0;
 const fails = [];
@@ -107,8 +121,8 @@ for (const [k, v] of Object.entries(T)) if (!v) dead(`fixture date for ${k} is $
 // The gated festival is the whole point of walking _DATA_SETS rather than the
 // registry-filtered _allDataSets(). Assert it really IS gated, or this fixture
 // silently stops testing anything.
-const orlandoGated = !REG.find(f => f?.config?.id === "edc-orlando-2026" && f.available);
-check(orlandoGated, "fixture sanity: edc-orlando-2026 must be GATED for the gated-festival case to mean anything");
+const orlandoGated = !!REG.find(f => f?.config?.id === GATED_FIXTURE) && !REG.find(f => f?.config?.id === GATED_FIXTURE && f.available);
+check(orlandoGated, "fixture sanity: edc-orlando-2026 must be GATED in the harness for the gated-festival case to mean anything");
 
 // Which festivals' night windows claim a given capture time? Computed here from
 // _DATA_SETS + the shipped _photoFestivalNight, so the test derives the truth

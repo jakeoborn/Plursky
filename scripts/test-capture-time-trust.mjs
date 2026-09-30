@@ -81,7 +81,20 @@ let checks = 0, failed = 0;
 function check(ok, msg) { checks++; if (!ok) { failed++; console.log(`  ✗  ${msg}`); } }
 function dead(msg) { console.log(`  ✗  HARNESS DEAD: ${msg}`); process.exit(1); }
 
+// EDC Orlando was the only gated festival with a data module until it opened on
+// 2026-09-30, and since then NO gated festival carries one. The gated case is
+// still real (the next festival staged ahead of its flip will be one), so the
+// harness gates this festival ITSELF, in its own vm context, rather than
+// depending on which festival happens to be gated on main this week.
+// _allDataSets() reads FESTIVALS_REGISTRY at call time, so this is exactly the
+// state the shipped code saw while EDC Orlando was gated.
+function gateInHarness(ctx, id) {
+  vm.runInContext(`(function () { const r = (FESTIVALS_REGISTRY || []).find(f => f && f.config && f.config.id === ${JSON.stringify(id)}); if (r) r.available = false; })()`, ctx);
+}
+
+const GATED = "edc-orlando-2026";
 const ctx = boot();
+gateInHarness(ctx, GATED);
 const reg = ctx.FESTIVALS_REGISTRY || [];
 const sets = ctx._DATA_SETS || {};
 const ids = Object.keys(sets);
@@ -118,9 +131,8 @@ const claimantsOf = (utcMs) => ids.filter(id => {
 });
 
 // ── FIXTURE 1: claimed ONLY by a GATED festival ───────────────────────────
-const GATED = "edc-orlando-2026";
 if (!sets[GATED]?.config?.dayDates) dead(`${GATED} has no data module — the gated fixture cannot be built`);
-if (availableOf(GATED)) dead(`${GATED} is registry-AVAILABLE on this tree; it can no longer prove the gated case`);
+if (availableOf(GATED)) dead(`${GATED} is still registry-AVAILABLE after the harness gated it; the gated case is not being tested`);
 // _allDataSets() always includes the ACTIVE festival regardless of gating, so
 // this fixture only tests anything while the active festival is something else.
 // Asked-vs-got: without this, a future default-festival change would turn the

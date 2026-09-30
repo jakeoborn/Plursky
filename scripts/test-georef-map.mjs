@@ -1,12 +1,15 @@
 #!/usr/bin/env node
-// test-georef-map.mjs — the georeference tool reproduces what EDC Orlando
-// ships, and the 2026 map pipeline cannot ship an unpinned map.
+// test-georef-map.mjs — the georeference tool, EDC Orlando's anchors, and the
+// map plate EDC Orlando ships.
 //
-// Three things are locked:
+// Four things are locked:
 //   1. The fit itself, against a transform whose answer is known.
 //   2. The numbers #73 (v264) recorded for edc-orlando-2026, re-derived from
-//      the shipped anchors: the x/y grid, its scale, the centroid, the radius.
-//   3. build-edco-map-2026.mjs while the official map is unpublished.
+//      the shipped anchors: the grid they derive, its scale, the centroid, the
+//      radius. Continuity only: this does not validate the anchors.
+//   3. What ships since 2026-09-30: the official 2025 map, every stage pin
+//      measured on it, labelled as the 2025 map, and no amenity pins.
+//   4. build-edco-map-2026.mjs while the official 2026 map is unpublished.
 // Each rule is proven live by a mutation that must fail it.
 //
 // ⚠ NOT reproduced, and it cannot be from the repo: #73's affine fit. Issue
@@ -19,6 +22,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { fitAffine, applyAffine, deriveGrid, distanceM, metresPerDegree, outsideBoundsM, worstPairwiseError, festivalById } from "./georef-map.mjs";
 import { EDCO_MAP_2026, checkEdcoMap, isPinned } from "./build-edco-map-2026.mjs";
+import { EDCO_MAP_2025 } from "./build-edco-map-2025.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const fails = [];
@@ -64,7 +68,7 @@ const control = PIX.map(([px, py], i) => ({ name: `cp${i + 1}`, px, py, ...truth
 
 // ── 2. EDC Orlando, as shipped ────────────────────────────────────────────
 const FID = "edc-orlando-2026";
-const { config, stages } = festivalById(FID);
+const { config, stages, amenities, entry } = festivalById(FID);
 ok(config.id === FID, `the loader returned the festival asked for (${config.id})`);
 let askedWrong = false;
 try { festivalById("no-such-festival-2026"); } catch { askedWrong = true; }
@@ -75,10 +79,14 @@ const IDS = ["kinetic", "circuit", "neon", "stereo", "bacardi"];
 ok(anchors.length === 5 && IDS.every((id, i) => anchors[i].stageId === id), `five anchors, in order (${anchors.map(a => a.stageId).join(", ")})`);
 ok(anchors.every(a => a.src === "poster"), "every anchor is still poster class: a read off art, not a measurement");
 
+// The grid #73 shipped, derived from these anchors on one scale. It shipped
+// until 2026-09-30; the pins now sit on real art (section 3), so this is the
+// record of the derivation, not of what is on screen.
+const GRID_73 = { kinetic: [57, 76], circuit: [26, 17], neon: [90, 36], stereo: [10, 70], bacardi: [22, 83] };
 const grid = deriveGrid(anchors);
 const shipped = id => stages.find(s => s.id === id);
-const gridMatches = g => g.stages.every(s => shipped(s.stageId) && shipped(s.stageId).x === s.x && shipped(s.stageId).y === s.y);
-ok(gridMatches(grid), `the shipped x/y grid is the one the anchors derive (${grid.stages.map(s => `${s.stageId} ${s.x},${s.y}`).join(" · ")})`);
+const gridMatches = g => g.stages.every(s => GRID_73[s.stageId] && GRID_73[s.stageId][0] === s.x && GRID_73[s.stageId][1] === s.y);
+ok(gridMatches(grid), `the anchors still derive the grid #73 recorded (${grid.stages.map(s => `${s.stageId} ${s.x},${s.y}`).join(" · ")})`);
 ok(Math.abs(grid.metresPerUnit - 5.62) < 0.02, `one scale, 5.62 m per grid unit as #73 recorded (${grid.metresPerUnit.toFixed(3)})`);
 ok(Math.round(grid.spanE) === 450 && Math.round(grid.spanN) === 376, `east span 450 m, north span 376 m (${grid.spanE.toFixed(0)}, ${grid.spanN.toFixed(0)})`);
 const worst = worstPairwiseError(anchors, grid.stages, grid.metresPerUnit);
@@ -86,7 +94,7 @@ ok(worst.pair === "stereo–bacardi" && worst.pct < 4.0, `worst pairwise error i
 
 // The table #73 rejected: each axis stretched to fill on its own.
 const stretched = deriveGrid(anchors, { isotropic: false });
-caught(gridMatches(stretched), "a per-axis stretch derives the shipped grid");
+caught(gridMatches(stretched), "a per-axis stretch derives the recorded grid");
 // An anchor moved 30 m must move the grid.
 const moved = clone(anchors); moved[0].lat += 30 / metresPerDegree(28.538).lat;
 caught(gridMatches(deriveGrid(moved)), "kinetic moved 30 m north leaves the grid unchanged");
@@ -121,16 +129,48 @@ for (const [id, m] of Object.entries(SNAPS))
 ok(outsideBoundsM(RAW.neon, POLY) > 0 && outsideBoundsM(RAW.stereo, POLY) > 0 && outsideBoundsM(RAW.bacardi, POLY) > 0,
   "the three snapped stages' raw fits fall outside the festival polygon, which is why they were snapped");
 
-// ── 3. the 2026 map pipeline, unpinned ────────────────────────────────────
+// ── 3. what ships: the official 2025 map, and it says so ─────────────────
+{
+  const P = EDCO_MAP_2025;
+  const plate = checkEdcoMap(P, { mapImage: config.mapImage });
+  ok(plate.ok && plate.built === true, `the 2025 source and the plate built from it are the pinned files (${plate.msg})`);
+  ok(config.mapImage === P.derivative, `the registry ships the 2025 plate (${config.mapImage})`);
+  ok(P.mapYear === 2025 && config.mapArtYear === P.mapYear && config.mapArtYear !== config.year,
+    `the config names the art's own year, and it is not the festival's (mapArtYear ${config.mapArtYear}, year ${config.year})`);
+  ok(P.crop.w + P.pad.left + P.pad.right === P.derivativeSize[0] && P.crop.h + P.pad.top + P.pad.bottom === P.derivativeSize[1]
+    && P.derivativeSize[0] === P.derivativeSize[1], "crop plus pad is the square plate, with no scaling");
+  // The crop starts under the title block's date line: a 2025 date on the
+  // plate would be a wrong date for the 2026 festival.
+  ok(P.crop.y >= 306, `the crop starts below the "NOV 7+8+9" line (y ${P.crop.y})`);
+
+  const rows = P.measured.stages;
+  const want = id => rows[id] && rows[id].px.map(v => Math.round(1000 * v / P.derivativeSize[0]) / 10);
+  const pinsMatch = list => IDS.every(id => { const s = list.find(x => x.id === id), w = want(id); return s && w && s.x === w[0] && s.y === w[1]; });
+  ok(Object.keys(rows).sort().join() === [...IDS].sort().join(), `one measured row per stage, and no others (${Object.keys(rows).join(", ")})`);
+  ok(pinsMatch(stages), `every stage pin is its measured row on the plate (${IDS.map(id => `${id} ${shipped(id).x},${shipped(id).y}`).join(" · ")})`);
+  ok(Object.values(rows).every(r => r.px.every(v => v >= 0 && v <= P.derivativeSize[0]) && r.note && r.confidence), "every measured row is on the plate and says what was measured");
+  const tba = shipped("tba");
+  ok(tba && tba.x === undefined && tba.y === undefined, "the TBA stage has no position: it is not a place on the map");
+  ok(stages.filter(s => typeof s.x === "number").length === IDS.length, "no stage has a pin without a measured row");
+  const nudged = stages.map(s => (s.id === "bacardi" ? { ...s, x: s.x + 0.5 } : s));
+  caught(pinsMatch(nudged), "a pin moved half a grid unit off its measured row");
+  // The pre-2026-09-30 derived grid, over real art, would put pins off their stages.
+  caught(pinsMatch(stages.map(s => (GRID_73[s.id] ? { ...s, x: GRID_73[s.id][0], y: GRID_73[s.id][1] } : s))), "the derived grid shipped over the 2025 art");
+
+  ok(Array.isArray(amenities) && amenities.length === 0 && Object.keys(P.measured.amenities).length === 0,
+    `no amenity pins ship and none is measured off last year's map (${amenities.length})`);
+  ok(entry.available === true && entry.scheduleTBA === true, `open on its lineup, set times pending (available ${entry.available}, scheduleTBA ${entry.scheduleTBA})`);
+}
+
+// ── 4. the 2026 map pipeline, unpinned ────────────────────────────────────
 {
   const M = EDCO_MAP_2026;
-  ok(M.festivalId === FID && M.placeholder === "edco-tinker-2026.jpg", "the pipeline is EDC Orlando's and names the placeholder");
+  ok(M.festivalId === FID && M.placeholder === EDCO_MAP_2025.derivative, "the 2026 pipeline is EDC Orlando's, and what ships until it is pinned is the 2025 plate");
   ok(!isPinned(M), "no official 2026 map is pinned");
   const state = checkEdcoMap(M, { mapImage: config.mapImage });
-  ok(state.ok && state.pinned === false, `unpinned, the check passes and says the placeholder ships (${state.msg})`);
-  ok(config.mapImage === M.placeholder, `the registry ships the placeholder (${config.mapImage})`);
+  ok(state.ok && state.pinned === false, `unpinned, the check passes and says the 2025 plate ships (${state.msg})`);
 
-  caught(checkEdcoMap(M, { mapImage: M.derivative }).ok, "the registry pointing at an unbuilt plate");
+  caught(checkEdcoMap(M, { mapImage: M.derivative }).ok, "the registry pointing at an unbuilt 2026 plate");
   const measured = clone(M); measured.measured.stages.kinetic = { px: [500, 500] };
   caught(checkEdcoMap(measured, { mapImage: config.mapImage }).ok, "a measured row with no pinned source");
   const half = { ...clone(M), sourceSha256: "0".repeat(64) };
@@ -144,14 +184,16 @@ ok(outsideBoundsM(RAW.neon, POLY) > 0 && outsideBoundsM(RAW.stereo, POLY) > 0 &&
   const wrongState = checkEdcoMap(wrong, { mapImage: config.mapImage });
   caught(wrongState.ok, "a source file whose sha256 is not the pinned one");
   ok(/sha256 differs/.test(wrongState.msg || ""), `a wrong source is refused for its hash (${wrongState.msg})`);
+  // The same for the plate that ships: a re-encoded or swapped webp is refused.
+  caught(checkEdcoMap({ ...EDCO_MAP_2025, derivativeSha256: "0".repeat(64) }).ok, "a 2025 plate whose sha256 is not the pinned one");
 
   let cli = "", buildRefused = false;
   try { cli = execFileSync(process.execPath, ["scripts/build-edco-map-2026.mjs", "--check"], { cwd: ROOT, encoding: "utf8" }); } catch (e) { cli = `threw: ${e.stderr || e.message}`; }
-  ok(/placeholder edco-tinker-2026\.jpg still ships/.test(cli), `--check exits 0 while unpinned (${cli.trim()})`);
+  ok(/the 2025 plate edco-tinker-2025\.webp still ships/.test(cli), `--check exits 0 while unpinned (${cli.trim()})`);
   try { execFileSync(process.execPath, ["scripts/build-edco-map-2026.mjs"], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }); } catch { buildRefused = true; }
-  ok(buildRefused, "a build with nothing pinned refuses to run");
+  ok(buildRefused, "a 2026 build with nothing pinned refuses to run");
 }
 
 for (const f of fails) console.log(`  ✗  ${f}`);
-console.log(`  ${fails.length ? "✗" : "✓"}  georef + EDC Orlando map pipeline: ${checks - fails.length}/${checks} checks, ${mutations} mutations`);
+console.log(`  ${fails.length ? "✗" : "✓"}  georef + EDC Orlando map: ${checks - fails.length}/${checks} checks, ${mutations} mutations`);
 process.exit(fails.length ? 1 : 0);
