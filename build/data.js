@@ -1445,13 +1445,20 @@ function _w2BeganMs(cfg, w, shift) {
   if (!d1 || typeof d1.midnightUtc !== "number") return w.W2;
   return Math.min(w.W2, d1.midnightUtc + shift + 8 * 3600000);
 }
+function _w1WrappedMs(cfg, w, shift) {
+  var began = _w2BeganMs(cfg, w, shift);
+  var nums = Object.keys(cfg && cfg.dayDates || {}).map(Number).sort((a, b) => a - b);
+  var last = nums.length ? cfg.dayDates[nums[nums.length - 1]] : null;
+  if (!last || typeof last.midnightUtc !== "number") return began;
+  return Math.min(began, last.midnightUtc + 32 * 3600000);
+}
 function _weekendShiftMs(cfg, nowMs, savedIds) {
   var w = cfg && cfg.weekendStartMs;
   if (!w || typeof w.W1 !== "number" || typeof w.W2 !== "number") return 0;
   var shift = w.W2 - w.W1;
   if (!(shift > 0)) return 0;
   var now = typeof nowMs === "number" ? nowMs : Date.now();
-  if (now >= _w2BeganMs(cfg, w, shift)) return shift;
+  if (now >= _w1WrappedMs(cfg, w, shift)) return shift;
   try {
     if (Array.isArray(savedIds)) return _weekendMajorityIsW2(savedIds) ? shift : 0;
     var raw = localStorage.getItem(`${cfg.id}_saved_v1`) || "[]";

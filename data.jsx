@@ -1733,13 +1733,13 @@ function resolvedStageAnchor(cfg, stageId) {
 // while every other surface rendered W1. Two halves of the app disagreeing.
 //
 // Founder ruling 2026-09-08 — clock first, saved-acts as the pre-event
-// fallback:
-//   · Once W2 has begun the clock decides. It cannot be wrong while you are
-//     standing in Zilker Park.
-//   · Before then the clock has nothing to say, so fall back to the same
-//     saved-acts majority preEventCountdown already uses. That also covers
-//     the gap week between the two weekends, where the clock is silent but a
-//     W2 attendee has usually already saved a W2-heavy lineup.
+// fallback — with its gap-week clause replaced by the 2026-09-29 ruling:
+//   · Once W1 has wrapped the clock decides: the gap week and all of W2 are
+//     W2. The clock cannot be wrong while you are standing in Zilker Park,
+//     and after W1's last night there is no W1 left to show.
+//   · Before then (pre-event and during W1) fall back to the same saved-acts
+//     majority preEventCountdown already uses, so W1 is covered by what the
+//     user saved.
 //   · Anything else is W1, which is the historical behaviour.
 // No new UI and no copy, by design.
 //
@@ -1778,13 +1778,24 @@ function _w2BeganMs(cfg, w, shift) {
   if (!d1 || typeof d1.midnightUtc !== "number") return w.W2;
   return Math.min(w.W2, d1.midnightUtc + shift + 8 * 3600000);
 }
+// When W1 has wrapped (ruling 2026-09-29): its last festival night closes at
+// 08:00 local the morning after its last day (the same night window), so a
+// Sunday-night after-party still reads W1. Never later than W2 beginning.
+// Falls back to _w2BeganMs when there are no day dates to read.
+function _w1WrappedMs(cfg, w, shift) {
+  const began = _w2BeganMs(cfg, w, shift);
+  const nums = Object.keys((cfg && cfg.dayDates) || {}).map(Number).sort((a, b) => a - b);
+  const last = nums.length ? cfg.dayDates[nums[nums.length - 1]] : null;
+  if (!last || typeof last.midnightUtc !== "number") return began;
+  return Math.min(began, last.midnightUtc + 32 * 3600000);
+}
 function _weekendShiftMs(cfg, nowMs, savedIds) {
   const w = cfg && cfg.weekendStartMs;
   if (!w || typeof w.W1 !== "number" || typeof w.W2 !== "number") return 0;
   const shift = w.W2 - w.W1;
   if (!(shift > 0)) return 0;
   const now = typeof nowMs === "number" ? nowMs : Date.now();
-  if (now >= _w2BeganMs(cfg, w, shift)) return shift;  // clock wins outright
+  if (now >= _w1WrappedMs(cfg, w, shift)) return shift; // clock wins outright
   try {                                                // else: what did they save?
     if (Array.isArray(savedIds)) return _weekendMajorityIsW2(savedIds) ? shift : 0;
     const raw = localStorage.getItem(`${cfg.id}_saved_v1`) || "[]";
@@ -1816,8 +1827,9 @@ function activeWeekend(cfg, nowMs, savedIds) {
 // ARTISTS itself stays whole, deliberately. 76 further reads look an artist
 // up BY ID — a saved id, an attended id, moment.artistId — to put a name on
 // a memory or a recap card. The resolver above is clock-first by founder
-// ruling, so from Oct 9 onward it answers "W2" for good; filtering the global
-// would leave a Weekend 1 attendee's memories permanently nameless. Identity
+// ruling, so from W1's wrap (Oct 5, 08:00) it answers "W2" for good;
+// filtering the global would leave a Weekend 1 attendee's memories
+// permanently nameless. Identity
 // reads the whole lineup. The SCHEDULE reads this.
 //
 // Single-weekend festivals get the SAME ARRAY BACK — identical reference, not
@@ -1860,9 +1872,9 @@ function savedInLineup(savedIds) {
 
 // The weekend a MOMENT belongs to, read off its own capture time — the
 // moment's datum, the way artistDayDate reads the act's. The session resolver
-// is clock-first, so from Oct 9 it answers W2 for good, and a Weekend 1 photo
-// retagged after that was offered Weekend 2's acts only (round 5). takenAt is
-// a wall-clock "YYYY-MM-DD HH:MM[:SS]"; the cut is the midpoint between the two
+// is clock-first, so from W1's wrap (Oct 5) it answers W2 for good, and a
+// Weekend 1 photo retagged after that was offered Weekend 2's acts only
+// (round 5). takenAt is a wall-clock "YYYY-MM-DD HH:MM[:SS]"; the cut is the midpoint between the two
 // weekend starts, days from either, so a few hours of zone slack cannot flip
 // it. Null for a single-weekend festival or an unreadable date.
 function momentWeekend(takenAt, cfg) {
