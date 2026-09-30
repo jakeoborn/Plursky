@@ -2514,6 +2514,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── III Points 2026: each act's day is the official day graphic's ─────────
+// The lineup-by-day graphic is transcribed in docs/qa/reports/iii-points-2026-
+// day-split/graphic.tsv; the list page is the lineup. Both directions of the
+// join, B2B order as billed, and no stage or time anywhere.
+{
+  console.log("▸ III Points day split — every act on the official graphic's day, B2B as billed");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-iii-points-days.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`III Points day split failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Saved sets the lineup still carries ──────────────────────────────────
 // Every saved-set surface reads savedInLineup(); storage, cloud push and the
 // sign-in union keep orphan ids (lane ruling 2026-09-27: no deletion until a
