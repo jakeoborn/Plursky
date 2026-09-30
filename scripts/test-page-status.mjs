@@ -49,13 +49,15 @@ const run = (status) => {
   return wrong;
 };
 
-// The fixtures are the shapes they are named for.
+// The fixtures are the shapes they are named for. At least two must still be
+// single-bucket: III Points gets its official day split in its own PR, after
+// which it is a two-day control here (its pinned dates read the same).
 const dates = id => eventDates(cfgOf(id));
-for (const id of ['iii-points-2026', 'dreamstate-socal-2026', 'countdown-nye-2026']) {
+const single = ['iii-points-2026', 'dreamstate-socal-2026', 'countdown-nye-2026'].filter(id => {
   const cfg = cfgOf(id), d = cfg && dates(id);
-  check(cfg && Object.keys(cfg.dayDates || {}).length === 1 && d && d.end > d.start,
-    `${id} is a single-bucket festival with a multi-day printed range (${cfg ? Object.keys(cfg.dayDates || {}).length : '?'} bucket(s), ${d ? `${d.start}..${d.end}` : 'no dates'})`);
-}
+  return cfg && Object.keys(cfg.dayDates || {}).length === 1 && d && d.end > d.start;
+});
+check(single.length >= 2, `at least two single-bucket festivals with a multi-day printed range (${single.join(', ') || 'none'})`);
 check(daysOf(cfgOf('acl-2026')).length === 6 && dates('acl-2026').start === '2026-10-02' && dates('acl-2026').end === '2026-10-11',
   `acl-2026 runs six days inside Oct 2-11 (${daysOf(cfgOf('acl-2026')).sort().join(', ')})`);
 const total = Object.values(CASES).reduce((n, c) => n + Object.keys(c).length, 0);
@@ -70,5 +72,5 @@ const mLiteral = run(literal), mSpan = run(spanOnly);
 check(mLiteral.length > 0 && mLiteral.every(w => /iii-points|dreamstate|countdown/.test(w)), `mutation: without the single-bucket rule, second days read wrong (${mLiteral.length}: ${mLiteral[0] || 'none'})`);
 check(mSpan.some(w => /acl-2026 on 2026-10-0[5-8]/.test(w)), `mutation: live across the printed range puts ACL's gap week live (${mSpan.length}: ${mSpan.find(w => /acl/.test(w)) || 'none'})`);
 
-console.log(`  ${failed ? '✗' : '✓'}  page status: ${checks - failed}/${checks} checks (${total} pinned dates, 2 mutations)`);
+console.log(`  ${failed ? '✗' : '✓'}  page status: ${checks - failed}/${checks} checks (${total} pinned dates, ${single.length} single-bucket, 2 mutations)`);
 process.exit(failed ? 1 : 0);
