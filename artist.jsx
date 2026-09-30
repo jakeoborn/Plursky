@@ -18,13 +18,15 @@ const SETLISTS_PROXY_URL = "https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/p
 // who the act is — "Sunday (1994)", "KAUFMANN (DE)", "Small (danny g luvs u B2B
 // Bori)", "DOG BLOOD (SKRILLEX + BOYS NOIZE)". A note says so: it contains the
 // word "set" ("Sunset Set", "DJ set", "2 Hour Set"), or is one of the few the
-// lineups print without it (Live, Detox, In The Round, "… Classics"). Built
+// lineups print without it (Live, Detox, In The Round, "… Classics"), or an
+// unbracketed "… performing <album>" billing. Built
 // from all 26 parentheticals across the registry, 2026-09-10; the regression
 // table lives in scripts/verify.mjs. spotify-api.jsx's searches use this too.
 const _LOOKUP_SET_NOTE = /^(?:.*\bsets?\b.*|live|detox|in the round|.*\bclassics\b.*)$/i;
 function _lookupName(s) {
   const raw = String(s || "");
   const t = raw.replace(/\s*\(([^)]*)\)\s*/g, (m, inner) => (_LOOKUP_SET_NOTE.test(inner.trim()) ? " " : m))
+    .replace(/\s+performing\s.*$/i, "")  // "GZA performing Liquid Swords" (III Points 2026) is GZA
     .replace(/\s+/g, " ").trim();
   return t || raw;
 }
@@ -263,44 +265,10 @@ function _validateGenreMatch(lineupGenre, ...externalFields) {
   return externalFields.some(_isElectronic);
 }
 
-// ── TheAudioDB ─────────────────────────────────────────────────
-// Free public API — no key required. Better bios + artist images for EDC artists.
-const _TADB_TTL = 7 * 24 * 3600000; // cache 7 days (biography rarely changes)
-
-async function fetchAudioDB(artistName, lineupGenre) {
-  artistName = _lookupName(artistName);
-  const cacheKey = `tadb_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
-  try {
-    const c = JSON.parse(localStorage.getItem(cacheKey) || "null");
-    if (c && Date.now() - c.fetchedAt < _TADB_TTL) return c.data;
-  } catch {}
-  try {
-    const res = await fetch(
-      `https://www.theaudiodb.com/api/v1/json/2/search.php?s=${encodeURIComponent(artistName)}`
-    );
-    if (!res.ok) return null;
-    const json = await res.json();
-    const artist = (json.artists || [])[0];
-    if (!artist) return null;
-    // Reject name collisions: if lineup says electronic, TADB result must look electronic too
-    if (!_validateGenreMatch(lineupGenre, artist.strGenre, artist.strStyle, artist.strMood)) {
-      try { localStorage.setItem(cacheKey, JSON.stringify({ data: null, fetchedAt: Date.now() })); } catch {}
-      return null;
-    }
-    const data = {
-      bio:     artist.strBiographyEN || "",
-      image:   artist.strArtistThumb || artist.strArtistFanart || null,
-      banner:  artist.strArtistFanart2 || artist.strArtistFanart || null,
-      mood:    artist.strMood    || "",
-      style:   artist.strStyle   || "",
-      country: artist.strCountry || "",
-      formed:  artist.intFormedYear || "",
-      website: artist.strWebsite   || "",
-    };
-    try { localStorage.setItem(cacheKey, JSON.stringify({ data, fetchedAt: Date.now() })); } catch {}
-    return data;
-  } catch { return null; }
-}
+// TheAudioDB is not a source (its free-API terms; lane ruling 2026-09-24), and
+// neither is the iTunes Search API, whose artwork is only "to promote store
+// content", beside a store badge. Artist photos come from the cache, then
+// Spotify under its 24 h rule, then the gradient.
 
 // ── Last.fm ────────────────────────────────────────────────────
 // Free API key at https://www.last.fm/api/account/create
@@ -447,7 +415,15 @@ function SpiderWeb({ currentArtist, currentStage, similar, onSelectArtist }) {
   });
 
   const edcCount = nodes.filter(n => n.edcArtist).length;
-  const truncate = (str, max) => str.length > max ? str.slice(0, max) + "…" : str;
+  // Names are never cut (lane ruling 2026-09-26): a long one breaks over two
+  // lines at the space nearest its middle instead of losing its end.
+  const twoLines = (str, max) => {
+    const n = actDisplayName(str);
+    if (n.length <= max || !n.includes(" ")) return [n];
+    const mid = n.length / 2; let best = -1;
+    for (let i = 0; i < n.length; i++) if (n[i] === " " && (best < 0 || Math.abs(i - mid) < Math.abs(best - mid))) best = i;
+    return [n.slice(0, best), n.slice(best + 1)];
+  };
 
   return (
     <div style={{
@@ -458,7 +434,7 @@ function SpiderWeb({ currentArtist, currentStage, similar, onSelectArtist }) {
         display: "flex", alignItems: "center", justifyContent: "space-between",
         marginBottom: 6, padding: "0 2px",
       }}>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.5, color: "rgba(var(--ink-rgb),0.45)", fontWeight: 700 }}>
+        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.5, color: "var(--text-3)", fontWeight: 700 }}>
           SIMILAR ARTISTS
         </span>
         {edcCount > 0 && (
@@ -496,13 +472,14 @@ function SpiderWeb({ currentArtist, currentStage, similar, onSelectArtist }) {
         ))}
 
         {/* Center node */}
-        <circle cx={cx} cy={cy} r={28} fill={"var(--signal)"}/>
-        <circle cx={cx} cy={cy} r={33} fill="none" stroke={"var(--signal)"} strokeWidth={1} opacity={0.3}/>
-        <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle"
-          fill="var(--ink)" fontSize={currentArtist.name.length > 10 ? 7 : 8.5}
-          fontFamily="Geist Mono, monospace" fontWeight="700">
-          {truncate(currentArtist.name, 11)}
-        </text>
+        <circle cx={cx} cy={cy} r={32} fill={"var(--signal)"}/>
+        <circle cx={cx} cy={cy} r={37} fill="none" stroke={"var(--signal)"} strokeWidth={1} opacity={0.3}/>
+        {(() => { const ln = twoLines(currentArtist.name, 10); return (
+          <text x={cx} y={cy - (ln.length - 1) * 5} textAnchor="middle" dominantBaseline="middle"
+            fill="var(--on-signal)" fontSize={ln.length > 1 || currentArtist.name.length > 10 ? 8 : 9}
+            fontFamily="Geist Mono, monospace" fontWeight="700">
+            {ln.map((t, i) => <tspan key={i} x={cx} dy={i ? 10 : 0}>{t}</tspan>)}
+          </text>); })()}
 
         {/* Peripheral nodes */}
         {nodes.map((n, i) => {
@@ -532,16 +509,16 @@ function SpiderWeb({ currentArtist, currentStage, similar, onSelectArtist }) {
 
               {/* Artist name */}
               <text x={n.x} y={labelY} textAnchor="middle"
-                fill={n.edcStage ? "rgba(var(--ink-rgb),0.9)" : "rgba(var(--ink-rgb),0.32)"}
+                fill={n.edcStage ? "var(--ink)" : "var(--text-2)"}
                 fontSize={7.5} fontFamily="Geist Mono, monospace"
                 fontWeight={n.edcStage ? "600" : "400"}
               >
-                {truncate(n.name, 13)}
+                {twoLines(n.name, 13).map((t, i) => <tspan key={i} x={n.x} dy={i ? 9 : 0}>{t}</tspan>)}
               </text>
 
               {/* Stage · Day under EDC matches */}
               {n.edcStage && dayLabel && (
-                <text x={n.x} y={labelY + 11} textAnchor="middle"
+                <text x={n.x} y={labelY + 11 + (twoLines(n.name, 13).length - 1) * 9} textAnchor="middle"
                   fill="var(--text-2)" fontSize={7}
                   fontFamily="Geist Mono, monospace" fontWeight="700"
                 >
@@ -702,11 +679,11 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj, onOpenMap
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
           <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(var(--ink-rgb),0.25)" }} />
-          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, fontWeight: 700, color: "rgba(var(--ink-rgb),0.4)" }}>
+          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, fontWeight: 700, color: "var(--text-3)" }}>
             YOUR MOMENTS
           </span>
         </div>
-        <div style={{ fontSize: 13, lineHeight: 1.5, color: "rgba(var(--ink-rgb),0.7)" }}>
+        <div style={{ fontSize: 13, lineHeight: 1.5, color: "var(--text-2)" }}>
           You haven't filmed anything at {artistObj?.name || "this set"} yet.
         </div>
         {(when || stage) && (
@@ -744,12 +721,12 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj, onOpenMap
           <button onClick={() => onOpen(night)} className="mono" style={{
             background: "rgba(var(--ink-rgb),0.08)", border: "1px solid rgba(var(--ink-rgb),0.1)",
             borderRadius: 999, padding: "4px 10px", cursor: "pointer",
-            color: "rgba(var(--ink-rgb),0.5)", fontSize: 8, letterSpacing: 1.2, fontWeight: 700,
+            color: "var(--text-3)", fontSize: 8, letterSpacing: 1.2, fontWeight: 700,
           }}>VIEW ALL →</button>
         </div>
         <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginTop: 4 }}>
           <span className="serif" style={{ fontSize: 20, color: "var(--ink)" }}>{mine.length}</span>
-          <span style={{ fontSize: 10, color: "rgba(var(--ink-rgb),0.45)" }}>
+          <span style={{ fontSize: 10, color: "var(--text-3)" }}>
             {mine.length === 1 ? "memory" : "memories"}{vids > 0 ? ` · ${vids} video${vids > 1 ? "s" : ""}` : ""}
           </span>
         </div>
@@ -955,13 +932,16 @@ function ArtistScreen({ state, setState }) {
   // activeName, so the note still shows and other screens still hit the cache.
   const lookupName = _lookupName(activeName);
 
-  const artistImages = React.useMemo(() => {
-    try { return JSON.parse(localStorage.getItem("artist_images_v1") || "{}"); } catch { return {}; }
-  }, []);
+  // The cached entry for the tab on screen, or null when it is missing,
+  // expired (Spotify, 24 h) or of unknown source — see getArtistImage.
+  // expiry ticks when a Spotify entry turns 24 h while this page is open: the
+  // cached record is re-read and the fetched Spotify URL is let go.
+  const artistImageExpiry = useArtistImageExpiry();
+  const heroCacheRec = React.useMemo(() => getArtistImage(activeName), [a.id, activeName, artistImageExpiry]);
   // On-demand photo: use cached image or fetch from Spotify search
   const [fetchedPhoto, setFetchedPhoto] = React.useState(null);
-  // heroPhoto is computed further down, AFTER `tadb` exists — see the note
-  // there. Computing it here silently produced "no photo" on every artist.
+  React.useEffect(() => { if (artistImageExpiry) setFetchedPhoto(null); }, [artistImageExpiry]);
+  // heroPhoto is computed further down, with the rest of the hero's state.
   const saved = state.saved.includes(a.id);
   const [saveFlash, setSaveFlash] = React.useState(false);
   const handleSave = () => {
@@ -999,37 +979,16 @@ function ArtistScreen({ state, setState }) {
   const [tmError,   setTmError]   = React.useState(false);
   const [mcTracks,  setMcTracks]  = React.useState(undefined);
   const [mcPlaying, setMcPlaying] = React.useState(null); // key of playing track
-  const [tadb,      setTadb]      = React.useState(undefined);
 
   // ── Hero photo ───────────────────────────────────────────────────────────
-  // This used to be computed ~40 lines ABOVE the `tadb` declaration. Written
-  // as `const`, that is a temporal-dead-zone ReferenceError — but the build
-  // lowers const to var (CLAUDE.md §5), so `tadb` was simply `undefined` on
-  // every single render and `tadb?.image` never contributed anything. It read
-  // like a working fallback chain and was dead code.
-  //
-  // That mattered because the other links were dead for most users too:
-  //  · fetchedPhoto — Spotify, which needs the user to have connected
-  //  · api.deezer.com — returned CORS headers but NO
-  //    access-control-allow-origin (measured 2026-09-05), so the browser
-  //    blocked every response and the catch returned null. It was removed in
-  //    v254 rather than left firing one guaranteed-failing request per artist
-  //    view. If photo coverage gaps show up, the follow-up is a NATIVE HTTP
-  //    bridge (Capacitor), where same-origin policy does not apply — not a
-  //    second attempt at calling it from the browser.
-  // So on a fresh install with no Spotify there was no path to a photo at
-  // all, which is exactly what Jake reported. TheAudioDB does send
-  // access-control-allow-origin: * and had a thumbnail for the first artist
-  // tried, so it is the lane that actually works today.
-  //
-  // artistImages is a SHARED cache with several writers (Spotify here and in
-  // chrome.jsx, iTunes in chrome.jsx, TheAudioDB below), so a hit cannot be
-  // attributed to any one of them — hence the honest "CACHED" label.
-  const heroPhotoCache = artistImages[activeName.toLowerCase()] || null;
-  const heroPhoto = heroPhotoCache || fetchedPhoto || (tadb?.image ?? null);
-  const heroPhotoSrc = heroPhotoCache ? "CACHED"
-    : fetchedPhoto ? "SPOTIFY"
-    : (tadb?.image ? "THEAUDIODB" : null);
+  // The chain: the cached entry (getArtistImage records its source, so the
+  // hero knows when it owes Spotify's attribution), then this screen's own
+  // Spotify fetch, then no photo (the gradient). A user with no Spotify
+  // connection sees the gradient: TheAudioDB and the iTunes Search API are not
+  // sources (lane ruling 2026-09-24, on their terms), and api.deezer.com sends
+  // no access-control-allow-origin (measured 2026-09-05; removed in v254).
+  const heroPhoto = heroCacheRec?.url || fetchedPhoto || null;
+  const heroSource = heroCacheRec ? heroCacheRec.source : fetchedPhoto ? "spotify" : null;
   const [slError,   setSlError]   = React.useState(false);
   const [ytError,   setYtError]   = React.useState(false);
   const [edcTracklist, setEdcTracklist] = React.useState(undefined);
@@ -1037,33 +996,15 @@ function ArtistScreen({ state, setState }) {
   React.useEffect(() => {
     setYtPlaying(false); setMcPlaying(null); setTlExpanded(false);
     setLfm(undefined); setSetlists(undefined); setYtVideo(undefined); setTmEvents(undefined);
-    setMcTracks(undefined); setTadb(undefined); setEdcTracklist(undefined);
+    setMcTracks(undefined); setEdcTracklist(undefined);
     setSlError(false); setYtError(false); setTmError(false);
     fetchLastfm(lookupName, a.genre).then(setLfm);
     fetchSetlists(lookupName).then(setSetlists).catch(() => { setSetlists([]); setSlError(true); });
     fetchYouTubeSet(lookupName).then(setYtVideo).catch(() => { setYtVideo(null); setYtError(true); });
     fetchTicketmaster(lookupName).then(setTmEvents).catch(() => { setTmEvents([]); setTmError(true); });
     fetchMixcloud(lookupName).then(setMcTracks);
-    fetchAudioDB(lookupName, a.genre).then(setTadb);
     if (window._getTracklistForArtist) window._getTracklistForArtist(a.name).then(setEdcTracklist);
   }, [a.id, activeB2B]);
-
-  // Persist the TheAudioDB thumbnail into the SHARED artist_images_v1 cache.
-  // Deezer used to be the only thing seeding this cache for users with no
-  // Spotify connection, and it was CORS-blocked, so those users saw a photo on
-  // the artist screen (via tadb.image, read directly) and a grey placeholder
-  // everywhere else. Writing it here closes that gap through the lane that
-  // works. Never overwrite an existing entry — Spotify's images are higher
-  // resolution and chrome.jsx's queue may already have won the race.
-  React.useEffect(() => {
-    const img = tadb?.image;
-    if (!img) return;
-    const ln = activeName.toLowerCase();
-    try {
-      const imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-      if (!imgs[ln]) { imgs[ln] = img; localStorage.setItem("artist_images_v1", JSON.stringify(imgs)); }
-    } catch {}
-  }, [tadb, activeName]);
 
   // Spotify stats: popularity, followers, genres — loaded from cache or fetched alongside photo
   const [spotifyStats, setSpotifyStats] = React.useState(null);
@@ -1087,11 +1028,10 @@ function ArtistScreen({ state, setState }) {
       if (cached) { setSpotifyStats(cached); hasCachedStats = true; }
       else setSpotifyStats(null);
     } catch { setSpotifyStats(null); }
-    // The photo fallback for disconnected users is TheAudioDB, fetched by the
-    // effect above and persisted by the one below — not a second call here.
+    // A disconnected user gets no photo (the gradient); see the hero chain.
     const ln = activeName.toLowerCase();
     // Skip Spotify network call if we already have both photo and stats cached
-    if (artistImages[ln] && hasCachedStats) return;
+    if (heroCacheRec && hasCachedStats) return;
     if (!localStorage.getItem("spotify_token") && !localStorage.getItem("spotify_refresh_token")) return;
     const ctrl = new AbortController();
     getValidToken().then(token => {
@@ -1105,15 +1045,11 @@ function ArtistScreen({ state, setState }) {
         || items.find(x => ln.includes(x.name.toLowerCase())) || items[0];
       if (!match) return;
       // Photo
-      if (!artistImages[ln]) {
+      if (!heroCacheRec) {
         const img = match?.images?.[0]?.url;
         if (img) {
           setFetchedPhoto(img);
-          try {
-            const imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-            imgs[ln] = img;
-            localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
-          } catch {}
+          putArtistImage(activeName, img, "spotify", { spotifyId: match.id });
         }
       }
       // Stats + top track names (for setlist highlighting)
@@ -1216,6 +1152,75 @@ function ArtistScreen({ state, setState }) {
   const connected = isSpotifyConnected();
   const [heroParallax, setHeroParallax] = React.useState(0);
   const scrollBodyRef = React.useRef(null);
+  const spotifyHero = !!heroPhoto && heroSource === "spotify";
+  const spotifyArtistId = heroCacheRec?.spotifyId || spotifyStats?.spotifyId || null;
+  const spotifyArtistUrl = spotifyArtistId
+    ? "https://open.spotify.com/artist/" + spotifyArtistId
+    : "https://open.spotify.com/search/" + encodeURIComponent(lookupName) + "/artists";
+  const heroControls = (
+    <>
+      <button onClick={() => window._popNav ? window._popNav() : setState({ ...state, artist: null })} aria-label="Back" style={{
+        position: "absolute", top: 14, left: 14, zIndex: 10,
+        width: 38, height: 38, borderRadius: 38,
+        background: "rgba(var(--ink-rgb),0.18)", backdropFilter: "blur(8px)",
+        border: "1px solid rgba(var(--ink-rgb),0.3)",
+        color: "var(--ink)", cursor: "pointer", fontSize: 18,
+        display: "flex", alignItems: "center", justifyContent: "center",
+      }}>←</button>
+
+      <div style={{ position: "absolute", top: 14, right: 14, zIndex: 10, display: "flex", gap: 6, alignItems: "center" }}>
+        {connected && preview !== "none" && (
+          <button onClick={handlePreview} style={{
+            display: "inline-flex", alignItems: "center", gap: 5,
+            background: playing ? "var(--ember)" : "rgba(var(--ink-rgb),0.18)",
+            backdropFilter: "blur(8px)",
+            border: "1px solid rgba(var(--ink-rgb),0.3)",
+            color: "var(--ink)", cursor: "pointer",
+            borderRadius: 999, padding: "5px 10px",
+            fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+            whiteSpace: "nowrap",
+          }}>
+            {preview === "loading" ? (
+              <span style={{ width: 8, height: 8, borderRadius: "50%", border: "1.5px solid rgba(var(--ink-rgb),0.4)", borderTopColor: "var(--ink)", animation: "spin 0.75s linear infinite", display: "inline-block" }} />
+            ) : playing ? (
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="var(--ink)"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+            ) : (
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="var(--ink)"><path d="M8 5 L19 12 L8 19 Z"/></svg>
+            )}
+            PREVIEW
+          </button>
+        )}
+        <Pill tone="outline" style={{ background: "rgba(var(--ink-rgb),0.15)", color: "var(--ink)", backdropFilter: "blur(8px)", borderColor: "rgba(var(--ink-rgb),0.3)" }}>
+          DAY {a.day} · {fmt12(a.start)}
+        </Pill>
+        <ShareArtistButton artist={a} />
+      </div>
+    </>
+  );
+  const heroNameInner = (
+    <>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, opacity: 0.85, fontWeight: 600 }}>
+          {a.genre.toUpperCase()}
+        </div>
+        {stage && (
+          <div style={{
+            width: 4, height: 4, borderRadius: 4, background: "var(--signal)",
+            boxShadow: `0 0 6px var(--signal)`,
+          }}/>
+        )}
+        {stage && (
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--signal-ink)", fontWeight: 700 }}>
+            {stage.name.toUpperCase()}
+          </div>
+        )}
+      </div>
+      <div className="serif" style={{
+        fontSize: isB2B ? 34 : 52, lineHeight: 0.88, letterSpacing: -1.5,
+        textShadow: "0 2px 20px rgba(var(--shade-rgb),0.5)",
+      }}>{a.name}</div>
+    </>
+  );
 
   return (
     <Screen bg="var(--paper)">
@@ -1224,17 +1229,51 @@ function ArtistScreen({ state, setState }) {
         setHeroParallax(Math.min(60, y * 0.3));
       }}>
       {/* Hero */}
-      <div style={{
+      {spotifyHero ? (
+        // Spotify's Design Guidelines for Spotify artwork: "Don't crop the
+        // artwork in any way", "Don't overlay images or text on top of the
+        // artwork", "Don't animate or distort it", corners rounded 4px on
+        // small devices, and the full Spotify logo (icon + wordmark) linking
+        // back to Spotify. So this hero shows the image whole at its own
+        // aspect, with no scrim, parallax, atmosphere or text on it, and the
+        // logo under it links to the artist on Spotify. Every other source
+        // keeps the full-bleed hero below.
+        <div data-hero="spotify" style={{
+          position: "relative", color: "var(--ink)", background: "var(--paper)",
+          padding: "64px 18px 16px",
+        }}>
+          {heroControls}
+          <figure style={{ margin: 0, display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+            <img src={heroPhoto} alt={activeName + " (photo from Spotify)"} data-spotify-image="1" style={{
+              display: "block", width: "min(60vw, 236px)", maxWidth: "100%", height: "auto", borderRadius: 4,
+            }}/>
+            <a href={spotifyArtistUrl} target="_blank" rel="noopener noreferrer" data-spotify-attribution="1"
+              aria-label={"Photo from Spotify. Open " + activeName + " on Spotify"} style={{
+                display: "inline-flex", color: "var(--ink)", padding: "11px 11px 11px 0",
+              }}>
+              <SpotifyFullLogo height={21} />
+            </a>
+          </figure>
+          <div style={{ marginTop: 6 }}>
+            {heroNameInner}
+          </div>
+        </div>
+      ) : (
+      <div className="media-scope" style={{
         height: 300, position: "relative",
         overflow: "hidden",
         color: "var(--ink)",
       }}>
         <div style={{
           position: "absolute", inset: 0, top: -30,
-          background: heroPhoto
-            ? "var(--ink)"
-            : `linear-gradient(160deg, var(--ink) 0%, rgba(var(--signal-rgb),0.27) 40%, var(--ink) 100%)`,
-          backgroundImage: heroPhoto ? `url(${heroPhoto})` : undefined,
+          // Longhands only: a `background` shorthand holding var() is wiped
+          // when React then sets backgroundSize/Position, so the no-photo
+          // hero used to paint NOTHING (invisible in Dark, a pale ground
+          // under white controls in Light).
+          backgroundColor: "var(--media-ground)",
+          backgroundImage: heroPhoto
+            ? `url(${heroPhoto})`
+            : `linear-gradient(160deg, var(--media-ground) 0%, rgba(var(--signal-rgb),0.27) 40%, var(--media-ground) 100%)`,
           backgroundSize: "cover",
           backgroundPosition: "center 20%",
           transform: `translateY(${heroParallax}px)`,
@@ -1266,51 +1305,7 @@ function ArtistScreen({ state, setState }) {
             ? `linear-gradient(180deg, rgba(var(--shade-rgb),0.38) 0%, rgba(var(--shade-rgb),0.06) 26%, rgba(var(--signal-rgb),0.13) 52%, rgba(var(--shade-rgb),0.72) 76%, rgba(var(--shade-rgb),0.96) 100%)`
             : `linear-gradient(180deg, transparent 0%, rgba(var(--signal-rgb),0.08) 50%, rgba(var(--shade-rgb),0.95) 100%)`,
         }} />
-        <button onClick={() => window._popNav ? window._popNav() : setState({ ...state, artist: null })} aria-label="Back" style={{
-          position: "absolute", top: 14, left: 14, zIndex: 10,
-          width: 38, height: 38, borderRadius: 38,
-          background: "rgba(var(--ink-rgb),0.18)", backdropFilter: "blur(8px)",
-          border: "1px solid rgba(var(--ink-rgb),0.3)",
-          color: "var(--ink)", cursor: "pointer", fontSize: 18,
-          display: "flex", alignItems: "center", justifyContent: "center",
-        }}>←</button>
-
-        <div style={{ position: "absolute", top: 14, right: 14, zIndex: 10, display: "flex", gap: 6, alignItems: "center" }}>
-          {connected && preview !== "none" && (
-            <button onClick={handlePreview} style={{
-              display: "inline-flex", alignItems: "center", gap: 5,
-              background: playing ? "var(--ember)" : "rgba(var(--ink-rgb),0.18)",
-              backdropFilter: "blur(8px)",
-              border: "1px solid rgba(var(--ink-rgb),0.3)",
-              color: "var(--ink)", cursor: "pointer",
-              borderRadius: 999, padding: "5px 10px",
-              fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-              whiteSpace: "nowrap",
-            }}>
-              {preview === "loading" ? (
-                <span style={{ width: 8, height: 8, borderRadius: "50%", border: "1.5px solid rgba(var(--ink-rgb),0.4)", borderTopColor: "var(--ink)", animation: "spin 0.75s linear infinite", display: "inline-block" }} />
-              ) : playing ? (
-                <svg width="9" height="9" viewBox="0 0 24 24" fill="var(--ink)"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
-              ) : (
-                <svg width="9" height="9" viewBox="0 0 24 24" fill="var(--ink)"><path d="M8 5 L19 12 L8 19 Z"/></svg>
-              )}
-              PREVIEW
-            </button>
-          )}
-          <Pill tone="outline" style={{ background: "rgba(var(--ink-rgb),0.15)", color: "var(--ink)", backdropFilter: "blur(8px)", borderColor: "rgba(var(--ink-rgb),0.3)" }}>
-            DAY {a.day} · {fmt12(a.start)}
-          </Pill>
-          <ShareArtistButton artist={a} />
-        </div>
-
-        {heroPhoto && heroPhotoSrc && (
-          <div className="mono" aria-hidden="true" style={{
-            position: "absolute", top: 58, right: 14, zIndex: 3,
-            fontSize: 7.5, letterSpacing: 1, fontWeight: 700,
-            color: "rgba(var(--ink-rgb),0.55)",
-            textShadow: "0 1px 4px rgba(var(--shade-rgb),0.6)",
-          }}>PHOTO · {heroPhotoSrc}</div>
-        )}
+        {heroControls}
 
         {/* zIndex 3 puts the name/genre ABOVE the scrim. Without it the text
             sat UNDER the gradient (scrim is zIndex 2) and every attempt to
@@ -1318,28 +1313,10 @@ function ArtistScreen({ state, setState }) {
             same amount — proven by painting the scrim solid green and
             watching the name go green with it. */}
         <div style={{ position: "absolute", bottom: 16, left: 18, right: 18, zIndex: 3 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, opacity: 0.85, fontWeight: 600 }}>
-              {a.genre.toUpperCase()}
-            </div>
-            {stage && (
-              <div style={{
-                width: 4, height: 4, borderRadius: 4, background: "var(--signal)",
-                boxShadow: `0 0 6px var(--signal)`,
-              }}/>
-            )}
-            {stage && (
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--signal-ink)", fontWeight: 700 }}>
-                {stage.name.toUpperCase()}
-              </div>
-            )}
-          </div>
-          <div className="serif" style={{
-            fontSize: isB2B ? 34 : 52, lineHeight: 0.88, letterSpacing: -1.5,
-            textShadow: "0 2px 20px rgba(var(--shade-rgb),0.5)",
-          }}>{a.name}</div>
+          {heroNameInner}
         </div>
       </div>
+      )}
 
       {/* B2B artist tabs — one per individual artist */}
       {isB2B && (
@@ -1445,26 +1422,10 @@ function ArtistScreen({ state, setState }) {
 
         {/* Bio — moved above the stage card so it sits in the initial
             viewport (was getting pushed below the fold by the new stat
-            row + chip nav). AudioDB extended bio follows when available. */}
-        <div id="artist-section-bio" className="serif" style={{ fontSize: 20, lineHeight: 1.35, marginBottom: tadb?.bio ? 8 : 16, textWrap: "pretty" }}>
+            row + chip nav). */}
+        <div id="artist-section-bio" className="serif" style={{ fontSize: 20, lineHeight: 1.35, marginBottom: 16, textWrap: "pretty" }}>
           {a.bio}
         </div>
-        {tadb?.bio && tadb.bio.length > 60 && (
-          <div style={{ fontSize: 13, lineHeight: 1.6, color: "var(--muted)", marginBottom: 16 }}>
-            {tadb.bio.slice(0, 320)}{tadb.bio.length > 320 ? "…" : ""}
-            {(tadb.mood || tadb.style || tadb.country) && (
-              <div style={{ display: "flex", gap: 6, marginTop: 8, flexWrap: "wrap" }}>
-                {[tadb.mood, tadb.style, tadb.country].filter(Boolean).map(tag => (
-                  <span key={tag} className="mono" style={{
-                    fontSize: 8, letterSpacing: 1, padding: "3px 8px",
-                    background: "var(--paper-2)", border: "1px solid var(--line-2)",
-                    borderRadius: 999, color: "var(--muted)",
-                  }}>{tag.toUpperCase()}</span>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
 
         {/* Stage & time */}
         <div style={{
@@ -1564,7 +1525,7 @@ function ArtistScreen({ state, setState }) {
                       WHAT THEY PLAYED AT {(FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.brand || "EDC").toUpperCase()}
                     </span>
                   </div>
-                  <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.35)" }}>
+                  <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--text-3)" }}>
                     {tracks.length} TRACKS
                   </span>
                 </div>
@@ -1575,7 +1536,7 @@ function ArtistScreen({ state, setState }) {
                     display: "flex", alignItems: "baseline", gap: 10, padding: "5px 0",
                     borderTop: i === 0 ? `1px solid rgba(var(--ink-rgb),0.06)` : "none",
                   }}>
-                    <span className="mono" style={{ fontSize: 8, color: "rgba(var(--ink-rgb),0.25)", width: 38, textAlign: "right", flexShrink: 0 }}>
+                    <span className="mono" style={{ fontSize: 8, color: "var(--text-3)", width: 38, textAlign: "right", flexShrink: 0 }}>
                       {fmtTime(t.time)}
                     </span>
                     <div style={{ flex: 1, minWidth: 0 }}>
@@ -1583,7 +1544,7 @@ function ArtistScreen({ state, setState }) {
                         {t.title}
                       </div>
                       {t.artist && t.artist !== a.name && (
-                        <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "rgba(var(--ink-rgb),0.4)", marginTop: 1 }}>
+                        <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--text-3)", marginTop: 1 }}>
                           {t.artist}
                         </div>
                       )}
@@ -1605,7 +1566,7 @@ function ArtistScreen({ state, setState }) {
                   display: "block", padding: "10px 16px",
                   borderTop: "1px solid rgba(var(--ink-rgb),0.06)",
                   fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.2,
-                  color: "rgba(var(--ink-rgb),0.35)", textDecoration: "none", textAlign: "center",
+                  color: "var(--text-3)", textDecoration: "none", textAlign: "center",
                 }}>SOURCE: 1001TRACKLISTS ↗</a>
               )}
             </div>
@@ -1827,18 +1788,18 @@ function ArtistScreen({ state, setState }) {
                   }}>
                     <div style={{ fontSize: 13, color: "var(--ink)", lineHeight: 1.3, fontWeight: 500 }}>{ytVideo.title}</div>
                     <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 5 }}>
-                      <span className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "rgba(var(--ink-rgb),0.5)" }}>
+                      <span className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "var(--text-3)" }}>
                         TAP TO PLAY
                       </span>
                       {ytVideo.durationMin > 0 && (
-                        <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "rgba(var(--ink-rgb),0.5)" }}>
+                        <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--text-3)" }}>
                           {ytVideo.durationMin >= 60
                             ? `${Math.floor(ytVideo.durationMin / 60)}H ${ytVideo.durationMin % 60}M`
                             : `${ytVideo.durationMin} MIN`}
                         </span>
                       )}
                       {ytVideo.views > 0 && (
-                        <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "rgba(var(--ink-rgb),0.5)", marginLeft: "auto" }}>
+                        <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--text-3)", marginLeft: "auto" }}>
                           {ytVideo.views >= 1e6
                             ? `${(ytVideo.views / 1e6).toFixed(1)}M`
                             : ytVideo.views >= 1e3
@@ -1870,7 +1831,7 @@ function ArtistScreen({ state, setState }) {
                   background: "var(--paper-2)", border: "1px solid var(--line)",
                   textAlign: "center",
                 }}>
-                  <div style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>▶</div>
+                  <div aria-hidden="true" style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>▶</div>
                   <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)" }}>
                     {ytError ? "COULDN'T LOAD VIDEO" : "NO LIVE SET FOUND"}
                   </div>
@@ -2002,12 +1963,12 @@ function ArtistScreen({ state, setState }) {
                             {track.user.toUpperCase()}
                           </span>
                           {track.duration > 0 && (
-                            <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.4)" }}>
+                            <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--text-3)" }}>
                               {_mcDur(track.duration)}
                             </span>
                           )}
                           {track.plays > 0 && (
-                            <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.35)" }}>
+                            <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--text-3)" }}>
                               {_mcFmt(track.plays)} PLAYS
                             </span>
                           )}
@@ -2028,7 +1989,7 @@ function ArtistScreen({ state, setState }) {
                         width: "100%", background: "transparent", border: "none",
                         padding: "8px 0 10px",
                         fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2,
-                        color: "rgba(var(--ink-rgb),0.4)", cursor: "pointer",
+                        color: "var(--text-3)", cursor: "pointer",
                       }}>▲ CLOSE</button>
                     </div>
                   )}
@@ -2116,13 +2077,13 @@ function ArtistScreen({ state, setState }) {
                   background: "var(--ember)", borderRadius: 8,
                   padding: "6px 10px", minWidth: 42,
                 }}>
-                  <div className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "rgba(var(--ink-rgb),0.75)" }}>
+                  <div className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "var(--on-ember)" }}>
                     {ev.date ? _tmDate(ev.date).split(" ")[0].toUpperCase() : ""}
                   </div>
-                  <div className="serif" style={{ fontSize: 20, lineHeight: 1, color: "var(--ink)", letterSpacing: -0.5 }}>
+                  <div className="serif" style={{ fontSize: 20, lineHeight: 1, color: "var(--on-ember)", letterSpacing: -0.5 }}>
                     {ev.date ? _tmDate(ev.date).split(" ")[1].replace(",","") : "—"}
                   </div>
-                  <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "rgba(var(--ink-rgb),0.7)" }}>
+                  <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--on-ember)" }}>
                     {ev.date ? ev.date.split("-")[0] : ""}
                   </div>
                 </div>
@@ -2338,7 +2299,9 @@ function ArtistScreen({ state, setState }) {
             <div className="serif" style={{ fontSize: 16, lineHeight: 1.1 }}>
               {preview && typeof preview === "object" ? preview.name : "30-sec Preview"}
             </div>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(var(--ink-rgb),0.5)", marginTop: 3 }}>
+            {/* The card is inverted (ink ground), so the status line takes the
+                card's own text colour; --ink here drew it invisible. */}
+            <div className="mono" data-preview-status style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--paper)", opacity: 0.6, marginTop: 3 }}>
               {!connected     ? "CONNECT SPOTIFY TO PREVIEW"
                : preview === "none"    ? "NO PREVIEW AVAILABLE"
                : preview === "loading" ? "LOADING…"

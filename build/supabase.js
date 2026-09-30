@@ -288,6 +288,14 @@ async function sbPush(artistIds, notes) {
   } catch {}
   await _sb.from("user_data").upsert(row);
 }
+function mergeCloudSaved(localSaved, cloud, removedAt) {
+  var cloudUpdated = cloud && cloud.updated_at || new Date(0).toISOString();
+  var union = new Set([...(localSaved || []), ...(cloud && cloud.artist_ids || [])]);
+  for (var [id, ts] of Object.entries(removedAt || {})) {
+    if (ts > cloudUpdated) union.delete(id);
+  }
+  return [...union];
+}
 async function sbPushMoments() {
   if (!_sb) return;
   var saved = null,
@@ -509,12 +517,7 @@ function AccountCard({
             try {
               localStorage.setItem("plursky_removed_at_v1", JSON.stringify(mergedRemoved));
             } catch {}
-            var cloudUpdated = cloud.updated_at || new Date(0).toISOString();
-            var union = new Set([...st.saved, ...(cloud.artist_ids || [])]);
-            for (var [id, removedAt] of Object.entries(mergedRemoved)) {
-              if (removedAt > cloudUpdated) union.delete(id);
-            }
-            var merged = [...union];
+            var merged = mergeCloudSaved(st.saved, cloud, mergedRemoved);
             var localNotes = {};
             try {
               localNotes = JSON.parse(localStorage.getItem("artist_notes_v1") || "{}");
@@ -762,7 +765,7 @@ function AccountCard({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        color: "var(--ink)",
+        color: "var(--on-signal)",
         fontFamily: "Instrument Serif, serif",
         fontSize: 15
       }
@@ -819,7 +822,7 @@ function AccountCard({
         fontWeight: 600,
         transition: "background 0.3s"
       }
-    }, syncing ? "SYNCING…" : syncMsg || `↑ PUSH ${state.saved.length} SETS TO CLOUD`), React.createElement("button", {
+    }, syncing ? "SYNCING…" : syncMsg || `↑ PUSH ${savedInLineup(state.saved).length} SETS TO CLOUD`), React.createElement("button", {
       onClick: handleSignOut,
       style: {
         background: "transparent",
@@ -906,7 +909,7 @@ function AccountCard({
       style: {
         flex: 1,
         background: "var(--ember)",
-        color: "var(--ink)",
+        color: "var(--on-ember)",
         border: "none",
         borderRadius: 10,
         padding: "9px 12px",
@@ -1554,7 +1557,7 @@ function FriendsCard({
     style: {
       fontSize: 8.5,
       letterSpacing: 1.2,
-      color: "rgba(var(--ink-rgb),0.45)",
+      color: "var(--text-3)",
       marginBottom: 6
     }
   }, "CURRENT STAGE"), React.createElement("div", {
@@ -3098,7 +3101,7 @@ function CrewChat({
         padding: "6px 4px",
         borderRadius: 8,
         background: on ? s.color : "var(--paper)",
-        color: on ? "var(--ink)" : "var(--ink)",
+        color: on ? _inkOnHex(s.color) : "var(--ink)",
         border: on ? "none" : "1px solid var(--line-2)",
         fontFamily: "Geist Mono, monospace",
         fontSize: 8,
@@ -3239,7 +3242,7 @@ function CrewCard({
     leaveRef.current = sbGroupJoin(newCode, {
       pid: myPid,
       name: myName,
-      artistIds: state.saved
+      artistIds: savedInLineup(state.saved)
     }, setMembers);
     setJoined(true);
     setJoining(false);
@@ -3251,7 +3254,7 @@ function CrewCard({
     if (joined) sbGroupUpdate(code, {
       pid: myPid,
       name: myName,
-      artistIds: state.saved
+      artistIds: savedInLineup(state.saved)
     });
   }, [state.saved.join(","), joined]);
   React.useEffect(() => {
@@ -3495,7 +3498,7 @@ function CrewCard({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "rgba(var(--ink-rgb),0.4)",
+      color: "var(--text-3)",
       fontSize: 16,
       padding: 0,
       animation: totemUrl ? "totem-pulse 3s ease-in-out infinite" : "none"
@@ -3520,7 +3523,7 @@ function CrewCard({
     style: {
       fontSize: 8.5,
       letterSpacing: 1.2,
-      color: "rgba(var(--ink-rgb),0.45)",
+      color: "var(--text-3)",
       marginBottom: 3
     }
   }, totemUrl ? "YOUR TOTEM · TAP TO CHANGE" : "TAP 📷 TO SET YOUR TOTEM"), React.createElement("div", {
@@ -3579,7 +3582,7 @@ function CrewCard({
       borderRadius: 8,
       padding: "7px 11px",
       cursor: "pointer",
-      color: "rgba(var(--ink-rgb),0.5)",
+      color: "var(--text-3)",
       fontFamily: "Geist Mono, monospace",
       fontSize: 9,
       letterSpacing: 1.2
@@ -3612,7 +3615,7 @@ function CrewCard({
       gap: 7
     }
   }, others.map(([pid, m]) => {
-    var ids = m.artistIds || [];
+    var ids = savedInLineup(m.artistIds);
     var inCommon = ids.filter(id => state.saved.includes(id)).length;
     var isOpen = expandedPid === pid;
     var ARTISTS = window.ARTISTS || [];
@@ -3759,7 +3762,7 @@ function CrewCard({
         initial: (myName || "M")[0].toUpperCase(),
         color: _presColor(myPid)
       }];
-      var crewArtistIds = new Set(state.saved || []);
+      var crewArtistIds = new Set(savedInLineup(state.saved));
       var overlapIds = new Set();
       for (var [pid, m] of others) {
         crewNames.push(m.name || "Friend");
@@ -3767,7 +3770,7 @@ function CrewCard({
           initial: (m.name || "F")[0].toUpperCase(),
           color: _presColor(pid)
         });
-        for (var id of m.artistIds || []) {
+        for (var id of savedInLineup(m.artistIds)) {
           crewArtistIds.add(id);
           if ((state.saved || []).includes(id)) overlapIds.add(id);
         }
@@ -3793,7 +3796,7 @@ function CrewCard({
         flex: 1,
         padding: "11px",
         background: "var(--signal)",
-        color: "var(--ink)",
+        color: "var(--on-signal)",
         border: "none",
         borderRadius: 10,
         cursor: "pointer",
@@ -3807,7 +3810,7 @@ function CrewCard({
       style: {
         padding: "11px 14px",
         background: "var(--signal)",
-        color: "var(--ink)",
+        color: "var(--on-signal)",
         border: "none",
         borderRadius: 10,
         cursor: "pointer",
@@ -3922,23 +3925,30 @@ async function sbUploadMomentMedia(photoId, blob) {
     return false;
   }
 }
+function _cloudSaysAbsent(error) {
+  if (!error) return false;
+  var code = error.status ?? error.statusCode ?? error.originalError?.status;
+  if (code != null && String(code) === "404") return true;
+  return /not[_\s-]?found|no such (?:file|object|key)/i.test(`${error.message || ""} ${error.error || ""}`);
+}
 async function sbDownloadMomentMedia(photoId) {
   if (!_sb || !photoId || _cloudMissing.has(photoId)) return null;
-  try {
-    var user = await sbGetUser();
-    if (!user) return null;
-    var {
-      data,
-      error
-    } = await _sb.storage.from(_MEDIA_BUCKET).download(`${user.id}/${photoId}`);
-    if (error || !data) {
-      _cloudMissing.add(photoId);
-      return null;
-    }
-    return data;
-  } catch {
+  var user = await sbGetUser();
+  if (!user) return null;
+  var {
+    data,
+    error
+  } = await _sb.storage.from(_MEDIA_BUCKET).download(`${user.id}/${photoId}`);
+  if (error) {
+    if (!_cloudSaysAbsent(error)) throw error;
+    _cloudMissing.add(photoId);
     return null;
   }
+  if (!data) {
+    _cloudMissing.add(photoId);
+    return null;
+  }
+  return data;
 }
 Object.assign(window, {
   sbUploadMomentMedia,

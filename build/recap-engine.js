@@ -207,7 +207,7 @@ async function _heroCardSource(artist) {
     }
   } catch {}
   try {
-    var url = JSON.parse(localStorage.getItem("artist_images_v1") || "{}")[(artist.name || "").toLowerCase()];
+    var url = getShareableArtistImage(artist.name || "")?.url;
     if (url) {
       var _img = await new Promise((res, rej) => {
         var im = new Image();
@@ -1747,7 +1747,7 @@ async function _shareStageCollage(stage, momentsAcrossArtists, format) {
     subtitle: `MY NIGHTS AT ${stage.short || stage.name?.toUpperCase()}`,
     accent: stage.color || "#1a120d",
     moments: momentsAcrossArtists,
-    filenameSlug: `stage-${stage.short || stage.id}`,
+    filenameSlug: `stage-${stage.id}`,
     shareTitle: `My ${stage.name} at ${CFG.shortName || "the festival"}`,
     format
   });
@@ -2280,8 +2280,8 @@ async function _renderCrewComparison(myName, myState, otherName, otherArtistIds)
   ctx.font = "700 14px 'Geist Mono', monospace";
   ctx.fillStyle = "rgba(255,255,255,0.4)";
   ctx.fillText(`${(CFG.shortName || "FESTIVAL").toUpperCase()} · ${CFG.dates || ""}`, W / 2, 160);
-  var mySaved = myState.saved || [];
-  var theirSaved = otherArtistIds || [];
+  var mySaved = savedInLineup(myState.saved);
+  var theirSaved = savedInLineup(otherArtistIds);
   var overlap = mySaved.filter(id => theirSaved.includes(id));
   var myOnly = mySaved.filter(id => !theirSaved.includes(id));
   var theirOnly = theirSaved.filter(id => !mySaved.includes(id));

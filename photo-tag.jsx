@@ -443,22 +443,34 @@ function _wallClockFromUtc(utcMs, cfg) {
 // decide — so for videos the question is asked in UTC, where it has one
 // answer, instead of in a wall clock that silently assumed a timezone.
 function _photoFestivalNight(date, cfgIn, utcMs) {
+  const r = _photoFestivalNightWeekend(date, cfgIn, utcMs);
+  return r ? r.night : null;
+}
+// The night AND the weekend. dayDates describe weekend one only, so on a
+// two-weekend festival (weekendStartMs, ACL) each later weekend is the same
+// days shifted; a weekend-2 photo was outside every window and got no night
+// and no set (lane ruling 2026-09-23). Single-weekend festivals walk one
+// weekend with shift 0 and weekend null, exactly as before.
+function _photoFestivalNightWeekend(date, cfgIn, utcMs) {
   const cfg = cfgIn || window.FESTIVAL_CONFIG;
   if (!cfg?.dayDates) return null;
   if (utcMs == null && !date) return null;
   const photoMs = utcMs != null ? utcMs : _photoEpochUtc(date, cfg);
-  for (const n of Object.keys(cfg.dayDates).map(Number)) {
-    const dm = cfg.dayDates[n];
-    if (!dm) continue;
-    // 11:00 local of day N → 06:00 local day N+1. Was 19:00→06:00 (EDC's
-    // overnight shape) — but daytime festivals (ACL, Electric Forest) run
-    // sets from ~noon, so every afternoon photo fell outside the window
-    // and the attended/saved set-time match never ran. 11:00 still can't
-    // overlap the previous night's +30h end (06:00 < 11:00), so post-
-    // midnight photos keep bucketing to the night they belong to.
-    const startMs = dm.midnightUtc + 11 * 3600000;     // 11:00 local, day N
-    const endMs   = dm.midnightUtc + 30 * 3600000;     // 06:00 local, day N+1
-    if (photoMs >= startMs - 30 * 60000 && photoMs <= endMs + 30 * 60000) return n;
+  for (const { weekend, shift } of festivalWeekendShifts(cfg)) {
+    for (const n of Object.keys(cfg.dayDates).map(Number)) {
+      const dm = cfg.dayDates[n];
+      if (!dm) continue;
+      const midnight = dm.midnightUtc + shift;
+      // 11:00 local of day N → 06:00 local day N+1. Was 19:00→06:00 (EDC's
+      // overnight shape) — but daytime festivals (ACL, Electric Forest) run
+      // sets from ~noon, so every afternoon photo fell outside the window
+      // and the attended/saved set-time match never ran. 11:00 still can't
+      // overlap the previous night's +30h end (06:00 < 11:00), so post-
+      // midnight photos keep bucketing to the night they belong to.
+      const startMs = midnight + 11 * 3600000;     // 11:00 local, day N
+      const endMs   = midnight + 30 * 3600000;     // 06:00 local, day N+1
+      if (photoMs >= startMs - 30 * 60000 && photoMs <= endMs + 30 * 60000) return { night: n, weekend, shift };
+    }
   }
   return null;
 }
@@ -623,11 +635,25 @@ function _someFestivalClaimsCaptureTime(date, utcMs) {
   return false;
 }
 
+// Festivals whose amenity label ("near 💧 Hydration") must come from VERIFIED
+// geometry. The label places an art pin in the world, the same class of claim
+// geometryVerifiedFor() already withholds for distances, so ACL (founder
+// ruling 2026-09-23) gets no label until its map registers. The rest of the
+// fleet, EDC first, is #223, which either widens this to every festival or
+// deletes the label. Until then only the listed ids are gated.
+const _AMENITY_LABEL_NEEDS_GEOMETRY = new Set(["acl-2026"]);
+
 function _matchNearestLocation(lat, lng, ds) {
   const set = ds || _activeDataSet();
   const amenities = set.amenities || [];
   if (!amenities.length) return null;
   const cfg = set.config || {};
+  const fid = set.id || cfg.id;
+  if (_AMENITY_LABEL_NEEDS_GEOMETRY.has(fid)) {
+    // Fail closed: no predicate loaded means no verified geometry.
+    const verified = typeof geometryVerifiedFor === "function" && geometryVerifiedFor(fid);
+    if (!verified) return null;
+  }
   // map.jsx's MAP_AFFINE is solved ONCE at eval time from the ACTIVE
   // festival's anchors + stages, so mapToGps is hard-bound to that festival.
   // Using it for a photo we resolved to a DIFFERENT festival would place
@@ -682,13 +708,24 @@ function _matchNearestLocation(lat, lng, ds) {
 // same-minute video put the user 700 m away. The threshold is deliberately
 // generous; the point is to reject garbage, not to demand a perfect fix.
 const _GPS_STAGE_MAX_ACC_M = 200;
+// "Far from every anchor" only means "between sets" when every stage playing
+// that night HAS an anchor (lane ruling 2026-09-23). With one stage
+// unanchored, a photo taken in its crowd is also far from every anchor, and
+// calling it off_stage would throw away the time match that should tag it.
+// So a festival with partial anchors skips the negative inference and falls
+// through to the time matcher; no geometry is invented for the missing stage.
+// An act with no stage counts as unanchored.
+function _allProgrammedStagesAnchored(artists, night, anchors) {
+  const anchored = new Set(anchors.map(a => a.stageId));
+  return (artists || []).every(a => a.day !== night || anchored.has(a.stage));
+}
+
 function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, attendedIds, ds) {
   if (!date && rawUtcMs == null) return { artistId: null, night: null, festivalId: null, reason: "no_date" };
   // First: WHICH festival, and which of its nights, does this photo's
   // timestamp (+ GPS, as a tiebreak) place it in?
   const set = ds || _resolveFestivalForPhoto({ date, lat, lng, rawUtcMs });
   const cfg = set.config || {};
-  const artists = set.artists || [];
   const festivalId = set.id || null;
   const resolvedBy = set.resolvedBy || "explicit";
   // NOW the festival is known, so a video's wall clock can finally be derived
@@ -703,8 +740,13 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
   const sLng = gpsUsableForStage ? lng : null;
   const gpsRejected = !gpsUsableForStage && lat != null;
   const localDate = (rawUtcMs != null) ? _wallClockFromUtc(rawUtcMs, cfg) : date;
-  const night = _photoFestivalNight(localDate, cfg, rawUtcMs);
-  if (!night) return { localDate, gpsRejected, artistId: null, night: null, festivalId, resolvedBy, reason: "outside_festival_window" };
+  const nw = _photoFestivalNightWeekend(localDate, cfg, rawUtcMs);
+  if (!nw) return { localDate, gpsRejected, artistId: null, night: null, festivalId, resolvedBy, reason: "outside_festival_window" };
+  const night = nw.night;
+  // Only the acts playing the photo's weekend: every match below (saved and
+  // attended, the time matcher, the changeover rescue, GPS separation) reads
+  // this list, so a weekend-1 photo can never land on a weekend-2-only act.
+  const artists = (set.artists || []).filter(a => actPlaysWeekend(a, nw.weekend));
 
   // NOTE: the GPS "off-stage" gate used to run HERE, before the attended/
   // saved set-time match — which was a bug. A photo taken from the middle/
@@ -728,12 +770,13 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
   const setWindow = (a) => {
     const dm = cfg.dayDates?.[a.day];
     if (!dm) return null;
+    const midnight = dm.midnightUtc + nw.shift;   // the act's day on the photo's weekend
     const [sh, sm] = a.start.split(":").map(Number);
     const [eh, em] = a.end.split(":").map(Number);
     return {
       localDate, gpsRejected,
-      startMs: dm.midnightUtc + ((sh < 8 ? sh + 24 : sh) * 60 + sm) * 60000,
-      endMs:   dm.midnightUtc + ((eh < 8 ? eh + 24 : eh) * 60 + em) * 60000,
+      startMs: midnight + ((sh < 8 ? sh + 24 : sh) * 60 + sm) * 60000,
+      endMs:   midnight + ((eh < 8 ? eh + 24 : eh) * 60 + em) * 60000,
     };
   };
   // SMARTEST SIGNAL: you film the sets you planned to see / actually saw.
@@ -785,7 +828,7 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
     // crowd actually stands, eight tight-fix photos taken AT the main stage
     // were 218-317 m from every anchor and got dumped here as "between sets".
     const anchors = resolvedStageAnchors(cfg);
-    if (anchors.length > 0) {
+    if (anchors.length > 0 && _allProgrammedStagesAnchored(artists, night, anchors)) {
       let nearest = null, minMeters = Infinity;
       for (const a of anchors) {
         const m = _haversineMeters(sLat, sLng, a.lat, a.lng);

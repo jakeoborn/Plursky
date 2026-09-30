@@ -170,6 +170,11 @@ var FESTIVAL_CONFIG = {
   weatherEndpoint: "https://api.weather.gov/points/36.27,-115.01",
   mainStageId: "kinetic",
   mapImage: "edc-map-2026.jpg",
+  mapSource: {
+    url: "https://lasvegas.edc.com/festival-map/",
+    observedAt: "2026-09-24",
+    mapYear: 2026
+  },
   mapStyle: "image-overlay",
   mapPrintsStageNames: true,
   mapArtIsGeoregistered: false,
@@ -311,6 +316,15 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "electric-forest-2027",
+    officialEvent: {
+      website: "https://www.electricforestfestival.com/",
+      observedAt: "2026-09-24"
+    },
+    mapSource: {
+      url: "https://www.electricforestfestival.com/maps",
+      observedAt: "2026-09-24",
+      mapYear: 2026
+    },
     name: "Electric Forest 2027",
     shortName: "Forest 2027",
     brand: "Electric Forest",
@@ -430,6 +444,11 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "edc-orlando-2026",
+    lineupSource: {
+      url: "https://orlando.edc.com/lineup/",
+      observedAt: "2026-09-13",
+      official: true
+    },
     name: "EDC Orlando 2026",
     shortName: "EDC Orlando",
     brand: "EDC",
@@ -536,6 +555,10 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "tomorrowland-2027",
+    officialEvent: {
+      website: "https://belgium.tomorrowland.com/",
+      observedAt: "2026-09-24"
+    },
     name: "Tomorrowland 2027",
     shortName: "Tomorrowland",
     brand: "Tomorrowland",
@@ -634,14 +657,14 @@ var FESTIVALS_REGISTRY = [{
       lat: 30.268021,
       lng: -97.770282,
       src: "osm"
-    }, {
-      stageId: "bmi",
-      lat: 30.266404,
-      lng: -97.767698,
-      src: "derived"
     }],
     mainStageId: "amex",
-    mapImage: "acl-park.webp",
+    mapImage: "acl-park-2026.webp",
+    mapSource: {
+      url: "https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map",
+      observedAt: "2026-09-24",
+      mapYear: null
+    },
     mapStyle: "image-overlay",
     mapTheme: "park",
     weatherEndpoint: "https://api.weather.gov/points/30.26,-97.77"
@@ -653,6 +676,15 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "coachella-2027",
+    officialEvent: {
+      website: "https://www.coachella.com/",
+      observedAt: "2026-09-24"
+    },
+    mapSource: {
+      url: "https://www.coachella.com/maps",
+      observedAt: "2026-09-24",
+      mapYear: 2026
+    },
     name: "Coachella 2027",
     shortName: "Coachella",
     brand: "Coachella",
@@ -800,18 +832,30 @@ function _festivalWindow(c) {
 }
 function _festivalEventDays(c) {
   var base = (c && c.dayDates ? Object.values(c.dayDates) : []).map(d => typeof d.midnightUtc === "number" ? d.midnightUtc : Date.UTC(d.y, d.m, d.d)).filter(x => typeof x === "number" && !isNaN(x));
-  var out = new Set(base),
-    wk = c && c.weekendStartMs;
-  if (wk && typeof wk.W1 === "number") {
-    var _loop = function () {
-      var shift = wk[k] - wk.W1;
-      if (shift > 0) base.forEach(x => out.add(x + shift));
-    };
-    for (var k of Object.keys(wk)) {
-      _loop();
-    }
+  var out = new Set(base);
+  var _loop = function (shift) {
+    if (shift > 0) base.forEach(x => out.add(x + shift));
+  };
+  for (var {
+    shift
+  } of festivalWeekendShifts(c)) {
+    _loop(shift);
   }
   return [...out].sort((a, b) => a - b);
+}
+function festivalWeekendShifts(c) {
+  var wk = c && c.weekendStartMs;
+  if (!wk || typeof wk.W1 !== "number") return [{
+    weekend: null,
+    shift: 0
+  }];
+  return Object.keys(wk).filter(k => typeof wk[k] === "number" && wk[k] - wk.W1 >= 0).map(k => ({
+    weekend: k,
+    shift: wk[k] - wk.W1
+  })).sort((a, b) => a.shift - b.shift);
+}
+function actPlaysWeekend(a, weekend) {
+  return !weekend || !a.weekend || a.weekend === "both" || a.weekend === weekend;
 }
 function _festivalPhase(f, now) {
   var c = f && f.config,
@@ -850,11 +894,24 @@ function _sortFestivalsForSwitcher(list, now) {
     };
   }).sort((a, b) => rank[a.p] - rank[b.p] || (a.p === "ended" ? cmp(b.e, a.e) || b.w.endMs - a.w.endMs : a.p === "tba" ? 0 : cmp(a.s, b.s) || a.w.startMs - b.w.startMs) || a.i - b.i).map(x => x.f);
 }
+function _plusActiveForResolver() {
+  try {
+    if (typeof _isPlusSub === "function") return !!_isPlusSub();
+    return localStorage.getItem("plursky_plus_active") === "1";
+  } catch {
+    return false;
+  }
+}
+function festivalCanBeActive(entry) {
+  if (!entry || !entry.config) return false;
+  if (typeof _DATA_SETS !== "undefined" && !_DATA_SETS[entry.config.id]) return false;
+  return !!entry.available || !!entry.previewOnly && _plusActiveForResolver();
+}
 function getActiveFestivalId() {
   var now = Date.now();
   try {
     var stored = localStorage.getItem("active_festival_id");
-    var entry = stored && FESTIVALS_REGISTRY.find(f => f.config.id === stored && f.available);
+    var entry = stored && FESTIVALS_REGISTRY.find(f => f.config.id === stored && festivalCanBeActive(f));
     if (entry) {
       var end = entry.config.endMs;
       var explicit = localStorage.getItem("active_festival_explicit") !== "0";
@@ -1138,10 +1195,25 @@ var AMENITIES = [{
   x: 42.4,
   y: 65.5
 }];
-var AVATAR_START = {
-  x: 50,
-  y: 52
-};
+var AVATAR_CLEARANCE = 10;
+function avatarStartFor(ds) {
+  var pins = [...(ds?.stages || []), ...(ds?.amenities || [])].filter(p => Number.isFinite(p.x) && Number.isFinite(p.y));
+  var corners = [{
+    x: 12,
+    y: 88
+  }, {
+    x: 88,
+    y: 88
+  }, {
+    x: 12,
+    y: 12
+  }, {
+    x: 88,
+    y: 12
+  }];
+  var room = c => pins.length ? Math.min(...pins.map(p => Math.hypot(p.x - c.x, p.y - c.y))) : Infinity;
+  return corners.find(c => room(c) >= AVATAR_CLEARANCE) || corners.reduce((a, b) => room(b) > room(a) ? b : a);
+}
 var FRIENDS = [];
 var gradFor = stageId => {
   var s = STAGES.find(st => st.id === stageId);
@@ -1166,6 +1238,11 @@ var mk = (id, name, genre, stage, day, start, end, bio) => {
     bio: bio || `Playing ${FESTIVAL_CONFIG?.name || "EDC Las Vegas 2026"}.`
   };
 };
+function actDisplayName(name) {
+  var n = String(name || "");
+  var members = n.split(/\s+b\d+b\s+/i);
+  return members.length > 2 ? `${members[0]} +${members.length - 1}` : n;
+}
 function fmt12(t) {
   if (t == null || t === "") return "\u2014";
   if (typeof t !== "string") return t;
@@ -1246,7 +1323,7 @@ function lineupFor(weekend) {
   var all = typeof window !== "undefined" && window.ARTISTS || ARTISTS || [];
   if (!weekend || weekend === "all") return all;
   if (_lineupMemo && _lineupMemo.src === all && _lineupMemo.wk === weekend) return _lineupMemo.list;
-  var list = all.filter(a => !a.weekend || a.weekend === "both" || a.weekend === weekend);
+  var list = all.filter(a => actPlaysWeekend(a, weekend));
   _lineupMemo = {
     src: all,
     wk: weekend,
@@ -1256,6 +1333,11 @@ function lineupFor(weekend) {
 }
 function activeLineup(savedIds) {
   return lineupFor(activeWeekend(null, undefined, savedIds));
+}
+function savedInLineup(savedIds) {
+  if (!Array.isArray(savedIds) || !savedIds.length) return [];
+  var known = new Set(lineupFor("all").map(a => a.id));
+  return savedIds.filter(id => known.has(id));
 }
 function momentWeekend(takenAt, cfg) {
   var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
@@ -1772,8 +1854,8 @@ var ACL_STAGES = [{
   name: "American Express",
   short: "AMEX",
   color: "#ec4899",
-  x: 92,
-  y: 49,
+  x: 87.6,
+  y: 49.9,
   size: 1.7,
   desc: "East side · headliners",
   vibe: "Main Event",
@@ -1784,20 +1866,20 @@ var ACL_STAGES = [{
   name: "Snapchat Stage",
   short: "SNAPCHAT",
   color: "#facc15",
-  x: 66,
-  y: 42,
+  x: 51.4,
+  y: 52.7,
   size: 1.2,
-  desc: "Location TBA · check the on-site map",
+  desc: "Center · by The Grove",
   vibe: "New for 2026",
-  vibeNote: "New sponsor stage. Placement confirms when ACL publishes the 2026 map.",
+  vibeNote: "New sponsor stage in the middle of the park, next to The Grove.",
   peak: "14:00–21:00"
 }, {
   id: "titos",
   name: "Tito's Stage",
   short: "TITO'S",
   color: "#f97316",
-  x: 68,
-  y: 37,
+  x: 67.3,
+  y: 36.3,
   size: 1.2,
   desc: "North-east · mid-large stage",
   vibe: "Texas Heat",
@@ -1808,8 +1890,8 @@ var ACL_STAGES = [{
   name: "Miller Lite Stage",
   short: "MILLER",
   color: "#38bdf8",
-  x: 31,
-  y: 24,
+  x: 31.4,
+  y: 25.8,
   size: 1.0,
   desc: "North · by Lady Bird Lake",
   vibe: "Chill Vibes",
@@ -1820,8 +1902,8 @@ var ACL_STAGES = [{
   name: "T-Mobile Stage",
   short: "T-MOBILE",
   color: "#a855f7",
-  x: 8,
-  y: 34,
+  x: 14.5,
+  y: 38.8,
   size: 1.6,
   desc: "West side · co-headliners",
   vibe: "The Other Main",
@@ -1832,8 +1914,8 @@ var ACL_STAGES = [{
   name: "BMI Stage",
   short: "BMI",
   color: "#fbbf24",
-  x: 25,
-  y: 54,
+  x: 29.2,
+  y: 56.7,
   size: 0.9,
   desc: "Center-left · songwriter stage",
   vibe: "Songwriter's Corner",
@@ -1844,8 +1926,8 @@ var ACL_STAGES = [{
   name: "BEATBOX",
   short: "BBX",
   color: "#1e40af",
-  x: 22,
-  y: 72,
+  x: 27.8,
+  y: 72.9,
   size: 0.75,
   desc: "South-west · electronic stage",
   vibe: "Bass Haven",
@@ -1872,53 +1954,131 @@ var _aclMk = (id, name, genre, stage, day, start, end, wk) => {
 };
 var ACL_ARTISTS = [_aclMk("af01", "Asleep At The Wheel", "—", "tmobile", 1, "13:00", "13:45", "W1"), _aclMk("af02", "Happy Landing", "—", "tmobile", 1, "13:00", "13:45", "W2"), _aclMk("af03", "New Constellations", "—", "tmobile", 1, "14:30", "15:15", "W1"), _aclMk("af04", "Bella Kay", "—", "tmobile", 1, "14:30", "15:15", "W2"), _aclMk("af05", "Jesse Welles", "—", "tmobile", 1, "16:15", "17:15"), _aclMk("af06", "Turnstile", "—", "tmobile", 1, "18:15", "19:15"), _aclMk("af07", "Skrillex", "Electronic", "tmobile", 1, "20:15", "22:00", "W1"), _aclMk("af08", "Kings of Leon", "Rock", "tmobile", 1, "20:15", "22:00", "W2"), _aclMk("af09", "Faouzia", "—", "miller", 1, "13:45", "14:30", "W1"), _aclMk("af10", "Radio Free Alice", "—", "miller", 1, "13:45", "14:30", "W2"), _aclMk("af11", "Paris Paloma", "—", "miller", 1, "15:15", "16:15", "W1"), _aclMk("af12", "Sienna Spiro", "—", "miller", 1, "15:30", "16:15", "W2"), _aclMk("af13", "Brandon Flowers", "—", "miller", 1, "17:15", "18:15", "W1"), _aclMk("af14", "Paris Paloma", "—", "miller", 1, "17:15", "18:15", "W2"), _aclMk("af15", "Leon Thomas", "—", "miller", 1, "19:15", "20:15"), _aclMk("af16", "Elle Coves", "—", "bmi", 1, "13:45", "14:30", "W1"), _aclMk("af17", "Leon Knight", "—", "bmi", 1, "13:45", "14:30", "W2"), _aclMk("af18", "Izzy Escobar", "—", "bmi", 1, "15:30", "16:15", "W1"), _aclMk("af19", "Girlfriend", "—", "bmi", 1, "15:30", "16:15", "W2"), _aclMk("af20", "Grocery Bag", "—", "bmi", 1, "17:15", "18:15", "W1"), _aclMk("af21", "Joe Jordan", "—", "bmi", 1, "17:15", "18:15", "W2"), _aclMk("af22", "Night Traveler", "—", "beatbox", 1, "14:00", "14:45", "W1"), _aclMk("af23", "S.G. Goodman", "—", "beatbox", 1, "14:00", "14:45", "W2"), _aclMk("af24", "Marlon Funaki", "—", "beatbox", 1, "15:30", "16:30", "W1"), _aclMk("af25", "World Famous Pets", "—", "beatbox", 1, "15:30", "16:30", "W2"), _aclMk("af26", "Rusowsky", "—", "beatbox", 1, "17:30", "18:30"), _aclMk("af27", "Molly Santana", "—", "beatbox", 1, "19:30", "20:30", "W1"), _aclMk("af28", "Live", "Rock", "beatbox", 1, "19:30", "20:30", "W2"), _aclMk("af29", "The 4411", "—", "titos", 1, "12:45", "13:30", "W1"), _aclMk("af30", "Almost Heaven", "—", "titos", 1, "12:45", "13:30", "W2"), _aclMk("af31", "Solomon Hicks", "—", "titos", 1, "14:00", "14:45", "W1"), _aclMk("af32", "Cassandra Coleman", "—", "titos", 1, "14:00", "14:45", "W2"), _aclMk("af33", "Bo Staloch", "—", "titos", 1, "15:15", "16:00"), _aclMk("af34", "Rebecca Black", "—", "titos", 1, "16:30", "17:30", "W1"), _aclMk("af35", "Natasha Bedingfield", "—", "titos", 1, "16:30", "17:30", "W2"), _aclMk("af36", "Steve Aoki", "Electronic", "titos", 1, "18:30", "19:30"), _aclMk("af37", "Silent Disco", "—", "titos", 1, "20:00", "22:00"), _aclMk("af38", "Elijah Delgado", "—", "snapchat", 1, "14:00", "14:45", "W1"), _aclMk("af39", "Dallas Wax", "—", "snapchat", 1, "14:00", "14:45", "W2"), _aclMk("af40", "LP", "—", "snapchat", 1, "15:30", "16:30"), _aclMk("af41", "BUNT.", "Electronic", "snapchat", 1, "17:30", "18:30"), _aclMk("af42", "The Chainsmokers", "Electronic", "snapchat", 1, "19:30", "20:30"), _aclMk("af43", "Hunx And His Punx", "—", "amex", 1, "13:15", "14:00", "W1"), _aclMk("af44", "Brigitte Calls Me Baby", "—", "amex", 1, "13:15", "14:00", "W2"), _aclMk("af45", "CMAT", "—", "amex", 1, "14:45", "15:30", "W1"), _aclMk("af46", "Faouzia", "—", "amex", 1, "14:45", "15:30", "W2"), _aclMk("af47", "Amyl And The Sniffers", "—", "amex", 1, "16:30", "17:30"), _aclMk("af48", "Labrinth", "—", "amex", 1, "18:30", "19:30"), _aclMk("af49", "Charli XCX", "Pop", "amex", 1, "20:40", "22:00"), _aclMk("as01", "Night Tapes", "—", "tmobile", 2, "13:00", "13:45"), _aclMk("as02", "Balu Brigada", "—", "tmobile", 2, "14:30", "15:15"), _aclMk("as03", "Suki Waterhouse", "—", "tmobile", 2, "16:15", "17:15"), _aclMk("as04", "Bleachers", "—", "tmobile", 2, "18:15", "19:15"), _aclMk("as05", "Lorde", "Pop", "tmobile", 2, "20:15", "22:00"), _aclMk("as06", "Temper City", "—", "miller", 2, "13:45", "14:30"), _aclMk("as07", "Arcy Drive", "—", "miller", 2, "15:15", "16:15", "W1"), _aclMk("as08", "Laszewo", "—", "miller", 2, "15:15", "16:15", "W2"), _aclMk("as09", "Snow Strippers", "Electronic", "miller", 2, "17:15", "18:15"), _aclMk("as10", "Levity", "Electronic", "miller", 2, "19:15", "20:15"), _aclMk("as11", "Fightmaster", "—", "bmi", 2, "12:45", "13:15", "W1"), _aclMk("as12", "Macy Todd", "—", "bmi", 2, "12:45", "13:15", "W2"), _aclMk("as13", "Emma Ogier", "—", "bmi", 2, "13:45", "14:30", "W1"), _aclMk("as14", "Damaris Bojor", "—", "bmi", 2, "13:45", "14:30", "W2"), _aclMk("as15", "Coleman Jennings", "—", "bmi", 2, "15:30", "16:15", "W1"), _aclMk("as16", "Common People", "—", "bmi", 2, "15:30", "16:15", "W2"), _aclMk("as17", "Fai Laci", "—", "bmi", 2, "17:15", "18:15", "W1"), _aclMk("as18", "Chloe Qisha", "—", "bmi", 2, "17:15", "18:15", "W2"), _aclMk("as19", "Cure For Paranoia", "—", "beatbox", 2, "14:00", "14:45", "W1"), _aclMk("as20", "LLUVII", "—", "beatbox", 2, "14:00", "14:45", "W2"), _aclMk("as21", "Ryan Beatty", "—", "beatbox", 2, "15:30", "16:30", "W1"), _aclMk("as22", "Arcy Drive", "—", "beatbox", 2, "15:30", "16:30", "W2"), _aclMk("as23", "Palace", "—", "beatbox", 2, "17:30", "18:30", "W1"), _aclMk("as24", "Ryan Beatty", "—", "beatbox", 2, "17:30", "18:30", "W2"), _aclMk("as25", "Fakemink", "—", "beatbox", 2, "19:30", "20:30"), _aclMk("as26", "Left Lucid", "—", "titos", 2, "12:45", "13:30", "W1"), _aclMk("as27", "Montclair", "—", "titos", 2, "12:45", "13:30", "W2"), _aclMk("as28", "DJ Cassandra", "—", "titos", 2, "14:00", "14:45", "W1"), _aclMk("as29", "Nat Myers", "—", "titos", 2, "14:00", "14:45", "W2"), _aclMk("as30", "Don West", "—", "titos", 2, "15:15", "16:00"), _aclMk("as31", "Rodrigo Y Gabriela", "—", "titos", 2, "16:30", "17:30"), _aclMk("as32", "Yousuke Yukimatsu", "Electronic", "titos", 2, "18:30", "19:30"), _aclMk("as33", "Silent Disco", "—", "titos", 2, "20:00", "22:00"), _aclMk("as34", "Rochelle Jordan", "—", "snapchat", 2, "14:00", "14:45", "W1"), _aclMk("as35", "Gabriel Jacoby", "—", "snapchat", 2, "14:00", "14:45", "W2"), _aclMk("as36", "Skye Newman", "—", "snapchat", 2, "15:30", "16:30"), _aclMk("as37", "It's Murph", "Electronic", "snapchat", 2, "17:30", "18:30"), _aclMk("as38", "Lykke Li", "—", "snapchat", 2, "19:30", "20:30"), _aclMk("as39", "Annie DiRusso", "—", "amex", 2, "13:15", "14:00"), _aclMk("as40", "Finn Wolfhard", "—", "amex", 2, "14:45", "15:30"), _aclMk("as41", "Young Miko", "—", "amex", 2, "16:30", "17:30"), _aclMk("as42", "Lola Young", "—", "amex", 2, "18:30", "19:30"), _aclMk("as43", "Rüfüs Du Sol", "Electronic", "amex", 2, "20:30", "22:00"), _aclMk("au01", "Solya", "—", "tmobile", 3, "13:15", "14:00", "W1"), _aclMk("au02", "Thomas Day", "—", "tmobile", 3, "13:15", "14:00", "W2"), _aclMk("au03", "Stella Lefty", "—", "tmobile", 3, "14:45", "15:30", "W1"), _aclMk("au04", "Charlotte Lawrence", "—", "tmobile", 3, "14:45", "15:30", "W2"), _aclMk("au05", "Audrey Hobert", "—", "tmobile", 3, "16:30", "17:30"), _aclMk("au06", "Geese", "—", "tmobile", 3, "18:30", "19:30"), _aclMk("au07", "The xx", "—", "tmobile", 3, "20:30", "22:00"), _aclMk("au08", "Jess Williamson", "—", "miller", 3, "14:00", "14:45", "W1"), _aclMk("au09", "Joshua Jensen", "—", "miller", 3, "14:00", "14:45", "W2"), _aclMk("au10", "Claire Rosinkranz", "—", "miller", 3, "15:30", "16:30"), _aclMk("au11", "Saint Motel", "—", "miller", 3, "17:30", "18:30"), _aclMk("au12", "Parcels", "—", "miller", 3, "19:30", "20:30"), _aclMk("au13", "Rubio", "—", "bmi", 3, "12:45", "13:15", "W1"), _aclMk("au14", "Marzz", "—", "bmi", 3, "12:45", "13:15", "W2"), _aclMk("au15", "Aaron Rowe", "—", "bmi", 3, "14:00", "14:45", "W1"), _aclMk("au16", "Chelsea Jordan", "—", "bmi", 3, "14:00", "14:45", "W2"), _aclMk("au17", "Fancy Hagood", "—", "bmi", 3, "15:30", "16:15", "W1"), _aclMk("au18", "Vwillz", "—", "bmi", 3, "15:30", "16:15", "W2"), _aclMk("au19", "Lauren Sanderson", "—", "bmi", 3, "17:30", "18:30", "W1"), _aclMk("au20", "Sasha Keable", "—", "bmi", 3, "18:00", "18:30", "W2"), _aclMk("au21", "Britton", "—", "beatbox", 3, "14:00", "14:45", "W1"), _aclMk("au22", "Kevin Atwater", "—", "beatbox", 3, "14:00", "14:45", "W2"), _aclMk("au23", "Underscores", "—", "beatbox", 3, "15:30", "16:30", "W1"), _aclMk("au24", "Bad Nerves", "—", "beatbox", 3, "15:30", "16:30", "W2"), _aclMk("au25", "Noga Erez", "—", "beatbox", 3, "17:30", "18:30"), _aclMk("au26", "Blood Orange", "—", "beatbox", 3, "19:30", "20:30"), _aclMk("au27", "The Moriah Sisters", "—", "titos", 3, "12:45", "13:30", "W1"), _aclMk("au28", "Huston-Tillotson University Jazz Collective", "—", "titos", 3, "12:45", "13:30", "W2"), _aclMk("au29", "Paloma Morphy", "—", "titos", 3, "14:00", "14:45"), _aclMk("au30", "Calder Allen", "—", "titos", 3, "15:15", "16:00"), _aclMk("au31", "Rio Kosta", "—", "titos", 3, "16:30", "17:30"), _aclMk("au32", "Fcukers", "—", "titos", 3, "18:30", "19:30"), _aclMk("au33", "Silent Disco", "—", "titos", 3, "20:00", "22:00"), _aclMk("au34", "Sunday (1994)", "—", "snapchat", 3, "14:00", "14:45"), _aclMk("au35", "Grace Ives", "—", "snapchat", 3, "15:30", "16:30", "W2"), _aclMk("au36", "Cannons", "—", "snapchat", 3, "17:30", "18:30", "W1"), _aclMk("au37", "Houndmouth", "—", "snapchat", 3, "17:30", "18:30", "W2"), _aclMk("au38", "The War On Drugs", "—", "snapchat", 3, "19:30", "20:30"), _aclMk("au39", "Villanelle", "—", "amex", 3, "13:15", "14:00", "W1"), _aclMk("au40", "Rum Jungle", "—", "amex", 3, "13:15", "14:00", "W2"), _aclMk("au41", "Dexter And The Moonrocks", "—", "amex", 3, "14:45", "15:30", "W1"), _aclMk("au42", "Ethan Regan", "—", "amex", 3, "14:45", "15:30", "W2"), _aclMk("au43", "Max McNown", "—", "amex", 3, "16:30", "17:30"), _aclMk("au44", "Sofi Tukker", "Electronic", "amex", 3, "18:30", "19:30"), _aclMk("au45", "Twenty One Pilots", "—", "amex", 3, "20:30", "22:00")];
 var ACL_AMENITIES = [{
-  id: "aa1",
-  type: "water",
-  label: "Hydration",
-  x: 35,
-  y: 40
-}, {
-  id: "aa2",
-  type: "water",
-  label: "Hydration",
-  x: 65,
-  y: 55
-}, {
   id: "aa3",
   type: "food",
   label: "ACL Eats",
-  x: 50,
-  y: 35
+  x: 56.8,
+  y: 28.3
 }, {
   id: "aa4",
   type: "food",
   label: "ACL Eats South",
-  x: 45,
-  y: 65
+  x: 43.7,
+  y: 73.0
 }, {
-  id: "aa5",
+  id: "ah1",
+  type: "water",
+  label: "Hydration",
+  x: 23.3,
+  y: 27.0
+}, {
+  id: "ah2",
+  type: "water",
+  label: "Hydration",
+  x: 15.1,
+  y: 33.0
+}, {
+  id: "ah3",
+  type: "water",
+  label: "Hydration",
+  x: 53.2,
+  y: 25.3
+}, {
+  id: "ah4",
+  type: "water",
+  label: "Hydration",
+  x: 71.1,
+  y: 40.2
+}, {
+  id: "ah5",
+  type: "water",
+  label: "Hydration",
+  x: 33.4,
+  y: 58.5
+}, {
+  id: "ah6",
+  type: "water",
+  label: "Hydration",
+  x: 59.3,
+  y: 43.3
+}, {
+  id: "ah7",
+  type: "water",
+  label: "Hydration",
+  x: 68.7,
+  y: 54.3
+}, {
+  id: "ah8",
+  type: "water",
+  label: "Hydration",
+  x: 39.8,
+  y: 75.7
+}, {
+  id: "ar1",
+  type: "toilet",
+  label: "Restrooms",
+  x: 16.3,
+  y: 33.0
+}, {
+  id: "ar2",
+  type: "toilet",
+  label: "Restrooms",
+  x: 63.6,
+  y: 32.4
+}, {
+  id: "ar3",
+  type: "toilet",
+  label: "Restrooms",
+  x: 14.7,
+  y: 48.6
+}, {
+  id: "ar4",
+  type: "toilet",
+  label: "Restrooms",
+  x: 82.7,
+  y: 42.6
+}, {
+  id: "ar5",
+  type: "toilet",
+  label: "Restrooms",
+  x: 82.6,
+  y: 55.3
+}, {
+  id: "ar6",
+  type: "toilet",
+  label: "Restrooms",
+  x: 76.7,
+  y: 57.8
+}, {
+  id: "ar7",
+  type: "toilet",
+  label: "Restrooms",
+  x: 49.0,
+  y: 73.1
+}, {
+  id: "am1",
   type: "med",
   label: "Medical",
-  x: 55,
-  y: 60
+  x: 20.3,
+  y: 37.7
 }, {
-  id: "aa6",
-  type: "toilet",
-  label: "Restrooms",
-  x: 30,
-  y: 30
+  id: "am2",
+  type: "med",
+  label: "Medical",
+  x: 26.2,
+  y: 69.1
 }, {
-  id: "aa7",
-  type: "toilet",
-  label: "Restrooms",
-  x: 70,
-  y: 45
+  id: "am3",
+  type: "med",
+  label: "Medical",
+  x: 48.3,
+  y: 50.3
 }, {
-  id: "aa8",
-  type: "info",
-  label: "Guest Services",
-  x: 20,
-  y: 35
+  id: "am4",
+  type: "med",
+  label: "Medical",
+  x: 91.0,
+  y: 46.0
 }];
 var EDCO_STAGES = [{
   id: "kinetic",
@@ -2470,6 +2630,14 @@ for (var _id3 of _WAVE1_IDS) {
   };
 }
 _applyScheduleOverlays(_DATA_SETS);
+for (var _ds of Object.values(_DATA_SETS)) {
+  for (var _s of _ds.stages || []) {
+    if (_s && _s.code === undefined) {
+      _s.code = _s.short;
+      _s.short = _s.name || _s.short;
+    }
+  }
+}
 var _activeId = getActiveFestivalId();
 var _active = _DATA_SETS[_activeId] || _DATA_SETS["edc-lv-2026"];
 Object.assign(window, {
@@ -2477,7 +2645,8 @@ Object.assign(window, {
   FESTIVAL_CONFIG: _active.config,
   STAGES: _active.stages,
   AMENITIES: _active.amenities,
-  AVATAR_START,
+  AVATAR_START: avatarStartFor(_active),
+  avatarStartFor,
   FRIENDS,
   ARTISTS: _active.artists,
   NOW,
@@ -2486,6 +2655,7 @@ Object.assign(window, {
   fmt12,
   FESTIVALS_REGISTRY,
   getActiveFestivalId,
+  festivalCanBeActive,
   setActiveFestivalAndReload,
   isScheduleTBA,
   _resolveDefaultFestivalId,

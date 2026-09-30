@@ -181,9 +181,17 @@ function OnboardingModal({
       localStorage.setItem("onboarded", ONBOARD_VERSION);
     } catch {}
     if (festId && festId !== FESTIVAL_CONFIG.id) {
+      try {
+        sessionStorage.setItem("plursky_landing_entered", festId);
+      } catch {}
       setActiveFestivalAndReload(festId);
       return;
     }
+    setState(s => ({
+      ...s,
+      tab: "home",
+      artist: null
+    }));
     onDone();
   };
   var PAGES = [{
@@ -335,7 +343,7 @@ function OnboardingModal({
     }
   }, list.map(f => {
     var isActive = f.config.id === FESTIVAL_CONFIG.id;
-    var locked = !f.available;
+    var locked = typeof landingCanEnter === "function" ? !landingCanEnter(f, Date.now(), !!window._isPlusSub?.()) : !f.available;
     return React.createElement("button", {
       key: f.config.id,
       disabled: locked,
@@ -383,7 +391,7 @@ function OnboardingModal({
         fontWeight: 600,
         color: isActive ? "var(--signal-ink)" : "var(--text-2)"
       }
-    }, isActive ? "✓ Selected" : f.previewOnly ? "Early access" : "Soon")));
+    }, isActive ? "✓ Selected" : f.previewOnly ? locked ? "Early access · Plursky+" : "Early access" : "Soon")));
   }), !list.length && React.createElement("p", {
     style: {
       padding: "24px 0",
@@ -538,7 +546,7 @@ function SearchModal({
   var results = query.length === 0 ? [] : activeLineup().filter(a => {
     if (dayFilter) return a.day === dayFilter;
     var stage = STAGES.find(s => s.id === a.stage);
-    return a.name.toLowerCase().includes(query) || a.genre.toLowerCase().includes(query) || (stage?.name || "").toLowerCase().includes(query) || (stage?.short || "").toLowerCase().includes(query) || (stage?.vibe || "").toLowerCase().includes(query) || ["legend", "legendary", "sunrise", "b2b"].includes(query) && isLegendary(a);
+    return a.name.toLowerCase().includes(query) || a.genre.toLowerCase().includes(query) || (stage?.name || "").toLowerCase().includes(query) || (stage?.short || "").toLowerCase().includes(query) || (stage?.code || "").toLowerCase().includes(query) || (stage?.vibe || "").toLowerCase().includes(query) || ["legend", "legendary", "sunrise", "b2b"].includes(query) && isLegendary(a);
   }).sort((a, b) => {
     var aStart = a.name.toLowerCase().startsWith(query);
     var bStart = b.name.toLowerCase().startsWith(query);
@@ -1060,14 +1068,6 @@ function App() {
       sbOutboxInit?.();
     } catch {}
   }, []);
-  var {
-    mode: themeMode
-  } = useThemeMode();
-  React.useEffect(() => {
-    applyThemeClass();
-    var id = setInterval(applyThemeClass, 60000);
-    return () => clearInterval(id);
-  }, [themeMode]);
   React.useEffect(() => {
     var onConnect = e => {
       if (e?.detail?.ok) {
@@ -1094,9 +1094,12 @@ function App() {
     var rawSearch = window.location.search || (window.location.hash?.startsWith("#?") ? window.location.hash.slice(1) : "");
     var params = new URLSearchParams(rawSearch);
     var dlFest = params.get("f") || params.get("festival");
+    var switchingFestival = false;
+    var dlFestOk = false;
     if (dlFest && typeof FESTIVALS_REGISTRY !== "undefined") {
       var fEntry = FESTIVALS_REGISTRY.find(f => f.config.id === dlFest);
-      var canSwitch = !!fEntry && (fEntry.available || fEntry.previewOnly && window._isPlusSub?.());
+      var canSwitch = !!fEntry && festivalCanBeActive(fEntry);
+      dlFestOk = canSwitch;
       if (canSwitch && dlFest !== FESTIVAL_CONFIG.id) {
         try {
           var u = new URL(window.location.href);
@@ -1110,6 +1113,10 @@ function App() {
           }
           window.history.replaceState({}, "", u.toString());
         } catch {}
+        try {
+          sessionStorage.setItem("plursky_landing_entered", dlFest);
+        } catch {}
+        switchingFestival = true;
         setActiveFestivalAndReload(dlFest);
       }
     }
@@ -1122,7 +1129,7 @@ function App() {
     var dlCrew = params.get("crew");
     var validArtist = dlArtist && ARTISTS.find(a => a.id === dlArtist) ? dlArtist : null;
     var validTab = ["home", "map", "lineup", "spotify", "me", "memories", "past"].includes(dlTab) ? dlTab : null;
-    var validStage = dlStage && STAGES.find(s => s.id === dlStage || s.short.toLowerCase() === dlStage.toLowerCase()) ? dlStage : null;
+    var validStage = dlStage && STAGES.find(s => s.id === dlStage || (s.code || s.short || "").toLowerCase() === dlStage.toLowerCase()) ? dlStage : null;
     var validDay = dlDay && festivalDayNums().includes(+dlDay) ? +dlDay : null;
     var validFriendIds = dlLineup ? dlLineup.split(",").map(s => s.trim()).filter(id => ARTISTS.find(a => a.id === id)) : [];
     var validFrom = (dlFrom || "").slice(0, 24).replace(/[^a-zA-Z0-9 _.-]/g, "") || null;
@@ -1143,8 +1150,26 @@ function App() {
         history.replaceState(null, "", window.location.pathname);
       } catch {}
     }
+    try {
+      if (typeof runLandingMigration === "function") runLandingMigration();
+    } catch {}
+    var enteredFromLanding = null;
+    try {
+      enteredFromLanding = sessionStorage.getItem("plursky_landing_entered");
+      if (enteredFromLanding && !switchingFestival) sessionStorage.removeItem("plursky_landing_entered");
+    } catch {}
+    var validParams = new URLSearchParams();
+    if (dlFestOk) validParams.set("f", dlFest);
+    if (validArtist) validParams.set("artist", validArtist);
+    if (validTab) validParams.set("tab", validTab);
+    if (validStage) validParams.set("stage", validStage);
+    if (validDay) validParams.set("day", String(validDay));
+    if (validFriendIds.length) validParams.set("lineup", validFriendIds.join(","));
+    if (validCrew) validParams.set("crew", validCrew);
+    var deepLinked = typeof landingShouldOpenGeneral === "function" ? !landingShouldOpenGeneral(validParams) : true;
+    var bootTab = (validStage ? "lineup" : validTab) || (validCrew ? "me" : null);
     return {
-      tab: (validStage ? "lineup" : validTab) || (validCrew ? "me" : "home"),
+      tab: bootTab || (deepLinked || enteredFromLanding ? "home" : "landing"),
       saved: saved ?? [],
       spotifyConnected: spotifyTokenValid(),
       artist: validArtist,
@@ -1276,7 +1301,10 @@ function App() {
     };
   }, [state.saved.join(",")]);
   var body;
-  if (state.artist) body = React.createElement(ArtistScreen, {
+  if (state.tab === "landing") body = React.createElement(GeneralLandingScreen, {
+    state: state,
+    setState: setState
+  });else if (state.artist) body = React.createElement(ArtistScreen, {
     state: state,
     setState: setState
   });else if (state.tab === "home") body = React.createElement(HomeScreen, {
@@ -1315,12 +1343,12 @@ function App() {
       flexDirection: "column",
       paddingTop: state.tab === "home" && !state.artist ? 0 : "var(--top-pad, 54px)"
     }
-  }, !(state.tab === "home" && !state.artist) && React.createElement(StatusStrip, null), React.createElement("div", {
+  }, !(state.tab === "home" && !state.artist) && state.tab !== "landing" && React.createElement(StatusStrip, null), React.createElement("div", {
     style: {
       flex: 1,
       position: "relative"
     }
-  }, body, React.createElement(ToastHost, null)), !state.artist && (() => {
+  }, body, React.createElement(ToastHost, null)), !state.artist && state.tab !== "landing" && (() => {
     var postFest = (() => {
       try {
         return Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity);
@@ -1342,7 +1370,7 @@ function App() {
       ...state,
       artist: id
     }),
-    saved: state.saved || []
+    saved: savedInLineup(state.saved)
   }), showOnboarding && React.createElement(OnboardingModal, {
     state: state,
     setState: setState,
@@ -1350,7 +1378,7 @@ function App() {
   }), personalizeOpen && React.createElement(PersonalizeSheet, {
     state: state,
     onClose: () => setPersonalizeOpen(false)
-  }), window.NowPlayingBar && React.createElement(window.NowPlayingBar), React.createElement(BatterySaverToast, null));
+  }), state.tab !== "landing" && window.NowPlayingBar && React.createElement(window.NowPlayingBar), React.createElement(BatterySaverToast, null));
 }
 var styleTag = document.createElement("style");
 styleTag.textContent = `
@@ -1442,7 +1470,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v347"
+        version: "v380"
       }));
     } catch {}
   }
@@ -1507,7 +1535,7 @@ class RootErrorBoundary extends React.Component {
         letterSpacing: 1.2,
         color: "rgba(var(--shade-rgb),0.45)"
       }
-    }, "PLURSKY · v347"));
+    }, "PLURSKY · v380"));
   }
 }
 function SetStartingCinematic() {
@@ -1629,7 +1657,7 @@ function SetStartingCinematic() {
     style: {
       fontSize: 9,
       letterSpacing: 1.6,
-      color: "rgba(var(--ink-rgb),0.4)",
+      color: "var(--text-3)",
       marginTop: 20
     }
   }, "TAP TO DISMISS")));

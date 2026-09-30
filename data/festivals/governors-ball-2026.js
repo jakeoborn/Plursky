@@ -143,6 +143,8 @@
 
   const CONFIG = {
     id: "governors-ball-2026",
+    // The festival's OWN map page, linked (never embedded) by the /f/ page.
+    mapSource: { url: "https://support.govball.com/hc/en-us/articles/11579732251284-Is-there-a-current-festival-map", observedAt: "2026-09-24", mapYear: 2026 },
     // From the SOURCE note above: governorsballmusicfestival.com/schedule graphics, accessed 2026-08-28. Feeds /f/<id>/schedule.json.
     scheduleSource: { url: "https://governorsballmusicfestival.com/schedule", observedAt: "2026-08-28", official: true },
     name: "Governors Ball 2026",

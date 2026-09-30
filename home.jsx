@@ -228,9 +228,9 @@ function TonightCard({ state, setState }) {
 
   const card = (label, value, sub, accent) => (
     <div style={{ flex: 1, minWidth: 0 }}>
-      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "rgba(var(--ink-rgb),0.55)", fontWeight: 600 }}>{label}</div>
+      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--text-3)", fontWeight: 600 }}>{label}</div>
       <div style={{ fontFamily: "Geist Mono, monospace", fontSize: 18, fontWeight: 600, color: accent || "var(--paper)", marginTop: 3, lineHeight: 1 }}>{value}</div>
-      {sub && <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "rgba(var(--ink-rgb),0.6)", marginTop: 4 }}>{sub}</div>}
+      {sub && <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--text-3)", marginTop: 4 }}>{sub}</div>}
     </div>
   );
 
@@ -252,11 +252,11 @@ function TonightCard({ state, setState }) {
       }}/>
       <div style={{ position: "relative" }}>
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 12 }}>
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "rgba(var(--ink-rgb),0.6)" }}>
+          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--text-3)" }}>
             {isPreEvent ? "OPENING NIGHT" : `TONIGHT · DAY ${day}`}
           </div>
           {period && (
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(var(--ink-rgb),0.5)", display: "flex", alignItems: "center", gap: 5 }}>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--text-3)", display: "flex", alignItems: "center", gap: 5 }}>
               NWS · {period.name.toUpperCase()}
               {cacheAgeLabel && (
                 <span style={{
@@ -311,10 +311,10 @@ function TonightCard({ state, setState }) {
           return (
             <div style={{ marginTop: 14, padding: "10px 12px", borderRadius: 10, background: "rgba(var(--ink-rgb),0.05)", border: "1px solid rgba(var(--ink-rgb),0.1)" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
-                <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "rgba(var(--ink-rgb),0.55)", fontWeight: 600 }}>
+                <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--text-3)", fontWeight: 600 }}>
                   NEXT 12H
                 </span>
-                <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.5)" }}>
+                <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--text-3)" }}>
                   {min}° → {max}°
                 </span>
               </div>
@@ -325,8 +325,8 @@ function TonightCard({ state, setState }) {
                 ))}
               </svg>
               <div style={{ display: "flex", justifyContent: "space-between", marginTop: 4 }}>
-                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.4)" }}>{fmtH(firstHour)}</span>
-                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.4)" }}>{fmtH(lastHour)}</span>
+                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--text-3)" }}>{fmtH(firstHour)}</span>
+                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--text-3)" }}>{fmtH(lastHour)}</span>
               </div>
             </div>
           );
@@ -718,8 +718,9 @@ function buildTonightsPlan(state) {
   const night = NOW.night;
   if (night == null) return [];
   const nowMin = toNightMin(NOW.time);
-  const lineup = activeLineup(state.saved);
-  const sets = state.saved
+  const saved = savedInLineup(state.saved);
+  const lineup = activeLineup(saved);
+  const sets = saved
     .map(id => lineup.find(a => a.id === id))
     .filter(a => a && a.day === night)
     .sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
@@ -786,7 +787,7 @@ function computeAlerts(savedIds, day, timeStr) {
 }
 
 function PostFestivalRecap({ state, setState }) {
-  const savedIds = state.saved || [];
+  const savedIds = savedInLineup(state.saved);
   const byDay = festivalDayNums().map(day => ({
     day,
     meta: FESTIVAL_CONFIG.dayDates[day],
@@ -921,7 +922,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
   const isPostEvent = now > FESTIVAL_END_MS;
   const day = NOW.day;
   const dayMeta = FESTIVAL_CONFIG.dayDates[day];
-  const savedIds = state.saved || [];
+  const savedIds = savedInLineup(state.saved);
 
   // The currently-live artist (anywhere on grounds), preferring mainstage.
   const live = (() => {
@@ -1044,7 +1045,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                 : `TONIGHT · ${dayMeta?.name?.toUpperCase() || "DAY " + day}`}
           </div>
           <div className="mono" style={{
-            fontSize: 9, letterSpacing: 1.4, color: "rgba(var(--ink-rgb),0.55)", fontWeight: 600,
+            fontSize: 9, letterSpacing: 1.4, color: "var(--text-3)", fontWeight: 600,
           }}>
             {phase === "pre"
               ? FESTIVAL_CONFIG.dates.toUpperCase()
@@ -1071,7 +1072,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
             <div style={{ fontSize: 28, lineHeight: 0.96, letterSpacing: -0.5, marginBottom: 6, fontWeight: 600 }}>
               {FESTIVAL_CONFIG.dayDates[1]?.short} · <span className="serif" style={{ fontStyle: "italic", fontWeight: 400, color: accent }}>{FESTIVAL_CONFIG.brand}</span>
             </div>
-            <div style={{ fontSize: 13, color: "rgba(var(--ink-rgb),0.7)", lineHeight: 1.4, marginBottom: spotlight ? 16 : 0 }}>
+            <div style={{ fontSize: 13, color: "var(--text-2)", lineHeight: 1.4, marginBottom: spotlight ? 16 : 0 }}>
               {preCd && preCd.days === 0
                 ? `gates in ${preCd.hours}h ${preCd.mins}m${preDawn ? " — sleep." : "."}`
                 : `${FESTIVAL_CONFIG.locationShort} · gates open ${FESTIVAL_CONFIG.dayDates[1]?.name || "Friday"}.`}
@@ -1097,13 +1098,13 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                       whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
                     }}>{spotlight.name}</div>
                     <div className="mono" style={{
-                      fontSize: 9, letterSpacing: 0.8, color: "rgba(var(--ink-rgb),0.55)", marginTop: 3,
+                      fontSize: 9, letterSpacing: 0.8, color: "var(--text-3)", marginTop: 3,
                     }}>
                       {sStage?.name?.toUpperCase() || ""} · DAY {spotlight.day} · {fmt12(spotlight.start)}
                     </div>
                   </div>
                   <div style={{
-                    color: "rgba(var(--ink-rgb),0.4)", fontSize: 16, flexShrink: 0,
+                    color: "var(--text-3)", fontSize: 16, flexShrink: 0,
                   }}>→</div>
                 </button>
               );
@@ -1120,14 +1121,14 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                 boxShadow: `0 0 0 4px ${accent}33`,
                 animation: "pulse 1.6s ease-in-out infinite",
               }}/>
-              <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "rgba(var(--ink-rgb),0.75)", fontWeight: 600 }}>
+              <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--text-2)", fontWeight: 600 }}>
                 NOW · {featured.genre.toUpperCase()}
               </span>
             </div>
             <div className="serif" style={{ fontSize: 34, lineHeight: 0.95, letterSpacing: -0.4, marginBottom: 6 }}>
               {featured.name}
             </div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "rgba(var(--ink-rgb),0.7)", marginBottom: 14 }}>
+            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "var(--text-2)", marginBottom: 14 }}>
               {fmt12(featured.start)} – {fmt12(featured.end)}
             </div>
             <div style={{ display: "flex", gap: 8 }}>
@@ -1179,7 +1180,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                   <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, marginTop: 2 }}>
                     {featured.name}
                   </div>
-                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(var(--ink-rgb),0.6)", marginTop: 2 }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--text-3)", marginTop: 2 }}>
                     {stage?.short || ""} · {fmt12(featured.start)}
                   </div>
                 </div>
@@ -1194,7 +1195,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
             <div className="serif" style={{ fontSize: 28, lineHeight: 0.96, letterSpacing: -0.4, marginBottom: 6 }}>
               Stage <span style={{ fontStyle: "italic", color: accent }}>changeover</span>
             </div>
-            <div style={{ fontSize: 13, color: "rgba(var(--ink-rgb),0.7)", lineHeight: 1.4, marginBottom: 12 }}>
+            <div style={{ fontSize: 13, color: "var(--text-2)", lineHeight: 1.4, marginBottom: 12 }}>
               Decks are quiet between sets — your next pick is queued below.
             </div>
             {featured && (
@@ -1214,7 +1215,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                   <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, marginTop: 2 }}>
                     {featured.name}
                   </div>
-                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(var(--ink-rgb),0.6)", marginTop: 2 }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--text-3)", marginTop: 2 }}>
                     {stage?.short || ""} · {fmt12(featured.start)}
                   </div>
                 </div>
@@ -1237,7 +1238,7 @@ function LastNightRecap({ state, setState }) {
   const prevDay = day - 1;
   if (prevDay < 1 || prevDay > 3) return null;
   const meta = FESTIVAL_CONFIG.dayDates[prevDay];
-  const savedIds = state.saved || [];
+  const savedIds = savedInLineup(state.saved);
 
   // Score = tier (1-3) weighted by set duration in minutes
   const score = a => {
@@ -1301,7 +1302,7 @@ function LastNightRecap({ state, setState }) {
             {artist.name}
           </div>
           <div className="mono" style={{
-            fontSize: 8, letterSpacing: 1, color: "rgba(var(--ink-rgb),0.85)", marginTop: 2,
+            fontSize: 8, letterSpacing: 1, color: "var(--text-2)", marginTop: 2,
           }}>
             {stage?.short || ""} · {fmt12(artist.start)}
           </div>
@@ -1374,7 +1375,7 @@ function LastNightRecap({ state, setState }) {
 function UpcomingTeaser({ state, setState }) {
   const now = Date.now();
   const isPreEvent = now < FESTIVAL_START_MS;
-  const savedIds = state.saved || [];
+  const savedIds = savedInLineup(state.saved);
 
   // Which days to surface
   const upcomingDays = (() => {
@@ -1513,10 +1514,10 @@ function HomeScreen({ state, setState }) {
   // they later un-save everything.
   React.useEffect(() => {
     if (setupBannerDismissed) return;
-    if ((state.saved?.length || 0) === 0) return;
+    if (savedInLineup(state.saved).length === 0) return;
     try { localStorage.setItem("setup_banner_dismissed", "1"); } catch {}
     setSetupBannerDismissed(true);
-  }, [state.saved?.length, setupBannerDismissed]);
+  }, [state.saved?.join(","), setupBannerDismissed]);
   const { perm: notifPerm, enable: enableNotifs } = useNotifications();
   const weatherAlert = useWeatherAlert();
   // Pre-event newcomers haven't seen the first-timer guide yet — show a
@@ -1530,49 +1531,9 @@ function HomeScreen({ state, setState }) {
 
   // Re-render every minute so the pre-event countdown stays accurate
   useTick(60000);
-  const countdown = preEventCountdown(state.saved);
+  const liveSaved = savedInLineup(state.saved);
+  const countdown = preEventCountdown(liveSaved);
   const isPostFestival = Date.now() > FESTIVAL_END_MS;
-
-  // Offline prep: prefetch photos for any saved sets we haven't cached yet,
-  // so the schedule + artist screens render with hero images even when the
-  // festival's LTE is saturated. TheAudioDB, no auth — Deezer used to do this
-  // but api.deezer.com sends no access-control-allow-origin, so every one of
-  // these requests was blocked by the browser and the prefetch cached nothing
-  // (v254). SEQUENTIAL, not a forEach fan-out: TADB's free key is rate
-  // limited, and twelve parallel requests get throttled into failures that
-  // look exactly like "no photo exists".
-  React.useEffect(() => {
-    const saved = state.saved || [];
-    if (!saved.length || !navigator.onLine) return;
-    if (typeof fetchAudioDB !== "function") return;
-    let cached = {};
-    try { cached = JSON.parse(localStorage.getItem("artist_images_v1") || "{}"); } catch {}
-    const missing = saved
-      .map(id => ARTISTS.find(a => a.id === id))
-      .filter(a => a && !cached[a.name.toLowerCase()])
-      .slice(0, 12); // throttle: 12 per session, rest fill in on revisit
-    if (!missing.length) return;
-    let live = true;
-    (async () => {
-      for (const a of missing) {
-        if (!live) return;
-        let img = null;
-        try { img = (await fetchAudioDB(a.name, a.genre))?.image || null; } catch {}
-        if (!live) return;
-        if (img) {
-          try {
-            const imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-            if (!imgs[a.name.toLowerCase()]) {
-              imgs[a.name.toLowerCase()] = img;
-              localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
-            }
-          } catch {}
-        }
-        await new Promise(r => setTimeout(r, 400));
-      }
-    })();
-    return () => { live = false; };
-  }, [state.saved?.length]);
 
   const current = ARTISTS.find(a => a.id === NOW.currentArtistId) || null;
   const next    = ARTISTS.find(a => a.id === NOW.nextArtistId) || null;
@@ -1587,8 +1548,8 @@ function HomeScreen({ state, setState }) {
   const liveStrip = liveAcrossStages();
 
   // Computed alerts from saved sets — replaces static demo ALERTS during festival
-  const _dynAlerts = !countdown && state.saved?.length
-    ? computeAlerts(state.saved, NOW.night, NOW.time)
+  const _dynAlerts = !countdown && liveSaved.length
+    ? computeAlerts(liveSaved, NOW.night, NOW.time)
     : [];
   const alerts = _dynAlerts.length ? _dynAlerts : (state.alerts || ALERTS);
   const unread = alerts.filter(a => a.unread).length;
@@ -1620,7 +1581,7 @@ function HomeScreen({ state, setState }) {
   // Now/Next row, one primary action, then flat rows. Every section the old
   // Home carried is still one tap away, in the essentials row or a sheet.
   const [sheet, setSheet] = React.useState(null);
-  const savedIds = state.saved || [];
+  const savedIds = savedInLineup(state.saved);
   const online = useOnlineStatus();
   const isLive = !countdown && !isPostFestival;
   const heroMomentId = useHeroMomentId();
@@ -1892,7 +1853,7 @@ function HeadlinerHighlights({ state, setState }) {
 // Saved sets by day as flat, time-led rows with walk gaps. A clash is a small
 // warning with its word, never a neon card. Opened as "My saved sets".
 function SavedByDay({ state, setState }) {
-  const savedIds = state.saved || [];
+  const savedIds = savedInLineup(state.saved);
   const byDay = festivalDayNums().map(day => ({
     day, meta: FESTIVAL_CONFIG.dayDates[day],
     artists: activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id))
@@ -1944,9 +1905,9 @@ function SavedByDay({ state, setState }) {
                     <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{fmt12(a.end)}</div>
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{a.name}</div>
+                    <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{actDisplayName(a.name)}</div>
                     {stage && <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{stage.name}</div>}
-                    {conflict && <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: "var(--warn)" }}>⚠ Clashes with {prev.name}</div>}
+                    {conflict && <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: "var(--warn)" }}>⚠ Clashes with {actDisplayName(prev.name)} · {fmt12(prev.start)} · {(STAGES.find(s => s.id === prev.stage) || {}).name || "stage TBA"}</div>}
                   </div>
                 </button>
               </div>
@@ -2065,7 +2026,7 @@ function FieldHomeHero({ photo, status, live, deviceOffline, title, sub, offline
 // The current saved set if one is live, else the next one. No saved sets
 // means one plain sentence and one action, never invented event data.
 function FieldNowNext({ state, setState, onOpenNight }) {
-  const savedIds = state.saved || [];
+  const savedIds = savedInLineup(state.saved);
   const saved = activeLineup(savedIds).filter(a => savedIds.includes(a.id));
   const now = Date.now();
   const live = saved.find(a => isSetLive(a)) || null;
@@ -2763,7 +2724,7 @@ function _buildShareUrl(savedIds) {
 
 
 function FriendLineupBanner({ state, setState }) {
-  const friendIds = state.friendLineup || [];
+  const friendIds = savedInLineup(state.friendLineup);
   const savedSet = new Set(state.saved || []);
   const overlap = friendIds.filter(id => savedSet.has(id));
   const fresh = friendIds.filter(id => !savedSet.has(id));
@@ -2814,7 +2775,7 @@ function FriendLineupBanner({ state, setState }) {
         }}>{expanded ? "HIDE SETS" : "VIEW SETS"}</button>
         {fresh.length > 0 && (
           <button onClick={addOverlap} className="mono" style={{
-            background: "var(--ember)", color: "var(--ink)", border: "none",
+            background: "var(--ember)", color: "var(--on-ember)", border: "none",
             borderRadius: 999, padding: "8px 14px", cursor: "pointer",
             fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           }}>+ ADD {fresh.length} NEW</button>

@@ -21,10 +21,9 @@
 // drifted". There is exactly one geometryVerifiedFor in this repo and this gate
 // asks it.
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
-import { execFileSync } from 'node:child_process';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import vm from 'node:vm';
+import { loadBrowser } from './lib/load-browser.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const F_DIR = join(ROOT, 'f');
@@ -47,43 +46,7 @@ const visibleText = (html) => decode(
 // ── Load the real predicate from the compiled build ───────────────────────
 // Same shim verify.mjs uses. If the build is stale or missing we FAIL rather
 // than skip: a gate that quietly checks nothing is worse than no gate.
-function loadBrowser() {
-  const need = ['build/data.js', 'build/home.js', 'build/map.js'];
-  const missing = need.filter(f => !existsSync(join(ROOT, f)));
-  if (missing.length) {
-    console.log(`  ✗  HARNESS DEAD: missing ${missing.join(', ')} — run node scripts/build.mjs`);
-    process.exit(1);
-  }
-  const noop = () => {};
-  const store = {};
-  const ctx = {
-    console: { log: noop, warn: noop, error: noop }, Date, Math, JSON, Object, Array,
-    String, Number, Boolean, Set, Map, isNaN, parseInt, parseFloat, isFinite,
-    Promise, RegExp, Symbol, Error,
-    setTimeout: noop, clearTimeout: noop, setInterval: noop, clearInterval: noop,
-    fetch: () => new Promise(noop), URLSearchParams, location: { search: '' },
-    localStorage: { getItem: k => (k in store ? store[k] : null),
-                    setItem: (k, v) => { store[k] = String(v); }, removeItem: k => { delete store[k]; } },
-    navigator: { userAgent: 'node', geolocation: {} },
-    document: { addEventListener: noop, removeEventListener: noop, documentElement: { style: {} },
-                createElement: () => ({ style: {}, setAttribute: noop }), getElementById: () => null,
-                querySelector: () => null, head: { appendChild: noop } },
-    React: new Proxy(function () {}, { get: () => () => null, apply: () => null }),
-    ReactDOM: { createRoot: () => ({ render: noop }) },
-  };
-  ctx.window = ctx; ctx.globalThis = ctx; ctx.self = ctx;
-  ctx.window.addEventListener = noop; ctx.window.removeEventListener = noop;
-  ctx.window.matchMedia = () => ({ matches: false, addEventListener: noop, addListener: noop });
-  vm.createContext(ctx);
-  const mods = execFileSync('git', ['ls-files', 'data/festivals/*.js'], { cwd: ROOT })
-    .toString().trim().split('\n').filter(Boolean)
-    .map(f => readFileSync(join(ROOT, f), 'utf8')).join('\n');
-  vm.runInContext(mods, ctx);
-  for (const f of need) vm.runInContext(readFileSync(join(ROOT, f), 'utf8'), ctx);
-  return ctx;
-}
-
-const wc = loadBrowser();
+const wc = loadBrowser(ROOT);
 if (typeof wc.geometryVerifiedFor !== 'function') {
   console.log('  ✗  HARNESS DEAD: map.jsx must expose geometryVerifiedFor — this gate would check nothing');
   process.exit(1);

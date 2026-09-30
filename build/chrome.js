@@ -47,20 +47,26 @@ function TopBar({
       justifyContent: "space-between",
       gap: 12
     }
-  }, React.createElement("div", null, sub && React.createElement("div", {
+  }, React.createElement("div", {
+    style: {
+      minWidth: 0,
+      overflowWrap: "anywhere"
+    }
+  }, sub && React.createElement("div", {
     style: {
       fontSize: 11,
-      lineHeight: "14px",
+      lineHeight: 1.27,
       fontWeight: 600,
       letterSpacing: "0.04em",
       textTransform: "uppercase",
       color: "var(--text-2)",
       marginBottom: 4
     }
-  }, sub), React.createElement("div", {
+  }, sub), React.createElement("h1", {
     style: {
+      margin: 0,
       fontSize: 28,
-      lineHeight: "34px",
+      lineHeight: 1.21,
       fontWeight: 700,
       letterSpacing: "-0.01em"
     }
@@ -143,6 +149,7 @@ function TabBar({
         color: on ? "var(--signal-ink)" : "var(--text-2)",
         minWidth: 64,
         minHeight: 49,
+        maxWidth: "100%",
         transition: "color 0.15s ease"
       }
     }, React.createElement(Icon, {
@@ -150,8 +157,12 @@ function TabBar({
     }), React.createElement("span", {
       style: {
         fontSize: 12,
-        lineHeight: "14px",
+        lineHeight: 1.17,
         fontWeight: on ? 600 : 500,
+        minWidth: 0,
+        maxWidth: "100%",
+        overflowWrap: "anywhere",
+        textAlign: "center",
         transition: "color 0.15s"
       }
     }, t.label));
@@ -389,6 +400,186 @@ function useStaggerFade(depKey) {
   }, [depKey]);
   return ref;
 }
+var ARTIST_IMAGES_KEY = "artist_images_v1";
+var SPOTIFY_IMAGE_TTL_MS = 24 * 60 * 60 * 1000;
+var _ARTIST_IMAGE_SOURCES = ["spotify"];
+function _readArtistImageStore() {
+  try {
+    var o = JSON.parse(localStorage.getItem(ARTIST_IMAGES_KEY) || "{}");
+    return o && typeof o === "object" && !Array.isArray(o) ? o : {};
+  } catch {
+    return {};
+  }
+}
+function _artistImageRecord(v) {
+  if (typeof v === "string") return v ? {
+    url: v,
+    source: "unknown",
+    fetchedAt: null,
+    spotifyId: null
+  } : null;
+  if (!v || typeof v !== "object" || typeof v.url !== "string" || !v.url) return null;
+  return {
+    url: v.url,
+    source: _ARTIST_IMAGE_SOURCES.includes(v.source) ? v.source : "unknown",
+    fetchedAt: Number.isFinite(v.fetchedAt) ? v.fetchedAt : null,
+    spotifyId: typeof v.spotifyId === "string" && v.spotifyId ? v.spotifyId : null
+  };
+}
+function _artistImageShowable(rec, now = Date.now()) {
+  if (!rec) return false;
+  if (rec.source === "spotify") {
+    var age = now - rec.fetchedAt;
+    return rec.fetchedAt != null && age >= 0 && age < SPOTIFY_IMAGE_TTL_MS;
+  }
+  return false;
+}
+function getArtistImage(name, now = Date.now()) {
+  if (!name) return null;
+  var rec = _artistImageRecord(_readArtistImageStore()[String(name).toLowerCase()]);
+  return _artistImageShowable(rec, now) ? rec : null;
+}
+function getShareableArtistImage(name) {
+  var rec = getArtistImage(name);
+  return rec && rec.source !== "spotify" ? rec : null;
+}
+function _pruneArtistImageStore(store, now = Date.now()) {
+  var changed = false;
+  for (var k of Object.keys(store)) {
+    if (!_artistImageShowable(_artistImageRecord(store[k]), now)) {
+      delete store[k];
+      changed = true;
+    }
+  }
+  return changed;
+}
+function putArtistImages(entries, {
+  ifAbsent = false
+} = {}) {
+  try {
+    var store = _readArtistImageStore();
+    var changed = _pruneArtistImageStore(store);
+    var now = Date.now();
+    for (var e of entries || []) {
+      if (!e || !e.name || typeof e.url !== "string" || !e.url) continue;
+      if (!_ARTIST_IMAGE_SOURCES.includes(e.source)) continue;
+      var ln = String(e.name).toLowerCase();
+      if (ifAbsent && store[ln]) continue;
+      store[ln] = {
+        url: e.url,
+        source: e.source,
+        fetchedAt: now
+      };
+      if (e.source === "spotify" && e.spotifyId) store[ln].spotifyId = e.spotifyId;
+      changed = true;
+    }
+    if (changed) localStorage.setItem(ARTIST_IMAGES_KEY, JSON.stringify(store));
+  } catch {}
+  _scheduleArtistImageExpiry();
+}
+function putArtistImage(name, url, source, opts = {}) {
+  putArtistImages([{
+    name,
+    url,
+    source,
+    spotifyId: opts.spotifyId
+  }], opts);
+}
+var ARTIST_IMAGES_EXPIRED = "plursky:artist-images-expired";
+var _artistImageTimer = null;
+function _expireArtistImagesNow(now = Date.now()) {
+  var changed = false;
+  try {
+    var s = _readArtistImageStore();
+    changed = _pruneArtistImageStore(s, now);
+    if (changed) localStorage.setItem(ARTIST_IMAGES_KEY, JSON.stringify(s));
+  } catch {}
+  if (changed) try {
+    window.dispatchEvent(new Event(ARTIST_IMAGES_EXPIRED));
+  } catch {}
+  _scheduleArtistImageExpiry(now);
+  return changed;
+}
+function _scheduleArtistImageExpiry(now = Date.now()) {
+  try {
+    clearTimeout(_artistImageTimer);
+  } catch {}
+  _artistImageTimer = null;
+  var next = Infinity;
+  try {
+    for (var v of Object.values(_readArtistImageStore())) {
+      var rec = _artistImageRecord(v);
+      if (rec && rec.source === "spotify" && rec.fetchedAt != null) next = Math.min(next, rec.fetchedAt + SPOTIFY_IMAGE_TTL_MS);
+    }
+  } catch {}
+  if (next === Infinity) return;
+  _artistImageTimer = setTimeout(() => _expireArtistImagesNow(), Math.max(0, next - now) + 50);
+}
+function useArtistImageExpiry() {
+  var [n, setN] = React.useState(0);
+  React.useEffect(() => {
+    var on = () => setN(x => x + 1);
+    window.addEventListener(ARTIST_IMAGES_EXPIRED, on);
+    return () => window.removeEventListener(ARTIST_IMAGES_EXPIRED, on);
+  }, []);
+  return n;
+}
+try {
+  _expireArtistImagesNow();
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") _expireArtistImagesNow();
+  });
+} catch {}
+try {
+  for (var i = localStorage.length - 1; i >= 0; i--) {
+    var k = localStorage.key(i);
+    if (k && /^tadb_.+_v\d+$/.test(k)) localStorage.removeItem(k);
+  }
+} catch {}
+function _previewPlayable(e) {
+  return !!e && e.source === "spotify" && typeof e.url === "string" && /^https:\/\//.test(e.url);
+}
+function _prunePreviewCache() {
+  try {
+    var raw = localStorage.getItem("preview_urls_v1");
+    if (!raw) return {};
+    var all = JSON.parse(raw) || {};
+    var kept = {};
+    for (var _k of Object.keys(all)) if (_previewPlayable(all[_k])) kept[_k] = all[_k];
+    if (Object.keys(kept).length !== Object.keys(all).length) localStorage.setItem("preview_urls_v1", JSON.stringify(kept));
+    return kept;
+  } catch {
+    try {
+      localStorage.removeItem("preview_urls_v1");
+    } catch {}
+    return {};
+  }
+}
+_prunePreviewCache();
+function SpotifyFullLogo({
+  height = 21,
+  title = "Spotify"
+}) {
+  return React.createElement("svg", {
+    viewBox: "0 0 823.46 225.25",
+    height: height,
+    width: Math.round(height * 823.46 / 225.25),
+    role: "img",
+    "aria-label": title,
+    style: {
+      display: "block",
+      fill: "currentColor"
+    }
+  }, React.createElement("path", {
+    d: "m125.52,3.31C65.14.91,14.26,47.91,11.86,108.29c-2.4,60.38,44.61,111.26,104.98,113.66,60.38,2.4,111.26-44.6,113.66-104.98C232.89,56.59,185.89,5.7,125.52,3.31Zm46.18,160.28c-1.36,2.4-4.01,3.6-6.59,3.24-.79-.11-1.58-.37-2.32-.79-14.46-8.23-30.22-13.59-46.84-15.93-16.62-2.34-33.25-1.53-49.42,2.4-3.51.85-7.04-1.3-7.89-4.81-.85-3.51,1.3-7.04,4.81-7.89,17.78-4.32,36.06-5.21,54.32-2.64,18.26,2.57,35.58,8.46,51.49,17.51,3.13,1.79,4.23,5.77,2.45,8.91Zm14.38-28.72c-2.23,4.12-7.39,5.66-11.51,3.43-16.92-9.15-35.24-15.16-54.45-17.86-19.21-2.7-38.47-1.97-57.26,2.16-1.02.22-2.03.26-3.01.12-3.41-.48-6.33-3.02-7.11-6.59-1.01-4.58,1.89-9.11,6.47-10.12,20.77-4.57,42.06-5.38,63.28-2.4,21.21,2.98,41.46,9.62,60.16,19.74,4.13,2.23,5.66,7.38,3.43,11.51Zm15.94-32.38c-2.1,4.04-6.47,6.13-10.73,5.53-1.15-.16-2.28-.52-3.37-1.08-19.7-10.25-40.92-17.02-63.07-20.13-22.15-3.11-44.42-2.45-66.18,1.97-5.66,1.15-11.17-2.51-12.32-8.16-1.15-5.66,2.51-11.17,8.16-12.32,24.1-4.89,48.74-5.62,73.25-2.18,24.51,3.44,47.99,10.94,69.81,22.29,5.12,2.66,7.11,8.97,4.45,14.09Z"
+  }), React.createElement("path", {
+    d: "m318.54,169.81c-18.87,0-35.07-6.53-41.84-13.95-.64-.73-.73-1.13-.73-2.02v-22.09c0-1.05.89-1.45,1.61-.56,8.14,10.16,25.48,18.46,39.67,18.46,11.29,0,18.87-3.06,18.87-13.06,0-5.97-2.82-9.84-18.22-14.19l-8.87-2.5c-20.56-5.8-33.06-12.66-33.06-32.33,0-17.41,16.12-32.73,43.05-32.73,13.22,0,26.36,4.11,33.94,9.76.64.48.89.97.89,1.85v20.08c0,1.37-1.13,1.77-2.18.89-6.13-5.08-17.98-11.93-32.01-11.93s-20.64,6.29-20.64,12.09c0,6.13,4.27,7.82,19.51,12.34l7.58,2.26c23.46,7.01,33.06,16.85,33.06,33.14,0,20.96-17.41,34.51-40.63,34.51Zm164.39-42.09c0-12.82,8.87-22.33,21.37-22.33s21.28,9.51,21.28,22.33-8.87,22.33-21.28,22.33-21.37-9.51-21.37-22.33Zm21.28,42.09c26.04,0,44.18-18.62,44.18-42.09s-18.14-42.09-44.18-42.09-44.1,18.46-44.1,42.09,17.98,42.09,44.1,42.09Zm157.22-89.01v6.77h-13.71c-.73,0-1.13.4-1.13,1.13v16.12c0,.73.4,1.13,1.13,1.13h13.71v60.79c0,.73.4,1.13,1.13,1.13h20.64c.73,0,1.13-.4,1.13-1.13v-60.79h17.66l25.64,55.71-13.79,30.31c-.4.89.08,1.29.89,1.29h22.01c.73,0,1.05-.16,1.37-.89l45.55-103.52c.32-.73-.08-1.29-.89-1.29h-20.64c-.73,0-1.05.16-1.37.89l-20.8,49.99-20.88-49.99c-.32-.73-.64-.89-1.37-.89h-33.38v-5.32c0-8.71,5.89-12.74,13.46-12.74,4.51,0,9.43,2.34,12.9,4.43.81.48,1.37-.08,1.05-.81l-7.26-17.33c-.24-.56-.56-.89-1.13-1.21-3.55-1.85-9.35-3.47-15-3.47-17.09,0-26.93,13.06-26.93,29.67Zm-243,88.52c20.64,0,35.47-17.82,35.47-41.76s-15-41.44-35.64-41.44c-15.32,0-24.19,9.35-29.35,18.7v-16.12c0-.73-.4-1.13-1.13-1.13h-20.24c-.73,0-1.13.4-1.13,1.13v103.44c0,.73.4,1.13,1.13,1.13h20.24c.73,0,1.13-.4,1.13-1.13v-41.36c5.16,9.35,13.87,18.54,29.51,18.54Zm172.21-.32c6.77,0,13.3-1.77,17.17-4.03.56-.32.64-.64.64-1.21v-15.32c0-.81-.4-1.05-1.13-.64-2.34,1.29-5.4,2.34-9.59,2.34-6.61,0-10.8-3.87-10.8-12.42v-31.77h20.16c.73,0,1.13-.4,1.13-1.13v-16.12c0-.73-.4-1.13-1.13-1.13h-20.16v-21.04c0-.89-.56-1.37-1.37-.73l-36.04,28.38c-.48.4-.64.81-.64,1.45v9.19c0,.73.4,1.13,1.13,1.13h14.03v35.15c0,19.03,10.96,27.9,26.61,27.9Zm23.3-105.29c0,7.26,5.64,12.74,13.38,12.74s13.54-5.48,13.54-12.74-5.64-12.74-13.54-12.74-13.38,5.48-13.38,12.74Zm3.14,104.17h20.64c.73,0,1.13-.4,1.13-1.13v-78.04c0-.73-.4-1.13-1.13-1.13h-20.64c-.73,0-1.13.4-1.13,1.13v78.04c0,.73.4,1.13,1.13,1.13Zm-228.65-40.47c3.71-12.42,12.25-21.93,23.86-21.93s18.7,8.38,18.7,22.09-7.66,22.25-18.7,22.25-20.16-10.64-23.86-22.41Z"
+  }), React.createElement("path", {
+    d: "m810.1,92.31c-1.06-1.83-2.53-3.26-4.41-4.3-1.88-1.03-3.98-1.55-6.32-1.55s-4.44.52-6.32,1.55c-1.88,1.04-3.35,2.47-4.41,4.3-1.06,1.83-1.59,3.9-1.59,6.21s.53,4.34,1.59,6.17c1.06,1.83,2.53,3.26,4.41,4.3,1.88,1.04,3.98,1.55,6.32,1.55s4.44-.52,6.32-1.55,3.35-2.47,4.41-4.3c1.06-1.83,1.59-3.88,1.59-6.17s-.53-4.38-1.59-6.21Zm-1.93,11.36c-.86,1.52-2.06,2.7-3.59,3.56-1.53.85-3.27,1.28-5.2,1.28s-3.72-.43-5.25-1.28c-1.53-.85-2.72-2.04-3.57-3.56-.85-1.51-1.27-3.23-1.27-5.15s.42-3.63,1.27-5.13c.85-1.5,2.04-2.68,3.57-3.53,1.53-.85,3.28-1.28,5.25-1.28s3.67.43,5.2,1.28c1.53.85,2.73,2.04,3.59,3.56.86,1.52,1.29,3.23,1.29,5.15s-.43,3.59-1.29,5.11Z"
+  }), React.createElement("path", {
+    d: "m803.56,98.29c.82-.6,1.23-1.4,1.23-2.39s-.4-1.83-1.2-2.43c-.8-.6-1.96-.9-3.48-.9h-5.36v11.2h2.59v-4.45h1.41l3.41,4.45h3.18l-3.73-4.72c.79-.15,1.46-.4,1.96-.77Zm-3.86-.99h-2.36v-2.74h2.45c.73,0,1.29.11,1.68.34.39.23.59.58.59,1.06,0,.45-.21.79-.61,1.01-.41.23-.99.34-1.75.34Z"
+  }));
+}
 var _photoQueue = [];
 var _photoActive = false;
 function _drainPhotoQueue() {
@@ -415,13 +606,9 @@ function _drainPhotoQueue() {
     var items = d?.artists?.items || [];
     var match = items.find(x => x.name.toLowerCase() === ln) || items.find(x => ln.includes(x.name.toLowerCase())) || items[0];
     var img = match?.images?.[0]?.url || null;
-    if (img) {
-      try {
-        var imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-        imgs[ln] = img;
-        localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
-      } catch {}
-    }
+    if (img) putArtistImage(name, img, "spotify", {
+      spotifyId: match.id
+    });
     resolve(img);
   }).catch(() => resolve(null)).finally(() => {
     _photoActive = false;
@@ -437,29 +624,14 @@ function _queuePhoto(name) {
     _drainPhotoQueue();
   });
 }
-function _fetchItunesPhoto(name) {
-  return fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(name)}&entity=musicArtist&limit=1`).then(r => r.json()).then(d => {
-    var art = d.results?.[0];
-    if (!art?.artistName) return null;
-    if (art.artistName.toLowerCase() !== name.toLowerCase()) return null;
-    var url = (art.artworkUrl100 || "").replace("100x100", "600x600");
-    if (!url) return null;
-    try {
-      var cache = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-      cache[name.toLowerCase()] = url;
-      localStorage.setItem("artist_images_v1", JSON.stringify(cache));
-    } catch {}
-    return url;
-  }).catch(() => null);
-}
 function useArtistPhoto(name) {
   var [photo, setPhoto] = React.useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem("artist_images_v1") || "{}")[name.toLowerCase()] || null;
-    } catch {
-      return null;
-    }
+    return getArtistImage(name)?.url || null;
   });
+  var expiry = useArtistImageExpiry();
+  React.useEffect(() => {
+    if (expiry) setPhoto(getArtistImage(name)?.url || null);
+  }, [expiry]);
   React.useEffect(() => {
     if (photo) return;
     var live = true;
@@ -467,24 +639,13 @@ function useArtistPhoto(name) {
     var expires = localStorage.getItem("spotify_expires");
     if (token && expires && Date.now() < parseInt(expires)) {
       _queuePhoto(name).then(img => {
-        if (!live) return;
-        if (img) {
-          setPhoto(img);
-          return;
-        }
-        _fetchItunesPhoto(name).then(url => {
-          if (live && url) setPhoto(url);
-        });
-      });
-    } else {
-      _fetchItunesPhoto(name).then(url => {
-        if (live && url) setPhoto(url);
+        if (live && img) setPhoto(img);
       });
     }
     return () => {
       live = false;
     };
-  }, [name.toLowerCase()]);
+  }, [name.toLowerCase(), photo]);
   return photo;
 }
 function ArtistSwatch({
@@ -790,7 +951,7 @@ function InstallBanner() {
       padding: "10px 12px",
       borderRadius: 14,
       background: "var(--ink)",
-      color: "var(--paper)",
+      color: "var(--on-ink)",
       display: "flex",
       alignItems: "center",
       gap: 11
@@ -815,7 +976,7 @@ function InstallBanner() {
     style: {
       fontSize: 9,
       letterSpacing: 1.4,
-      color: "var(--flare)",
+      color: "var(--on-ink-flare)",
       fontWeight: 700
     }
   }, "INSTALL PLURSKY"), React.createElement("div", {
@@ -823,7 +984,7 @@ function InstallBanner() {
       fontSize: 12,
       lineHeight: 1.35,
       marginTop: 2,
-      color: "rgba(var(--ink-rgb),0.85)"
+      color: "var(--on-ink-2)"
     }
   }, ip.isIOS ? React.createElement(React.Fragment, null, "Tap ", React.createElement("span", {
     style: {
@@ -836,7 +997,7 @@ function InstallBanner() {
     height: "13",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "var(--ink)",
+    stroke: "var(--on-ink)",
     strokeWidth: "1.8",
     strokeLinecap: "round",
     strokeLinejoin: "round"
@@ -852,13 +1013,13 @@ function InstallBanner() {
     rx: "1.5"
   }))), " then ", React.createElement("strong", {
     style: {
-      color: "var(--ink)"
+      color: "var(--on-ink)"
     }
   }, "Add to Home Screen"), " for offline + full-screen.") : React.createElement(React.Fragment, null, "Add to home screen for offline lineup + full-screen map."))), !ip.isIOS && React.createElement("button", {
     onClick: ip.install,
     style: {
       background: "var(--ember)",
-      color: "var(--ink)",
+      color: "var(--on-ember)",
       border: "none",
       borderRadius: 999,
       padding: "7px 12px",
@@ -876,7 +1037,7 @@ function InstallBanner() {
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      color: "rgba(var(--ink-rgb),0.55)",
+      color: "var(--on-ink-3)",
       padding: 4,
       flexShrink: 0,
       fontSize: 18,
@@ -891,7 +1052,7 @@ function _capLocalNotifications() {
 }
 function _notifIdForArtist(id) {
   var h = 0;
-  for (var i = 0; i < id.length; i++) h = h * 31 + id.charCodeAt(i) | 0;
+  for (var _i = 0; _i < id.length; _i++) h = h * 31 + id.charCodeAt(_i) | 0;
   return Math.abs(h) % 1_999_999_999 + 1;
 }
 var _TEST_NOTIF_ID = 9_999_001;
@@ -1427,7 +1588,7 @@ function NotificationsCard({
     onClick: onEnable,
     style: {
       background: "var(--ember)",
-      color: "var(--ink)",
+      color: "var(--on-ember)",
       border: "none",
       borderRadius: 999,
       padding: "8px 14px",
@@ -1550,7 +1711,8 @@ function FestivalThumb({
       fontWeight: 850,
       letterSpacing: "0.04em",
       color: "var(--media-ink)",
-      textShadow: "0 1px 8px rgba(0,0,0,.5)"
+      textShadow: "0 1px 8px rgba(0,0,0,.5)",
+      lineHeight: 1
     }
   }, art ? React.createElement("img", {
     src: `./${art}`,
@@ -1575,7 +1737,7 @@ function _festivalPlanStatus(id) {
   var arts = ((window._DATA_SETS || {})[id]?.artists || []).filter(a => set.has(a.id));
   var sameWeekend = (a, b) => !a.weekend || !b.weekend || a.weekend === "both" || b.weekend === "both" || a.weekend === b.weekend;
   var conflicts = 0;
-  for (var i = 0; i < arts.length; i++) for (var j = i + 1; j < arts.length; j++) if (arts[i].day === arts[j].day && sameWeekend(arts[i], arts[j]) && typeof overlaps === "function" && overlaps(arts[i], arts[j])) conflicts++;
+  for (var _i2 = 0; _i2 < arts.length; _i2++) for (var j = _i2 + 1; j < arts.length; j++) if (arts[_i2].day === arts[j].day && sameWeekend(arts[_i2], arts[j]) && typeof overlaps === "function" && overlaps(arts[_i2], arts[j])) conflicts++;
   return {
     saved: arts.length,
     conflicts
@@ -1609,7 +1771,7 @@ function FestivalSwitcher({
       setActiveFestivalAndReload(id);
       return;
     }
-    if (entry.previewOnly && window._isPlusSub?.()) {
+    if (entry.previewOnly && festivalCanBeActive(entry)) {
       setActiveFestivalAndReload(id);
       return;
     }
@@ -2123,7 +2285,7 @@ function BatterySaverToast() {
       padding: "10px 14px",
       borderRadius: 14,
       background: "var(--ink)",
-      color: "var(--paper)",
+      color: "var(--on-ink)",
       display: "flex",
       alignItems: "center",
       gap: 10,
@@ -2143,7 +2305,7 @@ function BatterySaverToast() {
     style: {
       fontSize: 9,
       letterSpacing: 1.4,
-      color: "var(--flare)",
+      color: "var(--on-ink-flare)",
       fontWeight: 700
     }
   }, "BATTERY SAVER ON"), React.createElement("div", {
@@ -2151,7 +2313,7 @@ function BatterySaverToast() {
       fontSize: 13,
       lineHeight: 1.35,
       marginTop: 2,
-      color: "rgba(var(--ink-rgb),0.85)"
+      color: "var(--on-ink-2)"
     }
   }, reason)), React.createElement("button", {
     onClick: () => setDismissed(true),
@@ -2160,7 +2322,7 @@ function BatterySaverToast() {
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      color: "rgba(var(--ink-rgb),0.6)",
+      color: "var(--on-ink-3)",
       fontSize: 18,
       lineHeight: 1,
       padding: 4
@@ -2304,147 +2466,140 @@ function BatterySaverCard() {
     }
   }, battPct, "% ", battery.charging ? "· CHARGING" : "")));
 }
-var THEME_PREF_KEY = "theme_pref";
-var _TH = window._TH = window._TH || {
-  mode: (() => {
-    try {
-      return localStorage.getItem(THEME_PREF_KEY) || "auto";
-    } catch {
-      return "auto";
-    }
-  })(),
-  listeners: new Set()
-};
-function resolveThemeClass(mode) {
-  return "theme-field";
+function _syncNativeAppearance(mode) {
+  try {
+    window.Capacitor?.Plugins?.Appearance?.setStyle?.({
+      style: mode
+    });
+  } catch {}
 }
-function applyThemeClass() {
-  var next = resolveThemeClass(_TH.mode);
-  if (document.documentElement.className !== next) {
-    document.documentElement.className = next;
+if (!window._appearanceNativeInited && window.PlurskyAppearance) {
+  window._appearanceNativeInited = true;
+  _syncNativeAppearance(window.PlurskyAppearance.mode());
+  window.PlurskyAppearance.onChange(m => _syncNativeAppearance(m));
+}
+function fitName(el, force) {
+  var key = el.textContent + "|" + el.clientWidth;
+  if (!force && el.dataset.fitKey === key) return;
+  var base = parseFloat(el.dataset.fitBase || getComputedStyle(el).fontSize);
+  if (!el.dataset.fitBase) el.dataset.fitBase = String(base);
+  var min = parseFloat(el.dataset.fitMin || "14");
+  el.style.whiteSpace = "nowrap";
+  el.style.fontSize = base + "px";
+  var rg = document.createRange();
+  rg.selectNodeContents(el);
+  var over = () => rg.getBoundingClientRect().width > el.getBoundingClientRect().width + 0.5;
+  var size = base;
+  while (over() && size > min) {
+    size -= 1;
+    el.style.fontSize = size + "px";
   }
-  return next;
+  if (over()) el.style.whiteSpace = "normal";
+  el.dataset.fitKey = el.textContent + "|" + el.clientWidth;
 }
-function setThemeMode(mode) {
-  if (!["auto", "light", "dark"].includes(mode)) return;
-  _TH.mode = mode;
-  try {
-    localStorage.setItem(THEME_PREF_KEY, mode);
-  } catch {}
-  applyThemeClass();
-  _TH.listeners.forEach(fn => {
-    try {
-      fn(mode);
-    } catch {}
+function fitNames(root, force) {
+  if (!root) return;
+  for (var el of root.querySelectorAll("[data-fit-name]")) fitName(el, force);
+}
+function useFitNames(root) {
+  var el = () => typeof root === "function" ? root() : root && root.current;
+  var ro = React.useRef(null);
+  var probe = React.useRef(null);
+  React.useLayoutEffect(() => {
+    var r = el();
+    fitNames(r);
+    if (!r || typeof ResizeObserver === "undefined") return;
+    if (!ro.current) ro.current = new ResizeObserver(entries => {
+      for (var {
+        target
+      } of entries) {
+        if (!target.isConnected) continue;
+        if (target === probe.current) fitNames(el(), true);else fitName(target);
+      }
+    });
+    for (var n of r.querySelectorAll("[data-fit-name]")) ro.current.observe(n);
+    if (!probe.current || !r.contains(probe.current)) {
+      var p = document.createElement("span");
+      p.setAttribute("aria-hidden", "true");
+      p.textContent = "Eptic b2b Space Laces";
+      p.style.cssText = "position:absolute;left:0;top:0;visibility:hidden;pointer-events:none;white-space:nowrap;font-size:17px;font-weight:700";
+      r.appendChild(p);
+      probe.current = p;
+      ro.current.observe(p);
+    }
   });
-}
-if (!window._thInited) {
-  window._thInited = true;
-  try {
-    applyThemeClass();
-  } catch {}
-}
-function useThemeMode() {
-  var [, force] = React.useReducer(x => x + 1, 0);
-  React.useEffect(() => {
-    _TH.listeners.add(force);
-    return () => _TH.listeners.delete(force);
+  React.useEffect(() => () => {
+    ro.current && ro.current.disconnect();
+    if (probe.current) probe.current.remove();
   }, []);
+}
+function useAppearance() {
+  var A = window.PlurskyAppearance;
+  var [, force] = React.useReducer(x => x + 1, 0);
+  React.useEffect(() => A ? A.onChange(force) : undefined, []);
   return {
-    mode: _TH.mode,
-    setMode: setThemeMode
+    choice: A ? A.choice() : "system",
+    mode: A ? A.mode() : "dark",
+    set: c => A && A.set(c)
   };
 }
-function ThemeCard() {
+function AppearanceRow() {
   var {
-    mode,
-    setMode
-  } = useThemeMode();
-  var segs = [{
-    id: "auto",
-    label: "AUTO"
-  }, {
-    id: "light",
-    label: "LIGHT"
-  }, {
-    id: "dark",
-    label: "DARK"
-  }];
-  var activeClass = resolveThemeClass(mode);
-  var nowLabel = activeClass === "theme-night" ? "NIGHT" : activeClass === "theme-dawn" ? "DAWN" : activeClass === "theme-sunset" ? "SUNSET" : "LIGHT";
+    choice,
+    set
+  } = useAppearance();
+  var opts = [["system", "System"], ["dark", "Dark"], ["light", "Light"]];
   return React.createElement("div", {
-    style: {
-      padding: 14,
-      borderRadius: 14,
-      background: "var(--paper)",
-      border: "1px solid var(--line)",
-      marginBottom: 12
-    }
-  }, React.createElement("div", {
+    "data-appearance-row": true,
     style: {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      marginBottom: 6
+      gap: 12,
+      flexWrap: "wrap",
+      padding: "8px 8px 8px 16px",
+      borderRadius: 14,
+      marginBottom: 12,
+      background: "var(--paper-2)",
+      border: "1px solid var(--line)"
     }
   }, React.createElement("div", {
-    className: "mono",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.5,
-      color: "var(--muted)",
-      fontWeight: 700
+      fontSize: 15,
+      fontWeight: 600,
+      color: "var(--ink)"
     }
-  }, "THEME"), React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      fontWeight: 700
-    }
-  }, nowLabel)), React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 20,
-      lineHeight: 1.1,
-      marginBottom: 4
-    }
-  }, "Paper by day, stars by night"), React.createElement("div", {
-    style: {
-      fontSize: 13,
-      color: "var(--muted)",
-      lineHeight: 1.5,
-      marginBottom: 12
-    }
-  }, "Auto follows the sky during the festival. Pin light or dark anytime."), React.createElement("div", {
+  }, "Appearance"), React.createElement("div", {
+    role: "radiogroup",
+    "aria-label": "Appearance",
     style: {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
-      gap: 4,
-      background: "var(--paper-2)",
-      borderRadius: 999,
       padding: 3,
-      border: "1px solid var(--line)"
+      borderRadius: 999,
+      background: "var(--paper-3)",
+      flex: "1 1 196px",
+      maxWidth: 222
     }
-  }, segs.map(s => {
-    var on = mode === s.id;
+  }, opts.map(([v, l]) => {
+    var on = choice === v;
     return React.createElement("button", {
-      key: s.id,
-      onClick: () => setMode(s.id),
+      key: v,
+      role: "radio",
+      "aria-checked": on,
+      "data-appearance": v,
+      onClick: () => set(v),
       style: {
-        background: on ? "var(--ink)" : "transparent",
-        color: on ? "var(--paper)" : "var(--ink)",
-        border: "none",
+        minHeight: 38,
+        border: 0,
         borderRadius: 999,
-        padding: "7px 10px",
-        fontFamily: "Geist Mono, monospace",
-        fontSize: 10,
-        letterSpacing: 1.2,
-        fontWeight: 700,
-        cursor: "pointer"
+        cursor: "pointer",
+        font: "600 14px/1 var(--font-ui)",
+        background: on ? "var(--paper)" : "transparent",
+        color: on ? "var(--ink)" : "var(--text-2)",
+        boxShadow: on ? "0 0 0 1px var(--line-2), 0 2px 6px -2px rgba(var(--shade-rgb),0.25)" : "none"
       }
-    }, s.label);
+    }, l);
   })));
 }
 function _useTickMs(intervalMs) {
@@ -2482,7 +2637,7 @@ function StatusStrip() {
   return (React.createElement("div", {
       style: {
         flexShrink: 0,
-        height: 24,
+        minHeight: 24,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -2490,7 +2645,7 @@ function StatusStrip() {
         background: "var(--paper)",
         borderBottom: "1px solid var(--line)",
         fontSize: 12,
-        lineHeight: "16px",
+        lineHeight: 1.33,
         fontWeight: 500,
         fontVariantNumeric: "tabular-nums",
         color: "var(--text-2)"
@@ -2597,6 +2752,13 @@ Object.assign(window, {
   ArtistSwatch,
   Wordmark,
   useArtistPhoto,
+  useArtistImageExpiry,
+  getArtistImage,
+  getShareableArtistImage,
+  putArtistImage,
+  putArtistImages,
+  SpotifyFullLogo,
+  SPOTIFY_IMAGE_TTL_MS,
   useInstallPrompt,
   InstallBanner,
   useNotifications,
@@ -2617,11 +2779,10 @@ Object.assign(window, {
   BatterySaverCard,
   BatterySaverToast,
   setBatterySaverMode,
-  useThemeMode,
-  ThemeCard,
-  setThemeMode,
-  resolveThemeClass,
-  applyThemeClass,
+  useAppearance,
+  AppearanceRow,
+  fitNames,
+  useFitNames,
   useOnlineStatus,
   StatusStrip,
   plurskyHaptic

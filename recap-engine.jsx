@@ -225,8 +225,13 @@ async function _heroCardSource(artist) {
       try { const { img, revoke } = await _imgFromBlob(blob); return { src: img, revoke }; } catch {}
     }
   } catch {}
+  // A share card is a public export, so a Spotify image never lands in one
+  // (Spotify Developer Terms IV.3.2 and the attribution rules), and an unknown
+  // legacy entry counts as Spotify. Only a non-Spotify source may qualify, and
+  // the cache holds none now (TheAudioDB and iTunes are not sources), so the
+  // card goes without a cached artist image.
   try {
-    const url = JSON.parse(localStorage.getItem("artist_images_v1") || "{}")[(artist.name || "").toLowerCase()];
+    const url = getShareableArtistImage(artist.name || "")?.url;
     if (url) {
       const img = await new Promise((res, rej) => {
         const im = new Image(); im.crossOrigin = "anonymous";
@@ -1506,7 +1511,7 @@ async function _shareStageCollage(stage, momentsAcrossArtists, format) {
     subtitle: `MY NIGHTS AT ${stage.short || stage.name?.toUpperCase()}`,
     accent:   stage.color || "#1a120d",
     moments:  momentsAcrossArtists,
-    filenameSlug: `stage-${stage.short || stage.id}`,
+    filenameSlug: `stage-${stage.id}`,
     shareTitle:   `My ${stage.name} at ${CFG.shortName || "the festival"}`,
     format,
   });
@@ -1944,8 +1949,9 @@ async function _renderCrewComparison(myName, myState, otherName, otherArtistIds)
   ctx.fillStyle = "rgba(255,255,255,0.4)";
   ctx.fillText(`${(CFG.shortName || "FESTIVAL").toUpperCase()} · ${CFG.dates || ""}`, W/2, 160);
 
-  const mySaved = myState.saved || [];
-  const theirSaved = otherArtistIds || [];
+  const mySaved = savedInLineup(myState.saved);
+  // Both sides: a crew member on an older build can still broadcast an orphan.
+  const theirSaved = savedInLineup(otherArtistIds);
   const overlap = mySaved.filter(id => theirSaved.includes(id));
   const myOnly = mySaved.filter(id => !theirSaved.includes(id));
   const theirOnly = theirSaved.filter(id => !mySaved.includes(id));

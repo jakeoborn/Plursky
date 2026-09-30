@@ -18,6 +18,7 @@ import { spawn } from "node:child_process";
 import { createServer } from "node:net";
 import { existsSync, mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { serverReady } from './lib/server-ready.mjs';
 
 const ROOT = process.cwd();
 const H = p => JSON.parse(readFileSync(join(ROOT, "data/historical", p), "utf8"));
@@ -47,7 +48,7 @@ const PORT = await port();
 const server = spawn("python3", ["-m", "http.server", String(PORT), "--bind", "127.0.0.1"], { cwd: ROOT, stdio: "ignore" });
 let browser;
 try {
-  for (let i = 0; i < 50; i++) { try { if ((await fetch(`http://127.0.0.1:${PORT}/index.html`)).ok) break; } catch {} await sleep(100); }
+  await serverReady(`http://127.0.0.1:${PORT}/index.html`);
   const executablePath = ["/opt/google/chrome/chrome", "/usr/bin/google-chrome", "/usr/bin/chromium"].find(existsSync);
   browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
   const ctx = await browser.newContext({ viewport: { width: 393, height: 852 }, deviceScaleFactor: 2, timezoneId: "America/Chicago", serviceWorkers: "block" });

@@ -396,6 +396,11 @@
     // x/y below silently shifts. Re-crop the source and you MUST re-register
     // all seven stages. Same rule that bit acl-park.webp.
     mapImage: "hard-summer-2026.webp",
+
+    // The festival's OWN map page, linked (never embedded) by the /f/ page:
+    // official publication is provenance, not reuse rights. mapYear is the
+    // year printed on the map the page showed when checked.
+    mapSource: { url: "https://www.hardsummer.com/festival-map/", observedAt: "2026-09-24", mapYear: 2026 },
     mapStyle: "image-overlay",
     mapTheme: "park",
     // The artwork prints all seven stage names in display type, so the app
