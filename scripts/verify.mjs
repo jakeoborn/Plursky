@@ -2498,6 +2498,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Artist screen: an act with no day ─────────────────────────────────────
+// A billed act no official schedule has placed renders ("DAY + SET TIME NOT
+// PUBLISHED") instead of crashing on DAYS.find(...).label. Fixture acts, so
+// the gate survives Escape's set times publishing.
+{
+  console.log("▸ Artist no-day — a billed, unplaced act renders instead of crashing");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-no-day.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist no-day failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Saved sets the lineup still carries ──────────────────────────────────
 // Every saved-set surface reads savedInLineup(); storage, cloud push and the
 // sign-in union keep orphan ids (lane ruling 2026-09-27: no deletion until a
