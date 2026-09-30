@@ -4,8 +4,10 @@
 //
 // Covers the flip paths the Q4 queue needs:
 //   A  a festival module is the default target (data/festivals/<id>.js)
-//   B  --days-from-sheet: a lineup with no per-act day (CRSSD) takes the day
-//      from the sheet, written as the tuple's 4th element
+//   B  --days-from-sheet: a lineup with no per-act day takes the day from the
+//      sheet, written as the tuple's 4th element. The fixture is a SYNTHETIC
+//      gated module written into the copy: the real one this used (CRSSD)
+//      flipped on 2026-09-25 and took its only no-day lineup with it.
 //   C  an act whose day is null (Escape's lineup-card acts) matches by name
 //      and gets the sheet's day; an act with a real day keeps the 3-tuple
 //   D  data.jsx is the target for a festival without a module (EDC Orlando)
@@ -30,14 +32,40 @@ try {
   cpSync(path.join(root, "data.jsx"), path.join(tmp, "data.jsx"));
   cpSync(path.join(root, "data", "festivals"), path.join(tmp, "data", "festivals"), { recursive: true });
 
-  // CRSSD's config has one TBA day until the flip adds Sat/Sun; give the copy a day 2.
-  const crssdFile = path.join(tmp, "data", "festivals", "crssd-fall-2026.js");
-  const crssdSrc = readFileSync(crssdFile, "utf8");
-  check(/dayDates: \{/.test(crssdSrc), "fixture: crssd-fall-2026.js has no `dayDates: {` to extend");
-  writeFileSync(crssdFile, crssdSrc.replace(/dayDates: \{/, 'dayDates: { 2: { y: 2026, m: 8, d: 27, name: "Sunday", short: "SUN", midnightUtc: 0 },'));
+  // A gated module in the shape CRSSD had before its flip: real stages, every
+  // act parked in one TBA day bucket, and a config that already knows both days.
+  const FX = "fixture-nodays-2026";
+  const crssdFile = path.join(tmp, "data", "festivals", `${FX}.js`);
+  writeFileSync(crssdFile, `(function () {
+  const STAGES = [{ id: "main", name: "Main Stage", short: "MAIN", color: "#fff" }, { id: "tent", name: "The Tent", short: "TENT", color: "#000" }];
+  const SCHEDULE = {
+    // SCHEDULE:BEGIN ${FX}
+    // SCHEDULE:END
+  };
+  const scheduled = act => {
+    const s = SCHEDULE[act.id];
+    if (!s) return act;
+    const { provisional, ...rest } = act;
+    return { ...rest, stage: s[0], start: s[1], end: s[2], day: s[3] ?? act.day, bio: "Playing Fixture 2026." };
+  };
+  const mk = (id, name, stage) => scheduled({ id, name, stage, day: 1, start: "", end: "", tier: 2, bio: "TBA", provisional: true });
+  const ARTISTS = [mk("fx-a", "Act A", "main"), mk("fx-b", "Act B", "tent"), mk("fx-c", "Act C", "main")];
+  const CONFIG = { id: "${FX}", name: "Fixture 2026",
+    dayDates: { 1: { y: 2026, m: 8, d: 26, name: "Saturday", short: "SAT", midnightUtc: 0 },
+                2: { y: 2026, m: 8, d: 27, name: "Sunday", short: "SUN", midnightUtc: 0 } } };
+  window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};
+  window.PLURSKY_FESTIVALS["${FX}"] = { config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: [], registry: { available: false } };
+})();
+`);
+  // data.jsx registers modules from an explicit id list; add the fixture's.
+  const dataJsx = path.join(tmp, "data.jsx");
+  const dataSrc = readFileSync(dataJsx, "utf8");
+  check(/^const _WAVE1 = /m.test(dataSrc), "fixture: data.jsx has no `const _WAVE1 = ` line to register the fixture before");
+  writeFileSync(dataJsx, dataSrc.replace(/^const _WAVE1 = /m, `_WAVE1_IDS.push("${FX}");\nconst _WAVE1 = `));
+  const dataBefore = readFileSync(dataJsx, "utf8");
 
   const before = loadRegistry(tmp).DS;
-  const crssd = before["crssd-fall-2026"], esc = before["escape-halloween-2026"], edco = before["edc-orlando-2026"];
+  const crssd = before[FX], esc = before["escape-halloween-2026"], edco = before["edc-orlando-2026"];
   const cr1 = crssd.artists[0], cr2 = crssd.artists[1];
   const stageName = id => crssd.stages.find(s => s.id === id).name;
   const escDay = esc.artists.find(a => a.day === 1), escNull = esc.artists.find(a => a.day == null);
@@ -51,18 +79,19 @@ try {
   const SRC = ["--source", "https://example.invalid/fixture"];
 
   // E1 — a day-2 row on a no-per-act-day lineup, without the flag: refused, with the hint.
-  const e1 = run("crssd-fall-2026", [[2, stageName(cr1.stage), "20:00", "21:00", cr1.name]], "--check");
+  check(crssd && crssd.artists.length === 3, `fixture: ${FX} did not load (${crssd ? crssd.artists.length : "missing"})`);
+  const e1 = run(FX, [[2, stageName(cr1.stage), "20:00", "21:00", cr1.name]], "--check");
   check(e1.status === 1 && /pass --days-from-sheet/.test(e1.stderr), `E1: expected exit 1 with a --days-from-sheet hint, got ${e1.status}: ${e1.stderr.trim()}`);
 
   // A + B — module target, days from the sheet.
-  const b = run("crssd-fall-2026", [
+  const b = run(FX, [
     [2, stageName(cr1.stage), "20:00", "21:00", cr1.name],
     [1, stageName(cr2.stage), "18:00", "19:00", cr2.name],
   ], "--days-from-sheet", ...SRC);
   check(b.status === 0, `B: import failed (${b.status}): ${b.stderr.trim()}`);
   const crssdOut = readFileSync(crssdFile, "utf8");
-  check(crssdOut.includes(`${JSON.stringify(cr1.id)}: [${JSON.stringify(cr1.stage)}, "20:00", "21:00", 2],`), "B: CRSSD row 1 not written as a 4-tuple with day 2");
-  check(readFileSync(path.join(tmp, "data.jsx"), "utf8") === readFileSync(path.join(root, "data.jsx"), "utf8"), "A: a module festival's import must not touch data.jsx");
+  check(crssdOut.includes(`${JSON.stringify(cr1.id)}: [${JSON.stringify(cr1.stage)}, "20:00", "21:00", 2],`), "B: fixture row 1 not written as a 4-tuple with day 2");
+  check(readFileSync(dataJsx, "utf8") === dataBefore, "A: a module festival's import must not touch data.jsx");
 
   // C — Escape: the null-day act takes day 2, the real-day act keeps a 3-tuple.
   const escStage = esc.stages[0].name;
@@ -81,10 +110,10 @@ try {
 
   // The written blocks must load back as scheduled acts.
   const after = loadRegistry(tmp).DS;
-  const a1 = after["crssd-fall-2026"].artists.find(a => a.id === cr1.id);
-  check(a1 && a1.day === 2 && a1.start === "20:00" && a1.end === "21:00" && !a1.provisional && a1.bio === "Playing CRSSD Fest Fall 2026.",
-    `B: CRSSD act did not load back scheduled: ${JSON.stringify(a1 && { day: a1.day, start: a1.start, provisional: a1.provisional, bio: a1.bio })}`);
-  const untouched = after["crssd-fall-2026"].artists.find(a => a.id === crssd.artists[2].id);
+  const a1 = after[FX].artists.find(a => a.id === cr1.id);
+  check(a1 && a1.day === 2 && a1.start === "20:00" && a1.end === "21:00" && !a1.provisional && a1.bio === "Playing Fixture 2026.",
+    `B: fixture act did not load back scheduled: ${JSON.stringify(a1 && { day: a1.day, start: a1.start, provisional: a1.provisional, bio: a1.bio })}`);
+  const untouched = after[FX].artists.find(a => a.id === crssd.artists[2].id);
   check(untouched && untouched.start === "" && untouched.provisional === true, "B: an act the sheet did not name must stay untimed and provisional");
   const n1 = after["escape-halloween-2026"].artists.find(a => a.id === escNull.id);
   check(n1 && n1.day === 2 && n1.stage === esc.stages[0].id && !n1.unscheduled, `C: Escape null-day act did not load back on day 2: ${JSON.stringify(n1 && { day: n1.day, stage: n1.stage })}`);

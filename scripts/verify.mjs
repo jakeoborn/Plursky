@@ -2482,6 +2482,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// CRSSD Fall 2026's flip drops Skepta Más Tiempo (Codex P2 on #249): the REAL
+// orphan id against the REAL flipped lineup. Counts, Search, Build My Night and
+// its share, crew showdown read zero for it; storage and the cloud push keep
+// it; re-billing the act brings it back saved.
+{
+  console.log("▸ CRSSD saved orphan — Skepta Más Tiempo reads zero, stays stored, returns if re-billed");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-crssd-saved-orphan.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`CRSSD saved orphan failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b5c3. Lineup list for humans ──────────────────────────────────────
 // A downward scroll folds the WHOLE filter header into one compact bar that
 // names the selection; an upward scroll or a tap brings it back; the list
