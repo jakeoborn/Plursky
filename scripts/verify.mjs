@@ -2483,6 +2483,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Memories film strip names ─────────────────────────────────────────────
+// Every frame names its artist in full (wrapped to the frame, never sliced);
+// same class as #247's chip names. Real renderer, recorded fillText.
+{
+  console.log("▸ Film strip names — every frame's artist in full, within the frame's width");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-film-strip-names.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`film strip names failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Saved sets the lineup still carries ──────────────────────────────────
 // Every saved-set surface reads savedInLineup(); storage, cloud push and the
 // sign-in union keep orphan ids (lane ruling 2026-09-27: no deletion until a
