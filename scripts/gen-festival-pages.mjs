@@ -20,7 +20,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
 import { fp, festivalFingerprint } from './lib/sitemap-fingerprint.mjs';
-import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours } from './lib/festival-page-data.mjs';
+import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours, pageStatus } from './lib/festival-page-data.mjs';
 import { loadEmbedData, selectEmbeds, embedsSection, embedWindowStart } from './lib/official-embeds.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -153,11 +153,7 @@ function eventDaySet(cfg) {
 function statusOf(cfg, today) {
   const dates = eventDates(cfg);
   if (!dates) return null;
-  if (today > dates.end) return 'past';
-  const days = [...eventDaySet(cfg)].filter(d => d >= dates.start && d <= dates.end).sort();
-  if (days.includes(today) || (!days.length && today >= dates.start)) return 'live';
-  const next = days.find(d => d > today) || dates.start;
-  return (Date.parse(next) - Date.parse(today)) / DAY_MS <= 6 ? 'soon' : 'upcoming';
+  return pageStatus(dates, [...eventDaySet(cfg)], today, Object.keys(cfg.dayDates || {}).length);
 }
 
 // The schedule grid: the same acts schedule.json ships, grouped (weekend,)
