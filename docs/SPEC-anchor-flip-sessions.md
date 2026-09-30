@@ -22,6 +22,9 @@ below assumes its `verify.mjs` anchor gate is on `main`.
   bionic outside the LVMS oval). Do not read the 0.09 above as current.
 - Left provisional, with measured residuals: `lost-lands-2026` (worst 39.91,
   `forest-stage`), `edc-orlando-2026` (worst 56.90, `stereo`).
+  **Superseded for EDC Orlando (2026-09-06, #73):** the 56.90 measured the
+  old centroid-offset anchors, which are gone. The rebuilt anchors sit 3 m
+  (`stereo`) and 7 m (`bacardi`) from their own affine. See Scope B.
 - Stated limit, quoted from the report because this spec exists partly to
   close it: self-consistency "does **not** independently verify the
   calibration trio against satellite imagery. That remains the flip-session
@@ -127,14 +130,32 @@ moves, re-run A3.
 
 ## Scope B — `edc-orlando-2026` flip session (map expected closer to Nov 6–8)
 
-Same procedure as Scope A, with the festival's own facts: 5 anchors
-(`kinetic, circuit, neon, stereo, bacardi`), `edco-tinker-2026.jpg`
-placeholder, venue = Tinker Field. One extra: **the venue centroid itself is
-provisional and unverified** — re-survey it from ortho imagery and OSM
-structure, do not carry the stored value forward, and do not treat any existing
-anchor as measured. Acceptance identical: warning to `ok`, ≤ 1.5, flip as its
-own PR. See JOB-1 in `docs/qa/INSTINCT-QUEUE.md`; Claude Code holds the
-specifics of what is wrong with the current registration.
+**Corrected 2026-09-30.** This section used to say the venue centroid was
+provisional and that no existing anchor should be treated as measured. That
+described the tree before PR #73 (v264, 2026-09-06) and is no longer true:
+
+- The centroid (`28.53826, -81.40144`, `onSiteRadiusMi: 0.6`) is the midpoint
+  of the measured festival polygon. Do not re-survey it.
+- All five anchors (`kinetic, circuit, neon, stereo, bacardi`) were re-fitted
+  from the official 2025 map onto Orange County orthos, and the `EDCO_STAGES`
+  x/y grid is derived from them on one scale. They stay `src: "poster"`: a
+  read off map art, so every distance readout stays withheld.
+- No `venue.footprint`, by design. No OSM polygon matches the fence.
+
+What the flip session owns, once the official 2026 map publishes:
+
+1. Pin the map in `scripts/build-edco-map-2026.mjs` (source, hash, crop, pad)
+   and build the plate that replaces the `edco-tinker-2026.jpg` placeholder.
+2. Re-fit an anchor ONLY for a stage the 2026 layout moves:
+   `node scripts/georef-map.mjs fit points.json`. The x/y grid and the anchors
+   are derived together; `node scripts/georef-map.mjs grid edc-orlando-2026`
+   shows whether the shipped grid still matches.
+3. Stage and set time for all 108 acts in one import.
+4. Flip `available: true` as its own PR.
+
+A fit on the 2026 art is still a read off art. It does not promote an anchor
+out of `poster`; `scripts/anchor-residuals.mjs` and the distance-readout gate
+decide that. See JOB-1 in `docs/qa/INSTINCT-QUEUE.md`.
 
 ## Scope C — EDC LV poster title-block crop (asset-only, any time after #27)
 
