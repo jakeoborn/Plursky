@@ -136,7 +136,9 @@ map (`edco-tinker-2025.webp`, `mapArtYear: 2025`), labelled on the map screen
 as the 2025 map with the official 2026 map pending. Stage x/y are measured on
 that plate, the eight placeholder amenity pins are gone, and a registration
 waiver in `scripts/verify.mjs` (unsourced + blind, expires 2026-11-09) covers
-the five poster anchors. What is left below is the map flip.
+the three poster anchors that ship (`kinetic, circuit, neon`). `stereo` and
+`bacardi` keep their pins on the art and carry no GPS anchor (founder ruling
+2026-09-30). What is left below is the map flip.
 
 **Corrected 2026-09-30.** This section used to say the venue centroid was
 provisional and that no existing anchor should be treated as measured. That
@@ -148,7 +150,10 @@ described the tree before PR #73 (v264, 2026-09-06) and is no longer true:
   from the official 2025 map onto Orange County orthos. They stay
   `src: "poster"`: a read off map art, so every distance readout stays
   withheld. (`EDCO_STAGES` x/y was derived from them until 2026-09-30; it is
-  now measured on the 2025 plate.)
+  now measured on the 2025 plate.) Only the first three still ship. They are
+  the whole affine basis, so the fit is exact at all three by construction
+  and nothing in the data checks it; the two removed anchors sat 98 m and
+  48 m from where it draws them. Treat the blue dot as approximate.
 - No `venue.footprint`, by design. No OSM polygon matches the fence.
 
 What the flip session owns, once the official 2026 map publishes:
@@ -157,7 +162,8 @@ What the flip session owns, once the official 2026 map publishes:
    and build the plate that replaces `edco-tinker-2025.webp`.
 2. Re-measure every stage x/y on the new plate and drop `mapArtYear`.
 3. Re-fit the anchors from control points saved as a `points.json`:
-   `node scripts/georef-map.mjs fit points.json`.
+   `node scripts/georef-map.mjs fit points.json`. All five stages get an
+   anchor again only from that fit, never by restoring the removed two.
 4. Clear the `edc-orlando-2026` registration waiver, or re-date it on purpose.
 5. Stage and set time for all 108 acts in one import, separately.
 

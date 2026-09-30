@@ -663,7 +663,7 @@ const FESTIVALS_REGISTRY = [
       // Tampa/408, Anderson/Nashville, 4 stadium corners). Fit residuals
       // 22–96 m, which is the stylized art's own error, not the ortho's.
       //
-      // src is "poster" for ALL FIVE and that is deliberate: these are reads
+      // src is "poster" for EVERY anchor and that is deliberate: these are reads
       // off map ART, not surveyed features, so under the v260 taxonomy they
       // are not evidence. Registration stays unsourced and every distance
       // readout stays withheld — see the distance-readout gate. Do not
@@ -686,18 +686,27 @@ const FESTIVALS_REGISTRY = [
       // FLIP SESSION: re-fit from the official 2026 map with
       // scripts/georef-map.mjs, from control points saved as a points.json.
       //
-      // ⚠ Since 2026-09-30 these five feed a LIVE festival. map.jsx solves its
-      // GPS-to-map affine from the first three (kinetic, circuit, neon) against
-      // their x/y on the 2025 plate, so the blue dot is a poster read pushed
-      // through a poster read. That is what the dated registration waiver in
-      // verify.mjs excuses (unsourced + blind), and why every distance readout
-      // stays withheld.
+      // ⚠ Since 2026-09-30 the anchors feed a LIVE festival, and there are
+      // THREE of them (founder ruling 2026-09-30: keep kinetic/circuit/neon,
+      // remove stereo and bacardi). The stereo and bacardi STAGES are untouched:
+      // they keep their pins on the art (EDCO_STAGES x/y). What they lost is a
+      // lat/lng, so nothing GPS-side (live stage detection, presence) can match
+      // those two stages until the flip. Removed, for the record:
+      //   stereo  28.53730,-81.40310   bacardi 28.53660,-81.40240
+      // They were never in the fit: map.jsx solves its GPS-to-map affine from
+      // the first three anchors against their x/y on the 2025 plate, so the
+      // blue dot is drawn exactly as it was with five. Three points fit an
+      // affine with zero residual BY CONSTRUCTION, which is not agreement: the
+      // two removed anchors sat 98 m and 48 m from where this affine draws
+      // their art pins, and the affine is sheared (its axes meet at 114° on
+      // the ground, not 90°) on art that is drawn north-up. The blue dot is a
+      // poster read pushed through a poster read. That is what the dated
+      // registration waiver in verify.mjs excuses (unsourced + blind), and why
+      // every distance readout stays withheld.
       gpsAnchors: [
         { stageId: "kinetic", lat: 28.53700, lng: -81.40040, src: "poster" }, // SE of the stadium, N of W Anderson, W of Nashville
         { stageId: "circuit", lat: 28.53999, lng: -81.40219, src: "poster" }, // Tinker Field mowed rectangle, NE part
         { stageId: "neon",    lat: 28.53900, lng: -81.39850, src: "poster" }, // practice field EAST of Nashville Ave — outside the core rectangle by design
-        { stageId: "stereo",  lat: 28.53730, lng: -81.40310, src: "poster" }, // field S of W South St, E of Tampa
-        { stageId: "bacardi", lat: 28.53660, lng: -81.40240, src: "poster" }, // N of SR-408, between Tampa and Lake Beardall
       ],
       mainStageId: "kinetic",
       // edco-tinker-2025.webp = the official EDC Orlando 2025 festival map
@@ -2590,9 +2599,14 @@ const ACL_AMENITIES = [
 // Until 2026-09-30 this was an abstract grid DERIVED from the gpsAnchors on
 // one scale (5.62 m per unit), over a generated placeholder. It is not that
 // any more: real art is on screen, so a pin has to sit on the stage the art
-// draws. `node scripts/georef-map.mjs grid edc-orlando-2026` still prints
-// the derived grid, and it no longer matches by design. The art is drawn,
-// not surveyed: BACARDÍ sits mid-south on it, while its anchor is west.
+// draws. `node scripts/georef-map.mjs grid edc-orlando-2026` derives a grid
+// from whatever anchors ship (three since 2026-09-30), and it does not match
+// these pins by design. The art is drawn, not surveyed: BACARDÍ sits
+// mid-south on it, while the anchor it used to carry was west.
+//
+// stereo and bacardi have a pin here and NO gpsAnchor (founder ruling
+// 2026-09-30). A pin says where the 2025 art draws the stage; it is not a
+// position on the ground, this year or last.
 //
 // "tba" carries no x/y on purpose: it is not a place, and a pin for it on
 // official art would be one. It stays a stage everywhere else (lineup rows).
@@ -2622,7 +2636,8 @@ const _edcoMk = (id, name, genre, day) => {
   return { id, name, genre, country: "—", stage: s ? s[0] : "tba", day, start: s ? s[1] : "", end: s ? s[2] : "", tier: 1,
     img: `linear-gradient(135deg, #22c55e, #04170c)`,
     bio: s ? "Playing EDC Orlando 2026."
-           : "Playing EDC Orlando 2026. Day is official (orlando.edc.com day filters); set time + stage are placeholders until the official schedule drops in the Insomniac app (~1-2 weeks out)." };
+           : `Playing EDC Orlando 2026 on ${["Friday, November 6", "Saturday, November 7", "Sunday, November 8"][day - 1]}. ` +
+             "Stage and set time are not published yet — Insomniac posts the schedule in the days before the festival." };
 };
 
 // Official day-by-day lineup (orlando.edc.com/lineup day filters, audited

@@ -5,11 +5,15 @@
 // Four things are locked:
 //   1. The fit itself, against a transform whose answer is known.
 //   2. The numbers #73 (v264) recorded for edc-orlando-2026, re-derived from
-//      the shipped anchors: the grid they derive, its scale, the centroid, the
-//      radius. Continuity only: this does not validate the anchors.
+//      the five anchors #73 shipped: the grid they derive, its scale, the
+//      centroid, the radius. Continuity only: this does not validate them.
+//      Three of the five still ship; the record of all five lives here.
 //   3. What ships since 2026-09-30: the official 2025 map, every stage pin
-//      measured on it, labelled as the 2025 map, and no amenity pins.
-//   4. build-edco-map-2026.mjs while the official 2026 map is unpublished.
+//      measured on it, labelled as the 2025 map, no amenity pins, and GPS
+//      anchors for kinetic, circuit and neon only.
+//   4. What the three-anchor fit is, measured: exact at its own three points
+//      by construction, and not agreement with anything.
+//   5. build-edco-map-2026.mjs while the official 2026 map is unpublished.
 // Each rule is proven live by a mutation that must fail it.
 //
 // ⚠ NOT reproduced, and it cannot be from the repo: #73's affine fit. Issue
@@ -68,16 +72,26 @@ const control = PIX.map(([px, py], i) => ({ name: `cp${i + 1}`, px, py, ...truth
 
 // ── 2. EDC Orlando, as shipped ────────────────────────────────────────────
 const FID = "edc-orlando-2026";
+const ANCHORED = ["kinetic", "circuit", "neon"];
 const { config, stages, amenities, entry } = festivalById(FID);
 ok(config.id === FID, `the loader returned the festival asked for (${config.id})`);
 let askedWrong = false;
 try { festivalById("no-such-festival-2026"); } catch { askedWrong = true; }
 ok(askedWrong, "an unknown festival id is an error, not another festival");
 
-const anchors = config.gpsAnchors;
+// The five anchors #73 (v264) shipped, as a RECORD. All five were in data.jsx
+// until 2026-09-30; stereo and bacardi were then removed (founder ruling), so
+// the continuity numbers below are derived from this table, not from what
+// ships. What ships is checked against it in section 3.
 const IDS = ["kinetic", "circuit", "neon", "stereo", "bacardi"];
-ok(anchors.length === 5 && IDS.every((id, i) => anchors[i].stageId === id), `five anchors, in order (${anchors.map(a => a.stageId).join(", ")})`);
-ok(anchors.every(a => a.src === "poster"), "every anchor is still poster class: a read off art, not a measurement");
+const ANCHORS_73 = [
+  { stageId: "kinetic", lat: 28.53700, lng: -81.40040, src: "poster" },
+  { stageId: "circuit", lat: 28.53999, lng: -81.40219, src: "poster" },
+  { stageId: "neon",    lat: 28.53900, lng: -81.39850, src: "poster" },
+  { stageId: "stereo",  lat: 28.53730, lng: -81.40310, src: "poster" },
+  { stageId: "bacardi", lat: 28.53660, lng: -81.40240, src: "poster" },
+];
+const anchors = ANCHORS_73;
 
 // The grid #73 shipped, derived from these anchors on one scale. It shipped
 // until 2026-09-30; the pins now sit on real art (section 3), so this is the
@@ -160,9 +174,63 @@ ok(outsideBoundsM(RAW.neon, POLY) > 0 && outsideBoundsM(RAW.stereo, POLY) > 0 &&
   ok(Array.isArray(amenities) && amenities.length === 0 && Object.keys(P.measured.amenities).length === 0,
     `no amenity pins ship and none is measured off last year's map (${amenities.length})`);
   ok(entry.available === true && entry.scheduleTBA === true, `open on its lineup, set times pending (available ${entry.available}, scheduleTBA ${entry.scheduleTBA})`);
+
+  // GPS anchors: kinetic, circuit and neon only (founder ruling 2026-09-30).
+  // An anchor is a lat/lng; a pin is a place on the art. stereo and bacardi
+  // keep the second and lose the first, and stay stages everywhere else.
+  const live = config.gpsAnchors;
+  const threeOnly = list => list.length === 3 && ANCHORED.every((id, i) => list[i].stageId === id);
+  ok(threeOnly(live), `three GPS anchors, in order (${live.map(a => a.stageId).join(", ")})`);
+  caught(threeOnly(ANCHORS_73), "all five of #73's anchors still ship");
+  ok(live.every((a, i) => a.lat === ANCHORS_73[i].lat && a.lng === ANCHORS_73[i].lng), "the three kept anchors are #73's, unmoved");
+  ok(live.every(a => a.src === "poster"), "every anchor is still poster class: a read off art, not a measurement");
+  caught([{ ...live[0], src: "osm" }, live[1], live[2]].every(a => a.src === "poster"), "a poster anchor relabelled as a measurement");
+  const unanchored = IDS.filter(id => !live.some(a => a.stageId === id));
+  ok(unanchored.join() === "stereo,bacardi", `stereo and bacardi have no GPS anchor (${unanchored.join(", ")})`);
+  ok(unanchored.every(id => { const st = shipped(id); return st && typeof st.x === "number" && typeof st.y === "number" && st.name; }),
+    "stereo and bacardi are still stages, with their pins on the art");
+  ok(!(config.crowdAnchors || []).length, "no crowd anchor stands in for a removed one");
 }
 
-// ── 4. the 2026 map pipeline, unpinned ────────────────────────────────────
+// ── 4. the three-anchor fit, measured ────────────────────────────────────
+// map.jsx solves its GPS-to-map affine from the first three anchors and the
+// pins of the same three stages. This re-solves it and records what it is.
+// Nothing here is a validation: three points fit any affine exactly.
+{
+  const live = config.gpsAnchors;
+  const pinOf = id => { const st = shipped(id); return { px: st.x, py: st.y }; };
+  const fit = fitAffine(live.map(a => ({ name: a.stageId, ...pinOf(a.stageId), lat: a.lat, lng: a.lng })));
+  ok(fit.worst.metres < 0.01, `the fit is exact at its own three anchors, by construction (worst ${fit.worst.metres.toFixed(4)} m)`);
+  // Where the two removed anchors stood against where this fit draws their
+  // stages. This was the only disagreement the data could show, and it is
+  // why the blue dot is called approximate. Removing the anchors removed the
+  // evidence from data.jsx, not the error from the map.
+  const gap = id => { const pin = pinOf(id); return distanceM(applyAffine(fit.affine, pin.px, pin.py), ANCHORS_73.find(a => a.stageId === id)); };
+  ok(Math.abs(gap("stereo") - 98) < 2 && Math.abs(gap("bacardi") - 48) < 2,
+    `the removed anchors sat 98 m (stereo) and 48 m (bacardi) from where the fit draws them (${gap("stereo").toFixed(1)}, ${gap("bacardi").toFixed(1)})`);
+  // The shape of the fit. The art is drawn north-up, so a sound registration
+  // would have its two axes square on the ground. These do not.
+  const { east, north } = fit.affine;
+  const ux = [east[0], north[0]], uy = [east[1], north[1]];
+  const len = v => Math.hypot(v[0], v[1]);
+  const between = Math.acos((ux[0] * uy[0] + ux[1] * uy[1]) / (len(ux) * len(uy))) * 180 / Math.PI;
+  ok(Math.abs(between - 114) < 1.5, `the map axes meet at 114° on the ground, not 90°: the fit is sheared (${between.toFixed(1)}°)`);
+  ok(Math.abs(len(ux) - 5.7) < 0.15 && Math.abs(len(uy) - 9.3) < 0.2, `one grid unit is 5.7 m across and 9.3 m down (${len(ux).toFixed(2)}, ${len(uy).toFixed(2)})`);
+  // A person at the festival polygon's north-west corner (Church St at
+  // S Tampa Ave) is drawn left of the plate's edge.
+  const m = metresPerDegree(fit.affine.lat0);
+  const toGrid = p => {
+    const e = (p.lng - fit.affine.lng0) * m.lng - east[2], n = (p.lat - fit.affine.lat0) * m.lat - north[2];
+    const det = east[0] * north[1] - east[1] * north[0];
+    return [fit.affine.px0 + (north[1] * e - east[1] * n) / det, fit.affine.py0 + (east[0] * n - north[0] * e) / det];
+  };
+  const back = toGrid(live[0]);
+  ok(Math.abs(back[0] - shipped("kinetic").x) < 0.01 && Math.abs(back[1] - shipped("kinetic").y) < 0.01, "the inverse used here puts kinetic's anchor back on kinetic's pin");
+  const nw = toGrid({ lat: POLY.n, lng: POLY.w });
+  ok(nw[0] < 0 && nw[0] > -12, `the polygon's north-west corner draws off the plate's left edge (x ${nw[0].toFixed(1)})`);
+}
+
+// ── 5. the 2026 map pipeline, unpinned ────────────────────────────────────
 {
   const M = EDCO_MAP_2026;
   ok(M.festivalId === FID && M.placeholder === EDCO_MAP_2025.derivative, "the 2026 pipeline is EDC Orlando's, and what ships until it is pinned is the 2025 plate");

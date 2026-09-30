@@ -1521,18 +1521,24 @@ const REGISTRATION_TOL_M = 25;
       // 2025 and say we are waiting for official 2026 map". EDC Orlando opens
       // on its lineup over the official 2025 map, labelled as such.
       //
-      // Both conditions are real. All five anchors are `poster`: reads off
-      // the 2025 art through a fit whose control points were never recorded
-      // (#73), three of them then moved 79-119 m into the fence by hand. The
-      // basis (kinetic, circuit, neon) has no sourced anchor, and nothing
-      // independent can contradict it. So the blue dot on this map is a
-      // poster read, and every distance readout stays withheld.
+      // Both conditions are real. Three anchors ship (kinetic, circuit, neon;
+      // founder ruling 2026-09-30 removed stereo and bacardi), all `poster`:
+      // reads off the 2025 art through a fit whose control points were never
+      // recorded (#73). They are the whole basis, so the affine fits them with
+      // zero residual by construction and nothing in the data can contradict
+      // it. What could, did, before it was removed: stereo and bacardi sat
+      // 98 m and 48 m from where this affine draws them. Removing them took
+      // the evidence out of the data, not the error out of the map. The blue
+      // dot is a poster read, and every distance readout stays withheld.
+      //
+      // This waiver covers EDC Orlando's three anchors and nothing else. It is
+      // not a precedent for any other festival opening unsourced.
       //
       // Clears at the flip: control points saved and re-fitted on the official
       // 2026 art with scripts/georef-map.mjs, plus one osm or ground anchor.
       note: "opened on its lineup over the official 2025 map (founder ruling " +
-            "2026-09-30); all five anchors are poster reads. Clears when the " +
-            "official 2026 map is fitted from saved control points",
+            "2026-09-30); three anchors, all poster reads, all of them the basis. " +
+            "Clears when the official 2026 map is fitted from saved control points",
     },
   };
   const regProblems = [];
@@ -1772,11 +1778,15 @@ const REGISTRATION_TOL_M = 25;
   // checks and had to be deleted, not adjusted.
   //
   // Recorded as a gate rather than a comment because a comment is exactly
-  // what the next flip session will not read. EDC Orlando is grandfathered:
-  // its five poster anchors are already authored and internally consistent
-  // (3 m / 7 m off their own affine), so they stand as the calibration set
-  // for whenever a real osm/crowd source lands. That is the last batch.
-  const LAYOUT_ONLY_GRANDFATHERED = new Set(["edc-orlando-2026"]);
+  // what the next flip session will not read.
+  //
+  // Nothing is grandfathered any more. EDC Orlando was the one entry (five
+  // poster anchors authored before the ruling); it opened on 2026-09-30, and
+  // a live festival is out of this gate's scope, so the entry excused
+  // nothing. Its anchors are now the registration gate's business, under a
+  // dated waiver. An id listed here that is not a gated festival carrying
+  // poster-class anchors is fatal below, same closure as the waivers above.
+  const LAYOUT_ONLY_GRANDFATHERED = new Set([]);
   const LO_EVIDENCE = EVIDENCE_SRC;
   console.log("▸ Layout-only gate — no new poster-class anchors on a gated festival");
   let loHard = 0, loOk = 0;
@@ -1798,6 +1808,11 @@ const REGISTRATION_TOL_M = 25;
     }
   }
   if (loHard) fail(`${loHard} gated festival(s) carry poster-class anchors — see above`);
+  for (const id of LAYOUT_ONLY_GRANDFATHERED) {
+    const f = REG.find(x => x.config.id === id);
+    const excuses = f && f.available !== true && (f.config.gpsAnchors || []).some(a => !LO_EVIDENCE.has(a.src));
+    if (!excuses) fail(`layout-only grandfather entry for ${id} is STALE: it is not a gated festival with poster-class anchors. Delete the entry.`);
+  }
   console.log(`  ✓ ${loOk} gated festival(s) hold the layout-only default`);
 
   // ── Crowd-anchor gate ────────────────────────────────────────────────────
