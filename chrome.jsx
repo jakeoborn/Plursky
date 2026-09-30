@@ -78,16 +78,15 @@ function TabBar({ active, onChange }) {
     { id: "map",     label: "Map",    icon: MapIcon },
     { id: "me",      label: "Me",     icon: MeIcon },
   ];
-  // Field Mode: the bar is quiet dark chrome. The accent marks only the
-  // selected tab. Stage colour no longer tints the bar while the main stage
-  // is live: festival colour may skin media, never controls.
+  // The duo board's bar: quiet chrome, the selected tab in full ink with a
+  // short accent bar along its top edge. Stage colour never tints it.
   return (
     <div style={{
       background: "var(--chrome)",
       backdropFilter: "blur(20px) saturate(160%)",
       WebkitBackdropFilter: "blur(20px) saturate(160%)",
       borderTop: "1px solid var(--line)",
-      padding: "6px 10px 10px",
+      padding: "0 10px 10px",
       display: "flex",
       justifyContent: "space-around",
     }}>
@@ -99,21 +98,25 @@ function TabBar({ active, onChange }) {
             onClick={() => { haptic.light(); onChange(t.id); }}
             aria-current={on ? "page" : undefined}
             style={{
+              position: "relative",
               background: "transparent", border: "none", cursor: "pointer",
-              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 3,
-              padding: "4px 12px",
-              color: on ? "var(--signal-ink)" : "var(--text-2)",
-              minWidth: 64, minHeight: 49, maxWidth: "100%",
-              transition: "color 0.15s ease",
+              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 5,
+              padding: "10px 12px 4px",
+              color: on ? "var(--ink)" : "var(--ink-3)",
+              minWidth: 64, minHeight: 53, maxWidth: "100%",
+              transition: "color var(--t-tap) var(--ease-decay)",
             }}>
+            {on && <span aria-hidden="true" style={{
+              position: "absolute", top: -1, left: "28%", right: "28%", height: 2, borderRadius: 2,
+              background: "var(--acc)", boxShadow: "0 0 12px var(--acc-55)",
+            }} />}
             <Icon on={on} />
             {/* The label must be able to shrink, and its line box must scale
                 with it. At 200% text "Memories" ran past its own button. */}
             <span style={{
-              fontSize: 12, lineHeight: 1.17,
-              fontWeight: on ? 600 : 500,
+              fontSize: 11, lineHeight: 1.17, letterSpacing: ".01em",
+              fontWeight: 500,
               minWidth: 0, maxWidth: "100%", overflowWrap: "anywhere", textAlign: "center",
-              transition: "color 0.15s",
             }}>
               {t.label}
             </span>
@@ -124,62 +127,29 @@ function TabBar({ active, onChange }) {
   );
 }
 
+// Tab icons: the board's one geometry (design/system-exploration
+// shared/icons.js), 1.6px stroke on a 24 grid, round caps, currentColor.
 const stroke = (on) => ({
   fill: "none",
   stroke: "currentColor",
-  strokeWidth: on ? 1.8 : 1.4,
+  strokeWidth: 1.6,
   strokeLinecap: "round",
   strokeLinejoin: "round",
 });
-
-function HomeIcon({ on }) {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" style={stroke(on)}>
-      <circle cx="12" cy="12" r="3.2" />
-      <path d="M12 2.5 L12 5.5 M12 18.5 L12 21.5 M2.5 12 L5.5 12 M18.5 12 L21.5 12" />
-      <path d="M5.5 5.5 L7.5 7.5 M16.5 16.5 L18.5 18.5 M5.5 18.5 L7.5 16.5 M16.5 7.5 L18.5 5.5" opacity="0.55"/>
-    </svg>
-  );
-}
-function MapIcon({ on }) {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" style={stroke(on)}>
-      <path d="M3 6 L9 4 L15 6 L21 4 L21 18 L15 20 L9 18 L3 20 Z" />
-      <path d="M9 4 L9 18 M15 6 L15 20" />
-    </svg>
-  );
-}
-function LineupIcon({ on }) {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" style={stroke(on)}>
-      <path d="M4 6 L20 6 M4 12 L20 12 M4 18 L14 18" />
-      <circle cx="18" cy="18" r="2" />
-    </svg>
-  );
-}
+const _tabIcon = (d) => function TabIcon({ on }) {
+  return <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style={stroke(on)}><path d={d} /></svg>;
+};
+const HomeIcon = _tabIcon("M12 20 3.5 9 M12 20 8.5 5 M12 20 15.5 5 M12 20 20.5 9 M9 20h6");
+const LineupIcon = _tabIcon("M4 6h16 M4 12h11 M4 18h14");
+const MapIcon = _tabIcon("M9 4 3 6.2v13.8l6-2.2 6 2.2 6-2.2V4l-6 2.2L9 4z M9 4v13.8 M15 6.2V20");
+const MeIcon = _tabIcon("M12 12.5a4.25 4.25 0 1 0 0-8.5 4.25 4.25 0 0 0 0 8.5z M4.5 20.5c1.4-3.7 4.3-5.6 7.5-5.6s6.1 1.9 7.5 5.6");
+const MemoriesIcon = _tabIcon("M4 6.5h16v12H4z M4 15.5l4.5-4 3.5 3 2.5-2 5.5 4.5 M15.5 10.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z");
 function MusicIcon({ on }) {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" style={stroke(on)}>
+    <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style={stroke(on)}>
       <circle cx="7" cy="17" r="2.5" />
       <circle cx="17" cy="15" r="2.5" />
       <path d="M9.5 17 L9.5 5 L19.5 3 L19.5 15" />
-    </svg>
-  );
-}
-function MemoriesIcon({ on }) {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" style={stroke(on)}>
-      <rect x="3" y="5" width="18" height="14" rx="2.5" />
-      <circle cx="8.5" cy="10" r="1.6" />
-      <path d="M3 16 L9 11 L13 14.5 L17 11 L21 14.5" />
-    </svg>
-  );
-}
-function MeIcon({ on }) {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" style={stroke(on)}>
-      <circle cx="12" cy="9" r="3.5" />
-      <path d="M5 20 C 5 16, 8.5 14, 12 14 C 15.5 14, 19 16, 19 20" />
     </svg>
   );
 }
@@ -675,6 +645,58 @@ function FieldSheet({ title, onClose, children }) {
           {children}
         </div>
       </div>
+    </div>
+  );
+}
+
+// ── Duo board components ─────────────────────────────────────
+// The selected dark/light board (design/system-exploration @ 6524ccb) as
+// shared pieces. Styles are the duo-* classes in index.html; every colour is
+// a mode token, so nothing here reads the mode.
+
+// An act's face: the artist's Spotify photo (transient, 24 h, via
+// useArtistPhoto) or their initials. A b2b is two whole faces overlapped in
+// the same footprint; a 3+ chain shows its first two. ring: "on" = on your
+// plan, "cl" = in a clash.
+function _duoMembers(name) {
+  return String(name || "").split(/\s+b\d+b\s+|\s+with\s+/i).map(s => s.trim()).filter(Boolean);
+}
+function _duoInitials(name) {
+  return String(name || "").split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w)).slice(0, 2)
+    .map(w => w.match(/[A-Za-z0-9]/)[0].toUpperCase()).join("") || "?";
+}
+function DuoFace({ name, size, ring = "", style }) {
+  const photo = useArtistPhoto(name);
+  return (
+    <span className={`duo-av ${ring}`} aria-hidden="true"
+      style={{ width: size, height: size, fontSize: Math.round(size * 0.32), ...style }}>
+      {photo ? <img src={photo} alt="" /> : _duoInitials(name)}
+    </span>
+  );
+}
+function DuoAvatar({ name, size = 40, ring = "" }) {
+  const ms = _duoMembers(name);
+  if (ms.length < 2) return <DuoFace name={name} size={size} ring={ring} />;
+  const d = Math.round(size * 0.66);
+  return (
+    <span className="duo-avp" aria-hidden="true" style={{ width: size, height: size }}>
+      <DuoFace name={ms[0]} size={d} ring={ring} style={{ left: 0, top: 0 }} />
+      <DuoFace name={ms[1]} size={d} ring={ring} style={{ right: 0, bottom: 0 }} />
+    </span>
+  );
+}
+
+// LIVE is green and only ever means live.
+function DuoLive({ children = "Live", className = "duo-label" }) {
+  return <span className={`${className} duo-live`}><i aria-hidden="true" />{children}</span>;
+}
+
+// The board's section eyebrow: Michroma caps, with an optional right slot.
+function DuoSect({ title, right, style }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, minHeight: 24, ...style }}>
+      <h2 className="duo-sect">{title}</h2>
+      {right}
     </div>
   );
 }
@@ -1339,9 +1361,28 @@ function NotificationsCard({ state }) {
 // festival in FESTIVALS_REGISTRY. Selectable festivals reload the
 // page with their config; "coming soon" festivals are visible as
 // a roadmap preview but not selectable.
-function FestivalChip({ compact = false, accent = "var(--ink)" }) {
+function FestivalChip({ compact = false, accent = "var(--ink)", title = null }) {
   const [open, setOpen] = React.useState(false);
   const canSwitch = FESTIVALS_REGISTRY.filter(f => f.available).length > 1;
+  // title: the duo Today header, where the festival's own name IS the
+  // switcher (Apple Sports' title menu). Same button, same label.
+  if (title) return (
+    <>
+      <button type="button" className="duo-press"
+        onClick={canSwitch ? () => setOpen(true) : undefined}
+        disabled={!canSwitch}
+        aria-label={canSwitch ? `${FESTIVAL_CONFIG.shortName.toUpperCase()}, switch festival` : undefined}
+        style={{ display: "inline-flex", alignItems: "flex-end", gap: 8, width: "auto", maxWidth: "100%", color: "var(--ink)", cursor: canSwitch ? "pointer" : "default" }}>
+        {title}
+        {canSwitch && (
+          <span aria-hidden="true" style={{ flex: "none", marginBottom: "0.32em", width: 28, height: 28, borderRadius: 14, display: "grid", placeItems: "center", background: "var(--s2)", boxShadow: "var(--e1)", color: "var(--ink-2)" }}>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5 L6 7.5 L9 4.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </span>
+        )}
+      </button>
+      {open && <FestivalSwitcher onClose={() => setOpen(false)} />}
+    </>
+  );
   return (
     <>
       {/* Field Mode: a 44pt target around an 18pt-radius status pill. The
