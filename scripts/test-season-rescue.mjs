@@ -33,6 +33,7 @@ import { spawn } from "node:child_process";
 import { createServer } from "node:net";
 import { existsSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
+import { serverReady } from "./lib/server-ready.mjs";
 
 const ROOT = process.cwd();
 const SHOTS = process.env.PLURSKY_RESCUE_SHOTS;
@@ -101,7 +102,7 @@ const PORT = await port();
 const server = spawn("python3", ["-m", "http.server", String(PORT), "--bind", "127.0.0.1"], { cwd: ROOT, stdio: "ignore" });
 let browser;
 try {
-  for (let i = 0; i < 50; i++) { try { if ((await fetch(`http://127.0.0.1:${PORT}/index.html`)).ok) break; } catch {} await sleep(100); }
+  await serverReady(`http://127.0.0.1:${PORT}/index.html`);
   const executablePath = ["/opt/google/chrome/chrome", "/usr/bin/google-chrome", "/usr/bin/chromium"].find(existsSync);
   browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
 
@@ -327,15 +328,15 @@ try {
     await openPaywall(page, { plans: false }); await closePaywall(page);
     await openPaywall(page);
     ok(await card(page).count() === (want ? 1 : 0), `sandbox override, ${label}: rescue ${want ? "not shown" : "shown"}`);
-    if (want) {
+    if (want && await card(page).count() === 1) {
       ok(await card(page).getByText("Sandbox test · remote switch is off").count() === 1, `sandbox override, ${label}: card does not say it is a sandbox test`);
       ok(await card(page).getByRole("button", { name: "Get Season Pass for $9.99" }).count() === 1, `sandbox override, ${label}: CTA does not carry the store price`);
+      if (label.startsWith("TestFlight")) await shot(page, "12-sandbox-override");
       await page.evaluate(() => sessionStorage.setItem("__rc_next", JSON.stringify({ plursky_season_pass_2026_promo: "success" })));
       await Promise.all([page.waitForEvent("load"), card(page).getByRole("button", { name: /Get Season Pass for/ }).click()]);
       await page.waitForFunction(() => typeof PlusGate === "function", null, { timeout: 30000 });
       ok((await calls(page)).join() === PROMO && await page.evaluate(() => localStorage.getItem("plursky_plus_active")) === "1",
         `sandbox override, ${label}: tap did not buy the promo package through Apple's sheet and unlock Plus`);
-      if (label.startsWith("TestFlight")) await shot(page, "12-sandbox-override");
     }
     ok(!errors.length, `sandbox override, ${label}: page errors: ${errors.join(" | ")}`);
     await ctx.close();
