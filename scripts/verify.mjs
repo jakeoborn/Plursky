@@ -2530,6 +2530,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── /f/ page status chip ─────────────────────────────────────────────────
+// A festival whose day split is unpublished (one dayDates bucket, a two-day
+// printed range) is "Happening now" on every printed day; a festival that
+// runs in blocks is not in its gap. Real registry festivals at pinned dates.
+{
+  console.log("▸ Page status — single-bucket festivals stay live through their last day; gaps are not live");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-page-status.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`page status failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Saved sets the lineup still carries ──────────────────────────────────
 // Every saved-set surface reads savedInLineup(); storage, cloud push and the
 // sign-in union keep orphan ids (lane ruling 2026-09-27: no deletion until a
