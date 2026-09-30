@@ -102,3 +102,28 @@ export function hoursLine(h) {
     : `${h.label} hours: ${win || `from ${clock(h.open)}`}`;
   return `${main}${h.daily ? ' each day' : ''}${h.musicStart ? `; music starts ${clock(h.musicStart)}` : ''}.`;
 }
+
+// ── Status chip ──────────────────────────────────────────────────────
+// Upcoming / This weekend / Happening now / Past, from the printed dates
+// ({ start, end }, YYYY-MM-DD) and the days the festival actually runs.
+// Between two blocks of days (ACL's weekends, Summerfest's three runs) nothing
+// is playing, so a gap day is never "live".
+//
+// `dayBuckets` is how many entries the festival's dayDates has. ONE bucket
+// under printed dates that run longer means the day split is not published
+// (III Points, Dreamstate, Countdown: every act sits in a single bucket dated
+// the first day). That is an unpublished split, not a one-day festival: it
+// runs every printed day. Read literally, the second day fell through to
+// "This weekend" while the festival was on.
+const _DAY_MS = 86400000;
+export function pageStatus(dates, eventDays, today, dayBuckets) {
+  if (today > dates.end) return 'past';
+  let days = eventDays.filter(d => d >= dates.start && d <= dates.end).sort();
+  if (dayBuckets === 1 && days.length === 1 && dates.end > dates.start) {
+    days = [];
+    for (let t = Date.parse(dates.start); t <= Date.parse(dates.end); t += _DAY_MS) days.push(new Date(t).toISOString().slice(0, 10));
+  }
+  if (days.includes(today) || (!days.length && today >= dates.start)) return 'live';
+  const next = days.find(d => d > today) || dates.start;
+  return (Date.parse(next) - Date.parse(today)) / _DAY_MS <= 6 ? 'soon' : 'upcoming';
+}
