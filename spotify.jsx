@@ -9720,14 +9720,66 @@ async function _rescueOffer() {
   try {
     const offerings = await _withTimeout(_rcPlugin().getOfferings(), 10000, "Rescue offer lookup");
     const offering = offerings?.all?.[RESCUE_OFFERING_ID];
-    if (!offering || offering.metadata?.rescue_enabled !== true) return null;
+    if (!offering) return null;
+    const live = offering.metadata?.rescue_enabled === true;
+    const sandbox = !live && await _rescueSandboxOn();
+    if (!live && !sandbox) return null;
     const pkg = (offering.availablePackages || []).find(p => p.product?.identifier === RESCUE_PRODUCT_ID);
     const price = pkg?.product?.priceString;
-    return typeof price === "string" && price ? { productId: RESCUE_PRODUCT_ID, price } : null;
+    return typeof price === "string" && price ? { productId: RESCUE_PRODUCT_ID, price, sandbox } : null;
   } catch (e) {
     console.warn("[plursky-iap] rescue offer unavailable:", _iapMsg(e));
     return null;
   }
+}
+
+// Sandbox test override (Jake 2026-09-29, #224 option (a)). It stands in for
+// the remote switch ONLY: the offering, the promo product, StoreKit's price,
+// both triggers and Apple's sheet are all still real. It needs a native build
+// that reports a debug or TestFlight channel (both buy with a sandbox Apple
+// ID, so nothing is charged) AND an explicit opt-in on that device, so App
+// Review, which also runs on a sandbox receipt, never sees it by default. The
+// App Store build, the web, and a build older than the channel method stay
+// off whatever the stored key says. Opt in or out by opening
+// plursky://?rescueSandbox=1 (or =0) on the test device.
+const RESCUE_SANDBOX_KEY = "plursky_rescue_sandbox_v1";
+function _rescueSandboxAllowed(channel, stored) {
+  if (channel !== "debug" && channel !== "testflight") return false;
+  return stored === "1";
+}
+async function _rescueSandboxChannel() {
+  try {
+    if (!window.Capacitor?.isNativePlatform?.() || !window.ShazamPlugin) return null;
+    const r = await _withTimeout(window.ShazamPlugin.buildChannel(), 3000, "Build channel");
+    return (r && r.channel) || null;
+  } catch { return null; }                // an older build rejects the unknown method
+}
+async function _rescueSandboxOn() {
+  let stored = null;
+  try { stored = localStorage.getItem(RESCUE_SANDBOX_KEY); } catch {}
+  if (stored !== "1") return false;
+  return _rescueSandboxAllowed(await _rescueSandboxChannel(), stored);
+}
+// Reads ?rescueSandbox=1|0 off an opened plursky:// URL. Writes nothing
+// unless this build is on a sandbox channel. Returns the stored state.
+async function _rescueSandboxApplyUrl(rawUrl) {
+  let v = null;
+  try {
+    const u = new URL(rawUrl || "", "capacitor://localhost");
+    v = new URLSearchParams(u.search || (u.hash?.startsWith("#?") ? u.hash.slice(1) : "")).get("rescueSandbox");
+  } catch {}
+  if (v !== "1" && v !== "0") return null;
+  const ch = await _rescueSandboxChannel();
+  if (ch !== "debug" && ch !== "testflight") return null;
+  try { v === "1" ? localStorage.setItem(RESCUE_SANDBOX_KEY, "1") : localStorage.removeItem(RESCUE_SANDBOX_KEY); } catch {}
+  return v === "1";
+}
+if (window.Capacitor?.isNativePlatform?.()) {
+  try {
+    const capApp = window.Capacitor.Plugins?.App;
+    Promise.resolve(capApp?.getLaunchUrl?.()).then(r => r?.url && _rescueSandboxApplyUrl(r.url)).catch(() => {});
+    Promise.resolve(capApp?.addListener?.("appUrlOpen", ({ url }) => { _rescueSandboxApplyUrl(url); })).catch(() => {});
+  } catch {}
 }
 
 // Narrow event adapter. There is no production analytics SDK in Plursky, so
@@ -10097,6 +10149,11 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
             <div style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--signal)" }}>
               Festival launch price
             </div>
+            {rescueOffer.sandbox && (
+              <div style={{ marginTop: 4, fontSize: 11, lineHeight: "14px", fontWeight: 600, color: "var(--text-2)" }}>
+                Sandbox test · remote switch is off
+              </div>
+            )}
             <div style={{ marginTop: 4, fontSize: 17, lineHeight: "22px", fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>
               Season Pass · {rescueOffer.price} one time
             </div>

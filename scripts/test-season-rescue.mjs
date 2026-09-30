@@ -23,7 +23,9 @@
 //     from the "season_rescue" offering;
 //   - a rescue purchase unlocks Plus only through the `plus` entitlement;
 //     full-price, monthly and restore still work;
-//   - each event fires once at its transition, with allowlisted keys only.
+//   - each event fires once at its transition, with allowlisted keys only;
+//   - the sandbox override stands in for the remote switch only, and only on a
+//     debug/TestFlight channel with the device opted in (plursky://?rescueSandbox=1).
 //
 //   PLURSKY_RESCUE_SHOTS=<dir> node scripts/test-season-rescue.mjs   # 393pt @3x shots
 import { chromium } from "playwright";
@@ -80,8 +82,19 @@ function installBridge(cfg) {
     restorePurchases: async () => { if (S("owned")) W("plus", true); return { customerInfo: info() }; },
   };
   const stub = new Proxy({}, { get: (_, k) => k === "then" ? undefined : async () => ({ remove() {} }) });
+  // The native build channel (ShazamPlugin.buildChannel). Unset = the generic
+  // stub, which answers no channel, like a build older than the method.
+  const plugins = { Purchases };
+  if (cfg.channel !== undefined) plugins.ShazamPlugin = { buildChannel: async () => {
+    if (cfg.channel === "reject") throw new Error("ShazamPlugin.buildChannel() is not implemented on ios");
+    return { channel: cfg.channel };
+  } };
   window.Capacitor = { isNativePlatform: () => true, getPlatform: () => "ios", isPluginAvailable: n => n === "Purchases",
-    Plugins: new Proxy({ Purchases }, { get: (t, k) => t[k] || stub }) };
+    Plugins: new Proxy(plugins, { get: (t, k) => t[k] || stub }) };
+  if (cfg.sandboxKey !== undefined && !sessionStorage.getItem("__sbk")) {
+    sessionStorage.setItem("__sbk", "1");
+    localStorage.setItem("plursky_rescue_sandbox_v1", cfg.sandboxKey);
+  }
 }
 
 const PORT = await port();
@@ -158,7 +171,7 @@ try {
     ok(await card(page).count() === 1, "second native paywall view did not show the rescue");
     ok(await card(page).getByText("Season Pass · $9.99 one time").count() === 1, "rescue title does not carry the store price");
     ok(await card(page).getByRole("button", { name: "Get Season Pass for $9.99" }).count() === 1, "rescue CTA does not read 'Get Season Pass for {price}'");
-    ok(await page.getByRole("radio").count() === 2, "the normal Season Pass and Monthly choices are gone under the rescue");
+    ok(await page.getByRole("radiogroup", { name: "Choose a plan" }).getByRole("radio").count() === 2, "the normal Season Pass and Monthly choices are gone under the rescue");
     ok(await page.getByRole("button", { name: "Restore purchases" }).count() === 1, "Restore is missing under the rescue");
     ok(!/\b(ends?|left|hurry|today|tonight|last chance|limited|expires?|only \d+)\b/i.test(await card(page).innerText()), "rescue implies scarcity or a deadline");
     await shot(page, "2-second-view-rescue");
@@ -296,6 +309,59 @@ try {
     await ctx.close();
   }
 
+  // ── sandbox override (#224 option (a)): stands in for the remote switch only,
+  //    and only on a debug/TestFlight channel with the device opted in ──
+  const OFF = { ...LIVE, metadata: { rescue_enabled: false } };
+  for (const [label, cfg, want] of [
+    ["TestFlight + opted in", { ...OFF, channel: "testflight", sandboxKey: "1" }, true],
+    ["debug + opted in", { ...OFF, channel: "debug", sandboxKey: "1" }, true],
+    ["App Store build + opted in", { ...OFF, channel: "appstore", sandboxKey: "1" }, false],
+    ["TestFlight, not opted in", { ...OFF, channel: "testflight" }, false],
+    ["TestFlight, key 'true' not '1'", { ...OFF, channel: "testflight", sandboxKey: "true" }, false],
+    ["build without the channel method", { ...OFF, sandboxKey: "1" }, false],
+    ["channel method rejects", { ...OFF, channel: "reject", sandboxKey: "1" }, false],
+    ["TestFlight + opted in, promo product missing", { ...OFF, channel: "testflight", sandboxKey: "1", promo: false }, false],
+    ["TestFlight + opted in, no season_rescue offering", { ...OFF, channel: "testflight", sandboxKey: "1", rescueOffering: false }, false],
+  ]) {
+    const { ctx, page, errors } = await open(cfg);
+    await openPaywall(page, { plans: false }); await closePaywall(page);
+    await openPaywall(page);
+    ok(await card(page).count() === (want ? 1 : 0), `sandbox override, ${label}: rescue ${want ? "not shown" : "shown"}`);
+    if (want) {
+      ok(await card(page).getByText("Sandbox test · remote switch is off").count() === 1, `sandbox override, ${label}: card does not say it is a sandbox test`);
+      ok(await card(page).getByRole("button", { name: "Get Season Pass for $9.99" }).count() === 1, `sandbox override, ${label}: CTA does not carry the store price`);
+      await page.evaluate(() => sessionStorage.setItem("__rc_next", JSON.stringify({ plursky_season_pass_2026_promo: "success" })));
+      await Promise.all([page.waitForEvent("load"), card(page).getByRole("button", { name: /Get Season Pass for/ }).click()]);
+      await page.waitForFunction(() => typeof PlusGate === "function", null, { timeout: 30000 });
+      ok((await calls(page)).join() === PROMO && await page.evaluate(() => localStorage.getItem("plursky_plus_active")) === "1",
+        `sandbox override, ${label}: tap did not buy the promo package through Apple's sheet and unlock Plus`);
+      if (label.startsWith("TestFlight")) await shot(page, "12-sandbox-override");
+    }
+    ok(!errors.length, `sandbox override, ${label}: page errors: ${errors.join(" | ")}`);
+    await ctx.close();
+  }
+  {
+    // with the remote switch ON, the card is the live one (no sandbox line)
+    const { ctx, page } = await open({ ...LIVE, channel: "testflight", sandboxKey: "1" });
+    await openPaywall(page, { plans: false }); await closePaywall(page); await openPaywall(page);
+    ok(await card(page).count() === 1 && await card(page).getByText(/Sandbox test/).count() === 0, "a live rescue card was labelled as a sandbox test");
+    await ctx.close();
+  }
+  // opting in and out by link writes only on a sandbox channel
+  for (const [channel, writes] of [["testflight", true], ["debug", true], ["appstore", false], ["reject", false]]) {
+    const { ctx, page } = await open({ ...LIVE, channel });
+    const r = await page.evaluate(async () => {
+      const out = [];
+      out.push(await _rescueSandboxApplyUrl("plursky://?rescueSandbox=1"), localStorage.getItem("plursky_rescue_sandbox_v1"));
+      out.push(await _rescueSandboxApplyUrl("plursky://?tab=me"), localStorage.getItem("plursky_rescue_sandbox_v1"));
+      out.push(await _rescueSandboxApplyUrl("plursky://?rescueSandbox=0"), localStorage.getItem("plursky_rescue_sandbox_v1"));
+      return out;
+    });
+    const want = writes ? [true, "1", null, "1", false, null] : [null, null, null, null, null, null];
+    ok(JSON.stringify(r) === JSON.stringify(want), `opt-in link on channel ${channel}: got ${JSON.stringify(r)}, want ${JSON.stringify(want)}`);
+    await ctx.close();
+  }
+
   // ── the price is the store's string, never a literal ──
   {
     const { ctx, page } = await open({ ...LIVE, price: "€10,99" });
@@ -347,4 +413,4 @@ try {
   server.kill();
 }
 if (fails.length) { fails.forEach(f => console.error(`  ✗ ${f}`)); console.error(`  ${fails.length} of ${checks} Season Pass rescue checks failed`); process.exit(1); }
-console.log(`  ✓ Season Pass rescue: two triggers only, sheet-only view count, fail-closed on 6 store states, live price, promo package, full-price/monthly/restore intact, ${checks} checks`);
+console.log(`  ✓ Season Pass rescue: two triggers only, sheet-only view count, fail-closed on 6 store states, sandbox override on debug/TestFlight opt-in only, live price, promo package, full-price/monthly/restore intact, ${checks} checks`);

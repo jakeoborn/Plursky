@@ -13907,17 +13907,68 @@ async function _rescueOffer() {
   try {
     var offerings = await _withTimeout(_rcPlugin().getOfferings(), 10000, "Rescue offer lookup");
     var offering = offerings?.all?.[RESCUE_OFFERING_ID];
-    if (!offering || offering.metadata?.rescue_enabled !== true) return null;
+    if (!offering) return null;
+    var live = offering.metadata?.rescue_enabled === true;
+    var sandbox = !live && (await _rescueSandboxOn());
+    if (!live && !sandbox) return null;
     var pkg = (offering.availablePackages || []).find(p => p.product?.identifier === RESCUE_PRODUCT_ID);
     var price = pkg?.product?.priceString;
     return typeof price === "string" && price ? {
       productId: RESCUE_PRODUCT_ID,
-      price
+      price,
+      sandbox
     } : null;
   } catch (e) {
     console.warn("[plursky-iap] rescue offer unavailable:", _iapMsg(e));
     return null;
   }
+}
+var RESCUE_SANDBOX_KEY = "plursky_rescue_sandbox_v1";
+function _rescueSandboxAllowed(channel, stored) {
+  if (channel !== "debug" && channel !== "testflight") return false;
+  return stored === "1";
+}
+async function _rescueSandboxChannel() {
+  try {
+    if (!window.Capacitor?.isNativePlatform?.() || !window.ShazamPlugin) return null;
+    var r = await _withTimeout(window.ShazamPlugin.buildChannel(), 3000, "Build channel");
+    return r && r.channel || null;
+  } catch {
+    return null;
+  }
+}
+async function _rescueSandboxOn() {
+  var stored = null;
+  try {
+    stored = localStorage.getItem(RESCUE_SANDBOX_KEY);
+  } catch {}
+  if (stored !== "1") return false;
+  return _rescueSandboxAllowed(await _rescueSandboxChannel(), stored);
+}
+async function _rescueSandboxApplyUrl(rawUrl) {
+  var v = null;
+  try {
+    var u = new URL(rawUrl || "", "capacitor://localhost");
+    v = new URLSearchParams(u.search || (u.hash?.startsWith("#?") ? u.hash.slice(1) : "")).get("rescueSandbox");
+  } catch {}
+  if (v !== "1" && v !== "0") return null;
+  var ch = await _rescueSandboxChannel();
+  if (ch !== "debug" && ch !== "testflight") return null;
+  try {
+    v === "1" ? localStorage.setItem(RESCUE_SANDBOX_KEY, "1") : localStorage.removeItem(RESCUE_SANDBOX_KEY);
+  } catch {}
+  return v === "1";
+}
+if (window.Capacitor?.isNativePlatform?.()) {
+  try {
+    var capApp = window.Capacitor.Plugins?.App;
+    Promise.resolve(capApp?.getLaunchUrl?.()).then(r => r?.url && _rescueSandboxApplyUrl(r.url)).catch(() => {});
+    Promise.resolve(capApp?.addListener?.("appUrlOpen", ({
+      url
+    }) => {
+      _rescueSandboxApplyUrl(url);
+    })).catch(() => {});
+  } catch {}
 }
 var PLUS_EVENT_KEY = "plursky_plus_events";
 var _PLUS_EVENT_PROPS = ["entry_feature", "view_number", "is_native", "storefront", "rescue_eligible", "rescue_trigger", "product_id", "displayed_price", "trigger", "discount_product_id", "result"];
@@ -14516,7 +14567,15 @@ function PlusGate({
       textTransform: "uppercase",
       color: "var(--signal)"
     }
-  }, "Festival launch price"), React.createElement("div", {
+  }, "Festival launch price"), rescueOffer.sandbox && React.createElement("div", {
+    style: {
+      marginTop: 4,
+      fontSize: 11,
+      lineHeight: "14px",
+      fontWeight: 600,
+      color: "var(--text-2)"
+    }
+  }, "Sandbox test · remote switch is off"), React.createElement("div", {
     style: {
       marginTop: 4,
       fontSize: 17,
