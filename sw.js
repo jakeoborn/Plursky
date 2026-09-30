@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v388';
+﻿const CACHE      = 'plursky-v392';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v388';
+const APP_VER    = 'v392';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -67,6 +67,23 @@ const LOCAL = [
   './festival-art/iii-points-2026.webp',
   './festival-art/edc-lv-2026.webp',
   './festival-art/countdown-nye-2026.webp',
+  './festival-art/arc-2026.webp',
+  './festival-art/beyond-wonderland-gorge-2027.webp',
+  './festival-art/beyond-wonderland-socal-2027.webp',
+  './festival-art/coachella-2027.webp',
+  './festival-art/dreamstate-socal-2026.webp',
+  './festival-art/edc-mexico-2027.webp',
+  './festival-art/edc-orlando-2026.webp',
+  './festival-art/escape-halloween-2026.webp',
+  './festival-art/governors-ball-2026.webp',
+  './festival-art/hard-summer-2026.webp',
+  './festival-art/lollapalooza-2026.webp',
+  './festival-art/lost-lands-2026.webp',
+  './festival-art/nocturnal-wonderland-2026.webp',
+  './festival-art/outside-lands-2026.webp',
+  './festival-art/summerfest-2026.webp',
+  './festival-art/tomorrowland-2027.webp',
+  './festival-art/ultra-miami-2026.webp',
   `./build/ios-frame.js?v=${APP_VER}`,
   `./build/data.js?v=${APP_VER}`,
   `./build/supabase.js?v=${APP_VER}`,
