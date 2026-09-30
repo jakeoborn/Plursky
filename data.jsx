@@ -835,7 +835,9 @@ const FESTIVALS_REGISTRY = [
         // or projected off it. It also must not inherit Lady Bird's old
         // coords. A guessed anchor mis-tags photos silently.
         //
-        // `ladybird` / `bonus`: not stages in the 2026 app at all. They showed
+        // `ladybird` / `bonus`: not stages in the current app model. Bonus
+        // Tracks now has September 30 programming in its separate readiness
+        // collection, without a surveyed GPS anchor. They showed
         // up as anchor targets in the 2026-09-06 desk survey, and `ladybird`
         // is where that survey's "independent 34 m cross-check" lived — a real
         // measurement against a stage this lineup does not have, so it cannot
@@ -2357,11 +2359,11 @@ const _aclMk = (id, name, genre, stage, day, start, end, wk) => {
 //  · Kiddie Limits / side-stage strip excluded — not in the app stage model.
 //
 // 137 entries across 7 programmed stages — which is now every stage the app
-// defines for ACL. Lady Bird and Bonus Tracks carry ZERO 2026 programming, so
-// their defs were dropped in v254 rather than ship two filter chips that
-// select nothing. On the official 2026 patron map, Bonus Tracks is still a
-// labelled structure, and Lady Bird appears only as an entrance and a box
-// office, not a stage. See the gpsAnchors note above before restoring either.
+// defines for ACL music. The official September 30 grids now publish Bonus
+// Tracks programming, recorded separately in data/programming/acl-2026.json
+// (20 events, including three unnamed placeholders). That collection is data
+// readiness only: no app consumer, stage coordinates or GPS anchor is added.
+// Lady Bird remains an entrance/box office, not a programmed stage.
 const ACL_ARTISTS = [
   // ── FRIDAY (day 1) ──
   // T-Mobile
