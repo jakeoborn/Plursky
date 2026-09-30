@@ -9,6 +9,10 @@
 // (W2 = Oct 9-11 CDT; W1-only acts excluded), not from the app's helpers, and
 // checked at real W2 clock times against four saved mixes. One case is the
 // ruling, not a bug: during W1, a W2-majority saver resolves to W2.
+//
+// Gap week (ruling 2026-09-29): once W1 wraps, at 08:00 the morning after its
+// last day, the clock says W2 for every saved mix. Until then, W1 night
+// included, the saved sets decide.
 import { chromium } from "playwright";
 import { spawn } from "node:child_process";
 import { readFileSync, existsSync } from "node:fs";
@@ -40,6 +44,11 @@ const TIMES = {
   "W2 Sat 17:45 CDT": "2026-10-10T22:45:00Z",
   "W2 Sun 21:15 CDT": "2026-10-12T02:15:00Z",
   "W1 Sat 17:45 CDT (control)": "2026-10-03T22:45:00Z",
+  "W1 Sun 21:15 CDT (control)": "2026-10-05T02:15:00Z",
+  "W1 Mon 07:55 CDT (Sunday night still open)": "2026-10-05T12:55:00Z",
+  "Gap Mon 08:05 CDT (W1 wrapped)": "2026-10-05T13:05:00Z",
+  "Gap Wed 12:00 CDT": "2026-10-07T17:00:00Z",
+  "Gap Thu 23:30 CDT": "2026-10-09T04:30:00Z",
 };
 
 const PORT = 8000 + Math.floor(Math.random() * 900);
@@ -65,7 +74,7 @@ try {
       wk: activeWeekend(), days: (window.DAYS || DAYS).map(d => d.date).join(","), night: NOW.night }));
     const t = Date.parse(iso);
     const isW1 = tl.startsWith("W1");
-    // The ruling: before W2 begins, a W2-majority saver is on W2.
+    // The ruling: until W1 wraps, a W2-majority saver is on W2.
     const byRuling = isW1 && sl === "w2Majority";
     const wantWk = isW1 && !byRuling ? "W1" : "W2";
     const dates = wantWk === "W1" ? W1DATE : W2DATE;
