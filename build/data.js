@@ -662,8 +662,8 @@ var FESTIVALS_REGISTRY = [{
     mapImage: "acl-park-2026.webp",
     mapSource: {
       url: "https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map",
-      observedAt: "2026-09-24",
-      mapYear: null
+      observedAt: "2026-09-25",
+      mapYear: 2026
     },
     mapStyle: "image-overlay",
     mapTheme: "park",
