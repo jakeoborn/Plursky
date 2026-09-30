@@ -1191,7 +1191,12 @@ function ArtistScreen({ state, setState }) {
           </button>
         )}
         <Pill tone="outline" style={{ background: "rgba(var(--ink-rgb),0.15)", color: "var(--ink)", backdropFilter: "blur(8px)", borderColor: "rgba(var(--ink-rgb),0.3)" }}>
-          {a.day != null ? `DAY ${a.day}` : "DAY TBA"} · {fmt12(a.start)}
+          {/* The time joins only when there is one: fmt12("") is an em dash, and
+              "DAY TBA · —" reads as a time that exists. One text node, so the
+              gate can assert the exact string. */}
+          <span data-artist-day-pill>
+            {[a.day != null ? `DAY ${a.day}` : "DAY TBA", a.start ? fmt12(a.start) : null].filter(Boolean).join(" · ")}
+          </span>
         </Pill>
         <ShareArtistButton artist={a} />
       </div>

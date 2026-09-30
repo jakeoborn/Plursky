@@ -60,6 +60,8 @@ try {
     const s = await page.evaluate(() => ({
       text: document.body.innerText,
       schedule: [...document.querySelectorAll("button")].some(b => b.innerText.trim() === "SCHEDULE"),
+      // Exact text of the hero pill. A substring match let "DAY TBA · —" pass.
+      pill: [...document.querySelectorAll("[data-artist-day-pill]")].map(e => e.textContent.trim()),
     }));
     await page.evaluate(() => window._popNav && window._popNav());
     await page.waitForTimeout(300);
@@ -70,7 +72,7 @@ try {
   check(nd.errs.length === 0, `no-day act: the artist screen throws nothing (got ${JSON.stringify(nd.errs)})`);
   check(nd.text.toUpperCase().includes("FIXTURE NO DAY ACT"), "no-day act: its artist screen renders the act");
   check(nd.text.includes("DAY + SET TIME NOT PUBLISHED"), "no-day act: says the day and set time are not published");
-  check(/DAY TBA/.test(nd.text), "no-day act: the hero pill reads DAY TBA, not 'DAY null'");
+  check(nd.pill.length === 1 && nd.pill[0] === "DAY TBA", `no-day act: the hero pill is exactly "DAY TBA", no separator and no placeholder time (got ${JSON.stringify(nd.pill)})`);
   check(!/DAY null|DAY undefined/.test(nd.text), "no-day act: no 'null'/'undefined' leaks into the copy");
   check(!nd.schedule, "no-day act: no SCHEDULE jump (there is no day to jump to)");
 
@@ -78,11 +80,14 @@ try {
   check(nt.errs.length === 0, `no-time act: the artist screen throws nothing (got ${JSON.stringify(nt.errs)})`);
   check(nt.text.includes("SET TIME NOT PUBLISHED") && !nt.text.includes("DAY + SET TIME NOT PUBLISHED"), "no-time act: names its day and says the set time is not published");
   check(nt.schedule, "no-time act: keeps the SCHEDULE jump to its day");
+  check(nt.pill.length === 1 && nt.pill[0] === `DAY ${fixtures.noTime.day}`, `no-time act: the hero pill is exactly its day, no placeholder time (got ${JSON.stringify(nt.pill)})`);
 
   const c = await open(control);
   check(c.errs.length === 0, "control: a timed act's screen throws nothing");
   check(c.schedule, "control: a timed act keeps its SCHEDULE jump");
   check(!c.text.includes("NOT PUBLISHED"), "control: a timed act shows no 'not published' copy");
+  const controlTime = await page.evaluate(t => fmt12(t), control.start);
+  check(c.pill.length === 1 && c.pill[0] === `DAY ${control.day} · ${controlTime}`, `control: a timed act keeps its day and time in the pill (got ${JSON.stringify(c.pill)})`);
   await browser.close();
 } finally {
   server.kill();

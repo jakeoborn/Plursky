@@ -2198,7 +2198,8 @@ async function _renderFilmStrip(moments) {
     if (artist) {
       ctx.fillStyle = "rgba(247,237,224,0.6)";
       ctx.font = "700 8px 'Geist Mono', monospace";
-      ctx.fillText(artist.name.toUpperCase().slice(0, 18), x + frameW / 2, y - 10);
+      var lines = _heroWrap(ctx, artist.name.toUpperCase(), frameW);
+      lines.forEach((line, li) => ctx.fillText(line, x + frameW / 2, y - 10 - (lines.length - 1 - li) * 10));
     }
   });
   ctx.fillStyle = "#f7ede0";

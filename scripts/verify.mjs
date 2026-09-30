@@ -2483,6 +2483,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Memories film strip names ─────────────────────────────────────────────
+// Every frame names its artist in full (wrapped to the frame, never sliced);
+// same class as #247's chip names. Real renderer, recorded fillText.
+{
+  console.log("▸ Film strip names — every frame's artist in full, within the frame's width");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-film-strip-names.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`film strip names failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Artist screen: an act with no day ─────────────────────────────────────
 // A billed act no official schedule has placed renders ("DAY + SET TIME NOT
 // PUBLISHED") instead of crashing on DAYS.find(...).label. Fixture acts, so

@@ -1415,7 +1415,9 @@ function ArtistScreen({
       backdropFilter: "blur(8px)",
       borderColor: "rgba(var(--ink-rgb),0.3)"
     }
-  }, a.day != null ? `DAY ${a.day}` : "DAY TBA", " · ", fmt12(a.start)), React.createElement(ShareArtistButton, {
+  }, React.createElement("span", {
+    "data-artist-day-pill": true
+  }, [a.day != null ? `DAY ${a.day}` : "DAY TBA", a.start ? fmt12(a.start) : null].filter(Boolean).join(" · "))), React.createElement(ShareArtistButton, {
     artist: a
   })));
   var heroNameInner = React.createElement(React.Fragment, null, React.createElement("div", {
