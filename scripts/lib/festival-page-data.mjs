@@ -36,16 +36,34 @@ export function plateFor(cfg, root = ROOT) {
 }
 
 // Past editions held in data/historical, matched on the festival id without
-// its year ("acl-2026" -> "acl"). The /f/ page is an index into Past
-// Festivals, never a copy of it, so only the summary travels.
+// its year ("acl-2026" -> "acl"), from EARLIER years only, newest first: a
+// page never lists its own year or a later one as "past", so a 2026 edition
+// cannot appear under a 2027 label as anything but a look-back. The /f/ page
+// is an index into Past Festivals, never a copy of it, so only the summary
+// travels, plus the date the newest official source was archived.
 export function pastEditionsFor(id, root = ROOT) {
   const idx = path.join(root, 'data', 'historical', 'index.json');
   if (!existsSync(idx)) return [];
-  const base = String(id).replace(/-\d{4}$/, '');
+  const m = /^(.*)-(\d{4})$/.exec(String(id));
+  const base = m ? m[1] : String(id), year = m ? +m[2] : Infinity;
   return (JSON.parse(readFileSync(idx, 'utf8')).editions || [])
-    .filter(e => e.festivalId === base)
-    .map(e => ({ id: e.id, name: e.name, year: e.year,
-                 artists: e.counts?.artists ?? null, sets: e.counts?.sets ?? null }))
+    .filter(e => e.festivalId === base && e.year < year)
+    .map(e => {
+      const lineupOnly = e.completeness === 'lineup_only';
+      const file = path.join(root, 'data', 'historical', 'editions', `${e.id}.json`);
+      const caps = existsSync(file) ? (JSON.parse(readFileSync(file, 'utf8')).provenance?.captures || []) : [];
+      const ts = caps.map(c => c.captureTimestamp || c.pageCapture || c.imageCapture).filter(t => /^\d{8}/.test(t || '')).sort().pop();
+      return {
+        id: e.id, name: e.name, year: e.year, lineupOnly,
+        first: e.days?.[0]?.date ?? null, last: e.days?.[e.days.length - 1]?.date ?? null,
+        stages: lineupOnly ? null : e.counts?.stages ?? null,
+        artists: e.counts?.artists ?? null,
+        // A lineup_only edition has no sets because none were archived, not
+        // because the festival had none: it never says "0 sets".
+        sets: lineupOnly ? null : e.counts?.sets ?? null,
+        archived: ts ? `${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)}` : null,
+      };
+    })
     .sort((a, b) => b.year - a.year);
 }
 

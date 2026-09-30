@@ -2288,7 +2288,9 @@ function HomeScreen({
   }, React.createElement(window.HomeMemoriesStrip, {
     state,
     setState
-  })))), alertsOpen && React.createElement(AlertsDrawer, {
+  })), typeof PastEditionsSection === "function" && React.createElement(PastEditionsSection, {
+    festivalId: FESTIVAL_CONFIG.id
+  }))), alertsOpen && React.createElement(AlertsDrawer, {
     alerts: alerts,
     onClose: () => {
       setAlertsOpen(false);

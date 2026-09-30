@@ -2,7 +2,7 @@
 // Returns a list of problems; empty means valid. Used by the verify gate
 // (scripts/test-historical-editions.mjs) and by the build during review.
 
-import { EDITIONS, dropReason } from "./editions.mjs";
+import { EDITIONS, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
 import { dayMinutes, weekdayOf } from "./lib.mjs";
 
 // The festival's own web properties. A capture of anything else is not an
@@ -13,6 +13,7 @@ export const OFFICIAL_HOSTS = {
   "hard-summer": ["hardsummer.com"],
   "edc-lv": ["lasvegas.electricdaisycarnival.com"],
   "acl": ["aclfestival.com", "cdn.prod.website-files.com"],
+  "beyond-wonderland-socal": ["socal.beyondwonderland.com"],
 };
 
 const HHMM = /^([01]\d|2[0-3]):[0-5]\d$/;
@@ -110,7 +111,7 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   // names must be Latin-script letters (accented Latin such as RÜFÜS, BÔA is fine).
   for (const x of [...e.artists, ...e.stages])
     // Letters only: symbols in a stylized billing are real ("€URO TRA$H").
-    if (/(?=\p{L})\P{Script=Latin}/u.test(x.name)) p.push(`${e.id}: "${x.name}" contains a non-Latin look-alike character`);
+    if (/(?=\p{L})\P{Script=Latin}/u.test(x.name) && !(PRINTED_NON_LATIN[e.id] || []).includes(x.name)) p.push(`${e.id}: "${x.name}" contains a non-Latin look-alike character`);
 
   // Every documented day and stage present; counts locked from the reviewed sheet.
   for (const d of e.days) if (!e.sets.some(s => s.day === d.day)) p.push(`${e.id}: day ${d.day} has no sets`);

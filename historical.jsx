@@ -68,7 +68,12 @@ function _histMinutes(t, rollover) {
 const _histFold = s => (s || "").normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
 
 function _histBack(state, setState) {
-  if (state.pastEdition) setState(s => ({ ...s, pastEdition: null }));
+  // Opened straight from a festival (its Home, or its switcher row): back
+  // returns there, not to the library the user never saw.
+  if (state.pastEdition && state.pastDirect && window._popNav) {
+    setState(s => ({ ...s, pastEdition: null, pastDirect: false }));
+    window._popNav();
+  } else if (state.pastEdition) setState(s => ({ ...s, pastEdition: null }));
   else if (window._popNav) window._popNav();
   else setState(s => ({ ...s, tab: "home" }));
 }
@@ -95,6 +100,70 @@ function _HistStatus({ res, retry, what }) {
       <p style={{ margin: 0, color: "var(--text-2)" }}>Couldn't load {what}. Past festivals need a connection the first time you open them.</p>
       <FieldButton kind="secondary" onClick={retry}>Try again</FieldButton>
     </div>
+  );
+}
+
+// ── Past editions of ONE festival ────────────────────────────────────
+// A registry entry's id carries its own year ("coachella-2027"). Its past
+// editions are the library editions of the same festival (the id without the
+// year) from EARLIER years only, newest first: a 2026 look-back can never
+// sit under, or be labelled as, the 2027 entry it hangs off.
+function pastEditionsOf(index, configId) {
+  const m = /^(.*)-(\d{4})$/.exec(configId || "");
+  if (!m || !index) return [];
+  const [, base, year] = m;
+  return (index.editions || []).filter(e => e.festivalId === base && e.year < +year).sort((a, b) => b.year - a.year);
+}
+
+function usePastEditions(configId) {
+  const [res, retry] = useHistorical("index.json");
+  return { status: res.status, editions: res.status === "ready" ? pastEditionsOf(res.data, configId) : [], retry };
+}
+
+// The library index for callers outside this file (the festival switcher),
+// or null until it loads or when it cannot: a caller then shows nothing.
+function usePastEditionIndex() {
+  const [res] = useHistorical("index.json");
+  return res.status === "ready" ? res.data : null;
+}
+
+function openPastEdition(id) {
+  (window._pushNav || (() => {}))({ tab: "past", pastEdition: id, pastDirect: true, artist: null });
+}
+
+// The one-line summary a past edition row carries: dates, then what the
+// official record holds. A lineup-only edition says its times are not
+// verified instead of showing an empty schedule.
+function pastEditionLine(e) {
+  const what = e.completeness === "lineup_only"
+    ? `${e.counts.artists} artists · set times not verified`
+    : `${e.counts.sets} sets · ${e.counts.stages} stages`;
+  return `${_histDateRange(e.days)} · ${what}`;
+}
+
+// Home's "Past editions" section for the active festival. Renders nothing
+// until the library answers, and nothing when this festival has no edition:
+// no empty year card pretends an edition exists.
+function PastEditionsSection({ festivalId }) {
+  const { editions } = usePastEditions(festivalId);
+  if (!editions.length) return null;
+  return (
+    <section aria-labelledby="past-editions-h" style={{ padding: "0 20px" }}>
+      <h2 id="past-editions-h" style={{ margin: "0 0 4px", fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)" }}>Past editions</h2>
+      {editions.map(e => (
+        <button key={e.id} onClick={() => openPastEdition(e.id)} style={{
+          width: "100%", display: "flex", alignItems: "center", gap: 12, minHeight: 64, padding: "10px 0",
+          background: "transparent", border: "none", borderBottom: "1px solid var(--line)",
+          color: "var(--ink)", textAlign: "left", fontFamily: "inherit", cursor: "pointer",
+        }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>Look back: {e.year}</div>
+            <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>{pastEditionLine(e)}</div>
+          </div>
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6 L15 12 L9 18"/></svg>
+        </button>
+      ))}
+    </section>
   );
 }
 
@@ -208,6 +277,10 @@ function _HistEdition({ meta, back }) {
   const scroller = React.useRef(null);
   const e = res.status === "ready" ? res.data : null;
   const lineupOnly = meta.completeness === "lineup_only";
+  const checked = React.useMemo(() => {
+    const ts = (e?.provenance?.captures || []).map(c => c.captureTimestamp || c.pageCapture || c.imageCapture).filter(t => /^\d{8}/.test(t || "")).sort().pop();
+    return ts ? _histDate(`${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)}`, { month: "short", day: "numeric", year: "numeric" }) : "";
+  }, [e]);
   const frozen = `Official ${meta.year} ${lineupOnly ? "lineup" : "schedule"} · archived`;
 
   const view = React.useMemo(() => {
@@ -243,7 +316,7 @@ function _HistEdition({ meta, back }) {
     const list = e.artists.filter(a => !query || _histFold(a.name).includes(query)).sort((a, b) => a.name.localeCompare(b.name));
     body = (
       <>
-        <p style={{ margin: "4px 0 12px", fontSize: 14, color: "var(--text-2)" }}>No official set times survive for this edition, so only the lineup is shown.</p>
+        <p style={{ margin: "4px 0 12px", fontSize: 14, color: "var(--text-2)" }}>Set times not verified for this edition: no official set times survive, so only the lineup is shown.</p>
         <ul aria-label="Lineup" style={{ listStyle: "none", margin: 0, padding: 0 }}>
           {list.map(a => <li key={a.id} style={{ padding: "10px 0", borderBottom: "1px solid var(--line)", fontSize: 16, fontWeight: 600, overflowWrap: "anywhere" }}>{a.name}</li>)}
         </ul>
@@ -309,6 +382,12 @@ function _HistEdition({ meta, back }) {
     <Screen>
       <_HistHeader title={meta.festivalName} sub={frozen} onBack={back} right={infoBtn} />
       <div style={{ padding: "8px 20px 8px", display: "grid", gap: 8, borderBottom: "1px solid var(--line)" }}>
+        {/* What this is, and how old the record is: a past edition, its own
+            dates, and the date its official source was archived. */}
+        <p data-edition-status style={{ margin: 0, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+          <span style={{ fontWeight: 600, color: "var(--ink)" }}>Past edition</span> · {_histDateRange(meta.days)}
+          {checked && <> · source archived {checked}</>}
+        </p>
         {!lineupOnly && !query && groups.map(g => (
           <div key={g.name || "days"} role="group" aria-label={g.name || "Days"} style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 6 }}>
             {g.name && <span style={{ width: 84, fontSize: 11, fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)" }}>{g.name}</span>}

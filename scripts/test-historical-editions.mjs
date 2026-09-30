@@ -184,6 +184,26 @@ for (const [id, e] of Object.entries(editions)) {
   }
 }
 
+// ── 2b. a 2026 look-back is complete only against its official LINEUP page ──
+// The set-times pages say who played when; the archived lineup page says who
+// was billed. Every billing must be a set (or a hand-checked alias), so a
+// look-back can never call a partial lineup complete.
+{
+  const { joinLineup, LINEUP_PAGES } = await import("./historical/check-insomniac-lineup.mjs");
+  for (const id of Object.keys(EDITIONS).filter(id => EDITIONS[id].year >= 2026 && existsSync(H(`editions/${id}.json`)))) {
+    const lc = JSON.parse(readFileSync(H(`ledger/${id}.json`), "utf8")).lineupCheck;
+    ok(lc && lc.billings > 0 && !lc.unmatched.length && lc.matched + lc.aliased.length === lc.billings,
+      `${id}: no clean lineup check in its ledger (${lc ? `${lc.unmatched.length} unmatched of ${lc.billings}` : "missing"}) — run check-insomniac-lineup.mjs`);
+    ok(lc && /^https:\/\/web\.archive\.org\/web\/\d{14}\//.test(lc.archivedUrl) && /^[0-9a-f]{64}$/.test(lc.sha256) && lc.title.includes(EDITIONS[id].name),
+      `${id}: the lineup check must cite an archived capture, its hash, and a page titled ${EDITIONS[id].name}`);
+    ok(!!LINEUP_PAGES[id], `${id}: no LINEUP_PAGES entry`);
+  }
+  const j = joinLineup(["A", "B B2B C", "Diesel"], ["A", "B B2B C", "DJ Diesel"], { "Diesel": "DJ Diesel" });
+  ok(!j.unmatched.length && j.matched === 2 && j.aliased.length === 1, "joinLineup matches billings and a listed alias");
+  mutations++; ok(joinLineup(["A", "Missing Act"], ["A"]).unmatched.length === 1, "mutation not caught: a billed act with no set");
+  mutations++; ok(joinLineup(["Diesel"], ["DJ Diesel"]).unmatched.length === 1, "mutation not caught: an alias nobody listed");
+}
+
 // ── 3. edition identity from the page itself ──
 ok(datedLabel("Friday, May 16", 2025) === "2025-05-16", "EDC's 2025 day tab must validate for 2025");
 ok(datedLabel("Friday, May 16", 2026) === null, "the same tab must NOT validate for 2026 (May 16 2026 is a Saturday)");

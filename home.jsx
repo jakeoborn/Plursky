@@ -1745,6 +1745,10 @@ function HomeScreen({ state, setState }) {
         {!isPostFestival && window.HomeMemoriesStrip && (
           <div style={{ padding: "0 20px" }}>{React.createElement(window.HomeMemoriesStrip, { state, setState })}</div>
         )}
+
+        {/* This festival's past editions (historical.jsx), newest first.
+            Read-only look-backs; nothing renders when there are none. */}
+        {typeof PastEditionsSection === "function" && <PastEditionsSection festivalId={FESTIVAL_CONFIG.id} />}
       </div>
       </ScrollBody>
 

@@ -1129,6 +1129,8 @@ function App() {
     var dlCrew = params.get("crew");
     var validArtist = dlArtist && ARTISTS.find(a => a.id === dlArtist) ? dlArtist : null;
     var validTab = ["home", "map", "lineup", "spotify", "me", "memories", "past"].includes(dlTab) ? dlTab : null;
+    var dlEdition = params.get("edition");
+    var validEdition = validTab === "past" && /^[a-z0-9-]+-\d{4}$/.test(dlEdition || "") ? dlEdition : null;
     var validStage = dlStage && STAGES.find(s => s.id === dlStage || (s.code || s.short || "").toLowerCase() === dlStage.toLowerCase()) ? dlStage : null;
     var validDay = dlDay && festivalDayNums().includes(+dlDay) ? +dlDay : null;
     var validFriendIds = dlLineup ? dlLineup.split(",").map(s => s.trim()).filter(id => ARTISTS.find(a => a.id === id)) : [];
@@ -1177,6 +1179,7 @@ function App() {
       lineupDay: validDay || NOW.day,
       friendLineup: validFriendIds.length ? validFriendIds : null,
       friendName: validFriendIds.length ? validFrom : null,
+      pastEdition: validEdition,
       _navStack: []
     };
   });
@@ -1193,9 +1196,14 @@ function App() {
         var params = new URLSearchParams(raw);
         var tab = params.get("tab");
         if (["home", "map", "lineup", "spotify", "me", "memories", "past"].includes(tab)) {
+          var edition = params.get("edition");
+          var pastEdition = tab === "past" && /^[a-z0-9-]+-\d{4}$/.test(edition || "") ? edition : null;
           setState(prev => ({
             ...prev,
-            tab
+            tab,
+            ...(tab === "past" ? {
+              pastEdition
+            } : {})
           }));
           setShowOnboarding(false);
         }
@@ -1470,7 +1478,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v386"
+        version: "v391"
       }));
     } catch {}
   }
@@ -1535,7 +1543,7 @@ class RootErrorBoundary extends React.Component {
         letterSpacing: 1.2,
         color: "rgba(var(--shade-rgb),0.45)"
       }
-    }, "PLURSKY · v386"));
+    }, "PLURSKY · v391"));
   }
 }
 function SetStartingCinematic() {

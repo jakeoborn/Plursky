@@ -4,5 +4,6 @@
  "lollapalooza-2025": { "stages": 11, "setsPerDay": [55, 56, 58, 56], "droppedPerDay": [3, 4, 2, 3] },
  "hard-summer-2025": { "stages": 7, "setsPerDay": [46, 45], "droppedPerDay": [0, 0] },
  "edc-las-vegas-2025": { "stages": 15, "setsPerDay": [133, 130, 129], "droppedPerDay": [3, 2, 1] },
+ "beyond-wonderland-socal-2026": { "stages": 7, "setsPerDay": [65, 69], "droppedPerDay": [1, 0] },
  "acl-2025": { "stages": 8, "setsPerDay": [32, 34, 33, 32, 34, 34], "droppedPerDay": [4, 4, 4, 3, 4, 4] }
 }

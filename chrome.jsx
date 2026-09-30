@@ -1446,6 +1446,10 @@ function FestivalSwitcher({ onClose }) {
   const activeId = FESTIVAL_CONFIG.id;
   const [plusOpen, setPlusOpen] = React.useState(false);
   const [pastOpen, setPastOpen] = React.useState(false);
+  // Past editions (historical.jsx): a gated entry whose earlier edition is in
+  // the library opens that look-back instead of sitting disabled. It never
+  // switches festival and never flips the entry.
+  const pastIndex = usePastEditionIndex();
   const [viewMode, setViewMode] = React.useState(() => {
     try { return localStorage.getItem("plursky_switcher_view_v1") || "grid"; } catch { return "grid"; }
   });
@@ -1500,20 +1504,24 @@ function FestivalSwitcher({ onClose }) {
   const chevron = <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6 L15 12 L9 18"/></svg>;
   const row = (f) => {
     const isActive = f.config.id === activeId;
-    const locked = !f.available && !f.previewOnly && !isActive;
+    const lookBack = !f.available && !f.previewOnly && !isActive ? pastEditionsOf(pastIndex, f.config.id)[0] : null;
+    const locked = !f.available && !f.previewOnly && !isActive && !lookBack;
     const st = _festivalPlanStatus(f.config.id);
     const parts = [];
     if (st.saved) parts.push(<span key="s">{st.saved} saved</span>);
     if (st.conflicts) parts.push(<span key="c" style={{ color: "var(--warn)", fontWeight: 600 }}>⚠ {st.conflicts} {st.conflicts === 1 ? "conflict" : "conflicts"}</span>);
     if (isActive) parts.push(<span key="a" style={{ color: "var(--signal-ink)", fontWeight: 600 }}>✓ Active</span>);
     else if (phase(f) === "ended") parts.push(<span key="e">Ended</span>);
-    else if (!f.available) parts.push(<span key="l">{f.previewOnly ? "Early access" : "Soon"}</span>);
+    else if (!f.available) {
+      parts.push(<span key="l">{f.previewOnly ? "Early access" : "Soon"}</span>);
+      if (lookBack) parts.push(<span key="lb" style={{ color: "var(--signal-ink)", fontWeight: 600 }}>Look back: {lookBack.year}</span>);
+    }
     // Open, lineup in, schedule still to come — say so BEFORE the switch, so
     // nobody taps in expecting a timetable and finds a list of dashes.
     else if (f.scheduleTBA) parts.push(<span key="tba">Set times TBA</span>);
     else if (st.saved && !st.conflicts) parts.push(<span key="r" style={{ color: "var(--signal-ink)", fontWeight: 600 }}>✓ Ready</span>);
     return (
-      <button key={f.config.id} onClick={() => onPick(f.config.id, f)} disabled={locked}
+      <button key={f.config.id} onClick={() => lookBack ? (onClose(), openPastEdition(lookBack.id)) : onPick(f.config.id, f)} disabled={locked}
         aria-current={isActive ? "true" : undefined}
         style={{ ...rowStyle(locked), cursor: locked ? "default" : "pointer" }}>
         <FestivalThumb entry={f} editorial={viewMode === "grid"} />

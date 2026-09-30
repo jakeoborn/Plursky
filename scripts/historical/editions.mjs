@@ -21,6 +21,9 @@ export const EDITIONS = {
   "edc-las-vegas-2025": { festivalId: "edc-lv", name: "EDC Las Vegas 2025", year: 2025,
     timezone: "America/Los_Angeles", rolloverHour: 12, method: "structured_html",
     dates: [["2025-05-16", "Friday"], ["2025-05-17", "Saturday"], ["2025-05-18", "Sunday"]] },
+  "beyond-wonderland-socal-2026": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2026", year: 2026,
+    timezone: "America/Los_Angeles", rolloverHour: 12, method: "structured_html",
+    dates: [["2026-03-27", "Friday"], ["2026-03-28", "Saturday"]] },
   "acl-2025": { festivalId: "acl", name: "Austin City Limits 2025", year: 2025,
     timezone: "America/Chicago", rolloverHour: 6, method: "official_image_transcription",
     dates: [["2025-10-03", "Friday"], ["2025-10-04", "Saturday"], ["2025-10-05", "Sunday"],
@@ -59,11 +62,22 @@ export const ACTIVITIES = {
     "ANTONI POROWSKI ON FOOD & CONNECTION", "EXTRAGRAMS PRESENTS DRAG BINGO!", "CIRQUE DU SLAY: A DRAG SHOW!",
     "MIXED-TAPE: A DRAG SHOW!", "A CONVERSATION WITH LUCIUS", "MATTHEW MCCONAUGHEY X BRENÉ BROWN",
   ],
+  // Printed on the official 2026 lineup list and the Beatbox set times, but a
+  // class, not a set (the rule above: classes are activities).
+  "beyond-wonderland-socal-2026": ["Line Dancing with The Redheaded Cowgirl"],
   "lollapalooza-2025": [
     "BOB'S DANCE SHOP", "THE BINGO-GO-GO", "THE SECOND CITY: COMEDY MIXTAPE VOL. 59",
     "KATSEYE INTERVIEW WITH DAVIS BURLESON", "HOW LONG GONE WITH THE DARE", "HOW LONG GONE WITH THE BEAR'S COREY HENDRIX",
   ],
 };
+// Billings whose non-Latin letters are the artist's own styling, as the
+// festival's structured page printed them (not OCR). Each one was read on
+// the archived page; the look-alike rule in validate.mjs still applies to
+// every other billing and stage.
+export const PRINTED_NON_LATIN = {
+  "beyond-wonderland-socal-2026": ["Cntrl Alt DΞLΞTΞ"],
+};
+
 const ACTIVITY_REASON = "non-music Bonus Tracks activity";
 
 // Why a printed row (billing on stage) is dropped, or null if it is a set.

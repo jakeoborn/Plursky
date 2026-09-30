@@ -1,0 +1,136 @@
+day	stage	start	end	artist	settimeId	timeSource	captureTimestamp
+1	Queen's Domain	00:45	02:00	Tiësto	46056	epoch	20260627051346
+1	Queen's Domain	23:40	00:40	Steve Angello	46053	epoch	20260627051346
+1	Queen's Domain	22:40	23:40	Alison Wonderland	45959	epoch	20260627051346
+1	Queen's Domain	21:40	22:40	SIDEPIECE	46047	epoch	20260627051346
+1	Queen's Domain	20:40	21:40	it's murph	46008	epoch	20260627051346
+1	Queen's Domain	19:40	20:40	D.O.D	45986	epoch	20260627051346
+1	Queen's Domain	18:40	19:40	CHYL	45980	epoch	20260627051346
+1	Queen's Domain	17:40	18:40	Ian Asher	46005	epoch	20260627051346
+1	Queen's Domain	16:40	17:40	NITTI	46032	epoch	20260627051346
+1	Queen's Domain	16:00	16:40	Bear Weigle	46068	epoch	20260627051346
+1	Mad Hatter's Castle	01:00	02:00	GRiZ	46000	epoch	20260627051346
+1	Mad Hatter's Castle	00:50	01:00	Mad Hatter	47648	epoch	20260627051346
+1	Mad Hatter's Castle	23:45	00:45	ATLiens	45964	epoch	20260627051346
+1	Mad Hatter's Castle	22:45	23:45	TroyBoi	46060	epoch	20260627051346
+1	Mad Hatter's Castle	21:40	22:40	Holy Priest	46004	epoch	20260627051346
+1	Mad Hatter's Castle	20:40	21:40	Hedex	46001	epoch	20260627051346
+1	Mad Hatter's Castle	19:40	20:40	Restricted	46041	epoch	20260627051346
+1	Mad Hatter's Castle	18:40	19:40	YDG	46065	epoch	20260627051346
+1	Mad Hatter's Castle	17:40	18:40	Mary Droppinz	46024	epoch	20260627051346
+1	Mad Hatter's Castle	16:40	17:40	phrva	46036	epoch	20260627051346
+1	Mad Hatter's Castle	16:00	16:40	Skanka	46049	epoch	20260627051346
+1	Caterpillar's Garden	01:00	02:00	Dabin	45987	epoch	20260627051346
+1	Caterpillar's Garden	23:55	00:55	ARMNHMR	45963	epoch	20260627051346
+1	Caterpillar's Garden	22:55	23:55	Andy C	45962	epoch	20260627051346
+1	Caterpillar's Garden	21:55	22:55	Trivecta	46059	epoch	20260627051346
+1	Caterpillar's Garden	20:55	21:55	Łaszewo	46015	epoch	20260627051346
+1	Caterpillar's Garden	19:55	20:55	yetep	46066	epoch	20260627051346
+1	Caterpillar's Garden	18:55	19:55	Hoang	46003	epoch	20260627051346
+1	Caterpillar's Garden	17:55	18:55	AVELLO	45965	epoch	20260627051346
+1	Caterpillar's Garden	16:55	17:55	Conrad.	45984	epoch	20260627051346
+1	Caterpillar's Garden	16:00	16:55	Leondis	46018	epoch	20260627051346
+1	Caterpillar's Garden	15:00	16:00	Valentino Khan	47620	epoch	20260627051346
+1	Cheshire Woods	01:00	02:00	Lil Texas	46019	epoch	20260627051346
+1	Cheshire Woods	00:00	01:00	Brennan Heart	45977	epoch	20260627051346
+1	Cheshire Woods	23:00	00:00	Sub Zero Project	46054	epoch	20260627051346
+1	Cheshire Woods	22:00	23:00	Coone	45983	epoch	20260627051346
+1	Cheshire Woods	21:00	22:00	D-Sturb	45985	epoch	20260627051346
+1	Cheshire Woods	20:00	21:00	Lady Faith	46014	epoch	20260627051346
+1	Cheshire Woods	19:00	20:00	GRAVEDGR	45999	epoch	20260627051346
+1	Cheshire Woods	18:00	19:00	Grave Rave	47578	epoch	20260627051346
+1	Cheshire Woods	17:00	18:00	Sihk	46048	epoch	20260627051346
+1	Cheshire Woods	16:00	17:00	Ivarr	46009	epoch	20260627051346
+1	The Looking Glass	00:30	02:00	Klangkuenstler	46013	epoch	20260627051346
+1	The Looking Glass	23:00	00:30	Layton Giordani	46016	epoch	20260627051346
+1	The Looking Glass	21:30	23:00	JSTJR	46022	epoch	20260627051346
+1	The Looking Glass	20:00	21:30	Trym	46061	epoch	20260627051346
+1	The Looking Glass	18:30	20:00	Bart Skils	45975	epoch	20260627051346
+1	The Looking Glass	17:00	18:30	BAUGRUPPE90	45970	epoch	20260627051346
+1	The Looking Glass	16:00	17:00	Selective Response	46043	epoch	20260627051346
+1	The Sea of Wonder	00:20	01:50	Nicole Moudaber	46031	epoch	20260627051346
+1	The Sea of Wonder	22:50	00:20	Loco Dice	46021	epoch	20260627051346
+1	The Sea of Wonder	21:20	22:50	Nic Fanciulli	46029	epoch	20260627051346
+1	The Sea of Wonder	19:50	21:20	Ranger Trucco	46038	epoch	20260627051346
+1	The Sea of Wonder	18:20	19:50	Murphy's Law	46027	epoch	20260627051346
+1	The Sea of Wonder	16:50	18:20	James Poole	47328	epoch	20260627051346
+1	The Sea of Wonder	16:00	16:50	Shifty	46045	epoch	20260627051346
+1	Beatbox	00:30	02:00	Dirty Audio (Yeedm Set)	47404	epoch	20260627051346
+1	Beatbox	23:30	00:30	Chanel West Coast	47402	epoch	20260627051346
+1	Beatbox	22:30	23:30	Madds (Yeedm Set)	47408	epoch	20260627051346
+1	Beatbox	21:30	22:30	Willie Pake	47411	epoch	20260627051346
+1	Beatbox	20:30	21:30	Pennywild	47409	epoch	20260627051346
+1	Beatbox	19:45	20:30	Pinke	47406	epoch	20260627051346
+1	Beatbox	19:00	19:45	Line Dancing with The Redheaded Cowgirl	47405	epoch	20260627051346
+1	Beatbox	18:00	19:00	Slim McGraw	47410	epoch	20260627051346
+1	Beatbox	17:00	18:00	Lucky Lou	47407	epoch	20260627051346
+1	Beatbox	16:00	17:00	Dazy Duke	47403	epoch	20260627051346
+2	Queen's Domain	01:00	02:00	Zedd	46067	epoch	20260627051349
+2	Queen's Domain	23:55	00:55	SLANDER	46051	epoch	20260627051349
+2	Queen's Domain	22:55	23:55	Deorro	45991	epoch	20260627051349
+2	Queen's Domain	21:55	22:55	Alok	45960	epoch	20260627051349
+2	Queen's Domain	20:55	21:55	Benny Benassi	45971	epoch	20260627051349
+2	Queen's Domain	19:55	20:55	Interplanetary Criminal	46007	epoch	20260627051349
+2	Queen's Domain	18:55	19:55	BOLO	45976	epoch	20260627051349
+2	Queen's Domain	17:55	18:55	NOTD	46034	epoch	20260627051349
+2	Queen's Domain	16:55	17:55	Wenzday	46063	epoch	20260627051349
+2	Queen's Domain	16:00	16:55	Max Low	46026	epoch	20260627051349
+2	Mad Hatter's Castle	01:00	02:00	DJ Diesel	45992	epoch	20260627051349
+2	Mad Hatter's Castle	00:50	01:00	Mad Hatter	47649	epoch	20260627051349
+2	Mad Hatter's Castle	23:45	01:00	Black Tiger Sex Machine	45974	epoch	20260627051349
+2	Mad Hatter's Castle	22:45	23:45	Sullivan King	46055	epoch	20260627051349
+2	Mad Hatter's Castle	21:45	22:45	Eptic B2B Space Laces	45993	epoch	20260627051349
+2	Mad Hatter's Castle	20:45	21:45	Deathpact	45989	epoch	20260627051349
+2	Mad Hatter's Castle	19:45	20:45	LAYZ	46017	epoch	20260627051349
+2	Mad Hatter's Castle	18:45	19:45	Reaper	46039	epoch	20260627051349
+2	Mad Hatter's Castle	17:45	18:45	GorillaT	45997	epoch	20260627051349
+2	Mad Hatter's Castle	16:45	17:45	Probcause	46037	epoch	20260627051349
+2	Mad Hatter's Castle	16:00	16:45	Sanzu	46042	epoch	20260627051349
+2	Caterpillar's Garden	01:00	02:00	Matroda	46025	epoch	20260627051349
+2	Caterpillar's Garden	00:00	01:00	Sonny Fodera	46052	epoch	20260627051349
+2	Caterpillar's Garden	23:00	00:00	Noizu	46033	epoch	20260627051349
+2	Caterpillar's Garden	22:00	23:00	OMNOM	46035	epoch	20260627051349
+2	Caterpillar's Garden	21:00	22:00	Biscits	45973	epoch	20260627051349
+2	Caterpillar's Garden	20:00	21:00	Westend	46064	epoch	20260627051349
+2	Caterpillar's Garden	19:00	20:00	Tinzo + Jojo	46057	epoch	20260627051349
+2	Caterpillar's Garden	18:00	19:00	Jazzy	46010	epoch	20260627051349
+2	Caterpillar's Garden	17:00	18:00	Trace	46058	epoch	20260627051349
+2	Caterpillar's Garden	16:00	17:00	Chaney	45978	epoch	20260627051349
+2	Caterpillar's Garden	15:00	16:00	Ian Asher B2B Wuki	47623	epoch	20260627051349
+2	Cheshire Woods	01:00	02:00	Vini Vici	46062	epoch	20260627051349
+2	Cheshire Woods	00:00	01:00	Gareth Emery	45995	epoch	20260627051349
+2	Cheshire Woods	23:00	00:00	Infected Mushroom	46006	epoch	20260627051349
+2	Cheshire Woods	22:00	23:00	Giuseppe Ottaviani + Ilan Bluestone	45996	epoch	20260627051349
+2	Cheshire Woods	21:00	22:00	Billy Gillies	45972	epoch	20260627051349
+2	Cheshire Woods	20:00	21:00	Marie Vaunt	46023	epoch	20260627051349
+2	Cheshire Woods	19:00	20:00	David Forbes	45988	epoch	20260627051349
+2	Cheshire Woods	18:00	19:00	Cold Blue	45982	epoch	20260627051349
+2	Cheshire Woods	17:00	18:00	Chris Metcalfe	45979	epoch	20260627051349
+2	Cheshire Woods	16:00	17:00	Sequence Six	46044	epoch	20260627051349
+2	The Looking Glass	00:30	02:00	Nico Moreno	46030	epoch	20260627051349
+2	The Looking Glass	23:00	00:30	HI-LO	46002	epoch	20260627051349
+2	The Looking Glass	21:30	23:00	Lilly Palmer	46020	epoch	20260627051349
+2	The Looking Glass	20:00	21:30	NOVAH	47645	epoch	20260627051349
+2	The Looking Glass	18:30	20:00	Bad Boombox B2B ØTTA	45966	epoch	20260627051349
+2	The Looking Glass	17:00	18:30	future.666	45994	epoch	20260627051349
+2	The Looking Glass	16:00	17:00	JUJI	46011	epoch	20260627051349
+2	The Sea of Wonder	00:50	01:50	Shy FX	46046	epoch	20260627051349
+2	The Sea of Wonder	23:50	00:50	Delta Heavy	45990	epoch	20260627051349
+2	The Sea of Wonder	22:50	23:50	Cntrl Alt DΞLΞTΞ	45981	epoch	20260627051349
+2	The Sea of Wonder	21:50	22:50	Skepsis B2B Turno	46050	epoch	20260627051349
+2	The Sea of Wonder	20:50	21:50	Grafix	45998	epoch	20260627051349
+2	The Sea of Wonder	19:50	20:50	MUZZ	46028	epoch	20260627051349
+2	The Sea of Wonder	18:50	19:50	Badger	45968	epoch	20260627051349
+2	The Sea of Wonder	17:50	18:50	Justin Hawkes	46012	epoch	20260627051349
+2	The Sea of Wonder	16:50	17:50	Reid Speed	46040	epoch	20260627051349
+2	The Sea of Wonder	16:00	16:50	Bad Girl Bailey	45967	epoch	20260627051349
+2	Beatbox	01:00	02:00	SOUP B2B HYFEN	47485	epoch	20260627051349
+2	Beatbox	00:00	01:00	Alvyn	47479	epoch	20260627051349
+2	Beatbox	23:00	00:00	RHOME, TFTI	47516	epoch	20260627051349
+2	Beatbox	22:00	23:00	CHYL (K-Speed Set)	47481	epoch	20260627051349
+2	Beatbox	21:00	22:00	IZNYRS	47482	epoch	20260627051349
+2	Beatbox	20:00	21:00	Johnny Chay	47483	epoch	20260627051349
+2	Beatbox	19:00	20:00	Chassi (K-Pop Set)	47480	epoch	20260627051349
+2	Beatbox	18:00	19:00	YUNIFY	47486	epoch	20260627051349
+2	Beatbox	17:00	18:00	MERAKII	47484	epoch	20260627051349
+2	Beatbox	16:00	17:00	ZYROK	47487	epoch	20260627051349
