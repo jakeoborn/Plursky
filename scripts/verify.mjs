@@ -2399,6 +2399,24 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b5a. Sitemap commit rows ───────────────────────────────────────────
+// The homepage, terms and privacy fingerprints come from committed files only,
+// so plain --check (the freshness gate above) must hold them to the committed
+// ledger and <lastmod>. A cache-bust that skipped the regenerate used to pass
+// here and turn the scheduled --check-strict job red after the merge. Runs the
+// real generator in scratch copies, with festival-row controls.
+{
+  console.log("▸ Sitemap commit-row gate — a stale homepage/terms/privacy fingerprint fails plain --check");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-sitemap-commit-rows.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`sitemap commit rows failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b6. Memories grouping reachability ─────────────────────────────────
 // Every moment the TIMELINE lens COUNTS must be REACHABLE, exactly once, in
 // exactly one rendered group. Before this gate, a truthy artistId the ACTIVE
