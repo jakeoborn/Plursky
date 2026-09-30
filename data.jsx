@@ -647,12 +647,19 @@ const FESTIVALS_REGISTRY = [
         2: { rise: "06:39", set: "17:34" },
         3: { rise: "06:40", set: "17:33" },
       },
-      // Grounds centroid, MEASURED 2026-09-06 from the festival polygon
-      // (Church St 28.54022 N / SR-408 + W Anderson ~28.5363 S / S Tampa
-      // -81.40353 W / S Nashville -81.39935 E). This replaces a Nominatim
-      // "Tinker Field Plaza" hit that sat 378 m WEST of the grounds, in the
-      // residential block on the far side of Tampa. onSiteRadiusMi 0.6 clears
-      // every anchor with room to spare — the farthest, neon, is 0.19 mi out.
+      // Grounds centroid, taken 2026-09-06 as the midpoint of four edges:
+      // Church St 28.54022 N / SR-408 + W Anderson ~28.5363 S / a west edge
+      // at -81.40353 / S Nashville -81.39935 E. That comment called the west
+      // edge "S Tampa"; it is not. Checked 2026-09-30 against OpenStreetMap:
+      // Tampa Avenue runs at -81.40549 (Church x Tampa 28.54014, -81.40549),
+      // and -81.40353 falls inside the stadium's footprint (-81.40393 to
+      // -81.40157). The centroid value is kept as it was (founder ruling
+      // 2026-09-30: fix the comment). It is the midpoint of the edges above,
+      // so with Tampa as the west edge the midpoint would sit about 95 m
+      // further west. It is not an input to the map's affine, which reads
+      // only the first three anchors and their pins. It replaced a Nominatim
+      // "Tinker Field Plaza" hit 378 m west of the grounds. onSiteRadiusMi
+      // 0.6 clears every anchor with room to spare.
       gps: { lat: 28.53826, lng: -81.40144, onSiteRadiusMi: 0.6 },
       // HISTORY, superseded 2026-09-30 by the re-fit further down.
       // Anchors MEASURED 2026-09-06, replacing five venue-centroid offsets
@@ -707,11 +714,8 @@ const FESTIVALS_REGISTRY = [
       // good as the art is to scale (the drawn stadium sits ~54 m from the real
       // one's centre). Distances and walk minutes stay withheld.
       //
-      // ⚠ The centroid comment above says the west edge is "S Tampa -81.40353".
-      // OpenStreetMap puts Tampa Avenue at -81.40549, 190 m further west;
-      // -81.40353 falls inside the stadium's footprint (-81.40393..-81.40157).
-      // The centroid and radius are not changed here (the radius still covers
-      // the whole site); this fit does not use them.
+      // The fit uses no centroid and no edge from the comment above; its
+      // coordinates come from OpenStreetMap directly.
       gpsAnchors: [
         { stageId: "kinetic", lat: 28.537024, lng: -81.399828, src: "poster" }, // the long stage wall, SE field, N of W Anderson
         { stageId: "circuit", lat: 28.539811, lng: -81.404500, src: "poster" }, // Tinker Field, between Tampa Ave and the stadium
