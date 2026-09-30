@@ -668,13 +668,17 @@ const FESTIVALS_REGISTRY = [
       // promote any of these to "osm"/"crowd" without a real measurement.
       //
       // neon/stereo/bacardi were SNAPPED to the festival polygon where the
-      // raw fit landed outside the fence; each snap is inside the art's own
-      // residual envelope. Raw pre-snap fits, for the record:
+      // raw fit landed outside the fence. The snap distances below are
+      // calculated from the two recorded coordinate sets (raw fit to shipped
+      // anchor). Corrected 2026-09-30: this comment used to say ~85 m, ~85 m
+      // and ~40 m, and that each snap was inside the art's own 22–96 m
+      // residual envelope. neon and stereo are NOT inside it. Raw pre-snap
+      // fits, for the record:
       //   kinetic 28.537000,-81.400398 (unsnapped)
       //   circuit 28.539991,-81.402186 (unsnapped)
-      //   neon    28.539542,-81.397451 → snapped ~85 m W into the practice field
-      //   stereo  28.536498,-81.403728 → snapped ~85 m NE, east of Tampa
-      //   bacardi 28.535902,-81.402559 → snapped ~40 m N of SR-408
+      //   neon    28.539542,-81.397451 → snapped 118.9 m SW into the practice field
+      //   stereo  28.536498,-81.403728 → snapped 108.1 m NE, east of Tampa
+      //   bacardi 28.535902,-81.402559 → snapped 78.9 m N of SR-408
       //
       // ⚠ The old note claiming `stereo` was "56.9 grid units off the
       // kinetic/circuit/neon affine" and `bacardi` 13.0 is GONE, not merely
