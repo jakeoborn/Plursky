@@ -1833,6 +1833,8 @@
 
   const CONFIG = {
     id:        "nocturnal-wonderland-2026",
+    // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+    essentialsSources: {"minimumAge": {"url": "https://www.nocturnalwonderland.com/guide/hours-and-info/", "observedAt": "2026-09-26", "edition": "2026"}, "camping": {"url": "https://www.nocturnalwonderland.com/guide/hours-and-info/", "observedAt": "2026-09-26", "edition": "2026"}, "tickets": {"url": "https://nocturnal.frontgatetickets.com/", "state": "ended", "observedAt": "2026-09-26", "edition": "2026"}},
     // Hours as the festival's OWN page prints them (24h wall clock, local):
     // label is the page's word for the window ("Gates", "Festival", "Event").
     // No published value means no field — never inferred from an older year.
@@ -1955,7 +1957,7 @@
     // Flip markers, read by humans rather than by code.
     setTimesProvisional: false,
     // Published policy: 18+ to enter, 21+ for alcohol/VIP.
-    policies: { minimumAge: 18, alcoholAge: 21 },
+    policies: { minimumAge: 18, alcoholAge: 21, camping: true },
   };
 
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};

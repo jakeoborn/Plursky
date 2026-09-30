@@ -330,6 +330,9 @@
 
   const CONFIG = {
     id: "lollapalooza-2026",
+    policies: { minimumAge: 0 },
+    // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+    essentialsSources: {"minimumAge": {"url": "https://support.lollapalooza.com/hc/en-us/articles/4402109227668-Age-and-Kids-Policy-Do-children-need-tickets", "observedAt": "2026-09-26", "edition": "2026"}},
     // From the SOURCE note above: lollapalooza.com/schedule graphics, accessed 2026-08-28. Feeds /f/<id>/schedule.json.
     scheduleSource: { url: "https://lollapalooza.com/schedule", observedAt: "2026-08-28", official: true },
     name: "Lollapalooza 2026",

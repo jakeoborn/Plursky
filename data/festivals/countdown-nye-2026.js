@@ -137,6 +137,8 @@
 
   const CONFIG = {
     id: "countdown-nye-2026",
+    // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+    essentialsSources: {"minimumAge": {"url": "https://countdownnye.com/tickets/", "observedAt": "2026-09-26", "edition": "2026"}, "tickets": {"url": "https://countdownnye.frontgatetickets.com/", "state": "on-sale", "observedAt": "2026-09-26", "edition": "2026", "evidence": "https://countdownnye.com/tickets/"}},
     // No hours field: the official page's dated block says 2025 (see SOURCE
     // hours above). Add one only with a `dated` block for this edition.
     // Where the lineup rows came from (the SOURCE note above), as data so the

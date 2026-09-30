@@ -253,6 +253,9 @@
 
   const CONFIG = {
     id: "outside-lands-2026",
+    policies: { minimumAge: 0, camping: false },
+    // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+    essentialsSources: {"minimumAge": {"url": "https://www.sfoutsidelands.com/faq-app", "observedAt": "2026-09-26", "edition": "2026"}, "camping": {"url": "https://www.sfoutsidelands.com/faq-app", "observedAt": "2026-09-26", "edition": "2026"}},
     // No mapSource: sfoutsidelands.com/info returns 404 as of 2026-09-24 and no
     // other first-party page on the post-festival site carries a map.
     // No hours field: held (see SOURCE hours above).
