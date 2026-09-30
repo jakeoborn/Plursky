@@ -3019,6 +3019,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Georeference tool + EDC Orlando 2026 map pipeline ─────────────────────
+// scripts/georef-map.mjs re-derives the grid, scale and centroid edc-orlando
+// ships from its own anchors, and build-edco-map-2026.mjs may ship only the
+// placeholder until an official 2026 map is pinned by hash.
+{
+  console.log("▸ Georef gate — EDC Orlando grid re-derived from its anchors; no unpinned map ships");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-georef-map.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`georef failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c8. An existing festival stamp is corrected only on proof ──────────
 // Capture time can show a stamp is wrong; only festivalStampSource can show the
 // machine wrote it. A proven fallback stamp with one contradicting claimant is
