@@ -108,6 +108,7 @@ function NightWizard({
   });
   var [local, setLocal] = React.useState(() => new Set(state.saved));
   var localIds = Array.from(local);
+  var liveLocalIds = savedInLineup(localIds);
   var dayStats = DAYS.map(d => {
     var sets = activeLineup(localIds).filter(a => a.day === d.n && local.has(a.id));
     var clashes = 0;
@@ -231,13 +232,13 @@ function NightWizard({
       textAlign: "center",
       marginTop: 2
     }
-  }, Array.from(local).length, " SETS SAVED")), React.createElement("div", {
+  }, liveLocalIds.length, " SETS SAVED")), React.createElement("div", {
     style: {
       display: "flex",
       gap: 6
     }
-  }, Array.from(local).length > 0 && React.createElement(React.Fragment, null, React.createElement("button", {
-    onClick: () => exportSavedSetsICS(Array.from(local)),
+  }, liveLocalIds.length > 0 && React.createElement(React.Fragment, null, React.createElement("button", {
+    onClick: () => exportSavedSetsICS(liveLocalIds),
     "aria-label": "Export to calendar",
     title: "Export to calendar",
     style: {
@@ -274,7 +275,7 @@ function NightWizard({
     stroke: "none"
   }))), React.createElement("button", {
     onClick: () => {
-      var text = _nightShareText(Array.from(local));
+      var text = _nightShareText(liveLocalIds);
       if (navigator.share) {
         navigator.share({
           title: `My ${FESTIVAL_CONFIG.shortName || "festival"} lineup`,
@@ -326,8 +327,8 @@ function NightWizard({
     onClick: autoFill,
     title: "Auto-fill best non-clashing sets for this day",
     style: {
-      background: "var(--horizon)",
-      color: "var(--ink)",
+      background: "var(--signal)",
+      color: "var(--on-signal)",
       border: "none",
       borderRadius: 999,
       padding: "8px 13px",
@@ -341,7 +342,7 @@ function NightWizard({
     onClick: handleSave,
     style: {
       background: "var(--ember)",
-      color: "var(--ink)",
+      color: "var(--on-ember)",
       border: "none",
       borderRadius: 999,
       padding: "8px 16px",
@@ -775,6 +776,7 @@ function LineupScreen({
   state,
   setState
 }) {
+  useFitNames(() => document.querySelector("[data-lineup-scroll]"));
   var highlightId = state.lineupHighlight || null;
   var [day, setDay] = React.useState(() => {
     if (highlightId) {
@@ -1015,8 +1017,8 @@ function LineupScreen({
           if (!ackedPairs.has(_pairKey(a.id, b.id))) {
             _conflicts.push([a, b]);
           }
-          (_byId[a.id] = _byId[a.id] || []).push(b.name);
-          (_byId[b.id] = _byId[b.id] || []).push(a.name);
+          (_byId[a.id] = _byId[a.id] || []).push(b);
+          (_byId[b.id] = _byId[b.id] || []).push(a);
         }
       }
     }
@@ -1025,7 +1027,8 @@ function LineupScreen({
       conflictById: _byId
     };
   }, [savedToday, ackedPairs]);
-  var gridLead = viewMode === "grid" && !(filter === "saved" && state.saved.length === 0);
+  var liveSavedCount = savedInLineup(state.saved).length;
+  var gridLead = viewMode === "grid" && !(filter === "saved" && liveSavedCount === 0);
   React.useEffect(() => {
     var g = viewMode === "grid";
     setState(s => !!s.lineupGrid === g ? s : {
@@ -1206,12 +1209,12 @@ function LineupScreen({
         fontWeight: 600
       }
     }, clash ? "⚠ My night" : "My night");
-  })(), state.saved.length > 0 && React.createElement(ShareLineupButton, {
+  })(), liveSavedCount > 0 && React.createElement(ShareLineupButton, {
     state: state
-  }), state.saved.length > 0 && React.createElement("button", {
+  }), liveSavedCount > 0 && React.createElement("button", {
     onClick: () => {
       window.plurskyHaptic?.("LIGHT");
-      exportSavedSetsICS(state.saved);
+      exportSavedSetsICS(savedInLineup(state.saved));
     },
     style: textBtn
   }, "Calendar"), React.createElement("button", {
@@ -1764,8 +1767,8 @@ function LineupScreen({
       action: "Show all sets",
       onAction: () => setFilter("all")
     } : {
-      title: state.saved.length === 0 ? "No sets saved yet" : "Nothing saved for this day",
-      sub: state.saved.length === 0 ? "Tap the save button on any set to add it." : "Switch to All stages to browse.",
+      title: liveSavedCount === 0 ? "No sets saved yet" : "Nothing saved for this day",
+      sub: liveSavedCount === 0 ? "Tap the save button on any set to add it." : "Switch to All stages to browse.",
       action: filter !== "all" ? "Show all sets" : null,
       onAction: () => setFilter("all")
     };
@@ -1793,7 +1796,7 @@ function LineupScreen({
         marginTop: 16
       }
     }, empty.action));
-  })(), viewMode === "grid" && filter === "saved" && state.saved.length === 0 && React.createElement("div", {
+  })(), viewMode === "grid" && filter === "saved" && liveSavedCount === 0 && React.createElement("div", {
     style: {
       padding: "40px 20px"
     }
@@ -1874,16 +1877,17 @@ function LineupScreen({
         }
       }, React.createElement("span", {
         "data-set-name": true,
+        "data-fit-name": true,
+        "data-fit-min": "16",
         style: {
           fontSize: 17,
           lineHeight: "22px",
           fontWeight: 700,
           color: "var(--ink)",
           whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis"
+          overflowWrap: "break-word"
         }
-      }, a.name), React.createElement("span", {
+      }, actDisplayName(a.name)), React.createElement("span", {
         "data-set-meta": true,
         style: {
           fontSize: 13,
@@ -1914,7 +1918,16 @@ function LineupScreen({
           color: "var(--warn)",
           fontWeight: 600
         }
-      }, "Clash · "), _lineupMetaValue(stage.name))), React.createElement("button", {
+      }, "Clash · "), _lineupMetaValue(stage.name)), clashWith && clashWith.map(o => React.createElement("span", {
+        key: o.id,
+        "data-clash-with": o.id,
+        style: {
+          fontSize: 13,
+          lineHeight: "18px",
+          color: "var(--warn)",
+          fontWeight: 600
+        }
+      }, "vs ", actDisplayName(o.name), " · ", fmt12(o.start), " · ", (STAGES.find(s => s.id === o.stage) || UNPLACED_STAGE).name))), React.createElement("button", {
         onClick: () => toggleSave(state, setState, a.id),
         "aria-label": saved ? `Unsave ${a.name}` : `Save ${a.name}`,
         "aria-pressed": saved,
@@ -2029,7 +2042,7 @@ function LineupScreen({
   }), "Now"), filterSheetOpen && React.createElement(LineupFilterSheet, {
     day: day,
     dayGenres: dayGenres,
-    savedIds: state.saved || [],
+    savedIds: savedInLineup(state.saved),
     weekendFilter: weekendFilter,
     initial: {
       filter,
@@ -2609,6 +2622,52 @@ function SavedSidebar({
     }, "×"));
   })));
 }
+function fitGridBlocks(root) {
+  if (!root) return;
+  var cols = new Map();
+  var _loop3 = function (b) {
+      var name = b.querySelector("[data-grid-name]"),
+        time = b.querySelector("[data-grid-time]");
+      if (!name) return 0;
+      b.style.top = b.dataset.top + "px";
+      b.style.height = b.dataset.h + "px";
+      b.style.zIndex = b.dataset.z;
+      delete b.dataset.gridGrown;
+      var byLeft = cols.get(b.parentElement);
+      if (!byLeft) cols.set(b.parentElement, byLeft = new Map());
+      if (!byLeft.has(b.dataset.left)) byLeft.set(b.dataset.left, []);
+      byLeft.get(b.dataset.left).push(b);
+      if (time) time.style.display = "";
+      if (!name.dataset.base) name.dataset.base = String(parseFloat(getComputedStyle(name).fontSize));
+      var base = parseFloat(name.dataset.base);
+      name.style.fontSize = base + "px";
+      var over = () => b.scrollHeight > b.clientHeight + 1;
+      if (!over()) return 0;
+      if (time) time.style.display = "none";
+      for (var s = base; over() && s > 9;) {
+        s = Math.max(9, s - 0.5);
+        name.style.fontSize = s + "px";
+      }
+      if (over()) {
+        b.style.height = b.scrollHeight + "px";
+        b.dataset.gridGrown = "1";
+      }
+    },
+    _ret;
+  for (var b of root.querySelectorAll("[data-grid-block]")) {
+    _ret = _loop3(b);
+    if (_ret === 0) continue;
+  }
+  for (var col of [...cols.values()].flatMap(m => [...m.values()])) {
+    col.sort((a, b) => a.dataset.top - b.dataset.top);
+    for (var i = 1; i < col.length; i++) {
+      var prev = col[i - 1],
+        floor = parseFloat(prev.style.top) + parseFloat(prev.style.height) + 2;
+      var moved = prev.dataset.gridGrown || parseFloat(prev.style.top) !== parseFloat(prev.dataset.top);
+      if (moved && parseFloat(col[i].style.top) < floor) col[i].style.top = floor + "px";
+    }
+  }
+}
 function GridSetBlock({
   a,
   stage,
@@ -2629,9 +2688,6 @@ function GridSetBlock({
   narrow = false
 }) {
   var isHeadliner = a.tier === 3;
-  var _lineH = narrow ? 10.2 : isHeadliner ? 13.8 : 12.7;
-  var _chrome = narrow ? 8 : 20;
-  var nameLines = Math.max(1, Math.min(4, Math.floor((height - _chrome) / _lineH)));
   var _saved = (state.saved || []).includes(a.id);
   var _store = refStore;
   var _resetHold = e => {
@@ -2648,6 +2704,11 @@ function GridSetBlock({
     }
   };
   return React.createElement("div", {
+    "data-grid-block": true,
+    "data-top": top,
+    "data-left": left,
+    "data-h": height,
+    "data-z": isHighlighted ? 6 : dueMins != null ? 5 : "",
     "data-lineup-highlight": isHighlighted ? "true" : undefined,
     onClick: () => {
       if (_store.fired) {
@@ -2709,21 +2770,20 @@ function GridSetBlock({
       flexDirection: "column"
     }
   }, React.createElement("div", {
+    "data-grid-name": true,
     style: {
       fontSize: narrow ? 9.5 : isHeadliner ? 12.5 : 11.5,
       fontWeight: isHeadliner ? 800 : 700,
       lineHeight: narrow ? 1.05 : 1.1,
       color: "var(--ink)",
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      display: "-webkit-box",
-      WebkitLineClamp: nameLines,
-      WebkitBoxOrient: "vertical",
+      hyphens: "auto",
+      WebkitHyphens: "auto",
       overflowWrap: "break-word",
       paddingRight: saved ? clash ? narrow ? 19 : 23 : narrow ? 9 : 12 : 0,
       fontFamily: isHeadliner ? "Instrument Serif, Georgia, serif" : "Geist, -apple-system, sans-serif"
     }
-  }, a.name), !narrow && React.createElement("div", {
+  }, actDisplayName(a.name)), !narrow && React.createElement("div", {
+    "data-grid-time": true,
     className: "mono",
     style: {
       fontSize: 8,
@@ -2739,8 +2799,7 @@ function GridSetBlock({
       fontSize: 8,
       letterSpacing: 1,
       fontWeight: 800,
-      color: "var(--ember-ink)",
-      whiteSpace: "nowrap"
+      color: "var(--ember-ink)"
     }
   }, "YOU'RE DUE HERE · ", dueMins, " MIN"), saved && React.createElement("span", {
     style: {
@@ -2824,6 +2883,14 @@ function TimelineGrid({
   var scrollRef = React.useRef(null);
   var leadRef = React.useRef(null);
   var _blockRefs = React.useRef({});
+  React.useLayoutEffect(() => {
+    fitGridBlocks(scrollRef.current);
+  });
+  React.useEffect(() => {
+    var onR = () => fitGridBlocks(scrollRef.current);
+    window.addEventListener("resize", onR);
+    return () => window.removeEventListener("resize", onR);
+  }, []);
   var HOURS = [];
   for (var h = Math.floor(GRID_START_MIN / 60); h <= Math.floor(GRID_END_MIN / 60); h++) {
     var h24 = h % 24;
@@ -2989,9 +3056,9 @@ function TimelineGrid({
         }
       }, React.createElement("span", {
         style: {
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          whiteSpace: "nowrap"
+          lineHeight: "12px",
+          textAlign: "center",
+          letterSpacing: 0.4
         }
       }, s.short), n > 0 && React.createElement("span", {
         style: {
@@ -3038,7 +3105,7 @@ function TimelineGrid({
         zIndex: 6,
         fontSize: 8,
         letterSpacing: 0.6,
-        color: "var(--ink)",
+        color: "var(--on-ember)",
         fontWeight: 800,
         background: "var(--ember)",
         padding: "1px 4px",
@@ -3212,7 +3279,7 @@ function ConflictResolver({
         fontWeight: 600,
         overflowWrap: "anywhere"
       }
-    }, art.name), React.createElement("div", {
+    }, actDisplayName(art.name)), React.createElement("div", {
       style: {
         fontSize: 13,
         lineHeight: "18px",
@@ -3497,7 +3564,7 @@ function printLineupPDF(state) {
   };
 }
 async function copyScheduleText(state) {
-  var ids = state.saved;
+  var ids = savedInLineup(state.saved);
   if (!ids.length) return {
     ok: false,
     reason: "empty"
@@ -3542,7 +3609,10 @@ function ShareLineupButton({
     if (busy) return;
     setOpen(false);
     setBusy(true);
-    var r = await fn(state);
+    var r = await fn({
+      ...state,
+      saved: savedInLineup(state.saved)
+    });
     setBusy(false);
     if (r?.ok) {
       setDone(key);
@@ -3812,9 +3882,10 @@ function toggleSave(state, setState, id) {
   }));
   try {
     var label = a?.name ? a.name.toUpperCase() : "SET";
-    var isFirstSave = !has && state.saved.length === 0;
-    var isMilestone = !has && [5, 10, 15, 20].includes(next.length);
-    var msg = has ? `REMOVED · ${label}` : isFirstSave ? `✦ FIRST SET SAVED · ${label} · LET'S GO` : isMilestone ? `✦ ${next.length} SETS · ${label} · LINEUP GROWING` : hasConflict ? `SAVED · ${label} · ⚠ CLASH` : `SAVED · ${next.length} SETS`;
+    var liveNext = savedInLineup(next).length;
+    var isFirstSave = !has && savedInLineup(state.saved).length === 0;
+    var isMilestone = !has && [5, 10, 15, 20].includes(liveNext);
+    var msg = has ? `REMOVED · ${label}` : isFirstSave ? `✦ FIRST SET SAVED · ${label} · LET'S GO` : isMilestone ? `✦ ${liveNext} SETS · ${label} · LINEUP GROWING` : hasConflict ? `SAVED · ${label} · ⚠ CLASH` : `SAVED · ${liveNext} SETS`;
     var undo = () => {
       if (has) {
         try {
@@ -3890,7 +3961,7 @@ async function shareLineupImage(state) {
     label: d.label,
     date: d.date.toUpperCase()
   }]));
-  var _loop3 = async function (a) {
+  var _loop4 = async function (a) {
     if (a.day !== lastDay) {
       lastDay = a.day;
       var dm = dayMeta[a.day];
@@ -3930,7 +4001,7 @@ async function shareLineupImage(state) {
     if (y > H - 180) return 1;
   };
   for (var a of saved) {
-    if (await _loop3(a)) break;
+    if (await _loop4(a)) break;
   }
   ctx.fillStyle = "#1a120d";
   ctx.font = '500 22px "Geist Mono", monospace';

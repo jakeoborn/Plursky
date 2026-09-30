@@ -738,8 +738,8 @@ var FESTIVALS_REGISTRY = [{
     mapImage: "acl-park-2026.webp",
     mapSource: {
       url: "https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map",
-      observedAt: "2026-09-24",
-      mapYear: null
+      observedAt: "2026-09-25",
+      mapYear: 2026
     },
     mapStyle: "image-overlay",
     mapTheme: "park",
@@ -1385,6 +1385,11 @@ var mk = (id, name, genre, stage, day, start, end, bio) => {
     bio: bio || `Playing ${FESTIVAL_CONFIG?.name || "EDC Las Vegas 2026"}.`
   };
 };
+function actDisplayName(name) {
+  var n = String(name || "");
+  var members = n.split(/\s+b\d+b\s+/i);
+  return members.length > 2 ? `${members[0]} +${members.length - 1}` : n;
+}
 function fmt12(t) {
   if (t == null || t === "") return "\u2014";
   if (typeof t !== "string") return t;
@@ -1434,13 +1439,19 @@ function _weekendMajorityIsW2(saved) {
   return w2 > w1;
 }
 var _wkMemo = null;
+function _w2BeganMs(cfg, w, shift) {
+  var nums = Object.keys(cfg && cfg.dayDates || {}).map(Number).sort((a, b) => a - b);
+  var d1 = nums.length ? cfg.dayDates[nums[0]] : null;
+  if (!d1 || typeof d1.midnightUtc !== "number") return w.W2;
+  return Math.min(w.W2, d1.midnightUtc + shift + 8 * 3600000);
+}
 function _weekendShiftMs(cfg, nowMs, savedIds) {
   var w = cfg && cfg.weekendStartMs;
   if (!w || typeof w.W1 !== "number" || typeof w.W2 !== "number") return 0;
   var shift = w.W2 - w.W1;
   if (!(shift > 0)) return 0;
   var now = typeof nowMs === "number" ? nowMs : Date.now();
-  if (now >= w.W2) return shift;
+  if (now >= _w2BeganMs(cfg, w, shift)) return shift;
   try {
     if (Array.isArray(savedIds)) return _weekendMajorityIsW2(savedIds) ? shift : 0;
     var raw = localStorage.getItem(`${cfg.id}_saved_v1`) || "[]";
@@ -1475,6 +1486,11 @@ function lineupFor(weekend) {
 }
 function activeLineup(savedIds) {
   return lineupFor(activeWeekend(null, undefined, savedIds));
+}
+function savedInLineup(savedIds) {
+  if (!Array.isArray(savedIds) || !savedIds.length) return [];
+  var known = new Set(lineupFor("all").map(a => a.id));
+  return savedIds.filter(id => known.has(id));
 }
 function momentWeekend(takenAt, cfg) {
   var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
@@ -2788,6 +2804,14 @@ for (var _id3 of _WAVE1_IDS) {
   };
 }
 _applyScheduleOverlays(_DATA_SETS);
+for (var _ds of Object.values(_DATA_SETS)) {
+  for (var _s of _ds.stages || []) {
+    if (_s && _s.code === undefined) {
+      _s.code = _s.short;
+      _s.short = _s.name || _s.short;
+    }
+  }
+}
 var _activeId = getActiveFestivalId();
 var _active = _DATA_SETS[_activeId] || _DATA_SETS["edc-lv-2026"];
 Object.assign(window, {
