@@ -1736,7 +1736,7 @@ function LineupScreen({
       }, React.createElement("span", {
         "data-set-name": true,
         "data-fit-name": true,
-        "data-fit-min": "15",
+        "data-fit-min": "14",
         className: "duo-headline",
         style: {
           fontWeight: 700,

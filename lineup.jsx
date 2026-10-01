@@ -1271,7 +1271,7 @@ function LineupScreen({ state, setState }) {
                   color: "var(--ink)", textAlign: "left", cursor: "pointer",
                   display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "stretch",
                 }}>
-                  <span data-set-name data-fit-name data-fit-min="15" className="duo-headline"
+                  <span data-set-name data-fit-name data-fit-min="14" className="duo-headline"
                     style={{ fontWeight: 700, color: "var(--ink)", whiteSpace: "nowrap", overflowWrap: "break-word" }}>{actDisplayName(a.name)}</span>
                   <span data-set-meta style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)",
                     whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
