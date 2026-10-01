@@ -975,15 +975,14 @@ function InstallBanner() {
   var ip = useInstallPrompt();
   if (!ip.canInstall) return null;
   return React.createElement("div", {
+    className: "duo-card",
     style: {
       margin: "8px 16px 0",
-      padding: "10px 12px",
-      borderRadius: 14,
-      background: "var(--ink)",
-      color: "var(--on-ink)",
+      padding: "8px 4px 8px 12px",
+      color: "var(--ink)",
       display: "flex",
       alignItems: "center",
-      gap: 11
+      gap: 12
     }
   }, React.createElement("img", {
     src: "./apple-touch-icon.png",
@@ -1001,19 +1000,12 @@ function InstallBanner() {
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-acc"
+  }, "Install Plursky"), React.createElement("div", {
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      color: "var(--on-ink-flare)",
-      fontWeight: 700
-    }
-  }, "INSTALL PLURSKY"), React.createElement("div", {
-    style: {
-      fontSize: 12,
-      lineHeight: 1.35,
-      marginTop: 2,
-      color: "var(--on-ink-2)"
+      marginTop: 3,
+      fontWeight: 400
     }
   }, ip.isIOS ? React.createElement(React.Fragment, null, "Tap ", React.createElement("span", {
     style: {
@@ -1026,7 +1018,7 @@ function InstallBanner() {
     height: "13",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "var(--on-ink)",
+    stroke: "var(--ink)",
     strokeWidth: "1.8",
     strokeLinecap: "round",
     strokeLinejoin: "round"
@@ -1042,34 +1034,29 @@ function InstallBanner() {
     rx: "1.5"
   }))), " then ", React.createElement("strong", {
     style: {
-      color: "var(--on-ink)"
+      color: "var(--ink)"
     }
   }, "Add to Home Screen"), " for offline + full-screen.") : React.createElement(React.Fragment, null, "Add to home screen for offline lineup + full-screen map."))), !ip.isIOS && React.createElement("button", {
     onClick: ip.install,
+    className: "duo-btn pri",
     style: {
-      background: "var(--ember)",
-      color: "var(--on-ember)",
-      border: "none",
-      borderRadius: 999,
-      padding: "7px 12px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 700,
+      minHeight: 40,
+      padding: "0 14px",
+      fontSize: 14,
       flexShrink: 0
     }
-  }, "INSTALL"), React.createElement("button", {
+  }, "Install"), React.createElement("button", {
     onClick: ip.dismiss,
     "aria-label": "Dismiss",
     style: {
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      color: "var(--on-ink-3)",
-      padding: 4,
+      color: "var(--ink-2)",
+      minWidth: 44,
+      minHeight: 44,
       flexShrink: 0,
-      fontSize: 18,
+      fontSize: 20,
       lineHeight: 1
     }
   }, "×"));
@@ -2318,38 +2305,27 @@ function BatterySaverToast() {
       right: 16,
       top: 60,
       zIndex: 80,
-      padding: "10px 14px",
-      borderRadius: 14,
-      background: "var(--ink)",
-      color: "var(--on-ink)",
+      padding: "8px 4px 8px 16px",
+      borderRadius: "var(--rad-md)",
+      background: "var(--s1)",
+      color: "var(--ink)",
       display: "flex",
       alignItems: "center",
       gap: 10,
-      boxShadow: "0 8px 24px rgba(var(--shade-rgb),0.35)"
+      boxShadow: "var(--e2)"
     }
-  }, React.createElement("span", {
-    style: {
-      fontSize: 16
-    }
-  }, "🔋"), React.createElement("div", {
+  }, React.createElement("div", {
     style: {
       flex: 1,
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-acc"
+  }, "Battery saver on"), React.createElement("div", {
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      color: "var(--on-ink-flare)",
-      fontWeight: 700
-    }
-  }, "BATTERY SAVER ON"), React.createElement("div", {
-    style: {
-      fontSize: 13,
-      lineHeight: 1.35,
-      marginTop: 2,
-      color: "var(--on-ink-2)"
+      marginTop: 3,
+      fontWeight: 400
     }
   }, reason)), React.createElement("button", {
     onClick: () => setDismissed(true),
@@ -2358,10 +2334,11 @@ function BatterySaverToast() {
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      color: "var(--on-ink-3)",
-      fontSize: 18,
+      color: "var(--ink-2)",
+      fontSize: 20,
       lineHeight: 1,
-      padding: 4
+      minWidth: 44,
+      minHeight: 44
     }
   }, "×"));
 }

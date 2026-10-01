@@ -2303,48 +2303,31 @@ function TonightsPlan({ plan, state, setState }) {
   return (
     <>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
-        <div className="serif" style={{ fontSize: 24, letterSpacing: -0.3 }}>
-          Tonight's <span style={{ fontStyle: "italic" }}>plan</span>
-        </div>
-        <button onClick={() => setState({ ...state, tab: "lineup" })} className="mono" style={{
-          background: "none", border: "none", fontSize: 10, letterSpacing: 1.2,
-          color: "var(--muted)", cursor: "pointer", textTransform: "uppercase",
-        }}>All →</button>
+        <h3 className="duo-sect">Tonight's plan</h3>
+        <button onClick={() => setState({ ...state, tab: "lineup" })} className="duo-link">All →</button>
       </div>
 
       {plan.length === 0 ? (
-        <div style={{
-          border: "1px dashed var(--line-2)", borderRadius: 14, padding: "20px 16px",
-          textAlign: "center",
-        }}>
-          <div className="serif" style={{ fontSize: 18, color: "var(--muted)", fontStyle: "italic" }}>
-            No sets saved for tonight
-          </div>
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)", marginTop: 6 }}>
-            TAP + ON ANY ARTIST TO ADD
+        <div className="duo-well" style={{ padding: "20px 16px", textAlign: "center" }}>
+          <div className="duo-headline">No sets saved for tonight</div>
+          <div className="duo-body-s duo-ink2" style={{ marginTop: 4, fontWeight: 400 }}>
+            Tap + on any set in the Lineup to add it.
           </div>
         </div>
       ) : (
         <>
           {tightCount > 0 && (
-            <div style={{
-              display: "flex", alignItems: "center", justifyContent: "space-between",
-              padding: "6px 10px", marginBottom: 10,
-              background: "rgba(var(--signal-rgb),0.07)", borderRadius: 8,
-              border: "1px solid rgba(var(--signal-rgb),0.2)",
+            <div className="duo-card" style={{
+              display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
+              padding: "6px 6px 6px 14px", marginBottom: 10, minHeight: 52,
             }}>
-              <span className="mono" style={{ fontSize: 10, letterSpacing: 1.3, color: "var(--ember-ink)" }}>
-                ⚠ {tightCount} TIGHT TRANSITION{tightCount > 1 ? "S" : ""} · CHECK LEAVE-BY TIMES
+              <span className="duo-body-s" style={{ display: "flex", alignItems: "center", gap: 8, minWidth: 0, fontWeight: 400 }}>
+                <i aria-hidden="true" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--clash)", flexShrink: 0 }} />
+                {tightCount} tight transition{tightCount > 1 ? "s" : ""} · check leave-by times
               </span>
               {conflicts.length > 0 && (
-                <button onClick={() => setResolverOpen(r => !r)} style={{
-                  background: resolverOpen ? "transparent" : "var(--ember)",
-                  color: resolverOpen ? "var(--ember-ink)" : "var(--ink)",
-                  border: resolverOpen ? "1px solid var(--ember)" : "none",
-                  borderRadius: 6, padding: "4px 10px", cursor: "pointer",
-                  fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                }}>
-                  {resolverOpen ? "CLOSE ×" : "RESOLVE →"}
+                <button onClick={() => setResolverOpen(r => !r)} aria-expanded={resolverOpen} className="duo-chip">
+                  <span>{resolverOpen ? "Close" : "Resolve"}</span>
                 </button>
               )}
             </div>
@@ -2388,63 +2371,38 @@ function PlanRow({ entry, state, setState }) {
           display: "flex", alignItems: "center", gap: 8,
           padding: "4px 0 4px 56px", marginBottom: 2,
         }}>
-          <div style={{ width: 1, height: 18, background: tight ? "var(--ember)" : "var(--line-2)" }}/>
-          <span className="mono" style={{
-            fontSize: 9, letterSpacing: 1.2,
-            color: tight ? "var(--ember-ink)" : "var(--muted)",
-            fontWeight: tight ? 700 : 500,
+          <div style={{ width: 1.5, height: 18, background: tight ? "var(--clash)" : "var(--line-2)" }}/>
+          <span className="duo-data-s" style={{
+            color: tight ? "var(--clash)" : "var(--ink-2)",
           }}>
             {/* No minutes and no LEAVE BY on an unmeasured pair: leaveByLabel
                 is already null there, because leaveBy is. */}
-            {walk != null ? `${walk} MIN WALK · ` : ""}{prev.stage === a.stage ? "SAME STAGE" : `${STAGES.find(s=>s.id===prev.stage)?.short || "TBA"} → ${stage?.short || "TBA"}`}
-            {leaveByLabel && ` · LEAVE BY ${leaveByLabel}`}
+            {walk != null ? `${walk} min walk · ` : ""}{prev.stage === a.stage ? "Same stage" : `${STAGES.find(s=>s.id===prev.stage)?.short || "TBA"} → ${stage?.short || "TBA"}`}
+            {leaveByLabel && ` · leave by ${leaveByLabel}`}
           </span>
         </div>
       )}
 
-      {/* The set row */}
+      {/* The set row: the board's list row. A past set reads quieter by
+          colour (opacity took its labels under AA); live = the lifted card;
+          a clash = the clash ring and the word. */}
       <div onClick={() => setState({ ...state, tab: "home", artist: a.id })}
-        style={{
-          display: "flex", alignItems: "center", gap: 12,
-          padding: "12px 4px",
-          borderBottom: "1px solid var(--line)",
-          cursor: "pointer",
-          opacity: isPast ? 0.45 : 1,
-          background: conflict ? "rgba(var(--signal-rgb),0.04)" : "transparent",
-        }}>
-        <div style={{ width: 44 }}>
-          <div className="mono" style={{
-            fontSize: 10, letterSpacing: 1,
-            color: isLive ? "var(--signal-ink)" : "var(--ink)",
-            fontWeight: isLive ? 700 : 500,
-          }}>{fmt12(a.start)}</div>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>
-            {isLive ? "LIVE" : isPast ? "DONE" : minsUntil < 60 ? `${minsUntil}m` : `${Math.floor(minsUntil/60)}h${(minsUntil%60).toString().padStart(2,"0")}`}
+        className={"duo-lrow" + (isLive ? " live" : "")}
+        style={{ cursor: "pointer", margin: 0, paddingLeft: 4 }}>
+        <div style={{ width: 72, flexShrink: 0 }}>
+          <div className="duo-data" style={{ fontSize: 13, color: isPast ? "var(--ink-3)" : "var(--ink)" }}>{fmt12(a.start)}</div>
+          <div className="duo-data-s" style={{ color: isLive ? "var(--live)" : "var(--ink-2)", marginTop: 1 }}>
+            {isLive ? "Live" : isPast ? "Done" : minsUntil < 60 ? `${minsUntil}m` : `${Math.floor(minsUntil/60)}h${(minsUntil%60).toString().padStart(2,"0")}`}
           </div>
         </div>
-        <div style={{ width: 3, alignSelf: "stretch", background: isLive ? "var(--signal)" : "var(--line-2)", borderRadius: 3 }}/>
+        <DuoAvatar name={a.name} size={42} ring={conflict ? "cl" : isLive ? "on" : ""} />
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <div className="serif" style={{ fontSize: 20, lineHeight: 1.1, textDecoration: isPast ? "line-through" : "none" }}>{a.name}</div>
-            {isLive && (
-              <span className="mono" style={{
-                fontSize: 8, letterSpacing: 1.3, color: "var(--on-signal)", background: "var(--signal)",
-                padding: "1px 5px", borderRadius: 3, fontWeight: 700,
-              }}>LIVE</span>
-            )}
-            {conflict && (
-              <span className="mono" style={{
-                fontSize: 8, letterSpacing: 1.3, color: "var(--ember-ink)",
-                padding: "1px 5px", borderRadius: 3, fontWeight: 700,
-                border: "1px solid var(--ember)",
-              }}>CLASH</span>
-            )}
-          </div>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 2 }}>
-            {stage.name.toUpperCase()} · {a.genre.toUpperCase()}
+          <div className="duo-headline duo-name" style={{ fontWeight: 700, color: isPast ? "var(--ink-2)" : "var(--ink)" }}>{actDisplayName(a.name)}</div>
+          <div className="duo-body-s duo-ink2" style={{ fontWeight: 400 }}>
+            {stage.name}{conflict ? <span style={{ color: "var(--clash)" }}> · clash</span> : ""}
           </div>
         </div>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="1.6" strokeLinecap="round">
+        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
           <path d="M9 6 L15 12 L9 18" />
         </svg>
       </div>
@@ -2788,50 +2746,36 @@ function FriendLineupBanner({ state, setState }) {
   };
 
   return (
-    <div style={{
-      marginTop: 18, padding: "16px 16px 14px",
-      borderRadius: 18,
-      background: "linear-gradient(135deg, rgba(var(--signal-rgb),0.12), rgba(var(--signal-rgb),0.08))",
-      border: "1px solid rgba(var(--signal-rgb),0.3)",
-    }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--horizon)", fontWeight: 700 }}>
-          SHARED WITH YOU{state.friendName ? ` · ${state.friendName.toUpperCase()}` : ""}
+    <div className="duo-card" style={{ marginTop: 18, padding: "14px 16px" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+        <span className="duo-label duo-acc" style={{ minWidth: 0, overflowWrap: "anywhere" }}>
+          Shared with you{state.friendName ? ` · ${state.friendName}` : ""}
         </span>
         <button onClick={dismiss} aria-label="Dismiss" style={{
-          background: "transparent", border: "none", color: "var(--muted)",
-          cursor: "pointer", fontSize: 14, padding: 0, lineHeight: 1,
+          background: "transparent", border: "none", color: "var(--ink-2)",
+          cursor: "pointer", fontSize: 20, minWidth: 44, minHeight: 44, marginRight: -12, lineHeight: 1, flexShrink: 0,
         }}>×</button>
       </div>
-      <div className="serif" style={{ fontSize: 22, lineHeight: 1.1, marginBottom: 4 }}>
-        {state.friendName ? state.friendName : "Your friend"}'s <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>lineup</span>
+      <div className="duo-headline" style={{ fontSize: 20, marginBottom: 2 }}>
+        {state.friendName ? state.friendName : "Your friend"}’s lineup
       </div>
-      <div style={{ fontSize: 12, color: "var(--ink)", opacity: 0.75, lineHeight: 1.5, marginBottom: 12 }}>
+      <div className="duo-data-s duo-ink2" style={{ marginBottom: 6 }}>
         {friendIds.length} sets saved · {overlap.length} match yours
         {fresh.length > 0 && ` · ${fresh.length} new to you`}
       </div>
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-        <button onClick={() => setExpanded(e => !e)} className="mono" style={{
-          background: "var(--ink)", color: "var(--paper)", border: "none",
-          borderRadius: 999, padding: "8px 14px", cursor: "pointer",
-          fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-        }}>{expanded ? "HIDE SETS" : "VIEW SETS"}</button>
+        <button onClick={() => setExpanded(e => !e)} aria-expanded={expanded} className="duo-chip">
+          <span>{expanded ? "Hide sets" : "View sets"}</span>
+        </button>
         {fresh.length > 0 && (
-          <button onClick={addOverlap} className="mono" style={{
-            background: "var(--ember)", color: "var(--on-ember)", border: "none",
-            borderRadius: 999, padding: "8px 14px", cursor: "pointer",
-            fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-          }}>+ ADD {fresh.length} NEW</button>
+          <button onClick={addOverlap} className="duo-btn pri" style={{ minHeight: 44, padding: "0 16px", fontSize: 14 }}>
+            + Add {fresh.length} new
+          </button>
         )}
-        <button onClick={addAll} className="mono" style={{
-          background: "transparent", color: "var(--ink)",
-          border: "1px solid var(--line-2)",
-          borderRadius: 999, padding: "8px 14px", cursor: "pointer",
-          fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-        }}>+ ADD ALL</button>
+        <button onClick={addAll} className="duo-chip"><span>+ Add all</span></button>
       </div>
       {expanded && (
-        <div style={{ marginTop: 12, paddingTop: 10, borderTop: "1px solid var(--line)" }}>
+        <div style={{ marginTop: 10 }}>
           {festivalDayNums().map(day => {
             const dayArtists = friendIds
               .map(id => ARTISTS.find(a => a.id === id))
@@ -2840,43 +2784,25 @@ function FriendLineupBanner({ state, setState }) {
             if (!dayArtists.length) return null;
             const meta = FESTIVAL_CONFIG.dayDates[day];
             return (
-              <div key={day} style={{ marginBottom: 10 }}>
-                <div className="mono" style={{
-                  fontSize: 9, letterSpacing: 1.6, color: "var(--horizon)",
-                  fontWeight: 700, marginBottom: 6,
-                }}>
-                  {meta.short} · {meta.name.toUpperCase()}
-                </div>
+              <div key={day} style={{ marginBottom: 8 }}>
+                <h3 className="duo-sect" style={{ margin: "10px 0 2px" }}>{meta.name}</h3>
                 {dayArtists.map(a => {
                   const stage = STAGES.find(s => s.id === a.stage);
                   const isOverlap = savedSet.has(a.id);
+                  // The board row: time, face (ringed when it is also on your
+                  // plan), name over stage. A match is said in words too.
                   return (
                     <button key={a.id} onClick={() => setState({ ...state, artist: a.id })}
-                      style={{
-                        display: "flex", alignItems: "center", gap: 8, width: "100%",
-                        background: "transparent", border: "none",
-                        borderBottom: "1px solid var(--line-2)",
-                        padding: "6px 0", cursor: "pointer", textAlign: "left",
-                      }}>
-                      <span style={{
-                        width: 8, height: 8, borderRadius: 999,
-                        background: isOverlap ? "var(--success)" : "var(--text-3)",
-                        flexShrink: 0,
-                      }}/>
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div className="serif" style={{ fontSize: 14, lineHeight: 1.15, color: "var(--ink)" }}>
-                          {a.name}
-                        </div>
-                        <div className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--muted)", marginTop: 1 }}>
-                          {stage?.short} · {fmt12(a.start)}
-                        </div>
-                      </div>
-                      {isOverlap && (
-                        <span className="mono" style={{
-                          fontSize: 8, letterSpacing: 1, color: "var(--success)",
-                          fontWeight: 700,
-                        }}>MATCH</span>
-                      )}
+                      className={"duo-lrow duo-press" + (isOverlap ? " plan" : "")}
+                      style={{ display: "flex", width: "auto", color: "var(--ink)", textAlign: "left" }}>
+                      <span className="duo-data duo-ink2" style={{ width: 72, flexShrink: 0, fontSize: 13 }}>{fmt12(a.start)}</span>
+                      <DuoAvatar name={a.name} size={42} ring={isOverlap ? "on" : ""} />
+                      <span style={{ flex: 1, minWidth: 0 }}>
+                        <span className="duo-headline duo-name" style={{ display: "block", fontWeight: 700 }}>{actDisplayName(a.name)}</span>
+                        <span className="duo-body-s duo-ink2" style={{ display: "block", fontWeight: 400 }}>
+                          {stage?.name}{isOverlap ? " · on your plan too" : ""}
+                        </span>
+                      </span>
                     </button>
                   );
                 })}

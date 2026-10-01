@@ -1135,7 +1135,8 @@ function LineupScreen({ state, setState }) {
         </div>
       </div>
       {!online && (
-        <div role="status" style={{ padding: "8px 20px", fontSize: 13, lineHeight: "18px", color: "var(--text-2)", borderBottom: "1px solid var(--line)" }}>
+        <div role="status" className="duo-card duo-body-s" style={{ margin: "8px 16px 0", padding: "10px 14px", display: "flex", alignItems: "center", gap: 10, color: "var(--ink-2)", fontWeight: 400 }}>
+          <i aria-hidden="true" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--ink-3)", flexShrink: 0 }} />
           Offline · showing the schedule saved on this phone
         </div>
       )}
@@ -1144,9 +1145,9 @@ function LineupScreen({ state, setState }) {
           list of acts whose every time reads "—", which looks like the app
           failed to load them rather than like the festival hasn't said yet. */}
       {_schedTBA && (
-        <div role="status" style={{ padding: "10px 20px", borderBottom: "1px solid var(--line)" }}>
-          <div style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600 }}>Set times pending from the festival</div>
-          <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+        <div role="status" className="duo-card" style={{ margin: "8px 16px 0", padding: "12px 16px" }}>
+          <div className="duo-headline" style={{ fontSize: 15 }}>Set times pending from the festival</div>
+          <div className="duo-body-s duo-ink2" style={{ marginTop: 2, fontWeight: 400 }}>
             The full lineup is here. Save the acts you want and the schedule fills itself in as soon as {FESTIVAL_CONFIG.shortName || "the festival"} publishes it.
           </div>
         </div>
@@ -1226,16 +1227,16 @@ function LineupScreen({ state, setState }) {
                 action: filter !== "all" ? "Show all sets" : null, onAction: () => setFilter("all") };
           return (
             <div style={{ padding: "40px 0" }}>
-              <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>{empty.title}</div>
-              <div style={{ marginTop: 4, fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>{empty.sub}</div>
+              <div className="duo-headline">{empty.title}</div>
+              <div className="duo-body duo-ink2" style={{ marginTop: 4, fontSize: 15 }}>{empty.sub}</div>
               {empty.action && <FieldButton kind="secondary" onClick={empty.onAction} style={{ marginTop: 16 }}>{empty.action}</FieldButton>}
             </div>
           );
         })()}
         {viewMode === "grid" && filter === "saved" && liveSavedCount === 0 && (
           <div style={{ padding: "40px 20px" }}>
-            <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>No sets saved yet</div>
-            <div style={{ marginTop: 4, fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>Switch to All stages and tap any set to save it.</div>
+            <div className="duo-headline">No sets saved yet</div>
+            <div className="duo-body duo-ink2" style={{ marginTop: 4, fontSize: 15 }}>Switch to All stages and tap any set to save it.</div>
             <FieldButton kind="secondary" onClick={() => setFilter("all")} style={{ marginTop: 16 }}>Show all sets</FieldButton>
           </div>
         )}

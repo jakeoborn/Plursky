@@ -11907,107 +11907,107 @@ function FollowedNudge({
     }));
   };
   return React.createElement("div", {
+    className: "duo-card",
     style: {
-      background: "rgba(var(--spotify-rgb),0.1)",
-      border: "1px solid rgba(var(--spotify-rgb),0.25)",
-      borderRadius: 16,
       padding: "14px 16px",
       marginBottom: 14
     }
   }, React.createElement("div", {
     style: {
       display: "flex",
-      justifyContent: "space-between",
       alignItems: "center",
-      marginBottom: 8
+      gap: 10
     }
-  }, React.createElement("div", null, React.createElement("span", {
-    className: "mono",
+  }, React.createElement("i", {
+    "aria-hidden": "true",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      color: "var(--spotify)",
-      fontWeight: 700
+      width: 8,
+      height: 8,
+      borderRadius: "50%",
+      background: "var(--spotify)",
+      flexShrink: 0
     }
-  }, "YOU FOLLOW ", followed.length, " ", (FESTIVAL_CONFIG.brand || "").toUpperCase(), " ACT", followed.length > 1 ? "S" : "", " NOT IN YOUR LINEUP")), React.createElement("div", {
+  }), React.createElement("span", {
+    className: "duo-body-s",
+    style: {
+      flex: 1,
+      minWidth: 0,
+      fontSize: 15
+    }
+  }, "You follow ", followed.length, " ", FESTIVAL_CONFIG.brand || "", " act", followed.length > 1 ? "s" : "", " not in your lineup")), React.createElement("div", {
     style: {
       display: "flex",
-      gap: 6
+      gap: 8,
+      marginTop: 6,
+      flexWrap: "wrap"
     }
   }, React.createElement("button", {
     onClick: handleSaveAll,
+    className: "duo-btn pri",
     style: {
-      background: "var(--spotify)",
-      color: "var(--paper)",
-      border: "none",
-      borderRadius: 999,
-      padding: "5px 10px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 9,
-      letterSpacing: 1,
-      fontWeight: 700
+      minHeight: 44,
+      padding: "0 16px",
+      fontSize: 14
     }
-  }, "SAVE ALL"), React.createElement("button", {
+  }, "Save all"), React.createElement("button", {
     onClick: () => setExpanded(e => !e),
-    style: {
-      background: "transparent",
-      color: "var(--text-3)",
-      border: "1px solid rgba(var(--ink-rgb),0.2)",
-      borderRadius: 999,
-      padding: "5px 10px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 9,
-      letterSpacing: 1
-    }
-  }, expanded ? "HIDE" : "VIEW"))), expanded && React.createElement("div", {
+    "aria-expanded": expanded,
+    className: "duo-chip"
+  }, React.createElement("span", null, expanded ? "Hide" : "View"))), expanded && React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
-      gap: 6
+      marginTop: 6
     }
   }, followed.map(a => {
     var st = STAGES.find(s => s.id === a.stage);
+    var day = FESTIVAL_CONFIG.dayDates?.[a.day];
     return React.createElement("div", {
       key: a.id,
+      className: "duo-lrow"
+    }, React.createElement("span", {
+      className: "duo-data duo-ink2",
       style: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        background: "rgba(var(--shade-rgb),0.2)",
-        borderRadius: 10,
-        padding: "8px 12px"
+        width: 72,
+        flexShrink: 0,
+        fontSize: 13
       }
-    }, React.createElement("div", null, React.createElement("div", {
+    }, fmt12(a.start)), React.createElement(DuoAvatar, {
+      name: a.name,
+      size: 42
+    }), React.createElement("span", {
       style: {
-        fontSize: 13,
-        fontWeight: 600,
-        color: "var(--ink)"
+        flex: 1,
+        minWidth: 0
       }
-    }, a.name), React.createElement("div", {
-      className: "mono",
+    }, React.createElement("span", {
+      className: "duo-headline duo-name",
       style: {
-        fontSize: 8,
-        letterSpacing: 1.1,
-        color: "var(--muted)",
-        marginTop: 2
-      }
-    }, st?.short, " · DAY ", a.day, " · ", fmt12(a.start))), React.createElement("button", {
-      onClick: () => handleSave(a),
-      style: {
-        background: "transparent",
-        color: st?.color || "var(--spotify)",
-        border: `1px solid ${st?.color || "var(--spotify)"}`,
-        borderRadius: 999,
-        padding: "5px 10px",
-        cursor: "pointer",
-        fontFamily: "Geist Mono, monospace",
-        fontSize: 8,
-        letterSpacing: 1,
+        display: "block",
         fontWeight: 700
       }
-    }, "+ SAVE"));
+    }, actDisplayName(a.name)), React.createElement("span", {
+      className: "duo-body-s duo-ink2",
+      style: {
+        display: "block",
+        fontWeight: 400
+      }
+    }, [st?.name, day?.name].filter(Boolean).join(" · "))), React.createElement("button", {
+      onClick: () => handleSave(a),
+      className: "duo-add",
+      "aria-pressed": "false",
+      "aria-label": `Save ${a.name}`
+    }, React.createElement("span", null, React.createElement("svg", {
+      width: "16",
+      height: "16",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2.2",
+      strokeLinecap: "round"
+    }, React.createElement("path", {
+      d: "M12 5v14M5 12h14"
+    })))));
   })));
 }
 function BoardPlaylistCard({

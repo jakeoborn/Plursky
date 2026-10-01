@@ -139,22 +139,26 @@ function _HistStatus({
 }) {
   if (res.status === "loading") return React.createElement("p", {
     role: "status",
+    className: "duo-body-s duo-ink2",
     style: {
       margin: "24px 20px",
-      color: "var(--text-2)"
+      fontWeight: 400
     }
   }, "Loading ", what, "…");
   return React.createElement("div", {
     role: "status",
+    className: "duo-card",
     style: {
-      margin: "24px 20px",
+      margin: "24px 16px",
+      padding: 16,
       display: "grid",
       gap: 12
     }
   }, React.createElement("p", {
+    className: "duo-body",
     style: {
       margin: 0,
-      color: "var(--text-2)"
+      color: "var(--ink-2)"
     }
   }, "Couldn't load ", what, ". Past festivals need a connection the first time you open them."), React.createElement(FieldButton, {
     kind: "secondary",

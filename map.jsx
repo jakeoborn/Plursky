@@ -2436,8 +2436,8 @@ function MapScreen({ state, setState }) {
           }}>
             <button onClick={() => setMenuOpen(o => !o)} aria-label="Map layers" aria-pressed={menuOpen} style={{
               width: 46, height: 36, padding: 0,
-              background: menuOpen ? "var(--ink)" : "transparent",
-              color: menuOpen ? "var(--paper)" : "var(--ink)",
+              background: menuOpen ? "var(--acc)" : "transparent",
+              color: menuOpen ? "var(--on-acc)" : "var(--ink)",
               border: "none",
               borderBottom: "1px solid var(--line)",
               cursor: "pointer",
@@ -2456,8 +2456,8 @@ function MapScreen({ state, setState }) {
               cursor: mapZoom >= MAP_ZOOM_MAX ? "default" : "pointer",
               opacity: mapZoom >= MAP_ZOOM_MAX ? 0.35 : 1,
               display: "flex", alignItems: "center", justifyContent: "center",
-              color: "var(--ink)", fontFamily: "Geist Mono, monospace",
-              fontSize: 18, fontWeight: 600, lineHeight: 1,
+              color: "var(--ink)", fontFamily: "var(--f-ui)",
+              fontSize: 20, fontWeight: 500, lineHeight: 1,
             }}>+</button>
             <button onClick={zoomOut} disabled={mapZoom <= MAP_ZOOM_MIN} aria-label="Zoom out" style={{
               width: 46, height: 36, padding: 0,
@@ -2465,18 +2465,17 @@ function MapScreen({ state, setState }) {
               cursor: mapZoom <= MAP_ZOOM_MIN ? "default" : "pointer",
               opacity: mapZoom <= MAP_ZOOM_MIN ? 0.35 : 1,
               display: "flex", alignItems: "center", justifyContent: "center",
-              color: "var(--ink)", fontFamily: "Geist Mono, monospace",
-              fontSize: 20, fontWeight: 600, lineHeight: 1,
+              color: "var(--ink)", fontFamily: "var(--f-ui)",
+              fontSize: 22, fontWeight: 500, lineHeight: 1,
             }}>−</button>
             {(mapZoom !== 1 || mapPan.x !== 0 || mapPan.y !== 0) && (
               <button onClick={zoomReset} aria-label="Reset zoom" style={{
-                width: 46, padding: "5px 0",
-                background: "var(--ink)", color: "var(--paper)",
+                width: 46, minHeight: 32, padding: 0,
+                background: "var(--s3)", color: "var(--acc-ink)",
                 border: "none", borderTop: "1px solid var(--line)",
                 cursor: "pointer",
-                fontFamily: "Geist Mono, monospace",
-                fontSize: 8, letterSpacing: 1.1, fontWeight: 700,
-              }}>RESET</button>
+                font: "650 12px/1 var(--f-ui)",
+              }}>Reset</button>
             )}
           </div>
         </div>
@@ -2485,14 +2484,14 @@ function MapScreen({ state, setState }) {
         {menuOpen && (
           <>
             <div onClick={() => setMenuOpen(false)} style={{ position: "fixed", inset: 0, zIndex: 5 }}/>
-            <div style={{
+            <div role="group" aria-label="Map layers" style={{
               position: "absolute", top: 90, right: 10, zIndex: 6,
-              background: "var(--paper)", border: "1px solid var(--line-2)",
-              borderRadius: 12, padding: 5, minWidth: 220,
-              boxShadow: "0 10px 28px rgba(var(--shade-rgb),0.20)",
+              background: "var(--s1)", border: "none",
+              borderRadius: "var(--rad-md)", padding: 6, minWidth: 232,
+              boxShadow: "var(--e2)",
             }}>
               {[
-                { id: "notify", label: "🔔  Reminders",
+                { id: "notify", label: "Reminders",
                   active: notifyEnabled,
                   onToggle: async () => {
                     if (typeof Notification === "undefined") return;
@@ -2506,15 +2505,15 @@ function MapScreen({ state, setState }) {
                     writeNotifyEnabled(true); setNotifyEnabled(true);
                   },
                 },
-                { id: "compass", label: "⌖  Compass mode",
+                { id: "compass", label: "Compass mode",
                   active: compass && compassStatus === "live",
                   onToggle: () => { if (compass) { setCompass(false); setCompassStatus("off"); } else enableCompass(); },
                 },
-                { id: "crowd",  label: "🔥  Crowd heatmap",   active: showHeat,   onToggle: () => setShowHeat(s => !s) },
-                { id: "amenity", label: "🚻  Amenity key", active: amenityKey,
+                { id: "crowd",  label: "Crowd heatmap",   active: showHeat,   onToggle: () => setShowHeat(s => !s) },
+                { id: "amenity", label: "Amenity key", active: amenityKey,
                   onToggle: () => { setAmenityKey(v => !v); setAmenityFilter(null); } },
-                { id: "labels", label: "🏷  Landmark labels", active: showLabels, onToggle: () => setShowLabels(s => !s) },
-                ...(REAL_MAP_ONLY ? [] : [{ id: "realmap", label: "🗺  Real map (BETA)",  active: useRealMap,
+                { id: "labels", label: "Landmark labels", active: showLabels, onToggle: () => setShowLabels(s => !s) },
+                ...(REAL_MAP_ONLY ? [] : [{ id: "realmap", label: "Real map (beta)",  active: useRealMap,
                   onToggle: () => {
                     const v = !useRealMap;
                     try {
@@ -2526,33 +2525,36 @@ function MapScreen({ state, setState }) {
                   },
                 }]),
               ].map(item => (
-                <div key={item.id} role="button" onClick={item.onToggle} style={{
-                  display: "flex", alignItems: "center", justifyContent: "space-between",
-                  padding: "8px 10px", borderRadius: 8, cursor: "pointer",
+                <div key={item.id} role="button" aria-pressed={!!item.active} tabIndex={0} onClick={item.onToggle}
+                  onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); item.onToggle(); } }} style={{
+                  display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12,
+                  minHeight: 44, padding: "0 10px", borderRadius: "var(--rad-sm)", cursor: "pointer",
                 }}>
-                  <span style={{ fontSize: 13, color: "var(--ink)", fontWeight: 500 }}>{item.label}</span>
-                  <span style={{
-                    width: 30, height: 18, borderRadius: 18,
-                    background: item.active ? "var(--ember)" : "var(--line-2)",
+                  <span className="duo-body-s" style={{ fontSize: 15, color: "var(--ink)", fontWeight: 500 }}>{item.label}</span>
+                  {/* The board switch: accent track when on, a light knob. */}
+                  <span aria-hidden="true" style={{
+                    width: 40, height: 24, borderRadius: 24,
+                    background: item.active ? "var(--acc)" : "var(--s3)",
+                    boxShadow: item.active ? "none" : "inset 0 0 0 1.5px var(--line-2)",
                     position: "relative", flexShrink: 0, transition: "background 0.15s",
                   }}>
                     <span style={{
-                      position: "absolute", top: 2, left: item.active ? 14 : 2,
-                      width: 14, height: 14, borderRadius: 14,
-                      background: "var(--ink)", transition: "left 0.18s",
+                      position: "absolute", top: 3, left: item.active ? 19 : 3,
+                      width: 18, height: 18, borderRadius: 18,
+                      background: item.active ? "var(--on-acc)" : "var(--ink-2)", transition: "left 0.18s",
                     }}/>
                   </span>
                 </div>
               ))}
               <button onClick={() => { setMenuOpen(false); setPacksOpen(true); }} style={{
                 display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%",
-                padding: "8px 10px", borderRadius: 8, cursor: "pointer",
+                minHeight: 44, padding: "0 10px", borderRadius: "var(--rad-sm)", cursor: "pointer",
                 background: "transparent", border: "none", borderTop: "1px solid var(--line)",
-                marginTop: 3, textAlign: "left",
+                marginTop: 4, textAlign: "left",
               }}>
-                <span style={{ fontSize: 13, color: "var(--ink)", fontWeight: 500 }}>⬇  Offline map</span>
-                <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, color: "var(--ember-ink)" }}>
-                  {_packMirror()[FESTIVAL_CONFIG.id] ? "SAVED" : "›"}
+                <span className="duo-body-s" style={{ fontSize: 15, color: "var(--ink)", fontWeight: 500 }}>Offline map</span>
+                <span className="duo-body-s" style={{ fontWeight: 650, color: "var(--acc-ink)" }}>
+                  {_packMirror()[FESTIVAL_CONFIG.id] ? "Saved" : "›"}
                 </span>
               </button>
             </div>
@@ -2589,13 +2591,13 @@ function MapScreen({ state, setState }) {
         {/* Amenity key — legible replacement for the poster's baked-in legend.
             Tap a row to isolate that type on the map; tap again to clear. */}
         {amenityKey && !meetMode && (
-          <div style={{
+          <div role="group" aria-label="Amenity key" style={{
             position: "absolute", left: 10, top: 90, zIndex: 6,
             background: "rgba(var(--glass),0.94)",
-            border: "1px solid var(--line-2)", borderRadius: 12,
-            padding: 4, minWidth: 124,
+            border: "none", borderRadius: "var(--rad-md)",
+            padding: 4, minWidth: 140,
             backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
-            boxShadow: "0 6px 20px rgba(var(--shade-rgb),0.22)",
+            boxShadow: "var(--e2)",
           }}>
             {AMENITY_KEY.map(a => {
               const on = amenityFilter === a.type;
@@ -2611,23 +2613,24 @@ function MapScreen({ state, setState }) {
                   onClick={() => setAmenityFilter(f => f === a.type ? null : a.type)}
                   onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setAmenityFilter(f => f === a.type ? null : a.type); } }}
                   style={{
-                    display: "flex", alignItems: "center", gap: 7,
-                    padding: "5px 7px", borderRadius: 8, cursor: "pointer",
+                    // 44pt rows (they were 24). A filtered-out row reads quieter
+                    // by colour, not opacity, so its label stays above AA.
+                    display: "flex", alignItems: "center", gap: 9,
+                    minHeight: 44, padding: "0 10px", borderRadius: "var(--rad-sm)", cursor: "pointer",
                     background: on ? "var(--ink)" : "transparent",
-                    opacity: amenityFilter && !on ? 0.42 : 1,
-                    transition: "background 0.12s, opacity 0.12s",
+                    transition: "background 0.12s",
                   }}>
                   <span style={{
                     width: 13, height: 13, borderRadius: 13, flexShrink: 0,
                     background: a.color, border: "1.5px solid var(--ink)",
                     boxShadow: "0 1px 3px rgba(var(--shade-rgb),0.3)",
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    fontFamily: "Geist Mono, monospace", fontSize: 8,
-                    fontWeight: 900, color: a.ink, lineHeight: 1,
+                    fontFamily: "var(--f-ui)", fontSize: 8,
+                    fontWeight: 800, color: a.ink, lineHeight: 1,
                   }}>{a.letter}</span>
-                  <span style={{
-                    fontSize: 11, fontWeight: 600, flex: 1,
-                    color: on ? "var(--paper)" : "var(--ink)",
+                  <span className="duo-body-s" style={{
+                    fontSize: 14, flex: 1,
+                    color: on ? "var(--bg)" : amenityFilter ? "var(--ink-2)" : "var(--ink)",
                   }}>{a.label}</span>
                 </div>
               );
@@ -2795,49 +2798,47 @@ function MapScreen({ state, setState }) {
                 <div style={{ overflowY: "auto", padding: "0 8px 10px", flex: 1 }}>
                   <div style={{ background: "var(--paper-2)", borderRadius: 10 }}>
                     {stageMatches.length > 0 && (
-                      <div className="mono" style={{ padding: "8px 12px 4px", fontSize: 9, letterSpacing: 1.4, color: "var(--muted)" }}>STAGES</div>
+                      <h3 className="duo-sect" style={{ padding: "10px 12px 4px" }}>Stages</h3>
                     )}
                     {stageMatches.map((s) => (
                       <button key={`stage-${s.id}`} onClick={() => { setSelectedStage(s.id); setSearch(""); setSearchSheetExpanded(false); }} style={{
-                        width: "100%", display: "flex", alignItems: "center", gap: 8, padding: "10px 12px",
+                        width: "100%", display: "flex", alignItems: "center", gap: 10, padding: "0 12px", minHeight: 48,
                         background: "transparent", border: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer",
-                        borderRadius: 10,
+                        borderRadius: "var(--rad-sm)",
                       }}>
-                        <span style={{ width: 8, height: 8, borderRadius: 8, background: s.color, boxShadow: `0 0 6px ${s.color}` }}/>
-                        <span style={{ fontFamily: "Geist, sans-serif", fontSize: 13, flex: 1 }}>{s.name}</span>
-                        {savedStages.has(s.id) && <span aria-label="Saved" style={{ color: "var(--ember-ink)", fontSize: 12 }}>♥</span>}
+                        <span style={{ width: 10, height: 10, borderRadius: 10, background: s.color, flexShrink: 0 }}/>
+                        <span className="duo-headline" style={{ fontSize: 15, flex: 1 }}>{s.name}</span>
+                        {savedStages.has(s.id) && <span aria-label="Saved" style={{ color: "var(--acc-ink)", fontSize: 13 }}>♥</span>}
                       </button>
                     ))}
                     {artistMatches.length > 0 && (
-                      <div className="mono" style={{ padding: "8px 12px 4px", fontSize: 9, letterSpacing: 1.4, color: "var(--muted)" }}>ARTISTS</div>
+                      <h3 className="duo-sect" style={{ padding: "10px 12px 4px" }}>Artists</h3>
                     )}
                     {artistMatches.map((a) => {
                       const st = STAGES.find(s => s.id === a.stage);
                       const isSaved = state.saved.includes(a.id);
-                      const when = a.start ? `${a.start}${a.day ? ` · D${a.day}` : ""}` : "";
                       return (
                         <button key={`artist-${a.id}`} onClick={() => { setSelectedStage(a.stage); setSearch(""); setSearchSheetExpanded(false); }} style={{
-                          width: "100%", display: "flex", alignItems: "center", gap: 8, padding: "10px 12px",
-                          background: "transparent", border: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer",
-                          borderRadius: 10,
+                          width: "100%", display: "flex", alignItems: "center", gap: 12, padding: "6px 12px", minHeight: 56,
+                          background: isSaved ? "var(--acc-08)" : "transparent", border: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer",
+                          borderRadius: "var(--rad-sm)",
                         }}>
-                          <span style={{ width: 8, height: 8, borderRadius: 8, background: st?.color || "var(--muted)", flexShrink: 0 }}/>
+                          <DuoAvatar name={a.name} size={38} ring={isSaved ? "on" : ""} />
+                          {/* Names in full (they wrap), and a 12-hour time
+                              with the day's name instead of "00:32 · D2". */}
                           <span style={{ display: "flex", flexDirection: "column", flex: 1, minWidth: 0, gap: 1 }}>
-                            <span style={{ fontFamily: "Geist, sans-serif", fontSize: 13, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                              {isSaved && <span style={{ color: "var(--ember-ink)", marginRight: 4 }}>★</span>}{a.name}
+                            <span className="duo-headline duo-name" style={{ fontSize: 15, fontWeight: 700 }}>{actDisplayName(a.name)}</span>
+                            <span className="duo-body-s duo-ink2" style={{ fontWeight: 400 }}>
+                              {[st?.name, a.start ? fmt12(a.start) : null, FESTIVAL_CONFIG.dayDates?.[a.day]?.name].filter(Boolean).join(" · ")}
                             </span>
-                            {when && <span className="mono" style={{ fontSize: 9, letterSpacing: 0.5, color: "var(--muted)" }}>{when}</span>}
-                          </span>
-                          <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", flexShrink: 0 }}>
-                            → {st?.short || st?.name || ""}
                           </span>
                         </button>
                       );
                     })}
                     {stageMatches.length === 0 && artistMatches.length === 0 && (
                       <div style={{ padding: "18px 14px", textAlign: "center" }}>
-                        <div style={{ fontSize: 13, color: "var(--ink)", marginBottom: 4 }}>No matches for "{search}"</div>
-                        <div style={{ fontSize: 11, color: "var(--muted)" }}>Try an artist name, a stage, or a genre.</div>
+                        <div className="duo-headline" style={{ fontSize: 15, marginBottom: 4 }}>No matches for “{search}”</div>
+                        <div className="duo-body-s duo-ink2" style={{ fontWeight: 400 }}>Try an artist name, a stage, or a genre.</div>
                       </div>
                     )}
                   </div>
@@ -5432,11 +5433,10 @@ function RealMap({
       {/* Style toggle — always visible (was gated on `loaded`, which never
           flipped true for some users → toggle was hidden). */}
       {packMode ? (
-        <div role="status" className="mono" style={{
+        <div role="status" className="duo-code" style={{
           position: "absolute", top: 108, right: 10, zIndex: 4,
           background: "rgba(var(--shade-rgb),0.78)", color: "var(--ink)",
-          border: "1px solid rgba(var(--ink-rgb),0.18)", borderRadius: 999,
-          padding: "6px 11px", fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
+          borderColor: "rgba(var(--ink-rgb),0.18)", padding: "8px 10px 7px",
           backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
         }}>OFFLINE · SAVED STREET MAP</div>
       ) : (
@@ -6586,32 +6586,28 @@ function StageNavBar({ stage, walk, onDetails, onStop }) {
   }, [onStop]);
   return (
     <div style={{
-      background: "var(--paper)", color: "var(--ink)",
-      padding: "12px 14px calc(12px + env(safe-area-inset-bottom, 0px))",
-      borderTopLeftRadius: 22, borderTopRightRadius: 22,
-      boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.4)",
-      display: "flex", alignItems: "center", gap: 11,
+      background: "var(--s1)", color: "var(--ink)",
+      padding: "12px 12px calc(12px + env(safe-area-inset-bottom, 0px)) 16px",
+      borderTopLeftRadius: "var(--rad-lg)", borderTopRightRadius: "var(--rad-lg)",
+      boxShadow: "var(--e2)",
+      display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap",
       animation: "sheetUp 0.25s var(--ease-smooth)",
     }}>
-      <div style={{
-        width: 40, height: 40, borderRadius: 40, background: stage.color, flexShrink: 0,
+      <div className="duo-well" style={{
+        width: 40, height: 40, borderRadius: "50%", flexShrink: 0, color: "var(--acc-ink)",
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={_inkOn(stage.color)} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
       </div>
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, fontWeight: 700, color: "var(--muted)" }}>ROUTING TO</div>
-        <div className="serif" style={{ fontSize: 19, lineHeight: 1.05, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{stage.name}</div>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 600, marginTop: 1 }}>{eta ? `~${eta} MIN \u00b7 ` : ""}FOLLOW THE ROUTE</div>
+      <div style={{ flex: "1 1 120px", minWidth: 0 }}>
+        <div className="duo-label duo-ink3">Routing to</div>
+        <div className="duo-headline duo-name" style={{ marginTop: 2 }}>{stage.name}</div>
+        <div className="duo-data-s duo-ink2" style={{ marginTop: 1 }}>{eta ? `~${eta} min \u00b7 ` : ""}follow the route</div>
       </div>
-      <button onClick={onDetails} aria-label="Show stage details" className="mono" style={{
-        flexShrink: 0, background: "var(--paper-2)", border: "1px solid var(--line-2)", color: "var(--ink)",
-        borderRadius: 999, padding: "9px 13px", cursor: "pointer", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-      }}>DETAILS</button>
-      <button onClick={onStop} aria-label="Stop routing" className="mono" style={{
-        flexShrink: 0, background: "var(--ink)", border: "none", color: "var(--paper)",
-        borderRadius: 999, padding: "9px 13px", cursor: "pointer", fontSize: 10, letterSpacing: 1.2, fontWeight: 800,
-      }}>✕ STOP</button>
+      <button onClick={onDetails} aria-label="Show stage details" className="duo-chip"><span>Details</span></button>
+      <button onClick={onStop} aria-label="Stop routing" className="duo-btn" style={{
+        flexShrink: 0, background: "var(--s3)", color: "var(--ink)", minHeight: 44, padding: "0 14px", fontSize: 14,
+      }}>Stop</button>
     </div>
   );
 }
@@ -6632,29 +6628,29 @@ function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, m
       : `Group · ${groupFriends.length + 1} people`;
     const routingLabel = groupFriends.length > 1 ? "ALL ROUTING LIVE" : groupFriends.length === 1 ? "BOTH ROUTING LIVE" : "ROUTING LIVE";
     return (
-      <div style={{ background: "var(--paper)", color: "var(--ink)", padding: "14px 16px 12px", borderTopLeftRadius: 22, borderTopRightRadius: 22, boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.4)" }}>
+      <div style={{ background: "var(--s1)", color: "var(--ink)", padding: "14px 16px 12px", borderTopLeftRadius: "var(--rad-lg)", borderTopRightRadius: "var(--rad-lg)", boxShadow: "var(--e2)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
-          <div style={{ width: 38, height: 38, borderRadius: 38, background: "var(--ember)", color: "var(--on-ember)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+          <div style={{ width: 40, height: 40, borderRadius: 40, background: "var(--acc)", color: "var(--on-acc)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2 C8 2 5 5 5 9 c0 5 7 13 7 13 s7-8 7-13 c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5" fill="currentColor"/></svg>
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--ember-ink)", fontWeight: 700 }}>MEETING</div>
-            <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>{title}</div>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 2 }}>{eta == null ? "" : `ETA ~${eta} MIN \u00b7 `}{routingLabel}</div>
+            <div className="duo-label duo-acc">Meeting</div>
+            <div className="duo-headline" style={{ marginTop: 2 }}>{title}</div>
+            <div className="duo-data-s duo-ink2" style={{ marginTop: 2 }}>{eta == null ? "" : `ETA ~${eta} MIN \u00b7 `}{routingLabel}</div>
           </div>
-          <button onClick={onCancelMeet} style={{ background: "transparent", border: "1px solid var(--line-2)", color: "var(--muted)", borderRadius: 999, padding: "7px 10px", cursor: "pointer", fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600 }}>END</button>
+          <button onClick={onCancelMeet} className="duo-chip"><span>End</span></button>
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-          <div style={{ flex: "1 0 calc(50% - 4px)", background: "var(--paper-2)", borderRadius: 10, padding: "7px 10px" }}>
-            <div className="mono" style={{ fontSize: 8, letterSpacing: 1.3, color: "var(--muted)" }}>YOUR ETA</div>
-            <div className="serif" style={{ fontSize: 18, marginTop: 2 }}>{youMins == null
-              ? <span style={{ fontSize: 11, color: "var(--muted)" }}>UNSURVEYED</span>
+          <div className="duo-card" style={{ flex: "1 0 calc(50% - 4px)", padding: "10px 12px" }}>
+            <div className="duo-label duo-ink3">Your ETA</div>
+            <div className="duo-clock" style={{ fontSize: 22, marginTop: 4 }}>{youMins == null
+              ? <span className="duo-data-s duo-ink2">Unsurveyed</span>
               : <>{youMins} <span style={{ fontSize: 11 }}>min</span></>}</div>
           </div>
           {fEtas.map(({ f, mins }) => (
-            <div key={f.id} style={{ flex: "1 0 calc(50% - 4px)", background: "var(--paper-2)", borderRadius: 10, padding: "7px 10px" }}>
-              <div className="mono" style={{ fontSize: 8, letterSpacing: 1.3, color: f.color }}>{f.name.toUpperCase()} ETA</div>
-              <div className="serif" style={{ fontSize: 18, marginTop: 2 }}>{mins} <span style={{ fontSize: 11 }}>min</span></div>
+            <div key={f.id} className="duo-card" style={{ flex: "1 0 calc(50% - 4px)", padding: "10px 12px" }}>
+              <div className="duo-label duo-ink3">{f.name} ETA</div>
+              <div className="duo-clock" style={{ fontSize: 22, marginTop: 4 }}>{mins} <span style={{ fontSize: 11 }}>min</span></div>
             </div>
           ))}
         </div>
@@ -6695,17 +6691,13 @@ function YourStagePhotosStrip({ stageId, accent, onOpen, stageObj }) {
   const preview = mine.slice(0, 6);
   const more = mine.length - preview.length;
   return (
-    <div style={{
-      marginBottom: 10, padding: "10px 12px",
-      background: `${accent}14`, border: `1px solid ${accent}40`,
-      borderRadius: 12,
-    }}>
-      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 8 }}>
+    <div className="duo-card" style={{ marginBottom: 10, padding: "12px 12px 10px 14px" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, flexWrap: "wrap", marginBottom: 6 }}>
         <div>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: accent, fontWeight: 700 }}>
-            ◐ YOUR NIGHTS AT THIS STAGE
+          <div className="duo-label duo-ink3">
+            Your nights at this stage
           </div>
-          <div className="serif" style={{ fontSize: 13, color: "var(--ink)", marginTop: 2 }}>
+          <div className="duo-body-s" style={{ color: "var(--ink)", marginTop: 3 }}>
             {mine.length} {mine.length === 1 ? "memory" : "memories"} saved
           </div>
         </div>
@@ -6713,30 +6705,14 @@ function YourStagePhotosStrip({ stageId, accent, onOpen, stageObj }) {
           {stageObj && mine.length > 0 && (<>
             <button
               onClick={() => window._shareStageCollage?.(stageObj, mine)}
-              className="mono"
-              title="Share a photo collage of your nights at this stage"
-              style={{
-                background: accent, color: "var(--ink)", border: "none",
-                borderRadius: 999, padding: "5px 11px", cursor: "pointer",
-                fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                whiteSpace: "nowrap",
-              }}>📸 SHARE</button>
+              className="duo-chip"
+              title="Share a photo collage of your nights at this stage"><span>Share</span></button>
             <button
               onClick={() => window._shareStageCollage?.(stageObj, mine, "gif")}
-              className="mono"
-              title="Share an animated GIF of your nights at this stage"
-              style={{
-                background: "var(--signal)", color: "var(--on-signal)", border: "none",
-                borderRadius: 999, padding: "5px 11px", cursor: "pointer",
-                fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                whiteSpace: "nowrap",
-              }}>🎬 GIF</button>
+              className="duo-chip"
+              title="Share an animated GIF of your nights at this stage"><span>GIF</span></button>
           </>)}
-          <button onClick={onOpen} className="mono" style={{
-            background: "transparent", border: "none", color: "var(--muted)",
-            cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-            padding: 0,
-          }}>VIEW ALL →</button>
+          <button onClick={onOpen} className="duo-link">View all →</button>
         </div>
       </div>
       <div style={{
@@ -6748,12 +6724,11 @@ function YourStagePhotosStrip({ stageId, accent, onOpen, stageObj }) {
           <_YourMomentThumb key={m.id} moment={m} accent={accent} onClick={() => onOpen(m.night)} />
         ))}
         {more > 0 && (
-          <button onClick={onOpen} className="mono" aria-label={`View all ${mine.length} memories`} style={{
+          <button onClick={onOpen} className="duo-data" aria-label={`View all ${mine.length} memories`} style={{
             width: 76, height: 76, flexShrink: 0,
-            borderRadius: 10,
-            background: "transparent",
-            border: `1px dashed ${accent}66`, color: accent,
-            cursor: "pointer", fontSize: 10, letterSpacing: 1, fontWeight: 700,
+            borderRadius: "var(--rad-sm)",
+            background: "var(--s3)", border: "none", color: "var(--ink-2)",
+            cursor: "pointer",
           }}>+{more}</button>
         )}
       </div>
@@ -6777,152 +6752,115 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
     return () => document.removeEventListener("keydown", onKey);
   }, [onClose]);
 
+  // The board's place card: an s1 sheet with the stage's colour as a dot
+  // only (stage colours stay on the map), board stat cards, the accent
+  // button, and the Lineup row for every set.
+  const cellNote = (t) => t == null ? null : String(t).charAt(0) + String(t).slice(1).toLowerCase();
   return (
     <div style={{
-      background: "var(--paper)", color: "var(--ink)",
+      background: "var(--s1)", color: "var(--ink)",
       padding: "0 0 10px",
-      borderTopLeftRadius: 22, borderTopRightRadius: 22,
-      boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.4)",
+      borderTopLeftRadius: "var(--rad-lg)", borderTopRightRadius: "var(--rad-lg)",
+      boxShadow: "var(--e2)",
       maxHeight: expanded ? "72vh" : "auto",
       display: "flex", flexDirection: "column",
       overflow: "hidden",
       animation: "sheetUp 0.3s var(--ease-smooth)",
     }}>
-      {/* Stage-color hero strip — Apple Maps place-card pattern. Ink (text +
-          handle + close) auto-flips to dark on light stage colors so it stays
-          WCAG-readable on cyan/green/yellow stages, not just dark ones. */}
-      <div style={{
-        background: stage.color, color: heroInk,
-        padding: "6px 16px 12px", position: "relative",
-      }}>
+      <div style={{ padding: "6px 16px 4px", position: "relative" }}>
         <div onClick={() => setExpanded(e => !e)} style={{
           display: "flex", justifyContent: "center", cursor: "pointer",
           padding: "2px 0 8px",
         }}>
-          <div style={{ width: 36, height: 4, borderRadius: 4, background: heroInk === "var(--ink)" ? "rgba(var(--ink-rgb),0.55)" : "rgba(var(--shade-rgb),0.45)" }}/>
+          <div style={{ width: 36, height: 4, borderRadius: 4, background: "var(--line-2)" }}/>
         </div>
         <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, fontWeight: 700, opacity: 0.85, marginBottom: 3 }}>
-              {stage.short} · STAGE
+            <div className="duo-label duo-ink3" style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
+              <i aria-hidden="true" style={{ width: 10, height: 10, borderRadius: "50%", background: stage.color, flexShrink: 0 }} />
+              {stage.short} · Stage
             </div>
-            <div className="serif" style={{ fontSize: 24, lineHeight: 1, letterSpacing: -0.3 }}>
+            <div className="duo-title duo-name">
               {stage.name}
             </div>
           </div>
           <button onClick={onClose} aria-label="Close" style={{
-            background: heroInk === "var(--ink)" ? "rgba(var(--ink-rgb),0.22)" : "rgba(var(--shade-rgb),0.14)",
-            border: `1px solid ${heroInk === "var(--ink)" ? "rgba(var(--ink-rgb),0.35)" : "rgba(var(--shade-rgb),0.25)"}`,
-            color: heroInk, borderRadius: 999, width: 30, height: 30, padding: 0,
-            cursor: "pointer", fontSize: 16, fontWeight: 700, flexShrink: 0,
+            background: "var(--s3)", border: "none",
+            color: "var(--ink)", borderRadius: "50%", width: 44, height: 44, padding: 0,
+            cursor: "pointer", fontSize: 20, flexShrink: 0, marginRight: -6,
             display: "flex", alignItems: "center", justifyContent: "center",
-            backdropFilter: "blur(6px)",
           }}>×</button>
         </div>
       </div>
 
-      {/* Metadata grid — Apple-Maps place-card stat cells. Replaces the old
-          crammed single 9px line: each fact gets its own scannable cell. */}
+      {/* Stat cells. An unmeasured walk or distance is a dash with
+          "Unsurveyed" under it, never a number; both cells keep their place
+          so the card does not reflow. */}
       <div style={{
-        display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6,
-        padding: "10px 14px 0",
+        // auto-fit, not a fixed 3: at 320 a third of the row is narrower than
+        // "DISTANCE" in Michroma and "Unsurveyed" in Martian Mono.
+        display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(104px, 1fr))", gap: 8,
+        padding: "8px 16px 0",
       }}>
         {[
-          // A dash with UNSURVEYED under it, never a number. Both cells keep
-          // their place in the grid so the card does not reflow, and the note
-          // says WHY — an unexplained "—" just reads as a broken app.
           walk.known === false
-            ? { label: "WALK", value: "—", unit: "", note: "UNSURVEYED" }
-            : { label: "WALK", value: walkMinsLabel(walk), unit: "min", note: walk.peak ? "PEAK" : walk.plan ? "PLAN 20+" : null },
+            ? { label: "Walk", value: "—", unit: "", note: "UNSURVEYED" }
+            : { label: "Walk", value: walkMinsLabel(walk), unit: "min", note: walk.peak ? "PEAK" : walk.plan ? "PLAN 20+" : null },
           distM == null
-            ? { label: "DISTANCE", value: "—", unit: "", note: "UNSURVEYED" }
-            : { label: "DISTANCE", value: `${distM}`, unit: "m", note: null },
-          { label: "SETS", value: `${sets.length}`, unit: day === NOW.night ? "today" : "set day", note: `${totalAcrossDays} · ${DAYS.length} NIGHTS` },
+            ? { label: "Distance", value: "—", unit: "", note: "UNSURVEYED" }
+            : { label: "Distance", value: `${distM}`, unit: "m", note: null },
+          { label: "Sets", value: `${sets.length}`, unit: day === NOW.night ? "today" : "set day", note: `${totalAcrossDays} · ${DAYS.length} NIGHTS` },
         ].map(c => (
-          <div key={c.label} style={{
-            background: "var(--paper-2)", border: "1px solid var(--line)",
-            borderRadius: 12, padding: "8px 10px", minWidth: 0,
-          }}>
-            <div className="mono" style={{ fontSize: 8, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>{c.label}</div>
-            <div className="serif" style={{ fontSize: 20, lineHeight: 1, marginTop: 3, color: "var(--ink)" }}>
-              {c.value}{c.unit ? <span style={{ fontSize: 10, fontWeight: 400, color: "var(--muted)" }}> {c.unit}</span> : null}
+          <div key={c.label} className="duo-card" style={{ padding: "10px 12px", minWidth: 0 }}>
+            <div className="duo-label duo-ink3">{c.label}</div>
+            <div className="duo-clock" style={{ fontSize: 24, marginTop: 6, color: "var(--ink)" }}>
+              {c.value}{c.unit ? <span className="duo-body-s duo-ink2" style={{ fontWeight: 400, letterSpacing: 0 }}> {c.unit}</span> : null}
             </div>
-            {c.note && <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--muted)", fontWeight: 700, marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{c.note}</div>}
+            {c.note && <div className="duo-data-s duo-ink2" style={{ marginTop: 4 }}>{cellNote(c.note)}</div>}
           </div>
         ))}
       </div>
 
-      {/* Primary CTA row — GO HERE (route + live ETA) · PEEK · SAVE.
-          Apple-Maps "Directions / … / bookmark" pattern. */}
-      <div style={{ display: "flex", gap: 6, padding: "8px 14px 0" }}>
-        <button onClick={() => onGoHere?.(stage)} className="mono" style={{
-          flex: 2, background: stage.color, color: heroInk, border: "none",
-          borderRadius: 12, padding: "11px 10px", cursor: "pointer",
-          fontSize: 11, letterSpacing: 1.2, fontWeight: 800,
-          display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
-        }}>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={heroInk} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
-          GO HERE
+      {/* Go here (route + live ETA) · Peek · Save. */}
+      <div style={{ display: "flex", gap: 8, padding: "10px 16px 0" }}>
+        <button onClick={() => onGoHere?.(stage)} className="duo-btn pri" style={{ flex: 2, minHeight: 48, fontSize: 15, padding: "0 10px" }}>
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+          Go here
         </button>
-        <button onClick={() => setPeek(p => !p)} aria-pressed={peek} className="mono" style={{
-          flex: 1, background: peek ? stage.color : "var(--paper-2)",
-          color: peek ? _inkOnHex(stage.color) : "var(--ink)",
-          border: peek ? "none" : "1px solid var(--line-2)",
-          borderRadius: 12, padding: "11px 8px", cursor: "pointer",
-          fontSize: 11, letterSpacing: 1.2, fontWeight: 700,
-        }}>{peek ? "◉ PEEK" : "◯ PEEK"}</button>
+        <button onClick={() => setPeek(p => !p)} aria-pressed={peek} className="duo-btn" style={{
+          flex: 1, minHeight: 48, fontSize: 15, padding: "0 8px",
+          background: peek ? "var(--acc-14)" : "var(--s3)", color: peek ? "var(--acc-ink)" : "var(--ink)",
+        }}>Peek</button>
         <button onClick={() => onToggleSave?.(stage.id)} aria-pressed={!!stageSaved}
-          aria-label={stageSaved ? "Saved — remove this stage" : "Save this stage"} className="mono" style={{
-          flex: 1, background: stageSaved ? "rgba(var(--signal-rgb),0.12)" : "var(--paper-2)",
-          color: stageSaved ? "var(--ember-ink)" : "var(--ink)",
-          border: stageSaved ? "1px solid rgba(var(--signal-rgb),0.45)" : "1px solid var(--line-2)",
-          borderRadius: 12, padding: "11px 8px", cursor: "pointer",
-          fontSize: 11, letterSpacing: 1.2, fontWeight: 700,
-          display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 5,
-        }}>{stageSaved ? "♥ SAVED" : "♡ SAVE"}</button>
+          aria-label={stageSaved ? "Saved — remove this stage" : "Save this stage"} className="duo-btn" style={{
+          flex: 1, minHeight: 48, fontSize: 15, padding: "0 8px",
+          background: stageSaved ? "var(--acc-14)" : "var(--s3)", color: stageSaved ? "var(--acc-ink)" : "var(--ink)",
+        }}>{stageSaved ? "♥ Saved" : "♡ Save"}</button>
       </div>
 
       {/* Secondary — full lineup + far-stage hint. */}
-      <div style={{ display: "flex", gap: 6, padding: "8px 14px 2px" }}>
-        <button onClick={() => setState({ ...state, tab: "lineup", lineupDay: day, stageFilter: stage.id })} className="mono" style={{
-          flex: 1, background: "transparent", border: "1px solid var(--line-2)",
-          color: "var(--muted)", borderRadius: 999, padding: "7px 13px", cursor: "pointer",
-          fontSize: 10, letterSpacing: 1.2, fontWeight: 700, whiteSpace: "nowrap",
-        }}>☰ FULL LINEUP</button>
+      <div style={{ display: "flex", gap: 8, padding: "6px 16px 2px", alignItems: "center", flexWrap: "wrap" }}>
+        <button onClick={() => setState({ ...state, tab: "lineup", lineupDay: day, stageFilter: stage.id })} className="duo-chip">
+          <span>Full lineup</span>
+        </button>
         {walk.known !== false && walk.lo > 25 && (
-          <div className="mono" style={{
-            flexShrink: 0, background: "rgba(var(--alert-rgb),0.1)", border: "1px solid rgba(var(--alert-rgb),0.35)",
-            color: "var(--alert)", borderRadius: 999, padding: "7px 13px",
-            fontSize: 10, letterSpacing: 1.2, fontWeight: 700, whiteSpace: "nowrap",
-            display: "inline-flex", alignItems: "center",
-          }}>↗ FAR · {walk.lo} MIN</div>
+          <span className="duo-data-s" style={{ color: "var(--clash)" }}>↗ Far · {walk.lo} min</span>
         )}
       </div>
 
-      <div style={{ padding: "6px 14px 0" }}>
+      <div style={{ padding: "6px 16px 0" }}>
 
-      {/* Stage vibe — vet-flavor descriptor that summarises the room's
-          identity ("Sunrise Cathedral", "Loudest Drops") plus when it peaks.
-          Falls back gracefully if the stage data has no vibe field yet. */}
+      {/* Stage vibe: the room's identity and when it peaks. */}
       {stage.vibe && (
-        <div style={{
-          marginBottom: 10, padding: "9px 11px", borderRadius: 12,
-          background: "var(--paper-2)",
-          borderLeft: `3px solid ${stage.color}`,
-        }}>
-          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 8 }}>
-            <div className="mono" style={{
-              fontSize: 9, letterSpacing: 1.4, fontWeight: 800,
-              color: stage.color, textTransform: "uppercase",
-            }}>{stage.vibe}</div>
+        <div className="duo-well" style={{ marginBottom: 10, padding: "10px 12px" }}>
+          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 8, flexWrap: "wrap" }}>
+            <div className="duo-label" style={{ color: "var(--ink)" }}>{stage.vibe}</div>
             {stage.peak && (
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 600 }}>
-                PEAKS {stage.peak}
-              </div>
+              <div className="duo-data-s duo-ink2">Peaks {stage.peak}</div>
             )}
           </div>
           {stage.vibeNote && (
-            <div style={{ fontSize: 12, lineHeight: 1.35, color: "var(--ink)", marginTop: 4 }}>
+            <div className="duo-body-s duo-ink2" style={{ marginTop: 4, fontWeight: 400 }}>
               {stage.vibeNote}
             </div>
           )}
@@ -6939,53 +6877,43 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
       />
 
       {/* Day tabs */}
-      <div style={{ display: "flex", gap: 4, marginBottom: 10 }}>
+      <div className="duo-seg" role="radiogroup" aria-label="Day" style={{ marginBottom: 10 }}>
         {DAYS.map(d => {
           const on = d.n === day;
           const count = activeLineup().filter(a => a.stage === stage.id && a.day === d.n).length;
           return (
-            <button key={d.n} onClick={() => { setDay(d.n); setExpanded(true); }} style={{
-              flex: 1, padding: "7px 6px", borderRadius: 8,
-              background: on ? stage.color : "var(--paper-2)",
-              color: on ? _inkOnHex(stage.color) : "var(--ink)",
-              border: "none", cursor: "pointer",
-              display: "flex", flexDirection: "column", alignItems: "center", gap: 1,
+            <button key={d.n} role="radio" aria-checked={on} onClick={() => { setDay(d.n); setExpanded(true); }} style={{
+              minHeight: 44, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 2,
             }}>
-              <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, opacity: on ? 1 : 0.55, fontWeight: 600 }}>{d.label}</span>
-              <span className="serif" style={{ fontSize: 13, lineHeight: 1 }}>{count} <span style={{ fontSize: 9, opacity: on ? 1 : 0.7 }}>sets</span></span>
+              <span>{d.label}</span>
+              <span className="duo-data-s" style={{ color: on ? "var(--ink-2)" : "var(--ink-3)" }}>{count} sets</span>
             </button>
           );
         })}
       </div>
 
-      {/* Now playing marker (only if today) */}
+      {/* Now playing (only if today): the board's lifted card. */}
       {day === NOW.night && nowAtStage && (
-        <div onClick={() => onOpenArtist(nowAtStage.id)} style={{
-          display: "flex", alignItems: "center", gap: 10,
-          padding: "8px 10px", marginBottom: 8,
-          background: stage.color, color: _inkOnHex(stage.color),
-          borderRadius: 12, cursor: "pointer",
+        <div onClick={() => onOpenArtist(nowAtStage.id)} className="duo-card duo-lift" style={{
+          display: "flex", alignItems: "center", gap: 12,
+          padding: "10px 12px", marginBottom: 8, cursor: "pointer",
         }}>
-          <span style={{
-            width: 7, height: 7, borderRadius: 7, background: "var(--ink)",
-            boxShadow: "0 0 0 4px rgba(var(--ink-rgb),0.3)",
-            animation: "pulse 1.6s infinite", flexShrink: 0,
-          }}/>
+          <DuoAvatar name={nowAtStage.name} size={42} ring="on" />
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, fontWeight: 700 }}>ON STAGE NOW</div>
-            <div className="serif" style={{ fontSize: 16, lineHeight: 1.05 }}>{nowAtStage.name}</div>
-          </div>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1, opacity: 0.9, whiteSpace: "nowrap" }}>
-            {fmt12(nowAtStage.start)}–{fmt12(nowAtStage.end)}
+            <DuoLive>On stage now</DuoLive>
+            <div className="duo-headline duo-name" style={{ fontWeight: 700, marginTop: 2 }}>{actDisplayName(nowAtStage.name)}</div>
+            <div className="duo-data-s duo-ink2" style={{ marginTop: 2 }}>
+              {fmt12(nowAtStage.start)}–{fmt12(nowAtStage.end)}
+            </div>
           </div>
         </div>
       )}
 
       {/* Full day lineup */}
-      <div style={{ overflowY: "auto", flex: 1, maxHeight: expanded ? "50vh" : 180, paddingBottom: 6 }}>
+      <div style={{ overflowY: "auto", flex: 1, maxHeight: expanded ? "50vh" : 180, paddingBottom: 6, margin: "0 -4px", padding: "0 4px" }}>
         {sets.length === 0 && (
           <div style={{ padding: "20px 0", textAlign: "center" }}>
-            <div className="serif" style={{ fontSize: 16, fontStyle: "italic", color: "var(--muted)" }}>
+            <div className="duo-body-s duo-ink2" style={{ fontWeight: 400, fontSize: 15 }}>
               No sets scheduled — stage dark tonight
             </div>
           </div>
@@ -7002,51 +6930,34 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
             setState({ ...state, saved: next });
           };
           return (
-            <div key={s.id} onClick={() => onOpenArtist(s.id)} style={{
-              display: "flex", alignItems: "center", gap: 10,
-              padding: "9px 4px",
-              borderBottom: "1px solid var(--line)",
-              cursor: "pointer",
-              opacity: live ? 1 : 0.92,
-            }}>
-              <div style={{ width: 52, flexShrink: 0 }}>
-                <div className="mono" style={{ fontSize: 10, letterSpacing: 0.3, fontWeight: 600, color: live ? stage.color : "var(--ink)" }}>{fmt12(s.start)}</div>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 0.8, color: "var(--muted)" }}>{fmt12(s.end)}</div>
+            <div key={s.id} onClick={() => onOpenArtist(s.id)}
+              className={"duo-lrow" + (live ? " live" : isSaved ? " plan" : "")}
+              style={{ cursor: "pointer", margin: 0, paddingLeft: 8 }}>
+              <div style={{ width: 72, flexShrink: 0 }}>
+                <div className="duo-data" style={{ fontSize: 13, color: "var(--ink)" }}>{fmt12(s.start)}</div>
+                <div className="duo-data-s duo-ink2">{fmt12(s.end)}</div>
               </div>
+              <DuoAvatar name={s.name} size={42} ring={live || isSaved ? "on" : ""} />
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div className="serif" style={{ fontSize: 18, lineHeight: 1.1, letterSpacing: -0.2 }}>{s.name}</div>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
-                  {s.genre.toUpperCase()}
+                <div className="duo-headline duo-name" style={{ fontWeight: 700 }}>{actDisplayName(s.name)}</div>
+                <div className="duo-body-s duo-ink2" style={{ fontWeight: 400 }}>
+                  {live ? <span style={{ color: "var(--live)" }}>Live · </span> : null}{s.genre}
                 </div>
               </div>
-              {live && (
-                <span className="mono" style={{
-                  fontSize: 8, letterSpacing: 1.3, fontWeight: 700,
-                  color: _inkOnHex(stage.color), background: stage.color,
-                  padding: "2px 6px", borderRadius: 4,
-                }}>LIVE</span>
-              )}
-              <button onClick={toggleSaveSet} aria-pressed={isSaved} aria-label={isSaved ? `Remove ${s.name} from saved sets` : `Save ${s.name}`} style={{
-                background: isSaved ? "var(--ember)" : "transparent",
-                border: `1px solid ${isSaved ? "var(--ember)" : "var(--line-2)"}`,
-                color: isSaved ? "var(--ink)" : "var(--muted)",
-                borderRadius: 999, width: 28, height: 28,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                cursor: "pointer", flexShrink: 0, fontSize: 13,
-                transition: "all .15s",
-              }}>{isSaved ? "✓" : "+"}</button>
+              <button onClick={toggleSaveSet} aria-pressed={!!isSaved} aria-label={isSaved ? `Remove ${s.name} from saved sets` : `Save ${s.name}`} className="duo-add">
+                <span>{isSaved
+                  ? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+                  : <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg>}</span>
+              </button>
             </div>
           );
         })}
       </div>
 
       {!expanded && sets.length > 3 && (
-        <button onClick={() => setExpanded(true)} style={{
-          marginTop: 4, padding: "8px",
-          background: "transparent", border: "none",
-          fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.3, color: "var(--muted)",
-          cursor: "pointer", fontWeight: 600,
-        }}>SEE ALL {sets.length} SETS ↓</button>
+        <button onClick={() => setExpanded(true)} className="duo-link" style={{ marginTop: 2, padding: "0 4px" }}>
+          See all {sets.length} sets ↓
+        </button>
       )}
       </div>
     </div>

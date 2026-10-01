@@ -432,8 +432,9 @@
   @keyframes savePop{0%{transform:scale(1)}35%{transform:scale(1.06)}100%{transform:scale(1)}}
   @keyframes checkIn{0%{opacity:0;transform:scale(0.3)}60%{opacity:1;transform:scale(1.15)}100%{opacity:1;transform:scale(1)}}
   @keyframes springIn{0%{opacity:0;transform:translateY(8px) scale(0.97)}60%{transform:translateY(-2px) scale(1.01)}100%{opacity:1;transform:translateY(0) scale(1)}}
-  .skel{background:linear-gradient(90deg,var(--paper-2) 25%,rgba(var(--ink-rgb),0.08) 50%,var(--paper-2) 75%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite;border-radius:6px}
-  .skel-dark{background:linear-gradient(90deg,rgba(247,237,224,0.04) 25%,rgba(247,237,224,0.08) 50%,rgba(247,237,224,0.04) 75%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite;border-radius:6px}
+  /* Loading placeholders: one board shimmer (the well, a faint ink sweep) in both modes.
+     .skel-dark used to be a hardcoded cream sweep left over from the paper theme. */
+  .skel,.skel-dark{background:linear-gradient(90deg,var(--s3) 25%,rgba(var(--ink-rgb),0.07) 50%,var(--s3) 75%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite;border-radius:var(--rad-xs)}
   /* Keyboard-only focus ring (WCAG 2.4.7) — :focus-visible so it never shows on mouse/touch tap. */
   :focus-visible{outline:2px solid var(--ember);outline-offset:2px;border-radius:3px}
   @media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important}}

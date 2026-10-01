@@ -89,10 +89,10 @@ function _HistHeader({ title, sub, onBack, right }) {
 }
 
 function _HistStatus({ res, retry, what }) {
-  if (res.status === "loading") return <p role="status" style={{ margin: "24px 20px", color: "var(--text-2)" }}>Loading {what}…</p>;
+  if (res.status === "loading") return <p role="status" className="duo-body-s duo-ink2" style={{ margin: "24px 20px", fontWeight: 400 }}>Loading {what}…</p>;
   return (
-    <div role="status" style={{ margin: "24px 20px", display: "grid", gap: 12 }}>
-      <p style={{ margin: 0, color: "var(--text-2)" }}>Couldn't load {what}. Past festivals need a connection the first time you open them.</p>
+    <div role="status" className="duo-card" style={{ margin: "24px 16px", padding: 16, display: "grid", gap: 12 }}>
+      <p className="duo-body" style={{ margin: 0, color: "var(--ink-2)" }}>Couldn't load {what}. Past festivals need a connection the first time you open them.</p>
       <FieldButton kind="secondary" onClick={retry}>Try again</FieldButton>
     </div>
   );

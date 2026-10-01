@@ -8036,51 +8036,33 @@ function FollowedNudge({ state, setState }) {
   };
 
   return (
-    <div style={{
-      background: "rgba(var(--spotify-rgb),0.1)", border: "1px solid rgba(var(--spotify-rgb),0.25)",
-      borderRadius: 16, padding: "14px 16px", marginBottom: 14,
-    }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-        <div>
-          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--spotify)", fontWeight: 700 }}>
-            YOU FOLLOW {followed.length} {(FESTIVAL_CONFIG.brand || "").toUpperCase()} ACT{followed.length > 1 ? "S" : ""} NOT IN YOUR LINEUP
-          </span>
-        </div>
-        <div style={{ display: "flex", gap: 6 }}>
-          <button onClick={handleSaveAll} style={{
-            background: "var(--spotify)", color: "var(--paper)", border: "none",
-            borderRadius: 999, padding: "5px 10px", cursor: "pointer",
-            fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1, fontWeight: 700,
-          }}>SAVE ALL</button>
-          <button onClick={() => setExpanded(e => !e)} style={{
-            background: "transparent", color: "var(--text-3)",
-            border: "1px solid rgba(var(--ink-rgb),0.2)",
-            borderRadius: 999, padding: "5px 10px", cursor: "pointer",
-            fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1,
-          }}>{expanded ? "HIDE" : "VIEW"}</button>
-        </div>
+    <div className="duo-card" style={{ padding: "14px 16px", marginBottom: 14 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <i aria-hidden="true" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--spotify)", flexShrink: 0 }} />
+        <span className="duo-body-s" style={{ flex: 1, minWidth: 0, fontSize: 15 }}>
+          You follow {followed.length} {FESTIVAL_CONFIG.brand || ""} act{followed.length > 1 ? "s" : ""} not in your lineup
+        </span>
+      </div>
+      <div style={{ display: "flex", gap: 8, marginTop: 6, flexWrap: "wrap" }}>
+        <button onClick={handleSaveAll} className="duo-btn pri" style={{ minHeight: 44, padding: "0 16px", fontSize: 14 }}>Save all</button>
+        <button onClick={() => setExpanded(e => !e)} aria-expanded={expanded} className="duo-chip"><span>{expanded ? "Hide" : "View"}</span></button>
       </div>
       {expanded && (
-        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+        <div style={{ display: "flex", flexDirection: "column", marginTop: 6 }}>
           {followed.map(a => {
             const st = STAGES.find(s => s.id === a.stage);
+            const day = FESTIVAL_CONFIG.dayDates?.[a.day];
             return (
-              <div key={a.id} style={{
-                display: "flex", alignItems: "center", justifyContent: "space-between",
-                background: "rgba(var(--shade-rgb),0.2)", borderRadius: 10, padding: "8px 12px",
-              }}>
-                <div>
-                  <div style={{ fontSize: 13, fontWeight: 600, color: "var(--ink)" }}>{a.name}</div>
-                  <div className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2 }}>
-                    {st?.short} · DAY {a.day} · {fmt12(a.start)}
-                  </div>
-                </div>
-                <button onClick={() => handleSave(a)} style={{
-                  background: "transparent", color: st?.color || "var(--spotify)",
-                  border: `1px solid ${st?.color || "var(--spotify)"}`,
-                  borderRadius: 999, padding: "5px 10px", cursor: "pointer",
-                  fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1, fontWeight: 700,
-                }}>+ SAVE</button>
+              <div key={a.id} className="duo-lrow">
+                <span className="duo-data duo-ink2" style={{ width: 72, flexShrink: 0, fontSize: 13 }}>{fmt12(a.start)}</span>
+                <DuoAvatar name={a.name} size={42} />
+                <span style={{ flex: 1, minWidth: 0 }}>
+                  <span className="duo-headline duo-name" style={{ display: "block", fontWeight: 700 }}>{actDisplayName(a.name)}</span>
+                  <span className="duo-body-s duo-ink2" style={{ display: "block", fontWeight: 400 }}>{[st?.name, day?.name].filter(Boolean).join(" · ")}</span>
+                </span>
+                <button onClick={() => handleSave(a)} className="duo-add" aria-pressed="false" aria-label={`Save ${a.name}`}>
+                  <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+                </button>
               </div>
             );
           })}

@@ -1536,31 +1536,42 @@ function LineupScreen({
     d: "M21 21 L16.65 16.65"
   }))))), !online && React.createElement("div", {
     role: "status",
+    className: "duo-card duo-body-s",
     style: {
-      padding: "8px 20px",
-      fontSize: 13,
-      lineHeight: "18px",
-      color: "var(--text-2)",
-      borderBottom: "1px solid var(--line)"
+      margin: "8px 16px 0",
+      padding: "10px 14px",
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      color: "var(--ink-2)",
+      fontWeight: 400
     }
-  }, "Offline · showing the schedule saved on this phone"), _schedTBA && React.createElement("div", {
-    role: "status",
+  }, React.createElement("i", {
+    "aria-hidden": "true",
     style: {
-      padding: "10px 20px",
-      borderBottom: "1px solid var(--line)"
+      width: 8,
+      height: 8,
+      borderRadius: "50%",
+      background: "var(--ink-3)",
+      flexShrink: 0
+    }
+  }), "Offline · showing the schedule saved on this phone"), _schedTBA && React.createElement("div", {
+    role: "status",
+    className: "duo-card",
+    style: {
+      margin: "8px 16px 0",
+      padding: "12px 16px"
     }
   }, React.createElement("div", {
+    className: "duo-headline",
     style: {
-      fontSize: 15,
-      lineHeight: "20px",
-      fontWeight: 600
+      fontSize: 15
     }
   }, "Set times pending from the festival"), React.createElement("div", {
+    className: "duo-body-s duo-ink2",
     style: {
       marginTop: 2,
-      fontSize: 13,
-      lineHeight: "18px",
-      color: "var(--text-2)"
+      fontWeight: 400
     }
   }, "The full lineup is here. Save the acts you want and the schedule fills itself in as soon as ", FESTIVAL_CONFIG.shortName || "the festival", " publishes it.")), wizardOpen && React.createElement(NightWizard, {
     state: state,
@@ -1640,17 +1651,12 @@ function LineupScreen({
         padding: "40px 0"
       }
     }, React.createElement("div", {
-      style: {
-        fontSize: 17,
-        lineHeight: "22px",
-        fontWeight: 600
-      }
+      className: "duo-headline"
     }, empty.title), React.createElement("div", {
+      className: "duo-body duo-ink2",
       style: {
         marginTop: 4,
-        fontSize: 15,
-        lineHeight: "21px",
-        color: "var(--text-2)"
+        fontSize: 15
       }
     }, empty.sub), empty.action && React.createElement(FieldButton, {
       kind: "secondary",
@@ -1664,17 +1670,12 @@ function LineupScreen({
       padding: "40px 20px"
     }
   }, React.createElement("div", {
-    style: {
-      fontSize: 17,
-      lineHeight: "22px",
-      fontWeight: 600
-    }
+    className: "duo-headline"
   }, "No sets saved yet"), React.createElement("div", {
+    className: "duo-body duo-ink2",
     style: {
       marginTop: 4,
-      fontSize: 15,
-      lineHeight: "21px",
-      color: "var(--text-2)"
+      fontSize: 15
     }
   }, "Switch to All stages and tap any set to save it."), React.createElement(FieldButton, {
     kind: "secondary",

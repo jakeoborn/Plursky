@@ -757,42 +757,37 @@ function InstallBanner() {
   if (!ip.canInstall) return null;
 
   return (
-    <div style={{
+    <div className="duo-card" style={{
       margin: "8px 16px 0",
-      padding: "10px 12px",
-      borderRadius: 14,
-      background: "var(--ink)",
-      color: "var(--on-ink)",
-      display: "flex", alignItems: "center", gap: 11,
+      padding: "8px 4px 8px 12px",
+      color: "var(--ink)",
+      display: "flex", alignItems: "center", gap: 12,
     }}>
       <img src="./apple-touch-icon.png" alt=""
         width="36" height="36"
         style={{ borderRadius: 9, display: "block", flexShrink: 0 }} />
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--on-ink-flare)", fontWeight: 700 }}>
-          INSTALL PLURSKY
+        <div className="duo-label duo-acc">
+          Install Plursky
         </div>
-        <div style={{ fontSize: 12, lineHeight: 1.35, marginTop: 2, color: "var(--on-ink-2)" }}>
+        <div className="duo-body-s duo-ink2" style={{ marginTop: 3, fontWeight: 400 }}>
           {ip.isIOS
             ? <>Tap <span style={{ display: "inline-flex", verticalAlign: "middle", padding: "0 2px" }}>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--on-ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 3 L12 16"/><path d="M7 8 L12 3 L17 8"/><rect x="5" y="13" width="14" height="8" rx="1.5"/>
-                </svg></span> then <strong style={{ color: "var(--on-ink)" }}>Add to Home Screen</strong> for offline + full-screen.</>
+                </svg></span> then <strong style={{ color: "var(--ink)" }}>Add to Home Screen</strong> for offline + full-screen.</>
             : <>Add to home screen for offline lineup + full-screen map.</>}
         </div>
       </div>
       {!ip.isIOS && (
-        <button onClick={ip.install} style={{
-          background: "var(--ember)", color: "var(--on-ember)", border: "none",
-          borderRadius: 999, padding: "7px 12px", cursor: "pointer",
-          fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-          flexShrink: 0,
-        }}>INSTALL</button>
+        <button onClick={ip.install} className="duo-btn pri" style={{
+          minHeight: 40, padding: "0 14px", fontSize: 14, flexShrink: 0,
+        }}>Install</button>
       )}
       <button onClick={ip.dismiss} aria-label="Dismiss" style={{
         background: "transparent", border: "none", cursor: "pointer",
-        color: "var(--on-ink-3)", padding: 4, flexShrink: 0,
-        fontSize: 18, lineHeight: 1,
+        color: "var(--ink-2)", minWidth: 44, minHeight: 44, flexShrink: 0,
+        fontSize: 20, lineHeight: 1,
       }}>×</button>
     </div>
   );
@@ -1789,23 +1784,22 @@ function BatterySaverToast() {
   return (
     <div className="bs-hide" style={{
       position: "absolute", left: 16, right: 16, top: 60, zIndex: 80,
-      padding: "10px 14px", borderRadius: 14,
-      background: "var(--ink)", color: "var(--on-ink)",
+      padding: "8px 4px 8px 16px", borderRadius: "var(--rad-md)",
+      background: "var(--s1)", color: "var(--ink)",
       display: "flex", alignItems: "center", gap: 10,
-      boxShadow: "0 8px 24px rgba(var(--shade-rgb),0.35)",
+      boxShadow: "var(--e2)",
     }}>
-      <span style={{ fontSize: 16 }}>🔋</span>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--on-ink-flare)", fontWeight: 700 }}>
-          BATTERY SAVER ON
+        <div className="duo-label duo-acc">
+          Battery saver on
         </div>
-        <div style={{ fontSize: 13, lineHeight: 1.35, marginTop: 2, color: "var(--on-ink-2)" }}>
+        <div className="duo-body-s duo-ink2" style={{ marginTop: 3, fontWeight: 400 }}>
           {reason}
         </div>
       </div>
       <button onClick={() => setDismissed(true)} aria-label="Dismiss" style={{
         background: "transparent", border: "none", cursor: "pointer",
-        color: "var(--on-ink-3)", fontSize: 18, lineHeight: 1, padding: 4,
+        color: "var(--ink-2)", fontSize: 20, lineHeight: 1, minWidth: 44, minHeight: 44,
       }}>×</button>
     </div>
   );

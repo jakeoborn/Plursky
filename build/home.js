@@ -3509,86 +3509,62 @@ function TonightsPlan({
       justifyContent: "space-between",
       marginBottom: 10
     }
-  }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 24,
-      letterSpacing: -0.3
-    }
-  }, "Tonight's ", React.createElement("span", {
-    style: {
-      fontStyle: "italic"
-    }
-  }, "plan")), React.createElement("button", {
+  }, React.createElement("h3", {
+    className: "duo-sect"
+  }, "Tonight's plan"), React.createElement("button", {
     onClick: () => setState({
       ...state,
       tab: "lineup"
     }),
-    className: "mono",
-    style: {
-      background: "none",
-      border: "none",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
-      cursor: "pointer",
-      textTransform: "uppercase"
-    }
+    className: "duo-link"
   }, "All →")), plan.length === 0 ? React.createElement("div", {
+    className: "duo-well",
     style: {
-      border: "1px dashed var(--line-2)",
-      borderRadius: 14,
       padding: "20px 16px",
       textAlign: "center"
     }
   }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 18,
-      color: "var(--muted)",
-      fontStyle: "italic"
-    }
+    className: "duo-headline"
   }, "No sets saved for tonight"), React.createElement("div", {
-    className: "mono",
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
-      marginTop: 6
+      marginTop: 4,
+      fontWeight: 400
     }
-  }, "TAP + ON ANY ARTIST TO ADD")) : React.createElement(React.Fragment, null, tightCount > 0 && React.createElement("div", {
+  }, "Tap + on any set in the Lineup to add it.")) : React.createElement(React.Fragment, null, tightCount > 0 && React.createElement("div", {
+    className: "duo-card",
     style: {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      padding: "6px 10px",
+      gap: 10,
+      padding: "6px 6px 6px 14px",
       marginBottom: 10,
-      background: "rgba(var(--signal-rgb),0.07)",
-      borderRadius: 8,
-      border: "1px solid rgba(var(--signal-rgb),0.2)"
+      minHeight: 52
     }
   }, React.createElement("span", {
-    className: "mono",
+    className: "duo-body-s",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.3,
-      color: "var(--ember-ink)"
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      minWidth: 0,
+      fontWeight: 400
     }
-  }, "⚠ ", tightCount, " TIGHT TRANSITION", tightCount > 1 ? "S" : "", " · CHECK LEAVE-BY TIMES"), conflicts.length > 0 && React.createElement("button", {
+  }, React.createElement("i", {
+    "aria-hidden": "true",
+    style: {
+      width: 8,
+      height: 8,
+      borderRadius: "50%",
+      background: "var(--clash)",
+      flexShrink: 0
+    }
+  }), tightCount, " tight transition", tightCount > 1 ? "s" : "", " · check leave-by times"), conflicts.length > 0 && React.createElement("button", {
     onClick: () => setResolverOpen(r => !r),
-    style: {
-      background: resolverOpen ? "transparent" : "var(--ember)",
-      color: resolverOpen ? "var(--ember-ink)" : "var(--ink)",
-      border: resolverOpen ? "1px solid var(--ember)" : "none",
-      borderRadius: 6,
-      padding: "4px 10px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700
-    }
-  }, resolverOpen ? "CLOSE ×" : "RESOLVE →")), resolverOpen && conflicts.length > 0 && React.createElement("div", {
+    "aria-expanded": resolverOpen,
+    className: "duo-chip"
+  }, React.createElement("span", null, resolverOpen ? "Close" : "Resolve"))), resolverOpen && conflicts.length > 0 && React.createElement("div", {
     style: {
       margin: "0 -4px 10px"
     }
@@ -3642,116 +3618,80 @@ function PlanRow({
     }
   }, React.createElement("div", {
     style: {
-      width: 1,
+      width: 1.5,
       height: 18,
-      background: tight ? "var(--ember)" : "var(--line-2)"
+      background: tight ? "var(--clash)" : "var(--line-2)"
     }
   }), React.createElement("span", {
-    className: "mono",
+    className: "duo-data-s",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      color: tight ? "var(--ember-ink)" : "var(--muted)",
-      fontWeight: tight ? 700 : 500
+      color: tight ? "var(--clash)" : "var(--ink-2)"
     }
-  }, walk != null ? `${walk} MIN WALK · ` : "", prev.stage === a.stage ? "SAME STAGE" : `${STAGES.find(s => s.id === prev.stage)?.short || "TBA"} → ${stage?.short || "TBA"}`, leaveByLabel && ` · LEAVE BY ${leaveByLabel}`)), React.createElement("div", {
+  }, walk != null ? `${walk} min walk · ` : "", prev.stage === a.stage ? "Same stage" : `${STAGES.find(s => s.id === prev.stage)?.short || "TBA"} → ${stage?.short || "TBA"}`, leaveByLabel && ` · leave by ${leaveByLabel}`)), React.createElement("div", {
     onClick: () => setState({
       ...state,
       tab: "home",
       artist: a.id
     }),
+    className: "duo-lrow" + (isLive ? " live" : ""),
     style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 12,
-      padding: "12px 4px",
-      borderBottom: "1px solid var(--line)",
       cursor: "pointer",
-      opacity: isPast ? 0.45 : 1,
-      background: conflict ? "rgba(var(--signal-rgb),0.04)" : "transparent"
+      margin: 0,
+      paddingLeft: 4
     }
   }, React.createElement("div", {
     style: {
-      width: 44
+      width: 72,
+      flexShrink: 0
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-data",
     style: {
-      fontSize: 10,
-      letterSpacing: 1,
-      color: isLive ? "var(--signal-ink)" : "var(--ink)",
-      fontWeight: isLive ? 700 : 500
+      fontSize: 13,
+      color: isPast ? "var(--ink-3)" : "var(--ink)"
     }
   }, fmt12(a.start)), React.createElement("div", {
-    className: "mono",
+    className: "duo-data-s",
     style: {
-      fontSize: 9,
-      letterSpacing: 1,
-      color: "var(--muted)"
+      color: isLive ? "var(--live)" : "var(--ink-2)",
+      marginTop: 1
     }
-  }, isLive ? "LIVE" : isPast ? "DONE" : minsUntil < 60 ? `${minsUntil}m` : `${Math.floor(minsUntil / 60)}h${(minsUntil % 60).toString().padStart(2, "0")}`)), React.createElement("div", {
-    style: {
-      width: 3,
-      alignSelf: "stretch",
-      background: isLive ? "var(--signal)" : "var(--line-2)",
-      borderRadius: 3
-    }
+  }, isLive ? "Live" : isPast ? "Done" : minsUntil < 60 ? `${minsUntil}m` : `${Math.floor(minsUntil / 60)}h${(minsUntil % 60).toString().padStart(2, "0")}`)), React.createElement(DuoAvatar, {
+    name: a.name,
+    size: 42,
+    ring: conflict ? "cl" : isLive ? "on" : ""
   }), React.createElement("div", {
     style: {
       flex: 1,
       minWidth: 0
     }
   }, React.createElement("div", {
+    className: "duo-headline duo-name",
     style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 6
-    }
-  }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 20,
-      lineHeight: 1.1,
-      textDecoration: isPast ? "line-through" : "none"
-    }
-  }, a.name), isLive && React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 8,
-      letterSpacing: 1.3,
-      color: "var(--on-signal)",
-      background: "var(--signal)",
-      padding: "1px 5px",
-      borderRadius: 3,
-      fontWeight: 700
-    }
-  }, "LIVE"), conflict && React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 8,
-      letterSpacing: 1.3,
-      color: "var(--ember-ink)",
-      padding: "1px 5px",
-      borderRadius: 3,
       fontWeight: 700,
-      border: "1px solid var(--ember)"
+      color: isPast ? "var(--ink-2)" : "var(--ink)"
     }
-  }, "CLASH")), React.createElement("div", {
-    className: "mono",
+  }, actDisplayName(a.name)), React.createElement("div", {
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
-      marginTop: 2
+      fontWeight: 400
     }
-  }, stage.name.toUpperCase(), " · ", a.genre.toUpperCase())), React.createElement("svg", {
-    width: "16",
-    height: "16",
+  }, stage.name, conflict ? React.createElement("span", {
+    style: {
+      color: "var(--clash)"
+    }
+  }, " · clash") : "")), React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "14",
+    height: "14",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "var(--muted)",
-    strokeWidth: "1.6",
-    strokeLinecap: "round"
+    stroke: "var(--ink-3)",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    style: {
+      flexShrink: 0
+    }
   }, React.createElement("path", {
     d: "M9 6 L15 12 L9 18"
   }))));
@@ -4296,59 +4236,49 @@ function FriendLineupBanner({
     });
   };
   return React.createElement("div", {
+    className: "duo-card",
     style: {
       marginTop: 18,
-      padding: "16px 16px 14px",
-      borderRadius: 18,
-      background: "linear-gradient(135deg, rgba(var(--signal-rgb),0.12), rgba(var(--signal-rgb),0.08))",
-      border: "1px solid rgba(var(--signal-rgb),0.3)"
+      padding: "14px 16px"
     }
   }, React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      marginBottom: 8
+      gap: 8
     }
   }, React.createElement("span", {
-    className: "mono",
+    className: "duo-label duo-acc",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.6,
-      color: "var(--horizon)",
-      fontWeight: 700
+      minWidth: 0,
+      overflowWrap: "anywhere"
     }
-  }, "SHARED WITH YOU", state.friendName ? ` · ${state.friendName.toUpperCase()}` : ""), React.createElement("button", {
+  }, "Shared with you", state.friendName ? ` · ${state.friendName}` : ""), React.createElement("button", {
     onClick: dismiss,
     "aria-label": "Dismiss",
     style: {
       background: "transparent",
       border: "none",
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       cursor: "pointer",
-      fontSize: 14,
-      padding: 0,
-      lineHeight: 1
+      fontSize: 20,
+      minWidth: 44,
+      minHeight: 44,
+      marginRight: -12,
+      lineHeight: 1,
+      flexShrink: 0
     }
   }, "×")), React.createElement("div", {
-    className: "serif",
+    className: "duo-headline",
     style: {
-      fontSize: 22,
-      lineHeight: 1.1,
-      marginBottom: 4
+      fontSize: 20,
+      marginBottom: 2
     }
-  }, state.friendName ? state.friendName : "Your friend", "'s ", React.createElement("span", {
+  }, state.friendName ? state.friendName : "Your friend", "’s lineup"), React.createElement("div", {
+    className: "duo-data-s duo-ink2",
     style: {
-      fontStyle: "italic",
-      color: "var(--ember-ink)"
-    }
-  }, "lineup")), React.createElement("div", {
-    style: {
-      fontSize: 12,
-      color: "var(--ink)",
-      opacity: 0.75,
-      lineHeight: 1.5,
-      marginBottom: 12
+      marginBottom: 6
     }
   }, friendIds.length, " sets saved · ", overlap.length, " match yours", fresh.length > 0 && ` · ${fresh.length} new to you`), React.createElement("div", {
     style: {
@@ -4358,51 +4288,22 @@ function FriendLineupBanner({
     }
   }, React.createElement("button", {
     onClick: () => setExpanded(e => !e),
-    className: "mono",
-    style: {
-      background: "var(--ink)",
-      color: "var(--paper)",
-      border: "none",
-      borderRadius: 999,
-      padding: "8px 14px",
-      cursor: "pointer",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 700
-    }
-  }, expanded ? "HIDE SETS" : "VIEW SETS"), fresh.length > 0 && React.createElement("button", {
+    "aria-expanded": expanded,
+    className: "duo-chip"
+  }, React.createElement("span", null, expanded ? "Hide sets" : "View sets")), fresh.length > 0 && React.createElement("button", {
     onClick: addOverlap,
-    className: "mono",
+    className: "duo-btn pri",
     style: {
-      background: "var(--ember)",
-      color: "var(--on-ember)",
-      border: "none",
-      borderRadius: 999,
-      padding: "8px 14px",
-      cursor: "pointer",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 700
+      minHeight: 44,
+      padding: "0 16px",
+      fontSize: 14
     }
-  }, "+ ADD ", fresh.length, " NEW"), React.createElement("button", {
+  }, "+ Add ", fresh.length, " new"), React.createElement("button", {
     onClick: addAll,
-    className: "mono",
+    className: "duo-chip"
+  }, React.createElement("span", null, "+ Add all"))), expanded && React.createElement("div", {
     style: {
-      background: "transparent",
-      color: "var(--ink)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 999,
-      padding: "8px 14px",
-      cursor: "pointer",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 700
-    }
-  }, "+ ADD ALL")), expanded && React.createElement("div", {
-    style: {
-      marginTop: 12,
-      paddingTop: 10,
-      borderTop: "1px solid var(--line)"
+      marginTop: 10
     }
   }, festivalDayNums().map(day => {
     var dayArtists = friendIds.map(id => ARTISTS.find(a => a.id === id)).filter(a => a && a.day === day).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
@@ -4411,18 +4312,14 @@ function FriendLineupBanner({
     return React.createElement("div", {
       key: day,
       style: {
-        marginBottom: 10
+        marginBottom: 8
       }
-    }, React.createElement("div", {
-      className: "mono",
+    }, React.createElement("h3", {
+      className: "duo-sect",
       style: {
-        fontSize: 9,
-        letterSpacing: 1.6,
-        color: "var(--horizon)",
-        fontWeight: 700,
-        marginBottom: 6
+        margin: "10px 0 2px"
       }
-    }, meta.short, " · ", meta.name.toUpperCase()), dayArtists.map(a => {
+    }, meta.name), dayArtists.map(a => {
       var stage = STAGES.find(s => s.id === a.stage);
       var isOverlap = savedSet.has(a.id);
       return React.createElement("button", {
@@ -4431,55 +4328,42 @@ function FriendLineupBanner({
           ...state,
           artist: a.id
         }),
+        className: "duo-lrow duo-press" + (isOverlap ? " plan" : ""),
         style: {
           display: "flex",
-          alignItems: "center",
-          gap: 8,
-          width: "100%",
-          background: "transparent",
-          border: "none",
-          borderBottom: "1px solid var(--line-2)",
-          padding: "6px 0",
-          cursor: "pointer",
+          width: "auto",
+          color: "var(--ink)",
           textAlign: "left"
         }
       }, React.createElement("span", {
+        className: "duo-data duo-ink2",
         style: {
-          width: 8,
-          height: 8,
-          borderRadius: 999,
-          background: isOverlap ? "var(--success)" : "var(--text-3)",
-          flexShrink: 0
+          width: 72,
+          flexShrink: 0,
+          fontSize: 13
         }
-      }), React.createElement("div", {
+      }, fmt12(a.start)), React.createElement(DuoAvatar, {
+        name: a.name,
+        size: 42,
+        ring: isOverlap ? "on" : ""
+      }), React.createElement("span", {
         style: {
           flex: 1,
           minWidth: 0
         }
-      }, React.createElement("div", {
-        className: "serif",
+      }, React.createElement("span", {
+        className: "duo-headline duo-name",
         style: {
-          fontSize: 14,
-          lineHeight: 1.15,
-          color: "var(--ink)"
-        }
-      }, a.name), React.createElement("div", {
-        className: "mono",
-        style: {
-          fontSize: 8,
-          letterSpacing: 1,
-          color: "var(--muted)",
-          marginTop: 1
-        }
-      }, stage?.short, " · ", fmt12(a.start))), isOverlap && React.createElement("span", {
-        className: "mono",
-        style: {
-          fontSize: 8,
-          letterSpacing: 1,
-          color: "var(--success)",
+          display: "block",
           fontWeight: 700
         }
-      }, "MATCH"));
+      }, actDisplayName(a.name)), React.createElement("span", {
+        className: "duo-body-s duo-ink2",
+        style: {
+          display: "block",
+          fontWeight: 400
+        }
+      }, stage?.name, isOverlap ? " · on your plan too" : "")));
     }));
   })));
 }

@@ -978,32 +978,28 @@ function ToastHost() {
       pointerEvents: "none",
       padding: "0 16px"
     }
-  }, React.createElement("div", {
+  }, "// Board toast: an elevated card in SF that WRAPS. The old one-line // pill ellipsised every long message (\"No photos received — pick a // few at a time; if they're in iCloud…\" lost its instruction).", React.createElement("div", {
     key: msg.id,
-    className: "mono",
     role: "status",
     "aria-live": "polite",
     style: {
-      background: "var(--ink)",
-      color: "var(--paper)",
-      padding: hasAction ? "7px 7px 7px 16px" : "9px 16px",
-      borderRadius: 999,
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 600,
-      boxShadow: "var(--shadow-pop)",
+      background: "var(--s1)",
+      color: "var(--ink)",
+      padding: hasAction ? "6px 6px 6px 16px" : "11px 16px",
+      borderRadius: "var(--rad-md)",
+      font: "500 14px/1.36 var(--f-ui)",
+      boxShadow: "var(--e2)",
       animation: "fadeIn .15s",
       display: "flex",
       alignItems: "center",
       gap: 12,
-      maxWidth: "100%",
+      maxWidth: 440,
       pointerEvents: hasAction ? "auto" : "none"
     }
   }, React.createElement("span", {
     style: {
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      whiteSpace: "nowrap"
+      minWidth: 0,
+      overflowWrap: "anywhere"
     }
   }, msg.text), hasAction && React.createElement("button", {
     onClick: () => {
@@ -1012,18 +1008,10 @@ function ToastHost() {
       } catch {}
       setMsg(null);
     },
-    className: "mono",
+    className: "duo-link",
     style: {
       flexShrink: 0,
-      background: "var(--paper)",
-      color: "var(--ink)",
-      border: "none",
-      borderRadius: 999,
-      padding: "6px 13px",
-      cursor: "pointer",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 800
+      padding: "0 10px"
     }
   }, msg.actionLabel)));
 }
@@ -1471,56 +1459,44 @@ class RootErrorBoundary extends React.Component {
   };
   render() {
     if (!this.state.err) return this.props.children;
-    return React.createElement("div", {
-      style: {
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "40px 24px",
-        background: "var(--ink)",
-        color: "var(--paper)",
-        fontFamily: "Geist, system-ui, sans-serif",
-        textAlign: "center"
-      }
-    }, React.createElement("div", {
-      style: {
-        fontFamily: "Instrument Serif, serif",
-        fontSize: 36,
-        marginBottom: 6
-      }
-    }, "Something glitched."), React.createElement("div", {
-      style: {
-        fontSize: 14,
-        color: "rgba(var(--shade-rgb),0.65)",
-        marginBottom: 22,
-        maxWidth: 340,
-        lineHeight: 1.5
-      }
-    }, "Plursky hit an unexpected error. Your saved lineup is safe — reloading should fix it."), React.createElement("button", {
-      onClick: this.reload,
-      style: {
-        background: "var(--paper)",
-        color: "var(--ink)",
-        border: "none",
-        borderRadius: 12,
-        padding: "12px 22px",
-        cursor: "pointer",
-        fontFamily: "Geist Mono, monospace",
-        fontSize: 10,
-        letterSpacing: 1.4,
-        fontWeight: 700
-      }
-    }, "RELOAD"), React.createElement("div", {
-      style: {
-        marginTop: 22,
-        fontFamily: "Geist Mono, monospace",
-        fontSize: 10,
-        letterSpacing: 1.2,
-        color: "rgba(var(--shade-rgb),0.45)"
-      }
-    }, "PLURSKY · v393"));
+    return (React.createElement("div", {
+        style: {
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "40px 24px",
+          background: "var(--bg)",
+          color: "var(--ink)",
+          fontFamily: "var(--f-ui)",
+          textAlign: "center"
+        }
+      }, React.createElement("div", {
+        className: "duo-title",
+        style: {
+          marginBottom: 8
+        }
+      }, "Something glitched."), React.createElement("div", {
+        className: "duo-body",
+        style: {
+          color: "var(--ink-2)",
+          marginBottom: 22,
+          maxWidth: 340
+        }
+      }, "Plursky hit an unexpected error. Your saved lineup is safe — reloading should fix it."), React.createElement("button", {
+        onClick: this.reload,
+        className: "duo-btn pri",
+        style: {
+          minWidth: 160
+        }
+      }, "Reload"), React.createElement("div", {
+        className: "duo-label duo-ink3",
+        style: {
+          marginTop: 22
+        }
+      }, "Plursky · v393"))
+    );
   }
 }
 function SetStartingCinematic() {
