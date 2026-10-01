@@ -1976,10 +1976,33 @@ function useFitNames(root) {
 // and only a word that still cannot fit breaks. #275's QA read "Memorie / s",
 // "Impor / t" and "Toda / y" at 200% text on wide fonts.
 // It works from the size the text has NOW (an enlarged text size is the
-// input, not something to undo), and writes with !important so it is the last
-// word on the one inline font-size slot. It only READS unless a word breaks,
-// so the hundreds of names on a lineup cost one layout, not one each.
+// input, not something to undo). It only READS unless a word breaks, so the
+// hundreds of names on a lineup cost one layout, not one each.
+//
+// The size goes through --fit-px and one stylesheet rule, never the element's
+// own inline font-size: on an element styled with a `font:` shorthand that
+// holds a var() (Today's clash names), writing the longhand expanded the
+// shorthand into empty longhands and every later write was ignored, so the
+// fit ran to its floor on one load, and a re-render put 14px back on the next.
+// Only text something else has already pinned inline with !important (the
+// 200% text proxy) is written inline, as the last word on that slot.
 const _FIT_WORDS = "[data-fit-words], .duo-name";
+function _fitSize(el, px) {
+  if (px == null) {
+    el.removeAttribute("data-fit-px"); el.style.removeProperty("--fit-px");
+    if (el.dataset.fitInline) { el.style.removeProperty("font-size"); delete el.dataset.fitInline; }
+    delete el.dataset.fitSet; return;
+  }
+  const pinned = el.style.getPropertyPriority("font-size") === "important" && !el.dataset.fitInline;
+  if (pinned || el.dataset.fitInline) { el.style.setProperty("font-size", px + "px", "important"); el.dataset.fitInline = "1"; }
+  else { el.style.setProperty("--fit-px", px + "px"); el.setAttribute("data-fit-px", ""); }
+  el.dataset.fitSet = String(px);
+}
+if (typeof document !== "undefined" && !document.getElementById("fit-words-rule")) {
+  const st = document.createElement("style"); st.id = "fit-words-rule";
+  st.textContent = "[data-fit-px]{font-size:var(--fit-px)!important}";
+  (document.head || document.documentElement).appendChild(st);
+}
 function fitWords(el) {
   const cs = getComputedStyle(el);
   const cur = parseFloat(cs.fontSize);
@@ -2003,12 +2026,33 @@ function fitWords(el) {
       return (rs.length > 1 && rs[rs.length - 1].top > rs[0].top + 1) || rg.getBoundingClientRect().width > box;
     });
   };
-  const set = (px) => { el.style.setProperty("font-size", px + "px", "important"); el.dataset.fitSet = String(px); };
+  const set = (px) => _fitSize(el, px);
   let size = cur;
   if (size < base) { size = base; set(size); }   // a wider box: start again from the real size
   const min = parseFloat(el.dataset.fitMin || "11");
   if (broken()) {
     el.style.overflowWrap = "normal";
+    // Only a box that does not depend on its own text can be fitted. A
+    // shrink-wrapped one (a flex item sized by its content, like a clash
+    // card's side) narrows as the font does, so the word never fits and the
+    // loop ran to the floor: CI's runner showed one name at 14px on one load
+    // and 11px on the next. Such a box keeps its real size and wraps as before.
+    // Probe one step first. Two kinds of text cannot be fitted, and both are
+    // left exactly as they render (same answer on every load):
+    //  · a size that does not take: an inline `font:` shorthand holding a
+    //    var() overrides every font-size, even an !important rule;
+    //  · a shrink-wrapped box (a flex item sized by its content) that narrows
+    //    with its font, so the word never fits and the loop would hit the floor.
+    const w0 = el.getBoundingClientRect().width;
+    if (size > min) {
+      set(size - 1);
+      const took = Math.abs(parseFloat(getComputedStyle(el).fontSize) - (size - 1)) < 0.1;
+      if (!took || el.getBoundingClientRect().width < w0 - 0.5) {
+        _fitSize(el, null); el.style.overflowWrap = "";
+        el.dataset.fitKey = el.textContent + "|" + el.clientWidth + "|" + base; return;
+      }
+      size -= 1;
+    }
     while (broken() && size > min) { size -= 1; set(size); }
     if (broken()) el.style.overflowWrap = "anywhere";
   }
@@ -2021,7 +2065,7 @@ function fitWordGroups(r) {
   for (const n of r.querySelectorAll("[data-fit-group]")) (groups[n.dataset.fitGroup] ||= []).push(n);
   for (const g of Object.values(groups)) {
     const size = Math.min(...g.map(n => parseFloat(getComputedStyle(n).fontSize)));
-    for (const n of g) if (Math.abs(parseFloat(getComputedStyle(n).fontSize) - size) > 0.1) { n.style.setProperty("font-size", size + "px", "important"); n.dataset.fitSet = String(size); }
+    for (const n of g) if (Math.abs(parseFloat(getComputedStyle(n).fontSize) - size) > 0.1) _fitSize(n, size);
   }
 }
 // One observer for the whole app, so no screen can forget to fit: new text is
@@ -2038,8 +2082,30 @@ if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationO
     if (node.querySelectorAll) list.push(...node.querySelectorAll(_FIT_WORDS));
     for (const n of list) { if (all) n.dataset.fitKey = ""; fitWords(n); ro && ro.observe(n); }
   };
+  // The SETTLED pass decides the final sizes. Two fitted names can share one
+  // row (a clash card's two sides), so each one's room depends on the other's
+  // size, and fitting them one at a time as they mount gives a result that
+  // depends on the order. CI's runner fitted "Interplanetary Criminal" at
+  // 11px on a Dark load and 14px on a Light one, and a mode switch kept
+  // whichever it had. So: put EVERY fitted element back to its real size
+  // first, then fit them all in document order. Same layout in, same sizes out,
+  // whether the page was just loaded or just switched modes.
+  const settle = () => {
+    const all = [...document.body.querySelectorAll(_FIT_WORDS)];
+    for (const n of all) {
+      n.dataset.fitKey = "";
+      if (n.dataset.fitSet != null && n.dataset.fitBase != null && parseFloat(n.dataset.fitSet) !== parseFloat(n.dataset.fitBase)) {
+        if (n.dataset.fitInline) _fitSize(n, parseFloat(n.dataset.fitBase)); else { _fitSize(n, null); n.dataset.fitSet = n.dataset.fitBase; }
+      }
+      if (n.style.overflowWrap) n.style.overflowWrap = "";
+    }
+    for (const n of all) { fitWords(n); ro && ro.observe(n); }
+    fitWordGroups(document);
+  };
+  let settleTimer = null;
+  const settleSoon = () => { clearTimeout(settleTimer); settleTimer = setTimeout(settle, 200); };
   const start = () => {
-    fitIn(document.body); fitWordGroups(document);
+    fitIn(document.body); fitWordGroups(document); settleSoon();
     new MutationObserver((records) => {
       const touched = new Set();
       for (const r of records) {
@@ -2048,10 +2114,19 @@ if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationO
         const fit = host && host.closest && host.closest(_FIT_WORDS);
         if (fit) touched.add(fit);
       }
+      // Fit new text at once (no flash of broken words), then settle.
       for (const n of touched) if (n.isConnected) fitIn(n);
-      if (touched.size) fitWordGroups(document);
+      if (touched.size) { fitWordGroups(document); settleSoon(); }
     }).observe(document.body, { childList: true, subtree: true, characterData: true });
-    try { document.fonts && document.fonts.addEventListener("loadingdone", () => { fitIn(document.body, true); fitWordGroups(document); }); } catch {}
+    try {
+      if (document.fonts) {
+        document.fonts.addEventListener("loadingdone", settle);
+        document.fonts.ready.then(settle);
+      }
+    } catch {}
+    // A mode switch re-renders without moving a box, so nothing above fires:
+    // settle now, so the switched page matches a fresh load in that mode.
+    try { window.PlurskyAppearance && window.PlurskyAppearance.onChange(() => { settle(); settleSoon(); }); } catch {}
   };
   if (document.body) start(); else document.addEventListener("DOMContentLoaded", start);
 }

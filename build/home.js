@@ -2866,7 +2866,10 @@ function DuoPlanCard({
       className: "duo-name",
       style: {
         display: "block",
-        font: "600 14px/1.29 var(--f-ui)"
+        fontWeight: 600,
+        fontSize: 14,
+        lineHeight: 1.29,
+        fontFamily: "var(--f-ui)"
       }
     }, actDisplayName(a.name)), React.createElement("span", {
       className: "duo-data-s duo-ink2",
@@ -2949,7 +2952,10 @@ function DuoPlanCard({
     className: "duo-name",
     style: {
       display: "block",
-      font: "700 18px/1.222 var(--f-ui)"
+      fontWeight: 700,
+      fontSize: 18,
+      lineHeight: 1.222,
+      fontFamily: "var(--f-ui)"
     }
   }, actDisplayName(set.name)), React.createElement("span", {
     className: "duo-data-s duo-ink3",
@@ -3078,7 +3084,10 @@ function DuoStageBoard({
     className: "duo-name",
     style: {
       display: "block",
-      font: "600 14px/1.29 var(--f-ui)"
+      fontWeight: 600,
+      fontSize: 14,
+      lineHeight: 1.29,
+      fontFamily: "var(--f-ui)"
     }
   }, actDisplayName(a.name)), React.createElement("span", {
     className: "duo-data-s duo-ink3",
@@ -3189,7 +3198,10 @@ function SavedTile({
     className: "duo-name",
     style: {
       marginTop: 8,
-      font: "600 15px/1.4 var(--f-ui)"
+      fontWeight: 600,
+      fontSize: 15,
+      lineHeight: 1.4,
+      fontFamily: "var(--f-ui)"
     }
   }, actDisplayName(a.name)), React.createElement("div", {
     className: "duo-data-s duo-ink3",

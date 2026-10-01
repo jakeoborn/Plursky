@@ -2031,7 +2031,7 @@ function DuoPlanCard({ state, setState, plan, onOpenNight }) {
         style={{ display: "flex", alignItems: "center", gap: 10, minHeight: 44 }}>
         <DuoAvatar name={a.name} size={30} ring="cl" />
         <span style={{ minWidth: 0 }}>
-          <span className="duo-name" style={{ display: "block", font: "600 14px/1.29 var(--f-ui)" }}>{actDisplayName(a.name)}</span>
+          <span className="duo-name" style={{ display: "block", fontWeight: 600, fontSize: 14, lineHeight: 1.29, fontFamily: "var(--f-ui)" }}>{actDisplayName(a.name)}</span>
           <span className="duo-data-s duo-ink2" style={{ display: "block", marginTop: 2 }}>{duoClock(a.start)} · {st.name.toUpperCase()}</span>
         </span>
       </button>
@@ -2047,7 +2047,7 @@ function DuoPlanCard({ state, setState, plan, onOpenNight }) {
           <span style={{ display: "flex", alignItems: "flex-start", gap: 12, minWidth: 0 }}>
             <DuoAvatar name={set.name} size={52} ring="on" />
             <span style={{ minWidth: 0, paddingTop: 3 }}>
-              <span className="duo-name" style={{ display: "block", font: "700 18px/1.222 var(--f-ui)" }}>{actDisplayName(set.name)}</span>
+              <span className="duo-name" style={{ display: "block", fontWeight: 700, fontSize: 18, lineHeight: 1.222, fontFamily: "var(--f-ui)" }}>{actDisplayName(set.name)}</span>
               <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 4 }}>{stage.name.toUpperCase()} · <span style={{ whiteSpace: "nowrap" }}>{live ? `TO ${duoClock(set.end)}` : duoClock(set.start)}</span></span>
             </span>
           </span>
@@ -2099,7 +2099,7 @@ function DuoStageBoard({ state, setState }) {
       style={{ display: "flex", alignItems: "flex-start", gap: 10, minWidth: 0, minHeight: 44 }}>
       <DuoAvatar name={a.name} size={36} ring={savedSet.has(a.id) ? "on" : ""} />
       <span style={{ minWidth: 0, paddingTop: 1 }}>
-        <span className="duo-name" style={{ display: "block", font: "600 14px/1.29 var(--f-ui)" }}>{actDisplayName(a.name)}</span>
+        <span className="duo-name" style={{ display: "block", fontWeight: 600, fontSize: 14, lineHeight: 1.29, fontFamily: "var(--f-ui)" }}>{actDisplayName(a.name)}</span>
         <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 3 }}><span className="duo-sb-tag">{tag.toUpperCase()} · </span>{detail}</span>
       </span>
     </button>
@@ -2142,7 +2142,7 @@ function SavedTile({ a, onOpen }) {
           ? <img src={photo} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
           : <span aria-hidden="true" className="duo-ink3" style={{ font: "650 30px/1 var(--f-ui)", letterSpacing: ".02em" }}>{_duoInitials(a.name)}</span>}
       </div>
-      <div className="duo-name" style={{ marginTop: 8, font: "600 15px/1.4 var(--f-ui)" }}>{actDisplayName(a.name)}</div>
+      <div className="duo-name" style={{ marginTop: 8, fontWeight: 600, fontSize: 15, lineHeight: 1.4, fontFamily: "var(--f-ui)" }}>{actDisplayName(a.name)}</div>
       <div className="duo-data-s duo-ink3" style={{ marginTop: 2 }}>{day} · {fmt12(a.start)}</div>
     </button>
   );

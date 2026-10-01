@@ -44,6 +44,11 @@ const SCREENS = [
   // The list again in a wider face than this Mac's, as CI's runner has: it
   // puts names on the fit borderline, where a re-measure during the mode
   // switch's re-render landed a pixel the other way and shifted every row.
+  // Today in the wide face too: CI's runner fitted a clash card's name at
+  // 11px on a Dark load and 14px on a Light one (an inline `font:` shorthand
+  // with a var() could not be resized, and the fit's attempts stuck), and a
+  // mode switch kept whichever it had.
+  ['home-wide', 'tab=home',           {},                                   '#root > *', 'Verdana', { h1: 'EDC Las Vegas', tab: 'Today' }],
   ['lineup-wide', 'tab=lineup',       { plursky_lineup_view: 'list' },      '[data-lineup-scroll]', 'Verdana', { h1: 'Lineup', tab: 'Lineup' }],
   ['grid',     'tab=lineup',          { plursky_lineup_view: 'grid' },      '[data-grid-scroll]', null, { h1: 'Lineup', tab: 'Lineup' }],
   ['map',      'tab=map',             {},                                   '#root > *', null, { tab: 'Map' }],

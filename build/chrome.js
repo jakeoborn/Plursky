@@ -2545,6 +2545,33 @@ function useFitNames(root) {
   }, []);
 }
 var _FIT_WORDS = "[data-fit-words], .duo-name";
+function _fitSize(el, px) {
+  if (px == null) {
+    el.removeAttribute("data-fit-px");
+    el.style.removeProperty("--fit-px");
+    if (el.dataset.fitInline) {
+      el.style.removeProperty("font-size");
+      delete el.dataset.fitInline;
+    }
+    delete el.dataset.fitSet;
+    return;
+  }
+  var pinned = el.style.getPropertyPriority("font-size") === "important" && !el.dataset.fitInline;
+  if (pinned || el.dataset.fitInline) {
+    el.style.setProperty("font-size", px + "px", "important");
+    el.dataset.fitInline = "1";
+  } else {
+    el.style.setProperty("--fit-px", px + "px");
+    el.setAttribute("data-fit-px", "");
+  }
+  el.dataset.fitSet = String(px);
+}
+if (typeof document !== "undefined" && !document.getElementById("fit-words-rule")) {
+  var st = document.createElement("style");
+  st.id = "fit-words-rule";
+  st.textContent = "[data-fit-px]{font-size:var(--fit-px)!important}";
+  (document.head || document.documentElement).appendChild(st);
+}
 function fitWords(el) {
   var cs = getComputedStyle(el);
   var cur = parseFloat(cs.fontSize);
@@ -2571,10 +2598,7 @@ function fitWords(el) {
       return rs.length > 1 && rs[rs.length - 1].top > rs[0].top + 1 || rg.getBoundingClientRect().width > box;
     });
   };
-  var set = px => {
-    el.style.setProperty("font-size", px + "px", "important");
-    el.dataset.fitSet = String(px);
-  };
+  var set = px => _fitSize(el, px);
   var size = cur;
   if (size < base) {
     size = base;
@@ -2583,6 +2607,18 @@ function fitWords(el) {
   var min = parseFloat(el.dataset.fitMin || "11");
   if (broken()) {
     el.style.overflowWrap = "normal";
+    var w0 = el.getBoundingClientRect().width;
+    if (size > min) {
+      set(size - 1);
+      var took = Math.abs(parseFloat(getComputedStyle(el).fontSize) - (size - 1)) < 0.1;
+      if (!took || el.getBoundingClientRect().width < w0 - 0.5) {
+        _fitSize(el, null);
+        el.style.overflowWrap = "";
+        el.dataset.fitKey = el.textContent + "|" + el.clientWidth + "|" + base;
+        return;
+      }
+      size -= 1;
+    }
     while (broken() && size > min) {
       size -= 1;
       set(size);
@@ -2596,10 +2632,7 @@ function fitWordGroups(r) {
   for (var n of r.querySelectorAll("[data-fit-group]")) (groups[n.dataset.fitGroup] ||= []).push(n);
   for (var g of Object.values(groups)) {
     var size = Math.min(...g.map(n => parseFloat(getComputedStyle(n).fontSize)));
-    for (var _n of g) if (Math.abs(parseFloat(getComputedStyle(_n).fontSize) - size) > 0.1) {
-      _n.style.setProperty("font-size", size + "px", "important");
-      _n.dataset.fitSet = String(size);
-    }
+    for (var _n of g) if (Math.abs(parseFloat(getComputedStyle(_n).fontSize) - size) > 0.1) _fitSize(_n, size);
   }
 }
 if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationObserver !== "undefined") {
@@ -2619,9 +2652,33 @@ if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationO
       ro && ro.observe(n);
     }
   };
+  var settle = () => {
+    var all = [...document.body.querySelectorAll(_FIT_WORDS)];
+    for (var n of all) {
+      n.dataset.fitKey = "";
+      if (n.dataset.fitSet != null && n.dataset.fitBase != null && parseFloat(n.dataset.fitSet) !== parseFloat(n.dataset.fitBase)) {
+        if (n.dataset.fitInline) _fitSize(n, parseFloat(n.dataset.fitBase));else {
+          _fitSize(n, null);
+          n.dataset.fitSet = n.dataset.fitBase;
+        }
+      }
+      if (n.style.overflowWrap) n.style.overflowWrap = "";
+    }
+    for (var _n2 of all) {
+      fitWords(_n2);
+      ro && ro.observe(_n2);
+    }
+    fitWordGroups(document);
+  };
+  var settleTimer = null;
+  var settleSoon = () => {
+    clearTimeout(settleTimer);
+    settleTimer = setTimeout(settle, 200);
+  };
   var start = () => {
     fitIn(document.body);
     fitWordGroups(document);
+    settleSoon();
     new MutationObserver(records => {
       var touched = new Set();
       for (var r of records) {
@@ -2630,17 +2687,26 @@ if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationO
         var fit = host && host.closest && host.closest(_FIT_WORDS);
         if (fit) touched.add(fit);
       }
-      for (var _n2 of touched) if (_n2.isConnected) fitIn(_n2);
-      if (touched.size) fitWordGroups(document);
+      for (var _n3 of touched) if (_n3.isConnected) fitIn(_n3);
+      if (touched.size) {
+        fitWordGroups(document);
+        settleSoon();
+      }
     }).observe(document.body, {
       childList: true,
       subtree: true,
       characterData: true
     });
     try {
-      document.fonts && document.fonts.addEventListener("loadingdone", () => {
-        fitIn(document.body, true);
-        fitWordGroups(document);
+      if (document.fonts) {
+        document.fonts.addEventListener("loadingdone", settle);
+        document.fonts.ready.then(settle);
+      }
+    } catch {}
+    try {
+      window.PlurskyAppearance && window.PlurskyAppearance.onChange(() => {
+        settle();
+        settleSoon();
       });
     } catch {}
   };
