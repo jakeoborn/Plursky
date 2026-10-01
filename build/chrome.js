@@ -53,22 +53,16 @@ function TopBar({
       overflowWrap: "anywhere"
     }
   }, sub && React.createElement("div", {
+    className: "duo-label duo-ink3",
     style: {
-      fontSize: 11,
-      lineHeight: 1.27,
-      fontWeight: 600,
-      letterSpacing: "0.04em",
-      textTransform: "uppercase",
-      color: "var(--text-2)",
-      marginBottom: 4
+      marginBottom: 6
     }
   }, sub), React.createElement("h1", {
+    className: "duo-title",
+    "data-fit-words": true,
+    "data-fit-min": "20",
     style: {
-      margin: 0,
-      fontSize: 28,
-      lineHeight: 1.21,
-      fontWeight: 700,
-      letterSpacing: "-0.01em"
+      margin: 0
     }
   }, title)), right);
 }
@@ -122,7 +116,7 @@ function TabBar({
       backdropFilter: "blur(20px) saturate(160%)",
       WebkitBackdropFilter: "blur(20px) saturate(160%)",
       borderTop: "1px solid var(--line)",
-      padding: "6px 10px 10px",
+      padding: "0 10px 10px",
       display: "flex",
       justifyContent: "space-around"
     }
@@ -137,6 +131,7 @@ function TabBar({
       },
       "aria-current": on ? "page" : undefined,
       style: {
+        position: "relative",
         background: "transparent",
         border: "none",
         cursor: "pointer",
@@ -144,26 +139,40 @@ function TabBar({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        gap: 3,
-        padding: "4px 12px",
-        color: on ? "var(--signal-ink)" : "var(--text-2)",
-        minWidth: 64,
-        minHeight: 49,
-        maxWidth: "100%",
-        transition: "color 0.15s ease"
+        gap: 5,
+        padding: "10px 4px 4px",
+        color: on ? "var(--ink)" : "var(--ink-3)",
+        flex: "1 1 0",
+        minWidth: 0,
+        minHeight: 53,
+        transition: "color var(--t-tap) var(--ease-decay)"
       }
-    }, React.createElement(Icon, {
+    }, on && React.createElement("span", {
+      "aria-hidden": "true",
+      style: {
+        position: "absolute",
+        top: -1,
+        left: "28%",
+        right: "28%",
+        height: 2,
+        borderRadius: 2,
+        background: "var(--acc)",
+        boxShadow: "0 0 12px var(--acc-55)"
+      }
+    }), React.createElement(Icon, {
       on: on
     }), React.createElement("span", {
+      "data-fit-words": true,
+      "data-fit-group": "tab",
+      "data-fit-min": "9",
       style: {
-        fontSize: 12,
+        display: "block",
+        width: "100%",
+        fontSize: 11,
         lineHeight: 1.17,
-        fontWeight: on ? 600 : 500,
-        minWidth: 0,
-        maxWidth: "100%",
-        overflowWrap: "anywhere",
-        textAlign: "center",
-        transition: "color 0.15s"
+        letterSpacing: ".01em",
+        fontWeight: 500,
+        textAlign: "center"
       }
     }, t.label));
   }));
@@ -171,66 +180,36 @@ function TabBar({
 var stroke = on => ({
   fill: "none",
   stroke: "currentColor",
-  strokeWidth: on ? 1.8 : 1.4,
+  strokeWidth: 1.6,
   strokeLinecap: "round",
   strokeLinejoin: "round"
 });
-function HomeIcon({
+var _tabIcon = d => function TabIcon({
   on
 }) {
   return React.createElement("svg", {
-    width: "22",
-    height: "22",
+    width: "24",
+    height: "24",
     viewBox: "0 0 24 24",
-    style: stroke(on)
-  }, React.createElement("circle", {
-    cx: "12",
-    cy: "12",
-    r: "3.2"
-  }), React.createElement("path", {
-    d: "M12 2.5 L12 5.5 M12 18.5 L12 21.5 M2.5 12 L5.5 12 M18.5 12 L21.5 12"
-  }), React.createElement("path", {
-    d: "M5.5 5.5 L7.5 7.5 M16.5 16.5 L18.5 18.5 M5.5 18.5 L7.5 16.5 M16.5 7.5 L18.5 5.5",
-    opacity: "0.55"
-  }));
-}
-function MapIcon({
-  on
-}) {
-  return React.createElement("svg", {
-    width: "22",
-    height: "22",
-    viewBox: "0 0 24 24",
+    "aria-hidden": "true",
     style: stroke(on)
   }, React.createElement("path", {
-    d: "M3 6 L9 4 L15 6 L21 4 L21 18 L15 20 L9 18 L3 20 Z"
-  }), React.createElement("path", {
-    d: "M9 4 L9 18 M15 6 L15 20"
+    d: d
   }));
-}
-function LineupIcon({
-  on
-}) {
-  return React.createElement("svg", {
-    width: "22",
-    height: "22",
-    viewBox: "0 0 24 24",
-    style: stroke(on)
-  }, React.createElement("path", {
-    d: "M4 6 L20 6 M4 12 L20 12 M4 18 L14 18"
-  }), React.createElement("circle", {
-    cx: "18",
-    cy: "18",
-    r: "2"
-  }));
-}
+};
+var HomeIcon = _tabIcon("M12 20 3.5 9 M12 20 8.5 5 M12 20 15.5 5 M12 20 20.5 9 M9 20h6");
+var LineupIcon = _tabIcon("M4 6h16 M4 12h11 M4 18h14");
+var MapIcon = _tabIcon("M9 4 3 6.2v13.8l6-2.2 6 2.2 6-2.2V4l-6 2.2L9 4z M9 4v13.8 M15 6.2V20");
+var MeIcon = _tabIcon("M12 12.5a4.25 4.25 0 1 0 0-8.5 4.25 4.25 0 0 0 0 8.5z M4.5 20.5c1.4-3.7 4.3-5.6 7.5-5.6s6.1 1.9 7.5 5.6");
+var MemoriesIcon = _tabIcon("M4 6.5h16v12H4z M4 15.5l4.5-4 3.5 3 2.5-2 5.5 4.5 M15.5 10.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z");
 function MusicIcon({
   on
 }) {
   return React.createElement("svg", {
-    width: "22",
-    height: "22",
+    width: "24",
+    height: "24",
     viewBox: "0 0 24 24",
+    "aria-hidden": "true",
     style: stroke(on)
   }, React.createElement("circle", {
     cx: "7",
@@ -242,44 +221,6 @@ function MusicIcon({
     r: "2.5"
   }), React.createElement("path", {
     d: "M9.5 17 L9.5 5 L19.5 3 L19.5 15"
-  }));
-}
-function MemoriesIcon({
-  on
-}) {
-  return React.createElement("svg", {
-    width: "22",
-    height: "22",
-    viewBox: "0 0 24 24",
-    style: stroke(on)
-  }, React.createElement("rect", {
-    x: "3",
-    y: "5",
-    width: "18",
-    height: "14",
-    rx: "2.5"
-  }), React.createElement("circle", {
-    cx: "8.5",
-    cy: "10",
-    r: "1.6"
-  }), React.createElement("path", {
-    d: "M3 16 L9 11 L13 14.5 L17 11 L21 14.5"
-  }));
-}
-function MeIcon({
-  on
-}) {
-  return React.createElement("svg", {
-    width: "22",
-    height: "22",
-    viewBox: "0 0 24 24",
-    style: stroke(on)
-  }, React.createElement("circle", {
-    cx: "12",
-    cy: "9",
-    r: "3.5"
-  }), React.createElement("path", {
-    d: "M5 20 C 5 16, 8.5 14, 12 14 C 15.5 14, 19 16, 19 20"
   }));
 }
 function Pill({
@@ -747,14 +688,14 @@ function FieldButton({
       alignItems: "center",
       justifyContent: "center",
       gap: 8,
-      background: primary ? "var(--signal)" : "var(--paper-3)",
-      color: primary ? "var(--on-signal)" : "var(--ink)",
+      background: primary ? "var(--acc)" : "transparent",
+      color: primary ? "var(--on-acc)" : "var(--ink)",
       border: primary ? "none" : "1px solid var(--line-2)",
-      borderRadius: 14,
+      borderRadius: "var(--rad-sm)",
       cursor: rest.disabled ? "default" : "pointer",
-      fontSize: 17,
-      lineHeight: "22px",
-      fontWeight: 600,
+      boxShadow: primary && !rest.disabled ? "0 10px 28px -12px var(--acc-55)" : "none",
+      font: "650 17px/1.3 var(--f-ui)",
+      letterSpacing: "-0.01em",
       opacity: rest.disabled ? 0.45 : 1,
       ...style
     }
@@ -842,8 +783,9 @@ function FieldSheet({
       maxHeight: "88%",
       display: "flex",
       flexDirection: "column",
-      background: "var(--paper-3)",
-      borderRadius: "14px 14px 0 0",
+      background: "var(--s1)",
+      borderRadius: "var(--rad-lg) var(--rad-lg) 0 0",
+      boxShadow: "var(--e2)",
       paddingBottom: "env(safe-area-inset-bottom, 0px)"
     }
   }, React.createElement("div", {
@@ -870,9 +812,8 @@ function FieldSheet({
   }, React.createElement("h2", {
     style: {
       margin: 0,
-      fontSize: 20,
-      lineHeight: "25px",
-      fontWeight: 600
+      font: "700 22px/1.25 var(--f-ui)",
+      letterSpacing: "-0.02em"
     }
   }, title), React.createElement("button", {
     onClick: onClose,
@@ -895,6 +836,98 @@ function FieldSheet({
       padding: "4px 20px 24px"
     }
   }, children)));
+}
+function _duoMembers(name) {
+  return String(name || "").split(/\s+b\d+b\s+|\s+with\s+/i).map(s => s.trim()).filter(Boolean);
+}
+function _duoInitials(name) {
+  return String(name || "").split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w)).slice(0, 2).map(w => w.match(/[A-Za-z0-9]/)[0].toUpperCase()).join("") || "?";
+}
+function DuoFace({
+  name,
+  size,
+  ring = "",
+  style
+}) {
+  var photo = useArtistPhoto(name);
+  return React.createElement("span", {
+    className: `duo-av ${ring}`,
+    "aria-hidden": "true",
+    style: {
+      width: size,
+      height: size,
+      fontSize: Math.round(size * 0.32),
+      ...style
+    }
+  }, photo ? React.createElement("img", {
+    src: photo,
+    alt: ""
+  }) : _duoInitials(name));
+}
+function DuoAvatar({
+  name,
+  size = 40,
+  ring = ""
+}) {
+  var ms = _duoMembers(name);
+  if (ms.length < 2) return React.createElement(DuoFace, {
+    name: name,
+    size: size,
+    ring: ring
+  });
+  var d = Math.round(size * 0.66);
+  return React.createElement("span", {
+    className: "duo-avp",
+    "aria-hidden": "true",
+    style: {
+      width: size,
+      height: size
+    }
+  }, React.createElement(DuoFace, {
+    name: ms[0],
+    size: d,
+    ring: ring,
+    style: {
+      left: 0,
+      top: 0
+    }
+  }), React.createElement(DuoFace, {
+    name: ms[1],
+    size: d,
+    ring: ring,
+    style: {
+      right: 0,
+      bottom: 0
+    }
+  }));
+}
+function DuoLive({
+  children = "Live",
+  className = "duo-label"
+}) {
+  return React.createElement("span", {
+    className: `${className} duo-live`
+  }, React.createElement("i", {
+    "aria-hidden": "true"
+  }), children);
+}
+function DuoSect({
+  title,
+  right,
+  style
+}) {
+  return React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: 12,
+      minHeight: 24,
+      ...style
+    }
+  }, React.createElement("h2", {
+    className: "duo-sect"
+  }, title), right);
 }
 function useInstallPrompt() {
   var [deferred, setDeferred] = React.useState(null);
@@ -946,15 +979,14 @@ function InstallBanner() {
   var ip = useInstallPrompt();
   if (!ip.canInstall) return null;
   return React.createElement("div", {
+    className: "duo-card",
     style: {
       margin: "8px 16px 0",
-      padding: "10px 12px",
-      borderRadius: 14,
-      background: "var(--ink)",
-      color: "var(--on-ink)",
+      padding: "8px 4px 8px 12px",
+      color: "var(--ink)",
       display: "flex",
       alignItems: "center",
-      gap: 11
+      gap: 12
     }
   }, React.createElement("img", {
     src: "./apple-touch-icon.png",
@@ -972,19 +1004,12 @@ function InstallBanner() {
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-acc"
+  }, "Install Plursky"), React.createElement("div", {
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      color: "var(--on-ink-flare)",
-      fontWeight: 700
-    }
-  }, "INSTALL PLURSKY"), React.createElement("div", {
-    style: {
-      fontSize: 12,
-      lineHeight: 1.35,
-      marginTop: 2,
-      color: "var(--on-ink-2)"
+      marginTop: 3,
+      fontWeight: 400
     }
   }, ip.isIOS ? React.createElement(React.Fragment, null, "Tap ", React.createElement("span", {
     style: {
@@ -997,7 +1022,7 @@ function InstallBanner() {
     height: "13",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "var(--on-ink)",
+    stroke: "var(--ink)",
     strokeWidth: "1.8",
     strokeLinecap: "round",
     strokeLinejoin: "round"
@@ -1013,34 +1038,29 @@ function InstallBanner() {
     rx: "1.5"
   }))), " then ", React.createElement("strong", {
     style: {
-      color: "var(--on-ink)"
+      color: "var(--ink)"
     }
   }, "Add to Home Screen"), " for offline + full-screen.") : React.createElement(React.Fragment, null, "Add to home screen for offline lineup + full-screen map."))), !ip.isIOS && React.createElement("button", {
     onClick: ip.install,
+    className: "duo-btn pri",
     style: {
-      background: "var(--ember)",
-      color: "var(--on-ember)",
-      border: "none",
-      borderRadius: 999,
-      padding: "7px 12px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 700,
+      minHeight: 40,
+      padding: "0 14px",
+      fontSize: 14,
       flexShrink: 0
     }
-  }, "INSTALL"), React.createElement("button", {
+  }, "Install"), React.createElement("button", {
     onClick: ip.dismiss,
     "aria-label": "Dismiss",
     style: {
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      color: "var(--on-ink-3)",
-      padding: 4,
+      color: "var(--ink-2)",
+      minWidth: 44,
+      minHeight: 44,
       flexShrink: 0,
-      fontSize: 18,
+      fontSize: 20,
       lineHeight: 1
     }
   }, "×"));
@@ -1434,37 +1454,36 @@ function NotificationsCard({
   if (!supported) {
     return React.createElement("div", {
       style: {
-        padding: "12px 14px",
-        borderRadius: 12,
-        background: "var(--paper)",
-        border: "1px solid var(--line)",
+        padding: "14px 16px",
+        borderRadius: "var(--rad-md)",
+        background: "var(--s2)",
+        boxShadow: "var(--e1)",
+        border: "none",
         marginBottom: 12
       }
     }, React.createElement("div", {
-      className: "mono",
+      className: "duo-label",
       style: {
-        fontSize: 9,
-        letterSpacing: 1.4,
-        color: "var(--muted)",
-        fontWeight: 700
+        color: "var(--ink-3)"
       }
     }, "NOTIFICATIONS · UNSUPPORTED"), React.createElement("div", {
       style: {
-        fontSize: 12,
-        color: "var(--muted)",
+        fontSize: 14,
+        color: "var(--ink-2)",
         marginTop: 4,
-        lineHeight: 1.4
+        lineHeight: 1.43
       }
     }, window.Capacitor?.isNativePlatform?.() ? "Notifications aren't wired in this build yet — set-time reminders will land in a future update." : "Your browser doesn't support web notifications. Install Plursky to your home screen for the full experience."));
   }
   var label = perm === "granted" ? "ENABLED" : perm === "denied" ? "BLOCKED" : "OFF";
-  var labelColor = perm === "granted" ? "var(--success)" : perm === "denied" ? "var(--alert)" : "var(--muted)";
+  var labelColor = perm === "granted" ? "var(--acc-ink)" : perm === "denied" ? "var(--alert)" : "var(--ink-2)";
   return React.createElement("div", {
     style: {
-      padding: 14,
-      borderRadius: 14,
-      background: "var(--paper)",
-      border: "1px solid var(--line)",
+      padding: 16,
+      borderRadius: "var(--rad-md)",
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
       marginBottom: 12
     }
   }, React.createElement("div", {
@@ -1475,33 +1494,25 @@ function NotificationsCard({
       marginBottom: 6
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.5,
-      color: "var(--muted)",
-      fontWeight: 700
+      color: "var(--ink-3)"
     }
   }, "REMINDERS"), React.createElement("span", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: labelColor,
-      fontWeight: 700
+      color: labelColor
     }
   }, flash === "enabled" ? "✓ ENABLED" : flash === "tested" ? "✓ TEST SENT" : label)), React.createElement("div", {
-    className: "serif",
+    className: "duo-headline",
     style: {
-      fontSize: 20,
-      lineHeight: 1.1,
       marginBottom: 4
     }
   }, leadMin, "-min head-up before each set"), React.createElement("div", {
     style: {
-      fontSize: 13,
-      color: "var(--muted)",
-      lineHeight: 1.5,
+      fontSize: 14,
+      color: "var(--ink-2)",
+      lineHeight: 1.43,
       marginBottom: perm === "denied" ? 8 : 12
     }
   }, perm === "granted" ? scheduled > 0 ? `${scheduled} reminder${scheduled === 1 ? "" : "s"} set · alerts fire even when Plursky is in the background.` : "No sets starting in the next 24 hours — reminders will activate automatically during the festival." : perm === "denied" ? window.Capacitor?.isNativePlatform?.() ? "Notifications are blocked in iOS Settings." : "Notifications are blocked for this site." : `Get a notification ${leadMin} minutes before each saved set so you don't miss a thing.`), React.createElement("div", {
@@ -1513,12 +1524,9 @@ function NotificationsCard({
       flexWrap: "wrap"
     }
   }, React.createElement("span", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      color: "var(--muted)",
-      fontWeight: 700
+      color: "var(--ink-3)"
     }
   }, "LEAD TIME"), React.createElement("div", {
     style: {
@@ -1535,8 +1543,9 @@ function NotificationsCard({
         padding: "4px 9px",
         borderRadius: 999,
         cursor: "pointer",
-        background: on ? "var(--ink)" : "transparent",
-        color: on ? "var(--paper)" : "var(--ink)",
+        background: on ? "var(--s1)" : "transparent",
+        boxShadow: on ? "var(--e1)" : "none",
+        color: on ? "var(--ink)" : "var(--ink-2)",
         border: on ? "none" : "1px solid var(--line-2)",
         fontSize: 10,
         letterSpacing: 1.1,
@@ -1545,19 +1554,16 @@ function NotificationsCard({
     }, m, "M");
   }))), perm === "denied" && React.createElement("div", {
     style: {
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 10,
+      background: "var(--s3)",
+      border: "none",
+      borderRadius: "var(--rad-sm)",
       padding: "10px 12px",
       marginBottom: 12
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      fontWeight: 700,
+      color: "var(--ink-3)",
       marginBottom: 6
     }
   }, "HOW TO RE-ENABLE"), window.Capacitor?.isNativePlatform?.() ? React.createElement("div", {
@@ -1616,10 +1622,54 @@ function NotificationsCard({
 }
 function FestivalChip({
   compact = false,
-  accent = "var(--ink)"
+  accent = "var(--ink)",
+  title = null
 }) {
   var [open, setOpen] = React.useState(false);
   var canSwitch = FESTIVALS_REGISTRY.filter(f => f.available).length > 1;
+  if (title) return React.createElement(React.Fragment, null, React.createElement("button", {
+    type: "button",
+    className: "duo-press",
+    onClick: canSwitch ? () => setOpen(true) : undefined,
+    disabled: !canSwitch,
+    "aria-label": canSwitch ? `${FESTIVAL_CONFIG.shortName.toUpperCase()}, switch festival` : undefined,
+    style: {
+      display: "inline-flex",
+      alignItems: "flex-end",
+      gap: 8,
+      width: "auto",
+      maxWidth: "100%",
+      color: "var(--ink)",
+      cursor: canSwitch ? "pointer" : "default"
+    }
+  }, title, canSwitch && React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      flex: "none",
+      marginBottom: "0.32em",
+      width: 28,
+      height: 28,
+      borderRadius: 14,
+      display: "grid",
+      placeItems: "center",
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      color: "var(--ink-2)"
+    }
+  }, React.createElement("svg", {
+    width: "12",
+    height: "12",
+    viewBox: "0 0 12 12",
+    fill: "none"
+  }, React.createElement("path", {
+    d: "M3 4.5 L6 7.5 L9 4.5",
+    stroke: "currentColor",
+    strokeWidth: "1.7",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  })))), open && React.createElement(FestivalSwitcher, {
+    onClose: () => setOpen(false)
+  }));
   return React.createElement(React.Fragment, null, React.createElement("div", {
     onClick: canSwitch ? () => setOpen(true) : undefined,
     role: canSwitch ? "button" : undefined,
@@ -1708,27 +1758,25 @@ function FestivalThumb({
   var editorialArt = editorial && entry ? _FESTIVAL_EDITORIAL_ART[entry.config?.id] : null;
   var art = editorialArt || (!editorial && entry ? _festivalArt(entry.config) : null);
   var name = entry?.config?.shortName || entry?.config?.brand || entry?.config?.name || "Plur";
-  var mark = String(name).split(/\s+/).filter(Boolean).slice(0, 2).map(x => x[0]).join("").toUpperCase();
-  var seed = String(entry?.config?.id || "plur").split("").reduce((n, c) => n + c.charCodeAt(0), 0);
-  var warm = 18 + seed % 22;
-  var fallback = `radial-gradient(circle at 22% 18%, rgba(242,75,131,.72), transparent 36%), radial-gradient(circle at 82% 78%, hsla(${warm},92%,62%,.42), transparent 38%), linear-gradient(145deg,#15101b,#07101c 68%,#160b13)`;
+  var brand = String(entry?.config?.brand || "").trim();
+  var mark = (/^[A-Za-z0-9]{2,6}$/.test(brand) ? brand : String(entry?.config?.name || name).split(/\s+/).filter(w => w && !/^\d+$/.test(w)).slice(0, 3).map(x => x[0]).join("")).toUpperCase();
   return React.createElement("div", {
     "aria-hidden": "true",
     style: {
       width: size,
       height: size,
-      borderRadius: 14,
+      borderRadius: "var(--rad-sm)",
       overflow: "hidden",
       flexShrink: 0,
-      background: art ? "var(--paper-3)" : fallback,
+      background: "var(--s3)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      fontSize: Math.max(14, Math.round(size * (editorial ? 0.18 : 0.25))),
-      fontWeight: 850,
-      letterSpacing: "0.04em",
-      color: "var(--media-ink)",
-      textShadow: "0 1px 8px rgba(0,0,0,.5)",
+      fontFamily: "var(--f-display)",
+      fontSize: Math.max(13, Math.round(size * (editorial ? 0.16 : 0.22))),
+      fontWeight: 400,
+      letterSpacing: "0.12em",
+      color: "var(--ink-2)",
       lineHeight: 1
     }
   }, art ? React.createElement("img", {
@@ -1839,13 +1887,7 @@ function FestivalSwitcher({
   } catch {}
   var caught = archive.reduce((n, a) => n + (a.totalAttended || 0), 0);
   var eyebrow = {
-    margin: "0 0 4px",
-    fontSize: 11,
-    lineHeight: "14px",
-    fontWeight: 600,
-    letterSpacing: "0.04em",
-    textTransform: "uppercase",
-    color: "var(--text-2)"
+    margin: "0 0 4px"
   };
   var rowStyle = dim => ({
     width: "100%",
@@ -1886,17 +1928,17 @@ function FestivalSwitcher({
     if (st.conflicts) parts.push(React.createElement("span", {
       key: "c",
       style: {
-        color: "var(--warn)",
+        color: "var(--clash)",
         fontWeight: 600
       }
-    }, "⚠ ", st.conflicts, " ", st.conflicts === 1 ? "conflict" : "conflicts"));
+    }, st.conflicts, " ", st.conflicts === 1 ? "clash" : "clashes"));
     if (isActive) parts.push(React.createElement("span", {
       key: "a",
       style: {
-        color: "var(--signal-ink)",
-        fontWeight: 600
+        color: "var(--acc-ink)",
+        fontWeight: 650
       }
-    }, "✓ Active"));else if (phase(f) === "ended") parts.push(React.createElement("span", {
+    }, "Active"));else if (phase(f) === "ended") parts.push(React.createElement("span", {
       key: "e"
     }, "Ended"));else if (!f.available) parts.push(React.createElement("span", {
       key: "l"
@@ -1905,10 +1947,10 @@ function FestivalSwitcher({
     }, "Set times TBA"));else if (st.saved && !st.conflicts) parts.push(React.createElement("span", {
       key: "r",
       style: {
-        color: "var(--signal-ink)",
-        fontWeight: 600
+        color: "var(--acc-ink)",
+        fontWeight: 650
       }
-    }, "✓ Ready"));
+    }, "Ready"));
     return React.createElement("button", {
       key: f.config.id,
       onClick: () => onPick(f.config.id, f),
@@ -1927,27 +1969,21 @@ function FestivalSwitcher({
         minWidth: 0
       }
     }, React.createElement("div", {
-      style: {
-        fontSize: 17,
-        lineHeight: "22px",
-        fontWeight: 600
-      }
+      className: "duo-headline"
     }, f.config.name), React.createElement("div", {
       style: {
-        fontSize: 13,
-        lineHeight: "18px",
-        color: "var(--text-2)"
+        font: "400 13px/1.385 var(--f-ui)",
+        color: "var(--ink-2)"
       }
     }, f.config.location, " · ", React.createElement("span", {
       style: {
-        whiteSpace: "nowrap"
+        overflowWrap: "normal"
       }
     }, f.config.dates)), parts.length > 0 && React.createElement("div", {
       style: {
         marginTop: 2,
-        fontSize: 13,
-        lineHeight: "18px",
-        color: "var(--text-2)"
+        font: "500 13px/1.385 var(--f-ui)",
+        color: "var(--ink-2)"
       }
     }, parts.map((x, i) => React.createElement(React.Fragment, {
       key: i
@@ -1959,6 +1995,7 @@ function FestivalSwitcher({
       marginTop: 16
     }
   }, React.createElement("h3", {
+    className: "duo-sect",
     style: eyebrow
   }, label), kids);
   return React.createElement(FieldSheet, {
@@ -1967,42 +2004,32 @@ function FestivalSwitcher({
   }, React.createElement("p", {
     style: {
       margin: "-4px 0 14px",
-      color: "var(--text-2)",
-      fontSize: 14
+      color: "var(--ink-2)",
+      font: "400 15px/1.4 var(--f-ui)"
     }
   }, "Live, next and remembered."), React.createElement("div", {
     role: "group",
     "aria-label": "Festival view",
+    className: "duo-seg",
     style: {
-      display: "flex",
-      padding: 3,
       marginBottom: 12,
-      borderRadius: 12,
-      background: "var(--paper-3)"
+      background: "var(--s2)"
     }
   }, ["grid", "list"].map(mode => React.createElement("button", {
     key: mode,
     onClick: () => chooseView(mode),
     "aria-pressed": viewMode === mode,
     style: {
-      flex: 1,
-      border: 0,
-      borderRadius: 9,
-      padding: "9px 6px",
-      background: viewMode === mode ? "var(--signal)" : "transparent",
-      color: viewMode === mode ? "var(--on-signal)" : "var(--text-2)",
-      fontWeight: 750,
       textTransform: "capitalize"
     }
   }, mode))), React.createElement("div", {
     className: viewMode === "grid" ? "midnight-festival-grid" : undefined
   }, live.map(row), months.flatMap(g => g.fests.map(row)), tba.map(row)), viewMode === "list" && React.createElement("div", {
+    className: "duo-data-s duo-ink3",
     style: {
-      marginTop: 8,
-      fontSize: 11,
-      color: "var(--text-3)"
+      marginTop: 8
     }
-  }, "Ordered by festival date"), (past.length > 0 || archive.length > 0) && group("Past", React.createElement(React.Fragment, null, React.createElement("button", {
+  }, "ORDERED BY FESTIVAL DATE"), (past.length > 0 || archive.length > 0) && group("Past", React.createElement(React.Fragment, null, React.createElement("button", {
     onClick: () => setPastOpen(o => !o),
     "aria-expanded": pastOpen,
     style: {
@@ -2299,38 +2326,27 @@ function BatterySaverToast() {
       right: 16,
       top: 60,
       zIndex: 80,
-      padding: "10px 14px",
-      borderRadius: 14,
-      background: "var(--ink)",
-      color: "var(--on-ink)",
+      padding: "8px 4px 8px 16px",
+      borderRadius: "var(--rad-md)",
+      background: "var(--s1)",
+      color: "var(--ink)",
       display: "flex",
       alignItems: "center",
       gap: 10,
-      boxShadow: "0 8px 24px rgba(var(--shade-rgb),0.35)"
+      boxShadow: "var(--e2)"
     }
-  }, React.createElement("span", {
-    style: {
-      fontSize: 16
-    }
-  }, "🔋"), React.createElement("div", {
+  }, React.createElement("div", {
     style: {
       flex: 1,
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-acc"
+  }, "Battery saver on"), React.createElement("div", {
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      color: "var(--on-ink-flare)",
-      fontWeight: 700
-    }
-  }, "BATTERY SAVER ON"), React.createElement("div", {
-    style: {
-      fontSize: 13,
-      lineHeight: 1.35,
-      marginTop: 2,
-      color: "var(--on-ink-2)"
+      marginTop: 3,
+      fontWeight: 400
     }
   }, reason)), React.createElement("button", {
     onClick: () => setDismissed(true),
@@ -2339,10 +2355,11 @@ function BatterySaverToast() {
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      color: "var(--on-ink-3)",
-      fontSize: 18,
+      color: "var(--ink-2)",
+      fontSize: 20,
       lineHeight: 1,
-      padding: 4
+      minWidth: 44,
+      minHeight: 44
     }
   }, "×"));
 }
@@ -2355,22 +2372,23 @@ function BatterySaverCard() {
   } = useBatterySaver();
   var segs = [{
     id: "off",
-    label: "OFF"
+    label: "Off"
   }, {
     id: "auto",
-    label: "AUTO"
+    label: "Auto"
   }, {
     id: "on",
-    label: "ON"
+    label: "On"
   }];
   var battPct = battery ? Math.round(battery.level * 100) : null;
-  var battColor = battPct == null ? "var(--muted)" : battPct > 50 ? "var(--success)" : battPct > 20 ? "var(--flare)" : "var(--alert)";
+  var battColor = battPct == null ? "var(--ink-2)" : battPct > 50 ? "var(--acc-ink)" : battPct > 20 ? "var(--flare)" : "var(--alert)";
   return React.createElement("div", {
     style: {
-      padding: 14,
-      borderRadius: 14,
-      background: "var(--paper)",
-      border: "1px solid var(--line)",
+      padding: 16,
+      borderRadius: "var(--rad-md)",
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
       marginBottom: 12
     }
   }, React.createElement("div", {
@@ -2381,33 +2399,25 @@ function BatterySaverCard() {
       marginBottom: 6
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.5,
-      color: "var(--muted)",
-      fontWeight: 700
+      color: "var(--ink-3)"
     }
   }, "BATTERY SAVER"), React.createElement("span", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: active ? "var(--success)" : "var(--muted)",
-      fontWeight: 700
+      color: active ? "var(--acc-ink)" : "var(--ink-2)"
     }
   }, active ? "✓ ACTIVE" : "STANDBY")), React.createElement("div", {
-    className: "serif",
+    className: "duo-headline",
     style: {
-      fontSize: 20,
-      lineHeight: 1.1,
       marginBottom: 4
     }
   }, "Stretch the phone past sunrise"), React.createElement("div", {
     style: {
-      fontSize: 13,
-      color: "var(--muted)",
-      lineHeight: 1.5,
+      fontSize: 14,
+      color: "var(--ink-2)",
+      lineHeight: 1.43,
       marginBottom: 12
     }
   }, "Dims the screen, freezes animations, and slows GPS polling. Auto kicks in at 2 AM or when battery drops under 25%."), React.createElement("div", {
@@ -2415,10 +2425,9 @@ function BatterySaverCard() {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
       gap: 4,
-      background: "var(--paper-2)",
+      background: "var(--s3)",
       borderRadius: 999,
-      padding: 3,
-      border: "1px solid var(--line)"
+      padding: 3
     }
   }, segs.map(s => {
     var on = mode === s.id;
@@ -2426,15 +2435,16 @@ function BatterySaverCard() {
       key: s.id,
       onClick: () => setMode(s.id),
       style: {
-        background: on ? "var(--ink)" : "transparent",
-        color: on ? "var(--paper)" : "var(--ink)",
+        background: on ? "var(--s1)" : "transparent",
+        boxShadow: on ? "var(--e1)" : "none",
+        color: on ? "var(--ink)" : "var(--ink-2)",
         border: "none",
         borderRadius: 999,
-        padding: "7px 10px",
-        fontFamily: "Geist Mono, monospace",
-        fontSize: 10,
-        letterSpacing: 1.2,
-        fontWeight: 700,
+        padding: "0 10px",
+        minHeight: 36,
+        fontFamily: "var(--f-ui)",
+        fontSize: 14,
+        fontWeight: 650,
         cursor: "pointer"
       }
     }, s.label);
@@ -2483,17 +2493,18 @@ function BatterySaverCard() {
     }
   }, battPct, "% ", battery.charging ? "· CHARGING" : "")));
 }
-function _syncNativeAppearance(mode) {
+function _syncNativeAppearance(mode, choice) {
+  var style = choice === "dark" || choice === "light" ? mode : "system";
   try {
     window.Capacitor?.Plugins?.Appearance?.setStyle?.({
-      style: mode
+      style
     });
   } catch {}
 }
 if (!window._appearanceNativeInited && window.PlurskyAppearance) {
   window._appearanceNativeInited = true;
-  _syncNativeAppearance(window.PlurskyAppearance.mode());
-  window.PlurskyAppearance.onChange(m => _syncNativeAppearance(m));
+  _syncNativeAppearance(window.PlurskyAppearance.mode(), window.PlurskyAppearance.choice());
+  window.PlurskyAppearance.onChange((m, c) => _syncNativeAppearance(m, c));
 }
 function fitName(el, force) {
   var key = el.textContent + "|" + el.clientWidth;
@@ -2550,6 +2561,161 @@ function useFitNames(root) {
     if (probe.current) probe.current.remove();
   }, []);
 }
+var _FIT_WORDS = "[data-fit-words], .duo-name";
+function _fitSize(el, px) {
+  if (el.dataset.fitOrig == null) el.dataset.fitOrig = (el.style.getPropertyValue("font-size") || "") + "|" + el.style.getPropertyPriority("font-size");
+  if (px == null) {
+    var [v, pr] = el.dataset.fitOrig.split("|");
+    if (v) el.style.setProperty("font-size", v, pr);else el.style.removeProperty("font-size");
+    delete el.dataset.fitOrig;
+    delete el.dataset.fitSet;
+    return;
+  }
+  el.style.setProperty("font-size", px + "px", "important");
+  el.dataset.fitSet = String(px);
+}
+function fitWords(el) {
+  var cs = getComputedStyle(el);
+  var cur = parseFloat(cs.fontSize);
+  if (el.dataset.fitSet == null || Math.abs(cur - parseFloat(el.dataset.fitSet)) > 0.1) el.dataset.fitBase = String(cur);
+  var base = parseFloat(el.dataset.fitBase);
+  var key = el.textContent + "|" + el.clientWidth + "|" + base + "|" + getComputedStyle(el).fontFamily;
+  if (el.dataset.fitKey === key) return;
+  var words = [];
+  var tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  while (tw.nextNode()) {
+    var n = tw.currentNode;
+    var re = /[^\s\-‐-—\/·]+/g;
+    var m = void 0;
+    while (m = re.exec(n.data)) words.push([n, m.index, m.index + m[0].length]);
+  }
+  var pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+  var broken = () => {
+    var box = el.getBoundingClientRect().width - pad + 0.5;
+    return words.some(([n, a, b]) => {
+      var rg = document.createRange();
+      rg.setStart(n, a);
+      rg.setEnd(n, b);
+      var rs = rg.getClientRects();
+      return rs.length > 1 && rs[rs.length - 1].top > rs[0].top + 1 || rg.getBoundingClientRect().width > box;
+    });
+  };
+  var set = px => _fitSize(el, px);
+  var tr = [el.style.getPropertyValue("transition"), el.style.getPropertyPriority("transition")];
+  el.style.setProperty("transition", "none", "important");
+  var done = () => {
+    if (tr[0]) el.style.setProperty("transition", tr[0], tr[1]);else el.style.removeProperty("transition");
+  };
+  var size = cur;
+  if (size < base) {
+    size = base;
+    set(size);
+  }
+  var min = parseFloat(el.dataset.fitMin || "11");
+  if (broken()) {
+    el.style.overflowWrap = "normal";
+    var w0 = el.getBoundingClientRect().width;
+    if (size > min) {
+      set(size - 1);
+      var took = Math.abs(parseFloat(getComputedStyle(el).fontSize) - (size - 1)) < 0.1;
+      if (!took || el.getBoundingClientRect().width < w0 - 0.5) {
+        _fitSize(el, null);
+        el.style.overflowWrap = "";
+        el.dataset.fitKey = el.textContent + "|" + el.clientWidth + "|" + base + "|" + getComputedStyle(el).fontFamily;
+        done();
+        return;
+      }
+      size -= 1;
+    }
+    while (broken() && size > min) {
+      size -= 1;
+      set(size);
+    }
+    if (broken()) el.style.overflowWrap = "anywhere";
+  }
+  el.dataset.fitKey = el.textContent + "|" + el.clientWidth + "|" + base + "|" + getComputedStyle(el).fontFamily;
+  done();
+}
+function fitWordGroups(r) {
+  var groups = {};
+  for (var n of r.querySelectorAll("[data-fit-group]")) (groups[n.dataset.fitGroup] ||= []).push(n);
+  for (var g of Object.values(groups)) {
+    var size = Math.min(...g.map(n => parseFloat(getComputedStyle(n).fontSize)));
+    for (var _n of g) if (Math.abs(parseFloat(getComputedStyle(_n).fontSize) - size) > 0.1) _fitSize(_n, size);
+  }
+}
+if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationObserver !== "undefined") {
+  window._fitWordsInited = true;
+  var ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(entries => {
+    for (var {
+      target
+    } of entries) if (target.isConnected) fitWords(target);
+    fitWordGroups(document);
+  }) : null;
+  var fitIn = (node, all) => {
+    var list = node.matches && node.matches(_FIT_WORDS) ? [node] : [];
+    if (node.querySelectorAll) list.push(...node.querySelectorAll(_FIT_WORDS));
+    for (var n of list) {
+      if (all) n.dataset.fitKey = "";
+      fitWords(n);
+      ro && ro.observe(n);
+    }
+  };
+  var settle = () => {
+    var all = [...document.body.querySelectorAll(_FIT_WORDS)];
+    for (var n of all) {
+      n.dataset.fitKey = "";
+      if (n.dataset.fitSet != null && n.dataset.fitBase != null && parseFloat(n.dataset.fitSet) !== parseFloat(n.dataset.fitBase)) _fitSize(n, parseFloat(n.dataset.fitBase));
+      if (n.style.overflowWrap) n.style.overflowWrap = "";
+    }
+    for (var _n2 of all) {
+      fitWords(_n2);
+      ro && ro.observe(_n2);
+    }
+    fitWordGroups(document);
+  };
+  var settleTimer = null;
+  var settleSoon = () => {
+    clearTimeout(settleTimer);
+    settleTimer = setTimeout(settle, 200);
+  };
+  var start = () => {
+    fitIn(document.body);
+    fitWordGroups(document);
+    settleSoon();
+    new MutationObserver(records => {
+      var touched = new Set();
+      for (var r of records) {
+        for (var n of r.addedNodes) if (n.nodeType === 1) touched.add(n);
+        var host = r.target.nodeType === 1 ? r.target : r.target.parentElement;
+        var fit = host && host.closest && host.closest(_FIT_WORDS);
+        if (fit) touched.add(fit);
+      }
+      for (var _n3 of touched) if (_n3.isConnected) fitIn(_n3);
+      if (touched.size) {
+        fitWordGroups(document);
+        settleSoon();
+      }
+    }).observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    });
+    try {
+      if (document.fonts) {
+        document.fonts.addEventListener("loadingdone", settle);
+        document.fonts.ready.then(settle);
+      }
+    } catch {}
+    try {
+      window.PlurskyAppearance && window.PlurskyAppearance.onChange(() => {
+        settle();
+        settleSoon();
+      });
+    } catch {}
+  };
+  if (document.body) start();else document.addEventListener("DOMContentLoaded", start);
+}
 function useAppearance() {
   var A = window.PlurskyAppearance;
   var [, force] = React.useReducer(x => x + 1, 0);
@@ -2575,10 +2741,11 @@ function AppearanceRow() {
       gap: 12,
       flexWrap: "wrap",
       padding: "8px 8px 8px 16px",
-      borderRadius: 14,
+      borderRadius: "var(--rad-md)",
       marginBottom: 12,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)"
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none"
     }
   }, React.createElement("div", {
     style: {
@@ -2800,6 +2967,7 @@ Object.assign(window, {
   AppearanceRow,
   fitNames,
   useFitNames,
+  fitWords,
   useOnlineStatus,
   StatusStrip,
   plurskyHaptic

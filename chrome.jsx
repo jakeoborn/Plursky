@@ -42,13 +42,10 @@ function TopBar({ title, right, sub, tight }) {
             UNITLESS line-heights: a px line-height does not scale with the
             font, so at 200% text a 22px eyebrow was still laying out on a 14px
             line and the title printed straight through it. */}
-        {sub && <div style={{
-          fontSize: 11, lineHeight: 1.27, fontWeight: 600, letterSpacing: "0.04em",
-          textTransform: "uppercase", color: "var(--text-2)", marginBottom: 4,
-        }}>{sub}</div>}
+        {sub && <div className="duo-label duo-ink3" style={{ marginBottom: 6 }}>{sub}</div>}
         {/* A real <h1>: VoiceOver's heading rotor had nothing to land on
             anywhere in Memories before this. */}
-        <h1 style={{ margin: 0, fontSize: 28, lineHeight: 1.21, fontWeight: 700, letterSpacing: "-0.01em" }}>
+        <h1 className="duo-title" data-fit-words data-fit-min="20" style={{ margin: 0 }}>
           {title}
         </h1>
       </div>
@@ -78,16 +75,15 @@ function TabBar({ active, onChange }) {
     { id: "map",     label: "Map",    icon: MapIcon },
     { id: "me",      label: "Me",     icon: MeIcon },
   ];
-  // Field Mode: the bar is quiet dark chrome. The accent marks only the
-  // selected tab. Stage colour no longer tints the bar while the main stage
-  // is live: festival colour may skin media, never controls.
+  // The duo board's bar: quiet chrome, the selected tab in full ink with a
+  // short accent bar along its top edge. Stage colour never tints it.
   return (
     <div style={{
       background: "var(--chrome)",
       backdropFilter: "blur(20px) saturate(160%)",
       WebkitBackdropFilter: "blur(20px) saturate(160%)",
       borderTop: "1px solid var(--line)",
-      padding: "6px 10px 10px",
+      padding: "0 10px 10px",
       display: "flex",
       justifyContent: "space-around",
     }}>
@@ -99,21 +95,29 @@ function TabBar({ active, onChange }) {
             onClick={() => { haptic.light(); onChange(t.id); }}
             aria-current={on ? "page" : undefined}
             style={{
+              position: "relative",
               background: "transparent", border: "none", cursor: "pointer",
-              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 3,
-              padding: "4px 12px",
-              color: on ? "var(--signal-ink)" : "var(--text-2)",
-              minWidth: 64, minHeight: 49, maxWidth: "100%",
-              transition: "color 0.15s ease",
+              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 5,
+              padding: "10px 4px 4px",
+              color: on ? "var(--ink)" : "var(--ink-3)",
+              // Equal shares of the bar, so a label's box is known before its
+              // text is: the fit below needs a width that does not depend on
+              // the label it is fitting.
+              flex: "1 1 0", minWidth: 0, minHeight: 53,
+              transition: "color var(--t-tap) var(--ease-decay)",
             }}>
+            {on && <span aria-hidden="true" style={{
+              position: "absolute", top: -1, left: "28%", right: "28%", height: 2, borderRadius: 2,
+              background: "var(--acc)", boxShadow: "0 0 12px var(--acc-55)",
+            }} />}
             <Icon on={on} />
             {/* The label must be able to shrink, and its line box must scale
-                with it. At 200% text "Memories" ran past its own button. */}
-            <span style={{
-              fontSize: 12, lineHeight: 1.17,
-              fontWeight: on ? 600 : 500,
-              minWidth: 0, maxWidth: "100%", overflowWrap: "anywhere", textAlign: "center",
-              transition: "color 0.15s",
+                with it. At 200% text "Memories" ran past its own button, then
+                broke inside the word ("Toda / y"); it now steps down to fit. */}
+            <span data-fit-words data-fit-group="tab" data-fit-min="9" style={{
+              display: "block", width: "100%",
+              fontSize: 11, lineHeight: 1.17, letterSpacing: ".01em",
+              fontWeight: 500, textAlign: "center",
             }}>
               {t.label}
             </span>
@@ -124,62 +128,29 @@ function TabBar({ active, onChange }) {
   );
 }
 
+// Tab icons: the board's one geometry (design/system-exploration
+// shared/icons.js), 1.6px stroke on a 24 grid, round caps, currentColor.
 const stroke = (on) => ({
   fill: "none",
   stroke: "currentColor",
-  strokeWidth: on ? 1.8 : 1.4,
+  strokeWidth: 1.6,
   strokeLinecap: "round",
   strokeLinejoin: "round",
 });
-
-function HomeIcon({ on }) {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" style={stroke(on)}>
-      <circle cx="12" cy="12" r="3.2" />
-      <path d="M12 2.5 L12 5.5 M12 18.5 L12 21.5 M2.5 12 L5.5 12 M18.5 12 L21.5 12" />
-      <path d="M5.5 5.5 L7.5 7.5 M16.5 16.5 L18.5 18.5 M5.5 18.5 L7.5 16.5 M16.5 7.5 L18.5 5.5" opacity="0.55"/>
-    </svg>
-  );
-}
-function MapIcon({ on }) {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" style={stroke(on)}>
-      <path d="M3 6 L9 4 L15 6 L21 4 L21 18 L15 20 L9 18 L3 20 Z" />
-      <path d="M9 4 L9 18 M15 6 L15 20" />
-    </svg>
-  );
-}
-function LineupIcon({ on }) {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" style={stroke(on)}>
-      <path d="M4 6 L20 6 M4 12 L20 12 M4 18 L14 18" />
-      <circle cx="18" cy="18" r="2" />
-    </svg>
-  );
-}
+const _tabIcon = (d) => function TabIcon({ on }) {
+  return <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style={stroke(on)}><path d={d} /></svg>;
+};
+const HomeIcon = _tabIcon("M12 20 3.5 9 M12 20 8.5 5 M12 20 15.5 5 M12 20 20.5 9 M9 20h6");
+const LineupIcon = _tabIcon("M4 6h16 M4 12h11 M4 18h14");
+const MapIcon = _tabIcon("M9 4 3 6.2v13.8l6-2.2 6 2.2 6-2.2V4l-6 2.2L9 4z M9 4v13.8 M15 6.2V20");
+const MeIcon = _tabIcon("M12 12.5a4.25 4.25 0 1 0 0-8.5 4.25 4.25 0 0 0 0 8.5z M4.5 20.5c1.4-3.7 4.3-5.6 7.5-5.6s6.1 1.9 7.5 5.6");
+const MemoriesIcon = _tabIcon("M4 6.5h16v12H4z M4 15.5l4.5-4 3.5 3 2.5-2 5.5 4.5 M15.5 10.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z");
 function MusicIcon({ on }) {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" style={stroke(on)}>
+    <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style={stroke(on)}>
       <circle cx="7" cy="17" r="2.5" />
       <circle cx="17" cy="15" r="2.5" />
       <path d="M9.5 17 L9.5 5 L19.5 3 L19.5 15" />
-    </svg>
-  );
-}
-function MemoriesIcon({ on }) {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" style={stroke(on)}>
-      <rect x="3" y="5" width="18" height="14" rx="2.5" />
-      <circle cx="8.5" cy="10" r="1.6" />
-      <path d="M3 16 L9 11 L13 14.5 L17 11 L21 14.5" />
-    </svg>
-  );
-}
-function MeIcon({ on }) {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" style={stroke(on)}>
-      <circle cx="12" cy="9" r="3.5" />
-      <path d="M5 20 C 5 16, 8.5 14, 12 14 C 15.5 14, 19 16, 19 20" />
     </svg>
   );
 }
@@ -607,11 +578,12 @@ function FieldButton({ children, onClick, kind = "primary", style, ...rest }) {
     <button onClick={onClick} {...rest} style={{
       width: "100%", minHeight: 52, padding: "0 20px",
       display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
-      background: primary ? "var(--signal)" : "var(--paper-3)",
-      color: primary ? "var(--on-signal)" : "var(--ink)",
+      background: primary ? "var(--acc)" : "transparent",
+      color: primary ? "var(--on-acc)" : "var(--ink)",
       // Secondary is outlined so it reads as a button on a raised sheet too.
-      border: primary ? "none" : "1px solid var(--line-2)", borderRadius: 14, cursor: rest.disabled ? "default" : "pointer",
-      fontSize: 17, lineHeight: "22px", fontWeight: 600,
+      border: primary ? "none" : "1px solid var(--line-2)", borderRadius: "var(--rad-sm)", cursor: rest.disabled ? "default" : "pointer",
+      boxShadow: primary && !rest.disabled ? "0 10px 28px -12px var(--acc-55)" : "none",
+      font: "650 17px/1.3 var(--f-ui)", letterSpacing: "-0.01em",
       opacity: rest.disabled ? 0.45 : 1,
       ...style,
     }}>{children}</button>
@@ -659,14 +631,14 @@ function FieldSheet({ title, onClose, children }) {
     }}>
       <div role="dialog" aria-modal="true" aria-label={title} onClick={e => e.stopPropagation()} style={{
         width: "100%", maxHeight: "88%", display: "flex", flexDirection: "column",
-        background: "var(--paper-3)", borderRadius: "14px 14px 0 0",
+        background: "var(--s1)", borderRadius: "var(--rad-lg) var(--rad-lg) 0 0", boxShadow: "var(--e2)",
         paddingBottom: "env(safe-area-inset-bottom, 0px)",
       }}>
         <div aria-hidden="true" style={{ display: "flex", justifyContent: "center", paddingTop: 8 }}>
           <div style={{ width: 36, height: 5, borderRadius: 3, background: "var(--line-2)" }}/>
         </div>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "4px 8px 4px 20px" }}>
-          <h2 style={{ margin: 0, fontSize: 20, lineHeight: "25px", fontWeight: 600 }}>{title}</h2>
+          <h2 style={{ margin: 0, font: "700 22px/1.25 var(--f-ui)", letterSpacing: "-0.02em" }}>{title}</h2>
           <button onClick={onClose} aria-label="Close" style={fieldIconBtn}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg>
           </button>
@@ -675,6 +647,58 @@ function FieldSheet({ title, onClose, children }) {
           {children}
         </div>
       </div>
+    </div>
+  );
+}
+
+// ── Duo board components ─────────────────────────────────────
+// The selected dark/light board (design/system-exploration @ 6524ccb) as
+// shared pieces. Styles are the duo-* classes in index.html; every colour is
+// a mode token, so nothing here reads the mode.
+
+// An act's face: the artist's Spotify photo (transient, 24 h, via
+// useArtistPhoto) or their initials. A b2b is two whole faces overlapped in
+// the same footprint; a 3+ chain shows its first two. ring: "on" = on your
+// plan, "cl" = in a clash.
+function _duoMembers(name) {
+  return String(name || "").split(/\s+b\d+b\s+|\s+with\s+/i).map(s => s.trim()).filter(Boolean);
+}
+function _duoInitials(name) {
+  return String(name || "").split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w)).slice(0, 2)
+    .map(w => w.match(/[A-Za-z0-9]/)[0].toUpperCase()).join("") || "?";
+}
+function DuoFace({ name, size, ring = "", style }) {
+  const photo = useArtistPhoto(name);
+  return (
+    <span className={`duo-av ${ring}`} aria-hidden="true"
+      style={{ width: size, height: size, fontSize: Math.round(size * 0.32), ...style }}>
+      {photo ? <img src={photo} alt="" /> : _duoInitials(name)}
+    </span>
+  );
+}
+function DuoAvatar({ name, size = 40, ring = "" }) {
+  const ms = _duoMembers(name);
+  if (ms.length < 2) return <DuoFace name={name} size={size} ring={ring} />;
+  const d = Math.round(size * 0.66);
+  return (
+    <span className="duo-avp" aria-hidden="true" style={{ width: size, height: size }}>
+      <DuoFace name={ms[0]} size={d} ring={ring} style={{ left: 0, top: 0 }} />
+      <DuoFace name={ms[1]} size={d} ring={ring} style={{ right: 0, bottom: 0 }} />
+    </span>
+  );
+}
+
+// LIVE is green and only ever means live.
+function DuoLive({ children = "Live", className = "duo-label" }) {
+  return <span className={`${className} duo-live`}><i aria-hidden="true" />{children}</span>;
+}
+
+// The board's section eyebrow: Michroma caps, with an optional right slot.
+function DuoSect({ title, right, style }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, minHeight: 24, ...style }}>
+      <h2 className="duo-sect">{title}</h2>
+      {right}
     </div>
   );
 }
@@ -737,42 +761,37 @@ function InstallBanner() {
   if (!ip.canInstall) return null;
 
   return (
-    <div style={{
+    <div className="duo-card" style={{
       margin: "8px 16px 0",
-      padding: "10px 12px",
-      borderRadius: 14,
-      background: "var(--ink)",
-      color: "var(--on-ink)",
-      display: "flex", alignItems: "center", gap: 11,
+      padding: "8px 4px 8px 12px",
+      color: "var(--ink)",
+      display: "flex", alignItems: "center", gap: 12,
     }}>
       <img src="./apple-touch-icon.png" alt=""
         width="36" height="36"
         style={{ borderRadius: 9, display: "block", flexShrink: 0 }} />
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--on-ink-flare)", fontWeight: 700 }}>
-          INSTALL PLURSKY
+        <div className="duo-label duo-acc">
+          Install Plursky
         </div>
-        <div style={{ fontSize: 12, lineHeight: 1.35, marginTop: 2, color: "var(--on-ink-2)" }}>
+        <div className="duo-body-s duo-ink2" style={{ marginTop: 3, fontWeight: 400 }}>
           {ip.isIOS
             ? <>Tap <span style={{ display: "inline-flex", verticalAlign: "middle", padding: "0 2px" }}>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--on-ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 3 L12 16"/><path d="M7 8 L12 3 L17 8"/><rect x="5" y="13" width="14" height="8" rx="1.5"/>
-                </svg></span> then <strong style={{ color: "var(--on-ink)" }}>Add to Home Screen</strong> for offline + full-screen.</>
+                </svg></span> then <strong style={{ color: "var(--ink)" }}>Add to Home Screen</strong> for offline + full-screen.</>
             : <>Add to home screen for offline lineup + full-screen map.</>}
         </div>
       </div>
       {!ip.isIOS && (
-        <button onClick={ip.install} style={{
-          background: "var(--ember)", color: "var(--on-ember)", border: "none",
-          borderRadius: 999, padding: "7px 12px", cursor: "pointer",
-          fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-          flexShrink: 0,
-        }}>INSTALL</button>
+        <button onClick={ip.install} className="duo-btn pri" style={{
+          minHeight: 40, padding: "0 14px", fontSize: 14, flexShrink: 0,
+        }}>Install</button>
       )}
       <button onClick={ip.dismiss} aria-label="Dismiss" style={{
         background: "transparent", border: "none", cursor: "pointer",
-        color: "var(--on-ink-3)", padding: 4, flexShrink: 0,
-        fontSize: 18, lineHeight: 1,
+        color: "var(--ink-2)", minWidth: 44, minHeight: 44, flexShrink: 0,
+        fontSize: 20, lineHeight: 1,
       }}>×</button>
     </div>
   );
@@ -1223,14 +1242,14 @@ function NotificationsCard({ state }) {
   if (!supported) {
     return (
       <div style={{
-        padding: "12px 14px", borderRadius: 12,
-        background: "var(--paper)", border: "1px solid var(--line)",
+        padding: "14px 16px", borderRadius: "var(--rad-md)",
+        background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
         marginBottom: 12,
       }}>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", fontWeight: 700 }}>
+        <div className="duo-label" style={{ color: "var(--ink-3)", }}>
           NOTIFICATIONS · UNSUPPORTED
         </div>
-        <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 4, lineHeight: 1.4 }}>
+        <div style={{ fontSize: 14, color: "var(--ink-2)", marginTop: 4, lineHeight: 1.43 }}>
           {window.Capacitor?.isNativePlatform?.()
             ? "Notifications aren't wired in this build yet — set-time reminders will land in a future update."
             : "Your browser doesn't support web notifications. Install Plursky to your home screen for the full experience."}
@@ -1240,26 +1259,26 @@ function NotificationsCard({ state }) {
   }
 
   const label = perm === "granted" ? "ENABLED" : perm === "denied" ? "BLOCKED" : "OFF";
-  const labelColor = perm === "granted" ? "var(--success)" : perm === "denied" ? "var(--alert)" : "var(--muted)";
+  const labelColor = perm === "granted" ? "var(--acc-ink)" : perm === "denied" ? "var(--alert)" : "var(--ink-2)";
 
   return (
     <div style={{
-      padding: 14, borderRadius: 14,
-      background: "var(--paper)", border: "1px solid var(--line)",
+      padding: 16, borderRadius: "var(--rad-md)",
+      background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
       marginBottom: 12,
     }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
-        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.5, color: "var(--muted)", fontWeight: 700 }}>
+        <div className="duo-label" style={{ color: "var(--ink-3)", }}>
           REMINDERS
         </div>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: labelColor, fontWeight: 700 }}>
+        <span className="duo-label" style={{ color: labelColor }}>
           {flash === "enabled" ? "✓ ENABLED" : flash === "tested" ? "✓ TEST SENT" : label}
         </span>
       </div>
-      <div className="serif" style={{ fontSize: 20, lineHeight: 1.1, marginBottom: 4 }}>
+      <div className="duo-headline" style={{ marginBottom: 4 }}>
         {leadMin}-min head-up before each set
       </div>
-      <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5, marginBottom: perm === "denied" ? 8 : 12 }}>
+      <div style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 1.43, marginBottom: perm === "denied" ? 8 : 12 }}>
         {perm === "granted"
           ? scheduled > 0
             ? `${scheduled} reminder${scheduled === 1 ? "" : "s"} set · alerts fire even when Plursky is in the background.`
@@ -1271,7 +1290,7 @@ function NotificationsCard({ state }) {
             : `Get a notification ${leadMin} minutes before each saved set so you don't miss a thing.`}
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12, flexWrap: "wrap" }}>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", fontWeight: 700 }}>
+        <span className="duo-label" style={{ color: "var(--ink-3)", }}>
           LEAD TIME
         </span>
         <div style={{ display: "flex", gap: 5 }}>
@@ -1280,8 +1299,8 @@ function NotificationsCard({ state }) {
             return (
               <button key={m} onClick={() => onPickLead(m)} className="mono" style={{
                 padding: "4px 9px", borderRadius: 999, cursor: "pointer",
-                background: on ? "var(--ink)" : "transparent",
-                color: on ? "var(--paper)" : "var(--ink)",
+                background: on ? "var(--s1)" : "transparent", boxShadow: on ? "var(--e1)" : "none",
+                color: on ? "var(--ink)" : "var(--ink-2)",
                 border: on ? "none" : "1px solid var(--line-2)",
                 fontSize: 10, letterSpacing: 1.1, fontWeight: on ? 700 : 500,
               }}>{m}M</button>
@@ -1291,10 +1310,10 @@ function NotificationsCard({ state }) {
       </div>
       {perm === "denied" && (
         <div style={{
-          background: "var(--paper-2)", border: "1px solid var(--line-2)",
-          borderRadius: 10, padding: "10px 12px", marginBottom: 12,
+          background: "var(--s3)", border: "none",
+          borderRadius: "var(--rad-sm)", padding: "10px 12px", marginBottom: 12,
         }}>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700, marginBottom: 6 }}>
+          <div className="duo-label" style={{ color: "var(--ink-3)", marginBottom: 6 }}>
             HOW TO RE-ENABLE
           </div>
           {window.Capacitor?.isNativePlatform?.() ? (
@@ -1339,9 +1358,28 @@ function NotificationsCard({ state }) {
 // festival in FESTIVALS_REGISTRY. Selectable festivals reload the
 // page with their config; "coming soon" festivals are visible as
 // a roadmap preview but not selectable.
-function FestivalChip({ compact = false, accent = "var(--ink)" }) {
+function FestivalChip({ compact = false, accent = "var(--ink)", title = null }) {
   const [open, setOpen] = React.useState(false);
   const canSwitch = FESTIVALS_REGISTRY.filter(f => f.available).length > 1;
+  // title: the duo Today header, where the festival's own name IS the
+  // switcher (Apple Sports' title menu). Same button, same label.
+  if (title) return (
+    <>
+      <button type="button" className="duo-press"
+        onClick={canSwitch ? () => setOpen(true) : undefined}
+        disabled={!canSwitch}
+        aria-label={canSwitch ? `${FESTIVAL_CONFIG.shortName.toUpperCase()}, switch festival` : undefined}
+        style={{ display: "inline-flex", alignItems: "flex-end", gap: 8, width: "auto", maxWidth: "100%", color: "var(--ink)", cursor: canSwitch ? "pointer" : "default" }}>
+        {title}
+        {canSwitch && (
+          <span aria-hidden="true" style={{ flex: "none", marginBottom: "0.32em", width: 28, height: 28, borderRadius: 14, display: "grid", placeItems: "center", background: "var(--s2)", boxShadow: "var(--e1)", color: "var(--ink-2)" }}>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5 L6 7.5 L9 4.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </span>
+        )}
+      </button>
+      {open && <FestivalSwitcher onClose={() => setOpen(false)} />}
+    </>
+  );
   return (
     <>
       {/* Field Mode: a 44pt target around an 18pt-radius status pill. The
@@ -1420,16 +1458,19 @@ function FestivalThumb({ entry, size = 56, editorial = false }) {
   const editorialArt = editorial && entry ? _FESTIVAL_EDITORIAL_ART[entry.config?.id] : null;
   const art = editorialArt || (!editorial && entry ? _festivalArt(entry.config) : null);
   const name = entry?.config?.shortName || entry?.config?.brand || entry?.config?.name || "Plur";
-  const mark = String(name).split(/\s+/).filter(Boolean).slice(0, 2).map(x => x[0]).join("").toUpperCase();
-  const seed = String(entry?.config?.id || "plur").split("").reduce((n, c) => n + c.charCodeAt(0), 0);
-  const warm = 18 + (seed % 22);
-  const fallback = `radial-gradient(circle at 22% 18%, rgba(242,75,131,.72), transparent 36%), radial-gradient(circle at 82% 78%, hsla(${warm},92%,62%,.42), transparent 38%), linear-gradient(145deg,#15101b,#07101c 68%,#160b13)`;
+  // The brand when it is already a code (EDC, ACL, CRSSD); else the
+  // initials of the name's words, the year left out.
+  const brand = String(entry?.config?.brand || "").trim();
+  const mark = (/^[A-Za-z0-9]{2,6}$/.test(brand) ? brand
+    : String(entry?.config?.name || name).split(/\s+/).filter(w => w && !/^\d+$/.test(w)).slice(0, 3).map(x => x[0]).join("")).toUpperCase();
+  // No art: the festival's initials as a board code on a well, in both
+  // modes (the old pink film gradient was a Dark-only look).
   return (
     <div aria-hidden="true" style={{
-      width: size, height: size, borderRadius: 14, overflow: "hidden", flexShrink: 0,
-      background: art ? "var(--paper-3)" : fallback, display: "flex", alignItems: "center", justifyContent: "center",
-      fontSize: Math.max(14, Math.round(size * (editorial ? 0.18 : 0.25))), fontWeight: 850, letterSpacing: "0.04em",
-      color: "var(--media-ink)", textShadow: "0 1px 8px rgba(0,0,0,.5)",
+      width: size, height: size, borderRadius: "var(--rad-sm)", overflow: "hidden", flexShrink: 0,
+      background: "var(--s3)", display: "flex", alignItems: "center", justifyContent: "center",
+      fontFamily: "var(--f-display)", fontSize: Math.max(13, Math.round(size * (editorial ? 0.16 : 0.22))), fontWeight: 400, letterSpacing: "0.12em",
+      color: "var(--ink-2)",
       // lineHeight 1 keeps the wordmark fallback inside its box: the default
       // ~1.2 line box grows past the tile at 200% text and is clipped.
       lineHeight: 1,
@@ -1508,7 +1549,7 @@ function FestivalSwitcher({ onClose }) {
   } catch {}
   const caught = archive.reduce((n, a) => n + (a.totalAttended || 0), 0);
 
-  const eyebrow = { margin: "0 0 4px", fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)" };
+  const eyebrow = { margin: "0 0 4px" };
   const rowStyle = (dim) => ({
     width: "100%", display: "flex", alignItems: "center", gap: 12, minHeight: 72, padding: "8px 0",
     background: "transparent", border: "none", borderBottom: "1px solid var(--line)",
@@ -1521,24 +1562,24 @@ function FestivalSwitcher({ onClose }) {
     const st = _festivalPlanStatus(f.config.id);
     const parts = [];
     if (st.saved) parts.push(<span key="s">{st.saved} saved</span>);
-    if (st.conflicts) parts.push(<span key="c" style={{ color: "var(--warn)", fontWeight: 600 }}>⚠ {st.conflicts} {st.conflicts === 1 ? "conflict" : "conflicts"}</span>);
-    if (isActive) parts.push(<span key="a" style={{ color: "var(--signal-ink)", fontWeight: 600 }}>✓ Active</span>);
+    if (st.conflicts) parts.push(<span key="c" style={{ color: "var(--clash)", fontWeight: 600 }}>{st.conflicts} {st.conflicts === 1 ? "clash" : "clashes"}</span>);
+    if (isActive) parts.push(<span key="a" style={{ color: "var(--acc-ink)", fontWeight: 650 }}>Active</span>);
     else if (phase(f) === "ended") parts.push(<span key="e">Ended</span>);
     else if (!f.available) parts.push(<span key="l">{f.previewOnly ? "Early access" : "Soon"}</span>);
     // Open, lineup in, schedule still to come — say so BEFORE the switch, so
     // nobody taps in expecting a timetable and finds a list of dashes.
     else if (f.scheduleTBA) parts.push(<span key="tba">Set times TBA</span>);
-    else if (st.saved && !st.conflicts) parts.push(<span key="r" style={{ color: "var(--signal-ink)", fontWeight: 600 }}>✓ Ready</span>);
+    else if (st.saved && !st.conflicts) parts.push(<span key="r" style={{ color: "var(--acc-ink)", fontWeight: 650 }}>Ready</span>);
     return (
       <button key={f.config.id} onClick={() => onPick(f.config.id, f)} disabled={locked}
         aria-current={isActive ? "true" : undefined}
         style={{ ...rowStyle(locked), cursor: locked ? "default" : "pointer" }}>
         <FestivalThumb entry={f} editorial={viewMode === "grid"} />
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>{f.config.name}</div>
-          <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{f.config.location} · <span style={{ whiteSpace: "nowrap" }}>{f.config.dates}</span></div>
+          <div className="duo-headline">{f.config.name}</div>
+          <div style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>{f.config.location} · <span style={{ overflowWrap: "normal" }}>{f.config.dates}</span></div>
           {parts.length > 0 && (
-            <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+            <div style={{ marginTop: 2, font: "500 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>
               {parts.map((x, i) => <React.Fragment key={i}>{i ? " · " : ""}{x}</React.Fragment>)}
             </div>
           )}
@@ -1549,22 +1590,22 @@ function FestivalSwitcher({ onClose }) {
   };
   const group = (label, kids) => (
     <section key={label} style={{ marginTop: 16 }}>
-      <h3 style={eyebrow}>{label}</h3>
+      <h3 className="duo-sect" style={eyebrow}>{label}</h3>
       {kids}
     </section>
   );
   return (
     <FieldSheet title="Choose your sky." onClose={onClose}>
-      <p style={{ margin: "-4px 0 14px", color: "var(--text-2)", fontSize: 14 }}>Live, next and remembered.</p>
-      <div role="group" aria-label="Festival view" style={{ display: "flex", padding: 3, marginBottom: 12, borderRadius: 12, background: "var(--paper-3)" }}>
-        {["grid", "list"].map(mode => <button key={mode} onClick={() => chooseView(mode)} aria-pressed={viewMode === mode} style={{ flex: 1, border: 0, borderRadius: 9, padding: "9px 6px", background: viewMode === mode ? "var(--signal)" : "transparent", color: viewMode === mode ? "var(--on-signal)" : "var(--text-2)", fontWeight: 750, textTransform: "capitalize" }}>{mode}</button>)}
+      <p style={{ margin: "-4px 0 14px", color: "var(--ink-2)", font: "400 15px/1.4 var(--f-ui)" }}>Live, next and remembered.</p>
+      <div role="group" aria-label="Festival view" className="duo-seg" style={{ marginBottom: 12, background: "var(--s2)" }}>
+        {["grid", "list"].map(mode => <button key={mode} onClick={() => chooseView(mode)} aria-pressed={viewMode === mode} style={{ textTransform: "capitalize" }}>{mode}</button>)}
       </div>
       <div className={viewMode === "grid" ? "midnight-festival-grid" : undefined}>
         {live.map(row)}
         {months.flatMap(g => g.fests.map(row))}
         {tba.map(row)}
       </div>
-      {viewMode === "list" && <div style={{ marginTop: 8, fontSize: 11, color: "var(--text-3)" }}>Ordered by festival date</div>}
+      {viewMode === "list" && <div className="duo-data-s duo-ink3" style={{ marginTop: 8 }}>ORDERED BY FESTIVAL DATE</div>}
       {(past.length > 0 || archive.length > 0) && group("Past", <>
         <button onClick={() => setPastOpen(o => !o)} aria-expanded={pastOpen} style={{ ...rowStyle(false), cursor: "pointer" }}>
           <FestivalThumb entry={past[0] || null} />
@@ -1764,23 +1805,22 @@ function BatterySaverToast() {
   return (
     <div className="bs-hide" style={{
       position: "absolute", left: 16, right: 16, top: 60, zIndex: 80,
-      padding: "10px 14px", borderRadius: 14,
-      background: "var(--ink)", color: "var(--on-ink)",
+      padding: "8px 4px 8px 16px", borderRadius: "var(--rad-md)",
+      background: "var(--s1)", color: "var(--ink)",
       display: "flex", alignItems: "center", gap: 10,
-      boxShadow: "0 8px 24px rgba(var(--shade-rgb),0.35)",
+      boxShadow: "var(--e2)",
     }}>
-      <span style={{ fontSize: 16 }}>🔋</span>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--on-ink-flare)", fontWeight: 700 }}>
-          BATTERY SAVER ON
+        <div className="duo-label duo-acc">
+          Battery saver on
         </div>
-        <div style={{ fontSize: 13, lineHeight: 1.35, marginTop: 2, color: "var(--on-ink-2)" }}>
+        <div className="duo-body-s duo-ink2" style={{ marginTop: 3, fontWeight: 400 }}>
           {reason}
         </div>
       </div>
       <button onClick={() => setDismissed(true)} aria-label="Dismiss" style={{
         background: "transparent", border: "none", cursor: "pointer",
-        color: "var(--on-ink-3)", fontSize: 18, lineHeight: 1, padding: 4,
+        color: "var(--ink-2)", fontSize: 20, lineHeight: 1, minWidth: 44, minHeight: 44,
       }}>×</button>
     </div>
   );
@@ -1790,51 +1830,50 @@ function BatterySaverToast() {
 function BatterySaverCard() {
   const { active, mode, battery, setMode } = useBatterySaver();
   const segs = [
-    { id: "off",  label: "OFF" },
-    { id: "auto", label: "AUTO" },
-    { id: "on",   label: "ON" },
+    { id: "off",  label: "Off" },
+    { id: "auto", label: "Auto" },
+    { id: "on",   label: "On" },
   ];
   const battPct = battery ? Math.round(battery.level * 100) : null;
-  const battColor = battPct == null ? "var(--muted)"
-    : battPct > 50 ? "var(--success)"
+  const battColor = battPct == null ? "var(--ink-2)"
+    : battPct > 50 ? "var(--acc-ink)"
     : battPct > 20 ? "var(--flare)"
     : "var(--alert)";
 
   return (
     <div style={{
-      padding: 14, borderRadius: 14,
-      background: "var(--paper)", border: "1px solid var(--line)",
+      padding: 16, borderRadius: "var(--rad-md)",
+      background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
       marginBottom: 12,
     }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
-        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.5, color: "var(--muted)", fontWeight: 700 }}>
+        <div className="duo-label" style={{ color: "var(--ink-3)", }}>
           BATTERY SAVER
         </div>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: active ? "var(--success)" : "var(--muted)", fontWeight: 700 }}>
+        <span className="duo-label" style={{ color: active ? "var(--acc-ink)" : "var(--ink-2)" }}>
           {active ? "✓ ACTIVE" : "STANDBY"}
         </span>
       </div>
-      <div className="serif" style={{ fontSize: 20, lineHeight: 1.1, marginBottom: 4 }}>
+      <div className="duo-headline" style={{ marginBottom: 4 }}>
         Stretch the phone past sunrise
       </div>
-      <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5, marginBottom: 12 }}>
+      <div style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 1.43, marginBottom: 12 }}>
         Dims the screen, freezes animations, and slows GPS polling.
         Auto kicks in at 2 AM or when battery drops under 25%.
       </div>
 
       <div style={{
         display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 4,
-        background: "var(--paper-2)", borderRadius: 999, padding: 3,
-        border: "1px solid var(--line)",
+        background: "var(--s3)", borderRadius: 999, padding: 3,
       }}>
         {segs.map(s => {
           const on = mode === s.id;
           return (
             <button key={s.id} onClick={() => setMode(s.id)} style={{
-              background: on ? "var(--ink)" : "transparent",
-              color: on ? "var(--paper)" : "var(--ink)",
-              border: "none", borderRadius: 999, padding: "7px 10px",
-              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
+              background: on ? "var(--s1)" : "transparent", boxShadow: on ? "var(--e1)" : "none",
+              color: on ? "var(--ink)" : "var(--ink-2)",
+              border: "none", borderRadius: 999, padding: "0 10px", minHeight: 36,
+              fontFamily: "var(--f-ui)", fontSize: 14, fontWeight: 650,
               cursor: "pointer",
             }}>{s.label}</button>
           );
@@ -1871,14 +1910,18 @@ function BatterySaverCard() {
 // defined inline in index.html so it runs before first paint; this file only
 // subscribes to it and draws the Me row. Never restate the rules here.
 // On iOS the native layer (sheets, pickers, status bar) follows the resolved
-// mode through the Appearance plugin when the build has it.
-function _syncNativeAppearance(mode) {
-  try { window.Capacitor?.Plugins?.Appearance?.setStyle?.({ style: mode }); } catch {}
+// mode through the Appearance plugin when the build has it. On System it is
+// handed "system", never the resolved mode: pinning the window to Dark also
+// pins WebKit's prefers-color-scheme, so the page could never see the iPhone
+// switch to Light again until a relaunch.
+function _syncNativeAppearance(mode, choice) {
+  const style = choice === "dark" || choice === "light" ? mode : "system";
+  try { window.Capacitor?.Plugins?.Appearance?.setStyle?.({ style }); } catch {}
 }
 if (!window._appearanceNativeInited && window.PlurskyAppearance) {
   window._appearanceNativeInited = true;
-  _syncNativeAppearance(window.PlurskyAppearance.mode());
-  window.PlurskyAppearance.onChange((m) => _syncNativeAppearance(m));
+  _syncNativeAppearance(window.PlurskyAppearance.mode(), window.PlurskyAppearance.choice());
+  window.PlurskyAppearance.onChange((m, c) => _syncNativeAppearance(m, c));
 }
 
 // Artist names are never truncated (lane ruling 2026-09-26) and one-line rows
@@ -1944,6 +1987,170 @@ function useFitNames(root) {
   React.useEffect(() => () => { ro.current && ro.current.disconnect(); if (probe.current) probe.current.remove(); }, []);
 }
 
+// The same policy for text that may wrap (a name, a screen title, a tab
+// label, a card title): it wraps BETWEEN words, never inside one. When a word
+// cannot fit its box, the text steps down until it does, to data-fit-min px,
+// and only a word that still cannot fit breaks. #275's QA read "Memorie / s",
+// "Impor / t" and "Toda / y" at 200% text on wide fonts.
+// It works from the size the text has NOW (an enlarged text size is the
+// input, not something to undo). It only READS unless a word breaks, so the
+// hundreds of names on a lineup cost one layout, not one each.
+//
+// The size is written inline with !important, the last word on that slot,
+// and the element's own inline value is kept so a skip restores it exactly.
+// One path only: a stylesheet rule lost to any inline !important (the 200%
+// text proxy pins every element), and mixing the two left labels unfitted.
+// An inline `font:` shorthand holding a var() cannot be resized at all in
+// Chromium (it beats every font-size, even !important); fitWords probes one
+// step and leaves such text exactly as it renders.
+const _FIT_WORDS = "[data-fit-words], .duo-name";
+function _fitSize(el, px) {
+  if (el.dataset.fitOrig == null) el.dataset.fitOrig = (el.style.getPropertyValue("font-size") || "") + "|" + el.style.getPropertyPriority("font-size");
+  if (px == null) {
+    const [v, pr] = el.dataset.fitOrig.split("|");
+    if (v) el.style.setProperty("font-size", v, pr); else el.style.removeProperty("font-size");
+    delete el.dataset.fitOrig; delete el.dataset.fitSet; return;
+  }
+  el.style.setProperty("font-size", px + "px", "important");
+  el.dataset.fitSet = String(px);
+}
+function fitWords(el) {
+  const cs = getComputedStyle(el);
+  const cur = parseFloat(cs.fontSize);
+  if (el.dataset.fitSet == null || Math.abs(cur - parseFloat(el.dataset.fitSet)) > 0.1) el.dataset.fitBase = String(cur);
+  const base = parseFloat(el.dataset.fitBase);
+  // The face is part of the key: a family swap (a fallback replaced) changes
+  // every word's width without moving the box.
+  const key = el.textContent + "|" + el.clientWidth + "|" + base + "|" + getComputedStyle(el).fontFamily;
+  if (el.dataset.fitKey === key) return;
+  // Words split on space, hyphen, dash, slash and the middot: a break AFTER
+  // "Auto-" is a hyphen doing its job, not a word broken inside itself.
+  const words = [];
+  const tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  while (tw.nextNode()) { const n = tw.currentNode; const re = /[^\s\-‐-—\/·]+/g; let m; while ((m = re.exec(n.data))) words.push([n, m.index, m.index + m[0].length]); }
+  const pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+  // A word is broken when its letters sit on two lines (the box allows a
+  // break) or when it is wider than the box (the box does not).
+  const broken = () => {
+    const box = el.getBoundingClientRect().width - pad + 0.5;
+    return words.some(([n, a, b]) => {
+      const rg = document.createRange(); rg.setStart(n, a); rg.setEnd(n, b);
+      const rs = rg.getClientRects();
+      return (rs.length > 1 && rs[rs.length - 1].top > rs[0].top + 1) || rg.getBoundingClientRect().width > box;
+    });
+  };
+  const set = (px) => _fitSize(el, px);
+  // No transition while measuring. Reduced motion gives every element a
+  // 0.01ms `transition: all`, and while one is in flight a new font-size is
+  // neither computed nor laid out: each step measured the OLD size, so the
+  // fit ran to its floor or gave up depending on timing (CI's runner: one
+  // name 11px on a fresh load, 14px after a mode switch).
+  const tr = [el.style.getPropertyValue("transition"), el.style.getPropertyPriority("transition")];
+  el.style.setProperty("transition", "none", "important");
+  const done = () => { if (tr[0]) el.style.setProperty("transition", tr[0], tr[1]); else el.style.removeProperty("transition"); };
+  let size = cur;
+  if (size < base) { size = base; set(size); }   // a wider box: start again from the real size
+  const min = parseFloat(el.dataset.fitMin || "11");
+  if (broken()) {
+    el.style.overflowWrap = "normal";
+    // Only a box that does not depend on its own text can be fitted. A
+    // shrink-wrapped one (a flex item sized by its content, like a clash
+    // card's side) narrows as the font does, so the word never fits and the
+    // loop ran to the floor: CI's runner showed one name at 14px on one load
+    // and 11px on the next. Such a box keeps its real size and wraps as before.
+    // Probe one step first. Two kinds of text cannot be fitted, and both are
+    // left exactly as they render (same answer on every load):
+    //  · a size that does not take: an inline `font:` shorthand holding a
+    //    var() overrides every font-size, even an !important rule;
+    //  · a shrink-wrapped box (a flex item sized by its content) that narrows
+    //    with its font, so the word never fits and the loop would hit the floor.
+    const w0 = el.getBoundingClientRect().width;
+    if (size > min) {
+      set(size - 1);
+      const took = Math.abs(parseFloat(getComputedStyle(el).fontSize) - (size - 1)) < 0.1;
+      if (!took || el.getBoundingClientRect().width < w0 - 0.5) {
+        _fitSize(el, null); el.style.overflowWrap = "";
+        el.dataset.fitKey = el.textContent + "|" + el.clientWidth + "|" + base + "|" + getComputedStyle(el).fontFamily; done(); return;
+      }
+      size -= 1;
+    }
+    while (broken() && size > min) { size -= 1; set(size); }
+    if (broken()) el.style.overflowWrap = "anywhere";
+  }
+  el.dataset.fitKey = el.textContent + "|" + el.clientWidth + "|" + base + "|" + getComputedStyle(el).fontFamily;
+  done();
+}
+// Siblings sharing a data-fit-group (the tab labels) then all take the
+// smallest fitted size, so one long label does not leave its row uneven.
+function fitWordGroups(r) {
+  const groups = {};
+  for (const n of r.querySelectorAll("[data-fit-group]")) (groups[n.dataset.fitGroup] ||= []).push(n);
+  for (const g of Object.values(groups)) {
+    const size = Math.min(...g.map(n => parseFloat(getComputedStyle(n).fontSize)));
+    for (const n of g) if (Math.abs(parseFloat(getComputedStyle(n).fontSize) - size) > 0.1) _fitSize(n, size);
+  }
+}
+// One observer for the whole app, so no screen can forget to fit: new text is
+// fitted as it mounts (before paint), resized boxes are refitted (a rotation,
+// a larger text size), and everything is refitted when a late font face
+// lands, which changes word widths without a resize.
+if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationObserver !== "undefined") {
+  window._fitWordsInited = true;
+  const ro = typeof ResizeObserver !== "undefined"
+    ? new ResizeObserver((entries) => { for (const { target } of entries) if (target.isConnected) fitWords(target); fitWordGroups(document); })
+    : null;
+  const fitIn = (node, all) => {
+    const list = node.matches && node.matches(_FIT_WORDS) ? [node] : [];
+    if (node.querySelectorAll) list.push(...node.querySelectorAll(_FIT_WORDS));
+    for (const n of list) { if (all) n.dataset.fitKey = ""; fitWords(n); ro && ro.observe(n); }
+  };
+  // The SETTLED pass decides the final sizes. Two fitted names can share one
+  // row (a clash card's two sides), so each one's room depends on the other's
+  // size, and fitting them one at a time as they mount gives a result that
+  // depends on the order. CI's runner fitted "Interplanetary Criminal" at
+  // 11px on a Dark load and 14px on a Light one, and a mode switch kept
+  // whichever it had. So: put EVERY fitted element back to its real size
+  // first, then fit them all in document order. Same layout in, same sizes out,
+  // whether the page was just loaded or just switched modes.
+  const settle = () => {
+    const all = [...document.body.querySelectorAll(_FIT_WORDS)];
+    for (const n of all) {
+      n.dataset.fitKey = "";
+      if (n.dataset.fitSet != null && n.dataset.fitBase != null && parseFloat(n.dataset.fitSet) !== parseFloat(n.dataset.fitBase)) _fitSize(n, parseFloat(n.dataset.fitBase));
+      if (n.style.overflowWrap) n.style.overflowWrap = "";
+    }
+    for (const n of all) { fitWords(n); ro && ro.observe(n); }
+    fitWordGroups(document);
+  };
+  let settleTimer = null;
+  const settleSoon = () => { clearTimeout(settleTimer); settleTimer = setTimeout(settle, 200); };
+  const start = () => {
+    fitIn(document.body); fitWordGroups(document); settleSoon();
+    new MutationObserver((records) => {
+      const touched = new Set();
+      for (const r of records) {
+        for (const n of r.addedNodes) if (n.nodeType === 1) touched.add(n);
+        const host = (r.target.nodeType === 1 ? r.target : r.target.parentElement);
+        const fit = host && host.closest && host.closest(_FIT_WORDS);
+        if (fit) touched.add(fit);
+      }
+      // Fit new text at once (no flash of broken words), then settle.
+      for (const n of touched) if (n.isConnected) fitIn(n);
+      if (touched.size) { fitWordGroups(document); settleSoon(); }
+    }).observe(document.body, { childList: true, subtree: true, characterData: true });
+    try {
+      if (document.fonts) {
+        document.fonts.addEventListener("loadingdone", settle);
+        document.fonts.ready.then(settle);
+      }
+    } catch {}
+    // A mode switch re-renders without moving a box, so nothing above fires:
+    // settle now, so the switched page matches a fresh load in that mode.
+    try { window.PlurskyAppearance && window.PlurskyAppearance.onChange(() => { settle(); settleSoon(); }); } catch {}
+  };
+  if (document.body) start(); else document.addEventListener("DOMContentLoaded", start);
+}
+
 function useAppearance() {
   const A = window.PlurskyAppearance;
   const [, force] = React.useReducer(x => x + 1, 0);
@@ -1960,8 +2167,8 @@ function AppearanceRow() {
     <div data-appearance-row style={{
       display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12,
       flexWrap: "wrap",   // 320px: the selector drops under the label, never off-screen
-      padding: "8px 8px 8px 16px", borderRadius: 14, marginBottom: 12,
-      background: "var(--paper-2)", border: "1px solid var(--line)",
+      padding: "8px 8px 8px 16px", borderRadius: "var(--rad-md)", marginBottom: 12,
+      background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
     }}>
       <div style={{ fontSize: 15, fontWeight: 600, color: "var(--ink)" }}>Appearance</div>
       <div role="radiogroup" aria-label="Appearance" style={{
@@ -2110,7 +2317,7 @@ Object.assign(window, {
   isAttended, getAttendanceSource, detectCurrentArtist, recordAttendanceFromGps,
   FestivalChip, FestivalSwitcher,
   useBatterySaver, BatterySaverCard, BatterySaverToast, setBatterySaverMode,
-  useAppearance, AppearanceRow, fitNames, useFitNames,
+  useAppearance, AppearanceRow, fitNames, useFitNames, fitWords,
   useOnlineStatus, StatusStrip,
   plurskyHaptic,
 });
