@@ -1889,14 +1889,18 @@ function BatterySaverCard() {
 // defined inline in index.html so it runs before first paint; this file only
 // subscribes to it and draws the Me row. Never restate the rules here.
 // On iOS the native layer (sheets, pickers, status bar) follows the resolved
-// mode through the Appearance plugin when the build has it.
-function _syncNativeAppearance(mode) {
-  try { window.Capacitor?.Plugins?.Appearance?.setStyle?.({ style: mode }); } catch {}
+// mode through the Appearance plugin when the build has it. On System it is
+// handed "system", never the resolved mode: pinning the window to Dark also
+// pins WebKit's prefers-color-scheme, so the page could never see the iPhone
+// switch to Light again until a relaunch.
+function _syncNativeAppearance(mode, choice) {
+  const style = choice === "dark" || choice === "light" ? mode : "system";
+  try { window.Capacitor?.Plugins?.Appearance?.setStyle?.({ style }); } catch {}
 }
 if (!window._appearanceNativeInited && window.PlurskyAppearance) {
   window._appearanceNativeInited = true;
-  _syncNativeAppearance(window.PlurskyAppearance.mode());
-  window.PlurskyAppearance.onChange((m) => _syncNativeAppearance(m));
+  _syncNativeAppearance(window.PlurskyAppearance.mode(), window.PlurskyAppearance.choice());
+  window.PlurskyAppearance.onChange((m, c) => _syncNativeAppearance(m, c));
 }
 
 // Artist names are never truncated (lane ruling 2026-09-26) and one-line rows

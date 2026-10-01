@@ -436,6 +436,33 @@ try {
     check(!(await page.evaluate(() => localStorage.getItem('theme_pref'))), 'rule: the retired theme_pref key was written');
     await ctx.close();
   }
+  // Native sync: the iOS plugin gets the PICK, and "system" on System. Sending
+  // the resolved mode on System pins the window, and with it the WebView's
+  // prefers-color-scheme, so a live iPhone switch never reaches the page
+  // (seen on the #275 Simulator: iOS Light, System picked, app stayed Dark).
+  {
+    const ctx = await browser.newContext({ viewport: { width: 393, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: 'dark' });
+    await ctx.clock.install({ time: new Date(AT) });
+    await ctx.addInitScript(({ FID }) => {
+      localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('cloud_nudge_seen', '1');
+      window.__nativeStyles = [];
+      window.Capacitor = { isNativePlatform: () => false, Plugins: { Appearance: { setStyle: (o) => { window.__nativeStyles.push(o && o.style); return Promise.resolve(); } } } };
+    }, { FID });
+    const page = await ctx.newPage(); const errs = []; page.on('pageerror', e => errs.push(String(e)));
+    await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${FID}&tab=me`, { waitUntil: 'domcontentloaded' }); await page.waitForSelector('[data-appearance-row]', { timeout: 60000 });
+    const last = async () => page.evaluate(() => window.__nativeStyles[window.__nativeStyles.length - 1]);
+    check((await last()) === 'system', `native sync: launch on System sent ${await last()}, not "system"`);
+    await page.click('[data-appearance-row] [data-appearance="dark"]');
+    check((await last()) === 'dark', `native sync: a Dark pick sent ${await last()}`);
+    await page.click('[data-appearance-row] [data-appearance="light"]');
+    check((await last()) === 'light', `native sync: a Light pick sent ${await last()}`);
+    await page.click('[data-appearance-row] [data-appearance="system"]');
+    check((await last()) === 'system', `native sync: back to System sent ${await last()}, not "system"`);
+    await page.emulateMedia({ colorScheme: 'light' }); await page.waitForTimeout(150);
+    check((await last()) === 'system' && (await modeOf(page)) === 'light', `native sync: on System an iPhone flip to Light sent ${await last()} (page ${await modeOf(page)})`);
+    check(!errs.length, `native sync: page errors ${errs.join(' | ')}`);
+    await ctx.close();
+  }
   // The smallest supported phone: every option of the Me selector is whole on screen.
   {
     const { ctx, page } = await open({ query: 'tab=me', ready: '[data-appearance-row]', width: 320 });

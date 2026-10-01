@@ -2472,17 +2472,18 @@ function BatterySaverCard() {
     }
   }, battPct, "% ", battery.charging ? "· CHARGING" : "")));
 }
-function _syncNativeAppearance(mode) {
+function _syncNativeAppearance(mode, choice) {
+  var style = choice === "dark" || choice === "light" ? mode : "system";
   try {
     window.Capacitor?.Plugins?.Appearance?.setStyle?.({
-      style: mode
+      style
     });
   } catch {}
 }
 if (!window._appearanceNativeInited && window.PlurskyAppearance) {
   window._appearanceNativeInited = true;
-  _syncNativeAppearance(window.PlurskyAppearance.mode());
-  window.PlurskyAppearance.onChange(m => _syncNativeAppearance(m));
+  _syncNativeAppearance(window.PlurskyAppearance.mode(), window.PlurskyAppearance.choice());
+  window.PlurskyAppearance.onChange((m, c) => _syncNativeAppearance(m, c));
 }
 function fitName(el, force) {
   var key = el.textContent + "|" + el.clientWidth;

@@ -77,6 +77,8 @@ match those selectors.
 - Map artist search printed raw 24h "00:32 · D2" and cut names with an ellipsis.
 - The Friends stage picker's border template had a stray `)"`, so the declaration was dropped.
 - Locked badges and filtered-out amenity rows were dimmed with opacity (below AA); they read quieter by colour now.
+- Memories' Wall/Manage row panned at 280pt with 200% text on CI's wider fonts; it wraps now.
+- iOS: with System picked, the app froze on the iPhone's launch-time mode (the plugin pinned the window, and with it the WebView's prefers-color-scheme). On System the plugin now clears the override; `test-appearance` asserts the style sent (6 checks, mutation-caught). On main since #245.
 
 ## Findings, not fixed here
 
