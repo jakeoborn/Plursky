@@ -4463,7 +4463,8 @@ function ImportReview({ results, moments, onClose, onPatch, onMove }) {
     const t = typeof m.takenAt === "string" && m.takenAt.length >= 16 ? m.takenAt.slice(11, 16) : null;
     return [src, t && `shot ${t}`, m.locationSource === "gps" ? "GPS" : null].filter(Boolean).join(" · ");
   };
-  const mono = { fontFamily: "Geist Mono, monospace", letterSpacing: 1.1, fontWeight: 700 };
+  // Board label: Michroma caps at the 11px floor (these were 8–10px Geist Mono).
+  const mono = { fontFamily: "var(--f-display)", letterSpacing: "0.14em", fontWeight: 400, textTransform: "uppercase", lineHeight: 1.27 };
 
   return (
     <div onClick={onClose} style={{
@@ -4473,23 +4474,23 @@ function ImportReview({ results, moments, onClose, onPatch, onMove }) {
     }}>
       <div role="dialog" aria-modal="true" aria-label="Review imported moments" data-import-review onClick={e => e.stopPropagation()} style={{
         width: "100%", maxWidth: 520, maxHeight: "86vh",
-        background: "var(--paper)", borderRadius: "18px 18px 0 0",
-        border: "1px solid var(--line)", borderBottom: "none",
+        background: "var(--s1)", borderRadius: "var(--rad-lg) var(--rad-lg) 0 0",
+        border: "none", boxShadow: "var(--e2)",
         display: "flex", flexDirection: "column", overflow: "hidden",
       }}>
         <div style={{ padding: "14px 18px 10px", borderBottom: "1px solid var(--line)", flexShrink: 0 }}>
           <div className="duo-headline" style={{ color: "var(--ink)" }}>
-            {need === 0 ? <>All {rows.length} <span style={{ fontStyle: "italic" }}>tagged</span></>
-                        : <>{need} need{need === 1 ? "s" : ""} a <span style={{ fontStyle: "italic" }}>set</span></>}
+            {need === 0 ? <>All {rows.length} tagged</>
+                        : <>{need} need{need === 1 ? "s" : ""} a set</>}
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4 }}>
-            <div data-review-counts style={{ ...mono, fontSize: 9, color: "var(--ink-2)", flex: 1 }}>
+            <div data-review-counts style={{ ...mono, fontSize: 11, color: "var(--ink-2)", flex: 1 }}>
               {/* Import results carry file names; the review-later list does not, and calling it "imported" there would not be true. */}
               {[(results || []).some(r => r.name) && `${rows.length} IMPORTED`, need ? `${need} NEED REVIEW` : "ALL ANSWERED"].filter(Boolean).join(" · ")}
             </div>
             {need > 0 && (
-              <button onClick={() => setSel(new Set(rows.filter(r => r.review).map(r => r.id)))} style={{ ...mono, fontSize: 9, background: "none", border: "none", color: "var(--ember-ink)", cursor: "pointer", padding: "0 8px", minHeight: 44, minWidth: 44 }}>
-                SELECT THESE
+              <button onClick={() => setSel(new Set(rows.filter(r => r.review).map(r => r.id)))} className="duo-link">
+                Select these
               </button>
             )}
           </div>
@@ -4498,12 +4499,12 @@ function ImportReview({ results, moments, onClose, onPatch, onMove }) {
         <div style={{ flex: 1, minHeight: 0, overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "4px 12px 8px" }}>
           {groups.map(g => (
             <div key={g.key} data-review-group={g.key}>
-              <div style={{ ...mono, fontSize: 9, color: "var(--ink-2)", margin: "12px 2px 4px" }}>
+              <div style={{ ...mono, fontSize: 11, color: "var(--ink-2)", margin: "12px 2px 4px" }}>
                 {[g.fest && g.fest.toUpperCase(), g.day ? (g.day.name || g.day.short || "").toUpperCase() : `NIGHT ${g.night}`].filter(Boolean).join(" · ")}
               </div>
               {[...g.stages.values()].map(sg => (
                 <div key={sg.stage ? sg.stage.id : "none"}>
-                  <div style={{ ...mono, fontSize: 8, color: "var(--text-2)", margin: "6px 4px 3px" }}>
+                  <div style={{ ...mono, fontSize: 11, color: "var(--text-2)", margin: "6px 4px 3px" }}>
                     {sg.stage ? (sg.stage.name || sg.stage.short).toUpperCase() : "NO STAGE YET"}
                   </div>
                   {sg.rows.map(r => {
@@ -4525,8 +4526,8 @@ function ImportReview({ results, moments, onClose, onPatch, onMove }) {
                           <span aria-hidden="true" style={{
                             width: 24, height: 24, borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center",
                             boxSizing: "border-box",
-                            border: on ? "none" : "1.5px solid var(--line-2)", background: on ? "var(--ink)" : "transparent",
-                            color: "var(--paper)", fontSize: 13, lineHeight: "24px",
+                            border: on ? "none" : "1.5px solid var(--line-2)", background: on ? "var(--acc)" : "transparent",
+                            color: "var(--on-acc)", fontSize: 13, lineHeight: "24px",
                           }}>{on ? "✓" : ""}</span>
                         </button>
                         <_ReviewThumb moment={r.m}/>
@@ -4534,19 +4535,19 @@ function ImportReview({ results, moments, onClose, onPatch, onMove }) {
                           flex: 1, minWidth: 0, textAlign: "left", background: "none", border: "none", padding: 0,
                           cursor: "pointer", color: "var(--ink)", fontFamily: "inherit",
                         }}>
-                          <div style={{ fontSize: 14, lineHeight: 1.15, fontWeight: r.artist ? 700 : 500,
-                                        color: r.artist ? "var(--ink)" : r.review ? "var(--ember-ink)" : "var(--ink-2)",
-                                        overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                          {/* Names in full: they wrap rather than ellipsise. */}
+                          <div className="duo-name" style={{ fontSize: 15, lineHeight: 1.25, fontWeight: r.artist ? 700 : 500,
+                                        color: r.artist ? "var(--ink)" : r.review ? "var(--acc-ink)" : "var(--ink-2)" }}>
                             {r.artist ? r.artist.name : r.m.tagSource === "unknown" ? "Unknown" : r.stage ? "Set not picked" : "No set matched"}
                           </div>
-                          <div style={{ ...mono, fontSize: 8.5, letterSpacing: 0.9, color: "var(--ink-2)", marginTop: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                          <div style={{ ...mono, fontSize: 11, color: "var(--ink-2)", marginTop: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                             {[r.fest, r.day ? r.day.short : `NIGHT ${r.m.night}`, r.stage && r.stage.short].filter(Boolean).join(" · ")}
                           </div>
                           <div data-review-basis style={{ fontSize: 10.5, color: "var(--ink-2)", marginTop: 2, opacity: 0.85, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                             {basis(r.m)}
                           </div>
                         </button>
-                        <span style={{ ...mono, flexShrink: 0, fontSize: 9, color: r.review ? "var(--ember-ink)" : "var(--acc-ink)" }}>{r.review ? "FIX" : "✓"}</span>
+                        <span style={{ ...mono, flexShrink: 0, fontSize: 11, color: "var(--acc-ink)" }}>{r.review ? "Fix" : "✓"}</span>
                       </div>
                     );
                   })}
@@ -4559,18 +4560,16 @@ function ImportReview({ results, moments, onClose, onPatch, onMove }) {
         <div style={{ padding: "10px 14px calc(12px + env(safe-area-inset-bottom))", borderTop: "1px solid var(--line)", flexShrink: 0 }}>
           {sel.size > 0 ? (
             <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-              <div style={{ ...mono, fontSize: 9, color: "var(--ink-2)", flex: 1 }}>
+              <div style={{ ...mono, fontSize: 11, color: "var(--ink-2)", flex: 1 }}>
                 {oneFestival ? `${sel.size} SELECTED` : "SELECT ONE FESTIVAL'S MOMENTS"}
               </div>
-              <button onClick={() => setSel(new Set())} style={{ ...mono, fontSize: 10, minHeight: 44, padding: "0 14px", borderRadius: "var(--rad-md)", border: "1px solid var(--line-2)", background: "transparent", color: "var(--ink)", cursor: "pointer" }}>CLEAR</button>
-              <button data-review-batch disabled={!oneFestival} onClick={() => setPicking([...sel])} style={{ ...mono, fontSize: 10, minHeight: 44, padding: "0 16px", borderRadius: "var(--rad-md)", border: "none", background: "var(--ink)", color: "var(--paper)", cursor: oneFestival ? "pointer" : "default", opacity: oneFestival ? 1 : 0.4 }}>TAG {sel.size}</button>
+              <button onClick={() => setSel(new Set())} className="duo-chip"><span>Clear</span></button>
+              <button data-review-batch disabled={!oneFestival} onClick={() => setPicking([...sel])} className="duo-btn" style={{ minHeight: 44, padding: "0 16px", fontSize: 15, background: oneFestival ? "var(--acc)" : "var(--s3)", color: oneFestival ? "var(--on-acc)" : "var(--ink-2)", cursor: oneFestival ? "pointer" : "default" }}>Tag {sel.size}</button>
             </div>
           ) : (
-            <button data-review-done onClick={onClose} className="mono" style={{
-              width: "100%", minHeight: 44, padding: "12px 0", borderRadius: "var(--rad-md)", border: "none",
-              background: "var(--ink)", color: "var(--paper)", cursor: "pointer",
-              fontSize: 11, letterSpacing: 1.3, fontWeight: 800,
-            }}>{need === 0 ? `LOOKS RIGHT · ${rows.length} SAVED` : `DONE · ${need} LEFT TO REVIEW LATER`}</button>
+            <button data-review-done onClick={onClose} className="duo-btn pri" style={{
+              width: "100%", minHeight: 48, fontSize: 15,
+            }}>{need === 0 ? `Looks right · ${rows.length} saved` : `Done · ${need} left to review later`}</button>
           )}
         </div>
       </div>

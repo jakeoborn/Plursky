@@ -6454,9 +6454,11 @@ function ImportReview({
     return [src, t && `shot ${t}`, m.locationSource === "gps" ? "GPS" : null].filter(Boolean).join(" · ");
   };
   var mono = {
-    fontFamily: "Geist Mono, monospace",
-    letterSpacing: 1.1,
-    fontWeight: 700
+    fontFamily: "var(--f-display)",
+    letterSpacing: "0.14em",
+    fontWeight: 400,
+    textTransform: "uppercase",
+    lineHeight: 1.27
   };
   return React.createElement("div", {
     onClick: onClose,
@@ -6480,10 +6482,10 @@ function ImportReview({
       width: "100%",
       maxWidth: 520,
       maxHeight: "86vh",
-      background: "var(--paper)",
-      borderRadius: "18px 18px 0 0",
-      border: "1px solid var(--line)",
-      borderBottom: "none",
+      background: "var(--s1)",
+      borderRadius: "var(--rad-lg) var(--rad-lg) 0 0",
+      border: "none",
+      boxShadow: "var(--e2)",
       display: "flex",
       flexDirection: "column",
       overflow: "hidden"
@@ -6499,15 +6501,7 @@ function ImportReview({
     style: {
       color: "var(--ink)"
     }
-  }, need === 0 ? React.createElement(React.Fragment, null, "All ", rows.length, " ", React.createElement("span", {
-    style: {
-      fontStyle: "italic"
-    }
-  }, "tagged")) : React.createElement(React.Fragment, null, need, " need", need === 1 ? "s" : "", " a ", React.createElement("span", {
-    style: {
-      fontStyle: "italic"
-    }
-  }, "set"))), React.createElement("div", {
+  }, need === 0 ? React.createElement(React.Fragment, null, "All ", rows.length, " tagged") : React.createElement(React.Fragment, null, need, " need", need === 1 ? "s" : "", " a set")), React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -6518,24 +6512,14 @@ function ImportReview({
     "data-review-counts": true,
     style: {
       ...mono,
-      fontSize: 9,
+      fontSize: 11,
       color: "var(--ink-2)",
       flex: 1
     }
   }, [(results || []).some(r => r.name) && `${rows.length} IMPORTED`, need ? `${need} NEED REVIEW` : "ALL ANSWERED"].filter(Boolean).join(" · ")), need > 0 && React.createElement("button", {
     onClick: () => setSel(new Set(rows.filter(r => r.review).map(r => r.id))),
-    style: {
-      ...mono,
-      fontSize: 9,
-      background: "none",
-      border: "none",
-      color: "var(--ember-ink)",
-      cursor: "pointer",
-      padding: "0 8px",
-      minHeight: 44,
-      minWidth: 44
-    }
-  }, "SELECT THESE"))), React.createElement("div", {
+    className: "duo-link"
+  }, "Select these"))), React.createElement("div", {
     style: {
       flex: 1,
       minHeight: 0,
@@ -6549,7 +6533,7 @@ function ImportReview({
   }, React.createElement("div", {
     style: {
       ...mono,
-      fontSize: 9,
+      fontSize: 11,
       color: "var(--ink-2)",
       margin: "12px 2px 4px"
     }
@@ -6558,7 +6542,7 @@ function ImportReview({
   }, React.createElement("div", {
     style: {
       ...mono,
-      fontSize: 8,
+      fontSize: 11,
       color: "var(--text-2)",
       margin: "6px 4px 3px"
     }
@@ -6608,8 +6592,8 @@ function ImportReview({
         justifyContent: "center",
         boxSizing: "border-box",
         border: on ? "none" : "1.5px solid var(--line-2)",
-        background: on ? "var(--ink)" : "transparent",
-        color: "var(--paper)",
+        background: on ? "var(--acc)" : "transparent",
+        color: "var(--on-acc)",
         fontSize: 13,
         lineHeight: "24px"
       }
@@ -6630,20 +6614,17 @@ function ImportReview({
         fontFamily: "inherit"
       }
     }, React.createElement("div", {
+      className: "duo-name",
       style: {
-        fontSize: 14,
-        lineHeight: 1.15,
+        fontSize: 15,
+        lineHeight: 1.25,
         fontWeight: r.artist ? 700 : 500,
-        color: r.artist ? "var(--ink)" : r.review ? "var(--ember-ink)" : "var(--ink-2)",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-        whiteSpace: "nowrap"
+        color: r.artist ? "var(--ink)" : r.review ? "var(--acc-ink)" : "var(--ink-2)"
       }
     }, r.artist ? r.artist.name : r.m.tagSource === "unknown" ? "Unknown" : r.stage ? "Set not picked" : "No set matched"), React.createElement("div", {
       style: {
         ...mono,
-        fontSize: 8.5,
-        letterSpacing: 0.9,
+        fontSize: 11,
         color: "var(--ink-2)",
         marginTop: 2,
         overflow: "hidden",
@@ -6665,10 +6646,10 @@ function ImportReview({
       style: {
         ...mono,
         flexShrink: 0,
-        fontSize: 9,
-        color: r.review ? "var(--ember-ink)" : "var(--acc-ink)"
+        fontSize: 11,
+        color: "var(--acc-ink)"
       }
-    }, r.review ? "FIX" : "✓"));
+    }, r.review ? "Fix" : "✓"));
   })))))), React.createElement("div", {
     style: {
       padding: "10px 14px calc(12px + env(safe-area-inset-bottom))",
@@ -6684,57 +6665,36 @@ function ImportReview({
   }, React.createElement("div", {
     style: {
       ...mono,
-      fontSize: 9,
+      fontSize: 11,
       color: "var(--ink-2)",
       flex: 1
     }
   }, oneFestival ? `${sel.size} SELECTED` : "SELECT ONE FESTIVAL'S MOMENTS"), React.createElement("button", {
     onClick: () => setSel(new Set()),
-    style: {
-      ...mono,
-      fontSize: 10,
-      minHeight: 44,
-      padding: "0 14px",
-      borderRadius: "var(--rad-md)",
-      border: "1px solid var(--line-2)",
-      background: "transparent",
-      color: "var(--ink)",
-      cursor: "pointer"
-    }
-  }, "CLEAR"), React.createElement("button", {
+    className: "duo-chip"
+  }, React.createElement("span", null, "Clear")), React.createElement("button", {
     "data-review-batch": true,
     disabled: !oneFestival,
     onClick: () => setPicking([...sel]),
+    className: "duo-btn",
     style: {
-      ...mono,
-      fontSize: 10,
       minHeight: 44,
       padding: "0 16px",
-      borderRadius: "var(--rad-md)",
-      border: "none",
-      background: "var(--ink)",
-      color: "var(--paper)",
-      cursor: oneFestival ? "pointer" : "default",
-      opacity: oneFestival ? 1 : 0.4
+      fontSize: 15,
+      background: oneFestival ? "var(--acc)" : "var(--s3)",
+      color: oneFestival ? "var(--on-acc)" : "var(--ink-2)",
+      cursor: oneFestival ? "pointer" : "default"
     }
-  }, "TAG ", sel.size)) : React.createElement("button", {
+  }, "Tag ", sel.size)) : React.createElement("button", {
     "data-review-done": true,
     onClick: onClose,
-    className: "mono",
+    className: "duo-btn pri",
     style: {
       width: "100%",
-      minHeight: 44,
-      padding: "12px 0",
-      borderRadius: "var(--rad-md)",
-      border: "none",
-      background: "var(--ink)",
-      color: "var(--paper)",
-      cursor: "pointer",
-      fontSize: 11,
-      letterSpacing: 1.3,
-      fontWeight: 800
+      minHeight: 48,
+      fontSize: 15
     }
-  }, need === 0 ? `LOOKS RIGHT · ${rows.length} SAVED` : `DONE · ${need} LEFT TO REVIEW LATER`))), pickMoments.length > 0 && React.createElement(_ReviewPicker, {
+  }, need === 0 ? `Looks right · ${rows.length} saved` : `Done · ${need} left to review later`))), pickMoments.length > 0 && React.createElement(_ReviewPicker, {
     moments: pickMoments,
     onClose: () => setPicking(null),
     onApply: apply
