@@ -9033,6 +9033,14 @@ function _computeRecap(state) {
   };
 }
 
+// "EDC LV 2026" already carries its year, "Escape" does not: print the year
+// once either way ("YOUR EDC LV 2026 · 2026" was the recap kicker's bug).
+function _festivalYearKicker(cfg) {
+  const name = String(cfg?.shortName || "FESTIVAL").toUpperCase();
+  const year = cfg?.year ? String(cfg.year) : "";
+  return !year || new RegExp(`\\b${year}\\b`).test(name) ? name : `${name} · ${year}`;
+}
+
 function _fmtHrsMin(mins) {
   const h = Math.floor(mins / 60);
   const m = mins % 60;
@@ -9071,7 +9079,7 @@ function WrappedStory({ recap, onClose }) {
     const c = [];
     c.push({
       bg: "linear-gradient(155deg, #0a0618 0%, #6D28D9 50%, #e85d2e 100%)",
-      kicker: (CFG.shortName || "FESTIVAL").toUpperCase() + " · " + (CFG.year || ""),
+      kicker: _festivalYearKicker(CFG),
       headline: <>Your <em>Wrapped</em></>,
       sub: `${recap.setsCount} sets · ${recap.nights} nights · ${recap.stagesVisitedCount} stages`,
     });
@@ -10423,8 +10431,8 @@ function RecapScreen({ state, setState }) {
               backdropFilter: "blur(8px)",
             }}>↗ SHARE</button>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--media-ink-2)", fontWeight: 700, marginBottom: 10 }}>
-              YOUR {(CFG.shortName || "FESTIVAL").toUpperCase()} · {CFG.year || ""}
+            <div data-recap-kicker className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--media-ink-2)", fontWeight: 700, marginBottom: 10 }}>
+              YOUR {_festivalYearKicker(CFG)}
             </div>
           </div>
           <div className="serif" style={{ fontSize: 42, lineHeight: 0.95, letterSpacing: -0.5, marginBottom: 18 }}>
