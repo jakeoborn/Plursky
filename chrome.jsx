@@ -1430,6 +1430,23 @@ const _FESTIVAL_EDITORIAL_ART = Object.freeze({
   "iii-points-2026": "festival-art/iii-points-2026.webp",
   "edc-lv-2026": "festival-art/edc-lv-2026.webp",
   "countdown-nye-2026": "festival-art/countdown-nye-2026.webp",
+  "arc-2026": "festival-art/arc-2026.webp",
+  "beyond-wonderland-gorge-2027": "festival-art/beyond-wonderland-gorge-2027.webp",
+  "beyond-wonderland-socal-2027": "festival-art/beyond-wonderland-socal-2027.webp",
+  "coachella-2027": "festival-art/coachella-2027.webp",
+  "dreamstate-socal-2026": "festival-art/dreamstate-socal-2026.webp",
+  "edc-mexico-2027": "festival-art/edc-mexico-2027.webp",
+  "edc-orlando-2026": "festival-art/edc-orlando-2026.webp",
+  "escape-halloween-2026": "festival-art/escape-halloween-2026.webp",
+  "governors-ball-2026": "festival-art/governors-ball-2026.webp",
+  "hard-summer-2026": "festival-art/hard-summer-2026.webp",
+  "lollapalooza-2026": "festival-art/lollapalooza-2026.webp",
+  "lost-lands-2026": "festival-art/lost-lands-2026.webp",
+  "nocturnal-wonderland-2026": "festival-art/nocturnal-wonderland-2026.webp",
+  "outside-lands-2026": "festival-art/outside-lands-2026.webp",
+  "summerfest-2026": "festival-art/summerfest-2026.webp",
+  "tomorrowland-2027": "festival-art/tomorrowland-2027.webp",
+  "ultra-miami-2026": "festival-art/ultra-miami-2026.webp",
 });
 function FestivalThumb({ entry, size = 56, editorial = false }) {
   // The switcher's cards are discovery surfaces, not maps. Festival map art
