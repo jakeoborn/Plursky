@@ -53,22 +53,14 @@ function TopBar({
       overflowWrap: "anywhere"
     }
   }, sub && React.createElement("div", {
+    className: "duo-label duo-ink3",
     style: {
-      fontSize: 11,
-      lineHeight: 1.27,
-      fontWeight: 600,
-      letterSpacing: "0.04em",
-      textTransform: "uppercase",
-      color: "var(--text-2)",
-      marginBottom: 4
+      marginBottom: 6
     }
   }, sub), React.createElement("h1", {
+    className: "duo-title",
     style: {
-      margin: 0,
-      fontSize: 28,
-      lineHeight: 1.21,
-      fontWeight: 700,
-      letterSpacing: "-0.01em"
+      margin: 0
     }
   }, title)), right);
 }

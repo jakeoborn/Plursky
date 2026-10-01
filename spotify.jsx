@@ -102,7 +102,7 @@ function SpotifyScreen({ state, setState }) {
         <TopBar title={<span>Music</span>} sub="SOUNDTRACK" tight />
       </div>
 
-      <ScrollBody style={{ padding: "10px 20px 94px" }}>
+      <ScrollBody data-duo-music style={{ padding: "10px 20px 94px" }}>
 
         {/* Native-iOS Spotify fallback hint (v132). On the App Store binary
             before the @capacitor/browser OAuth path landed, Spotify connect
@@ -139,7 +139,7 @@ function SpotifyScreen({ state, setState }) {
             <path d="M8 15.8 Q12 14.5 16 16.5" stroke="var(--paper)" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
           </svg>
 
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, opacity: 0.65, marginBottom: 8 }}>
+          <div className="duo-label duo-ink2" style={{ marginBottom: 8, maxWidth: "calc(100% - 48px)" }}>
             {connected ? "CONNECTED" : "CONNECT SPOTIFY"}
           </div>
           <div className="serif" style={{ fontSize: 24, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 10, maxWidth: "78%" }}>
@@ -223,7 +223,7 @@ function SpotifyScreen({ state, setState }) {
               export to whichever service you have. Lets non-Spotify users
               (or anyone hitting Spotify's 5-user cap) still get a playlist. */}
           {APPLE_DEV_TOKEN && savedInLineup(state.saved).length > 0 && (
-            <div className="mono" style={{ marginTop: 10, fontSize: 9, letterSpacing: 0.5, lineHeight: 1.5, color: "var(--text-3)" }}>
+            <div style={{ marginTop: 10, font: "400 13px/1.45 var(--f-ui)", color: "var(--ink-2)" }}>
               💡 Your saved sets build a playlist on <span style={{ color: "var(--ink)", fontWeight: 700 }}>Spotify or Apple Music</span> — import your taste from one, export to either. No Spotify needed for the Apple Music playlist.
             </div>
           )}
@@ -254,7 +254,7 @@ function SpotifyScreen({ state, setState }) {
             <circle cx="15" cy="13" r="1.5" fill="var(--on-apple-music)"/>
           </svg>
 
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--text-2)", marginBottom: 8 }}>
+          <div className="duo-label duo-ink2" style={{ marginBottom: 8, maxWidth: "calc(100% - 48px)" }}>
             {amConnected ? "APPLE MUSIC CONNECTED" : "CONNECT APPLE MUSIC"}
           </div>
           <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 8, maxWidth: "78%" }}>

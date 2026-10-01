@@ -42,13 +42,10 @@ function TopBar({ title, right, sub, tight }) {
             UNITLESS line-heights: a px line-height does not scale with the
             font, so at 200% text a 22px eyebrow was still laying out on a 14px
             line and the title printed straight through it. */}
-        {sub && <div style={{
-          fontSize: 11, lineHeight: 1.27, fontWeight: 600, letterSpacing: "0.04em",
-          textTransform: "uppercase", color: "var(--text-2)", marginBottom: 4,
-        }}>{sub}</div>}
+        {sub && <div className="duo-label duo-ink3" style={{ marginBottom: 6 }}>{sub}</div>}
         {/* A real <h1>: VoiceOver's heading rotor had nothing to land on
             anywhere in Memories before this. */}
-        <h1 style={{ margin: 0, fontSize: 28, lineHeight: 1.21, fontWeight: 700, letterSpacing: "-0.01em" }}>
+        <h1 className="duo-title" style={{ margin: 0 }}>
           {title}
         </h1>
       </div>

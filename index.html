@@ -360,6 +360,11 @@
   .duo-lrow{display:flex;align-items:center;gap:12px;min-height:58px;padding:7px 4px 7px 12px;margin:0 -12px;border-radius:var(--rad-sm)}
   .duo-lrow.plan{background:var(--acc-08)}
   .duo-lrow.live{background:var(--s2);box-shadow:var(--glow);--ring-bg:var(--s2)}
+  /* Music: the legacy surface on the board's faces without a rewrite. Its
+     pill actions take the board's button shape in SF; its panels become duo cards. Brand
+     fills (Spotify, Apple Music) are the services' own colours and stay. */
+  .theme-field [data-duo-music] button[style*="Geist Mono"]{font:650 13px/1.2 var(--f-ui)!important;letter-spacing:.02em!important;min-height:44px;border-radius:var(--rad-sm)!important}
+  .theme-field [data-duo-music]>div[style*="border-radius: 20px"]{border-radius:var(--rad-md)!important;border:0!important;box-shadow:var(--e1)}
   /* Grid block head (face + status). A class, not inline: fitGridBlocks
      hides it with style.display and restores it by clearing that. */
   .duo-gb-head{display:flex;align-items:center;justify-content:space-between;gap:4px;margin-bottom:3px;min-width:0}

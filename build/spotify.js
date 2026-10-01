@@ -120,6 +120,7 @@ function SpotifyScreen({
     sub: "SOUNDTRACK",
     tight: true
   })), React.createElement(ScrollBody, {
+    "data-duo-music": true,
     style: {
       padding: "10px 20px 94px"
     }
@@ -189,12 +190,10 @@ function SpotifyScreen({
     strokeLinecap: "round",
     fill: "none"
   })), React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-ink2",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.6,
-      opacity: 0.65,
-      marginBottom: 8
+      marginBottom: 8,
+      maxWidth: "calc(100% - 48px)"
     }
   }, connected ? "CONNECTED" : "CONNECT SPOTIFY"), React.createElement("div", {
     className: "serif",
@@ -303,13 +302,10 @@ function SpotifyScreen({
       animation: connected && spotifyArtists === null ? "savePop 1.2s ease-in-out infinite" : undefined
     }
   }, connected && spotifyArtists === null ? "⟳ LOADING…" : connected ? "✓ CONNECTED" : "CONNECT ACCOUNT")), APPLE_DEV_TOKEN && savedInLineup(state.saved).length > 0 && React.createElement("div", {
-    className: "mono",
     style: {
       marginTop: 10,
-      fontSize: 9,
-      letterSpacing: 0.5,
-      lineHeight: 1.5,
-      color: "var(--text-3)"
+      font: "400 13px/1.45 var(--f-ui)",
+      color: "var(--ink-2)"
     }
   }, "💡 Your saved sets build a playlist on ", React.createElement("span", {
     style: {
@@ -366,12 +362,10 @@ function SpotifyScreen({
     r: "1.5",
     fill: "var(--on-apple-music)"
   })), React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-ink2",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.6,
-      color: "var(--text-2)",
-      marginBottom: 8
+      marginBottom: 8,
+      maxWidth: "calc(100% - 48px)"
     }
   }, amConnected ? "APPLE MUSIC CONNECTED" : "CONNECT APPLE MUSIC"), React.createElement("div", {
     className: "serif",
