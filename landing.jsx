@@ -447,10 +447,8 @@ function GeneralLandingScreen({ state, setState }) {
     { label: "Past",          fests: browse.filter(f => phaseOf(f) === "ended") },
   ].filter(g => g.fests.length > 0);
 
-  const eyebrow = {
-    margin: "18px 0 2px", fontSize: 11, lineHeight: 1.27, fontWeight: 600,
-    letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)",
-  };
+  // The board's section eyebrow (duo-sect): Michroma caps.
+  const eyebrow = { margin: "20px 0 6px" };
   const card = (f) => (
     <_LandingFestivalCard
       key={f.config.id}
@@ -473,7 +471,7 @@ function GeneralLandingScreen({ state, setState }) {
     <Screen>
       <ScrollBody style={{ padding: "0 16px calc(96px + env(safe-area-inset-bottom, 0px))" }}>
         <header style={{ paddingTop: 10 }}>
-          <h1 style={{ margin: 0, fontSize: 28, lineHeight: 1.21, fontWeight: 700, letterSpacing: "-0.01em" }}>
+          <h1 className="duo-title" style={{ margin: 0 }}>
             Plursky
           </h1>
           <p style={{ margin: "4px 0 0", fontSize: 15, lineHeight: 1.4, color: "var(--text-2)" }}>
@@ -504,7 +502,7 @@ function GeneralLandingScreen({ state, setState }) {
         )}
 
         {/* ── Saved festivals ──────────────────────────────────────────── */}
-        <h2 style={eyebrow}>Saved festivals</h2>
+        <h2 className="duo-sect" style={eyebrow}>Saved festivals</h2>
         {saved.length > 0 ? saved.map(card) : (
           <p style={{ margin: "6px 0 0", fontSize: 15, lineHeight: 1.4, color: "var(--text-2)" }}>
             Open a festival and tap Save to keep it here.
@@ -529,7 +527,7 @@ function GeneralLandingScreen({ state, setState }) {
         )}
 
         {/* ── Browse ───────────────────────────────────────────────────── */}
-        <h2 style={eyebrow}>Browse festivals</h2>
+        <h2 className="duo-sect" style={eyebrow}>Browse festivals</h2>
         <input
           value={q}
           onChange={e => setQ(e.target.value)}
@@ -549,7 +547,7 @@ function GeneralLandingScreen({ state, setState }) {
           </p>
         ) : groups.map(g => (
           <section key={g.label}>
-            <h3 style={eyebrow}>{g.label}</h3>
+            <h3 className="duo-sect" style={eyebrow}>{g.label}</h3>
             {g.fests.map(card)}
           </section>
         ))}

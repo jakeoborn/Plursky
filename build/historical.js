@@ -120,22 +120,14 @@ function _HistHeader({
       paddingTop: 2
     }
   }, sub && React.createElement("div", {
+    className: "duo-label duo-ink3",
     style: {
-      fontSize: 11,
-      lineHeight: "14px",
-      fontWeight: 600,
-      letterSpacing: "0.04em",
-      textTransform: "uppercase",
-      color: "var(--text-2)",
-      marginBottom: 2
+      marginBottom: 6
     }
   }, sub), React.createElement("h1", {
+    className: "duo-title",
     style: {
       margin: 0,
-      fontSize: 28,
-      lineHeight: "34px",
-      fontWeight: 700,
-      letterSpacing: "-0.01em",
       overflowWrap: "anywhere"
     }
   }, title)), right);
@@ -216,14 +208,9 @@ function _HistLibrary({
       marginTop: 16
     }
   }, React.createElement("h2", {
+    className: "duo-sect",
     style: {
-      margin: "0 0 4px",
-      fontSize: 11,
-      lineHeight: "14px",
-      fontWeight: 600,
-      letterSpacing: "0.04em",
-      textTransform: "uppercase",
-      color: "var(--text-2)"
+      margin: "0 0 4px"
     }
   }, y), editions.filter(e => e.year === y).map(e => React.createElement("button", {
     key: e.id,
@@ -252,23 +239,16 @@ function _HistLibrary({
       minWidth: 0
     }
   }, React.createElement("div", {
-    style: {
-      fontSize: 17,
-      lineHeight: "22px",
-      fontWeight: 600
-    }
+    className: "duo-headline"
   }, e.festivalName), React.createElement("div", {
     style: {
-      fontSize: 13,
-      lineHeight: "18px",
-      color: "var(--text-2)"
+      font: "400 13px/1.385 var(--f-ui)",
+      color: "var(--ink-2)"
     }
   }, _histDateRange(e.days)), React.createElement("div", {
+    className: "duo-data-s duo-ink2",
     style: {
-      fontSize: 13,
-      lineHeight: "18px",
-      color: "var(--text-2)",
-      fontVariantNumeric: "tabular-nums"
+      marginTop: 3
     }
   }, e.completeness === "lineup_only" ? `${e.counts.artists} artists · lineup only` : `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets`)), React.createElement("svg", {
     "aria-hidden": "true",
@@ -370,20 +350,8 @@ function _HistChip({
     onClick: onClick,
     "aria-pressed": on,
     "aria-label": label,
-    style: {
-      minHeight: 36,
-      padding: "0 12px",
-      borderRadius: 999,
-      border: on ? "none" : "1px solid var(--line-2)",
-      background: on ? "var(--signal)" : "transparent",
-      color: on ? "var(--on-signal)" : "var(--ink)",
-      fontFamily: "inherit",
-      fontSize: 14,
-      fontWeight: 600,
-      cursor: "pointer",
-      whiteSpace: "nowrap"
-    }
-  }, children);
+    className: "duo-chip"
+  }, React.createElement("span", null, children));
 }
 function HistoricalEditionView({
   state,
@@ -654,16 +622,13 @@ function _HistEdition({
       display: "flex",
       flexWrap: "wrap",
       alignItems: "center",
-      gap: 6
+      columnGap: 6
     }
   }, g.name && React.createElement("span", {
     style: {
       width: 84,
-      fontSize: 11,
-      fontWeight: 600,
-      letterSpacing: "0.04em",
-      textTransform: "uppercase",
-      color: "var(--text-2)"
+      font: "600 13px/1.3 var(--f-ui)",
+      color: "var(--ink-2)"
     }
   }, g.name), g.days.map(d => React.createElement(_HistChip, {
     key: d.day,
