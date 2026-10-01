@@ -230,12 +230,17 @@ function _LandingFestivalCard({
       color: "var(--ink)",
       textAlign: "left",
       fontFamily: "inherit",
-      cursor: dead ? "default" : "pointer",
+      cursor: dead ? "default" : "pointer"
+    }
+  }, typeof FestivalThumb === "function" ? React.createElement("span", {
+    style: {
+      flexShrink: 0,
+      display: "flex",
       opacity: dead ? 0.55 : st.upsell ? 0.8 : 1
     }
-  }, typeof FestivalThumb === "function" ? React.createElement(FestivalThumb, {
+  }, React.createElement(FestivalThumb, {
     entry: entry
-  }) : null, React.createElement("div", {
+  })) : null, React.createElement("div", {
     style: {
       flex: 1,
       minWidth: 0
@@ -249,12 +254,14 @@ function _LandingFestivalCard({
       minWidth: 0
     }
   }, React.createElement("span", {
+    "data-fit-words": true,
+    "data-fit-min": "13",
     style: {
       fontSize: 17,
       lineHeight: 1.29,
       fontWeight: 600,
       minWidth: 0,
-      overflowWrap: "anywhere"
+      color: st.locked ? "var(--ink-2)" : undefined
     }
   }, c.name), saved && React.createElement("span", {
     "aria-hidden": "true",
@@ -265,12 +272,13 @@ function _LandingFestivalCard({
       color: "var(--signal-ink)"
     }
   }, "★")), React.createElement("div", {
+    "data-fit-words": true,
+    "data-fit-min": "11",
     style: {
       fontSize: 13,
       lineHeight: 1.38,
       color: "var(--text-2)",
-      minWidth: 0,
-      overflowWrap: "anywhere"
+      minWidth: 0
     }
   }, c.location, c.dates ? " · " : "", c.dates || null), React.createElement("div", {
     style: {
@@ -417,13 +425,7 @@ function GeneralLandingScreen({
     fests: browse.filter(f => phaseOf(f) === "ended")
   }].filter(g => g.fests.length > 0);
   var eyebrow = {
-    margin: "18px 0 2px",
-    fontSize: 11,
-    lineHeight: 1.27,
-    fontWeight: 600,
-    letterSpacing: "0.04em",
-    textTransform: "uppercase",
-    color: "var(--text-2)"
+    margin: "20px 0 6px"
   };
   var card = f => React.createElement(_LandingFestivalCard, {
     key: f.config.id,
@@ -450,12 +452,9 @@ function GeneralLandingScreen({
       paddingTop: 10
     }
   }, React.createElement("h1", {
+    className: "duo-title",
     style: {
-      margin: 0,
-      fontSize: 28,
-      lineHeight: 1.21,
-      fontWeight: 700,
-      letterSpacing: "-0.01em"
+      margin: 0
     }
   }, "Plursky"), React.createElement("p", {
     style: {
@@ -502,6 +501,7 @@ function GeneralLandingScreen({
       opacity: 0.85
     }
   }, phaseOf(primary) === "live" ? "Happening now" : primary.config.dates || "Upcoming"))), React.createElement("h2", {
+    className: "duo-sect",
     style: eyebrow
   }, "Saved festivals"), saved.length > 0 ? saved.map(card) : React.createElement("p", {
     style: {
@@ -530,6 +530,7 @@ function GeneralLandingScreen({
       fontFamily: "inherit"
     }
   }, "⚑ ", orphanCount, " ", orphanCount === 1 ? "memory is" : "memories are", " not confirmed to a festival · Review"), React.createElement("h2", {
+    className: "duo-sect",
     style: eyebrow
   }, "Browse festivals"), React.createElement("input", {
     value: q,
@@ -562,6 +563,7 @@ function GeneralLandingScreen({
   }, "No festival matches “", q.trim(), "”.") : groups.map(g => React.createElement("section", {
     key: g.label
   }, React.createElement("h3", {
+    className: "duo-sect",
     style: eyebrow
   }, g.label), g.fests.map(card)))));
 }
