@@ -45,7 +45,7 @@ function TopBar({ title, right, sub, tight }) {
         {sub && <div className="duo-label duo-ink3" style={{ marginBottom: 6 }}>{sub}</div>}
         {/* A real <h1>: VoiceOver's heading rotor had nothing to land on
             anywhere in Memories before this. */}
-        <h1 className="duo-title" style={{ margin: 0 }}>
+        <h1 className="duo-title" data-fit-words data-fit-min="20" style={{ margin: 0 }}>
           {title}
         </h1>
       </div>
@@ -98,9 +98,12 @@ function TabBar({ active, onChange }) {
               position: "relative",
               background: "transparent", border: "none", cursor: "pointer",
               display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 5,
-              padding: "10px 12px 4px",
+              padding: "10px 4px 4px",
               color: on ? "var(--ink)" : "var(--ink-3)",
-              minWidth: 64, minHeight: 53, maxWidth: "100%",
+              // Equal shares of the bar, so a label's box is known before its
+              // text is: the fit below needs a width that does not depend on
+              // the label it is fitting.
+              flex: "1 1 0", minWidth: 0, minHeight: 53,
               transition: "color var(--t-tap) var(--ease-decay)",
             }}>
             {on && <span aria-hidden="true" style={{
@@ -109,11 +112,12 @@ function TabBar({ active, onChange }) {
             }} />}
             <Icon on={on} />
             {/* The label must be able to shrink, and its line box must scale
-                with it. At 200% text "Memories" ran past its own button. */}
-            <span style={{
+                with it. At 200% text "Memories" ran past its own button, then
+                broke inside the word ("Toda / y"); it now steps down to fit. */}
+            <span data-fit-words data-fit-group="tab" data-fit-min="9" style={{
+              display: "block", width: "100%",
               fontSize: 11, lineHeight: 1.17, letterSpacing: ".01em",
-              fontWeight: 500,
-              minWidth: 0, maxWidth: "100%", overflowWrap: "anywhere", textAlign: "center",
+              fontWeight: 500, textAlign: "center",
             }}>
               {t.label}
             </span>
@@ -1966,6 +1970,92 @@ function useFitNames(root) {
   React.useEffect(() => () => { ro.current && ro.current.disconnect(); if (probe.current) probe.current.remove(); }, []);
 }
 
+// The same policy for text that may wrap (a name, a screen title, a tab
+// label, a card title): it wraps BETWEEN words, never inside one. When a word
+// cannot fit its box, the text steps down until it does, to data-fit-min px,
+// and only a word that still cannot fit breaks. #275's QA read "Memorie / s",
+// "Impor / t" and "Toda / y" at 200% text on wide fonts.
+// It works from the size the text has NOW (an enlarged text size is the
+// input, not something to undo), and writes with !important so it is the last
+// word on the one inline font-size slot. It only READS unless a word breaks,
+// so the hundreds of names on a lineup cost one layout, not one each.
+const _FIT_WORDS = "[data-fit-words], .duo-name";
+function fitWords(el) {
+  const cs = getComputedStyle(el);
+  const cur = parseFloat(cs.fontSize);
+  if (el.dataset.fitSet == null || Math.abs(cur - parseFloat(el.dataset.fitSet)) > 0.1) el.dataset.fitBase = String(cur);
+  const base = parseFloat(el.dataset.fitBase);
+  const key = el.textContent + "|" + el.clientWidth + "|" + base;
+  if (el.dataset.fitKey === key) return;
+  // Words split on space, hyphen, dash, slash and the middot: a break AFTER
+  // "Auto-" is a hyphen doing its job, not a word broken inside itself.
+  const words = [];
+  const tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  while (tw.nextNode()) { const n = tw.currentNode; const re = /[^\s\-‐-—\/·]+/g; let m; while ((m = re.exec(n.data))) words.push([n, m.index, m.index + m[0].length]); }
+  const pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+  // A word is broken when its letters sit on two lines (the box allows a
+  // break) or when it is wider than the box (the box does not).
+  const broken = () => {
+    const box = el.getBoundingClientRect().width - pad + 0.5;
+    return words.some(([n, a, b]) => {
+      const rg = document.createRange(); rg.setStart(n, a); rg.setEnd(n, b);
+      const rs = rg.getClientRects();
+      return (rs.length > 1 && rs[rs.length - 1].top > rs[0].top + 1) || rg.getBoundingClientRect().width > box;
+    });
+  };
+  const set = (px) => { el.style.setProperty("font-size", px + "px", "important"); el.dataset.fitSet = String(px); };
+  let size = cur;
+  if (size < base) { size = base; set(size); }   // a wider box: start again from the real size
+  const min = parseFloat(el.dataset.fitMin || "11");
+  if (broken()) {
+    el.style.overflowWrap = "normal";
+    while (broken() && size > min) { size -= 1; set(size); }
+    if (broken()) el.style.overflowWrap = "anywhere";
+  }
+  el.dataset.fitKey = el.textContent + "|" + el.clientWidth + "|" + base;
+}
+// Siblings sharing a data-fit-group (the tab labels) then all take the
+// smallest fitted size, so one long label does not leave its row uneven.
+function fitWordGroups(r) {
+  const groups = {};
+  for (const n of r.querySelectorAll("[data-fit-group]")) (groups[n.dataset.fitGroup] ||= []).push(n);
+  for (const g of Object.values(groups)) {
+    const size = Math.min(...g.map(n => parseFloat(getComputedStyle(n).fontSize)));
+    for (const n of g) if (Math.abs(parseFloat(getComputedStyle(n).fontSize) - size) > 0.1) { n.style.setProperty("font-size", size + "px", "important"); n.dataset.fitSet = String(size); }
+  }
+}
+// One observer for the whole app, so no screen can forget to fit: new text is
+// fitted as it mounts (before paint), resized boxes are refitted (a rotation,
+// a larger text size), and everything is refitted when a late font face
+// lands, which changes word widths without a resize.
+if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationObserver !== "undefined") {
+  window._fitWordsInited = true;
+  const ro = typeof ResizeObserver !== "undefined"
+    ? new ResizeObserver((entries) => { for (const { target } of entries) if (target.isConnected) fitWords(target); fitWordGroups(document); })
+    : null;
+  const fitIn = (node, all) => {
+    const list = node.matches && node.matches(_FIT_WORDS) ? [node] : [];
+    if (node.querySelectorAll) list.push(...node.querySelectorAll(_FIT_WORDS));
+    for (const n of list) { if (all) n.dataset.fitKey = ""; fitWords(n); ro && ro.observe(n); }
+  };
+  const start = () => {
+    fitIn(document.body); fitWordGroups(document);
+    new MutationObserver((records) => {
+      const touched = new Set();
+      for (const r of records) {
+        for (const n of r.addedNodes) if (n.nodeType === 1) touched.add(n);
+        const host = (r.target.nodeType === 1 ? r.target : r.target.parentElement);
+        const fit = host && host.closest && host.closest(_FIT_WORDS);
+        if (fit) touched.add(fit);
+      }
+      for (const n of touched) if (n.isConnected) fitIn(n);
+      if (touched.size) fitWordGroups(document);
+    }).observe(document.body, { childList: true, subtree: true, characterData: true });
+    try { document.fonts && document.fonts.addEventListener("loadingdone", () => { fitIn(document.body, true); fitWordGroups(document); }); } catch {}
+  };
+  if (document.body) start(); else document.addEventListener("DOMContentLoaded", start);
+}
+
 function useAppearance() {
   const A = window.PlurskyAppearance;
   const [, force] = React.useReducer(x => x + 1, 0);
@@ -2132,7 +2222,7 @@ Object.assign(window, {
   isAttended, getAttendanceSource, detectCurrentArtist, recordAttendanceFromGps,
   FestivalChip, FestivalSwitcher,
   useBatterySaver, BatterySaverCard, BatterySaverToast, setBatterySaverMode,
-  useAppearance, AppearanceRow, fitNames, useFitNames,
+  useAppearance, AppearanceRow, fitNames, useFitNames, fitWords,
   useOnlineStatus, StatusStrip,
   plurskyHaptic,
 });

@@ -11,7 +11,16 @@
 //     hence the explicit line-height >= font-size check);
 //   · a fixed-height status strip a scaled clock spilled out of;
 //   · a Memories screen with no h1/h2 at all, so VoiceOver's heading rotor
-//     had nothing to land on.
+//     had nothing to land on;
+//   · words broken INSIDE themselves ("Memorie / s", "Impor / t", "Toda / y",
+//     #275's QA). Nothing overflows and nothing clips, so only a per-character
+//     line check sees it. It runs in this Mac's fonts AND in Verdana, the wide
+//     face the runner's fallback fonts behave like.
+//
+// The doubling SNAPSHOTS every resolved size first and then writes 2x. The
+// first loop read each size after its parent had already been doubled, so an
+// inherited size doubled twice or more (126 of 163 elements; the title went
+// 28 -> 112px) and "200%" was really 2x-8x.
 //
 // The 200% pass DOUBLES every resolved font size. That is a proxy, not the
 // real thing: Plursky styles in px with no text-size-adjust, rem units or
@@ -49,7 +58,7 @@ let checks = 0, failed = 0;
 const check = (ok, msg) => { checks++; if (!ok) { failed++; console.log(`  ✗  ${msg}`); } };
 const note = (msg) => console.log(`  · ${msg}`);
 
-async function open(browser, { url, width, big, reduced, themePref }) {
+async function open(browser, { url, width, big, reduced, themePref, font }) {
   const ctx = await browser.newContext({
     viewport: { width, height: 844 }, deviceScaleFactor: 2, serviceWorkers: 'block',
     reducedMotion: reduced ? 'reduce' : 'no-preference', timezoneId: 'America/Los_Angeles',
@@ -68,6 +77,7 @@ async function open(browser, { url, width, big, reduced, themePref }) {
     localStorage.setItem('plursky_saved_festivals_v1', JSON.stringify({ v: 1, ids: ['edc-lv-2026', 'acl-2026'] }));
     if (pref) localStorage.setItem('theme_pref', pref);
   }, [RICH, themePref || null]);
+  if (font) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, font);
   const page = await ctx.newPage();
   await page.goto(url, { waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => Array.isArray(window.ARTISTS) && window.ARTISTS.length > 0, null, { timeout: 30000 });
@@ -76,11 +86,12 @@ async function open(browser, { url, width, big, reduced, themePref }) {
     // Double every RESOLVED font size. The app styles in px, so a browser
     // font-size preference does nothing — this reproduces what iOS Dynamic
     // Type at ~200% does to the layout, which is what the gate is about.
+    // Snapshot first, then write: reading as you go doubles an inherited
+    // size again for every ancestor already doubled.
     await page.evaluate(() => {
-      for (const el of document.querySelectorAll('*')) {
-        const fs = parseFloat(getComputedStyle(el).fontSize);
-        if (fs) el.style.setProperty('font-size', (fs * 2) + 'px', 'important');
-      }
+      const els = [...document.body.querySelectorAll('*')];
+      const sizes = els.map(el => parseFloat(getComputedStyle(el).fontSize));
+      els.forEach((el, i) => { if (sizes[i]) el.style.setProperty('font-size', (sizes[i] * 2) + 'px', 'important'); });
     });
     await sleep(700);
   }
@@ -146,6 +157,39 @@ const audit = (page) => page.evaluate(() => {
       return fs > 0 && lh > 0 && lh < fs;
     }).map(e => `${(e.textContent || '').trim().slice(0, 22)} [${getComputedStyle(e).fontSize}/${getComputedStyle(e).lineHeight}]`).slice(0, 12),
     headings: [...document.querySelectorAll('h1,h2,h3')].filter(vis).map(h => h.innerText.trim().slice(0, 26)),
+    // The screen actually mounted, so a capture is labelled by what it shows
+    // (a bad deep link silently lands on Today).
+    h1: [...document.querySelectorAll('h1')].filter(vis).map(h => h.innerText.trim()),
+    currentTab: (document.querySelector('[aria-current=page]')?.innerText || '').trim(),
+    // A word whose letters sit on more than one line was broken inside itself.
+    midWord: (() => {
+      const bad = [];
+      const tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      while (tw.nextNode()) {
+        const n = tw.currentNode, el = n.parentElement;
+        if (!el || !vis(el)) continue;
+        const re = /[A-Za-z]{2,}/g; let m;
+        while ((m = re.exec(n.data))) {
+          let prev = null, broke = false;
+          for (let k = m.index; k < m.index + m[0].length; k++) {
+            const rg = document.createRange(); rg.setStart(n, k); rg.setEnd(n, k + 1);
+            const rc = rg.getClientRects()[0]; if (!rc) continue;
+            if (prev !== null && rc.top > prev + 2) broke = true;
+            prev = rc.top;
+          }
+          if (broke) bad.push(m[0]);
+        }
+      }
+      return [...new Set(bad)].slice(0, 8);
+    })(),
+    // Text cut off inside its own box: an ellipsis (or a hard clip) on a line
+    // that is wider than the box holding it.
+    cutOff: [...document.querySelectorAll('*')].filter(e => {
+      if (!vis(e) || !(e.textContent || '').trim()) return false;
+      const s = getComputedStyle(e);
+      if (s.overflowX === 'visible' || s.overflowX === 'auto' || s.overflowX === 'scroll') return false;
+      return s.textOverflow === 'ellipsis' || s.whiteSpace === 'nowrap' ? e.scrollWidth > e.clientWidth + 1 : false;
+    }).map(e => (e.textContent || '').trim().slice(0, 30)).slice(0, 6),
     unlabelled: tappable.filter(e => !(e.innerText || '').trim() && !e.getAttribute('aria-label') && !e.getAttribute('title'))
       .map(e => e.outerHTML.slice(0, 60)),
     themeClass: document.documentElement.className,
@@ -171,17 +215,25 @@ try {
   // 320-only pass locally was not predictive — CI overflowed by 37px on a
   // layout that wrapped cleanly here. 12.5% of extra squeeze comfortably
   // covers the few percent a fallback font costs.
+  // Each pass also runs in Verdana: a wide face like the runner's fallbacks,
+  // and the fonts #275's QA captured "Memorie / s" in. A layout that holds
+  // whole words only in this Mac's fonts is not a fix.
   for (const [label, url] of [['landing', BASE], ['memories', BASE + '?tab=memories']]) {
-    for (const width of [393, 320, 280]) {
-      const { ctx, page } = await open(browser, { url, width, big: true });
-      await page.screenshot({ path: join(OUT, `${label}-largetext__${width}.png`) });
+    for (const font of [null, 'Verdana']) for (const width of [393, 320, 280]) {
+      const { ctx, page } = await open(browser, { url, width, big: true, font });
       const a = await audit(page);
-      check(a.docPan <= 0, `${label} @${width} 200% text: no horizontal document pan (got ${a.docPan})`);
-      check(a.worstPan <= 1, `${label} @${width} 200% text: no nested pan (got ${a.worstPan}) ${JSON.stringify(a.panWho)}`);
-      check(a.clipped.length === 0, `${label} @${width} 200% text: nothing clipped (${JSON.stringify(a.clipped)})`);
-      check(a.small.length === 0, `${label} @${width} 200% text: every target ≥44 (${JSON.stringify(a.small)})`);
-      check(a.overlaps.length === 0, `${label} @${width} 200% text: no text prints over other text (${JSON.stringify(a.overlaps)})`);
-      check(a.tightLines.length === 0, `${label} @${width} 200% text: no line-height smaller than its font (${JSON.stringify(a.tightLines)})`);
+      const tag = `${label}${font ? '-wide' : ''}`;
+      if (label === 'memories') check(a.h1.includes('Memories') && a.currentTab === 'Memories',
+        `${tag} @${width}: the Memories screen is what mounted (h1 ${JSON.stringify(a.h1)}, tab "${a.currentTab}")`);
+      await page.screenshot({ path: join(OUT, `${tag}-largetext__${width}.png`) });
+      check(a.docPan <= 0, `${tag} @${width} 200% text: no horizontal document pan (got ${a.docPan})`);
+      check(a.worstPan <= 1, `${tag} @${width} 200% text: no nested pan (got ${a.worstPan}) ${JSON.stringify(a.panWho)}`);
+      check(a.clipped.length === 0, `${tag} @${width} 200% text: nothing clipped (${JSON.stringify(a.clipped)})`);
+      check(a.small.length === 0, `${tag} @${width} 200% text: every target ≥44 (${JSON.stringify(a.small)})`);
+      check(a.overlaps.length === 0, `${tag} @${width} 200% text: no text prints over other text (${JSON.stringify(a.overlaps)})`);
+      check(a.tightLines.length === 0, `${tag} @${width} 200% text: no line-height smaller than its font (${JSON.stringify(a.tightLines)})`);
+      check(a.midWord.length === 0, `${tag} @${width} 200% text: no word breaks inside itself (${JSON.stringify(a.midWord)})`);
+      check(a.cutOff.length === 0, `${tag} @${width} 200% text: no text cut off inside its box (${JSON.stringify(a.cutOff)})`);
       await ctx.close();
     }
   }
@@ -192,6 +244,8 @@ try {
     const a = await audit(page);
     check(a.small.length === 0, `${label}: every target ≥44x44 (${JSON.stringify(a.small)})`);
     check(a.unlabelled.length === 0, `${label}: every control has an accessible name (${JSON.stringify(a.unlabelled)})`);
+    check(a.midWord.length === 0, `${label}: no word breaks inside itself at normal type (${JSON.stringify(a.midWord)})`);
+    check(a.cutOff.length === 0, `${label}: no text cut off inside its box at normal type (${JSON.stringify(a.cutOff)})`);
     // VoiceOver order proxy: headings must read top-down in a sensible order.
     note(`${label} heading order: ${JSON.stringify(a.headings)}`);
     check(a.headings.length > 0, `${label}: has headings for VoiceOver rotor navigation`);

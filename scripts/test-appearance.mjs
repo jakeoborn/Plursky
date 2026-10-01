@@ -31,23 +31,29 @@ const check = (ok, msg) => { checks++; if (!ok) problems.push(msg); };
 const ONLY = process.argv.slice(2);   // optional: screen keys to run
 
 const FID = 'edc-lv-2026', AT = '2026-05-17T07:50:00Z';
-// key, url query, extra localStorage, a selector that proves the screen mounted
+// key, url query, extra localStorage, a selector that proves the screen mounted,
+// a font, what the mounted screen must show (its h1 / selected tab / artist),
+// and an in-app navigation to make after boot.
+// A screen is labelled by what it SHOWS: tab=recap and tab=landing are not
+// deep-link tabs, so both silently rendered Today and every check ran on Today
+// under those names (#275's QA). Recap is reached through the app's own
+// navigation; General Home is a bare URL (no f=, no tab), as a visitor gets it.
 const SCREENS = [
-  ['home',     'tab=home',            {},                                   '#root > *'],
-  ['lineup',   'tab=lineup',          { plursky_lineup_view: 'list' },      '[data-lineup-scroll]'],
+  ['home',     'tab=home',            {},                                   '#root > *', null, { h1: 'EDC Las Vegas', tab: 'Today' }],
+  ['lineup',   'tab=lineup',          { plursky_lineup_view: 'list' },      '[data-lineup-scroll]', null, { h1: 'Lineup', tab: 'Lineup' }],
   // The list again in a wider face than this Mac's, as CI's runner has: it
   // puts names on the fit borderline, where a re-measure during the mode
   // switch's re-render landed a pixel the other way and shifted every row.
-  ['lineup-wide', 'tab=lineup',       { plursky_lineup_view: 'list' },      '[data-lineup-scroll]', 'Verdana'],
-  ['grid',     'tab=lineup',          { plursky_lineup_view: 'grid' },      '[data-grid-scroll]'],
-  ['map',      'tab=map',             {},                                   '#root > *'],
-  ['artist',   'tab=lineup&artist=k9', {},                                  '#root > *'],
-  ['me',       'tab=me',              {},                                   '[data-appearance-row]'],
-  ['memories', 'tab=memories',        {},                                   '#root > *'],
-  ['recap',    'tab=recap',           {},                                   '#root > *'],
-  ['past',     'tab=past',            {},                                   '#root > *'],
-  ['spotify',  'tab=spotify',         {},                                   '#root > *'],
-  ['landing',  'tab=landing',         {},                                   '#root > *'],
+  ['lineup-wide', 'tab=lineup',       { plursky_lineup_view: 'list' },      '[data-lineup-scroll]', 'Verdana', { h1: 'Lineup', tab: 'Lineup' }],
+  ['grid',     'tab=lineup',          { plursky_lineup_view: 'grid' },      '[data-grid-scroll]', null, { h1: 'Lineup', tab: 'Lineup' }],
+  ['map',      'tab=map',             {},                                   '#root > *', null, { tab: 'Map' }],
+  ['artist',   'tab=lineup&artist=k9', {},                                  '#root > *', null, { artist: 'k9' }],
+  ['me',       'tab=me',              {},                                   '[data-appearance-row]', null, { h1: 'Me', tab: 'Me' }],
+  ['memories', 'tab=memories',        {},                                   '#root > *', null, { h1: 'Memories' }],
+  ['recap',    'tab=home',            {},                                   '#root > *', null, { h1: 'Recap' }, { tab: 'recap' }],
+  ['past',     'tab=past',            {},                                   '#root > *', null, { h1: 'Past festivals' }],
+  ['spotify',  'tab=spotify',         {},                                   '#root > *', null, { h1: 'Music' }],
+  ['landing',  null,                  {},                                   '#root > *', null, { h1: 'Plursky' }],
 ].filter(([k]) => !ONLY.length || ONLY.includes(k));
 
 const PORT = await reservePort();
@@ -58,7 +64,7 @@ try {
   const executablePath = ['/opt/google/chrome/chrome', '/usr/bin/google-chrome', '/usr/bin/chromium'].find(existsSync);
   browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
 
-  const open = async ({ scheme = 'dark', pick = null, query = 'tab=home', extra = {}, ready = '#root > *', noSignal = false, width = 393, fid = FID, font = null } = {}) => {
+  const open = async ({ scheme = 'dark', pick = null, query = 'tab=home', extra = {}, ready = '#root > *', noSignal = false, width = 393, fid = FID, font = null, go = null } = {}) => {
     const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: scheme });
     await ctx.clock.install({ time: new Date(AT) });
     await ctx.addInitScript(({ FID, pick, extra }) => {
@@ -80,10 +86,11 @@ try {
     if (font) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, font);
     const page = await ctx.newPage();
     const errors = []; page.on('pageerror', e => errors.push(e.message));
-    await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${fid}&${query}`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`http://127.0.0.1:${PORT}/index.html${query === null ? '' : `?f=${fid}&${query}`}`, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(([fid, sel]) => window.FESTIVAL_CONFIG?.id === fid && document.querySelector(sel), [fid, ready], { timeout: 60000 });
     await page.clock.runFor(2500);
     await page.waitForTimeout(300);
+    if (go) { await page.evaluate((g) => window._pushNav(g), go); await page.clock.runFor(800); await page.waitForTimeout(200); }
     // Settle: offline fetches (tracklists, bios, counts) fail on their own
     // clocks, so a page can still be growing. Wait until the tallest scroller
     // stops changing height three times running (≤ 12 tries).
@@ -96,6 +103,14 @@ try {
     return { ctx, page, errors };
   };
   const modeOf = (page) => page.evaluate(() => document.documentElement.getAttribute('data-mode'));
+  // What the mounted screen actually shows, checked against what it claims.
+  const isScreen = (page, is) => page.evaluate((is) => {
+    const h1 = [...document.querySelectorAll('h1')].filter(h => h.getClientRects().length).map(h => h.innerText.trim());
+    const tab = (document.querySelector('[aria-current=page]')?.innerText || '').trim();
+    const artist = is.artist ? (window.ARTISTS || []).find(a => a.id === is.artist)?.name : null;
+    const ok = (!is.h1 || h1.includes(is.h1)) && (!is.tab || tab === is.tab) && (!is.artist || (!!artist && document.body.innerText.includes(artist)));
+    return { ok, saw: `h1 ${JSON.stringify(h1)}, tab "${tab}"` };
+  }, is);
 
   // Contrast audit of what is on screen right now.
   const audit = (page) => page.evaluate(() => {
@@ -317,12 +332,13 @@ try {
   const fitStats = { recorded: 0, pinned: 0, moved: 0 };
   const nameFails = new Set();
   const onMediaInk = {};   // `${screen}/${mode}` → text → colour, for text on a photo
-  for (const [key, query, extra, ready, font] of SCREENS) {
+  for (const [key, query, extra, ready, font, is, go] of SCREENS) {
     for (const mode of ['dark', 'light']) {
       const other = mode === 'dark' ? 'light' : 'dark';
       // fresh in this mode
-      const A = await open({ scheme: 'dark', pick: mode, query, extra, ready, font });
+      const A = await open({ scheme: 'dark', pick: mode, query, extra, ready, font, go });
       check((await modeOf(A.page)) === mode, `[${key}] picked ${mode} but the page is ${await modeOf(A.page)}`);
+      { const sc = await isScreen(A.page, is); check(sc.ok, `[${key}] ${mode}: the screen that mounted is not ${key} (${sc.saw})`); }
       // Audit the whole screen, not the first viewport: step the main
       // scroller, and keep a settled screenshot of every screenful for the
       // leak check below (a leak below the fold is still a leak).
@@ -352,7 +368,7 @@ try {
       check(!A.errors.length, `[${key}/${mode}] page errors: ${A.errors.join(' | ')}`);
       await A.ctx.close();
       // loaded in the other mode, then toggled into this one
-      const B = await open({ scheme: 'dark', pick: other, query, extra, ready, font });
+      const B = await open({ scheme: 'dark', pick: other, query, extra, ready, font, go });
       await B.page.evaluate(m => window.PlurskyAppearance.set(m), mode);
       await B.page.clock.runFor(500); await B.page.waitForTimeout(250);
       await shot(B.page);

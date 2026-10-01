@@ -286,9 +286,12 @@ function _LandingFestivalCard({ entry, saved, memoryCount, onEnter, onUpsell, pl
         borderBottom: "1px solid var(--line)",
         color: "var(--ink)", textAlign: "left", fontFamily: "inherit",
         cursor: dead ? "default" : "pointer",
-        opacity: dead ? 0.55 : st.upsell ? 0.8 : 1,
       }}>
-      {typeof FestivalThumb === "function" ? <FestivalThumb entry={entry} /> : null}
+      {/* A row that is not open yet reads quieter by COLOUR: dimming the row
+          with opacity took its text below AA in both modes (2.49:1 in Light),
+          which nobody saw while the gate's "landing" screen was really Today.
+          Only the picture keeps the dim. */}
+      {typeof FestivalThumb === "function" ? <span style={{ flexShrink: 0, display: "flex", opacity: dead ? 0.55 : st.upsell ? 0.8 : 1 }}><FestivalThumb entry={entry} /></span> : null}
       <div style={{ flex: 1, minWidth: 0 }}>
         {/* Everything on this row WRAPS. At 320px "Henry Maier Festival Park ·
             Milwaukee, WI" pushed the row 42px wide and the card panned
@@ -299,12 +302,12 @@ function _LandingFestivalCard({ entry, saved, memoryCount, onEnter, onUpsell, pl
             one unbreakable 234px date string in a 192px column was the entire
             42px overflow. A date range that wraps beats a card that pans. */}
         <div style={{ display: "flex", alignItems: "baseline", gap: 6, flexWrap: "wrap", minWidth: 0 }}>
-          <span style={{ fontSize: 17, lineHeight: 1.29, fontWeight: 600, minWidth: 0, overflowWrap: "anywhere" }}>{c.name}</span>
+          <span data-fit-words data-fit-min="13" style={{ fontSize: 17, lineHeight: 1.29, fontWeight: 600, minWidth: 0, color: st.locked ? "var(--ink-2)" : undefined }}>{c.name}</span>
           {saved && (
             <span aria-hidden="true" title="Saved" style={{ flexShrink: 0, fontSize: 12, color: "var(--signal-ink)" }}>★</span>
           )}
         </div>
-        <div style={{ fontSize: 13, lineHeight: 1.38, color: "var(--text-2)", minWidth: 0, overflowWrap: "anywhere" }}>
+        <div data-fit-words data-fit-min="11" style={{ fontSize: 13, lineHeight: 1.38, color: "var(--text-2)", minWidth: 0 }}>
           {c.location}{c.dates ? " · " : ""}{c.dates || null}
         </div>
         <div style={{ marginTop: 2, fontSize: 13, lineHeight: 1.38, color: toneColor, fontVariantNumeric: "tabular-nums" }}>

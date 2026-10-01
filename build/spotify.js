@@ -116,7 +116,7 @@ function SpotifyScreen({
       padding: "8px 20px"
     }
   }, React.createElement(TopBar, {
-    title: React.createElement("span", null, "Music"),
+    title: "Music",
     sub: "SOUNDTRACK",
     tight: true
   })), React.createElement(ScrollBody, {
@@ -9982,7 +9982,7 @@ function MemoriesScreen({
       margin: "0 -20px"
     }
   }, React.createElement(TopBar, {
-    title: React.createElement("span", null, "Memories"),
+    title: "Memories",
     sub: `${confirmedCount} ${confirmedCount === 1 ? "MOMENT" : "MOMENTS"}` + (unconfirmedCount ? ` · ${unconfirmedCount} UNCONFIRMED` : "") + ` · ${FESTIVAL_CONFIG.shortName.toUpperCase()}`,
     tight: true
   })), React.createElement("input", {
@@ -10000,6 +10000,7 @@ function MemoriesScreen({
     className: "duo-card",
     style: {
       display: "flex",
+      flexWrap: "wrap",
       alignItems: "center",
       gap: 12,
       width: "100%",
@@ -10046,16 +10047,19 @@ function MemoriesScreen({
     d: "M21 16 l-5-5 L6 19"
   }))), React.createElement("span", {
     style: {
-      flex: 1,
-      minWidth: 0,
-      overflowWrap: "anywhere"
+      flex: "1 1 150px",
+      minWidth: 0
     }
   }, React.createElement("span", {
+    "data-fit-words": true,
+    "data-fit-min": "13",
     className: "duo-headline",
     style: {
       display: "block"
     }
   }, "Import from camera roll"), React.createElement("span", {
+    "data-fit-words": true,
+    "data-fit-min": "11",
     className: "duo-body-s duo-ink2",
     style: {
       display: "block",
@@ -11040,7 +11044,7 @@ function MeScreen({
       padding: "8px 20px"
     }
   }, React.createElement(TopBar, {
-    title: React.createElement("span", null, "Me"),
+    title: "Me",
     sub: FESTIVAL_CONFIG.shortName.toUpperCase(),
     tight: true
   })), React.createElement(ScrollBody, {
@@ -14999,7 +15003,7 @@ function RecapScreen({
         flexShrink: 0
       }
     }, "←"), React.createElement(TopBar, {
-      title: React.createElement("span", null, "Recap"),
+      title: "Recap",
       sub: CFG.shortName?.toUpperCase(),
       tight: true
     })), React.createElement(ScrollBody, {
@@ -15061,7 +15065,7 @@ function RecapScreen({
       flexShrink: 0
     }
   }, "←"), React.createElement(TopBar, {
-    title: React.createElement("span", null, "Recap"),
+    title: "Recap",
     sub: (CFG.shortName || "Festival").toUpperCase() + " · YOUR WEEKEND",
     tight: true
   })), React.createElement(ScrollBody, {

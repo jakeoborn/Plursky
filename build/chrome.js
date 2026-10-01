@@ -59,6 +59,8 @@ function TopBar({
     }
   }, sub), React.createElement("h1", {
     className: "duo-title",
+    "data-fit-words": true,
+    "data-fit-min": "20",
     style: {
       margin: 0
     }
@@ -138,11 +140,11 @@ function TabBar({
         alignItems: "center",
         justifyContent: "center",
         gap: 5,
-        padding: "10px 12px 4px",
+        padding: "10px 4px 4px",
         color: on ? "var(--ink)" : "var(--ink-3)",
-        minWidth: 64,
+        flex: "1 1 0",
+        minWidth: 0,
         minHeight: 53,
-        maxWidth: "100%",
         transition: "color var(--t-tap) var(--ease-decay)"
       }
     }, on && React.createElement("span", {
@@ -160,14 +162,16 @@ function TabBar({
     }), React.createElement(Icon, {
       on: on
     }), React.createElement("span", {
+      "data-fit-words": true,
+      "data-fit-group": "tab",
+      "data-fit-min": "9",
       style: {
+        display: "block",
+        width: "100%",
         fontSize: 11,
         lineHeight: 1.17,
         letterSpacing: ".01em",
         fontWeight: 500,
-        minWidth: 0,
-        maxWidth: "100%",
-        overflowWrap: "anywhere",
         textAlign: "center"
       }
     }, t.label));
@@ -2540,6 +2544,108 @@ function useFitNames(root) {
     if (probe.current) probe.current.remove();
   }, []);
 }
+var _FIT_WORDS = "[data-fit-words], .duo-name";
+function fitWords(el) {
+  var cs = getComputedStyle(el);
+  var cur = parseFloat(cs.fontSize);
+  if (el.dataset.fitSet == null || Math.abs(cur - parseFloat(el.dataset.fitSet)) > 0.1) el.dataset.fitBase = String(cur);
+  var base = parseFloat(el.dataset.fitBase);
+  var key = el.textContent + "|" + el.clientWidth + "|" + base;
+  if (el.dataset.fitKey === key) return;
+  var words = [];
+  var tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  while (tw.nextNode()) {
+    var n = tw.currentNode;
+    var re = /[^\s\-‐-—\/·]+/g;
+    var m = void 0;
+    while (m = re.exec(n.data)) words.push([n, m.index, m.index + m[0].length]);
+  }
+  var pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+  var broken = () => {
+    var box = el.getBoundingClientRect().width - pad + 0.5;
+    return words.some(([n, a, b]) => {
+      var rg = document.createRange();
+      rg.setStart(n, a);
+      rg.setEnd(n, b);
+      var rs = rg.getClientRects();
+      return rs.length > 1 && rs[rs.length - 1].top > rs[0].top + 1 || rg.getBoundingClientRect().width > box;
+    });
+  };
+  var set = px => {
+    el.style.setProperty("font-size", px + "px", "important");
+    el.dataset.fitSet = String(px);
+  };
+  var size = cur;
+  if (size < base) {
+    size = base;
+    set(size);
+  }
+  var min = parseFloat(el.dataset.fitMin || "11");
+  if (broken()) {
+    el.style.overflowWrap = "normal";
+    while (broken() && size > min) {
+      size -= 1;
+      set(size);
+    }
+    if (broken()) el.style.overflowWrap = "anywhere";
+  }
+  el.dataset.fitKey = el.textContent + "|" + el.clientWidth + "|" + base;
+}
+function fitWordGroups(r) {
+  var groups = {};
+  for (var n of r.querySelectorAll("[data-fit-group]")) (groups[n.dataset.fitGroup] ||= []).push(n);
+  for (var g of Object.values(groups)) {
+    var size = Math.min(...g.map(n => parseFloat(getComputedStyle(n).fontSize)));
+    for (var _n of g) if (Math.abs(parseFloat(getComputedStyle(_n).fontSize) - size) > 0.1) {
+      _n.style.setProperty("font-size", size + "px", "important");
+      _n.dataset.fitSet = String(size);
+    }
+  }
+}
+if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationObserver !== "undefined") {
+  window._fitWordsInited = true;
+  var ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(entries => {
+    for (var {
+      target
+    } of entries) if (target.isConnected) fitWords(target);
+    fitWordGroups(document);
+  }) : null;
+  var fitIn = (node, all) => {
+    var list = node.matches && node.matches(_FIT_WORDS) ? [node] : [];
+    if (node.querySelectorAll) list.push(...node.querySelectorAll(_FIT_WORDS));
+    for (var n of list) {
+      if (all) n.dataset.fitKey = "";
+      fitWords(n);
+      ro && ro.observe(n);
+    }
+  };
+  var start = () => {
+    fitIn(document.body);
+    fitWordGroups(document);
+    new MutationObserver(records => {
+      var touched = new Set();
+      for (var r of records) {
+        for (var n of r.addedNodes) if (n.nodeType === 1) touched.add(n);
+        var host = r.target.nodeType === 1 ? r.target : r.target.parentElement;
+        var fit = host && host.closest && host.closest(_FIT_WORDS);
+        if (fit) touched.add(fit);
+      }
+      for (var _n2 of touched) if (_n2.isConnected) fitIn(_n2);
+      if (touched.size) fitWordGroups(document);
+    }).observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    });
+    try {
+      document.fonts && document.fonts.addEventListener("loadingdone", () => {
+        fitIn(document.body, true);
+        fitWordGroups(document);
+      });
+    } catch {}
+  };
+  if (document.body) start();else document.addEventListener("DOMContentLoaded", start);
+}
 function useAppearance() {
   var A = window.PlurskyAppearance;
   var [, force] = React.useReducer(x => x + 1, 0);
@@ -2791,6 +2897,7 @@ Object.assign(window, {
   AppearanceRow,
   fitNames,
   useFitNames,
+  fitWords,
   useOnlineStatus,
   StatusStrip,
   plurskyHaptic

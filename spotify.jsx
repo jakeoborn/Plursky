@@ -99,7 +99,7 @@ function SpotifyScreen({ state, setState }) {
   return (
     <Screen bg="var(--paper)">
       <div style={{ padding: "8px 20px" }}>
-        <TopBar title={<span>Music</span>} sub="SOUNDTRACK" tight />
+        <TopBar title="Music" sub="SOUNDTRACK" tight />
       </div>
 
       <ScrollBody data-duo-music style={{ padding: "10px 20px 94px" }}>
@@ -6874,7 +6874,7 @@ function MemoriesScreen({ state, setState }) {
       <ScrollBody ref={scrollRef} style={{ padding: "0 20px calc(94px + env(safe-area-inset-bottom, 0px))" }}>
         <div style={{ margin: "0 -20px" }}>
           <TopBar
-            title={<span>Memories</span>}
+            title="Memories"
             sub={`${confirmedCount} ${confirmedCount === 1 ? "MOMENT" : "MOMENTS"}`
               + (unconfirmedCount ? ` · ${unconfirmedCount} UNCONFIRMED` : "")
               + ` · ${FESTIVAL_CONFIG.shortName.toUpperCase()}`}
@@ -6900,13 +6900,16 @@ function MemoriesScreen({ state, setState }) {
         {pickerAvailable && totalCount > 0 && (
         <button onClick={handlePickClick}
           disabled={!!batch && batch.done < batch.total}
-          className="duo-card" style={{ display: "flex", alignItems: "center", gap: 12, width: "100%", minHeight: 64, marginTop: 12, padding: "10px 16px", border: "none", color: "var(--ink)", textAlign: "left", fontFamily: "inherit", cursor: "pointer" }}>
+          className="duo-card" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 12, width: "100%", minHeight: 64, marginTop: 12, padding: "10px 16px", border: "none", color: "var(--ink)", textAlign: "left", fontFamily: "inherit", cursor: "pointer" }}>
           <span aria-hidden="true" className="duo-well" style={{ width: 40, height: 40, flexShrink: 0, display: "grid", placeItems: "center", color: "var(--acc-ink)" }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16 l-5-5 L6 19"/></svg>
           </span>
-          <span style={{ flex: 1, minWidth: 0, overflowWrap: "anywhere" }}>
-            <span className="duo-headline" style={{ display: "block" }}>Import from camera roll</span>
-            <span className="duo-body-s duo-ink2" style={{ display: "block", fontWeight: 400 }}>Auto-tags by time and location</span>
+          {/* The text column keeps at least 150px: at large text "Pick"
+              wraps under it rather than squeezing it until the words break
+              ("Impor / t / came / ra"). The fit is the last resort. */}
+          <span style={{ flex: "1 1 150px", minWidth: 0 }}>
+            <span data-fit-words data-fit-min="13" className="duo-headline" style={{ display: "block" }}>Import from camera roll</span>
+            <span data-fit-words data-fit-min="11" className="duo-body-s duo-ink2" style={{ display: "block", fontWeight: 400 }}>Auto-tags by time and location</span>
           </span>
           <span className={batch && batch.done < batch.total ? "duo-data" : "duo-body-s"} style={{ color: "var(--acc-ink)", fontWeight: 650, fontSize: 15 }}>{batch && batch.done < batch.total ? `${batch.done}/${batch.total}` : "Pick"}</span>
         </button>
@@ -7583,7 +7586,7 @@ function MeScreen({ state, setState }) {
   return (
     <Screen bg="var(--paper)">
       <div style={{ padding: "8px 20px" }}>
-        <TopBar title={<span>Me</span>} sub={FESTIVAL_CONFIG.shortName.toUpperCase()} tight />
+        <TopBar title="Me" sub={FESTIVAL_CONFIG.shortName.toUpperCase()} tight />
       </div>
       <ScrollBody ref={useStaggerFade("me")} style={{ padding: "10px 20px 94px" }}>
         {/* ── 1. Identity: the board's header row. Avatar (photo or
@@ -10364,7 +10367,7 @@ function RecapScreen({ state, setState }) {
             fontSize: 22, color: "var(--ink)", lineHeight: 1, width: 44, height: 44,
             display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
           }}>←</button>
-          <TopBar title={<span>Recap</span>} sub={CFG.shortName?.toUpperCase()} tight />
+          <TopBar title="Recap" sub={CFG.shortName?.toUpperCase()} tight />
         </div>
         <ScrollBody style={{ padding: "10px 20px 94px" }}>
           <div style={{ padding: "40px 0 24px", textAlign: "center" }}>
@@ -10392,7 +10395,7 @@ function RecapScreen({ state, setState }) {
           fontSize: 22, color: "var(--ink)", lineHeight: 1, width: 44, height: 44,
           display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
         }}>←</button>
-        <TopBar title={<span>Recap</span>} sub={(CFG.shortName || "Festival").toUpperCase() + " · YOUR WEEKEND"} tight />
+        <TopBar title="Recap" sub={(CFG.shortName || "Festival").toUpperCase() + " · YOUR WEEKEND"} tight />
       </div>
       <ScrollBody style={{ padding: "14px 16px 94px" }}>
         {/* HERO ─ totals · share button bottom-right */}
