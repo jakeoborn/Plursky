@@ -272,6 +272,7 @@
     --glow:0 0 0 1px rgba(148,116,255,.55),0 0 32px rgba(148,116,255,.35);
     --beam:linear-gradient(90deg,rgba(148,116,255,0),#9474FF 30%,#F3F0FA);
     --chip-bg:rgba(7,6,11,.6);
+    --acc-wash:#1E1832; /* --acc-14 over --bg, solid: a block on your plan */
   }
   :root[data-mode="light"]{
     --s1:#FFFFFF;
@@ -281,6 +282,7 @@
     --glow:0 0 0 1.5px rgba(74,43,255,.7),0 14px 32px -14px rgba(74,43,255,.55);
     --beam:linear-gradient(90deg,rgba(74,43,255,0),#4A2BFF 30%,#4A2BFF);
     --chip-bg:rgba(255,255,255,.9);
+    --acc-wash:#E3DFF9; /* --acc-14 over --bg, solid */
   }
   @font-face{font-family:Michroma;font-style:normal;font-weight:400;font-display:swap;src:url(./fonts/michroma-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
   @font-face{font-family:Michroma;font-style:normal;font-weight:400;font-display:swap;src:url(./fonts/michroma-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
@@ -327,8 +329,43 @@
   .duo-btn.sec{background:transparent;border:1px solid var(--line-2);color:var(--ink)}
   .duo-link{background:none;border:0;padding:0 4px;min-height:44px;min-width:44px;font:650 14px/1.2 var(--f-ui);color:var(--acc-ink);cursor:pointer}
   .duo-press{background:none;border:0;padding:0;color:inherit;text-align:left;cursor:pointer;font:inherit;width:100%;display:block}
-  :where(.duo-btn,.duo-link,.duo-press):focus-visible{outline:2px solid var(--acc-ink);outline-offset:2px}
+  /* Chips (filters, view switches): selected = ink fill, the board's .chip.on.
+     A 34px pill inside a 44px target. */
+  .duo-chip{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0;border:0;background:none;cursor:pointer;color:var(--ink-2);flex:none}
+  .duo-chip>span{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:var(--rad-pill);border:1px solid var(--line-2);background:var(--chip-bg);font:500 13px/1 var(--f-ui);white-space:nowrap}
+  .duo-chip[aria-checked=true]>span,.duo-chip[aria-pressed=true]>span,.duo-chip[aria-selected=true]>span{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .duo-chip b{font:500 11px/1 var(--f-data)}
+  /* Day tabs: caps day + mono date, the selected one underlined in the accent. */
+  .duo-tab{position:relative;display:inline-flex;align-items:center;gap:5px;min-height:44px;padding:0;border:0;background:none;cursor:pointer;color:var(--ink-2);flex:none}
+  .duo-tab[aria-selected=true]{color:var(--ink)}
+  .duo-tab[aria-selected=true]::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:2px;border-radius:2px;background:var(--acc)}
+  /* The circled add: outline when not on your plan, filled accent + check when on it. */
+  .duo-add{width:44px;height:44px;flex:none;display:grid;place-items:center;border:0;background:none;padding:0;cursor:pointer;color:var(--ink-2)}
+  .duo-add>span{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px var(--line-2)}
+  .duo-add[aria-pressed=true]{color:var(--on-acc)}
+  .duo-add[aria-pressed=true]>span{background:var(--acc);box-shadow:0 6px 16px -8px var(--acc-55)}
+  /* A short code (festival brand, map source) in a hairline box. */
+  .duo-code{display:inline-block;font:400 11px/1 var(--f-display);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--line-2);border-radius:var(--rad-xs);padding:5px 6px 4px;white-space:nowrap}
+  .duo-input{width:100%;box-sizing:border-box;height:44px;border:0;border-radius:var(--rad-sm);background:var(--s2);box-shadow:var(--e1);color:var(--ink);font:400 16px/1.2 var(--f-ui);outline:none}
+  .duo-input::placeholder{color:var(--ink-3)}
+  .duo-input:focus-visible{box-shadow:0 0 0 2px var(--acc-ink)}
+  /* Segmented control (two or three options in a well). */
+  .duo-seg{display:flex;padding:3px;border-radius:var(--rad-pill);background:var(--s3)}
+  .duo-seg>button{flex:1;min-height:38px;border:0;border-radius:var(--rad-pill);background:none;color:var(--ink-2);font:600 14px/1 var(--f-ui);cursor:pointer}
+  .duo-seg>button[aria-pressed=true],.duo-seg>button[aria-checked=true]{background:var(--s1);color:var(--ink);box-shadow:0 0 0 1px var(--line-2),0 2px 6px -2px rgba(0,0,0,.25)}
+  :where(.duo-btn,.duo-link,.duo-press,.duo-chip,.duo-tab,.duo-add,.duo-seg>button):focus-visible{outline:2px solid var(--acc-ink);outline-offset:2px}
   @media (prefers-reduced-motion:reduce){.duo-live>i{animation:none}.duo-btn{transition:none}}
+  /* Lineup list rows: on your plan = a faint accent wash; playing now = the
+     lifted card. The wash and the lift never change the text colours. */
+  .duo-lrow{display:flex;align-items:center;gap:12px;min-height:58px;padding:7px 4px 7px 12px;margin:0 -12px;border-radius:var(--rad-sm)}
+  .duo-lrow.plan{background:var(--acc-08)}
+  .duo-lrow.live{background:var(--s2);box-shadow:var(--glow);--ring-bg:var(--s2)}
+  /* Grid block head (face + status). A class, not inline: fitGridBlocks
+     hides it with style.display and restores it by clearing that. */
+  .duo-gb-head{display:flex;align-items:center;justify-content:space-between;gap:4px;margin-bottom:3px;min-width:0}
+  /* Under 360pt the face gives its width back to the name: a name is never
+     truncated, and with the face a two-word name wrapped at 320. */
+  @media (max-width:360px){.duo-lrow>.duo-av,.duo-lrow>.duo-avp{display:none}.duo-lrow{gap:10px}}
   /* Today's scoreboard. Two columns (Now | Next) need ~160px each for a face
      and a whole word; under 360px they stack, each cell saying which it is,
      so a name wraps between words and never mid-word. The plan card's big
