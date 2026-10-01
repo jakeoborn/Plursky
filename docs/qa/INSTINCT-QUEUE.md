@@ -96,8 +96,8 @@ from `_DATA_SETS`. Ordered by start date; entries without one sort last.
 | Nocturnal Wonderland 2026 | `nocturnal-wonderland-2026` | Sep 19–20, 2026 | 86 | 86 | 0 | 5 | live |
 | CRSSD Fest Fall 2026 | `crssd-fall-2026` | Sep 26–27, 2026 | 53 | 53 | 0 | 3 | live |
 | Portola 2026 | `portola-2026` | Sep 26–27, 2026 | 64 | 64 | 0 | 5 | live |
-| Austin City Limits 2026 | `acl-2026` | Oct 2–4 & 9–11, 2026 | 137 | 137 | 0 | 7 | live |
-| III Points 2026 | `iii-points-2026` | Oct 16–17, 2026 | 215 | 0 | 215 | 0 | live |
+| Austin City Limits 2026 | `acl-2026` | Oct 2–4 & 9–11, 2026 | 136 | 136 | 0 | 7 | live |
+| III Points 2026 | `iii-points-2026` | Oct 16–17, 2026 | 229 | 0 | 229 | 0 | live |
 | Escape Halloween 2026 | `escape-halloween-2026` | Oct 30–31, 2026 | 103 | 0 | 103 | 5 | live |
 | Dreamstate SoCal 2026 | `dreamstate-socal-2026` | Nov 20–21, 2026 | 70 | 0 | 70 | 0 | live |
 | Decadence Colorado 2026 | `decadence-colorado-2026` | Dec 30–31, 2026 | 23 | 0 | 23 | 0 | live |

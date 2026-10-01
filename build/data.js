@@ -575,8 +575,8 @@ var FESTIVALS_REGISTRY = [{
   config: {
     id: "acl-2026",
     scheduleSource: {
-      url: "https://aclfestival.com/schedule",
-      observedAt: "2026-09-04",
+      url: "https://www.aclfestival.com/schedule",
+      observedAt: "2026-09-30",
       official: true
     },
     name: "Austin City Limits 2026",
@@ -1947,6 +1947,18 @@ var ACL_STAGES = [{
   vibeNote: "DJs, producers, electronic acts. Near west entrance.",
   peak: "14:00–21:00"
 }];
+var ACL_GRID_SOURCES_0930 = {
+  "W1": {
+    "1": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp",
+    "2": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp",
+    "3": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp"
+  },
+  "W2": {
+    "1": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp",
+    "2": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp",
+    "3": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp"
+  }
+};
 var _aclMk = (id, name, genre, stage, day, start, end, wk) => {
   var h = parseInt(start.split(':')[0]);
   var tier = h >= 19 ? 3 : h >= 16 ? 2 : 1;
@@ -1961,11 +1973,109 @@ var _aclMk = (id, name, genre, stage, day, start, end, wk) => {
     end,
     tier,
     weekend: wk || "both",
+    scheduleSources: (wk ? [wk] : ["W1", "W2"]).map(w => ({
+      url: ACL_GRID_SOURCES_0930[w][day],
+      observedAt: "2026-09-30",
+      edition: "2026",
+      weekend: w
+    })),
+    endSource: ["tmobile", "amex"].includes(stage) && parseInt(start) >= 20 ? "existing-22:00-closing-policy; grid-prints-start-only" : "printed-grid",
     img: `linear-gradient(135deg, ${ACL_STAGES.find(s => s.id === stage)?.color || "#e85d2e"}, #1a0a28)`,
     bio: `Playing ACL 2026.${wk ? ` Weekend ${wk} only.` : ""}`
   };
 };
-var ACL_ARTISTS = [_aclMk("af01", "Asleep At The Wheel", "—", "tmobile", 1, "13:00", "13:45", "W1"), _aclMk("af02", "Happy Landing", "—", "tmobile", 1, "13:00", "13:45", "W2"), _aclMk("af03", "New Constellations", "—", "tmobile", 1, "14:30", "15:15", "W1"), _aclMk("af04", "Bella Kay", "—", "tmobile", 1, "14:30", "15:15", "W2"), _aclMk("af05", "Jesse Welles", "—", "tmobile", 1, "16:15", "17:15"), _aclMk("af06", "Turnstile", "—", "tmobile", 1, "18:15", "19:15"), _aclMk("af07", "Skrillex", "Electronic", "tmobile", 1, "20:15", "22:00", "W1"), _aclMk("af08", "Kings of Leon", "Rock", "tmobile", 1, "20:15", "22:00", "W2"), _aclMk("af09", "Faouzia", "—", "miller", 1, "13:45", "14:30", "W1"), _aclMk("af10", "Radio Free Alice", "—", "miller", 1, "13:45", "14:30", "W2"), _aclMk("af11", "Paris Paloma", "—", "miller", 1, "15:15", "16:15", "W1"), _aclMk("af12", "Sienna Spiro", "—", "miller", 1, "15:30", "16:15", "W2"), _aclMk("af13", "Brandon Flowers", "—", "miller", 1, "17:15", "18:15", "W1"), _aclMk("af14", "Paris Paloma", "—", "miller", 1, "17:15", "18:15", "W2"), _aclMk("af15", "Leon Thomas", "—", "miller", 1, "19:15", "20:15"), _aclMk("af16", "Elle Coves", "—", "bmi", 1, "13:45", "14:30", "W1"), _aclMk("af17", "Leon Knight", "—", "bmi", 1, "13:45", "14:30", "W2"), _aclMk("af18", "Izzy Escobar", "—", "bmi", 1, "15:30", "16:15", "W1"), _aclMk("af19", "Girlfriend", "—", "bmi", 1, "15:30", "16:15", "W2"), _aclMk("af20", "Grocery Bag", "—", "bmi", 1, "17:15", "18:15", "W1"), _aclMk("af21", "Joe Jordan", "—", "bmi", 1, "17:15", "18:15", "W2"), _aclMk("af22", "Night Traveler", "—", "beatbox", 1, "14:00", "14:45", "W1"), _aclMk("af23", "S.G. Goodman", "—", "beatbox", 1, "14:00", "14:45", "W2"), _aclMk("af24", "Marlon Funaki", "—", "beatbox", 1, "15:30", "16:30", "W1"), _aclMk("af25", "World Famous Pets", "—", "beatbox", 1, "15:30", "16:30", "W2"), _aclMk("af26", "Rusowsky", "—", "beatbox", 1, "17:30", "18:30"), _aclMk("af27", "Molly Santana", "—", "beatbox", 1, "19:30", "20:30", "W1"), _aclMk("af28", "Live", "Rock", "beatbox", 1, "19:30", "20:30", "W2"), _aclMk("af29", "The 4411", "—", "titos", 1, "12:45", "13:30", "W1"), _aclMk("af30", "Almost Heaven", "—", "titos", 1, "12:45", "13:30", "W2"), _aclMk("af31", "Solomon Hicks", "—", "titos", 1, "14:00", "14:45", "W1"), _aclMk("af32", "Cassandra Coleman", "—", "titos", 1, "14:00", "14:45", "W2"), _aclMk("af33", "Bo Staloch", "—", "titos", 1, "15:15", "16:00"), _aclMk("af34", "Rebecca Black", "—", "titos", 1, "16:30", "17:30", "W1"), _aclMk("af35", "Natasha Bedingfield", "—", "titos", 1, "16:30", "17:30", "W2"), _aclMk("af36", "Steve Aoki", "Electronic", "titos", 1, "18:30", "19:30"), _aclMk("af37", "Silent Disco", "—", "titos", 1, "20:00", "22:00"), _aclMk("af38", "Elijah Delgado", "—", "snapchat", 1, "14:00", "14:45", "W1"), _aclMk("af39", "Dallas Wax", "—", "snapchat", 1, "14:00", "14:45", "W2"), _aclMk("af40", "LP", "—", "snapchat", 1, "15:30", "16:30"), _aclMk("af41", "BUNT.", "Electronic", "snapchat", 1, "17:30", "18:30"), _aclMk("af42", "The Chainsmokers", "Electronic", "snapchat", 1, "19:30", "20:30"), _aclMk("af43", "Hunx And His Punx", "—", "amex", 1, "13:15", "14:00", "W1"), _aclMk("af44", "Brigitte Calls Me Baby", "—", "amex", 1, "13:15", "14:00", "W2"), _aclMk("af45", "CMAT", "—", "amex", 1, "14:45", "15:30", "W1"), _aclMk("af46", "Faouzia", "—", "amex", 1, "14:45", "15:30", "W2"), _aclMk("af47", "Amyl And The Sniffers", "—", "amex", 1, "16:30", "17:30"), _aclMk("af48", "Labrinth", "—", "amex", 1, "18:30", "19:30"), _aclMk("af49", "Charli XCX", "Pop", "amex", 1, "20:40", "22:00"), _aclMk("as01", "Night Tapes", "—", "tmobile", 2, "13:00", "13:45"), _aclMk("as02", "Balu Brigada", "—", "tmobile", 2, "14:30", "15:15"), _aclMk("as03", "Suki Waterhouse", "—", "tmobile", 2, "16:15", "17:15"), _aclMk("as04", "Bleachers", "—", "tmobile", 2, "18:15", "19:15"), _aclMk("as05", "Lorde", "Pop", "tmobile", 2, "20:15", "22:00"), _aclMk("as06", "Temper City", "—", "miller", 2, "13:45", "14:30"), _aclMk("as07", "Arcy Drive", "—", "miller", 2, "15:15", "16:15", "W1"), _aclMk("as08", "Laszewo", "—", "miller", 2, "15:15", "16:15", "W2"), _aclMk("as09", "Snow Strippers", "Electronic", "miller", 2, "17:15", "18:15"), _aclMk("as10", "Levity", "Electronic", "miller", 2, "19:15", "20:15"), _aclMk("as11", "Fightmaster", "—", "bmi", 2, "12:45", "13:15", "W1"), _aclMk("as12", "Macy Todd", "—", "bmi", 2, "12:45", "13:15", "W2"), _aclMk("as13", "Emma Ogier", "—", "bmi", 2, "13:45", "14:30", "W1"), _aclMk("as14", "Damaris Bojor", "—", "bmi", 2, "13:45", "14:30", "W2"), _aclMk("as15", "Coleman Jennings", "—", "bmi", 2, "15:30", "16:15", "W1"), _aclMk("as16", "Common People", "—", "bmi", 2, "15:30", "16:15", "W2"), _aclMk("as17", "Fai Laci", "—", "bmi", 2, "17:15", "18:15", "W1"), _aclMk("as18", "Chloe Qisha", "—", "bmi", 2, "17:15", "18:15", "W2"), _aclMk("as19", "Cure For Paranoia", "—", "beatbox", 2, "14:00", "14:45", "W1"), _aclMk("as20", "LLUVII", "—", "beatbox", 2, "14:00", "14:45", "W2"), _aclMk("as21", "Ryan Beatty", "—", "beatbox", 2, "15:30", "16:30", "W1"), _aclMk("as22", "Arcy Drive", "—", "beatbox", 2, "15:30", "16:30", "W2"), _aclMk("as23", "Palace", "—", "beatbox", 2, "17:30", "18:30", "W1"), _aclMk("as24", "Ryan Beatty", "—", "beatbox", 2, "17:30", "18:30", "W2"), _aclMk("as25", "Fakemink", "—", "beatbox", 2, "19:30", "20:30"), _aclMk("as26", "Left Lucid", "—", "titos", 2, "12:45", "13:30", "W1"), _aclMk("as27", "Montclair", "—", "titos", 2, "12:45", "13:30", "W2"), _aclMk("as28", "DJ Cassandra", "—", "titos", 2, "14:00", "14:45", "W1"), _aclMk("as29", "Nat Myers", "—", "titos", 2, "14:00", "14:45", "W2"), _aclMk("as30", "Don West", "—", "titos", 2, "15:15", "16:00"), _aclMk("as31", "Rodrigo Y Gabriela", "—", "titos", 2, "16:30", "17:30"), _aclMk("as32", "Yousuke Yukimatsu", "Electronic", "titos", 2, "18:30", "19:30"), _aclMk("as33", "Silent Disco", "—", "titos", 2, "20:00", "22:00"), _aclMk("as34", "Rochelle Jordan", "—", "snapchat", 2, "14:00", "14:45", "W1"), _aclMk("as35", "Gabriel Jacoby", "—", "snapchat", 2, "14:00", "14:45", "W2"), _aclMk("as36", "Skye Newman", "—", "snapchat", 2, "15:30", "16:30"), _aclMk("as37", "It's Murph", "Electronic", "snapchat", 2, "17:30", "18:30"), _aclMk("as38", "Lykke Li", "—", "snapchat", 2, "19:30", "20:30"), _aclMk("as39", "Annie DiRusso", "—", "amex", 2, "13:15", "14:00"), _aclMk("as40", "Finn Wolfhard", "—", "amex", 2, "14:45", "15:30"), _aclMk("as41", "Young Miko", "—", "amex", 2, "16:30", "17:30"), _aclMk("as42", "Lola Young", "—", "amex", 2, "18:30", "19:30"), _aclMk("as43", "Rüfüs Du Sol", "Electronic", "amex", 2, "20:30", "22:00"), _aclMk("au01", "Solya", "—", "tmobile", 3, "13:15", "14:00", "W1"), _aclMk("au02", "Thomas Day", "—", "tmobile", 3, "13:15", "14:00", "W2"), _aclMk("au03", "Stella Lefty", "—", "tmobile", 3, "14:45", "15:30", "W1"), _aclMk("au04", "Charlotte Lawrence", "—", "tmobile", 3, "14:45", "15:30", "W2"), _aclMk("au05", "Audrey Hobert", "—", "tmobile", 3, "16:30", "17:30"), _aclMk("au06", "Geese", "—", "tmobile", 3, "18:30", "19:30"), _aclMk("au07", "The xx", "—", "tmobile", 3, "20:30", "22:00"), _aclMk("au08", "Jess Williamson", "—", "miller", 3, "14:00", "14:45", "W1"), _aclMk("au09", "Joshua Jensen", "—", "miller", 3, "14:00", "14:45", "W2"), _aclMk("au10", "Claire Rosinkranz", "—", "miller", 3, "15:30", "16:30"), _aclMk("au11", "Saint Motel", "—", "miller", 3, "17:30", "18:30"), _aclMk("au12", "Parcels", "—", "miller", 3, "19:30", "20:30"), _aclMk("au13", "Rubio", "—", "bmi", 3, "12:45", "13:15", "W1"), _aclMk("au14", "Marzz", "—", "bmi", 3, "12:45", "13:15", "W2"), _aclMk("au15", "Aaron Rowe", "—", "bmi", 3, "14:00", "14:45", "W1"), _aclMk("au16", "Chelsea Jordan", "—", "bmi", 3, "14:00", "14:45", "W2"), _aclMk("au17", "Fancy Hagood", "—", "bmi", 3, "15:30", "16:15", "W1"), _aclMk("au18", "Vwillz", "—", "bmi", 3, "15:30", "16:15", "W2"), _aclMk("au19", "Lauren Sanderson", "—", "bmi", 3, "17:30", "18:30", "W1"), _aclMk("au20", "Sasha Keable", "—", "bmi", 3, "18:00", "18:30", "W2"), _aclMk("au21", "Britton", "—", "beatbox", 3, "14:00", "14:45", "W1"), _aclMk("au22", "Kevin Atwater", "—", "beatbox", 3, "14:00", "14:45", "W2"), _aclMk("au23", "Underscores", "—", "beatbox", 3, "15:30", "16:30", "W1"), _aclMk("au24", "Bad Nerves", "—", "beatbox", 3, "15:30", "16:30", "W2"), _aclMk("au25", "Noga Erez", "—", "beatbox", 3, "17:30", "18:30"), _aclMk("au26", "Blood Orange", "—", "beatbox", 3, "19:30", "20:30"), _aclMk("au27", "The Moriah Sisters", "—", "titos", 3, "12:45", "13:30", "W1"), _aclMk("au28", "Huston-Tillotson University Jazz Collective", "—", "titos", 3, "12:45", "13:30", "W2"), _aclMk("au29", "Paloma Morphy", "—", "titos", 3, "14:00", "14:45"), _aclMk("au30", "Calder Allen", "—", "titos", 3, "15:15", "16:00"), _aclMk("au31", "Rio Kosta", "—", "titos", 3, "16:30", "17:30"), _aclMk("au32", "Fcukers", "—", "titos", 3, "18:30", "19:30"), _aclMk("au33", "Silent Disco", "—", "titos", 3, "20:00", "22:00"), _aclMk("au34", "Sunday (1994)", "—", "snapchat", 3, "14:00", "14:45"), _aclMk("au35", "Grace Ives", "—", "snapchat", 3, "15:30", "16:30", "W2"), _aclMk("au36", "Cannons", "—", "snapchat", 3, "17:30", "18:30", "W1"), _aclMk("au37", "Houndmouth", "—", "snapchat", 3, "17:30", "18:30", "W2"), _aclMk("au38", "The War On Drugs", "—", "snapchat", 3, "19:30", "20:30"), _aclMk("au39", "Villanelle", "—", "amex", 3, "13:15", "14:00", "W1"), _aclMk("au40", "Rum Jungle", "—", "amex", 3, "13:15", "14:00", "W2"), _aclMk("au41", "Dexter And The Moonrocks", "—", "amex", 3, "14:45", "15:30", "W1"), _aclMk("au42", "Ethan Regan", "—", "amex", 3, "14:45", "15:30", "W2"), _aclMk("au43", "Max McNown", "—", "amex", 3, "16:30", "17:30"), _aclMk("au44", "Sofi Tukker", "Electronic", "amex", 3, "18:30", "19:30"), _aclMk("au45", "Twenty One Pilots", "—", "amex", 3, "20:30", "22:00")];
+var ACL_ARTISTS = [_aclMk("af01", "Asleep At The Wheel", "—", "tmobile", 1, "13:00", "13:45", "W1"), _aclMk("af02", "Happy Landing", "—", "tmobile", 1, "13:00", "13:45", "W2"), _aclMk("af03", "New Constellations", "—", "tmobile", 1, "14:30", "15:15", "W1"), _aclMk("af04", "Bella Kay", "—", "tmobile", 1, "14:30", "15:15", "W2"), _aclMk("af05", "Jesse Welles", "—", "tmobile", 1, "16:15", "17:15"), _aclMk("af06", "Turnstile", "—", "tmobile", 1, "18:15", "19:15"), _aclMk("af07", "Skrillex", "Electronic", "tmobile", 1, "20:15", "22:00", "W1"), _aclMk("af08", "Kings of Leon", "Rock", "tmobile", 1, "20:15", "22:00", "W2"), _aclMk("af09", "Faouzia", "—", "miller", 1, "13:45", "14:30", "W1"), _aclMk("af10", "Radio Free Alice", "—", "miller", 1, "13:45", "14:30", "W2"), _aclMk("af11", "Paris Paloma", "—", "miller", 1, "15:15", "16:15", "W1"), _aclMk("af12", "Sienna Spiro", "—", "miller", 1, "15:30", "16:15", "W2"), _aclMk("af13", "Brandon Flowers", "—", "miller", 1, "17:15", "18:15", "W1"), _aclMk("af14", "Paris Paloma", "—", "miller", 1, "17:15", "18:15", "W2"), _aclMk("af15", "Leon Thomas", "—", "miller", 1, "19:15", "20:15"), _aclMk("af16", "Elle Coves", "—", "bmi", 1, "13:45", "14:30", "W1"), _aclMk("af17", "Leon Knight", "—", "bmi", 1, "13:45", "14:30", "W2"), _aclMk("af18", "Izzy Escobar", "—", "bmi", 1, "15:30", "16:15", "W1"), _aclMk("af19", "Girlfriend", "—", "bmi", 1, "15:30", "16:15", "W2"), _aclMk("af20", "Grocery Bag", "—", "bmi", 1, "17:15", "18:15", "W1"), _aclMk("af21", "Joe Jordan", "—", "bmi", 1, "17:15", "18:15", "W2"), _aclMk("af22", "Night Traveler", "—", "beatbox", 1, "14:00", "14:45", "W1"), _aclMk("af23", "S.G. Goodman", "—", "beatbox", 1, "14:00", "14:45", "W2"), _aclMk("af24", "Marlon Funaki", "—", "beatbox", 1, "15:30", "16:30", "W1"), _aclMk("af25", "World Famous Pets", "—", "beatbox", 1, "15:30", "16:30", "W2"), _aclMk("af26", "Rusowsky", "—", "beatbox", 1, "17:30", "18:30"), _aclMk("af27", "Molly Santana", "—", "beatbox", 1, "19:30", "20:30", "W1"), _aclMk("af28", "Live", "Rock", "beatbox", 1, "19:30", "20:30", "W2"), _aclMk("af29", "The 4411", "—", "titos", 1, "12:45", "13:30", "W1"), _aclMk("af30", "Almost Heaven", "—", "titos", 1, "12:45", "13:30", "W2"), _aclMk("af31", "Solomon Hicks", "—", "titos", 1, "14:00", "14:45", "W1"), _aclMk("af32", "Cassandra Coleman", "—", "titos", 1, "14:00", "14:45", "W2"), _aclMk("af33", "Bo Staloch", "—", "titos", 1, "15:15", "16:00"), _aclMk("af34", "Rebecca Black", "—", "titos", 1, "16:30", "17:30", "W1"), _aclMk("af35", "Natasha Bedingfield", "—", "titos", 1, "16:30", "17:30", "W2"), _aclMk("af36", "Steve Aoki", "Electronic", "titos", 1, "18:30", "19:30"), _aclMk("af37", "Silent Disco", "—", "titos", 1, "20:00", "22:00"), _aclMk("af38", "Elijah Delgado", "—", "snapchat", 1, "14:00", "14:45", "W1"), _aclMk("af39", "Dallas Wax", "—", "snapchat", 1, "14:00", "14:45", "W2"), _aclMk("af40", "LP", "—", "snapchat", 1, "15:30", "16:30"), _aclMk("af41", "BUNT.", "Electronic", "snapchat", 1, "17:30", "18:30"), _aclMk("af42", "The Chainsmokers", "Electronic", "snapchat", 1, "19:30", "20:30"), _aclMk("af43", "Hunx And His Punx", "—", "amex", 1, "13:15", "14:00", "W1"), _aclMk("af44", "Brigitte Calls Me Baby", "—", "amex", 1, "13:15", "14:00", "W2"), _aclMk("af45", "CMAT", "—", "amex", 1, "14:45", "15:30", "W1"), _aclMk("af46", "Faouzia", "—", "amex", 1, "14:45", "15:30", "W2"), _aclMk("af47", "Amyl And The Sniffers", "—", "amex", 1, "16:30", "17:30"), _aclMk("af48", "Labrinth", "—", "amex", 1, "18:30", "19:30"), _aclMk("af49", "Charli XCX", "Pop", "amex", 1, "20:35", "22:00"), _aclMk("as01", "Night Tapes", "—", "tmobile", 2, "13:00", "13:45"), _aclMk("as02", "Balu Brigada", "—", "tmobile", 2, "14:30", "15:15"), _aclMk("as03", "Suki Waterhouse", "—", "tmobile", 2, "16:15", "17:15"), _aclMk("as04", "Bleachers", "—", "tmobile", 2, "18:15", "19:15"), _aclMk("as05", "Lorde", "Pop", "tmobile", 2, "20:15", "22:00"), _aclMk("as06", "Temper City", "—", "miller", 2, "13:45", "14:30"), _aclMk("as07", "Arcy Drive", "—", "miller", 2, "15:15", "16:15", "W1"), _aclMk("as08", "Laszewo", "—", "miller", 2, "15:15", "16:15", "W2"), _aclMk("as09", "Snow Strippers", "Electronic", "beatbox", 2, "19:30", "20:10"), _aclMk("as10", "Levity", "Electronic", "miller", 2, "19:15", "20:15"), _aclMk("as11", "Fightmaster", "—", "bmi", 2, "12:45", "13:15", "W1"), _aclMk("as12", "Macy Todd", "—", "bmi", 2, "12:45", "13:15", "W2"), _aclMk("as13", "Emma Ogier", "—", "bmi", 2, "13:45", "14:30", "W1"), _aclMk("as14", "Damaris Bojor", "—", "bmi", 2, "13:45", "14:30", "W2"), _aclMk("as15", "Coleman Jennings", "—", "bmi", 2, "15:30", "16:15", "W1"), _aclMk("as16", "Common People", "—", "bmi", 2, "15:30", "16:15", "W2"), _aclMk("as17", "Fai Laci", "—", "bmi", 2, "17:15", "18:15", "W1"), _aclMk("as18", "Chloe Qisha", "—", "bmi", 2, "17:15", "18:15", "W2"), _aclMk("as19", "Cure For Paranoia", "—", "beatbox", 2, "15:00", "16:15", "W1"), _aclMk("as20", "LLUVII", "—", "beatbox", 2, "15:30", "16:15", "W2"), _aclMk("as21", "Ryan Beatty", "—", "beatbox", 2, "17:30", "18:30", "W1"), _aclMk("as22", "Arcy Drive", "—", "miller", 2, "17:15", "18:15", "W2"), _aclMk("as23", "Palace", "—", "miller", 2, "17:15", "18:15", "W1"), _aclMk("as24", "Ryan Beatty", "—", "beatbox", 2, "17:30", "18:30", "W2"), _aclMk("as26", "Left Lucid", "—", "titos", 2, "12:45", "13:30", "W1"), _aclMk("as27", "Montclair", "—", "titos", 2, "12:45", "13:30", "W2"), _aclMk("as28", "DJ Cassandra", "—", "titos", 2, "14:00", "14:45"), _aclMk("as30", "Don West", "—", "titos", 2, "15:15", "16:00"), _aclMk("as31", "Rodrigo Y Gabriela", "—", "titos", 2, "16:30", "17:30"), _aclMk("as32", "Yousuke Yukimatsu", "Electronic", "titos", 2, "18:30", "19:30"), _aclMk("as33", "Silent Disco", "—", "titos", 2, "20:00", "22:00"), _aclMk("as34", "Rochelle Jordan", "—", "snapchat", 2, "14:00", "14:45", "W1"), _aclMk("as35", "Gabriel Jacoby", "—", "snapchat", 2, "14:00", "14:45", "W2"), _aclMk("as36", "Skye Newman", "—", "snapchat", 2, "15:30", "16:30"), _aclMk("as37", "It's Murph", "Electronic", "snapchat", 2, "17:30", "18:30"), _aclMk("as38", "Lykke Li", "—", "snapchat", 2, "19:30", "20:30"), _aclMk("as39", "Annie DiRusso", "—", "amex", 2, "13:15", "14:00"), _aclMk("as40", "Finn Wolfhard", "—", "amex", 2, "14:45", "15:30"), _aclMk("as41", "Young Miko", "—", "amex", 2, "16:30", "17:30"), _aclMk("as42", "Lola Young", "—", "amex", 2, "18:30", "19:30"), _aclMk("as43", "Rüfüs Du Sol", "Electronic", "amex", 2, "20:30", "22:00"), _aclMk("au01", "Solya", "—", "tmobile", 3, "13:15", "14:00", "W1"), _aclMk("au02", "Thomas Day", "—", "tmobile", 3, "13:15", "14:00", "W2"), _aclMk("au03", "Stella Lefty", "—", "tmobile", 3, "14:45", "15:30", "W1"), _aclMk("au04", "Charlotte Lawrence", "—", "tmobile", 3, "14:45", "15:30", "W2"), _aclMk("au05", "Audrey Hobert", "—", "tmobile", 3, "16:30", "17:20"), _aclMk("au06", "Geese", "—", "tmobile", 3, "18:20", "19:20"), _aclMk("au07", "The xx", "—", "tmobile", 3, "20:35", "22:00"), _aclMk("au08", "Jess Williamson", "—", "miller", 3, "14:00", "14:45", "W1"), _aclMk("au09", "Joshua Jensen", "—", "miller", 3, "14:00", "14:45", "W2"), _aclMk("au10", "Claire Rosinkranz", "—", "miller", 3, "15:30", "16:30"), _aclMk("au11", "Saint Motel", "—", "miller", 3, "17:20", "18:20"), _aclMk("au12", "Parcels", "—", "miller", 3, "19:20", "20:35"), _aclMk("au-vinny-w1", "Vinny", "—", "bmi", 3, "12:45", "13:15", "W1"), _aclMk("au14", "Marzz", "—", "bmi", 3, "12:45", "13:15", "W2"), _aclMk("au15", "Aaron Rowe", "—", "bmi", 3, "14:00", "14:45", "W1"), _aclMk("au16", "Chelsea Jordan", "—", "bmi", 3, "14:15", "14:45", "W2"), _aclMk("au17", "Fancy Hagood", "—", "bmi", 3, "15:30", "16:15", "W1"), _aclMk("au18", "Vwillz", "—", "bmi", 3, "15:30", "16:15", "W2"), _aclMk("au19", "Lauren Sanderson", "—", "bmi", 3, "17:30", "18:30", "W1"), _aclMk("au-jason-scott-w2", "Jason Scott & The High Heat", "—", "bmi", 3, "18:00", "18:30", "W2"), _aclMk("au21", "Britton", "—", "snapchat", 3, "15:30", "16:30", "W1"), _aclMk("au-flight-by-nothing-w1", "Flight By Nothing", "—", "beatbox", 3, "14:00", "14:45", "W1"), _aclMk("au22", "Kevin Atwater", "—", "beatbox", 3, "14:00", "14:45", "W2"), _aclMk("au23", "Underscores", "—", "beatbox", 3, "15:30", "16:30", "W1"), _aclMk("au24", "Bad Nerves", "—", "beatbox", 3, "15:30", "16:30", "W2"), _aclMk("au25", "Noga Erez", "—", "beatbox", 3, "17:30", "18:30"), _aclMk("au26", "Blood Orange", "—", "beatbox", 3, "19:30", "20:30"), _aclMk("au27", "The Moriah Sisters", "—", "titos", 3, "12:45", "13:30", "W1"), _aclMk("au28", "Huston-Tillotson University Jazz Collective", "—", "titos", 3, "12:45", "13:30", "W2"), _aclMk("au-girlsweetvoiced", "girlsweetvoiced", "—", "titos", 3, "14:00", "14:45"), _aclMk("au30", "Calder Allen", "—", "titos", 3, "15:15", "16:00"), _aclMk("au31", "Rio Kosta", "—", "titos", 3, "16:30", "17:30"), _aclMk("au32", "Fcukers", "—", "titos", 3, "18:30", "19:30"), _aclMk("au33", "Silent Disco", "—", "titos", 3, "20:00", "22:00"), _aclMk("au34", "Sunday (1994)", "—", "snapchat", 3, "14:00", "14:45"), _aclMk("au35", "Grace Ives", "—", "snapchat", 3, "15:30", "16:30", "W2"), _aclMk("au36", "Cannons", "—", "snapchat", 3, "17:30", "18:30", "W1"), _aclMk("au37", "Houndmouth", "—", "snapchat", 3, "17:30", "18:30", "W2"), _aclMk("au38", "The War On Drugs", "—", "snapchat", 3, "19:30", "20:30"), _aclMk("au39", "Villanelle", "—", "amex", 3, "13:15", "14:00", "W1"), _aclMk("au40", "Rum Jungle", "—", "amex", 3, "13:15", "14:00", "W2"), _aclMk("au41", "Dexter And The Moonrocks", "—", "amex", 3, "14:45", "15:30", "W1"), _aclMk("au42", "Ethan Regan", "—", "amex", 3, "14:45", "15:30", "W2"), _aclMk("au43", "Max McNown", "—", "amex", 3, "16:30", "17:30"), _aclMk("au44", "Sofi Tukker", "Electronic", "amex", 3, "18:30", "19:30"), _aclMk("au45", "Twenty One Pilots", "—", "amex", 3, "20:30", "22:00")];
+var ACL_REMOVED_FROM_LINEUP = [{
+  "id": "as25",
+  "name": "Fakemink",
+  "lastSeen": "2026-09-04",
+  "removedFrom": {
+    "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp",
+    "observedAt": "2026-09-30"
+  },
+  "previousSlot": {
+    "id": "as25",
+    "name": "Fakemink",
+    "genre": "—",
+    "stage": "beatbox",
+    "day": "2",
+    "start": "19:30",
+    "end": "20:30",
+    "weekend": null
+  }
+}, {
+  "id": "as29",
+  "name": "Nat Myers",
+  "lastSeen": "2026-09-04",
+  "removedFrom": {
+    "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp",
+    "observedAt": "2026-09-30"
+  },
+  "previousSlot": {
+    "id": "as29",
+    "name": "Nat Myers",
+    "genre": "—",
+    "stage": "titos",
+    "day": "2",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": "W2"
+  }
+}, {
+  "id": "au13",
+  "name": "Rubio",
+  "lastSeen": "2026-09-04",
+  "removedFrom": {
+    "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp",
+    "observedAt": "2026-09-30"
+  },
+  "previousSlot": {
+    "id": "au13",
+    "name": "Rubio",
+    "genre": "—",
+    "stage": "bmi",
+    "day": "3",
+    "start": "12:45",
+    "end": "13:15",
+    "weekend": "W1"
+  }
+}, {
+  "id": "au20",
+  "name": "Sasha Keable",
+  "lastSeen": "2026-09-04",
+  "removedFrom": {
+    "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp",
+    "observedAt": "2026-09-30"
+  },
+  "previousSlot": {
+    "id": "au20",
+    "name": "Sasha Keable",
+    "genre": "—",
+    "stage": "bmi",
+    "day": "3",
+    "start": "18:00",
+    "end": "18:30",
+    "weekend": "W2"
+  }
+}, {
+  "id": "au29",
+  "name": "Paloma Morphy",
+  "lastSeen": "2026-09-04",
+  "removedFrom": {
+    "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp",
+    "observedAt": "2026-09-30"
+  },
+  "previousSlot": {
+    "id": "au29",
+    "name": "Paloma Morphy",
+    "genre": "—",
+    "stage": "titos",
+    "day": "3",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": null
+  }
+}];
 var ACL_AMENITIES = [{
   id: "aa3",
   type: "food",
@@ -2618,6 +2728,7 @@ var _DATA_SETS = {
     stages: ACL_STAGES,
     artists: ACL_ARTISTS,
     amenities: ACL_AMENITIES,
+    removedFromLineup: ACL_REMOVED_FROM_LINEUP,
     config: _regConfig("acl-2026")
   },
   "lost-lands-2026": {

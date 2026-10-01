@@ -753,8 +753,8 @@ const FESTIVALS_REGISTRY = [
     config: {
       id:        "acl-2026",
       // The ACL_ARTISTS header: official posters on aclfestival.com/schedule,
-      // transcribed Sep 3–4 2026.
-      scheduleSource: { url: "https://aclfestival.com/schedule", observedAt: "2026-09-04", official: true },
+      // refreshed September 30 2026.
+      scheduleSource: { url: "https://www.aclfestival.com/schedule", observedAt: "2026-09-30", official: true },
       name:      "Austin City Limits 2026",
       shortName: "ACL 2026",
       brand:     "ACL",
@@ -835,7 +835,9 @@ const FESTIVALS_REGISTRY = [
         // or projected off it. It also must not inherit Lady Bird's old
         // coords. A guessed anchor mis-tags photos silently.
         //
-        // `ladybird` / `bonus`: not stages in the 2026 app at all. They showed
+        // `ladybird` / `bonus`: not stages in the current app model. Bonus
+        // Tracks now has September 30 programming in its separate readiness
+        // collection, without a surveyed GPS anchor. They showed
         // up as anchor targets in the 2026-09-06 desk survey, and `ladybird`
         // is where that survey's "independent 34 m cross-check" lived — a real
         // measurement against a stage this lineup does not have, so it cannot
@@ -2333,17 +2335,31 @@ const ACL_STAGES = [
   { id: "beatbox", name: "BEATBOX",           short: "BBX",  color: "#1e40af", x: 27.8, y: 72.9, size: 0.75,desc: "South-west · electronic stage",  vibe: "Bass Haven",        vibeNote: "DJs, producers, electronic acts. Near west entrance.",          peak: "14:00–21:00" },
 ];
 
+const ACL_GRID_SOURCES_0930 = {
+  "W1": {
+    "1": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp",
+    "2": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp",
+    "3": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp"
+  },
+  "W2": {
+    "1": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp",
+    "2": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp",
+    "3": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp"
+  }
+};
 const _aclMk = (id, name, genre, stage, day, start, end, wk) => {
   const h = parseInt(start.split(':')[0]);
   const tier = h >= 19 ? 3 : h >= 16 ? 2 : 1;
   return { id, name, genre, country: "—", stage, day, start, end, tier, weekend: wk || "both",
+    scheduleSources: (wk ? [wk] : ["W1", "W2"]).map(w => ({ url: ACL_GRID_SOURCES_0930[w][day], observedAt: "2026-09-30", edition: "2026", weekend: w })),
+    endSource: (["tmobile", "amex"].includes(stage) && parseInt(start) >= 20) ? "existing-22:00-closing-policy; grid-prints-start-only" : "printed-grid",
     img: `linear-gradient(135deg, ${ACL_STAGES.find(s=>s.id===stage)?.color || "#e85d2e"}, #1a0a28)`,
     bio: `Playing ACL 2026.${wk ? ` Weekend ${wk} only.` : ""}` };
 };
 
 // ── ACL 2026 lineup — OFFICIAL per-day schedule grid ────────────────
 // Transcribed from the official posters on aclfestival.com/schedule
-// (CDN assets ACL26-Schedule-Wk1/Wk2-...-20260826-Draft3), Sep 3-4 2026;
+// (CDN assets ACL26-Schedule-Wk1/Wk2-...-9.30), September 30 2026;
 // corroborated by CultureMap (Aug 17) and TEENS Media (Aug 18). This
 // REPLACES the previous 2025-estimated grid.
 //
@@ -2356,12 +2372,12 @@ const _aclMk = (id, name, genre, stage, day, start, end, wk) => {
 //  · "Silent Disco" (Tito's, 20:00-22:00 nightly) is a real poster slot.
 //  · Kiddie Limits / side-stage strip excluded — not in the app stage model.
 //
-// 137 entries across 7 programmed stages — which is now every stage the app
-// defines for ACL. Lady Bird and Bonus Tracks carry ZERO 2026 programming, so
-// their defs were dropped in v254 rather than ship two filter chips that
-// select nothing. On the official 2026 patron map, Bonus Tracks is still a
-// labelled structure, and Lady Bird appears only as an entrance and a box
-// office, not a stage. See the gpsAnchors note above before restoring either.
+// 136 music entries across 7 programmed stages — which is now every stage the app
+// defines for ACL music. The official September 30 grids now publish Bonus
+// Tracks programming, recorded separately in data/programming/acl-2026.json
+// (20 events, including three unnamed placeholders). That collection is data
+// readiness only: no app consumer, stage coordinates or GPS anchor is added.
+// Lady Bird remains an entrance/box office, not a programmed stage.
 const ACL_ARTISTS = [
   // ── FRIDAY (day 1) ──
   // T-Mobile
@@ -2419,7 +2435,7 @@ const ACL_ARTISTS = [
   _aclMk("af46","Faouzia","—","amex",1,"14:45","15:30","W2"),
   _aclMk("af47","Amyl And The Sniffers","—","amex",1,"16:30","17:30"),
   _aclMk("af48","Labrinth","—","amex",1,"18:30","19:30"),
-  _aclMk("af49","Charli XCX","Pop","amex",1,"20:40","22:00"),
+  _aclMk("af49","Charli XCX","Pop","amex",1,"20:35","22:00"),
   // ── SATURDAY (day 2) ──
   // T-Mobile
   _aclMk("as01","Night Tapes","—","tmobile",2,"13:00","13:45"),
@@ -2431,7 +2447,7 @@ const ACL_ARTISTS = [
   _aclMk("as06","Temper City","—","miller",2,"13:45","14:30"),
   _aclMk("as07","Arcy Drive","—","miller",2,"15:15","16:15","W1"),
   _aclMk("as08","Laszewo","—","miller",2,"15:15","16:15","W2"),
-  _aclMk("as09","Snow Strippers","Electronic","miller",2,"17:15","18:15"),
+  _aclMk("as09","Snow Strippers","Electronic","beatbox",2,"19:30","20:10"),
   _aclMk("as10","Levity","Electronic","miller",2,"19:15","20:15"),
   // BMI
   _aclMk("as11","Fightmaster","—","bmi",2,"12:45","13:15","W1"),
@@ -2443,18 +2459,16 @@ const ACL_ARTISTS = [
   _aclMk("as17","Fai Laci","—","bmi",2,"17:15","18:15","W1"),
   _aclMk("as18","Chloe Qisha","—","bmi",2,"17:15","18:15","W2"),
   // Beatbox
-  _aclMk("as19","Cure For Paranoia","—","beatbox",2,"14:00","14:45","W1"),
-  _aclMk("as20","LLUVII","—","beatbox",2,"14:00","14:45","W2"),
-  _aclMk("as21","Ryan Beatty","—","beatbox",2,"15:30","16:30","W1"),
-  _aclMk("as22","Arcy Drive","—","beatbox",2,"15:30","16:30","W2"),
-  _aclMk("as23","Palace","—","beatbox",2,"17:30","18:30","W1"),
+  _aclMk("as19","Cure For Paranoia","—","beatbox",2,"15:00","16:15","W1"),
+  _aclMk("as20","LLUVII","—","beatbox",2,"15:30","16:15","W2"),
+  _aclMk("as21","Ryan Beatty","—","beatbox",2,"17:30","18:30","W1"),
+  _aclMk("as22","Arcy Drive","—","miller",2,"17:15","18:15","W2"),
+  _aclMk("as23","Palace","—","miller",2,"17:15","18:15","W1"),
   _aclMk("as24","Ryan Beatty","—","beatbox",2,"17:30","18:30","W2"),
-  _aclMk("as25","Fakemink","—","beatbox",2,"19:30","20:30"),
   // Tito's
   _aclMk("as26","Left Lucid","—","titos",2,"12:45","13:30","W1"),
   _aclMk("as27","Montclair","—","titos",2,"12:45","13:30","W2"),
-  _aclMk("as28","DJ Cassandra","—","titos",2,"14:00","14:45","W1"),
-  _aclMk("as29","Nat Myers","—","titos",2,"14:00","14:45","W2"),
+  _aclMk("as28","DJ Cassandra","—","titos",2,"14:00","14:45"),
   _aclMk("as30","Don West","—","titos",2,"15:15","16:00"),
   _aclMk("as31","Rodrigo Y Gabriela","—","titos",2,"16:30","17:30"),
   _aclMk("as32","Yousuke Yukimatsu","Electronic","titos",2,"18:30","19:30"),
@@ -2477,26 +2491,27 @@ const ACL_ARTISTS = [
   _aclMk("au02","Thomas Day","—","tmobile",3,"13:15","14:00","W2"),
   _aclMk("au03","Stella Lefty","—","tmobile",3,"14:45","15:30","W1"),
   _aclMk("au04","Charlotte Lawrence","—","tmobile",3,"14:45","15:30","W2"),
-  _aclMk("au05","Audrey Hobert","—","tmobile",3,"16:30","17:30"),
-  _aclMk("au06","Geese","—","tmobile",3,"18:30","19:30"),
-  _aclMk("au07","The xx","—","tmobile",3,"20:30","22:00"),
+  _aclMk("au05","Audrey Hobert","—","tmobile",3,"16:30","17:20"),
+  _aclMk("au06","Geese","—","tmobile",3,"18:20","19:20"),
+  _aclMk("au07","The xx","—","tmobile",3,"20:35","22:00"),
   // Miller Lite
   _aclMk("au08","Jess Williamson","—","miller",3,"14:00","14:45","W1"),
   _aclMk("au09","Joshua Jensen","—","miller",3,"14:00","14:45","W2"),
   _aclMk("au10","Claire Rosinkranz","—","miller",3,"15:30","16:30"),
-  _aclMk("au11","Saint Motel","—","miller",3,"17:30","18:30"),
-  _aclMk("au12","Parcels","—","miller",3,"19:30","20:30"),
+  _aclMk("au11","Saint Motel","—","miller",3,"17:20","18:20"),
+  _aclMk("au12","Parcels","—","miller",3,"19:20","20:35"),
   // BMI
-  _aclMk("au13","Rubio","—","bmi",3,"12:45","13:15","W1"),
+  _aclMk("au-vinny-w1","Vinny","—","bmi",3,"12:45","13:15","W1"),
   _aclMk("au14","Marzz","—","bmi",3,"12:45","13:15","W2"),
   _aclMk("au15","Aaron Rowe","—","bmi",3,"14:00","14:45","W1"),
-  _aclMk("au16","Chelsea Jordan","—","bmi",3,"14:00","14:45","W2"),
+  _aclMk("au16","Chelsea Jordan","—","bmi",3,"14:15","14:45","W2"),
   _aclMk("au17","Fancy Hagood","—","bmi",3,"15:30","16:15","W1"),
   _aclMk("au18","Vwillz","—","bmi",3,"15:30","16:15","W2"),
   _aclMk("au19","Lauren Sanderson","—","bmi",3,"17:30","18:30","W1"),
-  _aclMk("au20","Sasha Keable","—","bmi",3,"18:00","18:30","W2"),
   // Beatbox
-  _aclMk("au21","Britton","—","beatbox",3,"14:00","14:45","W1"),
+  _aclMk("au-jason-scott-w2","Jason Scott & The High Heat","—","bmi",3,"18:00","18:30","W2"),
+  _aclMk("au21","Britton","—","snapchat",3,"15:30","16:30","W1"),
+  _aclMk("au-flight-by-nothing-w1","Flight By Nothing","—","beatbox",3,"14:00","14:45","W1"),
   _aclMk("au22","Kevin Atwater","—","beatbox",3,"14:00","14:45","W2"),
   _aclMk("au23","Underscores","—","beatbox",3,"15:30","16:30","W1"),
   _aclMk("au24","Bad Nerves","—","beatbox",3,"15:30","16:30","W2"),
@@ -2505,7 +2520,7 @@ const ACL_ARTISTS = [
   // Tito's
   _aclMk("au27","The Moriah Sisters","—","titos",3,"12:45","13:30","W1"),
   _aclMk("au28","Huston-Tillotson University Jazz Collective","—","titos",3,"12:45","13:30","W2"),
-  _aclMk("au29","Paloma Morphy","—","titos",3,"14:00","14:45"),
+  _aclMk("au-girlsweetvoiced","girlsweetvoiced","—","titos",3,"14:00","14:45"),
   _aclMk("au30","Calder Allen","—","titos",3,"15:15","16:00"),
   _aclMk("au31","Rio Kosta","—","titos",3,"16:30","17:30"),
   _aclMk("au32","Fcukers","—","titos",3,"18:30","19:30"),
@@ -2524,6 +2539,104 @@ const ACL_ARTISTS = [
   _aclMk("au43","Max McNown","—","amex",3,"16:30","17:30"),
   _aclMk("au44","Sofi Tukker","Electronic","amex",3,"18:30","19:30"),
   _aclMk("au45","Twenty One Pilots","—","amex",3,"20:30","22:00"),
+];
+
+const ACL_REMOVED_FROM_LINEUP = [
+  {
+    "id": "as25",
+    "name": "Fakemink",
+    "lastSeen": "2026-09-04",
+    "removedFrom": {
+      "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp",
+      "observedAt": "2026-09-30"
+    },
+    "previousSlot": {
+      "id": "as25",
+      "name": "Fakemink",
+      "genre": "—",
+      "stage": "beatbox",
+      "day": "2",
+      "start": "19:30",
+      "end": "20:30",
+      "weekend": null
+    }
+  },
+  {
+    "id": "as29",
+    "name": "Nat Myers",
+    "lastSeen": "2026-09-04",
+    "removedFrom": {
+      "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp",
+      "observedAt": "2026-09-30"
+    },
+    "previousSlot": {
+      "id": "as29",
+      "name": "Nat Myers",
+      "genre": "—",
+      "stage": "titos",
+      "day": "2",
+      "start": "14:00",
+      "end": "14:45",
+      "weekend": "W2"
+    }
+  },
+  {
+    "id": "au13",
+    "name": "Rubio",
+    "lastSeen": "2026-09-04",
+    "removedFrom": {
+      "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp",
+      "observedAt": "2026-09-30"
+    },
+    "previousSlot": {
+      "id": "au13",
+      "name": "Rubio",
+      "genre": "—",
+      "stage": "bmi",
+      "day": "3",
+      "start": "12:45",
+      "end": "13:15",
+      "weekend": "W1"
+    }
+  },
+  {
+    "id": "au20",
+    "name": "Sasha Keable",
+    "lastSeen": "2026-09-04",
+    "removedFrom": {
+      "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp",
+      "observedAt": "2026-09-30"
+    },
+    "previousSlot": {
+      "id": "au20",
+      "name": "Sasha Keable",
+      "genre": "—",
+      "stage": "bmi",
+      "day": "3",
+      "start": "18:00",
+      "end": "18:30",
+      "weekend": "W2"
+    }
+  },
+  {
+    "id": "au29",
+    "name": "Paloma Morphy",
+    "lastSeen": "2026-09-04",
+    "removedFrom": {
+      "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp",
+      "observedAt": "2026-09-30"
+    },
+    "previousSlot": {
+      "id": "au29",
+      "name": "Paloma Morphy",
+      "genre": "—",
+      "stage": "titos",
+      "day": "3",
+      "start": "14:00",
+      "end": "14:45",
+      "weekend": null
+    }
+  }
 ];
 
 // Amenities measured on acl-park-2026.webp like the stages: each pin sits on
@@ -3405,7 +3518,7 @@ const WALK_TABLE_FESTIVAL_ID = "edc-lv-2026";
 
 const _DATA_SETS = {
   "edc-lv-2026":          { stages: STAGES,     artists: ARTISTS,     amenities: AMENITIES,     config: FESTIVAL_CONFIG },
-  "acl-2026":             { stages: ACL_STAGES, artists: ACL_ARTISTS, amenities: ACL_AMENITIES, config: _regConfig("acl-2026") },
+  "acl-2026":             { stages: ACL_STAGES, artists: ACL_ARTISTS, amenities: ACL_AMENITIES, removedFromLineup: ACL_REMOVED_FROM_LINEUP, config: _regConfig("acl-2026") },
   "lost-lands-2026":      { stages: LL_STAGES,  artists: LL_ARTISTS,  amenities: LL_AMENITIES,  config: _regConfig("lost-lands-2026") },
   "edc-orlando-2026":     { stages: EDCO_STAGES, artists: EDCO_ARTISTS, amenities: EDCO_AMENITIES, config: _regConfig("edc-orlando-2026") },
 };

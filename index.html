@@ -87,9 +87,14 @@
   apply();
 })();</script>
 <link rel="manifest" href="./manifest.json">
+<!-- The two board faces ship with the app (fonts/, SIL OFL). Latin is
+     preloaded so labels and times paint in their own face on first frame. -->
+<link rel="preload" href="./fonts/michroma-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./fonts/martian-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" type="image/png" href="./apple-touch-icon.png">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
-<!-- Field Mode: platform system font only, so no web fonts are loaded. -->
+<!-- Reading type is the platform system font. The only web fonts are the two
+     self-hosted board faces above, for labels and data. -->
 <style>
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   .no-scrollbar::-webkit-scrollbar{display:none}
@@ -178,6 +183,7 @@
     --media-ground:#0B0816;   /* behind a photo that has not loaded, or a hero with none */
     --media-scrim:linear-gradient(0deg,rgba(0,0,0,0.78),rgba(0,0,0,0));
     --media-badge:rgba(0,0,0,0.6);
+    --media-flare:#FFC545;    /* the accent word on a media card, one colour in both modes */
     --shadow-pop:0 10px 30px rgba(0,0,0,0.45);
   }
   /* Structure shared by both modes (type floor, radii). No colour here. */
@@ -227,16 +233,158 @@
     /* inverse surfaces: text on an --ink fill (install / battery banners) */
     --on-ink:#F4F3F8;--on-ink-2:#ABA4BB;--on-ink-3:#8A849A;--on-ink-flare:#FFC545;--on-ink-accent:#B7A3FF;
     --on-alert:#FFFFFF;--on-success:#FFFFFF;
-    --alert:#D81B57; --warn:#B84A00; --success:#007A53;
+    /* --alert (= --clash) is the board's #D81B57 darkened to #C4174F: the
+       board value is 4.11:1 on its own --s3 well, where the clash label sits. */
+    --alert:#C4174F; --warn:#B84A00; --success:#007A53;
     --dune:#EAE8F1; --flare:#B84A00; --horizon:#4A2BFF; --night:#FFFFFF; --dusk:#EAE8F1; --sky:#565266;
     --glass:255,255,255;
-    --ink-rgb:20,18,28; --shade-rgb:28,20,70; --signal-rgb:74,43,255; --alert-rgb:216,27,87;
+    --ink-rgb:20,18,28; --shade-rgb:28,20,70; --signal-rgb:74,43,255; --alert-rgb:196,23,79;
     --scrim:rgba(20,18,28,0.45); --chrome:rgba(244,243,248,0.82);
     --hero-scrim:linear-gradient(180deg,rgba(0,0,0,0.35) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 44%,rgba(244,243,248,0.7) 82%,var(--paper) 100%);
     --shadow-pop:0 10px 30px rgba(28,20,70,0.18);
     --field-glow:linear-gradient(#F4F3F8,#F4F3F8);
   }
   html.theme-field,.theme-field body{background:var(--paper);color:var(--ink)}
+  /* ── The duo board as a component system ──
+     Source: design/system-exploration @ 6524ccb (shared/duo-tokens.js,
+     shared/duo.css, shared/duo.js). The board's role names sit beside the
+     legacy ones; each resolves to the same mode token, so one purple family
+     serves both: #6D28D9 (Sep 13 anchor) → #9474FF fill / #B7A3FF text in
+     Dark, #4A2BFF in Light. --live is green and means LIVE only; --clash is
+     clashes and errors; --sun is sunrise. Components built on these carry a
+     duo- class, so the legacy inline-style font overrides above never reach
+     them. */
+  :root{
+    --bg:var(--paper); --s1:var(--paper-2); --s2:var(--paper-2); --s3:var(--paper-3);
+    --ink-2:var(--text-2); --ink-3:var(--text-3);
+    --acc:var(--signal); --acc-ink:var(--signal-ink); --on-acc:var(--on-signal);
+    --live:var(--success); --clash:var(--alert); --sun:var(--warn);
+    --f-ui:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;
+    --f-display:Michroma,"Eurostile","Helvetica Neue",sans-serif;
+    --f-data:"Martian Mono",ui-monospace,"SF Mono",Menlo,monospace;
+    --rad-xs:6px; --rad-sm:12px; --rad-md:20px; --rad-lg:28px; --rad-pill:999px;
+    --beat:469ms; --bar:1875ms; --t-tap:140ms; --t-move:280ms; --ease-decay:cubic-bezier(.16,.84,.24,1);
+  }
+  :root[data-mode="dark"]{
+    --s1:#100E17;
+    --acc-08:rgba(148,116,255,.08); --acc-14:rgba(148,116,255,.16); --acc-30:rgba(148,116,255,.3); --acc-55:rgba(148,116,255,.55);
+    --e1:inset 0 1px 0 rgba(243,240,250,.06),0 0 0 1px #221E2B;
+    --e2:inset 0 1px 0 rgba(243,240,250,.08),0 24px 48px -24px rgba(0,0,0,.9);
+    --glow:0 0 0 1px rgba(148,116,255,.55),0 0 32px rgba(148,116,255,.35);
+    --beam:linear-gradient(90deg,rgba(148,116,255,0),#9474FF 30%,#F3F0FA);
+    --chip-bg:rgba(7,6,11,.6);
+    --acc-wash:#1E1832; /* --acc-14 over --bg, solid: a block on your plan */
+  }
+  :root[data-mode="light"]{
+    --s1:#FFFFFF;
+    --acc-08:rgba(74,43,255,.08); --acc-14:rgba(74,43,255,.10); --acc-30:rgba(74,43,255,.22); --acc-55:rgba(74,43,255,.55);
+    --e1:0 0 0 1px #E6E3EE,0 1px 2px rgba(20,18,28,.04);
+    --e2:0 0 0 1px rgba(20,18,28,.06),0 24px 48px -20px rgba(28,20,70,.35);
+    --glow:0 0 0 1.5px rgba(74,43,255,.7),0 14px 32px -14px rgba(74,43,255,.55);
+    --beam:linear-gradient(90deg,rgba(74,43,255,0),#4A2BFF 30%,#4A2BFF);
+    --chip-bg:rgba(255,255,255,.9);
+    --acc-wash:#E3DFF9; /* --acc-14 over --bg, solid */
+  }
+  @font-face{font-family:Michroma;font-style:normal;font-weight:400;font-display:swap;src:url(./fonts/michroma-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  @font-face{font-family:Michroma;font-style:normal;font-weight:400;font-display:swap;src:url(./fonts/michroma-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+  @font-face{font-family:"Martian Mono";font-style:normal;font-weight:300 600;font-display:swap;src:url(./fonts/martian-mono-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  @font-face{font-family:"Martian Mono";font-style:normal;font-weight:300 600;font-display:swap;src:url(./fonts/martian-mono-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+  /* Type roles (board type scale). Michroma is for compact caps labels only,
+     never a name or a sentence; Martian Mono is for times and counts, so a
+     live clock never jitters; everything you read is SF Pro. Line heights
+     are unitless so large text grows its line box. */
+  .duo-hero{font:800 44px/1 var(--f-ui);letter-spacing:-.04em}
+  .duo-title{font:700 28px/1.143 var(--f-ui);letter-spacing:-.025em}
+  .duo-headline{font:650 17px/1.294 var(--f-ui);letter-spacing:-.012em}
+  .duo-body{font:400 16px/1.375 var(--f-ui);letter-spacing:-.005em}
+  .duo-body-s{font:500 14px/1.357 var(--f-ui)}
+  .duo-label{font:400 11px/1.273 var(--f-display);letter-spacing:.14em;text-transform:uppercase}
+  .duo-sect{font:400 11px/1.273 var(--f-display);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin:0}
+  .duo-data{font:500 14px/1.286 var(--f-data);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .duo-data-s{font:400 12px/1.25 var(--f-data);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+  .duo-clock{font:300 32px/1 var(--f-data);letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+  .duo-name{overflow-wrap:anywhere}
+  .duo-ink2{color:var(--ink-2)} .duo-ink3{color:var(--ink-3)} .duo-acc{color:var(--acc-ink)} .duo-clash{color:var(--clash)} .duo-sun{color:var(--sun)}
+  /* Primitives */
+  .duo-card{background:var(--s2);border-radius:var(--rad-md);box-shadow:var(--e1);--ring-bg:var(--s2)}
+  .duo-lift{box-shadow:var(--glow)}
+  .duo-well{background:var(--s3);border-radius:var(--rad-sm);--ring-bg:var(--s3)}
+  .duo-hair{border-top:1px solid var(--line)}
+  .duo-live{display:inline-flex;align-items:center;gap:7px;color:var(--live)}
+  .duo-live>i{width:7px;height:7px;border-radius:50%;background:var(--live);box-shadow:0 0 10px var(--live);animation:duo-breathe var(--bar) var(--ease-decay) infinite;flex:none}
+  @keyframes duo-breathe{0%,100%{opacity:1}50%{opacity:.35}}
+  .duo-track{position:relative;height:3px;border-radius:2px;background:var(--s3)}
+  .duo-track>b{position:absolute;left:0;top:0;bottom:0;border-radius:2px;background:var(--beam)}
+  .duo-av{flex:none;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:var(--s3);box-shadow:0 0 0 1.5px var(--line-2);color:var(--ink-2);font-family:var(--f-ui);font-weight:650;letter-spacing:.02em;position:relative}
+  .duo-av>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%}
+  .duo-av.on{box-shadow:0 0 0 2px var(--acc),0 0 14px var(--acc-30)}
+  .duo-av.cl{box-shadow:0 0 0 2px var(--clash)}
+  .duo-avp{position:relative;flex:none;display:block}
+  .duo-avp>.duo-av{position:absolute}
+  .duo-avp>.duo-av+.duo-av{box-shadow:0 0 0 2px var(--ring-bg,var(--bg)),0 0 0 3.5px var(--line-2)}
+  .duo-avp>.duo-av.on+.duo-av.on{box-shadow:0 0 0 2px var(--ring-bg,var(--bg)),0 0 0 4px var(--acc)}
+  .duo-avp>.duo-av.cl+.duo-av.cl{box-shadow:0 0 0 2px var(--ring-bg,var(--bg)),0 0 0 4px var(--clash)}
+  .duo-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:var(--rad-sm);font:650 16px/1.2 var(--f-ui);letter-spacing:-.01em;border:0;cursor:pointer;transition:transform var(--t-tap) var(--ease-decay)}
+  .duo-btn:active{transform:scale(.98)}
+  .duo-btn.pri{background:var(--acc);color:var(--on-acc);box-shadow:0 10px 28px -12px var(--acc-55)}
+  .duo-btn.sec{background:transparent;border:1px solid var(--line-2);color:var(--ink)}
+  .duo-link{background:none;border:0;padding:0 4px;min-height:44px;min-width:44px;font:650 14px/1.2 var(--f-ui);color:var(--acc-ink);cursor:pointer}
+  .duo-press{background:none;border:0;padding:0;color:inherit;text-align:left;cursor:pointer;font:inherit;width:100%;display:block}
+  /* Chips (filters, view switches): selected = ink fill, the board's .chip.on.
+     A 34px pill inside a 44px target. */
+  .duo-chip{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0;border:0;background:none;cursor:pointer;color:var(--ink-2);flex:none}
+  .duo-chip>span{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:var(--rad-pill);border:1px solid var(--line-2);background:var(--chip-bg);font:500 13px/1 var(--f-ui);white-space:nowrap}
+  .duo-chip[aria-checked=true]>span,.duo-chip[aria-pressed=true]>span,.duo-chip[aria-selected=true]>span{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .duo-chip b{font:500 11px/1 var(--f-data)}
+  /* Day tabs: caps day + mono date, the selected one underlined in the accent. */
+  .duo-tab{position:relative;display:inline-flex;align-items:center;gap:5px;min-height:44px;padding:0;border:0;background:none;cursor:pointer;color:var(--ink-2);flex:none}
+  .duo-tab[aria-selected=true]{color:var(--ink)}
+  .duo-tab[aria-selected=true]::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:2px;border-radius:2px;background:var(--acc)}
+  /* The circled add: outline when not on your plan, filled accent + check when on it. */
+  .duo-add{width:44px;height:44px;flex:none;display:grid;place-items:center;border:0;background:none;padding:0;cursor:pointer;color:var(--ink-2)}
+  .duo-add>span{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px var(--line-2)}
+  .duo-add[aria-pressed=true]{color:var(--on-acc)}
+  .duo-add[aria-pressed=true]>span{background:var(--acc);box-shadow:0 6px 16px -8px var(--acc-55)}
+  /* A short code (festival brand, map source) in a hairline box. */
+  .duo-code{display:inline-block;font:400 11px/1 var(--f-display);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--line-2);border-radius:var(--rad-xs);padding:5px 6px 4px;white-space:nowrap}
+  .duo-input{width:100%;box-sizing:border-box;height:44px;border:0;border-radius:var(--rad-sm);background:var(--s2);box-shadow:var(--e1);color:var(--ink);font:400 16px/1.2 var(--f-ui);outline:none}
+  .duo-input::placeholder{color:var(--ink-3)}
+  .duo-input:focus-visible{box-shadow:0 0 0 2px var(--acc-ink)}
+  /* Segmented control (two or three options in a well). */
+  .duo-seg{display:flex;padding:3px;border-radius:var(--rad-pill);background:var(--s3)}
+  .duo-seg>button{flex:1;min-height:38px;border:0;border-radius:var(--rad-pill);background:none;color:var(--ink-2);font:600 14px/1 var(--f-ui);cursor:pointer}
+  .duo-seg>button[aria-pressed=true],.duo-seg>button[aria-checked=true]{background:var(--s1);color:var(--ink);box-shadow:0 0 0 1px var(--line-2),0 2px 6px -2px rgba(0,0,0,.25)}
+  :where(.duo-btn,.duo-link,.duo-press,.duo-chip,.duo-tab,.duo-add,.duo-seg>button):focus-visible{outline:2px solid var(--acc-ink);outline-offset:2px}
+  @media (prefers-reduced-motion:reduce){.duo-live>i{animation:none}.duo-btn{transition:none}}
+  /* Lineup list rows: on your plan = a faint accent wash; playing now = the
+     lifted card. The wash and the lift never change the text colours. */
+  .duo-lrow{display:flex;align-items:center;gap:12px;min-height:58px;padding:7px 4px 7px 12px;margin:0 -12px;border-radius:var(--rad-sm)}
+  .duo-lrow.plan{background:var(--acc-08)}
+  .duo-lrow.live{background:var(--s2);box-shadow:var(--glow);--ring-bg:var(--s2)}
+  /* Music: the legacy surface on the board's faces without a rewrite. Its
+     pill actions take the board's button shape in SF; its panels become duo cards. Brand
+     fills (Spotify, Apple Music) are the services' own colours and stay. */
+  .theme-field [data-duo-music] button[style*="Geist Mono"]{font:650 13px/1.2 var(--f-ui)!important;letter-spacing:.02em!important;min-height:44px;border-radius:var(--rad-sm)!important}
+  .theme-field [data-duo-music]>div[style*="border-radius: 20px"]{border-radius:var(--rad-md)!important;border:0!important;box-shadow:var(--e1)}
+  /* Grid block head (face + status). A class, not inline: fitGridBlocks
+     hides it with style.display and restores it by clearing that. */
+  .duo-gb-head{display:flex;align-items:center;justify-content:space-between;gap:4px;margin-bottom:3px;min-width:0}
+  /* Under 360pt the face gives its width back to the name: a name is never
+     truncated, and with the face a two-word name wrapped at 320. */
+  @media (max-width:360px){.duo-lrow>.duo-av,.duo-lrow>.duo-avp{display:none}.duo-lrow{gap:10px}}
+  /* Today's scoreboard. Two columns (Now | Next) need ~160px each for a face
+     and a whole word; under 360px they stack, each cell saying which it is,
+     so a name wraps between words and never mid-word. The plan card's big
+     minutes move onto the progress row there for the same reason. */
+  .duo-sb-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+  .duo-sb-tag,.duo-narrow{display:none}
+  @media (max-width:360px){
+    .duo-sb-grid{grid-template-columns:minmax(0,1fr);gap:10px}
+    .duo-sb-head{display:none!important}
+    .duo-sb-tag{display:inline}
+    .duo-wide{display:none!important}
+    .duo-narrow{display:block}
+  }
   /* A media scope: text drawn ON a photo or artwork (the full-bleed artist
      hero). The picture does not change with the mode, so neither does the
      type on it: inside .media-scope the ink tokens point at the --media-*
@@ -246,7 +394,7 @@
   .theme-field body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:var(--field-glow)}
   .theme-field [data-midnight-card]{background:linear-gradient(145deg,rgba(var(--signal-rgb),.08),var(--paper-2) 62%);border:1px solid var(--line-2);box-shadow:0 18px 50px rgba(var(--shade-rgb),.12)}
   .theme-field .midnight-festival-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .theme-field .midnight-festival-grid>button{min-height:258px!important;border:1px solid var(--line)!important;border-radius:18px!important;padding:10px!important;background:linear-gradient(155deg,rgba(var(--signal-rgb),.08),var(--paper-2))!important;align-items:flex-start!important;flex-direction:column!important;overflow:hidden!important}
+  .theme-field .midnight-festival-grid>button{min-height:258px!important;border:0!important;border-radius:var(--rad-md)!important;padding:10px!important;background:var(--s2)!important;box-shadow:var(--e1);align-items:flex-start!important;flex-direction:column!important;overflow:hidden!important}
   .theme-field .midnight-festival-grid>button>div:first-child{width:100%!important;height:82px!important;border-radius:12px!important}
   .theme-field .midnight-festival-grid>button>div:nth-child(2){width:100%;align-self:stretch;text-align:left}
   .theme-field .midnight-festival-grid>button>div:nth-child(2)>div:first-child{font-size:15px!important;line-height:19px!important;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
@@ -285,8 +433,9 @@
   @keyframes savePop{0%{transform:scale(1)}35%{transform:scale(1.06)}100%{transform:scale(1)}}
   @keyframes checkIn{0%{opacity:0;transform:scale(0.3)}60%{opacity:1;transform:scale(1.15)}100%{opacity:1;transform:scale(1)}}
   @keyframes springIn{0%{opacity:0;transform:translateY(8px) scale(0.97)}60%{transform:translateY(-2px) scale(1.01)}100%{opacity:1;transform:translateY(0) scale(1)}}
-  .skel{background:linear-gradient(90deg,var(--paper-2) 25%,rgba(var(--ink-rgb),0.08) 50%,var(--paper-2) 75%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite;border-radius:6px}
-  .skel-dark{background:linear-gradient(90deg,rgba(247,237,224,0.04) 25%,rgba(247,237,224,0.08) 50%,rgba(247,237,224,0.04) 75%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite;border-radius:6px}
+  /* Loading placeholders: one board shimmer (the well, a faint ink sweep) in both modes.
+     .skel-dark used to be a hardcoded cream sweep left over from the paper theme. */
+  .skel,.skel-dark{background:linear-gradient(90deg,var(--s3) 25%,rgba(var(--ink-rgb),0.07) 50%,var(--s3) 75%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite;border-radius:var(--rad-xs)}
   /* Keyboard-only focus ring (WCAG 2.4.7) — :focus-visible so it never shows on mouse/touch tap. */
   :focus-visible{outline:2px solid var(--ember);outline-offset:2px;border-radius:3px}
   @media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important}}
@@ -501,50 +650,50 @@
       window.__USE_NATIVE_PICKER__ = true;
     }
   </script>
-  <script src="build/ios-frame.js?v=v381"></script>
+  <script src="build/ios-frame.js?v=v393"></script>
   <!-- Multi-festival wave 1. Plain .js (no JSX), so they load as normal scripts
        and are parsed before Babel even starts on the chain below. Each is an
        IIFE that registers itself on window.PLURSKY_FESTIVALS; data.jsx reads
        that map, so these MUST stay above it. Mirrored in sw.js's precache. -->
-  <script src="data/festivals/ultra-miami-2026.js?v=v381"></script>
-  <script src="data/festivals/governors-ball-2026.js?v=v381"></script>
-  <script src="data/festivals/summerfest-2026.js?v=v381"></script>
-  <script src="data/festivals/lollapalooza-2026.js?v=v381"></script>
-  <script src="data/festivals/outside-lands-2026.js?v=v381"></script>
-  <script src="data/festivals/iii-points-2026.js?v=v381"></script>
-  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v381"></script>
-  <script src="data/festivals/crssd-fall-2026.js?v=v381"></script>
-  <script src="data/festivals/portola-2026.js?v=v381"></script>
-  <script src="data/festivals/hard-summer-2026.js?v=v381"></script>
-  <script src="data/festivals/arc-2026.js?v=v381"></script>
-  <script src="data/festivals/escape-halloween-2026.js?v=v381"></script>
-  <script src="data/festivals/dreamstate-socal-2026.js?v=v381"></script>
-  <script src="data/festivals/decadence-colorado-2026.js?v=v381"></script>
-  <script src="data/festivals/countdown-nye-2026.js?v=v381"></script>
-  <script src="build/data.js?v=v381"></script>
-  <script src="build/supabase.js?v=v381"></script>
-  <script src="build/chrome.js?v=v381"></script>
-  <script src="build/home.js?v=v381"></script>
-  <script src="build/map.js?v=v381"></script>
-  <script src="build/survey.js?v=v381"></script>
-  <script src="build/lineup.js?v=v381"></script>
-  <script src="build/artist.js?v=v381"></script>
-  <script src="build/photo-tag.js?v=v381"></script>
-  <script src="build/spotify-api.js?v=v381"></script>
-  <script src="build/recap-engine.js?v=v381"></script>
-  <script src="build/historical.js?v=v381"></script>
+  <script src="data/festivals/ultra-miami-2026.js?v=v393"></script>
+  <script src="data/festivals/governors-ball-2026.js?v=v393"></script>
+  <script src="data/festivals/summerfest-2026.js?v=v393"></script>
+  <script src="data/festivals/lollapalooza-2026.js?v=v393"></script>
+  <script src="data/festivals/outside-lands-2026.js?v=v393"></script>
+  <script src="data/festivals/iii-points-2026.js?v=v393"></script>
+  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v393"></script>
+  <script src="data/festivals/crssd-fall-2026.js?v=v393"></script>
+  <script src="data/festivals/portola-2026.js?v=v393"></script>
+  <script src="data/festivals/hard-summer-2026.js?v=v393"></script>
+  <script src="data/festivals/arc-2026.js?v=v393"></script>
+  <script src="data/festivals/escape-halloween-2026.js?v=v393"></script>
+  <script src="data/festivals/dreamstate-socal-2026.js?v=v393"></script>
+  <script src="data/festivals/decadence-colorado-2026.js?v=v393"></script>
+  <script src="data/festivals/countdown-nye-2026.js?v=v393"></script>
+  <script src="build/data.js?v=v393"></script>
+  <script src="build/supabase.js?v=v393"></script>
+  <script src="build/chrome.js?v=v393"></script>
+  <script src="build/home.js?v=v393"></script>
+  <script src="build/map.js?v=v393"></script>
+  <script src="build/survey.js?v=v393"></script>
+  <script src="build/lineup.js?v=v393"></script>
+  <script src="build/artist.js?v=v393"></script>
+  <script src="build/photo-tag.js?v=v393"></script>
+  <script src="build/spotify-api.js?v=v393"></script>
+  <script src="build/recap-engine.js?v=v393"></script>
+  <script src="build/historical.js?v=v393"></script>
   <!-- General Landing + saved festivals. Before spotify.js per CLAUDE.md §4;
        everything it borrows from there is called at runtime by bare name. -->
-  <script src="build/landing.js?v=v381"></script>
-  <script src="build/spotify.js?v=v381"></script>
-  <script src="build/app.js?v=v381"></script>
+  <script src="build/landing.js?v=v393"></script>
+  <script src="build/spotify.js?v=v393"></script>
+  <script src="build/app.js?v=v393"></script>
 
   <script>
 
     // Build version stamp â€” bumped on every deploy that changes app behaviour.
     // If the running tab's stored version doesn't match, force a full reload
     // (bypassing browser HTTP cache that GH-Pages serves with max-age=600).
-    const APP_VERSION = 'v381';
+    const APP_VERSION = 'v393';
     try {
       const stored = localStorage.getItem('app_version');
       if (stored && stored !== APP_VERSION) {
@@ -565,11 +714,11 @@
     if ('serviceWorker' in navigator) {
       caches.keys().then(keys =>
         Promise.all(
-          keys.filter(k => k !== 'plursky-v381' && !k.startsWith('plursky-tiles-'))
+          keys.filter(k => k !== 'plursky-v393' && !k.startsWith('plursky-tiles-'))
               .map(k => caches.delete(k))
         )
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v381', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v393', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 
