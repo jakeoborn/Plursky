@@ -1493,7 +1493,7 @@ function FriendsCard({
       marginTop: 2,
       fontWeight: 400
     }
-  }, sharing ? (STAGES?.find(s => s.id === stageId)?.name || stageId) + " · live" : "You · tap GO LIVE to share")), React.createElement("button", {
+  }, sharing ? (STAGES?.find(s => s.id === stageId)?.name || stageId) + " · live" : "You · tap Go live to share")), React.createElement("button", {
     onClick: handleToggle,
     className: "duo-btn",
     style: {
@@ -1504,7 +1504,7 @@ function FriendsCard({
       fontSize: 14,
       flexShrink: 0
     }
-  }, sharing ? "STOP" : myName ? "GO LIVE" : "SET NAME")), !sharing && editName && React.createElement("div", {
+  }, sharing ? "Stop" : myName ? "Go live" : "Set name")), !sharing && editName && React.createElement("div", {
     style: {
       display: "flex",
       gap: 8,
@@ -1595,7 +1595,7 @@ function FriendsCard({
       marginTop: 2,
       fontWeight: 400
     }
-  }, "Share Plursky with your crew — anyone who taps GO LIVE shows up here instantly.")));
+  }, "Share Plursky with your crew — anyone who taps Go live shows up here instantly.")));
 }
 function _FriendsHeader({
   count,

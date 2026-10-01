@@ -2415,10 +2415,10 @@ function BulkRetagRow({ moments, savedNightArtists, onUpdate }) {
   return (
     <div style={{
       margin: "8px 0 10px", padding: "9px 10px",
-      background: "var(--paper-2)", border: "1px dashed var(--line-2)", borderRadius: 10,
+      background: "var(--paper-2)", border: "1px dashed var(--line-2)", borderRadius: "var(--rad-sm)",
     }}>
       <div className="mono" style={{
-        fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700,
+        fontSize: 9, letterSpacing: 1.2, color: "var(--ink-2)", fontWeight: 700,
         marginBottom: 6,
       }}>
         ⚡ BULK · TAG ALL {moments.length} AS
@@ -2447,7 +2447,7 @@ function BulkRetagRow({ moments, savedNightArtists, onUpdate }) {
           })}
         {confirmId && (
           <button onClick={() => setConfirmId(null)} className="mono" style={{
-            background: "transparent", border: "none", color: "var(--muted)",
+            background: "transparent", border: "none", color: "var(--ink-2)",
             cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
             padding: "5px 8px",
           }}>CANCEL</button>
@@ -2732,12 +2732,14 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
   if (!m) return null;
   const prettyTime = (() => {
     if (!m.takenAt) return null;
-    try {
-      const t = m.takenAt.split(" ")[1] || "";
-      const [h, mm] = t.split(":").map(Number);
-      const ap = h >= 12 ? "PM" : "AM"; const h12 = h % 12 || 12;
-      return `${h12}:${String(mm).padStart(2, "0")} ${ap}`;
-    } catch { return null; }
+    // takenAt is a local wall clock, "YYYY-MM-DD HH:MM[:SS]". Anything else
+    // (an ISO instant from an old import or a fixture) has no wall clock to
+    // print, so the line drops instead of reading "12:undefined AM".
+    const hit = /^\d{4}-\d{2}-\d{2} (\d{1,2}):(\d{2})/.exec(String(m.takenAt));
+    if (!hit) return null;
+    const h = +hit[1], mm = +hit[2];
+    const ap = h >= 12 ? "PM" : "AM"; const h12 = h % 12 || 12;
+    return `${h12}:${String(mm).padStart(2, "0")} ${ap}`;
   })();
 
   const onTouchStart = (e) => { touch.current.x = e.touches[0].clientX; };
@@ -2761,7 +2763,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           display: "flex", alignItems: "center", justifyContent: "center",
         }}>✕</button>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <span className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "var(--text-2)", fontWeight: 700 }}>
+          <span className="duo-label" style={{ color: "var(--text-2)" }}>
             {index + 1} / {moments.length}
           </span>
           {onUpdate && (
@@ -2813,37 +2815,35 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           <button onClick={() => { onArtistClick?.(artist.id); onClose(); }} style={{
             background: "transparent", border: "none", padding: 0, textAlign: "left", cursor: "pointer", display: "block",
           }}>
-            <div className="serif" style={{ fontSize: 26, lineHeight: 1, color: "var(--ink)", marginBottom: 6 }}>
+            <div className="duo-title duo-name" style={{ color: "var(--ink)", marginBottom: 4 }}>
               {artist.name}
             </div>
           </button>
         ) : (
-          <div className="serif" style={{ fontSize: 22, lineHeight: 1, color: "var(--text-3)", fontStyle: "italic", marginBottom: 6 }}>
+          <div className="duo-headline" style={{ color: "var(--text-3)", fontStyle: "italic", marginBottom: 6 }}>
             Untagged moment
           </div>
         )}
         {song?.song && (
-          <div className="mono" style={{ fontSize: 11, letterSpacing: 0.8, color: "var(--signal-ink)", fontWeight: 700, marginBottom: 4 }}>
+          <div className="duo-body-s" style={{ color: "var(--acc-ink)", fontWeight: 650, marginBottom: 4 }}>
             ♫ {song.song}
-            {m.confirmedSong && <span style={{ color: "var(--text-3)", marginLeft: 6 }}>· SHAZAMED</span>}
+            {m.confirmedSong && <span style={{ color: "var(--ink-2)", fontWeight: 400, marginLeft: 6 }}>· Shazamed</span>}
           </div>
         )}
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--text-3)", fontWeight: 600 }}>
-          {[stage?.name?.toUpperCase(), prettyTime, m.location?.label?.toUpperCase()].filter(Boolean).join(" · ")}
+        <div className="duo-body-s duo-ink2" style={{ fontWeight: 400 }}>
+          {[stage?.name, prettyTime, m.location?.label].filter(Boolean).join(" · ")}
         </div>
 
         {/* Prominent video-song proof: this is the P0 Shazam verification
             route for real clips. It uses the video's own audio through the
             native ShazamPlugin on iOS, then stores the exact song result. */}
         {m.kind === "video" && !m.confirmedSong && (
-          <button onClick={runIdentify} disabled={idState !== "idle" && idState !== "fail"} className="mono" style={{
-            marginTop: 12, padding: "12px 14px", borderRadius: 14, width: "100%",
-            background: idState === "fail"
-              ? "linear-gradient(135deg, rgba(232,93,46,0.28), rgba(245,154,54,0.16))"
-              : "linear-gradient(135deg, rgba(109,40,217,0.85), rgba(232,93,46,0.78))",
-            border: "1px solid rgba(var(--ink-rgb),0.22)", color: "var(--ink)",
-            boxShadow: "0 10px 28px rgba(var(--shade-rgb),0.28)",
-            fontSize: 10, letterSpacing: 1.3, fontWeight: 800, cursor: "pointer",
+          <button onClick={runIdentify} disabled={idState !== "idle" && idState !== "fail"} style={{
+            marginTop: 12, padding: "12px 16px", borderRadius: "var(--rad-md)", width: "100%", minHeight: 56,
+            background: idState === "fail" ? "var(--s3)" : "var(--acc)",
+            border: "none", color: idState === "fail" ? "var(--ink)" : "var(--on-acc)",
+            boxShadow: idState === "fail" ? "none" : "var(--glow)",
+            font: "650 15px/1.3 var(--f-ui)", textAlign: "left", cursor: "pointer",
             display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
             opacity: (idState !== "idle" && idState !== "fail") ? 0.85 : 1,
           }}>
@@ -2851,14 +2851,14 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
               <span style={{ fontSize: 18, lineHeight: 1 }}>{idState === "listening" ? "●" : "🎵"}</span>
               <span style={{ textAlign: "left" }}>
                 <span style={{ display: "block" }}>
-                  {idState === "idle"      ? "SHAZAM THIS VIDEO"
-                   : idState === "listening" ? "LISTENING TO YOUR VIDEO…"
-                   : idState === "matching"  ? "MATCHING WITH SHAZAM…"
-                   : idState === "fail"      ? "NO MATCH — TRY A LOUDER CLIP"
-                   : "IDENTIFIED"}
+                  {idState === "idle"      ? "Shazam this video"
+                   : idState === "listening" ? "Listening to your video…"
+                   : idState === "matching"  ? "Matching with Shazam…"
+                   : idState === "fail"      ? "No match — try a louder clip"
+                   : "Identified"}
                 </span>
-                <span style={{ display: "block", marginTop: 3, fontSize: 8, letterSpacing: 1, color: "var(--text-2)", fontWeight: 700 }}>
-                  PROVES THE SONG FROM THE CLIP'S AUDIO
+                <span style={{ display: "block", marginTop: 2, fontSize: 13, fontWeight: 400, opacity: 1 }}>
+                  Proves the song from the clip’s audio
                 </span>
               </span>
             </span>
@@ -2869,10 +2869,9 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
         {/* Wrong artist? Auto-tag guesses by stage+time and is often wrong when
             you roam (e.g. tagged Martin Garrix but you were at John Summit).
             Fix it inline to whoever was actually playing at this time. */}
-        <button onClick={() => setRetagging(r => !r)} className="mono" style={{
-          marginTop: 9, background: "transparent", border: "none", padding: 0,
-          color: "var(--text-3)", fontSize: 9, letterSpacing: 1.1, fontWeight: 700, cursor: "pointer",
-        }}>{retagging ? "✕ CANCEL" : (artist ? "✎ WRONG ACT? FIX IT" : "✎ TAG THIS MOMENT")}</button>
+        <button onClick={() => setRetagging(r => !r)} className="duo-link" style={{
+          marginTop: 2, padding: 0, textAlign: "left", fontSize: 15,
+        }}>{retagging ? "Cancel" : (artist ? "Wrong act? Fix it" : "Tag this moment")}</button>
         {retagging && (
           <div className="no-scrollbar" style={{ marginTop: 8, maxHeight: 176, overflowY: "auto", display: "flex", flexDirection: "column", gap: 6 }}>
             {retagOptions.map(a => {
@@ -2880,7 +2879,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
               const on = a.id === m.artistId;
               return (
                 <button key={a.id} onClick={() => { onUpdate?.(m, { artistId: a.id, tagSource: "manual", autoTagged: false }); setRetagging(false); try { window.plurskyHaptic?.("LIGHT"); } catch {} }} style={{
-                  display: "flex", alignItems: "center", gap: 8, padding: "8px 10px", borderRadius: 10,
+                  display: "flex", alignItems: "center", gap: 8, padding: "8px 10px", borderRadius: "var(--rad-sm)",
                   background: on ? "rgba(var(--ink-rgb),0.18)" : "rgba(var(--ink-rgb),0.06)",
                   border: `1px solid ${on ? "var(--ink)" : "rgba(var(--ink-rgb),0.14)"}`, cursor: "pointer", textAlign: "left",
                 }}>
@@ -2909,7 +2908,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           }).catch(() => {});
           setSharing(false);
         }} disabled={sharing} style={{
-          marginTop: 14, minHeight: 48, padding: "0 16px", borderRadius: 14, width: "100%",
+          marginTop: 14, minHeight: 48, padding: "0 16px", borderRadius: "var(--rad-md)", width: "100%",
           background: "var(--signal)", color: "var(--on-signal)", border: "none",
           fontSize: 15, lineHeight: "20px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit",
           display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
@@ -2926,7 +2925,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
             setConfirmDelete(false);
             onDelete(m);
           }} style={{
-            marginTop: 8, minHeight: 44, padding: "0 16px", borderRadius: 14, width: "100%",
+            marginTop: 8, minHeight: 44, padding: "0 16px", borderRadius: "var(--rad-md)", width: "100%",
             background: confirmDelete ? "rgba(var(--warn-rgb, 220,38,38),0.16)" : "transparent",
             color: confirmDelete ? "var(--warn)" : "rgba(var(--ink-rgb),0.7)",
             border: "none", fontSize: 15, lineHeight: "20px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit",
@@ -2936,7 +2935,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
         {/* Audio disagrees with the auto-tag → offer the correction */}
         {mismatch && (
           <button onClick={() => { onUpdate?.(m, { artistId: mismatch.id, tagSource: "video-shazam", autoTagged: false }); setMismatch(null); }} style={{
-            marginTop: 8, padding: "10px 12px", borderRadius: 10, width: "100%",
+            marginTop: 8, padding: "10px 12px", borderRadius: "var(--rad-sm)", width: "100%",
             background: "rgba(var(--signal-rgb),0.15)", border: "1px solid rgba(var(--signal-rgb),0.45)",
             color: "var(--signal-ink)", cursor: "pointer", textAlign: "left",
           }}>
@@ -2955,7 +2954,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
             moment between night buckets. */}
         {recovery && (
           <button onClick={() => { onRecoverNight?.(m, recovery); setRecovery(null); }} style={{
-            marginTop: 8, padding: "10px 12px", borderRadius: 10, width: "100%",
+            marginTop: 8, padding: "10px 12px", borderRadius: "var(--rad-sm)", width: "100%",
             background: "rgba(var(--signal-rgb),0.15)", border: "1px solid rgba(var(--signal-rgb),0.45)",
             color: "var(--ink)", cursor: "pointer", textAlign: "left",
           }}>
@@ -3286,8 +3285,8 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
   };
   return (
     <div ref={cardRef} style={{
-      background: "var(--paper-2)", border: "1px solid var(--line)",
-      borderRadius: 14, padding: 12, marginBottom: 10,
+      background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
+      borderRadius: "var(--rad-md)", padding: 12, marginBottom: 10,
     }}>
       {moment.photoId && (
         moment.kind === "video" ? (
@@ -3295,26 +3294,26 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
           <_TapToPlayVideo moment={moment} style={{ marginBottom: moment.text ? 10 : 8 }}/>
         ) : photoUrl ? ((
             <img src={photoUrl} alt="" onClick={() => onOpenLightbox?.(groupMoments || [moment], idx || 0)} style={{
-              width: "100%", borderRadius: 10, display: "block",
+              width: "100%", borderRadius: "var(--rad-sm)", display: "block",
               marginBottom: moment.text ? 10 : 8,
               cursor: "pointer",
             }}/>
           )
         ) : (
           <div style={{
-            width: "100%", aspectRatio: "4/3", borderRadius: 10,
-            background: "var(--paper)", border: "1px solid var(--line)",
+            width: "100%", aspectRatio: "4/3", borderRadius: "var(--rad-sm)",
+            background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
             display: "flex", alignItems: "center", justifyContent: "center",
             marginBottom: moment.text ? 10 : 8,
           }}>
-            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700 }}>
+            <span className="duo-label" style={{ color: "var(--ink-3)", }}>
               LOADING…
             </span>
           </div>
         )
       )}
       {moment.text && (
-        <div className="serif" style={{ fontSize: 18, lineHeight: 1.3, color: "var(--ink)" }}>
+        <div className="duo-headline" style={{ color: "var(--ink)" }}>
           {moment.text}
         </div>
       )}
@@ -3325,7 +3324,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
         const none = { offline: "Song match unavailable", "mic-denied": "No song · microphone off" }[moment.shazamOutcome] || "No song match";
         return (
           <div data-checkin-card style={{ display: "flex", flexDirection: "column", gap: 3 }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, color: st ? st.color : "var(--muted)" }}>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, color: st ? st.color : "var(--ink-2)" }}>
               ✓ CHECKED IN{st ? ` · ${st.name.toUpperCase()}` : ""}
             </div>
             <div style={{ fontSize: 13, color: "var(--ink)", opacity: sc ? 1 : 0.55, overflowWrap: "anywhere" }}>
@@ -3342,7 +3341,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
           {artist ? (
             <button onClick={() => onArtistClick(artist.id)} className="mono" style={{
               background: "var(--paper-2)",
-              color:      stage ? "var(--ink)" : "var(--muted)",
+              color:      stage ? "var(--ink)" : "var(--ink-2)",
               border:     "1px solid var(--line-2)",
               borderRadius: 999, padding: "3px 9px",
               fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
@@ -3391,14 +3390,14 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
           {/* Escape hatch when a sibling-suggestion is showing but wrong. */}
           {!artist && suggestion && onUpdate && (
             <button onClick={() => setEditing(true)} className="mono" style={{
-              background: "transparent", border: "none", color: "var(--muted)",
+              background: "transparent", border: "none", color: "var(--ink-2)",
               cursor: "pointer", fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
               padding: "3px 5px",
             }}>OTHER</button>
           )}
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0 }}>
-          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 600 }}>
+          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--ink-2)", fontWeight: 600 }}>
             {/* When you FILMED it (takenAt), not when you imported it (createdAt). */}
             {_fmtMomentTime(_momentTime(moment))}
           </span>
@@ -3409,7 +3408,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
           {artist && onUpdate && (
             <button onClick={() => setEditing(e => !e)} aria-label={editing ? "Done editing" : "Edit tag"} className="mono" style={{
               background: editing ? "var(--ink)" : "transparent",
-              color: editing ? "var(--paper)" : "var(--muted)",
+              color: editing ? "var(--paper)" : "var(--ink-2)",
               border: "none", borderRadius: 999, cursor: "pointer",
               fontSize: editing ? 9 : 12, letterSpacing: 1.1, fontWeight: 700,
               padding: editing ? "3px 8px" : "3px 5px",
@@ -3417,7 +3416,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
           )}
           <button onClick={() => onDelete(moment)} aria-label="Delete moment" style={{
             background: "transparent", border: "none",
-            color: "var(--muted)", cursor: "pointer",
+            color: "var(--ink-2)", cursor: "pointer",
             fontSize: 14, lineHeight: 1, opacity: 0.55, padding: "3px 4px",
           }}>×</button>
         </div>
@@ -3428,7 +3427,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
         <div className="mono" title={moment.takenAt ? `Photo time: ${moment.takenAt}` : undefined}
           style={{
             marginTop: 6, fontSize: 8.5, letterSpacing: 1, fontWeight: 600,
-            color: tagInfo?.tone === "warn" ? "var(--ember-ink)" : "var(--muted)",
+            color: tagInfo?.tone === "warn" ? "var(--ember-ink)" : "var(--ink-2)",
             opacity: tagInfo?.tone === "warn" ? 1 : 0.85,
           }}>
           {tagInfo ? `${tagInfo.text}${moment.takenAt ? ` · ${moment.takenAt.slice(11)}` : ""}` : ""}
@@ -3473,7 +3472,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
                 const totalMins = Math.round(duration / 60000);
                 return (
                   <div className="mono" style={{
-                    fontSize: 8, letterSpacing: 0.8, color: "var(--muted)",
+                    fontSize: 8, letterSpacing: 0.8, color: "var(--ink-2)",
                     marginTop: 1, display: "flex", alignItems: "center", gap: 4,
                   }}>
                     <span>{mins}min into {totalMins}min set</span>
@@ -3493,7 +3492,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
             <span className="mono" style={{
               fontSize: 8, letterSpacing: 0.8, padding: "2px 5px", borderRadius: 4, flexShrink: 0,
               background: nowPlaying.confidence === "exact" ? "rgba(var(--signal-rgb),0.15)" : "rgba(var(--signal-rgb),0.1)",
-              color: nowPlaying.confidence === "exact" ? "var(--success)" : "var(--ember-ink)",
+              color: nowPlaying.confidence === "exact" ? "var(--acc-ink)" : "var(--ember-ink)",
               fontWeight: 700,
             }}>{_songConfidenceLabel(nowPlaying.confidence)}</span>
           </div>
@@ -3504,7 +3503,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
           marginTop: 10, paddingTop: 10,
           borderTop: "1px solid var(--line)",
         }}>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginBottom: 6, fontWeight: 700 }}>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ink-2)", marginBottom: 6, fontWeight: 700 }}>
             NIGHT
           </div>
           <div style={{ display: "flex", gap: 6, marginBottom: 10 }}>
@@ -3521,7 +3520,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
               );
             })}
           </div>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginBottom: 6, fontWeight: 700 }}>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ink-2)", marginBottom: 6, fontWeight: 700 }}>
             {showAll ? "ALL SETS THIS NIGHT" : (savedNightArtists?.length ? "YOUR SAVED SETS THIS NIGHT" : "SETS THIS NIGHT")}
           </div>
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 8 }}>
@@ -3542,14 +3541,14 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
                 );
               })}
             {pickerArtists.length === 0 && (
-              <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", fontWeight: 600 }}>
+              <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--ink-2)", fontWeight: 600 }}>
                 NO SETS LISTED FOR THIS NIGHT
               </span>
             )}
           </div>
           {savedNightArtists?.length > 0 && (nightArtists?.length || 0) > savedNightArtists.length && (
             <button onClick={() => setShowAll(s => !s)} className="mono" style={{
-              background: "transparent", border: "none", color: "var(--muted)",
+              background: "transparent", border: "none", color: "var(--ink-2)",
               cursor: "pointer", fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
               padding: 0,
             }}>{showAll ? "← BACK TO SAVED ONLY" : "SHOW ALL SETS THIS NIGHT →"}</button>
@@ -3823,35 +3822,32 @@ function PeakMomentCard({ peak, accent, onOpenLightbox, onPlayReel }) {
   const windowLabel = _fmtSpanMins(windowMs);
   const a = accent || "var(--ember)";
   return (
-    <div style={{
-      marginTop: 10, marginBottom: 6, borderRadius: 14, padding: 12,
-      background: `linear-gradient(135deg, ${a}1f, var(--paper-2))`,
-      border: `1px solid ${a}40`,
+    // The board's lifted card: the night's one highlight, so it takes the
+    // glow instead of a tinted gradient.
+    <div className="duo-card duo-lift" style={{
+      marginTop: 10, marginBottom: 6, padding: "14px 16px",
     }}>
       {/* wrap + rowGap: at 320px and 200% text the RELIVE button used to fight
           the multi-line count copy on one line. It drops below instead. */}
       <div style={{ display: "flex", alignItems: "center", gap: 9, flexWrap: "wrap", rowGap: 8 }}>
-        <span style={{ fontSize: 15 }} aria-hidden="true">🔥</span>
         <div style={{ flex: "1 1 160px", minWidth: 0 }}>
-          <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.4, fontWeight: 800, color: a }}>
-            YOUR PEAK
+          <div className="duo-label duo-acc">
+            Your peak
           </div>
           {/* The count is of the window; the span is of the captures. Saying
               both is the whole point — never "N moments in 20 minutes". */}
-          <div className="serif" style={{ fontSize: 17, color: "var(--ink)", lineHeight: 1.15, marginTop: 1 }}>
+          <div className="duo-headline" style={{ color: "var(--ink)", marginTop: 4 }}>
             {items.length} moment{items.length === 1 ? "" : "s"} in your busiest {windowLabel}
           </div>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", fontWeight: 600, marginTop: 2, lineHeight: 1.5 }}>
+          <div className="duo-data-s duo-ink2" style={{ marginTop: 3 }}>
             {_clock12(startMs)} – {_clock12(endMs)} · captures span {_fmtSpanMins(spanMs)}
           </div>
         </div>
         {onPlayReel && (
-          <button onClick={() => { try { window.plurskyHaptic?.("MEDIUM"); } catch {} onPlayReel(items); }} className="mono" style={{
-            flexShrink: 0, background: a, color: "var(--ink)", border: "none",
-            borderRadius: 999, padding: "0 14px", minHeight: 44, minWidth: 44, cursor: "pointer",
-            fontSize: 9, letterSpacing: 1.2, fontWeight: 800,
-            display: "flex", alignItems: "center", justifyContent: "center", gap: 5,
-          }}>▶ RELIVE</button>
+          <button onClick={() => { try { window.plurskyHaptic?.("MEDIUM"); } catch {} onPlayReel(items); }} className="duo-btn" style={{
+            flexShrink: 0, background: "var(--acc)", color: "var(--on-acc)",
+            minHeight: 44, padding: "0 16px", fontSize: 15,
+          }}>▶ Relive</button>
         )}
       </div>
       <div className="no-scrollbar" style={{ display: "flex", gap: 5, overflowX: "auto", marginTop: 10 }}>
@@ -3912,7 +3908,7 @@ function SetSongTimeline({ artist, moments, onOpenMoment }) {
         color: accent, fontSize: 9, letterSpacing: 1.2, fontWeight: 800, textAlign: "left",
       }}>
         <span>🎵 {filmed.length} SONG{filmed.length === 1 ? "" : "S"} YOU FILMED</span>
-        <span style={{ marginLeft: "auto", color: "var(--muted)", fontSize: 11 }}>{open ? "▾" : "▸"}</span>
+        <span style={{ marginLeft: "auto", color: "var(--ink-2)", fontSize: 11 }}>{open ? "▾" : "▸"}</span>
       </button>
       {open && (
         <div style={{ marginTop: 8, display: "flex", flexDirection: "column", gap: 6 }}>
@@ -3922,13 +3918,13 @@ function SetSongTimeline({ artist, moments, onOpenMoment }) {
               onKeyDown={e => { if (e.key === "Enter" || e.key === " ") onOpenMoment?.(m); }}
               style={{
                 display: "flex", alignItems: "center", gap: 10, width: "100%",
-                background: "var(--paper)", border: "1px solid var(--line)", borderRadius: 10,
+                background: "var(--s2)", boxShadow: "var(--e1)", border: "none", borderRadius: "var(--rad-sm)",
                 padding: 6, cursor: "pointer", textAlign: "left",
               }}>
               <_GroupHeroThumb moment={m} accent={accent} onClick={() => onOpenMoment?.(m)} />
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div className="mono" style={{ fontSize: 11, fontWeight: 700, color: "var(--ink)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>♫ {song}</div>
-                <div className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--muted)", fontWeight: 700, marginTop: 2 }}>
+                <div className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--ink-2)", fontWeight: 700, marginTop: 2 }}>
                   {m.takenAt ? m.takenAt.slice(11) : ""}{" · " + _songConfidenceLabel(confidence)}{m.kind === "video" ? " · VIDEO" : ""}
                 </div>
               </div>
@@ -4109,16 +4105,16 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
 
   return (
     <div style={{
-      background: "var(--paper-2)", border: "1px solid var(--line-2)",
-      borderRadius: 14, padding: 14, marginTop: 8, marginBottom: 14,
+      background: "var(--s3)", border: "none",
+      borderRadius: "var(--rad-md)", padding: 14, marginTop: 8, marginBottom: 14,
     }}>
       {previewUrl ? (
         <div style={{ position: "relative", marginBottom: 10 }}>
           {mediaKind === "video" ? (
             <video src={previewUrl} controls playsInline
-              style={{ width: "100%", borderRadius: 10, display: "block", background: "var(--paper)" }}/>
+              style={{ width: "100%", borderRadius: "var(--rad-sm)", display: "block", background: "var(--paper)" }}/>
           ) : (
-            <img src={previewUrl} alt="" style={{ width: "100%", borderRadius: 10, display: "block" }}/>
+            <img src={previewUrl} alt="" style={{ width: "100%", borderRadius: "var(--rad-sm)", display: "block" }}/>
           )}
           <button onClick={clearPhoto} aria-label="Remove media" style={{
             position: "absolute", top: 8, right: 8,
@@ -4133,8 +4129,8 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
         <label style={{
           display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
           padding: "14px", background: "var(--paper)", border: "1px dashed var(--line-2)",
-          borderRadius: 10, cursor: "pointer", marginBottom: 10,
-          color: "var(--muted)",
+          borderRadius: "var(--rad-sm)", cursor: "pointer", marginBottom: 10,
+          color: "var(--ink-2)",
           fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
         }}>
           <span>📷 ADD PHOTO OR VIDEO (OPTIONAL)</span>
@@ -4152,7 +4148,7 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
         style={{
           width: "100%", padding: "10px 12px", boxSizing: "border-box",
           background: "var(--paper)", border: "1px solid var(--line-2)",
-          borderRadius: 10, resize: "none",
+          borderRadius: "var(--rad-sm)", resize: "none",
           fontFamily: "Geist, sans-serif", fontSize: 14, lineHeight: 1.4,
           color: "var(--ink)", outline: "none", marginBottom: 10,
         }}
@@ -4160,7 +4156,7 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
 
       {savedNightArtists.length > 0 && (
         <div style={{ marginBottom: 10 }}>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginBottom: 6, fontWeight: 700 }}>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ink-2)", marginBottom: 6, fontWeight: 700 }}>
             TAG A SET (OPTIONAL)
           </div>
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
@@ -4189,13 +4185,13 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
 
       <div style={{ display: "flex", gap: 8 }}>
         <button onClick={onCancel} disabled={busy} className="mono" style={{
-          flex: 1, padding: "12px", borderRadius: 10,
+          flex: 1, padding: "12px", borderRadius: "var(--rad-sm)",
           background: "transparent", border: "1px solid var(--line-2)", color: "var(--ink)",
           fontSize: 10, letterSpacing: 1.2, fontWeight: 700, cursor: busy ? "default" : "pointer",
         }}>CANCEL</button>
         <button onClick={handleSave} disabled={busy} className="mono" style={{
-          flex: 2, padding: "12px", borderRadius: 10,
-          background: busy ? "var(--muted)" : "var(--ember)",
+          flex: 2, padding: "12px", borderRadius: "var(--rad-sm)",
+          background: busy ? "var(--ink-2)" : "var(--ember)",
           color: "var(--ink)", border: "none",
           fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
           cursor: busy ? "default" : "pointer",
@@ -4363,14 +4359,14 @@ function _ReviewPicker({ moments, onClose, onApply }) {
         background: "var(--paper)", borderRadius: "18px 18px 0 0", borderTop: "1px solid var(--line)",
       }}>
         <div style={{ padding: "14px 16px 8px", flexShrink: 0 }}>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>
+          <div className="duo-label" style={{ color: "var(--ink-3)", }}>
             {n === 1 ? "TAG THIS MOMENT" : `TAG ${n} MOMENTS`}
           </div>
           <div style={{ display: "flex", gap: 6, marginTop: 8, overflowX: "auto" }}>
             {nights.map(d => <button key={d.n} onClick={() => setNight(d.n)} style={chip(String(d.n) === String(night))}>{d.label}</button>)}
           </div>
           <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search this night's sets" aria-label="Search sets" style={{
-            width: "100%", boxSizing: "border-box", marginTop: 8, padding: "9px 11px", borderRadius: 10,
+            width: "100%", boxSizing: "border-box", marginTop: 8, padding: "9px 11px", borderRadius: "var(--rad-sm)",
             border: "1px solid var(--line-2)", background: "var(--paper)", color: "var(--ink)", fontSize: 14, outline: "none",
           }}/>
         </div>
@@ -4386,14 +4382,14 @@ function _ReviewPicker({ moments, onClose, onApply }) {
                 <span style={{ flex: 1, minWidth: 0, fontSize: 14, fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                   {saved.has(a.id) ? "★ " : ""}{a.name}
                 </span>
-                <span className="mono" style={{ fontSize: 9, letterSpacing: 0.8, color: "var(--muted)", flexShrink: 0 }}>
+                <span className="mono" style={{ fontSize: 9, letterSpacing: 0.8, color: "var(--ink-2)", flexShrink: 0 }}>
                   {[st && st.short, a.start && fmt12(a.start)].filter(Boolean).join(" · ")}
                 </span>
               </button>
             );
           })}
-          {!sets.length && <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", padding: "12px 0" }}>NO SETS MATCH</div>}
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700, margin: "12px 0 6px" }}>OR JUST THE STAGE</div>
+          {!sets.length && <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--ink-2)", padding: "12px 0" }}>NO SETS MATCH</div>}
+          <div className="duo-label" style={{ color: "var(--ink-3)", margin: "12px 0 6px" }}>OR JUST THE STAGE</div>
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap", paddingBottom: 12 }}>
             {stages.map(s => <button key={s.id} data-pick-stage={s.id} onClick={() => onApply({ stageId: s.id }, night)} style={chip(false)}>{s.short || s.name}</button>)}
           </div>
@@ -4482,12 +4478,12 @@ function ImportReview({ results, moments, onClose, onPatch, onMove }) {
         display: "flex", flexDirection: "column", overflow: "hidden",
       }}>
         <div style={{ padding: "14px 18px 10px", borderBottom: "1px solid var(--line)", flexShrink: 0 }}>
-          <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, color: "var(--ink)" }}>
+          <div className="duo-headline" style={{ color: "var(--ink)" }}>
             {need === 0 ? <>All {rows.length} <span style={{ fontStyle: "italic" }}>tagged</span></>
                         : <>{need} need{need === 1 ? "s" : ""} a <span style={{ fontStyle: "italic" }}>set</span></>}
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4 }}>
-            <div data-review-counts style={{ ...mono, fontSize: 9, color: "var(--muted)", flex: 1 }}>
+            <div data-review-counts style={{ ...mono, fontSize: 9, color: "var(--ink-2)", flex: 1 }}>
               {/* Import results carry file names; the review-later list does not, and calling it "imported" there would not be true. */}
               {[(results || []).some(r => r.name) && `${rows.length} IMPORTED`, need ? `${need} NEED REVIEW` : "ALL ANSWERED"].filter(Boolean).join(" · ")}
             </div>
@@ -4502,7 +4498,7 @@ function ImportReview({ results, moments, onClose, onPatch, onMove }) {
         <div style={{ flex: 1, minHeight: 0, overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "4px 12px 8px" }}>
           {groups.map(g => (
             <div key={g.key} data-review-group={g.key}>
-              <div style={{ ...mono, fontSize: 9, color: "var(--muted)", margin: "12px 2px 4px" }}>
+              <div style={{ ...mono, fontSize: 9, color: "var(--ink-2)", margin: "12px 2px 4px" }}>
                 {[g.fest && g.fest.toUpperCase(), g.day ? (g.day.name || g.day.short || "").toUpperCase() : `NIGHT ${g.night}`].filter(Boolean).join(" · ")}
               </div>
               {[...g.stages.values()].map(sg => (
@@ -4514,7 +4510,7 @@ function ImportReview({ results, moments, onClose, onPatch, onMove }) {
                     const on = sel.has(r.id);
                     return (
                       <div key={r.id} data-review-row={r.id} data-review-state={r.review ? "review" : "ok"} style={{
-                        display: "flex", alignItems: "center", gap: 9, padding: "7px 8px", marginBottom: 4, borderRadius: 10,
+                        display: "flex", alignItems: "center", gap: 9, padding: "7px 8px", marginBottom: 4, borderRadius: "var(--rad-sm)",
                         background: r.review ? "rgba(var(--signal-rgb),0.07)" : "transparent",
                         border: r.review ? "1px solid rgba(var(--signal-rgb),0.45)" : "1px solid var(--line)",
                       }}>
@@ -4539,18 +4535,18 @@ function ImportReview({ results, moments, onClose, onPatch, onMove }) {
                           cursor: "pointer", color: "var(--ink)", fontFamily: "inherit",
                         }}>
                           <div style={{ fontSize: 14, lineHeight: 1.15, fontWeight: r.artist ? 700 : 500,
-                                        color: r.artist ? "var(--ink)" : r.review ? "var(--ember-ink)" : "var(--muted)",
+                                        color: r.artist ? "var(--ink)" : r.review ? "var(--ember-ink)" : "var(--ink-2)",
                                         overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                             {r.artist ? r.artist.name : r.m.tagSource === "unknown" ? "Unknown" : r.stage ? "Set not picked" : "No set matched"}
                           </div>
-                          <div style={{ ...mono, fontSize: 8.5, letterSpacing: 0.9, color: "var(--muted)", marginTop: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                          <div style={{ ...mono, fontSize: 8.5, letterSpacing: 0.9, color: "var(--ink-2)", marginTop: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                             {[r.fest, r.day ? r.day.short : `NIGHT ${r.m.night}`, r.stage && r.stage.short].filter(Boolean).join(" · ")}
                           </div>
-                          <div data-review-basis style={{ fontSize: 10.5, color: "var(--muted)", marginTop: 2, opacity: 0.85, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                          <div data-review-basis style={{ fontSize: 10.5, color: "var(--ink-2)", marginTop: 2, opacity: 0.85, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                             {basis(r.m)}
                           </div>
                         </button>
-                        <span style={{ ...mono, flexShrink: 0, fontSize: 9, color: r.review ? "var(--ember-ink)" : "var(--success)" }}>{r.review ? "FIX" : "✓"}</span>
+                        <span style={{ ...mono, flexShrink: 0, fontSize: 9, color: r.review ? "var(--ember-ink)" : "var(--acc-ink)" }}>{r.review ? "FIX" : "✓"}</span>
                       </div>
                     );
                   })}
@@ -4563,15 +4559,15 @@ function ImportReview({ results, moments, onClose, onPatch, onMove }) {
         <div style={{ padding: "10px 14px calc(12px + env(safe-area-inset-bottom))", borderTop: "1px solid var(--line)", flexShrink: 0 }}>
           {sel.size > 0 ? (
             <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-              <div style={{ ...mono, fontSize: 9, color: "var(--muted)", flex: 1 }}>
+              <div style={{ ...mono, fontSize: 9, color: "var(--ink-2)", flex: 1 }}>
                 {oneFestival ? `${sel.size} SELECTED` : "SELECT ONE FESTIVAL'S MOMENTS"}
               </div>
-              <button onClick={() => setSel(new Set())} style={{ ...mono, fontSize: 10, minHeight: 44, padding: "0 14px", borderRadius: 12, border: "1px solid var(--line-2)", background: "transparent", color: "var(--ink)", cursor: "pointer" }}>CLEAR</button>
-              <button data-review-batch disabled={!oneFestival} onClick={() => setPicking([...sel])} style={{ ...mono, fontSize: 10, minHeight: 44, padding: "0 16px", borderRadius: 12, border: "none", background: "var(--ink)", color: "var(--paper)", cursor: oneFestival ? "pointer" : "default", opacity: oneFestival ? 1 : 0.4 }}>TAG {sel.size}</button>
+              <button onClick={() => setSel(new Set())} style={{ ...mono, fontSize: 10, minHeight: 44, padding: "0 14px", borderRadius: "var(--rad-md)", border: "1px solid var(--line-2)", background: "transparent", color: "var(--ink)", cursor: "pointer" }}>CLEAR</button>
+              <button data-review-batch disabled={!oneFestival} onClick={() => setPicking([...sel])} style={{ ...mono, fontSize: 10, minHeight: 44, padding: "0 16px", borderRadius: "var(--rad-md)", border: "none", background: "var(--ink)", color: "var(--paper)", cursor: oneFestival ? "pointer" : "default", opacity: oneFestival ? 1 : 0.4 }}>TAG {sel.size}</button>
             </div>
           ) : (
             <button data-review-done onClick={onClose} className="mono" style={{
-              width: "100%", minHeight: 44, padding: "12px 0", borderRadius: 12, border: "none",
+              width: "100%", minHeight: 44, padding: "12px 0", borderRadius: "var(--rad-md)", border: "none",
               background: "var(--ink)", color: "var(--paper)", cursor: "pointer",
               fontSize: 11, letterSpacing: 1.3, fontWeight: 800,
             }}>{need === 0 ? `LOOKS RIGHT · ${rows.length} SAVED` : `DONE · ${need} LEFT TO REVIEW LATER`}</button>
@@ -4627,9 +4623,9 @@ function StorageManager({ all, onChange }) {
   return (
     <div style={{
       marginTop: 22, padding: "14px 16px",
-      background: "var(--paper-2)", border: "1px solid var(--line)", borderRadius: 14,
+      background: "var(--s2)", boxShadow: "var(--e1)", border: "none", borderRadius: "var(--rad-md)",
     }}>
-      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700, marginBottom: 10 }}>
+      <div className="duo-label" style={{ color: "var(--ink-3)", marginBottom: 10 }}>
         STORAGE
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 4 }}>
@@ -4637,7 +4633,7 @@ function StorageManager({ all, onChange }) {
           {totalMoments} moment{totalMoments === 1 ? "" : "s"}
         </span>
         {usage?.used != null && (
-          <span className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "var(--muted)", fontWeight: 600 }}>
+          <span className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "var(--ink-2)", fontWeight: 600 }}>
             {fmtBytes(usage.used)}{usage.quota ? ` / ${fmtBytes(usage.quota)}` : ""}
           </span>
         )}
@@ -4679,10 +4675,10 @@ function StorageManager({ all, onChange }) {
             }}>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 13, color: "var(--ink)" }}>
-                  {d.label} <span className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "var(--muted)", fontWeight: 600 }}>· {list.length} TOTAL</span>
+                  {d.label} <span className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "var(--ink-2)", fontWeight: 600 }}>· {list.length} TOTAL</span>
                 </div>
                 {(photos > 0 || videos > 0) && (
-                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2, fontWeight: 600 }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--ink-2)", marginTop: 2, fontWeight: 600 }}>
                     {photos > 0 && `${photos} PHOTO${photos === 1 ? "" : "S"}`}
                     {photos > 0 && videos > 0 && " · "}
                     {videos > 0 && `${videos} VIDEO${videos === 1 ? "" : "S"}`}
@@ -4706,7 +4702,7 @@ function StorageManager({ all, onChange }) {
                   minHeight: 44, minWidth: 44, padding: "0 12px", borderRadius: 999,
                   display: "inline-flex", alignItems: "center", justifyContent: "center",
                   background: "transparent", border: "1px solid var(--line-2)",
-                  color: "var(--muted)", cursor: "pointer", fontSize: 9, letterSpacing: 1, fontWeight: 700,
+                  color: "var(--ink-2)", cursor: "pointer", fontSize: 9, letterSpacing: 1, fontWeight: 700,
                 }}>CLEAR</button>
               )}
             </div>
@@ -4739,7 +4735,7 @@ function StorageManager({ all, onChange }) {
             <button onClick={() => setConfirming("all")} className="mono" style={{
               minHeight: 44, padding: "8px 14px", width: "100%", borderRadius: 8,
               background: "transparent", border: "1px dashed var(--line-2)",
-              color: "var(--muted)", cursor: "pointer",
+              color: "var(--ink-2)", cursor: "pointer",
               fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
             }}>🗑  CLEAR ALL MEMORIES</button>
           )}
@@ -5662,15 +5658,14 @@ function _NightMap({ moments, onPinTap }) {
   return (
     <div style={{ marginTop: 8 }}>
       {/* 38px tall before v341, under the 44 floor. */}
-      <button onClick={() => setOpen(o => !o)} aria-expanded={open} className="mono" style={{
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        width: "100%", minHeight: 44, padding: "0 12px", borderRadius: 10,
-        background: "var(--paper-2)", border: "1px solid var(--line)",
-        color: "var(--muted)", cursor: "pointer",
-        fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
+      <button onClick={() => setOpen(o => !o)} aria-expanded={open} className="duo-card" style={{
+        display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
+        width: "100%", minHeight: 48, padding: "0 16px",
+        border: "none", color: "var(--ink)", cursor: "pointer",
       }}>
-        <span style={{ minWidth: 0, overflowWrap: "anywhere", textAlign: "left" }}>📍 WHERE THIS NIGHT HAPPENED</span>
-        <span style={{ flexShrink: 0, marginLeft: 8 }}>{open ? "▾" : "▸"}</span>
+        <span className="duo-body-s" style={{ minWidth: 0, overflowWrap: "anywhere", textAlign: "left", fontSize: 15 }}>Where this night happened</span>
+        <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+          style={{ flexShrink: 0, transform: open ? "rotate(90deg)" : "none", transition: "transform .2s" }}><path d="M9 18 L15 12 L9 6"/></svg>
       </button>
       {open && <div style={{ marginTop: 8 }}><MemoriesMapTab moments={moments} onPinTap={onPinTap} /></div>}
     </div>
@@ -5686,20 +5681,16 @@ function _NightShareMenu({ night, moments }) {
       {/* minHeight/minWidth 44: this measured 88x26 in the v341 pixel pass,
           under the 44x44 floor the design wave gates on. The visual pill is
           unchanged — the padding grows the TARGET, not the ink. */}
-      <button onClick={() => setOpen(o => !o)} className="mono" style={{
-        background: "var(--paper-2)", color: "var(--text-2)", border: "none",
-        borderRadius: 999, padding: "0 12px", cursor: "pointer",
-        minHeight: 44, minWidth: 44,
-        display: "inline-flex", alignItems: "center", justifyContent: "center",
-        fontSize: 9, letterSpacing: 1.2, fontWeight: 700, whiteSpace: "nowrap",
-      }}>📸 SHARE ▾</button>
+      <button onClick={() => setOpen(o => !o)} aria-expanded={open} className="duo-chip">
+        <span>Share ▾</span>
+      </button>
       {open && (
         <>
           <div onClick={() => setOpen(false)} style={{ position: "fixed", inset: 0, zIndex: 4 }} />
           <div style={{
             position: "absolute", right: 0, top: "calc(100% + 4px)", zIndex: 5,
-            background: "var(--paper)", border: "1px solid var(--line)", borderRadius: 10,
-            boxShadow: "0 6px 20px rgba(var(--shade-rgb),0.18)", overflow: "hidden", minWidth: 140,
+            background: "var(--s1)", border: "none", borderRadius: "var(--rad-sm)",
+            boxShadow: "var(--e2)", overflow: "hidden", minWidth: 168,
           }}>
             {[["📸 Collage", undefined], ["🎬 Animated GIF", "gif"], ["🎞 Night video", "video"]].map(([lbl, mode], i) => (
               <button key={lbl}
@@ -5710,12 +5701,12 @@ function _NightShareMenu({ night, moments }) {
                   if (mode === "video") { window._shareScopedRecap?.({ scope: "night", night, moments }); return; }
                   window._shareNightCollage?.(night, moments, mode);
                 }}
-                className="mono" style={{
+                className="duo-body-s" style={{
                   display: "block", width: "100%", textAlign: "left",
                   background: "transparent", border: "none",
                   borderTop: i ? "1px solid var(--line)" : "none",
-                  padding: "10px 12px", cursor: "pointer",
-                  fontSize: 10, letterSpacing: 0.6, color: "var(--ink)", fontWeight: 600,
+                  padding: "0 14px", minHeight: 44, cursor: "pointer",
+                  fontSize: 15, color: "var(--ink)",
                 }}>{lbl}</button>
             ))}
           </div>
@@ -5898,8 +5889,8 @@ function _LibraryCover({ moment, onClick, label }) {
   if (!moment) return null;
   return (
     <button onClick={onClick} aria-label={label || "Open this set's photos"} style={{
-      flexShrink: 0, width: 56, height: 56, borderRadius: 12, padding: 0, cursor: "pointer",
-      overflow: "hidden", border: "1px solid var(--line)", background: "var(--paper-2)",
+      flexShrink: 0, width: 56, height: 56, borderRadius: "var(--rad-sm)", padding: 0, cursor: "pointer",
+      overflow: "hidden", border: "none", background: "var(--s3)",
       position: "relative",
     }}>
       <_ThumbMedia moment={moment} thumb={thumb} showLength={false}/>
@@ -5919,7 +5910,7 @@ function _LibraryCover({ moment, onClick, label }) {
 // destroyed the provenance a retag needs.
 function _libraryGroupChrome(group) {
   if (group.kind === "between") {
-    return { eyebrow: "BETWEEN SETS", eyebrowColor: "var(--ember-ink)", spine: "var(--ember)",
+    return { eyebrow: "Between sets", eyebrowColor: "var(--ink-2)", spine: "var(--line-2)",
              title: "Other moments", note: null };
   }
   if (group.kind === "review") {
@@ -5935,7 +5926,7 @@ function _libraryGroupChrome(group) {
     // control), so the button offers only the clips a retag can clear, and
     // a group of festival conflicts alone gets no button at all.
     const retag = [...(group.media || []), ...(group.notes || [])].filter(m => !m.festivalReview);
-    return { eyebrow: "NEEDS REVIEW", eyebrowColor: "var(--warn)", spine: "var(--warn)", retag,
+    return { eyebrow: "Needs review", eyebrowColor: "var(--warn)", spine: "var(--warn)", retag,
              title: setOnly ? "Set not in this festival"
                : festOnly ? "Outside this festival’s dates"
                : "Check these clips",
@@ -5945,10 +5936,10 @@ function _libraryGroupChrome(group) {
                : "Some are tagged to a set this festival doesn’t have. Others were shot outside this festival’s dates." };
   }
   const a = group.artist, s = group.stage;
+  // A set card reads like a Lineup row: the name, then stage · time under it.
   return {
-    eyebrow: [(s && (s.short || s.name) || "").toUpperCase(),
-              group.setTime && typeof fmt12 === "function" ? fmt12(group.setTime) : ""].filter(Boolean).join(" · "),
-    eyebrowColor: "var(--text-2)", spine: "var(--line-2)",
+    eyebrow: null, eyebrowColor: null, spine: null,
+    meta: [s && s.name, group.setTime && typeof fmt12 === "function" ? fmt12(group.setTime) : ""].filter(Boolean).join(" · "),
     title: (a && a.name) || "Unknown set", note: null,
   };
 }
@@ -5967,15 +5958,16 @@ function LibraryGroupCard({ group, onOpenLightbox, onArtistClick, onReview, bulk
     ? () => onArtistClick(group.artistId)
     : (group.ordered.length > 0 ? () => openAt(0) : null);
   return (
-    <div style={{
-      marginTop: 10, padding: "10px 12px", borderRadius: 14,
-      background: "var(--paper-2)", border: "1px solid var(--line)",
+    <div className="duo-card" style={{
+      marginTop: 10, padding: "10px 12px 10px 16px",
+      // Review and Between sets keep their spine as an inset edge; a set
+      // card has none (stage colours stay on the map).
+      boxShadow: chrome.spine ? `inset 3px 0 0 ${chrome.spine}, var(--e1)` : "var(--e1)",
       // A bounded card with a floor: the height cannot collapse while media
       // resolves and cannot jump when it fails, so scroll survives both.
       minHeight: 64, boxSizing: "border-box",
     }}>
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <span aria-hidden="true" style={{ width: 4, alignSelf: "stretch", minHeight: 40, background: chrome.spine, borderRadius: 3, flexShrink: 0 }}/>
         <button
           onClick={titleTap || undefined}
           disabled={!titleTap}
@@ -5986,20 +5978,20 @@ function LibraryGroupCard({ group, onOpenLightbox, onArtistClick, onReview, bulk
             minHeight: 44,
           }}>
           {chrome.eyebrow && (
-            <span className="mono" style={{ display: "block", fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: chrome.eyebrowColor }}>
+            <span className="duo-label" style={{ display: "block", color: chrome.eyebrowColor, marginBottom: 2 }}>
               {chrome.eyebrow}
             </span>
           )}
           {/* Wraps instead of truncating: at 200% text a clipped artist name
               is an ambiguous row and the full value is nowhere else on screen. */}
-          <span className="serif" style={{ display: "block", fontSize: 18, lineHeight: 1.15, color: "var(--ink)", marginTop: 2, overflowWrap: "anywhere" }}>
+          <span className="duo-headline" style={{ display: "block", fontWeight: 700, color: "var(--ink)", overflowWrap: "anywhere" }}>
             {chrome.title}
           </span>
+          {chrome.meta && (
+            <span className="duo-body-s duo-ink2" style={{ display: "block", fontWeight: 400, marginTop: 1 }}>{chrome.meta}</span>
+          )}
         </button>
-        <span className="mono" style={{
-          flexShrink: 0, fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
-          color: n ? "var(--muted)" : "var(--text-2)", fontVariantNumeric: "tabular-nums",
-        }}>{countLabel}</span>
+        <span className="duo-data-s duo-ink2" style={{ flexShrink: 0 }}>{countLabel}</span>
         {group.hero && (
           <_LibraryCover moment={group.hero} onClick={() => openAt(0)}
             label={`Open ${chrome.title} — ${n} ${unit}`} />
@@ -6054,9 +6046,9 @@ function LibraryGroupCard({ group, onOpenLightbox, onArtistClick, onReview, bulk
       {/* Retag without going through Manage, where the work actually is. */}
       {group.kind === "review" && chrome.retag.length > 0 && onReview && (
         <button onClick={() => onReview(chrome.retag)} style={{
-          marginTop: 8, minHeight: 44, width: "100%", padding: "0 14px", borderRadius: 12,
-          background: "var(--paper-3)", border: "none", cursor: "pointer",
-          color: "var(--ink)", fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit",
+          marginTop: 8, minHeight: 44, width: "100%", padding: "0 14px", borderRadius: "var(--rad-sm)",
+          background: "var(--s3)", border: "none", cursor: "pointer",
+          color: "var(--ink)", fontSize: 15, lineHeight: 1.33, fontWeight: 650, fontFamily: "inherit",
         }}>Retag {chrome.retag.length === 1 ? "this clip" : `these ${chrome.retag.length} clips`}</button>
       )}
       {group.kind === "between" && bulkRetag}
@@ -6909,13 +6901,15 @@ function MemoriesScreen({ state, setState }) {
         {pickerAvailable && totalCount > 0 && (
         <button onClick={handlePickClick}
           disabled={!!batch && batch.done < batch.total}
-          style={{ display: "flex", alignItems: "center", gap: 12, width: "100%", minHeight: 64, marginTop: 12, padding: "10px 16px", background: "var(--paper-2)", border: "none", borderRadius: 14, color: "var(--ink)", textAlign: "left", fontFamily: "inherit", cursor: "pointer" }}>
-          <span aria-hidden="true" style={{ fontSize: 20 }}>✨</span>
-          <span style={{ flex: 1, minWidth: 0, overflowWrap: "anywhere" }}>
-            <span style={{ display: "block", fontSize: 17, lineHeight: 1.29, fontWeight: 600 }}>Import from camera roll</span>
-            <span style={{ display: "block", fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>Auto-tags by time and location</span>
+          className="duo-card" style={{ display: "flex", alignItems: "center", gap: 12, width: "100%", minHeight: 64, marginTop: 12, padding: "10px 16px", border: "none", color: "var(--ink)", textAlign: "left", fontFamily: "inherit", cursor: "pointer" }}>
+          <span aria-hidden="true" className="duo-well" style={{ width: 40, height: 40, flexShrink: 0, display: "grid", placeItems: "center", color: "var(--acc-ink)" }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16 l-5-5 L6 19"/></svg>
           </span>
-          <span style={{ fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{batch && batch.done < batch.total ? `${batch.done}/${batch.total}` : "Pick"}</span>
+          <span style={{ flex: 1, minWidth: 0, overflowWrap: "anywhere" }}>
+            <span className="duo-headline" style={{ display: "block" }}>Import from camera roll</span>
+            <span className="duo-body-s duo-ink2" style={{ display: "block", fontWeight: 400 }}>Auto-tags by time and location</span>
+          </span>
+          <span className={batch && batch.done < batch.total ? "duo-data" : "duo-body-s"} style={{ color: "var(--acc-ink)", fontWeight: 650, fontSize: 15 }}>{batch && batch.done < batch.total ? `${batch.done}/${batch.total}` : "Pick"}</span>
         </button>
         )}
 
@@ -6951,12 +6945,15 @@ function MemoriesScreen({ state, setState }) {
           );
         })()}
         {!batch && reviewIds.length > 0 && (
-          <button data-review-later onClick={() => setReview(reviewIds.map(id => ({ momentId: id })))} style={{
-            display: "block", width: "100%", textAlign: "left", marginTop: 8, minHeight: 44, padding: "8px 16px", borderRadius: 14, cursor: "pointer",
-            background: "var(--paper-2)", border: "none", color: "var(--warn)", fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit",
+          <button data-review-later onClick={() => setReview(reviewIds.map(id => ({ momentId: id })))} className="duo-card" style={{
+            display: "flex", alignItems: "center", gap: 10, width: "100%", textAlign: "left", marginTop: 8, minHeight: 52, padding: "8px 16px", cursor: "pointer",
+            border: "none", color: "var(--ink)", fontFamily: "inherit",
             overflowWrap: "anywhere",
           }}>
-            ⚑ {reviewIds.length} {reviewIds.length === 1 ? "moment needs" : "moments need"} a set · Review
+            <i aria-hidden="true" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--warn)", flexShrink: 0 }} />
+            <span className="duo-body-s" style={{ flex: 1, minWidth: 0, fontSize: 15 }}>
+              {reviewIds.length} {reviewIds.length === 1 ? "moment needs" : "moments need"} a set · <span style={{ color: "var(--acc-ink)", fontWeight: 650 }}>Review</span>
+            </span>
           </button>
         )}
         {batch && batch.done === batch.total && (() => {
@@ -7108,16 +7105,10 @@ function MemoriesScreen({ state, setState }) {
               ].map(f => {
                 const on = view === "library" && filter === f.id;
                 return (
-                  <button key={f.id} role="tab" aria-selected={on}
-                    onClick={() => { setView("library"); setFilter(f.id); }}
-                    style={{
-                      flex: "0 0 auto", minHeight: 44, padding: "0 14px", borderRadius: 999,
-                      border: "none", cursor: "pointer",
-                      background: on ? "var(--paper-3)" : "var(--paper-2)",
-                      boxShadow: on ? "inset 0 0 0 1.5px var(--signal)" : "none",
-                      color: on ? "var(--ink)" : "var(--text-2)",
-                      fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit",
-                    }}>{f.label}</button>
+                  <button key={f.id} role="tab" aria-selected={on} className="duo-chip"
+                    onClick={() => { setView("library"); setFilter(f.id); }}>
+                    <span style={{ fontSize: 14, height: 36, padding: "0 13px" }}>{f.label}</span>
+                  </button>
                 );
               })}
             </div>
@@ -7131,18 +7122,10 @@ function MemoriesScreen({ state, setState }) {
               <button
                 onClick={() => setView(v => (v === "grid" ? "library" : "grid"))}
                 aria-pressed={view === "grid"}
-                style={{
-                  minHeight: 44, padding: "0 10px", borderRadius: 12,
-                  border: "none", cursor: "pointer", background: "transparent",
-                  color: view === "grid" ? "var(--ink)" : "var(--text-2)",
-                  fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit",
-                }}>{view === "grid" ? "← Library" : "Wall →"}</button>
+                className="duo-link" style={{ padding: "0 4px", fontSize: 15 }}>{view === "grid" ? "← Library" : "Wall →"}</button>
               <span style={{ flex: 1 }} />
-              <button onClick={() => setManage(m => !m)} aria-pressed={manage} style={{
-                minHeight: 44, padding: "0 10px", borderRadius: 12,
-                background: "transparent", border: "none", cursor: "pointer",
-                color: manage ? "var(--ink)" : "var(--text-2)",
-                fontSize: 15, lineHeight: 1.33, fontWeight: 500, fontFamily: "inherit",
+              <button onClick={() => setManage(m => !m)} aria-pressed={manage} className="duo-link" style={{
+                padding: "0 4px", fontSize: 15, color: manage ? "var(--acc-ink)" : "var(--ink-2)",
               }}>{manage ? "Done" : "Manage"}</button>
             </div>
           </div>
@@ -7173,13 +7156,9 @@ function MemoriesScreen({ state, setState }) {
             value={memQuery}
             onChange={e => setMemQuery(e.target.value)}
             placeholder="Search artist, song, or stage…"
-            className="mono"
-            style={{
-              width: "100%", boxSizing: "border-box", marginBottom: 8,
-              padding: "9px 12px", borderRadius: 999,
-              background: "var(--paper-2)", border: "1px solid var(--line)",
-              color: "var(--ink)", fontSize: 11, letterSpacing: 0.5, outline: "none",
-            }}
+            aria-label="Search artist, song, or stage"
+            className="duo-input"
+            style={{ marginBottom: 10, padding: "0 14px" }}
           />
           <MemoryGrid
             allMoments={(() => {
@@ -7296,8 +7275,7 @@ function MemoriesScreen({ state, setState }) {
                   menu and the count onto one dense line. */}
               <div style={{
                 display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", rowGap: 4,
-                paddingTop: 14, paddingBottom: 8, marginBottom: 4,
-                borderBottom: "1px solid var(--line)",
+                paddingTop: 16, paddingBottom: 6, marginBottom: 2,
               }}>
                 <button
                   onClick={() => toggleDay(d.n)}
@@ -7307,22 +7285,19 @@ function MemoriesScreen({ state, setState }) {
                     background: "transparent", border: "none", cursor: "pointer",
                     color: "var(--ink)", textAlign: "left", fontFamily: "inherit", padding: 0,
                   }}>
-                  <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)"
+                  <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)"
                        strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                        style={{ flexShrink: 0, transform: collapsed ? "rotate(0deg)" : "rotate(90deg)", transition: "transform .2s var(--ease-smooth)" }}>
                     <path d="M9 18 L15 12 L9 6"/>
                   </svg>
                   <span style={{ minWidth: 0 }}>
-                    <h2 className="serif" style={{ display: "inline", margin: 0, fontSize: 24, fontWeight: "inherit", color: "var(--ink)", lineHeight: 1.1 }}>{d.label}</h2>
-                    <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", fontWeight: 700, marginLeft: 8 }}>
+                    <h2 className="duo-title" style={{ display: "inline", margin: 0, fontSize: 22, color: "var(--ink)" }}>{dateInfo?.name || d.label}</h2>
+                    <span className="duo-data-s duo-ink2" style={{ marginLeft: 8 }}>
                       {dayLabel}
                     </span>
                     {/* "N sets · M moments" — both numbers come from the
                         records this section actually contains. */}
-                    <span className="mono" style={{
-                      display: "block", fontSize: 9, letterSpacing: 1.2, color: "var(--muted)",
-                      fontWeight: 700, marginTop: 3, fontVariantNumeric: "tabular-nums",
-                    }}>{summary}</span>
+                    <span className="duo-data-s duo-ink2" style={{ display: "block", marginTop: 3 }}>{summary}</span>
                   </span>
                 </button>
                 {day.counts.moments > 0 && <_NightShareMenu night={d.n} moments={moments} />}
@@ -7336,7 +7311,7 @@ function MemoriesScreen({ state, setState }) {
                   {filter !== "sets" && day.counts.moments > 0 && (
                     <PeakMomentCard
                       peak={_peakWindow(day.groups.flatMap(g => g.media))}
-                      accent="var(--ember)"
+                      accent="var(--acc)"
                       onOpenLightbox={openLightbox}
                       onPlayReel={(items) => playReel(items, `${d.label} peak`, d.n)}
                     />
@@ -7379,13 +7354,13 @@ function MemoriesScreen({ state, setState }) {
                       onCancel={() => setAdding(null)}
                     />
                   ) : (
-                    <button onClick={() => setAdding(d.n)} className="mono" style={{
-                      width: "100%", minHeight: 44, padding: "12px",
+                    <button onClick={() => setAdding(d.n)} className="duo-body-s" style={{
+                      width: "100%", minHeight: 48, padding: "0 12px",
                       background: "transparent", border: "1px dashed var(--line-2)",
-                      borderRadius: 12, color: "var(--ink)",
-                      fontSize: 10, letterSpacing: 1.4, fontWeight: 700, cursor: "pointer",
+                      borderRadius: "var(--rad-md)", color: "var(--acc-ink)",
+                      fontSize: 15, fontWeight: 650, cursor: "pointer",
                       marginTop: 8,
-                    }}>+ ADD MOMENT</button>
+                    }}>+ Add moment</button>
                   ))}
 
                   {manage && savedNightArtists.length > 0 && (

@@ -198,6 +198,24 @@ try {
     await ctx.close();
   }
 
+  // ── The photo viewer never prints a broken value ────────────────────────
+  // The fixture's takenAt values are ISO instants, not the "YYYY-MM-DD HH:MM"
+  // wall clock the importer writes. The viewer split on a space, found none,
+  // and printed "12:undefined AM" under the artist name.
+  {
+    const { ctx, page } = await open(browser, { url: BASE + '?tab=memories', width: 393 });
+    const opener = page.locator('button[aria-label^="Open "]').first();
+    const found = await opener.count();
+    check(found > 0, 'viewer: the library draws a cover to open (fixture sanity)');
+    if (found) {
+      await opener.click();
+      await sleep(600);
+      const bad = await page.evaluate(() => (document.body.innerText.match(/[^\n]*\b(undefined|NaN|null)\b[^\n]*/g) || []).slice(0, 3));
+      check(bad.length === 0, `viewer: no rendered text reads undefined/NaN/null (${JSON.stringify(bad)})`);
+    }
+    await ctx.close();
+  }
+
   // ── Theme: recorded, not assumed ─────────────────────────────────────────
   const classes = [];
   for (const pref of ['auto', 'light', 'dark']) {
