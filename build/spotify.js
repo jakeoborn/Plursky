@@ -11247,25 +11247,24 @@ function MeScreen({
     "data-animate": true,
     style: {
       display: "flex",
-      flexDirection: "column",
       alignItems: "center",
-      padding: "18px 16px 20px",
-      marginBottom: 16
+      gap: 12,
+      padding: "4px 0 16px"
     }
   }, React.createElement("div", {
     onClick: profile ? undefined : promptName,
     style: {
-      width: 78,
-      height: 78,
+      width: 52,
+      height: 52,
       borderRadius: 999,
-      background: profile?.image ? "transparent" : "var(--paper-3)",
-      border: "1px solid var(--line-2)",
+      flexShrink: 0,
+      background: profile?.image ? "transparent" : "var(--s3)",
+      boxShadow: "0 0 0 1.5px var(--acc)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       overflow: "hidden",
-      cursor: profile ? "default" : "pointer",
-      marginBottom: 10
+      cursor: profile ? "default" : "pointer"
     }
   }, profile?.image ? React.createElement("img", {
     src: profile.image,
@@ -11276,34 +11275,38 @@ function MeScreen({
       objectFit: "cover"
     }
   }) : React.createElement("span", {
-    className: "serif",
     style: {
-      fontSize: 34,
-      color: "var(--ink)",
-      lineHeight: 1
+      font: "700 19px/1 var(--f-ui)",
+      color: "var(--ink)"
     }
   }, initial)), React.createElement("div", {
-    className: "serif",
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    className: "duo-headline duo-name",
     onClick: rawName ? undefined : promptName,
     style: {
-      fontSize: 28,
-      lineHeight: 1.05,
-      color: rawName ? "var(--ink)" : "var(--muted)",
-      textAlign: "center",
-      marginBottom: 8,
+      fontSize: 21,
+      color: rawName ? "var(--ink)" : "var(--ink-2)",
       cursor: rawName ? "default" : "pointer"
     }
   }, displayName), React.createElement("div", {
+    className: "duo-label duo-ink3",
+    style: {
+      marginTop: 4
+    }
+  }, tagline), React.createElement("span", {
+    className: "duo-code",
     style: {
       display: "inline-flex",
       alignItems: "center",
       gap: 6,
-      background: "var(--paper-2)",
-      borderRadius: 999,
-      padding: "4px 10px",
-      marginBottom: 8
+      marginTop: 8
     }
   }, React.createElement("span", {
+    "aria-hidden": "true",
     style: {
       width: 6,
       height: 6,
@@ -11311,32 +11314,14 @@ function MeScreen({
       background: pingColor,
       display: "inline-block"
     }
-  }), React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      color: "var(--ink)"
-    }
-  }, "PING · ", pingCode)), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      color: "var(--muted)"
-    }
-  }, tagline)), React.createElement("div", {
+  }), "PING · ", pingCode))), React.createElement("div", {
     "data-animate": true,
+    className: "duo-card",
     style: {
       display: "grid",
       gridTemplateColumns: "1fr 1fr",
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)",
-      borderRadius: 14,
-      padding: "14px 4px",
-      marginBottom: 18
+      padding: "16px 4px",
+      marginBottom: 14
     }
   }, [{
     n: setsCaught,
@@ -11354,20 +11339,14 @@ function MeScreen({
       padding: "2px 6px"
     }
   }, React.createElement("div", {
-    className: "serif",
+    className: "duo-clock",
     style: {
-      fontSize: 28,
-      lineHeight: 1,
       color: "var(--ink)",
-      marginBottom: 6
+      marginBottom: 8
     }
   }, s.n), React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-ink3",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      color: "var(--muted)",
       textAlign: "center"
     }
   }, s.label)))), plusActive ? React.createElement("div", {
@@ -11378,9 +11357,9 @@ function MeScreen({
       width: "100%",
       padding: "14px 16px",
       marginBottom: 14,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 16,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      borderRadius: "var(--rad-md)",
       color: "var(--ink)",
       textAlign: "left"
     }
@@ -11405,21 +11384,13 @@ function MeScreen({
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 20,
-      lineHeight: 1.05
-    }
+    className: "duo-headline"
   }, "Plursky+"), React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-ink3",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      marginTop: 4,
-      fontWeight: 700
+      marginTop: 4
     }
-  }, "ACTIVE · THANK YOU")), React.createElement("span", {
+  }, "Active · thank you")), React.createElement("span", {
     className: "mono",
     style: {
       fontSize: 10,
@@ -11437,9 +11408,10 @@ function MeScreen({
       width: "100%",
       padding: "14px 16px",
       marginBottom: 14,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 14,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
+      borderRadius: "var(--rad-md)",
       minHeight: 64,
       color: "var(--ink)",
       cursor: "pointer",
@@ -11453,8 +11425,8 @@ function MeScreen({
       height: 36,
       borderRadius: 18,
       flexShrink: 0,
-      background: "var(--signal)",
-      color: "var(--on-signal)",
+      background: "var(--acc)",
+      color: "var(--on-acc)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -11468,16 +11440,11 @@ function MeScreen({
       minWidth: 0
     }
   }, React.createElement("div", {
-    style: {
-      fontSize: 17,
-      lineHeight: "22px",
-      fontWeight: 600
-    }
+    className: "duo-headline"
   }, "Plursky+"), React.createElement("div", {
     style: {
-      fontSize: 13,
-      lineHeight: "18px",
-      color: "var(--text-2)",
+      font: "400 13px/1.385 var(--f-ui)",
+      color: "var(--ink-2)",
       marginTop: 2
     }
   }, "No watermarks, cloud backup and more")), React.createElement("svg", {
@@ -11547,11 +11514,10 @@ function MeScreen({
   }].map(card => React.createElement("button", {
     key: card.key,
     onClick: card.onClick,
+    className: "duo-card",
     style: {
       position: "relative",
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)",
-      borderRadius: 14,
+      border: "none",
       padding: 14,
       minHeight: 96,
       display: "flex",
@@ -11570,23 +11536,18 @@ function MeScreen({
       right: 14,
       fontSize: 18,
       lineHeight: 1,
-      color: "var(--muted)"
+      color: "var(--ink-3)"
     }
   }, card.icon), React.createElement("div", null), React.createElement("div", null, React.createElement("div", {
-    className: "serif",
+    className: "duo-clock",
     style: {
-      fontSize: 22,
-      lineHeight: 1,
+      fontSize: 26,
       color: "var(--ink)"
     }
   }, card.count), React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-ink3",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      color: "var(--muted)",
-      marginTop: 4
+      marginTop: 6
     }
   }, card.label))))), typeof window.FESTIVAL_CONFIG?.endMs === "number" && Date.now() > window.FESTIVAL_CONFIG.endMs && React.createElement("button", {
     onClick: () => setState(s => ({
@@ -11600,9 +11561,10 @@ function MeScreen({
       width: "100%",
       padding: "14px 16px",
       marginBottom: 14,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 14,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
+      borderRadius: "var(--rad-md)",
       color: "var(--ink)",
       cursor: "pointer",
       textAlign: "left"
@@ -11611,7 +11573,8 @@ function MeScreen({
     style: {
       fontSize: 24,
       lineHeight: 1,
-      flexShrink: 0
+      flexShrink: 0,
+      color: "var(--acc-ink)"
     }
   }, "✦"), React.createElement("div", {
     style: {
@@ -11619,24 +11582,15 @@ function MeScreen({
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 20,
-      lineHeight: 1.05
-    }
+    className: "duo-headline"
   }, "Your ", React.createElement("span", {
     style: {
-      fontStyle: "italic",
-      color: "var(--flare)"
+      color: "var(--acc-ink)"
     }
   }, _cfg.brand || "festival"), " weekend"), React.createElement("div", {
-    className: "mono",
+    className: "duo-data-s duo-ink2",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--text-2)",
-      marginTop: 4,
-      fontWeight: 700
+      marginTop: 4
     }
   }, "THE RECAP · ", getAttendedCount?.() || 0, " SETS CAUGHT · TAP TO SEE")), React.createElement("span", {
     style: {

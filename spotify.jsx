@@ -7659,23 +7659,19 @@ function MeScreen({ state, setState }) {
         <TopBar title={<span>Me</span>} sub={FESTIVAL_CONFIG.shortName.toUpperCase()} tight />
       </div>
       <ScrollBody ref={useStaggerFade("me")} style={{ padding: "10px 20px 94px" }}>
-        {/* ── 1. Identity card (Runbuds-modeled) ───────────────────
-            Centered avatar in the user's ping color, serif name,
-            ping-code chip in mono caps, festival-day tagline. */}
-        <div data-animate style={{
-          display: "flex", flexDirection: "column", alignItems: "center",
-          padding: "18px 16px 20px", marginBottom: 16,
-        }}>
+        {/* ── 1. Identity: the board's header row. Avatar (photo or
+            initial, accent ring), name, the festival-day line, and the
+            ping code as a code chip with its colour dot. ────────── */}
+        <div data-animate style={{ display: "flex", alignItems: "center", gap: 12, padding: "4px 0 16px" }}>
           <div
             onClick={profile ? undefined : promptName}
             style={{
-              width: 78, height: 78, borderRadius: 999,
-              background: profile?.image ? "transparent" : "var(--paper-3)",
-              border: "1px solid var(--line-2)",
+              width: 52, height: 52, borderRadius: 999, flexShrink: 0,
+              background: profile?.image ? "transparent" : "var(--s3)",
+              boxShadow: "0 0 0 1.5px var(--acc)",
               display: "flex", alignItems: "center", justifyContent: "center",
               overflow: "hidden",
               cursor: profile ? "default" : "pointer",
-              marginBottom: 10,
             }}
           >
             {profile?.image ? (
@@ -7683,46 +7679,35 @@ function MeScreen({ state, setState }) {
                 width: "100%", height: "100%", objectFit: "cover",
               }}/>
             ) : (
-              <span className="serif" style={{ fontSize: 34, color: "var(--ink)", lineHeight: 1 }}>{initial}</span>
+              <span style={{ font: "700 19px/1 var(--f-ui)", color: "var(--ink)" }}>{initial}</span>
             )}
           </div>
-          <div
-            className="serif"
-            onClick={rawName ? undefined : promptName}
-            style={{
-              fontSize: 28, lineHeight: 1.05, color: rawName ? "var(--ink)" : "var(--muted)",
-              textAlign: "center", marginBottom: 8,
-              cursor: rawName ? "default" : "pointer",
-            }}
-          >
-            {displayName}
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div
+              className="duo-headline duo-name"
+              onClick={rawName ? undefined : promptName}
+              style={{
+                fontSize: 21, color: rawName ? "var(--ink)" : "var(--ink-2)",
+                cursor: rawName ? "default" : "pointer",
+              }}
+            >
+              {displayName}
+            </div>
+            <div className="duo-label duo-ink3" style={{ marginTop: 4 }}>{tagline}</div>
+            <span className="duo-code" style={{ display: "inline-flex", alignItems: "center", gap: 6, marginTop: 8 }}>
+              <span aria-hidden="true" style={{ width: 6, height: 6, borderRadius: 999, background: pingColor, display: "inline-block" }}/>
+              PING · {pingCode}
+            </span>
           </div>
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: 6,
-            background: "var(--paper-2)", borderRadius: 999, padding: "4px 10px",
-            marginBottom: 8,
-          }}>
-            <span style={{
-              width: 6, height: 6, borderRadius: 999, background: pingColor,
-              display: "inline-block",
-            }}/>
-            <span className="mono" style={{
-              fontSize: 9, letterSpacing: 1.2, fontWeight: 700, color: "var(--ink)",
-            }}>PING · {pingCode}</span>
-          </div>
-          <div className="mono" style={{
-            fontSize: 9, letterSpacing: 1.2, fontWeight: 700, color: "var(--muted)",
-          }}>{tagline}</div>
         </div>
 
         {/* ── 2. Two-stat row ──────────────────────────────────────
             Sets caught + days here. CREW used to sit here too, but it's
             already a tappable tile in the grid below — dropped here to
             kill the duplicate stat. */}
-        <div data-animate style={{
+        <div data-animate className="duo-card" style={{
           display: "grid", gridTemplateColumns: "1fr 1fr",
-          background: "var(--paper-2)", border: "1px solid var(--line)",
-          borderRadius: 14, padding: "14px 4px", marginBottom: 18,
+          padding: "16px 4px", marginBottom: 14,
         }}>
           {[
             { n: setsCaught, label: "SETS CAUGHT" },
@@ -7733,13 +7718,10 @@ function MeScreen({ state, setState }) {
               borderLeft: i === 0 ? "none" : "1px solid var(--line)",
               padding: "2px 6px",
             }}>
-              <div className="serif" style={{ fontSize: 28, lineHeight: 1, color: "var(--ink)", marginBottom: 6 }}>
+              <div className="duo-clock" style={{ color: "var(--ink)", marginBottom: 8 }}>
                 {s.n}
               </div>
-              <div className="mono" style={{
-                fontSize: 9, letterSpacing: 1.2, fontWeight: 700, color: "var(--muted)",
-                textAlign: "center",
-              }}>{s.label}</div>
+              <div className="duo-label duo-ink3" style={{ textAlign: "center" }}>{s.label}</div>
             </div>
           ))}
         </div>
@@ -7765,8 +7747,8 @@ function MeScreen({ state, setState }) {
           <div style={{
             display: "flex", alignItems: "center", gap: 12,
             width: "100%", padding: "14px 16px", marginBottom: 14,
-            background: "var(--paper-2)", border: "1px solid var(--line-2)",
-            borderRadius: 16, color: "var(--ink)", textAlign: "left",
+            background: "var(--s2)", boxShadow: "var(--e1)",
+            borderRadius: "var(--rad-md)", color: "var(--ink)", textAlign: "left",
           }}>
             <span style={{
               width: 30, height: 30, borderRadius: "50%", flexShrink: 0,
@@ -7775,10 +7757,8 @@ function MeScreen({ state, setState }) {
               color: "var(--on-signal)", fontSize: 16, fontWeight: 700, lineHeight: 1,
             }}>+</span>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>Plursky+</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginTop: 4, fontWeight: 700 }}>
-                ACTIVE · THANK YOU
-              </div>
+              <div className="duo-headline">Plursky+</div>
+              <div className="duo-label duo-ink3" style={{ marginTop: 4 }}>Active · thank you</div>
             </div>
             <span className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--success)", fontWeight: 700 }}>✓</span>
           </div>
@@ -7788,20 +7768,20 @@ function MeScreen({ state, setState }) {
             style={{
               display: "flex", alignItems: "center", gap: 12,
               width: "100%", padding: "14px 16px", marginBottom: 14,
-              background: "var(--paper-2)",
-              border: "1px solid var(--line-2)", borderRadius: 14, minHeight: 64,
+              background: "var(--s2)", boxShadow: "var(--e1)",
+              border: "none", borderRadius: "var(--rad-md)", minHeight: 64,
               color: "var(--ink)", cursor: "pointer", textAlign: "left",
               fontFamily: "inherit",
             }}>
             <span aria-hidden="true" style={{
               width: 36, height: 36, borderRadius: 18, flexShrink: 0,
-              background: "var(--signal)", color: "var(--on-signal)",
+              background: "var(--acc)", color: "var(--on-acc)",
               display: "flex", alignItems: "center", justifyContent: "center",
               fontSize: 20, fontWeight: 700, lineHeight: 1,
             }}>+</span>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>Plursky+</div>
-              <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", marginTop: 2 }}>
+              <div className="duo-headline">Plursky+</div>
+              <div style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)", marginTop: 2 }}>
                 No watermarks, cloud backup and more
               </div>
             </div>
@@ -7832,27 +7812,23 @@ function MeScreen({ state, setState }) {
                 document.getElementById("plursky-badges-anchor")?.scrollIntoView({ behavior: "smooth", block: "start" });
               } },
           ].map(card => (
-            <button key={card.key} onClick={card.onClick} style={{
-              position: "relative",
-              background: "var(--paper-2)", border: "1px solid var(--line)",
-              borderRadius: 14, padding: 14, minHeight: 96,
+            <button key={card.key} onClick={card.onClick} className="duo-card" style={{
+              position: "relative", border: "none",
+              padding: 14, minHeight: 96,
               display: "flex", flexDirection: "column", alignItems: "stretch", justifyContent: "space-between",
               textAlign: "left", cursor: "pointer",
               fontFamily: "inherit", color: "var(--ink)",
             }}>
               <div style={{
                 position: "absolute", top: 12, right: 14,
-                fontSize: 18, lineHeight: 1, color: "var(--muted)",
+                fontSize: 18, lineHeight: 1, color: "var(--ink-3)",
               }}>{card.icon}</div>
               <div/>
               <div>
-                <div className="serif" style={{ fontSize: 22, lineHeight: 1, color: "var(--ink)" }}>
+                <div className="duo-clock" style={{ fontSize: 26, color: "var(--ink)" }}>
                   {card.count}
                 </div>
-                <div className="mono" style={{
-                  fontSize: 9, letterSpacing: 1.2, fontWeight: 700, color: "var(--muted)",
-                  marginTop: 4,
-                }}>{card.label}</div>
+                <div className="duo-label duo-ink3" style={{ marginTop: 6 }}>{card.label}</div>
               </div>
             </button>
           ))}
@@ -7867,16 +7843,16 @@ function MeScreen({ state, setState }) {
           <button onClick={() => setState(s => ({ ...s, tab: "recap" }))} style={{
             display: "flex", alignItems: "center", gap: 12,
             width: "100%", padding: "14px 16px", marginBottom: 14,
-            background: "var(--paper-2)",
-            border: "1px solid var(--line-2)", borderRadius: 14,
+            background: "var(--s2)", boxShadow: "var(--e1)",
+            border: "none", borderRadius: "var(--rad-md)",
             color: "var(--ink)", cursor: "pointer", textAlign: "left",
           }}>
-            <span style={{ fontSize: 24, lineHeight: 1, flexShrink: 0 }}>✦</span>
+            <span style={{ fontSize: 24, lineHeight: 1, flexShrink: 0, color: "var(--acc-ink)" }}>✦</span>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>
-                Your <span style={{ fontStyle: "italic", color: "var(--flare)" }}>{_cfg.brand || "festival"}</span> weekend
+              <div className="duo-headline">
+                Your <span style={{ color: "var(--acc-ink)" }}>{_cfg.brand || "festival"}</span> weekend
               </div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--text-2)", marginTop: 4, fontWeight: 700 }}>
+              <div className="duo-data-s duo-ink2" style={{ marginTop: 4 }}>
                 THE RECAP · {getAttendedCount?.() || 0} SETS CAUGHT · TAP TO SEE
               </div>
             </div>
