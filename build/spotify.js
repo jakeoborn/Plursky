@@ -15077,7 +15077,7 @@ function RecapScreen({
       borderRadius: 22,
       padding: "26px 22px",
       marginBottom: 14,
-      background: heroPhotoUrl ? `linear-gradient(155deg, rgba(var(--shade-rgb),0.72) 0%, rgba(var(--shade-rgb),0.45) 55%, rgba(var(--signal-rgb),0.35) 130%), url(${heroPhotoUrl}) center/cover` : "linear-gradient(155deg, var(--paper-3) 0%, var(--paper-2) 60%, rgba(var(--signal-rgb),0.5) 130%)",
+      background: heroPhotoUrl ? `linear-gradient(155deg, rgba(var(--shade-rgb),0.72) 0%, rgba(var(--shade-rgb),0.45) 55%, rgba(var(--signal-rgb),0.35) 130%), url(${heroPhotoUrl}) center/cover` : "linear-gradient(155deg, var(--media-ground) 0%, var(--media-ground) 55%, rgba(var(--signal-rgb),0.5) 130%)",
       color: "var(--media-ink)",
       position: "relative",
       overflow: "hidden"
@@ -15093,9 +15093,9 @@ function RecapScreen({
       right: 16,
       padding: "7px 12px",
       borderRadius: 999,
-      background: "rgba(var(--ink-rgb),0.18)",
-      color: "var(--ink)",
-      border: "1px solid rgba(var(--ink-rgb),0.35)",
+      background: "var(--media-badge)",
+      color: "var(--media-ink)",
+      border: "1px solid var(--media-ink-2)",
       cursor: "pointer",
       fontFamily: "Geist Mono, monospace",
       fontSize: 10,
@@ -15114,7 +15114,7 @@ function RecapScreen({
     style: {
       fontSize: 9,
       letterSpacing: 1.6,
-      color: "var(--text-2)",
+      color: "var(--media-ink-2)",
       fontWeight: 700,
       marginBottom: 10
     }
@@ -15129,7 +15129,7 @@ function RecapScreen({
   }, "That was ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "var(--flare)"
+      color: "var(--media-flare)"
     }
   }, "your"), " weekend."), React.createElement("div", {
     style: {
@@ -15149,7 +15149,7 @@ function RecapScreen({
       fontSize: 9,
       letterSpacing: 1.3,
       fontWeight: 700,
-      color: "var(--text-2)",
+      color: "var(--media-ink-2)",
       marginTop: 3
     }
   }, "SETS CAUGHT")), React.createElement("div", null, React.createElement("div", {
@@ -15164,7 +15164,7 @@ function RecapScreen({
       fontSize: 9,
       letterSpacing: 1.3,
       fontWeight: 700,
-      color: "var(--text-2)",
+      color: "var(--media-ink-2)",
       marginTop: 3
     }
   }, "ON DANCEFLOORS")), React.createElement("div", null, React.createElement("div", {
@@ -15179,7 +15179,7 @@ function RecapScreen({
       fontSize: 9,
       letterSpacing: 1.3,
       fontWeight: 700,
-      color: "var(--text-2)",
+      color: "var(--media-ink-2)",
       marginTop: 3
     }
   }, "NIGHTS")), React.createElement("div", null, React.createElement("div", {
@@ -15194,7 +15194,7 @@ function RecapScreen({
       fontSize: 9,
       letterSpacing: 1.3,
       fontWeight: 700,
-      color: "var(--text-2)",
+      color: "var(--media-ink-2)",
       marginTop: 3
     }
   }, "HEADLINERS")))), recap.setsCount > 0 && React.createElement("button", {
@@ -16350,7 +16350,7 @@ function RecapScreen({
     className: "mono",
     style: {
       padding: "12px",
-      background: "linear-gradient(90deg, var(--signal), var(--signal), var(--signal), var(--signal))",
+      background: "var(--signal)",
       color: "var(--on-signal)",
       border: "none",
       borderRadius: 10,

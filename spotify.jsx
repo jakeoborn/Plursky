@@ -10403,8 +10403,10 @@ function RecapScreen({ state, setState }) {
           borderRadius: 22, padding: "26px 22px", marginBottom: 14,
           background: heroPhotoUrl
             ? `linear-gradient(155deg, rgba(var(--shade-rgb),0.72) 0%, rgba(var(--shade-rgb),0.45) 55%, rgba(var(--signal-rgb),0.35) 130%), url(${heroPhotoUrl}) center/cover`
-            : "linear-gradient(155deg, var(--paper-3) 0%, var(--paper-2) 60%, rgba(var(--signal-rgb),0.5) 130%)",
-          // Type on the user's photo: media ink, over a dark scrim.
+            : "linear-gradient(155deg, var(--media-ground) 0%, var(--media-ground) 55%, rgba(var(--signal-rgb),0.5) 130%)",
+          // A media card in both modes, photo or not: dark ground, and every
+          // word on it in media ink. Theme ink (--ink, --text-2) follows the
+          // mode and went dark-on-dark in Light (#275 QA).
           color: "var(--media-ink)",
           position: "relative",
           overflow: "hidden",
@@ -10415,35 +10417,35 @@ function RecapScreen({ state, setState }) {
             style={{
               position: "absolute", top: 16, right: 16,
               padding: "7px 12px", borderRadius: 999,
-              background: "rgba(var(--ink-rgb),0.18)", color: "var(--ink)",
-              border: "1px solid rgba(var(--ink-rgb),0.35)", cursor: "pointer",
+              background: "var(--media-badge)", color: "var(--media-ink)",
+              border: "1px solid var(--media-ink-2)", cursor: "pointer",
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
               backdropFilter: "blur(8px)",
             }}>↗ SHARE</button>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--text-2)", fontWeight: 700, marginBottom: 10 }}>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--media-ink-2)", fontWeight: 700, marginBottom: 10 }}>
               YOUR {(CFG.shortName || "FESTIVAL").toUpperCase()} · {CFG.year || ""}
             </div>
           </div>
           <div className="serif" style={{ fontSize: 42, lineHeight: 0.95, letterSpacing: -0.5, marginBottom: 18 }}>
-            That was <span style={{ fontStyle: "italic", color: "var(--flare)" }}>your</span> weekend.
+            That was <span style={{ fontStyle: "italic", color: "var(--media-flare)" }}>your</span> weekend.
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
             <div>
               <div className="serif" style={{ fontSize: 36, lineHeight: 1 }}>{recap.setsCount}</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "var(--text-2)", marginTop: 3 }}>SETS CAUGHT</div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "var(--media-ink-2)", marginTop: 3 }}>SETS CAUGHT</div>
             </div>
             <div>
               <div className="serif" style={{ fontSize: 36, lineHeight: 1 }}>{_fmtHrsMin(recap.totalMin)}</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "var(--text-2)", marginTop: 3 }}>ON DANCEFLOORS</div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "var(--media-ink-2)", marginTop: 3 }}>ON DANCEFLOORS</div>
             </div>
             <div>
               <div className="serif" style={{ fontSize: 36, lineHeight: 1 }}>{recap.nights}</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "var(--text-2)", marginTop: 3 }}>NIGHTS</div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "var(--media-ink-2)", marginTop: 3 }}>NIGHTS</div>
             </div>
             <div>
               <div className="serif" style={{ fontSize: 36, lineHeight: 1 }}>{recap.headlinersCaught}</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "var(--text-2)", marginTop: 3 }}>HEADLINERS</div>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "var(--media-ink-2)", marginTop: 3 }}>HEADLINERS</div>
             </div>
           </div>
         </div>
@@ -11070,7 +11072,7 @@ function RecapScreen({ state, setState }) {
                 const all = []; try { const raw = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}"); for (const n of Object.keys(raw)) for (const m of (raw[n] || [])) all.push(m); } catch {}
                 await window._shareFestivalDNA?.(all);
               }} className="mono" style={{
-                padding: "12px", background: "linear-gradient(90deg, var(--signal), var(--signal), var(--signal), var(--signal))", color: "var(--on-signal)",
+                padding: "12px", background: "var(--signal)", color: "var(--on-signal)",
                 border: "none", borderRadius: 10, cursor: "pointer", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
               }}>🧬 FESTIVAL DNA — YOUR UNIQUE COLOR BARCODE</button>
               <button onClick={() => window._shareFestivalPassport?.(state)} className="mono" style={{
