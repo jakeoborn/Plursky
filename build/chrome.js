@@ -692,14 +692,14 @@ function FieldButton({
       alignItems: "center",
       justifyContent: "center",
       gap: 8,
-      background: primary ? "var(--signal)" : "var(--paper-3)",
-      color: primary ? "var(--on-signal)" : "var(--ink)",
+      background: primary ? "var(--acc)" : "transparent",
+      color: primary ? "var(--on-acc)" : "var(--ink)",
       border: primary ? "none" : "1px solid var(--line-2)",
-      borderRadius: 14,
+      borderRadius: "var(--rad-sm)",
       cursor: rest.disabled ? "default" : "pointer",
-      fontSize: 17,
-      lineHeight: "22px",
-      fontWeight: 600,
+      boxShadow: primary && !rest.disabled ? "0 10px 28px -12px var(--acc-55)" : "none",
+      font: "650 17px/1.3 var(--f-ui)",
+      letterSpacing: "-0.01em",
       opacity: rest.disabled ? 0.45 : 1,
       ...style
     }
@@ -787,8 +787,9 @@ function FieldSheet({
       maxHeight: "88%",
       display: "flex",
       flexDirection: "column",
-      background: "var(--paper-3)",
-      borderRadius: "14px 14px 0 0",
+      background: "var(--s1)",
+      borderRadius: "var(--rad-lg) var(--rad-lg) 0 0",
+      boxShadow: "var(--e2)",
       paddingBottom: "env(safe-area-inset-bottom, 0px)"
     }
   }, React.createElement("div", {
@@ -815,9 +816,8 @@ function FieldSheet({
   }, React.createElement("h2", {
     style: {
       margin: 0,
-      fontSize: 20,
-      lineHeight: "25px",
-      fontWeight: 600
+      font: "700 22px/1.25 var(--f-ui)",
+      letterSpacing: "-0.02em"
     }
   }, title), React.createElement("button", {
     onClick: onClose,
@@ -1772,27 +1772,25 @@ function FestivalThumb({
   var editorialArt = editorial && entry ? _FESTIVAL_EDITORIAL_ART[entry.config?.id] : null;
   var art = editorialArt || (!editorial && entry ? _festivalArt(entry.config) : null);
   var name = entry?.config?.shortName || entry?.config?.brand || entry?.config?.name || "Plur";
-  var mark = String(name).split(/\s+/).filter(Boolean).slice(0, 2).map(x => x[0]).join("").toUpperCase();
-  var seed = String(entry?.config?.id || "plur").split("").reduce((n, c) => n + c.charCodeAt(0), 0);
-  var warm = 18 + seed % 22;
-  var fallback = `radial-gradient(circle at 22% 18%, rgba(242,75,131,.72), transparent 36%), radial-gradient(circle at 82% 78%, hsla(${warm},92%,62%,.42), transparent 38%), linear-gradient(145deg,#15101b,#07101c 68%,#160b13)`;
+  var brand = String(entry?.config?.brand || "").trim();
+  var mark = (/^[A-Za-z0-9]{2,6}$/.test(brand) ? brand : String(entry?.config?.name || name).split(/\s+/).filter(w => w && !/^\d+$/.test(w)).slice(0, 3).map(x => x[0]).join("")).toUpperCase();
   return React.createElement("div", {
     "aria-hidden": "true",
     style: {
       width: size,
       height: size,
-      borderRadius: 14,
+      borderRadius: "var(--rad-sm)",
       overflow: "hidden",
       flexShrink: 0,
-      background: art ? "var(--paper-3)" : fallback,
+      background: "var(--s3)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      fontSize: Math.max(14, Math.round(size * (editorial ? 0.18 : 0.25))),
-      fontWeight: 850,
-      letterSpacing: "0.04em",
-      color: "var(--media-ink)",
-      textShadow: "0 1px 8px rgba(0,0,0,.5)",
+      fontFamily: "var(--f-display)",
+      fontSize: Math.max(13, Math.round(size * (editorial ? 0.16 : 0.22))),
+      fontWeight: 400,
+      letterSpacing: "0.12em",
+      color: "var(--ink-2)",
       lineHeight: 1
     }
   }, art ? React.createElement("img", {
@@ -1903,13 +1901,7 @@ function FestivalSwitcher({
   } catch {}
   var caught = archive.reduce((n, a) => n + (a.totalAttended || 0), 0);
   var eyebrow = {
-    margin: "0 0 4px",
-    fontSize: 11,
-    lineHeight: "14px",
-    fontWeight: 600,
-    letterSpacing: "0.04em",
-    textTransform: "uppercase",
-    color: "var(--text-2)"
+    margin: "0 0 4px"
   };
   var rowStyle = dim => ({
     width: "100%",
@@ -1950,17 +1942,17 @@ function FestivalSwitcher({
     if (st.conflicts) parts.push(React.createElement("span", {
       key: "c",
       style: {
-        color: "var(--warn)",
+        color: "var(--clash)",
         fontWeight: 600
       }
-    }, "⚠ ", st.conflicts, " ", st.conflicts === 1 ? "conflict" : "conflicts"));
+    }, st.conflicts, " ", st.conflicts === 1 ? "clash" : "clashes"));
     if (isActive) parts.push(React.createElement("span", {
       key: "a",
       style: {
-        color: "var(--signal-ink)",
-        fontWeight: 600
+        color: "var(--acc-ink)",
+        fontWeight: 650
       }
-    }, "✓ Active"));else if (phase(f) === "ended") parts.push(React.createElement("span", {
+    }, "Active"));else if (phase(f) === "ended") parts.push(React.createElement("span", {
       key: "e"
     }, "Ended"));else if (!f.available) parts.push(React.createElement("span", {
       key: "l"
@@ -1969,10 +1961,10 @@ function FestivalSwitcher({
     }, "Set times TBA"));else if (st.saved && !st.conflicts) parts.push(React.createElement("span", {
       key: "r",
       style: {
-        color: "var(--signal-ink)",
-        fontWeight: 600
+        color: "var(--acc-ink)",
+        fontWeight: 650
       }
-    }, "✓ Ready"));
+    }, "Ready"));
     return React.createElement("button", {
       key: f.config.id,
       onClick: () => onPick(f.config.id, f),
@@ -1991,27 +1983,21 @@ function FestivalSwitcher({
         minWidth: 0
       }
     }, React.createElement("div", {
-      style: {
-        fontSize: 17,
-        lineHeight: "22px",
-        fontWeight: 600
-      }
+      className: "duo-headline"
     }, f.config.name), React.createElement("div", {
       style: {
-        fontSize: 13,
-        lineHeight: "18px",
-        color: "var(--text-2)"
+        font: "400 13px/1.385 var(--f-ui)",
+        color: "var(--ink-2)"
       }
     }, f.config.location, " · ", React.createElement("span", {
       style: {
-        whiteSpace: "nowrap"
+        overflowWrap: "normal"
       }
     }, f.config.dates)), parts.length > 0 && React.createElement("div", {
       style: {
         marginTop: 2,
-        fontSize: 13,
-        lineHeight: "18px",
-        color: "var(--text-2)"
+        font: "500 13px/1.385 var(--f-ui)",
+        color: "var(--ink-2)"
       }
     }, parts.map((x, i) => React.createElement(React.Fragment, {
       key: i
@@ -2023,6 +2009,7 @@ function FestivalSwitcher({
       marginTop: 16
     }
   }, React.createElement("h3", {
+    className: "duo-sect",
     style: eyebrow
   }, label), kids);
   return React.createElement(FieldSheet, {
@@ -2031,42 +2018,32 @@ function FestivalSwitcher({
   }, React.createElement("p", {
     style: {
       margin: "-4px 0 14px",
-      color: "var(--text-2)",
-      fontSize: 14
+      color: "var(--ink-2)",
+      font: "400 15px/1.4 var(--f-ui)"
     }
   }, "Live, next and remembered."), React.createElement("div", {
     role: "group",
     "aria-label": "Festival view",
+    className: "duo-seg",
     style: {
-      display: "flex",
-      padding: 3,
       marginBottom: 12,
-      borderRadius: 12,
-      background: "var(--paper-3)"
+      background: "var(--s2)"
     }
   }, ["grid", "list"].map(mode => React.createElement("button", {
     key: mode,
     onClick: () => chooseView(mode),
     "aria-pressed": viewMode === mode,
     style: {
-      flex: 1,
-      border: 0,
-      borderRadius: 9,
-      padding: "9px 6px",
-      background: viewMode === mode ? "var(--signal)" : "transparent",
-      color: viewMode === mode ? "var(--on-signal)" : "var(--text-2)",
-      fontWeight: 750,
       textTransform: "capitalize"
     }
   }, mode))), React.createElement("div", {
     className: viewMode === "grid" ? "midnight-festival-grid" : undefined
   }, live.map(row), months.flatMap(g => g.fests.map(row)), tba.map(row)), viewMode === "list" && React.createElement("div", {
+    className: "duo-data-s duo-ink3",
     style: {
-      marginTop: 8,
-      fontSize: 11,
-      color: "var(--text-3)"
+      marginTop: 8
     }
-  }, "Ordered by festival date"), (past.length > 0 || archive.length > 0) && group("Past", React.createElement(React.Fragment, null, React.createElement("button", {
+  }, "ORDERED BY FESTIVAL DATE"), (past.length > 0 || archive.length > 0) && group("Past", React.createElement(React.Fragment, null, React.createElement("button", {
     onClick: () => setPastOpen(o => !o),
     "aria-expanded": pastOpen,
     style: {

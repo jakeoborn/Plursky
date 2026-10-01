@@ -425,30 +425,21 @@ function LineupFilterSheet({
       }).length;
   }, [f, day, savedSet, weekendFilter]);
 
-  // Field Mode: 44pt chips, 18pt radius, selection = signal outline + weight.
-  const chip = (on) => ({
-    flexShrink: 0, minHeight: 44, padding: "0 16px", borderRadius: 18,
-    background: on ? "var(--paper-2)" : "transparent",
-    color: on ? "var(--ink)" : "var(--text-2)",
-    border: on ? "1.5px solid var(--signal)" : "1px solid var(--line-2)",
-    fontSize: 15, lineHeight: "20px", fontWeight: on ? 600 : 500,
-    cursor: "pointer", whiteSpace: "nowrap",
-    display: "inline-flex", alignItems: "center", gap: 6,
-  });
-  const sectionLabel = { ..._fieldEyebrow, color: "var(--text-2)", margin: "20px 0 8px" };
-  const row = { display: "flex", gap: 8, flexWrap: "wrap" };
+  // The board's chips: a 34pt pill in a 44pt target, selected = ink fill.
+  const sectionLabel = { margin: "20px 0 4px" };
+  const row = { display: "flex", columnGap: 8, flexWrap: "wrap" };
   const opt = (key, id, label, extra) => (
-    <button key={id} aria-pressed={f[key] === id} onClick={() => set(key, id)} style={chip(f[key] === id)}>{extra}{label}</button>
+    <button key={id} aria-pressed={f[key] === id} onClick={() => set(key, id)} className="duo-chip"><span>{extra}{label}</span></button>
   );
   return (
     <FieldSheet title="Filters" onClose={onClose}>
-      <div style={{ ...sectionLabel, marginTop: 4 }}>Show</div>
+      <div className="duo-sect" style={{ ...sectionLabel, marginTop: 4 }}>Show</div>
       <div style={row}>
         {opt("filter", "all", "All")}
         {opt("filter", "saved", `Saved${savedCount ? ` · ${savedCount}` : ""}`)}
         {opt("filter", "now", "Now")}
       </div>
-      <div style={sectionLabel}>Tier</div>
+      <div className="duo-sect" style={sectionLabel}>Tier</div>
       <div style={row}>
         {opt("tierFilter", "all", "All tiers")}
         {opt("tierFilter", "legend", "Legendary")}
@@ -456,21 +447,21 @@ function LineupFilterSheet({
         {opt("tierFilter", "prime", "Prime time")}
         {opt("tierFilter", "open", "Openers")}
       </div>
-      <div style={sectionLabel}>Stage</div>
+      <div className="duo-sect" style={sectionLabel}>Stage</div>
       <div style={row}>
         {opt("stageFilter", "all", "All stages")}
         {STAGES.map(s => opt("stageFilter", s.id, s.short || s.name))}
       </div>
       {dayGenres.length > 0 && (
         <>
-          <div style={sectionLabel}>Genre</div>
+          <div className="duo-sect" style={sectionLabel}>Genre</div>
           <div style={row}>
             {opt("genreFilter", "all", "All genres")}
             {dayGenres.map(g => opt("genreFilter", g, g))}
           </div>
         </>
       )}
-      <div style={sectionLabel}>Sort by</div>
+      <div className="duo-sect" style={sectionLabel}>Sort by</div>
       <div style={row}>
         {opt("sortBy", "time", "Time")}
         {opt("sortBy", "tier", "Tier")}

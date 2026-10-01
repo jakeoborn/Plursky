@@ -2380,13 +2380,11 @@ function MapScreen({ state, setState }) {
 
         <div style={{
           position: "absolute", top: 68, left: 10, zIndex: 4,
-          padding: "5px 9px", borderRadius: 999,
-          background: "rgba(var(--glass),0.92)", color: "var(--ink)",
-          border: "1px solid var(--line-2)", backdropFilter: "blur(10px)",
-          WebkitBackdropFilter: "blur(10px)", boxShadow: "0 4px 12px rgba(var(--shade-rgb),0.10)",
           pointerEvents: "none",
         }}>
-          <span className="mono" style={{ fontSize: 8, letterSpacing: 1.05, fontWeight: 800 }}>
+          {/* The board's source code: Michroma caps in a hairline box. */}
+          <span className="duo-code" style={{ background: "rgba(var(--glass),0.92)", color: "var(--ink)",
+            backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)" }}>
             {mapPostureLabel}
           </span>
         </div>
@@ -2409,9 +2407,9 @@ function MapScreen({ state, setState }) {
           display: "flex", flexDirection: "column", gap: 6,
         }}>
           <button onClick={() => setGpsLive(g => !g)} aria-label="Toggle GPS" aria-pressed={gpsActive} style={{
-            minWidth: 46, padding: "6px 8px", borderRadius: 14,
-            background: gpsActive ? "var(--ember)" : "rgba(var(--glass),0.92)",
-            color: "var(--ink)", // denial is said by the banner; the chip stays quiet
+            minWidth: 46, minHeight: 44, padding: "6px 8px", borderRadius: "var(--rad-sm)",
+            background: gpsActive ? "var(--acc)" : "rgba(var(--glass),0.92)",
+            color: gpsActive ? "var(--on-acc)" : "var(--ink)", // denial is said by the banner; the chip stays quiet
             border: gpsActive ? "none" : "1px solid var(--line-2)",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
@@ -2424,16 +2422,14 @@ function MapScreen({ state, setState }) {
               <circle cx="12" cy="12" r="6"/>
               {gpsActive && <circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/>}
             </svg>
-            <span className="mono" style={{
-              fontSize: 9, letterSpacing: 0.8, fontWeight: 800, lineHeight: 1,
-            }}>{gpsLabel}</span>
+            <span style={{ font: "500 10px/1 var(--f-data)", letterSpacing: "-0.01em" }}>{gpsLabel}</span>
           </button>
           {/* Unified control capsule — layers + zoom in one glass pill */}
           <div style={{
             display: "flex", flexDirection: "column",
             background: "rgba(var(--glass),0.92)",
             border: "1px solid var(--line-2)",
-            borderRadius: 14, overflow: "hidden",
+            borderRadius: "var(--rad-sm)", overflow: "hidden",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
             boxShadow: "0 4px 12px rgba(var(--shade-rgb),0.10)",
@@ -2580,12 +2576,12 @@ function MapScreen({ state, setState }) {
             {/* One line, always. The long form wrapped to two lines at phone
                 width and sat across the top of the artwork for the whole
                 festival; the GPS chip in the corner already reads DENIED. */}
-            <span className="mono" style={{
-              fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+            <span style={{
+              font: "600 11px/1.3 var(--f-ui)",
               whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
               display: "block",
             }}>
-              GPS DENIED · ENABLE LOCATION
+              GPS denied · enable location
             </span>
           </div>
         )}
@@ -2686,7 +2682,7 @@ function MapScreen({ state, setState }) {
           const hasPlaceCard = !!(stage || (meetMode && meetTarget));
           const sheetMode = hasPlaceCard ? "place-card" : search.trim().length > 0 ? "full" : searchSheetExpanded ? "half" : "collapsed";
           const isShort = typeof window !== "undefined" && window.innerHeight < 700;
-          const sheetMaxH = sheetMode === "full" ? (isShort ? "44vh" : "48vh") : sheetMode === "half" ? (isShort ? 260 : 320) : 82;
+          const sheetMaxH = sheetMode === "full" ? (isShort ? "44vh" : "48vh") : sheetMode === "half" ? (isShort ? 260 : 320) : 116;
 
           if (sheetMode === "place-card") return null;
 
@@ -2694,10 +2690,12 @@ function MapScreen({ state, setState }) {
             <div style={{
               position: "absolute", left: 8, right: 8, bottom: 10,
               zIndex: 5,
-              background: "var(--paper)",
-              border: "1px solid var(--line-2)",
-              borderRadius: 16,
-              boxShadow: "0 -6px 24px rgba(var(--shade-rgb),0.18)",
+              // The board's map sheet: the page ground, frosted, lifted.
+              background: "rgba(var(--glass),0.94)",
+              backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
+              border: "1px solid var(--line)",
+              borderRadius: "var(--rad-md)",
+              boxShadow: "var(--e2)",
               maxHeight: sheetMaxH,
               overflow: "hidden",
               display: "flex", flexDirection: "column",
@@ -2716,11 +2714,10 @@ function MapScreen({ state, setState }) {
               <div style={{ padding: "0 8px 6px", flexShrink: 0 }}>
                 <div style={{
                   display: "flex", alignItems: "center", gap: 7,
-                  background: "var(--paper-2)",
-                  borderRadius: 999, padding: "7px 11px",
-                  border: "1px solid var(--line)",
+                  background: "var(--s2)", boxShadow: "var(--e1)",
+                  borderRadius: "var(--rad-sm)", padding: "0 12px", minHeight: 44,
                 }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" style={{ flexShrink: 0 }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2" style={{ flexShrink: 0 }}>
                     <circle cx="11" cy="11" r="7"/><path d="M20 20 L16 16"/>
                   </svg>
                   <input
@@ -2731,7 +2728,7 @@ function MapScreen({ state, setState }) {
                     onChange={(e) => setSearch(e.target.value)}
                     style={{
                       flex: 1, minWidth: 0, background: "transparent", border: "none", outline: "none",
-                      color: "var(--ink)", fontFamily: "Geist, sans-serif", fontSize: 13,
+                      color: "var(--ink)", font: "400 16px/1.2 var(--f-ui)",
                     }}
                   />
                   {search && (
@@ -2748,16 +2745,13 @@ function MapScreen({ state, setState }) {
 
               {/* Collapsed: friend avatar dots + MEET UP inline */}
               {sheetMode === "collapsed" && (
-                <div style={{ padding: "0 10px 8px", display: "flex", alignItems: "center", gap: 5, flexShrink: 0 }}>
+                <div style={{ padding: "0 10px 4px", display: "flex", alignItems: "center", gap: 5, flexShrink: 0 }}>
                   <button onClick={() => {
                     if (meetMode) { clearMeet(); }
                     else { setMeetMode(true); }
-                  }} style={{
-                    background: meetMode ? "var(--ember)" : "var(--ink)",
-                    color: meetMode ? "var(--on-ember)" : "var(--paper)", border: "none", borderRadius: 999, padding: "4px 10px",
-                    fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                    cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0,
-                  }}>{meetMode ? "× CANCEL" : "MEET UP"}</button>
+                  }} className="duo-chip" aria-pressed={meetMode}><span>
+                    <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{meetMode ? <path d="M6 6 L18 18 M18 6 L6 18"/> : <><circle cx="9" cy="8" r="3.2"/><circle cx="16.5" cy="9.5" r="2.5"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5M14.5 14.3c2.6-.4 4.9 1.2 5.6 4.2"/></>}</svg>
+                    {meetMode ? "Cancel" : "Meet up"}</span></button>
                   <div className="no-scrollbar" style={{ display: "flex", gap: 3, flex: 1, overflowX: "auto", scrollbarWidth: "none" }}>
                     {friends.map(f => {
                       const unread = unreadCount(f.id);
@@ -2932,12 +2926,9 @@ function MapScreen({ state, setState }) {
                     <button onClick={() => {
                       if (meetMode) { clearMeet(); }
                       else { setMeetMode(true); }
-                    }} style={{
-                      background: meetMode ? "var(--ember)" : "var(--ink)",
-                      color: meetMode ? "var(--on-ember)" : "var(--paper)", border: "none", borderRadius: 999, padding: "6px 11px",
-                      fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
-                      cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0,
-                    }}>{meetMode ? "× CANCEL" : "MEET UP"}</button>
+                    }} className="duo-chip" aria-pressed={meetMode}><span>
+                      <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{meetMode ? <path d="M6 6 L18 18 M18 6 L6 18"/> : <><circle cx="9" cy="8" r="3.2"/><circle cx="16.5" cy="9.5" r="2.5"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5M14.5 14.3c2.6-.4 4.9 1.2 5.6 4.2"/></>}</svg>
+                      {meetMode ? "Cancel" : "Meet up"}</span></button>
                     <button onClick={() => setMoreOpen(o => !o)} aria-label="More options" aria-pressed={moreOpen} style={{
                       background: moreOpen ? "var(--ink)" : "var(--paper-2)",
                       color: moreOpen ? "var(--paper)" : "var(--ink)",

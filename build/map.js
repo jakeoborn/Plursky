@@ -3022,22 +3022,15 @@ function MapScreen({
       top: 68,
       left: 10,
       zIndex: 4,
-      padding: "5px 9px",
-      borderRadius: 999,
-      background: "rgba(var(--glass),0.92)",
-      color: "var(--ink)",
-      border: "1px solid var(--line-2)",
-      backdropFilter: "blur(10px)",
-      WebkitBackdropFilter: "blur(10px)",
-      boxShadow: "0 4px 12px rgba(var(--shade-rgb),0.10)",
       pointerEvents: "none"
     }
   }, React.createElement("span", {
-    className: "mono",
+    className: "duo-code",
     style: {
-      fontSize: 8,
-      letterSpacing: 1.05,
-      fontWeight: 800
+      background: "rgba(var(--glass),0.92)",
+      color: "var(--ink)",
+      backdropFilter: "blur(10px)",
+      WebkitBackdropFilter: "blur(10px)"
     }
   }, mapPostureLabel)), state._navStack?.length > 0 && React.createElement("button", {
     onClick: () => window._popNav?.(),
@@ -3076,10 +3069,11 @@ function MapScreen({
     "aria-pressed": gpsActive,
     style: {
       minWidth: 46,
+      minHeight: 44,
       padding: "6px 8px",
-      borderRadius: 14,
-      background: gpsActive ? "var(--ember)" : "rgba(var(--glass),0.92)",
-      color: "var(--ink)",
+      borderRadius: "var(--rad-sm)",
+      background: gpsActive ? "var(--acc)" : "rgba(var(--glass),0.92)",
+      color: gpsActive ? "var(--on-acc)" : "var(--ink)",
       border: gpsActive ? "none" : "1px solid var(--line-2)",
       backdropFilter: "blur(10px)",
       WebkitBackdropFilter: "blur(10px)",
@@ -3111,12 +3105,9 @@ function MapScreen({
     fill: "currentColor",
     stroke: "none"
   })), React.createElement("span", {
-    className: "mono",
     style: {
-      fontSize: 9,
-      letterSpacing: 0.8,
-      fontWeight: 800,
-      lineHeight: 1
+      font: "500 10px/1 var(--f-data)",
+      letterSpacing: "-0.01em"
     }
   }, gpsLabel)), React.createElement("div", {
     style: {
@@ -3124,7 +3115,7 @@ function MapScreen({
       flexDirection: "column",
       background: "rgba(var(--glass),0.92)",
       border: "1px solid var(--line-2)",
-      borderRadius: 14,
+      borderRadius: "var(--rad-sm)",
       overflow: "hidden",
       backdropFilter: "blur(10px)",
       WebkitBackdropFilter: "blur(10px)",
@@ -3398,17 +3389,14 @@ function MapScreen({
     },
     title: "Location permission is denied — enable it for this site to place yourself on the map"
   }, React.createElement("span", {
-    className: "mono",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
+      font: "600 11px/1.3 var(--f-ui)",
       whiteSpace: "nowrap",
       overflow: "hidden",
       textOverflow: "ellipsis",
       display: "block"
     }
-  }, "GPS DENIED · ENABLE LOCATION")), amenityKey && !meetMode && React.createElement("div", {
+  }, "GPS denied · enable location")), amenityKey && !meetMode && React.createElement("div", {
     style: {
       position: "absolute",
       left: 10,
@@ -3539,7 +3527,7 @@ function MapScreen({
     var hasPlaceCard = !!(stage || meetMode && meetTarget);
     var sheetMode = hasPlaceCard ? "place-card" : search.trim().length > 0 ? "full" : searchSheetExpanded ? "half" : "collapsed";
     var isShort = typeof window !== "undefined" && window.innerHeight < 700;
-    var sheetMaxH = sheetMode === "full" ? isShort ? "44vh" : "48vh" : sheetMode === "half" ? isShort ? 260 : 320 : 82;
+    var sheetMaxH = sheetMode === "full" ? isShort ? "44vh" : "48vh" : sheetMode === "half" ? isShort ? 260 : 320 : 116;
     if (sheetMode === "place-card") return null;
     return React.createElement("div", {
       style: {
@@ -3548,10 +3536,12 @@ function MapScreen({
         right: 8,
         bottom: 10,
         zIndex: 5,
-        background: "var(--paper)",
-        border: "1px solid var(--line-2)",
-        borderRadius: 16,
-        boxShadow: "0 -6px 24px rgba(var(--shade-rgb),0.18)",
+        background: "rgba(var(--glass),0.94)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        border: "1px solid var(--line)",
+        borderRadius: "var(--rad-md)",
+        boxShadow: "var(--e2)",
         maxHeight: sheetMaxH,
         overflow: "hidden",
         display: "flex",
@@ -3585,17 +3575,18 @@ function MapScreen({
         display: "flex",
         alignItems: "center",
         gap: 7,
-        background: "var(--paper-2)",
-        borderRadius: 999,
-        padding: "7px 11px",
-        border: "1px solid var(--line)"
+        background: "var(--s2)",
+        boxShadow: "var(--e1)",
+        borderRadius: "var(--rad-sm)",
+        padding: "0 12px",
+        minHeight: 44
       }
     }, React.createElement("svg", {
-      width: "14",
-      height: "14",
+      width: "16",
+      height: "16",
       viewBox: "0 0 24 24",
       fill: "none",
-      stroke: "var(--muted)",
+      stroke: "var(--ink-3)",
       strokeWidth: "2",
       style: {
         flexShrink: 0
@@ -3619,8 +3610,7 @@ function MapScreen({
         border: "none",
         outline: "none",
         color: "var(--ink)",
-        fontFamily: "Geist, sans-serif",
-        fontSize: 13
+        font: "400 16px/1.2 var(--f-ui)"
       }
     }), search && React.createElement("button", {
       onClick: () => {
@@ -3646,7 +3636,7 @@ function MapScreen({
       }
     }, "×"))), sheetMode === "collapsed" && React.createElement("div", {
       style: {
-        padding: "0 10px 8px",
+        padding: "0 10px 4px",
         display: "flex",
         alignItems: "center",
         gap: 5,
@@ -3660,21 +3650,31 @@ function MapScreen({
           setMeetMode(true);
         }
       },
-      style: {
-        background: meetMode ? "var(--ember)" : "var(--ink)",
-        color: meetMode ? "var(--on-ember)" : "var(--paper)",
-        border: "none",
-        borderRadius: 999,
-        padding: "4px 10px",
-        fontFamily: "Geist Mono, monospace",
-        fontSize: 9,
-        letterSpacing: 1.2,
-        fontWeight: 700,
-        cursor: "pointer",
-        whiteSpace: "nowrap",
-        flexShrink: 0
-      }
-    }, meetMode ? "× CANCEL" : "MEET UP"), React.createElement("div", {
+      className: "duo-chip",
+      "aria-pressed": meetMode
+    }, React.createElement("span", null, React.createElement("svg", {
+      "aria-hidden": "true",
+      width: "15",
+      height: "15",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "1.8",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }, meetMode ? React.createElement("path", {
+      d: "M6 6 L18 18 M18 6 L6 18"
+    }) : React.createElement(React.Fragment, null, React.createElement("circle", {
+      cx: "9",
+      cy: "8",
+      r: "3.2"
+    }), React.createElement("circle", {
+      cx: "16.5",
+      cy: "9.5",
+      r: "2.5"
+    }), React.createElement("path", {
+      d: "M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5M14.5 14.3c2.6-.4 4.9 1.2 5.6 4.2"
+    }))), meetMode ? "Cancel" : "Meet up")), React.createElement("div", {
       className: "no-scrollbar",
       style: {
         display: "flex",
@@ -4093,21 +4093,31 @@ function MapScreen({
           setMeetMode(true);
         }
       },
-      style: {
-        background: meetMode ? "var(--ember)" : "var(--ink)",
-        color: meetMode ? "var(--on-ember)" : "var(--paper)",
-        border: "none",
-        borderRadius: 999,
-        padding: "6px 11px",
-        fontFamily: "Geist Mono, monospace",
-        fontSize: 10,
-        letterSpacing: 1.3,
-        fontWeight: 700,
-        cursor: "pointer",
-        whiteSpace: "nowrap",
-        flexShrink: 0
-      }
-    }, meetMode ? "× CANCEL" : "MEET UP"), React.createElement("button", {
+      className: "duo-chip",
+      "aria-pressed": meetMode
+    }, React.createElement("span", null, React.createElement("svg", {
+      "aria-hidden": "true",
+      width: "15",
+      height: "15",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "1.8",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }, meetMode ? React.createElement("path", {
+      d: "M6 6 L18 18 M18 6 L6 18"
+    }) : React.createElement(React.Fragment, null, React.createElement("circle", {
+      cx: "9",
+      cy: "8",
+      r: "3.2"
+    }), React.createElement("circle", {
+      cx: "16.5",
+      cy: "9.5",
+      r: "2.5"
+    }), React.createElement("path", {
+      d: "M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5M14.5 14.3c2.6-.4 4.9 1.2 5.6 4.2"
+    }))), meetMode ? "Cancel" : "Meet up")), React.createElement("button", {
       onClick: () => setMoreOpen(o => !o),
       "aria-label": "More options",
       "aria-pressed": moreOpen,

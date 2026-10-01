@@ -577,11 +577,12 @@ function FieldButton({ children, onClick, kind = "primary", style, ...rest }) {
     <button onClick={onClick} {...rest} style={{
       width: "100%", minHeight: 52, padding: "0 20px",
       display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
-      background: primary ? "var(--signal)" : "var(--paper-3)",
-      color: primary ? "var(--on-signal)" : "var(--ink)",
+      background: primary ? "var(--acc)" : "transparent",
+      color: primary ? "var(--on-acc)" : "var(--ink)",
       // Secondary is outlined so it reads as a button on a raised sheet too.
-      border: primary ? "none" : "1px solid var(--line-2)", borderRadius: 14, cursor: rest.disabled ? "default" : "pointer",
-      fontSize: 17, lineHeight: "22px", fontWeight: 600,
+      border: primary ? "none" : "1px solid var(--line-2)", borderRadius: "var(--rad-sm)", cursor: rest.disabled ? "default" : "pointer",
+      boxShadow: primary && !rest.disabled ? "0 10px 28px -12px var(--acc-55)" : "none",
+      font: "650 17px/1.3 var(--f-ui)", letterSpacing: "-0.01em",
       opacity: rest.disabled ? 0.45 : 1,
       ...style,
     }}>{children}</button>
@@ -629,14 +630,14 @@ function FieldSheet({ title, onClose, children }) {
     }}>
       <div role="dialog" aria-modal="true" aria-label={title} onClick={e => e.stopPropagation()} style={{
         width: "100%", maxHeight: "88%", display: "flex", flexDirection: "column",
-        background: "var(--paper-3)", borderRadius: "14px 14px 0 0",
+        background: "var(--s1)", borderRadius: "var(--rad-lg) var(--rad-lg) 0 0", boxShadow: "var(--e2)",
         paddingBottom: "env(safe-area-inset-bottom, 0px)",
       }}>
         <div aria-hidden="true" style={{ display: "flex", justifyContent: "center", paddingTop: 8 }}>
           <div style={{ width: 36, height: 5, borderRadius: 3, background: "var(--line-2)" }}/>
         </div>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "4px 8px 4px 20px" }}>
-          <h2 style={{ margin: 0, fontSize: 20, lineHeight: "25px", fontWeight: 600 }}>{title}</h2>
+          <h2 style={{ margin: 0, font: "700 22px/1.25 var(--f-ui)", letterSpacing: "-0.02em" }}>{title}</h2>
           <button onClick={onClose} aria-label="Close" style={fieldIconBtn}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg>
           </button>
@@ -1444,16 +1445,19 @@ function FestivalThumb({ entry, size = 56, editorial = false }) {
   const editorialArt = editorial && entry ? _FESTIVAL_EDITORIAL_ART[entry.config?.id] : null;
   const art = editorialArt || (!editorial && entry ? _festivalArt(entry.config) : null);
   const name = entry?.config?.shortName || entry?.config?.brand || entry?.config?.name || "Plur";
-  const mark = String(name).split(/\s+/).filter(Boolean).slice(0, 2).map(x => x[0]).join("").toUpperCase();
-  const seed = String(entry?.config?.id || "plur").split("").reduce((n, c) => n + c.charCodeAt(0), 0);
-  const warm = 18 + (seed % 22);
-  const fallback = `radial-gradient(circle at 22% 18%, rgba(242,75,131,.72), transparent 36%), radial-gradient(circle at 82% 78%, hsla(${warm},92%,62%,.42), transparent 38%), linear-gradient(145deg,#15101b,#07101c 68%,#160b13)`;
+  // The brand when it is already a code (EDC, ACL, CRSSD); else the
+  // initials of the name's words, the year left out.
+  const brand = String(entry?.config?.brand || "").trim();
+  const mark = (/^[A-Za-z0-9]{2,6}$/.test(brand) ? brand
+    : String(entry?.config?.name || name).split(/\s+/).filter(w => w && !/^\d+$/.test(w)).slice(0, 3).map(x => x[0]).join("")).toUpperCase();
+  // No art: the festival's initials as a board code on a well, in both
+  // modes (the old pink film gradient was a Dark-only look).
   return (
     <div aria-hidden="true" style={{
-      width: size, height: size, borderRadius: 14, overflow: "hidden", flexShrink: 0,
-      background: art ? "var(--paper-3)" : fallback, display: "flex", alignItems: "center", justifyContent: "center",
-      fontSize: Math.max(14, Math.round(size * (editorial ? 0.18 : 0.25))), fontWeight: 850, letterSpacing: "0.04em",
-      color: "var(--media-ink)", textShadow: "0 1px 8px rgba(0,0,0,.5)",
+      width: size, height: size, borderRadius: "var(--rad-sm)", overflow: "hidden", flexShrink: 0,
+      background: "var(--s3)", display: "flex", alignItems: "center", justifyContent: "center",
+      fontFamily: "var(--f-display)", fontSize: Math.max(13, Math.round(size * (editorial ? 0.16 : 0.22))), fontWeight: 400, letterSpacing: "0.12em",
+      color: "var(--ink-2)",
       // lineHeight 1 keeps the wordmark fallback inside its box: the default
       // ~1.2 line box grows past the tile at 200% text and is clipped.
       lineHeight: 1,
@@ -1532,7 +1536,7 @@ function FestivalSwitcher({ onClose }) {
   } catch {}
   const caught = archive.reduce((n, a) => n + (a.totalAttended || 0), 0);
 
-  const eyebrow = { margin: "0 0 4px", fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)" };
+  const eyebrow = { margin: "0 0 4px" };
   const rowStyle = (dim) => ({
     width: "100%", display: "flex", alignItems: "center", gap: 12, minHeight: 72, padding: "8px 0",
     background: "transparent", border: "none", borderBottom: "1px solid var(--line)",
@@ -1545,24 +1549,24 @@ function FestivalSwitcher({ onClose }) {
     const st = _festivalPlanStatus(f.config.id);
     const parts = [];
     if (st.saved) parts.push(<span key="s">{st.saved} saved</span>);
-    if (st.conflicts) parts.push(<span key="c" style={{ color: "var(--warn)", fontWeight: 600 }}>⚠ {st.conflicts} {st.conflicts === 1 ? "conflict" : "conflicts"}</span>);
-    if (isActive) parts.push(<span key="a" style={{ color: "var(--signal-ink)", fontWeight: 600 }}>✓ Active</span>);
+    if (st.conflicts) parts.push(<span key="c" style={{ color: "var(--clash)", fontWeight: 600 }}>{st.conflicts} {st.conflicts === 1 ? "clash" : "clashes"}</span>);
+    if (isActive) parts.push(<span key="a" style={{ color: "var(--acc-ink)", fontWeight: 650 }}>Active</span>);
     else if (phase(f) === "ended") parts.push(<span key="e">Ended</span>);
     else if (!f.available) parts.push(<span key="l">{f.previewOnly ? "Early access" : "Soon"}</span>);
     // Open, lineup in, schedule still to come — say so BEFORE the switch, so
     // nobody taps in expecting a timetable and finds a list of dashes.
     else if (f.scheduleTBA) parts.push(<span key="tba">Set times TBA</span>);
-    else if (st.saved && !st.conflicts) parts.push(<span key="r" style={{ color: "var(--signal-ink)", fontWeight: 600 }}>✓ Ready</span>);
+    else if (st.saved && !st.conflicts) parts.push(<span key="r" style={{ color: "var(--acc-ink)", fontWeight: 650 }}>Ready</span>);
     return (
       <button key={f.config.id} onClick={() => onPick(f.config.id, f)} disabled={locked}
         aria-current={isActive ? "true" : undefined}
         style={{ ...rowStyle(locked), cursor: locked ? "default" : "pointer" }}>
         <FestivalThumb entry={f} editorial={viewMode === "grid"} />
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>{f.config.name}</div>
-          <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{f.config.location} · <span style={{ whiteSpace: "nowrap" }}>{f.config.dates}</span></div>
+          <div className="duo-headline">{f.config.name}</div>
+          <div style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>{f.config.location} · <span style={{ overflowWrap: "normal" }}>{f.config.dates}</span></div>
           {parts.length > 0 && (
-            <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+            <div style={{ marginTop: 2, font: "500 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>
               {parts.map((x, i) => <React.Fragment key={i}>{i ? " · " : ""}{x}</React.Fragment>)}
             </div>
           )}
@@ -1573,22 +1577,22 @@ function FestivalSwitcher({ onClose }) {
   };
   const group = (label, kids) => (
     <section key={label} style={{ marginTop: 16 }}>
-      <h3 style={eyebrow}>{label}</h3>
+      <h3 className="duo-sect" style={eyebrow}>{label}</h3>
       {kids}
     </section>
   );
   return (
     <FieldSheet title="Choose your sky." onClose={onClose}>
-      <p style={{ margin: "-4px 0 14px", color: "var(--text-2)", fontSize: 14 }}>Live, next and remembered.</p>
-      <div role="group" aria-label="Festival view" style={{ display: "flex", padding: 3, marginBottom: 12, borderRadius: 12, background: "var(--paper-3)" }}>
-        {["grid", "list"].map(mode => <button key={mode} onClick={() => chooseView(mode)} aria-pressed={viewMode === mode} style={{ flex: 1, border: 0, borderRadius: 9, padding: "9px 6px", background: viewMode === mode ? "var(--signal)" : "transparent", color: viewMode === mode ? "var(--on-signal)" : "var(--text-2)", fontWeight: 750, textTransform: "capitalize" }}>{mode}</button>)}
+      <p style={{ margin: "-4px 0 14px", color: "var(--ink-2)", font: "400 15px/1.4 var(--f-ui)" }}>Live, next and remembered.</p>
+      <div role="group" aria-label="Festival view" className="duo-seg" style={{ marginBottom: 12, background: "var(--s2)" }}>
+        {["grid", "list"].map(mode => <button key={mode} onClick={() => chooseView(mode)} aria-pressed={viewMode === mode} style={{ textTransform: "capitalize" }}>{mode}</button>)}
       </div>
       <div className={viewMode === "grid" ? "midnight-festival-grid" : undefined}>
         {live.map(row)}
         {months.flatMap(g => g.fests.map(row))}
         {tba.map(row)}
       </div>
-      {viewMode === "list" && <div style={{ marginTop: 8, fontSize: 11, color: "var(--text-3)" }}>Ordered by festival date</div>}
+      {viewMode === "list" && <div className="duo-data-s duo-ink3" style={{ marginTop: 8 }}>ORDERED BY FESTIVAL DATE</div>}
       {(past.length > 0 || archive.length > 0) && group("Past", <>
         <button onClick={() => setPastOpen(o => !o)} aria-expanded={pastOpen} style={{ ...rowStyle(false), cursor: "pointer" }}>
           <FestivalThumb entry={past[0] || null} />

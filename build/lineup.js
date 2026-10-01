@@ -684,43 +684,25 @@ function LineupFilterSheet({
       return true;
     }).length;
   }, [f, day, savedSet, weekendFilter]);
-  var chip = on => ({
-    flexShrink: 0,
-    minHeight: 44,
-    padding: "0 16px",
-    borderRadius: 18,
-    background: on ? "var(--paper-2)" : "transparent",
-    color: on ? "var(--ink)" : "var(--text-2)",
-    border: on ? "1.5px solid var(--signal)" : "1px solid var(--line-2)",
-    fontSize: 15,
-    lineHeight: "20px",
-    fontWeight: on ? 600 : 500,
-    cursor: "pointer",
-    whiteSpace: "nowrap",
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 6
-  });
   var sectionLabel = {
-    ..._fieldEyebrow,
-    color: "var(--text-2)",
-    margin: "20px 0 8px"
+    margin: "20px 0 4px"
   };
   var row = {
     display: "flex",
-    gap: 8,
+    columnGap: 8,
     flexWrap: "wrap"
   };
   var opt = (key, id, label, extra) => React.createElement("button", {
     key: id,
     "aria-pressed": f[key] === id,
     onClick: () => set(key, id),
-    style: chip(f[key] === id)
-  }, extra, label);
+    className: "duo-chip"
+  }, React.createElement("span", null, extra, label));
   return React.createElement(FieldSheet, {
     title: "Filters",
     onClose: onClose
   }, React.createElement("div", {
+    className: "duo-sect",
     style: {
       ...sectionLabel,
       marginTop: 4
@@ -728,18 +710,22 @@ function LineupFilterSheet({
   }, "Show"), React.createElement("div", {
     style: row
   }, opt("filter", "all", "All"), opt("filter", "saved", `Saved${savedCount ? ` · ${savedCount}` : ""}`), opt("filter", "now", "Now")), React.createElement("div", {
+    className: "duo-sect",
     style: sectionLabel
   }, "Tier"), React.createElement("div", {
     style: row
   }, opt("tierFilter", "all", "All tiers"), opt("tierFilter", "legend", "Legendary"), opt("tierFilter", "head", "Headliners"), opt("tierFilter", "prime", "Prime time"), opt("tierFilter", "open", "Openers")), React.createElement("div", {
+    className: "duo-sect",
     style: sectionLabel
   }, "Stage"), React.createElement("div", {
     style: row
   }, opt("stageFilter", "all", "All stages"), STAGES.map(s => opt("stageFilter", s.id, s.short || s.name))), dayGenres.length > 0 && React.createElement(React.Fragment, null, React.createElement("div", {
+    className: "duo-sect",
     style: sectionLabel
   }, "Genre"), React.createElement("div", {
     style: row
   }, opt("genreFilter", "all", "All genres"), dayGenres.map(g => opt("genreFilter", g, g)))), React.createElement("div", {
+    className: "duo-sect",
     style: sectionLabel
   }, "Sort by"), React.createElement("div", {
     style: row
