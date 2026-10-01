@@ -1376,12 +1376,12 @@ function ArtistScreen({ state, setState }) {
         {/* Section-jump chips — scroll-spy highlights the active section */}
         {(() => {
           const sections = [
-            { id: "artist-section-bio",        label: "BIO" },
-            { id: "artist-section-tracklist",  label: "TRACKLIST" },
-            { id: "artist-section-livestream", label: "LIVE SET" },
-            { id: "artist-section-setlists",   label: "SETLISTS" },
-            { id: "artist-section-similar",    label: "SIMILAR" },
-            { id: "artist-section-upcoming",   label: "UPCOMING" },
+            { id: "artist-section-bio",        label: "Bio" },
+            { id: "artist-section-tracklist",  label: "Tracklist" },
+            { id: "artist-section-livestream", label: "Live set" },
+            { id: "artist-section-setlists",   label: "Setlists" },
+            { id: "artist-section-similar",    label: "Similar" },
+            { id: "artist-section-upcoming",   label: "Upcoming" },
           ];
           const [activeChip, setActiveChip] = React.useState(sections[0].id);
           React.useEffect(() => {
@@ -1396,8 +1396,8 @@ function ArtistScreen({ state, setState }) {
           }, [a.id]);
           return (
             <div style={{
-              display: "flex", gap: 6, overflowX: "auto", overflowY: "hidden",
-              marginBottom: 16, marginLeft: -20, marginRight: -20,
+              display: "flex", gap: 8, overflowX: "auto", overflowY: "hidden",
+              marginBottom: 8, marginLeft: -20, marginRight: -20,
               paddingLeft: 20, paddingRight: 20,
               scrollbarWidth: "none",
             }}>
@@ -1406,19 +1406,11 @@ function ArtistScreen({ state, setState }) {
                 return (
                   <button
                     key={c.id}
+                    className="duo-chip" aria-pressed={on}
                     onClick={() => {
                       document.getElementById(c.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
                     }}
-                    style={{
-                      background: on ? "var(--ink)" : "var(--paper-2)",
-                      border: on ? "1px solid var(--ink)" : "1px solid var(--line-2)",
-                      borderRadius: 999, padding: "6px 12px",
-                      fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 600,
-                      color: on ? "var(--paper)" : "var(--ink)", cursor: "pointer",
-                      whiteSpace: "nowrap", flexShrink: 0,
-                      transition: "all 0.2s ease",
-                    }}
-                  >{c.label}</button>
+                  ><span>{c.label}</span></button>
                 );
               })}
             </div>
@@ -1432,45 +1424,47 @@ function ArtistScreen({ state, setState }) {
           {a.bio}
         </div>
 
-        {/* Stage & time */}
-        <div style={{
-          display: "flex", alignItems: "center", gap: 12,
-          padding: 14,
-          background: "var(--paper-2)",
-          borderRadius: 14,
-          marginBottom: 16,
-        }}>
-          <div style={{ width: 6, alignSelf: "stretch", background: "var(--signal)", borderRadius: 3 }} />
-          <div style={{ flex: 1 }}>
-            <div className="serif" style={{ fontSize: 20, lineHeight: 1 }}>{stage.name}</div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)", marginTop: 3 }}>
-              {/* A billed act no official schedule has placed (Escape's lineup-card
-                  acts, CRSSD's late adds) has no day: say so, rather than
-                  look up a day that does not exist and crash the screen. */}
-              {a.day == null ? "DAY + SET TIME NOT PUBLISHED"
-                : `${(DAYS.find(d => d.n === a.day) || { label: `DAY ${a.day}` }).label} · ${a.start ? `${fmt12(a.start)}–${fmt12(a.end)}` : "SET TIME NOT PUBLISHED"}`}
-            </div>
-            {saveCount != null && saveCount >= 2 && (
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--signal-ink)", marginTop: 5 }}>
-                ● {saveCount} FANS GOING
+        {/* Stage & time: the board's set card. Lifted while the set is on,
+            with minutes left and progress (Today's math); otherwise the day
+            and the clock. A billed act no official schedule has placed
+            (Escape's lineup-card acts, CRSSD's late adds) has no day: say so,
+            rather than look up a day that does not exist and crash. */}
+        {(() => {
+          const live = typeof isSetLive === "function" && isSetLive(a);
+          const dayLabel = a.day == null ? null : (DAYS.find(d => d.n === a.day) || { label: `DAY ${a.day}` }).label;
+          let minsLeft = null, pct = 0;
+          if (live && a.start && a.end && typeof festivalNightDate === "function") {
+            try {
+              const startMs = festivalNightDate(a.day, a.start).getTime();
+              const endMs = startMs + Math.max(1, toNightMin(a.end) - toNightMin(a.start)) * 60000;
+              const now = Date.now();
+              minsLeft = Math.max(0, Math.round((endMs - now) / 60000));
+              pct = Math.min(100, Math.max(0, Math.round((now - startMs) / (endMs - startMs) * 100)));
+            } catch {}
+          }
+          const go = (n) => (window._pushNav || ((x) => setState({ ...state, ...x })))(n);
+          return (
+            <div className={`duo-card${live ? " duo-lift" : ""}`} style={{ padding: "14px 16px", marginBottom: 16 }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", columnGap: 12, rowGap: 4, flexWrap: "wrap" }}>
+                {live ? <span style={{ whiteSpace: "nowrap" }}><DuoLive>{`Live now${dayLabel ? ` · ${dayLabel}` : ""}`}</DuoLive></span>
+                  : <span className="duo-label duo-ink3">{dayLabel || "Day TBA"}</span>}
+                {minsLeft != null && <span className="duo-data-s duo-ink3" style={{ whiteSpace: "nowrap" }}>{minsLeft} MIN LEFT</span>}
               </div>
-            )}
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 6, flexShrink: 0 }}>
-            <button onClick={() => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "map", focusStage: a.stage, artist: null })} style={{
-              background: "transparent", border: "1px solid var(--line-2)",
-              borderRadius: 999, padding: "6px 12px",
-              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2,
-              cursor: "pointer",
-            }}>ON MAP</button>
-            {a.day != null && <button onClick={() => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "lineup", lineupDay: a.day, lineupHighlight: a.id, artist: null })} style={{
-              background: "transparent", border: "1px solid var(--line-2)",
-              borderRadius: 999, padding: "6px 12px",
-              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2,
-              cursor: "pointer", whiteSpace: "nowrap",
-            }}>SCHEDULE</button>}
-          </div>
-        </div>
+              <div className="duo-headline" style={{ marginTop: 8 }}>{stage.name}</div>
+              {a.day == null || !a.start
+                ? <div className="duo-body-s duo-ink2" style={{ marginTop: 4 }}>{a.day == null ? "Day and set time not published" : "Set time not published"}</div>
+                : <div className="duo-clock" style={{ fontSize: "clamp(20px, 7vw, 28px)", marginTop: 6 }}>{fmt12(a.start)}<span className="duo-ink3" style={{ fontSize: "0.65em" }}> → </span>{fmt12(a.end)}</div>}
+              {live && <div className="duo-track" style={{ marginTop: 12 }}><b style={{ width: `${pct}%` }} /></div>}
+              {saveCount != null && saveCount >= 2 && (
+                <div className="duo-data-s duo-acc" style={{ marginTop: 10 }}>{saveCount} FANS GOING</div>
+              )}
+              <div style={{ display: "flex", columnGap: 8, flexWrap: "wrap", marginTop: 6 }}>
+                <button className="duo-chip" onClick={() => go({ tab: "map", focusStage: a.stage, artist: null })}><span>On map</span></button>
+                {a.day != null && <button className="duo-chip" onClick={() => go({ tab: "lineup", lineupDay: a.day, lineupHighlight: a.id, artist: null })}><span>Schedule</span></button>}
+              </div>
+            </div>
+          );
+        })()}
 
         {/* Per-artist memories strip — the first surface in the rewatch
             loop. Hidden when the user has no moments tagged to this
@@ -2342,18 +2336,19 @@ function ArtistScreen({ state, setState }) {
       <div style={{
         flexShrink: 0,
         padding: "12px 20px calc(10px + env(safe-area-inset-bottom)) 20px",
-        background: saveFlash ? (saved ? "rgba(var(--signal-rgb),0.08)" : "var(--paper)") : "var(--paper)",
+        background: saveFlash && saved ? "var(--acc-wash)" : "var(--bg)",
         borderTop: "1px solid var(--line)",
         display: "flex", gap: 8,
         transition: "background 0.3s ease",
       }}>
         <button onClick={handleSave} style={{
-          flex: 1, padding: "14px", borderRadius: 14,
+          flex: 1, padding: "14px", borderRadius: "var(--rad-sm)",
           minHeight: 52,
-          background: saved ? "var(--paper-2)" : "var(--signal)",
-          color: saved ? "var(--ink)" : "var(--on-signal)",
+          background: saved ? "transparent" : "var(--acc)",
+          color: saved ? "var(--ink)" : "var(--on-acc)",
           border: saved ? "1px solid var(--line-2)" : "none", cursor: "pointer",
-          fontSize: 17, lineHeight: "22px", fontWeight: 600,
+          boxShadow: saved ? "none" : "0 10px 28px -12px var(--acc-55)",
+          font: "650 17px/1.3 var(--f-ui)", letterSpacing: "-0.01em",
           transition: "background 0.2s ease, transform 0.35s var(--ease-spring)",
           transform: saveFlash ? "scale(1.03)" : "scale(1)",
         }}>
@@ -2361,7 +2356,7 @@ function ArtistScreen({ state, setState }) {
           {saved ? (saveFlash ? "Saved" : "✓ Saved to lineup") : "Add to lineup"}
         </button>
         <button onClick={() => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "memories", memoriesNight: a.day, artist: null })} aria-label="Open memories" style={{
-          width: 54, borderRadius: 14,
+          width: 54, borderRadius: "var(--rad-sm)",
           background: "transparent", border: "1px solid var(--line-2)",
           cursor: "pointer", color: "var(--ink)",
           display: "flex", alignItems: "center", justifyContent: "center",
