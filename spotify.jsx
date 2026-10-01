@@ -7117,7 +7117,9 @@ function MemoriesScreen({ state, setState }) {
                 one. Keeping them off their own full-width line each is what
                 the spec's "import, review, recap, manage and the view controls
                 all before the first library card" finding asked for. */}
-            <div style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 2 }}>
+            {/* Wraps rather than pans: at 280pt with 200% text the CI runner's
+                fonts put the two links 10px past the column. */}
+            <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 4, marginTop: 2, minWidth: 0 }}>
               <button
                 onClick={() => setView(v => (v === "grid" ? "library" : "grid"))}
                 aria-pressed={view === "grid"}

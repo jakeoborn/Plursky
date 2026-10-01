@@ -10415,8 +10415,10 @@ function MemoriesScreen({
     style: {
       display: "flex",
       alignItems: "center",
+      flexWrap: "wrap",
       gap: 4,
-      marginTop: 2
+      marginTop: 2,
+      minWidth: 0
     }
   }, React.createElement("button", {
     onClick: () => setView(v => v === "grid" ? "library" : "grid"),
