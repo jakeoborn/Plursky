@@ -1979,36 +1979,32 @@ function useFitNames(root) {
 // input, not something to undo). It only READS unless a word breaks, so the
 // hundreds of names on a lineup cost one layout, not one each.
 //
-// The size goes through --fit-px and one stylesheet rule, never the element's
-// own inline font-size: on an element styled with a `font:` shorthand that
-// holds a var() (Today's clash names), writing the longhand expanded the
-// shorthand into empty longhands and every later write was ignored, so the
-// fit ran to its floor on one load, and a re-render put 14px back on the next.
-// Only text something else has already pinned inline with !important (the
-// 200% text proxy) is written inline, as the last word on that slot.
+// The size is written inline with !important, the last word on that slot,
+// and the element's own inline value is kept so a skip restores it exactly.
+// One path only: a stylesheet rule lost to any inline !important (the 200%
+// text proxy pins every element), and mixing the two left labels unfitted.
+// An inline `font:` shorthand holding a var() cannot be resized at all in
+// Chromium (it beats every font-size, even !important); fitWords probes one
+// step and leaves such text exactly as it renders.
 const _FIT_WORDS = "[data-fit-words], .duo-name";
 function _fitSize(el, px) {
+  if (el.dataset.fitOrig == null) el.dataset.fitOrig = (el.style.getPropertyValue("font-size") || "") + "|" + el.style.getPropertyPriority("font-size");
   if (px == null) {
-    el.removeAttribute("data-fit-px"); el.style.removeProperty("--fit-px");
-    if (el.dataset.fitInline) { el.style.removeProperty("font-size"); delete el.dataset.fitInline; }
-    delete el.dataset.fitSet; return;
+    const [v, pr] = el.dataset.fitOrig.split("|");
+    if (v) el.style.setProperty("font-size", v, pr); else el.style.removeProperty("font-size");
+    delete el.dataset.fitOrig; delete el.dataset.fitSet; return;
   }
-  const pinned = el.style.getPropertyPriority("font-size") === "important" && !el.dataset.fitInline;
-  if (pinned || el.dataset.fitInline) { el.style.setProperty("font-size", px + "px", "important"); el.dataset.fitInline = "1"; }
-  else { el.style.setProperty("--fit-px", px + "px"); el.setAttribute("data-fit-px", ""); }
+  el.style.setProperty("font-size", px + "px", "important");
   el.dataset.fitSet = String(px);
-}
-if (typeof document !== "undefined" && !document.getElementById("fit-words-rule")) {
-  const st = document.createElement("style"); st.id = "fit-words-rule";
-  st.textContent = "[data-fit-px]{font-size:var(--fit-px)!important}";
-  (document.head || document.documentElement).appendChild(st);
 }
 function fitWords(el) {
   const cs = getComputedStyle(el);
   const cur = parseFloat(cs.fontSize);
   if (el.dataset.fitSet == null || Math.abs(cur - parseFloat(el.dataset.fitSet)) > 0.1) el.dataset.fitBase = String(cur);
   const base = parseFloat(el.dataset.fitBase);
-  const key = el.textContent + "|" + el.clientWidth + "|" + base;
+  // The face is part of the key: a family swap (a fallback replaced) changes
+  // every word's width without moving the box.
+  const key = el.textContent + "|" + el.clientWidth + "|" + base + "|" + getComputedStyle(el).fontFamily;
   if (el.dataset.fitKey === key) return;
   // Words split on space, hyphen, dash, slash and the middot: a break AFTER
   // "Auto-" is a hyphen doing its job, not a word broken inside itself.
@@ -2027,6 +2023,14 @@ function fitWords(el) {
     });
   };
   const set = (px) => _fitSize(el, px);
+  // No transition while measuring. Reduced motion gives every element a
+  // 0.01ms `transition: all`, and while one is in flight a new font-size is
+  // neither computed nor laid out: each step measured the OLD size, so the
+  // fit ran to its floor or gave up depending on timing (CI's runner: one
+  // name 11px on a fresh load, 14px after a mode switch).
+  const tr = [el.style.getPropertyValue("transition"), el.style.getPropertyPriority("transition")];
+  el.style.setProperty("transition", "none", "important");
+  const done = () => { if (tr[0]) el.style.setProperty("transition", tr[0], tr[1]); else el.style.removeProperty("transition"); };
   let size = cur;
   if (size < base) { size = base; set(size); }   // a wider box: start again from the real size
   const min = parseFloat(el.dataset.fitMin || "11");
@@ -2049,14 +2053,15 @@ function fitWords(el) {
       const took = Math.abs(parseFloat(getComputedStyle(el).fontSize) - (size - 1)) < 0.1;
       if (!took || el.getBoundingClientRect().width < w0 - 0.5) {
         _fitSize(el, null); el.style.overflowWrap = "";
-        el.dataset.fitKey = el.textContent + "|" + el.clientWidth + "|" + base; return;
+        el.dataset.fitKey = el.textContent + "|" + el.clientWidth + "|" + base + "|" + getComputedStyle(el).fontFamily; done(); return;
       }
       size -= 1;
     }
     while (broken() && size > min) { size -= 1; set(size); }
     if (broken()) el.style.overflowWrap = "anywhere";
   }
-  el.dataset.fitKey = el.textContent + "|" + el.clientWidth + "|" + base;
+  el.dataset.fitKey = el.textContent + "|" + el.clientWidth + "|" + base + "|" + getComputedStyle(el).fontFamily;
+  done();
 }
 // Siblings sharing a data-fit-group (the tab labels) then all take the
 // smallest fitted size, so one long label does not leave its row uneven.
@@ -2094,9 +2099,7 @@ if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationO
     const all = [...document.body.querySelectorAll(_FIT_WORDS)];
     for (const n of all) {
       n.dataset.fitKey = "";
-      if (n.dataset.fitSet != null && n.dataset.fitBase != null && parseFloat(n.dataset.fitSet) !== parseFloat(n.dataset.fitBase)) {
-        if (n.dataset.fitInline) _fitSize(n, parseFloat(n.dataset.fitBase)); else { _fitSize(n, null); n.dataset.fitSet = n.dataset.fitBase; }
-      }
+      if (n.dataset.fitSet != null && n.dataset.fitBase != null && parseFloat(n.dataset.fitSet) !== parseFloat(n.dataset.fitBase)) _fitSize(n, parseFloat(n.dataset.fitBase));
       if (n.style.overflowWrap) n.style.overflowWrap = "";
     }
     for (const n of all) { fitWords(n); ro && ro.observe(n); }

@@ -2546,38 +2546,23 @@ function useFitNames(root) {
 }
 var _FIT_WORDS = "[data-fit-words], .duo-name";
 function _fitSize(el, px) {
+  if (el.dataset.fitOrig == null) el.dataset.fitOrig = (el.style.getPropertyValue("font-size") || "") + "|" + el.style.getPropertyPriority("font-size");
   if (px == null) {
-    el.removeAttribute("data-fit-px");
-    el.style.removeProperty("--fit-px");
-    if (el.dataset.fitInline) {
-      el.style.removeProperty("font-size");
-      delete el.dataset.fitInline;
-    }
+    var [v, pr] = el.dataset.fitOrig.split("|");
+    if (v) el.style.setProperty("font-size", v, pr);else el.style.removeProperty("font-size");
+    delete el.dataset.fitOrig;
     delete el.dataset.fitSet;
     return;
   }
-  var pinned = el.style.getPropertyPriority("font-size") === "important" && !el.dataset.fitInline;
-  if (pinned || el.dataset.fitInline) {
-    el.style.setProperty("font-size", px + "px", "important");
-    el.dataset.fitInline = "1";
-  } else {
-    el.style.setProperty("--fit-px", px + "px");
-    el.setAttribute("data-fit-px", "");
-  }
+  el.style.setProperty("font-size", px + "px", "important");
   el.dataset.fitSet = String(px);
-}
-if (typeof document !== "undefined" && !document.getElementById("fit-words-rule")) {
-  var st = document.createElement("style");
-  st.id = "fit-words-rule";
-  st.textContent = "[data-fit-px]{font-size:var(--fit-px)!important}";
-  (document.head || document.documentElement).appendChild(st);
 }
 function fitWords(el) {
   var cs = getComputedStyle(el);
   var cur = parseFloat(cs.fontSize);
   if (el.dataset.fitSet == null || Math.abs(cur - parseFloat(el.dataset.fitSet)) > 0.1) el.dataset.fitBase = String(cur);
   var base = parseFloat(el.dataset.fitBase);
-  var key = el.textContent + "|" + el.clientWidth + "|" + base;
+  var key = el.textContent + "|" + el.clientWidth + "|" + base + "|" + getComputedStyle(el).fontFamily;
   if (el.dataset.fitKey === key) return;
   var words = [];
   var tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
@@ -2599,6 +2584,11 @@ function fitWords(el) {
     });
   };
   var set = px => _fitSize(el, px);
+  var tr = [el.style.getPropertyValue("transition"), el.style.getPropertyPriority("transition")];
+  el.style.setProperty("transition", "none", "important");
+  var done = () => {
+    if (tr[0]) el.style.setProperty("transition", tr[0], tr[1]);else el.style.removeProperty("transition");
+  };
   var size = cur;
   if (size < base) {
     size = base;
@@ -2614,7 +2604,8 @@ function fitWords(el) {
       if (!took || el.getBoundingClientRect().width < w0 - 0.5) {
         _fitSize(el, null);
         el.style.overflowWrap = "";
-        el.dataset.fitKey = el.textContent + "|" + el.clientWidth + "|" + base;
+        el.dataset.fitKey = el.textContent + "|" + el.clientWidth + "|" + base + "|" + getComputedStyle(el).fontFamily;
+        done();
         return;
       }
       size -= 1;
@@ -2625,7 +2616,8 @@ function fitWords(el) {
     }
     if (broken()) el.style.overflowWrap = "anywhere";
   }
-  el.dataset.fitKey = el.textContent + "|" + el.clientWidth + "|" + base;
+  el.dataset.fitKey = el.textContent + "|" + el.clientWidth + "|" + base + "|" + getComputedStyle(el).fontFamily;
+  done();
 }
 function fitWordGroups(r) {
   var groups = {};
@@ -2656,12 +2648,7 @@ if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationO
     var all = [...document.body.querySelectorAll(_FIT_WORDS)];
     for (var n of all) {
       n.dataset.fitKey = "";
-      if (n.dataset.fitSet != null && n.dataset.fitBase != null && parseFloat(n.dataset.fitSet) !== parseFloat(n.dataset.fitBase)) {
-        if (n.dataset.fitInline) _fitSize(n, parseFloat(n.dataset.fitBase));else {
-          _fitSize(n, null);
-          n.dataset.fitSet = n.dataset.fitBase;
-        }
-      }
+      if (n.dataset.fitSet != null && n.dataset.fitBase != null && parseFloat(n.dataset.fitSet) !== parseFloat(n.dataset.fitBase)) _fitSize(n, parseFloat(n.dataset.fitBase));
       if (n.style.overflowWrap) n.style.overflowWrap = "";
     }
     for (var _n2 of all) {

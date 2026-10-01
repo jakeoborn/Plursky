@@ -184,6 +184,9 @@ const audit = (page) => page.evaluate(() => {
     })(),
     // Text cut off inside its own box: an ellipsis (or a hard clip) on a line
     // that is wider than the box holding it.
+    // A screen title fitted all the way to its floor means the fit never saw
+    // its own steps (the 0.01ms Reduce Motion transition), not that it fits.
+    titleFloor: [...document.querySelectorAll('h1[data-fit-words]')].filter(h => vis(h) && Math.abs(parseFloat(getComputedStyle(h).fontSize) - parseFloat(h.dataset.fitMin || '0')) < 0.1).map(h => h.innerText.trim()),
     cutOff: [...document.querySelectorAll('*')].filter(e => {
       if (!vis(e) || !(e.textContent || '').trim()) return false;
       const s = getComputedStyle(e);
@@ -220,7 +223,10 @@ try {
   // whole words only in this Mac's fonts is not a fix.
   for (const [label, url] of [['landing', BASE], ['memories', BASE + '?tab=memories']]) {
     for (const font of [null, 'Verdana']) for (const width of [393, 320, 280]) {
-      const { ctx, page } = await open(browser, { url, width, big: true, font });
+      // The wide pass also runs with Reduce Motion on, the setting that gives
+      // every element a 0.01ms transition: a fit that measured mid-transition
+      // never saw its own steps and ran to its floor.
+      const { ctx, page } = await open(browser, { url, width, big: true, font, reduced: !!font });
       const a = await audit(page);
       const tag = `${label}${font ? '-wide' : ''}`;
       if (label === 'memories') check(a.h1.includes('Memories') && a.currentTab === 'Memories',
@@ -234,6 +240,7 @@ try {
       check(a.tightLines.length === 0, `${tag} @${width} 200% text: no line-height smaller than its font (${JSON.stringify(a.tightLines)})`);
       check(a.midWord.length === 0, `${tag} @${width} 200% text: no word breaks inside itself (${JSON.stringify(a.midWord)})`);
       check(a.cutOff.length === 0, `${tag} @${width} 200% text: no text cut off inside its box (${JSON.stringify(a.cutOff)})`);
+      check(a.titleFloor.length === 0, `${tag} @${width} 200% text: no screen title shrunk to its floor (${JSON.stringify(a.titleFloor)})`);
       await ctx.close();
     }
   }
