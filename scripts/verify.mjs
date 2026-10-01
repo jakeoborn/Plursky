@@ -2176,6 +2176,9 @@ const REGISTRATION_TOL_M = 25;
   }
 }
 
+console.log("▸ ACL September30 stable-identity and source gate");
+try { console.log(execFileSync(process.execPath, ["scripts/test-acl-september30.mjs"], {cwd:ROOT,encoding:"utf8"})); }
+catch(e) { fail("ACL September30 regression: " + (e.stdout || e.message)); }
 console.log("▸ ACL programming readiness - independent event identities and source-only vendor map");
 try {
   console.log(execFileSync(process.execPath, ["scripts/test-acl-programming-readiness.mjs"], { cwd: ROOT }).toString().trim());
